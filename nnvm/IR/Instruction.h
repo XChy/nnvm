@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IR/Value.h"
-#include <ADT/ListNode.h>
+#include "ADT/List.h"
+#include "Value.h"
 #include <string>
 #include <vector>
 
@@ -50,7 +50,7 @@ enum class InstType {
 
 class Metadata;
 
-class Instruction : public Value, ListTrait<Instruction> {
+class Instruction : public Value, public ListTrait<Instruction> {
 public:
   Instruction() : metadata(nullptr) { valueType = ValueType::Instruction; }
   Instruction(InstType opcode) : metadata(nullptr), instType(opcode) {

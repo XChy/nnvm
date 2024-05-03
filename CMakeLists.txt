@@ -7,12 +7,12 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-
 set(CMAKE_CXX_FLAGS_DEBUG
-    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wno-unused-variable  -fno-rtti -pthread -O0 -g -ggdb -std=c++20"
+    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wno-unused-variable -O0 -g -ggdb -std=c++17"
 )
+
 set(CMAKE_CXX_FLAGS_RELEASE
-    "${CMAKE_CXX_FLAGS_RELEASE} -std=c++20 -fno-rtti -O1 -pthread -fopenmp")
+    "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -fno-rtti -O2 -pthread -fopenmp")
 
 # Output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
@@ -22,6 +22,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 add_subdirectory(./nnvm)
 
 if(BUILD_TEST)
+
 endif()
 
 set(CMAKE_CXX_STANDARD 20)
