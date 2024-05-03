@@ -12,18 +12,16 @@ set(CMAKE_CXX_FLAGS_DEBUG
 )
 
 set(CMAKE_CXX_FLAGS_RELEASE
-    "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -O2 -pthread -fopenmp")
+    "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -O2")
 
 # Output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
-
-
 include_directories(antlr-runtime)
 file(GLOB_RECURSE ANTLR4_RUNTIME_SRC antlr-runtime/*.cpp)
-add_library(ANTLR4_RUNTIME_LIB STATIC ${ANTLR4_RUNTIME_SRC})
+add_library(ANTLR4_RUNTIME_LIB SHARED ${ANTLR4_RUNTIME_SRC})
 
 add_subdirectory(./nnvm)
 
@@ -31,4 +29,4 @@ if(BUILD_TEST)
 
 endif()
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
