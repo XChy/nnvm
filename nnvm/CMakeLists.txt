@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -O2 -lm")
 include_directories(.)
 file(GLOB_RECURSE CORE_SRC "main.cpp" "*.h" "*.cpp")
 
-message(STATUS "Hello ${CORE_SRC}")
+message(STATUS "Building core library of NNVM")
 
 add_executable(compiler main.cpp ${CORE_SRC})
 
