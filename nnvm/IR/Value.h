@@ -7,24 +7,31 @@
 #include <vector>
 namespace nnvm {
 
-enum class ValueType { Instruction, Constant, Argument, GlobalVariable };
+enum class ValueID { Instruction, Constant, Argument, GlobalVariable };
 
 class Use;
 
 class Value {
 public:
-  List<Use> users() const;
+  Value();
+  Value(ValueID valueID) : valueID(valueID) {}
+  Value(ValueID valueID, Type *type) : valueID(valueID), type(type) {}
+  List<Use> users() const { return userList; }
+
+  void addUse(Use *use);
 
   void setName(const std::string &name) { this->name = name; }
   std::string getName() const { return name; }
 
-  Type *getType();
+  Type *getType() { return type; }
 
   virtual std::string dump() { return name; };
   virtual ~Value() {}
 
 protected:
-  ValueType valueType;
+  ValueID valueID;
+  Type *type;
+  // Keep this as a usee
   List<Use> userList;
   std::string name;
 }; // namespace nnvm
@@ -32,8 +39,13 @@ protected:
 // Every user manages the memory of uses;
 class Use : public ListTrait<Use> {
 public:
-  // The list is userList of the usee.
-  void removeFromList() {}
+  Use() {}
+  void set(Value *newUsee) {
+    if (usee)
+      removeFromList();
+    // TODO add user to userlist
+    usee = newUsee;
+  }
 
 private:
   Value *user;

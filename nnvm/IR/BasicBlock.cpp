@@ -14,8 +14,7 @@ void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {
       !inserted->getParent() &&
       "The inserted instruction has been inserted into another basic block.");
 
-  inserted->setParent(this);
-  (*insertPoint)->insertBack(inserted);
+  insertPoint.insertBack(inserted);
 }
 
 std::string BasicBlock::dump() {

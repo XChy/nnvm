@@ -17,12 +17,14 @@ public:
     ListTrait<T> *oldNext = next;
     next = newNext;
     newNext->next = oldNext;
+    oldNext->prev = newNext;
   }
 
   void insertBefore(ListTrait<T> *newPrev) {
     ListTrait<T> *oldPrev = prev;
     prev = newPrev;
     newPrev->prev = oldPrev;
+    oldPrev->next = newPrev;
   }
 
   T *removeFromList() {

@@ -40,6 +40,9 @@ public:
       return ret;
     }
 
+    void insertBefore(T *a) { curNode->insertBefore(a); }
+    void insertBack(T *a) { curNode->insertBack(a); }
+
     bool operator==(Iterator other) { return curNode == other.curNode; }
     bool operator!=(Iterator other) { return curNode != other.curNode; }
 

@@ -3,6 +3,7 @@
 #include "Frontend/IRGenerator.h"
 #include "Frontend/SysYLexer.h"
 #include "Frontend/SysYParser.h"
+#include "Transform/Opt.h"
 #include "Utils/Debug.h"
 #include <fstream>
 #include <iostream>
@@ -30,6 +31,7 @@ int main(int argc, char **argv) {
   Module ir;
   IRGenerator irgen;
   RISCVBackend backend;
+  Optimizer optimizer;
 
   inputStream.open(sourceFile);
   antlr4::ANTLRInputStream input(inputStream);
@@ -41,6 +43,7 @@ int main(int argc, char **argv) {
   inputStream.close();
 
   irgen.emitIR(tree, &ir);
+  optimizer.transform(&ir);
 
   debug(std::cerr << ir.dump() << "\n");
 

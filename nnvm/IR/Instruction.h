@@ -54,9 +54,9 @@ class BasicBlock;
 
 class Instruction : public Value, public ListTrait<Instruction> {
 public:
-  Instruction() : metadata(nullptr) { valueType = ValueType::Instruction; }
+  Instruction() : metadata(nullptr) { valueID = ValueID::Instruction; }
   Instruction(InstType opcode) : instType(opcode), metadata(nullptr) {
-    valueType = ValueType::Instruction;
+    valueID = ValueID::Instruction;
   }
 
   InstType getOpcode() const { return instType; }

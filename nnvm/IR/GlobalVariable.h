@@ -6,10 +6,10 @@ namespace nnvm {
 
 class GlobalVariable : public Value {
 public:
-  GlobalVariable();
-  virtual ~GlobalVariable() {}
+  GlobalVariable() : Value(ValueID::GlobalVariable) {}
 
 private:
+  Value *initVal;
 };
 
 } // namespace nnvm

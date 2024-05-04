@@ -15,7 +15,24 @@ public:
   BasicBlock() {}
   BasicBlock(const std::string &name) { setName(name); }
 
-  typedef List<Instruction>::Iterator Iterator;
+  class Iterator : public List<Instruction>::Iterator {
+  public:
+    Iterator() {}
+    Iterator(List<Instruction>::Iterator instIt, BasicBlock *BB)
+        : List<Instruction>::Iterator(instIt), BB(BB) {}
+    void insertBefore(Instruction *a) {
+      a->setParent(BB);
+      ((List<Instruction>::Iterator *)this)->insertBefore(a);
+    }
+    void insertBack(Instruction *a) {
+      a->setParent(BB);
+      ((List<Instruction>::Iterator *)this)->insertBefore(a);
+    }
+
+  private:
+    BasicBlock *BB;
+  };
+
   void insert(Iterator insertPoint, Instruction *inserted);
 
   Function *getParent() { return parent; }
