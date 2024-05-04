@@ -4,10 +4,10 @@
 
 namespace nnvm {
 
-class GlobalVariable : public Value {
+class Constant : public Value {
 public:
-  GlobalVariable();
-  virtual ~GlobalVariable() {}
+  Constant();
+  virtual ~Constant() {}
 
 private:
 };

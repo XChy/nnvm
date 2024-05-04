@@ -2,28 +2,40 @@
 
 namespace nnvm {
 
-template <typename T> class ListTrait {
-public:
-  T *getNext() const { return next; }
-  T *getNext() { return next; }
-  T *getPrev() const { return prev; }
-  T *getPrev() { return prev; }
+template <typename T> class List;
 
-  void insertBack(T *newNext) {
-    T *oldNext = next;
+template <typename T> class ListTrait {
+  friend class List<T>;
+
+public:
+  T *getNext() const { return (T *)next; }
+  T *getNext() { return (T *)next; }
+  T *getPrev() const { return (T *)prev; }
+  T *getPrev() { return (T *)prev; }
+
+  void insertBack(ListTrait<T> *newNext) {
+    ListTrait<T> *oldNext = next;
     next = newNext;
     newNext->next = oldNext;
   }
 
-  void insertBefore(T *newPrev) {
-    T *oldPrev = prev;
+  void insertBefore(ListTrait<T> *newPrev) {
+    ListTrait<T> *oldPrev = prev;
     prev = newPrev;
     newPrev->prev = oldPrev;
   }
 
+  T *removeFromList() {
+    prev->next = next;
+    next->prev = prev;
+
+    prev = nullptr;
+    next = nullptr;
+  }
+
 private:
-  T *next;
-  T *prev;
+  ListTrait<T> *prev;
+  ListTrait<T> *next;
 };
 
 } // namespace nnvm

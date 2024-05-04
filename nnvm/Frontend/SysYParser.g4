@@ -24,6 +24,7 @@ constDecl
 
 btype
     : INT
+    | FLOAT
     ;
 
 
@@ -54,7 +55,7 @@ funcDef
     ;
 
 funcType
-    : VOID | INT
+    : VOID | INT | FLOAT
     ;
 
 funcFParams
@@ -118,6 +119,7 @@ lVal
 
 number
    : INTEGER_CONST
+   | FLOAT_CONST
    ;
 
 unaryOp

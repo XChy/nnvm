@@ -8,6 +8,8 @@
 #include "SysYParser.h"
 
 
+namespace nnvm {
+
 /**
  * This interface defines an abstract listener for a parse tree produced by SysYParser.
  */
@@ -98,3 +100,4 @@ public:
 
 };
 
+}  // namespace nnvm

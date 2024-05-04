@@ -50,22 +50,30 @@ enum class InstType {
 };
 
 class Metadata;
+class BasicBlock;
 
 class Instruction : public Value, public ListTrait<Instruction> {
 public:
   Instruction() : metadata(nullptr) { valueType = ValueType::Instruction; }
-  Instruction(InstType opcode) : metadata(nullptr), instType(opcode) {
+  Instruction(InstType opcode) : instType(opcode), metadata(nullptr) {
     valueType = ValueType::Instruction;
   }
 
   InstType getOpcode() const { return instType; }
+
+  void setParent(BasicBlock *parent) { this->parent = parent; }
+  const BasicBlock *getParent() const { return parent; }
+  BasicBlock *getParent() { return parent; }
+
+  void setMetadata(Metadata *metadata) { this->metadata = metadata; }
+  const Metadata *getMetadata() const { return metadata; }
   Metadata *getMetadata() { return metadata; }
-  std::string dump() const;
 
 private:
   InstType instType;
   std::vector<Use *> operandList;
   Metadata *metadata;
+  BasicBlock *parent;
 };
 
 } // namespace nnvm

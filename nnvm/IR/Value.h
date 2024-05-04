@@ -1,5 +1,8 @@
 #pragma once
 
+#include "ADT/List.h"
+#include "ADT/ListNode.h"
+#include "IR/Type.h"
 #include <string>
 #include <vector>
 namespace nnvm {
@@ -10,20 +13,33 @@ class Use;
 
 class Value {
 public:
-  std::vector<Use *> users() const;
+  List<Use> users() const;
 
-  virtual std::string dump() const { return ""; };
+  void setName(const std::string &name) { this->name = name; }
+  std::string getName() const { return name; }
+
+  Type *getType();
+
+  virtual std::string dump() { return name; };
   virtual ~Value() {}
 
 protected:
   ValueType valueType;
-  std::vector<Use *> userList;
+  List<Use> userList;
+  std::string name;
 }; // namespace nnvm
 
 // Every user manages the memory of uses;
-struct Use {
+class Use : public ListTrait<Use> {
+public:
+  // The list is userList of the usee.
+  void removeFromList() {}
+
+private:
   Value *user;
   Value *usee;
 };
+
+class Argument : public Value {};
 
 } // namespace nnvm

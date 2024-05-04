@@ -8,6 +8,8 @@
 #include "SysYParserListener.h"
 
 
+namespace nnvm {
+
 /**
  * This class provides an empty implementation of SysYParserListener,
  * which can be extended to create a listener which only needs to handle a subset
@@ -105,3 +107,4 @@ public:
 
 };
 
+}  // namespace nnvm

@@ -1,16 +1,23 @@
 #pragma once
 
 #include "ADT/List.h"
+#include "IR/BasicBlock.h"
 #include "IR/Instruction.h"
 #include "IR/Value.h"
 #include <vector>
 namespace nnvm {
 class IRBuilder {
 public:
-  void setInsertPoint(ListIterator<Instruction>);
-  Value *buildInst(InstType opcode, const std::vector<Value *>& operands);
+  IRBuilder() {}
+  void setInsertPoint(BasicBlock::Iterator insertPoint) {
+    this->insertPoint = insertPoint;
+  }
+
+  BasicBlock::Iterator getInsertPoint() const { return insertPoint; }
+
+  Value *buildInst(InstType opcode, const std::vector<Value *> &operands);
 
 private:
-  ListIterator<Instruction> insertPoint;
+  BasicBlock::Iterator insertPoint;
 };
 } // namespace nnvm

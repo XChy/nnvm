@@ -1,12 +1,3 @@
-project(NNVM)
-cmake_minimum_required(VERSION 3.14)
-
-option(BUILD_TEST "Set to complie the test samples" ON)
-
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
-endif()
-
 if(CMAKE_BUILD_TYPE STREQUAL Release)
     message(STATUS "Release Build")
 else()
