@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Frontend/Symbol.h"
+#include "IR/IRBuilder.h"
 #include "IR/Module.h"
 #include "IR/Type.h"
 #include "SysYParserBaseVisitor.h"
@@ -50,6 +51,8 @@ public:
 
 private:
   Module *ir;
+  IRBuilder builder;
+
   Function *currentFunc;
   BasicBlock *currentBB;
   SymbolTable symbolTable;

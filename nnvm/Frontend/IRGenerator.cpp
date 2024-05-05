@@ -7,8 +7,10 @@ using namespace nnvm;
 
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
+  builder.setModule(ir);
   visit(ast);
 }
+
 Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   symbolTable.enterScope();
   visitChildren(ctx);
@@ -57,11 +59,15 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
 }
 
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
-  Function *func = new Function();
   string funcName = ctx->IDENT()->getText();
-  func->setName(funcName);
+  if (symbolTable.lookupInCurrentScope(funcName)) {
+    // TODO: error
+    return nullptr;
+  }
 
   // TODO: some checks
+  Function *func = new Function();
+  func->setName(funcName);
 
   ir->addFunction(func);
   symbolTable.create(funcName, ctx->funcType()->accept(this), func);
@@ -69,15 +75,21 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock("entry");
   func->insert(Entry);
+  builder.setInsertPoint(Entry->end());
 
   currentFunc = func;
   currentBB = Entry;
 
   symbolTable.enterScope();
-  // TODO: add argument
 
   for (auto paramCtx : ctx->funcFParams()->funcFParam())
     paramCtx->accept(this);
+
+  // Demote args into stack.
+  for (auto *arg : func->getArguments()) {
+    Value *stack = builder.buildStack(arg->getType());
+    builder.buildStore(arg, stack);
+  }
 
   ctx->block()->accept(this);
   symbolTable.exitScope();
@@ -97,6 +109,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
     else
+      // TODO: calculate the number of element
       symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
   }
 

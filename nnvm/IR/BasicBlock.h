@@ -33,6 +33,11 @@ public:
     BasicBlock *BB;
   };
 
+  Iterator begin() { return {instList.begin(), this}; }
+  Iterator end() { return {instList.end(), this}; }
+
+  Instruction *getTerminator() { return instList.getLast(); }
+
   void insert(Iterator insertPoint, Instruction *inserted);
 
   Function *getParent() { return parent; }

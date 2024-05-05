@@ -26,6 +26,7 @@ public:
   Type *getType() { return type; }
 
   virtual std::string dump() { return name; };
+  virtual std::string dumpAsOperand() { return type->dump() + " %" + name; };
   virtual ~Value() {}
 
 protected:
@@ -41,6 +42,11 @@ class Use : public ListTrait<Use> {
 public:
   Use() {}
   Use(Value *user) : user(user) {}
+  Use(Value *user, Value *usee) : user(user), usee(usee) {
+    if (usee)
+      usee->addUse(this);
+  }
+
   void set(Value *newUsee) {
     if (usee)
       removeFromList();
@@ -49,6 +55,9 @@ public:
     newUsee->addUse(this);
     usee = newUsee;
   }
+
+  Value *getUser() { return user; }
+  Value *getUsee() { return usee; }
 
 private:
   Value *user;

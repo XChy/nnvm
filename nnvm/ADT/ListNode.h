@@ -15,15 +15,23 @@ public:
 
   void insertBack(ListTrait<T> *newNext) {
     ListTrait<T> *oldNext = next;
+
     next = newNext;
+
     newNext->next = oldNext;
+    newNext->prev = this;
+
     oldNext->prev = newNext;
   }
 
   void insertBefore(ListTrait<T> *newPrev) {
     ListTrait<T> *oldPrev = prev;
-    prev = newPrev;
+
+    this->prev = newPrev;
+
     newPrev->prev = oldPrev;
+    newPrev->next = this;
+
     oldPrev->next = newPrev;
   }
 

@@ -18,6 +18,7 @@ public:
   Type *getReturnType() { return retType; }
 
   void addArgument(Argument *arg);
+  std::vector<Argument *> getArguments();
 
   std::string dump();
 
