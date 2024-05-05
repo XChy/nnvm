@@ -30,6 +30,13 @@ void Module::addFunction(Function *func) {
   functionMap.insert({func->getName(), func});
 }
 
+GlobalVariable *Module::getGlobalVar(const std::string &name) {
+  return globalVarMap[name];
+}
+void Module::addGlobalVar(GlobalVariable *global) {
+  globalVarMap.insert({global->getName(), global});
+}
+
 Type *Module::getVoidType() { return typeMap[Type::Void][0]; }
 Type *Module::getIntType() { return intTypeMap[32]; }
 Type *Module::getFloatType() { return typeMap[Type::Float][0]; }
@@ -39,6 +46,9 @@ Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
 Module::~Module() {
   for (auto [name, func] : functionMap)
     delete func;
+
+  for (auto [name, global] : globalVarMap)
+    delete global;
 
   for (auto &[_, subVec] : typeMap)
     for (auto *Ty : subVec)
@@ -50,6 +60,9 @@ Module::~Module() {
 
 std::string Module::dump() const {
   std::string ret;
+  for (auto [name, global] : globalVarMap)
+    ret += global->dump();
+
   for (auto [name, func] : functionMap)
     ret += func->dump();
   return ret;

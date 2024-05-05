@@ -23,6 +23,7 @@ public:
   void setName(const std::string &name) { this->name = name; }
   std::string getName() const { return name; }
 
+  void setType(Type *type) { this->type = type; }
   Type *getType() { return type; }
 
   virtual std::string dump() { return name; };

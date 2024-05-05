@@ -119,10 +119,6 @@ public:
   LoadInst() : Instruction(InstID::Load, 1) {}
 
   Value *getSrc() { return getOperand(0); }
-
-  std::string dump() override;
-
-private:
 };
 
 } // namespace nnvm

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Function.h"
+#include "IR/GlobalVariable.h"
 #include <string>
 #include <unordered_map>
 
@@ -12,8 +13,18 @@ using std::vector;
 class Module {
 public:
   Module();
+
   Function *getFunction(const std::string &name);
   void addFunction(Function *func);
+  std::unordered_map<std::string, Function *> getFunctionMap() const {
+    return functionMap;
+  }
+
+  GlobalVariable *getGlobalVar(const std::string &name);
+  void addGlobalVar(GlobalVariable *global);
+  std::unordered_map<std::string, GlobalVariable *> getGlobalVarMap() const {
+    return globalVarMap;
+  }
 
   std::string dump() const;
 
@@ -30,6 +41,7 @@ public:
 
 private:
   std::unordered_map<std::string, Function *> functionMap;
+  std::unordered_map<std::string, GlobalVariable *> globalVarMap;
 
   NormalTypeMap typeMap;
   IntegerTypeMap intTypeMap;

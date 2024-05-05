@@ -21,6 +21,6 @@ std::string BasicBlock::dump() {
   std::string ret;
   ret += (getName() + ":\n");
   for (Instruction *I : instList)
-    ret += I->dump();
+    ret += "  " + I->dump();
   return ret;
 }

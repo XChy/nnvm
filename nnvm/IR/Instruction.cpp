@@ -11,7 +11,7 @@ Instruction::Instruction(InstID opcode, const std::vector<Value *> operands) {
     useeList.push_back(new Use(this, operand));
 }
 
-Instruction::Instruction(InstID opcode, uint numOperands) {
+Instruction::Instruction(InstID opcode, uint numOperands) : instID(opcode) {
   for (int i = 0; i < numOperands; i++)
     useeList.push_back(new Use(this, nullptr));
 }
@@ -37,11 +37,11 @@ std::string Instruction::dump() {
     switch (instID) {
     case InstID::Store:
       ret = "store " + getOperand(0)->dumpAsOperand() + +" to " +
-            getOperand(1)->dumpAsOperand() + "\n";
+            getOperand(1)->dumpAsOperand();
       break;
     case InstID::Load:
-      ret = "store " + getOperand(0)->dumpAsOperand() + +" to " +
-            getOperand(1)->dumpAsOperand() + "\n";
+      ret = getName() + " = load " + type->dump() + " from " +
+            getOperand(0)->dumpAsOperand();
       break;
 
     default:

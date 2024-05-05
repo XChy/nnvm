@@ -1,15 +1,19 @@
 #pragma once
 
+#include "IR/Constant.h"
 #include "IR/Value.h"
 
 namespace nnvm {
 
 class GlobalVariable : public Value {
 public:
-  GlobalVariable() : Value(ValueID::GlobalVariable) {}
+  GlobalVariable(Module &module);
+  GlobalVariable(Module &module, Constant *initVal);
+
+  std::string dump() override;
 
 private:
-  Value *initVal;
+  Constant *initVal;
 };
 
 } // namespace nnvm
