@@ -32,3 +32,6 @@ SymbolType *SymbolType::getFuncTy(SymbolType *returnTy,
   table.managedTys.push_back(newTy);
   return newTy;
 }
+
+static Symbol noneSymbol;
+Symbol Symbol::none() { return noneSymbol; }

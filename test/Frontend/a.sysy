@@ -1,2 +1,5 @@
-int a(int a, int b[][2]) {}
-int b(int a[], float b) {}
+int a(int a, int b) {
+    a = a + a;
+}
+int b(int a[], float b) {
+}

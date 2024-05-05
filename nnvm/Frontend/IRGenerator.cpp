@@ -1,6 +1,7 @@
 #include "IRGenerator.h"
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
+#include "IR/Instruction.h"
 #include "IR/Type.h"
 
 using namespace nnvm;
@@ -62,7 +63,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(funcName)) {
     // TODO: error
-    return nullptr;
+    return Symbol::none();
   }
 
   // TODO: some checks
@@ -86,22 +87,26 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     paramCtx->accept(this);
 
   // Demote args into stack.
-  for (auto *arg : func->getArguments()) {
-    Value *stack = builder.buildStack(arg->getType());
+  for (int i = 0; i < func->getArguments().size(); i++) {
+    auto *arg = func->getArguments()[i];
+    auto *stack =
+        symbolTable
+            .lookup(ctx->funcFParams()->funcFParam(i)->IDENT()->getText())
+            ->entity;
     builder.buildStore(arg, stack);
   }
 
   ctx->block()->accept(this);
   symbolTable.exitScope();
 
-  return nullptr;
+  return Symbol::none();
 }
 
 Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   string paramName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
-    return nullptr;
+    return Symbol::none();
   }
 
   SymbolType *symbolTy = ctx->btype()->accept(this);
@@ -118,9 +123,82 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
                    : getIRType(ctx->btype());
 
   Argument *arg = new Argument(irTy, paramName);
-  symbolTable.create(paramName, symbolTy, arg);
+  Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
   currentFunc->addArgument(arg);
+  symbolTable.create(paramName, symbolTy, stackForArg);
+
+  // Demote argument to stack.
   return nullptr;
+}
+
+Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
+  if (ctx->ASSIGN()) {
+    Symbol lhs = ctx->lVal()->accept(this);
+    if (!lhs)
+      return Symbol::none();
+    Symbol rhs = ctx->exp()->accept(this);
+    if (!rhs)
+      return Symbol::none();
+
+    return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+  }
+  return visitChildren(ctx);
+}
+
+Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
+  // TODO: handle array index
+  Symbol address = *symbolTable.lookup(ctx->IDENT()->getText());
+
+  if (!address) {
+    // TODO: error
+    return Symbol::none();
+  }
+
+  return address;
+}
+
+Type *IRGenerator::toIRType(SymbolType *symbolTy) {
+  switch (symbolTy->symbolID) {
+  case SymbolType::Int:
+    return ir->getIntType();
+  case SymbolType::Float:
+    return ir->getFloatType();
+  case SymbolType::Bool:
+    return ir->getBoolType();
+  case SymbolType::Void:
+    return ir->getVoidType();
+  case SymbolType::Array:
+    return ir->getPtrType();
+  default:
+    assert("Not support transform symbol type");
+    return nullptr;
+  }
+}
+
+Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
+  if (ctx->lVal()) {
+    Symbol lVal = ctx->lVal()->accept(this);
+    if (!lVal)
+      return nullptr;
+    return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
+                                    lVal.entity->getName() + ".load"),
+                  lVal.symbolType};
+  }
+
+  if (ctx->PLUS()) {
+    // TODO: how to infer type?
+    Symbol lhs = ctx->exp(0)->accept(this);
+    if (!lhs)
+      return nullptr;
+    Symbol rhs = ctx->exp(1)->accept(this);
+    if (!rhs)
+      return nullptr;
+    Value *Add = builder.buildInst(InstID::Add, {lhs.entity, rhs.entity},
+                                   ir->getIntType());
+    return Symbol{Add, lhs.symbolType};
+  }
+
+  return visitChildren(ctx);
 }
 
 Symbol *SymbolTable::create(const string &name) {

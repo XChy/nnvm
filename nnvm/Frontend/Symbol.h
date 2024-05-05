@@ -67,7 +67,14 @@ public:
 
 class Symbol {
 public:
+  Symbol() : entity(nullptr), symbolType(nullptr) {}
+  Symbol(Value *entity, SymbolType *symbolType)
+      : entity(entity), symbolType(symbolType) {}
   Value *entity;
   SymbolType *symbolType;
+
+  bool operator!() { return !entity; }
+
+  static Symbol none();
 };
 } /* namespace nnvm */

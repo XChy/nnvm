@@ -49,6 +49,13 @@ public:
   Any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
   Any visitFuncFParam(SysYParser::FuncFParamContext *ctx) override;
 
+  Any visitStmt(SysYParser::StmtContext *ctx) override;
+
+  Any visitLVal(SysYParser::LValContext *ctx) override;
+  Any visitExp(SysYParser::ExpContext *ctx) override;
+
+  Type *toIRType(SymbolType *symbolTy);
+
 private:
   Module *ir;
   IRBuilder builder;

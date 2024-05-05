@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   std::ifstream inputStream;
   Module ir;
   IRGenerator irgen;
-  RISCVBackend backend;
+  riscv::RISCVBackend backend;
   Optimizer optimizer;
 
   inputStream.open(sourceFile);
@@ -56,6 +56,7 @@ int main(int argc, char **argv) {
   debug(std::cerr << ir.dump() << "\n");
 
   if (outputFile.empty()) {
+    std::cerr << "; RISCV64 Assembly \n";
     backend.emit(ir, std::cout);
   } else {
     std::ofstream outputStream;
