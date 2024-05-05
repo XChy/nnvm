@@ -13,7 +13,7 @@ class Use;
 
 class Value {
 public:
-  Value();
+  Value() {}
   Value(ValueID valueID) : valueID(valueID) {}
   Value(ValueID valueID, Type *type) : valueID(valueID), type(type) {}
   List<Use> users() const { return userList; }
@@ -40,10 +40,13 @@ protected:
 class Use : public ListTrait<Use> {
 public:
   Use() {}
+  Use(Value *user) : user(user) {}
   void set(Value *newUsee) {
     if (usee)
       removeFromList();
-    // TODO add user to userlist
+
+    // Add this use to userlist of new usee.
+    newUsee->addUse(this);
     usee = newUsee;
   }
 
@@ -51,7 +54,5 @@ private:
   Value *user;
   Value *usee;
 };
-
-class Argument : public Value {};
 
 } // namespace nnvm

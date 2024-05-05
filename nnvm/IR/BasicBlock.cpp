@@ -19,7 +19,7 @@ void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {
 
 std::string BasicBlock::dump() {
   std::string ret;
-  ret += (getName() + ":");
+  ret += (getName() + ":\n");
   for (Instruction *I : instList)
     ret += I->dump();
   return ret;

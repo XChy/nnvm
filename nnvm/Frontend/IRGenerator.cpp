@@ -1,4 +1,5 @@
 #include "IRGenerator.h"
+#include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
 #include "IR/Type.h"
 
@@ -15,7 +16,7 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   return Any();
 }
 
-Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
+Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
   if (ctx->INT())
     return ir->getIntType();
   if (ctx->FLOAT())
@@ -23,8 +24,7 @@ Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
   static_assert("Not supported such type");
   return nullptr;
 }
-
-Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
+Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
   if (ctx->INT())
     return ir->getIntType();
   if (ctx->FLOAT())
@@ -35,36 +35,106 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
   return nullptr;
 }
 
+Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
+  if (ctx->INT())
+    return SymbolType::getIntTy();
+  if (ctx->FLOAT())
+    return SymbolType::getFloatTy();
+  static_assert("Not supported such type");
+  return nullptr;
+}
+
+Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
+
+  if (ctx->INT())
+    return SymbolType::getIntTy();
+  if (ctx->FLOAT())
+    return SymbolType::getFloatTy();
+  if (ctx->VOID())
+    return SymbolType::getVoidTy();
+  static_assert("Not supported such type");
+  return nullptr;
+}
+
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   Function *func = new Function();
-  func->setName(ctx->IDENT()->getText());
+  string funcName = ctx->IDENT()->getText();
+  func->setName(funcName);
+
   // TODO: some checks
 
   ir->addFunction(func);
+  symbolTable.create(funcName, ctx->funcType()->accept(this), func);
 
-  Type *retTy = ctx->funcType()->accept(this);
-  func->setReturnType(retTy);
+  func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock("entry");
   func->insert(Entry);
 
   currentFunc = func;
   currentBB = Entry;
 
+  symbolTable.enterScope();
+  // TODO: add argument
+
+  for (auto paramCtx : ctx->funcFParams()->funcFParam())
+    paramCtx->accept(this);
+
   ctx->block()->accept(this);
+  symbolTable.exitScope();
+
   return nullptr;
 }
 
-Value *SymbolTable::lookup(const string &symbolName) {
+Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
+  string paramName = ctx->IDENT()->getText();
+  if (symbolTable.lookupInCurrentScope(paramName)) {
+    // TODO: error
+    return nullptr;
+  }
+
+  SymbolType *symbolTy = ctx->btype()->accept(this);
+  for (int i = 0; i < ctx->L_BRACKT().size(); i++) {
+    if (i == 0)
+      symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
+    else
+      symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+  }
+
+  Type *irTy = symbolTy->symbolID == SymbolType::Array
+                   ? ir->getPtrType()
+                   : getIRType(ctx->btype());
+
+  Argument *arg = new Argument(irTy, paramName);
+  symbolTable.create(paramName, symbolTy, arg);
+  currentFunc->addArgument(arg);
+  return nullptr;
+}
+
+Symbol *SymbolTable::create(const string &name) {
+  scopes.back().insert({name, Symbol()});
+  return &scopes.back()[name];
+}
+Symbol *SymbolTable::create(const string &name, SymbolType *type,
+                            Value *entity) {
+  scopes.back().insert({name, Symbol{entity, type}});
+  return &scopes.back()[name];
+}
+
+Symbol *SymbolTable::lookup(const string &symbolName) {
   for (auto it = scopes.rbegin(); it != scopes.rend(); ++it) {
     auto symbolIt = it->find(symbolName);
     if (symbolIt != it->end())
-      return symbolIt->second;
+      return &symbolIt->second;
   }
   return nullptr;
 }
 
-Value *SymbolTable::lookupInCurrentScope(const string &symbolName) {
-  return scopes.back()[symbolName];
+Symbol *SymbolTable::lookupInCurrentScope(const string &symbolName) {
+  auto it = scopes.back().find(symbolName);
+  if (it != scopes.back().end())
+    return &it->second;
+  else
+    return nullptr;
 }
 
 void SymbolTable::enterScope() { scopes.push_back({}); }

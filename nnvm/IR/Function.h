@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ADT/List.h"
+#include "IR/Argument.h"
 #include "IR/BasicBlock.h"
 #include "IR/Type.h"
 #include "IR/Value.h"
@@ -16,12 +17,14 @@ public:
   void setReturnType(Type *retType) { this->retType = retType; }
   Type *getReturnType() { return retType; }
 
+  void addArgument(Argument *arg);
+
   std::string dump();
 
 private:
   List<BasicBlock> BBList;
 
-  std::vector<Argument> arguments;
+  std::vector<Argument *> arguments;
   Type *retType;
 };
 } // namespace nnvm

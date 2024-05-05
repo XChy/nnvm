@@ -39,11 +39,19 @@ int main(int argc, char **argv) {
   antlr4::CommonTokenStream tokens(&lexer);
   SysYParser parser(&tokens);
 
-  antlr4::tree::ParseTree *tree = parser.compUnit();
+  antlr4::tree::ParseTree *tree = parser.program();
+  debug(std::cerr << "Parsing done!"
+                  << "\n");
   inputStream.close();
 
   irgen.emitIR(tree, &ir);
+
+  debug(std::cerr << "IRGen done!"
+                  << "\n");
+
   optimizer.transform(&ir);
+  debug(std::cerr << "Opt done!"
+                  << "\n");
 
   debug(std::cerr << ir.dump() << "\n");
 
