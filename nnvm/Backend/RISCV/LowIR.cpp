@@ -1,4 +1,4 @@
-#include "MachineIR.h"
+#include "LowIR.h"
 
 using namespace nnvm::riscv;
 
@@ -9,3 +9,5 @@ static std::vector<const char *> registerList = {
 };
 
 const std::vector<const char *> &getRegisterList() { return registerList; }
+
+void LowFunc::emit(std::ostream &out) { out << name << ":\n"; }

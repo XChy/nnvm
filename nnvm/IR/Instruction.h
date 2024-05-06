@@ -24,11 +24,6 @@ enum class InstID {
   FMul,
   FDiv,
   FRem,
-  BINOP_END,
-  // Comparison between integer.
-  ICmp,
-  // Comparison between integer.
-  FCmp,
   // Bitwise operator.
   And,
   Or,
@@ -36,6 +31,11 @@ enum class InstID {
   Shl,
   LShr,
   AShr,
+  BINOP_END,
+  // Comparison between integer.
+  ICmp,
+  // Comparison between integer.
+  FCmp,
   // Terminators.
   TERMINATOR_BEGIN,
   Ret,
