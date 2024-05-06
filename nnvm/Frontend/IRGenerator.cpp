@@ -78,10 +78,6 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   vector<SymbolType *> argsType;
 
   for(auto paramCtx : ctx->funcFParams()->funcFParam()) {
-      if(!paramCtx->btype()) {
-        // TODO : error
-        break;
-      }  
       SymbolType *symbolTy = paramCtx->btype()->accept(this);
       for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
       if (i == 0)
@@ -146,7 +142,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
-  //currentFunc->addArgument(arg);
+  ((Function*)currentFunc->entity)->addArgument(arg);
   symbolTable.create(paramName, symbolTy, stackForArg);
 
   // Demote argument to stack.
@@ -168,14 +164,14 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       if(!returned) { // return null
           return Symbol::none();
       }
-      if(returned.symbolType->symbolID != currentFunc->symbolType->symbolID) {
+      if(returned.symbolType->isIdentical(*currentFunc->symbolType->containedTy)) {
         // TODO : error
           return Symbol::none();
       }
       
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if(currentFunc->symbolType->symbolID != SymbolType::SymbolID::Void) {
+      if(currentFunc->symbolType->containedTy->symbolID != SymbolType::SymbolID::Void) {
         // TODO :  error
         return Symbol::none;
       }
