@@ -21,6 +21,7 @@ Instruction::Instruction(InstID opcode, uint numOperands, Type *type)
 void Instruction::setOperand(uint no, Value *operand) {
   useeList[no]->set(operand);
 }
+
 Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
 
 static std::unordered_map<InstID, std::string> binOpNameTable = {
@@ -46,7 +47,10 @@ std::string Instruction::dump() {
       ret = getName() + " = load " + type->dump() + " from " +
             getOperand(0)->dumpAsOperand();
       break;
-
+    case InstID::Ret:
+      ret += "ret";
+      ret += getOperand(0) ? getOperand(0)->dumpAsOperand() : "";
+      break;
     default:
       ret = "ILLEGAL!";
       break;
@@ -61,9 +65,8 @@ Instruction::~Instruction() {
     delete use;
 }
 
-StackInst::StackInst(Module &module) : Instruction(InstID::Stack, nullptr) {
-  type = module.getPtrType();
-}
+StackInst::StackInst(Module &module)
+    : Instruction(InstID::Stack, module.getPtrType()) {}
 
 StackInst::StackInst(Module &module, GInt allocatedBytes) : StackInst(module) {
   this->allocatedBytes = allocatedBytes;

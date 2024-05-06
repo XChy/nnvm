@@ -6,7 +6,7 @@ else()
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG
-    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -O0 -g -ggdb -std=c++17 -O2 -lm")
+    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -O0 -g -ggdb -std=c++17 -O1 -lm")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++17 -O2 -lm")
 
 include_directories(.)

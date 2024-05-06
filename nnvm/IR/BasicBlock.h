@@ -4,6 +4,7 @@
 #include "ADT/ListNode.h"
 #include "IR/Instruction.h"
 #include "IR/Value.h"
+#include "Utils/Cast.h"
 #include <string>
 
 namespace nnvm {
@@ -12,8 +13,8 @@ class Function;
 
 class BasicBlock : public Value, public ListTrait<BasicBlock> {
 public:
-  BasicBlock() {}
-  BasicBlock(const std::string &name) { setName(name); }
+  BasicBlock() : Value(ValueID::BasicBlock) {}
+  BasicBlock(const std::string &name) : BasicBlock() { setName(name); }
 
   class Iterator : public List<Instruction>::Iterator {
   public:
@@ -36,7 +37,9 @@ public:
   Iterator begin() { return {instList.begin(), this}; }
   Iterator end() { return {instList.end(), this}; }
 
-  Instruction *getTerminator() { return instList.getLast(); }
+  TerminatorInst *getTerminator() {
+    return cast<TerminatorInst>(instList.getLast());
+  }
 
   void insert(Iterator insertPoint, Instruction *inserted);
 

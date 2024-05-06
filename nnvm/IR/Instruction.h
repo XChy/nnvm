@@ -17,6 +17,7 @@
 namespace nnvm {
 
 enum class InstID {
+  INST_BEIGN,
   BINOP_BEGIN,
   // Arithmetic operators for integer.
   Add,
@@ -58,7 +59,9 @@ enum class InstID {
   PtrAdd,
   // Other
   Call,
-  Phi
+  Phi,
+  INST_END,
+
 };
 
 class Metadata;
@@ -176,6 +179,7 @@ public:
   BasicBlock *getSuccessor(int no) {
     return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
   }
+
   uint getSuccessorNum() { return successorNum; }
 
 private:
@@ -187,10 +191,19 @@ public:
   RetInst() : TerminatorInst(InstID::Ret, 0) {}
 };
 
-class BranchInst : public Instruction {
+class BranchInst : public TerminatorInst {
 public:
   BranchInst(bool isConditional)
-      : Instruction(InstID::Br, isConditional ? 2 : 1, nullptr) {}
+      : TerminatorInst(InstID::Br, isConditional ? 3 : 1) {}
+  BranchInst(BasicBlock *directSucc) : BranchInst(false) {
+    setSuccessor(0, directSucc);
+  }
+  BranchInst(Value *cond, BasicBlock *TrueSucc, BasicBlock *FalseSucc)
+      : BranchInst(false) {
+    setOperand(0, cond);
+    setSuccessor(0, TrueSucc);
+    setSuccessor(1, FalseSucc);
+  }
 };
 
 } // namespace nnvm

@@ -14,6 +14,9 @@ public:
 
   void insert(BasicBlock *BB);
 
+  List<BasicBlock>::Iterator begin() { return BBList.begin(); }
+  List<BasicBlock>::Iterator end() { return BBList.end(); };
+
   void setReturnType(Type *retType) { this->retType = retType; }
   Type *getReturnType() { return retType; }
 

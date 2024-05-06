@@ -9,24 +9,24 @@ class Module;
 
 class Constant : public Value {
 public:
-  Constant() : Value(ValueID::Constant) {}
+  Constant(Type *type) : Value(ValueID::Constant, type) {}
 
 private:
 };
 
 class ConstantInt : public Constant {
 public:
-  static ConstantInt *create(Module *module, Type *type, GInt value);
+  static ConstantInt *create(Module &module, Type *type, GInt value);
 };
 class ConstantFloat : public Constant {
 
 public:
-  static ConstantFloat *create(Module *module, float value);
+  static ConstantFloat *create(Module &module, float value);
 };
 class ConstantArray : public Constant {
 
 public:
-  static ConstantArray *create(Module *module);
+  static ConstantArray *create(Module &module);
 };
 
 } // namespace nnvm

@@ -9,6 +9,6 @@
 
 #define nnvm_unreachable(Info)                                                 \
   {                                                                            \
-    std::cout << Info;                                                         \
+    assert(0 && Info);                                                         \
     __builtin_unreachable();                                                   \
   }

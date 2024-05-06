@@ -10,4 +10,12 @@ static std::vector<const char *> registerList = {
 
 const std::vector<const char *> &getRegisterList() { return registerList; }
 
-void LowFunc::emit(std::ostream &out) { out << name << ":\n"; }
+void LowBB::emit(std::ostream &out, EmitInfo &info) {
+  out << "bb" << info.indexOfBB(this) << ":\n";
+}
+
+void LowFunc::emit(std::ostream &out, EmitInfo &info) {
+  out << name << ":\n";
+  for (auto *BB : BBs)
+    BB->emit(out, info);
+}
