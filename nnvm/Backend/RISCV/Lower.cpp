@@ -1,8 +1,10 @@
 #include "Lower.h"
+#include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include "IR/Function.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
+#include "Utils/Cast.h"
 using namespace nnvm;
 using namespace nnvm::riscv;
 
@@ -46,12 +48,46 @@ LowOperand LowerHelper::virtualReg(Value *def) {
   return lowOperand;
 }
 
-LowInst LowerHelper::lowerInst(Instruction *I) {
-  LowInst lowInst;
-  if (I->getOpcode() > InstID::BINOP_BEGIN &&
-      I->getOpcode() > InstID::BINOP_END) {
+static LowOperand gpr(uint index, Type *type) {
+  return LowOperand{
+      .type = LowOperand::GPRegister,
+      .valueType = lowerType(type),
+      .flag = LowOperand::Def,
+      .registerIndex = index,
+  };
+}
+
+void LowerHelper::lowerInst(Instruction *I, std::list<LowInst> &instList) {
+  uint instType = (uint64_t)I->getOpcode();
+  auto emit = [&instList](const LowInst &inst) { instList.push_back(inst); };
+
+  switch (I->getOpcode()) {
+  case InstID::Call:
+  case InstID::Br:
+    break;
+  case InstID::Ret:
+    if (Value *returned = I->getOperand(0)) {
+      emit({LowInst::RET, {virtualReg(returned)}});
+    } else {
+      emit({LowInst::RET, {LowOperand::none()}});
+    }
+    break;
+  case InstID::Stack:
+    emit({(LowInst::LowInstType)InstID::Stack,
+          {defMap[I],
+           LowOperand::imm(cast<StackInst>(I)->getAllocatedBytes())}});
+    break;
+  default:
+    LowInst lowInst;
+    lowInst.type = instType;
+
+    if (I->getType())
+      lowInst.operand.push_back(defMap[I]);
+    for (int i = 0; i < I->getOperandNum(); i++)
+      lowInst.operand.push_back(defMap[I->getOperand(i)]);
+
+    emit(lowInst);
   }
-  return lowInst;
 }
 
 void LowerHelper::mapAll(Module &module) {
@@ -60,11 +96,20 @@ void LowerHelper::mapAll(Module &module) {
     lowFunc->name = name;
     funcMap[func] = lowFunc;
 
-    for (Argument *arg : func->getArguments())
-      defMap[arg] = virtualReg(arg);
+    auto availableArgRegs = getRegsForArg();
+    for (int i = 0; i < func->getArguments().size(); i++) {
+      if (i < availableArgRegs.size()) {
+        Argument *arg = func->getArguments()[i];
+        defMap[arg] = gpr(availableArgRegs[i], arg->getType());
+      } else {
+        // TODO: demote to stack
+        nnvm_unreachable("Not implemented")
+      }
+    }
 
     for (BasicBlock *BB : *func) {
       LowBB *lowBB = new LowBB;
+      // TODO: map BB as Value.
       BBMap[BB] = lowBB;
 
       for (Instruction *I : *BB)
@@ -77,6 +122,7 @@ void LowerHelper::mapAll(Module &module) {
 void LowerHelper::lower(Module &module, LowModule &lowered) {
   // TODO: map and lower global variables.
   mapAll(module);
+
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = funcMap[func];
     lowered.funcs.push_back(lowFunc);
@@ -86,9 +132,8 @@ void LowerHelper::lower(Module &module, LowModule &lowered) {
       LowBB *lowBB = BBMap[BB];
       lowFunc->BBs.push_back(lowBB);
 
-      for (Instruction *I : *BB) {
-        lowBB->insts.push_back(lowerInst(I));
-      }
+      for (Instruction *I : *BB)
+        lowerInst(I, lowBB->insts);
     }
   }
 

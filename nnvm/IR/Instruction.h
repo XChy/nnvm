@@ -16,7 +16,7 @@
 
 namespace nnvm {
 
-enum class InstID {
+enum class InstID : uint64_t {
   INST_BEIGN,
   BINOP_BEGIN,
   // Arithmetic operators for integer.
@@ -107,6 +107,7 @@ class StackInst : public Instruction {
 public:
   StackInst(Module &module);
   StackInst(Module &module, GInt allocatedBytes);
+  GInt getAllocatedBytes() const { return allocatedBytes; }
 
   std::string dump() override;
 

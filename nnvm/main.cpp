@@ -14,18 +14,33 @@ using std::string;
 
 static string sourceFile;
 static string outputFile;
+static bool dumpIR;
+static bool dumpIRAfterOpt;
+static bool dumpAssembly;
 
 int main(int argc, char **argv) {
   for (int i = 0; i < argc; i++) {
     string arg = argv[i];
     if (arg[0] == '-') {
+      if (arg == "-dump-ir")
+        dumpIR = true;
+      else if (arg == "-dump-opt-ir")
+        dumpIRAfterOpt = true;
+      else if (arg == "-dump-asm")
+        dumpAssembly = true;
+      else if (arg == "-o")
+        // TODO: may error?
+        outputFile = argv[i + 1];
+      else
+        nnvm_unreachable("Not implemented")
+
       // TODO: parse arguments
     } else {
       sourceFile = arg;
     }
   }
 
-  debug(std::cout << "Reading source " << sourceFile << "\n");
+  debug(std::cerr << "Reading source " << sourceFile << "\n");
 
   std::ifstream inputStream;
   Module ir;
@@ -45,20 +60,22 @@ int main(int argc, char **argv) {
   inputStream.close();
 
   irgen.emitIR(tree, &ir);
-
   debug(std::cerr << "IRGen done!"
                   << "\n");
+  if (dumpIR)
+    std::cout << ir.dump() << "\n";
 
   optimizer.transform(&ir);
   debug(std::cerr << "Opt done!"
                   << "\n");
 
-  debug(std::cerr << ir.dump() << "\n");
+  if (dumpIRAfterOpt)
+    std::cout << ir.dump() << "\n";
 
-  if (outputFile.empty()) {
-    std::cerr << "; RISCV64 Assembly \n";
+  if (dumpAssembly)
     backend.emit(ir, std::cout);
-  } else {
+
+  if (!outputFile.empty()) {
     std::ofstream outputStream;
     outputStream.open(outputFile);
     backend.emit(ir, outputStream);

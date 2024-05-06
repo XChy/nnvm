@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 
 #ifdef COMPILER_DEBUG

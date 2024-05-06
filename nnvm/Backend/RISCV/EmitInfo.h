@@ -17,10 +17,10 @@ public:
     return bbToIndex[bb];
   }
 
-  uint64_t indexOfBB(LowBB *bb) { return bbToIndex[bb]; }
+  uint64_t indexOfBB(const LowBB *bb) { return bbToIndex[bb]; }
 
 private:
   uint64_t blockCount;
-  std::unordered_map<LowBB *, uint64_t> bbToIndex;
+  std::unordered_map<const LowBB *, uint64_t> bbToIndex;
 };
 } /* namespace nnvm::riscv */

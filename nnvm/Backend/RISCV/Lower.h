@@ -7,7 +7,7 @@ namespace nnvm::riscv {
 
 class LowerHelper {
 public:
-  LowInst lowerInst(Instruction *I);
+  void lowerInst(Instruction *I, std::list<LowInst> &instList);
   void mapAll(Module &module);
   void lower(Module &module, LowModule &lowered);
 

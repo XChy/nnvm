@@ -1,11 +1,8 @@
 #pragma once
-
 #include "Backend/RISCV/LowIR.h"
 namespace nnvm::riscv {
-
-class RegisterAllocator {
+class ISel {
 public:
-  virtual void allocate(LowFunc &func) { nnvm_unreachable("Not implemented") }
+  void isel(LowFunc &func);
 };
-
 } /* namespace nnvm::riscv */
