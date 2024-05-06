@@ -72,25 +72,25 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   func->setName(funcName);
 
   ir->addFunction(func);
-  SymbolType* returnType = ctx->funcType()->accept(this);
-
+  SymbolType *returnType = ctx->funcType()->accept(this);
 
   vector<SymbolType *> argsType;
 
-  for(auto paramCtx : ctx->funcFParams()->funcFParam()) {
-      SymbolType *symbolTy = paramCtx->btype()->accept(this);
-      for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
+  for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
+    SymbolType *symbolTy = paramCtx->btype()->accept(this);
+    for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
       if (i == 0)
-          symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
+        symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
       else
-          // TODO: calculate the number of element
-          symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
-      }
+        // TODO: calculate the number of element
+        symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+    }
 
-      argsType.push_back(symbolTy);
+    argsType.push_back(symbolTy);
   }
-  
-  currentFunc = symbolTable.create(funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
+
+  currentFunc = symbolTable.create(
+      funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
 
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock("entry");
@@ -142,11 +142,11 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
-  ((Function*)currentFunc->entity)->addArgument(arg);
+  ((Function *)currentFunc->entity)->addArgument(arg);
   symbolTable.create(paramName, symbolTy, stackForArg);
 
   // Demote argument to stack.
-  return nullptr;
+  return Symbol::none();
 }
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
@@ -158,27 +158,28 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     if (!rhs)
       return Symbol::none();
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
-  } else if(ctx -> returnStmt()) {
-    if(ctx->returnStmt()->exp()) {
+  } else if (ctx->returnStmt()) {
+    if (ctx->returnStmt()->exp()) {
       Symbol returned = ctx->returnStmt()->exp()->accept(this);
-      if(!returned) { // return null
-          return Symbol::none();
-      }
-      if(returned.symbolType->isIdentical(*currentFunc->symbolType->containedTy)) {
+      if (!returned)
+        return Symbol::none();
+
+      if (!returned.symbolType->isIdentical(
+              *currentFunc->symbolType->containedTy)) {
         // TODO : error
-          return Symbol::none();
+        return Symbol::none();
       }
-      
+
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if(currentFunc->symbolType->containedTy->symbolID != SymbolType::SymbolID::Void) {
+      if (currentFunc->symbolType->containedTy->symbolID !=
+          SymbolType::SymbolID::Void) {
         // TODO :  error
         return Symbol::none;
       }
 
       return Symbol{builder.buildRet(nullptr), nullptr};
     }
-    
   }
   nnvm_unreachable("Not implemeted");
 }

@@ -60,7 +60,8 @@ public:
       removeFromList();
 
     // Add this use to userlist of new usee.
-    newUsee->addUse(this);
+    if (newUsee)
+      newUsee->addUse(this);
     usee = newUsee;
   }
 

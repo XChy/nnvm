@@ -169,8 +169,9 @@ NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
 
 class TerminatorInst : public Instruction {
 public:
-  TerminatorInst(InstID id, uint successorNum)
-      : Instruction(id, nullptr), successorNum(successorNum) {}
+  TerminatorInst(InstID id, uint operandNum, uint successorNum)
+      : Instruction(id, operandNum + successorNum, nullptr),
+        successorNum(successorNum) {}
 
   void setSuccessor(int no, BasicBlock *BB) {
     setOperand(getOperandNum() - successorNum + no, (Value *)BB);
@@ -188,13 +189,14 @@ private:
 
 class RetInst : public TerminatorInst {
 public:
-  RetInst() : TerminatorInst(InstID::Ret, 0) {}
+  RetInst() : TerminatorInst(InstID::Ret, 1, 0) {}
 };
 
 class BranchInst : public TerminatorInst {
 public:
   BranchInst(bool isConditional)
-      : TerminatorInst(InstID::Br, isConditional ? 3 : 1) {}
+      : TerminatorInst(InstID::Br, isConditional ? 1 : 0,
+                       isConditional ? 3 : 1) {}
   BranchInst(BasicBlock *directSucc) : BranchInst(false) {
     setSuccessor(0, directSucc);
   }

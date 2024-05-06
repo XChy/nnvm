@@ -48,7 +48,7 @@ std::string Instruction::dump() {
             getOperand(0)->dumpAsOperand();
       break;
     case InstID::Ret:
-      ret += "ret";
+      ret += "ret ";
       ret += getOperand(0) ? getOperand(0)->dumpAsOperand() : "";
       break;
     default:

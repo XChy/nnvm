@@ -4,6 +4,10 @@ int a(int a, int b) {
     return a;
 }
 
+void c(int a[], float b) {
+    return;
+}
+
 int b(int a[], float b) {
     return;
 }
