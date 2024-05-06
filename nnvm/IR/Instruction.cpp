@@ -5,13 +5,15 @@
 
 using namespace nnvm;
 
-Instruction::Instruction(InstID opcode, const std::vector<Value *> operands) {
-  this->instID = opcode;
+Instruction::Instruction(InstID opcode, const std::vector<Value *> operands,
+                         Type *type)
+    : Instruction(opcode, type) {
   for (Value *operand : operands)
     useeList.push_back(new Use(this, operand));
 }
 
-Instruction::Instruction(InstID opcode, uint numOperands) : instID(opcode) {
+Instruction::Instruction(InstID opcode, uint numOperands, Type *type)
+    : Instruction(opcode, type) {
   for (int i = 0; i < numOperands; i++)
     useeList.push_back(new Use(this, nullptr));
 }
@@ -26,7 +28,6 @@ static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Div, "div"},   {InstID::Rem, "rem"},   {InstID::FAdd, "fadd"},
     {InstID::FSub, "fsub"}, {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"},
     {InstID::FRem, "frem"},
-
 };
 
 std::string Instruction::dump() {
@@ -60,7 +61,7 @@ Instruction::~Instruction() {
     delete use;
 }
 
-StackInst::StackInst(Module &module) : Instruction(InstID::Stack) {
+StackInst::StackInst(Module &module) : Instruction(InstID::Stack, nullptr) {
   type = module.getPtrType();
 }
 

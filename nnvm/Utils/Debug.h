@@ -6,3 +6,9 @@
 #else
 #define debug(A) ;
 #endif
+
+#define nnvm_unreachable(Info)                                                 \
+  {                                                                            \
+    std::cout << Info;                                                         \
+    __builtin_unreachable();                                                   \
+  }

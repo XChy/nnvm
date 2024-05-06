@@ -7,7 +7,14 @@
 #include <vector>
 namespace nnvm {
 
-enum class ValueID { Instruction, Constant, Argument, GlobalVariable };
+enum class ValueID {
+  Instruction,
+  BasicBlock,
+  Function,
+  Constant,
+  Argument,
+  GlobalVariable
+};
 
 class Use;
 

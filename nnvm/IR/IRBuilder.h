@@ -20,9 +20,11 @@ public:
 
   Value *buildInst(InstID opcode, const std::vector<Value *> &operands,
                    Type *type);
+
   Value *buildStack(Type *containedTy, const std::string &name = "");
   Value *buildStore(Value *value, Value *dest);
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
+  Value *buildRet(Value *returned);
 
 private:
   BasicBlock::Iterator insertPoint;

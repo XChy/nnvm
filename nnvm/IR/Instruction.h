@@ -8,6 +8,12 @@
 #include <string>
 #include <vector>
 
+#define NNVM_DECLARE_BINOP(ID, Name)                                           \
+  class Name : public BinOpInst {                                              \
+  public:                                                                      \
+    Name(Type *type) : BinOpInst(ID, type) {}                                  \
+  };
+
 namespace nnvm {
 
 enum class InstID {
@@ -61,16 +67,15 @@ class Module;
 
 class Instruction : public Value, public ListTrait<Instruction> {
 public:
-  Instruction() : metadata(nullptr) { valueID = ValueID::Instruction; }
-  Instruction(InstID opcode) : instID(opcode), metadata(nullptr) {
-    valueID = ValueID::Instruction;
-  }
-  Instruction(InstID opcode, const std::vector<Value *> operands);
-  Instruction(InstID opcode, uint numOperands);
+  Instruction(InstID opcode, Type *type)
+      : Value(ValueID::Instruction, type), instID(opcode), metadata(nullptr) {}
+  Instruction(InstID opcode, const std::vector<Value *> operands, Type *type);
+  Instruction(InstID opcode, uint numOperands, Type *type);
   ~Instruction();
 
   void setOperand(uint no, Value *);
   Value *getOperand(uint no);
+  uint getOperandNum() { return useeList.size(); }
 
   InstID getOpcode() const { return instID; }
 
@@ -91,6 +96,10 @@ private:
   BasicBlock *parent;
 };
 
+// ===========================
+// Memory instructions
+// ===========================
+
 class StackInst : public Instruction {
 public:
   StackInst(Module &module);
@@ -104,7 +113,7 @@ private:
 
 class StoreInst : public Instruction {
 public:
-  StoreInst() : Instruction(InstID::Store, 2) {}
+  StoreInst() : Instruction(InstID::Store, 2, nullptr) {}
 
   Value *getStoredValue() { return getOperand(0); }
   Value *getDest() { return getOperand(1); }
@@ -116,9 +125,72 @@ private:
 
 class LoadInst : public Instruction {
 public:
-  LoadInst() : Instruction(InstID::Load, 1) {}
+  LoadInst(Type *type) : Instruction(InstID::Load, 1, type) {}
 
   Value *getSrc() { return getOperand(0); }
+};
+
+// ===========================
+// Arithmetic binary instructions
+// ===========================
+
+class BinOpInst : public Instruction {
+public:
+  BinOpInst(InstID instID, Type *type) : Instruction(instID, 2, type) {}
+  void setLHS(Value *lhs) { setOperand(0, lhs); }
+  void setRHS(Value *rhs) { setOperand(1, rhs); }
+  Value *getLHS() { return getOperand(0); }
+  Value *getRHS() { return getOperand(1); }
+};
+
+NNVM_DECLARE_BINOP(InstID::Add, AddInst)
+NNVM_DECLARE_BINOP(InstID::Sub, SubInst)
+NNVM_DECLARE_BINOP(InstID::Mul, MulInst)
+NNVM_DECLARE_BINOP(InstID::Div, DivInst)
+NNVM_DECLARE_BINOP(InstID::Rem, RemInst)
+NNVM_DECLARE_BINOP(InstID::FAdd, FAddInst)
+NNVM_DECLARE_BINOP(InstID::FSub, FSubInst)
+NNVM_DECLARE_BINOP(InstID::FMul, FMulInst)
+NNVM_DECLARE_BINOP(InstID::FDiv, FDivInst)
+NNVM_DECLARE_BINOP(InstID::FRem, FRemInst)
+NNVM_DECLARE_BINOP(InstID::And, AndInst)
+NNVM_DECLARE_BINOP(InstID::Or, OrInst)
+NNVM_DECLARE_BINOP(InstID::Xor, XorInst)
+NNVM_DECLARE_BINOP(InstID::Shl, ShlInst)
+NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
+NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
+
+// ===========================
+// Terminator instructions
+// ===========================
+
+class TerminatorInst : public Instruction {
+public:
+  TerminatorInst(InstID id, uint successorNum)
+      : Instruction(id, nullptr), successorNum(successorNum) {}
+
+  void setSuccessor(int no, BasicBlock *BB) {
+    setOperand(getOperandNum() - successorNum + no, (Value *)BB);
+  }
+
+  BasicBlock *getSuccessor(int no) {
+    return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
+  }
+  uint getSuccessorNum() { return successorNum; }
+
+private:
+  uint successorNum;
+};
+
+class RetInst : public TerminatorInst {
+public:
+  RetInst() : TerminatorInst(InstID::Ret, 0) {}
+};
+
+class BranchInst : public Instruction {
+public:
+  BranchInst(bool isConditional)
+      : Instruction(InstID::Br, isConditional ? 2 : 1, nullptr) {}
 };
 
 } // namespace nnvm

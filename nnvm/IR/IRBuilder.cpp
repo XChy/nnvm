@@ -5,7 +5,7 @@ using namespace nnvm;
 
 Value *IRBuilder::buildInst(InstID opcode, const std::vector<Value *> &operands,
                             Type *type) {
-  Instruction *I = new Instruction(opcode, operands);
+  Instruction *I = new Instruction(opcode, operands, type);
   I->setType(type);
   insertPoint.insertBefore(I);
   return I;
@@ -32,10 +32,18 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
                             const std::string &name) {
   assert(src->getType() == module->getPtrType() && "Source must be a pointer");
 
-  LoadInst *LI = new LoadInst;
+  LoadInst *LI = new LoadInst(loadedTy);
   LI->setOperand(0, src);
   LI->setType(loadedTy);
   LI->setName(name);
   insertPoint.insertBefore(LI);
   return LI;
+}
+
+Value *IRBuilder::buildRet(Value *returned) {
+  RetInst *I = new RetInst();
+  if (returned)
+    I->setOperand(0, returned);
+  insertPoint.insertBefore(I);
+  return I;
 }
