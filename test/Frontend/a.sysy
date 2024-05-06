@@ -1,7 +1,9 @@
 
 int a(int a, int b) {
     a = a + a;
+    return a;
 }
 
 int b(int a[], float b) {
+    return;
 }
