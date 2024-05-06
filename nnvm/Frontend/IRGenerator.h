@@ -60,7 +60,7 @@ private:
   Module *ir;
   IRBuilder builder;
 
-  Function *currentFunc;
+  Symbol *currentFunc;
   BasicBlock *currentBB;
   SymbolTable symbolTable;
 };

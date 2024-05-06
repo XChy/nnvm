@@ -3,6 +3,7 @@
 #include "IR/BasicBlock.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
+#include "Utils/Debug.h"
 
 using namespace nnvm;
 
@@ -71,14 +72,35 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   func->setName(funcName);
 
   ir->addFunction(func);
-  symbolTable.create(funcName, ctx->funcType()->accept(this), func);
+  SymbolType* returnType = ctx->funcType()->accept(this);
+
+
+  vector<SymbolType *> argsType;
+
+  for(auto paramCtx : ctx->funcFParams()->funcFParam()) {
+      if(!paramCtx->btype()) {
+        // TODO : error
+        break;
+      }  
+      SymbolType *symbolTy = paramCtx->btype()->accept(this);
+      for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
+      if (i == 0)
+          symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
+      else
+          // TODO: calculate the number of element
+          symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+      }
+
+      argsType.push_back(symbolTy);
+  }
+  
+  currentFunc = symbolTable.create(funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
 
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock("entry");
   func->insert(Entry);
   builder.setInsertPoint(Entry->end());
 
-  currentFunc = func;
   currentBB = Entry;
 
   symbolTable.enterScope();
@@ -124,7 +146,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
-  currentFunc->addArgument(arg);
+  //currentFunc->addArgument(arg);
   symbolTable.create(paramName, symbolTy, stackForArg);
 
   // Demote argument to stack.
@@ -139,10 +161,30 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     Symbol rhs = ctx->exp()->accept(this);
     if (!rhs)
       return Symbol::none();
-
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+  } else if(ctx -> returnStmt()) {
+    if(ctx->returnStmt()->exp()) {
+      Symbol returned = ctx->returnStmt()->exp()->accept(this);
+      if(!returned) { // return null
+          return Symbol::none();
+      }
+      if(returned.symbolType->symbolID != currentFunc->symbolType->symbolID) {
+        // TODO : error
+          return Symbol::none();
+      }
+      
+      return Symbol{builder.buildRet(returned.entity), nullptr};
+    } else {
+      if(currentFunc->symbolType->symbolID != SymbolType::SymbolID::Void) {
+        // TODO :  error
+        return Symbol::none;
+      }
+
+      return Symbol{builder.buildRet(nullptr), nullptr};
+    }
+    
   }
-  return visitChildren(ctx);
+  nnvm_unreachable("Not implemeted");
 }
 
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
