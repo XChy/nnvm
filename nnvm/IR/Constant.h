@@ -3,6 +3,7 @@
 #include "ADT/GenericInt.h"
 #include "IR/Value.h"
 #include "Utils/Cast.h"
+#include <string>
 
 namespace nnvm {
 
@@ -11,18 +12,12 @@ class Module;
 class Constant : public Value {
 public:
   Constant(Type *type) : Value(ValueID::Constant, type) {}
-  virtual uint64_t hash() const;
-  virtual bool eq(Constant *other) const;
-  virtual Constant *clone() const;
+  virtual uint64_t hash() const = 0;
+  virtual bool eq(Constant *other) const = 0;
+  virtual Constant *clone() const = 0;
+  virtual ~Constant() {}
 
 private:
-};
-
-struct ConstantHasher {
-  size_t operator()(Constant *c) const { return c->hash(); }
-};
-struct ConstantEqual {
-  size_t operator()(Constant *a, Constant *b) const { return a->eq(b); }
 };
 
 class ConstantInt : public Constant {
@@ -40,6 +35,11 @@ public:
   }
 
   Constant *clone() const { return new ConstantInt(type, value); }
+  std::string dump() {
+    // Show in signed way.
+    return std::to_string((int64_t)value);
+  }
+  std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 
 private:
   GInt value;
@@ -60,6 +60,8 @@ public:
   }
 
   Constant *clone() const { return new ConstantFloat(type, value); }
+  std::string dump() { return std::to_string(value); }
+  std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 
 private:
   float value;

@@ -75,6 +75,14 @@ public:
 
   bool operator!() { return !entity; }
 
+  static Symbol getInt(Value *entity) {
+    return Symbol(entity, SymbolType::getIntTy());
+  }
+
+  static Symbol getFloat(Value *entity) {
+    return Symbol(entity, SymbolType::getFloatTy());
+  }
+
   static Symbol none();
 };
 } /* namespace nnvm */

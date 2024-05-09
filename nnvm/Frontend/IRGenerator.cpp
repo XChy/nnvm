@@ -1,9 +1,12 @@
 #include "IRGenerator.h"
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
+#include "IR/Constant.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Debug.h"
+#include <string>
+#include <string_view>
 
 using namespace nnvm;
 
@@ -214,6 +217,22 @@ Type *IRGenerator::toIRType(SymbolType *symbolTy) {
   }
 }
 
+static int getRadixOf(std::string_view text) {
+
+  if (text.size() >= 2) {
+    std::string_view prefix = text.substr(0, 2);
+    if (prefix == "0x" || prefix == "0X")
+      return 16;
+    if (prefix[0] == '0')
+      return 8;
+    // TODO: It seems that SysY don't have binary literal?
+    if (prefix == "0b")
+      return 2;
+    return 10;
+  }
+  return 10;
+}
+
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
     Symbol lVal = ctx->lVal()->accept(this);
@@ -237,6 +256,24 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     return Symbol{Add, lhs.symbolType};
   }
 
+  if (auto *number = ctx->number()) {
+    if (auto *floatConst = number->FLOAT_CONST()) {
+      // TODO: do we handle hexidecimal float in std::stof?
+      return Symbol{
+          ConstantFloat::create(*ir, std::stof(floatConst->getText())),
+          SymbolType::getFloatTy()};
+    }
+
+    if (auto *intConst = number->INTEGER_CONST()) {
+      return Symbol{
+          ConstantInt::create(*ir, ir->getIntType(),
+                              std::stoi(intConst->getText(), 0,
+                                        getRadixOf(intConst->getText()))),
+          SymbolType::getIntTy()};
+    }
+
+    nnvm_unreachable("No such literal number")
+  }
   return visitChildren(ctx);
 }
 
