@@ -43,12 +43,24 @@ Type *Module::getFloatType() { return typeMap[Type::Float][0]; }
 Type *Module::getBoolType() { return intTypeMap[1]; }
 Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
 
+Constant *Module::addConstant(const Constant &constant) {
+  auto it = constantPool.find(constant.hash());
+  if (it != constantPool.end())
+    return it->second;
+  auto cloned = constant.clone();
+  constantPool.insert({constant.hash(), cloned});
+  return cloned;
+}
+
 Module::~Module() {
   for (auto [name, func] : functionMap)
     delete func;
 
   for (auto [name, global] : globalVarMap)
     delete global;
+
+  for (auto [hashValue, constant] : constantPool)
+    delete constant;
 
   for (auto &[_, subVec] : typeMap)
     for (auto *Ty : subVec)
