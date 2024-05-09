@@ -28,10 +28,11 @@ int main(int argc, char **argv) {
         dumpIRAfterOpt = true;
       else if (arg == "-dump-asm")
         dumpAssembly = true;
-      else if (arg == "-o")
+      else if (arg == "-o") {
         // TODO: may error?
         outputFile = argv[i + 1];
-      else
+        i++;
+      } else
         nnvm_unreachable("Not implemented")
 
       // TODO: parse arguments

@@ -9,10 +9,12 @@ test_dir = path.split(__file__)[0]
 root_dir = path.split(path.split(test_dir)[0])[0]
 compiler = path.join(root_dir, "build", "compiler")
 
-asm = tempfile.mktemp()
-mainobj = tempfile.mktemp()
-obj = tempfile.mktemp()
-mainexec = tempfile.mktemp()
+asm = tempfile.mktemp(".s")
+
+mainobj = tempfile.mktemp(".o")
+obj = tempfile.mktemp(".o")
+
+mainexec = tempfile.mktemp(".out")
 
 riscvgcc = "riscv64-unknown-linux-gnu-gcc"
 
@@ -24,17 +26,18 @@ for root, _, filenames in os.walk(test_dir):
         source = path.join(root, filename)
         if source.endswith(".sysy"):
             ret = subprocess.Popen(
-                [compiler, source, "-dump-asm", "-o", asm], stdout=subprocess.PIPE, encoding="UTF-8")
+                [compiler, source, "-o", asm], stdout=subprocess.PIPE, encoding="UTF-8")
             stdout, stderr = ret.communicate()
             if ret.returncode != 0:
-                print("FAIL on ", filename)
+                print("FAIL on", filename)
             else:
                 subprocess.run([riscvgcc, "-c", asm, "-o", obj])
                 subprocess.run([riscvgcc, obj, mainobj, "-o", mainexec])
-                ret = subprocess.Popen(["qemu-riscv64", mainexec],
+                ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec],
                                        stdout=subprocess.PIPE, encoding="UTF-8")
                 stdout, stderr = ret.communicate()
+                print(mainexec)
                 if stdout != "233":
-                    print("FAIL on ", filename)
+                    print("FAIL on", filename, ", output is ", stdout)
                 else:
-                    print("PASS ", filename)
+                    print("PASS", filename)

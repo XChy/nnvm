@@ -6,22 +6,32 @@
 using namespace nnvm;
 using namespace nnvm::riscv;
 
+// General purpose registers
 static std::vector<const char *> gprs = {
     "zero", "ra", "sp", "gp", "tp",  "t0",  "t1", "t2", "s0", "s1", "a0",
     "a1",   "a2", "a3", "a4", "a5",  "a6",  "a7", "s2", "s3", "s4", "s5",
     "s6",   "s7", "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6",
 };
 
+// Floating-point registers
+static std::vector<const char *> fprs = {
+    "ft0", "ft1",  "ft2",  "ft2", "ft3", "ft4",  "ft5", "ft6", "ft7",
+    "fs0", "fs1",  "fa0",  "fa1", "fa2", "fa2",  "fa3", "fa4", "fa5",
+    "fa6", "fa7",  "fs2",  "fs3", "fs4", "fs5",  "fs6", "fs7", "fs8",
+    "fs9", "fs10", "fs11", "ft8", "ft9", "ft10", "ft11"};
+
 std::vector<const char *> riscv::getGPRNames() { return gprs; }
 
-static std::vector<uint64_t> mapToIndex(std::vector<std::string> strs) {
+template <typename MapFunc>
+static std::vector<uint64_t> mapToID(std::vector<std::string> strs,
+                                     MapFunc map) {
   std::vector<uint64_t> result;
   for (auto str : strs)
-    result.push_back(getIndexOfGPR(str));
+    result.push_back(map(str));
   return result;
 }
 
-uint64_t riscv::getIndexOfGPR(const std::string &name) {
+uint64_t riscv::getGPRegID(const std::string &name) {
   static std::unordered_map<std::string, uint64_t> nameToIndex;
 
   if (nameToIndex.empty())
@@ -31,41 +41,55 @@ uint64_t riscv::getIndexOfGPR(const std::string &name) {
   return nameToIndex[name];
 }
 
-uint64_t riscv::getRegForRet() { return getIndexOfGPR("a0"); }
+uint64_t riscv::getFPRegID(const std::string &name) {
+  static std::unordered_map<std::string, uint64_t> nameToIndex;
 
-uint64_t riscv::getRegIndexForStack() { return getIndexOfGPR("sp"); }
+  if (nameToIndex.empty())
+    for (size_t i = 0; i < gprs.size(); i++)
+      nameToIndex[fprs[i]] = i;
 
-LowOperand riscv::getRegForStack() {
+  return nameToIndex[name];
+}
+
+uint64_t riscv::getRetRegID() { return getGPRegID("a0"); }
+
+uint64_t riscv::getSPRegID() { return getGPRegID("sp"); }
+
+LowOperand riscv::getSPReg() {
   return LowOperand{.type = LowOperand::GPRegister,
                     .valueType = LowOperand::i64,
-                    .registerIndex = getRegIndexForStack()};
+                    .registerId = getSPRegID()};
 }
 
 std::vector<uint64_t> riscv::getRegsForArg() {
-  return {getIndexOfGPR("a0"), getIndexOfGPR("a1"), getIndexOfGPR("a2"),
-          getIndexOfGPR("a3"), getIndexOfGPR("a4"), getIndexOfGPR("a5"),
-          getIndexOfGPR("a6"), getIndexOfGPR("a7")};
+  return mapToID({"a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7"}, getGPRegID);
+}
+
+std::vector<uint64_t> getFRegsForArg() {
+  return mapToID({"a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7"}, getFPRegID);
 }
 
 std::vector<uint64_t> riscv::unpreservedRegs() {
-  return mapToIndex({
-      "ra",
-      "t0",
-      "t1",
-      "t2",
-      "t3",
-      "t4",
-      "t5",
-      "t6",
-      "a0",
-      "a1",
-      "a2",
-      "a3",
-      "a4",
-      "a5",
-      "a6",
-      "a7",
-  });
+  return mapToID(
+      {
+          "ra",
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "a0",
+          "a1",
+          "a2",
+          "a3",
+          "a4",
+          "a5",
+          "a6",
+          "a7",
+      },
+      getGPRegID);
 }
 std::vector<uint64_t> riscv::unpreservedFRegs() {
   // TODO:

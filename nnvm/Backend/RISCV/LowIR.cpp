@@ -1,18 +1,19 @@
 #include "LowIR.h"
 #include "Backend/RISCV/CodegenInfo.h"
+#include "Backend/RISCV/StackSlot.h"
 
 using namespace nnvm::riscv;
 
 void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   switch (type) {
   case VirtualRegister:
-    out << "v" << registerIndex;
+    out << "v" << registerId;
     break;
   case GPRegister:
-    out << getGPRNames()[registerIndex];
+    out << getGPRNames()[registerId];
     break;
   case FPRegister:
-    out << "f" << registerIndex;
+    out << "f" << registerId;
     break;
   case Immediate:
     out << immValue;
@@ -20,7 +21,7 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   case BasicBlock:
     out << "bb" << info.indexOfBB(bb);
     break;
-  case StackObj:
+  case StackSlot:
     nnvm_unreachable("Stack should be materialized before emitting");
     break;
   case None:
@@ -88,6 +89,15 @@ void LowBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) const {
     I.emit(out, info);
     out << "\n";
   }
+}
+
+uint64_t LowFunc::allocStackSlot(uint64_t size) {
+  stackSlots.push_back(StackSlot(size));
+  return stackSlots.size() - 1;
+}
+uint64_t LowFunc::allocStack(const StackSlot &obj) {
+  stackSlots.push_back(obj);
+  return stackSlots.size() - 1;
 }
 
 void LowFunc::emit(std::ostream &out, EmitInfo &info) const {

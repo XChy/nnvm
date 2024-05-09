@@ -7,7 +7,8 @@ namespace nnvm::riscv {
 
 class LowerHelper {
 public:
-  void lowerInst(Instruction *I, std::list<LowInst> &instList);
+  void lowerInst(LowFunc *lowFunc, Instruction *I,
+                 std::list<LowInst> &instList);
   void mapAll(Module &module);
   void lower(Module &module, LowModule &lowered);
 
@@ -19,4 +20,5 @@ private:
   std::unordered_map<BasicBlock *, LowBB *> BBMap;
   uint virtualRegNum = 0;
 };
+
 } /* namespace nnvm::riscv */

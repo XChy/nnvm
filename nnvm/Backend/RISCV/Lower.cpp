@@ -41,7 +41,7 @@ LowOperand LowerHelper::virtualReg(Value *def) {
       .type = LowOperand::VirtualRegister,
       .valueType = lowerType(def->getType()),
       .flag = LowOperand::Def,
-      .registerIndex = virtualRegNum,
+      .registerId = virtualRegNum,
   };
   defMap[def] = lowOperand;
   virtualRegNum++;
@@ -53,11 +53,12 @@ static LowOperand gpr(uint index, Type *type) {
       .type = LowOperand::GPRegister,
       .valueType = lowerType(type),
       .flag = LowOperand::Def,
-      .registerIndex = index,
+      .registerId = index,
   };
 }
 
-void LowerHelper::lowerInst(Instruction *I, std::list<LowInst> &instList) {
+void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
+                            std::list<LowInst> &instList) {
   uint instType = (uint64_t)I->getOpcode();
   auto emit = [&instList](const LowInst &inst) { instList.push_back(inst); };
 
@@ -67,16 +68,17 @@ void LowerHelper::lowerInst(Instruction *I, std::list<LowInst> &instList) {
     break;
   case InstID::Ret:
     if (Value *returned = I->getOperand(0)) {
-      emit({LowInst::RET, {virtualReg(returned)}});
+      emit({LowInst::RET, {getUse(gpr(getRetRegID(), returned->getType()))}});
     } else {
-      emit({LowInst::RET, {LowOperand::none()}});
+      emit({LowInst::RET, {}});
     }
     break;
-  case InstID::Stack:
-    emit({(LowInst::LowInstType)InstID::Stack,
-          {defMap[I],
-           LowOperand::imm(cast<StackInst>(I)->getAllocatedBytes())}});
+  case InstID::Stack: {
+    uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
+    emit({LowInst::RET, {}});
+    defMap[I] = LowOperand::stack(lowFunc->allocStackSlot(size));
     break;
+  }
   default:
     LowInst lowInst;
     lowInst.type = instType;
@@ -87,6 +89,7 @@ void LowerHelper::lowerInst(Instruction *I, std::list<LowInst> &instList) {
       lowInst.operand.push_back(defMap[I->getOperand(i)]);
 
     emit(lowInst);
+    break;
   }
 }
 
@@ -133,7 +136,7 @@ void LowerHelper::lower(Module &module, LowModule &lowered) {
       lowFunc->BBs.push_back(lowBB);
 
       for (Instruction *I : *BB)
-        lowerInst(I, lowBB->insts);
+        lowerInst(lowFunc, I, lowBB->insts);
     }
   }
 
