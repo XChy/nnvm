@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ADT/GenericInt.h"
+#include <ADT/GenericInt.h>
 #include "Backend/RISCV/EmitInfo.h"
 #include "IR/Instruction.h"
 #include "StackSlot.h"
@@ -96,24 +96,6 @@ static inline LowOperand getUse(LowOperand original) {
 class LowInst {
 public:
   void emit(std::ostream &out, EmitInfo &info) const;
-
-  enum LowInstType : uint64_t {
-    // ==== Middle IR Reserved ====
-    // .....
-    // ==== RISC-V Specific ====
-    ISA_BEGIN = (uint64_t)InstID::INST_END + 1,
-    BLT,
-    RET, // ret
-    JMP,
-    ADD,  // addi rd, rs1, rs2
-    ADDI, // addi dst, src, imm
-    MV,   // mv dst, src
-    LW,   // lw dst, offset(src)
-    LB,
-    SW, // sw src, offset(dst)
-    SB,
-    ISA_END
-  };
 
   uint64_t type;
   std::vector<LowOperand> operand;

@@ -2,6 +2,7 @@
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/StackAllocator.h"
 #include "Backend/RISCV/TrivialRA.h"
@@ -41,9 +42,7 @@ void RISCVBackend::legalize(LowModule &module) {
   for (auto *func : module.funcs) {
     for (auto *bb : func->BBs) {
       for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
-        uint64_t type = (uint64_t)it->type;
-        if (it->type <= LowInst::ISA_BEGIN) {
-        }
+
       }
     }
   }

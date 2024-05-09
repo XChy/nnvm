@@ -18,7 +18,7 @@ static bool dumpIR;
 static bool dumpIRAfterOpt;
 static bool dumpAssembly;
 
-int main(int argc, char **argv) {
+int parseArgs(int argc, char **argv) {
   for (int i = 0; i < argc; i++) {
     string arg = argv[i];
     if (arg[0] == '-') {
@@ -40,6 +40,11 @@ int main(int argc, char **argv) {
       sourceFile = arg;
     }
   }
+  return 0;
+}
+
+int main(int argc, char **argv) {
+  parseArgs(argc, argv);
 
   debug(std::cerr << "Reading source " << sourceFile << "\n");
 

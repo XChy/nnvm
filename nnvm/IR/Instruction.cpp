@@ -26,9 +26,9 @@ Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
 
 static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Add, "add"},   {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
-    {InstID::Div, "div"},   {InstID::Rem, "rem"},   {InstID::FAdd, "fadd"},
-    {InstID::FSub, "fsub"}, {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"},
-    {InstID::FRem, "frem"},
+    {InstID::UDiv, "udiv"}, {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
+    {InstID::SRem, "srem"}, {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
+    {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
 };
 
 std::string Instruction::dump() {

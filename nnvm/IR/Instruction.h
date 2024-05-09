@@ -17,14 +17,16 @@
 namespace nnvm {
 
 enum class InstID : uint64_t {
-  INST_BEIGN,
+  INST_BEGIN,
   BINOP_BEGIN,
   // Arithmetic operators for integer.
   Add,
   Sub,
   Mul,
-  Div,
-  Rem,
+  UDiv,
+  SDiv,
+  URem,
+  SRem,
   // Arithmetic operators for floating number.
   FAdd,
   FSub,
@@ -150,8 +152,10 @@ public:
 NNVM_DECLARE_BINOP(InstID::Add, AddInst)
 NNVM_DECLARE_BINOP(InstID::Sub, SubInst)
 NNVM_DECLARE_BINOP(InstID::Mul, MulInst)
-NNVM_DECLARE_BINOP(InstID::Div, DivInst)
-NNVM_DECLARE_BINOP(InstID::Rem, RemInst)
+NNVM_DECLARE_BINOP(InstID::UDiv, UDivInst)
+NNVM_DECLARE_BINOP(InstID::SDiv, SDivInst)
+NNVM_DECLARE_BINOP(InstID::URem, URemInst)
+NNVM_DECLARE_BINOP(InstID::SRem, SRemInst)
 NNVM_DECLARE_BINOP(InstID::FAdd, FAddInst)
 NNVM_DECLARE_BINOP(InstID::FSub, FSubInst)
 NNVM_DECLARE_BINOP(InstID::FMul, FMulInst)

@@ -1,6 +1,7 @@
 #include "Lower.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowInstType.h"
 #include "IR/Function.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
@@ -68,14 +69,14 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
     break;
   case InstID::Ret:
     if (Value *returned = I->getOperand(0)) {
-      emit({LowInst::RET, {getUse(gpr(getRetRegID(), returned->getType()))}});
+      emit({RET, {getUse(gpr(getRetRegID(), returned->getType()))}});
     } else {
-      emit({LowInst::RET, {}});
+      emit({RET, {}});
     }
     break;
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    emit({LowInst::RET, {}});
+    emit({RET, {}});
     defMap[I] = LowOperand::stack(lowFunc->allocStackSlot(size));
     break;
   }

@@ -1,6 +1,7 @@
 #include "StackAllocator.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
 using namespace nnvm::riscv;
 
@@ -17,7 +18,7 @@ void StackAllocator::allocate(LowFunc &func) {
       for (auto &operand : it->operand) {
         if (operand.isStackSlot()) {
           auto &slot = func.stackSlots[operand.stackSlotId];
-          bb->insertBefore(it, LowInst{LowInst::ADDI, {}});
+          bb->insertBefore(it, LowInst{ADDI, {}});
         }
       }
     }
@@ -27,14 +28,14 @@ void StackAllocator::allocate(LowFunc &func) {
 void StackAllocator::emitPrologue(LowFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   func.BBs[0]->insertBefore(func.BBs[0]->begin(),
-                            LowInst{(LowInst::LowInstType)InstID::Sub,
+                            LowInst{(LowInstType)InstID::Sub,
                                     {getDef(getSPReg()), getUse(getSPReg()),
                                      getUse(LowOperand::imm(frameSize))}});
 }
 void StackAllocator::emitEpilogue(LowFunc &func) {
   func.BBs[0]->insertBefore(func.BBs[0]->begin(),
                             // TODO: handle big frame larger than 2 ^ 12 bytes
-                            LowInst{(LowInst::LowInstType)InstID::Add,
+                            LowInst{(LowInstType)InstID::Add,
                                     {getDef(getSPReg()), getUse(getSPReg()),
                                      getUse(LowOperand::imm(frameSize))}});
 }

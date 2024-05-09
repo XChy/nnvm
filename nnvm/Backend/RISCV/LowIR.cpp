@@ -1,6 +1,7 @@
 #include "LowIR.h"
-#include "Backend/RISCV/CodegenInfo.h"
-#include "Backend/RISCV/StackSlot.h"
+#include "Backend/RISCV/LowInstType.h"
+#include <Backend/RISCV/CodegenInfo.h>
+#include <Backend/RISCV/StackSlot.h>
 
 using namespace nnvm::riscv;
 
@@ -32,12 +33,6 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
 
 void LowInst::emit(std::ostream &out, EmitInfo &info) const {
   switch (type) {
-  case MV:
-    out << "mv ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    break;
   case SW:
     out << "sw ";
     operand[0].emit(out, info);
