@@ -169,19 +169,19 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       if (!returned.symbolType->isIdentical(
               *currentFunc->symbolType->containedTy)) {
-        // TODO : error
-        // Implicit conversion from float to int, or reversely?
+        // TODO: error
         return Symbol::none();
       }
 
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if (!currentFunc->symbolType->containedTy->isVoid()) {
-        // TODO :  error
-        return Symbol::none();
+      if (currentFunc->symbolType->containedTy->symbolID !=
+          SymbolType::SymbolID::Void) {
+        // TODO:  error
+        return Symbol::none;
       }
 
-      return Symbol{builder.buildRet(), nullptr};
+      return Symbol{builder.buildRet(nullptr), nullptr};
     }
   }
   nnvm_unreachable("Not implemeted");
@@ -225,7 +225,7 @@ static int getRadixOf(std::string_view text) {
       return 16;
     if (prefix[0] == '0')
       return 8;
-    // TODO: It seems that SysY2022 don't have binary literal?
+    // TODO: It seems that SysY don't have binary literal?
     if (prefix == "0b")
       return 2;
     return 10;
@@ -233,39 +233,83 @@ static int getRadixOf(std::string_view text) {
   return 10;
 }
 
+Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
+  // TODO: how to infer type?
+  Symbol lhs = ctx->exp(0)->accept(this);
+  //TODO: error
+  if (!lhs)
+    return nullptr;
+  Symbol rhs = ctx->exp(1)->accept(this);
+  if (!rhs)
+    return nullptr;
+  
+  //TODO: error
+  if (rhs.symbolType->isIdentical(*lhs.symbolType)) {
+    return nullptr;
+  }
+  Value *val = nullptr;
+  if (ctx->PLUS()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MINUS()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SubInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FSubInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MUL()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<MulInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FMulInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->DIV()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SDivInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FDivInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MOD()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SRemInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FRemInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  static_assert("Should not reach here!");
+}
+
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
     Symbol lVal = ctx->lVal()->accept(this);
     if (!lVal)
+      //TODO: error
       return nullptr;
     return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
                                     lVal.entity->getName() + ".load"),
                   lVal.symbolType};
-  }
+  } 
 
-  if (ctx->PLUS()) {
-    // TODO: how to infer type?
-    Value *add;
-    Symbol lhs = ctx->exp(0)->accept(this);
-    if (!lhs)
-      return nullptr;
-    Symbol rhs = ctx->exp(1)->accept(this);
-    if (!rhs)
-      return nullptr;
-    if (lhs.symbolType->isInt() && rhs.symbolType->isInt()) {
-      add =
-          builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
-    } else if (lhs.symbolType->isFloat() && rhs.symbolType->isFloat()) {
-      add = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity,
-                                         ir->getFloatType());
-    } else {
-      nnvm_unreachable("Not implemented");
-    }
-    return Symbol{add, lhs.symbolType};
+  if (ctx->PLUS() ||ctx->MINUS() || ctx->DIV() || ctx->MOD() || 
+      ctx->MUL()) {
+    return expBinOp(ctx);
   }
 
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {
+      // TODO: do we handle hexidecimal float in std::stof?
       return Symbol{
           ConstantFloat::create(*ir, std::stof(floatConst->getText())),
           SymbolType::getFloatTy()};

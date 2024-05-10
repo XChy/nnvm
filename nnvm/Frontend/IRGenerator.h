@@ -63,5 +63,8 @@ private:
   Symbol *currentFunc;
   BasicBlock *currentBB;
   SymbolTable symbolTable;
+
+  //help function
+  Any expBinOp(SysYParser::ExpContext*);
 };
 } // namespace nnvm
