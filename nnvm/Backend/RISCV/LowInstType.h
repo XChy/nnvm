@@ -11,8 +11,13 @@
       GEN(SLT), GEN(SLTU), GEN(XOR), GEN(SRL), GEN(SRLW), GEN(SRA), GEN(SRAW), \
       GEN(OR), GEN(AND)
 
+#define MAKE_IFORMAT(GEN)                                                      \
+  GEN(JALR), GEN(LB), GEN(LH), GEN(LW), GEN(LBU), GEN(LD), GEN(LHU),           \
+      GEN(ADDI), GEN(SLTI), GEN(SLTIU), GEN(XORI), GEN(ORI), GEN(ANDI),        \
+      GEN(SLLI), GEN(SRLI), GEN(SRAI), GEN(ADDIW), GEN(SLLIW), GEN(SRLIW),     \
+      GEN(SRAIW)
 
-#define MAKE_IFORMAT(GEN)                                                      
+#define MAKE_SFORMAT(GEN) GEN(SB), GEN(SH), GEN(SW), GEN(SD)
 
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
@@ -26,10 +31,6 @@ enum LowInstType : uint64_t {
   // ==== RISC-V Specific ====
   ISA_BEGIN = (uint64_t)InstID::INST_END + 1,
 
-  BLT,
-  RET, // ret
-  JMP,
-
   // ==== R-format ====
   // <inst-name> rd, rs1, rs2
   R_BEGIN,
@@ -39,28 +40,30 @@ enum LowInstType : uint64_t {
   // ==== I-format ====
   // <inst-name> rd, rs, imm
   I_BEGIN,
-  ADDI,
-  LB,
-  LW, // lw dst, offset(src)
+  MAKE_IFORMAT(FOR_ENUM),
   I_END,
 
+  // ==== I-format ====
+  // <inst-name> rd, rs, imm (for loads, rs is the base address register)
+  S_BEGIN,
+  MAKE_SFORMAT(FOR_ENUM),
+  S_END,
+
   // ==== S-type ===
-  // <inst-name> rs1, rs2, imm
-  SB,
-  SH,
-  SW,
-  SD,
+  // <inst-name> rs2, rs1, imm (rs1 is the base address register)
   ISA_END
 };
 
-static inline const char *getNameForInstType(LowInstType type) {
+static inline const char *getNameForInstType(uint64_t type) {
 
-  static std::unordered_map<LowInstType, const char *> typeToName = {
+  static std::unordered_map<uint64_t, const char *> typeToName = {
       MAKE_RFORMAT(FOR_NAME),
+      MAKE_IFORMAT(FOR_NAME),
+      MAKE_SFORMAT(FOR_NAME),
   };
 
   if (!typeToName.count(type)) {
-    std::cerr << "The operator:" << (uint64_t)type << "\n";
+    std::cerr << "Handling the operator:" << (uint64_t)type << "\n";
     nnvm_unreachable("Not implemented yet");
   }
   return typeToName[type];

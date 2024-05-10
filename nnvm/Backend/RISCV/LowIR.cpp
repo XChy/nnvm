@@ -2,6 +2,7 @@
 #include "Backend/RISCV/LowInstType.h"
 #include <Backend/RISCV/CodegenInfo.h>
 #include <Backend/RISCV/StackSlot.h>
+#include <Utils/Debug.h>
 
 using namespace nnvm::riscv;
 
@@ -32,46 +33,30 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
 }
 
 void LowInst::emit(std::ostream &out, EmitInfo &info) const {
+  if (type > R_BEGIN && type < R_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    out << ", ";
+    operand[2].emit(out, info);
+  }
   switch (type) {
+  case SB:
+  case SH:
   case SW:
-    out << "sw ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    out << "(";
-    operand[2].emit(out, info);
-    out << ")";
-    break;
+  case SD:
+  case LB:
+  case LH:
   case LW:
-    out << "lw ";
+  case LD:
+    out << getNameForInstType(type) << " ";
     operand[0].emit(out, info);
     out << ", ";
-    operand[1].emit(out, info);
+    operand[2].emit(out, info);
     out << "(";
-    operand[2].emit(out, info);
+    operand[1].emit(out, info);
     out << ")";
-    break;
-  case ADD:
-    out << "add ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    out << ", ";
-    operand[2].emit(out, info);
-    break;
-  case ADDI:
-    out << "addi ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    out << ", ";
-    out << (int64_t)operand[2].immValue;
-    break;
-  case RET:
-    out << "ret";
-    break;
-  default:
-    out << "not implemented:" << type;
     break;
   }
 }

@@ -68,15 +68,9 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
   case InstID::Br:
     break;
   case InstID::Ret:
-    if (Value *returned = I->getOperand(0)) {
-      emit({RET, {getUse(gpr(getRetRegID(), returned->getType()))}});
-    } else {
-      emit({RET, {}});
-    }
     break;
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    emit({RET, {}});
     defMap[I] = LowOperand::stack(lowFunc->allocStackSlot(size));
     break;
   }
