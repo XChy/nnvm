@@ -24,12 +24,20 @@ void Instruction::setOperand(uint no, Value *operand) {
 
 Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
 
+// Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Add, "add"},   {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
     {InstID::UDiv, "udiv"}, {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
     {InstID::SRem, "srem"}, {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
     {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
 };
+
+std::string Instruction::getOpName() const {
+  if (getOpcode() > InstID::BINOP_BEGIN && getOpcode() < InstID::BINOP_END) {
+    return binOpNameTable[getOpcode()];
+  }
+  return "Not implemented";
+}
 
 std::string Instruction::dump() {
   std::string ret;
@@ -49,7 +57,7 @@ std::string Instruction::dump() {
       break;
     case InstID::Ret:
       ret += "ret ";
-      ret += getOperand(0) ? getOperand(0)->dumpAsOperand() : "";
+      ret += getOperandNum() ? getOperand(0)->dumpAsOperand() : "";
       break;
     default:
       ret = "ILLEGAL!";

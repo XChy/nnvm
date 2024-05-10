@@ -181,7 +181,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
         return Symbol::none;
       }
 
-      return Symbol{builder.buildRet(nullptr), nullptr};
+      return Symbol{builder.buildRet(), nullptr};
     }
   }
   nnvm_unreachable("Not implemeted");
@@ -251,8 +251,8 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     Symbol rhs = ctx->exp(1)->accept(this);
     if (!rhs)
       return nullptr;
-    Value *Add = builder.buildInst(InstID::Add, {lhs.entity, rhs.entity},
-                                   ir->getIntType());
+    Value *Add =
+        builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
     return Symbol{Add, lhs.symbolType};
   }
 

@@ -13,11 +13,15 @@ class Constant : public Value {
 public:
   Constant(Type *type) : Value(ValueID::Constant, type) {}
   virtual uint64_t hash() const = 0;
-  virtual bool eq(Constant *other) const = 0;
+  virtual bool eq(const Constant *other) const = 0;
   virtual Constant *clone() const = 0;
   virtual ~Constant() {}
 
 private:
+};
+
+struct ConstantEqual {
+  bool operator()(Constant *a, Constant *b) { return a->eq(b); }
 };
 
 class ConstantInt : public Constant {
@@ -28,7 +32,7 @@ public:
   ConstantInt(Type *type, GInt value);
 
   uint64_t hash() const { return value; }
-  bool eq(Constant *other) const {
+  bool eq(const Constant *other) const {
     if (auto *otherInt = dyn_cast<ConstantInt>(other))
       return value == otherInt->value;
     return false;
@@ -53,7 +57,7 @@ public:
   ConstantFloat(Type *ty, float value);
 
   virtual uint64_t hash() const { return value; }
-  bool eq(Constant *other) const {
+  bool eq(const Constant *other) const {
     if (auto *otherFloat = dyn_cast<ConstantFloat>(other))
       return value == otherFloat->value;
     return false;

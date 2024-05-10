@@ -21,9 +21,20 @@ public:
   Value *buildInst(InstID opcode, const std::vector<Value *> &operands,
                    Type *type);
 
+  template <typename Inst>
+  Value *buildBinOp(Value *LHS, Value *RHS, Type *type,
+                    const std::string &name = "") {
+    Inst *I = new Inst(LHS, RHS, type);
+    I->setName(name);
+    insertPoint.insertBefore(I);
+    return I;
+  }
+
   Value *buildStack(Type *containedTy, const std::string &name = "");
   Value *buildStore(Value *value, Value *dest);
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
+
+  Value *buildRet();
   Value *buildRet(Value *returned);
 
 private:

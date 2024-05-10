@@ -12,6 +12,8 @@
   class Name : public BinOpInst {                                              \
   public:                                                                      \
     Name(Type *type) : BinOpInst(ID, type) {}                                  \
+    Name(Value *lhs, Value *rhs, Type *type)                                   \
+        : BinOpInst(ID, lhs, rhs, type) {}                                     \
   };
 
 namespace nnvm {
@@ -87,6 +89,7 @@ public:
   uint getOperandNum() { return useeList.size(); }
 
   InstID getOpcode() const { return instID; }
+  std::string getOpName() const;
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }
@@ -147,6 +150,8 @@ public:
 class BinOpInst : public Instruction {
 public:
   BinOpInst(InstID instID, Type *type) : Instruction(instID, 2, type) {}
+  BinOpInst(InstID instID, Value *lhs, Value *rhs, Type *type)
+      : Instruction(instID, {lhs, rhs}, type) {}
   void setLHS(Value *lhs) { setOperand(0, lhs); }
   void setRHS(Value *rhs) { setOperand(1, rhs); }
   Value *getLHS() { return getOperand(0); }
@@ -198,7 +203,10 @@ private:
 
 class RetInst : public TerminatorInst {
 public:
-  RetInst() : TerminatorInst(InstID::Ret, 1, 0) {}
+  RetInst() : TerminatorInst(InstID::Ret, 0, 0) {}
+  RetInst(Value *returned) : TerminatorInst(InstID::Ret, 1, 0) {
+    setOperand(0, returned);
+  }
 };
 
 class BranchInst : public TerminatorInst {

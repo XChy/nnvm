@@ -40,10 +40,14 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   return LI;
 }
 
-Value *IRBuilder::buildRet(Value *returned) {
+Value *IRBuilder::buildRet() {
   RetInst *I = new RetInst();
-  if (returned)
-    I->setOperand(0, returned);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildRet(Value *returned) {
+  RetInst *I = new RetInst(returned);
   insertPoint.insertBefore(I);
   return I;
 }

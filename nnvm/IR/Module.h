@@ -40,13 +40,15 @@ public:
 
   typedef unordered_map<uint32_t, Type *> IntegerTypeMap;
   typedef unordered_map<Type::TypeClass, vector<Type *>> NormalTypeMap;
+  typedef std::unordered_multimap<uint64_t, Constant *> ConstantPool;
 
   Constant *addConstant(const Constant &constant);
+  ConstantPool getConstantPool();
 
 private:
   std::unordered_map<std::string, Function *> functionMap;
   std::unordered_map<std::string, GlobalVariable *> globalVarMap;
-  std::unordered_map<uint64_t, Constant *> constantPool;
+  ConstantPool constantPool;
 
   NormalTypeMap typeMap;
   IntegerTypeMap intTypeMap;

@@ -45,12 +45,17 @@ Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
 
 Constant *Module::addConstant(const Constant &constant) {
   auto it = constantPool.find(constant.hash());
-  if (it != constantPool.end())
-    return it->second;
+  for (; it != constantPool.end(); ++it) {
+    if (it->second->eq(&constant))
+      return it->second;
+  }
+
   auto cloned = constant.clone();
   constantPool.insert({constant.hash(), cloned});
   return cloned;
 }
+
+Module::ConstantPool Module::getConstantPool() { return constantPool; }
 
 Module::~Module() {
   for (auto [name, func] : functionMap)
