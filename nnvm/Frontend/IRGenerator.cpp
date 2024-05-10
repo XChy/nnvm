@@ -170,15 +170,15 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       if (!returned.symbolType->isIdentical(
               *currentFunc->symbolType->containedTy)) {
         // TODO : error
+        // Implicit conversion from float to int, or reversely?
         return Symbol::none();
       }
 
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if (currentFunc->symbolType->containedTy->symbolID !=
-          SymbolType::SymbolID::Void) {
+      if (!currentFunc->symbolType->containedTy->isVoid()) {
         // TODO :  error
-        return Symbol::none;
+        return Symbol::none();
       }
 
       return Symbol{builder.buildRet(), nullptr};
@@ -225,7 +225,7 @@ static int getRadixOf(std::string_view text) {
       return 16;
     if (prefix[0] == '0')
       return 8;
-    // TODO: It seems that SysY don't have binary literal?
+    // TODO: It seems that SysY2022 don't have binary literal?
     if (prefix == "0b")
       return 2;
     return 10;
@@ -245,20 +245,27 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
 
   if (ctx->PLUS()) {
     // TODO: how to infer type?
+    Value *add;
     Symbol lhs = ctx->exp(0)->accept(this);
     if (!lhs)
       return nullptr;
     Symbol rhs = ctx->exp(1)->accept(this);
     if (!rhs)
       return nullptr;
-    Value *Add =
-        builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
-    return Symbol{Add, lhs.symbolType};
+    if (lhs.symbolType->isInt() && rhs.symbolType->isInt()) {
+      add =
+          builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else if (lhs.symbolType->isFloat() && rhs.symbolType->isFloat()) {
+      add = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity,
+                                         ir->getFloatType());
+    } else {
+      nnvm_unreachable("Not implemented");
+    }
+    return Symbol{add, lhs.symbolType};
   }
 
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {
-      // TODO: do we handle hexidecimal float in std::stof?
       return Symbol{
           ConstantFloat::create(*ir, std::stof(floatConst->getText())),
           SymbolType::getFloatTy()};

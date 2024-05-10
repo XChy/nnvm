@@ -54,6 +54,10 @@ public:
     return false;
   }
 
+  bool isInt() { return symbolID == Int; }
+  bool isFloat() { return symbolID == Float; }
+  bool isVoid() { return symbolID == Void; }
+
   static SymbolType *getIntTy();
   static SymbolType *getVoidTy();
   static SymbolType *getFloatTy();

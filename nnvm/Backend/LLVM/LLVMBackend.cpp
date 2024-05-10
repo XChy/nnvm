@@ -78,6 +78,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
           << valueToName[RI->getOperand(0)];
     return;
   }
+
   // Instructions with defs
   out << valueToName[I] << " = ";
 

@@ -11,7 +11,7 @@ ConstantInt::ConstantInt(Type *type, GInt value)
     : Constant(type), value(value) {}
 
 Constant *ConstantFloat::create(Module &module, float value) {
-  return module.addConstant(ConstantInt(module.getFloatType(), value));
+  return module.addConstant(ConstantFloat(module.getFloatType(), value));
 }
 
 ConstantFloat::ConstantFloat(Type *ty, float value)

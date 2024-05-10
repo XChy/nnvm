@@ -64,7 +64,10 @@ public:
   }
 
   Constant *clone() const { return new ConstantFloat(type, value); }
-  std::string dump() { return std::to_string(value); }
+  std::string dump() {
+    // TODO: Would it be imprecise if we emit it to llvm-ir?
+    return std::to_string(value);
+  }
   std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 
 private:
