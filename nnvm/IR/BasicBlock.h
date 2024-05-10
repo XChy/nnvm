@@ -27,7 +27,7 @@ public:
     }
     void insertBack(Instruction *a) {
       a->setParent(BB);
-      ((List<Instruction>::Iterator *)this)->insertBefore(a);
+      ((List<Instruction>::Iterator *)this)->insertBack(a);
     }
 
   private:
