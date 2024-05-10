@@ -51,14 +51,18 @@ enum class InstID : uint64_t {
   Br,
   TERMINATOR_END,
   // Cast.
+  CAST_BEGIN,
   ZExt,
   SExt,
   Trunc,
+  CAST_END,
   // Memory instructions.
+  MEMORY_BEGIN,
   Stack,
   Load,
   Store,
-  PtrAdd,
+  PtrAdd, // Addressing addtion/subtraction of pointer
+  MEMORY_END,
   // Other
   Call,
   Phi,
