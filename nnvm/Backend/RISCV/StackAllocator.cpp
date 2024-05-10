@@ -29,13 +29,15 @@ void StackAllocator::emitPrologue(LowFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   func.BBs[0]->insertBefore(func.BBs[0]->begin(),
                             LowInst{(LowInstType)InstID::Sub,
-                                    {getDef(getSPReg()), getUse(getSPReg()),
+                                    {getDef(getSPReg(LowOperand::i64)),
+                                     getUse(getSPReg(LowOperand::i64)),
                                      getUse(LowOperand::imm(frameSize))}});
 }
 void StackAllocator::emitEpilogue(LowFunc &func) {
   func.BBs[0]->insertBefore(func.BBs[0]->begin(),
                             // TODO: handle big frame larger than 2 ^ 12 bytes
                             LowInst{(LowInstType)InstID::Add,
-                                    {getDef(getSPReg()), getUse(getSPReg()),
+                                    {getDef(getSPReg(LowOperand::i64)),
+                                     getUse(getSPReg(LowOperand::i64)),
                                      getUse(LowOperand::imm(frameSize))}});
 }
