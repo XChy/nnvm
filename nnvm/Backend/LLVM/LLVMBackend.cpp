@@ -71,6 +71,13 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
+  if (auto RI = dyn_cast<RetInst>(I)) {
+    out << "ret";
+    if (RI->getOperandNum() != 0)
+      out << " " << RI->getOperand(0)->getType()->dump() << " "
+          << valueToName[RI->getOperand(0)];
+    return;
+  }
   // Instructions with defs
   out << valueToName[I] << " = ";
 
@@ -86,16 +93,9 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-  if (auto RI = dyn_cast<RetInst>(I)) {
-    out << "ret";
-    if (RI->getOperandNum() != 0)
-      out << " " << RI->getOperand(0)->getType()->dump() << " "
-          << valueToName[RI->getOperand(0)];
-    return;
-  }
-
   if (auto binOp = dyn_cast<BinOpInst>(I)) {
-    out << binOp->getOpName() << " " << valueToName[binOp->getLHS()] << ", "
+    out << binOp->getOpName() << " " << binOp->getOperand(0)->getType()->dump()
+        << " " << valueToName[binOp->getLHS()] << ", "
         << valueToName[binOp->getRHS()];
     return;
   }
