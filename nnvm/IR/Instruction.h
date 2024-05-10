@@ -57,6 +57,8 @@ enum class InstID : uint64_t {
   ZExt,
   SExt,
   Trunc,
+  SI2F,
+  UI2F,
   CAST_END,
   // Memory instructions.
   MEMORY_BEGIN,

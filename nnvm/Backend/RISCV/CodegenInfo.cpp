@@ -58,6 +58,10 @@ static inline LowOperand getGPR(uint64_t id, LowOperand::LowValueType type) {
 
 uint64_t riscv::getRetRegID() { return getGPRegID("a0"); }
 
+LowOperand riscv::getRetReg(LowOperand::LowValueType type) {
+  return getGPR(getRetRegID(), type);
+}
+
 uint64_t riscv::getSPRegID() { return getGPRegID("sp"); }
 
 LowOperand riscv::getSPReg(LowOperand::LowValueType type) {

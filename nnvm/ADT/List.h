@@ -52,42 +52,6 @@ public:
     ListTrait<T> *curNode;
   };
 
-  class ConstIterator {
-  public:
-    ConstIterator(const ListTrait<T> *node) : curNode(node) {}
-    ConstIterator() : Iterator(nullptr) {}
-
-    ConstIterator &operator++() {
-      curNode = curNode->next;
-      return *this;
-    }
-
-    ConstIterator operator++(int) {
-      ConstIterator ret = curNode;
-      curNode = curNode->next;
-      return ret;
-    }
-
-    ConstIterator &operator--() {
-      curNode = curNode->prev;
-      return *this;
-    }
-
-    ConstIterator operator--(int) {
-      ConstIterator ret = curNode;
-      curNode = curNode->prev;
-      return ret;
-    }
-
-    bool operator==(ConstIterator other) { return curNode == other.curNode; }
-    bool operator!=(ConstIterator other) { return curNode != other.curNode; }
-
-    const T *operator*() { return (const T *)curNode; }
-
-  private:
-    const ListTrait<T> *curNode;
-  };
-
   void insertBack(ListTrait<T> *inserted) {
     ListTrait<T> *prev = dummyEnd.prev;
     prev->insertBack(inserted);
@@ -102,8 +66,14 @@ public:
   Iterator begin() { return Iterator(dummyBegin.next); }
   Iterator end() { return Iterator(&dummyEnd); }
 
-  ConstIterator cbegin() const { return ConstIterator(dummyBegin.next); }
-  ConstIterator cend() const { return ConstIterator(&dummyEnd); }
+  void freeAll() {
+    ListTrait<T> *cur = dummyEnd.getPrev();
+    while (cur != &dummyBegin) {
+      ListTrait<T> *prev = cur->getPrev();
+      delete (T *)cur;
+      cur = prev;
+    }
+  }
 
 private:
   ListTrait<T> dummyBegin;

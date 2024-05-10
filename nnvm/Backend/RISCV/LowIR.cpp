@@ -18,13 +18,19 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
     out << "f" << registerId;
     break;
   case Immediate:
-    out << immValue;
+    if (valueType == LowValueType::Float)
+      out << fImmValue;
+    else
+      out << immValue;
     break;
   case BasicBlock:
     out << "bb" << info.indexOfBB(bb);
     break;
   case StackSlot:
-    nnvm_unreachable("Stack should be materialized before emitting");
+    out << "stack" << stackSlotId;
+    break;
+  case Constant:
+    out << "Unmaterialzed constant: " << immValue;
     break;
   case None:
     nnvm_unreachable("None ???");

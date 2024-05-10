@@ -4,9 +4,8 @@
 
 using namespace nnvm;
 
-BasicBlock::~BasicBlock() {
-  for (auto *I : instList)
-    delete I;
+BasicBlock::~BasicBlock() { 
+    instList.freeAll(); 
 }
 
 void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {

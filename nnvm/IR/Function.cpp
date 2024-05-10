@@ -32,8 +32,7 @@ std::string Function::dump() {
 }
 
 Function::~Function() {
+  BBList.freeAll();
   for (auto *arg : arguments)
     delete arg;
-  for (auto *BB : BBList)
-    delete BB;
 }

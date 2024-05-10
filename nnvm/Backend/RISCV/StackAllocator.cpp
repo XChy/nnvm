@@ -8,8 +8,11 @@ using namespace nnvm::riscv;
 void StackAllocator::allocate(LowFunc &func) {
   this->func = &func;
   frameSize = 0;
-  for (auto &stackObj : func.stackSlots)
-    frameSize += stackObj.getSize();
+  for (auto &slot : func.stackSlots) {
+    slot.setOffset(frameSize);
+    frameSize += slot.getSize();
+  }
+
   frameSize =
       (frameSize + getFrameAlign() - 1) / getFrameAlign() * getFrameAlign();
 
@@ -18,11 +21,18 @@ void StackAllocator::allocate(LowFunc &func) {
       for (auto &operand : it->operand) {
         if (operand.isStackSlot()) {
           auto &slot = func.stackSlots[operand.stackSlotId];
-          bb->insertBefore(it, LowInst{ADDI, {}});
+          auto addressRegister = func.allocVReg(LowOperand::i64);
+
+          bb->insertBefore(
+              it, LowInst{ADDI,
+                          {addressRegister, getSPReg(LowOperand::i64).use(),
+                           LowOperand::imm(slot.getOffset()).use()}});
+          operand = addressRegister;
         }
       }
     }
   }
+
 }
 
 void StackAllocator::emitPrologue(LowFunc &func) {

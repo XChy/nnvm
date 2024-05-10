@@ -37,15 +37,14 @@ static LowOperand::LowValueType lowerType(Type *type) {
   return ret;
 }
 
-LowOperand LowerHelper::virtualReg(Value *def) {
+LowOperand LowerHelper::virtualReg(Value *def, LowFunc *lowFunc) {
   LowOperand lowOperand{
       .type = LowOperand::VirtualRegister,
       .valueType = lowerType(def->getType()),
       .flag = LowOperand::Def,
-      .registerId = virtualRegNum,
+      .registerId = lowFunc->allocVRegID(),
   };
   defMap[def] = lowOperand;
-  virtualRegNum++;
   return lowOperand;
 }
 
@@ -67,14 +66,29 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
   case InstID::Call:
   case InstID::Br:
     break;
-  case InstID::Ret:
-    emit({JALR,
-          {getZeroReg(LowOperand::i64), getRAReg(LowOperand::i64),
-           LowOperand::imm(0)}});
+  case InstID::Ret: {
+    if (I->getOperandNum() != 0) {
+      Value *returned = I->getOperand(0);
+      emit({ADD,
+            {getRetReg(lowerType(returned->getType())).def(),
+             defMap[returned].use(),
+             getZeroReg(lowerType(returned->getType()))}});
+    }
+    auto inst =
+        LowInst{JALR,
+                {getZeroReg(LowOperand::i64).def(),
+                 getRAReg(LowOperand::i64).use(), LowOperand::imm(0).use()}};
+    // Implicit use of "a0"
+    if (I->getOperandNum() != 0) {
+      inst.operand.push_back(
+          getRetReg(lowerType(I->getOperand(0)->getType())).use());
+    }
+    emit(inst);
     break;
+  }
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    defMap[I] = LowOperand::stack(lowFunc->allocStackSlot(size));
+    defMap[I] = LowOperand::stackSlot(lowFunc->allocStackSlot(size));
     break;
   }
   default:
@@ -115,7 +129,7 @@ void LowerHelper::mapAll(Module &module) {
 
       for (Instruction *I : *BB)
         if (I->getType())
-          defMap[I] = virtualReg(I);
+          defMap[I] = virtualReg(I, lowFunc);
     }
   }
 }

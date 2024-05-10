@@ -25,15 +25,15 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
     case InstID::Load:
       if (it->operand[0].bitwidth() == 32) {
         it->type = LW;
-        it->operand = {it->operand[0], LowOperand::imm(0),
-                       getUse(it->operand[1])};
+        it->operand = {it->operand[0], it->operand[1].use(),
+                       LowOperand::imm(0)};
       }
       break;
     case InstID::Store:
       if (it->operand[0].bitwidth() == 32) {
         it->type = SW;
-        it->operand = {it->operand[0], LowOperand::imm(0),
-                       getUse(it->operand[1])};
+        it->operand = {it->operand[0], it->operand[1].use(),
+                       LowOperand::imm(0)};
       }
       break;
     case InstID::Stack: {

@@ -8,7 +8,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG
-    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wno-unused-variable -O0 -g -ggdb -std=c++17"
+    "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wno-unused-variable -O0 -g -fsanitize=address -fno-omit-frame-pointer -std=c++17"
 )
 
 set(CMAKE_CXX_FLAGS_RELEASE

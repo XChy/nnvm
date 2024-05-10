@@ -37,7 +37,7 @@ public:
 
   enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
   static LowOperand none() { return LowOperand{.type = None}; }
-  static LowOperand stack(uint64_t stackSlotId) {
+  static LowOperand stackSlot(uint64_t stackSlotId) {
     return LowOperand{.type = StackSlot, .stackSlotId = stackSlotId};
   }
 
@@ -68,9 +68,32 @@ public:
   bool isUse() { return flag & Use; }
   bool isDef() { return flag & Def; }
 
+  LowOperand use() {
+    LowOperand ret(*this);
+    ret.flag = (UseDefFlag)(ret.flag | Use);
+    ret.flag = (UseDefFlag)(ret.flag & ~Def);
+    return ret;
+  }
+
+  LowOperand def() {
+    LowOperand ret(*this);
+    ret.flag = (UseDefFlag)(ret.flag & ~Use);
+    ret.flag = (UseDefFlag)(ret.flag | Def);
+    return ret;
+  }
+
   static LowOperand imm(uint64_t value) {
     return LowOperand{
         .type = Immediate, .valueType = Imm, .flag = Use, .immValue = value};
+  }
+
+  static LowOperand vreg(uint64_t id, LowValueType valueType) {
+    return LowOperand{
+        .type = LowOperand::VirtualRegister,
+        .valueType = valueType,
+        .flag = LowOperand::Def,
+        .registerId = id,
+    };
   }
 
   void emit(std::ostream &out, EmitInfo &info) const;
@@ -82,6 +105,7 @@ public:
   union {
     uint64_t registerId;
     uint64_t immValue;
+    float fImmValue;
     uint64_t stackSlotId;
     LowBB *bb;
   };
@@ -125,9 +149,14 @@ public:
   std::vector<LowBB *> BBs;
   std::vector<LowOperand> args;
   std::vector<StackSlot> stackSlots;
+  uint64_t largestVRegID = 0;
 
   uint64_t allocStackSlot(uint64_t size);
   uint64_t allocStack(const StackSlot &obj);
+  uint64_t allocVRegID() { return largestVRegID++; }
+  LowOperand allocVReg(LowOperand::LowValueType valueType) {
+    return LowOperand::vreg(allocVRegID(), valueType).def();
+  }
 
   ~LowFunc() {
     for (auto *BB : BBs)
@@ -139,7 +168,12 @@ class LowModule {
 public:
   std::vector<LowFunc *> funcs;
 
-  void emit(std::ostream &out, EmitInfo &info) const {
+  void emit(std::ostream &out) const {
+    EmitInfo info;
+    for (auto &func : funcs)
+      for (auto *bb : func->BBs)
+        info.allocBB(bb);
+
     // TODO: emit global data
     for (auto *func : funcs)
       out << ".global " << func->name << "\n";

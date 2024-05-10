@@ -17,6 +17,7 @@ uint64_t getFPRegID(const std::string &name);
 
 // ID of integer register for return value
 uint64_t getRetRegID();
+LowOperand getRetReg(LowOperand::LowValueType type);
 
 // ID of stack pointer register
 uint64_t getSPRegID();

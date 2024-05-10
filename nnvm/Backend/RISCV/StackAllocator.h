@@ -8,6 +8,7 @@ public:
   void emitPrologue(LowFunc &func);
   void emitEpilogue(LowFunc &func);
 
+
 private:
   LowFunc *func;
   uint64_t frameSize;

@@ -22,28 +22,23 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   for (auto *lowFunc : lowModule.funcs)
     isel.isel(*lowFunc);
 
-  // legalize(lowModule);
+  debug(std::cerr << "====ISel Done====\n");
+  debug(lowModule.emit(std::cerr));
+
+  // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
     RA.allocate(*lowFunc);
 
-  // Replace stack reference and emit Prolog/Epilog
+  debug(std::cerr << "====RA Done====\n");
+  debug(lowModule.emit(std::cerr));
+
+  // Replace abstract stack reference and emit Prologue&Epilogue
   for (auto *lowFunc : lowModule.funcs)
     SA.allocate(*lowFunc);
 
-  EmitInfo info;
-  for (auto &func : lowModule.funcs)
-    for (auto *bb : func->BBs)
-      info.allocBB(bb);
+  debug(std::cerr << "====SA Done====\n");
+  debug(lowModule.emit(std::cerr));
 
-  lowModule.emit(out, info);
-}
-
-void RISCVBackend::legalize(LowModule &module) {
-  for (auto *func : module.funcs) {
-    for (auto *bb : func->BBs) {
-      for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
-
-      }
-    }
-  }
+  debug(std::cerr << "====Emit Done====\n");
+  lowModule.emit(out);
 }

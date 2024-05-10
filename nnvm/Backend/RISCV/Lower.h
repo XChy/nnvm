@@ -12,13 +12,12 @@ public:
   void mapAll(Module &module);
   void lower(Module &module, LowModule &lowered);
 
-  LowOperand virtualReg(Value *def);
+  LowOperand virtualReg(Value *def, LowFunc* lowFunc);
 
 private:
   std::unordered_map<Value *, LowOperand> defMap;
   std::unordered_map<Function *, LowFunc *> funcMap;
   std::unordered_map<BasicBlock *, LowBB *> BBMap;
-  uint virtualRegNum = 0;
 };
 
 } /* namespace nnvm::riscv */
