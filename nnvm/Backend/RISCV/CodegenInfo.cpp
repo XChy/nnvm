@@ -51,14 +51,29 @@ uint64_t riscv::getFPRegID(const std::string &name) {
   return nameToIndex[name];
 }
 
+static inline LowOperand getGPR(uint64_t id, LowOperand::LowValueType type) {
+  return LowOperand{
+      .type = LowOperand::GPRegister, .valueType = type, .registerId = id};
+}
+
 uint64_t riscv::getRetRegID() { return getGPRegID("a0"); }
 
 uint64_t riscv::getSPRegID() { return getGPRegID("sp"); }
 
-LowOperand riscv::getSPReg() {
-  return LowOperand{.type = LowOperand::GPRegister,
-                    .valueType = LowOperand::i64,
-                    .registerId = getSPRegID()};
+LowOperand riscv::getSPReg(LowOperand::LowValueType type) {
+  return getGPR(getSPRegID(), type);
+}
+
+uint64_t riscv::getZeroRegID() { return getGPRegID("zero"); }
+
+LowOperand riscv::getZeroReg(LowOperand::LowValueType type) {
+  return getGPR(getZeroRegID(), type);
+  ;
+}
+
+uint64_t riscv::getRARegID() { return getGPRegID("ra"); }
+LowOperand riscv::getRAReg(LowOperand::LowValueType type) {
+  return getGPR(getRARegID(), type);
 }
 
 std::vector<uint64_t> riscv::getRegsForArg() {

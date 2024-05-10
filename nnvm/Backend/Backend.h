@@ -6,7 +6,7 @@ namespace nnvm {
 class Backend {
 public:
   virtual void emit(Module &ir, std::ostream &assembly) {
-    nnvm_unreachable("No default backend!!");
+    nnvm_unreachable("This target don't have a backend!!");
   }
 
   virtual ~Backend() = default;

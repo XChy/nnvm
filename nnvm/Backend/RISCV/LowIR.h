@@ -1,10 +1,10 @@
 #pragma once
 
-#include <ADT/GenericInt.h>
 #include "Backend/RISCV/EmitInfo.h"
 #include "IR/Instruction.h"
 #include "StackSlot.h"
 #include "Utils/Debug.h"
+#include <ADT/GenericInt.h>
 #include <array>
 #include <iostream>
 #include <list>
@@ -25,10 +25,12 @@ public:
   enum UseDefFlag { Use = 1, Def = 2 };
   enum OperandType {
     None,
+    Constant, // Need to be materialized finally.
     VirtualRegister,
     GPRegister,
     FPRegister,
-    Immediate,
+    Immediate, // Different from Constant, this is valid for machine
+               // instruction.
     StackSlot,
     BasicBlock,
   };
@@ -63,6 +65,8 @@ public:
   bool isFPR() { return type == FPRegister; }
   bool isReg() { return isGPR() || isVR() || isFPR(); }
   bool isStackSlot() { return type == StackSlot; }
+  bool isUse() { return flag & Use; }
+  bool isDef() { return flag & Def; }
 
   static LowOperand imm(uint64_t value) {
     return LowOperand{

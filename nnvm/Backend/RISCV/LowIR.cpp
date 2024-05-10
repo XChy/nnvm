@@ -33,14 +33,6 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
 }
 
 void LowInst::emit(std::ostream &out, EmitInfo &info) const {
-  if (type > R_BEGIN && type < R_END) {
-    out << getNameForInstType(type) << " ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    out << ", ";
-    operand[2].emit(out, info);
-  }
   switch (type) {
   case SB:
   case SH:
@@ -50,6 +42,7 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
   case LH:
   case LW:
   case LD:
+  case JALR:
     out << getNameForInstType(type) << " ";
     operand[0].emit(out, info);
     out << ", ";
@@ -57,7 +50,27 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << "(";
     operand[1].emit(out, info);
     out << ")";
-    break;
+    return;
+  }
+
+  if (type > R_BEGIN && type < R_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    out << ", ";
+    operand[2].emit(out, info);
+    return;
+  }
+
+  if (type > I_BEGIN && type < I_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    out << ", ";
+    operand[2].emit(out, info);
+    return;
   }
 }
 

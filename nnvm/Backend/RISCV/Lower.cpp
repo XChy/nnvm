@@ -68,6 +68,9 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
   case InstID::Br:
     break;
   case InstID::Ret:
+    emit({JALR,
+          {getZeroReg(LowOperand::i64), getRAReg(LowOperand::i64),
+           LowOperand::imm(0)}});
     break;
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();

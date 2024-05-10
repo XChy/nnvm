@@ -20,9 +20,15 @@ uint64_t getRetRegID();
 
 // ID of stack pointer register
 uint64_t getSPRegID();
+LowOperand getSPReg(LowOperand::LowValueType type);
 
-// Stack pointer register in form of LowOperand
-LowOperand getSPReg();
+// ID of zero register
+uint64_t getZeroRegID();
+LowOperand getZeroReg(LowOperand::LowValueType type);
+
+// ID of return address register
+uint64_t getRARegID();
+LowOperand getRAReg(LowOperand::LowValueType type);
 
 // Integer registers for argument
 std::vector<uint64_t> getRegsForArg();
