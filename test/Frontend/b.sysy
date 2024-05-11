@@ -1,5 +1,10 @@
-
+const int x = 114514;
+const int y = x - 114514; 
 int a(int a, int b) {
+    x + y;
+    x + 3 * y;
+    const int z = y + 2;
+    z + 3;
 }
 
 int b(int a[], float b) {

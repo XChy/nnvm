@@ -9,6 +9,7 @@
 #include <string_view>
 
 using namespace nnvm;
+static int getRadixOf(std::string_view text);
 
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
@@ -63,6 +64,113 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
   return nullptr;
 }
 
+Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
+  if (ctx->exp().size() < 2) {
+    if (auto numCtx = ctx->number()) {
+      if (auto intCtx = numCtx->INTEGER_CONST()) {
+        string sText = intCtx->getText();
+        return std::stoi(sText, 0, getRadixOf(sText));
+      }
+      if (auto floatCtx = numCtx->FLOAT_CONST()) {
+        string sText = floatCtx->getText();
+        return std::stof(sText);
+      }
+    }
+    if (auto lvalCtx = ctx->lVal()) {
+      string valName = lvalCtx->IDENT()->getText();
+      Constant *valConst = cast<Constant>(symbolTable.lookup(valName)->entity);
+      return Any((int)(valConst->hash()));
+    }
+    assert("Should not reach here");
+  }
+  Any lhsAny = solveConstExp(ctx->exp()[0]);
+  Any rhsAny = solveConstExp(ctx->exp()[1]);
+  if (lhsAny.is<float>() || rhsAny.is<float>()) {
+    float lhs = lhsAny.as<float>();
+    float rhs = rhsAny.as<float>();
+    if (ctx->PLUS()) {
+      return lhs + rhs;
+    }
+    if (ctx->MINUS()) {
+      return lhs - rhs;
+    }
+    if (ctx->MUL()) {
+      return lhs * rhs;
+    }
+    if (ctx->DIV()) {
+      return lhs / rhs;
+    }
+    assert("Should not reach here");
+  } else if (lhsAny.is<int>() && rhsAny.is<int>()){
+    int lhs = lhsAny.as<int>();
+    int rhs = rhsAny.as<int>();
+    if (ctx->PLUS()) {
+      return lhs + rhs;
+    }
+    if (ctx->MINUS()) {
+      return lhs - rhs;
+    }
+    if (ctx->MUL()) {
+      return lhs * rhs;
+    }
+    if (ctx->DIV()) {
+      return lhs / rhs;
+    }
+  assert("Should not reach here");
+  }
+  assert("Should not reach here");
+  return -1;
+}
+
+Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {
+  for (auto ctxDef : ctx->constDef()) {
+    // TODO: type check
+    constDef(ctxDef, ctx->btype());
+  }
+  return Symbol::none();
+}
+
+Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
+                          SysYParser::BtypeContext *btype) {
+  SymbolType *symbolType = btype->accept(this);
+  string symbolName = ctx->IDENT()->getText();
+  if (symbolTable.lookupInCurrentScope(symbolName)) {
+    //TODO: error
+    return Symbol::none();
+  }
+  for (int i = 0; i < ctx->constExp().size(); i += 1) {
+    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+    assert(nrElements.is<int>());
+    symbolType = SymbolType::getArrayTy(nrElements, symbolType, symbolTable);
+  }
+  Type *irType = symbolType->symbolID == SymbolType::Array
+                   ? ir->getPtrType()
+                   : getIRType(btype);
+  Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
+  Constant *constVal = nullptr;
+  if (irType->getClass() == Type::Integer) {
+    assert(initVal.is<int>());
+    constVal = ConstantInt::create(*ir, irType, initVal.as<int>());
+  } else if (irType->getClass() == Type::Float) {
+    assert(initVal.is<float>());
+    constVal = ConstantFloat::create(*ir, initVal.as<float>());
+  } else {
+    //TODO: 
+    assert("not implemented");
+  }
+  symbolTable.create(symbolName, symbolType, constVal);
+  return Symbol::none();
+}
+
+Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
+  assert("Not implemented");
+}
+
+Any IRGenerator::varDef(SysYParser::VarDefContext *ctx, 
+                        SysYParser::BtypeContext *btype) {
+  assert("Not implemented");
+}
+
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(funcName)) {
@@ -84,11 +192,13 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
       if (i == 0)
         symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-      else
-        // TODO: calculate the number of element
-        symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+      else {
+        // TODO: check---calculate the number of element
+        Any numOfElement = solveConstExp(paramCtx->exp()[i]);
+        assert(numOfElement.is<int>());
+        symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+      }
     }
-
     argsType.push_back(symbolTy);
   }
 
@@ -124,7 +234,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 }
 
 Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
-  string paramName = ctx->IDENT()->getText();
+  string paramName = ctx->IDENT()->getText();;
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
     return Symbol::none();
@@ -134,9 +244,12 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   for (int i = 0; i < ctx->L_BRACKT().size(); i++) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-    else
-      // TODO: calculate the number of element
-      symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+    else {
+      // TODO: check---calculate the number of element
+      Any numOfElement = solveConstExp(ctx->exp()[i-1]);
+      assert(numOfElement.is<int>());
+      symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+    }
   }
 
   Type *irTy = symbolTy->symbolID == SymbolType::Array
@@ -160,6 +273,10 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     Symbol rhs = ctx->exp()->accept(this);
     if (!rhs)
       return Symbol::none();
+    if (!lhs.symbolType->isIdentical(*rhs.symbolType)) {
+      //TODO: error, cast
+      return Symbol::none();
+    }
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->returnStmt()) {
     if (ctx->returnStmt()->exp()) {
@@ -183,6 +300,8 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       return Symbol{builder.buildRet(nullptr), nullptr};
     }
+  } else if (ctx->exp()) {
+    return ctx->exp()->accept(this);
   }
   nnvm_unreachable("Not implemeted");
 }
@@ -244,7 +363,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     return nullptr;
   
   //TODO: error
-  if (rhs.symbolType->isIdentical(*lhs.symbolType)) {
+  if (!rhs.symbolType->isIdentical(*lhs.symbolType)) {
     return nullptr;
   }
   Value *val = nullptr;
@@ -288,7 +407,24 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     }
     return Symbol{val, lhs.symbolType};
   }
-  static_assert("Should not reach here!");
+  assert("Should not reach here!");
+}
+
+Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
+  assert(ctx->exp().size()==1);
+  Symbol operand = ctx->exp()[0]->accept(this);
+  if (!operand) {
+    return nullptr;
+  }
+  Value *val = nullptr;
+  //TODO: unary op
+  if (ctx->unaryOp()->PLUS()) {
+  }
+  if (ctx->unaryOp()->PLUS()) {
+  }
+  if (ctx->unaryOp()->NOT()) {
+  }
+  assert("UnaryOp Not implemented!");
 }
 
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
@@ -297,6 +433,9 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     if (!lVal)
       //TODO: error
       return nullptr;
+    if (auto constVal = dyn_cast<Constant>(lVal.entity)) {
+      return lVal;
+    }
     return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
                                     lVal.entity->getName() + ".load"),
                   lVal.symbolType};

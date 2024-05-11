@@ -54,6 +54,9 @@ public:
   Any visitLVal(SysYParser::LValContext *ctx) override;
   Any visitExp(SysYParser::ExpContext *ctx) override;
 
+  Any visitVarDecl(SysYParser::VarDeclContext *ctx) override;
+  Any visitConstDecl(SysYParser::ConstDeclContext *ctx) override;
+
   Type *toIRType(SymbolType *symbolTy);
 
 private:
@@ -66,5 +69,9 @@ private:
 
   //help function
   Any expBinOp(SysYParser::ExpContext*);
+  Any expUnaryOp(SysYParser::ExpContext*);
+  Any solveConstExp(SysYParser::ExpContext*);
+  Any constDef(SysYParser::ConstDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
+  Any varDef(SysYParser::VarDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
 };
 } // namespace nnvm
