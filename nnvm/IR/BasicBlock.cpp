@@ -4,9 +4,7 @@
 
 using namespace nnvm;
 
-BasicBlock::~BasicBlock() { 
-    instList.freeAll(); 
-}
+BasicBlock::~BasicBlock() { instList.freeAll(); }
 
 void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {
   assert(

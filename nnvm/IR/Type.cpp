@@ -14,6 +14,8 @@ std::string Type::dump() {
     return "ptr";
   case Integer:
     return "i" + std::to_string(subData);
+  case BasicBlock:
+    return "basicblock";
   default:
     assert("Invalid type id!");
     return "";
