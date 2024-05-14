@@ -9,13 +9,13 @@ using namespace nnvm::riscv;
 void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   switch (type) {
   case VirtualRegister:
-    out << "v" << registerId;
+    out << "v" << regId;
     break;
   case GPRegister:
-    out << getGPRNames()[registerId];
+    out << getGPRNames()[regId];
     break;
   case FPRegister:
-    out << "f" << registerId;
+    out << "f" << regId;
     break;
   case Immediate:
     if (valueType == LowValueType::Float)
@@ -75,7 +75,7 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << ", ";
     operand[1].emit(out, info);
     out << ", ";
-    operand[2].emit(out, info);
+    out << (int64_t)operand[2].immValue;
     return;
   }
 }

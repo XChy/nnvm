@@ -43,14 +43,12 @@ enum LowInstType : uint64_t {
   MAKE_IFORMAT(FOR_ENUM),
   I_END,
 
-  // ==== I-format ====
-  // <inst-name> rd, rs, imm (for loads, rs is the base address register)
+  // ==== S-format ====
+  // <inst-name> rs2, rs1, imm (rs1 is the base address register)
   S_BEGIN,
   MAKE_SFORMAT(FOR_ENUM),
   S_END,
 
-  // ==== S-type ===
-  // <inst-name> rs2, rs1, imm (rs1 is the base address register)
   ISA_END
 };
 

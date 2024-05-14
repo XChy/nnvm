@@ -22,7 +22,11 @@ public:
 
 class LowOperand {
 public:
-  enum UseDefFlag { Use = 1, Def = 2 };
+  enum OperandFlag : int {
+    Use = 1,
+    Def = 2,
+  };
+
   enum OperandType {
     None,
     Constant, // Need to be materialized finally.
@@ -33,6 +37,7 @@ public:
                // instruction.
     StackSlot,
     BasicBlock,
+
   };
 
   enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
@@ -70,15 +75,21 @@ public:
 
   LowOperand use() {
     LowOperand ret(*this);
-    ret.flag = (UseDefFlag)(ret.flag | Use);
-    ret.flag = (UseDefFlag)(ret.flag & ~Def);
+    ret.flag = (OperandFlag)(ret.flag | Use);
+    ret.flag = (OperandFlag)(ret.flag & ~Def);
     return ret;
   }
 
   LowOperand def() {
     LowOperand ret(*this);
-    ret.flag = (UseDefFlag)(ret.flag & ~Use);
-    ret.flag = (UseDefFlag)(ret.flag | Def);
+    ret.flag = (OperandFlag)(ret.flag & ~Use);
+    ret.flag = (OperandFlag)(ret.flag | Def);
+    return ret;
+  }
+
+  LowOperand lastUse() {
+    LowOperand ret = this->use();
+    ret.lastUsed = true;
     return ret;
   }
 
@@ -92,7 +103,7 @@ public:
         .type = LowOperand::VirtualRegister,
         .valueType = valueType,
         .flag = LowOperand::Def,
-        .registerId = id,
+        .regId = id,
     };
   }
 
@@ -100,10 +111,11 @@ public:
 
   OperandType type;
   LowValueType valueType;
-  UseDefFlag flag;
+  OperandFlag flag;
+  bool lastUsed;
 
   union {
-    uint64_t registerId;
+    uint64_t regId;
     uint64_t immValue;
     float fImmValue;
     uint64_t stackSlotId;
@@ -137,7 +149,12 @@ public:
 
   Iterator begin() { return insts.begin(); }
   Iterator end() { return insts.end(); }
-  void insertBefore(Iterator it, const LowInst &I) { insts.insert(it, I); }
+  Iterator insertBefore(Iterator it, const LowInst &I) {
+    return insts.insert(it, I);
+  }
+  Iterator insertAfter(Iterator it, const LowInst &I) {
+    return insts.insert(++it, I);
+  }
 
   std::list<LowInst> insts;
 };

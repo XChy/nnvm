@@ -5,10 +5,9 @@ using namespace nnvm;
 using namespace nnvm::riscv;
 
 void ISel::isel(LowFunc &func) {
-  for (auto *bb : func.BBs) {
+  for (auto *bb : func.BBs)
     for (auto it = bb->insts.begin(); it != bb->insts.end();)
       it = combine(func, *bb, it);
-  }
 }
 
 LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
@@ -25,23 +24,21 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
     case InstID::Load:
       if (it->operand[0].bitwidth() == 32) {
         it->type = LW;
-        it->operand = {it->operand[0], it->operand[1].use(),
+        it->operand = {it->operand[0].def(), it->operand[1].use(),
                        LowOperand::imm(0)};
       }
       break;
     case InstID::Store:
       if (it->operand[0].bitwidth() == 32) {
         it->type = SW;
-        it->operand = {it->operand[0], it->operand[1].use(),
+        it->operand = {it->operand[0].def(), it->operand[1].use(),
                        LowOperand::imm(0)};
       }
       break;
-    case InstID::Stack: {
+    case InstID::Stack:
       nnvm_unreachable("StackInst should not be in this stage");
-      break;
-    }
     default:
-      break;
+      nnvm_unreachable("Not implemented");
     }
   }
   it++;

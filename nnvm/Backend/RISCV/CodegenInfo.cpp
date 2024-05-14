@@ -53,7 +53,7 @@ uint64_t riscv::getFPRegID(const std::string &name) {
 
 static inline LowOperand getGPR(uint64_t id, LowOperand::LowValueType type) {
   return LowOperand{
-      .type = LowOperand::GPRegister, .valueType = type, .registerId = id};
+      .type = LowOperand::GPRegister, .valueType = type, .regId = id};
 }
 
 uint64_t riscv::getRetRegID() { return getGPRegID("a0"); }

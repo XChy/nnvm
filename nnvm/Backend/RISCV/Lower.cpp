@@ -42,7 +42,7 @@ LowOperand LowerHelper::virtualReg(Value *def, LowFunc *lowFunc) {
       .type = LowOperand::VirtualRegister,
       .valueType = lowerType(def->getType()),
       .flag = LowOperand::Def,
-      .registerId = lowFunc->allocVRegID(),
+      .regId = lowFunc->allocVRegID(),
   };
   defMap[def] = lowOperand;
   return lowOperand;
@@ -53,7 +53,7 @@ static LowOperand gpr(uint index, Type *type) {
       .type = LowOperand::GPRegister,
       .valueType = lowerType(type),
       .flag = LowOperand::Def,
-      .registerId = index,
+      .regId = index,
   };
 }
 
@@ -88,7 +88,7 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
   }
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    defMap[I] = LowOperand::stackSlot(lowFunc->allocStackSlot(size));
+    defMap[I] = LowOperand::stackSlot(lowFunc->allocStackSlot(size)).def();
     break;
   }
   default:

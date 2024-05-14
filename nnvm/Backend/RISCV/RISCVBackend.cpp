@@ -1,6 +1,7 @@
 #include "RISCVBackend.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
+#include "Backend/RISCV/LinearScanRA.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
@@ -15,7 +16,7 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   LowerHelper lowerHelper;
   ISel isel;
   StackAllocator SA;
-  TrivialRA RA;
+  LinearScanRA RA;
 
   lowerHelper.lower(ir, lowModule);
 
