@@ -74,6 +74,7 @@ public:
   Symbol() : entity(nullptr), symbolType(nullptr) {}
   Symbol(Value *entity, SymbolType *symbolType)
       : entity(entity), symbolType(symbolType) {}
+
   Value *entity;
   SymbolType *symbolType;
 

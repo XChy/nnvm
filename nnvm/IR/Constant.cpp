@@ -17,6 +17,11 @@ Constant *ConstantFloat::create(Module &module, float value) {
 ConstantFloat::ConstantFloat(Type *ty, float value)
     : Constant(ty), value(value) {}
 
-ConstantArray *ConstantArray::create(Module &module) {
-  nnvm_unreachable("Not implemented")
+ConstantArray::ConstantArray(Type *ty, const std::vector<Constant *> &value)
+    : Constant(ty), value(value) {}
+
+Constant *ConstantArray::create(Module &module, Type *ty,
+                                const std::vector<Constant *> &value) {
+
+  return module.addConstant(ConstantArray(ty, value));
 }

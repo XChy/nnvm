@@ -4,6 +4,7 @@
 #include "IR/Value.h"
 #include "Utils/Cast.h"
 #include <string>
+#include <vector>
 
 namespace nnvm {
 
@@ -32,6 +33,7 @@ public:
   ConstantInt(Type *type, GInt value);
 
   uint64_t hash() const { return value; }
+  uint64_t getValue() const { return value; }
   bool eq(const Constant *other) const {
     if (auto *otherInt = dyn_cast<ConstantInt>(other))
       return value == otherInt->value;
@@ -57,6 +59,7 @@ public:
   ConstantFloat(Type *ty, float value);
 
   virtual uint64_t hash() const { return value; }
+  float getValue() const { return value; }
   bool eq(const Constant *other) const {
     if (auto *otherFloat = dyn_cast<ConstantFloat>(other))
       return value == otherFloat->value;
@@ -76,7 +79,44 @@ private:
 
 class ConstantArray : public Constant {
 public:
-  static ConstantArray *create(Module &module);
+  static Constant *create(Module &module, Type *ty,
+                          const std::vector<Constant *> &value);
+
+  // NOTE:  User should not use this constructor.
+  ConstantArray(Type *ty, const std::vector<Constant *> &value);
+
+  virtual uint64_t hash() const {
+    uint64_t ret = 0;
+    for (auto *element : value)
+      ret = ret * 133 + element->hash();
+    return ret;
+  }
+
+  std::vector<Constant *> getValue() const { return value; }
+  bool eq(const Constant *other) const {
+    if (auto *otherFloat = dyn_cast<ConstantArray>(other))
+      return value == otherFloat->value;
+    return false;
+  }
+
+  Constant *clone() const { return new ConstantArray(type, value); }
+  std::string dump() {
+    std::string ret;
+    ret += "[";
+    for (auto *element : value) {
+      if (element != value.front())
+        ret += ", ";
+      ret += element->dump();
+    }
+
+    ret += "]";
+    return ret;
+  }
+
+  std::string dumpAsOperand() { return type->dump() + " " + dump(); }
+
+private:
+  std::vector<Constant *> value;
 };
 
 } // namespace nnvm
