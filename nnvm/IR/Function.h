@@ -9,7 +9,7 @@
 namespace nnvm {
 class Function final : public Value {
 public:
-  Function();
+  Function(Module *module);
   ~Function();
 
   void insert(BasicBlock *BB);
@@ -19,6 +19,9 @@ public:
 
   void setReturnType(Type *retType) { this->retType = retType; }
   Type *getReturnType() { return retType; }
+
+  void setModule(Module *module) { this->module = module; }
+  Module *getModule() { return module; }
 
   void addArgument(Argument *arg);
   std::vector<Argument *> getArguments();
@@ -30,5 +33,6 @@ private:
 
   std::vector<Argument *> arguments;
   Type *retType;
+  Module *module;
 };
 } // namespace nnvm

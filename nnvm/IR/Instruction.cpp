@@ -8,8 +8,7 @@ using namespace nnvm;
 Instruction::Instruction(InstID opcode, const std::vector<Value *> operands,
                          Type *type)
     : Instruction(opcode, type) {
-  for (Value *operand : operands)
-    useeList.push_back(new Use(this, operand));
+  setOperands(operands);
 }
 
 Instruction::Instruction(InstID opcode, uint numOperands, Type *type)
@@ -18,6 +17,12 @@ Instruction::Instruction(InstID opcode, uint numOperands, Type *type)
     useeList.push_back(new Use(this, nullptr));
 }
 
+void Instruction::setOperands(const std::vector<Value *> &operands) {
+  for (auto *use : useeList)
+    use->removeFromList();
+  for (Value *usee : operands)
+    useeList.push_back(new Use(this, usee));
+}
 void Instruction::setOperand(uint no, Value *operand) {
   useeList[no]->set(operand);
 }
@@ -59,6 +64,14 @@ std::string Instruction::dump() {
       ret += "ret ";
       ret += getOperandNum() ? getOperand(0)->dumpAsOperand() : "";
       break;
+    case InstID::Br:
+      ret += "br ";
+      for (Use *operand : useeList) {
+        if (operand != *useeList.begin())
+          ret += ", ";
+        ret += operand->getUsee()->dumpAsOperand();
+      }
+      break;
     default:
       ret = "ILLEGAL!";
       break;
@@ -88,4 +101,9 @@ std::string StackInst::dump() {
 std::string StoreInst::dump() {
   return "store " + getStoredValue()->dumpAsOperand() + +" to " +
          getDest()->dumpAsOperand() + "\n";
+}
+
+CallInst::CallInst(Function *callee)
+    : CallInst(callee, callee->getReturnType()) {
+  // TODO: maintain arguments?
 }

@@ -37,6 +37,7 @@ public:
   Type *getFloatType();
   Type *getBoolType();
   Type *getPtrType();
+  Type *getBBType();
 
   typedef unordered_map<uint32_t, Type *> IntegerTypeMap;
   typedef unordered_map<Type::TypeClass, vector<Type *>> NormalTypeMap;

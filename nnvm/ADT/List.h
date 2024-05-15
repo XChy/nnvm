@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ADT/ListNode.h"
+#include <iterator>
 namespace nnvm {
 
 template <typename T> class List {
@@ -15,6 +16,12 @@ public:
 
   class Iterator {
   public:
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = uint64_t;
+    using value_type = T *;
+    using pointer = T **;
+    using reference = T *&;
+
     Iterator(ListTrait<T> *node) : curNode(node) {}
     Iterator() : Iterator(nullptr) {}
 

@@ -3,9 +3,13 @@
 
 using namespace nnvm;
 
-Function::Function() {}
+Function::Function(Module *module) : module(module) {}
 
 void Function::insert(BasicBlock *BB) {
+  if (BB->getParent() == this)
+    nnvm_unreachable("Don't insert multiple times");
+  if (BB->getParent())
+    BB->removeFromList();
   BB->setParent(this);
   BBList.insertBack(BB);
 }

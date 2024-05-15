@@ -113,3 +113,9 @@ std::vector<uint64_t> riscv::unpreservedRegs() {
 std::vector<uint64_t> riscv::unpreservedFRegs() {
   // TODO:
 }
+
+LowInstType riscv::getLoadInstType(LowOperand::LowValueType type) {
+    switch(type){
+    }
+}
+LowInstType riscv::getStoreInstType(LowOperand::LowValueType type) {}

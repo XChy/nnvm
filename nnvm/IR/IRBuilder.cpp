@@ -12,7 +12,13 @@ Value *IRBuilder::buildInst(InstID opcode, const std::vector<Value *> &operands,
 }
 
 Value *IRBuilder::buildStack(Type *containedTy, const std::string &name) {
-  StackInst *SI = new StackInst(*module, containedTy->getStoredBytes());
+  return buildStack(containedTy, 1, name);
+}
+
+Value *IRBuilder::buildStack(Type *containedTy, uint numElement,
+                             const std::string &name) {
+  StackInst *SI =
+      new StackInst(*module, containedTy->getStoredBytes() * numElement);
   SI->setName(name);
   insertPoint.insertBefore(SI);
   return SI;
@@ -48,6 +54,19 @@ Value *IRBuilder::buildRet() {
 
 Value *IRBuilder::buildRet(Value *returned) {
   RetInst *I = new RetInst(returned);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildBr(BasicBlock *succ) {
+  BranchInst *I = new BranchInst(succ);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildBr(Value *cond, BasicBlock *trueBB,
+                          BasicBlock *falseBB) {
+  BranchInst *I = new BranchInst(cond, trueBB, falseBB);
   insertPoint.insertBefore(I);
   return I;
 }

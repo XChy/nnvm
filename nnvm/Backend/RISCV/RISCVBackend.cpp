@@ -38,8 +38,8 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
     SA.allocate(*lowFunc);
 
   debug(std::cerr << "====SA Done====\n");
-  debug(lowModule.emit(std::cerr));
+
+  lowModule.emit(out);
 
   debug(std::cerr << "====Emit Done====\n");
-  lowModule.emit(out);
 }

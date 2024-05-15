@@ -16,7 +16,9 @@ file(GLOB_RECURSE CORE_SRC "main.cpp" "*.h" "*.cpp")
 
 message(STATUS "Building core library of nnvm")
 
-add_executable(compiler main.cpp ${CORE_SRC})
+add_library(NNVM_CORELIB STATIC ${CORE_SRC})
+add_executable(compiler main.cpp)
+target_link_libraries(compiler PUBLIC NNVM_CORELIB)
 
 target_link_libraries(compiler PUBLIC ANTLR4_RUNTIME_LIB)
 

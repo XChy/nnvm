@@ -37,13 +37,15 @@ public:
                // instruction.
     StackSlot,
     BasicBlock,
-
   };
 
   enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
   static LowOperand none() { return LowOperand{.type = None}; }
   static LowOperand stackSlot(uint64_t stackSlotId) {
     return LowOperand{.type = StackSlot, .stackSlotId = stackSlotId};
+  }
+  static LowOperand label(LowBB *bb) {
+    return LowOperand{.type = BasicBlock, .bb = bb};
   }
 
   uint64_t bitwidth() const {
@@ -65,29 +67,30 @@ public:
     }
   }
 
-  bool isGPR() { return type == GPRegister; }
-  bool isVR() { return type == VirtualRegister; }
-  bool isFPR() { return type == FPRegister; }
-  bool isReg() { return isGPR() || isVR() || isFPR(); }
-  bool isStackSlot() { return type == StackSlot; }
-  bool isUse() { return flag & Use; }
-  bool isDef() { return flag & Def; }
+  bool isGPR() const { return type == GPRegister; }
+  bool isVR() const { return type == VirtualRegister; }
+  bool isFPR() const { return type == FPRegister; }
+  bool isReg() const { return isGPR() || isVR() || isFPR(); }
+  bool isImm() const { return type == Immediate; }
+  bool isStackSlot() const { return type == StackSlot; }
+  bool isUse() const { return flag & Use; }
+  bool isDef() const { return flag & Def; }
 
-  LowOperand use() {
+  LowOperand use() const {
     LowOperand ret(*this);
     ret.flag = (OperandFlag)(ret.flag | Use);
     ret.flag = (OperandFlag)(ret.flag & ~Def);
     return ret;
   }
 
-  LowOperand def() {
+  LowOperand def() const {
     LowOperand ret(*this);
     ret.flag = (OperandFlag)(ret.flag & ~Use);
     ret.flag = (OperandFlag)(ret.flag | Def);
     return ret;
   }
 
-  LowOperand lastUse() {
+  LowOperand lastUse() const {
     LowOperand ret = this->use();
     ret.lastUsed = true;
     return ret;
@@ -136,6 +139,11 @@ static inline LowOperand getUse(LowOperand original) {
 class LowInst {
 public:
   void emit(std::ostream &out, EmitInfo &info) const;
+
+  static LowInst create(uint64_t type, const LowOperand &def,
+                        const LowOperand &use1, const LowOperand &use2) {
+    return LowInst{.type = type, .operand{def.def(), use1.use(), use2.use()}};
+  }
 
   uint64_t type;
   std::vector<LowOperand> operand;

@@ -1,8 +1,16 @@
 #include "BasicBlock.h"
+#include "IR/Function.h"
+#include "IR/Module.h"
 #include <Utils/Debug.h>
 #include <cassert>
 
 using namespace nnvm;
+
+BasicBlock::BasicBlock(Function *func)
+    : Value(ValueID::BasicBlock, func->getModule()->getBBType()),
+      parent(nullptr) {
+  func->insert(this);
+}
 
 BasicBlock::~BasicBlock() { instList.freeAll(); }
 

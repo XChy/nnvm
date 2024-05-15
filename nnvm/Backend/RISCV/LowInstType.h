@@ -19,6 +19,11 @@
 
 #define MAKE_SFORMAT(GEN) GEN(SB), GEN(SH), GEN(SW), GEN(SD)
 
+#define MAKE_BFORMAT(GEN)                                                      \
+  GEN(BEQ), GEN(BNE), GEN(BLT), GEN(BGE), GEN(BLTU), GEN(BGEU)
+
+#define MAKE_JFORMAT(GEN) GEN(JAL)
+
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
   { LowInstType::x, #x }
@@ -49,15 +54,26 @@ enum LowInstType : uint64_t {
   MAKE_SFORMAT(FOR_ENUM),
   S_END,
 
+  // ==== B-format ====
+  // <inst-name> rs1, rs2, label
+  B_BEGIN,
+  MAKE_BFORMAT(FOR_ENUM),
+  B_END,
+
+  // ==== J-format ====
+  // <inst-name> rd, label
+  J_BEGIN,
+  MAKE_JFORMAT(FOR_ENUM),
+  J_END,
+
   ISA_END
 };
 
 static inline const char *getNameForInstType(uint64_t type) {
 
   static std::unordered_map<uint64_t, const char *> typeToName = {
-      MAKE_RFORMAT(FOR_NAME),
-      MAKE_IFORMAT(FOR_NAME),
-      MAKE_SFORMAT(FOR_NAME),
+      MAKE_RFORMAT(FOR_NAME), MAKE_IFORMAT(FOR_NAME), MAKE_SFORMAT(FOR_NAME),
+      MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME),
   };
 
   if (!typeToName.count(type)) {

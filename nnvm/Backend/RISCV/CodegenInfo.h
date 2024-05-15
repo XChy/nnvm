@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowInstType.h"
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -39,5 +40,8 @@ std::vector<uint64_t> getFRegsForArg();
 // Return the list of unpreserved register across calls.
 std::vector<uint64_t> unpreservedRegs();
 std::vector<uint64_t> unpreservedFRegs();
+
+LowInstType getLoadInstType(LowOperand::LowValueType type);
+LowInstType getStoreInstType(LowOperand::LowValueType type);
 
 } /* namespace nnvm::riscv */

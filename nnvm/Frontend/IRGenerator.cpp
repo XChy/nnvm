@@ -71,7 +71,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   }
 
   // TODO: some checks
-  Function *func = new Function();
+  Function *func = new Function(ir);
   func->setName(funcName);
 
   ir->addFunction(func);
@@ -96,7 +96,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
 
   func->setReturnType(getIRType(ctx->funcType()));
-  BasicBlock *Entry = new BasicBlock("entry");
+  BasicBlock *Entry = new BasicBlock(func, "entry");
   func->insert(Entry);
   builder.setInsertPoint(Entry->end());
 

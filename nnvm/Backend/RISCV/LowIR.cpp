@@ -30,7 +30,7 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
     out << "stack" << stackSlotId;
     break;
   case Constant:
-    out << "Unmaterialzed constant: " << immValue;
+    out << "Unmaterialzed constant: " << (int64_t)immValue;
     break;
   case None:
     nnvm_unreachable("None ???");
@@ -78,6 +78,26 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << (int64_t)operand[2].immValue;
     return;
   }
+
+  if (type > B_BEGIN && type < B_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    out << ", ";
+    operand[2].emit(out, info);
+    return;
+  }
+
+  if (type > J_BEGIN && type < J_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    return;
+  }
+
+  out << "Unknown instruction type: " << type;
 }
 
 void LowBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) const {

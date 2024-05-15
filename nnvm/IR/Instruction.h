@@ -68,8 +68,10 @@ enum class InstID : uint64_t {
   PtrAdd, // Addressing addtion/subtraction of pointer
   MEMORY_END,
   // Other
+  OTHER_BEGIN,
   Call,
   Phi,
+  OTHER_END,
   INST_END,
 
 };
@@ -86,6 +88,7 @@ public:
   Instruction(InstID opcode, uint numOperands, Type *type);
   ~Instruction();
 
+  void setOperands(const std::vector<Value *> &operands);
   void setOperand(uint no, Value *);
   Value *getOperand(uint no);
   uint getOperandNum() { return useeList.size(); }
@@ -189,15 +192,15 @@ public:
       : Instruction(id, operandNum + successorNum, nullptr),
         successorNum(successorNum) {}
 
-  void setSuccessor(int no, BasicBlock *BB) {
+  void setSucc(int no, BasicBlock *BB) {
     setOperand(getOperandNum() - successorNum + no, (Value *)BB);
   }
 
-  BasicBlock *getSuccessor(int no) {
+  BasicBlock *getSucc(int no) {
     return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
   }
 
-  uint getSuccessorNum() { return successorNum; }
+  uint getSuccNum() { return successorNum; }
 
 private:
   uint successorNum;
@@ -215,16 +218,35 @@ class BranchInst : public TerminatorInst {
 public:
   BranchInst(bool isConditional)
       : TerminatorInst(InstID::Br, isConditional ? 1 : 0,
-                       isConditional ? 3 : 1) {}
+                       isConditional ? 2 : 1),
+        conditional(isConditional) {}
   BranchInst(BasicBlock *directSucc) : BranchInst(false) {
-    setSuccessor(0, directSucc);
+    setSucc(0, directSucc);
   }
-  BranchInst(Value *cond, BasicBlock *TrueSucc, BasicBlock *FalseSucc)
-      : BranchInst(false) {
+  BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
+      : BranchInst(true) {
     setOperand(0, cond);
-    setSuccessor(0, TrueSucc);
-    setSuccessor(1, FalseSucc);
+    setSucc(0, trueSucc);
+    setSucc(1, falseSucc);
   }
+
+  bool isConditional() const { return conditional; }
+
+private:
+  bool conditional;
+};
+
+class Function;
+
+class CallInst : public Instruction {
+public:
+  CallInst(Value *callee, Type *returnType)
+      : Instruction(InstID::Call, returnType), callee(callee) {}
+  CallInst(Function *callee);
+  void setArguments(const std::vector<Value *> &args) { setOperands(args); }
+
+private:
+  Value *callee;
 };
 
 } // namespace nnvm

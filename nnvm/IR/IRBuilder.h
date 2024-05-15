@@ -31,11 +31,17 @@ public:
   }
 
   Value *buildStack(Type *containedTy, const std::string &name = "");
+  Value *buildStack(Type *containedTy, uint numElement,
+                    const std::string &name = "");
+
   Value *buildStore(Value *value, Value *dest);
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
 
   Value *buildRet();
   Value *buildRet(Value *returned);
+
+  Value *buildBr(BasicBlock *succ);
+  Value *buildBr(Value *cond, BasicBlock *trueBB, BasicBlock *falseBB);
 
 private:
   BasicBlock::Iterator insertPoint;

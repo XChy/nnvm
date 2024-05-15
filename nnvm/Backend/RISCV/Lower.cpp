@@ -64,21 +64,36 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
 
   switch (I->getOpcode()) {
   case InstID::Call:
-  case InstID::Br:
+    nnvm_unreachable("Not implemented");
     break;
+  case InstID::Br: {
+    auto *BI = cast<BranchInst>(I);
+    if (!BI->isConditional()) {
+      emit(LowInst{JAL,
+                   {getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(0)])}});
+    } else {
+      emit(
+          LowInst{BEQ,
+                  {defMap[BI->getOperand(0)], getZeroReg(LowOperand::i64).use(),
+                   LowOperand::label(BBMap[BI->getSucc(0)])}});
+
+      emit(LowInst{JAL,
+                   {getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(1)])}});
+    }
+    break;
+  }
   case InstID::Ret: {
     if (I->getOperandNum() != 0) {
       Value *returned = I->getOperand(0);
-      emit({ADD,
-            {getRetReg(lowerType(returned->getType())).def(),
-             defMap[returned].use(),
-             getZeroReg(lowerType(returned->getType()))}});
+      emit(LowInst::create(ADD, getRetReg(lowerType(returned->getType())),
+                           defMap[returned],
+                           getZeroReg(lowerType(returned->getType()))));
     }
-    auto inst =
-        LowInst{JALR,
-                {getZeroReg(LowOperand::i64).def(),
-                 getRAReg(LowOperand::i64).use(), LowOperand::imm(0).use()}};
-    // Implicit use of "a0"
+    auto inst = LowInst::create(JALR, getZeroReg(LowOperand::i64),
+                                getRAReg(LowOperand::i64), LowOperand::imm(0));
+    // Implicit use of "a0/f0"
     if (I->getOperandNum() != 0) {
       inst.operand.push_back(
           getRetReg(lowerType(I->getOperand(0)->getType())).use());
@@ -106,6 +121,16 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
 }
 
 void LowerHelper::mapAll(Module &module) {
+  for (auto &[hash, constant] : module.getConstantPool()) {
+    if (ConstantInt *CI = dyn_cast<ConstantInt>(constant))
+      defMap[constant] = LowOperand{
+          .type = LowOperand::Constant,
+          .valueType = lowerType(CI->getType()),
+          .flag = LowOperand::Use,
+          .lastUsed = false,
+          .immValue = CI->getValue(),
+      };
+  }
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = new LowFunc;
     lowFunc->name = name;

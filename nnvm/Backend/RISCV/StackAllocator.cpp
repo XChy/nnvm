@@ -1,7 +1,9 @@
 #include "StackAllocator.h"
 #include "ADT/GenericInt.h"
+#include "ADT/PatternMatch.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/Patterns.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
 #include <unordered_set>
@@ -60,15 +62,22 @@ bool StackAllocator::resolveSlotRef(LowBB *bb, LowBB::Iterator it,
 
     auto addressRegister = func->allocVReg(LowOperand::i64);
 
-    bb->insertBefore(it, {ADDI,
-                          {
-                              addressRegister.def(),
-                              getSPReg(LowOperand::i64).use(),
-                              LowOperand::imm(offset).use(),
-                          }});
+    bb->insertBefore(it, LowInst::create(ADDI, addressRegister,
+                                         getSPReg(LowOperand::i64),
+                                         LowOperand::imm(offset)));
     operand = addressRegister.lastUse();
   }
   return true;
+}
+
+static inline bool needEmergencySlot(LowFunc &func) {
+  uint64_t currentFrameSize = 0;
+  for (auto &slot : func.stackSlots) {
+    currentFrameSize += slot.getSize();
+  }
+  currentFrameSize = (currentFrameSize + getFrameAlign() - 1) /
+                     getFrameAlign() * getFrameAlign();
+  return !canExpressInBits<11>(currentFrameSize);
 }
 
 void StackAllocator::allocate(LowFunc &func) {
@@ -76,7 +85,7 @@ void StackAllocator::allocate(LowFunc &func) {
   frameSize = 0;
 
   // TODO: Increase number of emergency slots if necessary?
-  uint64_t numEmergencySlots = 1;
+  uint64_t numEmergencySlots = needEmergencySlot(func) ? 1 : 0;
 
   frameSize += numEmergencySlots * 8;
 
@@ -108,22 +117,18 @@ void StackAllocator::emitPrologue(LowFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   func.BBs.front()->insertBefore(
       func.BBs.front()->begin(),
-      LowInst{ADDI,
-              {
-                  getDef(getSPReg(LowOperand::i64)),
-                  getUse(getSPReg(LowOperand::i64)),
-                  getUse(LowOperand::imm(-frameSize)),
-              }});
+      LowInst::create(ADDI, getSPReg(LowOperand::i64),
+                      getSPReg(LowOperand::i64), LowOperand::imm(-frameSize)));
 }
 
 void StackAllocator::emitEpilogue(LowFunc &func) {
-  func.BBs.back()->insertBefore(
-      --func.BBs.back()->end(),
-      // TODO: handle big frame larger than 2 ^ 12 bytes
-      LowInst{ADDI,
-              {
-                  getDef(getSPReg(LowOperand::i64)),
-                  getUse(getSPReg(LowOperand::i64)),
-                  getUse(LowOperand::imm(frameSize)),
-              }});
+  // TODO: handle big frame larger than 2 ^ 12 bytes
+  for (LowBB *bb : func.BBs) {
+    if (match(&bb->insts.back(), pattern::pRet())) {
+      bb->insertBefore(--bb->end(),
+                       LowInst::create(ADDI, getSPReg(LowOperand::i64),
+                                       getSPReg(LowOperand::i64),
+                                       LowOperand::imm(frameSize)));
+    }
+  }
 }
