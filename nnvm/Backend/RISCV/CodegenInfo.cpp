@@ -115,7 +115,35 @@ std::vector<uint64_t> riscv::unpreservedFRegs() {
 }
 
 LowInstType riscv::getLoadInstType(LowOperand::LowValueType type) {
-    switch(type){
-    }
+  switch (type) {
+  case LowOperand::i1:
+  case LowOperand::i8:
+    return LB;
+  case LowOperand::i16:
+    return LH;
+  case LowOperand::i32:
+    return LW;
+  case LowOperand::i64:
+    return LD;
+  case LowOperand::Imm:
+  case LowOperand::Float:
+    nnvm_unreachable("Not implemented");
+  }
 }
-LowInstType riscv::getStoreInstType(LowOperand::LowValueType type) {}
+
+LowInstType riscv::getStoreInstType(LowOperand::LowValueType type) {
+  switch (type) {
+  case LowOperand::i1:
+  case LowOperand::i8:
+    return SB;
+  case LowOperand::i16:
+    return SH;
+  case LowOperand::i32:
+    return SW;
+  case LowOperand::i64:
+    return SD;
+  case LowOperand::Imm:
+  case LowOperand::Float:
+    nnvm_unreachable("Not implemented");
+  }
+}

@@ -35,6 +35,7 @@ enum LowInstType : uint64_t {
   // .....
   // ==== RISC-V Specific ====
   ISA_BEGIN = (uint64_t)InstID::INST_END + 1,
+  NONE,
 
   // ==== R-format ====
   // <inst-name> rd, rs1, rs2
@@ -81,6 +82,13 @@ static inline const char *getNameForInstType(uint64_t type) {
     nnvm_unreachable("Not implemented yet");
   }
   return typeToName[type];
+}
+
+static inline LowInstType toIFormat(uint64_t type) {
+  static std::unordered_map<uint64_t, LowInstType> map = {
+      {ADD, ADDI}, {XOR, XORI}, {AND, ANDI}, {OR, ORI}, {SLT, SLTI}};
+
+  return map[type];
 }
 
 } /* namespace nnvm::riscv */

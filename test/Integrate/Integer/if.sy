@@ -1,0 +1,7 @@
+// INPUT:-234
+// EXPECTED:-468
+int test(int a) {
+    if(a + 235)
+        return a + a;
+    return 666;
+}

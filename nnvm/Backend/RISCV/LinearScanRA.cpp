@@ -12,6 +12,7 @@ void LinearScanRA::expireOldInterval(const LiveInterval &current) {
   for (auto it = active.begin(); it != active.end();) {
     if (it->end >= current.begin)
       return;
+    freeGPRs.insert(vregToPReg[it->regId]);
     it = active.erase(it);
   }
 }

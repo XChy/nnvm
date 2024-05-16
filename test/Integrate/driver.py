@@ -27,21 +27,26 @@ pass_test = 0
 
 def get_expected(source):
     with open(source) as f:
+        line = f.readlines()[1]
+        return re.search('EXPECTED:(.*)', line).group(1)
+
+
+def get_input(source):
+    with open(source) as f:
         first_line = f.readline()
-        return re.search('EXPECTED:(.*)', first_line).group(1)
-    pass
+        return re.search('INPUT:(.*)', first_line).group(1)
 
 
 for root, _, filenames in os.walk(test_dir):
     for filename in filenames:
         source = path.join(root, filename)
-        if source.endswith(".sysy"):
+        if source.endswith(".sysy") or source.endswith(".sy"):
             total_test += 1
             ret = subprocess.Popen(
-                [compiler, source, "-o", asm], stdout=subprocess.PIPE, encoding="UTF-8")
+                [compiler, source, "-o", asm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8")
             stdout, stderr = ret.communicate()
             if ret.returncode != 0:
-                print("FAIL on", filename)
+                print("FAILED on", filename)
             else:
                 # Use assembler to generate binary.
                 ret = subprocess.run([riscvgcc, "-c", asm, "-o", obj])
@@ -50,17 +55,19 @@ for root, _, filenames in os.walk(test_dir):
                 ret = subprocess.run(
                     [riscvgcc, obj, mainobj, sylib, "-o", mainexec])
 
-                ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec],
+                inputed = get_input(source)
+                expected = get_expected(source)
+
+                ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, inputed],
                                        stdout=subprocess.PIPE, encoding="UTF-8")
 
                 stdout, stderr = ret.communicate()
 
-                expected = get_expected(source)
                 if stdout != expected:
-                    print("FAIL on", filename, ", actual",
+                    print("FAILED on", filename, ", actual",
                           stdout, ", expected", expected)
                 else:
-                    print("PASS", filename)
+                    print("PASSED", filename)
                     pass_test += 1
 
 print("============Complete Test=============")

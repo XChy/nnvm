@@ -66,6 +66,8 @@ std::string Instruction::dump() {
       break;
     case InstID::ICmp:
       ret += "icmp ";
+      ret += ICmpInst::getPredName(cast<ICmpInst>(this)->getPredicate());
+      ret += " ";
       ret += getOperand(0)->dumpAsOperand();
       ret += ", ";
       ret += getOperand(1)->dumpAsOperand();
@@ -107,6 +109,32 @@ std::string StackInst::dump() {
 std::string StoreInst::dump() {
   return "store " + getStoredValue()->dumpAsOperand() + +" to " +
          getDest()->dumpAsOperand() + "\n";
+}
+
+std::string ICmpInst::getPredName(Predicate p) {
+  switch (p) {
+  case EQ:
+    return "eq";
+  case NE:
+    return "ne";
+  case SLT:
+    return "slt";
+  case SLE:
+    return "sle";
+  case SGT:
+    return "sgt";
+  case SGE:
+    return "sge";
+  case ULT:
+    return "ult";
+  case ULE:
+    return "ule";
+  case UGT:
+    return "ugt";
+  case UGE:
+    return "uge";
+  }
+  return "none";
 }
 
 CallInst::CallInst(Function *callee)

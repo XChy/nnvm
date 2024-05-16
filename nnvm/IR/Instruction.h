@@ -188,6 +188,9 @@ NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
 class ICmpInst : public Instruction {
 public:
   enum Predicate { EQ, NE, SLT, SGT, SLE, SGE, ULT, ULE, UGT, UGE };
+
+  static std::string getPredName(Predicate p);
+
   ICmpInst(Predicate predicate, Type *ty)
       : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
 

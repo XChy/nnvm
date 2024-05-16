@@ -74,7 +74,7 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
                     LowOperand::label(BBMap[BI->getSucc(0)])}});
     } else {
       emit(
-          LowInst{BEQ,
+          LowInst{BNE,
                   {defMap[BI->getOperand(0)], getZeroReg(LowOperand::i64).use(),
                    LowOperand::label(BBMap[BI->getSucc(0)])}});
 
@@ -84,6 +84,15 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
     }
     break;
   }
+  case InstID::ICmp: {
+    ICmpInst *CI = cast<ICmpInst>(I);
+
+    auto lowered =
+        LowInst::create((uint64_t)InstID::ICmp, defMap[CI],
+                        defMap[CI->getOperand(0)], defMap[CI->getOperand(1)]);
+    lowered.operand.push_back(LowOperand::imm(CI->getPredicate()));
+    emit(lowered);
+  } break;
   case InstID::Ret: {
     if (I->getOperandNum() != 0) {
       Value *returned = I->getOperand(0);
@@ -131,6 +140,7 @@ void LowerHelper::mapAll(Module &module) {
           .immValue = CI->getValue(),
       };
   }
+
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = new LowFunc;
     lowFunc->name = name;
