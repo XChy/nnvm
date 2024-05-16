@@ -70,3 +70,11 @@ Value *IRBuilder::buildBr(Value *cond, BasicBlock *trueBB,
   insertPoint.insertBefore(I);
   return I;
 }
+
+Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs) {
+  ICmpInst *I = new ICmpInst(pred, module->getBoolType());
+  I->setOperand(0, lhs);
+  I->setOperand(1, rhs);
+  insertPoint.insertBefore(I);
+  return I;
+}

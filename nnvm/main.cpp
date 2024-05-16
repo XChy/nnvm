@@ -59,8 +59,8 @@ int main(int argc, char **argv) {
   std::ifstream inputStream;
   Module ir;
   IRGenerator irgen;
-  std::unique_ptr<Backend> backend;
   Optimizer optimizer;
+  std::unique_ptr<Backend> backend;
 
   inputStream.open(sourceFile);
   antlr4::ANTLRInputStream input(inputStream);

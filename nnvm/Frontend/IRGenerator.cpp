@@ -97,7 +97,6 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock(func, "entry");
-  func->insert(Entry);
   builder.setInsertPoint(Entry->end());
 
   currentBB = Entry;
@@ -153,6 +152,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 }
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
+
   if (ctx->ASSIGN()) {
     Symbol lhs = ctx->lVal()->accept(this);
     if (!lhs)
@@ -161,6 +161,39 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     if (!rhs)
       return Symbol::none();
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+  } else if (ctx->IF()) {
+    Symbol cond = ctx->cond()->accept(this);
+
+    if (!cond)
+      return Symbol::none();
+
+    BasicBlock *thenBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "then");
+    BasicBlock *exitBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "if.exit");
+    BasicBlock *elseBB;
+
+    if (ctx->ELSE()) {
+      elseBB = new BasicBlock(cast<Function>(currentFunc->entity), "else");
+      builder.buildBr(cond.entity, thenBB, elseBB);
+    } else {
+      builder.buildBr(cond.entity, thenBB, exitBB);
+    }
+
+    builder.setInsertPoint(thenBB->end());
+    ctx->stmt(0)->accept(this);
+    if (!thenBB->getTerminator())
+      builder.buildBr(exitBB);
+
+    if (ctx->ELSE()) {
+      builder.setInsertPoint(elseBB->end());
+      ctx->stmt(1)->accept(this);
+      if (!elseBB->getTerminator())
+        builder.buildBr(exitBB);
+    }
+
+    builder.setInsertPoint(exitBB->end());
+    return Symbol::none();
   } else if (ctx->returnStmt()) {
     if (ctx->returnStmt()->exp()) {
       Symbol returned = ctx->returnStmt()->exp()->accept(this);
@@ -183,8 +216,29 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       return Symbol{builder.buildRet(), nullptr};
     }
+  } else if (ctx->block()) {
+    ctx->block()->accept(this);
+  } else if (ctx->CONTINUE()) {
+    nnvm_unreachable("Not implemeted continue");
   }
   nnvm_unreachable("Not implemeted");
+}
+
+Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
+  if (ctx->exp()) {
+    Symbol exp = ctx->exp()->accept(this);
+    if (!exp)
+      return Symbol::none();
+
+    if (exp.symbolType->isInt())
+      return Symbol{
+          builder.buildICmp(ICmpInst::NE, exp.entity,
+                            ConstantInt::create(*ir, ir->getIntType(), 0)),
+          SymbolType::getBoolTy()};
+    else
+      nnvm_unreachable("Unimplemented FCmp")
+  }
+  nnvm_unreachable("Unimplemented")
 }
 
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {

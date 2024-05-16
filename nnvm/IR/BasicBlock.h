@@ -41,7 +41,7 @@ public:
   Iterator end() { return {instList.end(), this}; }
 
   TerminatorInst *getTerminator() {
-    return cast<TerminatorInst>(instList.getLast());
+    return dyn_cast<TerminatorInst>(instList.getLast());
   }
 
   uint getSuccNum() { return getTerminator()->getSuccNum(); }

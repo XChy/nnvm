@@ -51,6 +51,8 @@ public:
 
   Any visitStmt(SysYParser::StmtContext *ctx) override;
 
+  Any visitCond(SysYParser::CondContext *ctx) override;
+
   Any visitLVal(SysYParser::LValContext *ctx) override;
   Any visitExp(SysYParser::ExpContext *ctx) override;
 

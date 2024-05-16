@@ -183,6 +183,22 @@ NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
 
 // ===========================
+// Comparison instructions.
+// ===========================
+class ICmpInst : public Instruction {
+public:
+  enum Predicate { EQ, NE, SLT, SGT, SLE, SGE, ULT, ULE, UGT, UGE };
+  ICmpInst(Predicate predicate, Type *ty)
+      : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
+
+  void setPredicate(Predicate pred) { this->predicate = pred; }
+  Predicate getPredicate() const { return predicate; }
+
+private:
+  Predicate predicate;
+};
+
+// ===========================
 // Terminator instructions
 // ===========================
 

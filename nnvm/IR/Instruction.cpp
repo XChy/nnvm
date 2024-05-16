@@ -64,6 +64,12 @@ std::string Instruction::dump() {
       ret += "ret ";
       ret += getOperandNum() ? getOperand(0)->dumpAsOperand() : "";
       break;
+    case InstID::ICmp:
+      ret += "icmp ";
+      ret += getOperand(0)->dumpAsOperand();
+      ret += ", ";
+      ret += getOperand(1)->dumpAsOperand();
+      break;
     case InstID::Br:
       ret += "br ";
       for (Use *operand : useeList) {

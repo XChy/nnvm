@@ -1,0 +1,8 @@
+int a(int a, int b) {
+    if(a) 
+        return a;
+     else 
+        return b;
+    return 0;
+} 
+
