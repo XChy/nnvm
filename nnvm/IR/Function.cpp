@@ -18,6 +18,10 @@ void Function::addArgument(Argument *arg) { arguments.push_back(arg); }
 
 std::vector<Argument *> Function::getArguments() { return arguments; }
 
+std::string Function::dumpAsOperand() {
+  return getReturnType()->dump() + " " + getName();
+}
+
 std::string Function::dump() {
   std::string ret = retType->dump() + " " + getName();
 

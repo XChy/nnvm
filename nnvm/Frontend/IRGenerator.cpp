@@ -79,17 +79,19 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   vector<SymbolType *> argsType;
 
-  for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
-    SymbolType *symbolTy = paramCtx->btype()->accept(this);
-    for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
-      if (i == 0)
-        symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-      else
-        // TODO: calculate the number of element
-        symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
-    }
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
+      SymbolType *symbolTy = paramCtx->btype()->accept(this);
+      for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
+        if (i == 0)
+          symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
+        else
+          // TODO: calculate the number of element
+          symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+      }
 
-    argsType.push_back(symbolTy);
+      argsType.push_back(symbolTy);
+    }
   }
 
   currentFunc = symbolTable.create(
@@ -103,8 +105,10 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   symbolTable.enterScope();
 
-  for (auto paramCtx : ctx->funcFParams()->funcFParam())
-    paramCtx->accept(this);
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam())
+      paramCtx->accept(this);
+  }
 
   // Demote args into stack.
   for (int i = 0; i < func->getArguments().size(); i++) {
@@ -217,7 +221,9 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       return Symbol{builder.buildRet(), nullptr};
     }
   } else if (ctx->block()) {
-    ctx->block()->accept(this);
+    return ctx->block()->accept(this);
+  } else if (ctx->exp()) {
+    return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
     nnvm_unreachable("Not implemeted continue");
   }
@@ -239,6 +245,29 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
       nnvm_unreachable("Unimplemented FCmp")
   }
   nnvm_unreachable("Unimplemented")
+}
+
+Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
+  auto calleeName = ctx->IDENT()->getText();
+  Symbol *calleeSymbol = symbolTable.lookup(calleeName);
+  if (!calleeSymbol)
+    // TODO: report no matching function!!
+    return Symbol::none();
+
+  Function *callee = cast<Function>(calleeSymbol->entity);
+  std::vector<Value *> args;
+
+  if (ctx->funcRParams()) {
+    for (auto *paramCtx : ctx->funcRParams()->param()) {
+      Symbol paramSymbol = paramCtx->accept(this);
+      if (!paramSymbol)
+        return Symbol::none();
+      args.push_back(paramSymbol.entity);
+    }
+  }
+
+  return Symbol(builder.buildCall(callee, args),
+                calleeSymbol->symbolType->containedTy);
 }
 
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {

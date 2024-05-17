@@ -26,12 +26,25 @@ public:
   void addArgument(Argument *arg);
   std::vector<Argument *> getArguments();
 
+  void setVariadic(bool variadic) { this->variadic = variadic; }
+  bool isVariadic() { return variadic; }
+
+  void setExternal(bool external) { this->external = external; }
+  bool isExternal() { return external; }
+
+  std::string dumpAsOperand();
   std::string dump();
 
 private:
   List<BasicBlock> BBList;
 
+  // Whether the arguments are variadic.
+  bool variadic = false;
+  // Whether this function is linked outside the compile unit.
+  bool external = false;
+
   std::vector<Argument *> arguments;
+
   Type *retType;
   Module *module;
 };

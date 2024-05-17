@@ -43,7 +43,9 @@ public:
   Value *buildBr(BasicBlock *succ);
   Value *buildBr(Value *cond, BasicBlock *trueBB, BasicBlock *falseBB);
 
-  Value *buildICmp(ICmpInst::Predicate pred, Value* lhs, Value* rhs);
+  Value *buildCall(Function *callee, const std::vector<Value *> &args);
+
+  Value *buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs);
 
 private:
   BasicBlock::Iterator insertPoint;

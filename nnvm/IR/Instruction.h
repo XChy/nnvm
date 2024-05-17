@@ -90,6 +90,7 @@ public:
 
   void setOperands(const std::vector<Value *> &operands);
   void setOperand(uint no, Value *);
+  void addOperand(Value *operand);
   Value *getOperand(uint no);
   uint getOperandNum() { return useeList.size(); }
 
@@ -260,9 +261,12 @@ class Function;
 class CallInst : public Instruction {
 public:
   CallInst(Value *callee, Type *returnType)
-      : Instruction(InstID::Call, returnType), callee(callee) {}
+      : Instruction(InstID::Call, {callee}, returnType) {}
   CallInst(Function *callee);
-  void setArguments(const std::vector<Value *> &args) { setOperands(args); }
+
+  void setCallee(Value *callee) { setOperand(0, callee); }
+  Value *getCallee() { return getOperand(0); }
+  void setArguments(const std::vector<Value *> &args);
 
 private:
   Value *callee;

@@ -1,5 +1,6 @@
 #include "Instruction.h"
 #include "Module.h"
+#include "Utils/Collection.h"
 #include <string>
 #include <unordered_map>
 
@@ -27,6 +28,10 @@ void Instruction::setOperand(uint no, Value *operand) {
   useeList[no]->set(operand);
 }
 
+void Instruction::addOperand(Value *operand) {
+  useeList.push_back(new Use(this, operand));
+}
+
 Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
 
 // Consistent with LLVM.
@@ -51,6 +56,10 @@ std::string Instruction::dump() {
     ret += (getName() + " = " + op + " " + getOperand(0)->dumpAsOperand() +
             ", " + getOperand(1)->dumpAsOperand());
   } else {
+    std::vector<std::string> operandDump;
+    for (Use *operand : useeList)
+      operandDump.push_back(operand->getUsee()->dumpAsOperand());
+
     switch (instID) {
     case InstID::Store:
       ret = "store " + getOperand(0)->dumpAsOperand() + +" to " +
@@ -74,11 +83,12 @@ std::string Instruction::dump() {
       break;
     case InstID::Br:
       ret += "br ";
-      for (Use *operand : useeList) {
-        if (operand != *useeList.begin())
-          ret += ", ";
-        ret += operand->getUsee()->dumpAsOperand();
-      }
+      ret += join(operandDump.begin(), operandDump.end(), ", ");
+      break;
+    case InstID::Call:
+      ret += "call ";
+      ret += join(operandDump.begin(), operandDump.end(), ", ");
+
       break;
     default:
       ret = "ILLEGAL!";
@@ -140,4 +150,10 @@ std::string ICmpInst::getPredName(Predicate p) {
 CallInst::CallInst(Function *callee)
     : CallInst(callee, callee->getReturnType()) {
   // TODO: maintain arguments?
+}
+
+void CallInst::setArguments(const std::vector<Value *> &args) {
+  std::vector<Value *> operands = {getCallee()};
+  operands.reserve(args.size() + 1);
+  operands.insert(operands.end(), args.begin(), args.end());
 }

@@ -71,6 +71,14 @@ Value *IRBuilder::buildBr(Value *cond, BasicBlock *trueBB,
   return I;
 }
 
+Value *IRBuilder::buildCall(Function *callee,
+                            const std::vector<Value *> &args) {
+  CallInst *I = new CallInst(callee);
+  I->setArguments(args);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
 Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs) {
   ICmpInst *I = new ICmpInst(pred, module->getBoolType());
   I->setOperand(0, lhs);

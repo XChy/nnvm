@@ -1,0 +1,10 @@
+int c(){}
+int a(int a, int b) {
+    c();
+    if(a) 
+        return a;
+     else 
+        return b;
+    return 0;
+} 
+

@@ -53,6 +53,7 @@ public:
 
   Any visitCond(SysYParser::CondContext *ctx) override;
 
+  Any visitCall(SysYParser::CallContext *ctx) override;
   Any visitLVal(SysYParser::LValContext *ctx) override;
   Any visitExp(SysYParser::ExpContext *ctx) override;
 
