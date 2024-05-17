@@ -11,8 +11,8 @@ uint64_t LinearScanRA::indexOf(LowBB *BB, uint64_t localIndex) {
 void LinearScanRA::expireOldInterval(const LiveInterval &current) {
   for (auto it = active.begin(); it != active.end();) {
     if (it->end >= current.begin)
-      return;
-    freeGPRs.insert(vregToPReg[it->regId]);
+      break;
+    freeGPRs.push(vregToPReg[it->regId]);
     it = active.erase(it);
   }
 }
@@ -32,8 +32,8 @@ void LinearScanRA::allocate(LowFunc &func) {
     if (freeGPRs.size() == 0) {
       // TODO: spill
     } else {
-      vregToPReg[interval.regId] = *freeGPRs.begin();
-      freeGPRs.erase(freeGPRs.begin());
+      vregToPReg[interval.regId] = freeGPRs.top();
+      freeGPRs.pop();
       active.insert(interval);
     }
   }

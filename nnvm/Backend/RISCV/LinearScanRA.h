@@ -3,6 +3,7 @@
 #include "Backend/RISCV/Analysis/LiveIntervalAnalysis.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/RegisterAllocator.h"
+#include <queue>
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
@@ -20,7 +21,7 @@ private:
 
   // Active virtual registers.
   std::set<LiveInterval, IntervalCompare> active;
-  std::unordered_set<uint64_t> freeGPRs;
+  std::priority_queue<uint64_t> freeGPRs;
   std::unordered_map<uint64_t, uint64_t> vregToPReg;
 };
 

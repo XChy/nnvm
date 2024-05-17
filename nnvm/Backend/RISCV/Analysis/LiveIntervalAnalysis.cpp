@@ -45,8 +45,12 @@ bool LiveIntervalAnalysis::runOn(LowFunc &func) {
     }
   }
 
-  for (auto &[id, interval] : regToIntervals)
+  for (auto &[id, interval] : regToIntervals) {
     intervals.insert(interval);
+  }
+  for (auto interval : intervals)
+    debug(std::cerr << interval.regId << ":[" << interval.begin << ","
+                    << interval.end << "]\n");
 
   return true;
 }

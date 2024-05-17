@@ -14,7 +14,7 @@ public:
 struct IntervalCompare {
 public:
   bool operator()(const LiveInterval &a, const LiveInterval &b) const {
-    return a.end > b.end;
+    return a.end < b.end;
   }
 };
 

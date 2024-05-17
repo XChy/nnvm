@@ -194,7 +194,7 @@ public:
   std::vector<LowFunc *> funcs;
 
   void emit(std::ostream &out) const {
-    EmitInfo info;
+    EmitInfo info(*this);
     for (auto &func : funcs)
       for (auto *bb : func->BBs)
         info.allocBB(bb);

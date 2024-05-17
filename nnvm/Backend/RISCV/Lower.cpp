@@ -73,10 +73,10 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
                    {getZeroReg(LowOperand::i64).use(),
                     LowOperand::label(BBMap[BI->getSucc(0)])}});
     } else {
-      emit(
-          LowInst{BNE,
-                  {defMap[BI->getOperand(0)], getZeroReg(LowOperand::i64).use(),
-                   LowOperand::label(BBMap[BI->getSucc(0)])}});
+      emit(LowInst{BNE,
+                   {defMap[BI->getOperand(0)].use(),
+                    getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(0)])}});
 
       emit(LowInst{JAL,
                    {getZeroReg(LowOperand::i64).use(),

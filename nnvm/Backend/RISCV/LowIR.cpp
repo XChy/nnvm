@@ -24,7 +24,7 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
       out << immValue;
     break;
   case BasicBlock:
-    out << "bb" << info.indexOfBB(bb);
+    out << "bb" << info.indexOf(bb);
     break;
   case StackSlot:
     out << "stack" << stackSlotId;
@@ -101,8 +101,7 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
 }
 
 void LowBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) const {
-  if (showLabel)
-    out << "bb" << info.indexOfBB(this) << ":\n";
+  out << info.labelOf(this) << ":\n";
   for (const auto &I : insts) {
     out << "  ";
     I.emit(out, info);
@@ -120,7 +119,6 @@ uint64_t LowFunc::allocStack(const StackSlot &obj) {
 }
 
 void LowFunc::emit(std::ostream &out, EmitInfo &info) const {
-  out << name << ":\n";
   for (auto *BB : BBs)
     BB->emit(out, info, BB != BBs[0]);
 }
