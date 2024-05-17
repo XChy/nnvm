@@ -24,6 +24,8 @@
 
 #define MAKE_JFORMAT(GEN) GEN(JAL)
 
+#define MAKE_OTHER(GEN) GEN(CALL)
+
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
   { LowInstType::x, #x }
@@ -67,6 +69,11 @@ enum LowInstType : uint64_t {
   MAKE_JFORMAT(FOR_ENUM),
   J_END,
 
+  // Other, like 'call' psuedo instruction
+  OTHER_BEGIN,
+  MAKE_OTHER(FOR_ENUM),
+  OTHER_END,
+
   ISA_END
 };
 
@@ -74,8 +81,7 @@ static inline const char *getNameForInstType(uint64_t type) {
 
   static std::unordered_map<uint64_t, const char *> typeToName = {
       MAKE_RFORMAT(FOR_NAME), MAKE_IFORMAT(FOR_NAME), MAKE_SFORMAT(FOR_NAME),
-      MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME),
-  };
+      MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME), MAKE_OTHER(FOR_NAME)};
 
   if (!typeToName.count(type)) {
     std::cerr << "Handling the operator:" << (uint64_t)type << "\n";

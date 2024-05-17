@@ -6,6 +6,7 @@
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Cast.h"
+#include <queue>
 using namespace nnvm;
 using namespace nnvm::riscv;
 
@@ -57,15 +58,72 @@ static LowOperand gpr(uint index, Type *type) {
   };
 }
 
+static LowOperand fpr(uint index, Type *type) {
+  return LowOperand{
+      .type = LowOperand::FPRegister,
+      .valueType = lowerType(type),
+      .flag = LowOperand::Def,
+      .regId = index,
+  };
+}
+
 void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
                             std::list<LowInst> &instList) {
   uint instType = (uint64_t)I->getOpcode();
   auto emit = [&instList](const LowInst &inst) { instList.push_back(inst); };
 
   switch (I->getOpcode()) {
-  case InstID::Call:
+  case InstID::Call: {
+    auto *CI = cast<CallInst>(I);
+    std::vector<LowOperand> operands;
+
+    auto gprArgVec = getArgGPRs();
+    auto fprArgVec = getArgFPRs();
+    std::queue<uint64_t> availableArgGPR;
+    std::queue<uint64_t> availableArgFPR;
+    for (auto gpr : gprArgVec)
+      availableArgGPR.push(gpr);
+    for (auto fpr : fprArgVec)
+      availableArgFPR.push(fpr);
+
+    // TODO: variadic?
+    if (Function *F = dyn_cast<Function>(CI->getCallee())) {
+      operands.push_back(LowOperand::function(funcMap[F]));
+      for (int i = 1; i < CI->getOperandNum(); i++) {
+        auto argVReg = defMap[CI->getOperand(i)].use();
+
+        if (argVReg.valueType == LowOperand::Float && !fprArgVec.empty()) {
+          LowOperand argReg =
+              LowOperand::fpr(availableArgFPR.front(), argVReg.valueType).use();
+          availableArgFPR.pop();
+
+          nnvm_unreachable("Not implemented");
+          emit(LowInst::create(ADD, argReg, argVReg,
+                               getZeroReg(argVReg.valueType)));
+          operands.push_back(argReg);
+        } else if (!gprArgVec.empty()) {
+          LowOperand argReg =
+              LowOperand::gpr(availableArgGPR.front(), argVReg.valueType).use();
+          availableArgGPR.pop();
+
+          emit(LowInst::create(ADD, argReg, argVReg,
+                               getZeroReg(argVReg.valueType)));
+          operands.push_back(argReg);
+        } else {
+          // TODO: demote to stack
+          nnvm_unreachable("Not implemented")
+        }
+      }
+      emit(LowInst{CALL, operands});
+
+      if (F->getReturnType()->getClass() != Type::Void) {
+        emit(LowInst::create(ADD, defMap[I], gpr(A0, CI->getType()),
+                             getZeroReg(defMap[I].valueType)));
+      }
+      return;
+    }
     nnvm_unreachable("Not implemented");
-    break;
+  }
   case InstID::Br: {
     auto *BI = cast<BranchInst>(I);
     if (!BI->isConditional()) {
@@ -146,11 +204,24 @@ void LowerHelper::mapAll(Module &module) {
     lowFunc->name = name;
     funcMap[func] = lowFunc;
 
-    auto availableArgRegs = getRegsForArg();
+    auto gprArgVec = getArgGPRs();
+    auto fprArgVec = getArgFPRs();
+
+    std::queue<uint64_t> availableArgGPR;
+    std::queue<uint64_t> availableArgFPR;
+    for (auto gpr : gprArgVec)
+      availableArgGPR.push(gpr);
+    for (auto fpr : fprArgVec)
+      availableArgFPR.push(fpr);
+
     for (int i = 0; i < func->getArguments().size(); i++) {
-      if (i < availableArgRegs.size()) {
-        Argument *arg = func->getArguments()[i];
-        defMap[arg] = gpr(availableArgRegs[i], arg->getType());
+      Argument *arg = func->getArguments()[i];
+      if (arg->getType()->getClass() == Type::Float && !fprArgVec.empty()) {
+        defMap[arg] = fpr(availableArgFPR.front(), arg->getType());
+        availableArgFPR.pop();
+      } else if (!gprArgVec.empty()) {
+        defMap[arg] = gpr(availableArgGPR.front(), arg->getType());
+        availableArgGPR.pop();
       } else {
         // TODO: demote to stack
         nnvm_unreachable("Not implemented")
@@ -175,6 +246,7 @@ void LowerHelper::lower(Module &module, LowModule &lowered) {
 
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = funcMap[func];
+    lowFunc->isExternal = func->isExternal();
     lowered.funcs.push_back(lowFunc);
 
     // Lower basic blocks.

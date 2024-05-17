@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IR/Module.h"
 #include <algorithm>
 #include <sys/types.h>
 #include <vector>
@@ -55,8 +56,10 @@ public:
   }
 
   bool isInt() { return symbolID == Int; }
+  bool isBool() { return symbolID == Bool; }
   bool isFloat() { return symbolID == Float; }
   bool isVoid() { return symbolID == Void; }
+  bool isArray() { return symbolID == Array; }
 
   static SymbolType *getIntTy();
   static SymbolType *getVoidTy();
@@ -90,4 +93,17 @@ public:
 
   static Symbol none();
 };
+
+static inline Type *toIRType(Module &module, SymbolType *symbolType) {
+  if (symbolType->isFloat())
+    return module.getFloatType();
+  if (symbolType->isInt())
+    return module.getIntType();
+  if (symbolType->isVoid())
+    return module.getVoidType();
+  if (symbolType->isBool())
+    return module.getBoolType();
+  nnvm_unreachable("Not implemented");
+}
+
 } /* namespace nnvm */

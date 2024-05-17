@@ -1,4 +1,5 @@
 #include "IRGenerator.h"
+#include "Frontend/Builtin.h"
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
 #include "IR/Constant.h"
@@ -10,6 +11,8 @@
 
 using namespace nnvm;
 
+IRGenerator::IRGenerator() {}
+
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
   builder.setModule(ir);
@@ -18,6 +21,7 @@ void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
 
 Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   symbolTable.enterScope();
+  addBuiltinFunctions(*ir, symbolTable);
   visitChildren(ctx);
   symbolTable.exitScope();
   return Any();
@@ -71,8 +75,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   }
 
   // TODO: some checks
-  Function *func = new Function(ir);
-  func->setName(funcName);
+  Function *func = new Function(ir, funcName);
 
   ir->addFunction(func);
   SymbolType *returnType = ctx->funcType()->accept(this);

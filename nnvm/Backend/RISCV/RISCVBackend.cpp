@@ -21,21 +21,24 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   lowerHelper.lower(ir, lowModule);
 
   for (auto *lowFunc : lowModule.funcs)
-    isel.isel(*lowFunc);
+    if (!lowFunc->isExternal)
+      isel.isel(*lowFunc);
 
   debug(std::cerr << "====ISel Done====\n");
   debug(lowModule.emit(std::cerr));
 
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
-    RA.allocate(*lowFunc);
+    if (!lowFunc->isExternal)
+      RA.allocate(*lowFunc);
 
   debug(std::cerr << "====RA Done====\n");
   debug(lowModule.emit(std::cerr));
 
   // Replace abstract stack reference and emit Prologue&Epilogue
   for (auto *lowFunc : lowModule.funcs)
-    SA.allocate(*lowFunc);
+    if (!lowFunc->isExternal)
+      SA.allocate(*lowFunc);
 
   debug(std::cerr << "====SA Done====\n");
 

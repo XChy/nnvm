@@ -1,4 +1,5 @@
 #include "LowIR.h"
+#include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowInstType.h"
 #include <Backend/RISCV/CodegenInfo.h>
 #include <Backend/RISCV/StackSlot.h>
@@ -9,10 +10,8 @@ using namespace nnvm::riscv;
 void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   switch (type) {
   case VirtualRegister:
-    out << "v" << regId;
-    break;
   case GPRegister:
-    out << getGPRNames()[regId];
+    out << getNameForRegister(regId);
     break;
   case FPRegister:
     out << "f" << regId;
@@ -31,6 +30,9 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
     break;
   case Constant:
     out << "Unmaterialzed constant: " << (int64_t)immValue;
+    break;
+  case Function:
+    out << func->name;
     break;
   case None:
     nnvm_unreachable("None ???");
@@ -56,6 +58,13 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << "(";
     operand[1].emit(out, info);
     out << ")";
+    return;
+  case CALL:
+    out << getNameForInstType(type);
+    //for (const LowOperand &op : operand) {
+      out << " ";
+      operand[0].emit(out, info);
+    //}
     return;
   }
 

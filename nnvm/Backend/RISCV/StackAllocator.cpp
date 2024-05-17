@@ -47,6 +47,25 @@ void RegClearer::clear(LowFunc &func,
   }
 }
 
+StackAllocator::FunctionStackInfo
+StackAllocator::calculateStackInfo(LowFunc &func) {
+  FunctionStackInfo ret;
+  std::set<uint64_t> usedRegs;
+
+  for (LowBB *bb : func.BBs) {
+    for (LowInst &inst : *bb) {
+      if (inst.type == CALL)
+        ret.isCaller = true;
+      if (match(&inst, pattern::pRet()))
+        ret.exitBBs.push_back(bb);
+    }
+  }
+
+  if (ret.isCaller)
+    ret.regsToSave.push_back(RA);
+  return ret;
+}
+
 bool StackAllocator::resolveSlotRef(LowBB *bb, LowBB::Iterator it,
                                     uint64_t slotOperandIndex) {
   LowOperand &operand = it->operand[slotOperandIndex];
@@ -82,12 +101,16 @@ static inline bool needEmergencySlot(LowFunc &func) {
 
 void StackAllocator::allocate(LowFunc &func) {
   this->func = &func;
+  stackInfo = calculateStackInfo(func);
+  if (stackInfo.isCaller) {
+  }
   frameSize = 0;
 
   // TODO: Increase number of emergency slots if necessary?
   uint64_t numEmergencySlots = needEmergencySlot(func) ? 1 : 0;
-
   frameSize += numEmergencySlots * 8;
+
+  frameSize += stackInfo.regsToSave.size() * 8;
 
   for (auto &slot : func.stackSlots) {
     slot.setOffset(frameSize);
@@ -98,22 +121,26 @@ void StackAllocator::allocate(LowFunc &func) {
       (frameSize + getFrameAlign() - 1) / getFrameAlign() * getFrameAlign();
 
   emitPrologue(func);
+  emitEpilogue(func);
 
-  for (auto *bb : func.BBs) {
-    for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
-      for (int i = 0; i < it->operand.size(); i++) {
+  for (auto *bb : func.BBs)
+    for (auto it = bb->insts.begin(); it != bb->insts.end(); it++)
+      for (int i = 0; i < it->operand.size(); i++)
         if (it->operand[i].isStackSlot())
           resolveSlotRef(bb, it, i);
-      }
-    }
-  }
-
-  emitEpilogue(func);
 
   clearer.clear(func, vregNum);
 }
 
 void StackAllocator::emitPrologue(LowFunc &func) {
+
+  for (uint64_t reg : stackInfo.regsToSave)
+    func.BBs.front()->insertBefore(
+        func.BBs.front()->begin(),
+        LowInst{SD,
+                {LowOperand::gpr(reg, LowOperand::i64),
+                 getSPReg(LowOperand::i64), LowOperand::imm(0)}});
+
   // TODO: handle big frame larger than 2 ^ 12 bytes
   func.BBs.front()->insertBefore(
       func.BBs.front()->begin(),
@@ -123,12 +150,17 @@ void StackAllocator::emitPrologue(LowFunc &func) {
 
 void StackAllocator::emitEpilogue(LowFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
-  for (LowBB *bb : func.BBs) {
-    if (match(&bb->insts.back(), pattern::pRet())) {
-      bb->insertBefore(--bb->end(),
-                       LowInst::create(ADDI, getSPReg(LowOperand::i64),
-                                       getSPReg(LowOperand::i64),
-                                       LowOperand::imm(frameSize)));
-    }
+  for (LowBB *bb : stackInfo.exitBBs) {
+    for (uint64_t reg : stackInfo.regsToSave)
+      bb->insertBefore(
+          --bb->end(),
+          LowInst{LD,
+                  {LowOperand::gpr(reg, LowOperand::i64).def(),
+                   getSPReg(LowOperand::i64), LowOperand::imm(0)}});
+
+    bb->insertBefore(--bb->end(),
+                     LowInst::create(ADDI, getSPReg(LowOperand::i64),
+                                     getSPReg(LowOperand::i64),
+                                     LowOperand::imm(frameSize)));
   }
 }

@@ -25,8 +25,12 @@ public:
   uint64_t indexOf(const LowBB *bb) { return bbToIndex[bb]; }
   std::string labelOf(const LowBB *bb);
 
+  void setEmitImplicit(bool emitImplicit) { this->emitImplicit = emitImplicit; }
+  bool isEmitImplicit() const { return emitImplicit; }
+
 private:
   uint64_t blockCount;
+  bool emitImplicit = true;
   std::unordered_map<const LowBB *, uint64_t> bbToIndex;
   std::unordered_map<const LowBB *, const LowFunc *> entries;
 };

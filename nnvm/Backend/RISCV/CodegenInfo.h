@@ -17,25 +17,21 @@ uint64_t getGPRegID(const std::string &name);
 uint64_t getFPRegID(const std::string &name);
 
 // ID of integer register for return value
-uint64_t getRetRegID();
 LowOperand getRetReg(LowOperand::LowValueType type);
 
 // ID of stack pointer register
-uint64_t getSPRegID();
 LowOperand getSPReg(LowOperand::LowValueType type);
 
 // ID of zero register
-uint64_t getZeroRegID();
 LowOperand getZeroReg(LowOperand::LowValueType type);
 
 // ID of return address register
-uint64_t getRARegID();
 LowOperand getRAReg(LowOperand::LowValueType type);
 
 // Integer registers for argument
-std::vector<uint64_t> getRegsForArg();
+std::vector<uint64_t> getArgGPRs();
 // Float registers for argument
-std::vector<uint64_t> getFRegsForArg();
+std::vector<uint64_t> getArgFPRs();
 
 // Return the list of unpreserved register across calls.
 std::vector<uint64_t> unpreservedRegs();

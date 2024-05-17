@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Backend/RISCV/EmitInfo.h"
+#include "Backend/RISCV/Info/Register.h"
 #include "IR/Instruction.h"
 #include "StackSlot.h"
 #include "Utils/Debug.h"
@@ -18,6 +19,7 @@ class LowBB;
 class LowGlobal {
 public:
   std::string name;
+  bool isExternal = false;
 };
 
 class LowOperand {
@@ -35,6 +37,7 @@ public:
     FPRegister,
     Immediate, // Different from Constant, this is valid for machine
                // instruction.
+    Function,
     StackSlot,
     BasicBlock,
   };
@@ -105,8 +108,31 @@ public:
     return LowOperand{
         .type = LowOperand::VirtualRegister,
         .valueType = valueType,
-        .flag = LowOperand::Def,
         .regId = id,
+    };
+  }
+
+  static LowOperand gpr(uint64_t id, LowValueType valueType) {
+    return LowOperand{
+        .type = LowOperand::GPRegister,
+        .valueType = valueType,
+        .regId = id,
+    };
+  }
+
+  static LowOperand fpr(uint64_t id, LowValueType valueType) {
+    return LowOperand{
+        .type = LowOperand::FPRegister,
+        .valueType = valueType,
+        .regId = id,
+    };
+  }
+
+  static LowOperand function(LowFunc *func) {
+    return LowOperand{
+        .type = LowOperand::Function,
+        .flag = LowOperand::Use,
+        .func = func,
     };
   }
 
@@ -115,7 +141,7 @@ public:
   OperandType type;
   LowValueType valueType;
   OperandFlag flag;
-  bool lastUsed;
+  bool lastUsed = false;
 
   union {
     uint64_t regId;
@@ -123,18 +149,9 @@ public:
     float fImmValue;
     uint64_t stackSlotId;
     LowBB *bb;
+    LowFunc *func;
   };
 };
-
-static inline LowOperand getDef(LowOperand original) {
-  original.flag = LowOperand::Def;
-  return original;
-}
-
-static inline LowOperand getUse(LowOperand original) {
-  original.flag = LowOperand::Use;
-  return original;
-}
 
 class LowInst {
 public:
@@ -174,7 +191,7 @@ public:
   std::vector<LowBB *> BBs;
   std::vector<LowOperand> args;
   std::vector<StackSlot> stackSlots;
-  uint64_t largestVRegID = 0;
+  uint64_t largestVRegID = VR_BEGIN;
 
   uint64_t allocStackSlot(uint64_t size);
   uint64_t allocStack(const StackSlot &obj);
@@ -201,7 +218,8 @@ public:
 
     // TODO: emit global data
     for (auto *func : funcs)
-      out << ".global " << func->name << "\n";
+      if (!func->isExternal)
+        out << ".global " << func->name << "\n";
 
     for (auto *func : funcs)
       func->emit(out, info);

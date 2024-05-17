@@ -9,7 +9,7 @@ using namespace nnvm;
 int main() {
   Module module;
   nnvm::IRBuilder builder(&module);
-  Function *FA = new Function(&module);
+  Function *FA = new Function(&module, "A");
 
   BasicBlock *BB1 = new BasicBlock(FA, "entry");
   BasicBlock *BB2 = new BasicBlock(FA, "true");

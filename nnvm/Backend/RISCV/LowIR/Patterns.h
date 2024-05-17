@@ -56,14 +56,14 @@ public:
 class pZeroReg : public pGPR {
 public:
   bool match(const LowOperand &reg) {
-    return reg.regId == getZeroRegID() && pReg::match(reg);
+    return reg.regId == ZERO && pReg::match(reg);
   }
 };
 
 class pRAReg : public pGPR {
 public:
   bool match(const LowOperand &reg) {
-    return reg.regId == getRARegID() && pReg::match(reg);
+    return reg.regId == RA && pReg::match(reg);
   }
 };
 

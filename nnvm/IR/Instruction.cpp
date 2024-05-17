@@ -21,6 +21,12 @@ Instruction::Instruction(InstID opcode, uint numOperands, Type *type)
 void Instruction::setOperands(const std::vector<Value *> &operands) {
   for (auto *use : useeList)
     use->removeFromList();
+
+  for (auto *use : useeList)
+    delete use;
+
+  useeList.clear();
+
   for (Value *usee : operands)
     useeList.push_back(new Use(this, usee));
 }
@@ -86,8 +92,10 @@ std::string Instruction::dump() {
       ret += join(operandDump.begin(), operandDump.end(), ", ");
       break;
     case InstID::Call:
+      ret += getName() + " = ";
       ret += "call ";
-      ret += join(operandDump.begin(), operandDump.end(), ", ");
+      ret += getOperand(0)->dumpAsOperand();
+      ret += "(" + join(operandDump.begin() + 1, operandDump.end(), ", ") + ")";
 
       break;
     default:
@@ -156,4 +164,5 @@ void CallInst::setArguments(const std::vector<Value *> &args) {
   std::vector<Value *> operands = {getCallee()};
   operands.reserve(args.size() + 1);
   operands.insert(operands.end(), args.begin(), args.end());
+  setOperands(operands);
 }

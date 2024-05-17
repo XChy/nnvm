@@ -5,7 +5,8 @@ using namespace nnvm::riscv;
 
 EmitInfo::EmitInfo(const LowModule &module) {
   for (auto *func : module.funcs)
-    markBBAsEntry(func->BBs.front(), func);
+    if (!func->isExternal)
+      markBBAsEntry(func->BBs.front(), func);
 }
 
 std::string EmitInfo::labelOf(const LowBB *bb) {

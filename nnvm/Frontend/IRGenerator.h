@@ -37,6 +37,7 @@ private:
 
 class IRGenerator final : public SysYParserBaseVisitor {
 public:
+  IRGenerator();
   void emitIR(antlr4::tree::ParseTree *ast, Module *ir);
 
   Any visitProgram(SysYParser::ProgramContext *ctx) override;

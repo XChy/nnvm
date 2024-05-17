@@ -1,6 +1,8 @@
-int c(){}
+int c(int a){
+    return a + a;
+}
 int a(int a, int b) {
-    c();
+    c(a);
     if(a) 
         return a;
      else 

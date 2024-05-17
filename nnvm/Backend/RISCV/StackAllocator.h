@@ -2,9 +2,8 @@
 
 #include "Backend/RISCV/LowIR.h"
 #include <unordered_map>
+#include <vector>
 namespace nnvm::riscv {
-
-struct SlotRegInfo {};
 
 // At the stack allocation stage, we may produce virtual registers to calculate
 // the address of sp + offset. Thus, we have to materialize these virtual
@@ -19,8 +18,15 @@ public:
 // - replace abstract stack reference with (sp + offset).
 // - emit epilogue at the exit(s) of the function.
 class StackAllocator {
+  struct FunctionStackInfo {
+    bool isCaller = false;
+    std::vector<LowBB *> exitBBs;
+    std::vector<uint64_t> regsToSave;
+  };
+
 public:
   void allocate(LowFunc &func);
+  FunctionStackInfo calculateStackInfo(LowFunc &func);
   void emitPrologue(LowFunc &func);
   void emitEpilogue(LowFunc &func);
 
@@ -29,6 +35,7 @@ public:
 private:
   RegClearer clearer;
   LowFunc *func;
+  FunctionStackInfo stackInfo;
   uint64_t frameSize;
 
   std::unordered_map<uint64_t, uint64_t> vregNum;
