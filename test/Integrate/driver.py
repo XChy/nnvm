@@ -12,14 +12,10 @@ compiler = path.join(root_dir, "build", "compiler")
 
 asm = tempfile.mktemp(".s")
 obj = tempfile.mktemp(".o")
-mainobj = tempfile.mktemp(".o")
 sylib = path.join(root_dir, "build", "libsylib.a")
 mainexec = tempfile.mktemp(".out")
 
 riscvgcc = "riscv64-unknown-linux-gnu-gcc"
-
-subprocess.run(
-    [riscvgcc, "-c", path.join(root_dir, "test", "Driver", "int_main.c"), "-o", mainobj], check=True)
 
 total_test = 0
 pass_test = 0
@@ -33,8 +29,8 @@ def get_expected(source):
 
 def get_input(source):
     with open(source) as f:
-        first_line = f.readline()
-        return re.search('INPUT:(.*)', first_line).group(1)
+        line = f.readlines()[0]
+        return re.search('INPUT:(.*)', line).group(1)
 
 
 for root, _, filenames in os.walk(test_dir):
@@ -50,18 +46,16 @@ for root, _, filenames in os.walk(test_dir):
             else:
                 # Use assembler to generate binary.
                 ret = subprocess.run([riscvgcc, "-c", asm, "-o", obj])
+                ret = subprocess.run([riscvgcc,  obj, sylib, "-o", mainexec])
 
-                # Link runtime libraries
-                ret = subprocess.run(
-                    [riscvgcc, obj, mainobj, sylib, "-o", mainexec])
-
-                inputed = get_input(source)
+                # parse input and output
+                inputed = get_input(source) + "\n"
                 expected = get_expected(source)
 
-                ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, inputed],
-                                       stdout=subprocess.PIPE, encoding="UTF-8")
+                ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, "console=ttyS0"],
+                                       stdout=subprocess.PIPE, stdin=subprocess.PIPE, encoding="UTF-8")
 
-                stdout, stderr = ret.communicate()
+                stdout, stderr = ret.communicate(input=inputed)
 
                 if stdout != expected:
                     print("FAILED on", filename, ", actual",

@@ -1,7 +1,9 @@
-// INPUT:-234
-// EXPECTED:-468
-int test(int a) {
-    if(a + 235)
-        return a + a;
-    return 666;
+// INPUT:1 2 3
+// EXPECTED:23
+
+int main() {
+    if (getint()) 
+        putint(getint());
+    putint(getint());
+    return 0;
 }

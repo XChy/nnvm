@@ -202,6 +202,7 @@ void LowerHelper::mapAll(Module &module) {
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = new LowFunc;
     lowFunc->name = name;
+    lowFunc->isExternal = func->isExternal();
     funcMap[func] = lowFunc;
 
     auto gprArgVec = getArgGPRs();
@@ -234,7 +235,7 @@ void LowerHelper::mapAll(Module &module) {
       BBMap[BB] = lowBB;
 
       for (Instruction *I : *BB)
-        if (I->getType())
+        if (I->getType() && !I->getType()->isVoid())
           defMap[I] = virtualReg(I, lowFunc);
     }
   }
@@ -246,7 +247,6 @@ void LowerHelper::lower(Module &module, LowModule &lowered) {
 
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = funcMap[func];
-    lowFunc->isExternal = func->isExternal();
     lowered.funcs.push_back(lowFunc);
 
     // Lower basic blocks.

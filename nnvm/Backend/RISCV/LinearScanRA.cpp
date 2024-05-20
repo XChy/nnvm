@@ -1,4 +1,7 @@
 #include "Backend/RISCV/CodegenInfo.h"
+#include "Backend/RISCV/Info/Register.h"
+#include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/StackSlot.h"
 #include <Backend/RISCV/Analysis/LiveIntervalAnalysis.h>
 #include <Backend/RISCV/LinearScanRA.h>
 
@@ -41,12 +44,24 @@ void LinearScanRA::allocate(LowFunc &func) {
   for (auto *BB : func.BBs) {
     for (LowInst &I : BB->insts) {
       for (auto it = I.operand.begin(); it != I.operand.end(); it++) {
+
         LowOperand &op = *it;
         if (op.isVR()) {
-          op.type = LowOperand::GPRegister;
-          op.regId = vregToPReg[op.regId];
+          if (op.valueType != LowOperand::Float) {
+            op.type = LowOperand::GPRegister;
+            op.regId = vregToPReg[op.regId];
+            allocatedRegs.insert(vregToPReg[op.regId]);
+          }
         }
       }
+    }
+  }
+
+  for (uint64_t phyRegId : allocatedRegs) {
+    if (calleeSavedRegs().count(phyRegId)) {
+      StackSlot slot(StackSlot::CalleeSaved, 8);
+      slot.setRegId(phyRegId);
+      func.allocStack(slot);
     }
   }
 }

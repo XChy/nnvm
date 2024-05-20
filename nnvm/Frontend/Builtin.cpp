@@ -24,4 +24,6 @@ static inline void addBuiltin(Module &M, SymbolTable &symbolTable,
 void nnvm::addBuiltinFunctions(Module &M, SymbolTable &ST) {
   addBuiltin(M, ST, "getint", SymbolType::getIntTy(), {});
   addBuiltin(M, ST, "getch", SymbolType::getIntTy(), {});
+  addBuiltin(M, ST, "putint", SymbolType::getVoidTy(),
+             {SymbolType::getIntTy()});
 }
