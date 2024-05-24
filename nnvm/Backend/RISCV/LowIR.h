@@ -193,6 +193,8 @@ public:
   std::vector<StackSlot> stackSlots;
   uint64_t largestVRegID = VR_BEGIN;
 
+  LowBB *getEntry() { return BBs[0]; }
+
   uint64_t allocStackSlot(uint64_t size);
   uint64_t allocStack(const StackSlot &obj);
   uint64_t allocVRegID() { return largestVRegID++; }
