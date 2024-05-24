@@ -19,7 +19,7 @@ public:
   void setRegId(uint64_t regId) { this->regId = regId; }
   uint64_t getRegId() const { return regId; }
 
-  void setType(SlotType type) { this->regId = regId; }
+  void setType(SlotType type) { this->type = type; }
   uint64_t getType() const { return type; }
 
 private:
