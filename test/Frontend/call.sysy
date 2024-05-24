@@ -1,0 +1,12 @@
+int c(int a){
+    return a + a;
+}
+int a(int a, int b) {
+    c(a);
+    if(a) 
+        return a;
+     else 
+        return b;
+    return 0;
+} 
+

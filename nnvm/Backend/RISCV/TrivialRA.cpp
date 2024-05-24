@@ -16,7 +16,7 @@ void TrivialRA::allocate(LowFunc &func) {
 
   for (LowOperand operand : func.args)
     if (operand.isGPR())
-      available.erase(operand.registerId);
+      available.erase(operand.regId);
 
   for (auto *BB : func.BBs) {
     for (LowInst &I : BB->insts) {
@@ -24,28 +24,28 @@ void TrivialRA::allocate(LowFunc &func) {
         LowOperand &op = *it;
         if (op.isVR()) {
           if (available.empty()) {
-            if (op.flag == LowOperand::Def) {
+            if (op.isDef()) {
               uint64_t freeOne = *available.begin();
-              assignedRegs[op.registerId] = freeOne;
+              assignedRegs[op.regId] = freeOne;
               op.type = LowOperand::GPRegister;
-              op.registerId = freeOne;
+              op.regId = freeOne;
               available.erase(available.begin());
             } else {
               op.type = LowOperand::GPRegister;
-              op.registerId = assignedRegs[op.registerId];
+              op.regId = assignedRegs[op.regId];
             }
             // Trivial spill
             // BB->insts.insert(it, {LowInst::S})
           } else {
-            if (op.flag == LowOperand::Def) {
+            if (op.isDef()) {
               uint64_t freeOne = *available.begin();
-              assignedRegs[op.registerId] = freeOne;
+              assignedRegs[op.regId] = freeOne;
               op.type = LowOperand::GPRegister;
-              op.registerId = freeOne;
+              op.regId = freeOne;
               available.erase(available.begin());
             } else {
               op.type = LowOperand::GPRegister;
-              op.registerId = assignedRegs[op.registerId];
+              op.regId = assignedRegs[op.regId];
             }
           }
         }

@@ -37,6 +37,7 @@ private:
 
 class IRGenerator final : public SysYParserBaseVisitor {
 public:
+  IRGenerator();
   void emitIR(antlr4::tree::ParseTree *ast, Module *ir);
 
   Any visitProgram(SysYParser::ProgramContext *ctx) override;
@@ -51,11 +52,15 @@ public:
 
   Any visitStmt(SysYParser::StmtContext *ctx) override;
 
+  Any visitCond(SysYParser::CondContext *ctx) override;
+
+  Any visitCall(SysYParser::CallContext *ctx) override;
   Any visitLVal(SysYParser::LValContext *ctx) override;
   Any visitExp(SysYParser::ExpContext *ctx) override;
 
   Any visitVarDecl(SysYParser::VarDeclContext *ctx) override;
   Any visitConstDecl(SysYParser::ConstDeclContext *ctx) override;
+  Any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
 
   Type *toIRType(SymbolType *symbolTy);
 
@@ -71,6 +76,8 @@ private:
   Any expBinOp(SysYParser::ExpContext*);
   Any expUnaryOp(SysYParser::ExpContext*);
   Any solveConstExp(SysYParser::ExpContext*);
+  Any solveConstLval(SysYParser::LValContext*);
+  Any solveConstInit(std::vector<SysYParser::ConstInitValContext*> ctxs, std::list<int> dims);
   Any constDef(SysYParser::ConstDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
   Any varDef(SysYParser::VarDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
 };

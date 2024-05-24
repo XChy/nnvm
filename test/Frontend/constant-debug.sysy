@@ -1,0 +1,4 @@
+const int array[4] = {1,2,3,4};
+int a(int b) {
+    return array[1]+array[2];
+}

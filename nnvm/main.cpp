@@ -59,19 +59,19 @@ int main(int argc, char **argv) {
   std::ifstream inputStream;
   Module ir;
   IRGenerator irgen;
-  std::unique_ptr<Backend> backend;
   Optimizer optimizer;
+  std::unique_ptr<Backend> backend;
 
   inputStream.open(sourceFile);
   antlr4::ANTLRInputStream input(inputStream);
   SysYLexer lexer(&input);
   antlr4::CommonTokenStream tokens(&lexer);
   SysYParser parser(&tokens);
+  inputStream.close();
 
   antlr4::tree::ParseTree *tree = parser.program();
   debug(std::cerr << "Parsing done!"
                   << "\n");
-  inputStream.close();
 
   irgen.emitIR(tree, &ir);
   debug(std::cerr << "IRGen done!"

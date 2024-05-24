@@ -1,10 +1,9 @@
 const int x = 114514;
 const int y = x - 114514; 
+const int array[4] = {1,2,3,4};
 int a(int a, int b) {
-    x + y;
-    x + 3 * y;
     const int z = y + 2;
-    z + 3;
+    return array[1]+array[2];
 }
 
 int b(int a[], float b) {

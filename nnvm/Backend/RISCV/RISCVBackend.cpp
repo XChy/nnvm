@@ -1,6 +1,7 @@
 #include "RISCVBackend.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
+#include "Backend/RISCV/LinearScanRA.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
@@ -15,35 +16,33 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   LowerHelper lowerHelper;
   ISel isel;
   StackAllocator SA;
-  TrivialRA RA;
+  LinearScanRA RA;
 
   lowerHelper.lower(ir, lowModule);
 
   for (auto *lowFunc : lowModule.funcs)
-    isel.isel(*lowFunc);
+    if (!lowFunc->isExternal)
+      isel.isel(*lowFunc);
 
-  // legalize(lowModule);
+  debug(std::cerr << "====ISel Done====\n");
+  debug(lowModule.emit(std::cerr));
+
+  // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
-    RA.allocate(*lowFunc);
+    if (!lowFunc->isExternal)
+      RA.allocate(*lowFunc);
 
-  // Replace stack reference and emit Prolog/Epilog
+  debug(std::cerr << "====RA Done====\n");
+  debug(lowModule.emit(std::cerr));
+
+  // Replace abstract stack reference and emit Prologue&Epilogue
   for (auto *lowFunc : lowModule.funcs)
-    SA.allocate(*lowFunc);
+    if (!lowFunc->isExternal)
+      SA.allocate(*lowFunc);
 
-  EmitInfo info;
-  for (auto &func : lowModule.funcs)
-    for (auto *bb : func->BBs)
-      info.allocBB(bb);
+  debug(std::cerr << "====SA Done====\n");
 
-  lowModule.emit(out, info);
-}
+  lowModule.emit(out);
 
-void RISCVBackend::legalize(LowModule &module) {
-  for (auto *func : module.funcs) {
-    for (auto *bb : func->BBs) {
-      for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
-
-      }
-    }
-  }
+  debug(std::cerr << "====Emit Done====\n");
 }

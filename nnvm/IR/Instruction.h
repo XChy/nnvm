@@ -57,6 +57,8 @@ enum class InstID : uint64_t {
   ZExt,
   SExt,
   Trunc,
+  SI2F,
+  UI2F,
   CAST_END,
   // Memory instructions.
   MEMORY_BEGIN,
@@ -66,8 +68,10 @@ enum class InstID : uint64_t {
   PtrAdd, // Addressing addtion/subtraction of pointer
   MEMORY_END,
   // Other
+  OTHER_BEGIN,
   Call,
   Phi,
+  OTHER_END,
   INST_END,
 
 };
@@ -84,7 +88,9 @@ public:
   Instruction(InstID opcode, uint numOperands, Type *type);
   ~Instruction();
 
+  void setOperands(const std::vector<Value *> &operands);
   void setOperand(uint no, Value *);
+  void addOperand(Value *operand);
   Value *getOperand(uint no);
   uint getOperandNum() { return useeList.size(); }
 
@@ -178,6 +184,25 @@ NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
 
 // ===========================
+// Comparison instructions.
+// ===========================
+class ICmpInst : public Instruction {
+public:
+  enum Predicate { EQ, NE, SLT, SGT, SLE, SGE, ULT, ULE, UGT, UGE };
+
+  static std::string getPredName(Predicate p);
+
+  ICmpInst(Predicate predicate, Type *ty)
+      : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
+
+  void setPredicate(Predicate pred) { this->predicate = pred; }
+  Predicate getPredicate() const { return predicate; }
+
+private:
+  Predicate predicate;
+};
+
+// ===========================
 // Terminator instructions
 // ===========================
 
@@ -187,15 +212,15 @@ public:
       : Instruction(id, operandNum + successorNum, nullptr),
         successorNum(successorNum) {}
 
-  void setSuccessor(int no, BasicBlock *BB) {
+  void setSucc(int no, BasicBlock *BB) {
     setOperand(getOperandNum() - successorNum + no, (Value *)BB);
   }
 
-  BasicBlock *getSuccessor(int no) {
+  BasicBlock *getSucc(int no) {
     return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
   }
 
-  uint getSuccessorNum() { return successorNum; }
+  uint getSuccNum() { return successorNum; }
 
 private:
   uint successorNum;
@@ -213,16 +238,38 @@ class BranchInst : public TerminatorInst {
 public:
   BranchInst(bool isConditional)
       : TerminatorInst(InstID::Br, isConditional ? 1 : 0,
-                       isConditional ? 3 : 1) {}
+                       isConditional ? 2 : 1),
+        conditional(isConditional) {}
   BranchInst(BasicBlock *directSucc) : BranchInst(false) {
-    setSuccessor(0, directSucc);
+    setSucc(0, directSucc);
   }
-  BranchInst(Value *cond, BasicBlock *TrueSucc, BasicBlock *FalseSucc)
-      : BranchInst(false) {
+  BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
+      : BranchInst(true) {
     setOperand(0, cond);
-    setSuccessor(0, TrueSucc);
-    setSuccessor(1, FalseSucc);
+    setSucc(0, trueSucc);
+    setSucc(1, falseSucc);
   }
+
+  bool isConditional() const { return conditional; }
+
+private:
+  bool conditional;
+};
+
+class Function;
+
+class CallInst : public Instruction {
+public:
+  CallInst(Value *callee, Type *returnType)
+      : Instruction(InstID::Call, {callee}, returnType) {}
+  CallInst(Function *callee);
+
+  void setCallee(Value *callee) { setOperand(0, callee); }
+  Value *getCallee() { return getOperand(0); }
+  void setArguments(const std::vector<Value *> &args);
+
+private:
+  Value *callee;
 };
 
 } // namespace nnvm

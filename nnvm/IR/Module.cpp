@@ -9,6 +9,7 @@ static void initTypeMap(Module::NormalTypeMap &typeMap,
       {Type::Void, {new Type(Type::Void)}},
       {Type::Float, {new Type(Type::Float)}},
       {Type::Pointer, {new Type(Type::Pointer)}},
+      {Type::BasicBlock, {new Type(Type::BasicBlock)}},
       {Type::Array, {}},
       {Type::Vector, {}},
   };
@@ -42,6 +43,7 @@ Type *Module::getIntType() { return intTypeMap[32]; }
 Type *Module::getFloatType() { return typeMap[Type::Float][0]; }
 Type *Module::getBoolType() { return intTypeMap[1]; }
 Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
+Type *Module::getBBType() { return typeMap[Type::BasicBlock][0]; }
 
 Constant *Module::addConstant(const Constant &constant) {
   auto it = constantPool.find(constant.hash());

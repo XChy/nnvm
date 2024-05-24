@@ -9,7 +9,6 @@ namespace riscv {
 class RISCVBackend final : public Backend {
 public:
   void emit(Module &ir, std::ostream &assembly);
-  void legalize(LowModule &module);
   ~RISCVBackend() = default;
 };
 } // namespace riscv

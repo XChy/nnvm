@@ -6,6 +6,7 @@
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Cast.h"
+#include <queue>
 using namespace nnvm;
 using namespace nnvm::riscv;
 
@@ -37,15 +38,14 @@ static LowOperand::LowValueType lowerType(Type *type) {
   return ret;
 }
 
-LowOperand LowerHelper::virtualReg(Value *def) {
+LowOperand LowerHelper::virtualReg(Value *def, LowFunc *lowFunc) {
   LowOperand lowOperand{
       .type = LowOperand::VirtualRegister,
       .valueType = lowerType(def->getType()),
       .flag = LowOperand::Def,
-      .registerId = virtualRegNum,
+      .regId = lowFunc->allocVRegID(),
   };
   defMap[def] = lowOperand;
-  virtualRegNum++;
   return lowOperand;
 }
 
@@ -54,7 +54,16 @@ static LowOperand gpr(uint index, Type *type) {
       .type = LowOperand::GPRegister,
       .valueType = lowerType(type),
       .flag = LowOperand::Def,
-      .registerId = index,
+      .regId = index,
+  };
+}
+
+static LowOperand fpr(uint index, Type *type) {
+  return LowOperand{
+      .type = LowOperand::FPRegister,
+      .valueType = lowerType(type),
+      .flag = LowOperand::Def,
+      .regId = index,
   };
 }
 
@@ -64,17 +73,104 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
   auto emit = [&instList](const LowInst &inst) { instList.push_back(inst); };
 
   switch (I->getOpcode()) {
-  case InstID::Call:
-  case InstID::Br:
+  case InstID::Call: {
+    auto *CI = cast<CallInst>(I);
+    std::vector<LowOperand> operands;
+
+    auto gprArgVec = getArgGPRs();
+    auto fprArgVec = getArgFPRs();
+    std::queue<uint64_t> availableArgGPR;
+    std::queue<uint64_t> availableArgFPR;
+    for (auto gpr : gprArgVec)
+      availableArgGPR.push(gpr);
+    for (auto fpr : fprArgVec)
+      availableArgFPR.push(fpr);
+
+    // TODO: variadic?
+    if (Function *F = dyn_cast<Function>(CI->getCallee())) {
+      operands.push_back(LowOperand::function(funcMap[F]));
+      for (int i = 1; i < CI->getOperandNum(); i++) {
+        auto argVReg = defMap[CI->getOperand(i)].use();
+
+        if (argVReg.valueType == LowOperand::Float && !fprArgVec.empty()) {
+          LowOperand argReg =
+              LowOperand::fpr(availableArgFPR.front(), argVReg.valueType).use();
+          availableArgFPR.pop();
+
+          nnvm_unreachable("Not implemented");
+          emit(LowInst::create(ADD, argReg, argVReg,
+                               getZeroReg(argVReg.valueType)));
+          operands.push_back(argReg);
+        } else if (!gprArgVec.empty()) {
+          LowOperand argReg =
+              LowOperand::gpr(availableArgGPR.front(), argVReg.valueType).use();
+          availableArgGPR.pop();
+
+          emit(LowInst::create(ADD, argReg, argVReg,
+                               getZeroReg(argVReg.valueType)));
+          operands.push_back(argReg);
+        } else {
+          // TODO: demote to stack
+          nnvm_unreachable("Not implemented")
+        }
+      }
+      emit(LowInst{CALL, operands});
+
+      if (F->getReturnType()->getClass() != Type::Void) {
+        emit(LowInst::create(ADD, defMap[I], gpr(A0, CI->getType()),
+                             getZeroReg(defMap[I].valueType)));
+      }
+      return;
+    }
+    nnvm_unreachable("Not implemented");
+  }
+  case InstID::Br: {
+    auto *BI = cast<BranchInst>(I);
+    if (!BI->isConditional()) {
+      emit(LowInst{JAL,
+                   {getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(0)])}});
+    } else {
+      emit(LowInst{BNE,
+                   {defMap[BI->getOperand(0)].use(),
+                    getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(0)])}});
+
+      emit(LowInst{JAL,
+                   {getZeroReg(LowOperand::i64).use(),
+                    LowOperand::label(BBMap[BI->getSucc(1)])}});
+    }
     break;
-  case InstID::Ret:
-    emit({JALR,
-          {getZeroReg(LowOperand::i64), getRAReg(LowOperand::i64),
-           LowOperand::imm(0)}});
+  }
+  case InstID::ICmp: {
+    ICmpInst *CI = cast<ICmpInst>(I);
+
+    auto lowered =
+        LowInst::create((uint64_t)InstID::ICmp, defMap[CI],
+                        defMap[CI->getOperand(0)], defMap[CI->getOperand(1)]);
+    lowered.operand.push_back(LowOperand::imm(CI->getPredicate()));
+    emit(lowered);
+  } break;
+  case InstID::Ret: {
+    if (I->getOperandNum() != 0) {
+      Value *returned = I->getOperand(0);
+      emit(LowInst::create(ADD, getRetReg(lowerType(returned->getType())),
+                           defMap[returned],
+                           getZeroReg(lowerType(returned->getType()))));
+    }
+    auto inst = LowInst::create(JALR, getZeroReg(LowOperand::i64),
+                                getRAReg(LowOperand::i64), LowOperand::imm(0));
+    // Implicit use of "a0/f0"
+    if (I->getOperandNum() != 0) {
+      inst.operand.push_back(
+          getRetReg(lowerType(I->getOperand(0)->getType())).use());
+    }
+    emit(inst);
     break;
+  }
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    defMap[I] = LowOperand::stack(lowFunc->allocStackSlot(size));
+    defMap[I] = LowOperand::stackSlot(lowFunc->allocStackSlot(size)).def();
     break;
   }
   default:
@@ -92,16 +188,41 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
 }
 
 void LowerHelper::mapAll(Module &module) {
+  for (auto &[hash, constant] : module.getConstantPool()) {
+    if (ConstantInt *CI = dyn_cast<ConstantInt>(constant))
+      defMap[constant] = LowOperand{
+          .type = LowOperand::Constant,
+          .valueType = lowerType(CI->getType()),
+          .flag = LowOperand::Use,
+          .lastUsed = false,
+          .immValue = CI->getValue(),
+      };
+  }
+
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = new LowFunc;
     lowFunc->name = name;
+    lowFunc->isExternal = func->isExternal();
     funcMap[func] = lowFunc;
 
-    auto availableArgRegs = getRegsForArg();
+    auto gprArgVec = getArgGPRs();
+    auto fprArgVec = getArgFPRs();
+
+    std::queue<uint64_t> availableArgGPR;
+    std::queue<uint64_t> availableArgFPR;
+    for (auto gpr : gprArgVec)
+      availableArgGPR.push(gpr);
+    for (auto fpr : fprArgVec)
+      availableArgFPR.push(fpr);
+
     for (int i = 0; i < func->getArguments().size(); i++) {
-      if (i < availableArgRegs.size()) {
-        Argument *arg = func->getArguments()[i];
-        defMap[arg] = gpr(availableArgRegs[i], arg->getType());
+      Argument *arg = func->getArguments()[i];
+      if (arg->getType()->getClass() == Type::Float && !fprArgVec.empty()) {
+        defMap[arg] = fpr(availableArgFPR.front(), arg->getType());
+        availableArgFPR.pop();
+      } else if (!gprArgVec.empty()) {
+        defMap[arg] = gpr(availableArgGPR.front(), arg->getType());
+        availableArgGPR.pop();
       } else {
         // TODO: demote to stack
         nnvm_unreachable("Not implemented")
@@ -114,8 +235,8 @@ void LowerHelper::mapAll(Module &module) {
       BBMap[BB] = lowBB;
 
       for (Instruction *I : *BB)
-        if (I->getType())
-          defMap[I] = virtualReg(I);
+        if (I->getType() && !I->getType()->isVoid())
+          defMap[I] = virtualReg(I, lowFunc);
     }
   }
 }

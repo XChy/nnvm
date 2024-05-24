@@ -1,4 +1,5 @@
 #include "IRGenerator.h"
+#include "Frontend/Builtin.h"
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
 #include "IR/Constant.h"
@@ -11,6 +12,8 @@
 using namespace nnvm;
 static int getRadixOf(std::string_view text);
 
+IRGenerator::IRGenerator() {}
+
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
   builder.setModule(ir);
@@ -19,6 +22,7 @@ void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
 
 Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   symbolTable.enterScope();
+  addBuiltinFunctions(*ir, symbolTable);
   visitChildren(ctx);
   symbolTable.exitScope();
   return Any();
@@ -64,6 +68,46 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
   return nullptr;
 }
 
+/**
+ * This function is used to solve the constant lval
+ * @param ctx the context of the lval
+ * @return The value of the lval, type is int or float
+*/
+Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
+  std::vector<nnvm::SysYParser::ExpContext*> indexs = ctx->exp();
+  Constant *valConstant = cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
+  if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
+    return constInt->getValue();
+  }
+  if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
+    return constFloat->getValue();
+  } 
+  if (auto constArray = dyn_cast<ConstantArray>(valConstant)) {
+    int i = 0;
+    for (; i < indexs.size() - 1; i++) {
+      Any index = solveConstExp(indexs[i]);
+        assert(index.is<int>());
+      //TODO: Report invalid index error.
+      if (i < indexs.size() - 1) {
+        constArray = cast<ConstantArray>(constArray->getValue()[index.as<int>()]);
+      } else {
+        valConstant = constArray->getValue()[index.as<int>()];
+        if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
+          return constInt->getValue();
+        }
+        if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
+          return constFloat->getValue();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * This function is used to solve the constant expression
+ * @param ctx the context of the expression
+ * @return The value of the expression, type is int or float
+*/
 Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   if (ctx->exp().size() < 2) {
     if (auto numCtx = ctx->number()) {
@@ -77,9 +121,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       }
     }
     if (auto lvalCtx = ctx->lVal()) {
-      string valName = lvalCtx->IDENT()->getText();
-      Constant *valConst = cast<Constant>(symbolTable.lookup(valName)->entity);
-      return Any((int)(valConst->hash()));
+      return solveConstLval(lvalCtx);
     }
     assert("Should not reach here");
   }
@@ -130,6 +172,70 @@ Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {
   return Symbol::none();
 }
 
+Any IRGenerator::solveConstInit(std::vector<SysYParser::ConstInitValContext *>initVals, std::list<int> dims) {
+  std::vector<Constant *> arrayElements;
+  if (dims.size() == 0) { 
+    //recursion end
+    //TODO: Report invalid init value error.
+    if (initVals.size() == 0) {
+      return ConstantInt::create(*ir, ir->getIntType(), 0);
+    }
+    Any val = solveConstExp(initVals[0]->constExp()->exp());
+    //TODO: float
+    return ConstantInt::create(*ir, ir->getIntType(), val.as<int>());
+  } 
+  int initValIndex = 0;
+  int currentDim = dims.front();
+  dims.pop_front();
+  for (int i = 0; i < currentDim; i += 1) {
+    if (initVals[initValIndex]->L_BRACE()) {
+      Constant *element = solveConstInit(initVals[initValIndex++]->constInitVal(), dims);
+      arrayElements.push_back(element);
+    } else {
+      int numOfElement = 1;
+      for (auto dim = dims.begin(); dim != dims.end(); dim++) {
+        numOfElement *= *dim;
+      }
+      std::vector<SysYParser::ConstInitValContext *> constInitVals;
+      for (int i = 0; i < numOfElement; i++) {
+        constInitVals.push_back(initVals[initValIndex++]);
+      }
+      Constant *element = solveConstInit(constInitVals, dims);
+      arrayElements.push_back(element);
+    }
+  }
+  return ConstantArray::create(*ir, ir->getPtrType(), arrayElements);
+}
+/**
+ * This function handle const init value as a scalar.
+ * @param ctx the context of the constant's init value
+ * @return The value of the constant's init value
+*/
+Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
+  std::vector<Constant *> constVals;
+  std::vector<SysYParser::ConstInitValContext *> initVals = ctx->constInitVal();
+  if (auto constExp = ctx->constExp()) {
+    Any initVal = solveConstExp(constExp->exp());
+    Constant *constant = nullptr;
+    if (initVal.is<int>()) {
+      constant = ConstantInt::create(*ir, ir->getIntType(), initVal.as<int>());
+    } else if (initVal.is<float>()) {
+      constant = ConstantFloat::create(*ir, initVal.as<float>());
+    } else {
+      nnvm_unreachable("Should not reach here");
+    }
+    return constant;
+  }
+  //TODO: handle {1,2,3...} as 1, like what in gcc.
+  nnvm_unreachable("Not implemented");
+  return constVals;
+}
+
+/**
+ * This function defines constant value
+ * @param ctx The constant definition(context)
+ * @param btype Type of the constant(context)
+*/
 Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
                           SysYParser::BtypeContext *btype) {
   SymbolType *symbolType = btype->accept(this);
@@ -141,22 +247,27 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   for (int i = 0; i < ctx->constExp().size(); i += 1) {
     Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
     assert(nrElements.is<int>());
-    symbolType = SymbolType::getArrayTy(nrElements, symbolType, symbolTable);
+    symbolType = SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
   }
   Type *irType = symbolType->symbolID == SymbolType::Array
                    ? ir->getPtrType()
                    : getIRType(btype);
-  Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
   Constant *constVal = nullptr;
   if (irType->getClass() == Type::Integer) {
+    Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
     assert(initVal.is<int>());
     constVal = ConstantInt::create(*ir, irType, initVal.as<int>());
   } else if (irType->getClass() == Type::Float) {
+    Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
     assert(initVal.is<float>());
     constVal = ConstantFloat::create(*ir, initVal.as<float>());
   } else {
-    //TODO: 
-    assert("not implemented");
+    std::list<int> dims;
+    for (int i = 0; i < ctx->constExp().size(); i += 1) {
+      //TODO: report error here
+      dims.push_back(solveConstExp(ctx->constExp()[i]->exp()).as<int>());
+    }
+    constVal = solveConstInit(ctx->constInitVal()->constInitVal(), dims);
   }
   symbolTable.create(symbolName, symbolType, constVal);
   return Symbol::none();
@@ -179,8 +290,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   }
 
   // TODO: some checks
-  Function *func = new Function();
-  func->setName(funcName);
+  Function *func = new Function(ir, funcName);
 
   ir->addFunction(func);
   SymbolType *returnType = ctx->funcType()->accept(this);
@@ -206,16 +316,17 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
 
   func->setReturnType(getIRType(ctx->funcType()));
-  BasicBlock *Entry = new BasicBlock("entry");
-  func->insert(Entry);
+  BasicBlock *Entry = new BasicBlock(func, "entry");
   builder.setInsertPoint(Entry->end());
 
   currentBB = Entry;
 
   symbolTable.enterScope();
 
-  for (auto paramCtx : ctx->funcFParams()->funcFParam())
-    paramCtx->accept(this);
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam())
+      paramCtx->accept(this);
+  }
 
   // Demote args into stack.
   for (int i = 0; i < func->getArguments().size(); i++) {
@@ -266,6 +377,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 }
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
+
   if (ctx->ASSIGN()) {
     Symbol lhs = ctx->lVal()->accept(this);
     if (!lhs)
@@ -278,6 +390,39 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       return Symbol::none();
     }
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+  } else if (ctx->IF()) {
+    Symbol cond = ctx->cond()->accept(this);
+
+    if (!cond)
+      return Symbol::none();
+
+    BasicBlock *thenBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "then");
+    BasicBlock *exitBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "if.exit");
+    BasicBlock *elseBB;
+
+    if (ctx->ELSE()) {
+      elseBB = new BasicBlock(cast<Function>(currentFunc->entity), "else");
+      builder.buildBr(cond.entity, thenBB, elseBB);
+    } else {
+      builder.buildBr(cond.entity, thenBB, exitBB);
+    }
+
+    builder.setInsertPoint(thenBB->end());
+    ctx->stmt(0)->accept(this);
+    if (!thenBB->getTerminator())
+      builder.buildBr(exitBB);
+
+    if (ctx->ELSE()) {
+      builder.setInsertPoint(elseBB->end());
+      ctx->stmt(1)->accept(this);
+      if (!elseBB->getTerminator())
+        builder.buildBr(exitBB);
+    }
+
+    builder.setInsertPoint(exitBB->end());
+    return Symbol::none();
   } else if (ctx->returnStmt()) {
     if (ctx->returnStmt()->exp()) {
       Symbol returned = ctx->returnStmt()->exp()->accept(this);
@@ -300,10 +445,54 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       return Symbol{builder.buildRet(nullptr), nullptr};
     }
+  } else if (ctx->block()) {
+    return ctx->block()->accept(this);
   } else if (ctx->exp()) {
     return ctx->exp()->accept(this);
+  } else if (ctx->CONTINUE()) {
+    nnvm_unreachable("Not implemeted continue");
   }
   nnvm_unreachable("Not implemeted");
+}
+
+Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
+  if (ctx->exp()) {
+    Symbol exp = ctx->exp()->accept(this);
+    if (!exp)
+      return Symbol::none();
+
+    if (exp.symbolType->isInt())
+      return Symbol{
+          builder.buildICmp(ICmpInst::NE, exp.entity,
+                            ConstantInt::create(*ir, ir->getIntType(), 0)),
+          SymbolType::getBoolTy()};
+    else
+      nnvm_unreachable("Unimplemented FCmp")
+  }
+  nnvm_unreachable("Unimplemented")
+}
+
+Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
+  auto calleeName = ctx->IDENT()->getText();
+  Symbol *calleeSymbol = symbolTable.lookup(calleeName);
+  if (!calleeSymbol)
+    // TODO: report no matching function!!
+    return Symbol::none();
+
+  Function *callee = cast<Function>(calleeSymbol->entity);
+  std::vector<Value *> args;
+
+  if (ctx->funcRParams()) {
+    for (auto *paramCtx : ctx->funcRParams()->param()) {
+      Symbol paramSymbol = paramCtx->accept(this);
+      if (!paramSymbol)
+        return Symbol::none();
+      args.push_back(paramSymbol.entity);
+    }
+  }
+
+  return Symbol(builder.buildCall(callee, args),
+                calleeSymbol->symbolType->containedTy);
 }
 
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {

@@ -11,6 +11,7 @@ public:
   GlobalVariable(Module &module, Constant *initVal);
 
   std::string dump() override;
+  std::string dumpAsOperand() override;
 
 private:
   Constant *initVal;

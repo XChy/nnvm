@@ -1,0 +1,9 @@
+// INPUT:1 2 3
+// EXPECTED:23
+
+int main() {
+    if (getint()) 
+        putint(getint());
+    putint(getint());
+    return 0;
+}

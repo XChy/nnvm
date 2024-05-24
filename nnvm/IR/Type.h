@@ -29,7 +29,8 @@ public:
     if (this == other)
       return true;
 
-    return false;
+    // TODO:??
+    return this == other;
   }
 
   uint getBytes() {
@@ -81,6 +82,10 @@ public:
   }
 
   std::string dump();
+
+  bool isInteger() { return typeClass == Integer; }
+  bool isFloat() { return typeClass == Float; }
+  bool isVoid() { return typeClass == Void; }
 
 private:
   Type *containedTy;

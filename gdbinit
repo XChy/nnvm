@@ -1,9 +1,5 @@
-#b IRGenerator::visitConstDecl
+set args ./test/Frontend/constant-debug.sysy
 b IRGenerator::constDef
-#b visitExp
 layout src
-set args ./test/Frontend/b.sysy
-r
+start
 c
-c
-b solveConstExp

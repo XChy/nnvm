@@ -1,0 +1,8 @@
+// INPUT:1 1 1
+// EXPECTED:31
+
+int main() {
+    putint(getint() + getint() + getint());
+    putint(1);
+    return 0;
+}

@@ -1,4 +1,5 @@
 #include "LowIR.h"
+#include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowInstType.h"
 #include <Backend/RISCV/CodegenInfo.h>
 #include <Backend/RISCV/StackSlot.h>
@@ -9,22 +10,29 @@ using namespace nnvm::riscv;
 void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   switch (type) {
   case VirtualRegister:
-    out << "v" << registerId;
-    break;
   case GPRegister:
-    out << getGPRNames()[registerId];
+    out << getNameForRegister(regId);
     break;
   case FPRegister:
-    out << "f" << registerId;
+    out << "f" << regId;
     break;
   case Immediate:
-    out << immValue;
+    if (valueType == LowValueType::Float)
+      out << fImmValue;
+    else
+      out << immValue;
     break;
   case BasicBlock:
-    out << "bb" << info.indexOfBB(bb);
+    out << "bb" << info.indexOf(bb);
     break;
   case StackSlot:
-    nnvm_unreachable("Stack should be materialized before emitting");
+    out << "stack" << stackSlotId;
+    break;
+  case Constant:
+    out << "Unmaterialzed constant: " << (int64_t)immValue;
+    break;
+  case Function:
+    out << func->name;
     break;
   case None:
     nnvm_unreachable("None ???");
@@ -51,6 +59,13 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     operand[1].emit(out, info);
     out << ")";
     return;
+  case CALL:
+    out << getNameForInstType(type);
+    //for (const LowOperand &op : operand) {
+      out << " ";
+      operand[0].emit(out, info);
+    //}
+    return;
   }
 
   if (type > R_BEGIN && type < R_END) {
@@ -69,14 +84,33 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << ", ";
     operand[1].emit(out, info);
     out << ", ";
+    out << (int64_t)operand[2].immValue;
+    return;
+  }
+
+  if (type > B_BEGIN && type < B_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    out << ", ";
     operand[2].emit(out, info);
     return;
   }
+
+  if (type > J_BEGIN && type < J_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    return;
+  }
+
+  out << "Unknown instruction type: " << type;
 }
 
 void LowBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) const {
-  if (showLabel)
-    out << "bb" << info.indexOfBB(this) << ":\n";
+  out << info.labelOf(this) << ":\n";
   for (const auto &I : insts) {
     out << "  ";
     I.emit(out, info);
@@ -94,7 +128,6 @@ uint64_t LowFunc::allocStack(const StackSlot &obj) {
 }
 
 void LowFunc::emit(std::ostream &out, EmitInfo &info) const {
-  out << name << ":\n";
   for (auto *BB : BBs)
     BB->emit(out, info, BB != BBs[0]);
 }
