@@ -33,6 +33,8 @@ public:
       ((List<Instruction>::Iterator *)this)->insertBack(a);
     }
 
+    BasicBlock *getBB() { return BB; }
+
   private:
     BasicBlock *BB;
   };

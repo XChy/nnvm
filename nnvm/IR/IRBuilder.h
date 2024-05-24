@@ -17,6 +17,8 @@ public:
   }
 
   BasicBlock::Iterator getInsertPoint() const { return insertPoint; }
+  BasicBlock *getCurrentBB() { return getInsertPoint().getBB(); }
+  Function *getCurrentFunc() { return getCurrentBB()->getParent(); }
 
   Value *buildInst(InstID opcode, const std::vector<Value *> &operands,
                    Type *type);

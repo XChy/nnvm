@@ -20,6 +20,8 @@ public:
   List<BasicBlock>::Iterator begin() { return BBList.begin(); }
   List<BasicBlock>::Iterator end() { return BBList.end(); };
 
+  BasicBlock *getEntry() { return *BBList.begin(); }
+
   void setReturnType(Type *retType) { this->retType = retType; }
   Type *getReturnType() { return retType; }
 
