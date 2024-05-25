@@ -12,7 +12,13 @@ Value *IRBuilder::buildInst(InstID opcode, const std::vector<Value *> &operands,
 }
 
 Value *IRBuilder::buildStack(Type *containedTy, const std::string &name) {
-  StackInst *SI = new StackInst(*module, containedTy->getStoredBytes());
+  return buildStack(containedTy, 1, name);
+}
+
+Value *IRBuilder::buildStack(Type *containedTy, uint numElement,
+                             const std::string &name) {
+  StackInst *SI =
+      new StackInst(*module, containedTy->getStoredBytes() * numElement);
   SI->setName(name);
   insertPoint.insertBefore(SI);
   return SI;
@@ -40,10 +46,43 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   return LI;
 }
 
-Value *IRBuilder::buildRet(Value *returned) {
+Value *IRBuilder::buildRet() {
   RetInst *I = new RetInst();
-  if (returned)
-    I->setOperand(0, returned);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildRet(Value *returned) {
+  RetInst *I = new RetInst(returned);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildBr(BasicBlock *succ) {
+  BranchInst *I = new BranchInst(succ);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildBr(Value *cond, BasicBlock *trueBB,
+                          BasicBlock *falseBB) {
+  BranchInst *I = new BranchInst(cond, trueBB, falseBB);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildCall(Function *callee,
+                            const std::vector<Value *> &args) {
+  CallInst *I = new CallInst(callee);
+  I->setArguments(args);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
+Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs) {
+  ICmpInst *I = new ICmpInst(pred, module->getBoolType());
+  I->setOperand(0, lhs);
+  I->setOperand(1, rhs);
   insertPoint.insertBefore(I);
   return I;
 }

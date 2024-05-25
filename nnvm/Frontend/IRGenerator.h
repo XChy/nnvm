@@ -37,6 +37,7 @@ private:
 
 class IRGenerator final : public SysYParserBaseVisitor {
 public:
+  IRGenerator();
   void emitIR(antlr4::tree::ParseTree *ast, Module *ir);
 
   Any visitProgram(SysYParser::ProgramContext *ctx) override;
@@ -51,6 +52,9 @@ public:
 
   Any visitStmt(SysYParser::StmtContext *ctx) override;
 
+  Any visitCond(SysYParser::CondContext *ctx) override;
+
+  Any visitCall(SysYParser::CallContext *ctx) override;
   Any visitLVal(SysYParser::LValContext *ctx) override;
   Any visitExp(SysYParser::ExpContext *ctx) override;
 

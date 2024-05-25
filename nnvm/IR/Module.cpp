@@ -9,6 +9,7 @@ static void initTypeMap(Module::NormalTypeMap &typeMap,
       {Type::Void, {new Type(Type::Void)}},
       {Type::Float, {new Type(Type::Float)}},
       {Type::Pointer, {new Type(Type::Pointer)}},
+      {Type::BasicBlock, {new Type(Type::BasicBlock)}},
       {Type::Array, {}},
       {Type::Vector, {}},
   };
@@ -42,6 +43,21 @@ Type *Module::getIntType() { return intTypeMap[32]; }
 Type *Module::getFloatType() { return typeMap[Type::Float][0]; }
 Type *Module::getBoolType() { return intTypeMap[1]; }
 Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
+Type *Module::getBBType() { return typeMap[Type::BasicBlock][0]; }
+
+Constant *Module::addConstant(const Constant &constant) {
+  auto it = constantPool.find(constant.hash());
+  for (; it != constantPool.end(); ++it) {
+    if (it->second->eq(&constant))
+      return it->second;
+  }
+
+  auto cloned = constant.clone();
+  constantPool.insert({constant.hash(), cloned});
+  return cloned;
+}
+
+Module::ConstantPool Module::getConstantPool() { return constantPool; }
 
 Module::~Module() {
   for (auto [name, func] : functionMap)
@@ -49,6 +65,9 @@ Module::~Module() {
 
   for (auto [name, global] : globalVarMap)
     delete global;
+
+  for (auto [hashValue, constant] : constantPool)
+    delete constant;
 
   for (auto &[_, subVec] : typeMap)
     for (auto *Ty : subVec)

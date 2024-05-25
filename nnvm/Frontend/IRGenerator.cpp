@@ -1,11 +1,17 @@
 #include "IRGenerator.h"
+#include "Frontend/Builtin.h"
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
+#include "IR/Constant.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Debug.h"
+#include <string>
+#include <string_view>
 
 using namespace nnvm;
+
+IRGenerator::IRGenerator() {}
 
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
@@ -15,6 +21,7 @@ void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
 
 Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   symbolTable.enterScope();
+  addBuiltinFunctions(*ir, symbolTable);
   visitChildren(ctx);
   symbolTable.exitScope();
   return Any();
@@ -68,41 +75,43 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   }
 
   // TODO: some checks
-  Function *func = new Function();
-  func->setName(funcName);
+  Function *func = new Function(ir, funcName);
 
   ir->addFunction(func);
-  SymbolType* returnType = ctx->funcType()->accept(this);
-
+  SymbolType *returnType = ctx->funcType()->accept(this);
 
   vector<SymbolType *> argsType;
 
-  for(auto paramCtx : ctx->funcFParams()->funcFParam()) {
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
       SymbolType *symbolTy = paramCtx->btype()->accept(this);
       for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
-      if (i == 0)
+        if (i == 0)
           symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-      else
+        else
           // TODO: calculate the number of element
           symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
       }
 
       argsType.push_back(symbolTy);
+    }
   }
-  
-  currentFunc = symbolTable.create(funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
+
+  currentFunc = symbolTable.create(
+      funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
 
   func->setReturnType(getIRType(ctx->funcType()));
-  BasicBlock *Entry = new BasicBlock("entry");
-  func->insert(Entry);
+  BasicBlock *Entry = new BasicBlock(func, "entry");
   builder.setInsertPoint(Entry->end());
 
   currentBB = Entry;
 
   symbolTable.enterScope();
 
-  for (auto paramCtx : ctx->funcFParams()->funcFParam())
-    paramCtx->accept(this);
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam())
+      paramCtx->accept(this);
+  }
 
   // Demote args into stack.
   for (int i = 0; i < func->getArguments().size(); i++) {
@@ -142,14 +151,15 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
-  ((Function*)currentFunc->entity)->addArgument(arg);
+  ((Function *)currentFunc->entity)->addArgument(arg);
   symbolTable.create(paramName, symbolTy, stackForArg);
 
   // Demote argument to stack.
-  return nullptr;
+  return Symbol::none();
 }
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
+
   if (ctx->ASSIGN()) {
     Symbol lhs = ctx->lVal()->accept(this);
     if (!lhs)
@@ -158,29 +168,122 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     if (!rhs)
       return Symbol::none();
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
-  } else if(ctx -> returnStmt()) {
-    if(ctx->returnStmt()->exp()) {
-      Symbol returned = ctx->returnStmt()->exp()->accept(this);
-      if(!returned) { // return null
-          return Symbol::none();
-      }
-      if(returned.symbolType->isIdentical(*currentFunc->symbolType->containedTy)) {
-        // TODO : error
-          return Symbol::none();
-      }
-      
-      return Symbol{builder.buildRet(returned.entity), nullptr};
+  } else if (ctx->IF()) {
+    Symbol cond = ctx->cond()->accept(this);
+
+    if (!cond)
+      return Symbol::none();
+
+    BasicBlock *thenBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "then");
+    BasicBlock *exitBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "if.exit");
+    BasicBlock *elseBB;
+
+    if (ctx->ELSE()) {
+      elseBB = new BasicBlock(cast<Function>(currentFunc->entity), "else");
+      builder.buildBr(cond.entity, thenBB, elseBB);
     } else {
-      if(currentFunc->symbolType->containedTy->symbolID != SymbolType::SymbolID::Void) {
-        // TODO :  error
-        return Symbol::none;
+      builder.buildBr(cond.entity, thenBB, exitBB);
+    }
+
+    builder.setInsertPoint(thenBB->end());
+    ctx->stmt(0)->accept(this);
+    if (!thenBB->getTerminator())
+      builder.buildBr(exitBB);
+
+    if (ctx->ELSE()) {
+      builder.setInsertPoint(elseBB->end());
+      ctx->stmt(1)->accept(this);
+      if (!elseBB->getTerminator())
+        builder.buildBr(exitBB);
+    }
+
+    builder.setInsertPoint(exitBB->end());
+    return Symbol::none();
+  } else if (ctx->returnStmt()) {
+    if (ctx->returnStmt()->exp()) {
+      Symbol returned = ctx->returnStmt()->exp()->accept(this);
+      if (!returned)
+        return Symbol::none();
+
+      if (!returned.symbolType->isIdentical(
+              *currentFunc->symbolType->containedTy)) {
+        // TODO : error
+        // Implicit conversion from float to int, or reversely?
+        return Symbol::none();
       }
 
-      return Symbol{builder.buildRet(nullptr), nullptr};
+      return Symbol{builder.buildRet(returned.entity), nullptr};
+    } else {
+      if (!currentFunc->symbolType->containedTy->isVoid()) {
+        // TODO :  error
+        return Symbol::none();
+      }
+
+      return Symbol{builder.buildRet(), nullptr};
+    }
+  } else if (ctx->block()) {
+    return ctx->block()->accept(this);
+  } else if (ctx->exp()) {
+    return ctx->exp()->accept(this);
+  } else if (ctx->CONTINUE()) {
+    nnvm_unreachable("Not implemeted continue");
+  } else if(ctx->WHILE()) {
+    if(!ctx->cond()) {
+       // TODO : error
+      return Symbol::none();
     }
     
-  }
+    BasicBlock * whileCond = new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
+    BasicBlock * whileBody = new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+    builder.buildBr(whileCond);
+    
+    
+  } else if(ctx->BREAK()) {
+    nnvm_unreachable("Not implemeted break");
+  } 
   nnvm_unreachable("Not implemeted");
+}
+
+Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
+  if (ctx->exp()) {
+    Symbol exp = ctx->exp()->accept(this);
+    if (!exp)
+      return Symbol::none();
+
+    if (exp.symbolType->isInt())
+      return Symbol{
+          builder.buildICmp(ICmpInst::NE, exp.entity,
+                            ConstantInt::create(*ir, ir->getIntType(), 0)),
+          SymbolType::getBoolTy()};
+    else
+      nnvm_unreachable("Unimplemented FCmp")
+  }
+  nnvm_unreachable("Unimplemented")
+}
+
+Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
+  auto calleeName = ctx->IDENT()->getText();
+  Symbol *calleeSymbol = symbolTable.lookup(calleeName);
+  if (!calleeSymbol)
+    // TODO: report no matching function!!
+    return Symbol::none();
+
+  Function *callee = cast<Function>(calleeSymbol->entity);
+  std::vector<Value *> args;
+
+  if (ctx->funcRParams()) {
+    for (auto *paramCtx : ctx->funcRParams()->param()) {
+      Symbol paramSymbol = paramCtx->accept(this);
+      if (!paramSymbol)
+        return Symbol::none();
+      args.push_back(paramSymbol.entity);
+    }
+  }
+
+  return Symbol(builder.buildCall(callee, args),
+                calleeSymbol->symbolType->containedTy);
 }
 
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
@@ -213,6 +316,22 @@ Type *IRGenerator::toIRType(SymbolType *symbolTy) {
   }
 }
 
+static int getRadixOf(std::string_view text) {
+
+  if (text.size() >= 2) {
+    std::string_view prefix = text.substr(0, 2);
+    if (prefix == "0x" || prefix == "0X")
+      return 16;
+    if (prefix[0] == '0')
+      return 8;
+    // TODO: It seems that SysY2022 don't have binary literal?
+    if (prefix == "0b")
+      return 2;
+    return 10;
+  }
+  return 10;
+}
+
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
     Symbol lVal = ctx->lVal()->accept(this);
@@ -225,17 +344,42 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
 
   if (ctx->PLUS()) {
     // TODO: how to infer type?
+    Value *add;
     Symbol lhs = ctx->exp(0)->accept(this);
     if (!lhs)
       return nullptr;
     Symbol rhs = ctx->exp(1)->accept(this);
     if (!rhs)
       return nullptr;
-    Value *Add = builder.buildInst(InstID::Add, {lhs.entity, rhs.entity},
-                                   ir->getIntType());
-    return Symbol{Add, lhs.symbolType};
+    if (lhs.symbolType->isInt() && rhs.symbolType->isInt()) {
+      add =
+          builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else if (lhs.symbolType->isFloat() && rhs.symbolType->isFloat()) {
+      add = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity,
+                                         ir->getFloatType());
+    } else {
+      nnvm_unreachable("Not implemented");
+    }
+    return Symbol{add, lhs.symbolType};
   }
 
+  if (auto *number = ctx->number()) {
+    if (auto *floatConst = number->FLOAT_CONST()) {
+      return Symbol{
+          ConstantFloat::create(*ir, std::stof(floatConst->getText())),
+          SymbolType::getFloatTy()};
+    }
+
+    if (auto *intConst = number->INTEGER_CONST()) {
+      return Symbol{
+          ConstantInt::create(*ir, ir->getIntType(),
+                              std::stoi(intConst->getText(), 0,
+                                        getRadixOf(intConst->getText()))),
+          SymbolType::getIntTy()};
+    }
+
+    nnvm_unreachable("No such literal number")
+  }
   return visitChildren(ctx);
 }
 

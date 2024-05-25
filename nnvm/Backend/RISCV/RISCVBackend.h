@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Backend/Backend.h"
+#include "Backend/RISCV/LowIR.h"
 #include "IR/Module.h"
-#include <istream>
+
 namespace nnvm {
 namespace riscv {
 class RISCVBackend final : public Backend {

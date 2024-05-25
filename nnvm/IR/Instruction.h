@@ -12,18 +12,23 @@
   class Name : public BinOpInst {                                              \
   public:                                                                      \
     Name(Type *type) : BinOpInst(ID, type) {}                                  \
+    Name(Value *lhs, Value *rhs, Type *type)                                   \
+        : BinOpInst(ID, lhs, rhs, type) {}                                     \
   };
 
 namespace nnvm {
 
-enum class InstID {
+enum class InstID : uint64_t {
+  INST_BEGIN,
   BINOP_BEGIN,
   // Arithmetic operators for integer.
   Add,
   Sub,
   Mul,
-  Div,
-  Rem,
+  UDiv,
+  SDiv,
+  URem,
+  SRem,
   // Arithmetic operators for floating number.
   FAdd,
   FSub,
@@ -48,17 +53,27 @@ enum class InstID {
   Br,
   TERMINATOR_END,
   // Cast.
+  CAST_BEGIN,
   ZExt,
   SExt,
   Trunc,
+  SI2F,
+  UI2F,
+  CAST_END,
   // Memory instructions.
+  MEMORY_BEGIN,
   Stack,
   Load,
   Store,
-  PtrAdd,
+  PtrAdd, // Addressing addtion/subtraction of pointer
+  MEMORY_END,
   // Other
+  OTHER_BEGIN,
   Call,
-  Phi
+  Phi,
+  OTHER_END,
+  INST_END,
+
 };
 
 class Metadata;
@@ -73,11 +88,14 @@ public:
   Instruction(InstID opcode, uint numOperands, Type *type);
   ~Instruction();
 
+  void setOperands(const std::vector<Value *> &operands);
   void setOperand(uint no, Value *);
+  void addOperand(Value *operand);
   Value *getOperand(uint no);
   uint getOperandNum() { return useeList.size(); }
 
   InstID getOpcode() const { return instID; }
+  std::string getOpName() const;
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }
@@ -104,6 +122,7 @@ class StackInst : public Instruction {
 public:
   StackInst(Module &module);
   StackInst(Module &module, GInt allocatedBytes);
+  GInt getAllocatedBytes() const { return allocatedBytes; }
 
   std::string dump() override;
 
@@ -137,6 +156,8 @@ public:
 class BinOpInst : public Instruction {
 public:
   BinOpInst(InstID instID, Type *type) : Instruction(instID, 2, type) {}
+  BinOpInst(InstID instID, Value *lhs, Value *rhs, Type *type)
+      : Instruction(instID, {lhs, rhs}, type) {}
   void setLHS(Value *lhs) { setOperand(0, lhs); }
   void setRHS(Value *rhs) { setOperand(1, rhs); }
   Value *getLHS() { return getOperand(0); }
@@ -146,8 +167,10 @@ public:
 NNVM_DECLARE_BINOP(InstID::Add, AddInst)
 NNVM_DECLARE_BINOP(InstID::Sub, SubInst)
 NNVM_DECLARE_BINOP(InstID::Mul, MulInst)
-NNVM_DECLARE_BINOP(InstID::Div, DivInst)
-NNVM_DECLARE_BINOP(InstID::Rem, RemInst)
+NNVM_DECLARE_BINOP(InstID::UDiv, UDivInst)
+NNVM_DECLARE_BINOP(InstID::SDiv, SDivInst)
+NNVM_DECLARE_BINOP(InstID::URem, URemInst)
+NNVM_DECLARE_BINOP(InstID::SRem, SRemInst)
 NNVM_DECLARE_BINOP(InstID::FAdd, FAddInst)
 NNVM_DECLARE_BINOP(InstID::FSub, FSubInst)
 NNVM_DECLARE_BINOP(InstID::FMul, FMulInst)
@@ -161,22 +184,43 @@ NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
 
 // ===========================
+// Comparison instructions.
+// ===========================
+class ICmpInst : public Instruction {
+public:
+  enum Predicate { EQ, NE, SLT, SGT, SLE, SGE, ULT, ULE, UGT, UGE };
+
+  static std::string getPredName(Predicate p);
+
+  ICmpInst(Predicate predicate, Type *ty)
+      : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
+
+  void setPredicate(Predicate pred) { this->predicate = pred; }
+  Predicate getPredicate() const { return predicate; }
+
+private:
+  Predicate predicate;
+};
+
+// ===========================
 // Terminator instructions
 // ===========================
 
 class TerminatorInst : public Instruction {
 public:
-  TerminatorInst(InstID id, uint successorNum)
-      : Instruction(id, nullptr), successorNum(successorNum) {}
+  TerminatorInst(InstID id, uint operandNum, uint successorNum)
+      : Instruction(id, operandNum + successorNum, nullptr),
+        successorNum(successorNum) {}
 
-  void setSuccessor(int no, BasicBlock *BB) {
+  void setSucc(int no, BasicBlock *BB) {
     setOperand(getOperandNum() - successorNum + no, (Value *)BB);
   }
 
-  BasicBlock *getSuccessor(int no) {
+  BasicBlock *getSucc(int no) {
     return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
   }
-  uint getSuccessorNum() { return successorNum; }
+
+  uint getSuccNum() { return successorNum; }
 
 private:
   uint successorNum;
@@ -184,13 +228,48 @@ private:
 
 class RetInst : public TerminatorInst {
 public:
-  RetInst() : TerminatorInst(InstID::Ret, 0) {}
+  RetInst() : TerminatorInst(InstID::Ret, 0, 0) {}
+  RetInst(Value *returned) : TerminatorInst(InstID::Ret, 1, 0) {
+    setOperand(0, returned);
+  }
 };
 
-class BranchInst : public Instruction {
+class BranchInst : public TerminatorInst {
 public:
   BranchInst(bool isConditional)
-      : Instruction(InstID::Br, isConditional ? 2 : 1, nullptr) {}
+      : TerminatorInst(InstID::Br, isConditional ? 1 : 0,
+                       isConditional ? 2 : 1),
+        conditional(isConditional) {}
+  BranchInst(BasicBlock *directSucc) : BranchInst(false) {
+    setSucc(0, directSucc);
+  }
+  BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
+      : BranchInst(true) {
+    setOperand(0, cond);
+    setSucc(0, trueSucc);
+    setSucc(1, falseSucc);
+  }
+
+  bool isConditional() const { return conditional; }
+
+private:
+  bool conditional;
+};
+
+class Function;
+
+class CallInst : public Instruction {
+public:
+  CallInst(Value *callee, Type *returnType)
+      : Instruction(InstID::Call, {callee}, returnType) {}
+  CallInst(Function *callee);
+
+  void setCallee(Value *callee) { setOperand(0, callee); }
+  Value *getCallee() { return getOperand(0); }
+  void setArguments(const std::vector<Value *> &args);
+
+private:
+  Value *callee;
 };
 
 } // namespace nnvm

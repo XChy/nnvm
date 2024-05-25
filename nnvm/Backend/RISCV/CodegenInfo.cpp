@@ -1,0 +1,84 @@
+#include "CodegenInfo.h"
+#include "Backend/RISCV/Info/Register.h"
+#include "Backend/RISCV/LowIR.h"
+#include <string>
+#include <unordered_map>
+
+using namespace nnvm;
+using namespace nnvm::riscv;
+
+static inline LowOperand getGPR(uint64_t id, LowOperand::LowValueType type) {
+  return LowOperand{
+      .type = LowOperand::GPRegister, .valueType = type, .regId = id};
+}
+
+LowOperand riscv::getRetReg(LowOperand::LowValueType type) {
+  return getGPR(PhyRegister::A0, type);
+}
+
+LowOperand riscv::getSPReg(LowOperand::LowValueType type) {
+  return getGPR(PhyRegister::SP, type);
+}
+
+LowOperand riscv::getZeroReg(LowOperand::LowValueType type) {
+  return getGPR(PhyRegister::ZERO, type);
+}
+
+LowOperand riscv::getRAReg(LowOperand::LowValueType type) {
+  return getGPR(PhyRegister::RA, type);
+}
+
+std::vector<uint64_t> riscv::getArgGPRs() {
+  return {PhyRegister::A0, PhyRegister::A1, PhyRegister::A2, PhyRegister::A3,
+          PhyRegister::A4, PhyRegister::A5, PhyRegister::A6, PhyRegister::A7};
+}
+
+std::vector<uint64_t> riscv::getArgFPRs() {
+  return {PhyRegister::FA0, PhyRegister::FA1, PhyRegister::FA2,
+          PhyRegister::FA3, PhyRegister::FA4, PhyRegister::FA5,
+          PhyRegister::FA6, PhyRegister::FA7};
+}
+
+std::vector<uint64_t> riscv::unpreservedRegs() {
+  return {
+      RA, T0, T1, T2, T3, T4, T5, T6, A0, A1, A2, A3, A4, A5, A6, A7,
+  };
+}
+
+std::vector<uint64_t> riscv::unpreservedFRegs() {
+  // TODO:
+}
+
+LowInstType riscv::getLoadInstType(LowOperand::LowValueType type) {
+  switch (type) {
+  case LowOperand::i1:
+  case LowOperand::i8:
+    return LB;
+  case LowOperand::i16:
+    return LH;
+  case LowOperand::i32:
+    return LW;
+  case LowOperand::i64:
+    return LD;
+  case LowOperand::Imm:
+  case LowOperand::Float:
+    nnvm_unreachable("Not implemented");
+  }
+}
+
+LowInstType riscv::getStoreInstType(LowOperand::LowValueType type) {
+  switch (type) {
+  case LowOperand::i1:
+  case LowOperand::i8:
+    return SB;
+  case LowOperand::i16:
+    return SH;
+  case LowOperand::i32:
+    return SW;
+  case LowOperand::i64:
+    return SD;
+  case LowOperand::Imm:
+  case LowOperand::Float:
+    nnvm_unreachable("Not implemented");
+  }
+}

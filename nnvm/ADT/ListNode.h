@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 namespace nnvm {
 
 template <typename T> class List;
@@ -8,6 +9,7 @@ template <typename T> class ListTrait {
   friend class List<T>;
 
 public:
+
   T *getNext() const { return (T *)next; }
   T *getNext() { return (T *)next; }
   T *getPrev() const { return (T *)prev; }
@@ -41,6 +43,7 @@ public:
 
     prev = nullptr;
     next = nullptr;
+    return (T *)this;
   }
 
 private:

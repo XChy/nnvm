@@ -8,3 +8,5 @@ cmake_install.cmake
 CMakeCache.txt
 nnvm/Makefile
 Makefile
+.vscode/
+nnvm/Frontend/.antlr/

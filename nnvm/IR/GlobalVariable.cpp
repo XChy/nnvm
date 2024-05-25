@@ -13,3 +13,7 @@ std::string GlobalVariable::dump() {
   auto initDump = (initVal ? (" = " + initVal->dump()) : "");
   return "global " + type->dump() + " " + getName() + initDump;
 }
+
+std::string GlobalVariable::dumpAsOperand() {
+  return type->dump() + " @" + getName();
+}

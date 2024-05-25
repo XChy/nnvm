@@ -1,5 +1,7 @@
 #pragma once
 
 namespace nnvm::riscv {
-class RegisterAllocator {};
+class Spiller {
+public:
+};
 } /* namespace nnvm::riscv */

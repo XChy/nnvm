@@ -1,0 +1,3 @@
+float hex(float a) {
+    return a + 0x0.3p10;
+}
