@@ -23,7 +23,7 @@ public:
   Value() {}
   Value(ValueID valueID) : valueID(valueID) {}
   Value(ValueID valueID, Type *type) : valueID(valueID), type(type) {}
-  List<Use> users() const { return userList; }
+  List<Use> &users() { return userList; }
 
   void addUse(Use *use);
 

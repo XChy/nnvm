@@ -7,6 +7,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
 
-add_executable(testBuilder testBuilder.cpp)
+add_executable(testDomTree testDomTree.cpp)
 include_directories(../../nnvm)
-target_link_libraries(testBuilder PUBLIC NNVM_CORELIB)
+target_link_libraries(testDomTree PUBLIC NNVM_CORELIB)
