@@ -1,7 +1,13 @@
-// INPUT:-234
-// EXPECTED:-468
-int test(int a) {
-    if(a + 235)
-        return a + a;
-    return 666;
+// INPUT:1 2 3
+// EXPECTED:43
+
+int mul2(int a) {
+    return a + a;
+}
+
+int main() {
+    if (getint()) 
+        putint(mul2(getint()));
+    putint(getint());
+    return 0;
 }

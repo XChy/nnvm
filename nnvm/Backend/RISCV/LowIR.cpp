@@ -29,7 +29,7 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
     out << "stack" << stackSlotId;
     break;
   case Constant:
-    out << "Unmaterialzed constant: " << (int64_t)immValue;
+    out << "Unmaterialized constant: " << (int64_t)immValue;
     break;
   case Function:
     out << func->name;

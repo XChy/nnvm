@@ -1,13 +1,35 @@
 #pragma once
 
+// ====================================================
+// Implementation of linear scan register allocation in
+// https://dl.acm.org/doi/10.1145/330249.330250.
+// ====================================================
+
 #include "Backend/RISCV/Analysis/LiveIntervalAnalysis.h"
+#include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/RegisterAllocator.h"
 #include <queue>
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+
 namespace nnvm::riscv {
+
+struct RegCompare {
+  int scoreOf(uint64_t reg) {
+    if (calleeSavedRegs().count(reg))
+      return 200;
+    return 100;
+  }
+  bool operator()(uint64_t reg1, uint64_t reg2) {
+    int score1 = scoreOf(reg1);
+    int score2 = scoreOf(reg2);
+    if (score1 == score2)
+      return reg1 < reg2;
+    return score1 < score2;
+  }
+};
 
 class LinearScanRA : public RegisterAllocator {
 public:
@@ -21,8 +43,9 @@ private:
 
   // Active virtual registers.
   std::set<LiveInterval, IntervalCompare> active;
-  std::priority_queue<uint64_t> freeGPRs;
+  std::priority_queue<uint64_t, std::vector<uint64_t>, RegCompare> freeGPRs;
   std::unordered_map<uint64_t, uint64_t> vregToPReg;
+  std::unordered_set<uint64_t> allocatedRegs;
 };
 
 } /* namespace nnvm::riscv */

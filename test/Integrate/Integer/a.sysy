@@ -1,5 +1,0 @@
-// INPUT:233
-// EXPECTED:233
-int test(int a) {
-    return a;
-}
