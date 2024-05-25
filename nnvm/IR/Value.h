@@ -17,6 +17,7 @@ enum class ValueID {
 };
 
 class Use;
+class Instruction;
 
 class Value {
 public:
@@ -26,6 +27,9 @@ public:
   List<Use> &users() { return userList; }
 
   void addUse(Use *use);
+
+  // Replace this value in its users with the replacement.
+  void replaceSelf(Value *replacement);
 
   void setName(const std::string &name) { this->name = name; }
   std::string getName() const { return name; }
@@ -49,8 +53,8 @@ protected:
 class Use : public ListTrait<Use> {
 public:
   Use() {}
-  Use(Value *user) : user(user) {}
-  Use(Value *user, Value *usee) : user(user), usee(usee) {
+  Use(Instruction *user) : user(user) {}
+  Use(Instruction *user, Value *usee) : user(user), usee(usee) {
     if (usee)
       usee->addUse(this);
   }
@@ -65,11 +69,11 @@ public:
     usee = newUsee;
   }
 
-  Value *getUser() { return user; }
+  Instruction *getUser() { return user; }
   Value *getUsee() { return usee; }
 
 private:
-  Value *user;
+  Instruction *user;
   Value *usee;
 };
 

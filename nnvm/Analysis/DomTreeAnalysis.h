@@ -12,7 +12,7 @@
 namespace nnvm {
 class DomTreeAnalysis {
 public:
-  bool runOn(Function &F);
+  bool run(Function &F);
 
   bool dom(BasicBlock *domer, BasicBlock *domee) {
     return domer == domee || rdom(domer, domee);

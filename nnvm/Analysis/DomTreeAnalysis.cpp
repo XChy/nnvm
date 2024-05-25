@@ -4,7 +4,7 @@
 #include <algorithm>
 using namespace nnvm;
 
-bool DomTreeAnalysis::runOn(Function &F) {
+bool DomTreeAnalysis::run(Function &F) {
   Graph<BasicBlock *> graph;
   std::vector<int32_t> sdom;
   std::vector<int32_t> idom;

@@ -105,6 +105,10 @@ public:
   const Metadata *getMetadata() const { return metadata; }
   Metadata *getMetadata() { return metadata; }
 
+  void eraseFromBB() {
+    ((ListTrait<Instruction> *)this)->eraseFromList();
+  }
+
   std::string dump() override;
 
 private:

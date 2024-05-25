@@ -13,7 +13,7 @@ public:
     dummyEnd.prev = &dummyBegin;
     dummyEnd.next = nullptr;
   }
-  List(const List&) = delete;
+  List(const List &) = delete;
   List(List &&) = delete;
 
   class Iterator {
@@ -67,13 +67,22 @@ public:
   }
 
   T *getLast() {
-    if (dummyEnd.prev == &dummyBegin)
+    if (empty())
       return nullptr;
     return dummyEnd.getPrev();
   }
 
   Iterator begin() { return Iterator(dummyBegin.next); }
   Iterator end() { return Iterator(&dummyEnd); }
+
+  Iterator erase(Iterator it) {
+    Iterator next = it;
+    next++;
+    (*it)->removeFromList();
+    return next;
+  }
+
+  bool empty() { return dummyEnd.prev == &dummyBegin; }
 
   void freeAll() {
     ListTrait<T> *cur = dummyEnd.getPrev();

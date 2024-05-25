@@ -39,6 +39,6 @@ int main() {
 
   std::cout << module.dump();
 
-  DT.runOn(*FA);
+  DT.run(*FA);
   DT.print(std::cout);
 }
