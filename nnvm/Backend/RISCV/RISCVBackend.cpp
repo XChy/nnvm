@@ -16,7 +16,6 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   LowerHelper lowerHelper;
   ISel isel;
   StackAllocator SA;
-  LinearScanRA RA;
 
   lowerHelper.lower(ir, lowModule);
 
@@ -30,7 +29,7 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
-      RA.allocate(*lowFunc);
+      LinearScanRA().allocate(*lowFunc);
 
   debug(std::cerr << "====RA Done====\n");
   debug(lowModule.emit(std::cerr));
