@@ -370,19 +370,21 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   vector<SymbolType *> argsType;
 
-  for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
-    SymbolType *symbolTy = paramCtx->btype()->accept(this);
-    for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
-      if (i == 0)
-        symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-      else {
-        // TODO: check---calculate the number of element
-        Any numOfElement = solveConstExp(paramCtx->exp()[i]);
-        assert(numOfElement.is<int>());
-        symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+  if (ctx->funcFParams()) {
+    for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
+      SymbolType *symbolTy = paramCtx->btype()->accept(this);
+      for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
+        if (i == 0)
+          symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
+        else {
+          // TODO: check---calculate the number of element
+          Any numOfElement = solveConstExp(paramCtx->exp()[i]);
+          assert(numOfElement.is<int>());
+          symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+        }
       }
+      argsType.push_back(symbolTy);
     }
-    argsType.push_back(symbolTy);
   }
 
   currentFunc = symbolTable.create(

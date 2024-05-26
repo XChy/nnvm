@@ -1,6 +1,6 @@
 int g1 = 1.0;
 float g2 = 2;
-int main(int b) {
+int main() {
     int a = 1;
     int c = a + 10 * 3;
     int d;

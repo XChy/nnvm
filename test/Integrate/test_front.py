@@ -10,12 +10,14 @@ test_dir = path.split(__file__)[0]
 root_dir = path.split(path.split(test_dir)[0])[0]
 compiler = path.join(root_dir, "build", "compiler")
 
-asm = tempfile.mktemp(".s")
+llvm = tempfile.mktemp(".ll")
 obj = tempfile.mktemp(".o")
-sylib = path.join(root_dir, "build", "libsylib.a")
+sylib = path.join(root_dir, "build", "x86-64libsy.o")
+sylib_source = path.join(test_dir, "../Runtime", "sylib.c")
 mainexec = tempfile.mktemp(".out")
 
-riscvgcc = "riscv64-unknown-linux-gnu-gcc"
+gcc = "gcc"
+llc = "llc"
 
 total_test = 0
 pass_test = 0
@@ -49,25 +51,26 @@ def get_input(source):
 
 
 def test(source):
-    if (source.count("functional") == 0):
+    #Don't test final case
+    if (source.count("final_performance") != 0):
         return False
     reported_name = path.relpath(source, test_dir)
     ret = subprocess.Popen(
-        [compiler, source, "-o", asm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
+        [compiler, source, "-backend", "llvm", "-o", llvm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
     stdout, stderr = ret.communicate()
     if ret.returncode != 0:
         print("COMPLIATION ERROR on", reported_name, "")
         return False
     else:
         # Use assembler to generate binary.
-        ret = subprocess.run([riscvgcc, "-c", asm, "-o", obj])
-        ret = subprocess.run([riscvgcc,  obj, sylib, "-o", mainexec])
+        ret = subprocess.run([llc, "-opaque-pointers", "-filetype=obj", llvm, "-o", obj])
+        ret = subprocess.run([gcc,  obj, sylib, "-o", mainexec])
 
         # parse input and output
         inputed = get_input(source).strip() + "\n"
         expected = get_expected(source).strip()
 
-        ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, "console=ttyS0"],
+        ret = subprocess.Popen(mainexec,
                                stdout=subprocess.PIPE, stdin=subprocess.PIPE, encoding="UTF-8")
 
         if source.count("functional") != 0:
@@ -84,6 +87,13 @@ def test(source):
             return True
 
 
+#compile sylib(x86-64) for frontend test
+print(f"{gcc} -c {sylib_source} -o {sylib}")
+ret = subprocess.Popen(
+    ["gcc", "-c", sylib_source, "-o", sylib], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
+ret.communicate()
+assert(ret.returncode == 0)
+
 for root, _, filenames in os.walk(test_dir):
     for filename in filenames:
         source = path.join(root, filename)
@@ -92,6 +102,8 @@ for root, _, filenames in os.walk(test_dir):
             if passed:
                 pass_test += 1
             total_test += 1
+
+
 
 
 print("============Complete Test=============")
