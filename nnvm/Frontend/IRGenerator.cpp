@@ -522,7 +522,29 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
     nnvm_unreachable("Not implemeted continue");
-  }
+  } else if(ctx->WHILE()) {
+    if(!ctx->cond()) {
+       // TODO : error
+      return Symbol::none();
+    }
+    BasicBlock * whileCond = new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
+    BasicBlock * whileBody = new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+    BasicBlock * whileExit = new BasicBlock(cast<Function>(currentFunc->entity),"while.exit");
+    
+    builder.setInsertPoint(whileCond->end());
+    Symbol cond = ctx->cond()->accept(this);
+    builder.buildBr(cond.entity, whileBody,whileExit);
+
+    builder.setInsertPoint(whileBody->end());
+    ctx->stmt(0)->accept(this);
+    if (!whileBody->getTerminator())
+      builder.buildBr(whileExit);
+  
+    builder.setInsertPoint(whileExit->end());
+    return Symbol::none();
+  } else if(ctx->BREAK()) {
+    nnvm_unreachable("Not implemeted break");
+  } 
   nnvm_unreachable("Not implemeted");
 }
 
@@ -539,8 +561,48 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
           SymbolType::getBoolTy()};
     else
       nnvm_unreachable("Unimplemented FCmp")
+  } else {
+    if(ctx->AND()) {
+
+      Symbol exp1 = ctx->cond(0)->accept(this);
+      if(!exp1) return Symbol::none();
+      Symbol cond1;
+      if(exp1.symbolType->isInt()) 
+        cond1 = Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, ConstantInt::create(*ir, ir->getIntType(), 0)), SymbolType :: getBoolTy()};
+      else 
+        nnvm_unreachable("Unimplemented FCmp")
+
+      Symbol exp2 = ctx->cond(1)->accept(this);
+      if(!exp2) return Symbol::none();
+      Symbol cond2;
+      if(exp2.symbolType->isInt())
+        cond2 = Symbol{builder.buildICmp(ICmpInst::NE, exp2.entity, ConstantInt::create(*ir, ir->getIntType(), 0)), SymbolType::getBoolTy()};
+      
+    } else if (ctx->OR()) {
+
+    } else {
+      Symbol exp1 = ctx->cond(0)->accept(this);
+      if(!exp1) return Symbol::none();
+      
+      Symbol exp2 = ctx->cond(1)->accept(this);
+      if(!exp2) return Symbol::none();
+      
+      if(ctx->EQ()) 
+        return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else if(ctx->NEQ())
+        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};   
+      else if(ctx->LT()) 
+        return Symbol{builder.buildICmp(ICmpInst::ULT,exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else if (ctx->GT()) 
+        return Symbol{builder.buildICmp(ICmpInst::UGT, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else if(ctx->LE())
+        return Symbol{builder.buildICmp(ICmpInst::ULE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else if(ctx->GE())
+        return Symbol{builder.buildICmp(ICmpInst::UGE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else
+        return Symbol::none();
+    } 
   }
-  nnvm_unreachable("Unimplemented")
 }
 
 Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
