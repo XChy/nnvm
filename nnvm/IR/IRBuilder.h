@@ -32,6 +32,15 @@ public:
     return I;
   }
 
+  template <typename Inst>
+  Value *buildUnaryOp(Value *operand, Type *type,
+                      const std::string &name = "") {
+    Inst *I = new Inst(operand, type);
+    I->setName(name);
+    insertPoint.insertBefore(I);
+    return I;
+  }
+
   Value *buildStack(Type *containedTy, const std::string &name = "");
   Value *buildStack(Type *containedTy, uint numElement,
                     const std::string &name = "");

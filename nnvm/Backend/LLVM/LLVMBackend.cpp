@@ -1,5 +1,6 @@
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
+#include "Utils/Collection.h"
 #include <Backend/LLVM/LLVMBackend.h>
 #include <string>
 #include <unordered_map>
@@ -23,26 +24,21 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
     valueToName[constant] = constant->dump();
 
   for (auto &[name, func] : ir.getFunctionMap()) {
-    valueToName[func] = name;
+    valueToName[func] = "@" + name;
     for (auto *arg : func->getArguments())
       valueToName[arg] = allocName("%tmp");
     for (auto *BB : *func) {
       valueToName[BB] = allocName("%tmp");
-      for (auto *I : *BB) 
+      for (auto *I : *BB)
         valueToName[I] = allocName("%tmp");
     }
   }
 
   // Transforming
   for (auto &[name, func] : ir.getFunctionMap()) {
-    std::string builtinNames[] = {"putint", "getch", "getint", "putch"};
-    bool isbuiltin = false;
-    for (auto &builtinName : builtinNames) {
-      if (name == builtinName) {
-        isbuiltin = true;
-      }
-    }
-    out << (isbuiltin ? "declare " : "define ") << func->getReturnType()->dump() << " @" << name << "(";
+
+    out << (func->isExternal() ? "declare " : "define ")
+        << func->getReturnType()->dump() << " @" << name << "(";
 
     for (int i = 0; i < func->getArguments().size(); i++) {
       auto *arg = func->getArguments()[i];
@@ -50,8 +46,8 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
         out << ", ";
       out << arg->getType()->dump() << " " << valueToName[arg];
     }
-    
-    if (isbuiltin) {
+
+    if (func->isExternal()) {
       out << ")\n";
       continue;
     }
@@ -91,7 +87,8 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   }
 
   // Instructions with defs
-  out << valueToName[I] << " = ";
+  if (!I->getType()->isVoid())
+    out << valueToName[I] << " = ";
 
   if (auto SI = dyn_cast<StackInst>(I)) {
     out << "alloca i8, i32 " << SI->getAllocatedBytes() << ", align 4";
@@ -110,6 +107,19 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
         << " " << valueToName[binOp->getLHS()] << ", "
         << valueToName[binOp->getRHS()];
     return;
+  }
+
+  if (auto callInst = dyn_cast<CallInst>(I)) {
+    if (auto *F = dyn_cast<Function>(callInst->getCallee())) {
+      std::vector<std::string> args(callInst->getArgNum());
+      for (int i = 0; i < callInst->getArgNum(); i++)
+        args[i] = callInst->getArg(i)->dumpAsOperand();
+      out << "call " << F->getReturnType()->dump() << " " << valueToName[F];
+      out << "(";
+      out << join(args.begin(), args.end(), ", ");
+      out << ")";
+      return;
+    }
   }
 
   std::cerr << (uint)I->getOpcode() << "\n";

@@ -5,6 +5,7 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
+#include "Utils/Debug.h"
 #include <utility>
 using namespace nnvm;
 using namespace nnvm::riscv;
@@ -19,15 +20,77 @@ void ISel::isel(LowFunc &func) {
       it = handleConstant(func, *bb, it);
 }
 
+void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
+                              LowOperand constant, LowOperand reg) {
+  if (canExpressInBits<12>(constant.immValue)) {
+    auto load = LowInst::create(ADDI, reg, getZeroReg(constant.valueType),
+                                LowOperand::imm(constant.immValue));
+    bb.insertBefore(it, load);
+    return;
+  }
+  nnvm_unreachable("How to handle big constant, especially for i64?")
+}
+
+static inline LowInstType
+materializeArithmeticInstType(uint64_t instID,
+                              LowOperand::LowValueType operandType) {
+  if (operandType == LowOperand::i32) {
+    switch ((InstID)instID) {
+    case InstID::Add:
+      return ADD;
+    case InstID::Sub:
+      return SUB;
+    case InstID::Mul:
+      return MUL;
+    case InstID::SDiv:
+      return DIV;
+    case InstID::UDiv:
+      return DIVU;
+    case InstID::SRem:
+      return REM;
+    case InstID::URem:
+      return REMU;
+    default:
+      nnvm_unreachable("No implemented");
+    }
+  }
+
+  if (operandType == LowOperand::i64) {
+    switch ((InstID)instID) {
+    case InstID::Add:
+      return ADDW;
+    case InstID::Sub:
+      return SUBW;
+    case InstID::Mul:
+      return MULW;
+    case InstID::SDiv:
+      return DIVW;
+    case InstID::UDiv:
+      return DIVUW;
+    case InstID::SRem:
+      return REMW;
+    case InstID::URem:
+      return REMUW;
+    default:
+      nnvm_unreachable("No implemented");
+    }
+  }
+
+  nnvm_unreachable("No implemented");
+}
+
 LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
   uint64_t type = (uint64_t)it->type;
   if (it->type <= ISA_BEGIN) {
     switch ((InstID)type) {
     case InstID::Add:
-      it->type = ADD;
-      break;
     case InstID::Sub:
-      it->type = SUB;
+    case InstID::Mul:
+    case InstID::SDiv:
+    case InstID::UDiv:
+    case InstID::SRem:
+    case InstID::URem:
+      it->type = materializeArithmeticInstType(type, it->operand[1].valueType);
       break;
     case InstID::Load:
       *it = LowInst::create(getLoadInstType(it->operand[0].valueType),
@@ -72,23 +135,35 @@ LowBB::Iterator ISel::handleConstant(LowFunc &func, LowBB &bb,
     LowOperand &rs1 = it->operand[1];
     LowOperand &rs2 = it->operand[2];
     // FIXME: what if not commutable
-    if (rs1.type == LowOperand::Constant)
-      std::swap(rs1, rs2);
+    if (rs1.type == LowOperand::Constant) {
+      if (isCommutative(it->type))
+        std::swap(rs1, rs2);
+      else
+        nnvm_unreachable("Not implemented a load immediate to the register");
+    }
 
     if (rs2.type == LowOperand::Constant) {
       if (rs2.immValue == 0) {
         rs2 = getZeroReg(rs2.valueType);
-      } else if (canExpressInBits<12>(rs2.immValue)) {
+      } else if (canExpressInBits<12>(rs2.immValue) &&
+                 toIFormat(it->type) != NONE) {
         uint64_t iType = toIFormat(it->type);
-        if (iType != NONE) {
-          it->type = iType;
-          rs2 = LowOperand::imm(rs2.immValue);
-        } else {
-          nnvm_unreachable("Not implemented");
-        }
+        it->type = iType;
+        rs2 = LowOperand::imm(rs2.immValue);
       } else {
-        nnvm_unreachable("Not implemented");
+        auto vregForImm = func.allocVReg(rs2.valueType);
+        loadConstantToReg(bb, it, rs2, vregForImm);
+        it->operand[2] = vregForImm;
       }
+    }
+  }
+
+  if (it->type > S_BEGIN && it->type < S_END) {
+    LowOperand &rs2 = it->operand[0];
+    if (rs2.type == LowOperand::Constant) {
+      auto vregForImm = func.allocVReg(rs2.valueType);
+      loadConstantToReg(bb, it, rs2, vregForImm);
+      it->operand[0] = vregForImm;
     }
   }
 

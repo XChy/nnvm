@@ -61,9 +61,9 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     return;
   case CALL:
     out << getNameForInstType(type);
-    //for (const LowOperand &op : operand) {
-      out << " ";
-      operand[0].emit(out, info);
+    // for (const LowOperand &op : operand) {
+    out << " ";
+    operand[0].emit(out, info);
     //}
     return;
   }
@@ -99,6 +99,14 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
   }
 
   if (type > J_BEGIN && type < J_END) {
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
+    return;
+  }
+
+  if (type > U_BEGIN && type < U_END) {
     out << getNameForInstType(type) << " ";
     operand[0].emit(out, info);
     out << ", ";

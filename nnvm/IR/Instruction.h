@@ -105,9 +105,7 @@ public:
   const Metadata *getMetadata() const { return metadata; }
   Metadata *getMetadata() { return metadata; }
 
-  void eraseFromBB() {
-    ((ListTrait<Instruction> *)this)->eraseFromList();
-  }
+  void eraseFromBB() { ((ListTrait<Instruction> *)this)->eraseFromList(); }
 
   std::string dump() override;
 
@@ -271,6 +269,8 @@ public:
   void setCallee(Value *callee) { setOperand(0, callee); }
   Value *getCallee() { return getOperand(0); }
   void setArguments(const std::vector<Value *> &args);
+  Value *getArg(uint i) { return getOperand(i + 1); }
+  uint getArgNum() { return getOperandNum() - 1; }
 
 private:
   Value *callee;

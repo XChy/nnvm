@@ -14,14 +14,12 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Add global symbols
   LowModule lowModule;
   LowerHelper lowerHelper;
-  ISel isel;
-  StackAllocator SA;
 
   lowerHelper.lower(ir, lowModule);
 
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
-      isel.isel(*lowFunc);
+      ISel().isel(*lowFunc);
 
   debug(std::cerr << "====ISel Done====\n");
   debug(lowModule.emit(std::cerr));
@@ -37,7 +35,7 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Replace abstract stack reference and emit Prologue&Epilogue
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
-      SA.allocate(*lowFunc);
+      StackAllocator().allocate(*lowFunc);
 
   debug(std::cerr << "====SA Done====\n");
 

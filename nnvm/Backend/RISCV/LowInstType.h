@@ -24,6 +24,8 @@
 
 #define MAKE_JFORMAT(GEN) GEN(JAL)
 
+#define MAKE_UFORMAT(GEN) GEN(LUI)
+
 #define MAKE_OTHER(GEN) GEN(CALL)
 
 #define FOR_ENUM(x) x
@@ -69,6 +71,13 @@ enum LowInstType : uint64_t {
   MAKE_JFORMAT(FOR_ENUM),
   J_END,
 
+  // ==== U-format ====
+  U_BEGIN,
+  MAKE_UFORMAT(FOR_ENUM),
+  U_END,
+
+  // <inst-name> rd, imm
+
   // Other, like 'call' psuedo instruction
   OTHER_BEGIN,
   MAKE_OTHER(FOR_ENUM),
@@ -81,7 +90,8 @@ static inline const char *getNameForInstType(uint64_t type) {
 
   static std::unordered_map<uint64_t, const char *> typeToName = {
       MAKE_RFORMAT(FOR_NAME), MAKE_IFORMAT(FOR_NAME), MAKE_SFORMAT(FOR_NAME),
-      MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME), MAKE_OTHER(FOR_NAME)};
+      MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME), MAKE_UFORMAT(FOR_NAME),
+      MAKE_OTHER(FOR_NAME)};
 
   if (!typeToName.count(type)) {
     std::cerr << "Handling the operator:" << (uint64_t)type << "\n";
@@ -92,9 +102,31 @@ static inline const char *getNameForInstType(uint64_t type) {
 
 static inline LowInstType toIFormat(uint64_t type) {
   static std::unordered_map<uint64_t, LowInstType> map = {
-      {ADD, ADDI}, {XOR, XORI}, {AND, ANDI}, {OR, ORI}, {SLT, SLTI}};
+      {ADD, ADDI}, {ADDW, ADDIW}, {XOR, XORI},
+      {AND, ANDI}, {OR, ORI},     {SLT, SLTI}};
 
-  return map[type];
+  if (map.count(type))
+    return map[type];
+  return NONE;
+}
+
+static inline bool isCommutative(uint64_t type) {
+  if (type > R_BEGIN && type < R_END) {
+    switch (type) {
+    case ADD:
+    case ADDW:
+    case MUL:
+    case MULW:
+    case XOR:
+    case AND:
+    case OR:
+      return true;
+    default:
+      return false;
+    }
+  }
+
+  nnvm_unreachable("Not a illegal operator");
 }
 
 } /* namespace nnvm::riscv */

@@ -1,6 +1,10 @@
 #pragma once
 #include "Backend/RISCV/LowIR.h"
 namespace nnvm::riscv {
+
+static void loadConstantToReg(LowBB &bb, LowBB::Iterator it,
+                              LowOperand constant, LowOperand reg);
+
 class ISel {
 public:
   void isel(LowFunc &func);

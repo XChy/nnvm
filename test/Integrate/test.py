@@ -30,10 +30,7 @@ def get_expected(source):
     with open(source) as f:
         line = f.readlines()[1]
         searched_groups = re.search('EXPECTED:(.*)', line)
-        if searched_groups is None:
-            return ""
-        else:
-            return searched_groups.group(1)
+        return ("" if searched_groups is None else searched_groups.group(1))
 
 
 def get_input(source):
@@ -49,8 +46,6 @@ def get_input(source):
 
 
 def test(source):
-    if (source.count("functional") == 0):
-        return False
     reported_name = path.relpath(source, test_dir)
     ret = subprocess.Popen(
         [compiler, source, "-o", asm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
@@ -62,6 +57,8 @@ def test(source):
         # Use assembler to generate binary.
         ret = subprocess.run([riscvgcc, "-c", asm, "-o", obj])
         ret = subprocess.run([riscvgcc,  obj, sylib, "-o", mainexec])
+        if ret.returncode != 0:
+            return False
 
         # parse input and output
         inputed = get_input(source).strip() + "\n"

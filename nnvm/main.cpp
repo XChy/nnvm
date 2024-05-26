@@ -1,11 +1,17 @@
+#include "ANTLRErrorStrategy.h"
 #include "ANTLRInputStream.h"
 #include "Backend/LLVM/LLVMBackend.h"
 #include "Backend/RISCV/RISCVBackend.h"
+#include "BailErrorStrategy.h"
+#include "Exceptions.h"
 #include "Frontend/IRGenerator.h"
 #include "Frontend/SysYLexer.h"
 #include "Frontend/SysYParser.h"
 #include "Transform/Opt.h"
 #include "Utils/Debug.h"
+#include "atn/ATNSimulator.h"
+#include "atn/ParserATNSimulator.h"
+#include "atn/PredictionMode.h"
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -22,6 +28,7 @@ static string backendType = "riscv";
 static bool dumpIR;
 static bool dumpIRAfterOpt;
 static bool dumpAssembly;
+static bool enableOptimization = false;
 
 int parseArgs(int argc, char **argv) {
   for (int i = 0; i < argc; i++) {
@@ -33,6 +40,8 @@ int parseArgs(int argc, char **argv) {
         dumpIRAfterOpt = true;
       else if (arg == "-dump-asm")
         dumpAssembly = true;
+      else if (arg == "-O3")
+        enableOptimization = true;
       else if (arg == "-backend") {
         backendType = argv[i + 1];
         i++;
@@ -67,8 +76,22 @@ int main(int argc, char **argv) {
   SysYLexer lexer(&input);
   antlr4::CommonTokenStream tokens(&lexer);
   SysYParser parser(&tokens);
+  antlr4::tree::ParseTree *tree;
 
-  antlr4::tree::ParseTree *tree = parser.program();
+  try {
+    parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(
+        antlr4::atn::PredictionMode::SLL);
+    parser.setErrorHandler(
+        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::BailErrorStrategy()));
+    tree = parser.program();
+  } catch (antlr4::ParseCancellationException e) {
+    parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(
+        antlr4::atn::PredictionMode::LL);
+    parser.setErrorHandler(
+        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::DefaultErrorStrategy));
+    tree = parser.program();
+  }
+
   inputStream.close();
   debug(std::cerr << "Parsing done!"
                   << "\n");
@@ -79,12 +102,14 @@ int main(int argc, char **argv) {
   if (dumpIR)
     std::cout << ir.dump() << "\n";
 
-  optimizer.transform(&ir);
-  debug(std::cerr << "Opt done!"
-                  << "\n");
+  if (enableOptimization) {
+    optimizer.transform(&ir);
+    debug(std::cerr << "Opt done!"
+                    << "\n");
 
-  if (dumpIRAfterOpt)
-    std::cout << ir.dump() << "\n";
+    if (dumpIRAfterOpt)
+      std::cout << ir.dump() << "\n";
+  }
 
   if (backendType == "riscv")
     backend = std::make_unique<riscv::RISCVBackend>();

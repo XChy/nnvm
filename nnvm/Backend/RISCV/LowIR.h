@@ -157,9 +157,16 @@ class LowInst {
 public:
   void emit(std::ostream &out, EmitInfo &info) const;
 
+  // op def, use1, use2
   static LowInst create(uint64_t type, const LowOperand &def,
                         const LowOperand &use1, const LowOperand &use2) {
     return LowInst{.type = type, .operand{def.def(), use1.use(), use2.use()}};
+  }
+
+  // op def, use1
+  static LowInst create(uint64_t type, const LowOperand &def,
+                        const LowOperand &use1) {
+    return LowInst{.type = type, .operand{def.def(), use1.use()}};
   }
 
   uint64_t type;

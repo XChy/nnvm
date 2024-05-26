@@ -32,10 +32,7 @@ def get_expected(source):
     with open(source) as f:
         line = f.readlines()[1]
         searched_groups = re.search('EXPECTED:(.*)', line)
-        if searched_groups is None:
-            return ""
-        else:
-            return searched_groups.group(1)
+        return ("" if searched_groups is None else searched_groups.group(1))
 
 
 def get_input(source):
@@ -51,9 +48,6 @@ def get_input(source):
 
 
 def test(source):
-    #Don't test final case
-    if (source.count("final_performance") != 0):
-        return False
     reported_name = path.relpath(source, test_dir)
     ret = subprocess.Popen(
         [compiler, source, "-backend", "llvm", "-o", llvm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
@@ -63,8 +57,10 @@ def test(source):
         return False
     else:
         # Use assembler to generate binary.
-        ret = subprocess.run([llc, "-opaque-pointers", "-filetype=obj", llvm, "-o", obj])
+        ret = subprocess.run([llc, "-filetype=obj", llvm, "-o", obj])
         ret = subprocess.run([gcc,  obj, sylib, "-o", mainexec])
+        if ret.returncode != 0:
+            return False
 
         # parse input and output
         inputed = get_input(source).strip() + "\n"
@@ -87,12 +83,12 @@ def test(source):
             return True
 
 
-#compile sylib(x86-64) for frontend test
+# compile sylib(x86-64) for frontend test
 print(f"{gcc} -c {sylib_source} -o {sylib}")
 ret = subprocess.Popen(
     ["gcc", "-c", sylib_source, "-o", sylib], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
 ret.communicate()
-assert(ret.returncode == 0)
+assert (ret.returncode == 0)
 
 for root, _, filenames in os.walk(test_dir):
     for filename in filenames:
@@ -102,8 +98,6 @@ for root, _, filenames in os.walk(test_dir):
             if passed:
                 pass_test += 1
             total_test += 1
-
-
 
 
 print("============Complete Test=============")

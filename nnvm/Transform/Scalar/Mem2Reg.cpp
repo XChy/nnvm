@@ -1,13 +1,18 @@
+#include "Analysis/DomTreeAnalysis.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
 #include <Transform/Scalar/Mem2Reg.h>
+#include <set>
 #include <vector>
 
 using namespace nnvm;
 
 bool Mem2RegPass::run(Function &F) {
   bool changed = false;
+  DomTreeAnalysis *DT = getAnalysis<DomTreeAnalysis>(F);
+
+  std::vector<StackInst *> stackToRemove;
   for (Instruction *I : *F.getEntry()) {
     StackInst *SI = dyn_cast<StackInst>(I);
     // We assume that all the stack instructions are declared at the beginning
@@ -15,24 +20,46 @@ bool Mem2RegPass::run(Function &F) {
     if (!SI)
       break;
 
-    defs[SI] = {};
+    // Clear unused stack.
+    if (SI->users().empty()) {
+      stackToRemove.push_back(SI);
+      continue;
+    }
+
+    bool promotable = true;
+    std::set<BasicBlock *> localDefBBs;
+    std::set<BasicBlock *> localUseBBs;
 
     for (Use *use : SI->users()) {
       Instruction *user = use->getUser();
 
       if (auto *def = dyn_cast<StoreInst>(user)) {
         if (def->getDest() == SI) {
-          defs[SI].push_back(def);
+          localDefBBs.insert(def->getParent());
           continue;
         }
       }
 
-      // TODO: discard unpromotable stack
+      if (auto *use = dyn_cast<LoadInst>(user)) {
+        localUseBBs.insert(use->getParent());
+        continue;
+      }
+
+      promotable = false;
+      break;
+    }
+
+    if (promotable) {
+      defBBs[SI] = localDefBBs;
+      useBBs[SI] = localUseBBs;
     }
   }
 
+  for (auto *SI : stackToRemove)
+    SI->eraseFromBB();
+
   for (auto &[SI, defInsts] : defs)
-    promote(SI);
+    changed |= promote(SI);
 
   return changed;
 }
@@ -63,6 +90,7 @@ bool Mem2RegPass::promote(StackInst *SI) {
 
   for (Instruction *def : defs[SI])
     def->eraseFromList();
+
   SI->eraseFromList();
-  return false;
+  return true;
 }
