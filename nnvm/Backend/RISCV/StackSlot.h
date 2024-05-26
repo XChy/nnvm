@@ -9,6 +9,8 @@ public:
   StackSlot() {}
   StackSlot(uint64_t size) : size(size) {}
   StackSlot(SlotType type, uint64_t size) : type(type), size(size) {}
+  StackSlot(SlotType type, uint64_t size, uint64_t regId)
+      : type(type), size(size), regId(regId) {}
 
   void setSize(uint64_t size) { this->size = size; }
   uint64_t getSize() const { return size; }
@@ -19,8 +21,8 @@ public:
   void setRegId(uint64_t regId) { this->regId = regId; }
   uint64_t getRegId() const { return regId; }
 
-  void setType(SlotType type) { this->regId = regId; }
-  uint64_t getType() const { return type; }
+  void setType(SlotType type) { this->type = type; }
+  SlotType getType() const { return type; }
 
 private:
   SlotType type;

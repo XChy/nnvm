@@ -13,6 +13,8 @@ public:
     dummyEnd.prev = &dummyBegin;
     dummyEnd.next = nullptr;
   }
+  List(const List&) = delete;
+  List(List &&) = delete;
 
   class Iterator {
   public:

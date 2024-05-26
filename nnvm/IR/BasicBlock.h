@@ -33,6 +33,8 @@ public:
       ((List<Instruction>::Iterator *)this)->insertBack(a);
     }
 
+    BasicBlock *getBB() { return BB; }
+
   private:
     BasicBlock *BB;
   };
@@ -54,6 +56,37 @@ public:
       return dyn_cast<TerminatorInst>(U->getUser()) != nullptr;
     });
   }
+
+  class PredIterator {
+  public:
+    PredIterator(BasicBlock *BB) {
+      cur = BB->users().begin();
+      end = BB->users().end();
+      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+        cur++;
+    }
+
+    PredIterator(List<Use>::Iterator end) { this->cur = this->end = end; }
+
+    PredIterator &operator++(int) {
+      cur++;
+      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+        cur++;
+      return *this;
+    }
+
+    BasicBlock *operator*() {
+      return cast<Instruction>((*cur)->getUser())->getParent();
+    }
+    bool operator!=(PredIterator other) { return cur != other.cur; }
+
+  private:
+    List<Use>::Iterator cur;
+    List<Use>::Iterator end;
+  };
+
+  PredIterator getPredBegin() { return PredIterator(this); }
+  PredIterator getPredEnd() { return PredIterator(users().end()); }
 
   void insert(Iterator insertPoint, Instruction *inserted);
 

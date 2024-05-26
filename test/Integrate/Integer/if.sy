@@ -1,9 +1,13 @@
 // INPUT:1 2 3
-// EXPECTED:23
+// EXPECTED:43
+
+int mul2(int a) {
+    return a + a;
+}
 
 int main() {
     if (getint()) 
-        putint(getint());
+        putint(mul2(getint()));
     putint(getint());
     return 0;
 }

@@ -272,4 +272,10 @@ private:
   Value *callee;
 };
 
+class PhiInst : public Instruction {
+public:
+  PhiInst(const std::vector<Value *> phiSlots, Type *type)
+      : Instruction(InstID::Phi, phiSlots, type) {}
+};
+
 } // namespace nnvm

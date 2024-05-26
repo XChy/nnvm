@@ -67,9 +67,9 @@ int main(int argc, char **argv) {
   SysYLexer lexer(&input);
   antlr4::CommonTokenStream tokens(&lexer);
   SysYParser parser(&tokens);
-  inputStream.close();
 
   antlr4::tree::ParseTree *tree = parser.program();
+  inputStream.close();
   debug(std::cerr << "Parsing done!"
                   << "\n");
 

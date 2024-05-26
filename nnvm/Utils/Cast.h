@@ -23,7 +23,7 @@ template <typename To> const To *dyn_cast(const Value *from) {
 
 template <typename To> To *cast(Value *from) {
   auto *casted = dynamic_cast<To *>(from);
-  assert(casted && "Cannot cast in" && __PRETTY_FUNCTION__);
+  assert(casted && "Invalid cast");
   return casted;
 }
 

@@ -96,7 +96,11 @@ std::string Instruction::dump() {
       ret += "call ";
       ret += getOperand(0)->dumpAsOperand();
       ret += "(" + join(operandDump.begin() + 1, operandDump.end(), ", ") + ")";
+      break;
 
+    case InstID::Phi:
+      ret += getName() + " = ";
+      ret += "phi ";
       break;
     default:
       ret = "ILLEGAL!";

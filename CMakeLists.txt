@@ -16,7 +16,6 @@ include_directories(antlr-runtime)
 
 file(GLOB_RECURSE ANTLR4_RUNTIME_SRC antlr-runtime/*.cpp)
 add_library(ANTLR4_RUNTIME_LIB SHARED ${ANTLR4_RUNTIME_SRC})
-target_link_libraries(ANTLR4_RUNTIME_LIB PUBLIC -fsanitize=address)
 
 add_subdirectory(./nnvm)
 add_subdirectory(./test)

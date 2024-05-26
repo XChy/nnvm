@@ -20,7 +20,8 @@ Value *IRBuilder::buildStack(Type *containedTy, uint numElement,
   StackInst *SI =
       new StackInst(*module, containedTy->getStoredBytes() * numElement);
   SI->setName(name);
-  insertPoint.insertBefore(SI);
+  // We insert all stack instructions at the beginning of entry.
+  getCurrentFunc()->getEntry()->begin().insertBefore(SI);
   return SI;
 }
 
