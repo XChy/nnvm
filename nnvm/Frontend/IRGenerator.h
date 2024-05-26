@@ -21,6 +21,9 @@ public:
   Symbol *create(const string &name, SymbolType *type, Value *entity);
   Symbol *lookup(const string &symbolName);
   Symbol *lookupInCurrentScope(const string &symbolName);
+  bool isGlobal() {
+    return scopes.size() == 1;
+  }
   ~SymbolTable() {
     for (auto *ty : managedTys)
       delete ty;
@@ -43,8 +46,6 @@ public:
   Any visitProgram(SysYParser::ProgramContext *ctx) override;
   Any visitBtype(SysYParser::BtypeContext *ctx) override;
 
-  Type *getIRType(SysYParser::BtypeContext *ctx);
-  Type *getIRType(SysYParser::FuncTypeContext *ctx);
 
   Any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
   Any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
@@ -80,5 +81,8 @@ private:
   Any solveConstInit(std::vector<SysYParser::ConstInitValContext*> ctxs, std::list<int> dims);
   Any constDef(SysYParser::ConstDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
   Any varDef(SysYParser::VarDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
+  Type *getIRType(SysYParser::BtypeContext *ctx);
+  Type *getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx);
+  Type *getIRType(SysYParser::FuncTypeContext *ctx);
 };
 } // namespace nnvm

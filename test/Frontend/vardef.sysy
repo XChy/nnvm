@@ -1,0 +1,9 @@
+int g1 = 1.0;
+float g2 = 2;
+int main(int b) {
+    int a = 1;
+    int c = a + 10 * 3;
+    int d;
+    g1 = g1 + 2;
+    return c / 5;
+}

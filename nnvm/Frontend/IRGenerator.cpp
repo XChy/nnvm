@@ -28,6 +28,12 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   return Any();
 }
 
+Type *IRGenerator::getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx) {
+  return symTy->symbolID == SymbolType::Array
+                   ? ir->getPtrType()
+                   : getIRType(ctx);
+}
+
 Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
   if (ctx->INT())
     return ir->getIntType();
@@ -249,9 +255,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     assert(nrElements.is<int>());
     symbolType = SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
   }
-  Type *irType = symbolType->symbolID == SymbolType::Array
-                   ? ir->getPtrType()
-                   : getIRType(btype);
+  Type *irType = getIRType(symbolType, btype);
   Constant *constVal = nullptr;
   if (irType->getClass() == Type::Integer) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
@@ -274,12 +278,81 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
 }
 
 Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
-  assert("Not implemented");
+  for (auto ctxVarDef : ctx->varDef()) { 
+    varDef(ctxVarDef, ctx->btype());
+  }
+  return Symbol::none();
 }
 
 Any IRGenerator::varDef(SysYParser::VarDefContext *ctx, 
                         SysYParser::BtypeContext *btype) {
-  assert("Not implemented");
+  SymbolType *symbolType = btype->accept(this);
+  string symbolName = ctx->IDENT()->getText();
+  if (symbolTable.lookupInCurrentScope(symbolName)) {
+    //TODO: error
+    return Symbol::none();
+  }
+  for (int i = 0; i < ctx->constExp().size(); i += 1) {
+    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+    assert(nrElements.is<int>());
+    symbolType = SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
+  }
+  Type *irType = getIRType(symbolType, btype);
+  Value *irVal = nullptr;
+  if (irType->getClass() == Type::Integer) {
+    if (symbolTable.isGlobal()) {
+      Constant *constInitVal = nullptr;
+      if (ctx->initVal()) {
+        int intVal = solveConstExp(ctx->initVal()->exp()).is<float>() ? 
+          (int)(solveConstExp(ctx->initVal()->exp()).as<float>()):
+          solveConstExp(ctx->initVal()->exp()).as<int>();
+        constInitVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
+      }
+      GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
+      globalVar->setName(symbolName);
+      ir->addGlobalVar(globalVar);
+      irVal = globalVar;
+    } else {
+      Value *initVal = nullptr;
+      irVal = builder.buildStack(irType, symbolName);
+      if (ctx->initVal()) {
+      Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+      Value *initVal = initSymbol.entity;
+      if (initSymbol.symbolType->isFloat()) { //need F2I
+        //initVal = builder.buildInst(InstID::F2SI, {initVal}, ir->getFloatType());
+      }
+      builder.buildStore(initVal, irVal);
+      }
+    }
+  } else if (irType->getClass() == Type::Float) {
+    if (symbolTable.isGlobal()) {
+      Constant *constInitVal = nullptr;
+      if (ctx->initVal()) {
+        float floatVal = solveConstExp(ctx->initVal()->exp()).is<int>() ? 
+          (float)(solveConstExp(ctx->initVal()->exp()).as<int>()):
+          solveConstExp(ctx->initVal()->exp()).as<float>();
+        constInitVal = ConstantFloat::create(*ir, floatVal);
+      }
+      GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
+      globalVar->setName(symbolName);
+      ir->addGlobalVar(globalVar);
+      irVal = globalVar;
+    } else {
+      irVal = builder.buildStack(irType, symbolName);
+      if (ctx->initVal()) {
+        Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+        Value *initVal = initSymbol.entity;
+        if (initSymbol.symbolType->isInt()) { //need F2I
+          initVal = builder.buildInst(InstID::SI2F, {initVal}, ir->getIntType());
+        }
+        builder.buildStore(initVal, irVal);
+      }
+    }
+  } else {
+    //TODO: array
+  }
+  symbolTable.create(symbolName, symbolType, irVal);
+  return Symbol::none();
 }
 
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
@@ -362,11 +435,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
       symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
     }
   }
-
-  Type *irTy = symbolTy->symbolID == SymbolType::Array
-                   ? ir->getPtrType()
-                   : getIRType(ctx->btype());
-
+  Type *irTy = getIRType(symbolTy, ctx->btype());
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
   ((Function *)currentFunc->entity)->addArgument(arg);
