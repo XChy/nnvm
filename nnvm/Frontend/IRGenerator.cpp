@@ -237,9 +237,20 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     
     BasicBlock * whileCond = new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
     BasicBlock * whileBody = new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
-    builder.buildBr(whileCond);
+    BasicBlock * whileExit = new BasicBlock(cast<Function>(currentFunc->entity),"while.exit");
     
+    builder.setInsertPoint(whileCond->end());
+    Symbol cond = ctx->cond()->accept(this);
     
+    builder.buildBr(cond.entity, whileBody,whileExit);
+
+    builder.setInsertPoint(whileBody->end());
+    ctx->stmt(0)->accept(this);
+    if (!whileBody->getTerminator())
+      builder.buildBr(whileExit);
+  
+    builder.setInsertPoint(whileExit->end());
+    return Symbol::none();
   } else if(ctx->BREAK()) {
     nnvm_unreachable("Not implemeted break");
   } 
