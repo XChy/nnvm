@@ -287,52 +287,27 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
       
     } else if (ctx->OR()) {
 
-    } else if (ctx->EQ() || ctx->NEQ()) {
-      Symbol exp1;
-      if(ctx->cond(0)->exp()) {
-        exp1 = ctx->cond(0)->exp()->accept(this);
-      } else {
-        exp1 = ctx->cond(0)->accept(this);
-      } 
+    } else {
+      Symbol exp1 = ctx->cond(0)->accept(this);
       if(!exp1) return Symbol::none();
       
-      Symbol exp2;
-      if(ctx->cond(1)->exp()) {
-        exp2 = ctx->cond(1)->exp()->accept(this);
-      } else {
-        exp2 = ctx->cond(1)->accept(this);
-      }
+      Symbol exp2 = ctx->cond(1)->accept(this);
       if(!exp2) return Symbol::none();
       
       if(ctx->EQ()) 
         return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
-      else 
-        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
-    } else {
-      Symbol exp1;
-      if(ctx->cond(0)->exp()) {
-        exp1 = ctx->cond(0)->exp()->accept(this);
-      } else {
-        exp1 = ctx->cond(0)->accept(this);
-      } 
-      if(!exp1) return Symbol::none();
-      
-      Symbol exp2;
-      if(ctx->cond(1)->exp()) {
-        exp2 = ctx->cond(1)->exp()->accept(this);
-      } else {
-        exp2 = ctx->cond(1)->accept(this);
-      }
-      if(!exp2) return Symbol::none();
-      
-      if(ctx->LT()) 
+      else if(ctx->NEQ())
+        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};   
+      else if(ctx->LT()) 
         return Symbol{builder.buildICmp(ICmpInst::ULT,exp1.entity, exp2.entity), SymbolType::getBoolTy()};
       else if (ctx->GT()) 
         return Symbol{builder.buildICmp(ICmpInst::UGT, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
       else if(ctx->LE())
         return Symbol{builder.buildICmp(ICmpInst::ULE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
-      else 
+      else if(ctx->GE())
         return Symbol{builder.buildICmp(ICmpInst::UGE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else
+        return Symbol::none();
     } 
   }
 }
