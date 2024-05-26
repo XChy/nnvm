@@ -270,7 +270,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
       nnvm_unreachable("Unimplemented FCmp")
   } else {
     if(ctx->AND()) {
-      
+
       Symbol exp1 = ctx->cond(0)->accept(this);
       if(!exp1) return Symbol::none();
       Symbol cond1;
@@ -305,9 +305,9 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
       if(!exp2) return Symbol::none();
       
       if(ctx->EQ()) 
-        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
-      else 
         return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
+      else 
+        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity), SymbolType::getBoolTy()};
     } else {
       Symbol exp1;
       if(ctx->cond(0)->exp()) {
