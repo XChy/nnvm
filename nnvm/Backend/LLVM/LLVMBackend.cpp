@@ -25,24 +25,35 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
   for (auto &[name, func] : ir.getFunctionMap()) {
     valueToName[func] = name;
     for (auto *arg : func->getArguments())
-      valueToName[arg] = allocName("%");
+      valueToName[arg] = allocName("%tmp");
     for (auto *BB : *func) {
-      valueToName[BB] = allocName("%");
-      for (auto *I : *BB)
-        valueToName[I] = allocName("%");
+      valueToName[BB] = allocName("%tmp");
+      for (auto *I : *BB) 
+        valueToName[I] = allocName("%tmp");
     }
   }
 
   // Transforming
   for (auto &[name, func] : ir.getFunctionMap()) {
-
-    out << "define " << func->getReturnType()->dump() << " @" << name << "(";
+    std::string builtinNames[] = {"putint", "getch", "getint", "putch"};
+    bool isbuiltin = false;
+    for (auto &builtinName : builtinNames) {
+      if (name == builtinName) {
+        isbuiltin = true;
+      }
+    }
+    out << (isbuiltin ? "declare " : "define ") << func->getReturnType()->dump() << " @" << name << "(";
 
     for (int i = 0; i < func->getArguments().size(); i++) {
       auto *arg = func->getArguments()[i];
       if (i != 0)
         out << ", ";
       out << arg->getType()->dump() << " " << valueToName[arg];
+    }
+    
+    if (isbuiltin) {
+      out << ")\n";
+      continue;
     }
 
     out << ") {\n";

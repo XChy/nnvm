@@ -10,6 +10,7 @@
 #include <string_view>
 
 using namespace nnvm;
+static int getRadixOf(std::string_view text);
 
 IRGenerator::IRGenerator() {}
 
@@ -25,6 +26,12 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   visitChildren(ctx);
   symbolTable.exitScope();
   return Any();
+}
+
+Type *IRGenerator::getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx) {
+  return symTy->symbolID == SymbolType::Array
+                   ? ir->getPtrType()
+                   : getIRType(ctx);
 }
 
 Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
@@ -67,6 +74,287 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
   return nullptr;
 }
 
+/**
+ * This function is used to solve the constant lval
+ * @param ctx the context of the lval
+ * @return The value of the lval, type is int or float
+*/
+Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
+  std::vector<nnvm::SysYParser::ExpContext*> indexs = ctx->exp();
+  Constant *valConstant = cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
+  if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
+    return constInt->getValue();
+  }
+  if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
+    return constFloat->getValue();
+  } 
+  if (auto constArray = dyn_cast<ConstantArray>(valConstant)) {
+    int i = 0;
+    for (; i < indexs.size() - 1; i++) {
+      Any index = solveConstExp(indexs[i]);
+        assert(index.is<int>());
+      //TODO: Report invalid index error.
+      if (i < indexs.size() - 1) {
+        constArray = cast<ConstantArray>(constArray->getValue()[index.as<int>()]);
+      } else {
+        valConstant = constArray->getValue()[index.as<int>()];
+        if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
+          return constInt->getValue();
+        }
+        if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
+          return constFloat->getValue();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * This function is used to solve the constant expression
+ * @param ctx the context of the expression
+ * @return The value of the expression, type is int or float
+*/
+Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
+  if (ctx->exp().size() < 2) {
+    if (auto numCtx = ctx->number()) {
+      if (auto intCtx = numCtx->INTEGER_CONST()) {
+        string sText = intCtx->getText();
+        return std::stoi(sText, 0, getRadixOf(sText));
+      }
+      if (auto floatCtx = numCtx->FLOAT_CONST()) {
+        string sText = floatCtx->getText();
+        return std::stof(sText);
+      }
+    }
+    if (auto lvalCtx = ctx->lVal()) {
+      return solveConstLval(lvalCtx);
+    }
+    assert("Should not reach here");
+  }
+  Any lhsAny = solveConstExp(ctx->exp()[0]);
+  Any rhsAny = solveConstExp(ctx->exp()[1]);
+  if (lhsAny.is<float>() || rhsAny.is<float>()) {
+    float lhs = lhsAny.as<float>();
+    float rhs = rhsAny.as<float>();
+    if (ctx->PLUS()) {
+      return lhs + rhs;
+    }
+    if (ctx->MINUS()) {
+      return lhs - rhs;
+    }
+    if (ctx->MUL()) {
+      return lhs * rhs;
+    }
+    if (ctx->DIV()) {
+      return lhs / rhs;
+    }
+    assert("Should not reach here");
+  } else if (lhsAny.is<int>() && rhsAny.is<int>()){
+    int lhs = lhsAny.as<int>();
+    int rhs = rhsAny.as<int>();
+    if (ctx->PLUS()) {
+      return lhs + rhs;
+    }
+    if (ctx->MINUS()) {
+      return lhs - rhs;
+    }
+    if (ctx->MUL()) {
+      return lhs * rhs;
+    }
+    if (ctx->DIV()) {
+      return lhs / rhs;
+    }
+  assert("Should not reach here");
+  }
+  assert("Should not reach here");
+  return -1;
+}
+
+Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {
+  for (auto ctxDef : ctx->constDef()) {
+    // TODO: type check
+    constDef(ctxDef, ctx->btype());
+  }
+  return Symbol::none();
+}
+
+Any IRGenerator::solveConstInit(std::vector<SysYParser::ConstInitValContext *>initVals, std::list<int> dims) {
+  std::vector<Constant *> arrayElements;
+  if (dims.size() == 0) { 
+    //recursion end
+    //TODO: Report invalid init value error.
+    if (initVals.size() == 0) {
+      return ConstantInt::create(*ir, ir->getIntType(), 0);
+    }
+    Any val = solveConstExp(initVals[0]->constExp()->exp());
+    //TODO: float
+    return ConstantInt::create(*ir, ir->getIntType(), val.as<int>());
+  } 
+  int initValIndex = 0;
+  int currentDim = dims.front();
+  dims.pop_front();
+  for (int i = 0; i < currentDim; i += 1) {
+    if (initVals[initValIndex]->L_BRACE()) {
+      Constant *element = solveConstInit(initVals[initValIndex++]->constInitVal(), dims);
+      arrayElements.push_back(element);
+    } else {
+      int numOfElement = 1;
+      for (auto dim = dims.begin(); dim != dims.end(); dim++) {
+        numOfElement *= *dim;
+      }
+      std::vector<SysYParser::ConstInitValContext *> constInitVals;
+      for (int i = 0; i < numOfElement; i++) {
+        constInitVals.push_back(initVals[initValIndex++]);
+      }
+      Constant *element = solveConstInit(constInitVals, dims);
+      arrayElements.push_back(element);
+    }
+  }
+  return ConstantArray::create(*ir, ir->getPtrType(), arrayElements);
+}
+/**
+ * This function handle const init value as a scalar.
+ * @param ctx the context of the constant's init value
+ * @return The value of the constant's init value
+*/
+Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
+  std::vector<Constant *> constVals;
+  std::vector<SysYParser::ConstInitValContext *> initVals = ctx->constInitVal();
+  if (auto constExp = ctx->constExp()) {
+    Any initVal = solveConstExp(constExp->exp());
+    Constant *constant = nullptr;
+    if (initVal.is<int>()) {
+      constant = ConstantInt::create(*ir, ir->getIntType(), initVal.as<int>());
+    } else if (initVal.is<float>()) {
+      constant = ConstantFloat::create(*ir, initVal.as<float>());
+    } else {
+      nnvm_unreachable("Should not reach here");
+    }
+    return constant;
+  }
+  //TODO: handle {1,2,3...} as 1, like what in gcc.
+  nnvm_unreachable("Not implemented");
+  return constVals;
+}
+
+/**
+ * This function defines constant value
+ * @param ctx The constant definition(context)
+ * @param btype Type of the constant(context)
+*/
+Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
+                          SysYParser::BtypeContext *btype) {
+  SymbolType *symbolType = btype->accept(this);
+  string symbolName = ctx->IDENT()->getText();
+  if (symbolTable.lookupInCurrentScope(symbolName)) {
+    //TODO: error
+    return Symbol::none();
+  }
+  for (int i = 0; i < ctx->constExp().size(); i += 1) {
+    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+    assert(nrElements.is<int>());
+    symbolType = SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
+  }
+  Type *irType = getIRType(symbolType, btype);
+  Constant *constVal = nullptr;
+  if (irType->getClass() == Type::Integer) {
+    Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
+    assert(initVal.is<int>());
+    constVal = ConstantInt::create(*ir, irType, initVal.as<int>());
+  } else if (irType->getClass() == Type::Float) {
+    Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
+    assert(initVal.is<float>());
+    constVal = ConstantFloat::create(*ir, initVal.as<float>());
+  } else {
+    std::list<int> dims;
+    for (int i = 0; i < ctx->constExp().size(); i += 1) {
+      //TODO: report error here
+      dims.push_back(solveConstExp(ctx->constExp()[i]->exp()).as<int>());
+    }
+    constVal = solveConstInit(ctx->constInitVal()->constInitVal(), dims);
+  }
+  symbolTable.create(symbolName, symbolType, constVal);
+  return Symbol::none();
+}
+
+Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
+  for (auto ctxVarDef : ctx->varDef()) { 
+    varDef(ctxVarDef, ctx->btype());
+  }
+  return Symbol::none();
+}
+
+Any IRGenerator::varDef(SysYParser::VarDefContext *ctx, 
+                        SysYParser::BtypeContext *btype) {
+  SymbolType *symbolType = btype->accept(this);
+  string symbolName = ctx->IDENT()->getText();
+  if (symbolTable.lookupInCurrentScope(symbolName)) {
+    //TODO: error
+    return Symbol::none();
+  }
+  for (int i = 0; i < ctx->constExp().size(); i += 1) {
+    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+    assert(nrElements.is<int>());
+    symbolType = SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
+  }
+  Type *irType = getIRType(symbolType, btype);
+  Value *irVal = nullptr;
+  if (irType->getClass() == Type::Integer) {
+    if (symbolTable.isGlobal()) {
+      Constant *constInitVal = nullptr;
+      if (ctx->initVal()) {
+        int intVal = solveConstExp(ctx->initVal()->exp()).is<float>() ? 
+          (int)(solveConstExp(ctx->initVal()->exp()).as<float>()):
+          solveConstExp(ctx->initVal()->exp()).as<int>();
+        constInitVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
+      }
+      GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
+      globalVar->setName(symbolName);
+      ir->addGlobalVar(globalVar);
+      irVal = globalVar;
+    } else {
+      Value *initVal = nullptr;
+      irVal = builder.buildStack(irType, symbolName);
+      if (ctx->initVal()) {
+      Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+      Value *initVal = initSymbol.entity;
+      if (initSymbol.symbolType->isFloat()) { //need F2I
+        //initVal = builder.buildInst(InstID::F2SI, {initVal}, ir->getFloatType());
+      }
+      builder.buildStore(initVal, irVal);
+      }
+    }
+  } else if (irType->getClass() == Type::Float) {
+    if (symbolTable.isGlobal()) {
+      Constant *constInitVal = nullptr;
+      if (ctx->initVal()) {
+        float floatVal = solveConstExp(ctx->initVal()->exp()).is<int>() ? 
+          (float)(solveConstExp(ctx->initVal()->exp()).as<int>()):
+          solveConstExp(ctx->initVal()->exp()).as<float>();
+        constInitVal = ConstantFloat::create(*ir, floatVal);
+      }
+      GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
+      globalVar->setName(symbolName);
+      ir->addGlobalVar(globalVar);
+      irVal = globalVar;
+    } else {
+      irVal = builder.buildStack(irType, symbolName);
+      if (ctx->initVal()) {
+        Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+        Value *initVal = initSymbol.entity;
+        if (initSymbol.symbolType->isInt()) { //need F2I
+          initVal = builder.buildInst(InstID::SI2F, {initVal}, ir->getIntType());
+        }
+        builder.buildStore(initVal, irVal);
+      }
+    }
+  } else {
+    //TODO: array
+  }
+  symbolTable.create(symbolName, symbolType, irVal);
+  return Symbol::none();
+}
+
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(funcName)) {
@@ -88,11 +376,13 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
         if (i == 0)
           symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-        else
-          // TODO: calculate the number of element
-          symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+        else {
+          // TODO: check---calculate the number of element
+          Any numOfElement = solveConstExp(paramCtx->exp()[i]);
+          assert(numOfElement.is<int>());
+          symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+        }
       }
-
       argsType.push_back(symbolTy);
     }
   }
@@ -130,7 +420,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 }
 
 Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
-  string paramName = ctx->IDENT()->getText();
+  string paramName = ctx->IDENT()->getText();;
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
     return Symbol::none();
@@ -140,15 +430,14 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   for (int i = 0; i < ctx->L_BRACKT().size(); i++) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
-    else
-      // TODO: calculate the number of element
-      symbolTy = SymbolType::getArrayTy(0, symbolTy, symbolTable);
+    else {
+      // TODO: check---calculate the number of element
+      Any numOfElement = solveConstExp(ctx->exp()[i-1]);
+      assert(numOfElement.is<int>());
+      symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+    }
   }
-
-  Type *irTy = symbolTy->symbolID == SymbolType::Array
-                   ? ir->getPtrType()
-                   : getIRType(ctx->btype());
-
+  Type *irTy = getIRType(symbolTy, ctx->btype());
   Argument *arg = new Argument(irTy, paramName);
   Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
   ((Function *)currentFunc->entity)->addArgument(arg);
@@ -167,6 +456,10 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     Symbol rhs = ctx->exp()->accept(this);
     if (!rhs)
       return Symbol::none();
+    if (!lhs.symbolType->isIdentical(*rhs.symbolType)) {
+      //TODO: error, cast
+      return Symbol::none();
+    }
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->IF()) {
     Symbol cond = ctx->cond()->accept(this);
@@ -209,19 +502,19 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       if (!returned.symbolType->isIdentical(
               *currentFunc->symbolType->containedTy)) {
-        // TODO : error
-        // Implicit conversion from float to int, or reversely?
+        // TODO: error
         return Symbol::none();
       }
 
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if (!currentFunc->symbolType->containedTy->isVoid()) {
-        // TODO :  error
-        return Symbol::none();
+      if (currentFunc->symbolType->containedTy->symbolID !=
+          SymbolType::SymbolID::Void) {
+        // TODO:  error
+        return Symbol::none;
       }
 
-      return Symbol{builder.buildRet(), nullptr};
+      return Symbol{builder.buildRet(nullptr), nullptr};
     }
   } else if (ctx->block()) {
     return ctx->block()->accept(this);
@@ -311,7 +604,7 @@ static int getRadixOf(std::string_view text) {
       return 16;
     if (prefix[0] == '0')
       return 8;
-    // TODO: It seems that SysY2022 don't have binary literal?
+    // TODO: It seems that SysY don't have binary literal?
     if (prefix == "0b")
       return 2;
     return 10;
@@ -319,39 +612,103 @@ static int getRadixOf(std::string_view text) {
   return 10;
 }
 
+Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
+  // TODO: how to infer type?
+  Symbol lhs = ctx->exp(0)->accept(this);
+  //TODO: error
+  if (!lhs)
+    return nullptr;
+  Symbol rhs = ctx->exp(1)->accept(this);
+  if (!rhs)
+    return nullptr;
+  
+  //TODO: error
+  if (!rhs.symbolType->isIdentical(*lhs.symbolType)) {
+    return nullptr;
+  }
+  Value *val = nullptr;
+  if (ctx->PLUS()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MINUS()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SubInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FSubInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MUL()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<MulInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FMulInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->DIV()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SDivInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FDivInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->MOD()) {
+    if (rhs.symbolType->isInt()) {
+      val = builder.buildBinOp<SRemInst>(lhs.entity, rhs.entity, ir->getIntType());
+    } else {
+      val = builder.buildBinOp<FRemInst>(lhs.entity, rhs.entity, ir->getFloatType());
+    }
+    return Symbol{val, lhs.symbolType};
+  }
+  assert("Should not reach here!");
+}
+
+Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
+  assert(ctx->exp().size()==1);
+  Symbol operand = ctx->exp()[0]->accept(this);
+  if (!operand) {
+    return nullptr;
+  }
+  Value *val = nullptr;
+  //TODO: unary op
+  if (ctx->unaryOp()->PLUS()) {
+  }
+  if (ctx->unaryOp()->PLUS()) {
+  }
+  if (ctx->unaryOp()->NOT()) {
+  }
+  assert("UnaryOp Not implemented!");
+}
+
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
     Symbol lVal = ctx->lVal()->accept(this);
     if (!lVal)
+      //TODO: error
       return nullptr;
+    if (auto constVal = dyn_cast<Constant>(lVal.entity)) {
+      return lVal;
+    }
     return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
                                     lVal.entity->getName() + ".load"),
                   lVal.symbolType};
-  }
+  } 
 
-  if (ctx->PLUS()) {
-    // TODO: how to infer type?
-    Value *add;
-    Symbol lhs = ctx->exp(0)->accept(this);
-    if (!lhs)
-      return nullptr;
-    Symbol rhs = ctx->exp(1)->accept(this);
-    if (!rhs)
-      return nullptr;
-    if (lhs.symbolType->isInt() && rhs.symbolType->isInt()) {
-      add =
-          builder.buildBinOp<AddInst>(lhs.entity, rhs.entity, ir->getIntType());
-    } else if (lhs.symbolType->isFloat() && rhs.symbolType->isFloat()) {
-      add = builder.buildBinOp<FAddInst>(lhs.entity, rhs.entity,
-                                         ir->getFloatType());
-    } else {
-      nnvm_unreachable("Not implemented");
-    }
-    return Symbol{add, lhs.symbolType};
+  if (ctx->PLUS() ||ctx->MINUS() || ctx->DIV() || ctx->MOD() || 
+      ctx->MUL()) {
+    return expBinOp(ctx);
   }
 
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {
+      // TODO: do we handle hexidecimal float in std::stof?
       return Symbol{
           ConstantFloat::create(*ir, std::stof(floatConst->getText())),
           SymbolType::getFloatTy()};
