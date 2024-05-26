@@ -54,15 +54,17 @@ StackAllocator::calculateStackInfo(LowFunc &func) {
 
   for (LowBB *bb : func.BBs) {
     for (LowInst &inst : *bb) {
-      if (inst.type == CALL)
-        ret.isCaller = true;
+
+      ret.isCaller |= inst.type == CALL;
+
       if (match(&inst, pattern::pRet()))
         ret.exitBBs.push_back(bb);
     }
   }
 
   if (ret.isCaller)
-    ret.regsToSave.push_back(RA);
+    func.allocStack(StackSlot(StackSlot::CalleeSaved, 8, RA));
+
   return ret;
 }
 
@@ -102,15 +104,11 @@ static inline bool needEmergencySlot(LowFunc &func) {
 void StackAllocator::allocate(LowFunc &func) {
   this->func = &func;
   stackInfo = calculateStackInfo(func);
-  if (stackInfo.isCaller) {
-  }
-  frameSize = 0;
 
+  frameSize = 0;
   // TODO: Increase number of emergency slots if necessary?
   uint64_t numEmergencySlots = needEmergencySlot(func) ? 1 : 0;
   frameSize += numEmergencySlots * 8;
-
-  frameSize += stackInfo.regsToSave.size() * 8;
 
   for (auto &slot : func.stackSlots) {
     slot.setOffset(frameSize);
@@ -134,29 +132,35 @@ void StackAllocator::allocate(LowFunc &func) {
 
 void StackAllocator::emitPrologue(LowFunc &func) {
 
-  for (uint64_t reg : stackInfo.regsToSave)
-    func.BBs.front()->insertBefore(
-        func.BBs.front()->begin(),
-        LowInst{SD,
-                {LowOperand::gpr(reg, LowOperand::i64),
-                 getSPReg(LowOperand::i64), LowOperand::imm(0)}});
+  for (int slotId = 0; slotId < func.stackSlots.size(); slotId++) {
+    StackSlot slot = func.stackSlots[slotId];
+    if (slot.getType() == StackSlot::CalleeSaved)
+      func.getEntry()->insertBefore(
+          func.getEntry()->begin(),
+          LowInst{SD,
+                  {LowOperand::gpr(slot.getRegId(), LowOperand::i64),
+                   LowOperand::stackSlot(slotId), LowOperand::imm(0)}});
+  }
 
   // TODO: handle big frame larger than 2 ^ 12 bytes
-  func.BBs.front()->insertBefore(
-      func.BBs.front()->begin(),
-      LowInst::create(ADDI, getSPReg(LowOperand::i64),
-                      getSPReg(LowOperand::i64), LowOperand::imm(-frameSize)));
+  func.getEntry()->insertBefore(func.getEntry()->begin(),
+                                LowInst::create(ADDI, getSPReg(LowOperand::i64),
+                                                getSPReg(LowOperand::i64),
+                                                LowOperand::imm(-frameSize)));
 }
 
 void StackAllocator::emitEpilogue(LowFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   for (LowBB *bb : stackInfo.exitBBs) {
-    for (uint64_t reg : stackInfo.regsToSave)
-      bb->insertBefore(
-          --bb->end(),
-          LowInst{LD,
-                  {LowOperand::gpr(reg, LowOperand::i64).def(),
-                   getSPReg(LowOperand::i64), LowOperand::imm(0)}});
+    for (int slotId = 0; slotId < func.stackSlots.size(); slotId++) {
+      StackSlot slot = func.stackSlots[slotId];
+      if (slot.getType() == StackSlot::CalleeSaved)
+        bb->insertBefore(
+            --bb->end(),
+            LowInst{LD,
+                    {LowOperand::gpr(slot.getRegId(), LowOperand::i64).def(),
+                     LowOperand::stackSlot(slotId), LowOperand::imm(0)}});
+    }
 
     bb->insertBefore(--bb->end(),
                      LowInst::create(ADDI, getSPReg(LowOperand::i64),

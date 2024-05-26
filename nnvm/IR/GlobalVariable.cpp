@@ -11,7 +11,7 @@ GlobalVariable::GlobalVariable(Module &module, Constant *initVal)
 
 std::string GlobalVariable::dump() {
   auto initDump = (initVal ? (" = " + initVal->dump()) : "");
-  return "global " + type->dump() + " " + getName() + initDump;
+  return "global " + type->dump() + " " + getName() + initDump + "\n";
 }
 
 std::string GlobalVariable::dumpAsOperand() {

@@ -43,25 +43,18 @@ void LinearScanRA::allocate(LowFunc &func) {
 
   for (auto *BB : func.BBs) {
     for (LowInst &I : BB->insts) {
-      for (auto it = I.operand.begin(); it != I.operand.end(); it++) {
-
-        LowOperand &op = *it;
+      for (LowOperand &op : I.operand) {
         if (op.isVR()) {
-          if (op.valueType != LowOperand::Float) {
-            op.type = LowOperand::GPRegister;
-            op.regId = vregToPReg[op.regId];
-            allocatedRegs.insert(vregToPReg[op.regId]);
-          }
+          op.type = LowOperand::GPRegister;
+          op.regId = vregToPReg[op.regId];
+          allocatedRegs.insert(op.regId);
         }
       }
     }
   }
 
-  for (uint64_t phyRegId : allocatedRegs) {
+  for (uint64_t phyRegId : allocatedRegs)
     if (calleeSavedRegs().count(phyRegId)) {
-      StackSlot slot(StackSlot::CalleeSaved, 8);
-      slot.setRegId(phyRegId);
-      func.allocStack(slot);
+      func.allocStack(StackSlot(StackSlot::CalleeSaved, 8, phyRegId));
     }
-  }
 }

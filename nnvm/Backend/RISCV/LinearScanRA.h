@@ -26,7 +26,7 @@ struct RegCompare {
     int score1 = scoreOf(reg1);
     int score2 = scoreOf(reg2);
     if (score1 == score2)
-      return reg1 < reg2;
+      return reg1 > reg2;
     return score1 < score2;
   }
 };
