@@ -54,6 +54,10 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
   case LW:
   case LD:
   case JALR:
+  case FLW:
+  case FSW:
+  case FLD:
+  case FSD:
     out << getNameForInstType(type) << " ";
     operand[0].emit(out, info);
     out << ", ";
