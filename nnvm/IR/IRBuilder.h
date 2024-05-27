@@ -2,7 +2,9 @@
 
 #include "ADT/List.h"
 #include "IR/BasicBlock.h"
+#include "IR/Constant.h"
 #include "IR/Instruction.h"
+#include "IR/Module.h"
 #include "IR/Value.h"
 #include <vector>
 namespace nnvm {
@@ -27,7 +29,7 @@ public:
   Value *buildBinOp(Value *LHS, Value *RHS, Type *type,
                     const std::string &name = "") {
     Inst *I = new Inst(LHS, RHS, type);
-    I->setName(name);
+    I->setName(name, *module);
     insertPoint.insertBefore(I);
     return I;
   }
@@ -36,7 +38,7 @@ public:
   Value *buildUnaryOp(Value *operand, Type *type,
                       const std::string &name = "") {
     Inst *I = new Inst(operand, type);
-    I->setName(name);
+    I->setName(name, *module);
     insertPoint.insertBefore(I);
     return I;
   }
@@ -54,9 +56,30 @@ public:
   Value *buildBr(BasicBlock *succ);
   Value *buildBr(Value *cond, BasicBlock *trueBB, BasicBlock *falseBB);
 
-  Value *buildCall(Function *callee, const std::vector<Value *> &args);
+  Value *buildCall(Function *callee, const std::vector<Value *> &args,
+                   const std::string &name = "");
 
-  Value *buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs);
+  Value *buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs,
+                   const std::string &name = "");
+  Value *buildICmpNEZero(Value *lhs, const std::string &name = "");
+
+  template <typename Inst>
+  Value *buildCast(Value *operand, Type *toType, const std::string &name = "") {
+    Inst *I = new Inst(operand, toType);
+    I->setName(name, *module);
+    I->setOperand(0, operand);
+    insertPoint.insertBefore(I);
+    return I;
+  }
+
+  Value *buildZExt(Value *operand, Type *toType, const std::string &name = "");
+  Value *buildSExt(Value *operand, Type *toType, const std::string &name = "");
+
+  // NOTE: Only for integer
+  Value *buildZero(Type *type) {
+    assert(type->isInteger() && "Only support integer now");
+    return ConstantInt::create(*module, type, 0);
+  }
 
 private:
   BasicBlock::Iterator insertPoint;

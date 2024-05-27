@@ -1,0 +1,10 @@
+// EXPECTED:1
+int main()
+{
+    int arr[16];
+    arr[0] = 1;
+
+    putint(arr[0]);
+
+    return 0;
+}

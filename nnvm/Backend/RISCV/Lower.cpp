@@ -6,6 +6,7 @@
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Cast.h"
+#include "Utils/Debug.h"
 #include <queue>
 using namespace nnvm;
 using namespace nnvm::riscv;
@@ -150,7 +151,8 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
                         defMap[CI->getOperand(0)], defMap[CI->getOperand(1)]);
     lowered.operand.push_back(LowOperand::imm(CI->getPredicate()));
     emit(lowered);
-  } break;
+    break;
+  }
   case InstID::Ret: {
     if (I->getOperandNum() != 0) {
       Value *returned = I->getOperand(0);
@@ -178,13 +180,28 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
     lowInst.type = instType;
 
     if (I->getType())
-      lowInst.operand.push_back(defMap[I]);
+      lowInst.operand.push_back(defMap[I].def());
     for (int i = 0; i < I->getOperandNum(); i++)
-      lowInst.operand.push_back(defMap[I->getOperand(i)]);
+      lowInst.operand.push_back(defMap[I->getOperand(i)].use());
 
     emit(lowInst);
     break;
   }
+}
+
+static std::vector<std::byte> breakIntoBytes(Constant *constant) {
+  uint numBytes = constant->getType()->getStoredBytes();
+  std::vector<std::byte> ret(numBytes);
+
+  if (auto *constantInt = dyn_cast<ConstantInt>(constant)) {
+    GInt value = constantInt->getValue();
+    for (int i = 0; i < numBytes; i++) {
+      ret[i] = (std::byte)(value & 0xFF);
+      value >>= 8;
+    }
+    return ret;
+  }
+  nnvm_unreachable("Not implemented");
 }
 
 void LowerHelper::mapAll(Module &module) {
@@ -197,6 +214,22 @@ void LowerHelper::mapAll(Module &module) {
           .lastUsed = false,
           .immValue = CI->getValue(),
       };
+  }
+
+  for (auto &[name, var] : module.getGlobalVarMap()) {
+    LowGlobalVar *lowVar = new LowGlobalVar;
+    lowVar->name = name;
+    if (var->getInitVal())
+      lowVar->data = breakIntoBytes(var->getInitVal());
+    lowVar->size = var->getInnerType()->getStoredBytes();
+
+    defMap[var] = LowOperand{
+        .type = LowOperand::GlobalVar,
+        .valueType = LowOperand::i64,
+        .flag = LowOperand::Use,
+        .lastUsed = false,
+        .var = lowVar,
+    };
   }
 
   for (auto &[name, func] : module.getFunctionMap()) {
@@ -242,8 +275,10 @@ void LowerHelper::mapAll(Module &module) {
 }
 
 void LowerHelper::lower(Module &module, LowModule &lowered) {
-  // TODO: map and lower global variables.
   mapAll(module);
+
+  for (auto &[name, var] : module.getGlobalVarMap())
+    lowered.globals.push_back(defMap[var].var);
 
   for (auto &[name, func] : module.getFunctionMap()) {
     LowFunc *lowFunc = funcMap[func];

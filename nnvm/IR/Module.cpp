@@ -57,7 +57,19 @@ Constant *Module::addConstant(const Constant &constant) {
   return cloned;
 }
 
-Module::ConstantPool Module::getConstantPool() { return constantPool; }
+std::string Module::allocValueName(const std::string &name) {
+  std::string newName = name;
+  if (newName.empty()) {
+    newName = std::to_string(names.size());
+  } else if (isConflictName(newName)) {
+    newName += std::to_string(names.size());
+  }
+  while (isConflictName(newName)) {
+    newName.push_back('C');
+  }
+  names.insert(newName);
+  return newName;
+}
 
 Module::~Module() {
   for (auto [name, func] : functionMap)

@@ -1,0 +1,11 @@
+// INPUT:
+// EXPECTED:1020
+
+int v = 10;
+const int a = 10;
+
+int main() {
+    putint(v);
+    putint(a + 10);
+    return 0;
+}

@@ -47,7 +47,7 @@ public:
         return false;
       if (argTys.size() != other.argTys.size())
         return false;
-      for (int i = 0; i < argTys.size(); i++)
+      for (size_t i = 0; i < argTys.size(); i++)
         if (!argTys[i]->isIdentical(*other.argTys[i]))
           return false;
       return true;

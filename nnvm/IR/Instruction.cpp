@@ -47,6 +47,10 @@ static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::SRem, "srem"}, {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
     {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
 };
+static std::unordered_map<InstID, std::string> unaryOpTable = {
+    {InstID::ZExt, "zext"},
+    {InstID::SExt, "sext"},
+};
 
 std::string Instruction::getOpName() const {
   if (getOpcode() > InstID::BINOP_BEGIN && getOpcode() < InstID::BINOP_END) {
@@ -57,10 +61,16 @@ std::string Instruction::getOpName() const {
 
 std::string Instruction::dump() {
   std::string ret;
+  if (getType() && !getType()->isVoid())
+    ret += getName() + " = ";
   if (instID > InstID::BINOP_BEGIN && instID < InstID::BINOP_END) {
     std::string op = binOpNameTable[instID];
-    ret += (getName() + " = " + op + " " + getOperand(0)->dumpAsOperand() +
-            ", " + getOperand(1)->dumpAsOperand());
+    ret += (op + " " + getOperand(0)->dumpAsOperand() + ", " +
+            getOperand(1)->dumpAsOperand());
+  } else if (instID > InstID::CAST_BEGIN && instID < InstID::CAST_END) {
+    std::string op = unaryOpTable[instID];
+    ret += (op + " " + getOperand(0)->dumpAsOperand() + " to " +
+            getType()->dump());
   } else {
     std::vector<std::string> operandDump;
     for (Use *operand : useeList)

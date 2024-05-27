@@ -22,6 +22,7 @@ struct RegCompare {
       return 200;
     return 100;
   }
+
   bool operator()(uint64_t reg1, uint64_t reg2) {
     int score1 = scoreOf(reg1);
     int score2 = scoreOf(reg2);
@@ -43,6 +44,7 @@ private:
 
   // Active virtual registers.
   std::set<LiveInterval, IntervalCompare> active;
+  std::unordered_set<uint64_t> used;
   std::priority_queue<uint64_t, std::vector<uint64_t>, RegCompare> freeGPRs;
   std::unordered_map<uint64_t, uint64_t> vregToPReg;
   std::unordered_set<uint64_t> allocatedRegs;

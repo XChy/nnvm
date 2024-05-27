@@ -34,6 +34,9 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   case Function:
     out << func->name;
     break;
+  case GlobalVar:
+    out << var->name;
+    break;
   case None:
     nnvm_unreachable("None ???");
     break;
@@ -65,6 +68,12 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     out << " ";
     operand[0].emit(out, info);
     //}
+    return;
+  case LA:
+    out << getNameForInstType(type) << " ";
+    operand[0].emit(out, info);
+    out << ", ";
+    operand[1].emit(out, info);
     return;
   }
 

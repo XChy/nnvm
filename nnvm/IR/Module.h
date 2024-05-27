@@ -44,12 +44,16 @@ public:
   typedef std::unordered_multimap<uint64_t, Constant *> ConstantPool;
 
   Constant *addConstant(const Constant &constant);
-  ConstantPool getConstantPool();
+  ConstantPool getConstantPool() { return constantPool; };
+
+  std::string allocValueName(const std::string &name);
+  bool isConflictName(const std::string &name) { return names.count(name); }
 
 private:
   std::unordered_map<std::string, Function *> functionMap;
   std::unordered_map<std::string, GlobalVariable *> globalVarMap;
   ConstantPool constantPool;
+  std::unordered_set<std::string> names;
 
   NormalTypeMap typeMap;
   IntegerTypeMap intTypeMap;

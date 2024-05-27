@@ -5,6 +5,8 @@ import tempfile
 import os
 import os.path as path
 import re
+import sys
+from threading import Timer
 
 test_dir = path.split(__file__)[0]
 root_dir = path.split(path.split(test_dir)[0])[0]
@@ -25,7 +27,7 @@ def get_expected(source):
     out_path = path.splitext(source)[0] + ".out"
     if path.exists(out_path):
         with open(out_path) as f:
-            return "\n".join(f.readlines())
+            return "".join(f.readlines())
 
     with open(source) as f:
         line = f.readlines()[1]
@@ -37,7 +39,7 @@ def get_input(source):
     in_path = path.splitext(source)[0] + ".in"
     if path.exists(in_path):
         with open(in_path) as f:
-            return "\n".join(f.readlines())
+            return "".join(f.readlines())
 
     with open(source) as f:
         line = f.readlines()[0]
@@ -65,12 +67,21 @@ def test(source):
         expected = get_expected(source).strip()
 
         ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, "console=ttyS0"],
-                               stdout=subprocess.PIPE, stdin=subprocess.PIPE, encoding="UTF-8")
-
-        if source.count("functional") != 0:
-            actual = str(ret.wait())
-        else:
+                               stdout=subprocess.PIPE, stdin=subprocess.PIPE,
+                               encoding="UTF-8")
+        timer = Timer(2, ret.kill)
+        try:
+            timer.start()
             actual, stderr = ret.communicate(input=inputed)
+            if source.count("functional"):
+                actual = (actual + ("" if actual.endswith('\n')
+                          else "\n") + str(ret.wait())).strip()
+        finally:
+            if not timer.is_alive():
+                print("TIMEOUT on", reported_name)
+                timer.cancel()
+                return False
+            timer.cancel()
 
         if actual != expected:
             print("FAILED on", reported_name, ", actual",
@@ -81,14 +92,20 @@ def test(source):
             return True
 
 
-for root, _, filenames in os.walk(test_dir):
-    for filename in filenames:
-        source = path.join(root, filename)
-        if source.endswith("sy"):
-            passed = test(source)
-            if passed:
-                pass_test += 1
-            total_test += 1
+if len(sys.argv) == 2:
+    passed = test(sys.argv[1])
+    if passed:
+        pass_test += 1
+    total_test += 1
+else:
+    for root, _, filenames in os.walk(test_dir):
+        for filename in filenames:
+            source = path.join(root, filename)
+            if source.endswith("sy"):
+                passed = test(source)
+                if passed:
+                    pass_test += 1
+                total_test += 1
 
 
 print("============Complete Test=============")

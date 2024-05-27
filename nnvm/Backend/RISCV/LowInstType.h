@@ -24,9 +24,9 @@
 
 #define MAKE_JFORMAT(GEN) GEN(JAL)
 
-#define MAKE_UFORMAT(GEN) GEN(LUI)
+#define MAKE_UFORMAT(GEN) GEN(LUI), GEN(AUIPC)
 
-#define MAKE_OTHER(GEN) GEN(CALL)
+#define MAKE_OTHER(GEN) GEN(CALL), GEN(LA)
 
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
@@ -49,12 +49,14 @@ enum LowInstType : uint64_t {
 
   // ==== I-format ====
   // <inst-name> rd, rs, imm
+  // Exception: lb/h/w/d rd, label
   I_BEGIN,
   MAKE_IFORMAT(FOR_ENUM),
   I_END,
 
   // ==== S-format ====
   // <inst-name> rs2, rs1, imm (rs1 is the base address register)
+  // Exception: sb/h/w/d rd, label
   S_BEGIN,
   MAKE_SFORMAT(FOR_ENUM),
   S_END,

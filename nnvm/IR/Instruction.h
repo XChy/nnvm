@@ -59,13 +59,17 @@ enum class InstID : uint64_t {
   Trunc,
   SI2F,
   UI2F,
+  F2SI,
+  F2UI,
   CAST_END,
   // Memory instructions.
   MEMORY_BEGIN,
   Stack,
   Load,
   Store,
-  PtrAdd, // Addressing addtion/subtraction of pointer
+  // PtrAdd: Addressing addtion/subtraction of pointer.
+  // Semantics: guarantee the provenance.
+  PtrAdd,
   MEMORY_END,
   // Other
   OTHER_BEGIN,
@@ -73,7 +77,6 @@ enum class InstID : uint64_t {
   Phi,
   OTHER_END,
   INST_END,
-
 };
 
 class Metadata;
@@ -205,6 +208,52 @@ private:
 };
 
 // ===========================
+// Cast instructions
+// ===========================
+
+template <InstID ID> class CastInst : public Instruction {
+public:
+  CastInst(Value *src, Type *toType) : Instruction(ID, {src}, toType) {}
+  Type *getFromType() { return getOperand(0)->getType(); }
+  Type *getToType() { return getType(); }
+};
+
+class ZExtInst : public CastInst<InstID::ZExt> {
+public:
+  ZExtInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class SExtInst : public CastInst<InstID::SExt> {
+public:
+  SExtInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class TruncInst : public CastInst<InstID::Trunc> {
+public:
+  TruncInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class F2SIInst : public CastInst<InstID::F2SI> {
+public:
+  F2SIInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class F2UIInst : public CastInst<InstID::F2UI> {
+public:
+  F2UIInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class SI2FInst : public CastInst<InstID::SI2F> {
+public:
+  SI2FInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+class UI2FInst : public CastInst<InstID::UI2F> {
+public:
+  UI2FInst(Value *src, Type *toType) : CastInst(src, toType) {}
+};
+
+// ===========================
 // Terminator instructions
 // ===========================
 
@@ -257,6 +306,10 @@ public:
 private:
   bool conditional;
 };
+
+// ===========================
+// Other instructions
+// ===========================
 
 class Function;
 

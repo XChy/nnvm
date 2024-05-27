@@ -89,7 +89,7 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     return constFloat->getValue();
   }
   if (auto constArray = dyn_cast<ConstantArray>(valConstant)) {
-    int i = 0;
+    size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
       assert(index.is<int>());
@@ -297,7 +297,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     // TODO: error
     return Symbol::none();
   }
-  for (int i = 0; i < ctx->constExp().size(); i += 1) {
+  for (size_t i = 0; i < ctx->constExp().size(); i += 1) {
     Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
     assert(nrElements.is<int>());
     symbolType =
@@ -415,7 +415,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   }
 
   // Demote args into stack.
-  for (int i = 0; i < func->getArguments().size(); i++) {
+  for (size_t i = 0; i < func->getArguments().size(); i++) {
     auto *arg = func->getArguments()[i];
     auto *stack =
         symbolTable
@@ -426,6 +426,10 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   ctx->block()->accept(this);
   symbolTable.exitScope();
+
+  if (func->getReturnType()->isVoid() &&
+      !builder.getCurrentBB()->getTerminator())
+    builder.buildRet();
 
   return Symbol::none();
 }
@@ -439,7 +443,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   }
 
   SymbolType *symbolTy = ctx->btype()->accept(this);
-  for (int i = 0; i < ctx->L_BRACKT().size(); i++) {
+  for (size_t i = 0; i < ctx->L_BRACKT().size(); i++) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
     else {
@@ -479,14 +483,14 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     if (!cond)
       return Symbol::none();
 
-    BasicBlock *thenBB =
-        new BasicBlock(cast<Function>(currentFunc->entity), "then");
-    BasicBlock *exitBB =
-        new BasicBlock(cast<Function>(currentFunc->entity), "if.exit");
+    cond.entity = builder.buildICmpNEZero(cond.entity);
+
+    BasicBlock *thenBB = new BasicBlock(builder.getCurrentFunc(), "then");
+    BasicBlock *exitBB = new BasicBlock(builder.getCurrentFunc(), "if.exit");
     BasicBlock *elseBB;
 
     if (ctx->ELSE()) {
-      elseBB = new BasicBlock(cast<Function>(currentFunc->entity), "else");
+      elseBB = new BasicBlock(builder.getCurrentFunc(), "else");
       builder.buildBr(cond.entity, thenBB, elseBB);
     } else {
       builder.buildBr(cond.entity, thenBB, exitBB);
@@ -494,13 +498,13 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
     builder.setInsertPoint(thenBB->end());
     ctx->stmt(0)->accept(this);
-    if (!thenBB->getTerminator())
+    if (!builder.getCurrentBB()->getTerminator())
       builder.buildBr(exitBB);
 
     if (ctx->ELSE()) {
       builder.setInsertPoint(elseBB->end());
       ctx->stmt(1)->accept(this);
-      if (!elseBB->getTerminator())
+      if (!builder.getCurrentBB()->getTerminator())
         builder.buildBr(exitBB);
     }
 
@@ -546,97 +550,86 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     BasicBlock *whileExit =
         new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
 
+    builder.buildBr(whileCond);
+
+    // While Conditon
     builder.setInsertPoint(whileCond->end());
     Symbol cond = ctx->cond()->accept(this);
     builder.buildBr(cond.entity, whileBody, whileExit);
 
+    // While Body
     builder.setInsertPoint(whileBody->end());
     ctx->stmt(0)->accept(this);
-    if (!whileBody->getTerminator())
-      builder.buildBr(whileExit);
+    if (!builder.getCurrentBB()->getTerminator())
+      builder.buildBr(whileCond);
 
     builder.setInsertPoint(whileExit->end());
     return Symbol::none();
   } else if (ctx->BREAK()) {
     nnvm_unreachable("Not implemeted break");
   }
-  nnvm_unreachable("Not implemeted");
+  return Symbol::none();
 }
 
 Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   if (ctx->exp()) {
     Symbol exp = ctx->exp()->accept(this);
-    if (!exp)
-      return Symbol::none();
+    return exp;
+  } else if (ctx->AND()) {
 
-    if (exp.symbolType->isInt())
-      return Symbol{
-          builder.buildICmp(ICmpInst::NE, exp.entity,
+    Symbol exp1 = ctx->cond(0)->accept(this);
+    if (!exp1)
+      return Symbol::none();
+    Symbol cond1;
+    if (exp1.symbolType->isInt())
+      cond1 = Symbol{
+          builder.buildICmp(ICmpInst::NE, exp1.entity,
                             ConstantInt::create(*ir, ir->getIntType(), 0)),
-          SymbolType::getBoolTy()};
+          SymbolType ::getBoolTy()};
     else
       nnvm_unreachable("Unimplemented FCmp")
+
+          Symbol exp2 = ctx->cond(1)->accept(this);
+    if (!exp2)
+      return Symbol::none();
+    Symbol cond2;
+    if (exp2.symbolType->isInt())
+      cond2 = Symbol{
+          builder.buildICmp(ICmpInst::NE, exp2.entity,
+                            ConstantInt::create(*ir, ir->getIntType(), 0)),
+          SymbolType::getBoolTy()};
+
+  } else if (ctx->OR()) {
+
   } else {
-    if (ctx->AND()) {
+    Symbol exp1 = ctx->cond(0)->accept(this);
+    if (!exp1)
+      return Symbol::none();
 
-      Symbol exp1 = ctx->cond(0)->accept(this);
-      if (!exp1)
-        return Symbol::none();
-      Symbol cond1;
-      if (exp1.symbolType->isInt())
-        cond1 = Symbol{
-            builder.buildICmp(ICmpInst::NE, exp1.entity,
-                              ConstantInt::create(*ir, ir->getIntType(), 0)),
-            SymbolType ::getBoolTy()};
-      else
-        nnvm_unreachable("Unimplemented FCmp")
+    Symbol exp2 = ctx->cond(1)->accept(this);
+    if (!exp2)
+      return Symbol::none();
 
-            Symbol exp2 = ctx->cond(1)->accept(this);
-      if (!exp2)
-        return Symbol::none();
-      Symbol cond2;
-      if (exp2.symbolType->isInt())
-        cond2 = Symbol{
-            builder.buildICmp(ICmpInst::NE, exp2.entity,
-                              ConstantInt::create(*ir, ir->getIntType(), 0)),
-            SymbolType::getBoolTy()};
-
-    } else if (ctx->OR()) {
-
-    } else {
-      Symbol exp1 = ctx->cond(0)->accept(this);
-      if (!exp1)
-        return Symbol::none();
-
-      Symbol exp2 = ctx->cond(1)->accept(this);
-      if (!exp2)
-        return Symbol::none();
-
-      if (ctx->EQ())
-        return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity),
-                      SymbolType::getBoolTy()};
-      else if (ctx->NEQ())
-        return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity),
-                      SymbolType::getBoolTy()};
-      else if (ctx->LT())
-        return Symbol{
-            builder.buildICmp(ICmpInst::ULT, exp1.entity, exp2.entity),
-            SymbolType::getBoolTy()};
-      else if (ctx->GT())
-        return Symbol{
-            builder.buildICmp(ICmpInst::UGT, exp1.entity, exp2.entity),
-            SymbolType::getBoolTy()};
-      else if (ctx->LE())
-        return Symbol{
-            builder.buildICmp(ICmpInst::ULE, exp1.entity, exp2.entity),
-            SymbolType::getBoolTy()};
-      else if (ctx->GE())
-        return Symbol{
-            builder.buildICmp(ICmpInst::UGE, exp1.entity, exp2.entity),
-            SymbolType::getBoolTy()};
-      else
-        return Symbol::none();
-    }
+    if (ctx->EQ())
+      return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else if (ctx->NEQ())
+      return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else if (ctx->LT())
+      return Symbol{builder.buildICmp(ICmpInst::SLT, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else if (ctx->GT())
+      return Symbol{builder.buildICmp(ICmpInst::SGT, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else if (ctx->LE())
+      return Symbol{builder.buildICmp(ICmpInst::SLE, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else if (ctx->GE())
+      return Symbol{builder.buildICmp(ICmpInst::SGE, exp1.entity, exp2.entity),
+                    SymbolType::getBoolTy()};
+    else
+      return Symbol::none();
   }
   nnvm_unreachable("Not implemented");
 }
@@ -779,18 +772,33 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
 }
 
 Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
-  nnvm_unreachable(ctx->exp().size() == 1);
+  assert(ctx->exp().size() == 1);
   Symbol operand = ctx->exp()[0]->accept(this);
   if (!operand) {
     return nullptr;
   }
-  Value *val = nullptr;
+  Value *val = operand.entity;
   // TODO: unary op
-  if (ctx->unaryOp()->PLUS()) {
-  }
+  if (ctx->unaryOp()->PLUS())
+    return operand;
+
   if (ctx->unaryOp()->MINUS()) {
+    if (operand.symbolType->isInt()) {
+      return Symbol{builder.buildBinOp<SubInst>(
+                        builder.buildZero(val->getType()), val, val->getType()),
+                    operand.symbolType};
+    } else {
+      nnvm_unreachable(
+          "Not sure how to give the negative value of the float value");
+    }
   }
+
   if (ctx->unaryOp()->NOT()) {
+    Value *equalToZero =
+        builder.buildICmp(ICmpInst::EQ, val, builder.buildZero(val->getType()));
+    Value *zext = builder.buildZExt(equalToZero, val->getType(),
+                                    val->getName() + ".zext");
+    return Symbol{zext, operand.symbolType};
   }
   nnvm_unreachable("UnaryOp Not implemented!");
 }
@@ -809,9 +817,14 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
                   lVal.symbolType};
   }
 
-  if (ctx->PLUS() || ctx->MINUS() || ctx->DIV() || ctx->MOD() || ctx->MUL()) {
+  if (ctx->L_PAREN())
+    return ctx->exp(0)->accept(this);
+
+  if (ctx->PLUS() || ctx->MINUS() || ctx->DIV() || ctx->MOD() || ctx->MUL())
     return expBinOp(ctx);
-  }
+
+  if (ctx->unaryOp())
+    return expUnaryOp(ctx);
 
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {

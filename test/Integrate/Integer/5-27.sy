@@ -1,0 +1,5 @@
+// EXPECTED:1
+int main() {
+  putint((1))
+  return 0;
+}

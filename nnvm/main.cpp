@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     parser.setErrorHandler(
         Ref<antlr4::ANTLRErrorStrategy>(new antlr4::BailErrorStrategy()));
     tree = parser.program();
-  } catch (antlr4::ParseCancellationException e) {
+  } catch (const antlr4::ParseCancellationException &e) {
     parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(
         antlr4::atn::PredictionMode::LL);
     parser.setErrorHandler(

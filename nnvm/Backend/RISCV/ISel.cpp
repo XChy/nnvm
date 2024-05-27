@@ -31,31 +31,23 @@ void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
   nnvm_unreachable("How to handle big constant, especially for i64?")
 }
 
+void riscv::loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
+                            LowOperand reg) {
+  // TODO: replace the pseudocode "LA" with "%pcrel_hi & %pcrel_lo"
+  // auto auipc = LowInst::create(AUIPC, reg, global);
+  // auto addi = LowInst::create(ADDI, reg, reg, global);
+
+  // bb.insertBefore(it, auipc);
+  // bb.insertBefore(it, addi);
+  auto la = LowInst::create(LA, reg, global);
+  bb.insertBefore(it, la);
+  return;
+}
+
 static inline LowInstType
 materializeArithmeticInstType(uint64_t instID,
                               LowOperand::LowValueType operandType) {
   if (operandType == LowOperand::i32) {
-    switch ((InstID)instID) {
-    case InstID::Add:
-      return ADD;
-    case InstID::Sub:
-      return SUB;
-    case InstID::Mul:
-      return MUL;
-    case InstID::SDiv:
-      return DIV;
-    case InstID::UDiv:
-      return DIVU;
-    case InstID::SRem:
-      return REM;
-    case InstID::URem:
-      return REMU;
-    default:
-      nnvm_unreachable("No implemented");
-    }
-  }
-
-  if (operandType == LowOperand::i64) {
     switch ((InstID)instID) {
     case InstID::Add:
       return ADDW;
@@ -71,6 +63,27 @@ materializeArithmeticInstType(uint64_t instID,
       return REMW;
     case InstID::URem:
       return REMUW;
+    default:
+      nnvm_unreachable("No implemented");
+    }
+  }
+
+  if (operandType == LowOperand::i64) {
+    switch ((InstID)instID) {
+    case InstID::Add:
+      return ADD;
+    case InstID::Sub:
+      return SUB;
+    case InstID::Mul:
+      return MUL;
+    case InstID::SDiv:
+      return DIV;
+    case InstID::UDiv:
+      return DIVU;
+    case InstID::SRem:
+      return REM;
+    case InstID::URem:
+      return REMU;
     default:
       nnvm_unreachable("No implemented");
     }
@@ -100,24 +113,63 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
       *it = LowInst::create(getStoreInstType(it->operand[0].valueType),
                             it->operand[0], it->operand[1], LowOperand::imm(0));
       break;
+    case InstID::ZExt:
+      *it = LowInst::create(ADDI, it->operand[0], it->operand[1],
+                            LowOperand::imm(0));
+      break;
     case InstID::ICmp: {
       uint64_t predicate = it->operand[3].immValue;
-      if (predicate == ICmpInst::EQ) {
+      switch (predicate) {
+      case ICmpInst::EQ: {
         auto middle = func.allocVReg(it->operand[0].valueType);
         bb.insertBefore(
             it, LowInst::create(XOR, middle, it->operand[1], it->operand[2]));
         *it =
             LowInst::create(SLTIU, it->operand[0], middle, LowOperand::imm(1));
-      } else if (predicate == ICmpInst::NE) {
+        break;
+      }
+      case ICmpInst::NE: {
         auto middle = func.allocVReg(it->operand[0].valueType);
         bb.insertBefore(
             it, LowInst::create(XOR, middle, it->operand[1], it->operand[2]));
         *it = LowInst::create(SLTU, it->operand[0],
                               getZeroReg(it->operand[0].valueType), middle);
+        break;
+      }
 
-      } else {
+        // a > b  -->  b < a
+      case ICmpInst::SGT:
+        std::swap(it->operand[1], it->operand[2]);
+        // fallthrough
+      case ICmpInst::SLT:
+        *it = LowInst::create(SLT, it->operand[0], it->operand[1],
+                              it->operand[2]);
+        break;
+
+        // a <= b  -->  not(a > b) --> not(b < a)
+        // a >= b  -->  not(a < b)
+      case ICmpInst::SLE:
+        std::swap(it->operand[1], it->operand[2]);
+        // fallthrough
+      case ICmpInst::SGE:
+        bb.insertBefore(it, LowInst::create(SLT, it->operand[0], it->operand[1],
+                                            it->operand[2]));
+        *it = LowInst::create(XORI, it->operand[0], it->operand[0],
+                              LowOperand::imm(1));
+        break;
+
+      case ICmpInst::UGT:
+        std::swap(it->operand[1], it->operand[2]);
+        // fallthrough
+      case ICmpInst::ULT:
+        *it = LowInst::create(SLTU, it->operand[0], it->operand[1],
+                              it->operand[2]);
+        break;
+
+      default:
         nnvm_unreachable("Unimplemented");
       }
+
     } break;
     case InstID::Stack:
       nnvm_unreachable("StackInst should not be in this stage");
@@ -134,15 +186,20 @@ LowBB::Iterator ISel::handleConstant(LowFunc &func, LowBB &bb,
   if (it->type > R_BEGIN && it->type < R_END) {
     LowOperand &rs1 = it->operand[1];
     LowOperand &rs2 = it->operand[2];
-    // FIXME: what if not commutable
-    if (rs1.type == LowOperand::Constant) {
+
+    if (rs1.isConstant()) {
       if (isCommutative(it->type))
         std::swap(rs1, rs2);
-      else
-        nnvm_unreachable("Not implemented a load immediate to the register");
+
+      // TODO: WTF? How to handle constant fold in backend??
+      if (rs1.isConstant()) {
+        auto vregForImm = func.allocVReg(rs1.valueType);
+        loadConstantToReg(bb, it, rs1, vregForImm);
+        rs1 = vregForImm.use();
+      }
     }
 
-    if (rs2.type == LowOperand::Constant) {
+    if (rs2.isConstant()) {
       if (rs2.immValue == 0) {
         rs2 = getZeroReg(rs2.valueType);
       } else if (canExpressInBits<12>(rs2.immValue) &&
@@ -153,17 +210,35 @@ LowBB::Iterator ISel::handleConstant(LowFunc &func, LowBB &bb,
       } else {
         auto vregForImm = func.allocVReg(rs2.valueType);
         loadConstantToReg(bb, it, rs2, vregForImm);
-        it->operand[2] = vregForImm;
+        it->operand[2] = vregForImm.use();
       }
     }
-  }
-
-  if (it->type > S_BEGIN && it->type < S_END) {
+  } else if (it->type > S_BEGIN && it->type < S_END) {
     LowOperand &rs2 = it->operand[0];
-    if (rs2.type == LowOperand::Constant) {
+    LowOperand &rs1 = it->operand[1];
+
+    if (rs1.type == LowOperand::GlobalVar) {
+      auto vregForAddress = func.allocVReg(LowOperand::i64);
+      loadGlobalToReg(bb, it, rs1, vregForAddress);
+      rs1 = vregForAddress.use();
+    }
+
+    if (rs2.isConstant()) {
       auto vregForImm = func.allocVReg(rs2.valueType);
       loadConstantToReg(bb, it, rs2, vregForImm);
-      it->operand[0] = vregForImm;
+      it->operand[0] = vregForImm.use();
+    }
+  } else {
+    for (LowOperand &r : it->operand) {
+      if (r.type == LowOperand::GlobalVar) {
+        auto vregForAddress = func.allocVReg(LowOperand::i64);
+        loadGlobalToReg(bb, it, r, vregForAddress);
+        r = vregForAddress.use();
+      } else if (r.isConstant()) {
+        auto vregForImm = func.allocVReg(r.valueType);
+        loadConstantToReg(bb, it, r, vregForImm);
+        it->operand[0] = vregForImm.use();
+      }
     }
   }
 

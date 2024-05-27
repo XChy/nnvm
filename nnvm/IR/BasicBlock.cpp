@@ -11,6 +11,10 @@ BasicBlock::BasicBlock(Function *func)
       parent(nullptr) {
   func->insert(this);
 }
+BasicBlock::BasicBlock(Function *func, const std::string &name)
+    : BasicBlock(func) {
+  setName(name, *func->getModule());
+}
 
 BasicBlock::~BasicBlock() { instList.freeAll(); }
 

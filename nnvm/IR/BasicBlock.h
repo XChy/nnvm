@@ -15,9 +15,7 @@ class Function;
 class BasicBlock : public Value, public ListTrait<BasicBlock> {
 public:
   BasicBlock(Function *func);
-  BasicBlock(Function *func, const std::string &name) : BasicBlock(func) {
-    setName(name);
-  }
+  BasicBlock(Function *func, const std::string &name);
 
   class Iterator : public List<Instruction>::Iterator {
   public:

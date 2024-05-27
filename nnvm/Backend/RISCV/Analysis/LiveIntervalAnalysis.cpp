@@ -1,5 +1,6 @@
 #include "Backend/RISCV/LowIR.h"
 #include <Backend/RISCV/Analysis/LiveIntervalAnalysis.h>
+#include <Backend/RISCV/Verifier/DefUsePrinter.h>
 #include <algorithm>
 
 using namespace nnvm::riscv;
@@ -14,11 +15,14 @@ std::multiset<LiveInterval, IntervalCompare> LiveIntervalAnalysis::result() {
 
 bool LiveIntervalAnalysis::runOn(LowFunc &func) {
   uint64_t instructionCount = 0;
+
   // TODO: dfs
   for (LowBB *BB : func.BBs) {
     BBNumber[BB] = instructionCount;
     instructionCount += BB->insts.size();
   }
+
+  printDefUse(func);
 
   for (LowBB *BB : func.BBs) {
     uint64_t localIndex = 0;
@@ -45,12 +49,12 @@ bool LiveIntervalAnalysis::runOn(LowFunc &func) {
     }
   }
 
-  for (auto &[id, interval] : regToIntervals) {
+  for (auto &[id, interval] : regToIntervals)
     intervals.insert(interval);
-  }
+
   for (auto interval : intervals)
-    debug(std::cerr << interval.regId << ":[" << interval.begin << ","
-                    << interval.end << "]\n");
+    debug(std::cerr << "v" << interval.regId - VR_BEGIN << ":["
+                    << interval.begin << "," << interval.end << "]\n");
 
   return true;
 }

@@ -5,6 +5,9 @@ namespace nnvm::riscv {
 static void loadConstantToReg(LowBB &bb, LowBB::Iterator it,
                               LowOperand constant, LowOperand reg);
 
+static void loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
+                            LowOperand reg);
+
 class ISel {
 public:
   void isel(LowFunc &func);

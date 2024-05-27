@@ -113,7 +113,8 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     if (auto *F = dyn_cast<Function>(callInst->getCallee())) {
       std::vector<std::string> args(callInst->getArgNum());
       for (int i = 0; i < callInst->getArgNum(); i++)
-        args[i] = callInst->getArg(i)->dumpAsOperand();
+        args[i] = callInst->getArg(i)->getType()->dump() + " " +
+                  valueToName[callInst->getArg(i)];
       out << "call " << F->getReturnType()->dump() << " " << valueToName[F];
       out << "(";
       out << join(args.begin(), args.end(), ", ");

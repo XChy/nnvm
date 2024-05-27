@@ -4,9 +4,11 @@
 #include "Backend/RISCV/Info/Register.h"
 #include "IR/Instruction.h"
 #include "StackSlot.h"
+#include "Utils/Collection.h"
 #include "Utils/Debug.h"
 #include <ADT/GenericInt.h>
 #include <array>
+#include <cstddef>
 #include <iostream>
 #include <list>
 #include <string>
@@ -20,6 +22,26 @@ class LowGlobal {
 public:
   std::string name;
   bool isExternal = false;
+};
+
+class LowGlobalVar : public LowGlobal {
+public:
+  bool isInitialized;
+  uint64_t size;
+  std::vector<std::byte> data;
+
+  void emit(std::ostream &out, EmitInfo &info) const {
+    out << name << ":\n";
+    if (isInitialized) {
+      out << ".byte ";
+      std::vector<std::string> dataDump(data.size());
+      for (int i = 0; i < data.size(); i++)
+        dataDump[i] = std::to_string((unsigned char)data[i]);
+      out << join(dataDump.begin(), dataDump.end(), ", ");
+    } else {
+      out << ".space " << size;
+    }
+  }
 };
 
 class LowOperand {
@@ -40,6 +62,7 @@ public:
     Function,
     StackSlot,
     BasicBlock,
+    GlobalVar,
   };
 
   enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
@@ -76,6 +99,7 @@ public:
   bool isReg() const { return isGPR() || isVR() || isFPR(); }
   bool isImm() const { return type == Immediate; }
   bool isStackSlot() const { return type == StackSlot; }
+  bool isConstant() const { return type == Constant; }
   bool isUse() const { return flag & Use; }
   bool isDef() const { return flag & Def; }
 
@@ -150,6 +174,7 @@ public:
     uint64_t stackSlotId;
     LowBB *bb;
     LowFunc *func;
+    LowGlobalVar *var;
   };
 };
 
@@ -218,6 +243,7 @@ public:
 class LowModule {
 public:
   std::vector<LowFunc *> funcs;
+  std::vector<LowGlobalVar *> globals;
 
   void emit(std::ostream &out) const {
     EmitInfo info(*this);
@@ -225,11 +251,17 @@ public:
       for (auto *bb : func->BBs)
         info.allocBB(bb);
 
-    // TODO: emit global data
     for (auto *func : funcs)
       if (!func->isExternal)
         out << ".global " << func->name << "\n";
 
+    out << ".section .data\n";
+    for (auto *g : globals) {
+      g->emit(out, info);
+      out << "\n";
+    }
+
+    out << ".section .text\n";
     for (auto *func : funcs)
       func->emit(out, info);
   }
@@ -237,6 +269,8 @@ public:
   ~LowModule() {
     for (auto *f : funcs)
       delete f;
+    for (auto *g : globals)
+      delete g;
   }
 };
 } // namespace nnvm::riscv

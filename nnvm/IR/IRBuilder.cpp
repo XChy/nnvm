@@ -19,7 +19,7 @@ Value *IRBuilder::buildStack(Type *containedTy, uint numElement,
                              const std::string &name) {
   StackInst *SI =
       new StackInst(*module, containedTy->getStoredBytes() * numElement);
-  SI->setName(name);
+  SI->setName(name, *module);
   // We insert all stack instructions at the beginning of entry.
   getCurrentFunc()->getEntry()->begin().insertBefore(SI);
   return SI;
@@ -42,7 +42,7 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   LoadInst *LI = new LoadInst(loadedTy);
   LI->setOperand(0, src);
   LI->setType(loadedTy);
-  LI->setName(name);
+  LI->setName(name, *module);
   insertPoint.insertBefore(LI);
   return LI;
 }
@@ -72,18 +72,35 @@ Value *IRBuilder::buildBr(Value *cond, BasicBlock *trueBB,
   return I;
 }
 
-Value *IRBuilder::buildCall(Function *callee,
-                            const std::vector<Value *> &args) {
+Value *IRBuilder::buildCall(Function *callee, const std::vector<Value *> &args,
+                            const std::string &name) {
   CallInst *I = new CallInst(callee);
+  I->setName(name, *module);
   I->setArguments(args);
   insertPoint.insertBefore(I);
   return I;
 }
 
-Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs) {
+Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs,
+                            const std::string &name) {
   ICmpInst *I = new ICmpInst(pred, module->getBoolType());
+  I->setName(name, *module);
   I->setOperand(0, lhs);
   I->setOperand(1, rhs);
   insertPoint.insertBefore(I);
   return I;
+}
+
+Value *IRBuilder::buildICmpNEZero(Value *lhs, const std::string &name) {
+  return buildICmp(ICmpInst::NE, lhs, buildZero(lhs->getType()));
+}
+
+Value *IRBuilder::buildZExt(Value *operand, Type *toType,
+                            const std::string &name) {
+  return buildCast<ZExtInst>(operand, toType, name);
+}
+
+Value *IRBuilder::buildSExt(Value *operand, Type *toType,
+                            const std::string &name) {
+  return buildCast<SExtInst>(operand, toType, name);
 }

@@ -12,6 +12,7 @@ class LowModule;
 
 class EmitInfo {
 public:
+  EmitInfo() {}
   EmitInfo(const LowModule &module);
 
   void markBBAsEntry(LowBB *bb, LowFunc *func) { entries[bb] = func; }
@@ -28,9 +29,13 @@ public:
   void setEmitImplicit(bool emitImplicit) { this->emitImplicit = emitImplicit; }
   bool isEmitImplicit() const { return emitImplicit; }
 
+  void setShowLine(bool showLine) { this->showLine = showLine; }
+  bool isShowLine() { return showLine; }
+
 private:
   uint64_t blockCount;
   bool emitImplicit = true;
+  bool showLine = false;
   std::unordered_map<const LowBB *, uint64_t> bbToIndex;
   std::unordered_map<const LowBB *, const LowFunc *> entries;
 };

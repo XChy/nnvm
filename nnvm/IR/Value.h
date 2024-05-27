@@ -18,6 +18,7 @@ enum class ValueID {
 
 class Use;
 class Instruction;
+class Module;
 
 class Value {
 public:
@@ -32,10 +33,13 @@ public:
   void replaceSelf(Value *replacement);
 
   void setName(const std::string &name) { this->name = name; }
+
+  // Used to resolve naming conflict.
+  void setName(const std::string &name, Module &module);
   std::string getName() const { return name; }
 
   void setType(Type *type) { this->type = type; }
-  Type *getType() { return type; }
+  Type *getType() const { return type; }
 
   virtual std::string dump() { return name; };
   virtual std::string dumpAsOperand() { return type->dump() + " %" + name; };
