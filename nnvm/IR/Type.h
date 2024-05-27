@@ -25,6 +25,12 @@ public:
 
   TypeClass getClass() const { return typeClass; }
 
+  void setNumElements(uint num) { subData = num; }
+  uint getNumElements() { return subData; }
+
+  void setContainedTy(Type *containedTy) { this->containedTy = containedTy; }
+  Type *getContainedTy() { return containedTy; }
+
   bool isIdenticalTo(Type *other) {
     if (this == other)
       return true;
@@ -33,53 +39,13 @@ public:
     return this == other;
   }
 
-  uint getBytes() {
-    switch (typeClass) {
-    case Void:
-      return 0;
-    case Integer:
-      return (subData + 7) / 8;
-    case Float:
-      return 4;
-    case Pointer:
-      return 8;
-    default:
-      assert("No size support for this type");
-      return 0;
-    }
-  }
+  uint getBytes();
 
-  uint getScalarBits() {
-    switch (typeClass) {
-    case Void:
-      return 0;
-    case Integer:
-      return subData;
-    case Float:
-      return 4;
-    case Pointer:
-      return 8;
-    default:
-      assert("No size support for this type");
-      return 0;
-    }
-  }
+  uint getScalarBits();
 
-  uint getStoredBytes() {
-    switch (typeClass) {
-    case Void:
-      return 0;
-    case Integer:
-      return (subData + 7) / 8;
-    case Float:
-      return 4;
-    case Pointer:
-      return 8;
-    default:
-      assert("No size support for this type");
-      return 0;
-    }
-  }
+  // At memory level, the data of any bitwidth must be aligned as specific
+  // datalayout setting. For convenience, we assume we are under RISCV-64 ISA.
+  uint getStoredBytes();
 
   std::string dump();
 

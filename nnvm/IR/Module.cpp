@@ -1,5 +1,6 @@
 #include "Module.h"
 #include "IR/Type.h"
+#include <algorithm>
 
 using namespace nnvm;
 
@@ -44,6 +45,23 @@ Type *Module::getFloatType() { return typeMap[Type::Float][0]; }
 Type *Module::getBoolType() { return intTypeMap[1]; }
 Type *Module::getPtrType() { return typeMap[Type::Pointer][0]; }
 Type *Module::getBBType() { return typeMap[Type::BasicBlock][0]; }
+Type *Module::getArrayType(Type *elementTy, uint numElements) {
+  auto &arrayTypes = typeMap[Type::Array];
+  auto it =
+      std::find_if(arrayTypes.begin(), arrayTypes.end(), [&](Type *arrayTy) {
+        return arrayTy->getContainedTy() == elementTy &&
+               arrayTy->getNumElements() == numElements;
+      });
+  if (it != arrayTypes.end()) {
+    return *it;
+  } else {
+    Type *newType = new Type(Type::Array);
+    newType->setNumElements(numElements);
+    newType->setContainedTy(elementTy);
+    arrayTypes.push_back(newType);
+    return newType;
+  }
+}
 
 Constant *Module::addConstant(const Constant &constant) {
   auto it = constantPool.find(constant.hash());

@@ -21,9 +21,7 @@ public:
   Symbol *create(const string &name, SymbolType *type, Value *entity);
   Symbol *lookup(const string &symbolName);
   Symbol *lookupInCurrentScope(const string &symbolName);
-  bool isGlobal() {
-    return scopes.size() == 1;
-  }
+  bool isGlobal() { return scopes.size() == 1; }
   ~SymbolTable() {
     for (auto *ty : managedTys)
       delete ty;
@@ -45,7 +43,6 @@ public:
 
   Any visitProgram(SysYParser::ProgramContext *ctx) override;
   Any visitBtype(SysYParser::BtypeContext *ctx) override;
-
 
   Any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
   Any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
@@ -87,14 +84,23 @@ private:
   Constant *constTrue;
   Constant *constFalse;
 
-  //help function
-  Any expBinOp(SysYParser::ExpContext*);
-  Any expUnaryOp(SysYParser::ExpContext*);
-  Any solveConstExp(SysYParser::ExpContext*);
-  Any solveConstLval(SysYParser::LValContext*);
-  Any solveConstInit(std::vector<SysYParser::ConstInitValContext*> ctxs, std::list<int> dims);
-  Any constDef(SysYParser::ConstDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
-  Any varDef(SysYParser::VarDefContext *ctx, SysYParser::BtypeContext *btypeCtx);
+  // helper function
+  Any expBinOp(SysYParser::ExpContext *);
+  Any expUnaryOp(SysYParser::ExpContext *);
+  Any solveConstExp(SysYParser::ExpContext *);
+  Any solveConstLval(SysYParser::LValContext *);
+  Any solveConstInit(std::vector<SysYParser::ConstInitValContext *> ctxs,
+                     std::list<int> dims);
+  Any constDef(SysYParser::ConstDefContext *ctx,
+               SysYParser::BtypeContext *btypeCtx);
+  Any varDef(SysYParser::VarDefContext *ctx,
+             SysYParser::BtypeContext *btypeCtx);
+
+  void fetchElementsFrom(SysYParser::InitValContext *ctx, SymbolType *type,
+                         std::vector<Constant *> &output);
+  Constant *fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
+                                  SymbolType *type);
+
   Type *getIRType(SysYParser::BtypeContext *ctx);
   Type *getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx);
   Type *getIRType(SysYParser::FuncTypeContext *ctx);

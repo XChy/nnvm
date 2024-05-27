@@ -42,10 +42,14 @@ enum class InstID : uint64_t {
   Shl,
   LShr,
   AShr,
+  // PtrAdd: Addressing addtion/subtraction of pointer.
+  // Semantics: guarantee the provenance.
+  // Example: %new_p = ptradd %p, 16
+  PtrAdd,
   BINOP_END,
   // Comparison between integer.
   ICmp,
-  // Comparison between integer.
+  // Comparison between float.
   FCmp,
   // Terminators.
   TERMINATOR_BEGIN,
@@ -67,9 +71,6 @@ enum class InstID : uint64_t {
   Stack,
   Load,
   Store,
-  // PtrAdd: Addressing addtion/subtraction of pointer.
-  // Semantics: guarantee the provenance.
-  PtrAdd,
   MEMORY_END,
   // Other
   OTHER_BEGIN,
@@ -187,6 +188,7 @@ NNVM_DECLARE_BINOP(InstID::Xor, XorInst)
 NNVM_DECLARE_BINOP(InstID::Shl, ShlInst)
 NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
+NNVM_DECLARE_BINOP(InstID::PtrAdd, PtrAddInst)
 
 // ===========================
 // Comparison instructions.

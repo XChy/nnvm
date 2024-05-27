@@ -193,15 +193,33 @@ static std::vector<std::byte> breakIntoBytes(Constant *constant) {
   uint numBytes = constant->getType()->getStoredBytes();
   std::vector<std::byte> ret(numBytes);
 
-  if (auto *constantInt = dyn_cast<ConstantInt>(constant)) {
-    GInt value = constantInt->getValue();
-    for (int i = 0; i < numBytes; i++) {
-      ret[i] = (std::byte)(value & 0xFF);
-      value >>= 8;
+  if (auto *constantArr = dyn_cast<ConstantArray>(constant)) {
+    uint index = 0;
+    for (Constant *element : constantArr->getValue()) {
+      std::vector<std::byte> elementData = breakIntoBytes(element);
+      std::copy(elementData.begin(), elementData.end(), ret.begin() + index);
+      index += elementData.size();
     }
     return ret;
   }
-  nnvm_unreachable("Not implemented");
+
+  // For those less than 8 bytes.
+  GInt value;
+  if (auto *constantInt = dyn_cast<ConstantInt>(constant)) {
+    value = constantInt->getValue();
+  } else if (auto *constantFloat = dyn_cast<ConstantFloat>(constant)) {
+    float floatVal = constantFloat->getValue();
+    value = reinterpret_cast<const GInt &>(floatVal);
+  } else {
+    nnvm_unimpl();
+  }
+
+  for (int i = 0; i < numBytes; i++) {
+    ret[i] = (std::byte)(value & 0xFF);
+    value >>= 8;
+  }
+
+  return ret;
 }
 
 void LowerHelper::mapAll(Module &module) {

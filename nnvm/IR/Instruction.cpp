@@ -42,10 +42,11 @@ Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
 
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
-    {InstID::Add, "add"},   {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
-    {InstID::UDiv, "udiv"}, {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
-    {InstID::SRem, "srem"}, {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
-    {InstID::FMul, "fmul"}, {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
+    {InstID::Add, "add"},       {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
+    {InstID::UDiv, "udiv"},     {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
+    {InstID::SRem, "srem"},     {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
+    {InstID::FMul, "fmul"},     {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
+    {InstID::PtrAdd, "ptradd"},
 };
 static std::unordered_map<InstID, std::string> unaryOpTable = {
     {InstID::ZExt, "zext"},

@@ -3,6 +3,7 @@
 #include "ADT/GenericInt.h"
 #include "IR/Value.h"
 #include "Utils/Cast.h"
+#include "Utils/Collection.h"
 #include <string>
 #include <vector>
 
@@ -103,11 +104,11 @@ public:
   std::string dump() {
     std::string ret;
     ret += "[";
-    for (auto *element : value) {
-      if (element != value.front())
-        ret += ", ";
-      ret += element->dump();
-    }
+
+    std::vector<std::string> elements;
+    for (auto *element : value)
+      elements.push_back(element->dump());
+    ret += join(elements.begin(), elements.end(), ", ");
 
     ret += "]";
     return ret;

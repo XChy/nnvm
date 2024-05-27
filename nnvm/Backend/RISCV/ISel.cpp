@@ -105,6 +105,9 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
     case InstID::URem:
       it->type = materializeArithmeticInstType(type, it->operand[1].valueType);
       break;
+    case InstID::PtrAdd:
+      it->type = ADD;
+      break;
     case InstID::Load:
       *it = LowInst::create(getLoadInstType(it->operand[0].valueType),
                             it->operand[0], it->operand[1], LowOperand::imm(0));
@@ -228,17 +231,17 @@ LowBB::Iterator ISel::handleConstant(LowFunc &func, LowBB &bb,
       loadConstantToReg(bb, it, rs2, vregForImm);
       it->operand[0] = vregForImm.use();
     }
-  } else {
-    for (LowOperand &r : it->operand) {
-      if (r.type == LowOperand::GlobalVar) {
-        auto vregForAddress = func.allocVReg(LowOperand::i64);
-        loadGlobalToReg(bb, it, r, vregForAddress);
-        r = vregForAddress.use();
-      } else if (r.isConstant()) {
-        auto vregForImm = func.allocVReg(r.valueType);
-        loadConstantToReg(bb, it, r, vregForImm);
-        it->operand[0] = vregForImm.use();
-      }
+  }
+
+  for (LowOperand &r : it->operand) {
+    if (r.type == LowOperand::GlobalVar) {
+      auto vregForAddress = func.allocVReg(LowOperand::i64);
+      loadGlobalToReg(bb, it, r, vregForAddress);
+      r = vregForAddress.use();
+    } else if (r.isConstant()) {
+      auto vregForImm = func.allocVReg(r.valueType);
+      loadConstantToReg(bb, it, r, vregForImm);
+      it->operand[0] = vregForImm.use();
     }
   }
 

@@ -30,6 +30,23 @@ public:
   // NOTE: This field is only valid for function.
   std::vector<SymbolType *> argTys;
 
+  uint getTotalNumOfElements() {
+    uint ret = 1;
+    SymbolType *current = this;
+    while (current->isArray()) {
+      ret *= current->numElements;
+      current = current->containedTy;
+    }
+    return ret;
+  }
+
+  SymbolType *getInnerMost() {
+    SymbolType *current = this;
+    while (current->isArray())
+      current = current->containedTy;
+    return current;
+  }
+
   bool isIdentical(const SymbolType &other) const {
     if (symbolID != other.symbolID)
       return false;

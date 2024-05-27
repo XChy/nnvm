@@ -31,3 +31,5 @@ static inline void dumpBackTrace() {
     assert(0 && Info);                                                         \
     __builtin_unreachable();                                                   \
   }
+
+#define nnvm_unimpl() nnvm_unreachable("Not implemented")

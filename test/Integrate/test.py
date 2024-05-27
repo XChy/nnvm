@@ -102,6 +102,7 @@ else:
         for filename in filenames:
             source = path.join(root, filename)
             if source.endswith("sy"):
+                print("Running on", source)
                 passed = test(source)
                 if passed:
                     pass_test += 1
