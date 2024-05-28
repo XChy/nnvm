@@ -96,9 +96,16 @@ private:
   Any varDef(SysYParser::VarDefContext *ctx,
              SysYParser::BtypeContext *btypeCtx);
 
-  void fetchElementsFrom(SysYParser::InitValContext *ctx, SymbolType *type,
+  void fetchElementsFrom(SysYParser::InitValContext *initVal,
+                         SymbolType *currentType, Type *irElementType,
                          std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
+                                  SymbolType *type);
+
+  void fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
+                         SymbolType *currentType, Type *irElementType,
+                         std::vector<Constant *> &output);
+  Constant *fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                   SymbolType *type);
 
   Type *getIRType(SysYParser::BtypeContext *ctx);

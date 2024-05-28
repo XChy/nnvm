@@ -13,6 +13,8 @@ public:
   std::string dump() override;
   std::string dumpAsOperand() override;
 
+  void setName(const std::string &name);
+
   void setInitVal(Constant *initVal) { this->initVal = initVal; }
   Constant *getInitVal() { return initVal; }
 
@@ -22,6 +24,7 @@ public:
 private:
   Constant *initVal;
   Type *innerType;
+  Module &module;
 };
 
 } // namespace nnvm

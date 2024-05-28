@@ -37,9 +37,8 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   case GlobalVar:
     out << var->name;
     break;
-  case None:
-    nnvm_unreachable("None ???");
-    break;
+  default:
+    nnvm_unimpl();
   }
 }
 
@@ -111,15 +110,7 @@ void LowInst::emit(std::ostream &out, EmitInfo &info) const {
     return;
   }
 
-  if (type > J_BEGIN && type < J_END) {
-    out << getNameForInstType(type) << " ";
-    operand[0].emit(out, info);
-    out << ", ";
-    operand[1].emit(out, info);
-    return;
-  }
-
-  if (type > U_BEGIN && type < U_END) {
+  if ((type > J_BEGIN && type < J_END) || (type > U_BEGIN && type < U_END)) {
     out << getNameForInstType(type) << " ";
     operand[0].emit(out, info);
     out << ", ";
@@ -151,4 +142,45 @@ uint64_t LowFunc::allocStack(const StackSlot &obj) {
 void LowFunc::emit(std::ostream &out, EmitInfo &info) const {
   for (auto *BB : BBs)
     BB->emit(out, info, BB != BBs[0]);
+}
+
+void LowModule::emit(std::ostream &out) const {
+  EmitInfo info(*this);
+  for (auto &func : funcs)
+    for (auto *bb : func->BBs)
+      info.allocBB(bb);
+
+  for (auto *func : funcs)
+    if (!func->isExternal)
+      out << ".global " << func->name << "\n";
+
+  // ".bss" section would be initialized with zeros.
+  out << ".section .bss\n";
+  for (auto *g : globals) {
+    if (g->isAllZeros)
+      g->emit(out, info);
+    out << "\n";
+  }
+
+  out << ".section .data\n";
+  for (auto *g : globals) {
+    if (!g->isAllZeros)
+      g->emit(out, info);
+    out << "\n";
+  }
+
+  out << ".section .text\n";
+  for (auto *func : funcs)
+    func->emit(out, info);
+}
+
+uint LowBB::getSuccNum() {}
+LowBB *LowBB::getSucc(int index) {}
+
+LowModule::~LowModule() {
+  for (auto *f : funcs)
+    delete f;
+
+  for (auto *g : globals)
+    delete g;
 }

@@ -37,7 +37,7 @@ public:
   uint64_t getValue() const { return value; }
   bool eq(const Constant *other) const {
     if (auto *otherInt = dyn_cast<ConstantInt>(other))
-      return value == otherInt->value;
+      return value == otherInt->value && getType() == other->getType();
     return false;
   }
 
@@ -118,6 +118,25 @@ public:
 
 private:
   std::vector<Constant *> value;
+};
+
+class ConstantAllZeros : public Constant {
+public:
+  static Constant *create(Module &module, Type *type);
+
+  // NOTE:  User should not use this constructor.
+  ConstantAllZeros(Type *ty) : Constant(ty) {}
+
+  virtual uint64_t hash() const { return 0; }
+  bool eq(const Constant *other) const {
+    if (auto *otherZeros = dyn_cast<ConstantAllZeros>(other))
+      return getType() == other->getType();
+    return false;
+  }
+
+  Constant *clone() const { return new ConstantAllZeros(type); }
+  std::string dump() { return "zeros"; }
+  std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 };
 
 } // namespace nnvm

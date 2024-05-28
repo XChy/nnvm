@@ -1,5 +1,5 @@
 // INPUT:1 4 2 3
-// EXPECTED:43
+// EXPECTED:435
 
 int mul2(int a) {
     return a + a;
@@ -13,5 +13,12 @@ int main() {
     if (a >= b)
         putint(666);
     putint(getint());
+
+    if(a && 0)
+        putint(666);
+
+    if(0 || a)
+        putint(5);
+
     return 0;
 }

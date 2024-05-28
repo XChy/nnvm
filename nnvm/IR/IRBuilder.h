@@ -76,11 +76,17 @@ public:
   Value *buildZExt(Value *operand, Type *toType, const std::string &name = "");
   Value *buildSExt(Value *operand, Type *toType, const std::string &name = "");
 
-  Constant *buildZero(Type *type) {
+  Constant *getZero(Type *type) {
     if (type->isInteger())
       return ConstantInt::create(*module, type, 0);
     if (type->isFloat())
       return ConstantFloat::create(*module, 0.0);
+    nnvm_unimpl();
+  }
+
+  Constant *getOne(Type *type) {
+    if (type->isInteger())
+      return ConstantInt::create(*module, type, 1);
     nnvm_unimpl();
   }
 

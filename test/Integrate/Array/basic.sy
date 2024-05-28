@@ -1,6 +1,10 @@
 // INPUT:
 // EXPECTED:01
+
 int arr[16] = {};
+int ab[4] = {1};
+int a[4][2] = {1};
+
 int main()
 {
     arr[1] = 1;

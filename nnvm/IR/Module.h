@@ -24,6 +24,7 @@ public:
 
   GlobalVariable *getGlobalVar(const std::string &name);
   void addGlobalVar(GlobalVariable *global);
+  void removeGlobalVar(const std::string &name);
   std::unordered_map<std::string, GlobalVariable *> getGlobalVarMap() const {
     return globalVarMap;
   }

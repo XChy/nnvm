@@ -1,6 +1,7 @@
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
 #include "Utils/Collection.h"
+#include "Utils/Debug.h"
 #include <Backend/LLVM/LLVMBackend.h>
 #include <string>
 #include <unordered_map>
@@ -87,7 +88,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   }
 
   // Instructions with defs
-  if (!I->getType()->isVoid())
+  if (I->getType() && !I->getType()->isVoid())
     out << valueToName[I] << " = ";
 
   if (auto SI = dyn_cast<StackInst>(I)) {
@@ -99,6 +100,13 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     out << "load " << LI->getType()->dump() << ", "
         << LI->getOperand(0)->getType()->dump() << " "
         << valueToName[LI->getOperand(0)];
+    return;
+  }
+
+  if (auto *ptrAdd = dyn_cast<PtrAddInst>(I)) {
+    out << "getelementptr i8, ptr " << valueToName[ptrAdd->getOperand(0)]
+        << ", " << ptrAdd->getOperand(1)->getType()->dump() << " "
+        << valueToName[ptrAdd->getOperand(1)];
     return;
   }
 
@@ -121,6 +129,34 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
       out << ")";
       return;
     }
+    nnvm_unimpl();
+  }
+
+  if (auto Br = dyn_cast<BranchInst>(I)) {
+    out << "br"
+        << " ";
+    if (Br->isConditional()) {
+      out << "i1"
+          << " " << valueToName[Br->getOperand(0)] << ", "
+          << "label"
+          << " " << valueToName[Br->getSucc(0)] << ", "
+          << "label"
+          << " " << valueToName[Br->getSucc(1)];
+    } else {
+      out << "label"
+          << " " << valueToName[Br->getSucc(0)];
+    }
+    return;
+  }
+
+  if (auto *CI = dyn_cast<ICmpInst>(I)) {
+    out << "icmp"
+        << " " << ICmpInst::getPredName(CI->getPredicate()) << " "
+        << CI->getOperand(0)->getType()->dump() << " "
+        << valueToName[CI->getOperand(0)] << ", "
+        << valueToName[CI->getOperand(1)];
+
+    return;
   }
 
   std::cerr << (uint)I->getOpcode() << "\n";

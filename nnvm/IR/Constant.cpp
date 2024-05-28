@@ -25,3 +25,7 @@ Constant *ConstantArray::create(Module &module, Type *ty,
 
   return module.addConstant(ConstantArray(ty, value));
 }
+
+Constant *ConstantAllZeros::create(Module &module, Type *ty) {
+  return module.addConstant(ConstantAllZeros(ty));
+}

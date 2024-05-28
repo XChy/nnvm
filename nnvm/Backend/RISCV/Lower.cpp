@@ -2,6 +2,7 @@
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
+#include "IR/Constant.h"
 #include "IR/Function.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
@@ -237,9 +238,13 @@ void LowerHelper::mapAll(Module &module) {
   for (auto &[name, var] : module.getGlobalVarMap()) {
     LowGlobalVar *lowVar = new LowGlobalVar;
     lowVar->name = name;
-    if (var->getInitVal())
-      lowVar->data = breakIntoBytes(var->getInitVal());
     lowVar->size = var->getInnerType()->getStoredBytes();
+    lowVar->isAllZeros = false;
+
+    if (auto allZeros = dyn_cast<ConstantAllZeros>(var->getInitVal()))
+      lowVar->isAllZeros = true;
+    else
+      lowVar->data = breakIntoBytes(var->getInitVal());
 
     defMap[var] = LowOperand{
         .type = LowOperand::GlobalVar,

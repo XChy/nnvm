@@ -27,6 +27,14 @@ void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
                                 LowOperand::imm(constant.immValue));
     bb.insertBefore(it, load);
     return;
+  } else if (canExpressInBits<32>(constant.immValue)) {
+    auto auipc = LowInst::create(
+        AUIPC, reg, LowOperand::imm(((int64_t)constant.immValue) >> 12));
+    auto load = LowInst::create(ADDI, reg, reg,
+                                LowOperand::imm(constant.immValue & 0xFFF));
+    bb.insertBefore(it, auipc);
+    bb.insertBefore(it, load);
+    return;
   }
   nnvm_unreachable("How to handle big constant, especially for i64?")
 }

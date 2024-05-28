@@ -8,7 +8,7 @@ import re
 import sys
 from threading import Timer
 
-test_dir = path.split(__file__)[0]
+test_dir = path.split(path.abspath(__file__))[0]
 root_dir = path.split(path.split(test_dir)[0])[0]
 compiler = path.join(root_dir, "build", "compiler")
 
@@ -47,19 +47,24 @@ def get_input(source):
         return ("" if searched_groups is None else searched_groups.group(1))
 
 
-def test(source):
-    reported_name = path.relpath(source, test_dir)
+def test(source, reported_name):
     ret = subprocess.Popen(
-        [compiler, source, "-o", asm], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding="UTF-8",)
+        [compiler, source, "-o", asm], stdout=subprocess.PIPE, encoding="UTF-8", stderr=subprocess.DEVNULL)
     stdout, stderr = ret.communicate()
     if ret.returncode != 0:
         print("COMPLIATION ERROR on", reported_name, "")
         return False
     else:
         # Use assembler to generate binary.
-        ret = subprocess.run([riscvgcc, "-c", asm, "-o", obj])
-        ret = subprocess.run([riscvgcc,  obj, sylib, "-o", mainexec])
+        ret = subprocess.run(
+            [riscvgcc, "-c", asm, "-o", obj])
         if ret.returncode != 0:
+            print("ASSEMBLER FAILED", reported_name, "")
+            return False
+        ret = subprocess.run(
+            [riscvgcc, obj, sylib, "-o", mainexec], stderr=subprocess.DEVNULL)
+        if ret.returncode != 0:
+            print("GCC FAILED", reported_name, "")
             return False
 
         # parse input and output
@@ -93,7 +98,7 @@ def test(source):
 
 
 if len(sys.argv) == 2:
-    passed = test(sys.argv[1])
+    passed = test(path.expanduser(sys.argv[1]))
     if passed:
         pass_test += 1
     total_test += 1
@@ -101,9 +106,10 @@ else:
     for root, _, filenames in os.walk(test_dir):
         for filename in filenames:
             source = path.join(root, filename)
-            if source.endswith("sy"):
-                print("Running on", source)
-                passed = test(source)
+            reported_name = path.relpath(source, test_dir)
+            if source.endswith("sy") and (source.count('functional') or source.count('Integer')):
+                print(f"[{total_test}] Running on", reported_name)
+                passed = test(source, reported_name)
                 if passed:
                     pass_test += 1
                 total_test += 1

@@ -33,7 +33,7 @@ public:
   bool isShowLine() { return showLine; }
 
 private:
-  uint64_t blockCount;
+  uint64_t blockCount = 0;
   bool emitImplicit = true;
   bool showLine = false;
   std::unordered_map<const LowBB *, uint64_t> bbToIndex;

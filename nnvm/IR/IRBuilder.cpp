@@ -92,7 +92,7 @@ Value *IRBuilder::buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs,
 }
 
 Value *IRBuilder::buildICmpNEZero(Value *lhs, const std::string &name) {
-  return buildICmp(ICmpInst::NE, lhs, buildZero(lhs->getType()));
+  return buildICmp(ICmpInst::NE, lhs, getZero(lhs->getType()));
 }
 
 Value *IRBuilder::buildZExt(Value *operand, Type *toType,

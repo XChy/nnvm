@@ -35,8 +35,13 @@ void Module::addFunction(Function *func) {
 GlobalVariable *Module::getGlobalVar(const std::string &name) {
   return globalVarMap[name];
 }
+
 void Module::addGlobalVar(GlobalVariable *global) {
   globalVarMap.insert({global->getName(), global});
+}
+
+void Module::removeGlobalVar(const std::string &name) {
+  globalVarMap.erase(name);
 }
 
 Type *Module::getVoidType() { return typeMap[Type::Void][0]; }

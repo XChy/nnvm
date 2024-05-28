@@ -22,7 +22,7 @@ bool LiveIntervalAnalysis::runOn(LowFunc &func) {
     instructionCount += BB->insts.size();
   }
 
-  printDefUse(func);
+  debug(printDefUse(func));
 
   for (LowBB *BB : func.BBs) {
     uint64_t localIndex = 0;

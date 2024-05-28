@@ -3,6 +3,7 @@
 #include "Frontend/Symbol.h"
 #include "IR/BasicBlock.h"
 #include "IR/Constant.h"
+#include "IR/GlobalVariable.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Debug.h"
@@ -278,14 +279,17 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     // TODO: error
     return Symbol::none();
   }
+
   for (int i = 0; i < ctx->constExp().size(); i += 1) {
     Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
     assert(nrElements.is<int>());
     symbolType =
         SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
   }
+
   Type *irType = getIRType(symbolType, btype);
   Constant *constVal = nullptr;
+
   if (irType->isInteger()) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
     assert(initVal.is<int>());
@@ -295,14 +299,15 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     assert(initVal.is<float>());
     constVal = ConstantFloat::create(*ir, initVal.as<float>());
   } else {
-    std::list<int> dims;
-    for (int i = 0; i < ctx->constExp().size(); i++) {
-      // TODO: report error here
-      dims.push_back(solveConstExp(ctx->constExp()[i]->exp()).as<int>());
-    }
-    constVal = solveConstInit(ctx->constInitVal()->constInitVal(), dims);
+    constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
   }
-  symbolTable.create(symbolName, symbolType, constVal);
+  if (symbolTable.isGlobal()) {
+    GlobalVariable *global = new GlobalVariable(*ir, constVal);
+    global->setName(ctx->IDENT()->getText());
+    symbolTable.create(symbolName, symbolType, global);
+  } else {
+    symbolTable.create(symbolName, symbolType, constVal);
+  }
   return Symbol::none();
 }
 
@@ -313,37 +318,93 @@ Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
   return Symbol::none();
 }
 
-void IRGenerator::fetchElementsFrom(SysYParser::InitValContext *ctx,
-                                    SymbolType *type,
+void IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
+                                    SymbolType *currentType,
+                                    Type *irElementType,
                                     std::vector<Constant *> &output) {
-  if (ctx->exp()) {
-    solveConstExp(ctx->exp());
+
+  if (initVal->exp()) {
+    Symbol exp = initVal->exp()->accept(this);
+    // TODO: non-constant? Float to int or int to float?
+    output.push_back(cast<Constant>(exp.entity));
+    return;
   }
-  if (!ctx || ctx->initVal().empty()) {
-    for (int i = 0; i < type->getTotalNumOfElements(); i++) {
+
+  if (currentType->isArray()) {
+    int initValIndex = 0;
+    while (initValIndex < currentType->getTotalNumOfElements()) {
+      if (initValIndex >= initVal->initVal().size())
+        output.push_back(builder.getZero(irElementType));
+      else
+        fetchElementsFrom(initVal->initVal(initValIndex),
+                          currentType->containedTy, irElementType, output);
+      initValIndex++;
     }
+    return;
   }
+
+  nnvm_unimpl();
 }
 
 Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
                                              SymbolType *type) {
   SymbolType *elementTy = type->getInnerMost();
   uint totalNumOfElements = type->getTotalNumOfElements();
+  Type *arrayType = ir->getArrayType(toIRType(elementTy), totalNumOfElements);
 
-  if (!ctx || ctx->initVal().empty()) {
-    std::vector<Constant *> initValList(totalNumOfElements,
-                                        builder.buildZero(ir->getIntType()));
-    Type *irArrayType =
-        ir->getArrayType(toIRType(elementTy), totalNumOfElements);
-    return ConstantArray::create(*ir, irArrayType, initValList);
+  if (!ctx || ctx->initVal().empty())
+    return ConstantAllZeros::create(*ir, arrayType);
+
+  std::vector<Constant *> initValList;
+  initValList.reserve(totalNumOfElements);
+
+  fetchElementsFrom(ctx, type, toIRType(elementTy), initValList);
+  return ConstantArray::create(*ir, arrayType, initValList);
+}
+
+void IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
+                                    SymbolType *currentType,
+                                    Type *irElementType,
+                                    std::vector<Constant *> &output) {
+
+  if (initVal->constExp()) {
+    Symbol exp = initVal->constExp()->accept(this);
+    // TODO: non-constant? Float to int or int to float?
+    output.push_back(cast<Constant>(exp.entity));
+    return;
   }
 
-  std::vector<Constant *> initValList(totalNumOfElements);
-
-  for (auto *element : ctx->initVal()) {
+  if (currentType->isArray()) {
+    int initValIndex = 0;
+    while (initValIndex < currentType->getTotalNumOfElements()) {
+      if (initValIndex >= initVal->constInitVal().size())
+        output.push_back(builder.getZero(irElementType));
+      else
+        fetchElementsFrom(initVal->constInitVal(initValIndex),
+                          currentType->containedTy, irElementType, output);
+      initValIndex++;
+    }
+    return;
   }
 
   nnvm_unimpl();
+}
+
+Constant *
+IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
+                                   SymbolType *type) {
+  SymbolType *elementTy = type->getInnerMost();
+  uint totalNumOfElements = type->getTotalNumOfElements();
+  Type *arrayType = ir->getArrayType(toIRType(elementTy), totalNumOfElements);
+
+  if (!ctx || ctx->constInitVal().empty())
+    return ConstantAllZeros::create(*ir, arrayType);
+
+  std::vector<Constant *> initValList;
+  initValList.reserve(totalNumOfElements);
+
+  fetchElementsFrom(ctx, type, toIRType(elementTy), initValList);
+  return ConstantArray::create(*ir, arrayType, initValList);
 }
 
 Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
@@ -369,18 +430,15 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   Value *irVal = nullptr;
   if (irType->isInteger()) {
     if (symbolTable.isGlobal()) {
-      int intVal;
+      int intVal = 0;
       if (ctx->initVal()) {
         Any solvedVal = solveConstExp(ctx->initVal()->exp());
         intVal = castConstExp<float, int>(solvedVal);
-      } else {
-        intVal = 0;
       }
 
       Constant *initVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
       GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      ir->addGlobalVar(globalVar);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -394,17 +452,14 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     }
   } else if (irType->isFloat()) {
     if (symbolTable.isGlobal()) {
-      float floatVal;
+      float floatVal = 0.0;
       if (ctx->initVal()) {
         Any solvedVal = solveConstExp(ctx->initVal()->exp());
         floatVal = castConstExp<int, float>(solvedVal);
-      } else {
-        floatVal = 0.0;
       }
       Constant *initVal = ConstantFloat::create(*ir, floatVal);
       GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      ir->addGlobalVar(globalVar);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -418,12 +473,11 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     }
   } else if (symbolType->isArray()) {
     if (symbolTable.isGlobal()) {
+      GlobalVariable *globalVar;
       Constant *initVal = nullptr;
       initVal = fetchFlatElementsFrom(ctx->initVal(), symbolType);
-
-      GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
+      globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      ir->addGlobalVar(globalVar);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(
@@ -510,7 +564,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   for (auto stmtCtx : ctx->block()->blockItem())
     stmtCtx->accept(this);
-    
+
   symbolTable.exitScope();
 
   if (func->getReturnType()->isVoid() &&
@@ -616,7 +670,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
         return Symbol::none;
       }
 
-      return Symbol{builder.buildRet(nullptr), nullptr};
+      return Symbol{builder.buildRet(), nullptr};
     }
   } else if (ctx->block()) {
     return ctx->block()->accept(this);
@@ -640,6 +694,9 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     // While Conditon
     builder.setInsertPoint(whileCond->end());
     Symbol cond = ctx->cond()->accept(this);
+    if (!cond)
+      return Symbol::none();
+    cond.entity = builder.buildICmpNEZero(cond.entity);
     builder.buildBr(cond.entity, whileBody, whileExit);
 
     // While Body
@@ -664,30 +721,76 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     return exp;
   } else if (ctx->AND()) {
 
-    Symbol exp1 = ctx->cond(0)->accept(this);
-    if (!exp1)
+    // lhs && rhs  -->  if lhs then rhs else false;
+    Symbol lhs = ctx->cond(0)->accept(this);
+    if (!lhs)
       return Symbol::none();
-    Symbol cond1;
-    if (exp1.symbolType->isInt())
-      cond1 = Symbol{
-          builder.buildICmp(ICmpInst::NE, exp1.entity,
-                            ConstantInt::create(*ir, ir->getIntType(), 0)),
-          SymbolType ::getBoolTy()};
-    else
-      nnvm_unreachable("Unimplemented FCmp")
 
-          Symbol exp2 = ctx->cond(1)->accept(this);
-    if (!exp2)
+    BasicBlock *thenBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.then");
+    BasicBlock *elseBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.else");
+    BasicBlock *exitBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.exit");
+
+    Value *result = builder.buildStack(ir->getBoolType(), "select");
+    // if lhs
+    lhs.entity = builder.buildICmpNEZero(lhs.entity);
+    builder.buildBr(lhs.entity, thenBB, elseBB);
+
+    // then
+    builder.setInsertPoint(thenBB->end());
+    Symbol rhs = ctx->cond(1)->accept(this);
+    if (!rhs)
       return Symbol::none();
-    Symbol cond2;
-    if (exp2.symbolType->isInt())
-      cond2 = Symbol{
-          builder.buildICmp(ICmpInst::NE, exp2.entity,
-                            ConstantInt::create(*ir, ir->getIntType(), 0)),
-          SymbolType::getBoolTy()};
+    rhs.entity = builder.buildICmpNEZero(rhs.entity);
+    builder.buildStore(rhs.entity, result);
+    builder.buildBr(exitBB);
 
+    // else
+    builder.setInsertPoint(elseBB->end());
+    builder.buildStore(builder.getZero(ir->getBoolType()), result);
+    builder.buildBr(exitBB);
+
+    builder.setInsertPoint(exitBB->end());
+    return Symbol{builder.buildLoad(result, ir->getBoolType()),
+                  SymbolType::getBoolTy()};
   } else if (ctx->OR()) {
 
+    // lhs || rhs  -->  if lhs then true else rhs;
+    Symbol lhs = ctx->cond(0)->accept(this);
+    if (!lhs)
+      return Symbol::none();
+
+    BasicBlock *thenBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.then");
+    BasicBlock *elseBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.else");
+    BasicBlock *exitBB =
+        new BasicBlock(builder.getCurrentFunc(), "select.exit");
+
+    Value *result = builder.buildStack(ir->getBoolType(), "select");
+    // if lhs
+    lhs.entity = builder.buildICmpNEZero(lhs.entity);
+    builder.buildBr(lhs.entity, thenBB, elseBB);
+
+    // then
+    builder.setInsertPoint(thenBB->end());
+    builder.buildStore(builder.getOne(ir->getBoolType()), result);
+    builder.buildBr(exitBB);
+
+    // else
+    builder.setInsertPoint(elseBB->end());
+    Symbol rhs = ctx->cond(1)->accept(this);
+    if (!rhs)
+      return Symbol::none();
+    rhs.entity = builder.buildICmpNEZero(rhs.entity);
+    builder.buildStore(rhs.entity, result);
+    builder.buildBr(exitBB);
+
+    builder.setInsertPoint(exitBB->end());
+    return Symbol{builder.buildLoad(result, ir->getBoolType()),
+                  SymbolType::getBoolTy()};
   } else {
     Symbol exp1 = ctx->cond(0)->accept(this);
     if (!exp1)
@@ -697,23 +800,25 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     if (!exp2)
       return Symbol::none();
 
+    Value *lhs = exp1.entity;
+    Value *rhs = exp2.entity;
     if (ctx->EQ())
-      return Symbol{builder.buildICmp(ICmpInst::EQ, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::EQ, lhs, rhs),
                     SymbolType::getBoolTy()};
     else if (ctx->NEQ())
-      return Symbol{builder.buildICmp(ICmpInst::NE, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::NE, lhs, rhs),
                     SymbolType::getBoolTy()};
     else if (ctx->LT())
-      return Symbol{builder.buildICmp(ICmpInst::SLT, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::SLT, lhs, rhs),
                     SymbolType::getBoolTy()};
     else if (ctx->GT())
-      return Symbol{builder.buildICmp(ICmpInst::SGT, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::SGT, lhs, rhs),
                     SymbolType::getBoolTy()};
     else if (ctx->LE())
-      return Symbol{builder.buildICmp(ICmpInst::SLE, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::SLE, lhs, rhs),
                     SymbolType::getBoolTy()};
     else if (ctx->GE())
-      return Symbol{builder.buildICmp(ICmpInst::SGE, exp1.entity, exp2.entity),
+      return Symbol{builder.buildICmp(ICmpInst::SGE, lhs, rhs),
                     SymbolType::getBoolTy()};
     else
       return Symbol::none();
@@ -895,8 +1000,8 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 
   if (ctx->unaryOp()->MINUS()) {
     if (operand.symbolType->isInt()) {
-      return Symbol{builder.buildBinOp<SubInst>(
-                        builder.buildZero(val->getType()), val, val->getType()),
+      return Symbol{builder.buildBinOp<SubInst>(builder.getZero(val->getType()),
+                                                val, val->getType()),
                     operand.symbolType};
     } else {
       nnvm_unreachable(
@@ -906,7 +1011,7 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 
   if (ctx->unaryOp()->NOT()) {
     Value *equalToZero =
-        builder.buildICmp(ICmpInst::EQ, val, builder.buildZero(val->getType()));
+        builder.buildICmp(ICmpInst::EQ, val, builder.getZero(val->getType()));
     Value *zext = builder.buildZExt(equalToZero, val->getType(),
                                     val->getName() + ".zext");
     return Symbol{zext, operand.symbolType};

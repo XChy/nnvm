@@ -26,20 +26,20 @@ public:
 
 class LowGlobalVar : public LowGlobal {
 public:
-  bool isInitialized;
-  uint64_t size;
+  bool isAllZeros = false;
+  uint64_t size = 0;
   std::vector<std::byte> data;
 
   void emit(std::ostream &out, EmitInfo &info) const {
     out << name << ":\n";
-    if (isInitialized) {
+    if (isAllZeros) {
+      out << ".space " << size;
+    } else {
       out << ".byte ";
       std::vector<std::string> dataDump(data.size());
       for (int i = 0; i < data.size(); i++)
         dataDump[i] = std::to_string((unsigned char)data[i]);
       out << join(dataDump.begin(), dataDump.end(), ", ");
-    } else {
-      out << ".space " << size;
     }
   }
 };
@@ -213,6 +213,9 @@ public:
     return insts.insert(++it, I);
   }
 
+  uint getSuccNum();
+  LowBB *getSucc(int index);
+
   std::list<LowInst> insts;
 };
 
@@ -245,32 +248,8 @@ public:
   std::vector<LowFunc *> funcs;
   std::vector<LowGlobalVar *> globals;
 
-  void emit(std::ostream &out) const {
-    EmitInfo info(*this);
-    for (auto &func : funcs)
-      for (auto *bb : func->BBs)
-        info.allocBB(bb);
+  void emit(std::ostream &out) const;
 
-    for (auto *func : funcs)
-      if (!func->isExternal)
-        out << ".global " << func->name << "\n";
-
-    out << ".section .data\n";
-    for (auto *g : globals) {
-      g->emit(out, info);
-      out << "\n";
-    }
-
-    out << ".section .text\n";
-    for (auto *func : funcs)
-      func->emit(out, info);
-  }
-
-  ~LowModule() {
-    for (auto *f : funcs)
-      delete f;
-    for (auto *g : globals)
-      delete g;
-  }
+  ~LowModule();
 };
 } // namespace nnvm::riscv

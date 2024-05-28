@@ -35,7 +35,6 @@ public:
     if (this == other)
       return true;
 
-    // TODO:??
     return this == other;
   }
 

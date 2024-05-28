@@ -57,7 +57,9 @@ def test(source):
         return False
     else:
         # Use assembler to generate binary.
-        ret = subprocess.run([llc, "-filetype=obj", llvm, "-o", obj])
+        ret = subprocess.run([llc, "-O2", "-filetype=obj", llvm, "-o", obj])
+        if ret.returncode != 0:
+            return False
         ret = subprocess.run([gcc,  obj, sylib, "-o", mainexec])
         if ret.returncode != 0:
             return False
