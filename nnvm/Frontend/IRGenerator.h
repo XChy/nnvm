@@ -63,6 +63,8 @@ public:
   Any visitConstDecl(SysYParser::ConstDeclContext *ctx) override;
   Any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
 
+  Any visitBlock(SysYParser::BlockContext *ctx) override;
+  
   Type *toIRType(SymbolType *symbolTy);
 
 private:

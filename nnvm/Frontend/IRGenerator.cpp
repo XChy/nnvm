@@ -373,6 +373,15 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   return Symbol::none();
 }
 
+Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
+  symbolTable.enterScope();
+  for (auto stmtCtx : ctx->blockItem()) {
+    stmtCtx->accept(this);
+  }
+  symbolTable.exitScope();
+  return Symbol::none();
+}
+
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(funcName)) {
@@ -432,7 +441,9 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     builder.buildStore(arg, stack);
   }
 
-  ctx->block()->accept(this);
+  for (auto stmtCtx : ctx->block()->blockItem())
+    stmtCtx->accept(this);
+    
   symbolTable.exitScope();
 
   if (func->getReturnType()->isVoid() &&
