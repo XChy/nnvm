@@ -1,13 +1,20 @@
-.cache/clangd/index
-.cmake/api/v1/reply
-CMakeFiles
-build
-nnvm/cmake_install.cmake
-compile_commands.json
-cmake_install.cmake
-CMakeCache.txt
-nnvm/Makefile
-Makefile
+# IDE
+.cache/
+.idea/
 .vscode/
+build/
+cmake-build-debug/
+compile_commands.json
+
+# CMake
+.cmake/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+nnvm/cmake_install.cmake
+nnvm/Makefile
+
+# Misc
 nnvm/Frontend/.antlr/
 riscv64-unknown-linux-gnu-gcc
