@@ -13,6 +13,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
 include_directories(antlr-runtime)
+include_directories(nnvm)
 
 file(GLOB_RECURSE ANTLR4_RUNTIME_SRC antlr-runtime/*.cpp)
 add_library(ANTLR4_RUNTIME_LIB SHARED ${ANTLR4_RUNTIME_SRC})
