@@ -16,6 +16,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <getopt.h>
 
 using namespace nnvm;
 using std::string;
@@ -31,32 +32,41 @@ static bool dumpAssembly;
 static bool enableOptimization = false;
 
 int parseArgs(int argc, char **argv) {
-  for (int i = 0; i < argc; i++) {
-    string arg = argv[i];
-    if (arg[0] == '-') {
-      if (arg == "-dump-ir")
+  static struct option options[] = {
+      {"dump-ir", no_argument, nullptr, 'i'},
+      {"dump-opt-ir", no_argument, nullptr, 'I'},
+      {"dump-asm", no_argument, nullptr, 'a'},
+      {"O3", no_argument, nullptr, 'O'},
+      {"backend", required_argument, nullptr, 'b'},
+      {nullptr, no_argument, nullptr, 'o'},
+      {nullptr, no_argument, nullptr, 0}
+  };
+  int opt;
+  while ((opt = getopt_long_only(argc, argv, "b:o:", options, nullptr)) != -1) {
+    switch (opt) {
+      case 'i':
         dumpIR = true;
-      else if (arg == "-dump-opt-ir")
+        break;
+      case 'I':
         dumpIRAfterOpt = true;
-      else if (arg == "-dump-asm")
+        break;
+      case 'a':
         dumpAssembly = true;
-      else if (arg == "-O3")
+        break;
+      case 'O':
         enableOptimization = true;
-      else if (arg == "-backend") {
-        backendType = argv[i + 1];
-        i++;
-      } else if (arg == "-o") {
-        // TODO: may error?
-        outputFile = argv[i + 1];
-        i++;
-      } else
+        break;
+      case 'b':
+        backendType = optarg;
+        break;
+      case 'o':
+        outputFile = optarg;
+        break;
+      default:
         nnvm_unreachable("Not implemented")
-
-      // TODO: parse arguments
-    } else {
-      sourceFile = arg;
     }
   }
+  sourceFile = argv[optind];
   return 0;
 }
 
