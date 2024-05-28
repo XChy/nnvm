@@ -80,6 +80,8 @@ private:
   std::stack<whileLoop> whileLoops;
   Constant *constZeroInt;
   Constant *constOneInt;
+  Constant *constZeroFloat;
+  Constant *constOneFloat;
   Constant *constTrue;
   Constant *constFalse;
 

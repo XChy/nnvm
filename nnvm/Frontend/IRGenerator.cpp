@@ -19,6 +19,8 @@ void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   builder.setModule(ir);
   constZeroInt = ConstantInt::create(*ir, ir->getIntType(), 0);
   constOneInt = ConstantInt::create(*ir, ir->getIntType(), 1);
+  constZeroFloat = ConstantFloat::create(*ir, 0.0);
+  constOneFloat = ConstantFloat::create(*ir, 1.0);
   constTrue = ConstantInt::create(*ir, ir->getBoolType(), 1);
   constFalse = ConstantInt::create(*ir, ir->getBoolType(), 0);
   visit(ast);
@@ -340,14 +342,14 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     }
   } else if (irType->getClass() == Type::Float) {
     if (symbolTable.isGlobal()) {
-      Constant *constInitVal = nullptr;
+      Constant *constInitVal = constZeroFloat;
       if (ctx->initVal()) {
         float floatVal =
             solveConstExp(ctx->initVal()->exp()).is<int>()
                 ? (float)(solveConstExp(ctx->initVal()->exp()).as<int>())
                 : solveConstExp(ctx->initVal()->exp()).as<float>();
         constInitVal = ConstantFloat::create(*ir, floatVal);
-      }
+      } 
       GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
       globalVar->setName(symbolName);
       ir->addGlobalVar(globalVar);
