@@ -66,12 +66,22 @@ public:
   Type *toIRType(SymbolType *symbolTy);
 
 private:
+  struct whileLoop {
+    BasicBlock *condBB;
+    BasicBlock *afterBB;
+    whileLoop(BasicBlock *condBB, BasicBlock *afterBB) : condBB(condBB), afterBB(afterBB) {}
+  };
   Module *ir;
   IRBuilder builder;
 
   Symbol *currentFunc;
   BasicBlock *currentBB;
   SymbolTable symbolTable;
+  std::stack<whileLoop> whileLoops;
+  Constant *constZeroInt;
+  Constant *constOneInt;
+  Constant *constTrue;
+  Constant *constFalse;
 
   //help function
   Any expBinOp(SysYParser::ExpContext*);

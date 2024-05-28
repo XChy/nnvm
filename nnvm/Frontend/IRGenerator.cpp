@@ -17,6 +17,10 @@ IRGenerator::IRGenerator() {}
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
   builder.setModule(ir);
+  constZeroInt = ConstantInt::create(*ir, ir->getIntType(), 0);
+  constOneInt = ConstantInt::create(*ir, ir->getIntType(), 1);
+  constTrue = ConstantInt::create(*ir, ir->getBoolType(), 1);
+  constFalse = ConstantInt::create(*ir, ir->getBoolType(), 0);
   visit(ast);
 }
 
@@ -314,6 +318,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
                 ? (int)(solveConstExp(ctx->initVal()->exp()).as<float>())
                 : solveConstExp(ctx->initVal()->exp()).as<int>();
         constInitVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
+      } else {
+        constInitVal = constZeroInt;
       }
       GlobalVariable *globalVar = new GlobalVariable(*ir, constInitVal);
       globalVar->setName(symbolName);
@@ -537,10 +543,10 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   } else if (ctx->exp()) {
     return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
-    nnvm_unreachable("Not implemeted continue");
+    builder.buildBr(whileLoops.top().condBB);
   } else if (ctx->WHILE()) {
     if (!ctx->cond()) {
-      // TODO : error
+      // TODO: error
       return Symbol::none();
     }
     BasicBlock *whileCond =
@@ -551,7 +557,6 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
         new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
 
     builder.buildBr(whileCond);
-
     // While Conditon
     builder.setInsertPoint(whileCond->end());
     Symbol cond = ctx->cond()->accept(this);
@@ -559,14 +564,16 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
     // While Body
     builder.setInsertPoint(whileBody->end());
+    whileLoops.push({whileCond, whileExit});
     ctx->stmt(0)->accept(this);
+    whileLoops.pop();
     if (!builder.getCurrentBB()->getTerminator())
       builder.buildBr(whileCond);
 
     builder.setInsertPoint(whileExit->end());
     return Symbol::none();
   } else if (ctx->BREAK()) {
-    nnvm_unreachable("Not implemeted break");
+    builder.buildBr(whileLoops.top().afterBB);
   }
   return Symbol::none();
 }
