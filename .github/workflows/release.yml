@@ -1,0 +1,34 @@
+name: release
+
+on: workflow_dispatch
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Env
+        run: |
+          sudo apt update
+          sudo apt install ninja-build libgtest-dev g++-12-riscv64-linux-gnu g++-12-arm-linux-gnueabihf
+
+      #- name: Build
+        #run: |
+          #mkdir build && cd build
+          #cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMMC_LLVM_SUPPORT=OFF
+          #cmake --build .
+
+      - name: Update repo
+        env:
+          URL: ${{ secrets.REPO_URL }}
+
+        run: |
+          git config --global user.name "NNVM Authors"
+          git config --global user.email "xxs_chy@outlook.com"
+          git clone $URL nnvm_submit
+          ./educg/sync_repo.sh

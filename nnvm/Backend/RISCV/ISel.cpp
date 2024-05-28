@@ -17,7 +17,7 @@ void ISel::isel(LowFunc &func) {
 
   for (auto *bb : func.BBs)
     for (auto it = bb->insts.begin(); it != bb->insts.end();)
-      it = handleConstant(func, *bb, it);
+      it = legalizeOperands(func, *bb, it);
 }
 
 void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
@@ -210,8 +210,8 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
   return it;
 }
 
-LowBB::Iterator ISel::handleConstant(LowFunc &func, LowBB &bb,
-                                     LowBB::Iterator it) {
+LowBB::Iterator ISel::legalizeOperands(LowFunc &func, LowBB &bb,
+                                       LowBB::Iterator it) {
   if (it->type > R_BEGIN && it->type < R_END) {
     LowOperand &rs1 = it->operand[1];
     LowOperand &rs2 = it->operand[2];

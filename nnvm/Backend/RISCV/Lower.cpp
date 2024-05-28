@@ -144,16 +144,19 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
     }
     break;
   }
+
   case InstID::ICmp: {
     ICmpInst *CI = cast<ICmpInst>(I);
 
     auto lowered =
         LowInst::create((uint64_t)InstID::ICmp, defMap[CI],
                         defMap[CI->getOperand(0)], defMap[CI->getOperand(1)]);
+    // NOTE: A hole, we put the predicate of the 
     lowered.operand.push_back(LowOperand::imm(CI->getPredicate()));
     emit(lowered);
     break;
   }
+
   case InstID::Ret: {
     if (I->getOperandNum() != 0) {
       Value *returned = I->getOperand(0);
@@ -171,11 +174,13 @@ void LowerHelper::lowerInst(LowFunc *lowFunc, Instruction *I,
     emit(inst);
     break;
   }
+
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
     defMap[I] = LowOperand::stackSlot(lowFunc->allocStackSlot(size)).def();
     break;
   }
+
   default:
     LowInst lowInst;
     lowInst.type = instType;

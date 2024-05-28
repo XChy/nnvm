@@ -11,9 +11,15 @@ public:
                  std::list<LowInst> &instList);
 
   void mapAll(Module &module);
+
+  /**
+   * Lower the MIR module to a LIR module
+   * @param module MIR module
+   * @param lower LIR module
+   */
   void lower(Module &module, LowModule &lowered);
 
-  LowOperand virtualReg(Value *def, LowFunc* lowFunc);
+  LowOperand virtualReg(Value *def, LowFunc *lowFunc);
 
 private:
   std::unordered_map<Value *, LowOperand> defMap;
