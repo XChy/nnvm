@@ -67,9 +67,15 @@ public:
 
   enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
   static LowOperand none() { return LowOperand{.type = None}; }
+
   static LowOperand stackSlot(uint64_t stackSlotId) {
     return LowOperand{.type = StackSlot, .stackSlotId = stackSlotId};
   }
+
+  static LowOperand constant(uint64_t c) {
+    return LowOperand{.type = Constant, .immValue = c};
+  }
+
   static LowOperand label(LowBB *bb) {
     return LowOperand{.type = BasicBlock, .bb = bb};
   }
@@ -93,6 +99,7 @@ public:
     }
   }
 
+  bool isPhyReg() const { return isGPR() || isFPR(); }
   bool isGPR() const { return type == GPRegister; }
   bool isVR() const { return type == VirtualRegister; }
   bool isFPR() const { return type == FPRegister; }

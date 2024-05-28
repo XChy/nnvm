@@ -13,11 +13,11 @@
 #include "atn/ParserATNSimulator.h"
 #include "atn/PredictionMode.h"
 #include <fstream>
+#include <getopt.h>
 #include <ios>
 #include <iostream>
 #include <memory>
 #include <string>
-#include <getopt.h>
 
 using namespace nnvm;
 using std::string;
@@ -40,31 +40,30 @@ int parseArgs(int argc, char **argv) {
       {"O3", no_argument, nullptr, 'O'},
       {"backend", required_argument, nullptr, 'b'},
       {nullptr, no_argument, nullptr, 'o'},
-      {nullptr, no_argument, nullptr, 0}
-  };
+      {nullptr, no_argument, nullptr, 0}};
   int opt;
   while ((opt = getopt_long_only(argc, argv, "b:o:", options, nullptr)) != -1) {
     switch (opt) {
-      case 'i':
-        dumpIR = true;
-        break;
-      case 'I':
-        dumpIRAfterOpt = true;
-        break;
-      case 'a':
-        dumpAssembly = true;
-        break;
-      case 'O':
-        enableOptimization = true;
-        break;
-      case 'b':
-        backendType = optarg;
-        break;
-      case 'o':
-        outputFile = optarg;
-        break;
-      default:
-        nnvm_unreachable("Not implemented")
+    case 'i':
+      dumpIR = true;
+      break;
+    case 'I':
+      dumpIRAfterOpt = true;
+      break;
+    case 'a':
+      dumpAssembly = true;
+      break;
+    case 'O':
+      enableOptimization = true;
+      break;
+    case 'b':
+      backendType = optarg;
+      break;
+    case 'o':
+      outputFile = optarg;
+      break;
+    default:
+      nnvm_unreachable("Not implemented")
     }
   }
   sourceFile = argv[optind];
@@ -99,7 +98,8 @@ int main(int argc, char **argv) {
     parser.getInterpreter<antlr4::atn::ParserATNSimulator>()->setPredictionMode(
         antlr4::atn::PredictionMode::LL);
     parser.setErrorHandler(
-        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::DefaultErrorStrategy));
+        // TODO: use Default strategy
+        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::BailErrorStrategy));
     tree = parser.program();
   }
 

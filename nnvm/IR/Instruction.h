@@ -209,6 +209,22 @@ private:
   Predicate predicate;
 };
 
+class FCmpInst : public Instruction {
+public:
+  enum Predicate { OEQ, ONE, OLT, OGT, OLE, OGE, ULT, ULE, UGT, UGE };
+
+  static std::string getPredName(Predicate p);
+
+  FCmpInst(Predicate predicate, Type *ty)
+      : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
+
+  void setPredicate(Predicate pred) { this->predicate = pred; }
+  Predicate getPredicate() const { return predicate; }
+
+private:
+  Predicate predicate;
+};
+
 // ===========================
 // Cast instructions
 // ===========================

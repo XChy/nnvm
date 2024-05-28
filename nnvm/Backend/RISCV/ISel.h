@@ -2,11 +2,13 @@
 #include "Backend/RISCV/LowIR.h"
 namespace nnvm::riscv {
 
-static void loadConstantToReg(LowBB &bb, LowBB::Iterator it,
-                              LowOperand constant, LowOperand reg);
+void loadConstantToReg(LowBB &bb, LowBB::Iterator it, LowOperand constant,
+                       LowOperand reg);
+void loadRegPlusConstantToReg(LowBB &bb, LowBB::Iterator it, LowOperand srcReg,
+                              LowOperand constant, LowOperand destReg);
 
-static void loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
-                            LowOperand reg);
+void loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
+                     LowOperand reg);
 
 class ISel {
 public:

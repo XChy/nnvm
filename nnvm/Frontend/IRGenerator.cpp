@@ -88,8 +88,14 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
  */
 Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
   std::vector<nnvm::SysYParser::ExpContext *> indexs = ctx->exp();
-  Constant *valConstant =
-      cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
+  Constant *valConstant;
+
+  if (auto *globalConstant = dyn_cast<GlobalVariable>(
+          symbolTable.lookup(ctx->IDENT()->getText())->entity))
+    valConstant = globalConstant->getInitVal();
+  else
+    valConstant =
+        cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
 
   if (auto constInt = dyn_cast<ConstantInt>(valConstant))
     return constInt->getValue();
@@ -148,11 +154,35 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       }
     }
 
+    if (ctx->unaryOp()) {
+      Any operand = solveConstExp(ctx->exp()[0]);
+      if (ctx->unaryOp()->PLUS())
+        return operand;
+
+      if (operand.is<float>()) {
+        if (ctx->unaryOp()->NOT())
+          return (int)(operand.as<float>() != 0);
+        if (ctx->unaryOp()->MINUS())
+          return -operand.as<float>();
+      }
+
+      if (operand.is<int>()) {
+        if (ctx->unaryOp()->NOT())
+          return (int)(operand.as<int>() != 0);
+        if (ctx->unaryOp()->MINUS())
+          return -operand.as<int>();
+      }
+
+      nnvm_unimpl();
+    }
+
     if (auto lvalCtx = ctx->lVal()) {
       return solveConstLval(lvalCtx);
     }
     assert("Should not reach here");
   }
+
+
   Any lhsAny = solveConstExp(ctx->exp()[0]);
   Any rhsAny = solveConstExp(ctx->exp()[1]);
   if (lhsAny.is<float>() || rhsAny.is<float>()) {
@@ -169,6 +199,9 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     }
     if (ctx->DIV()) {
       return lhs / rhs;
+    }
+    if (ctx->MOD()) {
+      nnvm_unimpl();
     }
     assert("Should not reach here");
   } else if (lhsAny.is<int>() && rhsAny.is<int>()) {
@@ -192,7 +225,6 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     assert("Should not reach here");
   }
   nnvm_unreachable("Should not reach here");
-  return -1;
 }
 
 Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {

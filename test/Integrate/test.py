@@ -98,7 +98,9 @@ def test(source, reported_name):
 
 
 if len(sys.argv) == 2:
-    passed = test(path.expanduser(sys.argv[1]))
+    source = path.expanduser(sys.argv[1])
+    reported_name = path.relpath(source, test_dir)
+    passed = test(source, reported_name)
     if passed:
         pass_test += 1
     total_test += 1

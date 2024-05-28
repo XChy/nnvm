@@ -5,6 +5,8 @@ import tempfile
 import os
 import os.path as path
 import re
+import sys
+from threading import Timer
 
 test_dir = path.split(__file__)[0]
 root_dir = path.split(path.split(test_dir)[0])[0]
@@ -68,13 +70,22 @@ def test(source):
         inputed = get_input(source).strip() + "\n"
         expected = get_expected(source).strip()
 
-        ret = subprocess.Popen(mainexec,
-                               stdout=subprocess.PIPE, stdin=subprocess.PIPE, encoding="UTF-8")
-
-        if source.count("functional") != 0:
-            actual = str(ret.wait())
-        else:
+        ret = subprocess.Popen(["qemu-riscv64", "-L", "/usr/riscv64-linux-gnu", mainexec, "console=ttyS0"],
+                               stdout=subprocess.PIPE, stdin=subprocess.PIPE,
+                               encoding="UTF-8")
+        timer = Timer(2, ret.kill)
+        try:
+            timer.start()
             actual, stderr = ret.communicate(input=inputed)
+            if source.count("functional"):
+                actual = (actual + ("" if actual.endswith('\n')
+                          else "\n") + str(ret.wait())).strip()
+        finally:
+            if not timer.is_alive():
+                print("TIMEOUT on", reported_name)
+                timer.cancel()
+                return False
+            timer.cancel()
 
         if actual != expected:
             print("FAILED on", reported_name, ", actual",
@@ -92,14 +103,21 @@ ret = subprocess.Popen(
 ret.communicate()
 assert (ret.returncode == 0)
 
-for root, _, filenames in os.walk(test_dir):
-    for filename in filenames:
-        source = path.join(root, filename)
-        if source.endswith("sy"):
-            passed = test(source)
-            if passed:
-                pass_test += 1
-            total_test += 1
+if len(sys.argv) == 2:
+    source = path.expanduser(sys.argv[1])
+    passed = test(source)
+    if passed:
+        pass_test += 1
+    total_test += 1
+else:
+    for root, _, filenames in os.walk(test_dir):
+        for filename in filenames:
+            source = path.join(root, filename)
+            if source.endswith("sy") and (source.count('functional') or source.count('Integer')):
+                passed = test(source)
+                if passed:
+                    pass_test += 1
+                total_test += 1
 
 
 print("============Complete Test=============")

@@ -103,15 +103,13 @@ std::string Instruction::dump() {
       ret += join(operandDump.begin(), operandDump.end(), ", ");
       break;
     case InstID::Call:
-      ret += getName() + " = ";
       ret += "call ";
       ret += getOperand(0)->dumpAsOperand();
       ret += "(" + join(operandDump.begin() + 1, operandDump.end(), ", ") + ")";
       break;
-
     case InstID::Phi:
-      ret += getName() + " = ";
       ret += "phi ";
+      ret += "[" + join(operandDump.begin(), operandDump.end(), ", ") + "]";
       break;
     default:
       ret = "ILLEGAL!";
@@ -158,6 +156,32 @@ std::string ICmpInst::getPredName(Predicate p) {
     return "sgt";
   case SGE:
     return "sge";
+  case ULT:
+    return "ult";
+  case ULE:
+    return "ule";
+  case UGT:
+    return "ugt";
+  case UGE:
+    return "uge";
+  }
+  return "none";
+}
+
+std::string FCmpInst::getPredName(Predicate p) {
+  switch (p) {
+  case OEQ:
+    return "oeq";
+  case ONE:
+    return "one";
+  case OLT:
+    return "olt";
+  case OLE:
+    return "ole";
+  case OGT:
+    return "ogt";
+  case OGE:
+    return "oge";
   case ULT:
     return "ult";
   case ULE:

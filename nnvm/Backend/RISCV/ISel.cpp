@@ -27,7 +27,9 @@ void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
                                 LowOperand::imm(constant.immValue));
     bb.insertBefore(it, load);
     return;
-  } else if (canExpressInBits<32>(constant.immValue)) {
+  }
+
+  if (canExpressInBits<32>(constant.immValue)) {
     auto auipc = LowInst::create(
         AUIPC, reg, LowOperand::imm(((int64_t)constant.immValue) >> 12));
     auto load = LowInst::create(ADDI, reg, reg,
@@ -36,7 +38,23 @@ void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
     bb.insertBefore(it, load);
     return;
   }
+
   nnvm_unreachable("How to handle big constant, especially for i64?")
+}
+
+void riscv::loadRegPlusConstantToReg(LowBB &bb, LowBB::Iterator it,
+                                     LowOperand srcReg, LowOperand constant,
+                                     LowOperand destReg) {
+  if (canExpressInBits<12>(constant.immValue)) {
+    auto load = LowInst::create(ADDI, destReg, srcReg,
+                                LowOperand::imm(constant.immValue));
+    bb.insertBefore(it, load);
+    return;
+  }
+
+  loadConstantToReg(bb, it, constant, destReg);
+  auto addDestAndSrc = LowInst::create(ADD, destReg, destReg, srcReg);
+  bb.insertBefore(it, addDestAndSrc);
 }
 
 void riscv::loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,

@@ -1,47 +1,40 @@
 #include "StackAllocator.h"
 #include "ADT/GenericInt.h"
 #include "ADT/PatternMatch.h"
+#include "Backend/RISCV/Analysis/NearbyRegAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"
+#include "Backend/RISCV/ISel.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/Patterns.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
+#include "Utils/Debug.h"
 #include <unordered_set>
 using namespace nnvm::riscv;
 
 void RegClearer::clear(LowFunc &func,
                        std::unordered_map<uint64_t, uint64_t> &vregNum) {
 
-  std::unordered_set<uint64_t> assignedReg;
-
+  // NOTE: now it can only handle one use of virtual register
   for (auto *bb : func.BBs) {
     for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
       for (LowOperand &op : it->operand) {
 
-        // Create emergency stack slot.
         if (op.isVR()) {
-          if (!assignedReg.count(op.regId)) {
-            bb->insertBefore(it, {SD,
-                                  {
-                                      getRAReg(LowOperand::i64).use(),
-                                      getSPReg(LowOperand::i64).use(),
-                                      LowOperand::imm(0),
-                                  }});
-            assignedReg.insert(op.regId);
-          }
+          auto freeRegs = NearbyRegAnalysis(func, *bb, it).getFreeRegs();
 
-          if (op.lastUsed) {
-            bb->insertAfter(it, {LD,
-                                 {
-                                     getRAReg(LowOperand::i64).use(),
-                                     getSPReg(LowOperand::i64).use(),
-                                     LowOperand::imm(0),
-                                 }});
-
-            assignedReg.erase(op.regId);
+          if (!freeRegs.empty()) {
+            // TODO: float-point ?
+            op = LowOperand{.type = LowOperand::GPRegister,
+                            .valueType = op.valueType,
+                            .regId = freeRegs.front()};
+            continue;
+          } else {
+            nnvm_unimpl();
           }
-          op = getRAReg(LowOperand::i64).use();
         }
+
+        // TODO: make use of emergency slot properly.
       }
     }
   }
@@ -75,17 +68,19 @@ bool StackAllocator::resolveSlotRef(LowBB *bb, LowBB::Iterator it,
 
     auto &slot = func->stackSlots[operand.stackSlotId];
     uint64_t offset = slot.getOffset();
-    if (canExpressInBits<11>(offset)) {
-      it->operand[slotOperandIndex] = getSPReg(LowOperand::i64).use();
-      it->operand[slotOperandIndex + 1] = LowOperand::imm(offset);
-      return true;
+    if ((it->type > I_BEGIN && it->type < I_END) ||
+        (it->type > S_BEGIN && it->type < S_END)) {
+      if (canExpressInBits<11>(offset)) {
+        it->operand[slotOperandIndex] = getSPReg(LowOperand::i64).use();
+        it->operand[slotOperandIndex + 1] = LowOperand::imm(offset);
+        return true;
+      }
     }
 
     auto addressRegister = func->allocVReg(LowOperand::i64);
+    loadRegPlusConstantToReg(*bb, it, getSPReg(LowOperand::i64),
+                             LowOperand::constant(offset), addressRegister);
 
-    bb->insertBefore(it, LowInst::create(ADDI, addressRegister,
-                                         getSPReg(LowOperand::i64),
-                                         LowOperand::imm(offset)));
     operand = addressRegister.lastUse();
   }
   return true;

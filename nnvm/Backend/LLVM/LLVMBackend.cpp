@@ -18,7 +18,11 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
   for (auto &[name, var] : ir.getGlobalVarMap()) {
     valueToName[var] = "@" + name;
     // TODO: initializer?
-    out << "@" << name << " = global " << var->getType()->dump() << "\n";
+    if (var->getInitVal())
+      out << "@" << name << " = global " << var->getInitVal()->dumpAsOperand()
+          << "\n";
+    else
+      out << "@" << name << " = global " << var->getInnerType()->dump() << "\n";
   }
 
   for (auto &[hash, constant] : ir.getConstantPool())
