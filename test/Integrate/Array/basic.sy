@@ -1,9 +1,9 @@
 // INPUT:
-// EXPECTED:01
-
+const int N = 0;
 int arr[16] = {};
 int ab[4] = {1};
 int a[4][2] = {1};
+int c[N];
 
 int main()
 {

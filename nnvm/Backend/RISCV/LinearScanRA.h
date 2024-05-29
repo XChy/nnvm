@@ -34,8 +34,9 @@ struct RegCompare {
 
 class LinearScanRA : public RegisterAllocator {
 public:
+  using IntervalItertator = std::set<LiveInterval, IntervalCompare>::iterator;
   void allocate(LowFunc &func);
-  void expireOldInterval(const LiveInterval &current);
+  IntervalItertator expireOldInterval(const LiveInterval &current);
   uint64_t indexOf(LowBB *BB, uint64_t localIndex);
 
 private:
@@ -47,6 +48,7 @@ private:
   std::unordered_set<uint64_t> used;
   std::priority_queue<uint64_t, std::vector<uint64_t>, RegCompare> freeGPRs;
   std::unordered_map<uint64_t, uint64_t> vregToPReg;
+  std::unordered_map<uint64_t, uint64_t> vregToStack;
   std::unordered_set<uint64_t> allocatedRegs;
 };
 

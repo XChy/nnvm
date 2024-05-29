@@ -98,7 +98,7 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
         cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
 
   if (auto constInt = dyn_cast<ConstantInt>(valConstant))
-    return constInt->getValue();
+    return (int)constInt->getValue();
 
   if (auto constFloat = dyn_cast<ConstantFloat>(valConstant))
     return constFloat->getValue();
@@ -115,7 +115,7 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
       } else {
         valConstant = constArray->getValue()[index.as<int>()];
         if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
-          return constInt->getValue();
+          return (int)constInt->getValue();
         }
         if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
           return constFloat->getValue();
@@ -181,7 +181,6 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     }
     assert("Should not reach here");
   }
-
 
   Any lhsAny = solveConstExp(ctx->exp()[0]);
   Any rhsAny = solveConstExp(ctx->exp()[1]);
@@ -330,17 +329,27 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
     assert(initVal.is<float>());
     constVal = ConstantFloat::create(*ir, initVal.as<float>());
-  } else {
-    constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
+  } else if (symbolType->isArray()) {
+    if (symbolTable.isGlobal()) {
+      constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
+      GlobalVariable *global = new GlobalVariable(*ir, constVal);
+      global->setName(ctx->IDENT()->getText());
+      return symbolTable.create(symbolName, symbolType, global);
+    } else {
+      Value *arrayStack = builder.buildStack(
+          toIRType(symbolType->getInnerMost()),
+          symbolType->getTotalNumOfElements(), ctx->IDENT()->getText());
+      return symbolTable.create(symbolName, symbolType, arrayStack);
+    }
   }
+
   if (symbolTable.isGlobal()) {
     GlobalVariable *global = new GlobalVariable(*ir, constVal);
     global->setName(ctx->IDENT()->getText());
-    symbolTable.create(symbolName, symbolType, global);
+    return symbolTable.create(symbolName, symbolType, global);
   } else {
-    symbolTable.create(symbolName, symbolType, constVal);
+    return symbolTable.create(symbolName, symbolType, constVal);
   }
-  return Symbol::none();
 }
 
 Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
@@ -350,29 +359,69 @@ Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
   return Symbol::none();
 }
 
-void IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
+bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
+                            SymbolType *currentType, Type *irElementType,
+                            std::vector<Value *> &output) {
+  if (initVal->exp()) {
+    Symbol exp = initVal->exp()->accept(this);
+    if (!exp)
+      return false;
+    // TODO: non-constant? Float to int or int to float?
+    output.push_back(exp.entity);
+    return true;
+  }
+
+  if (currentType->isArray()) {
+    int initValIndex = 0;
+    while (initValIndex < currentType->getTotalNumOfElements()) {
+      if (initValIndex >= initVal->initVal().size()) {
+        output.push_back(builder.getZero(irElementType));
+      } else {
+        bool success =
+            solveInit(initVal->initVal(initValIndex), currentType->containedTy,
+                      irElementType, output);
+        if (!success)
+          return false;
+      }
+
+      initValIndex++;
+    }
+    return true;
+  }
+
+  nnvm_unimpl();
+}
+
+bool IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
                                     SymbolType *currentType,
                                     Type *irElementType,
                                     std::vector<Constant *> &output) {
 
   if (initVal->exp()) {
     Symbol exp = initVal->exp()->accept(this);
+    if (!exp)
+      return false;
     // TODO: non-constant? Float to int or int to float?
     output.push_back(cast<Constant>(exp.entity));
-    return;
+    return true;
   }
 
   if (currentType->isArray()) {
     int initValIndex = 0;
     while (initValIndex < currentType->getTotalNumOfElements()) {
-      if (initValIndex >= initVal->initVal().size())
+      if (initValIndex >= initVal->initVal().size()) {
         output.push_back(builder.getZero(irElementType));
-      else
-        fetchElementsFrom(initVal->initVal(initValIndex),
-                          currentType->containedTy, irElementType, output);
+      } else {
+        bool success =
+            fetchElementsFrom(initVal->initVal(initValIndex),
+                              currentType->containedTy, irElementType, output);
+        if (!success)
+          return false;
+      }
+
       initValIndex++;
     }
-    return;
+    return true;
   }
 
   nnvm_unimpl();
@@ -394,29 +443,36 @@ Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
   return ConstantArray::create(*ir, arrayType, initValList);
 }
 
-void IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
+bool IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
                                     SymbolType *currentType,
                                     Type *irElementType,
                                     std::vector<Constant *> &output) {
 
   if (initVal->constExp()) {
     Symbol exp = initVal->constExp()->accept(this);
+    if (!exp)
+      return false;
     // TODO: non-constant? Float to int or int to float?
     output.push_back(cast<Constant>(exp.entity));
-    return;
+    return true;
   }
 
   if (currentType->isArray()) {
     int initValIndex = 0;
     while (initValIndex < currentType->getTotalNumOfElements()) {
-      if (initValIndex >= initVal->constInitVal().size())
+      if (initValIndex >= initVal->constInitVal().size()) {
         output.push_back(builder.getZero(irElementType));
-      else
-        fetchElementsFrom(initVal->constInitVal(initValIndex),
-                          currentType->containedTy, irElementType, output);
+      } else {
+        bool success =
+            fetchElementsFrom(initVal->constInitVal(initValIndex),
+                              currentType->containedTy, irElementType, output);
+        if (!success)
+          return false;
+      }
+
       initValIndex++;
     }
-    return;
+    return true;
   }
 
   nnvm_unimpl();
@@ -514,12 +570,23 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     } else {
       irVal = builder.buildStack(
           irElementType, symbolType->getTotalNumOfElements(), symbolName);
+      Type *irElementType = toIRType(symbolType->getInnerMost());
       if (ctx->initVal()) {
-        nnvm_unimpl();
+        std::vector<Value *> values;
+        if (!solveInit(ctx->initVal(), symbolType, irElementType, values))
+          return Symbol::none();
+        uint offset = 0;
+        for (Value *stored : values) {
+          Constant *offsetValue =
+              ConstantInt::create(*ir, ir->getIntType(), offset);
+          auto *pointer = builder.buildBinOp<PtrAddInst>(
+              irVal, offsetValue, ir->getPtrType(), "arr.index");
+          builder.buildStore(stored, pointer);
+          offset += irElementType->getStoredBytes();
+        }
       }
     }
   } else {
-    nnvm_unimpl();
   }
 
   symbolTable.create(symbolName, symbolType, irVal);

@@ -44,7 +44,7 @@ SYLIB_X86 = path.join(ROOT_DIR, 'build', 'x86-64libsy.o')
 SYLIB_SRC = path.join(ROOT_DIR, 'test', 'Runtime', 'sylib.c')
 SYLIB_HDR = f'{path.splitext(SYLIB_SRC)[0]}.h'
 
-GCC_RV = 'riscv64-linux-gnu-gcc'
+GCC_RV = 'riscv64-unknown-linux-gnu-gcc'
 GCC_X86 = 'gcc'
 LLC = 'llc'
 QEMU = 'qemu-riscv64'

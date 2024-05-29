@@ -1,6 +1,8 @@
 #include "CodegenInfo.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowInstType.h"
+#include "Utils/Debug.h"
 #include <string>
 #include <unordered_map>
 
@@ -48,6 +50,31 @@ std::vector<uint64_t> riscv::unpreservedRegs() {
 
 std::vector<uint64_t> riscv::unpreservedFRegs() {
   // TODO:
+  nnvm_unimpl();
+}
+
+bool riscv::isBranch(uint64_t instType) {
+  switch (instType) {
+  case JAL:
+  case JALR:
+  case (B_BEGIN + 1)...(B_END - 1):
+    return true;
+  default:
+    return false;
+  }
+}
+
+LowBB *riscv::getBranchDest(const LowInst &inst) {
+  switch (inst.type) {
+  case JAL:
+    return inst.operand[1].bb;
+  case JALR:
+    return nullptr;
+  case (B_BEGIN + 1)...(B_END - 1):
+    return inst.operand[2].bb;
+  default:
+    nnvm_unreachable("Must be a valid branch instruction")
+  }
 }
 
 LowInstType riscv::getLoadInstType(LowOperand::LowValueType type) {

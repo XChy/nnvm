@@ -1,5 +1,4 @@
 // INPUT:
-// EXPECTED:1020
 
 int v = 10;
 const int a = 10;

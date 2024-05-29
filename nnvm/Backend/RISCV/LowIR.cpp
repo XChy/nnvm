@@ -1,5 +1,6 @@
 #include "LowIR.h"
 #include "Backend/RISCV/Info/Register.h"
+#include "Backend/RISCV/LowIR/Patterns.h"
 #include "Backend/RISCV/LowInstType.h"
 #include <Backend/RISCV/CodegenInfo.h>
 #include <Backend/RISCV/StackSlot.h>
@@ -174,8 +175,29 @@ void LowModule::emit(std::ostream &out) const {
     func->emit(out, info);
 }
 
-uint LowBB::getSuccNum() {}
-LowBB *LowBB::getSucc(int index) {}
+uint LowBB::getSuccNum() {
+  if (insts.empty())
+    return 0;
+  uint succNum = 0;
+  auto it = --insts.end();
+  while (isBranch(it->type) && !match(&*it, pattern::pRet())) {
+    succNum++;
+    if (it == insts.begin())
+      return succNum;
+    it--;
+  }
+  return succNum;
+}
+
+LowBB *LowBB::getSucc(int index) {
+  uint succNum = 0;
+  auto it = --insts.end();
+  while (succNum != index) {
+    succNum++;
+    it--;
+  }
+  return getBranchDest(*it);
+}
 
 LowModule::~LowModule() {
   for (auto *f : funcs)

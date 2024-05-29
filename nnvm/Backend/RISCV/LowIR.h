@@ -205,6 +205,8 @@ public:
   std::vector<LowOperand> operand;
 };
 
+class LowFunc;
+
 class LowBB {
 public:
   void emit(std::ostream &out, EmitInfo &info, bool showLabel) const;
@@ -223,6 +225,7 @@ public:
   uint getSuccNum();
   LowBB *getSucc(int index);
 
+  LowFunc *parent;
   std::list<LowInst> insts;
 };
 

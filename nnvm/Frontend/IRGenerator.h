@@ -61,14 +61,15 @@ public:
   Any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
 
   Any visitBlock(SysYParser::BlockContext *ctx) override;
-  
+
   Type *toIRType(SymbolType *symbolTy);
 
 private:
   struct whileLoop {
     BasicBlock *condBB;
     BasicBlock *afterBB;
-    whileLoop(BasicBlock *condBB, BasicBlock *afterBB) : condBB(condBB), afterBB(afterBB) {}
+    whileLoop(BasicBlock *condBB, BasicBlock *afterBB)
+        : condBB(condBB), afterBB(afterBB) {}
   };
   Module *ir;
   IRBuilder builder;
@@ -96,13 +97,16 @@ private:
   Any varDef(SysYParser::VarDefContext *ctx,
              SysYParser::BtypeContext *btypeCtx);
 
-  void fetchElementsFrom(SysYParser::InitValContext *initVal,
+  bool solveInit(SysYParser::InitValContext *initVal, SymbolType *currentType,
+                 Type *irElementType, std::vector<Value *> &output);
+
+  bool fetchElementsFrom(SysYParser::InitValContext *initVal,
                          SymbolType *currentType, Type *irElementType,
                          std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
                                   SymbolType *type);
 
-  void fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
+  bool fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
                          SymbolType *currentType, Type *irElementType,
                          std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
