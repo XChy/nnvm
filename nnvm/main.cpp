@@ -30,19 +30,19 @@ static string backendType = "riscv";
 static bool dumpIR;
 static bool dumpIRAfterOpt;
 static bool dumpAssembly;
-static bool enableOptimization = false;
+static int optimizationLevel;
 
-int parseArgs(int argc, char **argv) {
+void parseArgs(int argc, char **argv) {
   static struct option options[] = {
-      {"dump-ir", no_argument, nullptr, 'i'},
-      {"dump-opt-ir", no_argument, nullptr, 'I'},
-      {"dump-asm", no_argument, nullptr, 'a'},
-      {"O3", no_argument, nullptr, 'O'},
-      {"backend", required_argument, nullptr, 'b'},
-      {nullptr, no_argument, nullptr, 'o'},
-      {nullptr, no_argument, nullptr, 0}};
+      {"dump-ir"     , no_argument       , nullptr , 'i'},
+      {"dump-opt-ir" , no_argument       , nullptr , 'I'},
+      {"dump-asm"    , no_argument       , nullptr , 'a'},
+      {"O"           , required_argument , nullptr , 'O'},
+      {"backend"     , required_argument , nullptr , 'b'},
+      {nullptr       , no_argument       , nullptr , 'o'},
+      {nullptr       , no_argument       , nullptr , '\0'}};
   int opt;
-  while ((opt = getopt_long_only(argc, argv, "b:o:", options, nullptr)) != -1) {
+  while ((opt = getopt_long_only(argc, argv, "b:o:O:", options, nullptr)) != -1) {
     switch (opt) {
     case 'i':
       dumpIR = true;
@@ -54,7 +54,7 @@ int parseArgs(int argc, char **argv) {
       dumpAssembly = true;
       break;
     case 'O':
-      enableOptimization = true;
+      optimizationLevel = std::stoi(optarg);
       break;
     case 'b':
       backendType = optarg;
@@ -67,7 +67,6 @@ int parseArgs(int argc, char **argv) {
     }
   }
   sourceFile = argv[optind];
-  return 0;
 }
 
 int main(int argc, char **argv) {
@@ -113,7 +112,7 @@ int main(int argc, char **argv) {
   if (dumpIR)
     std::cout << ir.dump() << "\n";
 
-  if (enableOptimization) {
+  if (optimizationLevel != 0) {
     optimizer.transform(&ir);
     debug(std::cerr << "Opt done!"
                     << "\n");
