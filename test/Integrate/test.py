@@ -3,7 +3,7 @@
 Test all FILEs, or all the .sy files under $TEST_DIR if no FILE is specified.
 
 Options:
-  -b, --brief             Show failed cases only
+  -b, --brief             Show failed cases only, without any detail
   -d, --difftest          Differential test mode
   -e, --regexp=PATTERN    Test files whose names contain PATTERN, with FILEs ignored. Multiple PATTERNs are allowed
   -f, --frontend          Frontend test mode
@@ -66,13 +66,14 @@ tmp_asm = tempfile.NamedTemporaryFile(suffix='.s', delete=False)
 tmp_obj = tempfile.NamedTemporaryFile(suffix='.o', delete=False)
 tmp_out = tempfile.NamedTemporaryFile(suffix='.out', delete=False)
 
+brief_mode = False
 frontend_mode = False
 difftest_mode = False
 
 
 def test(src: str, rel_path: str):
   SUBPROC_ARGLISTS_RV = [
-      [NNVM, src, '-o', tmp_asm.name],
+      [NNVM, src, '--backend', 'riscv', '-o', tmp_asm.name],
       [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
       [GCC_RV, tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
       [QEMU, '-L', '/usr/riscv64-linux-gnu', tmp_out.name, 'console=ttyS0'],
@@ -86,24 +87,27 @@ def test(src: str, rel_path: str):
   subproc_arglists = SUBPROC_ARGLISTS_FRONTEND if frontend_mode else SUBPROC_ARGLISTS_RV
 
   # source code -> assembly code
-  ret = subprocess.run(subproc_arglists[0], stdout=subprocess.PIPE,
-                       stderr=subprocess.DEVNULL, encoding='UTF-8')
+  ret = subprocess.run(
+      subproc_arglists[0], stdout=subprocess.DEVNULL,
+      stderr=subprocess.DEVNULL, encoding='UTF-8')
   tmp_asm.close()
   if ret.returncode != 0:
     __print_error('COMPLIATION FAILED', rel_path)
     return False
 
   # assembly code -> objects
-  ret = subprocess.run(subproc_arglists[1], stdout=subprocess.DEVNULL,
-                       stderr=subprocess.DEVNULL, encoding='UTF-8')
+  ret = subprocess.run(
+      subproc_arglists[1], stdout=subprocess.DEVNULL,
+      stderr=subprocess.DEVNULL if brief_mode else None, encoding='UTF-8')
   tmp_obj.close()
   if ret.returncode != 0:
     __print_error('ASSEMBLING FAILED', rel_path)
     return False
 
   # objects -> executable
-  ret = subprocess.run(subproc_arglists[2], stdout=subprocess.DEVNULL,
-                       stderr=subprocess.DEVNULL, encoding='UTF-8')
+  ret = subprocess.run(
+      subproc_arglists[2], stdout=subprocess.DEVNULL,
+      stderr=subprocess.DEVNULL, encoding='UTF-8')
   tmp_out.close()
   if ret.returncode != 0:
     __print_error('LINKAGE FAILED', rel_path)
@@ -113,9 +117,10 @@ def test(src: str, rel_path: str):
   input_text = __get_input(src).strip()
   expected_text = __get_expected(src).strip()
   try:
-    ret = subprocess.run(subproc_arglists[3],
-                         input=input_text, capture_output=True, text=True,
-                         encoding='UTF-8', timeout=TIMEOUT_PERIOD)
+    ret = subprocess.run(
+        subproc_arglists[3],
+        input=input_text, capture_output=True, text=True,
+        encoding='UTF-8', timeout=TIMEOUT_PERIOD)
     if len(ret.stdout) == 0:
       actual_text = str(ret.returncode)
     else:
@@ -128,7 +133,8 @@ def test(src: str, rel_path: str):
     print(
         f'FAILED on {rel_path}.\n\033[31mACTUAL\033[0m:\n{actual_text}\n\033[35mEXPECTED\033[0m:\n{expected_text}')
     return False
-  print(f'\033[32mPASSED\033[0m {rel_path}')
+  if not brief_mode:
+    print(f'\033[32mPASSED\033[0m {rel_path}')
   return True
 
 
@@ -144,6 +150,11 @@ def __walk_test_dir(test_set: set, patterns: list):
               and not any(re.search(pattern, src) for pattern in patterns)):
         continue
       __add_test(test_set, src)
+
+
+def __init_brief_mode():
+  global brief_mode
+  brief_mode = True
 
 
 def __init_difftest_mode():
@@ -165,8 +176,8 @@ def __init_frontend_mode():
 
 def main():
   try:
-    opts, args = getopt.getopt(sys.argv[1:], 'de:fh', [
-                               'difftest', 'regexp', 'frontend', 'help'])
+    opts, args = getopt.getopt(sys.argv[1:], 'bde:fh', [
+                               'brief', 'difftest', 'regexp', 'frontend', 'help'])
   except getopt.GetoptError as err:
     print(err)
     exit(1)
@@ -175,6 +186,8 @@ def main():
     if opt in ['-h', '--help']:
       print(__doc__)
       exit(0)
+    elif opt in ['-b', '--brief']:
+      __init_brief_mode()
     elif opt in ['-d', '--difftest']:
       __init_difftest_mode()
     elif opt in ['-e', '--regexp']:
@@ -191,7 +204,8 @@ def main():
   passed_cnt, total_cnt = 0, 0
   for src in test_set:
     rel_path = path.relpath(src, TEST_DIR)
-    print(f"[{total_cnt}] Running on", rel_path)
+    if not brief_mode:
+      print(f"[{total_cnt}] Running on", rel_path)
     passed = test(src, rel_path)
     if passed:
       passed_cnt += 1
