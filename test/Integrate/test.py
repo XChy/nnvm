@@ -10,7 +10,8 @@ Options:
                           If this option appears multiple times, search for all patterns given.
   -f, --frontend          Frontend testing mode.
   -h, --help              Display help text and exit.
-  -OLEVEL                 Set optimization level of compilation to LEVEL for guest program and, if in diffrential testing mode, reference program.
+  -OLEVEL                 Set optimization level of compilation to LEVEL for host program and, if in diffrential testing mode, guest program.
+  -v, --verbose           Show all standard errors of subprocesses.
 
 Examples:
   python3 test.py test1.sy test2.sy
@@ -46,6 +47,7 @@ QEMU = 'qemu-riscv64'
 TIMEOUT_PERIOD = 2
 
 brief_mode = False
+verbose_mode = False
 frontend_mode = False
 difftest_mode = False
 difftest_arch = 'riscv64'
@@ -59,7 +61,69 @@ tmp_out = tempfile.NamedTemporaryFile(suffix='.out', prefix='nnvm',
 
 
 class ExecutionException(Exception):
-  pass
+  def __init__(self, msg: str, stderr: str = ''):
+    super().__init__(msg)
+    self.verbose_msg = stderr
+
+  def log(self, rel_path: str, is_guest: bool):
+    guest_msg = ' for \033[35mGUEST PROGRAM\033[0m, using hard-coded output instead' if is_guest else ''
+    print(f'\033[31m{self}\033[0m on {rel_path}{guest_msg}')
+    if verbose_mode:
+      print(self.verbose_msg, end='')
+
+
+# helper functions of execute()
+
+def __run(subproc_arglist: list):
+  if verbose_mode:
+    return subprocess.run(
+        subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True)
+  return subprocess.run(
+      subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
+
+
+def execute(subproc_arglists: list, input_text: str):
+  try:
+    __run(subproc_arglists[0])  # source code -> assembly code
+  except subprocess.CalledProcessError as err:
+    raise ExecutionException('COMPLIATION FAILED', stderr=err.stderr)
+
+  try:
+    __run(subproc_arglists[1])  # assembly code -> objects
+  except subprocess.CalledProcessError as err:
+    raise ExecutionException('ASSEMBLING FAILED', stderr=err.stderr)
+
+  try:
+    __run(subproc_arglists[2])  # objects -> executable
+  except subprocess.CalledProcessError as err:
+    raise ExecutionException('LINKAGE FAILED', stderr=err.stderr)
+
+  try:
+    # run the executable
+    completed = subprocess.run(
+        subproc_arglists[3],
+        input=input_text, capture_output=True, text=True,
+        encoding='UTF-8', timeout=TIMEOUT_PERIOD)
+    if len(completed.stdout) == 0:
+      return str(completed.returncode)
+    else:
+      return f'{completed.stdout.strip()}\n{completed.returncode}'
+  except subprocess.TimeoutExpired:
+    raise ExecutionException('TIME OUT')
+
+
+# helper functions of test()
+
+def __read_input(src: str):
+  in_path = path.splitext(src)[0] + '.in'
+  if path.exists(in_path):
+    with open(in_path) as f:
+      return ''.join(f.readlines())
+
+  with open(src) as f:
+    line = f.readlines()[0]
+    searched_groups = re.search('INPUT:(.*)', line)
+    return ('' if searched_groups is None else searched_groups.group(1))
 
 
 def __read_expected(src: str):
@@ -74,99 +138,66 @@ def __read_expected(src: str):
     return ('' if searched_groups is None else searched_groups.group(1))
 
 
-def __read_input(src: str):
-  in_path = path.splitext(src)[0] + '.in'
-  if path.exists(in_path):
-    with open(in_path) as f:
-      return ''.join(f.readlines())
+def __choose_host_arglists(src: str):
+  HOST_ARGLISTS_NORMAL = [
+      [NNVM, src, f'-O{optimization_level}',
+       '--backend', 'riscv', '-o', tmp_asm.name],
+      [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
+      [GCC_RV, tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
+      [QEMU, '-L', '/usr/riscv64-linux-gnu', tmp_out.name, 'console=ttyS0'],
+  ]
+  HOST_ARGLISTS_FRONTEND = [
+      [NNVM, src, f'-O{optimization_level}',
+       '--backend', 'llvm', '-o', tmp_asm.name],
+      [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
+      [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
+      [tmp_out.name]
+  ]
 
-  with open(src) as f:
-    line = f.readlines()[0]
-    searched_groups = re.search('INPUT:(.*)', line)
-    return ('' if searched_groups is None else searched_groups.group(1))
+  if frontend_mode:
+    return HOST_ARGLISTS_FRONTEND
+  return HOST_ARGLISTS_NORMAL
 
 
-def execute(subproc_arglists: list, input_text: str):
-  # source code -> assembly code
-  try:
-    subprocess.run(
-        subproc_arglists[0], stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
-  except subprocess.CalledProcessError:
-    raise ExecutionException('COMPLIATION FAILED')
+def __choose_guest_arglists(src: str):
+  GUEST_ARGLISTS_RISCV64 = [
+      [GCC_RV, '-x', 'c', f'-O{optimization_level}',
+       src, '-S', '-o', tmp_asm.name],
+      [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
+      [GCC_RV, tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
+      [QEMU, '-L', '/usr/riscv64-linux-gnu', tmp_out.name, 'console=ttyS0'],
+  ]
+  GUEST_ARGLISTS_X86_64 = [
+      [GCC_X86, '-x', 'c', f'-O{optimization_level}',
+       src, '-S', '-o', tmp_asm.name],
+      [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
+      [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
+      [tmp_out.name]
+  ]
 
-  # assembly code -> objects
-  try:
-    subprocess.run(
-        subproc_arglists[1], stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL if brief_mode else None, encoding='UTF-8', check=True)
-  except subprocess.CalledProcessError:
-    raise ExecutionException('ASSEMBLING FAILED')
-
-  # objects -> executable
-  try:
-    subprocess.run(
-        subproc_arglists[2], stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
-  except subprocess.CalledProcessError:
-    raise ExecutionException('LINKAGE FAILED')
-
-  # run the executable
-  try:
-    ret = subprocess.run(
-        subproc_arglists[3],
-        input=input_text, capture_output=True, text=True,
-        encoding='UTF-8', timeout=TIMEOUT_PERIOD)
-    if len(ret.stdout) == 0:
-      return str(ret.returncode)
-    else:
-      return f'{ret.stdout.strip()}\n{ret.returncode}'
-  except subprocess.TimeoutExpired:
-    raise ExecutionException('TIME OUT')
+  if difftest_arch == 'x86_64':
+    return GUEST_ARGLISTS_X86_64
+  return GUEST_ARGLISTS_RISCV64
 
 
 def test(src: str):
   rel_path = path.relpath(src, TEST_DIR)
 
+  input_text = __read_input(src).strip()
+  host_arglists = __choose_host_arglists(src)
   try:
-    SUBPROC_ARGLISTS_RV = [
-        [NNVM, src, f'-O{optimization_level}',
-         '--backend', 'riscv', '-o', tmp_asm.name],
-        [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
-        [GCC_RV, tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
-        [QEMU, '-L', '/usr/riscv64-linux-gnu', tmp_out.name, 'console=ttyS0'],
-    ]
-    SUBPROC_ARGLISTS_FRONTEND = [
-        [NNVM, src, f'-O{optimization_level}',
-         '--backend', 'llvm', '-o', tmp_asm.name],
-        [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
-        [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
-        [tmp_out.name]
-    ]
-
-    if frontend_mode:
-      subproc_arglists = SUBPROC_ARGLISTS_FRONTEND
-    else:
-      subproc_arglists = SUBPROC_ARGLISTS_RV
-    input_text = __read_input(src).strip()
-    actual_text = execute(subproc_arglists, input_text)
+    actual_text = execute(host_arglists, input_text)
   except ExecutionException as err:
-    print(f'\033[31m{err}\033[0m on {rel_path}')
+    err.log(rel_path, is_guest=False)
     return False
 
   if difftest_mode:
-    SUBPROC_ARGLISTS_DIFF_RV = SUBPROC_ARGLISTS_RV.copy()
-    SUBPROC_ARGLISTS_DIFF_RV[0] = [
-        GCC_RV, '-x', 'c', f'-O{optimization_level}', src, '-S', '-o', tmp_asm.name]
-    SUBPROC_ARGLISTS_DIFF_X86 = SUBPROC_ARGLISTS_FRONTEND.copy()
-    SUBPROC_ARGLISTS_DIFF_X86[0] = [
-        GCC_X86, '-x', 'c', f'-O{optimization_level}', src, '-S', '-o', tmp_asm.name]
-
-    if difftest_arch == 'x86_64':
-      subproc_arglists_diff = SUBPROC_ARGLISTS_DIFF_X86
-    else:
-      subproc_arglists_diff = SUBPROC_ARGLISTS_DIFF_RV
-    expected_text = execute(subproc_arglists_diff, input_text)
+    guest_arglists = __choose_guest_arglists(src)
+    try:
+      expected_text = execute(guest_arglists, input_text)
+    except ExecutionException as err:
+      err.log(rel_path, is_guest=True)
+      expected_text = __read_expected(src).strip()
   else:
     expected_text = __read_expected(src).strip()
 
@@ -180,19 +211,7 @@ def test(src: str):
   return True
 
 
-def __add_test(test_set: set, src: str):
-  test_set.add(path.expanduser(src))
-
-
-def __walk_test_dir(test_set: set):
-  for root, _, filenames in os.walk(TEST_DIR):
-    for filename in filenames:
-      src = path.join(root, filename)
-      if (not src.endswith('.sy') or len(patterns) != 0
-              and not any(re.search(pattern, src) for pattern in patterns)):
-        continue
-      __add_test(test_set, src)
-
+# helper functions of main()
 
 def __init_brief_mode():
   global brief_mode
@@ -229,10 +248,15 @@ def __init_optimization(arg: str):
   optimization_level = int(arg)
 
 
+def __init_verbose():
+  global verbose_mode
+  verbose_mode = True
+
+
 def __parse_args():
   try:
-    opts, args = getopt.getopt(sys.argv[1:], 'bd:e:fhO:', [
-                               'brief', 'difftest=', 'regexp=', 'frontend', 'help', 'O='])
+    opts, args = getopt.getopt(sys.argv[1:], 'bd:e:fhO:v', [
+                               'brief', 'difftest=', 'regexp=', 'frontend', 'help', 'O=', 'verbose'])
   except getopt.GetoptError as err:
     print(err)
     exit(1)
@@ -250,10 +274,26 @@ def __parse_args():
       __init_frontend_mode()
     elif opt in ['-O', '--O']:
       __init_optimization(arg)
+    elif opt in ['-v', '--verbose']:
+      __init_verbose()
     else:
       print(f'Unknown option {opt}.')
       exit(1)
   return args
+
+
+def __add_test(test_set: set, src: str):
+  test_set.add(path.expanduser(src))
+
+
+def __walk_test_dir(test_set: set):
+  for root, _, filenames in os.walk(TEST_DIR):
+    for filename in filenames:
+      src = path.join(root, filename)
+      if (not src.endswith('.sy') or len(patterns) != 0
+              and not any(re.search(pattern, src) for pattern in patterns)):
+        continue
+      __add_test(test_set, src)
 
 
 def main():
