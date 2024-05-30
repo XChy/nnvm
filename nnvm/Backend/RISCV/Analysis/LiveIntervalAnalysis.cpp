@@ -2,10 +2,12 @@
 #include <Backend/RISCV/Analysis/LiveIntervalAnalysis.h>
 #include <Backend/RISCV/Verifier/DefUsePrinter.h>
 #include <algorithm>
+#include <stack>
+#include <unordered_set>
 
 using namespace nnvm::riscv;
 
-uint64_t LiveIntervalAnalysis::indexOf(LowBB *BB, uint64_t localIndex) {
+uint64_t LiveIntervalAnalysis::indexOf(LIRBB *BB, uint64_t localIndex) {
   return BBNumber[BB] + localIndex;
 }
 
@@ -13,29 +15,43 @@ std::multiset<LiveInterval, IntervalCompare> LiveIntervalAnalysis::result() {
   return intervals;
 }
 
-bool LiveIntervalAnalysis::runOn(LowFunc &func) {
+bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
   uint64_t instructionCount = 0;
 
   // TODO: dfs
-  for (LowBB *BB : func.BBs) {
-    BBNumber[BB] = instructionCount;
-    instructionCount += BB->insts.size();
+  std::unordered_set<LIRBB *> visited;
+  std::stack<LIRBB *> toVisit;
+  toVisit.push(func.getEntry());
+  while (!toVisit.empty()) {
+    LIRBB *cur = toVisit.top();
+    toVisit.pop();
+    if (visited.count(cur))
+      continue;
+    visited.insert(cur);
+
+    BBNumber[cur] = instructionCount;
+    instructionCount += cur->getInsts().size();
+    for (int i = 0; i < cur->getSuccNum(); i++) {
+      toVisit.push(cur->getSucc(i));
+    }
   }
 
   debug(printDefUse(func));
 
-  for (LowBB *BB : func.BBs) {
+  for (LIRBB *BB : func) {
     uint64_t localIndex = 0;
-    for (LowInst &inst : BB->insts) {
+    for (LIRInst *inst : *BB) {
       uint64_t globalIndex = indexOf(BB, localIndex);
-      for (LowOperand &operand : inst.operand) {
-        if (!operand.isVR())
+      for (const LowOperand &operand : inst->operands) {
+        LIRValue *value = operand.getOperand();
+        if (!value->isVReg())
           continue;
+        Register *reg = value->as<Register>();
 
-        if (!regToIntervals.count(operand.regId))
-          regToIntervals[operand.regId].regId = operand.regId;
+        if (!regToIntervals.count(reg))
+          regToIntervals[reg].reg = reg;
 
-        auto &interval = regToIntervals[operand.regId];
+        auto &interval = regToIntervals[reg];
         if (operand.isDef()) {
           interval.begin = globalIndex;
           interval.end = globalIndex;
@@ -53,7 +69,7 @@ bool LiveIntervalAnalysis::runOn(LowFunc &func) {
     intervals.insert(interval);
 
   for (auto interval : intervals)
-    debug(std::cerr << "v" << interval.regId - VR_BEGIN << ":["
+    debug(std::cerr << "v" << interval.reg->getRegId() - VR_BEGIN << ":["
                     << interval.begin << "," << interval.end << "]\n");
 
   return true;

@@ -7,7 +7,7 @@ namespace nnvm::riscv {
 
 class RegisterAllocator {
 public:
-  virtual void allocate(LowFunc &func) { nnvm_unimpl() }
+  virtual void allocate(LIRFunc &func) { nnvm_unimpl() }
 };
 
 } /* namespace nnvm::riscv */

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/Builder.h"
 #include <unordered_map>
 #include <vector>
 namespace nnvm::riscv {
@@ -10,7 +11,7 @@ namespace nnvm::riscv {
 // registers into physical ones. RegClearer is to resolve the problem.
 class RegClearer {
 public:
-  void clear(LowFunc &func, std::unordered_map<uint64_t, uint64_t> &vregNum);
+  void clear(LIRFunc &func, std::unordered_map<uint64_t, uint64_t> &vregNum);
 };
 
 // Stack allocator main does:
@@ -20,21 +21,22 @@ public:
 class StackAllocator {
   struct FunctionStackInfo {
     bool isCaller = false;
-    std::vector<LowBB *> exitBBs;
+    std::vector<LIRBB *> exitBBs;
     std::vector<uint64_t> regsToSave;
   };
 
 public:
-  void allocate(LowFunc &func);
-  FunctionStackInfo calculateStackInfo(LowFunc &func);
-  void emitPrologue(LowFunc &func);
-  void emitEpilogue(LowFunc &func);
+  void allocate(LIRFunc &func);
+  FunctionStackInfo calculateStackInfo(LIRFunc &func);
+  void emitPrologue(LIRBuilder &builder, LIRFunc &func);
+  void emitEpilogue(LIRBuilder &builder, LIRFunc &func);
 
-  bool resolveSlotRef(LowBB *bb, LowBB::Iterator it, uint64_t slotOperandIndex);
+  bool resolveSlotRef(LIRBuilder &builder, LIRInst *it,
+                      uint64_t slotOperandIndex);
 
 private:
   RegClearer clearer;
-  LowFunc *func;
+  LIRFunc *func;
   FunctionStackInfo stackInfo;
   uint64_t frameSize;
 

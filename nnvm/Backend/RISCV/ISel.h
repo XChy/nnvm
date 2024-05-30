@@ -1,36 +1,33 @@
+
 #pragma once
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/Builder.h"
 namespace nnvm::riscv {
 
-void loadConstantToReg(LowBB &bb, LowBB::Iterator it, LowOperand constant,
-                       LowOperand reg);
-void loadRegPlusConstantToReg(LowBB &bb, LowBB::Iterator it, LowOperand srcReg,
-                              LowOperand constant, LowOperand destReg);
+void loadConstantToReg(LIRBuilder &builder, LIRConst *constant, Register *reg);
+void loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
+                              LIRConst *constant, Register *destReg);
 
-void loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
-                     LowOperand reg);
+void loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global, Register *reg);
 
 class ISel {
 public:
-  void isel(LowFunc &func);
+  void isel(LIRFunc &func);
 
   /**
    * Replace all MIR instructions with LIR instructions. This step should
    * involve some basic optimizations. Make sure lowering to cheap instructions.
-   * @param func the function worked on
-   * @param bb the basic block worked on
-   * @param it the iterator of current instruction
+   * @param builder the builder used to create new instructions
+   * @param I the instruction we want to replace with
    */
-  LowBB::Iterator combine(LowFunc &func, LowBB &bb, LowBB::Iterator it);
+  LIRInst *combine(LIRBuilder &builder, LIRInst *I);
 
   /**
    * Legalize constants, transform them to immediate or load them to registers.
    * Legalize globals, load the addresses of the globals into a register.
-   * @param func the function worked on
-   * @param bb the basic block worked on
-   * @param it the iterator of current instruction
+   * @param builder the builder used to create new instructions
+   * @param I the instruction we want to legalize
    */
-  LowBB::Iterator legalizeOperands(LowFunc &func, LowBB &bb,
-                                   LowBB::Iterator it);
+  LIRInst *legalizeOperands(LIRBuilder &builder, LIRInst *I);
 };
 } /* namespace nnvm::riscv */

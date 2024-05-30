@@ -6,21 +6,24 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/StackAllocator.h"
-#include "Backend/RISCV/TrivialRA.h"
 
 using namespace nnvm::riscv;
 
 void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Add global symbols
-  LowModule lowModule;
+  LIRModule lowModule;
   LowerHelper lowerHelper;
 
+  debug(std::cerr << "====Lower Start====\n");
   lowerHelper.lower(ir, lowModule);
+  debug(std::cerr << "====Lower Done====\n");
 
+  debug(lowModule.emit(std::cerr));
+
+  debug(std::cerr << "====ISel Start====\n");
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
       ISel().isel(*lowFunc);
-
   debug(std::cerr << "====ISel Done====\n");
   debug(lowModule.emit(std::cerr));
 

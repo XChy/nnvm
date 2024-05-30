@@ -4,15 +4,25 @@
 #include "Backend/RISCV/LowInstType.h"
 #include <vector>
 namespace nnvm::riscv {
-class LowBuilder {
+class LIRBuilder {
 public:
-  LowBuilder(LowBB *BB, LowBB::Iterator insertPointer)
-      : BB(BB), insertPoint(insertPointer) {}
+  LIRBuilder(LIRModule &module) : module(module) {}
 
-  LowInst &buildInst(LowInstType type, const std::vector<LowOperand> &operands);
+  LIRBuilder &addInst(LIRInst *inst);
+  // LIRInst *buildInst(LowInstType type, const std::vector<LowOperand>
+  // &operands);
+
+  Register *newVReg(LIRValueType valueType);
+  Register *phyReg(uint64_t regId);
+  StackSlot *newStackSlot(LIRFunc *);
+
+  void setInsertPoint(LIRBB::Iterator insertPoint) {
+    this->insertPoint = insertPoint;
+  }
 
 private:
-  LowBB *BB;
-  LowBB::Iterator insertPoint;
+  LIRBB *BB;
+  LIRBB::Iterator insertPoint;
+  LIRModule &module;
 };
 } /* namespace nnvm::riscv */

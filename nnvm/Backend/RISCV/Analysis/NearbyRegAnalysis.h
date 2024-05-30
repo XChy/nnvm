@@ -6,15 +6,15 @@ namespace nnvm::riscv {
 class NearbyRegAnalysis {
 public:
   NearbyRegAnalysis() {}
-  NearbyRegAnalysis(LowFunc &func, LowBB &bb, LowBB::Iterator current) {
+  NearbyRegAnalysis(LIRFunc &func, LIRBB &bb, LIRBB::Iterator current) {
     run(func, bb, current);
   }
 
-  void run(LowFunc &func, LowBB &bb, LowBB::Iterator current);
+  void run(LIRFunc &func, LIRBB &bb, LIRBB::Iterator current);
 
-  std::vector<uint64_t> getFreeRegs() { return freeRegs; }
+  std::vector<Register *> getFreeRegs() { return freeRegs; }
 
 private:
-  std::vector<uint64_t> freeRegs;
+  std::vector<Register *> freeRegs;
 };
 } /* namespace nnvm::riscv */

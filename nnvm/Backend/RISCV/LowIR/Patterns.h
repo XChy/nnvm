@@ -9,31 +9,31 @@ namespace nnvm::riscv::pattern {
 
 class pOperand {
 public:
-  pOperand(LowOperand &receiver) : receiver(&receiver) {}
+  pOperand(LIRValue *&receiver) : receiver(&receiver) {}
   pOperand() : receiver(nullptr) {}
-  bool match(const LowOperand &op) {
+  bool match(LIRValue *op) {
     if (receiver)
       *receiver = op;
     return true;
   }
 
 protected:
-  LowOperand *receiver;
+  LIRValue **receiver;
 };
 
 class pReg : public pOperand {
 public:
-  bool match(const LowOperand &reg) {
-    if (reg.isReg())
-      return pOperand::match(reg);
+  bool match(LIRValue *op) {
+    if (op->isReg())
+      return pOperand::match(op);
     return false;
   }
 };
 
 class pImm : public pOperand {
 public:
-  bool match(const LowOperand &imm) {
-    if (imm.isImm())
+  bool match(LIRValue *imm) {
+    if (imm->isImm())
       return pOperand::match(imm);
     return false;
   }
@@ -42,85 +42,83 @@ public:
 class pSpecificImm : public pOperand {
 public:
   pSpecificImm(uint64_t value) : value(value) {}
-  bool match(LowOperand *imm) { return imm->isImm() && imm->immValue == value; }
+  bool match(LIRValue *imm) {
+    return imm->isImm() && imm->as<LIRImm>()->getValue() == value;
+  }
 
 protected:
   uint64_t value;
 };
 
-class pGPR : public pReg {
+class pZeroReg : public pReg {
 public:
-  bool match(const LowOperand &reg) { return reg.isGPR() && pReg::match(reg); }
-};
-
-class pZeroReg : public pGPR {
-public:
-  bool match(const LowOperand &reg) {
-    return reg.regId == ZERO && pReg::match(reg);
+  bool match(LIRValue *reg) {
+    if (pReg::match(reg) && reg->as<Register>()->getRegId() == ZERO)
+      return true;
+    return false;
   }
 };
 
-class pRAReg : public pGPR {
+class pRAReg : public pReg {
 public:
-  bool match(const LowOperand &reg) {
-    return reg.regId == RA && pReg::match(reg);
+  bool match(LIRValue *reg) {
+    if (pReg::match(reg) && reg->as<Register>()->getRegId() == RA)
+      return true;
+    return false;
   }
 };
 
 class pInst {
 public:
-  pInst(LowInst *&receiver) : receiver(&receiver) {}
+  pInst(LIRInst *&receiver) : receiver(&receiver) {}
   pInst() : receiver(nullptr) {}
-  bool match(LowInst *inst) {
+  bool match(LIRInst *inst) {
     if (receiver)
       *receiver = inst;
     return true;
   }
 
 protected:
-  LowInst **receiver;
+  LIRInst **receiver;
 };
 
 class pInstWithType : public pInst {
 public:
-  pInstWithType(LowInstType type) : pInst(), type(type) {}
-  pInstWithType(LowInstType type, LowInst *&inst) : pInst(inst), type(type) {}
-  bool match(LowInst *inst) {
+  pInstWithType(LIRInstID type) : pInst(), type(type) {}
+  pInstWithType(LIRInstID type, LIRInst *&inst) : pInst(inst), type(type) {}
+  bool match(LIRInst *inst) {
     if (inst->type == type)
       return pInst::match(inst);
     return false;
   }
 
 private:
-  LowInstType type;
+  LIRInstID type;
 };
 
 template <int operandNum, typename... SubPatterns>
 class pSpecificInst : public pInst {
 public:
   pSpecificInst();
-  pSpecificInst(LowInstType type) : pInst(), type(type) {}
-  bool match(LowInst *inst) {
+  pSpecificInst(LIRInstID type) : pInst(), type(type) {}
+  bool match(LIRInst *inst) {
     if (inst->type == type)
       return pInst::match(inst);
     return false;
   }
 
 private:
-  LowInstType type;
+  LIRInstID type;
 };
 
 class pRet : public pInstWithType {
 public:
   pRet() : pInstWithType(JALR) {}
-  bool match(LowInst *inst) {
-    return pInst::match(inst) && pZeroReg().match(inst->operand[0]) &&
-           pRAReg().match(inst->operand[1]) &&
-           pSpecificImm(0).match(&inst->operand[2]);
+  bool match(LIRInst *inst) {
+    return pInst::match(inst) && pZeroReg().match(inst->getOp(0)) &&
+           pRAReg().match(inst->getOp(1)) &&
+           pSpecificImm(0).match(inst->getOp(2));
   }
-
-private:
-  LowInstType type;
 };
 
 } /* namespace nnvm::riscv::pattern */

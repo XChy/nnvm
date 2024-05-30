@@ -6,7 +6,7 @@ namespace nnvm::riscv {
 
 struct LiveInterval {
 public:
-  uint64_t regId;
+  Register *reg;
   uint64_t begin;
   uint64_t end;
 };
@@ -20,17 +20,17 @@ public:
 
 class LiveIntervalAnalysis {
 public:
-  bool runOn(LowFunc &func);
+  bool runOn(LIRFunc &func);
 
   // Calculate the assigned index of specific instruction.
-  uint64_t indexOf(LowBB *BB, uint64_t localIndex);
+  uint64_t indexOf(LIRBB *BB, uint64_t localIndex);
   std::multiset<LiveInterval, IntervalCompare> result();
 
 private:
   // We assign numbers in order of basicblock
-  std::unordered_map<LowBB *, uint64_t> BBNumber;
+  std::unordered_map<LIRBB *, uint64_t> BBNumber;
 
-  std::unordered_map<uint64_t, LiveInterval> regToIntervals;
+  std::unordered_map<Register *, LiveInterval> regToIntervals;
   std::multiset<LiveInterval, IntervalCompare> intervals;
 };
 } /* namespace nnvm::riscv */

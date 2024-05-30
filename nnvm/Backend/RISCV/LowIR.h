@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ADT/ListNode.h"
 #include "Backend/RISCV/EmitInfo.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "IR/Instruction.h"
@@ -7,6 +8,7 @@
 #include "Utils/Collection.h"
 #include "Utils/Debug.h"
 #include <ADT/GenericInt.h>
+#include <Backend/RISCV/LowIR/LIRValue.h>
 #include <array>
 #include <cstddef>
 #include <iostream>
@@ -16,16 +18,19 @@
 
 namespace nnvm::riscv {
 
-class LowBB;
+class LIRBB;
 
-class LowGlobal {
+class LIRGlobal : public LIRValue {
 public:
+  // LIRGlobal is just a pointer, whose bitwidth should be 64.
+  LIRGlobal(LIRValue::ValueID id) : LIRValue(id, LIRValueType::i64) {}
   std::string name;
   bool isExternal = false;
 };
 
-class LowGlobalVar : public LowGlobal {
+class LIRGlobalVar : public LIRGlobal {
 public:
+  LIRGlobalVar() : LIRGlobal(LIRValue::GlobalVar) {}
   bool isAllZeros = false;
   uint64_t size = 0;
   std::vector<std::byte> data;
@@ -44,222 +49,178 @@ public:
   }
 };
 
-class LowOperand {
+class LIRInst : public ListTrait<LIRInst> {
 public:
-  enum OperandFlag : int {
-    Use = 1,
-    Def = 2,
-  };
-
-  enum OperandType {
-    None,
-    Constant, // Need to be materialized finally.
-    VirtualRegister,
-    GPRegister,
-    FPRegister,
-    Immediate, // Different from Constant, this is valid for machine
-               // instruction.
-    Function,
-    StackSlot,
-    BasicBlock,
-    GlobalVar,
-  };
-
-  enum LowValueType { i64, i32, i16, i8, i1, Float, Imm };
-  static LowOperand none() { return LowOperand{.type = None}; }
-
-  static LowOperand stackSlot(uint64_t stackSlotId) {
-    return LowOperand{.type = StackSlot, .stackSlotId = stackSlotId};
+  LIRInst(const LIRInst &inst) = delete;
+  LIRInst(uint64_t type, uint32_t numOps) : type(type), numOps(numOps) {
+    operands.resize(numOps, LowOperand(this));
   }
 
-  static LowOperand constant(uint64_t c) {
-    return LowOperand{.type = Constant, .immValue = c};
+  void emit(std::ostream &out, EmitInfo &info);
+
+  LIRInst *setUse(uint index, LIRValue *usee) {
+    operands[index].use(usee);
+    return this;
   }
 
-  static LowOperand label(LowBB *bb) {
-    return LowOperand{.type = BasicBlock, .bb = bb};
+  LIRInst *setDef(uint index, LIRValue *def) {
+    operands[index].def(def);
+    return this;
   }
 
-  uint64_t bitwidth() const {
-    switch (valueType) {
-    case i64:
-      return 64;
-    case i32:
-      return 32;
-    case i16:
-      return 16;
-    case i8:
-      return 8;
-    case i1:
-      return 1;
-    case Float:
-      return 32;
-    default:
-      nnvm_unreachable("Not implemented")
-    }
+  LIRInst *setOpcode(uint64_t type) {
+    this->type = type;
+    return this;
   }
 
-  bool isPhyReg() const { return isGPR() || isFPR(); }
-  bool isGPR() const { return type == GPRegister; }
-  bool isVR() const { return type == VirtualRegister; }
-  bool isFPR() const { return type == FPRegister; }
-  bool isReg() const { return isGPR() || isVR() || isFPR(); }
-  bool isImm() const { return type == Immediate; }
-  bool isStackSlot() const { return type == StackSlot; }
-  bool isConstant() const { return type == Constant; }
-  bool isUse() const { return flag & Use; }
-  bool isDef() const { return flag & Def; }
+  uint64_t getOpcode() { return type; }
 
-  LowOperand use() const {
-    LowOperand ret(*this);
-    ret.flag = (OperandFlag)(ret.flag | Use);
-    ret.flag = (OperandFlag)(ret.flag & ~Def);
-    return ret;
+  LIRValue *getOp(uint index) { return operands[index].getOperand(); }
+  LowOperand *getOpHandle(uint index) { return &operands[index]; }
+  size_t getNumOp() { return operands.size(); }
+
+  void eraseFromList() {
+    for (auto &op : operands)
+      op.removeFromList();
+    ListTrait<LIRInst>::eraseFromList();
   }
 
-  LowOperand def() const {
-    LowOperand ret(*this);
-    ret.flag = (OperandFlag)(ret.flag & ~Use);
-    ret.flag = (OperandFlag)(ret.flag | Def);
-    return ret;
+  // Assume these operands are used, instead of being defined
+  LIRInst *swap(uint index1, uint index2) {
+    LIRValue *temp = operands[index1].removeRefOfValue();
+    operands[index1].set(operands[index2].getOperand());
+    operands[index2].set(temp);
+    return this;
   }
 
-  LowOperand lastUse() const {
-    LowOperand ret = this->use();
-    ret.lastUsed = true;
-    return ret;
+  static LIRInst *create(uint64_t type, uint32_t numOps) {
+    LIRInst *inst = new LIRInst(type, numOps);
+    return inst;
   }
-
-  static LowOperand imm(uint64_t value) {
-    return LowOperand{
-        .type = Immediate, .valueType = Imm, .flag = Use, .immValue = value};
-  }
-
-  static LowOperand vreg(uint64_t id, LowValueType valueType) {
-    return LowOperand{
-        .type = LowOperand::VirtualRegister,
-        .valueType = valueType,
-        .regId = id,
-    };
-  }
-
-  static LowOperand gpr(uint64_t id, LowValueType valueType) {
-    return LowOperand{
-        .type = LowOperand::GPRegister,
-        .valueType = valueType,
-        .regId = id,
-    };
-  }
-
-  static LowOperand fpr(uint64_t id, LowValueType valueType) {
-    return LowOperand{
-        .type = LowOperand::FPRegister,
-        .valueType = valueType,
-        .regId = id,
-    };
-  }
-
-  static LowOperand function(LowFunc *func) {
-    return LowOperand{
-        .type = LowOperand::Function,
-        .flag = LowOperand::Use,
-        .func = func,
-    };
-  }
-
-  void emit(std::ostream &out, EmitInfo &info) const;
-
-  OperandType type;
-  LowValueType valueType;
-  OperandFlag flag;
-  bool lastUsed = false;
-
-  union {
-    uint64_t regId;
-    uint64_t immValue;
-    float fImmValue;
-    uint64_t stackSlotId;
-    LowBB *bb;
-    LowFunc *func;
-    LowGlobalVar *var;
-  };
-};
-
-class LowInst {
-public:
-  void emit(std::ostream &out, EmitInfo &info) const;
 
   // op def, use1, use2
-  static LowInst create(uint64_t type, const LowOperand &def,
-                        const LowOperand &use1, const LowOperand &use2) {
-    return LowInst{.type = type, .operand{def.def(), use1.use(), use2.use()}};
+  static LIRInst *create(uint64_t type, LIRValue *def, LIRValue *use1,
+                         LIRValue *use2) {
+    LIRInst *inst = new LIRInst(type, 3);
+    inst->setDef(0, def);
+    inst->setUse(1, use1);
+    inst->setUse(2, use2);
+    return inst;
+  }
+
+  // op use1, use2, use3
+  static LIRInst *createAllUse(uint64_t type, LIRValue *use1, LIRValue *use2,
+                               LIRValue *use3) {
+    LIRInst *inst = new LIRInst(type, 3);
+    inst->setUse(0, use1);
+    inst->setUse(1, use2);
+    inst->setUse(2, use3);
+    return inst;
   }
 
   // op def, use1
-  static LowInst create(uint64_t type, const LowOperand &def,
-                        const LowOperand &use1) {
-    return LowInst{.type = type, .operand{def.def(), use1.use()}};
+  static LIRInst *create(uint64_t type, LIRValue *def, LIRValue *use1) {
+    LIRInst *inst = new LIRInst(type, 2);
+    inst->setDef(0, def);
+    inst->setUse(1, use1);
+    return inst;
   }
 
   uint64_t type;
-  std::vector<LowOperand> operand;
+  std::vector<LowOperand> operands;
+  uint32_t numOps;
+  uint64_t subData;
 };
 
-class LowFunc;
+class LIRFunc;
 
-class LowBB {
+class LIRBB : public LIRValue, public ListTrait<LIRBB> {
 public:
-  void emit(std::ostream &out, EmitInfo &info, bool showLabel) const;
+  LIRBB() : LIRValue(LIRValue::Block) {}
+  void emit(std::ostream &out, EmitInfo &info, bool showLabel);
 
-  typedef std::list<LowInst>::iterator Iterator;
+  typedef List<LIRInst>::Iterator Iterator;
 
   Iterator begin() { return insts.begin(); }
   Iterator end() { return insts.end(); }
-  Iterator insertBefore(Iterator it, const LowInst &I) {
-    return insts.insert(it, I);
-  }
-  Iterator insertAfter(Iterator it, const LowInst &I) {
-    return insts.insert(++it, I);
-  }
+  void insertBefore(Iterator it, LIRInst *I) { it.insertBefore(I); }
+  void insertAfter(Iterator it, LIRInst *I) { it.insertBack(I); }
 
   uint getSuccNum();
-  LowBB *getSucc(int index);
+  LIRBB *getSucc(int index);
 
-  LowFunc *parent;
-  std::list<LowInst> insts;
+  void setParent(LIRFunc *func) { parent = func; }
+  LIRFunc *getParent() const { return parent; }
+  List<LIRInst> &getInsts() { return insts; }
+  ~LIRBB() { insts.freeAll(); }
+
+private:
+  LIRFunc *parent;
+  List<LIRInst> insts;
 };
 
-class LowFunc : public LowGlobal {
+class LIRFunc : public LIRGlobal {
 public:
-  void emit(std::ostream &out, EmitInfo &info) const;
+  LIRFunc() : LIRGlobal(LIRValue::Func) {}
+  void emit(std::ostream &out, EmitInfo &info);
 
-  std::vector<LowBB *> BBs;
-  std::vector<LowOperand> args;
-  std::vector<StackSlot> stackSlots;
-  uint64_t largestVRegID = VR_BEGIN;
+  void insert(LIRBB *bb);
+  LIRBB *getEntry() { return *BBs.begin(); }
 
-  LowBB *getEntry() { return BBs[0]; }
+  StackSlot *allocStackSlot(uint64_t size);
+  StackSlot *allocStackSlot();
 
-  uint64_t allocStackSlot(uint64_t size);
-  uint64_t allocStack(const StackSlot &obj);
-  uint64_t allocVRegID() { return largestVRegID++; }
-  LowOperand allocVReg(LowOperand::LowValueType valueType) {
-    return LowOperand::vreg(allocVRegID(), valueType).def();
+  List<LIRBB>::Iterator begin() { return BBs.begin(); }
+  List<LIRBB>::Iterator end() { return BBs.end(); }
+
+  void setParent(LIRModule *module) { parent = module; }
+  LIRModule *getParent() const { return parent; }
+
+  std::vector<StackSlot *> getStackSlots() const { return stackSlots; }
+
+  ~LIRFunc() {
+    for (auto *slot : stackSlots)
+      delete slot;
+    BBs.freeAll();
   }
 
-  ~LowFunc() {
-    for (auto *BB : BBs)
-      delete BB;
-  }
+private:
+  List<LIRBB> BBs;
+  LIRModule *parent = nullptr;
+  std::vector<LIRValue *> args;
+  std::vector<StackSlot *> stackSlots;
 };
 
-class LowModule {
+class LIRModule {
 public:
-  std::vector<LowFunc *> funcs;
-  std::vector<LowGlobalVar *> globals;
+  LIRModule();
+  LIRModule(const LIRModule &other) = delete;
+
+  void insert(LIRFunc *func);
+
+  std::vector<LIRFunc *> funcs;
+  std::vector<LIRGlobalVar *> globals;
+
+  std::vector<Register *> virRegisters;
+
+  const std::array<Register, PR_END> &getAllPhyRegs() const {
+    return phyRegisters;
+  }
+
+  Register *allocVReg(LIRValueType type) {
+    auto *ret = new Register(virRegisters.size() + VR_BEGIN);
+    ret->setType(type);
+    virRegisters.push_back(ret);
+    return ret;
+  }
+
+  Register *getPhyReg(uint64_t id) { return &phyRegisters[id]; }
 
   void emit(std::ostream &out) const;
 
-  ~LowModule();
+  ~LIRModule();
+
+private:
+  std::array<Register, PR_END> phyRegisters;
 };
 } // namespace nnvm::riscv

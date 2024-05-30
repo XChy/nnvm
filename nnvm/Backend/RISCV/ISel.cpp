@@ -1,5 +1,6 @@
 #include "ISel.h"
 #include "ADT/GenericInt.h"
+#include "ADT/Ranges.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
@@ -10,70 +11,97 @@
 using namespace nnvm;
 using namespace nnvm::riscv;
 
-void ISel::isel(LowFunc &func) {
-  for (auto *bb : func.BBs)
-    for (auto it = bb->insts.begin(); it != bb->insts.end();)
-      it = combine(func, *bb, it);
+void ISel::isel(LIRFunc &func) {
+  LIRBuilder builder(*func.getParent());
 
-  for (auto *bb : func.BBs)
-    for (auto it = bb->insts.begin(); it != bb->insts.end();)
-      it = legalizeOperands(func, *bb, it);
+  for (auto *bb : func) {
+    for (auto cur : incChange(*bb)) {
+      EmitInfo info;
+      cur->emit(std::cerr, info);
+      std::cerr << "\n";
+      builder.setInsertPoint(cur);
+
+      // Remove the original instructions
+      if (auto *I = combine(builder, cur))
+        cur->eraseFromList();
+    }
+  }
+
+  debug({
+    std::cerr << "====After combining====:\n";
+    EmitInfo info;
+    func.emit(std::cerr, info);
+  });
+
+  for (auto *bb : func) {
+    for (auto cur : incChange(*bb)) {
+      builder.setInsertPoint(cur);
+
+      // Remove the original instructions
+      if (auto *I = legalizeOperands(builder, cur))
+        cur->eraseFromList();
+    }
+  }
 }
 
-void riscv::loadConstantToReg(LowBB &bb, LowBB::Iterator it,
-                              LowOperand constant, LowOperand reg) {
-  if (canExpressInBits<12>(constant.immValue)) {
-    auto load = LowInst::create(ADDI, reg, getZeroReg(constant.valueType),
-                                LowOperand::imm(constant.immValue));
-    bb.insertBefore(it, load);
+void riscv::loadConstantToReg(LIRBuilder &builder, LIRConst *constant,
+                              Register *reg) {
+  if (canExpressInBits<12>(constant->getIValue())) {
+    auto load = LIRInst::create(ADDI, reg, builder.phyReg(ZERO),
+                                LIRImm::create(constant->getIValue()));
+    builder.addInst(load);
     return;
   }
 
-  if (canExpressInBits<32>(constant.immValue)) {
-    auto auipc = LowInst::create(
-        AUIPC, reg, LowOperand::imm(((int64_t)constant.immValue) >> 12));
-    auto load = LowInst::create(ADDI, reg, reg,
-                                LowOperand::imm(constant.immValue & 0xFFF));
-    bb.insertBefore(it, auipc);
-    bb.insertBefore(it, load);
+  if (canExpressInBits<32>(constant->getIValue())) {
+    uint64_t largeValue;
+    uint64_t smallValue;
+    if (constant->getIValue() & 0x800) {
+      smallValue = (constant->getIValue() & 0xFFF) - (1 << 12);
+      largeValue = (constant->getIValue() >> 12) + 1;
+    } else {
+      smallValue = constant->getIValue() & 0xFFF;
+      largeValue = constant->getIValue() >> 12;
+    }
+
+    auto auipc = LIRInst::create(LUI, reg, LIRImm::create(largeValue));
+    auto load = LIRInst::create(ADDI, reg, reg, LIRImm::create(smallValue));
+    builder.addInst(auipc);
+    builder.addInst(load);
     return;
   }
 
   nnvm_unreachable("How to handle big constant, especially for i64?")
 }
 
-void riscv::loadRegPlusConstantToReg(LowBB &bb, LowBB::Iterator it,
-                                     LowOperand srcReg, LowOperand constant,
-                                     LowOperand destReg) {
-  if (canExpressInBits<12>(constant.immValue)) {
-    auto load = LowInst::create(ADDI, destReg, srcReg,
-                                LowOperand::imm(constant.immValue));
-    bb.insertBefore(it, load);
+void riscv::loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
+                                     LIRConst *constant, Register *destReg) {
+  if (canExpressInBits<12>(constant->getIValue())) {
+    auto load = LIRInst::create(ADDI, destReg, srcReg,
+                                LIRImm::create(constant->getIValue()));
+    builder.addInst(load);
     return;
   }
 
-  loadConstantToReg(bb, it, constant, destReg);
-  auto addDestAndSrc = LowInst::create(ADD, destReg, destReg, srcReg);
-  bb.insertBefore(it, addDestAndSrc);
+  loadConstantToReg(builder, constant, destReg);
+  auto addDestAndSrc = LIRInst::create(ADD, destReg, destReg, srcReg);
+  builder.addInst(addDestAndSrc);
 }
 
-void riscv::loadGlobalToReg(LowBB &bb, LowBB::Iterator it, LowOperand global,
-                            LowOperand reg) {
+void riscv::loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global,
+                            Register *reg) {
   // TODO: replace the pseudocode "LA" with "%pcrel_hi & %pcrel_lo"
   // auto auipc = LowInst::create(AUIPC, reg, global);
   // auto addi = LowInst::create(ADDI, reg, reg, global);
 
   // bb.insertBefore(it, auipc);
   // bb.insertBefore(it, addi);
-  auto la = LowInst::create(LA, reg, global);
-  bb.insertBefore(it, la);
-  return;
+  builder.addInst(LIRInst::create(LA, reg, global));
 }
 
-static inline LowInstType
-materializeArithmeticInstType(uint64_t instID,
-                              LowOperand::LowValueType operandType) {
-  if (operandType == LowOperand::i32) {
+static inline LIRInstID
+materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
+  if (operandType == LIRValueType::i32) {
     switch ((InstID)instID) {
     case InstID::Add:
       return ADDW;
@@ -94,7 +122,7 @@ materializeArithmeticInstType(uint64_t instID,
     }
   }
 
-  if (operandType == LowOperand::i64) {
+  if (operandType == LIRValueType::i64) {
     switch ((InstID)instID) {
     case InstID::Add:
       return ADD;
@@ -115,12 +143,13 @@ materializeArithmeticInstType(uint64_t instID,
     }
   }
 
+  std::cerr << "The operand type: " << (uint64_t)operandType << "\n";
   nnvm_unreachable("No implemented");
 }
 
-LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
-  uint64_t type = (uint64_t)it->type;
-  if (it->type <= ISA_BEGIN) {
+LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
+  uint64_t type = I->type;
+  if (I->type <= ISA_BEGIN) {
     switch ((InstID)type) {
     case InstID::Add:
     case InstID::Sub:
@@ -129,148 +158,186 @@ LowBB::Iterator ISel::combine(LowFunc &func, LowBB &bb, LowBB::Iterator it) {
     case InstID::UDiv:
     case InstID::SRem:
     case InstID::URem:
-      it->type = materializeArithmeticInstType(type, it->operand[1].valueType);
-      break;
-    case InstID::PtrAdd:
-      it->type = ADD;
-      break;
-    case InstID::Load:
-      *it = LowInst::create(getLoadInstType(it->operand[0].valueType),
-                            it->operand[0], it->operand[1], LowOperand::imm(0));
-      break;
-    case InstID::Store:
-      *it = LowInst::create(getStoreInstType(it->operand[0].valueType),
-                            it->operand[0], it->operand[1], LowOperand::imm(0));
-      break;
-    case InstID::ZExt:
-      *it = LowInst::create(ADDI, it->operand[0], it->operand[1],
-                            LowOperand::imm(0));
-      break;
-    case InstID::ICmp: {
-      uint64_t predicate = it->operand[3].immValue;
-      switch (predicate) {
-      case ICmpInst::EQ: {
-        auto middle = func.allocVReg(it->operand[0].valueType);
-        bb.insertBefore(
-            it, LowInst::create(XOR, middle, it->operand[1], it->operand[2]));
-        *it =
-            LowInst::create(SLTIU, it->operand[0], middle, LowOperand::imm(1));
+      // TODO: the type of operator is not that accurate, we should lower them
+      // before doing such thing.
+      {
+        EmitInfo info;
+        I->emit(std::cerr, info);
+        std::cerr << "\n";
+        I->setOpcode(
+            materializeArithmeticInstType(type, I->getOp(1)->getType()));
         break;
       }
+    case InstID::PtrAdd:
+      I->setOpcode(ADD);
+      break;
+
+    case InstID::Load: {
+      auto *newInst =
+          LIRInst::create(getLoadInstType(I->getOp(0)->getType()), I->getOp(0),
+                          I->getOp(1), LIRImm::create(0));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
+    case InstID::Store: {
+      // auto *newInst =
+      // LIRInst::create(getStoreInstType(I->getOp(0)->getType()), 3)
+      //->setUse(0, I->getOp(0))
+      //->setUse(1, I->getOp(1))
+      //->setUse(2, LIRImm::create(0));
+      auto *newInst =
+          LIRInst::createAllUse(getStoreInstType(I->getOp(0)->getType()),
+                                I->getOp(0), I->getOp(1), LIRImm::create(0));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
+    case InstID::ZExt: {
+      std::cerr << I->getOp(0) << " | " << I->getOp(1) << "\n";
+      I->getOp(1)->setType(I->getOp(0)->getType());
+      auto *newInst =
+          LIRInst::create(ADD, I->getOp(0), I->getOp(1), builder.phyReg(ZERO));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
+    case InstID::ICmp: {
+      uint64_t predicate = I->getOp(3)->as<LIRImm>()->getValue();
+      switch (predicate) {
+
+      case ICmpInst::EQ: {
+        // a == b  -->   (a ^ b) == 0 --> (a ^ b) u< 1
+        auto middle = builder.newVReg(I->getOp(0)->getType());
+        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
+        auto last =
+            LIRInst::create(SLTIU, I->getOp(0), middle, LIRImm::create(1));
+        builder.addInst(last);
+        return last;
+      }
+
+        // a != b  -->  (a ^ b) == 0  -->  (a ^ b) u> 0  -->  0 u< (a ^ b)
       case ICmpInst::NE: {
-        auto middle = func.allocVReg(it->operand[0].valueType);
-        bb.insertBefore(
-            it, LowInst::create(XOR, middle, it->operand[1], it->operand[2]));
-        *it = LowInst::create(SLTU, it->operand[0],
-                              getZeroReg(it->operand[0].valueType), middle);
-        break;
+        auto middle = builder.newVReg(I->getOp(0)->getType());
+        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
+        auto last =
+            LIRInst::create(SLTU, I->getOp(0), builder.phyReg(ZERO), middle);
+        builder.addInst(last);
+        return last;
       }
 
         // a > b  -->  b < a
       case ICmpInst::SGT:
-        std::swap(it->operand[1], it->operand[2]);
+        I->swap(1, 2);
         // fallthrough
-      case ICmpInst::SLT:
-        *it = LowInst::create(SLT, it->operand[0], it->operand[1],
-                              it->operand[2]);
-        break;
+      case ICmpInst::SLT: {
+        auto newInst =
+            LIRInst::create(SLT, I->getOp(0), I->getOp(1), I->getOp(2));
+        builder.addInst(newInst);
+        return newInst;
+      }
 
         // a <= b  -->  not(a > b) --> not(b < a)
         // a >= b  -->  not(a < b)
       case ICmpInst::SLE:
-        std::swap(it->operand[1], it->operand[2]);
+        I->swap(1, 2);
         // fallthrough
-      case ICmpInst::SGE:
-        bb.insertBefore(it, LowInst::create(SLT, it->operand[0], it->operand[1],
-                                            it->operand[2]));
-        *it = LowInst::create(XORI, it->operand[0], it->operand[0],
-                              LowOperand::imm(1));
-        break;
+      case ICmpInst::SGE: {
+        auto slt = LIRInst::create(SLT, I->getOp(0), I->getOp(1), I->getOp(2));
+        builder.addInst(slt);
+        auto newInst =
+            LIRInst::create(XORI, I->getOp(0), I->getOp(0), LIRImm::create(1));
+        builder.addInst(newInst);
+        return newInst;
+      }
 
-      case ICmpInst::UGT:
-        std::swap(it->operand[1], it->operand[2]);
-        // fallthrough
-      case ICmpInst::ULT:
-        *it = LowInst::create(SLTU, it->operand[0], it->operand[1],
-                              it->operand[2]);
-        break;
+        // case ICmpInst::UGT:
+        // std::swap(it->operand[1], it->operand[2]);
+        //// fallthrough
+        // case ICmpInst::ULT:
+        //*it = LIRInst::create(SLTU, it->operand[0], it->operand[1],
+        // it->operand[2]);
+        // break;
 
       default:
         nnvm_unreachable("Unimplemented");
       }
-
-    } break;
+      break;
+    }
     case InstID::Stack:
       nnvm_unreachable("StackInst should not be in this stage");
     default:
       nnvm_unreachable("Not implemented");
     }
   }
-  it++;
-  return it;
+  return nullptr;
 }
 
-LowBB::Iterator ISel::legalizeOperands(LowFunc &func, LowBB &bb,
-                                       LowBB::Iterator it) {
-  if (it->type > R_BEGIN && it->type < R_END) {
-    LowOperand &rs1 = it->operand[1];
-    LowOperand &rs2 = it->operand[2];
+LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
+  if (I->type > R_BEGIN && I->type < R_END) {
+    LIRValue *rs1 = I->getOp(1);
+    LIRValue *rs2 = I->getOp(2);
 
-    if (rs1.isConstant()) {
-      if (isCommutative(it->type))
+    if (rs1->isConstant()) {
+      if (isCommutative(I->type)) {
+        I->swap(1, 2);
         std::swap(rs1, rs2);
+      }
 
       // TODO: WTF? How to handle constant fold in backend??
-      if (rs1.isConstant()) {
-        auto vregForImm = func.allocVReg(rs1.valueType);
-        loadConstantToReg(bb, it, rs1, vregForImm);
-        rs1 = vregForImm.use();
+      if (rs1->isConstant()) {
+        auto *vregForImm = builder.newVReg(rs1->getType());
+        loadConstantToReg(builder, rs1->as<LIRConst>(), vregForImm);
+        I->setUse(1, vregForImm);
       }
     }
 
-    if (rs2.isConstant()) {
-      if (rs2.immValue == 0) {
-        rs2 = getZeroReg(rs2.valueType);
-      } else if (canExpressInBits<12>(rs2.immValue) &&
-                 toIFormat(it->type) != NONE) {
-        uint64_t iType = toIFormat(it->type);
-        it->type = iType;
-        rs2 = LowOperand::imm(rs2.immValue);
+    if (rs2->isConstant()) {
+      uint64_t constImm = rs2->as<LIRConst>()->getIValue();
+      if (constImm == 0) {
+        rs2->replaceWith(builder.phyReg(ZERO));
+      } else if (canExpressInBits<12>(constImm) && toIFormat(I->type) != NONE) {
+        uint64_t iType = toIFormat(I->type);
+        I->type = iType;
+        I->setUse(2, LIRImm::create(constImm));
       } else {
-        auto vregForImm = func.allocVReg(rs2.valueType);
-        loadConstantToReg(bb, it, rs2, vregForImm);
-        it->operand[2] = vregForImm.use();
+        auto vregForImm = builder.newVReg(rs2->getType());
+        loadConstantToReg(builder, rs2->as<LIRConst>(), vregForImm);
+        I->setUse(2, vregForImm);
       }
     }
-  } else if (it->type > S_BEGIN && it->type < S_END) {
-    LowOperand &rs2 = it->operand[0];
-    LowOperand &rs1 = it->operand[1];
+  } else if (I->type > S_BEGIN && I->type < S_END) {
+    LIRValue *rs2 = I->getOp(0);
+    LIRValue *rs1 = I->getOp(1);
 
-    if (rs1.type == LowOperand::GlobalVar) {
-      auto vregForAddress = func.allocVReg(LowOperand::i64);
-      loadGlobalToReg(bb, it, rs1, vregForAddress);
-      rs1 = vregForAddress.use();
+    if (rs1->isGlobalVar()) {
+      auto vregForAddress = builder.newVReg(LIRValueType::i64);
+      loadGlobalToReg(builder, rs1->as<LIRGlobalVar>(), vregForAddress);
+      I->setUse(1, vregForAddress);
     }
 
-    if (rs2.isConstant()) {
-      auto vregForImm = func.allocVReg(rs2.valueType);
-      loadConstantToReg(bb, it, rs2, vregForImm);
-      it->operand[0] = vregForImm.use();
-    }
-  }
-
-  for (LowOperand &r : it->operand) {
-    if (r.type == LowOperand::GlobalVar) {
-      auto vregForAddress = func.allocVReg(LowOperand::i64);
-      loadGlobalToReg(bb, it, r, vregForAddress);
-      r = vregForAddress.use();
-    } else if (r.isConstant()) {
-      auto vregForImm = func.allocVReg(r.valueType);
-      loadConstantToReg(bb, it, r, vregForImm);
-      it->operand[0] = vregForImm.use();
+    if (rs2->isConstant()) {
+      auto vregForImm = builder.newVReg(rs2->getType());
+      loadConstantToReg(builder, rs2->as<LIRConst>(), vregForImm);
+      I->setUse(0, vregForImm);
     }
   }
 
-  it++;
-  return it;
+  for (size_t i = 0; i < I->getNumOp(); i++) {
+    LIRValue *rs = I->getOp(i);
+    EmitInfo info;
+
+    if (rs->isGlobalVar()) {
+      auto vregForAddress = builder.newVReg(LIRValueType::i64);
+      loadGlobalToReg(builder, rs->as<LIRGlobalVar>(), vregForAddress);
+      I->setUse(i, vregForAddress);
+    } else if (I->getOp(i)->isConstant()) {
+
+      auto vregForImm = builder.newVReg(rs->getType());
+      loadConstantToReg(builder, rs->as<LIRConst>(), vregForImm);
+      I->setUse(i, vregForImm);
+    }
+  }
+
+  return nullptr;
 }

@@ -56,6 +56,7 @@ public:
     bool operator!=(Iterator other) { return curNode != other.curNode; }
 
     T *operator*() { return (T *)curNode; }
+    const T *operator*() const { return (const T *)curNode; }
 
   private:
     ListTrait<T> *curNode;
@@ -74,6 +75,8 @@ public:
 
   Iterator begin() { return Iterator(dummyBegin.next); }
   Iterator end() { return Iterator(&dummyEnd); }
+  Iterator begin() const { return Iterator(dummyBegin.next); }
+  Iterator end() const { return Iterator(&dummyEnd); }
 
   Iterator erase(Iterator it) {
     Iterator next = it;
@@ -83,6 +86,13 @@ public:
   }
 
   bool empty() { return dummyEnd.prev == &dummyBegin; }
+  size_t size() const {
+    size_t ret = 0;
+
+    for (ListTrait<T> *cur = dummyBegin.next; cur != &dummyEnd; cur = cur->next)
+      ret++;
+    return ret;
+  }
 
   void freeAll() {
     ListTrait<T> *cur = dummyEnd.getPrev();

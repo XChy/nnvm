@@ -25,11 +25,12 @@
 
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
-  { PhyRegister::x, #x }
+  { RegisterID::x, #x }
 
 namespace nnvm::riscv {
 
-enum PhyRegister : uint64_t {
+enum RegisterID : uint64_t {
+  PR_BEGIN = 0,
   GPR_BEGIN,
   MAKE_GPR(FOR_ENUM),
   GPR_END,
@@ -37,6 +38,7 @@ enum PhyRegister : uint64_t {
   FPR_BEGIN,
   MAKE_FPR(FOR_ENUM),
   FPR_END,
+  PR_END,
 
   VR_BEGIN,
 };
@@ -48,6 +50,7 @@ static inline std::string getNameForRegister(uint64_t type) {
 
   if (type >= VR_BEGIN)
     return "v" + std::to_string(type - VR_BEGIN);
+
   auto ret = nameMap[type];
   std::transform(ret.begin(), ret.end(), ret.begin(),
                  [](char c) { return std::tolower(c); });
@@ -64,7 +67,6 @@ static inline std::set<uint64_t> calleeSavedRegs() {
   return {SP,  S0,  S1,  S2,  S3,  S4,  S5,  S6,  S7,  S8,  S9,   S10, S11,
           FS0, FS1, FS2, FS3, FS4, FS5, FS6, FS7, FS8, FS9, FS10, FS11};
 }
-
 static inline bool isAlwaysPreserved(uint64_t reg) {
   return std::unordered_set<uint64_t>{SP}.count(reg);
 }

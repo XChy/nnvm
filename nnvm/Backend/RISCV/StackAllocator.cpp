@@ -5,6 +5,7 @@
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowIR/Patterns.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
@@ -12,22 +13,20 @@
 #include <unordered_set>
 using namespace nnvm::riscv;
 
-void RegClearer::clear(LowFunc &func,
+void RegClearer::clear(LIRFunc &func,
                        std::unordered_map<uint64_t, uint64_t> &vregNum) {
 
   // NOTE: now it can only handle one use of virtual register
-  for (auto *bb : func.BBs) {
-    for (auto it = bb->insts.begin(); it != bb->insts.end(); it++) {
-      for (LowOperand &op : it->operand) {
+  for (auto *bb : func) {
+    for (auto *I : *bb) {
+      for (LowOperand &op : I->operands) {
 
-        if (op.isVR()) {
-          auto freeRegs = NearbyRegAnalysis(func, *bb, it).getFreeRegs();
+        if (op.getOperand()->isVReg()) {
+          auto freeRegs = NearbyRegAnalysis(func, *bb, I).getFreeRegs();
 
           if (!freeRegs.empty()) {
             // TODO: float-point ?
-            op = LowOperand{.type = LowOperand::GPRegister,
-                            .valueType = op.valueType,
-                            .regId = freeRegs.front()};
+            op.set(freeRegs.front());
             continue;
           } else {
             nnvm_unimpl();
@@ -41,62 +40,70 @@ void RegClearer::clear(LowFunc &func,
 }
 
 StackAllocator::FunctionStackInfo
-StackAllocator::calculateStackInfo(LowFunc &func) {
+StackAllocator::calculateStackInfo(LIRFunc &func) {
   FunctionStackInfo ret;
   std::set<uint64_t> usedRegs;
 
-  for (LowBB *bb : func.BBs) {
-    for (LowInst &inst : *bb) {
+  for (LIRBB *bb : func) {
+    for (LIRInst *inst : *bb) {
 
-      ret.isCaller |= inst.type == CALL;
+      ret.isCaller |= inst->type == CALL;
 
-      if (match(&inst, pattern::pRet()))
+      if (match(inst, pattern::pRet()))
         ret.exitBBs.push_back(bb);
     }
   }
 
-  if (ret.isCaller)
-    func.allocStack(StackSlot(StackSlot::CalleeSaved, 8, RA));
+  if (ret.isCaller) {
+    auto *slot = func.allocStackSlot();
+    slot->setType(StackSlot::CalleeSaved);
+    slot->setSize(8);
+    slot->setReg(func.getParent()->getPhyReg(RA));
+  }
 
   return ret;
 }
 
-bool StackAllocator::resolveSlotRef(LowBB *bb, LowBB::Iterator it,
+bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRInst *it,
                                     uint64_t slotOperandIndex) {
-  LowOperand &operand = it->operand[slotOperandIndex];
-  if (operand.isStackSlot()) {
+  LIRValue *operand = it->getOp(slotOperandIndex);
+  if (operand->isStackSlot()) {
 
-    auto &slot = func->stackSlots[operand.stackSlotId];
-    uint64_t offset = slot.getOffset();
+    uint64_t offset = operand->as<StackSlot>()->getOffset();
     if ((it->type > I_BEGIN && it->type < I_END) ||
         (it->type > S_BEGIN && it->type < S_END)) {
       if (canExpressInBits<11>(offset)) {
-        it->operand[slotOperandIndex] = getSPReg(LowOperand::i64).use();
-        it->operand[slotOperandIndex + 1] = LowOperand::imm(offset);
+        it->setUse(slotOperandIndex, builder.phyReg(SP));
+        it->setUse(slotOperandIndex + 1, LIRImm::create(offset));
         return true;
       }
     }
 
-    auto addressRegister = func->allocVReg(LowOperand::i64);
-    loadRegPlusConstantToReg(*bb, it, getSPReg(LowOperand::i64),
-                             LowOperand::constant(offset), addressRegister);
+    debug(std::cerr << "offset of stack "
+                    << operand->as<StackSlot>()->getIndex() << " is "
+                    << operand->as<StackSlot>()->getOffset() << " " << slotOperandIndex << "\n");
 
-    operand = addressRegister.lastUse();
+    builder.setInsertPoint(it);
+    auto addressRegister = builder.newVReg(LIRValueType::i64);
+    loadRegPlusConstantToReg(builder, builder.phyReg(SP),
+                             LIRConst::createInt(offset, LIRValueType::i64),
+                             addressRegister);
+    it->setUse(slotOperandIndex, addressRegister);
   }
   return true;
 }
 
-static inline bool needEmergencySlot(LowFunc &func) {
+static inline bool needEmergencySlot(LIRFunc &func) {
   uint64_t currentFrameSize = 0;
-  for (auto &slot : func.stackSlots) {
-    currentFrameSize += slot.getSize();
+  for (auto *slot : func.getStackSlots()) {
+    currentFrameSize += slot->getSize();
   }
   currentFrameSize = (currentFrameSize + getFrameAlign() - 1) /
                      getFrameAlign() * getFrameAlign();
   return !canExpressInBits<11>(currentFrameSize);
 }
 
-void StackAllocator::allocate(LowFunc &func) {
+void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
   stackInfo = calculateStackInfo(func);
 
@@ -105,61 +112,60 @@ void StackAllocator::allocate(LowFunc &func) {
   uint64_t numEmergencySlots = needEmergencySlot(func) ? 1 : 0;
   frameSize += numEmergencySlots * 8;
 
-  for (auto &slot : func.stackSlots) {
-    slot.setOffset(frameSize);
-    frameSize += slot.getSize();
+  for (auto *slot : func.getStackSlots()) {
+    slot->setOffset(frameSize);
+    frameSize += slot->getSize();
   }
 
   frameSize =
       (frameSize + getFrameAlign() - 1) / getFrameAlign() * getFrameAlign();
 
-  emitPrologue(func);
-  emitEpilogue(func);
+  LIRBuilder builder(*func.getParent());
 
-  for (auto *bb : func.BBs)
-    for (auto it = bb->insts.begin(); it != bb->insts.end(); it++)
-      for (int i = 0; i < it->operand.size(); i++)
-        if (it->operand[i].isStackSlot())
-          resolveSlotRef(bb, it, i);
+  emitPrologue(builder, func);
+  emitEpilogue(builder, func);
+
+  for (auto *bb : func)
+    for (auto *inst : *bb)
+      for (int i = 0; i < inst->getNumOp(); i++)
+        if (inst->getOp(i)->isStackSlot())
+          resolveSlotRef(builder, inst, i);
 
   clearer.clear(func, vregNum);
 }
 
-void StackAllocator::emitPrologue(LowFunc &func) {
-
-  for (int slotId = 0; slotId < func.stackSlots.size(); slotId++) {
-    StackSlot slot = func.stackSlots[slotId];
-    if (slot.getType() == StackSlot::CalleeSaved)
-      func.getEntry()->insertBefore(
-          func.getEntry()->begin(),
-          LowInst{SD,
-                  {LowOperand::gpr(slot.getRegId(), LowOperand::i64),
-                   LowOperand::stackSlot(slotId), LowOperand::imm(0)}});
-  }
-
+void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
-  func.getEntry()->insertBefore(func.getEntry()->begin(),
-                                LowInst::create(ADDI, getSPReg(LowOperand::i64),
-                                                getSPReg(LowOperand::i64),
-                                                LowOperand::imm(-frameSize)));
+  builder.setInsertPoint(func.getEntry()->begin());
+  auto *addFrame = LIRInst::create(ADDI, builder.phyReg(SP), builder.phyReg(SP),
+                                   LIRImm::create(-frameSize));
+  builder.addInst(addFrame);
+
+  for (StackSlot *slot : func.getStackSlots()) {
+    if (slot->getType() == StackSlot::CalleeSaved) {
+      auto *saveReg = LIRInst::create(SD, 3)
+                          ->setUse(0, slot->getReg())
+                          ->setUse(1, slot)
+                          ->setUse(2, LIRImm::create(0));
+      builder.addInst(saveReg);
+    }
+  }
 }
 
-void StackAllocator::emitEpilogue(LowFunc &func) {
+void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
-  for (LowBB *bb : stackInfo.exitBBs) {
-    for (int slotId = 0; slotId < func.stackSlots.size(); slotId++) {
-      StackSlot slot = func.stackSlots[slotId];
-      if (slot.getType() == StackSlot::CalleeSaved)
-        bb->insertBefore(
-            --bb->end(),
-            LowInst{LD,
-                    {LowOperand::gpr(slot.getRegId(), LowOperand::i64).def(),
-                     LowOperand::stackSlot(slotId), LowOperand::imm(0)}});
+  for (LIRBB *bb : stackInfo.exitBBs) {
+    builder.setInsertPoint(bb->getInsts().getLast());
+
+    for (StackSlot *slot : func.getStackSlots()) {
+      if (slot->getType() == StackSlot::CalleeSaved) {
+        builder.addInst(
+            LIRInst::create(LD, slot->getReg(), slot, LIRImm::create(0)));
+      }
     }
 
-    bb->insertBefore(--bb->end(),
-                     LowInst::create(ADDI, getSPReg(LowOperand::i64),
-                                     getSPReg(LowOperand::i64),
-                                     LowOperand::imm(frameSize)));
+    builder.addInst(LIRInst::create(ADDI, builder.phyReg(SP),
+                                    builder.phyReg(SP),
+                                    LIRImm::create(frameSize)));
   }
 }

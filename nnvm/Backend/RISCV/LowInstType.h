@@ -43,11 +43,11 @@
 
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \
-  { LowInstType::x, std::string(#x) }
+  { LIRInstID::x, std::string(#x) }
 
 namespace nnvm::riscv {
 
-enum LowInstType : uint64_t {
+enum LIRInstID : uint64_t {
   // ==== Middle IR Reserved ====
   // .....
   // ==== RISC-V Specific ====
@@ -121,8 +121,8 @@ static inline const char *getNameForInstType(uint64_t type) {
   return typeToName[type].c_str();
 }
 
-static inline LowInstType toIFormat(uint64_t type) {
-  static std::unordered_map<uint64_t, LowInstType> map = {
+static inline LIRInstID toIFormat(uint64_t type) {
+  static std::unordered_map<uint64_t, LIRInstID> map = {
       {ADD, ADDI}, {ADDW, ADDIW}, {XOR, XORI},
       {AND, ANDI}, {OR, ORI},     {SLT, SLTI}};
 

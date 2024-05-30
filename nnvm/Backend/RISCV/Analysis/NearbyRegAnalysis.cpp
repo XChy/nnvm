@@ -3,26 +3,28 @@
 
 using namespace nnvm::riscv;
 
-void NearbyRegAnalysis::run(LowFunc &func, LowBB &bb, LowBB::Iterator current) {
+void NearbyRegAnalysis::run(LIRFunc &func, LIRBB &bb, LIRBB::Iterator current) {
 
-  std::set<uint64_t> dead;
-  std::set<uint64_t> used;
+  std::set<Register *> dead;
+  std::set<Register *> used;
+
   int iterTimes = 0;
-  LowBB::Iterator deadSeeker = current;
+  LIRBB::Iterator deadSeeker = current;
   for (; deadSeeker != bb.end(); iterTimes++, deadSeeker++) {
+    LIRInst *inst = *deadSeeker;
     if (iterTimes >= 10)
       break;
-    for (LowOperand reg : deadSeeker->operand) {
-      if (!reg.isPhyReg() || !reg.isUse())
+    for (LowOperand &reg : inst->operands) {
+      if (!reg.getOperand()->isPReg() || !reg.isUse())
         continue;
-      used.insert(reg.regId);
+      used.insert(reg.getOperand()->as<Register>());
     }
 
-    if (!deadSeeker->operand[0].isPhyReg() || !deadSeeker->operand[0].isDef())
+    if (!inst->getOp(0)->isPReg() || !inst->getOpHandle(0)->isDef())
       continue;
 
-    uint64_t deadRegId = deadSeeker->operand[0].regId;
-    if (!used.count(deadRegId))
-      freeRegs.push_back(deadRegId);
+    Register *deadReg = inst->getOp(0)->as<Register>();
+    if (!used.count(deadReg))
+      freeRegs.push_back(deadReg);
   }
 }

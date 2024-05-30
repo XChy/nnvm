@@ -1,19 +1,19 @@
 #include "Backend/RISCV/LowIR.h"
 
 namespace nnvm::riscv {
-static void printDefUse(LowFunc &func) {
+static void printDefUse(LIRFunc &func) {
   EmitInfo info;
   info.setShowLine(true);
 
-  for (LowBB *bb : func.BBs)
+  for (LIRBB *bb : func)
     info.allocBB(bb);
 
   uint index = 0;
-  for (LowBB *bb : func.BBs) {
-    for (LowInst inst : *bb) {
+  for (LIRBB *bb : func) {
+    for (LIRInst *inst : *bb) {
       std::cerr << index << ": ";
-      inst.emit(std::cerr, info);
-      for (LowOperand operand : inst.operand) {
+      inst->emit(std::cerr, info);
+      for (const LowOperand &operand : inst->operands) {
         if (operand.isDef())
           std::cerr << " [def]";
         if (operand.isUse())

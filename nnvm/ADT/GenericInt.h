@@ -10,3 +10,4 @@ template <unsigned N> constexpr inline bool canExpressInBits(int64_t x) {
     return -(INT64_C(1) << (N - 1)) <= x && x < (INT64_C(1) << (N - 1));
   return true;
 }
+

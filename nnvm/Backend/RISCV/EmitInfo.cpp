@@ -3,13 +3,13 @@
 
 using namespace nnvm::riscv;
 
-EmitInfo::EmitInfo(const LowModule &module) {
+EmitInfo::EmitInfo(const LIRModule &module) {
   for (auto *func : module.funcs)
     if (!func->isExternal)
-      markBBAsEntry(func->BBs.front(), func);
+      markBBAsEntry(func->getEntry(), func);
 }
 
-std::string EmitInfo::labelOf(const LowBB *bb) {
+std::string EmitInfo::labelOf(const LIRBB *bb) {
   if (entries.count(bb))
     return entries[bb]->name;
   return "bb" + std::to_string(indexOf(bb));
