@@ -5,6 +5,7 @@
 build/
 cmake-build-debug/
 compile_commands.json
+NNVM.cbp
 
 # CMake
 .cmake/
