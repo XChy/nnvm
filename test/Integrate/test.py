@@ -11,6 +11,7 @@ Options:
   -f, --frontend          Frontend testing mode.
   -h, --help              Display help text and exit.
   -OLEVEL                 Set optimization level of compilation to LEVEL for host program and, if in diffrential testing mode, guest program.
+  --opaque-pointers       Use opaque pointers while assembling with llc.
   -v, --verbose           Show all standard errors of subprocesses.
 
 Examples:
@@ -21,7 +22,7 @@ Examples:
     Test all files under current directory (recursively) with minimal information in frontend testing mode.
 
   python3 test.py -O2 -bdriscv64 -e 'unary' -e '\d+_if'
-    Test files with O2 optimization whose names include substrings 'if' or 'op' briefly in differential testing mode with reference program running on riscv64.'''
+    Test files whose names matche 'unary' or '\d+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
 
 import subprocess
 import tempfile
@@ -52,12 +53,16 @@ frontend_mode = False
 difftest_mode = False
 difftest_arch = 'riscv64'
 patterns = []
+opaque_pointers = False
 optimization_level = 0
 
 tmp_asm = tempfile.NamedTemporaryFile(suffix='.s', prefix='nnvm', delete=False)
 tmp_obj = tempfile.NamedTemporaryFile(suffix='.o', prefix='nnvm', delete=False)
 tmp_out = tempfile.NamedTemporaryFile(suffix='.out', prefix='nnvm',
                                       delete=False)
+tmp_asm.close()
+tmp_obj.close()
+tmp_out.close()
 
 
 class ExecutionException(Exception):
@@ -149,7 +154,8 @@ def __choose_host_arglists(src: str):
   HOST_ARGLISTS_FRONTEND = [
       [NNVM, src, f'-O{optimization_level}',
        '--backend', 'llvm', '-o', tmp_asm.name],
-      [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
+      [LLC, '--filetype=obj', '--opaque-pointers' if opaque_pointers else '',
+       tmp_asm.name, '-o', tmp_obj.name],
       [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
       [tmp_out.name]
   ]
@@ -170,7 +176,8 @@ def __choose_guest_arglists(src: str):
   GUEST_ARGLISTS_X86_64 = [
       [GCC_X86, '-x', 'c', f'-O{optimization_level}',
        src, '-S', '-o', tmp_asm.name],
-      [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
+      [LLC, '--filetype=obj', '--opaque-pointers' if opaque_pointers else '',
+       tmp_asm.name, '-o', tmp_obj.name],
       [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
       [tmp_out.name]
   ]
@@ -248,6 +255,11 @@ def __init_optimization(arg: str):
   optimization_level = int(arg)
 
 
+def __init_opaque_pointers():
+  global opaque_pointers
+  opaque_pointers = True
+
+
 def __init_verbose():
   global verbose_mode
   verbose_mode = True
@@ -256,7 +268,7 @@ def __init_verbose():
 def __parse_args():
   try:
     opts, args = getopt.getopt(sys.argv[1:], 'bd:e:fhO:v', [
-                               'brief', 'difftest=', 'regexp=', 'frontend', 'help', 'O=', 'verbose'])
+                               'brief', 'difftest=', 'regexp=', 'frontend', 'help', 'O=', 'opaque-pointers', 'verbose'])
   except getopt.GetoptError as err:
     print(err)
     exit(1)
@@ -274,6 +286,8 @@ def __parse_args():
       __init_frontend_mode()
     elif opt in ['-O', '--O']:
       __init_optimization(arg)
+    elif opt in ['--opaque-pointers']:
+      __init_opaque_pointers()
     elif opt in ['-v', '--verbose']:
       __init_verbose()
     else:
@@ -297,10 +311,6 @@ def __walk_test_dir(test_set: set):
 
 
 def main():
-  tmp_asm.close()
-  tmp_obj.close()
-  tmp_out.close()
-
   args = __parse_args()
 
   test_set = set()
