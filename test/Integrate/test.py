@@ -6,8 +6,8 @@ Options:
   -b, --brief             Show failed cases only, without any detail.
   -d, --difftest=ARCH     Differential testing mode, comparing program output with that compiled by gcc on ARCH.
                           Alternatives for ARCH: riscv64, x86_64.
-  -e, --regexp=PATTERN    Test files whose names match PATTERN, with FILEs ignored.
-                          If this option appears multiple times, search for all patterns given.
+  -e, --regexp=PATTERN    Test files whose paths match PATTERN, with FILEs ignored. Multiple patterns can be specified.
+  -E, --exclude=PATTERN   Exclude files whose paths match PATTERN. Multiple patterns can be specified.
   -f, --frontend          Frontend testing mode.
   -h, --help              Display help text and exit.
   -OLEVEL                 Set optimization level of compilation to LEVEL for host program and, if in diffrential testing mode, guest program.
@@ -21,8 +21,11 @@ Examples:
   python3 test.py -bf
     Test all files under current directory (recursively) with minimal information in frontend testing mode.
 
+  python3 test.py -e if -E performance
+    Test files whose paths match 'if' but don't match 'performance'.
+
   python3 test.py -O2 -bdriscv64 -e 'unary' -e '\d+_if'
-    Test files whose names matche 'unary' or '\d+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
+    Test files whose paths match 'unary' or '\d+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
 
 import subprocess
 import tempfile
@@ -53,7 +56,8 @@ verbose_mode = False
 frontend_mode = False
 difftest_mode = False
 difftest_arch = 'riscv64'
-patterns = []
+inclusion_patterns = []
+exclusion_patterns = []
 opaque_pointers = False
 optimization_level = 0
 
@@ -155,11 +159,12 @@ def __choose_host_arglists(src: str):
   HOST_ARGLISTS_FRONTEND = [
       [NNVM, src, f'-O{optimization_level}',
        '--backend', 'llvm', '-o', tmp_asm.name],
-      [LLC, '--filetype=obj', '--opaque-pointers' if opaque_pointers else '',
-       tmp_asm.name, '-o', tmp_obj.name],
+      [LLC, '--filetype=obj', tmp_asm.name, '-o', tmp_obj.name],
       [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
       [tmp_out.name]
   ]
+  if opaque_pointers:
+    HOST_ARGLISTS_FRONTEND[1].append('--opaque-pointers')
 
   if frontend_mode:
     return HOST_ARGLISTS_FRONTEND
@@ -254,7 +259,11 @@ def __init_difftest_mode(arch: str):
 
 
 def __init_regexp(arg: str):
-  patterns.append(arg)
+  inclusion_patterns.append(arg)
+
+
+def __init_exclude(arg: str):
+  exclusion_patterns.append(arg)
 
 
 def __init_frontend_mode():
@@ -280,8 +289,8 @@ def __init_verbose():
 
 def __parse_args():
   try:
-    opts, args = getopt.getopt(sys.argv[1:], 'bd:e:fhO:v', [
-                               'brief', 'difftest=', 'regexp=', 'frontend', 'help', 'O=', 'opaque-pointers', 'verbose'])
+    opts, args = getopt.getopt(sys.argv[1:], 'bd:e:E:fhO:v', [
+                               'brief', 'difftest=', 'regexp=', 'exclude=', 'frontend', 'help', 'O=', 'opaque-pointers', 'verbose'])
   except getopt.GetoptError as err:
     print(err)
     exit(1)
@@ -295,6 +304,8 @@ def __parse_args():
       __init_difftest_mode(arg)
     elif opt in ['-e', '--regexp']:
       __init_regexp(arg)
+    elif opt in ['-E', '--exclude']:
+      __init_exclude(arg)
     elif opt in ['-f', '--frontend']:
       __init_frontend_mode()
     elif opt in ['-O', '--O']:
@@ -317,8 +328,9 @@ def __walk_test_dir(test_set: set):
   for root, _, filenames in os.walk(TEST_DIR):
     for filename in filenames:
       src = path.join(root, filename)
-      if (not src.endswith('.sy') or len(patterns) != 0
-              and not any(re.search(pattern, src) for pattern in patterns)):
+      if (not src.endswith('.sy') or len(inclusion_patterns) != 0
+              and not any(re.search(pattern, src) for pattern in inclusion_patterns)
+              or any(re.search(pattern, src) for pattern in exclusion_patterns)):
         continue
       __add_test(test_set, src)
 
