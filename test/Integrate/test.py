@@ -33,12 +33,13 @@ import sys
 import getopt
 
 
-TEST_DIR = path.split(path.abspath(__file__))[0]
-ROOT_DIR = path.split(path.split(TEST_DIR)[0])[0]
+TEST_DIR = path.dirname(path.abspath(__file__))
+ROOT_DIR = path.dirname(path.dirname(TEST_DIR))
 NNVM = path.join(ROOT_DIR, 'build', 'compiler')
 SYLIB_RV = path.join(ROOT_DIR, 'build', 'libsylib.a')
 SYLIB_X86 = path.join(ROOT_DIR, 'build', 'x86-64libsy.o')
 SYLIB_SRC = path.join(ROOT_DIR, 'test', 'Runtime', 'sylib.c')
+SYLIB_HDR = f'{path.splitext(SYLIB_SRC)[0]}.h'
 
 GCC_RV = 'riscv64-linux-gnu-gcc'
 GCC_X86 = 'gcc'
@@ -120,7 +121,7 @@ def execute(subproc_arglists: list, input_text: str):
 # helper functions of test()
 
 def __read_input(src: str):
-  in_path = path.splitext(src)[0] + '.in'
+  in_path = f'{path.splitext(src)[0]}.in'
   if path.exists(in_path):
     with open(in_path) as f:
       return ''.join(f.readlines())
@@ -132,7 +133,7 @@ def __read_input(src: str):
 
 
 def __read_expected(src: str):
-  out_path = path.splitext(src)[0] + '.out'
+  out_path = f'{path.splitext(src)[0]}.out'
   if path.exists(out_path):
     with open(out_path) as f:
       return ''.join(f.readlines())
@@ -167,18 +168,19 @@ def __choose_host_arglists(src: str):
 
 def __choose_guest_arglists(src: str):
   GUEST_ARGLISTS_RISCV64 = [
-      [GCC_RV, '-x', 'c', f'-O{optimization_level}',
+      [GCC_RV, '-x', 'c', '-fcommon', '-include', f'{SYLIB_HDR}', f'-O{optimization_level}',
        src, '-S', '-o', tmp_asm.name],
       [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
-      [GCC_RV, tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
+      [GCC_RV, '-fcommon', '-include', f'{SYLIB_HDR}',
+       tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
       [QEMU, '-L', '/usr/riscv64-linux-gnu', tmp_out.name, 'console=ttyS0'],
   ]
   GUEST_ARGLISTS_X86_64 = [
-      [GCC_X86, '-x', 'c', f'-O{optimization_level}',
+      [GCC_X86, '-x', 'c', '-fcommon', '-include', f'{SYLIB_HDR}', f'-O{optimization_level}',
        src, '-S', '-o', tmp_asm.name],
-      [LLC, '--filetype=obj', '--opaque-pointers' if opaque_pointers else '',
-       tmp_asm.name, '-o', tmp_obj.name],
-      [GCC_X86, tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
+      [GCC_X86, '-c', tmp_asm.name, '-o', tmp_obj.name],
+      [GCC_X86, '-fcommon', '-include', f'{SYLIB_HDR}',
+       tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],
       [tmp_out.name]
   ]
 
@@ -210,8 +212,9 @@ def test(src: str):
 
   if actual_text != expected_text:
     print(f'\033[31mDIFFERENT\033[0m on {rel_path}')
-    print(f'\033[33mACTUAL\033[0m:\n{actual_text}')
-    print(f'\033[35mEXPECTED\033[0m:\n{expected_text}')
+    if not brief_mode:
+      print(f'\033[33mACTUAL\033[0m:\n{actual_text}')
+      print(f'\033[35mEXPECTED\033[0m:\n{expected_text}')
     return False
   if not brief_mode:
     print(f'\033[32mPASSED\033[0m {rel_path}')
@@ -220,19 +223,34 @@ def test(src: str):
 
 # helper functions of main()
 
+def __init_sylib():
+  if path.exists(SYLIB_X86):
+    return
+  try:
+    subprocess.run(
+        [GCC_X86, '-c', SYLIB_SRC, '-o', SYLIB_X86], stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
+  except subprocess.CalledProcessError as err:
+    print(err)
+    exit(1)
+
+
 def __init_brief_mode():
   global brief_mode
   brief_mode = True
 
 
 def __init_difftest_mode(arch: str):
-  global difftest_mode
+  global difftest_mode, difftest_arch
   difftest_mode = True
   alternatives = ['riscv64', 'x86_64']
   if arch not in alternatives:
     print(f'Unsupported reference ARCH \'{arch}\'.')
     print(f'Alternatives: {alternatives}')
     exit(1)
+  difftest_arch = arch
+  if re.search('x86', arch):
+    __init_sylib()
 
 
 def __init_regexp(arg: str):
@@ -242,12 +260,7 @@ def __init_regexp(arg: str):
 def __init_frontend_mode():
   global frontend_mode
   frontend_mode = True
-  try:
-    subprocess.run(
-        [GCC_X86, '-c', SYLIB_SRC, '-o', SYLIB_X86], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
-  except subprocess.CalledProcessError as err:
-    print(err)
-    exit(1)
+  __init_sylib()
 
 
 def __init_optimization(arg: str):
@@ -322,7 +335,7 @@ def main():
   passed_cnt, total_cnt = 0, 0
   for src in test_set:
     if not brief_mode:
-      print(f'[{total_cnt}] Running on {path.split(src)[1]}')
+      print(f'[{total_cnt}] Running on {path.basename(src)}')
     passed = test(src)
     if passed:
       passed_cnt += 1
