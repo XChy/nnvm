@@ -111,7 +111,7 @@ fragment DIGIT : [0-9];
 //需要扔掉的空白字符
 WS : [ \r\n\t]+ -> skip;
 //需要扔掉的注释
-LINE_COMMENT : '//' .*? '\n' -> skip;
+LINE_COMMENT : '//' .*? ('\n' | EOF) -> skip;
 
 //需要扔掉的多行注释
 MULTILINE_COMMENT : '/*' .*? '*/' -> skip;

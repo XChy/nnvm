@@ -129,7 +129,6 @@ public:
   uint64_t type;
   std::vector<LowOperand> operands;
   uint32_t numOps;
-  uint64_t subData;
 };
 
 class LIRFunc;
@@ -206,6 +205,7 @@ public:
   const std::array<Register, PR_END> &getAllPhyRegs() const {
     return phyRegisters;
   }
+  std::array<Register, PR_END> &getAllPhyRegs() { return phyRegisters; }
 
   Register *allocVReg(LIRValueType type) {
     auto *ret = new Register(virRegisters.size() + VR_BEGIN);

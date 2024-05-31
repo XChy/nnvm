@@ -2,6 +2,7 @@
 
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
+#include "Backend/RISCV/StackSlot.h"
 #include <vector>
 namespace nnvm::riscv {
 class LIRBuilder {
@@ -9,6 +10,10 @@ public:
   LIRBuilder(LIRModule &module) : module(module) {}
 
   LIRBuilder &addInst(LIRInst *inst);
+  LIRBuilder &storeValueToSlot(LIRValue *value, StackSlot *slot,
+                               LIRValueType type);
+  LIRBuilder &loadValueFromSlot(LIRValue *value, StackSlot *slot,
+                              LIRValueType type);
   // LIRInst *buildInst(LowInstType type, const std::vector<LowOperand>
   // &operands);
 

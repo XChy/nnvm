@@ -87,7 +87,9 @@ bool LIRValue::isVReg() const {
   return isReg() && as<Register>()->isVirtual();
 };
 
-bool Register::isCalleeSaved() {
+bool Register::needToPreserve() const { return regId != SP && regId != ZERO; }
+
+bool Register::isCalleeSaved() const {
   switch (regId) {
   case SP:
   case S0:

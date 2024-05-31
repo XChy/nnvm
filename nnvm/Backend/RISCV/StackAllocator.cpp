@@ -81,7 +81,8 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRInst *it,
 
     debug(std::cerr << "offset of stack "
                     << operand->as<StackSlot>()->getIndex() << " is "
-                    << operand->as<StackSlot>()->getOffset() << " " << slotOperandIndex << "\n");
+                    << operand->as<StackSlot>()->getOffset() << " "
+                    << slotOperandIndex << "\n");
 
     builder.setInsertPoint(it);
     auto addressRegister = builder.newVReg(LIRValueType::i64);
@@ -105,6 +106,8 @@ static inline bool needEmergencySlot(LIRFunc &func) {
 
 void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
+
+
   stackInfo = calculateStackInfo(func);
 
   frameSize = 0;
@@ -136,18 +139,28 @@ void StackAllocator::allocate(LIRFunc &func) {
 
 void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
-  builder.setInsertPoint(func.getEntry()->begin());
+  auto bodyBegin = func.getEntry()->begin();
+  builder.setInsertPoint(bodyBegin);
   auto *addFrame = LIRInst::create(ADDI, builder.phyReg(SP), builder.phyReg(SP),
                                    LIRImm::create(-frameSize));
   builder.addInst(addFrame);
 
   for (StackSlot *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::CalleeSaved) {
-      auto *saveReg = LIRInst::create(SD, 3)
-                          ->setUse(0, slot->getReg())
-                          ->setUse(1, slot)
-                          ->setUse(2, LIRImm::create(0));
-      builder.addInst(saveReg);
+      builder.setInsertPoint(bodyBegin);
+      builder.storeValueToSlot(slot->getReg(), slot, slot->getReg()->getType());
+    } else if (slot->getType() == StackSlot::CallerSaved) {
+      // for (auto *bb : func)
+      // for (auto *inst : *bb) {
+      // if (inst->getOpcode() == CALL) {
+      // builder.setInsertPoint(inst);
+      // builder.storeValueToSlot(slot->getReg(), slot,
+      // slot->getReg()->getType());
+      //}
+      //}
+    } else {
+      // TODO: spill?
+      // nnvm_unimpl();
     }
   }
 }

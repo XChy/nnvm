@@ -571,6 +571,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       irVal = builder.buildStack(
           irElementType, symbolType->getTotalNumOfElements(), symbolName);
       Type *irElementType = toIRType(symbolType->getInnerMost());
+
       if (ctx->initVal()) {
         std::vector<Value *> values;
         if (!solveInit(ctx->initVal(), symbolType, irElementType, values))
@@ -624,7 +625,6 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
         if (i == 0)
           symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
         else {
-          // TODO: check---calculate the number of element
           Any numOfElement = solveConstExp(paramCtx->exp()[i]);
           assert(numOfElement.is<int>());
           symbolTy =
@@ -653,11 +653,14 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   // Demote args into stack.
   for (size_t i = 0; i < func->getArguments().size(); i++) {
+    auto *argSymbol = symbolTable.lookup(
+        ctx->funcFParams()->funcFParam(i)->IDENT()->getText());
+
+    if (argSymbol->symbolType->isArray())
+      continue;
+
     auto *arg = func->getArguments()[i];
-    auto *stack =
-        symbolTable
-            .lookup(ctx->funcFParams()->funcFParam(i)->IDENT()->getText())
-            ->entity;
+    auto *stack = argSymbol->entity;
     builder.buildStore(arg, stack);
   }
 
@@ -692,11 +695,20 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
       symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
     }
   }
+
   Type *irTy = getIRType(symbolTy, ctx->btype());
   Argument *arg = new Argument(irTy, paramName);
-  Value *stackForArg = builder.buildStack(arg->getType(), paramName + ".stack");
+
+  // As the C semantics, the array pointer is immutable. Thus, we don't create
+  // stack for the pointer to array. Instead, we use it directly.
   ((Function *)currentFunc->entity)->addArgument(arg);
-  symbolTable.create(paramName, symbolTy, stackForArg);
+  if (symbolTy->isArray()) {
+    symbolTable.create(paramName, symbolTy, arg);
+  } else {
+    Value *stackForArg =
+        builder.buildStack(arg->getType(), paramName + ".stack");
+    symbolTable.create(paramName, symbolTy, stackForArg);
+  }
 
   // Demote argument to stack.
   return Symbol::none();
@@ -1121,12 +1133,16 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
     Symbol lVal = ctx->lVal()->accept(this);
+
     if (!lVal)
-      // TODO: error
-      return nullptr;
-    if (auto constVal = dyn_cast<Constant>(lVal.entity)) {
+      return Symbol::none();
+
+    if (auto constVal = dyn_cast<Constant>(lVal.entity))
       return lVal;
-    }
+
+    if (lVal.symbolType->isArray())
+      return lVal;
+
     return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
                                     lVal.entity->getName() + ".load"),
                   lVal.symbolType};

@@ -98,7 +98,7 @@ int main(int argc, char **argv) {
         antlr4::atn::PredictionMode::LL);
     parser.setErrorHandler(
         // TODO: use Default strategy
-        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::BailErrorStrategy));
+        Ref<antlr4::ANTLRErrorStrategy>(new antlr4::DefaultErrorStrategy()));
     tree = parser.program();
   }
 

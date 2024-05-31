@@ -14,15 +14,25 @@ uint64_t LinearScanRA::indexOf(LIRBB *BB, uint64_t localIndex) {
   return BBNumber[BB] + localIndex;
 }
 
-LinearScanRA::IntervalItertator
-LinearScanRA::expireOldInterval(const LiveInterval &current) {
+void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
+  LiveInterval spilled = *std::prev(active.end());
+  if (spilled.end > current.end) {
+    vregToPReg[current.reg] = vregToPReg[spilled.reg];
+    vregToStack[spilled.reg] = func.allocStackSlot(spilled.reg->bytes());
+    active.erase(std::prev(active.end()));
+    active.insert(current);
+  } else {
+    vregToStack[current.reg] = func.allocStackSlot(spilled.reg->bytes());
+  }
+}
+
+void LinearScanRA::expireOldInterval(const LiveInterval &current) {
   for (auto it = active.begin(); it != active.end();) {
     if (it->end >= current.begin)
-      return it;
+      return;
     freeGPRs.push(vregToPReg[it->reg]);
     it = active.erase(it);
   }
-  return active.end();
 }
 
 void LinearScanRA::allocate(LIRFunc &func) {
@@ -37,35 +47,32 @@ void LinearScanRA::allocate(LIRFunc &func) {
   LIRBuilder builder(*func.getParent());
   builder.setInsertPoint(func.getEntry()->end());
   for (auto &interval : intervalSet) {
-    auto conflictIntervalIter = expireOldInterval(interval);
+    expireOldInterval(interval);
     if (freeGPRs.size() == 0) {
-      vregToPReg[interval.reg] = vregToPReg[conflictIntervalIter->reg];
-      vregToStack[conflictIntervalIter->reg] = func.allocStackSlot(8);
-      vregToPReg[conflictIntervalIter->reg] = builder.phyReg(RA);
-      //  TODO: spill efficiently
+      spillAtInterval(interval, func);
     } else {
       vregToPReg[interval.reg] = freeGPRs.top();
       freeGPRs.pop();
+      active.insert(interval);
     }
-    active.insert(interval);
   }
 
   for (auto *BB : func) {
-    for (auto *it : *BB) {
-      for (LowOperand &op : it->operands) {
+    for (auto *inst : *BB) {
+      for (LowOperand &op : inst->operands) {
         LIRValue *value = op.getOperand();
         if (!value->isVReg())
           continue;
         Register *vreg = op.getOperand()->as<Register>();
 
-        builder.setInsertPoint(it);
+        builder.setInsertPoint(inst);
 
         if (vregToStack.count(vreg)) {
           if (op.isUse()) {
             builder.addInst(LIRInst::create(
                 LD, builder.phyReg(RA), vregToStack[vreg], LIRImm::create(0)));
           } else if (op.isDef()) {
-            builder.setInsertPoint(it->getNext());
+            builder.setInsertPoint(inst->getNext());
             builder.addInst(LIRInst::create(SD, 3)
                                 ->setUse(0, builder.phyReg(RA))
                                 ->setUse(1, vreg)
@@ -90,12 +97,12 @@ void LinearScanRA::allocate(LIRFunc &func) {
     }
   }
 
-  allocatedRegs.insert(builder.phyReg(RA));
-  for (Register *phyReg : allocatedRegs)
-    if (phyReg->isCalleeSaved()) {
-      auto *slot = func.allocStackSlot();
-      slot->setType(StackSlot::CalleeSaved);
-      slot->setSize(8);
-      slot->setReg(phyReg);
-    }
+  // allocatedRegs.insert(builder.phyReg(RA));
+  // for (Register *phyReg : allocatedRegs)
+  // if (phyReg->isCalleeSaved() || phyReg->getRegId() == RA) {
+  // auto *slot = func.allocStackSlot();
+  // slot->setType(StackSlot::CalleeSaved);
+  // slot->setSize(8);
+  // slot->setReg(phyReg);
+  //}
 }

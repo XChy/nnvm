@@ -163,6 +163,14 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
     break;
   }
 
+  case InstID::Store: {
+    auto *newInst = LIRInst::createAllUse(
+        getStoreInstType(lowerType(I->getOperand(0)->getType())),
+        defMap[I->getOperand(0)], defMap[I->getOperand(1)], LIRImm::create(0));
+    emit(newInst);
+    break;
+  }
+
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
     defMap[I] = lowFunc->allocStackSlot(size);
@@ -170,15 +178,15 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
   }
 
   default:
-    bool hasDef = I->getType() && !I->getType()->isVoid();
-    LIRInst *lowInst =
-        LIRInst::create(instType, I->getOperandNum() + (hasDef ? 1 : 0));
+    LIRInst *lowInst = LIRInst::create(instType, I->getOperandNum() + 1);
 
-    if (hasDef)
+    if (I->getType() && !I->getType()->isVoid())
       lowInst->setDef(0, defMap[I]);
+    else
+      nnvm_unimpl();
 
     for (int i = 0; i < I->getOperandNum(); i++)
-      lowInst->setUse(i + (hasDef ? 1 : 0), defMap[I->getOperand(i)]);
+      lowInst->setUse(i + 1, defMap[I->getOperand(i)]);
 
     emit(lowInst);
     break;

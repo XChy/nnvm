@@ -10,6 +10,7 @@ asm=$(mktemp --suffix=".s")
 obj=$(mktemp --suffix=".o")
 sylib=$root_dir/build/libsylib.a
 mainexec=$(mktemp --suffix=".out")
+echo "mainexec is in $mainexec"
 
 
 $compiler $1 -o $asm

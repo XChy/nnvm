@@ -36,7 +36,8 @@ class LinearScanRA : public RegisterAllocator {
 public:
   using IntervalItertator = std::set<LiveInterval, IntervalCompare>::iterator;
   void allocate(LIRFunc &func);
-  IntervalItertator expireOldInterval(const LiveInterval &current);
+  void spillAtInterval(const LiveInterval &current, LIRFunc& func);
+  void expireOldInterval(const LiveInterval &current);
   uint64_t indexOf(LIRBB *BB, uint64_t localIndex);
 
 private:

@@ -4,6 +4,7 @@
 #include "ADT/ListNode.h"
 #include "Backend/RISCV/EmitInfo.h"
 #include "Backend/RISCV/Info/Register.h"
+#include "Utils/Debug.h"
 #include <memory>
 #include <ostream>
 #include <unordered_map>
@@ -89,6 +90,29 @@ public:
   template <typename T> T *as() { return (T *)this; }
   template <typename T> const T *as() const { return (const T *)this; }
 
+  uint bytes() {
+    switch (type) {
+    case LIRValueType::i1:
+    case LIRValueType::i8:
+      return 1;
+    case LIRValueType::i16:
+      return 2;
+    case LIRValueType::Float:
+    case LIRValueType::i32:
+      return 3;
+    case LIRValueType::i64:
+      return 4;
+    default:
+      nnvm_unimpl();
+    }
+  }
+
+  List<LowOperand> &getDefs() { return defs; }
+  const List<LowOperand> &getDefs() const { return defs; }
+
+  List<LowOperand> &getUses() { return uses; }
+  const List<LowOperand> &getUses() const { return uses; }
+
 private:
   List<LowOperand> defs;
   List<LowOperand> uses;
@@ -103,10 +127,11 @@ public:
   Register(uint32_t regId) : LIRValue(LIRValue::Reg), regId(regId) {}
 
   bool isVirtual() const { return regId >= VR_BEGIN; }
-  bool isPhy() const { return regId < PR_END; }
   bool isGP() const { return regId > GPR_BEGIN && regId < GPR_END; }
   bool isFP() const { return regId > FPR_BEGIN && regId < FPR_END; }
-  bool isCalleeSaved();
+  bool isPhy() const { return isGP() || isFP(); }
+  bool needToPreserve() const;
+  bool isCalleeSaved() const;
 
   void setRegId(uint32_t id) { this->regId = id; }
   uint32_t getRegId() const { return regId; }
