@@ -311,8 +311,9 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     return Symbol::none();
   }
 
-  for (int i = 0; i < ctx->constExp().size(); i += 1) {
-    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+  auto constExps = ctx->constExp();
+  for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
+    Any nrElements = solveConstExp((*it)->exp());
     assert(nrElements.is<int>());
     symbolType =
         SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
@@ -371,9 +372,12 @@ bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
     return true;
   }
 
+  std::cerr << currentType->numElements << "\n";
+  size_t numBefore = output.size();
   if (currentType->isArray()) {
     int initValIndex = 0;
-    while (initValIndex < currentType->getTotalNumOfElements()) {
+    while (initValIndex < currentType->getTotalNumOfElements() &&
+           output.size() - numBefore < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->initVal().size()) {
         output.push_back(builder.getZero(irElementType));
       } else {
@@ -506,8 +510,9 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     return Symbol::none();
   }
 
-  for (size_t i = 0; i < ctx->constExp().size(); i += 1) {
-    Any nrElements = solveConstExp(ctx->constExp()[i]->exp());
+  auto constExps = ctx->constExp();
+  for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
+    Any nrElements = solveConstExp((*it)->exp());
     assert(nrElements.is<int>());
     symbolType =
         SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
@@ -672,6 +677,9 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   if (func->getReturnType()->isVoid() &&
       !builder.getCurrentBB()->getTerminator())
     builder.buildRet();
+  else if (!builder.getCurrentBB()->getTerminator()) {
+    return Symbol::none();
+  }
 
   return Symbol::none();
 }

@@ -62,9 +62,11 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRInst *it,
     uint64_t offset = operand->as<StackSlot>()->getOffset();
     if ((it->type > I_BEGIN && it->type < I_END) ||
         (it->type > S_BEGIN && it->type < S_END)) {
-      if (canExpressInBits<11>(offset)) {
+      LIRImm *imm = it->getOp(slotOperandIndex + 1)->as<LIRImm>();
+      if (canExpressInBits<11>(offset + imm->getValue())) {
         it->setUse(slotOperandIndex, builder.phyReg(SP));
-        it->setUse(slotOperandIndex + 1, LIRImm::create(offset));
+        it->setUse(slotOperandIndex + 1,
+                   LIRImm::create(offset + imm->getValue()));
         return true;
       }
     }

@@ -26,7 +26,7 @@ private:
   std::unordered_map<Value *, LIRValue *> defMap;
   std::unordered_map<Function *, LIRFunc *> funcMap;
   std::unordered_map<BasicBlock *, LIRBB *> BBMap;
-  LIRModule *module;
+  LIRModule *lowModule;
 };
 
 } /* namespace nnvm::riscv */

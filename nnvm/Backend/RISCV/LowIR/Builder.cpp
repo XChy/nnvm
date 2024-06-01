@@ -1,5 +1,6 @@
 #include "Backend/RISCV/LowIR/Builder.h"
 #include "Backend/RISCV/CodegenInfo.h"
+#include "Utils/Debug.h"
 #include <Backend/RISCV/LowIR.h>
 
 using namespace nnvm::riscv;
@@ -14,6 +15,17 @@ Register *LIRBuilder::newVReg(LIRValueType valueType) {
   return newReg;
 }
 
+LIRBuilder &LIRBuilder::move(Register *from, Register *to) {
+  LIRInst *inst;
+  if (to->getType() == LIRValueType::Float) {
+    nnvm_unimpl();
+  } else {
+    inst = LIRInst::create(ADD, to, from, module.getPhyReg(ZERO));
+  }
+  addInst(inst);
+  return *this;
+}
+
 LIRBuilder &LIRBuilder::storeValueToSlot(LIRValue *value, StackSlot *slot,
                                          LIRValueType type) {
   auto *saveReg = LIRInst::createAllUse(getStoreInstType(type), value, slot,
@@ -22,7 +34,7 @@ LIRBuilder &LIRBuilder::storeValueToSlot(LIRValue *value, StackSlot *slot,
   return *this;
 }
 LIRBuilder &LIRBuilder::loadValueFromSlot(LIRValue *value, StackSlot *slot,
-                                        LIRValueType type) {
+                                          LIRValueType type) {
   auto *saveReg =
       LIRInst::create(getLoadInstType(type), value, slot, LIRImm::create(0));
   addInst(saveReg);

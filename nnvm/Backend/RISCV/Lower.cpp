@@ -6,6 +6,7 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "IR/Constant.h"
 #include "IR/Function.h"
+#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Cast.h"
@@ -44,7 +45,7 @@ static LIRValueType lowerType(Type *type) {
 
 LIRValue *LowerHelper::virtualReg(Value *def, LIRFunc *lowFunc) {
 
-  defMap[def] = module->allocVReg(lowerType(def->getType()));
+  defMap[def] = lowModule->allocVReg(lowerType(def->getType()));
   return defMap[def];
 }
 
@@ -74,7 +75,8 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
       for (int i = 1; i < CI->getOperandNum(); i++) {
         auto argVReg = defMap[CI->getOperand(i)];
 
-        if (argVReg->getType() == LIRValueType::Float && !fprArgVec.empty()) {
+        if (argVReg->getType() == LIRValueType::Float &&
+            !availableArgFPR.empty()) {
           LIRValue *argReg = availableArgFPR.front();
           availableArgFPR.pop();
 
@@ -82,8 +84,8 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
           emit(LIRInst::create(ADD, argReg, argVReg, builder.phyReg(ZERO)));
 
           lowered->setUse(i, argReg);
-        } else if (!gprArgVec.empty()) {
-          auto argReg = availableArgGPR.front();
+        } else if (!availableArgGPR.empty()) {
+          Register *argReg = availableArgGPR.front();
           availableArgGPR.pop();
 
           emit(LIRInst::create(ADD, argReg, argVReg, builder.phyReg(ZERO)));
@@ -252,10 +254,26 @@ void LowerHelper::mapAll(Module &module) {
     lowFunc->name = name;
     lowFunc->isExternal = func->isExternal();
     funcMap[func] = lowFunc;
+    lowModule->insert(lowFunc);
 
-    auto gprArgVec = getArgGPRs(this->module);
-    auto fprArgVec = getArgFPRs(this->module);
+    LIRBB *LIREntry;
+    for (BasicBlock *BB : *func) {
+      LIRBB *lowBB = new LIRBB;
+      if (BB == func->getEntry())
+        LIREntry = lowBB;
+      // TODO: map BB as Value.
+      BBMap[BB] = lowBB;
+      lowFunc->insert(lowBB);
 
+      for (Instruction *I : *BB)
+        if (I->getType() && !I->getType()->isVoid())
+          defMap[I] = this->lowModule->allocVReg(lowerType(I->getType()));
+    }
+
+    auto gprArgVec = getArgGPRs(lowModule);
+    auto fprArgVec = getArgFPRs(lowModule);
+
+    std::cerr << LIREntry << "\n";
     std::queue<Register *> availableArgGPR;
     std::queue<Register *> availableArgFPR;
     for (auto gpr : gprArgVec)
@@ -263,34 +281,29 @@ void LowerHelper::mapAll(Module &module) {
     for (auto fpr : fprArgVec)
       availableArgFPR.push(fpr);
 
+    LIRBuilder builder(*(this->lowModule));
+    builder.setInsertPoint(LIREntry->end());
     for (int i = 0; i < func->getArguments().size(); i++) {
       Argument *arg = func->getArguments()[i];
-      if (arg->getType()->getClass() == Type::Float && !fprArgVec.empty()) {
-        defMap[arg] = availableArgFPR.front();
+      Register *argReg = builder.newVReg(lowerType(arg->getType()));
+      defMap[arg] = argReg;
+
+      if (arg->getType()->isFloat() && !fprArgVec.empty()) {
+        builder.move(availableArgFPR.front(), argReg);
         availableArgFPR.pop();
       } else if (!gprArgVec.empty()) {
-        defMap[arg] = availableArgGPR.front();
+        builder.move(availableArgGPR.front(), argReg);
         availableArgGPR.pop();
       } else {
         // TODO: demote to stack
         nnvm_unreachable("Not implemented")
       }
     }
-
-    for (BasicBlock *BB : *func) {
-      LIRBB *lowBB = new LIRBB;
-      // TODO: map BB as Value.
-      BBMap[BB] = lowBB;
-
-      for (Instruction *I : *BB)
-        if (I->getType() && !I->getType()->isVoid())
-          defMap[I] = this->module->allocVReg(lowerType(I->getType()));
-    }
   }
 }
 
 void LowerHelper::lower(Module &module, LIRModule &lowered) {
-  this->module = &lowered;
+  lowModule = &lowered;
   mapAll(module);
 
   for (auto &[name, var] : module.getGlobalVarMap())
@@ -300,12 +313,10 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
   for (auto &[name, func] : module.getFunctionMap()) {
     LIRFunc *lowFunc = funcMap[func];
 
-    lowered.insert(lowFunc);
-
     // Lower basic blocks.
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = BBMap[BB];
-      lowFunc->insert(lowBB);
+      // lowFunc->insert(lowBB);
 
       builder.setInsertPoint(lowBB->end());
       for (Instruction *I : *BB)

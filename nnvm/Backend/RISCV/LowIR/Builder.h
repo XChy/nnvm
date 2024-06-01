@@ -10,10 +10,11 @@ public:
   LIRBuilder(LIRModule &module) : module(module) {}
 
   LIRBuilder &addInst(LIRInst *inst);
+  LIRBuilder &move(Register *from, Register *to);
   LIRBuilder &storeValueToSlot(LIRValue *value, StackSlot *slot,
                                LIRValueType type);
   LIRBuilder &loadValueFromSlot(LIRValue *value, StackSlot *slot,
-                              LIRValueType type);
+                                LIRValueType type);
   // LIRInst *buildInst(LowInstType type, const std::vector<LowOperand>
   // &operands);
 
