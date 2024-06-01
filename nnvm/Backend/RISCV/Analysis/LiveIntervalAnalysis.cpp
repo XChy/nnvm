@@ -1,7 +1,11 @@
+#include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/LIRValue.h"
+#include "Backend/RISCV/LowInstType.h"
 #include <Backend/RISCV/Analysis/LiveIntervalAnalysis.h>
 #include <Backend/RISCV/Verifier/DefUsePrinter.h>
 #include <algorithm>
+#include <cstdint>
 #include <stack>
 #include <unordered_set>
 
@@ -11,14 +15,13 @@ uint64_t LiveIntervalAnalysis::indexOf(LIRBB *BB, uint64_t localIndex) {
   return BBNumber[BB] + localIndex;
 }
 
-std::multiset<LiveInterval, IntervalCompare> LiveIntervalAnalysis::result() {
+LiveIntervalAnalysis::IntervalSet LiveIntervalAnalysis::getResult() const {
   return intervals;
 }
 
-bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
+uint64_t LiveIntervalAnalysis::assignBBNumber(LIRFunc &func) {
   uint64_t instructionCount = 0;
 
-  // TODO: dfs
   std::unordered_set<LIRBB *> visited;
   std::stack<LIRBB *> toVisit;
   toVisit.push(func.getEntry());
@@ -35,6 +38,25 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
       toVisit.push(cur->getSucc(i));
     }
   }
+  return instructionCount;
+}
+
+void LiveIntervalAnalysis::meetReg(Register *reg, uint64_t index,
+                                   LowOperand::OperandFlag flag) {
+  // Ignore those with fixed value
+  if (reg->getRegId() == ZERO)
+    return;
+  if (!regToIntervals.count(reg)) {
+    regToIntervals[reg].reg = reg;
+    regToIntervals[reg].begin = index;
+  }
+
+  auto &interval = regToIntervals[reg];
+  interval.end = std::max(index, interval.end);
+}
+
+bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
+  assignBBNumber(func);
 
   debug(printDefUse(func));
 
@@ -42,23 +64,20 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
     uint64_t localIndex = 0;
     for (LIRInst *inst : *BB) {
       uint64_t globalIndex = indexOf(BB, localIndex);
+
       for (const LowOperand &operand : inst->operands) {
         LIRValue *value = operand.getOperand();
-        if (!value->isVReg())
+        if (!value->isReg())
           continue;
-        Register *reg = value->as<Register>();
+        meetReg(value->as<Register>(), globalIndex, operand.getFlag());
+      }
 
-        if (!regToIntervals.count(reg))
-          regToIntervals[reg].reg = reg;
-
-        auto &interval = regToIntervals[reg];
-        if (operand.isDef()) {
-          interval.begin = globalIndex;
-          interval.end = globalIndex;
+      // Model caller-save
+      if (inst->getOpcode() == CALL) {
+        for (uint64_t regId : callerSavedRegIds()) {
+          Register *reg = func.getParent()->getPhyReg(regId);
+          meetReg(reg, globalIndex, LowOperand::Def);
         }
-
-        if (operand.isUse())
-          interval.end = std::max(globalIndex, interval.end);
       }
 
       localIndex++;
@@ -69,8 +88,11 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
     intervals.insert(interval);
 
   for (auto interval : intervals)
-    debug(std::cerr << "v" << interval.reg->getRegId() - VR_BEGIN << ":["
-                    << interval.begin << "," << interval.end << "]\n");
+    debug({
+      EmitInfo info;
+      interval.reg->emit(std::cerr, info);
+      std::cerr << ":[" << interval.begin << "," << interval.end << "]\n";
+    });
 
   return true;
 }

@@ -46,19 +46,9 @@ StackAllocator::calculateStackInfo(LIRFunc &func) {
 
   for (LIRBB *bb : func) {
     for (LIRInst *inst : *bb) {
-
-      ret.isCaller |= inst->type == CALL;
-
       if (match(inst, pattern::pRet()))
         ret.exitBBs.push_back(bb);
     }
-  }
-
-  if (ret.isCaller) {
-    auto *slot = func.allocStackSlot();
-    slot->setType(StackSlot::CalleeSaved);
-    slot->setSize(8);
-    slot->setReg(func.getParent()->getPhyReg(RA));
   }
 
   return ret;
@@ -106,8 +96,6 @@ static inline bool needEmergencySlot(LIRFunc &func) {
 
 void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
-
-
   stackInfo = calculateStackInfo(func);
 
   frameSize = 0;

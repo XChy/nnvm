@@ -57,7 +57,7 @@ static inline std::string getNameForRegister(uint64_t type) {
   return ret;
 }
 
-static inline std::set<uint64_t> callerSavedRegs() {
+static inline std::set<uint64_t> callerSavedRegIds() {
   return {RA,  T0,  T1,   T3,   T4,  T5,  T6,  T2,  A0,  A1,  A2,  A3,
           A4,  A5,  A6,   A7,   FT0, FT1, FT2, FT3, FT4, FT5, FT6, FT7,
           FT8, FT9, FT10, FT11, FA0, FA1, FA2, FA3, FA4, FA5, FA6, FA7};

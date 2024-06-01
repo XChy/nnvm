@@ -1,0 +1,4 @@
+int exgcd(int a,int b,int x[],int y[]) {
+		y[0] = (0 - a / b * y[0]);
+		return 0;
+}

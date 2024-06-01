@@ -115,6 +115,16 @@ StackSlot *LIRFunc::allocStackSlot(uint64_t size) {
   return slot;
 }
 
+StackSlot *LIRFunc::allocCalleeSavedSlot(Register *reg) {
+  StackSlot *slot = new StackSlot();
+  slot->setReg(reg);
+  slot->setType(StackSlot::CalleeSaved);
+  slot->setSize(reg->bytes());
+  slot->setIndex(stackSlots.size());
+  stackSlots.push_back(slot);
+  return slot;
+}
+
 void LIRFunc::emit(std::ostream &out, EmitInfo &info) {
   for (auto *BB : BBs)
     BB->emit(out, info, BB != *BBs.begin());

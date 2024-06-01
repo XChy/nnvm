@@ -33,10 +33,21 @@ std::vector<Register *> riscv::unpreservedRegs(LIRModule *M) {
   };
 }
 
-// std::vector<uint64_t> riscv::unpreservedFRegs() {
-//// TODO:
-// nnvm_unimpl();
-//}
+std::vector<Register *> riscv::unpreservedFRegs(LIRModule *M) {
+  return {
+      M->getPhyReg(FT0),  M->getPhyReg(FT0),  M->getPhyReg(FT1),
+      M->getPhyReg(FT2),  M->getPhyReg(FT3),  M->getPhyReg(FT4),
+      M->getPhyReg(FT5),  M->getPhyReg(FT6),  M->getPhyReg(FT7),
+      M->getPhyReg(FT8),  M->getPhyReg(FT9),  M->getPhyReg(FT10),
+      M->getPhyReg(FT11), M->getPhyReg(FA0),  M->getPhyReg(FA1),
+      M->getPhyReg(FA2),  M->getPhyReg(FA3),  M->getPhyReg(FA4),
+      M->getPhyReg(FA5),  M->getPhyReg(FA6),  M->getPhyReg(FA7),
+      M->getPhyReg(FS0),  M->getPhyReg(FS1),  M->getPhyReg(FS2),
+      M->getPhyReg(FS3),  M->getPhyReg(FS4),  M->getPhyReg(FS5),
+      M->getPhyReg(FS6),  M->getPhyReg(FS7),  M->getPhyReg(FS8),
+      M->getPhyReg(FS9),  M->getPhyReg(FS10), M->getPhyReg(FS11),
+  };
+}
 
 bool riscv::isBranch(uint64_t instType) {
   switch (instType) {

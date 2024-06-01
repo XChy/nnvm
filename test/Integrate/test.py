@@ -44,7 +44,7 @@ SYLIB_X86 = path.join(ROOT_DIR, 'build', 'x86-64libsy.o')
 SYLIB_SRC = path.join(ROOT_DIR, 'test', 'Runtime', 'sylib.c')
 SYLIB_HDR = f'{path.splitext(SYLIB_SRC)[0]}.h'
 
-GCC_RV = 'riscv64-unknown-linux-gnu-gcc'
+GCC_RV = 'riscv64-linux-gnu-gcc'
 GCC_X86 = 'gcc'
 LLC = 'llc'
 QEMU = 'qemu-riscv64'
@@ -117,7 +117,10 @@ def execute(subproc_arglists: list, input_text: str):
     if len(completed.stdout) == 0:
       return str(completed.returncode)
     else:
-      return f'{completed.stdout.strip()}\n{completed.returncode}'
+      actual = completed.stdout
+      if actual.endswith('\n'):
+          actual = actual[:-1]
+      return f'{actual}\n{completed.returncode}'
   except subprocess.TimeoutExpired:
     raise ExecutionException('TIME OUT')
 

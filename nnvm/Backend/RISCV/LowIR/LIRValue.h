@@ -38,6 +38,7 @@ public:
 
   bool isUse() const { return flag == Use; }
   bool isDef() const { return flag == Def; }
+  OperandFlag getFlag() const { return flag; };
 
   LIRValue *removeRefOfValue();
 
@@ -99,9 +100,9 @@ public:
       return 2;
     case LIRValueType::Float:
     case LIRValueType::i32:
-      return 3;
-    case LIRValueType::i64:
       return 4;
+    case LIRValueType::i64:
+      return 8;
     default:
       nnvm_unimpl();
     }

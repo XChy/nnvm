@@ -974,6 +974,10 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
   // TODO: handle array index
   Symbol address = *symbolTable.lookup(ctx->IDENT()->getText());
 
+  if (!address)
+    // TODO: report error
+    return Symbol::none();
+
   for (auto *expCtx : ctx->exp()) {
     Symbol index = expCtx->accept(this);
     if (!index)

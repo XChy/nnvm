@@ -35,7 +35,7 @@ std::vector<Register *> getArgFPRs(LIRModule *M);
 
 //// Return the list of unpreserved register across calls.
 std::vector<Register *> unpreservedRegs(LIRModule *M);
-// std::vector<uint64_t> unpreservedFRegs();
+std::vector<Register *> unpreservedFRegs(LIRModule *M);
 
 bool isBranch(uint64_t instType);
 LIRBB *getBranchDest(LIRInst *inst);

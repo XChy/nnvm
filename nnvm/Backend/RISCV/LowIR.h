@@ -166,6 +166,7 @@ public:
   void insert(LIRBB *bb);
   LIRBB *getEntry() { return *BBs.begin(); }
 
+  StackSlot *allocCalleeSavedSlot(Register *reg);
   StackSlot *allocStackSlot(uint64_t size);
   StackSlot *allocStackSlot();
 
