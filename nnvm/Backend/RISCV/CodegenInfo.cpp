@@ -84,8 +84,9 @@ LIRInstID riscv::getLoadInstType(LIRValueType type) {
     return LW;
   case LIRValueType::i64:
     return LD;
-  case LIRValueType::Imm:
   case LIRValueType::Float:
+    return FLW;
+  default:
     nnvm_unreachable("Not implemented");
   }
 }
@@ -102,8 +103,36 @@ LIRInstID riscv::getStoreInstType(LIRValueType type) {
   case LIRValueType::i64:
     return SD;
   case LIRValueType::Float:
-    return FLW;
-  case LIRValueType::Imm:
-    nnvm_unreachable("Not implemented");
+    return FSW;
+  default:
+    nnvm_unimpl();
   }
+}
+std::set<Register *> riscv::getDefsOf(LIRInst *inst) {
+  std::set<Register *> ret;
+  for (const LowOperand &operand : inst->operands) {
+    LIRValue *value = operand.getOperand();
+    if (operand.isDef() && value->isReg())
+      ret.insert(value->as<Register>());
+  }
+
+  if (inst->getOpcode() == CALL) {
+    for (uint64_t regId : callerSavedRegIds()) {
+      Register *reg =
+          inst->getParent()->getParent()->getParent()->getPhyReg(regId);
+      ret.insert(reg);
+    }
+  }
+  return ret;
+}
+
+std::set<Register *> riscv::getUsesOf(LIRInst *inst) {
+  std::set<Register *> ret;
+  for (const LowOperand &operand : inst->operands) {
+    LIRValue *value = operand.getOperand();
+    if (operand.isUse() && value->isReg())
+      ret.insert(value->as<Register>());
+  }
+
+  return ret;
 }

@@ -7,9 +7,9 @@ namespace nnvm::riscv {
 
 struct LiveInterval {
 public:
-  Register *reg;
-  uint64_t begin;
-  uint64_t end;
+  Register *reg = nullptr;
+  uint64_t begin = 0;
+  uint64_t end = 0;
   bool spillable() const { return !reg->isPhy(); }
   bool changable() const { return !reg->isPhy(); }
   bool fixed() const { return reg->isPhy(); }

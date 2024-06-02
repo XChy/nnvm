@@ -31,7 +31,7 @@ public:
   void emitPrologue(LIRBuilder &builder, LIRFunc &func);
   void emitEpilogue(LIRBuilder &builder, LIRFunc &func);
 
-  bool resolveSlotRef(LIRBuilder &builder, LIRInst *it,
+  bool resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator it,
                       uint64_t slotOperandIndex);
 
 private:

@@ -18,8 +18,6 @@
 
 namespace nnvm::riscv {
 
-class LIRBB;
-
 class LIRGlobal : public LIRValue {
 public:
   // LIRGlobal is just a pointer, whose bitwidth should be 64.
@@ -75,7 +73,7 @@ public:
 
   uint64_t getOpcode() { return type; }
 
-  LIRValue *getOp(uint index) { return operands[index].getOperand(); }
+  LIRValue *getOp(uint index) const { return operands[index].getOperand(); }
   LowOperand *getOpHandle(uint index) { return &operands[index]; }
   size_t getNumOp() { return operands.size(); }
 
@@ -92,6 +90,9 @@ public:
     operands[index2].set(temp);
     return this;
   }
+
+  void setParent(LIRBB *parent) { this->parent = parent; }
+  LIRBB *getParent() const { return parent; }
 
   static LIRInst *create(uint64_t type, uint32_t numOps) {
     LIRInst *inst = new LIRInst(type, numOps);
@@ -127,29 +128,48 @@ public:
   }
 
   uint64_t type;
+  LIRBB *parent;
   std::vector<LowOperand> operands;
   uint32_t numOps;
 };
-
-class LIRFunc;
 
 class LIRBB : public LIRValue, public ListTrait<LIRBB> {
 public:
   LIRBB() : LIRValue(LIRValue::Block) {}
   void emit(std::ostream &out, EmitInfo &info, bool showLabel);
 
-  typedef List<LIRInst>::Iterator Iterator;
+  class Iterator : public List<LIRInst>::Iterator {
+  public:
+    Iterator() {}
+    Iterator(List<LIRInst>::Iterator instIt, LIRBB *BB)
+        : List<LIRInst>::Iterator(instIt), BB(BB) {}
+    void insertBefore(LIRInst *a) {
+      a->setParent(BB);
+      ((List<LIRInst>::Iterator *)this)->insertBefore(a);
+    }
+    void insertBack(LIRInst *a) {
+      a->setParent(BB);
+      ((List<LIRInst>::Iterator *)this)->insertBack(a);
+    }
 
-  Iterator begin() { return insts.begin(); }
-  Iterator end() { return insts.end(); }
-  void insertBefore(Iterator it, LIRInst *I) { it.insertBefore(I); }
-  void insertAfter(Iterator it, LIRInst *I) { it.insertBack(I); }
+    LIRBB *getBB() { return BB; }
 
-  uint getSuccNum();
+  private:
+    LIRBB *BB;
+  };
+
+  Iterator begin() { return Iterator(insts.begin(), this); }
+  Iterator end() { return Iterator(insts.end(), this); }
+
+  uint getSuccNum() const;
   LIRBB *getSucc(int index);
+
+  uint getPredNum() const;
+  LIRBB *getPred(int index);
 
   void setParent(LIRFunc *func) { parent = func; }
   LIRFunc *getParent() const { return parent; }
+
   List<LIRInst> &getInsts() { return insts; }
   ~LIRBB() { insts.freeAll(); }
 

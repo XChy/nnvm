@@ -331,15 +331,26 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     assert(initVal.is<float>());
     constVal = ConstantFloat::create(*ir, initVal.as<float>());
   } else if (symbolType->isArray()) {
+    constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
+
     if (symbolTable.isGlobal()) {
-      constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
       GlobalVariable *global = new GlobalVariable(*ir, constVal);
       global->setName(ctx->IDENT()->getText());
       return symbolTable.create(symbolName, symbolType, global);
     } else {
-      Value *arrayStack = builder.buildStack(
-          toIRType(symbolType->getInnerMost()),
-          symbolType->getTotalNumOfElements(), ctx->IDENT()->getText());
+      Type *irElementType = toIRType(symbolType->getInnerMost());
+      Value *arrayStack =
+          builder.buildStack(irElementType, symbolType->getTotalNumOfElements(),
+                             ctx->IDENT()->getText());
+      uint64_t offset = 0;
+      for (Constant *stored : cast<ConstantArray>(constVal)->getValue()) {
+        Constant *offsetValue =
+            ConstantInt::create(*ir, ir->getIntType(), offset);
+        auto *pointer = builder.buildBinOp<PtrAddInst>(
+            arrayStack, offsetValue, ir->getPtrType(), "arr.index");
+        builder.buildStore(stored, pointer);
+        offset += irElementType->getStoredBytes();
+      }
       return symbolTable.create(symbolName, symbolType, arrayStack);
     }
   }
@@ -412,7 +423,9 @@ bool IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
 
   if (currentType->isArray()) {
     int initValIndex = 0;
-    while (initValIndex < currentType->getTotalNumOfElements()) {
+    uint oldNum = output.size();
+    while (initValIndex < currentType->getTotalNumOfElements() &&
+           output.size() - oldNum < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->initVal().size()) {
         output.push_back(builder.getZero(irElementType));
       } else {
@@ -463,7 +476,9 @@ bool IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
 
   if (currentType->isArray()) {
     int initValIndex = 0;
-    while (initValIndex < currentType->getTotalNumOfElements()) {
+    size_t oldNum = output.size();
+    while (initValIndex < currentType->getTotalNumOfElements() &&
+           output.size() - oldNum < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->constInitVal().size()) {
         output.push_back(builder.getZero(irElementType));
       } else {

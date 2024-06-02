@@ -160,7 +160,7 @@ void LIRModule::emit(std::ostream &out) const {
     func->emit(out, info);
 }
 
-uint LIRBB::getSuccNum() {
+uint LIRBB::getSuccNum() const {
   if (insts.empty())
     return 0;
   uint succNum = 0;
@@ -182,6 +182,15 @@ LIRBB *LIRBB::getSucc(int index) {
     it--;
   }
   return getBranchDest(*it);
+}
+
+uint LIRBB::getPredNum() const { return getUses().size(); }
+
+LIRBB *LIRBB::getPred(int index) {
+  auto it = getUses().begin();
+  for (int i = 0; i <= index; i++)
+    it++;
+  return (*it)->getInst()->getParent();
 }
 
 void LIRFunc::insert(LIRBB *bb) {

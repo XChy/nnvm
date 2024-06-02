@@ -62,6 +62,48 @@ public:
     ListTrait<T> *curNode;
   };
 
+  class ConstIterator {
+  public:
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = uint64_t;
+    using value_type = const T *;
+    using pointer = const T **;
+    using reference = const T *&;
+
+    ConstIterator(const ListTrait<T> *node) : curNode(node) {}
+    ConstIterator() : Iterator(nullptr) {}
+
+    ConstIterator &operator++() {
+      curNode = curNode->next;
+      return *this;
+    }
+
+    ConstIterator operator++(int) {
+      ConstIterator ret = curNode;
+      curNode = curNode->next;
+      return ret;
+    }
+
+    ConstIterator &operator--() {
+      curNode = curNode->prev;
+      return *this;
+    }
+
+    ConstIterator operator--(int) {
+      ConstIterator ret = curNode;
+      curNode = curNode->prev;
+      return ret;
+    }
+
+    bool operator==(ConstIterator other) { return curNode == other.curNode; }
+    bool operator!=(ConstIterator other) { return curNode != other.curNode; }
+
+    const T *operator*() const { return (const T *)curNode; }
+
+  private:
+    const ListTrait<T> *curNode;
+  };
+
   void insertBack(ListTrait<T> *inserted) {
     ListTrait<T> *prev = dummyEnd.prev;
     prev->insertBack(inserted);
@@ -75,8 +117,8 @@ public:
 
   Iterator begin() { return Iterator(dummyBegin.next); }
   Iterator end() { return Iterator(&dummyEnd); }
-  Iterator begin() const { return Iterator(dummyBegin.next); }
-  Iterator end() const { return Iterator(&dummyEnd); }
+  ConstIterator begin() const { return ConstIterator(dummyBegin.next); }
+  ConstIterator end() const { return ConstIterator(&dummyEnd); }
 
   Iterator erase(Iterator it) {
     Iterator next = it;
@@ -85,7 +127,7 @@ public:
     return next;
   }
 
-  bool empty() { return dummyEnd.prev == &dummyBegin; }
+  bool empty() const { return dummyEnd.prev == &dummyBegin; }
   size_t size() const {
     size_t ret = 0;
 

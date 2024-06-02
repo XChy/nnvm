@@ -19,7 +19,7 @@ void ISel::isel(LIRFunc &func) {
       EmitInfo info;
       cur->emit(std::cerr, info);
       std::cerr << "\n";
-      builder.setInsertPoint(cur);
+      builder.setInsertPoint(bb, cur);
 
       // Remove the original instructions
       if (auto *I = combine(builder, cur))
@@ -35,7 +35,7 @@ void ISel::isel(LIRFunc &func) {
 
   for (auto *bb : func) {
     for (auto cur : incChange(*bb)) {
-      builder.setInsertPoint(cur);
+      builder.setInsertPoint(bb, cur);
 
       // Remove the original instructions
       if (auto *I = legalizeOperands(builder, cur))

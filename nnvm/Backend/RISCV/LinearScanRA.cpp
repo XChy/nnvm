@@ -21,12 +21,12 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
   while (spilledIt != active.rend() && !spilledIt->spillable())
     spilledIt++;
 
-  debug({
-    EmitInfo info;
-    std::cerr << "spilled\n";
-    current.reg->emit(std::cerr, info);
-    std::cerr << ":[" << current.begin << "," << current.end << "]\n";
-  });
+  // debug({
+  // EmitInfo info;
+  // std::cerr << "spilled\n";
+  // current.reg->emit(std::cerr, info);
+  // std::cerr << ":[" << current.begin << "," << current.end << "]\n";
+  //});
 
   if (spilledIt == active.rend()) {
     vregToStack[current.reg] = func.allocStackSlot(current.reg->bytes());
@@ -54,14 +54,14 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
 
 void LinearScanRA::expireOldInterval(const LiveInterval &current) {
 
-  debug({
-    std::cerr << "current:";
-    current.print(std::cerr);
-    std::cerr << "expired\n";
-    for (auto it = active.begin(); it != active.end(); ++it)
-      it->print(std::cerr);
-    std::cerr << "expired end\n";
-  });
+  // debug({
+  // std::cerr << "current:";
+  // current.print(std::cerr);
+  // std::cerr << "expired\n";
+  // for (auto it = active.begin(); it != active.end(); ++it)
+  // it->print(std::cerr);
+  // std::cerr << "expired end\n";
+  //});
 
   for (auto it = active.begin(); it != active.end();) {
     if (it->end >= current.begin)
@@ -150,10 +150,10 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
           auto *slot = vregToStack[vreg];
           auto *newVReg = builder.newVReg(vreg->getType());
           if (op.isDef()) {
-            builder.setInsertPoint(inst->getNext());
+            builder.setInsertPoint(BB, inst->getNext());
             builder.storeValueToSlot(newVReg, slot, vreg->getType());
           } else {
-            builder.setInsertPoint(inst);
+            builder.setInsertPoint(BB, inst);
             builder.loadValueFromSlot(newVReg, slot, vreg->getType());
           }
           op.set(newVReg);

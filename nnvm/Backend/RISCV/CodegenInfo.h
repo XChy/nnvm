@@ -9,25 +9,7 @@
 
 namespace nnvm::riscv {
 
-std::vector<const char *> getGPRNames();
-
 static inline uint64_t getFrameAlign() { return 8; }
-
-// ID of specific general-purpose register
-// uint64_t getFPRegID(const std::string &name);
-
-//// ID of integer register for return value
-// LIRValue *getRetReg();
-
-//// ID of stack pointer register
-// LIRValue *getSPReg(LIRValueType type = LIRValueType::i64);
-
-//// ID of zero register
-// LIRValue *getZeroReg();
-
-//// ID of return address register
-// Register *getRAReg(LIRValueType type = LIRValueType::i64);
-
 // Integer registers for argument
 std::vector<Register *> getArgGPRs(LIRModule *M);
 // Float registers for argument
@@ -42,5 +24,9 @@ LIRBB *getBranchDest(LIRInst *inst);
 
 LIRInstID getLoadInstType(LIRValueType type);
 LIRInstID getStoreInstType(LIRValueType type);
+
+// Include implicit uses/defs
+std::set<Register *> getDefsOf(LIRInst *inst);
+std::set<Register *> getUsesOf(LIRInst *inst);
 
 } /* namespace nnvm::riscv */

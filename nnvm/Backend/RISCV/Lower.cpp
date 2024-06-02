@@ -197,6 +197,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
 static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
   uint numBytes = constant->getType()->getStoredBytes();
+  std::cerr << "allocated: " << numBytes << "\n";
   std::vector<std::byte> ret(numBytes);
 
   if (auto *constantArr = dyn_cast<ConstantArray>(constant)) {
@@ -256,6 +257,9 @@ void LowerHelper::mapAll(Module &module) {
     funcMap[func] = lowFunc;
     lowModule->insert(lowFunc);
 
+    if (func->isExternal())
+      continue;
+
     LIRBB *LIREntry;
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = new LIRBB;
@@ -310,9 +314,7 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
     lowered.globals.push_back(defMap[var]->as<LIRGlobalVar>());
 
   LIRBuilder builder(lowered);
-  for (auto &[name, func] : module.getFunctionMap()) {
-    LIRFunc *lowFunc = funcMap[func];
-
+  for (auto &[func, lowFunc] : funcMap) {
     // Lower basic blocks.
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = BBMap[BB];

@@ -70,23 +70,24 @@ public:
 
 class pInst {
 public:
-  pInst(LIRInst *&receiver) : receiver(&receiver) {}
+  pInst(const LIRInst *&receiver) : receiver(&receiver) {}
   pInst() : receiver(nullptr) {}
-  bool match(LIRInst *inst) {
+  bool match(const LIRInst *inst) {
     if (receiver)
       *receiver = inst;
     return true;
   }
 
 protected:
-  LIRInst **receiver;
+  const LIRInst **receiver;
 };
 
 class pInstWithType : public pInst {
 public:
   pInstWithType(LIRInstID type) : pInst(), type(type) {}
-  pInstWithType(LIRInstID type, LIRInst *&inst) : pInst(inst), type(type) {}
-  bool match(LIRInst *inst) {
+  pInstWithType(LIRInstID type, const LIRInst *&inst)
+      : pInst(inst), type(type) {}
+  bool match(const LIRInst *inst) {
     if (inst->type == type)
       return pInst::match(inst);
     return false;
@@ -101,7 +102,7 @@ class pSpecificInst : public pInst {
 public:
   pSpecificInst();
   pSpecificInst(LIRInstID type) : pInst(), type(type) {}
-  bool match(LIRInst *inst) {
+  bool match(const LIRInst *inst) {
     if (inst->type == type)
       return pInst::match(inst);
     return false;
@@ -114,7 +115,7 @@ private:
 class pRet : public pInstWithType {
 public:
   pRet() : pInstWithType(JALR) {}
-  bool match(LIRInst *inst) {
+  bool match(const LIRInst *inst) {
     return pInst::match(inst) && pZeroReg().match(inst->getOp(0)) &&
            pRAReg().match(inst->getOp(1)) &&
            pSpecificImm(0).match(inst->getOp(2));

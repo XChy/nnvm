@@ -22,7 +22,8 @@ void RegClearer::clear(LIRFunc &func,
       for (LowOperand &op : I->operands) {
 
         if (op.getOperand()->isVReg()) {
-          auto freeRegs = NearbyRegAnalysis(func, *bb, I).getFreeRegs();
+          auto freeRegs = NearbyRegAnalysis(func, *bb, LIRBB::Iterator(I, bb))
+                              .getFreeRegs();
 
           if (!freeRegs.empty()) {
             // TODO: float-point ?
@@ -54,19 +55,21 @@ StackAllocator::calculateStackInfo(LIRFunc &func) {
   return ret;
 }
 
-bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRInst *it,
+bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
+
                                     uint64_t slotOperandIndex) {
-  LIRValue *operand = it->getOp(slotOperandIndex);
+  LIRInst *inst = *iter;
+  LIRValue *operand = inst->getOp(slotOperandIndex);
   if (operand->isStackSlot()) {
 
     uint64_t offset = operand->as<StackSlot>()->getOffset();
-    if ((it->type > I_BEGIN && it->type < I_END) ||
-        (it->type > S_BEGIN && it->type < S_END)) {
-      LIRImm *imm = it->getOp(slotOperandIndex + 1)->as<LIRImm>();
+    if ((inst->type > I_BEGIN && inst->type < I_END) ||
+        (inst->type > S_BEGIN && inst->type < S_END)) {
+      LIRImm *imm = inst->getOp(slotOperandIndex + 1)->as<LIRImm>();
       if (canExpressInBits<11>(offset + imm->getValue())) {
-        it->setUse(slotOperandIndex, builder.phyReg(SP));
-        it->setUse(slotOperandIndex + 1,
-                   LIRImm::create(offset + imm->getValue()));
+        inst->setUse(slotOperandIndex, builder.phyReg(SP));
+        inst->setUse(slotOperandIndex + 1,
+                     LIRImm::create(offset + imm->getValue()));
         return true;
       }
     }
@@ -76,12 +79,12 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRInst *it,
                     << operand->as<StackSlot>()->getOffset() << " "
                     << slotOperandIndex << "\n");
 
-    builder.setInsertPoint(it);
+    builder.setInsertPoint(iter);
     auto addressRegister = builder.newVReg(LIRValueType::i64);
     loadRegPlusConstantToReg(builder, builder.phyReg(SP),
                              LIRConst::createInt(offset, LIRValueType::i64),
                              addressRegister);
-    it->setUse(slotOperandIndex, addressRegister);
+    inst->setUse(slotOperandIndex, addressRegister);
   }
   return true;
 }
@@ -122,7 +125,7 @@ void StackAllocator::allocate(LIRFunc &func) {
     for (auto *inst : *bb)
       for (int i = 0; i < inst->getNumOp(); i++)
         if (inst->getOp(i)->isStackSlot())
-          resolveSlotRef(builder, inst, i);
+          resolveSlotRef(builder, LIRBB::Iterator(inst, bb), i);
 
   clearer.clear(func, vregNum);
 }
@@ -158,7 +161,7 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
 void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   for (LIRBB *bb : stackInfo.exitBBs) {
-    builder.setInsertPoint(bb->getInsts().getLast());
+    builder.setInsertPoint(bb, bb->getInsts().getLast());
 
     for (StackSlot *slot : func.getStackSlots()) {
       if (slot->getType() == StackSlot::CalleeSaved) {

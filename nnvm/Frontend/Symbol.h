@@ -120,6 +120,8 @@ static inline Type *toIRType(Module &module, SymbolType *symbolType) {
     return module.getVoidType();
   if (symbolType->isBool())
     return module.getBoolType();
+  if (symbolType->isArray())
+    return module.getPtrType();
   nnvm_unreachable("Not implemented");
 }
 

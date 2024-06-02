@@ -1,3 +1,4 @@
+#include "Backend/RISCV/Analysis/LivenessAnalysis.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
@@ -34,7 +35,7 @@ uint64_t LiveIntervalAnalysis::assignBBNumber(LIRFunc &func) {
 
     BBNumber[cur] = instructionCount;
     instructionCount += cur->getInsts().size();
-    for (int i = 0; i < cur->getSuccNum(); i++) {
+    for (uint i = 0; i < cur->getSuccNum(); i++) {
       toVisit.push(cur->getSucc(i));
     }
   }
@@ -52,19 +53,37 @@ void LiveIntervalAnalysis::meetReg(Register *reg, uint64_t index,
   }
 
   auto &interval = regToIntervals[reg];
+  interval.begin = std::min(index, interval.begin);
   interval.end = std::max(index, interval.end);
 }
 
 bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
+  LivenessAnalysis LA;
+  LA.runOn(func);
   assignBBNumber(func);
 
-  debug(printDefUse(func));
+  debug(printDefUse(func, BBNumber));
 
   for (LIRBB *BB : func) {
+    auto liveIn = LA.getLiveIn()[BB];
+    auto liveOut = LA.getLiveOut()[BB];
+
+    // Handle register living across the whole basic block.
+    for (auto liveReg : liveIn) {
+      if (liveOut.count(liveReg)) {
+        regToIntervals[liveReg].reg = liveReg;
+        regToIntervals[liveReg].begin =
+            std::min(regToIntervals[liveReg].begin, BBNumber[BB]);
+        regToIntervals[liveReg].end =
+            std::max(regToIntervals[liveReg].end,
+                     BBNumber[BB] + BB->getInsts().size() - 1);
+      }
+    }
+
+    // Handle register living part of the whole basic block.
     uint64_t localIndex = 0;
     for (LIRInst *inst : *BB) {
       uint64_t globalIndex = indexOf(BB, localIndex);
-
       for (const LowOperand &operand : inst->operands) {
         LIRValue *value = operand.getOperand();
         if (!value->isReg())
@@ -83,6 +102,8 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
       localIndex++;
     }
   }
+
+  regToIntervals.erase(func.getParent()->getPhyReg(ZERO));
 
   for (auto &[id, interval] : regToIntervals)
     intervals.insert(interval);
