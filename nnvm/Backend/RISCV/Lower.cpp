@@ -81,7 +81,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
           availableArgFPR.pop();
 
           nnvm_unreachable("Not implemented");
-          emit(LIRInst::create(ADD, argReg, argVReg, builder.phyReg(ZERO)));
+          emit(LIRInst::create(FMV_S_X, argReg, argVReg, builder.phyReg(ZERO)));
 
           lowered->setUse(i, argReg);
         } else if (!availableArgGPR.empty()) {
@@ -140,23 +140,24 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
   }
 
   case InstID::Ret: {
+    bool isFloatPoint = false;
     if (I->getOperandNum() != 0) {
       // TODO: floating point?
       Value *returned = I->getOperand(0);
+      isFloatPoint |= returned->getType()->isFloat();
       // Move returned value to a0.
-      emit(LIRInst::create(ADD, builder.phyReg(A0), defMap[returned],
-                           builder.phyReg(ZERO)));
+      emit(LIRInst::create(ADD, builder.phyReg(isFloatPoint ? FA0 : A0),
+                           defMap[returned], builder.phyReg(ZERO)));
     }
 
-    // Implicit use of "a0/f0"
     LIRInst *inst;
     if (I->getOperandNum() != 0) {
       inst = LIRInst::create(JALR, 4)
                  ->setUse(0, builder.phyReg(ZERO))
                  ->setUse(1, builder.phyReg(RA))
                  ->setUse(2, LIRImm::create(0))
-                 // Implicit use of "a0/f0"
-                 ->setUse(3, builder.phyReg(A0));
+                 // TODO:Implicit use of "a0/f0"
+                 ->setUse(3, builder.phyReg(isFloatPoint ? FA0 : A0));
     } else {
       inst = LIRInst::create(JALR, builder.phyReg(ZERO), builder.phyReg(RA),
                              LIRImm::create(0));
@@ -182,11 +183,9 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
   default:
     LIRInst *lowInst = LIRInst::create(instType, I->getOperandNum() + 1);
 
-    if (I->getType() && !I->getType()->isVoid())
-      lowInst->setDef(0, defMap[I]);
-    else
-      nnvm_unimpl();
+    assert(I->getType() && !I->getType()->isVoid() && "Unimplemented");
 
+    lowInst->setDef(0, defMap[I]);
     for (int i = 0; i < I->getOperandNum(); i++)
       lowInst->setUse(i + 1, defMap[I->getOperand(i)]);
 
@@ -197,7 +196,6 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
 static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
   uint numBytes = constant->getType()->getStoredBytes();
-  std::cerr << "allocated: " << numBytes << "\n";
   std::vector<std::byte> ret(numBytes);
 
   if (auto *constantArr = dyn_cast<ConstantArray>(constant)) {

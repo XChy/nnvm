@@ -16,6 +16,18 @@ uint64_t LiveIntervalAnalysis::indexOf(LIRBB *BB, uint64_t localIndex) {
   return BBNumber[BB] + localIndex;
 }
 
+uint64_t LiveIntervalAnalysis::indexOf(LIRInst *inst) {
+  uint localIndex = 0;
+
+  for (auto *I : *inst->getParent()) {
+    if (I == inst)
+      break;
+    localIndex++;
+  }
+
+  return BBNumber[inst->getParent()] + localIndex;
+}
+
 LiveIntervalAnalysis::IntervalSet LiveIntervalAnalysis::getResult() const {
   return intervals;
 }

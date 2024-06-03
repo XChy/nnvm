@@ -85,6 +85,8 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
   auto freeVec = unpreservedRegs(func.getParent());
   auto freeFVec = unpreservedFRegs(func.getParent());
   freeRegs = {freeVec.begin(), freeVec.end()};
+  for (auto reg : freeVec)
+    freeRegs.insert(reg);
   for (auto reg : freeFVec)
     freeRegs.insert(reg);
 

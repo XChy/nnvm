@@ -58,10 +58,10 @@ void riscv::loadConstantToReg(LIRBuilder &builder, LIRConst *constant,
     uint64_t smallValue;
     if (constant->getIValue() & 0x800) {
       smallValue = (constant->getIValue() & 0xFFF) - (1 << 12);
-      largeValue = (constant->getIValue() >> 12) + 1;
+      largeValue = ((constant->getIValue() >> 12) + 1) & 0xFFFFF;
     } else {
       smallValue = constant->getIValue() & 0xFFF;
-      largeValue = constant->getIValue() >> 12;
+      largeValue = (constant->getIValue() >> 12) & 0xFFFFF;
     }
 
     auto auipc = LIRInst::create(LUI, reg, LIRImm::create(largeValue));
@@ -85,6 +85,21 @@ void riscv::loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
 
   loadConstantToReg(builder, constant, destReg);
   auto addDestAndSrc = LIRInst::create(ADD, destReg, destReg, srcReg);
+  builder.addInst(addDestAndSrc);
+}
+
+void riscv::loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
+                                     LIRConst *constant, Register *destReg,
+                                     Register *scratchReg) {
+  if (canExpressInBits<12>(constant->getIValue())) {
+    auto load = LIRInst::create(ADDI, destReg, srcReg,
+                                LIRImm::create(constant->getIValue()));
+    builder.addInst(load);
+    return;
+  }
+
+  loadConstantToReg(builder, constant, scratchReg);
+  auto addDestAndSrc = LIRInst::create(ADD, destReg, srcReg, scratchReg);
   builder.addInst(addDestAndSrc);
 }
 

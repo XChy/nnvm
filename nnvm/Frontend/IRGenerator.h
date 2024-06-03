@@ -112,6 +112,9 @@ private:
   Constant *fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                   SymbolType *type);
 
+  Constant *createConstInt(int value);
+  Constant *createConstFloat(float value);
+
   Type *getIRType(SysYParser::BtypeContext *ctx);
   Type *getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx);
   Type *getIRType(SysYParser::FuncTypeContext *ctx);

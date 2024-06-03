@@ -50,6 +50,7 @@ Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
   static_assert("Not supported such type");
   return nullptr;
 }
+
 Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
   if (ctx->INT())
     return ir->getIntType();
@@ -383,10 +384,15 @@ bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
     return true;
   }
 
-  std::cerr << currentType->numElements << "\n";
   size_t numBefore = output.size();
   if (currentType->isArray()) {
     int initValIndex = 0;
+
+    if (numBefore % currentType->getTotalNumOfElements() != 0) {
+      solveInit(initVal, currentType->containedTy, irElementType, output);
+      return true;
+    }
+
     while (initValIndex < currentType->getTotalNumOfElements() &&
            output.size() - numBefore < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->initVal().size()) {
@@ -413,17 +419,28 @@ bool IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
                                     std::vector<Constant *> &output) {
 
   if (initVal->exp()) {
-    Symbol exp = initVal->exp()->accept(this);
-    if (!exp)
-      return false;
+    Constant *constant;
+    Any value = solveConstExp(initVal->exp());
+    if (value.is<int>())
+      constant = ConstantInt::create(*ir, ir->getIntType(), value.as<int>());
+    else if (value.is<float>())
+      constant = ConstantFloat::create(*ir, value.as<float>());
+    else
+      nnvm_unimpl();
+
     // TODO: non-constant? Float to int or int to float?
-    output.push_back(cast<Constant>(exp.entity));
+    output.push_back(constant);
     return true;
   }
 
   if (currentType->isArray()) {
     int initValIndex = 0;
     uint oldNum = output.size();
+    if (oldNum % currentType->getTotalNumOfElements() != 0) {
+      fetchElementsFrom(initVal, currentType->containedTy, irElementType,
+                        output);
+      return true;
+    }
     while (initValIndex < currentType->getTotalNumOfElements() &&
            output.size() - oldNum < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->initVal().size()) {
@@ -477,6 +494,11 @@ bool IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
   if (currentType->isArray()) {
     int initValIndex = 0;
     size_t oldNum = output.size();
+    if (oldNum % currentType->getTotalNumOfElements() != 0) {
+      fetchElementsFrom(initVal, currentType->containedTy, irElementType,
+                        output);
+      return true;
+    }
     while (initValIndex < currentType->getTotalNumOfElements() &&
            output.size() - oldNum < currentType->getTotalNumOfElements()) {
       if (initValIndex >= initVal->constInitVal().size()) {
@@ -565,8 +587,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
         Any solvedVal = solveConstExp(ctx->initVal()->exp());
         floatVal = castConstExp<int, float>(solvedVal);
       }
-      Constant *initVal = ConstantFloat::create(*ir, floatVal);
-      GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
+      GlobalVariable *globalVar =
+          new GlobalVariable(*ir, createConstFloat(floatVal));
       globalVar->setName(symbolName);
       irVal = globalVar;
     } else {
@@ -598,8 +620,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
           return Symbol::none();
         uint offset = 0;
         for (Value *stored : values) {
-          Constant *offsetValue =
-              ConstantInt::create(*ir, ir->getIntType(), offset);
+          Constant *offsetValue = createConstInt(offset);
           auto *pointer = builder.buildBinOp<PtrAddInst>(
               irVal, offsetValue, ir->getPtrType(), "arr.index");
           builder.buildStore(stored, pointer);
@@ -641,14 +662,14 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   if (ctx->funcFParams()) {
     for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
       SymbolType *symbolTy = paramCtx->btype()->accept(this);
-      for (int i = 0; i < paramCtx->L_BRACKT().size(); i++) {
+      for (int i = paramCtx->L_BRACKT().size() - 1; i >= 0; i--) {
         if (i == 0)
           symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
         else {
-          Any numOfElement = solveConstExp(paramCtx->exp()[i]);
+          Any numOfElement = solveConstExp(paramCtx->exp()[i - 1]);
           assert(numOfElement.is<int>());
-          symbolTy =
-              SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+          symbolTy = SymbolType::getArrayTy(numOfElement.as<int>(), symbolTy,
+                                            symbolTable);
         }
       }
       argsType.push_back(symbolTy);
@@ -701,21 +722,21 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
 Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   string paramName = ctx->IDENT()->getText();
-  ;
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
     return Symbol::none();
   }
 
   SymbolType *symbolTy = ctx->btype()->accept(this);
-  for (size_t i = 0; i < ctx->L_BRACKT().size(); i++) {
+  for (int i = ctx->L_BRACKT().size() - 1; i >= 0; i--) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
     else {
       // TODO: check---calculate the number of element
       Any numOfElement = solveConstExp(ctx->exp()[i - 1]);
       assert(numOfElement.is<int>());
-      symbolTy = SymbolType::getArrayTy(numOfElement, symbolTy, symbolTable);
+      symbolTy =
+          SymbolType::getArrayTy(numOfElement.as<int>(), symbolTy, symbolTable);
     }
   }
 
@@ -801,7 +822,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       if (currentFunc->symbolType->containedTy->symbolID !=
           SymbolType::SymbolID::Void) {
         // TODO:  error
-        return Symbol::none;
+        return Symbol::none();
       }
 
       return Symbol{builder.buildRet(), nullptr};
@@ -1187,22 +1208,26 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {
       // TODO: do we handle hexidecimal float in std::stof?
-      return Symbol{
-          ConstantFloat::create(*ir, std::stof(floatConst->getText())),
-          SymbolType::getFloatTy()};
+      return Symbol{createConstFloat(std::stof(floatConst->getText())),
+                    SymbolType::getFloatTy()};
     }
 
     if (auto *intConst = number->INTEGER_CONST()) {
-      return Symbol{
-          ConstantInt::create(*ir, ir->getIntType(),
-                              std::stoi(intConst->getText(), 0,
-                                        getRadixOf(intConst->getText()))),
-          SymbolType::getIntTy()};
+      return Symbol{createConstInt(std::stoi(intConst->getText(), 0,
+                                             getRadixOf(intConst->getText()))),
+                    SymbolType::getIntTy()};
     }
 
     nnvm_unreachable("No such literal number")
   }
   return visitChildren(ctx);
+}
+
+Constant *IRGenerator::createConstInt(int value) {
+  return ConstantInt::create(*ir, ir->getIntType(), value);
+}
+Constant *IRGenerator::createConstFloat(float value) {
+  return ConstantFloat::create(*ir, value);
 }
 
 Symbol *SymbolTable::create(const string &name) {

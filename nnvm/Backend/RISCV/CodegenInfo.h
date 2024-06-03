@@ -29,4 +29,8 @@ LIRInstID getStoreInstType(LIRValueType type);
 std::set<Register *> getDefsOf(LIRInst *inst);
 std::set<Register *> getUsesOf(LIRInst *inst);
 
+// We pre-define some scratch register for convenience.
+std::set<Register *> getScratchRegs(LIRModule *M);
+std::set<Register *> getScratchFRegs(LIRModule *M);
+
 } /* namespace nnvm::riscv */

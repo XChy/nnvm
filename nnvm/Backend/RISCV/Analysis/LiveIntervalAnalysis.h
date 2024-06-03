@@ -52,8 +52,13 @@ public:
    * @param localIndex the index inside block
    */
   uint64_t indexOf(LIRBB *BB, uint64_t localIndex);
+  uint64_t indexOf(LIRInst *inst);
 
   IntervalSet getResult() const;
+
+  std::unordered_map<Register *, LiveInterval> getRegToIntervals() const {
+    return regToIntervals;
+  }
 
 private:
   // We assign numbers in order of basicblock

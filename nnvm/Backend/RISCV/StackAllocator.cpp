@@ -1,6 +1,7 @@
 #include "StackAllocator.h"
 #include "ADT/GenericInt.h"
 #include "ADT/PatternMatch.h"
+#include "Backend/RISCV/Analysis/LiveIntervalAnalysis.h"
 #include "Backend/RISCV/Analysis/NearbyRegAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
@@ -25,16 +26,13 @@ void RegClearer::clear(LIRFunc &func,
           auto freeRegs = NearbyRegAnalysis(func, *bb, LIRBB::Iterator(I, bb))
                               .getFreeRegs();
 
+          // TODO: float-point ?
           if (!freeRegs.empty()) {
-            // TODO: float-point ?
             op.set(freeRegs.front());
-            continue;
           } else {
-            nnvm_unimpl();
+            op.set(scratchReg);
           }
         }
-
-        // TODO: make use of emergency slot properly.
       }
     }
   }
@@ -54,6 +52,8 @@ StackAllocator::calculateStackInfo(LIRFunc &func) {
 
   return ret;
 }
+
+StackAllocator::StackAllocator() {}
 
 bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
 
@@ -89,7 +89,7 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
   return true;
 }
 
-static inline bool needEmergencySlot(LIRFunc &func) {
+static inline bool needScratchReg(LIRFunc &func) {
   uint64_t currentFrameSize = 0;
   for (auto *slot : func.getStackSlots()) {
     currentFrameSize += slot->getSize();
@@ -101,12 +101,15 @@ static inline bool needEmergencySlot(LIRFunc &func) {
 
 void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
-  stackInfo = calculateStackInfo(func);
 
+  if (needScratchReg(func)) {
+    scratchReg = *getScratchRegs(func.getParent()).begin();
+    clearer.setScratchReg(scratchReg);
+    func.allocCalleeSavedSlot(scratchReg);
+  }
+
+  stackInfo = calculateStackInfo(func);
   frameSize = 0;
-  // TODO: Increase number of emergency slots if necessary?
-  uint64_t numEmergencySlots = needEmergencySlot(func) ? 1 : 0;
-  frameSize += numEmergencySlots * 8;
 
   for (auto *slot : func.getStackSlots()) {
     slot->setOffset(frameSize);
@@ -134,23 +137,14 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   auto bodyBegin = func.getEntry()->begin();
   builder.setInsertPoint(bodyBegin);
-  auto *addFrame = LIRInst::create(ADDI, builder.phyReg(SP), builder.phyReg(SP),
-                                   LIRImm::create(-frameSize));
-  builder.addInst(addFrame);
+  loadRegPlusConstantToReg(builder, builder.phyReg(SP),
+                           LIRConst::createInt(-frameSize, LIRValueType::i64),
+                           builder.phyReg(SP), builder.phyReg(A0));
 
   for (StackSlot *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::CalleeSaved) {
       builder.setInsertPoint(bodyBegin);
       builder.storeValueToSlot(slot->getReg(), slot, slot->getReg()->getType());
-    } else if (slot->getType() == StackSlot::CallerSaved) {
-      // for (auto *bb : func)
-      // for (auto *inst : *bb) {
-      // if (inst->getOpcode() == CALL) {
-      // builder.setInsertPoint(inst);
-      // builder.storeValueToSlot(slot->getReg(), slot,
-      // slot->getReg()->getType());
-      //}
-      //}
     } else {
       // TODO: spill?
       // nnvm_unimpl();
@@ -170,8 +164,8 @@ void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
       }
     }
 
-    builder.addInst(LIRInst::create(ADDI, builder.phyReg(SP),
-                                    builder.phyReg(SP),
-                                    LIRImm::create(frameSize)));
+    loadRegPlusConstantToReg(builder, builder.phyReg(SP),
+                             LIRConst::createInt(frameSize, LIRValueType::i64),
+                             builder.phyReg(SP), builder.phyReg(A0));
   }
 }

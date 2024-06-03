@@ -11,7 +11,15 @@ namespace nnvm::riscv {
 // registers into physical ones. RegClearer is to resolve the problem.
 class RegClearer {
 public:
+  RegClearer() {}
+
+  void setScratchReg(Register *reg) { scratchReg = reg; }
+  Register *getScratchReg() const { return scratchReg; }
+
   void clear(LIRFunc &func, std::unordered_map<uint64_t, uint64_t> &vregNum);
+
+private:
+  Register *scratchReg;
 };
 
 // Stack allocator main does:
@@ -26,6 +34,7 @@ class StackAllocator {
   };
 
 public:
+  StackAllocator();
   void allocate(LIRFunc &func);
   FunctionStackInfo calculateStackInfo(LIRFunc &func);
   void emitPrologue(LIRBuilder &builder, LIRFunc &func);
@@ -36,9 +45,11 @@ public:
 
 private:
   RegClearer clearer;
+
   LIRFunc *func;
   FunctionStackInfo stackInfo;
   uint64_t frameSize;
+  Register *scratchReg;
 
   std::unordered_map<uint64_t, uint64_t> vregNum;
 };
