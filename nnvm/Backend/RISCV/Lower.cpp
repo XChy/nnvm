@@ -275,7 +275,6 @@ void LowerHelper::mapAll(Module &module) {
     auto gprArgVec = getArgGPRs(lowModule);
     auto fprArgVec = getArgFPRs(lowModule);
 
-    std::cerr << LIREntry << "\n";
     std::queue<Register *> availableArgGPR;
     std::queue<Register *> availableArgFPR;
     for (auto gpr : gprArgVec)
@@ -316,13 +315,10 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
     // Lower basic blocks.
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = BBMap[BB];
-      // lowFunc->insert(lowBB);
-
       builder.setInsertPoint(lowBB->end());
       for (Instruction *I : *BB)
         lowerInst(lowFunc, I, builder);
     }
   }
 
-  // Lower functions.
 }

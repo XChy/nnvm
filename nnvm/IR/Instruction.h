@@ -101,6 +101,10 @@ public:
   InstID getOpcode() const { return instID; }
   std::string getOpName() const;
 
+  bool isBinOp() const {
+    return instID > InstID::BINOP_BEGIN && instID < InstID::BINOP_END;
+  }
+
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }
   BasicBlock *getParent() { return parent; }
