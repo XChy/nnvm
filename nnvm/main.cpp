@@ -34,15 +34,16 @@ static int optimizationLevel;
 
 void parseArgs(int argc, char **argv) {
   static struct option options[] = {
-      {"dump-ir"     , no_argument       , nullptr , 'i'},
-      {"dump-opt-ir" , no_argument       , nullptr , 'I'},
-      {"dump-asm"    , no_argument       , nullptr , 'a'},
-      {"O"           , required_argument , nullptr , 'O'},
-      {"backend"     , required_argument , nullptr , 'b'},
-      {nullptr       , no_argument       , nullptr , 'o'},
-      {nullptr       , no_argument       , nullptr , '\0'}};
+      {"dump-ir", no_argument, nullptr, 'i'},
+      {"dump-opt-ir", no_argument, nullptr, 'I'},
+      {"dump-asm", no_argument, nullptr, 'a'},
+      {"O", required_argument, nullptr, 'O'},
+      {"backend", required_argument, nullptr, 'b'},
+      {nullptr, no_argument, nullptr, 'o'},
+      {nullptr, no_argument, nullptr, '\0'}};
   int opt;
-  while ((opt = getopt_long_only(argc, argv, "b:o:O:", options, nullptr)) != -1) {
+  while ((opt = getopt_long_only(argc, argv, "Sb:o:O:", options, nullptr)) !=
+         -1) {
     switch (opt) {
     case 'i':
       dumpIR = true;
@@ -52,6 +53,8 @@ void parseArgs(int argc, char **argv) {
       break;
     case 'a':
       dumpAssembly = true;
+      break;
+    case 'S':
       break;
     case 'O':
       optimizationLevel = std::stoi(optarg);
