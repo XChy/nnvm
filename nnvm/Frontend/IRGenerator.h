@@ -6,6 +6,8 @@
 #include "IR/Type.h"
 #include "SysYParserBaseVisitor.h"
 #include "tree/ParseTree.h"
+#include <any>
+#include <list>
 #include <unordered_map>
 
 namespace nnvm {
@@ -36,31 +38,39 @@ private:
   vector<SymbolType *> managedTys;
 };
 
+template <typename T> bool any_is(const std::any &v) {
+  return v.type() == typeid(T);
+}
+
+template <typename T> T any_as(const std::any &v) {
+  return std::any_cast<T>(v);
+}
+
 class IRGenerator final : public SysYParserBaseVisitor {
 public:
   IRGenerator();
   void emitIR(antlr4::tree::ParseTree *ast, Module *ir);
 
-  Any visitProgram(SysYParser::ProgramContext *ctx) override;
-  Any visitBtype(SysYParser::BtypeContext *ctx) override;
+  std::any visitProgram(SysYParser::ProgramContext *ctx) override;
+  std::any visitBtype(SysYParser::BtypeContext *ctx) override;
 
-  Any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
-  Any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
-  Any visitFuncFParam(SysYParser::FuncFParamContext *ctx) override;
+  std::any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
+  std::any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
+  std::any visitFuncFParam(SysYParser::FuncFParamContext *ctx) override;
 
-  Any visitStmt(SysYParser::StmtContext *ctx) override;
+  std::any visitStmt(SysYParser::StmtContext *ctx) override;
 
-  Any visitCond(SysYParser::CondContext *ctx) override;
+  std::any visitCond(SysYParser::CondContext *ctx) override;
 
-  Any visitCall(SysYParser::CallContext *ctx) override;
-  Any visitLVal(SysYParser::LValContext *ctx) override;
-  Any visitExp(SysYParser::ExpContext *ctx) override;
+  std::any visitCall(SysYParser::CallContext *ctx) override;
+  std::any visitLVal(SysYParser::LValContext *ctx) override;
+  std::any visitExp(SysYParser::ExpContext *ctx) override;
 
-  Any visitVarDecl(SysYParser::VarDeclContext *ctx) override;
-  Any visitConstDecl(SysYParser::ConstDeclContext *ctx) override;
-  Any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
+  std::any visitVarDecl(SysYParser::VarDeclContext *ctx) override;
+  std::any visitConstDecl(SysYParser::ConstDeclContext *ctx) override;
+  std::any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
 
-  Any visitBlock(SysYParser::BlockContext *ctx) override;
+  std::any visitBlock(SysYParser::BlockContext *ctx) override;
 
   Type *toIRType(SymbolType *symbolTy);
 
@@ -86,16 +96,16 @@ private:
   Constant *constFalse;
 
   // helper function
-  Any expBinOp(SysYParser::ExpContext *);
-  Any expUnaryOp(SysYParser::ExpContext *);
-  Any solveConstExp(SysYParser::ExpContext *);
-  Any solveConstLval(SysYParser::LValContext *);
-  Any solveConstInit(std::vector<SysYParser::ConstInitValContext *> ctxs,
-                     std::list<int> dims);
-  Any constDef(SysYParser::ConstDefContext *ctx,
-               SysYParser::BtypeContext *btypeCtx);
-  Any varDef(SysYParser::VarDefContext *ctx,
-             SysYParser::BtypeContext *btypeCtx);
+  std::any expBinOp(SysYParser::ExpContext *);
+  std::any expUnaryOp(SysYParser::ExpContext *);
+  std::any solveConstExp(SysYParser::ExpContext *);
+  std::any solveConstLval(SysYParser::LValContext *);
+  std::any solveConstInit(std::vector<SysYParser::ConstInitValContext *> ctxs,
+                          std::list<int> dims);
+  std::any constDef(SysYParser::ConstDefContext *ctx,
+                    SysYParser::BtypeContext *btypeCtx);
+  std::any varDef(SysYParser::VarDefContext *ctx,
+                  SysYParser::BtypeContext *btypeCtx);
 
   bool solveInit(SysYParser::InitValContext *initVal, SymbolType *currentType,
                  Type *irElementType, std::vector<Value *> &output);

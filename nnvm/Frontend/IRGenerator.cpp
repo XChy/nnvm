@@ -108,13 +108,13 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
-      assert(index.is<int>());
+      assert(any_is<int>(index));
       // TODO: Report invalid index error.
       if (i < indexs.size() - 1) {
         constArray =
-            cast<ConstantArray>(constArray->getValue()[index.as<int>()]);
+            cast<ConstantArray>(constArray->getValue()[any_as<int>(index)]);
       } else {
-        valConstant = constArray->getValue()[index.as<int>()];
+        valConstant = constArray->getValue()[any_as<int>(index)];
         if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
           return (int)constInt->getValue();
         }
@@ -134,7 +134,8 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
  */
 template <typename MayFrom, typename To>
 static inline To castConstExp(Any value) {
-  return value.is<MayFrom>() ? (To)(value.as<MayFrom>()) : value.as<To>();
+  return any_is<MayFrom>(value) ? (To)(any_as<MayFrom>(value))
+                                : any_as<To>(value);
 }
 
 /**
@@ -160,18 +161,18 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       if (ctx->unaryOp()->PLUS())
         return operand;
 
-      if (operand.is<float>()) {
+      if (any_is<float>(operand)) {
         if (ctx->unaryOp()->NOT())
-          return (int)(operand.as<float>() != 0);
+          return (int)(any_as<float>(operand) != 0);
         if (ctx->unaryOp()->MINUS())
-          return -operand.as<float>();
+          return -any_as<float>(operand);
       }
 
-      if (operand.is<int>()) {
+      if (any_is<int>(operand)) {
         if (ctx->unaryOp()->NOT())
-          return (int)(operand.as<int>() != 0);
+          return (int)(any_as<int>(operand) != 0);
         if (ctx->unaryOp()->MINUS())
-          return -operand.as<int>();
+          return -any_as<int>(operand);
       }
 
       nnvm_unimpl();
@@ -185,9 +186,9 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
 
   Any lhsAny = solveConstExp(ctx->exp()[0]);
   Any rhsAny = solveConstExp(ctx->exp()[1]);
-  if (lhsAny.is<float>() || rhsAny.is<float>()) {
-    float lhs = lhsAny.as<float>();
-    float rhs = rhsAny.as<float>();
+  if (any_is<float>(lhsAny) || any_is<float>(rhsAny)) {
+    float lhs = any_as<float>(lhsAny);
+    float rhs = any_as<float>(rhsAny);
     if (ctx->PLUS()) {
       return lhs + rhs;
     }
@@ -204,9 +205,9 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       nnvm_unimpl();
     }
     assert("Should not reach here");
-  } else if (lhsAny.is<int>() && rhsAny.is<int>()) {
-    int lhs = lhsAny.as<int>();
-    int rhs = rhsAny.as<int>();
+  } else if (any_is<int>(lhsAny) && any_is<int>(rhsAny)) {
+    int lhs = any_as<int>(lhsAny);
+    int rhs = any_as<int>(rhsAny);
     if (ctx->PLUS()) {
       return lhs + rhs;
     }
@@ -247,15 +248,15 @@ Any IRGenerator::solveConstInit(
 
     Any val = solveConstExp(initVals[0]->constExp()->exp());
     // TODO: float
-    return ConstantInt::create(*ir, ir->getIntType(), val.as<int>());
+    return ConstantInt::create(*ir, ir->getIntType(), any_as<int>(val));
   }
   int initValIndex = 0;
   int currentDim = dims.front();
   dims.pop_front();
   for (int i = 0; i < currentDim; i += 1) {
     if (initVals[initValIndex]->L_BRACE()) {
-      Constant *element =
-          solveConstInit(initVals[initValIndex++]->constInitVal(), dims);
+      Constant *element = any_as<Constant *>(
+          solveConstInit(initVals[initValIndex++]->constInitVal(), dims));
       arrayElements.push_back(element);
     } else {
       int numOfElement = 1;
@@ -266,7 +267,8 @@ Any IRGenerator::solveConstInit(
       for (int i = 0; i < numOfElement; i++) {
         constInitVals.push_back(initVals[initValIndex++]);
       }
-      Constant *element = solveConstInit(constInitVals, dims);
+      Constant *element =
+          any_as<Constant *>(solveConstInit(constInitVals, dims));
       arrayElements.push_back(element);
     }
   }
@@ -284,10 +286,11 @@ Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
   if (auto constExp = ctx->constExp()) {
     Any initVal = solveConstExp(constExp->exp());
     Constant *constant = nullptr;
-    if (initVal.is<int>()) {
-      constant = ConstantInt::create(*ir, ir->getIntType(), initVal.as<int>());
-    } else if (initVal.is<float>()) {
-      constant = ConstantFloat::create(*ir, initVal.as<float>());
+    if (any_is<int>(initVal)) {
+      constant =
+          ConstantInt::create(*ir, ir->getIntType(), any_as<int>(initVal));
+    } else if (any_is<float>(initVal)) {
+      constant = ConstantFloat::create(*ir, any_as<float>(initVal));
     } else {
       nnvm_unreachable("Should not reach here");
     }
@@ -305,7 +308,7 @@ Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
  */
 Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
                           SysYParser::BtypeContext *btype) {
-  SymbolType *symbolType = btype->accept(this);
+  SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
   string symbolName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(symbolName)) {
     // TODO: error
@@ -315,9 +318,9 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   auto constExps = ctx->constExp();
   for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
     Any nrElements = solveConstExp((*it)->exp());
-    assert(nrElements.is<int>());
-    symbolType =
-        SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
+    assert(any_is<int>(nrElements));
+    symbolType = SymbolType::getArrayTy(any_as<int>(nrElements), symbolType,
+                                        symbolTable);
   }
 
   Type *irType = getIRType(symbolType, btype);
@@ -325,12 +328,12 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
 
   if (irType->isInteger()) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
-    assert(initVal.is<int>());
-    constVal = ConstantInt::create(*ir, irType, initVal.as<int>());
+    assert(any_is<int>(initVal));
+    constVal = ConstantInt::create(*ir, irType, any_as<int>(initVal));
   } else if (irType->isFloat()) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
-    assert(initVal.is<float>());
-    constVal = ConstantFloat::create(*ir, initVal.as<float>());
+    assert(any_is<float>(initVal));
+    constVal = ConstantFloat::create(*ir, any_as<float>(initVal));
   } else if (symbolType->isArray()) {
     constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
 
@@ -376,7 +379,7 @@ bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
                             SymbolType *currentType, Type *irElementType,
                             std::vector<Value *> &output) {
   if (initVal->exp()) {
-    Symbol exp = initVal->exp()->accept(this);
+    Symbol exp = any_as<Symbol>(initVal->exp()->accept(this));
     if (!exp)
       return false;
     // TODO: non-constant? Float to int or int to float?
@@ -421,10 +424,10 @@ bool IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
   if (initVal->exp()) {
     Constant *constant;
     Any value = solveConstExp(initVal->exp());
-    if (value.is<int>())
-      constant = ConstantInt::create(*ir, ir->getIntType(), value.as<int>());
-    else if (value.is<float>())
-      constant = ConstantFloat::create(*ir, value.as<float>());
+    if (any_is<int>(value))
+      constant = ConstantInt::create(*ir, ir->getIntType(), any_as<int>(value));
+    else if (any_is<float>(value))
+      constant = ConstantFloat::create(*ir, any_as<float>(value));
     else
       nnvm_unimpl();
 
@@ -483,7 +486,7 @@ bool IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
                                     std::vector<Constant *> &output) {
 
   if (initVal->constExp()) {
-    Symbol exp = initVal->constExp()->accept(this);
+    Symbol exp = any_as<Symbol>(initVal->constExp()->accept(this));
     if (!exp)
       return false;
     // TODO: non-constant? Float to int or int to float?
@@ -538,7 +541,7 @@ IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
 
 Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
                         SysYParser::BtypeContext *btype) {
-  SymbolType *symbolType = btype->accept(this);
+  SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
   SymbolType *elementType = symbolType;
   string symbolName = ctx->IDENT()->getText();
 
@@ -550,9 +553,9 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   auto constExps = ctx->constExp();
   for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
     Any nrElements = solveConstExp((*it)->exp());
-    assert(nrElements.is<int>());
-    symbolType =
-        SymbolType::getArrayTy(nrElements.as<int>(), symbolType, symbolTable);
+    assert(any_is<int>(nrElements));
+    symbolType = SymbolType::getArrayTy(any_as<int>(nrElements), symbolType,
+                                        symbolTable);
   }
 
   Type *irType = getIRType(symbolType, btype);
@@ -573,7 +576,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     } else {
       irVal = builder.buildStack(irType, symbolName);
       if (ctx->initVal()) {
-        Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+        Symbol initSymbol = any_as<Symbol>(ctx->initVal()->exp()->accept(this));
         Value *initVal = initSymbol.entity;
         if (initSymbol.symbolType->isFloat())
           initVal = builder.buildCast<F2SIInst>(initVal, ir->getIntType());
@@ -594,7 +597,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     } else {
       irVal = builder.buildStack(irType, symbolName);
       if (ctx->initVal()) {
-        Symbol initSymbol = ctx->initVal()->exp()->accept(this).as<Symbol>();
+        Symbol initSymbol = any_as<Symbol>(ctx->initVal()->exp()->accept(this));
         Value *initVal = initSymbol.entity;
         if (initSymbol.symbolType->isInt())
           initVal = builder.buildCast<SI2FInst>(initVal, ir->getFloatType());
@@ -655,20 +658,21 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   Function *func = new Function(ir, funcName);
 
   ir->addFunction(func);
-  SymbolType *returnType = ctx->funcType()->accept(this);
+  SymbolType *returnType = any_as<SymbolType *>(ctx->funcType()->accept(this));
 
   vector<SymbolType *> argsType;
 
   if (ctx->funcFParams()) {
     for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
-      SymbolType *symbolTy = paramCtx->btype()->accept(this);
+      SymbolType *symbolTy =
+          any_as<SymbolType *>(paramCtx->btype()->accept(this));
       for (int i = paramCtx->L_BRACKT().size() - 1; i >= 0; i--) {
         if (i == 0)
           symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
         else {
           Any numOfElement = solveConstExp(paramCtx->exp()[i - 1]);
-          assert(numOfElement.is<int>());
-          symbolTy = SymbolType::getArrayTy(numOfElement.as<int>(), symbolTy,
+          assert(any_is<int>(numOfElement));
+          symbolTy = SymbolType::getArrayTy(any_as<int>(numOfElement), symbolTy,
                                             symbolTable);
         }
       }
@@ -727,16 +731,16 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
     return Symbol::none();
   }
 
-  SymbolType *symbolTy = ctx->btype()->accept(this);
+  SymbolType *symbolTy = any_as<SymbolType *>(ctx->btype()->accept(this));
   for (int i = ctx->L_BRACKT().size() - 1; i >= 0; i--) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
     else {
       // TODO: check---calculate the number of element
       Any numOfElement = solveConstExp(ctx->exp()[i - 1]);
-      assert(numOfElement.is<int>());
-      symbolTy =
-          SymbolType::getArrayTy(numOfElement.as<int>(), symbolTy, symbolTable);
+      assert(any_is<int>(numOfElement));
+      symbolTy = SymbolType::getArrayTy(any_as<int>(numOfElement), symbolTy,
+                                        symbolTable);
     }
   }
 
@@ -761,10 +765,10 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
   if (ctx->ASSIGN()) {
-    Symbol lhs = ctx->lVal()->accept(this);
+    Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
     if (!lhs)
       return Symbol::none();
-    Symbol rhs = ctx->exp()->accept(this);
+    Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
     if (!rhs)
       return Symbol::none();
     if (!lhs.symbolType->isIdentical(*rhs.symbolType)) {
@@ -773,7 +777,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     }
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->IF()) {
-    Symbol cond = ctx->cond()->accept(this);
+    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
 
     if (!cond)
       return Symbol::none();
@@ -807,7 +811,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return Symbol::none();
   } else if (ctx->returnStmt()) {
     if (ctx->returnStmt()->exp()) {
-      Symbol returned = ctx->returnStmt()->exp()->accept(this);
+      Symbol returned = any_as<Symbol>(ctx->returnStmt()->exp()->accept(this));
       if (!returned)
         return Symbol::none();
 
@@ -848,7 +852,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     builder.buildBr(whileCond);
     // While Conditon
     builder.setInsertPoint(whileCond->end());
-    Symbol cond = ctx->cond()->accept(this);
+    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
     if (!cond)
       return Symbol::none();
     cond.entity = builder.buildICmpNEZero(cond.entity);
@@ -872,12 +876,12 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
 Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   if (ctx->exp()) {
-    Symbol exp = ctx->exp()->accept(this);
+    Symbol exp = any_as<Symbol>(ctx->exp()->accept(this));
     return exp;
   } else if (ctx->AND()) {
 
     // lhs && rhs  -->  if lhs then rhs else false;
-    Symbol lhs = ctx->cond(0)->accept(this);
+    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
     if (!lhs)
       return Symbol::none();
 
@@ -895,7 +899,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // then
     builder.setInsertPoint(thenBB->end());
-    Symbol rhs = ctx->cond(1)->accept(this);
+    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
     if (!rhs)
       return Symbol::none();
     rhs.entity = builder.buildICmpNEZero(rhs.entity);
@@ -913,7 +917,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   } else if (ctx->OR()) {
 
     // lhs || rhs  -->  if lhs then true else rhs;
-    Symbol lhs = ctx->cond(0)->accept(this);
+    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
     if (!lhs)
       return Symbol::none();
 
@@ -936,7 +940,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // else
     builder.setInsertPoint(elseBB->end());
-    Symbol rhs = ctx->cond(1)->accept(this);
+    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
     if (!rhs)
       return Symbol::none();
     rhs.entity = builder.buildICmpNEZero(rhs.entity);
@@ -947,11 +951,11 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     return Symbol{builder.buildLoad(result, ir->getBoolType()),
                   SymbolType::getBoolTy()};
   } else {
-    Symbol exp1 = ctx->cond(0)->accept(this);
+    Symbol exp1 = any_as<Symbol>(ctx->cond(0)->accept(this));
     if (!exp1)
       return Symbol::none();
 
-    Symbol exp2 = ctx->cond(1)->accept(this);
+    Symbol exp2 = any_as<Symbol>(ctx->cond(1)->accept(this));
     if (!exp2)
       return Symbol::none();
 
@@ -993,7 +997,7 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
 
   if (ctx->funcRParams()) {
     for (auto *paramCtx : ctx->funcRParams()->param()) {
-      Symbol paramSymbol = paramCtx->accept(this);
+      Symbol paramSymbol = any_as<Symbol>(paramCtx->accept(this));
       if (!paramSymbol)
         return Symbol::none();
       args.push_back(paramSymbol.entity);
@@ -1023,7 +1027,7 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
     return Symbol::none();
 
   for (auto *expCtx : ctx->exp()) {
-    Symbol index = expCtx->accept(this);
+    Symbol index = any_as<Symbol>(expCtx->accept(this));
     if (!index)
       return Symbol::none();
     Value *byteIndexEntity = builder.buildBinOp<MulInst>(
@@ -1080,11 +1084,11 @@ static int getRadixOf(std::string_view text) {
 
 Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   // TODO: how to infer type?
-  Symbol lhs = ctx->exp(0)->accept(this);
+  Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
   // TODO: error
   if (!lhs)
     return nullptr;
-  Symbol rhs = ctx->exp(1)->accept(this);
+  Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
   if (!rhs)
     return nullptr;
 
@@ -1148,7 +1152,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
 
 Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
   assert(ctx->exp().size() == 1);
-  Symbol operand = ctx->exp()[0]->accept(this);
+  Symbol operand = any_as<Symbol>(ctx->exp()[0]->accept(this));
   if (!operand) {
     return nullptr;
   }
@@ -1180,7 +1184,7 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->lVal()) {
-    Symbol lVal = ctx->lVal()->accept(this);
+    Symbol lVal = any_as<Symbol>(ctx->lVal()->accept(this));
 
     if (!lVal)
       return Symbol::none();
