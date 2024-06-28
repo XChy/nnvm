@@ -139,8 +139,8 @@ std::set<Register *> riscv::getUsesOf(LIRInst *inst) {
 
 std::set<Register *> riscv::getScratchRegs(LIRModule *M) {
   return {
-      M->getPhyReg(S10),
-      M->getPhyReg(S11),
+      M->getPhyReg(T5),
+      M->getPhyReg(T6),
   };
 }
 

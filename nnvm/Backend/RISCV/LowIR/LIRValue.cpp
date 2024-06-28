@@ -50,7 +50,7 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
 void LIRValue::replaceWith(LIRValue *newValue) {
   for (LowOperand *operand : incChange(uses))
     operand->use(newValue);
-  for (LowOperand *operand : defs)
+  for (LowOperand *operand : incChange(defs))
     operand->def(newValue);
 }
 

@@ -5,6 +5,7 @@
 #include "Backend/RISCV/Analysis/NearbyRegAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
+#include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowIR/Patterns.h"
@@ -27,10 +28,12 @@ void RegClearer::clear(LIRFunc &func,
                               .getFreeRegs();
 
           // TODO: float-point ?
-          if (!freeRegs.empty()) {
-            op.set(freeRegs.front());
+          if (!freeRegs.empty() &&
+              !calleeSavedRegs().count(freeRegs.front()->getRegId())) {
+            op.getOperand()->replaceWith(freeRegs.front());
+            // op.set(freeRegs.front());
           } else {
-            op.set(scratchReg);
+            op.getOperand()->replaceWith(scratchReg);
           }
         }
       }
@@ -102,11 +105,11 @@ static inline bool needScratchReg(LIRFunc &func) {
 void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
 
-  if (needScratchReg(func)) {
-    scratchReg = *getScratchRegs(func.getParent()).begin();
-    clearer.setScratchReg(scratchReg);
-    func.allocCalleeSavedSlot(scratchReg);
-  }
+  scratchReg = *getScratchRegs(func.getParent()).begin();
+  clearer.setScratchReg(scratchReg);
+  // if (needScratchReg(func)) {
+  // func.allocCalleeSavedSlot(scratchReg);
+  //}
 
   stackInfo = calculateStackInfo(func);
   frameSize = 0;

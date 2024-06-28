@@ -9,7 +9,7 @@
 
 namespace nnvm::riscv {
 
-static inline uint64_t getFrameAlign() { return 8; }
+static inline uint64_t getFrameAlign() { return 16; }
 // Integer registers for argument
 std::vector<Register *> getArgGPRs(LIRModule *M);
 // Float registers for argument

@@ -200,7 +200,7 @@ def __choose_guest_arglists(src: str):
 def test(src: str):
   rel_path = path.relpath(src, TEST_DIR)
 
-  input_text = __read_input(src).strip()
+  input_text = __read_input(src)
   host_arglists = __choose_host_arglists(src)
   try:
     actual_text = execute(host_arglists, input_text)
