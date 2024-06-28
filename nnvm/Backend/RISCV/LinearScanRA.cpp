@@ -84,11 +84,15 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
 
   auto freeVec = unpreservedRegs(func.getParent());
   auto freeFVec = unpreservedFRegs(func.getParent());
-  freeRegs = {freeVec.begin(), freeVec.end()};
   for (auto reg : freeVec)
     freeRegs.insert(reg);
   for (auto reg : freeFVec)
     freeRegs.insert(reg);
+
+  for (Register *scratch : getScratchRegs(func.getParent()))
+    freeRegs.erase(scratch);
+  for (Register *scratch : getScratchFRegs(func.getParent()))
+    freeRegs.erase(scratch);
 
   auto intervalSet = LIA.getResult();
 
@@ -153,10 +157,10 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
           auto *newVReg = builder.newVReg(vreg->getType());
           if (op.isDef()) {
             builder.setInsertPoint(BB, inst->getNext());
-            builder.storeValueToSlot(newVReg, slot, vreg->getType());
+            builder.storeValueTo(newVReg, slot, vreg->getType());
           } else {
             builder.setInsertPoint(BB, inst);
-            builder.loadValueFromSlot(newVReg, slot, vreg->getType());
+            builder.loadValueFrom(newVReg, slot, vreg->getType());
           }
           op.set(newVReg);
           continue;

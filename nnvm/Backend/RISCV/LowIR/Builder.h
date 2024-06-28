@@ -10,13 +10,17 @@ public:
   LIRBuilder(LIRModule &module) : module(module) {}
 
   LIRBuilder &addInst(LIRInst *inst);
-  LIRBuilder &move(Register *from, Register *to);
-  LIRBuilder &storeValueToSlot(LIRValue *value, StackSlot *slot,
-                               LIRValueType type);
-  LIRBuilder &loadValueFromSlot(LIRValue *value, StackSlot *slot,
-                                LIRValueType type);
-  // LIRInst *buildInst(LowInstType type, const std::vector<LowOperand>
-  // &operands);
+  LIRBuilder &copy(Register *from, Register *to);
+  LIRBuilder &storeValueTo(LIRValue *value, LIRValue *ptr, LIRValueType type);
+  LIRBuilder &loadValueFrom(LIRValue *value, LIRValue *ptr, LIRValueType type);
+
+  LIRBuilder &loadConstantToReg(LIRConst *constant, Register *reg);
+  // Assume srcReg != destReg
+  LIRBuilder &loadRegPlusConstantToReg(Register *srcReg, LIRConst *constant,
+                                       Register *destReg);
+
+  LIRBuilder &loadRegPlusConstantToReg(Register *srcReg, LIRConst *constant,
+                                       Register *destReg, Register *scratchReg);
 
   Register *newVReg(LIRValueType valueType);
   Register *phyReg(uint64_t regId);

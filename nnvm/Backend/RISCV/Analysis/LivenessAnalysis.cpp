@@ -9,7 +9,7 @@ bool LivenessAnalysis::runOn(LIRFunc &func) {
   calcUsesAndDefs(func);
   calcLiveIns(func);
   calcLiveOuts(func);
-  dumpLiveIns(func, std::cerr);
+  debug(dumpLiveIns(func, std::cerr));
   return true;
 }
 

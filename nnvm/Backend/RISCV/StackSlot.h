@@ -5,10 +5,63 @@
 
 namespace nnvm::riscv {
 class StackSlot : public LIRValue {
+
+  // |===============================|
+  // |                               |
+  // |  incoming stack arguments     |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  callee-allocated save area   |
+  // |  for argument that are        |
+  // |  split between register and   |
+  // |  the stack                    |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  callee-allocated save area   |
+  // |  for register varargs         |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  GPR save area                |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  FPR save area                |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  local variables              |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  dynamic allocation           |
+  // |                               |
+  // |===============================|
+  // |                               |
+  // |  outgoing stack arguments     |
+  // |                               |
+  // |===============================| <-- callee sp
+
 public:
-  enum SlotType { Spilled, CallerSaved, CalleeSaved };
-  StackSlot() : LIRValue(LIRValue::Stack) {}
-  StackSlot(uint64_t size) : LIRValue(LIRValue::Stack), size(size) {}
+  enum SlotType {
+    Unused,
+    Spilled,
+    CallerSaved,
+    CalleeSaved,
+    IncomingArgFrame,
+    OutgoingArgFrame
+  };
+
+  StackSlot() : LIRValue(LIRValue::Stack) {
+    LIRValue::setType(LIRValueType::i64);
+    setType(Spilled);
+  }
+  StackSlot(uint64_t size) : LIRValue(LIRValue::Stack), size(size) {
+    LIRValue::setType(LIRValueType::i64);
+    setType(Spilled);
+  }
 
   StackSlot(SlotType type, uint64_t size)
       : LIRValue(LIRValue::Stack), type(type), size(size) {}
@@ -32,9 +85,17 @@ public:
 
 private:
   SlotType type;
+
+  // For printing.
   uint64_t index;
+
+  // The size of the frame.
   uint64_t size;
+
+  // The real offset from sp. Refer to the slot by (sp + offset).
   uint64_t offset;
-  Register *reg; // Valid only for caller-saved and callee-saved registers.
+
+  //  Only valid for caller-saved and callee-saved registers.
+  Register *reg;
 };
 } /* namespace nnvm::riscv */

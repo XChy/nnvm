@@ -4,6 +4,7 @@
 #include "Backend/RISCV/LowIR/Builder.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowInstType.h"
+#include "Backend/RISCV/StackSlot.h"
 #include "IR/Constant.h"
 #include "IR/Function.h"
 #include "IR/IRBuilder.h"
@@ -72,40 +73,56 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
       LIRInst *lowered = LIRInst::create(CALL, F->getArguments().size() + 1);
       lowered->setUse(0, funcMap[F]);
 
+      StackSlot *outgoingArgFrame = lowFunc->allocStackSlot();
+      outgoingArgFrame->setType(StackSlot::OutgoingArgFrame);
+
+      uint outgoingArgSize = 0;
+
       for (int i = 1; i < CI->getOperandNum(); i++) {
         auto argVReg = defMap[CI->getOperand(i)];
 
         if (argVReg->getType() == LIRValueType::Float &&
             !availableArgFPR.empty()) {
-          LIRValue *argReg = availableArgFPR.front();
+          Register *argReg = availableArgFPR.front();
           availableArgFPR.pop();
 
-          nnvm_unreachable("Not implemented");
-          emit(LIRInst::create(FMV_S_X, argReg, argVReg, builder.phyReg(ZERO)));
-
+          builder.copy(argVReg->as<Register>(), argReg);
           lowered->setUse(i, argReg);
         } else if (!availableArgGPR.empty()) {
           Register *argReg = availableArgGPR.front();
           availableArgGPR.pop();
 
-          emit(LIRInst::create(ADD, argReg, argVReg, builder.phyReg(ZERO)));
+          builder.copy(argVReg->as<Register>(), argReg);
           lowered->setUse(i, argReg);
         } else {
-          // TODO: demote to stack
-          nnvm_unreachable("Not implemented")
+          uint64_t align = argVReg->bytes();
+          outgoingArgSize = (outgoingArgSize + align - 1) / align * align;
+          Register *pointerReg = builder.newVReg(LIRValueType::i64);
+          builder.addInst(LIRInst::create(
+              ADD, pointerReg, outgoingArgFrame,
+              LIRConst::createInt(outgoingArgSize, LIRValueType::i64)));
+          builder.storeValueTo(argVReg, pointerReg, argVReg->getType());
+          lowered->setUse(i, argVReg);
+
+          outgoingArgSize += argVReg->bytes();
         }
       }
+
+      outgoingArgSize = (outgoingArgSize + getFrameAlign() - 1) /
+                        getFrameAlign() * getFrameAlign();
+      outgoingArgFrame->setSize(outgoingArgSize);
 
       emit(lowered);
 
       if (!F->getReturnType()->isVoid()) {
-        emit(LIRInst::create(ADD, defMap[I], builder.phyReg(A0),
-                             builder.phyReg(ZERO)));
+        // TODO: floating-point?
+        builder.copy(builder.phyReg(A0), defMap[I]->as<Register>());
       }
       return;
     }
     nnvm_unreachable("Not implemented");
   }
+
   case InstID::Br: {
     auto *BI = cast<BranchInst>(I);
     LIRBB *dest1 = BBMap[BI->getSucc(0)], *dest2;
@@ -228,12 +245,18 @@ static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
 }
 
 void LowerHelper::mapAll(Module &module) {
+  // Map the trivial constants.
   for (auto &[hash, constant] : module.getConstantPool()) {
+
     if (ConstantInt *CI = dyn_cast<ConstantInt>(constant))
       defMap[constant] =
           LIRConst::createInt(CI->getValue(), lowerType(CI->getType()));
+
+    if (ConstantFloat *CF = dyn_cast<ConstantFloat>(constant))
+      defMap[constant] = LIRConst::createFloat(CF->getValue());
   }
 
+  // Map global variables and the complex constants.
   for (auto &[name, var] : module.getGlobalVarMap()) {
     LIRGlobalVar *lowVar = new LIRGlobalVar;
     lowVar->name = name;
@@ -255,6 +278,7 @@ void LowerHelper::mapAll(Module &module) {
     funcMap[func] = lowFunc;
     lowModule->insert(lowFunc);
 
+    // Don't lower external functions.
     if (func->isExternal())
       continue;
 
@@ -284,22 +308,39 @@ void LowerHelper::mapAll(Module &module) {
 
     LIRBuilder builder(*(this->lowModule));
     builder.setInsertPoint(LIREntry->end());
+
+    StackSlot *incomingArgFrame = lowFunc->allocStackSlot();
+    incomingArgFrame->setType(StackSlot::IncomingArgFrame);
+    uint64_t incomingArgSize = 0;
+
     for (int i = 0; i < func->getArguments().size(); i++) {
       Argument *arg = func->getArguments()[i];
       Register *argReg = builder.newVReg(lowerType(arg->getType()));
       defMap[arg] = argReg;
 
-      if (arg->getType()->isFloat() && !fprArgVec.empty()) {
-        builder.move(availableArgFPR.front(), argReg);
+      if (arg->getType()->isFloat() && !availableArgFPR.empty()) {
+        builder.copy(availableArgFPR.front(), argReg);
         availableArgFPR.pop();
-      } else if (!gprArgVec.empty()) {
-        builder.move(availableArgGPR.front(), argReg);
+      } else if (!availableArgGPR.empty()) {
+        builder.copy(availableArgGPR.front(), argReg);
         availableArgGPR.pop();
       } else {
-        // TODO: demote to stack
-        nnvm_unreachable("Not implemented")
+        uint64_t align = argReg->bytes();
+        incomingArgSize = (incomingArgSize + align - 1) / align * align;
+
+        Register *pointerReg = builder.newVReg(LIRValueType::i64);
+        builder.addInst(LIRInst::create(
+            ADD, pointerReg, incomingArgFrame,
+            LIRConst::createInt(incomingArgSize, LIRValueType::i64)));
+        builder.loadValueFrom(argReg, pointerReg, argReg->getType());
+
+        incomingArgSize += argReg->bytes();
       }
     }
+
+    incomingArgSize = (incomingArgSize + getFrameAlign() - 1) /
+                      getFrameAlign() * getFrameAlign();
+    incomingArgFrame->setSize(incomingArgSize);
   }
 }
 
@@ -320,5 +361,4 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
         lowerInst(lowFunc, I, builder);
     }
   }
-
 }

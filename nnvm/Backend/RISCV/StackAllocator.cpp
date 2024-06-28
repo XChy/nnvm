@@ -12,6 +12,7 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
 #include "Utils/Debug.h"
+#include <any>
 #include <unordered_set>
 using namespace nnvm::riscv;
 
@@ -31,7 +32,6 @@ void RegClearer::clear(LIRFunc &func,
           if (!freeRegs.empty() &&
               !calleeSavedRegs().count(freeRegs.front()->getRegId())) {
             op.getOperand()->replaceWith(freeRegs.front());
-            // op.set(freeRegs.front());
           } else {
             op.getOperand()->replaceWith(scratchReg);
           }
@@ -44,7 +44,6 @@ void RegClearer::clear(LIRFunc &func,
 StackAllocator::FunctionStackInfo
 StackAllocator::calculateStackInfo(LIRFunc &func) {
   FunctionStackInfo ret;
-  std::set<uint64_t> usedRegs;
 
   for (LIRBB *bb : func) {
     for (LIRInst *inst : *bb) {
@@ -66,8 +65,10 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
   if (operand->isStackSlot()) {
 
     uint64_t offset = operand->as<StackSlot>()->getOffset();
-    if ((inst->type > I_BEGIN && inst->type < I_END) ||
-        (inst->type > S_BEGIN && inst->type < S_END)) {
+    // lw dst, imm(stack)  -->  lw dst, imm1(sp)
+    if (slotOperandIndex == 1 &&
+        ((inst->type > I_BEGIN && inst->type < I_END) ||
+         (inst->type > S_BEGIN && inst->type < S_END))) {
       LIRImm *imm = inst->getOp(slotOperandIndex + 1)->as<LIRImm>();
       if (canExpressInBits<11>(offset + imm->getValue())) {
         inst->setUse(slotOperandIndex, builder.phyReg(SP));
@@ -114,13 +115,48 @@ void StackAllocator::allocate(LIRFunc &func) {
   stackInfo = calculateStackInfo(func);
   frameSize = 0;
 
+  StackSlot *incomingSlot = nullptr;
+  StackSlot *outgoingSlot = nullptr;
+
   for (auto *slot : func.getStackSlots()) {
+    if (slot->getType() != StackSlot::OutgoingArgFrame)
+      continue;
+
+    if (!outgoingSlot) {
+      outgoingSlot = slot;
+    } else if (slot->getSize() > outgoingSlot->getSize()) {
+      outgoingSlot->replaceWith(slot);
+      outgoingSlot->setType(StackSlot::Unused);
+      outgoingSlot = slot;
+    } else {
+      slot->replaceWith(outgoingSlot);
+      slot->setType(StackSlot::Unused);
+    }
+  }
+
+  if (outgoingSlot) {
+    outgoingSlot->setOffset(0);
+    frameSize += outgoingSlot->getSize();
+  }
+
+  for (auto *slot : func.getStackSlots()) {
+    if (slot->getType() == StackSlot::IncomingArgFrame) {
+      incomingSlot = slot;
+      continue;
+    }
+
+    if (slot->getType() == StackSlot::Unused ||
+        slot->getType() == StackSlot::OutgoingArgFrame)
+      continue;
+
     slot->setOffset(frameSize);
     frameSize += slot->getSize();
   }
 
   frameSize =
       (frameSize + getFrameAlign() - 1) / getFrameAlign() * getFrameAlign();
+
+  incomingSlot->setOffset(frameSize);
 
   LIRBuilder builder(*func.getParent());
 
@@ -147,7 +183,7 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   for (StackSlot *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::CalleeSaved) {
       builder.setInsertPoint(bodyBegin);
-      builder.storeValueToSlot(slot->getReg(), slot, slot->getReg()->getType());
+      builder.storeValueTo(slot->getReg(), slot, slot->getReg()->getType());
     } else {
       // TODO: spill?
       // nnvm_unimpl();

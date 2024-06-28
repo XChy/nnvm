@@ -16,9 +16,8 @@ void ISel::isel(LIRFunc &func) {
 
   for (auto *bb : func) {
     for (auto cur : incChange(*bb)) {
-      EmitInfo info;
-      cur->emit(std::cerr, info);
-      std::cerr << "\n";
+      debug(EmitInfo info; cur->emit(std::cerr, info); std::cerr << "\n";);
+
       builder.setInsertPoint(bb, cur);
 
       // Remove the original instructions
@@ -176,9 +175,12 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       // TODO: the type of operator is not that accurate, we should lower them
       // before doing such thing.
       {
-        EmitInfo info;
-        I->emit(std::cerr, info);
-        std::cerr << "\n";
+        debug({
+          EmitInfo info;
+          I->emit(std::cerr, info);
+          std::cerr << "\n";
+        });
+
         I->setOpcode(
             materializeArithmeticInstType(type, I->getOp(1)->getType()));
         break;
@@ -196,11 +198,6 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     }
 
     case InstID::Store: {
-      // auto *newInst =
-      // LIRInst::create(getStoreInstType(I->getOp(0)->getType()), 3)
-      //->setUse(0, I->getOp(0))
-      //->setUse(1, I->getOp(1))
-      //->setUse(2, LIRImm::create(0));
       auto *newInst =
           LIRInst::createAllUse(getStoreInstType(I->getOp(0)->getType()),
                                 I->getOp(0), I->getOp(1), LIRImm::create(0));

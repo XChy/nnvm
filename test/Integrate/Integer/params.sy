@@ -1,0 +1,19 @@
+int foo(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, 
+int b1, int b2, int b3, int b4, int b5, int b6, int b7, int b8, int b9,
+int c1, int c2, int c3, int c4, int c5, int c6, int c7, int c8, int c9,
+int d1, int d2, int d3, int d4, int d5, int d6, int d7, int d8, int d9
+) {
+    return  a1 *  a2 *  a3 *  a4 *  a5 *  a6 *  a7 *  a8 * a9 +
+ b1 +  b2 +  b3 +  b4 +  b5 +  b6 +  b7 +  b8 +  b9 +
+c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 +
+d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9
+    ;
+}
+
+int main() {
+    return foo(1,2,3,4,5,6,7,8,9,
+    1,2,3,4,5,6,7,8,9,
+    1,2,3,4,5,6,7,8,9,
+    1,2,3,4,5,6,7,8,9
+    );
+}
