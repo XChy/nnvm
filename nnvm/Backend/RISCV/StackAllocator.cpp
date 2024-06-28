@@ -139,7 +139,7 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   builder.setInsertPoint(bodyBegin);
   loadRegPlusConstantToReg(builder, builder.phyReg(SP),
                            LIRConst::createInt(-frameSize, LIRValueType::i64),
-                           builder.phyReg(SP), builder.phyReg(A0));
+                           builder.phyReg(SP), builder.phyReg(T0));
 
   for (StackSlot *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::CalleeSaved) {
@@ -166,6 +166,6 @@ void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
 
     loadRegPlusConstantToReg(builder, builder.phyReg(SP),
                              LIRConst::createInt(frameSize, LIRValueType::i64),
-                             builder.phyReg(SP), builder.phyReg(A0));
+                             builder.phyReg(SP), builder.phyReg(T0));
   }
 }
