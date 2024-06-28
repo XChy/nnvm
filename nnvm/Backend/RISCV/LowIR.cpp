@@ -116,6 +116,10 @@ StackSlot *LIRFunc::allocStackSlot(uint64_t size) {
 }
 
 StackSlot *LIRFunc::allocCalleeSavedSlot(Register *reg) {
+  for (StackSlot *slot : stackSlots)
+    if (slot->getType() == StackSlot::CalleeSaved && slot->getReg() == reg)
+      return slot;
+
   StackSlot *slot = new StackSlot();
   slot->setReg(reg);
   slot->setType(StackSlot::CalleeSaved);

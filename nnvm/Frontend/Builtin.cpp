@@ -26,6 +26,9 @@ void nnvm::addBuiltinFunctions(Module &M, SymbolTable &ST) {
   addBuiltin(M, ST, "getch", SymbolType::getIntTy(), {});
   addBuiltin(M, ST, "putint", SymbolType::getVoidTy(),
              {SymbolType::getIntTy()});
+  addBuiltin(M, ST, "putfloat", SymbolType::getVoidTy(),
+             {SymbolType::getFloatTy()});
+
   addBuiltin(M, ST, "putch", SymbolType::getVoidTy(), {SymbolType::getIntTy()});
   addBuiltin(M, ST, "putarray", SymbolType::getVoidTy(),
              {SymbolType::getIntTy(),

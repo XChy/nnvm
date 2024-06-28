@@ -6,6 +6,7 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/StackAllocator.h"
+#include <algorithm>
 
 using namespace nnvm::riscv;
 
@@ -37,6 +38,10 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
       LinearScanRA().allocate(*lowFunc);
+
+  //assert(std::all_of(lowModule.virRegisters.begin(),
+                     //lowModule.virRegisters.end(),
+                     //[](Register *reg) { return reg->getUses().size() == 0; }));
 
   debug(std::cerr << "====RA Done====\n");
   debug(lowModule.emit(std::cerr));

@@ -1,5 +1,3 @@
-
-
 int func(int aa, int ab, int ac, int ad, int ae, int af, int ag, int ah, int ai, int aj, int ak, int al, int am, int an, int ao, int ap, int aq, int ar, int as, int at, int au, int av, int aw, int ax, int ay, int az, 
 int ba, int bb, int bc, int bd, int be, int bf, int bg, int bh, int bi, int bj, int bk, int bl, int bm, int bn, int bo, int bp, int bq, int br, int bs, int bt, int bu, int bv, int bw, int bx, int by, int bz, 
 int ca, int cb, int cc, int cd, int ce, int cf, int cg, int ch, int ci, int cj, int ck, int cl, int cm, int cn, int co, int cp, int cq, int cr, int cs, int ct, int cu, int cv, int cw, int cx, int cy, int cz, 
@@ -27,26 +25,7 @@ int xa, int xb, int xc, int xd, int xe, int xf, int xg, int xh, int xi, int xj, 
 int ya, int yb, int yc, int yd, int ye, int yf, int yg, int yh, int yi, int yj, int yk, int yl, int ym, int yn, int yo, int yp, int yq, int yr, int ys, int yt, int yu, int yv, int yw, int yx, int yy, int yz, 
 int za, int zb, int zc, int zd, int ze, int zf, int zg, int zh, int zi, int zj, int zk, int zl, int zm, int zn, int zo, int zp, int zq, int zr, int zs, int zt, int zu, int zv, int zw, int zx, int zy, int zz){
 	return 
-	zi*xy*ve*zl*dk+ui+sd*bx*qr*kk*qk*jt*xj+wl*wg+kb+ii*vj*oa+pb*
-	ku+ee*fv+ha+bm*jv*ka*mr+gv+qh+ci+az*lj*ie+pz*zg+js*wj*il*fx*
-	vs+ed+te+ke+sq*hq*da+vb*gp+ab*kx*lc+pn*ae+cs*on+xe+zi+mf+sc*
-	ak*ko+hx*ax+gc*cm+br*fl+ul+el+nt+tt*eh+gq+up*uj*kz+yj+ah*dl*
-	xz*il*km*qp*yx+lc+re*qb+nl+on+gq+zs+ca*lh+ra+doo*op+cl*et*ad+
-	kb+tc+bb*oo+mg+ws*xj+ri*ty*mu+cy+dp*wm*wt+dw+pv+it+iy+it+za*
-	hw+kx*pc*zs*ht*sv*jy+gk+cq*ym*vz*de*gg+fc*dk*yb*wm+zu+th*bn*
-	iy*doo+al+vj*ex*di*jb*ss*bd*kn+yz+kw+tv*ug+iff*wx*fn*ul*tt*fp*
-	hn*dv*zv*al*wr+fa*vv+ls+ia*ip*uv+li+zs+em+pa*zf+zb+bt+ad+jp+
-	ut+tm+et+ct+hc+en*hd*hf*cr*lm+pp*wj*nd*ka*ta+ru*jn+en+gc*jb+
-	kg*bf+sl+pr+uc+yv+vd*td*xg+cp*rj+qu+vw*ao*oz+zf+qj+kl*st*on*
-	qq+mv*eu*ay*ih*ta*tm+vh+rz+yn*bp+pr+xt*lw+uo*zl*rv+fz*rz*fz+
-	mf*sj+xz*yt+qj+ki*gf+ne+gd+vz+oh+hh+ff+ec*xk+hb+pe+mz*yx*aw+
-	ij+dn+zj*nm+jj*kz*ic*sg+ue*yo+le+fg*kt*br*yx+so*qy+bd+da+iq+
-	go+uu+jj*le+xa+vs*qs+mq+vr+ua+hx*oz*sl*cj*hg+rd*bz+vk*ic+ib+
-	fj*au*dm+ve*ks+pl*oi*kd*iu+be*rr+va*hc*tl+wm+rq+ob+pg*hq+pe*
-	ww*ei*rn+yk+oc*sh*ig*uu+cg*vu*yn+xj*wh+xf+wo+nr+vf*sa*yg+uj+
-	sb+dt+pn+ui+nc*bv+qa*ze*kn+zt*da+kw*xp+hy*hs+pb+ox*uz*pe+be*
-	im+sg+tm*im+gh*ju*zx+fc+pn*ei*we+ae*re+wp*aj+pc*km*pm+hc*bt*
-	ap*ik*am+yu+my+wh*ah*tt*fo+rx*te*al+tq+fj+df*ts+jl+lx+ov+in;
+	ya;
 }
 
 int main(){

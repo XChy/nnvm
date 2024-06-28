@@ -89,17 +89,17 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
   for (auto reg : freeFVec)
     freeRegs.insert(reg);
 
-  for (Register *scratch : getScratchRegs(func.getParent()))
-    freeRegs.erase(scratch);
-  for (Register *scratch : getScratchFRegs(func.getParent()))
-    freeRegs.erase(scratch);
+
+  for (auto reg : getScratchRegs(func.getParent()))
+    freeRegs.erase(reg);
+  for (auto reg : getScratchFRegs(func.getParent()))
+    freeRegs.erase(reg);
 
   auto intervalSet = LIA.getResult();
 
   LIRBuilder builder(*func.getParent());
   builder.setInsertPoint(func.getEntry()->end());
   for (auto &interval : intervalSet) {
-
     expireOldInterval(interval);
 
     if (interval.fixed()) {

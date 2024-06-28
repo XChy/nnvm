@@ -14,12 +14,17 @@
 #include "Utils/Debug.h"
 #include <any>
 #include <unordered_set>
+#include <vector>
 using namespace nnvm::riscv;
 
 void RegClearer::clear(LIRFunc &func,
                        std::unordered_map<uint64_t, uint64_t> &vregNum) {
-
   // NOTE: now it can only handle one use of virtual register
+  int scratchIndex = 0;
+  std::vector<Register *> scratches;
+  for (Register *reg : getScratchRegs(func.getParent()))
+    scratches.push_back(reg);
+
   for (auto *bb : func) {
     for (auto *I : *bb) {
       for (LowOperand &op : I->operands) {
@@ -28,12 +33,16 @@ void RegClearer::clear(LIRFunc &func,
           auto freeRegs = NearbyRegAnalysis(func, *bb, LIRBB::Iterator(I, bb))
                               .getFreeRegs();
 
-          // TODO: float-point ?
+          // TODO: floating-point ?
+          if (op.getOperand()->getType() == LIRValueType::Float)
+            nnvm_unimpl();
+
           if (!freeRegs.empty() &&
               !calleeSavedRegs().count(freeRegs.front()->getRegId())) {
             op.getOperand()->replaceWith(freeRegs.front());
           } else {
-            op.getOperand()->replaceWith(scratchReg);
+            op.getOperand()->replaceWith(scratches[scratchIndex]);
+            scratchIndex = (scratchIndex + 1) % scratches.size();
           }
         }
       }
@@ -93,24 +102,11 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
   return true;
 }
 
-static inline bool needScratchReg(LIRFunc &func) {
-  uint64_t currentFrameSize = 0;
-  for (auto *slot : func.getStackSlots()) {
-    currentFrameSize += slot->getSize();
-  }
-  currentFrameSize = (currentFrameSize + getFrameAlign() - 1) /
-                     getFrameAlign() * getFrameAlign();
-  return !canExpressInBits<11>(currentFrameSize);
-}
-
 void StackAllocator::allocate(LIRFunc &func) {
   this->func = &func;
 
   scratchReg = *getScratchRegs(func.getParent()).begin();
   clearer.setScratchReg(scratchReg);
-  // if (needScratchReg(func)) {
-  // func.allocCalleeSavedSlot(scratchReg);
-  //}
 
   stackInfo = calculateStackInfo(func);
   frameSize = 0;
@@ -198,8 +194,7 @@ void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
 
     for (StackSlot *slot : func.getStackSlots()) {
       if (slot->getType() == StackSlot::CalleeSaved) {
-        builder.addInst(
-            LIRInst::create(LD, slot->getReg(), slot, LIRImm::create(0)));
+        builder.loadValueFrom(slot->getReg(), slot, slot->getReg()->getType());
       }
     }
 

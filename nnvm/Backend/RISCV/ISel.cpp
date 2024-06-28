@@ -3,6 +3,7 @@
 #include "ADT/Ranges.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
+#include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
@@ -153,7 +154,22 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
     case InstID::URem:
       return REMU;
     default:
-      nnvm_unreachable("No implemented");
+      nnvm_unimpl();
+    }
+  }
+
+  if (operandType == LIRValueType::Float) {
+    switch ((InstID)instID) {
+    case InstID::FAdd:
+      return FADD_S;
+    case InstID::FSub:
+      return FSUB_S;
+    case InstID::FMul:
+      return FMUL_S;
+    case InstID::FDiv:
+      return FDIV_S;
+    default:
+      nnvm_unimpl();
     }
   }
 
@@ -255,10 +271,11 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
         I->swap(1, 2);
         // fallthrough
       case ICmpInst::SGE: {
-        auto slt = LIRInst::create(SLT, I->getOp(0), I->getOp(1), I->getOp(2));
+        auto middle = builder.newVReg(I->getOp(0)->getType());
+        auto slt = LIRInst::create(SLT, middle, I->getOp(1), I->getOp(2));
         builder.addInst(slt);
         auto newInst =
-            LIRInst::create(XORI, I->getOp(0), I->getOp(0), LIRImm::create(1));
+            LIRInst::create(XORI, I->getOp(0), middle, LIRImm::create(1));
         builder.addInst(newInst);
         return newInst;
       }
@@ -276,10 +293,62 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       }
       break;
     }
+
+    case InstID::FCmp: {
+      uint64_t predicate = I->getOp(3)->as<LIRImm>()->getValue();
+      switch (predicate) {
+
+      case FCmpInst::OEQ: {
+        // a == b
+        auto last =
+            LIRInst::create(FEQ_S, I->getOp(0), I->getOp(1), I->getOp(2));
+        builder.addInst(last);
+        return last;
+      }
+
+      case FCmpInst::ONE: {
+        // a != b
+        auto middle = builder.newVReg(I->getOp(0)->getType());
+        auto eq = LIRInst::create(FEQ_S, middle, I->getOp(1), I->getOp(2));
+        builder.addInst(eq);
+        auto newInst =
+            LIRInst::create(XORI, I->getOp(0), middle, LIRImm::create(1));
+        builder.addInst(newInst);
+        return newInst;
+      }
+
+      case FCmpInst::OGT:
+        // a > b  -->  b < a
+        I->swap(1, 2);
+      case FCmpInst::OLT: {
+        // a < b
+        auto last =
+            LIRInst::create(FLT_S, I->getOp(0), I->getOp(1), I->getOp(2));
+        builder.addInst(last);
+        return last;
+      }
+
+      case FCmpInst::OGE:
+        // a >= b  -->  b <= a
+        I->swap(1, 2);
+      case FCmpInst::OLE: {
+        // a <= b
+        auto last =
+            LIRInst::create(FLE_S, I->getOp(0), I->getOp(1), I->getOp(2));
+        builder.addInst(last);
+        return last;
+      }
+
+      default:
+        nnvm_unreachable("Unimplemented");
+      }
+      break;
+    }
+
     case InstID::Stack:
       nnvm_unreachable("StackInst should not be in this stage");
     default:
-      nnvm_unreachable("Not implemented");
+      nnvm_unimpl();
     }
   }
   return nullptr;
