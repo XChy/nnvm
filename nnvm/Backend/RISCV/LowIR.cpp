@@ -33,11 +33,10 @@ void LIRInst::emit(std::ostream &out, EmitInfo &info) {
     out << ")";
     return;
   case CALL:
+    // TODO: emit operands?
     out << getNameForInstType(type);
-    // for (const LowOperand &op : operand) {
     out << " ";
     operands[0].emit(out, info);
-    //}
     return;
   case LA:
     out << getNameForInstType(type) << " ";
@@ -82,6 +81,16 @@ void LIRInst::emit(std::ostream &out, EmitInfo &info) {
     operands[0].emit(out, info);
     out << ", ";
     operands[1].emit(out, info);
+    return;
+  }
+
+  if (type > F_BEGIN && type < F_END) {
+    out << getNameForInstType(type) << " ";
+    for (auto &op : operands) {
+      if (&op != &operands[0])
+        out << ", ";
+      op.emit(out, info);
+    }
     return;
   }
 

@@ -188,6 +188,10 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::UDiv:
     case InstID::SRem:
     case InstID::URem:
+    case InstID::FAdd:
+    case InstID::FSub:
+    case InstID::FMul:
+    case InstID::FDiv:
       // TODO: the type of operator is not that accurate, we should lower them
       // before doing such thing.
       {
@@ -222,10 +226,25 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     }
 
     case InstID::ZExt: {
-      std::cerr << I->getOp(0) << " | " << I->getOp(1) << "\n";
       I->getOp(1)->setType(I->getOp(0)->getType());
       auto *newInst =
           LIRInst::create(ADD, I->getOp(0), I->getOp(1), builder.phyReg(ZERO));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
+    case InstID::F2SI: {
+      uint64_t convertOpcode =
+          I->getOp(0)->getType() == LIRValueType::i64 ? FCVT_L_S : FCVT_W_S;
+      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
+    case InstID::SI2F: {
+      uint64_t convertOpcode =
+          I->getOp(1)->getType() == LIRValueType::i64 ? FCVT_S_L : FCVT_S_W;
+      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1));
       builder.addInst(newInst);
       return newInst;
     }

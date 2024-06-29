@@ -74,6 +74,8 @@ public:
 
   Type *toIRType(SymbolType *symbolTy);
 
+  Symbol genImplicitCast(Symbol original, SymbolType *expectedType);
+
 private:
   struct whileLoop {
     BasicBlock *condBB;

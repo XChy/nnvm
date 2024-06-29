@@ -12,8 +12,6 @@
 #include "Backend/RISCV/LowInstType.h"
 #include "StackSlot.h"
 #include "Utils/Debug.h"
-#include <any>
-#include <unordered_set>
 #include <vector>
 using namespace nnvm::riscv;
 
@@ -114,6 +112,7 @@ void StackAllocator::allocate(LIRFunc &func) {
   StackSlot *incomingSlot = nullptr;
   StackSlot *outgoingSlot = nullptr;
 
+  // Pick the largest outgoing frame.
   for (auto *slot : func.getStackSlots()) {
     if (slot->getType() != StackSlot::OutgoingArgFrame)
       continue;

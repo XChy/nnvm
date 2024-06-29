@@ -38,8 +38,7 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
 }
 
 Type *IRGenerator::getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx) {
-  return symTy->symbolID == SymbolType::Array ? ir->getPtrType()
-                                              : getIRType(ctx);
+  return symTy->isArray() ? ir->getPtrType() : getIRType(ctx);
 }
 
 Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
@@ -762,19 +761,48 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   return Symbol::none();
 }
 
+Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
+  if (!original)
+    return original;
+
+  if (original.symbolType->isIdentical(*expectedType))
+    return original;
+
+  if (expectedType->isFloat()) {
+    if (original.symbolType->isInt()) {
+      Value *casted =
+          builder.buildCast<SI2FInst>(original.entity, ir->getFloatType());
+      return {casted, expectedType};
+    } else {
+      nnvm_unimpl();
+    }
+  }
+
+  if (expectedType->isInt()) {
+    if (original.symbolType->isFloat()) {
+      Value *casted =
+          builder.buildCast<F2SIInst>(original.entity, ir->getIntType());
+      return {casted, expectedType};
+    } else {
+      nnvm_unimpl();
+    }
+  }
+
+  return Symbol::none();
+}
+
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
   if (ctx->ASSIGN()) {
     Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
     if (!lhs)
       return Symbol::none();
+
     Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
+    rhs = genImplicitCast(rhs, lhs.symbolType);
     if (!rhs)
       return Symbol::none();
-    if (!lhs.symbolType->isIdentical(*rhs.symbolType)) {
-      // TODO: error, cast
-      return Symbol::none();
-    }
+
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->IF()) {
     Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));

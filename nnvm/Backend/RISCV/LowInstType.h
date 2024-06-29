@@ -10,19 +10,7 @@
       GEN(MULHSU), GEN(MULHU), GEN(DIV), GEN(DIVW), GEN(DIVU), GEN(DIVUW),     \
       GEN(REM), GEN(REMW), GEN(REMU), GEN(REMUW), GEN(SLL), GEN(SLLW),         \
       GEN(SLT), GEN(SLTU), GEN(XOR), GEN(SRL), GEN(SRLW), GEN(SRA), GEN(SRAW), \
-      GEN(OR), GEN(AND), GEN(FADD_S), GEN(FSUB_S), GEN(FMUL_S), GEN(FDIV_S),   \
-      GEN(FSQRT_S), GEN(FMADD_S), GEN(FMSUB_S), GEN(FNMADD_S), GEN(FNMSUB_S),  \
-      GEN(FMIN_S), GEN(FMAX_S), GEN(FCVT_W_S), GEN(FCVT_L_S), GEN(FCVT_S_W),   \
-      GEN(FCVT_S_L), GEN(FCVT_WU_S), GEN(FCVT_LU_S), GEN(FCVT_S_WU),           \
-      GEN(FCVT_S_LU), GEN(FSGNJ_S), GEN(FSGNJN_S), GEN(FSGNJX_S),              \
-      GEN(FMV_X_W), GEN(FMV_W_X), GEN(FMV_X_S), GEN(FMV_S_X), GEN(FEQ_S),      \
-      GEN(FLT_S), GEN(FLE_S), GEN(FCLASS_S), GEN(FADD), GEN(FSUB), GEN(FMUL),  \
-      GEN(FDIV), GEN(FSQRT), GEN(FMADD), GEN(FMSUB), GEN(FNMADD), GEN(FNMSUB), \
-      GEN(FMIN), GEN(FMAX), GEN(FCVT_W_D), GEN(FCVT_L_D), GEN(FCVT_D_W),       \
-      GEN(FCVT_D_L), GEN(FCVT_WU_D), GEN(FCVT_LU_D), GEN(FCVT_D_WU),           \
-      GEN(FCVT_D_LU), GEN(FCVT_S_D), GEN(FCVT_D_S), GEN(FSGNJ_D),              \
-      GEN(FSGNJN_D), GEN(FSGNJX_D), GEN(FMV_X_D), GEN(FMV_D_X), GEN(FEQ_D),    \
-      GEN(FLT_D), GEN(FLE_D), GEN(FCLASS_D)
+      GEN(OR), GEN(AND)
 
 #define MAKE_IFORMAT(GEN)                                                      \
   GEN(JALR), GEN(LB), GEN(LH), GEN(LW), GEN(LBU), GEN(LD), GEN(LHU),           \
@@ -38,6 +26,21 @@
 #define MAKE_JFORMAT(GEN) GEN(JAL)
 
 #define MAKE_UFORMAT(GEN) GEN(LUI), GEN(AUIPC)
+
+#define MAKE_FFORMAT(GEN)                                                      \
+  GEN(FADD_S), GEN(FSUB_S), GEN(FMUL_S), GEN(FDIV_S), GEN(FSQRT_S),            \
+      GEN(FMADD_S), GEN(FMSUB_S), GEN(FNMADD_S), GEN(FNMSUB_S), GEN(FMIN_S),   \
+      GEN(FMAX_S), GEN(FCVT_W_S), GEN(FCVT_L_S), GEN(FCVT_S_W), GEN(FCVT_S_L), \
+      GEN(FCVT_WU_S), GEN(FCVT_LU_S), GEN(FCVT_S_WU), GEN(FCVT_S_LU),          \
+      GEN(FSGNJ_S), GEN(FSGNJN_S), GEN(FSGNJX_S), GEN(FMV_X_W), GEN(FMV_W_X),  \
+      GEN(FMV_X_S), GEN(FMV_S_X), GEN(FEQ_S), GEN(FLT_S), GEN(FLE_S),          \
+      GEN(FCLASS_S), GEN(FADD), GEN(FSUB), GEN(FMUL), GEN(FDIV), GEN(FSQRT),   \
+      GEN(FMADD), GEN(FMSUB), GEN(FNMADD), GEN(FNMSUB), GEN(FMIN), GEN(FMAX),  \
+      GEN(FCVT_W_D), GEN(FCVT_L_D), GEN(FCVT_D_W), GEN(FCVT_D_L),              \
+      GEN(FCVT_WU_D), GEN(FCVT_LU_D), GEN(FCVT_D_WU), GEN(FCVT_D_LU),          \
+      GEN(FCVT_S_D), GEN(FCVT_D_S), GEN(FSGNJ_D), GEN(FSGNJN_D),               \
+      GEN(FSGNJX_D), GEN(FMV_X_D), GEN(FMV_D_X), GEN(FEQ_D), GEN(FLT_D),       \
+      GEN(FLE_D), GEN(FCLASS_D)
 
 #define MAKE_OTHER(GEN) GEN(CALL), GEN(LA)
 
@@ -91,6 +94,11 @@ enum LIRInstID : uint64_t {
   MAKE_UFORMAT(FOR_ENUM),
   U_END,
 
+  // ==== F-format ===
+  F_BEGIN,
+  MAKE_FFORMAT(FOR_ENUM),
+  F_END,
+
   // <inst-name> rd, imm
 
   // Other, like 'call' psuedo instruction
@@ -106,7 +114,7 @@ static inline const char *getNameForInstType(uint64_t type) {
   static std::unordered_map<uint64_t, std::string> typeToName = {
       MAKE_RFORMAT(FOR_NAME), MAKE_IFORMAT(FOR_NAME), MAKE_SFORMAT(FOR_NAME),
       MAKE_BFORMAT(FOR_NAME), MAKE_JFORMAT(FOR_NAME), MAKE_UFORMAT(FOR_NAME),
-      MAKE_OTHER(FOR_NAME)};
+      MAKE_FFORMAT(FOR_NAME), MAKE_OTHER(FOR_NAME)};
 
   // replace all underline to dot. e.g. FCVT_S_W -> FCVT.S.W
   for (auto &[_, name] : typeToName) {

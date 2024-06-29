@@ -49,8 +49,8 @@ static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::PtrAdd, "ptradd"},
 };
 static std::unordered_map<InstID, std::string> unaryOpTable = {
-    {InstID::ZExt, "zext"},
-    {InstID::SExt, "sext"},
+    {InstID::ZExt, "zext"}, {InstID::SExt, "sext"}, {InstID::F2SI, "f2si"},
+    {InstID::F2UI, "f2ui"}, {InstID::SI2F, "si2f"}, {InstID::UI2F, "ui2f"},
 };
 
 std::string Instruction::getOpName() const {
