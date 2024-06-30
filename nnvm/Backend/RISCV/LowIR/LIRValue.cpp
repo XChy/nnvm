@@ -57,6 +57,8 @@ void LIRValue::replaceWith(LIRValue *newValue) {
 void LIRValue::emit(std::ostream &out, EmitInfo &info) const {
   switch (valueID) {
   case Reg:
+    if (isVReg() && isFP())
+      out << "f";
     out << getNameForRegister(as<Register>()->getRegId());
     break;
   case Imm:
@@ -75,7 +77,8 @@ void LIRValue::emit(std::ostream &out, EmitInfo &info) const {
     out << as<LIRFunc>()->name;
     break;
   case GlobalVar:
-    out << as<LIRGlobalVar>()->name;
+  case GlobalName:
+    out << as<LIRGlobal>()->name;
     break;
   default:
     nnvm_unimpl();
@@ -129,7 +132,7 @@ LIRImm *LIRImm::create(uint64_t value) {
   return immediates[value].get();
 }
 
-static std::unordered_map<uint64_t, std::unique_ptr<LIRConst>> floatConstant;
+static std::unordered_map<float, std::unique_ptr<LIRConst>> floatConstant;
 static std::unordered_map<
     uint64_t, std::unordered_map<LIRValueType, std::unique_ptr<LIRConst>>>
     intConstant;
@@ -144,4 +147,25 @@ LIRConst *LIRConst::createFloat(float value) {
   if (!floatConstant.count(value))
     floatConstant[value] = std::make_unique<LIRConst>(value);
   return floatConstant[value].get();
+}
+
+std::vector<std::byte> LIRConst::interpretAsBytes() {
+  std::vector<std::byte> ret(bytes());
+  GInt value;
+
+  if (getType() == LIRValueType::Float) {
+    value = getIValue();
+  } else if (getType() >= LIRValueType::i1 && getType() <= LIRValueType::i64) {
+    float floatVal = getFValue();
+    value = reinterpret_cast<const GInt &>(floatVal);
+  } else {
+    nnvm_unimpl();
+  }
+
+  for (int i = 0; i < bytes(); i++) {
+    ret[i] = (std::byte)(value & 0xFF);
+    value >>= 8;
+  }
+
+  return ret;
 }

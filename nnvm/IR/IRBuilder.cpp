@@ -95,6 +95,16 @@ Value *IRBuilder::buildICmpNEZero(Value *lhs, const std::string &name) {
   return buildICmp(ICmpInst::NE, lhs, getZero(lhs->getType()));
 }
 
+Value *IRBuilder::buildFCmp(FCmpInst::Predicate pred, Value *lhs, Value *rhs,
+                            const std::string &name) {
+  FCmpInst *I = new FCmpInst(pred, module->getBoolType());
+  I->setName(name, *module);
+  I->setOperand(0, lhs);
+  I->setOperand(1, rhs);
+  insertPoint.insertBefore(I);
+  return I;
+}
+
 Value *IRBuilder::buildZExt(Value *operand, Type *toType,
                             const std::string &name) {
   return buildCast<ZExtInst>(operand, toType, name);

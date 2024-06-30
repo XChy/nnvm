@@ -25,6 +25,14 @@ static inline void dumpBackTrace() {
   }
 }
 
+#define nnvm_assert(cond)                                                      \
+  {                                                                            \
+    if (!cond) {                                                               \
+      dumpBackTrace();                                                         \
+      assert(#cond);                                                           \
+    }                                                                          \
+  }
+
 #define nnvm_unreachable(Info)                                                 \
   {                                                                            \
     dumpBackTrace();                                                           \

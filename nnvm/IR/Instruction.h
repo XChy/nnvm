@@ -74,6 +74,7 @@ enum class InstID : uint64_t {
   MEMORY_END,
   // Other
   OTHER_BEGIN,
+  FNeg,
   Call,
   Phi,
   OTHER_END,
@@ -220,7 +221,7 @@ public:
   static std::string getPredName(Predicate p);
 
   FCmpInst(Predicate predicate, Type *ty)
-      : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
+      : Instruction(InstID::FCmp, 2, ty), predicate(predicate) {}
 
   void setPredicate(Predicate pred) { this->predicate = pred; }
   Predicate getPredicate() const { return predicate; }
@@ -349,6 +350,12 @@ public:
 
 private:
   Value *callee;
+};
+
+class FNegInst : public Instruction {
+public:
+  FNegInst(Value *operand)
+      : Instruction(InstID::FNeg, {operand}, operand->getType()) {}
 };
 
 class PhiInst : public Instruction {

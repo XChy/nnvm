@@ -35,9 +35,9 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
 
   // Handle virtual register produced by spilling.
   // TODO: maybe this can be solved once?
-  for (auto *lowFunc : lowModule.funcs)
-    if (!lowFunc->isExternal)
-      LinearScanRA().allocate(*lowFunc);
+  //for (auto *lowFunc : lowModule.funcs)
+    //if (!lowFunc->isExternal)
+      //LinearScanRA().allocate(*lowFunc);
 
   //assert(std::all_of(lowModule.virRegisters.begin(),
                      //lowModule.virRegisters.end(),

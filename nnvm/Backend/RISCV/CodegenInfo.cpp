@@ -3,6 +3,7 @@
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Utils/Debug.h"
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -86,6 +87,8 @@ LIRInstID riscv::getLoadInstType(LIRValueType type) {
     return LD;
   case LIRValueType::Float:
     return FLW;
+  case LIRValueType::Double:
+    return FLD;
   default:
     nnvm_unreachable("Not implemented");
   }
@@ -104,6 +107,8 @@ LIRInstID riscv::getStoreInstType(LIRValueType type) {
     return SD;
   case LIRValueType::Float:
     return FSW;
+  case LIRValueType::Double:
+    return FSD;
   default:
     nnvm_unimpl();
   }
@@ -146,7 +151,19 @@ std::set<Register *> riscv::getScratchRegs(LIRModule *M) {
 
 std::set<Register *> riscv::getScratchFRegs(LIRModule *M) {
   return {
-      M->getPhyReg(FS10),
-      M->getPhyReg(FS11),
+      M->getPhyReg(FT10),
+      M->getPhyReg(FT11),
   };
+}
+
+static std::unique_ptr<LIRGlobalName> roundingNames[RM_END] = {
+    [RNE] = std::make_unique<LIRGlobalName>("rne"),
+    [RTZ] = std::make_unique<LIRGlobalName>("rtz"),
+    [RDN] = std::make_unique<LIRGlobalName>("rdn"),
+    [RUP] = std::make_unique<LIRGlobalName>("rup"),
+    [RMM] = std::make_unique<LIRGlobalName>("rmm"),
+};
+
+LIRGlobal *riscv::getRoundingModeValue(RoundingMode mode) {
+  return roundingNames[mode].get();
 }

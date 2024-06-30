@@ -44,6 +44,13 @@ public:
     return I;
   }
 
+  Value *buildFNeg(Value *operand, const std::string &name = "") {
+    FNegInst *I = new FNegInst(operand);
+    I->setName(name, *module);
+    insertPoint.insertBefore(I);
+    return I;
+  }
+
   Value *buildStack(Type *containedTy, const std::string &name = "");
   Value *buildStack(Type *containedTy, uint numElement,
                     const std::string &name = "");
@@ -63,6 +70,9 @@ public:
   Value *buildICmp(ICmpInst::Predicate pred, Value *lhs, Value *rhs,
                    const std::string &name = "");
   Value *buildICmpNEZero(Value *lhs, const std::string &name = "");
+
+  Value *buildFCmp(FCmpInst::Predicate pred, Value *lhs, Value *rhs,
+                   const std::string &name = "");
 
   template <typename Inst>
   Value *buildCast(Value *operand, Type *toType, const std::string &name = "") {

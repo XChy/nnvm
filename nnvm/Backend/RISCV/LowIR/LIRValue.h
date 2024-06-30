@@ -13,7 +13,17 @@ namespace nnvm::riscv {
 class LIRInst;
 class LIRValue;
 
-enum class LIRValueType { i64, i32, i16, i8, i1, Float, Imm };
+enum class LIRValueType {
+  IntegerBegin,
+  i64,
+  i32,
+  i16,
+  i8,
+  i1,
+  IntegerEnd,
+  Float,
+  Double
+};
 // Every inst manages the memory of operand handles;
 class LowOperand : public ListTrait<LowOperand> {
 public:
@@ -62,6 +72,7 @@ public:
     Stack,
     Block,
     GlobalVar,
+    GlobalName,
   };
 
   LIRValue(ValueID valueID) : valueID(valueID) {}
@@ -85,6 +96,15 @@ public:
   bool isConstant() const { return valueID == Const; }
   bool isGlobalVar() const { return valueID == GlobalVar; }
 
+  bool isFP() const {
+    return type == LIRValueType::Float || type == LIRValueType::Double;
+  }
+
+  bool isInteger() const {
+    return type >= LIRValueType::IntegerBegin &&
+           type <= LIRValueType::IntegerEnd;
+  }
+
   void replaceWith(LIRValue *newValue);
   void emit(std::ostream &out, EmitInfo &info) const;
 
@@ -101,6 +121,7 @@ public:
     case LIRValueType::Float:
     case LIRValueType::i32:
       return 4;
+    case LIRValueType::Double:
     case LIRValueType::i64:
       return 8;
     default:
@@ -128,9 +149,9 @@ public:
   Register(uint32_t regId) : LIRValue(LIRValue::Reg), regId(regId) {}
 
   bool isVirtual() const { return regId >= VR_BEGIN; }
-  bool isGP() const { return regId > GPR_BEGIN && regId < GPR_END; }
-  bool isFP() const { return regId > FPR_BEGIN && regId < FPR_END; }
-  bool isPhy() const { return isGP() || isFP(); }
+  bool isGPR() const { return regId > GPR_BEGIN && regId < GPR_END; }
+  bool isFPR() const { return regId > FPR_BEGIN && regId < FPR_END; }
+  bool isPhy() const { return isGPR() || isFPR(); }
   bool needToPreserve() const;
   bool isCalleeSaved() const;
 
@@ -159,10 +180,13 @@ class LIRConst : public LIRValue {
 public:
   LIRConst(uint64_t value, LIRValueType type)
       : LIRValue(LIRValue::Const, type), ivalue(value) {}
-  LIRConst(float value) : LIRValue(LIRValue::Imm), fvalue(value) {}
+  LIRConst(float value)
+      : LIRValue(LIRValue::Const, LIRValueType::Float), fvalue(value) {}
 
   static LIRConst *createInt(uint64_t value, LIRValueType type);
   static LIRConst *createFloat(float value);
+
+  std::vector<std::byte> interpretAsBytes();
 
   void setIValue(uint64_t value) { this->ivalue = value; }
   uint64_t getIValue() const { return ivalue; }

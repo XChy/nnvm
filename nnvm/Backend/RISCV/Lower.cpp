@@ -81,8 +81,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
       for (int i = 1; i < CI->getOperandNum(); i++) {
         auto argVReg = defMap[CI->getOperand(i)];
 
-        if (argVReg->getType() == LIRValueType::Float &&
-            !availableArgFPR.empty()) {
+        if (argVReg->isFP() && !availableArgFPR.empty()) {
           Register *argReg = availableArgFPR.front();
           availableArgFPR.pop();
 
@@ -97,7 +96,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
         } else {
           uint64_t align = argVReg->bytes();
           outgoingArgSize = (outgoingArgSize + align - 1) / align * align;
-          Register *pointerReg = builder.newVReg(LIRValueType::i64);
+          Register *pointerReg = builder.newVRegForPtr();
           builder.addInst(LIRInst::create(
               ADD, pointerReg, outgoingArgFrame,
               LIRConst::createInt(outgoingArgSize, LIRValueType::i64)));
@@ -116,7 +115,8 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
       if (!F->getReturnType()->isVoid()) {
         // TODO: floating-point?
-        builder.copy(builder.phyReg(A0), defMap[I]->as<Register>());
+        builder.copy(builder.phyReg(I->getType()->isFloat() ? FA0 : A0),
+                     defMap[I]->as<Register>());
       }
       return;
     }
@@ -156,15 +156,26 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
     break;
   }
 
+  case InstID::FCmp: {
+    FCmpInst *CI = cast<FCmpInst>(I);
+
+    auto lowered = LIRInst::create((uint64_t)InstID::FCmp, 4);
+    lowered->setDef(0, defMap[CI])
+        ->setUse(1, defMap[CI->getOperand(0)])
+        ->setUse(2, defMap[CI->getOperand(1)])
+        // NOTE: A hole, we put the predicate of into the 4th operand.
+        ->setUse(3, LIRImm::create(CI->getPredicate()));
+    emit(lowered);
+    break;
+  }
+
   case InstID::Ret: {
     bool isFloatPoint = false;
     if (I->getOperandNum() != 0) {
-      // TODO: floating point?
       Value *returned = I->getOperand(0);
       isFloatPoint |= returned->getType()->isFloat();
       // Move returned value to a0.
-      emit(LIRInst::create(ADD, builder.phyReg(isFloatPoint ? FA0 : A0),
-                           defMap[returned], builder.phyReg(ZERO)));
+      builder.copy(defMap[returned], builder.phyReg(isFloatPoint ? FA0 : A0));
     }
 
     LIRInst *inst;
@@ -231,7 +242,7 @@ static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
     value = constantInt->getValue();
   } else if (auto *constantFloat = dyn_cast<ConstantFloat>(constant)) {
     float floatVal = constantFloat->getValue();
-    value = reinterpret_cast<const GInt &>(floatVal);
+    value = reinterpret_cast<const uint32_t &>(floatVal);
   } else {
     nnvm_unimpl();
   }
@@ -328,10 +339,10 @@ void LowerHelper::mapAll(Module &module) {
         uint64_t align = argReg->bytes();
         incomingArgSize = (incomingArgSize + align - 1) / align * align;
 
-        Register *pointerReg = builder.newVReg(LIRValueType::i64);
+        Register *pointerReg = builder.newVRegForPtr();
         builder.addInst(LIRInst::create(
             ADD, pointerReg, incomingArgFrame,
-            LIRConst::createInt(incomingArgSize, LIRValueType::i64)));
+            LIRConst::createInt(incomingArgSize, pointerReg->getType())));
         builder.loadValueFrom(argReg, pointerReg, argReg->getType());
 
         incomingArgSize += argReg->bytes();

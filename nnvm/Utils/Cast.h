@@ -23,13 +23,13 @@ template <typename To> const To *dyn_cast(const Value *from) {
 
 template <typename To> To *cast(Value *from) {
   auto *casted = dynamic_cast<To *>(from);
-  assert(casted && "Invalid cast");
+  nnvm_assert(casted && "Invalid cast");
   return casted;
 }
 
 template <typename To> To *cast(Instruction *from) {
   auto *casted = dynamic_cast<To *>(from);
-  assert(casted && "Cannot cast in" && __PRETTY_FUNCTION__);
+  nnvm_assert(casted && "Invalid cast");
   return casted;
 }
 

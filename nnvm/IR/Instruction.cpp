@@ -98,9 +98,21 @@ std::string Instruction::dump() {
       ret += ", ";
       ret += getOperand(1)->dumpAsOperand();
       break;
+    case InstID::FCmp:
+      ret += "fcmp ";
+      ret += FCmpInst::getPredName(cast<FCmpInst>(this)->getPredicate());
+      ret += " ";
+      ret += getOperand(0)->dumpAsOperand();
+      ret += ", ";
+      ret += getOperand(1)->dumpAsOperand();
+      break;
     case InstID::Br:
       ret += "br ";
       ret += join(operandDump.begin(), operandDump.end(), ", ");
+      break;
+    case InstID::FNeg:
+      ret += "fneg ";
+      ret += getOperand(0)->dumpAsOperand();
       break;
     case InstID::Call:
       ret += "call ";

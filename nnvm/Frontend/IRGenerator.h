@@ -9,6 +9,7 @@
 #include <any>
 #include <list>
 #include <unordered_map>
+#include <utility>
 
 namespace nnvm {
 
@@ -75,6 +76,7 @@ public:
   Type *toIRType(SymbolType *symbolTy);
 
   Symbol genImplicitCast(Symbol original, SymbolType *expectedType);
+  void widen(Symbol &lhs, Symbol &rhs);
 
 private:
   struct whileLoop {

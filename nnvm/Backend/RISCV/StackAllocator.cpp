@@ -32,7 +32,7 @@ void RegClearer::clear(LIRFunc &func,
                               .getFreeRegs();
 
           // TODO: floating-point ?
-          if (op.getOperand()->getType() == LIRValueType::Float)
+          if (op.getOperand()->isFP())
             nnvm_unimpl();
 
           if (!freeRegs.empty() &&
@@ -85,16 +85,11 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
       }
     }
 
-    debug(std::cerr << "offset of stack "
-                    << operand->as<StackSlot>()->getIndex() << " is "
-                    << operand->as<StackSlot>()->getOffset() << " "
-                    << slotOperandIndex << "\n");
-
     builder.setInsertPoint(iter);
     auto addressRegister = builder.newVReg(LIRValueType::i64);
-    loadRegPlusConstantToReg(builder, builder.phyReg(SP),
-                             LIRConst::createInt(offset, LIRValueType::i64),
-                             addressRegister);
+    builder.loadRegPlusConstantToReg(
+        builder.phyReg(SP), LIRConst::createInt(offset, LIRValueType::i64),
+        addressRegister);
     inst->setUse(slotOperandIndex, addressRegister);
   }
   return true;
@@ -129,6 +124,7 @@ void StackAllocator::allocate(LIRFunc &func) {
     }
   }
 
+  // TODO: reorder the slots to save space.
   if (outgoingSlot) {
     outgoingSlot->setOffset(0);
     frameSize += outgoingSlot->getSize();
@@ -144,8 +140,13 @@ void StackAllocator::allocate(LIRFunc &func) {
         slot->getType() == StackSlot::OutgoingArgFrame)
       continue;
 
+    frameSize = (frameSize + slot->getAlign() - 1) / slot->getAlign() *
+                slot->getAlign();
     slot->setOffset(frameSize);
     frameSize += slot->getSize();
+
+    std::cerr << "offset of stack " << slot->getIndex() << " is "
+              << slot->getOffset() << " with size " << slot->getSize() << "\n";
   }
 
   frameSize =
@@ -171,9 +172,9 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
   // TODO: handle big frame larger than 2 ^ 12 bytes
   auto bodyBegin = func.getEntry()->begin();
   builder.setInsertPoint(bodyBegin);
-  loadRegPlusConstantToReg(builder, builder.phyReg(SP),
-                           LIRConst::createInt(-frameSize, LIRValueType::i64),
-                           builder.phyReg(SP), builder.phyReg(T0));
+  builder.loadRegPlusConstantToReg(
+      builder.phyReg(SP), LIRConst::createInt(-frameSize, LIRValueType::i64),
+      builder.phyReg(SP), builder.phyReg(T0));
 
   for (StackSlot *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::CalleeSaved) {
@@ -197,8 +198,8 @@ void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
       }
     }
 
-    loadRegPlusConstantToReg(builder, builder.phyReg(SP),
-                             LIRConst::createInt(frameSize, LIRValueType::i64),
-                             builder.phyReg(SP), builder.phyReg(T0));
+    builder.loadRegPlusConstantToReg(
+        builder.phyReg(SP), LIRConst::createInt(frameSize, LIRValueType::i64),
+        builder.phyReg(SP), builder.phyReg(T0));
   }
 }

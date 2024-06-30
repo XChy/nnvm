@@ -44,65 +44,6 @@ void ISel::isel(LIRFunc &func) {
   }
 }
 
-void riscv::loadConstantToReg(LIRBuilder &builder, LIRConst *constant,
-                              Register *reg) {
-  if (canExpressInBits<12>(constant->getIValue())) {
-    auto load = LIRInst::create(ADDI, reg, builder.phyReg(ZERO),
-                                LIRImm::create(constant->getIValue()));
-    builder.addInst(load);
-    return;
-  }
-
-  if (canExpressInBits<32>(constant->getIValue())) {
-    uint64_t largeValue;
-    uint64_t smallValue;
-    if (constant->getIValue() & 0x800) {
-      smallValue = (constant->getIValue() & 0xFFF) - (1 << 12);
-      largeValue = ((constant->getIValue() >> 12) + 1) & 0xFFFFF;
-    } else {
-      smallValue = constant->getIValue() & 0xFFF;
-      largeValue = (constant->getIValue() >> 12) & 0xFFFFF;
-    }
-
-    auto auipc = LIRInst::create(LUI, reg, LIRImm::create(largeValue));
-    auto load = LIRInst::create(ADDI, reg, reg, LIRImm::create(smallValue));
-    builder.addInst(auipc);
-    builder.addInst(load);
-    return;
-  }
-
-  nnvm_unreachable("How to handle big constant, especially for i64?")
-}
-
-void riscv::loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
-                                     LIRConst *constant, Register *destReg) {
-  if (canExpressInBits<12>(constant->getIValue())) {
-    auto load = LIRInst::create(ADDI, destReg, srcReg,
-                                LIRImm::create(constant->getIValue()));
-    builder.addInst(load);
-    return;
-  }
-
-  loadConstantToReg(builder, constant, destReg);
-  auto addDestAndSrc = LIRInst::create(ADD, destReg, destReg, srcReg);
-  builder.addInst(addDestAndSrc);
-}
-
-void riscv::loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
-                                     LIRConst *constant, Register *destReg,
-                                     Register *scratchReg) {
-  if (canExpressInBits<12>(constant->getIValue())) {
-    auto load = LIRInst::create(ADDI, destReg, srcReg,
-                                LIRImm::create(constant->getIValue()));
-    builder.addInst(load);
-    return;
-  }
-
-  loadConstantToReg(builder, constant, scratchReg);
-  auto addDestAndSrc = LIRInst::create(ADD, destReg, srcReg, scratchReg);
-  builder.addInst(addDestAndSrc);
-}
-
 void riscv::loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global,
                             Register *reg) {
   // TODO: replace the pseudocode "LA" with "%pcrel_hi & %pcrel_lo"
@@ -225,6 +166,13 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       return newInst;
     }
 
+    case InstID::FNeg: {
+      auto *newInst =
+          LIRInst::create(FSGNJN_S, I->getOp(0), I->getOp(1), I->getOp(1));
+      builder.addInst(newInst);
+      return newInst;
+    }
+
     case InstID::ZExt: {
       I->getOp(1)->setType(I->getOp(0)->getType());
       auto *newInst =
@@ -236,7 +184,8 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::F2SI: {
       uint64_t convertOpcode =
           I->getOp(0)->getType() == LIRValueType::i64 ? FCVT_L_S : FCVT_W_S;
-      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1));
+      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1),
+                                      getRoundingModeValue(RTZ));
       builder.addInst(newInst);
       return newInst;
     }
@@ -244,7 +193,8 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::SI2F: {
       uint64_t convertOpcode =
           I->getOp(1)->getType() == LIRValueType::i64 ? FCVT_S_L : FCVT_S_W;
-      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1));
+      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1),
+                                      getRoundingModeValue(RTZ));
       builder.addInst(newInst);
       return newInst;
     }
@@ -387,7 +337,7 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
       // TODO: WTF? How to handle constant fold in backend??
       if (rs1->isConstant()) {
         auto *vregForImm = builder.newVReg(rs1->getType());
-        loadConstantToReg(builder, rs1->as<LIRConst>(), vregForImm);
+        builder.loadConstantToReg(rs1->as<LIRConst>(), vregForImm, true);
         I->setUse(1, vregForImm);
       }
     }
@@ -402,7 +352,7 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
         I->setUse(2, LIRImm::create(constImm));
       } else {
         auto vregForImm = builder.newVReg(rs2->getType());
-        loadConstantToReg(builder, rs2->as<LIRConst>(), vregForImm);
+        builder.loadConstantToReg(rs2->as<LIRConst>(), vregForImm, true);
         I->setUse(2, vregForImm);
       }
     }
@@ -418,7 +368,7 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
 
     if (rs2->isConstant()) {
       auto vregForImm = builder.newVReg(rs2->getType());
-      loadConstantToReg(builder, rs2->as<LIRConst>(), vregForImm);
+      builder.loadConstantToReg(rs2->as<LIRConst>(), vregForImm, true);
       I->setUse(0, vregForImm);
     }
   }
@@ -431,11 +381,10 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
       auto vregForAddress = builder.newVReg(LIRValueType::i64);
       loadGlobalToReg(builder, rs->as<LIRGlobalVar>(), vregForAddress);
       I->setUse(i, vregForAddress);
-    } else if (I->getOp(i)->isConstant()) {
-
-      auto vregForImm = builder.newVReg(rs->getType());
-      loadConstantToReg(builder, rs->as<LIRConst>(), vregForImm);
-      I->setUse(i, vregForImm);
+    } else if (rs->isConstant()) {
+      auto vregForConstant = builder.newVReg(rs->getType());
+      builder.loadConstantToReg(rs->as<LIRConst>(), vregForConstant, true);
+      I->setUse(i, vregForConstant);
     }
   }
 

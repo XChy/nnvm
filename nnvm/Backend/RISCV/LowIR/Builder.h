@@ -10,11 +10,16 @@ public:
   LIRBuilder(LIRModule &module) : module(module) {}
 
   LIRBuilder &addInst(LIRInst *inst);
-  LIRBuilder &copy(Register *from, Register *to);
-  LIRBuilder &storeValueTo(LIRValue *value, LIRValue *ptr, LIRValueType type);
-  LIRBuilder &loadValueFrom(LIRValue *value, LIRValue *ptr, LIRValueType type);
 
-  LIRBuilder &loadConstantToReg(LIRConst *constant, Register *reg);
+  LIRBuilder &copy(LIRValue *from, Register *to);
+
+  LIRBuilder &storeValueTo(LIRValue *value, LIRValue *ptr, LIRValueType type);
+  LIRBuilder &loadValueFrom(LIRValue *dest, LIRValue *ptr, LIRValueType type);
+
+  LIRBuilder &loadGlobalToReg(Register *reg, LIRGlobalVar *global);
+
+  LIRBuilder &loadConstantToReg(LIRConst *constant, Register *reg,
+                                bool keepSSA = true);
   // Assume srcReg != destReg
   LIRBuilder &loadRegPlusConstantToReg(Register *srcReg, LIRConst *constant,
                                        Register *destReg);
@@ -23,6 +28,7 @@ public:
                                        Register *destReg, Register *scratchReg);
 
   Register *newVReg(LIRValueType valueType);
+  Register *newVRegForPtr();
   Register *phyReg(uint64_t regId);
   StackSlot *newStackSlot(LIRFunc *);
 

@@ -57,10 +57,12 @@ public:
   StackSlot() : LIRValue(LIRValue::Stack) {
     LIRValue::setType(LIRValueType::i64);
     setType(Spilled);
+    setAlign(8);
   }
   StackSlot(uint64_t size) : LIRValue(LIRValue::Stack), size(size) {
     LIRValue::setType(LIRValueType::i64);
     setType(Spilled);
+    setAlign(8);
   }
 
   StackSlot(SlotType type, uint64_t size)
@@ -83,6 +85,9 @@ public:
   void setType(SlotType type) { this->type = type; }
   SlotType getType() const { return type; }
 
+  void setAlign(uint64_t align) { this->align = align; }
+  uint64_t getAlign() const { return align; }
+
 private:
   SlotType type;
 
@@ -97,5 +102,7 @@ private:
 
   //  Only valid for caller-saved and callee-saved registers.
   Register *reg;
+
+  uint64_t align;
 };
 } /* namespace nnvm::riscv */

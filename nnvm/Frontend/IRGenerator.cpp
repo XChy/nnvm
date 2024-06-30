@@ -773,8 +773,13 @@ Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
       Value *casted =
           builder.buildCast<SI2FInst>(original.entity, ir->getFloatType());
       return {casted, expectedType};
-    } else {
-      nnvm_unimpl();
+    }
+
+    if (original.symbolType->isBool()) {
+      Value *toInt =
+          builder.buildCast<ZExtInst>(original.entity, ir->getIntType());
+      Value *casted = builder.buildCast<SI2FInst>(toInt, ir->getFloatType());
+      return {casted, expectedType};
     }
   }
 
@@ -783,12 +788,52 @@ Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
       Value *casted =
           builder.buildCast<F2SIInst>(original.entity, ir->getIntType());
       return {casted, expectedType};
-    } else {
-      nnvm_unimpl();
     }
+
+    if (original.symbolType->isBool()) {
+      Value *casted =
+          builder.buildCast<ZExtInst>(original.entity, ir->getIntType());
+      return {casted, expectedType};
+    }
+    nnvm_unimpl();
   }
 
+  if (expectedType->isBool()) {
+
+    if (original.symbolType->isInt())
+      return {builder.buildICmpNEZero(original.entity), expectedType};
+
+    if (original.symbolType->isFloat()) {
+      Value *notZero = builder.buildFCmp(FCmpInst::ONE, original.entity,
+                                         ConstantFloat::create(*ir, 0.0));
+      return {notZero, expectedType};
+    }
+
+    nnvm_unimpl();
+  }
+
+  // TODO: how to handle array with different element type?
+  if (original.symbolType->isArray() && expectedType->isArray())
+    return {original.entity, expectedType};
+
   return Symbol::none();
+}
+
+void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
+  std::map<SymbolType *, int> levelOf = {
+      {SymbolType::getBoolTy(), 0},
+      {SymbolType::getIntTy(), 1},
+      {SymbolType::getFloatTy(), 2},
+  };
+
+  SymbolType *topType;
+  if (levelOf[lhs.symbolType] >= levelOf[rhs.symbolType])
+    topType = lhs.symbolType;
+  else
+    topType = rhs.symbolType;
+
+  lhs = genImplicitCast(lhs, topType);
+  rhs = genImplicitCast(rhs, topType);
 }
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
@@ -806,11 +851,10 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->IF()) {
     Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
+    cond = genImplicitCast(cond, SymbolType::getBoolTy());
 
     if (!cond)
       return Symbol::none();
-
-    cond.entity = builder.buildICmpNEZero(cond.entity);
 
     BasicBlock *thenBB = new BasicBlock(builder.getCurrentFunc(), "then");
     BasicBlock *exitBB = new BasicBlock(builder.getCurrentFunc(), "if.exit");
@@ -843,11 +887,11 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       if (!returned)
         return Symbol::none();
 
-      if (!returned.symbolType->isIdentical(
-              *currentFunc->symbolType->containedTy)) {
-        // TODO: error
+      returned =
+          genImplicitCast(returned, currentFunc->symbolType->containedTy);
+      if (!returned)
+        // TODO: cast fail
         return Symbol::none();
-      }
 
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
@@ -910,6 +954,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // lhs && rhs  -->  if lhs then rhs else false;
     Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
 
@@ -922,15 +967,14 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     Value *result = builder.buildStack(ir->getBoolType(), "select");
     // if lhs
-    lhs.entity = builder.buildICmpNEZero(lhs.entity);
     builder.buildBr(lhs.entity, thenBB, elseBB);
 
     // then
     builder.setInsertPoint(thenBB->end());
     Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
-    rhs.entity = builder.buildICmpNEZero(rhs.entity);
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
 
@@ -987,28 +1031,54 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     if (!exp2)
       return Symbol::none();
 
+    widen(exp1, exp2);
+
     Value *lhs = exp1.entity;
     Value *rhs = exp2.entity;
-    if (ctx->EQ())
-      return Symbol{builder.buildICmp(ICmpInst::EQ, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else if (ctx->NEQ())
-      return Symbol{builder.buildICmp(ICmpInst::NE, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else if (ctx->LT())
-      return Symbol{builder.buildICmp(ICmpInst::SLT, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else if (ctx->GT())
-      return Symbol{builder.buildICmp(ICmpInst::SGT, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else if (ctx->LE())
-      return Symbol{builder.buildICmp(ICmpInst::SLE, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else if (ctx->GE())
-      return Symbol{builder.buildICmp(ICmpInst::SGE, lhs, rhs),
-                    SymbolType::getBoolTy()};
-    else
-      return Symbol::none();
+
+    if (exp1.symbolType->isFloat()) {
+      if (ctx->EQ())
+        return Symbol{builder.buildFCmp(FCmpInst::OEQ, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->NEQ())
+        return Symbol{builder.buildFCmp(FCmpInst::ONE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->LT())
+        return Symbol{builder.buildFCmp(FCmpInst::OLT, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->GT())
+        return Symbol{builder.buildFCmp(FCmpInst::OGT, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->LE())
+        return Symbol{builder.buildFCmp(FCmpInst::OLE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->GE())
+        return Symbol{builder.buildFCmp(FCmpInst::OGE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else
+        nnvm_unreachable("Impossible");
+    } else {
+      if (ctx->EQ())
+        return Symbol{builder.buildICmp(ICmpInst::EQ, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->NEQ())
+        return Symbol{builder.buildICmp(ICmpInst::NE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->LT())
+        return Symbol{builder.buildICmp(ICmpInst::SLT, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->GT())
+        return Symbol{builder.buildICmp(ICmpInst::SGT, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->LE())
+        return Symbol{builder.buildICmp(ICmpInst::SLE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else if (ctx->GE())
+        return Symbol{builder.buildICmp(ICmpInst::SGE, lhs, rhs),
+                      SymbolType::getBoolTy()};
+      else
+        nnvm_unreachable("Impossible");
+    }
   }
   nnvm_unreachable("Not implemented");
 }
@@ -1024,11 +1094,15 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
   std::vector<Value *> args;
 
   if (ctx->funcRParams()) {
+    uint i = 0;
     for (auto *paramCtx : ctx->funcRParams()->param()) {
       Symbol paramSymbol = any_as<Symbol>(paramCtx->accept(this));
+      paramSymbol =
+          genImplicitCast(paramSymbol, calleeSymbol->symbolType->argTys[i]);
       if (!paramSymbol)
         return Symbol::none();
       args.push_back(paramSymbol.entity);
+      i++;
     }
   }
 
@@ -1120,10 +1194,8 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   if (!rhs)
     return nullptr;
 
+  widen(lhs, rhs);
   // TODO: error
-  if (!rhs.symbolType->isIdentical(*lhs.symbolType)) {
-    return nullptr;
-  }
   Value *val = nullptr;
   if (ctx->PLUS()) {
     if (rhs.symbolType->isInt()) {
@@ -1194,9 +1266,10 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
       return Symbol{builder.buildBinOp<SubInst>(builder.getZero(val->getType()),
                                                 val, val->getType()),
                     operand.symbolType};
+    } else if (operand.symbolType->isFloat()) {
+      return Symbol{builder.buildFNeg(operand.entity), operand.symbolType};
     } else {
-      nnvm_unreachable(
-          "Not sure how to give the negative value of the float value");
+      nnvm_unimpl();
     }
   }
 

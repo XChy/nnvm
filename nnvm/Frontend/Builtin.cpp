@@ -24,15 +24,26 @@ static inline void addBuiltin(Module &M, SymbolTable &symbolTable,
 void nnvm::addBuiltinFunctions(Module &M, SymbolTable &ST) {
   addBuiltin(M, ST, "getint", SymbolType::getIntTy(), {});
   addBuiltin(M, ST, "getch", SymbolType::getIntTy(), {});
+  addBuiltin(M, ST, "getfloat", SymbolType::getFloatTy(), {});
+
+  addBuiltin(M, ST, "getarray", SymbolType::getIntTy(),
+             {SymbolType::getArrayTy(-1, SymbolType::getIntTy(), ST)});
+
+  addBuiltin(M, ST, "getfarray", SymbolType::getIntTy(),
+             {SymbolType::getArrayTy(-1, SymbolType::getFloatTy(), ST)});
+
   addBuiltin(M, ST, "putint", SymbolType::getVoidTy(),
              {SymbolType::getIntTy()});
   addBuiltin(M, ST, "putfloat", SymbolType::getVoidTy(),
              {SymbolType::getFloatTy()});
 
   addBuiltin(M, ST, "putch", SymbolType::getVoidTy(), {SymbolType::getIntTy()});
+
   addBuiltin(M, ST, "putarray", SymbolType::getVoidTy(),
              {SymbolType::getIntTy(),
               SymbolType::getArrayTy(-1, SymbolType::getIntTy(), ST)});
-  addBuiltin(M, ST, "getarray", SymbolType::getIntTy(),
-             {SymbolType::getArrayTy(-1, SymbolType::getIntTy(), ST)});
+
+  addBuiltin(M, ST, "putfarray", SymbolType::getVoidTy(),
+             {SymbolType::getIntTy(),
+              SymbolType::getArrayTy(-1, SymbolType::getFloatTy(), ST)});
 }

@@ -11,9 +11,13 @@
 #include <Backend/RISCV/LowIR/LIRValue.h>
 #include <array>
 #include <cstddef>
+#include <iomanip>
+#include <ios>
 #include <iostream>
 #include <list>
+#include <map>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace nnvm::riscv {
@@ -24,6 +28,12 @@ public:
   LIRGlobal(LIRValue::ValueID id) : LIRValue(id, LIRValueType::i64) {}
   std::string name;
   bool isExternal = false;
+};
+
+class LIRGlobalName : public LIRGlobal {
+public:
+  // LIRGlobal is just a pointer, whose bitwidth should be 64.
+  LIRGlobalName(std::string name) : LIRGlobal(GlobalName) { this->name = name; }
 };
 
 class LIRGlobalVar : public LIRGlobal {
@@ -37,6 +47,13 @@ public:
     out << name << ":\n";
     if (isAllZeros) {
       out << ".space " << size;
+    } else if (data.size() == 4) {
+      std::ostream::fmtflags flags = out.flags();
+      out << ".word ";
+      out << "0x" << std::setfill('0') << std::hex << std::setw(2)
+          << (uint)data[3] << std::setw(2) << (uint)data[2] << std::setw(2)
+          << (uint)data[1] << std::setw(2) << (uint)data[0];
+      out.flags(flags);
     } else {
       out << ".byte ";
       std::vector<std::string> dataDump(data.size());
@@ -237,11 +254,31 @@ public:
 
   Register *getPhyReg(uint64_t id) { return &phyRegisters[id]; }
 
+  void addGlobalVar(LIRGlobalVar *var) { globals.push_back(var); }
+
+  LIRGlobalVar *getConstantAsGlobal(LIRConst *constant) {
+    if (localConstants.count(constant))
+      return localConstants[constant];
+
+    LIRGlobalVar *global = new LIRGlobalVar;
+    global->isAllZeros = false;
+    global->isExternal = false;
+    global->name = ".CONSTANT." +
+                   std::to_string((uint64_t)constant->getType()) + "." +
+                   std::to_string(localConstants.size());
+    global->data = constant->interpretAsBytes();
+
+    localConstants[constant] = global;
+    addGlobalVar(global);
+    return global;
+  }
+
   void emit(std::ostream &out) const;
 
   ~LIRModule();
 
 private:
   std::array<Register, PR_END> phyRegisters;
+  std::unordered_map<LIRConst *, LIRGlobalVar *> localConstants;
 };
 } // namespace nnvm::riscv

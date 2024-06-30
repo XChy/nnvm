@@ -21,12 +21,12 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
   while (spilledIt != active.rend() && !spilledIt->spillable())
     spilledIt++;
 
-  // debug({
-  // EmitInfo info;
-  // std::cerr << "spilled\n";
-  // current.reg->emit(std::cerr, info);
-  // std::cerr << ":[" << current.begin << "," << current.end << "]\n";
-  //});
+  debug({
+    EmitInfo info;
+    std::cerr << "spilled\n";
+    current.reg->emit(std::cerr, info);
+    std::cerr << ":[" << current.begin << "," << current.end << "]\n";
+  });
 
   if (spilledIt == active.rend()) {
     vregToStack[current.reg] = func.allocStackSlot(current.reg->bytes());
@@ -89,10 +89,10 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
   for (auto reg : freeFVec)
     freeRegs.insert(reg);
 
-
-  for (auto reg : getScratchRegs(func.getParent()))
-    freeRegs.erase(reg);
-  for (auto reg : getScratchFRegs(func.getParent()))
+  std::set<Register *> allScratchRegs;
+  allScratchRegs.merge(getScratchRegs(func.getParent()));
+  allScratchRegs.merge(getScratchFRegs(func.getParent()));
+  for (auto reg : allScratchRegs)
     freeRegs.erase(reg);
 
   auto intervalSet = LIA.getResult();
@@ -102,7 +102,7 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
   for (auto &interval : intervalSet) {
     expireOldInterval(interval);
 
-    if (interval.fixed()) {
+    if (interval.fixed() && !allScratchRegs.count(interval.reg)) {
       if (!freeRegs.count(interval.reg)) {
         spillAtInterval(interval, func);
       } else {
@@ -114,22 +114,25 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
     }
 
     if (!interval.fixed()) {
+
       auto regIter = freeRegs.begin();
+      Register *phyReg = nullptr;
       for (; regIter != freeRegs.end(); ++regIter) {
-        if (((*regIter)->getType() == LIRValueType::Float &&
-             interval.reg->getType() == LIRValueType::Float) ||
-            ((*regIter)->getType() != LIRValueType::Float &&
-             interval.reg->getType() != LIRValueType::Float)) {
-          reg2Reg[interval.reg] = *regIter;
-          freeRegs.erase(regIter);
-          active.insert(interval);
+        if (((*regIter)->isFP() && interval.reg->isFP()) ||
+            (!(*regIter)->isFP() && !interval.reg->isFP())) {
+          phyReg = *regIter;
           break;
         }
       }
 
-      if (regIter == freeRegs.end()) {
+      if (phyReg) {
+        reg2Reg[interval.reg] = phyReg;
+        freeRegs.erase(regIter);
+        active.insert(interval);
+      } else {
         spillAtInterval(interval, func);
       }
+
       continue;
     }
   }
@@ -149,6 +152,7 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
         }
         if (!value->isVReg())
           continue;
+
         Register *vreg = op.getOperand()->as<Register>();
 
         if (vregToStack.count(vreg)) {

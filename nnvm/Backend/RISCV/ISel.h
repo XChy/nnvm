@@ -4,14 +4,6 @@
 #include "Backend/RISCV/LowIR/Builder.h"
 namespace nnvm::riscv {
 
-void loadConstantToReg(LIRBuilder &builder, LIRConst *constant, Register *reg);
-// Assume srcReg != destReg
-void loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
-                              LIRConst *constant, Register *destReg);
-void loadRegPlusConstantToReg(LIRBuilder &builder, Register *srcReg,
-                              LIRConst *constant, Register *destReg,
-                              Register *scratchReg);
-
 void loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global, Register *reg);
 
 class ISel {
@@ -34,4 +26,5 @@ public:
    */
   LIRInst *legalizeOperands(LIRBuilder &builder, LIRInst *I);
 };
+
 } /* namespace nnvm::riscv */

@@ -217,7 +217,7 @@ LIRModule::LIRModule() {
     if (id > GPR_BEGIN && id < GPR_END)
       phyRegisters[id].setType(LIRValueType::i64);
     else if (id > FPR_BEGIN && id < FPR_END)
-      phyRegisters[id].setType(LIRValueType::Float);
+      phyRegisters[id].setType(LIRValueType::Double);
   }
 }
 

@@ -33,4 +33,8 @@ std::set<Register *> getUsesOf(LIRInst *inst);
 std::set<Register *> getScratchRegs(LIRModule *M);
 std::set<Register *> getScratchFRegs(LIRModule *M);
 
+enum RoundingMode { RNE, RTZ, RDN, RUP, RMM, RM_END };
+
+LIRGlobal *getRoundingModeValue(RoundingMode mode);
+
 } /* namespace nnvm::riscv */
