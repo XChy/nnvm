@@ -19,9 +19,14 @@ void RegClearer::clear(LIRFunc &func,
                        std::unordered_map<uint64_t, uint64_t> &vregNum) {
   // NOTE: now it can only handle one use of virtual register
   int scratchIndex = 0;
+  int fscratchIndex = 0;
+
   std::vector<Register *> scratches;
+  std::vector<Register *> fscratches;
   for (Register *reg : getScratchRegs(func.getParent()))
     scratches.push_back(reg);
+  for (Register *reg : getScratchFRegs(func.getParent()))
+    fscratches.push_back(reg);
 
   for (auto *bb : func) {
     for (auto *I : *bb) {
@@ -32,11 +37,15 @@ void RegClearer::clear(LIRFunc &func,
                               .getFreeRegs();
 
           // TODO: floating-point ?
-          if (op.getOperand()->isFP())
-            nnvm_unimpl();
+          if (op.getOperand()->isFP()) {
+            op.getOperand()->replaceWith(fscratches[fscratchIndex]);
+            fscratchIndex = (fscratchIndex + 1) % fscratches.size();
+            continue;
+          }
 
           if (!freeRegs.empty() &&
-              !calleeSavedRegs().count(freeRegs.front()->getRegId())) {
+              !calleeSavedRegs().count(freeRegs.front()->getRegId()) &&
+              freeRegs.front()->isInteger()) {
             op.getOperand()->replaceWith(freeRegs.front());
           } else {
             op.getOperand()->replaceWith(scratches[scratchIndex]);
@@ -77,7 +86,7 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
         ((inst->type > I_BEGIN && inst->type < I_END) ||
          (inst->type > S_BEGIN && inst->type < S_END))) {
       LIRImm *imm = inst->getOp(slotOperandIndex + 1)->as<LIRImm>();
-      if (canExpressInBits<11>(offset + imm->getValue())) {
+      if (canExpressInBits<12>(offset + imm->getValue())) {
         inst->setUse(slotOperandIndex, builder.phyReg(SP));
         inst->setUse(slotOperandIndex + 1,
                      LIRImm::create(offset + imm->getValue()));
@@ -86,7 +95,7 @@ bool StackAllocator::resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator iter,
     }
 
     builder.setInsertPoint(iter);
-    auto addressRegister = builder.newVReg(LIRValueType::i64);
+    auto addressRegister = builder.newVRegForPtr();
     builder.loadRegPlusConstantToReg(
         builder.phyReg(SP), LIRConst::createInt(offset, LIRValueType::i64),
         addressRegister);
@@ -129,6 +138,7 @@ void StackAllocator::allocate(LIRFunc &func) {
     outgoingSlot->setOffset(0);
     frameSize += outgoingSlot->getSize();
   }
+  std::cerr << "Outgoing frame: size: " << frameSize << "\n";
 
   for (auto *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::IncomingArgFrame) {

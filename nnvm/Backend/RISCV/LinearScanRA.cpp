@@ -11,33 +11,53 @@
 
 using namespace nnvm::riscv;
 
+static bool isSameClass(Register *a, Register *b) {
+  return ((a->isFP() && b->isFP()) || (!a->isFP() && !b->isFP()));
+}
+
 uint64_t LinearScanRA::indexOf(LIRBB *BB, uint64_t localIndex) {
   return BBNumber[BB] + localIndex;
 }
 
 void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
-  auto spilledIt = active.rbegin();
 
-  while (spilledIt != active.rend() && !spilledIt->spillable())
+  // If current interval is fixed (must allocate a specific register), we must
+  // spill all active intervals allocated with identical register. TODO: or
+  // do caller-save if the active intervals cover current interval.
+  if (current.fixed()) {
+    reg2Reg[current.reg] = current.reg;
+
+    auto spilledIt = active.begin();
+    while (spilledIt != active.end()) {
+      if (reg2Reg[spilledIt->reg] == current.reg) {
+        vregToStack[spilledIt->reg] =
+            func.allocStackSlot(spilledIt->reg->bytes());
+        spilledIt = active.erase(spilledIt);
+      } else {
+        spilledIt++;
+      }
+    }
+
+    active.insert(current);
+    return;
+  }
+
+  auto spilledIt = active.rbegin();
+  while (!spilledIt->spillable() || !isSameClass(spilledIt->reg, current.reg))
     spilledIt++;
 
   debug({
     EmitInfo info;
     std::cerr << "spilled\n";
     current.reg->emit(std::cerr, info);
-    std::cerr << ":[" << current.begin << "," << current.end << "]\n";
+    std::cerr << ":[" << current.begin << "," << current.end << "] & ";
+    spilledIt->reg->emit(std::cerr, info);
+    std::cerr << ":[" << spilledIt->begin << "," << spilledIt->end << "]\n";
   });
 
+  // No spilled candidate for.
   if (spilledIt == active.rend()) {
     vregToStack[current.reg] = func.allocStackSlot(current.reg->bytes());
-    return;
-  }
-
-  if (!current.spillable()) {
-    reg2Reg[current.reg] = reg2Reg[spilledIt->reg];
-    vregToStack[spilledIt->reg] = func.allocStackSlot(spilledIt->reg->bytes());
-    active.erase(active.find(*spilledIt));
-    active.insert(current);
     return;
   }
 
@@ -45,8 +65,17 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
   if (spilledIt->end > current.end) {
     reg2Reg[current.reg] = reg2Reg[spilledIt->reg];
     vregToStack[spilledIt->reg] = func.allocStackSlot(spilledIt->reg->bytes());
-    active.erase(active.find(*spilledIt));
+    // NOTE: Erase a reverse iterator
+    active.erase( std::next(spilledIt).base() );;
     active.insert(current);
+    debug({
+      std::cerr << "Map ";
+      EmitInfo info;
+      current.print(std::cerr);
+      std::cerr << " : ";
+      reg2Reg[spilledIt->reg]->emit(std::cerr, info);
+      std::cerr << "\n";
+    });
   } else {
     vregToStack[current.reg] = func.allocStackSlot(current.reg->bytes());
   }
@@ -66,12 +95,12 @@ void LinearScanRA::expireOldInterval(const LiveInterval &current) {
   for (auto it = active.begin(); it != active.end();) {
     if (it->end >= current.begin)
       break;
-    debug({
-      std::cerr << "Give back ";
-      EmitInfo info;
-      reg2Reg[it->reg]->emit(std::cerr, info);
-      std::cerr << "\n";
-    });
+    // debug({
+    // std::cerr << "Give back ";
+    // EmitInfo info;
+    // reg2Reg[it->reg]->emit(std::cerr, info);
+    // std::cerr << "\n";
+    //});
 
     freeRegs.insert(reg2Reg[it->reg]);
     it = active.erase(it);
@@ -118,14 +147,21 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
       auto regIter = freeRegs.begin();
       Register *phyReg = nullptr;
       for (; regIter != freeRegs.end(); ++regIter) {
-        if (((*regIter)->isFP() && interval.reg->isFP()) ||
-            (!(*regIter)->isFP() && !interval.reg->isFP())) {
+        if (isSameClass((*regIter), interval.reg)) {
           phyReg = *regIter;
           break;
         }
       }
 
       if (phyReg) {
+        debug({
+          std::cerr << "Map ";
+          EmitInfo info;
+          interval.print(std::cerr);
+          std::cerr << " : ";
+          phyReg->emit(std::cerr, info);
+          std::cerr << "\n";
+        });
         reg2Reg[interval.reg] = phyReg;
         freeRegs.erase(regIter);
         active.insert(interval);

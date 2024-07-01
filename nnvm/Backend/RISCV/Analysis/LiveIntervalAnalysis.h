@@ -15,8 +15,8 @@ public:
   bool fixed() const { return reg->isPhy(); }
   void print(std::ostream &out) const {
     EmitInfo info;
-    reg->emit(std::cerr, info);
-    std::cerr << ":[" << begin << "," << end << "]\n";
+    reg->emit(out, info);
+    out << ":[" << begin << "," << end << "]\n";
   }
 };
 

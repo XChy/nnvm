@@ -87,7 +87,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
           builder.copy(argVReg->as<Register>(), argReg);
           lowered->setUse(i, argReg);
-        } else if (!availableArgGPR.empty()) {
+        } else if (argVReg->isInteger() && !availableArgGPR.empty()) {
           Register *argReg = availableArgGPR.front();
           availableArgGPR.pop();
 
@@ -114,8 +114,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
       emit(lowered);
 
       if (!F->getReturnType()->isVoid()) {
-        // TODO: floating-point?
-        builder.copy(builder.phyReg(I->getType()->isFloat() ? FA0 : A0),
+        builder.copy(builder.phyReg(F->getReturnType()->isFloat() ? FA0 : A0),
                      defMap[I]->as<Register>());
       }
       return;
@@ -332,7 +331,8 @@ void LowerHelper::mapAll(Module &module) {
       if (arg->getType()->isFloat() && !availableArgFPR.empty()) {
         builder.copy(availableArgFPR.front(), argReg);
         availableArgFPR.pop();
-      } else if (!availableArgGPR.empty()) {
+      } else if ((arg->getType()->isInteger() || arg->getType()->isPointer()) &&
+                 !availableArgGPR.empty()) {
         builder.copy(availableArgGPR.front(), argReg);
         availableArgGPR.pop();
       } else {

@@ -379,6 +379,8 @@ bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
                             std::vector<Value *> &output) {
   if (initVal->exp()) {
     Symbol exp = any_as<Symbol>(initVal->exp()->accept(this));
+    // TODO: make it clear
+    //exp = genImplicitCast(exp, currentType->getInnerMost());
     if (!exp)
       return false;
     // TODO: non-constant? Float to int or int to float?

@@ -1,0 +1,37 @@
+int k;
+
+int params_mix(int x0, int i1[], int i2, int x3[], int x4, int i5,
+               int x6, int x7, int x8[], int i9[], int i10, int i11,
+               int x12[], int i13[], int i14[], int i15, int x16[],
+               int x17[], int x18, int x19, int x20, int x21[],
+               int i22, int x23, int x24, int x25, int i26[], int x27[],
+               int i28[], int i29[], int x30[], int x31, int x32,
+               int i33[], int i34, int x35[]) {
+    return i34;
+}
+
+int main() {
+  int arr2[24][3], i;
+
+  k = 0;
+  i = 0;
+
+  while (i < 24) {
+    arr2[i][0] = 233;
+    arr2[i][1] = 233;
+    arr2[i][2] = 233;
+    i = i + 1;
+  }
+
+  int ret3 = params_mix(
+      0, arr2[0], 0, arr2[0], 0, 0, 0,
+      0, arr2[0], arr2[0], 0, 0, arr2[0], arr2[0],
+      arr2[0], 0, arr2[0], arr2[0], 0, 0, 0,
+      arr2[0], 0, 0, 0, 0, arr2[10],
+      arr2[0], arr2[0], arr2[0], arr2[0], 0, 0, arr2[0],
+      arr2[0][0], arr2[0]);
+
+  putint(ret3);
+  putch(10);
+  return 0;
+}

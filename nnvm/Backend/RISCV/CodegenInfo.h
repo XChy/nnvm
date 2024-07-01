@@ -4,7 +4,6 @@
 #include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowInstType.h"
 #include <cstdint>
-#include <string>
 #include <vector>
 
 namespace nnvm::riscv {

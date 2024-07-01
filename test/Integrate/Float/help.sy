@@ -1,0 +1,32 @@
+int k;
+
+int params_mix(float x0, int i1[], int i2, float x3[], float x4, int i5,
+               float x6, float x7, float x8[], int i9[], int i10, int i11,
+               float x12[], int i13[], int i14[], int i15, float x16[],
+               float x17[], float x18, float x19, float x20, float x21[],
+               int i22, float x23, float x24, float x25, int i26[], float x27[],
+               int i28[], int i29[], float x30[], float x31, float x32,
+               int i33[], int i34, float x35[]) {
+
+    return i34;
+
+}
+
+int main() {
+  float arr[40][3];
+  int arr2[24][3], i;
+
+  k = 0;
+  getfarray(arr[0]);
+  getarray(arr2[0]);
+
+  int ret3 = params_mix(
+      0, arr2[0], 0, arr[0], 0, 0, 0,
+      0, arr[0], arr2[0], 0, arr2[0][k], arr[0], arr2[0],
+      arr2[0], 0, arr[0], arr[0], arr[0][k], arr[0][k], 0,
+      arr[0], 0, 0, 0, 0, arr2[0],
+      arr[0], arr2[0], arr2[0], arr[0], 0, 0, arr2[0],
+      233, arr[0]);
+
+  return ret3;
+}

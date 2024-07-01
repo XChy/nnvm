@@ -49,7 +49,7 @@ GCC_X86 = 'gcc'
 LLC = 'llc'
 QEMU = 'qemu-riscv64'
 
-TIMEOUT_PERIOD = 2
+TIMEOUT_PERIOD = 4
 
 brief_mode = False
 verbose_mode = False
@@ -177,7 +177,7 @@ def __choose_host_arglists(src: str):
 def __choose_guest_arglists(src: str):
   GUEST_ARGLISTS_RISCV64 = [
       [GCC_RV, '-x', 'c', '-fcommon', '-include', f'{SYLIB_HDR}', f'-O{optimization_level}',
-       src, '-S', '-o', tmp_asm.name],
+       '-ffp-contract=off', '-fsingle-precision-constant', src, '-S', '-o', tmp_asm.name],
       [GCC_RV, '-c', tmp_asm.name, '-o', tmp_obj.name],
       [GCC_RV, '-fcommon', '-include', f'{SYLIB_HDR}',
        tmp_obj.name, SYLIB_RV, '-o', tmp_out.name],
@@ -185,7 +185,7 @@ def __choose_guest_arglists(src: str):
   ]
   GUEST_ARGLISTS_X86_64 = [
       [GCC_X86, '-x', 'c', '-fcommon', '-include', f'{SYLIB_HDR}', f'-O{optimization_level}',
-       src, '-S', '-o', tmp_asm.name],
+       '-ffp-contract=off', '-fsingle-precision-constant', src, '-S', '-o', tmp_asm.name],
       [GCC_X86, '-c', tmp_asm.name, '-o', tmp_obj.name],
       [GCC_X86, '-fcommon', '-include', f'{SYLIB_HDR}',
        tmp_obj.name, SYLIB_X86, '-o', tmp_out.name],

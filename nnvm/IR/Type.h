@@ -49,6 +49,7 @@ public:
   std::string dump();
 
   bool isInteger() { return typeClass == Integer; }
+  bool isPointer() { return typeClass == Pointer; }
   bool isFloat() { return typeClass == Float; }
   bool isVoid() { return typeClass == Void; }
 
