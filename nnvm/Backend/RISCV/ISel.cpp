@@ -193,8 +193,7 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::SI2F: {
       uint64_t convertOpcode =
           I->getOp(1)->getType() == LIRValueType::i64 ? FCVT_S_L : FCVT_S_W;
-      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1),
-                                      getRoundingModeValue(RTZ));
+      auto *newInst = LIRInst::create(convertOpcode, I->getOp(0), I->getOp(1));
       builder.addInst(newInst);
       return newInst;
     }

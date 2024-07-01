@@ -1,5 +1,3 @@
-// reference: https://zhuanlan.zhihu.com/p/30748318
-
 const int RAND_MAX = 100000007 - 1;
 int seed = 0;
 
