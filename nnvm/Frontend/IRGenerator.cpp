@@ -186,8 +186,8 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   Any lhsAny = solveConstExp(ctx->exp()[0]);
   Any rhsAny = solveConstExp(ctx->exp()[1]);
   if (any_is<float>(lhsAny) || any_is<float>(rhsAny)) {
-    float lhs = any_as<float>(lhsAny);
-    float rhs = any_as<float>(rhsAny);
+    float lhs = castConstExp<int, float>(lhsAny);
+    float rhs = castConstExp<int, float>(rhsAny);
     if (ctx->PLUS()) {
       return lhs + rhs;
     }
@@ -327,11 +327,11 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
 
   if (irType->isInteger()) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
-    assert(any_is<int>(initVal));
+    initVal = castConstExp<float, int>(initVal);
     constVal = ConstantInt::create(*ir, irType, any_as<int>(initVal));
   } else if (irType->isFloat()) {
     Any initVal = solveConstExp(ctx->constInitVal()->constExp()->exp());
-    assert(any_is<float>(initVal));
+    initVal = castConstExp<int, float>(initVal);
     constVal = ConstantFloat::create(*ir, any_as<float>(initVal));
   } else if (symbolType->isArray()) {
     constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
@@ -379,11 +379,14 @@ bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
                             std::vector<Value *> &output) {
   if (initVal->exp()) {
     Symbol exp = any_as<Symbol>(initVal->exp()->accept(this));
+    if (currentType->isArray()) {
+      exp = genImplicitCast(exp, currentType->getInnerMost());
+    } else {
+      exp = genImplicitCast(exp, currentType);
+    }
     // TODO: make it clear
-    //exp = genImplicitCast(exp, currentType->getInnerMost());
     if (!exp)
       return false;
-    // TODO: non-constant? Float to int or int to float?
     output.push_back(exp.entity);
     return true;
   }
@@ -578,10 +581,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       irVal = builder.buildStack(irType, symbolName);
       if (ctx->initVal()) {
         Symbol initSymbol = any_as<Symbol>(ctx->initVal()->exp()->accept(this));
-        Value *initVal = initSymbol.entity;
-        if (initSymbol.symbolType->isFloat())
-          initVal = builder.buildCast<F2SIInst>(initVal, ir->getIntType());
-        builder.buildStore(initVal, irVal);
+        initSymbol = genImplicitCast(initSymbol, symbolType);
+        builder.buildStore(initSymbol.entity, irVal);
       }
     }
   } else if (irType->isFloat()) {
@@ -599,10 +600,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       irVal = builder.buildStack(irType, symbolName);
       if (ctx->initVal()) {
         Symbol initSymbol = any_as<Symbol>(ctx->initVal()->exp()->accept(this));
-        Value *initVal = initSymbol.entity;
-        if (initSymbol.symbolType->isInt())
-          initVal = builder.buildCast<SI2FInst>(initVal, ir->getFloatType());
-        builder.buildStore(initVal, irVal);
+        initSymbol = genImplicitCast(initSymbol, symbolType);
+        builder.buildStore(initSymbol.entity, irVal);
       }
     }
   } else if (symbolType->isArray()) {
@@ -633,6 +632,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       }
     }
   } else {
+    nnvm_unimpl();
   }
 
   symbolTable.create(symbolName, symbolType, irVal);
@@ -992,6 +992,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // lhs || rhs  -->  if lhs then true else rhs;
     Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
 
@@ -1004,7 +1005,6 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     Value *result = builder.buildStack(ir->getBoolType(), "select");
     // if lhs
-    lhs.entity = builder.buildICmpNEZero(lhs.entity);
     builder.buildBr(lhs.entity, thenBB, elseBB);
 
     // then
@@ -1015,6 +1015,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     // else
     builder.setInsertPoint(elseBB->end());
     Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
     rhs.entity = builder.buildICmpNEZero(rhs.entity);
@@ -1255,9 +1256,9 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
 Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
   assert(ctx->exp().size() == 1);
   Symbol operand = any_as<Symbol>(ctx->exp()[0]->accept(this));
-  if (!operand) {
-    return nullptr;
-  }
+  if (!operand)
+    return Symbol::none();
+
   Value *val = operand.entity;
   // TODO: unary op
   if (ctx->unaryOp()->PLUS())
@@ -1276,11 +1277,11 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
   }
 
   if (ctx->unaryOp()->NOT()) {
-    Value *equalToZero =
-        builder.buildICmp(ICmpInst::EQ, val, builder.getZero(val->getType()));
-    Value *zext = builder.buildZExt(equalToZero, val->getType(),
-                                    val->getName() + ".zext");
-    return Symbol{zext, operand.symbolType};
+    operand = genImplicitCast(operand, SymbolType::getBoolTy());
+    operand.entity = builder.buildBinOp<XorInst>(
+        operand.entity, builder.getOne(ir->getBoolType()), ir->getBoolType());
+    operand = genImplicitCast(operand, SymbolType::getIntTy());
+    return operand;
   }
   nnvm_unreachable("UnaryOp Not implemented!");
 }

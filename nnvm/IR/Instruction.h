@@ -319,6 +319,7 @@ public:
   }
   BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
       : BranchInst(true) {
+    assert(cond->getType()->isIntegerNBits(1));
     setOperand(0, cond);
     setSucc(0, trueSucc);
     setSucc(1, falseSucc);
@@ -355,7 +356,9 @@ private:
 class FNegInst : public Instruction {
 public:
   FNegInst(Value *operand)
-      : Instruction(InstID::FNeg, {operand}, operand->getType()) {}
+      : Instruction(InstID::FNeg, {operand}, operand->getType()) {
+    assert(operand->getType()->isFloat());
+  }
 };
 
 class PhiInst : public Instruction {

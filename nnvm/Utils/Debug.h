@@ -27,9 +27,9 @@ static inline void dumpBackTrace() {
 
 #define nnvm_assert(cond)                                                      \
   {                                                                            \
-    if (!cond) {                                                               \
+    if (!(cond)) {                                                               \
       dumpBackTrace();                                                         \
-      assert(#cond);                                                           \
+      assert(cond);                                                           \
     }                                                                          \
   }
 

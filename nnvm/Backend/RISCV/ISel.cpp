@@ -57,6 +57,20 @@ void riscv::loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global,
 
 static inline LIRInstID
 materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
+
+  if (operandType == LIRValueType::i1) {
+    switch ((InstID)instID) {
+    case InstID::And:
+      return AND;
+    case InstID::Or:
+      return OR;
+    case InstID::Xor:
+      return XOR;
+    default:
+      nnvm_unreachable("No implemented");
+    }
+  }
+
   if (operandType == LIRValueType::i32) {
     switch ((InstID)instID) {
     case InstID::Add:
@@ -69,6 +83,12 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
       return DIVW;
     case InstID::UDiv:
       return DIVUW;
+    case InstID::And:
+      return AND;
+    case InstID::Or:
+      return OR;
+    case InstID::Xor:
+      return XOR;
     case InstID::SRem:
       return REMW;
     case InstID::URem:
@@ -86,6 +106,12 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
       return SUB;
     case InstID::Mul:
       return MUL;
+    case InstID::And:
+      return AND;
+    case InstID::Or:
+      return OR;
+    case InstID::Xor:
+      return XOR;
     case InstID::SDiv:
       return DIV;
     case InstID::UDiv:
@@ -127,6 +153,9 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::Mul:
     case InstID::SDiv:
     case InstID::UDiv:
+    case InstID::And:
+    case InstID::Or:
+    case InstID::Xor:
     case InstID::SRem:
     case InstID::URem:
     case InstID::FAdd:
@@ -360,7 +389,7 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
     LIRValue *rs1 = I->getOp(1);
 
     if (rs1->isGlobalVar()) {
-      auto vregForAddress = builder.newVReg(LIRValueType::i64);
+      auto vregForAddress = builder.newVRegForPtr();
       loadGlobalToReg(builder, rs1->as<LIRGlobalVar>(), vregForAddress);
       I->setUse(1, vregForAddress);
     }
@@ -377,7 +406,7 @@ LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {
     EmitInfo info;
 
     if (rs->isGlobalVar()) {
-      auto vregForAddress = builder.newVReg(LIRValueType::i64);
+      auto vregForAddress = builder.newVRegForPtr();
       loadGlobalToReg(builder, rs->as<LIRGlobalVar>(), vregForAddress);
       I->setUse(i, vregForAddress);
     } else if (rs->isConstant()) {

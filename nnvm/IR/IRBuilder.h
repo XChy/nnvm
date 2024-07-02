@@ -29,6 +29,7 @@ public:
   template <typename Inst>
   Value *buildBinOp(Value *LHS, Value *RHS, Type *type,
                     const std::string &name = "") {
+    // TODO: specification assert
     Inst *I = new Inst(LHS, RHS, type);
     I->setName(name, *module);
     insertPoint.insertBefore(I);

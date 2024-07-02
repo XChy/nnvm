@@ -44,6 +44,7 @@ template <typename T> bool any_is(const std::any &v) {
 }
 
 template <typename T> T any_as(const std::any &v) {
+  assert(any_is<T>(v));
   return std::any_cast<T>(v);
 }
 

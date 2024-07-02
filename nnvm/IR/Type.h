@@ -49,6 +49,9 @@ public:
   std::string dump();
 
   bool isInteger() { return typeClass == Integer; }
+  bool isIntegerNBits(uint64_t bits) {
+    return typeClass == Integer && getScalarBits() == bits;
+  }
   bool isPointer() { return typeClass == Pointer; }
   bool isFloat() { return typeClass == Float; }
   bool isVoid() { return typeClass == Void; }
