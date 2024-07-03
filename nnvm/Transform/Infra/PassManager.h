@@ -8,7 +8,7 @@ class PassManager {
 public:
   bool run(Module &M) {
     bool changed = false;
-    for (auto &pass : passes)
+    for (const auto &pass : passes)
       changed |= pass->run(M);
     return changed;
   }

@@ -6,7 +6,7 @@ using namespace nnvm;
 
 void Optimizer::transform(Module *module) {
   PassManager passManager;
-  passManager.registerFunctionPass<Mem2RegPass>();
-  passManager.registerFunctionPass<CombinerPass>();
+  //passManager.registerFunctionPass<Mem2RegPass>();
+  //passManager.registerFunctionPass<CombinerPass>();
   passManager.run(*module);
 }
