@@ -27,7 +27,7 @@ Value *IRBuilder::buildStack(Type *containedTy, uint numElement,
 
 Value *IRBuilder::buildStore(Value *value, Value *dest) {
   nnvm_assert(dest->getType() == module->getPtrType() &&
-         "Destination must be a pointer");
+              "Destination must be a pointer");
   StoreInst *SI = new StoreInst();
   SI->setOperand(0, value);
   SI->setOperand(1, dest);
