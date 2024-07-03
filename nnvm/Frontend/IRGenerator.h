@@ -112,6 +112,9 @@ private:
   std::any varDef(SysYParser::VarDefContext *ctx,
                   SysYParser::BtypeContext *btypeCtx);
 
+  void arrInitRoll(uint &valueCount, uint &offset, Value *currentValue,
+                   Value *irVal, Type *irEl);
+
   bool solveInit(SysYParser::InitValContext *initVal, SymbolType *currentType,
                  Type *irElementType, std::vector<Value *> &output);
 

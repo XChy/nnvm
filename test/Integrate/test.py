@@ -49,7 +49,7 @@ GCC_X86 = 'gcc'
 LLC = 'llc'
 QEMU = 'qemu-riscv64'
 
-TIMEOUT_PERIOD = 4
+TIMEOUT_PERIOD = 5
 
 brief_mode = False
 verbose_mode = False

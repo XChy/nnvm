@@ -5,9 +5,11 @@
 
 #ifdef COMPILER_DEBUG
 #define debug(A)                                                               \
-  { A; }
+  do {                                                                         \
+    A;                                                                         \
+  } while (0);
 #else
-#define debug(A) ;
+#define debug(A)
 #endif
 
 static inline void dumpBackTrace() {
@@ -27,9 +29,9 @@ static inline void dumpBackTrace() {
 
 #define nnvm_assert(cond)                                                      \
   {                                                                            \
-    if (!(cond)) {                                                               \
+    if (!(cond)) {                                                             \
       dumpBackTrace();                                                         \
-      assert(cond);                                                           \
+      assert(cond);                                                            \
     }                                                                          \
   }
 

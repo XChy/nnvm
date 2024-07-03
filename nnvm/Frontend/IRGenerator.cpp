@@ -180,7 +180,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (auto lvalCtx = ctx->lVal()) {
       return solveConstLval(lvalCtx);
     }
-    assert("Should not reach here");
+    nnvm_unreachable("Impossible to reach here");
   }
 
   Any lhsAny = solveConstExp(ctx->exp()[0]);
@@ -203,7 +203,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->MOD()) {
       nnvm_unimpl();
     }
-    assert("Should not reach here");
+    nnvm_unreachable("Impossible to reach here");
   } else if (any_is<int>(lhsAny) && any_is<int>(rhsAny)) {
     int lhs = any_as<int>(lhsAny);
     int rhs = any_as<int>(rhsAny);
@@ -222,9 +222,9 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->MOD()) {
       return lhs % rhs;
     }
-    assert("Should not reach here");
+    nnvm_unreachable("Impossible to reach here");
   }
-  nnvm_unreachable("Should not reach here");
+  nnvm_unreachable("Impossible to reach here");
 }
 
 Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {
@@ -543,6 +543,61 @@ IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
   return ConstantArray::create(*ir, arrayType, initValList);
 }
 
+void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
+                              Value *currentValue, Value *irVal,
+                              Type *irElementType) {
+  if (valueCount > 10) {
+    // roll up the same values' init
+    BasicBlock *condBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "init.cond");
+    BasicBlock *initBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "init");
+    BasicBlock *exitBB =
+        new BasicBlock(cast<Function>(currentFunc->entity), "init.exit");
+
+    // init
+    Value *cnt_ptr = builder.buildStack(ir->getIntType(), "cnt_ptr");
+    builder.buildStore(createConstInt(valueCount), cnt_ptr);
+    builder.buildBr(condBB);
+
+    // cond
+    builder.setInsertPoint(condBB->end());
+    Value *cnt = builder.buildLoad(cnt_ptr, ir->getIntType(), "cnt");
+    Value *cond = builder.buildICmpNEZero(cnt, "cond");
+    builder.buildBr(cond, initBB, exitBB);
+
+    // init body (Init from the end of the array)
+    builder.setInsertPoint(initBB->end());
+    cnt = builder.buildLoad(cnt_ptr, ir->getIntType(), "cnt");
+    cnt = builder.buildBinOp<SubInst>(cnt, createConstInt(1), ir->getIntType(),
+                                      "cnt.dec");
+    builder.buildStore(cnt, cnt_ptr);
+    Value *currentBase = createConstInt(offset);
+    Value *currentOff = builder.buildBinOp<MulInst>(
+        cnt, createConstInt(irElementType->getStoredBytes()), ir->getIntType(),
+        "offset");
+    Value *offsetValue = builder.buildBinOp<AddInst>(
+        currentBase, currentOff, ir->getPtrType(), "arr.index");
+    auto *pointer = builder.buildBinOp<PtrAddInst>(
+        irVal, offsetValue, ir->getPtrType(), "arr.index");
+    builder.buildStore(currentValue, pointer);
+    builder.buildBr(condBB);
+
+    // exit
+    builder.setInsertPoint(exitBB->end());
+
+    offset += irElementType->getStoredBytes() * valueCount;
+  } else {
+    while (valueCount--) {
+      Constant *offsetValue = createConstInt(offset);
+      auto *pointer = builder.buildBinOp<PtrAddInst>(
+          irVal, offsetValue, ir->getPtrType(), "arr.index");
+      builder.buildStore(currentValue, pointer);
+      offset += irElementType->getStoredBytes();
+    }
+  }
+}
+
 Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
                         SysYParser::BtypeContext *btype) {
   SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
@@ -622,12 +677,21 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
         if (!solveInit(ctx->initVal(), symbolType, irElementType, values))
           return Symbol::none();
         uint offset = 0;
+        // we put same values together
+        Value *currentValue = nullptr;
+        uint valueCount = 0;
         for (Value *stored : values) {
-          Constant *offsetValue = createConstInt(offset);
-          auto *pointer = builder.buildBinOp<PtrAddInst>(
-              irVal, offsetValue, ir->getPtrType(), "arr.index");
-          builder.buildStore(stored, pointer);
-          offset += irElementType->getStoredBytes();
+          if (valueCount == 0 || currentValue == stored) {
+            currentValue = stored;
+            valueCount++;
+          } else {
+            arrInitRoll(valueCount, offset, currentValue, irVal, irElementType);
+            currentValue = stored;
+            valueCount = 1;
+          }
+        }
+        if (valueCount > 0) {
+          arrInitRoll(valueCount, offset, currentValue, irVal, irElementType);
         }
       }
     }
