@@ -13,11 +13,11 @@ main:
   SW s0, 8(sp)
   ADDI s0, zero, 30
   SW s0, 0(sp)
-  ADDI s0, zero, 0
-  ADDI s1, zero, 5
-  SUBW s2, s0, s1
-  ADDI s0, zero, 10
-  SUBW s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s1, zero, 0
+  ADDI s2, zero, 5
+  SUBW s3, s1, s2
+  SUBW s1, s0, s3
   ADDIW s0, s1, 30
   ADDI s1, zero, 0
   ADDI s2, zero, 5

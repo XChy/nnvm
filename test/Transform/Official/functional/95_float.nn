@@ -77,7 +77,8 @@ entry28:
   %a.stack = stack 4
   store float %a to ptr %a.stack
   store float %b to ptr %b.stack
-  33 = fsub float %a, float %b
+  a.stack.load = load float from ptr %a.stack
+  33 = fsub float %a.stack.load, float %b
   34 = call float float_abs(float %33)
   EPS.load = load float from ptr @EPS
   36 = fcmp olt float %34, float %EPS.load
@@ -225,7 +226,8 @@ while.body:
   164 = fmul float %PI.load162, float %160
   166 = fmul float %164, float %160
   store float %166 to ptr %area
-  169 = f2si float %160 to i32
+  input.load168 = load float from ptr %input
+  169 = f2si float %input.load168 to i32
   170 = call float circle_area(i32 %169)
   store float %170 to ptr %area_trunc
   p.load = load i32 from ptr %p

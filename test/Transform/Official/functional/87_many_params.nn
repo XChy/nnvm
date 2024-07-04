@@ -33,36 +33,51 @@ entry416:
   store i32 %a14 to ptr %a14.stack430
   store i32 %a15 to ptr %a15.stack431
   store i32 %a16 to ptr %a16.stack432
+  a1.stack417.load = load i32 from ptr %a1.stack417
+  a2.stack418.load = load i32 from ptr %a2.stack418
+  a3.stack419.load = load i32 from ptr %a3.stack419
+  a4.stack420.load = load i32 from ptr %a4.stack420
+  a5.stack421.load = load i32 from ptr %a5.stack421
+  a6.stack422.load = load i32 from ptr %a6.stack422
+  a7.stack423.load = load i32 from ptr %a7.stack423
+  a8.stack424.load = load i32 from ptr %a8.stack424
+  a9.stack425.load = load i32 from ptr %a9.stack425
+  a10.stack426.load = load i32 from ptr %a10.stack426
+  a11.stack427.load = load i32 from ptr %a11.stack427
+  a12.stack428.load = load i32 from ptr %a12.stack428
+  a13.stack429.load = load i32 from ptr %a13.stack429
+  a14.stack430.load = load i32 from ptr %a14.stack430
+  a15.stack431.load = load i32 from ptr %a15.stack431
   arr.index = ptradd ptr %arr, i32 0
-  store i32 %a1 to ptr %arr.index
+  store i32 %a1.stack417.load to ptr %arr.index
   arr.index451 = ptradd ptr %arr, i32 4
-  store i32 %a2 to ptr %arr.index451
+  store i32 %a2.stack418.load to ptr %arr.index451
   arr.index452 = ptradd ptr %arr, i32 8
-  store i32 %a3 to ptr %arr.index452
+  store i32 %a3.stack419.load to ptr %arr.index452
   arr.index453 = ptradd ptr %arr, i32 12
-  store i32 %a4 to ptr %arr.index453
+  store i32 %a4.stack420.load to ptr %arr.index453
   arr.index454 = ptradd ptr %arr, i32 16
-  store i32 %a5 to ptr %arr.index454
+  store i32 %a5.stack421.load to ptr %arr.index454
   arr.index455 = ptradd ptr %arr, i32 20
-  store i32 %a6 to ptr %arr.index455
+  store i32 %a6.stack422.load to ptr %arr.index455
   arr.index456 = ptradd ptr %arr, i32 24
-  store i32 %a7 to ptr %arr.index456
+  store i32 %a7.stack423.load to ptr %arr.index456
   arr.index457 = ptradd ptr %arr, i32 28
-  store i32 %a8 to ptr %arr.index457
+  store i32 %a8.stack424.load to ptr %arr.index457
   arr.index458 = ptradd ptr %arr, i32 32
-  store i32 %a9 to ptr %arr.index458
+  store i32 %a9.stack425.load to ptr %arr.index458
   arr.index459 = ptradd ptr %arr, i32 36
-  store i32 %a10 to ptr %arr.index459
+  store i32 %a10.stack426.load to ptr %arr.index459
   arr.index460 = ptradd ptr %arr, i32 40
-  store i32 %a11 to ptr %arr.index460
+  store i32 %a11.stack427.load to ptr %arr.index460
   arr.index461 = ptradd ptr %arr, i32 44
-  store i32 %a12 to ptr %arr.index461
+  store i32 %a12.stack428.load to ptr %arr.index461
   arr.index462 = ptradd ptr %arr, i32 48
-  store i32 %a13 to ptr %arr.index462
+  store i32 %a13.stack429.load to ptr %arr.index462
   arr.index463 = ptradd ptr %arr, i32 52
-  store i32 %a14 to ptr %arr.index463
+  store i32 %a14.stack430.load to ptr %arr.index463
   arr.index464 = ptradd ptr %arr, i32 56
-  store i32 %a15 to ptr %arr.index464
+  store i32 %a15.stack431.load to ptr %arr.index464
   arr.index465 = ptradd ptr %arr, i32 60
   store i32 %a16 to ptr %arr.index465
   call void sort(ptr %arr, i32 16)
@@ -493,7 +508,8 @@ entry52:
   store i32 %a30 to ptr %a30.stack
   store i32 %a31 to ptr %a31.stack
   store i32 %a32 to ptr %a32.stack
-  86 = icmp eq i32 %a1, i32 0
+  a1.stack.load = load i32 from ptr %a1.stack
+  86 = icmp eq i32 %a1.stack.load, i32 0
   br i1 %86, bb %then87, bb %else
 then87:
   a2.stack.load = load i32 from ptr %a2.stack
@@ -779,7 +795,8 @@ then:
   j.load44 = load i32 from ptr %j
   45 = mul i32 %j.load44, i32 4
   46 = ptradd ptr %arr, i32 %45
-  store i32 %35.load to ptr %46
+  temp.load = load i32 from ptr %temp
+  store i32 %temp.load to ptr %46
   br bb %if.exit
 if.exit:
   j.load48 = load i32 from ptr %j

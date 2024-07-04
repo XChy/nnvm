@@ -11,8 +11,8 @@ main:
   SW s0, 8(sp)
   ADDI s0, zero, 12
   SW s0, 0(sp)
-  ADDI s0, zero, 12
-  ADDIW s1, s0, 15
+  LW s0, 8(sp)
+  ADDIW s1, s0, 12
   ADDIW s0, s1, 61
   ADD a0, s0, zero
   LD ra, 16(sp)

@@ -60,6 +60,7 @@ hanoi:
   SW s1, 16(sp)
   SW s2, 8(sp)
   SW s3, 0(sp)
+  LW s0, 24(sp)
   XORI s1, s0, 1
   SLTIU s0, s1, 1
   BNE s0, zero, bb5
@@ -117,6 +118,7 @@ move:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 32

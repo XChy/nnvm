@@ -413,8 +413,9 @@ getvalue:
   SW s1, 40(sp)
   SW s2, 32(sp)
   SW s3, 24(sp)
-  SLT s1, s2, zero
-  BNE s1, zero, bb32
+  LW s1, 32(sp)
+  SLT s2, s1, zero
+  BNE s2, zero, bb32
   JAL zero, bb33
 bb32:
   ADDI s1, zero, 1

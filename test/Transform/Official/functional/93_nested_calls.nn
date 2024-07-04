@@ -5,7 +5,8 @@ entry59:
   %x.stack60 = stack 4
   store i32 %x to ptr %x.stack60
   store i32 %y to ptr %y.stack61
-  63 = icmp ne i32 %x, i32 0
+  x.stack60.load = load i32 from ptr %x.stack60
+  63 = icmp ne i32 %x.stack60.load, i32 0
   br i1 %63, bb %select.then, bb %select.else
 select.then:
   y.stack61.load = load i32 from ptr %y.stack61
@@ -108,7 +109,8 @@ entry44:
   store i32 %x to ptr %x.stack45
   store i32 %y to ptr %y.stack46
   store i32 %z to ptr %z.stack47
-  49 = icmp ne i32 %x, i32 0
+  x.stack45.load = load i32 from ptr %x.stack45
+  49 = icmp ne i32 %x.stack45.load, i32 0
   br i1 %49, bb %then50, bb %else52
 then50:
   y.stack46.load = load i32 from ptr %y.stack46

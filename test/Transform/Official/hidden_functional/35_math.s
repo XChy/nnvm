@@ -46,6 +46,7 @@ my_powf:
   FSGNJ.D fs1, fa1, fa1
   FSW fs0, 8(sp)
   FSW fs1, 0(sp)
+  FLW fs0, 8(sp)
   FSGNJ.S fa0, fs0, fs0
   CALL my_ln
   FSGNJ.D fs0, fa0, fa0
@@ -114,12 +115,11 @@ my_ln:
   JALR zero, 0(ra)
 my_exp:
   ADDI sp, sp, -80
-  SD s1, 32(sp)
-  SD ra, 40(sp)
-  FSD fs1, 48(sp)
-  FSD fs2, 56(sp)
-  SD s0, 64(sp)
-  FSD fs0, 72(sp)
+  SD ra, 32(sp)
+  FSD fs1, 40(sp)
+  FSD fs2, 48(sp)
+  SD s0, 56(sp)
+  FSD fs0, 64(sp)
   FSGNJ.D fs0, fa0, fa0
   FSW fs0, 24(sp)
   ADDI s0, zero, 0
@@ -137,12 +137,11 @@ bb4:
   FCVT.S.W fs1, s0
   FDIV.S fs2, fs1, fs0
   FSGNJ.S fa0, fs2, fs2
-  LD s1, 32(sp)
-  LD ra, 40(sp)
-  FLD fs1, 48(sp)
-  FLD fs2, 56(sp)
-  LD s0, 64(sp)
-  FLD fs0, 72(sp)
+  LD ra, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
+  LD s0, 56(sp)
+  FLD fs0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb5:
@@ -153,8 +152,9 @@ bb5:
   FCVT.S.W fs1, s0
   FSUB.S fs2, fs0, fs1
   FSW fs2, 24(sp)
-  LA s1, e
-  FLW fs0, 0(s1)
+  LA s0, e
+  FLW fs0, 0(s0)
+  LW s0, 16(sp)
   FSGNJ.S fa0, fs0, fs0
   ADD a0, s0, zero
   CALL my_pow
@@ -168,12 +168,11 @@ bb5:
   FLW fs1, 8(sp)
   FMUL.S fs2, fs1, fs0
   FSGNJ.S fa0, fs2, fs2
-  LD s1, 32(sp)
-  LD ra, 40(sp)
-  FLD fs1, 48(sp)
-  FLD fs2, 56(sp)
-  LD s0, 64(sp)
-  FLD fs0, 72(sp)
+  LD ra, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
+  LD s0, 56(sp)
+  FLD fs0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 eee:
@@ -259,13 +258,14 @@ bb8:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 asr4:
-  ADDI sp, sp, -80
-  SD ra, 32(sp)
-  FSD fs3, 40(sp)
-  SD s0, 48(sp)
-  FSD fs2, 56(sp)
-  FSD fs1, 64(sp)
-  FSD fs0, 72(sp)
+  ADDI sp, sp, -96
+  FSD fs4, 32(sp)
+  SD ra, 40(sp)
+  FSD fs3, 48(sp)
+  SD s0, 56(sp)
+  FSD fs2, 64(sp)
+  FSD fs1, 72(sp)
+  FSD fs0, 80(sp)
   FSGNJ.D fs0, fa0, fa0
   FSGNJ.D fs1, fa1, fa1
   FSGNJ.D fs2, fa2, fa2
@@ -274,8 +274,13 @@ asr4:
   FSW fs1, 16(sp)
   FSW fs2, 8(sp)
   SW s0, 0(sp)
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
+  FLW fs0, 24(sp)
+  FLW fs1, 16(sp)
+  FLW fs2, 8(sp)
+  FLW fs3, 24(sp)
+  FLW fs4, 16(sp)
+  FSGNJ.S fa0, fs3, fs3
+  FSGNJ.S fa1, fs4, fs4
   ADD a0, s0, zero
   CALL simpson
   FSGNJ.D fs3, fa0, fa0
@@ -288,25 +293,25 @@ asr4:
   CALL asr5
   FSGNJ.D fs0, fa0, fa0
   FSGNJ.S fa0, fs0, fs0
-  LD ra, 32(sp)
-  FLD fs3, 40(sp)
-  LD s0, 48(sp)
-  FLD fs2, 56(sp)
-  FLD fs1, 64(sp)
-  FLD fs0, 72(sp)
-  ADDI sp, sp, 80
+  FLD fs4, 32(sp)
+  LD ra, 40(sp)
+  FLD fs3, 48(sp)
+  LD s0, 56(sp)
+  FLD fs2, 64(sp)
+  FLD fs1, 72(sp)
+  FLD fs0, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 asr5:
-  ADDI sp, sp, -144
+  ADDI sp, sp, -128
   FSD fs5, 64(sp)
-  FSD fs4, 72(sp)
-  FSD fs0, 80(sp)
-  FSD fs1, 88(sp)
-  FSD fs2, 96(sp)
-  FSD fs3, 104(sp)
-  SD ra, 112(sp)
-  SD s0, 120(sp)
-  SD s1, 128(sp)
+  FSD fs0, 72(sp)
+  FSD fs1, 80(sp)
+  FSD fs2, 88(sp)
+  FSD fs3, 96(sp)
+  SD ra, 104(sp)
+  SD s0, 112(sp)
+  FSD fs4, 120(sp)
   FSGNJ.D fs0, fa0, fa0
   FSGNJ.D fs1, fa1, fa1
   FSGNJ.D fs2, fa2, fa2
@@ -317,12 +322,17 @@ asr5:
   FSW fs2, 40(sp)
   FSW fs3, 32(sp)
   SW s0, 24(sp)
-  FSUB.S fs2, fs1, fs0
-  ADDI s1, zero, 2
-  FCVT.S.W fs1, s1
-  FDIV.S fs3, fs2, fs1
-  FADD.S fs1, fs0, fs3
+  FLW fs0, 56(sp)
+  FLW fs1, 48(sp)
+  FLW fs2, 56(sp)
+  FSUB.S fs3, fs1, fs2
+  ADDI s0, zero, 2
+  FCVT.S.W fs1, s0
+  FDIV.S fs2, fs3, fs1
+  FADD.S fs1, fs0, fs2
   FSW fs1, 16(sp)
+  FLW fs0, 56(sp)
+  LW s0, 24(sp)
   FSGNJ.S fa0, fs0, fs0
   FSGNJ.S fa1, fs1, fs1
   ADD a0, s0, zero
@@ -367,15 +377,14 @@ bb11:
   FADD.S fs0, fs2, fs3
   FSGNJ.S fa0, fs0, fs0
   FLD fs5, 64(sp)
-  FLD fs4, 72(sp)
-  FLD fs0, 80(sp)
-  FLD fs1, 88(sp)
-  FLD fs2, 96(sp)
-  FLD fs3, 104(sp)
-  LD ra, 112(sp)
-  LD s0, 120(sp)
-  LD s1, 128(sp)
-  ADDI sp, sp, 144
+  FLD fs0, 72(sp)
+  FLD fs1, 80(sp)
+  FLD fs2, 88(sp)
+  FLD fs3, 96(sp)
+  LD ra, 104(sp)
+  LD s0, 112(sp)
+  FLD fs4, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb12:
   FLW fs0, 56(sp)
@@ -411,21 +420,20 @@ bb12:
   FADD.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
   FLD fs5, 64(sp)
-  FLD fs4, 72(sp)
-  FLD fs0, 80(sp)
-  FLD fs1, 88(sp)
-  FLD fs2, 96(sp)
-  FLD fs3, 104(sp)
-  LD ra, 112(sp)
-  LD s0, 120(sp)
-  LD s1, 128(sp)
-  ADDI sp, sp, 144
+  FLD fs0, 72(sp)
+  FLD fs1, 80(sp)
+  FLD fs2, 88(sp)
+  FLD fs3, 96(sp)
+  LD ra, 104(sp)
+  LD s0, 112(sp)
+  FLD fs4, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 simpson:
   ADDI sp, sp, -96
-  SD ra, 32(sp)
-  FSD fs3, 40(sp)
-  SD s1, 48(sp)
+  SD s1, 32(sp)
+  SD ra, 40(sp)
+  FSD fs3, 48(sp)
   FSD fs2, 56(sp)
   SD s0, 64(sp)
   FSD fs1, 72(sp)
@@ -436,12 +444,16 @@ simpson:
   FSW fs0, 24(sp)
   FSW fs1, 16(sp)
   SW s0, 8(sp)
-  FSUB.S fs2, fs1, fs0
-  ADDI s1, zero, 2
-  FCVT.S.W fs1, s1
-  FDIV.S fs3, fs2, fs1
-  FADD.S fs1, fs0, fs3
+  FLW fs0, 24(sp)
+  FLW fs1, 16(sp)
+  FLW fs2, 24(sp)
+  FSUB.S fs3, fs1, fs2
+  ADDI s0, zero, 2
+  FCVT.S.W fs1, s0
+  FDIV.S fs2, fs3, fs1
+  FADD.S fs1, fs0, fs2
   FSW fs1, 0(sp)
+  LW s0, 8(sp)
   XORI s1, s0, 1
   SLTIU s0, s1, 1
   BNE s0, zero, bb14
@@ -472,9 +484,9 @@ bb14:
   FCVT.S.W fs1, s0
   FDIV.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
-  LD ra, 32(sp)
-  FLD fs3, 40(sp)
-  LD s1, 48(sp)
+  LD s1, 32(sp)
+  LD ra, 40(sp)
+  FLD fs3, 48(sp)
   FLD fs2, 56(sp)
   LD s0, 64(sp)
   FLD fs1, 72(sp)
@@ -513,9 +525,9 @@ bb16:
   FCVT.S.W fs1, s0
   FDIV.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
-  LD ra, 32(sp)
-  FLD fs3, 40(sp)
-  LD s1, 48(sp)
+  LD s1, 32(sp)
+  LD ra, 40(sp)
+  FLD fs3, 48(sp)
   FLD fs2, 56(sp)
   LD s0, 64(sp)
   FLD fs1, 72(sp)
@@ -526,9 +538,9 @@ bb17:
   ADDI s0, zero, 0
   FCVT.S.W fs0, s0
   FSGNJ.S fa0, fs0, fs0
-  LD ra, 32(sp)
-  FLD fs3, 40(sp)
-  LD s1, 48(sp)
+  LD s1, 32(sp)
+  LD ra, 40(sp)
+  FLD fs3, 48(sp)
   FLD fs2, 56(sp)
   LD s0, 64(sp)
   FLD fs1, 72(sp)

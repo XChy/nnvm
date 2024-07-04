@@ -132,7 +132,8 @@ entry178:
   store float %x2 to ptr %x2.stack240
   store i32 %i14 to ptr %i14.stack
   store float %x35 to ptr %x35.stack242
-  244 = icmp ne i32 %i23, i32 0
+  i23.stack.load = load i32 from ptr %i23.stack
+  244 = icmp ne i32 %i23.stack.load, i32 0
   br i1 %244, bb %then245, bb %else247
 then245:
   x0.stack221.load = load float from ptr %x0.stack221
@@ -2001,18 +2002,22 @@ entry698:
   store float %x59 to ptr %x59.stack
   store float %x62 to ptr %x62.stack
   store i32 %i63 to ptr %i63.stack
+  x0.stack699.load = load float from ptr %x0.stack699
   k.load736 = load i32 from ptr @k
   737 = mul i32 %k.load736, i32 4
   738 = ptradd ptr %x3, i32 %737
   738.load = load float from ptr %738
-  740 = fadd float %x0, float %738.load
-  742 = fadd float %740, float %x4
-  744 = fadd float %742, float %x6
+  740 = fadd float %x0.stack699.load, float %738.load
+  x4.stack701.load = load float from ptr %x4.stack701
+  742 = fadd float %740, float %x4.stack701.load
+  x6.stack703.load = load float from ptr %x6.stack703
+  744 = fadd float %742, float %x6.stack703.load
+  x7.stack704.load = load float from ptr %x7.stack704
   k.load746 = load i32 from ptr @k
   747 = mul i32 %k.load746, i32 4
   748 = ptradd ptr %x8, i32 %747
   748.load = load float from ptr %748
-  750 = fadd float %x7, float %748.load
+  750 = fadd float %x7.stack704.load, float %748.load
   k.load751 = load i32 from ptr @k
   752 = mul i32 %k.load751, i32 4
   753 = ptradd ptr %x12, i32 %752
@@ -2027,16 +2032,22 @@ entry698:
   762 = mul i32 %k.load761, i32 4
   763 = ptradd ptr %x17, i32 %762
   763.load = load float from ptr %763
-  766 = fadd float %763.load, float %x18
-  768 = fadd float %766, float %x19
-  770 = fadd float %768, float %x20
+  x18.stack708.load = load float from ptr %x18.stack708
+  766 = fadd float %763.load, float %x18.stack708.load
+  x19.stack709.load = load float from ptr %x19.stack709
+  768 = fadd float %766, float %x19.stack709.load
+  x20.stack710.load = load float from ptr %x20.stack710
+  770 = fadd float %768, float %x20.stack710.load
   k.load771 = load i32 from ptr @k
   772 = mul i32 %k.load771, i32 4
   773 = ptradd ptr %x21, i32 %772
   773.load = load float from ptr %773
-  776 = fadd float %773.load, float %x23
-  778 = fadd float %776, float %x24
-  780 = fadd float %778, float %x25
+  x23.stack712.load = load float from ptr %x23.stack712
+  776 = fadd float %773.load, float %x23.stack712.load
+  x24.stack713.load = load float from ptr %x24.stack713
+  778 = fadd float %776, float %x24.stack713.load
+  x25.stack714.load = load float from ptr %x25.stack714
+  780 = fadd float %778, float %x25.stack714.load
   k.load781 = load i32 from ptr @k
   782 = mul i32 %k.load781, i32 4
   783 = ptradd ptr %x27, i32 %782
@@ -2046,8 +2057,10 @@ entry698:
   787 = ptradd ptr %x30, i32 %786
   787.load = load float from ptr %787
   789 = fadd float %783.load, float %787.load
-  791 = fadd float %789, float %x31
-  793 = fadd float %791, float %x32
+  x31.stack715.load = load float from ptr %x31.stack715
+  791 = fadd float %789, float %x31.stack715.load
+  x32.stack716.load = load float from ptr %x32.stack716
+  793 = fadd float %791, float %x32.stack716.load
   k.load794 = load i32 from ptr @k
   795 = mul i32 %k.load794, i32 4
   796 = ptradd ptr %x35, i32 %795
@@ -2057,37 +2070,46 @@ entry698:
   800 = ptradd ptr %x36, i32 %799
   800.load = load float from ptr %800
   802 = fadd float %796.load, float %800.load
-  804 = fadd float %802, float %x37
-  806 = fadd float %804, float %x38
-  809 = fadd float %x43, float %x44
+  x37.stack718.load = load float from ptr %x37.stack718
+  804 = fadd float %802, float %x37.stack718.load
+  x38.stack719.load = load float from ptr %x38.stack719
+  806 = fadd float %804, float %x38.stack719.load
+  x43.stack.load = load float from ptr %x43.stack
+  x44.stack.load = load float from ptr %x44.stack
+  809 = fadd float %x43.stack.load, float %x44.stack.load
   k.load810 = load i32 from ptr @k
   811 = mul i32 %k.load810, i32 4
   812 = ptradd ptr %x47, i32 %811
   812.load = load float from ptr %812
   814 = fadd float %809, float %812.load
-  816 = fadd float %814, float %x51
+  x51.stack.load = load float from ptr %x51.stack
+  816 = fadd float %814, float %x51.stack.load
+  x52.stack.load = load float from ptr %x52.stack
   k.load818 = load i32 from ptr @k
   819 = mul i32 %k.load818, i32 4
   820 = ptradd ptr %x53, i32 %819
   820.load = load float from ptr %820
-  822 = fadd float %x52, float %820.load
+  822 = fadd float %x52.stack.load, float %820.load
   k.load823 = load i32 from ptr @k
   824 = mul i32 %k.load823, i32 4
   825 = ptradd ptr %x56, i32 %824
   825.load = load float from ptr %825
   827 = fadd float %822, float %825.load
-  829 = fadd float %827, float %x57
+  x57.stack.load = load float from ptr %x57.stack
+  829 = fadd float %827, float %x57.stack.load
+  x59.stack.load = load float from ptr %x59.stack
   k.load831 = load i32 from ptr @k
   832 = mul i32 %k.load831, i32 4
   833 = ptradd ptr %x60, i32 %832
   833.load = load float from ptr %833
-  835 = fadd float %x59, float %833.load
+  835 = fadd float %x59.stack.load, float %833.load
   k.load836 = load i32 from ptr @k
   837 = mul i32 %k.load836, i32 4
   838 = ptradd ptr %x61, i32 %837
   838.load = load float from ptr %838
   840 = fadd float %835, float %838.load
-  842 = fadd float %840, float %x62
+  x62.stack.load = load float from ptr %x62.stack
+  842 = fadd float %840, float %x62.stack.load
   arr.index843 = ptradd ptr %arr734, i32 0
   store float %744 to ptr %arr.index843
   arr.index844 = ptradd ptr %arr734, i32 4
@@ -2112,14 +2134,18 @@ entry698:
   855 = mul i32 %k.load854, i32 4
   856 = ptradd ptr %i1, i32 %855
   856.load = load i32 from ptr %856
-  859 = add i32 %856.load, i32 %i2
-  861 = add i32 %859, i32 %i5
+  i2.stack700.load = load i32 from ptr %i2.stack700
+  859 = add i32 %856.load, i32 %i2.stack700.load
+  i5.stack702.load = load i32 from ptr %i5.stack702
+  861 = add i32 %859, i32 %i5.stack702.load
   k.load862 = load i32 from ptr @k
   863 = mul i32 %k.load862, i32 4
   864 = ptradd ptr %i9, i32 %863
   864.load = load i32 from ptr %864
-  867 = add i32 %864.load, i32 %i10
-  869 = add i32 %867, i32 %i11
+  i10.stack705.load = load i32 from ptr %i10.stack705
+  867 = add i32 %864.load, i32 %i10.stack705.load
+  i11.stack706.load = load i32 from ptr %i11.stack706
+  869 = add i32 %867, i32 %i11.stack706.load
   k.load870 = load i32 from ptr @k
   871 = mul i32 %k.load870, i32 4
   872 = ptradd ptr %i13, i32 %871
@@ -2129,12 +2155,14 @@ entry698:
   876 = ptradd ptr %i14, i32 %875
   876.load = load i32 from ptr %876
   878 = add i32 %872.load, i32 %876.load
-  880 = add i32 %878, i32 %i15
+  i15.stack707.load = load i32 from ptr %i15.stack707
+  880 = add i32 %878, i32 %i15.stack707.load
+  i22.stack711.load = load i32 from ptr %i22.stack711
   k.load882 = load i32 from ptr @k
   883 = mul i32 %k.load882, i32 4
   884 = ptradd ptr %i26, i32 %883
   884.load = load i32 from ptr %884
-  886 = add i32 %i22, i32 %884.load
+  886 = add i32 %i22.stack711.load, i32 %884.load
   k.load887 = load i32 from ptr @k
   888 = mul i32 %k.load887, i32 4
   889 = ptradd ptr %i28, i32 %888
@@ -2149,7 +2177,8 @@ entry698:
   898 = ptradd ptr %i33, i32 %897
   898.load = load i32 from ptr %898
   900 = add i32 %894.load, i32 %898.load
-  902 = add i32 %900, i32 %i34
+  i34.stack.load = load i32 from ptr %i34.stack
+  902 = add i32 %900, i32 %i34.stack.load
   k.load903 = load i32 from ptr @k
   904 = mul i32 %k.load903, i32 4
   905 = ptradd ptr %i39, i32 %904
@@ -2159,30 +2188,37 @@ entry698:
   909 = ptradd ptr %i40, i32 %908
   909.load = load i32 from ptr %909
   911 = add i32 %905.load, i32 %909.load
-  913 = add i32 %911, i32 %i41
+  i41.stack.load = load i32 from ptr %i41.stack
+  913 = add i32 %911, i32 %i41.stack.load
+  i42.stack.load = load i32 from ptr %i42.stack
   k.load915 = load i32 from ptr @k
   916 = mul i32 %k.load915, i32 4
   917 = ptradd ptr %i45, i32 %916
   917.load = load i32 from ptr %917
-  919 = add i32 %i42, i32 %917.load
-  921 = add i32 %919, i32 %i46
+  919 = add i32 %i42.stack.load, i32 %917.load
+  i46.stack.load = load i32 from ptr %i46.stack
+  921 = add i32 %919, i32 %i46.stack.load
+  i48.stack.load = load i32 from ptr %i48.stack
   k.load923 = load i32 from ptr @k
   924 = mul i32 %k.load923, i32 4
   925 = ptradd ptr %i49, i32 %924
   925.load = load i32 from ptr %925
-  927 = add i32 %i48, i32 %925.load
+  927 = add i32 %i48.stack.load, i32 %925.load
   k.load928 = load i32 from ptr @k
   929 = mul i32 %k.load928, i32 4
   930 = ptradd ptr %i50, i32 %929
   930.load = load i32 from ptr %930
   932 = add i32 %927, i32 %930.load
+  i54.stack.load = load i32 from ptr %i54.stack
   k.load934 = load i32 from ptr @k
   935 = mul i32 %k.load934, i32 4
   936 = ptradd ptr %i55, i32 %935
   936.load = load i32 from ptr %936
-  938 = add i32 %i54, i32 %936.load
-  940 = add i32 %938, i32 %i58
-  942 = add i32 %940, i32 %i63
+  938 = add i32 %i54.stack.load, i32 %936.load
+  i58.stack.load = load i32 from ptr %i58.stack
+  940 = add i32 %938, i32 %i58.stack.load
+  i63.stack.load = load i32 from ptr %i63.stack
+  942 = add i32 %940, i32 %i63.stack.load
   arr.index943 = ptradd ptr %arr2853, i32 0
   store i32 %861 to ptr %arr.index943
   arr.index944 = ptradd ptr %arr2853, i32 4
@@ -2203,7 +2239,8 @@ entry698:
   store i32 %942 to ptr %arr.index951
   arr.index952 = ptradd ptr %arr2853, i32 36
   store i32 0 to ptr %arr.index952
-  954 = icmp ne i32 %i63, i32 0
+  i63.stack.load953 = load i32 from ptr %i63.stack
+  954 = icmp ne i32 %i63.stack.load953, i32 0
   br i1 %954, bb %then955, bb %else957
 then955:
   call void putfarray(i32 10, ptr %arr734)

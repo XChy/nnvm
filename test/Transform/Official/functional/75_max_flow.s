@@ -96,6 +96,8 @@ dfs:
   SW s0, 40(sp)
   SW s1, 32(sp)
   SW s2, 24(sp)
+  LW s0, 40(sp)
+  LW s1, 32(sp)
   XOR s2, s0, s1
   SLTIU s0, s2, 1
   BNE s0, zero, bb7
@@ -343,140 +345,155 @@ bb20:
   SW s1, 16(sp)
   JAL zero, bb9
 add_node:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -64
   SD ra, 24(sp)
-  SD s4, 32(sp)
-  SD s3, 40(sp)
-  SD s2, 48(sp)
-  SD s6, 56(sp)
-  SD s1, 64(sp)
-  SD s5, 72(sp)
-  SD s0, 80(sp)
+  SD s3, 32(sp)
+  SD s2, 40(sp)
+  SD s1, 48(sp)
+  SD s0, 56(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
   SW s2, 0(sp)
-  ADDI s3, zero, 40
-  MULW s4, s0, s3
-  LA s3, to
-  ADD s5, s3, s4
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, size
-  ADD s6, s3, s4
-  LW s3, 0(s6)
-  ADDI s4, zero, 4
-  MULW s6, s3, s4
-  ADD s3, s5, s6
-  SW s1, 0(s3)
-  ADDI s3, zero, 40
-  MULW s4, s0, s3
-  LA s3, cap
-  ADD s5, s3, s4
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, size
-  ADD s6, s3, s4
-  LW s3, 0(s6)
-  ADDI s4, zero, 4
-  MULW s6, s3, s4
-  ADD s3, s5, s6
-  SW s2, 0(s3)
-  ADDI s2, zero, 40
-  MULW s3, s0, s2
-  LA s2, rev
-  ADD s4, s2, s3
+  LW s0, 16(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, to
+  ADD s1, s0, s2
+  LW s0, 16(sp)
   ADDI s2, zero, 4
   MULW s3, s0, s2
-  LA s2, size
-  ADD s5, s2, s3
-  LW s2, 0(s5)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s2, s4, s5
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  LA s3, size
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  SW s3, 0(s2)
-  ADDI s2, zero, 40
-  MULW s3, s1, s2
-  LA s2, to
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, size
-  ADD s5, s2, s3
-  LW s2, 0(s5)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s2, s4, s5
-  SW s0, 0(s2)
-  ADDI s2, zero, 40
-  MULW s3, s1, s2
-  LA s2, cap
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, size
-  ADD s5, s2, s3
-  LW s2, 0(s5)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s2, s4, s5
-  SW zero, 0(s2)
-  ADDI s2, zero, 40
-  MULW s3, s1, s2
-  LA s2, rev
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, size
-  ADD s5, s2, s3
-  LW s2, 0(s5)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s2, s4, s5
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, size
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  SW s3, 0(s2)
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
   ADDI s2, zero, 4
   MULW s3, s0, s2
-  LA s2, size
-  ADD s4, s2, s3
+  ADD s0, s1, s3
+  LW s1, 8(sp)
+  SW s1, 0(s0)
+  LW s0, 16(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, cap
+  ADD s1, s0, s2
+  LW s0, 16(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 0(sp)
+  SW s1, 0(s0)
+  LW s0, 16(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, rev
+  ADD s1, s0, s2
+  LW s0, 16(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s1, size
+  ADD s2, s1, s3
+  LW s1, 0(s2)
+  SW s1, 0(s0)
+  LW s0, 8(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, to
+  ADD s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 16(sp)
+  SW s1, 0(s0)
+  LW s0, 8(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, cap
+  ADD s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  SW zero, 0(s0)
+  LW s0, 8(sp)
+  ADDI s1, zero, 40
+  MULW s2, s0, s1
+  LA s0, rev
+  ADD s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 16(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s1, size
+  ADD s2, s1, s3
+  LW s1, 0(s2)
+  SW s1, 0(s0)
+  LW s0, 16(sp)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, size
+  ADD s1, s0, s2
+  LW s0, 16(sp)
   ADDI s2, zero, 4
   MULW s3, s0, s2
   LA s0, size
   ADD s2, s0, s3
   LW s0, 0(s2)
   ADDIW s2, s0, 1
-  SW s2, 0(s4)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, size
-  ADD s3, s0, s2
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
+  SW s2, 0(s1)
+  LW s0, 8(sp)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, size
   ADD s1, s0, s2
-  LW s0, 0(s1)
-  ADDIW s1, s0, 1
-  SW s1, 0(s3)
+  LW s0, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, size
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDIW s2, s0, 1
+  SW s2, 0(s1)
   LD ra, 24(sp)
-  LD s4, 32(sp)
-  LD s3, 40(sp)
-  LD s2, 48(sp)
-  LD s6, 56(sp)
-  LD s1, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
-  ADDI sp, sp, 96
+  LD s3, 32(sp)
+  LD s2, 40(sp)
+  LD s1, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -80

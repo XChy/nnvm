@@ -40,6 +40,7 @@ insert:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
+  LW s0, 8(sp)
   ADDI s1, zero, 0
   ADDI s2, zero, 1
   SUBW s3, s1, s2
@@ -184,6 +185,7 @@ delete:
   ADD s1, a1, zero
   SW s0, 32(sp)
   SW s1, 24(sp)
+  LW s0, 32(sp)
   ADDI s1, zero, 0
   ADDI s2, zero, 1
   SUBW s3, s1, s2
@@ -400,31 +402,32 @@ bb28:
   ADD s2, s1, s3
   ADDI s1, zero, 4
   MULW s3, s0, s1
-  LA s1, value
-  ADD s4, s1, s3
-  LW s1, 0(s4)
-  SW s1, 0(s2)
-  LW s1, 32(sp)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, right_child
-  ADD s2, s1, s3
-  LW s1, 32(sp)
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  LA s1, right_child
-  ADD s3, s1, s4
-  LW s1, 0(s3)
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
   LA s0, value
-  ADD s3, s0, s4
-  LW s0, 0(s3)
-  ADD a0, s1, zero
-  ADD a1, s0, zero
+  ADD s1, s0, s3
+  LW s0, 0(s1)
+  SW s0, 0(s2)
+  LW s0, 32(sp)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, right_child
+  ADD s1, s0, s2
+  LW s0, 32(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, right_child
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  LW s2, 0(sp)
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  LA s2, value
+  ADD s3, s2, s4
+  LW s2, 0(s3)
+  ADD a0, s0, zero
+  ADD a1, s2, zero
   CALL delete
   ADD s0, a0, zero
-  SW s0, 0(s2)
+  SW s0, 0(s1)
   JAL zero, bb27
 bb29:
   LW s0, 32(sp)
@@ -543,6 +546,7 @@ search:
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
+  LW s0, 16(sp)
   ADDI s1, zero, 0
   ADDI s2, zero, 1
   SUBW s3, s1, s2

@@ -114,10 +114,11 @@ bb4:
   ADDIW s3, s2, 1
   SW s3, 8(sp)
   LW s2, 0(sp)
-  ADDIW s4, s2, 1
-  SW s4, 0(sp)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
+  ADDIW s3, s2, 1
+  SW s3, 0(sp)
+  LW s2, 8(sp)
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
   ADD s2, s0, s4
   LW s3, 0(s2)
   XOR s2, s3, zero
@@ -372,11 +373,12 @@ bb25:
   ADDIW s3, s2, 1
   SW s3, 8(sp)
   LW s2, 16(sp)
-  ADDIW s4, s2, 1
-  SW s4, 16(sp)
+  ADDIW s3, s2, 1
+  SW s3, 16(sp)
   ADDI s2, zero, 4
-  MULW s5, s4, s2
-  ADD s2, s1, s5
+  MULW s4, s3, s2
+  ADD s2, s1, s4
+  LW s3, 8(sp)
   SW s3, 0(s2)
   JAL zero, bb26
 bb26:

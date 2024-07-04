@@ -20,7 +20,9 @@ entry40:
   store i32 1 to ptr %arr.index
   arr.index46 = ptradd ptr %y, i32 0
   store i32 1 to ptr %arr.index46
-  49 = call i32 exgcd(i32 7, i32 15, ptr %x, ptr %y)
+  a.load = load i32 from ptr %a
+  b.load = load i32 from ptr %b
+  49 = call i32 exgcd(i32 %a.load, i32 %b.load, ptr %x, ptr %y)
   50 = mul i32 0, i32 4
   51 = ptradd ptr %x, i32 %50
   52 = mul i32 0, i32 4
@@ -94,6 +96,7 @@ else:
   store i32 %26.load to ptr %24
   28 = mul i32 0, i32 4
   29 = ptradd ptr %y, i32 %28
+  t.load = load i32 from ptr %t
   a.stack.load31 = load i32 from ptr %a.stack
   b.stack.load32 = load i32 from ptr %b.stack
   33 = sdiv i32 %a.stack.load31, i32 %b.stack.load32
@@ -101,9 +104,10 @@ else:
   35 = ptradd ptr %y, i32 %34
   35.load = load i32 from ptr %35
   37 = mul i32 %33, i32 %35.load
-  38 = sub i32 %21.load, i32 %37
+  38 = sub i32 %t.load, i32 %37
   store i32 %38 to ptr %29
-  ret i32 %18
+  r.load = load i32 from ptr %r
+  ret i32 %r.load
 }
 
 

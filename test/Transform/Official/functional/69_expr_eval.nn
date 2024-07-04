@@ -160,7 +160,8 @@ entry147:
   store i32 %op to ptr %op.stack148
   store i32 %lhs to ptr %lhs.stack
   store i32 %rhs to ptr %rhs.stack
-  152 = icmp eq i32 %op, i32 43
+  op.stack148.load = load i32 from ptr %op.stack148
+  152 = icmp eq i32 %op.stack148.load, i32 43
   br i1 %152, bb %then153, bb %if.exit154
 then153:
   lhs.stack.load = load i32 from ptr %lhs.stack
@@ -243,7 +244,8 @@ entry121:
   132.load = load i32 from ptr %132
   134 = sub i32 %132.load, i32 1
   store i32 %134 to ptr %130
-  ret i32 %127.load
+  last.load = load i32 from ptr %last
+  ret i32 %last.load
 }
 
 i32 get_op_prec(i32 op) {
@@ -319,7 +321,8 @@ entry107:
   116.load = load i32 from ptr %116
   118 = mul i32 %116.load, i32 4
   119 = ptradd ptr %s, i32 %118
-  store i32 %v to ptr %119
+  v.stack.load = load i32 from ptr %v.stack
+  store i32 %v.stack.load to ptr %119
   ret 
 }
 

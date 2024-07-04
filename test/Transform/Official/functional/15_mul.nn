@@ -4,7 +4,8 @@ entry:
   %a = stack 4
   store i32 10 to ptr %a
   store i32 5 to ptr %b
-  5 = mul i32 10, i32 5
+  a.load = load i32 from ptr %a
+  5 = mul i32 %a.load, i32 5
   ret i32 %5
 }
 

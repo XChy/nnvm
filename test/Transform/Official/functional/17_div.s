@@ -12,7 +12,7 @@ main:
   SW s0, 8(sp)
   ADDI s0, zero, 5
   SW s0, 0(sp)
-  ADDI s0, zero, 10
+  LW s0, 8(sp)
   ADDI s1, zero, 5
   DIVW s2, s0, s1
   ADD a0, s2, zero

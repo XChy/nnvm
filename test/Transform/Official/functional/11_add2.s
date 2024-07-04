@@ -14,8 +14,9 @@ main:
   ADDI s1, zero, 1
   SUBW s2, s0, s1
   SW s2, 0(sp)
-  ADDIW s0, s2, 10
-  ADD a0, s0, zero
+  LW s0, 8(sp)
+  ADDW s1, s0, s2
+  ADD a0, s1, zero
   LD ra, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)

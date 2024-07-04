@@ -224,11 +224,17 @@ entry134:
   store float %cx to ptr %cx.stack
   store float %cy to ptr %cy.stack
   store float %r to ptr %r.stack
-  143 = fsub float %x, float %cx
+  x.stack135.load = load float from ptr %x.stack135
+  cx.stack.load = load float from ptr %cx.stack
+  143 = fsub float %x.stack135.load, float %cx.stack.load
   store float %143 to ptr %ux
-  147 = fsub float %y, float %cy
+  y.stack.load = load float from ptr %y.stack
+  cy.stack.load = load float from ptr %cy.stack
+  147 = fsub float %y.stack.load, float %cy.stack.load
   store float %147 to ptr %uy
-  150 = fmul float %143, float %143
+  ux.load = load float from ptr %ux
+  ux.load149 = load float from ptr %ux
+  150 = fmul float %ux.load, float %ux.load149
   153 = fmul float %147, float %147
   154 = fadd float %150, float %153
   155 = call float my_sqrt(float %154)
@@ -351,7 +357,8 @@ entry158:
   %x.stack159 = stack 4
   store float %x to ptr %x.stack159
   store float %y to ptr %y.stack160
-  164 = call float circle_sdf(float %x, float %y, float 0.400000, float 0.400000, float 0.100000)
+  x.stack159.load = load float from ptr %x.stack159
+  164 = call float circle_sdf(float %x.stack159.load, float %y, float 0.400000, float 0.400000, float 0.100000)
   store float %164 to ptr %sd0
   x.stack159.load166 = load float from ptr %x.stack159
   y.stack160.load167 = load float from ptr %y.stack160
@@ -452,9 +459,10 @@ while.body301:
   y.load311 = load i32 from ptr %y
   312 = si2f i32 %y.load311 to float
   store float %312 to ptr %yy
+  xx307.load = load float from ptr %xx307
   W.load315 = load i32 from ptr @W
   316 = si2f i32 %W.load315 to float
-  317 = fdiv float %309, float %316
+  317 = fdiv float %xx307.load, float %316
   H.load319 = load i32 from ptr @H
   320 = si2f i32 %H.load319 to float
   321 = fdiv float %312, float %320

@@ -12,7 +12,8 @@ entry73:
   %x.stack74 = stack 4
   store i32 %x to ptr %x.stack74
   store i32 %y to ptr %y.stack
-  77 = call i32 find(i32 %x)
+  x.stack74.load = load i32 from ptr %x.stack74
+  77 = call i32 find(i32 %x.stack74.load)
   store i32 %77 to ptr %x.stack74
   y.stack.load = load i32 from ptr %y.stack
   79 = call i32 find(i32 %y.stack.load)
@@ -106,7 +107,8 @@ if.exit60:
   69 = mul i32 %x.stack.load68, i32 4
   70 = ptradd ptr @fa, i32 %69
   store i32 %67 to ptr %70
-  ret i32 %67
+  asdf.load72 = load i32 from ptr %asdf
+  ret i32 %asdf.load72
 }
 
 external void putch(i32 )
@@ -178,7 +180,8 @@ then113:
   j.load127 = load i32 from ptr %j
   128 = mul i32 %j.load127, i32 4
   129 = ptradd ptr @u, i32 %128
-  store i32 %118.load to ptr %129
+  t.load = load i32 from ptr %t
+  store i32 %t.load to ptr %129
   i.load131 = load i32 from ptr %i
   132 = mul i32 %i.load131, i32 4
   133 = ptradd ptr @v, i32 %132
@@ -195,7 +198,8 @@ then113:
   j.load142 = load i32 from ptr %j
   143 = mul i32 %j.load142, i32 4
   144 = ptradd ptr @v, i32 %143
-  store i32 %133.load to ptr %144
+  t.load145 = load i32 from ptr %t
+  store i32 %t.load145 to ptr %144
   i.load146 = load i32 from ptr %i
   147 = mul i32 %i.load146, i32 4
   148 = ptradd ptr @c, i32 %147
@@ -212,7 +216,8 @@ then113:
   j.load157 = load i32 from ptr %j
   158 = mul i32 %j.load157, i32 4
   159 = ptradd ptr @c, i32 %158
-  store i32 %148.load to ptr %159
+  t.load160 = load i32 from ptr %t
+  store i32 %t.load160 to ptr %159
   br bb %if.exit114
 if.exit114:
   j.load161 = load i32 from ptr %j

@@ -34,8 +34,7 @@ fft:
   SD s3, 72(sp)
   SD s2, 80(sp)
   SD s1, 88(sp)
-  SD s5, 96(sp)
-  SD s0, 104(sp)
+  SD s0, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -43,9 +42,10 @@ fft:
   SW s1, 48(sp)
   SW s2, 40(sp)
   SW s3, 32(sp)
-  XORI s1, s2, 1
-  SLTIU s2, s1, 1
-  BNE s2, zero, bb1
+  LW s1, 40(sp)
+  XORI s2, s1, 1
+  SLTIU s1, s2, 1
+  BNE s1, zero, bb1
   JAL zero, bb2
 bb1:
   ADDI a0, zero, 1
@@ -54,8 +54,7 @@ bb1:
   LD s3, 72(sp)
   LD s2, 80(sp)
   LD s1, 88(sp)
-  LD s5, 96(sp)
-  LD s0, 104(sp)
+  LD s0, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb2:
@@ -191,29 +190,30 @@ bb10:
   LW s2, 0(s1)
   SW s2, 8(sp)
   LW s1, 48(sp)
+  LW s2, 24(sp)
+  ADDW s3, s1, s2
+  LW s1, 40(sp)
+  ADDI s2, zero, 2
+  DIVW s4, s1, s2
+  ADDW s1, s3, s4
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s2, 0(s1)
+  SW s2, 0(sp)
+  LW s1, 48(sp)
   LW s3, 24(sp)
   ADDW s4, s1, s3
-  LW s1, 40(sp)
-  ADDI s3, zero, 2
-  DIVW s5, s1, s3
-  ADDW s1, s4, s5
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  LW s3, 0(s1)
-  SW s3, 0(sp)
-  LW s1, 48(sp)
-  LW s4, 24(sp)
-  ADDW s5, s1, s4
   ADDI s1, zero, 4
-  MULW s4, s5, s1
-  ADD s1, s0, s4
+  MULW s3, s4, s1
+  ADD s1, s0, s3
+  LW s3, 8(sp)
   LW s4, 16(sp)
   ADD a0, s4, zero
-  ADD a1, s3, zero
+  ADD a1, s2, zero
   CALL multiply
-  ADD s3, a0, zero
-  ADDW s4, s2, s3
+  ADD s2, a0, zero
+  ADDW s4, s3, s2
   LA s2, mod
   LW s3, 0(s2)
   REMW s2, s4, s3
@@ -261,8 +261,7 @@ bb11:
   LD s3, 72(sp)
   LD s2, 80(sp)
   LD s1, 88(sp)
-  LD s5, 96(sp)
-  LD s0, 104(sp)
+  LD s0, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 power:

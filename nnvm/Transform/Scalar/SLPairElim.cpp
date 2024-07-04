@@ -18,6 +18,8 @@ bool SLPairElimPass::run(Function &F) {
 
     for (Instruction *I : incChange(*BB)) {
       if (auto *def = dyn_cast<StoreInst>(I)) {
+        // TODO: alias analysis
+        ptr2Store.clear();
         ptr2Store[def->getDest()] = def;
         continue;
       }

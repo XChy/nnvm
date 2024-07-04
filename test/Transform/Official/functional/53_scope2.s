@@ -75,9 +75,11 @@ bb6:
   SW s2, 24(sp)
   ADDI s0, zero, 11
   SW s0, 0(sp)
-  ADDIW s0, s2, 11
+  LW s0, 24(sp)
   ADDIW s1, s0, 11
-  SW s1, 24(sp)
+  LW s0, 8(sp)
+  ADDW s2, s1, s0
+  SW s2, 24(sp)
   JAL zero, bb7
 bb7:
   JAL zero, bb3

@@ -22,8 +22,10 @@ main:
   ADD s0, t6, zero
   ADDI s1, zero, 1
   SW s1, 0(s0)
-  ADDI a0, zero, 7
-  ADDI a1, zero, 15
+  LW s0, 24(sp)
+  LW s1, 16(sp)
+  ADD a0, s0, zero
+  ADD a1, s1, zero
   ADDI a2, sp, 8
   ADD a2, a2, zero
   ADDI a3, sp, 0
@@ -67,10 +69,9 @@ exgcd:
   SD ra, 40(sp)
   SD s3, 48(sp)
   SD s2, 56(sp)
-  SD s6, 64(sp)
-  SD s1, 72(sp)
-  SD s5, 80(sp)
-  SD s0, 88(sp)
+  SD s1, 64(sp)
+  SD s5, 72(sp)
+  SD s0, 80(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -97,10 +98,9 @@ bb2:
   LD ra, 40(sp)
   LD s3, 48(sp)
   LD s2, 56(sp)
-  LD s6, 64(sp)
-  LD s1, 72(sp)
-  LD s5, 80(sp)
-  LD s0, 88(sp)
+  LD s1, 64(sp)
+  LD s5, 72(sp)
+  LD s0, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb3:
@@ -116,40 +116,41 @@ bb4:
   CALL exgcd
   ADD s0, a0, zero
   SW s0, 8(sp)
-  ADDI s1, zero, 4
-  MUL s4, zero, s1
-  ADD s1, s2, s4
-  LW s4, 0(s1)
-  SW s4, 0(sp)
-  ADDI s1, zero, 4
-  MUL s5, zero, s1
-  ADD s1, s2, s5
-  ADDI s2, zero, 4
-  MUL s5, zero, s2
-  ADD s2, s3, s5
-  LW s5, 0(s2)
-  SW s5, 0(s1)
+  ADDI s0, zero, 4
+  MUL s1, zero, s0
+  ADD s0, s2, s1
+  LW s1, 0(s0)
+  SW s1, 0(sp)
+  ADDI s0, zero, 4
+  MUL s1, zero, s0
+  ADD s0, s2, s1
   ADDI s1, zero, 4
   MUL s2, zero, s1
   ADD s1, s3, s2
+  LW s2, 0(s1)
+  SW s2, 0(s0)
+  ADDI s0, zero, 4
+  MUL s1, zero, s0
+  ADD s0, s3, s1
+  LW s1, 0(sp)
   LW s2, 24(sp)
-  LW s5, 16(sp)
-  DIVW s6, s2, s5
+  LW s4, 16(sp)
+  DIVW s5, s2, s4
   ADDI s2, zero, 4
-  MUL s5, zero, s2
-  ADD s2, s3, s5
+  MUL s4, zero, s2
+  ADD s2, s3, s4
   LW s3, 0(s2)
-  MULW s2, s6, s3
-  SUBW s3, s4, s2
-  SW s3, 0(s1)
+  MULW s2, s5, s3
+  SUBW s3, s1, s2
+  SW s3, 0(s0)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   LD s4, 32(sp)
   LD ra, 40(sp)
   LD s3, 48(sp)
   LD s2, 56(sp)
-  LD s6, 64(sp)
-  LD s1, 72(sp)
-  LD s5, 80(sp)
-  LD s0, 88(sp)
+  LD s1, 64(sp)
+  LD s5, 72(sp)
+  LD s0, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)

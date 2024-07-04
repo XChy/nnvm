@@ -175,6 +175,7 @@ float_eq:
   FSGNJ.D fs1, fa1, fa1
   FSW fs0, 8(sp)
   FSW fs1, 0(sp)
+  FLW fs0, 8(sp)
   FSUB.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
   CALL float_abs
@@ -431,6 +432,7 @@ bb27:
   FMUL.S fs2, fs1, fs0
   FMUL.S fs1, fs2, fs0
   FSW fs1, 8(sp)
+  FLW fs0, 16(sp)
   FCVT.W.S s0, fs0, rtz
   ADD a0, s0, zero
   CALL circle_area

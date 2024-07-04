@@ -21,6 +21,7 @@ mmerge:
   ADD s1, a1, zero
   SW s0, 24(sp)
   SW s1, 16(sp)
+  LW s0, 24(sp)
   ADD a0, s0, zero
   CALL findfa
   ADD s0, a0, zero
@@ -184,7 +185,9 @@ bb13:
   SW s0, 104(sp)
   SW zero, 80(sp)
   SW zero, 72(sp)
-  ADDI a0, zero, 4
+  LA s0, n
+  LW s1, 0(s0)
+  ADD a0, s1, zero
   CALL init
   LA s0, n
   LW s1, 0(s0)

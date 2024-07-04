@@ -52,6 +52,7 @@ merge_sort:
   ADD s1, a1, zero
   SW s0, 48(sp)
   SW s1, 40(sp)
+  LW s0, 48(sp)
   ADDIW s2, s0, 1
   SLT s0, s2, s1
   XORI s1, s0, 1

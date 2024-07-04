@@ -11,62 +11,91 @@ entry:
   call void putch(i32 10)
   store i32 1 to ptr %a
   store i32 0 to ptr %putch
-  6 = add i32 1, i32 2
+  a.load = load i32 from ptr %a
+  6 = add i32 %a.load, i32 2
   store i32 %6 to ptr %a
   9 = add i32 %6, i32 3
   store i32 %9 to ptr %b
   11 = add i32 %9, i32 4
   store i32 %11 to ptr %b
-  14 = add i32 0, i32 %6
+  putch.load = load i32 from ptr %putch
+  a.load13 = load i32 from ptr %a
+  14 = add i32 %putch.load, i32 %a.load13
   16 = add i32 %14, i32 %11
   store i32 %16 to ptr %putch
-  18 = add i32 %11, i32 5
+  b.load17 = load i32 from ptr %b
+  18 = add i32 %b.load17, i32 5
   store i32 %18 to ptr %b
   21 = add i32 %18, i32 6
   store i32 %21 to ptr %main
-  24 = add i32 %6, i32 %21
+  a.load22 = load i32 from ptr %a
+  24 = add i32 %a.load22, i32 %21
   store i32 %24 to ptr %a
-  27 = add i32 %16, i32 %24
-  29 = add i32 %27, i32 %18
-  31 = add i32 %29, i32 %21
+  putch.load25 = load i32 from ptr %putch
+  27 = add i32 %putch.load25, i32 %24
+  b.load28 = load i32 from ptr %b
+  29 = add i32 %27, i32 %b.load28
+  main.load30 = load i32 from ptr %main
+  31 = add i32 %29, i32 %main.load30
   store i32 %31 to ptr %putch
-  34 = add i32 %18, i32 %24
+  b.load32 = load i32 from ptr %b
+  a.load33 = load i32 from ptr %a
+  34 = add i32 %b.load32, i32 %a.load33
   store i32 %34 to ptr %b
-  37 = add i32 %21, i32 7
+  main.load36 = load i32 from ptr %main
+  37 = add i32 %main.load36, i32 7
   store i32 %37 to ptr %a35
   39 = add i32 %37, i32 8
   store i32 %39 to ptr %a35
-  42 = add i32 %31, i32 %39
-  44 = add i32 %42, i32 %34
-  46 = add i32 %44, i32 %21
+  putch.load40 = load i32 from ptr %putch
+  42 = add i32 %putch.load40, i32 %39
+  b.load43 = load i32 from ptr %b
+  44 = add i32 %42, i32 %b.load43
+  main.load45 = load i32 from ptr %main
+  46 = add i32 %44, i32 %main.load45
   store i32 %46 to ptr %putch
-  49 = add i32 %34, i32 %39
+  b.load47 = load i32 from ptr %b
+  a35.load48 = load i32 from ptr %a35
+  49 = add i32 %b.load47, i32 %a35.load48
   store i32 %49 to ptr %b
-  52 = add i32 %21, i32 9
+  main.load51 = load i32 from ptr %main
+  52 = add i32 %main.load51, i32 9
   store i32 %52 to ptr %b50
-  54 = add i32 %39, i32 10
+  a35.load53 = load i32 from ptr %a35
+  54 = add i32 %a35.load53, i32 10
   store i32 %54 to ptr %a35
-  56 = add i32 %52, i32 12
+  b50.load = load i32 from ptr %b50
+  56 = add i32 %b50.load, i32 12
   store i32 %56 to ptr %b50
-  58 = add i32 %46, i32 11
+  putch.load57 = load i32 from ptr %putch
+  58 = add i32 %putch.load57, i32 11
   60 = add i32 %58, i32 %56
-  62 = add i32 %60, i32 %21
+  main.load61 = load i32 from ptr %main
+  62 = add i32 %60, i32 %main.load61
   store i32 %62 to ptr %putch
-  65 = add i32 %21, i32 %56
+  main.load63 = load i32 from ptr %main
+  b50.load64 = load i32 from ptr %b50
+  65 = add i32 %main.load63, i32 %b50.load64
   store i32 %65 to ptr %main
-  68 = add i32 %56, i32 13
+  b50.load67 = load i32 from ptr %b50
+  68 = add i32 %b50.load67, i32 13
   store i32 %68 to ptr %main66
   70 = add i32 %68, i32 11
   store i32 %70 to ptr %main66
-  72 = add i32 %62, i32 11
-  74 = add i32 %72, i32 %56
+  putch.load71 = load i32 from ptr %putch
+  72 = add i32 %putch.load71, i32 11
+  b50.load73 = load i32 from ptr %b50
+  74 = add i32 %72, i32 %b50.load73
   76 = add i32 %74, i32 %70
   store i32 %76 to ptr %putch
-  79 = sub i32 %76, i32 %65
+  main.load78 = load i32 from ptr %main
+  79 = sub i32 %76, i32 %main.load78
   store i32 %79 to ptr %putch
-  82 = sub i32 %79, i32 %49
+  b.load81 = load i32 from ptr %b
+  82 = sub i32 %79, i32 %b.load81
   store i32 %82 to ptr %putch
-  85 = sub i32 %82, i32 %24
+  a.load84 = load i32 from ptr %a
+  85 = sub i32 %82, i32 %a.load84
   store i32 %85 to ptr %putch
   87 = srem i32 %85, i32 77
   ret i32 %87

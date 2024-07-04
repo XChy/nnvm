@@ -32,7 +32,8 @@ entry:
   %a = stack 4
   store i32 0 to ptr %a
   store i32 3 to ptr %b
-  4 = icmp eq i32 0, i32 5
+  a.load = load i32 from ptr %a
+  4 = icmp eq i32 %a.load, i32 5
   br i1 %4, bb %then, bb %else
 then:
   br bb %while.cond

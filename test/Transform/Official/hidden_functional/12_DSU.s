@@ -25,6 +25,7 @@ same:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   CALL find
   ADD s0, a0, zero
@@ -251,6 +252,7 @@ bb23:
   LA s1, fa
   ADD s2, s1, s3
   SW s0, 0(s2)
+  LW s0, 0(sp)
   ADD a0, s0, zero
   LD ra, 16(sp)
   LD s3, 24(sp)

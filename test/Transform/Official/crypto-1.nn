@@ -30,11 +30,14 @@ entry70:
   store i32 271733878 to ptr %h3
   79 = sub i32 0, i32 1009589776
   store i32 %79 to ptr %h4
-  store i32 %input_len to ptr %orig_len
-  90 = mul i32 %input_len, i32 4
+  input_len.stack.load = load i32 from ptr %input_len.stack
+  store i32 %input_len.stack.load to ptr %orig_len
+  input_len.stack.load89 = load i32 from ptr %input_len.stack
+  90 = mul i32 %input_len.stack.load89, i32 4
   91 = ptradd ptr %input, i32 %90
   store i32 128 to ptr %91
-  93 = add i32 %input_len, i32 1
+  input_len.stack.load92 = load i32 from ptr %input_len.stack
+  93 = add i32 %input_len.stack.load92, i32 1
   store i32 %93 to ptr %input_len.stack
   br bb %while.cond
 while.cond:
@@ -377,8 +380,10 @@ entry46:
   %a.stack47 = stack 4
   store i32 %a to ptr %a.stack47
   store i32 %b to ptr %b.stack48
-  52 = call i32 _and(i32 %a, i32 %b)
-  53 = sub i32 %a, i32 %52
+  a.stack47.load = load i32 from ptr %a.stack47
+  a.stack47.load50 = load i32 from ptr %a.stack47
+  52 = call i32 _and(i32 %a.stack47.load50, i32 %b)
+  53 = sub i32 %a.stack47.load, i32 %52
   b.stack48.load54 = load i32 from ptr %b.stack48
   55 = add i32 %53, i32 %b.stack48.load54
   a.stack47.load56 = load i32 from ptr %a.stack47
@@ -394,7 +399,8 @@ entry60:
   %a.stack61 = stack 4
   store i32 %a to ptr %a.stack61
   store i32 %b to ptr %b.stack62
-  65 = call i32 _xor(i32 %a, i32 %b)
+  a.stack61.load = load i32 from ptr %a.stack61
+  65 = call i32 _xor(i32 %a.stack61.load, i32 %b)
   a.stack61.load66 = load i32 from ptr %a.stack61
   b.stack62.load67 = load i32 from ptr %b.stack62
   68 = call i32 _and(i32 %a.stack61.load66, i32 %b.stack62.load67)
@@ -417,7 +423,8 @@ entry35:
   %a.stack = stack 4
   store i32 %a to ptr %a.stack
   store i32 %b to ptr %b.stack
-  40 = add i32 %a, i32 %b
+  a.stack.load = load i32 from ptr %a.stack
+  40 = add i32 %a.stack.load, i32 %b
   ret i32 %40
 }
 

@@ -139,7 +139,8 @@ entry158:
   store i32 %m to ptr %m.stack
   store i32 %x to ptr %x.stack161
   store i32 %y to ptr %y.stack162
-  164 = icmp slt i32 %x, i32 0
+  x.stack161.load = load i32 from ptr %x.stack161
+  164 = icmp slt i32 %x.stack161.load, i32 0
   br i1 %164, bb %select.then165, bb %select.else166
 select.then165:
   store i1 1 to ptr %select168
@@ -209,7 +210,8 @@ entry22:
   store i32 %kernelid to ptr %kernelid.stack
   store i32 %x to ptr %x.stack
   store i32 %y to ptr %y.stack
-  27 = icmp eq i32 %kernelid, i32 0
+  kernelid.stack.load = load i32 from ptr %kernelid.stack
+  27 = icmp eq i32 %kernelid.stack.load, i32 0
   br i1 %27, bb %then, bb %if.exit
 then:
   x.stack.load = load i32 from ptr %x.stack

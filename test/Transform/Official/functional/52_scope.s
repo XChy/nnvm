@@ -70,9 +70,10 @@ func:
   SW s1, 8(sp)
   ADDI s0, zero, 1
   SW s0, 0(sp)
-  XORI s0, s1, 1
-  SLTIU s1, s0, 1
-  BNE s1, zero, bb10
+  LW s0, 8(sp)
+  XORI s1, s0, 1
+  SLTIU s0, s1, 1
+  BNE s0, zero, bb10
   JAL zero, bb12
 bb10:
   LW s0, 0(sp)

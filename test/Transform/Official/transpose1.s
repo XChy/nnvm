@@ -140,19 +140,19 @@ bb11:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 transpose:
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD s4, 48(sp)
   SD ra, 56(sp)
   SD s3, 64(sp)
   SD s2, 72(sp)
   SD s1, 80(sp)
-  SD s5, 88(sp)
-  SD s0, 96(sp)
+  SD s0, 88(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
   SW s0, 40(sp)
   SW s2, 32(sp)
+  LW s0, 40(sp)
   DIVW s3, s0, s2
   SW s3, 24(sp)
   SW zero, 16(sp)
@@ -178,9 +178,8 @@ bb15:
   LD s3, 64(sp)
   LD s2, 72(sp)
   LD s1, 80(sp)
-  LD s5, 88(sp)
-  LD s0, 96(sp)
-  ADDI sp, sp, 112
+  LD s0, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb16:
   LW s0, 8(sp)
@@ -218,31 +217,32 @@ bb20:
   LW s2, 0(s0)
   SW s2, 0(sp)
   LW s0, 8(sp)
-  LW s3, 24(sp)
-  MULW s4, s0, s3
+  LW s2, 24(sp)
+  MULW s3, s0, s2
   LW s0, 16(sp)
-  ADDW s3, s4, s0
+  ADDW s2, s3, s0
   ADDI s0, zero, 4
-  MULW s4, s3, s0
-  ADD s0, s1, s4
-  LW s3, 16(sp)
-  LW s4, 32(sp)
-  MULW s5, s3, s4
-  LW s3, 8(sp)
-  ADDW s4, s5, s3
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  SW s4, 0(s0)
-  LW s0, 16(sp)
+  MULW s3, s2, s0
+  ADD s0, s1, s3
+  LW s2, 16(sp)
   LW s3, 32(sp)
-  MULW s4, s0, s3
+  MULW s4, s2, s3
+  LW s2, 8(sp)
+  ADDW s3, s4, s2
+  ADDI s2, zero, 4
+  MULW s4, s3, s2
+  ADD s2, s1, s4
+  LW s3, 0(s2)
+  SW s3, 0(s0)
+  LW s0, 16(sp)
+  LW s2, 32(sp)
+  MULW s3, s0, s2
   LW s0, 8(sp)
-  ADDW s3, s4, s0
+  ADDW s2, s3, s0
   ADDI s0, zero, 4
-  MULW s4, s3, s0
-  ADD s0, s1, s4
+  MULW s3, s2, s0
+  ADD s0, s1, s3
+  LW s2, 0(sp)
   SW s2, 0(s0)
   LW s0, 8(sp)
   ADDIW s2, s0, 1

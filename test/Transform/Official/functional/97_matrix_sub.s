@@ -144,7 +144,8 @@ bb6:
   SW s0, 16(sp)
   ADDI s0, zero, 0
   SW s0, 24(sp)
-  ADDI a0, zero, 10
+  LW s0, 16(sp)
+  ADD a0, s0, zero
   CALL putch
   JAL zero, bb7
 bb7:
@@ -174,7 +175,8 @@ bb9:
   SW s0, 16(sp)
   ADDI s0, zero, 0
   SW s0, 24(sp)
-  ADDI a0, zero, 10
+  LW s0, 16(sp)
+  ADD a0, s0, zero
   CALL putch
   JAL zero, bb10
 bb10:

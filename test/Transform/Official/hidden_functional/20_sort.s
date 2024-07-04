@@ -156,14 +156,13 @@ bb11:
   SW s2, 24(sp)
   JAL zero, bb6
 sortC:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -80
   SD s4, 32(sp)
   SD ra, 40(sp)
   SD s3, 48(sp)
   SD s2, 56(sp)
   SD s1, 64(sp)
-  SD s5, 72(sp)
-  SD s0, 80(sp)
+  SD s0, 72(sp)
   ADD s0, a0, zero
   SW zero, 24(sp)
   JAL zero, bb13
@@ -189,9 +188,8 @@ bb15:
   LD s3, 48(sp)
   LD s2, 56(sp)
   LD s1, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
-  ADDI sp, sp, 96
+  LD s0, 72(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb16:
   LW s1, 8(sp)
@@ -224,19 +222,20 @@ bb18:
   LW s2, 0(s1)
   SW s2, 0(sp)
   LW s1, 24(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s2, 16(sp)
   ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  LW s3, 16(sp)
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  LW s4, 0(s3)
-  SW s4, 0(s1)
+  MULW s4, s2, s3
+  ADD s2, s0, s4
+  LW s3, 0(s2)
+  SW s3, 0(s1)
   LW s1, 16(sp)
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s2, 0(sp)
   SW s2, 0(s1)
   LW s1, 24(sp)
   ADDIW s2, s1, 1
@@ -461,8 +460,7 @@ sortA:
   SD s3, 40(sp)
   SD s2, 48(sp)
   SD s1, 56(sp)
-  SD s5, 64(sp)
-  SD s0, 72(sp)
+  SD s0, 64(sp)
   ADD s0, a0, zero
   SW zero, 16(sp)
   JAL zero, bb36
@@ -486,8 +484,7 @@ bb38:
   LD s3, 40(sp)
   LD s2, 48(sp)
   LD s1, 56(sp)
-  LD s5, 64(sp)
-  LD s0, 72(sp)
+  LD s0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb39:
@@ -526,19 +523,20 @@ bb42:
   LW s2, 0(s1)
   SW s2, 0(sp)
   LW s1, 16(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s2, 8(sp)
   ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  LW s3, 8(sp)
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  LW s4, 0(s3)
-  SW s4, 0(s1)
+  MULW s4, s2, s3
+  ADD s2, s0, s4
+  LW s3, 0(s2)
+  SW s3, 0(s1)
   LW s1, 8(sp)
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s2, 0(sp)
   SW s2, 0(s1)
   JAL zero, bb43
 bb43:

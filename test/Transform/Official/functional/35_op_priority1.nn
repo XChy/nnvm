@@ -8,8 +8,11 @@ entry:
   store i32 4 to ptr %b
   store i32 2 to ptr %c
   store i32 2 to ptr %d
-  8 = mul i32 10, i32 4
-  9 = add i32 2, i32 %8
+  c.load = load i32 from ptr %c
+  a.load = load i32 from ptr %a
+  b.load = load i32 from ptr %b
+  8 = mul i32 %a.load, i32 %b.load
+  9 = add i32 %c.load, i32 %8
   11 = sub i32 %9, i32 2
   ret i32 %11
 }

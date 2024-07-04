@@ -8,7 +8,8 @@ entry24:
   %p.stack = stack 4
   store i32 %p to ptr %p.stack
   store i32 %q to ptr %q.stack
-  30 = call i32 find(i32 %p)
+  p.stack.load = load i32 from ptr %p.stack
+  30 = call i32 find(i32 %p.stack.load)
   store i32 %30 to ptr %root_p
   q.stack.load = load i32 from ptr %q.stack
   32 = call i32 find(i32 %q.stack.load)

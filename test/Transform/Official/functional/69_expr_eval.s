@@ -359,6 +359,7 @@ eval_op:
   SW s0, 16(sp)
   SW s1, 8(sp)
   SW s2, 0(sp)
+  LW s0, 16(sp)
   XORI s1, s0, 43
   SLTIU s0, s1, 1
   BNE s0, zero, bb26
@@ -493,13 +494,12 @@ stack_peek:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 stack_pop:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 4
   MUL s2, zero, s1
@@ -511,23 +511,23 @@ stack_pop:
   LW s2, 0(s1)
   SW s2, 0(sp)
   ADDI s1, zero, 4
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  LW s0, 0(s3)
-  ADDI s3, zero, 1
-  SUBW s4, s0, s3
-  SW s4, 0(s1)
-  ADD a0, s2, zero
+  MUL s2, zero, s1
+  ADD s1, s0, s2
+  ADDI s2, zero, 4
+  MUL s3, zero, s2
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 1
+  SUBW s3, s0, s2
+  SW s3, 0(s1)
+  LW s0, 0(sp)
+  ADD a0, s0, zero
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 get_op_prec:
   ADDI sp, sp, -64
@@ -616,40 +616,39 @@ bb52:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 stack_push:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SW s1, 0(sp)
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDIW s3, s4, 1
-  SW s3, 0(s2)
+  ADDI s1, zero, 4
+  MUL s2, zero, s1
+  ADD s1, s0, s2
   ADDI s2, zero, 4
   MUL s3, zero, s2
   ADD s2, s0, s3
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  ADD s2, s0, s4
-  SW s1, 0(s2)
+  ADDIW s2, s3, 1
+  SW s2, 0(s1)
+  ADDI s1, zero, 4
+  MUL s2, zero, s1
+  ADD s1, s0, s2
+  LW s2, 0(s1)
+  ADDI s1, zero, 4
+  MULW s3, s2, s1
+  ADD s1, s0, s3
+  LW s0, 0(sp)
+  SW s0, 0(s1)
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 is_num:
   ADDI sp, sp, -48

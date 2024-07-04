@@ -18,6 +18,7 @@ func6:
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
+  LW s0, 16(sp)
   XOR s1, s0, zero
   SLTU s0, zero, s1
   BNE s0, zero, bb1
@@ -186,6 +187,7 @@ func4:
   SW s0, 16(sp)
   SW s1, 8(sp)
   SW s2, 0(sp)
+  LW s0, 16(sp)
   XOR s1, s0, zero
   SLTU s0, zero, s1
   BNE s0, zero, bb21

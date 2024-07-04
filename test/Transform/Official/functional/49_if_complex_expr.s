@@ -20,11 +20,12 @@ main:
   SW s2, 40(sp)
   ADDI s0, zero, 2
   SW s0, 32(sp)
-  ADDI s0, zero, 1
-  MULW s1, s2, s0
+  LW s0, 40(sp)
+  ADDI s1, zero, 1
+  MULW s2, s0, s1
   ADDI s0, zero, 2
-  DIVW s2, s1, s0
-  SLT s0, s2, zero
+  DIVW s1, s2, s0
+  SLT s0, s1, zero
   BNE s0, zero, bb1
   JAL zero, bb2
 bb1:

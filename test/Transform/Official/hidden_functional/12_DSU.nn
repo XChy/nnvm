@@ -7,7 +7,8 @@ entry89:
   %x.stack90 = stack 4
   store i32 %x to ptr %x.stack90
   store i32 %y to ptr %y.stack
-  93 = call i32 find(i32 %x)
+  x.stack90.load = load i32 from ptr %x.stack90
+  93 = call i32 find(i32 %x.stack90.load)
   y.stack.load = load i32 from ptr %y.stack
   95 = call i32 find(i32 %y.stack.load)
   96 = icmp eq i32 %93, i32 %95
@@ -160,7 +161,8 @@ else76:
   85 = mul i32 %x.stack.load84, i32 4
   86 = ptradd ptr @fa, i32 %85
   store i32 %83 to ptr %86
-  ret i32 %83
+  pa.load88 = load i32 from ptr %pa
+  ret i32 %pa.load88
 }
 
 external void putch(i32 )

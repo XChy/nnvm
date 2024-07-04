@@ -77,7 +77,8 @@ then40:
   i.load54 = load i32 from ptr %i
   55 = mul i32 %i.load54, i32 4
   56 = ptradd ptr %A, i32 %55
-  store i32 %45.load to ptr %56
+  tmp.load = load i32 from ptr %tmp
+  store i32 %tmp.load to ptr %56
   br bb %if.exit41
 if.exit41:
   i.load58 = load i32 from ptr %i
@@ -129,7 +130,8 @@ entry60:
   81 = ptradd ptr %a, i32 %80
   store i32 8 to ptr %81
   store i32 0 to ptr %i82
-  84 = call i32 select_sort(ptr %a, i32 10)
+  n.load = load i32 from ptr @n
+  84 = call i32 select_sort(ptr %a, i32 %n.load)
   store i32 %84 to ptr %i82
   br bb %while.cond85
 while.cond85:

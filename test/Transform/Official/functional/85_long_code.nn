@@ -86,8 +86,9 @@ else408:
   435 = add i32 %434, i32 1
   436 = mul i32 %435, i32 4
   437 = ptradd ptr %arr, i32 %436
+  sum379.load438 = load i32 from ptr %sum379
   stride.stack378.load439 = load i32 from ptr %stride.stack378
-  440 = sdiv i32 %424, i32 %stride.stack378.load439
+  440 = sdiv i32 %sum379.load438, i32 %stride.stack378.load439
   store i32 %440 to ptr %437
   br bb %if.exit407
 while.cond447:
@@ -183,7 +184,8 @@ while.body259:
   275.load = load i32 from ptr %275
   277 = add i32 %275.load, i32 1
   store i32 %277 to ptr %272
-  279 = mul i32 %268.load, i32 4
+  num.load278 = load i32 from ptr %num
+  279 = mul i32 %num.load278, i32 4
   280 = ptradd ptr %count, i32 %279
   280.load = load i32 from ptr %280
   max.load = load i32 from ptr %max
@@ -346,7 +348,8 @@ while.body299:
   j297.load316 = load i32 from ptr %j297
   317 = mul i32 %j297.load316, i32 4
   318 = ptradd ptr %arr, i32 %317
-  store i32 %307.load to ptr %318
+  temp295.load = load i32 from ptr %temp295
+  store i32 %temp295.load to ptr %318
   i296.load320 = load i32 from ptr %i296
   321 = add i32 %i296.load320, i32 1
   store i32 %321 to ptr %i296
@@ -376,7 +379,8 @@ entry107:
   %low.stack = stack 4
   store i32 %low to ptr %low.stack
   store i32 %high to ptr %high.stack
-  112 = icmp slt i32 %low, i32 %high
+  low.stack.load = load i32 from ptr %low.stack
+  112 = icmp slt i32 %low.stack.load, i32 %high
   br i1 %112, bb %then113, bb %if.exit114
 then113:
   low.stack.load116 = load i32 from ptr %low.stack
@@ -720,7 +724,8 @@ while.exit585:
   store i32 %597 to ptr %t
   store i32 0 to ptr %i529
   store i32 31 to ptr %t
-  600 = call i32 QuickSort(ptr %result, i32 0, i32 31)
+  i529.load598 = load i32 from ptr %i529
+  600 = call i32 QuickSort(ptr %result, i32 %i529.load598, i32 31)
   store i32 %600 to ptr %t
   br bb %while.cond601
 while.cond601:
@@ -920,7 +925,8 @@ then:
   j.load47 = load i32 from ptr %j
   48 = mul i32 %j.load47, i32 4
   49 = ptradd ptr %arr, i32 %48
-  store i32 %37.load to ptr %49
+  tmp.load = load i32 from ptr %tmp
+  store i32 %tmp.load to ptr %49
   br bb %if.exit
 if.exit:
   j.load51 = load i32 from ptr %j

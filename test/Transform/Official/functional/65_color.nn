@@ -18,15 +18,20 @@ entry8:
   store i32 %d to ptr %d.stack
   store i32 %e to ptr %e.stack
   store i32 %last to ptr %last.stack
-  16 = mul i32 %a, i32 2939328
+  a.stack9.load = load i32 from ptr %a.stack9
+  16 = mul i32 %a.stack9.load, i32 2939328
   17 = ptradd ptr @dp, i32 %16
-  19 = mul i32 %b, i32 163296
+  b.stack10.load = load i32 from ptr %b.stack10
+  19 = mul i32 %b.stack10.load, i32 163296
   20 = ptradd ptr %17, i32 %19
-  22 = mul i32 %c, i32 9072
+  c.stack.load = load i32 from ptr %c.stack
+  22 = mul i32 %c.stack.load, i32 9072
   23 = ptradd ptr %20, i32 %22
-  25 = mul i32 %d, i32 504
+  d.stack.load = load i32 from ptr %d.stack
+  25 = mul i32 %d.stack.load, i32 504
   26 = ptradd ptr %23, i32 %25
-  28 = mul i32 %e, i32 28
+  e.stack.load = load i32 from ptr %e.stack
+  28 = mul i32 %e.stack.load, i32 28
   29 = ptradd ptr %26, i32 %28
   31 = mul i32 %last, i32 4
   32 = ptradd ptr %29, i32 %31
@@ -243,7 +248,8 @@ entry:
   %a.stack = stack 4
   store i32 %a to ptr %a.stack
   store i32 %b to ptr %b.stack
-  5 = icmp eq i32 %a, i32 %b
+  a.stack.load = load i32 from ptr %a.stack
+  5 = icmp eq i32 %a.stack.load, i32 %b
   br i1 %5, bb %then, bb %if.exit
 then:
   ret i32 1

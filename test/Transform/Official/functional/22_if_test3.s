@@ -12,7 +12,7 @@ ififElse:
   SW s0, 8(sp)
   ADDI s0, zero, 10
   SW s0, 0(sp)
-  ADDI s0, zero, 5
+  LW s0, 8(sp)
   XORI s1, s0, 5
   SLTIU s0, s1, 1
   BNE s0, zero, bb1

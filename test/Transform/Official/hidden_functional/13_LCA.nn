@@ -16,7 +16,8 @@ entry159:
   %x.stack160 = stack 4
   store i32 %x to ptr %x.stack160
   store i32 %y to ptr %y.stack
-  163 = mul i32 %x, i32 4
+  x.stack160.load = load i32 from ptr %x.stack160
+  163 = mul i32 %x.stack160.load, i32 4
   164 = ptradd ptr @dep, i32 %163
   164.load = load i32 from ptr %164
   167 = mul i32 %y, i32 4
@@ -29,7 +30,8 @@ then171:
   store i32 %x.stack160.load174 to ptr %t
   y.stack.load175 = load i32 from ptr %y.stack
   store i32 %y.stack.load175 to ptr %x.stack160
-  store i32 %x.stack160.load174 to ptr %y.stack
+  t.load = load i32 from ptr %t
+  store i32 %t.load to ptr %y.stack
   br bb %if.exit172
 if.exit172:
   store i32 19 to ptr %i177
@@ -201,7 +203,8 @@ entry94:
   %x.stack = stack 4
   store i32 %x to ptr %x.stack
   store i32 %d to ptr %d.stack
-  98 = mul i32 %x, i32 4
+  x.stack.load = load i32 from ptr %x.stack
+  98 = mul i32 %x.stack.load, i32 4
   99 = ptradd ptr @dep, i32 %98
   store i32 %d to ptr %99
   store i32 0 to ptr %i101
@@ -289,22 +292,26 @@ entry51:
   cnt.load58 = load i32 from ptr @cnt
   59 = mul i32 %cnt.load58, i32 4
   60 = ptradd ptr @next, i32 %59
-  62 = mul i32 %from, i32 4
+  from.stack.load = load i32 from ptr %from.stack
+  62 = mul i32 %from.stack.load, i32 4
   63 = ptradd ptr @head, i32 %62
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  66 = mul i32 %from, i32 4
+  from.stack.load65 = load i32 from ptr %from.stack
+  66 = mul i32 %from.stack.load65, i32 4
   67 = ptradd ptr @head, i32 %66
   cnt.load68 = load i32 from ptr @cnt
   store i32 %cnt.load68 to ptr %67
   cnt.load69 = load i32 from ptr @cnt
   70 = add i32 %cnt.load69, i32 1
   store i32 %70 to ptr @cnt
-  72 = mul i32 %To, i32 80
+  To.stack.load71 = load i32 from ptr %To.stack
+  72 = mul i32 %To.stack.load71, i32 80
   73 = ptradd ptr @f, i32 %72
   74 = mul i32 0, i32 4
   75 = ptradd ptr %73, i32 %74
-  store i32 %from to ptr %75
+  from.stack.load76 = load i32 from ptr %from.stack
+  store i32 %from.stack.load76 to ptr %75
   ret 
 }
 

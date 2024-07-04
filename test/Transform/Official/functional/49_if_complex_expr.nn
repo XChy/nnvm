@@ -15,7 +15,8 @@ entry:
   6 = sub i32 0, i32 2
   store i32 %6 to ptr %d
   store i32 2 to ptr %result
-  8 = mul i32 %6, i32 1
+  d.load = load i32 from ptr %d
+  8 = mul i32 %d.load, i32 1
   9 = sdiv i32 %8, i32 2
   10 = icmp slt i32 %9, i32 0
   br i1 %10, bb %select.then, bb %select.else

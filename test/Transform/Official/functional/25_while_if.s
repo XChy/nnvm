@@ -32,6 +32,7 @@ deepWhileBr:
   ADD s1, a1, zero
   SW s0, 32(sp)
   SW s1, 24(sp)
+  LW s0, 32(sp)
   ADDW s2, s0, s1
   SW s2, 16(sp)
   JAL zero, bb2

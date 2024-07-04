@@ -14,8 +14,8 @@ ifElseIf:
   SW s0, 32(sp)
   ADDI s0, zero, 10
   SW s0, 24(sp)
-  ADDI s0, zero, 6
-  XORI s1, s0, 5
+  LW s0, 32(sp)
+  XORI s1, s0, 6
   SLTIU s0, s1, 1
   BNE s0, zero, bb1
   JAL zero, bb2

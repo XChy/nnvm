@@ -5,7 +5,8 @@ entry309:
   %a.stack310 = stack 4
   store float %a to ptr %a.stack310
   store float %x to ptr %x.stack311
-  314 = call float my_ln(float %a)
+  a.stack310.load = load float from ptr %a.stack310
+  314 = call float my_ln(float %a.stack310.load)
   315 = fmul float %x, float %314
   316 = call float my_exp(float %315)
   ret float %316
@@ -59,7 +60,8 @@ if.exit273:
   285 = fsub float %x.stack268.load282, float %284
   store float %285 to ptr %x.stack268
   e.load = load float from ptr @e
-  289 = call float my_pow(float %e.load, i32 %281)
+  n.load288 = load i32 from ptr %n
+  289 = call float my_pow(float %e.load, i32 %n.load288)
   store float %289 to ptr %e1
   x.stack268.load291 = load float from ptr %x.stack268
   292 = call float eee(float %x.stack268.load291)
@@ -122,9 +124,14 @@ entry215:
   store float %b to ptr %b.stack217
   store float %eps to ptr %eps.stack218
   store i32 %flag to ptr %flag.stack219
-  226 = call float simpson(float %a, float %b, i32 %flag)
+  a.stack216.load = load float from ptr %a.stack216
+  b.stack217.load = load float from ptr %b.stack217
+  eps.stack218.load = load float from ptr %eps.stack218
+  a.stack216.load223 = load float from ptr %a.stack216
+  b.stack217.load224 = load float from ptr %b.stack217
+  226 = call float simpson(float %a.stack216.load223, float %b.stack217.load224, i32 %flag)
   flag.stack219.load227 = load i32 from ptr %flag.stack219
-  228 = call float asr5(float %a, float %b, float %eps, float %226, i32 %flag.stack219.load227)
+  228 = call float asr5(float %a.stack216.load, float %b.stack217.load, float %eps.stack218.load, float %226, i32 %flag.stack219.load227)
   ret float %228
 }
 
@@ -143,12 +150,17 @@ entry152:
   store float %eps to ptr %eps.stack
   store float %A to ptr %A.stack
   store i32 %flag to ptr %flag.stack157
-  162 = fsub float %b, float %a
+  a.stack153.load = load float from ptr %a.stack153
+  b.stack154.load = load float from ptr %b.stack154
+  a.stack153.load161 = load float from ptr %a.stack153
+  162 = fsub float %b.stack154.load, float %a.stack153.load161
   163 = si2f i32 2 to float
   164 = fdiv float %162, float %163
-  165 = fadd float %a, float %164
+  165 = fadd float %a.stack153.load, float %164
   store float %165 to ptr %c158
-  170 = call float simpson(float %a, float %165, i32 %flag)
+  a.stack153.load167 = load float from ptr %a.stack153
+  flag.stack157.load = load i32 from ptr %flag.stack157
+  170 = call float simpson(float %a.stack153.load167, float %165, i32 %flag.stack157.load)
   store float %170 to ptr %L
   c158.load172 = load float from ptr %c158
   b.stack154.load173 = load float from ptr %b.stack154
@@ -207,12 +219,16 @@ entry99:
   store float %a to ptr %a.stack100
   store float %b to ptr %b.stack
   store i32 %flag to ptr %flag.stack
-  107 = fsub float %b, float %a
+  a.stack100.load = load float from ptr %a.stack100
+  b.stack.load = load float from ptr %b.stack
+  a.stack100.load106 = load float from ptr %a.stack100
+  107 = fsub float %b.stack.load, float %a.stack100.load106
   108 = si2f i32 2 to float
   109 = fdiv float %107, float %108
-  110 = fadd float %a, float %109
+  110 = fadd float %a.stack100.load, float %109
   store float %110 to ptr %c103
-  112 = icmp eq i32 %flag, i32 1
+  flag.stack.load = load i32 from ptr %flag.stack
+  112 = icmp eq i32 %flag.stack.load, i32 1
   br i1 %112, bb %then113, bb %if.exit114
 then113:
   a.stack100.load115 = load float from ptr %a.stack100

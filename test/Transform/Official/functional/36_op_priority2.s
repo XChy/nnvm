@@ -17,12 +17,13 @@ main:
   SW s0, 8(sp)
   ADDI s0, zero, 2
   SW s0, 0(sp)
-  ADDI s0, zero, 10
-  ADDIW s1, s0, 2
-  ADDI s0, zero, 4
-  ADDI s2, zero, 2
-  SUBW s3, s0, s2
-  MULW s0, s1, s3
+  LW s0, 8(sp)
+  LW s1, 24(sp)
+  ADDW s2, s0, s1
+  LW s0, 16(sp)
+  ADDI s1, zero, 2
+  SUBW s3, s0, s1
+  MULW s0, s2, s3
   ADD a0, s0, zero
   LD ra, 32(sp)
   LD s3, 40(sp)

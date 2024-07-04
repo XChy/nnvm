@@ -217,8 +217,9 @@ getvalue:
   SW s2, 40(sp)
   SW s3, 32(sp)
   SW s4, 24(sp)
-  SLT s1, s3, zero
-  BNE s1, zero, bb22
+  LW s1, 32(sp)
+  SLT s2, s1, zero
+  BNE s2, zero, bb22
   JAL zero, bb23
 bb22:
   ADDI s1, zero, 1
@@ -311,6 +312,7 @@ reduce:
   SW s0, 80(sp)
   SW s1, 72(sp)
   SW s2, 64(sp)
+  LW s0, 80(sp)
   XOR s1, s0, zero
   SLTIU s0, s1, 1
   BNE s0, zero, bb34

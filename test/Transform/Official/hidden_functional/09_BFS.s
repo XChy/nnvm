@@ -55,12 +55,13 @@ same:
   ADD s1, a1, zero
   SW s0, 40(sp)
   SW s1, 32(sp)
-  LA s1, h
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  LA s1, tail
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
+  LA s0, h
+  ADDI s1, zero, 0
+  SW s1, 0(s0)
+  LA s0, tail
+  ADDI s1, zero, 0
+  SW s1, 0(s0)
+  LW s0, 40(sp)
   ADD a0, s0, zero
   CALL inqueue
   ADDI s0, zero, 0
@@ -230,110 +231,116 @@ bb17:
 inqueue:
   ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s1, inq
-  ADD s3, s1, s2
-  ADDI s1, zero, 1
-  SW s1, 0(s3)
+  LA s0, inq
+  ADD s1, s0, s2
+  ADDI s0, zero, 1
+  SW s0, 0(s1)
+  LA s0, tail
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   LA s1, tail
-  LW s2, 0(s1)
-  ADDIW s1, s2, 1
-  LA s2, tail
-  SW s1, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, que
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  SW s0, 0(s1)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, que
+  ADD s1, s0, s2
+  LW s0, 0(sp)
+  SW s0, 0(s1)
   LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 add_edge:
-  ADDI sp, sp, -80
+  ADDI sp, sp, -64
   SD ra, 16(sp)
-  SD s4, 24(sp)
-  SD s3, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 24(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
-  LA s2, cnt
-  LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, to
-  ADD s3, s2, s4
-  SW s1, 0(s3)
-  LA s2, cnt
-  LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, next
-  ADD s3, s2, s4
-  ADDI s2, zero, 4
-  MULW s4, s0, s2
-  LA s2, head
-  ADD s5, s2, s4
-  LW s2, 0(s5)
-  SW s2, 0(s3)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, head
-  ADD s4, s2, s3
-  LA s2, cnt
-  LW s3, 0(s2)
-  SW s3, 0(s4)
-  LA s2, cnt
-  LW s3, 0(s2)
-  ADDIW s2, s3, 1
-  LA s3, cnt
-  SW s2, 0(s3)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  LA s3, to
-  ADD s5, s3, s4
-  SW s0, 0(s5)
+  LA s0, cnt
+  LW s2, 0(s0)
   ADDI s0, zero, 4
   MULW s3, s2, s0
+  LA s0, to
+  ADD s2, s0, s3
+  SW s1, 0(s2)
+  LA s0, cnt
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
   LA s0, next
-  ADD s4, s0, s3
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
+  ADD s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
   LA s0, head
-  ADD s5, s0, s3
-  LW s0, 0(s5)
-  SW s0, 0(s4)
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  SW s0, 0(s1)
+  LW s0, 8(sp)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, head
-  ADD s1, s0, s3
+  ADD s1, s0, s2
+  LA s0, cnt
+  LW s2, 0(s0)
   SW s2, 0(s1)
-  ADDIW s0, s2, 1
+  LA s0, cnt
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
+  LA s1, cnt
+  SW s0, 0(s1)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, to
+  ADD s1, s0, s2
+  LW s0, 8(sp)
+  SW s0, 0(s1)
+  LA s0, cnt
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
+  LA s0, next
+  ADD s1, s0, s2
+  LW s0, 0(sp)
+  ADDI s2, zero, 4
+  MULW s3, s0, s2
+  LA s0, head
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  SW s0, 0(s1)
+  LW s0, 0(sp)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, head
+  ADD s1, s0, s2
+  LA s0, cnt
+  LW s2, 0(s0)
+  SW s2, 0(s1)
+  LA s0, cnt
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   LA s1, cnt
   SW s0, 0(s1)
   LD ra, 16(sp)
-  LD s4, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD s3, 24(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -80
@@ -443,10 +450,9 @@ bb32:
 pop_queue:
   ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   LA s0, h
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -454,21 +460,22 @@ pop_queue:
   SW s0, 0(s1)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s1, que
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  SW s1, 0(sp)
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
+  LA s0, que
+  ADD s1, s0, s2
+  LW s0, 0(s1)
+  SW s0, 0(sp)
+  LA s0, h
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
   LA s0, que
   ADD s1, s0, s2
   LW s0, 0(s1)
   ADD a0, s0, zero
   LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 quick_read:

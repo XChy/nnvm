@@ -37,32 +37,42 @@ entry158:
   173 = sdiv i32 %height.load172, i32 2
   store i32 %173 to ptr %hheight
   x.stack159.load = load i32 from ptr %x.stack159
-  177 = sub i32 %x.stack159.load, i32 %170
+  hwidth.load = load i32 from ptr %hwidth
+  177 = sub i32 %x.stack159.load, i32 %hwidth.load
   store i32 %177 to ptr %xt
   y.stack.load = load i32 from ptr %y.stack
-  181 = sub i32 %y.stack.load, i32 %173
+  hheight.load = load i32 from ptr %hheight
+  181 = sub i32 %y.stack.load, i32 %hheight.load
   store i32 %181 to ptr %yt
-  185 = si2f i32 %177 to float
-  186 = fmul float %185, float %167
+  xt.load = load i32 from ptr %xt
+  cosma.load = load float from ptr %cosma
+  185 = si2f i32 %xt.load to float
+  186 = fmul float %185, float %cosma.load
   sinma.load = load float from ptr %sinma
   189 = si2f i32 %181 to float
   190 = fmul float %189, float %sinma.load
   191 = fsub float %186, float %190
-  193 = si2f i32 %170 to float
+  hwidth.load192 = load i32 from ptr %hwidth
+  193 = si2f i32 %hwidth.load192 to float
   194 = fadd float %191, float %193
   195 = f2si float %194 to i32
   store i32 %195 to ptr %src_x
+  xt.load197 = load i32 from ptr %xt
   sinma.load198 = load float from ptr %sinma
-  199 = si2f i32 %177 to float
+  199 = si2f i32 %xt.load197 to float
   200 = fmul float %199, float %sinma.load198
-  203 = si2f i32 %181 to float
-  204 = fmul float %203, float %167
+  yt.load201 = load i32 from ptr %yt
+  cosma.load202 = load float from ptr %cosma
+  203 = si2f i32 %yt.load201 to float
+  204 = fmul float %203, float %cosma.load202
   205 = fadd float %200, float %204
-  207 = si2f i32 %173 to float
+  hheight.load206 = load i32 from ptr %hheight
+  207 = si2f i32 %hheight.load206 to float
   208 = fadd float %205, float %207
   209 = f2si float %208 to i32
   store i32 %209 to ptr %src_y
-  211 = icmp slt i32 %195, i32 0
+  src_x.load = load i32 from ptr %src_x
+  211 = icmp slt i32 %src_x.load, i32 0
   br i1 %211, bb %select.then212, bb %select.else213
 select.then212:
   store i1 1 to ptr %select215

@@ -89,7 +89,8 @@ bb3:
   SW s0, 24(sp)
   ADDIW s1, s0, 1
   SW s1, 16(sp)
-  ADD a0, zero, zero
+  LW s0, 248(sp)
+  ADD a0, s0, zero
   CALL putint
   LW s0, 240(sp)
   ADD a0, s0, zero

@@ -19,6 +19,7 @@ QuickSort:
   ADD s2, a2, zero
   SW s1, 56(sp)
   SW s2, 48(sp)
+  LW s1, 56(sp)
   SLT s3, s1, s2
   BNE s3, zero, bb1
   JAL zero, bb2
@@ -273,9 +274,10 @@ main:
   SW zero, 16(sp)
   ADDI s0, zero, 9
   SW s0, 8(sp)
+  LW s0, 16(sp)
   ADDI a0, sp, 24
   ADD a0, a0, zero
-  ADD a1, zero, zero
+  ADD a1, s0, zero
   ADDI a2, zero, 9
   CALL QuickSort
   ADD s0, a0, zero

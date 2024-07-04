@@ -23,12 +23,12 @@ main:
   MULW s1, s2, s0
   ADDI s0, zero, 2
   DIVW s2, s1, s0
-  ADDI s0, zero, 5
-  ADDI s1, zero, 5
+  LW s0, 32(sp)
+  LW s1, 24(sp)
   SUBW s3, s0, s1
   ADDW s0, s2, s3
-  ADDI s1, zero, 3
-  ADDIW s2, s1, 1
+  LW s1, 16(sp)
+  ADDIW s2, s1, 3
   ADDI s1, zero, 0
   SUBW s3, s1, s2
   ADDI s1, zero, 2

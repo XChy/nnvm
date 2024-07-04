@@ -15,6 +15,7 @@ MAX:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
+  LW s0, 8(sp)
   XOR s2, s0, s1
   SLTIU s0, s2, 1
   BNE s0, zero, bb1

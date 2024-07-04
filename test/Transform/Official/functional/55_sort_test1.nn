@@ -149,7 +149,8 @@ then:
   j.load47 = load i32 from ptr %j
   48 = mul i32 %j.load47, i32 4
   49 = ptradd ptr %arr, i32 %48
-  store i32 %37.load to ptr %49
+  tmp.load = load i32 from ptr %tmp
+  store i32 %tmp.load to ptr %49
   br bb %if.exit
 if.exit:
   j.load51 = load i32 from ptr %j

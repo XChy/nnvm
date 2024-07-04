@@ -18,10 +18,9 @@ __HELLO:
 main:
   ADDI sp, sp, -64
   SD ra, 24(sp)
-  SD s3, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s0, 56(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   LA s0, __HELLO
   ADD a0, s0, zero
   CALL putstr
@@ -42,19 +41,19 @@ bb2:
   SW s2, 8(sp)
   LW s0, 16(sp)
   ADDI s1, zero, 6
-  REMW s3, s0, s1
-  SW s3, 0(sp)
-  XOR s0, s2, s3
-  SLTU s1, zero, s0
-  BNE s1, zero, bb4
+  REMW s2, s0, s1
+  SW s2, 0(sp)
+  LW s0, 8(sp)
+  XOR s1, s0, s2
+  SLTU s0, zero, s1
+  BNE s0, zero, bb4
   JAL zero, bb5
 bb3:
   ADD a0, zero, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:

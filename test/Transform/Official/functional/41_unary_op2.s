@@ -3,20 +3,21 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 24(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADDI s0, zero, 56
   SW s0, 8(sp)
   ADDI s0, zero, 4
   SW s0, 0(sp)
-  ADDI s0, zero, 0
-  ADDI s1, zero, 4
-  SUBW s2, s0, s1
-  ADDI s0, zero, 56
-  SUBW s1, s0, s2
+  LW s0, 8(sp)
+  ADDI s1, zero, 0
+  ADDI s2, zero, 4
+  SUBW s3, s1, s2
+  SUBW s1, s0, s3
   ADDIW s0, s1, 4
   SW s0, 8(sp)
   XOR s1, s0, zero
@@ -49,10 +50,11 @@ bb2:
   CALL putint
   ADD a0, zero, zero
   LD ra, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
-  ADDI sp, sp, 48
+  LD s3, 24(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
   LW s0, 0(sp)

@@ -22,9 +22,9 @@ maxn:
 dfs:
   ADDI sp, sp, -144
   SD s8, 56(sp)
-  SD ra, 64(sp)
-  SD s7, 72(sp)
-  SD s6, 80(sp)
+  SD s7, 64(sp)
+  SD s6, 72(sp)
+  SD ra, 80(sp)
   SD s0, 88(sp)
   SD s5, 96(sp)
   SD s1, 104(sp)
@@ -43,25 +43,30 @@ dfs:
   SW s3, 24(sp)
   SW s4, 16(sp)
   SW s5, 8(sp)
-  LUI s6, 718
-  ADDI s6, s6, -1600
-  MULW s7, s0, s6
+  LW s0, 48(sp)
+  LUI s1, 718
+  ADDI s1, s1, -1600
+  MULW s2, s0, s1
   LA s0, dp
-  ADD s6, s0, s7
-  LUI s0, 40
-  ADDI s0, s0, -544
-  MULW s7, s1, s0
-  ADD s0, s6, s7
-  LUI s1, 2
-  ADDI s1, s1, 880
-  MULW s6, s2, s1
-  ADD s1, s0, s6
-  ADDI s0, zero, 504
-  MULW s2, s3, s0
-  ADD s0, s1, s2
-  ADDI s1, zero, 28
-  MULW s2, s4, s1
   ADD s1, s0, s2
+  LW s0, 40(sp)
+  LUI s2, 40
+  ADDI s2, s2, -544
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 32(sp)
+  LUI s2, 2
+  ADDI s2, s2, 880
+  MULW s3, s1, s2
+  ADD s1, s0, s3
+  LW s0, 24(sp)
+  ADDI s2, zero, 504
+  MULW s3, s0, s2
+  ADD s0, s1, s3
+  LW s1, 16(sp)
+  ADDI s2, zero, 28
+  MULW s3, s1, s2
+  ADD s1, s0, s3
   ADDI s0, zero, 4
   MULW s2, s5, s0
   ADD s0, s1, s2
@@ -105,9 +110,9 @@ bb1:
   LW s1, 0(s0)
   ADD a0, s1, zero
   LD s8, 56(sp)
-  LD ra, 64(sp)
-  LD s7, 72(sp)
-  LD s6, 80(sp)
+  LD s7, 64(sp)
+  LD s6, 72(sp)
+  LD ra, 80(sp)
   LD s0, 88(sp)
   LD s5, 96(sp)
   LD s1, 104(sp)
@@ -133,9 +138,9 @@ bb2:
 bb3:
   ADDI a0, zero, 1
   LD s8, 56(sp)
-  LD ra, 64(sp)
-  LD s7, 72(sp)
-  LD s6, 80(sp)
+  LD s7, 64(sp)
+  LD s6, 72(sp)
+  LD ra, 80(sp)
   LD s0, 88(sp)
   LD s5, 96(sp)
   LD s1, 104(sp)
@@ -393,9 +398,9 @@ bb14:
   LW s1, 0(s0)
   ADD a0, s1, zero
   LD s8, 56(sp)
-  LD ra, 64(sp)
-  LD s7, 72(sp)
-  LD s6, 80(sp)
+  LD s7, 64(sp)
+  LD s6, 72(sp)
+  LD ra, 80(sp)
   LD s0, 88(sp)
   LD s5, 96(sp)
   LD s1, 104(sp)
@@ -414,6 +419,7 @@ equal:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
+  LW s0, 8(sp)
   XOR s2, s0, s1
   SLTIU s0, s2, 1
   BNE s0, zero, bb16

@@ -439,14 +439,20 @@ circle_sdf:
   FSW fs2, 32(sp)
   FSW fs3, 24(sp)
   FSW fs4, 16(sp)
-  FSUB.S fs4, fs0, fs2
-  FSW fs4, 8(sp)
-  FSUB.S fs0, fs1, fs3
-  FSW fs0, 0(sp)
-  FMUL.S fs1, fs4, fs4
-  FMUL.S fs2, fs0, fs0
-  FADD.S fs0, fs1, fs2
-  FSGNJ.S fa0, fs0, fs0
+  FLW fs0, 48(sp)
+  FLW fs1, 32(sp)
+  FSUB.S fs2, fs0, fs1
+  FSW fs2, 8(sp)
+  FLW fs0, 40(sp)
+  FLW fs1, 24(sp)
+  FSUB.S fs2, fs0, fs1
+  FSW fs2, 0(sp)
+  FLW fs0, 8(sp)
+  FLW fs1, 8(sp)
+  FMUL.S fs3, fs0, fs1
+  FMUL.S fs0, fs2, fs2
+  FADD.S fs1, fs3, fs0
+  FSGNJ.S fa0, fs1, fs1
   CALL my_sqrt
   FSGNJ.D fs0, fa0, fa0
   FLW fs1, 16(sp)
@@ -639,6 +645,7 @@ scene:
   ADD s0, a0, zero
   FSW fs0, 24(sp)
   FSW fs1, 16(sp)
+  FLW fs0, 24(sp)
   FSGNJ.S fa0, fs0, fs0
   FSGNJ.S fa1, fs1, fs1
   LA s1, .CONSTANT.7.3
@@ -830,16 +837,17 @@ bb49:
   FCVT.S.W fs0, s0
   FSW fs0, 16(sp)
   LW s0, 32(sp)
-  FCVT.S.W fs1, s0
-  FSW fs1, 8(sp)
+  FCVT.S.W fs0, s0
+  FSW fs0, 8(sp)
+  FLW fs1, 16(sp)
   LA s0, W
   LW s1, 0(s0)
   FCVT.S.W fs2, s1
-  FDIV.S fs3, fs0, fs2
+  FDIV.S fs3, fs1, fs2
   LA s0, H
   LW s1, 0(s0)
-  FCVT.S.W fs0, s1
-  FDIV.S fs2, fs1, fs0
+  FCVT.S.W fs1, s1
+  FDIV.S fs2, fs0, fs1
   FSGNJ.S fa0, fs3, fs3
   FSGNJ.S fa1, fs2, fs2
   CALL sample

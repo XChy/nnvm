@@ -65,8 +65,9 @@ entry19:
   %start.stack = stack 4
   store i32 %start to ptr %start.stack
   store i32 %end to ptr %end.stack
-  store i32 %start to ptr %dad
-  26 = mul i32 %start, i32 2
+  start.stack.load = load i32 from ptr %start.stack
+  store i32 %start.stack.load to ptr %dad
+  26 = mul i32 %start.stack.load, i32 2
   27 = add i32 %26, i32 1
   store i32 %27 to ptr %son
   br bb %while.cond
@@ -183,7 +184,8 @@ entry117:
   138 = ptradd ptr %a, i32 %137
   store i32 8 to ptr %138
   store i32 0 to ptr %i139
-  141 = call i32 heap_sort(ptr %a, i32 10)
+  n.load = load i32 from ptr @n
+  141 = call i32 heap_sort(ptr %a, i32 %n.load)
   store i32 %141 to ptr %i139
   br bb %while.cond142
 while.cond142:
@@ -230,19 +232,24 @@ entry:
   %i.stack = stack 4
   store i32 %i to ptr %i.stack
   store i32 %j to ptr %j.stack
-  5 = mul i32 %i, i32 4
+  i.stack.load = load i32 from ptr %i.stack
+  5 = mul i32 %i.stack.load, i32 4
   6 = ptradd ptr %array, i32 %5
   6.load = load i32 from ptr %6
   store i32 %6.load to ptr %temp
-  9 = mul i32 %i, i32 4
+  i.stack.load8 = load i32 from ptr %i.stack
+  9 = mul i32 %i.stack.load8, i32 4
   10 = ptradd ptr %array, i32 %9
-  12 = mul i32 %j, i32 4
+  j.stack.load = load i32 from ptr %j.stack
+  12 = mul i32 %j.stack.load, i32 4
   13 = ptradd ptr %array, i32 %12
   13.load = load i32 from ptr %13
   store i32 %13.load to ptr %10
-  16 = mul i32 %j, i32 4
+  j.stack.load15 = load i32 from ptr %j.stack
+  16 = mul i32 %j.stack.load15, i32 4
   17 = ptradd ptr %array, i32 %16
-  store i32 %6.load to ptr %17
+  temp.load = load i32 from ptr %temp
+  store i32 %temp.load to ptr %17
   ret i32 0
 }
 

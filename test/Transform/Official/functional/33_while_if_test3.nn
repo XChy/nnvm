@@ -39,7 +39,8 @@ entry:
   %a.stack = stack 4
   store i32 %a to ptr %a.stack
   store i32 %b to ptr %b.stack
-  6 = add i32 %a, i32 %b
+  a.stack.load = load i32 from ptr %a.stack
+  6 = add i32 %a.stack.load, i32 %b
   store i32 %6 to ptr %c
   br bb %while.cond
 while.cond:

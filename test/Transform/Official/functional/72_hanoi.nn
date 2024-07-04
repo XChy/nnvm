@@ -39,7 +39,8 @@ entry10:
   store i32 %one to ptr %one.stack
   store i32 %two to ptr %two.stack
   store i32 %three to ptr %three.stack
-  16 = icmp eq i32 %n, i32 1
+  n.stack.load = load i32 from ptr %n.stack
+  16 = icmp eq i32 %n.stack.load, i32 1
   br i1 %16, bb %then, bb %else
 then:
   one.stack.load = load i32 from ptr %one.stack
@@ -89,7 +90,8 @@ entry:
   %x.stack = stack 4
   store i32 %x to ptr %x.stack
   store i32 %y to ptr %y.stack
-  call void putint(i32 %x)
+  x.stack.load = load i32 from ptr %x.stack
+  call void putint(i32 %x.stack.load)
   call void putch(i32 32)
   y.stack.load = load i32 from ptr %y.stack
   call void putint(i32 %y.stack.load)

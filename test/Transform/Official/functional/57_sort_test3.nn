@@ -17,7 +17,8 @@ entry:
   %low.stack = stack 4
   store i32 %low to ptr %low.stack
   store i32 %high to ptr %high.stack
-  5 = icmp slt i32 %low, i32 %high
+  low.stack.load = load i32 from ptr %low.stack
+  5 = icmp slt i32 %low.stack.load, i32 %high
   br i1 %5, bb %then, bb %if.exit
 then:
   low.stack.load9 = load i32 from ptr %low.stack
@@ -197,7 +198,8 @@ entry108:
   store i32 8 to ptr %129
   store i32 0 to ptr %i130
   store i32 9 to ptr %tmp131
-  134 = call i32 QuickSort(ptr %a, i32 0, i32 9)
+  i130.load = load i32 from ptr %i130
+  134 = call i32 QuickSort(ptr %a, i32 %i130.load, i32 9)
   store i32 %134 to ptr %i130
   br bb %while.cond135
 while.cond135:

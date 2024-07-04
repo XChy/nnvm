@@ -276,11 +276,13 @@ main:
   ADDI s1, zero, 8
   SW s1, 0(s0)
   SW zero, 48(sp)
+  LA s0, n
+  LW s1, 0(s0)
   ADDI a0, sp, 56
   ADD a0, a0, zero
   ADDI a1, sp, 8
   ADD a1, a1, zero
-  ADDI a2, zero, 10
+  ADD a2, s1, zero
   CALL counting_sort
   ADD s0, a0, zero
   SW s0, 48(sp)

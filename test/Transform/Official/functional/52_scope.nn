@@ -70,7 +70,8 @@ entry:
   a.load = load i32 from ptr @a
   store i32 %a.load to ptr %b
   store i32 1 to ptr %a
-  6 = icmp eq i32 1, i32 %a.load
+  b.load = load i32 from ptr %b
+  6 = icmp eq i32 1, i32 %b.load
   br i1 %6, bb %then, bb %else
 then:
   a.load10 = load i32 from ptr %a

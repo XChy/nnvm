@@ -16,10 +16,13 @@ entry117:
   %x.stack = stack 4
   store i32 %x to ptr %x.stack
   store i32 %tar to ptr %tar.stack
-  121 = mul i32 %x, i32 4
+  x.stack.load = load i32 from ptr %x.stack
+  121 = mul i32 %x.stack.load, i32 4
   122 = ptradd ptr @vis, i32 %121
   store i32 1 to ptr %122
-  125 = icmp eq i32 %x, i32 %tar
+  x.stack.load123 = load i32 from ptr %x.stack
+  tar.stack.load = load i32 from ptr %tar.stack
+  125 = icmp eq i32 %x.stack.load123, i32 %tar.stack.load
   br i1 %125, bb %then126, bb %if.exit127
 then126:
   ret i32 1
@@ -120,11 +123,13 @@ entry51:
   cnt.load58 = load i32 from ptr @cnt
   59 = mul i32 %cnt.load58, i32 4
   60 = ptradd ptr @next, i32 %59
-  62 = mul i32 %from, i32 4
+  from.stack.load = load i32 from ptr %from.stack
+  62 = mul i32 %from.stack.load, i32 4
   63 = ptradd ptr @head, i32 %62
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  66 = mul i32 %from, i32 4
+  from.stack.load65 = load i32 from ptr %from.stack
+  66 = mul i32 %from.stack.load65, i32 4
   67 = ptradd ptr @head, i32 %66
   cnt.load68 = load i32 from ptr @cnt
   store i32 %cnt.load68 to ptr %67
@@ -133,17 +138,23 @@ entry51:
   store i32 %70 to ptr @cnt
   72 = mul i32 %70, i32 4
   73 = ptradd ptr @to, i32 %72
-  store i32 %from to ptr %73
-  76 = mul i32 %70, i32 4
+  from.stack.load74 = load i32 from ptr %from.stack
+  store i32 %from.stack.load74 to ptr %73
+  cnt.load75 = load i32 from ptr @cnt
+  76 = mul i32 %cnt.load75, i32 4
   77 = ptradd ptr @next, i32 %76
-  79 = mul i32 %To, i32 4
+  To.stack.load78 = load i32 from ptr %To.stack
+  79 = mul i32 %To.stack.load78, i32 4
   80 = ptradd ptr @head, i32 %79
   80.load = load i32 from ptr %80
   store i32 %80.load to ptr %77
-  83 = mul i32 %To, i32 4
+  To.stack.load82 = load i32 from ptr %To.stack
+  83 = mul i32 %To.stack.load82, i32 4
   84 = ptradd ptr @head, i32 %83
-  store i32 %70 to ptr %84
-  87 = add i32 %70, i32 1
+  cnt.load85 = load i32 from ptr @cnt
+  store i32 %cnt.load85 to ptr %84
+  cnt.load86 = load i32 from ptr @cnt
+  87 = add i32 %cnt.load86, i32 1
   store i32 %87 to ptr @cnt
   ret 
 }

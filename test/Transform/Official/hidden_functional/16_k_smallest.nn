@@ -13,7 +13,9 @@ entry57:
   store i32 %high to ptr %high.stack
   store i32 %k to ptr %k.stack
   store i32 %n to ptr %n.stack
-  64 = icmp eq i32 %low, i32 %high
+  low.stack.load = load i32 from ptr %low.stack
+  high.stack.load = load i32 from ptr %high.stack
+  64 = icmp eq i32 %low.stack.load, i32 %high.stack.load
   br i1 %64, bb %then65, bb %else
 then65:
   ret 
@@ -90,8 +92,10 @@ entry19:
   25 = ptradd ptr @array, i32 %24
   25.load = load i32 from ptr %25
   store i32 %25.load to ptr %pivot
-  store i32 %start to ptr %pIndex
-  store i32 %start to ptr %i
+  start.stack.load = load i32 from ptr %start.stack
+  store i32 %start.stack.load to ptr %pIndex
+  start.stack.load30 = load i32 from ptr %start.stack
+  store i32 %start.stack.load30 to ptr %i
   br bb %while.cond
 while.cond:
   i.load = load i32 from ptr %i
@@ -172,9 +176,10 @@ while.exit121:
   n.load134 = load i32 from ptr %n
   135 = sub i32 %n.load134, i32 1
   store i32 %135 to ptr %high
+  low.load = load i32 from ptr %low
   k.load = load i32 from ptr %k
   n.load139 = load i32 from ptr %n
-  call void findSmallest(i32 0, i32 %135, i32 %k.load, i32 %n.load139)
+  call void findSmallest(i32 %low.load, i32 %135, i32 %k.load, i32 %n.load139)
   ret i32 0
 }
 
@@ -199,19 +204,24 @@ entry:
   %i.stack = stack 4
   store i32 %i to ptr %i.stack
   store i32 %j to ptr %j.stack
-  5 = mul i32 %i, i32 4
+  i.stack.load = load i32 from ptr %i.stack
+  5 = mul i32 %i.stack.load, i32 4
   6 = ptradd ptr @array, i32 %5
   6.load = load i32 from ptr %6
   store i32 %6.load to ptr %tmp
-  9 = mul i32 %i, i32 4
+  i.stack.load8 = load i32 from ptr %i.stack
+  9 = mul i32 %i.stack.load8, i32 4
   10 = ptradd ptr @array, i32 %9
-  12 = mul i32 %j, i32 4
+  j.stack.load = load i32 from ptr %j.stack
+  12 = mul i32 %j.stack.load, i32 4
   13 = ptradd ptr @array, i32 %12
   13.load = load i32 from ptr %13
   store i32 %13.load to ptr %10
-  16 = mul i32 %j, i32 4
+  j.stack.load15 = load i32 from ptr %j.stack
+  16 = mul i32 %j.stack.load15, i32 4
   17 = ptradd ptr @array, i32 %16
-  store i32 %6.load to ptr %17
+  tmp.load = load i32 from ptr %tmp
+  store i32 %tmp.load to ptr %17
   ret 
 }
 

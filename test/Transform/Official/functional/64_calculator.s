@@ -66,53 +66,51 @@ chapop:
 chapush:
   ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
+  LA s0, chat
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   LA s1, chat
-  LW s2, 0(s1)
-  ADDIW s1, s2, 1
-  LA s2, chat
-  SW s1, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, chas
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  SW s0, 0(s1)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, chas
+  ADD s1, s0, s2
+  LW s0, 0(sp)
+  SW s0, 0(s1)
   LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 intpush:
   ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
+  LA s0, intt
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   LA s1, intt
-  LW s2, 0(s1)
-  ADDIW s1, s2, 1
-  LA s2, intt
-  SW s1, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, ints
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  SW s0, 0(s1)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, ints
+  ADD s1, s0, s2
+  LW s0, 0(sp)
+  SW s0, 0(s1)
   LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 power:
@@ -156,53 +154,52 @@ bb6:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 intadd:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LA s1, intt
-  LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s3, s2, s1
-  LA s1, ints
-  ADD s2, s1, s3
-  LA s1, intt
-  LW s3, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s3, s1
-  LA s1, ints
-  ADD s3, s1, s4
-  LW s1, 0(s3)
-  ADDI s3, zero, 10
-  MULW s4, s1, s3
-  SW s4, 0(s2)
-  LA s1, intt
-  LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s3, s2, s1
-  LA s1, ints
-  ADD s2, s1, s3
-  LA s1, intt
-  LW s3, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s3, s1
-  LA s1, ints
-  ADD s3, s1, s4
-  LW s1, 0(s3)
-  ADDW s3, s1, s0
-  SW s3, 0(s2)
+  LA s0, intt
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
+  LA s0, ints
+  ADD s1, s0, s2
+  LA s0, intt
+  LW s2, 0(s0)
+  ADDI s0, zero, 4
+  MULW s3, s2, s0
+  LA s0, ints
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  ADDI s2, zero, 10
+  MULW s3, s0, s2
+  SW s3, 0(s1)
+  LA s0, intt
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
+  LA s0, ints
+  ADD s1, s0, s2
+  LA s0, intt
+  LW s2, 0(s0)
+  ADDI s0, zero, 4
+  MULW s3, s2, s0
+  LA s0, ints
+  ADD s2, s0, s3
+  LW s0, 0(s2)
+  LW s2, 0(sp)
+  ADDW s3, s0, s2
+  SW s3, 0(s1)
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -272
@@ -1025,22 +1022,23 @@ bb117:
   CALL chapop
   ADD s0, a0, zero
   SW s0, 64(sp)
-  LA s1, ii
-  LW s2, 0(s1)
+  LA s0, ii
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
+  LA s0, get2
+  ADD s1, s0, s2
+  ADDI s0, zero, 32
+  SW s0, 0(s1)
+  LA s0, ii
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   ADDI s1, zero, 4
-  MULW s3, s2, s1
-  LA s1, get2
-  ADD s2, s1, s3
-  ADDI s1, zero, 32
-  SW s1, 0(s2)
-  LA s1, ii
-  LW s2, 0(s1)
-  ADDIW s1, s2, 1
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, get2
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  MULW s2, s0, s1
+  LA s0, get2
+  ADD s1, s0, s2
+  LW s0, 64(sp)
+  SW s0, 0(s1)
   LA s0, ii
   LW s1, 0(s0)
   ADDIW s0, s1, 2
@@ -1422,32 +1420,33 @@ bb156:
   SW s2, 0(s0)
   JAL zero, bb153
 find:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s2, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
   CALL chapop
   ADD s0, a0, zero
   LA s1, c
   SW s0, 0(s1)
-  LA s1, ii
-  LW s2, 0(s1)
+  LA s0, ii
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
+  LA s0, get2
+  ADD s1, s0, s2
+  ADDI s0, zero, 32
+  SW s0, 0(s1)
+  LA s0, ii
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
   ADDI s1, zero, 4
-  MULW s3, s2, s1
-  LA s1, get2
-  ADD s2, s1, s3
-  ADDI s1, zero, 32
-  SW s1, 0(s2)
-  LA s1, ii
-  LW s2, 0(s1)
-  ADDIW s1, s2, 1
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s1, get2
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  MULW s2, s0, s1
+  LA s0, get2
+  ADD s1, s0, s2
+  LA s0, c
+  LW s2, 0(s0)
+  SW s2, 0(s1)
   LA s0, ii
   LW s1, 0(s0)
   ADDIW s0, s1, 2
@@ -1462,20 +1461,18 @@ find:
 bb158:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb159:
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 intpop:
   ADDI sp, sp, -32

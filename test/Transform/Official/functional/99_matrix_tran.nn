@@ -122,7 +122,8 @@ while.body118:
 while.exit119:
   store i32 10 to ptr %x
   store i32 0 to ptr %i57
-  call void putch(i32 10)
+  x.load133 = load i32 from ptr %x
+  call void putch(i32 %x.load133)
   br bb %while.cond135
 while.cond135:
   i57.load138 = load i32 from ptr %i57

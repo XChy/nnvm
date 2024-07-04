@@ -11,8 +11,9 @@ entry84:
   %root.stack85 = stack 4
   store i32 %root to ptr %root.stack85
   store i32 %x to ptr %x.stack86
+  root.stack85.load = load i32 from ptr %root.stack85
   88 = sub i32 0, i32 1
-  89 = icmp eq i32 %root, i32 %88
+  89 = icmp eq i32 %root.stack85.load, i32 %88
   br i1 %89, bb %then90, bb %else92
 then90:
   x.stack86.load = load i32 from ptr %x.stack86
@@ -91,8 +92,9 @@ entry123:
   %root.stack124 = stack 4
   store i32 %root to ptr %root.stack124
   store i32 %x to ptr %x.stack125
+  root.stack124.load = load i32 from ptr %root.stack124
   127 = sub i32 0, i32 1
-  128 = icmp eq i32 %root, i32 %127
+  128 = icmp eq i32 %root.stack124.load, i32 %127
   br i1 %128, bb %then129, bb %if.exit130
 then129:
   131 = sub i32 0, i32 1
@@ -225,7 +227,8 @@ else209:
   244 = mul i32 %root.stack124.load243, i32 4
   245 = ptradd ptr @right_child, i32 %244
   245.load = load i32 from ptr %245
-  248 = mul i32 %232, i32 4
+  tmp.load247 = load i32 from ptr %tmp
+  248 = mul i32 %tmp.load247, i32 4
   249 = ptradd ptr @value, i32 %248
   249.load = load i32 from ptr %249
   251 = call i32 delete(i32 %245.load, i32 %249.load)
@@ -290,8 +293,9 @@ entry:
   %root.stack = stack 4
   store i32 %root to ptr %root.stack
   store i32 %x to ptr %x.stack
+  root.stack.load = load i32 from ptr %root.stack
   4 = sub i32 0, i32 1
-  5 = icmp eq i32 %root, i32 %4
+  5 = icmp eq i32 %root.stack.load, i32 %4
   br i1 %5, bb %select.then, bb %select.else
 select.then:
   store i1 1 to ptr %select

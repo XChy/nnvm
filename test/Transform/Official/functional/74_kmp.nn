@@ -35,7 +35,8 @@ then70:
   j52.load75 = load i32 from ptr %j52
   76 = add i32 %j52.load75, i32 1
   store i32 %76 to ptr %j52
-  78 = mul i32 %74, i32 4
+  i51.load77 = load i32 from ptr %i51
+  78 = mul i32 %i51.load77, i32 4
   79 = ptradd ptr %dst, i32 %78
   79.load = load i32 from ptr %79
   81 = icmp ne i32 %79.load, i32 0
@@ -198,7 +199,8 @@ then:
   store i32 %39 to ptr %i
   41 = mul i32 %39, i32 4
   42 = ptradd ptr %next, i32 %41
-  store i32 %37 to ptr %42
+  j.load43 = load i32 from ptr %j
+  store i32 %j.load43 to ptr %42
   br bb %if.exit
 if.exit:
   br bb %while.cond

@@ -106,7 +106,8 @@ while.exit:
   store i32 %96 to ptr %a28
   98 = add i32 %96, i32 1
   store i32 %98 to ptr %a29
-  call void putint(i32 0)
+  a0.load100 = load i32 from ptr %a0
+  call void putint(i32 %a0.load100)
   a1.load102 = load i32 from ptr %a1
   call void putint(i32 %a1.load102)
   a2.load104 = load i32 from ptr %a2

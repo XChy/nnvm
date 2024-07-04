@@ -8,7 +8,8 @@ entry68:
   sum.load70 = load i32 from ptr @sum
   71 = add i32 %sum.load70, i32 3
   store i32 %71 to ptr @sum
-  73 = icmp slt i32 %i, i32 0
+  i.stack69.load = load i32 from ptr %i.stack69
+  73 = icmp slt i32 %i.stack69.load, i32 0
   br i1 %73, bb %select.then74, bb %select.else75
 select.then74:
   store i1 1 to ptr %select77
@@ -42,7 +43,9 @@ entry34:
   sum.load37 = load i32 from ptr @sum
   38 = add i32 %sum.load37, i32 2
   store i32 %38 to ptr @sum
-  41 = icmp sge i32 %i, i32 %j
+  i.stack35.load = load i32 from ptr %i.stack35
+  j.stack36.load = load i32 from ptr %j.stack36
+  41 = icmp sge i32 %i.stack35.load, i32 %j.stack36.load
   br i1 %41, bb %select.then42, bb %select.else43
 select.then42:
   store i1 1 to ptr %select45
@@ -1033,7 +1036,9 @@ entry:
   sum.load = load i32 from ptr @sum
   4 = add i32 %sum.load, i32 1
   store i32 %4 to ptr @sum
-  7 = icmp sge i32 %i, i32 %j
+  i.stack.load = load i32 from ptr %i.stack
+  j.stack.load = load i32 from ptr %j.stack
+  7 = icmp sge i32 %i.stack.load, i32 %j.stack.load
   br i1 %7, bb %select.then, bb %select.else
 select.then:
   store i1 1 to ptr %select

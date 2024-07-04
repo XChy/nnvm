@@ -28,7 +28,8 @@ entry62:
   store i32 %65 to ptr @chat
   67 = mul i32 %65, i32 4
   68 = ptradd ptr @chas, i32 %67
-  store i32 %x to ptr %68
+  x.stack63.load = load i32 from ptr %x.stack63
+  store i32 %x.stack63.load to ptr %68
   ret 
 }
 
@@ -41,7 +42,8 @@ entry54:
   store i32 %57 to ptr @intt
   59 = mul i32 %57, i32 4
   60 = ptradd ptr @ints, i32 %59
-  store i32 %x to ptr %60
+  x.stack55.load = load i32 from ptr %x.stack55
+  store i32 %x.stack55.load to ptr %60
   ret 
 }
 
@@ -95,7 +97,8 @@ entry86:
   100 = mul i32 %intt.load99, i32 4
   101 = ptradd ptr @ints, i32 %100
   101.load = load i32 from ptr %101
-  104 = add i32 %101.load, i32 %x
+  x.stack87.load = load i32 from ptr %x.stack87
+  104 = add i32 %101.load, i32 %x.stack87.load
   store i32 %104 to ptr %98
   ret 
 }
@@ -683,7 +686,8 @@ while.body512:
   523 = add i32 %ii.load522, i32 1
   524 = mul i32 %523, i32 4
   525 = ptradd ptr @get2, i32 %524
-  store i32 %518 to ptr %525
+  c.load526 = load i32 from ptr %c
+  store i32 %c.load526 to ptr %525
   ii.load527 = load i32 from ptr @ii
   528 = add i32 %ii.load527, i32 2
   store i32 %528 to ptr @ii
@@ -948,7 +952,8 @@ entry105:
   111 = add i32 %ii.load110, i32 1
   112 = mul i32 %111, i32 4
   113 = ptradd ptr @get2, i32 %112
-  store i32 %106 to ptr %113
+  c.load = load i32 from ptr @c
+  store i32 %c.load to ptr %113
   ii.load115 = load i32 from ptr @ii
   116 = add i32 %ii.load115, i32 2
   store i32 %116 to ptr @ii

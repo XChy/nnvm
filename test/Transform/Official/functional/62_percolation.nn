@@ -8,7 +8,8 @@ entry43:
   %a.stack44 = stack 4
   store i32 %a to ptr %a.stack44
   store i32 %b to ptr %b.stack
-  48 = call i32 findfa(i32 %a)
+  a.stack44.load = load i32 from ptr %a.stack44
+  48 = call i32 findfa(i32 %a.stack44.load)
   store i32 %48 to ptr %m
   b.stack.load = load i32 from ptr %b.stack
   51 = call i32 findfa(i32 %b.stack.load)
@@ -129,7 +130,8 @@ while.body67:
   store i32 10 to ptr %m63
   store i32 0 to ptr %i73
   store i32 0 to ptr %flag
-  call void init(i32 4)
+  n.load75 = load i32 from ptr @n
+  call void init(i32 %n.load75)
   n.load78 = load i32 from ptr @n
   n.load79 = load i32 from ptr @n
   80 = mul i32 %n.load78, i32 %n.load79

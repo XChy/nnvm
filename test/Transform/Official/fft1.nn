@@ -17,7 +17,8 @@ entry84:
   store i32 %begin_pos to ptr %begin_pos.stack
   store i32 %n to ptr %n.stack
   store i32 %w to ptr %w.stack
-  89 = icmp eq i32 %n, i32 1
+  n.stack.load = load i32 from ptr %n.stack
+  89 = icmp eq i32 %n.stack.load, i32 1
   br i1 %89, bb %then90, bb %if.exit91
 then90:
   ret i32 1
@@ -123,9 +124,10 @@ while.body153:
   179 = add i32 %begin_pos.stack.load177, i32 %i92.load178
   180 = mul i32 %179, i32 4
   181 = ptradd ptr %arr, i32 %180
+  x.load = load i32 from ptr %x
   wn.load = load i32 from ptr %wn
   185 = call i32 multiply(i32 %wn.load, i32 %175.load)
-  186 = add i32 %165.load, i32 %185
+  186 = add i32 %x.load, i32 %185
   mod.load187 = load i32 from ptr @mod
   188 = srem i32 %186, i32 %mod.load187
   store i32 %188 to ptr %181

@@ -30,7 +30,8 @@ while.body22:
   i.load29 = load i32 from ptr %i
   30 = srem i32 %i.load29, i32 6
   store i32 %30 to ptr %__
-  33 = icmp ne i32 %27, i32 %30
+  _.load = load i32 from ptr %_
+  33 = icmp ne i32 %_.load, i32 %30
   br i1 %33, bb %then, bb %if.exit
 while.exit23:
   ret i32 0

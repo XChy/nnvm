@@ -13,17 +13,18 @@ sum:
 .section .text
 h:
   ADDI sp, sp, -48
-  SD ra, 16(sp)
-  SD s2, 24(sp)
+  SD s2, 16(sp)
+  SD ra, 24(sp)
   SD s1, 32(sp)
   SD s0, 40(sp)
   ADD s0, a0, zero
   SW s0, 8(sp)
+  LA s0, sum
+  LW s1, 0(s0)
+  ADDIW s0, s1, 3
   LA s1, sum
-  LW s2, 0(s1)
-  ADDIW s1, s2, 3
-  LA s2, sum
-  SW s1, 0(s2)
+  SW s0, 0(s1)
+  LW s0, 8(sp)
   SLT s1, s0, zero
   BNE s1, zero, bb1
   JAL zero, bb2
@@ -45,8 +46,8 @@ bb3:
   JAL zero, bb5
 bb4:
   ADD a0, zero, zero
-  LD ra, 16(sp)
-  LD s2, 24(sp)
+  LD s2, 16(sp)
+  LD ra, 24(sp)
   LD s1, 32(sp)
   LD s0, 40(sp)
   ADDI sp, sp, 48
@@ -59,8 +60,8 @@ bb5:
   ADD s1, s0, s2
   LW s0, 0(s1)
   ADD a0, s0, zero
-  LD ra, 16(sp)
-  LD s2, 24(sp)
+  LD s2, 16(sp)
+  LD ra, 24(sp)
   LD s1, 32(sp)
   LD s0, 40(sp)
   ADDI sp, sp, 48
@@ -68,19 +69,20 @@ bb5:
 g:
   ADDI sp, sp, -64
   SD ra, 24(sp)
-  SD s3, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s0, 56(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
-  LA s2, sum
-  LW s3, 0(s2)
-  ADDIW s2, s3, 2
-  LA s3, sum
-  SW s2, 0(s3)
+  LA s0, sum
+  LW s1, 0(s0)
+  ADDIW s0, s1, 2
+  LA s1, sum
+  SW s0, 0(s1)
+  LW s0, 16(sp)
+  LW s1, 8(sp)
   SLT s2, s0, s1
   XORI s0, s2, 1
   BNE s0, zero, bb7
@@ -104,10 +106,9 @@ bb9:
 bb10:
   ADDI a0, zero, 1
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb11:
@@ -130,10 +131,9 @@ bb12:
   LW s0, 0(s2)
   ADD a0, s0, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb13:
@@ -148,10 +148,9 @@ bb14:
   LW s0, 0(s2)
   ADD a0, s0, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
@@ -1410,19 +1409,20 @@ bb213:
 f:
   ADDI sp, sp, -64
   SD ra, 24(sp)
-  SD s3, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s0, 56(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
-  LA s2, sum
-  LW s3, 0(s2)
-  ADDIW s2, s3, 1
-  LA s3, sum
-  SW s2, 0(s3)
+  LA s0, sum
+  LW s1, 0(s0)
+  ADDIW s0, s1, 1
+  LA s1, sum
+  SW s0, 0(s1)
+  LW s0, 16(sp)
+  LW s1, 8(sp)
   SLT s2, s0, s1
   XORI s0, s2, 1
   BNE s0, zero, bb215
@@ -1446,10 +1446,9 @@ bb217:
 bb218:
   ADD a0, zero, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb219:
@@ -1473,10 +1472,9 @@ bb220:
   LW s0, 0(s2)
   ADD a0, s0, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb221:
@@ -1491,9 +1489,8 @@ bb222:
   LW s0, 0(s2)
   ADD a0, s0, zero
   LD ra, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)

@@ -20,6 +20,7 @@ merge:
   ADD s1, a1, zero
   SW s0, 24(sp)
   SW s1, 16(sp)
+  LW s0, 24(sp)
   ADD a0, s0, zero
   CALL find
   ADD s0, a0, zero

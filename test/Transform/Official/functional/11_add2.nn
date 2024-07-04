@@ -5,7 +5,8 @@ entry:
   store i32 10 to ptr %a
   3 = sub i32 0, i32 1
   store i32 %3 to ptr %b
-  6 = add i32 10, i32 %3
+  a.load = load i32 from ptr %a
+  6 = add i32 %a.load, i32 %3
   ret i32 %6
 }
 

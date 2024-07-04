@@ -179,7 +179,8 @@ entry101:
   122 = ptradd ptr %a, i32 %121
   store i32 8 to ptr %122
   store i32 0 to ptr %i123
-  126 = call i32 counting_sort(ptr %a, ptr %b, i32 10)
+  n.load = load i32 from ptr @n
+  126 = call i32 counting_sort(ptr %a, ptr %b, i32 %n.load)
   store i32 %126 to ptr %i123
   br bb %while.cond127
 while.cond127:

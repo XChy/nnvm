@@ -723,7 +723,7 @@ bb6:
   MULW t2, zero, ra
   ADD t4, t1, t2
   LUI t1, 512
-  ADDI t1, t1, 288
+  ADDI t1, t1, 280
   ADD t1, t1, sp
   SD t4, 0(t1)
   LUI t1, 256
@@ -744,7 +744,7 @@ bb6:
   MULW a0, zero, t2
   ADD t4, t1, a0
   LUI t1, 512
-  ADDI t1, t1, 280
+  ADDI t1, t1, 296
   ADD t1, t1, sp
   SD t4, 0(t1)
   LUI t1, 256
@@ -761,7 +761,7 @@ bb6:
   MULW a1, zero, t1
   ADD t4, a0, a1
   LUI a0, 512
-  ADDI a0, a0, 296
+  ADDI a0, a0, 288
   ADD a0, a0, sp
   SD t4, 0(a0)
   LUI a0, 256
@@ -811,19 +811,19 @@ bb6:
   SD t4, 0(s0)
   ADDI s0, sp, 40
   LUI t4, 512
-  ADDI t4, t4, 288
+  ADDI t4, t4, 280
   ADD t4, t4, sp
   LD t4, 0(t4)
   SD t4, 0(s0)
   ADDI s0, sp, 48
   LUI t4, 512
-  ADDI t4, t4, 280
+  ADDI t4, t4, 296
   ADD t4, t4, sp
   LD t4, 0(t4)
   SD t4, 0(s0)
   ADDI s0, sp, 56
   LUI t4, 512
-  ADDI t4, t4, 296
+  ADDI t4, t4, 288
   ADD t4, t4, sp
   LD t4, 0(t4)
   SD t4, 0(s0)
@@ -847,15 +847,15 @@ bb6:
   ADD t4, t4, sp
   LD t4, 0(t4)
   LUI t3, 512
-  ADDI t3, t3, 288
+  ADDI t3, t3, 280
   ADD t3, t3, sp
   LD t3, 0(t3)
   LUI t4, 512
-  ADDI t4, t4, 280
+  ADDI t4, t4, 296
   ADD t4, t4, sp
   LD t4, 0(t4)
   LUI t3, 512
-  ADDI t3, t3, 296
+  ADDI t3, t3, 288
   ADD t3, t3, sp
   LD t3, 0(t3)
   LUI t4, 512

@@ -10,7 +10,8 @@ entry:
   %a.stack = stack 4
   store i32 %a to ptr %a.stack
   store i32 %b to ptr %b.stack
-  5 = icmp eq i32 %a, i32 %b
+  a.stack.load = load i32 from ptr %a.stack
+  5 = icmp eq i32 %a.stack.load, i32 %b
   br i1 %5, bb %then, bb %else
 then:
   a.stack.load9 = load i32 from ptr %a.stack

@@ -160,7 +160,8 @@ while.exit184:
   id.load215 = load i32 from ptr %id
   216 = mul i32 %id.load215, i32 4
   217 = ptradd ptr %a, i32 %216
-  store i32 %206.load to ptr %217
+  t203.load = load i32 from ptr %t203
+  store i32 %t203.load to ptr %217
   i169.load219 = load i32 from ptr %i169
   220 = add i32 %i169.load219, i32 1
   store i32 %220 to ptr %i169
@@ -373,7 +374,8 @@ then79:
   j.load93 = load i32 from ptr %j
   94 = mul i32 %j.load93, i32 4
   95 = ptradd ptr %a, i32 %94
-  store i32 %84.load to ptr %95
+  t.load = load i32 from ptr %t
+  store i32 %t.load to ptr %95
   br bb %if.exit80
 if.exit80:
   j.load97 = load i32 from ptr %j
