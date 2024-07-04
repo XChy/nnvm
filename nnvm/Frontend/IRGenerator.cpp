@@ -1152,6 +1152,11 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
 Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
   auto calleeName = ctx->IDENT()->getText();
+
+  if (calleeName == "starttime" || calleeName == "stoptime")
+    return visitSpecialCallWithLineNo(calleeName,
+                                      ctx->IDENT()->getSymbol()->getLine());
+
   Symbol *calleeSymbol = symbolTable.lookup(calleeName);
   if (!calleeSymbol)
     // TODO: report no matching function!!
@@ -1174,6 +1179,20 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
   }
 
   return Symbol(builder.buildCall(callee, args),
+                calleeSymbol->symbolType->containedTy);
+}
+
+Symbol IRGenerator::visitSpecialCallWithLineNo(const std::string &name,
+                                               uint64_t lineNo) {
+
+  std::map<std::string, std::string> funcMap = {
+      {"starttime", "_sysy_starttime"},
+      {"stoptime", "_sysy_stoptime"},
+  };
+  Symbol *calleeSymbol = symbolTable.lookup(funcMap[name]);
+  Function *callee = cast<Function>(calleeSymbol->entity);
+  Constant *lineNoValue = ConstantInt::create(*ir, ir->getIntType(), lineNo);
+  return Symbol(builder.buildCall(callee, {lineNoValue}),
                 calleeSymbol->symbolType->containedTy);
 }
 

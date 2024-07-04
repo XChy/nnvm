@@ -65,6 +65,7 @@ public:
   std::any visitCond(SysYParser::CondContext *ctx) override;
 
   std::any visitCall(SysYParser::CallContext *ctx) override;
+  Symbol visitSpecialCallWithLineNo(const std::string &name, uint64_t lineNo);
   std::any visitLVal(SysYParser::LValContext *ctx) override;
   std::any visitExp(SysYParser::ExpContext *ctx) override;
 

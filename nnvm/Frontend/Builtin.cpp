@@ -46,4 +46,8 @@ void nnvm::addBuiltinFunctions(Module &M, SymbolTable &ST) {
   addBuiltin(M, ST, "putfarray", SymbolType::getVoidTy(),
              {SymbolType::getIntTy(),
               SymbolType::getArrayTy(-1, SymbolType::getFloatTy(), ST)});
+  addBuiltin(M, ST, "_sysy_starttime", SymbolType::getVoidTy(),
+             {SymbolType::getIntTy()});
+  addBuiltin(M, ST, "_sysy_stoptime", SymbolType::getVoidTy(),
+             {SymbolType::getIntTy()});
 }
