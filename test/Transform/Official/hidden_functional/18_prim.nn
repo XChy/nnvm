@@ -41,9 +41,7 @@ i32 main() {
 entry218:
   %i223 = stack 4
   %m = stack 4
-  %n = stack 4
   220 = call i32 quick_read()
-  store i32 %220 to ptr %n
   222 = call i32 quick_read()
   store i32 %222 to ptr %m
   store i32 0 to ptr %i223

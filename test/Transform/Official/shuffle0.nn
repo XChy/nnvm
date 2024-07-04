@@ -151,14 +151,12 @@ i32 main() {
 entry150:
   %i = stack 4
   %ms = stack 4
-  %vs = stack 4
   %ks = stack 4
   151 = call i32 getint()
   store i32 %151 to ptr @hashmod
   153 = call i32 getarray(ptr @keys)
   store i32 %153 to ptr %ks
   155 = call i32 getarray(ptr @values)
-  store i32 %155 to ptr %vs
   157 = call i32 getarray(ptr @requests)
   store i32 %157 to ptr %ms
   call void _sysy_starttime(i32 78)

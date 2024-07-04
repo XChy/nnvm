@@ -2,8 +2,6 @@ i32 main() {
 entry:
   %_c = stack 4
   %b0 = stack 4
-  %a = stack 4
-  store i32 1 to ptr %a
   store i32 2 to ptr %b0
   store i32 3 to ptr %_c
   b0.load = load i32 from ptr %b0

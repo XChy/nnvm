@@ -72,14 +72,13 @@ bb2:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -64
-  SD ra, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  ADDI sp, sp, -48
+  SD ra, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   CALL quick_read
   ADD s0, a0, zero
-  SW s0, 16(sp)
   CALL quick_read
   ADD s0, a0, zero
   SW s0, 8(sp)
@@ -126,11 +125,11 @@ bb6:
   CALL prim
   ADD s0, a0, zero
   ADD a0, s0, zero
-  LD ra, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD ra, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 find:
   ADDI sp, sp, -64

@@ -258,12 +258,12 @@ bb7:
   SW s0, 0(sp)
   JAL zero, bb3
 main:
-  ADDI sp, sp, -80
-  SD ra, 32(sp)
-  SD s3, 40(sp)
-  SD s2, 48(sp)
-  SD s1, 56(sp)
-  SD s0, 64(sp)
+  ADDI sp, sp, -64
+  SD ra, 24(sp)
+  SD s3, 32(sp)
+  SD s2, 40(sp)
+  SD s1, 48(sp)
+  SD s0, 56(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, hashmod
@@ -272,12 +272,11 @@ main:
   ADD a0, s0, zero
   CALL getarray
   ADD s0, a0, zero
-  SW s0, 24(sp)
+  SW s0, 16(sp)
   LA s0, values
   ADD a0, s0, zero
   CALL getarray
   ADD s0, a0, zero
-  SW s0, 16(sp)
   LA s0, requests
   ADD a0, s0, zero
   CALL getarray
@@ -289,7 +288,7 @@ main:
   JAL zero, bb9
 bb9:
   LW s0, 0(sp)
-  LW s1, 24(sp)
+  LW s1, 16(sp)
   SLT s2, s0, s1
   XOR s0, s2, zero
   SLTU s1, zero, s0
@@ -356,12 +355,12 @@ bb14:
   ADD a1, s0, zero
   CALL putarray
   ADD a0, zero, zero
-  LD ra, 32(sp)
-  LD s3, 40(sp)
-  LD s2, 48(sp)
-  LD s1, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD ra, 24(sp)
+  LD s3, 32(sp)
+  LD s2, 40(sp)
+  LD s1, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 reduce:
   ADDI sp, sp, -80

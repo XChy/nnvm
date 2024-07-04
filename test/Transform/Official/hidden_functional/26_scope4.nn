@@ -3,13 +3,11 @@ global ptr sum init with i32 0
 global ptr a init with i32 0
 void f2() {
 entry27:
-  %a31 = stack 4
   sum.load28 = load i32 from ptr @sum
   a.load29 = load i32 from ptr @a
   30 = add i32 %sum.load28, i32 %a.load29
   store i32 %30 to ptr @sum
   32 = call i32 getA()
-  store i32 %32 to ptr %a31
   sum.load33 = load i32 from ptr @sum
   a.load34 = load i32 from ptr @a
   35 = add i32 %sum.load33, i32 %a.load34
@@ -74,8 +72,6 @@ entry51:
   %i = stack 4
   %a80 = stack 4
   %a74 = stack 4
-  %a72 = stack 4
-  %a66 = stack 4
   %a56 = stack 4
   store i32 0 to ptr @sum
   52 = call i32 getA()
@@ -93,13 +89,11 @@ entry51:
   call void f2()
   call void f3()
   67 = call i32 getA()
-  store i32 %67 to ptr %a66
   a56.load68 = load i32 from ptr %a56
   call void f1(i32 %a56.load68)
   call void f2()
   call void f3()
   73 = call i32 getA()
-  store i32 %73 to ptr %a72
   75 = call i32 getA()
   store i32 %75 to ptr %a74
   call void f1(i32 %75)
@@ -204,7 +198,6 @@ external void putarray(i32 , ptr )
 
 void f3() {
 entry36:
-  %a46 = stack 4
   %a37 = stack 4
   38 = call i32 getA()
   store i32 %38 to ptr %a37
@@ -217,7 +210,6 @@ entry36:
   45 = add i32 %sum.load43, i32 %42
   store i32 %45 to ptr @sum
   47 = call i32 getA()
-  store i32 %47 to ptr %a46
   sum.load48 = load i32 from ptr @sum
   a37.load49 = load i32 from ptr %a37
   50 = add i32 %sum.load48, i32 %a37.load49

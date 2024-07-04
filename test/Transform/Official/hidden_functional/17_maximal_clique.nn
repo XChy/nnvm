@@ -174,12 +174,9 @@ entry40:
   %j44 = stack 4
   %max_ = stack 4
   %k.stack = stack 4
-  %i.stack = stack 4
-  store i32 %i to ptr %i.stack
   store i32 %k to ptr %k.stack
   store i32 0 to ptr %max_
   store i32 1 to ptr %j44
-  store i32 1 to ptr %i.stack
   br bb %while.cond45
 while.cond45:
   j44.load = load i32 from ptr %j44

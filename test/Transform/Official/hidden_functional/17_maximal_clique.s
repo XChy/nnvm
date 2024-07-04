@@ -294,20 +294,17 @@ bb15:
   SW s1, 0(sp)
   JAL zero, bb11
 maxCliques:
-  ADDI sp, sp, -80
-  SD ra, 40(sp)
-  SD s2, 48(sp)
-  SD s1, 56(sp)
-  SD s0, 64(sp)
+  ADDI sp, sp, -64
+  SD ra, 32(sp)
+  SD s2, 40(sp)
+  SD s1, 48(sp)
+  SD s0, 56(sp)
   ADD s0, a0, zero
-  ADD s1, a1, zero
-  SW s0, 32(sp)
-  SW s1, 24(sp)
+  ADD s0, a1, zero
+  SW s0, 24(sp)
   SW zero, 16(sp)
   ADDI s0, zero, 1
   SW s0, 8(sp)
-  ADDI s0, zero, 1
-  SW s0, 32(sp)
   JAL zero, bb17
 bb17:
   LW s0, 8(sp)
@@ -339,11 +336,11 @@ bb18:
 bb19:
   LW s0, 16(sp)
   ADD a0, s0, zero
-  LD ra, 40(sp)
-  LD s2, 48(sp)
-  LD s1, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD ra, 32(sp)
+  LD s2, 40(sp)
+  LD s1, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb20:
   LW s0, 24(sp)

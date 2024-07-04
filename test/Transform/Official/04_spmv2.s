@@ -28,23 +28,22 @@ N:
 .word 0x000186aa
 .section .text
 main:
-  ADDI sp, sp, -64
-  SD ra, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  ADDI sp, sp, -48
+  SD ra, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   LA s0, x
   ADD a0, s0, zero
   CALL getarray
   ADD s0, a0, zero
   ADDI s1, zero, 1
   SUBW s2, s0, s1
-  SW s2, 16(sp)
+  SW s2, 8(sp)
   LA s0, y
   ADD a0, s0, zero
   CALL getarray
   ADD s0, a0, zero
-  SW s0, 8(sp)
   LA s0, v
   ADD a0, s0, zero
   CALL getarray
@@ -66,7 +65,7 @@ bb1:
   BNE s1, zero, bb2
   JAL zero, bb3
 bb2:
-  LW s0, 16(sp)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   LA s0, x
   ADD a1, s0, zero
@@ -79,7 +78,7 @@ bb2:
   LA s0, b
   ADD a5, s0, zero
   CALL spmv
-  LW s0, 16(sp)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   LA s0, x
   ADD a1, s0, zero
@@ -99,17 +98,17 @@ bb2:
 bb3:
   ADDI a0, zero, 47
   CALL _sysy_stoptime
-  LW s0, 16(sp)
+  LW s0, 8(sp)
   ADD a0, s0, zero
   LA s0, b
   ADD a1, s0, zero
   CALL putarray
   ADD a0, zero, zero
-  LD ra, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD ra, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 spmv:
   ADDI sp, sp, -128

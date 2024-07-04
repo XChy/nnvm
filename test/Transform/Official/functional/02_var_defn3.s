@@ -4,11 +4,9 @@
 .section .text
 main:
   ADDI sp, sp, -48
-  SD ra, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
-  ADDI s0, zero, 1
-  SW s0, 16(sp)
+  SD ra, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADDI s0, zero, 2
   SW s0, 8(sp)
   ADDI s0, zero, 3
@@ -16,8 +14,8 @@ main:
   LW s0, 8(sp)
   ADDIW s1, s0, 3
   ADD a0, s1, zero
-  LD ra, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD ra, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

@@ -85,8 +85,6 @@ external void _sysy_starttime(i32 )
 
 i32 get_one(i32 a) {
 entry:
-  %a.stack = stack 4
-  store i32 %a to ptr %a.stack
   ret i32 1
 }
 

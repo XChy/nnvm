@@ -291,16 +291,13 @@ external void putch(i32 )
 
 i32 pop_queue() {
 entry114:
-  %res = stack 4
   h.load = load i32 from ptr @h
   116 = add i32 %h.load, i32 1
   store i32 %116 to ptr @h
   119 = mul i32 %116, i32 4
   120 = ptradd ptr @que, i32 %119
   120.load = load i32 from ptr %120
-  store i32 %120.load to ptr %res
-  h.load122 = load i32 from ptr @h
-  123 = mul i32 %h.load122, i32 4
+  123 = mul i32 %116, i32 4
   124 = ptradd ptr @que, i32 %123
   124.load = load i32 from ptr %124
   ret i32 %124.load

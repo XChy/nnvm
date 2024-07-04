@@ -168,8 +168,6 @@ external void putfarray(i32 , ptr )
 
 i32 mul(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
 entry:
-  %i = stack 4
-  store i32 0 to ptr %i
   2 = mul i32 0, i32 4
   3 = ptradd ptr %c0, i32 %2
   4 = mul i32 0, i32 4

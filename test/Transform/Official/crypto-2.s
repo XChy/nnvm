@@ -697,15 +697,14 @@ rotl5:
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -128
-  SD s4, 80(sp)
-  SD s3, 88(sp)
-  SD ra, 96(sp)
-  SD s2, 104(sp)
-  SD s1, 112(sp)
-  SD s0, 120(sp)
+  SD s4, 72(sp)
+  SD s3, 80(sp)
+  SD ra, 88(sp)
+  SD s2, 96(sp)
+  SD s1, 104(sp)
+  SD s0, 112(sp)
   ADDI s0, zero, 12
-  SW s0, 72(sp)
-  SW zero, 64(sp)
+  SW s0, 64(sp)
   ADDI t5, sp, 40
   ADD s0, t5, zero
   SW zero, 0(s0)
@@ -723,7 +722,7 @@ main:
   SW s0, 0(s1)
   CALL getint
   ADD s0, a0, zero
-  SW s0, 72(sp)
+  SW s0, 64(sp)
   ADDI a0, zero, 161
   CALL _sysy_starttime
   ADDI s0, zero, 4
@@ -757,7 +756,7 @@ main:
   SW zero, 0(s0)
   JAL zero, bb37
 bb37:
-  LW s0, 72(sp)
+  LW s0, 64(sp)
   SLT s1, zero, s0
   XOR s0, s1, zero
   SLTU s1, zero, s0
@@ -777,12 +776,12 @@ bb39:
   ADD a1, a1, zero
   CALL putarray
   ADD a0, zero, zero
-  LD s4, 80(sp)
-  LD s3, 88(sp)
-  LD ra, 96(sp)
-  LD s2, 104(sp)
-  LD s1, 112(sp)
-  LD s0, 120(sp)
+  LD s4, 72(sp)
+  LD s3, 80(sp)
+  LD ra, 88(sp)
+  LD s2, 96(sp)
+  LD s1, 104(sp)
+  LD s0, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb40:
@@ -853,10 +852,10 @@ bb44:
   SW s1, 0(sp)
   JAL zero, bb43
 bb45:
-  LW s0, 72(sp)
+  LW s0, 64(sp)
   ADDI s1, zero, 1
   SUBW s2, s0, s1
-  SW s2, 72(sp)
+  SW s2, 64(sp)
   JAL zero, bb37
 rotl1:
   ADDI sp, sp, -48

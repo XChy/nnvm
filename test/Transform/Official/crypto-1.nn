@@ -462,10 +462,8 @@ entry354:
   %len = stack 4
   %output_buf = stack 20
   %output = stack 20
-  %i356 = stack 4
   %rounds = stack 4
   store i32 12 to ptr %rounds
-  store i32 0 to ptr %i356
   arr.index358 = ptradd ptr %output, i32 0
   store i32 0 to ptr %arr.index358
   arr.index359 = ptradd ptr %output, i32 4

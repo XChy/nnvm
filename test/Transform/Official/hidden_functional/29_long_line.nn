@@ -410,7 +410,6 @@ entry:
   %a211290 = stack 4
   %a111289 = stack 4
   %a011288 = stack 4
-  %cout11287 = stack 4
   %ans = stack 4
   %f2 = stack 4
   %select11211 = stack 1
@@ -766,7 +765,6 @@ entry:
   %a28661 = stack 4
   %a18660 = stack 4
   %a08659 = stack 4
-  %cout8658 = stack 4
   %select8586 = stack 1
   %select8574 = stack 1
   %ab_and_cin8568 = stack 4
@@ -1120,7 +1118,6 @@ entry:
   %a26037 = stack 4
   %a16036 = stack 4
   %a06035 = stack 4
-  %cout6034 = stack 4
   %o155841 = stack 4
   %o145840 = stack 4
   %o135839 = stack 4
@@ -1511,7 +1508,6 @@ entry:
   %a23021 = stack 4
   %a13020 = stack 4
   %a03019 = stack 4
-  %cout3018 = stack 4
   %select2946 = stack 1
   %select2934 = stack 1
   %ab_and_cin2928 = stack 4
@@ -1865,7 +1861,6 @@ entry:
   %a2397 = stack 4
   %a1396 = stack 4
   %a0395 = stack 4
-  %cout = stack 4
   %o15 = stack 4
   %o14 = stack 4
   %o13 = stack 4
@@ -6288,7 +6283,6 @@ select.exit2945:
   2950 = load i1 from ptr %select2946
   br i1 %2950, bb %then2951, bb %else2953
 then2951:
-  store i32 1 to ptr %cout
   br bb %if.exit2952
 if.exit2952:
   store i32 0 to ptr %neg_b
@@ -6363,7 +6357,6 @@ if.exit2952:
   3040 = icmp slt i32 %3038, i32 0
   br i1 %3040, bb %then3041, bb %if.exit3042
 else2953:
-  store i32 0 to ptr %cout
   br bb %if.exit2952
 then3041:
   a03019.load3043 = load i32 from ptr %a03019
@@ -10258,7 +10251,6 @@ select.exit5570:
   5575 = load i1 from ptr %select5571
   br i1 %5575, bb %then5576, bb %else5578
 then5576:
-  store i32 1 to ptr %cout3018
   br bb %if.exit5577
 if.exit5577:
   store i32 0 to ptr %n1
@@ -10334,7 +10326,6 @@ if.exit5577:
   5669 = icmp slt i32 %5667, i32 0
   br i1 %5669, bb %then5670, bb %if.exit5671
 else5578:
-  store i32 0 to ptr %cout3018
   br bb %if.exit5577
 then5670:
   a05649.load5672 = load i32 from ptr %a05649
@@ -14710,7 +14701,6 @@ select.exit8585:
   8590 = load i1 from ptr %select8586
   br i1 %8590, bb %then8591, bb %else8593
 then8591:
-  store i32 1 to ptr %cout6034
   br bb %if.exit8592
 if.exit8592:
   store i32 0 to ptr %neg_b5647
@@ -14785,7 +14775,6 @@ if.exit8592:
   8680 = icmp slt i32 %8678, i32 0
   br i1 %8680, bb %then8681, bb %if.exit8682
 else8593:
-  store i32 0 to ptr %cout6034
   br bb %if.exit8592
 then8681:
   a08659.load8683 = load i32 from ptr %a08659
@@ -18680,7 +18669,6 @@ select.exit11210:
   11215 = load i1 from ptr %select11211
   br i1 %11215, bb %then11216, bb %else11218
 then11216:
-  store i32 1 to ptr %cout8658
   br bb %if.exit11217
 if.exit11217:
   store i32 0 to ptr %n2
@@ -18757,7 +18745,6 @@ if.exit11217:
   11309 = icmp slt i32 %11307, i32 0
   br i1 %11309, bb %then11310, bb %if.exit11311
 else11218:
-  store i32 0 to ptr %cout8658
   br bb %if.exit11217
 then11310:
   a011288.load11312 = load i32 from ptr %a011288
@@ -22652,7 +22639,6 @@ select.exit13839:
   13844 = load i1 from ptr %select13840
   br i1 %13844, bb %then13845, bb %else13847
 then13845:
-  store i32 1 to ptr %cout11287
   br bb %if.exit13846
 if.exit13846:
   store i32 0 to ptr %ans
@@ -22722,7 +22708,6 @@ if.exit13846:
   store i32 %13911 to ptr %ans
   ret i32 %13911
 else13847:
-  store i32 0 to ptr %cout11287
   br bb %if.exit13846
 }
 

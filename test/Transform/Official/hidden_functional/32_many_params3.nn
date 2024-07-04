@@ -30,460 +30,208 @@ external void putfarray(i32 , ptr )
 
 i32 func(i32 aa, i32 ab, i32 ac, i32 ad, i32 ae, i32 af, i32 ag, i32 ah, i32 ai, i32 aj, i32 ak, i32 al, i32 am, i32 an, i32 ao, i32 ap, i32 aq, i32 ar, i32 as, i32 at, i32 au, i32 av, i32 aw, i32 ax, i32 ay, i32 az, i32 ba, i32 bb, i32 bc, i32 bd, i32 be, i32 bf, i32 bg, i32 bh, i32 bi, i32 bj, i32 bk, i32 bl, i32 bm, i32 bn, i32 bo, i32 bp, i32 bq, i32 br, i32 bs, i32 bt, i32 bu, i32 bv, i32 bw, i32 bx, i32 by, i32 bz, i32 ca, i32 cb, i32 cc, i32 cd, i32 ce, i32 cf, i32 cg, i32 ch, i32 ci, i32 cj, i32 ck, i32 cl, i32 cm, i32 cn, i32 co, i32 cp, i32 cq, i32 cr, i32 cs, i32 ct, i32 cu, i32 cv, i32 cw, i32 cx, i32 cy, i32 cz, i32 da, i32 db, i32 dc, i32 dd, i32 de, i32 df, i32 dg, i32 dh, i32 di, i32 dj, i32 dk, i32 dl, i32 dm, i32 dn, i32 doo, i32 dp, i32 dq, i32 dr, i32 ds, i32 dt, i32 du, i32 dv, i32 dw, i32 dx, i32 dy, i32 dz, i32 ea, i32 eb, i32 ec, i32 ed, i32 ee, i32 ef, i32 eg, i32 eh, i32 ei, i32 ej, i32 ek, i32 el, i32 em, i32 en, i32 eo, i32 ep, i32 eq, i32 er, i32 es, i32 et, i32 eu, i32 ev, i32 ew, i32 ex, i32 ey, i32 ez, i32 fa, i32 fb, i32 fc, i32 fd, i32 fe, i32 ff, i32 fg, i32 fh, i32 fi, i32 fj, i32 fk, i32 fl, i32 fm, i32 fn, i32 fo, i32 fp, i32 fq, i32 fr, i32 fs, i32 ft, i32 fu, i32 fv, i32 fw, i32 fx, i32 fy, i32 fz, i32 ga, i32 gb, i32 gc, i32 gd, i32 ge, i32 gf, i32 gg, i32 gh, i32 gi, i32 gj, i32 gk, i32 gl, i32 gm, i32 gn, i32 go, i32 gp, i32 gq, i32 gr, i32 gs, i32 gt, i32 gu, i32 gv, i32 gw, i32 gx, i32 gy, i32 gz, i32 ha, i32 hb, i32 hc, i32 hd, i32 he, i32 hf, i32 hg, i32 hh, i32 hi, i32 hj, i32 hk, i32 hl, i32 hm, i32 hn, i32 ho, i32 hp, i32 hq, i32 hr, i32 hs, i32 ht, i32 hu, i32 hv, i32 hw, i32 hx, i32 hy, i32 hz, i32 ia, i32 ib, i32 ic, i32 id, i32 ie, i32 iff, i32 ig, i32 ih, i32 ii, i32 ij, i32 ik, i32 il, i32 im, i32 in, i32 io, i32 ip, i32 iq, i32 ir, i32 is, i32 it, i32 iu, i32 iv, i32 iw, i32 ix, i32 iy, i32 iz, i32 ja, i32 jb, i32 jc, i32 jd, i32 je, i32 jf, i32 jg, i32 jh, i32 ji, i32 jj, i32 jk, i32 jl, i32 jm, i32 jn, i32 jo, i32 jp, i32 jq, i32 jr, i32 js, i32 jt, i32 ju, i32 jv, i32 jw, i32 jx, i32 jy, i32 jz, i32 ka, i32 kb, i32 kc, i32 kd, i32 ke, i32 kf, i32 kg, i32 kh, i32 ki, i32 kj, i32 kk, i32 kl, i32 km, i32 kn, i32 ko, i32 kp, i32 kq, i32 kr, i32 ks, i32 kt, i32 ku, i32 kv, i32 kw, i32 kx, i32 ky, i32 kz, i32 la, i32 lb, i32 lc, i32 ld, i32 le, i32 lf, i32 lg, i32 lh, i32 li, i32 lj, i32 lk, i32 ll, i32 lm, i32 ln, i32 lo, i32 lp, i32 lq, i32 lr, i32 ls, i32 lt, i32 lu, i32 lv, i32 lw, i32 lx, i32 ly, i32 lz, i32 ma, i32 mb, i32 mc, i32 md, i32 me, i32 mf, i32 mg, i32 mh, i32 mi, i32 mj, i32 mk, i32 ml, i32 mm, i32 mn, i32 mo, i32 mp, i32 mq, i32 mr, i32 ms, i32 mt, i32 mu, i32 mv, i32 mw, i32 mx, i32 my, i32 mz, i32 na, i32 nb, i32 nc, i32 nd, i32 ne, i32 nf, i32 ng, i32 nh, i32 ni, i32 nj, i32 nk, i32 nl, i32 nm, i32 nn, i32 no, i32 np, i32 nq, i32 nr, i32 ns, i32 nt, i32 nu, i32 nv, i32 nw, i32 nx, i32 ny, i32 nz, i32 oa, i32 ob, i32 oc, i32 od, i32 oe, i32 of, i32 og, i32 oh, i32 oi, i32 oj, i32 ok, i32 ol, i32 om, i32 on, i32 oo, i32 op, i32 oq, i32 or, i32 os, i32 ot, i32 ou, i32 ov, i32 ow, i32 ox, i32 oy, i32 oz, i32 pa, i32 pb, i32 pc, i32 pd, i32 pe, i32 pf, i32 pg, i32 ph, i32 pi, i32 pj, i32 pk, i32 pl, i32 pm, i32 pn, i32 po, i32 pp, i32 pq, i32 pr, i32 ps, i32 pt, i32 pu, i32 pv, i32 pw, i32 px, i32 py, i32 pz, i32 qa, i32 qb, i32 qc, i32 qd, i32 qe, i32 qf, i32 qg, i32 qh, i32 qi, i32 qj, i32 qk, i32 ql, i32 qm, i32 qn, i32 qo, i32 qp, i32 qq, i32 qr, i32 qs, i32 qt, i32 qu, i32 qv, i32 qw, i32 qx, i32 qy, i32 qz, i32 ra, i32 rb, i32 rc, i32 rd, i32 re, i32 rf, i32 rg, i32 rh, i32 ri, i32 rj, i32 rk, i32 rl, i32 rm, i32 rn, i32 ro, i32 rp, i32 rq, i32 rr, i32 rs, i32 rt, i32 ru, i32 rv, i32 rw, i32 rx, i32 ry, i32 rz, i32 sa, i32 sb, i32 sc, i32 sd, i32 se, i32 sf, i32 sg, i32 sh, i32 si, i32 sj, i32 sk, i32 sl, i32 sm, i32 sn, i32 so, i32 sp, i32 sq, i32 sr, i32 ss, i32 st, i32 su, i32 sv, i32 sw, i32 sx, i32 sy, i32 sz, i32 ta, i32 tb, i32 tc, i32 td, i32 te, i32 tf, i32 tg, i32 th, i32 ti, i32 tj, i32 tk, i32 tl, i32 tm, i32 tn, i32 to, i32 tp, i32 tq, i32 tr, i32 ts, i32 tt, i32 tu, i32 tv, i32 tw, i32 tx, i32 ty, i32 tz, i32 ua, i32 ub, i32 uc, i32 ud, i32 ue, i32 uf, i32 ug, i32 uh, i32 ui, i32 uj, i32 uk, i32 ul, i32 um, i32 un, i32 uo, i32 up, i32 uq, i32 ur, i32 us, i32 ut, i32 uu, i32 uv, i32 uw, i32 ux, i32 uy, i32 uz, i32 va, i32 vb, i32 vc, i32 vd, i32 ve, i32 vf, i32 vg, i32 vh, i32 vi, i32 vj, i32 vk, i32 vl, i32 vm, i32 vn, i32 vo, i32 vp, i32 vq, i32 vr, i32 vs, i32 vt, i32 vu, i32 vv, i32 vw, i32 vx, i32 vy, i32 vz, i32 wa, i32 wb, i32 wc, i32 wd, i32 we, i32 wf, i32 wg, i32 wh, i32 wi, i32 wj, i32 wk, i32 wl, i32 wm, i32 wn, i32 wo, i32 wp, i32 wq, i32 wr, i32 ws, i32 wt, i32 wu, i32 wv, i32 ww, i32 wx, i32 wy, i32 wz, i32 xa, i32 xb, i32 xc, i32 xd, i32 xe, i32 xf, i32 xg, i32 xh, i32 xi, i32 xj, i32 xk, i32 xl, i32 xm, i32 xn, i32 xo, i32 xp, i32 xq, i32 xr, i32 xs, i32 xt, i32 xu, i32 xv, i32 xw, i32 xx, i32 xy, i32 xz, i32 ya, i32 yb, i32 yc, i32 yd, i32 ye, i32 yf, i32 yg, i32 yh, i32 yi, i32 yj, i32 yk, i32 yl, i32 ym, i32 yn, i32 yo, i32 yp, i32 yq, i32 yr, i32 ys, i32 yt, i32 yu, i32 yv, i32 yw, i32 yx, i32 yy, i32 yz, i32 za, i32 zb, i32 zc, i32 zd, i32 ze, i32 zf, i32 zg, i32 zh, i32 zi, i32 zj, i32 zk, i32 zl, i32 zm, i32 zn, i32 zo, i32 zp, i32 zq, i32 zr, i32 zs, i32 zt, i32 zu, i32 zv, i32 zw, i32 zx, i32 zy, i32 zz) {
 entry:
-  %zz.stack = stack 4
-  %zy.stack = stack 4
   %zx.stack = stack 4
-  %zw.stack = stack 4
   %zv.stack = stack 4
   %zu.stack = stack 4
   %zt.stack = stack 4
   %zs.stack = stack 4
-  %zr.stack = stack 4
-  %zq.stack = stack 4
-  %zp.stack = stack 4
-  %zo.stack = stack 4
-  %zn.stack = stack 4
-  %zm.stack = stack 4
   %zl.stack = stack 4
-  %zk.stack = stack 4
   %zj.stack = stack 4
   %zi.stack = stack 4
-  %zh.stack = stack 4
   %zg.stack = stack 4
   %zf.stack = stack 4
   %ze.stack = stack 4
-  %zd.stack = stack 4
-  %zc.stack = stack 4
   %zb.stack = stack 4
   %za.stack = stack 4
   %yz.stack = stack 4
-  %yy.stack = stack 4
   %yx.stack = stack 4
-  %yw.stack = stack 4
   %yv.stack = stack 4
   %yu.stack = stack 4
   %yt.stack = stack 4
-  %ys.stack = stack 4
-  %yr.stack = stack 4
-  %yq.stack = stack 4
-  %yp.stack = stack 4
   %yo.stack = stack 4
   %yn.stack = stack 4
   %ym.stack = stack 4
-  %yl.stack = stack 4
   %yk.stack = stack 4
   %yj.stack = stack 4
-  %yi.stack = stack 4
-  %yh.stack = stack 4
   %yg.stack = stack 4
-  %yf.stack = stack 4
-  %ye.stack = stack 4
-  %yd.stack = stack 4
-  %yc.stack = stack 4
   %yb.stack = stack 4
-  %ya.stack = stack 4
   %xz.stack = stack 4
   %xy.stack = stack 4
-  %xx.stack = stack 4
-  %xw.stack = stack 4
-  %xv.stack = stack 4
-  %xu.stack = stack 4
   %xt.stack = stack 4
-  %xs.stack = stack 4
-  %xr.stack = stack 4
-  %xq.stack = stack 4
   %xp.stack = stack 4
-  %xo.stack = stack 4
-  %xn.stack = stack 4
-  %xm.stack = stack 4
-  %xl.stack = stack 4
   %xk.stack = stack 4
   %xj.stack = stack 4
-  %xi.stack = stack 4
-  %xh.stack = stack 4
   %xg.stack = stack 4
   %xf.stack = stack 4
   %xe.stack = stack 4
-  %xd.stack = stack 4
-  %xc.stack = stack 4
-  %xb.stack = stack 4
   %xa.stack = stack 4
-  %wz.stack = stack 4
-  %wy.stack = stack 4
   %wx.stack = stack 4
   %ww.stack = stack 4
-  %wv.stack = stack 4
-  %wu.stack = stack 4
   %wt.stack = stack 4
   %ws.stack = stack 4
   %wr.stack = stack 4
-  %wq.stack = stack 4
   %wp.stack = stack 4
   %wo.stack = stack 4
-  %wn.stack = stack 4
   %wm.stack = stack 4
   %wl.stack = stack 4
-  %wk.stack = stack 4
   %wj.stack = stack 4
-  %wi.stack = stack 4
   %wh.stack = stack 4
   %wg.stack = stack 4
-  %wf.stack = stack 4
   %we.stack = stack 4
-  %wd.stack = stack 4
-  %wc.stack = stack 4
-  %wb.stack = stack 4
-  %wa.stack = stack 4
   %vz.stack = stack 4
-  %vy.stack = stack 4
-  %vx.stack = stack 4
   %vw.stack = stack 4
   %vv.stack = stack 4
   %vu.stack = stack 4
-  %vt.stack = stack 4
   %vs.stack = stack 4
   %vr.stack = stack 4
-  %vq.stack = stack 4
-  %vp.stack = stack 4
-  %vo.stack = stack 4
-  %vn.stack = stack 4
-  %vm.stack = stack 4
-  %vl.stack = stack 4
   %vk.stack = stack 4
   %vj.stack = stack 4
-  %vi.stack = stack 4
   %vh.stack = stack 4
-  %vg.stack = stack 4
   %vf.stack = stack 4
   %ve.stack = stack 4
   %vd.stack = stack 4
-  %vc.stack = stack 4
   %vb.stack = stack 4
   %va.stack = stack 4
   %uz.stack = stack 4
-  %uy.stack = stack 4
-  %ux.stack = stack 4
-  %uw.stack = stack 4
   %uv.stack = stack 4
   %uu.stack = stack 4
   %ut.stack = stack 4
-  %us.stack = stack 4
-  %ur.stack = stack 4
-  %uq.stack = stack 4
   %up.stack = stack 4
   %uo.stack = stack 4
-  %un.stack = stack 4
-  %um.stack = stack 4
   %ul.stack = stack 4
-  %uk.stack = stack 4
   %uj.stack = stack 4
   %ui.stack = stack 4
-  %uh.stack = stack 4
   %ug.stack = stack 4
-  %uf.stack = stack 4
   %ue.stack = stack 4
-  %ud.stack = stack 4
   %uc.stack = stack 4
-  %ub.stack = stack 4
   %ua.stack = stack 4
-  %tz.stack = stack 4
   %ty.stack = stack 4
-  %tx.stack = stack 4
-  %tw.stack = stack 4
   %tv.stack = stack 4
-  %tu.stack = stack 4
   %tt.stack = stack 4
   %ts.stack = stack 4
-  %tr.stack = stack 4
   %tq.stack = stack 4
-  %tp.stack = stack 4
-  %to.stack = stack 4
-  %tn.stack = stack 4
   %tm.stack = stack 4
   %tl.stack = stack 4
-  %tk.stack = stack 4
-  %tj.stack = stack 4
-  %ti.stack = stack 4
   %th.stack = stack 4
-  %tg.stack = stack 4
-  %tf.stack = stack 4
   %te.stack = stack 4
   %td.stack = stack 4
   %tc.stack = stack 4
-  %tb.stack = stack 4
   %ta.stack = stack 4
-  %sz.stack = stack 4
-  %sy.stack = stack 4
-  %sx.stack = stack 4
-  %sw.stack = stack 4
   %sv.stack = stack 4
-  %su.stack = stack 4
   %st.stack = stack 4
   %ss.stack = stack 4
-  %sr.stack = stack 4
   %sq.stack = stack 4
-  %sp.stack = stack 4
   %so.stack = stack 4
-  %sn.stack = stack 4
-  %sm.stack = stack 4
   %sl.stack = stack 4
-  %sk.stack = stack 4
   %sj.stack = stack 4
-  %si.stack = stack 4
   %sh.stack = stack 4
   %sg.stack = stack 4
-  %sf.stack = stack 4
-  %se.stack = stack 4
   %sd.stack = stack 4
   %sc.stack = stack 4
   %sb.stack = stack 4
   %sa.stack = stack 4
   %rz.stack = stack 4
-  %ry.stack = stack 4
   %rx.stack = stack 4
-  %rw.stack = stack 4
   %rv.stack = stack 4
   %ru.stack = stack 4
-  %rt.stack = stack 4
-  %rs.stack = stack 4
   %rr.stack = stack 4
   %rq.stack = stack 4
-  %rp.stack = stack 4
-  %ro.stack = stack 4
   %rn.stack = stack 4
-  %rm.stack = stack 4
-  %rl.stack = stack 4
-  %rk.stack = stack 4
   %rj.stack = stack 4
   %ri.stack = stack 4
-  %rh.stack = stack 4
-  %rg.stack = stack 4
-  %rf.stack = stack 4
   %re.stack = stack 4
   %rd.stack = stack 4
-  %rc.stack = stack 4
-  %rb.stack = stack 4
   %ra.stack = stack 4
-  %qz.stack = stack 4
   %qy.stack = stack 4
-  %qx.stack = stack 4
-  %qw.stack = stack 4
-  %qv.stack = stack 4
   %qu.stack = stack 4
-  %qt.stack = stack 4
   %qs.stack = stack 4
   %qr.stack = stack 4
   %qq.stack = stack 4
   %qp.stack = stack 4
-  %qo.stack = stack 4
-  %qn.stack = stack 4
-  %qm.stack = stack 4
-  %ql.stack = stack 4
   %qk.stack = stack 4
   %qj.stack = stack 4
-  %qi.stack = stack 4
   %qh.stack = stack 4
-  %qg.stack = stack 4
-  %qf.stack = stack 4
-  %qe.stack = stack 4
-  %qd.stack = stack 4
-  %qc.stack = stack 4
   %qb.stack = stack 4
   %qa.stack = stack 4
   %pz.stack = stack 4
-  %py.stack = stack 4
-  %px.stack = stack 4
-  %pw.stack = stack 4
   %pv.stack = stack 4
-  %pu.stack = stack 4
-  %pt.stack = stack 4
-  %ps.stack = stack 4
   %pr.stack = stack 4
-  %pq.stack = stack 4
   %pp.stack = stack 4
-  %po.stack = stack 4
   %pn.stack = stack 4
   %pm.stack = stack 4
   %pl.stack = stack 4
-  %pk.stack = stack 4
-  %pj.stack = stack 4
-  %pi.stack = stack 4
-  %ph.stack = stack 4
   %pg.stack = stack 4
-  %pf.stack = stack 4
   %pe.stack = stack 4
-  %pd.stack = stack 4
   %pc.stack = stack 4
   %pb.stack = stack 4
   %pa.stack = stack 4
   %oz.stack = stack 4
-  %oy.stack = stack 4
   %ox.stack = stack 4
-  %ow.stack = stack 4
   %ov.stack = stack 4
-  %ou.stack = stack 4
-  %ot.stack = stack 4
-  %os.stack = stack 4
-  %or.stack = stack 4
-  %oq.stack = stack 4
   %op.stack = stack 4
   %oo.stack = stack 4
   %on.stack = stack 4
-  %om.stack = stack 4
-  %ol.stack = stack 4
-  %ok.stack = stack 4
-  %oj.stack = stack 4
   %oi.stack = stack 4
   %oh.stack = stack 4
-  %og.stack = stack 4
-  %of.stack = stack 4
-  %oe.stack = stack 4
-  %od.stack = stack 4
   %oc.stack = stack 4
   %ob.stack = stack 4
   %oa.stack = stack 4
-  %nz.stack = stack 4
-  %ny.stack = stack 4
-  %nx.stack = stack 4
-  %nw.stack = stack 4
-  %nv.stack = stack 4
-  %nu.stack = stack 4
   %nt.stack = stack 4
-  %ns.stack = stack 4
   %nr.stack = stack 4
-  %nq.stack = stack 4
-  %np.stack = stack 4
-  %no.stack = stack 4
-  %nn.stack = stack 4
   %nm.stack = stack 4
   %nl.stack = stack 4
-  %nk.stack = stack 4
-  %nj.stack = stack 4
-  %ni.stack = stack 4
-  %nh.stack = stack 4
-  %ng.stack = stack 4
-  %nf.stack = stack 4
   %ne.stack = stack 4
   %nd.stack = stack 4
   %nc.stack = stack 4
-  %nb.stack = stack 4
-  %na.stack = stack 4
   %mz.stack = stack 4
   %my.stack = stack 4
-  %mx.stack = stack 4
-  %mw.stack = stack 4
   %mv.stack = stack 4
   %mu.stack = stack 4
-  %mt.stack = stack 4
-  %ms.stack = stack 4
   %mr.stack = stack 4
   %mq.stack = stack 4
-  %mp.stack = stack 4
-  %mo.stack = stack 4
-  %mn.stack = stack 4
-  %mm.stack = stack 4
-  %ml.stack = stack 4
-  %mk.stack = stack 4
-  %mj.stack = stack 4
-  %mi.stack = stack 4
-  %mh.stack = stack 4
   %mg.stack = stack 4
   %mf.stack = stack 4
-  %me.stack = stack 4
-  %md.stack = stack 4
-  %mc.stack = stack 4
-  %mb.stack = stack 4
-  %ma.stack = stack 4
-  %lz.stack = stack 4
-  %ly.stack = stack 4
   %lx.stack = stack 4
   %lw.stack = stack 4
-  %lv.stack = stack 4
-  %lu.stack = stack 4
-  %lt.stack = stack 4
   %ls.stack = stack 4
-  %lr.stack = stack 4
-  %lq.stack = stack 4
-  %lp.stack = stack 4
-  %lo.stack = stack 4
-  %ln.stack = stack 4
   %lm.stack = stack 4
-  %ll.stack = stack 4
-  %lk.stack = stack 4
   %lj.stack = stack 4
   %li.stack = stack 4
   %lh.stack = stack 4
-  %lg.stack = stack 4
-  %lf.stack = stack 4
   %le.stack = stack 4
-  %ld.stack = stack 4
   %lc.stack = stack 4
-  %lb.stack = stack 4
-  %la.stack = stack 4
   %kz.stack = stack 4
-  %ky.stack = stack 4
   %kx.stack = stack 4
   %kw.stack = stack 4
-  %kv.stack = stack 4
   %ku.stack = stack 4
   %kt.stack = stack 4
   %ks.stack = stack 4
-  %kr.stack = stack 4
-  %kq.stack = stack 4
-  %kp.stack = stack 4
   %ko.stack = stack 4
   %kn.stack = stack 4
   %km.stack = stack 4
   %kl.stack = stack 4
   %kk.stack = stack 4
-  %kj.stack = stack 4
   %ki.stack = stack 4
-  %kh.stack = stack 4
   %kg.stack = stack 4
-  %kf.stack = stack 4
   %ke.stack = stack 4
   %kd.stack = stack 4
-  %kc.stack = stack 4
   %kb.stack = stack 4
   %ka.stack = stack 4
-  %jz.stack = stack 4
   %jy.stack = stack 4
-  %jx.stack = stack 4
-  %jw.stack = stack 4
   %jv.stack = stack 4
   %ju.stack = stack 4
   %jt.stack = stack 4
   %js.stack = stack 4
-  %jr.stack = stack 4
-  %jq.stack = stack 4
   %jp.stack = stack 4
-  %jo.stack = stack 4
   %jn.stack = stack 4
-  %jm.stack = stack 4
   %jl.stack = stack 4
-  %jk.stack = stack 4
   %jj.stack = stack 4
-  %ji.stack = stack 4
-  %jh.stack = stack 4
-  %jg.stack = stack 4
-  %jf.stack = stack 4
-  %je.stack = stack 4
-  %jd.stack = stack 4
-  %jc.stack = stack 4
   %jb.stack = stack 4
-  %ja.stack = stack 4
-  %iz.stack = stack 4
   %iy.stack = stack 4
-  %ix.stack = stack 4
-  %iw.stack = stack 4
-  %iv.stack = stack 4
   %iu.stack = stack 4
   %it.stack = stack 4
-  %is.stack = stack 4
-  %ir.stack = stack 4
   %iq.stack = stack 4
   %ip.stack = stack 4
-  %io.stack = stack 4
   %in.stack = stack 4
   %im.stack = stack 4
   %il.stack = stack 4
@@ -494,430 +242,210 @@ entry:
   %ig.stack = stack 4
   %iff.stack = stack 4
   %ie.stack = stack 4
-  %id.stack = stack 4
   %ic.stack = stack 4
   %ib.stack = stack 4
   %ia.stack = stack 4
-  %hz.stack = stack 4
   %hy.stack = stack 4
   %hx.stack = stack 4
   %hw.stack = stack 4
-  %hv.stack = stack 4
-  %hu.stack = stack 4
   %ht.stack = stack 4
   %hs.stack = stack 4
-  %hr.stack = stack 4
   %hq.stack = stack 4
-  %hp.stack = stack 4
-  %ho.stack = stack 4
   %hn.stack = stack 4
-  %hm.stack = stack 4
-  %hl.stack = stack 4
-  %hk.stack = stack 4
-  %hj.stack = stack 4
-  %hi.stack = stack 4
   %hh.stack = stack 4
   %hg.stack = stack 4
   %hf.stack = stack 4
-  %he.stack = stack 4
   %hd.stack = stack 4
   %hc.stack = stack 4
   %hb.stack = stack 4
   %ha.stack = stack 4
-  %gz.stack = stack 4
-  %gy.stack = stack 4
-  %gx.stack = stack 4
-  %gw.stack = stack 4
   %gv.stack = stack 4
-  %gu.stack = stack 4
-  %gt.stack = stack 4
-  %gs.stack = stack 4
-  %gr.stack = stack 4
   %gq.stack = stack 4
   %gp.stack = stack 4
   %go.stack = stack 4
-  %gn.stack = stack 4
-  %gm.stack = stack 4
-  %gl.stack = stack 4
   %gk.stack = stack 4
-  %gj.stack = stack 4
-  %gi.stack = stack 4
   %gh.stack = stack 4
   %gg.stack = stack 4
   %gf.stack = stack 4
-  %ge.stack = stack 4
   %gd.stack = stack 4
   %gc.stack = stack 4
-  %gb.stack = stack 4
-  %ga.stack = stack 4
   %fz.stack = stack 4
-  %fy.stack = stack 4
   %fx.stack = stack 4
-  %fw.stack = stack 4
   %fv.stack = stack 4
-  %fu.stack = stack 4
-  %ft.stack = stack 4
-  %fs.stack = stack 4
-  %fr.stack = stack 4
-  %fq.stack = stack 4
   %fp.stack = stack 4
   %fo.stack = stack 4
   %fn.stack = stack 4
-  %fm.stack = stack 4
   %fl.stack = stack 4
-  %fk.stack = stack 4
   %fj.stack = stack 4
-  %fi.stack = stack 4
-  %fh.stack = stack 4
   %fg.stack = stack 4
   %ff.stack = stack 4
-  %fe.stack = stack 4
-  %fd.stack = stack 4
   %fc.stack = stack 4
-  %fb.stack = stack 4
   %fa.stack = stack 4
-  %ez.stack = stack 4
-  %ey.stack = stack 4
   %ex.stack = stack 4
-  %ew.stack = stack 4
-  %ev.stack = stack 4
   %eu.stack = stack 4
   %et.stack = stack 4
-  %es.stack = stack 4
-  %er.stack = stack 4
-  %eq.stack = stack 4
-  %ep.stack = stack 4
-  %eo.stack = stack 4
   %en.stack = stack 4
   %em.stack = stack 4
   %el.stack = stack 4
-  %ek.stack = stack 4
-  %ej.stack = stack 4
   %ei.stack = stack 4
   %eh.stack = stack 4
-  %eg.stack = stack 4
-  %ef.stack = stack 4
   %ee.stack = stack 4
   %ed.stack = stack 4
   %ec.stack = stack 4
-  %eb.stack = stack 4
-  %ea.stack = stack 4
-  %dz.stack = stack 4
-  %dy.stack = stack 4
-  %dx.stack = stack 4
   %dw.stack = stack 4
   %dv.stack = stack 4
-  %du.stack = stack 4
   %dt.stack = stack 4
-  %ds.stack = stack 4
-  %dr.stack = stack 4
-  %dq.stack = stack 4
   %dp.stack = stack 4
   %doo.stack = stack 4
   %dn.stack = stack 4
   %dm.stack = stack 4
   %dl.stack = stack 4
   %dk.stack = stack 4
-  %dj.stack = stack 4
   %di.stack = stack 4
-  %dh.stack = stack 4
-  %dg.stack = stack 4
   %df.stack = stack 4
   %de.stack = stack 4
-  %dd.stack = stack 4
-  %dc.stack = stack 4
-  %db.stack = stack 4
   %da.stack = stack 4
-  %cz.stack = stack 4
   %cy.stack = stack 4
-  %cx.stack = stack 4
-  %cw.stack = stack 4
-  %cv.stack = stack 4
-  %cu.stack = stack 4
   %ct.stack = stack 4
   %cs.stack = stack 4
   %cr.stack = stack 4
   %cq.stack = stack 4
   %cp.stack = stack 4
-  %co.stack = stack 4
-  %cn.stack = stack 4
   %cm.stack = stack 4
   %cl.stack = stack 4
-  %ck.stack = stack 4
   %cj.stack = stack 4
   %ci.stack = stack 4
-  %ch.stack = stack 4
   %cg.stack = stack 4
-  %cf.stack = stack 4
-  %ce.stack = stack 4
-  %cd.stack = stack 4
-  %cc.stack = stack 4
-  %cb.stack = stack 4
   %ca.stack = stack 4
   %bz.stack = stack 4
-  %by.stack = stack 4
   %bx.stack = stack 4
-  %bw.stack = stack 4
   %bv.stack = stack 4
-  %bu.stack = stack 4
   %bt.stack = stack 4
-  %bs.stack = stack 4
   %br.stack = stack 4
-  %bq.stack = stack 4
   %bp.stack = stack 4
-  %bo.stack = stack 4
   %bn.stack = stack 4
   %bm.stack = stack 4
-  %bl.stack = stack 4
-  %bk.stack = stack 4
-  %bj.stack = stack 4
-  %bi.stack = stack 4
-  %bh.stack = stack 4
-  %bg.stack = stack 4
   %bf.stack = stack 4
   %be.stack = stack 4
   %bd.stack = stack 4
-  %bc.stack = stack 4
   %bb.stack = stack 4
-  %ba.stack = stack 4
   %az.stack = stack 4
   %ay.stack = stack 4
   %ax.stack = stack 4
   %aw.stack = stack 4
-  %av.stack = stack 4
   %au.stack = stack 4
-  %at.stack = stack 4
-  %as.stack = stack 4
-  %ar.stack = stack 4
-  %aq.stack = stack 4
   %ap.stack = stack 4
   %ao.stack = stack 4
-  %an.stack = stack 4
   %am.stack = stack 4
   %al.stack = stack 4
   %ak.stack = stack 4
   %aj.stack = stack 4
-  %ai.stack = stack 4
   %ah.stack = stack 4
-  %ag.stack = stack 4
-  %af.stack = stack 4
   %ae.stack = stack 4
   %ad.stack = stack 4
-  %ac.stack = stack 4
   %ab.stack = stack 4
-  %aa.stack = stack 4
-  store i32 %aa to ptr %aa.stack
   store i32 %ab to ptr %ab.stack
-  store i32 %ac to ptr %ac.stack
   store i32 %ad to ptr %ad.stack
   store i32 %ae to ptr %ae.stack
-  store i32 %af to ptr %af.stack
-  store i32 %ag to ptr %ag.stack
   store i32 %ah to ptr %ah.stack
-  store i32 %ai to ptr %ai.stack
   store i32 %aj to ptr %aj.stack
   store i32 %ak to ptr %ak.stack
   store i32 %al to ptr %al.stack
   store i32 %am to ptr %am.stack
-  store i32 %an to ptr %an.stack
   store i32 %ao to ptr %ao.stack
   store i32 %ap to ptr %ap.stack
-  store i32 %aq to ptr %aq.stack
-  store i32 %ar to ptr %ar.stack
-  store i32 %as to ptr %as.stack
-  store i32 %at to ptr %at.stack
   store i32 %au to ptr %au.stack
-  store i32 %av to ptr %av.stack
   store i32 %aw to ptr %aw.stack
   store i32 %ax to ptr %ax.stack
   store i32 %ay to ptr %ay.stack
   store i32 %az to ptr %az.stack
-  store i32 %ba to ptr %ba.stack
   store i32 %bb to ptr %bb.stack
-  store i32 %bc to ptr %bc.stack
   store i32 %bd to ptr %bd.stack
   store i32 %be to ptr %be.stack
   store i32 %bf to ptr %bf.stack
-  store i32 %bg to ptr %bg.stack
-  store i32 %bh to ptr %bh.stack
-  store i32 %bi to ptr %bi.stack
-  store i32 %bj to ptr %bj.stack
-  store i32 %bk to ptr %bk.stack
-  store i32 %bl to ptr %bl.stack
   store i32 %bm to ptr %bm.stack
   store i32 %bn to ptr %bn.stack
-  store i32 %bo to ptr %bo.stack
   store i32 %bp to ptr %bp.stack
-  store i32 %bq to ptr %bq.stack
   store i32 %br to ptr %br.stack
-  store i32 %bs to ptr %bs.stack
   store i32 %bt to ptr %bt.stack
-  store i32 %bu to ptr %bu.stack
   store i32 %bv to ptr %bv.stack
-  store i32 %bw to ptr %bw.stack
   store i32 %bx to ptr %bx.stack
-  store i32 %by to ptr %by.stack
   store i32 %bz to ptr %bz.stack
   store i32 %ca to ptr %ca.stack
-  store i32 %cb to ptr %cb.stack
-  store i32 %cc to ptr %cc.stack
-  store i32 %cd to ptr %cd.stack
-  store i32 %ce to ptr %ce.stack
-  store i32 %cf to ptr %cf.stack
   store i32 %cg to ptr %cg.stack
-  store i32 %ch to ptr %ch.stack
   store i32 %ci to ptr %ci.stack
   store i32 %cj to ptr %cj.stack
-  store i32 %ck to ptr %ck.stack
   store i32 %cl to ptr %cl.stack
   store i32 %cm to ptr %cm.stack
-  store i32 %cn to ptr %cn.stack
-  store i32 %co to ptr %co.stack
   store i32 %cp to ptr %cp.stack
   store i32 %cq to ptr %cq.stack
   store i32 %cr to ptr %cr.stack
   store i32 %cs to ptr %cs.stack
   store i32 %ct to ptr %ct.stack
-  store i32 %cu to ptr %cu.stack
-  store i32 %cv to ptr %cv.stack
-  store i32 %cw to ptr %cw.stack
-  store i32 %cx to ptr %cx.stack
   store i32 %cy to ptr %cy.stack
-  store i32 %cz to ptr %cz.stack
   store i32 %da to ptr %da.stack
-  store i32 %db to ptr %db.stack
-  store i32 %dc to ptr %dc.stack
-  store i32 %dd to ptr %dd.stack
   store i32 %de to ptr %de.stack
   store i32 %df to ptr %df.stack
-  store i32 %dg to ptr %dg.stack
-  store i32 %dh to ptr %dh.stack
   store i32 %di to ptr %di.stack
-  store i32 %dj to ptr %dj.stack
   store i32 %dk to ptr %dk.stack
   store i32 %dl to ptr %dl.stack
   store i32 %dm to ptr %dm.stack
   store i32 %dn to ptr %dn.stack
   store i32 %doo to ptr %doo.stack
   store i32 %dp to ptr %dp.stack
-  store i32 %dq to ptr %dq.stack
-  store i32 %dr to ptr %dr.stack
-  store i32 %ds to ptr %ds.stack
   store i32 %dt to ptr %dt.stack
-  store i32 %du to ptr %du.stack
   store i32 %dv to ptr %dv.stack
   store i32 %dw to ptr %dw.stack
-  store i32 %dx to ptr %dx.stack
-  store i32 %dy to ptr %dy.stack
-  store i32 %dz to ptr %dz.stack
-  store i32 %ea to ptr %ea.stack
-  store i32 %eb to ptr %eb.stack
   store i32 %ec to ptr %ec.stack
   store i32 %ed to ptr %ed.stack
   store i32 %ee to ptr %ee.stack
-  store i32 %ef to ptr %ef.stack
-  store i32 %eg to ptr %eg.stack
   store i32 %eh to ptr %eh.stack
   store i32 %ei to ptr %ei.stack
-  store i32 %ej to ptr %ej.stack
-  store i32 %ek to ptr %ek.stack
   store i32 %el to ptr %el.stack
   store i32 %em to ptr %em.stack
   store i32 %en to ptr %en.stack
-  store i32 %eo to ptr %eo.stack
-  store i32 %ep to ptr %ep.stack
-  store i32 %eq to ptr %eq.stack
-  store i32 %er to ptr %er.stack
-  store i32 %es to ptr %es.stack
   store i32 %et to ptr %et.stack
   store i32 %eu to ptr %eu.stack
-  store i32 %ev to ptr %ev.stack
-  store i32 %ew to ptr %ew.stack
   store i32 %ex to ptr %ex.stack
-  store i32 %ey to ptr %ey.stack
-  store i32 %ez to ptr %ez.stack
   store i32 %fa to ptr %fa.stack
-  store i32 %fb to ptr %fb.stack
   store i32 %fc to ptr %fc.stack
-  store i32 %fd to ptr %fd.stack
-  store i32 %fe to ptr %fe.stack
   store i32 %ff to ptr %ff.stack
   store i32 %fg to ptr %fg.stack
-  store i32 %fh to ptr %fh.stack
-  store i32 %fi to ptr %fi.stack
   store i32 %fj to ptr %fj.stack
-  store i32 %fk to ptr %fk.stack
   store i32 %fl to ptr %fl.stack
-  store i32 %fm to ptr %fm.stack
   store i32 %fn to ptr %fn.stack
   store i32 %fo to ptr %fo.stack
   store i32 %fp to ptr %fp.stack
-  store i32 %fq to ptr %fq.stack
-  store i32 %fr to ptr %fr.stack
-  store i32 %fs to ptr %fs.stack
-  store i32 %ft to ptr %ft.stack
-  store i32 %fu to ptr %fu.stack
   store i32 %fv to ptr %fv.stack
-  store i32 %fw to ptr %fw.stack
   store i32 %fx to ptr %fx.stack
-  store i32 %fy to ptr %fy.stack
   store i32 %fz to ptr %fz.stack
-  store i32 %ga to ptr %ga.stack
-  store i32 %gb to ptr %gb.stack
   store i32 %gc to ptr %gc.stack
   store i32 %gd to ptr %gd.stack
-  store i32 %ge to ptr %ge.stack
   store i32 %gf to ptr %gf.stack
   store i32 %gg to ptr %gg.stack
   store i32 %gh to ptr %gh.stack
-  store i32 %gi to ptr %gi.stack
-  store i32 %gj to ptr %gj.stack
   store i32 %gk to ptr %gk.stack
-  store i32 %gl to ptr %gl.stack
-  store i32 %gm to ptr %gm.stack
-  store i32 %gn to ptr %gn.stack
   store i32 %go to ptr %go.stack
   store i32 %gp to ptr %gp.stack
   store i32 %gq to ptr %gq.stack
-  store i32 %gr to ptr %gr.stack
-  store i32 %gs to ptr %gs.stack
-  store i32 %gt to ptr %gt.stack
-  store i32 %gu to ptr %gu.stack
   store i32 %gv to ptr %gv.stack
-  store i32 %gw to ptr %gw.stack
-  store i32 %gx to ptr %gx.stack
-  store i32 %gy to ptr %gy.stack
-  store i32 %gz to ptr %gz.stack
   store i32 %ha to ptr %ha.stack
   store i32 %hb to ptr %hb.stack
   store i32 %hc to ptr %hc.stack
   store i32 %hd to ptr %hd.stack
-  store i32 %he to ptr %he.stack
   store i32 %hf to ptr %hf.stack
   store i32 %hg to ptr %hg.stack
   store i32 %hh to ptr %hh.stack
-  store i32 %hi to ptr %hi.stack
-  store i32 %hj to ptr %hj.stack
-  store i32 %hk to ptr %hk.stack
-  store i32 %hl to ptr %hl.stack
-  store i32 %hm to ptr %hm.stack
   store i32 %hn to ptr %hn.stack
-  store i32 %ho to ptr %ho.stack
-  store i32 %hp to ptr %hp.stack
   store i32 %hq to ptr %hq.stack
-  store i32 %hr to ptr %hr.stack
   store i32 %hs to ptr %hs.stack
   store i32 %ht to ptr %ht.stack
-  store i32 %hu to ptr %hu.stack
-  store i32 %hv to ptr %hv.stack
   store i32 %hw to ptr %hw.stack
   store i32 %hx to ptr %hx.stack
   store i32 %hy to ptr %hy.stack
-  store i32 %hz to ptr %hz.stack
   store i32 %ia to ptr %ia.stack
   store i32 %ib to ptr %ib.stack
   store i32 %ic to ptr %ic.stack
-  store i32 %id to ptr %id.stack
   store i32 %ie to ptr %ie.stack
   store i32 %iff to ptr %iff.stack
   store i32 %ig to ptr %ig.stack
@@ -928,460 +456,208 @@ entry:
   store i32 %il to ptr %il.stack
   store i32 %im to ptr %im.stack
   store i32 %in to ptr %in.stack
-  store i32 %io to ptr %io.stack
   store i32 %ip to ptr %ip.stack
   store i32 %iq to ptr %iq.stack
-  store i32 %ir to ptr %ir.stack
-  store i32 %is to ptr %is.stack
   store i32 %it to ptr %it.stack
   store i32 %iu to ptr %iu.stack
-  store i32 %iv to ptr %iv.stack
-  store i32 %iw to ptr %iw.stack
-  store i32 %ix to ptr %ix.stack
   store i32 %iy to ptr %iy.stack
-  store i32 %iz to ptr %iz.stack
-  store i32 %ja to ptr %ja.stack
   store i32 %jb to ptr %jb.stack
-  store i32 %jc to ptr %jc.stack
-  store i32 %jd to ptr %jd.stack
-  store i32 %je to ptr %je.stack
-  store i32 %jf to ptr %jf.stack
-  store i32 %jg to ptr %jg.stack
-  store i32 %jh to ptr %jh.stack
-  store i32 %ji to ptr %ji.stack
   store i32 %jj to ptr %jj.stack
-  store i32 %jk to ptr %jk.stack
   store i32 %jl to ptr %jl.stack
-  store i32 %jm to ptr %jm.stack
   store i32 %jn to ptr %jn.stack
-  store i32 %jo to ptr %jo.stack
   store i32 %jp to ptr %jp.stack
-  store i32 %jq to ptr %jq.stack
-  store i32 %jr to ptr %jr.stack
   store i32 %js to ptr %js.stack
   store i32 %jt to ptr %jt.stack
   store i32 %ju to ptr %ju.stack
   store i32 %jv to ptr %jv.stack
-  store i32 %jw to ptr %jw.stack
-  store i32 %jx to ptr %jx.stack
   store i32 %jy to ptr %jy.stack
-  store i32 %jz to ptr %jz.stack
   store i32 %ka to ptr %ka.stack
   store i32 %kb to ptr %kb.stack
-  store i32 %kc to ptr %kc.stack
   store i32 %kd to ptr %kd.stack
   store i32 %ke to ptr %ke.stack
-  store i32 %kf to ptr %kf.stack
   store i32 %kg to ptr %kg.stack
-  store i32 %kh to ptr %kh.stack
   store i32 %ki to ptr %ki.stack
-  store i32 %kj to ptr %kj.stack
   store i32 %kk to ptr %kk.stack
   store i32 %kl to ptr %kl.stack
   store i32 %km to ptr %km.stack
   store i32 %kn to ptr %kn.stack
   store i32 %ko to ptr %ko.stack
-  store i32 %kp to ptr %kp.stack
-  store i32 %kq to ptr %kq.stack
-  store i32 %kr to ptr %kr.stack
   store i32 %ks to ptr %ks.stack
   store i32 %kt to ptr %kt.stack
   store i32 %ku to ptr %ku.stack
-  store i32 %kv to ptr %kv.stack
   store i32 %kw to ptr %kw.stack
   store i32 %kx to ptr %kx.stack
-  store i32 %ky to ptr %ky.stack
   store i32 %kz to ptr %kz.stack
-  store i32 %la to ptr %la.stack
-  store i32 %lb to ptr %lb.stack
   store i32 %lc to ptr %lc.stack
-  store i32 %ld to ptr %ld.stack
   store i32 %le to ptr %le.stack
-  store i32 %lf to ptr %lf.stack
-  store i32 %lg to ptr %lg.stack
   store i32 %lh to ptr %lh.stack
   store i32 %li to ptr %li.stack
   store i32 %lj to ptr %lj.stack
-  store i32 %lk to ptr %lk.stack
-  store i32 %ll to ptr %ll.stack
   store i32 %lm to ptr %lm.stack
-  store i32 %ln to ptr %ln.stack
-  store i32 %lo to ptr %lo.stack
-  store i32 %lp to ptr %lp.stack
-  store i32 %lq to ptr %lq.stack
-  store i32 %lr to ptr %lr.stack
   store i32 %ls to ptr %ls.stack
-  store i32 %lt to ptr %lt.stack
-  store i32 %lu to ptr %lu.stack
-  store i32 %lv to ptr %lv.stack
   store i32 %lw to ptr %lw.stack
   store i32 %lx to ptr %lx.stack
-  store i32 %ly to ptr %ly.stack
-  store i32 %lz to ptr %lz.stack
-  store i32 %ma to ptr %ma.stack
-  store i32 %mb to ptr %mb.stack
-  store i32 %mc to ptr %mc.stack
-  store i32 %md to ptr %md.stack
-  store i32 %me to ptr %me.stack
   store i32 %mf to ptr %mf.stack
   store i32 %mg to ptr %mg.stack
-  store i32 %mh to ptr %mh.stack
-  store i32 %mi to ptr %mi.stack
-  store i32 %mj to ptr %mj.stack
-  store i32 %mk to ptr %mk.stack
-  store i32 %ml to ptr %ml.stack
-  store i32 %mm to ptr %mm.stack
-  store i32 %mn to ptr %mn.stack
-  store i32 %mo to ptr %mo.stack
-  store i32 %mp to ptr %mp.stack
   store i32 %mq to ptr %mq.stack
   store i32 %mr to ptr %mr.stack
-  store i32 %ms to ptr %ms.stack
-  store i32 %mt to ptr %mt.stack
   store i32 %mu to ptr %mu.stack
   store i32 %mv to ptr %mv.stack
-  store i32 %mw to ptr %mw.stack
-  store i32 %mx to ptr %mx.stack
   store i32 %my to ptr %my.stack
   store i32 %mz to ptr %mz.stack
-  store i32 %na to ptr %na.stack
-  store i32 %nb to ptr %nb.stack
   store i32 %nc to ptr %nc.stack
   store i32 %nd to ptr %nd.stack
   store i32 %ne to ptr %ne.stack
-  store i32 %nf to ptr %nf.stack
-  store i32 %ng to ptr %ng.stack
-  store i32 %nh to ptr %nh.stack
-  store i32 %ni to ptr %ni.stack
-  store i32 %nj to ptr %nj.stack
-  store i32 %nk to ptr %nk.stack
   store i32 %nl to ptr %nl.stack
   store i32 %nm to ptr %nm.stack
-  store i32 %nn to ptr %nn.stack
-  store i32 %no to ptr %no.stack
-  store i32 %np to ptr %np.stack
-  store i32 %nq to ptr %nq.stack
   store i32 %nr to ptr %nr.stack
-  store i32 %ns to ptr %ns.stack
   store i32 %nt to ptr %nt.stack
-  store i32 %nu to ptr %nu.stack
-  store i32 %nv to ptr %nv.stack
-  store i32 %nw to ptr %nw.stack
-  store i32 %nx to ptr %nx.stack
-  store i32 %ny to ptr %ny.stack
-  store i32 %nz to ptr %nz.stack
   store i32 %oa to ptr %oa.stack
   store i32 %ob to ptr %ob.stack
   store i32 %oc to ptr %oc.stack
-  store i32 %od to ptr %od.stack
-  store i32 %oe to ptr %oe.stack
-  store i32 %of to ptr %of.stack
-  store i32 %og to ptr %og.stack
   store i32 %oh to ptr %oh.stack
   store i32 %oi to ptr %oi.stack
-  store i32 %oj to ptr %oj.stack
-  store i32 %ok to ptr %ok.stack
-  store i32 %ol to ptr %ol.stack
-  store i32 %om to ptr %om.stack
   store i32 %on to ptr %on.stack
   store i32 %oo to ptr %oo.stack
   store i32 %op to ptr %op.stack
-  store i32 %oq to ptr %oq.stack
-  store i32 %or to ptr %or.stack
-  store i32 %os to ptr %os.stack
-  store i32 %ot to ptr %ot.stack
-  store i32 %ou to ptr %ou.stack
   store i32 %ov to ptr %ov.stack
-  store i32 %ow to ptr %ow.stack
   store i32 %ox to ptr %ox.stack
-  store i32 %oy to ptr %oy.stack
   store i32 %oz to ptr %oz.stack
   store i32 %pa to ptr %pa.stack
   store i32 %pb to ptr %pb.stack
   store i32 %pc to ptr %pc.stack
-  store i32 %pd to ptr %pd.stack
   store i32 %pe to ptr %pe.stack
-  store i32 %pf to ptr %pf.stack
   store i32 %pg to ptr %pg.stack
-  store i32 %ph to ptr %ph.stack
-  store i32 %pi to ptr %pi.stack
-  store i32 %pj to ptr %pj.stack
-  store i32 %pk to ptr %pk.stack
   store i32 %pl to ptr %pl.stack
   store i32 %pm to ptr %pm.stack
   store i32 %pn to ptr %pn.stack
-  store i32 %po to ptr %po.stack
   store i32 %pp to ptr %pp.stack
-  store i32 %pq to ptr %pq.stack
   store i32 %pr to ptr %pr.stack
-  store i32 %ps to ptr %ps.stack
-  store i32 %pt to ptr %pt.stack
-  store i32 %pu to ptr %pu.stack
   store i32 %pv to ptr %pv.stack
-  store i32 %pw to ptr %pw.stack
-  store i32 %px to ptr %px.stack
-  store i32 %py to ptr %py.stack
   store i32 %pz to ptr %pz.stack
   store i32 %qa to ptr %qa.stack
   store i32 %qb to ptr %qb.stack
-  store i32 %qc to ptr %qc.stack
-  store i32 %qd to ptr %qd.stack
-  store i32 %qe to ptr %qe.stack
-  store i32 %qf to ptr %qf.stack
-  store i32 %qg to ptr %qg.stack
   store i32 %qh to ptr %qh.stack
-  store i32 %qi to ptr %qi.stack
   store i32 %qj to ptr %qj.stack
   store i32 %qk to ptr %qk.stack
-  store i32 %ql to ptr %ql.stack
-  store i32 %qm to ptr %qm.stack
-  store i32 %qn to ptr %qn.stack
-  store i32 %qo to ptr %qo.stack
   store i32 %qp to ptr %qp.stack
   store i32 %qq to ptr %qq.stack
   store i32 %qr to ptr %qr.stack
   store i32 %qs to ptr %qs.stack
-  store i32 %qt to ptr %qt.stack
   store i32 %qu to ptr %qu.stack
-  store i32 %qv to ptr %qv.stack
-  store i32 %qw to ptr %qw.stack
-  store i32 %qx to ptr %qx.stack
   store i32 %qy to ptr %qy.stack
-  store i32 %qz to ptr %qz.stack
   store i32 %ra to ptr %ra.stack
-  store i32 %rb to ptr %rb.stack
-  store i32 %rc to ptr %rc.stack
   store i32 %rd to ptr %rd.stack
   store i32 %re to ptr %re.stack
-  store i32 %rf to ptr %rf.stack
-  store i32 %rg to ptr %rg.stack
-  store i32 %rh to ptr %rh.stack
   store i32 %ri to ptr %ri.stack
   store i32 %rj to ptr %rj.stack
-  store i32 %rk to ptr %rk.stack
-  store i32 %rl to ptr %rl.stack
-  store i32 %rm to ptr %rm.stack
   store i32 %rn to ptr %rn.stack
-  store i32 %ro to ptr %ro.stack
-  store i32 %rp to ptr %rp.stack
   store i32 %rq to ptr %rq.stack
   store i32 %rr to ptr %rr.stack
-  store i32 %rs to ptr %rs.stack
-  store i32 %rt to ptr %rt.stack
   store i32 %ru to ptr %ru.stack
   store i32 %rv to ptr %rv.stack
-  store i32 %rw to ptr %rw.stack
   store i32 %rx to ptr %rx.stack
-  store i32 %ry to ptr %ry.stack
   store i32 %rz to ptr %rz.stack
   store i32 %sa to ptr %sa.stack
   store i32 %sb to ptr %sb.stack
   store i32 %sc to ptr %sc.stack
   store i32 %sd to ptr %sd.stack
-  store i32 %se to ptr %se.stack
-  store i32 %sf to ptr %sf.stack
   store i32 %sg to ptr %sg.stack
   store i32 %sh to ptr %sh.stack
-  store i32 %si to ptr %si.stack
   store i32 %sj to ptr %sj.stack
-  store i32 %sk to ptr %sk.stack
   store i32 %sl to ptr %sl.stack
-  store i32 %sm to ptr %sm.stack
-  store i32 %sn to ptr %sn.stack
   store i32 %so to ptr %so.stack
-  store i32 %sp to ptr %sp.stack
   store i32 %sq to ptr %sq.stack
-  store i32 %sr to ptr %sr.stack
   store i32 %ss to ptr %ss.stack
   store i32 %st to ptr %st.stack
-  store i32 %su to ptr %su.stack
   store i32 %sv to ptr %sv.stack
-  store i32 %sw to ptr %sw.stack
-  store i32 %sx to ptr %sx.stack
-  store i32 %sy to ptr %sy.stack
-  store i32 %sz to ptr %sz.stack
   store i32 %ta to ptr %ta.stack
-  store i32 %tb to ptr %tb.stack
   store i32 %tc to ptr %tc.stack
   store i32 %td to ptr %td.stack
   store i32 %te to ptr %te.stack
-  store i32 %tf to ptr %tf.stack
-  store i32 %tg to ptr %tg.stack
   store i32 %th to ptr %th.stack
-  store i32 %ti to ptr %ti.stack
-  store i32 %tj to ptr %tj.stack
-  store i32 %tk to ptr %tk.stack
   store i32 %tl to ptr %tl.stack
   store i32 %tm to ptr %tm.stack
-  store i32 %tn to ptr %tn.stack
-  store i32 %to to ptr %to.stack
-  store i32 %tp to ptr %tp.stack
   store i32 %tq to ptr %tq.stack
-  store i32 %tr to ptr %tr.stack
   store i32 %ts to ptr %ts.stack
   store i32 %tt to ptr %tt.stack
-  store i32 %tu to ptr %tu.stack
   store i32 %tv to ptr %tv.stack
-  store i32 %tw to ptr %tw.stack
-  store i32 %tx to ptr %tx.stack
   store i32 %ty to ptr %ty.stack
-  store i32 %tz to ptr %tz.stack
   store i32 %ua to ptr %ua.stack
-  store i32 %ub to ptr %ub.stack
   store i32 %uc to ptr %uc.stack
-  store i32 %ud to ptr %ud.stack
   store i32 %ue to ptr %ue.stack
-  store i32 %uf to ptr %uf.stack
   store i32 %ug to ptr %ug.stack
-  store i32 %uh to ptr %uh.stack
   store i32 %ui to ptr %ui.stack
   store i32 %uj to ptr %uj.stack
-  store i32 %uk to ptr %uk.stack
   store i32 %ul to ptr %ul.stack
-  store i32 %um to ptr %um.stack
-  store i32 %un to ptr %un.stack
   store i32 %uo to ptr %uo.stack
   store i32 %up to ptr %up.stack
-  store i32 %uq to ptr %uq.stack
-  store i32 %ur to ptr %ur.stack
-  store i32 %us to ptr %us.stack
   store i32 %ut to ptr %ut.stack
   store i32 %uu to ptr %uu.stack
   store i32 %uv to ptr %uv.stack
-  store i32 %uw to ptr %uw.stack
-  store i32 %ux to ptr %ux.stack
-  store i32 %uy to ptr %uy.stack
   store i32 %uz to ptr %uz.stack
   store i32 %va to ptr %va.stack
   store i32 %vb to ptr %vb.stack
-  store i32 %vc to ptr %vc.stack
   store i32 %vd to ptr %vd.stack
   store i32 %ve to ptr %ve.stack
   store i32 %vf to ptr %vf.stack
-  store i32 %vg to ptr %vg.stack
   store i32 %vh to ptr %vh.stack
-  store i32 %vi to ptr %vi.stack
   store i32 %vj to ptr %vj.stack
   store i32 %vk to ptr %vk.stack
-  store i32 %vl to ptr %vl.stack
-  store i32 %vm to ptr %vm.stack
-  store i32 %vn to ptr %vn.stack
-  store i32 %vo to ptr %vo.stack
-  store i32 %vp to ptr %vp.stack
-  store i32 %vq to ptr %vq.stack
   store i32 %vr to ptr %vr.stack
   store i32 %vs to ptr %vs.stack
-  store i32 %vt to ptr %vt.stack
   store i32 %vu to ptr %vu.stack
   store i32 %vv to ptr %vv.stack
   store i32 %vw to ptr %vw.stack
-  store i32 %vx to ptr %vx.stack
-  store i32 %vy to ptr %vy.stack
   store i32 %vz to ptr %vz.stack
-  store i32 %wa to ptr %wa.stack
-  store i32 %wb to ptr %wb.stack
-  store i32 %wc to ptr %wc.stack
-  store i32 %wd to ptr %wd.stack
   store i32 %we to ptr %we.stack
-  store i32 %wf to ptr %wf.stack
   store i32 %wg to ptr %wg.stack
   store i32 %wh to ptr %wh.stack
-  store i32 %wi to ptr %wi.stack
   store i32 %wj to ptr %wj.stack
-  store i32 %wk to ptr %wk.stack
   store i32 %wl to ptr %wl.stack
   store i32 %wm to ptr %wm.stack
-  store i32 %wn to ptr %wn.stack
   store i32 %wo to ptr %wo.stack
   store i32 %wp to ptr %wp.stack
-  store i32 %wq to ptr %wq.stack
   store i32 %wr to ptr %wr.stack
   store i32 %ws to ptr %ws.stack
   store i32 %wt to ptr %wt.stack
-  store i32 %wu to ptr %wu.stack
-  store i32 %wv to ptr %wv.stack
   store i32 %ww to ptr %ww.stack
   store i32 %wx to ptr %wx.stack
-  store i32 %wy to ptr %wy.stack
-  store i32 %wz to ptr %wz.stack
   store i32 %xa to ptr %xa.stack
-  store i32 %xb to ptr %xb.stack
-  store i32 %xc to ptr %xc.stack
-  store i32 %xd to ptr %xd.stack
   store i32 %xe to ptr %xe.stack
   store i32 %xf to ptr %xf.stack
   store i32 %xg to ptr %xg.stack
-  store i32 %xh to ptr %xh.stack
-  store i32 %xi to ptr %xi.stack
   store i32 %xj to ptr %xj.stack
   store i32 %xk to ptr %xk.stack
-  store i32 %xl to ptr %xl.stack
-  store i32 %xm to ptr %xm.stack
-  store i32 %xn to ptr %xn.stack
-  store i32 %xo to ptr %xo.stack
   store i32 %xp to ptr %xp.stack
-  store i32 %xq to ptr %xq.stack
-  store i32 %xr to ptr %xr.stack
-  store i32 %xs to ptr %xs.stack
   store i32 %xt to ptr %xt.stack
-  store i32 %xu to ptr %xu.stack
-  store i32 %xv to ptr %xv.stack
-  store i32 %xw to ptr %xw.stack
-  store i32 %xx to ptr %xx.stack
   store i32 %xy to ptr %xy.stack
   store i32 %xz to ptr %xz.stack
-  store i32 %ya to ptr %ya.stack
   store i32 %yb to ptr %yb.stack
-  store i32 %yc to ptr %yc.stack
-  store i32 %yd to ptr %yd.stack
-  store i32 %ye to ptr %ye.stack
-  store i32 %yf to ptr %yf.stack
   store i32 %yg to ptr %yg.stack
-  store i32 %yh to ptr %yh.stack
-  store i32 %yi to ptr %yi.stack
   store i32 %yj to ptr %yj.stack
   store i32 %yk to ptr %yk.stack
-  store i32 %yl to ptr %yl.stack
   store i32 %ym to ptr %ym.stack
   store i32 %yn to ptr %yn.stack
   store i32 %yo to ptr %yo.stack
-  store i32 %yp to ptr %yp.stack
-  store i32 %yq to ptr %yq.stack
-  store i32 %yr to ptr %yr.stack
-  store i32 %ys to ptr %ys.stack
   store i32 %yt to ptr %yt.stack
   store i32 %yu to ptr %yu.stack
   store i32 %yv to ptr %yv.stack
-  store i32 %yw to ptr %yw.stack
   store i32 %yx to ptr %yx.stack
-  store i32 %yy to ptr %yy.stack
   store i32 %yz to ptr %yz.stack
   store i32 %za to ptr %za.stack
   store i32 %zb to ptr %zb.stack
-  store i32 %zc to ptr %zc.stack
-  store i32 %zd to ptr %zd.stack
   store i32 %ze to ptr %ze.stack
   store i32 %zf to ptr %zf.stack
   store i32 %zg to ptr %zg.stack
-  store i32 %zh to ptr %zh.stack
   store i32 %zi to ptr %zi.stack
   store i32 %zj to ptr %zj.stack
-  store i32 %zk to ptr %zk.stack
   store i32 %zl to ptr %zl.stack
-  store i32 %zm to ptr %zm.stack
-  store i32 %zn to ptr %zn.stack
-  store i32 %zo to ptr %zo.stack
-  store i32 %zp to ptr %zp.stack
-  store i32 %zq to ptr %zq.stack
-  store i32 %zr to ptr %zr.stack
   store i32 %zs to ptr %zs.stack
   store i32 %zt to ptr %zt.stack
   store i32 %zu to ptr %zu.stack
   store i32 %zv to ptr %zv.stack
-  store i32 %zw to ptr %zw.stack
   store i32 %zx to ptr %zx.stack
-  store i32 %zy to ptr %zy.stack
-  store i32 %zz to ptr %zz.stack
   zi.stack.load = load i32 from ptr %zi.stack
   xy.stack.load = load i32 from ptr %xy.stack
   679 = mul i32 %zi.stack.load, i32 %xy.stack.load
@@ -2112,8 +1388,7 @@ entry:
   gh.stack.load = load i32 from ptr %gh.stack
   ju.stack.load = load i32 from ptr %ju.stack
   1406 = mul i32 %gh.stack.load, i32 %ju.stack.load
-  zx.stack.load = load i32 from ptr %zx.stack
-  1408 = mul i32 %1406, i32 %zx.stack.load
+  1408 = mul i32 %1406, i32 %zx
   1409 = add i32 %1403, i32 %1408
   fc.stack.load1410 = load i32 from ptr %fc.stack
   1411 = add i32 %1409, i32 %fc.stack.load1410

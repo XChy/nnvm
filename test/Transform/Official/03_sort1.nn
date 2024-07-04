@@ -75,12 +75,10 @@ external void putarray(i32 , ptr )
 i32 getNumPos(i32 num, i32 pos) {
 entry26:
   %i30 = stack 4
-  %tmp = stack 4
   %pos.stack = stack 4
   %num.stack = stack 4
   store i32 %num to ptr %num.stack
   store i32 %pos to ptr %pos.stack
-  store i32 1 to ptr %tmp
   store i32 0 to ptr %i30
   br bb %while.cond31
 while.cond31:

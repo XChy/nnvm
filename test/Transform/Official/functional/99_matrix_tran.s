@@ -222,19 +222,19 @@ bb12:
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 tran:
-  ADDI sp, sp, -112
-  SD ra, 8(sp)
-  SD s9, 16(sp)
-  SD s8, 24(sp)
-  SD s7, 32(sp)
-  SD s6, 40(sp)
-  SD s5, 48(sp)
-  SD s0, 56(sp)
-  FSD fs0, 64(sp)
-  SD s1, 72(sp)
-  SD s2, 80(sp)
-  SD s3, 88(sp)
-  SD s4, 96(sp)
+  ADDI sp, sp, -96
+  SD ra, 0(sp)
+  SD s9, 8(sp)
+  SD s8, 16(sp)
+  SD s7, 24(sp)
+  SD s6, 32(sp)
+  SD s5, 40(sp)
+  SD s0, 48(sp)
+  FSD fs0, 56(sp)
+  SD s1, 64(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s4, 88(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -243,10 +243,9 @@ tran:
   ADD s3, a5, zero
   ADD s3, a6, zero
   ADD s4, a7, zero
-  ADDI t5, sp, 112
+  ADDI t5, sp, 96
   ADD s5, t5, zero
   LD s6, 0(s5)
-  SW zero, 0(sp)
   ADDI s5, zero, 4
   ADDI s7, zero, 2
   MULW s8, s5, s7
@@ -332,17 +331,17 @@ tran:
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADD a0, zero, zero
-  LD ra, 8(sp)
-  LD s9, 16(sp)
-  LD s8, 24(sp)
-  LD s7, 32(sp)
-  LD s6, 40(sp)
-  LD s5, 48(sp)
-  LD s0, 56(sp)
-  FLD fs0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  LD s4, 96(sp)
-  ADDI sp, sp, 112
+  LD ra, 0(sp)
+  LD s9, 8(sp)
+  LD s8, 16(sp)
+  LD s7, 24(sp)
+  LD s6, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
+  FLD fs0, 56(sp)
+  LD s1, 64(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s4, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)

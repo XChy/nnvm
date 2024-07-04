@@ -449,7 +449,8 @@ bb32:
   JAL zero, bb31
 pop_queue:
   ADDI sp, sp, -48
-  SD ra, 8(sp)
+  SD ra, 0(sp)
+  SD s3, 8(sp)
   SD s2, 16(sp)
   SD s1, 24(sp)
   SD s0, 32(sp)
@@ -460,19 +461,17 @@ pop_queue:
   SW s0, 0(s1)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s0, que
-  ADD s1, s0, s2
-  LW s0, 0(s1)
-  SW s0, 0(sp)
-  LA s0, h
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
+  LA s1, que
+  ADD s3, s1, s2
+  LW s1, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, que
   ADD s1, s0, s2
   LW s0, 0(s1)
   ADD a0, s0, zero
-  LD ra, 8(sp)
+  LD ra, 0(sp)
+  LD s3, 8(sp)
   LD s2, 16(sp)
   LD s1, 24(sp)
   LD s0, 32(sp)

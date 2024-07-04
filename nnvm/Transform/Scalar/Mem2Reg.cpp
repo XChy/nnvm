@@ -10,24 +10,23 @@
 
 using namespace nnvm;
 
+static std::unordered_set<BasicBlock*> computeIDF() {
+
+}
+
 bool Mem2RegPass::run(Function &F) {
   bool changed = false;
 
   DomTreeAnalysis *DT = getAnalysis<DomTreeAnalysis>(F);
 
   std::vector<StackInst *> stackToRemove;
-  for (Instruction *I : *F.getEntry()) {
+  for (Instruction *I : incChange(*F.getEntry())) {
     StackInst *SI = dyn_cast<StackInst>(I);
     // We assume that all the stack instructions are declared at the beginning
     // of the entry block.
     if (!SI)
       break;
 
-    // Clear unused stack.
-    if (SI->users().empty()) {
-      stackToRemove.push_back(SI);
-      continue;
-    }
 
     bool promotable = true;
     std::set<BasicBlock *> localDefBBs;
@@ -52,14 +51,26 @@ bool Mem2RegPass::run(Function &F) {
       break;
     }
 
+    if (!promotable)
+      continue;
+
+    // Clear unused stack.
+    if (localUseBBs.empty()) {
+      stackToRemove.push_back(SI);
+      continue;
+    }
+
     if (promotable) {
       defBBs[SI] = localDefBBs;
       useBBs[SI] = localUseBBs;
     }
   }
 
-  for (auto *SI : stackToRemove)
+  for (auto *SI : stackToRemove) {
+    for (auto *user : incChange(SI->users()))
+      user->getUser()->eraseFromBB();
     SI->eraseFromBB();
+  }
 
   // for (auto &[SI, defInsts] : defs)
   // changed |= promote(SI);

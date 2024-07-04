@@ -100,46 +100,44 @@ bb5:
   JALR zero, 0(ra)
 getNumPos:
   ADDI sp, sp, -64
-  SD ra, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s0, 56(sp)
+  SD ra, 24(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  SW s0, 24(sp)
-  SW s1, 16(sp)
-  ADDI s0, zero, 1
-  SW s0, 8(sp)
+  SW s0, 16(sp)
+  SW s1, 8(sp)
   SW zero, 0(sp)
   JAL zero, bb7
 bb7:
   LW s0, 0(sp)
-  LW s1, 16(sp)
+  LW s1, 8(sp)
   SLT s2, s0, s1
   XOR s0, s2, zero
   SLTU s1, zero, s0
   BNE s1, zero, bb8
   JAL zero, bb9
 bb8:
-  LW s0, 24(sp)
+  LW s0, 16(sp)
   LA s1, base
   LW s2, 0(s1)
   DIVW s1, s0, s2
-  SW s1, 24(sp)
+  SW s1, 16(sp)
   LW s0, 0(sp)
   ADDIW s1, s0, 1
   SW s1, 0(sp)
   JAL zero, bb7
 bb9:
-  LW s0, 24(sp)
+  LW s0, 16(sp)
   LA s1, base
   LW s2, 0(s1)
   REMW s1, s0, s2
   ADD a0, s1, zero
-  LD ra, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD ra, 24(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 radixSort:

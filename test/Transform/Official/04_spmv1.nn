@@ -19,13 +19,11 @@ external i32 getfarray(ptr )
 i32 main() {
 entry102:
   %i111 = stack 4
-  %m = stack 4
   %n = stack 4
   104 = call i32 getarray(ptr @x)
   105 = sub i32 %104, i32 1
   store i32 %105 to ptr %n
   107 = call i32 getarray(ptr @y)
-  store i32 %107 to ptr %m
   108 = call i32 getarray(ptr @v)
   109 = call i32 getarray(ptr @a)
   call void _sysy_starttime(i32 39)
