@@ -1,0 +1,210 @@
+global ptr a init with 100000 x i32 zeros
+global ptr matrix init with 20000000 x i32 zeros
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry67:
+  %ans = stack 4
+  %i73 = stack 4
+  %len = stack 4
+  %n = stack 4
+  69 = call i32 getint()
+  store i32 %69 to ptr %n
+  71 = call i32 getarray(ptr @a)
+  store i32 %71 to ptr %len
+  call void _sysy_starttime(i32 28)
+  store i32 0 to ptr %i73
+  br bb %while.cond74
+while.cond74:
+  i73.load = load i32 from ptr %i73
+  n.load = load i32 from ptr %n
+  79 = icmp slt i32 %i73.load, i32 %n.load
+  80 = icmp ne i1 %79, i1 0
+  br i1 %80, bb %while.body75, bb %while.exit76
+while.body75:
+  i73.load81 = load i32 from ptr %i73
+  82 = mul i32 %i73.load81, i32 4
+  83 = ptradd ptr @matrix, i32 %82
+  i73.load84 = load i32 from ptr %i73
+  store i32 %i73.load84 to ptr %83
+  i73.load85 = load i32 from ptr %i73
+  86 = add i32 %i73.load85, i32 1
+  store i32 %86 to ptr %i73
+  br bb %while.cond74
+while.exit76:
+  store i32 0 to ptr %i73
+  br bb %while.cond87
+while.cond87:
+  i73.load90 = load i32 from ptr %i73
+  len.load = load i32 from ptr %len
+  92 = icmp slt i32 %i73.load90, i32 %len.load
+  93 = icmp ne i1 %92, i1 0
+  br i1 %93, bb %while.body88, bb %while.exit89
+while.body88:
+  n.load94 = load i32 from ptr %n
+  i73.load95 = load i32 from ptr %i73
+  96 = mul i32 %i73.load95, i32 4
+  97 = ptradd ptr @a, i32 %96
+  97.load = load i32 from ptr %97
+  99 = call i32 transpose(i32 %n.load94, ptr @matrix, i32 %97.load)
+  i73.load100 = load i32 from ptr %i73
+  101 = add i32 %i73.load100, i32 1
+  store i32 %101 to ptr %i73
+  br bb %while.cond87
+while.exit89:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i73
+  br bb %while.cond103
+while.cond103:
+  i73.load106 = load i32 from ptr %i73
+  len.load107 = load i32 from ptr %len
+  108 = icmp slt i32 %i73.load106, i32 %len.load107
+  109 = icmp ne i1 %108, i1 0
+  br i1 %109, bb %while.body104, bb %while.exit105
+while.body104:
+  ans.load = load i32 from ptr %ans
+  i73.load111 = load i32 from ptr %i73
+  i73.load112 = load i32 from ptr %i73
+  113 = mul i32 %i73.load111, i32 %i73.load112
+  i73.load114 = load i32 from ptr %i73
+  115 = mul i32 %i73.load114, i32 4
+  116 = ptradd ptr @matrix, i32 %115
+  116.load = load i32 from ptr %116
+  118 = mul i32 %113, i32 %116.load
+  119 = add i32 %ans.load, i32 %118
+  store i32 %119 to ptr %ans
+  i73.load120 = load i32 from ptr %i73
+  121 = add i32 %i73.load120, i32 1
+  store i32 %121 to ptr %i73
+  br bb %while.cond103
+while.exit105:
+  ans.load122 = load i32 from ptr %ans
+  123 = icmp slt i32 %ans.load122, i32 0
+  br i1 %123, bb %then124, bb %if.exit125
+then124:
+  ans.load126 = load i32 from ptr %ans
+  127 = sub i32 0, i32 %ans.load126
+  store i32 %127 to ptr %ans
+  br bb %if.exit125
+if.exit125:
+  call void _sysy_starttime(i32 47)
+  ans.load129 = load i32 from ptr %ans
+  call void putint(i32 %ans.load129)
+  call void putch(i32 10)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+i32 transpose(i32 n, ptr matrix, i32 rowsize) {
+entry:
+  %curr = stack 4
+  %j = stack 4
+  %i = stack 4
+  %colsize = stack 4
+  %rowsize.stack = stack 4
+  %n.stack = stack 4
+  store i32 %n to ptr %n.stack
+  store i32 %rowsize to ptr %rowsize.stack
+  n.stack.load = load i32 from ptr %n.stack
+  rowsize.stack.load = load i32 from ptr %rowsize.stack
+  6 = sdiv i32 %n.stack.load, i32 %rowsize.stack.load
+  store i32 %6 to ptr %colsize
+  store i32 0 to ptr %i
+  store i32 0 to ptr %j
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  colsize.load = load i32 from ptr %colsize
+  14 = icmp slt i32 %i.load, i32 %colsize.load
+  15 = icmp ne i1 %14, i1 0
+  br i1 %15, bb %while.body, bb %while.exit
+while.body:
+  store i32 0 to ptr %j
+  br bb %while.cond16
+while.exit:
+  66 = sub i32 0, i32 1
+  ret i32 %66
+while.cond16:
+  j.load = load i32 from ptr %j
+  rowsize.stack.load20 = load i32 from ptr %rowsize.stack
+  21 = icmp slt i32 %j.load, i32 %rowsize.stack.load20
+  22 = icmp ne i1 %21, i1 0
+  br i1 %22, bb %while.body17, bb %while.exit18
+while.body17:
+  i.load23 = load i32 from ptr %i
+  j.load24 = load i32 from ptr %j
+  25 = icmp slt i32 %i.load23, i32 %j.load24
+  br i1 %25, bb %then, bb %if.exit
+while.exit18:
+  i.load64 = load i32 from ptr %i
+  65 = add i32 %i.load64, i32 1
+  store i32 %65 to ptr %i
+  br bb %while.cond
+then:
+  j.load28 = load i32 from ptr %j
+  29 = add i32 %j.load28, i32 1
+  store i32 %29 to ptr %j
+  br bb %while.cond16
+if.exit:
+  i.load31 = load i32 from ptr %i
+  rowsize.stack.load32 = load i32 from ptr %rowsize.stack
+  33 = mul i32 %i.load31, i32 %rowsize.stack.load32
+  j.load34 = load i32 from ptr %j
+  35 = add i32 %33, i32 %j.load34
+  36 = mul i32 %35, i32 4
+  37 = ptradd ptr %matrix, i32 %36
+  37.load = load i32 from ptr %37
+  store i32 %37.load to ptr %curr
+  j.load39 = load i32 from ptr %j
+  colsize.load40 = load i32 from ptr %colsize
+  41 = mul i32 %j.load39, i32 %colsize.load40
+  i.load42 = load i32 from ptr %i
+  43 = add i32 %41, i32 %i.load42
+  44 = mul i32 %43, i32 4
+  45 = ptradd ptr %matrix, i32 %44
+  i.load46 = load i32 from ptr %i
+  rowsize.stack.load47 = load i32 from ptr %rowsize.stack
+  48 = mul i32 %i.load46, i32 %rowsize.stack.load47
+  j.load49 = load i32 from ptr %j
+  50 = add i32 %48, i32 %j.load49
+  51 = mul i32 %50, i32 4
+  52 = ptradd ptr %matrix, i32 %51
+  52.load = load i32 from ptr %52
+  store i32 %52.load to ptr %45
+  i.load54 = load i32 from ptr %i
+  rowsize.stack.load55 = load i32 from ptr %rowsize.stack
+  56 = mul i32 %i.load54, i32 %rowsize.stack.load55
+  j.load57 = load i32 from ptr %j
+  58 = add i32 %56, i32 %j.load57
+  59 = mul i32 %58, i32 4
+  60 = ptradd ptr %matrix, i32 %59
+  curr.load = load i32 from ptr %curr
+  store i32 %curr.load to ptr %60
+  j.load62 = load i32 from ptr %j
+  63 = add i32 %j.load62, i32 1
+  store i32 %63 to ptr %j
+  br bb %while.cond16
+}
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

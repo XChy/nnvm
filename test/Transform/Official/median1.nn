@@ -1,0 +1,256 @@
+global ptr a init with 10000000 x i32 zeros
+global ptr n init with i32 0
+i32 median(ptr arr, i32 begin, i32 end, i32 pos) {
+entry50:
+  %xx = stack 4
+  %r = stack 4
+  %l = stack 4
+  %pivot = stack 4
+  %pos.stack = stack 4
+  %end.stack = stack 4
+  %begin.stack = stack 4
+  store i32 %begin to ptr %begin.stack
+  store i32 %end to ptr %end.stack
+  store i32 %pos to ptr %pos.stack
+  begin.stack.load = load i32 from ptr %begin.stack
+  56 = mul i32 %begin.stack.load, i32 4
+  57 = ptradd ptr %arr, i32 %56
+  57.load = load i32 from ptr %57
+  store i32 %57.load to ptr %pivot
+  begin.stack.load60 = load i32 from ptr %begin.stack
+  store i32 %begin.stack.load60 to ptr %l
+  end.stack.load = load i32 from ptr %end.stack
+  63 = add i32 %end.stack.load, i32 1
+  store i32 %63 to ptr %r
+  store i32 0 to ptr %xx
+  br bb %while.cond65
+while.cond65:
+  68 = icmp eq i32 1, i32 1
+  69 = icmp ne i1 %68, i1 0
+  br i1 %69, bb %while.body66, bb %while.exit67
+while.body66:
+  br bb %while.cond70
+while.exit67:
+  begin.stack.load117 = load i32 from ptr %begin.stack
+  118 = mul i32 %begin.stack.load117, i32 4
+  119 = ptradd ptr %arr, i32 %118
+  pivot.load120 = load i32 from ptr %pivot
+  store i32 %pivot.load120 to ptr %119
+  begin.stack.load121 = load i32 from ptr %begin.stack
+  l.load122 = load i32 from ptr %l
+  123 = call i32 swap(ptr %arr, i32 %begin.stack.load121, i32 %l.load122)
+  l.load124 = load i32 from ptr %l
+  pos.stack.load = load i32 from ptr %pos.stack
+  126 = icmp sgt i32 %l.load124, i32 %pos.stack.load
+  br i1 %126, bb %then127, bb %if.exit128
+while.cond70:
+  l.load = load i32 from ptr %l
+  r.load = load i32 from ptr %r
+  75 = icmp slt i32 %l.load, i32 %r.load
+  76 = icmp ne i1 %75, i1 0
+  br i1 %76, bb %while.body71, bb %while.exit72
+while.body71:
+  r.load77 = load i32 from ptr %r
+  78 = sub i32 %r.load77, i32 1
+  store i32 %78 to ptr %r
+  r.load79 = load i32 from ptr %r
+  80 = mul i32 %r.load79, i32 4
+  81 = ptradd ptr %arr, i32 %80
+  81.load = load i32 from ptr %81
+  pivot.load = load i32 from ptr %pivot
+  84 = icmp slt i32 %81.load, i32 %pivot.load
+  br i1 %84, bb %then, bb %if.exit
+while.exit72:
+  br bb %while.cond89
+then:
+  br bb %while.exit72
+if.exit:
+  xx.load = load i32 from ptr %xx
+  88 = add i32 %xx.load, i32 1
+  store i32 %88 to ptr %xx
+  br bb %while.cond70
+while.cond89:
+  l.load92 = load i32 from ptr %l
+  r.load93 = load i32 from ptr %r
+  94 = icmp slt i32 %l.load92, i32 %r.load93
+  95 = icmp ne i1 %94, i1 0
+  br i1 %95, bb %while.body90, bb %while.exit91
+while.body90:
+  l.load96 = load i32 from ptr %l
+  97 = add i32 %l.load96, i32 1
+  store i32 %97 to ptr %l
+  l.load98 = load i32 from ptr %l
+  99 = mul i32 %l.load98, i32 4
+  100 = ptradd ptr %arr, i32 %99
+  100.load = load i32 from ptr %100
+  pivot.load102 = load i32 from ptr %pivot
+  103 = icmp sge i32 %100.load, i32 %pivot.load102
+  br i1 %103, bb %then104, bb %if.exit105
+while.exit91:
+  l.load108 = load i32 from ptr %l
+  r.load109 = load i32 from ptr %r
+  110 = icmp eq i32 %l.load108, i32 %r.load109
+  br i1 %110, bb %then111, bb %else
+then104:
+  br bb %while.exit91
+if.exit105:
+  xx.load106 = load i32 from ptr %xx
+  107 = sub i32 %xx.load106, i32 1
+  store i32 %107 to ptr %xx
+  br bb %while.cond89
+then111:
+  br bb %while.exit67
+if.exit112:
+  br bb %while.cond65
+else:
+  l.load114 = load i32 from ptr %l
+  r.load115 = load i32 from ptr %r
+  116 = call i32 swap(ptr %arr, i32 %l.load114, i32 %r.load115)
+  br bb %if.exit112
+then127:
+  begin.stack.load129 = load i32 from ptr %begin.stack
+  l.load130 = load i32 from ptr %l
+  pos.stack.load131 = load i32 from ptr %pos.stack
+  132 = call i32 median(ptr %arr, i32 %begin.stack.load129, i32 %l.load130, i32 %pos.stack.load131)
+  ret i32 %132
+if.exit128:
+  l.load133 = load i32 from ptr %l
+  pos.stack.load134 = load i32 from ptr %pos.stack
+  135 = icmp slt i32 %l.load133, i32 %pos.stack.load134
+  br i1 %135, bb %then136, bb %if.exit137
+then136:
+  l.load138 = load i32 from ptr %l
+  139 = add i32 %l.load138, i32 1
+  end.stack.load140 = load i32 from ptr %end.stack
+  pos.stack.load141 = load i32 from ptr %pos.stack
+  142 = call i32 median(ptr %arr, i32 %139, i32 %end.stack.load140, i32 %pos.stack.load141)
+  ret i32 %142
+if.exit137:
+  xx.load143 = load i32 from ptr %xx
+  ret i32 %xx.load143
+}
+
+i32 swap(ptr arr, i32 l, i32 r) {
+entry28:
+  %curr = stack 4
+  %r.stack = stack 4
+  %l.stack = stack 4
+  store i32 %l to ptr %l.stack
+  store i32 %r to ptr %r.stack
+  l.stack.load = load i32 from ptr %l.stack
+  33 = mul i32 %l.stack.load, i32 4
+  34 = ptradd ptr %arr, i32 %33
+  34.load = load i32 from ptr %34
+  store i32 %34.load to ptr %curr
+  l.stack.load36 = load i32 from ptr %l.stack
+  37 = mul i32 %l.stack.load36, i32 4
+  38 = ptradd ptr %arr, i32 %37
+  r.stack.load = load i32 from ptr %r.stack
+  40 = mul i32 %r.stack.load, i32 4
+  41 = ptradd ptr %arr, i32 %40
+  41.load = load i32 from ptr %41
+  store i32 %41.load to ptr %38
+  r.stack.load43 = load i32 from ptr %r.stack
+  44 = mul i32 %r.stack.load43, i32 4
+  45 = ptradd ptr %arr, i32 %44
+  curr.load = load i32 from ptr %curr
+  store i32 %curr.load to ptr %45
+  l.stack.load47 = load i32 from ptr %l.stack
+  r.stack.load48 = load i32 from ptr %r.stack
+  49 = call i32 meanless_calculation(i32 %l.stack.load47, i32 %r.stack.load48)
+  ret i32 %49
+}
+
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry144:
+  145 = call i32 getarray(ptr @a)
+  store i32 %145 to ptr @n
+  call void _sysy_starttime(i32 59)
+  n.load = load i32 from ptr @n
+  148 = sub i32 %n.load, i32 1
+  n.load149 = load i32 from ptr @n
+  150 = sdiv i32 %n.load149, i32 2
+  151 = call i32 median(ptr @a, i32 0, i32 %148, i32 %150)
+  call void _sysy_starttime(i32 61)
+  n.load153 = load i32 from ptr @n
+  call void putarray(i32 %n.load153, ptr @a)
+  n.load155 = load i32 from ptr @n
+  156 = sdiv i32 %n.load155, i32 2
+  157 = mul i32 %156, i32 4
+  158 = ptradd ptr @a, i32 %157
+  158.load = load i32 from ptr %158
+  160 = srem i32 %158.load, i32 256
+  ret i32 %160
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+i32 meanless_calculation(i32 x, i32 y) {
+entry:
+  %select = stack 1
+  %ret = stack 4
+  %i = stack 4
+  %y.stack = stack 4
+  %x.stack = stack 4
+  store i32 %x to ptr %x.stack
+  store i32 %y to ptr %y.stack
+  store i32 0 to ptr %i
+  store i32 0 to ptr %ret
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  x.stack.load = load i32 from ptr %x.stack
+  10 = icmp slt i32 %i.load, i32 %x.stack.load
+  br i1 %10, bb %select.then, bb %select.else
+while.body:
+  i.load20 = load i32 from ptr %i
+  21 = add i32 %i.load20, i32 1
+  store i32 %21 to ptr %i
+  ret.load = load i32 from ptr %ret
+  x.stack.load23 = load i32 from ptr %x.stack
+  24 = add i32 %ret.load, i32 %x.stack.load23
+  i.load25 = load i32 from ptr %i
+  26 = add i32 %24, i32 %i.load25
+  store i32 %26 to ptr %ret
+  br bb %while.cond
+while.exit:
+  ret.load27 = load i32 from ptr %ret
+  ret i32 %ret.load27
+select.then:
+  i.load15 = load i32 from ptr %i
+  y.stack.load = load i32 from ptr %y.stack
+  17 = icmp slt i32 %i.load15, i32 %y.stack.load
+  store i1 %17 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  18 = load i1 from ptr %select
+  19 = icmp ne i1 %18, i1 0
+  br i1 %19, bb %while.body, bb %while.exit
+}
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

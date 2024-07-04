@@ -1,0 +1,316 @@
+global ptr image_out init with 1048576 x i32 zeros
+global ptr image_in init with 1048576 x i32 zeros
+global ptr height init with i32 1024
+global ptr width init with i32 1024
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry12:
+  %val = stack 4
+  %ip1jp1 = stack 4
+  %ip1j = stack 4
+  %ip1jm1 = stack 4
+  %ijp1 = stack 4
+  %ij = stack 4
+  %ijm1 = stack 4
+  %im1jp1 = stack 4
+  %im1j = stack 4
+  %im1jm1 = stack 4
+  %num = stack 4
+  %j = stack 4
+  %i = stack 4
+  16 = call i32 getarray(ptr @image_in)
+  store i32 %16 to ptr %num
+  call void _sysy_starttime(i32 23)
+  store i32 1 to ptr %j
+  br bb %while.cond
+while.cond:
+  j.load = load i32 from ptr %j
+  width.load = load i32 from ptr @width
+  23 = sub i32 %width.load, i32 1
+  24 = icmp slt i32 %j.load, i32 %23
+  25 = icmp ne i1 %24, i1 0
+  br i1 %25, bb %while.body, bb %while.exit
+while.body:
+  store i32 1 to ptr %i
+  br bb %while.cond26
+while.exit:
+  store i32 0 to ptr %i
+  br bb %while.cond159
+while.cond26:
+  i.load = load i32 from ptr %i
+  height.load = load i32 from ptr @height
+  31 = sub i32 %height.load, i32 1
+  32 = icmp slt i32 %i.load, i32 %31
+  33 = icmp ne i1 %32, i1 0
+  br i1 %33, bb %while.body27, bb %while.exit28
+while.body27:
+  i.load35 = load i32 from ptr %i
+  36 = sub i32 %i.load35, i32 1
+  width.load37 = load i32 from ptr @width
+  38 = mul i32 %36, i32 %width.load37
+  j.load39 = load i32 from ptr %j
+  40 = add i32 %38, i32 %j.load39
+  41 = sub i32 %40, i32 1
+  store i32 %41 to ptr %im1jm1
+  i.load43 = load i32 from ptr %i
+  44 = sub i32 %i.load43, i32 1
+  width.load45 = load i32 from ptr @width
+  46 = mul i32 %44, i32 %width.load45
+  j.load47 = load i32 from ptr %j
+  48 = add i32 %46, i32 %j.load47
+  store i32 %48 to ptr %im1j
+  i.load50 = load i32 from ptr %i
+  51 = sub i32 %i.load50, i32 1
+  width.load52 = load i32 from ptr @width
+  53 = mul i32 %51, i32 %width.load52
+  j.load54 = load i32 from ptr %j
+  55 = add i32 %53, i32 %j.load54
+  56 = add i32 %55, i32 1
+  store i32 %56 to ptr %im1jp1
+  i.load58 = load i32 from ptr %i
+  width.load59 = load i32 from ptr @width
+  60 = mul i32 %i.load58, i32 %width.load59
+  j.load61 = load i32 from ptr %j
+  62 = add i32 %60, i32 %j.load61
+  63 = sub i32 %62, i32 1
+  store i32 %63 to ptr %ijm1
+  i.load65 = load i32 from ptr %i
+  width.load66 = load i32 from ptr @width
+  67 = mul i32 %i.load65, i32 %width.load66
+  j.load68 = load i32 from ptr %j
+  69 = add i32 %67, i32 %j.load68
+  store i32 %69 to ptr %ij
+  i.load71 = load i32 from ptr %i
+  width.load72 = load i32 from ptr @width
+  73 = mul i32 %i.load71, i32 %width.load72
+  j.load74 = load i32 from ptr %j
+  75 = add i32 %73, i32 %j.load74
+  76 = add i32 %75, i32 1
+  store i32 %76 to ptr %ijp1
+  i.load78 = load i32 from ptr %i
+  79 = add i32 %i.load78, i32 1
+  width.load80 = load i32 from ptr @width
+  81 = mul i32 %79, i32 %width.load80
+  j.load82 = load i32 from ptr %j
+  83 = add i32 %81, i32 %j.load82
+  84 = sub i32 %83, i32 1
+  store i32 %84 to ptr %ip1jm1
+  i.load86 = load i32 from ptr %i
+  87 = add i32 %i.load86, i32 1
+  width.load88 = load i32 from ptr @width
+  89 = mul i32 %87, i32 %width.load88
+  j.load90 = load i32 from ptr %j
+  91 = add i32 %89, i32 %j.load90
+  store i32 %91 to ptr %ip1j
+  i.load93 = load i32 from ptr %i
+  94 = add i32 %i.load93, i32 1
+  width.load95 = load i32 from ptr @width
+  96 = mul i32 %94, i32 %width.load95
+  j.load97 = load i32 from ptr %j
+  98 = add i32 %96, i32 %j.load97
+  99 = add i32 %98, i32 1
+  store i32 %99 to ptr %ip1jp1
+  ij.load = load i32 from ptr %ij
+  102 = mul i32 %ij.load, i32 4
+  103 = ptradd ptr @image_in, i32 %102
+  103.load = load i32 from ptr %103
+  105 = mul i32 8, i32 %103.load
+  im1jm1.load = load i32 from ptr %im1jm1
+  107 = mul i32 %im1jm1.load, i32 4
+  108 = ptradd ptr @image_in, i32 %107
+  108.load = load i32 from ptr %108
+  110 = sub i32 %105, i32 %108.load
+  im1j.load = load i32 from ptr %im1j
+  112 = mul i32 %im1j.load, i32 4
+  113 = ptradd ptr @image_in, i32 %112
+  113.load = load i32 from ptr %113
+  115 = sub i32 %110, i32 %113.load
+  im1jp1.load = load i32 from ptr %im1jp1
+  117 = mul i32 %im1jp1.load, i32 4
+  118 = ptradd ptr @image_in, i32 %117
+  118.load = load i32 from ptr %118
+  120 = sub i32 %115, i32 %118.load
+  ijm1.load = load i32 from ptr %ijm1
+  122 = mul i32 %ijm1.load, i32 4
+  123 = ptradd ptr @image_in, i32 %122
+  123.load = load i32 from ptr %123
+  125 = sub i32 %120, i32 %123.load
+  ijp1.load = load i32 from ptr %ijp1
+  127 = mul i32 %ijp1.load, i32 4
+  128 = ptradd ptr @image_in, i32 %127
+  128.load = load i32 from ptr %128
+  130 = sub i32 %125, i32 %128.load
+  ip1jm1.load = load i32 from ptr %ip1jm1
+  132 = mul i32 %ip1jm1.load, i32 4
+  133 = ptradd ptr @image_in, i32 %132
+  133.load = load i32 from ptr %133
+  135 = sub i32 %130, i32 %133.load
+  ip1j.load = load i32 from ptr %ip1j
+  137 = mul i32 %ip1j.load, i32 4
+  138 = ptradd ptr @image_in, i32 %137
+  138.load = load i32 from ptr %138
+  140 = sub i32 %135, i32 %138.load
+  ip1jp1.load = load i32 from ptr %ip1jp1
+  142 = mul i32 %ip1jp1.load, i32 4
+  143 = ptradd ptr @image_in, i32 %142
+  143.load = load i32 from ptr %143
+  145 = sub i32 %140, i32 %143.load
+  store i32 %145 to ptr %val
+  i.load146 = load i32 from ptr %i
+  width.load147 = load i32 from ptr @width
+  148 = mul i32 %i.load146, i32 %width.load147
+  j.load149 = load i32 from ptr %j
+  150 = add i32 %148, i32 %j.load149
+  151 = mul i32 %150, i32 4
+  152 = ptradd ptr @image_out, i32 %151
+  val.load = load i32 from ptr %val
+  154 = call i32 cutout(i32 %val.load)
+  store i32 %154 to ptr %152
+  i.load155 = load i32 from ptr %i
+  156 = add i32 %i.load155, i32 1
+  store i32 %156 to ptr %i
+  br bb %while.cond26
+while.exit28:
+  j.load157 = load i32 from ptr %j
+  158 = add i32 %j.load157, i32 1
+  store i32 %158 to ptr %j
+  br bb %while.cond
+while.cond159:
+  i.load162 = load i32 from ptr %i
+  height.load163 = load i32 from ptr @height
+  164 = icmp slt i32 %i.load162, i32 %height.load163
+  165 = icmp ne i1 %164, i1 0
+  br i1 %165, bb %while.body160, bb %while.exit161
+while.body160:
+  i.load166 = load i32 from ptr %i
+  width.load167 = load i32 from ptr @width
+  168 = mul i32 %i.load166, i32 %width.load167
+  169 = mul i32 %168, i32 4
+  170 = ptradd ptr @image_out, i32 %169
+  i.load171 = load i32 from ptr %i
+  width.load172 = load i32 from ptr @width
+  173 = mul i32 %i.load171, i32 %width.load172
+  174 = mul i32 %173, i32 4
+  175 = ptradd ptr @image_in, i32 %174
+  175.load = load i32 from ptr %175
+  store i32 %175.load to ptr %170
+  i.load177 = load i32 from ptr %i
+  width.load178 = load i32 from ptr @width
+  179 = mul i32 %i.load177, i32 %width.load178
+  width.load180 = load i32 from ptr @width
+  181 = add i32 %179, i32 %width.load180
+  182 = sub i32 %181, i32 1
+  183 = mul i32 %182, i32 4
+  184 = ptradd ptr @image_out, i32 %183
+  i.load185 = load i32 from ptr %i
+  width.load186 = load i32 from ptr @width
+  187 = mul i32 %i.load185, i32 %width.load186
+  width.load188 = load i32 from ptr @width
+  189 = add i32 %187, i32 %width.load188
+  190 = sub i32 %189, i32 1
+  191 = mul i32 %190, i32 4
+  192 = ptradd ptr @image_in, i32 %191
+  192.load = load i32 from ptr %192
+  store i32 %192.load to ptr %184
+  i.load194 = load i32 from ptr %i
+  195 = add i32 %i.load194, i32 1
+  store i32 %195 to ptr %i
+  br bb %while.cond159
+while.exit161:
+  store i32 0 to ptr %j
+  br bb %while.cond196
+while.cond196:
+  j.load199 = load i32 from ptr %j
+  width.load200 = load i32 from ptr @width
+  201 = icmp slt i32 %j.load199, i32 %width.load200
+  202 = icmp ne i1 %201, i1 0
+  br i1 %202, bb %while.body197, bb %while.exit198
+while.body197:
+  j.load203 = load i32 from ptr %j
+  204 = mul i32 %j.load203, i32 4
+  205 = ptradd ptr @image_out, i32 %204
+  j.load206 = load i32 from ptr %j
+  207 = mul i32 %j.load206, i32 4
+  208 = ptradd ptr @image_in, i32 %207
+  208.load = load i32 from ptr %208
+  store i32 %208.load to ptr %205
+  height.load210 = load i32 from ptr @height
+  211 = sub i32 %height.load210, i32 1
+  width.load212 = load i32 from ptr @width
+  213 = mul i32 %211, i32 %width.load212
+  j.load214 = load i32 from ptr %j
+  215 = add i32 %213, i32 %j.load214
+  216 = mul i32 %215, i32 4
+  217 = ptradd ptr @image_out, i32 %216
+  height.load218 = load i32 from ptr @height
+  219 = sub i32 %height.load218, i32 1
+  width.load220 = load i32 from ptr @width
+  221 = mul i32 %219, i32 %width.load220
+  j.load222 = load i32 from ptr %j
+  223 = add i32 %221, i32 %j.load222
+  224 = mul i32 %223, i32 4
+  225 = ptradd ptr @image_in, i32 %224
+  225.load = load i32 from ptr %225
+  store i32 %225.load to ptr %217
+  j.load227 = load i32 from ptr %j
+  228 = add i32 %j.load227, i32 1
+  store i32 %228 to ptr %j
+  br bb %while.cond196
+while.exit198:
+  call void _sysy_starttime(i32 59)
+  width.load230 = load i32 from ptr @width
+  height.load231 = load i32 from ptr @height
+  232 = mul i32 %width.load230, i32 %height.load231
+  call void putarray(i32 %232, ptr @image_out)
+  num.load = load i32 from ptr %num
+  ret i32 %num.load
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+i32 cutout(i32 val) {
+entry:
+  %val.stack = stack 4
+  store i32 %val to ptr %val.stack
+  val.stack.load = load i32 from ptr %val.stack
+  3 = icmp slt i32 %val.stack.load, i32 0
+  br i1 %3, bb %then, bb %else
+then:
+  store i32 0 to ptr %val.stack
+  br bb %if.exit
+if.exit:
+  val.stack.load11 = load i32 from ptr %val.stack
+  ret i32 %val.stack.load11
+else:
+  val.stack.load7 = load i32 from ptr %val.stack
+  8 = icmp sgt i32 %val.stack.load7, i32 255
+  br i1 %8, bb %then9, bb %if.exit10
+then9:
+  store i32 255 to ptr %val.stack
+  br bb %if.exit10
+if.exit10:
+  br bb %if.exit
+}
+
+
