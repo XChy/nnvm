@@ -141,7 +141,7 @@ bb11:
   JAL zero, bb13
 bb12:
   ADDI a0, zero, 53
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 0(sp)
   LUI s1, 352
   ADDI s1, s1, -1792

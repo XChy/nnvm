@@ -66,7 +66,8 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
     reg2Reg[current.reg] = reg2Reg[spilledIt->reg];
     vregToStack[spilledIt->reg] = func.allocStackSlot(spilledIt->reg->bytes());
     // NOTE: Erase a reverse iterator
-    active.erase( std::next(spilledIt).base() );;
+    active.erase(std::next(spilledIt).base());
+    ;
     active.insert(current);
     debug({
       std::cerr << "Map ";
@@ -121,6 +122,10 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
   std::set<Register *> allScratchRegs;
   allScratchRegs.merge(getScratchRegs(func.getParent()));
   allScratchRegs.merge(getScratchFRegs(func.getParent()));
+  allScratchRegs.insert(func.getParent()->getPhyReg(T3));
+  allScratchRegs.insert(func.getParent()->getPhyReg(FT3));
+  allScratchRegs.insert(func.getParent()->getPhyReg(T4));
+  allScratchRegs.insert(func.getParent()->getPhyReg(FT4));
   for (auto reg : allScratchRegs)
     freeRegs.erase(reg);
 
@@ -180,6 +185,11 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
 
   for (auto *BB : func) {
     for (auto *inst : *BB) {
+      std::vector<Register *> scratches = {builder.phyReg(T3),
+                                           builder.phyReg(T4)};
+      std::vector<Register *> fscratches = {builder.phyReg(FT3),
+                                            builder.phyReg(FT4)};
+
       for (LowOperand &op : inst->operands) {
         LIRValue *value = op.getOperand();
         if (value->isPReg()) {
@@ -194,15 +204,24 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
         if (vregToStack.count(vreg)) {
           // TODO:
           auto *slot = vregToStack[vreg];
-          auto *newVReg = builder.newVReg(vreg->getType());
+          Register *tempReg;
+          if (vreg->isFP()) {
+            tempReg = fscratches.back();
+            std::swap(fscratches[0], fscratches[1]);
+          } else {
+            tempReg = scratches.back();
+            std::swap(scratches[0], scratches[1]);
+          }
+
+          op.set(tempReg);
+
           if (op.isDef()) {
             builder.setInsertPoint(BB, inst->getNext());
-            builder.storeValueTo(newVReg, slot, vreg->getType());
+            builder.storeValueTo(tempReg, slot, vreg->getType());
           } else {
             builder.setInsertPoint(BB, inst);
-            builder.loadValueFrom(newVReg, slot, vreg->getType());
+            builder.loadValueFrom(tempReg, slot, vreg->getType());
           }
-          op.set(newVReg);
           continue;
         }
 

@@ -1,0 +1,118 @@
+i32 main() {
+entry:
+  %select49 = stack 1
+  %select41 = stack 1
+  %select22 = stack 1
+  %select = stack 1
+  %result = stack 4
+  %d = stack 4
+  %c = stack 4
+  %b = stack 4
+  %a = stack 4
+  store i32 5 to ptr %a
+  store i32 5 to ptr %b
+  store i32 1 to ptr %c
+  6 = sub i32 0, i32 2
+  store i32 %6 to ptr %d
+  store i32 2 to ptr %result
+  8 = mul i32 %6, i32 1
+  9 = sdiv i32 %8, i32 2
+  10 = icmp slt i32 %9, i32 0
+  br i1 %10, bb %select.then, bb %select.else
+select.then:
+  store i1 1 to ptr %select
+  br bb %select.exit
+select.else:
+  a.load = load i32 from ptr %a
+  b.load = load i32 from ptr %b
+  17 = sub i32 %a.load, i32 %b.load
+  18 = icmp ne i32 %17, i32 0
+  br i1 %18, bb %select.then19, bb %select.else20
+select.exit:
+  29 = load i1 from ptr %select
+  br i1 %29, bb %then, bb %if.exit
+select.then19:
+  c.load = load i32 from ptr %c
+  24 = add i32 %c.load, i32 3
+  25 = srem i32 %24, i32 2
+  26 = icmp ne i32 %25, i32 0
+  store i1 %26 to ptr %select22
+  br bb %select.exit21
+select.else20:
+  store i1 0 to ptr %select22
+  br bb %select.exit21
+select.exit21:
+  27 = load i1 from ptr %select22
+  28 = icmp ne i1 %27, i1 0
+  store i1 %28 to ptr %select
+  br bb %select.exit
+then:
+  result.load = load i32 from ptr %result
+  call void putint(i32 %result.load)
+  br bb %if.exit
+if.exit:
+  d.load34 = load i32 from ptr %d
+  35 = srem i32 %d.load34, i32 2
+  36 = add i32 %35, i32 67
+  37 = icmp slt i32 %36, i32 0
+  br i1 %37, bb %select.then38, bb %select.else39
+select.then38:
+  store i1 1 to ptr %select41
+  br bb %select.exit40
+select.else39:
+  a.load42 = load i32 from ptr %a
+  b.load43 = load i32 from ptr %b
+  44 = sub i32 %a.load42, i32 %b.load43
+  45 = icmp ne i32 %44, i32 0
+  br i1 %45, bb %select.then46, bb %select.else47
+select.exit40:
+  56 = load i1 from ptr %select41
+  br i1 %56, bb %then57, bb %if.exit58
+select.then46:
+  c.load50 = load i32 from ptr %c
+  51 = add i32 %c.load50, i32 2
+  52 = srem i32 %51, i32 2
+  53 = icmp ne i32 %52, i32 0
+  store i1 %53 to ptr %select49
+  br bb %select.exit48
+select.else47:
+  store i1 0 to ptr %select49
+  br bb %select.exit48
+select.exit48:
+  54 = load i1 from ptr %select49
+  55 = icmp ne i1 %54, i1 0
+  store i1 %55 to ptr %select41
+  br bb %select.exit40
+then57:
+  store i32 4 to ptr %result
+  call void putint(i32 4)
+  br bb %if.exit58
+if.exit58:
+  ret i32 0
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

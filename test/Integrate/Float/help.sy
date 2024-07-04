@@ -1,5 +1,24 @@
-//test array define
+
+
+int func(int aa, int ab, int ac, int ad, int ae, int af, int ag, int ah, int ai, int aj, int ak, int al, int am, int an, int ao, int ap, int aq, int ar, int as, int at, int au, int av, int aw, int ax, int ay, int az, 
+int ba, int bb, int bc, int bd, int be, int bf, int bg, int bh, int bi, int bj, int bk, int bl, int bm, int bn, int bo, int bp, int bq, int br, int bs, int bt, int bu, int bv, int bw, int bx, int by, int bz, 
+int ca, int cb, int cc, int cd, int ce, int cf, int cg, int ch, int ci, int cj, int ck, int cl, int cm, int cn, int co, int cp, int cq, int cr, int cs, int ct, int cu, int cv, int cw, int cx, int cy, int cz, 
+int da, int db, int dc, int dd, int de, int df, int dg, int dh, int di, int dj, int dk, int dl, int dm, int dn, int doo, int dp, int dq, int dr, int ds, int dt, int du, int dv, int dw, int dx, int dy, int dz, 
+int ea, int eb, int ec, int ed, int ee, int ef, int eg, int eh, int ei, int ej, int ek, int el, int em, int en, int eo, int ep, int eq, int er, int es, int et, int eu, int ev, int ew, int ex, int ey, int ez, 
+int wa, int wb, int wc, int wd, int we, int wf, int wg, int wh, int wi, int wj, int wk, int wl, int wm, int wn, int wo, int wp, int wq, int wr, int ws, int wt, int wu, int wv, int ww, int wx, int wy, int wz){
+	return 
+	wl*wg;
+}
+
 int main(){
-  int array[2][2][2][2][2][2][2][2][2][2][2][2][2][2][2][2][2][2][2] = {0};
+	putint( func(
+	0,1,1,8,9,5,2,0,6,2,4,7,1,6,9,3,3,5,0,8,9,3,4,5,9,0,
+	8,9,5,5,4,1,4,3,5,9,7,6,1,7,5,4,0,7,5,5,6,4,9,6,6,6,
+	8,0,4,2,3,3,0,5,4,3,9,5,9,3,3,6,4,3,3,0,5,0,2,5,6,6,
+	9,4,0,3,7,2,1,1,9,8,4,8,5,2,5,4,5,0,3,5,0,7,0,7,5,6,
+	7,7,8,2,6,8,9,4,6,7,2,9,8,8,0,0,3,4,8,9,0,5,9,8,5,1,
+	3,7,6,2,4,0,9,9,7,8,3,7,5,8,8,5,6,7,3,2,9,5,5,1,5,7));
     return 0;
 }
+
+

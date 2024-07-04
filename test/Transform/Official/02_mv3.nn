@@ -93,7 +93,7 @@ while.body126:
   store i32 %136 to ptr %i84
   br bb %while.cond125
 while.exit127:
-  call void _sysy_starttime(i32 67)
+  call void _sysy_stoptime(i32 67)
   n.load138 = load i32 from ptr %n
   call void putarray(i32 %n.load138, ptr @C)
   ret i32 0
@@ -190,8 +190,7 @@ then:
   53 = add i32 %48, i32 %51.load
   store i32 %53 to ptr %x
   y.load = load i32 from ptr %y
-  x.load55 = load i32 from ptr %x
-  56 = sub i32 %y.load, i32 %x.load55
+  56 = sub i32 %y.load, i32 %53
   store i32 %56 to ptr %y
   br bb %if.exit
 if.exit:

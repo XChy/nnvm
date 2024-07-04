@@ -76,8 +76,7 @@ while.body123:
   132 = ptradd ptr @program, i32 %131
   132.load = load i32 from ptr %132
   store i32 %132.load to ptr %code
-  code.load = load i32 from ptr %code
-  135 = icmp eq i32 %code.load, i32 62
+  135 = icmp eq i32 %132.load, i32 62
   br i1 %135, bb %then136, bb %else
 while.exit124:
   ret 
@@ -146,8 +145,7 @@ then176:
   182 = ptradd ptr @tape, i32 %181
   182.load = load i32 from ptr %182
   store i32 %182.load to ptr %val
-  val.load = load i32 from ptr %val
-  185 = icmp ne i32 %val.load, i32 0
+  185 = icmp ne i32 %182.load, i32 0
   br i1 %185, bb %then186, bb %else188
 if.exit177:
   br bb %if.exit164
@@ -179,8 +177,7 @@ while.body197:
   ip.load202 = load i32 from ptr %ip
   203 = add i32 %ip.load202, i32 1
   store i32 %203 to ptr %ip
-  ip.load204 = load i32 from ptr %ip
-  205 = mul i32 %ip.load204, i32 4
+  205 = mul i32 %203, i32 4
   206 = ptradd ptr @program, i32 %205
   206.load = load i32 from ptr %206
   208 = icmp eq i32 %206.load, i32 93
@@ -212,8 +209,7 @@ then224:
   230 = ptradd ptr @tape, i32 %229
   230.load = load i32 from ptr %230
   store i32 %230.load to ptr %val227
-  val227.load = load i32 from ptr %val227
-  233 = icmp eq i32 %val227.load, i32 0
+  233 = icmp eq i32 %230.load, i32 0
   br i1 %233, bb %then234, bb %else236
 if.exit225:
   br bb %if.exit177
@@ -323,8 +319,7 @@ while.body71:
 while.exit72:
   84 = call i32 getch()
   store i32 %84 to ptr %verify
-  verify.load = load i32 from ptr %verify
-  86 = icmp ne i32 %verify.load, i32 105
+  86 = icmp ne i32 %84, i32 105
   br i1 %86, bb %then, bb %if.exit
 then:
   ret 
@@ -363,7 +358,7 @@ entry298:
   call void read_program()
   call void _sysy_starttime(i32 116)
   call void run_program()
-  call void _sysy_starttime(i32 118)
+  call void _sysy_stoptime(i32 118)
   call void output_()
   ret i32 0
 }

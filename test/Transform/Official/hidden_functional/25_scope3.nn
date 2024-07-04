@@ -1,0 +1,99 @@
+i32 main() {
+entry:
+  %main66 = stack 4
+  %b50 = stack 4
+  %a35 = stack 4
+  %main = stack 4
+  %b = stack 4
+  %putch = stack 4
+  %a = stack 4
+  call void putch(i32 97)
+  call void putch(i32 10)
+  store i32 1 to ptr %a
+  store i32 0 to ptr %putch
+  6 = add i32 1, i32 2
+  store i32 %6 to ptr %a
+  9 = add i32 %6, i32 3
+  store i32 %9 to ptr %b
+  11 = add i32 %9, i32 4
+  store i32 %11 to ptr %b
+  14 = add i32 0, i32 %6
+  16 = add i32 %14, i32 %11
+  store i32 %16 to ptr %putch
+  18 = add i32 %11, i32 5
+  store i32 %18 to ptr %b
+  21 = add i32 %18, i32 6
+  store i32 %21 to ptr %main
+  24 = add i32 %6, i32 %21
+  store i32 %24 to ptr %a
+  27 = add i32 %16, i32 %24
+  29 = add i32 %27, i32 %18
+  31 = add i32 %29, i32 %21
+  store i32 %31 to ptr %putch
+  34 = add i32 %18, i32 %24
+  store i32 %34 to ptr %b
+  37 = add i32 %21, i32 7
+  store i32 %37 to ptr %a35
+  39 = add i32 %37, i32 8
+  store i32 %39 to ptr %a35
+  42 = add i32 %31, i32 %39
+  44 = add i32 %42, i32 %34
+  46 = add i32 %44, i32 %21
+  store i32 %46 to ptr %putch
+  49 = add i32 %34, i32 %39
+  store i32 %49 to ptr %b
+  52 = add i32 %21, i32 9
+  store i32 %52 to ptr %b50
+  54 = add i32 %39, i32 10
+  store i32 %54 to ptr %a35
+  56 = add i32 %52, i32 12
+  store i32 %56 to ptr %b50
+  58 = add i32 %46, i32 11
+  60 = add i32 %58, i32 %56
+  62 = add i32 %60, i32 %21
+  store i32 %62 to ptr %putch
+  65 = add i32 %21, i32 %56
+  store i32 %65 to ptr %main
+  68 = add i32 %56, i32 13
+  store i32 %68 to ptr %main66
+  70 = add i32 %68, i32 11
+  store i32 %70 to ptr %main66
+  72 = add i32 %62, i32 11
+  74 = add i32 %72, i32 %56
+  76 = add i32 %74, i32 %70
+  store i32 %76 to ptr %putch
+  79 = sub i32 %76, i32 %65
+  store i32 %79 to ptr %putch
+  82 = sub i32 %79, i32 %49
+  store i32 %82 to ptr %putch
+  85 = sub i32 %82, i32 %24
+  store i32 %85 to ptr %putch
+  87 = srem i32 %85, i32 77
+  ret i32 %87
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

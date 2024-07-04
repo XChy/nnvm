@@ -13,14 +13,12 @@ entry178:
   185.load = load i32 from ptr %185
   187 = add i32 %183, i32 %185.load
   store i32 %187 to ptr @staticvalue
-  staticvalue.load188 = load i32 from ptr @staticvalue
   189 = mul i32 2, i32 4
   190 = ptradd ptr @seed, i32 %189
   190.load = load i32 from ptr %190
-  192 = srem i32 %staticvalue.load188, i32 %190.load
+  192 = srem i32 %187, i32 %190.load
   store i32 %192 to ptr @staticvalue
-  staticvalue.load193 = load i32 from ptr @staticvalue
-  194 = icmp slt i32 %staticvalue.load193, i32 0
+  194 = icmp slt i32 %192, i32 0
   br i1 %194, bb %then195, bb %if.exit196
 then195:
   197 = mul i32 2, i32 4
@@ -147,11 +145,9 @@ while.body:
   i.load84 = load i32 from ptr %i
   85 = add i32 %i.load84, i32 1
   store i32 %85 to ptr %i
-  i.load86 = load i32 from ptr %i
-  87 = mul i32 %i.load86, i32 4
+  87 = mul i32 %85, i32 4
   88 = ptradd ptr %x, i32 %87
-  i.load89 = load i32 from ptr %i
-  90 = sub i32 %i.load89, i32 1
+  90 = sub i32 %85, i32 1
   91 = mul i32 %90, i32 4
   92 = ptradd ptr %x, i32 %91
   92.load = load i32 from ptr %92
@@ -295,11 +291,10 @@ while.body211:
   221 = srem i32 %220, i32 2
   store i32 %221 to ptr %y
   x208.load = load i32 from ptr %x208
-  y.load = load i32 from ptr %y
-  224 = call i32 set(ptr @a, i32 %x208.load, i32 %y.load)
+  224 = call i32 set(ptr @a, i32 %x208.load, i32 %221)
   br bb %while.cond210
 while.exit212:
-  call void _sysy_starttime(i32 64)
+  call void _sysy_stoptime(i32 64)
   call void putarray(i32 10000, ptr @a)
   ret i32 0
 }

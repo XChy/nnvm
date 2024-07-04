@@ -1,0 +1,236 @@
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry74:
+  %sum = stack 4
+  %sum3 = stack 4
+  %x = stack 4
+  %w = stack 4
+  %v = stack 4
+  %u = stack 4
+  %t = stack 4
+  %s = stack 4
+  %r = stack 4
+  %q = stack 4
+  %sum2107 = stack 4
+  %sum191 = stack 4
+  %p90 = stack 4
+  %o89 = stack 4
+  %n88 = stack 4
+  %m87 = stack 4
+  %l86 = stack 4
+  %k85 = stack 4
+  %j84 = stack 4
+  %i83 = stack 4
+  %h82 = stack 4
+  %g81 = stack 4
+  %f80 = stack 4
+  %e79 = stack 4
+  %d78 = stack 4
+  %c77 = stack 4
+  %b76 = stack 4
+  %a75 = stack 4
+  store i32 3 to ptr %a75
+  store i32 7 to ptr %b76
+  store i32 5 to ptr %c77
+  store i32 6 to ptr %d78
+  store i32 1 to ptr %e79
+  store i32 0 to ptr %f80
+  store i32 3 to ptr %g81
+  store i32 5 to ptr %h82
+  store i32 4 to ptr %i83
+  store i32 2 to ptr %j84
+  store i32 7 to ptr %k85
+  store i32 9 to ptr %l86
+  store i32 8 to ptr %m87
+  store i32 1 to ptr %n88
+  store i32 4 to ptr %o89
+  store i32 6 to ptr %p90
+  94 = add i32 3, i32 7
+  96 = add i32 %94, i32 5
+  98 = add i32 %96, i32 6
+  100 = add i32 %98, i32 1
+  102 = add i32 %100, i32 0
+  104 = add i32 %102, i32 3
+  106 = add i32 %104, i32 5
+  store i32 %106 to ptr %sum191
+  110 = add i32 4, i32 2
+  112 = add i32 %110, i32 7
+  114 = add i32 %112, i32 9
+  116 = add i32 %114, i32 8
+  118 = add i32 %116, i32 1
+  120 = add i32 %118, i32 4
+  122 = add i32 %120, i32 6
+  store i32 %122 to ptr %sum2107
+  124 = call i32 foo()
+  125 = add i32 %106, i32 %124
+  store i32 %125 to ptr %sum191
+  store i32 4 to ptr %q
+  store i32 7 to ptr %r
+  store i32 2 to ptr %s
+  store i32 5 to ptr %t
+  store i32 8 to ptr %u
+  store i32 0 to ptr %v
+  store i32 6 to ptr %w
+  store i32 3 to ptr %x
+  sum2107.load = load i32 from ptr %sum2107
+  135 = call i32 foo()
+  136 = add i32 %sum2107.load, i32 %135
+  store i32 %136 to ptr %sum2107
+  i83.load137 = load i32 from ptr %i83
+  store i32 %i83.load137 to ptr %a75
+  j84.load138 = load i32 from ptr %j84
+  store i32 %j84.load138 to ptr %b76
+  k85.load139 = load i32 from ptr %k85
+  store i32 %k85.load139 to ptr %c77
+  l86.load140 = load i32 from ptr %l86
+  store i32 %l86.load140 to ptr %d78
+  m87.load141 = load i32 from ptr %m87
+  store i32 %m87.load141 to ptr %e79
+  n88.load142 = load i32 from ptr %n88
+  store i32 %n88.load142 to ptr %f80
+  o89.load143 = load i32 from ptr %o89
+  store i32 %o89.load143 to ptr %g81
+  p90.load144 = load i32 from ptr %p90
+  store i32 %p90.load144 to ptr %h82
+  q.load = load i32 from ptr %q
+  r.load = load i32 from ptr %r
+  148 = add i32 %q.load, i32 %r.load
+  s.load = load i32 from ptr %s
+  150 = add i32 %148, i32 %s.load
+  t.load = load i32 from ptr %t
+  152 = add i32 %150, i32 %t.load
+  u.load = load i32 from ptr %u
+  154 = add i32 %152, i32 %u.load
+  v.load = load i32 from ptr %v
+  156 = add i32 %154, i32 %v.load
+  w.load = load i32 from ptr %w
+  158 = add i32 %156, i32 %w.load
+  x.load = load i32 from ptr %x
+  160 = add i32 %158, i32 %x.load
+  store i32 %160 to ptr %sum3
+  sum191.load162 = load i32 from ptr %sum191
+  164 = add i32 %sum191.load162, i32 %136
+  166 = add i32 %164, i32 %160
+  store i32 %166 to ptr %sum
+  call void putint(i32 %166)
+  call void putch(i32 10)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+i32 foo() {
+entry:
+  %sum2 = stack 4
+  %sum1 = stack 4
+  %p = stack 4
+  %o = stack 4
+  %n = stack 4
+  %m = stack 4
+  %l = stack 4
+  %k = stack 4
+  %j = stack 4
+  %i = stack 4
+  %h = stack 4
+  %g = stack 4
+  %f = stack 4
+  %e = stack 4
+  %d = stack 4
+  %c = stack 4
+  %b = stack 4
+  %a = stack 4
+  %arr = stack 64
+  arr.index = ptradd ptr %arr, i32 0
+  store i32 0 to ptr %arr.index
+  arr.index3 = ptradd ptr %arr, i32 4
+  store i32 1 to ptr %arr.index3
+  arr.index4 = ptradd ptr %arr, i32 8
+  store i32 2 to ptr %arr.index4
+  arr.index5 = ptradd ptr %arr, i32 12
+  store i32 3 to ptr %arr.index5
+  arr.index6 = ptradd ptr %arr, i32 16
+  store i32 0 to ptr %arr.index6
+  arr.index7 = ptradd ptr %arr, i32 20
+  store i32 1 to ptr %arr.index7
+  arr.index8 = ptradd ptr %arr, i32 24
+  store i32 2 to ptr %arr.index8
+  arr.index9 = ptradd ptr %arr, i32 28
+  store i32 3 to ptr %arr.index9
+  arr.index10 = ptradd ptr %arr, i32 32
+  store i32 0 to ptr %arr.index10
+  arr.index11 = ptradd ptr %arr, i32 36
+  store i32 1 to ptr %arr.index11
+  arr.index12 = ptradd ptr %arr, i32 40
+  store i32 2 to ptr %arr.index12
+  arr.index13 = ptradd ptr %arr, i32 44
+  store i32 3 to ptr %arr.index13
+  arr.index14 = ptradd ptr %arr, i32 48
+  store i32 0 to ptr %arr.index14
+  arr.index15 = ptradd ptr %arr, i32 52
+  store i32 1 to ptr %arr.index15
+  arr.index16 = ptradd ptr %arr, i32 56
+  store i32 2 to ptr %arr.index16
+  arr.index17 = ptradd ptr %arr, i32 60
+  store i32 3 to ptr %arr.index17
+  store i32 3 to ptr %a
+  store i32 7 to ptr %b
+  store i32 5 to ptr %c
+  store i32 6 to ptr %d
+  store i32 1 to ptr %e
+  store i32 0 to ptr %f
+  store i32 3 to ptr %g
+  store i32 5 to ptr %h
+  store i32 4 to ptr %i
+  store i32 2 to ptr %j
+  store i32 7 to ptr %k
+  store i32 9 to ptr %l
+  store i32 8 to ptr %m
+  store i32 1 to ptr %n
+  store i32 4 to ptr %o
+  store i32 6 to ptr %p
+  37 = add i32 3, i32 7
+  39 = add i32 %37, i32 5
+  41 = add i32 %39, i32 6
+  43 = add i32 %41, i32 1
+  45 = add i32 %43, i32 0
+  47 = add i32 %45, i32 3
+  49 = add i32 %47, i32 5
+  store i32 %49 to ptr %sum1
+  53 = add i32 4, i32 2
+  55 = add i32 %53, i32 7
+  57 = add i32 %55, i32 9
+  59 = add i32 %57, i32 8
+  61 = add i32 %59, i32 1
+  63 = add i32 %61, i32 4
+  65 = add i32 %63, i32 6
+  store i32 %65 to ptr %sum2
+  68 = add i32 %49, i32 %65
+  70 = mul i32 3, i32 4
+  71 = ptradd ptr %arr, i32 %70
+  71.load = load i32 from ptr %71
+  73 = add i32 %68, i32 %71.load
+  ret i32 %73
+}
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

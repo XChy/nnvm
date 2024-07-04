@@ -34,7 +34,8 @@ fft:
   SD s3, 72(sp)
   SD s2, 80(sp)
   SD s1, 88(sp)
-  SD s0, 96(sp)
+  SD s5, 96(sp)
+  SD s0, 104(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -42,10 +43,9 @@ fft:
   SW s1, 48(sp)
   SW s2, 40(sp)
   SW s3, 32(sp)
-  LW s1, 40(sp)
-  XORI s2, s1, 1
-  SLTIU s1, s2, 1
-  BNE s1, zero, bb1
+  XORI s1, s2, 1
+  SLTIU s2, s1, 1
+  BNE s2, zero, bb1
   JAL zero, bb2
 bb1:
   ADDI a0, zero, 1
@@ -54,7 +54,8 @@ bb1:
   LD s3, 72(sp)
   LD s2, 80(sp)
   LD s1, 88(sp)
-  LD s0, 96(sp)
+  LD s5, 96(sp)
+  LD s0, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb2:
@@ -190,28 +191,26 @@ bb10:
   LW s2, 0(s1)
   SW s2, 8(sp)
   LW s1, 48(sp)
-  LW s2, 24(sp)
-  ADDW s3, s1, s2
+  LW s3, 24(sp)
+  ADDW s4, s1, s3
   LW s1, 40(sp)
-  ADDI s2, zero, 2
-  DIVW s4, s1, s2
-  ADDW s1, s3, s4
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADD s1, s0, s3
-  LW s2, 0(s1)
-  SW s2, 0(sp)
+  ADDI s3, zero, 2
+  DIVW s5, s1, s3
+  ADDW s1, s4, s5
+  ADDI s3, zero, 4
+  MULW s4, s1, s3
+  ADD s1, s0, s4
+  LW s3, 0(s1)
+  SW s3, 0(sp)
   LW s1, 48(sp)
-  LW s2, 24(sp)
-  ADDW s3, s1, s2
+  LW s4, 24(sp)
+  ADDW s5, s1, s4
   ADDI s1, zero, 4
-  MULW s2, s3, s1
-  ADD s1, s0, s2
-  LW s2, 8(sp)
-  LW s3, 16(sp)
-  LW s4, 0(sp)
-  ADD a0, s3, zero
-  ADD a1, s4, zero
+  MULW s4, s5, s1
+  ADD s1, s0, s4
+  LW s4, 16(sp)
+  ADD a0, s4, zero
+  ADD a1, s3, zero
   CALL multiply
   ADD s3, a0, zero
   ADDW s4, s2, s3
@@ -262,7 +261,8 @@ bb11:
   LD s3, 72(sp)
   LD s2, 80(sp)
   LD s1, 88(sp)
-  LD s0, 96(sp)
+  LD s5, 96(sp)
+  LD s0, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 power:
@@ -276,10 +276,9 @@ power:
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
-  LW s0, 8(sp)
-  XOR s1, s0, zero
-  SLTIU s0, s1, 1
-  BNE s0, zero, bb13
+  XOR s0, s1, zero
+  SLTIU s1, s0, 1
+  BNE s1, zero, bb13
   JAL zero, bb14
 bb13:
   ADDI a0, zero, 1
@@ -300,10 +299,8 @@ bb14:
   CALL power
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
-  LW s1, 0(sp)
   ADD a0, s0, zero
-  ADD a1, s1, zero
+  ADD a1, s0, zero
   CALL multiply
   ADD s0, a0, zero
   SW s0, 0(sp)
@@ -535,7 +532,7 @@ bb26:
   JAL zero, bb25
 bb27:
   ADDI a0, zero, 79
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 16(sp)
   LW s1, 8(sp)
   ADDW s2, s0, s1
@@ -620,10 +617,9 @@ multiply:
   ADD s1, a1, zero
   SW s0, 16(sp)
   SW s1, 8(sp)
-  LW s0, 8(sp)
-  XOR s1, s0, zero
-  SLTIU s0, s1, 1
-  BNE s0, zero, bb33
+  XOR s0, s1, zero
+  SLTIU s1, s0, 1
+  BNE s1, zero, bb33
   JAL zero, bb34
 bb33:
   ADD a0, zero, zero
@@ -663,12 +659,10 @@ bb36:
   CALL multiply
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
-  LW s1, 0(sp)
-  ADDW s2, s0, s1
+  ADDW s1, s0, s0
   LA s0, mod
-  LW s1, 0(s0)
-  REMW s0, s2, s1
+  LW s2, 0(s0)
+  REMW s0, s1, s2
   SW s0, 0(sp)
   LW s0, 8(sp)
   ADDI s1, zero, 2

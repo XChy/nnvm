@@ -1,0 +1,182 @@
+global ptr a init with 4096 x i32 zeros
+external i32 getint()
+
+i32 f1(ptr b) {
+entry:
+  1 = mul i32 5, i32 4
+  2 = ptradd ptr @a, i32 %1
+  store i32 4000 to ptr %2
+  3 = mul i32 4000, i32 4
+  4 = ptradd ptr @a, i32 %3
+  store i32 3 to ptr %4
+  5 = mul i32 4095, i32 4
+  6 = ptradd ptr @a, i32 %5
+  store i32 7 to ptr %6
+  7 = mul i32 4095, i32 4
+  8 = ptradd ptr @a, i32 %7
+  8.load = load i32 from ptr %8
+  10 = mul i32 %8.load, i32 4
+  11 = ptradd ptr %b, i32 %10
+  12 = mul i32 2216, i32 4
+  13 = ptradd ptr @a, i32 %12
+  13.load = load i32 from ptr %13
+  15 = add i32 %13.load, i32 9
+  store i32 %15 to ptr %11
+  16 = mul i32 5, i32 4
+  17 = ptradd ptr @a, i32 %16
+  17.load = load i32 from ptr %17
+  19 = mul i32 %17.load, i32 4
+  20 = ptradd ptr @a, i32 %19
+  20.load = load i32 from ptr %20
+  ret i32 %20.load
+}
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry22:
+  %cnt_ptr84 = stack 4
+  %c = stack 16384
+  %cnt_ptr66 = stack 4
+  %cnt_ptr52 = stack 4
+  %cnt_ptr39 = stack 4
+  %cnt_ptr = stack 4
+  %b = stack 16384
+  store i32 1024 to ptr %cnt_ptr
+  br bb %init.cond
+init.cond:
+  cnt = load i32 from ptr %cnt_ptr
+  29 = icmp ne i32 %cnt, i32 0
+  br i1 %29, bb %init, bb %init.exit
+init:
+  cnt30 = load i32 from ptr %cnt_ptr
+  cnt.dec = sub i32 %cnt30, i32 1
+  store i32 %cnt.dec to ptr %cnt_ptr
+  offset = mul i32 %cnt.dec, i32 4
+  arr.index = add i32 0, i32 %offset
+  arr.index34 = ptradd ptr %b, ptr %arr.index
+  store i32 0 to ptr %arr.index34
+  br bb %init.cond
+init.exit:
+  arr.index35 = ptradd ptr %b, i32 4096
+  store i32 1 to ptr %arr.index35
+  store i32 1023 to ptr %cnt_ptr39
+  br bb %init.cond36
+init.cond36:
+  cnt40 = load i32 from ptr %cnt_ptr39
+  41 = icmp ne i32 %cnt40, i32 0
+  br i1 %41, bb %init37, bb %init.exit38
+init37:
+  cnt42 = load i32 from ptr %cnt_ptr39
+  cnt.dec43 = sub i32 %cnt42, i32 1
+  store i32 %cnt.dec43 to ptr %cnt_ptr39
+  offset44 = mul i32 %cnt.dec43, i32 4
+  arr.index45 = add i32 4100, i32 %offset44
+  arr.index46 = ptradd ptr %b, ptr %arr.index45
+  store i32 0 to ptr %arr.index46
+  br bb %init.cond36
+init.exit38:
+  arr.index47 = ptradd ptr %b, i32 8192
+  store i32 2 to ptr %arr.index47
+  arr.index48 = ptradd ptr %b, i32 8196
+  store i32 3 to ptr %arr.index48
+  store i32 1022 to ptr %cnt_ptr52
+  br bb %init.cond49
+init.cond49:
+  cnt53 = load i32 from ptr %cnt_ptr52
+  54 = icmp ne i32 %cnt53, i32 0
+  br i1 %54, bb %init50, bb %init.exit51
+init50:
+  cnt55 = load i32 from ptr %cnt_ptr52
+  cnt.dec56 = sub i32 %cnt55, i32 1
+  store i32 %cnt.dec56 to ptr %cnt_ptr52
+  offset57 = mul i32 %cnt.dec56, i32 4
+  arr.index58 = add i32 8200, i32 %offset57
+  arr.index59 = ptradd ptr %b, ptr %arr.index58
+  store i32 0 to ptr %arr.index59
+  br bb %init.cond49
+init.exit51:
+  arr.index60 = ptradd ptr %b, i32 12288
+  store i32 4 to ptr %arr.index60
+  arr.index61 = ptradd ptr %b, i32 12292
+  store i32 5 to ptr %arr.index61
+  arr.index62 = ptradd ptr %b, i32 12296
+  store i32 6 to ptr %arr.index62
+  store i32 1021 to ptr %cnt_ptr66
+  br bb %init.cond63
+init.cond63:
+  cnt67 = load i32 from ptr %cnt_ptr66
+  68 = icmp ne i32 %cnt67, i32 0
+  br i1 %68, bb %init64, bb %init.exit65
+init64:
+  cnt69 = load i32 from ptr %cnt_ptr66
+  cnt.dec70 = sub i32 %cnt69, i32 1
+  store i32 %cnt.dec70 to ptr %cnt_ptr66
+  offset71 = mul i32 %cnt.dec70, i32 4
+  arr.index72 = add i32 12300, i32 %offset71
+  arr.index73 = ptradd ptr %b, ptr %arr.index72
+  store i32 0 to ptr %arr.index73
+  br bb %init.cond63
+init.exit65:
+  arr.index75 = ptradd ptr %c, i32 0
+  store i32 1 to ptr %arr.index75
+  arr.index76 = ptradd ptr %c, i32 4
+  store i32 2 to ptr %arr.index76
+  arr.index77 = ptradd ptr %c, i32 8
+  store i32 0 to ptr %arr.index77
+  arr.index78 = ptradd ptr %c, i32 12
+  store i32 0 to ptr %arr.index78
+  arr.index79 = ptradd ptr %c, i32 16
+  store i32 3 to ptr %arr.index79
+  arr.index80 = ptradd ptr %c, i32 20
+  store i32 4 to ptr %arr.index80
+  store i32 4090 to ptr %cnt_ptr84
+  br bb %init.cond81
+init.cond81:
+  cnt85 = load i32 from ptr %cnt_ptr84
+  86 = icmp ne i32 %cnt85, i32 0
+  br i1 %86, bb %init82, bb %init.exit83
+init82:
+  cnt87 = load i32 from ptr %cnt_ptr84
+  cnt.dec88 = sub i32 %cnt87, i32 1
+  store i32 %cnt.dec88 to ptr %cnt_ptr84
+  offset89 = mul i32 %cnt.dec88, i32 4
+  arr.index90 = add i32 24, i32 %offset89
+  arr.index91 = ptradd ptr %c, ptr %arr.index90
+  store i32 0 to ptr %arr.index91
+  br bb %init.cond81
+init.exit83:
+  92 = mul i32 0, i32 16
+  93 = ptradd ptr %c, i32 %92
+  94 = call i32 f1(ptr %93)
+  call void putint(i32 %94)
+  call void putch(i32 10)
+  97 = mul i32 2, i32 16
+  98 = ptradd ptr %c, i32 %97
+  99 = mul i32 0, i32 4
+  100 = ptradd ptr %98, i32 %99
+  100.load = load i32 from ptr %100
+  ret i32 %100.load
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

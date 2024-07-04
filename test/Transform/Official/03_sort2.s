@@ -82,7 +82,7 @@ bb4:
   JAL zero, bb5
 bb5:
   ADDI a0, zero, 102
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LA s0, ans
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -466,7 +466,6 @@ bb37:
 bb38:
   LW s0, 16(sp)
   SW s0, 8(sp)
-  LW s0, 8(sp)
   LW s2, 272(sp)
   ADD a0, s0, zero
   ADD a1, s2, zero

@@ -16,12 +16,19 @@ width:
 .word 0x00000200
 .section .text
 main:
-  ADDI sp, sp, -144
+  ADDI sp, sp, -208
   SD ra, 104(sp)
-  SD s3, 112(sp)
-  SD s2, 120(sp)
-  SD s1, 128(sp)
-  SD s0, 136(sp)
+  SD s0, 112(sp)
+  SD s5, 120(sp)
+  SD s7, 128(sp)
+  SD s10, 136(sp)
+  SD s1, 144(sp)
+  SD s6, 152(sp)
+  SD s2, 160(sp)
+  SD s3, 168(sp)
+  SD s4, 176(sp)
+  SD s8, 184(sp)
+  SD s9, 192(sp)
   LA s0, image_in
   ADD a0, s0, zero
   CALL getarray
@@ -75,155 +82,145 @@ bb5:
   SUBW s1, s2, s0
   SW s1, 72(sp)
   LW s0, 96(sp)
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
+  ADDI s2, zero, 1
+  SUBW s3, s0, s2
   LA s0, width
-  LW s1, 0(s0)
-  MULW s0, s2, s1
-  LW s1, 88(sp)
-  ADDW s2, s0, s1
-  SW s2, 64(sp)
+  LW s2, 0(s0)
+  MULW s0, s3, s2
+  LW s2, 88(sp)
+  ADDW s3, s0, s2
+  SW s3, 64(sp)
   LW s0, 96(sp)
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
+  ADDI s2, zero, 1
+  SUBW s4, s0, s2
   LA s0, width
-  LW s1, 0(s0)
-  MULW s0, s2, s1
-  LW s1, 88(sp)
-  ADDW s2, s0, s1
-  ADDIW s0, s2, 1
+  LW s2, 0(s0)
+  MULW s0, s4, s2
+  LW s2, 88(sp)
+  ADDW s4, s0, s2
+  ADDIW s0, s4, 1
   SW s0, 56(sp)
-  LW s0, 96(sp)
-  LA s1, width
-  LW s2, 0(s1)
-  MULW s1, s0, s2
-  LW s0, 88(sp)
-  ADDW s2, s1, s0
-  ADDI s0, zero, 1
-  SUBW s1, s2, s0
-  SW s1, 48(sp)
-  LW s0, 96(sp)
-  LA s1, width
-  LW s2, 0(s1)
-  MULW s1, s0, s2
-  LW s0, 88(sp)
-  ADDW s2, s1, s0
-  SW s2, 40(sp)
-  LW s0, 96(sp)
-  LA s1, width
-  LW s2, 0(s1)
-  MULW s1, s0, s2
-  LW s0, 88(sp)
-  ADDW s2, s1, s0
-  ADDIW s0, s2, 1
-  SW s0, 32(sp)
-  LW s0, 96(sp)
-  ADDIW s1, s0, 1
-  LA s0, width
-  LW s2, 0(s0)
-  MULW s0, s1, s2
-  LW s1, 88(sp)
-  ADDW s2, s0, s1
-  ADDI s0, zero, 1
-  SUBW s1, s2, s0
-  SW s1, 24(sp)
-  LW s0, 96(sp)
-  ADDIW s1, s0, 1
-  LA s0, width
-  LW s2, 0(s0)
-  MULW s0, s1, s2
-  LW s1, 88(sp)
-  ADDW s2, s0, s1
-  SW s2, 16(sp)
-  LW s0, 96(sp)
-  ADDIW s1, s0, 1
-  LA s0, width
-  LW s2, 0(s0)
-  MULW s0, s1, s2
-  LW s1, 88(sp)
-  ADDW s2, s0, s1
-  ADDIW s0, s2, 1
-  SW s0, 8(sp)
-  LW s0, 40(sp)
+  LW s2, 96(sp)
+  LA s4, width
+  LW s5, 0(s4)
+  MULW s4, s2, s5
+  LW s2, 88(sp)
+  ADDW s5, s4, s2
+  ADDI s2, zero, 1
+  SUBW s4, s5, s2
+  SW s4, 48(sp)
+  LW s2, 96(sp)
+  LA s5, width
+  LW s6, 0(s5)
+  MULW s5, s2, s6
+  LW s2, 88(sp)
+  ADDW s6, s5, s2
+  SW s6, 40(sp)
+  LW s2, 96(sp)
+  LA s5, width
+  LW s7, 0(s5)
+  MULW s5, s2, s7
+  LW s2, 88(sp)
+  ADDW s7, s5, s2
+  ADDIW s2, s7, 1
+  SW s2, 32(sp)
+  LW s5, 96(sp)
+  ADDIW s7, s5, 1
+  LA s5, width
+  LW s8, 0(s5)
+  MULW s5, s7, s8
+  LW s7, 88(sp)
+  ADDW s8, s5, s7
+  ADDI s5, zero, 1
+  SUBW s7, s8, s5
+  SW s7, 24(sp)
+  LW s5, 96(sp)
+  ADDIW s8, s5, 1
+  LA s5, width
+  LW s9, 0(s5)
+  MULW s5, s8, s9
+  LW s8, 88(sp)
+  ADDW s9, s5, s8
+  SW s9, 16(sp)
+  LW s5, 96(sp)
+  ADDIW s8, s5, 1
+  LA s5, width
+  LW s10, 0(s5)
+  MULW s5, s8, s10
+  LW s8, 88(sp)
+  ADDW s10, s5, s8
+  ADDIW s5, s10, 1
+  SW s5, 8(sp)
+  ADDI s8, zero, 4
+  MULW s10, s6, s8
+  LA s6, image_in
+  ADD s8, s6, s10
+  LW s6, 0(s8)
+  ADDI s8, zero, 8
+  MULW s10, s6, s8
+  ADDI s6, zero, 4
+  MULW s8, s1, s6
+  LA s1, image_in
+  ADD s6, s1, s8
+  LW s1, 0(s6)
+  SUBW s6, s10, s1
   ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s0, image_in
-  ADD s1, s0, s2
-  LW s0, 0(s1)
-  ADDI s1, zero, 8
-  MULW s2, s0, s1
-  LW s0, 72(sp)
+  MULW s8, s3, s1
+  LA s1, image_in
+  ADD s3, s1, s8
+  LW s1, 0(s3)
+  SUBW s3, s6, s1
   ADDI s1, zero, 4
-  MULW s3, s0, s1
+  MULW s6, s0, s1
   LA s0, image_in
-  ADD s1, s0, s3
+  ADD s1, s0, s6
   LW s0, 0(s1)
-  SUBW s1, s2, s0
-  LW s0, 64(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
+  SUBW s1, s3, s0
+  ADDI s0, zero, 4
+  MULW s3, s4, s0
   LA s0, image_in
-  ADD s2, s0, s3
+  ADD s4, s0, s3
+  LW s0, 0(s4)
+  SUBW s3, s1, s0
+  ADDI s0, zero, 4
+  MULW s1, s2, s0
+  LA s0, image_in
+  ADD s2, s0, s1
   LW s0, 0(s2)
+  SUBW s1, s3, s0
+  ADDI s0, zero, 4
+  MULW s2, s7, s0
+  LA s0, image_in
+  ADD s3, s0, s2
+  LW s0, 0(s3)
   SUBW s2, s1, s0
-  LW s0, 56(sp)
-  ADDI s1, zero, 4
-  MULW s3, s0, s1
+  ADDI s0, zero, 4
+  MULW s1, s9, s0
   LA s0, image_in
-  ADD s1, s0, s3
-  LW s0, 0(s1)
+  ADD s3, s0, s1
+  LW s0, 0(s3)
   SUBW s1, s2, s0
-  LW s0, 48(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
+  ADDI s0, zero, 4
+  MULW s2, s5, s0
   LA s0, image_in
-  ADD s2, s0, s3
-  LW s0, 0(s2)
-  SUBW s2, s1, s0
-  LW s0, 32(sp)
-  ADDI s1, zero, 4
-  MULW s3, s0, s1
-  LA s0, image_in
-  ADD s1, s0, s3
-  LW s0, 0(s1)
-  SUBW s1, s2, s0
-  LW s0, 24(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, image_in
-  ADD s2, s0, s3
-  LW s0, 0(s2)
-  SUBW s2, s1, s0
-  LW s0, 16(sp)
-  ADDI s1, zero, 4
-  MULW s3, s0, s1
-  LA s0, image_in
-  ADD s1, s0, s3
-  LW s0, 0(s1)
-  SUBW s1, s2, s0
-  LW s0, 8(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, image_in
-  ADD s2, s0, s3
-  LW s0, 0(s2)
+  ADD s3, s0, s2
+  LW s0, 0(s3)
   SUBW s2, s1, s0
   SW s2, 0(sp)
   LW s0, 96(sp)
   LA s1, width
-  LW s2, 0(s1)
-  MULW s1, s0, s2
+  LW s3, 0(s1)
+  MULW s1, s0, s3
   LW s0, 88(sp)
-  ADDW s2, s1, s0
+  ADDW s3, s1, s0
   ADDI s0, zero, 4
-  MULW s1, s2, s0
+  MULW s1, s3, s0
   LA s0, image_out
-  ADD s2, s0, s1
-  LW s0, 0(sp)
-  ADD a0, s0, zero
+  ADD s3, s0, s1
+  ADD a0, s2, zero
   CALL cutout
   ADD s0, a0, zero
-  SW s0, 0(s2)
+  SW s0, 0(s3)
   LW s0, 96(sp)
   ADDIW s1, s0, 1
   SW s1, 96(sp)
@@ -353,7 +350,7 @@ bb11:
   JAL zero, bb10
 bb12:
   ADDI a0, zero, 59
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LA s0, width
   LW s1, 0(s0)
   LA s0, height
@@ -366,11 +363,18 @@ bb12:
   LW s0, 80(sp)
   ADD a0, s0, zero
   LD ra, 104(sp)
-  LD s3, 112(sp)
-  LD s2, 120(sp)
-  LD s1, 128(sp)
-  LD s0, 136(sp)
-  ADDI sp, sp, 144
+  LD s0, 112(sp)
+  LD s5, 120(sp)
+  LD s7, 128(sp)
+  LD s10, 136(sp)
+  LD s1, 144(sp)
+  LD s6, 152(sp)
+  LD s2, 160(sp)
+  LD s3, 168(sp)
+  LD s4, 176(sp)
+  LD s8, 184(sp)
+  LD s9, 192(sp)
+  ADDI sp, sp, 208
   JALR zero, 0(ra)
 cutout:
   ADDI sp, sp, -48
@@ -380,7 +384,6 @@ cutout:
   SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   SLT s1, s0, zero
   BNE s1, zero, bb14
   JAL zero, bb16

@@ -55,7 +55,7 @@ then340:
   store i32 %343 to ptr @ans
   br bb %if.exit341
 if.exit341:
-  call void _sysy_starttime(i32 102)
+  call void _sysy_stoptime(i32 102)
   ans.load345 = load i32 from ptr @ans
   call void putint(i32 %ans.load345)
   call void putch(i32 10)
@@ -342,9 +342,8 @@ while.cond197:
 while.body198:
   v.load207 = load i32 from ptr %v
   store i32 %v.load207 to ptr %t
-  t.load = load i32 from ptr %t
   bitround.stack.load209 = load i32 from ptr %bitround.stack
-  210 = call i32 getNumPos(i32 %t.load, i32 %bitround.stack.load209)
+  210 = call i32 getNumPos(i32 %v.load207, i32 %bitround.stack.load209)
   211 = mul i32 %210, i32 4
   212 = ptradd ptr %head, i32 %211
   212.load = load i32 from ptr %212

@@ -1,0 +1,94 @@
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry37:
+  %p = stack 4
+  store i32 2 to ptr %p
+  41 = call i32 deepWhileBr(i32 2, i32 2)
+  store i32 %41 to ptr %p
+  call void putint(i32 %41)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+i32 deepWhileBr(i32 a, i32 b) {
+entry2:
+  %e = stack 4
+  %d = stack 4
+  %c = stack 4
+  %b.stack = stack 4
+  %a.stack3 = stack 4
+  store i32 %a to ptr %a.stack3
+  store i32 %b to ptr %b.stack
+  8 = add i32 %a, i32 %b
+  store i32 %8 to ptr %c
+  br bb %while.cond
+while.cond:
+  c.load = load i32 from ptr %c
+  13 = icmp slt i32 %c.load, i32 75
+  14 = icmp ne i1 %13, i1 0
+  br i1 %14, bb %while.body, bb %while.exit
+while.body:
+  store i32 42 to ptr %d
+  c.load16 = load i32 from ptr %c
+  17 = icmp slt i32 %c.load16, i32 100
+  br i1 %17, bb %then, bb %if.exit
+while.exit:
+  c.load36 = load i32 from ptr %c
+  ret i32 %c.load36
+then:
+  c.load20 = load i32 from ptr %c
+  d.load = load i32 from ptr %d
+  22 = add i32 %c.load20, i32 %d.load
+  store i32 %22 to ptr %c
+  24 = icmp sgt i32 %22, i32 99
+  br i1 %24, bb %then25, bb %if.exit26
+if.exit:
+  br bb %while.cond
+then25:
+  d.load28 = load i32 from ptr %d
+  29 = mul i32 %d.load28, i32 2
+  store i32 %29 to ptr %e
+  30 = call i32 get_one(i32 0)
+  31 = icmp eq i32 %30, i32 1
+  br i1 %31, bb %then32, bb %if.exit33
+if.exit26:
+  br bb %if.exit
+then32:
+  e.load = load i32 from ptr %e
+  35 = mul i32 %e.load, i32 2
+  store i32 %35 to ptr %c
+  br bb %if.exit33
+if.exit33:
+  br bb %if.exit26
+}
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+i32 get_one(i32 a) {
+entry:
+  %a.stack = stack 4
+  store i32 %a to ptr %a.stack
+  ret i32 1
+}
+
+external void putfarray(i32 , ptr )
+
+

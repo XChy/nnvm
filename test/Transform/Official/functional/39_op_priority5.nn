@@ -1,0 +1,97 @@
+global ptr e init with i32 4
+global ptr c init with i32 1
+global ptr b init with i32 0
+global ptr d init with i32 2
+global ptr a init with i32 1
+i32 main() {
+entry:
+  %select30 = stack 1
+  %select = stack 1
+  %flag = stack 4
+  store i32 0 to ptr %flag
+  a.load = load i32 from ptr @a
+  b.load = load i32 from ptr @b
+  4 = mul i32 %a.load, i32 %b.load
+  c.load = load i32 from ptr @c
+  6 = sdiv i32 %4, i32 %c.load
+  e.load = load i32 from ptr @e
+  d.load = load i32 from ptr @d
+  9 = add i32 %e.load, i32 %d.load
+  10 = icmp eq i32 %6, i32 %9
+  br i1 %10, bb %select.then, bb %select.else
+select.then:
+  a.load15 = load i32 from ptr @a
+  a.load16 = load i32 from ptr @a
+  b.load17 = load i32 from ptr @b
+  18 = add i32 %a.load16, i32 %b.load17
+  19 = mul i32 %a.load15, i32 %18
+  c.load20 = load i32 from ptr @c
+  21 = add i32 %19, i32 %c.load20
+  d.load22 = load i32 from ptr @d
+  e.load23 = load i32 from ptr @e
+  24 = add i32 %d.load22, i32 %e.load23
+  25 = icmp sle i32 %21, i32 %24
+  store i1 %25 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  26 = load i1 from ptr %select
+  br i1 %26, bb %select.then27, bb %select.else28
+select.then27:
+  store i1 1 to ptr %select30
+  br bb %select.exit29
+select.else28:
+  a.load31 = load i32 from ptr @a
+  b.load32 = load i32 from ptr @b
+  c.load33 = load i32 from ptr @c
+  34 = mul i32 %b.load32, i32 %c.load33
+  35 = sub i32 %a.load31, i32 %34
+  d.load36 = load i32 from ptr @d
+  a.load37 = load i32 from ptr @a
+  c.load38 = load i32 from ptr @c
+  39 = sdiv i32 %a.load37, i32 %c.load38
+  40 = sub i32 %d.load36, i32 %39
+  41 = icmp eq i32 %35, i32 %40
+  42 = icmp ne i1 %41, i1 0
+  store i1 %42 to ptr %select30
+  br bb %select.exit29
+select.exit29:
+  43 = load i1 from ptr %select30
+  br i1 %43, bb %then, bb %if.exit
+then:
+  store i32 1 to ptr %flag
+  br bb %if.exit
+if.exit:
+  flag.load = load i32 from ptr %flag
+  call void putint(i32 %flag.load)
+  flag.load48 = load i32 from ptr %flag
+  ret i32 %flag.load48
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

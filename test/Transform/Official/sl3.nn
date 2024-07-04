@@ -93,7 +93,7 @@ while.body55:
   store i32 1 to ptr %k
   br bb %while.cond62
 while.exit56:
-  call void _sysy_starttime(i32 53)
+  call void _sysy_stoptime(i32 53)
   N.load167 = load i32 from ptr %N
   168 = mul i32 0, i32 1440000
   169 = ptradd ptr @x, i32 %168

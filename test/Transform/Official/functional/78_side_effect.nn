@@ -1,0 +1,143 @@
+global ptr b init with i32 1
+global ptr a init with i32 -1
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry7:
+  %select50 = stack 1
+  %select44 = stack 1
+  %select27 = stack 1
+  %select = stack 1
+  %k = stack 4
+  store i32 5 to ptr %k
+  br bb %while.cond
+while.cond:
+  k.load = load i32 from ptr %k
+  13 = icmp sge i32 %k.load, i32 0
+  14 = icmp ne i1 %13, i1 0
+  br i1 %14, bb %while.body, bb %while.exit
+while.body:
+  15 = call i32 inc_a()
+  16 = icmp ne i32 %15, i32 0
+  br i1 %16, bb %select.then, bb %select.else
+while.exit:
+  a.load70 = load i32 from ptr @a
+  call void putint(i32 %a.load70)
+  call void putch(i32 32)
+  b.load73 = load i32 from ptr @b
+  call void putint(i32 %b.load73)
+  call void putch(i32 10)
+  a.load76 = load i32 from ptr @a
+  ret i32 %a.load76
+select.then:
+  21 = call i32 inc_a()
+  22 = icmp ne i32 %21, i32 0
+  store i1 %22 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  23 = load i1 from ptr %select
+  br i1 %23, bb %select.then24, bb %select.else25
+select.then24:
+  28 = call i32 inc_a()
+  29 = icmp ne i32 %28, i32 0
+  store i1 %29 to ptr %select27
+  br bb %select.exit26
+select.else25:
+  store i1 0 to ptr %select27
+  br bb %select.exit26
+select.exit26:
+  30 = load i1 from ptr %select27
+  br i1 %30, bb %then, bb %if.exit
+then:
+  a.load33 = load i32 from ptr @a
+  call void putint(i32 %a.load33)
+  call void putch(i32 32)
+  b.load36 = load i32 from ptr @b
+  call void putint(i32 %b.load36)
+  call void putch(i32 10)
+  br bb %if.exit
+if.exit:
+  39 = call i32 inc_a()
+  40 = icmp slt i32 %39, i32 14
+  br i1 %40, bb %select.then41, bb %select.else42
+select.then41:
+  store i1 1 to ptr %select44
+  br bb %select.exit43
+select.else42:
+  45 = call i32 inc_a()
+  46 = icmp ne i32 %45, i32 0
+  br i1 %46, bb %select.then47, bb %select.else48
+select.exit43:
+  58 = load i1 from ptr %select44
+  br i1 %58, bb %then59, bb %else
+select.then47:
+  51 = call i32 inc_a()
+  52 = call i32 inc_a()
+  53 = sub i32 %51, i32 %52
+  54 = add i32 %53, i32 1
+  55 = icmp ne i32 %54, i32 0
+  store i1 %55 to ptr %select50
+  br bb %select.exit49
+select.else48:
+  store i1 0 to ptr %select50
+  br bb %select.exit49
+select.exit49:
+  56 = load i1 from ptr %select50
+  57 = icmp ne i1 %56, i1 0
+  store i1 %57 to ptr %select44
+  br bb %select.exit43
+then59:
+  a.load62 = load i32 from ptr @a
+  call void putint(i32 %a.load62)
+  call void putch(i32 10)
+  b.load65 = load i32 from ptr @b
+  66 = mul i32 %b.load65, i32 2
+  store i32 %66 to ptr @b
+  br bb %if.exit60
+if.exit60:
+  k.load68 = load i32 from ptr %k
+  69 = sub i32 %k.load68, i32 1
+  store i32 %69 to ptr %k
+  br bb %while.cond
+else:
+  67 = call i32 inc_a()
+  br bb %if.exit60
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external i32 getarray(ptr )
+
+i32 inc_a() {
+entry:
+  %b = stack 4
+  a.load = load i32 from ptr @a
+  store i32 %a.load to ptr %b
+  4 = add i32 %a.load, i32 1
+  store i32 %4 to ptr %b
+  store i32 %4 to ptr @a
+  ret i32 %4
+}
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

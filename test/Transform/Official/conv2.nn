@@ -45,9 +45,8 @@ while.exit218:
   i206.load282 = load i32 from ptr %i206
   283 = add i32 %i206.load282, i32 1
   store i32 %283 to ptr %i206
-  i206.load284 = load i32 from ptr %i206
   n.stack203.load285 = load i32 from ptr %n.stack203
-  286 = icmp sge i32 %i206.load284, i32 %n.stack203.load285
+  286 = icmp sge i32 %283, i32 %n.stack203.load285
   br i1 %286, bb %then287, bb %if.exit288
 while.cond225:
   228 = icmp eq i32 1, i32 1
@@ -73,9 +72,8 @@ while.exit227:
   j.load275 = load i32 from ptr %j
   276 = add i32 %j.load275, i32 1
   store i32 %276 to ptr %j
-  j.load277 = load i32 from ptr %j
   m.stack204.load278 = load i32 from ptr %m.stack204
-  279 = icmp sge i32 %j.load277, i32 %m.stack204.load278
+  279 = icmp sge i32 %276, i32 %m.stack204.load278
   br i1 %279, bb %then280, bb %if.exit281
 while.cond234:
   237 = icmp eq i32 1, i32 1
@@ -94,23 +92,21 @@ while.body235:
   y.load247 = load i32 from ptr %y
   248 = add i32 %y.load247, i32 1
   store i32 %248 to ptr %y
-  y.load249 = load i32 from ptr %y
   j.load250 = load i32 from ptr %j
   c.stack.load251 = load i32 from ptr %c.stack
   252 = sdiv i32 %c.stack.load251, i32 2
   253 = add i32 %j.load250, i32 %252
-  254 = icmp sge i32 %y.load249, i32 %253
+  254 = icmp sge i32 %248, i32 %253
   br i1 %254, bb %then255, bb %if.exit256
 while.exit236:
   x.load257 = load i32 from ptr %x
   258 = add i32 %x.load257, i32 1
   store i32 %258 to ptr %x
-  x.load259 = load i32 from ptr %x
   i206.load260 = load i32 from ptr %i206
   c.stack.load261 = load i32 from ptr %c.stack
   262 = sdiv i32 %c.stack.load261, i32 2
   263 = add i32 %i206.load260, i32 %262
-  264 = icmp sge i32 %x.load259, i32 %263
+  264 = icmp sge i32 %258, i32 %263
   br i1 %264, bb %then265, bb %if.exit266
 then255:
   br bb %while.exit236
@@ -143,8 +139,7 @@ entry158:
   store i32 %m to ptr %m.stack
   store i32 %x to ptr %x.stack161
   store i32 %y to ptr %y.stack162
-  x.stack161.load = load i32 from ptr %x.stack161
-  164 = icmp slt i32 %x.stack161.load, i32 0
+  164 = icmp slt i32 %x, i32 0
   br i1 %164, bb %select.then165, bb %select.else166
 select.then165:
   store i1 1 to ptr %select168
@@ -214,8 +209,7 @@ entry22:
   store i32 %kernelid to ptr %kernelid.stack
   store i32 %x to ptr %x.stack
   store i32 %y to ptr %y.stack
-  kernelid.stack.load = load i32 from ptr %kernelid.stack
-  27 = icmp eq i32 %kernelid.stack.load, i32 0
+  27 = icmp eq i32 %kernelid, i32 0
   br i1 %27, bb %then, bb %if.exit
 then:
   x.stack.load = load i32 from ptr %x.stack
@@ -460,7 +454,7 @@ while.body321:
   store i32 %340 to ptr %i319
   br bb %while.cond320
 while.exit322:
-  call void _sysy_starttime(i32 116)
+  call void _sysy_stoptime(i32 116)
   n.load342 = load i32 from ptr %n
   m.load343 = load i32 from ptr %m
   344 = mul i32 %n.load342, i32 %m.load343

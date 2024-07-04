@@ -207,6 +207,10 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
     break;
   }
 
+  case InstID::Unreachable: {
+    break;
+  }
+
   default:
     LIRInst *lowInst = LIRInst::create(instType, I->getOperandNum() + 1);
 

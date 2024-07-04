@@ -37,8 +37,6 @@ rand:
   ADDW s1, s2, s0
   LA s0, staticvalue
   SW s1, 0(s0)
-  LA s0, staticvalue
-  LW s1, 0(s0)
   ADDI s0, zero, 4
   ADDI s2, zero, 2
   MULW s3, s0, s2
@@ -48,9 +46,7 @@ rand:
   REMW s2, s1, s0
   LA s0, staticvalue
   SW s2, 0(s0)
-  LA s0, staticvalue
-  LW s1, 0(s0)
-  SLT s0, s1, zero
+  SLT s0, s2, zero
   BNE s0, zero, bb1
   JAL zero, bb2
 bb1:
@@ -271,12 +267,10 @@ bb8:
   LW s1, 8(sp)
   ADDIW s2, s1, 1
   SW s2, 8(sp)
-  LW s1, 8(sp)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  ADDI s1, zero, 4
+  MULW s3, s2, s1
   ADDI t5, sp, 24
   ADD s1, t5, s3
-  LW s2, 8(sp)
   ADDI s3, zero, 1
   SUBW s4, s2, s3
   ADDI s2, zero, 4
@@ -487,17 +481,16 @@ bb24:
   REMW s2, s0, s1
   SW s2, 0(sp)
   LW s0, 8(sp)
-  LW s1, 0(sp)
-  LA s2, a
-  ADD a0, s2, zero
+  LA s1, a
+  ADD a0, s1, zero
   ADD a1, s0, zero
-  ADD a2, s1, zero
+  ADD a2, s2, zero
   CALL set
   ADD s0, a0, zero
   JAL zero, bb23
 bb25:
   ADDI a0, zero, 64
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LUI s0, 2
   ADDI s0, s0, 1808
   ADD a0, zero, s0

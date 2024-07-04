@@ -60,6 +60,16 @@ std::string Instruction::getOpName() const {
   return "Not implemented";
 }
 
+bool Instruction::mayWriteToMemory() const {
+  switch (getOpcode()) {
+  case InstID::Store:
+  case InstID::Call:
+    return true;
+  default:
+    return false;
+  }
+}
+
 std::string Instruction::dump() {
   std::string ret;
   if (getType() && !getType()->isVoid())
@@ -89,6 +99,9 @@ std::string Instruction::dump() {
     case InstID::Ret:
       ret += "ret ";
       ret += getOperandNum() ? getOperand(0)->dumpAsOperand() : "";
+      break;
+    case InstID::Unreachable:
+      ret = "unreachable";
       break;
     case InstID::ICmp:
       ret += "icmp ";

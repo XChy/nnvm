@@ -22,7 +22,7 @@ TIMEOUT_PERIOD = 60
 
 def update(src: str):
     ir = subprocess.run(
-        [NNVM, '-S', '-O1', '--dump-ir', src, '-o', path.splitext(src)[0] + ".s"], capture_output=True,
+        [NNVM, '-S', '-O1', '--dump-opt-ir', src, '-o', path.splitext(src)[0] + ".s"], capture_output=True,
         text=True, encoding='UTF-8', timeout=TIMEOUT_PERIOD)
 
     with open(path.splitext(src)[0] + ".nn", "w+") as outputfile:

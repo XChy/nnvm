@@ -1,0 +1,202 @@
+global ptr n init with i32 0
+i32 main() {
+entry:
+  %newline = stack 4
+  %b = stack 4
+  %a29 = stack 4
+  %a28 = stack 4
+  %a27 = stack 4
+  %a26 = stack 4
+  %a25 = stack 4
+  %a24 = stack 4
+  %a23 = stack 4
+  %a22 = stack 4
+  %a21 = stack 4
+  %a20 = stack 4
+  %a19 = stack 4
+  %a18 = stack 4
+  %a17 = stack 4
+  %a16 = stack 4
+  %a15 = stack 4
+  %a14 = stack 4
+  %a13 = stack 4
+  %a12 = stack 4
+  %a11 = stack 4
+  %a10 = stack 4
+  %a9 = stack 4
+  %a8 = stack 4
+  %a7 = stack 4
+  %a6 = stack 4
+  %a5 = stack 4
+  %a4 = stack 4
+  %a3 = stack 4
+  %a2 = stack 4
+  %a1 = stack 4
+  %a0 = stack 4
+  32 = call i32 getint()
+  store i32 %32 to ptr %b
+  br bb %while.cond
+while.cond:
+  b.load = load i32 from ptr %b
+  37 = icmp eq i32 %b.load, i32 5
+  38 = icmp ne i1 %37, i1 0
+  br i1 %38, bb %while.body, bb %while.exit
+while.body:
+  b.load39 = load i32 from ptr %b
+  40 = add i32 %b.load39, i32 1
+  store i32 %40 to ptr %b
+  br bb %while.cond
+while.exit:
+  store i32 0 to ptr %a0
+  42 = add i32 0, i32 1
+  store i32 %42 to ptr %a1
+  44 = add i32 %42, i32 1
+  store i32 %44 to ptr %a2
+  46 = add i32 %44, i32 1
+  store i32 %46 to ptr %a3
+  48 = add i32 %46, i32 1
+  store i32 %48 to ptr %a4
+  50 = add i32 %48, i32 1
+  store i32 %50 to ptr %a5
+  52 = add i32 %50, i32 1
+  store i32 %52 to ptr %a6
+  54 = add i32 %52, i32 1
+  store i32 %54 to ptr %a7
+  56 = add i32 %54, i32 1
+  store i32 %56 to ptr %a8
+  58 = add i32 %56, i32 1
+  store i32 %58 to ptr %a9
+  60 = add i32 %58, i32 1
+  store i32 %60 to ptr %a10
+  62 = add i32 %60, i32 1
+  store i32 %62 to ptr %a11
+  64 = add i32 %62, i32 1
+  store i32 %64 to ptr %a12
+  66 = add i32 %64, i32 1
+  store i32 %66 to ptr %a13
+  68 = add i32 %66, i32 1
+  store i32 %68 to ptr %a14
+  70 = add i32 %68, i32 1
+  store i32 %70 to ptr %a15
+  72 = add i32 %70, i32 1
+  store i32 %72 to ptr %a16
+  74 = add i32 %72, i32 1
+  store i32 %74 to ptr %a17
+  76 = add i32 %74, i32 1
+  store i32 %76 to ptr %a18
+  78 = add i32 %76, i32 1
+  store i32 %78 to ptr %a19
+  80 = add i32 %78, i32 1
+  store i32 %80 to ptr %a20
+  82 = add i32 %80, i32 1
+  store i32 %82 to ptr %a21
+  84 = add i32 %82, i32 1
+  store i32 %84 to ptr %a22
+  86 = add i32 %84, i32 1
+  store i32 %86 to ptr %a23
+  88 = add i32 %86, i32 1
+  store i32 %88 to ptr %a24
+  90 = add i32 %88, i32 1
+  store i32 %90 to ptr %a25
+  92 = add i32 %90, i32 1
+  store i32 %92 to ptr %a26
+  94 = add i32 %92, i32 1
+  store i32 %94 to ptr %a27
+  96 = add i32 %94, i32 1
+  store i32 %96 to ptr %a28
+  98 = add i32 %96, i32 1
+  store i32 %98 to ptr %a29
+  call void putint(i32 0)
+  a1.load102 = load i32 from ptr %a1
+  call void putint(i32 %a1.load102)
+  a2.load104 = load i32 from ptr %a2
+  call void putint(i32 %a2.load104)
+  a3.load106 = load i32 from ptr %a3
+  call void putint(i32 %a3.load106)
+  a4.load108 = load i32 from ptr %a4
+  call void putint(i32 %a4.load108)
+  a5.load110 = load i32 from ptr %a5
+  call void putint(i32 %a5.load110)
+  a6.load112 = load i32 from ptr %a6
+  call void putint(i32 %a6.load112)
+  a7.load114 = load i32 from ptr %a7
+  call void putint(i32 %a7.load114)
+  a8.load116 = load i32 from ptr %a8
+  call void putint(i32 %a8.load116)
+  a9.load118 = load i32 from ptr %a9
+  call void putint(i32 %a9.load118)
+  a10.load120 = load i32 from ptr %a10
+  call void putint(i32 %a10.load120)
+  a11.load122 = load i32 from ptr %a11
+  call void putint(i32 %a11.load122)
+  a12.load124 = load i32 from ptr %a12
+  call void putint(i32 %a12.load124)
+  a13.load126 = load i32 from ptr %a13
+  call void putint(i32 %a13.load126)
+  a14.load128 = load i32 from ptr %a14
+  call void putint(i32 %a14.load128)
+  a15.load130 = load i32 from ptr %a15
+  call void putint(i32 %a15.load130)
+  a16.load132 = load i32 from ptr %a16
+  call void putint(i32 %a16.load132)
+  a17.load134 = load i32 from ptr %a17
+  call void putint(i32 %a17.load134)
+  a18.load136 = load i32 from ptr %a18
+  call void putint(i32 %a18.load136)
+  a19.load138 = load i32 from ptr %a19
+  call void putint(i32 %a19.load138)
+  a20.load140 = load i32 from ptr %a20
+  call void putint(i32 %a20.load140)
+  a21.load142 = load i32 from ptr %a21
+  call void putint(i32 %a21.load142)
+  a22.load144 = load i32 from ptr %a22
+  call void putint(i32 %a22.load144)
+  a23.load146 = load i32 from ptr %a23
+  call void putint(i32 %a23.load146)
+  a24.load148 = load i32 from ptr %a24
+  call void putint(i32 %a24.load148)
+  a25.load150 = load i32 from ptr %a25
+  call void putint(i32 %a25.load150)
+  a26.load152 = load i32 from ptr %a26
+  call void putint(i32 %a26.load152)
+  a27.load154 = load i32 from ptr %a27
+  call void putint(i32 %a27.load154)
+  a28.load156 = load i32 from ptr %a28
+  call void putint(i32 %a28.load156)
+  a29.load = load i32 from ptr %a29
+  call void putint(i32 %a29.load)
+  store i32 10 to ptr %newline
+  call void putch(i32 10)
+  b.load163 = load i32 from ptr %b
+  call void putint(i32 %b.load163)
+  newline.load165 = load i32 from ptr %newline
+  call void putch(i32 %newline.load165)
+  a25.load167 = load i32 from ptr %a25
+  ret i32 %a25.load167
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

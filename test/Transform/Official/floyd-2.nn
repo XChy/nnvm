@@ -240,7 +240,7 @@ entry205:
   call void _sysy_starttime(i32 62)
   n.load = load i32 from ptr %n
   call void floyd(ptr @w, ptr @dst, i32 %n.load)
-  call void _sysy_starttime(i32 64)
+  call void _sysy_stoptime(i32 64)
   n.load213 = load i32 from ptr %n
   n.load214 = load i32 from ptr %n
   215 = mul i32 %n.load213, i32 %n.load214
@@ -273,8 +273,7 @@ entry:
   store i32 %n to ptr %n.stack
   store i32 %i to ptr %i.stack
   store i32 %j to ptr %j.stack
-  i.stack.load = load i32 from ptr %i.stack
-  5 = icmp slt i32 %i.stack.load, i32 0
+  5 = icmp slt i32 %i, i32 0
   br i1 %5, bb %select.then, bb %select.else
 select.then:
   store i1 1 to ptr %select

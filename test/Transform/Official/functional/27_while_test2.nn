@@ -1,0 +1,108 @@
+external i32 getint()
+
+external i32 getch()
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+external void putint(i32 )
+
+i32 FourWhile() {
+entry:
+  %d = stack 4
+  %c = stack 4
+  %b = stack 4
+  %a = stack 4
+  store i32 5 to ptr %a
+  store i32 6 to ptr %b
+  store i32 7 to ptr %c
+  store i32 10 to ptr %d
+  br bb %while.cond
+while.cond:
+  a.load = load i32 from ptr %a
+  9 = icmp slt i32 %a.load, i32 20
+  10 = icmp ne i1 %9, i1 0
+  br i1 %10, bb %while.body, bb %while.exit
+while.body:
+  a.load11 = load i32 from ptr %a
+  12 = add i32 %a.load11, i32 3
+  store i32 %12 to ptr %a
+  br bb %while.cond13
+while.exit:
+  a.load43 = load i32 from ptr %a
+  b.load44 = load i32 from ptr %b
+  d.load45 = load i32 from ptr %d
+  46 = add i32 %b.load44, i32 %d.load45
+  47 = add i32 %a.load43, i32 %46
+  c.load48 = load i32 from ptr %c
+  49 = add i32 %47, i32 %c.load48
+  ret i32 %49
+while.cond13:
+  b.load = load i32 from ptr %b
+  17 = icmp slt i32 %b.load, i32 10
+  18 = icmp ne i1 %17, i1 0
+  br i1 %18, bb %while.body14, bb %while.exit15
+while.body14:
+  b.load19 = load i32 from ptr %b
+  20 = add i32 %b.load19, i32 1
+  store i32 %20 to ptr %b
+  br bb %while.cond21
+while.exit15:
+  b.load41 = load i32 from ptr %b
+  42 = sub i32 %b.load41, i32 2
+  store i32 %42 to ptr %b
+  br bb %while.cond
+while.cond21:
+  c.load = load i32 from ptr %c
+  25 = icmp eq i32 %c.load, i32 7
+  26 = icmp ne i1 %25, i1 0
+  br i1 %26, bb %while.body22, bb %while.exit23
+while.body22:
+  c.load27 = load i32 from ptr %c
+  28 = sub i32 %c.load27, i32 1
+  store i32 %28 to ptr %c
+  br bb %while.cond29
+while.exit23:
+  c.load39 = load i32 from ptr %c
+  40 = add i32 %c.load39, i32 1
+  store i32 %40 to ptr %c
+  br bb %while.cond13
+while.cond29:
+  d.load = load i32 from ptr %d
+  33 = icmp slt i32 %d.load, i32 20
+  34 = icmp ne i1 %33, i1 0
+  br i1 %34, bb %while.body30, bb %while.exit31
+while.body30:
+  d.load35 = load i32 from ptr %d
+  36 = add i32 %d.load35, i32 3
+  store i32 %36 to ptr %d
+  br bb %while.cond29
+while.exit31:
+  d.load37 = load i32 from ptr %d
+  38 = sub i32 %d.load37, i32 1
+  store i32 %38 to ptr %d
+  br bb %while.cond21
+}
+
+i32 main() {
+entry50:
+  51 = call i32 FourWhile()
+  ret i32 %51
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

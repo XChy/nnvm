@@ -1,0 +1,636 @@
+global ptr TWO_PI init with float 6.283185
+global ptr EPSILON init with float 0.000001
+global ptr PI init with float 3.141593
+global ptr test_idct init with 64 x float zeros
+global ptr test_dct init with 64 x float zeros
+global ptr test_block init with 64 x float zeros
+global ptr MAX_DIM_Y init with i32 8
+global ptr MAX_DIM_X init with i32 8
+void idct(ptr mat, ptr dct_mat, i32 n, i32 m) {
+entry231:
+  %j265 = stack 4
+  %i264 = stack 4
+  %v242 = stack 4
+  %u234 = stack 4
+  %m.stack233 = stack 4
+  %n.stack232 = stack 4
+  store i32 %n to ptr %n.stack232
+  store i32 %m to ptr %m.stack233
+  store i32 0 to ptr %u234
+  br bb %while.cond235
+while.cond235:
+  u234.load = load i32 from ptr %u234
+  n.stack232.load = load i32 from ptr %n.stack232
+  240 = icmp slt i32 %u234.load, i32 %n.stack232.load
+  241 = icmp ne i1 %240, i1 0
+  br i1 %241, bb %while.body236, bb %while.exit237
+while.body236:
+  store i32 0 to ptr %v242
+  br bb %while.cond243
+while.exit237:
+  ret 
+while.cond243:
+  v242.load = load i32 from ptr %v242
+  m.stack233.load = load i32 from ptr %m.stack233
+  248 = icmp slt i32 %v242.load, i32 %m.stack233.load
+  249 = icmp ne i1 %248, i1 0
+  br i1 %249, bb %while.body244, bb %while.exit245
+while.body244:
+  u234.load250 = load i32 from ptr %u234
+  251 = mul i32 %u234.load250, i32 32
+  252 = ptradd ptr %mat, i32 %251
+  v242.load253 = load i32 from ptr %v242
+  254 = mul i32 %v242.load253, i32 4
+  255 = ptradd ptr %252, i32 %254
+  256 = si2f i32 1 to float
+  257 = fdiv float %256, float 4.000000
+  258 = mul i32 0, i32 32
+  259 = ptradd ptr %dct_mat, i32 %258
+  260 = mul i32 0, i32 4
+  261 = ptradd ptr %259, i32 %260
+  261.load = load float from ptr %261
+  263 = fmul float %257, float %261.load
+  store float %263 to ptr %255
+  store i32 1 to ptr %i264
+  br bb %while.cond266
+while.exit245:
+  u234.load420 = load i32 from ptr %u234
+  421 = add i32 %u234.load420, i32 1
+  store i32 %421 to ptr %u234
+  br bb %while.cond235
+while.cond266:
+  i264.load = load i32 from ptr %i264
+  n.stack232.load270 = load i32 from ptr %n.stack232
+  271 = icmp slt i32 %i264.load, i32 %n.stack232.load270
+  272 = icmp ne i1 %271, i1 0
+  br i1 %272, bb %while.body267, bb %while.exit268
+while.body267:
+  u234.load273 = load i32 from ptr %u234
+  274 = mul i32 %u234.load273, i32 32
+  275 = ptradd ptr %mat, i32 %274
+  v242.load276 = load i32 from ptr %v242
+  277 = mul i32 %v242.load276, i32 4
+  278 = ptradd ptr %275, i32 %277
+  u234.load279 = load i32 from ptr %u234
+  280 = mul i32 %u234.load279, i32 32
+  281 = ptradd ptr %mat, i32 %280
+  v242.load282 = load i32 from ptr %v242
+  283 = mul i32 %v242.load282, i32 4
+  284 = ptradd ptr %281, i32 %283
+  284.load = load float from ptr %284
+  286 = si2f i32 1 to float
+  287 = fdiv float %286, float 2.000000
+  i264.load288 = load i32 from ptr %i264
+  289 = mul i32 %i264.load288, i32 32
+  290 = ptradd ptr %dct_mat, i32 %289
+  291 = mul i32 0, i32 4
+  292 = ptradd ptr %290, i32 %291
+  292.load = load float from ptr %292
+  294 = fmul float %287, float %292.load
+  295 = fadd float %284.load, float %294
+  store float %295 to ptr %278
+  i264.load296 = load i32 from ptr %i264
+  297 = add i32 %i264.load296, i32 1
+  store i32 %297 to ptr %i264
+  br bb %while.cond266
+while.exit268:
+  store i32 1 to ptr %j265
+  br bb %while.cond298
+while.cond298:
+  j265.load = load i32 from ptr %j265
+  m.stack233.load302 = load i32 from ptr %m.stack233
+  303 = icmp slt i32 %j265.load, i32 %m.stack233.load302
+  304 = icmp ne i1 %303, i1 0
+  br i1 %304, bb %while.body299, bb %while.exit300
+while.body299:
+  u234.load305 = load i32 from ptr %u234
+  306 = mul i32 %u234.load305, i32 32
+  307 = ptradd ptr %mat, i32 %306
+  v242.load308 = load i32 from ptr %v242
+  309 = mul i32 %v242.load308, i32 4
+  310 = ptradd ptr %307, i32 %309
+  u234.load311 = load i32 from ptr %u234
+  312 = mul i32 %u234.load311, i32 32
+  313 = ptradd ptr %mat, i32 %312
+  v242.load314 = load i32 from ptr %v242
+  315 = mul i32 %v242.load314, i32 4
+  316 = ptradd ptr %313, i32 %315
+  316.load = load float from ptr %316
+  318 = si2f i32 1 to float
+  319 = fdiv float %318, float 2.000000
+  320 = mul i32 0, i32 32
+  321 = ptradd ptr %dct_mat, i32 %320
+  j265.load322 = load i32 from ptr %j265
+  323 = mul i32 %j265.load322, i32 4
+  324 = ptradd ptr %321, i32 %323
+  324.load = load float from ptr %324
+  326 = fmul float %319, float %324.load
+  327 = fadd float %316.load, float %326
+  store float %327 to ptr %310
+  j265.load328 = load i32 from ptr %j265
+  329 = add i32 %j265.load328, i32 1
+  store i32 %329 to ptr %j265
+  br bb %while.cond298
+while.exit300:
+  store i32 1 to ptr %i264
+  br bb %while.cond330
+while.cond330:
+  i264.load333 = load i32 from ptr %i264
+  n.stack232.load334 = load i32 from ptr %n.stack232
+  335 = icmp slt i32 %i264.load333, i32 %n.stack232.load334
+  336 = icmp ne i1 %335, i1 0
+  br i1 %336, bb %while.body331, bb %while.exit332
+while.body331:
+  store i32 1 to ptr %j265
+  br bb %while.cond337
+while.exit332:
+  u234.load397 = load i32 from ptr %u234
+  398 = mul i32 %u234.load397, i32 32
+  399 = ptradd ptr %mat, i32 %398
+  v242.load400 = load i32 from ptr %v242
+  401 = mul i32 %v242.load400, i32 4
+  402 = ptradd ptr %399, i32 %401
+  u234.load403 = load i32 from ptr %u234
+  404 = mul i32 %u234.load403, i32 32
+  405 = ptradd ptr %mat, i32 %404
+  v242.load406 = load i32 from ptr %v242
+  407 = mul i32 %v242.load406, i32 4
+  408 = ptradd ptr %405, i32 %407
+  408.load = load float from ptr %408
+  410 = fmul float %408.load, float 2.000000
+  n.stack232.load411 = load i32 from ptr %n.stack232
+  412 = si2f i32 %n.stack232.load411 to float
+  413 = fdiv float %410, float %412
+  414 = fmul float %413, float 2.000000
+  m.stack233.load415 = load i32 from ptr %m.stack233
+  416 = si2f i32 %m.stack233.load415 to float
+  417 = fdiv float %414, float %416
+  store float %417 to ptr %402
+  v242.load418 = load i32 from ptr %v242
+  419 = add i32 %v242.load418, i32 1
+  store i32 %419 to ptr %v242
+  br bb %while.cond243
+while.cond337:
+  j265.load340 = load i32 from ptr %j265
+  m.stack233.load341 = load i32 from ptr %m.stack233
+  342 = icmp slt i32 %j265.load340, i32 %m.stack233.load341
+  343 = icmp ne i1 %342, i1 0
+  br i1 %343, bb %while.body338, bb %while.exit339
+while.body338:
+  u234.load344 = load i32 from ptr %u234
+  345 = mul i32 %u234.load344, i32 32
+  346 = ptradd ptr %mat, i32 %345
+  v242.load347 = load i32 from ptr %v242
+  348 = mul i32 %v242.load347, i32 4
+  349 = ptradd ptr %346, i32 %348
+  u234.load350 = load i32 from ptr %u234
+  351 = mul i32 %u234.load350, i32 32
+  352 = ptradd ptr %mat, i32 %351
+  v242.load353 = load i32 from ptr %v242
+  354 = mul i32 %v242.load353, i32 4
+  355 = ptradd ptr %352, i32 %354
+  355.load = load float from ptr %355
+  i264.load357 = load i32 from ptr %i264
+  358 = mul i32 %i264.load357, i32 32
+  359 = ptradd ptr %dct_mat, i32 %358
+  j265.load360 = load i32 from ptr %j265
+  361 = mul i32 %j265.load360, i32 4
+  362 = ptradd ptr %359, i32 %361
+  362.load = load float from ptr %362
+  PI.load364 = load float from ptr @PI
+  n.stack232.load365 = load i32 from ptr %n.stack232
+  366 = si2f i32 %n.stack232.load365 to float
+  367 = fdiv float %PI.load364, float %366
+  u234.load368 = load i32 from ptr %u234
+  369 = fdiv float 1.000000, float 2.000000
+  370 = si2f i32 %u234.load368 to float
+  371 = fadd float %370, float %369
+  372 = fmul float %367, float %371
+  i264.load373 = load i32 from ptr %i264
+  374 = si2f i32 %i264.load373 to float
+  375 = fmul float %372, float %374
+  376 = call float my_cos(float %375)
+  377 = fmul float %362.load, float %376
+  PI.load378 = load float from ptr @PI
+  m.stack233.load379 = load i32 from ptr %m.stack233
+  380 = si2f i32 %m.stack233.load379 to float
+  381 = fdiv float %PI.load378, float %380
+  v242.load382 = load i32 from ptr %v242
+  383 = fdiv float 1.000000, float 2.000000
+  384 = si2f i32 %v242.load382 to float
+  385 = fadd float %384, float %383
+  386 = fmul float %381, float %385
+  j265.load387 = load i32 from ptr %j265
+  388 = si2f i32 %j265.load387 to float
+  389 = fmul float %386, float %388
+  390 = call float my_cos(float %389)
+  391 = fmul float %377, float %390
+  392 = fadd float %355.load, float %391
+  store float %392 to ptr %349
+  j265.load393 = load i32 from ptr %j265
+  394 = add i32 %j265.load393, i32 1
+  store i32 %394 to ptr %j265
+  br bb %while.cond337
+while.exit339:
+  i264.load395 = load i32 from ptr %i264
+  396 = add i32 %i264.load395, i32 1
+  store i32 %396 to ptr %i264
+  br bb %while.cond330
+}
+
+float my_sin_impl(float x) {
+entry23:
+  %x.stack24 = stack 4
+  store float %x to ptr %x.stack24
+  26 = call float my_fabs(float %x)
+  EPSILON.load = load float from ptr @EPSILON
+  28 = fcmp ole float %26, float %EPSILON.load
+  br i1 %28, bb %then29, bb %if.exit30
+then29:
+  x.stack24.load31 = load float from ptr %x.stack24
+  ret float %x.stack24.load31
+if.exit30:
+  x.stack24.load32 = load float from ptr %x.stack24
+  33 = fdiv float %x.stack24.load32, float 3.000000
+  34 = call float my_sin_impl(float %33)
+  35 = call float p(float %34)
+  ret float %35
+}
+
+float p(float x) {
+entry10:
+  %x.stack11 = stack 4
+  store float %x to ptr %x.stack11
+  13 = si2f i32 3 to float
+  14 = fmul float %13, float %x
+  16 = si2f i32 4 to float
+  17 = fmul float %16, float %x
+  19 = fmul float %17, float %x
+  21 = fmul float %19, float %x
+  22 = fsub float %14, float %21
+  ret float %22
+}
+
+void dct(ptr dct_mat, ptr mat, i32 n, i32 m) {
+entry132:
+  %j166 = stack 4
+  %i158 = stack 4
+  %v = stack 4
+  %u = stack 4
+  %m.stack134 = stack 4
+  %n.stack133 = stack 4
+  store i32 %n to ptr %n.stack133
+  store i32 %m to ptr %m.stack134
+  store i32 0 to ptr %u
+  br bb %while.cond136
+while.cond136:
+  u.load = load i32 from ptr %u
+  n.stack133.load = load i32 from ptr %n.stack133
+  141 = icmp slt i32 %u.load, i32 %n.stack133.load
+  142 = icmp ne i1 %141, i1 0
+  br i1 %142, bb %while.body137, bb %while.exit138
+while.body137:
+  store i32 0 to ptr %v
+  br bb %while.cond144
+while.exit138:
+  ret 
+while.cond144:
+  v.load = load i32 from ptr %v
+  m.stack134.load = load i32 from ptr %m.stack134
+  149 = icmp slt i32 %v.load, i32 %m.stack134.load
+  150 = icmp ne i1 %149, i1 0
+  br i1 %150, bb %while.body145, bb %while.exit146
+while.body145:
+  u.load151 = load i32 from ptr %u
+  152 = mul i32 %u.load151, i32 32
+  153 = ptradd ptr %dct_mat, i32 %152
+  v.load154 = load i32 from ptr %v
+  155 = mul i32 %v.load154, i32 4
+  156 = ptradd ptr %153, i32 %155
+  157 = si2f i32 0 to float
+  store float %157 to ptr %156
+  store i32 0 to ptr %i158
+  br bb %while.cond159
+while.exit146:
+  u.load229 = load i32 from ptr %u
+  230 = add i32 %u.load229, i32 1
+  store i32 %230 to ptr %u
+  br bb %while.cond136
+while.cond159:
+  i158.load = load i32 from ptr %i158
+  n.stack133.load163 = load i32 from ptr %n.stack133
+  164 = icmp slt i32 %i158.load, i32 %n.stack133.load163
+  165 = icmp ne i1 %164, i1 0
+  br i1 %165, bb %while.body160, bb %while.exit161
+while.body160:
+  store i32 0 to ptr %j166
+  br bb %while.cond167
+while.exit161:
+  v.load227 = load i32 from ptr %v
+  228 = add i32 %v.load227, i32 1
+  store i32 %228 to ptr %v
+  br bb %while.cond144
+while.cond167:
+  j166.load = load i32 from ptr %j166
+  m.stack134.load171 = load i32 from ptr %m.stack134
+  172 = icmp slt i32 %j166.load, i32 %m.stack134.load171
+  173 = icmp ne i1 %172, i1 0
+  br i1 %173, bb %while.body168, bb %while.exit169
+while.body168:
+  u.load174 = load i32 from ptr %u
+  175 = mul i32 %u.load174, i32 32
+  176 = ptradd ptr %dct_mat, i32 %175
+  v.load177 = load i32 from ptr %v
+  178 = mul i32 %v.load177, i32 4
+  179 = ptradd ptr %176, i32 %178
+  u.load180 = load i32 from ptr %u
+  181 = mul i32 %u.load180, i32 32
+  182 = ptradd ptr %dct_mat, i32 %181
+  v.load183 = load i32 from ptr %v
+  184 = mul i32 %v.load183, i32 4
+  185 = ptradd ptr %182, i32 %184
+  185.load = load float from ptr %185
+  i158.load187 = load i32 from ptr %i158
+  188 = mul i32 %i158.load187, i32 32
+  189 = ptradd ptr %mat, i32 %188
+  j166.load190 = load i32 from ptr %j166
+  191 = mul i32 %j166.load190, i32 4
+  192 = ptradd ptr %189, i32 %191
+  192.load = load float from ptr %192
+  PI.load194 = load float from ptr @PI
+  n.stack133.load195 = load i32 from ptr %n.stack133
+  196 = si2f i32 %n.stack133.load195 to float
+  197 = fdiv float %PI.load194, float %196
+  i158.load198 = load i32 from ptr %i158
+  199 = fdiv float 1.000000, float 2.000000
+  200 = si2f i32 %i158.load198 to float
+  201 = fadd float %200, float %199
+  202 = fmul float %197, float %201
+  u.load203 = load i32 from ptr %u
+  204 = si2f i32 %u.load203 to float
+  205 = fmul float %202, float %204
+  206 = call float my_cos(float %205)
+  207 = fmul float %192.load, float %206
+  PI.load208 = load float from ptr @PI
+  m.stack134.load209 = load i32 from ptr %m.stack134
+  210 = si2f i32 %m.stack134.load209 to float
+  211 = fdiv float %PI.load208, float %210
+  j166.load212 = load i32 from ptr %j166
+  213 = fdiv float 1.000000, float 2.000000
+  214 = si2f i32 %j166.load212 to float
+  215 = fadd float %214, float %213
+  216 = fmul float %211, float %215
+  v.load217 = load i32 from ptr %v
+  218 = si2f i32 %v.load217 to float
+  219 = fmul float %216, float %218
+  220 = call float my_cos(float %219)
+  221 = fmul float %207, float %220
+  222 = fadd float %185.load, float %221
+  store float %222 to ptr %179
+  j166.load223 = load i32 from ptr %j166
+  224 = add i32 %j166.load223, i32 1
+  store i32 %224 to ptr %j166
+  br bb %while.cond167
+while.exit169:
+  i158.load225 = load i32 from ptr %i158
+  226 = add i32 %i158.load225, i32 1
+  store i32 %226 to ptr %i158
+  br bb %while.cond159
+}
+
+float my_sin(float x) {
+entry36:
+  %xx = stack 4
+  %select = stack 1
+  %x.stack37 = stack 4
+  store float %x to ptr %x.stack37
+  TWO_PI.load = load float from ptr @TWO_PI
+  40 = fcmp ogt float %x, float %TWO_PI.load
+  br i1 %40, bb %select.then, bb %select.else
+select.then:
+  store i1 1 to ptr %select
+  br bb %select.exit
+select.else:
+  x.stack37.load45 = load float from ptr %x.stack37
+  TWO_PI.load46 = load float from ptr @TWO_PI
+  47 = fneg float %TWO_PI.load46
+  48 = fcmp olt float %x.stack37.load45, float %47
+  49 = icmp ne i1 %48, i1 0
+  store i1 %49 to ptr %select
+  br bb %select.exit
+select.exit:
+  50 = load i1 from ptr %select
+  br i1 %50, bb %then51, bb %if.exit52
+then51:
+  x.stack37.load54 = load float from ptr %x.stack37
+  TWO_PI.load55 = load float from ptr @TWO_PI
+  56 = fdiv float %x.stack37.load54, float %TWO_PI.load55
+  57 = f2si float %56 to i32
+  store i32 %57 to ptr %xx
+  x.stack37.load58 = load float from ptr %x.stack37
+  TWO_PI.load60 = load float from ptr @TWO_PI
+  61 = si2f i32 %57 to float
+  62 = fmul float %61, float %TWO_PI.load60
+  63 = fsub float %x.stack37.load58, float %62
+  store float %63 to ptr %x.stack37
+  br bb %if.exit52
+if.exit52:
+  x.stack37.load64 = load float from ptr %x.stack37
+  PI.load = load float from ptr @PI
+  66 = fcmp ogt float %x.stack37.load64, float %PI.load
+  br i1 %66, bb %then67, bb %if.exit68
+then67:
+  x.stack37.load69 = load float from ptr %x.stack37
+  TWO_PI.load70 = load float from ptr @TWO_PI
+  71 = fsub float %x.stack37.load69, float %TWO_PI.load70
+  store float %71 to ptr %x.stack37
+  br bb %if.exit68
+if.exit68:
+  x.stack37.load72 = load float from ptr %x.stack37
+  PI.load73 = load float from ptr @PI
+  74 = fneg float %PI.load73
+  75 = fcmp olt float %x.stack37.load72, float %74
+  br i1 %75, bb %then76, bb %if.exit77
+then76:
+  x.stack37.load78 = load float from ptr %x.stack37
+  TWO_PI.load79 = load float from ptr @TWO_PI
+  80 = fadd float %x.stack37.load78, float %TWO_PI.load79
+  store float %80 to ptr %x.stack37
+  br bb %if.exit77
+if.exit77:
+  x.stack37.load81 = load float from ptr %x.stack37
+  82 = call float my_sin_impl(float %x.stack37.load81)
+  ret float %82
+}
+
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+void write_mat(ptr mat, i32 n, i32 m) {
+entry91:
+  %j = stack 4
+  %i = stack 4
+  %m.stack = stack 4
+  %n.stack = stack 4
+  store i32 %n to ptr %n.stack
+  store i32 %m to ptr %m.stack
+  store i32 0 to ptr %i
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  n.stack.load = load i32 from ptr %n.stack
+  100 = icmp slt i32 %i.load, i32 %n.stack.load
+  101 = icmp ne i1 %100, i1 0
+  br i1 %101, bb %while.body, bb %while.exit
+while.body:
+  i.load102 = load i32 from ptr %i
+  103 = mul i32 %i.load102, i32 32
+  104 = ptradd ptr %mat, i32 %103
+  105 = mul i32 0, i32 4
+  106 = ptradd ptr %104, i32 %105
+  106.load = load float from ptr %106
+  call void putfloat(float %106.load)
+  store i32 1 to ptr %j
+  br bb %while.cond110
+while.exit:
+  call void putch(i32 10)
+  ret 
+while.cond110:
+  j.load = load i32 from ptr %j
+  m.stack.load = load i32 from ptr %m.stack
+  115 = icmp slt i32 %j.load, i32 %m.stack.load
+  116 = icmp ne i1 %115, i1 0
+  br i1 %116, bb %while.body111, bb %while.exit112
+while.body111:
+  call void putch(i32 32)
+  i.load118 = load i32 from ptr %i
+  119 = mul i32 %i.load118, i32 32
+  120 = ptradd ptr %mat, i32 %119
+  j.load121 = load i32 from ptr %j
+  122 = mul i32 %j.load121, i32 4
+  123 = ptradd ptr %120, i32 %122
+  123.load = load float from ptr %123
+  call void putfloat(float %123.load)
+  j.load126 = load i32 from ptr %j
+  127 = add i32 %j.load126, i32 1
+  store i32 %127 to ptr %j
+  br bb %while.cond110
+while.exit112:
+  call void putch(i32 10)
+  i.load129 = load i32 from ptr %i
+  130 = add i32 %i.load129, i32 1
+  store i32 %130 to ptr %i
+  br bb %while.cond
+}
+
+external i32 getarray(ptr )
+
+float my_cos(float x) {
+entry83:
+  %x.stack84 = stack 4
+  store float %x to ptr %x.stack84
+  PI.load86 = load float from ptr @PI
+  87 = si2f i32 2 to float
+  88 = fdiv float %PI.load86, float %87
+  89 = fadd float %x, float %88
+  90 = call float my_sin(float %89)
+  ret float %90
+}
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry422:
+  %j435 = stack 4
+  %i427 = stack 4
+  %dim_y = stack 4
+  %dim_x = stack 4
+  424 = call i32 getint()
+  store i32 %424 to ptr %dim_x
+  426 = call i32 getint()
+  store i32 %426 to ptr %dim_y
+  store i32 0 to ptr %i427
+  br bb %while.cond428
+while.cond428:
+  i427.load = load i32 from ptr %i427
+  dim_x.load = load i32 from ptr %dim_x
+  433 = icmp slt i32 %i427.load, i32 %dim_x.load
+  434 = icmp ne i1 %433, i1 0
+  br i1 %434, bb %while.body429, bb %while.exit430
+while.body429:
+  store i32 0 to ptr %j435
+  br bb %while.cond436
+while.exit430:
+  dim_x.load454 = load i32 from ptr %dim_x
+  dim_y.load455 = load i32 from ptr %dim_y
+  call void dct(ptr @test_dct, ptr @test_block, i32 %dim_x.load454, i32 %dim_y.load455)
+  dim_x.load457 = load i32 from ptr %dim_x
+  dim_y.load458 = load i32 from ptr %dim_y
+  call void write_mat(ptr @test_dct, i32 %dim_x.load457, i32 %dim_y.load458)
+  dim_x.load460 = load i32 from ptr %dim_x
+  dim_y.load461 = load i32 from ptr %dim_y
+  call void idct(ptr @test_idct, ptr @test_dct, i32 %dim_x.load460, i32 %dim_y.load461)
+  dim_x.load463 = load i32 from ptr %dim_x
+  dim_y.load464 = load i32 from ptr %dim_y
+  call void write_mat(ptr @test_idct, i32 %dim_x.load463, i32 %dim_y.load464)
+  ret i32 0
+while.cond436:
+  j435.load = load i32 from ptr %j435
+  dim_y.load = load i32 from ptr %dim_y
+  441 = icmp slt i32 %j435.load, i32 %dim_y.load
+  442 = icmp ne i1 %441, i1 0
+  br i1 %442, bb %while.body437, bb %while.exit438
+while.body437:
+  i427.load443 = load i32 from ptr %i427
+  444 = mul i32 %i427.load443, i32 32
+  445 = ptradd ptr @test_block, i32 %444
+  j435.load446 = load i32 from ptr %j435
+  447 = mul i32 %j435.load446, i32 4
+  448 = ptradd ptr %445, i32 %447
+  449 = call float getfloat()
+  store float %449 to ptr %448
+  j435.load450 = load i32 from ptr %j435
+  451 = add i32 %j435.load450, i32 1
+  store i32 %451 to ptr %j435
+  br bb %while.cond436
+while.exit438:
+  i427.load452 = load i32 from ptr %i427
+  453 = add i32 %i427.load452, i32 1
+  store i32 %453 to ptr %i427
+  br bb %while.cond428
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+float my_fabs(float x) {
+entry:
+  %x.stack = stack 4
+  store float %x to ptr %x.stack
+  3 = si2f i32 0 to float
+  4 = fcmp ogt float %x, float %3
+  br i1 %4, bb %then, bb %if.exit
+then:
+  x.stack.load7 = load float from ptr %x.stack
+  ret float %x.stack.load7
+if.exit:
+  x.stack.load8 = load float from ptr %x.stack
+  9 = fneg float %x.stack.load8
+  ret float %9
+}
+
+

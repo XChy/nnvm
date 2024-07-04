@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iterator>
+
 namespace nnvm {
 
 template <typename Range> class IncChangeIter {
@@ -64,5 +66,23 @@ private:
  */
 template <typename Range> IncChangeRange<Range> incChange(Range &range) {
   return IncChangeRange<Range>(range);
+}
+
+template <typename T> struct reversion_wrapper {
+  T &iterable;
+};
+
+template <typename T> auto begin(reversion_wrapper<T> w) {
+  auto begin = std::begin(w.iterable);
+  return std::reverse_iterator<decltype(begin)>(begin);
+}
+
+template <typename T> auto end(reversion_wrapper<T> w) {
+  auto end = std::end(w.iterable);
+  return std::reverse_iterator<decltype(end)>(end);
+}
+
+template <typename T> reversion_wrapper<T> reverseRange(T &&iterable) {
+  return {iterable};
 }
 } /* namespace nnvm */

@@ -1,0 +1,5009 @@
+global ptr SHIFT_TABLE init with 16 x i32 [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768]
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry3309:
+  3310 = call i32 long_func()
+  ret i32 %3310
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+external void putarray(i32 , ptr )
+
+i32 long_func() {
+entry:
+  %select3184 = stack 1
+  %select3142 = stack 1
+  %sum3077 = stack 4
+  %c3075 = stack 4
+  %al3073 = stack 4
+  %select3049 = stack 1
+  %select3007 = stack 1
+  %sum2942 = stack 4
+  %c2940 = stack 4
+  %al2938 = stack 4
+  %select2914 = stack 1
+  %mres2895 = stack 4
+  %mr2893 = stack 4
+  %ml2891 = stack 4
+  %select2821 = stack 1
+  %select2779 = stack 1
+  %sum2714 = stack 4
+  %c2712 = stack 4
+  %al2710 = stack 4
+  %select2686 = stack 1
+  %select2644 = stack 1
+  %sum2579 = stack 4
+  %c2577 = stack 4
+  %al2575 = stack 4
+  %select2551 = stack 1
+  %mres2532 = stack 4
+  %mr2530 = stack 4
+  %ml2528 = stack 4
+  %select2504 = stack 1
+  %pres2484 = stack 4
+  %pr2482 = stack 4
+  %pl2481 = stack 4
+  %select2355 = stack 1
+  %select2313 = stack 1
+  %sum2248 = stack 4
+  %c2246 = stack 4
+  %al2244 = stack 4
+  %select2220 = stack 1
+  %select2178 = stack 1
+  %sum2113 = stack 4
+  %c2111 = stack 4
+  %al2109 = stack 4
+  %select2085 = stack 1
+  %mres2066 = stack 4
+  %mr2064 = stack 4
+  %ml2062 = stack 4
+  %select1992 = stack 1
+  %select1950 = stack 1
+  %sum1885 = stack 4
+  %c1883 = stack 4
+  %al1881 = stack 4
+  %select1857 = stack 1
+  %select1815 = stack 1
+  %sum1750 = stack 4
+  %c1748 = stack 4
+  %al1746 = stack 4
+  %select1722 = stack 1
+  %mres1703 = stack 4
+  %mr1701 = stack 4
+  %ml1699 = stack 4
+  %select1675 = stack 1
+  %pres1655 = stack 4
+  %pr1653 = stack 4
+  %pl1652 = stack 4
+  %select1528 = stack 1
+  %select1486 = stack 1
+  %sum1421 = stack 4
+  %c1419 = stack 4
+  %al1417 = stack 4
+  %select1393 = stack 1
+  %select1351 = stack 1
+  %sum1286 = stack 4
+  %c1284 = stack 4
+  %al1282 = stack 4
+  %select1258 = stack 1
+  %mres1239 = stack 4
+  %mr1237 = stack 4
+  %ml1235 = stack 4
+  %select1165 = stack 1
+  %select1123 = stack 1
+  %sum1058 = stack 4
+  %c1056 = stack 4
+  %al1054 = stack 4
+  %select1030 = stack 1
+  %select988 = stack 1
+  %sum923 = stack 4
+  %c921 = stack 4
+  %al919 = stack 4
+  %select895 = stack 1
+  %mres876 = stack 4
+  %mr874 = stack 4
+  %ml872 = stack 4
+  %select848 = stack 1
+  %pres828 = stack 4
+  %pr827 = stack 4
+  %pl826 = stack 4
+  %select708 = stack 1
+  %select666 = stack 1
+  %sum601 = stack 4
+  %c599 = stack 4
+  %al597 = stack 4
+  %select573 = stack 1
+  %select531 = stack 1
+  %sum466 = stack 4
+  %c464 = stack 4
+  %al462 = stack 4
+  %select438 = stack 1
+  %mres419 = stack 4
+  %mr417 = stack 4
+  %ml415 = stack 4
+  %select345 = stack 1
+  %select303 = stack 1
+  %sum238 = stack 4
+  %c236 = stack 4
+  %al234 = stack 4
+  %select210 = stack 1
+  %select168 = stack 1
+  %sum = stack 4
+  %c = stack 4
+  %al = stack 4
+  %select75 = stack 1
+  %mres = stack 4
+  %mr = stack 4
+  %ml = stack 4
+  %select = stack 1
+  %pres = stack 4
+  %pr = stack 4
+  %pl = stack 4
+  %cur = stack 4
+  %y = stack 4
+  %x = stack 4
+  %i = stack 4
+  %ans = stack 4
+  store i32 2 to ptr %pl
+  store i32 0 to ptr %pr
+  store i32 1 to ptr %pres
+  br bb %while.cond
+while.cond:
+  pr.load = load i32 from ptr %pr
+  13 = icmp sgt i32 %pr.load, i32 0
+  14 = icmp ne i1 %13, i1 0
+  br i1 %14, bb %while.body, bb %while.exit
+while.body:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  pr.load15 = load i32 from ptr %pr
+  store i32 %pr.load15 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond16
+while.exit:
+  pres.load822 = load i32 from ptr %pres
+  store i32 %pres.load822 to ptr %ans
+  call void putint(i32 %pres.load822)
+  call void putch(i32 10)
+  store i32 2 to ptr %pl826
+  store i32 1 to ptr %pr827
+  store i32 1 to ptr %pres828
+  br bb %while.cond829
+while.cond16:
+  i.load = load i32 from ptr %i
+  20 = icmp slt i32 %i.load, i32 16
+  21 = icmp ne i1 %20, i1 0
+  br i1 %21, bb %while.body17, bb %while.exit18
+while.body17:
+  x.load = load i32 from ptr %x
+  23 = srem i32 %x.load, i32 2
+  24 = icmp ne i32 %23, i32 0
+  br i1 %24, bb %select.then, bb %select.else
+while.exit18:
+  ans.load48 = load i32 from ptr %ans
+  49 = icmp ne i32 %ans.load48, i32 0
+  br i1 %49, bb %then50, bb %if.exit51
+select.then:
+  y.load = load i32 from ptr %y
+  30 = srem i32 %y.load, i32 2
+  31 = icmp ne i32 %30, i32 0
+  store i1 %31 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  32 = load i1 from ptr %select
+  br i1 %32, bb %then, bb %if.exit
+then:
+  ans.load = load i32 from ptr %ans
+  i.load36 = load i32 from ptr %i
+  37 = mul i32 %i.load36, i32 4
+  38 = ptradd ptr @SHIFT_TABLE, i32 %37
+  38.load = load i32 from ptr %38
+  40 = mul i32 1, i32 %38.load
+  41 = add i32 %ans.load, i32 %40
+  store i32 %41 to ptr %ans
+  br bb %if.exit
+if.exit:
+  x.load42 = load i32 from ptr %x
+  43 = sdiv i32 %x.load42, i32 2
+  store i32 %43 to ptr %x
+  y.load44 = load i32 from ptr %y
+  45 = sdiv i32 %y.load44, i32 2
+  store i32 %45 to ptr %y
+  i.load46 = load i32 from ptr %i
+  47 = add i32 %i.load46, i32 1
+  store i32 %47 to ptr %i
+  br bb %while.cond16
+then50:
+  pres.load = load i32 from ptr %pres
+  store i32 %pres.load to ptr %ml
+  pl.load = load i32 from ptr %pl
+  store i32 %pl.load to ptr %mr
+  store i32 0 to ptr %mres
+  br bb %while.cond57
+if.exit51:
+  pl.load416 = load i32 from ptr %pl
+  store i32 %pl.load416 to ptr %ml415
+  pl.load418 = load i32 from ptr %pl
+  store i32 %pl.load418 to ptr %mr417
+  store i32 0 to ptr %mres419
+  br bb %while.cond420
+while.cond57:
+  mr.load = load i32 from ptr %mr
+  61 = icmp ne i32 %mr.load, i32 0
+  br i1 %61, bb %while.body58, bb %while.exit59
+while.body58:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr.load62 = load i32 from ptr %mr
+  store i32 %mr.load62 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond63
+while.exit59:
+  mres.load413 = load i32 from ptr %mres
+  store i32 %mres.load413 to ptr %ans
+  store i32 %mres.load413 to ptr %pres
+  br bb %if.exit51
+while.cond63:
+  i.load66 = load i32 from ptr %i
+  67 = icmp slt i32 %i.load66, i32 16
+  68 = icmp ne i1 %67, i1 0
+  br i1 %68, bb %while.body64, bb %while.exit65
+while.body64:
+  x.load69 = load i32 from ptr %x
+  70 = srem i32 %x.load69, i32 2
+  71 = icmp ne i32 %70, i32 0
+  br i1 %71, bb %select.then72, bb %select.else73
+while.exit65:
+  ans.load95 = load i32 from ptr %ans
+  96 = icmp ne i32 %ans.load95, i32 0
+  br i1 %96, bb %then97, bb %if.exit98
+select.then72:
+  y.load76 = load i32 from ptr %y
+  77 = srem i32 %y.load76, i32 2
+  78 = icmp ne i32 %77, i32 0
+  store i1 %78 to ptr %select75
+  br bb %select.exit74
+select.else73:
+  store i1 0 to ptr %select75
+  br bb %select.exit74
+select.exit74:
+  79 = load i1 from ptr %select75
+  br i1 %79, bb %then80, bb %if.exit81
+then80:
+  ans.load82 = load i32 from ptr %ans
+  i.load83 = load i32 from ptr %i
+  84 = mul i32 %i.load83, i32 4
+  85 = ptradd ptr @SHIFT_TABLE, i32 %84
+  85.load = load i32 from ptr %85
+  87 = mul i32 1, i32 %85.load
+  88 = add i32 %ans.load82, i32 %87
+  store i32 %88 to ptr %ans
+  br bb %if.exit81
+if.exit81:
+  x.load89 = load i32 from ptr %x
+  90 = sdiv i32 %x.load89, i32 2
+  store i32 %90 to ptr %x
+  y.load91 = load i32 from ptr %y
+  92 = sdiv i32 %y.load91, i32 2
+  store i32 %92 to ptr %y
+  i.load93 = load i32 from ptr %i
+  94 = add i32 %i.load93, i32 1
+  store i32 %94 to ptr %i
+  br bb %while.cond63
+then97:
+  mres.load = load i32 from ptr %mres
+  store i32 %mres.load to ptr %al
+  ml.load = load i32 from ptr %ml
+  store i32 %ml.load to ptr %c
+  br bb %while.cond104
+if.exit98:
+  ml.load235 = load i32 from ptr %ml
+  store i32 %ml.load235 to ptr %al234
+  ml.load237 = load i32 from ptr %ml
+  store i32 %ml.load237 to ptr %c236
+  br bb %while.cond239
+while.cond104:
+  c.load = load i32 from ptr %c
+  108 = icmp ne i32 %c.load, i32 0
+  br i1 %108, bb %while.body105, bb %while.exit106
+while.body105:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al.load = load i32 from ptr %al
+  store i32 %al.load to ptr %x
+  c.load110 = load i32 from ptr %c
+  store i32 %c.load110 to ptr %y
+  br bb %while.cond111
+while.exit106:
+  al.load232 = load i32 from ptr %al
+  store i32 %al.load232 to ptr %ans
+  store i32 %al.load232 to ptr %mres
+  br bb %if.exit98
+while.cond111:
+  i.load114 = load i32 from ptr %i
+  115 = icmp slt i32 %i.load114, i32 16
+  116 = icmp ne i1 %115, i1 0
+  br i1 %116, bb %while.body112, bb %while.exit113
+while.body112:
+  x.load117 = load i32 from ptr %x
+  118 = srem i32 %x.load117, i32 2
+  119 = icmp ne i32 %118, i32 0
+  br i1 %119, bb %then120, bb %else
+while.exit113:
+  ans.load153 = load i32 from ptr %ans
+  store i32 %ans.load153 to ptr %sum
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al.load154 = load i32 from ptr %al
+  store i32 %al.load154 to ptr %x
+  c.load155 = load i32 from ptr %c
+  store i32 %c.load155 to ptr %y
+  br bb %while.cond156
+then120:
+  y.load123 = load i32 from ptr %y
+  124 = srem i32 %y.load123, i32 2
+  125 = icmp eq i32 %124, i32 0
+  br i1 %125, bb %then126, bb %if.exit127
+if.exit121:
+  x.load147 = load i32 from ptr %x
+  148 = sdiv i32 %x.load147, i32 2
+  store i32 %148 to ptr %x
+  y.load149 = load i32 from ptr %y
+  150 = sdiv i32 %y.load149, i32 2
+  store i32 %150 to ptr %y
+  i.load151 = load i32 from ptr %i
+  152 = add i32 %i.load151, i32 1
+  store i32 %152 to ptr %i
+  br bb %while.cond111
+else:
+  y.load135 = load i32 from ptr %y
+  136 = srem i32 %y.load135, i32 2
+  137 = icmp ne i32 %136, i32 0
+  br i1 %137, bb %then138, bb %if.exit139
+then126:
+  ans.load128 = load i32 from ptr %ans
+  i.load129 = load i32 from ptr %i
+  130 = mul i32 %i.load129, i32 4
+  131 = ptradd ptr @SHIFT_TABLE, i32 %130
+  131.load = load i32 from ptr %131
+  133 = mul i32 1, i32 %131.load
+  134 = add i32 %ans.load128, i32 %133
+  store i32 %134 to ptr %ans
+  br bb %if.exit127
+if.exit127:
+  br bb %if.exit121
+then138:
+  ans.load140 = load i32 from ptr %ans
+  i.load141 = load i32 from ptr %i
+  142 = mul i32 %i.load141, i32 4
+  143 = ptradd ptr @SHIFT_TABLE, i32 %142
+  143.load = load i32 from ptr %143
+  145 = mul i32 1, i32 %143.load
+  146 = add i32 %ans.load140, i32 %145
+  store i32 %146 to ptr %ans
+  br bb %if.exit139
+if.exit139:
+  br bb %if.exit121
+while.cond156:
+  i.load159 = load i32 from ptr %i
+  160 = icmp slt i32 %i.load159, i32 16
+  161 = icmp ne i1 %160, i1 0
+  br i1 %161, bb %while.body157, bb %while.exit158
+while.body157:
+  x.load162 = load i32 from ptr %x
+  163 = srem i32 %x.load162, i32 2
+  164 = icmp ne i32 %163, i32 0
+  br i1 %164, bb %select.then165, bb %select.else166
+while.exit158:
+  ans.load188 = load i32 from ptr %ans
+  store i32 %ans.load188 to ptr %c
+  189 = icmp sgt i32 1, i32 15
+  br i1 %189, bb %then190, bb %else192
+select.then165:
+  y.load169 = load i32 from ptr %y
+  170 = srem i32 %y.load169, i32 2
+  171 = icmp ne i32 %170, i32 0
+  store i1 %171 to ptr %select168
+  br bb %select.exit167
+select.else166:
+  store i1 0 to ptr %select168
+  br bb %select.exit167
+select.exit167:
+  172 = load i1 from ptr %select168
+  br i1 %172, bb %then173, bb %if.exit174
+then173:
+  ans.load175 = load i32 from ptr %ans
+  i.load176 = load i32 from ptr %i
+  177 = mul i32 %i.load176, i32 4
+  178 = ptradd ptr @SHIFT_TABLE, i32 %177
+  178.load = load i32 from ptr %178
+  180 = mul i32 1, i32 %178.load
+  181 = add i32 %ans.load175, i32 %180
+  store i32 %181 to ptr %ans
+  br bb %if.exit174
+if.exit174:
+  x.load182 = load i32 from ptr %x
+  183 = sdiv i32 %x.load182, i32 2
+  store i32 %183 to ptr %x
+  y.load184 = load i32 from ptr %y
+  185 = sdiv i32 %y.load184, i32 2
+  store i32 %185 to ptr %y
+  i.load186 = load i32 from ptr %i
+  187 = add i32 %i.load186, i32 1
+  store i32 %187 to ptr %i
+  br bb %while.cond156
+then190:
+  store i32 0 to ptr %ans
+  br bb %if.exit191
+if.exit191:
+  ans.load230 = load i32 from ptr %ans
+  store i32 %ans.load230 to ptr %c
+  sum.load = load i32 from ptr %sum
+  store i32 %sum.load to ptr %al
+  br bb %while.cond104
+else192:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c.load193 = load i32 from ptr %c
+  194 = mul i32 1, i32 4
+  195 = ptradd ptr @SHIFT_TABLE, i32 %194
+  195.load = load i32 from ptr %195
+  197 = mul i32 %c.load193, i32 %195.load
+  store i32 %197 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond198
+while.cond198:
+  i.load201 = load i32 from ptr %i
+  202 = icmp slt i32 %i.load201, i32 16
+  203 = icmp ne i1 %202, i1 0
+  br i1 %203, bb %while.body199, bb %while.exit200
+while.body199:
+  x.load204 = load i32 from ptr %x
+  205 = srem i32 %x.load204, i32 2
+  206 = icmp ne i32 %205, i32 0
+  br i1 %206, bb %select.then207, bb %select.else208
+while.exit200:
+  br bb %if.exit191
+select.then207:
+  y.load211 = load i32 from ptr %y
+  212 = srem i32 %y.load211, i32 2
+  213 = icmp ne i32 %212, i32 0
+  store i1 %213 to ptr %select210
+  br bb %select.exit209
+select.else208:
+  store i1 0 to ptr %select210
+  br bb %select.exit209
+select.exit209:
+  214 = load i1 from ptr %select210
+  br i1 %214, bb %then215, bb %if.exit216
+then215:
+  ans.load217 = load i32 from ptr %ans
+  i.load218 = load i32 from ptr %i
+  219 = mul i32 %i.load218, i32 4
+  220 = ptradd ptr @SHIFT_TABLE, i32 %219
+  220.load = load i32 from ptr %220
+  222 = mul i32 1, i32 %220.load
+  223 = add i32 %ans.load217, i32 %222
+  store i32 %223 to ptr %ans
+  br bb %if.exit216
+if.exit216:
+  x.load224 = load i32 from ptr %x
+  225 = sdiv i32 %x.load224, i32 2
+  store i32 %225 to ptr %x
+  y.load226 = load i32 from ptr %y
+  227 = sdiv i32 %y.load226, i32 2
+  store i32 %227 to ptr %y
+  i.load228 = load i32 from ptr %i
+  229 = add i32 %i.load228, i32 1
+  store i32 %229 to ptr %i
+  br bb %while.cond198
+while.cond239:
+  c236.load = load i32 from ptr %c236
+  243 = icmp ne i32 %c236.load, i32 0
+  br i1 %243, bb %while.body240, bb %while.exit241
+while.body240:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al234.load = load i32 from ptr %al234
+  store i32 %al234.load to ptr %x
+  c236.load245 = load i32 from ptr %c236
+  store i32 %c236.load245 to ptr %y
+  br bb %while.cond246
+while.exit241:
+  al234.load367 = load i32 from ptr %al234
+  store i32 %al234.load367 to ptr %ans
+  store i32 %al234.load367 to ptr %ml
+  mr.load369 = load i32 from ptr %mr
+  store i32 %mr.load369 to ptr %x
+  store i32 1 to ptr %y
+  371 = icmp sge i32 1, i32 15
+  br i1 %371, bb %then372, bb %else374
+while.cond246:
+  i.load249 = load i32 from ptr %i
+  250 = icmp slt i32 %i.load249, i32 16
+  251 = icmp ne i1 %250, i1 0
+  br i1 %251, bb %while.body247, bb %while.exit248
+while.body247:
+  x.load252 = load i32 from ptr %x
+  253 = srem i32 %x.load252, i32 2
+  254 = icmp ne i32 %253, i32 0
+  br i1 %254, bb %then255, bb %else257
+while.exit248:
+  ans.load288 = load i32 from ptr %ans
+  store i32 %ans.load288 to ptr %sum238
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al234.load289 = load i32 from ptr %al234
+  store i32 %al234.load289 to ptr %x
+  c236.load290 = load i32 from ptr %c236
+  store i32 %c236.load290 to ptr %y
+  br bb %while.cond291
+then255:
+  y.load258 = load i32 from ptr %y
+  259 = srem i32 %y.load258, i32 2
+  260 = icmp eq i32 %259, i32 0
+  br i1 %260, bb %then261, bb %if.exit262
+if.exit256:
+  x.load282 = load i32 from ptr %x
+  283 = sdiv i32 %x.load282, i32 2
+  store i32 %283 to ptr %x
+  y.load284 = load i32 from ptr %y
+  285 = sdiv i32 %y.load284, i32 2
+  store i32 %285 to ptr %y
+  i.load286 = load i32 from ptr %i
+  287 = add i32 %i.load286, i32 1
+  store i32 %287 to ptr %i
+  br bb %while.cond246
+else257:
+  y.load270 = load i32 from ptr %y
+  271 = srem i32 %y.load270, i32 2
+  272 = icmp ne i32 %271, i32 0
+  br i1 %272, bb %then273, bb %if.exit274
+then261:
+  ans.load263 = load i32 from ptr %ans
+  i.load264 = load i32 from ptr %i
+  265 = mul i32 %i.load264, i32 4
+  266 = ptradd ptr @SHIFT_TABLE, i32 %265
+  266.load = load i32 from ptr %266
+  268 = mul i32 1, i32 %266.load
+  269 = add i32 %ans.load263, i32 %268
+  store i32 %269 to ptr %ans
+  br bb %if.exit262
+if.exit262:
+  br bb %if.exit256
+then273:
+  ans.load275 = load i32 from ptr %ans
+  i.load276 = load i32 from ptr %i
+  277 = mul i32 %i.load276, i32 4
+  278 = ptradd ptr @SHIFT_TABLE, i32 %277
+  278.load = load i32 from ptr %278
+  280 = mul i32 1, i32 %278.load
+  281 = add i32 %ans.load275, i32 %280
+  store i32 %281 to ptr %ans
+  br bb %if.exit274
+if.exit274:
+  br bb %if.exit256
+while.cond291:
+  i.load294 = load i32 from ptr %i
+  295 = icmp slt i32 %i.load294, i32 16
+  296 = icmp ne i1 %295, i1 0
+  br i1 %296, bb %while.body292, bb %while.exit293
+while.body292:
+  x.load297 = load i32 from ptr %x
+  298 = srem i32 %x.load297, i32 2
+  299 = icmp ne i32 %298, i32 0
+  br i1 %299, bb %select.then300, bb %select.else301
+while.exit293:
+  ans.load323 = load i32 from ptr %ans
+  store i32 %ans.load323 to ptr %c236
+  324 = icmp sgt i32 1, i32 15
+  br i1 %324, bb %then325, bb %else327
+select.then300:
+  y.load304 = load i32 from ptr %y
+  305 = srem i32 %y.load304, i32 2
+  306 = icmp ne i32 %305, i32 0
+  store i1 %306 to ptr %select303
+  br bb %select.exit302
+select.else301:
+  store i1 0 to ptr %select303
+  br bb %select.exit302
+select.exit302:
+  307 = load i1 from ptr %select303
+  br i1 %307, bb %then308, bb %if.exit309
+then308:
+  ans.load310 = load i32 from ptr %ans
+  i.load311 = load i32 from ptr %i
+  312 = mul i32 %i.load311, i32 4
+  313 = ptradd ptr @SHIFT_TABLE, i32 %312
+  313.load = load i32 from ptr %313
+  315 = mul i32 1, i32 %313.load
+  316 = add i32 %ans.load310, i32 %315
+  store i32 %316 to ptr %ans
+  br bb %if.exit309
+if.exit309:
+  x.load317 = load i32 from ptr %x
+  318 = sdiv i32 %x.load317, i32 2
+  store i32 %318 to ptr %x
+  y.load319 = load i32 from ptr %y
+  320 = sdiv i32 %y.load319, i32 2
+  store i32 %320 to ptr %y
+  i.load321 = load i32 from ptr %i
+  322 = add i32 %i.load321, i32 1
+  store i32 %322 to ptr %i
+  br bb %while.cond291
+then325:
+  store i32 0 to ptr %ans
+  br bb %if.exit326
+if.exit326:
+  ans.load365 = load i32 from ptr %ans
+  store i32 %ans.load365 to ptr %c236
+  sum238.load = load i32 from ptr %sum238
+  store i32 %sum238.load to ptr %al234
+  br bb %while.cond239
+else327:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c236.load328 = load i32 from ptr %c236
+  329 = mul i32 1, i32 4
+  330 = ptradd ptr @SHIFT_TABLE, i32 %329
+  330.load = load i32 from ptr %330
+  332 = mul i32 %c236.load328, i32 %330.load
+  store i32 %332 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond333
+while.cond333:
+  i.load336 = load i32 from ptr %i
+  337 = icmp slt i32 %i.load336, i32 16
+  338 = icmp ne i1 %337, i1 0
+  br i1 %338, bb %while.body334, bb %while.exit335
+while.body334:
+  x.load339 = load i32 from ptr %x
+  340 = srem i32 %x.load339, i32 2
+  341 = icmp ne i32 %340, i32 0
+  br i1 %341, bb %select.then342, bb %select.else343
+while.exit335:
+  br bb %if.exit326
+select.then342:
+  y.load346 = load i32 from ptr %y
+  347 = srem i32 %y.load346, i32 2
+  348 = icmp ne i32 %347, i32 0
+  store i1 %348 to ptr %select345
+  br bb %select.exit344
+select.else343:
+  store i1 0 to ptr %select345
+  br bb %select.exit344
+select.exit344:
+  349 = load i1 from ptr %select345
+  br i1 %349, bb %then350, bb %if.exit351
+then350:
+  ans.load352 = load i32 from ptr %ans
+  i.load353 = load i32 from ptr %i
+  354 = mul i32 %i.load353, i32 4
+  355 = ptradd ptr @SHIFT_TABLE, i32 %354
+  355.load = load i32 from ptr %355
+  357 = mul i32 1, i32 %355.load
+  358 = add i32 %ans.load352, i32 %357
+  store i32 %358 to ptr %ans
+  br bb %if.exit351
+if.exit351:
+  x.load359 = load i32 from ptr %x
+  360 = sdiv i32 %x.load359, i32 2
+  store i32 %360 to ptr %x
+  y.load361 = load i32 from ptr %y
+  362 = sdiv i32 %y.load361, i32 2
+  store i32 %362 to ptr %y
+  i.load363 = load i32 from ptr %i
+  364 = add i32 %i.load363, i32 1
+  store i32 %364 to ptr %i
+  br bb %while.cond333
+then372:
+  x.load375 = load i32 from ptr %x
+  376 = icmp slt i32 %x.load375, i32 0
+  br i1 %376, bb %then377, bb %else379
+if.exit373:
+  ans.load412 = load i32 from ptr %ans
+  store i32 %ans.load412 to ptr %mr
+  br bb %while.cond57
+else374:
+  y.load380 = load i32 from ptr %y
+  381 = icmp sgt i32 %y.load380, i32 0
+  br i1 %381, bb %then382, bb %else384
+then377:
+  store i32 65535 to ptr %ans
+  br bb %if.exit378
+if.exit378:
+  br bb %if.exit373
+else379:
+  store i32 0 to ptr %ans
+  br bb %if.exit378
+then382:
+  x.load385 = load i32 from ptr %x
+  386 = icmp sgt i32 %x.load385, i32 32767
+  br i1 %386, bb %then387, bb %else389
+if.exit383:
+  br bb %if.exit373
+else384:
+  x.load411 = load i32 from ptr %x
+  store i32 %x.load411 to ptr %ans
+  br bb %if.exit383
+then387:
+  x.load390 = load i32 from ptr %x
+  y.load391 = load i32 from ptr %y
+  392 = mul i32 %y.load391, i32 4
+  393 = ptradd ptr @SHIFT_TABLE, i32 %392
+  393.load = load i32 from ptr %393
+  395 = sdiv i32 %x.load390, i32 %393.load
+  store i32 %395 to ptr %x
+  397 = add i32 %395, i32 65536
+  y.load398 = load i32 from ptr %y
+  399 = sub i32 15, i32 %y.load398
+  400 = add i32 %399, i32 1
+  401 = mul i32 %400, i32 4
+  402 = ptradd ptr @SHIFT_TABLE, i32 %401
+  402.load = load i32 from ptr %402
+  404 = sub i32 %397, i32 %402.load
+  store i32 %404 to ptr %ans
+  br bb %if.exit388
+if.exit388:
+  br bb %if.exit383
+else389:
+  x.load405 = load i32 from ptr %x
+  y.load406 = load i32 from ptr %y
+  407 = mul i32 %y.load406, i32 4
+  408 = ptradd ptr @SHIFT_TABLE, i32 %407
+  408.load = load i32 from ptr %408
+  410 = sdiv i32 %x.load405, i32 %408.load
+  store i32 %410 to ptr %ans
+  br bb %if.exit388
+while.cond420:
+  mr417.load = load i32 from ptr %mr417
+  424 = icmp ne i32 %mr417.load, i32 0
+  br i1 %424, bb %while.body421, bb %while.exit422
+while.body421:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr417.load425 = load i32 from ptr %mr417
+  store i32 %mr417.load425 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond426
+while.exit422:
+  mres419.load776 = load i32 from ptr %mres419
+  store i32 %mres419.load776 to ptr %ans
+  store i32 %mres419.load776 to ptr %pl
+  pr.load778 = load i32 from ptr %pr
+  store i32 %pr.load778 to ptr %x
+  store i32 1 to ptr %y
+  780 = icmp sge i32 1, i32 15
+  br i1 %780, bb %then781, bb %else783
+while.cond426:
+  i.load429 = load i32 from ptr %i
+  430 = icmp slt i32 %i.load429, i32 16
+  431 = icmp ne i1 %430, i1 0
+  br i1 %431, bb %while.body427, bb %while.exit428
+while.body427:
+  x.load432 = load i32 from ptr %x
+  433 = srem i32 %x.load432, i32 2
+  434 = icmp ne i32 %433, i32 0
+  br i1 %434, bb %select.then435, bb %select.else436
+while.exit428:
+  ans.load458 = load i32 from ptr %ans
+  459 = icmp ne i32 %ans.load458, i32 0
+  br i1 %459, bb %then460, bb %if.exit461
+select.then435:
+  y.load439 = load i32 from ptr %y
+  440 = srem i32 %y.load439, i32 2
+  441 = icmp ne i32 %440, i32 0
+  store i1 %441 to ptr %select438
+  br bb %select.exit437
+select.else436:
+  store i1 0 to ptr %select438
+  br bb %select.exit437
+select.exit437:
+  442 = load i1 from ptr %select438
+  br i1 %442, bb %then443, bb %if.exit444
+then443:
+  ans.load445 = load i32 from ptr %ans
+  i.load446 = load i32 from ptr %i
+  447 = mul i32 %i.load446, i32 4
+  448 = ptradd ptr @SHIFT_TABLE, i32 %447
+  448.load = load i32 from ptr %448
+  450 = mul i32 1, i32 %448.load
+  451 = add i32 %ans.load445, i32 %450
+  store i32 %451 to ptr %ans
+  br bb %if.exit444
+if.exit444:
+  x.load452 = load i32 from ptr %x
+  453 = sdiv i32 %x.load452, i32 2
+  store i32 %453 to ptr %x
+  y.load454 = load i32 from ptr %y
+  455 = sdiv i32 %y.load454, i32 2
+  store i32 %455 to ptr %y
+  i.load456 = load i32 from ptr %i
+  457 = add i32 %i.load456, i32 1
+  store i32 %457 to ptr %i
+  br bb %while.cond426
+then460:
+  mres419.load = load i32 from ptr %mres419
+  store i32 %mres419.load to ptr %al462
+  ml415.load = load i32 from ptr %ml415
+  store i32 %ml415.load to ptr %c464
+  br bb %while.cond467
+if.exit461:
+  ml415.load598 = load i32 from ptr %ml415
+  store i32 %ml415.load598 to ptr %al597
+  ml415.load600 = load i32 from ptr %ml415
+  store i32 %ml415.load600 to ptr %c599
+  br bb %while.cond602
+while.cond467:
+  c464.load = load i32 from ptr %c464
+  471 = icmp ne i32 %c464.load, i32 0
+  br i1 %471, bb %while.body468, bb %while.exit469
+while.body468:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al462.load = load i32 from ptr %al462
+  store i32 %al462.load to ptr %x
+  c464.load473 = load i32 from ptr %c464
+  store i32 %c464.load473 to ptr %y
+  br bb %while.cond474
+while.exit469:
+  al462.load595 = load i32 from ptr %al462
+  store i32 %al462.load595 to ptr %ans
+  store i32 %al462.load595 to ptr %mres419
+  br bb %if.exit461
+while.cond474:
+  i.load477 = load i32 from ptr %i
+  478 = icmp slt i32 %i.load477, i32 16
+  479 = icmp ne i1 %478, i1 0
+  br i1 %479, bb %while.body475, bb %while.exit476
+while.body475:
+  x.load480 = load i32 from ptr %x
+  481 = srem i32 %x.load480, i32 2
+  482 = icmp ne i32 %481, i32 0
+  br i1 %482, bb %then483, bb %else485
+while.exit476:
+  ans.load516 = load i32 from ptr %ans
+  store i32 %ans.load516 to ptr %sum466
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al462.load517 = load i32 from ptr %al462
+  store i32 %al462.load517 to ptr %x
+  c464.load518 = load i32 from ptr %c464
+  store i32 %c464.load518 to ptr %y
+  br bb %while.cond519
+then483:
+  y.load486 = load i32 from ptr %y
+  487 = srem i32 %y.load486, i32 2
+  488 = icmp eq i32 %487, i32 0
+  br i1 %488, bb %then489, bb %if.exit490
+if.exit484:
+  x.load510 = load i32 from ptr %x
+  511 = sdiv i32 %x.load510, i32 2
+  store i32 %511 to ptr %x
+  y.load512 = load i32 from ptr %y
+  513 = sdiv i32 %y.load512, i32 2
+  store i32 %513 to ptr %y
+  i.load514 = load i32 from ptr %i
+  515 = add i32 %i.load514, i32 1
+  store i32 %515 to ptr %i
+  br bb %while.cond474
+else485:
+  y.load498 = load i32 from ptr %y
+  499 = srem i32 %y.load498, i32 2
+  500 = icmp ne i32 %499, i32 0
+  br i1 %500, bb %then501, bb %if.exit502
+then489:
+  ans.load491 = load i32 from ptr %ans
+  i.load492 = load i32 from ptr %i
+  493 = mul i32 %i.load492, i32 4
+  494 = ptradd ptr @SHIFT_TABLE, i32 %493
+  494.load = load i32 from ptr %494
+  496 = mul i32 1, i32 %494.load
+  497 = add i32 %ans.load491, i32 %496
+  store i32 %497 to ptr %ans
+  br bb %if.exit490
+if.exit490:
+  br bb %if.exit484
+then501:
+  ans.load503 = load i32 from ptr %ans
+  i.load504 = load i32 from ptr %i
+  505 = mul i32 %i.load504, i32 4
+  506 = ptradd ptr @SHIFT_TABLE, i32 %505
+  506.load = load i32 from ptr %506
+  508 = mul i32 1, i32 %506.load
+  509 = add i32 %ans.load503, i32 %508
+  store i32 %509 to ptr %ans
+  br bb %if.exit502
+if.exit502:
+  br bb %if.exit484
+while.cond519:
+  i.load522 = load i32 from ptr %i
+  523 = icmp slt i32 %i.load522, i32 16
+  524 = icmp ne i1 %523, i1 0
+  br i1 %524, bb %while.body520, bb %while.exit521
+while.body520:
+  x.load525 = load i32 from ptr %x
+  526 = srem i32 %x.load525, i32 2
+  527 = icmp ne i32 %526, i32 0
+  br i1 %527, bb %select.then528, bb %select.else529
+while.exit521:
+  ans.load551 = load i32 from ptr %ans
+  store i32 %ans.load551 to ptr %c464
+  552 = icmp sgt i32 1, i32 15
+  br i1 %552, bb %then553, bb %else555
+select.then528:
+  y.load532 = load i32 from ptr %y
+  533 = srem i32 %y.load532, i32 2
+  534 = icmp ne i32 %533, i32 0
+  store i1 %534 to ptr %select531
+  br bb %select.exit530
+select.else529:
+  store i1 0 to ptr %select531
+  br bb %select.exit530
+select.exit530:
+  535 = load i1 from ptr %select531
+  br i1 %535, bb %then536, bb %if.exit537
+then536:
+  ans.load538 = load i32 from ptr %ans
+  i.load539 = load i32 from ptr %i
+  540 = mul i32 %i.load539, i32 4
+  541 = ptradd ptr @SHIFT_TABLE, i32 %540
+  541.load = load i32 from ptr %541
+  543 = mul i32 1, i32 %541.load
+  544 = add i32 %ans.load538, i32 %543
+  store i32 %544 to ptr %ans
+  br bb %if.exit537
+if.exit537:
+  x.load545 = load i32 from ptr %x
+  546 = sdiv i32 %x.load545, i32 2
+  store i32 %546 to ptr %x
+  y.load547 = load i32 from ptr %y
+  548 = sdiv i32 %y.load547, i32 2
+  store i32 %548 to ptr %y
+  i.load549 = load i32 from ptr %i
+  550 = add i32 %i.load549, i32 1
+  store i32 %550 to ptr %i
+  br bb %while.cond519
+then553:
+  store i32 0 to ptr %ans
+  br bb %if.exit554
+if.exit554:
+  ans.load593 = load i32 from ptr %ans
+  store i32 %ans.load593 to ptr %c464
+  sum466.load = load i32 from ptr %sum466
+  store i32 %sum466.load to ptr %al462
+  br bb %while.cond467
+else555:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c464.load556 = load i32 from ptr %c464
+  557 = mul i32 1, i32 4
+  558 = ptradd ptr @SHIFT_TABLE, i32 %557
+  558.load = load i32 from ptr %558
+  560 = mul i32 %c464.load556, i32 %558.load
+  store i32 %560 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond561
+while.cond561:
+  i.load564 = load i32 from ptr %i
+  565 = icmp slt i32 %i.load564, i32 16
+  566 = icmp ne i1 %565, i1 0
+  br i1 %566, bb %while.body562, bb %while.exit563
+while.body562:
+  x.load567 = load i32 from ptr %x
+  568 = srem i32 %x.load567, i32 2
+  569 = icmp ne i32 %568, i32 0
+  br i1 %569, bb %select.then570, bb %select.else571
+while.exit563:
+  br bb %if.exit554
+select.then570:
+  y.load574 = load i32 from ptr %y
+  575 = srem i32 %y.load574, i32 2
+  576 = icmp ne i32 %575, i32 0
+  store i1 %576 to ptr %select573
+  br bb %select.exit572
+select.else571:
+  store i1 0 to ptr %select573
+  br bb %select.exit572
+select.exit572:
+  577 = load i1 from ptr %select573
+  br i1 %577, bb %then578, bb %if.exit579
+then578:
+  ans.load580 = load i32 from ptr %ans
+  i.load581 = load i32 from ptr %i
+  582 = mul i32 %i.load581, i32 4
+  583 = ptradd ptr @SHIFT_TABLE, i32 %582
+  583.load = load i32 from ptr %583
+  585 = mul i32 1, i32 %583.load
+  586 = add i32 %ans.load580, i32 %585
+  store i32 %586 to ptr %ans
+  br bb %if.exit579
+if.exit579:
+  x.load587 = load i32 from ptr %x
+  588 = sdiv i32 %x.load587, i32 2
+  store i32 %588 to ptr %x
+  y.load589 = load i32 from ptr %y
+  590 = sdiv i32 %y.load589, i32 2
+  store i32 %590 to ptr %y
+  i.load591 = load i32 from ptr %i
+  592 = add i32 %i.load591, i32 1
+  store i32 %592 to ptr %i
+  br bb %while.cond561
+while.cond602:
+  c599.load = load i32 from ptr %c599
+  606 = icmp ne i32 %c599.load, i32 0
+  br i1 %606, bb %while.body603, bb %while.exit604
+while.body603:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al597.load = load i32 from ptr %al597
+  store i32 %al597.load to ptr %x
+  c599.load608 = load i32 from ptr %c599
+  store i32 %c599.load608 to ptr %y
+  br bb %while.cond609
+while.exit604:
+  al597.load730 = load i32 from ptr %al597
+  store i32 %al597.load730 to ptr %ans
+  store i32 %al597.load730 to ptr %ml415
+  mr417.load732 = load i32 from ptr %mr417
+  store i32 %mr417.load732 to ptr %x
+  store i32 1 to ptr %y
+  734 = icmp sge i32 1, i32 15
+  br i1 %734, bb %then735, bb %else737
+while.cond609:
+  i.load612 = load i32 from ptr %i
+  613 = icmp slt i32 %i.load612, i32 16
+  614 = icmp ne i1 %613, i1 0
+  br i1 %614, bb %while.body610, bb %while.exit611
+while.body610:
+  x.load615 = load i32 from ptr %x
+  616 = srem i32 %x.load615, i32 2
+  617 = icmp ne i32 %616, i32 0
+  br i1 %617, bb %then618, bb %else620
+while.exit611:
+  ans.load651 = load i32 from ptr %ans
+  store i32 %ans.load651 to ptr %sum601
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al597.load652 = load i32 from ptr %al597
+  store i32 %al597.load652 to ptr %x
+  c599.load653 = load i32 from ptr %c599
+  store i32 %c599.load653 to ptr %y
+  br bb %while.cond654
+then618:
+  y.load621 = load i32 from ptr %y
+  622 = srem i32 %y.load621, i32 2
+  623 = icmp eq i32 %622, i32 0
+  br i1 %623, bb %then624, bb %if.exit625
+if.exit619:
+  x.load645 = load i32 from ptr %x
+  646 = sdiv i32 %x.load645, i32 2
+  store i32 %646 to ptr %x
+  y.load647 = load i32 from ptr %y
+  648 = sdiv i32 %y.load647, i32 2
+  store i32 %648 to ptr %y
+  i.load649 = load i32 from ptr %i
+  650 = add i32 %i.load649, i32 1
+  store i32 %650 to ptr %i
+  br bb %while.cond609
+else620:
+  y.load633 = load i32 from ptr %y
+  634 = srem i32 %y.load633, i32 2
+  635 = icmp ne i32 %634, i32 0
+  br i1 %635, bb %then636, bb %if.exit637
+then624:
+  ans.load626 = load i32 from ptr %ans
+  i.load627 = load i32 from ptr %i
+  628 = mul i32 %i.load627, i32 4
+  629 = ptradd ptr @SHIFT_TABLE, i32 %628
+  629.load = load i32 from ptr %629
+  631 = mul i32 1, i32 %629.load
+  632 = add i32 %ans.load626, i32 %631
+  store i32 %632 to ptr %ans
+  br bb %if.exit625
+if.exit625:
+  br bb %if.exit619
+then636:
+  ans.load638 = load i32 from ptr %ans
+  i.load639 = load i32 from ptr %i
+  640 = mul i32 %i.load639, i32 4
+  641 = ptradd ptr @SHIFT_TABLE, i32 %640
+  641.load = load i32 from ptr %641
+  643 = mul i32 1, i32 %641.load
+  644 = add i32 %ans.load638, i32 %643
+  store i32 %644 to ptr %ans
+  br bb %if.exit637
+if.exit637:
+  br bb %if.exit619
+while.cond654:
+  i.load657 = load i32 from ptr %i
+  658 = icmp slt i32 %i.load657, i32 16
+  659 = icmp ne i1 %658, i1 0
+  br i1 %659, bb %while.body655, bb %while.exit656
+while.body655:
+  x.load660 = load i32 from ptr %x
+  661 = srem i32 %x.load660, i32 2
+  662 = icmp ne i32 %661, i32 0
+  br i1 %662, bb %select.then663, bb %select.else664
+while.exit656:
+  ans.load686 = load i32 from ptr %ans
+  store i32 %ans.load686 to ptr %c599
+  687 = icmp sgt i32 1, i32 15
+  br i1 %687, bb %then688, bb %else690
+select.then663:
+  y.load667 = load i32 from ptr %y
+  668 = srem i32 %y.load667, i32 2
+  669 = icmp ne i32 %668, i32 0
+  store i1 %669 to ptr %select666
+  br bb %select.exit665
+select.else664:
+  store i1 0 to ptr %select666
+  br bb %select.exit665
+select.exit665:
+  670 = load i1 from ptr %select666
+  br i1 %670, bb %then671, bb %if.exit672
+then671:
+  ans.load673 = load i32 from ptr %ans
+  i.load674 = load i32 from ptr %i
+  675 = mul i32 %i.load674, i32 4
+  676 = ptradd ptr @SHIFT_TABLE, i32 %675
+  676.load = load i32 from ptr %676
+  678 = mul i32 1, i32 %676.load
+  679 = add i32 %ans.load673, i32 %678
+  store i32 %679 to ptr %ans
+  br bb %if.exit672
+if.exit672:
+  x.load680 = load i32 from ptr %x
+  681 = sdiv i32 %x.load680, i32 2
+  store i32 %681 to ptr %x
+  y.load682 = load i32 from ptr %y
+  683 = sdiv i32 %y.load682, i32 2
+  store i32 %683 to ptr %y
+  i.load684 = load i32 from ptr %i
+  685 = add i32 %i.load684, i32 1
+  store i32 %685 to ptr %i
+  br bb %while.cond654
+then688:
+  store i32 0 to ptr %ans
+  br bb %if.exit689
+if.exit689:
+  ans.load728 = load i32 from ptr %ans
+  store i32 %ans.load728 to ptr %c599
+  sum601.load = load i32 from ptr %sum601
+  store i32 %sum601.load to ptr %al597
+  br bb %while.cond602
+else690:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c599.load691 = load i32 from ptr %c599
+  692 = mul i32 1, i32 4
+  693 = ptradd ptr @SHIFT_TABLE, i32 %692
+  693.load = load i32 from ptr %693
+  695 = mul i32 %c599.load691, i32 %693.load
+  store i32 %695 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond696
+while.cond696:
+  i.load699 = load i32 from ptr %i
+  700 = icmp slt i32 %i.load699, i32 16
+  701 = icmp ne i1 %700, i1 0
+  br i1 %701, bb %while.body697, bb %while.exit698
+while.body697:
+  x.load702 = load i32 from ptr %x
+  703 = srem i32 %x.load702, i32 2
+  704 = icmp ne i32 %703, i32 0
+  br i1 %704, bb %select.then705, bb %select.else706
+while.exit698:
+  br bb %if.exit689
+select.then705:
+  y.load709 = load i32 from ptr %y
+  710 = srem i32 %y.load709, i32 2
+  711 = icmp ne i32 %710, i32 0
+  store i1 %711 to ptr %select708
+  br bb %select.exit707
+select.else706:
+  store i1 0 to ptr %select708
+  br bb %select.exit707
+select.exit707:
+  712 = load i1 from ptr %select708
+  br i1 %712, bb %then713, bb %if.exit714
+then713:
+  ans.load715 = load i32 from ptr %ans
+  i.load716 = load i32 from ptr %i
+  717 = mul i32 %i.load716, i32 4
+  718 = ptradd ptr @SHIFT_TABLE, i32 %717
+  718.load = load i32 from ptr %718
+  720 = mul i32 1, i32 %718.load
+  721 = add i32 %ans.load715, i32 %720
+  store i32 %721 to ptr %ans
+  br bb %if.exit714
+if.exit714:
+  x.load722 = load i32 from ptr %x
+  723 = sdiv i32 %x.load722, i32 2
+  store i32 %723 to ptr %x
+  y.load724 = load i32 from ptr %y
+  725 = sdiv i32 %y.load724, i32 2
+  store i32 %725 to ptr %y
+  i.load726 = load i32 from ptr %i
+  727 = add i32 %i.load726, i32 1
+  store i32 %727 to ptr %i
+  br bb %while.cond696
+then735:
+  x.load738 = load i32 from ptr %x
+  739 = icmp slt i32 %x.load738, i32 0
+  br i1 %739, bb %then740, bb %else742
+if.exit736:
+  ans.load775 = load i32 from ptr %ans
+  store i32 %ans.load775 to ptr %mr417
+  br bb %while.cond420
+else737:
+  y.load743 = load i32 from ptr %y
+  744 = icmp sgt i32 %y.load743, i32 0
+  br i1 %744, bb %then745, bb %else747
+then740:
+  store i32 65535 to ptr %ans
+  br bb %if.exit741
+if.exit741:
+  br bb %if.exit736
+else742:
+  store i32 0 to ptr %ans
+  br bb %if.exit741
+then745:
+  x.load748 = load i32 from ptr %x
+  749 = icmp sgt i32 %x.load748, i32 32767
+  br i1 %749, bb %then750, bb %else752
+if.exit746:
+  br bb %if.exit736
+else747:
+  x.load774 = load i32 from ptr %x
+  store i32 %x.load774 to ptr %ans
+  br bb %if.exit746
+then750:
+  x.load753 = load i32 from ptr %x
+  y.load754 = load i32 from ptr %y
+  755 = mul i32 %y.load754, i32 4
+  756 = ptradd ptr @SHIFT_TABLE, i32 %755
+  756.load = load i32 from ptr %756
+  758 = sdiv i32 %x.load753, i32 %756.load
+  store i32 %758 to ptr %x
+  760 = add i32 %758, i32 65536
+  y.load761 = load i32 from ptr %y
+  762 = sub i32 15, i32 %y.load761
+  763 = add i32 %762, i32 1
+  764 = mul i32 %763, i32 4
+  765 = ptradd ptr @SHIFT_TABLE, i32 %764
+  765.load = load i32 from ptr %765
+  767 = sub i32 %760, i32 %765.load
+  store i32 %767 to ptr %ans
+  br bb %if.exit751
+if.exit751:
+  br bb %if.exit746
+else752:
+  x.load768 = load i32 from ptr %x
+  y.load769 = load i32 from ptr %y
+  770 = mul i32 %y.load769, i32 4
+  771 = ptradd ptr @SHIFT_TABLE, i32 %770
+  771.load = load i32 from ptr %771
+  773 = sdiv i32 %x.load768, i32 %771.load
+  store i32 %773 to ptr %ans
+  br bb %if.exit751
+then781:
+  x.load784 = load i32 from ptr %x
+  785 = icmp slt i32 %x.load784, i32 0
+  br i1 %785, bb %then786, bb %else788
+if.exit782:
+  ans.load821 = load i32 from ptr %ans
+  store i32 %ans.load821 to ptr %pr
+  br bb %while.cond
+else783:
+  y.load789 = load i32 from ptr %y
+  790 = icmp sgt i32 %y.load789, i32 0
+  br i1 %790, bb %then791, bb %else793
+then786:
+  store i32 65535 to ptr %ans
+  br bb %if.exit787
+if.exit787:
+  br bb %if.exit782
+else788:
+  store i32 0 to ptr %ans
+  br bb %if.exit787
+then791:
+  x.load794 = load i32 from ptr %x
+  795 = icmp sgt i32 %x.load794, i32 32767
+  br i1 %795, bb %then796, bb %else798
+if.exit792:
+  br bb %if.exit782
+else793:
+  x.load820 = load i32 from ptr %x
+  store i32 %x.load820 to ptr %ans
+  br bb %if.exit792
+then796:
+  x.load799 = load i32 from ptr %x
+  y.load800 = load i32 from ptr %y
+  801 = mul i32 %y.load800, i32 4
+  802 = ptradd ptr @SHIFT_TABLE, i32 %801
+  802.load = load i32 from ptr %802
+  804 = sdiv i32 %x.load799, i32 %802.load
+  store i32 %804 to ptr %x
+  806 = add i32 %804, i32 65536
+  y.load807 = load i32 from ptr %y
+  808 = sub i32 15, i32 %y.load807
+  809 = add i32 %808, i32 1
+  810 = mul i32 %809, i32 4
+  811 = ptradd ptr @SHIFT_TABLE, i32 %810
+  811.load = load i32 from ptr %811
+  813 = sub i32 %806, i32 %811.load
+  store i32 %813 to ptr %ans
+  br bb %if.exit797
+if.exit797:
+  br bb %if.exit792
+else798:
+  x.load814 = load i32 from ptr %x
+  y.load815 = load i32 from ptr %y
+  816 = mul i32 %y.load815, i32 4
+  817 = ptradd ptr @SHIFT_TABLE, i32 %816
+  817.load = load i32 from ptr %817
+  819 = sdiv i32 %x.load814, i32 %817.load
+  store i32 %819 to ptr %ans
+  br bb %if.exit797
+while.cond829:
+  pr827.load = load i32 from ptr %pr827
+  833 = icmp sgt i32 %pr827.load, i32 0
+  834 = icmp ne i1 %833, i1 0
+  br i1 %834, bb %while.body830, bb %while.exit831
+while.body830:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  pr827.load835 = load i32 from ptr %pr827
+  store i32 %pr827.load835 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond836
+while.exit831:
+  pres828.load1642 = load i32 from ptr %pres828
+  store i32 %pres828.load1642 to ptr %ans
+  call void putint(i32 %pres828.load1642)
+  call void putch(i32 10)
+  store i32 2 to ptr %cur
+  br bb %while.cond1646
+while.cond836:
+  i.load839 = load i32 from ptr %i
+  840 = icmp slt i32 %i.load839, i32 16
+  841 = icmp ne i1 %840, i1 0
+  br i1 %841, bb %while.body837, bb %while.exit838
+while.body837:
+  x.load842 = load i32 from ptr %x
+  843 = srem i32 %x.load842, i32 2
+  844 = icmp ne i32 %843, i32 0
+  br i1 %844, bb %select.then845, bb %select.else846
+while.exit838:
+  ans.load868 = load i32 from ptr %ans
+  869 = icmp ne i32 %ans.load868, i32 0
+  br i1 %869, bb %then870, bb %if.exit871
+select.then845:
+  y.load849 = load i32 from ptr %y
+  850 = srem i32 %y.load849, i32 2
+  851 = icmp ne i32 %850, i32 0
+  store i1 %851 to ptr %select848
+  br bb %select.exit847
+select.else846:
+  store i1 0 to ptr %select848
+  br bb %select.exit847
+select.exit847:
+  852 = load i1 from ptr %select848
+  br i1 %852, bb %then853, bb %if.exit854
+then853:
+  ans.load855 = load i32 from ptr %ans
+  i.load856 = load i32 from ptr %i
+  857 = mul i32 %i.load856, i32 4
+  858 = ptradd ptr @SHIFT_TABLE, i32 %857
+  858.load = load i32 from ptr %858
+  860 = mul i32 1, i32 %858.load
+  861 = add i32 %ans.load855, i32 %860
+  store i32 %861 to ptr %ans
+  br bb %if.exit854
+if.exit854:
+  x.load862 = load i32 from ptr %x
+  863 = sdiv i32 %x.load862, i32 2
+  store i32 %863 to ptr %x
+  y.load864 = load i32 from ptr %y
+  865 = sdiv i32 %y.load864, i32 2
+  store i32 %865 to ptr %y
+  i.load866 = load i32 from ptr %i
+  867 = add i32 %i.load866, i32 1
+  store i32 %867 to ptr %i
+  br bb %while.cond836
+then870:
+  pres828.load = load i32 from ptr %pres828
+  store i32 %pres828.load to ptr %ml872
+  pl826.load = load i32 from ptr %pl826
+  store i32 %pl826.load to ptr %mr874
+  store i32 0 to ptr %mres876
+  br bb %while.cond877
+if.exit871:
+  pl826.load1236 = load i32 from ptr %pl826
+  store i32 %pl826.load1236 to ptr %ml1235
+  pl826.load1238 = load i32 from ptr %pl826
+  store i32 %pl826.load1238 to ptr %mr1237
+  store i32 0 to ptr %mres1239
+  br bb %while.cond1240
+while.cond877:
+  mr874.load = load i32 from ptr %mr874
+  881 = icmp ne i32 %mr874.load, i32 0
+  br i1 %881, bb %while.body878, bb %while.exit879
+while.body878:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr874.load882 = load i32 from ptr %mr874
+  store i32 %mr874.load882 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond883
+while.exit879:
+  mres876.load1233 = load i32 from ptr %mres876
+  store i32 %mres876.load1233 to ptr %ans
+  store i32 %mres876.load1233 to ptr %pres828
+  br bb %if.exit871
+while.cond883:
+  i.load886 = load i32 from ptr %i
+  887 = icmp slt i32 %i.load886, i32 16
+  888 = icmp ne i1 %887, i1 0
+  br i1 %888, bb %while.body884, bb %while.exit885
+while.body884:
+  x.load889 = load i32 from ptr %x
+  890 = srem i32 %x.load889, i32 2
+  891 = icmp ne i32 %890, i32 0
+  br i1 %891, bb %select.then892, bb %select.else893
+while.exit885:
+  ans.load915 = load i32 from ptr %ans
+  916 = icmp ne i32 %ans.load915, i32 0
+  br i1 %916, bb %then917, bb %if.exit918
+select.then892:
+  y.load896 = load i32 from ptr %y
+  897 = srem i32 %y.load896, i32 2
+  898 = icmp ne i32 %897, i32 0
+  store i1 %898 to ptr %select895
+  br bb %select.exit894
+select.else893:
+  store i1 0 to ptr %select895
+  br bb %select.exit894
+select.exit894:
+  899 = load i1 from ptr %select895
+  br i1 %899, bb %then900, bb %if.exit901
+then900:
+  ans.load902 = load i32 from ptr %ans
+  i.load903 = load i32 from ptr %i
+  904 = mul i32 %i.load903, i32 4
+  905 = ptradd ptr @SHIFT_TABLE, i32 %904
+  905.load = load i32 from ptr %905
+  907 = mul i32 1, i32 %905.load
+  908 = add i32 %ans.load902, i32 %907
+  store i32 %908 to ptr %ans
+  br bb %if.exit901
+if.exit901:
+  x.load909 = load i32 from ptr %x
+  910 = sdiv i32 %x.load909, i32 2
+  store i32 %910 to ptr %x
+  y.load911 = load i32 from ptr %y
+  912 = sdiv i32 %y.load911, i32 2
+  store i32 %912 to ptr %y
+  i.load913 = load i32 from ptr %i
+  914 = add i32 %i.load913, i32 1
+  store i32 %914 to ptr %i
+  br bb %while.cond883
+then917:
+  mres876.load = load i32 from ptr %mres876
+  store i32 %mres876.load to ptr %al919
+  ml872.load = load i32 from ptr %ml872
+  store i32 %ml872.load to ptr %c921
+  br bb %while.cond924
+if.exit918:
+  ml872.load1055 = load i32 from ptr %ml872
+  store i32 %ml872.load1055 to ptr %al1054
+  ml872.load1057 = load i32 from ptr %ml872
+  store i32 %ml872.load1057 to ptr %c1056
+  br bb %while.cond1059
+while.cond924:
+  c921.load = load i32 from ptr %c921
+  928 = icmp ne i32 %c921.load, i32 0
+  br i1 %928, bb %while.body925, bb %while.exit926
+while.body925:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al919.load = load i32 from ptr %al919
+  store i32 %al919.load to ptr %x
+  c921.load930 = load i32 from ptr %c921
+  store i32 %c921.load930 to ptr %y
+  br bb %while.cond931
+while.exit926:
+  al919.load1052 = load i32 from ptr %al919
+  store i32 %al919.load1052 to ptr %ans
+  store i32 %al919.load1052 to ptr %mres876
+  br bb %if.exit918
+while.cond931:
+  i.load934 = load i32 from ptr %i
+  935 = icmp slt i32 %i.load934, i32 16
+  936 = icmp ne i1 %935, i1 0
+  br i1 %936, bb %while.body932, bb %while.exit933
+while.body932:
+  x.load937 = load i32 from ptr %x
+  938 = srem i32 %x.load937, i32 2
+  939 = icmp ne i32 %938, i32 0
+  br i1 %939, bb %then940, bb %else942
+while.exit933:
+  ans.load973 = load i32 from ptr %ans
+  store i32 %ans.load973 to ptr %sum923
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al919.load974 = load i32 from ptr %al919
+  store i32 %al919.load974 to ptr %x
+  c921.load975 = load i32 from ptr %c921
+  store i32 %c921.load975 to ptr %y
+  br bb %while.cond976
+then940:
+  y.load943 = load i32 from ptr %y
+  944 = srem i32 %y.load943, i32 2
+  945 = icmp eq i32 %944, i32 0
+  br i1 %945, bb %then946, bb %if.exit947
+if.exit941:
+  x.load967 = load i32 from ptr %x
+  968 = sdiv i32 %x.load967, i32 2
+  store i32 %968 to ptr %x
+  y.load969 = load i32 from ptr %y
+  970 = sdiv i32 %y.load969, i32 2
+  store i32 %970 to ptr %y
+  i.load971 = load i32 from ptr %i
+  972 = add i32 %i.load971, i32 1
+  store i32 %972 to ptr %i
+  br bb %while.cond931
+else942:
+  y.load955 = load i32 from ptr %y
+  956 = srem i32 %y.load955, i32 2
+  957 = icmp ne i32 %956, i32 0
+  br i1 %957, bb %then958, bb %if.exit959
+then946:
+  ans.load948 = load i32 from ptr %ans
+  i.load949 = load i32 from ptr %i
+  950 = mul i32 %i.load949, i32 4
+  951 = ptradd ptr @SHIFT_TABLE, i32 %950
+  951.load = load i32 from ptr %951
+  953 = mul i32 1, i32 %951.load
+  954 = add i32 %ans.load948, i32 %953
+  store i32 %954 to ptr %ans
+  br bb %if.exit947
+if.exit947:
+  br bb %if.exit941
+then958:
+  ans.load960 = load i32 from ptr %ans
+  i.load961 = load i32 from ptr %i
+  962 = mul i32 %i.load961, i32 4
+  963 = ptradd ptr @SHIFT_TABLE, i32 %962
+  963.load = load i32 from ptr %963
+  965 = mul i32 1, i32 %963.load
+  966 = add i32 %ans.load960, i32 %965
+  store i32 %966 to ptr %ans
+  br bb %if.exit959
+if.exit959:
+  br bb %if.exit941
+while.cond976:
+  i.load979 = load i32 from ptr %i
+  980 = icmp slt i32 %i.load979, i32 16
+  981 = icmp ne i1 %980, i1 0
+  br i1 %981, bb %while.body977, bb %while.exit978
+while.body977:
+  x.load982 = load i32 from ptr %x
+  983 = srem i32 %x.load982, i32 2
+  984 = icmp ne i32 %983, i32 0
+  br i1 %984, bb %select.then985, bb %select.else986
+while.exit978:
+  ans.load1008 = load i32 from ptr %ans
+  store i32 %ans.load1008 to ptr %c921
+  1009 = icmp sgt i32 1, i32 15
+  br i1 %1009, bb %then1010, bb %else1012
+select.then985:
+  y.load989 = load i32 from ptr %y
+  990 = srem i32 %y.load989, i32 2
+  991 = icmp ne i32 %990, i32 0
+  store i1 %991 to ptr %select988
+  br bb %select.exit987
+select.else986:
+  store i1 0 to ptr %select988
+  br bb %select.exit987
+select.exit987:
+  992 = load i1 from ptr %select988
+  br i1 %992, bb %then993, bb %if.exit994
+then993:
+  ans.load995 = load i32 from ptr %ans
+  i.load996 = load i32 from ptr %i
+  997 = mul i32 %i.load996, i32 4
+  998 = ptradd ptr @SHIFT_TABLE, i32 %997
+  998.load = load i32 from ptr %998
+  1000 = mul i32 1, i32 %998.load
+  1001 = add i32 %ans.load995, i32 %1000
+  store i32 %1001 to ptr %ans
+  br bb %if.exit994
+if.exit994:
+  x.load1002 = load i32 from ptr %x
+  1003 = sdiv i32 %x.load1002, i32 2
+  store i32 %1003 to ptr %x
+  y.load1004 = load i32 from ptr %y
+  1005 = sdiv i32 %y.load1004, i32 2
+  store i32 %1005 to ptr %y
+  i.load1006 = load i32 from ptr %i
+  1007 = add i32 %i.load1006, i32 1
+  store i32 %1007 to ptr %i
+  br bb %while.cond976
+then1010:
+  store i32 0 to ptr %ans
+  br bb %if.exit1011
+if.exit1011:
+  ans.load1050 = load i32 from ptr %ans
+  store i32 %ans.load1050 to ptr %c921
+  sum923.load = load i32 from ptr %sum923
+  store i32 %sum923.load to ptr %al919
+  br bb %while.cond924
+else1012:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c921.load1013 = load i32 from ptr %c921
+  1014 = mul i32 1, i32 4
+  1015 = ptradd ptr @SHIFT_TABLE, i32 %1014
+  1015.load = load i32 from ptr %1015
+  1017 = mul i32 %c921.load1013, i32 %1015.load
+  store i32 %1017 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1018
+while.cond1018:
+  i.load1021 = load i32 from ptr %i
+  1022 = icmp slt i32 %i.load1021, i32 16
+  1023 = icmp ne i1 %1022, i1 0
+  br i1 %1023, bb %while.body1019, bb %while.exit1020
+while.body1019:
+  x.load1024 = load i32 from ptr %x
+  1025 = srem i32 %x.load1024, i32 2
+  1026 = icmp ne i32 %1025, i32 0
+  br i1 %1026, bb %select.then1027, bb %select.else1028
+while.exit1020:
+  br bb %if.exit1011
+select.then1027:
+  y.load1031 = load i32 from ptr %y
+  1032 = srem i32 %y.load1031, i32 2
+  1033 = icmp ne i32 %1032, i32 0
+  store i1 %1033 to ptr %select1030
+  br bb %select.exit1029
+select.else1028:
+  store i1 0 to ptr %select1030
+  br bb %select.exit1029
+select.exit1029:
+  1034 = load i1 from ptr %select1030
+  br i1 %1034, bb %then1035, bb %if.exit1036
+then1035:
+  ans.load1037 = load i32 from ptr %ans
+  i.load1038 = load i32 from ptr %i
+  1039 = mul i32 %i.load1038, i32 4
+  1040 = ptradd ptr @SHIFT_TABLE, i32 %1039
+  1040.load = load i32 from ptr %1040
+  1042 = mul i32 1, i32 %1040.load
+  1043 = add i32 %ans.load1037, i32 %1042
+  store i32 %1043 to ptr %ans
+  br bb %if.exit1036
+if.exit1036:
+  x.load1044 = load i32 from ptr %x
+  1045 = sdiv i32 %x.load1044, i32 2
+  store i32 %1045 to ptr %x
+  y.load1046 = load i32 from ptr %y
+  1047 = sdiv i32 %y.load1046, i32 2
+  store i32 %1047 to ptr %y
+  i.load1048 = load i32 from ptr %i
+  1049 = add i32 %i.load1048, i32 1
+  store i32 %1049 to ptr %i
+  br bb %while.cond1018
+while.cond1059:
+  c1056.load = load i32 from ptr %c1056
+  1063 = icmp ne i32 %c1056.load, i32 0
+  br i1 %1063, bb %while.body1060, bb %while.exit1061
+while.body1060:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1054.load = load i32 from ptr %al1054
+  store i32 %al1054.load to ptr %x
+  c1056.load1065 = load i32 from ptr %c1056
+  store i32 %c1056.load1065 to ptr %y
+  br bb %while.cond1066
+while.exit1061:
+  al1054.load1187 = load i32 from ptr %al1054
+  store i32 %al1054.load1187 to ptr %ans
+  store i32 %al1054.load1187 to ptr %ml872
+  mr874.load1189 = load i32 from ptr %mr874
+  store i32 %mr874.load1189 to ptr %x
+  store i32 1 to ptr %y
+  1191 = icmp sge i32 1, i32 15
+  br i1 %1191, bb %then1192, bb %else1194
+while.cond1066:
+  i.load1069 = load i32 from ptr %i
+  1070 = icmp slt i32 %i.load1069, i32 16
+  1071 = icmp ne i1 %1070, i1 0
+  br i1 %1071, bb %while.body1067, bb %while.exit1068
+while.body1067:
+  x.load1072 = load i32 from ptr %x
+  1073 = srem i32 %x.load1072, i32 2
+  1074 = icmp ne i32 %1073, i32 0
+  br i1 %1074, bb %then1075, bb %else1077
+while.exit1068:
+  ans.load1108 = load i32 from ptr %ans
+  store i32 %ans.load1108 to ptr %sum1058
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1054.load1109 = load i32 from ptr %al1054
+  store i32 %al1054.load1109 to ptr %x
+  c1056.load1110 = load i32 from ptr %c1056
+  store i32 %c1056.load1110 to ptr %y
+  br bb %while.cond1111
+then1075:
+  y.load1078 = load i32 from ptr %y
+  1079 = srem i32 %y.load1078, i32 2
+  1080 = icmp eq i32 %1079, i32 0
+  br i1 %1080, bb %then1081, bb %if.exit1082
+if.exit1076:
+  x.load1102 = load i32 from ptr %x
+  1103 = sdiv i32 %x.load1102, i32 2
+  store i32 %1103 to ptr %x
+  y.load1104 = load i32 from ptr %y
+  1105 = sdiv i32 %y.load1104, i32 2
+  store i32 %1105 to ptr %y
+  i.load1106 = load i32 from ptr %i
+  1107 = add i32 %i.load1106, i32 1
+  store i32 %1107 to ptr %i
+  br bb %while.cond1066
+else1077:
+  y.load1090 = load i32 from ptr %y
+  1091 = srem i32 %y.load1090, i32 2
+  1092 = icmp ne i32 %1091, i32 0
+  br i1 %1092, bb %then1093, bb %if.exit1094
+then1081:
+  ans.load1083 = load i32 from ptr %ans
+  i.load1084 = load i32 from ptr %i
+  1085 = mul i32 %i.load1084, i32 4
+  1086 = ptradd ptr @SHIFT_TABLE, i32 %1085
+  1086.load = load i32 from ptr %1086
+  1088 = mul i32 1, i32 %1086.load
+  1089 = add i32 %ans.load1083, i32 %1088
+  store i32 %1089 to ptr %ans
+  br bb %if.exit1082
+if.exit1082:
+  br bb %if.exit1076
+then1093:
+  ans.load1095 = load i32 from ptr %ans
+  i.load1096 = load i32 from ptr %i
+  1097 = mul i32 %i.load1096, i32 4
+  1098 = ptradd ptr @SHIFT_TABLE, i32 %1097
+  1098.load = load i32 from ptr %1098
+  1100 = mul i32 1, i32 %1098.load
+  1101 = add i32 %ans.load1095, i32 %1100
+  store i32 %1101 to ptr %ans
+  br bb %if.exit1094
+if.exit1094:
+  br bb %if.exit1076
+while.cond1111:
+  i.load1114 = load i32 from ptr %i
+  1115 = icmp slt i32 %i.load1114, i32 16
+  1116 = icmp ne i1 %1115, i1 0
+  br i1 %1116, bb %while.body1112, bb %while.exit1113
+while.body1112:
+  x.load1117 = load i32 from ptr %x
+  1118 = srem i32 %x.load1117, i32 2
+  1119 = icmp ne i32 %1118, i32 0
+  br i1 %1119, bb %select.then1120, bb %select.else1121
+while.exit1113:
+  ans.load1143 = load i32 from ptr %ans
+  store i32 %ans.load1143 to ptr %c1056
+  1144 = icmp sgt i32 1, i32 15
+  br i1 %1144, bb %then1145, bb %else1147
+select.then1120:
+  y.load1124 = load i32 from ptr %y
+  1125 = srem i32 %y.load1124, i32 2
+  1126 = icmp ne i32 %1125, i32 0
+  store i1 %1126 to ptr %select1123
+  br bb %select.exit1122
+select.else1121:
+  store i1 0 to ptr %select1123
+  br bb %select.exit1122
+select.exit1122:
+  1127 = load i1 from ptr %select1123
+  br i1 %1127, bb %then1128, bb %if.exit1129
+then1128:
+  ans.load1130 = load i32 from ptr %ans
+  i.load1131 = load i32 from ptr %i
+  1132 = mul i32 %i.load1131, i32 4
+  1133 = ptradd ptr @SHIFT_TABLE, i32 %1132
+  1133.load = load i32 from ptr %1133
+  1135 = mul i32 1, i32 %1133.load
+  1136 = add i32 %ans.load1130, i32 %1135
+  store i32 %1136 to ptr %ans
+  br bb %if.exit1129
+if.exit1129:
+  x.load1137 = load i32 from ptr %x
+  1138 = sdiv i32 %x.load1137, i32 2
+  store i32 %1138 to ptr %x
+  y.load1139 = load i32 from ptr %y
+  1140 = sdiv i32 %y.load1139, i32 2
+  store i32 %1140 to ptr %y
+  i.load1141 = load i32 from ptr %i
+  1142 = add i32 %i.load1141, i32 1
+  store i32 %1142 to ptr %i
+  br bb %while.cond1111
+then1145:
+  store i32 0 to ptr %ans
+  br bb %if.exit1146
+if.exit1146:
+  ans.load1185 = load i32 from ptr %ans
+  store i32 %ans.load1185 to ptr %c1056
+  sum1058.load = load i32 from ptr %sum1058
+  store i32 %sum1058.load to ptr %al1054
+  br bb %while.cond1059
+else1147:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c1056.load1148 = load i32 from ptr %c1056
+  1149 = mul i32 1, i32 4
+  1150 = ptradd ptr @SHIFT_TABLE, i32 %1149
+  1150.load = load i32 from ptr %1150
+  1152 = mul i32 %c1056.load1148, i32 %1150.load
+  store i32 %1152 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1153
+while.cond1153:
+  i.load1156 = load i32 from ptr %i
+  1157 = icmp slt i32 %i.load1156, i32 16
+  1158 = icmp ne i1 %1157, i1 0
+  br i1 %1158, bb %while.body1154, bb %while.exit1155
+while.body1154:
+  x.load1159 = load i32 from ptr %x
+  1160 = srem i32 %x.load1159, i32 2
+  1161 = icmp ne i32 %1160, i32 0
+  br i1 %1161, bb %select.then1162, bb %select.else1163
+while.exit1155:
+  br bb %if.exit1146
+select.then1162:
+  y.load1166 = load i32 from ptr %y
+  1167 = srem i32 %y.load1166, i32 2
+  1168 = icmp ne i32 %1167, i32 0
+  store i1 %1168 to ptr %select1165
+  br bb %select.exit1164
+select.else1163:
+  store i1 0 to ptr %select1165
+  br bb %select.exit1164
+select.exit1164:
+  1169 = load i1 from ptr %select1165
+  br i1 %1169, bb %then1170, bb %if.exit1171
+then1170:
+  ans.load1172 = load i32 from ptr %ans
+  i.load1173 = load i32 from ptr %i
+  1174 = mul i32 %i.load1173, i32 4
+  1175 = ptradd ptr @SHIFT_TABLE, i32 %1174
+  1175.load = load i32 from ptr %1175
+  1177 = mul i32 1, i32 %1175.load
+  1178 = add i32 %ans.load1172, i32 %1177
+  store i32 %1178 to ptr %ans
+  br bb %if.exit1171
+if.exit1171:
+  x.load1179 = load i32 from ptr %x
+  1180 = sdiv i32 %x.load1179, i32 2
+  store i32 %1180 to ptr %x
+  y.load1181 = load i32 from ptr %y
+  1182 = sdiv i32 %y.load1181, i32 2
+  store i32 %1182 to ptr %y
+  i.load1183 = load i32 from ptr %i
+  1184 = add i32 %i.load1183, i32 1
+  store i32 %1184 to ptr %i
+  br bb %while.cond1153
+then1192:
+  x.load1195 = load i32 from ptr %x
+  1196 = icmp slt i32 %x.load1195, i32 0
+  br i1 %1196, bb %then1197, bb %else1199
+if.exit1193:
+  ans.load1232 = load i32 from ptr %ans
+  store i32 %ans.load1232 to ptr %mr874
+  br bb %while.cond877
+else1194:
+  y.load1200 = load i32 from ptr %y
+  1201 = icmp sgt i32 %y.load1200, i32 0
+  br i1 %1201, bb %then1202, bb %else1204
+then1197:
+  store i32 65535 to ptr %ans
+  br bb %if.exit1198
+if.exit1198:
+  br bb %if.exit1193
+else1199:
+  store i32 0 to ptr %ans
+  br bb %if.exit1198
+then1202:
+  x.load1205 = load i32 from ptr %x
+  1206 = icmp sgt i32 %x.load1205, i32 32767
+  br i1 %1206, bb %then1207, bb %else1209
+if.exit1203:
+  br bb %if.exit1193
+else1204:
+  x.load1231 = load i32 from ptr %x
+  store i32 %x.load1231 to ptr %ans
+  br bb %if.exit1203
+then1207:
+  x.load1210 = load i32 from ptr %x
+  y.load1211 = load i32 from ptr %y
+  1212 = mul i32 %y.load1211, i32 4
+  1213 = ptradd ptr @SHIFT_TABLE, i32 %1212
+  1213.load = load i32 from ptr %1213
+  1215 = sdiv i32 %x.load1210, i32 %1213.load
+  store i32 %1215 to ptr %x
+  1217 = add i32 %1215, i32 65536
+  y.load1218 = load i32 from ptr %y
+  1219 = sub i32 15, i32 %y.load1218
+  1220 = add i32 %1219, i32 1
+  1221 = mul i32 %1220, i32 4
+  1222 = ptradd ptr @SHIFT_TABLE, i32 %1221
+  1222.load = load i32 from ptr %1222
+  1224 = sub i32 %1217, i32 %1222.load
+  store i32 %1224 to ptr %ans
+  br bb %if.exit1208
+if.exit1208:
+  br bb %if.exit1203
+else1209:
+  x.load1225 = load i32 from ptr %x
+  y.load1226 = load i32 from ptr %y
+  1227 = mul i32 %y.load1226, i32 4
+  1228 = ptradd ptr @SHIFT_TABLE, i32 %1227
+  1228.load = load i32 from ptr %1228
+  1230 = sdiv i32 %x.load1225, i32 %1228.load
+  store i32 %1230 to ptr %ans
+  br bb %if.exit1208
+while.cond1240:
+  mr1237.load = load i32 from ptr %mr1237
+  1244 = icmp ne i32 %mr1237.load, i32 0
+  br i1 %1244, bb %while.body1241, bb %while.exit1242
+while.body1241:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr1237.load1245 = load i32 from ptr %mr1237
+  store i32 %mr1237.load1245 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond1246
+while.exit1242:
+  mres1239.load1596 = load i32 from ptr %mres1239
+  store i32 %mres1239.load1596 to ptr %ans
+  store i32 %mres1239.load1596 to ptr %pl826
+  pr827.load1598 = load i32 from ptr %pr827
+  store i32 %pr827.load1598 to ptr %x
+  store i32 1 to ptr %y
+  1600 = icmp sge i32 1, i32 15
+  br i1 %1600, bb %then1601, bb %else1603
+while.cond1246:
+  i.load1249 = load i32 from ptr %i
+  1250 = icmp slt i32 %i.load1249, i32 16
+  1251 = icmp ne i1 %1250, i1 0
+  br i1 %1251, bb %while.body1247, bb %while.exit1248
+while.body1247:
+  x.load1252 = load i32 from ptr %x
+  1253 = srem i32 %x.load1252, i32 2
+  1254 = icmp ne i32 %1253, i32 0
+  br i1 %1254, bb %select.then1255, bb %select.else1256
+while.exit1248:
+  ans.load1278 = load i32 from ptr %ans
+  1279 = icmp ne i32 %ans.load1278, i32 0
+  br i1 %1279, bb %then1280, bb %if.exit1281
+select.then1255:
+  y.load1259 = load i32 from ptr %y
+  1260 = srem i32 %y.load1259, i32 2
+  1261 = icmp ne i32 %1260, i32 0
+  store i1 %1261 to ptr %select1258
+  br bb %select.exit1257
+select.else1256:
+  store i1 0 to ptr %select1258
+  br bb %select.exit1257
+select.exit1257:
+  1262 = load i1 from ptr %select1258
+  br i1 %1262, bb %then1263, bb %if.exit1264
+then1263:
+  ans.load1265 = load i32 from ptr %ans
+  i.load1266 = load i32 from ptr %i
+  1267 = mul i32 %i.load1266, i32 4
+  1268 = ptradd ptr @SHIFT_TABLE, i32 %1267
+  1268.load = load i32 from ptr %1268
+  1270 = mul i32 1, i32 %1268.load
+  1271 = add i32 %ans.load1265, i32 %1270
+  store i32 %1271 to ptr %ans
+  br bb %if.exit1264
+if.exit1264:
+  x.load1272 = load i32 from ptr %x
+  1273 = sdiv i32 %x.load1272, i32 2
+  store i32 %1273 to ptr %x
+  y.load1274 = load i32 from ptr %y
+  1275 = sdiv i32 %y.load1274, i32 2
+  store i32 %1275 to ptr %y
+  i.load1276 = load i32 from ptr %i
+  1277 = add i32 %i.load1276, i32 1
+  store i32 %1277 to ptr %i
+  br bb %while.cond1246
+then1280:
+  mres1239.load = load i32 from ptr %mres1239
+  store i32 %mres1239.load to ptr %al1282
+  ml1235.load = load i32 from ptr %ml1235
+  store i32 %ml1235.load to ptr %c1284
+  br bb %while.cond1287
+if.exit1281:
+  ml1235.load1418 = load i32 from ptr %ml1235
+  store i32 %ml1235.load1418 to ptr %al1417
+  ml1235.load1420 = load i32 from ptr %ml1235
+  store i32 %ml1235.load1420 to ptr %c1419
+  br bb %while.cond1422
+while.cond1287:
+  c1284.load = load i32 from ptr %c1284
+  1291 = icmp ne i32 %c1284.load, i32 0
+  br i1 %1291, bb %while.body1288, bb %while.exit1289
+while.body1288:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1282.load = load i32 from ptr %al1282
+  store i32 %al1282.load to ptr %x
+  c1284.load1293 = load i32 from ptr %c1284
+  store i32 %c1284.load1293 to ptr %y
+  br bb %while.cond1294
+while.exit1289:
+  al1282.load1415 = load i32 from ptr %al1282
+  store i32 %al1282.load1415 to ptr %ans
+  store i32 %al1282.load1415 to ptr %mres1239
+  br bb %if.exit1281
+while.cond1294:
+  i.load1297 = load i32 from ptr %i
+  1298 = icmp slt i32 %i.load1297, i32 16
+  1299 = icmp ne i1 %1298, i1 0
+  br i1 %1299, bb %while.body1295, bb %while.exit1296
+while.body1295:
+  x.load1300 = load i32 from ptr %x
+  1301 = srem i32 %x.load1300, i32 2
+  1302 = icmp ne i32 %1301, i32 0
+  br i1 %1302, bb %then1303, bb %else1305
+while.exit1296:
+  ans.load1336 = load i32 from ptr %ans
+  store i32 %ans.load1336 to ptr %sum1286
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1282.load1337 = load i32 from ptr %al1282
+  store i32 %al1282.load1337 to ptr %x
+  c1284.load1338 = load i32 from ptr %c1284
+  store i32 %c1284.load1338 to ptr %y
+  br bb %while.cond1339
+then1303:
+  y.load1306 = load i32 from ptr %y
+  1307 = srem i32 %y.load1306, i32 2
+  1308 = icmp eq i32 %1307, i32 0
+  br i1 %1308, bb %then1309, bb %if.exit1310
+if.exit1304:
+  x.load1330 = load i32 from ptr %x
+  1331 = sdiv i32 %x.load1330, i32 2
+  store i32 %1331 to ptr %x
+  y.load1332 = load i32 from ptr %y
+  1333 = sdiv i32 %y.load1332, i32 2
+  store i32 %1333 to ptr %y
+  i.load1334 = load i32 from ptr %i
+  1335 = add i32 %i.load1334, i32 1
+  store i32 %1335 to ptr %i
+  br bb %while.cond1294
+else1305:
+  y.load1318 = load i32 from ptr %y
+  1319 = srem i32 %y.load1318, i32 2
+  1320 = icmp ne i32 %1319, i32 0
+  br i1 %1320, bb %then1321, bb %if.exit1322
+then1309:
+  ans.load1311 = load i32 from ptr %ans
+  i.load1312 = load i32 from ptr %i
+  1313 = mul i32 %i.load1312, i32 4
+  1314 = ptradd ptr @SHIFT_TABLE, i32 %1313
+  1314.load = load i32 from ptr %1314
+  1316 = mul i32 1, i32 %1314.load
+  1317 = add i32 %ans.load1311, i32 %1316
+  store i32 %1317 to ptr %ans
+  br bb %if.exit1310
+if.exit1310:
+  br bb %if.exit1304
+then1321:
+  ans.load1323 = load i32 from ptr %ans
+  i.load1324 = load i32 from ptr %i
+  1325 = mul i32 %i.load1324, i32 4
+  1326 = ptradd ptr @SHIFT_TABLE, i32 %1325
+  1326.load = load i32 from ptr %1326
+  1328 = mul i32 1, i32 %1326.load
+  1329 = add i32 %ans.load1323, i32 %1328
+  store i32 %1329 to ptr %ans
+  br bb %if.exit1322
+if.exit1322:
+  br bb %if.exit1304
+while.cond1339:
+  i.load1342 = load i32 from ptr %i
+  1343 = icmp slt i32 %i.load1342, i32 16
+  1344 = icmp ne i1 %1343, i1 0
+  br i1 %1344, bb %while.body1340, bb %while.exit1341
+while.body1340:
+  x.load1345 = load i32 from ptr %x
+  1346 = srem i32 %x.load1345, i32 2
+  1347 = icmp ne i32 %1346, i32 0
+  br i1 %1347, bb %select.then1348, bb %select.else1349
+while.exit1341:
+  ans.load1371 = load i32 from ptr %ans
+  store i32 %ans.load1371 to ptr %c1284
+  1372 = icmp sgt i32 1, i32 15
+  br i1 %1372, bb %then1373, bb %else1375
+select.then1348:
+  y.load1352 = load i32 from ptr %y
+  1353 = srem i32 %y.load1352, i32 2
+  1354 = icmp ne i32 %1353, i32 0
+  store i1 %1354 to ptr %select1351
+  br bb %select.exit1350
+select.else1349:
+  store i1 0 to ptr %select1351
+  br bb %select.exit1350
+select.exit1350:
+  1355 = load i1 from ptr %select1351
+  br i1 %1355, bb %then1356, bb %if.exit1357
+then1356:
+  ans.load1358 = load i32 from ptr %ans
+  i.load1359 = load i32 from ptr %i
+  1360 = mul i32 %i.load1359, i32 4
+  1361 = ptradd ptr @SHIFT_TABLE, i32 %1360
+  1361.load = load i32 from ptr %1361
+  1363 = mul i32 1, i32 %1361.load
+  1364 = add i32 %ans.load1358, i32 %1363
+  store i32 %1364 to ptr %ans
+  br bb %if.exit1357
+if.exit1357:
+  x.load1365 = load i32 from ptr %x
+  1366 = sdiv i32 %x.load1365, i32 2
+  store i32 %1366 to ptr %x
+  y.load1367 = load i32 from ptr %y
+  1368 = sdiv i32 %y.load1367, i32 2
+  store i32 %1368 to ptr %y
+  i.load1369 = load i32 from ptr %i
+  1370 = add i32 %i.load1369, i32 1
+  store i32 %1370 to ptr %i
+  br bb %while.cond1339
+then1373:
+  store i32 0 to ptr %ans
+  br bb %if.exit1374
+if.exit1374:
+  ans.load1413 = load i32 from ptr %ans
+  store i32 %ans.load1413 to ptr %c1284
+  sum1286.load = load i32 from ptr %sum1286
+  store i32 %sum1286.load to ptr %al1282
+  br bb %while.cond1287
+else1375:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c1284.load1376 = load i32 from ptr %c1284
+  1377 = mul i32 1, i32 4
+  1378 = ptradd ptr @SHIFT_TABLE, i32 %1377
+  1378.load = load i32 from ptr %1378
+  1380 = mul i32 %c1284.load1376, i32 %1378.load
+  store i32 %1380 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1381
+while.cond1381:
+  i.load1384 = load i32 from ptr %i
+  1385 = icmp slt i32 %i.load1384, i32 16
+  1386 = icmp ne i1 %1385, i1 0
+  br i1 %1386, bb %while.body1382, bb %while.exit1383
+while.body1382:
+  x.load1387 = load i32 from ptr %x
+  1388 = srem i32 %x.load1387, i32 2
+  1389 = icmp ne i32 %1388, i32 0
+  br i1 %1389, bb %select.then1390, bb %select.else1391
+while.exit1383:
+  br bb %if.exit1374
+select.then1390:
+  y.load1394 = load i32 from ptr %y
+  1395 = srem i32 %y.load1394, i32 2
+  1396 = icmp ne i32 %1395, i32 0
+  store i1 %1396 to ptr %select1393
+  br bb %select.exit1392
+select.else1391:
+  store i1 0 to ptr %select1393
+  br bb %select.exit1392
+select.exit1392:
+  1397 = load i1 from ptr %select1393
+  br i1 %1397, bb %then1398, bb %if.exit1399
+then1398:
+  ans.load1400 = load i32 from ptr %ans
+  i.load1401 = load i32 from ptr %i
+  1402 = mul i32 %i.load1401, i32 4
+  1403 = ptradd ptr @SHIFT_TABLE, i32 %1402
+  1403.load = load i32 from ptr %1403
+  1405 = mul i32 1, i32 %1403.load
+  1406 = add i32 %ans.load1400, i32 %1405
+  store i32 %1406 to ptr %ans
+  br bb %if.exit1399
+if.exit1399:
+  x.load1407 = load i32 from ptr %x
+  1408 = sdiv i32 %x.load1407, i32 2
+  store i32 %1408 to ptr %x
+  y.load1409 = load i32 from ptr %y
+  1410 = sdiv i32 %y.load1409, i32 2
+  store i32 %1410 to ptr %y
+  i.load1411 = load i32 from ptr %i
+  1412 = add i32 %i.load1411, i32 1
+  store i32 %1412 to ptr %i
+  br bb %while.cond1381
+while.cond1422:
+  c1419.load = load i32 from ptr %c1419
+  1426 = icmp ne i32 %c1419.load, i32 0
+  br i1 %1426, bb %while.body1423, bb %while.exit1424
+while.body1423:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1417.load = load i32 from ptr %al1417
+  store i32 %al1417.load to ptr %x
+  c1419.load1428 = load i32 from ptr %c1419
+  store i32 %c1419.load1428 to ptr %y
+  br bb %while.cond1429
+while.exit1424:
+  al1417.load1550 = load i32 from ptr %al1417
+  store i32 %al1417.load1550 to ptr %ans
+  store i32 %al1417.load1550 to ptr %ml1235
+  mr1237.load1552 = load i32 from ptr %mr1237
+  store i32 %mr1237.load1552 to ptr %x
+  store i32 1 to ptr %y
+  1554 = icmp sge i32 1, i32 15
+  br i1 %1554, bb %then1555, bb %else1557
+while.cond1429:
+  i.load1432 = load i32 from ptr %i
+  1433 = icmp slt i32 %i.load1432, i32 16
+  1434 = icmp ne i1 %1433, i1 0
+  br i1 %1434, bb %while.body1430, bb %while.exit1431
+while.body1430:
+  x.load1435 = load i32 from ptr %x
+  1436 = srem i32 %x.load1435, i32 2
+  1437 = icmp ne i32 %1436, i32 0
+  br i1 %1437, bb %then1438, bb %else1440
+while.exit1431:
+  ans.load1471 = load i32 from ptr %ans
+  store i32 %ans.load1471 to ptr %sum1421
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1417.load1472 = load i32 from ptr %al1417
+  store i32 %al1417.load1472 to ptr %x
+  c1419.load1473 = load i32 from ptr %c1419
+  store i32 %c1419.load1473 to ptr %y
+  br bb %while.cond1474
+then1438:
+  y.load1441 = load i32 from ptr %y
+  1442 = srem i32 %y.load1441, i32 2
+  1443 = icmp eq i32 %1442, i32 0
+  br i1 %1443, bb %then1444, bb %if.exit1445
+if.exit1439:
+  x.load1465 = load i32 from ptr %x
+  1466 = sdiv i32 %x.load1465, i32 2
+  store i32 %1466 to ptr %x
+  y.load1467 = load i32 from ptr %y
+  1468 = sdiv i32 %y.load1467, i32 2
+  store i32 %1468 to ptr %y
+  i.load1469 = load i32 from ptr %i
+  1470 = add i32 %i.load1469, i32 1
+  store i32 %1470 to ptr %i
+  br bb %while.cond1429
+else1440:
+  y.load1453 = load i32 from ptr %y
+  1454 = srem i32 %y.load1453, i32 2
+  1455 = icmp ne i32 %1454, i32 0
+  br i1 %1455, bb %then1456, bb %if.exit1457
+then1444:
+  ans.load1446 = load i32 from ptr %ans
+  i.load1447 = load i32 from ptr %i
+  1448 = mul i32 %i.load1447, i32 4
+  1449 = ptradd ptr @SHIFT_TABLE, i32 %1448
+  1449.load = load i32 from ptr %1449
+  1451 = mul i32 1, i32 %1449.load
+  1452 = add i32 %ans.load1446, i32 %1451
+  store i32 %1452 to ptr %ans
+  br bb %if.exit1445
+if.exit1445:
+  br bb %if.exit1439
+then1456:
+  ans.load1458 = load i32 from ptr %ans
+  i.load1459 = load i32 from ptr %i
+  1460 = mul i32 %i.load1459, i32 4
+  1461 = ptradd ptr @SHIFT_TABLE, i32 %1460
+  1461.load = load i32 from ptr %1461
+  1463 = mul i32 1, i32 %1461.load
+  1464 = add i32 %ans.load1458, i32 %1463
+  store i32 %1464 to ptr %ans
+  br bb %if.exit1457
+if.exit1457:
+  br bb %if.exit1439
+while.cond1474:
+  i.load1477 = load i32 from ptr %i
+  1478 = icmp slt i32 %i.load1477, i32 16
+  1479 = icmp ne i1 %1478, i1 0
+  br i1 %1479, bb %while.body1475, bb %while.exit1476
+while.body1475:
+  x.load1480 = load i32 from ptr %x
+  1481 = srem i32 %x.load1480, i32 2
+  1482 = icmp ne i32 %1481, i32 0
+  br i1 %1482, bb %select.then1483, bb %select.else1484
+while.exit1476:
+  ans.load1506 = load i32 from ptr %ans
+  store i32 %ans.load1506 to ptr %c1419
+  1507 = icmp sgt i32 1, i32 15
+  br i1 %1507, bb %then1508, bb %else1510
+select.then1483:
+  y.load1487 = load i32 from ptr %y
+  1488 = srem i32 %y.load1487, i32 2
+  1489 = icmp ne i32 %1488, i32 0
+  store i1 %1489 to ptr %select1486
+  br bb %select.exit1485
+select.else1484:
+  store i1 0 to ptr %select1486
+  br bb %select.exit1485
+select.exit1485:
+  1490 = load i1 from ptr %select1486
+  br i1 %1490, bb %then1491, bb %if.exit1492
+then1491:
+  ans.load1493 = load i32 from ptr %ans
+  i.load1494 = load i32 from ptr %i
+  1495 = mul i32 %i.load1494, i32 4
+  1496 = ptradd ptr @SHIFT_TABLE, i32 %1495
+  1496.load = load i32 from ptr %1496
+  1498 = mul i32 1, i32 %1496.load
+  1499 = add i32 %ans.load1493, i32 %1498
+  store i32 %1499 to ptr %ans
+  br bb %if.exit1492
+if.exit1492:
+  x.load1500 = load i32 from ptr %x
+  1501 = sdiv i32 %x.load1500, i32 2
+  store i32 %1501 to ptr %x
+  y.load1502 = load i32 from ptr %y
+  1503 = sdiv i32 %y.load1502, i32 2
+  store i32 %1503 to ptr %y
+  i.load1504 = load i32 from ptr %i
+  1505 = add i32 %i.load1504, i32 1
+  store i32 %1505 to ptr %i
+  br bb %while.cond1474
+then1508:
+  store i32 0 to ptr %ans
+  br bb %if.exit1509
+if.exit1509:
+  ans.load1548 = load i32 from ptr %ans
+  store i32 %ans.load1548 to ptr %c1419
+  sum1421.load = load i32 from ptr %sum1421
+  store i32 %sum1421.load to ptr %al1417
+  br bb %while.cond1422
+else1510:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c1419.load1511 = load i32 from ptr %c1419
+  1512 = mul i32 1, i32 4
+  1513 = ptradd ptr @SHIFT_TABLE, i32 %1512
+  1513.load = load i32 from ptr %1513
+  1515 = mul i32 %c1419.load1511, i32 %1513.load
+  store i32 %1515 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1516
+while.cond1516:
+  i.load1519 = load i32 from ptr %i
+  1520 = icmp slt i32 %i.load1519, i32 16
+  1521 = icmp ne i1 %1520, i1 0
+  br i1 %1521, bb %while.body1517, bb %while.exit1518
+while.body1517:
+  x.load1522 = load i32 from ptr %x
+  1523 = srem i32 %x.load1522, i32 2
+  1524 = icmp ne i32 %1523, i32 0
+  br i1 %1524, bb %select.then1525, bb %select.else1526
+while.exit1518:
+  br bb %if.exit1509
+select.then1525:
+  y.load1529 = load i32 from ptr %y
+  1530 = srem i32 %y.load1529, i32 2
+  1531 = icmp ne i32 %1530, i32 0
+  store i1 %1531 to ptr %select1528
+  br bb %select.exit1527
+select.else1526:
+  store i1 0 to ptr %select1528
+  br bb %select.exit1527
+select.exit1527:
+  1532 = load i1 from ptr %select1528
+  br i1 %1532, bb %then1533, bb %if.exit1534
+then1533:
+  ans.load1535 = load i32 from ptr %ans
+  i.load1536 = load i32 from ptr %i
+  1537 = mul i32 %i.load1536, i32 4
+  1538 = ptradd ptr @SHIFT_TABLE, i32 %1537
+  1538.load = load i32 from ptr %1538
+  1540 = mul i32 1, i32 %1538.load
+  1541 = add i32 %ans.load1535, i32 %1540
+  store i32 %1541 to ptr %ans
+  br bb %if.exit1534
+if.exit1534:
+  x.load1542 = load i32 from ptr %x
+  1543 = sdiv i32 %x.load1542, i32 2
+  store i32 %1543 to ptr %x
+  y.load1544 = load i32 from ptr %y
+  1545 = sdiv i32 %y.load1544, i32 2
+  store i32 %1545 to ptr %y
+  i.load1546 = load i32 from ptr %i
+  1547 = add i32 %i.load1546, i32 1
+  store i32 %1547 to ptr %i
+  br bb %while.cond1516
+then1555:
+  x.load1558 = load i32 from ptr %x
+  1559 = icmp slt i32 %x.load1558, i32 0
+  br i1 %1559, bb %then1560, bb %else1562
+if.exit1556:
+  ans.load1595 = load i32 from ptr %ans
+  store i32 %ans.load1595 to ptr %mr1237
+  br bb %while.cond1240
+else1557:
+  y.load1563 = load i32 from ptr %y
+  1564 = icmp sgt i32 %y.load1563, i32 0
+  br i1 %1564, bb %then1565, bb %else1567
+then1560:
+  store i32 65535 to ptr %ans
+  br bb %if.exit1561
+if.exit1561:
+  br bb %if.exit1556
+else1562:
+  store i32 0 to ptr %ans
+  br bb %if.exit1561
+then1565:
+  x.load1568 = load i32 from ptr %x
+  1569 = icmp sgt i32 %x.load1568, i32 32767
+  br i1 %1569, bb %then1570, bb %else1572
+if.exit1566:
+  br bb %if.exit1556
+else1567:
+  x.load1594 = load i32 from ptr %x
+  store i32 %x.load1594 to ptr %ans
+  br bb %if.exit1566
+then1570:
+  x.load1573 = load i32 from ptr %x
+  y.load1574 = load i32 from ptr %y
+  1575 = mul i32 %y.load1574, i32 4
+  1576 = ptradd ptr @SHIFT_TABLE, i32 %1575
+  1576.load = load i32 from ptr %1576
+  1578 = sdiv i32 %x.load1573, i32 %1576.load
+  store i32 %1578 to ptr %x
+  1580 = add i32 %1578, i32 65536
+  y.load1581 = load i32 from ptr %y
+  1582 = sub i32 15, i32 %y.load1581
+  1583 = add i32 %1582, i32 1
+  1584 = mul i32 %1583, i32 4
+  1585 = ptradd ptr @SHIFT_TABLE, i32 %1584
+  1585.load = load i32 from ptr %1585
+  1587 = sub i32 %1580, i32 %1585.load
+  store i32 %1587 to ptr %ans
+  br bb %if.exit1571
+if.exit1571:
+  br bb %if.exit1566
+else1572:
+  x.load1588 = load i32 from ptr %x
+  y.load1589 = load i32 from ptr %y
+  1590 = mul i32 %y.load1589, i32 4
+  1591 = ptradd ptr @SHIFT_TABLE, i32 %1590
+  1591.load = load i32 from ptr %1591
+  1593 = sdiv i32 %x.load1588, i32 %1591.load
+  store i32 %1593 to ptr %ans
+  br bb %if.exit1571
+then1601:
+  x.load1604 = load i32 from ptr %x
+  1605 = icmp slt i32 %x.load1604, i32 0
+  br i1 %1605, bb %then1606, bb %else1608
+if.exit1602:
+  ans.load1641 = load i32 from ptr %ans
+  store i32 %ans.load1641 to ptr %pr827
+  br bb %while.cond829
+else1603:
+  y.load1609 = load i32 from ptr %y
+  1610 = icmp sgt i32 %y.load1609, i32 0
+  br i1 %1610, bb %then1611, bb %else1613
+then1606:
+  store i32 65535 to ptr %ans
+  br bb %if.exit1607
+if.exit1607:
+  br bb %if.exit1602
+else1608:
+  store i32 0 to ptr %ans
+  br bb %if.exit1607
+then1611:
+  x.load1614 = load i32 from ptr %x
+  1615 = icmp sgt i32 %x.load1614, i32 32767
+  br i1 %1615, bb %then1616, bb %else1618
+if.exit1612:
+  br bb %if.exit1602
+else1613:
+  x.load1640 = load i32 from ptr %x
+  store i32 %x.load1640 to ptr %ans
+  br bb %if.exit1612
+then1616:
+  x.load1619 = load i32 from ptr %x
+  y.load1620 = load i32 from ptr %y
+  1621 = mul i32 %y.load1620, i32 4
+  1622 = ptradd ptr @SHIFT_TABLE, i32 %1621
+  1622.load = load i32 from ptr %1622
+  1624 = sdiv i32 %x.load1619, i32 %1622.load
+  store i32 %1624 to ptr %x
+  1626 = add i32 %1624, i32 65536
+  y.load1627 = load i32 from ptr %y
+  1628 = sub i32 15, i32 %y.load1627
+  1629 = add i32 %1628, i32 1
+  1630 = mul i32 %1629, i32 4
+  1631 = ptradd ptr @SHIFT_TABLE, i32 %1630
+  1631.load = load i32 from ptr %1631
+  1633 = sub i32 %1626, i32 %1631.load
+  store i32 %1633 to ptr %ans
+  br bb %if.exit1617
+if.exit1617:
+  br bb %if.exit1612
+else1618:
+  x.load1634 = load i32 from ptr %x
+  y.load1635 = load i32 from ptr %y
+  1636 = mul i32 %y.load1635, i32 4
+  1637 = ptradd ptr @SHIFT_TABLE, i32 %1636
+  1637.load = load i32 from ptr %1637
+  1639 = sdiv i32 %x.load1634, i32 %1637.load
+  store i32 %1639 to ptr %ans
+  br bb %if.exit1617
+while.cond1646:
+  cur.load = load i32 from ptr %cur
+  1650 = icmp slt i32 %cur.load, i32 16
+  1651 = icmp ne i1 %1650, i1 0
+  br i1 %1651, bb %while.body1647, bb %while.exit1648
+while.body1647:
+  store i32 2 to ptr %pl1652
+  cur.load1654 = load i32 from ptr %cur
+  store i32 %cur.load1654 to ptr %pr1653
+  store i32 1 to ptr %pres1655
+  br bb %while.cond1656
+while.exit1648:
+  store i32 0 to ptr %cur
+  br bb %while.cond2475
+while.cond1656:
+  pr1653.load = load i32 from ptr %pr1653
+  1660 = icmp sgt i32 %pr1653.load, i32 0
+  1661 = icmp ne i1 %1660, i1 0
+  br i1 %1661, bb %while.body1657, bb %while.exit1658
+while.body1657:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  pr1653.load1662 = load i32 from ptr %pr1653
+  store i32 %pr1653.load1662 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond1663
+while.exit1658:
+  pres1655.load2469 = load i32 from ptr %pres1655
+  store i32 %pres1655.load2469 to ptr %ans
+  call void putint(i32 %pres1655.load2469)
+  call void putch(i32 10)
+  cur.load2473 = load i32 from ptr %cur
+  2474 = add i32 %cur.load2473, i32 1
+  store i32 %2474 to ptr %cur
+  br bb %while.cond1646
+while.cond1663:
+  i.load1666 = load i32 from ptr %i
+  1667 = icmp slt i32 %i.load1666, i32 16
+  1668 = icmp ne i1 %1667, i1 0
+  br i1 %1668, bb %while.body1664, bb %while.exit1665
+while.body1664:
+  x.load1669 = load i32 from ptr %x
+  1670 = srem i32 %x.load1669, i32 2
+  1671 = icmp ne i32 %1670, i32 0
+  br i1 %1671, bb %select.then1672, bb %select.else1673
+while.exit1665:
+  ans.load1695 = load i32 from ptr %ans
+  1696 = icmp ne i32 %ans.load1695, i32 0
+  br i1 %1696, bb %then1697, bb %if.exit1698
+select.then1672:
+  y.load1676 = load i32 from ptr %y
+  1677 = srem i32 %y.load1676, i32 2
+  1678 = icmp ne i32 %1677, i32 0
+  store i1 %1678 to ptr %select1675
+  br bb %select.exit1674
+select.else1673:
+  store i1 0 to ptr %select1675
+  br bb %select.exit1674
+select.exit1674:
+  1679 = load i1 from ptr %select1675
+  br i1 %1679, bb %then1680, bb %if.exit1681
+then1680:
+  ans.load1682 = load i32 from ptr %ans
+  i.load1683 = load i32 from ptr %i
+  1684 = mul i32 %i.load1683, i32 4
+  1685 = ptradd ptr @SHIFT_TABLE, i32 %1684
+  1685.load = load i32 from ptr %1685
+  1687 = mul i32 1, i32 %1685.load
+  1688 = add i32 %ans.load1682, i32 %1687
+  store i32 %1688 to ptr %ans
+  br bb %if.exit1681
+if.exit1681:
+  x.load1689 = load i32 from ptr %x
+  1690 = sdiv i32 %x.load1689, i32 2
+  store i32 %1690 to ptr %x
+  y.load1691 = load i32 from ptr %y
+  1692 = sdiv i32 %y.load1691, i32 2
+  store i32 %1692 to ptr %y
+  i.load1693 = load i32 from ptr %i
+  1694 = add i32 %i.load1693, i32 1
+  store i32 %1694 to ptr %i
+  br bb %while.cond1663
+then1697:
+  pres1655.load = load i32 from ptr %pres1655
+  store i32 %pres1655.load to ptr %ml1699
+  pl1652.load = load i32 from ptr %pl1652
+  store i32 %pl1652.load to ptr %mr1701
+  store i32 0 to ptr %mres1703
+  br bb %while.cond1704
+if.exit1698:
+  pl1652.load2063 = load i32 from ptr %pl1652
+  store i32 %pl1652.load2063 to ptr %ml2062
+  pl1652.load2065 = load i32 from ptr %pl1652
+  store i32 %pl1652.load2065 to ptr %mr2064
+  store i32 0 to ptr %mres2066
+  br bb %while.cond2067
+while.cond1704:
+  mr1701.load = load i32 from ptr %mr1701
+  1708 = icmp ne i32 %mr1701.load, i32 0
+  br i1 %1708, bb %while.body1705, bb %while.exit1706
+while.body1705:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr1701.load1709 = load i32 from ptr %mr1701
+  store i32 %mr1701.load1709 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond1710
+while.exit1706:
+  mres1703.load2060 = load i32 from ptr %mres1703
+  store i32 %mres1703.load2060 to ptr %ans
+  store i32 %mres1703.load2060 to ptr %pres1655
+  br bb %if.exit1698
+while.cond1710:
+  i.load1713 = load i32 from ptr %i
+  1714 = icmp slt i32 %i.load1713, i32 16
+  1715 = icmp ne i1 %1714, i1 0
+  br i1 %1715, bb %while.body1711, bb %while.exit1712
+while.body1711:
+  x.load1716 = load i32 from ptr %x
+  1717 = srem i32 %x.load1716, i32 2
+  1718 = icmp ne i32 %1717, i32 0
+  br i1 %1718, bb %select.then1719, bb %select.else1720
+while.exit1712:
+  ans.load1742 = load i32 from ptr %ans
+  1743 = icmp ne i32 %ans.load1742, i32 0
+  br i1 %1743, bb %then1744, bb %if.exit1745
+select.then1719:
+  y.load1723 = load i32 from ptr %y
+  1724 = srem i32 %y.load1723, i32 2
+  1725 = icmp ne i32 %1724, i32 0
+  store i1 %1725 to ptr %select1722
+  br bb %select.exit1721
+select.else1720:
+  store i1 0 to ptr %select1722
+  br bb %select.exit1721
+select.exit1721:
+  1726 = load i1 from ptr %select1722
+  br i1 %1726, bb %then1727, bb %if.exit1728
+then1727:
+  ans.load1729 = load i32 from ptr %ans
+  i.load1730 = load i32 from ptr %i
+  1731 = mul i32 %i.load1730, i32 4
+  1732 = ptradd ptr @SHIFT_TABLE, i32 %1731
+  1732.load = load i32 from ptr %1732
+  1734 = mul i32 1, i32 %1732.load
+  1735 = add i32 %ans.load1729, i32 %1734
+  store i32 %1735 to ptr %ans
+  br bb %if.exit1728
+if.exit1728:
+  x.load1736 = load i32 from ptr %x
+  1737 = sdiv i32 %x.load1736, i32 2
+  store i32 %1737 to ptr %x
+  y.load1738 = load i32 from ptr %y
+  1739 = sdiv i32 %y.load1738, i32 2
+  store i32 %1739 to ptr %y
+  i.load1740 = load i32 from ptr %i
+  1741 = add i32 %i.load1740, i32 1
+  store i32 %1741 to ptr %i
+  br bb %while.cond1710
+then1744:
+  mres1703.load = load i32 from ptr %mres1703
+  store i32 %mres1703.load to ptr %al1746
+  ml1699.load = load i32 from ptr %ml1699
+  store i32 %ml1699.load to ptr %c1748
+  br bb %while.cond1751
+if.exit1745:
+  ml1699.load1882 = load i32 from ptr %ml1699
+  store i32 %ml1699.load1882 to ptr %al1881
+  ml1699.load1884 = load i32 from ptr %ml1699
+  store i32 %ml1699.load1884 to ptr %c1883
+  br bb %while.cond1886
+while.cond1751:
+  c1748.load = load i32 from ptr %c1748
+  1755 = icmp ne i32 %c1748.load, i32 0
+  br i1 %1755, bb %while.body1752, bb %while.exit1753
+while.body1752:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1746.load = load i32 from ptr %al1746
+  store i32 %al1746.load to ptr %x
+  c1748.load1757 = load i32 from ptr %c1748
+  store i32 %c1748.load1757 to ptr %y
+  br bb %while.cond1758
+while.exit1753:
+  al1746.load1879 = load i32 from ptr %al1746
+  store i32 %al1746.load1879 to ptr %ans
+  store i32 %al1746.load1879 to ptr %mres1703
+  br bb %if.exit1745
+while.cond1758:
+  i.load1761 = load i32 from ptr %i
+  1762 = icmp slt i32 %i.load1761, i32 16
+  1763 = icmp ne i1 %1762, i1 0
+  br i1 %1763, bb %while.body1759, bb %while.exit1760
+while.body1759:
+  x.load1764 = load i32 from ptr %x
+  1765 = srem i32 %x.load1764, i32 2
+  1766 = icmp ne i32 %1765, i32 0
+  br i1 %1766, bb %then1767, bb %else1769
+while.exit1760:
+  ans.load1800 = load i32 from ptr %ans
+  store i32 %ans.load1800 to ptr %sum1750
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1746.load1801 = load i32 from ptr %al1746
+  store i32 %al1746.load1801 to ptr %x
+  c1748.load1802 = load i32 from ptr %c1748
+  store i32 %c1748.load1802 to ptr %y
+  br bb %while.cond1803
+then1767:
+  y.load1770 = load i32 from ptr %y
+  1771 = srem i32 %y.load1770, i32 2
+  1772 = icmp eq i32 %1771, i32 0
+  br i1 %1772, bb %then1773, bb %if.exit1774
+if.exit1768:
+  x.load1794 = load i32 from ptr %x
+  1795 = sdiv i32 %x.load1794, i32 2
+  store i32 %1795 to ptr %x
+  y.load1796 = load i32 from ptr %y
+  1797 = sdiv i32 %y.load1796, i32 2
+  store i32 %1797 to ptr %y
+  i.load1798 = load i32 from ptr %i
+  1799 = add i32 %i.load1798, i32 1
+  store i32 %1799 to ptr %i
+  br bb %while.cond1758
+else1769:
+  y.load1782 = load i32 from ptr %y
+  1783 = srem i32 %y.load1782, i32 2
+  1784 = icmp ne i32 %1783, i32 0
+  br i1 %1784, bb %then1785, bb %if.exit1786
+then1773:
+  ans.load1775 = load i32 from ptr %ans
+  i.load1776 = load i32 from ptr %i
+  1777 = mul i32 %i.load1776, i32 4
+  1778 = ptradd ptr @SHIFT_TABLE, i32 %1777
+  1778.load = load i32 from ptr %1778
+  1780 = mul i32 1, i32 %1778.load
+  1781 = add i32 %ans.load1775, i32 %1780
+  store i32 %1781 to ptr %ans
+  br bb %if.exit1774
+if.exit1774:
+  br bb %if.exit1768
+then1785:
+  ans.load1787 = load i32 from ptr %ans
+  i.load1788 = load i32 from ptr %i
+  1789 = mul i32 %i.load1788, i32 4
+  1790 = ptradd ptr @SHIFT_TABLE, i32 %1789
+  1790.load = load i32 from ptr %1790
+  1792 = mul i32 1, i32 %1790.load
+  1793 = add i32 %ans.load1787, i32 %1792
+  store i32 %1793 to ptr %ans
+  br bb %if.exit1786
+if.exit1786:
+  br bb %if.exit1768
+while.cond1803:
+  i.load1806 = load i32 from ptr %i
+  1807 = icmp slt i32 %i.load1806, i32 16
+  1808 = icmp ne i1 %1807, i1 0
+  br i1 %1808, bb %while.body1804, bb %while.exit1805
+while.body1804:
+  x.load1809 = load i32 from ptr %x
+  1810 = srem i32 %x.load1809, i32 2
+  1811 = icmp ne i32 %1810, i32 0
+  br i1 %1811, bb %select.then1812, bb %select.else1813
+while.exit1805:
+  ans.load1835 = load i32 from ptr %ans
+  store i32 %ans.load1835 to ptr %c1748
+  1836 = icmp sgt i32 1, i32 15
+  br i1 %1836, bb %then1837, bb %else1839
+select.then1812:
+  y.load1816 = load i32 from ptr %y
+  1817 = srem i32 %y.load1816, i32 2
+  1818 = icmp ne i32 %1817, i32 0
+  store i1 %1818 to ptr %select1815
+  br bb %select.exit1814
+select.else1813:
+  store i1 0 to ptr %select1815
+  br bb %select.exit1814
+select.exit1814:
+  1819 = load i1 from ptr %select1815
+  br i1 %1819, bb %then1820, bb %if.exit1821
+then1820:
+  ans.load1822 = load i32 from ptr %ans
+  i.load1823 = load i32 from ptr %i
+  1824 = mul i32 %i.load1823, i32 4
+  1825 = ptradd ptr @SHIFT_TABLE, i32 %1824
+  1825.load = load i32 from ptr %1825
+  1827 = mul i32 1, i32 %1825.load
+  1828 = add i32 %ans.load1822, i32 %1827
+  store i32 %1828 to ptr %ans
+  br bb %if.exit1821
+if.exit1821:
+  x.load1829 = load i32 from ptr %x
+  1830 = sdiv i32 %x.load1829, i32 2
+  store i32 %1830 to ptr %x
+  y.load1831 = load i32 from ptr %y
+  1832 = sdiv i32 %y.load1831, i32 2
+  store i32 %1832 to ptr %y
+  i.load1833 = load i32 from ptr %i
+  1834 = add i32 %i.load1833, i32 1
+  store i32 %1834 to ptr %i
+  br bb %while.cond1803
+then1837:
+  store i32 0 to ptr %ans
+  br bb %if.exit1838
+if.exit1838:
+  ans.load1877 = load i32 from ptr %ans
+  store i32 %ans.load1877 to ptr %c1748
+  sum1750.load = load i32 from ptr %sum1750
+  store i32 %sum1750.load to ptr %al1746
+  br bb %while.cond1751
+else1839:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c1748.load1840 = load i32 from ptr %c1748
+  1841 = mul i32 1, i32 4
+  1842 = ptradd ptr @SHIFT_TABLE, i32 %1841
+  1842.load = load i32 from ptr %1842
+  1844 = mul i32 %c1748.load1840, i32 %1842.load
+  store i32 %1844 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1845
+while.cond1845:
+  i.load1848 = load i32 from ptr %i
+  1849 = icmp slt i32 %i.load1848, i32 16
+  1850 = icmp ne i1 %1849, i1 0
+  br i1 %1850, bb %while.body1846, bb %while.exit1847
+while.body1846:
+  x.load1851 = load i32 from ptr %x
+  1852 = srem i32 %x.load1851, i32 2
+  1853 = icmp ne i32 %1852, i32 0
+  br i1 %1853, bb %select.then1854, bb %select.else1855
+while.exit1847:
+  br bb %if.exit1838
+select.then1854:
+  y.load1858 = load i32 from ptr %y
+  1859 = srem i32 %y.load1858, i32 2
+  1860 = icmp ne i32 %1859, i32 0
+  store i1 %1860 to ptr %select1857
+  br bb %select.exit1856
+select.else1855:
+  store i1 0 to ptr %select1857
+  br bb %select.exit1856
+select.exit1856:
+  1861 = load i1 from ptr %select1857
+  br i1 %1861, bb %then1862, bb %if.exit1863
+then1862:
+  ans.load1864 = load i32 from ptr %ans
+  i.load1865 = load i32 from ptr %i
+  1866 = mul i32 %i.load1865, i32 4
+  1867 = ptradd ptr @SHIFT_TABLE, i32 %1866
+  1867.load = load i32 from ptr %1867
+  1869 = mul i32 1, i32 %1867.load
+  1870 = add i32 %ans.load1864, i32 %1869
+  store i32 %1870 to ptr %ans
+  br bb %if.exit1863
+if.exit1863:
+  x.load1871 = load i32 from ptr %x
+  1872 = sdiv i32 %x.load1871, i32 2
+  store i32 %1872 to ptr %x
+  y.load1873 = load i32 from ptr %y
+  1874 = sdiv i32 %y.load1873, i32 2
+  store i32 %1874 to ptr %y
+  i.load1875 = load i32 from ptr %i
+  1876 = add i32 %i.load1875, i32 1
+  store i32 %1876 to ptr %i
+  br bb %while.cond1845
+while.cond1886:
+  c1883.load = load i32 from ptr %c1883
+  1890 = icmp ne i32 %c1883.load, i32 0
+  br i1 %1890, bb %while.body1887, bb %while.exit1888
+while.body1887:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1881.load = load i32 from ptr %al1881
+  store i32 %al1881.load to ptr %x
+  c1883.load1892 = load i32 from ptr %c1883
+  store i32 %c1883.load1892 to ptr %y
+  br bb %while.cond1893
+while.exit1888:
+  al1881.load2014 = load i32 from ptr %al1881
+  store i32 %al1881.load2014 to ptr %ans
+  store i32 %al1881.load2014 to ptr %ml1699
+  mr1701.load2016 = load i32 from ptr %mr1701
+  store i32 %mr1701.load2016 to ptr %x
+  store i32 1 to ptr %y
+  2018 = icmp sge i32 1, i32 15
+  br i1 %2018, bb %then2019, bb %else2021
+while.cond1893:
+  i.load1896 = load i32 from ptr %i
+  1897 = icmp slt i32 %i.load1896, i32 16
+  1898 = icmp ne i1 %1897, i1 0
+  br i1 %1898, bb %while.body1894, bb %while.exit1895
+while.body1894:
+  x.load1899 = load i32 from ptr %x
+  1900 = srem i32 %x.load1899, i32 2
+  1901 = icmp ne i32 %1900, i32 0
+  br i1 %1901, bb %then1902, bb %else1904
+while.exit1895:
+  ans.load1935 = load i32 from ptr %ans
+  store i32 %ans.load1935 to ptr %sum1885
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al1881.load1936 = load i32 from ptr %al1881
+  store i32 %al1881.load1936 to ptr %x
+  c1883.load1937 = load i32 from ptr %c1883
+  store i32 %c1883.load1937 to ptr %y
+  br bb %while.cond1938
+then1902:
+  y.load1905 = load i32 from ptr %y
+  1906 = srem i32 %y.load1905, i32 2
+  1907 = icmp eq i32 %1906, i32 0
+  br i1 %1907, bb %then1908, bb %if.exit1909
+if.exit1903:
+  x.load1929 = load i32 from ptr %x
+  1930 = sdiv i32 %x.load1929, i32 2
+  store i32 %1930 to ptr %x
+  y.load1931 = load i32 from ptr %y
+  1932 = sdiv i32 %y.load1931, i32 2
+  store i32 %1932 to ptr %y
+  i.load1933 = load i32 from ptr %i
+  1934 = add i32 %i.load1933, i32 1
+  store i32 %1934 to ptr %i
+  br bb %while.cond1893
+else1904:
+  y.load1917 = load i32 from ptr %y
+  1918 = srem i32 %y.load1917, i32 2
+  1919 = icmp ne i32 %1918, i32 0
+  br i1 %1919, bb %then1920, bb %if.exit1921
+then1908:
+  ans.load1910 = load i32 from ptr %ans
+  i.load1911 = load i32 from ptr %i
+  1912 = mul i32 %i.load1911, i32 4
+  1913 = ptradd ptr @SHIFT_TABLE, i32 %1912
+  1913.load = load i32 from ptr %1913
+  1915 = mul i32 1, i32 %1913.load
+  1916 = add i32 %ans.load1910, i32 %1915
+  store i32 %1916 to ptr %ans
+  br bb %if.exit1909
+if.exit1909:
+  br bb %if.exit1903
+then1920:
+  ans.load1922 = load i32 from ptr %ans
+  i.load1923 = load i32 from ptr %i
+  1924 = mul i32 %i.load1923, i32 4
+  1925 = ptradd ptr @SHIFT_TABLE, i32 %1924
+  1925.load = load i32 from ptr %1925
+  1927 = mul i32 1, i32 %1925.load
+  1928 = add i32 %ans.load1922, i32 %1927
+  store i32 %1928 to ptr %ans
+  br bb %if.exit1921
+if.exit1921:
+  br bb %if.exit1903
+while.cond1938:
+  i.load1941 = load i32 from ptr %i
+  1942 = icmp slt i32 %i.load1941, i32 16
+  1943 = icmp ne i1 %1942, i1 0
+  br i1 %1943, bb %while.body1939, bb %while.exit1940
+while.body1939:
+  x.load1944 = load i32 from ptr %x
+  1945 = srem i32 %x.load1944, i32 2
+  1946 = icmp ne i32 %1945, i32 0
+  br i1 %1946, bb %select.then1947, bb %select.else1948
+while.exit1940:
+  ans.load1970 = load i32 from ptr %ans
+  store i32 %ans.load1970 to ptr %c1883
+  1971 = icmp sgt i32 1, i32 15
+  br i1 %1971, bb %then1972, bb %else1974
+select.then1947:
+  y.load1951 = load i32 from ptr %y
+  1952 = srem i32 %y.load1951, i32 2
+  1953 = icmp ne i32 %1952, i32 0
+  store i1 %1953 to ptr %select1950
+  br bb %select.exit1949
+select.else1948:
+  store i1 0 to ptr %select1950
+  br bb %select.exit1949
+select.exit1949:
+  1954 = load i1 from ptr %select1950
+  br i1 %1954, bb %then1955, bb %if.exit1956
+then1955:
+  ans.load1957 = load i32 from ptr %ans
+  i.load1958 = load i32 from ptr %i
+  1959 = mul i32 %i.load1958, i32 4
+  1960 = ptradd ptr @SHIFT_TABLE, i32 %1959
+  1960.load = load i32 from ptr %1960
+  1962 = mul i32 1, i32 %1960.load
+  1963 = add i32 %ans.load1957, i32 %1962
+  store i32 %1963 to ptr %ans
+  br bb %if.exit1956
+if.exit1956:
+  x.load1964 = load i32 from ptr %x
+  1965 = sdiv i32 %x.load1964, i32 2
+  store i32 %1965 to ptr %x
+  y.load1966 = load i32 from ptr %y
+  1967 = sdiv i32 %y.load1966, i32 2
+  store i32 %1967 to ptr %y
+  i.load1968 = load i32 from ptr %i
+  1969 = add i32 %i.load1968, i32 1
+  store i32 %1969 to ptr %i
+  br bb %while.cond1938
+then1972:
+  store i32 0 to ptr %ans
+  br bb %if.exit1973
+if.exit1973:
+  ans.load2012 = load i32 from ptr %ans
+  store i32 %ans.load2012 to ptr %c1883
+  sum1885.load = load i32 from ptr %sum1885
+  store i32 %sum1885.load to ptr %al1881
+  br bb %while.cond1886
+else1974:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c1883.load1975 = load i32 from ptr %c1883
+  1976 = mul i32 1, i32 4
+  1977 = ptradd ptr @SHIFT_TABLE, i32 %1976
+  1977.load = load i32 from ptr %1977
+  1979 = mul i32 %c1883.load1975, i32 %1977.load
+  store i32 %1979 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond1980
+while.cond1980:
+  i.load1983 = load i32 from ptr %i
+  1984 = icmp slt i32 %i.load1983, i32 16
+  1985 = icmp ne i1 %1984, i1 0
+  br i1 %1985, bb %while.body1981, bb %while.exit1982
+while.body1981:
+  x.load1986 = load i32 from ptr %x
+  1987 = srem i32 %x.load1986, i32 2
+  1988 = icmp ne i32 %1987, i32 0
+  br i1 %1988, bb %select.then1989, bb %select.else1990
+while.exit1982:
+  br bb %if.exit1973
+select.then1989:
+  y.load1993 = load i32 from ptr %y
+  1994 = srem i32 %y.load1993, i32 2
+  1995 = icmp ne i32 %1994, i32 0
+  store i1 %1995 to ptr %select1992
+  br bb %select.exit1991
+select.else1990:
+  store i1 0 to ptr %select1992
+  br bb %select.exit1991
+select.exit1991:
+  1996 = load i1 from ptr %select1992
+  br i1 %1996, bb %then1997, bb %if.exit1998
+then1997:
+  ans.load1999 = load i32 from ptr %ans
+  i.load2000 = load i32 from ptr %i
+  2001 = mul i32 %i.load2000, i32 4
+  2002 = ptradd ptr @SHIFT_TABLE, i32 %2001
+  2002.load = load i32 from ptr %2002
+  2004 = mul i32 1, i32 %2002.load
+  2005 = add i32 %ans.load1999, i32 %2004
+  store i32 %2005 to ptr %ans
+  br bb %if.exit1998
+if.exit1998:
+  x.load2006 = load i32 from ptr %x
+  2007 = sdiv i32 %x.load2006, i32 2
+  store i32 %2007 to ptr %x
+  y.load2008 = load i32 from ptr %y
+  2009 = sdiv i32 %y.load2008, i32 2
+  store i32 %2009 to ptr %y
+  i.load2010 = load i32 from ptr %i
+  2011 = add i32 %i.load2010, i32 1
+  store i32 %2011 to ptr %i
+  br bb %while.cond1980
+then2019:
+  x.load2022 = load i32 from ptr %x
+  2023 = icmp slt i32 %x.load2022, i32 0
+  br i1 %2023, bb %then2024, bb %else2026
+if.exit2020:
+  ans.load2059 = load i32 from ptr %ans
+  store i32 %ans.load2059 to ptr %mr1701
+  br bb %while.cond1704
+else2021:
+  y.load2027 = load i32 from ptr %y
+  2028 = icmp sgt i32 %y.load2027, i32 0
+  br i1 %2028, bb %then2029, bb %else2031
+then2024:
+  store i32 65535 to ptr %ans
+  br bb %if.exit2025
+if.exit2025:
+  br bb %if.exit2020
+else2026:
+  store i32 0 to ptr %ans
+  br bb %if.exit2025
+then2029:
+  x.load2032 = load i32 from ptr %x
+  2033 = icmp sgt i32 %x.load2032, i32 32767
+  br i1 %2033, bb %then2034, bb %else2036
+if.exit2030:
+  br bb %if.exit2020
+else2031:
+  x.load2058 = load i32 from ptr %x
+  store i32 %x.load2058 to ptr %ans
+  br bb %if.exit2030
+then2034:
+  x.load2037 = load i32 from ptr %x
+  y.load2038 = load i32 from ptr %y
+  2039 = mul i32 %y.load2038, i32 4
+  2040 = ptradd ptr @SHIFT_TABLE, i32 %2039
+  2040.load = load i32 from ptr %2040
+  2042 = sdiv i32 %x.load2037, i32 %2040.load
+  store i32 %2042 to ptr %x
+  2044 = add i32 %2042, i32 65536
+  y.load2045 = load i32 from ptr %y
+  2046 = sub i32 15, i32 %y.load2045
+  2047 = add i32 %2046, i32 1
+  2048 = mul i32 %2047, i32 4
+  2049 = ptradd ptr @SHIFT_TABLE, i32 %2048
+  2049.load = load i32 from ptr %2049
+  2051 = sub i32 %2044, i32 %2049.load
+  store i32 %2051 to ptr %ans
+  br bb %if.exit2035
+if.exit2035:
+  br bb %if.exit2030
+else2036:
+  x.load2052 = load i32 from ptr %x
+  y.load2053 = load i32 from ptr %y
+  2054 = mul i32 %y.load2053, i32 4
+  2055 = ptradd ptr @SHIFT_TABLE, i32 %2054
+  2055.load = load i32 from ptr %2055
+  2057 = sdiv i32 %x.load2052, i32 %2055.load
+  store i32 %2057 to ptr %ans
+  br bb %if.exit2035
+while.cond2067:
+  mr2064.load = load i32 from ptr %mr2064
+  2071 = icmp ne i32 %mr2064.load, i32 0
+  br i1 %2071, bb %while.body2068, bb %while.exit2069
+while.body2068:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr2064.load2072 = load i32 from ptr %mr2064
+  store i32 %mr2064.load2072 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond2073
+while.exit2069:
+  mres2066.load2423 = load i32 from ptr %mres2066
+  store i32 %mres2066.load2423 to ptr %ans
+  store i32 %mres2066.load2423 to ptr %pl1652
+  pr1653.load2425 = load i32 from ptr %pr1653
+  store i32 %pr1653.load2425 to ptr %x
+  store i32 1 to ptr %y
+  2427 = icmp sge i32 1, i32 15
+  br i1 %2427, bb %then2428, bb %else2430
+while.cond2073:
+  i.load2076 = load i32 from ptr %i
+  2077 = icmp slt i32 %i.load2076, i32 16
+  2078 = icmp ne i1 %2077, i1 0
+  br i1 %2078, bb %while.body2074, bb %while.exit2075
+while.body2074:
+  x.load2079 = load i32 from ptr %x
+  2080 = srem i32 %x.load2079, i32 2
+  2081 = icmp ne i32 %2080, i32 0
+  br i1 %2081, bb %select.then2082, bb %select.else2083
+while.exit2075:
+  ans.load2105 = load i32 from ptr %ans
+  2106 = icmp ne i32 %ans.load2105, i32 0
+  br i1 %2106, bb %then2107, bb %if.exit2108
+select.then2082:
+  y.load2086 = load i32 from ptr %y
+  2087 = srem i32 %y.load2086, i32 2
+  2088 = icmp ne i32 %2087, i32 0
+  store i1 %2088 to ptr %select2085
+  br bb %select.exit2084
+select.else2083:
+  store i1 0 to ptr %select2085
+  br bb %select.exit2084
+select.exit2084:
+  2089 = load i1 from ptr %select2085
+  br i1 %2089, bb %then2090, bb %if.exit2091
+then2090:
+  ans.load2092 = load i32 from ptr %ans
+  i.load2093 = load i32 from ptr %i
+  2094 = mul i32 %i.load2093, i32 4
+  2095 = ptradd ptr @SHIFT_TABLE, i32 %2094
+  2095.load = load i32 from ptr %2095
+  2097 = mul i32 1, i32 %2095.load
+  2098 = add i32 %ans.load2092, i32 %2097
+  store i32 %2098 to ptr %ans
+  br bb %if.exit2091
+if.exit2091:
+  x.load2099 = load i32 from ptr %x
+  2100 = sdiv i32 %x.load2099, i32 2
+  store i32 %2100 to ptr %x
+  y.load2101 = load i32 from ptr %y
+  2102 = sdiv i32 %y.load2101, i32 2
+  store i32 %2102 to ptr %y
+  i.load2103 = load i32 from ptr %i
+  2104 = add i32 %i.load2103, i32 1
+  store i32 %2104 to ptr %i
+  br bb %while.cond2073
+then2107:
+  mres2066.load = load i32 from ptr %mres2066
+  store i32 %mres2066.load to ptr %al2109
+  ml2062.load = load i32 from ptr %ml2062
+  store i32 %ml2062.load to ptr %c2111
+  br bb %while.cond2114
+if.exit2108:
+  ml2062.load2245 = load i32 from ptr %ml2062
+  store i32 %ml2062.load2245 to ptr %al2244
+  ml2062.load2247 = load i32 from ptr %ml2062
+  store i32 %ml2062.load2247 to ptr %c2246
+  br bb %while.cond2249
+while.cond2114:
+  c2111.load = load i32 from ptr %c2111
+  2118 = icmp ne i32 %c2111.load, i32 0
+  br i1 %2118, bb %while.body2115, bb %while.exit2116
+while.body2115:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2109.load = load i32 from ptr %al2109
+  store i32 %al2109.load to ptr %x
+  c2111.load2120 = load i32 from ptr %c2111
+  store i32 %c2111.load2120 to ptr %y
+  br bb %while.cond2121
+while.exit2116:
+  al2109.load2242 = load i32 from ptr %al2109
+  store i32 %al2109.load2242 to ptr %ans
+  store i32 %al2109.load2242 to ptr %mres2066
+  br bb %if.exit2108
+while.cond2121:
+  i.load2124 = load i32 from ptr %i
+  2125 = icmp slt i32 %i.load2124, i32 16
+  2126 = icmp ne i1 %2125, i1 0
+  br i1 %2126, bb %while.body2122, bb %while.exit2123
+while.body2122:
+  x.load2127 = load i32 from ptr %x
+  2128 = srem i32 %x.load2127, i32 2
+  2129 = icmp ne i32 %2128, i32 0
+  br i1 %2129, bb %then2130, bb %else2132
+while.exit2123:
+  ans.load2163 = load i32 from ptr %ans
+  store i32 %ans.load2163 to ptr %sum2113
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2109.load2164 = load i32 from ptr %al2109
+  store i32 %al2109.load2164 to ptr %x
+  c2111.load2165 = load i32 from ptr %c2111
+  store i32 %c2111.load2165 to ptr %y
+  br bb %while.cond2166
+then2130:
+  y.load2133 = load i32 from ptr %y
+  2134 = srem i32 %y.load2133, i32 2
+  2135 = icmp eq i32 %2134, i32 0
+  br i1 %2135, bb %then2136, bb %if.exit2137
+if.exit2131:
+  x.load2157 = load i32 from ptr %x
+  2158 = sdiv i32 %x.load2157, i32 2
+  store i32 %2158 to ptr %x
+  y.load2159 = load i32 from ptr %y
+  2160 = sdiv i32 %y.load2159, i32 2
+  store i32 %2160 to ptr %y
+  i.load2161 = load i32 from ptr %i
+  2162 = add i32 %i.load2161, i32 1
+  store i32 %2162 to ptr %i
+  br bb %while.cond2121
+else2132:
+  y.load2145 = load i32 from ptr %y
+  2146 = srem i32 %y.load2145, i32 2
+  2147 = icmp ne i32 %2146, i32 0
+  br i1 %2147, bb %then2148, bb %if.exit2149
+then2136:
+  ans.load2138 = load i32 from ptr %ans
+  i.load2139 = load i32 from ptr %i
+  2140 = mul i32 %i.load2139, i32 4
+  2141 = ptradd ptr @SHIFT_TABLE, i32 %2140
+  2141.load = load i32 from ptr %2141
+  2143 = mul i32 1, i32 %2141.load
+  2144 = add i32 %ans.load2138, i32 %2143
+  store i32 %2144 to ptr %ans
+  br bb %if.exit2137
+if.exit2137:
+  br bb %if.exit2131
+then2148:
+  ans.load2150 = load i32 from ptr %ans
+  i.load2151 = load i32 from ptr %i
+  2152 = mul i32 %i.load2151, i32 4
+  2153 = ptradd ptr @SHIFT_TABLE, i32 %2152
+  2153.load = load i32 from ptr %2153
+  2155 = mul i32 1, i32 %2153.load
+  2156 = add i32 %ans.load2150, i32 %2155
+  store i32 %2156 to ptr %ans
+  br bb %if.exit2149
+if.exit2149:
+  br bb %if.exit2131
+while.cond2166:
+  i.load2169 = load i32 from ptr %i
+  2170 = icmp slt i32 %i.load2169, i32 16
+  2171 = icmp ne i1 %2170, i1 0
+  br i1 %2171, bb %while.body2167, bb %while.exit2168
+while.body2167:
+  x.load2172 = load i32 from ptr %x
+  2173 = srem i32 %x.load2172, i32 2
+  2174 = icmp ne i32 %2173, i32 0
+  br i1 %2174, bb %select.then2175, bb %select.else2176
+while.exit2168:
+  ans.load2198 = load i32 from ptr %ans
+  store i32 %ans.load2198 to ptr %c2111
+  2199 = icmp sgt i32 1, i32 15
+  br i1 %2199, bb %then2200, bb %else2202
+select.then2175:
+  y.load2179 = load i32 from ptr %y
+  2180 = srem i32 %y.load2179, i32 2
+  2181 = icmp ne i32 %2180, i32 0
+  store i1 %2181 to ptr %select2178
+  br bb %select.exit2177
+select.else2176:
+  store i1 0 to ptr %select2178
+  br bb %select.exit2177
+select.exit2177:
+  2182 = load i1 from ptr %select2178
+  br i1 %2182, bb %then2183, bb %if.exit2184
+then2183:
+  ans.load2185 = load i32 from ptr %ans
+  i.load2186 = load i32 from ptr %i
+  2187 = mul i32 %i.load2186, i32 4
+  2188 = ptradd ptr @SHIFT_TABLE, i32 %2187
+  2188.load = load i32 from ptr %2188
+  2190 = mul i32 1, i32 %2188.load
+  2191 = add i32 %ans.load2185, i32 %2190
+  store i32 %2191 to ptr %ans
+  br bb %if.exit2184
+if.exit2184:
+  x.load2192 = load i32 from ptr %x
+  2193 = sdiv i32 %x.load2192, i32 2
+  store i32 %2193 to ptr %x
+  y.load2194 = load i32 from ptr %y
+  2195 = sdiv i32 %y.load2194, i32 2
+  store i32 %2195 to ptr %y
+  i.load2196 = load i32 from ptr %i
+  2197 = add i32 %i.load2196, i32 1
+  store i32 %2197 to ptr %i
+  br bb %while.cond2166
+then2200:
+  store i32 0 to ptr %ans
+  br bb %if.exit2201
+if.exit2201:
+  ans.load2240 = load i32 from ptr %ans
+  store i32 %ans.load2240 to ptr %c2111
+  sum2113.load = load i32 from ptr %sum2113
+  store i32 %sum2113.load to ptr %al2109
+  br bb %while.cond2114
+else2202:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c2111.load2203 = load i32 from ptr %c2111
+  2204 = mul i32 1, i32 4
+  2205 = ptradd ptr @SHIFT_TABLE, i32 %2204
+  2205.load = load i32 from ptr %2205
+  2207 = mul i32 %c2111.load2203, i32 %2205.load
+  store i32 %2207 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond2208
+while.cond2208:
+  i.load2211 = load i32 from ptr %i
+  2212 = icmp slt i32 %i.load2211, i32 16
+  2213 = icmp ne i1 %2212, i1 0
+  br i1 %2213, bb %while.body2209, bb %while.exit2210
+while.body2209:
+  x.load2214 = load i32 from ptr %x
+  2215 = srem i32 %x.load2214, i32 2
+  2216 = icmp ne i32 %2215, i32 0
+  br i1 %2216, bb %select.then2217, bb %select.else2218
+while.exit2210:
+  br bb %if.exit2201
+select.then2217:
+  y.load2221 = load i32 from ptr %y
+  2222 = srem i32 %y.load2221, i32 2
+  2223 = icmp ne i32 %2222, i32 0
+  store i1 %2223 to ptr %select2220
+  br bb %select.exit2219
+select.else2218:
+  store i1 0 to ptr %select2220
+  br bb %select.exit2219
+select.exit2219:
+  2224 = load i1 from ptr %select2220
+  br i1 %2224, bb %then2225, bb %if.exit2226
+then2225:
+  ans.load2227 = load i32 from ptr %ans
+  i.load2228 = load i32 from ptr %i
+  2229 = mul i32 %i.load2228, i32 4
+  2230 = ptradd ptr @SHIFT_TABLE, i32 %2229
+  2230.load = load i32 from ptr %2230
+  2232 = mul i32 1, i32 %2230.load
+  2233 = add i32 %ans.load2227, i32 %2232
+  store i32 %2233 to ptr %ans
+  br bb %if.exit2226
+if.exit2226:
+  x.load2234 = load i32 from ptr %x
+  2235 = sdiv i32 %x.load2234, i32 2
+  store i32 %2235 to ptr %x
+  y.load2236 = load i32 from ptr %y
+  2237 = sdiv i32 %y.load2236, i32 2
+  store i32 %2237 to ptr %y
+  i.load2238 = load i32 from ptr %i
+  2239 = add i32 %i.load2238, i32 1
+  store i32 %2239 to ptr %i
+  br bb %while.cond2208
+while.cond2249:
+  c2246.load = load i32 from ptr %c2246
+  2253 = icmp ne i32 %c2246.load, i32 0
+  br i1 %2253, bb %while.body2250, bb %while.exit2251
+while.body2250:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2244.load = load i32 from ptr %al2244
+  store i32 %al2244.load to ptr %x
+  c2246.load2255 = load i32 from ptr %c2246
+  store i32 %c2246.load2255 to ptr %y
+  br bb %while.cond2256
+while.exit2251:
+  al2244.load2377 = load i32 from ptr %al2244
+  store i32 %al2244.load2377 to ptr %ans
+  store i32 %al2244.load2377 to ptr %ml2062
+  mr2064.load2379 = load i32 from ptr %mr2064
+  store i32 %mr2064.load2379 to ptr %x
+  store i32 1 to ptr %y
+  2381 = icmp sge i32 1, i32 15
+  br i1 %2381, bb %then2382, bb %else2384
+while.cond2256:
+  i.load2259 = load i32 from ptr %i
+  2260 = icmp slt i32 %i.load2259, i32 16
+  2261 = icmp ne i1 %2260, i1 0
+  br i1 %2261, bb %while.body2257, bb %while.exit2258
+while.body2257:
+  x.load2262 = load i32 from ptr %x
+  2263 = srem i32 %x.load2262, i32 2
+  2264 = icmp ne i32 %2263, i32 0
+  br i1 %2264, bb %then2265, bb %else2267
+while.exit2258:
+  ans.load2298 = load i32 from ptr %ans
+  store i32 %ans.load2298 to ptr %sum2248
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2244.load2299 = load i32 from ptr %al2244
+  store i32 %al2244.load2299 to ptr %x
+  c2246.load2300 = load i32 from ptr %c2246
+  store i32 %c2246.load2300 to ptr %y
+  br bb %while.cond2301
+then2265:
+  y.load2268 = load i32 from ptr %y
+  2269 = srem i32 %y.load2268, i32 2
+  2270 = icmp eq i32 %2269, i32 0
+  br i1 %2270, bb %then2271, bb %if.exit2272
+if.exit2266:
+  x.load2292 = load i32 from ptr %x
+  2293 = sdiv i32 %x.load2292, i32 2
+  store i32 %2293 to ptr %x
+  y.load2294 = load i32 from ptr %y
+  2295 = sdiv i32 %y.load2294, i32 2
+  store i32 %2295 to ptr %y
+  i.load2296 = load i32 from ptr %i
+  2297 = add i32 %i.load2296, i32 1
+  store i32 %2297 to ptr %i
+  br bb %while.cond2256
+else2267:
+  y.load2280 = load i32 from ptr %y
+  2281 = srem i32 %y.load2280, i32 2
+  2282 = icmp ne i32 %2281, i32 0
+  br i1 %2282, bb %then2283, bb %if.exit2284
+then2271:
+  ans.load2273 = load i32 from ptr %ans
+  i.load2274 = load i32 from ptr %i
+  2275 = mul i32 %i.load2274, i32 4
+  2276 = ptradd ptr @SHIFT_TABLE, i32 %2275
+  2276.load = load i32 from ptr %2276
+  2278 = mul i32 1, i32 %2276.load
+  2279 = add i32 %ans.load2273, i32 %2278
+  store i32 %2279 to ptr %ans
+  br bb %if.exit2272
+if.exit2272:
+  br bb %if.exit2266
+then2283:
+  ans.load2285 = load i32 from ptr %ans
+  i.load2286 = load i32 from ptr %i
+  2287 = mul i32 %i.load2286, i32 4
+  2288 = ptradd ptr @SHIFT_TABLE, i32 %2287
+  2288.load = load i32 from ptr %2288
+  2290 = mul i32 1, i32 %2288.load
+  2291 = add i32 %ans.load2285, i32 %2290
+  store i32 %2291 to ptr %ans
+  br bb %if.exit2284
+if.exit2284:
+  br bb %if.exit2266
+while.cond2301:
+  i.load2304 = load i32 from ptr %i
+  2305 = icmp slt i32 %i.load2304, i32 16
+  2306 = icmp ne i1 %2305, i1 0
+  br i1 %2306, bb %while.body2302, bb %while.exit2303
+while.body2302:
+  x.load2307 = load i32 from ptr %x
+  2308 = srem i32 %x.load2307, i32 2
+  2309 = icmp ne i32 %2308, i32 0
+  br i1 %2309, bb %select.then2310, bb %select.else2311
+while.exit2303:
+  ans.load2333 = load i32 from ptr %ans
+  store i32 %ans.load2333 to ptr %c2246
+  2334 = icmp sgt i32 1, i32 15
+  br i1 %2334, bb %then2335, bb %else2337
+select.then2310:
+  y.load2314 = load i32 from ptr %y
+  2315 = srem i32 %y.load2314, i32 2
+  2316 = icmp ne i32 %2315, i32 0
+  store i1 %2316 to ptr %select2313
+  br bb %select.exit2312
+select.else2311:
+  store i1 0 to ptr %select2313
+  br bb %select.exit2312
+select.exit2312:
+  2317 = load i1 from ptr %select2313
+  br i1 %2317, bb %then2318, bb %if.exit2319
+then2318:
+  ans.load2320 = load i32 from ptr %ans
+  i.load2321 = load i32 from ptr %i
+  2322 = mul i32 %i.load2321, i32 4
+  2323 = ptradd ptr @SHIFT_TABLE, i32 %2322
+  2323.load = load i32 from ptr %2323
+  2325 = mul i32 1, i32 %2323.load
+  2326 = add i32 %ans.load2320, i32 %2325
+  store i32 %2326 to ptr %ans
+  br bb %if.exit2319
+if.exit2319:
+  x.load2327 = load i32 from ptr %x
+  2328 = sdiv i32 %x.load2327, i32 2
+  store i32 %2328 to ptr %x
+  y.load2329 = load i32 from ptr %y
+  2330 = sdiv i32 %y.load2329, i32 2
+  store i32 %2330 to ptr %y
+  i.load2331 = load i32 from ptr %i
+  2332 = add i32 %i.load2331, i32 1
+  store i32 %2332 to ptr %i
+  br bb %while.cond2301
+then2335:
+  store i32 0 to ptr %ans
+  br bb %if.exit2336
+if.exit2336:
+  ans.load2375 = load i32 from ptr %ans
+  store i32 %ans.load2375 to ptr %c2246
+  sum2248.load = load i32 from ptr %sum2248
+  store i32 %sum2248.load to ptr %al2244
+  br bb %while.cond2249
+else2337:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c2246.load2338 = load i32 from ptr %c2246
+  2339 = mul i32 1, i32 4
+  2340 = ptradd ptr @SHIFT_TABLE, i32 %2339
+  2340.load = load i32 from ptr %2340
+  2342 = mul i32 %c2246.load2338, i32 %2340.load
+  store i32 %2342 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond2343
+while.cond2343:
+  i.load2346 = load i32 from ptr %i
+  2347 = icmp slt i32 %i.load2346, i32 16
+  2348 = icmp ne i1 %2347, i1 0
+  br i1 %2348, bb %while.body2344, bb %while.exit2345
+while.body2344:
+  x.load2349 = load i32 from ptr %x
+  2350 = srem i32 %x.load2349, i32 2
+  2351 = icmp ne i32 %2350, i32 0
+  br i1 %2351, bb %select.then2352, bb %select.else2353
+while.exit2345:
+  br bb %if.exit2336
+select.then2352:
+  y.load2356 = load i32 from ptr %y
+  2357 = srem i32 %y.load2356, i32 2
+  2358 = icmp ne i32 %2357, i32 0
+  store i1 %2358 to ptr %select2355
+  br bb %select.exit2354
+select.else2353:
+  store i1 0 to ptr %select2355
+  br bb %select.exit2354
+select.exit2354:
+  2359 = load i1 from ptr %select2355
+  br i1 %2359, bb %then2360, bb %if.exit2361
+then2360:
+  ans.load2362 = load i32 from ptr %ans
+  i.load2363 = load i32 from ptr %i
+  2364 = mul i32 %i.load2363, i32 4
+  2365 = ptradd ptr @SHIFT_TABLE, i32 %2364
+  2365.load = load i32 from ptr %2365
+  2367 = mul i32 1, i32 %2365.load
+  2368 = add i32 %ans.load2362, i32 %2367
+  store i32 %2368 to ptr %ans
+  br bb %if.exit2361
+if.exit2361:
+  x.load2369 = load i32 from ptr %x
+  2370 = sdiv i32 %x.load2369, i32 2
+  store i32 %2370 to ptr %x
+  y.load2371 = load i32 from ptr %y
+  2372 = sdiv i32 %y.load2371, i32 2
+  store i32 %2372 to ptr %y
+  i.load2373 = load i32 from ptr %i
+  2374 = add i32 %i.load2373, i32 1
+  store i32 %2374 to ptr %i
+  br bb %while.cond2343
+then2382:
+  x.load2385 = load i32 from ptr %x
+  2386 = icmp slt i32 %x.load2385, i32 0
+  br i1 %2386, bb %then2387, bb %else2389
+if.exit2383:
+  ans.load2422 = load i32 from ptr %ans
+  store i32 %ans.load2422 to ptr %mr2064
+  br bb %while.cond2067
+else2384:
+  y.load2390 = load i32 from ptr %y
+  2391 = icmp sgt i32 %y.load2390, i32 0
+  br i1 %2391, bb %then2392, bb %else2394
+then2387:
+  store i32 65535 to ptr %ans
+  br bb %if.exit2388
+if.exit2388:
+  br bb %if.exit2383
+else2389:
+  store i32 0 to ptr %ans
+  br bb %if.exit2388
+then2392:
+  x.load2395 = load i32 from ptr %x
+  2396 = icmp sgt i32 %x.load2395, i32 32767
+  br i1 %2396, bb %then2397, bb %else2399
+if.exit2393:
+  br bb %if.exit2383
+else2394:
+  x.load2421 = load i32 from ptr %x
+  store i32 %x.load2421 to ptr %ans
+  br bb %if.exit2393
+then2397:
+  x.load2400 = load i32 from ptr %x
+  y.load2401 = load i32 from ptr %y
+  2402 = mul i32 %y.load2401, i32 4
+  2403 = ptradd ptr @SHIFT_TABLE, i32 %2402
+  2403.load = load i32 from ptr %2403
+  2405 = sdiv i32 %x.load2400, i32 %2403.load
+  store i32 %2405 to ptr %x
+  2407 = add i32 %2405, i32 65536
+  y.load2408 = load i32 from ptr %y
+  2409 = sub i32 15, i32 %y.load2408
+  2410 = add i32 %2409, i32 1
+  2411 = mul i32 %2410, i32 4
+  2412 = ptradd ptr @SHIFT_TABLE, i32 %2411
+  2412.load = load i32 from ptr %2412
+  2414 = sub i32 %2407, i32 %2412.load
+  store i32 %2414 to ptr %ans
+  br bb %if.exit2398
+if.exit2398:
+  br bb %if.exit2393
+else2399:
+  x.load2415 = load i32 from ptr %x
+  y.load2416 = load i32 from ptr %y
+  2417 = mul i32 %y.load2416, i32 4
+  2418 = ptradd ptr @SHIFT_TABLE, i32 %2417
+  2418.load = load i32 from ptr %2418
+  2420 = sdiv i32 %x.load2415, i32 %2418.load
+  store i32 %2420 to ptr %ans
+  br bb %if.exit2398
+then2428:
+  x.load2431 = load i32 from ptr %x
+  2432 = icmp slt i32 %x.load2431, i32 0
+  br i1 %2432, bb %then2433, bb %else2435
+if.exit2429:
+  ans.load2468 = load i32 from ptr %ans
+  store i32 %ans.load2468 to ptr %pr1653
+  br bb %while.cond1656
+else2430:
+  y.load2436 = load i32 from ptr %y
+  2437 = icmp sgt i32 %y.load2436, i32 0
+  br i1 %2437, bb %then2438, bb %else2440
+then2433:
+  store i32 65535 to ptr %ans
+  br bb %if.exit2434
+if.exit2434:
+  br bb %if.exit2429
+else2435:
+  store i32 0 to ptr %ans
+  br bb %if.exit2434
+then2438:
+  x.load2441 = load i32 from ptr %x
+  2442 = icmp sgt i32 %x.load2441, i32 32767
+  br i1 %2442, bb %then2443, bb %else2445
+if.exit2439:
+  br bb %if.exit2429
+else2440:
+  x.load2467 = load i32 from ptr %x
+  store i32 %x.load2467 to ptr %ans
+  br bb %if.exit2439
+then2443:
+  x.load2446 = load i32 from ptr %x
+  y.load2447 = load i32 from ptr %y
+  2448 = mul i32 %y.load2447, i32 4
+  2449 = ptradd ptr @SHIFT_TABLE, i32 %2448
+  2449.load = load i32 from ptr %2449
+  2451 = sdiv i32 %x.load2446, i32 %2449.load
+  store i32 %2451 to ptr %x
+  2453 = add i32 %2451, i32 65536
+  y.load2454 = load i32 from ptr %y
+  2455 = sub i32 15, i32 %y.load2454
+  2456 = add i32 %2455, i32 1
+  2457 = mul i32 %2456, i32 4
+  2458 = ptradd ptr @SHIFT_TABLE, i32 %2457
+  2458.load = load i32 from ptr %2458
+  2460 = sub i32 %2453, i32 %2458.load
+  store i32 %2460 to ptr %ans
+  br bb %if.exit2444
+if.exit2444:
+  br bb %if.exit2439
+else2445:
+  x.load2461 = load i32 from ptr %x
+  y.load2462 = load i32 from ptr %y
+  2463 = mul i32 %y.load2462, i32 4
+  2464 = ptradd ptr @SHIFT_TABLE, i32 %2463
+  2464.load = load i32 from ptr %2464
+  2466 = sdiv i32 %x.load2461, i32 %2464.load
+  store i32 %2466 to ptr %ans
+  br bb %if.exit2444
+while.cond2475:
+  cur.load2478 = load i32 from ptr %cur
+  2479 = icmp slt i32 %cur.load2478, i32 16
+  2480 = icmp ne i1 %2479, i1 0
+  br i1 %2480, bb %while.body2476, bb %while.exit2477
+while.body2476:
+  store i32 2 to ptr %pl2481
+  cur.load2483 = load i32 from ptr %cur
+  store i32 %cur.load2483 to ptr %pr2482
+  store i32 1 to ptr %pres2484
+  br bb %while.cond2485
+while.exit2477:
+  ret i32 0
+while.cond2485:
+  pr2482.load = load i32 from ptr %pr2482
+  2489 = icmp sgt i32 %pr2482.load, i32 0
+  2490 = icmp ne i1 %2489, i1 0
+  br i1 %2490, bb %while.body2486, bb %while.exit2487
+while.body2486:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  pr2482.load2491 = load i32 from ptr %pr2482
+  store i32 %pr2482.load2491 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond2492
+while.exit2487:
+  pres2484.load3298 = load i32 from ptr %pres2484
+  store i32 %pres2484.load3298 to ptr %ans
+  cur.load3299 = load i32 from ptr %cur
+  3300 = mul i32 %cur.load3299, i32 4
+  3301 = ptradd ptr @SHIFT_TABLE, i32 %3300
+  3301.load = load i32 from ptr %3301
+  3304 = icmp ne i32 %3301.load, i32 %pres2484.load3298
+  br i1 %3304, bb %then3305, bb %if.exit3306
+while.cond2492:
+  i.load2495 = load i32 from ptr %i
+  2496 = icmp slt i32 %i.load2495, i32 16
+  2497 = icmp ne i1 %2496, i1 0
+  br i1 %2497, bb %while.body2493, bb %while.exit2494
+while.body2493:
+  x.load2498 = load i32 from ptr %x
+  2499 = srem i32 %x.load2498, i32 2
+  2500 = icmp ne i32 %2499, i32 0
+  br i1 %2500, bb %select.then2501, bb %select.else2502
+while.exit2494:
+  ans.load2524 = load i32 from ptr %ans
+  2525 = icmp ne i32 %ans.load2524, i32 0
+  br i1 %2525, bb %then2526, bb %if.exit2527
+select.then2501:
+  y.load2505 = load i32 from ptr %y
+  2506 = srem i32 %y.load2505, i32 2
+  2507 = icmp ne i32 %2506, i32 0
+  store i1 %2507 to ptr %select2504
+  br bb %select.exit2503
+select.else2502:
+  store i1 0 to ptr %select2504
+  br bb %select.exit2503
+select.exit2503:
+  2508 = load i1 from ptr %select2504
+  br i1 %2508, bb %then2509, bb %if.exit2510
+then2509:
+  ans.load2511 = load i32 from ptr %ans
+  i.load2512 = load i32 from ptr %i
+  2513 = mul i32 %i.load2512, i32 4
+  2514 = ptradd ptr @SHIFT_TABLE, i32 %2513
+  2514.load = load i32 from ptr %2514
+  2516 = mul i32 1, i32 %2514.load
+  2517 = add i32 %ans.load2511, i32 %2516
+  store i32 %2517 to ptr %ans
+  br bb %if.exit2510
+if.exit2510:
+  x.load2518 = load i32 from ptr %x
+  2519 = sdiv i32 %x.load2518, i32 2
+  store i32 %2519 to ptr %x
+  y.load2520 = load i32 from ptr %y
+  2521 = sdiv i32 %y.load2520, i32 2
+  store i32 %2521 to ptr %y
+  i.load2522 = load i32 from ptr %i
+  2523 = add i32 %i.load2522, i32 1
+  store i32 %2523 to ptr %i
+  br bb %while.cond2492
+then2526:
+  pres2484.load = load i32 from ptr %pres2484
+  store i32 %pres2484.load to ptr %ml2528
+  pl2481.load = load i32 from ptr %pl2481
+  store i32 %pl2481.load to ptr %mr2530
+  store i32 0 to ptr %mres2532
+  br bb %while.cond2533
+if.exit2527:
+  pl2481.load2892 = load i32 from ptr %pl2481
+  store i32 %pl2481.load2892 to ptr %ml2891
+  pl2481.load2894 = load i32 from ptr %pl2481
+  store i32 %pl2481.load2894 to ptr %mr2893
+  store i32 0 to ptr %mres2895
+  br bb %while.cond2896
+while.cond2533:
+  mr2530.load = load i32 from ptr %mr2530
+  2537 = icmp ne i32 %mr2530.load, i32 0
+  br i1 %2537, bb %while.body2534, bb %while.exit2535
+while.body2534:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr2530.load2538 = load i32 from ptr %mr2530
+  store i32 %mr2530.load2538 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond2539
+while.exit2535:
+  mres2532.load2889 = load i32 from ptr %mres2532
+  store i32 %mres2532.load2889 to ptr %ans
+  store i32 %mres2532.load2889 to ptr %pres2484
+  br bb %if.exit2527
+while.cond2539:
+  i.load2542 = load i32 from ptr %i
+  2543 = icmp slt i32 %i.load2542, i32 16
+  2544 = icmp ne i1 %2543, i1 0
+  br i1 %2544, bb %while.body2540, bb %while.exit2541
+while.body2540:
+  x.load2545 = load i32 from ptr %x
+  2546 = srem i32 %x.load2545, i32 2
+  2547 = icmp ne i32 %2546, i32 0
+  br i1 %2547, bb %select.then2548, bb %select.else2549
+while.exit2541:
+  ans.load2571 = load i32 from ptr %ans
+  2572 = icmp ne i32 %ans.load2571, i32 0
+  br i1 %2572, bb %then2573, bb %if.exit2574
+select.then2548:
+  y.load2552 = load i32 from ptr %y
+  2553 = srem i32 %y.load2552, i32 2
+  2554 = icmp ne i32 %2553, i32 0
+  store i1 %2554 to ptr %select2551
+  br bb %select.exit2550
+select.else2549:
+  store i1 0 to ptr %select2551
+  br bb %select.exit2550
+select.exit2550:
+  2555 = load i1 from ptr %select2551
+  br i1 %2555, bb %then2556, bb %if.exit2557
+then2556:
+  ans.load2558 = load i32 from ptr %ans
+  i.load2559 = load i32 from ptr %i
+  2560 = mul i32 %i.load2559, i32 4
+  2561 = ptradd ptr @SHIFT_TABLE, i32 %2560
+  2561.load = load i32 from ptr %2561
+  2563 = mul i32 1, i32 %2561.load
+  2564 = add i32 %ans.load2558, i32 %2563
+  store i32 %2564 to ptr %ans
+  br bb %if.exit2557
+if.exit2557:
+  x.load2565 = load i32 from ptr %x
+  2566 = sdiv i32 %x.load2565, i32 2
+  store i32 %2566 to ptr %x
+  y.load2567 = load i32 from ptr %y
+  2568 = sdiv i32 %y.load2567, i32 2
+  store i32 %2568 to ptr %y
+  i.load2569 = load i32 from ptr %i
+  2570 = add i32 %i.load2569, i32 1
+  store i32 %2570 to ptr %i
+  br bb %while.cond2539
+then2573:
+  mres2532.load = load i32 from ptr %mres2532
+  store i32 %mres2532.load to ptr %al2575
+  ml2528.load = load i32 from ptr %ml2528
+  store i32 %ml2528.load to ptr %c2577
+  br bb %while.cond2580
+if.exit2574:
+  ml2528.load2711 = load i32 from ptr %ml2528
+  store i32 %ml2528.load2711 to ptr %al2710
+  ml2528.load2713 = load i32 from ptr %ml2528
+  store i32 %ml2528.load2713 to ptr %c2712
+  br bb %while.cond2715
+while.cond2580:
+  c2577.load = load i32 from ptr %c2577
+  2584 = icmp ne i32 %c2577.load, i32 0
+  br i1 %2584, bb %while.body2581, bb %while.exit2582
+while.body2581:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2575.load = load i32 from ptr %al2575
+  store i32 %al2575.load to ptr %x
+  c2577.load2586 = load i32 from ptr %c2577
+  store i32 %c2577.load2586 to ptr %y
+  br bb %while.cond2587
+while.exit2582:
+  al2575.load2708 = load i32 from ptr %al2575
+  store i32 %al2575.load2708 to ptr %ans
+  store i32 %al2575.load2708 to ptr %mres2532
+  br bb %if.exit2574
+while.cond2587:
+  i.load2590 = load i32 from ptr %i
+  2591 = icmp slt i32 %i.load2590, i32 16
+  2592 = icmp ne i1 %2591, i1 0
+  br i1 %2592, bb %while.body2588, bb %while.exit2589
+while.body2588:
+  x.load2593 = load i32 from ptr %x
+  2594 = srem i32 %x.load2593, i32 2
+  2595 = icmp ne i32 %2594, i32 0
+  br i1 %2595, bb %then2596, bb %else2598
+while.exit2589:
+  ans.load2629 = load i32 from ptr %ans
+  store i32 %ans.load2629 to ptr %sum2579
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2575.load2630 = load i32 from ptr %al2575
+  store i32 %al2575.load2630 to ptr %x
+  c2577.load2631 = load i32 from ptr %c2577
+  store i32 %c2577.load2631 to ptr %y
+  br bb %while.cond2632
+then2596:
+  y.load2599 = load i32 from ptr %y
+  2600 = srem i32 %y.load2599, i32 2
+  2601 = icmp eq i32 %2600, i32 0
+  br i1 %2601, bb %then2602, bb %if.exit2603
+if.exit2597:
+  x.load2623 = load i32 from ptr %x
+  2624 = sdiv i32 %x.load2623, i32 2
+  store i32 %2624 to ptr %x
+  y.load2625 = load i32 from ptr %y
+  2626 = sdiv i32 %y.load2625, i32 2
+  store i32 %2626 to ptr %y
+  i.load2627 = load i32 from ptr %i
+  2628 = add i32 %i.load2627, i32 1
+  store i32 %2628 to ptr %i
+  br bb %while.cond2587
+else2598:
+  y.load2611 = load i32 from ptr %y
+  2612 = srem i32 %y.load2611, i32 2
+  2613 = icmp ne i32 %2612, i32 0
+  br i1 %2613, bb %then2614, bb %if.exit2615
+then2602:
+  ans.load2604 = load i32 from ptr %ans
+  i.load2605 = load i32 from ptr %i
+  2606 = mul i32 %i.load2605, i32 4
+  2607 = ptradd ptr @SHIFT_TABLE, i32 %2606
+  2607.load = load i32 from ptr %2607
+  2609 = mul i32 1, i32 %2607.load
+  2610 = add i32 %ans.load2604, i32 %2609
+  store i32 %2610 to ptr %ans
+  br bb %if.exit2603
+if.exit2603:
+  br bb %if.exit2597
+then2614:
+  ans.load2616 = load i32 from ptr %ans
+  i.load2617 = load i32 from ptr %i
+  2618 = mul i32 %i.load2617, i32 4
+  2619 = ptradd ptr @SHIFT_TABLE, i32 %2618
+  2619.load = load i32 from ptr %2619
+  2621 = mul i32 1, i32 %2619.load
+  2622 = add i32 %ans.load2616, i32 %2621
+  store i32 %2622 to ptr %ans
+  br bb %if.exit2615
+if.exit2615:
+  br bb %if.exit2597
+while.cond2632:
+  i.load2635 = load i32 from ptr %i
+  2636 = icmp slt i32 %i.load2635, i32 16
+  2637 = icmp ne i1 %2636, i1 0
+  br i1 %2637, bb %while.body2633, bb %while.exit2634
+while.body2633:
+  x.load2638 = load i32 from ptr %x
+  2639 = srem i32 %x.load2638, i32 2
+  2640 = icmp ne i32 %2639, i32 0
+  br i1 %2640, bb %select.then2641, bb %select.else2642
+while.exit2634:
+  ans.load2664 = load i32 from ptr %ans
+  store i32 %ans.load2664 to ptr %c2577
+  2665 = icmp sgt i32 1, i32 15
+  br i1 %2665, bb %then2666, bb %else2668
+select.then2641:
+  y.load2645 = load i32 from ptr %y
+  2646 = srem i32 %y.load2645, i32 2
+  2647 = icmp ne i32 %2646, i32 0
+  store i1 %2647 to ptr %select2644
+  br bb %select.exit2643
+select.else2642:
+  store i1 0 to ptr %select2644
+  br bb %select.exit2643
+select.exit2643:
+  2648 = load i1 from ptr %select2644
+  br i1 %2648, bb %then2649, bb %if.exit2650
+then2649:
+  ans.load2651 = load i32 from ptr %ans
+  i.load2652 = load i32 from ptr %i
+  2653 = mul i32 %i.load2652, i32 4
+  2654 = ptradd ptr @SHIFT_TABLE, i32 %2653
+  2654.load = load i32 from ptr %2654
+  2656 = mul i32 1, i32 %2654.load
+  2657 = add i32 %ans.load2651, i32 %2656
+  store i32 %2657 to ptr %ans
+  br bb %if.exit2650
+if.exit2650:
+  x.load2658 = load i32 from ptr %x
+  2659 = sdiv i32 %x.load2658, i32 2
+  store i32 %2659 to ptr %x
+  y.load2660 = load i32 from ptr %y
+  2661 = sdiv i32 %y.load2660, i32 2
+  store i32 %2661 to ptr %y
+  i.load2662 = load i32 from ptr %i
+  2663 = add i32 %i.load2662, i32 1
+  store i32 %2663 to ptr %i
+  br bb %while.cond2632
+then2666:
+  store i32 0 to ptr %ans
+  br bb %if.exit2667
+if.exit2667:
+  ans.load2706 = load i32 from ptr %ans
+  store i32 %ans.load2706 to ptr %c2577
+  sum2579.load = load i32 from ptr %sum2579
+  store i32 %sum2579.load to ptr %al2575
+  br bb %while.cond2580
+else2668:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c2577.load2669 = load i32 from ptr %c2577
+  2670 = mul i32 1, i32 4
+  2671 = ptradd ptr @SHIFT_TABLE, i32 %2670
+  2671.load = load i32 from ptr %2671
+  2673 = mul i32 %c2577.load2669, i32 %2671.load
+  store i32 %2673 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond2674
+while.cond2674:
+  i.load2677 = load i32 from ptr %i
+  2678 = icmp slt i32 %i.load2677, i32 16
+  2679 = icmp ne i1 %2678, i1 0
+  br i1 %2679, bb %while.body2675, bb %while.exit2676
+while.body2675:
+  x.load2680 = load i32 from ptr %x
+  2681 = srem i32 %x.load2680, i32 2
+  2682 = icmp ne i32 %2681, i32 0
+  br i1 %2682, bb %select.then2683, bb %select.else2684
+while.exit2676:
+  br bb %if.exit2667
+select.then2683:
+  y.load2687 = load i32 from ptr %y
+  2688 = srem i32 %y.load2687, i32 2
+  2689 = icmp ne i32 %2688, i32 0
+  store i1 %2689 to ptr %select2686
+  br bb %select.exit2685
+select.else2684:
+  store i1 0 to ptr %select2686
+  br bb %select.exit2685
+select.exit2685:
+  2690 = load i1 from ptr %select2686
+  br i1 %2690, bb %then2691, bb %if.exit2692
+then2691:
+  ans.load2693 = load i32 from ptr %ans
+  i.load2694 = load i32 from ptr %i
+  2695 = mul i32 %i.load2694, i32 4
+  2696 = ptradd ptr @SHIFT_TABLE, i32 %2695
+  2696.load = load i32 from ptr %2696
+  2698 = mul i32 1, i32 %2696.load
+  2699 = add i32 %ans.load2693, i32 %2698
+  store i32 %2699 to ptr %ans
+  br bb %if.exit2692
+if.exit2692:
+  x.load2700 = load i32 from ptr %x
+  2701 = sdiv i32 %x.load2700, i32 2
+  store i32 %2701 to ptr %x
+  y.load2702 = load i32 from ptr %y
+  2703 = sdiv i32 %y.load2702, i32 2
+  store i32 %2703 to ptr %y
+  i.load2704 = load i32 from ptr %i
+  2705 = add i32 %i.load2704, i32 1
+  store i32 %2705 to ptr %i
+  br bb %while.cond2674
+while.cond2715:
+  c2712.load = load i32 from ptr %c2712
+  2719 = icmp ne i32 %c2712.load, i32 0
+  br i1 %2719, bb %while.body2716, bb %while.exit2717
+while.body2716:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2710.load = load i32 from ptr %al2710
+  store i32 %al2710.load to ptr %x
+  c2712.load2721 = load i32 from ptr %c2712
+  store i32 %c2712.load2721 to ptr %y
+  br bb %while.cond2722
+while.exit2717:
+  al2710.load2843 = load i32 from ptr %al2710
+  store i32 %al2710.load2843 to ptr %ans
+  store i32 %al2710.load2843 to ptr %ml2528
+  mr2530.load2845 = load i32 from ptr %mr2530
+  store i32 %mr2530.load2845 to ptr %x
+  store i32 1 to ptr %y
+  2847 = icmp sge i32 1, i32 15
+  br i1 %2847, bb %then2848, bb %else2850
+while.cond2722:
+  i.load2725 = load i32 from ptr %i
+  2726 = icmp slt i32 %i.load2725, i32 16
+  2727 = icmp ne i1 %2726, i1 0
+  br i1 %2727, bb %while.body2723, bb %while.exit2724
+while.body2723:
+  x.load2728 = load i32 from ptr %x
+  2729 = srem i32 %x.load2728, i32 2
+  2730 = icmp ne i32 %2729, i32 0
+  br i1 %2730, bb %then2731, bb %else2733
+while.exit2724:
+  ans.load2764 = load i32 from ptr %ans
+  store i32 %ans.load2764 to ptr %sum2714
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2710.load2765 = load i32 from ptr %al2710
+  store i32 %al2710.load2765 to ptr %x
+  c2712.load2766 = load i32 from ptr %c2712
+  store i32 %c2712.load2766 to ptr %y
+  br bb %while.cond2767
+then2731:
+  y.load2734 = load i32 from ptr %y
+  2735 = srem i32 %y.load2734, i32 2
+  2736 = icmp eq i32 %2735, i32 0
+  br i1 %2736, bb %then2737, bb %if.exit2738
+if.exit2732:
+  x.load2758 = load i32 from ptr %x
+  2759 = sdiv i32 %x.load2758, i32 2
+  store i32 %2759 to ptr %x
+  y.load2760 = load i32 from ptr %y
+  2761 = sdiv i32 %y.load2760, i32 2
+  store i32 %2761 to ptr %y
+  i.load2762 = load i32 from ptr %i
+  2763 = add i32 %i.load2762, i32 1
+  store i32 %2763 to ptr %i
+  br bb %while.cond2722
+else2733:
+  y.load2746 = load i32 from ptr %y
+  2747 = srem i32 %y.load2746, i32 2
+  2748 = icmp ne i32 %2747, i32 0
+  br i1 %2748, bb %then2749, bb %if.exit2750
+then2737:
+  ans.load2739 = load i32 from ptr %ans
+  i.load2740 = load i32 from ptr %i
+  2741 = mul i32 %i.load2740, i32 4
+  2742 = ptradd ptr @SHIFT_TABLE, i32 %2741
+  2742.load = load i32 from ptr %2742
+  2744 = mul i32 1, i32 %2742.load
+  2745 = add i32 %ans.load2739, i32 %2744
+  store i32 %2745 to ptr %ans
+  br bb %if.exit2738
+if.exit2738:
+  br bb %if.exit2732
+then2749:
+  ans.load2751 = load i32 from ptr %ans
+  i.load2752 = load i32 from ptr %i
+  2753 = mul i32 %i.load2752, i32 4
+  2754 = ptradd ptr @SHIFT_TABLE, i32 %2753
+  2754.load = load i32 from ptr %2754
+  2756 = mul i32 1, i32 %2754.load
+  2757 = add i32 %ans.load2751, i32 %2756
+  store i32 %2757 to ptr %ans
+  br bb %if.exit2750
+if.exit2750:
+  br bb %if.exit2732
+while.cond2767:
+  i.load2770 = load i32 from ptr %i
+  2771 = icmp slt i32 %i.load2770, i32 16
+  2772 = icmp ne i1 %2771, i1 0
+  br i1 %2772, bb %while.body2768, bb %while.exit2769
+while.body2768:
+  x.load2773 = load i32 from ptr %x
+  2774 = srem i32 %x.load2773, i32 2
+  2775 = icmp ne i32 %2774, i32 0
+  br i1 %2775, bb %select.then2776, bb %select.else2777
+while.exit2769:
+  ans.load2799 = load i32 from ptr %ans
+  store i32 %ans.load2799 to ptr %c2712
+  2800 = icmp sgt i32 1, i32 15
+  br i1 %2800, bb %then2801, bb %else2803
+select.then2776:
+  y.load2780 = load i32 from ptr %y
+  2781 = srem i32 %y.load2780, i32 2
+  2782 = icmp ne i32 %2781, i32 0
+  store i1 %2782 to ptr %select2779
+  br bb %select.exit2778
+select.else2777:
+  store i1 0 to ptr %select2779
+  br bb %select.exit2778
+select.exit2778:
+  2783 = load i1 from ptr %select2779
+  br i1 %2783, bb %then2784, bb %if.exit2785
+then2784:
+  ans.load2786 = load i32 from ptr %ans
+  i.load2787 = load i32 from ptr %i
+  2788 = mul i32 %i.load2787, i32 4
+  2789 = ptradd ptr @SHIFT_TABLE, i32 %2788
+  2789.load = load i32 from ptr %2789
+  2791 = mul i32 1, i32 %2789.load
+  2792 = add i32 %ans.load2786, i32 %2791
+  store i32 %2792 to ptr %ans
+  br bb %if.exit2785
+if.exit2785:
+  x.load2793 = load i32 from ptr %x
+  2794 = sdiv i32 %x.load2793, i32 2
+  store i32 %2794 to ptr %x
+  y.load2795 = load i32 from ptr %y
+  2796 = sdiv i32 %y.load2795, i32 2
+  store i32 %2796 to ptr %y
+  i.load2797 = load i32 from ptr %i
+  2798 = add i32 %i.load2797, i32 1
+  store i32 %2798 to ptr %i
+  br bb %while.cond2767
+then2801:
+  store i32 0 to ptr %ans
+  br bb %if.exit2802
+if.exit2802:
+  ans.load2841 = load i32 from ptr %ans
+  store i32 %ans.load2841 to ptr %c2712
+  sum2714.load = load i32 from ptr %sum2714
+  store i32 %sum2714.load to ptr %al2710
+  br bb %while.cond2715
+else2803:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c2712.load2804 = load i32 from ptr %c2712
+  2805 = mul i32 1, i32 4
+  2806 = ptradd ptr @SHIFT_TABLE, i32 %2805
+  2806.load = load i32 from ptr %2806
+  2808 = mul i32 %c2712.load2804, i32 %2806.load
+  store i32 %2808 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond2809
+while.cond2809:
+  i.load2812 = load i32 from ptr %i
+  2813 = icmp slt i32 %i.load2812, i32 16
+  2814 = icmp ne i1 %2813, i1 0
+  br i1 %2814, bb %while.body2810, bb %while.exit2811
+while.body2810:
+  x.load2815 = load i32 from ptr %x
+  2816 = srem i32 %x.load2815, i32 2
+  2817 = icmp ne i32 %2816, i32 0
+  br i1 %2817, bb %select.then2818, bb %select.else2819
+while.exit2811:
+  br bb %if.exit2802
+select.then2818:
+  y.load2822 = load i32 from ptr %y
+  2823 = srem i32 %y.load2822, i32 2
+  2824 = icmp ne i32 %2823, i32 0
+  store i1 %2824 to ptr %select2821
+  br bb %select.exit2820
+select.else2819:
+  store i1 0 to ptr %select2821
+  br bb %select.exit2820
+select.exit2820:
+  2825 = load i1 from ptr %select2821
+  br i1 %2825, bb %then2826, bb %if.exit2827
+then2826:
+  ans.load2828 = load i32 from ptr %ans
+  i.load2829 = load i32 from ptr %i
+  2830 = mul i32 %i.load2829, i32 4
+  2831 = ptradd ptr @SHIFT_TABLE, i32 %2830
+  2831.load = load i32 from ptr %2831
+  2833 = mul i32 1, i32 %2831.load
+  2834 = add i32 %ans.load2828, i32 %2833
+  store i32 %2834 to ptr %ans
+  br bb %if.exit2827
+if.exit2827:
+  x.load2835 = load i32 from ptr %x
+  2836 = sdiv i32 %x.load2835, i32 2
+  store i32 %2836 to ptr %x
+  y.load2837 = load i32 from ptr %y
+  2838 = sdiv i32 %y.load2837, i32 2
+  store i32 %2838 to ptr %y
+  i.load2839 = load i32 from ptr %i
+  2840 = add i32 %i.load2839, i32 1
+  store i32 %2840 to ptr %i
+  br bb %while.cond2809
+then2848:
+  x.load2851 = load i32 from ptr %x
+  2852 = icmp slt i32 %x.load2851, i32 0
+  br i1 %2852, bb %then2853, bb %else2855
+if.exit2849:
+  ans.load2888 = load i32 from ptr %ans
+  store i32 %ans.load2888 to ptr %mr2530
+  br bb %while.cond2533
+else2850:
+  y.load2856 = load i32 from ptr %y
+  2857 = icmp sgt i32 %y.load2856, i32 0
+  br i1 %2857, bb %then2858, bb %else2860
+then2853:
+  store i32 65535 to ptr %ans
+  br bb %if.exit2854
+if.exit2854:
+  br bb %if.exit2849
+else2855:
+  store i32 0 to ptr %ans
+  br bb %if.exit2854
+then2858:
+  x.load2861 = load i32 from ptr %x
+  2862 = icmp sgt i32 %x.load2861, i32 32767
+  br i1 %2862, bb %then2863, bb %else2865
+if.exit2859:
+  br bb %if.exit2849
+else2860:
+  x.load2887 = load i32 from ptr %x
+  store i32 %x.load2887 to ptr %ans
+  br bb %if.exit2859
+then2863:
+  x.load2866 = load i32 from ptr %x
+  y.load2867 = load i32 from ptr %y
+  2868 = mul i32 %y.load2867, i32 4
+  2869 = ptradd ptr @SHIFT_TABLE, i32 %2868
+  2869.load = load i32 from ptr %2869
+  2871 = sdiv i32 %x.load2866, i32 %2869.load
+  store i32 %2871 to ptr %x
+  2873 = add i32 %2871, i32 65536
+  y.load2874 = load i32 from ptr %y
+  2875 = sub i32 15, i32 %y.load2874
+  2876 = add i32 %2875, i32 1
+  2877 = mul i32 %2876, i32 4
+  2878 = ptradd ptr @SHIFT_TABLE, i32 %2877
+  2878.load = load i32 from ptr %2878
+  2880 = sub i32 %2873, i32 %2878.load
+  store i32 %2880 to ptr %ans
+  br bb %if.exit2864
+if.exit2864:
+  br bb %if.exit2859
+else2865:
+  x.load2881 = load i32 from ptr %x
+  y.load2882 = load i32 from ptr %y
+  2883 = mul i32 %y.load2882, i32 4
+  2884 = ptradd ptr @SHIFT_TABLE, i32 %2883
+  2884.load = load i32 from ptr %2884
+  2886 = sdiv i32 %x.load2881, i32 %2884.load
+  store i32 %2886 to ptr %ans
+  br bb %if.exit2864
+while.cond2896:
+  mr2893.load = load i32 from ptr %mr2893
+  2900 = icmp ne i32 %mr2893.load, i32 0
+  br i1 %2900, bb %while.body2897, bb %while.exit2898
+while.body2897:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  mr2893.load2901 = load i32 from ptr %mr2893
+  store i32 %mr2893.load2901 to ptr %x
+  store i32 1 to ptr %y
+  br bb %while.cond2902
+while.exit2898:
+  mres2895.load3252 = load i32 from ptr %mres2895
+  store i32 %mres2895.load3252 to ptr %ans
+  store i32 %mres2895.load3252 to ptr %pl2481
+  pr2482.load3254 = load i32 from ptr %pr2482
+  store i32 %pr2482.load3254 to ptr %x
+  store i32 1 to ptr %y
+  3256 = icmp sge i32 1, i32 15
+  br i1 %3256, bb %then3257, bb %else3259
+while.cond2902:
+  i.load2905 = load i32 from ptr %i
+  2906 = icmp slt i32 %i.load2905, i32 16
+  2907 = icmp ne i1 %2906, i1 0
+  br i1 %2907, bb %while.body2903, bb %while.exit2904
+while.body2903:
+  x.load2908 = load i32 from ptr %x
+  2909 = srem i32 %x.load2908, i32 2
+  2910 = icmp ne i32 %2909, i32 0
+  br i1 %2910, bb %select.then2911, bb %select.else2912
+while.exit2904:
+  ans.load2934 = load i32 from ptr %ans
+  2935 = icmp ne i32 %ans.load2934, i32 0
+  br i1 %2935, bb %then2936, bb %if.exit2937
+select.then2911:
+  y.load2915 = load i32 from ptr %y
+  2916 = srem i32 %y.load2915, i32 2
+  2917 = icmp ne i32 %2916, i32 0
+  store i1 %2917 to ptr %select2914
+  br bb %select.exit2913
+select.else2912:
+  store i1 0 to ptr %select2914
+  br bb %select.exit2913
+select.exit2913:
+  2918 = load i1 from ptr %select2914
+  br i1 %2918, bb %then2919, bb %if.exit2920
+then2919:
+  ans.load2921 = load i32 from ptr %ans
+  i.load2922 = load i32 from ptr %i
+  2923 = mul i32 %i.load2922, i32 4
+  2924 = ptradd ptr @SHIFT_TABLE, i32 %2923
+  2924.load = load i32 from ptr %2924
+  2926 = mul i32 1, i32 %2924.load
+  2927 = add i32 %ans.load2921, i32 %2926
+  store i32 %2927 to ptr %ans
+  br bb %if.exit2920
+if.exit2920:
+  x.load2928 = load i32 from ptr %x
+  2929 = sdiv i32 %x.load2928, i32 2
+  store i32 %2929 to ptr %x
+  y.load2930 = load i32 from ptr %y
+  2931 = sdiv i32 %y.load2930, i32 2
+  store i32 %2931 to ptr %y
+  i.load2932 = load i32 from ptr %i
+  2933 = add i32 %i.load2932, i32 1
+  store i32 %2933 to ptr %i
+  br bb %while.cond2902
+then2936:
+  mres2895.load = load i32 from ptr %mres2895
+  store i32 %mres2895.load to ptr %al2938
+  ml2891.load = load i32 from ptr %ml2891
+  store i32 %ml2891.load to ptr %c2940
+  br bb %while.cond2943
+if.exit2937:
+  ml2891.load3074 = load i32 from ptr %ml2891
+  store i32 %ml2891.load3074 to ptr %al3073
+  ml2891.load3076 = load i32 from ptr %ml2891
+  store i32 %ml2891.load3076 to ptr %c3075
+  br bb %while.cond3078
+while.cond2943:
+  c2940.load = load i32 from ptr %c2940
+  2947 = icmp ne i32 %c2940.load, i32 0
+  br i1 %2947, bb %while.body2944, bb %while.exit2945
+while.body2944:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2938.load = load i32 from ptr %al2938
+  store i32 %al2938.load to ptr %x
+  c2940.load2949 = load i32 from ptr %c2940
+  store i32 %c2940.load2949 to ptr %y
+  br bb %while.cond2950
+while.exit2945:
+  al2938.load3071 = load i32 from ptr %al2938
+  store i32 %al2938.load3071 to ptr %ans
+  store i32 %al2938.load3071 to ptr %mres2895
+  br bb %if.exit2937
+while.cond2950:
+  i.load2953 = load i32 from ptr %i
+  2954 = icmp slt i32 %i.load2953, i32 16
+  2955 = icmp ne i1 %2954, i1 0
+  br i1 %2955, bb %while.body2951, bb %while.exit2952
+while.body2951:
+  x.load2956 = load i32 from ptr %x
+  2957 = srem i32 %x.load2956, i32 2
+  2958 = icmp ne i32 %2957, i32 0
+  br i1 %2958, bb %then2959, bb %else2961
+while.exit2952:
+  ans.load2992 = load i32 from ptr %ans
+  store i32 %ans.load2992 to ptr %sum2942
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al2938.load2993 = load i32 from ptr %al2938
+  store i32 %al2938.load2993 to ptr %x
+  c2940.load2994 = load i32 from ptr %c2940
+  store i32 %c2940.load2994 to ptr %y
+  br bb %while.cond2995
+then2959:
+  y.load2962 = load i32 from ptr %y
+  2963 = srem i32 %y.load2962, i32 2
+  2964 = icmp eq i32 %2963, i32 0
+  br i1 %2964, bb %then2965, bb %if.exit2966
+if.exit2960:
+  x.load2986 = load i32 from ptr %x
+  2987 = sdiv i32 %x.load2986, i32 2
+  store i32 %2987 to ptr %x
+  y.load2988 = load i32 from ptr %y
+  2989 = sdiv i32 %y.load2988, i32 2
+  store i32 %2989 to ptr %y
+  i.load2990 = load i32 from ptr %i
+  2991 = add i32 %i.load2990, i32 1
+  store i32 %2991 to ptr %i
+  br bb %while.cond2950
+else2961:
+  y.load2974 = load i32 from ptr %y
+  2975 = srem i32 %y.load2974, i32 2
+  2976 = icmp ne i32 %2975, i32 0
+  br i1 %2976, bb %then2977, bb %if.exit2978
+then2965:
+  ans.load2967 = load i32 from ptr %ans
+  i.load2968 = load i32 from ptr %i
+  2969 = mul i32 %i.load2968, i32 4
+  2970 = ptradd ptr @SHIFT_TABLE, i32 %2969
+  2970.load = load i32 from ptr %2970
+  2972 = mul i32 1, i32 %2970.load
+  2973 = add i32 %ans.load2967, i32 %2972
+  store i32 %2973 to ptr %ans
+  br bb %if.exit2966
+if.exit2966:
+  br bb %if.exit2960
+then2977:
+  ans.load2979 = load i32 from ptr %ans
+  i.load2980 = load i32 from ptr %i
+  2981 = mul i32 %i.load2980, i32 4
+  2982 = ptradd ptr @SHIFT_TABLE, i32 %2981
+  2982.load = load i32 from ptr %2982
+  2984 = mul i32 1, i32 %2982.load
+  2985 = add i32 %ans.load2979, i32 %2984
+  store i32 %2985 to ptr %ans
+  br bb %if.exit2978
+if.exit2978:
+  br bb %if.exit2960
+while.cond2995:
+  i.load2998 = load i32 from ptr %i
+  2999 = icmp slt i32 %i.load2998, i32 16
+  3000 = icmp ne i1 %2999, i1 0
+  br i1 %3000, bb %while.body2996, bb %while.exit2997
+while.body2996:
+  x.load3001 = load i32 from ptr %x
+  3002 = srem i32 %x.load3001, i32 2
+  3003 = icmp ne i32 %3002, i32 0
+  br i1 %3003, bb %select.then3004, bb %select.else3005
+while.exit2997:
+  ans.load3027 = load i32 from ptr %ans
+  store i32 %ans.load3027 to ptr %c2940
+  3028 = icmp sgt i32 1, i32 15
+  br i1 %3028, bb %then3029, bb %else3031
+select.then3004:
+  y.load3008 = load i32 from ptr %y
+  3009 = srem i32 %y.load3008, i32 2
+  3010 = icmp ne i32 %3009, i32 0
+  store i1 %3010 to ptr %select3007
+  br bb %select.exit3006
+select.else3005:
+  store i1 0 to ptr %select3007
+  br bb %select.exit3006
+select.exit3006:
+  3011 = load i1 from ptr %select3007
+  br i1 %3011, bb %then3012, bb %if.exit3013
+then3012:
+  ans.load3014 = load i32 from ptr %ans
+  i.load3015 = load i32 from ptr %i
+  3016 = mul i32 %i.load3015, i32 4
+  3017 = ptradd ptr @SHIFT_TABLE, i32 %3016
+  3017.load = load i32 from ptr %3017
+  3019 = mul i32 1, i32 %3017.load
+  3020 = add i32 %ans.load3014, i32 %3019
+  store i32 %3020 to ptr %ans
+  br bb %if.exit3013
+if.exit3013:
+  x.load3021 = load i32 from ptr %x
+  3022 = sdiv i32 %x.load3021, i32 2
+  store i32 %3022 to ptr %x
+  y.load3023 = load i32 from ptr %y
+  3024 = sdiv i32 %y.load3023, i32 2
+  store i32 %3024 to ptr %y
+  i.load3025 = load i32 from ptr %i
+  3026 = add i32 %i.load3025, i32 1
+  store i32 %3026 to ptr %i
+  br bb %while.cond2995
+then3029:
+  store i32 0 to ptr %ans
+  br bb %if.exit3030
+if.exit3030:
+  ans.load3069 = load i32 from ptr %ans
+  store i32 %ans.load3069 to ptr %c2940
+  sum2942.load = load i32 from ptr %sum2942
+  store i32 %sum2942.load to ptr %al2938
+  br bb %while.cond2943
+else3031:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c2940.load3032 = load i32 from ptr %c2940
+  3033 = mul i32 1, i32 4
+  3034 = ptradd ptr @SHIFT_TABLE, i32 %3033
+  3034.load = load i32 from ptr %3034
+  3036 = mul i32 %c2940.load3032, i32 %3034.load
+  store i32 %3036 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond3037
+while.cond3037:
+  i.load3040 = load i32 from ptr %i
+  3041 = icmp slt i32 %i.load3040, i32 16
+  3042 = icmp ne i1 %3041, i1 0
+  br i1 %3042, bb %while.body3038, bb %while.exit3039
+while.body3038:
+  x.load3043 = load i32 from ptr %x
+  3044 = srem i32 %x.load3043, i32 2
+  3045 = icmp ne i32 %3044, i32 0
+  br i1 %3045, bb %select.then3046, bb %select.else3047
+while.exit3039:
+  br bb %if.exit3030
+select.then3046:
+  y.load3050 = load i32 from ptr %y
+  3051 = srem i32 %y.load3050, i32 2
+  3052 = icmp ne i32 %3051, i32 0
+  store i1 %3052 to ptr %select3049
+  br bb %select.exit3048
+select.else3047:
+  store i1 0 to ptr %select3049
+  br bb %select.exit3048
+select.exit3048:
+  3053 = load i1 from ptr %select3049
+  br i1 %3053, bb %then3054, bb %if.exit3055
+then3054:
+  ans.load3056 = load i32 from ptr %ans
+  i.load3057 = load i32 from ptr %i
+  3058 = mul i32 %i.load3057, i32 4
+  3059 = ptradd ptr @SHIFT_TABLE, i32 %3058
+  3059.load = load i32 from ptr %3059
+  3061 = mul i32 1, i32 %3059.load
+  3062 = add i32 %ans.load3056, i32 %3061
+  store i32 %3062 to ptr %ans
+  br bb %if.exit3055
+if.exit3055:
+  x.load3063 = load i32 from ptr %x
+  3064 = sdiv i32 %x.load3063, i32 2
+  store i32 %3064 to ptr %x
+  y.load3065 = load i32 from ptr %y
+  3066 = sdiv i32 %y.load3065, i32 2
+  store i32 %3066 to ptr %y
+  i.load3067 = load i32 from ptr %i
+  3068 = add i32 %i.load3067, i32 1
+  store i32 %3068 to ptr %i
+  br bb %while.cond3037
+while.cond3078:
+  c3075.load = load i32 from ptr %c3075
+  3082 = icmp ne i32 %c3075.load, i32 0
+  br i1 %3082, bb %while.body3079, bb %while.exit3080
+while.body3079:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al3073.load = load i32 from ptr %al3073
+  store i32 %al3073.load to ptr %x
+  c3075.load3084 = load i32 from ptr %c3075
+  store i32 %c3075.load3084 to ptr %y
+  br bb %while.cond3085
+while.exit3080:
+  al3073.load3206 = load i32 from ptr %al3073
+  store i32 %al3073.load3206 to ptr %ans
+  store i32 %al3073.load3206 to ptr %ml2891
+  mr2893.load3208 = load i32 from ptr %mr2893
+  store i32 %mr2893.load3208 to ptr %x
+  store i32 1 to ptr %y
+  3210 = icmp sge i32 1, i32 15
+  br i1 %3210, bb %then3211, bb %else3213
+while.cond3085:
+  i.load3088 = load i32 from ptr %i
+  3089 = icmp slt i32 %i.load3088, i32 16
+  3090 = icmp ne i1 %3089, i1 0
+  br i1 %3090, bb %while.body3086, bb %while.exit3087
+while.body3086:
+  x.load3091 = load i32 from ptr %x
+  3092 = srem i32 %x.load3091, i32 2
+  3093 = icmp ne i32 %3092, i32 0
+  br i1 %3093, bb %then3094, bb %else3096
+while.exit3087:
+  ans.load3127 = load i32 from ptr %ans
+  store i32 %ans.load3127 to ptr %sum3077
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  al3073.load3128 = load i32 from ptr %al3073
+  store i32 %al3073.load3128 to ptr %x
+  c3075.load3129 = load i32 from ptr %c3075
+  store i32 %c3075.load3129 to ptr %y
+  br bb %while.cond3130
+then3094:
+  y.load3097 = load i32 from ptr %y
+  3098 = srem i32 %y.load3097, i32 2
+  3099 = icmp eq i32 %3098, i32 0
+  br i1 %3099, bb %then3100, bb %if.exit3101
+if.exit3095:
+  x.load3121 = load i32 from ptr %x
+  3122 = sdiv i32 %x.load3121, i32 2
+  store i32 %3122 to ptr %x
+  y.load3123 = load i32 from ptr %y
+  3124 = sdiv i32 %y.load3123, i32 2
+  store i32 %3124 to ptr %y
+  i.load3125 = load i32 from ptr %i
+  3126 = add i32 %i.load3125, i32 1
+  store i32 %3126 to ptr %i
+  br bb %while.cond3085
+else3096:
+  y.load3109 = load i32 from ptr %y
+  3110 = srem i32 %y.load3109, i32 2
+  3111 = icmp ne i32 %3110, i32 0
+  br i1 %3111, bb %then3112, bb %if.exit3113
+then3100:
+  ans.load3102 = load i32 from ptr %ans
+  i.load3103 = load i32 from ptr %i
+  3104 = mul i32 %i.load3103, i32 4
+  3105 = ptradd ptr @SHIFT_TABLE, i32 %3104
+  3105.load = load i32 from ptr %3105
+  3107 = mul i32 1, i32 %3105.load
+  3108 = add i32 %ans.load3102, i32 %3107
+  store i32 %3108 to ptr %ans
+  br bb %if.exit3101
+if.exit3101:
+  br bb %if.exit3095
+then3112:
+  ans.load3114 = load i32 from ptr %ans
+  i.load3115 = load i32 from ptr %i
+  3116 = mul i32 %i.load3115, i32 4
+  3117 = ptradd ptr @SHIFT_TABLE, i32 %3116
+  3117.load = load i32 from ptr %3117
+  3119 = mul i32 1, i32 %3117.load
+  3120 = add i32 %ans.load3114, i32 %3119
+  store i32 %3120 to ptr %ans
+  br bb %if.exit3113
+if.exit3113:
+  br bb %if.exit3095
+while.cond3130:
+  i.load3133 = load i32 from ptr %i
+  3134 = icmp slt i32 %i.load3133, i32 16
+  3135 = icmp ne i1 %3134, i1 0
+  br i1 %3135, bb %while.body3131, bb %while.exit3132
+while.body3131:
+  x.load3136 = load i32 from ptr %x
+  3137 = srem i32 %x.load3136, i32 2
+  3138 = icmp ne i32 %3137, i32 0
+  br i1 %3138, bb %select.then3139, bb %select.else3140
+while.exit3132:
+  ans.load3162 = load i32 from ptr %ans
+  store i32 %ans.load3162 to ptr %c3075
+  3163 = icmp sgt i32 1, i32 15
+  br i1 %3163, bb %then3164, bb %else3166
+select.then3139:
+  y.load3143 = load i32 from ptr %y
+  3144 = srem i32 %y.load3143, i32 2
+  3145 = icmp ne i32 %3144, i32 0
+  store i1 %3145 to ptr %select3142
+  br bb %select.exit3141
+select.else3140:
+  store i1 0 to ptr %select3142
+  br bb %select.exit3141
+select.exit3141:
+  3146 = load i1 from ptr %select3142
+  br i1 %3146, bb %then3147, bb %if.exit3148
+then3147:
+  ans.load3149 = load i32 from ptr %ans
+  i.load3150 = load i32 from ptr %i
+  3151 = mul i32 %i.load3150, i32 4
+  3152 = ptradd ptr @SHIFT_TABLE, i32 %3151
+  3152.load = load i32 from ptr %3152
+  3154 = mul i32 1, i32 %3152.load
+  3155 = add i32 %ans.load3149, i32 %3154
+  store i32 %3155 to ptr %ans
+  br bb %if.exit3148
+if.exit3148:
+  x.load3156 = load i32 from ptr %x
+  3157 = sdiv i32 %x.load3156, i32 2
+  store i32 %3157 to ptr %x
+  y.load3158 = load i32 from ptr %y
+  3159 = sdiv i32 %y.load3158, i32 2
+  store i32 %3159 to ptr %y
+  i.load3160 = load i32 from ptr %i
+  3161 = add i32 %i.load3160, i32 1
+  store i32 %3161 to ptr %i
+  br bb %while.cond3130
+then3164:
+  store i32 0 to ptr %ans
+  br bb %if.exit3165
+if.exit3165:
+  ans.load3204 = load i32 from ptr %ans
+  store i32 %ans.load3204 to ptr %c3075
+  sum3077.load = load i32 from ptr %sum3077
+  store i32 %sum3077.load to ptr %al3073
+  br bb %while.cond3078
+else3166:
+  store i32 0 to ptr %ans
+  store i32 0 to ptr %i
+  c3075.load3167 = load i32 from ptr %c3075
+  3168 = mul i32 1, i32 4
+  3169 = ptradd ptr @SHIFT_TABLE, i32 %3168
+  3169.load = load i32 from ptr %3169
+  3171 = mul i32 %c3075.load3167, i32 %3169.load
+  store i32 %3171 to ptr %x
+  store i32 65535 to ptr %y
+  br bb %while.cond3172
+while.cond3172:
+  i.load3175 = load i32 from ptr %i
+  3176 = icmp slt i32 %i.load3175, i32 16
+  3177 = icmp ne i1 %3176, i1 0
+  br i1 %3177, bb %while.body3173, bb %while.exit3174
+while.body3173:
+  x.load3178 = load i32 from ptr %x
+  3179 = srem i32 %x.load3178, i32 2
+  3180 = icmp ne i32 %3179, i32 0
+  br i1 %3180, bb %select.then3181, bb %select.else3182
+while.exit3174:
+  br bb %if.exit3165
+select.then3181:
+  y.load3185 = load i32 from ptr %y
+  3186 = srem i32 %y.load3185, i32 2
+  3187 = icmp ne i32 %3186, i32 0
+  store i1 %3187 to ptr %select3184
+  br bb %select.exit3183
+select.else3182:
+  store i1 0 to ptr %select3184
+  br bb %select.exit3183
+select.exit3183:
+  3188 = load i1 from ptr %select3184
+  br i1 %3188, bb %then3189, bb %if.exit3190
+then3189:
+  ans.load3191 = load i32 from ptr %ans
+  i.load3192 = load i32 from ptr %i
+  3193 = mul i32 %i.load3192, i32 4
+  3194 = ptradd ptr @SHIFT_TABLE, i32 %3193
+  3194.load = load i32 from ptr %3194
+  3196 = mul i32 1, i32 %3194.load
+  3197 = add i32 %ans.load3191, i32 %3196
+  store i32 %3197 to ptr %ans
+  br bb %if.exit3190
+if.exit3190:
+  x.load3198 = load i32 from ptr %x
+  3199 = sdiv i32 %x.load3198, i32 2
+  store i32 %3199 to ptr %x
+  y.load3200 = load i32 from ptr %y
+  3201 = sdiv i32 %y.load3200, i32 2
+  store i32 %3201 to ptr %y
+  i.load3202 = load i32 from ptr %i
+  3203 = add i32 %i.load3202, i32 1
+  store i32 %3203 to ptr %i
+  br bb %while.cond3172
+then3211:
+  x.load3214 = load i32 from ptr %x
+  3215 = icmp slt i32 %x.load3214, i32 0
+  br i1 %3215, bb %then3216, bb %else3218
+if.exit3212:
+  ans.load3251 = load i32 from ptr %ans
+  store i32 %ans.load3251 to ptr %mr2893
+  br bb %while.cond2896
+else3213:
+  y.load3219 = load i32 from ptr %y
+  3220 = icmp sgt i32 %y.load3219, i32 0
+  br i1 %3220, bb %then3221, bb %else3223
+then3216:
+  store i32 65535 to ptr %ans
+  br bb %if.exit3217
+if.exit3217:
+  br bb %if.exit3212
+else3218:
+  store i32 0 to ptr %ans
+  br bb %if.exit3217
+then3221:
+  x.load3224 = load i32 from ptr %x
+  3225 = icmp sgt i32 %x.load3224, i32 32767
+  br i1 %3225, bb %then3226, bb %else3228
+if.exit3222:
+  br bb %if.exit3212
+else3223:
+  x.load3250 = load i32 from ptr %x
+  store i32 %x.load3250 to ptr %ans
+  br bb %if.exit3222
+then3226:
+  x.load3229 = load i32 from ptr %x
+  y.load3230 = load i32 from ptr %y
+  3231 = mul i32 %y.load3230, i32 4
+  3232 = ptradd ptr @SHIFT_TABLE, i32 %3231
+  3232.load = load i32 from ptr %3232
+  3234 = sdiv i32 %x.load3229, i32 %3232.load
+  store i32 %3234 to ptr %x
+  3236 = add i32 %3234, i32 65536
+  y.load3237 = load i32 from ptr %y
+  3238 = sub i32 15, i32 %y.load3237
+  3239 = add i32 %3238, i32 1
+  3240 = mul i32 %3239, i32 4
+  3241 = ptradd ptr @SHIFT_TABLE, i32 %3240
+  3241.load = load i32 from ptr %3241
+  3243 = sub i32 %3236, i32 %3241.load
+  store i32 %3243 to ptr %ans
+  br bb %if.exit3227
+if.exit3227:
+  br bb %if.exit3222
+else3228:
+  x.load3244 = load i32 from ptr %x
+  y.load3245 = load i32 from ptr %y
+  3246 = mul i32 %y.load3245, i32 4
+  3247 = ptradd ptr @SHIFT_TABLE, i32 %3246
+  3247.load = load i32 from ptr %3247
+  3249 = sdiv i32 %x.load3244, i32 %3247.load
+  store i32 %3249 to ptr %ans
+  br bb %if.exit3227
+then3257:
+  x.load3260 = load i32 from ptr %x
+  3261 = icmp slt i32 %x.load3260, i32 0
+  br i1 %3261, bb %then3262, bb %else3264
+if.exit3258:
+  ans.load3297 = load i32 from ptr %ans
+  store i32 %ans.load3297 to ptr %pr2482
+  br bb %while.cond2485
+else3259:
+  y.load3265 = load i32 from ptr %y
+  3266 = icmp sgt i32 %y.load3265, i32 0
+  br i1 %3266, bb %then3267, bb %else3269
+then3262:
+  store i32 65535 to ptr %ans
+  br bb %if.exit3263
+if.exit3263:
+  br bb %if.exit3258
+else3264:
+  store i32 0 to ptr %ans
+  br bb %if.exit3263
+then3267:
+  x.load3270 = load i32 from ptr %x
+  3271 = icmp sgt i32 %x.load3270, i32 32767
+  br i1 %3271, bb %then3272, bb %else3274
+if.exit3268:
+  br bb %if.exit3258
+else3269:
+  x.load3296 = load i32 from ptr %x
+  store i32 %x.load3296 to ptr %ans
+  br bb %if.exit3268
+then3272:
+  x.load3275 = load i32 from ptr %x
+  y.load3276 = load i32 from ptr %y
+  3277 = mul i32 %y.load3276, i32 4
+  3278 = ptradd ptr @SHIFT_TABLE, i32 %3277
+  3278.load = load i32 from ptr %3278
+  3280 = sdiv i32 %x.load3275, i32 %3278.load
+  store i32 %3280 to ptr %x
+  3282 = add i32 %3280, i32 65536
+  y.load3283 = load i32 from ptr %y
+  3284 = sub i32 15, i32 %y.load3283
+  3285 = add i32 %3284, i32 1
+  3286 = mul i32 %3285, i32 4
+  3287 = ptradd ptr @SHIFT_TABLE, i32 %3286
+  3287.load = load i32 from ptr %3287
+  3289 = sub i32 %3282, i32 %3287.load
+  store i32 %3289 to ptr %ans
+  br bb %if.exit3273
+if.exit3273:
+  br bb %if.exit3268
+else3274:
+  x.load3290 = load i32 from ptr %x
+  y.load3291 = load i32 from ptr %y
+  3292 = mul i32 %y.load3291, i32 4
+  3293 = ptradd ptr @SHIFT_TABLE, i32 %3292
+  3293.load = load i32 from ptr %3293
+  3295 = sdiv i32 %x.load3290, i32 %3293.load
+  store i32 %3295 to ptr %ans
+  br bb %if.exit3273
+then3305:
+  ret i32 1
+if.exit3306:
+  cur.load3307 = load i32 from ptr %cur
+  3308 = add i32 %cur.load3307, i32 1
+  store i32 %3308 to ptr %cur
+  br bb %while.cond2475
+}
+
+

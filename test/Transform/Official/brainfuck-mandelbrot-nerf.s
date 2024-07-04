@@ -153,7 +153,6 @@ bb9:
   ADD s1, s0, s2
   LW s0, 0(s1)
   SW s0, 24(sp)
-  LW s0, 24(sp)
   XORI s1, s0, 62
   SLTIU s0, s1, 1
   BNE s0, zero, bb11
@@ -301,7 +300,6 @@ bb23:
   ADD s1, s0, s2
   LW s0, 0(s1)
   SW s0, 16(sp)
-  LW s0, 16(sp)
   XOR s1, s0, zero
   SLTU s0, zero, s1
   BNE s0, zero, bb26
@@ -352,12 +350,8 @@ bb30:
   ADDI t6, t6, -1984
   ADD t6, t6, sp
   SW s1, 0(t6)
-  LUI t5, 1
-  ADDI t5, t5, -1984
-  ADD t5, t5, sp
-  LW s0, 0(t5)
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
+  ADDI s0, zero, 4
+  MULW s2, s1, s0
   LA s0, program
   ADD s1, s0, s2
   LW s0, 0(s1)
@@ -374,10 +368,10 @@ bb32:
   SW s2, 8(sp)
   JAL zero, bb33
 bb33:
-  LUI t6, 1
-  ADDI t6, t6, -1984
-  ADD t6, t6, sp
-  LW s0, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1984
+  ADD t5, t5, sp
+  LW s0, 0(t5)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, program
@@ -395,17 +389,16 @@ bb34:
 bb35:
   JAL zero, bb29
 bb36:
-  LUI t5, 1
-  ADDI t5, t5, -1992
-  ADD t5, t5, sp
-  LW s0, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1992
+  ADD t6, t6, sp
+  LW s0, 0(t6)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, tape
   ADD s1, s0, s2
   LW s0, 0(s1)
   SW s0, 0(sp)
-  LW s0, 0(sp)
   XOR s1, s0, zero
   SLTIU s0, s1, 1
   BNE s0, zero, bb39
@@ -432,13 +425,13 @@ bb41:
   SUBW s2, s0, s1
   ADDI s0, zero, 4
   MULW s1, s2, s0
-  ADDI t6, sp, 48
-  ADD s0, t6, s1
+  ADDI t5, sp, 48
+  ADD s0, t5, s1
   LW s1, 0(s0)
-  LUI t5, 1
-  ADDI t5, t5, -1984
-  ADD t5, t5, sp
-  SW s1, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1984
+  ADD t6, t6, sp
+  SW s1, 0(t6)
   JAL zero, bb40
 bb42:
   LA s0, output_length
@@ -447,10 +440,10 @@ bb42:
   MULW s2, s1, s0
   LA s0, output
   ADD s1, s0, s2
-  LUI t6, 1
-  ADDI t6, t6, -1992
-  ADD t6, t6, sp
-  LW s0, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1992
+  ADD t5, t5, sp
+  LW s0, 0(t5)
   ADDI s2, zero, 4
   MULW s3, s0, s2
   LA s0, tape
@@ -472,10 +465,10 @@ bb44:
   BNE s0, zero, bb45
   JAL zero, bb46
 bb45:
-  LUI t5, 1
-  ADDI t5, t5, -2000
-  ADD t5, t5, sp
-  LW s0, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -2000
+  ADD t6, t6, sp
+  LW s0, 0(t6)
   LA s1, input_length
   LW s2, 0(s1)
   SLT s1, s0, s2
@@ -485,10 +478,10 @@ bb45:
 bb46:
   JAL zero, bb43
 bb47:
-  LUI t6, 1
-  ADDI t6, t6, -1992
-  ADD t6, t6, sp
-  LW s0, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1992
+  ADD t5, t5, sp
+  LW s0, 0(t5)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, tape
@@ -498,33 +491,33 @@ bb47:
 bb48:
   JAL zero, bb46
 bb49:
-  LUI t5, 1
-  ADDI t5, t5, -1992
-  ADD t5, t5, sp
-  LW s0, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1992
+  ADD t6, t6, sp
+  LW s0, 0(t6)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, tape
   ADD s1, s0, s2
-  LUI t6, 1
-  ADDI t6, t6, -2000
-  ADD t6, t6, sp
-  LW s0, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -2000
+  ADD t5, t5, sp
+  LW s0, 0(t5)
   ADDI s2, zero, 4
   MULW s3, s0, s2
   LA s0, input
   ADD s2, s0, s3
   LW s0, 0(s2)
   SW s0, 0(s1)
-  LUI t5, 1
-  ADDI t5, t5, -2000
-  ADD t5, t5, sp
-  LW s0, 0(t5)
-  ADDIW s1, s0, 1
   LUI t6, 1
   ADDI t6, t6, -2000
   ADD t6, t6, sp
-  SW s1, 0(t6)
+  LW s0, 0(t6)
+  ADDIW s1, s0, 1
+  LUI t5, 1
+  ADDI t5, t5, -2000
+  ADD t5, t5, sp
+  SW s1, 0(t5)
   JAL zero, bb48
 read_program:
   ADDI sp, sp, -64
@@ -566,7 +559,6 @@ bb53:
   CALL getch
   ADD s0, a0, zero
   SW s0, 8(sp)
-  LW s0, 8(sp)
   XORI s1, s0, 105
   SLTU s0, zero, s1
   BNE s0, zero, bb54
@@ -624,7 +616,7 @@ main:
   CALL _sysy_starttime
   CALL run_program
   ADDI a0, zero, 118
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   CALL output_
   ADD a0, zero, zero
   LD ra, 0(sp)

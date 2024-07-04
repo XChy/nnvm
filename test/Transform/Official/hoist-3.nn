@@ -17,7 +17,7 @@ entry3136:
   call void _sysy_starttime(i32 121)
   3140 = call i32 func(i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1)
   store i32 %3140 to ptr %result3139
-  call void _sysy_starttime(i32 123)
+  call void _sysy_stoptime(i32 123)
   result3139.load = load i32 from ptr %result3139
   call void putint(i32 %result3139.load)
   call void putch(i32 10)
@@ -84,9 +84,8 @@ while.cond:
   br i1 %24, bb %while.body, bb %while.exit
 while.body:
   store i32 0 to ptr %sum
-  sum.load = load i32 from ptr %sum
   i1.stack.load = load i32 from ptr %i1.stack
-  28 = add i32 %sum.load, i32 %i1.stack.load
+  28 = add i32 0, i32 %i1.stack.load
   i2.stack.load = load i32 from ptr %i2.stack
   30 = add i32 %28, i32 %i2.stack.load
   i3.stack.load = load i32 from ptr %i3.stack
@@ -116,9 +115,8 @@ while.body:
   i15.stack.load = load i32 from ptr %i15.stack
   56 = add i32 %54, i32 %i15.stack.load
   store i32 %56 to ptr %sum
-  sum.load57 = load i32 from ptr %sum
   i1.stack.load58 = load i32 from ptr %i1.stack
-  59 = add i32 %sum.load57, i32 %i1.stack.load58
+  59 = add i32 %56, i32 %i1.stack.load58
   i2.stack.load60 = load i32 from ptr %i2.stack
   61 = add i32 %59, i32 %i2.stack.load60
   i3.stack.load62 = load i32 from ptr %i3.stack
@@ -148,9 +146,8 @@ while.body:
   i15.stack.load86 = load i32 from ptr %i15.stack
   87 = add i32 %85, i32 %i15.stack.load86
   store i32 %87 to ptr %sum
-  sum.load88 = load i32 from ptr %sum
   i1.stack.load89 = load i32 from ptr %i1.stack
-  90 = add i32 %sum.load88, i32 %i1.stack.load89
+  90 = add i32 %87, i32 %i1.stack.load89
   i2.stack.load91 = load i32 from ptr %i2.stack
   92 = add i32 %90, i32 %i2.stack.load91
   i3.stack.load93 = load i32 from ptr %i3.stack
@@ -180,9 +177,8 @@ while.body:
   i15.stack.load117 = load i32 from ptr %i15.stack
   118 = add i32 %116, i32 %i15.stack.load117
   store i32 %118 to ptr %sum
-  sum.load119 = load i32 from ptr %sum
   i1.stack.load120 = load i32 from ptr %i1.stack
-  121 = add i32 %sum.load119, i32 %i1.stack.load120
+  121 = add i32 %118, i32 %i1.stack.load120
   i2.stack.load122 = load i32 from ptr %i2.stack
   123 = add i32 %121, i32 %i2.stack.load122
   i3.stack.load124 = load i32 from ptr %i3.stack
@@ -212,9 +208,8 @@ while.body:
   i15.stack.load148 = load i32 from ptr %i15.stack
   149 = add i32 %147, i32 %i15.stack.load148
   store i32 %149 to ptr %sum
-  sum.load150 = load i32 from ptr %sum
   i1.stack.load151 = load i32 from ptr %i1.stack
-  152 = add i32 %sum.load150, i32 %i1.stack.load151
+  152 = add i32 %149, i32 %i1.stack.load151
   i2.stack.load153 = load i32 from ptr %i2.stack
   154 = add i32 %152, i32 %i2.stack.load153
   i3.stack.load155 = load i32 from ptr %i3.stack
@@ -244,9 +239,8 @@ while.body:
   i15.stack.load179 = load i32 from ptr %i15.stack
   180 = add i32 %178, i32 %i15.stack.load179
   store i32 %180 to ptr %sum
-  sum.load181 = load i32 from ptr %sum
   i1.stack.load182 = load i32 from ptr %i1.stack
-  183 = add i32 %sum.load181, i32 %i1.stack.load182
+  183 = add i32 %180, i32 %i1.stack.load182
   i2.stack.load184 = load i32 from ptr %i2.stack
   185 = add i32 %183, i32 %i2.stack.load184
   i3.stack.load186 = load i32 from ptr %i3.stack
@@ -276,9 +270,8 @@ while.body:
   i15.stack.load210 = load i32 from ptr %i15.stack
   211 = add i32 %209, i32 %i15.stack.load210
   store i32 %211 to ptr %sum
-  sum.load212 = load i32 from ptr %sum
   i1.stack.load213 = load i32 from ptr %i1.stack
-  214 = add i32 %sum.load212, i32 %i1.stack.load213
+  214 = add i32 %211, i32 %i1.stack.load213
   i2.stack.load215 = load i32 from ptr %i2.stack
   216 = add i32 %214, i32 %i2.stack.load215
   i3.stack.load217 = load i32 from ptr %i3.stack
@@ -308,9 +301,8 @@ while.body:
   i15.stack.load241 = load i32 from ptr %i15.stack
   242 = add i32 %240, i32 %i15.stack.load241
   store i32 %242 to ptr %sum
-  sum.load243 = load i32 from ptr %sum
   i1.stack.load244 = load i32 from ptr %i1.stack
-  245 = add i32 %sum.load243, i32 %i1.stack.load244
+  245 = add i32 %242, i32 %i1.stack.load244
   i2.stack.load246 = load i32 from ptr %i2.stack
   247 = add i32 %245, i32 %i2.stack.load246
   i3.stack.load248 = load i32 from ptr %i3.stack
@@ -340,9 +332,8 @@ while.body:
   i15.stack.load272 = load i32 from ptr %i15.stack
   273 = add i32 %271, i32 %i15.stack.load272
   store i32 %273 to ptr %sum
-  sum.load274 = load i32 from ptr %sum
   i1.stack.load275 = load i32 from ptr %i1.stack
-  276 = add i32 %sum.load274, i32 %i1.stack.load275
+  276 = add i32 %273, i32 %i1.stack.load275
   i2.stack.load277 = load i32 from ptr %i2.stack
   278 = add i32 %276, i32 %i2.stack.load277
   i3.stack.load279 = load i32 from ptr %i3.stack
@@ -372,9 +363,8 @@ while.body:
   i15.stack.load303 = load i32 from ptr %i15.stack
   304 = add i32 %302, i32 %i15.stack.load303
   store i32 %304 to ptr %sum
-  sum.load305 = load i32 from ptr %sum
   i1.stack.load306 = load i32 from ptr %i1.stack
-  307 = add i32 %sum.load305, i32 %i1.stack.load306
+  307 = add i32 %304, i32 %i1.stack.load306
   i2.stack.load308 = load i32 from ptr %i2.stack
   309 = add i32 %307, i32 %i2.stack.load308
   i3.stack.load310 = load i32 from ptr %i3.stack
@@ -404,9 +394,8 @@ while.body:
   i15.stack.load334 = load i32 from ptr %i15.stack
   335 = add i32 %333, i32 %i15.stack.load334
   store i32 %335 to ptr %sum
-  sum.load336 = load i32 from ptr %sum
   i1.stack.load337 = load i32 from ptr %i1.stack
-  338 = add i32 %sum.load336, i32 %i1.stack.load337
+  338 = add i32 %335, i32 %i1.stack.load337
   i2.stack.load339 = load i32 from ptr %i2.stack
   340 = add i32 %338, i32 %i2.stack.load339
   i3.stack.load341 = load i32 from ptr %i3.stack
@@ -436,9 +425,8 @@ while.body:
   i15.stack.load365 = load i32 from ptr %i15.stack
   366 = add i32 %364, i32 %i15.stack.load365
   store i32 %366 to ptr %sum
-  sum.load367 = load i32 from ptr %sum
   i1.stack.load368 = load i32 from ptr %i1.stack
-  369 = add i32 %sum.load367, i32 %i1.stack.load368
+  369 = add i32 %366, i32 %i1.stack.load368
   i2.stack.load370 = load i32 from ptr %i2.stack
   371 = add i32 %369, i32 %i2.stack.load370
   i3.stack.load372 = load i32 from ptr %i3.stack
@@ -468,9 +456,8 @@ while.body:
   i15.stack.load396 = load i32 from ptr %i15.stack
   397 = add i32 %395, i32 %i15.stack.load396
   store i32 %397 to ptr %sum
-  sum.load398 = load i32 from ptr %sum
   i1.stack.load399 = load i32 from ptr %i1.stack
-  400 = add i32 %sum.load398, i32 %i1.stack.load399
+  400 = add i32 %397, i32 %i1.stack.load399
   i2.stack.load401 = load i32 from ptr %i2.stack
   402 = add i32 %400, i32 %i2.stack.load401
   i3.stack.load403 = load i32 from ptr %i3.stack
@@ -500,9 +487,8 @@ while.body:
   i15.stack.load427 = load i32 from ptr %i15.stack
   428 = add i32 %426, i32 %i15.stack.load427
   store i32 %428 to ptr %sum
-  sum.load429 = load i32 from ptr %sum
   i1.stack.load430 = load i32 from ptr %i1.stack
-  431 = add i32 %sum.load429, i32 %i1.stack.load430
+  431 = add i32 %428, i32 %i1.stack.load430
   i2.stack.load432 = load i32 from ptr %i2.stack
   433 = add i32 %431, i32 %i2.stack.load432
   i3.stack.load434 = load i32 from ptr %i3.stack
@@ -532,9 +518,8 @@ while.body:
   i15.stack.load458 = load i32 from ptr %i15.stack
   459 = add i32 %457, i32 %i15.stack.load458
   store i32 %459 to ptr %sum
-  sum.load460 = load i32 from ptr %sum
   i1.stack.load461 = load i32 from ptr %i1.stack
-  462 = add i32 %sum.load460, i32 %i1.stack.load461
+  462 = add i32 %459, i32 %i1.stack.load461
   i2.stack.load463 = load i32 from ptr %i2.stack
   464 = add i32 %462, i32 %i2.stack.load463
   i3.stack.load465 = load i32 from ptr %i3.stack
@@ -564,9 +549,8 @@ while.body:
   i15.stack.load489 = load i32 from ptr %i15.stack
   490 = add i32 %488, i32 %i15.stack.load489
   store i32 %490 to ptr %sum
-  sum.load491 = load i32 from ptr %sum
   i1.stack.load492 = load i32 from ptr %i1.stack
-  493 = add i32 %sum.load491, i32 %i1.stack.load492
+  493 = add i32 %490, i32 %i1.stack.load492
   i2.stack.load494 = load i32 from ptr %i2.stack
   495 = add i32 %493, i32 %i2.stack.load494
   i3.stack.load496 = load i32 from ptr %i3.stack
@@ -596,9 +580,8 @@ while.body:
   i15.stack.load520 = load i32 from ptr %i15.stack
   521 = add i32 %519, i32 %i15.stack.load520
   store i32 %521 to ptr %sum
-  sum.load522 = load i32 from ptr %sum
   i1.stack.load523 = load i32 from ptr %i1.stack
-  524 = add i32 %sum.load522, i32 %i1.stack.load523
+  524 = add i32 %521, i32 %i1.stack.load523
   i2.stack.load525 = load i32 from ptr %i2.stack
   526 = add i32 %524, i32 %i2.stack.load525
   i3.stack.load527 = load i32 from ptr %i3.stack
@@ -628,9 +611,8 @@ while.body:
   i15.stack.load551 = load i32 from ptr %i15.stack
   552 = add i32 %550, i32 %i15.stack.load551
   store i32 %552 to ptr %sum
-  sum.load553 = load i32 from ptr %sum
   i1.stack.load554 = load i32 from ptr %i1.stack
-  555 = add i32 %sum.load553, i32 %i1.stack.load554
+  555 = add i32 %552, i32 %i1.stack.load554
   i2.stack.load556 = load i32 from ptr %i2.stack
   557 = add i32 %555, i32 %i2.stack.load556
   i3.stack.load558 = load i32 from ptr %i3.stack
@@ -660,9 +642,8 @@ while.body:
   i15.stack.load582 = load i32 from ptr %i15.stack
   583 = add i32 %581, i32 %i15.stack.load582
   store i32 %583 to ptr %sum
-  sum.load584 = load i32 from ptr %sum
   i1.stack.load585 = load i32 from ptr %i1.stack
-  586 = add i32 %sum.load584, i32 %i1.stack.load585
+  586 = add i32 %583, i32 %i1.stack.load585
   i2.stack.load587 = load i32 from ptr %i2.stack
   588 = add i32 %586, i32 %i2.stack.load587
   i3.stack.load589 = load i32 from ptr %i3.stack
@@ -692,9 +673,8 @@ while.body:
   i15.stack.load613 = load i32 from ptr %i15.stack
   614 = add i32 %612, i32 %i15.stack.load613
   store i32 %614 to ptr %sum
-  sum.load615 = load i32 from ptr %sum
   i1.stack.load616 = load i32 from ptr %i1.stack
-  617 = add i32 %sum.load615, i32 %i1.stack.load616
+  617 = add i32 %614, i32 %i1.stack.load616
   i2.stack.load618 = load i32 from ptr %i2.stack
   619 = add i32 %617, i32 %i2.stack.load618
   i3.stack.load620 = load i32 from ptr %i3.stack
@@ -724,9 +704,8 @@ while.body:
   i15.stack.load644 = load i32 from ptr %i15.stack
   645 = add i32 %643, i32 %i15.stack.load644
   store i32 %645 to ptr %sum
-  sum.load646 = load i32 from ptr %sum
   i1.stack.load647 = load i32 from ptr %i1.stack
-  648 = add i32 %sum.load646, i32 %i1.stack.load647
+  648 = add i32 %645, i32 %i1.stack.load647
   i2.stack.load649 = load i32 from ptr %i2.stack
   650 = add i32 %648, i32 %i2.stack.load649
   i3.stack.load651 = load i32 from ptr %i3.stack
@@ -756,9 +735,8 @@ while.body:
   i15.stack.load675 = load i32 from ptr %i15.stack
   676 = add i32 %674, i32 %i15.stack.load675
   store i32 %676 to ptr %sum
-  sum.load677 = load i32 from ptr %sum
   i1.stack.load678 = load i32 from ptr %i1.stack
-  679 = add i32 %sum.load677, i32 %i1.stack.load678
+  679 = add i32 %676, i32 %i1.stack.load678
   i2.stack.load680 = load i32 from ptr %i2.stack
   681 = add i32 %679, i32 %i2.stack.load680
   i3.stack.load682 = load i32 from ptr %i3.stack
@@ -788,9 +766,8 @@ while.body:
   i15.stack.load706 = load i32 from ptr %i15.stack
   707 = add i32 %705, i32 %i15.stack.load706
   store i32 %707 to ptr %sum
-  sum.load708 = load i32 from ptr %sum
   i1.stack.load709 = load i32 from ptr %i1.stack
-  710 = add i32 %sum.load708, i32 %i1.stack.load709
+  710 = add i32 %707, i32 %i1.stack.load709
   i2.stack.load711 = load i32 from ptr %i2.stack
   712 = add i32 %710, i32 %i2.stack.load711
   i3.stack.load713 = load i32 from ptr %i3.stack
@@ -820,9 +797,8 @@ while.body:
   i15.stack.load737 = load i32 from ptr %i15.stack
   738 = add i32 %736, i32 %i15.stack.load737
   store i32 %738 to ptr %sum
-  sum.load739 = load i32 from ptr %sum
   i1.stack.load740 = load i32 from ptr %i1.stack
-  741 = add i32 %sum.load739, i32 %i1.stack.load740
+  741 = add i32 %738, i32 %i1.stack.load740
   i2.stack.load742 = load i32 from ptr %i2.stack
   743 = add i32 %741, i32 %i2.stack.load742
   i3.stack.load744 = load i32 from ptr %i3.stack
@@ -852,9 +828,8 @@ while.body:
   i15.stack.load768 = load i32 from ptr %i15.stack
   769 = add i32 %767, i32 %i15.stack.load768
   store i32 %769 to ptr %sum
-  sum.load770 = load i32 from ptr %sum
   i1.stack.load771 = load i32 from ptr %i1.stack
-  772 = add i32 %sum.load770, i32 %i1.stack.load771
+  772 = add i32 %769, i32 %i1.stack.load771
   i2.stack.load773 = load i32 from ptr %i2.stack
   774 = add i32 %772, i32 %i2.stack.load773
   i3.stack.load775 = load i32 from ptr %i3.stack
@@ -884,9 +859,8 @@ while.body:
   i15.stack.load799 = load i32 from ptr %i15.stack
   800 = add i32 %798, i32 %i15.stack.load799
   store i32 %800 to ptr %sum
-  sum.load801 = load i32 from ptr %sum
   i1.stack.load802 = load i32 from ptr %i1.stack
-  803 = add i32 %sum.load801, i32 %i1.stack.load802
+  803 = add i32 %800, i32 %i1.stack.load802
   i2.stack.load804 = load i32 from ptr %i2.stack
   805 = add i32 %803, i32 %i2.stack.load804
   i3.stack.load806 = load i32 from ptr %i3.stack
@@ -916,9 +890,8 @@ while.body:
   i15.stack.load830 = load i32 from ptr %i15.stack
   831 = add i32 %829, i32 %i15.stack.load830
   store i32 %831 to ptr %sum
-  sum.load832 = load i32 from ptr %sum
   i1.stack.load833 = load i32 from ptr %i1.stack
-  834 = add i32 %sum.load832, i32 %i1.stack.load833
+  834 = add i32 %831, i32 %i1.stack.load833
   i2.stack.load835 = load i32 from ptr %i2.stack
   836 = add i32 %834, i32 %i2.stack.load835
   i3.stack.load837 = load i32 from ptr %i3.stack
@@ -948,9 +921,8 @@ while.body:
   i15.stack.load861 = load i32 from ptr %i15.stack
   862 = add i32 %860, i32 %i15.stack.load861
   store i32 %862 to ptr %sum
-  sum.load863 = load i32 from ptr %sum
   i1.stack.load864 = load i32 from ptr %i1.stack
-  865 = add i32 %sum.load863, i32 %i1.stack.load864
+  865 = add i32 %862, i32 %i1.stack.load864
   i2.stack.load866 = load i32 from ptr %i2.stack
   867 = add i32 %865, i32 %i2.stack.load866
   i3.stack.load868 = load i32 from ptr %i3.stack
@@ -980,9 +952,8 @@ while.body:
   i15.stack.load892 = load i32 from ptr %i15.stack
   893 = add i32 %891, i32 %i15.stack.load892
   store i32 %893 to ptr %sum
-  sum.load894 = load i32 from ptr %sum
   i1.stack.load895 = load i32 from ptr %i1.stack
-  896 = add i32 %sum.load894, i32 %i1.stack.load895
+  896 = add i32 %893, i32 %i1.stack.load895
   i2.stack.load897 = load i32 from ptr %i2.stack
   898 = add i32 %896, i32 %i2.stack.load897
   i3.stack.load899 = load i32 from ptr %i3.stack
@@ -1012,9 +983,8 @@ while.body:
   i15.stack.load923 = load i32 from ptr %i15.stack
   924 = add i32 %922, i32 %i15.stack.load923
   store i32 %924 to ptr %sum
-  sum.load925 = load i32 from ptr %sum
   i1.stack.load926 = load i32 from ptr %i1.stack
-  927 = add i32 %sum.load925, i32 %i1.stack.load926
+  927 = add i32 %924, i32 %i1.stack.load926
   i2.stack.load928 = load i32 from ptr %i2.stack
   929 = add i32 %927, i32 %i2.stack.load928
   i3.stack.load930 = load i32 from ptr %i3.stack
@@ -1044,9 +1014,8 @@ while.body:
   i15.stack.load954 = load i32 from ptr %i15.stack
   955 = add i32 %953, i32 %i15.stack.load954
   store i32 %955 to ptr %sum
-  sum.load956 = load i32 from ptr %sum
   i1.stack.load957 = load i32 from ptr %i1.stack
-  958 = add i32 %sum.load956, i32 %i1.stack.load957
+  958 = add i32 %955, i32 %i1.stack.load957
   i2.stack.load959 = load i32 from ptr %i2.stack
   960 = add i32 %958, i32 %i2.stack.load959
   i3.stack.load961 = load i32 from ptr %i3.stack
@@ -1076,9 +1045,8 @@ while.body:
   i15.stack.load985 = load i32 from ptr %i15.stack
   986 = add i32 %984, i32 %i15.stack.load985
   store i32 %986 to ptr %sum
-  sum.load987 = load i32 from ptr %sum
   i1.stack.load988 = load i32 from ptr %i1.stack
-  989 = add i32 %sum.load987, i32 %i1.stack.load988
+  989 = add i32 %986, i32 %i1.stack.load988
   i2.stack.load990 = load i32 from ptr %i2.stack
   991 = add i32 %989, i32 %i2.stack.load990
   i3.stack.load992 = load i32 from ptr %i3.stack
@@ -1108,9 +1076,8 @@ while.body:
   i15.stack.load1016 = load i32 from ptr %i15.stack
   1017 = add i32 %1015, i32 %i15.stack.load1016
   store i32 %1017 to ptr %sum
-  sum.load1018 = load i32 from ptr %sum
   i1.stack.load1019 = load i32 from ptr %i1.stack
-  1020 = add i32 %sum.load1018, i32 %i1.stack.load1019
+  1020 = add i32 %1017, i32 %i1.stack.load1019
   i2.stack.load1021 = load i32 from ptr %i2.stack
   1022 = add i32 %1020, i32 %i2.stack.load1021
   i3.stack.load1023 = load i32 from ptr %i3.stack
@@ -1140,9 +1107,8 @@ while.body:
   i15.stack.load1047 = load i32 from ptr %i15.stack
   1048 = add i32 %1046, i32 %i15.stack.load1047
   store i32 %1048 to ptr %sum
-  sum.load1049 = load i32 from ptr %sum
   i1.stack.load1050 = load i32 from ptr %i1.stack
-  1051 = add i32 %sum.load1049, i32 %i1.stack.load1050
+  1051 = add i32 %1048, i32 %i1.stack.load1050
   i2.stack.load1052 = load i32 from ptr %i2.stack
   1053 = add i32 %1051, i32 %i2.stack.load1052
   i3.stack.load1054 = load i32 from ptr %i3.stack
@@ -1172,9 +1138,8 @@ while.body:
   i15.stack.load1078 = load i32 from ptr %i15.stack
   1079 = add i32 %1077, i32 %i15.stack.load1078
   store i32 %1079 to ptr %sum
-  sum.load1080 = load i32 from ptr %sum
   i1.stack.load1081 = load i32 from ptr %i1.stack
-  1082 = add i32 %sum.load1080, i32 %i1.stack.load1081
+  1082 = add i32 %1079, i32 %i1.stack.load1081
   i2.stack.load1083 = load i32 from ptr %i2.stack
   1084 = add i32 %1082, i32 %i2.stack.load1083
   i3.stack.load1085 = load i32 from ptr %i3.stack
@@ -1204,9 +1169,8 @@ while.body:
   i15.stack.load1109 = load i32 from ptr %i15.stack
   1110 = add i32 %1108, i32 %i15.stack.load1109
   store i32 %1110 to ptr %sum
-  sum.load1111 = load i32 from ptr %sum
   i1.stack.load1112 = load i32 from ptr %i1.stack
-  1113 = add i32 %sum.load1111, i32 %i1.stack.load1112
+  1113 = add i32 %1110, i32 %i1.stack.load1112
   i2.stack.load1114 = load i32 from ptr %i2.stack
   1115 = add i32 %1113, i32 %i2.stack.load1114
   i3.stack.load1116 = load i32 from ptr %i3.stack
@@ -1236,9 +1200,8 @@ while.body:
   i15.stack.load1140 = load i32 from ptr %i15.stack
   1141 = add i32 %1139, i32 %i15.stack.load1140
   store i32 %1141 to ptr %sum
-  sum.load1142 = load i32 from ptr %sum
   i1.stack.load1143 = load i32 from ptr %i1.stack
-  1144 = add i32 %sum.load1142, i32 %i1.stack.load1143
+  1144 = add i32 %1141, i32 %i1.stack.load1143
   i2.stack.load1145 = load i32 from ptr %i2.stack
   1146 = add i32 %1144, i32 %i2.stack.load1145
   i3.stack.load1147 = load i32 from ptr %i3.stack
@@ -1268,9 +1231,8 @@ while.body:
   i15.stack.load1171 = load i32 from ptr %i15.stack
   1172 = add i32 %1170, i32 %i15.stack.load1171
   store i32 %1172 to ptr %sum
-  sum.load1173 = load i32 from ptr %sum
   i1.stack.load1174 = load i32 from ptr %i1.stack
-  1175 = add i32 %sum.load1173, i32 %i1.stack.load1174
+  1175 = add i32 %1172, i32 %i1.stack.load1174
   i2.stack.load1176 = load i32 from ptr %i2.stack
   1177 = add i32 %1175, i32 %i2.stack.load1176
   i3.stack.load1178 = load i32 from ptr %i3.stack
@@ -1300,9 +1262,8 @@ while.body:
   i15.stack.load1202 = load i32 from ptr %i15.stack
   1203 = add i32 %1201, i32 %i15.stack.load1202
   store i32 %1203 to ptr %sum
-  sum.load1204 = load i32 from ptr %sum
   i1.stack.load1205 = load i32 from ptr %i1.stack
-  1206 = add i32 %sum.load1204, i32 %i1.stack.load1205
+  1206 = add i32 %1203, i32 %i1.stack.load1205
   i2.stack.load1207 = load i32 from ptr %i2.stack
   1208 = add i32 %1206, i32 %i2.stack.load1207
   i3.stack.load1209 = load i32 from ptr %i3.stack
@@ -1332,9 +1293,8 @@ while.body:
   i15.stack.load1233 = load i32 from ptr %i15.stack
   1234 = add i32 %1232, i32 %i15.stack.load1233
   store i32 %1234 to ptr %sum
-  sum.load1235 = load i32 from ptr %sum
   i1.stack.load1236 = load i32 from ptr %i1.stack
-  1237 = add i32 %sum.load1235, i32 %i1.stack.load1236
+  1237 = add i32 %1234, i32 %i1.stack.load1236
   i2.stack.load1238 = load i32 from ptr %i2.stack
   1239 = add i32 %1237, i32 %i2.stack.load1238
   i3.stack.load1240 = load i32 from ptr %i3.stack
@@ -1364,9 +1324,8 @@ while.body:
   i15.stack.load1264 = load i32 from ptr %i15.stack
   1265 = add i32 %1263, i32 %i15.stack.load1264
   store i32 %1265 to ptr %sum
-  sum.load1266 = load i32 from ptr %sum
   i1.stack.load1267 = load i32 from ptr %i1.stack
-  1268 = add i32 %sum.load1266, i32 %i1.stack.load1267
+  1268 = add i32 %1265, i32 %i1.stack.load1267
   i2.stack.load1269 = load i32 from ptr %i2.stack
   1270 = add i32 %1268, i32 %i2.stack.load1269
   i3.stack.load1271 = load i32 from ptr %i3.stack
@@ -1396,9 +1355,8 @@ while.body:
   i15.stack.load1295 = load i32 from ptr %i15.stack
   1296 = add i32 %1294, i32 %i15.stack.load1295
   store i32 %1296 to ptr %sum
-  sum.load1297 = load i32 from ptr %sum
   i1.stack.load1298 = load i32 from ptr %i1.stack
-  1299 = add i32 %sum.load1297, i32 %i1.stack.load1298
+  1299 = add i32 %1296, i32 %i1.stack.load1298
   i2.stack.load1300 = load i32 from ptr %i2.stack
   1301 = add i32 %1299, i32 %i2.stack.load1300
   i3.stack.load1302 = load i32 from ptr %i3.stack
@@ -1428,9 +1386,8 @@ while.body:
   i15.stack.load1326 = load i32 from ptr %i15.stack
   1327 = add i32 %1325, i32 %i15.stack.load1326
   store i32 %1327 to ptr %sum
-  sum.load1328 = load i32 from ptr %sum
   i1.stack.load1329 = load i32 from ptr %i1.stack
-  1330 = add i32 %sum.load1328, i32 %i1.stack.load1329
+  1330 = add i32 %1327, i32 %i1.stack.load1329
   i2.stack.load1331 = load i32 from ptr %i2.stack
   1332 = add i32 %1330, i32 %i2.stack.load1331
   i3.stack.load1333 = load i32 from ptr %i3.stack
@@ -1460,9 +1417,8 @@ while.body:
   i15.stack.load1357 = load i32 from ptr %i15.stack
   1358 = add i32 %1356, i32 %i15.stack.load1357
   store i32 %1358 to ptr %sum
-  sum.load1359 = load i32 from ptr %sum
   i1.stack.load1360 = load i32 from ptr %i1.stack
-  1361 = add i32 %sum.load1359, i32 %i1.stack.load1360
+  1361 = add i32 %1358, i32 %i1.stack.load1360
   i2.stack.load1362 = load i32 from ptr %i2.stack
   1363 = add i32 %1361, i32 %i2.stack.load1362
   i3.stack.load1364 = load i32 from ptr %i3.stack
@@ -1492,9 +1448,8 @@ while.body:
   i15.stack.load1388 = load i32 from ptr %i15.stack
   1389 = add i32 %1387, i32 %i15.stack.load1388
   store i32 %1389 to ptr %sum
-  sum.load1390 = load i32 from ptr %sum
   i1.stack.load1391 = load i32 from ptr %i1.stack
-  1392 = add i32 %sum.load1390, i32 %i1.stack.load1391
+  1392 = add i32 %1389, i32 %i1.stack.load1391
   i2.stack.load1393 = load i32 from ptr %i2.stack
   1394 = add i32 %1392, i32 %i2.stack.load1393
   i3.stack.load1395 = load i32 from ptr %i3.stack
@@ -1524,9 +1479,8 @@ while.body:
   i15.stack.load1419 = load i32 from ptr %i15.stack
   1420 = add i32 %1418, i32 %i15.stack.load1419
   store i32 %1420 to ptr %sum
-  sum.load1421 = load i32 from ptr %sum
   i1.stack.load1422 = load i32 from ptr %i1.stack
-  1423 = add i32 %sum.load1421, i32 %i1.stack.load1422
+  1423 = add i32 %1420, i32 %i1.stack.load1422
   i2.stack.load1424 = load i32 from ptr %i2.stack
   1425 = add i32 %1423, i32 %i2.stack.load1424
   i3.stack.load1426 = load i32 from ptr %i3.stack
@@ -1556,9 +1510,8 @@ while.body:
   i15.stack.load1450 = load i32 from ptr %i15.stack
   1451 = add i32 %1449, i32 %i15.stack.load1450
   store i32 %1451 to ptr %sum
-  sum.load1452 = load i32 from ptr %sum
   i1.stack.load1453 = load i32 from ptr %i1.stack
-  1454 = add i32 %sum.load1452, i32 %i1.stack.load1453
+  1454 = add i32 %1451, i32 %i1.stack.load1453
   i2.stack.load1455 = load i32 from ptr %i2.stack
   1456 = add i32 %1454, i32 %i2.stack.load1455
   i3.stack.load1457 = load i32 from ptr %i3.stack
@@ -1588,9 +1541,8 @@ while.body:
   i15.stack.load1481 = load i32 from ptr %i15.stack
   1482 = add i32 %1480, i32 %i15.stack.load1481
   store i32 %1482 to ptr %sum
-  sum.load1483 = load i32 from ptr %sum
   i1.stack.load1484 = load i32 from ptr %i1.stack
-  1485 = add i32 %sum.load1483, i32 %i1.stack.load1484
+  1485 = add i32 %1482, i32 %i1.stack.load1484
   i2.stack.load1486 = load i32 from ptr %i2.stack
   1487 = add i32 %1485, i32 %i2.stack.load1486
   i3.stack.load1488 = load i32 from ptr %i3.stack
@@ -1620,9 +1572,8 @@ while.body:
   i15.stack.load1512 = load i32 from ptr %i15.stack
   1513 = add i32 %1511, i32 %i15.stack.load1512
   store i32 %1513 to ptr %sum
-  sum.load1514 = load i32 from ptr %sum
   i1.stack.load1515 = load i32 from ptr %i1.stack
-  1516 = add i32 %sum.load1514, i32 %i1.stack.load1515
+  1516 = add i32 %1513, i32 %i1.stack.load1515
   i2.stack.load1517 = load i32 from ptr %i2.stack
   1518 = add i32 %1516, i32 %i2.stack.load1517
   i3.stack.load1519 = load i32 from ptr %i3.stack
@@ -1652,9 +1603,8 @@ while.body:
   i15.stack.load1543 = load i32 from ptr %i15.stack
   1544 = add i32 %1542, i32 %i15.stack.load1543
   store i32 %1544 to ptr %sum
-  sum.load1545 = load i32 from ptr %sum
   i1.stack.load1546 = load i32 from ptr %i1.stack
-  1547 = add i32 %sum.load1545, i32 %i1.stack.load1546
+  1547 = add i32 %1544, i32 %i1.stack.load1546
   i2.stack.load1548 = load i32 from ptr %i2.stack
   1549 = add i32 %1547, i32 %i2.stack.load1548
   i3.stack.load1550 = load i32 from ptr %i3.stack
@@ -1684,9 +1634,8 @@ while.body:
   i15.stack.load1574 = load i32 from ptr %i15.stack
   1575 = add i32 %1573, i32 %i15.stack.load1574
   store i32 %1575 to ptr %sum
-  sum.load1576 = load i32 from ptr %sum
   i1.stack.load1577 = load i32 from ptr %i1.stack
-  1578 = add i32 %sum.load1576, i32 %i1.stack.load1577
+  1578 = add i32 %1575, i32 %i1.stack.load1577
   i2.stack.load1579 = load i32 from ptr %i2.stack
   1580 = add i32 %1578, i32 %i2.stack.load1579
   i3.stack.load1581 = load i32 from ptr %i3.stack
@@ -1716,9 +1665,8 @@ while.body:
   i15.stack.load1605 = load i32 from ptr %i15.stack
   1606 = add i32 %1604, i32 %i15.stack.load1605
   store i32 %1606 to ptr %sum
-  sum.load1607 = load i32 from ptr %sum
   i1.stack.load1608 = load i32 from ptr %i1.stack
-  1609 = add i32 %sum.load1607, i32 %i1.stack.load1608
+  1609 = add i32 %1606, i32 %i1.stack.load1608
   i2.stack.load1610 = load i32 from ptr %i2.stack
   1611 = add i32 %1609, i32 %i2.stack.load1610
   i3.stack.load1612 = load i32 from ptr %i3.stack
@@ -1748,9 +1696,8 @@ while.body:
   i15.stack.load1636 = load i32 from ptr %i15.stack
   1637 = add i32 %1635, i32 %i15.stack.load1636
   store i32 %1637 to ptr %sum
-  sum.load1638 = load i32 from ptr %sum
   i1.stack.load1639 = load i32 from ptr %i1.stack
-  1640 = add i32 %sum.load1638, i32 %i1.stack.load1639
+  1640 = add i32 %1637, i32 %i1.stack.load1639
   i2.stack.load1641 = load i32 from ptr %i2.stack
   1642 = add i32 %1640, i32 %i2.stack.load1641
   i3.stack.load1643 = load i32 from ptr %i3.stack
@@ -1780,9 +1727,8 @@ while.body:
   i15.stack.load1667 = load i32 from ptr %i15.stack
   1668 = add i32 %1666, i32 %i15.stack.load1667
   store i32 %1668 to ptr %sum
-  sum.load1669 = load i32 from ptr %sum
   i1.stack.load1670 = load i32 from ptr %i1.stack
-  1671 = add i32 %sum.load1669, i32 %i1.stack.load1670
+  1671 = add i32 %1668, i32 %i1.stack.load1670
   i2.stack.load1672 = load i32 from ptr %i2.stack
   1673 = add i32 %1671, i32 %i2.stack.load1672
   i3.stack.load1674 = load i32 from ptr %i3.stack
@@ -1812,9 +1758,8 @@ while.body:
   i15.stack.load1698 = load i32 from ptr %i15.stack
   1699 = add i32 %1697, i32 %i15.stack.load1698
   store i32 %1699 to ptr %sum
-  sum.load1700 = load i32 from ptr %sum
   i1.stack.load1701 = load i32 from ptr %i1.stack
-  1702 = add i32 %sum.load1700, i32 %i1.stack.load1701
+  1702 = add i32 %1699, i32 %i1.stack.load1701
   i2.stack.load1703 = load i32 from ptr %i2.stack
   1704 = add i32 %1702, i32 %i2.stack.load1703
   i3.stack.load1705 = load i32 from ptr %i3.stack
@@ -1844,9 +1789,8 @@ while.body:
   i15.stack.load1729 = load i32 from ptr %i15.stack
   1730 = add i32 %1728, i32 %i15.stack.load1729
   store i32 %1730 to ptr %sum
-  sum.load1731 = load i32 from ptr %sum
   i1.stack.load1732 = load i32 from ptr %i1.stack
-  1733 = add i32 %sum.load1731, i32 %i1.stack.load1732
+  1733 = add i32 %1730, i32 %i1.stack.load1732
   i2.stack.load1734 = load i32 from ptr %i2.stack
   1735 = add i32 %1733, i32 %i2.stack.load1734
   i3.stack.load1736 = load i32 from ptr %i3.stack
@@ -1876,9 +1820,8 @@ while.body:
   i15.stack.load1760 = load i32 from ptr %i15.stack
   1761 = add i32 %1759, i32 %i15.stack.load1760
   store i32 %1761 to ptr %sum
-  sum.load1762 = load i32 from ptr %sum
   i1.stack.load1763 = load i32 from ptr %i1.stack
-  1764 = add i32 %sum.load1762, i32 %i1.stack.load1763
+  1764 = add i32 %1761, i32 %i1.stack.load1763
   i2.stack.load1765 = load i32 from ptr %i2.stack
   1766 = add i32 %1764, i32 %i2.stack.load1765
   i3.stack.load1767 = load i32 from ptr %i3.stack
@@ -1908,9 +1851,8 @@ while.body:
   i15.stack.load1791 = load i32 from ptr %i15.stack
   1792 = add i32 %1790, i32 %i15.stack.load1791
   store i32 %1792 to ptr %sum
-  sum.load1793 = load i32 from ptr %sum
   i1.stack.load1794 = load i32 from ptr %i1.stack
-  1795 = add i32 %sum.load1793, i32 %i1.stack.load1794
+  1795 = add i32 %1792, i32 %i1.stack.load1794
   i2.stack.load1796 = load i32 from ptr %i2.stack
   1797 = add i32 %1795, i32 %i2.stack.load1796
   i3.stack.load1798 = load i32 from ptr %i3.stack
@@ -1940,9 +1882,8 @@ while.body:
   i15.stack.load1822 = load i32 from ptr %i15.stack
   1823 = add i32 %1821, i32 %i15.stack.load1822
   store i32 %1823 to ptr %sum
-  sum.load1824 = load i32 from ptr %sum
   i1.stack.load1825 = load i32 from ptr %i1.stack
-  1826 = add i32 %sum.load1824, i32 %i1.stack.load1825
+  1826 = add i32 %1823, i32 %i1.stack.load1825
   i2.stack.load1827 = load i32 from ptr %i2.stack
   1828 = add i32 %1826, i32 %i2.stack.load1827
   i3.stack.load1829 = load i32 from ptr %i3.stack
@@ -1972,9 +1913,8 @@ while.body:
   i15.stack.load1853 = load i32 from ptr %i15.stack
   1854 = add i32 %1852, i32 %i15.stack.load1853
   store i32 %1854 to ptr %sum
-  sum.load1855 = load i32 from ptr %sum
   i1.stack.load1856 = load i32 from ptr %i1.stack
-  1857 = add i32 %sum.load1855, i32 %i1.stack.load1856
+  1857 = add i32 %1854, i32 %i1.stack.load1856
   i2.stack.load1858 = load i32 from ptr %i2.stack
   1859 = add i32 %1857, i32 %i2.stack.load1858
   i3.stack.load1860 = load i32 from ptr %i3.stack
@@ -2004,9 +1944,8 @@ while.body:
   i15.stack.load1884 = load i32 from ptr %i15.stack
   1885 = add i32 %1883, i32 %i15.stack.load1884
   store i32 %1885 to ptr %sum
-  sum.load1886 = load i32 from ptr %sum
   i1.stack.load1887 = load i32 from ptr %i1.stack
-  1888 = add i32 %sum.load1886, i32 %i1.stack.load1887
+  1888 = add i32 %1885, i32 %i1.stack.load1887
   i2.stack.load1889 = load i32 from ptr %i2.stack
   1890 = add i32 %1888, i32 %i2.stack.load1889
   i3.stack.load1891 = load i32 from ptr %i3.stack
@@ -2036,9 +1975,8 @@ while.body:
   i15.stack.load1915 = load i32 from ptr %i15.stack
   1916 = add i32 %1914, i32 %i15.stack.load1915
   store i32 %1916 to ptr %sum
-  sum.load1917 = load i32 from ptr %sum
   i1.stack.load1918 = load i32 from ptr %i1.stack
-  1919 = add i32 %sum.load1917, i32 %i1.stack.load1918
+  1919 = add i32 %1916, i32 %i1.stack.load1918
   i2.stack.load1920 = load i32 from ptr %i2.stack
   1921 = add i32 %1919, i32 %i2.stack.load1920
   i3.stack.load1922 = load i32 from ptr %i3.stack
@@ -2068,9 +2006,8 @@ while.body:
   i15.stack.load1946 = load i32 from ptr %i15.stack
   1947 = add i32 %1945, i32 %i15.stack.load1946
   store i32 %1947 to ptr %sum
-  sum.load1948 = load i32 from ptr %sum
   i1.stack.load1949 = load i32 from ptr %i1.stack
-  1950 = add i32 %sum.load1948, i32 %i1.stack.load1949
+  1950 = add i32 %1947, i32 %i1.stack.load1949
   i2.stack.load1951 = load i32 from ptr %i2.stack
   1952 = add i32 %1950, i32 %i2.stack.load1951
   i3.stack.load1953 = load i32 from ptr %i3.stack
@@ -2100,9 +2037,8 @@ while.body:
   i15.stack.load1977 = load i32 from ptr %i15.stack
   1978 = add i32 %1976, i32 %i15.stack.load1977
   store i32 %1978 to ptr %sum
-  sum.load1979 = load i32 from ptr %sum
   i1.stack.load1980 = load i32 from ptr %i1.stack
-  1981 = add i32 %sum.load1979, i32 %i1.stack.load1980
+  1981 = add i32 %1978, i32 %i1.stack.load1980
   i2.stack.load1982 = load i32 from ptr %i2.stack
   1983 = add i32 %1981, i32 %i2.stack.load1982
   i3.stack.load1984 = load i32 from ptr %i3.stack
@@ -2132,9 +2068,8 @@ while.body:
   i15.stack.load2008 = load i32 from ptr %i15.stack
   2009 = add i32 %2007, i32 %i15.stack.load2008
   store i32 %2009 to ptr %sum
-  sum.load2010 = load i32 from ptr %sum
   i1.stack.load2011 = load i32 from ptr %i1.stack
-  2012 = add i32 %sum.load2010, i32 %i1.stack.load2011
+  2012 = add i32 %2009, i32 %i1.stack.load2011
   i2.stack.load2013 = load i32 from ptr %i2.stack
   2014 = add i32 %2012, i32 %i2.stack.load2013
   i3.stack.load2015 = load i32 from ptr %i3.stack
@@ -2164,9 +2099,8 @@ while.body:
   i15.stack.load2039 = load i32 from ptr %i15.stack
   2040 = add i32 %2038, i32 %i15.stack.load2039
   store i32 %2040 to ptr %sum
-  sum.load2041 = load i32 from ptr %sum
   i1.stack.load2042 = load i32 from ptr %i1.stack
-  2043 = add i32 %sum.load2041, i32 %i1.stack.load2042
+  2043 = add i32 %2040, i32 %i1.stack.load2042
   i2.stack.load2044 = load i32 from ptr %i2.stack
   2045 = add i32 %2043, i32 %i2.stack.load2044
   i3.stack.load2046 = load i32 from ptr %i3.stack
@@ -2196,9 +2130,8 @@ while.body:
   i15.stack.load2070 = load i32 from ptr %i15.stack
   2071 = add i32 %2069, i32 %i15.stack.load2070
   store i32 %2071 to ptr %sum
-  sum.load2072 = load i32 from ptr %sum
   i1.stack.load2073 = load i32 from ptr %i1.stack
-  2074 = add i32 %sum.load2072, i32 %i1.stack.load2073
+  2074 = add i32 %2071, i32 %i1.stack.load2073
   i2.stack.load2075 = load i32 from ptr %i2.stack
   2076 = add i32 %2074, i32 %i2.stack.load2075
   i3.stack.load2077 = load i32 from ptr %i3.stack
@@ -2228,9 +2161,8 @@ while.body:
   i15.stack.load2101 = load i32 from ptr %i15.stack
   2102 = add i32 %2100, i32 %i15.stack.load2101
   store i32 %2102 to ptr %sum
-  sum.load2103 = load i32 from ptr %sum
   i1.stack.load2104 = load i32 from ptr %i1.stack
-  2105 = add i32 %sum.load2103, i32 %i1.stack.load2104
+  2105 = add i32 %2102, i32 %i1.stack.load2104
   i2.stack.load2106 = load i32 from ptr %i2.stack
   2107 = add i32 %2105, i32 %i2.stack.load2106
   i3.stack.load2108 = load i32 from ptr %i3.stack
@@ -2260,9 +2192,8 @@ while.body:
   i15.stack.load2132 = load i32 from ptr %i15.stack
   2133 = add i32 %2131, i32 %i15.stack.load2132
   store i32 %2133 to ptr %sum
-  sum.load2134 = load i32 from ptr %sum
   i1.stack.load2135 = load i32 from ptr %i1.stack
-  2136 = add i32 %sum.load2134, i32 %i1.stack.load2135
+  2136 = add i32 %2133, i32 %i1.stack.load2135
   i2.stack.load2137 = load i32 from ptr %i2.stack
   2138 = add i32 %2136, i32 %i2.stack.load2137
   i3.stack.load2139 = load i32 from ptr %i3.stack
@@ -2292,9 +2223,8 @@ while.body:
   i15.stack.load2163 = load i32 from ptr %i15.stack
   2164 = add i32 %2162, i32 %i15.stack.load2163
   store i32 %2164 to ptr %sum
-  sum.load2165 = load i32 from ptr %sum
   i1.stack.load2166 = load i32 from ptr %i1.stack
-  2167 = add i32 %sum.load2165, i32 %i1.stack.load2166
+  2167 = add i32 %2164, i32 %i1.stack.load2166
   i2.stack.load2168 = load i32 from ptr %i2.stack
   2169 = add i32 %2167, i32 %i2.stack.load2168
   i3.stack.load2170 = load i32 from ptr %i3.stack
@@ -2324,9 +2254,8 @@ while.body:
   i15.stack.load2194 = load i32 from ptr %i15.stack
   2195 = add i32 %2193, i32 %i15.stack.load2194
   store i32 %2195 to ptr %sum
-  sum.load2196 = load i32 from ptr %sum
   i1.stack.load2197 = load i32 from ptr %i1.stack
-  2198 = add i32 %sum.load2196, i32 %i1.stack.load2197
+  2198 = add i32 %2195, i32 %i1.stack.load2197
   i2.stack.load2199 = load i32 from ptr %i2.stack
   2200 = add i32 %2198, i32 %i2.stack.load2199
   i3.stack.load2201 = load i32 from ptr %i3.stack
@@ -2356,9 +2285,8 @@ while.body:
   i15.stack.load2225 = load i32 from ptr %i15.stack
   2226 = add i32 %2224, i32 %i15.stack.load2225
   store i32 %2226 to ptr %sum
-  sum.load2227 = load i32 from ptr %sum
   i1.stack.load2228 = load i32 from ptr %i1.stack
-  2229 = add i32 %sum.load2227, i32 %i1.stack.load2228
+  2229 = add i32 %2226, i32 %i1.stack.load2228
   i2.stack.load2230 = load i32 from ptr %i2.stack
   2231 = add i32 %2229, i32 %i2.stack.load2230
   i3.stack.load2232 = load i32 from ptr %i3.stack
@@ -2388,9 +2316,8 @@ while.body:
   i15.stack.load2256 = load i32 from ptr %i15.stack
   2257 = add i32 %2255, i32 %i15.stack.load2256
   store i32 %2257 to ptr %sum
-  sum.load2258 = load i32 from ptr %sum
   i1.stack.load2259 = load i32 from ptr %i1.stack
-  2260 = add i32 %sum.load2258, i32 %i1.stack.load2259
+  2260 = add i32 %2257, i32 %i1.stack.load2259
   i2.stack.load2261 = load i32 from ptr %i2.stack
   2262 = add i32 %2260, i32 %i2.stack.load2261
   i3.stack.load2263 = load i32 from ptr %i3.stack
@@ -2420,9 +2347,8 @@ while.body:
   i15.stack.load2287 = load i32 from ptr %i15.stack
   2288 = add i32 %2286, i32 %i15.stack.load2287
   store i32 %2288 to ptr %sum
-  sum.load2289 = load i32 from ptr %sum
   i1.stack.load2290 = load i32 from ptr %i1.stack
-  2291 = add i32 %sum.load2289, i32 %i1.stack.load2290
+  2291 = add i32 %2288, i32 %i1.stack.load2290
   i2.stack.load2292 = load i32 from ptr %i2.stack
   2293 = add i32 %2291, i32 %i2.stack.load2292
   i3.stack.load2294 = load i32 from ptr %i3.stack
@@ -2452,9 +2378,8 @@ while.body:
   i15.stack.load2318 = load i32 from ptr %i15.stack
   2319 = add i32 %2317, i32 %i15.stack.load2318
   store i32 %2319 to ptr %sum
-  sum.load2320 = load i32 from ptr %sum
   i1.stack.load2321 = load i32 from ptr %i1.stack
-  2322 = add i32 %sum.load2320, i32 %i1.stack.load2321
+  2322 = add i32 %2319, i32 %i1.stack.load2321
   i2.stack.load2323 = load i32 from ptr %i2.stack
   2324 = add i32 %2322, i32 %i2.stack.load2323
   i3.stack.load2325 = load i32 from ptr %i3.stack
@@ -2484,9 +2409,8 @@ while.body:
   i15.stack.load2349 = load i32 from ptr %i15.stack
   2350 = add i32 %2348, i32 %i15.stack.load2349
   store i32 %2350 to ptr %sum
-  sum.load2351 = load i32 from ptr %sum
   i1.stack.load2352 = load i32 from ptr %i1.stack
-  2353 = add i32 %sum.load2351, i32 %i1.stack.load2352
+  2353 = add i32 %2350, i32 %i1.stack.load2352
   i2.stack.load2354 = load i32 from ptr %i2.stack
   2355 = add i32 %2353, i32 %i2.stack.load2354
   i3.stack.load2356 = load i32 from ptr %i3.stack
@@ -2516,9 +2440,8 @@ while.body:
   i15.stack.load2380 = load i32 from ptr %i15.stack
   2381 = add i32 %2379, i32 %i15.stack.load2380
   store i32 %2381 to ptr %sum
-  sum.load2382 = load i32 from ptr %sum
   i1.stack.load2383 = load i32 from ptr %i1.stack
-  2384 = add i32 %sum.load2382, i32 %i1.stack.load2383
+  2384 = add i32 %2381, i32 %i1.stack.load2383
   i2.stack.load2385 = load i32 from ptr %i2.stack
   2386 = add i32 %2384, i32 %i2.stack.load2385
   i3.stack.load2387 = load i32 from ptr %i3.stack
@@ -2548,9 +2471,8 @@ while.body:
   i15.stack.load2411 = load i32 from ptr %i15.stack
   2412 = add i32 %2410, i32 %i15.stack.load2411
   store i32 %2412 to ptr %sum
-  sum.load2413 = load i32 from ptr %sum
   i1.stack.load2414 = load i32 from ptr %i1.stack
-  2415 = add i32 %sum.load2413, i32 %i1.stack.load2414
+  2415 = add i32 %2412, i32 %i1.stack.load2414
   i2.stack.load2416 = load i32 from ptr %i2.stack
   2417 = add i32 %2415, i32 %i2.stack.load2416
   i3.stack.load2418 = load i32 from ptr %i3.stack
@@ -2580,9 +2502,8 @@ while.body:
   i15.stack.load2442 = load i32 from ptr %i15.stack
   2443 = add i32 %2441, i32 %i15.stack.load2442
   store i32 %2443 to ptr %sum
-  sum.load2444 = load i32 from ptr %sum
   i1.stack.load2445 = load i32 from ptr %i1.stack
-  2446 = add i32 %sum.load2444, i32 %i1.stack.load2445
+  2446 = add i32 %2443, i32 %i1.stack.load2445
   i2.stack.load2447 = load i32 from ptr %i2.stack
   2448 = add i32 %2446, i32 %i2.stack.load2447
   i3.stack.load2449 = load i32 from ptr %i3.stack
@@ -2612,9 +2533,8 @@ while.body:
   i15.stack.load2473 = load i32 from ptr %i15.stack
   2474 = add i32 %2472, i32 %i15.stack.load2473
   store i32 %2474 to ptr %sum
-  sum.load2475 = load i32 from ptr %sum
   i1.stack.load2476 = load i32 from ptr %i1.stack
-  2477 = add i32 %sum.load2475, i32 %i1.stack.load2476
+  2477 = add i32 %2474, i32 %i1.stack.load2476
   i2.stack.load2478 = load i32 from ptr %i2.stack
   2479 = add i32 %2477, i32 %i2.stack.load2478
   i3.stack.load2480 = load i32 from ptr %i3.stack
@@ -2644,9 +2564,8 @@ while.body:
   i15.stack.load2504 = load i32 from ptr %i15.stack
   2505 = add i32 %2503, i32 %i15.stack.load2504
   store i32 %2505 to ptr %sum
-  sum.load2506 = load i32 from ptr %sum
   i1.stack.load2507 = load i32 from ptr %i1.stack
-  2508 = add i32 %sum.load2506, i32 %i1.stack.load2507
+  2508 = add i32 %2505, i32 %i1.stack.load2507
   i2.stack.load2509 = load i32 from ptr %i2.stack
   2510 = add i32 %2508, i32 %i2.stack.load2509
   i3.stack.load2511 = load i32 from ptr %i3.stack
@@ -2676,9 +2595,8 @@ while.body:
   i15.stack.load2535 = load i32 from ptr %i15.stack
   2536 = add i32 %2534, i32 %i15.stack.load2535
   store i32 %2536 to ptr %sum
-  sum.load2537 = load i32 from ptr %sum
   i1.stack.load2538 = load i32 from ptr %i1.stack
-  2539 = add i32 %sum.load2537, i32 %i1.stack.load2538
+  2539 = add i32 %2536, i32 %i1.stack.load2538
   i2.stack.load2540 = load i32 from ptr %i2.stack
   2541 = add i32 %2539, i32 %i2.stack.load2540
   i3.stack.load2542 = load i32 from ptr %i3.stack
@@ -2708,9 +2626,8 @@ while.body:
   i15.stack.load2566 = load i32 from ptr %i15.stack
   2567 = add i32 %2565, i32 %i15.stack.load2566
   store i32 %2567 to ptr %sum
-  sum.load2568 = load i32 from ptr %sum
   i1.stack.load2569 = load i32 from ptr %i1.stack
-  2570 = add i32 %sum.load2568, i32 %i1.stack.load2569
+  2570 = add i32 %2567, i32 %i1.stack.load2569
   i2.stack.load2571 = load i32 from ptr %i2.stack
   2572 = add i32 %2570, i32 %i2.stack.load2571
   i3.stack.load2573 = load i32 from ptr %i3.stack
@@ -2740,9 +2657,8 @@ while.body:
   i15.stack.load2597 = load i32 from ptr %i15.stack
   2598 = add i32 %2596, i32 %i15.stack.load2597
   store i32 %2598 to ptr %sum
-  sum.load2599 = load i32 from ptr %sum
   i1.stack.load2600 = load i32 from ptr %i1.stack
-  2601 = add i32 %sum.load2599, i32 %i1.stack.load2600
+  2601 = add i32 %2598, i32 %i1.stack.load2600
   i2.stack.load2602 = load i32 from ptr %i2.stack
   2603 = add i32 %2601, i32 %i2.stack.load2602
   i3.stack.load2604 = load i32 from ptr %i3.stack
@@ -2772,9 +2688,8 @@ while.body:
   i15.stack.load2628 = load i32 from ptr %i15.stack
   2629 = add i32 %2627, i32 %i15.stack.load2628
   store i32 %2629 to ptr %sum
-  sum.load2630 = load i32 from ptr %sum
   i1.stack.load2631 = load i32 from ptr %i1.stack
-  2632 = add i32 %sum.load2630, i32 %i1.stack.load2631
+  2632 = add i32 %2629, i32 %i1.stack.load2631
   i2.stack.load2633 = load i32 from ptr %i2.stack
   2634 = add i32 %2632, i32 %i2.stack.load2633
   i3.stack.load2635 = load i32 from ptr %i3.stack
@@ -2804,9 +2719,8 @@ while.body:
   i15.stack.load2659 = load i32 from ptr %i15.stack
   2660 = add i32 %2658, i32 %i15.stack.load2659
   store i32 %2660 to ptr %sum
-  sum.load2661 = load i32 from ptr %sum
   i1.stack.load2662 = load i32 from ptr %i1.stack
-  2663 = add i32 %sum.load2661, i32 %i1.stack.load2662
+  2663 = add i32 %2660, i32 %i1.stack.load2662
   i2.stack.load2664 = load i32 from ptr %i2.stack
   2665 = add i32 %2663, i32 %i2.stack.load2664
   i3.stack.load2666 = load i32 from ptr %i3.stack
@@ -2836,9 +2750,8 @@ while.body:
   i15.stack.load2690 = load i32 from ptr %i15.stack
   2691 = add i32 %2689, i32 %i15.stack.load2690
   store i32 %2691 to ptr %sum
-  sum.load2692 = load i32 from ptr %sum
   i1.stack.load2693 = load i32 from ptr %i1.stack
-  2694 = add i32 %sum.load2692, i32 %i1.stack.load2693
+  2694 = add i32 %2691, i32 %i1.stack.load2693
   i2.stack.load2695 = load i32 from ptr %i2.stack
   2696 = add i32 %2694, i32 %i2.stack.load2695
   i3.stack.load2697 = load i32 from ptr %i3.stack
@@ -2868,9 +2781,8 @@ while.body:
   i15.stack.load2721 = load i32 from ptr %i15.stack
   2722 = add i32 %2720, i32 %i15.stack.load2721
   store i32 %2722 to ptr %sum
-  sum.load2723 = load i32 from ptr %sum
   i1.stack.load2724 = load i32 from ptr %i1.stack
-  2725 = add i32 %sum.load2723, i32 %i1.stack.load2724
+  2725 = add i32 %2722, i32 %i1.stack.load2724
   i2.stack.load2726 = load i32 from ptr %i2.stack
   2727 = add i32 %2725, i32 %i2.stack.load2726
   i3.stack.load2728 = load i32 from ptr %i3.stack
@@ -2900,9 +2812,8 @@ while.body:
   i15.stack.load2752 = load i32 from ptr %i15.stack
   2753 = add i32 %2751, i32 %i15.stack.load2752
   store i32 %2753 to ptr %sum
-  sum.load2754 = load i32 from ptr %sum
   i1.stack.load2755 = load i32 from ptr %i1.stack
-  2756 = add i32 %sum.load2754, i32 %i1.stack.load2755
+  2756 = add i32 %2753, i32 %i1.stack.load2755
   i2.stack.load2757 = load i32 from ptr %i2.stack
   2758 = add i32 %2756, i32 %i2.stack.load2757
   i3.stack.load2759 = load i32 from ptr %i3.stack
@@ -2932,9 +2843,8 @@ while.body:
   i15.stack.load2783 = load i32 from ptr %i15.stack
   2784 = add i32 %2782, i32 %i15.stack.load2783
   store i32 %2784 to ptr %sum
-  sum.load2785 = load i32 from ptr %sum
   i1.stack.load2786 = load i32 from ptr %i1.stack
-  2787 = add i32 %sum.load2785, i32 %i1.stack.load2786
+  2787 = add i32 %2784, i32 %i1.stack.load2786
   i2.stack.load2788 = load i32 from ptr %i2.stack
   2789 = add i32 %2787, i32 %i2.stack.load2788
   i3.stack.load2790 = load i32 from ptr %i3.stack
@@ -2964,9 +2874,8 @@ while.body:
   i15.stack.load2814 = load i32 from ptr %i15.stack
   2815 = add i32 %2813, i32 %i15.stack.load2814
   store i32 %2815 to ptr %sum
-  sum.load2816 = load i32 from ptr %sum
   i1.stack.load2817 = load i32 from ptr %i1.stack
-  2818 = add i32 %sum.load2816, i32 %i1.stack.load2817
+  2818 = add i32 %2815, i32 %i1.stack.load2817
   i2.stack.load2819 = load i32 from ptr %i2.stack
   2820 = add i32 %2818, i32 %i2.stack.load2819
   i3.stack.load2821 = load i32 from ptr %i3.stack
@@ -2996,9 +2905,8 @@ while.body:
   i15.stack.load2845 = load i32 from ptr %i15.stack
   2846 = add i32 %2844, i32 %i15.stack.load2845
   store i32 %2846 to ptr %sum
-  sum.load2847 = load i32 from ptr %sum
   i1.stack.load2848 = load i32 from ptr %i1.stack
-  2849 = add i32 %sum.load2847, i32 %i1.stack.load2848
+  2849 = add i32 %2846, i32 %i1.stack.load2848
   i2.stack.load2850 = load i32 from ptr %i2.stack
   2851 = add i32 %2849, i32 %i2.stack.load2850
   i3.stack.load2852 = load i32 from ptr %i3.stack
@@ -3028,9 +2936,8 @@ while.body:
   i15.stack.load2876 = load i32 from ptr %i15.stack
   2877 = add i32 %2875, i32 %i15.stack.load2876
   store i32 %2877 to ptr %sum
-  sum.load2878 = load i32 from ptr %sum
   i1.stack.load2879 = load i32 from ptr %i1.stack
-  2880 = add i32 %sum.load2878, i32 %i1.stack.load2879
+  2880 = add i32 %2877, i32 %i1.stack.load2879
   i2.stack.load2881 = load i32 from ptr %i2.stack
   2882 = add i32 %2880, i32 %i2.stack.load2881
   i3.stack.load2883 = load i32 from ptr %i3.stack
@@ -3060,9 +2967,8 @@ while.body:
   i15.stack.load2907 = load i32 from ptr %i15.stack
   2908 = add i32 %2906, i32 %i15.stack.load2907
   store i32 %2908 to ptr %sum
-  sum.load2909 = load i32 from ptr %sum
   i1.stack.load2910 = load i32 from ptr %i1.stack
-  2911 = add i32 %sum.load2909, i32 %i1.stack.load2910
+  2911 = add i32 %2908, i32 %i1.stack.load2910
   i2.stack.load2912 = load i32 from ptr %i2.stack
   2913 = add i32 %2911, i32 %i2.stack.load2912
   i3.stack.load2914 = load i32 from ptr %i3.stack
@@ -3092,9 +2998,8 @@ while.body:
   i15.stack.load2938 = load i32 from ptr %i15.stack
   2939 = add i32 %2937, i32 %i15.stack.load2938
   store i32 %2939 to ptr %sum
-  sum.load2940 = load i32 from ptr %sum
   i1.stack.load2941 = load i32 from ptr %i1.stack
-  2942 = add i32 %sum.load2940, i32 %i1.stack.load2941
+  2942 = add i32 %2939, i32 %i1.stack.load2941
   i2.stack.load2943 = load i32 from ptr %i2.stack
   2944 = add i32 %2942, i32 %i2.stack.load2943
   i3.stack.load2945 = load i32 from ptr %i3.stack
@@ -3124,9 +3029,8 @@ while.body:
   i15.stack.load2969 = load i32 from ptr %i15.stack
   2970 = add i32 %2968, i32 %i15.stack.load2969
   store i32 %2970 to ptr %sum
-  sum.load2971 = load i32 from ptr %sum
   i1.stack.load2972 = load i32 from ptr %i1.stack
-  2973 = add i32 %sum.load2971, i32 %i1.stack.load2972
+  2973 = add i32 %2970, i32 %i1.stack.load2972
   i2.stack.load2974 = load i32 from ptr %i2.stack
   2975 = add i32 %2973, i32 %i2.stack.load2974
   i3.stack.load2976 = load i32 from ptr %i3.stack
@@ -3156,9 +3060,8 @@ while.body:
   i15.stack.load3000 = load i32 from ptr %i15.stack
   3001 = add i32 %2999, i32 %i15.stack.load3000
   store i32 %3001 to ptr %sum
-  sum.load3002 = load i32 from ptr %sum
   i1.stack.load3003 = load i32 from ptr %i1.stack
-  3004 = add i32 %sum.load3002, i32 %i1.stack.load3003
+  3004 = add i32 %3001, i32 %i1.stack.load3003
   i2.stack.load3005 = load i32 from ptr %i2.stack
   3006 = add i32 %3004, i32 %i2.stack.load3005
   i3.stack.load3007 = load i32 from ptr %i3.stack
@@ -3188,9 +3091,8 @@ while.body:
   i15.stack.load3031 = load i32 from ptr %i15.stack
   3032 = add i32 %3030, i32 %i15.stack.load3031
   store i32 %3032 to ptr %sum
-  sum.load3033 = load i32 from ptr %sum
   i1.stack.load3034 = load i32 from ptr %i1.stack
-  3035 = add i32 %sum.load3033, i32 %i1.stack.load3034
+  3035 = add i32 %3032, i32 %i1.stack.load3034
   i2.stack.load3036 = load i32 from ptr %i2.stack
   3037 = add i32 %3035, i32 %i2.stack.load3036
   i3.stack.load3038 = load i32 from ptr %i3.stack
@@ -3220,9 +3122,8 @@ while.body:
   i15.stack.load3062 = load i32 from ptr %i15.stack
   3063 = add i32 %3061, i32 %i15.stack.load3062
   store i32 %3063 to ptr %sum
-  sum.load3064 = load i32 from ptr %sum
   i1.stack.load3065 = load i32 from ptr %i1.stack
-  3066 = add i32 %sum.load3064, i32 %i1.stack.load3065
+  3066 = add i32 %3063, i32 %i1.stack.load3065
   i2.stack.load3067 = load i32 from ptr %i2.stack
   3068 = add i32 %3066, i32 %i2.stack.load3067
   i3.stack.load3069 = load i32 from ptr %i3.stack
@@ -3252,9 +3153,8 @@ while.body:
   i15.stack.load3093 = load i32 from ptr %i15.stack
   3094 = add i32 %3092, i32 %i15.stack.load3093
   store i32 %3094 to ptr %sum
-  sum.load3095 = load i32 from ptr %sum
   i1.stack.load3096 = load i32 from ptr %i1.stack
-  3097 = add i32 %sum.load3095, i32 %i1.stack.load3096
+  3097 = add i32 %3094, i32 %i1.stack.load3096
   i2.stack.load3098 = load i32 from ptr %i2.stack
   3099 = add i32 %3097, i32 %i2.stack.load3098
   i3.stack.load3100 = load i32 from ptr %i3.stack
@@ -3284,15 +3184,12 @@ while.body:
   i15.stack.load3124 = load i32 from ptr %i15.stack
   3125 = add i32 %3123, i32 %i15.stack.load3124
   store i32 %3125 to ptr %sum
-  sum.load3126 = load i32 from ptr %sum
-  3127 = sdiv i32 %sum.load3126, i32 100
+  3127 = sdiv i32 %3125, i32 100
   store i32 %3127 to ptr %sum
   result.load = load i32 from ptr %result
-  sum.load3129 = load i32 from ptr %sum
-  3130 = add i32 %result.load, i32 %sum.load3129
+  3130 = add i32 %result.load, i32 %3127
   store i32 %3130 to ptr %result
-  result.load3131 = load i32 from ptr %result
-  3132 = srem i32 %result.load3131, i32 1500000001
+  3132 = srem i32 %3130, i32 1500000001
   store i32 %3132 to ptr %result
   i.load3133 = load i32 from ptr %i
   3134 = add i32 %i.load3133, i32 1

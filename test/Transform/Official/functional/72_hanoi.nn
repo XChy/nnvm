@@ -1,0 +1,101 @@
+external i32 getint()
+
+external i32 getch()
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry38:
+  %n = stack 4
+  40 = call i32 getint()
+  store i32 %40 to ptr %n
+  br bb %while.cond
+while.cond:
+  n.load = load i32 from ptr %n
+  45 = icmp sgt i32 %n.load, i32 0
+  46 = icmp ne i1 %45, i1 0
+  br i1 %46, bb %while.body, bb %while.exit
+while.body:
+  47 = call i32 getint()
+  call void hanoi(i32 %47, i32 1, i32 2, i32 3)
+  call void putch(i32 10)
+  n.load50 = load i32 from ptr %n
+  51 = sub i32 %n.load50, i32 1
+  store i32 %51 to ptr %n
+  br bb %while.cond
+while.exit:
+  ret i32 0
+}
+
+void hanoi(i32 n, i32 one, i32 two, i32 three) {
+entry10:
+  %three.stack = stack 4
+  %two.stack = stack 4
+  %one.stack = stack 4
+  %n.stack = stack 4
+  store i32 %n to ptr %n.stack
+  store i32 %one to ptr %one.stack
+  store i32 %two to ptr %two.stack
+  store i32 %three to ptr %three.stack
+  16 = icmp eq i32 %n, i32 1
+  br i1 %16, bb %then, bb %else
+then:
+  one.stack.load = load i32 from ptr %one.stack
+  three.stack.load = load i32 from ptr %three.stack
+  call void move(i32 %one.stack.load, i32 %three.stack.load)
+  br bb %if.exit
+if.exit:
+  ret 
+else:
+  n.stack.load23 = load i32 from ptr %n.stack
+  24 = sub i32 %n.stack.load23, i32 1
+  one.stack.load25 = load i32 from ptr %one.stack
+  three.stack.load26 = load i32 from ptr %three.stack
+  two.stack.load = load i32 from ptr %two.stack
+  call void hanoi(i32 %24, i32 %one.stack.load25, i32 %three.stack.load26, i32 %two.stack.load)
+  one.stack.load29 = load i32 from ptr %one.stack
+  three.stack.load30 = load i32 from ptr %three.stack
+  call void move(i32 %one.stack.load29, i32 %three.stack.load30)
+  n.stack.load32 = load i32 from ptr %n.stack
+  33 = sub i32 %n.stack.load32, i32 1
+  two.stack.load34 = load i32 from ptr %two.stack
+  one.stack.load35 = load i32 from ptr %one.stack
+  three.stack.load36 = load i32 from ptr %three.stack
+  call void hanoi(i32 %33, i32 %two.stack.load34, i32 %one.stack.load35, i32 %three.stack.load36)
+  br bb %if.exit
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+external void putint(i32 )
+
+void move(i32 x, i32 y) {
+entry:
+  %y.stack = stack 4
+  %x.stack = stack 4
+  store i32 %x to ptr %x.stack
+  store i32 %y to ptr %y.stack
+  call void putint(i32 %x)
+  call void putch(i32 32)
+  y.stack.load = load i32 from ptr %y.stack
+  call void putint(i32 %y.stack.load)
+  call void putch(i32 44)
+  call void putch(i32 32)
+  ret 
+}
+
+

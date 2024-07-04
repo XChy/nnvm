@@ -1,0 +1,232 @@
+global ptr buf init with 200 x i32 zeros
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry149:
+  %n = stack 4
+  151 = mul i32 0, i32 400
+  152 = ptradd ptr @buf, i32 %151
+  153 = call i32 getarray(ptr %152)
+  store i32 %153 to ptr %n
+  call void merge_sort(i32 0, i32 %153)
+  n.load156 = load i32 from ptr %n
+  157 = mul i32 0, i32 400
+  158 = ptradd ptr @buf, i32 %157
+  call void putarray(i32 %n.load156, ptr %158)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+void merge_sort(i32 l, i32 r) {
+entry:
+  %select = stack 1
+  %k = stack 4
+  %j = stack 4
+  %i = stack 4
+  %mid = stack 4
+  %r.stack = stack 4
+  %l.stack = stack 4
+  store i32 %l to ptr %l.stack
+  store i32 %r to ptr %r.stack
+  4 = add i32 %l, i32 1
+  6 = icmp sge i32 %4, i32 %r
+  br i1 %6, bb %then, bb %if.exit
+then:
+  ret 
+if.exit:
+  l.stack.load10 = load i32 from ptr %l.stack
+  r.stack.load11 = load i32 from ptr %r.stack
+  12 = add i32 %l.stack.load10, i32 %r.stack.load11
+  13 = sdiv i32 %12, i32 2
+  store i32 %13 to ptr %mid
+  l.stack.load14 = load i32 from ptr %l.stack
+  call void merge_sort(i32 %l.stack.load14, i32 %13)
+  mid.load17 = load i32 from ptr %mid
+  r.stack.load18 = load i32 from ptr %r.stack
+  call void merge_sort(i32 %mid.load17, i32 %r.stack.load18)
+  l.stack.load21 = load i32 from ptr %l.stack
+  store i32 %l.stack.load21 to ptr %i
+  mid.load23 = load i32 from ptr %mid
+  store i32 %mid.load23 to ptr %j
+  l.stack.load25 = load i32 from ptr %l.stack
+  store i32 %l.stack.load25 to ptr %k
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  mid.load30 = load i32 from ptr %mid
+  31 = icmp slt i32 %i.load, i32 %mid.load30
+  br i1 %31, bb %select.then, bb %select.else
+while.body:
+  41 = mul i32 0, i32 400
+  42 = ptradd ptr @buf, i32 %41
+  i.load43 = load i32 from ptr %i
+  44 = mul i32 %i.load43, i32 4
+  45 = ptradd ptr %42, i32 %44
+  45.load = load i32 from ptr %45
+  47 = mul i32 0, i32 400
+  48 = ptradd ptr @buf, i32 %47
+  j.load49 = load i32 from ptr %j
+  50 = mul i32 %j.load49, i32 4
+  51 = ptradd ptr %48, i32 %50
+  51.load = load i32 from ptr %51
+  53 = icmp slt i32 %45.load, i32 %51.load
+  br i1 %53, bb %then54, bb %else
+while.exit:
+  br bb %while.cond85
+select.then:
+  j.load = load i32 from ptr %j
+  r.stack.load37 = load i32 from ptr %r.stack
+  38 = icmp slt i32 %j.load, i32 %r.stack.load37
+  store i1 %38 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  39 = load i1 from ptr %select
+  40 = icmp ne i1 %39, i1 0
+  br i1 %40, bb %while.body, bb %while.exit
+then54:
+  57 = mul i32 1, i32 400
+  58 = ptradd ptr @buf, i32 %57
+  k.load = load i32 from ptr %k
+  60 = mul i32 %k.load, i32 4
+  61 = ptradd ptr %58, i32 %60
+  62 = mul i32 0, i32 400
+  63 = ptradd ptr @buf, i32 %62
+  i.load64 = load i32 from ptr %i
+  65 = mul i32 %i.load64, i32 4
+  66 = ptradd ptr %63, i32 %65
+  66.load = load i32 from ptr %66
+  store i32 %66.load to ptr %61
+  i.load68 = load i32 from ptr %i
+  69 = add i32 %i.load68, i32 1
+  store i32 %69 to ptr %i
+  br bb %if.exit55
+if.exit55:
+  k.load83 = load i32 from ptr %k
+  84 = add i32 %k.load83, i32 1
+  store i32 %84 to ptr %k
+  br bb %while.cond
+else:
+  70 = mul i32 1, i32 400
+  71 = ptradd ptr @buf, i32 %70
+  k.load72 = load i32 from ptr %k
+  73 = mul i32 %k.load72, i32 4
+  74 = ptradd ptr %71, i32 %73
+  75 = mul i32 0, i32 400
+  76 = ptradd ptr @buf, i32 %75
+  j.load77 = load i32 from ptr %j
+  78 = mul i32 %j.load77, i32 4
+  79 = ptradd ptr %76, i32 %78
+  79.load = load i32 from ptr %79
+  store i32 %79.load to ptr %74
+  j.load81 = load i32 from ptr %j
+  82 = add i32 %j.load81, i32 1
+  store i32 %82 to ptr %j
+  br bb %if.exit55
+while.cond85:
+  i.load88 = load i32 from ptr %i
+  mid.load89 = load i32 from ptr %mid
+  90 = icmp slt i32 %i.load88, i32 %mid.load89
+  91 = icmp ne i1 %90, i1 0
+  br i1 %91, bb %while.body86, bb %while.exit87
+while.body86:
+  92 = mul i32 1, i32 400
+  93 = ptradd ptr @buf, i32 %92
+  k.load94 = load i32 from ptr %k
+  95 = mul i32 %k.load94, i32 4
+  96 = ptradd ptr %93, i32 %95
+  97 = mul i32 0, i32 400
+  98 = ptradd ptr @buf, i32 %97
+  i.load99 = load i32 from ptr %i
+  100 = mul i32 %i.load99, i32 4
+  101 = ptradd ptr %98, i32 %100
+  101.load = load i32 from ptr %101
+  store i32 %101.load to ptr %96
+  i.load103 = load i32 from ptr %i
+  104 = add i32 %i.load103, i32 1
+  store i32 %104 to ptr %i
+  k.load105 = load i32 from ptr %k
+  106 = add i32 %k.load105, i32 1
+  store i32 %106 to ptr %k
+  br bb %while.cond85
+while.exit87:
+  br bb %while.cond107
+while.cond107:
+  j.load110 = load i32 from ptr %j
+  r.stack.load111 = load i32 from ptr %r.stack
+  112 = icmp slt i32 %j.load110, i32 %r.stack.load111
+  113 = icmp ne i1 %112, i1 0
+  br i1 %113, bb %while.body108, bb %while.exit109
+while.body108:
+  114 = mul i32 1, i32 400
+  115 = ptradd ptr @buf, i32 %114
+  k.load116 = load i32 from ptr %k
+  117 = mul i32 %k.load116, i32 4
+  118 = ptradd ptr %115, i32 %117
+  119 = mul i32 0, i32 400
+  120 = ptradd ptr @buf, i32 %119
+  j.load121 = load i32 from ptr %j
+  122 = mul i32 %j.load121, i32 4
+  123 = ptradd ptr %120, i32 %122
+  123.load = load i32 from ptr %123
+  store i32 %123.load to ptr %118
+  j.load125 = load i32 from ptr %j
+  126 = add i32 %j.load125, i32 1
+  store i32 %126 to ptr %j
+  k.load127 = load i32 from ptr %k
+  128 = add i32 %k.load127, i32 1
+  store i32 %128 to ptr %k
+  br bb %while.cond107
+while.exit109:
+  br bb %while.cond129
+while.cond129:
+  l.stack.load132 = load i32 from ptr %l.stack
+  r.stack.load133 = load i32 from ptr %r.stack
+  134 = icmp slt i32 %l.stack.load132, i32 %r.stack.load133
+  135 = icmp ne i1 %134, i1 0
+  br i1 %135, bb %while.body130, bb %while.exit131
+while.body130:
+  136 = mul i32 0, i32 400
+  137 = ptradd ptr @buf, i32 %136
+  l.stack.load138 = load i32 from ptr %l.stack
+  139 = mul i32 %l.stack.load138, i32 4
+  140 = ptradd ptr %137, i32 %139
+  141 = mul i32 1, i32 400
+  142 = ptradd ptr @buf, i32 %141
+  l.stack.load143 = load i32 from ptr %l.stack
+  144 = mul i32 %l.stack.load143, i32 4
+  145 = ptradd ptr %142, i32 %144
+  145.load = load i32 from ptr %145
+  store i32 %145.load to ptr %140
+  l.stack.load147 = load i32 from ptr %l.stack
+  148 = add i32 %l.stack.load147, i32 1
+  store i32 %148 to ptr %l.stack
+  br bb %while.cond129
+while.exit131:
+  ret 
+}
+
+

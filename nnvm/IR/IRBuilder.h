@@ -62,6 +62,8 @@ public:
   Value *buildRet();
   Value *buildRet(Value *returned);
 
+  Value *buildUnreachable();
+
   Value *buildBr(BasicBlock *succ);
   Value *buildBr(Value *cond, BasicBlock *trueBB, BasicBlock *falseBB);
 

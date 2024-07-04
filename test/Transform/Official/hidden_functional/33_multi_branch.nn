@@ -1,0 +1,2335 @@
+i32 main() {
+entry:
+  %select1195 = stack 1
+  %select1183 = stack 1
+  %select1171 = stack 1
+  %select1159 = stack 1
+  %select1147 = stack 1
+  %select1135 = stack 1
+  %select1123 = stack 1
+  %select1111 = stack 1
+  %select1099 = stack 1
+  %select1087 = stack 1
+  %select1075 = stack 1
+  %select1063 = stack 1
+  %select1051 = stack 1
+  %select1039 = stack 1
+  %select1027 = stack 1
+  %select1015 = stack 1
+  %select1003 = stack 1
+  %select991 = stack 1
+  %select979 = stack 1
+  %select967 = stack 1
+  %select955 = stack 1
+  %select943 = stack 1
+  %select931 = stack 1
+  %select919 = stack 1
+  %select907 = stack 1
+  %select895 = stack 1
+  %select883 = stack 1
+  %select871 = stack 1
+  %select859 = stack 1
+  %select847 = stack 1
+  %select835 = stack 1
+  %select823 = stack 1
+  %select811 = stack 1
+  %select799 = stack 1
+  %select787 = stack 1
+  %select775 = stack 1
+  %select763 = stack 1
+  %select751 = stack 1
+  %select739 = stack 1
+  %select727 = stack 1
+  %select715 = stack 1
+  %select703 = stack 1
+  %select691 = stack 1
+  %select679 = stack 1
+  %select667 = stack 1
+  %select655 = stack 1
+  %select643 = stack 1
+  %select631 = stack 1
+  %select619 = stack 1
+  %select607 = stack 1
+  %select595 = stack 1
+  %select583 = stack 1
+  %select571 = stack 1
+  %select559 = stack 1
+  %select547 = stack 1
+  %select535 = stack 1
+  %select523 = stack 1
+  %select511 = stack 1
+  %select499 = stack 1
+  %select487 = stack 1
+  %select475 = stack 1
+  %select463 = stack 1
+  %select451 = stack 1
+  %select439 = stack 1
+  %select427 = stack 1
+  %select415 = stack 1
+  %select403 = stack 1
+  %select391 = stack 1
+  %select379 = stack 1
+  %select367 = stack 1
+  %select355 = stack 1
+  %select343 = stack 1
+  %select331 = stack 1
+  %select319 = stack 1
+  %select307 = stack 1
+  %select295 = stack 1
+  %select283 = stack 1
+  %select271 = stack 1
+  %select259 = stack 1
+  %select247 = stack 1
+  %select235 = stack 1
+  %select223 = stack 1
+  %select211 = stack 1
+  %select199 = stack 1
+  %select187 = stack 1
+  %select175 = stack 1
+  %select163 = stack 1
+  %select151 = stack 1
+  %select139 = stack 1
+  %select127 = stack 1
+  %select115 = stack 1
+  %select103 = stack 1
+  %select91 = stack 1
+  %select79 = stack 1
+  %select67 = stack 1
+  %select55 = stack 1
+  %select43 = stack 1
+  %select31 = stack 1
+  %select = stack 1
+  %i = stack 4
+  %n = stack 4
+  %res = stack 4
+  %a = stack 4
+  4 = call i32 getint()
+  store i32 %4 to ptr %n
+  store i32 0 to ptr %i
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  n.load = load i32 from ptr %n
+  11 = icmp slt i32 %i.load, i32 %n.load
+  12 = icmp ne i1 %11, i1 0
+  br i1 %12, bb %while.body, bb %while.exit
+while.body:
+  store i32 0 to ptr %res
+  13 = call i32 getint()
+  store i32 %13 to ptr %a
+  15 = icmp sgt i32 %13, i32 0
+  br i1 %15, bb %select.then, bb %select.else
+while.exit:
+  ret i32 0
+select.then:
+  a.load20 = load i32 from ptr %a
+  21 = icmp slt i32 %a.load20, i32 100
+  store i1 %21 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  22 = load i1 from ptr %select
+  br i1 %22, bb %then, bb %else
+then:
+  a.load26 = load i32 from ptr %a
+  27 = icmp sgt i32 %a.load26, i32 0
+  br i1 %27, bb %select.then28, bb %select.else29
+if.exit:
+  res.load1402 = load i32 from ptr %res
+  call void putint(i32 %res.load1402)
+  call void putch(i32 10)
+  i.load1405 = load i32 from ptr %i
+  1406 = add i32 %i.load1405, i32 1
+  store i32 %1406 to ptr %i
+  br bb %while.cond
+else:
+  res.load1400 = load i32 from ptr %res
+  1401 = add i32 %res.load1400, i32 100
+  store i32 %1401 to ptr %res
+  br bb %if.exit
+select.then28:
+  a.load32 = load i32 from ptr %a
+  33 = icmp slt i32 %a.load32, i32 99
+  store i1 %33 to ptr %select31
+  br bb %select.exit30
+select.else29:
+  store i1 0 to ptr %select31
+  br bb %select.exit30
+select.exit30:
+  34 = load i1 from ptr %select31
+  br i1 %34, bb %then35, bb %else37
+then35:
+  a.load38 = load i32 from ptr %a
+  39 = icmp sgt i32 %a.load38, i32 0
+  br i1 %39, bb %select.then40, bb %select.else41
+if.exit36:
+  br bb %if.exit
+else37:
+  res.load1398 = load i32 from ptr %res
+  1399 = add i32 %res.load1398, i32 99
+  store i32 %1399 to ptr %res
+  br bb %if.exit36
+select.then40:
+  a.load44 = load i32 from ptr %a
+  45 = icmp slt i32 %a.load44, i32 98
+  store i1 %45 to ptr %select43
+  br bb %select.exit42
+select.else41:
+  store i1 0 to ptr %select43
+  br bb %select.exit42
+select.exit42:
+  46 = load i1 from ptr %select43
+  br i1 %46, bb %then47, bb %else49
+then47:
+  a.load50 = load i32 from ptr %a
+  51 = icmp sgt i32 %a.load50, i32 0
+  br i1 %51, bb %select.then52, bb %select.else53
+if.exit48:
+  br bb %if.exit36
+else49:
+  res.load1396 = load i32 from ptr %res
+  1397 = add i32 %res.load1396, i32 98
+  store i32 %1397 to ptr %res
+  br bb %if.exit48
+select.then52:
+  a.load56 = load i32 from ptr %a
+  57 = icmp slt i32 %a.load56, i32 97
+  store i1 %57 to ptr %select55
+  br bb %select.exit54
+select.else53:
+  store i1 0 to ptr %select55
+  br bb %select.exit54
+select.exit54:
+  58 = load i1 from ptr %select55
+  br i1 %58, bb %then59, bb %else61
+then59:
+  a.load62 = load i32 from ptr %a
+  63 = icmp sgt i32 %a.load62, i32 0
+  br i1 %63, bb %select.then64, bb %select.else65
+if.exit60:
+  br bb %if.exit48
+else61:
+  res.load1394 = load i32 from ptr %res
+  1395 = add i32 %res.load1394, i32 97
+  store i32 %1395 to ptr %res
+  br bb %if.exit60
+select.then64:
+  a.load68 = load i32 from ptr %a
+  69 = icmp slt i32 %a.load68, i32 96
+  store i1 %69 to ptr %select67
+  br bb %select.exit66
+select.else65:
+  store i1 0 to ptr %select67
+  br bb %select.exit66
+select.exit66:
+  70 = load i1 from ptr %select67
+  br i1 %70, bb %then71, bb %else73
+then71:
+  a.load74 = load i32 from ptr %a
+  75 = icmp sgt i32 %a.load74, i32 0
+  br i1 %75, bb %select.then76, bb %select.else77
+if.exit72:
+  br bb %if.exit60
+else73:
+  res.load1392 = load i32 from ptr %res
+  1393 = add i32 %res.load1392, i32 96
+  store i32 %1393 to ptr %res
+  br bb %if.exit72
+select.then76:
+  a.load80 = load i32 from ptr %a
+  81 = icmp slt i32 %a.load80, i32 95
+  store i1 %81 to ptr %select79
+  br bb %select.exit78
+select.else77:
+  store i1 0 to ptr %select79
+  br bb %select.exit78
+select.exit78:
+  82 = load i1 from ptr %select79
+  br i1 %82, bb %then83, bb %else85
+then83:
+  a.load86 = load i32 from ptr %a
+  87 = icmp sgt i32 %a.load86, i32 0
+  br i1 %87, bb %select.then88, bb %select.else89
+if.exit84:
+  br bb %if.exit72
+else85:
+  res.load1390 = load i32 from ptr %res
+  1391 = add i32 %res.load1390, i32 95
+  store i32 %1391 to ptr %res
+  br bb %if.exit84
+select.then88:
+  a.load92 = load i32 from ptr %a
+  93 = icmp slt i32 %a.load92, i32 94
+  store i1 %93 to ptr %select91
+  br bb %select.exit90
+select.else89:
+  store i1 0 to ptr %select91
+  br bb %select.exit90
+select.exit90:
+  94 = load i1 from ptr %select91
+  br i1 %94, bb %then95, bb %else97
+then95:
+  a.load98 = load i32 from ptr %a
+  99 = icmp sgt i32 %a.load98, i32 0
+  br i1 %99, bb %select.then100, bb %select.else101
+if.exit96:
+  br bb %if.exit84
+else97:
+  res.load1388 = load i32 from ptr %res
+  1389 = add i32 %res.load1388, i32 94
+  store i32 %1389 to ptr %res
+  br bb %if.exit96
+select.then100:
+  a.load104 = load i32 from ptr %a
+  105 = icmp slt i32 %a.load104, i32 93
+  store i1 %105 to ptr %select103
+  br bb %select.exit102
+select.else101:
+  store i1 0 to ptr %select103
+  br bb %select.exit102
+select.exit102:
+  106 = load i1 from ptr %select103
+  br i1 %106, bb %then107, bb %else109
+then107:
+  a.load110 = load i32 from ptr %a
+  111 = icmp sgt i32 %a.load110, i32 0
+  br i1 %111, bb %select.then112, bb %select.else113
+if.exit108:
+  br bb %if.exit96
+else109:
+  res.load1386 = load i32 from ptr %res
+  1387 = add i32 %res.load1386, i32 93
+  store i32 %1387 to ptr %res
+  br bb %if.exit108
+select.then112:
+  a.load116 = load i32 from ptr %a
+  117 = icmp slt i32 %a.load116, i32 92
+  store i1 %117 to ptr %select115
+  br bb %select.exit114
+select.else113:
+  store i1 0 to ptr %select115
+  br bb %select.exit114
+select.exit114:
+  118 = load i1 from ptr %select115
+  br i1 %118, bb %then119, bb %else121
+then119:
+  a.load122 = load i32 from ptr %a
+  123 = icmp sgt i32 %a.load122, i32 0
+  br i1 %123, bb %select.then124, bb %select.else125
+if.exit120:
+  br bb %if.exit108
+else121:
+  res.load1384 = load i32 from ptr %res
+  1385 = add i32 %res.load1384, i32 92
+  store i32 %1385 to ptr %res
+  br bb %if.exit120
+select.then124:
+  a.load128 = load i32 from ptr %a
+  129 = icmp slt i32 %a.load128, i32 91
+  store i1 %129 to ptr %select127
+  br bb %select.exit126
+select.else125:
+  store i1 0 to ptr %select127
+  br bb %select.exit126
+select.exit126:
+  130 = load i1 from ptr %select127
+  br i1 %130, bb %then131, bb %else133
+then131:
+  a.load134 = load i32 from ptr %a
+  135 = icmp sgt i32 %a.load134, i32 0
+  br i1 %135, bb %select.then136, bb %select.else137
+if.exit132:
+  br bb %if.exit120
+else133:
+  res.load1382 = load i32 from ptr %res
+  1383 = add i32 %res.load1382, i32 91
+  store i32 %1383 to ptr %res
+  br bb %if.exit132
+select.then136:
+  a.load140 = load i32 from ptr %a
+  141 = icmp slt i32 %a.load140, i32 90
+  store i1 %141 to ptr %select139
+  br bb %select.exit138
+select.else137:
+  store i1 0 to ptr %select139
+  br bb %select.exit138
+select.exit138:
+  142 = load i1 from ptr %select139
+  br i1 %142, bb %then143, bb %else145
+then143:
+  a.load146 = load i32 from ptr %a
+  147 = icmp sgt i32 %a.load146, i32 0
+  br i1 %147, bb %select.then148, bb %select.else149
+if.exit144:
+  br bb %if.exit132
+else145:
+  res.load1380 = load i32 from ptr %res
+  1381 = add i32 %res.load1380, i32 90
+  store i32 %1381 to ptr %res
+  br bb %if.exit144
+select.then148:
+  a.load152 = load i32 from ptr %a
+  153 = icmp slt i32 %a.load152, i32 89
+  store i1 %153 to ptr %select151
+  br bb %select.exit150
+select.else149:
+  store i1 0 to ptr %select151
+  br bb %select.exit150
+select.exit150:
+  154 = load i1 from ptr %select151
+  br i1 %154, bb %then155, bb %else157
+then155:
+  a.load158 = load i32 from ptr %a
+  159 = icmp sgt i32 %a.load158, i32 0
+  br i1 %159, bb %select.then160, bb %select.else161
+if.exit156:
+  br bb %if.exit144
+else157:
+  res.load1378 = load i32 from ptr %res
+  1379 = add i32 %res.load1378, i32 89
+  store i32 %1379 to ptr %res
+  br bb %if.exit156
+select.then160:
+  a.load164 = load i32 from ptr %a
+  165 = icmp slt i32 %a.load164, i32 88
+  store i1 %165 to ptr %select163
+  br bb %select.exit162
+select.else161:
+  store i1 0 to ptr %select163
+  br bb %select.exit162
+select.exit162:
+  166 = load i1 from ptr %select163
+  br i1 %166, bb %then167, bb %else169
+then167:
+  a.load170 = load i32 from ptr %a
+  171 = icmp sgt i32 %a.load170, i32 0
+  br i1 %171, bb %select.then172, bb %select.else173
+if.exit168:
+  br bb %if.exit156
+else169:
+  res.load1376 = load i32 from ptr %res
+  1377 = add i32 %res.load1376, i32 88
+  store i32 %1377 to ptr %res
+  br bb %if.exit168
+select.then172:
+  a.load176 = load i32 from ptr %a
+  177 = icmp slt i32 %a.load176, i32 87
+  store i1 %177 to ptr %select175
+  br bb %select.exit174
+select.else173:
+  store i1 0 to ptr %select175
+  br bb %select.exit174
+select.exit174:
+  178 = load i1 from ptr %select175
+  br i1 %178, bb %then179, bb %else181
+then179:
+  a.load182 = load i32 from ptr %a
+  183 = icmp sgt i32 %a.load182, i32 0
+  br i1 %183, bb %select.then184, bb %select.else185
+if.exit180:
+  br bb %if.exit168
+else181:
+  res.load1374 = load i32 from ptr %res
+  1375 = add i32 %res.load1374, i32 87
+  store i32 %1375 to ptr %res
+  br bb %if.exit180
+select.then184:
+  a.load188 = load i32 from ptr %a
+  189 = icmp slt i32 %a.load188, i32 86
+  store i1 %189 to ptr %select187
+  br bb %select.exit186
+select.else185:
+  store i1 0 to ptr %select187
+  br bb %select.exit186
+select.exit186:
+  190 = load i1 from ptr %select187
+  br i1 %190, bb %then191, bb %else193
+then191:
+  a.load194 = load i32 from ptr %a
+  195 = icmp sgt i32 %a.load194, i32 0
+  br i1 %195, bb %select.then196, bb %select.else197
+if.exit192:
+  br bb %if.exit180
+else193:
+  res.load1372 = load i32 from ptr %res
+  1373 = add i32 %res.load1372, i32 86
+  store i32 %1373 to ptr %res
+  br bb %if.exit192
+select.then196:
+  a.load200 = load i32 from ptr %a
+  201 = icmp slt i32 %a.load200, i32 85
+  store i1 %201 to ptr %select199
+  br bb %select.exit198
+select.else197:
+  store i1 0 to ptr %select199
+  br bb %select.exit198
+select.exit198:
+  202 = load i1 from ptr %select199
+  br i1 %202, bb %then203, bb %else205
+then203:
+  a.load206 = load i32 from ptr %a
+  207 = icmp sgt i32 %a.load206, i32 0
+  br i1 %207, bb %select.then208, bb %select.else209
+if.exit204:
+  br bb %if.exit192
+else205:
+  res.load1370 = load i32 from ptr %res
+  1371 = add i32 %res.load1370, i32 85
+  store i32 %1371 to ptr %res
+  br bb %if.exit204
+select.then208:
+  a.load212 = load i32 from ptr %a
+  213 = icmp slt i32 %a.load212, i32 84
+  store i1 %213 to ptr %select211
+  br bb %select.exit210
+select.else209:
+  store i1 0 to ptr %select211
+  br bb %select.exit210
+select.exit210:
+  214 = load i1 from ptr %select211
+  br i1 %214, bb %then215, bb %else217
+then215:
+  a.load218 = load i32 from ptr %a
+  219 = icmp sgt i32 %a.load218, i32 0
+  br i1 %219, bb %select.then220, bb %select.else221
+if.exit216:
+  br bb %if.exit204
+else217:
+  res.load1368 = load i32 from ptr %res
+  1369 = add i32 %res.load1368, i32 84
+  store i32 %1369 to ptr %res
+  br bb %if.exit216
+select.then220:
+  a.load224 = load i32 from ptr %a
+  225 = icmp slt i32 %a.load224, i32 83
+  store i1 %225 to ptr %select223
+  br bb %select.exit222
+select.else221:
+  store i1 0 to ptr %select223
+  br bb %select.exit222
+select.exit222:
+  226 = load i1 from ptr %select223
+  br i1 %226, bb %then227, bb %else229
+then227:
+  a.load230 = load i32 from ptr %a
+  231 = icmp sgt i32 %a.load230, i32 0
+  br i1 %231, bb %select.then232, bb %select.else233
+if.exit228:
+  br bb %if.exit216
+else229:
+  res.load1366 = load i32 from ptr %res
+  1367 = add i32 %res.load1366, i32 83
+  store i32 %1367 to ptr %res
+  br bb %if.exit228
+select.then232:
+  a.load236 = load i32 from ptr %a
+  237 = icmp slt i32 %a.load236, i32 82
+  store i1 %237 to ptr %select235
+  br bb %select.exit234
+select.else233:
+  store i1 0 to ptr %select235
+  br bb %select.exit234
+select.exit234:
+  238 = load i1 from ptr %select235
+  br i1 %238, bb %then239, bb %else241
+then239:
+  a.load242 = load i32 from ptr %a
+  243 = icmp sgt i32 %a.load242, i32 0
+  br i1 %243, bb %select.then244, bb %select.else245
+if.exit240:
+  br bb %if.exit228
+else241:
+  res.load1364 = load i32 from ptr %res
+  1365 = add i32 %res.load1364, i32 82
+  store i32 %1365 to ptr %res
+  br bb %if.exit240
+select.then244:
+  a.load248 = load i32 from ptr %a
+  249 = icmp slt i32 %a.load248, i32 81
+  store i1 %249 to ptr %select247
+  br bb %select.exit246
+select.else245:
+  store i1 0 to ptr %select247
+  br bb %select.exit246
+select.exit246:
+  250 = load i1 from ptr %select247
+  br i1 %250, bb %then251, bb %else253
+then251:
+  a.load254 = load i32 from ptr %a
+  255 = icmp sgt i32 %a.load254, i32 0
+  br i1 %255, bb %select.then256, bb %select.else257
+if.exit252:
+  br bb %if.exit240
+else253:
+  res.load1362 = load i32 from ptr %res
+  1363 = add i32 %res.load1362, i32 81
+  store i32 %1363 to ptr %res
+  br bb %if.exit252
+select.then256:
+  a.load260 = load i32 from ptr %a
+  261 = icmp slt i32 %a.load260, i32 80
+  store i1 %261 to ptr %select259
+  br bb %select.exit258
+select.else257:
+  store i1 0 to ptr %select259
+  br bb %select.exit258
+select.exit258:
+  262 = load i1 from ptr %select259
+  br i1 %262, bb %then263, bb %else265
+then263:
+  a.load266 = load i32 from ptr %a
+  267 = icmp sgt i32 %a.load266, i32 0
+  br i1 %267, bb %select.then268, bb %select.else269
+if.exit264:
+  br bb %if.exit252
+else265:
+  res.load1360 = load i32 from ptr %res
+  1361 = add i32 %res.load1360, i32 80
+  store i32 %1361 to ptr %res
+  br bb %if.exit264
+select.then268:
+  a.load272 = load i32 from ptr %a
+  273 = icmp slt i32 %a.load272, i32 79
+  store i1 %273 to ptr %select271
+  br bb %select.exit270
+select.else269:
+  store i1 0 to ptr %select271
+  br bb %select.exit270
+select.exit270:
+  274 = load i1 from ptr %select271
+  br i1 %274, bb %then275, bb %else277
+then275:
+  a.load278 = load i32 from ptr %a
+  279 = icmp sgt i32 %a.load278, i32 0
+  br i1 %279, bb %select.then280, bb %select.else281
+if.exit276:
+  br bb %if.exit264
+else277:
+  res.load1358 = load i32 from ptr %res
+  1359 = add i32 %res.load1358, i32 79
+  store i32 %1359 to ptr %res
+  br bb %if.exit276
+select.then280:
+  a.load284 = load i32 from ptr %a
+  285 = icmp slt i32 %a.load284, i32 78
+  store i1 %285 to ptr %select283
+  br bb %select.exit282
+select.else281:
+  store i1 0 to ptr %select283
+  br bb %select.exit282
+select.exit282:
+  286 = load i1 from ptr %select283
+  br i1 %286, bb %then287, bb %else289
+then287:
+  a.load290 = load i32 from ptr %a
+  291 = icmp sgt i32 %a.load290, i32 0
+  br i1 %291, bb %select.then292, bb %select.else293
+if.exit288:
+  br bb %if.exit276
+else289:
+  res.load1356 = load i32 from ptr %res
+  1357 = add i32 %res.load1356, i32 78
+  store i32 %1357 to ptr %res
+  br bb %if.exit288
+select.then292:
+  a.load296 = load i32 from ptr %a
+  297 = icmp slt i32 %a.load296, i32 77
+  store i1 %297 to ptr %select295
+  br bb %select.exit294
+select.else293:
+  store i1 0 to ptr %select295
+  br bb %select.exit294
+select.exit294:
+  298 = load i1 from ptr %select295
+  br i1 %298, bb %then299, bb %else301
+then299:
+  a.load302 = load i32 from ptr %a
+  303 = icmp sgt i32 %a.load302, i32 0
+  br i1 %303, bb %select.then304, bb %select.else305
+if.exit300:
+  br bb %if.exit288
+else301:
+  res.load1354 = load i32 from ptr %res
+  1355 = add i32 %res.load1354, i32 77
+  store i32 %1355 to ptr %res
+  br bb %if.exit300
+select.then304:
+  a.load308 = load i32 from ptr %a
+  309 = icmp slt i32 %a.load308, i32 76
+  store i1 %309 to ptr %select307
+  br bb %select.exit306
+select.else305:
+  store i1 0 to ptr %select307
+  br bb %select.exit306
+select.exit306:
+  310 = load i1 from ptr %select307
+  br i1 %310, bb %then311, bb %else313
+then311:
+  a.load314 = load i32 from ptr %a
+  315 = icmp sgt i32 %a.load314, i32 0
+  br i1 %315, bb %select.then316, bb %select.else317
+if.exit312:
+  br bb %if.exit300
+else313:
+  res.load1352 = load i32 from ptr %res
+  1353 = add i32 %res.load1352, i32 76
+  store i32 %1353 to ptr %res
+  br bb %if.exit312
+select.then316:
+  a.load320 = load i32 from ptr %a
+  321 = icmp slt i32 %a.load320, i32 75
+  store i1 %321 to ptr %select319
+  br bb %select.exit318
+select.else317:
+  store i1 0 to ptr %select319
+  br bb %select.exit318
+select.exit318:
+  322 = load i1 from ptr %select319
+  br i1 %322, bb %then323, bb %else325
+then323:
+  a.load326 = load i32 from ptr %a
+  327 = icmp sgt i32 %a.load326, i32 0
+  br i1 %327, bb %select.then328, bb %select.else329
+if.exit324:
+  br bb %if.exit312
+else325:
+  res.load1350 = load i32 from ptr %res
+  1351 = add i32 %res.load1350, i32 75
+  store i32 %1351 to ptr %res
+  br bb %if.exit324
+select.then328:
+  a.load332 = load i32 from ptr %a
+  333 = icmp slt i32 %a.load332, i32 74
+  store i1 %333 to ptr %select331
+  br bb %select.exit330
+select.else329:
+  store i1 0 to ptr %select331
+  br bb %select.exit330
+select.exit330:
+  334 = load i1 from ptr %select331
+  br i1 %334, bb %then335, bb %else337
+then335:
+  a.load338 = load i32 from ptr %a
+  339 = icmp sgt i32 %a.load338, i32 0
+  br i1 %339, bb %select.then340, bb %select.else341
+if.exit336:
+  br bb %if.exit324
+else337:
+  res.load1348 = load i32 from ptr %res
+  1349 = add i32 %res.load1348, i32 74
+  store i32 %1349 to ptr %res
+  br bb %if.exit336
+select.then340:
+  a.load344 = load i32 from ptr %a
+  345 = icmp slt i32 %a.load344, i32 73
+  store i1 %345 to ptr %select343
+  br bb %select.exit342
+select.else341:
+  store i1 0 to ptr %select343
+  br bb %select.exit342
+select.exit342:
+  346 = load i1 from ptr %select343
+  br i1 %346, bb %then347, bb %else349
+then347:
+  a.load350 = load i32 from ptr %a
+  351 = icmp sgt i32 %a.load350, i32 0
+  br i1 %351, bb %select.then352, bb %select.else353
+if.exit348:
+  br bb %if.exit336
+else349:
+  res.load1346 = load i32 from ptr %res
+  1347 = add i32 %res.load1346, i32 73
+  store i32 %1347 to ptr %res
+  br bb %if.exit348
+select.then352:
+  a.load356 = load i32 from ptr %a
+  357 = icmp slt i32 %a.load356, i32 72
+  store i1 %357 to ptr %select355
+  br bb %select.exit354
+select.else353:
+  store i1 0 to ptr %select355
+  br bb %select.exit354
+select.exit354:
+  358 = load i1 from ptr %select355
+  br i1 %358, bb %then359, bb %else361
+then359:
+  a.load362 = load i32 from ptr %a
+  363 = icmp sgt i32 %a.load362, i32 0
+  br i1 %363, bb %select.then364, bb %select.else365
+if.exit360:
+  br bb %if.exit348
+else361:
+  res.load1344 = load i32 from ptr %res
+  1345 = add i32 %res.load1344, i32 72
+  store i32 %1345 to ptr %res
+  br bb %if.exit360
+select.then364:
+  a.load368 = load i32 from ptr %a
+  369 = icmp slt i32 %a.load368, i32 71
+  store i1 %369 to ptr %select367
+  br bb %select.exit366
+select.else365:
+  store i1 0 to ptr %select367
+  br bb %select.exit366
+select.exit366:
+  370 = load i1 from ptr %select367
+  br i1 %370, bb %then371, bb %else373
+then371:
+  a.load374 = load i32 from ptr %a
+  375 = icmp sgt i32 %a.load374, i32 0
+  br i1 %375, bb %select.then376, bb %select.else377
+if.exit372:
+  br bb %if.exit360
+else373:
+  res.load1342 = load i32 from ptr %res
+  1343 = add i32 %res.load1342, i32 71
+  store i32 %1343 to ptr %res
+  br bb %if.exit372
+select.then376:
+  a.load380 = load i32 from ptr %a
+  381 = icmp slt i32 %a.load380, i32 70
+  store i1 %381 to ptr %select379
+  br bb %select.exit378
+select.else377:
+  store i1 0 to ptr %select379
+  br bb %select.exit378
+select.exit378:
+  382 = load i1 from ptr %select379
+  br i1 %382, bb %then383, bb %else385
+then383:
+  a.load386 = load i32 from ptr %a
+  387 = icmp sgt i32 %a.load386, i32 0
+  br i1 %387, bb %select.then388, bb %select.else389
+if.exit384:
+  br bb %if.exit372
+else385:
+  res.load1340 = load i32 from ptr %res
+  1341 = add i32 %res.load1340, i32 70
+  store i32 %1341 to ptr %res
+  br bb %if.exit384
+select.then388:
+  a.load392 = load i32 from ptr %a
+  393 = icmp slt i32 %a.load392, i32 69
+  store i1 %393 to ptr %select391
+  br bb %select.exit390
+select.else389:
+  store i1 0 to ptr %select391
+  br bb %select.exit390
+select.exit390:
+  394 = load i1 from ptr %select391
+  br i1 %394, bb %then395, bb %else397
+then395:
+  a.load398 = load i32 from ptr %a
+  399 = icmp sgt i32 %a.load398, i32 0
+  br i1 %399, bb %select.then400, bb %select.else401
+if.exit396:
+  br bb %if.exit384
+else397:
+  res.load1338 = load i32 from ptr %res
+  1339 = add i32 %res.load1338, i32 69
+  store i32 %1339 to ptr %res
+  br bb %if.exit396
+select.then400:
+  a.load404 = load i32 from ptr %a
+  405 = icmp slt i32 %a.load404, i32 68
+  store i1 %405 to ptr %select403
+  br bb %select.exit402
+select.else401:
+  store i1 0 to ptr %select403
+  br bb %select.exit402
+select.exit402:
+  406 = load i1 from ptr %select403
+  br i1 %406, bb %then407, bb %else409
+then407:
+  a.load410 = load i32 from ptr %a
+  411 = icmp sgt i32 %a.load410, i32 0
+  br i1 %411, bb %select.then412, bb %select.else413
+if.exit408:
+  br bb %if.exit396
+else409:
+  res.load1336 = load i32 from ptr %res
+  1337 = add i32 %res.load1336, i32 68
+  store i32 %1337 to ptr %res
+  br bb %if.exit408
+select.then412:
+  a.load416 = load i32 from ptr %a
+  417 = icmp slt i32 %a.load416, i32 67
+  store i1 %417 to ptr %select415
+  br bb %select.exit414
+select.else413:
+  store i1 0 to ptr %select415
+  br bb %select.exit414
+select.exit414:
+  418 = load i1 from ptr %select415
+  br i1 %418, bb %then419, bb %else421
+then419:
+  a.load422 = load i32 from ptr %a
+  423 = icmp sgt i32 %a.load422, i32 0
+  br i1 %423, bb %select.then424, bb %select.else425
+if.exit420:
+  br bb %if.exit408
+else421:
+  res.load1334 = load i32 from ptr %res
+  1335 = add i32 %res.load1334, i32 67
+  store i32 %1335 to ptr %res
+  br bb %if.exit420
+select.then424:
+  a.load428 = load i32 from ptr %a
+  429 = icmp slt i32 %a.load428, i32 66
+  store i1 %429 to ptr %select427
+  br bb %select.exit426
+select.else425:
+  store i1 0 to ptr %select427
+  br bb %select.exit426
+select.exit426:
+  430 = load i1 from ptr %select427
+  br i1 %430, bb %then431, bb %else433
+then431:
+  a.load434 = load i32 from ptr %a
+  435 = icmp sgt i32 %a.load434, i32 0
+  br i1 %435, bb %select.then436, bb %select.else437
+if.exit432:
+  br bb %if.exit420
+else433:
+  res.load1332 = load i32 from ptr %res
+  1333 = add i32 %res.load1332, i32 66
+  store i32 %1333 to ptr %res
+  br bb %if.exit432
+select.then436:
+  a.load440 = load i32 from ptr %a
+  441 = icmp slt i32 %a.load440, i32 65
+  store i1 %441 to ptr %select439
+  br bb %select.exit438
+select.else437:
+  store i1 0 to ptr %select439
+  br bb %select.exit438
+select.exit438:
+  442 = load i1 from ptr %select439
+  br i1 %442, bb %then443, bb %else445
+then443:
+  a.load446 = load i32 from ptr %a
+  447 = icmp sgt i32 %a.load446, i32 0
+  br i1 %447, bb %select.then448, bb %select.else449
+if.exit444:
+  br bb %if.exit432
+else445:
+  res.load1330 = load i32 from ptr %res
+  1331 = add i32 %res.load1330, i32 65
+  store i32 %1331 to ptr %res
+  br bb %if.exit444
+select.then448:
+  a.load452 = load i32 from ptr %a
+  453 = icmp slt i32 %a.load452, i32 64
+  store i1 %453 to ptr %select451
+  br bb %select.exit450
+select.else449:
+  store i1 0 to ptr %select451
+  br bb %select.exit450
+select.exit450:
+  454 = load i1 from ptr %select451
+  br i1 %454, bb %then455, bb %else457
+then455:
+  a.load458 = load i32 from ptr %a
+  459 = icmp sgt i32 %a.load458, i32 0
+  br i1 %459, bb %select.then460, bb %select.else461
+if.exit456:
+  br bb %if.exit444
+else457:
+  res.load1328 = load i32 from ptr %res
+  1329 = add i32 %res.load1328, i32 64
+  store i32 %1329 to ptr %res
+  br bb %if.exit456
+select.then460:
+  a.load464 = load i32 from ptr %a
+  465 = icmp slt i32 %a.load464, i32 63
+  store i1 %465 to ptr %select463
+  br bb %select.exit462
+select.else461:
+  store i1 0 to ptr %select463
+  br bb %select.exit462
+select.exit462:
+  466 = load i1 from ptr %select463
+  br i1 %466, bb %then467, bb %else469
+then467:
+  a.load470 = load i32 from ptr %a
+  471 = icmp sgt i32 %a.load470, i32 0
+  br i1 %471, bb %select.then472, bb %select.else473
+if.exit468:
+  br bb %if.exit456
+else469:
+  res.load1326 = load i32 from ptr %res
+  1327 = add i32 %res.load1326, i32 63
+  store i32 %1327 to ptr %res
+  br bb %if.exit468
+select.then472:
+  a.load476 = load i32 from ptr %a
+  477 = icmp slt i32 %a.load476, i32 62
+  store i1 %477 to ptr %select475
+  br bb %select.exit474
+select.else473:
+  store i1 0 to ptr %select475
+  br bb %select.exit474
+select.exit474:
+  478 = load i1 from ptr %select475
+  br i1 %478, bb %then479, bb %else481
+then479:
+  a.load482 = load i32 from ptr %a
+  483 = icmp sgt i32 %a.load482, i32 0
+  br i1 %483, bb %select.then484, bb %select.else485
+if.exit480:
+  br bb %if.exit468
+else481:
+  res.load1324 = load i32 from ptr %res
+  1325 = add i32 %res.load1324, i32 62
+  store i32 %1325 to ptr %res
+  br bb %if.exit480
+select.then484:
+  a.load488 = load i32 from ptr %a
+  489 = icmp slt i32 %a.load488, i32 61
+  store i1 %489 to ptr %select487
+  br bb %select.exit486
+select.else485:
+  store i1 0 to ptr %select487
+  br bb %select.exit486
+select.exit486:
+  490 = load i1 from ptr %select487
+  br i1 %490, bb %then491, bb %else493
+then491:
+  a.load494 = load i32 from ptr %a
+  495 = icmp sgt i32 %a.load494, i32 0
+  br i1 %495, bb %select.then496, bb %select.else497
+if.exit492:
+  br bb %if.exit480
+else493:
+  res.load1322 = load i32 from ptr %res
+  1323 = add i32 %res.load1322, i32 61
+  store i32 %1323 to ptr %res
+  br bb %if.exit492
+select.then496:
+  a.load500 = load i32 from ptr %a
+  501 = icmp slt i32 %a.load500, i32 60
+  store i1 %501 to ptr %select499
+  br bb %select.exit498
+select.else497:
+  store i1 0 to ptr %select499
+  br bb %select.exit498
+select.exit498:
+  502 = load i1 from ptr %select499
+  br i1 %502, bb %then503, bb %else505
+then503:
+  a.load506 = load i32 from ptr %a
+  507 = icmp sgt i32 %a.load506, i32 0
+  br i1 %507, bb %select.then508, bb %select.else509
+if.exit504:
+  br bb %if.exit492
+else505:
+  res.load1320 = load i32 from ptr %res
+  1321 = add i32 %res.load1320, i32 60
+  store i32 %1321 to ptr %res
+  br bb %if.exit504
+select.then508:
+  a.load512 = load i32 from ptr %a
+  513 = icmp slt i32 %a.load512, i32 59
+  store i1 %513 to ptr %select511
+  br bb %select.exit510
+select.else509:
+  store i1 0 to ptr %select511
+  br bb %select.exit510
+select.exit510:
+  514 = load i1 from ptr %select511
+  br i1 %514, bb %then515, bb %else517
+then515:
+  a.load518 = load i32 from ptr %a
+  519 = icmp sgt i32 %a.load518, i32 0
+  br i1 %519, bb %select.then520, bb %select.else521
+if.exit516:
+  br bb %if.exit504
+else517:
+  res.load1318 = load i32 from ptr %res
+  1319 = add i32 %res.load1318, i32 59
+  store i32 %1319 to ptr %res
+  br bb %if.exit516
+select.then520:
+  a.load524 = load i32 from ptr %a
+  525 = icmp slt i32 %a.load524, i32 58
+  store i1 %525 to ptr %select523
+  br bb %select.exit522
+select.else521:
+  store i1 0 to ptr %select523
+  br bb %select.exit522
+select.exit522:
+  526 = load i1 from ptr %select523
+  br i1 %526, bb %then527, bb %else529
+then527:
+  a.load530 = load i32 from ptr %a
+  531 = icmp sgt i32 %a.load530, i32 0
+  br i1 %531, bb %select.then532, bb %select.else533
+if.exit528:
+  br bb %if.exit516
+else529:
+  res.load1316 = load i32 from ptr %res
+  1317 = add i32 %res.load1316, i32 58
+  store i32 %1317 to ptr %res
+  br bb %if.exit528
+select.then532:
+  a.load536 = load i32 from ptr %a
+  537 = icmp slt i32 %a.load536, i32 57
+  store i1 %537 to ptr %select535
+  br bb %select.exit534
+select.else533:
+  store i1 0 to ptr %select535
+  br bb %select.exit534
+select.exit534:
+  538 = load i1 from ptr %select535
+  br i1 %538, bb %then539, bb %else541
+then539:
+  a.load542 = load i32 from ptr %a
+  543 = icmp sgt i32 %a.load542, i32 0
+  br i1 %543, bb %select.then544, bb %select.else545
+if.exit540:
+  br bb %if.exit528
+else541:
+  res.load1314 = load i32 from ptr %res
+  1315 = add i32 %res.load1314, i32 57
+  store i32 %1315 to ptr %res
+  br bb %if.exit540
+select.then544:
+  a.load548 = load i32 from ptr %a
+  549 = icmp slt i32 %a.load548, i32 56
+  store i1 %549 to ptr %select547
+  br bb %select.exit546
+select.else545:
+  store i1 0 to ptr %select547
+  br bb %select.exit546
+select.exit546:
+  550 = load i1 from ptr %select547
+  br i1 %550, bb %then551, bb %else553
+then551:
+  a.load554 = load i32 from ptr %a
+  555 = icmp sgt i32 %a.load554, i32 0
+  br i1 %555, bb %select.then556, bb %select.else557
+if.exit552:
+  br bb %if.exit540
+else553:
+  res.load1312 = load i32 from ptr %res
+  1313 = add i32 %res.load1312, i32 56
+  store i32 %1313 to ptr %res
+  br bb %if.exit552
+select.then556:
+  a.load560 = load i32 from ptr %a
+  561 = icmp slt i32 %a.load560, i32 55
+  store i1 %561 to ptr %select559
+  br bb %select.exit558
+select.else557:
+  store i1 0 to ptr %select559
+  br bb %select.exit558
+select.exit558:
+  562 = load i1 from ptr %select559
+  br i1 %562, bb %then563, bb %else565
+then563:
+  a.load566 = load i32 from ptr %a
+  567 = icmp sgt i32 %a.load566, i32 0
+  br i1 %567, bb %select.then568, bb %select.else569
+if.exit564:
+  br bb %if.exit552
+else565:
+  res.load1310 = load i32 from ptr %res
+  1311 = add i32 %res.load1310, i32 55
+  store i32 %1311 to ptr %res
+  br bb %if.exit564
+select.then568:
+  a.load572 = load i32 from ptr %a
+  573 = icmp slt i32 %a.load572, i32 54
+  store i1 %573 to ptr %select571
+  br bb %select.exit570
+select.else569:
+  store i1 0 to ptr %select571
+  br bb %select.exit570
+select.exit570:
+  574 = load i1 from ptr %select571
+  br i1 %574, bb %then575, bb %else577
+then575:
+  a.load578 = load i32 from ptr %a
+  579 = icmp sgt i32 %a.load578, i32 0
+  br i1 %579, bb %select.then580, bb %select.else581
+if.exit576:
+  br bb %if.exit564
+else577:
+  res.load1308 = load i32 from ptr %res
+  1309 = add i32 %res.load1308, i32 54
+  store i32 %1309 to ptr %res
+  br bb %if.exit576
+select.then580:
+  a.load584 = load i32 from ptr %a
+  585 = icmp slt i32 %a.load584, i32 53
+  store i1 %585 to ptr %select583
+  br bb %select.exit582
+select.else581:
+  store i1 0 to ptr %select583
+  br bb %select.exit582
+select.exit582:
+  586 = load i1 from ptr %select583
+  br i1 %586, bb %then587, bb %else589
+then587:
+  a.load590 = load i32 from ptr %a
+  591 = icmp sgt i32 %a.load590, i32 0
+  br i1 %591, bb %select.then592, bb %select.else593
+if.exit588:
+  br bb %if.exit576
+else589:
+  res.load1306 = load i32 from ptr %res
+  1307 = add i32 %res.load1306, i32 53
+  store i32 %1307 to ptr %res
+  br bb %if.exit588
+select.then592:
+  a.load596 = load i32 from ptr %a
+  597 = icmp slt i32 %a.load596, i32 52
+  store i1 %597 to ptr %select595
+  br bb %select.exit594
+select.else593:
+  store i1 0 to ptr %select595
+  br bb %select.exit594
+select.exit594:
+  598 = load i1 from ptr %select595
+  br i1 %598, bb %then599, bb %else601
+then599:
+  a.load602 = load i32 from ptr %a
+  603 = icmp sgt i32 %a.load602, i32 0
+  br i1 %603, bb %select.then604, bb %select.else605
+if.exit600:
+  br bb %if.exit588
+else601:
+  res.load1304 = load i32 from ptr %res
+  1305 = add i32 %res.load1304, i32 52
+  store i32 %1305 to ptr %res
+  br bb %if.exit600
+select.then604:
+  a.load608 = load i32 from ptr %a
+  609 = icmp slt i32 %a.load608, i32 51
+  store i1 %609 to ptr %select607
+  br bb %select.exit606
+select.else605:
+  store i1 0 to ptr %select607
+  br bb %select.exit606
+select.exit606:
+  610 = load i1 from ptr %select607
+  br i1 %610, bb %then611, bb %else613
+then611:
+  a.load614 = load i32 from ptr %a
+  615 = icmp sgt i32 %a.load614, i32 0
+  br i1 %615, bb %select.then616, bb %select.else617
+if.exit612:
+  br bb %if.exit600
+else613:
+  res.load1302 = load i32 from ptr %res
+  1303 = add i32 %res.load1302, i32 51
+  store i32 %1303 to ptr %res
+  br bb %if.exit612
+select.then616:
+  a.load620 = load i32 from ptr %a
+  621 = icmp slt i32 %a.load620, i32 50
+  store i1 %621 to ptr %select619
+  br bb %select.exit618
+select.else617:
+  store i1 0 to ptr %select619
+  br bb %select.exit618
+select.exit618:
+  622 = load i1 from ptr %select619
+  br i1 %622, bb %then623, bb %else625
+then623:
+  a.load626 = load i32 from ptr %a
+  627 = icmp sgt i32 %a.load626, i32 0
+  br i1 %627, bb %select.then628, bb %select.else629
+if.exit624:
+  br bb %if.exit612
+else625:
+  res.load1300 = load i32 from ptr %res
+  1301 = add i32 %res.load1300, i32 50
+  store i32 %1301 to ptr %res
+  br bb %if.exit624
+select.then628:
+  a.load632 = load i32 from ptr %a
+  633 = icmp slt i32 %a.load632, i32 49
+  store i1 %633 to ptr %select631
+  br bb %select.exit630
+select.else629:
+  store i1 0 to ptr %select631
+  br bb %select.exit630
+select.exit630:
+  634 = load i1 from ptr %select631
+  br i1 %634, bb %then635, bb %else637
+then635:
+  a.load638 = load i32 from ptr %a
+  639 = icmp sgt i32 %a.load638, i32 0
+  br i1 %639, bb %select.then640, bb %select.else641
+if.exit636:
+  br bb %if.exit624
+else637:
+  res.load1298 = load i32 from ptr %res
+  1299 = add i32 %res.load1298, i32 49
+  store i32 %1299 to ptr %res
+  br bb %if.exit636
+select.then640:
+  a.load644 = load i32 from ptr %a
+  645 = icmp slt i32 %a.load644, i32 48
+  store i1 %645 to ptr %select643
+  br bb %select.exit642
+select.else641:
+  store i1 0 to ptr %select643
+  br bb %select.exit642
+select.exit642:
+  646 = load i1 from ptr %select643
+  br i1 %646, bb %then647, bb %else649
+then647:
+  a.load650 = load i32 from ptr %a
+  651 = icmp sgt i32 %a.load650, i32 0
+  br i1 %651, bb %select.then652, bb %select.else653
+if.exit648:
+  br bb %if.exit636
+else649:
+  res.load1296 = load i32 from ptr %res
+  1297 = add i32 %res.load1296, i32 48
+  store i32 %1297 to ptr %res
+  br bb %if.exit648
+select.then652:
+  a.load656 = load i32 from ptr %a
+  657 = icmp slt i32 %a.load656, i32 47
+  store i1 %657 to ptr %select655
+  br bb %select.exit654
+select.else653:
+  store i1 0 to ptr %select655
+  br bb %select.exit654
+select.exit654:
+  658 = load i1 from ptr %select655
+  br i1 %658, bb %then659, bb %else661
+then659:
+  a.load662 = load i32 from ptr %a
+  663 = icmp sgt i32 %a.load662, i32 0
+  br i1 %663, bb %select.then664, bb %select.else665
+if.exit660:
+  br bb %if.exit648
+else661:
+  res.load1294 = load i32 from ptr %res
+  1295 = add i32 %res.load1294, i32 47
+  store i32 %1295 to ptr %res
+  br bb %if.exit660
+select.then664:
+  a.load668 = load i32 from ptr %a
+  669 = icmp slt i32 %a.load668, i32 46
+  store i1 %669 to ptr %select667
+  br bb %select.exit666
+select.else665:
+  store i1 0 to ptr %select667
+  br bb %select.exit666
+select.exit666:
+  670 = load i1 from ptr %select667
+  br i1 %670, bb %then671, bb %else673
+then671:
+  a.load674 = load i32 from ptr %a
+  675 = icmp sgt i32 %a.load674, i32 0
+  br i1 %675, bb %select.then676, bb %select.else677
+if.exit672:
+  br bb %if.exit660
+else673:
+  res.load1292 = load i32 from ptr %res
+  1293 = add i32 %res.load1292, i32 46
+  store i32 %1293 to ptr %res
+  br bb %if.exit672
+select.then676:
+  a.load680 = load i32 from ptr %a
+  681 = icmp slt i32 %a.load680, i32 45
+  store i1 %681 to ptr %select679
+  br bb %select.exit678
+select.else677:
+  store i1 0 to ptr %select679
+  br bb %select.exit678
+select.exit678:
+  682 = load i1 from ptr %select679
+  br i1 %682, bb %then683, bb %else685
+then683:
+  a.load686 = load i32 from ptr %a
+  687 = icmp sgt i32 %a.load686, i32 0
+  br i1 %687, bb %select.then688, bb %select.else689
+if.exit684:
+  br bb %if.exit672
+else685:
+  res.load1290 = load i32 from ptr %res
+  1291 = add i32 %res.load1290, i32 45
+  store i32 %1291 to ptr %res
+  br bb %if.exit684
+select.then688:
+  a.load692 = load i32 from ptr %a
+  693 = icmp slt i32 %a.load692, i32 44
+  store i1 %693 to ptr %select691
+  br bb %select.exit690
+select.else689:
+  store i1 0 to ptr %select691
+  br bb %select.exit690
+select.exit690:
+  694 = load i1 from ptr %select691
+  br i1 %694, bb %then695, bb %else697
+then695:
+  a.load698 = load i32 from ptr %a
+  699 = icmp sgt i32 %a.load698, i32 0
+  br i1 %699, bb %select.then700, bb %select.else701
+if.exit696:
+  br bb %if.exit684
+else697:
+  res.load1288 = load i32 from ptr %res
+  1289 = add i32 %res.load1288, i32 44
+  store i32 %1289 to ptr %res
+  br bb %if.exit696
+select.then700:
+  a.load704 = load i32 from ptr %a
+  705 = icmp slt i32 %a.load704, i32 43
+  store i1 %705 to ptr %select703
+  br bb %select.exit702
+select.else701:
+  store i1 0 to ptr %select703
+  br bb %select.exit702
+select.exit702:
+  706 = load i1 from ptr %select703
+  br i1 %706, bb %then707, bb %else709
+then707:
+  a.load710 = load i32 from ptr %a
+  711 = icmp sgt i32 %a.load710, i32 0
+  br i1 %711, bb %select.then712, bb %select.else713
+if.exit708:
+  br bb %if.exit696
+else709:
+  res.load1286 = load i32 from ptr %res
+  1287 = add i32 %res.load1286, i32 43
+  store i32 %1287 to ptr %res
+  br bb %if.exit708
+select.then712:
+  a.load716 = load i32 from ptr %a
+  717 = icmp slt i32 %a.load716, i32 42
+  store i1 %717 to ptr %select715
+  br bb %select.exit714
+select.else713:
+  store i1 0 to ptr %select715
+  br bb %select.exit714
+select.exit714:
+  718 = load i1 from ptr %select715
+  br i1 %718, bb %then719, bb %else721
+then719:
+  a.load722 = load i32 from ptr %a
+  723 = icmp sgt i32 %a.load722, i32 0
+  br i1 %723, bb %select.then724, bb %select.else725
+if.exit720:
+  br bb %if.exit708
+else721:
+  res.load1284 = load i32 from ptr %res
+  1285 = add i32 %res.load1284, i32 42
+  store i32 %1285 to ptr %res
+  br bb %if.exit720
+select.then724:
+  a.load728 = load i32 from ptr %a
+  729 = icmp slt i32 %a.load728, i32 41
+  store i1 %729 to ptr %select727
+  br bb %select.exit726
+select.else725:
+  store i1 0 to ptr %select727
+  br bb %select.exit726
+select.exit726:
+  730 = load i1 from ptr %select727
+  br i1 %730, bb %then731, bb %else733
+then731:
+  a.load734 = load i32 from ptr %a
+  735 = icmp sgt i32 %a.load734, i32 0
+  br i1 %735, bb %select.then736, bb %select.else737
+if.exit732:
+  br bb %if.exit720
+else733:
+  res.load1282 = load i32 from ptr %res
+  1283 = add i32 %res.load1282, i32 41
+  store i32 %1283 to ptr %res
+  br bb %if.exit732
+select.then736:
+  a.load740 = load i32 from ptr %a
+  741 = icmp slt i32 %a.load740, i32 40
+  store i1 %741 to ptr %select739
+  br bb %select.exit738
+select.else737:
+  store i1 0 to ptr %select739
+  br bb %select.exit738
+select.exit738:
+  742 = load i1 from ptr %select739
+  br i1 %742, bb %then743, bb %else745
+then743:
+  a.load746 = load i32 from ptr %a
+  747 = icmp sgt i32 %a.load746, i32 0
+  br i1 %747, bb %select.then748, bb %select.else749
+if.exit744:
+  br bb %if.exit732
+else745:
+  res.load1280 = load i32 from ptr %res
+  1281 = add i32 %res.load1280, i32 40
+  store i32 %1281 to ptr %res
+  br bb %if.exit744
+select.then748:
+  a.load752 = load i32 from ptr %a
+  753 = icmp slt i32 %a.load752, i32 39
+  store i1 %753 to ptr %select751
+  br bb %select.exit750
+select.else749:
+  store i1 0 to ptr %select751
+  br bb %select.exit750
+select.exit750:
+  754 = load i1 from ptr %select751
+  br i1 %754, bb %then755, bb %else757
+then755:
+  a.load758 = load i32 from ptr %a
+  759 = icmp sgt i32 %a.load758, i32 0
+  br i1 %759, bb %select.then760, bb %select.else761
+if.exit756:
+  br bb %if.exit744
+else757:
+  res.load1278 = load i32 from ptr %res
+  1279 = add i32 %res.load1278, i32 39
+  store i32 %1279 to ptr %res
+  br bb %if.exit756
+select.then760:
+  a.load764 = load i32 from ptr %a
+  765 = icmp slt i32 %a.load764, i32 38
+  store i1 %765 to ptr %select763
+  br bb %select.exit762
+select.else761:
+  store i1 0 to ptr %select763
+  br bb %select.exit762
+select.exit762:
+  766 = load i1 from ptr %select763
+  br i1 %766, bb %then767, bb %else769
+then767:
+  a.load770 = load i32 from ptr %a
+  771 = icmp sgt i32 %a.load770, i32 0
+  br i1 %771, bb %select.then772, bb %select.else773
+if.exit768:
+  br bb %if.exit756
+else769:
+  res.load1276 = load i32 from ptr %res
+  1277 = add i32 %res.load1276, i32 38
+  store i32 %1277 to ptr %res
+  br bb %if.exit768
+select.then772:
+  a.load776 = load i32 from ptr %a
+  777 = icmp slt i32 %a.load776, i32 37
+  store i1 %777 to ptr %select775
+  br bb %select.exit774
+select.else773:
+  store i1 0 to ptr %select775
+  br bb %select.exit774
+select.exit774:
+  778 = load i1 from ptr %select775
+  br i1 %778, bb %then779, bb %else781
+then779:
+  a.load782 = load i32 from ptr %a
+  783 = icmp sgt i32 %a.load782, i32 0
+  br i1 %783, bb %select.then784, bb %select.else785
+if.exit780:
+  br bb %if.exit768
+else781:
+  res.load1274 = load i32 from ptr %res
+  1275 = add i32 %res.load1274, i32 37
+  store i32 %1275 to ptr %res
+  br bb %if.exit780
+select.then784:
+  a.load788 = load i32 from ptr %a
+  789 = icmp slt i32 %a.load788, i32 36
+  store i1 %789 to ptr %select787
+  br bb %select.exit786
+select.else785:
+  store i1 0 to ptr %select787
+  br bb %select.exit786
+select.exit786:
+  790 = load i1 from ptr %select787
+  br i1 %790, bb %then791, bb %else793
+then791:
+  a.load794 = load i32 from ptr %a
+  795 = icmp sgt i32 %a.load794, i32 0
+  br i1 %795, bb %select.then796, bb %select.else797
+if.exit792:
+  br bb %if.exit780
+else793:
+  res.load1272 = load i32 from ptr %res
+  1273 = add i32 %res.load1272, i32 36
+  store i32 %1273 to ptr %res
+  br bb %if.exit792
+select.then796:
+  a.load800 = load i32 from ptr %a
+  801 = icmp slt i32 %a.load800, i32 35
+  store i1 %801 to ptr %select799
+  br bb %select.exit798
+select.else797:
+  store i1 0 to ptr %select799
+  br bb %select.exit798
+select.exit798:
+  802 = load i1 from ptr %select799
+  br i1 %802, bb %then803, bb %else805
+then803:
+  a.load806 = load i32 from ptr %a
+  807 = icmp sgt i32 %a.load806, i32 0
+  br i1 %807, bb %select.then808, bb %select.else809
+if.exit804:
+  br bb %if.exit792
+else805:
+  res.load1270 = load i32 from ptr %res
+  1271 = add i32 %res.load1270, i32 35
+  store i32 %1271 to ptr %res
+  br bb %if.exit804
+select.then808:
+  a.load812 = load i32 from ptr %a
+  813 = icmp slt i32 %a.load812, i32 34
+  store i1 %813 to ptr %select811
+  br bb %select.exit810
+select.else809:
+  store i1 0 to ptr %select811
+  br bb %select.exit810
+select.exit810:
+  814 = load i1 from ptr %select811
+  br i1 %814, bb %then815, bb %else817
+then815:
+  a.load818 = load i32 from ptr %a
+  819 = icmp sgt i32 %a.load818, i32 0
+  br i1 %819, bb %select.then820, bb %select.else821
+if.exit816:
+  br bb %if.exit804
+else817:
+  res.load1268 = load i32 from ptr %res
+  1269 = add i32 %res.load1268, i32 34
+  store i32 %1269 to ptr %res
+  br bb %if.exit816
+select.then820:
+  a.load824 = load i32 from ptr %a
+  825 = icmp slt i32 %a.load824, i32 33
+  store i1 %825 to ptr %select823
+  br bb %select.exit822
+select.else821:
+  store i1 0 to ptr %select823
+  br bb %select.exit822
+select.exit822:
+  826 = load i1 from ptr %select823
+  br i1 %826, bb %then827, bb %else829
+then827:
+  a.load830 = load i32 from ptr %a
+  831 = icmp sgt i32 %a.load830, i32 0
+  br i1 %831, bb %select.then832, bb %select.else833
+if.exit828:
+  br bb %if.exit816
+else829:
+  res.load1266 = load i32 from ptr %res
+  1267 = add i32 %res.load1266, i32 33
+  store i32 %1267 to ptr %res
+  br bb %if.exit828
+select.then832:
+  a.load836 = load i32 from ptr %a
+  837 = icmp slt i32 %a.load836, i32 32
+  store i1 %837 to ptr %select835
+  br bb %select.exit834
+select.else833:
+  store i1 0 to ptr %select835
+  br bb %select.exit834
+select.exit834:
+  838 = load i1 from ptr %select835
+  br i1 %838, bb %then839, bb %else841
+then839:
+  a.load842 = load i32 from ptr %a
+  843 = icmp sgt i32 %a.load842, i32 0
+  br i1 %843, bb %select.then844, bb %select.else845
+if.exit840:
+  br bb %if.exit828
+else841:
+  res.load1264 = load i32 from ptr %res
+  1265 = add i32 %res.load1264, i32 32
+  store i32 %1265 to ptr %res
+  br bb %if.exit840
+select.then844:
+  a.load848 = load i32 from ptr %a
+  849 = icmp slt i32 %a.load848, i32 31
+  store i1 %849 to ptr %select847
+  br bb %select.exit846
+select.else845:
+  store i1 0 to ptr %select847
+  br bb %select.exit846
+select.exit846:
+  850 = load i1 from ptr %select847
+  br i1 %850, bb %then851, bb %else853
+then851:
+  a.load854 = load i32 from ptr %a
+  855 = icmp sgt i32 %a.load854, i32 0
+  br i1 %855, bb %select.then856, bb %select.else857
+if.exit852:
+  br bb %if.exit840
+else853:
+  res.load1262 = load i32 from ptr %res
+  1263 = add i32 %res.load1262, i32 31
+  store i32 %1263 to ptr %res
+  br bb %if.exit852
+select.then856:
+  a.load860 = load i32 from ptr %a
+  861 = icmp slt i32 %a.load860, i32 30
+  store i1 %861 to ptr %select859
+  br bb %select.exit858
+select.else857:
+  store i1 0 to ptr %select859
+  br bb %select.exit858
+select.exit858:
+  862 = load i1 from ptr %select859
+  br i1 %862, bb %then863, bb %else865
+then863:
+  a.load866 = load i32 from ptr %a
+  867 = icmp sgt i32 %a.load866, i32 0
+  br i1 %867, bb %select.then868, bb %select.else869
+if.exit864:
+  br bb %if.exit852
+else865:
+  res.load1260 = load i32 from ptr %res
+  1261 = add i32 %res.load1260, i32 30
+  store i32 %1261 to ptr %res
+  br bb %if.exit864
+select.then868:
+  a.load872 = load i32 from ptr %a
+  873 = icmp slt i32 %a.load872, i32 29
+  store i1 %873 to ptr %select871
+  br bb %select.exit870
+select.else869:
+  store i1 0 to ptr %select871
+  br bb %select.exit870
+select.exit870:
+  874 = load i1 from ptr %select871
+  br i1 %874, bb %then875, bb %else877
+then875:
+  a.load878 = load i32 from ptr %a
+  879 = icmp sgt i32 %a.load878, i32 0
+  br i1 %879, bb %select.then880, bb %select.else881
+if.exit876:
+  br bb %if.exit864
+else877:
+  res.load1258 = load i32 from ptr %res
+  1259 = add i32 %res.load1258, i32 29
+  store i32 %1259 to ptr %res
+  br bb %if.exit876
+select.then880:
+  a.load884 = load i32 from ptr %a
+  885 = icmp slt i32 %a.load884, i32 28
+  store i1 %885 to ptr %select883
+  br bb %select.exit882
+select.else881:
+  store i1 0 to ptr %select883
+  br bb %select.exit882
+select.exit882:
+  886 = load i1 from ptr %select883
+  br i1 %886, bb %then887, bb %else889
+then887:
+  a.load890 = load i32 from ptr %a
+  891 = icmp sgt i32 %a.load890, i32 0
+  br i1 %891, bb %select.then892, bb %select.else893
+if.exit888:
+  br bb %if.exit876
+else889:
+  res.load1256 = load i32 from ptr %res
+  1257 = add i32 %res.load1256, i32 28
+  store i32 %1257 to ptr %res
+  br bb %if.exit888
+select.then892:
+  a.load896 = load i32 from ptr %a
+  897 = icmp slt i32 %a.load896, i32 27
+  store i1 %897 to ptr %select895
+  br bb %select.exit894
+select.else893:
+  store i1 0 to ptr %select895
+  br bb %select.exit894
+select.exit894:
+  898 = load i1 from ptr %select895
+  br i1 %898, bb %then899, bb %else901
+then899:
+  a.load902 = load i32 from ptr %a
+  903 = icmp sgt i32 %a.load902, i32 0
+  br i1 %903, bb %select.then904, bb %select.else905
+if.exit900:
+  br bb %if.exit888
+else901:
+  res.load1254 = load i32 from ptr %res
+  1255 = add i32 %res.load1254, i32 27
+  store i32 %1255 to ptr %res
+  br bb %if.exit900
+select.then904:
+  a.load908 = load i32 from ptr %a
+  909 = icmp slt i32 %a.load908, i32 26
+  store i1 %909 to ptr %select907
+  br bb %select.exit906
+select.else905:
+  store i1 0 to ptr %select907
+  br bb %select.exit906
+select.exit906:
+  910 = load i1 from ptr %select907
+  br i1 %910, bb %then911, bb %else913
+then911:
+  a.load914 = load i32 from ptr %a
+  915 = icmp sgt i32 %a.load914, i32 0
+  br i1 %915, bb %select.then916, bb %select.else917
+if.exit912:
+  br bb %if.exit900
+else913:
+  res.load1252 = load i32 from ptr %res
+  1253 = add i32 %res.load1252, i32 26
+  store i32 %1253 to ptr %res
+  br bb %if.exit912
+select.then916:
+  a.load920 = load i32 from ptr %a
+  921 = icmp slt i32 %a.load920, i32 25
+  store i1 %921 to ptr %select919
+  br bb %select.exit918
+select.else917:
+  store i1 0 to ptr %select919
+  br bb %select.exit918
+select.exit918:
+  922 = load i1 from ptr %select919
+  br i1 %922, bb %then923, bb %else925
+then923:
+  a.load926 = load i32 from ptr %a
+  927 = icmp sgt i32 %a.load926, i32 0
+  br i1 %927, bb %select.then928, bb %select.else929
+if.exit924:
+  br bb %if.exit912
+else925:
+  res.load1250 = load i32 from ptr %res
+  1251 = add i32 %res.load1250, i32 25
+  store i32 %1251 to ptr %res
+  br bb %if.exit924
+select.then928:
+  a.load932 = load i32 from ptr %a
+  933 = icmp slt i32 %a.load932, i32 24
+  store i1 %933 to ptr %select931
+  br bb %select.exit930
+select.else929:
+  store i1 0 to ptr %select931
+  br bb %select.exit930
+select.exit930:
+  934 = load i1 from ptr %select931
+  br i1 %934, bb %then935, bb %else937
+then935:
+  a.load938 = load i32 from ptr %a
+  939 = icmp sgt i32 %a.load938, i32 0
+  br i1 %939, bb %select.then940, bb %select.else941
+if.exit936:
+  br bb %if.exit924
+else937:
+  res.load1248 = load i32 from ptr %res
+  1249 = add i32 %res.load1248, i32 24
+  store i32 %1249 to ptr %res
+  br bb %if.exit936
+select.then940:
+  a.load944 = load i32 from ptr %a
+  945 = icmp slt i32 %a.load944, i32 23
+  store i1 %945 to ptr %select943
+  br bb %select.exit942
+select.else941:
+  store i1 0 to ptr %select943
+  br bb %select.exit942
+select.exit942:
+  946 = load i1 from ptr %select943
+  br i1 %946, bb %then947, bb %else949
+then947:
+  a.load950 = load i32 from ptr %a
+  951 = icmp sgt i32 %a.load950, i32 0
+  br i1 %951, bb %select.then952, bb %select.else953
+if.exit948:
+  br bb %if.exit936
+else949:
+  res.load1246 = load i32 from ptr %res
+  1247 = add i32 %res.load1246, i32 23
+  store i32 %1247 to ptr %res
+  br bb %if.exit948
+select.then952:
+  a.load956 = load i32 from ptr %a
+  957 = icmp slt i32 %a.load956, i32 22
+  store i1 %957 to ptr %select955
+  br bb %select.exit954
+select.else953:
+  store i1 0 to ptr %select955
+  br bb %select.exit954
+select.exit954:
+  958 = load i1 from ptr %select955
+  br i1 %958, bb %then959, bb %else961
+then959:
+  a.load962 = load i32 from ptr %a
+  963 = icmp sgt i32 %a.load962, i32 0
+  br i1 %963, bb %select.then964, bb %select.else965
+if.exit960:
+  br bb %if.exit948
+else961:
+  res.load1244 = load i32 from ptr %res
+  1245 = add i32 %res.load1244, i32 22
+  store i32 %1245 to ptr %res
+  br bb %if.exit960
+select.then964:
+  a.load968 = load i32 from ptr %a
+  969 = icmp slt i32 %a.load968, i32 21
+  store i1 %969 to ptr %select967
+  br bb %select.exit966
+select.else965:
+  store i1 0 to ptr %select967
+  br bb %select.exit966
+select.exit966:
+  970 = load i1 from ptr %select967
+  br i1 %970, bb %then971, bb %else973
+then971:
+  a.load974 = load i32 from ptr %a
+  975 = icmp sgt i32 %a.load974, i32 0
+  br i1 %975, bb %select.then976, bb %select.else977
+if.exit972:
+  br bb %if.exit960
+else973:
+  res.load1242 = load i32 from ptr %res
+  1243 = add i32 %res.load1242, i32 21
+  store i32 %1243 to ptr %res
+  br bb %if.exit972
+select.then976:
+  a.load980 = load i32 from ptr %a
+  981 = icmp slt i32 %a.load980, i32 20
+  store i1 %981 to ptr %select979
+  br bb %select.exit978
+select.else977:
+  store i1 0 to ptr %select979
+  br bb %select.exit978
+select.exit978:
+  982 = load i1 from ptr %select979
+  br i1 %982, bb %then983, bb %else985
+then983:
+  a.load986 = load i32 from ptr %a
+  987 = icmp sgt i32 %a.load986, i32 0
+  br i1 %987, bb %select.then988, bb %select.else989
+if.exit984:
+  br bb %if.exit972
+else985:
+  res.load1240 = load i32 from ptr %res
+  1241 = add i32 %res.load1240, i32 20
+  store i32 %1241 to ptr %res
+  br bb %if.exit984
+select.then988:
+  a.load992 = load i32 from ptr %a
+  993 = icmp slt i32 %a.load992, i32 19
+  store i1 %993 to ptr %select991
+  br bb %select.exit990
+select.else989:
+  store i1 0 to ptr %select991
+  br bb %select.exit990
+select.exit990:
+  994 = load i1 from ptr %select991
+  br i1 %994, bb %then995, bb %else997
+then995:
+  a.load998 = load i32 from ptr %a
+  999 = icmp sgt i32 %a.load998, i32 0
+  br i1 %999, bb %select.then1000, bb %select.else1001
+if.exit996:
+  br bb %if.exit984
+else997:
+  res.load1238 = load i32 from ptr %res
+  1239 = add i32 %res.load1238, i32 19
+  store i32 %1239 to ptr %res
+  br bb %if.exit996
+select.then1000:
+  a.load1004 = load i32 from ptr %a
+  1005 = icmp slt i32 %a.load1004, i32 18
+  store i1 %1005 to ptr %select1003
+  br bb %select.exit1002
+select.else1001:
+  store i1 0 to ptr %select1003
+  br bb %select.exit1002
+select.exit1002:
+  1006 = load i1 from ptr %select1003
+  br i1 %1006, bb %then1007, bb %else1009
+then1007:
+  a.load1010 = load i32 from ptr %a
+  1011 = icmp sgt i32 %a.load1010, i32 0
+  br i1 %1011, bb %select.then1012, bb %select.else1013
+if.exit1008:
+  br bb %if.exit996
+else1009:
+  res.load1236 = load i32 from ptr %res
+  1237 = add i32 %res.load1236, i32 18
+  store i32 %1237 to ptr %res
+  br bb %if.exit1008
+select.then1012:
+  a.load1016 = load i32 from ptr %a
+  1017 = icmp slt i32 %a.load1016, i32 17
+  store i1 %1017 to ptr %select1015
+  br bb %select.exit1014
+select.else1013:
+  store i1 0 to ptr %select1015
+  br bb %select.exit1014
+select.exit1014:
+  1018 = load i1 from ptr %select1015
+  br i1 %1018, bb %then1019, bb %else1021
+then1019:
+  a.load1022 = load i32 from ptr %a
+  1023 = icmp sgt i32 %a.load1022, i32 0
+  br i1 %1023, bb %select.then1024, bb %select.else1025
+if.exit1020:
+  br bb %if.exit1008
+else1021:
+  res.load1234 = load i32 from ptr %res
+  1235 = add i32 %res.load1234, i32 17
+  store i32 %1235 to ptr %res
+  br bb %if.exit1020
+select.then1024:
+  a.load1028 = load i32 from ptr %a
+  1029 = icmp slt i32 %a.load1028, i32 16
+  store i1 %1029 to ptr %select1027
+  br bb %select.exit1026
+select.else1025:
+  store i1 0 to ptr %select1027
+  br bb %select.exit1026
+select.exit1026:
+  1030 = load i1 from ptr %select1027
+  br i1 %1030, bb %then1031, bb %else1033
+then1031:
+  a.load1034 = load i32 from ptr %a
+  1035 = icmp sgt i32 %a.load1034, i32 0
+  br i1 %1035, bb %select.then1036, bb %select.else1037
+if.exit1032:
+  br bb %if.exit1020
+else1033:
+  res.load1232 = load i32 from ptr %res
+  1233 = add i32 %res.load1232, i32 16
+  store i32 %1233 to ptr %res
+  br bb %if.exit1032
+select.then1036:
+  a.load1040 = load i32 from ptr %a
+  1041 = icmp slt i32 %a.load1040, i32 15
+  store i1 %1041 to ptr %select1039
+  br bb %select.exit1038
+select.else1037:
+  store i1 0 to ptr %select1039
+  br bb %select.exit1038
+select.exit1038:
+  1042 = load i1 from ptr %select1039
+  br i1 %1042, bb %then1043, bb %else1045
+then1043:
+  a.load1046 = load i32 from ptr %a
+  1047 = icmp sgt i32 %a.load1046, i32 0
+  br i1 %1047, bb %select.then1048, bb %select.else1049
+if.exit1044:
+  br bb %if.exit1032
+else1045:
+  res.load1230 = load i32 from ptr %res
+  1231 = add i32 %res.load1230, i32 15
+  store i32 %1231 to ptr %res
+  br bb %if.exit1044
+select.then1048:
+  a.load1052 = load i32 from ptr %a
+  1053 = icmp slt i32 %a.load1052, i32 14
+  store i1 %1053 to ptr %select1051
+  br bb %select.exit1050
+select.else1049:
+  store i1 0 to ptr %select1051
+  br bb %select.exit1050
+select.exit1050:
+  1054 = load i1 from ptr %select1051
+  br i1 %1054, bb %then1055, bb %else1057
+then1055:
+  a.load1058 = load i32 from ptr %a
+  1059 = icmp sgt i32 %a.load1058, i32 0
+  br i1 %1059, bb %select.then1060, bb %select.else1061
+if.exit1056:
+  br bb %if.exit1044
+else1057:
+  res.load1228 = load i32 from ptr %res
+  1229 = add i32 %res.load1228, i32 14
+  store i32 %1229 to ptr %res
+  br bb %if.exit1056
+select.then1060:
+  a.load1064 = load i32 from ptr %a
+  1065 = icmp slt i32 %a.load1064, i32 13
+  store i1 %1065 to ptr %select1063
+  br bb %select.exit1062
+select.else1061:
+  store i1 0 to ptr %select1063
+  br bb %select.exit1062
+select.exit1062:
+  1066 = load i1 from ptr %select1063
+  br i1 %1066, bb %then1067, bb %else1069
+then1067:
+  a.load1070 = load i32 from ptr %a
+  1071 = icmp sgt i32 %a.load1070, i32 0
+  br i1 %1071, bb %select.then1072, bb %select.else1073
+if.exit1068:
+  br bb %if.exit1056
+else1069:
+  res.load1226 = load i32 from ptr %res
+  1227 = add i32 %res.load1226, i32 13
+  store i32 %1227 to ptr %res
+  br bb %if.exit1068
+select.then1072:
+  a.load1076 = load i32 from ptr %a
+  1077 = icmp slt i32 %a.load1076, i32 12
+  store i1 %1077 to ptr %select1075
+  br bb %select.exit1074
+select.else1073:
+  store i1 0 to ptr %select1075
+  br bb %select.exit1074
+select.exit1074:
+  1078 = load i1 from ptr %select1075
+  br i1 %1078, bb %then1079, bb %else1081
+then1079:
+  a.load1082 = load i32 from ptr %a
+  1083 = icmp sgt i32 %a.load1082, i32 0
+  br i1 %1083, bb %select.then1084, bb %select.else1085
+if.exit1080:
+  br bb %if.exit1068
+else1081:
+  res.load1224 = load i32 from ptr %res
+  1225 = add i32 %res.load1224, i32 12
+  store i32 %1225 to ptr %res
+  br bb %if.exit1080
+select.then1084:
+  a.load1088 = load i32 from ptr %a
+  1089 = icmp slt i32 %a.load1088, i32 11
+  store i1 %1089 to ptr %select1087
+  br bb %select.exit1086
+select.else1085:
+  store i1 0 to ptr %select1087
+  br bb %select.exit1086
+select.exit1086:
+  1090 = load i1 from ptr %select1087
+  br i1 %1090, bb %then1091, bb %else1093
+then1091:
+  a.load1094 = load i32 from ptr %a
+  1095 = icmp sgt i32 %a.load1094, i32 0
+  br i1 %1095, bb %select.then1096, bb %select.else1097
+if.exit1092:
+  br bb %if.exit1080
+else1093:
+  res.load1222 = load i32 from ptr %res
+  1223 = add i32 %res.load1222, i32 11
+  store i32 %1223 to ptr %res
+  br bb %if.exit1092
+select.then1096:
+  a.load1100 = load i32 from ptr %a
+  1101 = icmp slt i32 %a.load1100, i32 10
+  store i1 %1101 to ptr %select1099
+  br bb %select.exit1098
+select.else1097:
+  store i1 0 to ptr %select1099
+  br bb %select.exit1098
+select.exit1098:
+  1102 = load i1 from ptr %select1099
+  br i1 %1102, bb %then1103, bb %else1105
+then1103:
+  a.load1106 = load i32 from ptr %a
+  1107 = icmp sgt i32 %a.load1106, i32 0
+  br i1 %1107, bb %select.then1108, bb %select.else1109
+if.exit1104:
+  br bb %if.exit1092
+else1105:
+  res.load1220 = load i32 from ptr %res
+  1221 = add i32 %res.load1220, i32 10
+  store i32 %1221 to ptr %res
+  br bb %if.exit1104
+select.then1108:
+  a.load1112 = load i32 from ptr %a
+  1113 = icmp slt i32 %a.load1112, i32 9
+  store i1 %1113 to ptr %select1111
+  br bb %select.exit1110
+select.else1109:
+  store i1 0 to ptr %select1111
+  br bb %select.exit1110
+select.exit1110:
+  1114 = load i1 from ptr %select1111
+  br i1 %1114, bb %then1115, bb %else1117
+then1115:
+  a.load1118 = load i32 from ptr %a
+  1119 = icmp sgt i32 %a.load1118, i32 0
+  br i1 %1119, bb %select.then1120, bb %select.else1121
+if.exit1116:
+  br bb %if.exit1104
+else1117:
+  res.load1218 = load i32 from ptr %res
+  1219 = add i32 %res.load1218, i32 9
+  store i32 %1219 to ptr %res
+  br bb %if.exit1116
+select.then1120:
+  a.load1124 = load i32 from ptr %a
+  1125 = icmp slt i32 %a.load1124, i32 8
+  store i1 %1125 to ptr %select1123
+  br bb %select.exit1122
+select.else1121:
+  store i1 0 to ptr %select1123
+  br bb %select.exit1122
+select.exit1122:
+  1126 = load i1 from ptr %select1123
+  br i1 %1126, bb %then1127, bb %else1129
+then1127:
+  a.load1130 = load i32 from ptr %a
+  1131 = icmp sgt i32 %a.load1130, i32 0
+  br i1 %1131, bb %select.then1132, bb %select.else1133
+if.exit1128:
+  br bb %if.exit1116
+else1129:
+  res.load1216 = load i32 from ptr %res
+  1217 = add i32 %res.load1216, i32 8
+  store i32 %1217 to ptr %res
+  br bb %if.exit1128
+select.then1132:
+  a.load1136 = load i32 from ptr %a
+  1137 = icmp slt i32 %a.load1136, i32 7
+  store i1 %1137 to ptr %select1135
+  br bb %select.exit1134
+select.else1133:
+  store i1 0 to ptr %select1135
+  br bb %select.exit1134
+select.exit1134:
+  1138 = load i1 from ptr %select1135
+  br i1 %1138, bb %then1139, bb %else1141
+then1139:
+  a.load1142 = load i32 from ptr %a
+  1143 = icmp sgt i32 %a.load1142, i32 0
+  br i1 %1143, bb %select.then1144, bb %select.else1145
+if.exit1140:
+  br bb %if.exit1128
+else1141:
+  res.load1214 = load i32 from ptr %res
+  1215 = add i32 %res.load1214, i32 7
+  store i32 %1215 to ptr %res
+  br bb %if.exit1140
+select.then1144:
+  a.load1148 = load i32 from ptr %a
+  1149 = icmp slt i32 %a.load1148, i32 6
+  store i1 %1149 to ptr %select1147
+  br bb %select.exit1146
+select.else1145:
+  store i1 0 to ptr %select1147
+  br bb %select.exit1146
+select.exit1146:
+  1150 = load i1 from ptr %select1147
+  br i1 %1150, bb %then1151, bb %else1153
+then1151:
+  a.load1154 = load i32 from ptr %a
+  1155 = icmp sgt i32 %a.load1154, i32 0
+  br i1 %1155, bb %select.then1156, bb %select.else1157
+if.exit1152:
+  br bb %if.exit1140
+else1153:
+  res.load1212 = load i32 from ptr %res
+  1213 = add i32 %res.load1212, i32 6
+  store i32 %1213 to ptr %res
+  br bb %if.exit1152
+select.then1156:
+  a.load1160 = load i32 from ptr %a
+  1161 = icmp slt i32 %a.load1160, i32 5
+  store i1 %1161 to ptr %select1159
+  br bb %select.exit1158
+select.else1157:
+  store i1 0 to ptr %select1159
+  br bb %select.exit1158
+select.exit1158:
+  1162 = load i1 from ptr %select1159
+  br i1 %1162, bb %then1163, bb %else1165
+then1163:
+  a.load1166 = load i32 from ptr %a
+  1167 = icmp sgt i32 %a.load1166, i32 0
+  br i1 %1167, bb %select.then1168, bb %select.else1169
+if.exit1164:
+  br bb %if.exit1152
+else1165:
+  res.load1210 = load i32 from ptr %res
+  1211 = add i32 %res.load1210, i32 5
+  store i32 %1211 to ptr %res
+  br bb %if.exit1164
+select.then1168:
+  a.load1172 = load i32 from ptr %a
+  1173 = icmp slt i32 %a.load1172, i32 4
+  store i1 %1173 to ptr %select1171
+  br bb %select.exit1170
+select.else1169:
+  store i1 0 to ptr %select1171
+  br bb %select.exit1170
+select.exit1170:
+  1174 = load i1 from ptr %select1171
+  br i1 %1174, bb %then1175, bb %else1177
+then1175:
+  a.load1178 = load i32 from ptr %a
+  1179 = icmp sgt i32 %a.load1178, i32 0
+  br i1 %1179, bb %select.then1180, bb %select.else1181
+if.exit1176:
+  br bb %if.exit1164
+else1177:
+  res.load1208 = load i32 from ptr %res
+  1209 = add i32 %res.load1208, i32 4
+  store i32 %1209 to ptr %res
+  br bb %if.exit1176
+select.then1180:
+  a.load1184 = load i32 from ptr %a
+  1185 = icmp slt i32 %a.load1184, i32 3
+  store i1 %1185 to ptr %select1183
+  br bb %select.exit1182
+select.else1181:
+  store i1 0 to ptr %select1183
+  br bb %select.exit1182
+select.exit1182:
+  1186 = load i1 from ptr %select1183
+  br i1 %1186, bb %then1187, bb %else1189
+then1187:
+  a.load1190 = load i32 from ptr %a
+  1191 = icmp sgt i32 %a.load1190, i32 0
+  br i1 %1191, bb %select.then1192, bb %select.else1193
+if.exit1188:
+  br bb %if.exit1176
+else1189:
+  res.load1206 = load i32 from ptr %res
+  1207 = add i32 %res.load1206, i32 3
+  store i32 %1207 to ptr %res
+  br bb %if.exit1188
+select.then1192:
+  a.load1196 = load i32 from ptr %a
+  1197 = icmp slt i32 %a.load1196, i32 2
+  store i1 %1197 to ptr %select1195
+  br bb %select.exit1194
+select.else1193:
+  store i1 0 to ptr %select1195
+  br bb %select.exit1194
+select.exit1194:
+  1198 = load i1 from ptr %select1195
+  br i1 %1198, bb %then1199, bb %else1201
+then1199:
+  res.load = load i32 from ptr %res
+  1203 = add i32 %res.load, i32 1
+  store i32 %1203 to ptr %res
+  br bb %if.exit1200
+if.exit1200:
+  br bb %if.exit1188
+else1201:
+  res.load1204 = load i32 from ptr %res
+  1205 = add i32 %res.load1204, i32 2
+  store i32 %1205 to ptr %res
+  br bb %if.exit1200
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

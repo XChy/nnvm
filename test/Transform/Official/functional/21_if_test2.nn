@@ -1,0 +1,111 @@
+external i32 getint()
+
+i32 ifElseIf() {
+entry:
+  %select34 = stack 1
+  %select22 = stack 1
+  %select = stack 1
+  %b = stack 4
+  %a = stack 4
+  store i32 5 to ptr %a
+  store i32 10 to ptr %b
+  4 = icmp eq i32 5, i32 6
+  br i1 %4, bb %select.then, bb %select.else
+select.then:
+  store i1 1 to ptr %select
+  br bb %select.exit
+select.else:
+  b.load = load i32 from ptr %b
+  10 = icmp eq i32 %b.load, i32 11
+  11 = icmp ne i1 %10, i1 0
+  store i1 %11 to ptr %select
+  br bb %select.exit
+select.exit:
+  12 = load i1 from ptr %select
+  br i1 %12, bb %then, bb %else
+then:
+  a.load16 = load i32 from ptr %a
+  ret i32 %a.load16
+if.exit:
+  a.load46 = load i32 from ptr %a
+  ret i32 %a.load46
+else:
+  b.load17 = load i32 from ptr %b
+  18 = icmp eq i32 %b.load17, i32 10
+  br i1 %18, bb %select.then19, bb %select.else20
+select.then19:
+  a.load23 = load i32 from ptr %a
+  24 = icmp eq i32 %a.load23, i32 1
+  store i1 %24 to ptr %select22
+  br bb %select.exit21
+select.else20:
+  store i1 0 to ptr %select22
+  br bb %select.exit21
+select.exit21:
+  25 = load i1 from ptr %select22
+  br i1 %25, bb %then26, bb %else28
+then26:
+  store i32 25 to ptr %a
+  br bb %if.exit27
+if.exit27:
+  br bb %if.exit
+else28:
+  b.load29 = load i32 from ptr %b
+  30 = icmp eq i32 %b.load29, i32 10
+  br i1 %30, bb %select.then31, bb %select.else32
+select.then31:
+  a.load35 = load i32 from ptr %a
+  36 = sub i32 0, i32 5
+  37 = icmp eq i32 %a.load35, i32 %36
+  store i1 %37 to ptr %select34
+  br bb %select.exit33
+select.else32:
+  store i1 0 to ptr %select34
+  br bb %select.exit33
+select.exit33:
+  38 = load i1 from ptr %select34
+  br i1 %38, bb %then39, bb %else41
+then39:
+  a.load42 = load i32 from ptr %a
+  43 = add i32 %a.load42, i32 15
+  store i32 %43 to ptr %a
+  br bb %if.exit40
+if.exit40:
+  br bb %if.exit27
+else41:
+  a.load44 = load i32 from ptr %a
+  45 = sub i32 0, i32 %a.load44
+  store i32 %45 to ptr %a
+  br bb %if.exit40
+}
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry47:
+  48 = call i32 ifElseIf()
+  call void putint(i32 %48)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

@@ -12,15 +12,12 @@ entry50:
   store i32 %begin to ptr %begin.stack
   store i32 %end to ptr %end.stack
   store i32 %pos to ptr %pos.stack
-  begin.stack.load = load i32 from ptr %begin.stack
-  56 = mul i32 %begin.stack.load, i32 4
+  56 = mul i32 %begin, i32 4
   57 = ptradd ptr %arr, i32 %56
   57.load = load i32 from ptr %57
   store i32 %57.load to ptr %pivot
-  begin.stack.load60 = load i32 from ptr %begin.stack
-  store i32 %begin.stack.load60 to ptr %l
-  end.stack.load = load i32 from ptr %end.stack
-  63 = add i32 %end.stack.load, i32 1
+  store i32 %begin to ptr %l
+  63 = add i32 %end, i32 1
   store i32 %63 to ptr %r
   store i32 0 to ptr %xx
   br bb %while.cond65
@@ -53,8 +50,7 @@ while.body71:
   r.load77 = load i32 from ptr %r
   78 = sub i32 %r.load77, i32 1
   store i32 %78 to ptr %r
-  r.load79 = load i32 from ptr %r
-  80 = mul i32 %r.load79, i32 4
+  80 = mul i32 %78, i32 4
   81 = ptradd ptr %arr, i32 %80
   81.load = load i32 from ptr %81
   pivot.load = load i32 from ptr %pivot
@@ -79,8 +75,7 @@ while.body90:
   l.load96 = load i32 from ptr %l
   97 = add i32 %l.load96, i32 1
   store i32 %97 to ptr %l
-  l.load98 = load i32 from ptr %l
-  99 = mul i32 %l.load98, i32 4
+  99 = mul i32 %97, i32 4
   100 = ptradd ptr %arr, i32 %99
   100.load = load i32 from ptr %100
   pivot.load102 = load i32 from ptr %pivot
@@ -137,27 +132,20 @@ entry28:
   %l.stack = stack 4
   store i32 %l to ptr %l.stack
   store i32 %r to ptr %r.stack
-  l.stack.load = load i32 from ptr %l.stack
-  33 = mul i32 %l.stack.load, i32 4
+  33 = mul i32 %l, i32 4
   34 = ptradd ptr %arr, i32 %33
   34.load = load i32 from ptr %34
   store i32 %34.load to ptr %curr
-  l.stack.load36 = load i32 from ptr %l.stack
-  37 = mul i32 %l.stack.load36, i32 4
+  37 = mul i32 %l, i32 4
   38 = ptradd ptr %arr, i32 %37
-  r.stack.load = load i32 from ptr %r.stack
-  40 = mul i32 %r.stack.load, i32 4
+  40 = mul i32 %r, i32 4
   41 = ptradd ptr %arr, i32 %40
   41.load = load i32 from ptr %41
   store i32 %41.load to ptr %38
-  r.stack.load43 = load i32 from ptr %r.stack
-  44 = mul i32 %r.stack.load43, i32 4
+  44 = mul i32 %r, i32 4
   45 = ptradd ptr %arr, i32 %44
-  curr.load = load i32 from ptr %curr
-  store i32 %curr.load to ptr %45
-  l.stack.load47 = load i32 from ptr %l.stack
-  r.stack.load48 = load i32 from ptr %r.stack
-  49 = call i32 meanless_calculation(i32 %l.stack.load47, i32 %r.stack.load48)
+  store i32 %34.load to ptr %45
+  49 = call i32 meanless_calculation(i32 %l, i32 %r)
   ret i32 %49
 }
 
@@ -181,7 +169,7 @@ entry144:
   n.load149 = load i32 from ptr @n
   150 = sdiv i32 %n.load149, i32 2
   151 = call i32 median(ptr @a, i32 0, i32 %148, i32 %150)
-  call void _sysy_starttime(i32 61)
+  call void _sysy_stoptime(i32 61)
   n.load153 = load i32 from ptr @n
   call void putarray(i32 %n.load153, ptr @a)
   n.load155 = load i32 from ptr @n
@@ -225,8 +213,7 @@ while.body:
   ret.load = load i32 from ptr %ret
   x.stack.load23 = load i32 from ptr %x.stack
   24 = add i32 %ret.load, i32 %x.stack.load23
-  i.load25 = load i32 from ptr %i
-  26 = add i32 %24, i32 %i.load25
+  26 = add i32 %24, i32 %21
   store i32 %26 to ptr %ret
   br bb %while.cond
 while.exit:

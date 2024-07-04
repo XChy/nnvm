@@ -55,6 +55,7 @@ enum class InstID : uint64_t {
   TERMINATOR_BEGIN,
   Ret,
   Br,
+  Unreachable,
   TERMINATOR_END,
   // Cast.
   CAST_BEGIN,
@@ -105,6 +106,8 @@ public:
   bool isBinOp() const {
     return instID > InstID::BINOP_BEGIN && instID < InstID::BINOP_END;
   }
+
+  bool mayWriteToMemory() const;
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }
@@ -306,6 +309,11 @@ public:
   RetInst(Value *returned) : TerminatorInst(InstID::Ret, 1, 0) {
     setOperand(0, returned);
   }
+};
+
+class UnreachableInst : public TerminatorInst {
+public:
+  UnreachableInst() : TerminatorInst(InstID::Unreachable, 0, 0) {}
 };
 
 class BranchInst : public TerminatorInst {

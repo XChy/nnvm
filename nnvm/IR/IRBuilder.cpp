@@ -59,6 +59,12 @@ Value *IRBuilder::buildRet(Value *returned) {
   return I;
 }
 
+Value *IRBuilder::buildUnreachable() {
+  UnreachableInst *I = new UnreachableInst();
+  insertPoint.insertBefore(I);
+  return I;
+}
+
 Value *IRBuilder::buildBr(BasicBlock *succ) {
   BranchInst *I = new BranchInst(succ);
   insertPoint.insertBefore(I);

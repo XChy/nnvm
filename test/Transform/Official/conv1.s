@@ -91,9 +91,8 @@ bb6:
   LW s0, 32(sp)
   ADDIW s3, s0, 1
   SW s3, 32(sp)
-  LW s0, 32(sp)
-  LW s3, 56(sp)
-  SLT s4, s0, s3
+  LW s0, 56(sp)
+  SLT s4, s3, s0
   XORI s0, s4, 1
   BNE s0, zero, bb19
   JAL zero, bb20
@@ -127,9 +126,8 @@ bb9:
   LW s0, 24(sp)
   ADDIW s3, s0, 1
   SW s3, 24(sp)
-  LW s0, 24(sp)
-  LW s3, 48(sp)
-  SLT s4, s0, s3
+  LW s0, 48(sp)
+  SLT s4, s3, s0
   XORI s0, s4, 1
   BNE s0, zero, bb17
   JAL zero, bb18
@@ -164,29 +162,27 @@ bb11:
   LW s0, 8(sp)
   ADDIW s3, s0, 1
   SW s3, 8(sp)
-  LW s0, 8(sp)
-  LW s3, 24(sp)
+  LW s0, 24(sp)
   LW s4, 40(sp)
   ADDI s5, zero, 2
   DIVW s6, s4, s5
-  ADDW s4, s3, s6
-  SLT s3, s0, s4
-  XORI s0, s3, 1
-  BNE s0, zero, bb13
+  ADDW s4, s0, s6
+  SLT s0, s3, s4
+  XORI s3, s0, 1
+  BNE s3, zero, bb13
   JAL zero, bb14
 bb12:
   LW s0, 16(sp)
   ADDIW s3, s0, 1
   SW s3, 16(sp)
-  LW s0, 16(sp)
-  LW s3, 32(sp)
+  LW s0, 32(sp)
   LW s4, 40(sp)
   ADDI s5, zero, 2
   DIVW s6, s4, s5
-  ADDW s4, s3, s6
-  SLT s3, s0, s4
-  XORI s0, s3, 1
-  BNE s0, zero, bb15
+  ADDW s4, s0, s6
+  SLT s0, s3, s4
+  XORI s3, s0, 1
+  BNE s3, zero, bb15
   JAL zero, bb16
 bb13:
   JAL zero, bb12
@@ -221,9 +217,8 @@ getvalue:
   SW s2, 40(sp)
   SW s3, 32(sp)
   SW s4, 24(sp)
-  LW s1, 32(sp)
-  SLT s2, s1, zero
-  BNE s2, zero, bb22
+  SLT s1, s3, zero
+  BNE s1, zero, bb22
   JAL zero, bb23
 bb22:
   ADDI s1, zero, 1
@@ -316,7 +311,6 @@ reduce:
   SW s0, 80(sp)
   SW s1, 72(sp)
   SW s2, 64(sp)
-  LW s0, 80(sp)
   XOR s1, s0, zero
   SLTIU s0, s1, 1
   BNE s0, zero, bb34
@@ -670,7 +664,7 @@ bb73:
   JAL zero, bb72
 bb74:
   ADDI a0, zero, 116
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 24(sp)
   LW s1, 16(sp)
   MULW s2, s0, s1

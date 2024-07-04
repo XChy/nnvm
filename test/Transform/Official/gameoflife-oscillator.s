@@ -207,7 +207,7 @@ bb19:
   JAL zero, bb23
 bb20:
   ADDI a0, zero, 106
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LA s0, active
   LW s1, 0(s0)
   XORI s0, s1, 2
@@ -546,7 +546,6 @@ bb47:
   CALL getch
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   XORI s1, s0, 35
   SLTIU s0, s1, 1
   BNE s0, zero, bb49

@@ -125,7 +125,7 @@ while.body167:
   store i32 0 to ptr %j101
   br bb %while.cond173
 while.exit168:
-  call void _sysy_starttime(i32 84)
+  call void _sysy_stoptime(i32 84)
   ans.load194 = load i32 from ptr %ans
   call void putint(i32 %ans.load194)
   call void putch(i32 10)

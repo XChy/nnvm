@@ -21,6 +21,7 @@ public:
     T *analysis = new T();
     analysisDepent.push_back(analysis);
     analysis->run(F);
+    return analysis;
   }
 
   virtual ~FunctionPass() {
@@ -32,20 +33,18 @@ private:
   std::vector<FunctionPass *> analysisDepent;
 };
 
+template <typename SpecificFuncPass>
 class FunctionToModuleAdaptor : public ModulePass {
 public:
-  FunctionToModuleAdaptor(FunctionPass *pass)
-      : functionPass(std::unique_ptr<FunctionPass>(pass)) {}
+  FunctionToModuleAdaptor() {}
   bool run(Module &module) {
+    SpecificFuncPass pass;
     bool changed = false;
     for (auto [name, F] : module.getFunctionMap())
       if (!F->isExternal())
-        changed |= functionPass->run(*F);
+        changed |= pass.run(*F);
     return changed;
   }
-
-private:
-  std::unique_ptr<FunctionPass> functionPass;
 };
 
 } /* namespace nnvm */

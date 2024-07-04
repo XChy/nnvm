@@ -1,0 +1,68 @@
+external i32 getint()
+
+i32 doubleWhile() {
+entry:
+  %j = stack 4
+  %i = stack 4
+  store i32 5 to ptr %i
+  store i32 7 to ptr %j
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  7 = icmp slt i32 %i.load, i32 100
+  8 = icmp ne i1 %7, i1 0
+  br i1 %8, bb %while.body, bb %while.exit
+while.body:
+  i.load9 = load i32 from ptr %i
+  10 = add i32 %i.load9, i32 30
+  store i32 %10 to ptr %i
+  br bb %while.cond11
+while.exit:
+  j.load21 = load i32 from ptr %j
+  ret i32 %j.load21
+while.cond11:
+  j.load = load i32 from ptr %j
+  15 = icmp slt i32 %j.load, i32 100
+  16 = icmp ne i1 %15, i1 0
+  br i1 %16, bb %while.body12, bb %while.exit13
+while.body12:
+  j.load17 = load i32 from ptr %j
+  18 = add i32 %j.load17, i32 6
+  store i32 %18 to ptr %j
+  br bb %while.cond11
+while.exit13:
+  j.load19 = load i32 from ptr %j
+  20 = sub i32 %j.load19, i32 100
+  store i32 %20 to ptr %j
+  br bb %while.cond
+}
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry22:
+  23 = call i32 doubleWhile()
+  ret i32 %23
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

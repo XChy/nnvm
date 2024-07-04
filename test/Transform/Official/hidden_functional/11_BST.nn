@@ -1,0 +1,462 @@
+global ptr now init with i32 0
+global ptr left_child init with 10000 x i32 zeros
+global ptr value init with 10000 x i32 zeros
+global ptr right_child init with 10000 x i32 zeros
+global ptr LF init with i32 10
+global ptr maxNode init with i32 10000
+global ptr space init with i32 32
+i32 insert(i32 root, i32 x) {
+entry84:
+  %x.stack86 = stack 4
+  %root.stack85 = stack 4
+  store i32 %root to ptr %root.stack85
+  store i32 %x to ptr %x.stack86
+  88 = sub i32 0, i32 1
+  89 = icmp eq i32 %root, i32 %88
+  br i1 %89, bb %then90, bb %else92
+then90:
+  x.stack86.load = load i32 from ptr %x.stack86
+  94 = call i32 new_node(i32 %x.stack86.load)
+  ret i32 %94
+if.exit91:
+  root.stack85.load122 = load i32 from ptr %root.stack85
+  ret i32 %root.stack85.load122
+else92:
+  x.stack86.load95 = load i32 from ptr %x.stack86
+  root.stack85.load96 = load i32 from ptr %root.stack85
+  97 = mul i32 %root.stack85.load96, i32 4
+  98 = ptradd ptr @value, i32 %97
+  98.load = load i32 from ptr %98
+  100 = icmp sgt i32 %x.stack86.load95, i32 %98.load
+  br i1 %100, bb %then101, bb %else103
+then101:
+  root.stack85.load104 = load i32 from ptr %root.stack85
+  105 = mul i32 %root.stack85.load104, i32 4
+  106 = ptradd ptr @right_child, i32 %105
+  root.stack85.load107 = load i32 from ptr %root.stack85
+  108 = mul i32 %root.stack85.load107, i32 4
+  109 = ptradd ptr @right_child, i32 %108
+  109.load = load i32 from ptr %109
+  x.stack86.load111 = load i32 from ptr %x.stack86
+  112 = call i32 insert(i32 %109.load, i32 %x.stack86.load111)
+  store i32 %112 to ptr %106
+  br bb %if.exit102
+if.exit102:
+  br bb %if.exit91
+else103:
+  root.stack85.load113 = load i32 from ptr %root.stack85
+  114 = mul i32 %root.stack85.load113, i32 4
+  115 = ptradd ptr @left_child, i32 %114
+  root.stack85.load116 = load i32 from ptr %root.stack85
+  117 = mul i32 %root.stack85.load116, i32 4
+  118 = ptradd ptr @left_child, i32 %117
+  118.load = load i32 from ptr %118
+  x.stack86.load120 = load i32 from ptr %x.stack86
+  121 = call i32 insert(i32 %118.load, i32 %x.stack86.load120)
+  store i32 %121 to ptr %115
+  br bb %if.exit102
+}
+
+i32 new_node(i32 x) {
+entry66:
+  %x.stack67 = stack 4
+  store i32 %x to ptr %x.stack67
+  now.load = load i32 from ptr @now
+  69 = mul i32 %now.load, i32 4
+  70 = ptradd ptr @value, i32 %69
+  store i32 %x to ptr %70
+  now.load72 = load i32 from ptr @now
+  73 = mul i32 %now.load72, i32 4
+  74 = ptradd ptr @left_child, i32 %73
+  75 = sub i32 0, i32 1
+  store i32 %75 to ptr %74
+  now.load76 = load i32 from ptr @now
+  77 = mul i32 %now.load76, i32 4
+  78 = ptradd ptr @right_child, i32 %77
+  79 = sub i32 0, i32 1
+  store i32 %79 to ptr %78
+  now.load80 = load i32 from ptr @now
+  81 = add i32 %now.load80, i32 1
+  store i32 %81 to ptr @now
+  83 = sub i32 %81, i32 1
+  ret i32 %83
+}
+
+i32 delete(i32 root, i32 x) {
+entry123:
+  %tmp = stack 4
+  %select198 = stack 1
+  %select177 = stack 1
+  %x.stack125 = stack 4
+  %root.stack124 = stack 4
+  store i32 %root to ptr %root.stack124
+  store i32 %x to ptr %x.stack125
+  127 = sub i32 0, i32 1
+  128 = icmp eq i32 %root, i32 %127
+  br i1 %128, bb %then129, bb %if.exit130
+then129:
+  131 = sub i32 0, i32 1
+  ret i32 %131
+if.exit130:
+  x.stack125.load = load i32 from ptr %x.stack125
+  root.stack124.load133 = load i32 from ptr %root.stack124
+  134 = mul i32 %root.stack124.load133, i32 4
+  135 = ptradd ptr @value, i32 %134
+  135.load = load i32 from ptr %135
+  137 = icmp sgt i32 %x.stack125.load, i32 %135.load
+  br i1 %137, bb %then138, bb %else140
+then138:
+  root.stack124.load141 = load i32 from ptr %root.stack124
+  142 = mul i32 %root.stack124.load141, i32 4
+  143 = ptradd ptr @right_child, i32 %142
+  root.stack124.load144 = load i32 from ptr %root.stack124
+  145 = mul i32 %root.stack124.load144, i32 4
+  146 = ptradd ptr @right_child, i32 %145
+  146.load = load i32 from ptr %146
+  x.stack125.load148 = load i32 from ptr %x.stack125
+  149 = call i32 delete(i32 %146.load, i32 %x.stack125.load148)
+  store i32 %149 to ptr %143
+  br bb %if.exit139
+if.exit139:
+  root.stack124.load252 = load i32 from ptr %root.stack124
+  ret i32 %root.stack124.load252
+else140:
+  x.stack125.load150 = load i32 from ptr %x.stack125
+  root.stack124.load151 = load i32 from ptr %root.stack124
+  152 = mul i32 %root.stack124.load151, i32 4
+  153 = ptradd ptr @value, i32 %152
+  153.load = load i32 from ptr %153
+  155 = icmp slt i32 %x.stack125.load150, i32 %153.load
+  br i1 %155, bb %then156, bb %else158
+then156:
+  root.stack124.load159 = load i32 from ptr %root.stack124
+  160 = mul i32 %root.stack124.load159, i32 4
+  161 = ptradd ptr @left_child, i32 %160
+  root.stack124.load162 = load i32 from ptr %root.stack124
+  163 = mul i32 %root.stack124.load162, i32 4
+  164 = ptradd ptr @left_child, i32 %163
+  164.load = load i32 from ptr %164
+  x.stack125.load166 = load i32 from ptr %x.stack125
+  167 = call i32 delete(i32 %164.load, i32 %x.stack125.load166)
+  store i32 %167 to ptr %161
+  br bb %if.exit157
+if.exit157:
+  br bb %if.exit139
+else158:
+  root.stack124.load168 = load i32 from ptr %root.stack124
+  169 = mul i32 %root.stack124.load168, i32 4
+  170 = ptradd ptr @left_child, i32 %169
+  170.load = load i32 from ptr %170
+  172 = sub i32 0, i32 1
+  173 = icmp eq i32 %170.load, i32 %172
+  br i1 %173, bb %select.then174, bb %select.else175
+select.then174:
+  root.stack124.load178 = load i32 from ptr %root.stack124
+  179 = mul i32 %root.stack124.load178, i32 4
+  180 = ptradd ptr @right_child, i32 %179
+  180.load = load i32 from ptr %180
+  182 = sub i32 0, i32 1
+  183 = icmp eq i32 %180.load, i32 %182
+  store i1 %183 to ptr %select177
+  br bb %select.exit176
+select.else175:
+  store i1 0 to ptr %select177
+  br bb %select.exit176
+select.exit176:
+  184 = load i1 from ptr %select177
+  br i1 %184, bb %then185, bb %else187
+then185:
+  188 = sub i32 0, i32 1
+  ret i32 %188
+if.exit186:
+  br bb %if.exit157
+else187:
+  root.stack124.load189 = load i32 from ptr %root.stack124
+  190 = mul i32 %root.stack124.load189, i32 4
+  191 = ptradd ptr @left_child, i32 %190
+  191.load = load i32 from ptr %191
+  193 = sub i32 0, i32 1
+  194 = icmp eq i32 %191.load, i32 %193
+  br i1 %194, bb %select.then195, bb %select.else196
+select.then195:
+  store i1 1 to ptr %select198
+  br bb %select.exit197
+select.else196:
+  root.stack124.load199 = load i32 from ptr %root.stack124
+  200 = mul i32 %root.stack124.load199, i32 4
+  201 = ptradd ptr @right_child, i32 %200
+  201.load = load i32 from ptr %201
+  203 = sub i32 0, i32 1
+  204 = icmp eq i32 %201.load, i32 %203
+  205 = icmp ne i1 %204, i1 0
+  store i1 %205 to ptr %select198
+  br bb %select.exit197
+select.exit197:
+  206 = load i1 from ptr %select198
+  br i1 %206, bb %then207, bb %else209
+then207:
+  root.stack124.load210 = load i32 from ptr %root.stack124
+  211 = mul i32 %root.stack124.load210, i32 4
+  212 = ptradd ptr @left_child, i32 %211
+  212.load = load i32 from ptr %212
+  214 = sub i32 0, i32 1
+  215 = icmp eq i32 %212.load, i32 %214
+  br i1 %215, bb %then216, bb %else218
+if.exit208:
+  br bb %if.exit186
+else209:
+  root.stack124.load228 = load i32 from ptr %root.stack124
+  229 = mul i32 %root.stack124.load228, i32 4
+  230 = ptradd ptr @right_child, i32 %229
+  230.load = load i32 from ptr %230
+  232 = call i32 find_minimum(i32 %230.load)
+  store i32 %232 to ptr %tmp
+  root.stack124.load233 = load i32 from ptr %root.stack124
+  234 = mul i32 %root.stack124.load233, i32 4
+  235 = ptradd ptr @value, i32 %234
+  237 = mul i32 %232, i32 4
+  238 = ptradd ptr @value, i32 %237
+  238.load = load i32 from ptr %238
+  store i32 %238.load to ptr %235
+  root.stack124.load240 = load i32 from ptr %root.stack124
+  241 = mul i32 %root.stack124.load240, i32 4
+  242 = ptradd ptr @right_child, i32 %241
+  root.stack124.load243 = load i32 from ptr %root.stack124
+  244 = mul i32 %root.stack124.load243, i32 4
+  245 = ptradd ptr @right_child, i32 %244
+  245.load = load i32 from ptr %245
+  248 = mul i32 %232, i32 4
+  249 = ptradd ptr @value, i32 %248
+  249.load = load i32 from ptr %249
+  251 = call i32 delete(i32 %245.load, i32 %249.load)
+  store i32 %251 to ptr %242
+  br bb %if.exit208
+then216:
+  root.stack124.load219 = load i32 from ptr %root.stack124
+  220 = mul i32 %root.stack124.load219, i32 4
+  221 = ptradd ptr @right_child, i32 %220
+  221.load = load i32 from ptr %221
+  ret i32 %221.load
+if.exit217:
+  br bb %if.exit208
+else218:
+  root.stack124.load223 = load i32 from ptr %root.stack124
+  224 = mul i32 %root.stack124.load223, i32 4
+  225 = ptradd ptr @left_child, i32 %224
+  225.load = load i32 from ptr %225
+  ret i32 %225.load
+}
+
+i32 find_minimum(i32 root) {
+entry43:
+  %root.stack44 = stack 4
+  store i32 %root to ptr %root.stack44
+  46 = sub i32 0, i32 1
+  47 = icmp eq i32 %root, i32 %46
+  br i1 %47, bb %then48, bb %else50
+then48:
+  51 = sub i32 0, i32 1
+  ret i32 %51
+if.exit49:
+  root.stack44.load65 = load i32 from ptr %root.stack44
+  ret i32 %root.stack44.load65
+else50:
+  root.stack44.load52 = load i32 from ptr %root.stack44
+  53 = mul i32 %root.stack44.load52, i32 4
+  54 = ptradd ptr @left_child, i32 %53
+  54.load = load i32 from ptr %54
+  56 = sub i32 0, i32 1
+  57 = icmp ne i32 %54.load, i32 %56
+  br i1 %57, bb %then58, bb %if.exit59
+then58:
+  root.stack44.load60 = load i32 from ptr %root.stack44
+  61 = mul i32 %root.stack44.load60, i32 4
+  62 = ptradd ptr @left_child, i32 %61
+  62.load = load i32 from ptr %62
+  64 = call i32 find_minimum(i32 %62.load)
+  ret i32 %64
+if.exit59:
+  br bb %if.exit49
+}
+
+external i32 getint()
+
+external i32 getch()
+
+i32 search(i32 root, i32 x) {
+entry:
+  %select = stack 1
+  %x.stack = stack 4
+  %root.stack = stack 4
+  store i32 %root to ptr %root.stack
+  store i32 %x to ptr %x.stack
+  4 = sub i32 0, i32 1
+  5 = icmp eq i32 %root, i32 %4
+  br i1 %5, bb %select.then, bb %select.else
+select.then:
+  store i1 1 to ptr %select
+  br bb %select.exit
+select.else:
+  root.stack.load10 = load i32 from ptr %root.stack
+  11 = mul i32 %root.stack.load10, i32 4
+  12 = ptradd ptr @value, i32 %11
+  12.load = load i32 from ptr %12
+  x.stack.load = load i32 from ptr %x.stack
+  15 = icmp eq i32 %12.load, i32 %x.stack.load
+  16 = icmp ne i1 %15, i1 0
+  store i1 %16 to ptr %select
+  br bb %select.exit
+select.exit:
+  17 = load i1 from ptr %select
+  br i1 %17, bb %then, bb %else
+then:
+  root.stack.load21 = load i32 from ptr %root.stack
+  ret i32 %root.stack.load21
+if.exit:
+  unreachable
+else:
+  x.stack.load22 = load i32 from ptr %x.stack
+  root.stack.load23 = load i32 from ptr %root.stack
+  24 = mul i32 %root.stack.load23, i32 4
+  25 = ptradd ptr @value, i32 %24
+  25.load = load i32 from ptr %25
+  27 = icmp sgt i32 %x.stack.load22, i32 %25.load
+  br i1 %27, bb %then28, bb %else30
+then28:
+  root.stack.load31 = load i32 from ptr %root.stack
+  32 = mul i32 %root.stack.load31, i32 4
+  33 = ptradd ptr @right_child, i32 %32
+  33.load = load i32 from ptr %33
+  x.stack.load35 = load i32 from ptr %x.stack
+  36 = call i32 search(i32 %33.load, i32 %x.stack.load35)
+  ret i32 %36
+if.exit29:
+  br bb %if.exit
+else30:
+  root.stack.load37 = load i32 from ptr %root.stack
+  38 = mul i32 %root.stack.load37, i32 4
+  39 = ptradd ptr @left_child, i32 %38
+  39.load = load i32 from ptr %39
+  x.stack.load41 = load i32 from ptr %x.stack
+  42 = call i32 search(i32 %39.load, i32 %x.stack.load41)
+  ret i32 %42
+}
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry277:
+  %i = stack 4
+  %root = stack 4
+  %n = stack 4
+  store i32 0 to ptr @now
+  279 = call i32 getint()
+  store i32 %279 to ptr %n
+  281 = icmp ne i32 %279, i32 0
+  282 =  i1 %281, i1 1
+  283 = zext i1 %282 to i32
+  284 = icmp ne i32 %283, i32 0
+  br i1 %284, bb %then285, bb %if.exit286
+then285:
+  ret i32 0
+if.exit286:
+  288 = call i32 getint()
+  289 = call i32 new_node(i32 %288)
+  store i32 %289 to ptr %root
+  store i32 1 to ptr %i
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  n.load295 = load i32 from ptr %n
+  296 = icmp slt i32 %i.load, i32 %n.load295
+  297 = icmp ne i1 %296, i1 0
+  br i1 %297, bb %while.body, bb %while.exit
+while.body:
+  root.load = load i32 from ptr %root
+  299 = call i32 getint()
+  300 = call i32 insert(i32 %root.load, i32 %299)
+  i.load301 = load i32 from ptr %i
+  302 = add i32 %i.load301, i32 1
+  store i32 %302 to ptr %i
+  br bb %while.cond
+while.exit:
+  root.load303 = load i32 from ptr %root
+  call void inorder(i32 %root.load303)
+  LF.load = load i32 from ptr @LF
+  call void putch(i32 %LF.load)
+  307 = call i32 getint()
+  store i32 %307 to ptr %n
+  store i32 0 to ptr %i
+  br bb %while.cond308
+while.cond308:
+  i.load311 = load i32 from ptr %i
+  n.load312 = load i32 from ptr %n
+  313 = icmp slt i32 %i.load311, i32 %n.load312
+  314 = icmp ne i1 %313, i1 0
+  br i1 %314, bb %while.body309, bb %while.exit310
+while.body309:
+  root.load315 = load i32 from ptr %root
+  316 = call i32 getint()
+  317 = call i32 delete(i32 %root.load315, i32 %316)
+  store i32 %317 to ptr %root
+  i.load318 = load i32 from ptr %i
+  319 = add i32 %i.load318, i32 1
+  store i32 %319 to ptr %i
+  br bb %while.cond308
+while.exit310:
+  root.load320 = load i32 from ptr %root
+  call void inorder(i32 %root.load320)
+  LF.load322 = load i32 from ptr @LF
+  call void putch(i32 %LF.load322)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+void inorder(i32 root) {
+entry253:
+  %root.stack254 = stack 4
+  store i32 %root to ptr %root.stack254
+  256 = sub i32 0, i32 1
+  257 = icmp ne i32 %root, i32 %256
+  br i1 %257, bb %then258, bb %if.exit259
+then258:
+  root.stack254.load260 = load i32 from ptr %root.stack254
+  261 = mul i32 %root.stack254.load260, i32 4
+  262 = ptradd ptr @left_child, i32 %261
+  262.load = load i32 from ptr %262
+  call void inorder(i32 %262.load)
+  root.stack254.load265 = load i32 from ptr %root.stack254
+  266 = mul i32 %root.stack254.load265, i32 4
+  267 = ptradd ptr @value, i32 %266
+  267.load = load i32 from ptr %267
+  call void putint(i32 %267.load)
+  space.load = load i32 from ptr @space
+  call void putch(i32 %space.load)
+  root.stack254.load272 = load i32 from ptr %root.stack254
+  273 = mul i32 %root.stack254.load272, i32 4
+  274 = ptradd ptr @right_child, i32 %273
+  274.load = load i32 from ptr %274
+  call void inorder(i32 %274.load)
+  br bb %if.exit259
+if.exit259:
+  ret 
+}
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

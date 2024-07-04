@@ -1,0 +1,58 @@
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry15:
+  16 = call i32 if_if_Else()
+  ret i32 %16
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+i32 if_if_Else() {
+entry:
+  %b = stack 4
+  %a = stack 4
+  store i32 5 to ptr %a
+  store i32 10 to ptr %b
+  4 = icmp eq i32 5, i32 5
+  br i1 %4, bb %then, bb %else
+then:
+  b.load = load i32 from ptr %b
+  9 = icmp eq i32 %b.load, i32 10
+  br i1 %9, bb %then10, bb %if.exit11
+if.exit:
+  a.load14 = load i32 from ptr %a
+  ret i32 %a.load14
+else:
+  a.load12 = load i32 from ptr %a
+  13 = add i32 %a.load12, i32 15
+  store i32 %13 to ptr %a
+  br bb %if.exit
+then10:
+  store i32 25 to ptr %a
+  br bb %if.exit11
+if.exit11:
+  br bb %if.exit
+}
+
+

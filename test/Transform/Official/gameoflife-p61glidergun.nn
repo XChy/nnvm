@@ -130,7 +130,7 @@ while.body256:
   262 = icmp eq i32 %active.load, i32 1
   br i1 %262, bb %then263, bb %else265
 while.exit257:
-  call void _sysy_starttime(i32 106)
+  call void _sysy_stoptime(i32 106)
   active.load271 = load i32 from ptr @active
   272 = icmp eq i32 %active.load271, i32 2
   br i1 %272, bb %then273, bb %if.exit274
@@ -374,8 +374,7 @@ while.cond14:
 while.body15:
   22 = call i32 getch()
   store i32 %22 to ptr %get
-  get.load = load i32 from ptr %get
-  24 = icmp eq i32 %get.load, i32 35
+  24 = icmp eq i32 %22, i32 35
   br i1 %24, bb %then, bb %else
 while.exit16:
   42 = call i32 getch()

@@ -384,7 +384,7 @@ main:
   ADD a2, s0, zero
   CALL floyd
   ADDI a0, zero, 64
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 0(sp)
   LW s1, 0(sp)
   MULW s2, s0, s1
@@ -413,9 +413,8 @@ getvalue:
   SW s1, 40(sp)
   SW s2, 32(sp)
   SW s3, 24(sp)
-  LW s1, 32(sp)
-  SLT s2, s1, zero
-  BNE s2, zero, bb32
+  SLT s1, s2, zero
+  BNE s1, zero, bb32
   JAL zero, bb33
 bb32:
   ADDI s1, zero, 1

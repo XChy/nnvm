@@ -783,7 +783,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       !builder.getCurrentBB()->getTerminator())
     builder.buildRet();
   else if (!builder.getCurrentBB()->getTerminator()) {
-    return Symbol::none();
+    builder.buildUnreachable();
   }
 
   return Symbol::none();

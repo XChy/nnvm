@@ -1,0 +1,266 @@
+global ptr LF init with i32 10
+global ptr space init with i32 32
+global ptr V init with i32 4
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+i32 graphColoring(ptr graph, i32 m, i32 i, ptr color) {
+entry78:
+  %j91 = stack 4
+  %i.stack = stack 4
+  %m.stack = stack 4
+  store i32 %m to ptr %m.stack
+  store i32 %i to ptr %i.stack
+  V.load82 = load i32 from ptr @V
+  83 = icmp eq i32 %i, i32 %V.load82
+  br i1 %83, bb %then84, bb %if.exit85
+then84:
+  86 = call i32 isSafe(ptr %graph, ptr %color)
+  87 = icmp ne i32 %86, i32 0
+  br i1 %87, bb %then88, bb %if.exit89
+if.exit85:
+  store i32 1 to ptr %j91
+  br bb %while.cond92
+then88:
+  call void printSolution(ptr %color)
+  ret i32 1
+if.exit89:
+  ret i32 0
+while.cond92:
+  j91.load = load i32 from ptr %j91
+  m.stack.load = load i32 from ptr %m.stack
+  97 = icmp sle i32 %j91.load, i32 %m.stack.load
+  98 = icmp ne i1 %97, i1 0
+  br i1 %98, bb %while.body93, bb %while.exit94
+while.body93:
+  i.stack.load99 = load i32 from ptr %i.stack
+  100 = mul i32 %i.stack.load99, i32 4
+  101 = ptradd ptr %color, i32 %100
+  j91.load102 = load i32 from ptr %j91
+  store i32 %j91.load102 to ptr %101
+  m.stack.load103 = load i32 from ptr %m.stack
+  i.stack.load104 = load i32 from ptr %i.stack
+  105 = add i32 %i.stack.load104, i32 1
+  106 = call i32 graphColoring(ptr %graph, i32 %m.stack.load103, i32 %105, ptr %color)
+  107 = icmp ne i32 %106, i32 0
+  br i1 %107, bb %then108, bb %if.exit109
+while.exit94:
+  ret i32 0
+then108:
+  ret i32 1
+if.exit109:
+  i.stack.load110 = load i32 from ptr %i.stack
+  111 = mul i32 %i.stack.load110, i32 4
+  112 = ptradd ptr %color, i32 %111
+  store i32 0 to ptr %112
+  j91.load113 = load i32 from ptr %j91
+  114 = add i32 %j91.load113, i32 1
+  store i32 %114 to ptr %j91
+  br bb %while.cond92
+}
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry115:
+  %i135 = stack 4
+  %color = stack 16
+  %m = stack 4
+  %graph = stack 64
+  arr.index = ptradd ptr %graph, i32 0
+  store i32 0 to ptr %arr.index
+  arr.index118 = ptradd ptr %graph, i32 4
+  store i32 1 to ptr %arr.index118
+  arr.index119 = ptradd ptr %graph, i32 8
+  store i32 1 to ptr %arr.index119
+  arr.index120 = ptradd ptr %graph, i32 12
+  store i32 1 to ptr %arr.index120
+  arr.index121 = ptradd ptr %graph, i32 16
+  store i32 1 to ptr %arr.index121
+  arr.index122 = ptradd ptr %graph, i32 20
+  store i32 0 to ptr %arr.index122
+  arr.index123 = ptradd ptr %graph, i32 24
+  store i32 1 to ptr %arr.index123
+  arr.index124 = ptradd ptr %graph, i32 28
+  store i32 0 to ptr %arr.index124
+  arr.index125 = ptradd ptr %graph, i32 32
+  store i32 1 to ptr %arr.index125
+  arr.index126 = ptradd ptr %graph, i32 36
+  store i32 1 to ptr %arr.index126
+  arr.index127 = ptradd ptr %graph, i32 40
+  store i32 0 to ptr %arr.index127
+  arr.index128 = ptradd ptr %graph, i32 44
+  store i32 1 to ptr %arr.index128
+  arr.index129 = ptradd ptr %graph, i32 48
+  store i32 1 to ptr %arr.index129
+  arr.index130 = ptradd ptr %graph, i32 52
+  store i32 0 to ptr %arr.index130
+  arr.index131 = ptradd ptr %graph, i32 56
+  store i32 1 to ptr %arr.index131
+  arr.index132 = ptradd ptr %graph, i32 60
+  store i32 0 to ptr %arr.index132
+  store i32 3 to ptr %m
+  store i32 0 to ptr %i135
+  br bb %while.cond136
+while.cond136:
+  i135.load = load i32 from ptr %i135
+  V.load140 = load i32 from ptr @V
+  141 = icmp slt i32 %i135.load, i32 %V.load140
+  142 = icmp ne i1 %141, i1 0
+  br i1 %142, bb %while.body137, bb %while.exit138
+while.body137:
+  i135.load143 = load i32 from ptr %i135
+  144 = mul i32 %i135.load143, i32 4
+  145 = ptradd ptr %color, i32 %144
+  store i32 0 to ptr %145
+  i135.load146 = load i32 from ptr %i135
+  147 = add i32 %i135.load146, i32 1
+  store i32 %147 to ptr %i135
+  br bb %while.cond136
+while.exit138:
+  m.load = load i32 from ptr %m
+  149 = call i32 graphColoring(ptr %graph, i32 %m.load, i32 0, ptr %color)
+  150 = icmp ne i32 %149, i32 0
+  151 =  i1 %150, i1 1
+  152 = zext i1 %151 to i32
+  153 = icmp ne i32 %152, i32 0
+  br i1 %153, bb %then154, bb %if.exit155
+then154:
+  call void printMessage()
+  br bb %if.exit155
+if.exit155:
+  ret i32 0
+}
+
+i32 isSafe(ptr graph, ptr color) {
+entry31:
+  %select = stack 1
+  %j = stack 4
+  %i32 = stack 4
+  store i32 0 to ptr %i32
+  br bb %while.cond33
+while.cond33:
+  i32.load = load i32 from ptr %i32
+  V.load37 = load i32 from ptr @V
+  38 = icmp slt i32 %i32.load, i32 %V.load37
+  39 = icmp ne i1 %38, i1 0
+  br i1 %39, bb %while.body34, bb %while.exit35
+while.body34:
+  i32.load41 = load i32 from ptr %i32
+  42 = add i32 %i32.load41, i32 1
+  store i32 %42 to ptr %j
+  br bb %while.cond43
+while.exit35:
+  ret i32 1
+while.cond43:
+  j.load = load i32 from ptr %j
+  V.load47 = load i32 from ptr @V
+  48 = icmp slt i32 %j.load, i32 %V.load47
+  49 = icmp ne i1 %48, i1 0
+  br i1 %49, bb %while.body44, bb %while.exit45
+while.body44:
+  i32.load50 = load i32 from ptr %i32
+  51 = mul i32 %i32.load50, i32 16
+  52 = ptradd ptr %graph, i32 %51
+  j.load53 = load i32 from ptr %j
+  54 = mul i32 %j.load53, i32 4
+  55 = ptradd ptr %52, i32 %54
+  55.load = load i32 from ptr %55
+  57 = icmp ne i32 %55.load, i32 0
+  br i1 %57, bb %select.then, bb %select.else
+while.exit45:
+  i32.load76 = load i32 from ptr %i32
+  77 = add i32 %i32.load76, i32 1
+  store i32 %77 to ptr %i32
+  br bb %while.cond33
+select.then:
+  j.load62 = load i32 from ptr %j
+  63 = mul i32 %j.load62, i32 4
+  64 = ptradd ptr %color, i32 %63
+  64.load = load i32 from ptr %64
+  i32.load66 = load i32 from ptr %i32
+  67 = mul i32 %i32.load66, i32 4
+  68 = ptradd ptr %color, i32 %67
+  68.load = load i32 from ptr %68
+  70 = icmp eq i32 %64.load, i32 %68.load
+  store i1 %70 to ptr %select
+  br bb %select.exit
+select.else:
+  store i1 0 to ptr %select
+  br bb %select.exit
+select.exit:
+  71 = load i1 from ptr %select
+  br i1 %71, bb %then, bb %if.exit
+then:
+  ret i32 0
+if.exit:
+  j.load74 = load i32 from ptr %j
+  75 = add i32 %j.load74, i32 1
+  store i32 %75 to ptr %j
+  br bb %while.cond43
+}
+
+void printMessage() {
+entry20:
+  call void putch(i32 78)
+  call void putch(i32 111)
+  call void putch(i32 116)
+  space.load24 = load i32 from ptr @space
+  call void putch(i32 %space.load24)
+  call void putch(i32 101)
+  call void putch(i32 120)
+  call void putch(i32 105)
+  call void putch(i32 115)
+  call void putch(i32 116)
+  ret 
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void _sysy_stoptime(i32 )
+
+void printSolution(ptr color) {
+entry:
+  %i = stack 4
+  store i32 0 to ptr %i
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  V.load = load i32 from ptr @V
+  7 = icmp slt i32 %i.load, i32 %V.load
+  8 = icmp ne i1 %7, i1 0
+  br i1 %8, bb %while.body, bb %while.exit
+while.body:
+  i.load9 = load i32 from ptr %i
+  10 = mul i32 %i.load9, i32 4
+  11 = ptradd ptr %color, i32 %10
+  11.load = load i32 from ptr %11
+  call void putint(i32 %11.load)
+  space.load = load i32 from ptr @space
+  call void putch(i32 %space.load)
+  i.load16 = load i32 from ptr %i
+  17 = add i32 %i.load16, i32 1
+  store i32 %17 to ptr %i
+  br bb %while.cond
+while.exit:
+  LF.load = load i32 from ptr @LF
+  call void putch(i32 %LF.load)
+  ret 
+}
+
+external void putfarray(i32 , ptr )
+
+

@@ -1,0 +1,64 @@
+i32 main() {
+entry:
+  %b = stack 4
+  %a = stack 4
+  store i32 56 to ptr %a
+  store i32 4 to ptr %b
+  4 = sub i32 0, i32 4
+  5 = sub i32 56, i32 %4
+  7 = add i32 %5, i32 4
+  store i32 %7 to ptr %a
+  9 = icmp ne i32 %7, i32 0
+  10 =  i1 %9, i1 1
+  11 = zext i1 %10 to i32
+  12 = icmp ne i32 %11, i32 0
+  13 =  i1 %12, i1 1
+  14 = zext i1 %13 to i32
+  15 = icmp ne i32 %14, i32 0
+  16 =  i1 %15, i1 1
+  17 = zext i1 %16 to i32
+  18 = sub i32 0, i32 %17
+  19 = icmp ne i32 %18, i32 0
+  br i1 %19, bb %then, bb %else
+then:
+  23 = sub i32 0, i32 1
+  24 = sub i32 0, i32 %23
+  25 = sub i32 0, i32 %24
+  store i32 %25 to ptr %a
+  br bb %if.exit
+if.exit:
+  a.load28 = load i32 from ptr %a
+  call void putint(i32 %a.load28)
+  ret i32 0
+else:
+  b.load26 = load i32 from ptr %b
+  27 = add i32 0, i32 %b.load26
+  store i32 %27 to ptr %a
+  br bb %if.exit
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

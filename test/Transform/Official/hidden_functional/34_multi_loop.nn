@@ -1,0 +1,247 @@
+i32 main() {
+entry:
+  %kkkkk = stack 4
+  %jjjjj = stack 4
+  %iiiii = stack 4
+  %kkkk = stack 4
+  %jjjj = stack 4
+  %iiii = stack 4
+  %kkk = stack 4
+  %jjj = stack 4
+  %iii = stack 4
+  %kk = stack 4
+  %jj = stack 4
+  %ii = stack 4
+  %k = stack 4
+  %j = stack 4
+  %i = stack 4
+  %a = stack 4
+  store i32 0 to ptr %a
+  store i32 0 to ptr %i
+  br bb %while.cond
+while.cond:
+  i.load = load i32 from ptr %i
+  7 = icmp slt i32 %i.load, i32 3
+  8 = icmp ne i1 %7, i1 0
+  br i1 %8, bb %while.body, bb %while.exit
+while.body:
+  store i32 0 to ptr %j
+  br bb %while.cond10
+while.exit:
+  a.load140 = load i32 from ptr %a
+  ret i32 %a.load140
+while.cond10:
+  j.load = load i32 from ptr %j
+  14 = icmp slt i32 %j.load, i32 4
+  15 = icmp ne i1 %14, i1 0
+  br i1 %15, bb %while.body11, bb %while.exit12
+while.body11:
+  store i32 0 to ptr %k
+  br bb %while.cond17
+while.exit12:
+  i.load138 = load i32 from ptr %i
+  139 = add i32 %i.load138, i32 1
+  store i32 %139 to ptr %i
+  br bb %while.cond
+while.cond17:
+  k.load = load i32 from ptr %k
+  21 = icmp slt i32 %k.load, i32 5
+  22 = icmp ne i1 %21, i1 0
+  br i1 %22, bb %while.body18, bb %while.exit19
+while.body18:
+  store i32 0 to ptr %ii
+  br bb %while.cond24
+while.exit19:
+  j.load136 = load i32 from ptr %j
+  137 = add i32 %j.load136, i32 1
+  store i32 %137 to ptr %j
+  br bb %while.cond10
+while.cond24:
+  ii.load = load i32 from ptr %ii
+  28 = icmp slt i32 %ii.load, i32 3
+  29 = icmp ne i1 %28, i1 0
+  br i1 %29, bb %while.body25, bb %while.exit26
+while.body25:
+  store i32 0 to ptr %jj
+  br bb %while.cond31
+while.exit26:
+  k.load134 = load i32 from ptr %k
+  135 = add i32 %k.load134, i32 1
+  store i32 %135 to ptr %k
+  br bb %while.cond17
+while.cond31:
+  jj.load = load i32 from ptr %jj
+  35 = icmp slt i32 %jj.load, i32 5
+  36 = icmp ne i1 %35, i1 0
+  br i1 %36, bb %while.body32, bb %while.exit33
+while.body32:
+  store i32 0 to ptr %kk
+  br bb %while.cond38
+while.exit33:
+  ii.load132 = load i32 from ptr %ii
+  133 = add i32 %ii.load132, i32 1
+  store i32 %133 to ptr %ii
+  br bb %while.cond24
+while.cond38:
+  kk.load = load i32 from ptr %kk
+  42 = icmp slt i32 %kk.load, i32 4
+  43 = icmp ne i1 %42, i1 0
+  br i1 %43, bb %while.body39, bb %while.exit40
+while.body39:
+  store i32 0 to ptr %iii
+  br bb %while.cond45
+while.exit40:
+  jj.load130 = load i32 from ptr %jj
+  131 = add i32 %jj.load130, i32 1
+  store i32 %131 to ptr %jj
+  br bb %while.cond31
+while.cond45:
+  iii.load = load i32 from ptr %iii
+  49 = icmp slt i32 %iii.load, i32 6
+  50 = icmp ne i1 %49, i1 0
+  br i1 %50, bb %while.body46, bb %while.exit47
+while.body46:
+  store i32 0 to ptr %jjj
+  br bb %while.cond52
+while.exit47:
+  kk.load128 = load i32 from ptr %kk
+  129 = add i32 %kk.load128, i32 1
+  store i32 %129 to ptr %kk
+  br bb %while.cond38
+while.cond52:
+  jjj.load = load i32 from ptr %jjj
+  56 = icmp slt i32 %jjj.load, i32 5
+  57 = icmp ne i1 %56, i1 0
+  br i1 %57, bb %while.body53, bb %while.exit54
+while.body53:
+  store i32 0 to ptr %kkk
+  br bb %while.cond59
+while.exit54:
+  iii.load126 = load i32 from ptr %iii
+  127 = add i32 %iii.load126, i32 1
+  store i32 %127 to ptr %iii
+  br bb %while.cond45
+while.cond59:
+  kkk.load = load i32 from ptr %kkk
+  63 = icmp slt i32 %kkk.load, i32 5
+  64 = icmp ne i1 %63, i1 0
+  br i1 %64, bb %while.body60, bb %while.exit61
+while.body60:
+  store i32 0 to ptr %iiii
+  br bb %while.cond66
+while.exit61:
+  jjj.load124 = load i32 from ptr %jjj
+  125 = add i32 %jjj.load124, i32 1
+  store i32 %125 to ptr %jjj
+  br bb %while.cond52
+while.cond66:
+  iiii.load = load i32 from ptr %iiii
+  70 = icmp slt i32 %iiii.load, i32 3
+  71 = icmp ne i1 %70, i1 0
+  br i1 %71, bb %while.body67, bb %while.exit68
+while.body67:
+  store i32 0 to ptr %jjjj
+  br bb %while.cond73
+while.exit68:
+  kkk.load122 = load i32 from ptr %kkk
+  123 = add i32 %kkk.load122, i32 1
+  store i32 %123 to ptr %kkk
+  br bb %while.cond59
+while.cond73:
+  jjjj.load = load i32 from ptr %jjjj
+  77 = icmp slt i32 %jjjj.load, i32 6
+  78 = icmp ne i1 %77, i1 0
+  br i1 %78, bb %while.body74, bb %while.exit75
+while.body74:
+  store i32 0 to ptr %kkkk
+  br bb %while.cond80
+while.exit75:
+  iiii.load120 = load i32 from ptr %iiii
+  121 = add i32 %iiii.load120, i32 1
+  store i32 %121 to ptr %iiii
+  br bb %while.cond66
+while.cond80:
+  kkkk.load = load i32 from ptr %kkkk
+  84 = icmp slt i32 %kkkk.load, i32 7
+  85 = icmp ne i1 %84, i1 0
+  br i1 %85, bb %while.body81, bb %while.exit82
+while.body81:
+  store i32 0 to ptr %iiiii
+  br bb %while.cond87
+while.exit82:
+  jjjj.load118 = load i32 from ptr %jjjj
+  119 = add i32 %jjjj.load118, i32 2
+  store i32 %119 to ptr %jjjj
+  br bb %while.cond73
+while.cond87:
+  iiiii.load = load i32 from ptr %iiiii
+  91 = icmp slt i32 %iiiii.load, i32 5
+  92 = icmp ne i1 %91, i1 0
+  br i1 %92, bb %while.body88, bb %while.exit89
+while.body88:
+  store i32 0 to ptr %jjjjj
+  br bb %while.cond94
+while.exit89:
+  kkkk.load116 = load i32 from ptr %kkkk
+  117 = add i32 %kkkk.load116, i32 2
+  store i32 %117 to ptr %kkkk
+  br bb %while.cond80
+while.cond94:
+  jjjjj.load = load i32 from ptr %jjjjj
+  98 = icmp slt i32 %jjjjj.load, i32 3
+  99 = icmp ne i1 %98, i1 0
+  br i1 %99, bb %while.body95, bb %while.exit96
+while.body95:
+  store i32 0 to ptr %kkkkk
+  br bb %while.cond101
+while.exit96:
+  iiiii.load114 = load i32 from ptr %iiiii
+  115 = add i32 %iiiii.load114, i32 2
+  store i32 %115 to ptr %iiiii
+  br bb %while.cond87
+while.cond101:
+  kkkkk.load = load i32 from ptr %kkkkk
+  105 = icmp slt i32 %kkkkk.load, i32 6
+  106 = icmp ne i1 %105, i1 0
+  br i1 %106, bb %while.body102, bb %while.exit103
+while.body102:
+  a.load = load i32 from ptr %a
+  108 = add i32 %a.load, i32 3
+  109 = srem i32 %108, i32 999
+  store i32 %109 to ptr %a
+  kkkkk.load110 = load i32 from ptr %kkkkk
+  111 = add i32 %kkkkk.load110, i32 3
+  store i32 %111 to ptr %kkkkk
+  br bb %while.cond101
+while.exit103:
+  jjjjj.load112 = load i32 from ptr %jjjjj
+  113 = add i32 %jjjjj.load112, i32 1
+  store i32 %113 to ptr %jjjjj
+  br bb %while.cond94
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

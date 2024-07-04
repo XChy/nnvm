@@ -95,7 +95,7 @@ then124:
   store i32 %127 to ptr %ans
   br bb %if.exit125
 if.exit125:
-  call void _sysy_starttime(i32 47)
+  call void _sysy_stoptime(i32 47)
   ans.load129 = load i32 from ptr %ans
   call void putint(i32 %ans.load129)
   call void putch(i32 10)
@@ -120,9 +120,7 @@ entry:
   %n.stack = stack 4
   store i32 %n to ptr %n.stack
   store i32 %rowsize to ptr %rowsize.stack
-  n.stack.load = load i32 from ptr %n.stack
-  rowsize.stack.load = load i32 from ptr %rowsize.stack
-  6 = sdiv i32 %n.stack.load, i32 %rowsize.stack.load
+  6 = sdiv i32 %n, i32 %rowsize
   store i32 %6 to ptr %colsize
   store i32 0 to ptr %i
   store i32 0 to ptr %j
@@ -193,8 +191,7 @@ if.exit:
   58 = add i32 %56, i32 %j.load57
   59 = mul i32 %58, i32 4
   60 = ptradd ptr %matrix, i32 %59
-  curr.load = load i32 from ptr %curr
-  store i32 %curr.load to ptr %60
+  store i32 %37.load to ptr %60
   j.load62 = load i32 from ptr %j
   63 = add i32 %j.load62, i32 1
   store i32 %63 to ptr %j

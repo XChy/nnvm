@@ -1,0 +1,36 @@
+i32 main() {
+entry:
+  %b = stack 4
+  %a = stack 4
+  store i32 10 to ptr %a
+  3 = sub i32 0, i32 1
+  store i32 %3 to ptr %b
+  6 = add i32 10, i32 %3
+  ret i32 %6
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

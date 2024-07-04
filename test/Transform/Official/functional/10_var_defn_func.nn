@@ -1,0 +1,38 @@
+external i32 getint()
+
+external i32 getch()
+
+i32 defn() {
+entry:
+  ret i32 4
+}
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry1:
+  %a = stack 4
+  3 = call i32 defn()
+  store i32 %3 to ptr %a
+  ret i32 %3
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

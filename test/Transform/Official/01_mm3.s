@@ -179,7 +179,7 @@ bb17:
   JAL zero, bb19
 bb18:
   ADDI a0, zero, 84
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 0(sp)
   ADD a0, s0, zero
   CALL putint

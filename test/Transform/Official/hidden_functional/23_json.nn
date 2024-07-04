@@ -1,0 +1,1105 @@
+global ptr buffer init with 50000000 x i32 zeros
+global ptr pos init with i32 0
+i32 detect_item(i32 type, ptr buf, i32 len) {
+entry63:
+  %mNull = stack 16
+  %mFalse = stack 20
+  %mTrue = stack 16
+  %len.stack65 = stack 4
+  %type.stack = stack 4
+  store i32 %type to ptr %type.stack
+  store i32 %len to ptr %len.stack65
+  pos.load66 = load i32 from ptr @pos
+  68 = icmp sge i32 %pos.load66, i32 %len
+  br i1 %68, bb %then69, bb %if.exit70
+then69:
+  ret i32 0
+if.exit70:
+  len.stack65.load71 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load71)
+  type.stack.load = load i32 from ptr %type.stack
+  74 = icmp eq i32 %type.stack.load, i32 0
+  br i1 %74, bb %then75, bb %else77
+then75:
+  pos.load78 = load i32 from ptr @pos
+  79 = mul i32 %pos.load78, i32 4
+  80 = ptradd ptr %buf, i32 %79
+  80.load = load i32 from ptr %80
+  82 = icmp eq i32 %80.load, i32 123
+  br i1 %82, bb %then83, bb %else85
+if.exit76:
+  ret i32 1
+else77:
+  type.stack.load169 = load i32 from ptr %type.stack
+  170 = icmp eq i32 %type.stack.load169, i32 1
+  br i1 %170, bb %then171, bb %else173
+then83:
+  len.stack65.load86 = load i32 from ptr %len.stack65
+  87 = call i32 detect_item(i32 4, ptr %buf, i32 %len.stack65.load86)
+  ret i32 %87
+if.exit84:
+  br bb %if.exit76
+else85:
+  pos.load88 = load i32 from ptr @pos
+  89 = mul i32 %pos.load88, i32 4
+  90 = ptradd ptr %buf, i32 %89
+  90.load = load i32 from ptr %90
+  92 = icmp eq i32 %90.load, i32 91
+  br i1 %92, bb %then93, bb %else95
+then93:
+  len.stack65.load96 = load i32 from ptr %len.stack65
+  97 = call i32 detect_item(i32 3, ptr %buf, i32 %len.stack65.load96)
+  ret i32 %97
+if.exit94:
+  br bb %if.exit84
+else95:
+  pos.load98 = load i32 from ptr @pos
+  99 = mul i32 %pos.load98, i32 4
+  100 = ptradd ptr %buf, i32 %99
+  100.load = load i32 from ptr %100
+  102 = icmp eq i32 %100.load, i32 34
+  br i1 %102, bb %then103, bb %else105
+then103:
+  len.stack65.load106 = load i32 from ptr %len.stack65
+  107 = call i32 detect_item(i32 2, ptr %buf, i32 %len.stack65.load106)
+  ret i32 %107
+if.exit104:
+  br bb %if.exit94
+else105:
+  pos.load108 = load i32 from ptr @pos
+  109 = mul i32 %pos.load108, i32 4
+  110 = ptradd ptr %buf, i32 %109
+  110.load = load i32 from ptr %110
+  112 = call i32 is_number(i32 %110.load)
+  113 = icmp eq i32 %112, i32 1
+  br i1 %113, bb %then114, bb %else116
+then114:
+  len.stack65.load117 = load i32 from ptr %len.stack65
+  118 = call i32 detect_item(i32 1, ptr %buf, i32 %len.stack65.load117)
+  ret i32 %118
+if.exit115:
+  br bb %if.exit104
+else116:
+  pos.load119 = load i32 from ptr @pos
+  120 = mul i32 %pos.load119, i32 4
+  121 = ptradd ptr %buf, i32 %120
+  121.load = load i32 from ptr %121
+  123 = icmp eq i32 %121.load, i32 43
+  br i1 %123, bb %then124, bb %else126
+then124:
+  len.stack65.load127 = load i32 from ptr %len.stack65
+  128 = call i32 detect_item(i32 1, ptr %buf, i32 %len.stack65.load127)
+  ret i32 %128
+if.exit125:
+  br bb %if.exit115
+else126:
+  pos.load129 = load i32 from ptr @pos
+  130 = mul i32 %pos.load129, i32 4
+  131 = ptradd ptr %buf, i32 %130
+  131.load = load i32 from ptr %131
+  133 = icmp eq i32 %131.load, i32 45
+  br i1 %133, bb %then134, bb %else136
+then134:
+  len.stack65.load137 = load i32 from ptr %len.stack65
+  138 = call i32 detect_item(i32 1, ptr %buf, i32 %len.stack65.load137)
+  ret i32 %138
+if.exit135:
+  br bb %if.exit125
+else136:
+  pos.load139 = load i32 from ptr @pos
+  140 = mul i32 %pos.load139, i32 4
+  141 = ptradd ptr %buf, i32 %140
+  141.load = load i32 from ptr %141
+  143 = icmp eq i32 %141.load, i32 116
+  br i1 %143, bb %then144, bb %else146
+then144:
+  len.stack65.load147 = load i32 from ptr %len.stack65
+  148 = call i32 detect_item(i32 5, ptr %buf, i32 %len.stack65.load147)
+  ret i32 %148
+if.exit145:
+  br bb %if.exit135
+else146:
+  pos.load149 = load i32 from ptr @pos
+  150 = mul i32 %pos.load149, i32 4
+  151 = ptradd ptr %buf, i32 %150
+  151.load = load i32 from ptr %151
+  153 = icmp eq i32 %151.load, i32 102
+  br i1 %153, bb %then154, bb %else156
+then154:
+  len.stack65.load157 = load i32 from ptr %len.stack65
+  158 = call i32 detect_item(i32 6, ptr %buf, i32 %len.stack65.load157)
+  ret i32 %158
+if.exit155:
+  br bb %if.exit145
+else156:
+  pos.load159 = load i32 from ptr @pos
+  160 = mul i32 %pos.load159, i32 4
+  161 = ptradd ptr %buf, i32 %160
+  161.load = load i32 from ptr %161
+  163 = icmp eq i32 %161.load, i32 110
+  br i1 %163, bb %then164, bb %else166
+then164:
+  len.stack65.load167 = load i32 from ptr %len.stack65
+  168 = call i32 detect_item(i32 7, ptr %buf, i32 %len.stack65.load167)
+  ret i32 %168
+if.exit165:
+  br bb %if.exit155
+else166:
+  ret i32 0
+then171:
+  pos.load174 = load i32 from ptr @pos
+  175 = mul i32 %pos.load174, i32 4
+  176 = ptradd ptr %buf, i32 %175
+  176.load = load i32 from ptr %176
+  178 = icmp eq i32 %176.load, i32 43
+  br i1 %178, bb %then179, bb %else181
+if.exit172:
+  br bb %if.exit76
+else173:
+  type.stack.load314 = load i32 from ptr %type.stack
+  315 = icmp eq i32 %type.stack.load314, i32 2
+  br i1 %315, bb %then316, bb %else318
+then179:
+  pos.load182 = load i32 from ptr @pos
+  183 = add i32 %pos.load182, i32 1
+  store i32 %183 to ptr @pos
+  br bb %if.exit180
+if.exit180:
+  pos.load193 = load i32 from ptr @pos
+  len.stack65.load194 = load i32 from ptr %len.stack65
+  195 = icmp sge i32 %pos.load193, i32 %len.stack65.load194
+  br i1 %195, bb %then196, bb %else198
+else181:
+  pos.load184 = load i32 from ptr @pos
+  185 = mul i32 %pos.load184, i32 4
+  186 = ptradd ptr %buf, i32 %185
+  186.load = load i32 from ptr %186
+  188 = icmp eq i32 %186.load, i32 45
+  br i1 %188, bb %then189, bb %if.exit190
+then189:
+  pos.load191 = load i32 from ptr @pos
+  192 = add i32 %pos.load191, i32 1
+  store i32 %192 to ptr @pos
+  br bb %if.exit190
+if.exit190:
+  br bb %if.exit180
+then196:
+  ret i32 0
+if.exit197:
+  br bb %while.cond207
+else198:
+  pos.load199 = load i32 from ptr @pos
+  200 = mul i32 %pos.load199, i32 4
+  201 = ptradd ptr %buf, i32 %200
+  201.load = load i32 from ptr %201
+  203 = call i32 is_number(i32 %201.load)
+  204 = icmp eq i32 %203, i32 0
+  br i1 %204, bb %then205, bb %if.exit206
+then205:
+  ret i32 0
+if.exit206:
+  br bb %if.exit197
+while.cond207:
+  pos.load210 = load i32 from ptr @pos
+  len.stack65.load211 = load i32 from ptr %len.stack65
+  212 = icmp slt i32 %pos.load210, i32 %len.stack65.load211
+  213 = icmp ne i1 %212, i1 0
+  br i1 %213, bb %while.body208, bb %while.exit209
+while.body208:
+  pos.load214 = load i32 from ptr @pos
+  215 = mul i32 %pos.load214, i32 4
+  216 = ptradd ptr %buf, i32 %215
+  216.load = load i32 from ptr %216
+  218 = call i32 is_number(i32 %216.load)
+  219 = icmp ne i32 %218, i32 1
+  br i1 %219, bb %then220, bb %if.exit221
+while.exit209:
+  pos.load224 = load i32 from ptr @pos
+  len.stack65.load225 = load i32 from ptr %len.stack65
+  226 = icmp slt i32 %pos.load224, i32 %len.stack65.load225
+  br i1 %226, bb %then227, bb %if.exit228
+then220:
+  br bb %while.exit209
+if.exit221:
+  pos.load222 = load i32 from ptr @pos
+  223 = add i32 %pos.load222, i32 1
+  store i32 %223 to ptr @pos
+  br bb %while.cond207
+then227:
+  pos.load229 = load i32 from ptr @pos
+  230 = mul i32 %pos.load229, i32 4
+  231 = ptradd ptr %buf, i32 %230
+  231.load = load i32 from ptr %231
+  233 = icmp eq i32 %231.load, i32 46
+  br i1 %233, bb %then234, bb %if.exit235
+if.exit228:
+  pos.load255 = load i32 from ptr @pos
+  len.stack65.load256 = load i32 from ptr %len.stack65
+  257 = icmp slt i32 %pos.load255, i32 %len.stack65.load256
+  br i1 %257, bb %then258, bb %if.exit259
+then234:
+  pos.load236 = load i32 from ptr @pos
+  237 = add i32 %pos.load236, i32 1
+  store i32 %237 to ptr @pos
+  br bb %while.cond238
+if.exit235:
+  br bb %if.exit228
+while.cond238:
+  pos.load241 = load i32 from ptr @pos
+  len.stack65.load242 = load i32 from ptr %len.stack65
+  243 = icmp slt i32 %pos.load241, i32 %len.stack65.load242
+  244 = icmp ne i1 %243, i1 0
+  br i1 %244, bb %while.body239, bb %while.exit240
+while.body239:
+  pos.load245 = load i32 from ptr @pos
+  246 = mul i32 %pos.load245, i32 4
+  247 = ptradd ptr %buf, i32 %246
+  247.load = load i32 from ptr %247
+  249 = call i32 is_number(i32 %247.load)
+  250 = icmp ne i32 %249, i32 1
+  br i1 %250, bb %then251, bb %if.exit252
+while.exit240:
+  br bb %if.exit235
+then251:
+  br bb %while.exit240
+if.exit252:
+  pos.load253 = load i32 from ptr @pos
+  254 = add i32 %pos.load253, i32 1
+  store i32 %254 to ptr @pos
+  br bb %while.cond238
+then258:
+  pos.load260 = load i32 from ptr @pos
+  261 = mul i32 %pos.load260, i32 4
+  262 = ptradd ptr %buf, i32 %261
+  262.load = load i32 from ptr %262
+  264 = icmp eq i32 %262.load, i32 101
+  br i1 %264, bb %then265, bb %if.exit266
+if.exit259:
+  br bb %if.exit172
+then265:
+  pos.load267 = load i32 from ptr @pos
+  268 = add i32 %pos.load267, i32 1
+  store i32 %268 to ptr @pos
+  len.stack65.load270 = load i32 from ptr %len.stack65
+  271 = icmp slt i32 %268, i32 %len.stack65.load270
+  br i1 %271, bb %then272, bb %if.exit273
+if.exit266:
+  br bb %if.exit259
+then272:
+  pos.load274 = load i32 from ptr @pos
+  275 = mul i32 %pos.load274, i32 4
+  276 = ptradd ptr %buf, i32 %275
+  276.load = load i32 from ptr %276
+  278 = icmp eq i32 %276.load, i32 43
+  br i1 %278, bb %then279, bb %if.exit280
+if.exit273:
+  pos.load283 = load i32 from ptr @pos
+  len.stack65.load284 = load i32 from ptr %len.stack65
+  285 = icmp slt i32 %pos.load283, i32 %len.stack65.load284
+  br i1 %285, bb %then286, bb %if.exit287
+then279:
+  pos.load281 = load i32 from ptr @pos
+  282 = add i32 %pos.load281, i32 1
+  store i32 %282 to ptr @pos
+  br bb %if.exit280
+if.exit280:
+  br bb %if.exit273
+then286:
+  pos.load288 = load i32 from ptr @pos
+  289 = mul i32 %pos.load288, i32 4
+  290 = ptradd ptr %buf, i32 %289
+  290.load = load i32 from ptr %290
+  292 = icmp eq i32 %290.load, i32 45
+  br i1 %292, bb %then293, bb %if.exit294
+if.exit287:
+  br bb %while.cond297
+then293:
+  pos.load295 = load i32 from ptr @pos
+  296 = add i32 %pos.load295, i32 1
+  store i32 %296 to ptr @pos
+  br bb %if.exit294
+if.exit294:
+  br bb %if.exit287
+while.cond297:
+  pos.load300 = load i32 from ptr @pos
+  len.stack65.load301 = load i32 from ptr %len.stack65
+  302 = icmp slt i32 %pos.load300, i32 %len.stack65.load301
+  303 = icmp ne i1 %302, i1 0
+  br i1 %303, bb %while.body298, bb %while.exit299
+while.body298:
+  pos.load304 = load i32 from ptr @pos
+  305 = mul i32 %pos.load304, i32 4
+  306 = ptradd ptr %buf, i32 %305
+  306.load = load i32 from ptr %306
+  308 = call i32 is_number(i32 %306.load)
+  309 = icmp ne i32 %308, i32 1
+  br i1 %309, bb %then310, bb %if.exit311
+while.exit299:
+  br bb %if.exit266
+then310:
+  br bb %while.exit299
+if.exit311:
+  pos.load312 = load i32 from ptr @pos
+  313 = add i32 %pos.load312, i32 1
+  store i32 %313 to ptr @pos
+  br bb %while.cond297
+then316:
+  pos.load319 = load i32 from ptr @pos
+  320 = add i32 %pos.load319, i32 1
+  store i32 %320 to ptr @pos
+  br bb %while.cond321
+if.exit317:
+  br bb %if.exit172
+else318:
+  type.stack.load362 = load i32 from ptr %type.stack
+  363 = icmp eq i32 %type.stack.load362, i32 3
+  br i1 %363, bb %then364, bb %else366
+while.cond321:
+  pos.load324 = load i32 from ptr @pos
+  len.stack65.load325 = load i32 from ptr %len.stack65
+  326 = icmp slt i32 %pos.load324, i32 %len.stack65.load325
+  327 = icmp ne i1 %326, i1 0
+  br i1 %327, bb %while.body322, bb %while.exit323
+while.body322:
+  pos.load328 = load i32 from ptr @pos
+  329 = mul i32 %pos.load328, i32 4
+  330 = ptradd ptr %buf, i32 %329
+  330.load = load i32 from ptr %330
+  332 = icmp eq i32 %330.load, i32 34
+  br i1 %332, bb %then333, bb %if.exit334
+while.exit323:
+  pos.load347 = load i32 from ptr @pos
+  len.stack65.load348 = load i32 from ptr %len.stack65
+  349 = icmp sge i32 %pos.load347, i32 %len.stack65.load348
+  br i1 %349, bb %then350, bb %else352
+then333:
+  br bb %while.exit323
+if.exit334:
+  pos.load335 = load i32 from ptr @pos
+  336 = mul i32 %pos.load335, i32 4
+  337 = ptradd ptr %buf, i32 %336
+  337.load = load i32 from ptr %337
+  339 = icmp eq i32 %337.load, i32 92
+  br i1 %339, bb %then340, bb %else342
+then340:
+  pos.load343 = load i32 from ptr @pos
+  344 = add i32 %pos.load343, i32 2
+  store i32 %344 to ptr @pos
+  br bb %if.exit341
+if.exit341:
+  br bb %while.cond321
+else342:
+  pos.load345 = load i32 from ptr @pos
+  346 = add i32 %pos.load345, i32 1
+  store i32 %346 to ptr @pos
+  br bb %if.exit341
+then350:
+  ret i32 0
+if.exit351:
+  pos.load360 = load i32 from ptr @pos
+  361 = add i32 %pos.load360, i32 1
+  store i32 %361 to ptr @pos
+  br bb %if.exit317
+else352:
+  pos.load353 = load i32 from ptr @pos
+  354 = mul i32 %pos.load353, i32 4
+  355 = ptradd ptr %buf, i32 %354
+  355.load = load i32 from ptr %355
+  357 = icmp ne i32 %355.load, i32 34
+  br i1 %357, bb %then358, bb %if.exit359
+then358:
+  ret i32 0
+if.exit359:
+  br bb %if.exit351
+then364:
+  pos.load367 = load i32 from ptr @pos
+  368 = add i32 %pos.load367, i32 1
+  store i32 %368 to ptr @pos
+  len.stack65.load369 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load369)
+  pos.load371 = load i32 from ptr @pos
+  len.stack65.load372 = load i32 from ptr %len.stack65
+  373 = icmp slt i32 %pos.load371, i32 %len.stack65.load372
+  br i1 %373, bb %then374, bb %if.exit375
+if.exit365:
+  br bb %if.exit317
+else366:
+  type.stack.load428 = load i32 from ptr %type.stack
+  429 = icmp eq i32 %type.stack.load428, i32 4
+  br i1 %429, bb %then430, bb %else432
+then374:
+  pos.load376 = load i32 from ptr @pos
+  377 = mul i32 %pos.load376, i32 4
+  378 = ptradd ptr %buf, i32 %377
+  378.load = load i32 from ptr %378
+  380 = icmp eq i32 %378.load, i32 93
+  br i1 %380, bb %then381, bb %if.exit382
+if.exit375:
+  len.stack65.load385 = load i32 from ptr %len.stack65
+  386 = call i32 detect_item(i32 0, ptr %buf, i32 %len.stack65.load385)
+  387 = icmp eq i32 %386, i32 0
+  br i1 %387, bb %then388, bb %if.exit389
+then381:
+  pos.load383 = load i32 from ptr @pos
+  384 = add i32 %pos.load383, i32 1
+  store i32 %384 to ptr @pos
+  ret i32 1
+if.exit382:
+  br bb %if.exit375
+then388:
+  ret i32 0
+if.exit389:
+  len.stack65.load390 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load390)
+  br bb %while.cond392
+while.cond392:
+  pos.load395 = load i32 from ptr @pos
+  396 = mul i32 %pos.load395, i32 4
+  397 = ptradd ptr %buf, i32 %396
+  397.load = load i32 from ptr %397
+  399 = icmp eq i32 %397.load, i32 44
+  400 = icmp ne i1 %399, i1 0
+  br i1 %400, bb %while.body393, bb %while.exit394
+while.body393:
+  pos.load401 = load i32 from ptr @pos
+  402 = add i32 %pos.load401, i32 1
+  store i32 %402 to ptr @pos
+  len.stack65.load403 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load403)
+  len.stack65.load405 = load i32 from ptr %len.stack65
+  406 = call i32 detect_item(i32 0, ptr %buf, i32 %len.stack65.load405)
+  407 = icmp eq i32 %406, i32 0
+  br i1 %407, bb %then408, bb %if.exit409
+while.exit394:
+  len.stack65.load412 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load412)
+  pos.load414 = load i32 from ptr @pos
+  len.stack65.load415 = load i32 from ptr %len.stack65
+  416 = icmp sge i32 %pos.load414, i32 %len.stack65.load415
+  br i1 %416, bb %then417, bb %if.exit418
+then408:
+  ret i32 0
+if.exit409:
+  len.stack65.load410 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load410)
+  br bb %while.cond392
+then417:
+  ret i32 0
+if.exit418:
+  pos.load419 = load i32 from ptr @pos
+  420 = mul i32 %pos.load419, i32 4
+  421 = ptradd ptr %buf, i32 %420
+  421.load = load i32 from ptr %421
+  423 = icmp ne i32 %421.load, i32 93
+  br i1 %423, bb %then424, bb %if.exit425
+then424:
+  ret i32 0
+if.exit425:
+  pos.load426 = load i32 from ptr @pos
+  427 = add i32 %pos.load426, i32 1
+  store i32 %427 to ptr @pos
+  br bb %if.exit365
+then430:
+  pos.load433 = load i32 from ptr @pos
+  434 = add i32 %pos.load433, i32 1
+  store i32 %434 to ptr @pos
+  len.stack65.load435 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load435)
+  pos.load437 = load i32 from ptr @pos
+  len.stack65.load438 = load i32 from ptr %len.stack65
+  439 = icmp slt i32 %pos.load437, i32 %len.stack65.load438
+  br i1 %439, bb %then440, bb %if.exit441
+if.exit431:
+  br bb %if.exit365
+else432:
+  type.stack.load541 = load i32 from ptr %type.stack
+  542 = icmp eq i32 %type.stack.load541, i32 5
+  br i1 %542, bb %then543, bb %else545
+then440:
+  pos.load442 = load i32 from ptr @pos
+  443 = mul i32 %pos.load442, i32 4
+  444 = ptradd ptr %buf, i32 %443
+  444.load = load i32 from ptr %444
+  446 = icmp eq i32 %444.load, i32 125
+  br i1 %446, bb %then447, bb %if.exit448
+if.exit441:
+  len.stack65.load451 = load i32 from ptr %len.stack65
+  452 = call i32 detect_item(i32 2, ptr %buf, i32 %len.stack65.load451)
+  453 = icmp eq i32 %452, i32 0
+  br i1 %453, bb %then454, bb %if.exit455
+then447:
+  pos.load449 = load i32 from ptr @pos
+  450 = add i32 %pos.load449, i32 1
+  store i32 %450 to ptr @pos
+  ret i32 1
+if.exit448:
+  br bb %if.exit441
+then454:
+  ret i32 0
+if.exit455:
+  len.stack65.load456 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load456)
+  pos.load458 = load i32 from ptr @pos
+  len.stack65.load459 = load i32 from ptr %len.stack65
+  460 = icmp sge i32 %pos.load458, i32 %len.stack65.load459
+  br i1 %460, bb %then461, bb %if.exit462
+then461:
+  ret i32 0
+if.exit462:
+  pos.load463 = load i32 from ptr @pos
+  464 = mul i32 %pos.load463, i32 4
+  465 = ptradd ptr %buf, i32 %464
+  465.load = load i32 from ptr %465
+  467 = icmp ne i32 %465.load, i32 58
+  br i1 %467, bb %then468, bb %if.exit469
+then468:
+  ret i32 0
+if.exit469:
+  pos.load470 = load i32 from ptr @pos
+  471 = add i32 %pos.load470, i32 1
+  store i32 %471 to ptr @pos
+  len.stack65.load472 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load472)
+  len.stack65.load474 = load i32 from ptr %len.stack65
+  475 = call i32 detect_item(i32 0, ptr %buf, i32 %len.stack65.load474)
+  476 = icmp eq i32 %475, i32 0
+  br i1 %476, bb %then477, bb %if.exit478
+then477:
+  ret i32 0
+if.exit478:
+  len.stack65.load479 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load479)
+  br bb %while.cond481
+while.cond481:
+  pos.load484 = load i32 from ptr @pos
+  485 = mul i32 %pos.load484, i32 4
+  486 = ptradd ptr %buf, i32 %485
+  486.load = load i32 from ptr %486
+  488 = icmp eq i32 %486.load, i32 44
+  489 = icmp ne i1 %488, i1 0
+  br i1 %489, bb %while.body482, bb %while.exit483
+while.body482:
+  pos.load490 = load i32 from ptr @pos
+  491 = add i32 %pos.load490, i32 1
+  store i32 %491 to ptr @pos
+  len.stack65.load492 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load492)
+  len.stack65.load494 = load i32 from ptr %len.stack65
+  495 = call i32 detect_item(i32 2, ptr %buf, i32 %len.stack65.load494)
+  496 = icmp eq i32 %495, i32 0
+  br i1 %496, bb %then497, bb %if.exit498
+while.exit483:
+  len.stack65.load524 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load524)
+  pos.load526 = load i32 from ptr @pos
+  len.stack65.load527 = load i32 from ptr %len.stack65
+  528 = icmp sge i32 %pos.load526, i32 %len.stack65.load527
+  br i1 %528, bb %then529, bb %else531
+then497:
+  ret i32 0
+if.exit498:
+  len.stack65.load499 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load499)
+  pos.load501 = load i32 from ptr @pos
+  len.stack65.load502 = load i32 from ptr %len.stack65
+  503 = icmp sge i32 %pos.load501, i32 %len.stack65.load502
+  br i1 %503, bb %then504, bb %if.exit505
+then504:
+  ret i32 0
+if.exit505:
+  pos.load506 = load i32 from ptr @pos
+  507 = mul i32 %pos.load506, i32 4
+  508 = ptradd ptr %buf, i32 %507
+  508.load = load i32 from ptr %508
+  510 = icmp ne i32 %508.load, i32 58
+  br i1 %510, bb %then511, bb %if.exit512
+then511:
+  ret i32 0
+if.exit512:
+  pos.load513 = load i32 from ptr @pos
+  514 = add i32 %pos.load513, i32 1
+  store i32 %514 to ptr @pos
+  len.stack65.load515 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load515)
+  len.stack65.load517 = load i32 from ptr %len.stack65
+  518 = call i32 detect_item(i32 0, ptr %buf, i32 %len.stack65.load517)
+  519 = icmp eq i32 %518, i32 0
+  br i1 %519, bb %then520, bb %if.exit521
+then520:
+  ret i32 0
+if.exit521:
+  len.stack65.load522 = load i32 from ptr %len.stack65
+  call void skip_space(ptr %buf, i32 %len.stack65.load522)
+  br bb %while.cond481
+then529:
+  ret i32 0
+if.exit530:
+  pos.load539 = load i32 from ptr @pos
+  540 = add i32 %pos.load539, i32 1
+  store i32 %540 to ptr @pos
+  br bb %if.exit431
+else531:
+  pos.load532 = load i32 from ptr @pos
+  533 = mul i32 %pos.load532, i32 4
+  534 = ptradd ptr %buf, i32 %533
+  534.load = load i32 from ptr %534
+  536 = icmp ne i32 %534.load, i32 125
+  br i1 %536, bb %then537, bb %if.exit538
+then537:
+  ret i32 0
+if.exit538:
+  br bb %if.exit530
+then543:
+  arr.index = ptradd ptr %mTrue, i32 0
+  store i32 116 to ptr %arr.index
+  arr.index548 = ptradd ptr %mTrue, i32 4
+  store i32 114 to ptr %arr.index548
+  arr.index549 = ptradd ptr %mTrue, i32 8
+  store i32 117 to ptr %arr.index549
+  arr.index550 = ptradd ptr %mTrue, i32 12
+  store i32 101 to ptr %arr.index550
+  pos.load551 = load i32 from ptr @pos
+  552 = add i32 %pos.load551, i32 3
+  len.stack65.load553 = load i32 from ptr %len.stack65
+  554 = icmp sge i32 %552, i32 %len.stack65.load553
+  br i1 %554, bb %then555, bb %else557
+if.exit544:
+  br bb %if.exit431
+else545:
+  type.stack.load606 = load i32 from ptr %type.stack
+  607 = icmp eq i32 %type.stack.load606, i32 6
+  br i1 %607, bb %then608, bb %else610
+then555:
+  ret i32 0
+if.exit556:
+  pos.load604 = load i32 from ptr @pos
+  605 = add i32 %pos.load604, i32 4
+  store i32 %605 to ptr @pos
+  br bb %if.exit544
+else557:
+  pos.load558 = load i32 from ptr @pos
+  559 = mul i32 %pos.load558, i32 4
+  560 = ptradd ptr %buf, i32 %559
+  560.load = load i32 from ptr %560
+  562 = mul i32 0, i32 4
+  563 = ptradd ptr %mTrue, i32 %562
+  563.load = load i32 from ptr %563
+  565 = icmp ne i32 %560.load, i32 %563.load
+  br i1 %565, bb %then566, bb %else568
+then566:
+  ret i32 0
+if.exit567:
+  br bb %if.exit556
+else568:
+  pos.load569 = load i32 from ptr @pos
+  570 = add i32 %pos.load569, i32 1
+  571 = mul i32 %570, i32 4
+  572 = ptradd ptr %buf, i32 %571
+  572.load = load i32 from ptr %572
+  574 = mul i32 1, i32 4
+  575 = ptradd ptr %mTrue, i32 %574
+  575.load = load i32 from ptr %575
+  577 = icmp ne i32 %572.load, i32 %575.load
+  br i1 %577, bb %then578, bb %else580
+then578:
+  ret i32 0
+if.exit579:
+  br bb %if.exit567
+else580:
+  pos.load581 = load i32 from ptr @pos
+  582 = add i32 %pos.load581, i32 2
+  583 = mul i32 %582, i32 4
+  584 = ptradd ptr %buf, i32 %583
+  584.load = load i32 from ptr %584
+  586 = mul i32 2, i32 4
+  587 = ptradd ptr %mTrue, i32 %586
+  587.load = load i32 from ptr %587
+  589 = icmp ne i32 %584.load, i32 %587.load
+  br i1 %589, bb %then590, bb %else592
+then590:
+  ret i32 0
+if.exit591:
+  br bb %if.exit579
+else592:
+  pos.load593 = load i32 from ptr @pos
+  594 = add i32 %pos.load593, i32 3
+  595 = mul i32 %594, i32 4
+  596 = ptradd ptr %buf, i32 %595
+  596.load = load i32 from ptr %596
+  598 = mul i32 3, i32 4
+  599 = ptradd ptr %mTrue, i32 %598
+  599.load = load i32 from ptr %599
+  601 = icmp ne i32 %596.load, i32 %599.load
+  br i1 %601, bb %then602, bb %if.exit603
+then602:
+  ret i32 0
+if.exit603:
+  br bb %if.exit591
+then608:
+  arr.index612 = ptradd ptr %mFalse, i32 0
+  store i32 102 to ptr %arr.index612
+  arr.index613 = ptradd ptr %mFalse, i32 4
+  store i32 97 to ptr %arr.index613
+  arr.index614 = ptradd ptr %mFalse, i32 8
+  store i32 108 to ptr %arr.index614
+  arr.index615 = ptradd ptr %mFalse, i32 12
+  store i32 115 to ptr %arr.index615
+  arr.index616 = ptradd ptr %mFalse, i32 16
+  store i32 101 to ptr %arr.index616
+  pos.load617 = load i32 from ptr @pos
+  618 = add i32 %pos.load617, i32 4
+  len.stack65.load619 = load i32 from ptr %len.stack65
+  620 = icmp sge i32 %618, i32 %len.stack65.load619
+  br i1 %620, bb %then621, bb %else623
+if.exit609:
+  br bb %if.exit544
+else610:
+  type.stack.load684 = load i32 from ptr %type.stack
+  685 = icmp eq i32 %type.stack.load684, i32 7
+  br i1 %685, bb %then686, bb %else688
+then621:
+  ret i32 0
+if.exit622:
+  pos.load682 = load i32 from ptr @pos
+  683 = add i32 %pos.load682, i32 5
+  store i32 %683 to ptr @pos
+  br bb %if.exit609
+else623:
+  pos.load624 = load i32 from ptr @pos
+  625 = mul i32 %pos.load624, i32 4
+  626 = ptradd ptr %buf, i32 %625
+  626.load = load i32 from ptr %626
+  628 = mul i32 0, i32 4
+  629 = ptradd ptr %mFalse, i32 %628
+  629.load = load i32 from ptr %629
+  631 = icmp ne i32 %626.load, i32 %629.load
+  br i1 %631, bb %then632, bb %else634
+then632:
+  ret i32 0
+if.exit633:
+  br bb %if.exit622
+else634:
+  pos.load635 = load i32 from ptr @pos
+  636 = add i32 %pos.load635, i32 1
+  637 = mul i32 %636, i32 4
+  638 = ptradd ptr %buf, i32 %637
+  638.load = load i32 from ptr %638
+  640 = mul i32 1, i32 4
+  641 = ptradd ptr %mFalse, i32 %640
+  641.load = load i32 from ptr %641
+  643 = icmp ne i32 %638.load, i32 %641.load
+  br i1 %643, bb %then644, bb %else646
+then644:
+  ret i32 0
+if.exit645:
+  br bb %if.exit633
+else646:
+  pos.load647 = load i32 from ptr @pos
+  648 = add i32 %pos.load647, i32 2
+  649 = mul i32 %648, i32 4
+  650 = ptradd ptr %buf, i32 %649
+  650.load = load i32 from ptr %650
+  652 = mul i32 2, i32 4
+  653 = ptradd ptr %mFalse, i32 %652
+  653.load = load i32 from ptr %653
+  655 = icmp ne i32 %650.load, i32 %653.load
+  br i1 %655, bb %then656, bb %else658
+then656:
+  ret i32 0
+if.exit657:
+  br bb %if.exit645
+else658:
+  pos.load659 = load i32 from ptr @pos
+  660 = add i32 %pos.load659, i32 3
+  661 = mul i32 %660, i32 4
+  662 = ptradd ptr %buf, i32 %661
+  662.load = load i32 from ptr %662
+  664 = mul i32 3, i32 4
+  665 = ptradd ptr %mFalse, i32 %664
+  665.load = load i32 from ptr %665
+  667 = icmp ne i32 %662.load, i32 %665.load
+  br i1 %667, bb %then668, bb %else670
+then668:
+  ret i32 0
+if.exit669:
+  br bb %if.exit657
+else670:
+  pos.load671 = load i32 from ptr @pos
+  672 = add i32 %pos.load671, i32 4
+  673 = mul i32 %672, i32 4
+  674 = ptradd ptr %buf, i32 %673
+  674.load = load i32 from ptr %674
+  676 = mul i32 4, i32 4
+  677 = ptradd ptr %mFalse, i32 %676
+  677.load = load i32 from ptr %677
+  679 = icmp ne i32 %674.load, i32 %677.load
+  br i1 %679, bb %then680, bb %if.exit681
+then680:
+  ret i32 0
+if.exit681:
+  br bb %if.exit669
+then686:
+  arr.index690 = ptradd ptr %mNull, i32 0
+  store i32 110 to ptr %arr.index690
+  arr.index691 = ptradd ptr %mNull, i32 4
+  store i32 117 to ptr %arr.index691
+  arr.index692 = ptradd ptr %mNull, i32 8
+  store i32 108 to ptr %arr.index692
+  arr.index693 = ptradd ptr %mNull, i32 12
+  store i32 108 to ptr %arr.index693
+  pos.load694 = load i32 from ptr @pos
+  695 = add i32 %pos.load694, i32 3
+  len.stack65.load696 = load i32 from ptr %len.stack65
+  697 = icmp sge i32 %695, i32 %len.stack65.load696
+  br i1 %697, bb %then698, bb %else700
+if.exit687:
+  br bb %if.exit609
+else688:
+  ret i32 0
+then698:
+  ret i32 0
+if.exit699:
+  pos.load747 = load i32 from ptr @pos
+  748 = add i32 %pos.load747, i32 4
+  store i32 %748 to ptr @pos
+  br bb %if.exit687
+else700:
+  pos.load701 = load i32 from ptr @pos
+  702 = mul i32 %pos.load701, i32 4
+  703 = ptradd ptr %buf, i32 %702
+  703.load = load i32 from ptr %703
+  705 = mul i32 0, i32 4
+  706 = ptradd ptr %mNull, i32 %705
+  706.load = load i32 from ptr %706
+  708 = icmp ne i32 %703.load, i32 %706.load
+  br i1 %708, bb %then709, bb %else711
+then709:
+  ret i32 0
+if.exit710:
+  br bb %if.exit699
+else711:
+  pos.load712 = load i32 from ptr @pos
+  713 = add i32 %pos.load712, i32 1
+  714 = mul i32 %713, i32 4
+  715 = ptradd ptr %buf, i32 %714
+  715.load = load i32 from ptr %715
+  717 = mul i32 1, i32 4
+  718 = ptradd ptr %mNull, i32 %717
+  718.load = load i32 from ptr %718
+  720 = icmp ne i32 %715.load, i32 %718.load
+  br i1 %720, bb %then721, bb %else723
+then721:
+  ret i32 0
+if.exit722:
+  br bb %if.exit710
+else723:
+  pos.load724 = load i32 from ptr @pos
+  725 = add i32 %pos.load724, i32 2
+  726 = mul i32 %725, i32 4
+  727 = ptradd ptr %buf, i32 %726
+  727.load = load i32 from ptr %727
+  729 = mul i32 2, i32 4
+  730 = ptradd ptr %mNull, i32 %729
+  730.load = load i32 from ptr %730
+  732 = icmp ne i32 %727.load, i32 %730.load
+  br i1 %732, bb %then733, bb %else735
+then733:
+  ret i32 0
+if.exit734:
+  br bb %if.exit722
+else735:
+  pos.load736 = load i32 from ptr @pos
+  737 = add i32 %pos.load736, i32 3
+  738 = mul i32 %737, i32 4
+  739 = ptradd ptr %buf, i32 %738
+  739.load = load i32 from ptr %739
+  741 = mul i32 3, i32 4
+  742 = ptradd ptr %mNull, i32 %741
+  742.load = load i32 from ptr %742
+  744 = icmp ne i32 %739.load, i32 %742.load
+  br i1 %744, bb %then745, bb %if.exit746
+then745:
+  ret i32 0
+if.exit746:
+  br bb %if.exit734
+}
+
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry749:
+  %res = stack 4
+  %i = stack 4
+  %get = stack 4
+  751 = call i32 getch()
+  store i32 %751 to ptr %get
+  store i32 0 to ptr %i
+  br bb %while.cond753
+while.cond753:
+  get.load = load i32 from ptr %get
+  757 = icmp ne i32 %get.load, i32 35
+  758 = icmp ne i1 %757, i1 0
+  br i1 %758, bb %while.body754, bb %while.exit755
+while.body754:
+  i.load = load i32 from ptr %i
+  760 = mul i32 %i.load, i32 4
+  761 = ptradd ptr @buffer, i32 %760
+  get.load762 = load i32 from ptr %get
+  store i32 %get.load762 to ptr %761
+  i.load763 = load i32 from ptr %i
+  764 = add i32 %i.load763, i32 1
+  store i32 %764 to ptr %i
+  765 = call i32 getch()
+  store i32 %765 to ptr %get
+  br bb %while.cond753
+while.exit755:
+  i.load766 = load i32 from ptr %i
+  call void skip_space(ptr @buffer, i32 %i.load766)
+  i.load769 = load i32 from ptr %i
+  770 = call i32 detect_item(i32 0, ptr @buffer, i32 %i.load769)
+  store i32 %770 to ptr %res
+  i.load771 = load i32 from ptr %i
+  call void skip_space(ptr @buffer, i32 %i.load771)
+  res.load = load i32 from ptr %res
+  774 = icmp ne i32 %res.load, i32 0
+  br i1 %774, bb %then775, bb %else777
+then775:
+  call void putch(i32 111)
+  call void putch(i32 107)
+  call void putch(i32 10)
+  ret i32 0
+if.exit776:
+  unreachable
+else777:
+  call void putch(i32 110)
+  call void putch(i32 111)
+  call void putch(i32 116)
+  call void putch(i32 32)
+  call void putch(i32 111)
+  call void putch(i32 107)
+  call void putch(i32 10)
+  ret i32 1
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+void skip_space(ptr buf, i32 len) {
+entry12:
+  %len.stack = stack 4
+  store i32 %len to ptr %len.stack
+  br bb %while.cond
+while.cond:
+  17 = icmp ne i32 1, i32 0
+  br i1 %17, bb %while.body, bb %while.exit
+while.body:
+  pos.load = load i32 from ptr @pos
+  len.stack.load = load i32 from ptr %len.stack
+  20 = icmp sge i32 %pos.load, i32 %len.stack.load
+  br i1 %20, bb %then21, bb %if.exit22
+while.exit:
+  ret 
+then21:
+  br bb %while.exit
+if.exit22:
+  pos.load23 = load i32 from ptr @pos
+  24 = mul i32 %pos.load23, i32 4
+  25 = ptradd ptr %buf, i32 %24
+  25.load = load i32 from ptr %25
+  27 = icmp eq i32 %25.load, i32 32
+  br i1 %27, bb %then28, bb %else30
+then28:
+  pos.load31 = load i32 from ptr @pos
+  32 = add i32 %pos.load31, i32 1
+  store i32 %32 to ptr @pos
+  br bb %if.exit29
+if.exit29:
+  br bb %while.cond
+else30:
+  pos.load33 = load i32 from ptr @pos
+  34 = mul i32 %pos.load33, i32 4
+  35 = ptradd ptr %buf, i32 %34
+  35.load = load i32 from ptr %35
+  37 = icmp eq i32 %35.load, i32 9
+  br i1 %37, bb %then38, bb %else40
+then38:
+  pos.load41 = load i32 from ptr @pos
+  42 = add i32 %pos.load41, i32 1
+  store i32 %42 to ptr @pos
+  br bb %if.exit39
+if.exit39:
+  br bb %if.exit29
+else40:
+  pos.load43 = load i32 from ptr @pos
+  44 = mul i32 %pos.load43, i32 4
+  45 = ptradd ptr %buf, i32 %44
+  45.load = load i32 from ptr %45
+  47 = icmp eq i32 %45.load, i32 10
+  br i1 %47, bb %then48, bb %else50
+then48:
+  pos.load51 = load i32 from ptr @pos
+  52 = add i32 %pos.load51, i32 1
+  store i32 %52 to ptr @pos
+  br bb %if.exit49
+if.exit49:
+  br bb %if.exit39
+else50:
+  pos.load53 = load i32 from ptr @pos
+  54 = mul i32 %pos.load53, i32 4
+  55 = ptradd ptr %buf, i32 %54
+  55.load = load i32 from ptr %55
+  57 = icmp eq i32 %55.load, i32 13
+  br i1 %57, bb %then58, bb %else60
+then58:
+  pos.load61 = load i32 from ptr @pos
+  62 = add i32 %pos.load61, i32 1
+  store i32 %62 to ptr @pos
+  br bb %if.exit59
+if.exit59:
+  br bb %if.exit49
+else60:
+  br bb %while.exit
+}
+
+i32 is_number(i32 ch) {
+entry:
+  %ch.stack = stack 4
+  store i32 %ch to ptr %ch.stack
+  3 = icmp sge i32 %ch, i32 48
+  br i1 %3, bb %then, bb %else
+then:
+  ch.stack.load7 = load i32 from ptr %ch.stack
+  8 = icmp sle i32 %ch.stack.load7, i32 57
+  br i1 %8, bb %then9, bb %else11
+if.exit:
+  unreachable
+else:
+  ret i32 0
+then9:
+  ret i32 1
+if.exit10:
+  br bb %if.exit
+else11:
+  ret i32 0
+}
+
+

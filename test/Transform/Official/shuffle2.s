@@ -49,21 +49,20 @@ maxm:
 .section .text
 insert:
   ADDI sp, sp, -80
-  SD s3, 32(sp)
+  SD s4, 32(sp)
   SD ra, 40(sp)
-  SD s2, 48(sp)
-  SD s1, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 48(sp)
+  SD s2, 56(sp)
+  SD s1, 64(sp)
+  SD s0, 72(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SW s0, 24(sp)
   SW s1, 16(sp)
-  LW s0, 24(sp)
   ADD a0, s0, zero
   CALL hash
   ADD s0, a0, zero
   SW s0, 8(sp)
-  LW s0, 8(sp)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, head
@@ -79,50 +78,41 @@ bb1:
   ADDIW s0, s1, 1
   LA s1, cnt
   SW s0, 0(s1)
-  LW s0, 8(sp)
+  LW s1, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s1, head
+  ADD s2, s1, s3
+  SW s0, 0(s2)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s0, head
-  ADD s1, s0, s2
-  LA s0, cnt
-  LW s2, 0(s0)
-  SW s2, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, key
-  ADD s1, s0, s2
-  LW s0, 24(sp)
-  SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, value
-  ADD s1, s0, s2
-  LW s0, 16(sp)
-  SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, next
-  ADD s1, s0, s2
-  SW zero, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
+  LA s1, key
+  ADD s3, s1, s2
+  LW s1, 24(sp)
+  SW s1, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s1, value
+  ADD s3, s1, s2
+  LW s1, 16(sp)
+  SW s1, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s1, next
+  ADD s3, s1, s2
+  SW zero, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, nextvalue
   ADD s1, s0, s2
   SW zero, 0(s1)
   ADD a0, zero, zero
-  LD s3, 32(sp)
+  LD s4, 32(sp)
   LD ra, 40(sp)
-  LD s2, 48(sp)
-  LD s1, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 48(sp)
+  LD s2, 56(sp)
+  LD s1, 64(sp)
+  LD s0, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb2:
@@ -160,56 +150,47 @@ bb5:
   ADDIW s0, s1, 1
   LA s1, cnt
   SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, next
-  ADD s1, s0, s2
-  LW s0, 8(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, head
-  ADD s2, s0, s3
-  LW s0, 0(s2)
-  SW s0, 0(s1)
-  LW s0, 8(sp)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s0, head
-  ADD s1, s0, s2
-  LA s0, cnt
-  LW s2, 0(s0)
-  SW s2, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, key
-  ADD s1, s0, s2
-  LW s0, 24(sp)
-  SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, value
-  ADD s1, s0, s2
-  LW s0, 16(sp)
-  SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
+  LA s1, next
+  ADD s3, s1, s2
+  LW s1, 8(sp)
+  ADDI s2, zero, 4
+  MULW s4, s1, s2
+  LA s1, head
+  ADD s2, s1, s4
+  LW s1, 0(s2)
+  SW s1, 0(s3)
+  LW s1, 8(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s1, head
+  ADD s2, s1, s3
+  SW s0, 0(s2)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s1, key
+  ADD s3, s1, s2
+  LW s1, 24(sp)
+  SW s1, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s1, value
+  ADD s3, s1, s2
+  LW s1, 16(sp)
+  SW s1, 0(s3)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, nextvalue
   ADD s1, s0, s2
   SW zero, 0(s1)
   ADD a0, zero, zero
-  LD s3, 32(sp)
+  LD s4, 32(sp)
   LD ra, 40(sp)
-  LD s2, 48(sp)
-  LD s1, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 48(sp)
+  LD s2, 56(sp)
+  LD s1, 64(sp)
+  LD s0, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb6:
@@ -218,41 +199,36 @@ bb6:
   ADDIW s0, s1, 1
   LA s1, cnt
   SW s0, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, nextvalue
-  ADD s1, s0, s2
-  LW s0, 0(sp)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, nextvalue
-  ADD s2, s0, s3
-  LW s0, 0(s2)
-  SW s0, 0(s1)
-  LW s0, 0(sp)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s0, nextvalue
-  ADD s1, s0, s2
-  LA s0, cnt
-  LW s2, 0(s0)
-  SW s2, 0(s1)
-  LA s0, cnt
-  LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
+  LA s1, nextvalue
+  ADD s3, s1, s2
+  LW s1, 0(sp)
+  ADDI s2, zero, 4
+  MULW s4, s1, s2
+  LA s1, nextvalue
+  ADD s2, s1, s4
+  LW s1, 0(s2)
+  SW s1, 0(s3)
+  LW s1, 0(sp)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s1, nextvalue
+  ADD s2, s1, s3
+  SW s0, 0(s2)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
   LA s0, value
   ADD s1, s0, s2
   LW s0, 16(sp)
   SW s0, 0(s1)
   ADDI a0, zero, 1
-  LD s3, 32(sp)
+  LD s4, 32(sp)
   LD ra, 40(sp)
-  LD s2, 48(sp)
-  LD s1, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 48(sp)
+  LD s2, 56(sp)
+  LD s1, 64(sp)
+  LD s0, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb7:
@@ -356,7 +332,7 @@ bb13:
   JAL zero, bb12
 bb14:
   ADDI a0, zero, 90
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   LW s0, 8(sp)
   ADD a0, s0, zero
   LA s0, ans
@@ -379,12 +355,10 @@ reduce:
   SD s0, 72(sp)
   ADD s0, a0, zero
   SW s0, 32(sp)
-  LW s0, 32(sp)
   ADD a0, s0, zero
   CALL hash
   ADD s0, a0, zero
   SW s0, 24(sp)
-  LW s0, 24(sp)
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, head
@@ -479,7 +453,6 @@ hash:
   SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   LA s1, hashmod
   LW s2, 0(s1)
   REMW s1, s0, s2

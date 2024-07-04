@@ -32,36 +32,33 @@ pseudo_sha1:
   ADD s1, a1, zero
   ADD s2, a2, zero
   SW s1, 456(sp)
-  LUI s1, 422994
-  ADDI s1, s1, 769
-  SW s1, 448(sp)
-  ADDI s1, zero, 0
-  LUI s3, 66341
-  ADDI s3, s3, 1143
-  SUBW s4, s1, s3
-  SW s4, 440(sp)
-  ADDI s1, zero, 0
   LUI s3, 422994
-  ADDI s3, s3, 770
-  SUBW s4, s1, s3
-  SW s4, 432(sp)
-  LUI s1, 66341
-  ADDI s1, s1, 1142
-  SW s1, 424(sp)
-  ADDI s1, zero, 0
-  LUI s3, 246482
-  ADDI s3, s3, -496
-  SUBW s4, s1, s3
-  SW s4, 416(sp)
-  LW s1, 456(sp)
+  ADDI s3, s3, 769
+  SW s3, 448(sp)
+  ADDI s3, zero, 0
+  LUI s4, 66341
+  ADDI s4, s4, 1143
+  SUBW s5, s3, s4
+  SW s5, 440(sp)
+  ADDI s3, zero, 0
+  LUI s4, 422994
+  ADDI s4, s4, 770
+  SUBW s5, s3, s4
+  SW s5, 432(sp)
+  LUI s3, 66341
+  ADDI s3, s3, 1142
+  SW s3, 424(sp)
+  ADDI s3, zero, 0
+  LUI s4, 246482
+  ADDI s4, s4, -496
+  SUBW s5, s3, s4
+  SW s5, 416(sp)
   SW s1, 352(sp)
-  LW s1, 456(sp)
   ADDI s3, zero, 4
   MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 128
-  SW s3, 0(s1)
-  LW s1, 456(sp)
+  ADD s3, s0, s4
+  ADDI s4, zero, 128
+  SW s4, 0(s3)
   ADDIW s3, s1, 1
   SW s3, 456(sp)
   JAL zero, bb1
@@ -557,11 +554,8 @@ _xor:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
-  LW s0, 8(sp)
-  LW s1, 8(sp)
-  LW s2, 0(sp)
-  ADD a0, s1, zero
-  ADD a1, s2, zero
+  ADD a0, s0, zero
+  ADD a1, s1, zero
   CALL _and
   ADD s1, a0, zero
   SUBW s2, s0, s1
@@ -591,8 +585,6 @@ _or:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
-  LW s0, 8(sp)
-  LW s1, 0(sp)
   ADD a0, s0, zero
   ADD a1, s1, zero
   CALL _xor
@@ -622,11 +614,10 @@ _not:
   SD s0, 32(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  ADDI s0, zero, 1
-  SUB s1, zero, s0
-  LW s0, 0(sp)
-  SUBW s2, s1, s0
-  ADD a0, s2, zero
+  ADDI s1, zero, 1
+  SUB s2, zero, s1
+  SUBW s1, s2, s0
+  ADD a0, s1, zero
   LD ra, 8(sp)
   LD s2, 16(sp)
   LD s1, 24(sp)
@@ -643,8 +634,6 @@ _and:
   ADD s1, a1, zero
   SW s0, 8(sp)
   SW s1, 0(sp)
-  LW s0, 8(sp)
-  LW s1, 0(sp)
   ADDW s2, s0, s1
   ADD a0, s2, zero
   LD ra, 16(sp)
@@ -662,11 +651,9 @@ rotl30:
   SD s0, 40(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   LUI s1, 262144
   ADDI s1, s1, 0
   MULW s2, s0, s1
-  LW s0, 0(sp)
   LUI s1, 262144
   ADDI s1, s1, 0
   REMW s3, s0, s1
@@ -688,10 +675,8 @@ rotl5:
   SD s0, 40(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   ADDI s1, zero, 32
   MULW s2, s0, s1
-  LW s0, 0(sp)
   ADDI s1, zero, 32
   REMW s3, s0, s1
   ADDW s0, s2, s3
@@ -779,7 +764,7 @@ bb38:
   JAL zero, bb40
 bb39:
   ADDI a0, zero, 184
-  CALL _sysy_starttime
+  CALL _sysy_stoptime
   ADDI a0, zero, 5
   ADDI a1, sp, 16
   ADD a1, a1, zero
@@ -875,10 +860,8 @@ rotl1:
   SD s0, 40(sp)
   ADD s0, a0, zero
   SW s0, 0(sp)
-  LW s0, 0(sp)
   ADDI s1, zero, 2
   MULW s2, s0, s1
-  LW s0, 0(sp)
   ADDI s1, zero, 2
   REMW s3, s0, s1
   ADDW s0, s2, s3
@@ -907,28 +890,18 @@ get_random:
   ADDW s0, s1, s3
   LA s1, state
   SW s0, 0(s1)
+  LUI s1, 32
+  ADDI s1, s1, 0
+  DIVW s2, s0, s1
+  ADDW s1, s0, s2
   LA s0, state
-  LW s1, 0(s0)
-  LA s0, state
-  LW s2, 0(s0)
-  LUI s0, 32
-  ADDI s0, s0, 0
-  DIVW s3, s2, s0
-  ADDW s0, s1, s3
-  LA s1, state
-  SW s0, 0(s1)
-  LA s0, state
-  LW s1, 0(s0)
-  LA s0, state
-  LW s2, 0(s0)
+  SW s1, 0(s0)
   ADDI s0, zero, 32
-  MULW s3, s2, s0
-  ADDW s0, s1, s3
+  MULW s2, s1, s0
+  ADDW s0, s1, s2
   LA s1, state
   SW s0, 0(s1)
-  LA s0, state
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s2, 16(sp)

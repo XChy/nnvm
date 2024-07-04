@@ -1,8 +1,10 @@
+#include "ADT/Ranges.h"
 #include "Analysis/DomTreeAnalysis.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
 #include <Transform/Scalar/Mem2Reg.h>
+#include <map>
 #include <set>
 #include <vector>
 
@@ -10,6 +12,7 @@ using namespace nnvm;
 
 bool Mem2RegPass::run(Function &F) {
   bool changed = false;
+
   DomTreeAnalysis *DT = getAnalysis<DomTreeAnalysis>(F);
 
   std::vector<StackInst *> stackToRemove;
@@ -58,8 +61,8 @@ bool Mem2RegPass::run(Function &F) {
   for (auto *SI : stackToRemove)
     SI->eraseFromBB();
 
-  for (auto &[SI, defInsts] : defs)
-    changed |= promote(SI);
+  // for (auto &[SI, defInsts] : defs)
+  // changed |= promote(SI);
 
   return changed;
 }

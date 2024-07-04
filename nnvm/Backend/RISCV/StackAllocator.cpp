@@ -1,6 +1,7 @@
 #include "StackAllocator.h"
 #include "ADT/GenericInt.h"
 #include "ADT/PatternMatch.h"
+#include "ADT/Ranges.h"
 #include "Backend/RISCV/Analysis/LiveIntervalAnalysis.h"
 #include "Backend/RISCV/Analysis/NearbyRegAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"

@@ -46,7 +46,7 @@ while.body113:
   store i32 %123 to ptr %i111
   br bb %while.cond112
 while.exit114:
-  call void _sysy_starttime(i32 47)
+  call void _sysy_stoptime(i32 47)
   n.load125 = load i32 from ptr %n
   call void putarray(i32 %n.load125, ptr @b)
   ret i32 0
@@ -58,7 +58,6 @@ external void putfloat(float )
 
 void spmv(i32 n, ptr xptr, ptr yidx, ptr vals, ptr b, ptr x) {
 entry:
-  %k = stack 4
   %j = stack 4
   %i = stack 4
   %n.stack = stack 4

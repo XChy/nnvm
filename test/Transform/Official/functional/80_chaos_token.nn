@@ -1,0 +1,104 @@
+global ptr saY_HeI10_To init with 40 x i32 [32, 115, 97, 121, 115, 32, 104, 101, 108, 108, 111, 32, 116, 111, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+global ptr RET init with 5 x i32 [10, 0, 0, 0, 0]
+global ptr N4__mE___ init with 300 x i32 [83, 97, 97, 98, 97, 114, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 97, 98, 97, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 97, 115, 104, 105, 98, 105, 114, 111, 107, 111, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 114, 97, 105, 103, 117, 109, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 117, 110, 98, 111, 114, 117, 116, 111, 32, 80, 101, 110, 103, 105, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 84, 97, 105, 114, 105, 107, 117, 32, 79, 111, 107, 97, 109, 105, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+global ptr __HELLO init with 100 x i32 [87, 101, 108, 99, 111, 109, 101, 32, 116, 111, 32, 116, 104, 101, 32, 74, 97, 112, 97, 114, 105, 32, 80, 97, 114, 107, 33, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry18:
+  %__ = stack 4
+  %_ = stack 4
+  %i = stack 4
+  19 = call i32 putstr(ptr @__HELLO)
+  store i32 0 to ptr %i
+  br bb %while.cond21
+while.cond21:
+  24 = icmp ne i32 1, i32 0
+  br i1 %24, bb %while.body22, bb %while.exit23
+while.body22:
+  i.load = load i32 from ptr %i
+  27 = sdiv i32 %i.load, i32 6
+  store i32 %27 to ptr %_
+  i.load29 = load i32 from ptr %i
+  30 = srem i32 %i.load29, i32 6
+  store i32 %30 to ptr %__
+  33 = icmp ne i32 %27, i32 %30
+  br i1 %33, bb %then, bb %if.exit
+while.exit23:
+  ret i32 0
+then:
+  _.load36 = load i32 from ptr %_
+  37 = mul i32 %_.load36, i32 200
+  38 = ptradd ptr @N4__mE___, i32 %37
+  39 = call i32 putstr(ptr %38)
+  40 = call i32 putstr(ptr @saY_HeI10_To)
+  __.load41 = load i32 from ptr %__
+  42 = mul i32 %__.load41, i32 200
+  43 = ptradd ptr @N4__mE___, i32 %42
+  44 = call i32 putstr(ptr %43)
+  45 = call i32 putstr(ptr @RET)
+  br bb %if.exit
+if.exit:
+  i.load46 = load i32 from ptr %i
+  47 = mul i32 %i.load46, i32 17
+  48 = add i32 %47, i32 23
+  49 = srem i32 %48, i32 32
+  store i32 %49 to ptr %i
+  51 = icmp eq i32 %49, i32 0
+  br i1 %51, bb %then52, bb %if.exit53
+then52:
+  br bb %while.exit23
+if.exit53:
+  br bb %while.cond21
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+i32 putstr(ptr str) {
+entry:
+  %iNd__1X = stack 4
+  store i32 0 to ptr %iNd__1X
+  br bb %while.cond
+while.cond:
+  iNd__1X.load = load i32 from ptr %iNd__1X
+  6 = mul i32 %iNd__1X.load, i32 4
+  7 = ptradd ptr %str, i32 %6
+  7.load = load i32 from ptr %7
+  9 = icmp ne i32 %7.load, i32 0
+  br i1 %9, bb %while.body, bb %while.exit
+while.body:
+  iNd__1X.load10 = load i32 from ptr %iNd__1X
+  11 = mul i32 %iNd__1X.load10, i32 4
+  12 = ptradd ptr %str, i32 %11
+  12.load = load i32 from ptr %12
+  call void putch(i32 %12.load)
+  iNd__1X.load15 = load i32 from ptr %iNd__1X
+  16 = add i32 %iNd__1X.load15, i32 1
+  store i32 %16 to ptr %iNd__1X
+  br bb %while.cond
+while.exit:
+  iNd__1X.load17 = load i32 from ptr %iNd__1X
+  ret i32 %iNd__1X.load17
+}
+
+

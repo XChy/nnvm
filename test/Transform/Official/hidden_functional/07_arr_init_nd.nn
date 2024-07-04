@@ -1,0 +1,200 @@
+i32 main() {
+entry:
+  %cnt_ptr89 = stack 4
+  %i = stack 96
+  %g = stack 60
+  %e = stack 60
+  %d = stack 60
+  %c = stack 60
+  %cnt_ptr = stack 4
+  %b = stack 60
+  store i32 15 to ptr %cnt_ptr
+  br bb %init.cond
+init.cond:
+  cnt = load i32 from ptr %cnt_ptr
+  8 = icmp ne i32 %cnt, i32 0
+  br i1 %8, bb %init, bb %init.exit
+init:
+  cnt9 = load i32 from ptr %cnt_ptr
+  cnt.dec = sub i32 %cnt9, i32 1
+  store i32 %cnt.dec to ptr %cnt_ptr
+  offset = mul i32 %cnt.dec, i32 4
+  arr.index = add i32 0, i32 %offset
+  arr.index13 = ptradd ptr %b, ptr %arr.index
+  store i32 0 to ptr %arr.index13
+  br bb %init.cond
+init.exit:
+  arr.index15 = ptradd ptr %c, i32 0
+  store i32 1 to ptr %arr.index15
+  arr.index16 = ptradd ptr %c, i32 4
+  store i32 2 to ptr %arr.index16
+  arr.index17 = ptradd ptr %c, i32 8
+  store i32 3 to ptr %arr.index17
+  arr.index18 = ptradd ptr %c, i32 12
+  store i32 4 to ptr %arr.index18
+  arr.index19 = ptradd ptr %c, i32 16
+  store i32 5 to ptr %arr.index19
+  arr.index20 = ptradd ptr %c, i32 20
+  store i32 6 to ptr %arr.index20
+  arr.index21 = ptradd ptr %c, i32 24
+  store i32 7 to ptr %arr.index21
+  arr.index22 = ptradd ptr %c, i32 28
+  store i32 8 to ptr %arr.index22
+  arr.index23 = ptradd ptr %c, i32 32
+  store i32 9 to ptr %arr.index23
+  arr.index24 = ptradd ptr %c, i32 36
+  store i32 10 to ptr %arr.index24
+  arr.index25 = ptradd ptr %c, i32 40
+  store i32 11 to ptr %arr.index25
+  arr.index26 = ptradd ptr %c, i32 44
+  store i32 12 to ptr %arr.index26
+  arr.index27 = ptradd ptr %c, i32 48
+  store i32 13 to ptr %arr.index27
+  arr.index28 = ptradd ptr %c, i32 52
+  store i32 14 to ptr %arr.index28
+  arr.index29 = ptradd ptr %c, i32 56
+  store i32 15 to ptr %arr.index29
+  arr.index31 = ptradd ptr %d, i32 0
+  store i32 1 to ptr %arr.index31
+  arr.index32 = ptradd ptr %d, i32 4
+  store i32 2 to ptr %arr.index32
+  arr.index33 = ptradd ptr %d, i32 8
+  store i32 3 to ptr %arr.index33
+  arr.index34 = ptradd ptr %d, i32 12
+  store i32 4 to ptr %arr.index34
+  arr.index35 = ptradd ptr %d, i32 16
+  store i32 5 to ptr %arr.index35
+  arr.index36 = ptradd ptr %d, i32 20
+  store i32 6 to ptr %arr.index36
+  arr.index37 = ptradd ptr %d, i32 24
+  store i32 7 to ptr %arr.index37
+  arr.index38 = ptradd ptr %d, i32 28
+  store i32 8 to ptr %arr.index38
+  arr.index39 = ptradd ptr %d, i32 32
+  store i32 9 to ptr %arr.index39
+  arr.index40 = ptradd ptr %d, i32 36
+  store i32 10 to ptr %arr.index40
+  arr.index41 = ptradd ptr %d, i32 40
+  store i32 11 to ptr %arr.index41
+  arr.index42 = ptradd ptr %d, i32 44
+  store i32 12 to ptr %arr.index42
+  arr.index43 = ptradd ptr %d, i32 48
+  store i32 13 to ptr %arr.index43
+  arr.index44 = ptradd ptr %d, i32 52
+  store i32 14 to ptr %arr.index44
+  arr.index45 = ptradd ptr %d, i32 56
+  store i32 15 to ptr %arr.index45
+  arr.index47 = ptradd ptr %e, i32 0
+  store i32 1 to ptr %arr.index47
+  arr.index48 = ptradd ptr %e, i32 4
+  store i32 2 to ptr %arr.index48
+  arr.index49 = ptradd ptr %e, i32 8
+  store i32 3 to ptr %arr.index49
+  arr.index50 = ptradd ptr %e, i32 12
+  store i32 4 to ptr %arr.index50
+  arr.index51 = ptradd ptr %e, i32 16
+  store i32 5 to ptr %arr.index51
+  arr.index52 = ptradd ptr %e, i32 20
+  store i32 6 to ptr %arr.index52
+  arr.index53 = ptradd ptr %e, i32 24
+  store i32 7 to ptr %arr.index53
+  arr.index54 = ptradd ptr %e, i32 28
+  store i32 8 to ptr %arr.index54
+  arr.index55 = ptradd ptr %e, i32 32
+  store i32 9 to ptr %arr.index55
+  arr.index56 = ptradd ptr %e, i32 36
+  store i32 10 to ptr %arr.index56
+  arr.index57 = ptradd ptr %e, i32 40
+  store i32 11 to ptr %arr.index57
+  arr.index58 = ptradd ptr %e, i32 44
+  store i32 12 to ptr %arr.index58
+  arr.index59 = ptradd ptr %e, i32 48
+  store i32 13 to ptr %arr.index59
+  arr.index60 = ptradd ptr %e, i32 52
+  store i32 14 to ptr %arr.index60
+  arr.index61 = ptradd ptr %e, i32 56
+  store i32 15 to ptr %arr.index61
+  arr.index64 = ptradd ptr %g, i32 0
+  store i32 1 to ptr %arr.index64
+  arr.index65 = ptradd ptr %g, i32 4
+  store i32 2 to ptr %arr.index65
+  arr.index66 = ptradd ptr %g, i32 8
+  store i32 3 to ptr %arr.index66
+  arr.index67 = ptradd ptr %g, i32 12
+  store i32 4 to ptr %arr.index67
+  arr.index68 = ptradd ptr %g, i32 16
+  store i32 0 to ptr %arr.index68
+  arr.index69 = ptradd ptr %g, i32 20
+  store i32 0 to ptr %arr.index69
+  arr.index70 = ptradd ptr %g, i32 24
+  store i32 7 to ptr %arr.index70
+  arr.index71 = ptradd ptr %g, i32 28
+  store i32 0 to ptr %arr.index71
+  arr.index72 = ptradd ptr %g, i32 32
+  store i32 0 to ptr %arr.index72
+  arr.index73 = ptradd ptr %g, i32 36
+  store i32 10 to ptr %arr.index73
+  arr.index74 = ptradd ptr %g, i32 40
+  store i32 11 to ptr %arr.index74
+  arr.index75 = ptradd ptr %g, i32 44
+  store i32 12 to ptr %arr.index75
+  arr.index76 = ptradd ptr %g, i32 48
+  store i32 0 to ptr %arr.index76
+  arr.index77 = ptradd ptr %g, i32 52
+  store i32 0 to ptr %arr.index77
+  arr.index78 = ptradd ptr %g, i32 56
+  store i32 0 to ptr %arr.index78
+  arr.index81 = ptradd ptr %i, i32 0
+  store i32 1 to ptr %arr.index81
+  arr.index82 = ptradd ptr %i, i32 4
+  store i32 2 to ptr %arr.index82
+  arr.index83 = ptradd ptr %i, i32 8
+  store i32 3 to ptr %arr.index83
+  arr.index84 = ptradd ptr %i, i32 12
+  store i32 4 to ptr %arr.index84
+  arr.index85 = ptradd ptr %i, i32 16
+  store i32 5 to ptr %arr.index85
+  store i32 19 to ptr %cnt_ptr89
+  br bb %init.cond86
+init.cond86:
+  cnt90 = load i32 from ptr %cnt_ptr89
+  91 = icmp ne i32 %cnt90, i32 0
+  br i1 %91, bb %init87, bb %init.exit88
+init87:
+  cnt92 = load i32 from ptr %cnt_ptr89
+  cnt.dec93 = sub i32 %cnt92, i32 1
+  store i32 %cnt.dec93 to ptr %cnt_ptr89
+  offset94 = mul i32 %cnt.dec93, i32 4
+  arr.index95 = add i32 20, i32 %offset94
+  arr.index96 = ptradd ptr %i, ptr %arr.index95
+  store i32 0 to ptr %arr.index96
+  br bb %init.cond86
+init.exit88:
+  ret i32 4
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+
