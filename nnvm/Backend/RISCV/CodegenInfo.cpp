@@ -74,6 +74,19 @@ LIRBB *riscv::getBranchDest(LIRInst *inst) {
   }
 }
 
+void riscv::setBranchDest(LIRInst *inst, LIRBB *dest) {
+  switch (inst->getOpcode()) {
+  case JAL:
+    inst->setUse(1, dest);
+    break;
+  case (B_BEGIN + 1)...(B_END - 1):
+    inst->setUse(2, dest);
+    break;
+  default:
+    nnvm_unreachable("Must be a valid branch instruction")
+  }
+}
+
 LIRInstID riscv::getLoadInstType(LIRValueType type) {
   switch (type) {
   case LIRValueType::i1:

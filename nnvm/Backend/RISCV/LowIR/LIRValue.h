@@ -13,7 +13,7 @@ namespace nnvm::riscv {
 class LIRInst;
 class LIRValue;
 
-enum class LIRValueType {
+enum class LIRValueType : uint64_t {
   IntegerBegin,
   i64,
   i32,
@@ -22,7 +22,8 @@ enum class LIRValueType {
   i1,
   IntegerEnd,
   Float,
-  Double
+  Double,
+  End,
 };
 // Every inst manages the memory of operand handles;
 class LowOperand : public ListTrait<LowOperand> {
@@ -64,6 +65,7 @@ class LIRValue {
 public:
   enum ValueID {
     None,
+    UBValue,
     Const, // Need to be materialized finally.
     Reg,
     Imm, // Different from Constant, this is valid for machine
@@ -94,6 +96,7 @@ public:
   bool isBlock() const { return valueID == Block; }
   bool isStackSlot() const { return valueID == Stack; }
   bool isConstant() const { return valueID == Const; }
+  bool isUBValue() const { return valueID == UBValue; }
   bool isGlobalVar() const { return valueID == GlobalVar; }
 
   bool isFP() const {
@@ -201,6 +204,12 @@ private:
     uint64_t ivalue;
     float fvalue;
   };
+};
+
+class LIRUBValue : public LIRValue {
+public:
+  LIRUBValue(LIRValueType type) : LIRValue(LIRValue::UBValue, type) {}
+  static LIRUBValue *get(LIRValueType type);
 };
 
 } /* namespace nnvm::riscv */

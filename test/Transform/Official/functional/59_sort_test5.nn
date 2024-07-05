@@ -5,32 +5,29 @@ entry77:
   83 = sub i32 %82, i32 1
   br bb %while.cond84
 while.cond84:
-  163 = phi [bb %entry77, i32 ub, bb %while.body85, i32 %95]
-  161 = phi [bb %entry77, i32 %83, bb %while.body85, i32 %97]
+  i.phi161 = phi [bb %entry77, i32 %83, bb %while.body85, i32 %97]
   88 = sub i32 0, i32 1
-  89 = icmp sgt i32 %161, i32 %88
+  89 = icmp sgt i32 %i.phi161, i32 %88
   90 = icmp ne i1 %89, i1 0
   br i1 %90, bb %while.body85, bb %while.exit86
 while.body85:
   92 = sub i32 %len, i32 1
-  95 = call i32 heap_ajust(ptr %arr, i32 %161, i32 %92)
-  97 = sub i32 %161, i32 1
+  95 = call i32 heap_ajust(ptr %arr, i32 %i.phi161, i32 %92)
+  97 = sub i32 %i.phi161, i32 1
   br bb %while.cond84
 while.exit86:
   99 = sub i32 %len, i32 1
   br bb %while.cond100
 while.cond100:
-  164 = phi [bb %while.exit86, i32 ub, bb %while.body101, i32 0]
-  162 = phi [bb %while.exit86, i32 %163, bb %while.body101, i32 %114]
-  160 = phi [bb %while.exit86, i32 %99, bb %while.body101, i32 %116]
-  104 = icmp sgt i32 %160, i32 0
+  i.phi = phi [bb %while.exit86, i32 %99, bb %while.body101, i32 %116]
+  104 = icmp sgt i32 %i.phi, i32 0
   105 = icmp ne i1 %104, i1 0
   br i1 %105, bb %while.body101, bb %while.exit102
 while.body101:
-  109 = call i32 swap(ptr %arr, i32 0, i32 %160)
-  111 = sub i32 %160, i32 1
+  109 = call i32 swap(ptr %arr, i32 0, i32 %i.phi)
+  111 = sub i32 %i.phi, i32 1
   114 = call i32 heap_ajust(ptr %arr, i32 0, i32 %111)
-  116 = sub i32 %160, i32 1
+  116 = sub i32 %i.phi, i32 1
   br bb %while.cond100
 while.exit102:
   ret i32 0
@@ -42,23 +39,22 @@ entry19:
   27 = add i32 %26, i32 1
   br bb %while.cond
 while.cond:
-  169 = phi [bb %entry19, i1 ub, bb %if.exit68, i1 %168]
-  166 = phi [bb %entry19, i32 %27, bb %if.exit68, i32 %76]
-  165 = phi [bb %entry19, i32 %start, bb %if.exit68, i32 %167]
+  son.phi = phi [bb %entry19, i32 %27, bb %if.exit68, i32 %76]
+  dad.phi = phi [bb %entry19, i32 %start, bb %if.exit68, i32 %son.phi167]
   33 = add i32 %end, i32 1
-  34 = icmp slt i32 %166, i32 %33
+  34 = icmp slt i32 %son.phi, i32 %33
   35 = icmp ne i1 %34, i1 0
   br i1 %35, bb %while.body, bb %while.exit
 while.body:
-  38 = icmp slt i32 %166, i32 %end
+  38 = icmp slt i32 %son.phi, i32 %end
   br i1 %38, bb %select.then, bb %select.else
 while.exit:
   ret i32 0
 select.then:
-  44 = mul i32 %166, i32 4
+  44 = mul i32 %son.phi, i32 4
   45 = ptradd ptr %arr, i32 %44
   45.load = load i32 from ptr %45
-  48 = add i32 %166, i32 1
+  48 = add i32 %son.phi, i32 1
   49 = mul i32 %48, i32 4
   50 = ptradd ptr %arr, i32 %49
   50.load = load i32 from ptr %50
@@ -67,17 +63,17 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  168 = phi [bb %select.else, i1 0, bb %select.then, i1 %52]
-  br i1 %168, bb %then, bb %if.exit
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %52]
+  br i1 %select.phi, bb %then, bb %if.exit
 then:
-  57 = add i32 %166, i32 1
+  57 = add i32 %son.phi, i32 1
   br bb %if.exit
 if.exit:
-  167 = phi [bb %select.exit, i32 %166, bb %then, i32 %57]
-  59 = mul i32 %165, i32 4
+  son.phi167 = phi [bb %select.exit, i32 %son.phi, bb %then, i32 %57]
+  59 = mul i32 %dad.phi, i32 4
   60 = ptradd ptr %arr, i32 %59
   60.load = load i32 from ptr %60
-  63 = mul i32 %167, i32 4
+  63 = mul i32 %son.phi167, i32 4
   64 = ptradd ptr %arr, i32 %63
   64.load = load i32 from ptr %64
   66 = icmp sgt i32 %60.load, i32 %64.load
@@ -87,8 +83,8 @@ then67:
 if.exit68:
   br bb %while.cond
 else:
-  72 = call i32 swap(ptr %arr, i32 %165, i32 %167)
-  75 = mul i32 %167, i32 2
+  72 = call i32 swap(ptr %arr, i32 %dad.phi, i32 %son.phi167)
+  75 = mul i32 %son.phi167, i32 2
   76 = add i32 %75, i32 1
   br bb %if.exit68
 }
@@ -141,19 +137,18 @@ entry117:
   141 = call i32 heap_sort(ptr %a, i32 %n.load)
   br bb %while.cond142
 while.cond142:
-  171 = phi [bb %entry117, i32 ub, bb %while.body143, i32 10]
-  170 = phi [bb %entry117, i32 %141, bb %while.body143, i32 %159]
+  i139.phi = phi [bb %entry117, i32 %141, bb %while.body143, i32 %159]
   n.load146 = load i32 from ptr @n
-  147 = icmp slt i32 %170, i32 %n.load146
+  147 = icmp slt i32 %i139.phi, i32 %n.load146
   148 = icmp ne i1 %147, i1 0
   br i1 %148, bb %while.body143, bb %while.exit144
 while.body143:
-  151 = mul i32 %170, i32 4
+  151 = mul i32 %i139.phi, i32 4
   152 = ptradd ptr %a, i32 %151
   152.load = load i32 from ptr %152
   call void putint(i32 %152.load)
   call void putch(i32 10)
-  159 = add i32 %170, i32 1
+  159 = add i32 %i139.phi, i32 1
   br bb %while.cond142
 while.exit144:
   ret i32 0

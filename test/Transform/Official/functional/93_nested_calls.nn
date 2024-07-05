@@ -8,8 +8,8 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  212 = phi [bb %select.else, i1 0, bb %select.then, i1 %69]
-  br i1 %212, bb %then71, bb %else73
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %69]
+  br i1 %select.phi, bb %then71, bb %else73
 then71:
   ret i32 1
 if.exit72:
@@ -99,16 +99,16 @@ entry84:
   92 = call i32 getint()
   br bb %while.cond
 while.cond:
-  213 = phi [bb %entry84, i32 0, bb %while.body, i32 %106]
-  99 = icmp slt i32 %213, i32 10
+  i.phi = phi [bb %entry84, i32 0, bb %while.body, i32 %106]
+  99 = icmp slt i32 %i.phi, i32 10
   100 = icmp ne i1 %99, i1 0
   br i1 %100, bb %while.body, bb %while.exit
 while.body:
-  102 = mul i32 %213, i32 4
+  102 = mul i32 %i.phi, i32 4
   103 = ptradd ptr %arr, i32 %102
   104 = call i32 getint()
   store i32 %104 to ptr %103
-  106 = add i32 %213, i32 1
+  106 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
   109 = call i32 func7(i32 %86)

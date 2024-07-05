@@ -12,56 +12,56 @@ i32 FourWhile() {
 entry:
   br bb %while.cond
 while.cond:
-  60 = phi [bb %entry, i32 10, bb %while.exit15, i32 %59]
-  56 = phi [bb %entry, i32 7, bb %while.exit15, i32 %55]
-  53 = phi [bb %entry, i32 6, bb %while.exit15, i32 %42]
-  52 = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
-  9 = icmp slt i32 %52, i32 20
+  d.phi60 = phi [bb %entry, i32 10, bb %while.exit15, i32 %d.phi59]
+  c.phi56 = phi [bb %entry, i32 7, bb %while.exit15, i32 %c.phi]
+  b.phi = phi [bb %entry, i32 6, bb %while.exit15, i32 %42]
+  a.phi = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
+  9 = icmp slt i32 %a.phi, i32 20
   10 = icmp ne i1 %9, i1 0
   br i1 %10, bb %while.body, bb %while.exit
 while.body:
-  12 = add i32 %52, i32 3
+  12 = add i32 %a.phi, i32 3
   br bb %while.cond13
 while.exit:
-  46 = add i32 %53, i32 %60
-  47 = add i32 %52, i32 %46
-  49 = add i32 %47, i32 %56
+  46 = add i32 %b.phi, i32 %d.phi60
+  47 = add i32 %a.phi, i32 %46
+  49 = add i32 %47, i32 %c.phi56
   ret i32 %49
 while.cond13:
-  59 = phi [bb %while.body, i32 %60, bb %while.exit23, i32 %58]
-  55 = phi [bb %while.body, i32 %56, bb %while.exit23, i32 %40]
-  54 = phi [bb %while.body, i32 %53, bb %while.exit23, i32 %20]
-  17 = icmp slt i32 %54, i32 10
+  d.phi59 = phi [bb %while.body, i32 %d.phi60, bb %while.exit23, i32 %d.phi]
+  c.phi = phi [bb %while.body, i32 %c.phi56, bb %while.exit23, i32 %40]
+  b.phi54 = phi [bb %while.body, i32 %b.phi, bb %while.exit23, i32 %20]
+  17 = icmp slt i32 %b.phi54, i32 10
   18 = icmp ne i1 %17, i1 0
   br i1 %18, bb %while.body14, bb %while.exit15
 while.body14:
-  20 = add i32 %54, i32 1
+  20 = add i32 %b.phi54, i32 1
   br bb %while.cond21
 while.exit15:
-  42 = sub i32 %54, i32 2
+  42 = sub i32 %b.phi54, i32 2
   br bb %while.cond
 while.cond21:
-  58 = phi [bb %while.body14, i32 %59, bb %while.exit31, i32 %38]
-  57 = phi [bb %while.body14, i32 %55, bb %while.exit31, i32 %28]
-  25 = icmp eq i32 %57, i32 7
+  d.phi = phi [bb %while.body14, i32 %d.phi59, bb %while.exit31, i32 %38]
+  c.phi57 = phi [bb %while.body14, i32 %c.phi, bb %while.exit31, i32 %28]
+  25 = icmp eq i32 %c.phi57, i32 7
   26 = icmp ne i1 %25, i1 0
   br i1 %26, bb %while.body22, bb %while.exit23
 while.body22:
-  28 = sub i32 %57, i32 1
+  28 = sub i32 %c.phi57, i32 1
   br bb %while.cond29
 while.exit23:
-  40 = add i32 %57, i32 1
+  40 = add i32 %c.phi57, i32 1
   br bb %while.cond13
 while.cond29:
-  61 = phi [bb %while.body22, i32 %58, bb %while.body30, i32 %36]
-  33 = icmp slt i32 %61, i32 20
+  d.phi61 = phi [bb %while.body22, i32 %d.phi, bb %while.body30, i32 %36]
+  33 = icmp slt i32 %d.phi61, i32 20
   34 = icmp ne i1 %33, i1 0
   br i1 %34, bb %while.body30, bb %while.exit31
 while.body30:
-  36 = add i32 %61, i32 3
+  36 = add i32 %d.phi61, i32 3
   br bb %while.cond29
 while.exit31:
-  38 = sub i32 %61, i32 1
+  38 = sub i32 %d.phi61, i32 1
   br bb %while.cond21
 }
 

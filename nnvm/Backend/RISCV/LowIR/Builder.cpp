@@ -32,6 +32,13 @@ LIRBuilder &LIRBuilder::copy(LIRValue *from, Register *to) {
   return *this;
 }
 
+LIRBuilder &LIRBuilder::jumpTo(LIRBB *dest) {
+  LIRInst *inst =
+      LIRInst::create(JAL, 2)->setUse(0, phyReg(ZERO))->setUse(1, dest);
+  addInst(inst);
+  return *this;
+}
+
 LIRBuilder &LIRBuilder::storeValueTo(LIRValue *value, LIRValue *ptr,
                                      LIRValueType type) {
   auto *saveReg = LIRInst::createAllUse(getStoreInstType(type), value, ptr,

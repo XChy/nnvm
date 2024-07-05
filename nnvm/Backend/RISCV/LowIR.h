@@ -180,6 +180,7 @@ public:
 
   uint getSuccNum() const;
   LIRBB *getSucc(int index);
+  void setSucc(int index, LIRBB *dest);
 
   uint getPredNum() const;
   LIRBB *getPred(int index);

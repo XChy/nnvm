@@ -3,6 +3,7 @@
 #include "Backend/RISCV/LowIR.h"
 #include <iterator>
 #include <memory>
+#include <unordered_map>
 using namespace nnvm::riscv;
 
 LowOperand *LowOperand::use(LIRValue *newOperand) {
@@ -75,6 +76,9 @@ void LIRValue::emit(std::ostream &out, EmitInfo &info) const {
     break;
   case Func:
     out << as<LIRFunc>()->name;
+    break;
+  case UBValue:
+    out << "ubvalue";
     break;
   case GlobalVar:
   case GlobalName:
@@ -168,4 +172,12 @@ std::vector<std::byte> LIRConst::interpretAsBytes() {
   }
 
   return ret;
+}
+
+static std::unordered_map<LIRValueType, std::unique_ptr<LIRUBValue>> ubvalues;
+
+LIRUBValue *LIRUBValue::get(LIRValueType type) {
+  if (!ubvalues.count(type))
+    ubvalues[type] = std::make_unique<LIRUBValue>(type);
+  return ubvalues[type].get();
 }

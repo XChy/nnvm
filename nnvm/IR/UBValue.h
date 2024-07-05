@@ -10,6 +10,8 @@ public:
   std::string dump() { return "ub"; }
   std::string dumpAsOperand() { return type->dump() + " ub"; }
 
+  static std::vector<UBValue *> allUBValues();
+
 private:
   UBValue(Type *type) : Value(ValueID::UBValue, type) {}
 };

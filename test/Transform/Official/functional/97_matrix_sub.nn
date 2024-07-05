@@ -27,87 +27,84 @@ entry46:
   store i32 3 to ptr @L
   br bb %while.cond57
 while.cond57:
-  151 = phi [bb %entry46, i32 0, bb %while.body58, i32 %94]
-  61 = icmp slt i32 %151, i32 3
+  i56.phi151 = phi [bb %entry46, i32 0, bb %while.body58, i32 %94]
+  61 = icmp slt i32 %i56.phi151, i32 3
   62 = icmp ne i1 %61, i1 0
   br i1 %62, bb %while.body58, bb %while.exit59
 while.body58:
-  64 = mul i32 %151, i32 4
+  64 = mul i32 %i56.phi151, i32 4
   65 = ptradd ptr %a0, i32 %64
-  67 = si2f i32 %151 to float
+  67 = si2f i32 %i56.phi151 to float
   store float %67 to ptr %65
-  69 = mul i32 %151, i32 4
+  69 = mul i32 %i56.phi151, i32 4
   70 = ptradd ptr %a1, i32 %69
-  72 = si2f i32 %151 to float
+  72 = si2f i32 %i56.phi151 to float
   store float %72 to ptr %70
-  74 = mul i32 %151, i32 4
+  74 = mul i32 %i56.phi151, i32 4
   75 = ptradd ptr %a2, i32 %74
-  77 = si2f i32 %151 to float
+  77 = si2f i32 %i56.phi151 to float
   store float %77 to ptr %75
-  79 = mul i32 %151, i32 4
+  79 = mul i32 %i56.phi151, i32 4
   80 = ptradd ptr %b0, i32 %79
-  82 = si2f i32 %151 to float
+  82 = si2f i32 %i56.phi151 to float
   store float %82 to ptr %80
-  84 = mul i32 %151, i32 4
+  84 = mul i32 %i56.phi151, i32 4
   85 = ptradd ptr %b1, i32 %84
-  87 = si2f i32 %151 to float
+  87 = si2f i32 %i56.phi151 to float
   store float %87 to ptr %85
-  89 = mul i32 %151, i32 4
+  89 = mul i32 %i56.phi151, i32 4
   90 = ptradd ptr %b2, i32 %89
-  92 = si2f i32 %151 to float
+  92 = si2f i32 %i56.phi151 to float
   store float %92 to ptr %90
-  94 = add i32 %151, i32 1
+  94 = add i32 %i56.phi151, i32 1
   br bb %while.cond57
 while.exit59:
   95 = call i32 sub(ptr %a0, ptr %a1, ptr %a2, ptr %b0, ptr %b1, ptr %b2, ptr %c0, ptr %c1, ptr %c2)
   br bb %while.cond97
 while.cond97:
-  154 = phi [bb %while.exit59, i32 ub, bb %while.body98, i32 %107]
-  150 = phi [bb %while.exit59, i32 %95, bb %while.body98, i32 %111]
-  101 = icmp slt i32 %150, i32 3
+  i56.phi150 = phi [bb %while.exit59, i32 %95, bb %while.body98, i32 %111]
+  101 = icmp slt i32 %i56.phi150, i32 3
   102 = icmp ne i1 %101, i1 0
   br i1 %102, bb %while.body98, bb %while.exit99
 while.body98:
-  104 = mul i32 %150, i32 4
+  104 = mul i32 %i56.phi150, i32 4
   105 = ptradd ptr %c0, i32 %104
   105.load = load float from ptr %105
   107 = f2si float %105.load to i32
   call void putint(i32 %107)
-  111 = add i32 %150, i32 1
+  111 = add i32 %i56.phi150, i32 1
   br bb %while.cond97
 while.exit99:
   call void putch(i32 10)
   br bb %while.cond114
 while.cond114:
-  153 = phi [bb %while.exit99, i32 10, bb %while.body115, i32 %124]
-  149 = phi [bb %while.exit99, i32 0, bb %while.body115, i32 %128]
-  118 = icmp slt i32 %149, i32 3
+  i56.phi149 = phi [bb %while.exit99, i32 0, bb %while.body115, i32 %128]
+  118 = icmp slt i32 %i56.phi149, i32 3
   119 = icmp ne i1 %118, i1 0
   br i1 %119, bb %while.body115, bb %while.exit116
 while.body115:
-  121 = mul i32 %149, i32 4
+  121 = mul i32 %i56.phi149, i32 4
   122 = ptradd ptr %c1, i32 %121
   122.load = load float from ptr %122
   124 = f2si float %122.load to i32
   call void putint(i32 %124)
-  128 = add i32 %149, i32 1
+  128 = add i32 %i56.phi149, i32 1
   br bb %while.cond114
 while.exit116:
   call void putch(i32 10)
   br bb %while.cond131
 while.cond131:
-  152 = phi [bb %while.exit116, i32 10, bb %while.body132, i32 %141]
-  148 = phi [bb %while.exit116, i32 0, bb %while.body132, i32 %145]
-  135 = icmp slt i32 %148, i32 3
+  i56.phi = phi [bb %while.exit116, i32 0, bb %while.body132, i32 %145]
+  135 = icmp slt i32 %i56.phi, i32 3
   136 = icmp ne i1 %135, i1 0
   br i1 %136, bb %while.body132, bb %while.exit133
 while.body132:
-  138 = mul i32 %148, i32 4
+  138 = mul i32 %i56.phi, i32 4
   139 = ptradd ptr %c2, i32 %138
   139.load = load float from ptr %139
   141 = f2si float %139.load to i32
   call void putint(i32 %141)
-  145 = add i32 %148, i32 1
+  145 = add i32 %i56.phi, i32 1
   br bb %while.cond131
 while.exit133:
   call void putch(i32 10)
@@ -122,42 +119,42 @@ i32 sub(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) 
 entry:
   br bb %while.cond
 while.cond:
-  155 = phi [bb %entry, i32 0, bb %while.body, i32 %45]
-  6 = icmp slt i32 %155, i32 3
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %45]
+  6 = icmp slt i32 %i.phi, i32 3
   7 = icmp ne i1 %6, i1 0
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
-  9 = mul i32 %155, i32 4
+  9 = mul i32 %i.phi, i32 4
   10 = ptradd ptr %c0, i32 %9
-  12 = mul i32 %155, i32 4
+  12 = mul i32 %i.phi, i32 4
   13 = ptradd ptr %a0, i32 %12
   13.load = load float from ptr %13
-  16 = mul i32 %155, i32 4
+  16 = mul i32 %i.phi, i32 4
   17 = ptradd ptr %b0, i32 %16
   17.load = load float from ptr %17
   19 = fsub float %13.load, float %17.load
   store float %19 to ptr %10
-  21 = mul i32 %155, i32 4
+  21 = mul i32 %i.phi, i32 4
   22 = ptradd ptr %c1, i32 %21
-  24 = mul i32 %155, i32 4
+  24 = mul i32 %i.phi, i32 4
   25 = ptradd ptr %a1, i32 %24
   25.load = load float from ptr %25
-  28 = mul i32 %155, i32 4
+  28 = mul i32 %i.phi, i32 4
   29 = ptradd ptr %b1, i32 %28
   29.load = load float from ptr %29
   31 = fsub float %25.load, float %29.load
   store float %31 to ptr %22
-  33 = mul i32 %155, i32 4
+  33 = mul i32 %i.phi, i32 4
   34 = ptradd ptr %c2, i32 %33
-  36 = mul i32 %155, i32 4
+  36 = mul i32 %i.phi, i32 4
   37 = ptradd ptr %a2, i32 %36
   37.load = load float from ptr %37
-  40 = mul i32 %155, i32 4
+  40 = mul i32 %i.phi, i32 4
   41 = ptradd ptr %b2, i32 %40
   41.load = load float from ptr %41
   43 = fsub float %37.load, float %41.load
   store float %43 to ptr %34
-  45 = add i32 %155, i32 1
+  45 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
   ret i32 0

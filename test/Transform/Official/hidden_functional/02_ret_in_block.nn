@@ -13,23 +13,6 @@ entry:
   29 = add i32 %26, i32 %24
   30 = srem i32 %29, i32 21
   ret i32 %30
-  33 = add i32 %8, i32 %26
-  34 = sub i32 %33, i32 97
-  37 = sub i32 %8, i32 %34
-  38 = srem i32 %37, i32 62
-  41 = add i32 %34, i32 %38
-  42 = srem i32 %41, i32 17
-  ret i32 %42
-  45 = add i32 %34, i32 %38
-  46 = srem i32 %45, i32 13
-  ret i32 %46
-  49 = mul i32 %38, i32 893
-  50 = srem i32 %49, i32 83
-  53 = add i32 %50, i32 %38
-  54 = sub i32 %53, i32 771
-  57 = add i32 %50, i32 %54
-  58 = srem i32 %57, i32 11
-  ret i32 %58
 }
 
 external void putfarray(i32 , ptr )

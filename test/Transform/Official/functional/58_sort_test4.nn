@@ -7,60 +7,58 @@ i32 select_sort(ptr A, i32 n) {
 entry:
   br bb %while.cond
 while.cond:
-  110 = phi [bb %entry, i32 ub, bb %if.exit41, i32 %109]
-  108 = phi [bb %entry, i32 ub, bb %if.exit41, i32 %107]
-  105 = phi [bb %entry, i32 ub, bb %if.exit41, i32 %104]
-  103 = phi [bb %entry, i32 0, bb %if.exit41, i32 %59]
+  tmp.phi110 = phi [bb %entry, i32 ub, bb %if.exit41, i32 %tmp.phi]
+  i.phi = phi [bb %entry, i32 0, bb %if.exit41, i32 %59]
   10 = sub i32 %n, i32 1
-  11 = icmp slt i32 %103, i32 %10
+  11 = icmp slt i32 %i.phi, i32 %10
   12 = icmp ne i1 %11, i1 0
   br i1 %12, bb %while.body, bb %while.exit
 while.body:
-  15 = add i32 %103, i32 1
+  15 = add i32 %i.phi, i32 1
   br bb %while.cond16
 while.exit:
   ret i32 0
 while.cond16:
-  107 = phi [bb %while.body, i32 %103, bb %if.exit, i32 %106]
-  104 = phi [bb %while.body, i32 %15, bb %if.exit, i32 %36]
-  21 = icmp slt i32 %104, i32 %n
+  min.phi107 = phi [bb %while.body, i32 %i.phi, bb %if.exit, i32 %min.phi]
+  j.phi = phi [bb %while.body, i32 %15, bb %if.exit, i32 %36]
+  21 = icmp slt i32 %j.phi, i32 %n
   22 = icmp ne i1 %21, i1 0
   br i1 %22, bb %while.body17, bb %while.exit18
 while.body17:
-  24 = mul i32 %107, i32 4
+  24 = mul i32 %min.phi107, i32 4
   25 = ptradd ptr %A, i32 %24
   25.load = load i32 from ptr %25
-  28 = mul i32 %104, i32 4
+  28 = mul i32 %j.phi, i32 4
   29 = ptradd ptr %A, i32 %28
   29.load = load i32 from ptr %29
   31 = icmp sgt i32 %25.load, i32 %29.load
   br i1 %31, bb %then, bb %if.exit
 while.exit18:
-  39 = icmp ne i32 %107, i32 %103
+  39 = icmp ne i32 %min.phi107, i32 %i.phi
   br i1 %39, bb %then40, bb %if.exit41
 then:
   br bb %if.exit
 if.exit:
-  106 = phi [bb %while.body17, i32 %107, bb %then, i32 %104]
-  36 = add i32 %104, i32 1
+  min.phi = phi [bb %while.body17, i32 %min.phi107, bb %then, i32 %j.phi]
+  36 = add i32 %j.phi, i32 1
   br bb %while.cond16
 then40:
-  44 = mul i32 %107, i32 4
+  44 = mul i32 %min.phi107, i32 4
   45 = ptradd ptr %A, i32 %44
   45.load = load i32 from ptr %45
-  48 = mul i32 %107, i32 4
+  48 = mul i32 %min.phi107, i32 4
   49 = ptradd ptr %A, i32 %48
-  51 = mul i32 %103, i32 4
+  51 = mul i32 %i.phi, i32 4
   52 = ptradd ptr %A, i32 %51
   52.load = load i32 from ptr %52
   store i32 %52.load to ptr %49
-  55 = mul i32 %103, i32 4
+  55 = mul i32 %i.phi, i32 4
   56 = ptradd ptr %A, i32 %55
   store i32 %45.load to ptr %56
   br bb %if.exit41
 if.exit41:
-  109 = phi [bb %while.exit18, i32 %110, bb %then40, i32 %45.load]
-  59 = add i32 %103, i32 1
+  tmp.phi = phi [bb %while.exit18, i32 %tmp.phi110, bb %then40, i32 %45.load]
+  59 = add i32 %i.phi, i32 1
   br bb %while.cond
 }
 
@@ -108,19 +106,18 @@ entry60:
   84 = call i32 select_sort(ptr %a, i32 %n.load)
   br bb %while.cond85
 while.cond85:
-  112 = phi [bb %entry60, i32 ub, bb %while.body86, i32 10]
-  111 = phi [bb %entry60, i32 %84, bb %while.body86, i32 %102]
+  i82.phi = phi [bb %entry60, i32 %84, bb %while.body86, i32 %102]
   n.load89 = load i32 from ptr @n
-  90 = icmp slt i32 %111, i32 %n.load89
+  90 = icmp slt i32 %i82.phi, i32 %n.load89
   91 = icmp ne i1 %90, i1 0
   br i1 %91, bb %while.body86, bb %while.exit87
 while.body86:
-  94 = mul i32 %111, i32 4
+  94 = mul i32 %i82.phi, i32 4
   95 = ptradd ptr %a, i32 %94
   95.load = load i32 from ptr %95
   call void putint(i32 %95.load)
   call void putch(i32 10)
-  102 = add i32 %111, i32 1
+  102 = add i32 %i82.phi, i32 1
   br bb %while.cond85
 while.exit87:
   ret i32 0

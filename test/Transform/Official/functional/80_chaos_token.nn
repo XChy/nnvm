@@ -17,20 +17,17 @@ entry18:
   19 = call i32 putstr(ptr @__HELLO)
   br bb %while.cond21
 while.cond21:
-  59 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %30]
-  57 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %27]
-  55 = phi [bb %entry18, i32 0, bb %if.exit53, i32 %49]
+  __.phi59 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %30]
+  _.phi57 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %27]
+  i.phi55 = phi [bb %entry18, i32 0, bb %if.exit53, i32 %49]
   24 = icmp ne i32 1, i32 0
   br i1 %24, bb %while.body22, bb %while.exit23
 while.body22:
-  27 = sdiv i32 %55, i32 6
-  30 = srem i32 %55, i32 6
+  27 = sdiv i32 %i.phi55, i32 6
+  30 = srem i32 %i.phi55, i32 6
   33 = icmp ne i32 %27, i32 %30
   br i1 %33, bb %then, bb %if.exit
 while.exit23:
-  58 = phi [bb %while.cond21, i32 %59, bb %then52, i32 %30]
-  56 = phi [bb %while.cond21, i32 %57, bb %then52, i32 %27]
-  54 = phi [bb %while.cond21, i32 %55, bb %then52, i32 %49]
   ret i32 0
 then:
   37 = mul i32 %27, i32 200
@@ -43,7 +40,7 @@ then:
   45 = call i32 putstr(ptr @RET)
   br bb %if.exit
 if.exit:
-  47 = mul i32 %55, i32 17
+  47 = mul i32 %i.phi55, i32 17
   48 = add i32 %47, i32 23
   49 = srem i32 %48, i32 32
   51 = icmp eq i32 %49, i32 0
@@ -72,21 +69,21 @@ i32 putstr(ptr str) {
 entry:
   br bb %while.cond
 while.cond:
-  60 = phi [bb %entry, i32 0, bb %while.body, i32 %16]
-  6 = mul i32 %60, i32 4
+  iNd__1X.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
+  6 = mul i32 %iNd__1X.phi, i32 4
   7 = ptradd ptr %str, i32 %6
   7.load = load i32 from ptr %7
   9 = icmp ne i32 %7.load, i32 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  11 = mul i32 %60, i32 4
+  11 = mul i32 %iNd__1X.phi, i32 4
   12 = ptradd ptr %str, i32 %11
   12.load = load i32 from ptr %12
   call void putch(i32 %12.load)
-  16 = add i32 %60, i32 1
+  16 = add i32 %iNd__1X.phi, i32 1
   br bb %while.cond
 while.exit:
-  ret i32 %60
+  ret i32 %iNd__1X.phi
 }
 
 

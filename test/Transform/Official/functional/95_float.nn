@@ -145,8 +145,8 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  198 = phi [bb %select.else, i1 0, bb %select.then, i1 %120]
-  br i1 %198, bb %then122, bb %if.exit123
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %120]
+  br i1 %select.phi, bb %then122, bb %if.exit123
 then122:
   call void error()
   br bb %if.exit123
@@ -160,8 +160,8 @@ select.else127:
   131 = icmp ne i1 %130, i1 0
   br bb %select.exit128
 select.exit128:
-  197 = phi [bb %select.else127, i1 %131, bb %select.then126, i1 1]
-  br i1 %197, bb %then133, bb %if.exit134
+  select129.phi = phi [bb %select.else127, i1 %131, bb %select.then126, i1 1]
+  br i1 %select129.phi, bb %then133, bb %if.exit134
 then133:
   call void ok()
   br bb %if.exit134
@@ -190,13 +190,10 @@ if.exit134:
   151 = call i32 getfarray(ptr %arr)
   br bb %while.cond
 while.cond:
-  203 = phi [bb %if.exit134, float ub, bb %while.body, float %170]
-  202 = phi [bb %if.exit134, float ub, bb %while.body, float %166]
-  201 = phi [bb %if.exit134, float ub, bb %while.body, float %160]
-  200 = phi [bb %if.exit134, i32 1, bb %while.body, i32 %192]
-  199 = phi [bb %if.exit134, i32 0, bb %while.body, i32 %194]
+  p.phi = phi [bb %if.exit134, i32 0, bb %while.body, i32 %194]
+  i.phi = phi [bb %if.exit134, i32 1, bb %while.body, i32 %192]
   MAX.load = load i32 from ptr @MAX
-  157 = icmp slt i32 %200, i32 %MAX.load
+  157 = icmp slt i32 %i.phi, i32 %MAX.load
   158 = icmp ne i1 %157, i1 0
   br i1 %158, bb %while.body, bb %while.exit
 while.body:
@@ -206,9 +203,9 @@ while.body:
   166 = fmul float %164, float %160
   169 = f2si float %160 to i32
   170 = call float circle_area(i32 %169)
-  172 = mul i32 %199, i32 4
+  172 = mul i32 %p.phi, i32 4
   173 = ptradd ptr %arr, i32 %172
-  175 = mul i32 %199, i32 4
+  175 = mul i32 %p.phi, i32 4
   176 = ptradd ptr %arr, i32 %175
   176.load = load float from ptr %176
   179 = fadd float %176.load, float %160
@@ -220,10 +217,10 @@ while.body:
   call void putch(i32 10)
   188 = fneg float 10.000000
   189 = fneg float %188
-  190 = si2f i32 %200 to float
+  190 = si2f i32 %i.phi to float
   191 = fmul float %190, float %189
   192 = f2si float %191 to i32
-  194 = add i32 %199, i32 1
+  194 = add i32 %p.phi, i32 1
   br bb %while.cond
 while.exit:
   call void putfarray(i32 %151, ptr %arr)

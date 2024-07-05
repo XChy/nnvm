@@ -10,8 +10,8 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  85 = phi [bb %select.else, i1 0, bb %select.then, i1 %8]
-  br i1 %85, bb %then, bb %else
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %8]
+  br i1 %select.phi, bb %then, bb %else
 then:
   13 = icmp ne i32 5, i32 0
   br i1 %13, bb %select.then14, bb %select.else15
@@ -30,8 +30,8 @@ select.else15:
   23 = icmp ne i1 %22, i1 0
   br bb %select.exit16
 select.exit16:
-  86 = phi [bb %select.else15, i1 %23, bb %select.then14, i1 1]
-  br i1 %86, bb %then25, bb %else27
+  select17.phi = phi [bb %select.else15, i1 %23, bb %select.then14, i1 1]
+  br i1 %select17.phi, bb %then25, bb %else27
 then25:
   28 = icmp eq i32 3, i32 2
   br i1 %28, bb %select.then29, bb %select.else30
@@ -46,8 +46,8 @@ select.then29:
 select.else30:
   br bb %select.exit31
 select.exit31:
-  87 = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
-  br i1 %87, bb %then36, bb %else38
+  select32.phi = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
+  br i1 %select32.phi, bb %then36, bb %else38
 then36:
   ret i32 3
 if.exit37:
@@ -62,8 +62,8 @@ select.then41:
 select.else42:
   br bb %select.exit43
 select.exit43:
-  88 = phi [bb %select.else42, i1 0, bb %select.then41, i1 %45]
-  br i1 %88, bb %then47, bb %else49
+  select44.phi = phi [bb %select.else42, i1 0, bb %select.then41, i1 %45]
+  br i1 %select44.phi, bb %then47, bb %else49
 then47:
   ret i32 4
 if.exit48:
@@ -88,8 +88,8 @@ select.else59:
   63 = icmp ne i1 %62, i1 0
   br bb %select.exit60
 select.exit60:
-  89 = phi [bb %select.else59, i1 %63, bb %select.then58, i1 1]
-  br i1 %89, bb %then65, bb %else67
+  select61.phi = phi [bb %select.else59, i1 %63, bb %select.then58, i1 1]
+  br i1 %select61.phi, bb %then65, bb %else67
 then65:
   ret i32 6
 if.exit66:

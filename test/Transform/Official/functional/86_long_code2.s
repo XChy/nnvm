@@ -6,13 +6,13 @@ a:
 
 .section .text
 main:
-  ADDI sp, sp, -64
-  SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
+  ADDI sp, sp, -48
+  SD ra, 0(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   LUI s0, 20
   ADDI s0, s0, -1920
   ADDI s1, zero, 4
@@ -68025,13 +68025,12 @@ main:
   ADD s0, s3, s2
   LW s2, 0(s0)
   ADDW s0, s1, s2
-  SW s0, 0(sp)
   ADD a0, s0, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)

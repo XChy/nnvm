@@ -98,6 +98,10 @@ bool Mem2RegPass::run(Function &F) {
   for (auto &[SI, info] : candidates)
     SI->eraseFromBB();
 
+  for (auto &[phi, stack] : phi2Stack)
+    if (phi->users().empty())
+      phi->eraseFromBB();
+
   return changed;
 }
 
@@ -118,7 +122,8 @@ void Mem2RegPass::insertPHIsFor(StackInst *SI) {
       if (visited.count(frontier))
         continue;
 
-      auto phi = builder.buildPhi(candidates[SI].valueType);
+      auto phi =
+          builder.buildPhi(candidates[SI].valueType, SI->getName() + ".phi");
       phi2Stack[phi] = SI;
 
       visited.insert(frontier);

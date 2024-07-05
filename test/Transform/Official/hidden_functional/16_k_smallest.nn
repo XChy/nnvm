@@ -16,24 +16,23 @@ else:
 then75:
   br bb %while.cond79
 if.exit76:
-  142 = phi [bb %if.exit99, i32 ub, bb %while.exit81, i32 %141]
   br bb %if.exit66
 else77:
   97 = icmp slt i32 %k, i32 %71
   br i1 %97, bb %then98, bb %else100
 while.cond79:
-  141 = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
-  84 = icmp slt i32 %141, i32 %71
+  i78.phi = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
+  84 = icmp slt i32 %i78.phi, i32 %71
   85 = icmp ne i1 %84, i1 0
   br i1 %85, bb %while.body80, bb %while.exit81
 while.body80:
-  87 = mul i32 %141, i32 4
+  87 = mul i32 %i78.phi, i32 4
   88 = ptradd ptr @array, i32 %87
   88.load = load i32 from ptr %88
   call void putint(i32 %88.load)
   space.load = load i32 from ptr @space
   call void putch(i32 %space.load)
-  94 = add i32 %141, i32 1
+  94 = add i32 %i78.phi, i32 1
   br bb %while.cond79
 while.exit81:
   br bb %if.exit76
@@ -56,27 +55,27 @@ entry19:
   25.load = load i32 from ptr %25
   br bb %while.cond
 while.cond:
-  145 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %52]
-  144 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %143]
-  36 = icmp slt i32 %145, i32 %end
+  i.phi = phi [bb %entry19, i32 %start, bb %if.exit, i32 %52]
+  pIndex.phi144 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %pIndex.phi]
+  36 = icmp slt i32 %i.phi, i32 %end
   37 = icmp ne i1 %36, i1 0
   br i1 %37, bb %while.body, bb %while.exit
 while.body:
-  39 = mul i32 %145, i32 4
+  39 = mul i32 %i.phi, i32 4
   40 = ptradd ptr @array, i32 %39
   40.load = load i32 from ptr %40
   43 = icmp sle i32 %40.load, i32 %25.load
   br i1 %43, bb %then, bb %if.exit
 while.exit:
-  call void swap(i32 %144, i32 %end)
-  ret i32 %144
+  call void swap(i32 %pIndex.phi144, i32 %end)
+  ret i32 %pIndex.phi144
 then:
-  call void swap(i32 %145, i32 %144)
-  50 = add i32 %144, i32 1
+  call void swap(i32 %i.phi, i32 %pIndex.phi144)
+  50 = add i32 %pIndex.phi144, i32 1
   br bb %if.exit
 if.exit:
-  143 = phi [bb %while.body, i32 %144, bb %then, i32 %50]
-  52 = add i32 %145, i32 1
+  pIndex.phi = phi [bb %while.body, i32 %pIndex.phi144, bb %then, i32 %50]
+  52 = add i32 %i.phi, i32 1
   br bb %while.cond
 }
 
@@ -96,16 +95,16 @@ entry113:
   117 = call i32 getint()
   br bb %while.cond119
 while.cond119:
-  146 = phi [bb %entry113, i32 0, bb %while.body120, i32 %131]
-  124 = icmp slt i32 %146, i32 %115
+  i118.phi = phi [bb %entry113, i32 0, bb %while.body120, i32 %131]
+  124 = icmp slt i32 %i118.phi, i32 %115
   125 = icmp ne i1 %124, i1 0
   br i1 %125, bb %while.body120, bb %while.exit121
 while.body120:
-  127 = mul i32 %146, i32 4
+  127 = mul i32 %i118.phi, i32 4
   128 = ptradd ptr @array, i32 %127
   129 = call i32 getint()
   store i32 %129 to ptr %128
-  131 = add i32 %146, i32 1
+  131 = add i32 %i118.phi, i32 1
   br bb %while.cond119
 while.exit121:
   135 = sub i32 %115, i32 1

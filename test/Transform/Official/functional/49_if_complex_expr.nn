@@ -12,9 +12,8 @@ select.else:
   18 = icmp ne i32 %17, i32 0
   br i1 %18, bb %select.then19, bb %select.else20
 select.exit:
-  65 = phi [bb %select.exit21, i1 %28, bb %select.then, i1 1]
-  63 = phi [bb %select.exit21, i1 %62, bb %select.then, i1 ub]
-  br i1 %65, bb %then, bb %if.exit
+  select.phi = phi [bb %select.exit21, i1 %28, bb %select.then, i1 1]
+  br i1 %select.phi, bb %then, bb %if.exit
 select.then19:
   24 = add i32 1, i32 3
   25 = srem i32 %24, i32 2
@@ -23,8 +22,8 @@ select.then19:
 select.else20:
   br bb %select.exit21
 select.exit21:
-  62 = phi [bb %select.else20, i1 0, bb %select.then19, i1 %26]
-  28 = icmp ne i1 %62, i1 0
+  select22.phi = phi [bb %select.else20, i1 0, bb %select.then19, i1 %26]
+  28 = icmp ne i1 %select22.phi, i1 0
   br bb %select.exit
 then:
   call void putint(i32 2)
@@ -41,9 +40,8 @@ select.else39:
   45 = icmp ne i32 %44, i32 0
   br i1 %45, bb %select.then46, bb %select.else47
 select.exit40:
-  67 = phi [bb %select.exit48, i1 %66, bb %select.then38, i1 ub]
-  64 = phi [bb %select.exit48, i1 %55, bb %select.then38, i1 1]
-  br i1 %64, bb %then57, bb %if.exit58
+  select41.phi = phi [bb %select.exit48, i1 %55, bb %select.then38, i1 1]
+  br i1 %select41.phi, bb %then57, bb %if.exit58
 select.then46:
   51 = add i32 1, i32 2
   52 = srem i32 %51, i32 2
@@ -52,14 +50,13 @@ select.then46:
 select.else47:
   br bb %select.exit48
 select.exit48:
-  66 = phi [bb %select.else47, i1 0, bb %select.then46, i1 %53]
-  55 = icmp ne i1 %66, i1 0
+  select49.phi = phi [bb %select.else47, i1 0, bb %select.then46, i1 %53]
+  55 = icmp ne i1 %select49.phi, i1 0
   br bb %select.exit40
 then57:
   call void putint(i32 4)
   br bb %if.exit58
 if.exit58:
-  61 = phi [bb %select.exit40, i32 2, bb %then57, i32 4]
   ret i32 0
 }
 

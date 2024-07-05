@@ -13,9 +13,9 @@ i32 main() {
 entry12:
   br bb %while.cond
 while.cond:
-  38 = phi [bb %entry12, i32 0, bb %if.exit24, i32 %28]
-  37 = phi [bb %entry12, i32 0, bb %if.exit24, i32 %36]
-  19 = icmp slt i32 %38, i32 100
+  i.phi = phi [bb %entry12, i32 0, bb %if.exit24, i32 %28]
+  result.phi37 = phi [bb %entry12, i32 0, bb %if.exit24, i32 %result.phi]
+  19 = icmp slt i32 %i.phi, i32 100
   20 = icmp ne i1 %19, i1 0
   br i1 %20, bb %while.body, bb %while.exit
 while.body:
@@ -23,14 +23,14 @@ while.body:
   22 = icmp eq i32 %21, i32 1
   br i1 %22, bb %then23, bb %if.exit24
 while.exit:
-  30 = icmp slt i32 %37, i32 100
+  30 = icmp slt i32 %result.phi37, i32 100
   br i1 %30, bb %then31, bb %else33
 then23:
-  26 = add i32 %37, i32 1
+  26 = add i32 %result.phi37, i32 1
   br bb %if.exit24
 if.exit24:
-  36 = phi [bb %while.body, i32 %37, bb %then23, i32 %26]
-  28 = add i32 %38, i32 1
+  result.phi = phi [bb %while.body, i32 %result.phi37, bb %then23, i32 %26]
+  28 = add i32 %i.phi, i32 1
   br bb %while.cond
 then31:
   call void putint(i32 1)

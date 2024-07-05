@@ -8,86 +8,85 @@ entry50:
   63 = add i32 %end, i32 1
   br bb %while.cond65
 while.cond65:
-  171 = phi [bb %entry50, i32 0, bb %if.exit112, i32 %169]
-  168 = phi [bb %entry50, i32 %63, bb %if.exit112, i32 %165]
-  164 = phi [bb %entry50, i32 %begin, bb %if.exit112, i32 %161]
+  xx.phi171 = phi [bb %entry50, i32 0, bb %if.exit112, i32 %xx.phi]
+  r.phi168 = phi [bb %entry50, i32 %63, bb %if.exit112, i32 %r.phi]
+  l.phi164 = phi [bb %entry50, i32 %begin, bb %if.exit112, i32 %l.phi]
   68 = icmp eq i32 1, i32 1
   69 = icmp ne i1 %68, i1 0
   br i1 %69, bb %while.body66, bb %while.exit67
 while.body66:
   br bb %while.cond70
 while.exit67:
-  170 = phi [bb %while.cond65, i32 %171, bb %then111, i32 %169]
-  167 = phi [bb %while.cond65, i32 %168, bb %then111, i32 %165]
-  163 = phi [bb %while.cond65, i32 %164, bb %then111, i32 %161]
+  xx.phi170 = phi [bb %while.cond65, i32 %xx.phi171, bb %then111, i32 %xx.phi]
+  l.phi163 = phi [bb %while.cond65, i32 %l.phi164, bb %then111, i32 %l.phi]
   118 = mul i32 %begin, i32 4
   119 = ptradd ptr %arr, i32 %118
   store i32 %57.load to ptr %119
-  123 = call i32 swap(ptr %arr, i32 %begin, i32 %163)
-  126 = icmp sgt i32 %163, i32 %pos
+  123 = call i32 swap(ptr %arr, i32 %begin, i32 %l.phi163)
+  126 = icmp sgt i32 %l.phi163, i32 %pos
   br i1 %126, bb %then127, bb %if.exit128
 while.cond70:
-  172 = phi [bb %while.body66, i32 %171, bb %if.exit, i32 %88]
-  166 = phi [bb %while.body66, i32 %168, bb %if.exit, i32 %78]
-  75 = icmp slt i32 %164, i32 %166
+  xx.phi172 = phi [bb %while.body66, i32 %xx.phi171, bb %if.exit, i32 %88]
+  r.phi166 = phi [bb %while.body66, i32 %r.phi168, bb %if.exit, i32 %78]
+  75 = icmp slt i32 %l.phi164, i32 %r.phi166
   76 = icmp ne i1 %75, i1 0
   br i1 %76, bb %while.body71, bb %while.exit72
 while.body71:
-  78 = sub i32 %166, i32 1
+  78 = sub i32 %r.phi166, i32 1
   80 = mul i32 %78, i32 4
   81 = ptradd ptr %arr, i32 %80
   81.load = load i32 from ptr %81
   84 = icmp slt i32 %81.load, i32 %57.load
   br i1 %84, bb %then, bb %if.exit
 while.exit72:
-  165 = phi [bb %while.cond70, i32 %166, bb %then, i32 %78]
+  r.phi = phi [bb %while.cond70, i32 %r.phi166, bb %then, i32 %78]
   br bb %while.cond89
 then:
   br bb %while.exit72
 if.exit:
-  88 = add i32 %172, i32 1
+  88 = add i32 %xx.phi172, i32 1
   br bb %while.cond70
 while.cond89:
-  169 = phi [bb %while.exit72, i32 %172, bb %if.exit105, i32 %107]
-  162 = phi [bb %while.exit72, i32 %164, bb %if.exit105, i32 %97]
-  94 = icmp slt i32 %162, i32 %165
+  xx.phi = phi [bb %while.exit72, i32 %xx.phi172, bb %if.exit105, i32 %107]
+  l.phi162 = phi [bb %while.exit72, i32 %l.phi164, bb %if.exit105, i32 %97]
+  94 = icmp slt i32 %l.phi162, i32 %r.phi
   95 = icmp ne i1 %94, i1 0
   br i1 %95, bb %while.body90, bb %while.exit91
 while.body90:
-  97 = add i32 %162, i32 1
+  97 = add i32 %l.phi162, i32 1
   99 = mul i32 %97, i32 4
   100 = ptradd ptr %arr, i32 %99
   100.load = load i32 from ptr %100
   103 = icmp sge i32 %100.load, i32 %57.load
   br i1 %103, bb %then104, bb %if.exit105
 while.exit91:
-  161 = phi [bb %while.cond89, i32 %162, bb %then104, i32 %97]
-  110 = icmp eq i32 %161, i32 %165
+  l.phi = phi [bb %while.cond89, i32 %l.phi162, bb %then104, i32 %97]
+  110 = icmp eq i32 %l.phi, i32 %r.phi
   br i1 %110, bb %then111, bb %else
 then104:
   br bb %while.exit91
 if.exit105:
-  107 = sub i32 %169, i32 1
+  107 = sub i32 %xx.phi, i32 1
   br bb %while.cond89
 then111:
   br bb %while.exit67
 if.exit112:
   br bb %while.cond65
 else:
-  116 = call i32 swap(ptr %arr, i32 %161, i32 %165)
+  116 = call i32 swap(ptr %arr, i32 %l.phi, i32 %r.phi)
   br bb %if.exit112
 then127:
-  132 = call i32 median(ptr %arr, i32 %begin, i32 %163, i32 %pos)
+  132 = call i32 median(ptr %arr, i32 %begin, i32 %l.phi163, i32 %pos)
   ret i32 %132
 if.exit128:
-  135 = icmp slt i32 %163, i32 %pos
+  135 = icmp slt i32 %l.phi163, i32 %pos
   br i1 %135, bb %then136, bb %if.exit137
 then136:
-  139 = add i32 %163, i32 1
+  139 = add i32 %l.phi163, i32 1
   142 = call i32 median(ptr %arr, i32 %139, i32 %end, i32 %pos)
   ret i32 %142
 if.exit137:
-  ret i32 %170
+  ret i32 %xx.phi170
 }
 
 i32 swap(ptr arr, i32 l, i32 r) {
@@ -152,26 +151,25 @@ i32 meanless_calculation(i32 x, i32 y) {
 entry:
   br bb %while.cond
 while.cond:
-  176 = phi [bb %entry, i1 ub, bb %while.body, i1 %175]
-  174 = phi [bb %entry, i32 0, bb %while.body, i32 %26]
-  173 = phi [bb %entry, i32 0, bb %while.body, i32 %21]
-  10 = icmp slt i32 %173, i32 %x
+  ret.phi = phi [bb %entry, i32 0, bb %while.body, i32 %26]
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %21]
+  10 = icmp slt i32 %i.phi, i32 %x
   br i1 %10, bb %select.then, bb %select.else
 while.body:
-  21 = add i32 %173, i32 1
-  24 = add i32 %174, i32 %x
+  21 = add i32 %i.phi, i32 1
+  24 = add i32 %ret.phi, i32 %x
   26 = add i32 %24, i32 %21
   br bb %while.cond
 while.exit:
-  ret i32 %174
+  ret i32 %ret.phi
 select.then:
-  17 = icmp slt i32 %173, i32 %y
+  17 = icmp slt i32 %i.phi, i32 %y
   br bb %select.exit
 select.else:
   br bb %select.exit
 select.exit:
-  175 = phi [bb %select.else, i1 0, bb %select.then, i1 %17]
-  19 = icmp ne i1 %175, i1 0
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %17]
+  19 = icmp ne i1 %select.phi, i1 0
   br i1 %19, bb %while.body, bb %while.exit
 }
 

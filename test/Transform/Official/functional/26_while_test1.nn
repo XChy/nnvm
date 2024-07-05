@@ -4,26 +4,26 @@ i32 doubleWhile() {
 entry:
   br bb %while.cond
 while.cond:
-  25 = phi [bb %entry, i32 7, bb %while.exit13, i32 %20]
-  24 = phi [bb %entry, i32 5, bb %while.exit13, i32 %10]
-  7 = icmp slt i32 %24, i32 100
+  j.phi = phi [bb %entry, i32 7, bb %while.exit13, i32 %20]
+  i.phi = phi [bb %entry, i32 5, bb %while.exit13, i32 %10]
+  7 = icmp slt i32 %i.phi, i32 100
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  10 = add i32 %24, i32 30
+  10 = add i32 %i.phi, i32 30
   br bb %while.cond11
 while.exit:
-  ret i32 %25
+  ret i32 %j.phi
 while.cond11:
-  26 = phi [bb %while.body, i32 %25, bb %while.body12, i32 %18]
-  15 = icmp slt i32 %26, i32 100
+  j.phi26 = phi [bb %while.body, i32 %j.phi, bb %while.body12, i32 %18]
+  15 = icmp slt i32 %j.phi26, i32 100
   16 = icmp ne i1 %15, i1 0
   br i1 %16, bb %while.body12, bb %while.exit13
 while.body12:
-  18 = add i32 %26, i32 6
+  18 = add i32 %j.phi26, i32 6
   br bb %while.cond11
 while.exit13:
-  20 = sub i32 %26, i32 100
+  20 = sub i32 %j.phi26, i32 100
   br bb %while.cond
 }
 

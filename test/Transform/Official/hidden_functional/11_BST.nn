@@ -90,9 +90,6 @@ then138:
   store i32 %149 to ptr %143
   br bb %if.exit139
 if.exit139:
-  334 = phi [bb %if.exit157, i32 %333, bb %then138, i32 ub]
-  331 = phi [bb %if.exit157, i1 %330, bb %then138, i1 ub]
-  327 = phi [bb %if.exit157, i1 %326, bb %then138, i1 ub]
   ret i32 %root
 else140:
   152 = mul i32 %root, i32 4
@@ -110,9 +107,7 @@ then156:
   store i32 %167 to ptr %161
   br bb %if.exit157
 if.exit157:
-  333 = phi [bb %if.exit186, i32 %332, bb %then156, i32 ub]
-  330 = phi [bb %if.exit186, i1 %329, bb %then156, i1 ub]
-  326 = phi [bb %if.exit186, i1 %325, bb %then156, i1 ub]
+  tmp.phi333 = phi [bb %if.exit186, i32 %tmp.phi, bb %then156, i32 ub]
   br bb %if.exit139
 else158:
   169 = mul i32 %root, i32 4
@@ -131,8 +126,8 @@ select.then174:
 select.else175:
   br bb %select.exit176
 select.exit176:
-  324 = phi [bb %select.else175, i1 0, bb %select.then174, i1 %183]
-  br i1 %324, bb %then185, bb %else187
+  select177.phi = phi [bb %select.else175, i1 0, bb %select.then174, i1 %183]
+  br i1 %select177.phi, bb %then185, bb %else187
 then185:
   188 = sub i32 0, i32 1
   ret i32 %188
@@ -156,8 +151,8 @@ select.else196:
   205 = icmp ne i1 %204, i1 0
   br bb %select.exit197
 select.exit197:
-  328 = phi [bb %select.else196, i1 %205, bb %select.then195, i1 1]
-  br i1 %328, bb %then207, bb %else209
+  select198.phi = phi [bb %select.else196, i1 %205, bb %select.then195, i1 1]
+  br i1 %select198.phi, bb %then207, bb %else209
 then207:
   211 = mul i32 %root, i32 4
   212 = ptradd ptr @left_child, i32 %211
@@ -166,9 +161,7 @@ then207:
   215 = icmp eq i32 %212.load, i32 %214
   br i1 %215, bb %then216, bb %else218
 if.exit208:
-  332 = phi [bb %else209, i32 %232]
-  329 = phi [bb %else209, i1 %328]
-  325 = phi [bb %else209, i1 %324]
+  tmp.phi = phi [bb %else209, i32 %232]
   br bb %if.exit186
 else209:
   229 = mul i32 %root, i32 4
@@ -252,8 +245,8 @@ select.else:
   16 = icmp ne i1 %15, i1 0
   br bb %select.exit
 select.exit:
-  335 = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
-  br i1 %335, bb %then, bb %else
+  select.phi = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
+  br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 %root
 if.exit:
@@ -302,14 +295,14 @@ if.exit286:
   289 = call i32 new_node(i32 %288)
   br bb %while.cond
 while.cond:
-  338 = phi [bb %if.exit286, i32 1, bb %while.body, i32 %302]
-  296 = icmp slt i32 %338, i32 %279
+  i.phi338 = phi [bb %if.exit286, i32 1, bb %while.body, i32 %302]
+  296 = icmp slt i32 %i.phi338, i32 %279
   297 = icmp ne i1 %296, i1 0
   br i1 %297, bb %while.body, bb %while.exit
 while.body:
   299 = call i32 getint()
   300 = call i32 insert(i32 %289, i32 %299)
-  302 = add i32 %338, i32 1
+  302 = add i32 %i.phi338, i32 1
   br bb %while.cond
 while.exit:
   call void inorder(i32 %289)
@@ -318,18 +311,18 @@ while.exit:
   307 = call i32 getint()
   br bb %while.cond308
 while.cond308:
-  337 = phi [bb %while.exit, i32 0, bb %while.body309, i32 %319]
-  336 = phi [bb %while.exit, i32 %289, bb %while.body309, i32 %317]
-  313 = icmp slt i32 %337, i32 %307
+  i.phi = phi [bb %while.exit, i32 0, bb %while.body309, i32 %319]
+  root.phi = phi [bb %while.exit, i32 %289, bb %while.body309, i32 %317]
+  313 = icmp slt i32 %i.phi, i32 %307
   314 = icmp ne i1 %313, i1 0
   br i1 %314, bb %while.body309, bb %while.exit310
 while.body309:
   316 = call i32 getint()
-  317 = call i32 delete(i32 %336, i32 %316)
-  319 = add i32 %337, i32 1
+  317 = call i32 delete(i32 %root.phi, i32 %316)
+  319 = add i32 %i.phi, i32 1
   br bb %while.cond308
 while.exit310:
-  call void inorder(i32 %336)
+  call void inorder(i32 %root.phi)
   LF.load322 = load i32 from ptr @LF
   call void putch(i32 %LF.load322)
   ret i32 0

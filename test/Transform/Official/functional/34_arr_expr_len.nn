@@ -4,20 +4,20 @@ i32 main() {
 entry:
   br bb %while.cond
 while.cond:
-  19 = phi [bb %entry, i32 0, bb %while.body, i32 %14]
-  18 = phi [bb %entry, i32 0, bb %while.body, i32 %16]
-  7 = icmp slt i32 %18, i32 6
+  sum.phi = phi [bb %entry, i32 0, bb %while.body, i32 %14]
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
+  7 = icmp slt i32 %i.phi, i32 6
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  11 = mul i32 %18, i32 4
+  11 = mul i32 %i.phi, i32 4
   12 = ptradd ptr @arr, i32 %11
   12.load = load i32 from ptr %12
-  14 = add i32 %19, i32 %12.load
-  16 = add i32 %18, i32 1
+  14 = add i32 %sum.phi, i32 %12.load
+  16 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
-  ret i32 %19
+  ret i32 %sum.phi
 }
 
 external void putfarray(i32 , ptr )

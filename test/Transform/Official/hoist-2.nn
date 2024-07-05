@@ -39,11 +39,10 @@ i32 func(i32 i1, i32 i2, i32 i3, i32 i4, i32 i5, i32 i6, i32 i7, i32 i8, i32 i9,
 entry:
   br bb %while.cond
 while.cond:
-  3147 = phi [bb %entry, i32 ub, bb %while.body, i32 %3127]
-  3146 = phi [bb %entry, i32 0, bb %while.body, i32 %3132]
-  3145 = phi [bb %entry, i32 0, bb %while.body, i32 %3134]
+  result.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3132]
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3134]
   loopCount.load = load i32 from ptr @loopCount
-  23 = icmp slt i32 %3145, i32 %loopCount.load
+  23 = icmp slt i32 %i.phi, i32 %loopCount.load
   24 = icmp ne i1 %23, i1 0
   br i1 %24, bb %while.body, bb %while.exit
 while.body:
@@ -1548,12 +1547,12 @@ while.body:
   3123 = add i32 %3121, i32 %i14
   3125 = add i32 %3123, i32 %i15
   3127 = sdiv i32 %3125, i32 100
-  3130 = add i32 %3146, i32 %3127
+  3130 = add i32 %result.phi, i32 %3127
   3132 = srem i32 %3130, i32 1500000001
-  3134 = add i32 %3145, i32 1
+  3134 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
-  ret i32 %3146
+  ret i32 %result.phi
 }
 
 

@@ -37,7 +37,6 @@ then:
   call void putint(i32 %8)
   br bb %if.exit
 if.exit:
-  21 = phi [bb %else, i32 %11, bb %then, i32 %8]
   ret 
 else:
   11 = call i32 getint()

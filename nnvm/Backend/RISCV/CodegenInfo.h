@@ -20,6 +20,7 @@ std::vector<Register *> unpreservedFRegs(LIRModule *M);
 
 bool isBranch(uint64_t instType);
 LIRBB *getBranchDest(LIRInst *inst);
+void setBranchDest(LIRInst *inst, LIRBB *dest);
 
 LIRInstID getLoadInstType(LIRValueType type);
 LIRInstID getStoreInstType(LIRValueType type);

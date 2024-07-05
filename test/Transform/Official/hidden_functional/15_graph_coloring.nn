@@ -26,14 +26,14 @@ then88:
 if.exit89:
   ret i32 0
 while.cond92:
-  157 = phi [bb %if.exit85, i32 1, bb %if.exit109, i32 %114]
-  97 = icmp sle i32 %157, i32 %m
+  j91.phi = phi [bb %if.exit85, i32 1, bb %if.exit109, i32 %114]
+  97 = icmp sle i32 %j91.phi, i32 %m
   98 = icmp ne i1 %97, i1 0
   br i1 %98, bb %while.body93, bb %while.exit94
 while.body93:
   100 = mul i32 %i, i32 4
   101 = ptradd ptr %color, i32 %100
-  store i32 %157 to ptr %101
+  store i32 %j91.phi to ptr %101
   105 = add i32 %i, i32 1
   106 = call i32 graphColoring(ptr %graph, i32 %m, i32 %105, ptr %color)
   107 = icmp ne i32 %106, i32 0
@@ -46,7 +46,7 @@ if.exit109:
   111 = mul i32 %i, i32 4
   112 = ptradd ptr %color, i32 %111
   store i32 0 to ptr %112
-  114 = add i32 %157, i32 1
+  114 = add i32 %j91.phi, i32 1
   br bb %while.cond92
 }
 
@@ -90,16 +90,16 @@ entry115:
   store i32 0 to ptr %arr.index132
   br bb %while.cond136
 while.cond136:
-  158 = phi [bb %entry115, i32 0, bb %while.body137, i32 %147]
+  i135.phi = phi [bb %entry115, i32 0, bb %while.body137, i32 %147]
   V.load140 = load i32 from ptr @V
-  141 = icmp slt i32 %158, i32 %V.load140
+  141 = icmp slt i32 %i135.phi, i32 %V.load140
   142 = icmp ne i1 %141, i1 0
   br i1 %142, bb %while.body137, bb %while.exit138
 while.body137:
-  144 = mul i32 %158, i32 4
+  144 = mul i32 %i135.phi, i32 4
   145 = ptradd ptr %color, i32 %144
   store i32 0 to ptr %145
-  147 = add i32 %158, i32 1
+  147 = add i32 %i135.phi, i32 1
   br bb %while.cond136
 while.exit138:
   149 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
@@ -119,41 +119,40 @@ i32 isSafe(ptr graph, ptr color) {
 entry31:
   br bb %while.cond33
 while.cond33:
-  164 = phi [bb %entry31, i1 ub, bb %while.exit45, i1 %163]
-  161 = phi [bb %entry31, i32 0, bb %while.exit45, i32 %77]
-  160 = phi [bb %entry31, i32 ub, bb %while.exit45, i32 %159]
+  select.phi164 = phi [bb %entry31, i1 ub, bb %while.exit45, i1 %select.phi163]
+  i32.phi = phi [bb %entry31, i32 0, bb %while.exit45, i32 %77]
   V.load37 = load i32 from ptr @V
-  38 = icmp slt i32 %161, i32 %V.load37
+  38 = icmp slt i32 %i32.phi, i32 %V.load37
   39 = icmp ne i1 %38, i1 0
   br i1 %39, bb %while.body34, bb %while.exit35
 while.body34:
-  42 = add i32 %161, i32 1
+  42 = add i32 %i32.phi, i32 1
   br bb %while.cond43
 while.exit35:
   ret i32 1
 while.cond43:
-  163 = phi [bb %while.body34, i1 %164, bb %if.exit, i1 %162]
-  159 = phi [bb %while.body34, i32 %42, bb %if.exit, i32 %75]
+  select.phi163 = phi [bb %while.body34, i1 %select.phi164, bb %if.exit, i1 %select.phi]
+  j.phi = phi [bb %while.body34, i32 %42, bb %if.exit, i32 %75]
   V.load47 = load i32 from ptr @V
-  48 = icmp slt i32 %159, i32 %V.load47
+  48 = icmp slt i32 %j.phi, i32 %V.load47
   49 = icmp ne i1 %48, i1 0
   br i1 %49, bb %while.body44, bb %while.exit45
 while.body44:
-  51 = mul i32 %161, i32 16
+  51 = mul i32 %i32.phi, i32 16
   52 = ptradd ptr %graph, i32 %51
-  54 = mul i32 %159, i32 4
+  54 = mul i32 %j.phi, i32 4
   55 = ptradd ptr %52, i32 %54
   55.load = load i32 from ptr %55
   57 = icmp ne i32 %55.load, i32 0
   br i1 %57, bb %select.then, bb %select.else
 while.exit45:
-  77 = add i32 %161, i32 1
+  77 = add i32 %i32.phi, i32 1
   br bb %while.cond33
 select.then:
-  63 = mul i32 %159, i32 4
+  63 = mul i32 %j.phi, i32 4
   64 = ptradd ptr %color, i32 %63
   64.load = load i32 from ptr %64
-  67 = mul i32 %161, i32 4
+  67 = mul i32 %i32.phi, i32 4
   68 = ptradd ptr %color, i32 %67
   68.load = load i32 from ptr %68
   70 = icmp eq i32 %64.load, i32 %68.load
@@ -161,12 +160,12 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  162 = phi [bb %select.else, i1 0, bb %select.then, i1 %70]
-  br i1 %162, bb %then, bb %if.exit
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %70]
+  br i1 %select.phi, bb %then, bb %if.exit
 then:
   ret i32 0
 if.exit:
-  75 = add i32 %159, i32 1
+  75 = add i32 %j.phi, i32 1
   br bb %while.cond43
 }
 
@@ -201,19 +200,19 @@ void printSolution(ptr color) {
 entry:
   br bb %while.cond
 while.cond:
-  165 = phi [bb %entry, i32 0, bb %while.body, i32 %17]
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %17]
   V.load = load i32 from ptr @V
-  7 = icmp slt i32 %165, i32 %V.load
+  7 = icmp slt i32 %i.phi, i32 %V.load
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  10 = mul i32 %165, i32 4
+  10 = mul i32 %i.phi, i32 4
   11 = ptradd ptr %color, i32 %10
   11.load = load i32 from ptr %11
   call void putint(i32 %11.load)
   space.load = load i32 from ptr @space
   call void putch(i32 %space.load)
-  17 = add i32 %165, i32 1
+  17 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
   LF.load = load i32 from ptr @LF

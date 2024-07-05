@@ -10,11 +10,11 @@ entry186:
   %oprs = stack 1024
   br bb %init.cond
 init.cond:
-  309 = phi [bb %entry186, i32 256, bb %init, i32 %cnt.dec]
-  193 = icmp ne i32 %309, i32 0
+  cnt_ptr.phi = phi [bb %entry186, i32 256, bb %init, i32 %cnt.dec]
+  193 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %193, bb %init, bb %init.exit
 init:
-  cnt.dec = sub i32 %309, i32 1
+  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
   arr.index = add i32 0, i32 %offset
   arr.index198 = ptradd ptr %oprs, ptr %arr.index
@@ -23,11 +23,11 @@ init:
 init.exit:
   br bb %init.cond200
 init.cond200:
-  310 = phi [bb %init.exit, i32 256, bb %init201, i32 %cnt.dec207]
-  205 = icmp ne i32 %310, i32 0
+  cnt_ptr203.phi = phi [bb %init.exit, i32 256, bb %init201, i32 %cnt.dec207]
+  205 = icmp ne i32 %cnt_ptr203.phi, i32 0
   br i1 %205, bb %init201, bb %init.exit202
 init201:
-  cnt.dec207 = sub i32 %310, i32 1
+  cnt.dec207 = sub i32 %cnt_ptr203.phi, i32 1
   offset208 = mul i32 %cnt.dec207, i32 4
   arr.index209 = add i32 0, i32 %offset208
   arr.index210 = ptradd ptr %ops, ptr %arr.index209
@@ -47,11 +47,10 @@ if.exit215:
   219 = call i32 next_token()
   br bb %while.cond220
 while.cond220:
-  323 = phi [bb %if.exit215, i1 ub, bb %if.exit271, i1 %321]
-  318 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %317]
-  316 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %315]
-  314 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %313]
-  312 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %other.load]
+  rhs.phi322 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %rhs.phi]
+  lhs.phi318 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %lhs.phi]
+  cur_op.phi315 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %cur_op.phi]
+  op.phi310 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %other.load]
   cur_token.load223 = load i32 from ptr @cur_token
   TOKEN_OTHER.load224 = load i32 from ptr @TOKEN_OTHER
   225 = icmp eq i32 %cur_token.load223, i32 %TOKEN_OTHER.load224
@@ -66,7 +65,6 @@ while.body221:
   234 = icmp ne i32 %233, i32 0
   br i1 %234, bb %then235, bb %if.exit236
 while.exit222:
-  311 = phi [bb %while.cond220, i32 %312, bb %then235, i32 %other.load]
   276 = call i32 next_token()
   br bb %while.cond277
 then235:
@@ -75,10 +73,9 @@ if.exit236:
   237 = call i32 next_token()
   br bb %while.cond238
 while.cond238:
-  322 = phi [bb %if.exit236, i1 %323, bb %while.body239, i1 %321]
-  317 = phi [bb %if.exit236, i32 %318, bb %while.body239, i32 %259]
-  315 = phi [bb %if.exit236, i32 %316, bb %while.body239, i32 %257]
-  313 = phi [bb %if.exit236, i32 %314, bb %while.body239, i32 %255]
+  rhs.phi = phi [bb %if.exit236, i32 %rhs.phi322, bb %while.body239, i32 %257]
+  lhs.phi = phi [bb %if.exit236, i32 %lhs.phi318, bb %while.body239, i32 %259]
+  cur_op.phi = phi [bb %if.exit236, i32 %cur_op.phi315, bb %while.body239, i32 %255]
   241 = call i32 stack_size(ptr %ops)
   242 = icmp ne i32 %241, i32 0
   br i1 %242, bb %select.then243, bb %select.else244
@@ -104,8 +101,8 @@ select.then243:
 select.else244:
   br bb %select.exit245
 select.exit245:
-  321 = phi [bb %select.else244, i1 0, bb %select.then243, i1 %251]
-  253 = icmp ne i1 %321, i1 0
+  select246.phi = phi [bb %select.else244, i1 0, bb %select.then243, i1 %251]
+  253 = icmp ne i1 %select246.phi, i1 0
   br i1 %253, bb %while.body239, bb %while.exit240
 then270:
   272 = call i32 panic()
@@ -116,9 +113,6 @@ if.exit271:
   275 = call i32 next_token()
   br bb %while.cond220
 while.cond277:
-  324 = phi [bb %while.exit222, i32 ub, bb %while.body278, i32 %287]
-  320 = phi [bb %while.exit222, i32 ub, bb %while.body278, i32 %285]
-  319 = phi [bb %while.exit222, i32 ub, bb %while.body278, i32 %283]
   280 = call i32 stack_size(ptr %ops)
   281 = icmp ne i32 %280, i32 0
   br i1 %281, bb %while.body278, bb %while.exit279
@@ -217,8 +211,8 @@ select.else78:
   83 = icmp ne i1 %82, i1 0
   br bb %select.exit79
 select.exit79:
-  325 = phi [bb %select.else78, i1 %83, bb %select.then77, i1 1]
-  br i1 %325, bb %then85, bb %if.exit86
+  select80.phi = phi [bb %select.else78, i1 %83, bb %select.then77, i1 1]
+  br i1 %select80.phi, bb %then85, bb %if.exit86
 then85:
   ret i32 10
 if.exit86:
@@ -231,8 +225,8 @@ select.else90:
   95 = icmp ne i1 %94, i1 0
   br bb %select.exit91
 select.exit91:
-  326 = phi [bb %select.else90, i1 %95, bb %select.then89, i1 1]
-  br i1 %326, bb %select.then97, bb %select.else98
+  select92.phi = phi [bb %select.else90, i1 %95, bb %select.then89, i1 1]
+  br i1 %select92.phi, bb %select.then97, bb %select.else98
 select.then97:
   br bb %select.exit99
 select.else98:
@@ -240,8 +234,8 @@ select.else98:
   103 = icmp ne i1 %102, i1 0
   br bb %select.exit99
 select.exit99:
-  327 = phi [bb %select.else98, i1 %103, bb %select.then97, i1 1]
-  br i1 %327, bb %then105, bb %if.exit106
+  select100.phi = phi [bb %select.else98, i1 %103, bb %select.then97, i1 1]
+  br i1 %select100.phi, bb %then105, bb %if.exit106
 then105:
   ret i32 20
 if.exit106:
@@ -276,8 +270,8 @@ select.then22:
 select.else23:
   br bb %select.exit24
 select.exit24:
-  328 = phi [bb %select.else23, i1 0, bb %select.then22, i1 %27]
-  br i1 %328, bb %then29, bb %else31
+  select25.phi = phi [bb %select.else23, i1 0, bb %select.then22, i1 %27]
+  br i1 %select25.phi, bb %then29, bb %else31
 then29:
   ret i32 1
 if.exit30:
@@ -297,8 +291,8 @@ select.else:
   13 = icmp ne i1 %12, i1 0
   br bb %select.exit
 select.exit:
-  329 = phi [bb %select.else, i1 %13, bb %select.then, i1 1]
-  br i1 %329, bb %then, bb %else
+  select.phi = phi [bb %select.else, i1 %13, bb %select.then, i1 1]
+  br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 1
 if.exit:
@@ -324,14 +318,14 @@ entry294:
   298 = call i32 next_token()
   br bb %while.cond299
 while.cond299:
-  330 = phi [bb %entry294, i32 %296, bb %while.body300, i32 %308]
-  303 = icmp ne i32 %330, i32 0
+  count.phi = phi [bb %entry294, i32 %296, bb %while.body300, i32 %308]
+  303 = icmp ne i32 %count.phi, i32 0
   br i1 %303, bb %while.body300, bb %while.exit301
 while.body300:
   304 = call i32 eval()
   call void putint(i32 %304)
   call void putch(i32 10)
-  308 = sub i32 %330, i32 1
+  308 = sub i32 %count.phi, i32 1
   br bb %while.cond299
 while.exit301:
   ret i32 0

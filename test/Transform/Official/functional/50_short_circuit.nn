@@ -21,12 +21,11 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  88 = phi [bb %select.else, i1 0, bb %select.then, i1 %19]
-  br i1 %88, bb %then, bb %else
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %19]
+  br i1 %select.phi, bb %then, bb %else
 then:
   br bb %if.exit
 if.exit:
-  87 = phi [bb %else, i32 0, bb %then, i32 1]
   24 = call i32 getint()
   26 = icmp sgt i32 %24, i32 11
   br i1 %26, bb %select.then27, bb %select.else28
@@ -39,12 +38,11 @@ select.then27:
 select.else28:
   br bb %select.exit29
 select.exit29:
-  90 = phi [bb %select.else28, i1 0, bb %select.then27, i1 %33]
-  br i1 %90, bb %then35, bb %else37
+  select30.phi = phi [bb %select.else28, i1 0, bb %select.then27, i1 %33]
+  br i1 %select30.phi, bb %then35, bb %else37
 then35:
   br bb %if.exit36
 if.exit36:
-  86 = phi [bb %else37, i32 0, bb %then35, i32 1]
   38 = call i32 getint()
   40 = icmp sle i32 %38, i32 99
   br i1 %40, bb %select.then41, bb %select.else42
@@ -58,12 +56,11 @@ select.else42:
   48 = icmp ne i1 %47, i1 0
   br bb %select.exit43
 select.exit43:
-  89 = phi [bb %select.else42, i1 %48, bb %select.then41, i1 1]
-  br i1 %89, bb %then50, bb %else52
+  select44.phi = phi [bb %select.else42, i1 %48, bb %select.then41, i1 1]
+  br i1 %select44.phi, bb %then50, bb %else52
 then50:
   br bb %if.exit51
 if.exit51:
-  85 = phi [bb %else52, i32 0, bb %then50, i32 1]
   53 = call i32 getint()
   55 = icmp sle i32 %53, i32 100
   br i1 %55, bb %select.then56, bb %select.else57
@@ -77,12 +74,11 @@ select.else57:
   63 = icmp ne i1 %62, i1 0
   br bb %select.exit58
 select.exit58:
-  91 = phi [bb %select.else57, i1 %63, bb %select.then56, i1 1]
-  br i1 %91, bb %then65, bb %else67
+  select59.phi = phi [bb %select.else57, i1 %63, bb %select.then56, i1 1]
+  br i1 %select59.phi, bb %then65, bb %else67
 then65:
   br bb %if.exit66
 if.exit66:
-  84 = phi [bb %else67, i32 0, bb %then65, i32 1]
   68 = call i32 func(i32 99)
   69 = icmp ne i32 %68, i32 0
   70 =  i1 %69, i1 1
@@ -98,12 +94,11 @@ select.then73:
 select.else74:
   br bb %select.exit75
 select.exit75:
-  92 = phi [bb %select.else74, i1 0, bb %select.then73, i1 %78]
-  br i1 %92, bb %then80, bb %else82
+  select76.phi = phi [bb %select.else74, i1 0, bb %select.then73, i1 %78]
+  br i1 %select76.phi, bb %then80, bb %else82
 then80:
   br bb %if.exit81
 if.exit81:
-  83 = phi [bb %else82, i32 0, bb %then80, i32 1]
   ret i32 0
 else82:
   br bb %if.exit81

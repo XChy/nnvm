@@ -2,22 +2,22 @@ i32 main() {
 entry:
   br bb %while.cond
 while.cond:
-  22 = phi [bb %entry, i32 0, bb %if.exit, i32 %17, bb %then, i32 %22]
-  21 = phi [bb %entry, i32 0, bb %if.exit, i32 %19, bb %then, i32 %14]
-  7 = icmp slt i32 %21, i32 100
+  sum.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %17, bb %then, i32 %sum.phi]
+  i.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %19, bb %then, i32 %14]
+  7 = icmp slt i32 %i.phi, i32 100
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  10 = icmp eq i32 %21, i32 50
+  10 = icmp eq i32 %i.phi, i32 50
   br i1 %10, bb %then, bb %if.exit
 while.exit:
-  ret i32 %22
+  ret i32 %sum.phi
 then:
-  14 = add i32 %21, i32 1
+  14 = add i32 %i.phi, i32 1
   br bb %while.cond
 if.exit:
-  17 = add i32 %22, i32 %21
-  19 = add i32 %21, i32 1
+  17 = add i32 %sum.phi, i32 %i.phi
+  19 = add i32 %i.phi, i32 1
   br bb %while.cond
 }
 

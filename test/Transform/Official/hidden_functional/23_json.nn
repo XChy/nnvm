@@ -878,22 +878,22 @@ entry749:
   751 = call i32 getch()
   br bb %while.cond753
 while.cond753:
-  789 = phi [bb %entry749, i32 0, bb %while.body754, i32 %764]
-  788 = phi [bb %entry749, i32 %751, bb %while.body754, i32 %765]
-  757 = icmp ne i32 %788, i32 35
+  i.phi = phi [bb %entry749, i32 0, bb %while.body754, i32 %764]
+  get.phi = phi [bb %entry749, i32 %751, bb %while.body754, i32 %765]
+  757 = icmp ne i32 %get.phi, i32 35
   758 = icmp ne i1 %757, i1 0
   br i1 %758, bb %while.body754, bb %while.exit755
 while.body754:
-  760 = mul i32 %789, i32 4
+  760 = mul i32 %i.phi, i32 4
   761 = ptradd ptr @buffer, i32 %760
-  store i32 %788 to ptr %761
-  764 = add i32 %789, i32 1
+  store i32 %get.phi to ptr %761
+  764 = add i32 %i.phi, i32 1
   765 = call i32 getch()
   br bb %while.cond753
 while.exit755:
-  call void skip_space(ptr @buffer, i32 %789)
-  770 = call i32 detect_item(i32 0, ptr @buffer, i32 %789)
-  call void skip_space(ptr @buffer, i32 %789)
+  call void skip_space(ptr @buffer, i32 %i.phi)
+  770 = call i32 detect_item(i32 0, ptr @buffer, i32 %i.phi)
+  call void skip_space(ptr @buffer, i32 %i.phi)
   774 = icmp ne i32 %770, i32 0
   br i1 %774, bb %then775, bb %else777
 then775:

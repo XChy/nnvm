@@ -16,13 +16,13 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  19 = phi [bb %select.else, i1 0, bb %select.then, i1 %12]
-  br i1 %19, bb %then, bb %else
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %12]
+  br i1 %select.phi, bb %then, bb %else
 then:
   br bb %if.exit
 if.exit:
-  18 = phi [bb %else, i32 0, bb %then, i32 1]
-  ret i32 %18
+  c.phi = phi [bb %else, i32 0, bb %then, i32 1]
+  ret i32 %c.phi
 else:
   br bb %if.exit
 }

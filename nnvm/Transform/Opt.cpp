@@ -9,6 +9,6 @@ void Optimizer::transform(Module *module) {
   PassManager passManager;
   passManager.addFunctionPass<Mem2RegPass>();
   passManager.addFunctionPass<SLPairElimPass>();
-  //passManager.registerFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CombinerPass>();
   passManager.run(*module);
 }

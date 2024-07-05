@@ -192,19 +192,19 @@ if.exit49:
   67 = fadd float %59, float %66
   br bb %while.cond69
 while.cond69:
-  391 = phi [bb %if.exit49, i32 10, bb %while.body70, i32 %82]
-  390 = phi [bb %if.exit49, float %67, bb %while.body70, float %80]
-  73 = icmp ne i32 %391, i32 0
+  c.phi = phi [bb %if.exit49, i32 10, bb %while.body70, i32 %82]
+  t.phi = phi [bb %if.exit49, float %67, bb %while.body70, float %80]
+  73 = icmp ne i32 %c.phi, i32 0
   br i1 %73, bb %while.body70, bb %while.exit71
 while.body70:
-  77 = fdiv float %x, float %390
-  78 = fadd float %390, float %77
+  77 = fdiv float %x, float %t.phi
+  78 = fadd float %t.phi, float %77
   79 = si2f i32 2 to float
   80 = fdiv float %78, float %79
-  82 = sub i32 %391, i32 1
+  82 = sub i32 %c.phi, i32 1
   br bb %while.cond69
 while.exit71:
-  ret float %390
+  ret float %t.phi
 }
 
 float F1(float x) {
@@ -227,24 +227,24 @@ then15:
 if.exit16:
   br bb %while.cond
 while.cond:
-  395 = phi [bb %if.exit16, float 1.000000, bb %if.exit33, float %394]
-  393 = phi [bb %if.exit16, i32 %n, bb %if.exit33, i32 %41]
-  392 = phi [bb %if.exit16, float %a, bb %if.exit33, float %39]
-  28 = icmp ne i32 %393, i32 0
+  res.phi395 = phi [bb %if.exit16, float 1.000000, bb %if.exit33, float %res.phi]
+  n.stack.phi = phi [bb %if.exit16, i32 %n, bb %if.exit33, i32 %41]
+  a.stack.phi = phi [bb %if.exit16, float %a, bb %if.exit33, float %39]
+  28 = icmp ne i32 %n.stack.phi, i32 0
   br i1 %28, bb %while.body, bb %while.exit
 while.body:
-  30 = srem i32 %393, i32 2
+  30 = srem i32 %n.stack.phi, i32 2
   31 = icmp ne i32 %30, i32 0
   br i1 %31, bb %then32, bb %if.exit33
 while.exit:
-  ret float %395
+  ret float %res.phi395
 then32:
-  36 = fmul float %395, float %392
+  36 = fmul float %res.phi395, float %a.stack.phi
   br bb %if.exit33
 if.exit33:
-  394 = phi [bb %while.body, float %395, bb %then32, float %36]
-  39 = fmul float %392, float %392
-  41 = sdiv i32 %393, i32 2
+  res.phi = phi [bb %while.body, float %res.phi395, bb %then32, float %36]
+  39 = fmul float %a.stack.phi, float %a.stack.phi
+  41 = sdiv i32 %n.stack.phi, i32 2
   br bb %while.cond
 }
 
@@ -263,11 +263,8 @@ entry317:
   319 = call i32 getint()
   br bb %while.cond320
 while.cond320:
-  400 = phi [bb %entry317, i1 ub, bb %if.exit380, i1 %399]
-  398 = phi [bb %entry317, float ub, bb %if.exit380, float %328]
-  397 = phi [bb %entry317, float ub, bb %if.exit380, float %326]
-  396 = phi [bb %entry317, i32 %319, bb %if.exit380, i32 %389]
-  324 = icmp ne i32 %396, i32 0
+  num.phi = phi [bb %entry317, i32 %319, bb %if.exit380, i32 %389]
+  324 = icmp ne i32 %num.phi, i32 0
   br i1 %324, bb %while.body321, bb %while.exit322
 while.body321:
   326 = call float getfloat()
@@ -308,8 +305,8 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  399 = phi [bb %select.else, i1 0, bb %select.then, i1 %365]
-  br i1 %399, bb %then367, bb %else369
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %365]
+  br i1 %select.phi, bb %then367, bb %else369
 then367:
   372 = call float my_log(float %326, float %328)
   call void putfloat(float %372)
@@ -328,7 +325,7 @@ then379:
   br bb %if.exit380
 if.exit380:
   call void putch(i32 10)
-  389 = sub i32 %396, i32 1
+  389 = sub i32 %num.phi, i32 1
   br bb %while.cond320
 else381:
   call void putch(i32 45)

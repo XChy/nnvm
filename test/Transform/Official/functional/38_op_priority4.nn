@@ -42,8 +42,8 @@ select.else:
   31 = icmp ne i1 %30, i1 0
   br bb %select.exit
 select.exit:
-  52 = phi [bb %select.else, i1 %31, bb %select.then, i1 1]
-  br i1 %52, bb %select.then33, bb %select.else34
+  select.phi = phi [bb %select.else, i1 %31, bb %select.then, i1 1]
+  br i1 %select.phi, bb %select.then33, bb %select.else34
 select.then33:
   br bb %select.exit35
 select.else34:
@@ -59,13 +59,13 @@ select.else34:
   46 = icmp ne i1 %45, i1 0
   br bb %select.exit35
 select.exit35:
-  53 = phi [bb %select.else34, i1 %46, bb %select.then33, i1 1]
-  br i1 %53, bb %then, bb %if.exit
+  select36.phi = phi [bb %select.else34, i1 %46, bb %select.then33, i1 1]
+  br i1 %select36.phi, bb %then, bb %if.exit
 then:
   br bb %if.exit
 if.exit:
-  51 = phi [bb %select.exit35, i32 0, bb %then, i32 1]
-  ret i32 %51
+  flag.phi = phi [bb %select.exit35, i32 0, bb %then, i32 1]
+  ret i32 %flag.phi
 }
 
 external void putfarray(i32 , ptr )

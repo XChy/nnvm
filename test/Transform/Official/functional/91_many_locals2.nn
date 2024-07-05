@@ -4,12 +4,12 @@ entry:
   32 = call i32 getint()
   br bb %while.cond
 while.cond:
-  168 = phi [bb %entry, i32 %32, bb %while.body, i32 %40]
-  37 = icmp eq i32 %168, i32 5
+  b.phi = phi [bb %entry, i32 %32, bb %while.body, i32 %40]
+  37 = icmp eq i32 %b.phi, i32 5
   38 = icmp ne i1 %37, i1 0
   br i1 %38, bb %while.body, bb %while.exit
 while.body:
-  40 = add i32 %168, i32 1
+  40 = add i32 %b.phi, i32 1
   br bb %while.cond
 while.exit:
   42 = add i32 0, i32 1
@@ -72,7 +72,7 @@ while.exit:
   call void putint(i32 %96)
   call void putint(i32 %98)
   call void putch(i32 10)
-  call void putint(i32 %168)
+  call void putint(i32 %b.phi)
   call void putch(i32 10)
   ret i32 %90
 }

@@ -42,8 +42,8 @@ select.else213:
   219 = icmp ne i1 %218, i1 0
   br bb %select.exit214
 select.exit214:
-  301 = phi [bb %select.else213, i1 %219, bb %select.then212, i1 1]
-  br i1 %301, bb %select.then221, bb %select.else222
+  select215.phi = phi [bb %select.else213, i1 %219, bb %select.then212, i1 1]
+  br i1 %select215.phi, bb %select.then221, bb %select.else222
 select.then221:
   br bb %select.exit223
 select.else222:
@@ -51,8 +51,8 @@ select.else222:
   227 = icmp ne i1 %226, i1 0
   br bb %select.exit223
 select.exit223:
-  300 = phi [bb %select.else222, i1 %227, bb %select.then221, i1 1]
-  br i1 %300, bb %select.then229, bb %select.else230
+  select224.phi = phi [bb %select.else222, i1 %227, bb %select.then221, i1 1]
+  br i1 %select224.phi, bb %select.then229, bb %select.else230
 select.then229:
   br bb %select.exit231
 select.else230:
@@ -61,8 +61,8 @@ select.else230:
   236 = icmp ne i1 %235, i1 0
   br bb %select.exit231
 select.exit231:
-  299 = phi [bb %select.else230, i1 %236, bb %select.then229, i1 1]
-  br i1 %299, bb %then238, bb %if.exit239
+  select232.phi = phi [bb %select.else230, i1 %236, bb %select.then229, i1 1]
+  br i1 %select232.phi, bb %then238, bb %if.exit239
 then238:
   ret i32 0
 if.exit239:
@@ -116,8 +116,8 @@ select.else:
   49 = icmp ne i1 %48, i1 0
   br bb %select.exit
 select.exit:
-  305 = phi [bb %select.else, i1 %49, bb %select.then, i1 1]
-  br i1 %305, bb %then51, bb %if.exit52
+  select.phi = phi [bb %select.else, i1 %49, bb %select.then, i1 1]
+  br i1 %select.phi, bb %then51, bb %if.exit52
 then51:
   TWO_PI.load55 = load float from ptr @TWO_PI
   56 = fdiv float %x, float %TWO_PI.load55
@@ -128,28 +128,27 @@ then51:
   63 = fsub float %x, float %62
   br bb %if.exit52
 if.exit52:
-  306 = phi [bb %select.exit, i32 ub, bb %then51, i32 %57]
-  304 = phi [bb %select.exit, float %x, bb %then51, float %63]
+  x.stack37.phi304 = phi [bb %select.exit, float %x, bb %then51, float %63]
   PI.load = load float from ptr @PI
-  66 = fcmp ogt float %304, float %PI.load
+  66 = fcmp ogt float %x.stack37.phi304, float %PI.load
   br i1 %66, bb %then67, bb %if.exit68
 then67:
   TWO_PI.load70 = load float from ptr @TWO_PI
-  71 = fsub float %304, float %TWO_PI.load70
+  71 = fsub float %x.stack37.phi304, float %TWO_PI.load70
   br bb %if.exit68
 if.exit68:
-  303 = phi [bb %if.exit52, float %304, bb %then67, float %71]
+  x.stack37.phi303 = phi [bb %if.exit52, float %x.stack37.phi304, bb %then67, float %71]
   PI.load73 = load float from ptr @PI
   74 = fneg float %PI.load73
-  75 = fcmp olt float %303, float %74
+  75 = fcmp olt float %x.stack37.phi303, float %74
   br i1 %75, bb %then76, bb %if.exit77
 then76:
   TWO_PI.load79 = load float from ptr @TWO_PI
-  80 = fadd float %303, float %TWO_PI.load79
+  80 = fadd float %x.stack37.phi303, float %TWO_PI.load79
   br bb %if.exit77
 if.exit77:
-  302 = phi [bb %if.exit68, float %303, bb %then76, float %80]
-  82 = call float my_sin_impl(float %302)
+  x.stack37.phi = phi [bb %if.exit68, float %x.stack37.phi303, bb %then76, float %80]
+  82 = call float my_sin_impl(float %x.stack37.phi)
   ret float %82
 }
 
@@ -201,8 +200,8 @@ select.else95:
   100 = icmp ne i1 %99, i1 0
   br bb %select.exit96
 select.exit96:
-  310 = phi [bb %select.else95, i1 %100, bb %select.then94, i1 1]
-  br i1 %310, bb %then102, bb %if.exit103
+  select97.phi = phi [bb %select.else95, i1 %100, bb %select.then94, i1 1]
+  br i1 %select97.phi, bb %then102, bb %if.exit103
 then102:
   104 = sub i32 0, i32 1
   ret i32 %104
@@ -224,8 +223,8 @@ select.else111:
   117 = icmp ne i1 %116, i1 0
   br bb %select.exit112
 select.exit112:
-  307 = phi [bb %select.else111, i1 %117, bb %select.then110, i1 1]
-  br i1 %307, bb %select.then119, bb %select.else120
+  select113.phi = phi [bb %select.else111, i1 %117, bb %select.then110, i1 1]
+  br i1 %select113.phi, bb %select.then119, bb %select.else120
 select.then119:
   br bb %select.exit121
 select.else120:
@@ -234,18 +233,17 @@ select.else120:
   125 = icmp ne i1 %124, i1 0
   br bb %select.exit121
 select.exit121:
-  308 = phi [bb %select.else120, i1 %125, bb %select.then119, i1 1]
-  br i1 %308, bb %then127, bb %if.exit128
+  select122.phi = phi [bb %select.else120, i1 %125, bb %select.then119, i1 1]
+  br i1 %select122.phi, bb %then127, bb %if.exit128
 then127:
   129 = sub i32 0, i32 1
   ret i32 %129
 if.exit128:
   br bb %while.cond
 while.cond:
-  312 = phi [bb %if.exit128, i32 ub, bb %while.exit141, i32 %311]
-  309 = phi [bb %if.exit128, i32 0, bb %while.exit141, i32 %157]
+  y.phi = phi [bb %if.exit128, i32 0, bb %while.exit141, i32 %157]
   height.load135 = load i32 from ptr @height
-  136 = icmp slt i32 %309, i32 %height.load135
+  136 = icmp slt i32 %y.phi, i32 %height.load135
   137 = icmp ne i1 %136, i1 0
   br i1 %137, bb %while.body, bb %while.exit
 while.body:
@@ -253,23 +251,23 @@ while.body:
 while.exit:
   ret i32 0
 while.cond139:
-  311 = phi [bb %while.body, i32 0, bb %while.body140, i32 %155]
+  x.phi = phi [bb %while.body, i32 0, bb %while.body140, i32 %155]
   width.load143 = load i32 from ptr @width
-  144 = icmp slt i32 %311, i32 %width.load143
+  144 = icmp slt i32 %x.phi, i32 %width.load143
   145 = icmp ne i1 %144, i1 0
   br i1 %145, bb %while.body140, bb %while.exit141
 while.body140:
   width.load147 = load i32 from ptr @width
-  148 = mul i32 %309, i32 %width.load147
-  150 = add i32 %148, i32 %311
+  148 = mul i32 %y.phi, i32 %width.load147
+  150 = add i32 %148, i32 %x.phi
   151 = mul i32 %150, i32 4
   152 = ptradd ptr @image, i32 %151
   153 = call i32 getint()
   store i32 %153 to ptr %152
-  155 = add i32 %311, i32 1
+  155 = add i32 %x.phi, i32 1
   br bb %while.cond139
 while.exit141:
-  157 = add i32 %309, i32 1
+  157 = add i32 %y.phi, i32 1
   br bb %while.cond
 }
 
@@ -292,10 +290,9 @@ entry248:
   call void putch(i32 10)
   br bb %while.cond262
 while.cond262:
-  315 = phi [bb %entry248, i32 ub, bb %while.exit272, i32 %314]
-  313 = phi [bb %entry248, i32 0, bb %while.exit272, i32 %287]
+  y261.phi = phi [bb %entry248, i32 0, bb %while.exit272, i32 %287]
   height.load266 = load i32 from ptr @height
-  267 = icmp slt i32 %313, i32 %height.load266
+  267 = icmp slt i32 %y261.phi, i32 %height.load266
   268 = icmp ne i1 %267, i1 0
   br i1 %268, bb %while.body263, bb %while.exit264
 while.body263:
@@ -303,20 +300,20 @@ while.body263:
 while.exit264:
   ret 
 while.cond270:
-  314 = phi [bb %while.body263, i32 0, bb %while.body271, i32 %284]
+  x269.phi = phi [bb %while.body263, i32 0, bb %while.body271, i32 %284]
   width.load274 = load i32 from ptr @width
-  275 = icmp slt i32 %314, i32 %width.load274
+  275 = icmp slt i32 %x269.phi, i32 %width.load274
   276 = icmp ne i1 %275, i1 0
   br i1 %276, bb %while.body271, bb %while.exit272
 while.body271:
-  280 = call i32 rotate(i32 %314, i32 %313, float %rad)
+  280 = call i32 rotate(i32 %x269.phi, i32 %y261.phi, float %rad)
   call void putint(i32 %280)
   call void putch(i32 32)
-  284 = add i32 %314, i32 1
+  284 = add i32 %x269.phi, i32 1
   br bb %while.cond270
 while.exit272:
   call void putch(i32 10)
-  287 = add i32 %313, i32 1
+  287 = add i32 %y261.phi, i32 1
   br bb %while.cond262
 }
 

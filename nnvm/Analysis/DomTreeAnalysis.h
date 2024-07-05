@@ -15,6 +15,7 @@ class DomTreeAnalysis : public FunctionPass {
 public:
   bool run(Function &F);
 
+  // TODO: make it faster with ancestor algorithm.
   bool dom(BasicBlock *domer, BasicBlock *domee) {
     return domer == domee || rdom(domer, domee);
   }

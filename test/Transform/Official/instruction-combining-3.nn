@@ -16,37 +16,35 @@ entry20007:
   call void _sysy_starttime(i32 10015)
   br bb %while.cond
 while.cond:
-  20051 = phi [bb %entry20007, i32 ub, bb %while.exit20023, i32 %20050]
-  20049 = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20041]
-  20047 = phi [bb %entry20007, i32 ub, bb %while.exit20023, i32 %20034]
-  20046 = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20039]
+  i.phi = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20041]
+  sum.phi = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20039]
   loopCount.load = load i32 from ptr @loopCount
-  20017 = icmp slt i32 %20049, i32 %loopCount.load
+  20017 = icmp slt i32 %i.phi, i32 %loopCount.load
   20018 = icmp ne i1 %20017, i1 0
   br i1 %20018, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond20021
 while.exit:
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %20046)
+  call void putint(i32 %sum.phi)
   call void putch(i32 10)
   ret i32 0
 while.cond20021:
-  20050 = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20032]
-  20048 = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20030]
-  20025 = icmp slt i32 %20050, i32 60
+  j.phi = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20032]
+  tmp.phi20049 = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20030]
+  20025 = icmp slt i32 %j.phi, i32 60
   20026 = icmp ne i1 %20025, i1 0
   br i1 %20026, bb %while.body20022, bb %while.exit20023
 while.body20022:
-  20029 = call i32 func(i32 %20049, i32 10000)
-  20030 = add i32 %20048, i32 %20029
-  20032 = add i32 %20050, i32 1
+  20029 = call i32 func(i32 %i.phi, i32 10000)
+  20030 = add i32 %tmp.phi20049, i32 %20029
+  20032 = add i32 %j.phi, i32 1
   br bb %while.cond20021
 while.exit20023:
-  20034 = sdiv i32 %20048, i32 60
-  20037 = add i32 %20046, i32 %20034
+  20034 = sdiv i32 %tmp.phi20049, i32 60
+  20037 = add i32 %sum.phi, i32 %20034
   20039 = srem i32 %20037, i32 536854529
-  20041 = add i32 %20049, i32 1
+  20041 = add i32 %i.phi, i32 1
   br bb %while.cond
 }
 

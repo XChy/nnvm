@@ -24,24 +24,23 @@ entry2:
   8 = add i32 %a, i32 %b
   br bb %while.cond
 while.cond:
-  51 = phi [bb %entry2, i32 ub, bb %if.exit, i32 %50]
-  48 = phi [bb %entry2, i32 ub, bb %if.exit, i32 42]
-  47 = phi [bb %entry2, i32 %8, bb %if.exit, i32 %46]
-  13 = icmp slt i32 %47, i32 75
+  e.phi51 = phi [bb %entry2, i32 ub, bb %if.exit, i32 %e.phi50]
+  c.phi47 = phi [bb %entry2, i32 %8, bb %if.exit, i32 %c.phi46]
+  13 = icmp slt i32 %c.phi47, i32 75
   14 = icmp ne i1 %13, i1 0
   br i1 %14, bb %while.body, bb %while.exit
 while.body:
-  17 = icmp slt i32 %47, i32 100
+  17 = icmp slt i32 %c.phi47, i32 100
   br i1 %17, bb %then, bb %if.exit
 while.exit:
-  ret i32 %47
+  ret i32 %c.phi47
 then:
-  22 = add i32 %47, i32 42
+  22 = add i32 %c.phi47, i32 42
   24 = icmp sgt i32 %22, i32 99
   br i1 %24, bb %then25, bb %if.exit26
 if.exit:
-  50 = phi [bb %while.body, i32 %51, bb %if.exit26, i32 %49]
-  46 = phi [bb %while.body, i32 %47, bb %if.exit26, i32 %45]
+  e.phi50 = phi [bb %while.body, i32 %e.phi51, bb %if.exit26, i32 %e.phi]
+  c.phi46 = phi [bb %while.body, i32 %c.phi47, bb %if.exit26, i32 %c.phi45]
   br bb %while.cond
 then25:
   29 = mul i32 42, i32 2
@@ -49,14 +48,14 @@ then25:
   31 = icmp eq i32 %30, i32 1
   br i1 %31, bb %then32, bb %if.exit33
 if.exit26:
-  49 = phi [bb %then, i32 %51, bb %if.exit33, i32 %29]
-  45 = phi [bb %then, i32 %22, bb %if.exit33, i32 %44]
+  e.phi = phi [bb %then, i32 %e.phi51, bb %if.exit33, i32 %29]
+  c.phi45 = phi [bb %then, i32 %22, bb %if.exit33, i32 %c.phi]
   br bb %if.exit
 then32:
   35 = mul i32 %29, i32 2
   br bb %if.exit33
 if.exit33:
-  44 = phi [bb %then25, i32 %22, bb %then32, i32 %35]
+  c.phi = phi [bb %then25, i32 %22, bb %then32, i32 %35]
   br bb %if.exit26
 }
 

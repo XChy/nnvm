@@ -183,7 +183,6 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
                  ->setUse(0, builder.phyReg(ZERO))
                  ->setUse(1, builder.phyReg(RA))
                  ->setUse(2, LIRImm::create(0))
-                 // TODO:Implicit use of "a0/f0"
                  ->setUse(3, builder.phyReg(isFloatPoint ? FA0 : A0));
     } else {
       inst = LIRInst::create(JALR, builder.phyReg(ZERO), builder.phyReg(RA),
@@ -284,6 +283,10 @@ void LowerHelper::mapAll(Module &module) {
 
     defMap[var] = lowVar;
   }
+
+  // Map UB values
+  for (UBValue *ubval : UBValue::allUBValues())
+    defMap[ubval] = LIRUBValue::get(lowerType(ubval->getType()));
 
   for (auto &[name, func] : module.getFunctionMap()) {
     LIRFunc *lowFunc = new LIRFunc();

@@ -12,12 +12,9 @@ i32 main() {
 entry7:
   br bb %while.cond
 while.cond:
-  86 = phi [bb %entry7, i1 ub, bb %if.exit60, i1 %85]
-  83 = phi [bb %entry7, i1 ub, bb %if.exit60, i1 %82]
-  81 = phi [bb %entry7, i1 ub, bb %if.exit60, i1 %80]
-  79 = phi [bb %entry7, i1 ub, bb %if.exit60, i1 %78]
-  77 = phi [bb %entry7, i32 5, bb %if.exit60, i32 %69]
-  13 = icmp sge i32 %77, i32 0
+  select50.phi86 = phi [bb %entry7, i1 ub, bb %if.exit60, i1 %select50.phi85]
+  k.phi = phi [bb %entry7, i32 5, bb %if.exit60, i32 %69]
+  13 = icmp sge i32 %k.phi, i32 0
   14 = icmp ne i1 %13, i1 0
   br i1 %14, bb %while.body, bb %while.exit
 while.body:
@@ -40,8 +37,8 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  78 = phi [bb %select.else, i1 0, bb %select.then, i1 %22]
-  br i1 %78, bb %select.then24, bb %select.else25
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %22]
+  br i1 %select.phi, bb %select.then24, bb %select.else25
 select.then24:
   28 = call i32 inc_a()
   29 = icmp ne i32 %28, i32 0
@@ -49,8 +46,8 @@ select.then24:
 select.else25:
   br bb %select.exit26
 select.exit26:
-  80 = phi [bb %select.else25, i1 0, bb %select.then24, i1 %29]
-  br i1 %80, bb %then, bb %if.exit
+  select27.phi = phi [bb %select.else25, i1 0, bb %select.then24, i1 %29]
+  br i1 %select27.phi, bb %then, bb %if.exit
 then:
   a.load33 = load i32 from ptr @a
   call void putint(i32 %a.load33)
@@ -70,9 +67,9 @@ select.else42:
   46 = icmp ne i32 %45, i32 0
   br i1 %46, bb %select.then47, bb %select.else48
 select.exit43:
-  85 = phi [bb %select.exit49, i1 %84, bb %select.then41, i1 %86]
-  82 = phi [bb %select.exit49, i1 %57, bb %select.then41, i1 1]
-  br i1 %82, bb %then59, bb %else
+  select50.phi85 = phi [bb %select.exit49, i1 %select50.phi, bb %select.then41, i1 %select50.phi86]
+  select44.phi = phi [bb %select.exit49, i1 %57, bb %select.then41, i1 1]
+  br i1 %select44.phi, bb %then59, bb %else
 select.then47:
   51 = call i32 inc_a()
   52 = call i32 inc_a()
@@ -83,8 +80,8 @@ select.then47:
 select.else48:
   br bb %select.exit49
 select.exit49:
-  84 = phi [bb %select.else48, i1 0, bb %select.then47, i1 %55]
-  57 = icmp ne i1 %84, i1 0
+  select50.phi = phi [bb %select.else48, i1 0, bb %select.then47, i1 %55]
+  57 = icmp ne i1 %select50.phi, i1 0
   br bb %select.exit43
 then59:
   a.load62 = load i32 from ptr @a
@@ -95,7 +92,7 @@ then59:
   store i32 %66 to ptr @b
   br bb %if.exit60
 if.exit60:
-  69 = sub i32 %77, i32 1
+  69 = sub i32 %k.phi, i32 1
   br bb %while.cond
 else:
   67 = call i32 inc_a()

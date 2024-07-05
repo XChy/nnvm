@@ -17,16 +17,16 @@ void init() {
 entry51:
   br bb %while.cond53
 while.cond53:
-  150 = phi [bb %entry51, i32 1, bb %while.body54, i32 %65]
+  i.phi = phi [bb %entry51, i32 1, bb %while.body54, i32 %65]
   n.load = load i32 from ptr @n
-  58 = icmp sle i32 %150, i32 %n.load
+  58 = icmp sle i32 %i.phi, i32 %n.load
   59 = icmp ne i1 %58, i1 0
   br i1 %59, bb %while.body54, bb %while.exit55
 while.body54:
-  61 = mul i32 %150, i32 4
+  61 = mul i32 %i.phi, i32 4
   62 = ptradd ptr @fa, i32 %61
-  store i32 %150 to ptr %62
-  65 = add i32 %150, i32 1
+  store i32 %i.phi to ptr %62
+  65 = add i32 %i.phi, i32 1
   br bb %while.cond53
 while.exit55:
   ret 
@@ -51,12 +51,11 @@ entry99:
   call void init()
   br bb %while.cond103
 while.cond103:
-  163 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %162]
-  161 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %160]
-  159 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %158]
-  157 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %156]
-  155 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %154]
-  153 = phi [bb %entry99, i1 ub, bb %if.exit127, i1 %151]
+  y141.phi163 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %y141.phi]
+  x138.phi161 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %x138.phi]
+  y.phi159 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %y.phi]
+  x129.phi157 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %x129.phi]
+  select118.phi155 = phi [bb %entry99, i1 ub, bb %if.exit127, i1 %select118.phi]
   m.load = load i32 from ptr @m
   107 = icmp ne i32 %m.load, i32 0
   br i1 %107, bb %while.body104, bb %while.exit105
@@ -66,24 +65,23 @@ while.body104:
 while.exit105:
   ret i32 0
 while.cond110:
-  158 = phi [bb %while.body104, i32 %109, bb %while.body111, i32 %123]
-  152 = phi [bb %while.body104, i1 %153, bb %while.body111, i1 %151]
-  114 = icmp ne i32 %158, i32 81
+  ch108.phi = phi [bb %while.body104, i32 %109, bb %while.body111, i32 %123]
+  114 = icmp ne i32 %ch108.phi, i32 81
   br i1 %114, bb %select.then115, bb %select.else116
 while.body111:
   123 = call i32 getch()
   br bb %while.cond110
 while.exit112:
-  125 = icmp eq i32 %158, i32 81
+  125 = icmp eq i32 %ch108.phi, i32 81
   br i1 %125, bb %then126, bb %else128
 select.then115:
-  120 = icmp ne i32 %158, i32 85
+  120 = icmp ne i32 %ch108.phi, i32 85
   br bb %select.exit117
 select.else116:
   br bb %select.exit117
 select.exit117:
-  151 = phi [bb %select.else116, i1 0, bb %select.then115, i1 %120]
-  122 = icmp ne i1 %151, i1 0
+  select118.phi = phi [bb %select.else116, i1 0, bb %select.then115, i1 %120]
+  122 = icmp ne i1 %select118.phi, i1 0
   br i1 %122, bb %while.body111, bb %while.exit112
 then126:
   130 = call i32 quick_read()
@@ -93,10 +91,10 @@ then126:
   call void putch(i32 10)
   br bb %if.exit127
 if.exit127:
-  162 = phi [bb %else128, i32 %143, bb %then126, i32 %163]
-  160 = phi [bb %else128, i32 %161, bb %then126, i32 %132]
-  156 = phi [bb %else128, i32 %140, bb %then126, i32 %157]
-  154 = phi [bb %else128, i32 %155, bb %then126, i32 %130]
+  y141.phi = phi [bb %else128, i32 %143, bb %then126, i32 %y141.phi163]
+  x138.phi = phi [bb %else128, i32 %140, bb %then126, i32 %x138.phi161]
+  y.phi = phi [bb %else128, i32 %y.phi159, bb %then126, i32 %132]
+  x129.phi = phi [bb %else128, i32 %x129.phi157, bb %then126, i32 %130]
   m.load148 = load i32 from ptr @m
   149 = sub i32 %m.load148, i32 1
   store i32 %149 to ptr @m
@@ -153,63 +151,61 @@ entry:
   2 = call i32 getch()
   br bb %while.cond
 while.cond:
-  170 = phi [bb %entry, i1 ub, bb %if.exit, i1 %169]
-  168 = phi [bb %entry, i32 0, bb %if.exit, i32 %167]
-  165 = phi [bb %entry, i32 %2, bb %if.exit, i32 %23]
-  9 = icmp slt i32 %165, i32 48
+  f.phi168 = phi [bb %entry, i32 0, bb %if.exit, i32 %f.phi]
+  ch.phi166 = phi [bb %entry, i32 %2, bb %if.exit, i32 %23]
+  9 = icmp slt i32 %ch.phi166, i32 48
   br i1 %9, bb %select.then, bb %select.else
 while.body:
-  20 = icmp eq i32 %165, i32 45
+  20 = icmp eq i32 %ch.phi166, i32 45
   br i1 %20, bb %then, bb %if.exit
 while.exit:
   br bb %while.cond24
 select.then:
   br bb %select.exit
 select.else:
-  15 = icmp sgt i32 %165, i32 57
+  15 = icmp sgt i32 %ch.phi166, i32 57
   16 = icmp ne i1 %15, i1 0
   br bb %select.exit
 select.exit:
-  169 = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
-  18 = icmp ne i1 %169, i1 0
+  select.phi = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
+  18 = icmp ne i1 %select.phi, i1 0
   br i1 %18, bb %while.body, bb %while.exit
 then:
   br bb %if.exit
 if.exit:
-  167 = phi [bb %while.body, i32 %168, bb %then, i32 1]
+  f.phi = phi [bb %while.body, i32 %f.phi168, bb %then, i32 1]
   23 = call i32 getch()
   br bb %while.cond
 while.cond24:
-  172 = phi [bb %while.exit, i1 ub, bb %while.body25, i1 %171]
-  166 = phi [bb %while.exit, i32 0, bb %while.body25, i32 %41]
-  164 = phi [bb %while.exit, i32 %165, bb %while.body25, i32 %42]
-  28 = icmp sge i32 %164, i32 48
+  ch.phi = phi [bb %while.exit, i32 %ch.phi166, bb %while.body25, i32 %42]
+  x.phi = phi [bb %while.exit, i32 0, bb %while.body25, i32 %41]
+  28 = icmp sge i32 %ch.phi, i32 48
   br i1 %28, bb %select.then29, bb %select.else30
 while.body25:
-  38 = mul i32 %166, i32 10
-  40 = add i32 %38, i32 %164
+  38 = mul i32 %x.phi, i32 10
+  40 = add i32 %38, i32 %ch.phi
   41 = sub i32 %40, i32 48
   42 = call i32 getch()
   br bb %while.cond24
 while.exit26:
-  44 = icmp ne i32 %168, i32 0
+  44 = icmp ne i32 %f.phi168, i32 0
   br i1 %44, bb %then45, bb %else
 select.then29:
-  34 = icmp sle i32 %164, i32 57
+  34 = icmp sle i32 %ch.phi, i32 57
   br bb %select.exit31
 select.else30:
   br bb %select.exit31
 select.exit31:
-  171 = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
-  36 = icmp ne i1 %171, i1 0
+  select32.phi = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
+  36 = icmp ne i1 %select32.phi, i1 0
   br i1 %36, bb %while.body25, bb %while.exit26
 then45:
-  49 = sub i32 0, i32 %166
+  49 = sub i32 0, i32 %x.phi
   ret i32 %49
 if.exit46:
   unreachable
 else:
-  ret i32 %166
+  ret i32 %x.phi
 }
 
 

@@ -19,15 +19,15 @@ entry117:
   119 = call i32 getint()
   br bb %while.cond120
 while.cond120:
-  131 = phi [bb %entry117, i32 %119, bb %while.body121, i32 %129]
-  124 = icmp sgt i32 %131, i32 0
+  N.phi = phi [bb %entry117, i32 %119, bb %while.body121, i32 %129]
+  124 = icmp sgt i32 %N.phi, i32 0
   125 = icmp ne i1 %124, i1 0
   br i1 %125, bb %while.body121, bb %while.exit122
 while.body121:
   126 = call i32 getint()
   store i32 %126 to ptr @n
   call void f(i32 1)
-  129 = sub i32 %131, i32 1
+  129 = sub i32 %N.phi, i32 1
   br bb %while.cond120
 while.exit122:
   sum.load130 = load i32 from ptr @sum
@@ -46,15 +46,13 @@ void f(i32 step) {
 entry26:
   br bb %while.cond29
 while.cond29:
-  136 = phi [bb %entry26, i1 ub, bb %if.exit71, i1 %135]
-  134 = phi [bb %entry26, i1 ub, bb %if.exit71, i1 %133]
-  132 = phi [bb %entry26, i32 1, bb %if.exit71, i32 %116]
+  i28.phi = phi [bb %entry26, i32 1, bb %if.exit71, i32 %116]
   n.load33 = load i32 from ptr @n
-  34 = icmp sle i32 %132, i32 %n.load33
+  34 = icmp sle i32 %i28.phi, i32 %n.load33
   35 = icmp ne i1 %34, i1 0
   br i1 %35, bb %while.body30, bb %while.exit31
 while.body30:
-  37 = mul i32 %132, i32 4
+  37 = mul i32 %i28.phi, i32 4
   38 = ptradd ptr @row, i32 %37
   38.load = load i32 from ptr %38
   40 = icmp ne i32 %38.load, i32 1
@@ -62,7 +60,7 @@ while.body30:
 while.exit31:
   ret 
 select.then:
-  47 = add i32 %step, i32 %132
+  47 = add i32 %step, i32 %i28.phi
   48 = mul i32 %47, i32 4
   49 = ptradd ptr @line1, i32 %48
   49.load = load i32 from ptr %49
@@ -71,12 +69,12 @@ select.then:
 select.else:
   br bb %select.exit
 select.exit:
-  133 = phi [bb %select.else, i1 0, bb %select.then, i1 %51]
-  br i1 %133, bb %select.then53, bb %select.else54
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %51]
+  br i1 %select.phi, bb %select.then53, bb %select.else54
 select.then53:
   n.load57 = load i32 from ptr @n
   59 = add i32 %n.load57, i32 %step
-  61 = sub i32 %59, i32 %132
+  61 = sub i32 %59, i32 %i28.phi
   62 = mul i32 %61, i32 4
   63 = ptradd ptr @line2, i32 %62
   63.load = load i32 from ptr %63
@@ -88,47 +86,47 @@ select.then53:
 select.else54:
   br bb %select.exit55
 select.exit55:
-  135 = phi [bb %select.else54, i1 0, bb %select.then53, i1 %68]
-  br i1 %135, bb %then70, bb %if.exit71
+  select56.phi = phi [bb %select.else54, i1 0, bb %select.then53, i1 %68]
+  br i1 %select56.phi, bb %then70, bb %if.exit71
 then70:
   73 = mul i32 %step, i32 4
   74 = ptradd ptr @ans, i32 %73
-  store i32 %132 to ptr %74
+  store i32 %i28.phi to ptr %74
   n.load77 = load i32 from ptr @n
   78 = icmp eq i32 %step, i32 %n.load77
   br i1 %78, bb %then79, bb %if.exit80
 if.exit71:
-  116 = add i32 %132, i32 1
+  116 = add i32 %i28.phi, i32 1
   br bb %while.cond29
 then79:
   call void printans()
   br bb %if.exit80
 if.exit80:
-  83 = mul i32 %132, i32 4
+  83 = mul i32 %i28.phi, i32 4
   84 = ptradd ptr @row, i32 %83
   store i32 1 to ptr %84
-  87 = add i32 %step, i32 %132
+  87 = add i32 %step, i32 %i28.phi
   88 = mul i32 %87, i32 4
   89 = ptradd ptr @line1, i32 %88
   store i32 1 to ptr %89
   n.load90 = load i32 from ptr @n
   92 = add i32 %n.load90, i32 %step
-  94 = sub i32 %92, i32 %132
+  94 = sub i32 %92, i32 %i28.phi
   95 = mul i32 %94, i32 4
   96 = ptradd ptr @line2, i32 %95
   store i32 1 to ptr %96
   98 = add i32 %step, i32 1
   call void f(i32 %98)
-  101 = mul i32 %132, i32 4
+  101 = mul i32 %i28.phi, i32 4
   102 = ptradd ptr @row, i32 %101
   store i32 0 to ptr %102
-  105 = add i32 %step, i32 %132
+  105 = add i32 %step, i32 %i28.phi
   106 = mul i32 %105, i32 4
   107 = ptradd ptr @line1, i32 %106
   store i32 0 to ptr %107
   n.load108 = load i32 from ptr @n
   110 = add i32 %n.load108, i32 %step
-  112 = sub i32 %110, i32 %132
+  112 = sub i32 %110, i32 %i28.phi
   113 = mul i32 %112, i32 4
   114 = ptradd ptr @line2, i32 %113
   store i32 0 to ptr %114
@@ -148,18 +146,18 @@ entry:
   store i32 %2 to ptr @sum
   br bb %while.cond
 while.cond:
-  137 = phi [bb %entry, i32 1, bb %if.exit, i32 %25]
+  i.phi = phi [bb %entry, i32 1, bb %if.exit, i32 %25]
   n.load = load i32 from ptr @n
-  9 = icmp sle i32 %137, i32 %n.load
+  9 = icmp sle i32 %i.phi, i32 %n.load
   10 = icmp ne i1 %9, i1 0
   br i1 %10, bb %while.body, bb %while.exit
 while.body:
-  12 = mul i32 %137, i32 4
+  12 = mul i32 %i.phi, i32 4
   13 = ptradd ptr @ans, i32 %12
   13.load = load i32 from ptr %13
   call void putint(i32 %13.load)
   n.load17 = load i32 from ptr @n
-  18 = icmp eq i32 %137, i32 %n.load17
+  18 = icmp eq i32 %i.phi, i32 %n.load17
   br i1 %18, bb %then, bb %else
 while.exit:
   ret 
@@ -167,7 +165,7 @@ then:
   call void putch(i32 10)
   ret 
 if.exit:
-  25 = add i32 %137, i32 1
+  25 = add i32 %i.phi, i32 1
   br bb %while.cond
 else:
   call void putch(i32 32)

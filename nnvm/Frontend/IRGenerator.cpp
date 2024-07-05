@@ -904,6 +904,9 @@ void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
 
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
+  if (builder.getCurrentBB()->getTerminator())
+    return Symbol::none();
+
   if (ctx->ASSIGN()) {
     Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
     if (!lhs)
@@ -961,8 +964,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
-      if (currentFunc->symbolType->containedTy->symbolID !=
-          SymbolType::SymbolID::Void) {
+      if (!currentFunc->symbolType->containedTy->isVoid()) {
         // TODO:  error
         return Symbol::none();
       }

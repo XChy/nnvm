@@ -40,22 +40,22 @@ i32 EightWhile() {
 entry:
   br bb %while.cond
 while.cond:
-  108 = phi [bb %entry, i32 10, bb %while.exit15, i32 %107]
-  104 = phi [bb %entry, i32 7, bb %while.exit15, i32 %103]
-  101 = phi [bb %entry, i32 6, bb %while.exit15, i32 %82]
-  100 = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
-  9 = icmp slt i32 %100, i32 20
+  d.phi108 = phi [bb %entry, i32 10, bb %while.exit15, i32 %d.phi107]
+  c.phi104 = phi [bb %entry, i32 7, bb %while.exit15, i32 %c.phi]
+  a.phi = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
+  b.phi = phi [bb %entry, i32 6, bb %while.exit15, i32 %82]
+  9 = icmp slt i32 %a.phi, i32 20
   10 = icmp ne i1 %9, i1 0
   br i1 %10, bb %while.body, bb %while.exit
 while.body:
-  12 = add i32 %100, i32 3
+  12 = add i32 %a.phi, i32 3
   br bb %while.cond13
 while.exit:
-  86 = add i32 %101, i32 %108
-  87 = add i32 %100, i32 %86
-  89 = add i32 %87, i32 %104
+  86 = add i32 %b.phi, i32 %d.phi108
+  87 = add i32 %a.phi, i32 %86
+  89 = add i32 %87, i32 %c.phi104
   e.load90 = load i32 from ptr @e
-  92 = add i32 %e.load90, i32 %108
+  92 = add i32 %e.load90, i32 %d.phi108
   g.load93 = load i32 from ptr @g
   94 = sub i32 %92, i32 %g.load93
   h.load95 = load i32 from ptr @h
@@ -63,40 +63,40 @@ while.exit:
   97 = sub i32 %89, i32 %96
   ret i32 %97
 while.cond13:
-  107 = phi [bb %while.body, i32 %108, bb %while.exit23, i32 %106]
-  103 = phi [bb %while.body, i32 %104, bb %while.exit23, i32 %80]
-  102 = phi [bb %while.body, i32 %101, bb %while.exit23, i32 %20]
-  17 = icmp slt i32 %102, i32 10
+  d.phi107 = phi [bb %while.body, i32 %d.phi108, bb %while.exit23, i32 %d.phi]
+  c.phi = phi [bb %while.body, i32 %c.phi104, bb %while.exit23, i32 %80]
+  b.phi101 = phi [bb %while.body, i32 %b.phi, bb %while.exit23, i32 %20]
+  17 = icmp slt i32 %b.phi101, i32 10
   18 = icmp ne i1 %17, i1 0
   br i1 %18, bb %while.body14, bb %while.exit15
 while.body14:
-  20 = add i32 %102, i32 1
+  20 = add i32 %b.phi101, i32 1
   br bb %while.cond21
 while.exit15:
-  82 = sub i32 %102, i32 2
+  82 = sub i32 %b.phi101, i32 2
   br bb %while.cond
 while.cond21:
-  106 = phi [bb %while.body14, i32 %107, bb %while.exit31, i32 %78]
-  105 = phi [bb %while.body14, i32 %103, bb %while.exit31, i32 %28]
-  25 = icmp eq i32 %105, i32 7
+  d.phi = phi [bb %while.body14, i32 %d.phi107, bb %while.exit31, i32 %78]
+  c.phi105 = phi [bb %while.body14, i32 %c.phi, bb %while.exit31, i32 %28]
+  25 = icmp eq i32 %c.phi105, i32 7
   26 = icmp ne i1 %25, i1 0
   br i1 %26, bb %while.body22, bb %while.exit23
 while.body22:
-  28 = sub i32 %105, i32 1
+  28 = sub i32 %c.phi105, i32 1
   br bb %while.cond29
 while.exit23:
-  80 = add i32 %105, i32 1
+  80 = add i32 %c.phi105, i32 1
   br bb %while.cond13
 while.cond29:
-  109 = phi [bb %while.body22, i32 %106, bb %while.exit39, i32 %36]
-  33 = icmp slt i32 %109, i32 20
+  d.phi109 = phi [bb %while.body22, i32 %d.phi, bb %while.exit39, i32 %36]
+  33 = icmp slt i32 %d.phi109, i32 20
   34 = icmp ne i1 %33, i1 0
   br i1 %34, bb %while.body30, bb %while.exit31
 while.body30:
-  36 = add i32 %109, i32 3
+  36 = add i32 %d.phi109, i32 3
   br bb %while.cond37
 while.exit31:
-  78 = sub i32 %109, i32 1
+  78 = sub i32 %d.phi109, i32 1
   br bb %while.cond21
 while.cond37:
   e.load = load i32 from ptr @e

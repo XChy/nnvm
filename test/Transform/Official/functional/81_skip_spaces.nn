@@ -3,33 +3,33 @@ entry:
   %arr = stack 400
   br bb %while.cond
 while.cond:
-  31 = phi [bb %entry, i32 0, bb %while.body, i32 %14]
+  i.phi31 = phi [bb %entry, i32 0, bb %while.body, i32 %14]
   7 = call i32 getint()
   8 = icmp ne i32 %7, i32 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  10 = mul i32 %31, i32 4
+  10 = mul i32 %i.phi31, i32 4
   11 = ptradd ptr %arr, i32 %10
   12 = call i32 getint()
   store i32 %12 to ptr %11
-  14 = add i32 %31, i32 1
+  14 = add i32 %i.phi31, i32 1
   br bb %while.cond
 while.exit:
   br bb %while.cond15
 while.cond15:
-  32 = phi [bb %while.exit, i32 0, bb %while.body16, i32 %27]
-  30 = phi [bb %while.exit, i32 %31, bb %while.body16, i32 %21]
-  19 = icmp ne i32 %30, i32 0
+  sum.phi = phi [bb %while.exit, i32 0, bb %while.body16, i32 %27]
+  i.phi = phi [bb %while.exit, i32 %i.phi31, bb %while.body16, i32 %21]
+  19 = icmp ne i32 %i.phi, i32 0
   br i1 %19, bb %while.body16, bb %while.exit17
 while.body16:
-  21 = sub i32 %30, i32 1
+  21 = sub i32 %i.phi, i32 1
   24 = mul i32 %21, i32 4
   25 = ptradd ptr %arr, i32 %24
   25.load = load i32 from ptr %25
-  27 = add i32 %32, i32 %25.load
+  27 = add i32 %sum.phi, i32 %25.load
   br bb %while.cond15
 while.exit17:
-  29 = srem i32 %32, i32 79
+  29 = srem i32 %sum.phi, i32 79
   ret i32 %29
 }
 

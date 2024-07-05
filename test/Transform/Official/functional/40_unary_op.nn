@@ -18,8 +18,8 @@ then:
   19 = sub i32 0, i32 %18
   br bb %if.exit
 if.exit:
-  21 = phi [bb %else, i32 0, bb %then, i32 %19]
-  ret i32 %21
+  a.phi = phi [bb %else, i32 0, bb %then, i32 %19]
+  ret i32 %a.phi
 else:
   br bb %if.exit
 }

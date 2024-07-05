@@ -41,6 +41,8 @@ public:
   Iterator end() { return {instList.end(), this}; }
 
   TerminatorInst *getTerminator() {
+    if (instList.empty())
+      return nullptr;
     return dyn_cast<TerminatorInst>(instList.getLast());
   }
 

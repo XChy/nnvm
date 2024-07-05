@@ -197,6 +197,16 @@ LIRBB *LIRBB::getSucc(int index) {
   return getBranchDest(*it);
 }
 
+void LIRBB::setSucc(int index, LIRBB *dest) {
+  uint succNum = 0;
+  auto it = --insts.end();
+  while (succNum != index) {
+    succNum++;
+    it--;
+  }
+  setBranchDest(*it, dest);
+}
+
 uint LIRBB::getPredNum() const { return getUses().size(); }
 
 LIRBB *LIRBB::getPred(int index) {

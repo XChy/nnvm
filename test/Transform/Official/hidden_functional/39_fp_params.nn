@@ -97,24 +97,24 @@ else247:
   472 = call float params_f40_i24(i32 %i1, i32 %i2, i32 %i6, float %x4, i32 %i1, i32 %i4, i32 %i5, float %x8, float %x15, float %x7, i32 %i22, float %x3, float %x28, i32 %i0, float %x37, i32 %i19, float %x30, float %x12, float %x1, float %x11, float %x38, float %x6, i32 %i7, float %x32, i32 %i10, i32 %i13, float %x20, float %x33, float %x23, float %x9, float %x25, i32 %i8, float %x39, i32 %i17, float %x21, float %x16, float %x5, float %x34, i32 %i18, i32 %i9, float %x14, float %x10, float %x0, i32 %i12, float %x31, i32 %i11, i32 %i16, float %x27, float %x24, float %x13, float %x29, i32 %i3, i32 %i21, i32 %i20, float %x18, float %x19, float %x22, float %x26, float %x36, float %x17, i32 %i15, float %x2, i32 %i14, float %x35)
   ret float %472
 while.cond:
-  2052 = phi [bb %then245, i32 0, bb %while.body, i32 %402]
-  385 = icmp slt i32 %2052, i32 8
+  i.phi = phi [bb %then245, i32 0, bb %while.body, i32 %402]
+  385 = icmp slt i32 %i.phi, i32 8
   386 = icmp ne i1 %385, i1 0
   br i1 %386, bb %while.body, bb %while.exit
 while.body:
-  388 = mul i32 %2052, i32 4
+  388 = mul i32 %i.phi, i32 4
   389 = ptradd ptr %arr2, i32 %388
-  391 = mul i32 %2052, i32 4
+  391 = mul i32 %i.phi, i32 4
   392 = ptradd ptr %arr2, i32 %391
   392.load = load i32 from ptr %392
-  395 = mul i32 %2052, i32 4
+  395 = mul i32 %i.phi, i32 4
   396 = ptradd ptr %arr248, i32 %395
   396.load = load float from ptr %396
   398 = si2f i32 %392.load to float
   399 = fsub float %398, float %396.load
   400 = f2si float %399 to i32
   store i32 %400 to ptr %389
-  402 = add i32 %2052, i32 1
+  402 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
   k.load403 = load i32 from ptr @k
@@ -143,28 +143,28 @@ entry1031:
   store i32 %1035 to ptr @k
   br bb %while.cond1036
 while.cond1036:
-  2054 = phi [bb %entry1031, i32 0, bb %while.body1037, i32 %1047]
-  1040 = icmp slt i32 %2054, i32 40
+  i1034.phi2054 = phi [bb %entry1031, i32 0, bb %while.body1037, i32 %1047]
+  1040 = icmp slt i32 %i1034.phi2054, i32 40
   1041 = icmp ne i1 %1040, i1 0
   br i1 %1041, bb %while.body1037, bb %while.exit1038
 while.body1037:
-  1043 = mul i32 %2054, i32 12
+  1043 = mul i32 %i1034.phi2054, i32 12
   1044 = ptradd ptr %arr1032, i32 %1043
   1045 = call i32 getfarray(ptr %1044)
-  1047 = add i32 %2054, i32 1
+  1047 = add i32 %i1034.phi2054, i32 1
   br bb %while.cond1036
 while.exit1038:
   br bb %while.cond1048
 while.cond1048:
-  2053 = phi [bb %while.exit1038, i32 0, bb %while.body1049, i32 %1059]
-  1052 = icmp slt i32 %2053, i32 24
+  i1034.phi = phi [bb %while.exit1038, i32 0, bb %while.body1049, i32 %1059]
+  1052 = icmp slt i32 %i1034.phi, i32 24
   1053 = icmp ne i1 %1052, i1 0
   br i1 %1053, bb %while.body1049, bb %while.exit1050
 while.body1049:
-  1055 = mul i32 %2053, i32 12
+  1055 = mul i32 %i1034.phi, i32 12
   1056 = ptradd ptr %arr21033, i32 %1055
   1057 = call i32 getarray(ptr %1056)
-  1059 = add i32 %2053, i32 1
+  1059 = add i32 %i1034.phi, i32 1
   br bb %while.cond1048
 while.exit1050:
   1061 = mul i32 0, i32 12
@@ -1700,24 +1700,24 @@ else957:
   1030 = call i32 params_mix(float %x0, ptr %arr2853, i32 %i2, ptr %arr734, float %x4, i32 %i5, float %x6, float %x7, ptr %x8, ptr %i9, i32 %i10, i32 %i11, ptr %x12, ptr %i13, ptr %i14, i32 %i15, ptr %x16, ptr %x17, float %x18, float %x19, float %x20, ptr %x21, i32 %i22, float %x23, float %x24, float %x25, ptr %i26, ptr %x27, ptr %i28, ptr %i29, ptr %x30, float %x31, float %x32, ptr %i33, i32 %i34, ptr %x35, ptr %x36, float %x37, float %x38, ptr %i39, ptr %i40, i32 %i41, i32 %i42, float %x43, float %x44, ptr %i45, i32 %i46, ptr %x47, i32 %i48, ptr %i49, ptr %i50, float %x51, float %x52, ptr %x53, i32 %i54, ptr %i55, ptr %x56, float %x57, i32 %i58, float %x59, ptr %x60, ptr %x61, float %1027, i32 %1029)
   ret i32 %1030
 while.cond961:
-  2055 = phi [bb %then955, i32 0, bb %while.body962, i32 %982]
-  965 = icmp slt i32 %2055, i32 10
+  i960.phi = phi [bb %then955, i32 0, bb %while.body962, i32 %982]
+  965 = icmp slt i32 %i960.phi, i32 10
   966 = icmp ne i1 %965, i1 0
   br i1 %966, bb %while.body962, bb %while.exit963
 while.body962:
-  968 = mul i32 %2055, i32 4
+  968 = mul i32 %i960.phi, i32 4
   969 = ptradd ptr %arr2853, i32 %968
-  971 = mul i32 %2055, i32 4
+  971 = mul i32 %i960.phi, i32 4
   972 = ptradd ptr %arr2853, i32 %971
   972.load = load i32 from ptr %972
-  975 = mul i32 %2055, i32 4
+  975 = mul i32 %i960.phi, i32 4
   976 = ptradd ptr %arr734, i32 %975
   976.load = load float from ptr %976
   978 = si2f i32 %972.load to float
   979 = fsub float %978, float %976.load
   980 = f2si float %979 to i32
   store i32 %980 to ptr %969
-  982 = add i32 %2055, i32 1
+  982 = add i32 %i960.phi, i32 1
   br bb %while.cond961
 while.exit963:
   k.load983 = load i32 from ptr @k

@@ -21,8 +21,8 @@ then:
   25 = sub i32 0, i32 %24
   br bb %if.exit
 if.exit:
-  30 = phi [bb %else, i32 %27, bb %then, i32 %25]
-  call void putint(i32 %30)
+  a.phi = phi [bb %else, i32 %27, bb %then, i32 %25]
+  call void putint(i32 %a.phi)
   ret i32 0
 else:
   27 = add i32 0, i32 4

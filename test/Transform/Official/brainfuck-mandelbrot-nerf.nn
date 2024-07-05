@@ -9,17 +9,17 @@ void output_() {
 entry282:
   br bb %while.cond284
 while.cond284:
-  304 = phi [bb %entry282, i32 0, bb %while.body285, i32 %297]
+  i283.phi = phi [bb %entry282, i32 0, bb %while.body285, i32 %297]
   output_length.load288 = load i32 from ptr @output_length
-  289 = icmp slt i32 %304, i32 %output_length.load288
+  289 = icmp slt i32 %i283.phi, i32 %output_length.load288
   290 = icmp ne i1 %289, i1 0
   br i1 %290, bb %while.body285, bb %while.exit286
 while.body285:
-  292 = mul i32 %304, i32 4
+  292 = mul i32 %i283.phi, i32 4
   293 = ptradd ptr @output, i32 %292
   293.load = load i32 from ptr %293
   call void putch(i32 %293.load)
-  297 = add i32 %304, i32 1
+  297 = add i32 %i283.phi, i32 1
   br bb %while.cond284
 while.exit286:
   ret 
@@ -30,11 +30,11 @@ entry105:
   %return_address = stack 2048
   br bb %init.cond
 init.cond:
-  308 = phi [bb %entry105, i32 512, bb %init, i32 %cnt.dec]
-  115 = icmp ne i32 %308, i32 0
+  cnt_ptr.phi = phi [bb %entry105, i32 512, bb %init, i32 %cnt.dec]
+  115 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %115, bb %init, bb %init.exit
 init:
-  cnt.dec = sub i32 %308, i32 1
+  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
   arr.index = add i32 0, i32 %offset
   arr.index120 = ptradd ptr %return_address, ptr %arr.index
@@ -44,20 +44,19 @@ init.exit:
   store i32 0 to ptr @output_length
   br bb %while.cond122
 while.cond122:
-  361 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %360]
-  352 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %281]
-  343 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %342]
-  334 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %333]
-  328 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %132.load]
-  327 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %326]
-  316 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %315]
-  307 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %306]
+  val227.phi361 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %val227.phi360]
+  loop.phi353 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %loop.phi352]
+  return_address_top.phi343 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %return_address_top.phi342]
+  val.phi335 = phi [bb %init.exit, i32 ub, bb %if.exit137, i32 %val.phi334]
+  input_head.phi328 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %input_head.phi327]
+  ip.phi315 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %281]
+  read_head.phi307 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %read_head.phi306]
   program_length.load126 = load i32 from ptr @program_length
-  127 = icmp slt i32 %352, i32 %program_length.load126
+  127 = icmp slt i32 %ip.phi315, i32 %program_length.load126
   128 = icmp ne i1 %127, i1 0
   br i1 %128, bb %while.body123, bb %while.exit124
 while.body123:
-  131 = mul i32 %352, i32 4
+  131 = mul i32 %ip.phi315, i32 4
   132 = ptradd ptr @program, i32 %131
   132.load = load i32 from ptr %132
   135 = icmp eq i32 %132.load, i32 62
@@ -65,114 +64,114 @@ while.body123:
 while.exit124:
   ret 
 then136:
-  140 = add i32 %307, i32 1
+  140 = add i32 %read_head.phi307, i32 1
   br bb %if.exit137
 if.exit137:
-  360 = phi [bb %if.exit144, i32 %359, bb %then136, i32 %361]
-  351 = phi [bb %if.exit144, i32 %350, bb %then136, i32 %352]
-  342 = phi [bb %if.exit144, i32 %341, bb %then136, i32 %343]
-  333 = phi [bb %if.exit144, i32 %332, bb %then136, i32 %334]
-  326 = phi [bb %if.exit144, i32 %325, bb %then136, i32 %327]
-  315 = phi [bb %if.exit144, i32 %314, bb %then136, i32 %316]
-  306 = phi [bb %if.exit144, i32 %305, bb %then136, i32 %140]
-  281 = add i32 %351, i32 1
+  val227.phi360 = phi [bb %if.exit144, i32 %val227.phi359, bb %then136, i32 %val227.phi361]
+  loop.phi352 = phi [bb %if.exit144, i32 %loop.phi351, bb %then136, i32 %loop.phi353]
+  return_address_top.phi342 = phi [bb %if.exit144, i32 %return_address_top.phi341, bb %then136, i32 %return_address_top.phi343]
+  val.phi334 = phi [bb %if.exit144, i32 %val.phi333, bb %then136, i32 %val.phi335]
+  input_head.phi327 = phi [bb %if.exit144, i32 %input_head.phi326, bb %then136, i32 %input_head.phi328]
+  ip.phi314 = phi [bb %if.exit144, i32 %ip.phi313, bb %then136, i32 %ip.phi315]
+  read_head.phi306 = phi [bb %if.exit144, i32 %read_head.phi, bb %then136, i32 %140]
+  281 = add i32 %ip.phi314, i32 1
   br bb %while.cond122
 else:
   142 = icmp eq i32 %132.load, i32 60
   br i1 %142, bb %then143, bb %else145
 then143:
-  147 = sub i32 %307, i32 1
+  147 = sub i32 %read_head.phi307, i32 1
   br bb %if.exit144
 if.exit144:
-  359 = phi [bb %if.exit151, i32 %358, bb %then143, i32 %361]
-  350 = phi [bb %if.exit151, i32 %349, bb %then143, i32 %352]
-  341 = phi [bb %if.exit151, i32 %340, bb %then143, i32 %343]
-  332 = phi [bb %if.exit151, i32 %331, bb %then143, i32 %334]
-  325 = phi [bb %if.exit151, i32 %324, bb %then143, i32 %327]
-  314 = phi [bb %if.exit151, i32 %313, bb %then143, i32 %316]
-  305 = phi [bb %if.exit151, i32 %307, bb %then143, i32 %147]
+  val227.phi359 = phi [bb %if.exit151, i32 %val227.phi358, bb %then143, i32 %val227.phi361]
+  loop.phi351 = phi [bb %if.exit151, i32 %loop.phi350, bb %then143, i32 %loop.phi353]
+  return_address_top.phi341 = phi [bb %if.exit151, i32 %return_address_top.phi340, bb %then143, i32 %return_address_top.phi343]
+  val.phi333 = phi [bb %if.exit151, i32 %val.phi332, bb %then143, i32 %val.phi335]
+  input_head.phi326 = phi [bb %if.exit151, i32 %input_head.phi325, bb %then143, i32 %input_head.phi328]
+  ip.phi313 = phi [bb %if.exit151, i32 %ip.phi312, bb %then143, i32 %ip.phi315]
+  read_head.phi = phi [bb %if.exit151, i32 %read_head.phi307, bb %then143, i32 %147]
   br bb %if.exit137
 else145:
   149 = icmp eq i32 %132.load, i32 43
   br i1 %149, bb %then150, bb %else152
 then150:
-  154 = mul i32 %307, i32 4
+  154 = mul i32 %read_head.phi307, i32 4
   155 = ptradd ptr @tape, i32 %154
-  157 = mul i32 %307, i32 4
+  157 = mul i32 %read_head.phi307, i32 4
   158 = ptradd ptr @tape, i32 %157
   158.load = load i32 from ptr %158
   160 = add i32 %158.load, i32 1
   store i32 %160 to ptr %155
   br bb %if.exit151
 if.exit151:
-  358 = phi [bb %if.exit164, i32 %357, bb %then150, i32 %361]
-  349 = phi [bb %if.exit164, i32 %348, bb %then150, i32 %352]
-  340 = phi [bb %if.exit164, i32 %339, bb %then150, i32 %343]
-  331 = phi [bb %if.exit164, i32 %330, bb %then150, i32 %334]
-  324 = phi [bb %if.exit164, i32 %323, bb %then150, i32 %327]
-  313 = phi [bb %if.exit164, i32 %312, bb %then150, i32 %316]
+  val227.phi358 = phi [bb %if.exit164, i32 %val227.phi357, bb %then150, i32 %val227.phi361]
+  loop.phi350 = phi [bb %if.exit164, i32 %loop.phi349, bb %then150, i32 %loop.phi353]
+  return_address_top.phi340 = phi [bb %if.exit164, i32 %return_address_top.phi339, bb %then150, i32 %return_address_top.phi343]
+  val.phi332 = phi [bb %if.exit164, i32 %val.phi331, bb %then150, i32 %val.phi335]
+  input_head.phi325 = phi [bb %if.exit164, i32 %input_head.phi324, bb %then150, i32 %input_head.phi328]
+  ip.phi312 = phi [bb %if.exit164, i32 %ip.phi311, bb %then150, i32 %ip.phi315]
   br bb %if.exit144
 else152:
   162 = icmp eq i32 %132.load, i32 45
   br i1 %162, bb %then163, bb %else165
 then163:
-  167 = mul i32 %307, i32 4
+  167 = mul i32 %read_head.phi307, i32 4
   168 = ptradd ptr @tape, i32 %167
-  170 = mul i32 %307, i32 4
+  170 = mul i32 %read_head.phi307, i32 4
   171 = ptradd ptr @tape, i32 %170
   171.load = load i32 from ptr %171
   173 = sub i32 %171.load, i32 1
   store i32 %173 to ptr %168
   br bb %if.exit164
 if.exit164:
-  357 = phi [bb %if.exit177, i32 %356, bb %then163, i32 %361]
-  348 = phi [bb %if.exit177, i32 %347, bb %then163, i32 %352]
-  339 = phi [bb %if.exit177, i32 %338, bb %then163, i32 %343]
-  330 = phi [bb %if.exit177, i32 %329, bb %then163, i32 %334]
-  323 = phi [bb %if.exit177, i32 %322, bb %then163, i32 %327]
-  312 = phi [bb %if.exit177, i32 %311, bb %then163, i32 %316]
+  val227.phi357 = phi [bb %if.exit177, i32 %val227.phi356, bb %then163, i32 %val227.phi361]
+  loop.phi349 = phi [bb %if.exit177, i32 %loop.phi348, bb %then163, i32 %loop.phi353]
+  return_address_top.phi339 = phi [bb %if.exit177, i32 %return_address_top.phi338, bb %then163, i32 %return_address_top.phi343]
+  val.phi331 = phi [bb %if.exit177, i32 %val.phi, bb %then163, i32 %val.phi335]
+  input_head.phi324 = phi [bb %if.exit177, i32 %input_head.phi323, bb %then163, i32 %input_head.phi328]
+  ip.phi311 = phi [bb %if.exit177, i32 %ip.phi310, bb %then163, i32 %ip.phi315]
   br bb %if.exit151
 else165:
   175 = icmp eq i32 %132.load, i32 91
   br i1 %175, bb %then176, bb %else178
 then176:
-  181 = mul i32 %307, i32 4
+  181 = mul i32 %read_head.phi307, i32 4
   182 = ptradd ptr @tape, i32 %181
   182.load = load i32 from ptr %182
   185 = icmp ne i32 %182.load, i32 0
   br i1 %185, bb %then186, bb %else188
 if.exit177:
-  356 = phi [bb %if.exit225, i32 %355, bb %if.exit187, i32 %361]
-  347 = phi [bb %if.exit225, i32 %346, bb %if.exit187, i32 %354]
-  338 = phi [bb %if.exit225, i32 %343, bb %if.exit187, i32 %337]
-  329 = phi [bb %if.exit225, i32 %334, bb %if.exit187, i32 %182.load]
-  322 = phi [bb %if.exit225, i32 %321, bb %if.exit187, i32 %327]
-  311 = phi [bb %if.exit225, i32 %310, bb %if.exit187, i32 %317]
+  val227.phi356 = phi [bb %if.exit225, i32 %val227.phi, bb %if.exit187, i32 %val227.phi361]
+  loop.phi348 = phi [bb %if.exit225, i32 %loop.phi353, bb %if.exit187, i32 %loop.phi347]
+  return_address_top.phi338 = phi [bb %if.exit225, i32 %return_address_top.phi337, bb %if.exit187, i32 %return_address_top.phi344]
+  val.phi = phi [bb %if.exit225, i32 %val.phi335, bb %if.exit187, i32 %182.load]
+  input_head.phi323 = phi [bb %if.exit225, i32 %input_head.phi322, bb %if.exit187, i32 %input_head.phi328]
+  ip.phi310 = phi [bb %if.exit225, i32 %ip.phi309, bb %if.exit187, i32 %ip.phi317]
   br bb %if.exit164
 else178:
   223 = icmp eq i32 %132.load, i32 93
   br i1 %223, bb %then224, bb %else226
 then186:
-  190 = mul i32 %316, i32 4
+  190 = mul i32 %return_address_top.phi343, i32 4
   191 = ptradd ptr %return_address, i32 %190
-  store i32 %352 to ptr %191
-  194 = add i32 %316, i32 1
+  store i32 %ip.phi315 to ptr %191
+  194 = add i32 %return_address_top.phi343, i32 1
   br bb %if.exit187
 if.exit187:
-  354 = phi [bb %while.exit198, i32 %353, bb %then186, i32 %352]
-  337 = phi [bb %while.exit198, i32 %336, bb %then186, i32 %343]
-  317 = phi [bb %while.exit198, i32 %316, bb %then186, i32 %194]
+  loop.phi347 = phi [bb %while.exit198, i32 %loop.phi346, bb %then186, i32 %loop.phi353]
+  return_address_top.phi344 = phi [bb %while.exit198, i32 %return_address_top.phi343, bb %then186, i32 %194]
+  ip.phi317 = phi [bb %while.exit198, i32 %ip.phi316, bb %then186, i32 %ip.phi315]
   br bb %if.exit177
 else188:
   br bb %while.cond196
 while.cond196:
-  353 = phi [bb %else188, i32 %352, bb %if.exit219, i32 %203]
-  336 = phi [bb %else188, i32 1, bb %if.exit219, i32 %335]
-  200 = icmp sgt i32 %336, i32 0
+  loop.phi346 = phi [bb %else188, i32 1, bb %if.exit219, i32 %loop.phi]
+  ip.phi316 = phi [bb %else188, i32 %ip.phi315, bb %if.exit219, i32 %203]
+  200 = icmp sgt i32 %loop.phi346, i32 0
   201 = icmp ne i1 %200, i1 0
   br i1 %201, bb %while.body197, bb %while.exit198
 while.body197:
-  203 = add i32 %353, i32 1
+  203 = add i32 %ip.phi316, i32 1
   205 = mul i32 %203, i32 4
   206 = ptradd ptr @program, i32 %205
   206.load = load i32 from ptr %206
@@ -181,45 +180,45 @@ while.body197:
 while.exit198:
   br bb %if.exit187
 then209:
-  212 = sub i32 %336, i32 1
+  212 = sub i32 %loop.phi346, i32 1
   br bb %if.exit210
 if.exit210:
-  344 = phi [bb %while.body197, i32 %336, bb %then209, i32 %212]
+  loop.phi354 = phi [bb %while.body197, i32 %loop.phi346, bb %then209, i32 %212]
   214 = mul i32 %203, i32 4
   215 = ptradd ptr @program, i32 %214
   215.load = load i32 from ptr %215
   217 = icmp eq i32 %215.load, i32 91
   br i1 %217, bb %then218, bb %if.exit219
 then218:
-  221 = add i32 %344, i32 1
+  221 = add i32 %loop.phi354, i32 1
   br bb %if.exit219
 if.exit219:
-  335 = phi [bb %if.exit210, i32 %344, bb %then218, i32 %221]
+  loop.phi = phi [bb %if.exit210, i32 %loop.phi354, bb %then218, i32 %221]
   br bb %while.cond196
 then224:
-  229 = mul i32 %307, i32 4
+  229 = mul i32 %read_head.phi307, i32 4
   230 = ptradd ptr @tape, i32 %229
   230.load = load i32 from ptr %230
   233 = icmp eq i32 %230.load, i32 0
   br i1 %233, bb %then234, bb %else236
 if.exit225:
-  355 = phi [bb %if.exit247, i32 %361, bb %if.exit235, i32 %230.load]
-  346 = phi [bb %if.exit247, i32 %352, bb %if.exit235, i32 %345]
-  321 = phi [bb %if.exit247, i32 %320, bb %if.exit235, i32 %327]
-  310 = phi [bb %if.exit247, i32 %316, bb %if.exit235, i32 %309]
+  val227.phi = phi [bb %if.exit247, i32 %val227.phi361, bb %if.exit235, i32 %230.load]
+  return_address_top.phi337 = phi [bb %if.exit247, i32 %return_address_top.phi343, bb %if.exit235, i32 %return_address_top.phi]
+  input_head.phi322 = phi [bb %if.exit247, i32 %input_head.phi321, bb %if.exit235, i32 %input_head.phi328]
+  ip.phi309 = phi [bb %if.exit247, i32 %ip.phi315, bb %if.exit235, i32 %ip.phi]
   br bb %if.exit177
 else226:
   245 = icmp eq i32 %132.load, i32 46
   br i1 %245, bb %then246, bb %else248
 then234:
-  238 = sub i32 %316, i32 1
+  238 = sub i32 %return_address_top.phi343, i32 1
   br bb %if.exit235
 if.exit235:
-  345 = phi [bb %else236, i32 %242.load, bb %then234, i32 %352]
-  309 = phi [bb %else236, i32 %316, bb %then234, i32 %238]
+  return_address_top.phi = phi [bb %else236, i32 %return_address_top.phi343, bb %then234, i32 %238]
+  ip.phi = phi [bb %else236, i32 %242.load, bb %then234, i32 %ip.phi315]
   br bb %if.exit225
 else236:
-  240 = sub i32 %316, i32 1
+  240 = sub i32 %return_address_top.phi343, i32 1
   241 = mul i32 %240, i32 4
   242 = ptradd ptr %return_address, i32 %241
   242.load = load i32 from ptr %242
@@ -228,7 +227,7 @@ then246:
   output_length.load = load i32 from ptr @output_length
   250 = mul i32 %output_length.load, i32 4
   251 = ptradd ptr @output, i32 %250
-  253 = mul i32 %307, i32 4
+  253 = mul i32 %read_head.phi307, i32 4
   254 = ptradd ptr @tape, i32 %253
   254.load = load i32 from ptr %254
   store i32 %254.load to ptr %251
@@ -237,34 +236,34 @@ then246:
   store i32 %257 to ptr @output_length
   br bb %if.exit247
 if.exit247:
-  320 = phi [bb %if.exit261, i32 %319, bb %then246, i32 %327]
+  input_head.phi321 = phi [bb %if.exit261, i32 %input_head.phi320, bb %then246, i32 %input_head.phi328]
   br bb %if.exit225
 else248:
   259 = icmp eq i32 %132.load, i32 44
   br i1 %259, bb %then260, bb %if.exit261
 then260:
   input_length.load263 = load i32 from ptr @input_length
-  264 = icmp sge i32 %327, i32 %input_length.load263
+  264 = icmp sge i32 %input_head.phi328, i32 %input_length.load263
   br i1 %264, bb %then265, bb %else267
 if.exit261:
-  319 = phi [bb %else248, i32 %327, bb %if.exit266, i32 %318]
+  input_head.phi320 = phi [bb %else248, i32 %input_head.phi328, bb %if.exit266, i32 %input_head.phi]
   br bb %if.exit247
 then265:
-  269 = mul i32 %307, i32 4
+  269 = mul i32 %read_head.phi307, i32 4
   270 = ptradd ptr @tape, i32 %269
   store i32 0 to ptr %270
   br bb %if.exit266
 if.exit266:
-  318 = phi [bb %else267, i32 %279, bb %then265, i32 %327]
+  input_head.phi = phi [bb %else267, i32 %279, bb %then265, i32 %input_head.phi328]
   br bb %if.exit261
 else267:
-  272 = mul i32 %307, i32 4
+  272 = mul i32 %read_head.phi307, i32 4
   273 = ptradd ptr @tape, i32 %272
-  275 = mul i32 %327, i32 4
+  275 = mul i32 %input_head.phi328, i32 4
   276 = ptradd ptr @input, i32 %275
   276.load = load i32 from ptr %276
   store i32 %276.load to ptr %273
-  279 = add i32 %327, i32 1
+  279 = add i32 %input_head.phi328, i32 1
   br bb %if.exit266
 }
 
@@ -283,15 +282,15 @@ entry67:
   69 = call i32 get_bf_char()
   br bb %while.cond70
 while.cond70:
-  362 = phi [bb %entry67, i32 %69, bb %while.body71, i32 %80]
-  74 = icmp ne i32 %362, i32 35
+  get68.phi = phi [bb %entry67, i32 %69, bb %while.body71, i32 %80]
+  74 = icmp ne i32 %get68.phi, i32 35
   75 = icmp ne i1 %74, i1 0
   br i1 %75, bb %while.body71, bb %while.exit72
 while.body71:
   program_length.load = load i32 from ptr @program_length
   77 = mul i32 %program_length.load, i32 4
   78 = ptradd ptr @program, i32 %77
-  store i32 %362 to ptr %78
+  store i32 %get68.phi to ptr %78
   80 = call i32 get_bf_char()
   program_length.load81 = load i32 from ptr @program_length
   82 = add i32 %program_length.load81, i32 1
@@ -309,17 +308,17 @@ if.exit:
   90 = call i32 getch()
   br bb %while.cond92
 while.cond92:
-  363 = phi [bb %if.exit, i32 0, bb %while.body93, i32 %104]
+  i.phi = phi [bb %if.exit, i32 0, bb %while.body93, i32 %104]
   input_length.load = load i32 from ptr @input_length
-  97 = icmp slt i32 %363, i32 %input_length.load
+  97 = icmp slt i32 %i.phi, i32 %input_length.load
   98 = icmp ne i1 %97, i1 0
   br i1 %98, bb %while.body93, bb %while.exit94
 while.body93:
-  100 = mul i32 %363, i32 4
+  100 = mul i32 %i.phi, i32 4
   101 = ptradd ptr @input, i32 %100
   102 = call i32 getch()
   store i32 %102 to ptr %101
-  104 = add i32 %363, i32 1
+  104 = add i32 %i.phi, i32 1
   br bb %while.cond92
 while.exit94:
   ret 
@@ -348,86 +347,78 @@ entry:
   2 = call i32 getch()
   br bb %while.cond
 while.cond:
-  380 = phi [bb %entry, i1 ub, bb %while.body, i1 %379]
-  378 = phi [bb %entry, i1 ub, bb %while.body, i1 %377]
-  376 = phi [bb %entry, i1 ub, bb %while.body, i1 %375]
-  374 = phi [bb %entry, i1 ub, bb %while.body, i1 %373]
-  372 = phi [bb %entry, i1 ub, bb %while.body, i1 %371]
-  370 = phi [bb %entry, i1 ub, bb %while.body, i1 %369]
-  368 = phi [bb %entry, i1 ub, bb %while.body, i1 %367]
-  366 = phi [bb %entry, i1 ub, bb %while.body, i1 %365]
-  364 = phi [bb %entry, i32 %2, bb %while.body, i32 %65]
-  7 = icmp ne i32 %364, i32 62
+  get.phi = phi [bb %entry, i32 %2, bb %while.body, i32 %65]
+  7 = icmp ne i32 %get.phi, i32 62
   br i1 %7, bb %select.then, bb %select.else
 while.body:
   65 = call i32 getch()
   br bb %while.cond
 while.exit:
-  ret i32 %364
+  ret i32 %get.phi
 select.then:
-  13 = icmp ne i32 %364, i32 60
+  13 = icmp ne i32 %get.phi, i32 60
   br bb %select.exit
 select.else:
   br bb %select.exit
 select.exit:
-  365 = phi [bb %select.else, i1 0, bb %select.then, i1 %13]
-  br i1 %365, bb %select.then15, bb %select.else16
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %13]
+  br i1 %select.phi, bb %select.then15, bb %select.else16
 select.then15:
-  20 = icmp ne i32 %364, i32 43
+  20 = icmp ne i32 %get.phi, i32 43
   br bb %select.exit17
 select.else16:
   br bb %select.exit17
 select.exit17:
-  367 = phi [bb %select.else16, i1 0, bb %select.then15, i1 %20]
-  br i1 %367, bb %select.then22, bb %select.else23
+  select18.phi = phi [bb %select.else16, i1 0, bb %select.then15, i1 %20]
+  br i1 %select18.phi, bb %select.then22, bb %select.else23
 select.then22:
-  27 = icmp ne i32 %364, i32 45
+  27 = icmp ne i32 %get.phi, i32 45
   br bb %select.exit24
 select.else23:
   br bb %select.exit24
 select.exit24:
-  369 = phi [bb %select.else23, i1 0, bb %select.then22, i1 %27]
-  br i1 %369, bb %select.then29, bb %select.else30
+  select25.phi = phi [bb %select.else23, i1 0, bb %select.then22, i1 %27]
+  br i1 %select25.phi, bb %select.then29, bb %select.else30
 select.then29:
-  34 = icmp ne i32 %364, i32 91
+  34 = icmp ne i32 %get.phi, i32 91
   br bb %select.exit31
 select.else30:
   br bb %select.exit31
 select.exit31:
-  371 = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
-  br i1 %371, bb %select.then36, bb %select.else37
+  select32.phi = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
+  br i1 %select32.phi, bb %select.then36, bb %select.else37
 select.then36:
-  41 = icmp ne i32 %364, i32 93
+  41 = icmp ne i32 %get.phi, i32 93
   br bb %select.exit38
 select.else37:
   br bb %select.exit38
 select.exit38:
-  373 = phi [bb %select.else37, i1 0, bb %select.then36, i1 %41]
-  br i1 %373, bb %select.then43, bb %select.else44
+  select39.phi = phi [bb %select.else37, i1 0, bb %select.then36, i1 %41]
+  br i1 %select39.phi, bb %select.then43, bb %select.else44
 select.then43:
-  48 = icmp ne i32 %364, i32 46
+  48 = icmp ne i32 %get.phi, i32 46
   br bb %select.exit45
 select.else44:
   br bb %select.exit45
 select.exit45:
-  375 = phi [bb %select.else44, i1 0, bb %select.then43, i1 %48]
-  br i1 %375, bb %select.then50, bb %select.else51
+  select46.phi = phi [bb %select.else44, i1 0, bb %select.then43, i1 %48]
+  br i1 %select46.phi, bb %select.then50, bb %select.else51
 select.then50:
-  55 = icmp ne i32 %364, i32 44
+  55 = icmp ne i32 %get.phi, i32 44
   br bb %select.exit52
 select.else51:
   br bb %select.exit52
 select.exit52:
-  377 = phi [bb %select.else51, i1 0, bb %select.then50, i1 %55]
-  br i1 %377, bb %select.then57, bb %select.else58
+  select53.phi = phi [bb %select.else51, i1 0, bb %select.then50, i1 %55]
+  br i1 %select53.phi, bb %select.then57, bb %select.else58
 select.then57:
-  62 = icmp ne i32 %364, i32 35
+  62 = icmp ne i32 %get.phi, i32 35
   br bb %select.exit59
 select.else58:
   br bb %select.exit59
 select.exit59:
-  379 = phi [bb %select.else58, i1 0, bb %select.then57, i1 %62]
-  64 = icmp ne i1 %379, i1 0
+  select60.phi = phi [bb %select.else58, i1 0, bb %select.then57, i1 %62]
+  64 = icmp ne i1 %select60.phi, i1 0
   br i1 %64, bb %while.body, bb %while.exit
 }
 

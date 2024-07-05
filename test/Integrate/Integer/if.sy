@@ -1,24 +1,12 @@
-// INPUT:1 4 2 3
-// EXPECTED:435
-
-int mul2(int a) {
-    return a + a;
-}
+int a(int a, int b) {
+    int middle = 0;
+    if(a == b) 
+        middle = a;
+     else 
+        middle = b;
+    return middle;
+} 
 
 int main() {
-    int a = getint();
-    int b = getint();
-    if (a < b) 
-        putint(mul2(getint()));
-    if (a >= b)
-        putint(666);
-    putint(getint());
-
-    if(a && 0)
-        putint(666);
-
-    if(0 || a)
-        putint(5);
-
-    return 0;
+    return a(100, 5);
 }

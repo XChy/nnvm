@@ -14,10 +14,9 @@ entry1911:
   1913 = call i32 getint()
   br bb %while.cond
 while.cond:
-  1966 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %1965]
-  1963 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %1962]
-  1961 = phi [bb %entry1911, i32 %1913, bb %if.exit1949, i32 %1960]
-  1919 = icmp sgt i32 %1961, i32 0
+  j.phi1966 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %j.phi1965]
+  N.phi = phi [bb %entry1911, i32 %1913, bb %if.exit1949, i32 %1960]
+  1919 = icmp sgt i32 %N.phi, i32 0
   1920 = icmp ne i1 %1919, i1 0
   br i1 %1920, bb %while.body, bb %while.exit
 while.body:
@@ -25,9 +24,9 @@ while.body:
 while.exit:
   ret i32 0
 while.cond1922:
-  1965 = phi [bb %while.body, i32 %1966, bb %while.exit1931, i32 %1964]
-  1962 = phi [bb %while.body, i32 0, bb %while.exit1931, i32 %1945]
-  1926 = icmp slt i32 %1962, i32 5
+  j.phi1965 = phi [bb %while.body, i32 %j.phi1966, bb %while.exit1931, i32 %j.phi]
+  i.phi = phi [bb %while.body, i32 0, bb %while.exit1931, i32 %1945]
+  1926 = icmp slt i32 %i.phi, i32 5
   1927 = icmp ne i1 %1926, i1 0
   br i1 %1927, bb %while.body1923, bb %while.exit1924
 while.body1923:
@@ -37,21 +36,21 @@ while.exit1924:
   1947 = icmp ne i32 %1946, i32 0
   br i1 %1947, bb %then1948, bb %else
 while.cond1929:
-  1964 = phi [bb %while.body1923, i32 0, bb %while.body1930, i32 %1943]
-  1933 = icmp slt i32 %1964, i32 5
+  j.phi = phi [bb %while.body1923, i32 0, bb %while.body1930, i32 %1943]
+  1933 = icmp slt i32 %j.phi, i32 5
   1934 = icmp ne i1 %1933, i1 0
   br i1 %1934, bb %while.body1930, bb %while.exit1931
 while.body1930:
-  1936 = mul i32 %1962, i32 20
+  1936 = mul i32 %i.phi, i32 20
   1937 = ptradd ptr %a, i32 %1936
-  1939 = mul i32 %1964, i32 4
+  1939 = mul i32 %j.phi, i32 4
   1940 = ptradd ptr %1937, i32 %1939
   1941 = call i32 getint()
   store i32 %1941 to ptr %1940
-  1943 = add i32 %1964, i32 1
+  1943 = add i32 %j.phi, i32 1
   br bb %while.cond1929
 while.exit1931:
-  1945 = add i32 %1962, i32 1
+  1945 = add i32 %i.phi, i32 1
   br bb %while.cond1922
 then1948:
   call void putch(i32 99)
@@ -60,7 +59,7 @@ then1948:
   call void putch(i32 10)
   br bb %if.exit1949
 if.exit1949:
-  1960 = sub i32 %1961, i32 1
+  1960 = sub i32 %N.phi, i32 1
   br bb %while.cond
 else:
   call void putch(i32 100)
