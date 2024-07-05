@@ -12,6 +12,7 @@ enum class ValueID {
   BasicBlock,
   Function,
   Constant,
+  UBValue,
   Argument,
   GlobalVariable
 };

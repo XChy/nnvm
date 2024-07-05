@@ -21,13 +21,21 @@ public:
 
   // Restricted dominance.
   bool rdom(BasicBlock *domer, BasicBlock *domee) {
-    return idom(domer, domee) || rdom(domer, domTree[domee]);
+    BasicBlock *cur = domee;
+    while (cur) {
+      if (idom(domer, cur))
+        return true;
+      cur = domTree[cur];
+    }
+    return false;
   }
 
   // Immediate dominance.
   bool idom(BasicBlock *domer, BasicBlock *domee) {
     return domTree[domee] == domer;
   }
+
+  BasicBlock *getIDom(BasicBlock *node) { return domTree[node]; }
 
   // Reachable from the entry block?
   bool isReachable(BasicBlock *BB) { return domTree.count(BB); }

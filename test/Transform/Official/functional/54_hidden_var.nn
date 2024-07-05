@@ -2,37 +2,25 @@ global ptr c init with 4 x i32 [6, 7, 8, 9]
 global ptr b init with i32 5
 i32 main() {
 entry:
-  %cnt_ptr = stack 4
   %c52 = stack 140
-  %b = stack 4
   %c = stack 64
-  %a16 = stack 4
-  %a2 = stack 4
-  %a = stack 4
-  store i32 1 to ptr %a
-  store i32 2 to ptr %a2
-  store i32 3 to ptr %a2
   call void putint(i32 3)
-  a2.load5 = load i32 from ptr %a2
-  call void putint(i32 %a2.load5)
-  a.load = load i32 from ptr %a
-  call void putint(i32 %a.load)
+  call void putint(i32 3)
+  call void putint(i32 1)
   call void putch(i32 10)
   br bb %while.cond
 while.cond:
-  a.load13 = load i32 from ptr %a
-  14 = icmp slt i32 %a.load13, i32 5
+  126 = phi [bb %entry, i32 ub, bb %if.exit, i32 %18]
+  14 = icmp slt i32 1, i32 5
   15 = icmp ne i1 %14, i1 0
   br i1 %15, bb %while.body, bb %while.exit
 while.body:
-  store i32 0 to ptr %a16
   18 = add i32 0, i32 1
-  store i32 %18 to ptr %a16
   20 = icmp ne i32 %18, i32 0
   br i1 %20, bb %then, bb %if.exit
 while.exit:
-  a.load23 = load i32 from ptr %a
-  call void putint(i32 %a.load23)
+  125 = phi [bb %while.cond, i32 %126, bb %then, i32 %18]
+  call void putint(i32 1)
   call void putch(i32 10)
   26 = mul i32 2, i32 4
   27 = ptradd ptr @c, i32 %26
@@ -69,7 +57,6 @@ while.exit:
   store i32 0 to ptr %arr.index43
   arr.index44 = ptradd ptr %c, i32 60
   store i32 0 to ptr %arr.index44
-  store i32 2 to ptr %b
   46 = mul i32 2, i32 4
   47 = ptradd ptr @c, i32 %46
   47.load = load i32 from ptr %47
@@ -106,9 +93,9 @@ then50:
   store i32 1 to ptr %arr.index64
   arr.index65 = ptradd ptr %c52, i32 48
   store i32 8 to ptr %arr.index65
-  store i32 22 to ptr %cnt_ptr
   br bb %init.cond
 if.exit51:
+  128 = phi [bb %while.exit, i32 ub, bb %init.exit, i32 %127]
   call void putch(i32 10)
   b.load105 = load i32 from ptr @b
   call void putint(i32 %b.load105)
@@ -132,21 +119,18 @@ if.exit51:
   call void putch(i32 10)
   ret i32 0
 init.cond:
-  cnt = load i32 from ptr %cnt_ptr
-  71 = icmp ne i32 %cnt, i32 0
+  127 = phi [bb %then50, i32 22, bb %init, i32 %cnt.dec]
+  71 = icmp ne i32 %127, i32 0
   br i1 %71, bb %init, bb %init.exit
 init:
-  cnt72 = load i32 from ptr %cnt_ptr
-  cnt.dec = sub i32 %cnt72, i32 1
-  store i32 %cnt.dec to ptr %cnt_ptr
+  cnt.dec = sub i32 %127, i32 1
   offset = mul i32 %cnt.dec, i32 4
   arr.index75 = add i32 52, i32 %offset
   arr.index76 = ptradd ptr %c52, ptr %arr.index75
   store i32 0 to ptr %arr.index76
   br bb %init.cond
 init.exit:
-  b.load = load i32 from ptr %b
-  78 = mul i32 %b.load, i32 20
+  78 = mul i32 2, i32 20
   79 = ptradd ptr %c52, i32 %78
   80 = mul i32 0, i32 20
   81 = ptradd ptr %79, i32 %80
@@ -154,8 +138,7 @@ init.exit:
   83 = ptradd ptr %81, i32 %82
   83.load = load i32 from ptr %83
   call void putint(i32 %83.load)
-  b.load86 = load i32 from ptr %b
-  87 = mul i32 %b.load86, i32 20
+  87 = mul i32 2, i32 20
   88 = ptradd ptr %c52, i32 %87
   89 = mul i32 0, i32 20
   90 = ptradd ptr %88, i32 %89
@@ -163,8 +146,7 @@ init.exit:
   92 = ptradd ptr %90, i32 %91
   92.load = load i32 from ptr %92
   call void putint(i32 %92.load)
-  b.load95 = load i32 from ptr %b
-  96 = mul i32 %b.load95, i32 20
+  96 = mul i32 2, i32 20
   97 = ptradd ptr %c52, i32 %96
   98 = mul i32 0, i32 20
   99 = ptradd ptr %97, i32 %98

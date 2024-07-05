@@ -3,16 +3,12 @@ global ptr d init with i32 0
 global ptr a init with i32 0
 i32 set_d(i32 val) {
 entry8:
-  %val.stack9 = stack 4
-  store i32 %val to ptr %val.stack9
   store i32 %val to ptr @d
   ret i32 %val
 }
 
 i32 set_b(i32 val) {
 entry4:
-  %val.stack5 = stack 4
-  store i32 %val to ptr %val.stack5
   store i32 %val to ptr @b
   ret i32 %val
 }
@@ -29,23 +25,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry12:
-  %select219 = stack 1
-  %select212 = stack 1
-  %select194 = stack 1
-  %select186 = stack 1
-  %select169 = stack 1
-  %select154 = stack 1
-  %select140 = stack 1
-  %select129 = stack 1
-  %i4 = stack 4
-  %i3 = stack 4
-  %i2 = stack 4
-  %i1 = stack 4
-  %i0 = stack 4
-  %select64 = stack 1
-  %select51 = stack 1
-  %select35 = stack 1
-  %select = stack 1
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   13 = call i32 set_a(i32 0)
@@ -54,14 +33,12 @@ entry12:
 select.then:
   19 = call i32 set_b(i32 1)
   20 = icmp ne i32 %19, i32 0
-  store i1 %20 to ptr %select
   br bb %select.exit
 select.else:
-  store i1 0 to ptr %select
   br bb %select.exit
 select.exit:
-  21 = load i1 from ptr %select
-  br i1 %21, bb %then, bb %if.exit
+  243 = phi [bb %select.else, i1 0, bb %select.then, i1 %20]
+  br i1 %243, bb %then, bb %if.exit
 then:
   br bb %if.exit
 if.exit:
@@ -79,14 +56,12 @@ if.exit:
 select.then32:
   36 = call i32 set_b(i32 1)
   37 = icmp ne i32 %36, i32 0
-  store i1 %37 to ptr %select35
   br bb %select.exit34
 select.else33:
-  store i1 0 to ptr %select35
   br bb %select.exit34
 select.exit34:
-  38 = load i1 from ptr %select35
-  br i1 %38, bb %then39, bb %if.exit40
+  230 = phi [bb %select.else33, i1 0, bb %select.then32, i1 %37]
+  br i1 %230, bb %then39, bb %if.exit40
 then39:
   br bb %if.exit40
 if.exit40:
@@ -102,14 +77,12 @@ if.exit40:
 select.then48:
   52 = call i32 set_d(i32 3)
   53 = icmp ne i32 %52, i32 0
-  store i1 %53 to ptr %select51
   br bb %select.exit50
 select.else49:
-  store i1 0 to ptr %select51
   br bb %select.exit50
 select.exit50:
-  54 = load i1 from ptr %select51
-  br i1 %54, bb %then55, bb %if.exit56
+  241 = phi [bb %select.else49, i1 0, bb %select.then48, i1 %53]
+  br i1 %241, bb %then55, bb %if.exit56
 then55:
   br bb %if.exit56
 if.exit56:
@@ -119,17 +92,15 @@ if.exit56:
   60 = icmp sle i32 1, i32 1
   br i1 %60, bb %select.then61, bb %select.else62
 select.then61:
-  store i1 1 to ptr %select64
   br bb %select.exit63
 select.else62:
   65 = call i32 set_d(i32 4)
   66 = icmp ne i32 %65, i32 0
   67 = icmp ne i1 %66, i1 0
-  store i1 %67 to ptr %select64
   br bb %select.exit63
 select.exit63:
-  68 = load i1 from ptr %select64
-  br i1 %68, bb %then69, bb %if.exit70
+  231 = phi [bb %select.else62, i1 %67, bb %select.then61, i1 1]
+  br i1 %231, bb %then69, bb %if.exit70
 then69:
   br bb %if.exit70
 if.exit70:
@@ -190,159 +161,116 @@ then112:
   br bb %if.exit113
 if.exit113:
   call void putch(i32 10)
-  store i32 0 to ptr %i0
-  store i32 1 to ptr %i1
-  store i32 2 to ptr %i2
-  store i32 3 to ptr %i3
-  store i32 4 to ptr %i4
   br bb %while.cond
 while.cond:
-  i0.load = load i32 from ptr %i0
-  125 = icmp ne i32 %i0.load, i32 0
+  235 = phi [bb %if.exit113, i1 ub, bb %while.body, i1 %234]
+  125 = icmp ne i32 0, i32 0
   br i1 %125, bb %select.then126, bb %select.else127
 while.body:
   call void putch(i32 32)
   br bb %while.cond
 while.exit:
-  i0.load135 = load i32 from ptr %i0
-  136 = icmp ne i32 %i0.load135, i32 0
+  136 = icmp ne i32 0, i32 0
   br i1 %136, bb %select.then137, bb %select.else138
 select.then126:
-  i1.load = load i32 from ptr %i1
-  131 = icmp ne i32 %i1.load, i32 0
-  store i1 %131 to ptr %select129
+  131 = icmp ne i32 1, i32 0
   br bb %select.exit128
 select.else127:
-  store i1 0 to ptr %select129
   br bb %select.exit128
 select.exit128:
-  132 = load i1 from ptr %select129
-  133 = icmp ne i1 %132, i1 0
+  234 = phi [bb %select.else127, i1 0, bb %select.then126, i1 %131]
+  133 = icmp ne i1 %234, i1 0
   br i1 %133, bb %while.body, bb %while.exit
 select.then137:
-  store i1 1 to ptr %select140
   br bb %select.exit139
 select.else138:
-  i1.load141 = load i32 from ptr %i1
-  142 = icmp ne i32 %i1.load141, i32 0
+  142 = icmp ne i32 1, i32 0
   143 = icmp ne i1 %142, i1 0
-  store i1 %143 to ptr %select140
   br bb %select.exit139
 select.exit139:
-  144 = load i1 from ptr %select140
-  br i1 %144, bb %then145, bb %if.exit146
+  238 = phi [bb %select.else138, i1 %143, bb %select.then137, i1 1]
+  br i1 %238, bb %then145, bb %if.exit146
 then145:
   call void putch(i32 67)
   br bb %if.exit146
 if.exit146:
-  i0.load148 = load i32 from ptr %i0
-  i1.load149 = load i32 from ptr %i1
-  150 = icmp sge i32 %i0.load148, i32 %i1.load149
+  150 = icmp sge i32 0, i32 1
   br i1 %150, bb %select.then151, bb %select.else152
 select.then151:
-  store i1 1 to ptr %select154
   br bb %select.exit153
 select.else152:
-  i1.load155 = load i32 from ptr %i1
-  i0.load156 = load i32 from ptr %i0
-  157 = icmp sle i32 %i1.load155, i32 %i0.load156
+  157 = icmp sle i32 1, i32 0
   158 = icmp ne i1 %157, i1 0
-  store i1 %158 to ptr %select154
   br bb %select.exit153
 select.exit153:
-  159 = load i1 from ptr %select154
-  br i1 %159, bb %then160, bb %if.exit161
+  242 = phi [bb %select.else152, i1 %158, bb %select.then151, i1 1]
+  br i1 %242, bb %then160, bb %if.exit161
 then160:
   call void putch(i32 72)
   br bb %if.exit161
 if.exit161:
-  i2.load = load i32 from ptr %i2
-  i1.load164 = load i32 from ptr %i1
-  165 = icmp sge i32 %i2.load, i32 %i1.load164
+  165 = icmp sge i32 2, i32 1
   br i1 %165, bb %select.then166, bb %select.else167
 select.then166:
-  i4.load = load i32 from ptr %i4
-  i3.load = load i32 from ptr %i3
-  172 = icmp ne i32 %i4.load, i32 %i3.load
-  store i1 %172 to ptr %select169
+  172 = icmp ne i32 4, i32 3
   br bb %select.exit168
 select.else167:
-  store i1 0 to ptr %select169
   br bb %select.exit168
 select.exit168:
-  173 = load i1 from ptr %select169
-  br i1 %173, bb %then174, bb %if.exit175
+  240 = phi [bb %select.else167, i1 0, bb %select.then166, i1 %172]
+  br i1 %240, bb %then174, bb %if.exit175
 then174:
   call void putch(i32 73)
   br bb %if.exit175
 if.exit175:
-  i0.load177 = load i32 from ptr %i0
-  i1.load178 = load i32 from ptr %i1
-  179 = icmp ne i32 %i1.load178, i32 0
+  179 = icmp ne i32 1, i32 0
   180 =  i1 %179, i1 1
   181 = zext i1 %180 to i32
-  182 = icmp eq i32 %i0.load177, i32 %181
+  182 = icmp eq i32 0, i32 %181
   br i1 %182, bb %select.then183, bb %select.else184
 select.then183:
-  i3.load187 = load i32 from ptr %i3
-  i3.load188 = load i32 from ptr %i3
-  189 = icmp slt i32 %i3.load187, i32 %i3.load188
-  store i1 %189 to ptr %select186
+  189 = icmp slt i32 3, i32 3
   br bb %select.exit185
 select.else184:
-  store i1 0 to ptr %select186
   br bb %select.exit185
 select.exit185:
-  190 = load i1 from ptr %select186
-  br i1 %190, bb %select.then191, bb %select.else192
+  237 = phi [bb %select.else184, i1 0, bb %select.then183, i1 %189]
+  br i1 %237, bb %select.then191, bb %select.else192
 select.then191:
-  store i1 1 to ptr %select194
   br bb %select.exit193
 select.else192:
-  i4.load195 = load i32 from ptr %i4
-  i4.load196 = load i32 from ptr %i4
-  197 = icmp sge i32 %i4.load195, i32 %i4.load196
+  197 = icmp sge i32 4, i32 4
   198 = icmp ne i1 %197, i1 0
-  store i1 %198 to ptr %select194
   br bb %select.exit193
 select.exit193:
-  199 = load i1 from ptr %select194
-  br i1 %199, bb %then200, bb %if.exit201
+  239 = phi [bb %select.else192, i1 %198, bb %select.then191, i1 1]
+  br i1 %239, bb %then200, bb %if.exit201
 then200:
   call void putch(i32 74)
   br bb %if.exit201
 if.exit201:
-  i0.load203 = load i32 from ptr %i0
-  i1.load204 = load i32 from ptr %i1
-  205 = icmp ne i32 %i1.load204, i32 0
+  205 = icmp ne i32 1, i32 0
   206 =  i1 %205, i1 1
   207 = zext i1 %206 to i32
-  208 = icmp eq i32 %i0.load203, i32 %207
+  208 = icmp eq i32 0, i32 %207
   br i1 %208, bb %select.then209, bb %select.else210
 select.then209:
-  store i1 1 to ptr %select212
   br bb %select.exit211
 select.else210:
-  i3.load213 = load i32 from ptr %i3
-  i3.load214 = load i32 from ptr %i3
-  215 = icmp slt i32 %i3.load213, i32 %i3.load214
+  215 = icmp slt i32 3, i32 3
   br i1 %215, bb %select.then216, bb %select.else217
 select.exit211:
-  225 = load i1 from ptr %select212
-  br i1 %225, bb %then226, bb %if.exit227
+  236 = phi [bb %select.exit218, i1 %224, bb %select.then209, i1 1]
+  233 = phi [bb %select.exit218, i1 %232, bb %select.then209, i1 ub]
+  br i1 %236, bb %then226, bb %if.exit227
 select.then216:
-  i4.load220 = load i32 from ptr %i4
-  i4.load221 = load i32 from ptr %i4
-  222 = icmp sge i32 %i4.load220, i32 %i4.load221
-  store i1 %222 to ptr %select219
+  222 = icmp sge i32 4, i32 4
   br bb %select.exit218
 select.else217:
-  store i1 0 to ptr %select219
   br bb %select.exit218
 select.exit218:
-  223 = load i1 from ptr %select219
-  224 = icmp ne i1 %223, i1 0
-  store i1 %224 to ptr %select212
+  232 = phi [bb %select.else217, i1 0, bb %select.then216, i1 %222]
+  224 = icmp ne i1 %232, i1 0
   br bb %select.exit211
 then226:
   call void putch(i32 75)
@@ -368,8 +296,6 @@ external void putfarray(i32 , ptr )
 
 i32 set_a(i32 val) {
 entry:
-  %val.stack = stack 4
-  store i32 %val to ptr %val.stack
   store i32 %val to ptr @a
   ret i32 %val
 }

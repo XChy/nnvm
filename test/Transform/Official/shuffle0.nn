@@ -14,15 +14,7 @@ global ptr nextvalue init with 10000000 x i32 zeros
 global ptr requests init with 10000000 x i32 zeros
 i32 insert(i32 k, i32 v) {
 entry5:
-  %p = stack 4
-  %h = stack 4
-  %v.stack = stack 4
-  %k.stack6 = stack 4
-  store i32 %k to ptr %k.stack6
-  store i32 %v to ptr %v.stack
-  k.stack6.load = load i32 from ptr %k.stack6
-  10 = call i32 hash(i32 %k.stack6.load)
-  store i32 %10 to ptr %h
+  10 = call i32 hash(i32 %k)
   12 = mul i32 %10, i32 4
   13 = ptradd ptr @head, i32 %12
   13.load = load i32 from ptr %13
@@ -32,20 +24,17 @@ then:
   cnt.load = load i32 from ptr @cnt
   19 = add i32 %cnt.load, i32 1
   store i32 %19 to ptr @cnt
-  h.load20 = load i32 from ptr %h
-  21 = mul i32 %h.load20, i32 4
+  21 = mul i32 %10, i32 4
   22 = ptradd ptr @head, i32 %21
   store i32 %19 to ptr %22
   cnt.load24 = load i32 from ptr @cnt
   25 = mul i32 %cnt.load24, i32 4
   26 = ptradd ptr @key, i32 %25
-  k.stack6.load27 = load i32 from ptr %k.stack6
-  store i32 %k.stack6.load27 to ptr %26
+  store i32 %k to ptr %26
   cnt.load28 = load i32 from ptr @cnt
   29 = mul i32 %cnt.load28, i32 4
   30 = ptradd ptr @value, i32 %29
-  v.stack.load = load i32 from ptr %v.stack
-  store i32 %v.stack.load to ptr %30
+  store i32 %v to ptr %30
   cnt.load32 = load i32 from ptr @cnt
   33 = mul i32 %cnt.load32, i32 4
   34 = ptradd ptr @next, i32 %33
@@ -56,24 +45,20 @@ then:
   store i32 0 to ptr %37
   ret i32 0
 if.exit:
-  h.load39 = load i32 from ptr %h
-  40 = mul i32 %h.load39, i32 4
+  40 = mul i32 %10, i32 4
   41 = ptradd ptr @head, i32 %40
   41.load = load i32 from ptr %41
-  store i32 %41.load to ptr %p
   br bb %while.cond
 while.cond:
-  p.load = load i32 from ptr %p
-  47 = icmp ne i32 %p.load, i32 0
+  198 = phi [bb %if.exit, i32 %41.load, bb %if.exit56, i32 %76.load]
+  47 = icmp ne i32 %198, i32 0
   48 = icmp ne i1 %47, i1 0
   br i1 %48, bb %while.body, bb %while.exit
 while.body:
-  p.load49 = load i32 from ptr %p
-  50 = mul i32 %p.load49, i32 4
+  50 = mul i32 %198, i32 4
   51 = ptradd ptr @key, i32 %50
   51.load = load i32 from ptr %51
-  k.stack6.load53 = load i32 from ptr %k.stack6
-  54 = icmp eq i32 %51.load, i32 %k.stack6.load53
+  54 = icmp eq i32 %51.load, i32 %k
   br i1 %54, bb %then55, bb %if.exit56
 while.exit:
   cnt.load78 = load i32 from ptr @cnt
@@ -81,26 +66,22 @@ while.exit:
   store i32 %79 to ptr @cnt
   81 = mul i32 %79, i32 4
   82 = ptradd ptr @next, i32 %81
-  h.load83 = load i32 from ptr %h
-  84 = mul i32 %h.load83, i32 4
+  84 = mul i32 %10, i32 4
   85 = ptradd ptr @head, i32 %84
   85.load = load i32 from ptr %85
   store i32 %85.load to ptr %82
-  h.load87 = load i32 from ptr %h
-  88 = mul i32 %h.load87, i32 4
+  88 = mul i32 %10, i32 4
   89 = ptradd ptr @head, i32 %88
   cnt.load90 = load i32 from ptr @cnt
   store i32 %cnt.load90 to ptr %89
   cnt.load91 = load i32 from ptr @cnt
   92 = mul i32 %cnt.load91, i32 4
   93 = ptradd ptr @key, i32 %92
-  k.stack6.load94 = load i32 from ptr %k.stack6
-  store i32 %k.stack6.load94 to ptr %93
+  store i32 %k to ptr %93
   cnt.load95 = load i32 from ptr @cnt
   96 = mul i32 %cnt.load95, i32 4
   97 = ptradd ptr @value, i32 %96
-  v.stack.load98 = load i32 from ptr %v.stack
-  store i32 %v.stack.load98 to ptr %97
+  store i32 %v to ptr %97
   cnt.load99 = load i32 from ptr @cnt
   100 = mul i32 %cnt.load99, i32 4
   101 = ptradd ptr @nextvalue, i32 %100
@@ -112,28 +93,23 @@ then55:
   store i32 %58 to ptr @cnt
   60 = mul i32 %58, i32 4
   61 = ptradd ptr @nextvalue, i32 %60
-  p.load62 = load i32 from ptr %p
-  63 = mul i32 %p.load62, i32 4
+  63 = mul i32 %198, i32 4
   64 = ptradd ptr @nextvalue, i32 %63
   64.load = load i32 from ptr %64
   store i32 %64.load to ptr %61
-  p.load66 = load i32 from ptr %p
-  67 = mul i32 %p.load66, i32 4
+  67 = mul i32 %198, i32 4
   68 = ptradd ptr @nextvalue, i32 %67
   cnt.load69 = load i32 from ptr @cnt
   store i32 %cnt.load69 to ptr %68
   cnt.load70 = load i32 from ptr @cnt
   71 = mul i32 %cnt.load70, i32 4
   72 = ptradd ptr @value, i32 %71
-  v.stack.load73 = load i32 from ptr %v.stack
-  store i32 %v.stack.load73 to ptr %72
+  store i32 %v to ptr %72
   ret i32 1
 if.exit56:
-  p.load74 = load i32 from ptr %p
-  75 = mul i32 %p.load74, i32 4
+  75 = mul i32 %198, i32 4
   76 = ptradd ptr @next, i32 %75
   76.load = load i32 from ptr %76
-  store i32 %76.load to ptr %p
   br bb %while.cond
 }
 
@@ -149,66 +125,48 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry150:
-  %i = stack 4
-  %ms = stack 4
-  %ks = stack 4
   151 = call i32 getint()
   store i32 %151 to ptr @hashmod
   153 = call i32 getarray(ptr @keys)
-  store i32 %153 to ptr %ks
   155 = call i32 getarray(ptr @values)
   157 = call i32 getarray(ptr @requests)
-  store i32 %157 to ptr %ms
   call void _sysy_starttime(i32 78)
-  store i32 0 to ptr %i
   br bb %while.cond160
 while.cond160:
-  i.load = load i32 from ptr %i
-  ks.load = load i32 from ptr %ks
-  165 = icmp slt i32 %i.load, i32 %ks.load
+  200 = phi [bb %entry150, i32 0, bb %while.body161, i32 %177]
+  165 = icmp slt i32 %200, i32 %153
   166 = icmp ne i1 %165, i1 0
   br i1 %166, bb %while.body161, bb %while.exit162
 while.body161:
-  i.load167 = load i32 from ptr %i
-  168 = mul i32 %i.load167, i32 4
+  168 = mul i32 %200, i32 4
   169 = ptradd ptr @keys, i32 %168
   169.load = load i32 from ptr %169
-  i.load171 = load i32 from ptr %i
-  172 = mul i32 %i.load171, i32 4
+  172 = mul i32 %200, i32 4
   173 = ptradd ptr @values, i32 %172
   173.load = load i32 from ptr %173
   175 = call i32 insert(i32 %169.load, i32 %173.load)
-  i.load176 = load i32 from ptr %i
-  177 = add i32 %i.load176, i32 1
-  store i32 %177 to ptr %i
+  177 = add i32 %200, i32 1
   br bb %while.cond160
 while.exit162:
-  store i32 0 to ptr %i
   br bb %while.cond178
 while.cond178:
-  i.load181 = load i32 from ptr %i
-  ms.load = load i32 from ptr %ms
-  183 = icmp slt i32 %i.load181, i32 %ms.load
+  199 = phi [bb %while.exit162, i32 0, bb %while.body179, i32 %194]
+  183 = icmp slt i32 %199, i32 %157
   184 = icmp ne i1 %183, i1 0
   br i1 %184, bb %while.body179, bb %while.exit180
 while.body179:
-  i.load185 = load i32 from ptr %i
-  186 = mul i32 %i.load185, i32 4
+  186 = mul i32 %199, i32 4
   187 = ptradd ptr @ans, i32 %186
-  i.load188 = load i32 from ptr %i
-  189 = mul i32 %i.load188, i32 4
+  189 = mul i32 %199, i32 4
   190 = ptradd ptr @requests, i32 %189
   190.load = load i32 from ptr %190
   192 = call i32 reduce(i32 %190.load)
   store i32 %192 to ptr %187
-  i.load193 = load i32 from ptr %i
-  194 = add i32 %i.load193, i32 1
-  store i32 %194 to ptr %i
+  194 = add i32 %199, i32 1
   br bb %while.cond178
 while.exit180:
   call void _sysy_stoptime(i32 90)
-  ms.load196 = load i32 from ptr %ms
-  call void putarray(i32 %ms.load196, ptr @ans)
+  call void putarray(i32 %157, ptr @ans)
   ret i32 0
 }
 
@@ -222,74 +180,52 @@ external void _sysy_stoptime(i32 )
 
 i32 reduce(i32 k) {
 entry102:
-  %x = stack 4
-  %ret = stack 4
-  %p107 = stack 4
-  %h104 = stack 4
-  %k.stack103 = stack 4
-  store i32 %k to ptr %k.stack103
   106 = call i32 hash(i32 %k)
-  store i32 %106 to ptr %h104
   109 = mul i32 %106, i32 4
   110 = ptradd ptr @head, i32 %109
   110.load = load i32 from ptr %110
-  store i32 %110.load to ptr %p107
   br bb %while.cond112
 while.cond112:
-  p107.load = load i32 from ptr %p107
-  116 = icmp ne i32 %p107.load, i32 0
+  201 = phi [bb %entry102, i32 %110.load, bb %if.exit125, i32 %148.load]
+  116 = icmp ne i32 %201, i32 0
   117 = icmp ne i1 %116, i1 0
   br i1 %117, bb %while.body113, bb %while.exit114
 while.body113:
-  p107.load118 = load i32 from ptr %p107
-  119 = mul i32 %p107.load118, i32 4
+  119 = mul i32 %201, i32 4
   120 = ptradd ptr @key, i32 %119
   120.load = load i32 from ptr %120
-  k.stack103.load122 = load i32 from ptr %k.stack103
-  123 = icmp eq i32 %120.load, i32 %k.stack103.load122
+  123 = icmp eq i32 %120.load, i32 %k
   br i1 %123, bb %then124, bb %if.exit125
 while.exit114:
   ret i32 0
 then124:
-  store i32 0 to ptr %ret
-  p107.load128 = load i32 from ptr %p107
-  store i32 %p107.load128 to ptr %x
   br bb %while.cond129
 if.exit125:
-  p107.load146 = load i32 from ptr %p107
-  147 = mul i32 %p107.load146, i32 4
+  147 = mul i32 %201, i32 4
   148 = ptradd ptr @next, i32 %147
   148.load = load i32 from ptr %148
-  store i32 %148.load to ptr %p107
   br bb %while.cond112
 while.cond129:
-  x.load = load i32 from ptr %x
-  133 = icmp ne i32 %x.load, i32 0
+  203 = phi [bb %then124, i32 %201, bb %while.body130, i32 %143.load]
+  202 = phi [bb %then124, i32 0, bb %while.body130, i32 %140]
+  133 = icmp ne i32 %203, i32 0
   134 = icmp ne i1 %133, i1 0
   br i1 %134, bb %while.body130, bb %while.exit131
 while.body130:
-  ret.load = load i32 from ptr %ret
-  x.load136 = load i32 from ptr %x
-  137 = mul i32 %x.load136, i32 4
+  137 = mul i32 %203, i32 4
   138 = ptradd ptr @value, i32 %137
   138.load = load i32 from ptr %138
-  140 = add i32 %ret.load, i32 %138.load
-  store i32 %140 to ptr %ret
-  x.load141 = load i32 from ptr %x
-  142 = mul i32 %x.load141, i32 4
+  140 = add i32 %202, i32 %138.load
+  142 = mul i32 %203, i32 4
   143 = ptradd ptr @nextvalue, i32 %142
   143.load = load i32 from ptr %143
-  store i32 %143.load to ptr %x
   br bb %while.cond129
 while.exit131:
-  ret.load145 = load i32 from ptr %ret
-  ret i32 %ret.load145
+  ret i32 %202
 }
 
 i32 hash(i32 k) {
 entry:
-  %k.stack = stack 4
-  store i32 %k to ptr %k.stack
   hashmod.load = load i32 from ptr @hashmod
   4 = srem i32 %k, i32 %hashmod.load
   ret i32 %4

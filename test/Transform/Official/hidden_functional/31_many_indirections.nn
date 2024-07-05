@@ -3,20 +3,15 @@ global ptr M init with i32 20
 global ptr N init with i32 100
 i32 main() {
 entry:
-  %j = stack 4
-  %sum = stack 4
-  %i = stack 4
-  store i32 0 to ptr %i
-  store i32 0 to ptr %sum
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  234 = phi [bb %entry, i32 ub, bb %while.exit13, i32 %233]
+  232 = phi [bb %entry, i32 0, bb %while.exit13, i32 %28]
   M.load = load i32 from ptr @M
-  8 = icmp slt i32 %i.load, i32 %M.load
+  8 = icmp slt i32 %232, i32 %M.load
   9 = icmp ne i1 %8, i1 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  store i32 0 to ptr %j
   br bb %while.cond11
 while.exit:
   29 = mul i32 0, i32 400
@@ -220,32 +215,24 @@ while.exit:
   227 = ptradd ptr %225, i32 %226
   227.load = load i32 from ptr %227
   229 = add i32 %127.load, i32 %227.load
-  store i32 %229 to ptr %sum
   call void putint(i32 %229)
   ret i32 0
 while.cond11:
-  j.load = load i32 from ptr %j
+  233 = phi [bb %while.body, i32 0, bb %while.body12, i32 %26]
   N.load = load i32 from ptr @N
-  16 = icmp slt i32 %j.load, i32 %N.load
+  16 = icmp slt i32 %233, i32 %N.load
   17 = icmp ne i1 %16, i1 0
   br i1 %17, bb %while.body12, bb %while.exit13
 while.body12:
-  i.load18 = load i32 from ptr %i
-  19 = mul i32 %i.load18, i32 400
+  19 = mul i32 %232, i32 400
   20 = ptradd ptr @array, i32 %19
-  j.load21 = load i32 from ptr %j
-  22 = mul i32 %j.load21, i32 4
+  22 = mul i32 %233, i32 4
   23 = ptradd ptr %20, i32 %22
-  j.load24 = load i32 from ptr %j
-  store i32 %j.load24 to ptr %23
-  j.load25 = load i32 from ptr %j
-  26 = add i32 %j.load25, i32 1
-  store i32 %26 to ptr %j
+  store i32 %233 to ptr %23
+  26 = add i32 %233, i32 1
   br bb %while.cond11
 while.exit13:
-  i.load27 = load i32 from ptr %i
-  28 = add i32 %i.load27, i32 1
-  store i32 %28 to ptr %i
+  28 = add i32 %232, i32 1
   br bb %while.cond
 }
 

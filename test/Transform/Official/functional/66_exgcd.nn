@@ -12,28 +12,19 @@ i32 main() {
 entry40:
   %y = stack 4
   %x = stack 4
-  %b = stack 4
-  %a = stack 4
-  store i32 7 to ptr %a
-  store i32 15 to ptr %b
   arr.index = ptradd ptr %x, i32 0
   store i32 1 to ptr %arr.index
   arr.index46 = ptradd ptr %y, i32 0
   store i32 1 to ptr %arr.index46
-  a.load = load i32 from ptr %a
-  b.load = load i32 from ptr %b
-  49 = call i32 exgcd(i32 %a.load, i32 %b.load, ptr %x, ptr %y)
+  49 = call i32 exgcd(i32 7, i32 15, ptr %x, ptr %y)
   50 = mul i32 0, i32 4
   51 = ptradd ptr %x, i32 %50
   52 = mul i32 0, i32 4
   53 = ptradd ptr %x, i32 %52
   53.load = load i32 from ptr %53
-  b.load55 = load i32 from ptr %b
-  56 = srem i32 %53.load, i32 %b.load55
-  b.load57 = load i32 from ptr %b
-  58 = add i32 %56, i32 %b.load57
-  b.load59 = load i32 from ptr %b
-  60 = srem i32 %58, i32 %b.load59
+  56 = srem i32 %53.load, i32 15
+  58 = add i32 %56, i32 15
+  60 = srem i32 %58, i32 15
   store i32 %60 to ptr %51
   61 = mul i32 0, i32 4
   62 = ptradd ptr %x, i32 %61
@@ -58,12 +49,6 @@ external void putch(i32 )
 
 i32 exgcd(i32 a, i32 b, ptr x, ptr y) {
 entry:
-  %t = stack 4
-  %r = stack 4
-  %b.stack = stack 4
-  %a.stack = stack 4
-  store i32 %a to ptr %a.stack
-  store i32 %b to ptr %b.stack
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %else
 then:
@@ -73,21 +58,15 @@ then:
   10 = mul i32 0, i32 4
   11 = ptradd ptr %y, i32 %10
   store i32 0 to ptr %11
-  a.stack.load = load i32 from ptr %a.stack
-  ret i32 %a.stack.load
+  ret i32 %a
 if.exit:
   unreachable
 else:
-  b.stack.load14 = load i32 from ptr %b.stack
-  a.stack.load15 = load i32 from ptr %a.stack
-  b.stack.load16 = load i32 from ptr %b.stack
-  17 = srem i32 %a.stack.load15, i32 %b.stack.load16
-  18 = call i32 exgcd(i32 %b.stack.load14, i32 %17, ptr %x, ptr %y)
-  store i32 %18 to ptr %r
+  17 = srem i32 %a, i32 %b
+  18 = call i32 exgcd(i32 %b, i32 %17, ptr %x, ptr %y)
   20 = mul i32 0, i32 4
   21 = ptradd ptr %x, i32 %20
   21.load = load i32 from ptr %21
-  store i32 %21.load to ptr %t
   23 = mul i32 0, i32 4
   24 = ptradd ptr %x, i32 %23
   25 = mul i32 0, i32 4
@@ -96,18 +75,14 @@ else:
   store i32 %26.load to ptr %24
   28 = mul i32 0, i32 4
   29 = ptradd ptr %y, i32 %28
-  t.load = load i32 from ptr %t
-  a.stack.load31 = load i32 from ptr %a.stack
-  b.stack.load32 = load i32 from ptr %b.stack
-  33 = sdiv i32 %a.stack.load31, i32 %b.stack.load32
+  33 = sdiv i32 %a, i32 %b
   34 = mul i32 0, i32 4
   35 = ptradd ptr %y, i32 %34
   35.load = load i32 from ptr %35
   37 = mul i32 %33, i32 %35.load
-  38 = sub i32 %t.load, i32 %37
+  38 = sub i32 %21.load, i32 %37
   store i32 %38 to ptr %29
-  r.load = load i32 from ptr %r
-  ret i32 %r.load
+  ret i32 %18
 }
 
 

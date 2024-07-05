@@ -42,19 +42,12 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry460:
-  %b = stack 4
-  %a = stack 4
   463 = call i32 getint()
-  store i32 %463 to ptr %a
   465 = mul i32 2, i32 9
   466 = add i32 %463, i32 %465
-  store i32 %466 to ptr %b
-  a.load467 = load i32 from ptr %a
-  469 = call i32 func(i32 %a.load467, i32 %466)
-  store i32 %469 to ptr %a
+  469 = call i32 func(i32 %463, i32 %466)
   call void putint(i32 %469)
-  a.load472 = load i32 from ptr %a
-  ret i32 %a.load472
+  ret i32 %469
 }
 
 external float getfloat()
@@ -73,475 +66,253 @@ external void putfarray(i32 , ptr )
 
 i32 func(i32 a, i32 b) {
 entry:
-  %k4 = stack 4
-  %k3 = stack 4
-  %k2 = stack 4
-  %k1 = stack 4
-  %j4 = stack 4
-  %j3 = stack 4
-  %j2 = stack 4
-  %j1 = stack 4
-  %i4 = stack 4
-  %i3 = stack 4
-  %i2 = stack 4
-  %i1 = stack 4
-  %h4 = stack 4
-  %h3 = stack 4
-  %h2 = stack 4
-  %h1 = stack 4
-  %g4 = stack 4
-  %g3 = stack 4
-  %g2 = stack 4
-  %g1 = stack 4
-  %f4 = stack 4
-  %f3 = stack 4
-  %f2 = stack 4
-  %f1 = stack 4
-  %e4 = stack 4
-  %e3 = stack 4
-  %e2 = stack 4
-  %e1 = stack 4
-  %d4 = stack 4
-  %d3 = stack 4
-  %d2 = stack 4
-  %d1 = stack 4
-  %c4 = stack 4
-  %c3 = stack 4
-  %c2 = stack 4
-  %c1 = stack 4
-  %i = stack 4
-  %b.stack = stack 4
-  %a.stack = stack 4
-  store i32 %a to ptr %a.stack
-  store i32 %b to ptr %b.stack
-  a.stack.load = load i32 from ptr %a.stack
-  6 = add i32 %a.stack.load, i32 %b
-  store i32 %6 to ptr %i
+  6 = add i32 %a, i32 %b
   43 = call i32 getint()
-  store i32 %43 to ptr %c1
   44 = call i32 getint()
-  store i32 %44 to ptr %c2
   45 = call i32 getint()
-  store i32 %45 to ptr %c3
   46 = call i32 getint()
-  store i32 %46 to ptr %c4
-  c1.load = load i32 from ptr %c1
-  48 = add i32 1, i32 %c1.load
+  48 = add i32 1, i32 %43
   a1.load = load i32 from ptr @a1
   50 = add i32 %48, i32 %a1.load
-  store i32 %50 to ptr %d1
-  c2.load = load i32 from ptr %c2
-  52 = add i32 2, i32 %c2.load
+  52 = add i32 2, i32 %44
   a2.load = load i32 from ptr @a2
   54 = add i32 %52, i32 %a2.load
-  store i32 %54 to ptr %d2
-  c3.load = load i32 from ptr %c3
-  56 = add i32 3, i32 %c3.load
+  56 = add i32 3, i32 %45
   a3.load = load i32 from ptr @a3
   58 = add i32 %56, i32 %a3.load
-  store i32 %58 to ptr %d3
-  c4.load = load i32 from ptr %c4
-  60 = add i32 4, i32 %c4.load
+  60 = add i32 4, i32 %46
   a4.load = load i32 from ptr @a4
   62 = add i32 %60, i32 %a4.load
-  store i32 %62 to ptr %d4
-  d1.load = load i32 from ptr %d1
-  64 = add i32 1, i32 %d1.load
+  64 = add i32 1, i32 %50
   a5.load = load i32 from ptr @a5
   66 = add i32 %64, i32 %a5.load
-  store i32 %66 to ptr %e1
-  d2.load = load i32 from ptr %d2
-  68 = add i32 2, i32 %d2.load
+  68 = add i32 2, i32 %54
   a6.load = load i32 from ptr @a6
   70 = add i32 %68, i32 %a6.load
-  store i32 %70 to ptr %e2
-  d3.load = load i32 from ptr %d3
-  72 = add i32 3, i32 %d3.load
+  72 = add i32 3, i32 %58
   a7.load = load i32 from ptr @a7
   74 = add i32 %72, i32 %a7.load
-  store i32 %74 to ptr %e3
-  d4.load = load i32 from ptr %d4
-  76 = add i32 4, i32 %d4.load
+  76 = add i32 4, i32 %62
   a8.load = load i32 from ptr @a8
   78 = add i32 %76, i32 %a8.load
-  store i32 %78 to ptr %e4
-  e1.load = load i32 from ptr %e1
-  80 = add i32 1, i32 %e1.load
+  80 = add i32 1, i32 %66
   a9.load = load i32 from ptr @a9
   82 = add i32 %80, i32 %a9.load
-  store i32 %82 to ptr %f1
-  e2.load = load i32 from ptr %e2
-  84 = add i32 2, i32 %e2.load
+  84 = add i32 2, i32 %70
   a10.load = load i32 from ptr @a10
   86 = add i32 %84, i32 %a10.load
-  store i32 %86 to ptr %f2
-  e3.load = load i32 from ptr %e3
-  88 = add i32 3, i32 %e3.load
+  88 = add i32 3, i32 %74
   a11.load = load i32 from ptr @a11
   90 = add i32 %88, i32 %a11.load
-  store i32 %90 to ptr %f3
-  e4.load = load i32 from ptr %e4
-  92 = add i32 4, i32 %e4.load
+  92 = add i32 4, i32 %78
   a12.load = load i32 from ptr @a12
   94 = add i32 %92, i32 %a12.load
-  store i32 %94 to ptr %f4
-  f1.load = load i32 from ptr %f1
-  96 = add i32 1, i32 %f1.load
+  96 = add i32 1, i32 %82
   a13.load = load i32 from ptr @a13
   98 = add i32 %96, i32 %a13.load
-  store i32 %98 to ptr %g1
-  f2.load = load i32 from ptr %f2
-  100 = add i32 2, i32 %f2.load
+  100 = add i32 2, i32 %86
   a14.load = load i32 from ptr @a14
   102 = add i32 %100, i32 %a14.load
-  store i32 %102 to ptr %g2
-  f3.load = load i32 from ptr %f3
-  104 = add i32 3, i32 %f3.load
+  104 = add i32 3, i32 %90
   a15.load = load i32 from ptr @a15
   106 = add i32 %104, i32 %a15.load
-  store i32 %106 to ptr %g3
-  f4.load = load i32 from ptr %f4
-  108 = add i32 4, i32 %f4.load
+  108 = add i32 4, i32 %94
   a16.load = load i32 from ptr @a16
   110 = add i32 %108, i32 %a16.load
-  store i32 %110 to ptr %g4
-  g1.load = load i32 from ptr %g1
-  112 = add i32 1, i32 %g1.load
+  112 = add i32 1, i32 %98
   a17.load = load i32 from ptr @a17
   114 = add i32 %112, i32 %a17.load
-  store i32 %114 to ptr %h1
-  g2.load = load i32 from ptr %g2
-  116 = add i32 2, i32 %g2.load
+  116 = add i32 2, i32 %102
   a18.load = load i32 from ptr @a18
   118 = add i32 %116, i32 %a18.load
-  store i32 %118 to ptr %h2
-  g3.load = load i32 from ptr %g3
-  120 = add i32 3, i32 %g3.load
+  120 = add i32 3, i32 %106
   a19.load = load i32 from ptr @a19
   122 = add i32 %120, i32 %a19.load
-  store i32 %122 to ptr %h3
-  g4.load = load i32 from ptr %g4
-  124 = add i32 4, i32 %g4.load
+  124 = add i32 4, i32 %110
   a20.load = load i32 from ptr @a20
   126 = add i32 %124, i32 %a20.load
-  store i32 %126 to ptr %h4
-  h1.load = load i32 from ptr %h1
-  128 = add i32 1, i32 %h1.load
+  128 = add i32 1, i32 %114
   a21.load = load i32 from ptr @a21
   130 = add i32 %128, i32 %a21.load
-  store i32 %130 to ptr %i1
-  h2.load = load i32 from ptr %h2
-  132 = add i32 2, i32 %h2.load
+  132 = add i32 2, i32 %118
   a22.load = load i32 from ptr @a22
   134 = add i32 %132, i32 %a22.load
-  store i32 %134 to ptr %i2
-  h3.load = load i32 from ptr %h3
-  136 = add i32 3, i32 %h3.load
+  136 = add i32 3, i32 %122
   a23.load = load i32 from ptr @a23
   138 = add i32 %136, i32 %a23.load
-  store i32 %138 to ptr %i3
-  h4.load = load i32 from ptr %h4
-  140 = add i32 4, i32 %h4.load
+  140 = add i32 4, i32 %126
   a24.load = load i32 from ptr @a24
   142 = add i32 %140, i32 %a24.load
-  store i32 %142 to ptr %i4
-  i1.load = load i32 from ptr %i1
-  144 = add i32 1, i32 %i1.load
+  144 = add i32 1, i32 %130
   a25.load = load i32 from ptr @a25
   146 = add i32 %144, i32 %a25.load
-  store i32 %146 to ptr %j1
-  i2.load = load i32 from ptr %i2
-  148 = add i32 2, i32 %i2.load
+  148 = add i32 2, i32 %134
   a26.load = load i32 from ptr @a26
   150 = add i32 %148, i32 %a26.load
-  store i32 %150 to ptr %j2
-  i3.load = load i32 from ptr %i3
-  152 = add i32 3, i32 %i3.load
+  152 = add i32 3, i32 %138
   a27.load = load i32 from ptr @a27
   154 = add i32 %152, i32 %a27.load
-  store i32 %154 to ptr %j3
-  i4.load = load i32 from ptr %i4
-  156 = add i32 4, i32 %i4.load
+  156 = add i32 4, i32 %142
   a28.load = load i32 from ptr @a28
   158 = add i32 %156, i32 %a28.load
-  store i32 %158 to ptr %j4
-  j1.load = load i32 from ptr %j1
-  160 = add i32 1, i32 %j1.load
+  160 = add i32 1, i32 %146
   a29.load = load i32 from ptr @a29
   162 = add i32 %160, i32 %a29.load
-  store i32 %162 to ptr %k1
-  j2.load = load i32 from ptr %j2
-  164 = add i32 2, i32 %j2.load
+  164 = add i32 2, i32 %150
   a30.load = load i32 from ptr @a30
   166 = add i32 %164, i32 %a30.load
-  store i32 %166 to ptr %k2
-  j3.load = load i32 from ptr %j3
-  168 = add i32 3, i32 %j3.load
+  168 = add i32 3, i32 %154
   a31.load = load i32 from ptr @a31
   170 = add i32 %168, i32 %a31.load
-  store i32 %170 to ptr %k3
-  j4.load = load i32 from ptr %j4
-  172 = add i32 4, i32 %j4.load
+  172 = add i32 4, i32 %158
   a32.load = load i32 from ptr @a32
   174 = add i32 %172, i32 %a32.load
-  store i32 %174 to ptr %k4
-  a.stack.load175 = load i32 from ptr %a.stack
-  b.stack.load176 = load i32 from ptr %b.stack
-  177 = sub i32 %a.stack.load175, i32 %b.stack.load176
+  177 = sub i32 %a, i32 %b
   178 = add i32 %177, i32 10
-  store i32 %178 to ptr %i
-  j1.load179 = load i32 from ptr %j1
-  180 = add i32 1, i32 %j1.load179
+  180 = add i32 1, i32 %146
   a29.load181 = load i32 from ptr @a29
   182 = add i32 %180, i32 %a29.load181
-  store i32 %182 to ptr %k1
-  j2.load183 = load i32 from ptr %j2
-  184 = add i32 2, i32 %j2.load183
+  184 = add i32 2, i32 %150
   a30.load185 = load i32 from ptr @a30
   186 = add i32 %184, i32 %a30.load185
-  store i32 %186 to ptr %k2
-  j3.load187 = load i32 from ptr %j3
-  188 = add i32 3, i32 %j3.load187
+  188 = add i32 3, i32 %154
   a31.load189 = load i32 from ptr @a31
   190 = add i32 %188, i32 %a31.load189
-  store i32 %190 to ptr %k3
-  j4.load191 = load i32 from ptr %j4
-  192 = add i32 4, i32 %j4.load191
+  192 = add i32 4, i32 %158
   a32.load193 = load i32 from ptr @a32
   194 = add i32 %192, i32 %a32.load193
-  store i32 %194 to ptr %k4
-  i1.load195 = load i32 from ptr %i1
-  196 = add i32 1, i32 %i1.load195
+  196 = add i32 1, i32 %130
   a25.load197 = load i32 from ptr @a25
   198 = add i32 %196, i32 %a25.load197
-  store i32 %198 to ptr %j1
-  i2.load199 = load i32 from ptr %i2
-  200 = add i32 2, i32 %i2.load199
+  200 = add i32 2, i32 %134
   a26.load201 = load i32 from ptr @a26
   202 = add i32 %200, i32 %a26.load201
-  store i32 %202 to ptr %j2
-  i3.load203 = load i32 from ptr %i3
-  204 = add i32 3, i32 %i3.load203
+  204 = add i32 3, i32 %138
   a27.load205 = load i32 from ptr @a27
   206 = add i32 %204, i32 %a27.load205
-  store i32 %206 to ptr %j3
-  i4.load207 = load i32 from ptr %i4
-  208 = add i32 4, i32 %i4.load207
+  208 = add i32 4, i32 %142
   a28.load209 = load i32 from ptr @a28
   210 = add i32 %208, i32 %a28.load209
-  store i32 %210 to ptr %j4
-  h1.load211 = load i32 from ptr %h1
-  212 = add i32 1, i32 %h1.load211
+  212 = add i32 1, i32 %114
   a21.load213 = load i32 from ptr @a21
   214 = add i32 %212, i32 %a21.load213
-  store i32 %214 to ptr %i1
-  h2.load215 = load i32 from ptr %h2
-  216 = add i32 2, i32 %h2.load215
+  216 = add i32 2, i32 %118
   a22.load217 = load i32 from ptr @a22
   218 = add i32 %216, i32 %a22.load217
-  store i32 %218 to ptr %i2
-  h3.load219 = load i32 from ptr %h3
-  220 = add i32 3, i32 %h3.load219
+  220 = add i32 3, i32 %122
   a23.load221 = load i32 from ptr @a23
   222 = add i32 %220, i32 %a23.load221
-  store i32 %222 to ptr %i3
-  h4.load223 = load i32 from ptr %h4
-  224 = add i32 4, i32 %h4.load223
+  224 = add i32 4, i32 %126
   a24.load225 = load i32 from ptr @a24
   226 = add i32 %224, i32 %a24.load225
-  store i32 %226 to ptr %i4
-  g1.load227 = load i32 from ptr %g1
-  228 = add i32 1, i32 %g1.load227
+  228 = add i32 1, i32 %98
   a17.load229 = load i32 from ptr @a17
   230 = add i32 %228, i32 %a17.load229
-  store i32 %230 to ptr %h1
-  g2.load231 = load i32 from ptr %g2
-  232 = add i32 2, i32 %g2.load231
+  232 = add i32 2, i32 %102
   a18.load233 = load i32 from ptr @a18
   234 = add i32 %232, i32 %a18.load233
-  store i32 %234 to ptr %h2
-  g3.load235 = load i32 from ptr %g3
-  236 = add i32 3, i32 %g3.load235
+  236 = add i32 3, i32 %106
   a19.load237 = load i32 from ptr @a19
   238 = add i32 %236, i32 %a19.load237
-  store i32 %238 to ptr %h3
-  g4.load239 = load i32 from ptr %g4
-  240 = add i32 4, i32 %g4.load239
+  240 = add i32 4, i32 %110
   a20.load241 = load i32 from ptr @a20
   242 = add i32 %240, i32 %a20.load241
-  store i32 %242 to ptr %h4
-  f1.load243 = load i32 from ptr %f1
-  244 = add i32 1, i32 %f1.load243
+  244 = add i32 1, i32 %82
   a13.load245 = load i32 from ptr @a13
   246 = add i32 %244, i32 %a13.load245
-  store i32 %246 to ptr %g1
-  f2.load247 = load i32 from ptr %f2
-  248 = add i32 2, i32 %f2.load247
+  248 = add i32 2, i32 %86
   a14.load249 = load i32 from ptr @a14
   250 = add i32 %248, i32 %a14.load249
-  store i32 %250 to ptr %g2
-  f3.load251 = load i32 from ptr %f3
-  252 = add i32 3, i32 %f3.load251
+  252 = add i32 3, i32 %90
   a15.load253 = load i32 from ptr @a15
   254 = add i32 %252, i32 %a15.load253
-  store i32 %254 to ptr %g3
-  f4.load255 = load i32 from ptr %f4
-  256 = add i32 4, i32 %f4.load255
+  256 = add i32 4, i32 %94
   a16.load257 = load i32 from ptr @a16
   258 = add i32 %256, i32 %a16.load257
-  store i32 %258 to ptr %g4
-  e1.load259 = load i32 from ptr %e1
-  260 = add i32 1, i32 %e1.load259
+  260 = add i32 1, i32 %66
   a9.load261 = load i32 from ptr @a9
   262 = add i32 %260, i32 %a9.load261
-  store i32 %262 to ptr %f1
-  e2.load263 = load i32 from ptr %e2
-  264 = add i32 2, i32 %e2.load263
+  264 = add i32 2, i32 %70
   a10.load265 = load i32 from ptr @a10
   266 = add i32 %264, i32 %a10.load265
-  store i32 %266 to ptr %f2
-  e3.load267 = load i32 from ptr %e3
-  268 = add i32 3, i32 %e3.load267
+  268 = add i32 3, i32 %74
   a11.load269 = load i32 from ptr @a11
   270 = add i32 %268, i32 %a11.load269
-  store i32 %270 to ptr %f3
-  e4.load271 = load i32 from ptr %e4
-  272 = add i32 4, i32 %e4.load271
+  272 = add i32 4, i32 %78
   a12.load273 = load i32 from ptr @a12
   274 = add i32 %272, i32 %a12.load273
-  store i32 %274 to ptr %f4
-  d1.load275 = load i32 from ptr %d1
-  276 = add i32 1, i32 %d1.load275
+  276 = add i32 1, i32 %50
   a5.load277 = load i32 from ptr @a5
   278 = add i32 %276, i32 %a5.load277
-  store i32 %278 to ptr %e1
-  d2.load279 = load i32 from ptr %d2
-  280 = add i32 2, i32 %d2.load279
+  280 = add i32 2, i32 %54
   a6.load281 = load i32 from ptr @a6
   282 = add i32 %280, i32 %a6.load281
-  store i32 %282 to ptr %e2
-  d3.load283 = load i32 from ptr %d3
-  284 = add i32 3, i32 %d3.load283
+  284 = add i32 3, i32 %58
   a7.load285 = load i32 from ptr @a7
   286 = add i32 %284, i32 %a7.load285
-  store i32 %286 to ptr %e3
-  d4.load287 = load i32 from ptr %d4
-  288 = add i32 4, i32 %d4.load287
+  288 = add i32 4, i32 %62
   a8.load289 = load i32 from ptr @a8
   290 = add i32 %288, i32 %a8.load289
-  store i32 %290 to ptr %e4
-  c1.load291 = load i32 from ptr %c1
-  292 = add i32 1, i32 %c1.load291
+  292 = add i32 1, i32 %43
   a1.load293 = load i32 from ptr @a1
   294 = add i32 %292, i32 %a1.load293
-  store i32 %294 to ptr %d1
-  c2.load295 = load i32 from ptr %c2
-  296 = add i32 2, i32 %c2.load295
+  296 = add i32 2, i32 %44
   a2.load297 = load i32 from ptr @a2
   298 = add i32 %296, i32 %a2.load297
-  store i32 %298 to ptr %d2
-  c3.load299 = load i32 from ptr %c3
-  300 = add i32 3, i32 %c3.load299
+  300 = add i32 3, i32 %45
   a3.load301 = load i32 from ptr @a3
   302 = add i32 %300, i32 %a3.load301
-  store i32 %302 to ptr %d3
-  c4.load303 = load i32 from ptr %c4
-  304 = add i32 4, i32 %c4.load303
+  304 = add i32 4, i32 %46
   a4.load305 = load i32 from ptr @a4
   306 = add i32 %304, i32 %a4.load305
-  store i32 %306 to ptr %d4
-  c1.load307 = load i32 from ptr %c1
-  308 = add i32 1, i32 %c1.load307
+  308 = add i32 1, i32 %43
   a1.load309 = load i32 from ptr @a1
   310 = add i32 %308, i32 %a1.load309
-  store i32 %310 to ptr %d1
-  c2.load311 = load i32 from ptr %c2
-  312 = add i32 2, i32 %c2.load311
+  312 = add i32 2, i32 %44
   a2.load313 = load i32 from ptr @a2
   314 = add i32 %312, i32 %a2.load313
-  store i32 %314 to ptr %d2
-  c3.load315 = load i32 from ptr %c3
-  316 = add i32 3, i32 %c3.load315
+  316 = add i32 3, i32 %45
   a3.load317 = load i32 from ptr @a3
   318 = add i32 %316, i32 %a3.load317
-  store i32 %318 to ptr %d3
-  c4.load319 = load i32 from ptr %c4
-  320 = add i32 4, i32 %c4.load319
+  320 = add i32 4, i32 %46
   a4.load321 = load i32 from ptr @a4
   322 = add i32 %320, i32 %a4.load321
-  store i32 %322 to ptr %d4
-  i.load = load i32 from ptr %i
-  c1.load324 = load i32 from ptr %c1
-  325 = add i32 %i.load, i32 %c1.load324
-  c2.load326 = load i32 from ptr %c2
-  327 = add i32 %325, i32 %c2.load326
-  c3.load328 = load i32 from ptr %c3
-  329 = add i32 %327, i32 %c3.load328
-  c4.load330 = load i32 from ptr %c4
-  331 = add i32 %329, i32 %c4.load330
-  d1.load332 = load i32 from ptr %d1
-  333 = sub i32 %331, i32 %d1.load332
-  d2.load334 = load i32 from ptr %d2
-  335 = sub i32 %333, i32 %d2.load334
-  d3.load336 = load i32 from ptr %d3
-  337 = sub i32 %335, i32 %d3.load336
+  325 = add i32 %178, i32 %43
+  327 = add i32 %325, i32 %44
+  329 = add i32 %327, i32 %45
+  331 = add i32 %329, i32 %46
+  333 = sub i32 %331, i32 %310
+  335 = sub i32 %333, i32 %314
+  337 = sub i32 %335, i32 %318
   339 = sub i32 %337, i32 %322
-  e1.load340 = load i32 from ptr %e1
-  341 = add i32 %339, i32 %e1.load340
-  e2.load342 = load i32 from ptr %e2
-  343 = add i32 %341, i32 %e2.load342
-  e3.load344 = load i32 from ptr %e3
-  345 = add i32 %343, i32 %e3.load344
-  e4.load346 = load i32 from ptr %e4
-  347 = add i32 %345, i32 %e4.load346
-  f1.load348 = load i32 from ptr %f1
-  349 = sub i32 %347, i32 %f1.load348
-  f2.load350 = load i32 from ptr %f2
-  351 = sub i32 %349, i32 %f2.load350
-  f3.load352 = load i32 from ptr %f3
-  353 = sub i32 %351, i32 %f3.load352
-  f4.load354 = load i32 from ptr %f4
-  355 = sub i32 %353, i32 %f4.load354
-  g1.load356 = load i32 from ptr %g1
-  357 = add i32 %355, i32 %g1.load356
-  g2.load358 = load i32 from ptr %g2
-  359 = add i32 %357, i32 %g2.load358
-  g3.load360 = load i32 from ptr %g3
-  361 = add i32 %359, i32 %g3.load360
-  g4.load362 = load i32 from ptr %g4
-  363 = add i32 %361, i32 %g4.load362
-  h1.load364 = load i32 from ptr %h1
-  365 = sub i32 %363, i32 %h1.load364
-  h2.load366 = load i32 from ptr %h2
-  367 = sub i32 %365, i32 %h2.load366
-  h3.load368 = load i32 from ptr %h3
-  369 = sub i32 %367, i32 %h3.load368
-  h4.load370 = load i32 from ptr %h4
-  371 = sub i32 %369, i32 %h4.load370
-  i1.load372 = load i32 from ptr %i1
-  373 = add i32 %371, i32 %i1.load372
-  i2.load374 = load i32 from ptr %i2
-  375 = add i32 %373, i32 %i2.load374
-  i3.load376 = load i32 from ptr %i3
-  377 = add i32 %375, i32 %i3.load376
-  i4.load378 = load i32 from ptr %i4
-  379 = add i32 %377, i32 %i4.load378
-  j1.load380 = load i32 from ptr %j1
-  381 = sub i32 %379, i32 %j1.load380
-  j2.load382 = load i32 from ptr %j2
-  383 = sub i32 %381, i32 %j2.load382
-  j3.load384 = load i32 from ptr %j3
-  385 = sub i32 %383, i32 %j3.load384
-  j4.load386 = load i32 from ptr %j4
-  387 = sub i32 %385, i32 %j4.load386
-  k1.load = load i32 from ptr %k1
-  389 = add i32 %387, i32 %k1.load
-  k2.load = load i32 from ptr %k2
-  391 = add i32 %389, i32 %k2.load
-  k3.load = load i32 from ptr %k3
-  393 = add i32 %391, i32 %k3.load
-  k4.load = load i32 from ptr %k4
-  395 = add i32 %393, i32 %k4.load
+  341 = add i32 %339, i32 %278
+  343 = add i32 %341, i32 %282
+  345 = add i32 %343, i32 %286
+  347 = add i32 %345, i32 %290
+  349 = sub i32 %347, i32 %262
+  351 = sub i32 %349, i32 %266
+  353 = sub i32 %351, i32 %270
+  355 = sub i32 %353, i32 %274
+  357 = add i32 %355, i32 %246
+  359 = add i32 %357, i32 %250
+  361 = add i32 %359, i32 %254
+  363 = add i32 %361, i32 %258
+  365 = sub i32 %363, i32 %230
+  367 = sub i32 %365, i32 %234
+  369 = sub i32 %367, i32 %238
+  371 = sub i32 %369, i32 %242
+  373 = add i32 %371, i32 %214
+  375 = add i32 %373, i32 %218
+  377 = add i32 %375, i32 %222
+  379 = add i32 %377, i32 %226
+  381 = sub i32 %379, i32 %198
+  383 = sub i32 %381, i32 %202
+  385 = sub i32 %383, i32 %206
+  387 = sub i32 %385, i32 %210
+  389 = add i32 %387, i32 %182
+  391 = add i32 %389, i32 %186
+  393 = add i32 %391, i32 %190
+  395 = add i32 %393, i32 %194
   a1.load396 = load i32 from ptr @a1
   397 = add i32 %395, i32 %a1.load396
   a2.load398 = load i32 from ptr @a2

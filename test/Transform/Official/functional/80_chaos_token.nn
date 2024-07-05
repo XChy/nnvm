@@ -14,45 +14,38 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry18:
-  %__ = stack 4
-  %_ = stack 4
-  %i = stack 4
   19 = call i32 putstr(ptr @__HELLO)
-  store i32 0 to ptr %i
   br bb %while.cond21
 while.cond21:
+  59 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %30]
+  57 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %27]
+  55 = phi [bb %entry18, i32 0, bb %if.exit53, i32 %49]
   24 = icmp ne i32 1, i32 0
   br i1 %24, bb %while.body22, bb %while.exit23
 while.body22:
-  i.load = load i32 from ptr %i
-  27 = sdiv i32 %i.load, i32 6
-  store i32 %27 to ptr %_
-  i.load29 = load i32 from ptr %i
-  30 = srem i32 %i.load29, i32 6
-  store i32 %30 to ptr %__
-  _.load = load i32 from ptr %_
-  33 = icmp ne i32 %_.load, i32 %30
+  27 = sdiv i32 %55, i32 6
+  30 = srem i32 %55, i32 6
+  33 = icmp ne i32 %27, i32 %30
   br i1 %33, bb %then, bb %if.exit
 while.exit23:
+  58 = phi [bb %while.cond21, i32 %59, bb %then52, i32 %30]
+  56 = phi [bb %while.cond21, i32 %57, bb %then52, i32 %27]
+  54 = phi [bb %while.cond21, i32 %55, bb %then52, i32 %49]
   ret i32 0
 then:
-  _.load36 = load i32 from ptr %_
-  37 = mul i32 %_.load36, i32 200
+  37 = mul i32 %27, i32 200
   38 = ptradd ptr @N4__mE___, i32 %37
   39 = call i32 putstr(ptr %38)
   40 = call i32 putstr(ptr @saY_HeI10_To)
-  __.load41 = load i32 from ptr %__
-  42 = mul i32 %__.load41, i32 200
+  42 = mul i32 %30, i32 200
   43 = ptradd ptr @N4__mE___, i32 %42
   44 = call i32 putstr(ptr %43)
   45 = call i32 putstr(ptr @RET)
   br bb %if.exit
 if.exit:
-  i.load46 = load i32 from ptr %i
-  47 = mul i32 %i.load46, i32 17
+  47 = mul i32 %55, i32 17
   48 = add i32 %47, i32 23
   49 = srem i32 %48, i32 32
-  store i32 %49 to ptr %i
   51 = icmp eq i32 %49, i32 0
   br i1 %51, bb %then52, bb %if.exit53
 then52:
@@ -77,29 +70,23 @@ external void putfarray(i32 , ptr )
 
 i32 putstr(ptr str) {
 entry:
-  %iNd__1X = stack 4
-  store i32 0 to ptr %iNd__1X
   br bb %while.cond
 while.cond:
-  iNd__1X.load = load i32 from ptr %iNd__1X
-  6 = mul i32 %iNd__1X.load, i32 4
+  60 = phi [bb %entry, i32 0, bb %while.body, i32 %16]
+  6 = mul i32 %60, i32 4
   7 = ptradd ptr %str, i32 %6
   7.load = load i32 from ptr %7
   9 = icmp ne i32 %7.load, i32 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  iNd__1X.load10 = load i32 from ptr %iNd__1X
-  11 = mul i32 %iNd__1X.load10, i32 4
+  11 = mul i32 %60, i32 4
   12 = ptradd ptr %str, i32 %11
   12.load = load i32 from ptr %12
   call void putch(i32 %12.load)
-  iNd__1X.load15 = load i32 from ptr %iNd__1X
-  16 = add i32 %iNd__1X.load15, i32 1
-  store i32 %16 to ptr %iNd__1X
+  16 = add i32 %60, i32 1
   br bb %while.cond
 while.exit:
-  iNd__1X.load17 = load i32 from ptr %iNd__1X
-  ret i32 %iNd__1X.load17
+  ret i32 %60
 }
 
 

@@ -3,132 +3,80 @@ global ptr space init with i32 32
 global ptr maxN init with i32 1000
 void findSmallest(i32 low, i32 high, i32 k, i32 n) {
 entry57:
-  %i78 = stack 4
-  %pIndex68 = stack 4
-  %n.stack = stack 4
-  %k.stack = stack 4
-  %high.stack = stack 4
-  %low.stack = stack 4
-  store i32 %low to ptr %low.stack
-  store i32 %high to ptr %high.stack
-  store i32 %k to ptr %k.stack
-  store i32 %n to ptr %n.stack
-  low.stack.load = load i32 from ptr %low.stack
-  high.stack.load = load i32 from ptr %high.stack
-  64 = icmp eq i32 %low.stack.load, i32 %high.stack.load
+  64 = icmp eq i32 %low, i32 %high
   br i1 %64, bb %then65, bb %else
 then65:
   ret 
 if.exit66:
   ret 
 else:
-  low.stack.load69 = load i32 from ptr %low.stack
-  high.stack.load70 = load i32 from ptr %high.stack
-  71 = call i32 findPivot(i32 %low.stack.load69, i32 %high.stack.load70)
-  store i32 %71 to ptr %pIndex68
-  k.stack.load = load i32 from ptr %k.stack
-  74 = icmp eq i32 %k.stack.load, i32 %71
+  71 = call i32 findPivot(i32 %low, i32 %high)
+  74 = icmp eq i32 %k, i32 %71
   br i1 %74, bb %then75, bb %else77
 then75:
-  store i32 0 to ptr %i78
   br bb %while.cond79
 if.exit76:
+  142 = phi [bb %if.exit99, i32 ub, bb %while.exit81, i32 %141]
   br bb %if.exit66
 else77:
-  k.stack.load95 = load i32 from ptr %k.stack
-  pIndex68.load96 = load i32 from ptr %pIndex68
-  97 = icmp slt i32 %k.stack.load95, i32 %pIndex68.load96
+  97 = icmp slt i32 %k, i32 %71
   br i1 %97, bb %then98, bb %else100
 while.cond79:
-  i78.load = load i32 from ptr %i78
-  pIndex68.load83 = load i32 from ptr %pIndex68
-  84 = icmp slt i32 %i78.load, i32 %pIndex68.load83
+  141 = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
+  84 = icmp slt i32 %141, i32 %71
   85 = icmp ne i1 %84, i1 0
   br i1 %85, bb %while.body80, bb %while.exit81
 while.body80:
-  i78.load86 = load i32 from ptr %i78
-  87 = mul i32 %i78.load86, i32 4
+  87 = mul i32 %141, i32 4
   88 = ptradd ptr @array, i32 %87
   88.load = load i32 from ptr %88
   call void putint(i32 %88.load)
   space.load = load i32 from ptr @space
   call void putch(i32 %space.load)
-  i78.load93 = load i32 from ptr %i78
-  94 = add i32 %i78.load93, i32 1
-  store i32 %94 to ptr %i78
+  94 = add i32 %141, i32 1
   br bb %while.cond79
 while.exit81:
   br bb %if.exit76
 then98:
-  low.stack.load101 = load i32 from ptr %low.stack
-  pIndex68.load102 = load i32 from ptr %pIndex68
-  103 = sub i32 %pIndex68.load102, i32 1
-  k.stack.load104 = load i32 from ptr %k.stack
-  n.stack.load = load i32 from ptr %n.stack
-  call void findSmallest(i32 %low.stack.load101, i32 %103, i32 %k.stack.load104, i32 %n.stack.load)
+  103 = sub i32 %71, i32 1
+  call void findSmallest(i32 %low, i32 %103, i32 %k, i32 %n)
   br bb %if.exit99
 if.exit99:
   br bb %if.exit76
 else100:
-  pIndex68.load107 = load i32 from ptr %pIndex68
-  108 = add i32 %pIndex68.load107, i32 1
-  high.stack.load109 = load i32 from ptr %high.stack
-  k.stack.load110 = load i32 from ptr %k.stack
-  n.stack.load111 = load i32 from ptr %n.stack
-  call void findSmallest(i32 %108, i32 %high.stack.load109, i32 %k.stack.load110, i32 %n.stack.load111)
+  108 = add i32 %71, i32 1
+  call void findSmallest(i32 %108, i32 %high, i32 %k, i32 %n)
   br bb %if.exit99
 }
 
 i32 findPivot(i32 start, i32 end) {
 entry19:
-  %i = stack 4
-  %pIndex = stack 4
-  %pivot = stack 4
-  %end.stack = stack 4
-  %start.stack = stack 4
-  store i32 %start to ptr %start.stack
-  store i32 %end to ptr %end.stack
   24 = mul i32 %end, i32 4
   25 = ptradd ptr @array, i32 %24
   25.load = load i32 from ptr %25
-  store i32 %25.load to ptr %pivot
-  start.stack.load = load i32 from ptr %start.stack
-  store i32 %start.stack.load to ptr %pIndex
-  start.stack.load30 = load i32 from ptr %start.stack
-  store i32 %start.stack.load30 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  end.stack.load35 = load i32 from ptr %end.stack
-  36 = icmp slt i32 %i.load, i32 %end.stack.load35
+  145 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %52]
+  144 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %143]
+  36 = icmp slt i32 %145, i32 %end
   37 = icmp ne i1 %36, i1 0
   br i1 %37, bb %while.body, bb %while.exit
 while.body:
-  i.load38 = load i32 from ptr %i
-  39 = mul i32 %i.load38, i32 4
+  39 = mul i32 %145, i32 4
   40 = ptradd ptr @array, i32 %39
   40.load = load i32 from ptr %40
-  pivot.load = load i32 from ptr %pivot
-  43 = icmp sle i32 %40.load, i32 %pivot.load
+  43 = icmp sle i32 %40.load, i32 %25.load
   br i1 %43, bb %then, bb %if.exit
 while.exit:
-  pIndex.load53 = load i32 from ptr %pIndex
-  end.stack.load54 = load i32 from ptr %end.stack
-  call void swap(i32 %pIndex.load53, i32 %end.stack.load54)
-  pIndex.load56 = load i32 from ptr %pIndex
-  ret i32 %pIndex.load56
+  call void swap(i32 %144, i32 %end)
+  ret i32 %144
 then:
-  i.load46 = load i32 from ptr %i
-  pIndex.load = load i32 from ptr %pIndex
-  call void swap(i32 %i.load46, i32 %pIndex.load)
-  pIndex.load49 = load i32 from ptr %pIndex
-  50 = add i32 %pIndex.load49, i32 1
-  store i32 %50 to ptr %pIndex
+  call void swap(i32 %145, i32 %144)
+  50 = add i32 %144, i32 1
   br bb %if.exit
 if.exit:
-  i.load51 = load i32 from ptr %i
-  52 = add i32 %i.load51, i32 1
-  store i32 %52 to ptr %i
+  143 = phi [bb %while.body, i32 %144, bb %then, i32 %50]
+  52 = add i32 %145, i32 1
   br bb %while.cond
 }
 
@@ -144,42 +92,24 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry113:
-  %high = stack 4
-  %low = stack 4
-  %i118 = stack 4
-  %k = stack 4
-  %n = stack 4
   115 = call i32 getint()
-  store i32 %115 to ptr %n
   117 = call i32 getint()
-  store i32 %117 to ptr %k
-  store i32 0 to ptr %i118
   br bb %while.cond119
 while.cond119:
-  i118.load = load i32 from ptr %i118
-  n.load = load i32 from ptr %n
-  124 = icmp slt i32 %i118.load, i32 %n.load
+  146 = phi [bb %entry113, i32 0, bb %while.body120, i32 %131]
+  124 = icmp slt i32 %146, i32 %115
   125 = icmp ne i1 %124, i1 0
   br i1 %125, bb %while.body120, bb %while.exit121
 while.body120:
-  i118.load126 = load i32 from ptr %i118
-  127 = mul i32 %i118.load126, i32 4
+  127 = mul i32 %146, i32 4
   128 = ptradd ptr @array, i32 %127
   129 = call i32 getint()
   store i32 %129 to ptr %128
-  i118.load130 = load i32 from ptr %i118
-  131 = add i32 %i118.load130, i32 1
-  store i32 %131 to ptr %i118
+  131 = add i32 %146, i32 1
   br bb %while.cond119
 while.exit121:
-  store i32 0 to ptr %low
-  n.load134 = load i32 from ptr %n
-  135 = sub i32 %n.load134, i32 1
-  store i32 %135 to ptr %high
-  low.load = load i32 from ptr %low
-  k.load = load i32 from ptr %k
-  n.load139 = load i32 from ptr %n
-  call void findSmallest(i32 %low.load, i32 %135, i32 %k.load, i32 %n.load139)
+  135 = sub i32 %115, i32 1
+  call void findSmallest(i32 0, i32 %135, i32 %117, i32 %115)
   ret i32 0
 }
 
@@ -199,29 +129,18 @@ external void putfarray(i32 , ptr )
 
 void swap(i32 i, i32 j) {
 entry:
-  %tmp = stack 4
-  %j.stack = stack 4
-  %i.stack = stack 4
-  store i32 %i to ptr %i.stack
-  store i32 %j to ptr %j.stack
-  i.stack.load = load i32 from ptr %i.stack
-  5 = mul i32 %i.stack.load, i32 4
+  5 = mul i32 %i, i32 4
   6 = ptradd ptr @array, i32 %5
   6.load = load i32 from ptr %6
-  store i32 %6.load to ptr %tmp
-  i.stack.load8 = load i32 from ptr %i.stack
-  9 = mul i32 %i.stack.load8, i32 4
+  9 = mul i32 %i, i32 4
   10 = ptradd ptr @array, i32 %9
-  j.stack.load = load i32 from ptr %j.stack
-  12 = mul i32 %j.stack.load, i32 4
+  12 = mul i32 %j, i32 4
   13 = ptradd ptr @array, i32 %12
   13.load = load i32 from ptr %13
   store i32 %13.load to ptr %10
-  j.stack.load15 = load i32 from ptr %j.stack
-  16 = mul i32 %j.stack.load15, i32 4
+  16 = mul i32 %j, i32 4
   17 = ptradd ptr @array, i32 %16
-  tmp.load = load i32 from ptr %tmp
-  store i32 %tmp.load to ptr %17
+  store i32 %6.load to ptr %17
   ret 
 }
 

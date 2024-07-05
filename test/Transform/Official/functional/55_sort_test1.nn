@@ -11,8 +11,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry55:
-  %tmp86 = stack 4
-  %i77 = stack 4
   %a = stack 40
   store i32 10 to ptr @n
   57 = mul i32 0, i32 4
@@ -46,26 +44,21 @@ entry55:
   76 = ptradd ptr %a, i32 %75
   store i32 8 to ptr %76
   78 = call i32 bubblesort(ptr %a)
-  store i32 %78 to ptr %i77
   br bb %while.cond79
 while.cond79:
-  i77.load = load i32 from ptr %i77
+  98 = phi [bb %entry55, i32 ub, bb %while.body80, i32 10]
+  97 = phi [bb %entry55, i32 %78, bb %while.body80, i32 %96]
   n.load83 = load i32 from ptr @n
-  84 = icmp slt i32 %i77.load, i32 %n.load83
+  84 = icmp slt i32 %97, i32 %n.load83
   85 = icmp ne i1 %84, i1 0
   br i1 %85, bb %while.body80, bb %while.exit81
 while.body80:
-  i77.load87 = load i32 from ptr %i77
-  88 = mul i32 %i77.load87, i32 4
+  88 = mul i32 %97, i32 4
   89 = ptradd ptr %a, i32 %88
   89.load = load i32 from ptr %89
-  store i32 %89.load to ptr %tmp86
   call void putint(i32 %89.load)
-  store i32 10 to ptr %tmp86
   call void putch(i32 10)
-  i77.load95 = load i32 from ptr %i77
-  96 = add i32 %i77.load95, i32 1
-  store i32 %96 to ptr %i77
+  96 = add i32 %97, i32 1
   br bb %while.cond79
 while.exit81:
   ret i32 0
@@ -87,75 +80,61 @@ external void putfarray(i32 , ptr )
 
 i32 bubblesort(ptr arr) {
 entry:
-  %tmp = stack 4
-  %j = stack 4
-  %i = stack 4
-  store i32 0 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  104 = phi [bb %entry, i32 ub, bb %while.exit13, i32 %103]
+  101 = phi [bb %entry, i32 ub, bb %while.exit13, i32 %100]
+  99 = phi [bb %entry, i32 0, bb %while.exit13, i32 %54]
   n.load = load i32 from ptr @n
   8 = sub i32 %n.load, i32 1
-  9 = icmp slt i32 %i.load, i32 %8
+  9 = icmp slt i32 %99, i32 %8
   10 = icmp ne i1 %9, i1 0
   br i1 %10, bb %while.body, bb %while.exit
 while.body:
-  store i32 0 to ptr %j
   br bb %while.cond11
 while.exit:
   ret i32 0
 while.cond11:
-  j.load = load i32 from ptr %j
+  103 = phi [bb %while.body, i32 %104, bb %if.exit, i32 %102]
+  100 = phi [bb %while.body, i32 0, bb %if.exit, i32 %52]
   n.load15 = load i32 from ptr @n
-  i.load16 = load i32 from ptr %i
-  17 = sub i32 %n.load15, i32 %i.load16
+  17 = sub i32 %n.load15, i32 %99
   18 = sub i32 %17, i32 1
-  19 = icmp slt i32 %j.load, i32 %18
+  19 = icmp slt i32 %100, i32 %18
   20 = icmp ne i1 %19, i1 0
   br i1 %20, bb %while.body12, bb %while.exit13
 while.body12:
-  j.load21 = load i32 from ptr %j
-  22 = mul i32 %j.load21, i32 4
+  22 = mul i32 %100, i32 4
   23 = ptradd ptr %arr, i32 %22
   23.load = load i32 from ptr %23
-  j.load25 = load i32 from ptr %j
-  26 = add i32 %j.load25, i32 1
+  26 = add i32 %100, i32 1
   27 = mul i32 %26, i32 4
   28 = ptradd ptr %arr, i32 %27
   28.load = load i32 from ptr %28
   30 = icmp sgt i32 %23.load, i32 %28.load
   br i1 %30, bb %then, bb %if.exit
 while.exit13:
-  i.load53 = load i32 from ptr %i
-  54 = add i32 %i.load53, i32 1
-  store i32 %54 to ptr %i
+  54 = add i32 %99, i32 1
   br bb %while.cond
 then:
-  j.load34 = load i32 from ptr %j
-  35 = add i32 %j.load34, i32 1
+  35 = add i32 %100, i32 1
   36 = mul i32 %35, i32 4
   37 = ptradd ptr %arr, i32 %36
   37.load = load i32 from ptr %37
-  store i32 %37.load to ptr %tmp
-  j.load39 = load i32 from ptr %j
-  40 = add i32 %j.load39, i32 1
+  40 = add i32 %100, i32 1
   41 = mul i32 %40, i32 4
   42 = ptradd ptr %arr, i32 %41
-  j.load43 = load i32 from ptr %j
-  44 = mul i32 %j.load43, i32 4
+  44 = mul i32 %100, i32 4
   45 = ptradd ptr %arr, i32 %44
   45.load = load i32 from ptr %45
   store i32 %45.load to ptr %42
-  j.load47 = load i32 from ptr %j
-  48 = mul i32 %j.load47, i32 4
+  48 = mul i32 %100, i32 4
   49 = ptradd ptr %arr, i32 %48
-  tmp.load = load i32 from ptr %tmp
-  store i32 %tmp.load to ptr %49
+  store i32 %37.load to ptr %49
   br bb %if.exit
 if.exit:
-  j.load51 = load i32 from ptr %j
-  52 = add i32 %j.load51, i32 1
-  store i32 %52 to ptr %j
+  102 = phi [bb %while.body12, i32 %103, bb %then, i32 %37.load]
+  52 = add i32 %100, i32 1
   br bb %while.cond11
 }
 

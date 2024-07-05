@@ -1,12 +1,7 @@
 i32 main() {
 entry:
-  %b = stack 4
-  %a = stack 4
-  store i32 10 to ptr %a
-  store i32 30 to ptr %b
-  a.load = load i32 from ptr %a
   4 = sub i32 0, i32 5
-  5 = sub i32 %a.load, i32 %4
+  5 = sub i32 10, i32 %4
   7 = add i32 %5, i32 30
   8 = sub i32 0, i32 5
   9 = add i32 %7, i32 %8

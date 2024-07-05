@@ -10,10 +10,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry37:
-  %p = stack 4
-  store i32 2 to ptr %p
   41 = call i32 deepWhileBr(i32 2, i32 2)
-  store i32 %41 to ptr %p
   call void putint(i32 %41)
   ret i32 0
 }
@@ -24,54 +21,42 @@ external void putfloat(float )
 
 i32 deepWhileBr(i32 a, i32 b) {
 entry2:
-  %e = stack 4
-  %d = stack 4
-  %c = stack 4
-  %b.stack = stack 4
-  %a.stack3 = stack 4
-  store i32 %a to ptr %a.stack3
-  store i32 %b to ptr %b.stack
-  a.stack3.load = load i32 from ptr %a.stack3
-  8 = add i32 %a.stack3.load, i32 %b
-  store i32 %8 to ptr %c
+  8 = add i32 %a, i32 %b
   br bb %while.cond
 while.cond:
-  c.load = load i32 from ptr %c
-  13 = icmp slt i32 %c.load, i32 75
+  51 = phi [bb %entry2, i32 ub, bb %if.exit, i32 %50]
+  48 = phi [bb %entry2, i32 ub, bb %if.exit, i32 42]
+  47 = phi [bb %entry2, i32 %8, bb %if.exit, i32 %46]
+  13 = icmp slt i32 %47, i32 75
   14 = icmp ne i1 %13, i1 0
   br i1 %14, bb %while.body, bb %while.exit
 while.body:
-  store i32 42 to ptr %d
-  c.load16 = load i32 from ptr %c
-  17 = icmp slt i32 %c.load16, i32 100
+  17 = icmp slt i32 %47, i32 100
   br i1 %17, bb %then, bb %if.exit
 while.exit:
-  c.load36 = load i32 from ptr %c
-  ret i32 %c.load36
+  ret i32 %47
 then:
-  c.load20 = load i32 from ptr %c
-  d.load = load i32 from ptr %d
-  22 = add i32 %c.load20, i32 %d.load
-  store i32 %22 to ptr %c
+  22 = add i32 %47, i32 42
   24 = icmp sgt i32 %22, i32 99
   br i1 %24, bb %then25, bb %if.exit26
 if.exit:
+  50 = phi [bb %while.body, i32 %51, bb %if.exit26, i32 %49]
+  46 = phi [bb %while.body, i32 %47, bb %if.exit26, i32 %45]
   br bb %while.cond
 then25:
-  d.load28 = load i32 from ptr %d
-  29 = mul i32 %d.load28, i32 2
-  store i32 %29 to ptr %e
+  29 = mul i32 42, i32 2
   30 = call i32 get_one(i32 0)
   31 = icmp eq i32 %30, i32 1
   br i1 %31, bb %then32, bb %if.exit33
 if.exit26:
+  49 = phi [bb %then, i32 %51, bb %if.exit33, i32 %29]
+  45 = phi [bb %then, i32 %22, bb %if.exit33, i32 %44]
   br bb %if.exit
 then32:
-  e.load = load i32 from ptr %e
-  35 = mul i32 %e.load, i32 2
-  store i32 %35 to ptr %c
+  35 = mul i32 %29, i32 2
   br bb %if.exit33
 if.exit33:
+  44 = phi [bb %then25, i32 %22, bb %then32, i32 %35]
   br bb %if.exit26
 }
 

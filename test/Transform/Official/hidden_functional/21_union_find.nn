@@ -2,27 +2,14 @@ global ptr parent init with 1005 x i32 zeros
 global ptr maxN init with i32 1005
 void merge(i32 p, i32 q) {
 entry24:
-  %root_q = stack 4
-  %root_p = stack 4
-  %q.stack = stack 4
-  %p.stack = stack 4
-  store i32 %p to ptr %p.stack
-  store i32 %q to ptr %q.stack
-  p.stack.load = load i32 from ptr %p.stack
-  30 = call i32 find(i32 %p.stack.load)
-  store i32 %30 to ptr %root_p
-  q.stack.load = load i32 from ptr %q.stack
-  32 = call i32 find(i32 %q.stack.load)
-  store i32 %32 to ptr %root_q
-  root_p.load = load i32 from ptr %root_p
-  35 = icmp ne i32 %root_p.load, i32 %32
+  30 = call i32 find(i32 %p)
+  32 = call i32 find(i32 %q)
+  35 = icmp ne i32 %30, i32 %32
   br i1 %35, bb %then36, bb %if.exit37
 then36:
-  root_q.load38 = load i32 from ptr %root_q
-  39 = mul i32 %root_q.load38, i32 4
+  39 = mul i32 %32, i32 4
   40 = ptradd ptr @parent, i32 %39
-  root_p.load41 = load i32 from ptr %root_p
-  store i32 %root_p.load41 to ptr %40
+  store i32 %30 to ptr %40
   br bb %if.exit37
 if.exit37:
   ret 
@@ -40,85 +27,58 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry42:
-  %clusters = stack 4
-  %q = stack 4
-  %p = stack 4
-  %i = stack 4
-  %m = stack 4
-  %n = stack 4
   44 = call i32 getint()
-  store i32 %44 to ptr %n
   46 = call i32 getint()
-  store i32 %46 to ptr %m
-  store i32 0 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  n.load = load i32 from ptr %n
-  55 = icmp slt i32 %i.load, i32 %n.load
+  101 = phi [bb %entry42, i32 0, bb %while.body, i32 %62]
+  55 = icmp slt i32 %101, i32 %44
   56 = icmp ne i1 %55, i1 0
   br i1 %56, bb %while.body, bb %while.exit
 while.body:
-  i.load57 = load i32 from ptr %i
-  58 = mul i32 %i.load57, i32 4
+  58 = mul i32 %101, i32 4
   59 = ptradd ptr @parent, i32 %58
-  i.load60 = load i32 from ptr %i
-  store i32 %i.load60 to ptr %59
-  i.load61 = load i32 from ptr %i
-  62 = add i32 %i.load61, i32 1
-  store i32 %62 to ptr %i
+  store i32 %101 to ptr %59
+  62 = add i32 %101, i32 1
   br bb %while.cond
 while.exit:
-  store i32 0 to ptr %i
   br bb %while.cond63
 while.cond63:
-  i.load66 = load i32 from ptr %i
-  m.load = load i32 from ptr %m
-  68 = icmp slt i32 %i.load66, i32 %m.load
+  103 = phi [bb %while.exit, i32 ub, bb %while.body64, i32 %71]
+  102 = phi [bb %while.exit, i32 ub, bb %while.body64, i32 %70]
+  100 = phi [bb %while.exit, i32 0, bb %while.body64, i32 %76]
+  68 = icmp slt i32 %100, i32 %46
   69 = icmp ne i1 %68, i1 0
   br i1 %69, bb %while.body64, bb %while.exit65
 while.body64:
   70 = call i32 getint()
-  store i32 %70 to ptr %p
   71 = call i32 getint()
-  store i32 %71 to ptr %q
-  p.load = load i32 from ptr %p
-  call void merge(i32 %p.load, i32 %71)
-  i.load75 = load i32 from ptr %i
-  76 = add i32 %i.load75, i32 1
-  store i32 %76 to ptr %i
+  call void merge(i32 %70, i32 %71)
+  76 = add i32 %100, i32 1
   br bb %while.cond63
 while.exit65:
-  store i32 0 to ptr %clusters
-  store i32 0 to ptr %i
   br bb %while.cond78
 while.cond78:
-  i.load81 = load i32 from ptr %i
-  n.load82 = load i32 from ptr %n
-  83 = icmp slt i32 %i.load81, i32 %n.load82
+  105 = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %104]
+  99 = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %96]
+  83 = icmp slt i32 %99, i32 %44
   84 = icmp ne i1 %83, i1 0
   br i1 %84, bb %while.body79, bb %while.exit80
 while.body79:
-  i.load85 = load i32 from ptr %i
-  86 = mul i32 %i.load85, i32 4
+  86 = mul i32 %99, i32 4
   87 = ptradd ptr @parent, i32 %86
   87.load = load i32 from ptr %87
-  i.load89 = load i32 from ptr %i
-  90 = icmp eq i32 %87.load, i32 %i.load89
+  90 = icmp eq i32 %87.load, i32 %99
   br i1 %90, bb %then91, bb %if.exit92
 while.exit80:
-  clusters.load97 = load i32 from ptr %clusters
-  call void putint(i32 %clusters.load97)
+  call void putint(i32 %105)
   ret i32 0
 then91:
-  clusters.load = load i32 from ptr %clusters
-  94 = add i32 %clusters.load, i32 1
-  store i32 %94 to ptr %clusters
+  94 = add i32 %105, i32 1
   br bb %if.exit92
 if.exit92:
-  i.load95 = load i32 from ptr %i
-  96 = add i32 %i.load95, i32 1
-  store i32 %96 to ptr %i
+  104 = phi [bb %while.body79, i32 %105, bb %then91, i32 %94]
+  96 = add i32 %99, i32 1
   br bb %while.cond78
 }
 
@@ -128,30 +88,24 @@ external void putfloat(float )
 
 i32 find(i32 root) {
 entry:
-  %root.stack = stack 4
-  store i32 %root to ptr %root.stack
   3 = mul i32 %root, i32 4
   4 = ptradd ptr @parent, i32 %3
   4.load = load i32 from ptr %4
   7 = icmp eq i32 %4.load, i32 %root
   br i1 %7, bb %then, bb %else
 then:
-  root.stack.load11 = load i32 from ptr %root.stack
-  ret i32 %root.stack.load11
+  ret i32 %root
 if.exit:
   unreachable
 else:
-  root.stack.load12 = load i32 from ptr %root.stack
-  13 = mul i32 %root.stack.load12, i32 4
+  13 = mul i32 %root, i32 4
   14 = ptradd ptr @parent, i32 %13
-  root.stack.load15 = load i32 from ptr %root.stack
-  16 = mul i32 %root.stack.load15, i32 4
+  16 = mul i32 %root, i32 4
   17 = ptradd ptr @parent, i32 %16
   17.load = load i32 from ptr %17
   19 = call i32 find(i32 %17.load)
   store i32 %19 to ptr %14
-  root.stack.load20 = load i32 from ptr %root.stack
-  21 = mul i32 %root.stack.load20, i32 4
+  21 = mul i32 %root, i32 4
   22 = ptradd ptr @parent, i32 %21
   22.load = load i32 from ptr %22
   ret i32 %22.load

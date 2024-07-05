@@ -1,4 +1,5 @@
 #include "Value.h"
+#include "ADT/Ranges.h"
 #include "Module.h"
 #include <string>
 
@@ -11,13 +12,6 @@ void Value::setName(const std::string &name, Module &module) {
 }
 
 void Value::replaceSelf(Value *replacement) {
-  auto it = userList.begin();
-  while (it != userList.end()) {
-    // Due to early change, we have to pre-save the next iterator.
-    auto nextIt = it;
-    nextIt++;
-    Use *U = *it;
-    U->set(replacement);
-    it = nextIt;
-  }
+  for (Use *use : incChange(userList))
+    use->set(replacement);
 }

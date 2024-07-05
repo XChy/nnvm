@@ -98,7 +98,7 @@ public:
   void setOperand(uint no, Value *);
   void addOperand(Value *operand);
   Value *getOperand(uint no);
-  uint getOperandNum() { return useeList.size(); }
+  uint getOperandNum() const { return useeList.size(); }
 
   InstID getOpcode() const { return instID; }
   std::string getOpName() const;
@@ -117,7 +117,11 @@ public:
   const Metadata *getMetadata() const { return metadata; }
   Metadata *getMetadata() { return metadata; }
 
-  void eraseFromBB() { ((ListTrait<Instruction> *)this)->eraseFromList(); }
+  void eraseFromBB() {
+    for (Use *use : useeList)
+      use->removeFromList();
+    ListTrait<Instruction>::eraseFromList();
+  }
 
   std::string dump() override;
 
@@ -369,10 +373,14 @@ public:
   }
 };
 
+// operands: [incomingBB1, incomingValue1, ..., incomingBBn, incomingValuen]
 class PhiInst : public Instruction {
 public:
-  PhiInst(const std::vector<Value *> phiSlots, Type *type)
-      : Instruction(InstID::Phi, phiSlots, type) {}
+  PhiInst(Type *type) : Instruction(InstID::Phi, {}, type) {}
+
+  void addIncoming(BasicBlock *incomingBB, Value *incomingValue);
+  void setIncoming(BasicBlock *incomingBB, Value *incomingValue);
+  uint64_t getIncomingNum() const { return getOperandNum() / 2; }
 };
 
 } // namespace nnvm

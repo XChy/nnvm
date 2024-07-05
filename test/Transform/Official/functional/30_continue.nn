@@ -1,35 +1,23 @@
 i32 main() {
 entry:
-  %sum = stack 4
-  %i = stack 4
-  store i32 0 to ptr %i
-  store i32 0 to ptr %sum
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  7 = icmp slt i32 %i.load, i32 100
+  22 = phi [bb %entry, i32 0, bb %if.exit, i32 %17, bb %then, i32 %22]
+  21 = phi [bb %entry, i32 0, bb %if.exit, i32 %19, bb %then, i32 %14]
+  7 = icmp slt i32 %21, i32 100
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  i.load9 = load i32 from ptr %i
-  10 = icmp eq i32 %i.load9, i32 50
+  10 = icmp eq i32 %21, i32 50
   br i1 %10, bb %then, bb %if.exit
 while.exit:
-  sum.load20 = load i32 from ptr %sum
-  ret i32 %sum.load20
+  ret i32 %22
 then:
-  i.load13 = load i32 from ptr %i
-  14 = add i32 %i.load13, i32 1
-  store i32 %14 to ptr %i
+  14 = add i32 %21, i32 1
   br bb %while.cond
 if.exit:
-  sum.load = load i32 from ptr %sum
-  i.load16 = load i32 from ptr %i
-  17 = add i32 %sum.load, i32 %i.load16
-  store i32 %17 to ptr %sum
-  i.load18 = load i32 from ptr %i
-  19 = add i32 %i.load18, i32 1
-  store i32 %19 to ptr %i
+  17 = add i32 %22, i32 %21
+  19 = add i32 %21, i32 1
   br bb %while.cond
 }
 

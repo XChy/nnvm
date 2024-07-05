@@ -303,6 +303,7 @@ void LowerHelper::mapAll(Module &module) {
         LIREntry = lowBB;
       // TODO: map BB as Value.
       BBMap[BB] = lowBB;
+      defMap[BB] = lowBB;
       lowFunc->insert(lowBB);
 
       for (Instruction *I : *BB)
@@ -335,13 +336,12 @@ void LowerHelper::mapAll(Module &module) {
       if (arg->getType()->isFloat() && !availableArgFPR.empty()) {
         builder.copy(availableArgFPR.front(), argReg);
         availableArgFPR.pop();
-      } else if ((arg->getType()->isInteger() || arg->getType()->isPointer()) &&
-                 !availableArgGPR.empty()) {
+      } else if (arg->getType()->isIntegerOrPtr() && !availableArgGPR.empty()) {
         builder.copy(availableArgGPR.front(), argReg);
         availableArgGPR.pop();
       } else {
         uint64_t align = argReg->bytes();
-        incomingArgSize = (incomingArgSize + align - 1) / align * align;
+        incomingArgSize = alignWith(incomingArgSize, align);
 
         Register *pointerReg = builder.newVRegForPtr();
         builder.addInst(LIRInst::create(
@@ -353,8 +353,7 @@ void LowerHelper::mapAll(Module &module) {
       }
     }
 
-    incomingArgSize = (incomingArgSize + getFrameAlign() - 1) /
-                      getFrameAlign() * getFrameAlign();
+    incomingArgSize = alignWith(incomingArgSize, getFrameAlign());
     incomingArgFrame->setSize(incomingArgSize);
   }
 }

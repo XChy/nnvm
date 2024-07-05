@@ -15,8 +15,6 @@ global ptr CONV2 init with float 4095.000000
 global ptr TWO init with i32 2
 void assert_not(i32 cond) {
 entry68:
-  %cond.stack69 = stack 4
-  store i32 %cond to ptr %cond.stack69
   71 = icmp ne i32 %cond, i32 0
   br i1 %71, bb %then72, bb %else74
 then72:
@@ -50,8 +48,6 @@ entry45:
 
 float circle_area(i32 radius) {
 entry10:
-  %radius.stack = stack 4
-  store i32 %radius to ptr %radius.stack
   PI.load = load float from ptr @PI
   14 = si2f i32 %radius to float
   15 = fmul float %PI.load, float %14
@@ -73,12 +69,7 @@ external i32 getch()
 
 i32 float_eq(float a, float b) {
 entry28:
-  %b.stack = stack 4
-  %a.stack = stack 4
-  store float %a to ptr %a.stack
-  store float %b to ptr %b.stack
-  a.stack.load = load float from ptr %a.stack
-  33 = fsub float %a.stack.load, float %b
+  33 = fsub float %a, float %b
   34 = call float float_abs(float %33)
   EPS.load = load float from ptr @EPS
   36 = fcmp olt float %34, float %EPS.load
@@ -104,15 +95,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry77:
-  %area_trunc = stack 4
-  %area = stack 4
-  %input = stack 4
-  %len = stack 4
   %arr = stack 40
-  %p = stack 4
-  %i = stack 4
-  %select129 = stack 1
-  %select = stack 1
   HEX2.load = load float from ptr @HEX2
   FACT.load = load float from ptr @FACT
   80 = call i32 float_eq(float %HEX2.load, float %FACT.load)
@@ -158,14 +141,12 @@ if.exit113:
   br i1 %115, bb %select.then, bb %select.else
 select.then:
   120 = icmp ne i32 3, i32 0
-  store i1 %120 to ptr %select
   br bb %select.exit
 select.else:
-  store i1 0 to ptr %select
   br bb %select.exit
 select.exit:
-  121 = load i1 from ptr %select
-  br i1 %121, bb %then122, bb %if.exit123
+  198 = phi [bb %select.else, i1 0, bb %select.then, i1 %120]
+  br i1 %198, bb %then122, bb %if.exit123
 then122:
   call void error()
   br bb %if.exit123
@@ -173,22 +154,18 @@ if.exit123:
   125 = icmp ne i32 0, i32 0
   br i1 %125, bb %select.then126, bb %select.else127
 select.then126:
-  store i1 1 to ptr %select129
   br bb %select.exit128
 select.else127:
   130 = fcmp one float 0.300000, float 0.000000
   131 = icmp ne i1 %130, i1 0
-  store i1 %131 to ptr %select129
   br bb %select.exit128
 select.exit128:
-  132 = load i1 from ptr %select129
-  br i1 %132, bb %then133, bb %if.exit134
+  197 = phi [bb %select.else127, i1 %131, bb %select.then126, i1 1]
+  br i1 %197, bb %then133, bb %if.exit134
 then133:
   call void ok()
   br bb %if.exit134
 if.exit134:
-  store i32 1 to ptr %i
-  store i32 0 to ptr %p
   139 = si2f i32 2 to float
   arr.index = ptradd ptr %arr, i32 0
   store float 1.000000 to ptr %arr.index
@@ -211,56 +188,45 @@ if.exit134:
   arr.index149 = ptradd ptr %arr, i32 36
   store float 0.000000 to ptr %arr.index149
   151 = call i32 getfarray(ptr %arr)
-  store i32 %151 to ptr %len
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  203 = phi [bb %if.exit134, float ub, bb %while.body, float %170]
+  202 = phi [bb %if.exit134, float ub, bb %while.body, float %166]
+  201 = phi [bb %if.exit134, float ub, bb %while.body, float %160]
+  200 = phi [bb %if.exit134, i32 1, bb %while.body, i32 %192]
+  199 = phi [bb %if.exit134, i32 0, bb %while.body, i32 %194]
   MAX.load = load i32 from ptr @MAX
-  157 = icmp slt i32 %i.load, i32 %MAX.load
+  157 = icmp slt i32 %200, i32 %MAX.load
   158 = icmp ne i1 %157, i1 0
   br i1 %158, bb %while.body, bb %while.exit
 while.body:
   160 = call float getfloat()
-  store float %160 to ptr %input
   PI.load162 = load float from ptr @PI
   164 = fmul float %PI.load162, float %160
   166 = fmul float %164, float %160
-  store float %166 to ptr %area
-  input.load168 = load float from ptr %input
-  169 = f2si float %input.load168 to i32
+  169 = f2si float %160 to i32
   170 = call float circle_area(i32 %169)
-  store float %170 to ptr %area_trunc
-  p.load = load i32 from ptr %p
-  172 = mul i32 %p.load, i32 4
+  172 = mul i32 %199, i32 4
   173 = ptradd ptr %arr, i32 %172
-  p.load174 = load i32 from ptr %p
-  175 = mul i32 %p.load174, i32 4
+  175 = mul i32 %199, i32 4
   176 = ptradd ptr %arr, i32 %175
   176.load = load float from ptr %176
-  input.load178 = load float from ptr %input
-  179 = fadd float %176.load, float %input.load178
+  179 = fadd float %176.load, float %160
   store float %179 to ptr %173
-  area.load = load float from ptr %area
-  call void putfloat(float %area.load)
+  call void putfloat(float %166)
   call void putch(i32 32)
-  area_trunc.load = load float from ptr %area_trunc
-  184 = f2si float %area_trunc.load to i32
+  184 = f2si float %170 to i32
   call void putint(i32 %184)
   call void putch(i32 10)
-  i.load187 = load i32 from ptr %i
   188 = fneg float 10.000000
   189 = fneg float %188
-  190 = si2f i32 %i.load187 to float
+  190 = si2f i32 %200 to float
   191 = fmul float %190, float %189
   192 = f2si float %191 to i32
-  store i32 %192 to ptr %i
-  p.load193 = load i32 from ptr %p
-  194 = add i32 %p.load193, i32 1
-  store i32 %194 to ptr %p
+  194 = add i32 %199, i32 1
   br bb %while.cond
 while.exit:
-  len.load = load i32 from ptr %len
-  call void putfarray(i32 %len.load, ptr %arr)
+  call void putfarray(i32 %151, ptr %arr)
   ret i32 0
 }
 
@@ -276,8 +242,6 @@ external void putarray(i32 , ptr )
 
 void assert(i32 cond) {
 entry56:
-  %cond.stack = stack 4
-  store i32 %cond to ptr %cond.stack
   59 = icmp ne i32 %cond, i32 0
   60 =  i1 %59, i1 1
   61 = zext i1 %60 to i32
@@ -299,18 +263,14 @@ external void putfarray(i32 , ptr )
 
 float float_abs(float x) {
 entry:
-  %x.stack = stack 4
-  store float %x to ptr %x.stack
   3 = si2f i32 0 to float
   4 = fcmp olt float %x, float %3
   br i1 %4, bb %then, bb %if.exit
 then:
-  x.stack.load7 = load float from ptr %x.stack
-  8 = fneg float %x.stack.load7
+  8 = fneg float %x
   ret float %8
 if.exit:
-  x.stack.load9 = load float from ptr %x.stack
-  ret float %x.stack.load9
+  ret float %x
 }
 
 

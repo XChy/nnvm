@@ -1,12 +1,7 @@
 global ptr e init with float 2.718282
 float my_powf(float a, float x) {
 entry309:
-  %x.stack311 = stack 4
-  %a.stack310 = stack 4
-  store float %a to ptr %a.stack310
-  store float %x to ptr %x.stack311
-  a.stack310.load = load float from ptr %a.stack310
-  314 = call float my_ln(float %a.stack310.load)
+  314 = call float my_ln(float %a)
   315 = fmul float %x, float %314
   316 = call float my_exp(float %315)
   ret float %316
@@ -14,21 +9,14 @@ entry309:
 
 float my_log(float a, float N) {
 entry301:
-  %N.stack = stack 4
-  %a.stack302 = stack 4
-  store float %a to ptr %a.stack302
-  store float %N to ptr %N.stack
   305 = call float my_ln(float %N)
-  a.stack302.load = load float from ptr %a.stack302
-  307 = call float my_ln(float %a.stack302.load)
+  307 = call float my_ln(float %a)
   308 = fdiv float %305, float %307
   ret float %308
 }
 
 float my_ln(float x) {
 entry296:
-  %x.stack297 = stack 4
-  store float %x to ptr %x.stack297
   298 = si2f i32 1 to float
   300 = call float asr4(float %298, float %x, float 0.000000, i32 1)
   ret float %300
@@ -36,78 +24,52 @@ entry296:
 
 float my_exp(float x) {
 entry267:
-  %e2 = stack 4
-  %e1 = stack 4
-  %n = stack 4
-  %x.stack268 = stack 4
-  store float %x to ptr %x.stack268
   270 = si2f i32 0 to float
   271 = fcmp olt float %x, float %270
   br i1 %271, bb %then272, bb %if.exit273
 then272:
-  x.stack268.load274 = load float from ptr %x.stack268
-  275 = fneg float %x.stack268.load274
+  275 = fneg float %x
   276 = call float my_exp(float %275)
   277 = si2f i32 1 to float
   278 = fdiv float %277, float %276
   ret float %278
 if.exit273:
-  x.stack268.load280 = load float from ptr %x.stack268
-  281 = f2si float %x.stack268.load280 to i32
-  store i32 %281 to ptr %n
-  x.stack268.load282 = load float from ptr %x.stack268
+  281 = f2si float %x to i32
   284 = si2f i32 %281 to float
-  285 = fsub float %x.stack268.load282, float %284
-  store float %285 to ptr %x.stack268
+  285 = fsub float %x, float %284
   e.load = load float from ptr @e
-  n.load288 = load i32 from ptr %n
-  289 = call float my_pow(float %e.load, i32 %n.load288)
-  store float %289 to ptr %e1
-  x.stack268.load291 = load float from ptr %x.stack268
-  292 = call float eee(float %x.stack268.load291)
-  store float %292 to ptr %e2
-  e1.load = load float from ptr %e1
-  295 = fmul float %e1.load, float %292
+  289 = call float my_pow(float %e.load, i32 %281)
+  292 = call float eee(float %285)
+  295 = fmul float %289, float %292
   ret float %295
 }
 
 float eee(float x) {
 entry229:
-  %ee = stack 4
-  %x.stack230 = stack 4
-  store float %x to ptr %x.stack230
   232 = fcmp ogt float %x, float 0.001000
   br i1 %232, bb %then233, bb %if.exit234
 then233:
-  x.stack230.load236 = load float from ptr %x.stack230
   237 = si2f i32 2 to float
-  238 = fdiv float %x.stack230.load236, float %237
+  238 = fdiv float %x, float %237
   239 = call float eee(float %238)
-  store float %239 to ptr %ee
   242 = fmul float %239, float %239
   ret float %242
 if.exit234:
-  x.stack230.load243 = load float from ptr %x.stack230
   244 = si2f i32 1 to float
-  245 = fadd float %244, float %x.stack230.load243
-  x.stack230.load246 = load float from ptr %x.stack230
-  x.stack230.load247 = load float from ptr %x.stack230
-  248 = fmul float %x.stack230.load246, float %x.stack230.load247
+  245 = fadd float %244, float %x
+  248 = fmul float %x, float %x
   249 = si2f i32 2 to float
   250 = fdiv float %248, float %249
   251 = fadd float %245, float %250
-  x.stack230.load252 = load float from ptr %x.stack230
-  253 = call float my_pow(float %x.stack230.load252, i32 3)
+  253 = call float my_pow(float %x, i32 3)
   254 = si2f i32 6 to float
   255 = fdiv float %253, float %254
   256 = fadd float %251, float %255
-  x.stack230.load257 = load float from ptr %x.stack230
-  258 = call float my_pow(float %x.stack230.load257, i32 4)
+  258 = call float my_pow(float %x, i32 4)
   259 = si2f i32 24 to float
   260 = fdiv float %258, float %259
   261 = fadd float %256, float %260
-  x.stack230.load262 = load float from ptr %x.stack230
-  263 = call float my_pow(float %x.stack230.load262, i32 5)
+  263 = call float my_pow(float %x, i32 5)
   264 = si2f i32 120 to float
   265 = fdiv float %263, float %264
   266 = fadd float %261, float %265
@@ -116,156 +78,77 @@ if.exit234:
 
 float asr4(float a, float b, float eps, i32 flag) {
 entry215:
-  %flag.stack219 = stack 4
-  %eps.stack218 = stack 4
-  %b.stack217 = stack 4
-  %a.stack216 = stack 4
-  store float %a to ptr %a.stack216
-  store float %b to ptr %b.stack217
-  store float %eps to ptr %eps.stack218
-  store i32 %flag to ptr %flag.stack219
-  a.stack216.load = load float from ptr %a.stack216
-  b.stack217.load = load float from ptr %b.stack217
-  eps.stack218.load = load float from ptr %eps.stack218
-  a.stack216.load223 = load float from ptr %a.stack216
-  b.stack217.load224 = load float from ptr %b.stack217
-  226 = call float simpson(float %a.stack216.load223, float %b.stack217.load224, i32 %flag)
-  flag.stack219.load227 = load i32 from ptr %flag.stack219
-  228 = call float asr5(float %a.stack216.load, float %b.stack217.load, float %eps.stack218.load, float %226, i32 %flag.stack219.load227)
+  226 = call float simpson(float %a, float %b, i32 %flag)
+  228 = call float asr5(float %a, float %b, float %eps, float %226, i32 %flag)
   ret float %228
 }
 
 float asr5(float a, float b, float eps, float A, i32 flag) {
 entry152:
-  %R = stack 4
-  %L = stack 4
-  %c158 = stack 4
-  %flag.stack157 = stack 4
-  %A.stack = stack 4
-  %eps.stack = stack 4
-  %b.stack154 = stack 4
-  %a.stack153 = stack 4
-  store float %a to ptr %a.stack153
-  store float %b to ptr %b.stack154
-  store float %eps to ptr %eps.stack
-  store float %A to ptr %A.stack
-  store i32 %flag to ptr %flag.stack157
-  a.stack153.load = load float from ptr %a.stack153
-  b.stack154.load = load float from ptr %b.stack154
-  a.stack153.load161 = load float from ptr %a.stack153
-  162 = fsub float %b.stack154.load, float %a.stack153.load161
+  162 = fsub float %b, float %a
   163 = si2f i32 2 to float
   164 = fdiv float %162, float %163
-  165 = fadd float %a.stack153.load, float %164
-  store float %165 to ptr %c158
-  a.stack153.load167 = load float from ptr %a.stack153
-  flag.stack157.load = load i32 from ptr %flag.stack157
-  170 = call float simpson(float %a.stack153.load167, float %165, i32 %flag.stack157.load)
-  store float %170 to ptr %L
-  c158.load172 = load float from ptr %c158
-  b.stack154.load173 = load float from ptr %b.stack154
-  flag.stack157.load174 = load i32 from ptr %flag.stack157
-  175 = call float simpson(float %c158.load172, float %b.stack154.load173, i32 %flag.stack157.load174)
-  store float %175 to ptr %R
-  L.load = load float from ptr %L
-  178 = fadd float %L.load, float %175
-  A.stack.load = load float from ptr %A.stack
-  180 = fsub float %178, float %A.stack.load
+  165 = fadd float %a, float %164
+  170 = call float simpson(float %a, float %165, i32 %flag)
+  175 = call float simpson(float %165, float %b, i32 %flag)
+  178 = fadd float %170, float %175
+  180 = fsub float %178, float %A
   181 = call float my_fabs(float %180)
-  eps.stack.load = load float from ptr %eps.stack
   183 = si2f i32 15 to float
-  184 = fmul float %183, float %eps.stack.load
+  184 = fmul float %183, float %eps
   185 = fcmp ole float %181, float %184
   br i1 %185, bb %then186, bb %if.exit187
 then186:
-  L.load188 = load float from ptr %L
-  R.load189 = load float from ptr %R
-  190 = fadd float %L.load188, float %R.load189
-  L.load191 = load float from ptr %L
-  R.load192 = load float from ptr %R
-  193 = fadd float %L.load191, float %R.load192
-  A.stack.load194 = load float from ptr %A.stack
-  195 = fsub float %193, float %A.stack.load194
+  190 = fadd float %170, float %175
+  193 = fadd float %170, float %175
+  195 = fsub float %193, float %A
   196 = fdiv float %195, float 15.000000
   197 = fadd float %190, float %196
   ret float %197
 if.exit187:
-  a.stack153.load198 = load float from ptr %a.stack153
-  c158.load199 = load float from ptr %c158
-  eps.stack.load200 = load float from ptr %eps.stack
   201 = si2f i32 2 to float
-  202 = fdiv float %eps.stack.load200, float %201
-  L.load203 = load float from ptr %L
-  flag.stack157.load204 = load i32 from ptr %flag.stack157
-  205 = call float asr5(float %a.stack153.load198, float %c158.load199, float %202, float %L.load203, i32 %flag.stack157.load204)
-  c158.load206 = load float from ptr %c158
-  b.stack154.load207 = load float from ptr %b.stack154
-  eps.stack.load208 = load float from ptr %eps.stack
+  202 = fdiv float %eps, float %201
+  205 = call float asr5(float %a, float %165, float %202, float %170, i32 %flag)
   209 = si2f i32 2 to float
-  210 = fdiv float %eps.stack.load208, float %209
-  R.load211 = load float from ptr %R
-  flag.stack157.load212 = load i32 from ptr %flag.stack157
-  213 = call float asr5(float %c158.load206, float %b.stack154.load207, float %210, float %R.load211, i32 %flag.stack157.load212)
+  210 = fdiv float %eps, float %209
+  213 = call float asr5(float %165, float %b, float %210, float %175, i32 %flag)
   214 = fadd float %205, float %213
   ret float %214
 }
 
 float simpson(float a, float b, i32 flag) {
 entry99:
-  %c103 = stack 4
-  %flag.stack = stack 4
-  %b.stack = stack 4
-  %a.stack100 = stack 4
-  store float %a to ptr %a.stack100
-  store float %b to ptr %b.stack
-  store i32 %flag to ptr %flag.stack
-  a.stack100.load = load float from ptr %a.stack100
-  b.stack.load = load float from ptr %b.stack
-  a.stack100.load106 = load float from ptr %a.stack100
-  107 = fsub float %b.stack.load, float %a.stack100.load106
+  107 = fsub float %b, float %a
   108 = si2f i32 2 to float
   109 = fdiv float %107, float %108
-  110 = fadd float %a.stack100.load, float %109
-  store float %110 to ptr %c103
-  flag.stack.load = load i32 from ptr %flag.stack
-  112 = icmp eq i32 %flag.stack.load, i32 1
+  110 = fadd float %a, float %109
+  112 = icmp eq i32 %flag, i32 1
   br i1 %112, bb %then113, bb %if.exit114
 then113:
-  a.stack100.load115 = load float from ptr %a.stack100
-  116 = call float F1(float %a.stack100.load115)
-  c103.load = load float from ptr %c103
-  118 = call float F1(float %c103.load)
+  116 = call float F1(float %a)
+  118 = call float F1(float %110)
   119 = si2f i32 4 to float
   120 = fmul float %119, float %118
   121 = fadd float %116, float %120
-  b.stack.load122 = load float from ptr %b.stack
-  123 = call float F1(float %b.stack.load122)
+  123 = call float F1(float %b)
   124 = fadd float %121, float %123
-  b.stack.load125 = load float from ptr %b.stack
-  a.stack100.load126 = load float from ptr %a.stack100
-  127 = fsub float %b.stack.load125, float %a.stack100.load126
+  127 = fsub float %b, float %a
   128 = fmul float %124, float %127
   129 = si2f i32 6 to float
   130 = fdiv float %128, float %129
   ret float %130
 if.exit114:
-  flag.stack.load131 = load i32 from ptr %flag.stack
-  132 = icmp eq i32 %flag.stack.load131, i32 2
+  132 = icmp eq i32 %flag, i32 2
   br i1 %132, bb %then133, bb %if.exit134
 then133:
-  a.stack100.load135 = load float from ptr %a.stack100
-  136 = call float F2(float %a.stack100.load135)
-  c103.load137 = load float from ptr %c103
-  138 = call float F2(float %c103.load137)
+  136 = call float F2(float %a)
+  138 = call float F2(float %110)
   139 = si2f i32 4 to float
   140 = fmul float %139, float %138
   141 = fadd float %136, float %140
-  b.stack.load142 = load float from ptr %b.stack
-  143 = call float F2(float %b.stack.load142)
+  143 = call float F2(float %b)
   144 = fadd float %141, float %143
-  b.stack.load145 = load float from ptr %b.stack
-  a.stack100.load146 = load float from ptr %a.stack100
-  147 = fsub float %b.stack.load145, float %a.stack100.load146
+  147 = fsub float %b, float %a
   148 = fmul float %144, float %147
   149 = si2f i32 6 to float
   150 = fdiv float %148, float %149
@@ -277,8 +160,6 @@ if.exit134:
 
 float F2(float x) {
 entry89:
-  %x.stack90 = stack 4
-  store float %x to ptr %x.stack90
   93 = fmul float %x, float %x
   94 = si2f i32 1 to float
   95 = fsub float %94, float %93
@@ -290,62 +171,44 @@ entry89:
 
 float my_sqrt(float x) {
 entry43:
-  %c = stack 4
-  %t = stack 4
-  %x.stack44 = stack 4
-  store float %x to ptr %x.stack44
   46 = si2f i32 100 to float
   47 = fcmp ogt float %x, float %46
   br i1 %47, bb %then48, bb %if.exit49
 then48:
-  x.stack44.load50 = load float from ptr %x.stack44
   51 = si2f i32 100 to float
-  52 = fdiv float %x.stack44.load50, float %51
+  52 = fdiv float %x, float %51
   53 = call float my_sqrt(float %52)
   54 = fmul float 10.000000, float %53
   ret float %54
 if.exit49:
-  x.stack44.load56 = load float from ptr %x.stack44
   57 = si2f i32 8 to float
-  58 = fdiv float %x.stack44.load56, float %57
+  58 = fdiv float %x, float %57
   59 = fadd float %58, float 0.500000
-  x.stack44.load60 = load float from ptr %x.stack44
   61 = si2f i32 2 to float
-  62 = fmul float %61, float %x.stack44.load60
-  x.stack44.load63 = load float from ptr %x.stack44
+  62 = fmul float %61, float %x
   64 = si2f i32 4 to float
-  65 = fadd float %64, float %x.stack44.load63
+  65 = fadd float %64, float %x
   66 = fdiv float %62, float %65
   67 = fadd float %59, float %66
-  store float %67 to ptr %t
-  store i32 10 to ptr %c
   br bb %while.cond69
 while.cond69:
-  c.load = load i32 from ptr %c
-  73 = icmp ne i32 %c.load, i32 0
+  391 = phi [bb %if.exit49, i32 10, bb %while.body70, i32 %82]
+  390 = phi [bb %if.exit49, float %67, bb %while.body70, float %80]
+  73 = icmp ne i32 %391, i32 0
   br i1 %73, bb %while.body70, bb %while.exit71
 while.body70:
-  t.load = load float from ptr %t
-  x.stack44.load75 = load float from ptr %x.stack44
-  t.load76 = load float from ptr %t
-  77 = fdiv float %x.stack44.load75, float %t.load76
-  78 = fadd float %t.load, float %77
+  77 = fdiv float %x, float %390
+  78 = fadd float %390, float %77
   79 = si2f i32 2 to float
   80 = fdiv float %78, float %79
-  store float %80 to ptr %t
-  c.load81 = load i32 from ptr %c
-  82 = sub i32 %c.load81, i32 1
-  store i32 %82 to ptr %c
+  82 = sub i32 %391, i32 1
   br bb %while.cond69
 while.exit71:
-  t.load83 = load float from ptr %t
-  ret float %t.load83
+  ret float %390
 }
 
 float F1(float x) {
 entry84:
-  %x.stack85 = stack 4
-  store float %x to ptr %x.stack85
   87 = si2f i32 1 to float
   88 = fdiv float %87, float %x
   ret float %88
@@ -353,50 +216,35 @@ entry84:
 
 float my_pow(float a, i32 n) {
 entry10:
-  %res = stack 4
-  %n.stack = stack 4
-  %a.stack = stack 4
-  store float %a to ptr %a.stack
-  store i32 %n to ptr %n.stack
   14 = icmp slt i32 %n, i32 0
   br i1 %14, bb %then15, bb %if.exit16
 then15:
-  a.stack.load = load float from ptr %a.stack
-  n.stack.load18 = load i32 from ptr %n.stack
-  19 = sub i32 0, i32 %n.stack.load18
-  20 = call float my_pow(float %a.stack.load, i32 %19)
+  19 = sub i32 0, i32 %n
+  20 = call float my_pow(float %a, i32 %19)
   21 = si2f i32 1 to float
   22 = fdiv float %21, float %20
   ret float %22
 if.exit16:
-  store float 1.000000 to ptr %res
   br bb %while.cond
 while.cond:
-  n.stack.load27 = load i32 from ptr %n.stack
-  28 = icmp ne i32 %n.stack.load27, i32 0
+  395 = phi [bb %if.exit16, float 1.000000, bb %if.exit33, float %394]
+  393 = phi [bb %if.exit16, i32 %n, bb %if.exit33, i32 %41]
+  392 = phi [bb %if.exit16, float %a, bb %if.exit33, float %39]
+  28 = icmp ne i32 %393, i32 0
   br i1 %28, bb %while.body, bb %while.exit
 while.body:
-  n.stack.load29 = load i32 from ptr %n.stack
-  30 = srem i32 %n.stack.load29, i32 2
+  30 = srem i32 %393, i32 2
   31 = icmp ne i32 %30, i32 0
   br i1 %31, bb %then32, bb %if.exit33
 while.exit:
-  res.load42 = load float from ptr %res
-  ret float %res.load42
+  ret float %395
 then32:
-  res.load = load float from ptr %res
-  a.stack.load35 = load float from ptr %a.stack
-  36 = fmul float %res.load, float %a.stack.load35
-  store float %36 to ptr %res
+  36 = fmul float %395, float %392
   br bb %if.exit33
 if.exit33:
-  a.stack.load37 = load float from ptr %a.stack
-  a.stack.load38 = load float from ptr %a.stack
-  39 = fmul float %a.stack.load37, float %a.stack.load38
-  store float %39 to ptr %a.stack
-  n.stack.load40 = load i32 from ptr %n.stack
-  41 = sdiv i32 %n.stack.load40, i32 2
-  store i32 %41 to ptr %n.stack
+  394 = phi [bb %while.body, float %395, bb %then32, float %36]
+  39 = fmul float %392, float %392
+  41 = sdiv i32 %393, i32 2
   br bb %while.cond
 }
 
@@ -412,96 +260,75 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry317:
-  %select = stack 1
-  %y = stack 4
-  %x = stack 4
-  %num = stack 4
   319 = call i32 getint()
-  store i32 %319 to ptr %num
   br bb %while.cond320
 while.cond320:
-  num.load = load i32 from ptr %num
-  324 = icmp ne i32 %num.load, i32 0
+  400 = phi [bb %entry317, i1 ub, bb %if.exit380, i1 %399]
+  398 = phi [bb %entry317, float ub, bb %if.exit380, float %328]
+  397 = phi [bb %entry317, float ub, bb %if.exit380, float %326]
+  396 = phi [bb %entry317, i32 %319, bb %if.exit380, i32 %389]
+  324 = icmp ne i32 %396, i32 0
   br i1 %324, bb %while.body321, bb %while.exit322
 while.body321:
   326 = call float getfloat()
-  store float %326 to ptr %x
   328 = call float getfloat()
-  store float %328 to ptr %y
-  x.load = load float from ptr %x
-  330 = call float my_fabs(float %x.load)
+  330 = call float my_fabs(float %326)
   call void putfloat(float %330)
   call void putch(i32 32)
-  x.load333 = load float from ptr %x
-  334 = call float my_pow(float %x.load333, i32 2)
+  334 = call float my_pow(float %326, i32 2)
   call void putfloat(float %334)
   call void putch(i32 32)
-  x.load337 = load float from ptr %x
-  338 = call float my_sqrt(float %x.load337)
+  338 = call float my_sqrt(float %326)
   call void putfloat(float %338)
   call void putch(i32 32)
-  x.load341 = load float from ptr %x
-  342 = call float my_exp(float %x.load341)
+  342 = call float my_exp(float %326)
   call void putfloat(float %342)
   call void putch(i32 32)
-  x.load345 = load float from ptr %x
   346 = si2f i32 0 to float
-  347 = fcmp ogt float %x.load345, float %346
+  347 = fcmp ogt float %326, float %346
   br i1 %347, bb %then348, bb %else
 while.exit322:
   ret i32 0
 then348:
-  x.load351 = load float from ptr %x
-  352 = call float my_ln(float %x.load351)
+  352 = call float my_ln(float %326)
   call void putfloat(float %352)
   br bb %if.exit349
 if.exit349:
   call void putch(i32 32)
-  x.load356 = load float from ptr %x
   357 = si2f i32 0 to float
-  358 = fcmp ogt float %x.load356, float %357
+  358 = fcmp ogt float %326, float %357
   br i1 %358, bb %select.then, bb %select.else
 else:
   call void putch(i32 45)
   br bb %if.exit349
 select.then:
-  y.load = load float from ptr %y
   364 = si2f i32 0 to float
-  365 = fcmp ogt float %y.load, float %364
-  store i1 %365 to ptr %select
+  365 = fcmp ogt float %328, float %364
   br bb %select.exit
 select.else:
-  store i1 0 to ptr %select
   br bb %select.exit
 select.exit:
-  366 = load i1 from ptr %select
-  br i1 %366, bb %then367, bb %else369
+  399 = phi [bb %select.else, i1 0, bb %select.then, i1 %365]
+  br i1 %399, bb %then367, bb %else369
 then367:
-  x.load370 = load float from ptr %x
-  y.load371 = load float from ptr %y
-  372 = call float my_log(float %x.load370, float %y.load371)
+  372 = call float my_log(float %326, float %328)
   call void putfloat(float %372)
   br bb %if.exit368
 if.exit368:
   call void putch(i32 32)
-  x.load376 = load float from ptr %x
   377 = si2f i32 0 to float
-  378 = fcmp ogt float %x.load376, float %377
+  378 = fcmp ogt float %326, float %377
   br i1 %378, bb %then379, bb %else381
 else369:
   call void putch(i32 45)
   br bb %if.exit368
 then379:
-  x.load382 = load float from ptr %x
-  y.load383 = load float from ptr %y
-  384 = call float my_powf(float %x.load382, float %y.load383)
+  384 = call float my_powf(float %326, float %328)
   call void putfloat(float %384)
   br bb %if.exit380
 if.exit380:
   call void putch(i32 10)
-  num.load388 = load i32 from ptr %num
-  389 = sub i32 %num.load388, i32 1
-  store i32 %389 to ptr %num
+  389 = sub i32 %396, i32 1
   br bb %while.cond320
 else381:
   call void putch(i32 45)
@@ -524,17 +351,13 @@ external void putfarray(i32 , ptr )
 
 float my_fabs(float x) {
 entry:
-  %x.stack = stack 4
-  store float %x to ptr %x.stack
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3
   br i1 %4, bb %then, bb %if.exit
 then:
-  x.stack.load7 = load float from ptr %x.stack
-  ret float %x.stack.load7
+  ret float %x
 if.exit:
-  x.stack.load8 = load float from ptr %x.stack
-  9 = fneg float %x.stack.load8
+  9 = fneg float %x
   ret float %9
 }
 

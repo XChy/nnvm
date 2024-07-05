@@ -30,29 +30,21 @@ external void putfarray(i32 , ptr )
 
 i32 if_ifElse_() {
 entry:
-  %b = stack 4
-  %a = stack 4
-  store i32 5 to ptr %a
-  store i32 10 to ptr %b
-  a.load = load i32 from ptr %a
-  4 = icmp eq i32 %a.load, i32 5
+  4 = icmp eq i32 5, i32 5
   br i1 %4, bb %then, bb %if.exit
 then:
-  b.load = load i32 from ptr %b
-  8 = icmp eq i32 %b.load, i32 10
+  8 = icmp eq i32 10, i32 10
   br i1 %8, bb %then9, bb %else
 if.exit:
-  a.load14 = load i32 from ptr %a
-  ret i32 %a.load14
+  18 = phi [bb %entry, i32 5, bb %if.exit10, i32 %17]
+  ret i32 %18
 then9:
-  store i32 25 to ptr %a
   br bb %if.exit10
 if.exit10:
+  17 = phi [bb %else, i32 %13, bb %then9, i32 25]
   br bb %if.exit
 else:
-  a.load12 = load i32 from ptr %a
-  13 = add i32 %a.load12, i32 15
-  store i32 %13 to ptr %a
+  13 = add i32 5, i32 15
   br bb %if.exit10
 }
 

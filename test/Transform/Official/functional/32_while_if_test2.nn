@@ -28,47 +28,36 @@ external void _sysy_starttime(i32 )
 
 i32 ifWhile() {
 entry:
-  %b = stack 4
-  %a = stack 4
-  store i32 0 to ptr %a
-  store i32 3 to ptr %b
-  a.load = load i32 from ptr %a
-  4 = icmp eq i32 %a.load, i32 5
+  4 = icmp eq i32 0, i32 5
   br i1 %4, bb %then, bb %else
 then:
   br bb %while.cond
 if.exit:
-  b.load28 = load i32 from ptr %b
-  ret i32 %b.load28
+  34 = phi [bb %while.exit20, i32 %33, bb %while.exit, i32 %17]
+  32 = phi [bb %while.exit20, i32 %31, bb %while.exit, i32 0]
+  ret i32 %34
 else:
   br bb %while.cond18
 while.cond:
-  b.load = load i32 from ptr %b
-  12 = icmp eq i32 %b.load, i32 2
+  35 = phi [bb %then, i32 3, bb %while.body, i32 %15]
+  12 = icmp eq i32 %35, i32 2
   13 = icmp ne i1 %12, i1 0
   br i1 %13, bb %while.body, bb %while.exit
 while.body:
-  b.load14 = load i32 from ptr %b
-  15 = add i32 %b.load14, i32 2
-  store i32 %15 to ptr %b
+  15 = add i32 %35, i32 2
   br bb %while.cond
 while.exit:
-  b.load16 = load i32 from ptr %b
-  17 = add i32 %b.load16, i32 25
-  store i32 %17 to ptr %b
+  17 = add i32 %35, i32 25
   br bb %if.exit
 while.cond18:
-  a.load21 = load i32 from ptr %a
-  22 = icmp slt i32 %a.load21, i32 5
+  33 = phi [bb %else, i32 3, bb %while.body19, i32 %25]
+  31 = phi [bb %else, i32 0, bb %while.body19, i32 %27]
+  22 = icmp slt i32 %31, i32 5
   23 = icmp ne i1 %22, i1 0
   br i1 %23, bb %while.body19, bb %while.exit20
 while.body19:
-  b.load24 = load i32 from ptr %b
-  25 = mul i32 %b.load24, i32 2
-  store i32 %25 to ptr %b
-  a.load26 = load i32 from ptr %a
-  27 = add i32 %a.load26, i32 1
-  store i32 %27 to ptr %a
+  25 = mul i32 %33, i32 2
+  27 = add i32 %31, i32 1
   br bb %while.cond18
 while.exit20:
   br bb %if.exit

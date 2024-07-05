@@ -2,31 +2,22 @@ global ptr arr init with 6 x i32 [1, 2, 33, 4, 5, 6]
 global ptr N init with i32 -1
 i32 main() {
 entry:
-  %sum = stack 4
-  %i = stack 4
-  store i32 0 to ptr %i
-  store i32 0 to ptr %sum
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  7 = icmp slt i32 %i.load, i32 6
+  19 = phi [bb %entry, i32 0, bb %while.body, i32 %14]
+  18 = phi [bb %entry, i32 0, bb %while.body, i32 %16]
+  7 = icmp slt i32 %18, i32 6
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  sum.load = load i32 from ptr %sum
-  i.load10 = load i32 from ptr %i
-  11 = mul i32 %i.load10, i32 4
+  11 = mul i32 %18, i32 4
   12 = ptradd ptr @arr, i32 %11
   12.load = load i32 from ptr %12
-  14 = add i32 %sum.load, i32 %12.load
-  store i32 %14 to ptr %sum
-  i.load15 = load i32 from ptr %i
-  16 = add i32 %i.load15, i32 1
-  store i32 %16 to ptr %i
+  14 = add i32 %19, i32 %12.load
+  16 = add i32 %18, i32 1
   br bb %while.cond
 while.exit:
-  sum.load17 = load i32 from ptr %sum
-  ret i32 %sum.load17
+  ret i32 %19
 }
 
 external void putfarray(i32 , ptr )

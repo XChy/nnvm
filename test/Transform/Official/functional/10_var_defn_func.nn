@@ -15,9 +15,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1:
-  %a = stack 4
   3 = call i32 defn()
-  store i32 %3 to ptr %a
   ret i32 %3
 }
 

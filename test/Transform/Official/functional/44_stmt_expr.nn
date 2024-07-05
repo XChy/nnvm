@@ -2,21 +2,17 @@ global ptr n init with i32 10
 global ptr k init with i32 0
 i32 main() {
 entry:
-  %i = stack 4
-  store i32 0 to ptr %i
   store i32 1 to ptr @k
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  20 = phi [bb %entry, i32 0, bb %while.body, i32 %11]
   n.load = load i32 from ptr @n
   7 = sub i32 %n.load, i32 1
-  8 = icmp sle i32 %i.load, i32 %7
+  8 = icmp sle i32 %20, i32 %7
   9 = icmp ne i1 %8, i1 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  i.load10 = load i32 from ptr %i
-  11 = add i32 %i.load10, i32 1
-  store i32 %11 to ptr %i
+  11 = add i32 %20, i32 1
   k.load = load i32 from ptr @k
   13 = add i32 %k.load, i32 1
   k.load14 = load i32 from ptr @k

@@ -13,8 +13,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry227:
-  %x = stack 4
-  %i237 = stack 4
   %c2 = stack 12
   %c1 = stack 12
   %c0 = stack 24
@@ -27,127 +25,95 @@ entry227:
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
-  store i32 0 to ptr %i237
   br bb %while.cond
 while.cond:
-  i237.load = load i32 from ptr %i237
+  336 = phi [bb %entry227, i32 0, bb %while.body, i32 %276]
   M.load = load i32 from ptr @M
-  243 = icmp slt i32 %i237.load, i32 %M.load
+  243 = icmp slt i32 %336, i32 %M.load
   244 = icmp ne i1 %243, i1 0
   br i1 %244, bb %while.body, bb %while.exit
 while.body:
-  i237.load245 = load i32 from ptr %i237
-  246 = mul i32 %i237.load245, i32 4
+  246 = mul i32 %336, i32 4
   247 = ptradd ptr %a0, i32 %246
-  i237.load248 = load i32 from ptr %i237
-  249 = si2f i32 %i237.load248 to float
+  249 = si2f i32 %336 to float
   store float %249 to ptr %247
-  i237.load250 = load i32 from ptr %i237
-  251 = mul i32 %i237.load250, i32 4
+  251 = mul i32 %336, i32 4
   252 = ptradd ptr %a1, i32 %251
-  i237.load253 = load i32 from ptr %i237
-  254 = si2f i32 %i237.load253 to float
+  254 = si2f i32 %336 to float
   store float %254 to ptr %252
-  i237.load255 = load i32 from ptr %i237
-  256 = mul i32 %i237.load255, i32 4
+  256 = mul i32 %336, i32 4
   257 = ptradd ptr %a2, i32 %256
-  i237.load258 = load i32 from ptr %i237
-  259 = si2f i32 %i237.load258 to float
+  259 = si2f i32 %336 to float
   store float %259 to ptr %257
-  i237.load260 = load i32 from ptr %i237
-  261 = mul i32 %i237.load260, i32 4
+  261 = mul i32 %336, i32 4
   262 = ptradd ptr %b0, i32 %261
-  i237.load263 = load i32 from ptr %i237
-  264 = si2f i32 %i237.load263 to float
+  264 = si2f i32 %336 to float
   store float %264 to ptr %262
-  i237.load265 = load i32 from ptr %i237
-  266 = mul i32 %i237.load265, i32 4
+  266 = mul i32 %336, i32 4
   267 = ptradd ptr %b1, i32 %266
-  i237.load268 = load i32 from ptr %i237
-  269 = si2f i32 %i237.load268 to float
+  269 = si2f i32 %336 to float
   store float %269 to ptr %267
-  i237.load270 = load i32 from ptr %i237
-  271 = mul i32 %i237.load270, i32 4
+  271 = mul i32 %336, i32 4
   272 = ptradd ptr %b2, i32 %271
-  i237.load273 = load i32 from ptr %i237
-  274 = si2f i32 %i237.load273 to float
+  274 = si2f i32 %336 to float
   store float %274 to ptr %272
-  i237.load275 = load i32 from ptr %i237
-  276 = add i32 %i237.load275, i32 1
-  store i32 %276 to ptr %i237
+  276 = add i32 %336, i32 1
   br bb %while.cond
 while.exit:
   277 = call i32 mul(ptr %a0, ptr %a1, ptr %a2, ptr %b0, ptr %b1, ptr %b2, ptr %c0, ptr %c1, ptr %c2)
-  store i32 %277 to ptr %i237
   br bb %while.cond279
 while.cond279:
-  i237.load282 = load i32 from ptr %i237
+  339 = phi [bb %while.exit, i32 ub, bb %while.body280, i32 %290]
+  335 = phi [bb %while.exit, i32 %277, bb %while.body280, i32 %294]
   N.load = load i32 from ptr @N
-  284 = icmp slt i32 %i237.load282, i32 %N.load
+  284 = icmp slt i32 %335, i32 %N.load
   285 = icmp ne i1 %284, i1 0
   br i1 %285, bb %while.body280, bb %while.exit281
 while.body280:
-  i237.load286 = load i32 from ptr %i237
-  287 = mul i32 %i237.load286, i32 4
+  287 = mul i32 %335, i32 4
   288 = ptradd ptr %c0, i32 %287
   288.load = load float from ptr %288
   290 = f2si float %288.load to i32
-  store i32 %290 to ptr %x
   call void putint(i32 %290)
-  i237.load293 = load i32 from ptr %i237
-  294 = add i32 %i237.load293, i32 1
-  store i32 %294 to ptr %i237
+  294 = add i32 %335, i32 1
   br bb %while.cond279
 while.exit281:
-  store i32 10 to ptr %x
-  store i32 0 to ptr %i237
-  x.load295 = load i32 from ptr %x
-  call void putch(i32 %x.load295)
+  call void putch(i32 10)
   br bb %while.cond297
 while.cond297:
-  i237.load300 = load i32 from ptr %i237
+  338 = phi [bb %while.exit281, i32 10, bb %while.body298, i32 %308]
+  334 = phi [bb %while.exit281, i32 0, bb %while.body298, i32 %312]
   N.load301 = load i32 from ptr @N
-  302 = icmp slt i32 %i237.load300, i32 %N.load301
+  302 = icmp slt i32 %334, i32 %N.load301
   303 = icmp ne i1 %302, i1 0
   br i1 %303, bb %while.body298, bb %while.exit299
 while.body298:
-  i237.load304 = load i32 from ptr %i237
-  305 = mul i32 %i237.load304, i32 4
+  305 = mul i32 %334, i32 4
   306 = ptradd ptr %c1, i32 %305
   306.load = load float from ptr %306
   308 = f2si float %306.load to i32
-  store i32 %308 to ptr %x
   call void putint(i32 %308)
-  i237.load311 = load i32 from ptr %i237
-  312 = add i32 %i237.load311, i32 1
-  store i32 %312 to ptr %i237
+  312 = add i32 %334, i32 1
   br bb %while.cond297
 while.exit299:
-  store i32 10 to ptr %x
-  store i32 0 to ptr %i237
-  x.load313 = load i32 from ptr %x
-  call void putch(i32 %x.load313)
+  call void putch(i32 10)
   br bb %while.cond315
 while.cond315:
-  i237.load318 = load i32 from ptr %i237
+  337 = phi [bb %while.exit299, i32 10, bb %while.body316, i32 %326]
+  333 = phi [bb %while.exit299, i32 0, bb %while.body316, i32 %330]
   N.load319 = load i32 from ptr @N
-  320 = icmp slt i32 %i237.load318, i32 %N.load319
+  320 = icmp slt i32 %333, i32 %N.load319
   321 = icmp ne i1 %320, i1 0
   br i1 %321, bb %while.body316, bb %while.exit317
 while.body316:
-  i237.load322 = load i32 from ptr %i237
-  323 = mul i32 %i237.load322, i32 4
+  323 = mul i32 %333, i32 4
   324 = ptradd ptr %c2, i32 %323
   324.load = load float from ptr %324
   326 = f2si float %324.load to i32
-  store i32 %326 to ptr %x
   call void putint(i32 %326)
-  i237.load329 = load i32 from ptr %i237
-  330 = add i32 %i237.load329, i32 1
-  store i32 %330 to ptr %i237
+  330 = add i32 %333, i32 1
   br bb %while.cond315
 while.exit317:
-  store i32 10 to ptr %x
   call void putch(i32 10)
   ret i32 0
 }

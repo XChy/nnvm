@@ -10,8 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry17:
-  %i = stack 4
-  store i32 200 to ptr %i
   call void reverse(i32 200)
   ret i32 0
 }
@@ -32,26 +30,20 @@ external void putch(i32 )
 
 void reverse(i32 n) {
 entry:
-  %next = stack 4
-  %n.stack = stack 4
-  store i32 %n to ptr %n.stack
   4 = icmp sle i32 %n, i32 1
   br i1 %4, bb %then, bb %else
 then:
   8 = call i32 getint()
-  store i32 %8 to ptr %next
   call void putint(i32 %8)
   br bb %if.exit
 if.exit:
+  21 = phi [bb %else, i32 %11, bb %then, i32 %8]
   ret 
 else:
   11 = call i32 getint()
-  store i32 %11 to ptr %next
-  n.stack.load12 = load i32 from ptr %n.stack
-  13 = sub i32 %n.stack.load12, i32 1
+  13 = sub i32 %n, i32 1
   call void reverse(i32 %13)
-  next.load15 = load i32 from ptr %next
-  call void putint(i32 %next.load15)
+  call void putint(i32 %11)
   br bb %if.exit
 }
 

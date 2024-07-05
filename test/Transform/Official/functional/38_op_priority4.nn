@@ -5,9 +5,6 @@ global ptr d init with i32 0
 global ptr a init with i32 0
 i32 main() {
 entry:
-  %select36 = stack 1
-  %select = stack 1
-  %flag = stack 4
   1 = call i32 getint()
   store i32 %1 to ptr @a
   2 = call i32 getint()
@@ -18,7 +15,6 @@ entry:
   store i32 %4 to ptr @d
   5 = call i32 getint()
   store i32 %5 to ptr @e
-  store i32 0 to ptr %flag
   a.load = load i32 from ptr @a
   b.load = load i32 from ptr @b
   c.load = load i32 from ptr @c
@@ -32,7 +28,6 @@ entry:
   17 = icmp ne i32 %11, i32 %16
   br i1 %17, bb %select.then, bb %select.else
 select.then:
-  store i1 1 to ptr %select
   br bb %select.exit
 select.else:
   a.load22 = load i32 from ptr @a
@@ -45,13 +40,11 @@ select.else:
   29 = add i32 %e.load, i32 %d.load28
   30 = icmp eq i32 %26, i32 %29
   31 = icmp ne i1 %30, i1 0
-  store i1 %31 to ptr %select
   br bb %select.exit
 select.exit:
-  32 = load i1 from ptr %select
-  br i1 %32, bb %select.then33, bb %select.else34
+  52 = phi [bb %select.else, i1 %31, bb %select.then, i1 1]
+  br i1 %52, bb %select.then33, bb %select.else34
 select.then33:
-  store i1 1 to ptr %select36
   br bb %select.exit35
 select.else34:
   a.load37 = load i32 from ptr @a
@@ -64,17 +57,15 @@ select.else34:
   44 = add i32 %d.load42, i32 %e.load43
   45 = icmp eq i32 %41, i32 %44
   46 = icmp ne i1 %45, i1 0
-  store i1 %46 to ptr %select36
   br bb %select.exit35
 select.exit35:
-  47 = load i1 from ptr %select36
-  br i1 %47, bb %then, bb %if.exit
+  53 = phi [bb %select.else34, i1 %46, bb %select.then33, i1 1]
+  br i1 %53, bb %then, bb %if.exit
 then:
-  store i32 1 to ptr %flag
   br bb %if.exit
 if.exit:
-  flag.load = load i32 from ptr %flag
-  ret i32 %flag.load
+  51 = phi [bb %select.exit35, i32 0, bb %then, i32 1]
+  ret i32 %51
 }
 
 external void putfarray(i32 , ptr )

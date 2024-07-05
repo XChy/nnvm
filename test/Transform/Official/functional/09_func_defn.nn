@@ -11,10 +11,8 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry5:
-  %b = stack 4
   store i32 10 to ptr @a
   8 = call i32 func(i32 10)
-  store i32 %8 to ptr %b
   ret i32 %8
 }
 
@@ -34,10 +32,7 @@ external void putfarray(i32 , ptr )
 
 i32 func(i32 p) {
 entry:
-  %p.stack = stack 4
-  store i32 %p to ptr %p.stack
   3 = sub i32 %p, i32 1
-  store i32 %3 to ptr %p.stack
   ret i32 %3
 }
 

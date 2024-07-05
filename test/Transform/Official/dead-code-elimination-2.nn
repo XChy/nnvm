@@ -12,60 +12,43 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry100003:
-  %j = stack 4
-  %tmp = stack 4
-  %i = stack 4
-  %sum = stack 4
-  store i32 0 to ptr %sum
-  store i32 0 to ptr %i
   100006 = call i32 getint()
   store i32 %100006 to ptr @loopCount
   call void _sysy_starttime(i32 100016)
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  100048 = phi [bb %entry100003, i32 ub, bb %while.exit100019, i32 %100047]
+  100046 = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100038]
+  100044 = phi [bb %entry100003, i32 ub, bb %while.exit100019, i32 %100031]
+  100043 = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100036]
   loopCount.load = load i32 from ptr @loopCount
-  100013 = icmp slt i32 %i.load, i32 %loopCount.load
+  100013 = icmp slt i32 %100046, i32 %loopCount.load
   100014 = icmp ne i1 %100013, i1 0
   br i1 %100014, bb %while.body, bb %while.exit
 while.body:
-  store i32 0 to ptr %tmp
-  store i32 0 to ptr %j
   br bb %while.cond100017
 while.exit:
   call void _sysy_stoptime(i32 100032)
-  sum.load100040 = load i32 from ptr %sum
-  call void putint(i32 %sum.load100040)
+  call void putint(i32 %100043)
   call void putch(i32 10)
   ret i32 0
 while.cond100017:
-  j.load = load i32 from ptr %j
-  100021 = icmp slt i32 %j.load, i32 60
+  100047 = phi [bb %while.body, i32 0, bb %while.body100018, i32 %100029]
+  100045 = phi [bb %while.body, i32 0, bb %while.body100018, i32 %100027]
+  100021 = icmp slt i32 %100047, i32 60
   100022 = icmp ne i1 %100021, i1 0
   br i1 %100022, bb %while.body100018, bb %while.exit100019
 while.body100018:
-  i.load100023 = load i32 from ptr %i
-  call void func(i32 %i.load100023)
-  tmp.load = load i32 from ptr %tmp
+  call void func(i32 %100046)
   global.load = load i32 from ptr @global
-  100027 = add i32 %tmp.load, i32 %global.load
-  store i32 %100027 to ptr %tmp
-  j.load100028 = load i32 from ptr %j
-  100029 = add i32 %j.load100028, i32 1
-  store i32 %100029 to ptr %j
+  100027 = add i32 %100045, i32 %global.load
+  100029 = add i32 %100047, i32 1
   br bb %while.cond100017
 while.exit100019:
-  tmp.load100030 = load i32 from ptr %tmp
-  100031 = sdiv i32 %tmp.load100030, i32 60
-  store i32 %100031 to ptr %tmp
-  sum.load = load i32 from ptr %sum
-  100034 = add i32 %sum.load, i32 %100031
-  store i32 %100034 to ptr %sum
+  100031 = sdiv i32 %100045, i32 60
+  100034 = add i32 %100043, i32 %100031
   100036 = srem i32 %100034, i32 134209537
-  store i32 %100036 to ptr %sum
-  i.load100037 = load i32 from ptr %i
-  100038 = add i32 %i.load100037, i32 1
-  store i32 %100038 to ptr %i
+  100038 = add i32 %100046, i32 1
   br bb %while.cond
 }
 
@@ -85,8 +68,6 @@ external void putfarray(i32 , ptr )
 
 void func(i32 i0) {
 entry:
-  %i0.stack = stack 4
-  store i32 %i0 to ptr %i0.stack
   store i32 %i0 to ptr @global
   ret 
 }

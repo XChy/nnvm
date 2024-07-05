@@ -1,23 +1,18 @@
 i32 main() {
 entry:
-  %cnt_ptr89 = stack 4
   %i = stack 96
   %g = stack 60
   %e = stack 60
   %d = stack 60
   %c = stack 60
-  %cnt_ptr = stack 4
   %b = stack 60
-  store i32 15 to ptr %cnt_ptr
   br bb %init.cond
 init.cond:
-  cnt = load i32 from ptr %cnt_ptr
-  8 = icmp ne i32 %cnt, i32 0
+  97 = phi [bb %entry, i32 15, bb %init, i32 %cnt.dec]
+  8 = icmp ne i32 %97, i32 0
   br i1 %8, bb %init, bb %init.exit
 init:
-  cnt9 = load i32 from ptr %cnt_ptr
-  cnt.dec = sub i32 %cnt9, i32 1
-  store i32 %cnt.dec to ptr %cnt_ptr
+  cnt.dec = sub i32 %97, i32 1
   offset = mul i32 %cnt.dec, i32 4
   arr.index = add i32 0, i32 %offset
   arr.index13 = ptradd ptr %b, ptr %arr.index
@@ -154,16 +149,13 @@ init.exit:
   store i32 4 to ptr %arr.index84
   arr.index85 = ptradd ptr %i, i32 16
   store i32 5 to ptr %arr.index85
-  store i32 19 to ptr %cnt_ptr89
   br bb %init.cond86
 init.cond86:
-  cnt90 = load i32 from ptr %cnt_ptr89
-  91 = icmp ne i32 %cnt90, i32 0
+  98 = phi [bb %init.exit, i32 19, bb %init87, i32 %cnt.dec93]
+  91 = icmp ne i32 %98, i32 0
   br i1 %91, bb %init87, bb %init.exit88
 init87:
-  cnt92 = load i32 from ptr %cnt_ptr89
-  cnt.dec93 = sub i32 %cnt92, i32 1
-  store i32 %cnt.dec93 to ptr %cnt_ptr89
+  cnt.dec93 = sub i32 %98, i32 1
   offset94 = mul i32 %cnt.dec93, i32 4
   arr.index95 = add i32 20, i32 %offset94
   arr.index96 = ptradd ptr %i, ptr %arr.index95

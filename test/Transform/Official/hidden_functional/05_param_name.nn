@@ -30,8 +30,6 @@ external void putarray(i32 , ptr )
 
 i32 f(i32 f) {
 entry:
-  %f.stack = stack 4
-  store i32 %f to ptr %f.stack
   3 = mul i32 %f, i32 2
   ret i32 %3
 }

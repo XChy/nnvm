@@ -11,3 +11,6 @@ template <unsigned N> constexpr inline bool canExpressInBits(int64_t x) {
   return true;
 }
 
+static inline GInt alignWith(GInt value, GInt alignWidth) {
+  return (value + alignWidth - 1) / alignWidth * alignWidth;
+}

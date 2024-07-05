@@ -16,59 +16,50 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry82:
-  %i86 = stack 4
   %edges = stack 4800
   83 = call i32 getint()
   store i32 %83 to ptr @n
   84 = call i32 getint()
   store i32 %84 to ptr @m
-  store i32 0 to ptr %i86
   br bb %while.cond87
 while.cond87:
-  i86.load = load i32 from ptr %i86
+  152 = phi [bb %entry82, i32 0, bb %while.body88, i32 %107]
   m.load = load i32 from ptr @m
-  92 = icmp slt i32 %i86.load, i32 %m.load
+  92 = icmp slt i32 %152, i32 %m.load
   93 = icmp ne i1 %92, i1 0
   br i1 %93, bb %while.body88, bb %while.exit89
 while.body88:
-  i86.load94 = load i32 from ptr %i86
-  95 = mul i32 %i86.load94, i32 8
+  95 = mul i32 %152, i32 8
   96 = ptradd ptr %edges, i32 %95
   97 = mul i32 0, i32 4
   98 = ptradd ptr %96, i32 %97
   99 = call i32 getint()
   store i32 %99 to ptr %98
-  i86.load100 = load i32 from ptr %i86
-  101 = mul i32 %i86.load100, i32 8
+  101 = mul i32 %152, i32 8
   102 = ptradd ptr %edges, i32 %101
   103 = mul i32 1, i32 4
   104 = ptradd ptr %102, i32 %103
   105 = call i32 getint()
   store i32 %105 to ptr %104
-  i86.load106 = load i32 from ptr %i86
-  107 = add i32 %i86.load106, i32 1
-  store i32 %107 to ptr %i86
+  107 = add i32 %152, i32 1
   br bb %while.cond87
 while.exit89:
-  store i32 0 to ptr %i86
   br bb %while.cond108
 while.cond108:
-  i86.load111 = load i32 from ptr %i86
+  151 = phi [bb %while.exit89, i32 0, bb %while.body109, i32 %148]
   m.load112 = load i32 from ptr @m
-  113 = icmp slt i32 %i86.load111, i32 %m.load112
+  113 = icmp slt i32 %151, i32 %m.load112
   114 = icmp ne i1 %113, i1 0
   br i1 %114, bb %while.body109, bb %while.exit110
 while.body109:
-  i86.load115 = load i32 from ptr %i86
-  116 = mul i32 %i86.load115, i32 8
+  116 = mul i32 %151, i32 8
   117 = ptradd ptr %edges, i32 %116
   118 = mul i32 0, i32 4
   119 = ptradd ptr %117, i32 %118
   119.load = load i32 from ptr %119
   121 = mul i32 %119.load, i32 120
   122 = ptradd ptr @graph, i32 %121
-  i86.load123 = load i32 from ptr %i86
-  124 = mul i32 %i86.load123, i32 8
+  124 = mul i32 %151, i32 8
   125 = ptradd ptr %edges, i32 %124
   126 = mul i32 1, i32 4
   127 = ptradd ptr %125, i32 %126
@@ -76,16 +67,14 @@ while.body109:
   129 = mul i32 %127.load, i32 4
   130 = ptradd ptr %122, i32 %129
   store i32 1 to ptr %130
-  i86.load131 = load i32 from ptr %i86
-  132 = mul i32 %i86.load131, i32 8
+  132 = mul i32 %151, i32 8
   133 = ptradd ptr %edges, i32 %132
   134 = mul i32 1, i32 4
   135 = ptradd ptr %133, i32 %134
   135.load = load i32 from ptr %135
   137 = mul i32 %135.load, i32 120
   138 = ptradd ptr @graph, i32 %137
-  i86.load139 = load i32 from ptr %i86
-  140 = mul i32 %i86.load139, i32 8
+  140 = mul i32 %151, i32 8
   141 = ptradd ptr %edges, i32 %140
   142 = mul i32 0, i32 4
   143 = ptradd ptr %141, i32 %142
@@ -93,9 +82,7 @@ while.body109:
   145 = mul i32 %143.load, i32 4
   146 = ptradd ptr %138, i32 %145
   store i32 1 to ptr %146
-  i86.load147 = load i32 from ptr %i86
-  148 = add i32 %i86.load147, i32 1
-  store i32 %148 to ptr %i86
+  148 = add i32 %151, i32 1
   br bb %while.cond108
 while.exit110:
   149 = call i32 maxCliques(i32 0, i32 1)
@@ -109,40 +96,30 @@ external void putfloat(float )
 
 i32 is_clique(i32 num) {
 entry:
-  %j = stack 4
-  %i = stack 4
-  %num.stack = stack 4
-  store i32 %num to ptr %num.stack
-  store i32 1 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  num.stack.load = load i32 from ptr %num.stack
-  8 = icmp slt i32 %i.load, i32 %num.stack.load
+  155 = phi [bb %entry, i32 ub, bb %while.exit15, i32 %154]
+  153 = phi [bb %entry, i32 1, bb %while.exit15, i32 %39]
+  8 = icmp slt i32 %153, i32 %num
   9 = icmp ne i1 %8, i1 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  i.load11 = load i32 from ptr %i
-  12 = add i32 %i.load11, i32 1
-  store i32 %12 to ptr %j
+  12 = add i32 %153, i32 1
   br bb %while.cond13
 while.exit:
   ret i32 1
 while.cond13:
-  j.load = load i32 from ptr %j
-  num.stack.load17 = load i32 from ptr %num.stack
-  18 = icmp slt i32 %j.load, i32 %num.stack.load17
+  154 = phi [bb %while.body, i32 %12, bb %if.exit, i32 %37]
+  18 = icmp slt i32 %154, i32 %num
   19 = icmp ne i1 %18, i1 0
   br i1 %19, bb %while.body14, bb %while.exit15
 while.body14:
-  i.load20 = load i32 from ptr %i
-  21 = mul i32 %i.load20, i32 4
+  21 = mul i32 %153, i32 4
   22 = ptradd ptr @store, i32 %21
   22.load = load i32 from ptr %22
   24 = mul i32 %22.load, i32 120
   25 = ptradd ptr @graph, i32 %24
-  j.load26 = load i32 from ptr %j
-  27 = mul i32 %j.load26, i32 4
+  27 = mul i32 %154, i32 4
   28 = ptradd ptr @store, i32 %27
   28.load = load i32 from ptr %28
   30 = mul i32 %28.load, i32 4
@@ -151,16 +128,12 @@ while.body14:
   33 = icmp eq i32 %31.load, i32 0
   br i1 %33, bb %then, bb %if.exit
 while.exit15:
-  i.load38 = load i32 from ptr %i
-  39 = add i32 %i.load38, i32 1
-  store i32 %39 to ptr %i
+  39 = add i32 %153, i32 1
   br bb %while.cond
 then:
   ret i32 0
 if.exit:
-  j.load36 = load i32 from ptr %j
-  37 = add i32 %j.load36, i32 1
-  store i32 %37 to ptr %j
+  37 = add i32 %154, i32 1
   br bb %while.cond13
 }
 
@@ -170,62 +143,45 @@ external void _sysy_stoptime(i32 )
 
 i32 maxCliques(i32 i, i32 k) {
 entry40:
-  %tmp = stack 4
-  %j44 = stack 4
-  %max_ = stack 4
-  %k.stack = stack 4
-  store i32 %k to ptr %k.stack
-  store i32 0 to ptr %max_
-  store i32 1 to ptr %j44
   br bb %while.cond45
 while.cond45:
-  j44.load = load i32 from ptr %j44
+  162 = phi [bb %entry40, i32 ub, bb %if.exit61, i32 %161]
+  160 = phi [bb %entry40, i32 1, bb %if.exit61, i32 %80]
+  158 = phi [bb %entry40, i32 0, bb %if.exit61, i32 %157]
   n.load = load i32 from ptr @n
-  50 = icmp sle i32 %j44.load, i32 %n.load
+  50 = icmp sle i32 %160, i32 %n.load
   51 = icmp ne i1 %50, i1 0
   br i1 %51, bb %while.body46, bb %while.exit47
 while.body46:
-  k.stack.load = load i32 from ptr %k.stack
-  53 = mul i32 %k.stack.load, i32 4
+  53 = mul i32 %k, i32 4
   54 = ptradd ptr @store, i32 %53
-  j44.load55 = load i32 from ptr %j44
-  store i32 %j44.load55 to ptr %54
-  k.stack.load56 = load i32 from ptr %k.stack
-  57 = add i32 %k.stack.load56, i32 1
+  store i32 %160 to ptr %54
+  57 = add i32 %k, i32 1
   58 = call i32 is_clique(i32 %57)
   59 = icmp ne i32 %58, i32 0
   br i1 %59, bb %then60, bb %if.exit61
 while.exit47:
-  max_.load81 = load i32 from ptr %max_
-  ret i32 %max_.load81
+  ret i32 %158
 then60:
-  k.stack.load62 = load i32 from ptr %k.stack
-  max_.load = load i32 from ptr %max_
-  64 = icmp sgt i32 %k.stack.load62, i32 %max_.load
+  64 = icmp sgt i32 %k, i32 %158
   br i1 %64, bb %then65, bb %if.exit66
 if.exit61:
-  j44.load79 = load i32 from ptr %j44
-  80 = add i32 %j44.load79, i32 1
-  store i32 %80 to ptr %j44
+  161 = phi [bb %while.body46, i32 %162, bb %if.exit77, i32 %72]
+  157 = phi [bb %while.body46, i32 %158, bb %if.exit77, i32 %156]
+  80 = add i32 %160, i32 1
   br bb %while.cond45
 then65:
-  k.stack.load67 = load i32 from ptr %k.stack
-  store i32 %k.stack.load67 to ptr %max_
   br bb %if.exit66
 if.exit66:
-  j44.load69 = load i32 from ptr %j44
-  k.stack.load70 = load i32 from ptr %k.stack
-  71 = add i32 %k.stack.load70, i32 1
-  72 = call i32 maxCliques(i32 %j44.load69, i32 %71)
-  store i32 %72 to ptr %tmp
-  max_.load74 = load i32 from ptr %max_
-  75 = icmp sgt i32 %72, i32 %max_.load74
+  159 = phi [bb %then60, i32 %158, bb %then65, i32 %k]
+  71 = add i32 %k, i32 1
+  72 = call i32 maxCliques(i32 %160, i32 %71)
+  75 = icmp sgt i32 %72, i32 %159
   br i1 %75, bb %then76, bb %if.exit77
 then76:
-  tmp.load78 = load i32 from ptr %tmp
-  store i32 %tmp.load78 to ptr %max_
   br bb %if.exit77
 if.exit77:
+  156 = phi [bb %if.exit66, i32 %159, bb %then76, i32 %72]
   br bb %if.exit61
 }
 

@@ -2,8 +2,6 @@ global ptr b init with i32 5
 global ptr a init with i32 3
 i32 main() {
 entry:
-  %a = stack 4
-  store i32 5 to ptr %a
   b.load = load i32 from ptr @b
   4 = add i32 5, i32 %b.load
   ret i32 %4

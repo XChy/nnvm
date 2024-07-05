@@ -1,6 +1,7 @@
 #include "Instruction.h"
 #include "Module.h"
 #include "Utils/Collection.h"
+#include "Utils/Debug.h"
 #include <string>
 #include <unordered_map>
 
@@ -146,8 +147,9 @@ std::string Instruction::dump() {
 }
 
 Instruction::~Instruction() {
-  for (Use *use : useeList)
+  for (Use *use : useeList) {
     delete use;
+  }
 }
 
 StackInst::StackInst(Module &module)
@@ -229,4 +231,16 @@ void CallInst::setArguments(const std::vector<Value *> &args) {
   operands.reserve(args.size() + 1);
   operands.insert(operands.end(), args.begin(), args.end());
   setOperands(operands);
+}
+
+void PhiInst::addIncoming(BasicBlock *incomingBB, Value *incomingValue) {
+  addOperand(incomingBB);
+  addOperand(incomingValue);
+}
+
+void PhiInst::setIncoming(BasicBlock *incomingBB, Value *incomingValue) {
+  for (size_t i = 0; i < getOperandNum(); i += 2)
+    if (getOperand(i) == incomingBB)
+      setOperand(i + 1, incomingValue);
+  nnvm_unreachable("Not found incoming")
 }

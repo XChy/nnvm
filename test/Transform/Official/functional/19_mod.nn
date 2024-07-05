@@ -1,7 +1,5 @@
 i32 main() {
 entry:
-  %a = stack 4
-  store i32 10 to ptr %a
   3 = sdiv i32 10, i32 3
   ret i32 %3
 }

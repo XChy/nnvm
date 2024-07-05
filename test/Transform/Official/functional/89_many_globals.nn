@@ -40,131 +40,36 @@ global ptr a23 init with i32 0
 global ptr a28 init with i32 0
 i32 testParam32(i32 a0, i32 a1, i32 a2, i32 a3, i32 a4, i32 a5, i32 a6, i32 a7, i32 a8, i32 a9, i32 a10, i32 a11, i32 a12, i32 a13, i32 a14, i32 a15, i32 a16, i32 a17, i32 a18, i32 a19, i32 a20, i32 a21, i32 a22, i32 a23, i32 a24, i32 a25, i32 a26, i32 a27, i32 a28, i32 a29, i32 a30, i32 a31) {
 entry72:
-  %a31.stack = stack 4
-  %a30.stack = stack 4
-  %a29.stack = stack 4
-  %a28.stack = stack 4
-  %a27.stack = stack 4
-  %a26.stack = stack 4
-  %a25.stack = stack 4
-  %a24.stack = stack 4
-  %a23.stack = stack 4
-  %a22.stack = stack 4
-  %a21.stack = stack 4
-  %a20.stack = stack 4
-  %a19.stack = stack 4
-  %a18.stack = stack 4
-  %a17.stack = stack 4
-  %a16.stack = stack 4
-  %a15.stack88 = stack 4
-  %a14.stack87 = stack 4
-  %a13.stack86 = stack 4
-  %a12.stack85 = stack 4
-  %a11.stack84 = stack 4
-  %a10.stack83 = stack 4
-  %a9.stack82 = stack 4
-  %a8.stack81 = stack 4
-  %a7.stack80 = stack 4
-  %a6.stack79 = stack 4
-  %a5.stack78 = stack 4
-  %a4.stack77 = stack 4
-  %a3.stack76 = stack 4
-  %a2.stack75 = stack 4
-  %a1.stack74 = stack 4
-  %a0.stack73 = stack 4
-  store i32 %a0 to ptr %a0.stack73
-  store i32 %a1 to ptr %a1.stack74
-  store i32 %a2 to ptr %a2.stack75
-  store i32 %a3 to ptr %a3.stack76
-  store i32 %a4 to ptr %a4.stack77
-  store i32 %a5 to ptr %a5.stack78
-  store i32 %a6 to ptr %a6.stack79
-  store i32 %a7 to ptr %a7.stack80
-  store i32 %a8 to ptr %a8.stack81
-  store i32 %a9 to ptr %a9.stack82
-  store i32 %a10 to ptr %a10.stack83
-  store i32 %a11 to ptr %a11.stack84
-  store i32 %a12 to ptr %a12.stack85
-  store i32 %a13 to ptr %a13.stack86
-  store i32 %a14 to ptr %a14.stack87
-  store i32 %a15 to ptr %a15.stack88
-  store i32 %a16 to ptr %a16.stack
-  store i32 %a17 to ptr %a17.stack
-  store i32 %a18 to ptr %a18.stack
-  store i32 %a19 to ptr %a19.stack
-  store i32 %a20 to ptr %a20.stack
-  store i32 %a21 to ptr %a21.stack
-  store i32 %a22 to ptr %a22.stack
-  store i32 %a23 to ptr %a23.stack
-  store i32 %a24 to ptr %a24.stack
-  store i32 %a25 to ptr %a25.stack
-  store i32 %a26 to ptr %a26.stack
-  store i32 %a27 to ptr %a27.stack
-  store i32 %a28 to ptr %a28.stack
-  store i32 %a29 to ptr %a29.stack
-  store i32 %a30 to ptr %a30.stack
-  store i32 %a31 to ptr %a31.stack
-  a0.stack73.load = load i32 from ptr %a0.stack73
-  a1.stack74.load = load i32 from ptr %a1.stack74
-  107 = add i32 %a0.stack73.load, i32 %a1.stack74.load
-  a2.stack75.load = load i32 from ptr %a2.stack75
-  109 = add i32 %107, i32 %a2.stack75.load
-  a3.stack76.load = load i32 from ptr %a3.stack76
-  111 = add i32 %109, i32 %a3.stack76.load
-  a4.stack77.load = load i32 from ptr %a4.stack77
-  113 = add i32 %111, i32 %a4.stack77.load
-  a5.stack78.load = load i32 from ptr %a5.stack78
-  115 = add i32 %113, i32 %a5.stack78.load
-  a6.stack79.load = load i32 from ptr %a6.stack79
-  117 = add i32 %115, i32 %a6.stack79.load
-  a7.stack80.load = load i32 from ptr %a7.stack80
-  119 = add i32 %117, i32 %a7.stack80.load
-  a8.stack81.load = load i32 from ptr %a8.stack81
-  121 = add i32 %119, i32 %a8.stack81.load
-  a9.stack82.load = load i32 from ptr %a9.stack82
-  123 = add i32 %121, i32 %a9.stack82.load
-  a10.stack83.load = load i32 from ptr %a10.stack83
-  125 = add i32 %123, i32 %a10.stack83.load
-  a11.stack84.load = load i32 from ptr %a11.stack84
-  127 = add i32 %125, i32 %a11.stack84.load
-  a12.stack85.load = load i32 from ptr %a12.stack85
-  129 = add i32 %127, i32 %a12.stack85.load
-  a13.stack86.load = load i32 from ptr %a13.stack86
-  131 = add i32 %129, i32 %a13.stack86.load
-  a14.stack87.load = load i32 from ptr %a14.stack87
-  133 = add i32 %131, i32 %a14.stack87.load
-  a15.stack88.load = load i32 from ptr %a15.stack88
-  135 = add i32 %133, i32 %a15.stack88.load
-  a16.stack.load = load i32 from ptr %a16.stack
-  137 = add i32 %135, i32 %a16.stack.load
-  a17.stack.load = load i32 from ptr %a17.stack
-  139 = add i32 %137, i32 %a17.stack.load
-  a18.stack.load = load i32 from ptr %a18.stack
-  141 = sub i32 %139, i32 %a18.stack.load
-  a19.stack.load = load i32 from ptr %a19.stack
-  143 = sub i32 %141, i32 %a19.stack.load
-  a20.stack.load = load i32 from ptr %a20.stack
-  145 = sub i32 %143, i32 %a20.stack.load
-  a21.stack.load = load i32 from ptr %a21.stack
-  147 = sub i32 %145, i32 %a21.stack.load
-  a22.stack.load = load i32 from ptr %a22.stack
-  149 = sub i32 %147, i32 %a22.stack.load
-  a23.stack.load = load i32 from ptr %a23.stack
-  151 = add i32 %149, i32 %a23.stack.load
-  a24.stack.load = load i32 from ptr %a24.stack
-  153 = add i32 %151, i32 %a24.stack.load
-  a25.stack.load = load i32 from ptr %a25.stack
-  155 = add i32 %153, i32 %a25.stack.load
-  a26.stack.load = load i32 from ptr %a26.stack
-  157 = add i32 %155, i32 %a26.stack.load
-  a27.stack.load = load i32 from ptr %a27.stack
-  159 = add i32 %157, i32 %a27.stack.load
-  a28.stack.load = load i32 from ptr %a28.stack
-  161 = add i32 %159, i32 %a28.stack.load
-  a29.stack.load = load i32 from ptr %a29.stack
-  163 = add i32 %161, i32 %a29.stack.load
-  a30.stack.load = load i32 from ptr %a30.stack
-  165 = add i32 %163, i32 %a30.stack.load
+  107 = add i32 %a0, i32 %a1
+  109 = add i32 %107, i32 %a2
+  111 = add i32 %109, i32 %a3
+  113 = add i32 %111, i32 %a4
+  115 = add i32 %113, i32 %a5
+  117 = add i32 %115, i32 %a6
+  119 = add i32 %117, i32 %a7
+  121 = add i32 %119, i32 %a8
+  123 = add i32 %121, i32 %a9
+  125 = add i32 %123, i32 %a10
+  127 = add i32 %125, i32 %a11
+  129 = add i32 %127, i32 %a12
+  131 = add i32 %129, i32 %a13
+  133 = add i32 %131, i32 %a14
+  135 = add i32 %133, i32 %a15
+  137 = add i32 %135, i32 %a16
+  139 = add i32 %137, i32 %a17
+  141 = sub i32 %139, i32 %a18
+  143 = sub i32 %141, i32 %a19
+  145 = sub i32 %143, i32 %a20
+  147 = sub i32 %145, i32 %a21
+  149 = sub i32 %147, i32 %a22
+  151 = add i32 %149, i32 %a23
+  153 = add i32 %151, i32 %a24
+  155 = add i32 %153, i32 %a25
+  157 = add i32 %155, i32 %a26
+  159 = add i32 %157, i32 %a27
+  161 = add i32 %159, i32 %a28
+  163 = add i32 %161, i32 %a29
+  165 = add i32 %163, i32 %a30
   167 = add i32 %165, i32 %a31
   ret i32 %167
 }
@@ -303,67 +208,20 @@ external void _sysy_starttime(i32 )
 
 i32 testParam16(i32 a0, i32 a1, i32 a2, i32 a3, i32 a4, i32 a5, i32 a6, i32 a7, i32 a8, i32 a9, i32 a10, i32 a11, i32 a12, i32 a13, i32 a14, i32 a15) {
 entry24:
-  %a15.stack = stack 4
-  %a14.stack = stack 4
-  %a13.stack = stack 4
-  %a12.stack = stack 4
-  %a11.stack = stack 4
-  %a10.stack = stack 4
-  %a9.stack = stack 4
-  %a8.stack = stack 4
-  %a7.stack32 = stack 4
-  %a6.stack31 = stack 4
-  %a5.stack30 = stack 4
-  %a4.stack29 = stack 4
-  %a3.stack28 = stack 4
-  %a2.stack27 = stack 4
-  %a1.stack26 = stack 4
-  %a0.stack25 = stack 4
-  store i32 %a0 to ptr %a0.stack25
-  store i32 %a1 to ptr %a1.stack26
-  store i32 %a2 to ptr %a2.stack27
-  store i32 %a3 to ptr %a3.stack28
-  store i32 %a4 to ptr %a4.stack29
-  store i32 %a5 to ptr %a5.stack30
-  store i32 %a6 to ptr %a6.stack31
-  store i32 %a7 to ptr %a7.stack32
-  store i32 %a8 to ptr %a8.stack
-  store i32 %a9 to ptr %a9.stack
-  store i32 %a10 to ptr %a10.stack
-  store i32 %a11 to ptr %a11.stack
-  store i32 %a12 to ptr %a12.stack
-  store i32 %a13 to ptr %a13.stack
-  store i32 %a14 to ptr %a14.stack
-  store i32 %a15 to ptr %a15.stack
-  a0.stack25.load = load i32 from ptr %a0.stack25
-  a1.stack26.load = load i32 from ptr %a1.stack26
-  43 = add i32 %a0.stack25.load, i32 %a1.stack26.load
-  a2.stack27.load = load i32 from ptr %a2.stack27
-  45 = add i32 %43, i32 %a2.stack27.load
-  a3.stack28.load = load i32 from ptr %a3.stack28
-  47 = sub i32 %45, i32 %a3.stack28.load
-  a4.stack29.load = load i32 from ptr %a4.stack29
-  49 = sub i32 %47, i32 %a4.stack29.load
-  a5.stack30.load = load i32 from ptr %a5.stack30
-  51 = sub i32 %49, i32 %a5.stack30.load
-  a6.stack31.load = load i32 from ptr %a6.stack31
-  53 = sub i32 %51, i32 %a6.stack31.load
-  a7.stack32.load = load i32 from ptr %a7.stack32
-  55 = sub i32 %53, i32 %a7.stack32.load
-  a8.stack.load = load i32 from ptr %a8.stack
-  57 = add i32 %55, i32 %a8.stack.load
-  a9.stack.load = load i32 from ptr %a9.stack
-  59 = add i32 %57, i32 %a9.stack.load
-  a10.stack.load = load i32 from ptr %a10.stack
-  61 = add i32 %59, i32 %a10.stack.load
-  a11.stack.load = load i32 from ptr %a11.stack
-  63 = add i32 %61, i32 %a11.stack.load
-  a12.stack.load = load i32 from ptr %a12.stack
-  65 = add i32 %63, i32 %a12.stack.load
-  a13.stack.load = load i32 from ptr %a13.stack
-  67 = add i32 %65, i32 %a13.stack.load
-  a14.stack.load = load i32 from ptr %a14.stack
-  69 = add i32 %67, i32 %a14.stack.load
+  43 = add i32 %a0, i32 %a1
+  45 = add i32 %43, i32 %a2
+  47 = sub i32 %45, i32 %a3
+  49 = sub i32 %47, i32 %a4
+  51 = sub i32 %49, i32 %a5
+  53 = sub i32 %51, i32 %a6
+  55 = sub i32 %53, i32 %a7
+  57 = add i32 %55, i32 %a8
+  59 = add i32 %57, i32 %a9
+  61 = add i32 %59, i32 %a10
+  63 = add i32 %61, i32 %a11
+  65 = add i32 %63, i32 %a12
+  67 = add i32 %65, i32 %a13
+  69 = add i32 %67, i32 %a14
   71 = add i32 %69, i32 %a15
   ret i32 %71
 }
@@ -372,35 +230,12 @@ external void putfarray(i32 , ptr )
 
 i32 testParam8(i32 a0, i32 a1, i32 a2, i32 a3, i32 a4, i32 a5, i32 a6, i32 a7) {
 entry:
-  %a7.stack = stack 4
-  %a6.stack = stack 4
-  %a5.stack = stack 4
-  %a4.stack = stack 4
-  %a3.stack = stack 4
-  %a2.stack = stack 4
-  %a1.stack = stack 4
-  %a0.stack = stack 4
-  store i32 %a0 to ptr %a0.stack
-  store i32 %a1 to ptr %a1.stack
-  store i32 %a2 to ptr %a2.stack
-  store i32 %a3 to ptr %a3.stack
-  store i32 %a4 to ptr %a4.stack
-  store i32 %a5 to ptr %a5.stack
-  store i32 %a6 to ptr %a6.stack
-  store i32 %a7 to ptr %a7.stack
-  a0.stack.load = load i32 from ptr %a0.stack
-  a1.stack.load = load i32 from ptr %a1.stack
-  11 = add i32 %a0.stack.load, i32 %a1.stack.load
-  a2.stack.load = load i32 from ptr %a2.stack
-  13 = add i32 %11, i32 %a2.stack.load
-  a3.stack.load = load i32 from ptr %a3.stack
-  15 = add i32 %13, i32 %a3.stack.load
-  a4.stack.load = load i32 from ptr %a4.stack
-  17 = add i32 %15, i32 %a4.stack.load
-  a5.stack.load = load i32 from ptr %a5.stack
-  19 = add i32 %17, i32 %a5.stack.load
-  a6.stack.load = load i32 from ptr %a6.stack
-  21 = add i32 %19, i32 %a6.stack.load
+  11 = add i32 %a0, i32 %a1
+  13 = add i32 %11, i32 %a2
+  15 = add i32 %13, i32 %a3
+  17 = add i32 %15, i32 %a4
+  19 = add i32 %17, i32 %a5
+  21 = add i32 %19, i32 %a6
   23 = add i32 %21, i32 %a7
   ret i32 %23
 }

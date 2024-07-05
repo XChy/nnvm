@@ -43,58 +43,58 @@ sub:
   JALR zero, 0(ra)
 sub_impl:
   ADDI sp, sp, -64
-  SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
+  SD ra, 0(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s6, 32(sp)
   SD s1, 40(sp)
   SD s5, 48(sp)
   SD s0, 56(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  SW s2, 0(sp)
   XOR s3, s2, zero
-  SLTIU s2, s3, 1
-  BNE s2, zero, bb2
+  SLTIU s4, s3, 1
+  BNE s4, zero, bb2
   JAL zero, bb4
 bb2:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
   ADDI s3, zero, 4
   MUL s4, zero, s3
   ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MUL s5, zero, s3
-  ADD s3, s1, s5
-  LW s5, 0(s3)
-  SUBW s3, s4, s5
-  SW s3, 0(s2)
+  ADDI s4, zero, 4
+  MUL s5, zero, s4
+  ADD s4, s0, s5
+  LW s5, 0(s4)
+  ADDI s4, zero, 4
+  MUL s6, zero, s4
+  ADD s4, s1, s6
+  LW s6, 0(s4)
+  SUBW s4, s5, s6
+  SW s4, 0(s3)
   JAL zero, bb3
 bb3:
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s6, 32(sp)
   LD s1, 40(sp)
   LD s5, 48(sp)
   LD s0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
   ADDI s3, zero, 4
   MUL s4, zero, s3
   ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDI s3, zero, 2
-  MULW s5, s4, s3
-  SW s5, 0(s2)
-  LW s2, 0(sp)
+  ADDI s4, zero, 4
+  MUL s5, zero, s4
+  ADD s4, s0, s5
+  LW s5, 0(s4)
+  ADDI s4, zero, 2
+  MULW s6, s5, s4
+  SW s6, 0(s3)
   ADDI s3, zero, 1
   SUBW s4, s2, s3
   ADD a0, s0, zero
@@ -154,58 +154,58 @@ add:
   JALR zero, 0(ra)
 add_impl:
   ADDI sp, sp, -64
-  SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
+  SD ra, 0(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s6, 32(sp)
   SD s1, 40(sp)
   SD s5, 48(sp)
   SD s0, 56(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  SW s2, 0(sp)
   XOR s3, s2, zero
-  SLTIU s2, s3, 1
-  BNE s2, zero, bb8
+  SLTIU s4, s3, 1
+  BNE s4, zero, bb8
   JAL zero, bb10
 bb8:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
   ADDI s3, zero, 4
   MUL s4, zero, s3
   ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MUL s5, zero, s3
-  ADD s3, s1, s5
-  LW s5, 0(s3)
-  ADDW s3, s4, s5
-  SW s3, 0(s2)
+  ADDI s4, zero, 4
+  MUL s5, zero, s4
+  ADD s4, s0, s5
+  LW s5, 0(s4)
+  ADDI s4, zero, 4
+  MUL s6, zero, s4
+  ADD s4, s1, s6
+  LW s6, 0(s4)
+  ADDW s4, s5, s6
+  SW s4, 0(s3)
   JAL zero, bb9
 bb9:
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s6, 32(sp)
   LD s1, 40(sp)
   LD s5, 48(sp)
   LD s0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb10:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
   ADDI s3, zero, 4
   MUL s4, zero, s3
   ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDI s3, zero, 2
-  MULW s5, s4, s3
-  SW s5, 0(s2)
-  LW s2, 0(sp)
+  ADDI s4, zero, 4
+  MUL s5, zero, s4
+  ADD s4, s0, s5
+  LW s5, 0(s4)
+  ADDI s4, zero, 2
+  MULW s6, s5, s4
+  SW s6, 0(s3)
   ADDI s3, zero, 1
   SUBW s4, s2, s3
   ADD a0, s0, zero
@@ -388,51 +388,51 @@ bb19:
   JAL zero, bb12
 inc_impl:
   ADDI sp, sp, -64
+  SD ra, 0(sp)
   SD s4, 8(sp)
-  SD ra, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s5, 40(sp)
   SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  SW s1, 0(sp)
   XOR s2, s1, zero
-  SLTIU s1, s2, 1
-  BNE s1, zero, bb21
+  SLTIU s3, s2, 1
+  BNE s3, zero, bb21
   JAL zero, bb23
 bb21:
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
-  ADD s1, s0, s2
   ADDI s2, zero, 4
   MUL s3, zero, s2
   ADD s2, s0, s3
-  LW s3, 0(s2)
-  ADDIW s2, s3, 1
-  SW s2, 0(s1)
+  ADDI s3, zero, 4
+  MUL s4, zero, s3
+  ADD s3, s0, s4
+  LW s4, 0(s3)
+  ADDIW s3, s4, 1
+  SW s3, 0(s2)
   JAL zero, bb22
 bb22:
+  LD ra, 0(sp)
   LD s4, 8(sp)
-  LD ra, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s5, 40(sp)
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb23:
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
-  ADD s1, s0, s2
   ADDI s2, zero, 4
   MUL s3, zero, s2
   ADD s2, s0, s3
-  LW s3, 0(s2)
-  ADDI s2, zero, 2
-  MULW s4, s3, s2
-  SW s4, 0(s1)
-  LW s1, 0(sp)
+  ADDI s3, zero, 4
+  MUL s4, zero, s3
+  ADD s3, s0, s4
+  LW s4, 0(s3)
+  ADDI s3, zero, 2
+  MULW s5, s4, s3
+  SW s5, 0(s2)
   ADDI s2, zero, 1
   SUBW s3, s1, s2
   ADD a0, s0, zero

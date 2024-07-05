@@ -38,11 +38,13 @@ class FunctionToModuleAdaptor : public ModulePass {
 public:
   FunctionToModuleAdaptor() {}
   bool run(Module &module) {
-    SpecificFuncPass pass;
     bool changed = false;
-    for (auto [name, F] : module.getFunctionMap())
-      if (!F->isExternal())
-        changed |= pass.run(*F);
+    for (auto [name, F] : module.getFunctionMap()) {
+      if (F->isExternal())
+        continue;
+      SpecificFuncPass pass;
+      changed |= pass.run(*F);
+    }
     return changed;
   }
 };

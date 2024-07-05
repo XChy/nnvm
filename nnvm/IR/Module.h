@@ -3,6 +3,7 @@
 #include "Function.h"
 #include "IR/Constant.h"
 #include "IR/GlobalVariable.h"
+#include "IR/UBValue.h"
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -48,6 +49,7 @@ public:
   Constant *addConstant(const Constant &constant);
   ConstantPool getConstantPool() { return constantPool; };
 
+
   std::string allocValueName(const std::string &name);
   bool isConflictName(const std::string &name) { return names.count(name); }
 
@@ -55,6 +57,7 @@ private:
   std::unordered_map<std::string, Function *> functionMap;
   std::unordered_map<std::string, GlobalVariable *> globalVarMap;
   ConstantPool constantPool;
+  //std::unordered_map<Type *, UBValue *> UBValuePool;
   std::unordered_set<std::string> names;
 
   NormalTypeMap typeMap;

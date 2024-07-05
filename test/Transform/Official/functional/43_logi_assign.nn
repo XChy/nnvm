@@ -2,8 +2,6 @@ global ptr b init with i32 0
 global ptr a init with i32 0
 i32 main() {
 entry:
-  %select = stack 1
-  %c = stack 4
   1 = call i32 getint()
   store i32 %1 to ptr @a
   2 = call i32 getint()
@@ -14,22 +12,18 @@ entry:
 select.then:
   a.load11 = load i32 from ptr @a
   12 = icmp ne i32 %a.load11, i32 3
-  store i1 %12 to ptr %select
   br bb %select.exit
 select.else:
-  store i1 0 to ptr %select
   br bb %select.exit
 select.exit:
-  13 = load i1 from ptr %select
-  br i1 %13, bb %then, bb %else
+  19 = phi [bb %select.else, i1 0, bb %select.then, i1 %12]
+  br i1 %19, bb %then, bb %else
 then:
-  store i32 1 to ptr %c
   br bb %if.exit
 if.exit:
-  c.load = load i32 from ptr %c
-  ret i32 %c.load
+  18 = phi [bb %else, i32 0, bb %then, i32 1]
+  ret i32 %18
 else:
-  store i32 0 to ptr %c
   br bb %if.exit
 }
 

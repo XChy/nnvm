@@ -47,6 +47,14 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   return LI;
 }
 
+PhiInst *IRBuilder::buildPhi(Type *type, const std::string &name) {
+  PhiInst *I = new PhiInst(type);
+  I->setName(name, *module);
+  BasicBlock *curBB = insertPoint.getBB();
+  curBB->begin().insertBefore(I);
+  return I;
+}
+
 Value *IRBuilder::buildRet() {
   RetInst *I = new RetInst();
   insertPoint.insertBefore(I);

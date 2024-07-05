@@ -2,32 +2,24 @@ global ptr array init with 20 x i32 zeros
 global ptr sum init with i32 0
 i32 h(i32 i) {
 entry68:
-  %select77 = stack 1
-  %i.stack69 = stack 4
-  store i32 %i to ptr %i.stack69
   sum.load70 = load i32 from ptr @sum
   71 = add i32 %sum.load70, i32 3
   store i32 %71 to ptr @sum
-  i.stack69.load = load i32 from ptr %i.stack69
-  73 = icmp slt i32 %i.stack69.load, i32 0
+  73 = icmp slt i32 %i, i32 0
   br i1 %73, bb %select.then74, bb %select.else75
 select.then74:
-  store i1 1 to ptr %select77
   br bb %select.exit76
 select.else75:
-  i.stack69.load78 = load i32 from ptr %i.stack69
-  79 = icmp sge i32 %i.stack69.load78, i32 20
+  79 = icmp sge i32 %i, i32 20
   80 = icmp ne i1 %79, i1 0
-  store i1 %80 to ptr %select77
   br bb %select.exit76
 select.exit76:
-  81 = load i1 from ptr %select77
-  br i1 %81, bb %then82, bb %if.exit83
+  671 = phi [bb %select.else75, i1 %80, bb %select.then74, i1 1]
+  br i1 %671, bb %then82, bb %if.exit83
 then82:
   ret i32 0
 if.exit83:
-  i.stack69.load84 = load i32 from ptr %i.stack69
-  85 = mul i32 %i.stack69.load84, i32 4
+  85 = mul i32 %i, i32 4
   86 = ptradd ptr @array, i32 %85
   86.load = load i32 from ptr %86
   ret i32 %86.load
@@ -35,39 +27,27 @@ if.exit83:
 
 i32 g(i32 i, i32 j) {
 entry34:
-  %select45 = stack 1
-  %j.stack36 = stack 4
-  %i.stack35 = stack 4
-  store i32 %i to ptr %i.stack35
-  store i32 %j to ptr %j.stack36
   sum.load37 = load i32 from ptr @sum
   38 = add i32 %sum.load37, i32 2
   store i32 %38 to ptr @sum
-  i.stack35.load = load i32 from ptr %i.stack35
-  j.stack36.load = load i32 from ptr %j.stack36
-  41 = icmp sge i32 %i.stack35.load, i32 %j.stack36.load
+  41 = icmp sge i32 %i, i32 %j
   br i1 %41, bb %select.then42, bb %select.else43
 select.then42:
-  store i1 1 to ptr %select45
   br bb %select.exit44
 select.else43:
-  i.stack35.load46 = load i32 from ptr %i.stack35
-  47 = icmp sge i32 %i.stack35.load46, i32 20
+  47 = icmp sge i32 %i, i32 20
   48 = icmp ne i1 %47, i1 0
-  store i1 %48 to ptr %select45
   br bb %select.exit44
 select.exit44:
-  49 = load i1 from ptr %select45
-  br i1 %49, bb %then50, bb %if.exit51
+  672 = phi [bb %select.else43, i1 %48, bb %select.then42, i1 1]
+  br i1 %672, bb %then50, bb %if.exit51
 then50:
   ret i32 1
 if.exit51:
-  i.stack35.load52 = load i32 from ptr %i.stack35
-  53 = mul i32 %i.stack35.load52, i32 4
+  53 = mul i32 %i, i32 4
   54 = ptradd ptr @array, i32 %53
   store i32 0 to ptr %54
-  i.stack35.load55 = load i32 from ptr %i.stack35
-  56 = icmp eq i32 %i.stack35.load55, i32 0
+  56 = icmp eq i32 %i, i32 0
   br i1 %56, bb %then57, bb %else59
 then57:
   60 = mul i32 0, i32 4
@@ -77,8 +57,7 @@ then57:
 if.exit58:
   unreachable
 else59:
-  i.stack35.load63 = load i32 from ptr %i.stack35
-  64 = sub i32 %i.stack35.load63, i32 1
+  64 = sub i32 %i, i32 1
   65 = mul i32 %64, i32 4
   66 = ptradd ptr @array, i32 %65
   66.load = load i32 from ptr %66
@@ -97,626 +76,471 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry88:
-  %select660 = stack 1
-  %select648 = stack 1
-  %select642 = stack 1
-  %select634 = stack 1
-  %select624 = stack 1
-  %select614 = stack 1
-  %select607 = stack 1
-  %select591 = stack 1
-  %select585 = stack 1
-  %select574 = stack 1
-  %select563 = stack 1
-  %select552 = stack 1
-  %select542 = stack 1
-  %select524 = stack 1
-  %select515 = stack 1
-  %select505 = stack 1
-  %select499 = stack 1
-  %select481 = stack 1
-  %select470 = stack 1
-  %select463 = stack 1
-  %ans = stack 4
-  %select447 = stack 1
-  %select429 = stack 1
-  %select420 = stack 1
-  %select411 = stack 1
-  %select402 = stack 1
-  %select393 = stack 1
-  %select384 = stack 1
-  %select375 = stack 1
-  %select366 = stack 1
-  %select357 = stack 1
-  %select348 = stack 1
-  %select339 = stack 1
-  %select330 = stack 1
-  %select321 = stack 1
-  %select312 = stack 1
-  %select303 = stack 1
-  %select294 = stack 1
-  %select285 = stack 1
-  %select276 = stack 1
-  %select267 = stack 1
-  %select246 = stack 1
-  %select238 = stack 1
-  %select230 = stack 1
-  %select222 = stack 1
-  %select214 = stack 1
-  %select206 = stack 1
-  %select198 = stack 1
-  %select190 = stack 1
-  %select182 = stack 1
-  %select174 = stack 1
-  %select166 = stack 1
-  %select158 = stack 1
-  %select150 = stack 1
-  %select142 = stack 1
-  %select134 = stack 1
-  %select126 = stack 1
-  %select118 = stack 1
-  %select110 = stack 1
-  %select102 = stack 1
-  %i = stack 4
-  store i32 0 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  94 = icmp slt i32 %i.load, i32 20
+  781 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %780]
+  776 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %775]
+  774 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %773]
+  772 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %771]
+  770 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %769]
+  768 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %767]
+  765 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %764]
+  763 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %762]
+  761 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %760]
+  753 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %752]
+  748 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %747]
+  732 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %731]
+  730 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %729]
+  727 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %726]
+  717 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %716]
+  705 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %704]
+  702 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %701]
+  696 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %695]
+  677 = phi [bb %entry88, i1 ub, bb %if.exit252, i1 %676]
+  675 = phi [bb %entry88, i32 0, bb %if.exit252, i32 %254]
+  94 = icmp slt i32 %675, i32 20
   95 = icmp ne i1 %94, i1 0
   br i1 %95, bb %while.body, bb %while.exit
 while.body:
-  i.load96 = load i32 from ptr %i
-  97 = call i32 f(i32 0, i32 %i.load96)
+  97 = call i32 f(i32 0, i32 %675)
   98 = icmp ne i32 %97, i32 0
   br i1 %98, bb %select.then99, bb %select.else100
 while.exit:
-  store i32 0 to ptr %i
   br bb %while.cond255
 select.then99:
-  i.load103 = load i32 from ptr %i
-  104 = call i32 f(i32 1, i32 %i.load103)
+  104 = call i32 f(i32 1, i32 %675)
   105 = icmp ne i32 %104, i32 0
-  store i1 %105 to ptr %select102
   br bb %select.exit101
 select.else100:
-  store i1 0 to ptr %select102
   br bb %select.exit101
 select.exit101:
-  106 = load i1 from ptr %select102
-  br i1 %106, bb %select.then107, bb %select.else108
+  676 = phi [bb %select.else100, i1 0, bb %select.then99, i1 %105]
+  br i1 %676, bb %select.then107, bb %select.else108
 select.then107:
-  i.load111 = load i32 from ptr %i
-  112 = call i32 f(i32 2, i32 %i.load111)
+  112 = call i32 f(i32 2, i32 %675)
   113 = icmp ne i32 %112, i32 0
-  store i1 %113 to ptr %select110
   br bb %select.exit109
 select.else108:
-  store i1 0 to ptr %select110
   br bb %select.exit109
 select.exit109:
-  114 = load i1 from ptr %select110
-  br i1 %114, bb %select.then115, bb %select.else116
+  729 = phi [bb %select.else108, i1 0, bb %select.then107, i1 %113]
+  br i1 %729, bb %select.then115, bb %select.else116
 select.then115:
-  i.load119 = load i32 from ptr %i
-  120 = call i32 f(i32 3, i32 %i.load119)
+  120 = call i32 f(i32 3, i32 %675)
   121 = icmp ne i32 %120, i32 0
-  store i1 %121 to ptr %select118
   br bb %select.exit117
 select.else116:
-  store i1 0 to ptr %select118
   br bb %select.exit117
 select.exit117:
-  122 = load i1 from ptr %select118
-  br i1 %122, bb %select.then123, bb %select.else124
+  780 = phi [bb %select.else116, i1 0, bb %select.then115, i1 %121]
+  br i1 %780, bb %select.then123, bb %select.else124
 select.then123:
-  i.load127 = load i32 from ptr %i
-  128 = call i32 f(i32 4, i32 %i.load127)
+  128 = call i32 f(i32 4, i32 %675)
   129 = icmp ne i32 %128, i32 0
-  store i1 %129 to ptr %select126
   br bb %select.exit125
 select.else124:
-  store i1 0 to ptr %select126
   br bb %select.exit125
 select.exit125:
-  130 = load i1 from ptr %select126
-  br i1 %130, bb %select.then131, bb %select.else132
+  731 = phi [bb %select.else124, i1 0, bb %select.then123, i1 %129]
+  br i1 %731, bb %select.then131, bb %select.else132
 select.then131:
-  i.load135 = load i32 from ptr %i
-  136 = call i32 f(i32 5, i32 %i.load135)
+  136 = call i32 f(i32 5, i32 %675)
   137 = icmp ne i32 %136, i32 0
-  store i1 %137 to ptr %select134
   br bb %select.exit133
 select.else132:
-  store i1 0 to ptr %select134
   br bb %select.exit133
 select.exit133:
-  138 = load i1 from ptr %select134
-  br i1 %138, bb %select.then139, bb %select.else140
+  775 = phi [bb %select.else132, i1 0, bb %select.then131, i1 %137]
+  br i1 %775, bb %select.then139, bb %select.else140
 select.then139:
-  i.load143 = load i32 from ptr %i
-  144 = call i32 f(i32 6, i32 %i.load143)
+  144 = call i32 f(i32 6, i32 %675)
   145 = icmp ne i32 %144, i32 0
-  store i1 %145 to ptr %select142
   br bb %select.exit141
 select.else140:
-  store i1 0 to ptr %select142
   br bb %select.exit141
 select.exit141:
-  146 = load i1 from ptr %select142
-  br i1 %146, bb %select.then147, bb %select.else148
+  701 = phi [bb %select.else140, i1 0, bb %select.then139, i1 %145]
+  br i1 %701, bb %select.then147, bb %select.else148
 select.then147:
-  i.load151 = load i32 from ptr %i
-  152 = call i32 f(i32 7, i32 %i.load151)
+  152 = call i32 f(i32 7, i32 %675)
   153 = icmp ne i32 %152, i32 0
-  store i1 %153 to ptr %select150
   br bb %select.exit149
 select.else148:
-  store i1 0 to ptr %select150
   br bb %select.exit149
 select.exit149:
-  154 = load i1 from ptr %select150
-  br i1 %154, bb %select.then155, bb %select.else156
+  752 = phi [bb %select.else148, i1 0, bb %select.then147, i1 %153]
+  br i1 %752, bb %select.then155, bb %select.else156
 select.then155:
-  i.load159 = load i32 from ptr %i
-  160 = call i32 f(i32 8, i32 %i.load159)
+  160 = call i32 f(i32 8, i32 %675)
   161 = icmp ne i32 %160, i32 0
-  store i1 %161 to ptr %select158
   br bb %select.exit157
 select.else156:
-  store i1 0 to ptr %select158
   br bb %select.exit157
 select.exit157:
-  162 = load i1 from ptr %select158
-  br i1 %162, bb %select.then163, bb %select.else164
+  773 = phi [bb %select.else156, i1 0, bb %select.then155, i1 %161]
+  br i1 %773, bb %select.then163, bb %select.else164
 select.then163:
-  i.load167 = load i32 from ptr %i
-  168 = call i32 f(i32 9, i32 %i.load167)
+  168 = call i32 f(i32 9, i32 %675)
   169 = icmp ne i32 %168, i32 0
-  store i1 %169 to ptr %select166
   br bb %select.exit165
 select.else164:
-  store i1 0 to ptr %select166
   br bb %select.exit165
 select.exit165:
-  170 = load i1 from ptr %select166
-  br i1 %170, bb %select.then171, bb %select.else172
+  771 = phi [bb %select.else164, i1 0, bb %select.then163, i1 %169]
+  br i1 %771, bb %select.then171, bb %select.else172
 select.then171:
-  i.load175 = load i32 from ptr %i
-  176 = call i32 f(i32 10, i32 %i.load175)
+  176 = call i32 f(i32 10, i32 %675)
   177 = icmp ne i32 %176, i32 0
-  store i1 %177 to ptr %select174
   br bb %select.exit173
 select.else172:
-  store i1 0 to ptr %select174
   br bb %select.exit173
 select.exit173:
-  178 = load i1 from ptr %select174
-  br i1 %178, bb %select.then179, bb %select.else180
+  769 = phi [bb %select.else172, i1 0, bb %select.then171, i1 %177]
+  br i1 %769, bb %select.then179, bb %select.else180
 select.then179:
-  i.load183 = load i32 from ptr %i
-  184 = call i32 f(i32 11, i32 %i.load183)
+  184 = call i32 f(i32 11, i32 %675)
   185 = icmp ne i32 %184, i32 0
-  store i1 %185 to ptr %select182
   br bb %select.exit181
 select.else180:
-  store i1 0 to ptr %select182
   br bb %select.exit181
 select.exit181:
-  186 = load i1 from ptr %select182
-  br i1 %186, bb %select.then187, bb %select.else188
+  695 = phi [bb %select.else180, i1 0, bb %select.then179, i1 %185]
+  br i1 %695, bb %select.then187, bb %select.else188
 select.then187:
-  i.load191 = load i32 from ptr %i
-  192 = call i32 f(i32 12, i32 %i.load191)
+  192 = call i32 f(i32 12, i32 %675)
   193 = icmp ne i32 %192, i32 0
-  store i1 %193 to ptr %select190
   br bb %select.exit189
 select.else188:
-  store i1 0 to ptr %select190
   br bb %select.exit189
 select.exit189:
-  194 = load i1 from ptr %select190
-  br i1 %194, bb %select.then195, bb %select.else196
+  726 = phi [bb %select.else188, i1 0, bb %select.then187, i1 %193]
+  br i1 %726, bb %select.then195, bb %select.else196
 select.then195:
-  i.load199 = load i32 from ptr %i
-  200 = call i32 f(i32 13, i32 %i.load199)
+  200 = call i32 f(i32 13, i32 %675)
   201 = icmp ne i32 %200, i32 0
-  store i1 %201 to ptr %select198
   br bb %select.exit197
 select.else196:
-  store i1 0 to ptr %select198
   br bb %select.exit197
 select.exit197:
-  202 = load i1 from ptr %select198
-  br i1 %202, bb %select.then203, bb %select.else204
+  767 = phi [bb %select.else196, i1 0, bb %select.then195, i1 %201]
+  br i1 %767, bb %select.then203, bb %select.else204
 select.then203:
-  i.load207 = load i32 from ptr %i
-  208 = call i32 f(i32 14, i32 %i.load207)
+  208 = call i32 f(i32 14, i32 %675)
   209 = icmp ne i32 %208, i32 0
-  store i1 %209 to ptr %select206
   br bb %select.exit205
 select.else204:
-  store i1 0 to ptr %select206
   br bb %select.exit205
 select.exit205:
-  210 = load i1 from ptr %select206
-  br i1 %210, bb %select.then211, bb %select.else212
+  747 = phi [bb %select.else204, i1 0, bb %select.then203, i1 %209]
+  br i1 %747, bb %select.then211, bb %select.else212
 select.then211:
-  i.load215 = load i32 from ptr %i
-  216 = call i32 f(i32 15, i32 %i.load215)
+  216 = call i32 f(i32 15, i32 %675)
   217 = icmp ne i32 %216, i32 0
-  store i1 %217 to ptr %select214
   br bb %select.exit213
 select.else212:
-  store i1 0 to ptr %select214
   br bb %select.exit213
 select.exit213:
-  218 = load i1 from ptr %select214
-  br i1 %218, bb %select.then219, bb %select.else220
+  764 = phi [bb %select.else212, i1 0, bb %select.then211, i1 %217]
+  br i1 %764, bb %select.then219, bb %select.else220
 select.then219:
-  i.load223 = load i32 from ptr %i
-  224 = call i32 f(i32 16, i32 %i.load223)
+  224 = call i32 f(i32 16, i32 %675)
   225 = icmp ne i32 %224, i32 0
-  store i1 %225 to ptr %select222
   br bb %select.exit221
 select.else220:
-  store i1 0 to ptr %select222
   br bb %select.exit221
 select.exit221:
-  226 = load i1 from ptr %select222
-  br i1 %226, bb %select.then227, bb %select.else228
+  762 = phi [bb %select.else220, i1 0, bb %select.then219, i1 %225]
+  br i1 %762, bb %select.then227, bb %select.else228
 select.then227:
-  i.load231 = load i32 from ptr %i
-  232 = call i32 f(i32 17, i32 %i.load231)
+  232 = call i32 f(i32 17, i32 %675)
   233 = icmp ne i32 %232, i32 0
-  store i1 %233 to ptr %select230
   br bb %select.exit229
 select.else228:
-  store i1 0 to ptr %select230
   br bb %select.exit229
 select.exit229:
-  234 = load i1 from ptr %select230
-  br i1 %234, bb %select.then235, bb %select.else236
+  716 = phi [bb %select.else228, i1 0, bb %select.then227, i1 %233]
+  br i1 %716, bb %select.then235, bb %select.else236
 select.then235:
-  i.load239 = load i32 from ptr %i
-  240 = call i32 f(i32 18, i32 %i.load239)
+  240 = call i32 f(i32 18, i32 %675)
   241 = icmp ne i32 %240, i32 0
-  store i1 %241 to ptr %select238
   br bb %select.exit237
 select.else236:
-  store i1 0 to ptr %select238
   br bb %select.exit237
 select.exit237:
-  242 = load i1 from ptr %select238
-  br i1 %242, bb %select.then243, bb %select.else244
+  704 = phi [bb %select.else236, i1 0, bb %select.then235, i1 %241]
+  br i1 %704, bb %select.then243, bb %select.else244
 select.then243:
-  i.load247 = load i32 from ptr %i
-  248 = call i32 f(i32 19, i32 %i.load247)
+  248 = call i32 f(i32 19, i32 %675)
   249 = icmp ne i32 %248, i32 0
-  store i1 %249 to ptr %select246
   br bb %select.exit245
 select.else244:
-  store i1 0 to ptr %select246
   br bb %select.exit245
 select.exit245:
-  250 = load i1 from ptr %select246
-  br i1 %250, bb %then251, bb %if.exit252
+  760 = phi [bb %select.else244, i1 0, bb %select.then243, i1 %249]
+  br i1 %760, bb %then251, bb %if.exit252
 then251:
   br bb %if.exit252
 if.exit252:
-  i.load253 = load i32 from ptr %i
-  254 = add i32 %i.load253, i32 1
-  store i32 %254 to ptr %i
+  254 = add i32 %675, i32 1
   br bb %while.cond
 while.cond255:
-  i.load258 = load i32 from ptr %i
-  259 = icmp slt i32 %i.load258, i32 20
+  778 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %777]
+  759 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %758]
+  757 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %756]
+  755 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %754]
+  750 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %749]
+  746 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %745]
+  744 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %743]
+  742 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %741]
+  740 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %739]
+  738 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %737]
+  734 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %733]
+  724 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %723]
+  720 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %719]
+  711 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %710]
+  694 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %693]
+  687 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %686]
+  683 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %682]
+  681 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %680]
+  679 = phi [bb %while.exit, i1 ub, bb %if.exit436, i1 %678]
+  674 = phi [bb %while.exit, i32 0, bb %if.exit436, i32 %438]
+  259 = icmp slt i32 %674, i32 20
   260 = icmp ne i1 %259, i1 0
   br i1 %260, bb %while.body256, bb %while.exit257
 while.body256:
-  i.load261 = load i32 from ptr %i
-  262 = call i32 g(i32 0, i32 %i.load261)
+  262 = call i32 g(i32 0, i32 %674)
   263 = icmp ne i32 %262, i32 0
   br i1 %263, bb %select.then264, bb %select.else265
 while.exit257:
-  store i32 1 to ptr %i
   br bb %while.cond439
 select.then264:
-  store i1 1 to ptr %select267
   br bb %select.exit266
 select.else265:
-  i.load268 = load i32 from ptr %i
-  269 = call i32 g(i32 1, i32 %i.load268)
+  269 = call i32 g(i32 1, i32 %674)
   270 = icmp ne i32 %269, i32 0
   271 = icmp ne i1 %270, i1 0
-  store i1 %271 to ptr %select267
   br bb %select.exit266
 select.exit266:
-  272 = load i1 from ptr %select267
-  br i1 %272, bb %select.then273, bb %select.else274
+  723 = phi [bb %select.else265, i1 %271, bb %select.then264, i1 1]
+  br i1 %723, bb %select.then273, bb %select.else274
 select.then273:
-  store i1 1 to ptr %select276
   br bb %select.exit275
 select.else274:
-  i.load277 = load i32 from ptr %i
-  278 = call i32 g(i32 2, i32 %i.load277)
+  278 = call i32 g(i32 2, i32 %674)
   279 = icmp ne i32 %278, i32 0
   280 = icmp ne i1 %279, i1 0
-  store i1 %280 to ptr %select276
   br bb %select.exit275
 select.exit275:
-  281 = load i1 from ptr %select276
-  br i1 %281, bb %select.then282, bb %select.else283
+  758 = phi [bb %select.else274, i1 %280, bb %select.then273, i1 1]
+  br i1 %758, bb %select.then282, bb %select.else283
 select.then282:
-  store i1 1 to ptr %select285
   br bb %select.exit284
 select.else283:
-  i.load286 = load i32 from ptr %i
-  287 = call i32 g(i32 3, i32 %i.load286)
+  287 = call i32 g(i32 3, i32 %674)
   288 = icmp ne i32 %287, i32 0
   289 = icmp ne i1 %288, i1 0
-  store i1 %289 to ptr %select285
   br bb %select.exit284
 select.exit284:
-  290 = load i1 from ptr %select285
-  br i1 %290, bb %select.then291, bb %select.else292
+  756 = phi [bb %select.else283, i1 %289, bb %select.then282, i1 1]
+  br i1 %756, bb %select.then291, bb %select.else292
 select.then291:
-  store i1 1 to ptr %select294
   br bb %select.exit293
 select.else292:
-  i.load295 = load i32 from ptr %i
-  296 = call i32 g(i32 4, i32 %i.load295)
+  296 = call i32 g(i32 4, i32 %674)
   297 = icmp ne i32 %296, i32 0
   298 = icmp ne i1 %297, i1 0
-  store i1 %298 to ptr %select294
   br bb %select.exit293
 select.exit293:
-  299 = load i1 from ptr %select294
-  br i1 %299, bb %select.then300, bb %select.else301
+  777 = phi [bb %select.else292, i1 %298, bb %select.then291, i1 1]
+  br i1 %777, bb %select.then300, bb %select.else301
 select.then300:
-  store i1 1 to ptr %select303
   br bb %select.exit302
 select.else301:
-  i.load304 = load i32 from ptr %i
-  305 = call i32 g(i32 5, i32 %i.load304)
+  305 = call i32 g(i32 5, i32 %674)
   306 = icmp ne i32 %305, i32 0
   307 = icmp ne i1 %306, i1 0
-  store i1 %307 to ptr %select303
   br bb %select.exit302
 select.exit302:
-  308 = load i1 from ptr %select303
-  br i1 %308, bb %select.then309, bb %select.else310
+  754 = phi [bb %select.else301, i1 %307, bb %select.then300, i1 1]
+  br i1 %754, bb %select.then309, bb %select.else310
 select.then309:
-  store i1 1 to ptr %select312
   br bb %select.exit311
 select.else310:
-  i.load313 = load i32 from ptr %i
-  314 = call i32 g(i32 6, i32 %i.load313)
+  314 = call i32 g(i32 6, i32 %674)
   315 = icmp ne i32 %314, i32 0
   316 = icmp ne i1 %315, i1 0
-  store i1 %316 to ptr %select312
   br bb %select.exit311
 select.exit311:
-  317 = load i1 from ptr %select312
-  br i1 %317, bb %select.then318, bb %select.else319
+  749 = phi [bb %select.else310, i1 %316, bb %select.then309, i1 1]
+  br i1 %749, bb %select.then318, bb %select.else319
 select.then318:
-  store i1 1 to ptr %select321
   br bb %select.exit320
 select.else319:
-  i.load322 = load i32 from ptr %i
-  323 = call i32 g(i32 7, i32 %i.load322)
+  323 = call i32 g(i32 7, i32 %674)
   324 = icmp ne i32 %323, i32 0
   325 = icmp ne i1 %324, i1 0
-  store i1 %325 to ptr %select321
   br bb %select.exit320
 select.exit320:
-  326 = load i1 from ptr %select321
-  br i1 %326, bb %select.then327, bb %select.else328
+  743 = phi [bb %select.else319, i1 %325, bb %select.then318, i1 1]
+  br i1 %743, bb %select.then327, bb %select.else328
 select.then327:
-  store i1 1 to ptr %select330
   br bb %select.exit329
 select.else328:
-  i.load331 = load i32 from ptr %i
-  332 = call i32 g(i32 8, i32 %i.load331)
+  332 = call i32 g(i32 8, i32 %674)
   333 = icmp ne i32 %332, i32 0
   334 = icmp ne i1 %333, i1 0
-  store i1 %334 to ptr %select330
   br bb %select.exit329
 select.exit329:
-  335 = load i1 from ptr %select330
-  br i1 %335, bb %select.then336, bb %select.else337
+  741 = phi [bb %select.else328, i1 %334, bb %select.then327, i1 1]
+  br i1 %741, bb %select.then336, bb %select.else337
 select.then336:
-  store i1 1 to ptr %select339
   br bb %select.exit338
 select.else337:
-  i.load340 = load i32 from ptr %i
-  341 = call i32 g(i32 9, i32 %i.load340)
+  341 = call i32 g(i32 9, i32 %674)
   342 = icmp ne i32 %341, i32 0
   343 = icmp ne i1 %342, i1 0
-  store i1 %343 to ptr %select339
   br bb %select.exit338
 select.exit338:
-  344 = load i1 from ptr %select339
-  br i1 %344, bb %select.then345, bb %select.else346
+  739 = phi [bb %select.else337, i1 %343, bb %select.then336, i1 1]
+  br i1 %739, bb %select.then345, bb %select.else346
 select.then345:
-  store i1 1 to ptr %select348
   br bb %select.exit347
 select.else346:
-  i.load349 = load i32 from ptr %i
-  350 = call i32 g(i32 10, i32 %i.load349)
+  350 = call i32 g(i32 10, i32 %674)
   351 = icmp ne i32 %350, i32 0
   352 = icmp ne i1 %351, i1 0
-  store i1 %352 to ptr %select348
   br bb %select.exit347
 select.exit347:
-  353 = load i1 from ptr %select348
-  br i1 %353, bb %select.then354, bb %select.else355
+  737 = phi [bb %select.else346, i1 %352, bb %select.then345, i1 1]
+  br i1 %737, bb %select.then354, bb %select.else355
 select.then354:
-  store i1 1 to ptr %select357
   br bb %select.exit356
 select.else355:
-  i.load358 = load i32 from ptr %i
-  359 = call i32 g(i32 11, i32 %i.load358)
+  359 = call i32 g(i32 11, i32 %674)
   360 = icmp ne i32 %359, i32 0
   361 = icmp ne i1 %360, i1 0
-  store i1 %361 to ptr %select357
   br bb %select.exit356
 select.exit356:
-  362 = load i1 from ptr %select357
-  br i1 %362, bb %select.then363, bb %select.else364
+  710 = phi [bb %select.else355, i1 %361, bb %select.then354, i1 1]
+  br i1 %710, bb %select.then363, bb %select.else364
 select.then363:
-  store i1 1 to ptr %select366
   br bb %select.exit365
 select.else364:
-  i.load367 = load i32 from ptr %i
-  368 = call i32 g(i32 12, i32 %i.load367)
+  368 = call i32 g(i32 12, i32 %674)
   369 = icmp ne i32 %368, i32 0
   370 = icmp ne i1 %369, i1 0
-  store i1 %370 to ptr %select366
   br bb %select.exit365
 select.exit365:
-  371 = load i1 from ptr %select366
-  br i1 %371, bb %select.then372, bb %select.else373
+  733 = phi [bb %select.else364, i1 %370, bb %select.then363, i1 1]
+  br i1 %733, bb %select.then372, bb %select.else373
 select.then372:
-  store i1 1 to ptr %select375
   br bb %select.exit374
 select.else373:
-  i.load376 = load i32 from ptr %i
-  377 = call i32 g(i32 13, i32 %i.load376)
+  377 = call i32 g(i32 13, i32 %674)
   378 = icmp ne i32 %377, i32 0
   379 = icmp ne i1 %378, i1 0
-  store i1 %379 to ptr %select375
   br bb %select.exit374
 select.exit374:
-  380 = load i1 from ptr %select375
-  br i1 %380, bb %select.then381, bb %select.else382
+  678 = phi [bb %select.else373, i1 %379, bb %select.then372, i1 1]
+  br i1 %678, bb %select.then381, bb %select.else382
 select.then381:
-  store i1 1 to ptr %select384
   br bb %select.exit383
 select.else382:
-  i.load385 = load i32 from ptr %i
-  386 = call i32 g(i32 14, i32 %i.load385)
+  386 = call i32 g(i32 14, i32 %674)
   387 = icmp ne i32 %386, i32 0
   388 = icmp ne i1 %387, i1 0
-  store i1 %388 to ptr %select384
   br bb %select.exit383
 select.exit383:
-  389 = load i1 from ptr %select384
-  br i1 %389, bb %select.then390, bb %select.else391
+  745 = phi [bb %select.else382, i1 %388, bb %select.then381, i1 1]
+  br i1 %745, bb %select.then390, bb %select.else391
 select.then390:
-  store i1 1 to ptr %select393
   br bb %select.exit392
 select.else391:
-  i.load394 = load i32 from ptr %i
-  395 = call i32 g(i32 15, i32 %i.load394)
+  395 = call i32 g(i32 15, i32 %674)
   396 = icmp ne i32 %395, i32 0
   397 = icmp ne i1 %396, i1 0
-  store i1 %397 to ptr %select393
   br bb %select.exit392
 select.exit392:
-  398 = load i1 from ptr %select393
-  br i1 %398, bb %select.then399, bb %select.else400
+  693 = phi [bb %select.else391, i1 %397, bb %select.then390, i1 1]
+  br i1 %693, bb %select.then399, bb %select.else400
 select.then399:
-  store i1 1 to ptr %select402
   br bb %select.exit401
 select.else400:
-  i.load403 = load i32 from ptr %i
-  404 = call i32 g(i32 16, i32 %i.load403)
+  404 = call i32 g(i32 16, i32 %674)
   405 = icmp ne i32 %404, i32 0
   406 = icmp ne i1 %405, i1 0
-  store i1 %406 to ptr %select402
   br bb %select.exit401
 select.exit401:
-  407 = load i1 from ptr %select402
-  br i1 %407, bb %select.then408, bb %select.else409
+  719 = phi [bb %select.else400, i1 %406, bb %select.then399, i1 1]
+  br i1 %719, bb %select.then408, bb %select.else409
 select.then408:
-  store i1 1 to ptr %select411
   br bb %select.exit410
 select.else409:
-  i.load412 = load i32 from ptr %i
-  413 = call i32 g(i32 17, i32 %i.load412)
+  413 = call i32 g(i32 17, i32 %674)
   414 = icmp ne i32 %413, i32 0
   415 = icmp ne i1 %414, i1 0
-  store i1 %415 to ptr %select411
   br bb %select.exit410
 select.exit410:
-  416 = load i1 from ptr %select411
-  br i1 %416, bb %select.then417, bb %select.else418
+  680 = phi [bb %select.else409, i1 %415, bb %select.then408, i1 1]
+  br i1 %680, bb %select.then417, bb %select.else418
 select.then417:
-  store i1 1 to ptr %select420
   br bb %select.exit419
 select.else418:
-  i.load421 = load i32 from ptr %i
-  422 = call i32 g(i32 18, i32 %i.load421)
+  422 = call i32 g(i32 18, i32 %674)
   423 = icmp ne i32 %422, i32 0
   424 = icmp ne i1 %423, i1 0
-  store i1 %424 to ptr %select420
   br bb %select.exit419
 select.exit419:
-  425 = load i1 from ptr %select420
-  br i1 %425, bb %select.then426, bb %select.else427
+  686 = phi [bb %select.else418, i1 %424, bb %select.then417, i1 1]
+  br i1 %686, bb %select.then426, bb %select.else427
 select.then426:
-  store i1 1 to ptr %select429
   br bb %select.exit428
 select.else427:
-  i.load430 = load i32 from ptr %i
-  431 = call i32 g(i32 19, i32 %i.load430)
+  431 = call i32 g(i32 19, i32 %674)
   432 = icmp ne i32 %431, i32 0
   433 = icmp ne i1 %432, i1 0
-  store i1 %433 to ptr %select429
   br bb %select.exit428
 select.exit428:
-  434 = load i1 from ptr %select429
-  br i1 %434, bb %then435, bb %if.exit436
+  682 = phi [bb %select.else427, i1 %433, bb %select.then426, i1 1]
+  br i1 %682, bb %then435, bb %if.exit436
 then435:
   br bb %if.exit436
 if.exit436:
-  i.load437 = load i32 from ptr %i
-  438 = add i32 %i.load437, i32 1
-  store i32 %438 to ptr %i
+  438 = add i32 %674, i32 1
   br bb %while.cond255
 while.cond439:
-  i.load442 = load i32 from ptr %i
-  443 = icmp slt i32 %i.load442, i32 20
+  685 = phi [bb %while.exit257, i1 ub, bb %while.body440, i1 %684]
+  673 = phi [bb %while.exit257, i32 1, bb %while.body440, i32 %456]
+  443 = icmp slt i32 %673, i32 20
   br i1 %443, bb %select.then444, bb %select.else445
 while.body440:
-  i.load455 = load i32 from ptr %i
-  456 = add i32 %i.load455, i32 1
-  store i32 %456 to ptr %i
+  456 = add i32 %673, i32 1
   br bb %while.cond439
 while.exit441:
-  store i32 0 to ptr %ans
   458 = call i32 h(i32 0)
   459 = icmp ne i32 %458, i32 0
   br i1 %459, bb %select.then460, bb %select.else461
 select.then444:
-  i.load448 = load i32 from ptr %i
-  449 = sub i32 %i.load448, i32 1
-  i.load450 = load i32 from ptr %i
-  451 = call i32 f(i32 %449, i32 %i.load450)
+  449 = sub i32 %673, i32 1
+  451 = call i32 f(i32 %449, i32 %673)
   452 = icmp ne i32 %451, i32 0
-  store i1 %452 to ptr %select447
   br bb %select.exit446
 select.else445:
-  store i1 0 to ptr %select447
   br bb %select.exit446
 select.exit446:
-  453 = load i1 from ptr %select447
-  454 = icmp ne i1 %453, i1 0
+  684 = phi [bb %select.else445, i1 0, bb %select.then444, i1 %452]
+  454 = icmp ne i1 %684, i1 0
   br i1 %454, bb %while.body440, bb %while.exit441
 select.then460:
   464 = call i32 h(i32 1)
   465 = icmp ne i32 %464, i32 0
-  store i1 %465 to ptr %select463
   br bb %select.exit462
 select.else461:
-  store i1 0 to ptr %select463
   br bb %select.exit462
 select.exit462:
-  466 = load i1 from ptr %select463
-  br i1 %466, bb %select.then467, bb %select.else468
+  706 = phi [bb %select.else461, i1 0, bb %select.then460, i1 %465]
+  br i1 %706, bb %select.then467, bb %select.else468
 select.then467:
-  store i1 1 to ptr %select470
   br bb %select.exit469
 select.else468:
   471 = call i32 h(i32 2)
@@ -725,31 +549,26 @@ select.else468:
   474 = zext i1 %473 to i32
   475 = icmp ne i32 %474, i32 0
   476 = icmp ne i1 %475, i1 0
-  store i1 %476 to ptr %select470
   br bb %select.exit469
 select.exit469:
-  477 = load i1 from ptr %select470
-  br i1 %477, bb %select.then478, bb %select.else479
+  779 = phi [bb %select.else468, i1 %476, bb %select.then467, i1 1]
+  br i1 %779, bb %select.then478, bb %select.else479
 select.then478:
-  store i1 1 to ptr %select481
   br bb %select.exit480
 select.else479:
   482 = call i32 h(i32 3)
   483 = icmp ne i32 %482, i32 0
   484 = icmp ne i1 %483, i1 0
-  store i1 %484 to ptr %select481
   br bb %select.exit480
 select.exit480:
-  485 = load i1 from ptr %select481
-  br i1 %485, bb %then486, bb %if.exit487
+  728 = phi [bb %select.else479, i1 %484, bb %select.then478, i1 1]
+  br i1 %728, bb %then486, bb %if.exit487
 then486:
-  store i32 1 to ptr %ans
   br bb %if.exit487
 if.exit487:
+  691 = phi [bb %select.exit480, i32 0, bb %then486, i32 1]
   sum.load488 = load i32 from ptr @sum
-  ans.load = load i32 from ptr %ans
-  490 = add i32 %sum.load488, i32 %ans.load
-  store i32 0 to ptr %ans
+  490 = add i32 %sum.load488, i32 %691
   491 = call i32 h(i32 4)
   492 = icmp ne i32 %491, i32 0
   493 =  i1 %492, i1 1
@@ -757,44 +576,39 @@ if.exit487:
   495 = icmp ne i32 %494, i32 0
   br i1 %495, bb %select.then496, bb %select.else497
 select.then496:
-  store i1 1 to ptr %select499
   br bb %select.exit498
 select.else497:
   500 = call i32 h(i32 5)
   501 = icmp ne i32 %500, i32 0
   br i1 %501, bb %select.then502, bb %select.else503
 select.exit498:
-  520 = load i1 from ptr %select499
-  br i1 %520, bb %select.then521, bb %select.else522
+  700 = phi [bb %select.exit514, i1 %699, bb %select.then496, i1 ub]
+  698 = phi [bb %select.exit514, i1 %697, bb %select.then496, i1 ub]
+  692 = phi [bb %select.exit514, i1 %519, bb %select.then496, i1 1]
+  br i1 %692, bb %select.then521, bb %select.else522
 select.then502:
   506 = call i32 h(i32 6)
   507 = icmp ne i32 %506, i32 0
   508 =  i1 %507, i1 1
   509 = zext i1 %508 to i32
   510 = icmp ne i32 %509, i32 0
-  store i1 %510 to ptr %select505
   br bb %select.exit504
 select.else503:
-  store i1 0 to ptr %select505
   br bb %select.exit504
 select.exit504:
-  511 = load i1 from ptr %select505
-  br i1 %511, bb %select.then512, bb %select.else513
+  697 = phi [bb %select.else503, i1 0, bb %select.then502, i1 %510]
+  br i1 %697, bb %select.then512, bb %select.else513
 select.then512:
   516 = call i32 h(i32 7)
   517 = icmp ne i32 %516, i32 0
-  store i1 %517 to ptr %select515
   br bb %select.exit514
 select.else513:
-  store i1 0 to ptr %select515
   br bb %select.exit514
 select.exit514:
-  518 = load i1 from ptr %select515
-  519 = icmp ne i1 %518, i1 0
-  store i1 %519 to ptr %select499
+  699 = phi [bb %select.else513, i1 0, bb %select.then512, i1 %517]
+  519 = icmp ne i1 %699, i1 0
   br bb %select.exit498
 select.then521:
-  store i1 1 to ptr %select524
   br bb %select.exit523
 select.else522:
   525 = call i32 h(i32 8)
@@ -803,19 +617,16 @@ select.else522:
   528 = zext i1 %527 to i32
   529 = icmp ne i32 %528, i32 0
   530 = icmp ne i1 %529, i1 0
-  store i1 %530 to ptr %select524
   br bb %select.exit523
 select.exit523:
-  531 = load i1 from ptr %select524
-  br i1 %531, bb %then532, bb %if.exit533
+  736 = phi [bb %select.else522, i1 %530, bb %select.then521, i1 1]
+  br i1 %736, bb %then532, bb %if.exit533
 then532:
-  store i32 1 to ptr %ans
   br bb %if.exit533
 if.exit533:
+  690 = phi [bb %select.exit523, i32 0, bb %then532, i32 1]
   sum.load534 = load i32 from ptr @sum
-  ans.load535 = load i32 from ptr %ans
-  536 = mul i32 %sum.load534, i32 %ans.load535
-  store i32 0 to ptr %ans
+  536 = mul i32 %sum.load534, i32 %690
   537 = call i32 h(i32 9)
   538 = icmp ne i32 %537, i32 0
   br i1 %538, bb %select.then539, bb %select.else540
@@ -825,16 +636,13 @@ select.then539:
   545 =  i1 %544, i1 1
   546 = zext i1 %545 to i32
   547 = icmp ne i32 %546, i32 0
-  store i1 %547 to ptr %select542
   br bb %select.exit541
 select.else540:
-  store i1 0 to ptr %select542
   br bb %select.exit541
 select.exit541:
-  548 = load i1 from ptr %select542
-  br i1 %548, bb %select.then549, bb %select.else550
+  735 = phi [bb %select.else540, i1 0, bb %select.then539, i1 %547]
+  br i1 %735, bb %select.then549, bb %select.else550
 select.then549:
-  store i1 1 to ptr %select552
   br bb %select.exit551
 select.else550:
   553 = call i32 h(i32 11)
@@ -843,13 +651,11 @@ select.else550:
   556 = zext i1 %555 to i32
   557 = icmp ne i32 %556, i32 0
   558 = icmp ne i1 %557, i1 0
-  store i1 %558 to ptr %select552
   br bb %select.exit551
 select.exit551:
-  559 = load i1 from ptr %select552
-  br i1 %559, bb %select.then560, bb %select.else561
+  766 = phi [bb %select.else550, i1 %558, bb %select.then549, i1 1]
+  br i1 %766, bb %select.then560, bb %select.else561
 select.then560:
-  store i1 1 to ptr %select563
   br bb %select.exit562
 select.else561:
   564 = call i32 h(i32 12)
@@ -858,13 +664,11 @@ select.else561:
   567 = zext i1 %566 to i32
   568 = icmp ne i32 %567, i32 0
   569 = icmp ne i1 %568, i1 0
-  store i1 %569 to ptr %select563
   br bb %select.exit562
 select.exit562:
-  570 = load i1 from ptr %select563
-  br i1 %570, bb %select.then571, bb %select.else572
+  725 = phi [bb %select.else561, i1 %569, bb %select.then560, i1 1]
+  br i1 %725, bb %select.then571, bb %select.else572
 select.then571:
-  store i1 1 to ptr %select574
   br bb %select.exit573
 select.else572:
   575 = call i32 h(i32 13)
@@ -873,141 +677,121 @@ select.else572:
   578 = zext i1 %577 to i32
   579 = icmp ne i32 %578, i32 0
   580 = icmp ne i1 %579, i1 0
-  store i1 %580 to ptr %select574
   br bb %select.exit573
 select.exit573:
-  581 = load i1 from ptr %select574
-  br i1 %581, bb %select.then582, bb %select.else583
+  722 = phi [bb %select.else572, i1 %580, bb %select.then571, i1 1]
+  br i1 %722, bb %select.then582, bb %select.else583
 select.then582:
-  store i1 1 to ptr %select585
   br bb %select.exit584
 select.else583:
   586 = call i32 h(i32 14)
   587 = icmp ne i32 %586, i32 0
   br i1 %587, bb %select.then588, bb %select.else589
 select.exit584:
-  596 = load i1 from ptr %select585
-  br i1 %596, bb %then597, bb %if.exit598
+  721 = phi [bb %select.exit590, i1 %595, bb %select.then582, i1 1]
+  713 = phi [bb %select.exit590, i1 %712, bb %select.then582, i1 ub]
+  br i1 %721, bb %then597, bb %if.exit598
 select.then588:
   592 = call i32 h(i32 15)
   593 = icmp ne i32 %592, i32 0
-  store i1 %593 to ptr %select591
   br bb %select.exit590
 select.else589:
-  store i1 0 to ptr %select591
   br bb %select.exit590
 select.exit590:
-  594 = load i1 from ptr %select591
-  595 = icmp ne i1 %594, i1 0
-  store i1 %595 to ptr %select585
+  712 = phi [bb %select.else589, i1 0, bb %select.then588, i1 %593]
+  595 = icmp ne i1 %712, i1 0
   br bb %select.exit584
 then597:
-  store i32 1 to ptr %ans
   br bb %if.exit598
 if.exit598:
+  689 = phi [bb %select.exit584, i32 0, bb %then597, i32 1]
   sum.load599 = load i32 from ptr @sum
-  ans.load600 = load i32 from ptr %ans
-  601 = sub i32 %sum.load599, i32 %ans.load600
-  store i32 0 to ptr %ans
+  601 = sub i32 %sum.load599, i32 %689
   602 = call i32 h(i32 0)
   603 = icmp ne i32 %602, i32 0
   br i1 %603, bb %select.then604, bb %select.else605
 select.then604:
   608 = call i32 h(i32 2)
   609 = icmp ne i32 %608, i32 0
-  store i1 %609 to ptr %select607
   br bb %select.exit606
 select.else605:
-  store i1 0 to ptr %select607
   br bb %select.exit606
 select.exit606:
-  610 = load i1 from ptr %select607
-  br i1 %610, bb %select.then611, bb %select.else612
+  751 = phi [bb %select.else605, i1 0, bb %select.then604, i1 %609]
+  br i1 %751, bb %select.then611, bb %select.else612
 select.then611:
   615 = call i32 h(i32 3)
   616 = icmp ne i32 %615, i32 0
   617 =  i1 %616, i1 1
   618 = zext i1 %617 to i32
   619 = icmp ne i32 %618, i32 0
-  store i1 %619 to ptr %select614
   br bb %select.exit613
 select.else612:
-  store i1 0 to ptr %select614
   br bb %select.exit613
 select.exit613:
-  620 = load i1 from ptr %select614
-  br i1 %620, bb %select.then621, bb %select.else622
+  718 = phi [bb %select.else612, i1 0, bb %select.then611, i1 %619]
+  br i1 %718, bb %select.then621, bb %select.else622
 select.then621:
   625 = call i32 h(i32 4)
   626 = icmp ne i32 %625, i32 0
   627 =  i1 %626, i1 1
   628 = zext i1 %627 to i32
   629 = icmp ne i32 %628, i32 0
-  store i1 %629 to ptr %select624
   br bb %select.exit623
 select.else622:
-  store i1 0 to ptr %select624
   br bb %select.exit623
 select.exit623:
-  630 = load i1 from ptr %select624
-  br i1 %630, bb %select.then631, bb %select.else632
+  715 = phi [bb %select.else622, i1 0, bb %select.then621, i1 %629]
+  br i1 %715, bb %select.then631, bb %select.else632
 select.then631:
-  store i1 1 to ptr %select634
   br bb %select.exit633
 select.else632:
   635 = call i32 h(i32 5)
   636 = icmp ne i32 %635, i32 0
   637 = icmp ne i1 %636, i1 0
-  store i1 %637 to ptr %select634
   br bb %select.exit633
 select.exit633:
-  638 = load i1 from ptr %select634
-  br i1 %638, bb %select.then639, bb %select.else640
+  709 = phi [bb %select.else632, i1 %637, bb %select.then631, i1 1]
+  br i1 %709, bb %select.then639, bb %select.else640
 select.then639:
-  store i1 1 to ptr %select642
   br bb %select.exit641
 select.else640:
   643 = call i32 h(i32 6)
   644 = icmp ne i32 %643, i32 0
   br i1 %644, bb %select.then645, bb %select.else646
 select.exit641:
-  656 = load i1 from ptr %select642
-  br i1 %656, bb %select.then657, bb %select.else658
+  714 = phi [bb %select.exit647, i1 %655, bb %select.then639, i1 1]
+  708 = phi [bb %select.exit647, i1 %707, bb %select.then639, i1 ub]
+  br i1 %714, bb %select.then657, bb %select.else658
 select.then645:
   649 = call i32 h(i32 7)
   650 = icmp ne i32 %649, i32 0
   651 =  i1 %650, i1 1
   652 = zext i1 %651 to i32
   653 = icmp ne i32 %652, i32 0
-  store i1 %653 to ptr %select648
   br bb %select.exit647
 select.else646:
-  store i1 0 to ptr %select648
   br bb %select.exit647
 select.exit647:
-  654 = load i1 from ptr %select648
-  655 = icmp ne i1 %654, i1 0
-  store i1 %655 to ptr %select642
+  707 = phi [bb %select.else646, i1 0, bb %select.then645, i1 %653]
+  655 = icmp ne i1 %707, i1 0
   br bb %select.exit641
 select.then657:
-  store i1 1 to ptr %select660
   br bb %select.exit659
 select.else658:
   661 = call i32 h(i32 8)
   662 = icmp ne i32 %661, i32 0
   663 = icmp ne i1 %662, i1 0
-  store i1 %663 to ptr %select660
   br bb %select.exit659
 select.exit659:
-  664 = load i1 from ptr %select660
-  br i1 %664, bb %then665, bb %if.exit666
+  703 = phi [bb %select.else658, i1 %663, bb %select.then657, i1 1]
+  br i1 %703, bb %then665, bb %if.exit666
 then665:
-  store i32 1 to ptr %ans
   br bb %if.exit666
 if.exit666:
+  688 = phi [bb %select.exit659, i32 0, bb %then665, i32 1]
   sum.load667 = load i32 from ptr @sum
-  ans.load668 = load i32 from ptr %ans
-  669 = add i32 %sum.load667, i32 %ans.load668
+  669 = add i32 %sum.load667, i32 %688
   call void putint(i32 %669)
   ret i32 0
 }
@@ -1028,39 +812,27 @@ external void putarray(i32 , ptr )
 
 i32 f(i32 i, i32 j) {
 entry:
-  %select = stack 1
-  %j.stack = stack 4
-  %i.stack = stack 4
-  store i32 %i to ptr %i.stack
-  store i32 %j to ptr %j.stack
   sum.load = load i32 from ptr @sum
   4 = add i32 %sum.load, i32 1
   store i32 %4 to ptr @sum
-  i.stack.load = load i32 from ptr %i.stack
-  j.stack.load = load i32 from ptr %j.stack
-  7 = icmp sge i32 %i.stack.load, i32 %j.stack.load
+  7 = icmp sge i32 %i, i32 %j
   br i1 %7, bb %select.then, bb %select.else
 select.then:
-  store i1 1 to ptr %select
   br bb %select.exit
 select.else:
-  i.stack.load12 = load i32 from ptr %i.stack
-  13 = icmp sge i32 %i.stack.load12, i32 20
+  13 = icmp sge i32 %i, i32 20
   14 = icmp ne i1 %13, i1 0
-  store i1 %14 to ptr %select
   br bb %select.exit
 select.exit:
-  15 = load i1 from ptr %select
-  br i1 %15, bb %then, bb %if.exit
+  782 = phi [bb %select.else, i1 %14, bb %select.then, i1 1]
+  br i1 %782, bb %then, bb %if.exit
 then:
   ret i32 0
 if.exit:
-  i.stack.load18 = load i32 from ptr %i.stack
-  19 = mul i32 %i.stack.load18, i32 4
+  19 = mul i32 %i, i32 4
   20 = ptradd ptr @array, i32 %19
   store i32 1 to ptr %20
-  i.stack.load21 = load i32 from ptr %i.stack
-  22 = icmp eq i32 %i.stack.load21, i32 0
+  22 = icmp eq i32 %i, i32 0
   br i1 %22, bb %then23, bb %else
 then23:
   26 = mul i32 0, i32 4
@@ -1070,8 +842,7 @@ then23:
 if.exit24:
   unreachable
 else:
-  i.stack.load29 = load i32 from ptr %i.stack
-  30 = sub i32 %i.stack.load29, i32 1
+  30 = sub i32 %i, i32 1
   31 = mul i32 %30, i32 4
   32 = ptradd ptr @array, i32 %31
   32.load = load i32 from ptr %32

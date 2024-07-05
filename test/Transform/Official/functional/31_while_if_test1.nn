@@ -30,44 +30,34 @@ external void putfarray(i32 , ptr )
 
 i32 whileIf() {
 entry:
-  %b = stack 4
-  %a = stack 4
-  store i32 0 to ptr %a
-  store i32 0 to ptr %b
   br bb %while.cond
 while.cond:
-  a.load = load i32 from ptr %a
-  7 = icmp slt i32 %a.load, i32 100
+  29 = phi [bb %entry, i32 0, bb %if.exit, i32 %28]
+  26 = phi [bb %entry, i32 0, bb %if.exit, i32 %22]
+  7 = icmp slt i32 %26, i32 100
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  a.load9 = load i32 from ptr %a
-  10 = icmp eq i32 %a.load9, i32 5
+  10 = icmp eq i32 %26, i32 5
   br i1 %10, bb %then, bb %else
 while.exit:
-  b.load = load i32 from ptr %b
-  ret i32 %b.load
+  ret i32 %29
 then:
-  store i32 25 to ptr %b
   br bb %if.exit
 if.exit:
-  a.load21 = load i32 from ptr %a
-  22 = add i32 %a.load21, i32 1
-  store i32 %22 to ptr %a
+  28 = phi [bb %if.exit17, i32 %27, bb %then, i32 25]
+  22 = add i32 %26, i32 1
   br bb %while.cond
 else:
-  a.load14 = load i32 from ptr %a
-  15 = icmp eq i32 %a.load14, i32 10
+  15 = icmp eq i32 %26, i32 10
   br i1 %15, bb %then16, bb %else18
 then16:
-  store i32 42 to ptr %b
   br bb %if.exit17
 if.exit17:
+  27 = phi [bb %else18, i32 %20, bb %then16, i32 42]
   br bb %if.exit
 else18:
-  a.load19 = load i32 from ptr %a
-  20 = mul i32 %a.load19, i32 2
-  store i32 %20 to ptr %b
+  20 = mul i32 %26, i32 2
   br bb %if.exit17
 }
 

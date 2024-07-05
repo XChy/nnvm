@@ -10,57 +10,48 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1911:
-  %j = stack 4
-  %i = stack 4
   %a = stack 100
-  %N = stack 4
   1913 = call i32 getint()
-  store i32 %1913 to ptr %N
   br bb %while.cond
 while.cond:
-  N.load = load i32 from ptr %N
-  1919 = icmp sgt i32 %N.load, i32 0
+  1966 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %1965]
+  1963 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %1962]
+  1961 = phi [bb %entry1911, i32 %1913, bb %if.exit1949, i32 %1960]
+  1919 = icmp sgt i32 %1961, i32 0
   1920 = icmp ne i1 %1919, i1 0
   br i1 %1920, bb %while.body, bb %while.exit
 while.body:
-  store i32 0 to ptr %i
   br bb %while.cond1922
 while.exit:
   ret i32 0
 while.cond1922:
-  i.load = load i32 from ptr %i
-  1926 = icmp slt i32 %i.load, i32 5
+  1965 = phi [bb %while.body, i32 %1966, bb %while.exit1931, i32 %1964]
+  1962 = phi [bb %while.body, i32 0, bb %while.exit1931, i32 %1945]
+  1926 = icmp slt i32 %1962, i32 5
   1927 = icmp ne i1 %1926, i1 0
   br i1 %1927, bb %while.body1923, bb %while.exit1924
 while.body1923:
-  store i32 0 to ptr %j
   br bb %while.cond1929
 while.exit1924:
   1946 = call i32 model(ptr %a)
   1947 = icmp ne i32 %1946, i32 0
   br i1 %1947, bb %then1948, bb %else
 while.cond1929:
-  j.load = load i32 from ptr %j
-  1933 = icmp slt i32 %j.load, i32 5
+  1964 = phi [bb %while.body1923, i32 0, bb %while.body1930, i32 %1943]
+  1933 = icmp slt i32 %1964, i32 5
   1934 = icmp ne i1 %1933, i1 0
   br i1 %1934, bb %while.body1930, bb %while.exit1931
 while.body1930:
-  i.load1935 = load i32 from ptr %i
-  1936 = mul i32 %i.load1935, i32 20
+  1936 = mul i32 %1962, i32 20
   1937 = ptradd ptr %a, i32 %1936
-  j.load1938 = load i32 from ptr %j
-  1939 = mul i32 %j.load1938, i32 4
+  1939 = mul i32 %1964, i32 4
   1940 = ptradd ptr %1937, i32 %1939
   1941 = call i32 getint()
   store i32 %1941 to ptr %1940
-  j.load1942 = load i32 from ptr %j
-  1943 = add i32 %j.load1942, i32 1
-  store i32 %1943 to ptr %j
+  1943 = add i32 %1964, i32 1
   br bb %while.cond1929
 while.exit1931:
-  i.load1944 = load i32 from ptr %i
-  1945 = add i32 %i.load1944, i32 1
-  store i32 %1945 to ptr %i
+  1945 = add i32 %1962, i32 1
   br bb %while.cond1922
 then1948:
   call void putch(i32 99)
@@ -69,9 +60,7 @@ then1948:
   call void putch(i32 10)
   br bb %if.exit1949
 if.exit1949:
-  N.load1959 = load i32 from ptr %N
-  1960 = sub i32 %N.load1959, i32 1
-  store i32 %1960 to ptr %N
+  1960 = sub i32 %1961, i32 1
   br bb %while.cond
 else:
   call void putch(i32 100)
@@ -2003,21 +1992,17 @@ external void putfarray(i32 , ptr )
 
 i32 relu_reg(i32 a) {
 entry:
-  %a.stack = stack 4
-  store i32 %a to ptr %a.stack
   3 = icmp sgt i32 %a, i32 127
   br i1 %3, bb %then, bb %if.exit
 then:
   ret i32 127
 if.exit:
-  a.stack.load6 = load i32 from ptr %a.stack
-  7 = icmp slt i32 %a.stack.load6, i32 0
+  7 = icmp slt i32 %a, i32 0
   br i1 %7, bb %then8, bb %if.exit9
 then8:
   ret i32 0
 if.exit9:
-  a.stack.load10 = load i32 from ptr %a.stack
-  ret i32 %a.stack.load10
+  ret i32 %a
 }
 
 

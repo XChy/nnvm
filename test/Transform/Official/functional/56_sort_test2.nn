@@ -11,8 +11,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry52:
-  %tmp = stack 4
-  %i74 = stack 4
   %a = stack 40
   store i32 10 to ptr @n
   54 = mul i32 0, i32 4
@@ -46,26 +44,21 @@ entry52:
   73 = ptradd ptr %a, i32 %72
   store i32 8 to ptr %73
   75 = call i32 insertsort(ptr %a)
-  store i32 %75 to ptr %i74
   br bb %while.cond76
 while.cond76:
-  i74.load = load i32 from ptr %i74
+  95 = phi [bb %entry52, i32 ub, bb %while.body77, i32 10]
+  94 = phi [bb %entry52, i32 %75, bb %while.body77, i32 %93]
   n.load80 = load i32 from ptr @n
-  81 = icmp slt i32 %i74.load, i32 %n.load80
+  81 = icmp slt i32 %94, i32 %n.load80
   82 = icmp ne i1 %81, i1 0
   br i1 %82, bb %while.body77, bb %while.exit78
 while.body77:
-  i74.load84 = load i32 from ptr %i74
-  85 = mul i32 %i74.load84, i32 4
+  85 = mul i32 %94, i32 4
   86 = ptradd ptr %a, i32 %85
   86.load = load i32 from ptr %86
-  store i32 %86.load to ptr %tmp
   call void putint(i32 %86.load)
-  store i32 10 to ptr %tmp
   call void putch(i32 10)
-  i74.load92 = load i32 from ptr %i74
-  93 = add i32 %i74.load92, i32 1
-  store i32 %93 to ptr %i74
+  93 = add i32 %94, i32 1
   br bb %while.cond76
 while.exit78:
   ret i32 0
@@ -87,75 +80,58 @@ external void putfarray(i32 , ptr )
 
 i32 insertsort(ptr a) {
 entry:
-  %select = stack 1
-  %j = stack 4
-  %temp = stack 4
-  %i = stack 4
-  store i32 1 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
+  102 = phi [bb %entry, i1 ub, bb %while.exit19, i1 %100]
+  99 = phi [bb %entry, i32 ub, bb %while.exit19, i32 %98]
+  97 = phi [bb %entry, i32 ub, bb %while.exit19, i32 %12.load]
+  96 = phi [bb %entry, i32 1, bb %while.exit19, i32 %51]
   n.load = load i32 from ptr @n
-  7 = icmp slt i32 %i.load, i32 %n.load
+  7 = icmp slt i32 %96, i32 %n.load
   8 = icmp ne i1 %7, i1 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  i.load10 = load i32 from ptr %i
-  11 = mul i32 %i.load10, i32 4
+  11 = mul i32 %96, i32 4
   12 = ptradd ptr %a, i32 %11
   12.load = load i32 from ptr %12
-  store i32 %12.load to ptr %temp
-  i.load15 = load i32 from ptr %i
-  16 = sub i32 %i.load15, i32 1
-  store i32 %16 to ptr %j
+  16 = sub i32 %96, i32 1
   br bb %while.cond17
 while.exit:
   ret i32 0
 while.cond17:
-  j.load = load i32 from ptr %j
+  101 = phi [bb %while.body, i1 %102, bb %while.body18, i1 %100]
+  98 = phi [bb %while.body, i32 %16, bb %while.body18, i32 %44]
   21 = sub i32 0, i32 1
-  22 = icmp sgt i32 %j.load, i32 %21
+  22 = icmp sgt i32 %98, i32 %21
   br i1 %22, bb %select.then, bb %select.else
 while.body18:
-  j.load35 = load i32 from ptr %j
-  36 = add i32 %j.load35, i32 1
+  36 = add i32 %98, i32 1
   37 = mul i32 %36, i32 4
   38 = ptradd ptr %a, i32 %37
-  j.load39 = load i32 from ptr %j
-  40 = mul i32 %j.load39, i32 4
+  40 = mul i32 %98, i32 4
   41 = ptradd ptr %a, i32 %40
   41.load = load i32 from ptr %41
   store i32 %41.load to ptr %38
-  j.load43 = load i32 from ptr %j
-  44 = sub i32 %j.load43, i32 1
-  store i32 %44 to ptr %j
+  44 = sub i32 %98, i32 1
   br bb %while.cond17
 while.exit19:
-  j.load45 = load i32 from ptr %j
-  46 = add i32 %j.load45, i32 1
+  46 = add i32 %98, i32 1
   47 = mul i32 %46, i32 4
   48 = ptradd ptr %a, i32 %47
-  temp.load49 = load i32 from ptr %temp
-  store i32 %temp.load49 to ptr %48
-  i.load50 = load i32 from ptr %i
-  51 = add i32 %i.load50, i32 1
-  store i32 %51 to ptr %i
+  store i32 %12.load to ptr %48
+  51 = add i32 %96, i32 1
   br bb %while.cond
 select.then:
-  temp.load = load i32 from ptr %temp
-  j.load28 = load i32 from ptr %j
-  29 = mul i32 %j.load28, i32 4
+  29 = mul i32 %98, i32 4
   30 = ptradd ptr %a, i32 %29
   30.load = load i32 from ptr %30
-  32 = icmp slt i32 %temp.load, i32 %30.load
-  store i1 %32 to ptr %select
+  32 = icmp slt i32 %12.load, i32 %30.load
   br bb %select.exit
 select.else:
-  store i1 0 to ptr %select
   br bb %select.exit
 select.exit:
-  33 = load i1 from ptr %select
-  34 = icmp ne i1 %33, i1 0
+  100 = phi [bb %select.else, i1 0, bb %select.then, i1 %32]
+  34 = icmp ne i1 %100, i1 0
   br i1 %34, bb %while.body18, bb %while.exit19
 }
 

@@ -7,155 +7,99 @@ global ptr d init with i32 0
 global ptr mod init with i32 998244353
 i32 fft(ptr arr, i32 begin_pos, i32 n, i32 w) {
 entry84:
-  %y = stack 4
-  %x = stack 4
-  %wn = stack 4
-  %i92 = stack 4
-  %w.stack = stack 4
-  %n.stack = stack 4
-  %begin_pos.stack = stack 4
-  store i32 %begin_pos to ptr %begin_pos.stack
-  store i32 %n to ptr %n.stack
-  store i32 %w to ptr %w.stack
-  n.stack.load = load i32 from ptr %n.stack
-  89 = icmp eq i32 %n.stack.load, i32 1
+  89 = icmp eq i32 %n, i32 1
   br i1 %89, bb %then90, bb %if.exit91
 then90:
   ret i32 1
 if.exit91:
-  store i32 0 to ptr %i92
   br bb %while.cond93
 while.cond93:
-  i92.load = load i32 from ptr %i92
-  n.stack.load97 = load i32 from ptr %n.stack
-  98 = icmp slt i32 %i92.load, i32 %n.stack.load97
+  303 = phi [bb %if.exit91, i32 0, bb %if.exit104, i32 %130]
+  98 = icmp slt i32 %303, i32 %n
   99 = icmp ne i1 %98, i1 0
   br i1 %99, bb %while.body94, bb %while.exit95
 while.body94:
-  i92.load100 = load i32 from ptr %i92
-  101 = srem i32 %i92.load100, i32 2
+  101 = srem i32 %303, i32 2
   102 = icmp eq i32 %101, i32 0
   br i1 %102, bb %then103, bb %else105
 while.exit95:
-  begin_pos.stack.load131 = load i32 from ptr %begin_pos.stack
-  n.stack.load132 = load i32 from ptr %n.stack
-  133 = call i32 memmove(ptr %arr, i32 %begin_pos.stack.load131, ptr @temp, i32 %n.stack.load132)
-  begin_pos.stack.load134 = load i32 from ptr %begin_pos.stack
-  n.stack.load135 = load i32 from ptr %n.stack
-  136 = sdiv i32 %n.stack.load135, i32 2
-  w.stack.load = load i32 from ptr %w.stack
-  w.stack.load138 = load i32 from ptr %w.stack
-  139 = call i32 multiply(i32 %w.stack.load, i32 %w.stack.load138)
-  140 = call i32 fft(ptr %arr, i32 %begin_pos.stack.load134, i32 %136, i32 %139)
-  begin_pos.stack.load141 = load i32 from ptr %begin_pos.stack
-  n.stack.load142 = load i32 from ptr %n.stack
-  143 = sdiv i32 %n.stack.load142, i32 2
-  144 = add i32 %begin_pos.stack.load141, i32 %143
-  n.stack.load145 = load i32 from ptr %n.stack
-  146 = sdiv i32 %n.stack.load145, i32 2
-  w.stack.load147 = load i32 from ptr %w.stack
-  w.stack.load148 = load i32 from ptr %w.stack
-  149 = call i32 multiply(i32 %w.stack.load147, i32 %w.stack.load148)
+  133 = call i32 memmove(ptr %arr, i32 %begin_pos, ptr @temp, i32 %n)
+  136 = sdiv i32 %n, i32 2
+  139 = call i32 multiply(i32 %w, i32 %w)
+  140 = call i32 fft(ptr %arr, i32 %begin_pos, i32 %136, i32 %139)
+  143 = sdiv i32 %n, i32 2
+  144 = add i32 %begin_pos, i32 %143
+  146 = sdiv i32 %n, i32 2
+  149 = call i32 multiply(i32 %w, i32 %w)
   150 = call i32 fft(ptr %arr, i32 %144, i32 %146, i32 %149)
-  store i32 0 to ptr %i92
-  store i32 1 to ptr %wn
   br bb %while.cond152
 then103:
-  i92.load106 = load i32 from ptr %i92
-  107 = sdiv i32 %i92.load106, i32 2
+  107 = sdiv i32 %303, i32 2
   108 = mul i32 %107, i32 4
   109 = ptradd ptr @temp, i32 %108
-  i92.load110 = load i32 from ptr %i92
-  begin_pos.stack.load = load i32 from ptr %begin_pos.stack
-  112 = add i32 %i92.load110, i32 %begin_pos.stack.load
+  112 = add i32 %303, i32 %begin_pos
   113 = mul i32 %112, i32 4
   114 = ptradd ptr %arr, i32 %113
   114.load = load i32 from ptr %114
   store i32 %114.load to ptr %109
   br bb %if.exit104
 if.exit104:
-  i92.load129 = load i32 from ptr %i92
-  130 = add i32 %i92.load129, i32 1
-  store i32 %130 to ptr %i92
+  130 = add i32 %303, i32 1
   br bb %while.cond93
 else105:
-  n.stack.load116 = load i32 from ptr %n.stack
-  117 = sdiv i32 %n.stack.load116, i32 2
-  i92.load118 = load i32 from ptr %i92
-  119 = sdiv i32 %i92.load118, i32 2
+  117 = sdiv i32 %n, i32 2
+  119 = sdiv i32 %303, i32 2
   120 = add i32 %117, i32 %119
   121 = mul i32 %120, i32 4
   122 = ptradd ptr @temp, i32 %121
-  i92.load123 = load i32 from ptr %i92
-  begin_pos.stack.load124 = load i32 from ptr %begin_pos.stack
-  125 = add i32 %i92.load123, i32 %begin_pos.stack.load124
+  125 = add i32 %303, i32 %begin_pos
   126 = mul i32 %125, i32 4
   127 = ptradd ptr %arr, i32 %126
   127.load = load i32 from ptr %127
   store i32 %127.load to ptr %122
   br bb %if.exit104
 while.cond152:
-  i92.load155 = load i32 from ptr %i92
-  n.stack.load156 = load i32 from ptr %n.stack
-  157 = sdiv i32 %n.stack.load156, i32 2
-  158 = icmp slt i32 %i92.load155, i32 %157
+  306 = phi [bb %while.exit95, i32 ub, bb %while.body153, i32 %175.load]
+  305 = phi [bb %while.exit95, i32 ub, bb %while.body153, i32 %165.load]
+  304 = phi [bb %while.exit95, i32 1, bb %while.body153, i32 %208]
+  302 = phi [bb %while.exit95, i32 0, bb %while.body153, i32 %210]
+  157 = sdiv i32 %n, i32 2
+  158 = icmp slt i32 %302, i32 %157
   159 = icmp ne i1 %158, i1 0
   br i1 %159, bb %while.body153, bb %while.exit154
 while.body153:
-  begin_pos.stack.load161 = load i32 from ptr %begin_pos.stack
-  i92.load162 = load i32 from ptr %i92
-  163 = add i32 %begin_pos.stack.load161, i32 %i92.load162
+  163 = add i32 %begin_pos, i32 %302
   164 = mul i32 %163, i32 4
   165 = ptradd ptr %arr, i32 %164
   165.load = load i32 from ptr %165
-  store i32 %165.load to ptr %x
-  begin_pos.stack.load168 = load i32 from ptr %begin_pos.stack
-  i92.load169 = load i32 from ptr %i92
-  170 = add i32 %begin_pos.stack.load168, i32 %i92.load169
-  n.stack.load171 = load i32 from ptr %n.stack
-  172 = sdiv i32 %n.stack.load171, i32 2
+  170 = add i32 %begin_pos, i32 %302
+  172 = sdiv i32 %n, i32 2
   173 = add i32 %170, i32 %172
   174 = mul i32 %173, i32 4
   175 = ptradd ptr %arr, i32 %174
   175.load = load i32 from ptr %175
-  store i32 %175.load to ptr %y
-  begin_pos.stack.load177 = load i32 from ptr %begin_pos.stack
-  i92.load178 = load i32 from ptr %i92
-  179 = add i32 %begin_pos.stack.load177, i32 %i92.load178
+  179 = add i32 %begin_pos, i32 %302
   180 = mul i32 %179, i32 4
   181 = ptradd ptr %arr, i32 %180
-  x.load = load i32 from ptr %x
-  wn.load = load i32 from ptr %wn
-  185 = call i32 multiply(i32 %wn.load, i32 %175.load)
-  186 = add i32 %x.load, i32 %185
+  185 = call i32 multiply(i32 %304, i32 %175.load)
+  186 = add i32 %165.load, i32 %185
   mod.load187 = load i32 from ptr @mod
   188 = srem i32 %186, i32 %mod.load187
   store i32 %188 to ptr %181
-  begin_pos.stack.load189 = load i32 from ptr %begin_pos.stack
-  i92.load190 = load i32 from ptr %i92
-  191 = add i32 %begin_pos.stack.load189, i32 %i92.load190
-  n.stack.load192 = load i32 from ptr %n.stack
-  193 = sdiv i32 %n.stack.load192, i32 2
+  191 = add i32 %begin_pos, i32 %302
+  193 = sdiv i32 %n, i32 2
   194 = add i32 %191, i32 %193
   195 = mul i32 %194, i32 4
   196 = ptradd ptr %arr, i32 %195
-  x.load197 = load i32 from ptr %x
-  wn.load198 = load i32 from ptr %wn
-  y.load199 = load i32 from ptr %y
-  200 = call i32 multiply(i32 %wn.load198, i32 %y.load199)
-  201 = sub i32 %x.load197, i32 %200
+  200 = call i32 multiply(i32 %304, i32 %175.load)
+  201 = sub i32 %165.load, i32 %200
   mod.load202 = load i32 from ptr @mod
   203 = add i32 %201, i32 %mod.load202
   mod.load204 = load i32 from ptr @mod
   205 = srem i32 %203, i32 %mod.load204
   store i32 %205 to ptr %196
-  wn.load206 = load i32 from ptr %wn
-  w.stack.load207 = load i32 from ptr %w.stack
-  208 = call i32 multiply(i32 %wn.load206, i32 %w.stack.load207)
-  store i32 %208 to ptr %wn
-  i92.load209 = load i32 from ptr %i92
-  210 = add i32 %i92.load209, i32 1
-  store i32 %210 to ptr %i92
+  208 = call i32 multiply(i32 %304, i32 %w)
+  210 = add i32 %302, i32 1
   br bb %while.cond152
 while.exit154:
   ret i32 0
@@ -163,37 +107,24 @@ while.exit154:
 
 i32 power(i32 a, i32 b) {
 entry36:
-  %cur43 = stack 4
-  %b.stack38 = stack 4
-  %a.stack37 = stack 4
-  store i32 %a to ptr %a.stack37
-  store i32 %b to ptr %b.stack38
   40 = icmp eq i32 %b, i32 0
   br i1 %40, bb %then41, bb %if.exit42
 then41:
   ret i32 1
 if.exit42:
-  a.stack37.load = load i32 from ptr %a.stack37
-  b.stack38.load45 = load i32 from ptr %b.stack38
-  46 = sdiv i32 %b.stack38.load45, i32 2
-  47 = call i32 power(i32 %a.stack37.load, i32 %46)
-  store i32 %47 to ptr %cur43
+  46 = sdiv i32 %b, i32 2
+  47 = call i32 power(i32 %a, i32 %46)
   50 = call i32 multiply(i32 %47, i32 %47)
-  store i32 %50 to ptr %cur43
-  b.stack38.load51 = load i32 from ptr %b.stack38
-  52 = srem i32 %b.stack38.load51, i32 2
+  52 = srem i32 %b, i32 2
   53 = icmp eq i32 %52, i32 1
   br i1 %53, bb %then54, bb %else56
 then54:
-  cur43.load57 = load i32 from ptr %cur43
-  a.stack37.load58 = load i32 from ptr %a.stack37
-  59 = call i32 multiply(i32 %cur43.load57, i32 %a.stack37.load58)
+  59 = call i32 multiply(i32 %50, i32 %a)
   ret i32 %59
 if.exit55:
   unreachable
 else56:
-  cur43.load60 = load i32 from ptr %cur43
-  ret i32 %cur43.load60
+  ret i32 %50
 }
 
 external i32 getint()
@@ -208,21 +139,14 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry211:
-  %i243 = stack 4
-  %m = stack 4
-  %n = stack 4
   213 = call i32 getarray(ptr @a)
-  store i32 %213 to ptr %n
   215 = call i32 getarray(ptr @b)
-  store i32 %215 to ptr %m
   call void _sysy_starttime(i32 60)
   store i32 1 to ptr @d
   br bb %while.cond217
 while.cond217:
   d.load = load i32 from ptr @d
-  n.load = load i32 from ptr %n
-  m.load = load i32 from ptr %m
-  223 = add i32 %n.load, i32 %m.load
+  223 = add i32 %213, i32 %215
   224 = sub i32 %223, i32 1
   225 = icmp slt i32 %d.load, i32 %224
   226 = icmp ne i1 %225, i1 0
@@ -247,31 +171,25 @@ while.exit219:
   240 = sdiv i32 %238, i32 %d.load239
   241 = call i32 power(i32 3, i32 %240)
   242 = call i32 fft(ptr @b, i32 0, i32 %d.load236, i32 %241)
-  store i32 0 to ptr %i243
   br bb %while.cond244
 while.cond244:
-  i243.load = load i32 from ptr %i243
+  308 = phi [bb %while.exit219, i32 0, bb %while.body245, i32 %264]
   d.load248 = load i32 from ptr @d
-  249 = icmp slt i32 %i243.load, i32 %d.load248
+  249 = icmp slt i32 %308, i32 %d.load248
   250 = icmp ne i1 %249, i1 0
   br i1 %250, bb %while.body245, bb %while.exit246
 while.body245:
-  i243.load251 = load i32 from ptr %i243
-  252 = mul i32 %i243.load251, i32 4
+  252 = mul i32 %308, i32 4
   253 = ptradd ptr @a, i32 %252
-  i243.load254 = load i32 from ptr %i243
-  255 = mul i32 %i243.load254, i32 4
+  255 = mul i32 %308, i32 4
   256 = ptradd ptr @a, i32 %255
   256.load = load i32 from ptr %256
-  i243.load258 = load i32 from ptr %i243
-  259 = mul i32 %i243.load258, i32 4
+  259 = mul i32 %308, i32 4
   260 = ptradd ptr @b, i32 %259
   260.load = load i32 from ptr %260
   262 = call i32 multiply(i32 %256.load, i32 %260.load)
   store i32 %262 to ptr %253
-  i243.load263 = load i32 from ptr %i243
-  264 = add i32 %i243.load263, i32 1
-  store i32 %264 to ptr %i243
+  264 = add i32 %308, i32 1
   br bb %while.cond244
 while.exit246:
   d.load265 = load i32 from ptr @d
@@ -284,20 +202,17 @@ while.exit246:
   272 = sub i32 %267, i32 %271
   273 = call i32 power(i32 3, i32 %272)
   274 = call i32 fft(ptr @a, i32 0, i32 %d.load265, i32 %273)
-  store i32 0 to ptr %i243
   br bb %while.cond275
 while.cond275:
-  i243.load278 = load i32 from ptr %i243
+  307 = phi [bb %while.exit246, i32 0, bb %while.body276, i32 %295]
   d.load279 = load i32 from ptr @d
-  280 = icmp slt i32 %i243.load278, i32 %d.load279
+  280 = icmp slt i32 %307, i32 %d.load279
   281 = icmp ne i1 %280, i1 0
   br i1 %281, bb %while.body276, bb %while.exit277
 while.body276:
-  i243.load282 = load i32 from ptr %i243
-  283 = mul i32 %i243.load282, i32 4
+  283 = mul i32 %307, i32 4
   284 = ptradd ptr @a, i32 %283
-  i243.load285 = load i32 from ptr %i243
-  286 = mul i32 %i243.load285, i32 4
+  286 = mul i32 %307, i32 4
   287 = ptradd ptr @a, i32 %286
   287.load = load i32 from ptr %287
   d.load289 = load i32 from ptr @d
@@ -306,15 +221,11 @@ while.body276:
   292 = call i32 power(i32 %d.load289, i32 %291)
   293 = call i32 multiply(i32 %287.load, i32 %292)
   store i32 %293 to ptr %284
-  i243.load294 = load i32 from ptr %i243
-  295 = add i32 %i243.load294, i32 1
-  store i32 %295 to ptr %i243
+  295 = add i32 %307, i32 1
   br bb %while.cond275
 while.exit277:
   call void _sysy_stoptime(i32 79)
-  n.load297 = load i32 from ptr %n
-  m.load298 = load i32 from ptr %m
-  299 = add i32 %n.load297, i32 %m.load298
+  299 = add i32 %213, i32 %215
   300 = sub i32 %299, i32 1
   call void putarray(i32 %300, ptr @a)
   ret i32 0
@@ -322,37 +233,24 @@ while.exit277:
 
 i32 memmove(ptr dst, i32 dst_pos, ptr src, i32 len) {
 entry61:
-  %i = stack 4
-  %len.stack = stack 4
-  %dst_pos.stack = stack 4
-  store i32 %dst_pos to ptr %dst_pos.stack
-  store i32 %len to ptr %len.stack
-  store i32 0 to ptr %i
   br bb %while.cond
 while.cond:
-  i.load = load i32 from ptr %i
-  len.stack.load = load i32 from ptr %len.stack
-  70 = icmp slt i32 %i.load, i32 %len.stack.load
+  309 = phi [bb %entry61, i32 0, bb %while.body, i32 %82]
+  70 = icmp slt i32 %309, i32 %len
   71 = icmp ne i1 %70, i1 0
   br i1 %71, bb %while.body, bb %while.exit
 while.body:
-  dst_pos.stack.load = load i32 from ptr %dst_pos.stack
-  i.load73 = load i32 from ptr %i
-  74 = add i32 %dst_pos.stack.load, i32 %i.load73
+  74 = add i32 %dst_pos, i32 %309
   75 = mul i32 %74, i32 4
   76 = ptradd ptr %dst, i32 %75
-  i.load77 = load i32 from ptr %i
-  78 = mul i32 %i.load77, i32 4
+  78 = mul i32 %309, i32 4
   79 = ptradd ptr %src, i32 %78
   79.load = load i32 from ptr %79
   store i32 %79.load to ptr %76
-  i.load81 = load i32 from ptr %i
-  82 = add i32 %i.load81, i32 1
-  store i32 %82 to ptr %i
+  82 = add i32 %309, i32 1
   br bb %while.cond
 while.exit:
-  i.load83 = load i32 from ptr %i
-  ret i32 %i.load83
+  ret i32 %309
 }
 
 external float getfloat()
@@ -369,50 +267,35 @@ external void putch(i32 )
 
 i32 multiply(i32 a, i32 b) {
 entry:
-  %cur = stack 4
-  %b.stack = stack 4
-  %a.stack = stack 4
-  store i32 %a to ptr %a.stack
-  store i32 %b to ptr %b.stack
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %if.exit
 then:
   ret i32 0
 if.exit:
-  b.stack.load7 = load i32 from ptr %b.stack
-  8 = icmp eq i32 %b.stack.load7, i32 1
+  8 = icmp eq i32 %b, i32 1
   br i1 %8, bb %then9, bb %if.exit10
 then9:
-  a.stack.load = load i32 from ptr %a.stack
   mod.load = load i32 from ptr @mod
-  13 = srem i32 %a.stack.load, i32 %mod.load
+  13 = srem i32 %a, i32 %mod.load
   ret i32 %13
 if.exit10:
-  a.stack.load15 = load i32 from ptr %a.stack
-  b.stack.load16 = load i32 from ptr %b.stack
-  17 = sdiv i32 %b.stack.load16, i32 2
-  18 = call i32 multiply(i32 %a.stack.load15, i32 %17)
-  store i32 %18 to ptr %cur
+  17 = sdiv i32 %b, i32 2
+  18 = call i32 multiply(i32 %a, i32 %17)
   21 = add i32 %18, i32 %18
   mod.load22 = load i32 from ptr @mod
   23 = srem i32 %21, i32 %mod.load22
-  store i32 %23 to ptr %cur
-  b.stack.load24 = load i32 from ptr %b.stack
-  25 = srem i32 %b.stack.load24, i32 2
+  25 = srem i32 %b, i32 2
   26 = icmp eq i32 %25, i32 1
   br i1 %26, bb %then27, bb %else
 then27:
-  cur.load30 = load i32 from ptr %cur
-  a.stack.load31 = load i32 from ptr %a.stack
-  32 = add i32 %cur.load30, i32 %a.stack.load31
+  32 = add i32 %23, i32 %a
   mod.load33 = load i32 from ptr @mod
   34 = srem i32 %32, i32 %mod.load33
   ret i32 %34
 if.exit28:
   unreachable
 else:
-  cur.load35 = load i32 from ptr %cur
-  ret i32 %cur.load35
+  ret i32 %23
 }
 
 external void putfarray(i32 , ptr )

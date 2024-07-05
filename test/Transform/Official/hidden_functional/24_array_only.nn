@@ -11,8 +11,6 @@ entry82:
 
 void sub_impl(ptr x, ptr y, i32 rec) {
 entry57:
-  %rec.stack58 = stack 4
-  store i32 %rec to ptr %rec.stack58
   60 = icmp eq i32 %rec, i32 0
   br i1 %60, bb %then61, bb %else63
 then61:
@@ -37,8 +35,7 @@ else63:
   76.load = load i32 from ptr %76
   78 = mul i32 %76.load, i32 2
   store i32 %78 to ptr %74
-  rec.stack58.load79 = load i32 from ptr %rec.stack58
-  80 = sub i32 %rec.stack58.load79, i32 1
+  80 = sub i32 %rec, i32 1
   call void sub_impl(ptr %x, ptr %y, i32 %80)
   br bb %if.exit62
 }
@@ -71,8 +68,6 @@ external i32 getarray(ptr )
 
 void add_impl(ptr x, ptr y, i32 rec) {
 entry27:
-  %rec.stack28 = stack 4
-  store i32 %rec to ptr %rec.stack28
   30 = icmp eq i32 %rec, i32 0
   br i1 %30, bb %then31, bb %else33
 then31:
@@ -97,8 +92,7 @@ else33:
   46.load = load i32 from ptr %46
   48 = mul i32 %46.load, i32 2
   store i32 %48 to ptr %44
-  rec.stack28.load49 = load i32 from ptr %rec.stack28
-  50 = sub i32 %rec.stack28.load49, i32 1
+  50 = sub i32 %rec, i32 1
   call void add_impl(ptr %x, ptr %y, i32 %50)
   br bb %if.exit32
 }
@@ -217,8 +211,6 @@ external void _sysy_starttime(i32 )
 
 void inc_impl(ptr x, i32 rec) {
 entry:
-  %rec.stack = stack 4
-  store i32 %rec to ptr %rec.stack
   3 = icmp eq i32 %rec, i32 0
   br i1 %3, bb %then, bb %else
 then:
@@ -240,8 +232,7 @@ else:
   16.load = load i32 from ptr %16
   18 = mul i32 %16.load, i32 2
   store i32 %18 to ptr %14
-  rec.stack.load19 = load i32 from ptr %rec.stack
-  20 = sub i32 %rec.stack.load19, i32 1
+  20 = sub i32 %rec, i32 1
   call void inc_impl(ptr %x, i32 %20)
   br bb %if.exit
 }

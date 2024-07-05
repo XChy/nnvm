@@ -3,9 +3,8 @@
 namespace nnvm {
 class Argument : public Value {
 public:
-  Argument(Type *ty);
-  Argument(Type *ty, const std::string &name) {
-    type = ty;
+  Argument(Type *ty) : Value(ValueID::Argument, ty) {}
+  Argument(Type *ty, const std::string &name) : Value(ValueID::Argument, ty) {
     setName(name);
   }
 

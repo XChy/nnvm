@@ -53,6 +53,8 @@ public:
     return typeClass == Integer && getScalarBits() == bits;
   }
   bool isPointer() { return typeClass == Pointer; }
+
+  bool isIntegerOrPtr() { return isInteger() || isPointer(); }
   bool isFloat() { return typeClass == Float; }
   bool isVoid() { return typeClass == Void; }
 

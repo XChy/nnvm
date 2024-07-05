@@ -17,6 +17,7 @@ public:
 
   void setInsertPoint(BasicBlock::Iterator insertPoint) {
     this->insertPoint = insertPoint;
+    this->module = insertPoint.getBB()->getParent()->getModule();
   }
 
   BasicBlock::Iterator getInsertPoint() const { return insertPoint; }
@@ -58,6 +59,8 @@ public:
 
   Value *buildStore(Value *value, Value *dest);
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
+
+  PhiInst *buildPhi(Type *type, const std::string &name = "");
 
   Value *buildRet();
   Value *buildRet(Value *returned);

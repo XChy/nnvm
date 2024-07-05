@@ -10,8 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1:
-  %f = stack 4
-  store i32 20 to ptr %f
   ret i32 20
 }
 
