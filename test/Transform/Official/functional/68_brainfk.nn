@@ -75,7 +75,6 @@ if.exit46:
   select.phi173 = phi [bb %if.exit53, i1 %select.phi172, bb %then45, i1 %select.phi175]
   i23.phi165 = phi [bb %if.exit53, i32 %i23.phi164, bb %then45, i32 %i23.phi167]
   loop.phi156 = phi [bb %if.exit53, i32 %loop.phi155, bb %then45, i32 %loop.phi158]
-  cur_char.phi145 = phi [bb %if.exit53, i32 %cur_char.phi144, bb %then45, i32 %34.load]
   br bb %if.exit
 else47:
   51 = icmp eq i32 %34.load, i32 43
@@ -95,7 +94,6 @@ if.exit53:
   select.phi172 = phi [bb %if.exit66, i1 %select.phi171, bb %then52, i1 %select.phi175]
   i23.phi164 = phi [bb %if.exit66, i32 %i23.phi163, bb %then52, i32 %i23.phi167]
   loop.phi155 = phi [bb %if.exit66, i32 %loop.phi154, bb %then52, i32 %loop.phi158]
-  cur_char.phi144 = phi [bb %if.exit66, i32 %cur_char.phi143, bb %then52, i32 %34.load]
   br bb %if.exit46
 else54:
   64 = icmp eq i32 %34.load, i32 45
@@ -115,7 +113,6 @@ if.exit66:
   select.phi171 = phi [bb %if.exit79, i1 %select.phi170, bb %then65, i1 %select.phi175]
   i23.phi163 = phi [bb %if.exit79, i32 %i23.phi162, bb %then65, i32 %i23.phi167]
   loop.phi154 = phi [bb %if.exit79, i32 %loop.phi153, bb %then65, i32 %loop.phi158]
-  cur_char.phi143 = phi [bb %if.exit79, i32 %cur_char.phi142, bb %then65, i32 %34.load]
   br bb %if.exit53
 else67:
   77 = icmp eq i32 %34.load, i32 46
@@ -131,7 +128,6 @@ if.exit79:
   select.phi170 = phi [bb %if.exit89, i1 %select.phi169, bb %then78, i1 %select.phi175]
   i23.phi162 = phi [bb %if.exit89, i32 %i23.phi161, bb %then78, i32 %i23.phi167]
   loop.phi153 = phi [bb %if.exit89, i32 %loop.phi152, bb %then78, i32 %loop.phi158]
-  cur_char.phi142 = phi [bb %if.exit89, i32 %cur_char.phi141, bb %then78, i32 %34.load]
   br bb %if.exit66
 else80:
   87 = icmp eq i32 %34.load, i32 44
@@ -147,7 +143,6 @@ if.exit89:
   select.phi169 = phi [bb %if.exit108, i1 %select.phi, bb %then88, i1 %select.phi175]
   i23.phi161 = phi [bb %if.exit108, i32 %i23.phi160, bb %then88, i32 %i23.phi167]
   loop.phi152 = phi [bb %if.exit108, i32 %loop.phi151, bb %then88, i32 %loop.phi158]
-  cur_char.phi141 = phi [bb %if.exit108, i32 %cur_char.phi140, bb %then88, i32 %34.load]
   br bb %if.exit79
 else90:
   96 = icmp eq i32 %34.load, i32 93
@@ -169,12 +164,10 @@ then107:
 if.exit108:
   i23.phi160 = phi [bb %select.exit, i32 %i23.phi167, bb %while.exit111, i32 %i23.phi]
   loop.phi151 = phi [bb %select.exit, i32 %loop.phi158, bb %while.exit111, i32 %loop.phi150]
-  cur_char.phi140 = phi [bb %select.exit, i32 %34.load, bb %while.exit111, i32 %cur_char.phi]
   br bb %if.exit89
 while.cond109:
   i23.phi = phi [bb %then107, i32 %i23.phi167, bb %if.exit124, i32 %116]
   loop.phi150 = phi [bb %then107, i32 1, bb %if.exit124, i32 %loop.phi149]
-  cur_char.phi = phi [bb %then107, i32 %34.load, bb %if.exit124, i32 %119.load]
   113 = icmp sgt i32 %loop.phi150, i32 0
   114 = icmp ne i1 %113, i1 0
   br i1 %114, bb %while.body110, bb %while.exit111

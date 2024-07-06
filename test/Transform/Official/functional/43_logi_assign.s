@@ -39,13 +39,15 @@ bb2:
   ADD s0, zero, zero
   JAL zero, bb3
 bb3:
-  BNE s0, zero, bb4
+  ADD s1, s0, zero
+  BNE s1, zero, bb4
   JAL zero, bb6
 bb4:
   ADDI s1, zero, 1
   JAL zero, bb5
 bb5:
-  ADD a0, s1, zero
+  ADD s2, s1, zero
+  ADD a0, s2, zero
   LD ra, 0(sp)
   LD s2, 8(sp)
   LD s1, 16(sp)

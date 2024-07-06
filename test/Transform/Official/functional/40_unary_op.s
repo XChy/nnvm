@@ -26,14 +26,11 @@ main:
   BNE s1, zero, bb1
   JAL zero, bb3
 bb1:
-  ADDI s0, zero, 1
-  SUBW s1, zero, s0
-  SUBW s0, zero, s1
-  SUBW s1, zero, s0
-  ADD s0, s1, zero
+  ADDI s0, zero, -1
   JAL zero, bb2
 bb2:
-  ADD a0, s0, zero
+  ADD s1, s0, zero
+  ADD a0, s1, zero
   LD ra, 0(sp)
   LD s1, 8(sp)
   LD s0, 16(sp)

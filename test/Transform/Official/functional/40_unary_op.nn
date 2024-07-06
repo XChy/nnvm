@@ -13,12 +13,9 @@ entry:
   13 = icmp ne i32 %12, i32 0
   br i1 %13, bb %then, bb %else
 then:
-  17 = sub i32 0, i32 1
-  18 = sub i32 0, i32 %17
-  19 = sub i32 0, i32 %18
   br bb %if.exit
 if.exit:
-  a.phi = phi [bb %else, i32 0, bb %then, i32 %19]
+  a.phi = phi [bb %else, i32 0, bb %then, i32 -1]
   ret i32 %a.phi
 else:
   br bb %if.exit

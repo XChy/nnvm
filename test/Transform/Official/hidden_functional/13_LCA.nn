@@ -141,8 +141,7 @@ while.cond81:
 while.body82:
   89 = mul i32 %i.phi, i32 4
   90 = ptradd ptr @head, i32 %89
-  91 = sub i32 0, i32 1
-  store i32 %91 to ptr %90
+  store i32 -1 to ptr %90
   93 = add i32 %i.phi, i32 1
   br bb %while.cond81
 while.exit83:
@@ -194,8 +193,7 @@ while.exit104:
   br bb %while.cond139
 while.cond139:
   i101.phi = phi [bb %while.exit104, i32 %137.load, bb %while.body140, i32 %157.load]
-  143 = sub i32 0, i32 1
-  144 = icmp ne i32 %i101.phi, i32 %143
+  144 = icmp ne i32 %i101.phi, i32 -1
   145 = icmp ne i1 %144, i1 0
   br i1 %145, bb %while.body140, bb %while.exit141
 while.body140:

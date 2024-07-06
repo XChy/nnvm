@@ -24,7 +24,6 @@ entry60:
   store i32 %64 to ptr @n1
   br bb %while.cond65
 while.cond65:
-  j62.phi154 = phi [bb %entry60, i32 ub, bb %while.exit74, i32 %j62.phi153]
   i61.phi148 = phi [bb %entry60, i32 0, bb %while.exit74, i32 %89]
   m1.load69 = load i32 from ptr @m1
   70 = icmp slt i32 %i61.phi148, i32 %m1.load69

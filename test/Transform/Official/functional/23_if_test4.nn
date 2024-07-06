@@ -41,10 +41,9 @@ if.exit:
 then9:
   br bb %if.exit10
 if.exit10:
-  a.phi = phi [bb %else, i32 %13, bb %then9, i32 25]
+  a.phi = phi [bb %else, i32 20, bb %then9, i32 25]
   br bb %if.exit
 else:
-  13 = add i32 5, i32 15
   br bb %if.exit10
 }
 

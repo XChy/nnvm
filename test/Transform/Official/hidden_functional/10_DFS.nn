@@ -23,8 +23,7 @@ if.exit127:
   br bb %while.cond133
 while.cond133:
   i128.phi = phi [bb %if.exit127, i32 %131.load, bb %if.exit163, i32 %166.load]
-  137 = sub i32 0, i32 1
-  138 = icmp ne i32 %i128.phi, i32 %137
+  138 = icmp ne i32 %i128.phi, i32 -1
   139 = icmp ne i1 %138, i1 0
   br i1 %139, bb %while.body134, bb %while.exit135
 while.body134:
@@ -71,8 +70,7 @@ while.cond90:
 while.body91:
   98 = mul i32 %i.phi, i32 4
   99 = ptradd ptr @head, i32 %98
-  100 = sub i32 0, i32 1
-  store i32 %100 to ptr %99
+  store i32 -1 to ptr %99
   102 = add i32 %i.phi, i32 1
   br bb %while.cond90
 while.exit92:
@@ -142,7 +140,6 @@ while.cond172:
   x198.phi232 = phi [bb %entry168, i32 ub, bb %if.exit196, i32 %x198.phi]
   x208.phi230 = phi [bb %entry168, i32 ub, bb %if.exit196, i32 %x208.phi]
   y200.phi228 = phi [bb %entry168, i32 ub, bb %if.exit196, i32 %y200.phi]
-  select187.phi226 = phi [bb %entry168, i1 ub, bb %if.exit196, i1 %select187.phi]
   m.load = load i32 from ptr @m
   176 = icmp ne i32 %m.load, i32 0
   br i1 %176, bb %while.body173, bb %while.exit174

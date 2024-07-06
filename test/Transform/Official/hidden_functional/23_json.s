@@ -1830,51 +1830,55 @@ bb194:
 bb195:
   JAL zero, bb192
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s6, 32(sp)
+  SD s1, 40(sp)
+  SD s5, 48(sp)
+  SD s0, 56(sp)
   CALL getch
   ADD s0, a0, zero
   ADD s1, zero, zero
   ADD s2, s0, zero
   JAL zero, bb197
 bb197:
-  XORI s0, s2, 35
-  SLTU s3, zero, s0
-  XOR s0, s3, zero
-  SLTU s3, zero, s0
-  BNE s3, zero, bb198
+  ADD s0, s2, zero
+  ADD s3, s1, zero
+  XORI s4, s0, 35
+  SLTU s5, zero, s4
+  XOR s4, s5, zero
+  SLTU s5, zero, s4
+  BNE s5, zero, bb198
   JAL zero, bb199
 bb198:
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
-  LA s0, buffer
-  ADD s4, s0, s3
-  SW s2, 0(s4)
-  ADDIW s0, s1, 1
+  ADDI s4, zero, 4
+  MULW s5, s3, s4
+  LA s4, buffer
+  ADD s6, s4, s5
+  SW s0, 0(s6)
+  ADDIW s0, s3, 1
   CALL getch
-  ADD s3, a0, zero
+  ADD s4, a0, zero
   ADD s1, s0, zero
-  ADD s2, s3, zero
+  ADD s2, s4, zero
   JAL zero, bb197
 bb199:
   LA s0, buffer
   ADD a0, s0, zero
-  ADD a1, s1, zero
+  ADD a1, s3, zero
   CALL skip_space
   ADD a0, zero, zero
   LA s0, buffer
   ADD a1, s0, zero
-  ADD a2, s1, zero
+  ADD a2, s3, zero
   CALL detect_item
   ADD s0, a0, zero
-  LA s2, buffer
-  ADD a0, s2, zero
-  ADD a1, s1, zero
+  LA s1, buffer
+  ADD a0, s1, zero
+  ADD a1, s3, zero
   CALL skip_space
   XOR s1, s0, zero
   SLTU s0, zero, s1
@@ -1892,9 +1896,11 @@ bb200:
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
-  ADDI sp, sp, 48
+  LD s6, 32(sp)
+  LD s1, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb201:
 bb202:
@@ -1917,9 +1923,11 @@ bb202:
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
-  ADDI sp, sp, 48
+  LD s6, 32(sp)
+  LD s1, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 skip_space:
   ADDI sp, sp, -48

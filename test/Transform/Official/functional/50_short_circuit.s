@@ -35,7 +35,8 @@ bb2:
   ADD s1, zero, zero
   JAL zero, bb3
 bb3:
-  BNE s1, zero, bb4
+  ADD s0, s1, zero
+  BNE s0, zero, bb4
   JAL zero, bb6
 bb4:
   JAL zero, bb5
@@ -60,7 +61,8 @@ bb8:
   ADD s2, zero, zero
   JAL zero, bb9
 bb9:
-  BNE s2, zero, bb10
+  ADD s0, s2, zero
+  BNE s0, zero, bb10
   JAL zero, bb12
 bb10:
   JAL zero, bb11
@@ -88,7 +90,8 @@ bb14:
   ADD s3, s0, zero
   JAL zero, bb15
 bb15:
-  BNE s3, zero, bb16
+  ADD s4, s3, zero
+  BNE s4, zero, bb16
   JAL zero, bb18
 bb16:
   JAL zero, bb17
@@ -116,7 +119,8 @@ bb20:
   ADD s5, s4, zero
   JAL zero, bb21
 bb21:
-  BNE s5, zero, bb22
+  ADD s6, s5, zero
+  BNE s6, zero, bb22
   JAL zero, bb24
 bb22:
   JAL zero, bb23
@@ -146,7 +150,8 @@ bb26:
   ADD s7, zero, zero
   JAL zero, bb27
 bb27:
-  BNE s7, zero, bb28
+  ADD s6, s7, zero
+  BNE s6, zero, bb28
   JAL zero, bb30
 bb28:
   JAL zero, bb29

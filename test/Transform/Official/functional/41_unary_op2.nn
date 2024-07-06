@@ -1,9 +1,6 @@
 i32 main() {
 entry:
-  4 = sub i32 0, i32 4
-  5 = sub i32 56, i32 %4
-  7 = add i32 %5, i32 4
-  9 = icmp ne i32 %7, i32 0
+  9 = icmp ne i32 64, i32 0
   10 =  i1 %9, i1 1
   11 = zext i1 %10 to i32
   12 = icmp ne i32 %11, i32 0
@@ -16,16 +13,12 @@ entry:
   19 = icmp ne i32 %18, i32 0
   br i1 %19, bb %then, bb %else
 then:
-  23 = sub i32 0, i32 1
-  24 = sub i32 0, i32 %23
-  25 = sub i32 0, i32 %24
   br bb %if.exit
 if.exit:
-  a.phi = phi [bb %else, i32 %27, bb %then, i32 %25]
+  a.phi = phi [bb %else, i32 4, bb %then, i32 -1]
   call void putint(i32 %a.phi)
   ret i32 0
 else:
-  27 = add i32 0, i32 4
   br bb %if.exit
 }
 

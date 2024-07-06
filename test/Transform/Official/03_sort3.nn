@@ -127,8 +127,7 @@ init76:
   store i32 0 to ptr %arr.index85
   br bb %init.cond75
 init.exit77:
-  87 = sub i32 0, i32 1
-  88 = icmp eq i32 %bitround, i32 %87
+  88 = icmp eq i32 %bitround, i32 -1
   br i1 %88, bb %select.then, bb %select.else
 select.then:
   br bb %select.exit

@@ -209,21 +209,23 @@ bb10:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -160
+  ADDI sp, sp, -176
   SD ra, 40(sp)
   FSD fs4, 48(sp)
-  FSD fs3, 56(sp)
-  SD s7, 64(sp)
-  FSD fs2, 72(sp)
-  SD s0, 80(sp)
-  SD s5, 88(sp)
-  FSD fs0, 96(sp)
-  FSD fs1, 104(sp)
-  SD s2, 112(sp)
-  SD s3, 120(sp)
-  SD s1, 128(sp)
-  SD s6, 136(sp)
-  SD s4, 144(sp)
+  SD s9, 56(sp)
+  FSD fs3, 64(sp)
+  SD s8, 72(sp)
+  FSD fs2, 80(sp)
+  SD s7, 88(sp)
+  SD s0, 96(sp)
+  SD s5, 104(sp)
+  FSD fs0, 112(sp)
+  FSD fs1, 120(sp)
+  SD s2, 128(sp)
+  SD s3, 136(sp)
+  SD s1, 144(sp)
+  SD s6, 152(sp)
+  SD s4, 160(sp)
   LA s0, HEX2
   FLW fs0, 0(s0)
   LA s0, FACT
@@ -330,7 +332,8 @@ bb17:
   ADD s0, zero, zero
   JAL zero, bb18
 bb18:
-  BNE s0, zero, bb19
+  ADD s1, s0, zero
+  BNE s1, zero, bb19
   JAL zero, bb20
 bb19:
   CALL error
@@ -355,7 +358,8 @@ bb22:
   ADD s1, s3, zero
   JAL zero, bb23
 bb23:
-  BNE s1, zero, bb24
+  ADD s2, s1, zero
+  BNE s2, zero, bb24
   JAL zero, bb25
 bb24:
   CALL ok
@@ -410,55 +414,57 @@ bb25:
   ADDI s4, zero, 1
   JAL zero, bb26
 bb26:
-  LA s5, MAX
-  LW s6, 0(s5)
-  SLT s5, s4, s6
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
-  BNE s5, zero, bb27
+  ADD s5, s4, zero
+  ADD s6, s3, zero
+  LA s7, MAX
+  LW s8, 0(s7)
+  SLT s7, s5, s8
+  XOR s8, s7, zero
+  SLTU s7, zero, s8
+  BNE s7, zero, bb27
   JAL zero, bb28
 bb27:
   CALL getfloat
   FSGNJ.D fs0, fa0, fa0
-  LA s5, PI
-  FLW fs1, 0(s5)
+  LA s7, PI
+  FLW fs1, 0(s7)
   FMUL.S fs2, fs1, fs0
   FMUL.S fs1, fs2, fs0
-  FCVT.W.S s5, fs0, rtz
-  ADD a0, s5, zero
+  FCVT.W.S s7, fs0, rtz
+  ADD a0, s7, zero
   CALL circle_area
   FSGNJ.D fs2, fa0, fa0
-  ADDI s5, zero, 4
-  MULW s6, s3, s5
+  ADDI s7, zero, 4
+  MULW s8, s6, s7
   ADDI t6, sp, 0
-  ADD s5, t6, s6
-  ADDI s6, zero, 4
-  MULW s7, s3, s6
+  ADD s7, t6, s8
+  ADDI s8, zero, 4
+  MULW s9, s6, s8
   ADDI t5, sp, 0
-  ADD s6, t5, s7
-  FLW fs3, 0(s6)
+  ADD s8, t5, s9
+  FLW fs3, 0(s8)
   FADD.S fs4, fs3, fs0
-  FSW fs4, 0(s5)
+  FSW fs4, 0(s7)
   FSGNJ.S fa0, fs1, fs1
   CALL putfloat
   ADDI a0, zero, 32
   CALL putch
-  FCVT.W.S s5, fs2, rtz
-  ADD a0, s5, zero
+  FCVT.W.S s7, fs2, rtz
+  ADD a0, s7, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s5, .CONSTANT.7.6
-  FLW fs0, 0(s5)
-  LA s5, .CONSTANT.7.6
-  FLW fs1, 0(s5)
+  LA s7, .CONSTANT.7.6
+  FLW fs0, 0(s7)
+  LA s7, .CONSTANT.7.6
+  FLW fs1, 0(s7)
   FSGNJN.S fs2, fs0, fs1
   FSGNJN.S fs0, fs2, fs2
-  FCVT.S.W fs1, s4
+  FCVT.S.W fs1, s5
   FMUL.S fs2, fs1, fs0
   FCVT.W.S s5, fs2, rtz
-  ADDIW s6, s3, 1
-  ADD s3, s6, zero
+  ADDIW s7, s6, 1
+  ADD s3, s7, zero
   ADD s4, s5, zero
   JAL zero, bb26
 bb28:
@@ -469,19 +475,21 @@ bb28:
   ADD a0, zero, zero
   LD ra, 40(sp)
   FLD fs4, 48(sp)
-  FLD fs3, 56(sp)
-  LD s7, 64(sp)
-  FLD fs2, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  FLD fs0, 96(sp)
-  FLD fs1, 104(sp)
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s1, 128(sp)
-  LD s6, 136(sp)
-  LD s4, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  FLD fs3, 64(sp)
+  LD s8, 72(sp)
+  FLD fs2, 80(sp)
+  LD s7, 88(sp)
+  LD s0, 96(sp)
+  LD s5, 104(sp)
+  FLD fs0, 112(sp)
+  FLD fs1, 120(sp)
+  LD s2, 128(sp)
+  LD s3, 136(sp)
+  LD s1, 144(sp)
+  LD s6, 152(sp)
+  LD s4, 160(sp)
+  ADDI sp, sp, 176
   JALR zero, 0(ra)
 assert:
   ADDI sp, sp, -32

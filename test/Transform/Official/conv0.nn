@@ -33,7 +33,6 @@ while.exit218:
   curr.phi370 = phi [bb %while.cond216, i32 %curr.phi371, bb %then280, i32 %curr.phi368]
   y.phi362 = phi [bb %while.cond216, i32 %y.phi363, bb %then280, i32 %y.phi360]
   x.phi354 = phi [bb %while.cond216, i32 %x.phi355, bb %then280, i32 %x.phi]
-  j.phi = phi [bb %while.cond216, i32 %j.phi349, bb %then280, i32 %276]
   283 = add i32 %i206.phi347, i32 1
   286 = icmp sge i32 %283, i32 %n
   br i1 %286, bb %then287, bb %if.exit288

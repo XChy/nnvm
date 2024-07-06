@@ -6,8 +6,7 @@ entry77:
   br bb %while.cond84
 while.cond84:
   i.phi161 = phi [bb %entry77, i32 %83, bb %while.body85, i32 %97]
-  88 = sub i32 0, i32 1
-  89 = icmp sgt i32 %i.phi161, i32 %88
+  89 = icmp sgt i32 %i.phi161, i32 -1
   90 = icmp ne i1 %89, i1 0
   br i1 %90, bb %while.body85, bb %while.exit86
 while.body85:

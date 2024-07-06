@@ -50,7 +50,6 @@ while.cond220:
   rhs.phi322 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %rhs.phi]
   lhs.phi318 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %lhs.phi]
   cur_op.phi315 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %cur_op.phi]
-  op.phi310 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %other.load]
   cur_token.load223 = load i32 from ptr @cur_token
   TOKEN_OTHER.load224 = load i32 from ptr @TOKEN_OTHER
   225 = icmp eq i32 %cur_token.load223, i32 %TOKEN_OTHER.load224
@@ -340,8 +339,7 @@ entry64:
   call void putch(i32 99)
   call void putch(i32 33)
   call void putch(i32 10)
-  72 = sub i32 0, i32 1
-  ret i32 %72
+  ret i32 -1
 }
 
 external float getfloat()

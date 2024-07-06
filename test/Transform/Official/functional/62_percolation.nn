@@ -57,8 +57,7 @@ while.cond:
 while.body:
   14 = mul i32 %i.phi, i32 4
   15 = ptradd ptr @array, i32 %14
-  16 = sub i32 0, i32 1
-  store i32 %16 to ptr %15
+  store i32 -1 to ptr %15
   18 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
@@ -176,8 +175,7 @@ select.then:
   138 = mul i32 %137, i32 4
   139 = ptradd ptr @array, i32 %138
   139.load = load i32 from ptr %139
-  141 = sub i32 0, i32 1
-  142 = icmp ne i32 %139.load, i32 %141
+  142 = icmp ne i32 %139.load, i32 -1
   br bb %select.exit
 select.else:
   br bb %select.exit
@@ -196,8 +194,7 @@ select.then152:
   158 = mul i32 %157, i32 4
   159 = ptradd ptr @array, i32 %158
   159.load = load i32 from ptr %159
-  161 = sub i32 0, i32 1
-  162 = icmp ne i32 %159.load, i32 %161
+  162 = icmp ne i32 %159.load, i32 -1
   br bb %select.exit154
 select.else153:
   br bb %select.exit154
@@ -218,8 +215,7 @@ select.then173:
   180 = mul i32 %179, i32 4
   181 = ptradd ptr @array, i32 %180
   181.load = load i32 from ptr %181
-  183 = sub i32 0, i32 1
-  184 = icmp ne i32 %181.load, i32 %183
+  184 = icmp ne i32 %181.load, i32 -1
   br bb %select.exit175
 select.else174:
   br bb %select.exit175
@@ -240,8 +236,7 @@ select.then195:
   202 = mul i32 %201, i32 4
   203 = ptradd ptr @array, i32 %202
   203.load = load i32 from ptr %203
-  205 = sub i32 0, i32 1
-  206 = icmp ne i32 %203.load, i32 %205
+  206 = icmp ne i32 %203.load, i32 -1
   br bb %select.exit197
 select.else196:
   br bb %select.exit197
@@ -257,15 +252,13 @@ if.exit209:
   215 = mul i32 0, i32 4
   216 = ptradd ptr @array, i32 %215
   216.load = load i32 from ptr %216
-  218 = sub i32 0, i32 1
-  219 = icmp ne i32 %216.load, i32 %218
+  219 = icmp ne i32 %216.load, i32 -1
   br i1 %219, bb %select.then220, bb %select.else221
 select.then220:
   225 = mul i32 %81, i32 4
   226 = ptradd ptr @array, i32 %225
   226.load = load i32 from ptr %226
-  228 = sub i32 0, i32 1
-  229 = icmp ne i32 %226.load, i32 %228
+  229 = icmp ne i32 %226.load, i32 -1
   br bb %select.exit222
 select.else221:
   br bb %select.exit222
@@ -292,8 +285,7 @@ if.exit241:
   tmp.phi = phi [bb %select.exit233, i32 %tmp.phi265, bb %then240, i32 %244]
   br bb %if.exit97
 then255:
-  257 = sub i32 0, i32 1
-  call void putint(i32 %257)
+  call void putint(i32 -1)
   call void putch(i32 10)
   br bb %if.exit256
 if.exit256:

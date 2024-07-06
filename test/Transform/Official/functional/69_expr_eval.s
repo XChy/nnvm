@@ -34,96 +34,98 @@ TOKEN_NUM:
 .section .text
 eval:
   LUI t0, 1048575
-  ADDI t0, t0, 1936
+  ADDI t0, t0, 1920
   ADD sp, sp, t0
-  LUI t5, 1
-  ADDI t5, t5, -2040
-  ADD t5, t5, sp
-  SD s7, 0(t5)
-  LUI t6, 1
-  ADDI t6, t6, -2032
-  ADD t6, t6, sp
-  SD s11, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2024
   ADD t5, t5, sp
-  SD s10, 0(t5)
+  SD s9, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -2016
   ADD t6, t6, sp
-  SD s9, 0(t6)
+  SD s11, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2008
   ADD t5, t5, sp
-  SD s0, 0(t5)
+  SD s10, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -2000
   ADD t6, t6, sp
-  SD s5, 0(t6)
+  SD s0, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1992
   ADD t5, t5, sp
-  SD s1, 0(t5)
+  SD s5, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1984
   ADD t6, t6, sp
-  SD s6, 0(t6)
+  SD s1, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1976
   ADD t5, t5, sp
-  SD s2, 0(t5)
+  SD s6, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1968
   ADD t6, t6, sp
-  SD s3, 0(t6)
+  SD s2, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1960
   ADD t5, t5, sp
-  SD ra, 0(t5)
+  SD s3, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1952
   ADD t6, t6, sp
-  SD s8, 0(t6)
+  SD s7, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1944
+  ADD t5, t5, sp
+  SD ra, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1936
+  ADD t6, t6, sp
+  SD s8, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1928
   ADD t5, t5, sp
   SD s4, 0(t5)
   ADDI s0, zero, 256
   JAL zero, bb1
 bb1:
-  XOR s1, s0, zero
-  SLTU s2, zero, s1
-  BNE s2, zero, bb2
+  ADD s1, s0, zero
+  XOR s2, s1, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
+  ADDI s2, zero, 1
+  SUBW s3, s1, s2
   ADDI s1, zero, 4
-  MULW s3, s2, s1
-  ADDW s1, zero, s3
+  MULW s2, s3, s1
+  ADDW s1, zero, s2
   ADDI t6, sp, 1024
-  ADD s3, t6, s1
-  SW zero, 0(s3)
-  ADD s0, s2, zero
+  ADD s2, t6, s1
+  SW zero, 0(s2)
+  ADD s0, s3, zero
   JAL zero, bb1
 bb3:
   ADDI s0, zero, 256
   JAL zero, bb4
 bb4:
-  XOR s1, s0, zero
-  SLTU s2, zero, s1
-  BNE s2, zero, bb5
+  ADD s1, s0, zero
+  XOR s2, s1, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb5
   JAL zero, bb6
 bb5:
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
+  ADDI s2, zero, 1
+  SUBW s3, s1, s2
   ADDI s1, zero, 4
-  MULW s3, s2, s1
-  ADDW s1, zero, s3
+  MULW s2, s3, s1
+  ADDW s1, zero, s2
   ADDI t5, sp, 0
-  ADD s3, t5, s1
-  SW zero, 0(s3)
-  ADD s0, s2, zero
+  ADD s2, t5, s1
+  SW zero, 0(s2)
+  ADD s0, s3, zero
   JAL zero, bb4
 bb6:
   LA s0, cur_token
@@ -139,59 +141,59 @@ bb7:
   ADD s0, a0, zero
   ADD a0, s0, zero
   LUI t6, 1
-  ADDI t6, t6, -2040
-  ADD t6, t6, sp
-  LD s7, 0(t6)
-  LUI t5, 1
-  ADDI t5, t5, -2032
-  ADD t5, t5, sp
-  LD s11, 0(t5)
-  LUI t6, 1
   ADDI t6, t6, -2024
   ADD t6, t6, sp
-  LD s10, 0(t6)
+  LD s9, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2016
   ADD t5, t5, sp
-  LD s9, 0(t5)
+  LD s11, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -2008
   ADD t6, t6, sp
-  LD s0, 0(t6)
+  LD s10, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2000
   ADD t5, t5, sp
-  LD s5, 0(t5)
+  LD s0, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1992
   ADD t6, t6, sp
-  LD s1, 0(t6)
+  LD s5, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1984
   ADD t5, t5, sp
-  LD s6, 0(t5)
+  LD s1, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1976
   ADD t6, t6, sp
-  LD s2, 0(t6)
+  LD s6, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1968
   ADD t5, t5, sp
-  LD s3, 0(t5)
+  LD s2, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1960
+  ADD t6, t6, sp
+  LD s3, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1952
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI ra, 1
-  ADDI ra, ra, -1960
+  ADDI ra, ra, -1944
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 1
-  ADDI t6, t6, -1952
+  ADDI t6, t6, -1936
   ADD t6, t6, sp
   LD s8, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, -1944
+  ADDI t5, t5, -1928
   ADD t5, t5, sp
   LD s4, 0(t5)
   LUI t0, 1
-  ADDI t0, t0, -1936
+  ADDI t0, t0, -1920
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb8:
@@ -206,65 +208,74 @@ bb8:
   ADD s0, zero, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
-  ADD s3, zero, zero
   JAL zero, bb9
 bb9:
-  LA s4, cur_token
-  LW s5, 0(s4)
-  LA s4, TOKEN_OTHER
-  LW s6, 0(s4)
-  XOR s4, s5, s6
-  SLTIU s5, s4, 1
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
-  BNE s5, zero, bb10
+  ADD s3, s2, zero
+  ADD s4, s1, zero
+  ADD s5, s0, zero
+  LA s6, cur_token
+  LW s7, 0(s6)
+  LA s6, TOKEN_OTHER
+  LW s8, 0(s6)
+  XOR s6, s7, s8
+  SLTIU s7, s6, 1
+  XOR s6, s7, zero
+  SLTU s7, zero, s6
+  BNE s7, zero, bb10
   JAL zero, bb11
 bb10:
-  LA s4, other
-  LW s5, 0(s4)
-  ADD a0, s5, zero
+  LA s6, other
+  LW s7, 0(s6)
+  ADD a0, s7, zero
   CALL get_op_prec
-  ADD s4, a0, zero
-  XOR s6, s4, zero
-  SLTU s4, zero, s6
-  XORI s6, s4, 1
-  ADD s4, s6, zero
-  XOR s6, s4, zero
-  SLTU s4, zero, s6
-  BNE s4, zero, bb12
+  ADD s6, a0, zero
+  XOR s8, s6, zero
+  SLTU s6, zero, s8
+  XORI s8, s6, 1
+  ADD s6, s8, zero
+  XOR s8, s6, zero
+  SLTU s6, zero, s8
+  BNE s6, zero, bb12
   JAL zero, bb13
 bb11:
   CALL next_token
-  ADD s4, a0, zero
+  ADD s6, a0, zero
   JAL zero, bb22
 bb12:
   JAL zero, bb11
 bb13:
   CALL next_token
-  ADD s4, a0, zero
-  ADD s4, s0, zero
-  ADD s6, s1, zero
-  ADD t4, s2, zero
-  LUI t6, 1
-  ADDI t6, t6, -2048
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  ADD s6, a0, zero
+  ADD s6, s5, zero
+  ADD s5, s4, zero
+  ADD s4, s3, zero
   JAL zero, bb14
 bb14:
+  ADD t4, s4, zero
+  LUI t6, 1
+  ADDI t6, t6, -2032
+  ADD t6, t6, sp
+  SW t4, 0(t6)
+  ADD t4, s5, zero
+  LUI t5, 1
+  ADDI t5, t5, -2040
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, s6, zero
+  LUI a0, 1
+  ADDI a0, a0, -2048
+  ADD a0, a0, sp
+  SW t4, 0(a0)
   ADDI a0, sp, 0
   ADD a0, a0, zero
   CALL stack_size
-  ADD s8, a0, zero
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
-  BNE s8, zero, bb17
+  ADD s10, a0, zero
+  XOR s11, s10, zero
+  SLTU s10, zero, s11
+  BNE s10, zero, bb17
   JAL zero, bb18
 bb15:
   ADDI a0, sp, 0
-  ADD a0, a0, zero
-  CALL stack_pop
-  ADD s8, a0, zero
-  ADDI a0, sp, 1024
   ADD a0, a0, zero
   CALL stack_pop
   ADD s10, a0, zero
@@ -272,229 +283,237 @@ bb15:
   ADD a0, a0, zero
   CALL stack_pop
   ADD s11, a0, zero
-  ADD a0, s8, zero
-  ADD a1, s11, zero
-  ADD a2, s10, zero
-  CALL eval_op
-  ADD s7, a0, zero
   ADDI a0, sp, 1024
   ADD a0, a0, zero
-  ADD a1, s7, zero
+  CALL stack_pop
+  ADD s8, a0, zero
+  ADD a0, s10, zero
+  ADD a1, s8, zero
+  ADD a2, s11, zero
+  CALL eval_op
+  ADD s3, a0, zero
+  ADDI a0, sp, 1024
+  ADD a0, a0, zero
+  ADD a1, s3, zero
   CALL stack_push
-  ADD s4, s10, zero
   ADD s6, s11, zero
-  ADD t4, s8, zero
-  LUI t5, 1
-  ADDI t5, t5, -2048
-  ADD t5, t5, sp
-  SW t4, 0(t5)
+  ADD s5, s8, zero
+  ADD s4, s10, zero
   JAL zero, bb14
 bb16:
   ADDI a0, sp, 0
   ADD a0, a0, zero
-  ADD a1, s5, zero
+  ADD a1, s7, zero
   CALL stack_push
-  LA s7, cur_token
-  LW s8, 0(s7)
-  LA s7, TOKEN_NUM
-  LW s10, 0(s7)
-  XOR s7, s8, s10
-  SLTU s8, zero, s7
-  BNE s8, zero, bb20
+  LA s3, cur_token
+  LW s4, 0(s3)
+  LA s3, TOKEN_NUM
+  LW s5, 0(s3)
+  XOR s3, s4, s5
+  SLTU s4, zero, s3
+  BNE s4, zero, bb20
   JAL zero, bb21
 bb17:
   ADDI a0, sp, 0
   ADD a0, a0, zero
   CALL stack_peek
-  ADD s8, a0, zero
-  ADD a0, s8, zero
+  ADD s10, a0, zero
+  ADD a0, s10, zero
   CALL get_op_prec
-  ADD s8, a0, zero
-  ADD a0, s5, zero
+  ADD s10, a0, zero
+  ADD a0, s7, zero
   CALL get_op_prec
-  ADD s9, a0, zero
-  SLT s10, s8, s9
-  XORI s8, s10, 1
-  ADD s9, s8, zero
+  ADD s11, a0, zero
+  SLT s9, s10, s11
+  XORI s10, s9, 1
+  ADD s9, s10, zero
   JAL zero, bb19
 bb18:
   ADD s9, zero, zero
   JAL zero, bb19
 bb19:
-  XOR s8, s9, zero
-  SLTU s10, zero, s8
+  ADD s10, s9, zero
+  XOR s11, s10, zero
+  SLTU s10, zero, s11
   BNE s10, zero, bb15
   JAL zero, bb16
 bb20:
   CALL panic
-  ADD s7, a0, zero
-  ADD a0, s7, zero
-  LUI t6, 1
-  ADDI t6, t6, -2040
-  ADD t6, t6, sp
-  LD s7, 0(t6)
-  LUI t5, 1
-  ADDI t5, t5, -2032
-  ADD t5, t5, sp
-  LD s11, 0(t5)
+  ADD s3, a0, zero
+  ADD a0, s3, zero
   LUI t6, 1
   ADDI t6, t6, -2024
   ADD t6, t6, sp
-  LD s10, 0(t6)
+  LD s9, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2016
   ADD t5, t5, sp
-  LD s9, 0(t5)
+  LD s11, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -2008
   ADD t6, t6, sp
-  LD s0, 0(t6)
+  LD s10, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2000
   ADD t5, t5, sp
-  LD s5, 0(t5)
+  LD s0, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1992
   ADD t6, t6, sp
-  LD s1, 0(t6)
+  LD s5, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1984
   ADD t5, t5, sp
-  LD s6, 0(t5)
+  LD s1, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1976
   ADD t6, t6, sp
-  LD s2, 0(t6)
+  LD s6, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1968
   ADD t5, t5, sp
-  LD s3, 0(t5)
+  LD s2, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1960
+  ADD t6, t6, sp
+  LD s3, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1952
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI ra, 1
-  ADDI ra, ra, -1960
+  ADDI ra, ra, -1944
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 1
-  ADDI t6, t6, -1952
+  ADDI t6, t6, -1936
   ADD t6, t6, sp
   LD s8, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, -1944
+  ADDI t5, t5, -1928
   ADD t5, t5, sp
   LD s4, 0(t5)
   LUI t0, 1
-  ADDI t0, t0, -1936
+  ADDI t0, t0, -1920
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb21:
-  LA s7, num
-  LW s8, 0(s7)
+  LA s3, num
+  LW s4, 0(s3)
   ADDI a0, sp, 1024
   ADD a0, a0, zero
-  ADD a1, s8, zero
+  ADD a1, s4, zero
   CALL stack_push
   CALL next_token
-  ADD s7, a0, zero
-  ADD s0, s4, zero
-  ADD s1, s6, zero
+  ADD s3, a0, zero
   LUI t4, 1
   ADDI t4, t4, -2048
   ADD t4, t4, sp
   LW t4, 0(t4)
+  ADD s0, t4, zero
+  LUI t4, 1
+  ADDI t4, t4, -2040
+  ADD t4, t4, sp
+  LW t4, 0(t4)
+  ADD s1, t4, zero
+  LUI t4, 1
+  ADDI t4, t4, -2032
+  ADD t4, t4, sp
+  LW t4, 0(t4)
   ADD s2, t4, zero
-  ADD s3, s5, zero
   JAL zero, bb9
 bb22:
   ADDI a0, sp, 0
   ADD a0, a0, zero
   CALL stack_size
-  ADD s4, a0, zero
-  XOR s6, s4, zero
-  SLTU s4, zero, s6
-  BNE s4, zero, bb23
+  ADD s6, a0, zero
+  XOR s8, s6, zero
+  SLTU s6, zero, s8
+  BNE s6, zero, bb23
   JAL zero, bb24
 bb23:
   ADDI a0, sp, 0
-  ADD a0, a0, zero
-  CALL stack_pop
-  ADD s4, a0, zero
-  ADDI a0, sp, 1024
   ADD a0, a0, zero
   CALL stack_pop
   ADD s6, a0, zero
   ADDI a0, sp, 1024
   ADD a0, a0, zero
   CALL stack_pop
-  ADD s7, a0, zero
-  ADD a0, s4, zero
-  ADD a1, s7, zero
-  ADD a2, s6, zero
-  CALL eval_op
-  ADD s4, a0, zero
+  ADD s8, a0, zero
   ADDI a0, sp, 1024
   ADD a0, a0, zero
-  ADD a1, s4, zero
+  CALL stack_pop
+  ADD s9, a0, zero
+  ADD a0, s6, zero
+  ADD a1, s9, zero
+  ADD a2, s8, zero
+  CALL eval_op
+  ADD s6, a0, zero
+  ADDI a0, sp, 1024
+  ADD a0, a0, zero
+  ADD a1, s6, zero
   CALL stack_push
   JAL zero, bb22
 bb24:
   ADDI a0, sp, 1024
   ADD a0, a0, zero
   CALL stack_peek
-  ADD s4, a0, zero
-  ADD a0, s4, zero
-  LUI t6, 1
-  ADDI t6, t6, -2040
-  ADD t6, t6, sp
-  LD s7, 0(t6)
-  LUI t5, 1
-  ADDI t5, t5, -2032
-  ADD t5, t5, sp
-  LD s11, 0(t5)
+  ADD s6, a0, zero
+  ADD a0, s6, zero
   LUI t6, 1
   ADDI t6, t6, -2024
   ADD t6, t6, sp
-  LD s10, 0(t6)
+  LD s9, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2016
   ADD t5, t5, sp
-  LD s9, 0(t5)
+  LD s11, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -2008
   ADD t6, t6, sp
-  LD s0, 0(t6)
+  LD s10, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -2000
   ADD t5, t5, sp
-  LD s5, 0(t5)
+  LD s0, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1992
   ADD t6, t6, sp
-  LD s1, 0(t6)
+  LD s5, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1984
   ADD t5, t5, sp
-  LD s6, 0(t5)
+  LD s1, 0(t5)
   LUI t6, 1
   ADDI t6, t6, -1976
   ADD t6, t6, sp
-  LD s2, 0(t6)
+  LD s6, 0(t6)
   LUI t5, 1
   ADDI t5, t5, -1968
   ADD t5, t5, sp
-  LD s3, 0(t5)
+  LD s2, 0(t5)
+  LUI t6, 1
+  ADDI t6, t6, -1960
+  ADD t6, t6, sp
+  LD s3, 0(t6)
+  LUI t5, 1
+  ADDI t5, t5, -1952
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI ra, 1
-  ADDI ra, ra, -1960
+  ADDI ra, ra, -1944
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 1
-  ADDI t6, t6, -1952
+  ADDI t6, t6, -1936
   ADD t6, t6, sp
   LD s8, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, -1944
+  ADDI t5, t5, -1928
   ADD t5, t5, sp
   LD s4, 0(t5)
   LUI t0, 1
-  ADDI t0, t0, -1936
+  ADDI t0, t0, -1920
   ADD sp, sp, t0
   JALR zero, 0(ra)
 eval_op:
@@ -700,7 +719,8 @@ bb41:
   ADD s1, s3, zero
   JAL zero, bb42
 bb42:
-  BNE s1, zero, bb43
+  ADD s2, s1, zero
+  BNE s2, zero, bb43
   JAL zero, bb44
 bb43:
   ADDI a0, zero, 10
@@ -729,7 +749,8 @@ bb46:
   ADD s2, s4, zero
   JAL zero, bb47
 bb47:
-  BNE s2, zero, bb48
+  ADD s3, s2, zero
+  BNE s3, zero, bb48
   JAL zero, bb49
 bb48:
   ADDI s3, zero, 1
@@ -742,7 +763,8 @@ bb49:
   ADD s3, s5, zero
   JAL zero, bb50
 bb50:
-  BNE s3, zero, bb51
+  ADD s4, s3, zero
+  BNE s4, zero, bb51
   JAL zero, bb52
 bb51:
   ADDI a0, zero, 20
@@ -822,7 +844,8 @@ bb56:
   ADD s1, zero, zero
   JAL zero, bb57
 bb57:
-  BNE s1, zero, bb58
+  ADD s0, s1, zero
+  BNE s0, zero, bb58
   JAL zero, bb60
 bb58:
   ADDI a0, zero, 1
@@ -863,7 +886,8 @@ bb63:
   ADD s1, s0, zero
   JAL zero, bb64
 bb64:
-  BNE s1, zero, bb65
+  ADD s2, s1, zero
+  BNE s2, zero, bb65
   JAL zero, bb67
 bb65:
   ADDI a0, zero, 1
@@ -883,11 +907,12 @@ bb67:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   CALL getint
   ADD s0, a0, zero
   CALL getch
@@ -897,34 +922,34 @@ main:
   ADD s1, s0, zero
   JAL zero, bb69
 bb69:
-  XOR s0, s1, zero
-  SLTU s2, zero, s0
-  BNE s2, zero, bb70
+  ADD s0, s1, zero
+  XOR s2, s0, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb70
   JAL zero, bb71
 bb70:
   CALL eval
-  ADD s0, a0, zero
-  ADD a0, s0, zero
+  ADD s2, a0, zero
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 1
-  SUBW s2, s1, s0
-  ADD s1, s2, zero
+  ADDI s2, zero, 1
+  SUBW s3, s0, s2
+  ADD s1, s3, zero
   JAL zero, bb69
 bb71:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 panic:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
   ADDI a0, zero, 112
   CALL putch
   ADDI a0, zero, 97
@@ -939,13 +964,9 @@ panic:
   CALL putch
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 1
-  SUB s1, zero, s0
-  ADD a0, s1, zero
+  ADDI a0, zero, -1
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 next_token:
   ADDI sp, sp, -32

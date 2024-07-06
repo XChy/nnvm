@@ -93,8 +93,7 @@ while.cond:
 while.body:
   br bb %while.cond16
 while.exit:
-  66 = sub i32 0, i32 1
-  ret i32 %66
+  ret i32 -1
 while.cond16:
   curr.phi = phi [bb %while.body, i32 %curr.phi141, bb %if.exit, i32 %37.load, bb %then, i32 %curr.phi]
   j.phi = phi [bb %while.body, i32 0, bb %if.exit, i32 %63, bb %then, i32 %29]

@@ -62,7 +62,6 @@ entry:
   6 = icmp eq i32 1, i32 %a.load
   br i1 %6, bb %then, bb %else
 then:
-  11 = add i32 1, i32 1
   ret i32 1
 if.exit:
   unreachable

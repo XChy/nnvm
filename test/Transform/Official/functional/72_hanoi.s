@@ -5,43 +5,46 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, s0, zero
   JAL zero, bb1
 bb1:
-  ADDI s0, zero, 0
-  SLT s2, s0, s1
-  XOR s0, s2, zero
-  SLTU s2, zero, s0
-  BNE s2, zero, bb2
+  ADD s0, s1, zero
+  ADDI s2, zero, 0
+  SLT s3, s2, s0
+  XOR s2, s3, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
   CALL getint
-  ADD s0, a0, zero
-  ADD a0, s0, zero
+  ADD s2, a0, zero
+  ADD a0, s2, zero
   ADDI a1, zero, 1
   ADDI a2, zero, 2
   ADDI a3, zero, 3
   CALL hanoi
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 1
-  SUBW s2, s1, s0
-  ADD s1, s2, zero
+  ADDI s2, zero, 1
+  SUBW s3, s0, s2
+  ADD s1, s3, zero
   JAL zero, bb1
 bb3:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 hanoi:
   ADDI sp, sp, -64

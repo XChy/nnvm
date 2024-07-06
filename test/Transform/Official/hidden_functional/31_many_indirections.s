@@ -29,15 +29,16 @@ main:
   ADD s0, zero, zero
   JAL zero, bb1
 bb1:
-  LA s1, M
-  LW s2, 0(s1)
-  SLT s1, s0, s2
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
-  BNE s1, zero, bb2
+  ADD s1, s0, zero
+  LA s2, M
+  LW s3, 0(s2)
+  SLT s2, s1, s3
+  XOR s3, s2, zero
+  SLTU s2, zero, s3
+  BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
-  ADD s1, zero, zero
+  ADD s2, zero, zero
   JAL zero, bb4
 bb3:
   ADDI s0, zero, 400
@@ -420,26 +421,27 @@ bb3:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb4:
-  LA s2, N
-  LW s3, 0(s2)
-  SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
-  BNE s2, zero, bb5
+  ADD s3, s2, zero
+  LA s4, N
+  LW s5, 0(s4)
+  SLT s4, s3, s5
+  XOR s5, s4, zero
+  SLTU s4, zero, s5
+  BNE s4, zero, bb5
   JAL zero, bb6
 bb5:
-  ADDI s2, zero, 400
-  MULW s3, s0, s2
-  LA s2, array
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADD s2, s4, s3
-  SW s1, 0(s2)
-  ADDIW s2, s1, 1
-  ADD s1, s2, zero
+  ADDI s4, zero, 400
+  MULW s5, s1, s4
+  LA s4, array
+  ADD s6, s4, s5
+  ADDI s4, zero, 4
+  MULW s5, s3, s4
+  ADD s4, s6, s5
+  SW s3, 0(s4)
+  ADDIW s4, s3, 1
+  ADD s2, s4, zero
   JAL zero, bb4
 bb6:
-  ADDIW s1, s0, 1
-  ADD s0, s1, zero
+  ADDIW s2, s1, 1
+  ADD s0, s2, zero
   JAL zero, bb1

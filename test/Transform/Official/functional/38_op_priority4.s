@@ -90,7 +90,8 @@ bb2:
   ADD s0, s1, zero
   JAL zero, bb3
 bb3:
-  BNE s0, zero, bb4
+  ADD s1, s0, zero
+  BNE s1, zero, bb4
   JAL zero, bb5
 bb4:
   ADDI s1, zero, 1
@@ -116,13 +117,15 @@ bb5:
   ADD s1, s2, zero
   JAL zero, bb6
 bb6:
-  BNE s1, zero, bb7
+  ADD s2, s1, zero
+  BNE s2, zero, bb7
   JAL zero, bb9
 bb7:
   ADDI s2, zero, 1
   JAL zero, bb8
 bb8:
-  ADD a0, s2, zero
+  ADD s3, s2, zero
+  ADD a0, s3, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)

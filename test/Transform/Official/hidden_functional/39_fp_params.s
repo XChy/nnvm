@@ -588,32 +588,33 @@ bb3:
   ADDI sp, sp, 848
   JALR zero, 0(ra)
 bb4:
-  SLTI s7, s0, 8
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
-  BNE s7, zero, bb5
+  ADD s7, s0, zero
+  SLTI s8, s7, 8
+  XOR s9, s8, zero
+  SLTU s8, zero, s9
+  BNE s8, zero, bb5
   JAL zero, bb6
 bb5:
-  ADDI s7, zero, 4
-  MULW s8, s0, s7
+  ADDI s8, zero, 4
+  MULW s9, s7, s8
   ADDI t5, sp, 192
-  ADD s7, t5, s8
-  ADDI s8, zero, 4
-  MULW s9, s0, s8
+  ADD s8, t5, s9
+  ADDI s9, zero, 4
+  MULW s10, s7, s9
   ADDI t6, sp, 192
-  ADD s8, t6, s9
-  LW s9, 0(s8)
-  ADDI s8, zero, 4
-  MULW s10, s0, s8
+  ADD s9, t6, s10
+  LW s10, 0(s9)
+  ADDI s9, zero, 4
+  MULW s11, s7, s9
   ADDI t5, sp, 224
-  ADD s8, t5, s10
-  FLW fs9, 0(s8)
-  FCVT.S.W fs10, s9
+  ADD s9, t5, s11
+  FLW fs9, 0(s9)
+  FCVT.S.W fs10, s10
   FSUB.S fs11, fs10, fs9
-  FCVT.W.S s8, fs11, rtz
-  SW s8, 0(s7)
-  ADDIW s7, s0, 1
-  ADD s0, s7, zero
+  FCVT.W.S s9, fs11, rtz
+  SW s9, 0(s8)
+  ADDIW s8, s7, 1
+  ADD s0, s8, zero
   JAL zero, bb4
 bb6:
   LA s0, k
@@ -763,41 +764,43 @@ main:
   ADD s0, zero, zero
   JAL zero, bb8
 bb8:
-  SLTI s1, s0, 40
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
-  BNE s1, zero, bb9
+  ADD s1, s0, zero
+  SLTI s2, s1, 40
+  XOR s3, s2, zero
+  SLTU s2, zero, s3
+  BNE s2, zero, bb9
   JAL zero, bb10
 bb9:
-  ADDI s1, zero, 12
-  MULW s2, s0, s1
+  ADDI s2, zero, 12
+  MULW s3, s1, s2
   ADDI t6, sp, 608
-  ADD s1, t6, s2
-  ADD a0, s1, zero
+  ADD s2, t6, s3
+  ADD a0, s2, zero
   CALL getfarray
-  ADD s1, a0, zero
-  ADDIW s1, s0, 1
-  ADD s0, s1, zero
+  ADD s2, a0, zero
+  ADDIW s2, s1, 1
+  ADD s0, s2, zero
   JAL zero, bb8
 bb10:
   ADD s0, zero, zero
   JAL zero, bb11
 bb11:
-  SLTI s1, s0, 24
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
-  BNE s1, zero, bb12
+  ADD s1, s0, zero
+  SLTI s2, s1, 24
+  XOR s3, s2, zero
+  SLTU s2, zero, s3
+  BNE s2, zero, bb12
   JAL zero, bb13
 bb12:
-  ADDI s1, zero, 12
-  MULW s2, s0, s1
+  ADDI s2, zero, 12
+  MULW s3, s1, s2
   ADDI t5, sp, 320
-  ADD s1, t5, s2
-  ADD a0, s1, zero
+  ADD s2, t5, s3
+  ADD a0, s2, zero
   CALL getarray
-  ADD s1, a0, zero
-  ADDIW s1, s0, 1
-  ADD s0, s1, zero
+  ADD s2, a0, zero
+  ADDIW s2, s1, 1
+  ADD s0, s2, zero
   JAL zero, bb11
 bb13:
   ADDI s0, zero, 12
@@ -5136,10 +5139,10 @@ params_mix:
   SD t4, 608(sp)
   ADDI s8, sp, 1320
   FLW ft4, 0(s8)
-  FSW ft4, 792(sp)
+  FSW ft4, 784(sp)
   ADDI s8, sp, 1324
   LW t4, 0(s8)
-  SW t4, 784(sp)
+  SW t4, 792(sp)
   LA s8, k
   LW t1, 0(s8)
   ADDI s8, zero, 4
@@ -5281,7 +5284,7 @@ params_mix:
   ADD s2, t4, t0
   FLW fs9, 0(s2)
   FADD.S fs8, ft5, fs9
-  FLW ft4, 792(sp)
+  FLW ft4, 784(sp)
   FADD.S fs9, fs8, ft4
   ADDI t6, sp, 360
   ADD s2, t6, zero
@@ -5431,7 +5434,7 @@ params_mix:
   ADDW s2, t4, s6
   LW t4, 592(sp)
   ADDW s6, s2, t4
-  LW t4, 784(sp)
+  LW t4, 792(sp)
   ADDW s2, s6, t4
   ADDI t5, sp, 320
   ADD s6, t5, zero
@@ -5454,7 +5457,7 @@ params_mix:
   SW s2, 0(s0)
   ADDI s0, sp, 356
   SW zero, 0(s0)
-  LW t4, 784(sp)
+  LW t4, 792(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb23
@@ -5472,9 +5475,9 @@ bb23:
   JAL zero, bb26
 bb24:
 bb25:
-  LW t4, 784(sp)
+  LW t4, 792(sp)
   FCVT.S.W fs8, t4
-  FLW ft4, 792(sp)
+  FLW ft4, 784(sp)
   FCVT.W.S s0, ft4, rtz
   FSGNJ.S fa0, fs0, fs0
   ADDI a0, sp, 320
@@ -5716,32 +5719,33 @@ bb25:
   ADDI sp, sp, 1008
   JALR zero, 0(ra)
 bb26:
-  SLTI s2, s0, 10
-  XOR s6, s2, zero
-  SLTU s2, zero, s6
-  BNE s2, zero, bb27
+  ADD s2, s0, zero
+  SLTI s6, s2, 10
+  XOR s7, s6, zero
+  SLTU s6, zero, s7
+  BNE s6, zero, bb27
   JAL zero, bb28
 bb27:
-  ADDI s2, zero, 4
-  MULW s6, s0, s2
+  ADDI s6, zero, 4
+  MULW s7, s2, s6
   ADDI t5, sp, 320
-  ADD s2, t5, s6
-  ADDI s6, zero, 4
-  MULW s7, s0, s6
+  ADD s6, t5, s7
+  ADDI s7, zero, 4
+  MULW s8, s2, s7
   ADDI t6, sp, 320
-  ADD s6, t6, s7
-  LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s0, s6
+  ADD s7, t6, s8
+  LW s8, 0(s7)
+  ADDI s7, zero, 4
+  MULW s9, s2, s7
   ADDI t5, sp, 360
-  ADD s6, t5, s8
-  FLW fs8, 0(s6)
-  FCVT.S.W fs9, s7
+  ADD s7, t5, s9
+  FLW fs8, 0(s7)
+  FCVT.S.W fs9, s8
   FSUB.S fs10, fs9, fs8
-  FCVT.W.S s6, fs10, rtz
-  SW s6, 0(s2)
-  ADDIW s2, s0, 1
-  ADD s0, s2, zero
+  FCVT.W.S s7, fs10, rtz
+  SW s7, 0(s6)
+  ADDIW s6, s2, 1
+  ADD s0, s6, zero
   JAL zero, bb26
 bb28:
   LA s0, k

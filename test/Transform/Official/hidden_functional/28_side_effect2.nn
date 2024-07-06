@@ -527,9 +527,6 @@ select.exit480:
 then486:
   br bb %if.exit487
 if.exit487:
-  ans.phi701 = phi [bb %select.exit480, i32 0, bb %then486, i32 1]
-  sum.load488 = load i32 from ptr @sum
-  490 = add i32 %sum.load488, i32 %ans.phi701
   491 = call i32 h(i32 4)
   492 = icmp ne i32 %491, i32 0
   493 =  i1 %492, i1 1
@@ -583,9 +580,6 @@ select.exit523:
 then532:
   br bb %if.exit533
 if.exit533:
-  ans.phi700 = phi [bb %select.exit523, i32 0, bb %then532, i32 1]
-  sum.load534 = load i32 from ptr @sum
-  536 = mul i32 %sum.load534, i32 %ans.phi700
   537 = call i32 h(i32 9)
   538 = icmp ne i32 %537, i32 0
   br i1 %538, bb %select.then539, bb %select.else540
@@ -662,9 +656,6 @@ select.exit590:
 then597:
   br bb %if.exit598
 if.exit598:
-  ans.phi699 = phi [bb %select.exit584, i32 0, bb %then597, i32 1]
-  sum.load599 = load i32 from ptr @sum
-  601 = sub i32 %sum.load599, i32 %ans.phi699
   602 = call i32 h(i32 0)
   603 = icmp ne i32 %602, i32 0
   br i1 %603, bb %select.then604, bb %select.else605

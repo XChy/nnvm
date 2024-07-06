@@ -37,8 +37,7 @@ else28:
   30 = icmp eq i32 10, i32 10
   br i1 %30, bb %select.then31, bb %select.else32
 select.then31:
-  36 = sub i32 0, i32 5
-  37 = icmp eq i32 5, i32 %36
+  37 = icmp eq i32 5, i32 -5
   br bb %select.exit33
 select.else32:
   br bb %select.exit33
@@ -46,13 +45,11 @@ select.exit33:
   select34.phi = phi [bb %select.else32, i1 0, bb %select.then31, i1 %37]
   br i1 %select34.phi, bb %then39, bb %else41
 then39:
-  43 = add i32 5, i32 15
   br bb %if.exit40
 if.exit40:
-  a.phi = phi [bb %else41, i32 %45, bb %then39, i32 %43]
+  a.phi = phi [bb %else41, i32 -5, bb %then39, i32 20]
   br bb %if.exit27
 else41:
-  45 = sub i32 0, i32 5
   br bb %if.exit40
 }
 

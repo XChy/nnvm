@@ -8,6 +8,8 @@
 #include "IR/BasicBlock.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
+#include "Transform/Scalar/ConstantFold.h"
+#include <queue>
 
 namespace nnvm {
 class CombinerPass : public FunctionPass {
@@ -16,5 +18,10 @@ public:
   bool run(Function &F);
 
 private:
+  Value *simplifyInst(Instruction *I);
+
+  std::queue<Instruction *> worklist;
+
+  ConstantFold folder;
 };
 } /* namespace nnvm */

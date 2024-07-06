@@ -7,10 +7,9 @@ global ptr maxn init with i32 100005
 global ptr n init with i32 0
 void sortB(ptr a) {
 entry101:
-  104 = sub i32 0, i32 100
   br bb %while.cond105
 while.cond105:
-  mx.phi321 = phi [bb %entry101, i32 %104, bb %if.exit133, i32 %mx.phi]
+  mx.phi321 = phi [bb %entry101, i32 -100, bb %if.exit133, i32 %mx.phi]
   i102.phi317 = phi [bb %entry101, i32 0, bb %if.exit133, i32 %139]
   n.load109 = load i32 from ptr @n
   110 = icmp slt i32 %i102.phi317, i32 %n.load109
@@ -222,8 +221,7 @@ while.body293:
   303 = icmp ne i32 %301.load, i32 0
   br i1 %303, bb %then304, bb %if.exit305
 while.exit294:
-  315 = sub i32 0, i32 123
-  ret i32 %315
+  ret i32 -123
 then304:
   ret i32 1
 if.exit305:

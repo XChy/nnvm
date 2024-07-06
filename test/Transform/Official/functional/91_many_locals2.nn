@@ -12,69 +12,40 @@ while.body:
   40 = add i32 %b.phi, i32 1
   br bb %while.cond
 while.exit:
-  42 = add i32 0, i32 1
-  44 = add i32 %42, i32 1
-  46 = add i32 %44, i32 1
-  48 = add i32 %46, i32 1
-  50 = add i32 %48, i32 1
-  52 = add i32 %50, i32 1
-  54 = add i32 %52, i32 1
-  56 = add i32 %54, i32 1
-  58 = add i32 %56, i32 1
-  60 = add i32 %58, i32 1
-  62 = add i32 %60, i32 1
-  64 = add i32 %62, i32 1
-  66 = add i32 %64, i32 1
-  68 = add i32 %66, i32 1
-  70 = add i32 %68, i32 1
-  72 = add i32 %70, i32 1
-  74 = add i32 %72, i32 1
-  76 = add i32 %74, i32 1
-  78 = add i32 %76, i32 1
-  80 = add i32 %78, i32 1
-  82 = add i32 %80, i32 1
-  84 = add i32 %82, i32 1
-  86 = add i32 %84, i32 1
-  88 = add i32 %86, i32 1
-  90 = add i32 %88, i32 1
-  92 = add i32 %90, i32 1
-  94 = add i32 %92, i32 1
-  96 = add i32 %94, i32 1
-  98 = add i32 %96, i32 1
   call void putint(i32 0)
-  call void putint(i32 %42)
-  call void putint(i32 %44)
-  call void putint(i32 %46)
-  call void putint(i32 %48)
-  call void putint(i32 %50)
-  call void putint(i32 %52)
-  call void putint(i32 %54)
-  call void putint(i32 %56)
-  call void putint(i32 %58)
-  call void putint(i32 %60)
-  call void putint(i32 %62)
-  call void putint(i32 %64)
-  call void putint(i32 %66)
-  call void putint(i32 %68)
-  call void putint(i32 %70)
-  call void putint(i32 %72)
-  call void putint(i32 %74)
-  call void putint(i32 %76)
-  call void putint(i32 %78)
-  call void putint(i32 %80)
-  call void putint(i32 %82)
-  call void putint(i32 %84)
-  call void putint(i32 %86)
-  call void putint(i32 %88)
-  call void putint(i32 %90)
-  call void putint(i32 %92)
-  call void putint(i32 %94)
-  call void putint(i32 %96)
-  call void putint(i32 %98)
+  call void putint(i32 1)
+  call void putint(i32 2)
+  call void putint(i32 3)
+  call void putint(i32 4)
+  call void putint(i32 5)
+  call void putint(i32 6)
+  call void putint(i32 7)
+  call void putint(i32 8)
+  call void putint(i32 9)
+  call void putint(i32 10)
+  call void putint(i32 11)
+  call void putint(i32 12)
+  call void putint(i32 13)
+  call void putint(i32 14)
+  call void putint(i32 15)
+  call void putint(i32 16)
+  call void putint(i32 17)
+  call void putint(i32 18)
+  call void putint(i32 19)
+  call void putint(i32 20)
+  call void putint(i32 21)
+  call void putint(i32 22)
+  call void putint(i32 23)
+  call void putint(i32 24)
+  call void putint(i32 25)
+  call void putint(i32 26)
+  call void putint(i32 27)
+  call void putint(i32 28)
+  call void putint(i32 29)
   call void putch(i32 10)
   call void putint(i32 %b.phi)
   call void putch(i32 10)
-  ret i32 %90
+  ret i32 25
 }
 
 external void putfarray(i32 , ptr )

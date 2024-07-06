@@ -17,12 +17,12 @@ void PhiResolution::resolve(LIRFunc &func) {
 void PhiResolution::processBB(LIRBB *BB) {
   if (BB->getInsts().empty())
     return;
-
-  LIRBuilder builder(*BB->getParent()->getParent());
   // Early exit if there is no phi.
   auto firstPhi = *BB->getInsts().begin();
   if (firstPhi->getOpcode() != (uint64_t)nnvm::InstID::Phi)
     return;
+
+  LIRBuilder builder(*BB->getParent()->getParent());
 
   // Split critical edges.
   std::map<LIRBB *, LIRBB *> originalToSpiltted;
@@ -62,9 +62,22 @@ void PhiResolution::processBB(LIRBB *BB) {
     if (phi->getOpcode() != (uint64_t)nnvm::InstID::Phi)
       break;
 
+    // Use temporary register to resolve swap problem.
+    Register *phiReg = phi->getOp(0)->as<Register>();
+    Register *tempReg = builder.newVReg(phiReg->getType());
+
+    // temp -> phi
+    builder.setInsertPoint(BB->begin());
+    builder.copy(tempReg, phiReg);
+
     for (uint64_t i = 1; i < phi->getNumOp(); i += 2) {
       LIRBB *incomingBB = phi->getOp(i)->as<LIRBB>();
+
+      // Refine UB values
       LIRValue *incomingValue = phi->getOp(i + 1);
+
+      if (incomingValue->isUBValue())
+        incomingValue = builder.phyReg(tempReg->isFP() ? FA0 : ZERO);
 
       if (incomingBB->getSuccNum() != 1)
         nnvm_unreachable("WTF?");
@@ -73,15 +86,8 @@ void PhiResolution::processBB(LIRBB *BB) {
       auto it = incomingBB->end();
       it--;
       builder.setInsertPoint(it);
-      if (incomingValue->isUBValue()) {
-        if (phi->getOp(0)->isFP()) {
-          builder.copy(builder.phyReg(FA0), phi->getOp(0)->as<Register>());
-        } else {
-          builder.copy(builder.phyReg(ZERO), phi->getOp(0)->as<Register>());
-        }
-      } else {
-        builder.copy(incomingValue, phi->getOp(0)->as<Register>());
-      }
+
+      builder.copy(incomingValue, tempReg);
     }
 
     phi->eraseFromList();

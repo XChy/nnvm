@@ -6,6 +6,7 @@
 
 #pragma once
 #include "IR/Instruction.h"
+#include "IR/Module.h"
 #include "IR/Value.h"
 
 namespace nnvm {
@@ -17,5 +18,13 @@ public:
    * @return the constant result if foldable, else nullptr.
    */
   Value *fold(Instruction *I);
+
+  Value *foldAdd(AddInst *I);
+  Value *foldSub(SubInst *I);
+
+  void setModule(Module *module) { this->module = module; }
+
+private:
+  Module *module;
 };
 } // namespace nnvm

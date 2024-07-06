@@ -16,37 +16,34 @@ __HELLO:
 .byte 87, 0, 0, 0, 101, 0, 0, 0, 108, 0, 0, 0, 99, 0, 0, 0, 111, 0, 0, 0, 109, 0, 0, 0, 101, 0, 0, 0, 32, 0, 0, 0, 116, 0, 0, 0, 111, 0, 0, 0, 32, 0, 0, 0, 116, 0, 0, 0, 104, 0, 0, 0, 101, 0, 0, 0, 32, 0, 0, 0, 74, 0, 0, 0, 97, 0, 0, 0, 112, 0, 0, 0, 97, 0, 0, 0, 114, 0, 0, 0, 105, 0, 0, 0, 32, 0, 0, 0, 80, 0, 0, 0, 97, 0, 0, 0, 114, 0, 0, 0, 107, 0, 0, 0, 33, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 .section .text
 main:
-  ADDI sp, sp, -80
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s1, 32(sp)
+  SD s5, 40(sp)
+  SD s0, 48(sp)
   LA s0, __HELLO
   ADD a0, s0, zero
   CALL putstr
   ADD s0, a0, zero
   ADD s0, zero, zero
-  ADD s1, zero, zero
-  ADD s2, zero, zero
   JAL zero, bb1
 bb1:
-  XORI s3, zero, 1
-  SLTU s4, zero, s3
-  BNE s4, zero, bb2
+  ADD s1, s0, zero
+  XORI s2, zero, 1
+  SLTU s3, zero, s2
+  BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
-  ADDI s3, zero, 6
-  DIVW s4, s2, s3
-  ADDI s3, zero, 6
-  REMW s5, s2, s3
-  XOR s3, s4, s5
-  SLTU s6, zero, s3
-  BNE s6, zero, bb4
+  ADDI s2, zero, 6
+  DIVW s3, s1, s2
+  ADDI s2, zero, 6
+  REMW s4, s1, s2
+  XOR s2, s3, s4
+  SLTU s5, zero, s2
+  BNE s5, zero, bb4
   JAL zero, bb5
 bb3:
   ADD a0, zero, zero
@@ -54,89 +51,88 @@ bb3:
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD s1, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
-  ADDI s3, zero, 200
-  MULW s6, s4, s3
-  LA s3, N4__mE___
-  ADD s7, s3, s6
-  ADD a0, s7, zero
-  CALL putstr
-  ADD s3, a0, zero
-  LA s3, saY_HeI10_To
+  ADDI s2, zero, 200
+  MULW s5, s3, s2
+  LA s2, N4__mE___
+  ADD s3, s2, s5
   ADD a0, s3, zero
   CALL putstr
-  ADD s3, a0, zero
-  ADDI s3, zero, 200
-  MULW s6, s5, s3
-  LA s3, N4__mE___
-  ADD s7, s3, s6
-  ADD a0, s7, zero
+  ADD s2, a0, zero
+  LA s2, saY_HeI10_To
+  ADD a0, s2, zero
   CALL putstr
-  ADD s3, a0, zero
-  LA s3, RET
-  ADD a0, s3, zero
+  ADD s2, a0, zero
+  ADDI s2, zero, 200
+  MULW s3, s4, s2
+  LA s2, N4__mE___
+  ADD s4, s2, s3
+  ADD a0, s4, zero
   CALL putstr
-  ADD s3, a0, zero
+  ADD s2, a0, zero
+  LA s2, RET
+  ADD a0, s2, zero
+  CALL putstr
+  ADD s2, a0, zero
   JAL zero, bb5
 bb5:
-  ADDI s3, zero, 17
-  MULW s6, s2, s3
-  ADDIW s3, s6, 23
-  ADDI s6, zero, 32
-  REMW s7, s3, s6
-  XOR s3, s7, zero
-  SLTIU s6, s3, 1
-  BNE s6, zero, bb6
+  ADDI s2, zero, 17
+  MULW s3, s1, s2
+  ADDIW s1, s3, 23
+  ADDI s2, zero, 32
+  REMW s3, s1, s2
+  XOR s1, s3, zero
+  SLTIU s2, s1, 1
+  BNE s2, zero, bb6
   JAL zero, bb7
 bb6:
   JAL zero, bb3
 bb7:
-  ADD s0, s5, zero
-  ADD s1, s4, zero
-  ADD s2, s7, zero
+  ADD s0, s3, zero
   JAL zero, bb1
 putstr:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   JAL zero, bb9
 bb9:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADD s2, s0, s3
-  LW s3, 0(s2)
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
-  BNE s3, zero, bb10
+  ADD s2, s1, zero
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  ADD s3, s0, s4
+  LW s4, 0(s3)
+  XOR s3, s4, zero
+  SLTU s4, zero, s3
+  BNE s4, zero, bb10
   JAL zero, bb11
 bb10:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADD s2, s0, s3
-  LW s3, 0(s2)
-  ADD a0, s3, zero
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  ADD s3, s0, s4
+  LW s4, 0(s3)
+  ADD a0, s4, zero
   CALL putch
-  ADDIW s2, s1, 1
-  ADD s1, s2, zero
+  ADDIW s3, s2, 1
+  ADD s1, s3, zero
   JAL zero, bb9
 bb11:
-  ADD a0, s1, zero
+  ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

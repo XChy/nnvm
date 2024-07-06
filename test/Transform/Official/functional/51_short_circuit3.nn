@@ -107,18 +107,15 @@ if.exit70:
   d.load71 = load i32 from ptr @d
   call void putint(i32 %d.load71)
   call void putch(i32 10)
-  74 = add i32 2, i32 1
-  75 = sub i32 3, i32 %74
-  76 = icmp sge i32 16, i32 %75
+  76 = icmp sge i32 16, i32 0
   br i1 %76, bb %then77, bb %if.exit78
 then77:
   call void putch(i32 65)
   br bb %if.exit78
 if.exit78:
-  80 = sub i32 25, i32 7
   81 = mul i32 6, i32 3
   82 = sub i32 36, i32 %81
-  83 = icmp ne i32 %80, i32 %82
+  83 = icmp ne i32 18, i32 %82
   br i1 %83, bb %then84, bb %if.exit85
 then84:
   call void putch(i32 66)
@@ -149,12 +146,11 @@ then103:
   call void putch(i32 69)
   br bb %if.exit104
 if.exit104:
-  106 = sub i32 5, i32 6
   107 = icmp ne i32 0, i32 0
   108 =  i1 %107, i1 1
   109 = zext i1 %108 to i32
   110 = sub i32 0, i32 %109
-  111 = icmp eq i32 %106, i32 %110
+  111 = icmp eq i32 -1, i32 %110
   br i1 %111, bb %then112, bb %if.exit113
 then112:
   call void putch(i32 70)

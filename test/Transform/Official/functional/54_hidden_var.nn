@@ -10,13 +10,11 @@ entry:
   call void putch(i32 10)
   br bb %while.cond
 while.cond:
-  a16.phi126 = phi [bb %entry, i32 ub, bb %if.exit, i32 %18]
   14 = icmp slt i32 1, i32 5
   15 = icmp ne i1 %14, i1 0
   br i1 %15, bb %while.body, bb %while.exit
 while.body:
-  18 = add i32 0, i32 1
-  20 = icmp ne i32 %18, i32 0
+  20 = icmp ne i32 1, i32 0
   br i1 %20, bb %then, bb %if.exit
 while.exit:
   call void putint(i32 1)

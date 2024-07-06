@@ -104,9 +104,8 @@ entry87:
   %z = stack 8
   %y = stack 4
   %j = stack 4
-  91 = sub i32 0, i32 1
   arr.index = ptradd ptr %z, i32 0
-  store i32 %91 to ptr %arr.index
+  store i32 -1 to ptr %arr.index
   arr.index93 = ptradd ptr %z, i32 4
   store i32 0 to ptr %arr.index93
   94 = mul i32 0, i32 4

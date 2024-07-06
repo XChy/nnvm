@@ -36,10 +36,9 @@ then:
   9 = icmp eq i32 10, i32 10
   br i1 %9, bb %then10, bb %if.exit11
 if.exit:
-  a.phi18 = phi [bb %else, i32 %13, bb %if.exit11, i32 %a.phi]
+  a.phi18 = phi [bb %else, i32 20, bb %if.exit11, i32 %a.phi]
   ret i32 %a.phi18
 else:
-  13 = add i32 5, i32 15
   br bb %if.exit
 then10:
   br bb %if.exit11

@@ -221,10 +221,9 @@ main:
   SD s2, 48(sp)
   SD s1, 56(sp)
   SD s0, 64(sp)
-  ADDI s0, zero, 1
-  SUB s1, zero, s0
   ADDI t5, sp, 0
   ADD s0, t5, zero
+  ADDI s1, zero, -1
   SW s1, 0(s0)
   ADDI s0, sp, 4
   SW zero, 0(s0)

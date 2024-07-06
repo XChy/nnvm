@@ -95,12 +95,9 @@ bool Mem2RegPass::run(Function &F) {
   for (auto &[SI, info] : candidates)
     promote(SI);
   rename(F);
+
   for (auto &[SI, info] : candidates)
     SI->eraseFromBB();
-
-  for (auto &[phi, stack] : phi2Stack)
-    if (phi->users().empty())
-      phi->eraseFromBB();
 
   return changed;
 }

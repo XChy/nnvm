@@ -3,9 +3,6 @@ global ptr state init with i32 19260817
 void pseudo_sha1(ptr input, i32 input_len, ptr output) {
 entry70:
   %words = stack 320
-  74 = sub i32 0, i32 271733879
-  76 = sub i32 0, i32 1732584194
-  79 = sub i32 0, i32 1009589776
   90 = mul i32 %input_len, i32 4
   91 = ptradd ptr %input, i32 %90
   store i32 128 to ptr %91
@@ -62,12 +59,12 @@ init:
 init.exit:
   br bb %while.cond147
 while.cond147:
-  h1.phi = phi [bb %init.exit, i32 %74, bb %while.exit246, i32 %327]
-  h4.phi = phi [bb %init.exit, i32 %79, bb %while.exit246, i32 %336]
+  h1.phi = phi [bb %init.exit, i32 -271733879, bb %while.exit246, i32 %327]
+  h4.phi = phi [bb %init.exit, i32 -1009589776, bb %while.exit246, i32 %336]
   f.phi454 = phi [bb %init.exit, i32 ub, bb %while.exit246, i32 %f.phi453]
   k.phi448 = phi [bb %init.exit, i32 ub, bb %while.exit246, i32 %k.phi447]
   h3.phi = phi [bb %init.exit, i32 271733878, bb %while.exit246, i32 %333]
-  h2.phi = phi [bb %init.exit, i32 %76, bb %while.exit246, i32 %330]
+  h2.phi = phi [bb %init.exit, i32 -1732584194, bb %while.exit246, i32 %330]
   chunk_start.phi = phi [bb %init.exit, i32 0, bb %while.exit246, i32 %338]
   t.phi427 = phi [bb %init.exit, i32 ub, bb %while.exit246, i32 %t.phi]
   h0.phi = phi [bb %init.exit, i32 1732584193, bb %while.exit246, i32 %324]
@@ -233,11 +230,10 @@ then275:
   284 = call i32 _or(i32 %280, i32 %283)
   287 = call i32 _and(i32 %c.phi, i32 %d.phi)
   288 = call i32 _or(i32 %284, i32 %287)
-  289 = sub i32 0, i32 1894007588
   br bb %if.exit276
 if.exit276:
   f.phi450 = phi [bb %if.exit293, i32 %f.phi, bb %then275, i32 %288]
-  k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275, i32 %289]
+  k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275, i32 -1894007588]
   br bb %if.exit266
 else277:
   291 = icmp slt i32 %i.phi, i32 80
@@ -245,11 +241,10 @@ else277:
 then292:
   296 = call i32 _xor(i32 %b.phi, i32 %c.phi)
   298 = call i32 _xor(i32 %296, i32 %d.phi)
-  299 = sub i32 0, i32 899497722
   br bb %if.exit293
 if.exit293:
   f.phi = phi [bb %else277, i32 %f.phi453, bb %then292, i32 %298]
-  k.phi = phi [bb %else277, i32 %k.phi447, bb %then292, i32 %299]
+  k.phi = phi [bb %else277, i32 %k.phi447, bb %then292, i32 -899497722]
   br bb %if.exit276
 }
 
@@ -273,8 +268,7 @@ entry60:
 
 i32 _not(i32 x) {
 entry41:
-  43 = sub i32 0, i32 1
-  45 = sub i32 %43, i32 %x
+  45 = sub i32 -1, i32 %x
   ret i32 %45
 }
 

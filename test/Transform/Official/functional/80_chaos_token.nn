@@ -17,8 +17,6 @@ entry18:
   19 = call i32 putstr(ptr @__HELLO)
   br bb %while.cond21
 while.cond21:
-  __.phi59 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %30]
-  _.phi57 = phi [bb %entry18, i32 ub, bb %if.exit53, i32 %27]
   i.phi55 = phi [bb %entry18, i32 0, bb %if.exit53, i32 %49]
   24 = icmp ne i32 1, i32 0
   br i1 %24, bb %while.body22, bb %while.exit23

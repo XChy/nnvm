@@ -522,16 +522,18 @@ F2:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 my_sqrt:
-  ADDI sp, sp, -80
-  SD s1, 0(sp)
-  FSD fs4, 8(sp)
-  SD ra, 16(sp)
-  FSD fs3, 24(sp)
-  FSD fs1, 32(sp)
-  FSD fs2, 40(sp)
-  SD s0, 48(sp)
-  SD s2, 56(sp)
-  FSD fs0, 64(sp)
+  ADDI sp, sp, -96
+  SD s3, 0(sp)
+  SD s1, 8(sp)
+  FSD fs4, 16(sp)
+  SD ra, 24(sp)
+  FSD fs3, 32(sp)
+  FSD fs1, 40(sp)
+  FSD fs2, 48(sp)
+  SD s0, 56(sp)
+  SD s2, 64(sp)
+  FSD fs5, 72(sp)
+  FSD fs0, 80(sp)
   FSGNJ.D fs0, fa0, fa0
   ADDI s0, zero, 100
   FCVT.S.W fs1, s0
@@ -549,16 +551,18 @@ bb20:
   FLW fs2, 0(s0)
   FMUL.S fs3, fs2, fs1
   FSGNJ.S fa0, fs3, fs3
-  LD s1, 0(sp)
-  FLD fs4, 8(sp)
-  LD ra, 16(sp)
-  FLD fs3, 24(sp)
-  FLD fs1, 32(sp)
-  FLD fs2, 40(sp)
-  LD s0, 48(sp)
-  LD s2, 56(sp)
-  FLD fs0, 64(sp)
-  ADDI sp, sp, 80
+  LD s3, 0(sp)
+  LD s1, 8(sp)
+  FLD fs4, 16(sp)
+  LD ra, 24(sp)
+  FLD fs3, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
+  LD s0, 56(sp)
+  LD s2, 64(sp)
+  FLD fs5, 72(sp)
+  FLD fs0, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb21:
   ADDI s0, zero, 8
@@ -579,33 +583,37 @@ bb21:
   FSGNJ.S fs1, fs2, fs2
   JAL zero, bb22
 bb22:
-  XOR s1, s0, zero
-  SLTU s2, zero, s1
-  BNE s2, zero, bb23
+  FSGNJ.S fs2, fs1, fs1
+  ADD s1, s0, zero
+  XOR s2, s1, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb23
   JAL zero, bb24
 bb23:
-  FDIV.S fs2, fs0, fs1
-  FADD.S fs3, fs1, fs2
-  ADDI s1, zero, 2
-  FCVT.S.W fs2, s1
-  FDIV.S fs4, fs3, fs2
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
-  ADD s0, s2, zero
-  FSGNJ.S fs1, fs4, fs4
+  FDIV.S fs3, fs0, fs2
+  FADD.S fs4, fs2, fs3
+  ADDI s2, zero, 2
+  FCVT.S.W fs3, s2
+  FDIV.S fs5, fs4, fs3
+  ADDI s2, zero, 1
+  SUBW s3, s1, s2
+  ADD s0, s3, zero
+  FSGNJ.S fs1, fs5, fs5
   JAL zero, bb22
 bb24:
-  FSGNJ.S fa0, fs1, fs1
-  LD s1, 0(sp)
-  FLD fs4, 8(sp)
-  LD ra, 16(sp)
-  FLD fs3, 24(sp)
-  FLD fs1, 32(sp)
-  FLD fs2, 40(sp)
-  LD s0, 48(sp)
-  LD s2, 56(sp)
-  FLD fs0, 64(sp)
-  ADDI sp, sp, 80
+  FSGNJ.S fa0, fs2, fs2
+  LD s3, 0(sp)
+  LD s1, 8(sp)
+  FLD fs4, 16(sp)
+  LD ra, 24(sp)
+  FLD fs3, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
+  LD s0, 56(sp)
+  LD s2, 64(sp)
+  FLD fs5, 72(sp)
+  FLD fs0, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 F1:
   ADDI sp, sp, -48
@@ -627,15 +635,19 @@ F1:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 my_pow:
-  ADDI sp, sp, -64
-  SD ra, 0(sp)
-  FSD fs3, 8(sp)
-  FSD fs1, 16(sp)
-  SD s1, 24(sp)
-  FSD fs2, 32(sp)
-  SD s0, 40(sp)
-  SD s2, 48(sp)
-  FSD fs0, 56(sp)
+  ADDI sp, sp, -96
+  FSD fs6, 0(sp)
+  FSD fs5, 8(sp)
+  FSD fs0, 16(sp)
+  SD s2, 24(sp)
+  SD s0, 32(sp)
+  FSD fs2, 40(sp)
+  SD s1, 48(sp)
+  FSD fs1, 56(sp)
+  FSD fs3, 64(sp)
+  SD ra, 72(sp)
+  SD s3, 80(sp)
+  FSD fs4, 88(sp)
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
   SLT s1, s0, zero
@@ -651,15 +663,19 @@ bb27:
   FCVT.S.W fs2, s1
   FDIV.S fs3, fs2, fs1
   FSGNJ.S fa0, fs3, fs3
-  LD ra, 0(sp)
-  FLD fs3, 8(sp)
-  FLD fs1, 16(sp)
-  LD s1, 24(sp)
-  FLD fs2, 32(sp)
-  LD s0, 40(sp)
-  LD s2, 48(sp)
-  FLD fs0, 56(sp)
-  ADDI sp, sp, 64
+  FLD fs6, 0(sp)
+  FLD fs5, 8(sp)
+  FLD fs0, 16(sp)
+  LD s2, 24(sp)
+  LD s0, 32(sp)
+  FLD fs2, 40(sp)
+  LD s1, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs3, 64(sp)
+  LD ra, 72(sp)
+  LD s3, 80(sp)
+  FLD fs4, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb28:
   LA s1, .CONSTANT.7.5
@@ -671,62 +687,72 @@ bb28:
   FSGNJ.S fs1, fs0, fs0
   JAL zero, bb29
 bb29:
-  XOR s0, s1, zero
-  SLTU s2, zero, s0
-  BNE s2, zero, bb30
+  FSGNJ.S fs0, fs1, fs1
+  ADD s0, s1, zero
+  FSGNJ.S fs2, fs3, fs3
+  XOR s2, s0, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb30
   JAL zero, bb31
 bb30:
-  ADDI s0, zero, 2
-  REMW s2, s1, s0
-  XOR s0, s2, zero
-  SLTU s2, zero, s0
-  BNE s2, zero, bb32
+  ADDI s2, zero, 2
+  REMW s3, s0, s2
+  XOR s2, s3, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb32
   JAL zero, bb34
 bb31:
-  FSGNJ.S fa0, fs3, fs3
-  LD ra, 0(sp)
-  FLD fs3, 8(sp)
-  FLD fs1, 16(sp)
-  LD s1, 24(sp)
-  FLD fs2, 32(sp)
-  LD s0, 40(sp)
-  LD s2, 48(sp)
-  FLD fs0, 56(sp)
-  ADDI sp, sp, 64
+  FSGNJ.S fa0, fs2, fs2
+  FLD fs6, 0(sp)
+  FLD fs5, 8(sp)
+  FLD fs0, 16(sp)
+  LD s2, 24(sp)
+  LD s0, 32(sp)
+  FLD fs2, 40(sp)
+  LD s1, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs3, 64(sp)
+  LD ra, 72(sp)
+  LD s3, 80(sp)
+  FLD fs4, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb32:
-  FMUL.S fs0, fs3, fs1
-  FSGNJ.S fs2, fs0, fs0
+  FMUL.S fs4, fs2, fs0
+  FSGNJ.S fs5, fs4, fs4
   JAL zero, bb33
 bb33:
-  FMUL.S fs0, fs1, fs1
-  ADDI s0, zero, 2
-  DIVW s2, s1, s0
-  FSGNJ.S fs3, fs2, fs2
-  ADD s1, s2, zero
-  FSGNJ.S fs1, fs0, fs0
+  FSGNJ.S fs4, fs5, fs5
+  FMUL.S fs6, fs0, fs0
+  ADDI s2, zero, 2
+  DIVW s3, s0, s2
+  FSGNJ.S fs3, fs4, fs4
+  ADD s1, s3, zero
+  FSGNJ.S fs1, fs6, fs6
   JAL zero, bb29
 bb34:
-  FSGNJ.S fs2, fs3, fs3
+  FSGNJ.S fs5, fs2, fs2
   JAL zero, bb33
 main:
-  ADDI sp, sp, -64
-  SD s3, 0(sp)
+  ADDI sp, sp, -80
+  SD s4, 0(sp)
   SD ra, 8(sp)
   FSD fs1, 16(sp)
   FSD fs0, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  FSD fs2, 48(sp)
-  SD s0, 56(sp)
+  SD s3, 32(sp)
+  SD s2, 40(sp)
+  SD s1, 48(sp)
+  FSD fs2, 56(sp)
+  SD s0, 64(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, s0, zero
   JAL zero, bb36
 bb36:
-  XOR s0, s1, zero
-  SLTU s2, zero, s0
-  BNE s2, zero, bb37
+  ADD s0, s1, zero
+  XOR s2, s0, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb37
   JAL zero, bb38
 bb37:
   CALL getfloat
@@ -763,20 +789,21 @@ bb37:
   ADDI a0, zero, 32
   CALL putch
   FCVT.S.L fs2, zero
-  FLT.S s0, fs2, fs0
-  BNE s0, zero, bb39
+  FLT.S s2, fs2, fs0
+  BNE s2, zero, bb39
   JAL zero, bb41
 bb38:
   ADD a0, zero, zero
-  LD s3, 0(sp)
+  LD s4, 0(sp)
   LD ra, 8(sp)
   FLD fs1, 16(sp)
   FLD fs0, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  FLD fs2, 48(sp)
-  LD s0, 56(sp)
-  ADDI sp, sp, 64
+  LD s3, 32(sp)
+  LD s2, 40(sp)
+  LD s1, 48(sp)
+  FLD fs2, 56(sp)
+  LD s0, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb39:
   FSGNJ.S fa0, fs0, fs0
@@ -789,8 +816,8 @@ bb40:
   ADDI a0, zero, 32
   CALL putch
   FCVT.S.L fs2, zero
-  FLT.S s0, fs2, fs0
-  BNE s0, zero, bb42
+  FLT.S s2, fs2, fs0
+  BNE s2, zero, bb42
   JAL zero, bb43
 bb41:
   ADDI a0, zero, 45
@@ -798,13 +825,14 @@ bb41:
   JAL zero, bb40
 bb42:
   FCVT.S.L fs2, zero
-  FLT.S s0, fs2, fs1
-  ADD s2, s0, zero
+  FLT.S s2, fs2, fs1
+  ADD s3, s2, zero
   JAL zero, bb44
 bb43:
-  ADD s2, zero, zero
+  ADD s3, zero, zero
   JAL zero, bb44
 bb44:
+  ADD s2, s3, zero
   BNE s2, zero, bb45
   JAL zero, bb47
 bb45:
@@ -819,8 +847,8 @@ bb46:
   ADDI a0, zero, 32
   CALL putch
   FCVT.S.L fs2, zero
-  FLT.S s0, fs2, fs0
-  BNE s0, zero, bb48
+  FLT.S s2, fs2, fs0
+  BNE s2, zero, bb48
   JAL zero, bb50
 bb47:
   ADDI a0, zero, 45
@@ -837,9 +865,9 @@ bb48:
 bb49:
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 1
-  SUBW s3, s1, s0
-  ADD s1, s3, zero
+  ADDI s2, zero, 1
+  SUBW s4, s0, s2
+  ADD s1, s4, zero
   JAL zero, bb36
 bb50:
   ADDI a0, zero, 45

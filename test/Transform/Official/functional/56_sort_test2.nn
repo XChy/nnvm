@@ -81,7 +81,6 @@ i32 insertsort(ptr a) {
 entry:
   br bb %while.cond
 while.cond:
-  select.phi102 = phi [bb %entry, i1 ub, bb %while.exit19, i1 %select.phi]
   i.phi = phi [bb %entry, i32 1, bb %while.exit19, i32 %51]
   n.load = load i32 from ptr @n
   7 = icmp slt i32 %i.phi, i32 %n.load
@@ -97,8 +96,7 @@ while.exit:
   ret i32 0
 while.cond17:
   j.phi = phi [bb %while.body, i32 %16, bb %while.body18, i32 %44]
-  21 = sub i32 0, i32 1
-  22 = icmp sgt i32 %j.phi, i32 %21
+  22 = icmp sgt i32 %j.phi, i32 -1
   br i1 %22, bb %select.then, bb %select.else
 while.body18:
   36 = add i32 %j.phi, i32 1

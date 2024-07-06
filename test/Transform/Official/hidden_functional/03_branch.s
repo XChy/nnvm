@@ -30,7 +30,8 @@ bb2:
   ADD s1, zero, zero
   JAL zero, bb3
 bb3:
-  BNE s1, zero, bb4
+  ADD s0, s1, zero
+  BNE s0, zero, bb4
   JAL zero, bb6
 bb4:
   ADDI s0, zero, 0
@@ -69,7 +70,8 @@ bb8:
   ADD s0, s3, zero
   JAL zero, bb9
 bb9:
-  BNE s0, zero, bb10
+  ADD s2, s0, zero
+  BNE s2, zero, bb10
   JAL zero, bb12
 bb10:
   ADDI s2, zero, 2
@@ -93,17 +95,16 @@ bb12:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb13:
-  ADDI s2, zero, 5
-  ADDIW s3, s2, 4
   ADDI s2, zero, 2
-  SLT s4, s2, s3
-  ADD s2, s4, zero
+  SLTI s3, s2, 9
+  ADD s2, s3, zero
   JAL zero, bb15
 bb14:
   ADD s2, zero, zero
   JAL zero, bb15
 bb15:
-  BNE s2, zero, bb16
+  ADD s3, s2, zero
+  BNE s3, zero, bb16
   JAL zero, bb18
 bb16:
   ADDI a0, zero, 3
@@ -137,7 +138,8 @@ bb20:
   ADD s3, zero, zero
   JAL zero, bb21
 bb21:
-  BNE s3, zero, bb22
+  ADD s4, s3, zero
+  BNE s4, zero, bb22
   JAL zero, bb24
 bb22:
   ADDI a0, zero, 4
@@ -164,12 +166,10 @@ bb24:
   BNE s4, zero, bb25
   JAL zero, bb27
 bb25:
-  ADDI s4, zero, 5
-  ADDI s5, zero, 6
-  SUBW s6, s4, s5
-  SLT s4, s6, zero
-  XORI s5, s4, 1
-  BNE s5, zero, bb28
+  ADDI s4, zero, -1
+  SLT s5, s4, zero
+  XORI s4, s5, 1
+  BNE s4, zero, bb28
   JAL zero, bb29
 bb26:
   JAL zero, bb23
@@ -197,7 +197,8 @@ bb29:
   ADD s4, s6, zero
   JAL zero, bb30
 bb30:
-  BNE s4, zero, bb31
+  ADD s5, s4, zero
+  BNE s5, zero, bb31
   JAL zero, bb33
 bb31:
   ADDI a0, zero, 6

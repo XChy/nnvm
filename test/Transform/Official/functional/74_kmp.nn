@@ -21,8 +21,7 @@ while.body54:
   69 = icmp eq i32 %63.load, i32 %67.load
   br i1 %69, bb %then70, bb %else72
 while.exit55:
-  101 = sub i32 0, i32 1
-  ret i32 %101
+  ret i32 -1
 then70:
   74 = add i32 %i51.phi135, i32 1
   76 = add i32 %j52.phi138, i32 1
@@ -42,8 +41,7 @@ else72:
   89 = mul i32 %i51.phi135, i32 4
   90 = ptradd ptr %next, i32 %89
   90.load = load i32 from ptr %90
-  93 = sub i32 0, i32 1
-  94 = icmp eq i32 %90.load, i32 %93
+  94 = icmp eq i32 %90.load, i32 -1
   br i1 %94, bb %then95, bb %if.exit96
 then85:
   ret i32 %76
@@ -128,21 +126,18 @@ void get_next(ptr str, ptr next) {
 entry:
   1 = mul i32 0, i32 4
   2 = ptradd ptr %next, i32 %1
-  3 = sub i32 0, i32 1
-  store i32 %3 to ptr %2
-  6 = sub i32 0, i32 1
+  store i32 -1 to ptr %2
   br bb %while.cond
 while.cond:
   i.phi143 = phi [bb %entry, i32 0, bb %if.exit, i32 %i.phi]
-  j.phi141 = phi [bb %entry, i32 %6, bb %if.exit, i32 %j.phi]
+  j.phi141 = phi [bb %entry, i32 -1, bb %if.exit, i32 %j.phi]
   11 = mul i32 %i.phi143, i32 4
   12 = ptradd ptr %str, i32 %11
   12.load = load i32 from ptr %12
   14 = icmp ne i32 %12.load, i32 0
   br i1 %14, bb %while.body, bb %while.exit
 while.body:
-  16 = sub i32 0, i32 1
-  17 = icmp eq i32 %j.phi141, i32 %16
+  17 = icmp eq i32 %j.phi141, i32 -1
   br i1 %17, bb %select.then, bb %select.else
 while.exit:
   ret 

@@ -18,8 +18,7 @@ entry8:
   31 = mul i32 %last, i32 4
   32 = ptradd ptr %29, i32 %31
   32.load = load i32 from ptr %32
-  34 = sub i32 0, i32 1
-  35 = icmp ne i32 %32.load, i32 %34
+  35 = icmp ne i32 %32.load, i32 -1
   br i1 %35, bb %then36, bb %if.exit37
 then36:
   39 = mul i32 %a, i32 2939328
@@ -259,8 +258,7 @@ while.body256:
   275 = ptradd ptr %272, i32 %274
   277 = mul i32 %h.phi, i32 4
   278 = ptradd ptr %275, i32 %277
-  279 = sub i32 0, i32 1
-  store i32 %279 to ptr %278
+  store i32 -1 to ptr %278
   281 = add i32 %h.phi, i32 1
   br bb %while.cond255
 while.exit257:

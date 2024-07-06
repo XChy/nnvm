@@ -4,63 +4,36 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
-  ADDI s0, zero, 7
-  ADDIW s1, s0, 3
-  ADDIW s0, s1, 5
-  ADDIW s1, s0, 6
-  ADDIW s0, s1, 1
-  ADDW s1, s0, zero
-  ADDIW s0, s1, 3
-  ADDIW s1, s0, 5
-  ADDI s0, zero, 2
-  ADDIW s2, s0, 4
-  ADDIW s0, s2, 7
-  ADDIW s2, s0, 9
-  ADDIW s0, s2, 8
-  ADDIW s2, s0, 1
-  ADDIW s0, s2, 4
-  ADDIW s2, s0, 6
+  SD s2, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
   CALL foo
   ADD s0, a0, zero
-  ADDW s3, s1, s0
+  ADDIW s1, s0, 30
   CALL foo
   ADD s0, a0, zero
-  ADDW s1, s2, s0
-  ADDI s0, zero, 7
-  ADDIW s2, s0, 4
-  ADDIW s0, s2, 2
-  ADDIW s2, s0, 5
-  ADDIW s0, s2, 8
-  ADDW s2, s0, zero
-  ADDIW s0, s2, 6
-  ADDIW s2, s0, 3
-  ADDW s0, s3, s1
-  ADDW s1, s0, s2
+  ADDIW s2, s0, 41
+  ADDW s0, s1, s2
+  ADDIW s1, s0, 35
   ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 foo:
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD ra, 64(sp)
-  SD s3, 72(sp)
-  SD s2, 80(sp)
-  SD s1, 88(sp)
-  SD s0, 96(sp)
+  SD s2, 72(sp)
+  SD s1, 80(sp)
+  SD s0, 88(sp)
   ADDI t5, sp, 0
   ADD s0, t5, zero
   SW zero, 0(s0)
@@ -106,35 +79,17 @@ foo:
   ADDI s0, sp, 60
   ADDI s1, zero, 3
   SW s1, 0(s0)
-  ADDI s0, zero, 7
-  ADDIW s1, s0, 3
-  ADDIW s0, s1, 5
-  ADDIW s1, s0, 6
-  ADDIW s0, s1, 1
-  ADDW s1, s0, zero
-  ADDIW s0, s1, 3
-  ADDIW s1, s0, 5
-  ADDI s0, zero, 2
-  ADDIW s2, s0, 4
-  ADDIW s0, s2, 7
-  ADDIW s2, s0, 9
-  ADDIW s0, s2, 8
-  ADDIW s2, s0, 1
-  ADDIW s0, s2, 4
-  ADDIW s2, s0, 6
-  ADDW s0, s1, s2
-  ADDI s1, zero, 4
-  ADDI s2, zero, 3
-  MULW s3, s1, s2
+  ADDI s0, zero, 4
+  ADDI s1, zero, 3
+  MULW s2, s0, s1
   ADDI t6, sp, 0
-  ADD s1, t6, s3
-  LW s2, 0(s1)
-  ADDW s1, s0, s2
-  ADD a0, s1, zero
+  ADD s0, t6, s2
+  LW s1, 0(s0)
+  ADDIW s0, s1, 71
+  ADD a0, s0, zero
   LD ra, 64(sp)
-  LD s3, 72(sp)
-  LD s2, 80(sp)
-  LD s1, 88(sp)
-  LD s0, 96(sp)
-  ADDI sp, sp, 112
+  LD s2, 72(sp)
+  LD s1, 80(sp)
+  LD s0, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)

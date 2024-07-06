@@ -47,7 +47,6 @@ i32 my_getint() {
 entry:
   br bb %while.cond
 while.cond:
-  select.phi106 = phi [bb %entry, i1 ub, bb %then, i1 %select.phi]
   c.phi103 = phi [bb %entry, i32 ub, bb %then, i32 %9]
   6 = icmp ne i32 1, i32 0
   br i1 %6, bb %while.body, bb %while.exit
@@ -76,7 +75,6 @@ if.exit:
 else:
   br bb %while.exit
 while.cond24:
-  select36.phi110 = phi [bb %while.exit, i1 ub, bb %if.exit41, i1 %select36.phi]
   sum.phi = phi [bb %while.exit, i32 %c.phi104, bb %if.exit41, i32 %46]
   27 = icmp ne i32 1, i32 0
   br i1 %27, bb %while.body25, bb %while.exit26

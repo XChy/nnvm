@@ -15,7 +15,9 @@ Value *ConstantFold::fold(Instruction *I) {
 
     switch (I->getOpcode()) {
     case InstID::Add:
+      return foldAdd(cast<AddInst>(I));
     case InstID::Sub:
+      return foldSub(cast<SubInst>(I));
     case InstID::Mul:
     case InstID::UDiv:
     case InstID::SDiv:
@@ -27,12 +29,40 @@ Value *ConstantFold::fold(Instruction *I) {
     case InstID::FDiv:
     case InstID::FRem:
     default:
-      nnvm_unimpl();
+      return nullptr;
     }
   }
 
   // TODO: Handle other operator on constant operands, such as "a[0]", where "a"
   // is a constant array.
+
+  return nullptr;
+}
+
+Value *ConstantFold::foldAdd(AddInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  if (lhs->getType()->isIntegerNBits(32)) {
+    GInt retInt = ((uint32_t)lhs->getValue()) + ((uint32_t)rhs->getValue());
+    if (retInt & 0x80000000)
+      retInt = retInt | 0xFFFFFFFF00000000;
+    return ConstantInt::create(*module, lhs->getType(), retInt);
+  }
+
+  return nullptr;
+}
+
+Value *ConstantFold::foldSub(SubInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  if (lhs->getType()->isIntegerNBits(32)) {
+    GInt retInt = ((uint32_t)lhs->getValue()) - ((uint32_t)rhs->getValue());
+    if (retInt & 0x80000000)
+      retInt = retInt | 0xFFFFFFFF00000000;
+    return ConstantInt::create(*module, lhs->getType(), retInt);
+  }
 
   return nullptr;
 }

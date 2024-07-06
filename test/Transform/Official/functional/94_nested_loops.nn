@@ -34,7 +34,6 @@ while.body228:
   br bb %while.cond233
 while.exit229:
   g219.phi454 = phi [bb %while.cond227, i32 %g219.phi455, bb %then351, i32 %g219.phi452]
-  b214.phi = phi [bb %while.cond227, i32 %b214.phi443, bb %then351, i32 %347]
   c215.phi438 = phi [bb %while.cond227, i32 %c215.phi439, bb %then351, i32 %c215.phi]
   d216.phi432 = phi [bb %while.cond227, i32 %d216.phi433, bb %then351, i32 %d216.phi430]
   f218.phi422 = phi [bb %while.cond227, i32 %f218.phi423, bb %then351, i32 %f218.phi420]

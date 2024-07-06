@@ -299,8 +299,7 @@ if.exit256:
   store i32 %265 to ptr @h
   br bb %while.cond169
 else257:
-  261 = sub i32 0, i32 1
-  call void putint(i32 %261)
+  call void putint(i32 -1)
   call void putch(i32 10)
   br bb %if.exit256
 }

@@ -84,8 +84,7 @@ select.exit:
   select.phi = phi [bb %select.else, i1 %50, bb %select.then, i1 1]
   br i1 %select.phi, bb %then52, bb %if.exit53
 then52:
-  55 = sub i32 0, i32 1
-  56 = sub i32 %m.phi, i32 %55
+  56 = sub i32 %m.phi, i32 -1
   57 = icmp sge i32 %56, i32 3
   br i1 %57, bb %then58, bb %if.exit59
 if.exit53:

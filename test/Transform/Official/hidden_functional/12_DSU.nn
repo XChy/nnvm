@@ -55,7 +55,6 @@ while.cond103:
   x138.phi161 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %x138.phi]
   y.phi159 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %y.phi]
   x129.phi157 = phi [bb %entry99, i32 ub, bb %if.exit127, i32 %x129.phi]
-  select118.phi155 = phi [bb %entry99, i1 ub, bb %if.exit127, i1 %select118.phi]
   m.load = load i32 from ptr @m
   107 = icmp ne i32 %m.load, i32 0
   br i1 %107, bb %while.body104, bb %while.exit105

@@ -110,7 +110,6 @@ while.cond99:
 while.body100:
   br bb %while.cond104
 while.exit101:
-  i.phi150 = phi [bb %while.cond99, i32 ub, bb %while.exit106, i32 %i.phi]
   br bb %while.exit
 while.cond104:
   a127.phi = phi [bb %while.body100, i32 ub, bb %if.exit125, i32 %a127.phi, bb %then124, i32 %128]

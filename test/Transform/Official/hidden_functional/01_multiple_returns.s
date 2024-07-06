@@ -5,24 +5,23 @@
 main:
   ADDI sp, sp, -32
   SD s2, 0(sp)
-  SD ra, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
-  ADDI s0, zero, 12
-  ADDIW s1, s0, 8
-  ADD a0, s1, zero
+  SD s1, 8(sp)
+  SD s0, 16(sp)
+  SD ra, 24(sp)
+  ADDI a0, zero, 20
   JALR zero, 0(ra)
   ADDI s0, zero, 9
-  MULW s2, s1, s0
+  ADDI s1, zero, 20
+  MULW s2, s0, s1
   ADD a0, s2, zero
   LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
+  LD ra, 24(sp)
   ADDI sp, sp, 32
   LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
+  LD ra, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

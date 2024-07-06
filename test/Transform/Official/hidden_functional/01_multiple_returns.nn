@@ -1,8 +1,7 @@
 i32 main() {
 entry:
-  6 = add i32 8, i32 12
-  ret i32 %6
-  11 = mul i32 %6, i32 9
+  ret i32 20
+  11 = mul i32 20, i32 9
   ret i32 %11
 }
 

@@ -43,7 +43,6 @@ while.exit111:
   126 = add i32 %i100.phi200, i32 1
   br bb %while.cond102
 while.cond127:
-  j101.phi204 = phi [bb %while.exit104, i32 0, bb %while.exit136, i32 %j101.phi203]
   i100.phi199 = phi [bb %while.exit104, i32 0, bb %while.exit136, i32 %151]
   132 = icmp slt i32 %i100.phi199, i32 %99
   133 = icmp ne i1 %132, i1 0

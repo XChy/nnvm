@@ -1,8 +1,6 @@
 i32 main() {
 entry:
-  5 = add i32 15, i32 12
-  6 = add i32 %5, i32 61
-  ret i32 %6
+  ret i32 88
 }
 
 external void putfarray(i32 , ptr )

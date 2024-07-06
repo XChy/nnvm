@@ -30,7 +30,8 @@ bb2:
   ADD s0, zero, zero
   JAL zero, bb3
 bb3:
-  BNE s0, zero, bb4
+  ADD s1, s0, zero
+  BNE s1, zero, bb4
   JAL zero, bb6
 bb4:
   ADDI a0, zero, 1
@@ -225,21 +226,22 @@ main:
   ADD s4, zero, zero
   JAL zero, bb25
 bb25:
-  SLTI s5, s4, 10
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
-  BNE s5, zero, bb26
+  ADD s5, s4, zero
+  SLTI s6, s5, 10
+  XOR s7, s6, zero
+  SLTU s6, zero, s7
+  BNE s6, zero, bb26
   JAL zero, bb27
 bb26:
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
+  ADDI s6, zero, 4
+  MULW s7, s5, s6
   ADDI t5, sp, 0
-  ADD s5, t5, s6
+  ADD s6, t5, s7
   CALL getint
-  ADD s6, a0, zero
-  SW s6, 0(s5)
-  ADDIW s5, s4, 1
-  ADD s4, s5, zero
+  ADD s7, a0, zero
+  SW s7, 0(s6)
+  ADDIW s6, s5, 1
+  ADD s4, s6, zero
   JAL zero, bb25
 bb27:
   ADD a0, s0, zero

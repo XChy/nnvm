@@ -127,8 +127,9 @@ main:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 func:
-  ADDI sp, sp, -336
-  SD ra, 224(sp)
+  ADDI sp, sp, -320
+  SD ra, 216(sp)
+  SD s2, 224(sp)
   SD s3, 232(sp)
   SD s4, 240(sp)
   SD s5, 248(sp)
@@ -138,12 +139,10 @@ func:
   SD s1, 280(sp)
   SD s6, 288(sp)
   SD s8, 296(sp)
-  SD s2, 304(sp)
-  SD s9, 312(sp)
-  SD s11, 320(sp)
+  SD s9, 304(sp)
+  SD s11, 312(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADDW s2, s0, s1
   CALL getint
   ADD t4, a0, zero
   SW t4, 24(sp)
@@ -213,8 +212,7 @@ func:
   ADDIW s6, t4, 2
   LA a2, a10
   LW a3, 0(a2)
-  ADDW t4, s6, a3
-  SW t4, 112(sp)
+  ADDW a2, s6, a3
   LW t4, 72(sp)
   ADDIW s6, t4, 3
   LA a3, a11
@@ -231,8 +229,7 @@ func:
   LA a5, a13
   LW a6, 0(a5)
   ADDW a5, s6, a6
-  LW t4, 112(sp)
-  ADDIW s6, t4, 2
+  ADDIW s6, a2, 2
   LA a6, a14
   LW a7, 0(a6)
   ADDW a6, s6, a7
@@ -294,110 +291,93 @@ func:
   LA a4, a28
   LW a3, 0(a4)
   ADDW a4, s2, a3
-  ADDIW s2, t1, 1
-  LA a3, a29
-  LW a2, 0(a3)
-  ADDW a3, s2, a2
-  ADDIW s2, t0, 2
-  LA a2, a30
-  LW a3, 0(a2)
-  ADDW a2, s2, a3
-  ADDIW s2, s11, 3
-  LA a2, a31
-  LW a3, 0(a2)
-  ADDW a2, s2, a3
-  ADDIW s2, a4, 4
-  LA a2, a32
-  LW a3, 0(a2)
-  ADDW a2, s2, a3
   SUBW s2, s0, s1
   ADDIW s0, s2, 10
   ADDIW s1, t1, 1
   LA s2, a29
   LW t1, 0(s2)
   ADDW t4, s1, t1
-  SW t4, 144(sp)
+  SW t4, 136(sp)
   ADDIW s1, t0, 2
   LA t0, a30
   LW t1, 0(t0)
   ADDW t4, s1, t1
-  SW t4, 136(sp)
+  SW t4, 128(sp)
   ADDIW s1, s11, 3
   LA s11, a31
   LW t1, 0(s11)
   ADDW t4, s1, t1
-  SW t4, 128(sp)
+  SW t4, 120(sp)
   ADDIW s1, a4, 4
   LA t1, a32
-  LW a2, 0(t1)
-  ADDW t4, s1, a2
-  SW t4, 120(sp)
+  LW a3, 0(t1)
+  ADDW t4, s1, a3
+  SW t4, 112(sp)
   ADDIW s1, s9, 1
   LA s9, a25
-  LW a2, 0(s9)
-  ADDW t4, s1, a2
-  SW t4, 176(sp)
+  LW a3, 0(s9)
+  ADDW t4, s1, a3
+  SW t4, 168(sp)
   ADDIW s1, s8, 2
   LA s8, a26
-  LW a2, 0(s8)
-  ADDW t4, s1, a2
-  SW t4, 168(sp)
+  LW a3, 0(s8)
+  ADDW t4, s1, a3
+  SW t4, 160(sp)
   ADDIW s1, s7, 3
   LA s7, a27
-  LW a2, 0(s7)
-  ADDW t4, s1, a2
-  SW t4, 160(sp)
+  LW a3, 0(s7)
+  ADDW t4, s1, a3
+  SW t4, 152(sp)
   ADDIW s1, t2, 4
   LA t2, a28
-  LW a2, 0(t2)
-  ADDW t4, s1, a2
-  SW t4, 152(sp)
+  LW a3, 0(t2)
+  ADDW t4, s1, a3
+  SW t4, 144(sp)
   ADDIW s1, s5, 1
   LA s5, a21
-  LW a2, 0(s5)
-  ADDW t4, s1, a2
-  SW t4, 208(sp)
+  LW a3, 0(s5)
+  ADDW t4, s1, a3
+  SW t4, 200(sp)
   ADDIW s1, s4, 2
   LA s4, a22
-  LW a2, 0(s4)
-  ADDW t4, s1, a2
-  SW t4, 200(sp)
+  LW a3, 0(s4)
+  ADDW t4, s1, a3
+  SW t4, 192(sp)
   ADDIW s1, s3, 3
   LA s3, a23
-  LW a2, 0(s3)
-  ADDW t4, s1, a2
-  SW t4, 192(sp)
+  LW a3, 0(s3)
+  ADDW t4, s1, a3
+  SW t4, 184(sp)
   ADDIW s1, s10, 4
   LA s10, a24
-  LW a2, 0(s10)
-  ADDW t4, s1, a2
-  SW t4, 184(sp)
+  LW a3, 0(s10)
+  ADDW t4, s1, a3
+  SW t4, 176(sp)
   ADDIW s1, a5, 1
-  LA a2, a17
-  LW a3, 0(a2)
-  ADDW a2, s1, a3
-  ADDIW s1, a6, 2
-  LA a3, a18
+  LA a3, a17
   LW a4, 0(a3)
   ADDW a3, s1, a4
-  ADDIW s1, a7, 3
-  LA a4, a19
+  ADDIW s1, a6, 2
+  LA a4, a18
   LW a5, 0(a4)
   ADDW a4, s1, a5
-  ADDIW s1, s6, 4
-  LA s6, a20
-  LW a5, 0(s6)
-  ADDW t4, s1, a5
-  SW t4, 216(sp)
-  ADDIW s1, a1, 1
-  LA a1, a13
-  LW a5, 0(a1)
-  ADDW a1, s1, a5
-  LW t4, 112(sp)
-  ADDIW s1, t4, 2
-  LA a5, a14
+  ADDIW s1, a7, 3
+  LA a5, a19
   LW a6, 0(a5)
   ADDW a5, s1, a6
+  ADDIW s1, s6, 4
+  LA s6, a20
+  LW a6, 0(s6)
+  ADDW t4, s1, a6
+  SW t4, 208(sp)
+  ADDIW s1, a1, 1
+  LA a1, a13
+  LW a6, 0(a1)
+  ADDW a1, s1, a6
+  ADDIW s1, a2, 2
+  LA a2, a14
+  LW a6, 0(a2)
+  ADDW a2, s1, a6
   LW t4, 104(sp)
   ADDIW s1, t4, 3
   LA a6, a15
@@ -456,28 +436,8 @@ func:
   LW t4, 16(sp)
   ADDIW s1, t4, 2
   LA s3, a2
-  LW s10, 0(s3)
-  ADDW s3, s1, s10
-  LW t4, 8(sp)
-  ADDIW s1, t4, 3
-  LA s3, a3
-  LW s10, 0(s3)
-  ADDW s3, s1, s10
-  LW t4, 0(sp)
-  ADDIW s1, t4, 4
-  LA s3, a4
-  LW s10, 0(s3)
-  ADDW s3, s1, s10
-  LW t4, 24(sp)
-  ADDIW s1, t4, 1
-  LA s3, a1
-  LW s10, 0(s3)
-  ADDW s3, s1, s10
-  LW t4, 16(sp)
-  ADDIW s1, t4, 2
-  LA s10, a2
-  LW s4, 0(s10)
-  ADDW s10, s1, s4
+  LW s4, 0(s3)
+  ADDW s3, s1, s4
   LW t4, 8(sp)
   ADDIW s1, t4, 3
   LA s4, a3
@@ -496,8 +456,8 @@ func:
   ADDW s1, s0, t4
   LW t4, 0(sp)
   ADDW s0, s1, t4
-  SUBW s1, s0, s3
-  SUBW s0, s1, s10
+  SUBW s1, s0, s10
+  SUBW s0, s1, s3
   SUBW s1, s0, s4
   SUBW s0, s1, s5
   ADDW s1, s0, t2
@@ -509,37 +469,37 @@ func:
   SUBW s1, s0, t0
   SUBW s0, s1, s2
   ADDW s1, s0, a1
-  ADDW s0, s1, a5
+  ADDW s0, s1, a2
   ADDW s1, s0, a6
   ADDW s0, s1, a7
-  SUBW s1, s0, a2
-  SUBW s0, s1, a3
-  SUBW s1, s0, a4
-  LW t4, 216(sp)
-  SUBW s0, s1, t4
+  SUBW s1, s0, a3
+  SUBW s0, s1, a4
+  SUBW s1, s0, a5
   LW t4, 208(sp)
-  ADDW s1, s0, t4
+  SUBW s0, s1, t4
   LW t4, 200(sp)
-  ADDW s0, s1, t4
+  ADDW s1, s0, t4
   LW t4, 192(sp)
-  ADDW s1, s0, t4
+  ADDW s0, s1, t4
   LW t4, 184(sp)
-  ADDW s0, s1, t4
+  ADDW s1, s0, t4
   LW t4, 176(sp)
-  SUBW s1, s0, t4
-  LW t4, 168(sp)
-  SUBW s0, s1, t4
-  LW t4, 160(sp)
-  SUBW s1, s0, t4
-  LW t4, 152(sp)
-  SUBW s0, s1, t4
-  LW t4, 144(sp)
-  ADDW s1, s0, t4
-  LW t4, 136(sp)
   ADDW s0, s1, t4
-  LW t4, 128(sp)
+  LW t4, 168(sp)
+  SUBW s1, s0, t4
+  LW t4, 160(sp)
+  SUBW s0, s1, t4
+  LW t4, 152(sp)
+  SUBW s1, s0, t4
+  LW t4, 144(sp)
+  SUBW s0, s1, t4
+  LW t4, 136(sp)
   ADDW s1, s0, t4
+  LW t4, 128(sp)
+  ADDW s0, s1, t4
   LW t4, 120(sp)
+  ADDW s1, s0, t4
+  LW t4, 112(sp)
   ADDW s0, s1, t4
   LA s1, a1
   LW s2, 0(s1)
@@ -638,7 +598,8 @@ func:
   LW s2, 0(s0)
   SUBW s0, s1, s2
   ADD a0, s0, zero
-  LD ra, 224(sp)
+  LD ra, 216(sp)
+  LD s2, 224(sp)
   LD s3, 232(sp)
   LD s4, 240(sp)
   LD s5, 248(sp)
@@ -648,8 +609,7 @@ func:
   LD s1, 280(sp)
   LD s6, 288(sp)
   LD s8, 296(sp)
-  LD s2, 304(sp)
-  LD s9, 312(sp)
-  LD s11, 320(sp)
-  ADDI sp, sp, 336
+  LD s9, 304(sp)
+  LD s11, 312(sp)
+  ADDI sp, sp, 320
   JALR zero, 0(ra)
