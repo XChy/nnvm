@@ -2,8 +2,7 @@ global ptr k init with i32 0
 i32 main() {
 entry:
   store i32 3389 to ptr @k
-  2 = icmp slt i32 3389, i32 10000
-  br i1 %2, bb %then, bb %if.exit
+  br bb %then
 then:
   k.load5 = load i32 from ptr @k
   6 = add i32 %k.load5, i32 1

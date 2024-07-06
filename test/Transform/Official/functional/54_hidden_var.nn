@@ -10,9 +10,7 @@ entry:
   call void putch(i32 10)
   br bb %while.cond
 while.cond:
-  14 = icmp slt i32 1, i32 5
-  15 = icmp ne i1 %14, i1 0
-  br i1 %15, bb %while.body, bb %while.exit
+  br bb %while.body
 while.body:
   br bb %then
 while.exit:

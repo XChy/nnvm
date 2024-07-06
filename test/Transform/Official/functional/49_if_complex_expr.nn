@@ -1,35 +1,20 @@
 i32 main() {
 entry:
-  9 = sdiv i32 -2, i32 2
-  10 = icmp slt i32 %9, i32 0
-  br i1 %10, bb %select.then, bb %select.else
+  br bb %select.then
 select.then:
   br bb %select.exit
-select.else:
-  br bb %select.else20
 select.exit:
-  select.phi = phi [bb %select.exit21, i1 %28, bb %select.then, i1 1]
+  select.phi = phi [bb %select.then, i1 1]
   br i1 %select.phi, bb %then, bb %if.exit
-select.else20:
-  br bb %select.exit21
-select.exit21:
-  select22.phi = phi [bb %select.else20, i1 0]
-  28 = icmp ne i1 %select22.phi, i1 0
-  br bb %select.exit
 then:
   call void putint(i32 2)
   br bb %if.exit
 if.exit:
-  35 = srem i32 -2, i32 2
-  36 = add i32 %35, i32 67
-  37 = icmp slt i32 %36, i32 0
-  br i1 %37, bb %select.then38, bb %select.else39
-select.then38:
-  br bb %select.exit40
+  br bb %select.else39
 select.else39:
   br bb %select.else47
 select.exit40:
-  select41.phi = phi [bb %select.exit48, i1 %55, bb %select.then38, i1 1]
+  select41.phi = phi [bb %select.exit48, i1 %55]
   br i1 %select41.phi, bb %then57, bb %if.exit58
 select.else47:
   br bb %select.exit48

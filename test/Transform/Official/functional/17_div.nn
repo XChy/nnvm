@@ -1,7 +1,6 @@
 i32 main() {
 entry:
-  5 = sdiv i32 10, i32 5
-  ret i32 %5
+  ret i32 2
 }
 
 external void putfarray(i32 , ptr )

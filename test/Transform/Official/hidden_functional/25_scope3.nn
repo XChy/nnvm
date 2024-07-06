@@ -2,8 +2,7 @@ i32 main() {
 entry:
   call void putch(i32 97)
   call void putch(i32 10)
-  87 = srem i32 200, i32 77
-  ret i32 %87
+  ret i32 46
 }
 
 external void putfarray(i32 , ptr )

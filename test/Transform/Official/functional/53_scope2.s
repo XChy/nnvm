@@ -24,13 +24,7 @@ main:
   LUI s1, 1
   ADDI s1, s1, -707
   SW s1, 0(s0)
-  LUI s0, 1
-  ADDI s0, s0, -707
-  LUI s1, 2
-  ADDI s1, s1, 1808
-  SLT s2, s0, s1
-  BNE s2, zero, bb1
-  JAL zero, bb2
+  JAL zero, bb1
 bb1:
   LA s0, k
   LW s1, 0(s0)
@@ -89,22 +83,22 @@ bb6:
   ADDIW s10, s8, 11
   ADDI s8, zero, 11
   ADDI s11, zero, 11
-  ADD t0, s10, zero
+  ADD ra, s10, zero
   ADDI s10, zero, 10
   JAL zero, bb7
 bb7:
-  ADD t1, s10, zero
-  ADD t2, t0, zero
-  ADD a0, s11, zero
-  ADD a1, s8, zero
-  ADD s0, a1, zero
-  ADD s1, a0, zero
-  ADD s2, t2, zero
-  ADD s3, t1, zero
+  ADD t0, s10, zero
+  ADD t1, ra, zero
+  ADD t2, s11, zero
+  ADD a0, s8, zero
+  ADD s0, a0, zero
+  ADD s1, t2, zero
+  ADD s2, t1, zero
+  ADD s3, t0, zero
   JAL zero, bb3
 bb8:
   ADD s8, s7, zero
   ADD s11, s6, zero
-  ADD t0, s9, zero
+  ADD ra, s9, zero
   ADD s10, s4, zero
   JAL zero, bb7

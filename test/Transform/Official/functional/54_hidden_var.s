@@ -25,12 +25,7 @@ main:
   CALL putch
   JAL zero, bb1
 bb1:
-  ADDI s0, zero, 1
-  SLTI s1, s0, 5
-  XOR s0, s1, zero
-  SLTU s1, zero, s0
-  BNE s1, zero, bb2
-  JAL zero, bb3
+  JAL zero, bb2
 bb2:
   JAL zero, bb4
 bb3:

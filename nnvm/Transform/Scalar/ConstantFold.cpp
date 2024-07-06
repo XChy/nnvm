@@ -23,9 +23,13 @@ Value *ConstantFold::fold(Instruction *I) {
     case InstID::Mul:
       return foldMul(cast<MulInst>(I));
     case InstID::UDiv:
+      return nullptr;
     case InstID::SDiv:
+      return foldSDiv(cast<SDivInst>(I));
     case InstID::URem:
+      return nullptr;
     case InstID::SRem:
+      return foldSRem(cast<SRemInst>(I));
     case InstID::FAdd:
     case InstID::FSub:
     case InstID::FMul:
@@ -83,6 +87,15 @@ Value *ConstantFold::foldSDiv(SDivInst *I) {
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
+Value *ConstantFold::foldSRem(SRemInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  GInt result = genericSRem(lhs->getValue(), rhs->getValue(),
+                            lhs->getType()->getScalarBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
+
 Value *ConstantFold::foldICmp(ICmpInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getOperand(0));
   ConstantInt *rhs = cast<ConstantInt>(I->getOperand(1));
@@ -96,6 +109,14 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
   case ICmpInst::NE:
     ret = genericNE(lhs->getValue(), rhs->getValue(),
                     lhs->getType()->getScalarBits());
+    return ConstantInt::create(*module, module->getBoolType(), ret);
+  case ICmpInst::SLT:
+    ret = genericSLT(lhs->getValue(), rhs->getValue(),
+                     lhs->getType()->getScalarBits());
+    return ConstantInt::create(*module, module->getBoolType(), ret);
+  case ICmpInst::SGT:
+    ret = genericSGT(lhs->getValue(), rhs->getValue(),
+                     lhs->getType()->getScalarBits());
     return ConstantInt::create(*module, module->getBoolType(), ret);
 
   default:

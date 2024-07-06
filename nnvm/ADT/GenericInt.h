@@ -55,12 +55,34 @@ static inline GInt genericSDiv(GInt a, GInt b, uint64_t bits) {
   return retInt;
 }
 
+static inline GInt genericSRem(GInt a, GInt b, uint64_t bits) {
+  if (bits != 32)
+    nnvm_unimpl();
+  // Refine a % 0 -> 0
+  if (b == 0)
+    return 0;
+  GInt retInt = sextOf((int32_t)a % (int32_t)b, bits);
+  return retInt;
+}
+
 static inline GInt genericEQ(GInt a, GInt b, uint64_t bits) {
   return sextOf(a == b, 1);
 }
 
 static inline GInt genericNE(GInt a, GInt b, uint64_t bits) {
   return sextOf(a != b, 1);
+}
+
+static inline GInt genericSLT(GInt a, GInt b, uint64_t bits) {
+  if (bits != 32)
+    nnvm_unimpl();
+  return sextOf((int32_t)a < (int32_t)b, 1);
+}
+
+static inline GInt genericSGT(GInt a, GInt b, uint64_t bits) {
+  if (bits != 32)
+    nnvm_unimpl();
+  return sextOf((int32_t)a > (int32_t)b, 1);
 }
 
 } // namespace nnvm
