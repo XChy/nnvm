@@ -1,5 +1,3 @@
-// INPUT:
-
 int v = 10;
 const int a = 10;
 

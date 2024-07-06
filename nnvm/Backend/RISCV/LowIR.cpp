@@ -211,7 +211,7 @@ uint LIRBB::getPredNum() const { return getUses().size(); }
 
 LIRBB *LIRBB::getPred(int index) {
   auto it = getUses().begin();
-  for (int i = 0; i <= index; i++)
+  for (int i = 0; i < index; i++)
     it++;
   return (*it)->getInst()->getParent();
 }

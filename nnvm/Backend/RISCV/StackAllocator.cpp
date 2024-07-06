@@ -139,7 +139,7 @@ void StackAllocator::allocate(LIRFunc &func) {
     outgoingSlot->setOffset(0);
     frameSize += outgoingSlot->getSize();
   }
-  std::cerr << "Outgoing frame: size: " << frameSize << "\n";
+  // std::cerr << "Outgoing frame: size: " << frameSize << "\n";
 
   for (auto *slot : func.getStackSlots()) {
     if (slot->getType() == StackSlot::IncomingArgFrame) {
@@ -156,8 +156,8 @@ void StackAllocator::allocate(LIRFunc &func) {
     slot->setOffset(frameSize);
     frameSize += slot->getSize();
 
-    std::cerr << "offset of stack " << slot->getIndex() << " is "
-              << slot->getOffset() << " with size " << slot->getSize() << "\n";
+    // std::cerr << "offset of stack " << slot->getIndex() << " is "
+    //<< slot->getOffset() << " with size " << slot->getSize() << "\n";
   }
 
   frameSize =

@@ -15,11 +15,11 @@ public:
 
   void dumpLiveIns(LIRFunc &func, std::ostream &out);
 
-  std::unordered_map<LIRBB *, std::set<Register *>> getLiveIn() {
+  std::unordered_map<LIRBB *, std::set<Register *>> getLiveIn() const {
     return liveIn;
   }
 
-  std::unordered_map<LIRBB *, std::set<Register *>> getLiveOut() {
+  std::unordered_map<LIRBB *, std::set<Register *>> getLiveOut() const {
     return liveOut;
   }
 

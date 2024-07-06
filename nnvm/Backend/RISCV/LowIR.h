@@ -75,6 +75,7 @@ public:
 
   LIRInst *setUse(uint index, LIRValue *usee) {
     operands[index].use(usee);
+
     return this;
   }
 

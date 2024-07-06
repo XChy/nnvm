@@ -1,0 +1,64 @@
+// performs a SHA-1 hash to output.
+//
+// input is a list of ints, but only the lower 8 bits are used. Input must be
+// larger than the smallest 64 multiple.
+void pseudo_sha1(int input_len, int output[]) {
+  int h0 = 0;
+  int h1 = 1;
+  int h2 = 2;
+  int h3 = 3;
+  int h4 = 4;
+
+  int b;
+  int c;
+  int d;
+  int e;
+  int k;
+    b = 1;
+    c = 2;
+    d = 3;
+    e = 4;
+    k = 233;
+
+  int chunk_start = 0;
+  while (chunk_start < 16) {
+    // populate words
+    int i = 0;
+
+    // main loop
+    while (i < 4) {
+      int t =  d + k;
+      e = d;
+      d = c;
+      c = t;
+      i = i + 1;
+    }
+    chunk_start = chunk_start + 64;
+  }
+  output[0] = c;
+}
+
+int main() {
+  int rounds = 1;
+  int output[5] = {0, 0, 0, 0, 0};
+  int output_buf[5];
+  starttime();
+
+  output_buf[0] = 0;
+  output_buf[1] = 0;
+  output_buf[2] = 0;
+  output_buf[3] = 0;
+  output_buf[4] = 0;
+
+
+  putarray(5, output);
+
+    int len = 32000;
+    int i = 0;
+    pseudo_sha1(len, output);
+
+  stoptime();
+
+  putarray(5, output);
+  return 0;
+}

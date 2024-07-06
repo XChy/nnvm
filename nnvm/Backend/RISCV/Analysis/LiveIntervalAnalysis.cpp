@@ -76,9 +76,12 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
 
   debug(printDefUse(func, BBNumber));
 
+  auto liveIns = LA.getLiveIn();
+  auto liveOuts = LA.getLiveOut();
+
   for (LIRBB *BB : func) {
-    auto liveIn = LA.getLiveIn()[BB];
-    auto liveOut = LA.getLiveOut()[BB];
+    auto liveIn = liveIns[BB];
+    auto liveOut = liveOuts[BB];
 
     // Handle register living across the whole basic block.
     for (auto liveReg : liveIn) {

@@ -202,7 +202,6 @@ void LinearScanRA::replaceVRegRef(LIRFunc &func) {
         Register *vreg = op.getOperand()->as<Register>();
 
         if (vregToStack.count(vreg)) {
-          // TODO:
           auto *slot = vregToStack[vreg];
           Register *tempReg;
           if (vreg->isFP()) {

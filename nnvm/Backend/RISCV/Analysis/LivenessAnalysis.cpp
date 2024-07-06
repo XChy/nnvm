@@ -2,6 +2,7 @@
 #include "Backend/RISCV/CodegenInfo.h"
 #include <iostream>
 #include <iterator>
+#include <queue>
 
 using namespace nnvm::riscv;
 
@@ -52,24 +53,29 @@ void LivenessAnalysis::dumpLiveIns(LIRFunc &func, std::ostream &out) {
 }
 
 void LivenessAnalysis::calcLiveIns(LIRFunc &func) {
-  bool changed = true;
-  while (changed) {
-    changed = false;
+  std::queue<LIRBB *> worklist;
+  for (LIRBB *BB : func)
+    worklist.push(BB);
 
-    for (LIRBB *BB : func) {
-      std::set<Register *> oldLiveIn = liveIn[BB];
-      liveIn[BB].clear();
+  while (!worklist.empty()) {
+    LIRBB *BB = worklist.front();
+    worklist.pop();
 
-      for (int i = 0; i < BB->getSuccNum(); i++) {
-        LIRBB *succ = BB->getSucc(i);
-        for (Register *liveReg : liveIn[succ])
-          if (!defOf[BB].count(liveReg))
-            liveIn[BB].insert(liveReg);
-      }
+    std::set<Register *> oldLiveIn = liveIn[BB];
 
-      liveIn[BB].insert(useOf[BB].begin(), useOf[BB].end());
-      changed |= (oldLiveIn != liveIn[BB]);
+    liveIn[BB].clear();
+    for (int i = 0; i < BB->getSuccNum(); i++) {
+      LIRBB *succ = BB->getSucc(i);
+      for (Register *liveReg : liveIn[succ])
+        if (!defOf[BB].count(liveReg))
+          liveIn[BB].insert(liveReg);
     }
+
+    liveIn[BB].insert(useOf[BB].begin(), useOf[BB].end());
+
+    if (oldLiveIn != liveIn[BB])
+      for (int i = 0; i < BB->getPredNum(); i++) 
+        worklist.push(BB->getPred(i));
   }
 }
 
