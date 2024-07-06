@@ -81,8 +81,6 @@ then37:
   43 = fdiv float %41, float %42
   44 = f2si float %43 to i32
   ret i32 %44
-if.exit38:
-  unreachable
 else:
   ret i32 0
 }
@@ -140,27 +138,23 @@ if.exit113:
   115 = fcmp one float 0.000000, float 0.000000
   br i1 %115, bb %select.then, bb %select.else
 select.then:
-  120 = icmp ne i32 3, i32 0
   br bb %select.exit
 select.else:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %120]
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 1]
   br i1 %select.phi, bb %then122, bb %if.exit123
 then122:
   call void error()
   br bb %if.exit123
 if.exit123:
-  125 = icmp ne i32 0, i32 0
-  br i1 %125, bb %select.then126, bb %select.else127
-select.then126:
-  br bb %select.exit128
+  br bb %select.else127
 select.else127:
   130 = fcmp one float 0.300000, float 0.000000
   131 = icmp ne i1 %130, i1 0
   br bb %select.exit128
 select.exit128:
-  select129.phi = phi [bb %select.else127, i1 %131, bb %select.then126, i1 1]
+  select129.phi = phi [bb %select.else127, i1 %131]
   br i1 %select129.phi, bb %then133, bb %if.exit134
 then133:
   call void ok()

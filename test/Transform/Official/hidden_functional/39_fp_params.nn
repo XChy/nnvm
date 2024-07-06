@@ -91,8 +91,6 @@ then245:
   call void putfarray(i32 10, ptr %arr248)
   call void putarray(i32 8, ptr %arr2)
   br bb %while.cond
-if.exit246:
-  unreachable
 else247:
   472 = call float params_f40_i24(i32 %i1, i32 %i2, i32 %i6, float %x4, i32 %i1, i32 %i4, i32 %i5, float %x8, float %x15, float %x7, i32 %i22, float %x3, float %x28, i32 %i0, float %x37, i32 %i19, float %x30, float %x12, float %x1, float %x11, float %x38, float %x6, i32 %i7, float %x32, i32 %i10, i32 %i13, float %x20, float %x33, float %x23, float %x9, float %x25, i32 %i8, float %x39, i32 %i17, float %x21, float %x16, float %x5, float %x34, i32 %i18, i32 %i9, float %x14, float %x10, float %x0, i32 %i12, float %x31, i32 %i11, i32 %i16, float %x27, float %x24, float %x13, float %x29, i32 %i3, i32 %i21, i32 %i20, float %x18, float %x19, float %x22, float %x26, float %x36, float %x17, i32 %i15, float %x2, i32 %i14, float %x35)
   ret float %472
@@ -1189,8 +1187,6 @@ then689:
   695 = ptradd ptr %arr474, i32 %694
   695.load = load float from ptr %695
   ret float %695.load
-if.exit690:
-  unreachable
 else691:
   697 = call float params_fa40(ptr %x1, ptr %x2, ptr %x3, ptr %x4, ptr %x5, ptr %x6, ptr %x7, ptr %x8, ptr %x9, ptr %x10, ptr %x11, ptr %x12, ptr %x13, ptr %x14, ptr %x15, ptr %x16, ptr %x17, ptr %x18, ptr %x19, ptr %x20, ptr %x21, ptr %x22, ptr %x23, ptr %x24, ptr %x25, ptr %x26, ptr %x27, ptr %x28, ptr %x29, ptr %x30, ptr %x31, ptr %x32, ptr %x33, ptr %x34, ptr %x35, ptr %x36, ptr %x37, ptr %x38, ptr %x39, ptr %arr474)
   ret float %697
@@ -1263,8 +1259,6 @@ then:
   131 = ptradd ptr %arr, i32 %130
   131.load = load float from ptr %131
   ret float %131.load
-if.exit:
-  unreachable
 else:
   174 = fadd float %x0, float %x1
   176 = fadd float %174, float %x2
@@ -1484,8 +1478,6 @@ then955:
   call void putfarray(i32 10, ptr %arr734)
   call void putarray(i32 10, ptr %arr2853)
   br bb %while.cond961
-if.exit956:
-  unreachable
 else957:
   1027 = si2f i32 %i63 to float
   1029 = f2si float %x62 to i32

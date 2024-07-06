@@ -11,9 +11,7 @@ while.cond65:
   xx.phi171 = phi [bb %entry50, i32 0, bb %if.exit112, i32 %xx.phi]
   r.phi168 = phi [bb %entry50, i32 %63, bb %if.exit112, i32 %r.phi]
   l.phi164 = phi [bb %entry50, i32 %begin, bb %if.exit112, i32 %l.phi]
-  68 = icmp eq i32 1, i32 1
-  69 = icmp ne i1 %68, i1 0
-  br i1 %69, bb %while.body66, bb %while.exit67
+  br bb %while.body66
 while.body66:
   br bb %while.cond70
 while.exit67:

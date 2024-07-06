@@ -24,8 +24,6 @@ entry19:
   br i1 %26, bb %then, bb %else
 then:
   ret i32 %a
-if.exit:
-  unreachable
 else:
   32 = mul i32 %a, i32 4
   33 = ptradd ptr @array, i32 %32

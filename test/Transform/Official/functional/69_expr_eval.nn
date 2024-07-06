@@ -265,8 +265,6 @@ select.exit24:
   br i1 %select25.phi, bb %then29, bb %else31
 then29:
   ret i32 1
-if.exit30:
-  unreachable
 else31:
   ret i32 0
 }
@@ -286,8 +284,6 @@ select.exit:
   br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 1
-if.exit:
-  unreachable
 else:
   ret i32 0
 }

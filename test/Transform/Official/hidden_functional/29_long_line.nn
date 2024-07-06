@@ -757,11 +757,9 @@ else829:
 select.then833:
   br bb %select.exit835
 select.else834:
-  837 = icmp ne i32 0, i32 0
-  838 = icmp ne i1 %837, i1 0
   br bb %select.exit835
 select.exit835:
-  select836.phi = phi [bb %select.else834, i1 %838, bb %select.then833, i1 1]
+  select836.phi = phi [bb %select.else834, i1 0, bb %select.then833, i1 1]
   br i1 %select836.phi, bb %then840, bb %else842
 then840:
   br bb %if.exit841
@@ -772,12 +770,11 @@ if.exit841:
 else842:
   br bb %if.exit841
 select.then846:
-  850 = icmp ne i32 0, i32 0
   br bb %select.exit848
 select.else847:
   br bb %select.exit848
 select.exit848:
-  select849.phi = phi [bb %select.else847, i1 0, bb %select.then846, i1 %850]
+  select849.phi = phi [bb %select.else847, i1 0, bb %select.then846, i1 0]
   br i1 %select849.phi, bb %then852, bb %else854
 then852:
   br bb %if.exit853
@@ -831,12 +828,11 @@ if.exit887:
 else888:
   br bb %if.exit887
 select.then892:
-  896 = icmp ne i32 0, i32 0
   br bb %select.exit894
 select.else893:
   br bb %select.exit894
 select.exit894:
-  select895.phi = phi [bb %select.else893, i1 0, bb %select.then892, i1 %896]
+  select895.phi = phi [bb %select.else893, i1 0, bb %select.then892, i1 0]
   br i1 %select895.phi, bb %then898, bb %else900
 then898:
   br bb %if.exit899
@@ -3777,11 +3773,9 @@ else3454:
 select.then3458:
   br bb %select.exit3460
 select.else3459:
-  3462 = icmp ne i32 0, i32 0
-  3463 = icmp ne i1 %3462, i1 0
   br bb %select.exit3460
 select.exit3460:
-  select3461.phi = phi [bb %select.else3459, i1 %3463, bb %select.then3458, i1 1]
+  select3461.phi = phi [bb %select.else3459, i1 0, bb %select.then3458, i1 1]
   br i1 %select3461.phi, bb %then3465, bb %else3467
 then3465:
   br bb %if.exit3466
@@ -3792,12 +3786,11 @@ if.exit3466:
 else3467:
   br bb %if.exit3466
 select.then3471:
-  3475 = icmp ne i32 0, i32 0
   br bb %select.exit3473
 select.else3472:
   br bb %select.exit3473
 select.exit3473:
-  select3474.phi = phi [bb %select.else3472, i1 0, bb %select.then3471, i1 %3475]
+  select3474.phi = phi [bb %select.else3472, i1 0, bb %select.then3471, i1 0]
   br i1 %select3474.phi, bb %then3477, bb %else3479
 then3477:
   br bb %if.exit3478
@@ -3851,12 +3844,11 @@ if.exit3512:
 else3513:
   br bb %if.exit3512
 select.then3517:
-  3521 = icmp ne i32 0, i32 0
   br bb %select.exit3519
 select.else3518:
   br bb %select.exit3519
 select.exit3519:
-  select3520.phi = phi [bb %select.else3518, i1 0, bb %select.then3517, i1 %3521]
+  select3520.phi = phi [bb %select.else3518, i1 0, bb %select.then3517, i1 0]
   br i1 %select3520.phi, bb %then3523, bb %else3525
 then3523:
   br bb %if.exit3524
@@ -7148,11 +7140,9 @@ else6469:
 select.then6473:
   br bb %select.exit6475
 select.else6474:
-  6477 = icmp ne i32 0, i32 0
-  6478 = icmp ne i1 %6477, i1 0
   br bb %select.exit6475
 select.exit6475:
-  select6476.phi = phi [bb %select.else6474, i1 %6478, bb %select.then6473, i1 1]
+  select6476.phi = phi [bb %select.else6474, i1 0, bb %select.then6473, i1 1]
   br i1 %select6476.phi, bb %then6480, bb %else6482
 then6480:
   br bb %if.exit6481
@@ -7163,12 +7153,11 @@ if.exit6481:
 else6482:
   br bb %if.exit6481
 select.then6486:
-  6490 = icmp ne i32 0, i32 0
   br bb %select.exit6488
 select.else6487:
   br bb %select.exit6488
 select.exit6488:
-  select6489.phi = phi [bb %select.else6487, i1 0, bb %select.then6486, i1 %6490]
+  select6489.phi = phi [bb %select.else6487, i1 0, bb %select.then6486, i1 0]
   br i1 %select6489.phi, bb %then6492, bb %else6494
 then6492:
   br bb %if.exit6493
@@ -7222,12 +7211,11 @@ if.exit6527:
 else6528:
   br bb %if.exit6527
 select.then6532:
-  6536 = icmp ne i32 0, i32 0
   br bb %select.exit6534
 select.else6533:
   br bb %select.exit6534
 select.exit6534:
-  select6535.phi = phi [bb %select.else6533, i1 0, bb %select.then6532, i1 %6536]
+  select6535.phi = phi [bb %select.else6533, i1 0, bb %select.then6532, i1 0]
   br i1 %select6535.phi, bb %then6538, bb %else6540
 then6538:
   br bb %if.exit6539
@@ -10168,11 +10156,9 @@ else9094:
 select.then9098:
   br bb %select.exit9100
 select.else9099:
-  9102 = icmp ne i32 0, i32 0
-  9103 = icmp ne i1 %9102, i1 0
   br bb %select.exit9100
 select.exit9100:
-  select9101.phi = phi [bb %select.else9099, i1 %9103, bb %select.then9098, i1 1]
+  select9101.phi = phi [bb %select.else9099, i1 0, bb %select.then9098, i1 1]
   br i1 %select9101.phi, bb %then9105, bb %else9107
 then9105:
   br bb %if.exit9106
@@ -10183,12 +10169,11 @@ if.exit9106:
 else9107:
   br bb %if.exit9106
 select.then9111:
-  9115 = icmp ne i32 0, i32 0
   br bb %select.exit9113
 select.else9112:
   br bb %select.exit9113
 select.exit9113:
-  select9114.phi = phi [bb %select.else9112, i1 0, bb %select.then9111, i1 %9115]
+  select9114.phi = phi [bb %select.else9112, i1 0, bb %select.then9111, i1 0]
   br i1 %select9114.phi, bb %then9117, bb %else9119
 then9117:
   br bb %if.exit9118
@@ -10242,12 +10227,11 @@ if.exit9152:
 else9153:
   br bb %if.exit9152
 select.then9157:
-  9161 = icmp ne i32 0, i32 0
   br bb %select.exit9159
 select.else9158:
   br bb %select.exit9159
 select.exit9159:
-  select9160.phi = phi [bb %select.else9158, i1 0, bb %select.then9157, i1 %9161]
+  select9160.phi = phi [bb %select.else9158, i1 0, bb %select.then9157, i1 0]
   br i1 %select9160.phi, bb %then9163, bb %else9165
 then9163:
   br bb %if.exit9164
@@ -13189,11 +13173,9 @@ else11723:
 select.then11727:
   br bb %select.exit11729
 select.else11728:
-  11731 = icmp ne i32 0, i32 0
-  11732 = icmp ne i1 %11731, i1 0
   br bb %select.exit11729
 select.exit11729:
-  select11730.phi = phi [bb %select.else11728, i1 %11732, bb %select.then11727, i1 1]
+  select11730.phi = phi [bb %select.else11728, i1 0, bb %select.then11727, i1 1]
   br i1 %select11730.phi, bb %then11734, bb %else11736
 then11734:
   br bb %if.exit11735
@@ -13204,12 +13186,11 @@ if.exit11735:
 else11736:
   br bb %if.exit11735
 select.then11740:
-  11744 = icmp ne i32 0, i32 0
   br bb %select.exit11742
 select.else11741:
   br bb %select.exit11742
 select.exit11742:
-  select11743.phi = phi [bb %select.else11741, i1 0, bb %select.then11740, i1 %11744]
+  select11743.phi = phi [bb %select.else11741, i1 0, bb %select.then11740, i1 0]
   br i1 %select11743.phi, bb %then11746, bb %else11748
 then11746:
   br bb %if.exit11747
@@ -13263,12 +13244,11 @@ if.exit11781:
 else11782:
   br bb %if.exit11781
 select.then11786:
-  11790 = icmp ne i32 0, i32 0
   br bb %select.exit11788
 select.else11787:
   br bb %select.exit11788
 select.exit11788:
-  select11789.phi = phi [bb %select.else11787, i1 0, bb %select.then11786, i1 %11790]
+  select11789.phi = phi [bb %select.else11787, i1 0, bb %select.then11786, i1 0]
   br i1 %select11789.phi, bb %then11792, bb %else11794
 then11792:
   br bb %if.exit11793

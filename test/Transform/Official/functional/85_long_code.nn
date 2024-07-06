@@ -175,8 +175,6 @@ then220:
   234 = add i32 %227.load, i32 %232.load
   235 = sdiv i32 %234, i32 2
   ret i32 %235
-if.exit221:
-  unreachable
 else:
   n.load236 = load i32 from ptr @n
   237 = sdiv i32 %n.load236, i32 2

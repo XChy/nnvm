@@ -272,8 +272,6 @@ entry52:
   br i1 %86, bb %then87, bb %else
 then87:
   ret i32 %a2
-if.exit88:
-  unreachable
 else:
   92 = sub i32 %a1, i32 1
   95 = add i32 %a2, i32 %a3

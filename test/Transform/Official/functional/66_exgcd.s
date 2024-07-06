@@ -68,7 +68,7 @@ exgcd:
   XOR s4, s1, zero
   SLTIU s5, s4, 1
   BNE s5, zero, bb2
-  JAL zero, bb4
+  JAL zero, bb3
 bb2:
   ADD s4, s2, zero
   ADDI s5, zero, 1
@@ -88,7 +88,6 @@ bb2:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
-bb4:
   REMW s4, s0, s1
   ADD a0, s1, zero
   ADD a1, s4, zero

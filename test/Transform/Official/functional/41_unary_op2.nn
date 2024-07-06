@@ -1,7 +1,6 @@
 i32 main() {
 entry:
-  9 = icmp ne i32 64, i32 0
-  10 =  i1 %9, i1 1
+  10 =  i1 1, i1 1
   11 = zext i1 %10 to i32
   12 = icmp ne i32 %11, i32 0
   13 =  i1 %12, i1 1

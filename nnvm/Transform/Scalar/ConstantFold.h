@@ -22,6 +22,8 @@ public:
   Value *foldAdd(AddInst *I);
   Value *foldSub(SubInst *I);
   Value *foldMul(MulInst *I);
+  Value *foldSDiv(SDivInst *I);
+  Value *foldICmp(ICmpInst *I);
 
   void setModule(Module *module) { this->module = module; }
 

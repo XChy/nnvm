@@ -557,7 +557,7 @@ bb37:
   XORI s5, s0, 45
   SLTIU s6, s5, 1
   BNE s6, zero, bb42
-  JAL zero, bb53
+  JAL zero, bb52
 bb38:
   ADD s1, zero, zero
   ADD s2, s0, zero
@@ -610,7 +610,7 @@ bb46:
   XOR s1, s3, zero
   SLTU s2, zero, s1
   BNE s2, zero, bb50
-  JAL zero, bb52
+  JAL zero, bb51
 bb47:
   ADDI s7, zero, 57
   SLT s8, s7, s5
@@ -644,7 +644,6 @@ bb50:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb51:
-bb52:
   ADD a0, s6, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -660,6 +659,6 @@ bb52:
   LD s9, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb53:
+bb52:
   ADD s5, s3, zero
   JAL zero, bb43

@@ -42,6 +42,8 @@ public:
   void setType(Type *type) { this->type = type; }
   Type *getType() const { return type; }
 
+  bool isConstant() { return valueID == ValueID::Constant; }
+
   virtual std::string dump() { return name; };
   virtual std::string dumpAsOperand() { return type->dump() + " %" + name; };
   virtual ~Value() {}

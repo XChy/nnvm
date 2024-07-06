@@ -6,23 +6,18 @@
 #pragma once
 
 #include "IR/BasicBlock.h"
+#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
-#include "Transform/Scalar/ConstantFold.h"
-#include <queue>
 
 namespace nnvm {
-class CombinerPass : public FunctionPass {
+class CFGCombinerPass : public FunctionPass {
 public:
-  static constexpr const char *passName = "combiner";
+  static constexpr const char *passName = "cfg-combiner";
   bool run(Function &F);
 
 private:
-  Value *simplifyInst(Instruction *I);
-  Value *simplifySDiv(SDivInst *I);
-
-  std::queue<Instruction *> worklist;
-
-  ConstantFold folder;
+  bool processBB(BasicBlock *BB);
+  IRBuilder builder;
 };
 } /* namespace nnvm */

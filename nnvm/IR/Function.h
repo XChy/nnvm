@@ -40,6 +40,8 @@ public:
   std::string dumpAsOperand();
   std::string dump();
 
+  using Iterator = List<BasicBlock>::Iterator;
+
 private:
   List<BasicBlock> BBList;
   Module *module;

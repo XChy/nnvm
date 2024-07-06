@@ -81,7 +81,7 @@ func:
   XORI s0, s1, 1
   SLTIU s1, s0, 1
   BNE s1, zero, bb11
-  JAL zero, bb13
+  JAL zero, bb12
 bb11:
   ADDI a0, zero, 1
   LD ra, 0(sp)
@@ -90,7 +90,6 @@ bb11:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb12:
-bb13:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s1, 8(sp)

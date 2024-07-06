@@ -10,15 +10,11 @@ entry:
   br i1 %5, bb %then, bb %else
 then:
   ret i32 %a
-if.exit:
-  unreachable
 else:
   12 = icmp sgt i32 %a, i32 %b
   br i1 %12, bb %then13, bb %else15
 then13:
   ret i32 %a
-if.exit14:
-  br bb %if.exit
 else15:
   ret i32 %b
 }

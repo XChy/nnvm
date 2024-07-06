@@ -93,8 +93,6 @@ entry:
   br i1 %7, bb %then, bb %else
 then:
   ret i32 %root
-if.exit:
-  unreachable
 else:
   13 = mul i32 %root, i32 4
   14 = ptradd ptr @parent, i32 %13

@@ -113,10 +113,6 @@ then77:
   call void putch(i32 65)
   br bb %if.exit78
 if.exit78:
-  83 = icmp ne i32 18, i32 18
-  br i1 %83, bb %then84, bb %if.exit85
-then84:
-  call void putch(i32 66)
   br bb %if.exit85
 if.exit85:
   87 = icmp slt i32 1, i32 8
@@ -144,8 +140,7 @@ then103:
   call void putch(i32 69)
   br bb %if.exit104
 if.exit104:
-  107 = icmp ne i32 0, i32 0
-  108 =  i1 %107, i1 1
+  108 =  i1 0, i1 1
   109 = zext i1 %108 to i32
   110 = sub i32 0, i32 %109
   111 = icmp eq i32 -1, i32 %110
@@ -157,31 +152,22 @@ if.exit113:
   call void putch(i32 10)
   br bb %while.cond
 while.cond:
-  125 = icmp ne i32 0, i32 0
-  br i1 %125, bb %select.then126, bb %select.else127
+  br bb %select.else127
 while.body:
   call void putch(i32 32)
   br bb %while.cond
 while.exit:
-  136 = icmp ne i32 0, i32 0
-  br i1 %136, bb %select.then137, bb %select.else138
-select.then126:
-  131 = icmp ne i32 1, i32 0
-  br bb %select.exit128
+  br bb %select.else138
 select.else127:
   br bb %select.exit128
 select.exit128:
-  select129.phi = phi [bb %select.else127, i1 0, bb %select.then126, i1 %131]
+  select129.phi = phi [bb %select.else127, i1 0]
   133 = icmp ne i1 %select129.phi, i1 0
   br i1 %133, bb %while.body, bb %while.exit
-select.then137:
-  br bb %select.exit139
 select.else138:
-  142 = icmp ne i32 1, i32 0
-  143 = icmp ne i1 %142, i1 0
   br bb %select.exit139
 select.exit139:
-  select140.phi = phi [bb %select.else138, i1 %143, bb %select.then137, i1 1]
+  select140.phi = phi [bb %select.else138, i1 1]
   br i1 %select140.phi, bb %then145, bb %if.exit146
 then145:
   call void putch(i32 67)
@@ -205,19 +191,17 @@ if.exit161:
   165 = icmp sge i32 2, i32 1
   br i1 %165, bb %select.then166, bb %select.else167
 select.then166:
-  172 = icmp ne i32 4, i32 3
   br bb %select.exit168
 select.else167:
   br bb %select.exit168
 select.exit168:
-  select169.phi = phi [bb %select.else167, i1 0, bb %select.then166, i1 %172]
+  select169.phi = phi [bb %select.else167, i1 0, bb %select.then166, i1 1]
   br i1 %select169.phi, bb %then174, bb %if.exit175
 then174:
   call void putch(i32 73)
   br bb %if.exit175
 if.exit175:
-  179 = icmp ne i32 1, i32 0
-  180 =  i1 %179, i1 1
+  180 =  i1 1, i1 1
   181 = zext i1 %180 to i32
   182 = icmp eq i32 0, i32 %181
   br i1 %182, bb %select.then183, bb %select.else184
@@ -242,8 +226,7 @@ then200:
   call void putch(i32 74)
   br bb %if.exit201
 if.exit201:
-  205 = icmp ne i32 1, i32 0
-  206 =  i1 %205, i1 1
+  206 =  i1 1, i1 1
   207 = zext i1 %206 to i32
   208 = icmp eq i32 0, i32 %207
   br i1 %208, bb %select.then209, bb %select.else210

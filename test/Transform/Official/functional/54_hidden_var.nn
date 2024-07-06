@@ -14,8 +14,7 @@ while.cond:
   15 = icmp ne i1 %14, i1 0
   br i1 %15, bb %while.body, bb %while.exit
 while.body:
-  20 = icmp ne i32 1, i32 0
-  br i1 %20, bb %then, bb %if.exit
+  br bb %then
 while.exit:
   call void putint(i32 1)
   call void putch(i32 10)
@@ -59,8 +58,6 @@ while.exit:
   br i1 %49, bb %then50, bb %if.exit51
 then:
   br bb %while.exit
-if.exit:
-  br bb %while.cond
 then50:
   arr.index53 = ptradd ptr %c52, i32 0
   store i32 0 to ptr %arr.index53

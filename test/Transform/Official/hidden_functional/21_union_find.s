@@ -165,7 +165,7 @@ find:
   XOR s2, s1, s0
   SLTIU s1, s2, 1
   BNE s1, zero, bb17
-  JAL zero, bb19
+  JAL zero, bb18
 bb17:
   ADD a0, s0, zero
   LD s4, 0(sp)
@@ -177,7 +177,6 @@ bb17:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb18:
-bb19:
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s1, parent

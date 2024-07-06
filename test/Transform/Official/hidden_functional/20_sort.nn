@@ -361,8 +361,6 @@ select.exit31:
 then45:
   49 = sub i32 0, i32 %x.phi
   ret i32 %49
-if.exit46:
-  unreachable
 else:
   ret i32 %x.phi
 }

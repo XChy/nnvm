@@ -32,7 +32,7 @@ bb2:
 bb3:
   ADD s1, s0, zero
   BNE s1, zero, bb4
-  JAL zero, bb6
+  JAL zero, bb5
 bb4:
   ADDI a0, zero, 1
   LD ra, 0(sp)
@@ -42,7 +42,6 @@ bb4:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:
-bb6:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s2, 8(sp)
@@ -74,9 +73,9 @@ func2:
   ADD s1, a1, zero
   XOR s2, s1, zero
   SLTU s3, zero, s2
-  BNE s3, zero, bb9
-  JAL zero, bb11
-bb9:
+  BNE s3, zero, bb8
+  JAL zero, bb9
+bb8:
   REMW s2, s0, s1
   ADD a0, s2, zero
   ADD a1, zero, zero
@@ -90,8 +89,7 @@ bb9:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb10:
-bb11:
+bb9:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
@@ -111,9 +109,9 @@ func3:
   ADD s1, a1, zero
   XOR s2, s1, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb13
-  JAL zero, bb15
-bb13:
+  BNE s3, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDIW s2, s0, 1
   ADD a0, s2, zero
   LD ra, 0(sp)
@@ -123,8 +121,7 @@ bb13:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb14:
-bb15:
+bb12:
   ADDW s2, s0, s1
   ADD a0, s2, zero
   ADD a1, zero, zero
@@ -150,17 +147,16 @@ func7:
   ADD s0, s1, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb17
-  JAL zero, bb19
-bb17:
+  BNE s0, zero, bb14
+  JAL zero, bb15
+bb14:
   ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s1, 8(sp)
   LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb18:
-bb19:
+bb15:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s1, 8(sp)
@@ -179,9 +175,9 @@ func4:
   ADD s2, a2, zero
   XOR s3, s0, zero
   SLTU s0, zero, s3
-  BNE s0, zero, bb21
-  JAL zero, bb23
-bb21:
+  BNE s0, zero, bb17
+  JAL zero, bb18
+bb17:
   ADD a0, s1, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
@@ -190,8 +186,7 @@ bb21:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb22:
-bb23:
+bb18:
   ADD a0, s2, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
@@ -223,15 +218,15 @@ main:
   CALL getint
   ADD s3, a0, zero
   ADD s4, zero, zero
-  JAL zero, bb25
-bb25:
+  JAL zero, bb20
+bb20:
   ADD s5, s4, zero
   SLTI s6, s5, 10
   XOR s7, s6, zero
   SLTU s6, zero, s7
-  BNE s6, zero, bb26
-  JAL zero, bb27
-bb26:
+  BNE s6, zero, bb21
+  JAL zero, bb22
+bb21:
   ADDI s6, zero, 4
   MULW s7, s5, s6
   ADDI t5, sp, 0
@@ -241,8 +236,8 @@ bb26:
   SW s7, 0(s6)
   ADDIW s6, s5, 1
   ADD s4, s6, zero
-  JAL zero, bb25
-bb27:
+  JAL zero, bb20
+bb22:
   ADD a0, s0, zero
   CALL func7
   ADD s4, a0, zero
@@ -443,9 +438,9 @@ func1:
   ADD s2, a2, zero
   XOR s3, s2, zero
   SLTIU s4, s3, 1
-  BNE s4, zero, bb29
-  JAL zero, bb31
-bb29:
+  BNE s4, zero, bb24
+  JAL zero, bb25
+bb24:
   MULW s3, s0, s1
   ADD a0, s3, zero
   LD ra, 0(sp)
@@ -456,8 +451,7 @@ bb29:
   LD s0, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb30:
-bb31:
+bb25:
   SUBW s3, s1, s2
   ADD a0, s0, zero
   ADD a1, s3, zero

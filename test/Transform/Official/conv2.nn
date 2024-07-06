@@ -10,9 +10,7 @@ while.cond211:
   y.phi365 = phi [bb %entry201, i32 ub, bb %if.exit288, i32 %y.phi362]
   x.phi357 = phi [bb %entry201, i32 ub, bb %if.exit288, i32 %x.phi354]
   i206.phi347 = phi [bb %entry201, i32 0, bb %if.exit288, i32 %283]
-  214 = icmp eq i32 1, i32 1
-  215 = icmp ne i1 %214, i1 0
-  br i1 %215, bb %while.body212, bb %while.exit213
+  br bb %while.body212
 while.body212:
   br bb %while.cond216
 while.exit213:
@@ -22,9 +20,7 @@ while.cond216:
   y.phi363 = phi [bb %while.body212, i32 %y.phi365, bb %if.exit281, i32 %y.phi360]
   x.phi355 = phi [bb %while.body212, i32 %x.phi357, bb %if.exit281, i32 %x.phi]
   j.phi349 = phi [bb %while.body212, i32 0, bb %if.exit281, i32 %276]
-  219 = icmp eq i32 1, i32 1
-  220 = icmp ne i1 %219, i1 0
-  br i1 %220, bb %while.body217, bb %while.exit218
+  br bb %while.body217
 while.body217:
   223 = sdiv i32 %c, i32 2
   224 = sub i32 %i206.phi347, i32 %223
@@ -40,9 +36,7 @@ while.cond225:
   curr.phi369 = phi [bb %while.body217, i32 0, bb %if.exit266, i32 %curr.phi]
   y.phi361 = phi [bb %while.body217, i32 %y.phi363, bb %if.exit266, i32 %y.phi]
   x.phi353 = phi [bb %while.body217, i32 %224, bb %if.exit266, i32 %258]
-  228 = icmp eq i32 1, i32 1
-  229 = icmp ne i1 %228, i1 0
-  br i1 %229, bb %while.body226, bb %while.exit227
+  br bb %while.body226
 while.body226:
   232 = sdiv i32 %c, i32 2
   233 = sub i32 %j.phi349, i32 %232
@@ -62,9 +56,7 @@ while.exit227:
 while.cond234:
   curr.phi367 = phi [bb %while.body226, i32 %curr.phi369, bb %if.exit256, i32 %246]
   y.phi359 = phi [bb %while.body226, i32 %233, bb %if.exit256, i32 %248]
-  237 = icmp eq i32 1, i32 1
-  238 = icmp ne i1 %237, i1 0
-  br i1 %238, bb %while.body235, bb %while.exit236
+  br bb %while.body235
 while.body235:
   245 = call i32 getvalue(ptr %input, i32 %n, i32 %m, i32 %x.phi353, i32 %y.phi359)
   246 = call i32 reduce(i32 %kernelid, i32 %curr.phi367, i32 %245)
@@ -192,8 +184,6 @@ if.exit70:
   br i1 %80, bb %then81, bb %if.exit82
 then74:
   ret i32 %x
-if.exit75:
-  br bb %if.exit70
 else76:
   ret i32 %y
 then81:

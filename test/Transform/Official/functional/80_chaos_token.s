@@ -32,10 +32,7 @@ main:
   JAL zero, bb1
 bb1:
   ADD s1, s0, zero
-  XORI s2, zero, 1
-  SLTU s3, zero, s2
-  BNE s3, zero, bb2
-  JAL zero, bb3
+  JAL zero, bb2
 bb2:
   ADDI s2, zero, 6
   DIVW s3, s1, s2

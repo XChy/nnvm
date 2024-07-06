@@ -97,7 +97,7 @@ public:
   void setOperands(const std::vector<Value *> &operands);
   void setOperand(uint no, Value *);
   void addOperand(Value *operand);
-  Value *getOperand(uint no);
+  Value *getOperand(uint no) const;
   uint getOperandNum() const { return useeList.size(); }
 
   InstID getOpcode() const { return instID; }
@@ -119,7 +119,8 @@ public:
 
   void eraseFromBB() {
     for (Use *use : useeList)
-      use->removeFromList();
+      use->eraseFromList();
+    useeList.clear();
     ListTrait<Instruction>::eraseFromList();
   }
 
@@ -339,6 +340,11 @@ public:
 
   bool isConditional() const { return conditional; }
 
+  Value *getCondition() const {
+    assert(isConditional() && "must be conditional branch");
+    return getOperand(0);
+  }
+
 private:
   bool conditional;
 };
@@ -381,6 +387,7 @@ public:
   void addIncoming(BasicBlock *incomingBB, Value *incomingValue);
   void setIncoming(BasicBlock *incomingBB, Value *incomingValue);
   uint64_t getIncomingNum() const { return getOperandNum() / 2; }
+  void removeIncoming(BasicBlock *incomingBB);
 };
 
 } // namespace nnvm

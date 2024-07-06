@@ -48,8 +48,7 @@ entry:
   br bb %while.cond
 while.cond:
   c.phi103 = phi [bb %entry, i32 ub, bb %then, i32 %9]
-  6 = icmp ne i32 1, i32 0
-  br i1 %6, bb %while.body, bb %while.exit
+  br bb %while.body
 while.body:
   7 = call i32 getch()
   ascii_0.load = load i32 from ptr @ascii_0
@@ -70,14 +69,11 @@ select.exit:
   br i1 %select.phi, bb %then, bb %else
 then:
   br bb %while.cond
-if.exit:
-  br bb %while.cond
 else:
   br bb %while.exit
 while.cond24:
   sum.phi = phi [bb %while.exit, i32 %c.phi104, bb %if.exit41, i32 %46]
-  27 = icmp ne i32 1, i32 0
-  br i1 %27, bb %while.body25, bb %while.exit26
+  br bb %while.body25
 while.body25:
   28 = call i32 getch()
   ascii_0.load29 = load i32 from ptr @ascii_0

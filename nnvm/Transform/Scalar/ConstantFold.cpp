@@ -1,5 +1,7 @@
 #include "ConstantFold.h"
+#include "ADT/GenericInt.h"
 #include "IR/Constant.h"
+#include "IR/Instruction.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
 
@@ -34,6 +36,11 @@ Value *ConstantFold::fold(Instruction *I) {
     }
   }
 
+  if (ICmpInst *CI = dyn_cast<ICmpInst>(I))
+    if (dyn_cast<Constant>(CI->getOperand(0)) &&
+        dyn_cast<Constant>(CI->getOperand(1)))
+      return foldICmp(CI);
+
   // TODO: Handle other operator on constant operands, such as "a[0]", where "a"
   // is a constant array.
 
@@ -44,40 +51,54 @@ Value *ConstantFold::foldAdd(AddInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  if (lhs->getType()->isIntegerNBits(32)) {
-    GInt retInt = ((uint32_t)lhs->getValue()) + ((uint32_t)rhs->getValue());
-    if (retInt & 0x80000000)
-      retInt = retInt | 0xFFFFFFFF00000000;
-    return ConstantInt::create(*module, lhs->getType(), retInt);
-  }
-
-  return nullptr;
+  GInt result = genericAdd(lhs->getValue(), rhs->getValue(),
+                           lhs->getType()->getScalarBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
 }
 
 Value *ConstantFold::foldSub(SubInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  if (lhs->getType()->isIntegerNBits(32)) {
-    GInt retInt = ((uint32_t)lhs->getValue()) - ((uint32_t)rhs->getValue());
-    if (retInt & 0x80000000)
-      retInt = retInt | 0xFFFFFFFF00000000;
-    return ConstantInt::create(*module, lhs->getType(), retInt);
-  }
-
-  return nullptr;
+  GInt result = genericSub(lhs->getValue(), rhs->getValue(),
+                           lhs->getType()->getScalarBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
 }
 
 Value *ConstantFold::foldMul(MulInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  if (lhs->getType()->isIntegerNBits(32)) {
-    GInt retInt = ((uint32_t)lhs->getValue()) * ((uint32_t)rhs->getValue());
-    if (retInt & 0x80000000)
-      retInt = retInt | 0xFFFFFFFF00000000;
-    return ConstantInt::create(*module, lhs->getType(), retInt);
-  }
+  GInt result = genericMul(lhs->getValue(), rhs->getValue(),
+                           lhs->getType()->getScalarBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
 
-  return nullptr;
+Value *ConstantFold::foldSDiv(SDivInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  GInt result = genericSDiv(lhs->getValue(), rhs->getValue(),
+                            lhs->getType()->getScalarBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
+
+Value *ConstantFold::foldICmp(ICmpInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getOperand(0));
+  ConstantInt *rhs = cast<ConstantInt>(I->getOperand(1));
+
+  bool ret;
+  switch (I->getPredicate()) {
+  case ICmpInst::EQ:
+    ret = genericEQ(lhs->getValue(), rhs->getValue(),
+                    lhs->getType()->getScalarBits());
+    return ConstantInt::create(*module, module->getBoolType(), ret);
+  case ICmpInst::NE:
+    ret = genericNE(lhs->getValue(), rhs->getValue(),
+                    lhs->getType()->getScalarBits());
+    return ConstantInt::create(*module, module->getBoolType(), ret);
+
+  default:
+    return nullptr;
+  }
 }

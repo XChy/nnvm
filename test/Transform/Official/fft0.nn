@@ -119,8 +119,6 @@ if.exit42:
 then54:
   59 = call i32 multiply(i32 %50, i32 %a)
   ret i32 %59
-if.exit55:
-  unreachable
 else56:
   ret i32 %50
 }
@@ -290,8 +288,6 @@ then27:
   mod.load33 = load i32 from ptr @mod
   34 = srem i32 %32, i32 %mod.load33
   ret i32 %34
-if.exit28:
-  unreachable
 else:
   ret i32 %23
 }

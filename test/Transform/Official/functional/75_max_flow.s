@@ -40,10 +40,7 @@ max_flow:
   JAL zero, bb1
 bb1:
   ADD s3, s2, zero
-  XORI s4, zero, 1
-  SLTU s5, zero, s4
-  BNE s5, zero, bb2
-  JAL zero, bb3
+  JAL zero, bb2
 bb2:
   LA s4, used
   ADD a0, s4, zero
@@ -59,10 +56,9 @@ bb2:
   ADD s4, a0, zero
   XOR s5, s4, zero
   SLTIU s6, s5, 1
-  BNE s6, zero, bb4
-  JAL zero, bb5
+  BNE s6, zero, bb3
+  JAL zero, bb4
 bb3:
-bb4:
   ADD a0, s3, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -74,7 +70,7 @@ bb4:
   LD s0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb5:
+bb4:
   ADDW s5, s3, s4
   ADD s2, s5, zero
   JAL zero, bb1
@@ -98,9 +94,9 @@ dfs:
   ADD s2, a2, zero
   XOR s3, s0, s1
   SLTIU s4, s3, 1
-  BNE s4, zero, bb7
-  JAL zero, bb8
-bb7:
+  BNE s4, zero, bb6
+  JAL zero, bb7
+bb6:
   ADD a0, s2, zero
   LD s11, 0(sp)
   LD s10, 8(sp)
@@ -117,7 +113,7 @@ bb7:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb8:
+bb7:
   ADDI s3, zero, 4
   MULW s4, s0, s3
   LA s3, used
@@ -127,8 +123,8 @@ bb8:
   ADD s3, zero, zero
   ADD s4, zero, zero
   ADD s5, zero, zero
-  JAL zero, bb9
-bb9:
+  JAL zero, bb8
+bb8:
   ADD s6, s5, zero
   ADD s7, s4, zero
   ADD s8, s3, zero
@@ -140,9 +136,9 @@ bb9:
   SLT s10, s6, s9
   XOR s9, s10, zero
   SLTU s10, zero, s9
-  BNE s10, zero, bb10
-  JAL zero, bb11
-bb10:
+  BNE s10, zero, bb9
+  JAL zero, bb10
+bb9:
   ADDI s9, zero, 40
   MULW s10, s0, s9
   LA s9, to
@@ -158,9 +154,9 @@ bb10:
   LW s9, 0(s10)
   XOR s10, s9, zero
   SLTU s9, zero, s10
-  BNE s9, zero, bb12
-  JAL zero, bb13
-bb11:
+  BNE s9, zero, bb11
+  JAL zero, bb12
+bb10:
   ADD a0, zero, zero
   LD s11, 0(sp)
   LD s10, 8(sp)
@@ -177,13 +173,13 @@ bb11:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb12:
+bb11:
   ADDIW s9, s6, 1
   ADD s3, s8, zero
   ADD s4, s7, zero
   ADD s5, s9, zero
-  JAL zero, bb9
-bb13:
+  JAL zero, bb8
+bb12:
   ADDI s9, zero, 40
   MULW s10, s0, s9
   LA s9, cap
@@ -194,15 +190,15 @@ bb13:
   LW s10, 0(s9)
   SLT s9, zero, s10
   XORI s10, s9, 1
-  BNE s10, zero, bb14
-  JAL zero, bb15
-bb14:
+  BNE s10, zero, bb13
+  JAL zero, bb14
+bb13:
   ADDIW s9, s6, 1
   ADD s3, s8, zero
   ADD s4, s7, zero
   ADD s5, s9, zero
-  JAL zero, bb9
-bb15:
+  JAL zero, bb8
+bb14:
   ADDI s7, zero, 40
   MULW s8, s0, s7
   LA s7, cap
@@ -212,12 +208,12 @@ bb15:
   ADD s7, s9, s8
   LW s8, 0(s7)
   SLT s7, s2, s8
-  BNE s7, zero, bb16
-  JAL zero, bb18
-bb16:
-  ADD s7, s2, zero
+  BNE s7, zero, bb15
   JAL zero, bb17
-bb17:
+bb15:
+  ADD s7, s2, zero
+  JAL zero, bb16
+bb16:
   ADD s8, s7, zero
   ADDI s9, zero, 40
   MULW s10, s0, s9
@@ -233,9 +229,9 @@ bb17:
   CALL dfs
   ADD s9, a0, zero
   SLT s10, zero, s9
-  BNE s10, zero, bb19
-  JAL zero, bb20
-bb18:
+  BNE s10, zero, bb18
+  JAL zero, bb19
+bb17:
   ADDI s3, zero, 40
   MULW s4, s0, s3
   LA s3, cap
@@ -245,8 +241,8 @@ bb18:
   ADD s3, s5, s4
   LW s4, 0(s3)
   ADD s7, s4, zero
-  JAL zero, bb17
-bb19:
+  JAL zero, bb16
+bb18:
   ADDI s10, zero, 40
   MULW s11, s0, s10
   LA s10, cap
@@ -329,12 +325,12 @@ bb19:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb20:
+bb19:
   ADDIW s10, s6, 1
   ADD s3, s9, zero
   ADD s4, s8, zero
   ADD s5, s10, zero
-  JAL zero, bb9
+  JAL zero, bb8
 add_node:
   ADDI sp, sp, -64
   SD ra, 0(sp)
@@ -487,15 +483,15 @@ main:
   ADDI a2, zero, 10
   CALL my_memset
   ADD s2, s1, zero
-  JAL zero, bb23
-bb23:
+  JAL zero, bb22
+bb22:
   ADD s1, s2, zero
   SLT s3, zero, s1
   XOR s4, s3, zero
   SLTU s3, zero, s4
-  BNE s3, zero, bb24
-  JAL zero, bb25
-bb24:
+  BNE s3, zero, bb23
+  JAL zero, bb24
+bb23:
   CALL getint
   ADD s3, a0, zero
   CALL getint
@@ -509,8 +505,8 @@ bb24:
   ADDI s3, zero, 1
   SUBW s4, s1, s3
   ADD s2, s4, zero
-  JAL zero, bb23
-bb25:
+  JAL zero, bb22
+bb24:
   ADDI a0, zero, 1
   ADD a1, s0, zero
   CALL max_flow
@@ -543,23 +539,23 @@ my_memset:
   ADD s1, a1, zero
   ADD s2, a2, zero
   ADD s3, zero, zero
-  JAL zero, bb27
-bb27:
+  JAL zero, bb26
+bb26:
   ADD s4, s3, zero
   SLT s5, s4, s2
   XOR s6, s5, zero
   SLTU s5, zero, s6
-  BNE s5, zero, bb28
-  JAL zero, bb29
-bb28:
+  BNE s5, zero, bb27
+  JAL zero, bb28
+bb27:
   ADDI s5, zero, 4
   MULW s6, s4, s5
   ADD s5, s0, s6
   SW s1, 0(s5)
   ADDIW s5, s4, 1
   ADD s3, s5, zero
-  JAL zero, bb27
-bb29:
+  JAL zero, bb26
+bb28:
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)

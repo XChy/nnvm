@@ -250,10 +250,7 @@ read_str:
   JAL zero, bb13
 bb13:
   ADD s2, s1, zero
-  XORI s3, zero, 1
-  SLTU s4, zero, s3
-  BNE s4, zero, bb14
-  JAL zero, bb15
+  JAL zero, bb14
 bb14:
   ADDI s3, zero, 4
   MULW s4, s2, s3

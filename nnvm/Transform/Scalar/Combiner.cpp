@@ -42,5 +42,10 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (Value *ret = folder.fold(I))
     return ret;
 
+  if (SDivInst *SI = dyn_cast<SDivInst>(I))
+    return simplifySDiv(SI);
+
   return nullptr;
 }
+
+Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }

@@ -2,31 +2,22 @@ external i32 getint()
 
 i32 ifElseIf() {
 entry:
-  4 = icmp eq i32 5, i32 6
-  br i1 %4, bb %select.then, bb %select.else
-select.then:
-  br bb %select.exit
+  br bb %select.else
 select.else:
-  10 = icmp eq i32 10, i32 11
-  11 = icmp ne i1 %10, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %11, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 0]
   br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 5
 if.exit:
   ret i32 %a.phi51
 else:
-  18 = icmp eq i32 10, i32 10
-  br i1 %18, bb %select.then19, bb %select.else20
+  br bb %select.then19
 select.then19:
-  24 = icmp eq i32 5, i32 1
-  br bb %select.exit21
-select.else20:
   br bb %select.exit21
 select.exit21:
-  select22.phi = phi [bb %select.else20, i1 0, bb %select.then19, i1 %24]
+  select22.phi = phi [bb %select.then19, i1 0]
   br i1 %select22.phi, bb %then26, bb %else28
 then26:
   br bb %if.exit27
@@ -34,15 +25,11 @@ if.exit27:
   a.phi51 = phi [bb %if.exit40, i32 %a.phi, bb %then26, i32 25]
   br bb %if.exit
 else28:
-  30 = icmp eq i32 10, i32 10
-  br i1 %30, bb %select.then31, bb %select.else32
+  br bb %select.then31
 select.then31:
-  37 = icmp eq i32 5, i32 -5
-  br bb %select.exit33
-select.else32:
   br bb %select.exit33
 select.exit33:
-  select34.phi = phi [bb %select.else32, i1 0, bb %select.then31, i1 %37]
+  select34.phi = phi [bb %select.then31, i1 0]
   br i1 %select34.phi, bb %then39, bb %else41
 then39:
   br bb %if.exit40

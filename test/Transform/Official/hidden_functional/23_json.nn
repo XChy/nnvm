@@ -29,8 +29,6 @@ else77:
 then83:
   87 = call i32 detect_item(i32 4, ptr %buf, i32 %len)
   ret i32 %87
-if.exit84:
-  br bb %if.exit76
 else85:
   pos.load88 = load i32 from ptr @pos
   89 = mul i32 %pos.load88, i32 4
@@ -41,8 +39,6 @@ else85:
 then93:
   97 = call i32 detect_item(i32 3, ptr %buf, i32 %len)
   ret i32 %97
-if.exit94:
-  br bb %if.exit84
 else95:
   pos.load98 = load i32 from ptr @pos
   99 = mul i32 %pos.load98, i32 4
@@ -53,8 +49,6 @@ else95:
 then103:
   107 = call i32 detect_item(i32 2, ptr %buf, i32 %len)
   ret i32 %107
-if.exit104:
-  br bb %if.exit94
 else105:
   pos.load108 = load i32 from ptr @pos
   109 = mul i32 %pos.load108, i32 4
@@ -66,8 +60,6 @@ else105:
 then114:
   118 = call i32 detect_item(i32 1, ptr %buf, i32 %len)
   ret i32 %118
-if.exit115:
-  br bb %if.exit104
 else116:
   pos.load119 = load i32 from ptr @pos
   120 = mul i32 %pos.load119, i32 4
@@ -78,8 +70,6 @@ else116:
 then124:
   128 = call i32 detect_item(i32 1, ptr %buf, i32 %len)
   ret i32 %128
-if.exit125:
-  br bb %if.exit115
 else126:
   pos.load129 = load i32 from ptr @pos
   130 = mul i32 %pos.load129, i32 4
@@ -90,8 +80,6 @@ else126:
 then134:
   138 = call i32 detect_item(i32 1, ptr %buf, i32 %len)
   ret i32 %138
-if.exit135:
-  br bb %if.exit125
 else136:
   pos.load139 = load i32 from ptr @pos
   140 = mul i32 %pos.load139, i32 4
@@ -102,8 +90,6 @@ else136:
 then144:
   148 = call i32 detect_item(i32 5, ptr %buf, i32 %len)
   ret i32 %148
-if.exit145:
-  br bb %if.exit135
 else146:
   pos.load149 = load i32 from ptr @pos
   150 = mul i32 %pos.load149, i32 4
@@ -114,8 +100,6 @@ else146:
 then154:
   158 = call i32 detect_item(i32 6, ptr %buf, i32 %len)
   ret i32 %158
-if.exit155:
-  br bb %if.exit145
 else156:
   pos.load159 = load i32 from ptr @pos
   160 = mul i32 %pos.load159, i32 4
@@ -126,8 +110,6 @@ else156:
 then164:
   168 = call i32 detect_item(i32 7, ptr %buf, i32 %len)
   ret i32 %168
-if.exit165:
-  br bb %if.exit155
 else166:
   ret i32 0
 then171:
@@ -888,8 +870,6 @@ then775:
   call void putch(i32 107)
   call void putch(i32 10)
   ret i32 0
-if.exit776:
-  unreachable
 else777:
   call void putch(i32 110)
   call void putch(i32 111)
@@ -919,8 +899,7 @@ void skip_space(ptr buf, i32 len) {
 entry12:
   br bb %while.cond
 while.cond:
-  17 = icmp ne i32 1, i32 0
-  br i1 %17, bb %while.body, bb %while.exit
+  br bb %while.body
 while.body:
   pos.load = load i32 from ptr @pos
   20 = icmp sge i32 %pos.load, i32 %len
@@ -996,14 +975,10 @@ entry:
 then:
   8 = icmp sle i32 %ch, i32 57
   br i1 %8, bb %then9, bb %else11
-if.exit:
-  unreachable
 else:
   ret i32 0
 then9:
   ret i32 1
-if.exit10:
-  br bb %if.exit
 else11:
   ret i32 0
 }

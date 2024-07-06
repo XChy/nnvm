@@ -63,8 +63,6 @@ entry:
   br i1 %6, bb %then, bb %else
 then:
   ret i32 1
-if.exit:
-  unreachable
 else:
   ret i32 0
 }

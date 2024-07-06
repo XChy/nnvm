@@ -54,8 +54,6 @@ then:
   11 = ptradd ptr %y, i32 0
   store i32 0 to ptr %11
   ret i32 %a
-if.exit:
-  unreachable
 else:
   17 = srem i32 %a, i32 %b
   18 = call i32 exgcd(i32 %b, i32 %17, ptr %x, ptr %y)

@@ -2,6 +2,7 @@
 
 #include "ADT/List.h"
 #include "ADT/ListNode.h"
+#include "ADT/Ranges.h"
 #include "IR/Instruction.h"
 #include "IR/Value.h"
 #include "Utils/Cast.h"
@@ -94,6 +95,12 @@ public:
   void setParent(Function *parent) { this->parent = parent; }
 
   std::string dump();
+
+  void eraseFromFunc() {
+    for (Instruction *I : incChange(instList))
+      I->eraseFromBB();
+    ListTrait<BasicBlock>::eraseFromList();
+  }
 
   ~BasicBlock();
 

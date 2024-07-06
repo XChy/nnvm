@@ -32,11 +32,7 @@ bb1:
   BNE s1, zero, bb2
   JAL zero, bb3
 bb2:
-  ADDI s0, zero, 0
-  XORI s1, s0, 1
-  SLTU s0, zero, s1
-  BNE s0, zero, bb4
-  JAL zero, bb5
+  JAL zero, bb4
 bb3:
   ADDI a0, zero, 1
   CALL putint
@@ -87,13 +83,11 @@ bb3:
   LW s0, 0(s1)
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb6
-  JAL zero, bb7
+  BNE s0, zero, bb5
+  JAL zero, bb6
 bb4:
   JAL zero, bb3
 bb5:
-  JAL zero, bb1
-bb6:
   ADDI t6, sp, 0
   ADD s0, t6, zero
   SW zero, 0(s0)
@@ -125,8 +119,8 @@ bb6:
   ADDI s1, zero, 8
   SW s1, 0(s0)
   ADDI s0, zero, 22
-  JAL zero, bb8
-bb7:
+  JAL zero, bb7
+bb6:
   ADDI a0, zero, 10
   CALL putch
   LA s0, b
@@ -165,13 +159,13 @@ bb7:
   LD s0, 240(sp)
   ADDI sp, sp, 256
   JALR zero, 0(ra)
-bb8:
+bb7:
   ADD s1, s0, zero
   XOR s2, s1, zero
   SLTU s3, zero, s2
-  BNE s3, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s3, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
   ADDI s1, zero, 4
@@ -181,8 +175,8 @@ bb9:
   ADD s2, t5, s1
   SW zero, 0(s2)
   ADD s0, s3, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   ADDI s0, sp, 40
   ADD s1, s0, zero
   ADD s0, s1, zero
@@ -201,4 +195,4 @@ bb10:
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
-  JAL zero, bb7
+  JAL zero, bb6

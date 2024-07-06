@@ -828,7 +828,7 @@ bb56:
 bb57:
   ADD s0, s1, zero
   BNE s0, zero, bb58
-  JAL zero, bb60
+  JAL zero, bb59
 bb58:
   ADDI a0, zero, 1
   LD ra, 0(sp)
@@ -838,7 +838,6 @@ bb58:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb59:
-bb60:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s2, 8(sp)
@@ -855,23 +854,23 @@ is_space:
   ADD s0, a0, zero
   XORI s1, s0, 32
   SLTIU s2, s1, 1
-  BNE s2, zero, bb62
+  BNE s2, zero, bb61
+  JAL zero, bb62
+bb61:
+  ADDI s1, zero, 1
   JAL zero, bb63
 bb62:
-  ADDI s1, zero, 1
-  JAL zero, bb64
-bb63:
   XORI s2, s0, 10
   SLTIU s0, s2, 1
   XOR s2, s0, zero
   SLTU s0, zero, s2
   ADD s1, s0, zero
-  JAL zero, bb64
-bb64:
+  JAL zero, bb63
+bb63:
   ADD s2, s1, zero
-  BNE s2, zero, bb65
-  JAL zero, bb67
-bb65:
+  BNE s2, zero, bb64
+  JAL zero, bb65
+bb64:
   ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s2, 8(sp)
@@ -879,8 +878,7 @@ bb65:
   LD s0, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb66:
-bb67:
+bb65:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s2, 8(sp)
@@ -902,14 +900,14 @@ main:
   CALL next_token
   ADD s1, a0, zero
   ADD s1, s0, zero
-  JAL zero, bb69
-bb69:
+  JAL zero, bb67
+bb67:
   ADD s0, s1, zero
   XOR s2, s0, zero
   SLTU s3, zero, s2
-  BNE s3, zero, bb70
-  JAL zero, bb71
-bb70:
+  BNE s3, zero, bb68
+  JAL zero, bb69
+bb68:
   CALL eval
   ADD s2, a0, zero
   ADD a0, s2, zero
@@ -919,8 +917,8 @@ bb70:
   ADDI s2, zero, 1
   SUBW s3, s0, s2
   ADD s1, s3, zero
-  JAL zero, bb69
-bb71:
+  JAL zero, bb67
+bb69:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
@@ -956,8 +954,8 @@ next_token:
   SD s2, 8(sp)
   SD s1, 16(sp)
   SD s0, 24(sp)
-  JAL zero, bb74
-bb74:
+  JAL zero, bb72
+bb72:
   LA s0, last_char
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -965,13 +963,13 @@ bb74:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb75
-  JAL zero, bb76
-bb75:
+  BNE s0, zero, bb73
+  JAL zero, bb74
+bb73:
   CALL next_char
   ADD s0, a0, zero
-  JAL zero, bb74
-bb76:
+  JAL zero, bb72
+bb74:
   LA s0, last_char
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -979,17 +977,17 @@ bb76:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb77
-  JAL zero, bb79
-bb77:
+  BNE s0, zero, bb75
+  JAL zero, bb77
+bb75:
   LA s0, last_char
   LW s1, 0(s0)
   ADDI s0, zero, 48
   SUBW s2, s1, s0
   LA s0, num
   SW s2, 0(s0)
-  JAL zero, bb80
-bb78:
+  JAL zero, bb78
+bb76:
   LA s0, cur_token
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -999,7 +997,7 @@ bb78:
   LD s0, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb79:
+bb77:
   LA s0, last_char
   LW s1, 0(s0)
   LA s0, other
@@ -1010,8 +1008,8 @@ bb79:
   LW s1, 0(s0)
   LA s0, cur_token
   SW s1, 0(s0)
-  JAL zero, bb78
-bb80:
+  JAL zero, bb76
+bb78:
   CALL next_char
   ADD s0, a0, zero
   ADD a0, s0, zero
@@ -1019,9 +1017,9 @@ bb80:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb81
-  JAL zero, bb82
-bb81:
+  BNE s0, zero, bb79
+  JAL zero, bb80
+bb79:
   LA s0, num
   LW s1, 0(s0)
   ADDI s0, zero, 10
@@ -1033,13 +1031,13 @@ bb81:
   SUBW s2, s0, s1
   LA s0, num
   SW s2, 0(s0)
-  JAL zero, bb80
-bb82:
+  JAL zero, bb78
+bb80:
   LA s0, TOKEN_NUM
   LW s1, 0(s0)
   LA s0, cur_token
   SW s1, 0(s0)
-  JAL zero, bb78
+  JAL zero, bb76
 next_char:
   ADDI sp, sp, -32
   SD ra, 0(sp)

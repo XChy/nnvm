@@ -39,7 +39,9 @@ void Instruction::addOperand(Value *operand) {
   useeList.push_back(new Use(this, operand));
 }
 
-Value *Instruction::getOperand(uint no) { return useeList[no]->getUsee(); }
+Value *Instruction::getOperand(uint no) const {
+  return useeList[no]->getUsee();
+}
 
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
@@ -147,9 +149,8 @@ std::string Instruction::dump() {
 }
 
 Instruction::~Instruction() {
-  for (Use *use : useeList) {
+  for (Use *use : useeList)
     delete use;
-  }
 }
 
 StackInst::StackInst(Module &module)
@@ -243,4 +244,17 @@ void PhiInst::setIncoming(BasicBlock *incomingBB, Value *incomingValue) {
     if (getOperand(i) == incomingBB)
       setOperand(i + 1, incomingValue);
   nnvm_unreachable("Not found incoming")
+}
+
+void PhiInst::removeIncoming(BasicBlock *incomingBB) {
+  std::vector<Value *> newIncomings;
+
+  for (size_t i = 0; i < getOperandNum(); i += 2) {
+    if (getOperand(i) == incomingBB)
+      continue;
+    newIncomings.push_back(getOperand(i));
+    newIncomings.push_back(getOperand(i + 1));
+  }
+
+  setOperands(newIncomings);
 }

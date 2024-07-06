@@ -24,8 +24,7 @@ entry4:
   sum.load10 = load i32 from ptr @sum
   12 = add i32 %sum.load10, i32 %9
   store i32 %12 to ptr @sum
-  13 = icmp ne i32 1, i32 0
-  br i1 %13, bb %then, bb %if.exit
+  br bb %then
 then:
   17 = call i32 getA()
   sum.load18 = load i32 from ptr @sum
@@ -96,8 +95,7 @@ entry51:
   call void f3()
   br bb %while.cond
 while.cond:
-  98 = icmp ne i32 1, i32 0
-  br i1 %98, bb %while.body, bb %while.exit
+  br bb %while.body
 while.body:
   br bb %while.cond99
 while.exit:
@@ -105,8 +103,7 @@ while.exit:
   call void putint(i32 %sum.load142)
   ret i32 0
 while.cond99:
-  102 = icmp ne i32 1, i32 0
-  br i1 %102, bb %while.body100, bb %while.exit101
+  br bb %while.body100
 while.body100:
   br bb %while.cond104
 while.exit101:
@@ -123,12 +120,10 @@ while.body105:
 while.exit106:
   br bb %while.exit101
 while.cond110:
-  a56.phi148 = phi [bb %while.body105, i32 %a56.phi, bb %if.exit116, i32 %121]
-  113 = icmp ne i32 1, i32 0
-  br i1 %113, bb %while.body111, bb %while.exit112
+  a56.phi148 = phi [bb %while.body105, i32 %a56.phi]
+  br bb %while.body111
 while.body111:
-  114 = icmp ne i32 1, i32 0
-  br i1 %114, bb %then115, bb %if.exit116
+  br bb %then115
 while.exit112:
   123 = icmp eq i32 %i.phi, i32 1
   br i1 %123, bb %then124, bb %else
@@ -137,9 +132,6 @@ then115:
   call void f2()
   call void f3()
   br bb %while.exit112
-if.exit116:
-  121 = call i32 getA()
-  br bb %while.cond110
 then124:
   128 = call i32 getA()
   call void f1(i32 %128)

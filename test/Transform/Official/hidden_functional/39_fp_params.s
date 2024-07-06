@@ -203,7 +203,7 @@ params_f40_i24:
   XOR s8, s0, zero
   SLTU t2, zero, s8
   BNE t2, zero, bb1
-  JAL zero, bb3
+  JAL zero, bb2
 bb1:
   FLW ft4, 320(sp)
   FLW ft3, 584(sp)
@@ -346,9 +346,8 @@ bb1:
   ADD a1, a1, zero
   CALL putarray
   ADD s0, zero, zero
-  JAL zero, bb4
+  JAL zero, bb3
 bb2:
-bb3:
   ADD a0, s3, zero
   ADD a1, s1, zero
   ADD a2, s2, zero
@@ -587,14 +586,14 @@ bb3:
   FLD fs5, 840(sp)
   ADDI sp, sp, 848
   JALR zero, 0(ra)
-bb4:
+bb3:
   ADD s7, s0, zero
   SLTI s8, s7, 8
   XOR s9, s8, zero
   SLTU s8, zero, s9
-  BNE s8, zero, bb5
-  JAL zero, bb6
-bb5:
+  BNE s8, zero, bb4
+  JAL zero, bb5
+bb4:
   ADDI s8, zero, 4
   MULW s9, s7, s8
   ADDI t5, sp, 192
@@ -615,8 +614,8 @@ bb5:
   SW s9, 0(s8)
   ADDIW s8, s7, 1
   ADD s0, s8, zero
-  JAL zero, bb4
-bb6:
+  JAL zero, bb3
+bb5:
   LA s0, k
   LW s7, 0(s0)
   ADDI s0, zero, 4
@@ -762,15 +761,15 @@ main:
   LA s1, k
   SW s0, 0(s1)
   ADD s0, zero, zero
-  JAL zero, bb8
-bb8:
+  JAL zero, bb7
+bb7:
   ADD s1, s0, zero
   SLTI s2, s1, 40
   XOR s3, s2, zero
   SLTU s2, zero, s3
-  BNE s2, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s2, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s2, zero, 12
   MULW s3, s1, s2
   ADDI t6, sp, 608
@@ -780,18 +779,18 @@ bb9:
   ADD s2, a0, zero
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   ADD s0, zero, zero
-  JAL zero, bb11
-bb11:
+  JAL zero, bb10
+bb10:
   ADD s1, s0, zero
   SLTI s2, s1, 24
   XOR s3, s2, zero
   SLTU s2, zero, s3
-  BNE s2, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE s2, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s2, zero, 12
   MULW s3, s1, s2
   ADDI t5, sp, 320
@@ -801,8 +800,8 @@ bb12:
   ADD s2, a0, zero
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb10
+bb12:
   ADDI t6, sp, 608
   ADD s0, t6, zero
   LA s1, k
@@ -3070,10 +3069,10 @@ params_fa40:
   SD t4, 528(sp)
   ADDI s8, sp, 760
   LD t4, 0(s8)
-  SD t4, 512(sp)
+  SD t4, 520(sp)
   ADDI s8, sp, 768
   LD t4, 0(s8)
-  SD t4, 520(sp)
+  SD t4, 512(sp)
   ADDI s8, sp, 776
   LD t4, 0(s8)
   SD t4, 504(sp)
@@ -3234,7 +3233,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   FADD.S fs4, fs1, fs0
@@ -3242,7 +3241,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   LA s0, k
@@ -3501,9 +3500,9 @@ params_fa40:
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1
   XORI s8, s0, 1
-  BNE s8, zero, bb15
-  JAL zero, bb17
-bb15:
+  BNE s8, zero, bb14
+  JAL zero, bb15
+bb14:
   ADDI a0, zero, 10
   ADDI a1, sp, 256
   ADD a1, a1, zero
@@ -3543,8 +3542,7 @@ bb15:
   FLD fs5, 728(sp)
   ADDI sp, sp, 736
   JALR zero, 0(ra)
-bb16:
-bb17:
+bb15:
   ADD a0, s1, zero
   ADD a1, s2, zero
   ADD a2, s3, zero
@@ -3560,10 +3558,10 @@ bb17:
   LD t4, 528(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 16
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 24
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 32
   LD t4, 504(sp)
@@ -3650,8 +3648,8 @@ bb17:
   ADDI t4, sp, 256
   SD t4, 0(s0)
   LD t4, 528(sp)
-  LD t3, 512(sp)
-  LD t4, 520(sp)
+  LD t3, 520(sp)
+  LD t4, 512(sp)
   LD t3, 504(sp)
   LD t4, 496(sp)
   LD t3, 296(sp)
@@ -3836,9 +3834,9 @@ params_f40:
   FLW ft4, 320(sp)
   FEQ.S s0, ft4, ft9
   XORI s1, s0, 1
-  BNE s1, zero, bb19
-  JAL zero, bb21
-bb19:
+  BNE s1, zero, bb17
+  JAL zero, bb18
+bb17:
   FADD.S ft9, fs0, fs1
   FADD.S ft8, ft9, fs2
   FADD.S ft9, ft8, fs3
@@ -3951,8 +3949,7 @@ bb19:
   LD s1, 536(sp)
   ADDI sp, sp, 544
   JALR zero, 0(ra)
-bb20:
-bb21:
+bb18:
   FADD.S fs9, fs0, fs1
   FADD.S fs0, fs9, fs2
   FSGNJ.S fa0, fs1, fs1
@@ -4618,9 +4615,9 @@ params_mix:
   LW t4, 792(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
-  BNE s2, zero, bb23
-  JAL zero, bb25
-bb23:
+  BNE s2, zero, bb20
+  JAL zero, bb21
+bb20:
   ADDI a0, zero, 10
   ADDI a1, sp, 360
   ADD a1, a1, zero
@@ -4630,9 +4627,8 @@ bb23:
   ADD a1, a1, zero
   CALL putarray
   ADD s0, zero, zero
-  JAL zero, bb26
-bb24:
-bb25:
+  JAL zero, bb22
+bb21:
   LW t4, 792(sp)
   FCVT.S.W fs8, t4
   FLW ft4, 784(sp)
@@ -4876,14 +4872,14 @@ bb25:
   FLD fs5, 992(sp)
   ADDI sp, sp, 1008
   JALR zero, 0(ra)
-bb26:
+bb22:
   ADD s2, s0, zero
   SLTI s6, s2, 10
   XOR s7, s6, zero
   SLTU s6, zero, s7
-  BNE s6, zero, bb27
-  JAL zero, bb28
-bb27:
+  BNE s6, zero, bb23
+  JAL zero, bb24
+bb23:
   ADDI s6, zero, 4
   MULW s7, s2, s6
   ADDI t5, sp, 320
@@ -4904,8 +4900,8 @@ bb27:
   SW s7, 0(s6)
   ADDIW s6, s2, 1
   ADD s0, s6, zero
-  JAL zero, bb26
-bb28:
+  JAL zero, bb22
+bb24:
   LA s0, k
   LW s2, 0(s0)
   ADDI s0, zero, 4

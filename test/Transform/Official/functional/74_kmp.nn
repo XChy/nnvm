@@ -66,8 +66,7 @@ entry102:
   br bb %while.cond104
 while.cond104:
   i103.phi = phi [bb %entry102, i32 0, bb %if.exit118, i32 %120]
-  107 = icmp ne i32 1, i32 0
-  br i1 %107, bb %while.body105, bb %while.exit106
+  br bb %while.body105
 while.body105:
   109 = mul i32 %i103.phi, i32 4
   110 = ptradd ptr %buf, i32 %109
