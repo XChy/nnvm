@@ -116,19 +116,14 @@ init:
   store i32 0 to ptr %arr.index31
   br bb %init.cond
 init.exit:
-  32 = mul i32 0, i32 4
-  33 = ptradd ptr %temp, i32 %32
-  34 = mul i32 0, i32 4
-  35 = ptradd ptr %arr, i32 %34
+  33 = ptradd ptr %temp, i32 0
+  35 = ptradd ptr %arr, i32 0
   35.load = load i32 from ptr %35
   store i32 %35.load to ptr %33
-  37 = mul i32 1, i32 4
-  38 = ptradd ptr %temp, i32 %37
-  39 = mul i32 0, i32 4
-  40 = ptradd ptr %arr, i32 %39
+  38 = ptradd ptr %temp, i32 4
+  40 = ptradd ptr %arr, i32 0
   40.load = load i32 from ptr %40
-  42 = mul i32 1, i32 4
-  43 = ptradd ptr %arr, i32 %42
+  43 = ptradd ptr %arr, i32 4
   43.load = load i32 from ptr %43
   45 = call i32 MAX(i32 %40.load, i32 %43.load)
   store i32 %45 to ptr %38

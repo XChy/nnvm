@@ -53,10 +53,8 @@ entry:
   store i32 7 to ptr %arr.index26
   arr.index27 = ptradd ptr %c, i32 28
   store i32 8 to ptr %arr.index27
-  29 = mul i32 3, i32 8
-  30 = ptradd ptr %a, i32 %29
-  31 = mul i32 0, i32 4
-  32 = ptradd ptr %30, i32 %31
+  30 = ptradd ptr %a, i32 24
+  32 = ptradd ptr %30, i32 0
   32.load = load i32 from ptr %32
   arr.index34 = ptradd ptr %d, i32 0
   store i32 1 to ptr %arr.index34
@@ -74,15 +72,11 @@ entry:
   store i32 %32.load to ptr %arr.index40
   arr.index41 = ptradd ptr %d, i32 28
   store i32 8 to ptr %arr.index41
-  43 = mul i32 2, i32 8
-  44 = ptradd ptr %d, i32 %43
-  45 = mul i32 1, i32 4
-  46 = ptradd ptr %44, i32 %45
+  44 = ptradd ptr %d, i32 16
+  46 = ptradd ptr %44, i32 4
   46.load = load i32 from ptr %46
-  48 = mul i32 2, i32 8
-  49 = ptradd ptr %c, i32 %48
-  50 = mul i32 1, i32 4
-  51 = ptradd ptr %49, i32 %50
+  49 = ptradd ptr %c, i32 16
+  51 = ptradd ptr %49, i32 4
   51.load = load i32 from ptr %51
   arr.index53 = ptradd ptr %e, i32 0
   store i32 %46.load to ptr %arr.index53
@@ -100,33 +94,22 @@ entry:
   store i32 7 to ptr %arr.index59
   arr.index60 = ptradd ptr %e, i32 28
   store i32 8 to ptr %arr.index60
-  61 = mul i32 3, i32 8
-  62 = ptradd ptr %e, i32 %61
-  63 = mul i32 1, i32 4
-  64 = ptradd ptr %62, i32 %63
-  65 = mul i32 0, i32 4
-  66 = ptradd ptr %64, i32 %65
+  62 = ptradd ptr %e, i32 24
+  64 = ptradd ptr %62, i32 4
+  66 = ptradd ptr %64, i32 0
   66.load = load i32 from ptr %66
-  68 = mul i32 0, i32 8
-  69 = ptradd ptr %e, i32 %68
-  70 = mul i32 0, i32 4
-  71 = ptradd ptr %69, i32 %70
-  72 = mul i32 0, i32 4
-  73 = ptradd ptr %71, i32 %72
+  69 = ptradd ptr %e, i32 0
+  71 = ptradd ptr %69, i32 0
+  73 = ptradd ptr %71, i32 0
   73.load = load i32 from ptr %73
   75 = add i32 %66.load, i32 %73.load
-  76 = mul i32 0, i32 8
-  77 = ptradd ptr %e, i32 %76
-  78 = mul i32 1, i32 4
-  79 = ptradd ptr %77, i32 %78
-  80 = mul i32 0, i32 4
-  81 = ptradd ptr %79, i32 %80
+  77 = ptradd ptr %e, i32 0
+  79 = ptradd ptr %77, i32 4
+  81 = ptradd ptr %79, i32 0
   81.load = load i32 from ptr %81
   83 = add i32 %75, i32 %81.load
-  84 = mul i32 3, i32 8
-  85 = ptradd ptr %d, i32 %84
-  86 = mul i32 0, i32 4
-  87 = ptradd ptr %85, i32 %86
+  85 = ptradd ptr %d, i32 24
+  87 = ptradd ptr %85, i32 0
   87.load = load i32 from ptr %87
   89 = add i32 %83, i32 %87.load
   ret i32 %89

@@ -19,8 +19,7 @@ while.body:
 while.exit:
   call void putint(i32 1)
   call void putch(i32 10)
-  26 = mul i32 2, i32 4
-  27 = ptradd ptr @c, i32 %26
+  27 = ptradd ptr @c, i32 8
   store i32 1 to ptr %27
   arr.index = ptradd ptr %c, i32 0
   store i32 0 to ptr %arr.index
@@ -54,8 +53,7 @@ while.exit:
   store i32 0 to ptr %arr.index43
   arr.index44 = ptradd ptr %c, i32 60
   store i32 0 to ptr %arr.index44
-  46 = mul i32 2, i32 4
-  47 = ptradd ptr @c, i32 %46
+  47 = ptradd ptr @c, i32 8
   47.load = load i32 from ptr %47
   49 = icmp ne i32 %47.load, i32 0
   br i1 %49, bb %then50, bb %if.exit51
@@ -96,20 +94,16 @@ if.exit51:
   b.load105 = load i32 from ptr @b
   call void putint(i32 %b.load105)
   call void putch(i32 10)
-  108 = mul i32 0, i32 4
-  109 = ptradd ptr @c, i32 %108
+  109 = ptradd ptr @c, i32 0
   109.load = load i32 from ptr %109
   call void putint(i32 %109.load)
-  112 = mul i32 1, i32 4
-  113 = ptradd ptr @c, i32 %112
+  113 = ptradd ptr @c, i32 4
   113.load = load i32 from ptr %113
   call void putint(i32 %113.load)
-  116 = mul i32 2, i32 4
-  117 = ptradd ptr @c, i32 %116
+  117 = ptradd ptr @c, i32 8
   117.load = load i32 from ptr %117
   call void putint(i32 %117.load)
-  120 = mul i32 3, i32 4
-  121 = ptradd ptr @c, i32 %120
+  121 = ptradd ptr @c, i32 12
   121.load = load i32 from ptr %121
   call void putint(i32 %121.load)
   call void putch(i32 10)
@@ -126,28 +120,19 @@ init:
   store i32 0 to ptr %arr.index76
   br bb %init.cond
 init.exit:
-  78 = mul i32 2, i32 20
-  79 = ptradd ptr %c52, i32 %78
-  80 = mul i32 0, i32 20
-  81 = ptradd ptr %79, i32 %80
-  82 = mul i32 0, i32 4
-  83 = ptradd ptr %81, i32 %82
+  79 = ptradd ptr %c52, i32 40
+  81 = ptradd ptr %79, i32 0
+  83 = ptradd ptr %81, i32 0
   83.load = load i32 from ptr %83
   call void putint(i32 %83.load)
-  87 = mul i32 2, i32 20
-  88 = ptradd ptr %c52, i32 %87
-  89 = mul i32 0, i32 20
-  90 = ptradd ptr %88, i32 %89
-  91 = mul i32 1, i32 4
-  92 = ptradd ptr %90, i32 %91
+  88 = ptradd ptr %c52, i32 40
+  90 = ptradd ptr %88, i32 0
+  92 = ptradd ptr %90, i32 4
   92.load = load i32 from ptr %92
   call void putint(i32 %92.load)
-  96 = mul i32 2, i32 20
-  97 = ptradd ptr %c52, i32 %96
-  98 = mul i32 0, i32 20
-  99 = ptradd ptr %97, i32 %98
-  100 = mul i32 2, i32 4
-  101 = ptradd ptr %99, i32 %100
+  97 = ptradd ptr %c52, i32 40
+  99 = ptradd ptr %97, i32 0
+  101 = ptradd ptr %99, i32 8
   101.load = load i32 from ptr %101
   call void putint(i32 %101.load)
   br bb %if.exit51

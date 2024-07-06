@@ -61,10 +61,8 @@ while.body55:
   br bb %while.cond62
 while.exit56:
   call void _sysy_stoptime(i32 53)
-  168 = mul i32 0, i32 1440000
-  169 = ptradd ptr @x, i32 %168
-  170 = mul i32 0, i32 2400
-  171 = ptradd ptr %169, i32 %170
+  169 = ptradd ptr @x, i32 0
+  171 = ptradd ptr %169, i32 0
   call void putarray(i32 %6, ptr %171)
   175 = sdiv i32 %6, i32 2
   176 = mul i32 %175, i32 1440000

@@ -213,11 +213,8 @@ bb18:
   MULW s3, s1, s2
   LA s2, dis
   ADD s4, s2, s3
-  ADDI s2, zero, 64
-  ADDI s3, zero, 1
-  MULW s5, s2, s3
   LA s2, e
-  ADD s3, s2, s5
+  ADDI s3, s2, 64
   ADDI s2, zero, 4
   MULW s5, s1, s2
   ADD s2, s3, s5
@@ -232,11 +229,8 @@ bb18:
   ADD s0, s2, zero
   JAL zero, bb17
 bb19:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
   LA s0, book
-  ADD s1, s0, s2
+  ADDI s1, s0, 4
   ADDI s0, zero, 1
   SW s0, 0(s1)
   ADD s0, zero, zero

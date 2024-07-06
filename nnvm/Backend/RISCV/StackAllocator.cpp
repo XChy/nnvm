@@ -151,8 +151,7 @@ void StackAllocator::allocate(LIRFunc &func) {
         slot->getType() == StackSlot::OutgoingArgFrame)
       continue;
 
-    frameSize = (frameSize + slot->getAlign() - 1) / slot->getAlign() *
-                slot->getAlign();
+    frameSize = alignWith(frameSize, slot->getAlign());
     slot->setOffset(frameSize);
     frameSize += slot->getSize();
 

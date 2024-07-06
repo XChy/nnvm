@@ -126,15 +126,9 @@ bb11:
 bb12:
   ADDI a0, zero, 53
   CALL _sysy_stoptime
-  LUI s0, 352
-  ADDI s0, s0, -1792
-  MULW s1, zero, s0
   LA s0, x
-  ADD s2, s0, s1
-  LUI s0, 1
-  ADDI s0, s0, -1696
-  MULW s1, zero, s0
-  ADD s0, s2, s1
+  ADD s1, s0, zero
+  ADD s0, s1, zero
   LW t4, 0(sp)
   ADD a0, t4, zero
   ADD a1, s0, zero

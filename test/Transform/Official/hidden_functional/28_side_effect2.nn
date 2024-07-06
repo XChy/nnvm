@@ -50,8 +50,7 @@ if.exit51:
   56 = icmp eq i32 %i, i32 0
   br i1 %56, bb %then57, bb %else59
 then57:
-  60 = mul i32 0, i32 4
-  61 = ptradd ptr @array, i32 %60
+  61 = ptradd ptr @array, i32 0
   61.load = load i32 from ptr %61
   ret i32 %61.load
 if.exit58:
@@ -783,8 +782,7 @@ if.exit:
   22 = icmp eq i32 %i, i32 0
   br i1 %22, bb %then23, bb %else
 then23:
-  26 = mul i32 0, i32 4
-  27 = ptradd ptr @array, i32 %26
+  27 = ptradd ptr @array, i32 0
   27.load = load i32 from ptr %27
   ret i32 %27.load
 if.exit24:

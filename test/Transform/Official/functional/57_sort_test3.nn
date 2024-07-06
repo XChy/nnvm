@@ -112,35 +112,25 @@ i32 main() {
 entry108:
   %a = stack 40
   store i32 10 to ptr @n
-  110 = mul i32 0, i32 4
-  111 = ptradd ptr %a, i32 %110
+  111 = ptradd ptr %a, i32 0
   store i32 4 to ptr %111
-  112 = mul i32 1, i32 4
-  113 = ptradd ptr %a, i32 %112
+  113 = ptradd ptr %a, i32 4
   store i32 3 to ptr %113
-  114 = mul i32 2, i32 4
-  115 = ptradd ptr %a, i32 %114
+  115 = ptradd ptr %a, i32 8
   store i32 9 to ptr %115
-  116 = mul i32 3, i32 4
-  117 = ptradd ptr %a, i32 %116
+  117 = ptradd ptr %a, i32 12
   store i32 2 to ptr %117
-  118 = mul i32 4, i32 4
-  119 = ptradd ptr %a, i32 %118
+  119 = ptradd ptr %a, i32 16
   store i32 0 to ptr %119
-  120 = mul i32 5, i32 4
-  121 = ptradd ptr %a, i32 %120
+  121 = ptradd ptr %a, i32 20
   store i32 1 to ptr %121
-  122 = mul i32 6, i32 4
-  123 = ptradd ptr %a, i32 %122
+  123 = ptradd ptr %a, i32 24
   store i32 6 to ptr %123
-  124 = mul i32 7, i32 4
-  125 = ptradd ptr %a, i32 %124
+  125 = ptradd ptr %a, i32 28
   store i32 5 to ptr %125
-  126 = mul i32 8, i32 4
-  127 = ptradd ptr %a, i32 %126
+  127 = ptradd ptr %a, i32 32
   store i32 7 to ptr %127
-  128 = mul i32 9, i32 4
-  129 = ptradd ptr %a, i32 %128
+  129 = ptradd ptr %a, i32 36
   store i32 8 to ptr %129
   134 = call i32 QuickSort(ptr %a, i32 0, i32 9)
   br bb %while.cond135

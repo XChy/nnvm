@@ -43,8 +43,7 @@ external i32 getfarray(ptr )
 i32 main() {
 entry460:
   463 = call i32 getint()
-  465 = mul i32 2, i32 9
-  466 = add i32 %463, i32 %465
+  466 = add i32 %463, i32 18
   469 = call i32 func(i32 %463, i32 %466)
   call void putint(i32 %469)
   ret i32 %469

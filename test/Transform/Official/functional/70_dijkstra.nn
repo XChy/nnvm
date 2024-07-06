@@ -125,8 +125,7 @@ while.cond:
 while.body:
   11 = mul i32 %i.phi217, i32 4
   12 = ptradd ptr @dis, i32 %11
-  13 = mul i32 1, i32 64
-  14 = ptradd ptr @e, i32 %13
+  14 = ptradd ptr @e, i32 64
   16 = mul i32 %i.phi217, i32 4
   17 = ptradd ptr %14, i32 %16
   17.load = load i32 from ptr %17
@@ -137,8 +136,7 @@ while.body:
   23 = add i32 %i.phi217, i32 1
   br bb %while.cond
 while.exit:
-  24 = mul i32 1, i32 4
-  25 = ptradd ptr @book, i32 %24
+  25 = ptradd ptr @book, i32 4
   store i32 1 to ptr %25
   br bb %while.cond26
 while.cond26:

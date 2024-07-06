@@ -55,27 +55,20 @@ bb2:
   MULW s5, s3, s4
   LA s4, dp
   ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s4, zero
-  ADD s4, s6, s5
+  ADD s4, s6, zero
   ADDI s5, zero, 1
   SUBW s6, s3, s5
   ADDI s5, zero, 140
   MULW s7, s6, s5
   LA s5, dp
   ADD s6, s5, s7
-  ADDI s5, zero, 4
-  MULW s7, zero, s5
-  ADD s5, s6, s7
+  ADD s5, s6, zero
   LW s6, 0(s5)
   ADDI s5, zero, 8
   MULW s7, s3, s5
   LA s5, t
   ADD s8, s5, s7
-  ADDI s5, zero, 4
-  ADDI s7, zero, 1
-  MULW s9, s5, s7
-  ADD s5, s8, s9
+  ADDI s5, s8, 4
   LW s7, 0(s5)
   ADDW s5, s6, s7
   SW s5, 0(s4)

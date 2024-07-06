@@ -34,10 +34,8 @@ while.body244:
   255 = ptradd ptr %252, i32 %254
   256 = si2f i32 1 to float
   257 = fdiv float %256, float 4.000000
-  258 = mul i32 0, i32 32
-  259 = ptradd ptr %dct_mat, i32 %258
-  260 = mul i32 0, i32 4
-  261 = ptradd ptr %259, i32 %260
+  259 = ptradd ptr %dct_mat, i32 0
+  261 = ptradd ptr %259, i32 0
   261.load = load float from ptr %261
   263 = fmul float %257, float %261.load
   store float %263 to ptr %255
@@ -64,8 +62,7 @@ while.body267:
   287 = fdiv float %286, float 2.000000
   289 = mul i32 %i264.phi472, i32 32
   290 = ptradd ptr %dct_mat, i32 %289
-  291 = mul i32 0, i32 4
-  292 = ptradd ptr %290, i32 %291
+  292 = ptradd ptr %290, i32 0
   292.load = load float from ptr %292
   294 = fmul float %287, float %292.load
   295 = fadd float %284.load, float %294
@@ -91,8 +88,7 @@ while.body299:
   316.load = load float from ptr %316
   318 = si2f i32 1 to float
   319 = fdiv float %318, float 2.000000
-  320 = mul i32 0, i32 32
-  321 = ptradd ptr %dct_mat, i32 %320
+  321 = ptradd ptr %dct_mat, i32 0
   323 = mul i32 %j265.phi477, i32 4
   324 = ptradd ptr %321, i32 %323
   324.load = load float from ptr %324
@@ -369,8 +365,7 @@ while.cond:
 while.body:
   103 = mul i32 %i.phi, i32 32
   104 = ptradd ptr %mat, i32 %103
-  105 = mul i32 0, i32 4
-  106 = ptradd ptr %104, i32 %105
+  106 = ptradd ptr %104, i32 0
   106.load = load float from ptr %106
   call void putfloat(float %106.load)
   br bb %while.cond110

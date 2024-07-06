@@ -72,35 +72,25 @@ i32 main() {
 entry60:
   %a = stack 40
   store i32 10 to ptr @n
-  62 = mul i32 0, i32 4
-  63 = ptradd ptr %a, i32 %62
+  63 = ptradd ptr %a, i32 0
   store i32 4 to ptr %63
-  64 = mul i32 1, i32 4
-  65 = ptradd ptr %a, i32 %64
+  65 = ptradd ptr %a, i32 4
   store i32 3 to ptr %65
-  66 = mul i32 2, i32 4
-  67 = ptradd ptr %a, i32 %66
+  67 = ptradd ptr %a, i32 8
   store i32 9 to ptr %67
-  68 = mul i32 3, i32 4
-  69 = ptradd ptr %a, i32 %68
+  69 = ptradd ptr %a, i32 12
   store i32 2 to ptr %69
-  70 = mul i32 4, i32 4
-  71 = ptradd ptr %a, i32 %70
+  71 = ptradd ptr %a, i32 16
   store i32 0 to ptr %71
-  72 = mul i32 5, i32 4
-  73 = ptradd ptr %a, i32 %72
+  73 = ptradd ptr %a, i32 20
   store i32 1 to ptr %73
-  74 = mul i32 6, i32 4
-  75 = ptradd ptr %a, i32 %74
+  75 = ptradd ptr %a, i32 24
   store i32 6 to ptr %75
-  76 = mul i32 7, i32 4
-  77 = ptradd ptr %a, i32 %76
+  77 = ptradd ptr %a, i32 28
   store i32 5 to ptr %77
-  78 = mul i32 8, i32 4
-  79 = ptradd ptr %a, i32 %78
+  79 = ptradd ptr %a, i32 32
   store i32 7 to ptr %79
-  80 = mul i32 9, i32 4
-  81 = ptradd ptr %a, i32 %80
+  81 = ptradd ptr %a, i32 36
   store i32 8 to ptr %81
   n.load = load i32 from ptr @n
   84 = call i32 select_sort(ptr %a, i32 %n.load)

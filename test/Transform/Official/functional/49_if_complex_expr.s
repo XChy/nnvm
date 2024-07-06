@@ -10,12 +10,10 @@ main:
   SD s2, 24(sp)
   SD s1, 32(sp)
   SD s0, 40(sp)
-  ADDI s0, zero, 1
-  ADDI s1, zero, -2
-  MULW s2, s0, s1
-  ADDI s0, zero, 2
-  DIVW s1, s2, s0
-  SLT s0, s1, zero
+  ADDI s0, zero, -2
+  ADDI s1, zero, 2
+  DIVW s2, s0, s1
+  SLT s0, s2, zero
   BNE s0, zero, bb1
   JAL zero, bb2
 bb1:

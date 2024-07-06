@@ -619,19 +619,15 @@ bb35:
 stack_size:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s1, 8(sp)
+  SD s0, 16(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
-  ADD s1, s0, s2
+  ADD s1, s0, zero
   LW s0, 0(s1)
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 stack_peek:
@@ -642,9 +638,7 @@ stack_peek:
   SD s1, 24(sp)
   SD s0, 32(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
-  ADD s1, s0, s2
+  ADD s1, s0, zero
   LW s2, 0(s1)
   ADDI s1, zero, 4
   MULW s3, s2, s1
@@ -667,20 +661,14 @@ stack_pop:
   SD s1, 32(sp)
   SD s0, 40(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
-  ADD s1, s0, s2
+  ADD s1, s0, zero
   LW s2, 0(s1)
   ADDI s1, zero, 4
   MULW s3, s2, s1
   ADD s1, s0, s3
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
+  ADD s1, s0, zero
+  ADD s3, s0, zero
   LW s0, 0(s3)
   ADDI s3, zero, 1
   SUBW s4, s0, s3
@@ -798,18 +786,12 @@ stack_push:
   SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
+  ADD s2, s0, zero
+  ADD s3, s0, zero
   LW s4, 0(s3)
   ADDIW s3, s4, 1
   SW s3, 0(s2)
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s0, s3
+  ADD s2, s0, zero
   LW s3, 0(s2)
   ADDI s2, zero, 4
   MULW s4, s3, s2

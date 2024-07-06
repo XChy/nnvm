@@ -623,8 +623,7 @@ else557:
   559 = mul i32 %pos.load558, i32 4
   560 = ptradd ptr %buf, i32 %559
   560.load = load i32 from ptr %560
-  562 = mul i32 0, i32 4
-  563 = ptradd ptr %mTrue, i32 %562
+  563 = ptradd ptr %mTrue, i32 0
   563.load = load i32 from ptr %563
   565 = icmp ne i32 %560.load, i32 %563.load
   br i1 %565, bb %then566, bb %else568
@@ -638,8 +637,7 @@ else568:
   571 = mul i32 %570, i32 4
   572 = ptradd ptr %buf, i32 %571
   572.load = load i32 from ptr %572
-  574 = mul i32 1, i32 4
-  575 = ptradd ptr %mTrue, i32 %574
+  575 = ptradd ptr %mTrue, i32 4
   575.load = load i32 from ptr %575
   577 = icmp ne i32 %572.load, i32 %575.load
   br i1 %577, bb %then578, bb %else580
@@ -653,8 +651,7 @@ else580:
   583 = mul i32 %582, i32 4
   584 = ptradd ptr %buf, i32 %583
   584.load = load i32 from ptr %584
-  586 = mul i32 2, i32 4
-  587 = ptradd ptr %mTrue, i32 %586
+  587 = ptradd ptr %mTrue, i32 8
   587.load = load i32 from ptr %587
   589 = icmp ne i32 %584.load, i32 %587.load
   br i1 %589, bb %then590, bb %else592
@@ -668,8 +665,7 @@ else592:
   595 = mul i32 %594, i32 4
   596 = ptradd ptr %buf, i32 %595
   596.load = load i32 from ptr %596
-  598 = mul i32 3, i32 4
-  599 = ptradd ptr %mTrue, i32 %598
+  599 = ptradd ptr %mTrue, i32 12
   599.load = load i32 from ptr %599
   601 = icmp ne i32 %596.load, i32 %599.load
   br i1 %601, bb %then602, bb %if.exit603
@@ -709,8 +705,7 @@ else623:
   625 = mul i32 %pos.load624, i32 4
   626 = ptradd ptr %buf, i32 %625
   626.load = load i32 from ptr %626
-  628 = mul i32 0, i32 4
-  629 = ptradd ptr %mFalse, i32 %628
+  629 = ptradd ptr %mFalse, i32 0
   629.load = load i32 from ptr %629
   631 = icmp ne i32 %626.load, i32 %629.load
   br i1 %631, bb %then632, bb %else634
@@ -724,8 +719,7 @@ else634:
   637 = mul i32 %636, i32 4
   638 = ptradd ptr %buf, i32 %637
   638.load = load i32 from ptr %638
-  640 = mul i32 1, i32 4
-  641 = ptradd ptr %mFalse, i32 %640
+  641 = ptradd ptr %mFalse, i32 4
   641.load = load i32 from ptr %641
   643 = icmp ne i32 %638.load, i32 %641.load
   br i1 %643, bb %then644, bb %else646
@@ -739,8 +733,7 @@ else646:
   649 = mul i32 %648, i32 4
   650 = ptradd ptr %buf, i32 %649
   650.load = load i32 from ptr %650
-  652 = mul i32 2, i32 4
-  653 = ptradd ptr %mFalse, i32 %652
+  653 = ptradd ptr %mFalse, i32 8
   653.load = load i32 from ptr %653
   655 = icmp ne i32 %650.load, i32 %653.load
   br i1 %655, bb %then656, bb %else658
@@ -754,8 +747,7 @@ else658:
   661 = mul i32 %660, i32 4
   662 = ptradd ptr %buf, i32 %661
   662.load = load i32 from ptr %662
-  664 = mul i32 3, i32 4
-  665 = ptradd ptr %mFalse, i32 %664
+  665 = ptradd ptr %mFalse, i32 12
   665.load = load i32 from ptr %665
   667 = icmp ne i32 %662.load, i32 %665.load
   br i1 %667, bb %then668, bb %else670
@@ -769,8 +761,7 @@ else670:
   673 = mul i32 %672, i32 4
   674 = ptradd ptr %buf, i32 %673
   674.load = load i32 from ptr %674
-  676 = mul i32 4, i32 4
-  677 = ptradd ptr %mFalse, i32 %676
+  677 = ptradd ptr %mFalse, i32 16
   677.load = load i32 from ptr %677
   679 = icmp ne i32 %674.load, i32 %677.load
   br i1 %679, bb %then680, bb %if.exit681
@@ -807,8 +798,7 @@ else700:
   702 = mul i32 %pos.load701, i32 4
   703 = ptradd ptr %buf, i32 %702
   703.load = load i32 from ptr %703
-  705 = mul i32 0, i32 4
-  706 = ptradd ptr %mNull, i32 %705
+  706 = ptradd ptr %mNull, i32 0
   706.load = load i32 from ptr %706
   708 = icmp ne i32 %703.load, i32 %706.load
   br i1 %708, bb %then709, bb %else711
@@ -822,8 +812,7 @@ else711:
   714 = mul i32 %713, i32 4
   715 = ptradd ptr %buf, i32 %714
   715.load = load i32 from ptr %715
-  717 = mul i32 1, i32 4
-  718 = ptradd ptr %mNull, i32 %717
+  718 = ptradd ptr %mNull, i32 4
   718.load = load i32 from ptr %718
   720 = icmp ne i32 %715.load, i32 %718.load
   br i1 %720, bb %then721, bb %else723
@@ -837,8 +826,7 @@ else723:
   726 = mul i32 %725, i32 4
   727 = ptradd ptr %buf, i32 %726
   727.load = load i32 from ptr %727
-  729 = mul i32 2, i32 4
-  730 = ptradd ptr %mNull, i32 %729
+  730 = ptradd ptr %mNull, i32 8
   730.load = load i32 from ptr %730
   732 = icmp ne i32 %727.load, i32 %730.load
   br i1 %732, bb %then733, bb %else735
@@ -852,8 +840,7 @@ else735:
   738 = mul i32 %737, i32 4
   739 = ptradd ptr %buf, i32 %738
   739.load = load i32 from ptr %739
-  741 = mul i32 3, i32 4
-  742 = ptradd ptr %mNull, i32 %741
+  742 = ptradd ptr %mNull, i32 12
   742.load = load i32 from ptr %742
   744 = icmp ne i32 %739.load, i32 %742.load
   br i1 %744, bb %then745, bb %if.exit746

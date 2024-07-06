@@ -74,20 +74,15 @@ while.cond147:
 while.body148:
   br bb %while.cond160
 while.exit149:
-  339 = mul i32 0, i32 4
-  340 = ptradd ptr %output, i32 %339
+  340 = ptradd ptr %output, i32 0
   store i32 %h0.phi to ptr %340
-  342 = mul i32 1, i32 4
-  343 = ptradd ptr %output, i32 %342
+  343 = ptradd ptr %output, i32 4
   store i32 %h1.phi to ptr %343
-  345 = mul i32 2, i32 4
-  346 = ptradd ptr %output, i32 %345
+  346 = ptradd ptr %output, i32 8
   store i32 %h2.phi to ptr %346
-  348 = mul i32 3, i32 4
-  349 = ptradd ptr %output, i32 %348
+  349 = ptradd ptr %output, i32 12
   store i32 %h3.phi to ptr %349
-  351 = mul i32 4, i32 4
-  352 = ptradd ptr %output, i32 %351
+  352 = ptradd ptr %output, i32 16
   store i32 %h4.phi to ptr %352
   ret 
 while.cond160:
@@ -320,20 +315,15 @@ entry354:
   store i32 %364 to ptr @state
   365 = call i32 getint()
   call void _sysy_starttime(i32 161)
-  367 = mul i32 0, i32 4
-  368 = ptradd ptr %output_buf, i32 %367
+  368 = ptradd ptr %output_buf, i32 0
   store i32 0 to ptr %368
-  369 = mul i32 1, i32 4
-  370 = ptradd ptr %output_buf, i32 %369
+  370 = ptradd ptr %output_buf, i32 4
   store i32 0 to ptr %370
-  371 = mul i32 2, i32 4
-  372 = ptradd ptr %output_buf, i32 %371
+  372 = ptradd ptr %output_buf, i32 8
   store i32 0 to ptr %372
-  373 = mul i32 3, i32 4
-  374 = ptradd ptr %output_buf, i32 %373
+  374 = ptradd ptr %output_buf, i32 12
   store i32 0 to ptr %374
-  375 = mul i32 4, i32 4
-  376 = ptradd ptr %output_buf, i32 %375
+  376 = ptradd ptr %output_buf, i32 16
   store i32 0 to ptr %376
   br bb %while.cond377
 while.cond377:

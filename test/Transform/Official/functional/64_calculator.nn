@@ -684,8 +684,7 @@ while.body533:
   545 = icmp eq i32 %543.load, i32 43
   br i1 %545, bb %select.then546, bb %select.else547
 while.exit534:
-  711 = mul i32 1, i32 4
-  712 = ptradd ptr @ints, i32 %711
+  712 = ptradd ptr @ints, i32 4
   712.load = load i32 from ptr %712
   call void putint(i32 %712.load)
   ret i32 0

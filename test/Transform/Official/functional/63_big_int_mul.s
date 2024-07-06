@@ -263,10 +263,8 @@ bb14:
   ADD s6, s10, zero
   JAL zero, bb16
 bb15:
-  ADDI s0, zero, 4
-  MULW s3, zero, s0
   ADDI t6, sp, 0
-  ADD s0, t6, s3
+  ADD s0, t6, zero
   LW s3, 0(s0)
   XOR s0, s3, zero
   SLTU s3, zero, s0
@@ -350,10 +348,8 @@ bb21:
   SW a0, 0(s6)
   JAL zero, bb20
 bb22:
-  ADDI s0, zero, 4
-  MULW s3, zero, s0
   ADDI t6, sp, 0
-  ADD s0, t6, s3
+  ADD s0, t6, zero
   LW s3, 0(s0)
   ADD a0, s3, zero
   CALL putint

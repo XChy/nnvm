@@ -9,12 +9,10 @@ main:
   SD s2, 16(sp)
   SD s1, 24(sp)
   SD s0, 32(sp)
-  ADDI s0, zero, 1
-  ADDI s1, zero, -2
-  MULW s2, s0, s1
-  ADDI s0, zero, 2
-  DIVW s1, s2, s0
-  ADDW s0, s1, zero
+  ADDI s0, zero, -2
+  ADDI s1, zero, 2
+  DIVW s2, s0, s1
+  ADDW s0, s2, zero
   ADDI s1, zero, -4
   ADDI s2, zero, 2
   REMW s3, s1, s2

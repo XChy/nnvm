@@ -373,8 +373,7 @@ then327:
   br bb %if.exit328
 if.exit328:
   o15.phi = phi [bb %else329, i32 0, bb %then327, i32 1]
-  331 = mul i32 0, i32 2
-  333 = add i32 %331, i32 %o15.phi
+  333 = add i32 0, i32 %o15.phi
   335 = mul i32 %333, i32 2
   337 = add i32 %335, i32 %o14.phi
   339 = mul i32 %337, i32 2
@@ -3394,8 +3393,7 @@ select.exit2945:
 then2951:
   br bb %if.exit2952
 if.exit2952:
-  2955 = mul i32 0, i32 2
-  2957 = add i32 %2955, i32 %s15.phi
+  2957 = add i32 0, i32 %s15.phi
   2959 = mul i32 %2957, i32 2
   2961 = add i32 %2959, i32 %s14.phi
   2963 = mul i32 %2961, i32 2
@@ -6415,8 +6413,7 @@ select.exit5570:
 then5576:
   br bb %if.exit5577
 if.exit5577:
-  5580 = mul i32 0, i32 2
-  5582 = add i32 %5580, i32 %s153405.phi
+  5582 = add i32 0, i32 %s153405.phi
   5584 = mul i32 %5582, i32 2
   5586 = add i32 %5584, i32 %s143404.phi
   5588 = mul i32 %5586, i32 2
@@ -6767,8 +6764,7 @@ then5967:
   br bb %if.exit5968
 if.exit5968:
   o155841.phi = phi [bb %else5969, i32 0, bb %then5967, i32 1]
-  5971 = mul i32 0, i32 2
-  5973 = add i32 %5971, i32 %o155841.phi
+  5973 = add i32 0, i32 %o155841.phi
   5975 = mul i32 %5973, i32 2
   5977 = add i32 %5975, i32 %o145840.phi
   5979 = mul i32 %5977, i32 2
@@ -9788,8 +9784,7 @@ select.exit8585:
 then8591:
   br bb %if.exit8592
 if.exit8592:
-  8595 = mul i32 0, i32 2
-  8597 = add i32 %8595, i32 %s156420.phi
+  8597 = add i32 0, i32 %s156420.phi
   8599 = mul i32 %8597, i32 2
   8601 = add i32 %8599, i32 %s146419.phi
   8603 = mul i32 %8601, i32 2
@@ -12809,8 +12804,7 @@ select.exit11210:
 then11216:
   br bb %if.exit11217
 if.exit11217:
-  11220 = mul i32 0, i32 2
-  11222 = add i32 %11220, i32 %s159045.phi
+  11222 = add i32 0, i32 %s159045.phi
   11224 = mul i32 %11222, i32 2
   11226 = add i32 %11224, i32 %s149044.phi
   11228 = mul i32 %11226, i32 2
@@ -15831,8 +15825,7 @@ select.exit13839:
 then13845:
   br bb %if.exit13846
 if.exit13846:
-  13849 = mul i32 0, i32 2
-  13851 = add i32 %13849, i32 %s1511674.phi
+  13851 = add i32 0, i32 %s1511674.phi
   13853 = mul i32 %13851, i32 2
   13855 = add i32 %13853, i32 %s1411673.phi
   13857 = mul i32 %13855, i32 2

@@ -31,9 +31,8 @@ main:
 foo:
   ADDI sp, sp, -96
   SD ra, 64(sp)
-  SD s2, 72(sp)
-  SD s1, 80(sp)
-  SD s0, 88(sp)
+  SD s1, 72(sp)
+  SD s0, 80(sp)
   ADDI t5, sp, 0
   ADD s0, t5, zero
   SW zero, 0(s0)
@@ -79,17 +78,12 @@ foo:
   ADDI s0, sp, 60
   ADDI s1, zero, 3
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 3
-  MULW s2, s0, s1
-  ADDI t6, sp, 0
-  ADD s0, t6, s2
+  ADDI s0, sp, 12
   LW s1, 0(s0)
   ADDIW s0, s1, 71
   ADD a0, s0, zero
   LD ra, 64(sp)
-  LD s2, 72(sp)
-  LD s1, 80(sp)
-  LD s0, 88(sp)
+  LD s1, 72(sp)
+  LD s0, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)

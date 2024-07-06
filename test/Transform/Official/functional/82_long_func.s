@@ -993,11 +993,8 @@ bb50:
   ADD s5, t1, zero
   JAL zero, bb28
 bb51:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s2
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   MULW s1, ra, s0
   ADD s0, zero, zero
@@ -1264,11 +1261,8 @@ bb82:
   ADD a2, a3, zero
   JAL zero, bb60
 bb83:
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s7, s4, s5
   LA s4, SHIFT_TABLE
-  ADD s5, s4, s7
+  ADDI s5, s4, 4
   LW s4, 0(s5)
   MULW s5, s6, s4
   ADD s4, zero, zero
@@ -1425,22 +1419,16 @@ bb100:
   ADD s3, t4, zero
   JAL zero, bb99
 bb101:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LW t4, 624(sp)
   DIVW s1, t4, s0
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -1450,11 +1438,8 @@ bb102:
   ADD s3, s1, zero
   JAL zero, bb99
 bb103:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LW t4, 624(sp)
   DIVW s2, t4, s1
@@ -1850,11 +1835,8 @@ bb139:
   ADD t0, t1, zero
   JAL zero, bb117
 bb140:
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s7, s4, s5
   LA s4, SHIFT_TABLE
-  ADD s5, s4, s7
+  ADDI s5, s4, 4
   LW s4, 0(s5)
   MULW s5, s6, s4
   LB t4, 1512(sp)
@@ -2121,11 +2103,8 @@ bb171:
   ADD a2, s1, zero
   JAL zero, bb149
 bb172:
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s7, s4, s5
   LA s4, SHIFT_TABLE
-  ADD s5, s4, s7
+  ADDI s5, s4, 4
   LW s4, 0(s5)
   MULW s5, s6, s4
   LB t4, 1592(sp)
@@ -2282,22 +2261,16 @@ bb189:
   ADD s3, t4, zero
   JAL zero, bb188
 bb190:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LW t4, 1336(sp)
   DIVW s1, t4, s0
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -2307,11 +2280,8 @@ bb191:
   ADD s3, s1, zero
   JAL zero, bb188
 bb192:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LW t4, 1336(sp)
   DIVW s2, t4, s1
@@ -2457,22 +2427,16 @@ bb201:
   ADD s5, t4, zero
   JAL zero, bb200
 bb202:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LW t4, 312(sp)
   DIVW s1, t4, s0
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s4, s1, s0
-  ADDI s0, zero, 4
-  ADDI s5, zero, 15
-  MULW s6, s0, s5
   LA s0, SHIFT_TABLE
-  ADD s5, s0, s6
+  ADDI s5, s0, 60
   LW s0, 0(s5)
   SUBW s5, s4, s0
   ADD s0, s1, zero
@@ -2485,11 +2449,8 @@ bb203:
   ADD s5, s4, zero
   JAL zero, bb200
 bb204:
-  ADDI s2, zero, 4
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
   LA s2, SHIFT_TABLE
-  ADD s3, s2, s4
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   LW t4, 312(sp)
   DIVW s3, t4, s2
@@ -4348,11 +4309,8 @@ bb253:
   SW t4, 0(t6)
   JAL zero, bb231
 bb254:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, -1472
@@ -4913,11 +4871,8 @@ bb285:
   SB t4, 0(t5)
   JAL zero, bb263
 bb286:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, -1152
@@ -5253,11 +5208,8 @@ bb303:
   ADD s3, t4, zero
   JAL zero, bb302
 bb304:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 1
   ADDI t4, t4, -1752
@@ -5267,11 +5219,8 @@ bb304:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -5281,11 +5230,8 @@ bb305:
   ADD s3, s1, zero
   JAL zero, bb302
 bb306:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 1
   ADDI t4, t4, -1752
@@ -6207,11 +6153,8 @@ bb342:
   SB t4, 0(t5)
   JAL zero, bb320
 bb343:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, -408
@@ -6772,11 +6715,8 @@ bb374:
   SW t4, 0(t6)
   JAL zero, bb352
 bb375:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, -88
@@ -7112,11 +7052,8 @@ bb392:
   ADD s3, t4, zero
   JAL zero, bb391
 bb393:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 1
   ADDI t4, t4, -704
@@ -7126,11 +7063,8 @@ bb393:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -7140,11 +7074,8 @@ bb394:
   ADD s3, s1, zero
   JAL zero, bb391
 bb395:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 1
   ADDI t4, t4, -704
@@ -7428,11 +7359,8 @@ bb404:
   ADD s5, t4, zero
   JAL zero, bb403
 bb405:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 1
   ADDI t4, t4, -2016
@@ -7442,11 +7370,8 @@ bb405:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s4, s1, s0
-  ADDI s0, zero, 4
-  ADDI s5, zero, 15
-  MULW s6, s0, s5
   LA s0, SHIFT_TABLE
-  ADD s5, s0, s6
+  ADDI s5, s0, 60
   LW s0, 0(s5)
   SUBW s5, s4, s0
   ADD s0, s1, zero
@@ -7459,11 +7384,8 @@ bb406:
   ADD s5, s4, zero
   JAL zero, bb403
 bb407:
-  ADDI s2, zero, 4
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
   LA s2, SHIFT_TABLE
-  ADD s3, s2, s4
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   LUI t4, 1
   ADDI t4, t4, -2016
@@ -10412,11 +10334,8 @@ bb459:
   SW t4, 0(t6)
   JAL zero, bb437
 bb460:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, 1456
@@ -10977,11 +10896,8 @@ bb491:
   SW t4, 0(t5)
   JAL zero, bb469
 bb492:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 1
   ADDI t4, t4, 1776
@@ -11317,11 +11233,8 @@ bb509:
   ADD s3, t4, zero
   JAL zero, bb508
 bb510:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 1
   ADDI t4, t4, 1136
@@ -11331,11 +11244,8 @@ bb510:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -11345,11 +11255,8 @@ bb511:
   ADD s3, s1, zero
   JAL zero, bb508
 bb512:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 1
   ADDI t4, t4, 1136
@@ -12271,11 +12178,8 @@ bb548:
   SW t4, 0(t5)
   JAL zero, bb526
 bb549:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 2
   ADDI t4, t4, -1576
@@ -12836,11 +12740,8 @@ bb580:
   SW t4, 0(t6)
   JAL zero, bb558
 bb581:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   LUI t4, 2
   ADDI t4, t4, -1256
@@ -13176,11 +13077,8 @@ bb598:
   ADD s3, t4, zero
   JAL zero, bb597
 bb599:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 2
   ADDI t4, t4, -1880
@@ -13190,11 +13088,8 @@ bb599:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -13204,11 +13099,8 @@ bb600:
   ADD s3, s1, zero
   JAL zero, bb597
 bb601:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 2
   ADDI t4, t4, -1880
@@ -13582,11 +13474,8 @@ bb610:
   ADD s5, t4, zero
   JAL zero, bb609
 bb611:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 1
   ADDI t4, t4, 872
@@ -13596,11 +13485,8 @@ bb611:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s4, s1, s0
-  ADDI s0, zero, 4
-  ADDI s5, zero, 15
-  MULW s6, s0, s5
   LA s0, SHIFT_TABLE
-  ADD s5, s0, s6
+  ADDI s5, s0, 60
   LW s0, 0(s5)
   SUBW s5, s4, s0
   ADD s0, s1, zero
@@ -13613,11 +13499,8 @@ bb612:
   ADD s5, s4, zero
   JAL zero, bb609
 bb613:
-  ADDI s2, zero, 4
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
   LA s2, SHIFT_TABLE
-  ADD s3, s2, s4
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   LUI t4, 1
   ADDI t4, t4, 872
@@ -15811,11 +15694,8 @@ bb665:
   ADD t0, s4, zero
   JAL zero, bb643
 bb666:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   MULW s4, s6, s3
   ADD s3, zero, zero
@@ -16152,11 +16032,8 @@ bb697:
   ADD a4, s3, zero
   JAL zero, bb675
 bb698:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   MULW s4, s6, s3
   LUI t4, 2
@@ -16412,11 +16289,8 @@ bb715:
   ADD s3, t4, zero
   JAL zero, bb714
 bb716:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 2
   ADDI t4, t4, -144
@@ -16426,11 +16300,8 @@ bb716:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -16440,11 +16311,8 @@ bb717:
   ADD s3, s1, zero
   JAL zero, bb714
 bb718:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 2
   ADDI t4, t4, -144
@@ -17138,11 +17006,8 @@ bb754:
   ADD t0, t4, zero
   JAL zero, bb732
 bb755:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   MULW s4, s7, s3
   ADD s3, zero, zero
@@ -17479,11 +17344,8 @@ bb786:
   ADD a4, t4, zero
   JAL zero, bb764
 bb787:
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
   LA s3, SHIFT_TABLE
-  ADD s4, s3, s5
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   MULW s4, s6, s3
   LUI t4, 2
@@ -17739,11 +17601,8 @@ bb804:
   ADD s3, t4, zero
   JAL zero, bb803
 bb805:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s3, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s3
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 2
   ADDI t4, t4, 472
@@ -17753,11 +17612,8 @@ bb805:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s3, s1, s0
-  ADDI s0, zero, 4
-  ADDI s1, zero, 15
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 60
   LW s0, 0(s1)
   SUBW s1, s3, s0
   ADD s0, s1, zero
@@ -17767,11 +17623,8 @@ bb806:
   ADD s3, s1, zero
   JAL zero, bb803
 bb807:
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s4, s1, s2
   LA s1, SHIFT_TABLE
-  ADD s2, s1, s4
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   LUI t4, 2
   ADDI t4, t4, 472
@@ -18145,11 +17998,8 @@ bb816:
   ADD s5, t4, zero
   JAL zero, bb815
 bb817:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s4, s0, s1
   LA s0, SHIFT_TABLE
-  ADD s1, s0, s4
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   LUI t4, 2
   ADDI t4, t4, -464
@@ -18159,11 +18009,8 @@ bb817:
   LUI s0, 16
   ADDI s0, s0, 0
   ADDW s4, s1, s0
-  ADDI s0, zero, 4
-  ADDI s5, zero, 15
-  MULW s6, s0, s5
   LA s0, SHIFT_TABLE
-  ADD s5, s0, s6
+  ADDI s5, s0, 60
   LW s0, 0(s5)
   SUBW s5, s4, s0
   ADD s0, s1, zero
@@ -18176,11 +18023,8 @@ bb818:
   ADD s5, s4, zero
   JAL zero, bb815
 bb819:
-  ADDI s2, zero, 4
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
   LA s2, SHIFT_TABLE
-  ADD s3, s2, s4
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   LUI t4, 2
   ADDI t4, t4, -464

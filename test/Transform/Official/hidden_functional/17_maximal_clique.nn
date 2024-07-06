@@ -31,14 +31,12 @@ while.cond87:
 while.body88:
   95 = mul i32 %i86.phi152, i32 8
   96 = ptradd ptr %edges, i32 %95
-  97 = mul i32 0, i32 4
-  98 = ptradd ptr %96, i32 %97
+  98 = ptradd ptr %96, i32 0
   99 = call i32 getint()
   store i32 %99 to ptr %98
   101 = mul i32 %i86.phi152, i32 8
   102 = ptradd ptr %edges, i32 %101
-  103 = mul i32 1, i32 4
-  104 = ptradd ptr %102, i32 %103
+  104 = ptradd ptr %102, i32 4
   105 = call i32 getint()
   store i32 %105 to ptr %104
   107 = add i32 %i86.phi152, i32 1
@@ -54,30 +52,26 @@ while.cond108:
 while.body109:
   116 = mul i32 %i86.phi, i32 8
   117 = ptradd ptr %edges, i32 %116
-  118 = mul i32 0, i32 4
-  119 = ptradd ptr %117, i32 %118
+  119 = ptradd ptr %117, i32 0
   119.load = load i32 from ptr %119
   121 = mul i32 %119.load, i32 120
   122 = ptradd ptr @graph, i32 %121
   124 = mul i32 %i86.phi, i32 8
   125 = ptradd ptr %edges, i32 %124
-  126 = mul i32 1, i32 4
-  127 = ptradd ptr %125, i32 %126
+  127 = ptradd ptr %125, i32 4
   127.load = load i32 from ptr %127
   129 = mul i32 %127.load, i32 4
   130 = ptradd ptr %122, i32 %129
   store i32 1 to ptr %130
   132 = mul i32 %i86.phi, i32 8
   133 = ptradd ptr %edges, i32 %132
-  134 = mul i32 1, i32 4
-  135 = ptradd ptr %133, i32 %134
+  135 = ptradd ptr %133, i32 4
   135.load = load i32 from ptr %135
   137 = mul i32 %135.load, i32 120
   138 = ptradd ptr @graph, i32 %137
   140 = mul i32 %i86.phi, i32 8
   141 = ptradd ptr %edges, i32 %140
-  142 = mul i32 0, i32 4
-  143 = ptradd ptr %141, i32 %142
+  143 = ptradd ptr %141, i32 0
   143.load = load i32 from ptr %143
   145 = mul i32 %143.load, i32 4
   146 = ptradd ptr %138, i32 %145

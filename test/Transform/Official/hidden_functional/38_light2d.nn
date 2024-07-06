@@ -60,8 +60,7 @@ while.body193:
   216 = fmul float %dy, float %t190.phi
   217 = fadd float %oy, float %216
   call void scene(float %212, float %217, ptr %ret)
-  219 = mul i32 0, i32 4
-  220 = ptradd ptr %ret, i32 %219
+  220 = ptradd ptr %ret, i32 0
   220.load = load float from ptr %220
   EPSILON.load222 = load float from ptr @EPSILON
   223 = fcmp olt float %220.load, float %EPSILON.load222
@@ -79,13 +78,11 @@ select.exit200:
   206 = icmp ne i1 %select201.phi, i1 0
   br i1 %206, bb %while.body193, bb %while.exit194
 then224:
-  226 = mul i32 1, i32 4
-  227 = ptradd ptr %ret, i32 %226
+  227 = ptradd ptr %ret, i32 4
   227.load = load float from ptr %227
   ret float %227.load
 if.exit225:
-  230 = mul i32 0, i32 4
-  231 = ptradd ptr %ret, i32 %230
+  231 = ptradd ptr %ret, i32 0
   231.load = load float from ptr %231
   233 = fadd float %t190.phi, float %231.load
   235 = add i32 %i.phi, i32 1
@@ -253,21 +250,17 @@ entry158:
   171 = fcmp olt float %164, float %168
   br i1 %171, bb %then172, bb %else
 then172:
-  175 = mul i32 0, i32 4
-  176 = ptradd ptr %ret, i32 %175
+  176 = ptradd ptr %ret, i32 0
   store float %164 to ptr %176
-  178 = mul i32 1, i32 4
-  179 = ptradd ptr %ret, i32 %178
+  179 = ptradd ptr %ret, i32 4
   store float 3.000000 to ptr %179
   br bb %if.exit173
 if.exit173:
   ret 
 else:
-  180 = mul i32 0, i32 4
-  181 = ptradd ptr %ret, i32 %180
+  181 = ptradd ptr %ret, i32 0
   store float %168 to ptr %181
-  183 = mul i32 1, i32 4
-  184 = ptradd ptr %ret, i32 %183
+  184 = ptradd ptr %ret, i32 4
   store float 0.000000 to ptr %184
   br bb %if.exit173
 }

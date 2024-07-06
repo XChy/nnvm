@@ -124,8 +124,7 @@ external i32 getarray(ptr )
 
 void get_next(ptr str, ptr next) {
 entry:
-  1 = mul i32 0, i32 4
-  2 = ptradd ptr %next, i32 %1
+  2 = ptradd ptr %next, i32 0
   store i32 -1 to ptr %2
   br bb %while.cond
 while.cond:

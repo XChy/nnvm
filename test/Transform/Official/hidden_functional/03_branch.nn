@@ -1,8 +1,6 @@
 i32 main() {
 entry:
-  1 = mul i32 1, i32 2
-  2 = add i32 %1, i32 3
-  3 = icmp slt i32 %2, i32 6
+  3 = icmp slt i32 5, i32 6
   br i1 %3, bb %select.then, bb %select.else
 select.then:
   8 = icmp ne i32 4, i32 0
@@ -96,9 +94,7 @@ else67:
   68 = icmp ne i32 3, i32 6
   br i1 %68, bb %then69, bb %else71
 then69:
-  72 = mul i32 5, i32 4
-  73 = add i32 2, i32 %72
-  74 = icmp sgt i32 %73, i32 10
+  74 = icmp sgt i32 22, i32 10
   br i1 %74, bb %then75, bb %else77
 if.exit70:
   br bb %if.exit66

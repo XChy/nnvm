@@ -43,19 +43,17 @@ if.exit:
   c.phi46 = phi [bb %while.body, i32 %c.phi47, bb %if.exit26, i32 %c.phi45]
   br bb %while.cond
 then25:
-  29 = mul i32 42, i32 2
   30 = call i32 get_one(i32 0)
   31 = icmp eq i32 %30, i32 1
   br i1 %31, bb %then32, bb %if.exit33
 if.exit26:
-  e.phi = phi [bb %then, i32 %e.phi51, bb %if.exit33, i32 %29]
+  e.phi = phi [bb %then, i32 %e.phi51, bb %if.exit33, i32 84]
   c.phi45 = phi [bb %then, i32 %22, bb %if.exit33, i32 %c.phi]
   br bb %if.exit
 then32:
-  35 = mul i32 %29, i32 2
   br bb %if.exit33
 if.exit33:
-  c.phi = phi [bb %then25, i32 %22, bb %then32, i32 %35]
+  c.phi = phi [bb %then25, i32 %22, bb %then32, i32 168]
   br bb %if.exit26
 }
 

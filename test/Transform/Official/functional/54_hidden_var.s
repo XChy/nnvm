@@ -11,8 +11,8 @@ b:
 main:
   ADDI sp, sp, -256
   SD s3, 208(sp)
-  SD ra, 216(sp)
-  SD s2, 224(sp)
+  SD s2, 216(sp)
+  SD ra, 224(sp)
   SD s1, 232(sp)
   SD s0, 240(sp)
   ADDI a0, zero, 3
@@ -42,11 +42,8 @@ bb3:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 4
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
   LA s0, c
-  ADD s1, s0, s2
+  ADDI s1, s0, 8
   ADDI s0, zero, 1
   SW s0, 0(s1)
   ADDI t5, sp, 144
@@ -85,11 +82,8 @@ bb3:
   SW zero, 0(s0)
   ADDI s0, sp, 204
   SW zero, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
   LA s0, c
-  ADD s1, s0, s2
+  ADDI s1, s0, 8
   LW s0, 0(s1)
   XOR s1, s0, zero
   SLTU s0, zero, s1
@@ -141,34 +135,23 @@ bb7:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 4
-  MULW s1, zero, s0
   LA s0, c
-  ADD s2, s0, s1
-  LW s0, 0(s2)
-  ADD a0, s0, zero
-  CALL putint
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
-  LA s0, c
-  ADD s1, s0, s2
+  ADD s1, s0, zero
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  ADDI s0, zero, 4
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
   LA s0, c
-  ADD s1, s0, s2
+  ADDI s1, s0, 4
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  ADDI s0, zero, 4
-  ADDI s1, zero, 3
-  MULW s2, s0, s1
   LA s0, c
-  ADD s1, s0, s2
+  ADDI s1, s0, 8
+  LW s0, 0(s1)
+  ADD a0, s0, zero
+  CALL putint
+  LA s0, c
+  ADDI s1, s0, 12
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
@@ -176,8 +159,8 @@ bb7:
   CALL putch
   ADD a0, zero, zero
   LD s3, 208(sp)
-  LD ra, 216(sp)
-  LD s2, 224(sp)
+  LD s2, 216(sp)
+  LD ra, 224(sp)
   LD s1, 232(sp)
   LD s0, 240(sp)
   ADDI sp, sp, 256
@@ -200,47 +183,21 @@ bb9:
   ADD s0, s3, zero
   JAL zero, bb8
 bb10:
-  ADDI s0, zero, 20
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
-  ADDI t6, sp, 0
-  ADD s0, t6, s2
-  ADDI s1, zero, 20
-  MULW s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s0, zero, 4
-  MULW s2, zero, s0
-  ADD s0, s1, s2
+  ADDI s0, sp, 40
+  ADD s1, s0, zero
+  ADD s0, s1, zero
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
-  ADDI s0, zero, 20
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
-  ADDI t5, sp, 0
-  ADD s0, t5, s2
-  ADDI s1, zero, 20
-  MULW s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s0, zero, 4
-  ADDI s2, zero, 1
-  MULW s3, s0, s2
-  ADD s0, s1, s3
+  ADDI s0, sp, 40
+  ADD s1, s0, zero
+  ADDI s0, s1, 4
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
-  ADDI s0, zero, 20
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
-  ADDI t6, sp, 0
-  ADD s0, t6, s2
-  ADDI s1, zero, 20
-  MULW s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s0, zero, 4
-  ADDI s2, zero, 2
-  MULW s3, s0, s2
-  ADD s0, s1, s3
+  ADDI s0, sp, 40
+  ADD s1, s0, zero
+  ADDI s0, s1, 8
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint

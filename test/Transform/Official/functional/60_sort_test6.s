@@ -190,72 +190,34 @@ main:
   LA s0, n
   ADDI s1, zero, 10
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  MUL s1, zero, s0
   ADDI t5, sp, 40
-  ADD s0, t5, s1
+  ADD s0, t5, zero
   ADDI s1, zero, 4
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
-  ADDI t6, sp, 40
-  ADD s0, t6, s2
+  ADDI s0, sp, 44
   ADDI s1, zero, 3
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
-  ADDI t5, sp, 40
-  ADD s0, t5, s2
+  ADDI s0, sp, 48
   ADDI s1, zero, 9
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 3
-  MULW s2, s0, s1
-  ADDI t6, sp, 40
-  ADD s0, t6, s2
+  ADDI s0, sp, 52
   ADDI s1, zero, 2
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  ADDI t5, sp, 40
-  ADD s0, t5, s2
+  ADDI s0, sp, 56
   SW zero, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 5
-  MULW s2, s0, s1
-  ADDI t6, sp, 40
-  ADD s0, t6, s2
+  ADDI s0, sp, 60
   ADDI s1, zero, 1
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 6
-  MULW s2, s0, s1
-  ADDI t5, sp, 40
-  ADD s0, t5, s2
+  ADDI s0, sp, 64
   ADDI s1, zero, 6
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 7
-  MULW s2, s0, s1
-  ADDI t6, sp, 40
-  ADD s0, t6, s2
+  ADDI s0, sp, 68
   ADDI s1, zero, 5
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 8
-  MULW s2, s0, s1
-  ADDI t5, sp, 40
-  ADD s0, t5, s2
+  ADDI s0, sp, 72
   ADDI s1, zero, 7
   SW s1, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 9
-  MULW s2, s0, s1
-  ADDI t6, sp, 40
-  ADD s0, t6, s2
+  ADDI s0, sp, 76
   ADDI s1, zero, 8
   SW s1, 0(s0)
   LA s0, n
@@ -281,8 +243,8 @@ bb14:
 bb15:
   ADDI s2, zero, 4
   MULW s3, s0, s2
-  ADDI t5, sp, 0
-  ADD s2, t5, s3
+  ADDI t6, sp, 0
+  ADD s2, t6, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint

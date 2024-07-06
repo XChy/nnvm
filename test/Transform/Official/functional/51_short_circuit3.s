@@ -222,14 +222,10 @@ bb23:
   CALL putch
   JAL zero, bb24
 bb24:
-  ADDI s4, zero, 3
-  ADDI s5, zero, 6
-  MULW s6, s4, s5
-  ADDI s4, zero, 36
-  SUBW s5, s4, s6
-  XORI s4, s5, 18
-  SLTU s5, zero, s4
-  BNE s5, zero, bb25
+  ADDI s4, zero, 18
+  XORI s5, s4, 18
+  SLTU s4, zero, s5
+  BNE s4, zero, bb25
   JAL zero, bb26
 bb25:
   ADDI a0, zero, 66

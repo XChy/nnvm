@@ -313,20 +313,14 @@ bb26:
   ADD s5, s7, zero
   JAL zero, bb25
 bb27:
-  ADDI s5, zero, 4
-  MUL s6, zero, s5
   ADDI t6, sp, 128
-  ADD s5, t6, s6
+  ADD s5, t6, zero
   LW t4, 200(sp)
   SW t4, 0(s5)
-  ADDI s5, zero, 4
-  MUL s6, zero, s5
   ADDI t5, sp, 64
-  ADD s5, t5, s6
-  ADDI s6, zero, 4
-  MUL s7, zero, s6
+  ADD s5, t5, zero
   ADDI t6, sp, 0
-  ADD s6, t6, s7
+  ADD s6, t6, zero
   LW s7, 0(s6)
   LW t4, 200(sp)
   ADDW s6, t4, s7
@@ -401,20 +395,14 @@ bb32:
   ADD s10, s9, zero
   JAL zero, bb34
 bb33:
-  ADDI s0, zero, 4
-  MUL s1, zero, s0
   ADDI t6, sp, 128
-  ADD s0, t6, s1
+  ADD s0, t6, zero
   LW t4, 200(sp)
   SW t4, 0(s0)
-  ADDI s0, zero, 4
-  MUL s1, zero, s0
   ADDI t5, sp, 64
-  ADD s0, t5, s1
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
+  ADD s0, t5, zero
   ADDI t6, sp, 0
-  ADD s1, t6, s2
+  ADD s1, t6, zero
   LW s2, 0(s1)
   LW t4, 200(sp)
   ADDW s1, t4, s2

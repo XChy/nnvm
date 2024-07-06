@@ -100,18 +100,13 @@ a28:
 .word 0x0000000c
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s1, 8(sp)
+  SD s0, 16(sp)
   CALL getint
   ADD s0, a0, zero
-  ADDI s1, zero, 9
-  ADDI s2, zero, 2
-  MULW s3, s1, s2
-  ADDW s1, s0, s3
+  ADDIW s1, s0, 18
   ADD a0, s0, zero
   ADD a1, s1, zero
   CALL func
@@ -120,11 +115,9 @@ main:
   CALL putint
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s1, 8(sp)
+  LD s0, 16(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 func:
   ADDI sp, sp, -320

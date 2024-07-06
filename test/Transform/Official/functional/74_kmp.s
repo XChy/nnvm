@@ -352,9 +352,7 @@ get_next:
   SD ra, 88(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s1, s3
+  ADD s2, s1, zero
   ADDI s3, zero, -1
   SW s3, 0(s2)
   ADD s2, zero, zero

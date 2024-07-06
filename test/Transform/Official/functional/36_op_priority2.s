@@ -3,18 +3,9 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
-  ADDI s0, zero, 2
-  ADDI s1, zero, 12
-  MULW s2, s0, s1
-  ADD a0, s2, zero
+  ADDI a0, zero, 24
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)

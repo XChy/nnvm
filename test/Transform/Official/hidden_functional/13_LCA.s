@@ -216,9 +216,7 @@ bb15:
   MULW s6, s4, s5
   LA s4, f
   ADD s5, s4, s6
-  ADDI s4, zero, 4
-  MULW s6, zero, s4
-  ADD s4, s5, s6
+  ADD s4, s5, zero
   LW s5, 0(s4)
   ADD a0, s5, zero
   LD ra, 0(sp)
@@ -284,13 +282,11 @@ init:
   SD s2, 24(sp)
   SD s1, 32(sp)
   SD s0, 40(sp)
-  ADDI s0, zero, 4
-  MUL s1, zero, s0
   LA s0, dep
-  ADD s2, s0, s1
+  ADD s1, s0, zero
   LUI s0, 259060
   ADDI s0, s0, -193
-  SW s0, 0(s2)
+  SW s0, 0(s1)
   ADDI s0, zero, 1
   JAL zero, bb22
 bb22:
@@ -476,9 +472,7 @@ add_edge:
   MULW s3, s1, s2
   LA s1, f
   ADD s2, s1, s3
-  ADDI s1, zero, 4
-  MUL s3, zero, s1
-  ADD s1, s2, s3
+  ADD s1, s2, zero
   SW s0, 0(s1)
   LD ra, 0(sp)
   LD s4, 8(sp)

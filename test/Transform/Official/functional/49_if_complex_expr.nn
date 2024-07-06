@@ -1,7 +1,6 @@
 i32 main() {
 entry:
-  8 = mul i32 -2, i32 1
-  9 = sdiv i32 %8, i32 2
+  9 = sdiv i32 -2, i32 2
   10 = icmp slt i32 %9, i32 0
   br i1 %10, bb %select.then, bb %select.else
 select.then:

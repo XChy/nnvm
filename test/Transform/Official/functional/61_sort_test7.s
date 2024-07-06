@@ -7,36 +7,30 @@ buf:
 
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
-  ADDI s0, zero, 400
-  MULW s1, s0, zero
+  SD s2, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
   LA s0, buf
-  ADD s2, s0, s1
-  ADD a0, s2, zero
+  ADD s1, s0, zero
+  ADD a0, s1, zero
   CALL getarray
   ADD s0, a0, zero
   ADD a0, zero, zero
   ADD a1, s0, zero
   CALL merge_sort
-  ADDI s1, zero, 400
-  MULW s2, zero, s1
   LA s1, buf
-  ADD s3, s1, s2
+  ADD s2, s1, zero
   ADD a0, s0, zero
-  ADD a1, s3, zero
+  ADD a1, s2, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 merge_sort:
   ADDI sp, sp, -112
@@ -98,21 +92,17 @@ bb4:
   BNE s9, zero, bb7
   JAL zero, bb8
 bb5:
-  ADDI s9, zero, 400
-  MUL s11, zero, s9
   LA s9, buf
-  ADD t0, s9, s11
+  ADD s11, s9, zero
   ADDI s9, zero, 4
-  MULW s11, s6, s9
-  ADD s9, t0, s11
+  MULW t0, s6, s9
+  ADD s9, s11, t0
   LW s11, 0(s9)
-  ADDI s9, zero, 400
-  MUL t0, zero, s9
   LA s9, buf
-  ADD t1, s9, t0
+  ADD t0, s9, zero
   ADDI s9, zero, 4
-  MULW t0, s7, s9
-  ADD s9, t1, t0
+  MULW t1, s7, s9
+  ADD s9, t0, t1
   LW t0, 0(s9)
   SLT s9, s11, t0
   BNE s9, zero, bb10
@@ -135,21 +125,16 @@ bb9:
   BNE s9, zero, bb5
   JAL zero, bb6
 bb10:
-  ADDI s9, zero, 400
-  ADDI s11, zero, 1
-  MULW t0, s9, s11
   LA s9, buf
-  ADD s11, s9, t0
+  ADDI s11, s9, 400
   ADDI s9, zero, 4
   MULW t0, s8, s9
   ADD s9, s11, t0
-  ADDI s11, zero, 400
-  MUL t0, zero, s11
   LA s11, buf
-  ADD t1, s11, t0
+  ADD t0, s11, zero
   ADDI s11, zero, 4
-  MULW t0, s6, s11
-  ADD s11, t1, t0
+  MULW t1, s6, s11
+  ADD s11, t0, t1
   LW t0, 0(s11)
   SW t0, 0(s9)
   ADDIW s9, s6, 1
@@ -165,21 +150,16 @@ bb11:
   ADD s5, s9, zero
   JAL zero, bb4
 bb12:
-  ADDI s2, zero, 400
-  ADDI s3, zero, 1
-  MULW s5, s2, s3
   LA s2, buf
-  ADD s3, s2, s5
+  ADDI s3, s2, 400
   ADDI s2, zero, 4
   MULW s5, s8, s2
   ADD s2, s3, s5
-  ADDI s3, zero, 400
-  MUL s5, zero, s3
   LA s3, buf
-  ADD s9, s3, s5
+  ADD s5, s3, zero
   ADDI s3, zero, 4
-  MULW s5, s7, s3
-  ADD s3, s9, s5
+  MULW s9, s7, s3
+  ADD s3, s5, s9
   LW s5, 0(s3)
   SW s5, 0(s2)
   ADDIW s2, s7, 1
@@ -195,21 +175,16 @@ bb13:
   BNE s11, zero, bb14
   JAL zero, bb15
 bb14:
-  ADDI s11, zero, 400
-  ADDI t0, zero, 1
-  MULW t1, s11, t0
   LA s11, buf
-  ADD t0, s11, t1
+  ADDI t0, s11, 400
   ADDI s11, zero, 4
   MULW t1, s9, s11
   ADD s11, t0, t1
-  ADDI t0, zero, 400
-  MUL t1, zero, t0
   LA t0, buf
-  ADD t2, t0, t1
+  ADD t1, t0, zero
   ADDI t0, zero, 4
-  MULW t1, s5, t0
-  ADD t0, t2, t1
+  MULW t2, s5, t0
+  ADD t0, t1, t2
   LW t1, 0(t0)
   SW t1, 0(s11)
   ADDIW s11, s5, 1
@@ -230,21 +205,16 @@ bb16:
   BNE s11, zero, bb17
   JAL zero, bb18
 bb17:
-  ADDI s11, zero, 400
-  ADDI t0, zero, 1
-  MULW t1, s11, t0
   LA s11, buf
-  ADD t0, s11, t1
+  ADDI t0, s11, 400
   ADDI s11, zero, 4
   MULW t1, s9, s11
   ADD s11, t0, t1
-  ADDI t0, zero, 400
-  MUL t1, zero, t0
   LA t0, buf
-  ADD t2, t0, t1
+  ADD t1, t0, zero
   ADDI t0, zero, 4
-  MULW t1, s5, t0
-  ADD t0, t2, t1
+  MULW t2, s5, t0
+  ADD t0, t1, t2
   LW t1, 0(t0)
   SW t1, 0(s11)
   ADDIW s11, s5, 1
@@ -263,18 +233,13 @@ bb19:
   BNE s5, zero, bb20
   JAL zero, bb21
 bb20:
-  ADDI s5, zero, 400
-  MUL s9, zero, s5
   LA s5, buf
-  ADD s11, s5, s9
+  ADD s9, s5, zero
   ADDI s5, zero, 4
-  MULW s9, s3, s5
-  ADD s5, s11, s9
-  ADDI s9, zero, 400
-  ADDI s11, zero, 1
-  MULW t0, s9, s11
+  MULW s11, s3, s5
+  ADD s5, s9, s11
   LA s9, buf
-  ADD s11, s9, t0
+  ADDI s11, s9, 400
   ADDI s9, zero, 4
   MULW t0, s3, s9
   ADD s9, s11, t0

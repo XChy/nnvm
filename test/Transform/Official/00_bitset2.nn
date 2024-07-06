@@ -4,25 +4,21 @@ global ptr seed init with 3 x i32 [19971231, 19981013, 1000000007]
 i32 rand() {
 entry178:
   staticvalue.load = load i32 from ptr @staticvalue
-  180 = mul i32 0, i32 4
-  181 = ptradd ptr @seed, i32 %180
+  181 = ptradd ptr @seed, i32 0
   181.load = load i32 from ptr %181
   183 = mul i32 %staticvalue.load, i32 %181.load
-  184 = mul i32 1, i32 4
-  185 = ptradd ptr @seed, i32 %184
+  185 = ptradd ptr @seed, i32 4
   185.load = load i32 from ptr %185
   187 = add i32 %183, i32 %185.load
   store i32 %187 to ptr @staticvalue
-  189 = mul i32 2, i32 4
-  190 = ptradd ptr @seed, i32 %189
+  190 = ptradd ptr @seed, i32 8
   190.load = load i32 from ptr %190
   192 = srem i32 %187, i32 %190.load
   store i32 %192 to ptr @staticvalue
   194 = icmp slt i32 %192, i32 0
   br i1 %194, bb %then195, bb %if.exit196
 then195:
-  197 = mul i32 2, i32 4
-  198 = ptradd ptr @seed, i32 %197
+  198 = ptradd ptr @seed, i32 8
   198.load = load i32 from ptr %198
   staticvalue.load200 = load i32 from ptr @staticvalue
   201 = add i32 %198.load, i32 %staticvalue.load200
@@ -51,76 +47,55 @@ init:
   store i32 0 to ptr %arr.index14
   br bb %init.cond
 init.exit:
-  15 = mul i32 0, i32 4
-  16 = ptradd ptr %x, i32 %15
+  16 = ptradd ptr %x, i32 0
   store i32 1 to ptr %16
-  17 = mul i32 1, i32 4
-  18 = ptradd ptr %x, i32 %17
-  19 = mul i32 0, i32 4
-  20 = ptradd ptr %x, i32 %19
+  18 = ptradd ptr %x, i32 4
+  20 = ptradd ptr %x, i32 0
   20.load = load i32 from ptr %20
   22 = mul i32 %20.load, i32 2
   store i32 %22 to ptr %18
-  23 = mul i32 2, i32 4
-  24 = ptradd ptr %x, i32 %23
-  25 = mul i32 1, i32 4
-  26 = ptradd ptr %x, i32 %25
+  24 = ptradd ptr %x, i32 8
+  26 = ptradd ptr %x, i32 4
   26.load = load i32 from ptr %26
   28 = mul i32 %26.load, i32 2
   store i32 %28 to ptr %24
-  29 = mul i32 3, i32 4
-  30 = ptradd ptr %x, i32 %29
-  31 = mul i32 2, i32 4
-  32 = ptradd ptr %x, i32 %31
+  30 = ptradd ptr %x, i32 12
+  32 = ptradd ptr %x, i32 8
   32.load = load i32 from ptr %32
   34 = mul i32 %32.load, i32 2
   store i32 %34 to ptr %30
-  35 = mul i32 4, i32 4
-  36 = ptradd ptr %x, i32 %35
-  37 = mul i32 3, i32 4
-  38 = ptradd ptr %x, i32 %37
+  36 = ptradd ptr %x, i32 16
+  38 = ptradd ptr %x, i32 12
   38.load = load i32 from ptr %38
   40 = mul i32 %38.load, i32 2
   store i32 %40 to ptr %36
-  41 = mul i32 5, i32 4
-  42 = ptradd ptr %x, i32 %41
-  43 = mul i32 4, i32 4
-  44 = ptradd ptr %x, i32 %43
+  42 = ptradd ptr %x, i32 20
+  44 = ptradd ptr %x, i32 16
   44.load = load i32 from ptr %44
   46 = mul i32 %44.load, i32 2
   store i32 %46 to ptr %42
-  47 = mul i32 6, i32 4
-  48 = ptradd ptr %x, i32 %47
-  49 = mul i32 5, i32 4
-  50 = ptradd ptr %x, i32 %49
+  48 = ptradd ptr %x, i32 24
+  50 = ptradd ptr %x, i32 20
   50.load = load i32 from ptr %50
   52 = mul i32 %50.load, i32 2
   store i32 %52 to ptr %48
-  53 = mul i32 7, i32 4
-  54 = ptradd ptr %x, i32 %53
-  55 = mul i32 6, i32 4
-  56 = ptradd ptr %x, i32 %55
+  54 = ptradd ptr %x, i32 28
+  56 = ptradd ptr %x, i32 24
   56.load = load i32 from ptr %56
   58 = mul i32 %56.load, i32 2
   store i32 %58 to ptr %54
-  59 = mul i32 8, i32 4
-  60 = ptradd ptr %x, i32 %59
-  61 = mul i32 7, i32 4
-  62 = ptradd ptr %x, i32 %61
+  60 = ptradd ptr %x, i32 32
+  62 = ptradd ptr %x, i32 28
   62.load = load i32 from ptr %62
   64 = mul i32 %62.load, i32 2
   store i32 %64 to ptr %60
-  65 = mul i32 9, i32 4
-  66 = ptradd ptr %x, i32 %65
-  67 = mul i32 8, i32 4
-  68 = ptradd ptr %x, i32 %67
+  66 = ptradd ptr %x, i32 36
+  68 = ptradd ptr %x, i32 32
   68.load = load i32 from ptr %68
   70 = mul i32 %68.load, i32 2
   store i32 %70 to ptr %66
-  71 = mul i32 10, i32 4
-  72 = ptradd ptr %x, i32 %71
-  73 = mul i32 9, i32 4
-  74 = ptradd ptr %x, i32 %73
+  72 = ptradd ptr %x, i32 40
+  74 = ptradd ptr %x, i32 36
   74.load = load i32 from ptr %74
   76 = mul i32 %74.load, i32 2
   store i32 %76 to ptr %72

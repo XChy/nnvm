@@ -164,8 +164,7 @@ while.body117:
   128 = sub i32 %len.load, i32 1
   br bb %while.cond129
 while.exit118:
-  182 = mul i32 0, i32 4
-  183 = ptradd ptr %result, i32 %182
+  183 = ptradd ptr %result, i32 0
   183.load = load i32 from ptr %183
   185 = icmp ne i32 %183.load, i32 0
   br i1 %185, bb %then186, bb %if.exit187
@@ -217,8 +216,7 @@ else:
   store i32 %146 to ptr %170
   br bb %if.exit
 then186:
-  188 = mul i32 0, i32 4
-  189 = ptradd ptr %result, i32 %188
+  189 = ptradd ptr %result, i32 0
   189.load = load i32 from ptr %189
   call void putint(i32 %189.load)
   br bb %if.exit187

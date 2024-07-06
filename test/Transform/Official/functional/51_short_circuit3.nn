@@ -113,9 +113,7 @@ then77:
   call void putch(i32 65)
   br bb %if.exit78
 if.exit78:
-  81 = mul i32 6, i32 3
-  82 = sub i32 36, i32 %81
-  83 = icmp ne i32 18, i32 %82
+  83 = icmp ne i32 18, i32 18
   br i1 %83, bb %then84, bb %if.exit85
 then84:
   call void putch(i32 66)

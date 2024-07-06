@@ -310,8 +310,7 @@ if.exit191:
   ans.phi3555 = phi [bb %while.exit200, i32 %ans.phi3554, bb %then190, i32 0]
   br bb %while.cond104
 else192:
-  194 = mul i32 1, i32 4
-  195 = ptradd ptr @SHIFT_TABLE, i32 %194
+  195 = ptradd ptr @SHIFT_TABLE, i32 4
   195.load = load i32 from ptr %195
   197 = mul i32 %ans.phi3559, i32 %195.load
   br bb %while.cond198
@@ -460,8 +459,7 @@ if.exit326:
   ans.phi3546 = phi [bb %while.exit335, i32 %ans.phi3545, bb %then325, i32 0]
   br bb %while.cond239
 else327:
-  329 = mul i32 1, i32 4
-  330 = ptradd ptr @SHIFT_TABLE, i32 %329
+  330 = ptradd ptr @SHIFT_TABLE, i32 4
   330.load = load i32 from ptr %330
   332 = mul i32 %ans.phi3549, i32 %330.load
   br bb %while.cond333
@@ -527,13 +525,11 @@ if.exit383:
 else384:
   br bb %if.exit383
 then387:
-  392 = mul i32 1, i32 4
-  393 = ptradd ptr @SHIFT_TABLE, i32 %392
+  393 = ptradd ptr @SHIFT_TABLE, i32 4
   393.load = load i32 from ptr %393
   395 = sdiv i32 %mr.phi, i32 %393.load
   397 = add i32 %395, i32 65536
-  401 = mul i32 15, i32 4
-  402 = ptradd ptr @SHIFT_TABLE, i32 %401
+  402 = ptradd ptr @SHIFT_TABLE, i32 60
   402.load = load i32 from ptr %402
   404 = sub i32 %397, i32 %402.load
   br bb %if.exit388
@@ -541,8 +537,7 @@ if.exit388:
   ans.phi3538 = phi [bb %else389, i32 %410, bb %then387, i32 %404]
   br bb %if.exit383
 else389:
-  407 = mul i32 1, i32 4
-  408 = ptradd ptr @SHIFT_TABLE, i32 %407
+  408 = ptradd ptr @SHIFT_TABLE, i32 4
   408.load = load i32 from ptr %408
   410 = sdiv i32 %mr.phi, i32 %408.load
   br bb %if.exit388
@@ -725,8 +720,7 @@ if.exit554:
   ans.phi3525 = phi [bb %while.exit563, i32 %ans.phi3524, bb %then553, i32 0]
   br bb %while.cond467
 else555:
-  557 = mul i32 1, i32 4
-  558 = ptradd ptr @SHIFT_TABLE, i32 %557
+  558 = ptradd ptr @SHIFT_TABLE, i32 4
   558.load = load i32 from ptr %558
   560 = mul i32 %ans.phi3531, i32 %558.load
   br bb %while.cond561
@@ -875,8 +869,7 @@ if.exit689:
   ans.phi3515 = phi [bb %while.exit698, i32 %ans.phi3514, bb %then688, i32 0]
   br bb %while.cond602
 else690:
-  692 = mul i32 1, i32 4
-  693 = ptradd ptr @SHIFT_TABLE, i32 %692
+  693 = ptradd ptr @SHIFT_TABLE, i32 4
   693.load = load i32 from ptr %693
   695 = mul i32 %ans.phi3518, i32 %693.load
   br bb %while.cond696
@@ -942,13 +935,11 @@ if.exit746:
 else747:
   br bb %if.exit746
 then750:
-  755 = mul i32 1, i32 4
-  756 = ptradd ptr @SHIFT_TABLE, i32 %755
+  756 = ptradd ptr @SHIFT_TABLE, i32 4
   756.load = load i32 from ptr %756
   758 = sdiv i32 %mr417.phi, i32 %756.load
   760 = add i32 %758, i32 65536
-  764 = mul i32 15, i32 4
-  765 = ptradd ptr @SHIFT_TABLE, i32 %764
+  765 = ptradd ptr @SHIFT_TABLE, i32 60
   765.load = load i32 from ptr %765
   767 = sub i32 %760, i32 %765.load
   br bb %if.exit751
@@ -956,8 +947,7 @@ if.exit751:
   ans.phi3508 = phi [bb %else752, i32 %773, bb %then750, i32 %767]
   br bb %if.exit746
 else752:
-  770 = mul i32 1, i32 4
-  771 = ptradd ptr @SHIFT_TABLE, i32 %770
+  771 = ptradd ptr @SHIFT_TABLE, i32 4
   771.load = load i32 from ptr %771
   773 = sdiv i32 %mr417.phi, i32 %771.load
   br bb %if.exit751
@@ -988,13 +978,11 @@ if.exit792:
 else793:
   br bb %if.exit792
 then796:
-  801 = mul i32 1, i32 4
-  802 = ptradd ptr @SHIFT_TABLE, i32 %801
+  802 = ptradd ptr @SHIFT_TABLE, i32 4
   802.load = load i32 from ptr %802
   804 = sdiv i32 %pr.phi, i32 %802.load
   806 = add i32 %804, i32 65536
-  810 = mul i32 15, i32 4
-  811 = ptradd ptr @SHIFT_TABLE, i32 %810
+  811 = ptradd ptr @SHIFT_TABLE, i32 60
   811.load = load i32 from ptr %811
   813 = sub i32 %806, i32 %811.load
   br bb %if.exit797
@@ -1003,8 +991,7 @@ if.exit797:
   ans.phi3503 = phi [bb %else798, i32 %819, bb %then796, i32 %813]
   br bb %if.exit792
 else798:
-  816 = mul i32 1, i32 4
-  817 = ptradd ptr @SHIFT_TABLE, i32 %816
+  817 = ptradd ptr @SHIFT_TABLE, i32 4
   817.load = load i32 from ptr %817
   819 = sdiv i32 %pr.phi, i32 %817.load
   br bb %if.exit797
@@ -1286,8 +1273,7 @@ if.exit1011:
   ans.phi3490 = phi [bb %while.exit1020, i32 %ans.phi3489, bb %then1010, i32 0]
   br bb %while.cond924
 else1012:
-  1014 = mul i32 1, i32 4
-  1015 = ptradd ptr @SHIFT_TABLE, i32 %1014
+  1015 = ptradd ptr @SHIFT_TABLE, i32 4
   1015.load = load i32 from ptr %1015
   1017 = mul i32 %ans.phi3494, i32 %1015.load
   br bb %while.cond1018
@@ -1436,8 +1422,7 @@ if.exit1146:
   ans.phi3479 = phi [bb %while.exit1155, i32 %ans.phi3478, bb %then1145, i32 0]
   br bb %while.cond1059
 else1147:
-  1149 = mul i32 1, i32 4
-  1150 = ptradd ptr @SHIFT_TABLE, i32 %1149
+  1150 = ptradd ptr @SHIFT_TABLE, i32 4
   1150.load = load i32 from ptr %1150
   1152 = mul i32 %ans.phi3529, i32 %1150.load
   br bb %while.cond1153
@@ -1503,13 +1488,11 @@ if.exit1203:
 else1204:
   br bb %if.exit1203
 then1207:
-  1212 = mul i32 1, i32 4
-  1213 = ptradd ptr @SHIFT_TABLE, i32 %1212
+  1213 = ptradd ptr @SHIFT_TABLE, i32 4
   1213.load = load i32 from ptr %1213
   1215 = sdiv i32 %mr874.phi, i32 %1213.load
   1217 = add i32 %1215, i32 65536
-  1221 = mul i32 15, i32 4
-  1222 = ptradd ptr @SHIFT_TABLE, i32 %1221
+  1222 = ptradd ptr @SHIFT_TABLE, i32 60
   1222.load = load i32 from ptr %1222
   1224 = sub i32 %1217, i32 %1222.load
   br bb %if.exit1208
@@ -1517,8 +1500,7 @@ if.exit1208:
   ans.phi3471 = phi [bb %else1209, i32 %1230, bb %then1207, i32 %1224]
   br bb %if.exit1203
 else1209:
-  1227 = mul i32 1, i32 4
-  1228 = ptradd ptr @SHIFT_TABLE, i32 %1227
+  1228 = ptradd ptr @SHIFT_TABLE, i32 4
   1228.load = load i32 from ptr %1228
   1230 = sdiv i32 %mr874.phi, i32 %1228.load
   br bb %if.exit1208
@@ -1701,8 +1683,7 @@ if.exit1374:
   ans.phi3460 = phi [bb %while.exit1383, i32 %ans.phi3459, bb %then1373, i32 0]
   br bb %while.cond1287
 else1375:
-  1377 = mul i32 1, i32 4
-  1378 = ptradd ptr @SHIFT_TABLE, i32 %1377
+  1378 = ptradd ptr @SHIFT_TABLE, i32 4
   1378.load = load i32 from ptr %1378
   1380 = mul i32 %ans.phi3464, i32 %1378.load
   br bb %while.cond1381
@@ -1851,8 +1832,7 @@ if.exit1509:
   ans.phi3450 = phi [bb %while.exit1518, i32 %ans.phi3449, bb %then1508, i32 0]
   br bb %while.cond1422
 else1510:
-  1512 = mul i32 1, i32 4
-  1513 = ptradd ptr @SHIFT_TABLE, i32 %1512
+  1513 = ptradd ptr @SHIFT_TABLE, i32 4
   1513.load = load i32 from ptr %1513
   1515 = mul i32 %ans.phi3453, i32 %1513.load
   br bb %while.cond1516
@@ -1918,13 +1898,11 @@ if.exit1566:
 else1567:
   br bb %if.exit1566
 then1570:
-  1575 = mul i32 1, i32 4
-  1576 = ptradd ptr @SHIFT_TABLE, i32 %1575
+  1576 = ptradd ptr @SHIFT_TABLE, i32 4
   1576.load = load i32 from ptr %1576
   1578 = sdiv i32 %mr1237.phi, i32 %1576.load
   1580 = add i32 %1578, i32 65536
-  1584 = mul i32 15, i32 4
-  1585 = ptradd ptr @SHIFT_TABLE, i32 %1584
+  1585 = ptradd ptr @SHIFT_TABLE, i32 60
   1585.load = load i32 from ptr %1585
   1587 = sub i32 %1580, i32 %1585.load
   br bb %if.exit1571
@@ -1932,8 +1910,7 @@ if.exit1571:
   ans.phi3443 = phi [bb %else1572, i32 %1593, bb %then1570, i32 %1587]
   br bb %if.exit1566
 else1572:
-  1590 = mul i32 1, i32 4
-  1591 = ptradd ptr @SHIFT_TABLE, i32 %1590
+  1591 = ptradd ptr @SHIFT_TABLE, i32 4
   1591.load = load i32 from ptr %1591
   1593 = sdiv i32 %mr1237.phi, i32 %1591.load
   br bb %if.exit1571
@@ -1964,13 +1941,11 @@ if.exit1612:
 else1613:
   br bb %if.exit1612
 then1616:
-  1621 = mul i32 1, i32 4
-  1622 = ptradd ptr @SHIFT_TABLE, i32 %1621
+  1622 = ptradd ptr @SHIFT_TABLE, i32 4
   1622.load = load i32 from ptr %1622
   1624 = sdiv i32 %pr827.phi, i32 %1622.load
   1626 = add i32 %1624, i32 65536
-  1630 = mul i32 15, i32 4
-  1631 = ptradd ptr @SHIFT_TABLE, i32 %1630
+  1631 = ptradd ptr @SHIFT_TABLE, i32 60
   1631.load = load i32 from ptr %1631
   1633 = sub i32 %1626, i32 %1631.load
   br bb %if.exit1617
@@ -1979,8 +1954,7 @@ if.exit1617:
   ans.phi3438 = phi [bb %else1618, i32 %1639, bb %then1616, i32 %1633]
   br bb %if.exit1612
 else1618:
-  1636 = mul i32 1, i32 4
-  1637 = ptradd ptr @SHIFT_TABLE, i32 %1636
+  1637 = ptradd ptr @SHIFT_TABLE, i32 4
   1637.load = load i32 from ptr %1637
   1639 = sdiv i32 %pr827.phi, i32 %1637.load
   br bb %if.exit1617
@@ -2307,8 +2281,7 @@ if.exit1838:
   ans.phi3425 = phi [bb %while.exit1847, i32 %ans.phi3424, bb %then1837, i32 0]
   br bb %while.cond1751
 else1839:
-  1841 = mul i32 1, i32 4
-  1842 = ptradd ptr @SHIFT_TABLE, i32 %1841
+  1842 = ptradd ptr @SHIFT_TABLE, i32 4
   1842.load = load i32 from ptr %1842
   1844 = mul i32 %ans.phi3429, i32 %1842.load
   br bb %while.cond1845
@@ -2457,8 +2430,7 @@ if.exit1973:
   ans.phi3415 = phi [bb %while.exit1982, i32 %ans.phi3414, bb %then1972, i32 0]
   br bb %while.cond1886
 else1974:
-  1976 = mul i32 1, i32 4
-  1977 = ptradd ptr @SHIFT_TABLE, i32 %1976
+  1977 = ptradd ptr @SHIFT_TABLE, i32 4
   1977.load = load i32 from ptr %1977
   1979 = mul i32 %ans.phi3418, i32 %1977.load
   br bb %while.cond1980
@@ -2524,13 +2496,11 @@ if.exit2030:
 else2031:
   br bb %if.exit2030
 then2034:
-  2039 = mul i32 1, i32 4
-  2040 = ptradd ptr @SHIFT_TABLE, i32 %2039
+  2040 = ptradd ptr @SHIFT_TABLE, i32 4
   2040.load = load i32 from ptr %2040
   2042 = sdiv i32 %mr1701.phi, i32 %2040.load
   2044 = add i32 %2042, i32 65536
-  2048 = mul i32 15, i32 4
-  2049 = ptradd ptr @SHIFT_TABLE, i32 %2048
+  2049 = ptradd ptr @SHIFT_TABLE, i32 60
   2049.load = load i32 from ptr %2049
   2051 = sub i32 %2044, i32 %2049.load
   br bb %if.exit2035
@@ -2538,8 +2508,7 @@ if.exit2035:
   ans.phi3407 = phi [bb %else2036, i32 %2057, bb %then2034, i32 %2051]
   br bb %if.exit2030
 else2036:
-  2054 = mul i32 1, i32 4
-  2055 = ptradd ptr @SHIFT_TABLE, i32 %2054
+  2055 = ptradd ptr @SHIFT_TABLE, i32 4
   2055.load = load i32 from ptr %2055
   2057 = sdiv i32 %mr1701.phi, i32 %2055.load
   br bb %if.exit2035
@@ -2722,8 +2691,7 @@ if.exit2201:
   ans.phi3396 = phi [bb %while.exit2210, i32 %ans.phi3395, bb %then2200, i32 0]
   br bb %while.cond2114
 else2202:
-  2204 = mul i32 1, i32 4
-  2205 = ptradd ptr @SHIFT_TABLE, i32 %2204
+  2205 = ptradd ptr @SHIFT_TABLE, i32 4
   2205.load = load i32 from ptr %2205
   2207 = mul i32 %ans.phi3400, i32 %2205.load
   br bb %while.cond2208
@@ -2872,8 +2840,7 @@ if.exit2336:
   ans.phi3386 = phi [bb %while.exit2345, i32 %ans.phi3483, bb %then2335, i32 0]
   br bb %while.cond2249
 else2337:
-  2339 = mul i32 1, i32 4
-  2340 = ptradd ptr @SHIFT_TABLE, i32 %2339
+  2340 = ptradd ptr @SHIFT_TABLE, i32 4
   2340.load = load i32 from ptr %2340
   2342 = mul i32 %ans.phi3389, i32 %2340.load
   br bb %while.cond2343
@@ -2939,13 +2906,11 @@ if.exit2393:
 else2394:
   br bb %if.exit2393
 then2397:
-  2402 = mul i32 1, i32 4
-  2403 = ptradd ptr @SHIFT_TABLE, i32 %2402
+  2403 = ptradd ptr @SHIFT_TABLE, i32 4
   2403.load = load i32 from ptr %2403
   2405 = sdiv i32 %mr2064.phi4022, i32 %2403.load
   2407 = add i32 %2405, i32 65536
-  2411 = mul i32 15, i32 4
-  2412 = ptradd ptr @SHIFT_TABLE, i32 %2411
+  2412 = ptradd ptr @SHIFT_TABLE, i32 60
   2412.load = load i32 from ptr %2412
   2414 = sub i32 %2407, i32 %2412.load
   br bb %if.exit2398
@@ -2953,8 +2918,7 @@ if.exit2398:
   ans.phi3382 = phi [bb %else2399, i32 %2420, bb %then2397, i32 %2414]
   br bb %if.exit2393
 else2399:
-  2417 = mul i32 1, i32 4
-  2418 = ptradd ptr @SHIFT_TABLE, i32 %2417
+  2418 = ptradd ptr @SHIFT_TABLE, i32 4
   2418.load = load i32 from ptr %2418
   2420 = sdiv i32 %mr2064.phi4022, i32 %2418.load
   br bb %if.exit2398
@@ -2985,13 +2949,11 @@ if.exit2439:
 else2440:
   br bb %if.exit2439
 then2443:
-  2448 = mul i32 1, i32 4
-  2449 = ptradd ptr @SHIFT_TABLE, i32 %2448
+  2449 = ptradd ptr @SHIFT_TABLE, i32 4
   2449.load = load i32 from ptr %2449
   2451 = sdiv i32 %pr1653.phi, i32 %2449.load
   2453 = add i32 %2451, i32 65536
-  2457 = mul i32 15, i32 4
-  2458 = ptradd ptr @SHIFT_TABLE, i32 %2457
+  2458 = ptradd ptr @SHIFT_TABLE, i32 60
   2458.load = load i32 from ptr %2458
   2460 = sub i32 %2453, i32 %2458.load
   br bb %if.exit2444
@@ -3000,8 +2962,7 @@ if.exit2444:
   ans.phi3376 = phi [bb %else2445, i32 %2466, bb %then2443, i32 %2460]
   br bb %if.exit2439
 else2445:
-  2463 = mul i32 1, i32 4
-  2464 = ptradd ptr @SHIFT_TABLE, i32 %2463
+  2464 = ptradd ptr @SHIFT_TABLE, i32 4
   2464.load = load i32 from ptr %2464
   2466 = sdiv i32 %pr1653.phi, i32 %2464.load
   br bb %if.exit2444
@@ -3329,8 +3290,7 @@ if.exit2667:
   ans.phi3363 = phi [bb %while.exit2676, i32 %ans.phi3362, bb %then2666, i32 0]
   br bb %while.cond2580
 else2668:
-  2670 = mul i32 1, i32 4
-  2671 = ptradd ptr @SHIFT_TABLE, i32 %2670
+  2671 = ptradd ptr @SHIFT_TABLE, i32 4
   2671.load = load i32 from ptr %2671
   2673 = mul i32 %ans.phi3367, i32 %2671.load
   br bb %while.cond2674
@@ -3479,8 +3439,7 @@ if.exit2802:
   ans.phi3353 = phi [bb %while.exit2811, i32 %ans.phi3352, bb %then2801, i32 0]
   br bb %while.cond2715
 else2803:
-  2805 = mul i32 1, i32 4
-  2806 = ptradd ptr @SHIFT_TABLE, i32 %2805
+  2806 = ptradd ptr @SHIFT_TABLE, i32 4
   2806.load = load i32 from ptr %2806
   2808 = mul i32 %ans.phi3356, i32 %2806.load
   br bb %while.cond2809
@@ -3546,13 +3505,11 @@ if.exit2859:
 else2860:
   br bb %if.exit2859
 then2863:
-  2868 = mul i32 1, i32 4
-  2869 = ptradd ptr @SHIFT_TABLE, i32 %2868
+  2869 = ptradd ptr @SHIFT_TABLE, i32 4
   2869.load = load i32 from ptr %2869
   2871 = sdiv i32 %mr2530.phi, i32 %2869.load
   2873 = add i32 %2871, i32 65536
-  2877 = mul i32 15, i32 4
-  2878 = ptradd ptr @SHIFT_TABLE, i32 %2877
+  2878 = ptradd ptr @SHIFT_TABLE, i32 60
   2878.load = load i32 from ptr %2878
   2880 = sub i32 %2873, i32 %2878.load
   br bb %if.exit2864
@@ -3560,8 +3517,7 @@ if.exit2864:
   ans.phi3345 = phi [bb %else2865, i32 %2886, bb %then2863, i32 %2880]
   br bb %if.exit2859
 else2865:
-  2883 = mul i32 1, i32 4
-  2884 = ptradd ptr @SHIFT_TABLE, i32 %2883
+  2884 = ptradd ptr @SHIFT_TABLE, i32 4
   2884.load = load i32 from ptr %2884
   2886 = sdiv i32 %mr2530.phi, i32 %2884.load
   br bb %if.exit2864
@@ -3744,8 +3700,7 @@ if.exit3030:
   ans.phi3334 = phi [bb %while.exit3039, i32 %ans.phi3333, bb %then3029, i32 0]
   br bb %while.cond2943
 else3031:
-  3033 = mul i32 1, i32 4
-  3034 = ptradd ptr @SHIFT_TABLE, i32 %3033
+  3034 = ptradd ptr @SHIFT_TABLE, i32 4
   3034.load = load i32 from ptr %3034
   3036 = mul i32 %ans.phi3338, i32 %3034.load
   br bb %while.cond3037
@@ -3894,8 +3849,7 @@ if.exit3165:
   ans.phi3324 = phi [bb %while.exit3174, i32 %ans.phi3323, bb %then3164, i32 0]
   br bb %while.cond3078
 else3166:
-  3168 = mul i32 1, i32 4
-  3169 = ptradd ptr @SHIFT_TABLE, i32 %3168
+  3169 = ptradd ptr @SHIFT_TABLE, i32 4
   3169.load = load i32 from ptr %3169
   3171 = mul i32 %ans.phi3327, i32 %3169.load
   br bb %while.cond3172
@@ -3961,13 +3915,11 @@ if.exit3222:
 else3223:
   br bb %if.exit3222
 then3226:
-  3231 = mul i32 1, i32 4
-  3232 = ptradd ptr @SHIFT_TABLE, i32 %3231
+  3232 = ptradd ptr @SHIFT_TABLE, i32 4
   3232.load = load i32 from ptr %3232
   3234 = sdiv i32 %mr2893.phi, i32 %3232.load
   3236 = add i32 %3234, i32 65536
-  3240 = mul i32 15, i32 4
-  3241 = ptradd ptr @SHIFT_TABLE, i32 %3240
+  3241 = ptradd ptr @SHIFT_TABLE, i32 60
   3241.load = load i32 from ptr %3241
   3243 = sub i32 %3236, i32 %3241.load
   br bb %if.exit3227
@@ -3975,8 +3927,7 @@ if.exit3227:
   ans.phi3317 = phi [bb %else3228, i32 %3249, bb %then3226, i32 %3243]
   br bb %if.exit3222
 else3228:
-  3246 = mul i32 1, i32 4
-  3247 = ptradd ptr @SHIFT_TABLE, i32 %3246
+  3247 = ptradd ptr @SHIFT_TABLE, i32 4
   3247.load = load i32 from ptr %3247
   3249 = sdiv i32 %mr2893.phi, i32 %3247.load
   br bb %if.exit3227
@@ -4007,13 +3958,11 @@ if.exit3268:
 else3269:
   br bb %if.exit3268
 then3272:
-  3277 = mul i32 1, i32 4
-  3278 = ptradd ptr @SHIFT_TABLE, i32 %3277
+  3278 = ptradd ptr @SHIFT_TABLE, i32 4
   3278.load = load i32 from ptr %3278
   3280 = sdiv i32 %pr2482.phi, i32 %3278.load
   3282 = add i32 %3280, i32 65536
-  3286 = mul i32 15, i32 4
-  3287 = ptradd ptr @SHIFT_TABLE, i32 %3286
+  3287 = ptradd ptr @SHIFT_TABLE, i32 60
   3287.load = load i32 from ptr %3287
   3289 = sub i32 %3282, i32 %3287.load
   br bb %if.exit3273
@@ -4022,8 +3971,7 @@ if.exit3273:
   ans.phi = phi [bb %else3274, i32 %3295, bb %then3272, i32 %3289]
   br bb %if.exit3268
 else3274:
-  3292 = mul i32 1, i32 4
-  3293 = ptradd ptr @SHIFT_TABLE, i32 %3292
+  3293 = ptradd ptr @SHIFT_TABLE, i32 4
   3293.load = load i32 from ptr %3293
   3295 = sdiv i32 %pr2482.phi, i32 %3293.load
   br bb %if.exit3273

@@ -752,35 +752,20 @@ bb43:
   ADD s0, s2, zero
   JAL zero, bb42
 bb44:
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
   LA s0, cns
-  ADD s1, s0, s2
+  ADDI s1, s0, 4
   LW s0, 0(s1)
-  ADDI s1, zero, 4
-  ADDI s2, zero, 2
-  MULW s3, s1, s2
   LA s1, cns
-  ADD s2, s1, s3
+  ADDI s2, s1, 8
   LW s1, 0(s2)
-  ADDI s2, zero, 4
-  ADDI s3, zero, 3
-  MULW s4, s2, s3
   LA s2, cns
-  ADD s3, s2, s4
+  ADDI s3, s2, 12
   LW s2, 0(s3)
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
   LA s3, cns
-  ADD s4, s3, s5
+  ADDI s4, s3, 16
   LW s3, 0(s4)
-  ADDI s4, zero, 4
-  ADDI s5, zero, 5
-  MULW s6, s4, s5
   LA s4, cns
-  ADD s5, s4, s6
+  ADDI s5, s4, 20
   LW s4, 0(s5)
   ADD a0, s0, zero
   ADD a1, s1, zero

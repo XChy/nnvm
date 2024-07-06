@@ -155,18 +155,18 @@ bb6:
   LUI s11, 422994
   ADDI s11, s11, 769
   ADD t4, zero, s11
-  SW t4, 384(sp)
+  SW t4, 400(sp)
   JAL zero, bb7
 bb7:
-  LW t3, 384(sp)
+  LW t3, 400(sp)
   ADD t4, t3, zero
   SW t4, 360(sp)
   LW t3, 424(sp)
   ADD t4, t3, zero
-  SW t4, 416(sp)
+  SW t4, 408(sp)
   LW t3, 432(sp)
   ADD t4, t3, zero
-  SW t4, 400(sp)
+  SW t4, 392(sp)
   LW t3, 440(sp)
   ADD t4, t3, zero
   SW t4, 344(sp)
@@ -175,17 +175,17 @@ bb7:
   SW t4, 336(sp)
   LW t3, 456(sp)
   ADD t4, t3, zero
-  SW t4, 408(sp)
+  SW t4, 384(sp)
   LW t3, 472(sp)
   ADD t4, t3, zero
-  SW t4, 392(sp)
+  SW t4, 416(sp)
   LW t3, 480(sp)
   ADD t4, t3, zero
   SW t4, 320(sp)
   LW t3, 488(sp)
   ADD t4, t3, zero
   SW t4, 352(sp)
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   LW t3, 368(sp)
   SLT s2, t4, t3
   XOR a4, s2, zero
@@ -196,38 +196,24 @@ bb8:
   ADD s2, zero, zero
   JAL zero, bb10
 bb9:
-  ADDI s0, zero, 4
-  MULW s1, zero, s0
   LD t4, 328(sp)
-  ADD s0, t4, s1
+  ADD s0, t4, zero
   LW t4, 360(sp)
   SW t4, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 1
-  MULW s2, s0, s1
   LD t4, 328(sp)
-  ADD s0, t4, s2
+  ADDI s0, t4, 4
   LW t4, 352(sp)
   SW t4, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 2
-  MULW s2, s0, s1
   LD t4, 328(sp)
-  ADD s0, t4, s2
+  ADDI s0, t4, 8
   LW t4, 344(sp)
   SW t4, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 3
-  MULW s2, s0, s1
   LD t4, 328(sp)
-  ADD s0, t4, s2
+  ADDI s0, t4, 12
   LW t4, 336(sp)
   SW t4, 0(s0)
-  ADDI s0, zero, 4
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
   LD t4, 328(sp)
-  ADD s0, t4, s2
+  ADDI s0, t4, 16
   LW t4, 320(sp)
   SW t4, 0(s0)
   LD s8, 592(sp)
@@ -259,7 +245,7 @@ bb11:
   ADD a3, a3, a7
   ADDI a7, zero, 4
   MULW s11, a4, a7
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   ADDW a7, t4, s11
   ADDI s11, zero, 4
   MULW s1, a7, s11
@@ -271,7 +257,7 @@ bb11:
   MULW a7, s1, s11
   ADDI s1, zero, 4
   MULW s11, a4, s1
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   ADDW s1, t4, s11
   ADDIW s11, s1, 1
   ADDI s1, zero, 4
@@ -285,7 +271,7 @@ bb11:
   ADDW s0, a7, s11
   ADDI s1, zero, 4
   MULW s11, a4, s1
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   ADDW s1, t4, s11
   ADDIW s11, s1, 2
   ADDI s1, zero, 4
@@ -298,7 +284,7 @@ bb11:
   ADDW s1, s0, a7
   ADDI s0, zero, 4
   MULW s11, a4, s0
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   ADDW s0, t4, s11
   ADDIW s11, s0, 3
   ADDI s0, zero, 4
@@ -380,9 +366,9 @@ bb15:
   ADD s0, t4, zero
   LW t4, 336(sp)
   ADD s1, t4, zero
-  LW t4, 392(sp)
+  LW t4, 416(sp)
   ADD s2, t4, zero
-  LW t4, 408(sp)
+  LW t4, 384(sp)
   ADD s7, t4, zero
   LW t4, 360(sp)
   ADD s9, t4, zero
@@ -392,7 +378,7 @@ bb15:
   LW t3, 320(sp)
   ADD t4, t3, zero
   SW t4, 584(sp)
-  LW t3, 416(sp)
+  LW t3, 408(sp)
   ADD t4, t3, zero
   SW t4, 576(sp)
   JAL zero, bb16
@@ -444,7 +430,7 @@ bb18:
   LW t4, 320(sp)
   LW t3, 496(sp)
   ADDW s4, t4, t3
-  LW t4, 400(sp)
+  LW t4, 392(sp)
   ADDIW s5, t4, 64
   ADD t4, s1, zero
   SW t4, 488(sp)
@@ -466,7 +452,7 @@ bb18:
   ADD t4, t3, zero
   SW t4, 424(sp)
   ADD t4, s0, zero
-  SW t4, 384(sp)
+  SW t4, 400(sp)
   JAL zero, bb7
 bb19:
   LW t4, 536(sp)
@@ -804,34 +790,16 @@ main:
   ADD s0, a0, zero
   ADDI a0, zero, 161
   CALL _sysy_starttime
-  ADDI s1, zero, 4
-  MUL s2, zero, s1
   ADDI t6, sp, 0
-  ADD s1, t6, s2
+  ADD s1, t6, zero
   SW zero, 0(s1)
-  ADDI s1, zero, 4
-  ADDI s2, zero, 1
-  MULW s3, s1, s2
-  ADDI t5, sp, 0
-  ADD s1, t5, s3
+  ADDI s1, sp, 4
   SW zero, 0(s1)
-  ADDI s1, zero, 4
-  ADDI s2, zero, 2
-  MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s1, t6, s3
+  ADDI s1, sp, 8
   SW zero, 0(s1)
-  ADDI s1, zero, 4
-  ADDI s2, zero, 3
-  MULW s3, s1, s2
-  ADDI t5, sp, 0
-  ADD s1, t5, s3
+  ADDI s1, sp, 12
   SW zero, 0(s1)
-  ADDI s1, zero, 4
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s1, t6, s3
+  ADDI s1, sp, 16
   SW zero, 0(s1)
   ADD s1, s0, zero
   JAL zero, bb38

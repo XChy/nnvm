@@ -201,28 +201,15 @@ bb10:
   ADD s2, s5, zero
   JAL zero, bb9
 bb11:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
   ADDI t6, sp, 0
-  ADD s2, t6, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
+  ADD s2, t6, zero
+  ADD s3, s0, zero
   LW s4, 0(s3)
   SW s4, 0(s2)
-  ADDI s2, zero, 4
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
-  ADDI t5, sp, 0
-  ADD s2, t5, s4
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s0, s4
+  ADDI s2, sp, 4
+  ADD s3, s0, zero
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s0, s6
+  ADDI s3, s0, 4
   LW s5, 0(s3)
   ADD a0, s4, zero
   ADD a1, s5, zero
@@ -241,14 +228,14 @@ bb12:
 bb13:
   ADDI s4, zero, 4
   MULW s5, s3, s4
-  ADDI t6, sp, 0
-  ADD s4, t6, s5
+  ADDI t5, sp, 0
+  ADD s4, t5, s5
   ADDI s5, zero, 2
   SUBW s6, s3, s5
   ADDI s5, zero, 4
   MULW s7, s6, s5
-  ADDI t5, sp, 0
-  ADD s5, t5, s7
+  ADDI t6, sp, 0
+  ADD s5, t6, s7
   LW s6, 0(s5)
   ADDI s5, zero, 4
   MULW s7, s3, s5
@@ -259,8 +246,8 @@ bb13:
   SUBW s7, s3, s6
   ADDI s6, zero, 4
   MULW s8, s7, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s8
+  ADDI t5, sp, 0
+  ADD s6, t5, s8
   LW s7, 0(s6)
   ADD a0, s5, zero
   ADD a1, s7, zero
@@ -275,8 +262,8 @@ bb14:
   SUBW s2, s1, s0
   ADDI s0, zero, 4
   MULW s1, s2, s0
-  ADDI t5, sp, 0
-  ADD s0, t5, s1
+  ADDI t6, sp, 0
+  ADD s0, t6, s1
   LW s1, 0(s0)
   ADD a0, s1, zero
   LD ra, 64(sp)

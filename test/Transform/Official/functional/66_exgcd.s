@@ -26,14 +26,10 @@ main:
   ADD a3, a3, zero
   CALL exgcd
   ADD s0, a0, zero
-  ADDI s0, zero, 4
-  MULW s1, zero, s0
   ADDI t5, sp, 8
-  ADD s0, t5, s1
-  ADDI s1, zero, 4
-  MULW s2, zero, s1
+  ADD s0, t5, zero
   ADDI t6, sp, 8
-  ADD s1, t6, s2
+  ADD s1, t6, zero
   LW s2, 0(s1)
   ADDI s1, zero, 15
   REMW s3, s2, s1
@@ -41,10 +37,8 @@ main:
   ADDI s2, zero, 15
   REMW s3, s1, s2
   SW s3, 0(s0)
-  ADDI s0, zero, 4
-  MULW s1, zero, s0
   ADDI t5, sp, 8
-  ADD s0, t5, s1
+  ADD s0, t5, zero
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
@@ -76,14 +70,10 @@ exgcd:
   BNE s5, zero, bb2
   JAL zero, bb4
 bb2:
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADD s4, s2, zero
   ADDI s5, zero, 1
   SW s5, 0(s4)
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADD s4, s3, zero
   SW zero, 0(s4)
   ADD a0, s0, zero
   LD s7, 0(sp)
@@ -106,25 +96,15 @@ bb4:
   ADD a3, s3, zero
   CALL exgcd
   ADD s4, a0, zero
-  ADDI s5, zero, 4
-  MUL s6, zero, s5
-  ADD s5, s2, s6
+  ADD s5, s2, zero
   LW s6, 0(s5)
-  ADDI s5, zero, 4
-  MUL s7, zero, s5
-  ADD s5, s2, s7
-  ADDI s2, zero, 4
-  MUL s7, zero, s2
-  ADD s2, s3, s7
+  ADD s5, s2, zero
+  ADD s2, s3, zero
   LW s7, 0(s2)
   SW s7, 0(s5)
-  ADDI s2, zero, 4
-  MUL s5, zero, s2
-  ADD s2, s3, s5
+  ADD s2, s3, zero
   DIVW s5, s0, s1
-  ADDI s0, zero, 4
-  MUL s1, zero, s0
-  ADD s0, s3, s1
+  ADD s0, s3, zero
   LW s1, 0(s0)
   MULW s0, s5, s1
   SUBW s1, s6, s0

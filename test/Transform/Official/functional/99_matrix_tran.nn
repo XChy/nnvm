@@ -125,58 +125,40 @@ external i32 getfarray(ptr )
 
 i32 tran(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
 entry:
-  2 = mul i32 2, i32 4
-  3 = ptradd ptr %c1, i32 %2
-  4 = mul i32 1, i32 4
-  5 = ptradd ptr %a2, i32 %4
+  3 = ptradd ptr %c1, i32 8
+  5 = ptradd ptr %a2, i32 4
   5.load = load float from ptr %5
   store float %5.load to ptr %3
-  7 = mul i32 1, i32 4
-  8 = ptradd ptr %c2, i32 %7
-  9 = mul i32 2, i32 4
-  10 = ptradd ptr %a1, i32 %9
+  8 = ptradd ptr %c2, i32 4
+  10 = ptradd ptr %a1, i32 8
   10.load = load float from ptr %10
   store float %10.load to ptr %8
-  12 = mul i32 1, i32 4
-  13 = ptradd ptr %c0, i32 %12
-  14 = mul i32 0, i32 4
-  15 = ptradd ptr %a1, i32 %14
+  13 = ptradd ptr %c0, i32 4
+  15 = ptradd ptr %a1, i32 0
   15.load = load float from ptr %15
   store float %15.load to ptr %13
-  17 = mul i32 2, i32 4
-  18 = ptradd ptr %c0, i32 %17
-  19 = mul i32 0, i32 4
-  20 = ptradd ptr %a2, i32 %19
+  18 = ptradd ptr %c0, i32 8
+  20 = ptradd ptr %a2, i32 0
   20.load = load float from ptr %20
   store float %20.load to ptr %18
-  22 = mul i32 0, i32 4
-  23 = ptradd ptr %c1, i32 %22
-  24 = mul i32 1, i32 4
-  25 = ptradd ptr %a0, i32 %24
+  23 = ptradd ptr %c1, i32 0
+  25 = ptradd ptr %a0, i32 4
   25.load = load float from ptr %25
   store float %25.load to ptr %23
-  27 = mul i32 0, i32 4
-  28 = ptradd ptr %c2, i32 %27
-  29 = mul i32 2, i32 4
-  30 = ptradd ptr %a0, i32 %29
+  28 = ptradd ptr %c2, i32 0
+  30 = ptradd ptr %a0, i32 8
   30.load = load float from ptr %30
   store float %30.load to ptr %28
-  32 = mul i32 1, i32 4
-  33 = ptradd ptr %c1, i32 %32
-  34 = mul i32 1, i32 4
-  35 = ptradd ptr %a1, i32 %34
+  33 = ptradd ptr %c1, i32 4
+  35 = ptradd ptr %a1, i32 4
   35.load = load float from ptr %35
   store float %35.load to ptr %33
-  37 = mul i32 2, i32 4
-  38 = ptradd ptr %c2, i32 %37
-  39 = mul i32 2, i32 4
-  40 = ptradd ptr %a2, i32 %39
+  38 = ptradd ptr %c2, i32 8
+  40 = ptradd ptr %a2, i32 8
   40.load = load float from ptr %40
   store float %40.load to ptr %38
-  42 = mul i32 0, i32 4
-  43 = ptradd ptr %c0, i32 %42
-  44 = mul i32 0, i32 4
-  45 = ptradd ptr %a0, i32 %44
+  43 = ptradd ptr %c0, i32 0
+  45 = ptradd ptr %a0, i32 0
   45.load = load float from ptr %45
   store float %45.load to ptr %43
   ret i32 0

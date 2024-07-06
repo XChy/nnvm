@@ -132,296 +132,155 @@ model:
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s5, 48(sp)
-  SD s0, 56(sp)
+  SD s1, 32(sp)
+  SD s5, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 20
-  MUL s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
-  ADD s2, s1, s3
+  ADD s1, s0, zero
+  ADD s2, s1, zero
   LW s1, 0(s2)
   ADDI s2, zero, 85
   MULW s3, s1, s2
-  ADDI s1, zero, 20
-  MUL s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s2, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s1, s5
+  ADD s1, s0, zero
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   ADDI s2, zero, 23
   MULW s4, s1, s2
   ADDW s1, s3, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADD s2, s0, zero
+  ADDI s3, s2, 8
   LW s2, 0(s3)
   ADDI s3, zero, -82
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADD s1, s0, zero
+  ADDI s3, s1, 12
   LW s1, 0(s3)
   ADDI s3, zero, -103
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADD s2, s0, zero
+  ADDI s3, s2, 16
   LW s2, 0(s3)
   ADDI s3, zero, -123
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 1
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADDI s1, s0, 20
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, 64
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 20
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, -120
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 1
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 20
+  ADDI s3, s1, 8
   LW s1, 0(s3)
   ADDI s3, zero, 50
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 1
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 20
+  ADDI s3, s2, 12
   LW s2, 0(s3)
   ADDI s3, zero, -59
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 1
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 20
+  ADDI s3, s1, 16
   LW s1, 0(s3)
   ADDI s3, zero, 47
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 2
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADDI s2, s0, 40
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, -111
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 2
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 40
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, -67
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 2
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 40
+  ADDI s3, s2, 8
   LW s2, 0(s3)
   ADDI s3, zero, -106
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 2
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 40
+  ADDI s3, s1, 12
   LW s1, 0(s3)
   ADDI s3, zero, -75
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 2
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 40
+  ADDI s3, s2, 16
   LW s2, 0(s3)
   ADDI s3, zero, -102
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 3
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADDI s1, s0, 60
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, 34
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 3
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 60
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, -39
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 3
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 60
+  ADDI s3, s1, 8
   LW s1, 0(s3)
   ADDI s3, zero, 65
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 3
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 60
+  ADDI s3, s2, 12
   LW s2, 0(s3)
   ADDI s3, zero, 47
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 3
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 60
+  ADDI s3, s1, 16
   LW s1, 0(s3)
   ADDI s3, zero, 113
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADDI s2, s0, 80
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, 110
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 80
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, 47
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 80
+  ADDI s3, s2, 8
   LW s2, 0(s3)
   ADDI s3, zero, -4
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  ADDI s3, zero, 4
-  MULW s4, s1, s3
-  ADD s1, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  ADDI s1, s0, 80
+  ADDI s3, s1, 12
   LW s1, 0(s3)
   ADDI s3, zero, 80
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  ADDI s3, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s2, s5
+  ADDI s2, s0, 80
+  ADDI s3, s2, 16
   LW s2, 0(s3)
   ADDI s3, zero, 46
   MULW s4, s2, s3
@@ -431,291 +290,151 @@ model:
   ADD s1, a0, zero
   ADDI s2, zero, 39
   MULW s3, s1, s2
-  ADDI s1, zero, 20
-  MUL s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s2, zero, 4
-  MUL s4, zero, s2
-  ADD s2, s1, s4
+  ADD s1, s0, zero
+  ADD s2, s1, zero
   LW s1, 0(s2)
   ADDI s2, zero, -106
   MULW s4, s1, s2
-  ADDI s1, zero, 20
-  MUL s2, zero, s1
-  ADD s1, s0, s2
-  ADDI s2, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s2, s5
-  ADD s2, s1, s6
+  ADD s1, s0, zero
+  ADDI s2, s1, 4
   LW s1, 0(s2)
   ADDI s2, zero, 126
   MULW s5, s1, s2
   ADDW s1, s4, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -18
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  MUL s4, zero, s1
-  ADD s1, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADD s1, s0, zero
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -31
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -8
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 20
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 47
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, -4
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 67
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -94
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -121
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 40
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, 7
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -21
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -60
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -43
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, 105
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 60
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, -42
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 87
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 29
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -106
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -31
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 80
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -110
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -100
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -22
   MULW s5, s2, s4
   ADDW s2, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -75
   MULW s5, s1, s4
   ADDW s1, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -125
   MULW s5, s2, s4
@@ -726,291 +445,151 @@ model:
   ADDI s2, zero, 77
   MULW s4, s1, s2
   ADDW s1, s3, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADD s2, s0, zero
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, 26
   MULW s4, s2, s3
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s2, s6
+  ADD s2, s0, zero
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, 76
   MULW s5, s2, s3
   ADDW s2, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -70
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 29
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -95
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 20
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, 96
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 52
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -68
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, -5
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, 34
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -34
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 102
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 6
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -38
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 27
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 60
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, 110
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 116
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, 39
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, -63
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -99
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 65
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 120
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -39
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -6
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 94
   MULW s5, s3, s4
@@ -1021,291 +600,151 @@ model:
   ADDI s3, zero, 127
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADD s1, s0, zero
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, -23
   MULW s4, s1, s3
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s1, s6
+  ADD s1, s0, zero
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, -63
   MULW s5, s1, s3
   ADDW s1, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 49
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  MUL s4, zero, s1
-  ADD s1, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADD s1, s0, zero
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 50
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 72
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 20
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 85
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -30
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 12
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 125
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -117
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -65
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -67
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 125
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 110
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -31
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 60
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, -123
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 83
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 122
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 11
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -23
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -47
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -32
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -117
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 95
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 118
   MULW s5, s3, s4
@@ -1316,291 +755,151 @@ model:
   ADDI s3, zero, -106
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADD s2, s0, zero
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, 8
   MULW s4, s2, s3
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s2, s6
+  ADD s2, s0, zero
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, 82
   MULW s5, s2, s3
   ADDW s2, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -104
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 101
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -116
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 20
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -63
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -16
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -70
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 125
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, 75
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 66
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, -96
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -101
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -114
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 59
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 60
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, 12
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 5
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -95
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 116
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -93
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 15
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 79
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 3
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 49
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -124
   MULW s5, s3, s4
@@ -1611,291 +910,151 @@ model:
   ADDI s3, zero, -3
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADD s1, s0, zero
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, 81
   MULW s4, s1, s3
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s1, s6
+  ADD s1, s0, zero
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, 68
   MULW s5, s1, s3
   ADDW s1, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -102
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  MUL s4, zero, s1
-  ADD s1, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADD s1, s0, zero
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -74
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 121
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 20
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, -15
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 55
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 101
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, -13
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -62
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 64
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, 114
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 38
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -21
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 112
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 60
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 114
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 112
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, -10
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, -16
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -50
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -112
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -116
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -54
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 82
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -72
   MULW s5, s3, s4
@@ -1906,291 +1065,151 @@ model:
   ADDI s3, zero, 32
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADD s2, s0, zero
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, 15
   MULW s4, s2, s3
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s2, s6
+  ADD s2, s0, zero
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, -77
   MULW s5, s2, s3
   ADDW s2, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 66
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -90
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -6
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 20
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -30
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -8
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, 81
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 2
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -110
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -95
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 59
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 52
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 15
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 55
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 60
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -33
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 14
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, 58
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 67
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, 86
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -79
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 48
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -13
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -15
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 66
   MULW s5, s3, s4
@@ -2201,291 +1220,151 @@ model:
   ADDI s3, zero, -95
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADD s1, s0, zero
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, 33
   MULW s4, s1, s3
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s1, s6
+  ADD s1, s0, zero
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, 82
   MULW s5, s1, s3
   ADDW s1, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 67
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  MUL s4, zero, s1
-  ADD s1, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADD s1, s0, zero
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 30
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -2
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 20
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 65
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 120
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, -13
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 18
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, 5
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 104
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -119
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -7
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 71
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 107
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 60
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 24
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 82
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, -96
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, -104
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -121
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 65
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, 97
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 83
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, 46
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -84
   MULW s5, s3, s4
@@ -2496,291 +1375,151 @@ model:
   ADDI s3, zero, -50
   MULW s4, s1, s3
   ADDW s1, s2, s4
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s2, s4
+  ADD s2, s0, zero
+  ADD s3, s2, zero
   LW s2, 0(s3)
   ADDI s3, zero, -29
   MULW s4, s2, s3
-  ADDI s2, zero, 20
-  MUL s3, zero, s2
-  ADD s2, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s2, s6
+  ADD s2, s0, zero
+  ADDI s3, s2, 4
   LW s2, 0(s3)
   ADDI s3, zero, 7
   MULW s5, s2, s3
   ADDW s2, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -70
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  MUL s4, zero, s2
-  ADD s2, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADD s2, s0, zero
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 38
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -90
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 20
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -15
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -32
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, 37
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 36
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 20
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -62
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, -125
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, -46
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -70
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 40
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, 37
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -73
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s2, s5
+  ADDI s2, s0, 60
+  ADD s4, s2, zero
   LW s2, 0(s4)
   ADDI s4, zero, -34
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -87
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 8
   LW s2, 0(s4)
   ADDI s4, zero, -75
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 71
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 60
+  ADDI s4, s2, 16
   LW s2, 0(s4)
   ADDI s4, zero, -77
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 53
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 4
   LW s2, 0(s4)
   ADDI s4, zero, 37
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -103
   MULW s5, s3, s4
   ADDW s3, s2, s5
-  ADDI s2, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADD s2, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s2, s6
+  ADDI s2, s0, 80
+  ADDI s4, s2, 12
   LW s2, 0(s4)
   ADDI s4, zero, -13
   MULW s5, s2, s4
   ADDW s2, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -114
   MULW s5, s3, s4
@@ -2791,291 +1530,151 @@ model:
   ADDI s3, zero, -23
   MULW s4, s2, s3
   ADDW s2, s1, s4
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  MUL s4, zero, s3
-  ADD s3, s1, s4
+  ADD s1, s0, zero
+  ADD s3, s1, zero
   LW s1, 0(s3)
   ADDI s3, zero, 67
   MULW s4, s1, s3
-  ADDI s1, zero, 20
-  MUL s3, zero, s1
-  ADD s1, s0, s3
-  ADDI s3, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s3, s5
-  ADD s3, s1, s6
+  ADD s1, s0, zero
+  ADDI s3, s1, 4
   LW s1, 0(s3)
   ADDI s3, zero, 42
   MULW s5, s1, s3
   ADDW s1, s4, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 41
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  MUL s4, zero, s1
-  ADD s1, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADD s1, s0, zero
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -123
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  MUL s4, zero, s3
-  ADD s3, s0, s4
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADD s3, s0, zero
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, -92
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 20
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 10
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, -77
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, 75
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 20
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 96
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 1
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 20
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, -51
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 40
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 109
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -74
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, -7
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 40
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -122
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 40
+  ADDI s4, s3, 16
   LW s3, 0(s4)
   ADDI s4, zero, 67
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s1, s5
+  ADDI s1, s0, 60
+  ADD s4, s1, zero
   LW s1, 0(s4)
   ADDI s4, zero, 47
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 4
   LW s3, 0(s4)
   ADDI s4, zero, 22
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 8
   LW s1, 0(s4)
   ADDI s4, zero, -68
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 60
+  ADDI s4, s3, 12
   LW s3, 0(s4)
   ADDI s4, zero, 38
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 3
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 60
+  ADDI s4, s1, 16
   LW s1, 0(s4)
   ADDI s4, zero, 29
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  MUL s5, zero, s4
-  ADD s4, s3, s5
+  ADDI s3, s0, 80
+  ADD s4, s3, zero
   LW s3, 0(s4)
   ADDI s4, zero, 115
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 1
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 4
   LW s1, 0(s4)
   ADDI s4, zero, -121
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 2
-  MULW s6, s4, s5
-  ADD s4, s3, s6
+  ADDI s3, s0, 80
+  ADDI s4, s3, 8
   LW s3, 0(s4)
   ADDI s4, zero, 36
   MULW s5, s3, s4
   ADDW s3, s1, s5
-  ADDI s1, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  ADD s1, s0, s5
-  ADDI s4, zero, 4
-  ADDI s5, zero, 3
-  MULW s6, s4, s5
-  ADD s4, s1, s6
+  ADDI s1, s0, 80
+  ADDI s4, s1, 12
   LW s1, 0(s4)
   ADDI s4, zero, -49
   MULW s5, s1, s4
   ADDW s1, s3, s5
-  ADDI s3, zero, 20
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s0, s5
-  ADDI s0, zero, 4
-  ADDI s4, zero, 4
-  MULW s5, s0, s4
-  ADD s0, s3, s5
+  ADDI s3, s0, 80
+  ADDI s0, s3, 16
   LW s3, 0(s0)
   ADDI s0, zero, 85
   MULW s4, s3, s0
@@ -3095,10 +1694,9 @@ bb14:
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s5, 48(sp)
-  LD s0, 56(sp)
+  LD s1, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb15:
@@ -3107,10 +1705,9 @@ bb15:
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s5, 48(sp)
-  LD s0, 56(sp)
+  LD s1, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 relu_reg:

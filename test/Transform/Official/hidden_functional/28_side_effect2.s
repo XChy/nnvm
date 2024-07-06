@@ -121,11 +121,9 @@ bb11:
   BNE s3, zero, bb12
   JAL zero, bb14
 bb12:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
   LA s2, array
-  ADD s4, s2, s3
-  LW s2, 0(s4)
+  ADD s3, s2, zero
+  LW s2, 0(s3)
   ADD a0, s2, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
@@ -1515,11 +1513,9 @@ bb220:
   BNE s3, zero, bb221
   JAL zero, bb223
 bb221:
-  ADDI s2, zero, 4
-  MUL s3, zero, s2
   LA s2, array
-  ADD s4, s2, s3
-  LW s2, 0(s4)
+  ADD s3, s2, zero
+  LW s2, 0(s3)
   ADD a0, s2, zero
   LD s4, 0(sp)
   LD ra, 8(sp)

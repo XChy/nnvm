@@ -103,8 +103,7 @@ while.body237:
 while.exit238:
   276 = mul i32 %x.stack160.phi320, i32 80
   277 = ptradd ptr @f, i32 %276
-  278 = mul i32 0, i32 4
-  279 = ptradd ptr %277, i32 %278
+  279 = ptradd ptr %277, i32 0
   279.load = load i32 from ptr %279
   ret i32 %279.load
 then257:
@@ -128,8 +127,7 @@ if.exit258:
 
 void init() {
 entry77:
-  78 = mul i32 0, i32 4
-  79 = ptradd ptr @dep, i32 %78
+  79 = ptradd ptr @dep, i32 0
   store i32 1061109567 to ptr %79
   br bb %while.cond81
 while.cond81:
@@ -234,8 +232,7 @@ entry51:
   store i32 %70 to ptr @cnt
   72 = mul i32 %To, i32 80
   73 = ptradd ptr @f, i32 %72
-  74 = mul i32 0, i32 4
-  75 = ptradd ptr %73, i32 %74
+  75 = ptradd ptr %73, i32 0
   store i32 %from to ptr %75
   ret 
 }

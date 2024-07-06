@@ -20,18 +20,15 @@ while.body:
   store i32 1 to ptr %22
   24 = mul i32 %i.phi183, i32 140
   25 = ptradd ptr @dp, i32 %24
-  26 = mul i32 0, i32 4
-  27 = ptradd ptr %25, i32 %26
+  27 = ptradd ptr %25, i32 0
   29 = sub i32 %i.phi183, i32 1
   30 = mul i32 %29, i32 140
   31 = ptradd ptr @dp, i32 %30
-  32 = mul i32 0, i32 4
-  33 = ptradd ptr %31, i32 %32
+  33 = ptradd ptr %31, i32 0
   33.load = load i32 from ptr %33
   36 = mul i32 %i.phi183, i32 8
   37 = ptradd ptr @t, i32 %36
-  38 = mul i32 1, i32 4
-  39 = ptradd ptr %37, i32 %38
+  39 = ptradd ptr %37, i32 4
   39.load = load i32 from ptr %39
   41 = add i32 %33.load, i32 %39.load
   store i32 %41 to ptr %27
