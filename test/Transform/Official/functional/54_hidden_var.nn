@@ -8,8 +8,6 @@ entry:
   call void putint(i32 3)
   call void putint(i32 1)
   call void putch(i32 10)
-  br bb %while.exit
-while.exit:
   call void putint(i32 1)
   call void putch(i32 10)
   27 = ptradd ptr @c, i32 8

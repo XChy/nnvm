@@ -1,5 +1,7 @@
 i32 main() {
 entry:
+  br bb %select.then
+select.then:
   br bb %select.exit
 select.exit:
   br i1 1, bb %then, bb %if.exit
@@ -7,9 +9,11 @@ then:
   call void putint(i32 2)
   br bb %if.exit
 if.exit:
-  br bb %select.exit48
+  br bb %select.else47
 select.exit40:
   br i1 0, bb %then57, bb %if.exit58
+select.else47:
+  br bb %select.exit48
 select.exit48:
   br bb %select.exit40
 then57:

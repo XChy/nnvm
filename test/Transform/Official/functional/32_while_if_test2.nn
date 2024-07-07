@@ -28,10 +28,12 @@ external void _sysy_starttime(i32 )
 
 i32 ifWhile() {
 entry:
-  br bb %while.cond18
+  br bb %else
 if.exit:
   b.phi34 = phi [bb %while.exit20, i32 %b.phi, bb %while.exit, i32 %17]
   ret i32 %b.phi34
+else:
+  br bb %while.cond18
 while.cond:
   b.phi35 = phi [bb %while.body, i32 %15]
   12 = icmp eq i32 %b.phi35, i32 2
@@ -43,8 +45,8 @@ while.exit:
   17 = add i32 %b.phi35, i32 25
   br bb %if.exit
 while.cond18:
-  b.phi = phi [bb %entry, i32 3, bb %while.body19, i32 %25]
-  a.phi = phi [bb %entry, i32 0, bb %while.body19, i32 %27]
+  b.phi = phi [bb %else, i32 3, bb %while.body19, i32 %25]
+  a.phi = phi [bb %else, i32 0, bb %while.body19, i32 %27]
   22 = icmp slt i32 %a.phi, i32 5
   br i1 %22, bb %while.body19, bb %while.exit20
 while.body19:

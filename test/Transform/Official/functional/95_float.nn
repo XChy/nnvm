@@ -147,12 +147,10 @@ then122:
   call void error()
   br bb %if.exit123
 if.exit123:
-  br bb %select.else127
-select.else127:
   130 = fcmp one float 0.300000, float 0.000000
   br bb %select.exit128
 select.exit128:
-  select129.phi = phi [bb %select.else127, i1 %130]
+  select129.phi = phi [bb %if.exit123, i1 %130]
   br i1 %select129.phi, bb %then133, bb %if.exit134
 then133:
   call void ok()

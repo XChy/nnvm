@@ -63,8 +63,6 @@ f1:
   ADDW s1, s2, s0
   LA s2, sum
   SW s1, 0(s2)
-  JAL zero, bb2
-bb2:
   CALL getA
   ADD s1, a0, zero
   LA s2, sum
@@ -72,8 +70,6 @@ bb2:
   ADDW s2, s3, s1
   LA s1, sum
   SW s2, 0(s1)
-  JAL zero, bb3
-bb3:
   LA s1, sum
   LW s2, 0(s1)
   ADDW s1, s2, s0
@@ -107,8 +103,8 @@ getA:
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -80
-  SD s4, 0(sp)
-  SD ra, 8(sp)
+  SD ra, 0(sp)
+  SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s7, 32(sp)
@@ -168,18 +164,30 @@ main:
   CALL f1
   CALL f2
   CALL f3
+  JAL zero, bb4
+bb4:
   ADD s1, zero, zero
   ADD s2, zero, zero
   ADD s3, s0, zero
+  JAL zero, bb5
+bb5:
+  ADD s0, s3, zero
+  ADD s4, s2, zero
+  ADD s5, s1, zero
+  SLTI s6, s4, 3
+  BNE s6, zero, bb6
   JAL zero, bb7
 bb6:
+  ADD s6, s0, zero
+  JAL zero, bb8
+bb7:
   LA s0, sum
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
   ADD a0, zero, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
+  LD ra, 0(sp)
+  LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s7, 32(sp)
@@ -189,33 +197,17 @@ bb6:
   LD s0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb7:
-  ADD s0, s3, zero
-  ADD s4, s2, zero
-  ADD s5, s1, zero
-  SLTI s6, s4, 3
-  BNE s6, zero, bb8
-  JAL zero, bb9
 bb8:
-  ADD s6, s0, zero
-  JAL zero, bb10
-bb9:
-  JAL zero, bb6
-bb10:
   ADD s0, s6, zero
-  JAL zero, bb12
-bb11:
-  XORI s6, s4, 1
-  SLTIU s7, s6, 1
-  BNE s7, zero, bb13
-  JAL zero, bb15
-bb12:
   ADD a0, s0, zero
   CALL f1
   CALL f2
   CALL f3
-  JAL zero, bb11
-bb13:
+  XORI s6, s4, 1
+  SLTIU s7, s6, 1
+  BNE s7, zero, bb9
+  JAL zero, bb10
+bb9:
   CALL getA
   ADD s6, a0, zero
   ADD a0, s6, zero
@@ -226,21 +218,19 @@ bb13:
   ADD s1, s6, zero
   ADD s2, s7, zero
   ADD s3, s0, zero
-  JAL zero, bb7
-bb14:
+  JAL zero, bb5
+bb10:
+  ADD a0, s0, zero
+  CALL f1
+  CALL f2
+  CALL f3
   CALL getA
   ADD s0, a0, zero
   ADDIW s6, s4, 1
   ADD s1, s5, zero
   ADD s2, s6, zero
   ADD s3, s0, zero
-  JAL zero, bb7
-bb15:
-  ADD a0, s0, zero
-  CALL f1
-  CALL f2
-  CALL f3
-  JAL zero, bb14
+  JAL zero, bb5
 f3:
   ADDI sp, sp, -32
   SD ra, 0(sp)

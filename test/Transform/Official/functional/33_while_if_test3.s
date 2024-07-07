@@ -18,11 +18,11 @@ main:
   JALR zero, 0(ra)
 deepWhileBr:
   ADDI sp, sp, -96
-  SD s7, 0(sp)
-  SD s9, 8(sp)
+  SD s9, 0(sp)
+  SD s10, 8(sp)
   SD s0, 16(sp)
   SD s5, 24(sp)
-  SD s10, 32(sp)
+  SD s7, 32(sp)
   SD s1, 40(sp)
   SD s6, 48(sp)
   SD s8, 56(sp)
@@ -45,14 +45,14 @@ bb2:
 bb3:
   SLTI s4, s2, 100
   BNE s4, zero, bb5
-  JAL zero, bb10
+  JAL zero, bb11
 bb4:
   ADD a0, s2, zero
-  LD s7, 0(sp)
-  LD s9, 8(sp)
+  LD s9, 0(sp)
+  LD s10, 8(sp)
   LD s0, 16(sp)
   LD s5, 24(sp)
-  LD s10, 32(sp)
+  LD s7, 32(sp)
   LD s1, 40(sp)
   LD s6, 48(sp)
   LD s8, 56(sp)
@@ -67,33 +67,32 @@ bb5:
   ADDI s5, zero, 99
   SLT s6, s5, s4
   BNE s6, zero, bb7
-  JAL zero, bb11
+  JAL zero, bb12
 bb6:
-  ADD s6, s8, zero
+  ADD s7, s8, zero
   ADD s10, s9, zero
   ADD s0, s10, zero
-  ADD s1, s6, zero
+  ADD s1, s7, zero
   JAL zero, bb2
 bb7:
-  ADD s5, s4, zero
-  ADDI s5, zero, 168
   JAL zero, bb9
 bb8:
-  ADD s6, s7, zero
+  ADD s7, s6, zero
   ADD s8, s5, zero
   ADD s9, s8, zero
-  ADD s8, s6, zero
+  ADD s8, s7, zero
   JAL zero, bb6
 bb9:
-  ADD s6, s5, zero
-  ADDI s5, zero, 84
-  ADD s7, s6, zero
-  JAL zero, bb8
+  JAL zero, bb10
 bb10:
+  ADDI s5, zero, 84
+  ADDI s6, zero, 168
+  JAL zero, bb8
+bb11:
   ADD s9, s3, zero
   ADD s8, s2, zero
   JAL zero, bb6
-bb11:
+bb12:
   ADD s5, s3, zero
-  ADD s7, s4, zero
+  ADD s6, s4, zero
   JAL zero, bb8

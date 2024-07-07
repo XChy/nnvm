@@ -137,7 +137,7 @@ entry:
   store i32 %2 to ptr @sum
   br bb %while.cond
 while.cond:
-  i.phi = phi [bb %entry, i32 1, bb %if.exit, i32 %25]
+  i.phi = phi [bb %entry, i32 1, bb %else, i32 %25]
   n.load = load i32 from ptr @n
   9 = icmp sle i32 %i.phi, i32 %n.load
   br i1 %9, bb %while.body, bb %while.exit
@@ -154,12 +154,10 @@ while.exit:
 then:
   call void putch(i32 10)
   ret 
-if.exit:
-  25 = add i32 %i.phi, i32 1
-  br bb %while.cond
 else:
   call void putch(i32 32)
-  br bb %if.exit
+  25 = add i32 %i.phi, i32 1
+  br bb %while.cond
 }
 
 

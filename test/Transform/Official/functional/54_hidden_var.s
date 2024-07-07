@@ -25,8 +25,6 @@ main:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  JAL zero, bb1
-bb1:
   ADDI a0, zero, 1
   CALL putint
   ADDI a0, zero, 10
@@ -74,9 +72,9 @@ bb1:
   LW s0, 0(s1)
   XOR s2, s0, zero
   SLTU s0, zero, s2
-  BNE s0, zero, bb2
-  JAL zero, bb3
-bb2:
+  BNE s0, zero, bb1
+  JAL zero, bb2
+bb1:
   ADDI t6, sp, 0
   ADD s0, t6, zero
   SW zero, 0(s0)
@@ -108,8 +106,8 @@ bb2:
   ADDI s3, zero, 8
   SW s3, 0(s2)
   ADDI s2, zero, 22
-  JAL zero, bb4
-bb3:
+  JAL zero, bb3
+bb2:
   ADDI a0, zero, 10
   CALL putch
   LA s0, b
@@ -148,13 +146,13 @@ bb3:
   LD s0, 256(sp)
   ADDI sp, sp, 272
   JALR zero, 0(ra)
-bb4:
+bb3:
   ADD s3, s2, zero
   XOR s4, s3, zero
   SLTU s5, zero, s4
-  BNE s5, zero, bb5
-  JAL zero, bb6
-bb5:
+  BNE s5, zero, bb4
+  JAL zero, bb5
+bb4:
   ADDI s4, zero, 1
   SUBW s5, s3, s4
   ADDI s3, zero, 4
@@ -164,8 +162,8 @@ bb5:
   ADD s4, t5, s3
   SW zero, 0(s4)
   ADD s2, s5, zero
-  JAL zero, bb4
-bb6:
+  JAL zero, bb3
+bb5:
   ADD s2, s0, zero
   ADD s0, s2, zero
   LW s3, 0(s0)
@@ -179,4 +177,4 @@ bb6:
   LW s2, 0(s0)
   ADD a0, s2, zero
   CALL putint
-  JAL zero, bb3
+  JAL zero, bb2

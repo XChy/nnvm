@@ -4,10 +4,11 @@ external i32 getch()
 
 i32 ififElse() {
 entry:
-  br bb %if.exit10
+  br bb %then9
 if.exit:
-  a.phi18 = phi [bb %entry, i32 5, bb %if.exit10, i32 25]
-  ret i32 %a.phi18
+  ret i32 25
+then9:
+  br bb %if.exit10
 if.exit10:
   br bb %if.exit
 }

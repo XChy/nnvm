@@ -2,20 +2,15 @@ global ptr k init with i32 0
 i32 main() {
 entry:
   store i32 3389 to ptr @k
-  br bb %then
-then:
   k.load5 = load i32 from ptr @k
   6 = add i32 %k.load5, i32 1
   store i32 %6 to ptr @k
   br bb %while.cond
-if.exit:
-  k.load33 = load i32 from ptr @k
-  ret i32 %k.load33
 while.cond:
-  g25.phi44 = phi [bb %then, i32 ub, bb %if.exit19, i32 %g25.phi]
-  l.phi41 = phi [bb %then, i32 ub, bb %if.exit19, i32 %l.phi]
-  k.phi38 = phi [bb %then, i32 112, bb %if.exit19, i32 %k.phi]
-  g.phi35 = phi [bb %then, i32 ub, bb %if.exit19, i32 %g.phi]
+  g25.phi44 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g25.phi]
+  l.phi41 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %l.phi]
+  k.phi38 = phi [bb %entry, i32 112, bb %if.exit19, i32 %k.phi]
+  g.phi35 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g.phi]
   12 = icmp sgt i32 %k.phi38, i32 10
   br i1 %12, bb %while.body, bb %while.exit
 while.body:
@@ -24,7 +19,8 @@ while.body:
   br i1 %17, bb %then18, bb %if.exit19
 while.exit:
   call void putint(i32 %k.phi38)
-  br bb %if.exit
+  k.load33 = load i32 from ptr @k
+  ret i32 %k.load33
 then18:
   24 = sub i32 %15, i32 10
   47 = add i32 %24, i32 22

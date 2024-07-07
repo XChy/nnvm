@@ -246,8 +246,6 @@ read_str:
   JAL zero, bb13
 bb13:
   ADD s2, s1, zero
-  JAL zero, bb14
-bb14:
   ADDI s3, zero, 4
   MULW s4, s2, s3
   ADD s3, s0, s4
@@ -257,9 +255,9 @@ bb14:
   LW s4, 0(s3)
   XORI s5, s4, 10
   SLTIU s4, s5, 1
-  BNE s4, zero, bb16
-  JAL zero, bb17
-bb15:
+  BNE s4, zero, bb14
+  JAL zero, bb15
+bb14:
   SW zero, 0(s3)
   ADD a0, s2, zero
   LD ra, 0(sp)
@@ -271,9 +269,7 @@ bb15:
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb16:
-  JAL zero, bb15
-bb17:
+bb15:
   ADDIW s3, s2, 1
   ADD s1, s3, zero
   JAL zero, bb13
@@ -346,8 +342,8 @@ get_next:
   SW s3, 0(s2)
   ADD s2, zero, zero
   ADDI s3, zero, -1
-  JAL zero, bb20
-bb20:
+  JAL zero, bb18
+bb18:
   ADD s4, s3, zero
   ADD s5, s2, zero
   ADDI s6, zero, 4
@@ -356,14 +352,14 @@ bb20:
   LW s7, 0(s6)
   XOR s8, s7, zero
   SLTU s7, zero, s8
-  BNE s7, zero, bb21
-  JAL zero, bb22
-bb21:
+  BNE s7, zero, bb19
+  JAL zero, bb20
+bb19:
   XORI s7, s4, -1
   SLTIU s8, s7, 1
-  BNE s8, zero, bb23
-  JAL zero, bb24
-bb22:
+  BNE s8, zero, bb21
+  JAL zero, bb22
+bb20:
   LD s11, 0(sp)
   LD s10, 8(sp)
   LD s9, 16(sp)
@@ -379,10 +375,10 @@ bb22:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb23:
+bb21:
   ADDI s7, zero, 1
-  JAL zero, bb25
-bb24:
+  JAL zero, bb23
+bb22:
   LW s2, 0(s6)
   ADDI s3, zero, 4
   MULW s6, s4, s3
@@ -391,12 +387,12 @@ bb24:
   XOR s3, s2, s6
   SLTIU s2, s3, 1
   ADD s7, s2, zero
-  JAL zero, bb25
-bb25:
+  JAL zero, bb23
+bb23:
   ADD s8, s7, zero
-  BNE s8, zero, bb26
-  JAL zero, bb28
-bb26:
+  BNE s8, zero, bb24
+  JAL zero, bb26
+bb24:
   ADDIW s8, s4, 1
   ADDIW s9, s5, 1
   ADDI s10, zero, 4
@@ -405,18 +401,18 @@ bb26:
   SW s8, 0(s10)
   ADD s10, s9, zero
   ADD s9, s8, zero
-  JAL zero, bb27
-bb27:
+  JAL zero, bb25
+bb25:
   ADD s8, s9, zero
   ADD s11, s10, zero
   ADD s2, s11, zero
   ADD s3, s8, zero
-  JAL zero, bb20
-bb28:
+  JAL zero, bb18
+bb26:
   ADDI s2, zero, 4
   MULW s3, s4, s2
   ADD s2, s1, s3
   LW s3, 0(s2)
   ADD s10, s5, zero
   ADD s9, s3, zero
-  JAL zero, bb27
+  JAL zero, bb25

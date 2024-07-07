@@ -70,6 +70,7 @@ LIRBB *riscv::getBranchDest(LIRInst *inst) {
   case (B_BEGIN + 1)...(B_END - 1):
     return inst->getOp(2)->as<LIRBB>();
   default:
+    std::cerr << "Invalid opcode" << inst->getOpcode() << "\n";
     nnvm_unreachable("Must be a valid branch instruction")
   }
 }
@@ -83,6 +84,7 @@ void riscv::setBranchDest(LIRInst *inst, LIRBB *dest) {
     inst->setUse(2, dest);
     break;
   default:
+    std::cerr << "Invalid opcode" << inst->getOpcode() << "\n";
     nnvm_unreachable("Must be a valid branch instruction")
   }
 }

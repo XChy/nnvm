@@ -63,8 +63,6 @@ entry102:
   br bb %while.cond104
 while.cond104:
   i103.phi = phi [bb %entry102, i32 0, bb %if.exit118, i32 %120]
-  br bb %while.body105
-while.body105:
   109 = mul i32 %i103.phi, i32 4
   110 = ptradd ptr %buf, i32 %109
   111 = call i32 getch()
@@ -72,11 +70,9 @@ while.body105:
   114.load = load i32 from ptr %110
   116 = icmp eq i32 %114.load, i32 10
   br i1 %116, bb %then117, bb %if.exit118
-while.exit106:
+then117:
   store i32 0 to ptr %110
   ret i32 %i103.phi
-then117:
-  br bb %while.exit106
 if.exit118:
   120 = add i32 %i103.phi, i32 1
   br bb %while.cond104

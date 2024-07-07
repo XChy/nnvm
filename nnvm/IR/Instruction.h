@@ -119,6 +119,7 @@ public:
   const Metadata *getMetadata() const { return metadata; }
   Metadata *getMetadata() { return metadata; }
 
+  void removeFromBB() { ListTrait<Instruction>::removeFromList(); }
   void eraseFromBB() {
     for (Use *use : useeList)
       use->eraseFromList();

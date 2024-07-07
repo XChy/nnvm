@@ -9,8 +9,6 @@ entry246:
   br bb %while.cond250
 while.cond250:
   flow.phi = phi [bb %entry246, i32 0, bb %if.exit263, i32 %267]
-  br bb %while.body251
-while.body251:
   call void my_memset(ptr @used, i32 0, i32 10)
   INF.load = load i32 from ptr @INF
   259 = call i32 dfs(i32 %s, i32 %t, i32 %INF.load)

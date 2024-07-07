@@ -82,53 +82,45 @@ my_getint:
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
-  SD s7, 24(sp)
-  SD s2, 32(sp)
-  SD s6, 40(sp)
-  SD s1, 48(sp)
+  SD s2, 24(sp)
+  SD s6, 32(sp)
+  SD s1, 40(sp)
+  SD s7, 48(sp)
   SD s5, 56(sp)
   SD s0, 64(sp)
-  ADD s0, zero, zero
   JAL zero, bb8
 bb8:
-  ADD s1, s0, zero
+  CALL getch
+  ADD s0, a0, zero
+  LA s1, ascii_0
+  LW s2, 0(s1)
+  SUBW s1, s0, s2
+  SLT s0, s1, zero
+  BNE s0, zero, bb10
+  JAL zero, bb11
+bb9:
+  ADD s3, s2, zero
+  ADD s2, s3, zero
+  JAL zero, bb15
+bb10:
+  ADDI s0, zero, 1
+  JAL zero, bb12
+bb11:
+  ADDI s2, zero, 9
+  SLT s3, s2, s1
+  ADD s0, s3, zero
+  JAL zero, bb12
+bb12:
+  ADD s2, s0, zero
+  BNE s2, zero, bb13
+  JAL zero, bb14
+bb13:
+  JAL zero, bb8
+bb14:
   ADD s2, s1, zero
   JAL zero, bb9
-bb9:
-  CALL getch
-  ADD s1, a0, zero
-  LA s3, ascii_0
-  LW s4, 0(s3)
-  SUBW s3, s1, s4
-  SLT s1, s3, zero
-  BNE s1, zero, bb11
-  JAL zero, bb12
-bb10:
-  ADD s0, s2, zero
-  ADD s2, s0, zero
-  JAL zero, bb16
-bb11:
-  ADDI s1, zero, 1
-  JAL zero, bb13
-bb12:
-  ADDI s0, zero, 9
-  SLT s2, s0, s3
-  ADD s1, s2, zero
-  JAL zero, bb13
-bb13:
-  ADD s4, s1, zero
-  BNE s4, zero, bb14
-  JAL zero, bb15
-bb14:
-  ADD s0, s3, zero
-  JAL zero, bb8
 bb15:
-  ADD s2, s3, zero
-  JAL zero, bb10
-bb16:
-  ADD s0, s2, zero
-  JAL zero, bb17
-bb17:
+  ADD s3, s2, zero
   CALL getch
   ADD s4, a0, zero
   LA s5, ascii_0
@@ -136,42 +128,44 @@ bb17:
   SUBW s5, s4, s6
   SLT s4, s5, zero
   XORI s6, s4, 1
-  BNE s6, zero, bb19
-  JAL zero, bb20
-bb18:
-  ADD a0, s0, zero
+  BNE s6, zero, bb17
+  JAL zero, bb18
+bb16:
+  ADD a0, s3, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)
-  LD s7, 24(sp)
-  LD s2, 32(sp)
-  LD s6, 40(sp)
-  LD s1, 48(sp)
+  LD s2, 24(sp)
+  LD s6, 32(sp)
+  LD s1, 40(sp)
+  LD s7, 48(sp)
   LD s5, 56(sp)
   LD s0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb19:
+bb17:
   ADDI s4, zero, 9
   SLT s6, s4, s5
   XORI s4, s6, 1
   ADD s6, s4, zero
-  JAL zero, bb21
-bb20:
+  JAL zero, bb19
+bb18:
   ADD s6, zero, zero
+  JAL zero, bb19
+bb19:
+  ADD s4, s6, zero
+  BNE s4, zero, bb20
+  JAL zero, bb22
+bb20:
+  ADDI s4, zero, 10
+  MULW s7, s3, s4
+  ADDW s4, s7, s5
   JAL zero, bb21
 bb21:
-  ADD s4, s6, zero
-  BNE s4, zero, bb22
-  JAL zero, bb23
-bb22:
-  ADDI s4, zero, 10
-  MULW s7, s0, s4
-  ADDW s4, s7, s5
   ADD s2, s4, zero
+  JAL zero, bb15
+bb22:
   JAL zero, bb16
-bb23:
-  JAL zero, bb18
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -182,13 +176,13 @@ main:
   CALL my_getint
   ADD s0, a0, zero
   ADD s1, s0, zero
-  JAL zero, bb25
-bb25:
+  JAL zero, bb24
+bb24:
   ADD s0, s1, zero
   SLT s2, zero, s0
-  BNE s2, zero, bb26
-  JAL zero, bb27
-bb26:
+  BNE s2, zero, bb25
+  JAL zero, bb26
+bb25:
   CALL my_getint
   ADD s2, a0, zero
   ADD a0, s2, zero
@@ -198,8 +192,8 @@ bb26:
   ADDI s2, zero, 1
   SUBW s3, s0, s2
   ADD s1, s3, zero
-  JAL zero, bb25
-bb27:
+  JAL zero, bb24
+bb26:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s3, 8(sp)

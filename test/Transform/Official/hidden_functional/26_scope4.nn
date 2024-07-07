@@ -24,14 +24,10 @@ entry4:
   sum.load10 = load i32 from ptr @sum
   12 = add i32 %sum.load10, i32 %9
   store i32 %12 to ptr @sum
-  br bb %then
-then:
   17 = call i32 getA()
   sum.load18 = load i32 from ptr @sum
   20 = add i32 %sum.load18, i32 %17
   store i32 %20 to ptr @sum
-  br bb %if.exit
-if.exit:
   sum.load21 = load i32 from ptr @sum
   23 = add i32 %sum.load21, i32 %9
   store i32 %23 to ptr @sum
@@ -93,32 +89,28 @@ entry51:
   call void f1(i32 %57)
   call void f2()
   call void f3()
+  br bb %while.body100
+while.body100:
   br bb %while.cond104
-while.exit:
-  sum.load142 = load i32 from ptr @sum
-  call void putint(i32 %sum.load142)
-  ret i32 0
 while.cond104:
-  a127.phi = phi [bb %entry51, i32 ub, bb %if.exit125, i32 %a127.phi, bb %then124, i32 %128]
-  i.phi = phi [bb %entry51, i32 0, bb %if.exit125, i32 %141, bb %then124, i32 %134]
-  a56.phi = phi [bb %entry51, i32 %57, bb %if.exit125, i32 %139, bb %then124, i32 %a56.phi148]
+  a127.phi = phi [bb %while.body100, i32 ub, bb %else, i32 %a127.phi, bb %then124, i32 %128]
+  i.phi = phi [bb %while.body100, i32 0, bb %else, i32 %141, bb %then124, i32 %134]
+  a56.phi = phi [bb %while.body100, i32 %57, bb %else, i32 %139, bb %then124, i32 %a56.phi148]
   108 = icmp slt i32 %i.phi, i32 3
   br i1 %108, bb %while.body105, bb %while.exit106
 while.body105:
   br bb %while.cond110
 while.exit106:
-  br bb %while.exit
+  sum.load142 = load i32 from ptr @sum
+  call void putint(i32 %sum.load142)
+  ret i32 0
 while.cond110:
   a56.phi148 = phi [bb %while.body105, i32 %a56.phi]
-  br bb %then115
-while.exit112:
-  123 = icmp eq i32 %i.phi, i32 1
-  br i1 %123, bb %then124, bb %else
-then115:
   call void f1(i32 %a56.phi148)
   call void f2()
   call void f3()
-  br bb %while.exit112
+  123 = icmp eq i32 %i.phi, i32 1
+  br i1 %123, bb %then124, bb %else
 then124:
   128 = call i32 getA()
   call void f1(i32 %128)
@@ -126,15 +118,13 @@ then124:
   call void f3()
   134 = add i32 %i.phi, i32 1
   br bb %while.cond104
-if.exit125:
-  139 = call i32 getA()
-  141 = add i32 %i.phi, i32 1
-  br bb %while.cond104
 else:
   call void f1(i32 %a56.phi148)
   call void f2()
   call void f3()
-  br bb %if.exit125
+  139 = call i32 getA()
+  141 = add i32 %i.phi, i32 1
+  br bb %while.cond104
 }
 
 external float getfloat()

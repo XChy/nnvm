@@ -151,7 +151,7 @@ bb12:
 bb13:
   ADD s6, s7, zero
   BNE s6, zero, bb14
-  JAL zero, bb18
+  JAL zero, bb19
 bb14:
   ADDIW s6, s5, 1
   ADD s8, s6, zero
@@ -168,7 +168,7 @@ bb15:
   LW s11, 0(s9)
   SLT s9, s11, s10
   BNE s9, zero, bb16
-  JAL zero, bb17
+  JAL zero, bb18
 bb16:
   ADD a0, zero, zero
   LD s11, 0(sp)
@@ -187,6 +187,10 @@ bb16:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb17:
+  ADD s4, s9, zero
+  ADD s3, s6, zero
+  JAL zero, bb8
+bb18:
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s6, zero
@@ -195,10 +199,8 @@ bb17:
   ADDI s9, zero, 2
   MULW s10, s6, s9
   ADDIW s9, s10, 1
-  ADD s4, s9, zero
-  ADD s3, s6, zero
-  JAL zero, bb8
-bb18:
+  JAL zero, bb17
+bb19:
   ADD s8, s5, zero
   JAL zero, bb15
 main:
@@ -249,15 +251,15 @@ main:
   CALL heap_sort
   ADD s0, a0, zero
   ADD s1, s0, zero
-  JAL zero, bb20
-bb20:
+  JAL zero, bb21
+bb21:
   ADD s0, s1, zero
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s0, s3
-  BNE s2, zero, bb21
-  JAL zero, bb22
-bb21:
+  BNE s2, zero, bb22
+  JAL zero, bb23
+bb22:
   ADDI s2, zero, 4
   MULW s3, s0, s2
   ADDI t6, sp, 0
@@ -269,8 +271,8 @@ bb21:
   CALL putch
   ADDIW s2, s0, 1
   ADD s1, s2, zero
-  JAL zero, bb20
-bb22:
+  JAL zero, bb21
+bb23:
   ADD a0, zero, zero
   LD ra, 40(sp)
   LD s3, 48(sp)

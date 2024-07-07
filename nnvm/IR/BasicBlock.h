@@ -112,7 +112,10 @@ public:
     ListTrait<BasicBlock>::eraseFromList();
   }
 
+  bool containsPhi() { return dyn_cast<PhiInst>(*begin()); }
+
   const List<Instruction> &getInsts() const { return instList; }
+  List<Instruction> &getInsts() { return instList; }
 
   ~BasicBlock();
 

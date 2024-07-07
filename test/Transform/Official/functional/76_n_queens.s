@@ -242,7 +242,7 @@ bb20:
   XOR s2, s1, s3
   SLTIU s3, s2, 1
   BNE s3, zero, bb22
-  JAL zero, bb24
+  JAL zero, bb23
 bb21:
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -264,10 +264,8 @@ bb22:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb23:
+  ADDI a0, zero, 32
+  CALL putch
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb19
-bb24:
-  ADDI a0, zero, 32
-  CALL putch
-  JAL zero, bb23

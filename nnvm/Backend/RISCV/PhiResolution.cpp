@@ -29,10 +29,14 @@ void PhiResolution::processBB(LIRBB *BB) {
   for (uint64_t i = 1; i < firstPhi->getNumOp(); i += 2) {
     LIRBB *incomingBB = firstPhi->getOp(i)->as<LIRBB>();
     if (incomingBB->getSuccNum() == 2) {
-      int succIndex;
-      for (succIndex = 0; succIndex < incomingBB->getSuccNum(); succIndex++)
-        if (incomingBB->getSucc(succIndex) == BB)
+      int succIndex = -1;
+      for (int index = 0; index < incomingBB->getSuccNum(); index++)
+        if (incomingBB->getSucc(index) == BB) {
+          succIndex = index;
           break;
+        }
+
+      assert(succIndex != -1);
 
       LIRBB *splittedBB = new LIRBB;
       incomingBB->setSucc(succIndex, splittedBB);

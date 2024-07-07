@@ -112,8 +112,6 @@ then77:
   call void putch(i32 65)
   br bb %if.exit78
 if.exit78:
-  br bb %if.exit85
-if.exit85:
   89 = zext i1 1 to i32
   90 = icmp ne i32 %89, i32 1
   br i1 %90, bb %then91, bb %if.exit92
@@ -148,14 +146,18 @@ if.exit113:
   call void putch(i32 10)
   br bb %while.cond
 while.cond:
-  br bb %select.exit128
+  br bb %select.else127
 while.body:
   call void putch(i32 32)
   br bb %while.cond
 while.exit:
-  br bb %select.exit139
+  br bb %select.else138
+select.else127:
+  br bb %select.exit128
 select.exit128:
   br i1 0, bb %while.body, bb %while.exit
+select.else138:
+  br bb %select.exit139
 select.exit139:
   br i1 1, bb %then145, bb %if.exit146
 then145:
@@ -216,10 +218,12 @@ if.exit201:
 select.then209:
   br bb %select.exit211
 select.else210:
-  br bb %select.exit218
+  br bb %select.else217
 select.exit211:
   select212.phi = phi [bb %select.exit218, i1 0, bb %select.then209, i1 1]
   br i1 %select212.phi, bb %then226, bb %if.exit227
+select.else217:
+  br bb %select.exit218
 select.exit218:
   br bb %select.exit211
 then226:

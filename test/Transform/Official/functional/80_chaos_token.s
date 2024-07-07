@@ -32,17 +32,15 @@ main:
   JAL zero, bb1
 bb1:
   ADD s1, s0, zero
-  JAL zero, bb2
-bb2:
   ADDI s2, zero, 6
   DIVW s3, s1, s2
   ADDI s2, zero, 6
   REMW s4, s1, s2
   XOR s2, s3, s4
   SLTU s5, zero, s2
-  BNE s5, zero, bb4
-  JAL zero, bb5
-bb3:
+  BNE s5, zero, bb3
+  JAL zero, bb4
+bb2:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -53,7 +51,7 @@ bb3:
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb4:
+bb3:
   ADDI s2, zero, 200
   MULW s5, s3, s2
   LA s2, N4__mE___
@@ -76,8 +74,8 @@ bb4:
   ADD a0, s2, zero
   CALL putstr
   ADD s2, a0, zero
-  JAL zero, bb5
-bb5:
+  JAL zero, bb4
+bb4:
   ADDI s2, zero, 17
   MULW s3, s1, s2
   ADDIW s1, s3, 23
@@ -85,11 +83,11 @@ bb5:
   REMW s3, s1, s2
   XOR s1, s3, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb6
-  JAL zero, bb7
+  BNE s2, zero, bb5
+  JAL zero, bb6
+bb5:
+  JAL zero, bb2
 bb6:
-  JAL zero, bb3
-bb7:
   ADD s0, s3, zero
   JAL zero, bb1
 putstr:
@@ -103,8 +101,8 @@ putstr:
   SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
-  JAL zero, bb9
-bb9:
+  JAL zero, bb8
+bb8:
   ADD s2, s1, zero
   ADDI s3, zero, 4
   MULW s4, s2, s3
@@ -112,16 +110,16 @@ bb9:
   LW s4, 0(s3)
   XOR s5, s4, zero
   SLTU s4, zero, s5
-  BNE s4, zero, bb10
-  JAL zero, bb11
-bb10:
+  BNE s4, zero, bb9
+  JAL zero, bb10
+bb9:
   LW s4, 0(s3)
   ADD a0, s4, zero
   CALL putch
   ADDIW s3, s2, 1
   ADD s1, s3, zero
-  JAL zero, bb9
-bb11:
+  JAL zero, bb8
+bb10:
   ADD a0, s2, zero
   LD ra, 0(sp)
   LD s4, 8(sp)

@@ -18,8 +18,6 @@ entry18:
   br bb %while.cond21
 while.cond21:
   i.phi55 = phi [bb %entry18, i32 0, bb %if.exit53, i32 %49]
-  br bb %while.body22
-while.body22:
   27 = sdiv i32 %i.phi55, i32 6
   30 = srem i32 %i.phi55, i32 6
   33 = icmp ne i32 %27, i32 %30

@@ -2,6 +2,8 @@ external i32 getint()
 
 i32 ifElseIf() {
 entry:
+  br bb %select.else
+select.else:
   br bb %select.exit
 select.exit:
   br i1 0, bb %then, bb %else
@@ -10,6 +12,8 @@ then:
 if.exit:
   ret i32 %a.phi51
 else:
+  br bb %select.then19
+select.then19:
   br bb %select.exit21
 select.exit21:
   br i1 0, bb %then26, bb %else28
@@ -19,6 +23,8 @@ if.exit27:
   a.phi51 = phi [bb %if.exit40, i32 %a.phi, bb %then26, i32 25]
   br bb %if.exit
 else28:
+  br bb %select.then31
+select.then31:
   br bb %select.exit33
 select.exit33:
   br i1 0, bb %then39, bb %else41

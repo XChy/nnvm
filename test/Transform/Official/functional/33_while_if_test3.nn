@@ -51,13 +51,14 @@ if.exit:
   c.phi41 = phi [bb %while.body, i32 %c.phi42, bb %if.exit24, i32 %c.phi40]
   br bb %while.cond
 then23:
-  br bb %if.exit30
+  br bb %then29
 if.exit24:
   e.phi = phi [bb %then, i32 %e.phi46, bb %if.exit30, i32 84]
-  c.phi40 = phi [bb %then, i32 %20, bb %if.exit30, i32 %c.phi]
+  c.phi40 = phi [bb %then, i32 %20, bb %if.exit30, i32 168]
   br bb %if.exit
+then29:
+  br bb %if.exit30
 if.exit30:
-  c.phi = phi [bb %then23, i32 %20, bb %then23, i32 168]
   br bb %if.exit24
 }
 

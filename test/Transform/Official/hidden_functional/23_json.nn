@@ -149,6 +149,8 @@ if.exit190:
   br bb %if.exit180
 then196:
   ret i32 0
+if.exit197:
+  br bb %while.cond207
 else198:
   pos.load199 = load i32 from ptr @pos
   200 = mul i32 %pos.load199, i32 4
@@ -160,7 +162,7 @@ else198:
 then205:
   ret i32 0
 if.exit206:
-  br bb %while.cond207
+  br bb %if.exit197
 while.cond207:
   pos.load210 = load i32 from ptr @pos
   212 = icmp slt i32 %pos.load210, i32 %len
@@ -343,11 +345,6 @@ else342:
   br bb %if.exit341
 then350:
   ret i32 0
-if.exit351:
-  pos.load360 = load i32 from ptr @pos
-  361 = add i32 %pos.load360, i32 1
-  store i32 %361 to ptr @pos
-  br bb %if.exit317
 else352:
   pos.load353 = load i32 from ptr @pos
   354 = mul i32 %pos.load353, i32 4
@@ -358,7 +355,10 @@ else352:
 then358:
   ret i32 0
 if.exit359:
-  br bb %if.exit351
+  pos.load360 = load i32 from ptr @pos
+  361 = add i32 %pos.load360, i32 1
+  store i32 %361 to ptr @pos
+  br bb %if.exit317
 then364:
   pos.load367 = load i32 from ptr @pos
   368 = add i32 %pos.load367, i32 1
@@ -551,11 +551,6 @@ if.exit521:
   br bb %while.cond481
 then529:
   ret i32 0
-if.exit530:
-  pos.load539 = load i32 from ptr @pos
-  540 = add i32 %pos.load539, i32 1
-  store i32 %540 to ptr @pos
-  br bb %if.exit431
 else531:
   pos.load532 = load i32 from ptr @pos
   533 = mul i32 %pos.load532, i32 4
@@ -566,7 +561,10 @@ else531:
 then537:
   ret i32 0
 if.exit538:
-  br bb %if.exit530
+  pos.load539 = load i32 from ptr @pos
+  540 = add i32 %pos.load539, i32 1
+  store i32 %540 to ptr @pos
+  br bb %if.exit431
 then543:
   arr.index = ptradd ptr %mTrue, i32 0
   store i32 116 to ptr %arr.index
@@ -587,11 +585,6 @@ else545:
   br i1 %607, bb %then608, bb %else610
 then555:
   ret i32 0
-if.exit556:
-  pos.load604 = load i32 from ptr @pos
-  605 = add i32 %pos.load604, i32 4
-  store i32 %605 to ptr @pos
-  br bb %if.exit544
 else557:
   pos.load558 = load i32 from ptr @pos
   559 = mul i32 %pos.load558, i32 4
@@ -636,7 +629,10 @@ else592:
 then602:
   ret i32 0
 if.exit603:
-  br bb %if.exit556
+  pos.load604 = load i32 from ptr @pos
+  605 = add i32 %pos.load604, i32 4
+  store i32 %605 to ptr @pos
+  br bb %if.exit544
 then608:
   arr.index612 = ptradd ptr %mFalse, i32 0
   store i32 102 to ptr %arr.index612
@@ -659,11 +655,6 @@ else610:
   br i1 %685, bb %then686, bb %else688
 then621:
   ret i32 0
-if.exit622:
-  pos.load682 = load i32 from ptr @pos
-  683 = add i32 %pos.load682, i32 5
-  store i32 %683 to ptr @pos
-  br bb %if.exit609
 else623:
   pos.load624 = load i32 from ptr @pos
   625 = mul i32 %pos.load624, i32 4
@@ -719,7 +710,10 @@ else670:
 then680:
   ret i32 0
 if.exit681:
-  br bb %if.exit622
+  pos.load682 = load i32 from ptr @pos
+  683 = add i32 %pos.load682, i32 5
+  store i32 %683 to ptr @pos
+  br bb %if.exit609
 then686:
   arr.index690 = ptradd ptr %mNull, i32 0
   store i32 110 to ptr %arr.index690
@@ -737,11 +731,6 @@ else688:
   ret i32 0
 then698:
   ret i32 0
-if.exit699:
-  pos.load747 = load i32 from ptr @pos
-  748 = add i32 %pos.load747, i32 4
-  store i32 %748 to ptr @pos
-  br bb %if.exit609
 else700:
   pos.load701 = load i32 from ptr @pos
   702 = mul i32 %pos.load701, i32 4
@@ -786,7 +775,10 @@ else735:
 then745:
   ret i32 0
 if.exit746:
-  br bb %if.exit699
+  pos.load747 = load i32 from ptr @pos
+  748 = add i32 %pos.load747, i32 4
+  store i32 %748 to ptr @pos
+  br bb %if.exit609
 }
 
 external i32 getint()
@@ -855,8 +847,6 @@ void skip_space(ptr buf, i32 len) {
 entry12:
   br bb %while.cond
 while.cond:
-  br bb %while.body
-while.body:
   pos.load = load i32 from ptr @pos
   20 = icmp sge i32 %pos.load, i32 %len
   br i1 %20, bb %then21, bb %if.exit22

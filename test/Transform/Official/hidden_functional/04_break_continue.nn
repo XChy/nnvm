@@ -29,11 +29,11 @@ while.exit12:
   86 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.cond17:
-  n.phi112 = phi [bb %while.body11, i32 %n.phi113, bb %while.exit75, i32 %n.phi111]
-  m.phi107 = phi [bb %while.body11, i32 %m.phi108, bb %while.exit75, i32 %m.phi]
-  sum.phi103 = phi [bb %while.body11, i32 %sum.phi104, bb %while.exit75, i32 %sum.phi]
-  select.phi97 = phi [bb %while.body11, i1 %select.phi98, bb %while.exit75, i1 %select.phi96]
-  k.phi = phi [bb %while.body11, i32 0, bb %while.exit75, i32 %82]
+  n.phi112 = phi [bb %while.body11, i32 %n.phi113, bb %while.exit26, i32 %n.phi111]
+  m.phi107 = phi [bb %while.body11, i32 %m.phi108, bb %while.exit26, i32 %m.phi]
+  sum.phi103 = phi [bb %while.body11, i32 %sum.phi104, bb %while.exit26, i32 %sum.phi]
+  select.phi97 = phi [bb %while.body11, i1 %select.phi98, bb %while.exit26, i1 %select.phi96]
+  k.phi = phi [bb %while.body11, i32 0, bb %while.exit26, i32 %82]
   21 = icmp slt i32 %k.phi, i32 5
   br i1 %21, bb %while.body18, bb %while.exit19
 while.body18:
@@ -54,7 +54,8 @@ while.body25:
   br i1 %32, bb %then, bb %if.exit
 while.exit26:
   select.phi96 = phi [bb %while.cond24, i1 %select.phi101, bb %then58, i1 %select.phi]
-  br bb %while.exit75
+  82 = add i32 %k.phi, i32 1
+  br bb %while.cond17
 then:
   36 = icmp ne i32 %m.phi, i32 0
   br i1 %36, bb %then37, bb %if.exit38
@@ -96,9 +97,6 @@ while.body62:
 while.exit63:
   72 = add i32 %sum.phi, i32 1
   br bb %while.cond24
-while.exit75:
-  82 = add i32 %k.phi, i32 1
-  br bb %while.cond17
 }
 
 external void putfarray(i32 , ptr )

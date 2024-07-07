@@ -333,8 +333,6 @@ bb18:
   CALL error
   JAL zero, bb19
 bb19:
-  JAL zero, bb20
-bb20:
   LA s1, .CONSTANT.7.4
   FLW fs0, 0(s1)
   LA s1, .CONSTANT.7.2
@@ -342,15 +340,15 @@ bb20:
   FEQ.S s1, fs0, fs1
   XORI s2, s1, 1
   ADD s1, s2, zero
-  JAL zero, bb21
-bb21:
+  JAL zero, bb20
+bb20:
   ADD s2, s1, zero
-  BNE s2, zero, bb22
-  JAL zero, bb23
-bb22:
+  BNE s2, zero, bb21
+  JAL zero, bb22
+bb21:
   CALL ok
-  JAL zero, bb23
-bb23:
+  JAL zero, bb22
+bb22:
   ADDI s1, zero, 2
   FCVT.S.W fs0, s1
   ADDI t5, sp, 0
@@ -398,16 +396,16 @@ bb23:
   ADD s1, a0, zero
   ADD s2, zero, zero
   ADDI s3, zero, 1
-  JAL zero, bb24
-bb24:
+  JAL zero, bb23
+bb23:
   ADD s4, s3, zero
   ADD s5, s2, zero
   LA s6, MAX
   LW s7, 0(s6)
   SLT s6, s4, s7
-  BNE s6, zero, bb25
-  JAL zero, bb26
-bb25:
+  BNE s6, zero, bb24
+  JAL zero, bb25
+bb24:
   CALL getfloat
   FSGNJ.D fs0, fa0, fa0
   LA s6, PI
@@ -446,8 +444,8 @@ bb25:
   ADDIW s6, s5, 1
   ADD s2, s6, zero
   ADD s3, s4, zero
-  JAL zero, bb24
-bb26:
+  JAL zero, bb23
+bb25:
   ADD a0, s1, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
@@ -481,20 +479,20 @@ assert:
   ADD s0, s1, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb28
-  JAL zero, bb30
-bb28:
-  CALL error
+  BNE s0, zero, bb27
   JAL zero, bb29
-bb29:
+bb27:
+  CALL error
+  JAL zero, bb28
+bb28:
   LD ra, 0(sp)
   LD s1, 8(sp)
   LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb30:
+bb29:
   CALL ok
-  JAL zero, bb29
+  JAL zero, bb28
 float_abs:
   ADDI sp, sp, -32
   SD ra, 0(sp)
@@ -504,9 +502,9 @@ float_abs:
   FSGNJ.D fs0, fa0, fa0
   FCVT.S.L fs1, zero
   FLT.S s0, fs0, fs1
-  BNE s0, zero, bb32
-  JAL zero, bb33
-bb32:
+  BNE s0, zero, bb31
+  JAL zero, bb32
+bb31:
   FSGNJN.S fs1, fs0, fs0
   FSGNJ.S fa0, fs1, fs1
   LD ra, 0(sp)
@@ -515,7 +513,7 @@ bb32:
   FLD fs0, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb33:
+bb32:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   LD s0, 8(sp)
