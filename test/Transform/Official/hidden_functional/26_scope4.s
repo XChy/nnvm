@@ -196,8 +196,6 @@ bb8:
   ADD s4, s2, zero
   ADD s5, s1, zero
   SLTI s6, s4, 3
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb9
   JAL zero, bb10
 bb9:

@@ -7,8 +7,7 @@ while.cond:
   j.phi = phi [bb %entry, i32 7, bb %while.exit13, i32 %20]
   i.phi = phi [bb %entry, i32 5, bb %while.exit13, i32 %10]
   7 = icmp slt i32 %i.phi, i32 100
-  8 = icmp ne i1 %7, i1 0
-  br i1 %8, bb %while.body, bb %while.exit
+  br i1 %7, bb %while.body, bb %while.exit
 while.body:
   10 = add i32 %i.phi, i32 30
   br bb %while.cond11
@@ -17,8 +16,7 @@ while.exit:
 while.cond11:
   j.phi26 = phi [bb %while.body, i32 %j.phi, bb %while.body12, i32 %18]
   15 = icmp slt i32 %j.phi26, i32 100
-  16 = icmp ne i1 %15, i1 0
-  br i1 %16, bb %while.body12, bb %while.exit13
+  br i1 %15, bb %while.body12, bb %while.exit13
 while.body12:
   18 = add i32 %j.phi26, i32 6
   br bb %while.cond11

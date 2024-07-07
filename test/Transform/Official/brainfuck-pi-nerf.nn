@@ -12,8 +12,7 @@ while.cond284:
   i283.phi = phi [bb %entry282, i32 0, bb %while.body285, i32 %297]
   output_length.load288 = load i32 from ptr @output_length
   289 = icmp slt i32 %i283.phi, i32 %output_length.load288
-  290 = icmp ne i1 %289, i1 0
-  br i1 %290, bb %while.body285, bb %while.exit286
+  br i1 %289, bb %while.body285, bb %while.exit286
 while.body285:
   292 = mul i32 %i283.phi, i32 4
   293 = ptradd ptr @output, i32 %292
@@ -36,8 +35,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index120 = ptradd ptr %return_address, ptr %arr.index
+  arr.index120 = ptradd ptr %return_address, i32 %offset
   store i32 0 to ptr %arr.index120
   br bb %init.cond
 init.exit:
@@ -53,8 +51,7 @@ while.cond122:
   read_head.phi307 = phi [bb %init.exit, i32 0, bb %if.exit137, i32 %read_head.phi306]
   program_length.load126 = load i32 from ptr @program_length
   127 = icmp slt i32 %ip.phi315, i32 %program_length.load126
-  128 = icmp ne i1 %127, i1 0
-  br i1 %128, bb %while.body123, bb %while.exit124
+  br i1 %127, bb %while.body123, bb %while.exit124
 while.body123:
   131 = mul i32 %ip.phi315, i32 4
   132 = ptradd ptr @program, i32 %131
@@ -164,8 +161,7 @@ while.cond196:
   loop.phi346 = phi [bb %else188, i32 1, bb %if.exit219, i32 %loop.phi]
   ip.phi316 = phi [bb %else188, i32 %ip.phi315, bb %if.exit219, i32 %203]
   200 = icmp sgt i32 %loop.phi346, i32 0
-  201 = icmp ne i1 %200, i1 0
-  br i1 %201, bb %while.body197, bb %while.exit198
+  br i1 %200, bb %while.body197, bb %while.exit198
 while.body197:
   203 = add i32 %ip.phi316, i32 1
   205 = mul i32 %203, i32 4
@@ -278,8 +274,7 @@ entry67:
 while.cond70:
   get68.phi = phi [bb %entry67, i32 %69, bb %while.body71, i32 %80]
   74 = icmp ne i32 %get68.phi, i32 35
-  75 = icmp ne i1 %74, i1 0
-  br i1 %75, bb %while.body71, bb %while.exit72
+  br i1 %74, bb %while.body71, bb %while.exit72
 while.body71:
   program_length.load = load i32 from ptr @program_length
   77 = mul i32 %program_length.load, i32 4
@@ -305,8 +300,7 @@ while.cond92:
   i.phi = phi [bb %if.exit, i32 0, bb %while.body93, i32 %104]
   input_length.load = load i32 from ptr @input_length
   97 = icmp slt i32 %i.phi, i32 %input_length.load
-  98 = icmp ne i1 %97, i1 0
-  br i1 %98, bb %while.body93, bb %while.exit94
+  br i1 %97, bb %while.body93, bb %while.exit94
 while.body93:
   100 = mul i32 %i.phi, i32 4
   101 = ptradd ptr @input, i32 %100
@@ -412,8 +406,7 @@ select.else58:
   br bb %select.exit59
 select.exit59:
   select60.phi = phi [bb %select.else58, i1 0, bb %select.then57, i1 %62]
-  64 = icmp ne i1 %select60.phi, i1 0
-  br i1 %64, bb %while.body, bb %while.exit
+  br i1 %select60.phi, bb %while.body, bb %while.exit
 }
 
 external void putarray(i32 , ptr )

@@ -32,8 +32,7 @@ while.cond:
   width.load = load i32 from ptr @width
   23 = sub i32 %width.load, i32 1
   24 = icmp slt i32 %j.phi255, i32 %23
-  25 = icmp ne i1 %24, i1 0
-  br i1 %25, bb %while.body, bb %while.exit
+  br i1 %24, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond26
 while.exit:
@@ -53,8 +52,7 @@ while.cond26:
   height.load = load i32 from ptr @height
   31 = sub i32 %height.load, i32 1
   32 = icmp slt i32 %i.phi236, i32 %31
-  33 = icmp ne i1 %32, i1 0
-  br i1 %33, bb %while.body27, bb %while.exit28
+  br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
   36 = sub i32 %i.phi236, i32 1
   width.load37 = load i32 from ptr @width
@@ -142,8 +140,7 @@ while.cond159:
   i.phi = phi [bb %while.exit, i32 0, bb %while.body160, i32 %195]
   height.load163 = load i32 from ptr @height
   164 = icmp slt i32 %i.phi, i32 %height.load163
-  165 = icmp ne i1 %164, i1 0
-  br i1 %165, bb %while.body160, bb %while.exit161
+  br i1 %164, bb %while.body160, bb %while.exit161
 while.body160:
   width.load167 = load i32 from ptr @width
   168 = mul i32 %i.phi, i32 %width.load167
@@ -179,8 +176,7 @@ while.cond196:
   j.phi = phi [bb %while.exit161, i32 0, bb %while.body197, i32 %228]
   width.load200 = load i32 from ptr @width
   201 = icmp slt i32 %j.phi, i32 %width.load200
-  202 = icmp ne i1 %201, i1 0
-  br i1 %202, bb %while.body197, bb %while.exit198
+  br i1 %201, bb %while.body197, bb %while.exit198
 while.body197:
   204 = mul i32 %j.phi, i32 4
   205 = ptradd ptr @image_out, i32 %204

@@ -39,8 +39,7 @@ while.cond76:
   i74.phi = phi [bb %entry52, i32 %75, bb %while.body77, i32 %93]
   n.load80 = load i32 from ptr @n
   81 = icmp slt i32 %i74.phi, i32 %n.load80
-  82 = icmp ne i1 %81, i1 0
-  br i1 %82, bb %while.body77, bb %while.exit78
+  br i1 %81, bb %while.body77, bb %while.exit78
 while.body77:
   85 = mul i32 %i74.phi, i32 4
   86 = ptradd ptr %a, i32 %85
@@ -74,8 +73,7 @@ while.cond:
   i.phi = phi [bb %entry, i32 1, bb %while.exit19, i32 %51]
   n.load = load i32 from ptr @n
   7 = icmp slt i32 %i.phi, i32 %n.load
-  8 = icmp ne i1 %7, i1 0
-  br i1 %8, bb %while.body, bb %while.exit
+  br i1 %7, bb %while.body, bb %while.exit
 while.body:
   11 = mul i32 %i.phi, i32 4
   12 = ptradd ptr %a, i32 %11
@@ -115,8 +113,7 @@ select.else:
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %32]
-  34 = icmp ne i1 %select.phi, i1 0
-  br i1 %34, bb %while.body18, bb %while.exit19
+  br i1 %select.phi, bb %while.body18, bb %while.exit19
 }
 
 

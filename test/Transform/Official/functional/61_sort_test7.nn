@@ -70,8 +70,7 @@ select.else:
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %38]
-  40 = icmp ne i1 %select.phi, i1 0
-  br i1 %40, bb %while.body, bb %while.exit
+  br i1 %select.phi, bb %while.body, bb %while.exit
 then54:
   58 = ptradd ptr @buf, i32 400
   60 = mul i32 %k.phi169, i32 4
@@ -97,8 +96,7 @@ while.cond85:
   k.phi168 = phi [bb %while.exit, i32 %k.phi169, bb %while.body86, i32 %106]
   i.phi = phi [bb %while.exit, i32 %i.phi163, bb %while.body86, i32 %104]
   90 = icmp slt i32 %i.phi, i32 %13
-  91 = icmp ne i1 %90, i1 0
-  br i1 %91, bb %while.body86, bb %while.exit87
+  br i1 %90, bb %while.body86, bb %while.exit87
 while.body86:
   93 = ptradd ptr @buf, i32 400
   95 = mul i32 %k.phi168, i32 4
@@ -117,8 +115,7 @@ while.cond107:
   k.phi = phi [bb %while.exit87, i32 %k.phi168, bb %while.body108, i32 %128]
   j.phi = phi [bb %while.exit87, i32 %j.phi166, bb %while.body108, i32 %126]
   112 = icmp slt i32 %j.phi, i32 %r
-  113 = icmp ne i1 %112, i1 0
-  br i1 %113, bb %while.body108, bb %while.exit109
+  br i1 %112, bb %while.body108, bb %while.exit109
 while.body108:
   115 = ptradd ptr @buf, i32 400
   117 = mul i32 %k.phi, i32 4
@@ -136,8 +133,7 @@ while.exit109:
 while.cond129:
   l.stack.phi = phi [bb %while.exit109, i32 %l, bb %while.body130, i32 %148]
   134 = icmp slt i32 %l.stack.phi, i32 %r
-  135 = icmp ne i1 %134, i1 0
-  br i1 %135, bb %while.body130, bb %while.exit131
+  br i1 %134, bb %while.body130, bb %while.exit131
 while.body130:
   137 = ptradd ptr @buf, i32 0
   139 = mul i32 %l.stack.phi, i32 4

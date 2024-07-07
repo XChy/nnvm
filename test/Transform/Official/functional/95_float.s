@@ -341,8 +341,6 @@ bb20:
   FLW fs1, 0(s1)
   FEQ.S s1, fs0, fs1
   XORI s2, s1, 1
-  XOR s1, s2, zero
-  SLTU s2, zero, s1
   ADD s1, s2, zero
   JAL zero, bb21
 bb21:
@@ -407,8 +405,6 @@ bb24:
   LA s6, MAX
   LW s7, 0(s6)
   SLT s6, s4, s7
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb25
   JAL zero, bb26
 bb25:

@@ -22,8 +22,7 @@ while.cond:
   sum.phi = phi [bb %entry5000, i32 0, bb %while.exit5016, i32 %8033]
   loopCount.load = load i32 from ptr @loopCount
   5010 = icmp slt i32 %i.phi, i32 %loopCount.load
-  5011 = icmp ne i1 %5010, i1 0
-  br i1 %5011, bb %while.body, bb %while.exit
+  br i1 %5010, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond5014
 while.exit:
@@ -35,8 +34,7 @@ while.cond5014:
   j.phi = phi [bb %while.body, i32 0, bb %while.body5015, i32 %8026]
   tmp.phi8043 = phi [bb %while.body, i32 0, bb %while.body5015, i32 %8024]
   5018 = icmp slt i32 %j.phi, i32 300
-  5019 = icmp ne i1 %5018, i1 0
-  br i1 %5019, bb %while.body5015, bb %while.exit5016
+  br i1 %5018, bb %while.body5015, bb %while.exit5016
 while.body5015:
   multi.load = load i32 from ptr @multi
   5023 = mul i32 %i.phi, i32 %multi.load

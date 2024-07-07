@@ -75,8 +75,6 @@ bb2:
 bb3:
   ADD s5, s4, zero
   SLT s6, s5, s2
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb4
   JAL zero, bb5
 bb4:
@@ -173,8 +171,6 @@ bb9:
   ADD s7, s2, zero
   LW t4, 0(sp)
   SLT s8, s6, t4
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb10
   JAL zero, bb11
 bb10:
@@ -335,8 +331,6 @@ bb18:
   ADDI s4, zero, 1
   SUBW s5, s2, s4
   SLT s2, s3, s5
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb19
   JAL zero, bb20
 bb19:
@@ -395,8 +389,6 @@ bb21:
   LA s2, d
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb22
   JAL zero, bb23
 bb22:
@@ -449,8 +441,6 @@ bb24:
   LA s2, d
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb25
   JAL zero, bb26
 bb25:
@@ -518,8 +508,6 @@ memmove:
 bb28:
   ADD s5, s4, zero
   SLT s6, s5, s3
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb29
   JAL zero, bb30
 bb29:

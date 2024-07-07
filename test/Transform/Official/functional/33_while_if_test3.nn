@@ -36,8 +36,7 @@ while.cond:
   e.phi46 = phi [bb %entry, i32 ub, bb %if.exit, i32 %e.phi45]
   c.phi42 = phi [bb %entry, i32 %6, bb %if.exit, i32 %c.phi41]
   11 = icmp slt i32 %c.phi42, i32 75
-  12 = icmp ne i1 %11, i1 0
-  br i1 %12, bb %while.body, bb %while.exit
+  br i1 %11, bb %while.body, bb %while.exit
 while.body:
   15 = icmp slt i32 %c.phi42, i32 100
   br i1 %15, bb %then, bb %if.exit

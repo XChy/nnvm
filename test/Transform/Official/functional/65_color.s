@@ -155,14 +155,13 @@ bb5:
   CALL dfs
   ADD s7, a0, zero
   MULW s9, s8, s7
-  ADDW s7, zero, s9
-  LA s8, mod
-  LW s9, 0(s8)
-  REMW s8, s7, s9
-  ADD s7, s8, zero
+  LA s7, mod
+  LW s8, 0(s7)
+  REMW s7, s9, s8
+  ADD s8, s7, zero
   JAL zero, bb6
 bb6:
-  ADD s8, s7, zero
+  ADD s7, s8, zero
   LW t4, 40(sp)
   XOR s9, t4, zero
   SLTU s10, zero, s9
@@ -192,7 +191,7 @@ bb7:
   CALL dfs
   ADD s6, a0, zero
   MULW s9, s10, s6
-  ADDW s6, s8, s9
+  ADDW s6, s7, s9
   LA s9, mod
   LW s10, 0(s9)
   REMW s9, s6, s10
@@ -329,10 +328,10 @@ bb14:
   ADDI sp, sp, 160
   JALR zero, 0(ra)
 bb15:
-  ADD s7, zero, zero
+  ADD s8, zero, zero
   JAL zero, bb6
 bb16:
-  ADD s6, s8, zero
+  ADD s6, s7, zero
   JAL zero, bb8
 bb17:
   ADD s4, s9, zero
@@ -416,8 +415,6 @@ bb24:
   LW s0, 0(s11)
   LW t4, 80(sp)
   SLT s11, t4, s0
-  XOR s0, s11, zero
-  SLTU s11, zero, s0
   BNE s11, zero, bb25
   JAL zero, bb26
 bb25:
@@ -455,8 +452,6 @@ bb27:
   LW s4, 0(s3)
   LW t4, 160(sp)
   SLT s3, t4, s4
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb28
   JAL zero, bb29
 bb28:
@@ -507,8 +502,6 @@ bb30:
   LW s7, 0(s8)
   LW t4, 96(sp)
   SLT s8, t4, s7
-  XOR s7, s8, zero
-  SLTU s8, zero, s7
   BNE s8, zero, bb31
   JAL zero, bb32
 bb31:
@@ -547,8 +540,6 @@ bb33:
   LW s11, 0(s0)
   LW t4, 176(sp)
   SLT s0, t4, s11
-  XOR s11, s0, zero
-  SLTU s0, zero, s11
   BNE s0, zero, bb34
   JAL zero, bb35
 bb34:
@@ -577,8 +568,6 @@ bb36:
   LA s2, maxn
   LW s10, 0(s2)
   SLT s2, s5, s10
-  XOR s10, s2, zero
-  SLTU s2, zero, s10
   BNE s2, zero, bb37
   JAL zero, bb38
 bb37:
@@ -594,17 +583,15 @@ bb38:
 bb39:
   ADD s10, s2, zero
   SLTI s4, s10, 7
-  XOR s1, s4, zero
-  SLTU s4, zero, s1
   BNE s4, zero, bb40
   JAL zero, bb41
 bb40:
-  LUI s1, 718
-  ADDI s1, s1, -1600
+  LUI s4, 718
+  ADDI s4, s4, -1600
   LW t4, 80(sp)
-  MULW s4, t4, s1
-  LA s1, dp
-  ADD s3, s1, s4
+  MULW s1, t4, s4
+  LA s4, dp
+  ADD s3, s4, s1
   LUI s1, 40
   ADDI s1, s1, -544
   LW t4, 160(sp)
@@ -639,8 +626,6 @@ bb42:
   ADD s1, s0, zero
   LW t4, 0(sp)
   SLT s2, s1, t4
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb43
   JAL zero, bb44
 bb43:

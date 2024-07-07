@@ -166,8 +166,7 @@ if.exit206:
 while.cond207:
   pos.load210 = load i32 from ptr @pos
   212 = icmp slt i32 %pos.load210, i32 %len
-  213 = icmp ne i1 %212, i1 0
-  br i1 %213, bb %while.body208, bb %while.exit209
+  br i1 %212, bb %while.body208, bb %while.exit209
 while.body208:
   pos.load214 = load i32 from ptr @pos
   215 = mul i32 %pos.load214, i32 4
@@ -208,8 +207,7 @@ if.exit235:
 while.cond238:
   pos.load241 = load i32 from ptr @pos
   243 = icmp slt i32 %pos.load241, i32 %len
-  244 = icmp ne i1 %243, i1 0
-  br i1 %244, bb %while.body239, bb %while.exit240
+  br i1 %243, bb %while.body239, bb %while.exit240
 while.body239:
   pos.load245 = load i32 from ptr @pos
   246 = mul i32 %pos.load245, i32 4
@@ -281,8 +279,7 @@ if.exit294:
 while.cond297:
   pos.load300 = load i32 from ptr @pos
   302 = icmp slt i32 %pos.load300, i32 %len
-  303 = icmp ne i1 %302, i1 0
-  br i1 %303, bb %while.body298, bb %while.exit299
+  br i1 %302, bb %while.body298, bb %while.exit299
 while.body298:
   pos.load304 = load i32 from ptr @pos
   305 = mul i32 %pos.load304, i32 4
@@ -313,8 +310,7 @@ else318:
 while.cond321:
   pos.load324 = load i32 from ptr @pos
   326 = icmp slt i32 %pos.load324, i32 %len
-  327 = icmp ne i1 %326, i1 0
-  br i1 %327, bb %while.body322, bb %while.exit323
+  br i1 %326, bb %while.body322, bb %while.exit323
 while.body322:
   pos.load328 = load i32 from ptr @pos
   329 = mul i32 %pos.load328, i32 4
@@ -407,8 +403,7 @@ while.cond392:
   397 = ptradd ptr %buf, i32 %396
   397.load = load i32 from ptr %397
   399 = icmp eq i32 %397.load, i32 44
-  400 = icmp ne i1 %399, i1 0
-  br i1 %400, bb %while.body393, bb %while.exit394
+  br i1 %399, bb %while.body393, bb %while.exit394
 while.body393:
   pos.load401 = load i32 from ptr @pos
   402 = add i32 %pos.load401, i32 1
@@ -511,8 +506,7 @@ while.cond481:
   486 = ptradd ptr %buf, i32 %485
   486.load = load i32 from ptr %486
   488 = icmp eq i32 %486.load, i32 44
-  489 = icmp ne i1 %488, i1 0
-  br i1 %489, bb %while.body482, bb %while.exit483
+  br i1 %488, bb %while.body482, bb %while.exit483
 while.body482:
   pos.load490 = load i32 from ptr @pos
   491 = add i32 %pos.load490, i32 1
@@ -817,8 +811,7 @@ while.cond753:
   i.phi = phi [bb %entry749, i32 0, bb %while.body754, i32 %764]
   get.phi = phi [bb %entry749, i32 %751, bb %while.body754, i32 %765]
   757 = icmp ne i32 %get.phi, i32 35
-  758 = icmp ne i1 %757, i1 0
-  br i1 %758, bb %while.body754, bb %while.exit755
+  br i1 %757, bb %while.body754, bb %while.exit755
 while.body754:
   760 = mul i32 %i.phi, i32 4
   761 = ptradd ptr @buffer, i32 %760

@@ -47,10 +47,9 @@ select.else28:
   39 = sdiv i32 %a.load37, i32 %c.load38
   40 = sub i32 %d.load36, i32 %39
   41 = icmp eq i32 %35, i32 %40
-  42 = icmp ne i1 %41, i1 0
   br bb %select.exit29
 select.exit29:
-  select30.phi = phi [bb %select.else28, i1 %42, bb %select.then27, i1 1]
+  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 1]
   br i1 %select30.phi, bb %then, bb %if.exit
 then:
   br bb %if.exit

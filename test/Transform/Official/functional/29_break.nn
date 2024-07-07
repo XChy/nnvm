@@ -5,8 +5,7 @@ while.cond:
   sum.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %15]
   i.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %17]
   7 = icmp slt i32 %i.phi, i32 100
-  8 = icmp ne i1 %7, i1 0
-  br i1 %8, bb %while.body, bb %while.exit
+  br i1 %7, bb %while.body, bb %while.exit
 while.body:
   10 = icmp eq i32 %i.phi, i32 50
   br i1 %10, bb %then, bb %if.exit

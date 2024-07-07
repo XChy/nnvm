@@ -41,8 +41,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index14 = ptradd ptr %x, ptr %arr.index
+  arr.index14 = ptradd ptr %x, i32 %offset
   store i32 0 to ptr %arr.index14
   br bb %init.cond
 init.exit:
@@ -92,8 +91,7 @@ init.exit:
 while.cond:
   i.phi = phi [bb %init.exit, i32 10, bb %while.body, i32 %85]
   82 = icmp slt i32 %i.phi, i32 30
-  83 = icmp ne i1 %82, i1 0
-  br i1 %83, bb %while.body, bb %while.exit
+  br i1 %82, bb %while.body, bb %while.exit
 while.body:
   85 = add i32 %i.phi, i32 1
   87 = mul i32 %85, i32 4
@@ -186,8 +184,7 @@ entry203:
 while.cond210:
   n.phi = phi [bb %entry203, i32 %205, bb %while.body211, i32 %217]
   214 = icmp sgt i32 %n.phi, i32 0
-  215 = icmp ne i1 %214, i1 0
-  br i1 %215, bb %while.body211, bb %while.exit212
+  br i1 %214, bb %while.body211, bb %while.exit212
 while.body211:
   217 = sub i32 %n.phi, i32 1
   218 = call i32 rand()

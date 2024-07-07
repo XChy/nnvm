@@ -16,8 +16,7 @@ while.cond241:
   sum.phi = phi [bb %entry236, float 0.000000, bb %while.body242, float %272]
   N.load = load i32 from ptr @N
   246 = icmp slt i32 %i240.phi, i32 %N.load
-  247 = icmp ne i1 %246, i1 0
-  br i1 %247, bb %while.body242, bb %while.exit243
+  br i1 %246, bb %while.body242, bb %while.exit243
 while.body242:
   249 = call i32 rand()
   250 = si2f i32 %249 to float
@@ -75,8 +74,7 @@ select.else199:
   br bb %select.exit200
 select.exit200:
   select201.phi = phi [bb %select.else199, i1 0, bb %select.then198, i1 %204]
-  206 = icmp ne i1 %select201.phi, i1 0
-  br i1 %206, bb %while.body193, bb %while.exit194
+  br i1 %select201.phi, bb %while.body193, bb %while.exit194
 then224:
   227 = ptradd ptr %ret, i32 4
   227.load = load float from ptr %227
@@ -177,10 +175,9 @@ select.else:
   TWO_PI.load89 = load float from ptr @TWO_PI
   90 = fneg float %TWO_PI.load89
   91 = fcmp olt float %x, float %90
-  92 = icmp ne i1 %91, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %92, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %91, bb %select.then, i1 1]
   br i1 %select.phi, bb %then94, bb %if.exit95
 then94:
   TWO_PI.load98 = load float from ptr @TWO_PI
@@ -308,8 +305,7 @@ while.cond292:
   y.phi = phi [bb %entry279, i32 0, bb %while.exit302, i32 %336]
   H.load296 = load i32 from ptr @H
   297 = icmp slt i32 %y.phi, i32 %H.load296
-  298 = icmp ne i1 %297, i1 0
-  br i1 %298, bb %while.body293, bb %while.exit294
+  br i1 %297, bb %while.body293, bb %while.exit294
 while.body293:
   br bb %while.cond300
 while.exit294:
@@ -321,8 +317,7 @@ while.cond300:
   x.phi = phi [bb %while.body293, i32 0, bb %if.exit328, i32 %333]
   W.load304 = load i32 from ptr @W
   305 = icmp slt i32 %x.phi, i32 %W.load304
-  306 = icmp ne i1 %305, i1 0
-  br i1 %306, bb %while.body301, bb %while.exit302
+  br i1 %305, bb %while.body301, bb %while.exit302
 while.body301:
   309 = si2f i32 %x.phi to float
   312 = si2f i32 %y.phi to float

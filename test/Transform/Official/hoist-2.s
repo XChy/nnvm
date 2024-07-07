@@ -125,28 +125,10 @@ bb2:
   LA a5, loopCount
   LW a6, 0(a5)
   SLT a5, a3, a6
-  XOR a6, a5, zero
-  SLTU a5, zero, a6
   BNE a5, zero, bb3
   JAL zero, bb4
 bb3:
-  ADD a5, zero, s0
-  ADDW a6, a5, s1
-  ADDW a5, a6, s2
-  ADDW a6, a5, s3
-  ADDW a5, a6, s4
-  ADDW a6, a5, s5
-  ADDW a5, a6, s6
-  ADDW a6, a5, s7
-  ADDW a5, a6, s9
-  ADDW a6, a5, s10
-  ADDW a5, a6, s11
-  ADDW a6, a5, t0
-  ADDW a5, a6, t1
-  ADDW a6, a5, t2
-  ADDW a5, a6, a1
-  ADDW a6, a5, s0
-  ADDW a5, a6, s1
+  ADDW a5, s0, s1
   ADDW a6, a5, s2
   ADDW a5, a6, s3
   ADDW a6, a5, s4
@@ -1630,8 +1612,23 @@ bb3:
   ADDW a6, a5, t1
   ADDW a5, a6, t2
   ADDW a6, a5, a1
-  ADDI a5, zero, 100
-  DIVW a7, a6, a5
+  ADDW a5, a6, s0
+  ADDW a6, a5, s1
+  ADDW a5, a6, s2
+  ADDW a6, a5, s3
+  ADDW a5, a6, s4
+  ADDW a6, a5, s5
+  ADDW a5, a6, s6
+  ADDW a6, a5, s7
+  ADDW a5, a6, s9
+  ADDW a6, a5, s10
+  ADDW a5, a6, s11
+  ADDW a6, a5, t0
+  ADDW a5, a6, t1
+  ADDW a6, a5, t2
+  ADDW a5, a6, a1
+  ADDI a6, zero, 100
+  DIVW a7, a5, a6
   ADDW a5, a4, a7
   LUI a6, 366211
   ADDI a6, a6, -255

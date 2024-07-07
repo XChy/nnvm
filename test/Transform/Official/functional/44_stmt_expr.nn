@@ -9,8 +9,7 @@ while.cond:
   n.load = load i32 from ptr @n
   7 = sub i32 %n.load, i32 1
   8 = icmp sle i32 %i.phi, i32 %7
-  9 = icmp ne i1 %8, i1 0
-  br i1 %9, bb %while.body, bb %while.exit
+  br i1 %8, bb %while.body, bb %while.exit
 while.body:
   11 = add i32 %i.phi, i32 1
   k.load14 = load i32 from ptr @k

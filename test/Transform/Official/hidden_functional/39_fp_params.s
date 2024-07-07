@@ -589,8 +589,6 @@ bb2:
 bb3:
   ADD s7, s0, zero
   SLTI s8, s7, 8
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb4
   JAL zero, bb5
 bb4:
@@ -759,8 +757,6 @@ main:
 bb7:
   ADD s1, s0, zero
   SLTI s2, s1, 40
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb8
   JAL zero, bb9
 bb8:
@@ -780,8 +776,6 @@ bb9:
 bb10:
   ADD s1, s0, zero
   SLTI s2, s1, 24
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb11
   JAL zero, bb12
 bb11:
@@ -4923,8 +4917,6 @@ bb21:
 bb22:
   ADD s5, s0, zero
   SLTI s6, s5, 10
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb23
   JAL zero, bb24
 bb23:

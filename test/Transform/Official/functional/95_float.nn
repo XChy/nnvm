@@ -150,10 +150,9 @@ if.exit123:
   br bb %select.else127
 select.else127:
   130 = fcmp one float 0.300000, float 0.000000
-  131 = icmp ne i1 %130, i1 0
   br bb %select.exit128
 select.exit128:
-  select129.phi = phi [bb %select.else127, i1 %131]
+  select129.phi = phi [bb %select.else127, i1 %130]
   br i1 %select129.phi, bb %then133, bb %if.exit134
 then133:
   call void ok()
@@ -187,8 +186,7 @@ while.cond:
   i.phi = phi [bb %if.exit134, i32 1, bb %while.body, i32 %192]
   MAX.load = load i32 from ptr @MAX
   157 = icmp slt i32 %i.phi, i32 %MAX.load
-  158 = icmp ne i1 %157, i1 0
-  br i1 %158, bb %while.body, bb %while.exit
+  br i1 %157, bb %while.body, bb %while.exit
 while.body:
   160 = call float getfloat()
   PI.load162 = load float from ptr @PI

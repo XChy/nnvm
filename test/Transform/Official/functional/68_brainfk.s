@@ -305,8 +305,6 @@ bb28:
   ADD s8, s7, zero
   ADD s9, s6, zero
   SLT s10, zero, s8
-  XOR s11, s10, zero
-  SLTU s10, zero, s11
   BNE s10, zero, bb29
   JAL zero, bb30
 bb29:
@@ -372,8 +370,6 @@ read_program:
 bb39:
   ADD s2, s1, zero
   SLT s3, s2, s0
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb40
   JAL zero, bb41
 bb40:

@@ -115,8 +115,7 @@ while.exit:
 while.cond117:
   121.load = load i32 from ptr %111
   123 = icmp slt i32 %121.load, i32 5
-  124 = icmp ne i1 %123, i1 0
-  br i1 %124, bb %while.body118, bb %while.exit119
+  br i1 %123, bb %while.body118, bb %while.exit119
 while.body118:
   126 = ptradd ptr @i, i32 0
   126.load = load i32 from ptr %126

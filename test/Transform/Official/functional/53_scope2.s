@@ -62,8 +62,6 @@ bb3:
   ADD s7, s0, zero
   ADDI s8, zero, 10
   SLT s9, s8, s5
-  XOR s8, s9, zero
-  SLTU s9, zero, s8
   BNE s9, zero, bb4
   JAL zero, bb5
 bb4:

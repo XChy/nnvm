@@ -11,8 +11,7 @@ while.cond83:
   j82.phi = phi [bb %entry80, i32 1, bb %while.exit92, i32 %113]
   height.load87 = load i32 from ptr @height
   88 = icmp sle i32 %j82.phi, i32 %height.load87
-  89 = icmp ne i1 %88, i1 0
-  br i1 %89, bb %while.body84, bb %while.exit85
+  br i1 %88, bb %while.body84, bb %while.exit85
 while.body84:
   br bb %while.cond90
 while.exit85:
@@ -21,8 +20,7 @@ while.cond90:
   i81.phi = phi [bb %while.body84, i32 1, bb %while.body91, i32 %111]
   width.load94 = load i32 from ptr @width
   95 = icmp sle i32 %i81.phi, i32 %width.load94
-  96 = icmp ne i1 %95, i1 0
-  br i1 %96, bb %while.body91, bb %while.exit92
+  br i1 %95, bb %while.body91, bb %while.exit92
 while.body91:
   98 = mul i32 %j82.phi, i32 2000
   99 = ptradd ptr @sheet1, i32 %98
@@ -46,8 +44,7 @@ while.cond48:
   j47.phi = phi [bb %entry45, i32 1, bb %while.exit57, i32 %79]
   height.load52 = load i32 from ptr @height
   53 = icmp sle i32 %j47.phi, i32 %height.load52
-  54 = icmp ne i1 %53, i1 0
-  br i1 %54, bb %while.body49, bb %while.exit50
+  br i1 %53, bb %while.body49, bb %while.exit50
 while.body49:
   br bb %while.cond55
 while.exit50:
@@ -56,8 +53,7 @@ while.cond55:
   i46.phi = phi [bb %while.body49, i32 1, bb %if.exit71, i32 %76]
   width.load59 = load i32 from ptr @width
   60 = icmp sle i32 %i46.phi, i32 %width.load59
-  61 = icmp ne i1 %60, i1 0
-  br i1 %61, bb %while.body56, bb %while.exit57
+  br i1 %60, bb %while.body56, bb %while.exit57
 while.body56:
   63 = mul i32 %j47.phi, i32 2000
   64 = ptradd ptr @sheet1, i32 %63
@@ -97,8 +93,7 @@ entry252:
 while.cond255:
   steps.load = load i32 from ptr @steps
   259 = icmp sgt i32 %steps.load, i32 0
-  260 = icmp ne i1 %259, i1 0
-  br i1 %260, bb %while.body256, bb %while.exit257
+  br i1 %259, bb %while.body256, bb %while.exit257
 while.body256:
   active.load = load i32 from ptr @active
   262 = icmp eq i32 %active.load, i32 1
@@ -152,8 +147,7 @@ while.cond117:
   j116.phi = phi [bb %entry114, i32 1, bb %while.exit126, i32 %251]
   height.load121 = load i32 from ptr @height
   122 = icmp sle i32 %j116.phi, i32 %height.load121
-  123 = icmp ne i1 %122, i1 0
-  br i1 %123, bb %while.body118, bb %while.exit119
+  br i1 %122, bb %while.body118, bb %while.exit119
 while.body118:
   br bb %while.cond124
 while.exit119:
@@ -164,8 +158,7 @@ while.cond124:
   i115.phi = phi [bb %while.body118, i32 1, bb %if.exit223, i32 %155]
   width.load128 = load i32 from ptr @width
   129 = icmp sle i32 %i115.phi, i32 %width.load128
-  130 = icmp ne i1 %129, i1 0
-  br i1 %130, bb %while.body125, bb %while.exit126
+  br i1 %129, bb %while.body125, bb %while.exit126
 while.body125:
   133 = sub i32 %j116.phi, i32 1
   134 = mul i32 %133, i32 2000
@@ -259,8 +252,7 @@ while.cond:
   j.phi = phi [bb %entry, i32 1, bb %while.exit16, i32 %44]
   height.load = load i32 from ptr @height
   12 = icmp sle i32 %j.phi, i32 %height.load
-  13 = icmp ne i1 %12, i1 0
-  br i1 %13, bb %while.body, bb %while.exit
+  br i1 %12, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond14
 while.exit:
@@ -270,8 +262,7 @@ while.cond14:
   i.phi = phi [bb %while.body, i32 1, bb %if.exit, i32 %41]
   width.load = load i32 from ptr @width
   19 = icmp sle i32 %i.phi, i32 %width.load
-  20 = icmp ne i1 %19, i1 0
-  br i1 %20, bb %while.body15, bb %while.exit16
+  br i1 %19, bb %while.body15, bb %while.exit16
 while.body15:
   22 = call i32 getch()
   24 = icmp eq i32 %22, i32 35

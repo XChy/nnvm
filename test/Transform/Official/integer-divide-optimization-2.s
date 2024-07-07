@@ -111,8 +111,6 @@ bb1:
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLT s4, t4, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb2
   JAL zero, bb3
 bb2:
@@ -219,8 +217,6 @@ bb4:
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLTI s8, t4, 300
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb5
   JAL zero, bb6
 bb5:

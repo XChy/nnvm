@@ -11,6 +11,9 @@ using namespace nnvm::riscv;
 
 void LIRInst::emit(std::ostream &out, EmitInfo &info) {
   switch (type) {
+  case IMPLICIT_JUMP:
+    out << "";
+    break;
   case SB:
   case SH:
   case SW:

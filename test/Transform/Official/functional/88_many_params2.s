@@ -62,12 +62,11 @@ bb2:
   SUBW s3, s0, s2
   ADDI s0, zero, 4
   MULW s2, s3, s0
-  ADDW s0, zero, s2
   LUI t5, 3
   ADDI t5, t5, 240
   ADD t5, t5, sp
-  ADD s2, t5, s0
-  SW zero, 0(s2)
+  ADD s0, t5, s2
+  SW zero, 0(s0)
   ADD s1, s3, zero
   JAL zero, bb1
 bb3:
@@ -86,10 +85,9 @@ bb5:
   SUBW s3, s0, s2
   ADDI s0, zero, 4
   MULW s2, s3, s0
-  ADDW s0, zero, s2
   ADDI t6, sp, 16
-  ADD s2, t6, s0
-  SW zero, 0(s2)
+  ADD s0, t6, s2
+  SW zero, 0(s0)
   ADD s1, s3, zero
   JAL zero, bb4
 bb6:
@@ -166,8 +164,6 @@ bb7:
   ADD s1, s0, zero
   SLT s2, s1, zero
   XORI s4, s2, 1
-  XOR s2, s4, zero
-  SLTU s4, zero, s2
   BNE s4, zero, bb8
   JAL zero, bb9
 bb8:
@@ -262,8 +258,6 @@ func:
 bb11:
   ADD s10, s8, zero
   SLTI s11, s10, 10
-  XOR ra, s11, zero
-  SLTU s11, zero, ra
   BNE s11, zero, bb12
   JAL zero, bb13
 bb12:
@@ -297,8 +291,6 @@ bb14:
   ADD s2, s1, zero
   ADD s3, s0, zero
   SLTI s7, s3, 10
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
   BNE s7, zero, bb15
   JAL zero, bb16
 bb15:

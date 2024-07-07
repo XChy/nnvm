@@ -21,8 +21,7 @@ while.cond:
   i.phi = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100038]
   loopCount.load = load i32 from ptr @loopCount
   100013 = icmp slt i32 %i.phi, i32 %loopCount.load
-  100014 = icmp ne i1 %100013, i1 0
-  br i1 %100014, bb %while.body, bb %while.exit
+  br i1 %100013, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond100017
 while.exit:
@@ -34,8 +33,7 @@ while.cond100017:
   j.phi = phi [bb %while.body, i32 0, bb %while.body100018, i32 %100029]
   tmp.phi100046 = phi [bb %while.body, i32 0, bb %while.body100018, i32 %100027]
   100021 = icmp slt i32 %j.phi, i32 60
-  100022 = icmp ne i1 %100021, i1 0
-  br i1 %100022, bb %while.body100018, bb %while.exit100019
+  br i1 %100021, bb %while.body100018, bb %while.exit100019
 while.body100018:
   call void func(i32 %i.phi)
   global.load = load i32 from ptr @global

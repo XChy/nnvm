@@ -1,0 +1,242 @@
+global ptr temp init with float 1.000000
+void mult_combin(ptr v, ptr out, i32 n, ptr tmp) {
+entry119:
+  call void mult1(ptr %v, ptr %tmp, i32 %n)
+  call void mult2(ptr %tmp, ptr %out, i32 %n)
+  ret 
+}
+
+void mult1(ptr v, ptr out, i32 n) {
+entry41:
+  46 = si2f i32 0 to float
+  br bb %while.cond47
+while.cond47:
+  sum45.phi224 = phi [bb %entry41, float %46, bb %while.exit56, float %sum45.phi]
+  j.phi222 = phi [bb %entry41, i32 0, bb %while.exit56, i32 %j.phi]
+  i43.phi = phi [bb %entry41, i32 0, bb %while.exit56, i32 %79]
+  52 = icmp slt i32 %i43.phi, i32 %n
+  br i1 %52, bb %while.body48, bb %while.exit49
+while.body48:
+  br bb %while.cond54
+while.exit49:
+  ret 
+while.cond54:
+  sum45.phi = phi [bb %while.body48, float %sum45.phi224, bb %while.body55, float %71]
+  j.phi = phi [bb %while.body48, i32 %j.phi222, bb %while.body55, i32 %73]
+  59 = icmp slt i32 %j.phi, i32 %n
+  br i1 %59, bb %while.body55, bb %while.exit56
+while.body55:
+  63 = mul i32 %j.phi, i32 4
+  64 = ptradd ptr %v, i32 %63
+  64.load = load float from ptr %64
+  68 = call i32 func(i32 %i43.phi, i32 %j.phi)
+  69 = si2f i32 %68 to float
+  70 = fdiv float %64.load, float %69
+  71 = fadd float %sum45.phi, float %70
+  73 = add i32 %j.phi, i32 1
+  br bb %while.cond54
+while.exit56:
+  75 = mul i32 %i43.phi, i32 4
+  76 = ptradd ptr %out, i32 %75
+  store float %sum45.phi to ptr %76
+  79 = add i32 %i43.phi, i32 1
+  br bb %while.cond47
+}
+
+float my_sqrt(float input) {
+entry125:
+  br bb %while.cond127
+while.cond127:
+  temp.load = load float from ptr @temp
+  temp.load132 = load float from ptr @temp
+  133 = fdiv float %input, float %temp.load132
+  134 = fsub float %temp.load, float %133
+  135 = fcmp ogt float %134, float 0.000001
+  br i1 %135, bb %select.then, bb %select.else
+while.body128:
+  temp.load150 = load float from ptr @temp
+  temp.load152 = load float from ptr @temp
+  153 = fdiv float %input, float %temp.load152
+  154 = fadd float %temp.load150, float %153
+  155 = si2f i32 2 to float
+  156 = fdiv float %154, float %155
+  store float %156 to ptr @temp
+  br bb %while.cond127
+while.exit129:
+  temp.load157 = load float from ptr @temp
+  ret float %temp.load157
+select.then:
+  br bb %select.exit
+select.else:
+  temp.load140 = load float from ptr @temp
+  temp.load142 = load float from ptr @temp
+  143 = fdiv float %input, float %temp.load142
+  144 = fsub float %temp.load140, float %143
+  145 = fneg float 0.000001
+  146 = fcmp olt float %144, float %145
+  br bb %select.exit
+select.exit:
+  select.phi = phi [bb %select.else, i1 %146, bb %select.then, i1 1]
+  br i1 %select.phi, bb %while.body128, bb %while.exit129
+}
+
+float Vectordot(ptr v, ptr u, i32 n) {
+entry15:
+  19 = si2f i32 0 to float
+  br bb %while.cond
+while.cond:
+  sum.phi = phi [bb %entry15, float %19, bb %while.body, float %37]
+  i.phi = phi [bb %entry15, i32 0, bb %while.body, i32 %39]
+  25 = icmp slt i32 %i.phi, i32 %n
+  br i1 %25, bb %while.body, bb %while.exit
+while.body:
+  29 = mul i32 %i.phi, i32 4
+  30 = ptradd ptr %v, i32 %29
+  30.load = load float from ptr %30
+  34 = ptradd ptr %u, i32 %29
+  34.load = load float from ptr %34
+  36 = fmul float %30.load, float %34.load
+  37 = fadd float %sum.phi, float %36
+  39 = add i32 %i.phi, i32 1
+  br bb %while.cond
+while.exit:
+  ret float %sum.phi
+}
+
+external i32 getint()
+
+external i32 getch()
+
+void mult2(ptr v, ptr out, i32 n) {
+entry80:
+  85 = si2f i32 0 to float
+  br bb %while.cond86
+while.cond86:
+  sum84.phi233 = phi [bb %entry80, float %85, bb %while.exit95, float %sum84.phi]
+  j83.phi231 = phi [bb %entry80, i32 0, bb %while.exit95, i32 %j83.phi]
+  i82.phi = phi [bb %entry80, i32 0, bb %while.exit95, i32 %118]
+  91 = icmp slt i32 %i82.phi, i32 %n
+  br i1 %91, bb %while.body87, bb %while.exit88
+while.body87:
+  br bb %while.cond93
+while.exit88:
+  ret 
+while.cond93:
+  sum84.phi = phi [bb %while.body87, float %sum84.phi233, bb %while.body94, float %110]
+  j83.phi = phi [bb %while.body87, i32 %j83.phi231, bb %while.body94, i32 %112]
+  98 = icmp slt i32 %j83.phi, i32 %n
+  br i1 %98, bb %while.body94, bb %while.exit95
+while.body94:
+  102 = mul i32 %j83.phi, i32 4
+  103 = ptradd ptr %v, i32 %102
+  103.load = load float from ptr %103
+  107 = call i32 func(i32 %j83.phi, i32 %i82.phi)
+  108 = si2f i32 %107 to float
+  109 = fdiv float %103.load, float %108
+  110 = fadd float %sum84.phi, float %109
+  112 = add i32 %j83.phi, i32 1
+  br bb %while.cond93
+while.exit95:
+  114 = mul i32 %i82.phi, i32 4
+  115 = ptradd ptr %out, i32 %114
+  store float %sum84.phi to ptr %115
+  118 = add i32 %i82.phi, i32 1
+  br bb %while.cond86
+}
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry158:
+  %Vectortmp = stack 400000
+  %vectorB = stack 400000
+  %vectorA = stack 400000
+  161 = icmp sle i32 100000, i32 0
+  br i1 %161, bb %then, bb %if.exit
+then:
+  br bb %if.exit
+if.exit:
+  n.phi = phi [bb %entry158, i32 100000, bb %then, i32 2000]
+  call void _sysy_starttime(i32 62)
+  br bb %while.cond169
+while.cond169:
+  i168.phi235 = phi [bb %if.exit, i32 ub, bb %while.body170, i32 %181]
+  174 = icmp slt i32 %i168.phi235, i32 %n.phi
+  br i1 %174, bb %while.body170, bb %while.exit171
+while.body170:
+  177 = mul i32 %i168.phi235, i32 4
+  178 = ptradd ptr %vectorA, i32 %177
+  179 = si2f i32 1 to float
+  store float %179 to ptr %178
+  181 = add i32 %i168.phi235, i32 1
+  br bb %while.cond169
+while.exit171:
+  br bb %while.cond182
+while.cond182:
+  i168.phi = phi [bb %while.exit171, i32 0, bb %while.body183, i32 %193]
+  186 = icmp slt i32 %i168.phi, i32 1000
+  br i1 %186, bb %while.body183, bb %while.exit184
+while.body183:
+  call void mult_combin(ptr %vectorA, ptr %vectorB, i32 %n.phi, ptr %Vectortmp)
+  call void mult_combin(ptr %vectorB, ptr %vectorA, i32 %n.phi, ptr %Vectortmp)
+  193 = add i32 %i168.phi, i32 1
+  br bb %while.cond182
+while.exit184:
+  call void _sysy_stoptime(i32 76)
+  197 = call float Vectordot(ptr %vectorA, ptr %vectorB, i32 %n.phi)
+  199 = call float Vectordot(ptr %vectorB, ptr %vectorB, i32 %n.phi)
+  200 = fdiv float %197, float %199
+  201 = call float my_sqrt(float %200)
+  203 = fsub float %201, float 1.000000
+  204 = fcmp ole float %203, float 0.000001
+  br i1 %204, bb %select.then205, bb %select.else206
+select.then205:
+  211 = fneg float 0.000001
+  212 = fcmp oge float %203, float %211
+  br bb %select.exit207
+select.else206:
+  br bb %select.exit207
+select.exit207:
+  select208.phi = phi [bb %select.else206, i1 0, bb %select.then205, i1 %212]
+  br i1 %select208.phi, bb %then214, bb %else
+then214:
+  call void putint(i32 1)
+  br bb %if.exit215
+if.exit215:
+  call void putch(i32 10)
+  ret i32 0
+else:
+  call void putint(i32 0)
+  br bb %if.exit215
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+i32 func(i32 i, i32 j) {
+entry:
+  5 = add i32 %i, i32 %j
+  9 = add i32 %5, i32 1
+  10 = mul i32 %5, i32 %9
+  11 = sdiv i32 %10, i32 2
+  13 = add i32 %11, i32 %i
+  14 = add i32 %13, i32 1
+  ret i32 %14
+}
+
+

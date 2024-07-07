@@ -22,10 +22,9 @@ bb2:
   SUBW s3, s1, s2
   ADDI s1, zero, 4
   MULW s2, s3, s1
-  ADDW s1, zero, s2
   ADDI t5, sp, 352
-  ADD s2, t5, s1
-  SW zero, 0(s2)
+  ADD s1, t5, s2
+  SW zero, 0(s1)
   ADD s0, s3, zero
   JAL zero, bb1
 bb3:

@@ -29,8 +29,6 @@ bb1:
   ADD s3, s2, zero
   ADDI s4, zero, -1
   SLT s5, s4, s3
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb2
   JAL zero, bb3
 bb2:
@@ -54,8 +52,6 @@ bb4:
   ADD s2, s1, zero
   ADDI s3, zero, 0
   SLT s4, s3, s2
-  XOR s3, s4, zero
-  SLTU s4, zero, s3
   BNE s4, zero, bb5
   JAL zero, bb6
 bb5:
@@ -113,8 +109,6 @@ bb8:
   ADD s5, s4, zero
   ADDIW s6, s2, 1
   SLT s7, s5, s6
-  XOR s6, s7, zero
-  SLTU s7, zero, s6
   BNE s7, zero, bb9
   JAL zero, bb10
 bb9:
@@ -263,8 +257,6 @@ bb21:
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s0, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb22
   JAL zero, bb23
 bb22:

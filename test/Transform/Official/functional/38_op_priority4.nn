@@ -39,10 +39,9 @@ select.else:
   d.load28 = load i32 from ptr @d
   29 = add i32 %e.load, i32 %d.load28
   30 = icmp eq i32 %26, i32 %29
-  31 = icmp ne i1 %30, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %31, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %30, bb %select.then, i1 1]
   br i1 %select.phi, bb %select.then33, bb %select.else34
 select.then33:
   br bb %select.exit35
@@ -56,10 +55,9 @@ select.else34:
   e.load43 = load i32 from ptr @e
   44 = add i32 %d.load42, i32 %e.load43
   45 = icmp eq i32 %41, i32 %44
-  46 = icmp ne i1 %45, i1 0
   br bb %select.exit35
 select.exit35:
-  select36.phi = phi [bb %select.else34, i1 %46, bb %select.then33, i1 1]
+  select36.phi = phi [bb %select.else34, i1 %45, bb %select.then33, i1 1]
   br i1 %select36.phi, bb %then, bb %if.exit
 then:
   br bb %if.exit

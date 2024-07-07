@@ -33,8 +33,7 @@ entry42:
 while.cond:
   i.phi101 = phi [bb %entry42, i32 0, bb %while.body, i32 %62]
   55 = icmp slt i32 %i.phi101, i32 %44
-  56 = icmp ne i1 %55, i1 0
-  br i1 %56, bb %while.body, bb %while.exit
+  br i1 %55, bb %while.body, bb %while.exit
 while.body:
   58 = mul i32 %i.phi101, i32 4
   59 = ptradd ptr @parent, i32 %58
@@ -46,8 +45,7 @@ while.exit:
 while.cond63:
   i.phi100 = phi [bb %while.exit, i32 0, bb %while.body64, i32 %76]
   68 = icmp slt i32 %i.phi100, i32 %46
-  69 = icmp ne i1 %68, i1 0
-  br i1 %69, bb %while.body64, bb %while.exit65
+  br i1 %68, bb %while.body64, bb %while.exit65
 while.body64:
   70 = call i32 getint()
   71 = call i32 getint()
@@ -60,8 +58,7 @@ while.cond78:
   clusters.phi105 = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %clusters.phi]
   i.phi = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %96]
   83 = icmp slt i32 %i.phi, i32 %44
-  84 = icmp ne i1 %83, i1 0
-  br i1 %84, bb %while.body79, bb %while.exit80
+  br i1 %83, bb %while.body79, bb %while.exit80
 while.body79:
   86 = mul i32 %i.phi, i32 4
   87 = ptradd ptr @parent, i32 %86

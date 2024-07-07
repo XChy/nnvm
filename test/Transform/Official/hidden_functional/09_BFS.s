@@ -78,8 +78,6 @@ bb1:
   LA s3, tail
   LW s5, 0(s3)
   SLT s3, s4, s5
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
@@ -107,8 +105,6 @@ bb5:
 bb6:
   ADD s6, s7, zero
   XORI s8, s6, -1
-  SLTU s9, zero, s8
-  XOR s8, s9, zero
   SLTU s9, zero, s8
   BNE s9, zero, bb7
   JAL zero, bb8
@@ -151,8 +147,6 @@ bb11:
   LW s4, 0(s3)
   SLT s3, s4, s1
   XORI s4, s3, 1
-  XOR s3, s4, zero
-  SLTU s4, zero, s3
   BNE s4, zero, bb12
   JAL zero, bb13
 bb12:
@@ -204,8 +198,6 @@ bb16:
   LA s2, maxn
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb17
   JAL zero, bb18
 bb17:
@@ -406,14 +398,14 @@ bb25:
   JAL zero, bb29
 bb26:
   CALL getch
-  ADD s8, a0, zero
-  ADD s9, s8, zero
+  ADD s11, a0, zero
+  ADD s9, s11, zero
   JAL zero, bb25
 bb27:
   LW t4, 0(sp)
-  XORI s8, t4, 81
-  SLTIU s9, s8, 1
-  BNE s9, zero, bb31
+  XORI s9, t4, 81
+  SLTIU s11, s9, 1
+  BNE s11, zero, bb31
   JAL zero, bb33
 bb28:
   LW t4, 0(sp)
@@ -429,51 +421,49 @@ bb29:
 bb30:
   LB t4, 40(sp)
   ADD s11, t4, zero
-  XOR s8, s11, zero
-  SLTU s11, zero, s8
   BNE s11, zero, bb26
   JAL zero, bb27
 bb31:
   CALL quick_read
-  ADD s8, a0, zero
-  CALL quick_read
   ADD s9, a0, zero
-  ADD a0, s8, zero
-  ADD a1, s9, zero
-  CALL same
+  CALL quick_read
   ADD s11, a0, zero
-  ADD a0, s11, zero
+  ADD a0, s9, zero
+  ADD a1, s11, zero
+  CALL same
+  ADD s8, a0, zero
+  ADD a0, s8, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   LW t4, 8(sp)
-  ADD s11, t4, zero
+  ADD s8, t4, zero
   LW t3, 16(sp)
   ADD t4, t3, zero
   SW t4, 64(sp)
-  ADD t4, s9, zero
+  ADD t4, s11, zero
   SW t4, 56(sp)
-  ADD t4, s8, zero
+  ADD t4, s9, zero
   SW t4, 48(sp)
   JAL zero, bb32
 bb32:
   LW t4, 48(sp)
-  ADD s8, t4, zero
+  ADD s9, t4, zero
   LW t4, 56(sp)
   ADD s5, t4, zero
   LW t4, 64(sp)
   ADD s4, t4, zero
-  ADD s10, s11, zero
-  LA s9, m
-  LW s6, 0(s9)
-  ADDI s9, zero, 1
-  SUBW s7, s6, s9
+  ADD s10, s8, zero
+  LA s11, m
+  LW s6, 0(s11)
+  ADDI s11, zero, 1
+  SUBW s7, s6, s11
   LA s6, m
   SW s7, 0(s6)
   ADD s0, s10, zero
   ADD s1, s4, zero
   ADD s2, s5, zero
-  ADD s3, s8, zero
+  ADD s3, s9, zero
   JAL zero, bb22
 bb33:
   CALL quick_read
@@ -483,7 +473,7 @@ bb33:
   ADD a0, s0, zero
   ADD a1, s1, zero
   CALL add_edge
-  ADD s11, s1, zero
+  ADD s8, s1, zero
   ADD t4, s0, zero
   SW t4, 64(sp)
   LW t3, 24(sp)
@@ -556,14 +546,10 @@ bb39:
 bb40:
   ADDI s1, zero, 57
   SLT s2, s1, s0
-  XOR s1, s2, zero
-  SLTU s2, zero, s1
   ADD s4, s2, zero
   JAL zero, bb41
 bb41:
   ADD s5, s4, zero
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb37
   JAL zero, bb38
 bb42:
@@ -610,8 +596,6 @@ bb48:
   JAL zero, bb49
 bb49:
   ADD s7, s8, zero
-  XOR s9, s7, zero
-  SLTU s7, zero, s9
   BNE s7, zero, bb45
   JAL zero, bb46
 bb50:

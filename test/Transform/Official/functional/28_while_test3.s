@@ -71,8 +71,6 @@ bb2:
   SW t4, 0(sp)
   LW t4, 16(sp)
   SLTI s8, t4, 20
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb3
   JAL zero, bb4
 bb3:
@@ -125,8 +123,6 @@ bb5:
   ADD t1, s10, zero
   ADD t2, s9, zero
   SLTI a0, t0, 10
-  XOR a1, a0, zero
-  SLTU a0, zero, a1
   BNE a0, zero, bb6
   JAL zero, bb7
 bb6:
@@ -147,8 +143,6 @@ bb8:
   ADD a4, a1, zero
   XORI a5, a3, 7
   SLTIU a6, a5, 1
-  XOR a5, a6, zero
-  SLTU a6, zero, a5
   BNE a6, zero, bb9
   JAL zero, bb10
 bb9:
@@ -165,12 +159,10 @@ bb10:
 bb11:
   ADD a7, a5, zero
   SLTI s7, a7, 20
-  XOR s6, s7, zero
-  SLTU s7, zero, s6
   BNE s7, zero, bb12
   JAL zero, bb13
 bb12:
-  ADDIW s6, a7, 3
+  ADDIW s7, a7, 3
   JAL zero, bb14
 bb13:
   ADDI s4, zero, 1
@@ -179,21 +171,19 @@ bb13:
   ADD a2, a6, zero
   JAL zero, bb8
 bb14:
-  LA s7, e
-  LW s5, 0(s7)
-  ADDI s7, zero, 1
-  SLT s4, s7, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
+  LA s6, e
+  LW s5, 0(s6)
+  ADDI s6, zero, 1
+  SLT s4, s6, s5
   BNE s4, zero, bb15
   JAL zero, bb16
 bb15:
   LA s4, e
   LW s5, 0(s4)
   ADDI s4, zero, 1
-  SUBW s7, s5, s4
+  SUBW s6, s5, s4
   LA s4, e
-  SW s7, 0(s4)
+  SW s6, 0(s4)
   JAL zero, bb17
 bb16:
   LA s4, e
@@ -201,24 +191,22 @@ bb16:
   ADDIW s4, s5, 1
   LA s5, e
   SW s4, 0(s5)
-  ADD a5, s6, zero
+  ADD a5, s7, zero
   JAL zero, bb11
 bb17:
   LA s4, f
   LW s5, 0(s4)
   ADDI s4, zero, 2
-  SLT s7, s4, s5
-  XOR s4, s7, zero
-  SLTU s5, zero, s4
-  BNE s5, zero, bb18
+  SLT s6, s4, s5
+  BNE s6, zero, bb18
   JAL zero, bb19
 bb18:
   LA s4, f
   LW s5, 0(s4)
   ADDI s4, zero, 2
-  SUBW s7, s5, s4
+  SUBW s6, s5, s4
   LA s4, f
-  SW s7, 0(s4)
+  SW s6, 0(s4)
   JAL zero, bb20
 bb19:
   LA s4, f
@@ -231,8 +219,6 @@ bb20:
   LA s4, g
   LW s5, 0(s4)
   SLTI s4, s5, 3
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb21
   JAL zero, bb22
 bb21:
@@ -246,16 +232,14 @@ bb22:
   LA s4, g
   LW s5, 0(s4)
   ADDI s4, zero, 8
-  SUBW s7, s5, s4
+  SUBW s6, s5, s4
   LA s4, g
-  SW s7, 0(s4)
+  SW s6, 0(s4)
   JAL zero, bb17
 bb23:
   LA s4, h
   LW s5, 0(s4)
   SLTI s4, s5, 10
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb24
   JAL zero, bb25
 bb24:
@@ -269,7 +253,7 @@ bb25:
   LA s4, h
   LW s5, 0(s4)
   ADDI s4, zero, 1
-  SUBW s7, s5, s4
+  SUBW s6, s5, s4
   LA s4, h
-  SW s7, 0(s4)
+  SW s6, 0(s4)
   JAL zero, bb20

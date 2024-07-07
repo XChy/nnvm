@@ -191,10 +191,9 @@ bb8:
   SUBW s5, s3, s4
   ADDI s3, zero, 4
   MULW s4, s5, s3
-  ADD s3, zero, s4
   ADDI t5, sp, 0
-  ADD s4, t5, s3
-  SW zero, 0(s4)
+  ADD s3, t5, s4
+  SW zero, 0(s3)
   ADD s2, s5, zero
   JAL zero, bb7
 bb9:
@@ -217,8 +216,6 @@ bb9:
 bb10:
   ADD s3, s2, zero
   SLT s4, s3, s1
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb11
   JAL zero, bb12
 bb11:
@@ -304,10 +301,9 @@ bb15:
   SUBW s7, s5, s6
   ADDI s5, zero, 4
   MULW s6, s7, s5
-  ADD s5, zero, s6
   ADDI t5, sp, 0
-  ADD s6, t5, s5
-  SW zero, 0(s6)
+  ADD s5, t5, s6
+  SW zero, 0(s5)
   ADD s4, s7, zero
   JAL zero, bb14
 bb16:
@@ -317,8 +313,6 @@ bb17:
   ADD s5, s4, zero
   SLT s6, s1, s5
   XORI s7, s6, 1
-  XOR s6, s7, zero
-  SLTU s7, zero, s6
   BNE s7, zero, bb18
   JAL zero, bb19
 bb18:
@@ -353,8 +347,6 @@ bb20:
   ADD s7, s6, zero
   SLT s8, s3, s7
   XORI s9, s8, 1
-  XOR s8, s9, zero
-  SLTU s9, zero, s8
   BNE s9, zero, bb21
   JAL zero, bb22
 bb21:

@@ -6,8 +6,7 @@ entry:
 while.cond:
   b.phi = phi [bb %entry, i32 %32, bb %while.body, i32 %40]
   37 = icmp eq i32 %b.phi, i32 5
-  38 = icmp ne i1 %37, i1 0
-  br i1 %38, bb %while.body, bb %while.exit
+  br i1 %37, bb %while.body, bb %while.exit
 while.body:
   40 = add i32 %b.phi, i32 1
   br bb %while.cond

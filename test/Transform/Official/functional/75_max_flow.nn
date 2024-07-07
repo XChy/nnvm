@@ -41,8 +41,7 @@ while.cond116:
   122 = ptradd ptr @size, i32 %113
   122.load = load i32 from ptr %122
   124 = icmp slt i32 %i115.phi, i32 %122.load
-  125 = icmp ne i1 %124, i1 0
-  br i1 %125, bb %while.body117, bb %while.exit118
+  br i1 %124, bb %while.body117, bb %while.exit118
 while.body117:
   127 = mul i32 %s, i32 40
   128 = ptradd ptr @to, i32 %127
@@ -178,8 +177,7 @@ entry268:
 while.cond274:
   E.phi = phi [bb %entry268, i32 %272, bb %while.body275, i32 %291]
   278 = icmp sgt i32 %E.phi, i32 0
-  279 = icmp ne i1 %278, i1 0
-  br i1 %279, bb %while.body275, bb %while.exit276
+  br i1 %278, bb %while.body275, bb %while.exit276
 while.body275:
   282 = call i32 getint()
   283 = call i32 getint()
@@ -204,8 +202,7 @@ entry:
 while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
   9 = icmp slt i32 %i.phi, i32 %n
-  10 = icmp ne i1 %9, i1 0
-  br i1 %10, bb %while.body, bb %while.exit
+  br i1 %9, bb %while.body, bb %while.exit
 while.body:
   12 = mul i32 %i.phi, i32 4
   13 = ptradd ptr %arr, i32 %12

@@ -91,8 +91,7 @@ entry84:
 while.cond:
   i.phi = phi [bb %entry84, i32 0, bb %while.body, i32 %106]
   99 = icmp slt i32 %i.phi, i32 10
-  100 = icmp ne i1 %99, i1 0
-  br i1 %100, bb %while.body, bb %while.exit
+  br i1 %99, bb %while.body, bb %while.exit
 while.body:
   102 = mul i32 %i.phi, i32 4
   103 = ptradd ptr %arr, i32 %102

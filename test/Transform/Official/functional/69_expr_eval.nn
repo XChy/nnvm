@@ -16,8 +16,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index198 = ptradd ptr %oprs, ptr %arr.index
+  arr.index198 = ptradd ptr %oprs, i32 %offset
   store i32 0 to ptr %arr.index198
   br bb %init.cond
 init.exit:
@@ -29,8 +28,7 @@ init.cond200:
 init201:
   cnt.dec207 = sub i32 %cnt_ptr203.phi, i32 1
   offset208 = mul i32 %cnt.dec207, i32 4
-  arr.index209 = add i32 0, i32 %offset208
-  arr.index210 = ptradd ptr %ops, ptr %arr.index209
+  arr.index210 = ptradd ptr %ops, i32 %offset208
   store i32 0 to ptr %arr.index210
   br bb %init.cond200
 init.exit202:
@@ -53,8 +51,7 @@ while.cond220:
   cur_token.load223 = load i32 from ptr @cur_token
   TOKEN_OTHER.load224 = load i32 from ptr @TOKEN_OTHER
   225 = icmp eq i32 %cur_token.load223, i32 %TOKEN_OTHER.load224
-  226 = icmp ne i1 %225, i1 0
-  br i1 %226, bb %while.body221, bb %while.exit222
+  br i1 %225, bb %while.body221, bb %while.exit222
 while.body221:
   other.load = load i32 from ptr @other
   230 = call i32 get_op_prec(i32 %other.load)
@@ -101,8 +98,7 @@ select.else244:
   br bb %select.exit245
 select.exit245:
   select246.phi = phi [bb %select.else244, i1 0, bb %select.then243, i1 %251]
-  253 = icmp ne i1 %select246.phi, i1 0
-  br i1 %253, bb %while.body239, bb %while.exit240
+  br i1 %select246.phi, bb %while.body239, bb %while.exit240
 then270:
   272 = call i32 panic()
   ret i32 %272
@@ -200,10 +196,9 @@ select.then77:
   br bb %select.exit79
 select.else78:
   82 = icmp eq i32 %op, i32 45
-  83 = icmp ne i1 %82, i1 0
   br bb %select.exit79
 select.exit79:
-  select80.phi = phi [bb %select.else78, i1 %83, bb %select.then77, i1 1]
+  select80.phi = phi [bb %select.else78, i1 %82, bb %select.then77, i1 1]
   br i1 %select80.phi, bb %then85, bb %if.exit86
 then85:
   ret i32 10
@@ -214,19 +209,17 @@ select.then89:
   br bb %select.exit91
 select.else90:
   94 = icmp eq i32 %op, i32 47
-  95 = icmp ne i1 %94, i1 0
   br bb %select.exit91
 select.exit91:
-  select92.phi = phi [bb %select.else90, i1 %95, bb %select.then89, i1 1]
+  select92.phi = phi [bb %select.else90, i1 %94, bb %select.then89, i1 1]
   br i1 %select92.phi, bb %select.then97, bb %select.else98
 select.then97:
   br bb %select.exit99
 select.else98:
   102 = icmp eq i32 %op, i32 37
-  103 = icmp ne i1 %102, i1 0
   br bb %select.exit99
 select.exit99:
-  select100.phi = phi [bb %select.else98, i1 %103, bb %select.then97, i1 1]
+  select100.phi = phi [bb %select.else98, i1 %102, bb %select.then97, i1 1]
   br i1 %select100.phi, bb %then105, bb %if.exit106
 then105:
   ret i32 20
@@ -273,10 +266,9 @@ select.then:
   br bb %select.exit
 select.else:
   12 = icmp eq i32 %c, i32 10
-  13 = icmp ne i1 %12, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %13, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %12, bb %select.then, i1 1]
   br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 1

@@ -34,8 +34,6 @@ bb1:
 bb2:
   SLTI s2, s0, 20
   XORI s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   ADD s1, s3, zero
   JAL zero, bb3
 bb3:
@@ -92,8 +90,6 @@ bb7:
 bb8:
   SLTI s2, s0, 20
   XORI s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   ADD s1, s3, zero
   JAL zero, bb9
 bb9:
@@ -159,9 +155,9 @@ main:
   SD s0, 272(sp)
   SD s5, 280(sp)
   SD s2, 288(sp)
-  SD s3, 296(sp)
-  SD s7, 304(sp)
-  SD s8, 312(sp)
+  SD s7, 296(sp)
+  SD s8, 304(sp)
+  SD s3, 312(sp)
   SD s4, 320(sp)
   SD s6, 328(sp)
   SD s9, 336(sp)
@@ -172,8 +168,6 @@ bb15:
   SW t4, 0(sp)
   LW t4, 0(sp)
   SLTI s2, t4, 20
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb16
   JAL zero, bb17
 bb16:
@@ -551,8 +545,6 @@ bb77:
   SW t4, 80(sp)
   LW t4, 80(sp)
   SLTI s2, t4, 20
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb78
   JAL zero, bb79
 bb78:
@@ -580,8 +572,6 @@ bb81:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 88(sp)
   JAL zero, bb82
@@ -600,8 +590,6 @@ bb84:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -624,8 +612,6 @@ bb87:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 104(sp)
   JAL zero, bb88
@@ -644,8 +630,6 @@ bb90:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -668,8 +652,6 @@ bb93:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 120(sp)
   JAL zero, bb94
@@ -688,8 +670,6 @@ bb96:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -712,8 +692,6 @@ bb99:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 136(sp)
   JAL zero, bb100
@@ -732,8 +710,6 @@ bb102:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -756,8 +732,6 @@ bb105:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 152(sp)
   JAL zero, bb106
@@ -777,8 +751,6 @@ bb108:
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD s11, s0, zero
   JAL zero, bb109
 bb109:
@@ -794,8 +766,6 @@ bb111:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s2, s0, zero
-  SLTU s0, zero, s2
   XOR s2, s0, zero
   SLTU s0, zero, s2
   ADD s1, s0, zero
@@ -815,8 +785,6 @@ bb114:
   ADD s0, a0, zero
   XOR s3, s0, zero
   SLTU s0, zero, s3
-  XOR s3, s0, zero
-  SLTU s0, zero, s3
   ADD s2, s0, zero
   JAL zero, bb115
 bb115:
@@ -832,8 +800,6 @@ bb117:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s4, s0, zero
-  SLTU s0, zero, s4
   XOR s4, s0, zero
   SLTU s0, zero, s4
   ADD s3, s0, zero
@@ -853,8 +819,6 @@ bb120:
   ADD s0, a0, zero
   XOR s5, s0, zero
   SLTU s0, zero, s5
-  XOR s5, s0, zero
-  SLTU s0, zero, s5
   ADD s4, s0, zero
   JAL zero, bb121
 bb121:
@@ -870,8 +834,6 @@ bb123:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s6, s0, zero
-  SLTU s0, zero, s6
   XOR s6, s0, zero
   SLTU s0, zero, s6
   ADD s5, s0, zero
@@ -891,8 +853,6 @@ bb126:
   ADD s0, a0, zero
   XOR s7, s0, zero
   SLTU s0, zero, s7
-  XOR s7, s0, zero
-  SLTU s0, zero, s7
   ADD s6, s0, zero
   JAL zero, bb127
 bb127:
@@ -908,8 +868,6 @@ bb129:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s8, s0, zero
-  SLTU s0, zero, s8
   XOR s8, s0, zero
   SLTU s0, zero, s8
   ADD s7, s0, zero
@@ -929,8 +887,6 @@ bb132:
   ADD s0, a0, zero
   XOR s9, s0, zero
   SLTU s0, zero, s9
-  XOR s9, s0, zero
-  SLTU s0, zero, s9
   ADD s8, s0, zero
   JAL zero, bb133
 bb133:
@@ -946,8 +902,6 @@ bb135:
   ADD a1, t4, zero
   CALL g
   ADD s0, a0, zero
-  XOR s10, s0, zero
-  SLTU s0, zero, s10
   XOR s10, s0, zero
   SLTU s0, zero, s10
   ADD s9, s0, zero
@@ -1004,8 +958,6 @@ bb143:
 bb144:
   LB t4, 168(sp)
   ADD s2, t4, zero
-  XOR s4, s2, zero
-  SLTU s2, zero, s4
   BNE s2, zero, bb140
   JAL zero, bb141
 bb145:
@@ -1040,8 +992,6 @@ bb149:
   ADD s0, s1, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 184(sp)
   JAL zero, bb150
@@ -1058,8 +1008,6 @@ bb152:
   ADDI a0, zero, 3
   CALL h
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -1133,8 +1081,6 @@ bb163:
   JAL zero, bb164
 bb164:
   ADD s0, s2, zero
-  XOR s3, s0, zero
-  SLTU s0, zero, s3
   ADD t4, s0, zero
   SB t4, 200(sp)
   JAL zero, bb158
@@ -1150,8 +1096,6 @@ bb166:
   SLTU s0, zero, s1
   XORI s1, s0, 1
   ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD t4, s0, zero
@@ -1208,8 +1152,6 @@ bb174:
   ADD s0, s1, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 224(sp)
   JAL zero, bb175
@@ -1232,8 +1174,6 @@ bb177:
   ADD s0, s1, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   ADD t4, s0, zero
   SB t4, 232(sp)
   JAL zero, bb178
@@ -1253,8 +1193,6 @@ bb180:
   SLTU s0, zero, s1
   XORI s1, s0, 1
   ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
   ADD s10, s0, zero
@@ -1291,8 +1229,6 @@ bb186:
   JAL zero, bb187
 bb187:
   ADD s0, s1, zero
-  XOR s2, s0, zero
-  SLTU s0, zero, s2
   ADD s11, s0, zero
   JAL zero, bb184
 bb188:
@@ -1367,8 +1303,6 @@ bb200:
   ADD s4, a0, zero
   XOR s5, s4, zero
   SLTU s4, zero, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   ADD s1, s4, zero
   JAL zero, bb201
 bb201:
@@ -1407,8 +1341,6 @@ bb206:
   JAL zero, bb207
 bb207:
   ADD s5, s6, zero
-  XOR s7, s5, zero
-  SLTU s5, zero, s7
   ADD s4, s5, zero
   JAL zero, bb204
 bb208:
@@ -1418,8 +1350,6 @@ bb209:
   ADDI a0, zero, 8
   CALL h
   ADD s6, a0, zero
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   XOR s7, s6, zero
   SLTU s6, zero, s7
   ADD s5, s6, zero
@@ -1446,9 +1376,9 @@ bb212:
   LD s0, 272(sp)
   LD s5, 280(sp)
   LD s2, 288(sp)
-  LD s3, 296(sp)
-  LD s7, 304(sp)
-  LD s8, 312(sp)
+  LD s7, 296(sp)
+  LD s8, 304(sp)
+  LD s3, 312(sp)
   LD s4, 320(sp)
   LD s6, 328(sp)
   LD s9, 336(sp)
@@ -1482,8 +1412,6 @@ bb215:
 bb216:
   SLTI s2, s0, 20
   XORI s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   ADD s1, s3, zero
   JAL zero, bb217
 bb217:

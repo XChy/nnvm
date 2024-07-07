@@ -28,8 +28,7 @@ if.exit89:
 while.cond92:
   j91.phi = phi [bb %if.exit85, i32 1, bb %if.exit109, i32 %114]
   97 = icmp sle i32 %j91.phi, i32 %m
-  98 = icmp ne i1 %97, i1 0
-  br i1 %98, bb %while.body93, bb %while.exit94
+  br i1 %97, bb %while.body93, bb %while.exit94
 while.body93:
   100 = mul i32 %i, i32 4
   101 = ptradd ptr %color, i32 %100
@@ -91,8 +90,7 @@ while.cond136:
   i135.phi = phi [bb %entry115, i32 0, bb %while.body137, i32 %147]
   V.load140 = load i32 from ptr @V
   141 = icmp slt i32 %i135.phi, i32 %V.load140
-  142 = icmp ne i1 %141, i1 0
-  br i1 %142, bb %while.body137, bb %while.exit138
+  br i1 %141, bb %while.body137, bb %while.exit138
 while.body137:
   144 = mul i32 %i135.phi, i32 4
   145 = ptradd ptr %color, i32 %144
@@ -121,8 +119,7 @@ while.cond33:
   i32.phi = phi [bb %entry31, i32 0, bb %while.exit45, i32 %42]
   V.load37 = load i32 from ptr @V
   38 = icmp slt i32 %i32.phi, i32 %V.load37
-  39 = icmp ne i1 %38, i1 0
-  br i1 %39, bb %while.body34, bb %while.exit35
+  br i1 %38, bb %while.body34, bb %while.exit35
 while.body34:
   42 = add i32 %i32.phi, i32 1
   br bb %while.cond43
@@ -133,8 +130,7 @@ while.cond43:
   j.phi = phi [bb %while.body34, i32 %42, bb %if.exit, i32 %75]
   V.load47 = load i32 from ptr @V
   48 = icmp slt i32 %j.phi, i32 %V.load47
-  49 = icmp ne i1 %48, i1 0
-  br i1 %49, bb %while.body44, bb %while.exit45
+  br i1 %48, bb %while.body44, bb %while.exit45
 while.body44:
   51 = mul i32 %i32.phi, i32 16
   52 = ptradd ptr %graph, i32 %51
@@ -199,8 +195,7 @@ while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %17]
   V.load = load i32 from ptr @V
   7 = icmp slt i32 %i.phi, i32 %V.load
-  8 = icmp ne i1 %7, i1 0
-  br i1 %8, bb %while.body, bb %while.exit
+  br i1 %7, bb %while.body, bb %while.exit
 while.body:
   10 = mul i32 %i.phi, i32 4
   11 = ptradd ptr %color, i32 %10

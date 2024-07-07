@@ -99,8 +99,6 @@ bb2:
   LW s4, 0(s3)
   SLT s3, s0, s4
   XORI s4, s3, 1
-  XOR s3, s4, zero
-  SLTU s4, zero, s3
   ADD s2, s4, zero
   JAL zero, bb3
 bb3:
@@ -112,8 +110,6 @@ bb4:
   JAL zero, bb6
 bb5:
   SLT s4, s1, zero
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   ADD s3, s4, zero
   JAL zero, bb6
 bb6:
@@ -128,8 +124,6 @@ bb8:
   LW s6, 0(s5)
   SLT s5, s1, s6
   XORI s6, s5, 1
-  XOR s5, s6, zero
-  SLTU s6, zero, s5
   ADD s4, s6, zero
   JAL zero, bb9
 bb9:
@@ -282,8 +276,6 @@ bb18:
   FLW fs1, 0(s1)
   FSGNJN.S fs2, fs1, fs1
   FLT.S s1, fs0, fs2
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
   ADD s0, s1, zero
   JAL zero, bb19
 bb19:
@@ -444,8 +436,6 @@ bb35:
   ADD s1, a0, zero
   XORI s2, s1, 50
   SLTU s1, zero, s2
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
   ADD s0, s1, zero
   JAL zero, bb36
 bb36:
@@ -492,8 +482,6 @@ bb40:
   LA s2, MAX_HEIGHT
   LW s4, 0(s2)
   SLT s2, s4, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   ADD s1, s2, zero
   JAL zero, bb41
 bb41:
@@ -507,8 +495,6 @@ bb43:
   CALL getint
   ADD s3, a0, zero
   XORI s4, s3, 255
-  SLTU s3, zero, s4
-  XOR s4, s3, zero
   SLTU s3, zero, s4
   ADD s2, s3, zero
   JAL zero, bb44
@@ -539,8 +525,6 @@ bb47:
   LA s5, height
   LW s6, 0(s5)
   SLT s5, s4, s6
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb48
   JAL zero, bb49
 bb48:
@@ -566,8 +550,6 @@ bb50:
   LA s7, width
   LW s8, 0(s7)
   SLT s7, s6, s8
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
   BNE s7, zero, bb51
   JAL zero, bb52
 bb51:
@@ -629,8 +611,6 @@ bb54:
   LA s2, height
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb55
   JAL zero, bb56
 bb55:
@@ -652,8 +632,6 @@ bb57:
   LA s4, width
   LW s5, 0(s4)
   SLT s4, s3, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb58
   JAL zero, bb59
 bb58:

@@ -13,8 +13,7 @@ while.cond:
   i.phi189 = phi [bb %entry, i32 0, bb %while.body, i32 %21]
   N.load = load i32 from ptr @N
   11 = icmp slt i32 %i.phi189, i32 %N.load
-  12 = icmp ne i1 %11, i1 0
-  br i1 %12, bb %while.body, bb %while.exit
+  br i1 %11, bb %while.body, bb %while.exit
 while.body:
   14 = mul i32 %i.phi189, i32 4
   15 = ptradd ptr %a1, i32 %14
@@ -29,8 +28,7 @@ while.cond22:
   i.phi188 = phi [bb %while.exit, i32 0, bb %while.body23, i32 %43]
   N.load26 = load i32 from ptr @N
   27 = icmp slt i32 %i.phi188, i32 %N.load26
-  28 = icmp ne i1 %27, i1 0
-  br i1 %28, bb %while.body23, bb %while.exit24
+  br i1 %27, bb %while.body23, bb %while.exit24
 while.body23:
   30 = mul i32 %i.phi188, i32 4
   31 = ptradd ptr %a2, i32 %30
@@ -48,8 +46,7 @@ while.cond44:
   i.phi187 = phi [bb %while.exit24, i32 0, bb %while.body45, i32 %70]
   N.load48 = load i32 from ptr @N
   49 = icmp slt i32 %i.phi187, i32 %N.load48
-  50 = icmp ne i1 %49, i1 0
-  br i1 %50, bb %while.body45, bb %while.exit46
+  br i1 %49, bb %while.body45, bb %while.exit46
 while.body45:
   52 = mul i32 %i.phi187, i32 4
   53 = ptradd ptr %a3, i32 %52
@@ -73,8 +70,7 @@ while.cond72:
   i.phi = phi [bb %while.exit46, i32 0, bb %if.exit, i32 %182]
   N.load76 = load i32 from ptr @N
   77 = icmp slt i32 %i.phi, i32 %N.load76
-  78 = icmp ne i1 %77, i1 0
-  br i1 %78, bb %while.body73, bb %while.exit74
+  br i1 %77, bb %while.body73, bb %while.exit74
 while.body73:
   80 = icmp slt i32 %i.phi, i32 10
   br i1 %80, bb %then, bb %else
@@ -114,8 +110,7 @@ while.cond101:
   ans.phi196 = phi [bb %then95, i32 %ans.phi195, bb %while.body102, i32 %118]
   N.load105 = load i32 from ptr @N
   106 = icmp slt i32 %j.phi, i32 %N.load105
-  107 = icmp ne i1 %106, i1 0
-  br i1 %107, bb %while.body102, bb %while.exit103
+  br i1 %106, bb %while.body102, bb %while.exit103
 while.body102:
   110 = mul i32 %i.phi, i32 4
   111 = ptradd ptr %a3, i32 %110
@@ -151,8 +146,7 @@ while.cond131:
   ans.phi191 = phi [bb %then125, i32 %ans.phi195, bb %if.exit141, i32 %ans.phi]
   N.load135 = load i32 from ptr @N
   136 = icmp slt i32 %j128.phi202, i32 %N.load135
-  137 = icmp ne i1 %136, i1 0
-  br i1 %137, bb %while.body132, bb %while.exit133
+  br i1 %136, bb %while.body132, bb %while.exit133
 while.body132:
   139 = icmp sgt i32 %j128.phi202, i32 2233
   br i1 %139, bb %then140, bb %else142

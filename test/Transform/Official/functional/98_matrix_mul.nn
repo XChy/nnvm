@@ -30,8 +30,7 @@ while.cond:
   i237.phi336 = phi [bb %entry227, i32 0, bb %while.body, i32 %276]
   M.load = load i32 from ptr @M
   243 = icmp slt i32 %i237.phi336, i32 %M.load
-  244 = icmp ne i1 %243, i1 0
-  br i1 %244, bb %while.body, bb %while.exit
+  br i1 %243, bb %while.body, bb %while.exit
 while.body:
   246 = mul i32 %i237.phi336, i32 4
   247 = ptradd ptr %a0, i32 %246
@@ -56,8 +55,7 @@ while.cond279:
   i237.phi335 = phi [bb %while.exit, i32 %277, bb %while.body280, i32 %294]
   N.load = load i32 from ptr @N
   284 = icmp slt i32 %i237.phi335, i32 %N.load
-  285 = icmp ne i1 %284, i1 0
-  br i1 %285, bb %while.body280, bb %while.exit281
+  br i1 %284, bb %while.body280, bb %while.exit281
 while.body280:
   287 = mul i32 %i237.phi335, i32 4
   288 = ptradd ptr %c0, i32 %287
@@ -73,8 +71,7 @@ while.cond297:
   i237.phi334 = phi [bb %while.exit281, i32 0, bb %while.body298, i32 %312]
   N.load301 = load i32 from ptr @N
   302 = icmp slt i32 %i237.phi334, i32 %N.load301
-  303 = icmp ne i1 %302, i1 0
-  br i1 %303, bb %while.body298, bb %while.exit299
+  br i1 %302, bb %while.body298, bb %while.exit299
 while.body298:
   305 = mul i32 %i237.phi334, i32 4
   306 = ptradd ptr %c1, i32 %305
@@ -90,8 +87,7 @@ while.cond315:
   i237.phi = phi [bb %while.exit299, i32 0, bb %while.body316, i32 %330]
   N.load319 = load i32 from ptr @N
   320 = icmp slt i32 %i237.phi, i32 %N.load319
-  321 = icmp ne i1 %320, i1 0
-  br i1 %321, bb %while.body316, bb %while.exit317
+  br i1 %320, bb %while.body316, bb %while.exit317
 while.body316:
   323 = mul i32 %i237.phi, i32 4
   324 = ptradd ptr %c2, i32 %323

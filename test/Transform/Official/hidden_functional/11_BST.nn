@@ -118,10 +118,9 @@ select.else196:
   201 = ptradd ptr @right_child, i32 %134
   201.load = load i32 from ptr %201
   204 = icmp eq i32 %201.load, i32 -1
-  205 = icmp ne i1 %204, i1 0
   br bb %select.exit197
 select.exit197:
-  select198.phi = phi [bb %select.else196, i1 %205, bb %select.then195, i1 1]
+  select198.phi = phi [bb %select.else196, i1 %204, bb %select.then195, i1 1]
   br i1 %select198.phi, bb %then207, bb %else209
 then207:
   212.load = load i32 from ptr %170
@@ -186,10 +185,9 @@ select.else:
   12 = ptradd ptr @value, i32 %11
   12.load = load i32 from ptr %12
   15 = icmp eq i32 %12.load, i32 %x
-  16 = icmp ne i1 %15, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %15, bb %select.then, i1 1]
   br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 %root
@@ -235,8 +233,7 @@ if.exit286:
 while.cond:
   i.phi338 = phi [bb %if.exit286, i32 1, bb %while.body, i32 %302]
   296 = icmp slt i32 %i.phi338, i32 %279
-  297 = icmp ne i1 %296, i1 0
-  br i1 %297, bb %while.body, bb %while.exit
+  br i1 %296, bb %while.body, bb %while.exit
 while.body:
   299 = call i32 getint()
   300 = call i32 insert(i32 %289, i32 %299)
@@ -252,8 +249,7 @@ while.cond308:
   i.phi = phi [bb %while.exit, i32 0, bb %while.body309, i32 %319]
   root.phi = phi [bb %while.exit, i32 %289, bb %while.body309, i32 %317]
   313 = icmp slt i32 %i.phi, i32 %307
-  314 = icmp ne i1 %313, i1 0
-  br i1 %314, bb %while.body309, bb %while.exit310
+  br i1 %313, bb %while.body309, bb %while.exit310
 while.body309:
   316 = call i32 getint()
   317 = call i32 delete(i32 %root.phi, i32 %316)

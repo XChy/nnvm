@@ -20,8 +20,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index62 = ptradd ptr %a, ptr %arr.index
+  arr.index62 = ptradd ptr %a, i32 %offset
   store i32 0 to ptr %arr.index62
   br bb %init.cond
 init.exit:
@@ -33,8 +32,7 @@ init.cond64:
 init65:
   cnt.dec71 = sub i32 %cnt_ptr67.phi, i32 1
   offset72 = mul i32 %cnt.dec71, i32 4
-  arr.index73 = add i32 0, i32 %offset72
-  arr.index74 = ptradd ptr %b, ptr %arr.index73
+  arr.index74 = ptradd ptr %b, i32 %offset72
   store i32 0 to ptr %arr.index74
   br bb %init.cond64
 init.exit66:
@@ -75,8 +73,7 @@ init.exit66:
 while.cond148:
   ret.phi = phi [bb %init.exit66, i32 %147, bb %while.body149, i32 %163]
   152 = icmp sge i32 %ret.phi, i32 0
-  153 = icmp ne i1 %152, i1 0
-  br i1 %153, bb %while.body149, bb %while.exit150
+  br i1 %152, bb %while.body149, bb %while.exit150
 while.body149:
   157 = mul i32 %ret.phi, i32 4
   158 = ptradd ptr %96, i32 %157
@@ -110,8 +107,7 @@ entry:
 while.cond:
   index.phi = phi [bb %entry, i32 0, bb %while.body, i32 %23]
   12 = icmp slt i32 %index.phi, i32 10
-  13 = icmp ne i1 %12, i1 0
-  br i1 %13, bb %while.body, bb %while.exit
+  br i1 %12, bb %while.body, bb %while.exit
 while.body:
   15 = mul i32 %a, i32 236
   16 = ptradd ptr %b, i32 %15
@@ -133,8 +129,7 @@ while.cond31:
   i.stack.phi = phi [bb %while.exit, i32 %i, bb %while.body32, i32 %44]
   h.stack.phi = phi [bb %while.exit, i32 %h, bb %while.body32, i32 %46]
   35 = icmp slt i32 %i.stack.phi, i32 10
-  36 = icmp ne i1 %35, i1 0
-  br i1 %36, bb %while.body32, bb %while.exit33
+  br i1 %35, bb %while.body32, bb %while.exit33
 while.body32:
   38 = mul i32 %i.stack.phi, i32 4
   39 = ptradd ptr %g, i32 %38

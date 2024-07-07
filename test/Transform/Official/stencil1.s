@@ -91,8 +91,6 @@ bb1:
   SUBW s0, s4, s1
   LW t4, 96(sp)
   SLT s1, t4, s0
-  XOR s0, s1, zero
-  SLTU s1, zero, s0
   BNE s1, zero, bb2
   JAL zero, bb3
 bb2:
@@ -153,8 +151,6 @@ bb4:
   ADDI s10, zero, 1
   SUBW s8, s9, s10
   SLT s9, s11, s8
-  XOR s8, s9, zero
-  SLTU s9, zero, s8
   BNE s9, zero, bb5
   JAL zero, bb6
 bb5:
@@ -366,8 +362,6 @@ bb7:
   LA s2, height
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb8
   JAL zero, bb9
 bb8:
@@ -424,8 +418,6 @@ bb10:
   LA s2, width
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb11
   JAL zero, bb12
 bb11:

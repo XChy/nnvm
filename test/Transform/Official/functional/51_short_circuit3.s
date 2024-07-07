@@ -188,8 +188,6 @@ bb19:
   ADD s4, a0, zero
   XOR s5, s4, zero
   SLTU s4, zero, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   ADD s0, s4, zero
   JAL zero, bb20
 bb20:
@@ -295,8 +293,6 @@ bb41:
 bb42:
   SLTI s5, zero, 1
   XORI s6, s5, 1
-  XOR s5, s6, zero
-  SLTU s6, zero, s5
   ADD s4, s6, zero
   JAL zero, bb43
 bb43:
@@ -352,8 +348,6 @@ bb55:
   ADDI s9, zero, 4
   SLTI s10, s9, 4
   XORI s9, s10, 1
-  XOR s10, s9, zero
-  SLTU s9, zero, s10
   ADD s8, s9, zero
   JAL zero, bb56
 bb56:

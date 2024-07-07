@@ -20,8 +20,7 @@ while.cond53:
   i.phi = phi [bb %entry51, i32 1, bb %while.body54, i32 %65]
   n.load = load i32 from ptr @n
   58 = icmp sle i32 %i.phi, i32 %n.load
-  59 = icmp ne i1 %58, i1 0
-  br i1 %59, bb %while.body54, bb %while.exit55
+  br i1 %58, bb %while.body54, bb %while.exit55
 while.body54:
   61 = mul i32 %i.phi, i32 4
   62 = ptradd ptr @fa, i32 %61
@@ -80,8 +79,7 @@ select.else116:
   br bb %select.exit117
 select.exit117:
   select118.phi = phi [bb %select.else116, i1 0, bb %select.then115, i1 %120]
-  122 = icmp ne i1 %select118.phi, i1 0
-  br i1 %122, bb %while.body111, bb %while.exit112
+  br i1 %select118.phi, bb %while.body111, bb %while.exit112
 then126:
   130 = call i32 quick_read()
   132 = call i32 quick_read()
@@ -157,12 +155,10 @@ select.then:
   br bb %select.exit
 select.else:
   15 = icmp sgt i32 %ch.phi166, i32 57
-  16 = icmp ne i1 %15, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
-  18 = icmp ne i1 %select.phi, i1 0
-  br i1 %18, bb %while.body, bb %while.exit
+  select.phi = phi [bb %select.else, i1 %15, bb %select.then, i1 1]
+  br i1 %select.phi, bb %while.body, bb %while.exit
 then:
   br bb %if.exit
 if.exit:
@@ -190,8 +186,7 @@ select.else30:
   br bb %select.exit31
 select.exit31:
   select32.phi = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
-  36 = icmp ne i1 %select32.phi, i1 0
-  br i1 %36, bb %while.body25, bb %while.exit26
+  br i1 %select32.phi, bb %while.body25, bb %while.exit26
 then45:
   49 = sub i32 0, i32 %x.phi
   ret i32 %49

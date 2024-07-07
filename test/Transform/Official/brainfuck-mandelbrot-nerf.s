@@ -42,8 +42,6 @@ bb1:
   LA s2, output_length
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -135,10 +133,9 @@ bb6:
   SUBW s3, s1, s2
   ADDI s1, zero, 4
   MULW s2, s3, s1
-  ADD s1, zero, s2
   ADDI t6, sp, 0
-  ADD s2, t6, s1
-  SW zero, 0(s2)
+  ADD s1, t6, s2
+  SW zero, 0(s1)
   ADD s0, s3, zero
   JAL zero, bb5
 bb7:
@@ -195,8 +192,6 @@ bb8:
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLT t2, t4, a0
-  XOR a0, t2, zero
-  SLTU t2, zero, a0
   BNE t2, zero, bb9
   JAL zero, bb10
 bb9:
@@ -615,8 +610,6 @@ bb29:
   ADD s3, s2, zero
   ADD s4, s0, zero
   SLT s5, zero, s4
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb30
   JAL zero, bb31
 bb30:
@@ -886,8 +879,6 @@ bb54:
   ADD s0, s1, zero
   XORI s2, s0, 35
   SLTU s3, zero, s2
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   BNE s3, zero, bb55
   JAL zero, bb56
 bb55:
@@ -937,8 +928,6 @@ bb59:
   LA s2, input_length
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb60
   JAL zero, bb61
 bb60:
@@ -976,20 +965,19 @@ main:
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 get_bf_char:
-  ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD s9, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s7, 32(sp)
-  SD s10, 40(sp)
-  SD s1, 48(sp)
-  SD s6, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD ra, 80(sp)
-  SD s4, 88(sp)
-  SD s8, 96(sp)
+  ADDI sp, sp, -96
+  SD s9, 0(sp)
+  SD s0, 8(sp)
+  SD s5, 16(sp)
+  SD s7, 24(sp)
+  SD s10, 32(sp)
+  SD s1, 40(sp)
+  SD s6, 48(sp)
+  SD s2, 56(sp)
+  SD s3, 64(sp)
+  SD ra, 72(sp)
+  SD s4, 80(sp)
+  SD s8, 88(sp)
   CALL getch
   ADD s0, a0, zero
   ADD s1, s0, zero
@@ -1007,20 +995,19 @@ bb65:
   JAL zero, bb64
 bb66:
   ADD a0, s0, zero
-  LD s11, 0(sp)
-  LD s9, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s7, 32(sp)
-  LD s10, 40(sp)
-  LD s1, 48(sp)
-  LD s6, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD ra, 80(sp)
-  LD s4, 88(sp)
-  LD s8, 96(sp)
-  ADDI sp, sp, 112
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s10, 32(sp)
+  LD s1, 40(sp)
+  LD s6, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  LD s8, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb67:
   XORI s2, s0, 60
@@ -1116,7 +1103,5 @@ bb89:
   JAL zero, bb90
 bb90:
   ADD s10, s9, zero
-  XOR s11, s10, zero
-  SLTU s10, zero, s11
   BNE s10, zero, bb65
   JAL zero, bb66

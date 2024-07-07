@@ -235,8 +235,6 @@ bb14:
 bb15:
   LW s4, 0(s2)
   SLTI s5, s4, 5
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb16
   JAL zero, bb17
 bb16:

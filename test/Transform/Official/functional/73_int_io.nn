@@ -11,8 +11,7 @@ while.cond52:
   i.phi100 = phi [bb %entry48, i32 0, bb %while.body53, i32 %68]
   a.stack.phi = phi [bb %entry48, i32 %a, bb %while.body53, i32 %66]
   56 = icmp sgt i32 %a.stack.phi, i32 0
-  57 = icmp ne i1 %56, i1 0
-  br i1 %57, bb %while.body53, bb %while.exit54
+  br i1 %56, bb %while.body53, bb %while.exit54
 while.body53:
   59 = mul i32 %i.phi100, i32 4
   60 = ptradd ptr %b, i32 %59
@@ -28,8 +27,7 @@ while.exit54:
 while.cond69:
   i.phi = phi [bb %while.exit54, i32 %i.phi100, bb %while.body70, i32 %76]
   73 = icmp sgt i32 %i.phi, i32 0
-  74 = icmp ne i1 %73, i1 0
-  br i1 %74, bb %while.body70, bb %while.exit71
+  br i1 %73, bb %while.body70, bb %while.exit71
 while.body70:
   76 = sub i32 %i.phi, i32 1
   78 = mul i32 %76, i32 4
@@ -62,10 +60,9 @@ select.then:
   br bb %select.exit
 select.else:
   17 = icmp sgt i32 %9, i32 9
-  18 = icmp ne i1 %17, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %18, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %17, bb %select.then, i1 1]
   br i1 %select.phi, bb %then, bb %else
 then:
   br bb %while.cond
@@ -111,8 +108,7 @@ entry82:
 while.cond85:
   n.phi = phi [bb %entry82, i32 %84, bb %while.body86, i32 %97]
   89 = icmp sgt i32 %n.phi, i32 0
-  90 = icmp ne i1 %89, i1 0
-  br i1 %90, bb %while.body86, bb %while.exit87
+  br i1 %89, bb %while.body86, bb %while.exit87
 while.body86:
   92 = call i32 my_getint()
   call void my_putint(i32 %92)

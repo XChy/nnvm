@@ -224,8 +224,6 @@ main:
 bb20:
   ADD s5, s4, zero
   SLTI s6, s5, 10
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb21
   JAL zero, bb22
 bb21:

@@ -16,8 +16,7 @@ while.cond:
   i.phi = phi [bb %entry12, i32 0, bb %if.exit24, i32 %28]
   result.phi37 = phi [bb %entry12, i32 0, bb %if.exit24, i32 %result.phi]
   19 = icmp slt i32 %i.phi, i32 100
-  20 = icmp ne i1 %19, i1 0
-  br i1 %20, bb %while.body, bb %while.exit
+  br i1 %19, bb %while.body, bb %while.exit
 while.body:
   21 = call i32 func()
   22 = icmp eq i32 %21, i32 1

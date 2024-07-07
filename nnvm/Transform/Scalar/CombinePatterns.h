@@ -37,6 +37,42 @@ protected:
   Value **receiver;
 };
 
+class pConstantInt {
+public:
+  pConstantInt() : receiver(nullptr) {}
+  pConstantInt(ConstantInt *&receiver) : receiver(&receiver) {}
+  bool match(Value *op) {
+    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    if (!opcasted)
+      return false;
+    if (receiver)
+      *receiver = opcasted;
+    return true;
+  }
+
+protected:
+  ConstantInt **receiver;
+};
+
+class pZero {
+public:
+  pZero() : receiver(nullptr) {}
+  pZero(ConstantInt *&receiver) : receiver(&receiver) {}
+  bool match(Value *op) {
+    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    if (!opcasted)
+      return false;
+    if (opcasted->getValue() != 0)
+      return false;
+    if (receiver)
+      *receiver = opcasted;
+    return true;
+  }
+
+protected:
+  ConstantInt **receiver;
+};
+
 class pInst {
 public:
   pInst() : receiver(nullptr) {}
@@ -71,7 +107,8 @@ public:
 template <InstID instID, typename LSubPattern, typename RSubPattern>
 class pBinOp : public pSpecificInst<instID> {
 public:
-  pBinOp(LSubPattern LHS, RSubPattern RHS) : pSpecificInst<instID>(), LHS(LHS), RHS(RHS) {}
+  pBinOp(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<instID>(), LHS(LHS), RHS(RHS) {}
 
   bool match(Value *op) {
     if (!pSpecificInst<instID>::match(op))
@@ -97,6 +134,29 @@ class pAdd : public pBinOp<InstID::Add, LSubPattern, RSubPattern> {
 public:
   pAdd(LSubPattern LHS, RSubPattern RHS)
       : pBinOp<InstID::Add, LSubPattern, RSubPattern>(LHS, RHS) {}
+};
+
+template <typename LSubPattern, typename RSubPattern>
+class pICmp : public pSpecificInst<InstID::ICmp> {
+public:
+  pICmp(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::ICmp>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::ICmp>::match(op))
+      return false;
+
+    ICmpInst *I = cast<ICmpInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
 };
 
 } // namespace nnvm::pattern

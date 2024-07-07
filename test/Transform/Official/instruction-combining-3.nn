@@ -20,8 +20,7 @@ while.cond:
   sum.phi = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20039]
   loopCount.load = load i32 from ptr @loopCount
   20017 = icmp slt i32 %i.phi, i32 %loopCount.load
-  20018 = icmp ne i1 %20017, i1 0
-  br i1 %20018, bb %while.body, bb %while.exit
+  br i1 %20017, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond20021
 while.exit:
@@ -33,8 +32,7 @@ while.cond20021:
   j.phi = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20032]
   tmp.phi20049 = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20030]
   20025 = icmp slt i32 %j.phi, i32 60
-  20026 = icmp ne i1 %20025, i1 0
-  br i1 %20026, bb %while.body20022, bb %while.exit20023
+  br i1 %20025, bb %while.body20022, bb %while.exit20023
 while.body20022:
   20029 = call i32 func(i32 %i.phi, i32 10000)
   20030 = add i32 %tmp.phi20049, i32 %20029

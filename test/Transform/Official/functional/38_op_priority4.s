@@ -85,8 +85,6 @@ bb2:
   ADDW s1, s3, s4
   XOR s3, s2, s1
   SLTIU s1, s3, 1
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
   ADD s0, s1, zero
   JAL zero, bb3
 bb3:
@@ -112,8 +110,6 @@ bb5:
   ADDW s2, s4, s5
   XOR s4, s3, s2
   SLTIU s2, s4, 1
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   ADD s1, s2, zero
   JAL zero, bb6
 bb6:

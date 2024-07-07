@@ -44,8 +44,6 @@ bb1:
   LW s3, 0(s2)
   SLT s2, s3, s1
   XORI s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
@@ -70,8 +68,6 @@ bb4:
   LW s5, 0(s4)
   SLT s4, s5, s3
   XORI s5, s4, 1
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb5
   JAL zero, bb6
 bb5:
@@ -112,8 +108,6 @@ bb8:
   LW s3, 0(s2)
   SLT s2, s3, s1
   XORI s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   BNE s3, zero, bb9
   JAL zero, bb10
 bb9:
@@ -136,8 +130,6 @@ bb11:
   LW s5, 0(s4)
   SLT s4, s5, s3
   XORI s5, s4, 1
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb12
   JAL zero, bb13
 bb12:
@@ -186,9 +178,7 @@ bb18:
   LW s1, 0(s0)
   ADDI s0, zero, 0
   SLT s2, s0, s1
-  XOR s0, s2, zero
-  SLTU s1, zero, s0
-  BNE s1, zero, bb19
+  BNE s2, zero, bb19
   JAL zero, bb20
 bb19:
   LA s0, active
@@ -275,8 +265,6 @@ bb27:
   LW s9, 0(s8)
   SLT s8, s9, s5
   XORI s9, s8, 1
-  XOR s8, s9, zero
-  SLTU s9, zero, s8
   BNE s9, zero, bb28
   JAL zero, bb29
 bb28:
@@ -308,8 +296,6 @@ bb30:
   LW t1, 0(t0)
   SLT t0, t1, s9
   XORI t1, t0, 1
-  XOR t0, t1, zero
-  SLTU t1, zero, t0
   BNE t1, zero, bb31
   JAL zero, bb32
 bb31:
@@ -448,8 +434,6 @@ bb43:
   LW s5, 0(s4)
   SLT s4, s5, s2
   XORI s5, s4, 1
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb44
   JAL zero, bb45
 bb44:
@@ -478,8 +462,6 @@ bb46:
   LW s8, 0(s7)
   SLT s7, s8, s5
   XORI s8, s7, 1
-  XOR s7, s8, zero
-  SLTU s8, zero, s7
   BNE s8, zero, bb47
   JAL zero, bb48
 bb47:

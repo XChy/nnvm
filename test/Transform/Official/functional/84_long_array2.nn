@@ -43,8 +43,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index34 = ptradd ptr %b, ptr %arr.index
+  arr.index34 = ptradd ptr %b, i32 %offset
   store i32 0 to ptr %arr.index34
   br bb %init.cond
 init.exit:
@@ -58,8 +57,8 @@ init.cond36:
 init37:
   cnt.dec43 = sub i32 %cnt_ptr39.phi, i32 1
   offset44 = mul i32 %cnt.dec43, i32 4
-  arr.index45 = add i32 4100, i32 %offset44
-  arr.index46 = ptradd ptr %b, ptr %arr.index45
+  108 = add i32 %offset44, i32 4100
+  arr.index46 = ptradd ptr %b, ptr %108
   store i32 0 to ptr %arr.index46
   br bb %init.cond36
 init.exit38:
@@ -75,8 +74,8 @@ init.cond49:
 init50:
   cnt.dec56 = sub i32 %cnt_ptr52.phi, i32 1
   offset57 = mul i32 %cnt.dec56, i32 4
-  arr.index58 = add i32 8200, i32 %offset57
-  arr.index59 = ptradd ptr %b, ptr %arr.index58
+  109 = add i32 %offset57, i32 8200
+  arr.index59 = ptradd ptr %b, ptr %109
   store i32 0 to ptr %arr.index59
   br bb %init.cond49
 init.exit51:
@@ -94,8 +93,8 @@ init.cond63:
 init64:
   cnt.dec70 = sub i32 %cnt_ptr66.phi, i32 1
   offset71 = mul i32 %cnt.dec70, i32 4
-  arr.index72 = add i32 12300, i32 %offset71
-  arr.index73 = ptradd ptr %b, ptr %arr.index72
+  110 = add i32 %offset71, i32 12300
+  arr.index73 = ptradd ptr %b, ptr %110
   store i32 0 to ptr %arr.index73
   br bb %init.cond63
 init.exit65:
@@ -119,8 +118,8 @@ init.cond81:
 init82:
   cnt.dec88 = sub i32 %cnt_ptr84.phi, i32 1
   offset89 = mul i32 %cnt.dec88, i32 4
-  arr.index90 = add i32 24, i32 %offset89
-  arr.index91 = ptradd ptr %c, ptr %arr.index90
+  111 = add i32 %offset89, i32 24
+  arr.index91 = ptradd ptr %c, ptr %111
   store i32 0 to ptr %arr.index91
   br bb %init.cond81
 init.exit83:

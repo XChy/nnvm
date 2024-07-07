@@ -57,8 +57,6 @@ bb1:
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s0, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -104,8 +102,6 @@ bb5:
   LA s3, n
   LW s4, 0(s3)
   SLT s3, s2, s4
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb6
   JAL zero, bb7
 bb6:
@@ -174,7 +170,5 @@ bb12:
   JAL zero, bb13
 bb13:
   ADD s6, s7, zero
-  XOR s8, s6, zero
-  SLTU s6, zero, s8
   BNE s6, zero, bb9
   JAL zero, bb10

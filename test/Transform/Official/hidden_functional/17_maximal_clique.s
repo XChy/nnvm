@@ -77,8 +77,6 @@ bb1:
   LA s2, m
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -105,8 +103,6 @@ bb4:
   LA s2, m
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb5
   JAL zero, bb6
 bb5:
@@ -208,8 +204,6 @@ is_clique:
 bb8:
   ADD s2, s1, zero
   SLT s3, s2, s0
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb9
   JAL zero, bb10
 bb9:
@@ -234,8 +228,6 @@ bb10:
 bb11:
   ADD s5, s4, zero
   SLT s6, s5, s0
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   BNE s6, zero, bb12
   JAL zero, bb13
 bb12:
@@ -312,8 +304,6 @@ bb17:
   LW s8, 0(s7)
   SLT s7, s8, s5
   XORI s8, s7, 1
-  XOR s7, s8, zero
-  SLTU s8, zero, s7
   BNE s8, zero, bb18
   JAL zero, bb19
 bb18:

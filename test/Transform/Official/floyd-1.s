@@ -39,8 +39,6 @@ mem_move:
 bb1:
   ADD s4, s3, zero
   SLT s5, s4, s2
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb2
   JAL zero, bb3
 bb2:
@@ -91,8 +89,6 @@ bb5:
   ADD s4, s3, zero
   LW t4, 8(sp)
   SLT s5, s4, t4
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb6
   JAL zero, bb7
 bb6:
@@ -110,8 +106,6 @@ bb8:
   ADD s6, s5, zero
   LW t4, 8(sp)
   SLT s7, s6, t4
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
   BNE s7, zero, bb9
   JAL zero, bb10
 bb9:
@@ -148,8 +142,6 @@ bb11:
   LW t4, 56(sp)
   LW t3, 8(sp)
   SLT s8, t4, t3
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb12
   JAL zero, bb13
 bb12:
@@ -192,8 +184,6 @@ bb14:
   SB t4, 40(sp)
   LW t4, 8(sp)
   SLT s1, s10, t4
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
   BNE s1, zero, bb15
   JAL zero, bb16
 bb15:
@@ -220,8 +210,6 @@ bb17:
   LW t4, 64(sp)
   LW t3, 8(sp)
   SLT s3, t4, t3
-  XOR s11, s3, zero
-  SLTU s3, zero, s11
   BNE s3, zero, bb18
   JAL zero, bb19
 bb18:
@@ -436,8 +424,6 @@ bb32:
 bb33:
   SLT s5, s2, s1
   XORI s6, s5, 1
-  XOR s5, s6, zero
-  SLTU s6, zero, s5
   ADD s4, s6, zero
   JAL zero, bb34
 bb34:
@@ -449,8 +435,6 @@ bb35:
   JAL zero, bb37
 bb36:
   SLT s6, s3, zero
-  XOR s7, s6, zero
-  SLTU s6, zero, s7
   ADD s5, s6, zero
   JAL zero, bb37
 bb37:
@@ -463,8 +447,6 @@ bb38:
 bb39:
   SLT s7, s3, s1
   XORI s8, s7, 1
-  XOR s7, s8, zero
-  SLTU s8, zero, s7
   ADD s6, s8, zero
   JAL zero, bb40
 bb40:

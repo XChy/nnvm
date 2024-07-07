@@ -12,8 +12,7 @@ while.cond:
   input_len.stack.phi = phi [bb %entry70, i32 %93, bb %while.body, i32 %105]
   98 = srem i32 %input_len.stack.phi, i32 64
   99 = icmp ne i32 %98, i32 60
-  100 = icmp ne i1 %99, i1 0
-  br i1 %100, bb %while.body, bb %while.exit
+  br i1 %99, bb %while.body, bb %while.exit
 while.body:
   102 = mul i32 %input_len.stack.phi, i32 4
   103 = ptradd ptr %input, i32 %102
@@ -52,8 +51,7 @@ init.cond:
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
   offset = mul i32 %cnt.dec, i32 4
-  arr.index = add i32 0, i32 %offset
-  arr.index146 = ptradd ptr %words, ptr %arr.index
+  arr.index146 = ptradd ptr %words, i32 %offset
   store i32 0 to ptr %arr.index146
   br bb %init.cond
 init.exit:
@@ -69,8 +67,7 @@ while.cond147:
   t.phi427 = phi [bb %init.exit, i32 ub, bb %while.exit246, i32 %t.phi]
   h0.phi = phi [bb %init.exit, i32 1732584193, bb %while.exit246, i32 %324]
   152 = icmp slt i32 %chunk_start.phi, i32 %133
-  153 = icmp ne i1 %152, i1 0
-  br i1 %153, bb %while.body148, bb %while.exit149
+  br i1 %152, bb %while.body148, bb %while.exit149
 while.body148:
   br bb %while.cond160
 while.exit149:
@@ -88,8 +85,7 @@ while.exit149:
 while.cond160:
   i.phi438 = phi [bb %while.body148, i32 0, bb %while.body161, i32 %208]
   164 = icmp slt i32 %i.phi438, i32 16
-  165 = icmp ne i1 %164, i1 0
-  br i1 %165, bb %while.body161, bb %while.exit162
+  br i1 %164, bb %while.body161, bb %while.exit162
 while.body161:
   167 = mul i32 %i.phi438, i32 4
   168 = ptradd ptr %words, i32 %167
@@ -124,8 +120,7 @@ while.exit162:
 while.cond209:
   i.phi437 = phi [bb %while.exit162, i32 %i.phi438, bb %while.body210, i32 %243]
   213 = icmp slt i32 %i.phi437, i32 80
-  214 = icmp ne i1 %213, i1 0
-  br i1 %214, bb %while.body210, bb %while.exit211
+  br i1 %213, bb %while.body210, bb %while.exit211
 while.body210:
   216 = mul i32 %i.phi437, i32 4
   217 = ptradd ptr %words, i32 %216
@@ -165,8 +160,7 @@ while.cond244:
   e.phi = phi [bb %while.exit211, i32 %h4.phi, bb %if.exit, i32 %d.phi]
   t.phi = phi [bb %while.exit211, i32 %t.phi427, bb %if.exit, i32 %313]
   248 = icmp slt i32 %i.phi, i32 80
-  249 = icmp ne i1 %248, i1 0
-  br i1 %249, bb %while.body245, bb %while.exit246
+  br i1 %248, bb %while.body245, bb %while.exit246
 while.body245:
   251 = icmp slt i32 %i.phi, i32 20
   br i1 %251, bb %then, bb %else
@@ -321,8 +315,7 @@ entry354:
 while.cond377:
   rounds.phi = phi [bb %entry354, i32 %365, bb %while.exit403, i32 %422]
   381 = icmp sgt i32 %rounds.phi, i32 0
-  382 = icmp ne i1 %381, i1 0
-  br i1 %382, bb %while.body378, bb %while.exit379
+  br i1 %381, bb %while.body378, bb %while.exit379
 while.body378:
   br bb %while.cond385
 while.exit379:
@@ -332,8 +325,7 @@ while.exit379:
 while.cond385:
   i384.phi465 = phi [bb %while.body378, i32 0, bb %while.body386, i32 %398]
   390 = icmp slt i32 %i384.phi465, i32 32000
-  391 = icmp ne i1 %390, i1 0
-  br i1 %391, bb %while.body386, bb %while.exit387
+  br i1 %390, bb %while.body386, bb %while.exit387
 while.body386:
   393 = mul i32 %i384.phi465, i32 4
   394 = ptradd ptr @buffer, i32 %393
@@ -348,8 +340,7 @@ while.exit387:
 while.cond401:
   i384.phi = phi [bb %while.exit387, i32 0, bb %while.body402, i32 %420]
   405 = icmp slt i32 %i384.phi, i32 5
-  406 = icmp ne i1 %405, i1 0
-  br i1 %406, bb %while.body402, bb %while.exit403
+  br i1 %405, bb %while.body402, bb %while.exit403
 while.body402:
   408 = mul i32 %i384.phi, i32 4
   409 = ptradd ptr %output_buf, i32 %408

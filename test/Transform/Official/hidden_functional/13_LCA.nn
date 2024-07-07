@@ -33,8 +33,7 @@ while.cond178:
   187 = ptradd ptr @dep, i32 %186
   187.load = load i32 from ptr %187
   189 = icmp sgt i32 %183.load, i32 %187.load
-  190 = icmp ne i1 %189, i1 0
-  br i1 %190, bb %while.body179, bb %while.exit180
+  br i1 %189, bb %while.body179, bb %while.exit180
 while.body179:
   192 = mul i32 %x.stack160.phi322, i32 80
   193 = ptradd ptr @f, i32 %192
@@ -75,8 +74,7 @@ while.cond236:
   y.stack.phi325 = phi [bb %if.exit234, i32 %y.stack.phi326, bb %if.exit258, i32 %y.stack.phi]
   x.stack160.phi320 = phi [bb %if.exit234, i32 %x.stack160.phi322, bb %if.exit258, i32 %x.stack160.phi]
   240 = icmp sge i32 %i177.phi329, i32 0
-  241 = icmp ne i1 %240, i1 0
-  br i1 %241, bb %while.body237, bb %while.exit238
+  br i1 %240, bb %while.body237, bb %while.exit238
 while.body237:
   243 = mul i32 %x.stack160.phi320, i32 80
   244 = ptradd ptr @f, i32 %243
@@ -115,8 +113,7 @@ while.cond81:
   i.phi = phi [bb %entry77, i32 1, bb %while.body82, i32 %93]
   n.load = load i32 from ptr @n
   86 = icmp sle i32 %i.phi, i32 %n.load
-  87 = icmp ne i1 %86, i1 0
-  br i1 %87, bb %while.body82, bb %while.exit83
+  br i1 %86, bb %while.body82, bb %while.exit83
 while.body82:
   89 = mul i32 %i.phi, i32 4
   90 = ptradd ptr @head, i32 %89
@@ -164,8 +161,7 @@ while.exit104:
 while.cond139:
   i101.phi = phi [bb %while.exit104, i32 %137.load, bb %while.body140, i32 %157.load]
   144 = icmp ne i32 %i101.phi, i32 -1
-  145 = icmp ne i1 %144, i1 0
-  br i1 %145, bb %while.body140, bb %while.exit141
+  br i1 %144, bb %while.body140, bb %while.exit141
 while.body140:
   148 = mul i32 %i101.phi, i32 4
   149 = ptradd ptr @to, i32 %148
@@ -222,8 +218,7 @@ while.cond286:
   i285.phi = phi [bb %entry281, i32 1, bb %while.body287, i32 %301]
   n.load290 = load i32 from ptr @n
   291 = icmp ne i32 %i285.phi, i32 %n.load290
-  292 = icmp ne i1 %291, i1 0
-  br i1 %292, bb %while.body287, bb %while.exit288
+  br i1 %291, bb %while.body287, bb %while.exit288
 while.body287:
   294 = call i32 quick_read()
   296 = call i32 quick_read()
@@ -283,12 +278,10 @@ select.then:
   br bb %select.exit
 select.else:
   15 = icmp sgt i32 %ch.phi342, i32 57
-  16 = icmp ne i1 %15, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %16, bb %select.then, i1 1]
-  18 = icmp ne i1 %select.phi, i1 0
-  br i1 %18, bb %while.body, bb %while.exit
+  select.phi = phi [bb %select.else, i1 %15, bb %select.then, i1 1]
+  br i1 %select.phi, bb %while.body, bb %while.exit
 then:
   br bb %if.exit
 if.exit:
@@ -316,8 +309,7 @@ select.else30:
   br bb %select.exit31
 select.exit31:
   select32.phi = phi [bb %select.else30, i1 0, bb %select.then29, i1 %34]
-  36 = icmp ne i1 %select32.phi, i1 0
-  br i1 %36, bb %while.body25, bb %while.exit26
+  br i1 %select32.phi, bb %while.body25, bb %while.exit26
 then45:
   49 = sub i32 0, i32 %x.phi
   ret i32 %49

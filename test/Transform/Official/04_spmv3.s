@@ -30,11 +30,10 @@ N:
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   LA s0, x
   ADD a0, s0, zero
   CALL getarray
@@ -60,8 +59,6 @@ main:
 bb1:
   ADD s1, s0, zero
   SLTI s3, s1, 100
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
@@ -101,11 +98,10 @@ bb3:
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 spmv:
@@ -134,8 +130,6 @@ spmv:
 bb5:
   ADD s7, s6, zero
   SLT s8, s7, s0
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb6
   JAL zero, bb7
 bb6:
@@ -152,8 +146,6 @@ bb7:
 bb8:
   ADD s7, s6, zero
   SLT s8, s7, s0
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
   BNE s8, zero, bb9
   JAL zero, bb10
 bb9:
@@ -187,8 +179,6 @@ bb11:
   ADD t1, s1, t2
   LW t2, 0(t1)
   SLT a0, s10, t2
-  XOR t2, a0, zero
-  SLTU a0, zero, t2
   BNE a0, zero, bb12
   JAL zero, bb13
 bb12:
@@ -219,8 +209,6 @@ bb14:
   ADD s7, s8, zero
   LW s10, 0(t1)
   SLT s11, s7, s10
-  XOR s10, s11, zero
-  SLTU s11, zero, s10
   BNE s11, zero, bb15
   JAL zero, bb16
 bb15:

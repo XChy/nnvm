@@ -9,8 +9,7 @@ entry:
 while.cond:
   i.phi204 = phi [bb %entry, i32 0, bb %while.exit18, i32 %53]
   14 = icmp slt i32 %i.phi204, i32 %6
-  15 = icmp ne i1 %14, i1 0
-  br i1 %15, bb %while.body, bb %while.exit
+  br i1 %14, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond16
 while.exit:
@@ -18,8 +17,7 @@ while.exit:
 while.cond16:
   j.phi195 = phi [bb %while.body, i32 0, bb %while.exit25, i32 %51]
   21 = icmp slt i32 %j.phi195, i32 %6
-  22 = icmp ne i1 %21, i1 0
-  br i1 %22, bb %while.body17, bb %while.exit18
+  br i1 %21, bb %while.body17, bb %while.exit18
 while.body17:
   br bb %while.cond23
 while.exit18:
@@ -28,8 +26,7 @@ while.exit18:
 while.cond23:
   k.phi200 = phi [bb %while.body17, i32 0, bb %while.body24, i32 %49]
   28 = icmp slt i32 %k.phi200, i32 %6
-  29 = icmp ne i1 %28, i1 0
-  br i1 %29, bb %while.body24, bb %while.exit25
+  br i1 %28, bb %while.body24, bb %while.exit25
 while.body24:
   31 = mul i32 %i.phi204, i32 1440000
   32 = ptradd ptr @x, i32 %31
@@ -52,8 +49,7 @@ while.cond54:
   j.phi194 = phi [bb %while.exit, i32 1, bb %while.exit64, i32 %j.phi]
   59 = sub i32 %6, i32 1
   60 = icmp slt i32 %i.phi, i32 %59
-  61 = icmp ne i1 %60, i1 0
-  br i1 %61, bb %while.body55, bb %while.exit56
+  br i1 %60, bb %while.body55, bb %while.exit56
 while.body55:
   br bb %while.cond62
 while.exit56:
@@ -78,8 +74,7 @@ while.exit56:
 while.cond62:
   j.phi = phi [bb %while.body55, i32 1, bb %while.exit72, i32 %163]
   68 = icmp slt i32 %j.phi, i32 %59
-  69 = icmp ne i1 %68, i1 0
-  br i1 %69, bb %while.body63, bb %while.exit64
+  br i1 %68, bb %while.body63, bb %while.exit64
 while.body63:
   br bb %while.cond70
 while.exit64:
@@ -88,8 +83,7 @@ while.exit64:
 while.cond70:
   k.phi = phi [bb %while.body63, i32 1, bb %while.body71, i32 %153]
   76 = icmp slt i32 %k.phi, i32 %59
-  77 = icmp ne i1 %76, i1 0
-  br i1 %77, bb %while.body71, bb %while.exit72
+  br i1 %76, bb %while.body71, bb %while.exit72
 while.body71:
   79 = mul i32 %i.phi, i32 1440000
   80 = ptradd ptr @x, i32 %79

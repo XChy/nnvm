@@ -16,8 +16,7 @@ if.exit91:
 while.cond93:
   i92.phi303 = phi [bb %if.exit91, i32 0, bb %if.exit104, i32 %130]
   98 = icmp slt i32 %i92.phi303, i32 %n
-  99 = icmp ne i1 %98, i1 0
-  br i1 %99, bb %while.body94, bb %while.exit95
+  br i1 %98, bb %while.body94, bb %while.exit95
 while.body94:
   101 = srem i32 %i92.phi303, i32 2
   102 = icmp eq i32 %101, i32 0
@@ -60,8 +59,7 @@ while.cond152:
   wn.phi = phi [bb %while.exit95, i32 1, bb %while.body153, i32 %208]
   i92.phi = phi [bb %while.exit95, i32 0, bb %while.body153, i32 %210]
   158 = icmp slt i32 %i92.phi, i32 %136
-  159 = icmp ne i1 %158, i1 0
-  br i1 %159, bb %while.body153, bb %while.exit154
+  br i1 %158, bb %while.body153, bb %while.exit154
 while.body153:
   163 = add i32 %begin_pos, i32 %i92.phi
   164 = mul i32 %163, i32 4
@@ -132,8 +130,7 @@ while.cond217:
   223 = add i32 %213, i32 %215
   224 = sub i32 %223, i32 1
   225 = icmp slt i32 %d.load, i32 %224
-  226 = icmp ne i1 %225, i1 0
-  br i1 %226, bb %while.body218, bb %while.exit219
+  br i1 %225, bb %while.body218, bb %while.exit219
 while.body218:
   d.load227 = load i32 from ptr @d
   228 = mul i32 %d.load227, i32 2
@@ -159,8 +156,7 @@ while.cond244:
   i243.phi308 = phi [bb %while.exit219, i32 0, bb %while.body245, i32 %264]
   d.load248 = load i32 from ptr @d
   249 = icmp slt i32 %i243.phi308, i32 %d.load248
-  250 = icmp ne i1 %249, i1 0
-  br i1 %250, bb %while.body245, bb %while.exit246
+  br i1 %249, bb %while.body245, bb %while.exit246
 while.body245:
   252 = mul i32 %i243.phi308, i32 4
   253 = ptradd ptr @a, i32 %252
@@ -187,8 +183,7 @@ while.cond275:
   i243.phi = phi [bb %while.exit246, i32 0, bb %while.body276, i32 %295]
   d.load279 = load i32 from ptr @d
   280 = icmp slt i32 %i243.phi, i32 %d.load279
-  281 = icmp ne i1 %280, i1 0
-  br i1 %281, bb %while.body276, bb %while.exit277
+  br i1 %280, bb %while.body276, bb %while.exit277
 while.body276:
   283 = mul i32 %i243.phi, i32 4
   284 = ptradd ptr @a, i32 %283
@@ -213,8 +208,7 @@ entry61:
 while.cond:
   i.phi = phi [bb %entry61, i32 0, bb %while.body, i32 %82]
   70 = icmp slt i32 %i.phi, i32 %len
-  71 = icmp ne i1 %70, i1 0
-  br i1 %71, bb %while.body, bb %while.exit
+  br i1 %70, bb %while.body, bb %while.exit
 while.body:
   74 = add i32 %dst_pos, i32 %i.phi
   75 = mul i32 %74, i32 4

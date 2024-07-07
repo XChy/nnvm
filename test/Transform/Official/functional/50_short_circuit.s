@@ -85,8 +85,6 @@ bb14:
   ADD s0, a0, zero
   XOR s4, s0, zero
   SLTU s0, zero, s4
-  XOR s4, s0, zero
-  SLTU s0, zero, s4
   ADD s3, s0, zero
   JAL zero, bb15
 bb15:
@@ -112,8 +110,6 @@ bb20:
   ADD a0, s4, zero
   CALL func
   ADD s4, a0, zero
-  XOR s6, s4, zero
-  SLTU s4, zero, s6
   XOR s6, s4, zero
   SLTU s4, zero, s6
   ADD s5, s4, zero

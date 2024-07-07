@@ -98,8 +98,6 @@ bb1:
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -245,8 +243,6 @@ bb9:
   JAL zero, bb10
 bb10:
   ADD s2, s3, zero
-  XOR s4, s2, zero
-  SLTU s2, zero, s4
   BNE s2, zero, bb6
   JAL zero, bb7
 bb11:
@@ -497,8 +493,6 @@ bb27:
   FLW fs1, 0(s1)
   FSGNJN.S fs2, fs1, fs1
   FLT.S s1, fs0, fs2
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
   ADD s0, s1, zero
   JAL zero, bb28
 bb28:
@@ -789,8 +783,6 @@ bb48:
   LA s4, H
   LW s5, 0(s4)
   SLT s4, s2, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb49
   JAL zero, bb50
 bb49:
@@ -833,8 +825,6 @@ bb51:
   LA s7, W
   LW s8, 0(s7)
   SLT s7, s5, s8
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
   BNE s7, zero, bb52
   JAL zero, bb53
 bb52:

@@ -45,8 +45,7 @@ while.cond:
   a.phi = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
   b.phi = phi [bb %entry, i32 6, bb %while.exit15, i32 %82]
   9 = icmp slt i32 %a.phi, i32 20
-  10 = icmp ne i1 %9, i1 0
-  br i1 %10, bb %while.body, bb %while.exit
+  br i1 %9, bb %while.body, bb %while.exit
 while.body:
   12 = add i32 %a.phi, i32 3
   br bb %while.cond13
@@ -67,8 +66,7 @@ while.cond13:
   c.phi = phi [bb %while.body, i32 %c.phi104, bb %while.exit23, i32 %80]
   b.phi101 = phi [bb %while.body, i32 %b.phi, bb %while.exit23, i32 %20]
   17 = icmp slt i32 %b.phi101, i32 10
-  18 = icmp ne i1 %17, i1 0
-  br i1 %18, bb %while.body14, bb %while.exit15
+  br i1 %17, bb %while.body14, bb %while.exit15
 while.body14:
   20 = add i32 %b.phi101, i32 1
   br bb %while.cond21
@@ -79,8 +77,7 @@ while.cond21:
   d.phi = phi [bb %while.body14, i32 %d.phi107, bb %while.exit31, i32 %78]
   c.phi105 = phi [bb %while.body14, i32 %c.phi, bb %while.exit31, i32 %28]
   25 = icmp eq i32 %c.phi105, i32 7
-  26 = icmp ne i1 %25, i1 0
-  br i1 %26, bb %while.body22, bb %while.exit23
+  br i1 %25, bb %while.body22, bb %while.exit23
 while.body22:
   28 = sub i32 %c.phi105, i32 1
   br bb %while.cond29
@@ -90,8 +87,7 @@ while.exit23:
 while.cond29:
   d.phi109 = phi [bb %while.body22, i32 %d.phi, bb %while.exit39, i32 %36]
   33 = icmp slt i32 %d.phi109, i32 20
-  34 = icmp ne i1 %33, i1 0
-  br i1 %34, bb %while.body30, bb %while.exit31
+  br i1 %33, bb %while.body30, bb %while.exit31
 while.body30:
   36 = add i32 %d.phi109, i32 3
   br bb %while.cond37
@@ -101,8 +97,7 @@ while.exit31:
 while.cond37:
   e.load = load i32 from ptr @e
   41 = icmp sgt i32 %e.load, i32 1
-  42 = icmp ne i1 %41, i1 0
-  br i1 %42, bb %while.body38, bb %while.exit39
+  br i1 %41, bb %while.body38, bb %while.exit39
 while.body38:
   e.load43 = load i32 from ptr @e
   44 = sub i32 %e.load43, i32 1
@@ -116,8 +111,7 @@ while.exit39:
 while.cond45:
   f.load = load i32 from ptr @f
   49 = icmp sgt i32 %f.load, i32 2
-  50 = icmp ne i1 %49, i1 0
-  br i1 %50, bb %while.body46, bb %while.exit47
+  br i1 %49, bb %while.body46, bb %while.exit47
 while.body46:
   f.load51 = load i32 from ptr @f
   52 = sub i32 %f.load51, i32 2
@@ -131,8 +125,7 @@ while.exit47:
 while.cond53:
   g.load = load i32 from ptr @g
   57 = icmp slt i32 %g.load, i32 3
-  58 = icmp ne i1 %57, i1 0
-  br i1 %58, bb %while.body54, bb %while.exit55
+  br i1 %57, bb %while.body54, bb %while.exit55
 while.body54:
   g.load59 = load i32 from ptr @g
   60 = add i32 %g.load59, i32 10
@@ -146,8 +139,7 @@ while.exit55:
 while.cond61:
   h.load = load i32 from ptr @h
   65 = icmp slt i32 %h.load, i32 10
-  66 = icmp ne i1 %65, i1 0
-  br i1 %66, bb %while.body62, bb %while.exit63
+  br i1 %65, bb %while.body62, bb %while.exit63
 while.body62:
   h.load67 = load i32 from ptr @h
   68 = add i32 %h.load67, i32 8

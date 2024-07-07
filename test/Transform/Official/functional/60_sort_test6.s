@@ -27,8 +27,6 @@ counting_sort:
 bb1:
   ADD s4, s3, zero
   SLTI s5, s4, 10
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb2
   JAL zero, bb3
 bb2:
@@ -46,8 +44,6 @@ bb3:
 bb4:
   ADD s4, s3, zero
   SLT s5, s4, s2
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb5
   JAL zero, bb6
 bb5:
@@ -76,8 +72,6 @@ bb6:
 bb7:
   ADD s4, s3, zero
   SLTI s5, s4, 10
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb8
   JAL zero, bb9
 bb8:
@@ -104,8 +98,6 @@ bb9:
 bb10:
   ADD s2, s3, zero
   SLT s4, zero, s2
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb11
   JAL zero, bb12
 bb11:
@@ -212,8 +204,6 @@ bb14:
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s0, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb15
   JAL zero, bb16
 bb15:

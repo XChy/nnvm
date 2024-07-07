@@ -53,10 +53,9 @@ select.then41:
 select.else42:
   46 = call i32 func(i32 %38)
   47 = icmp ne i32 %46, i32 0
-  48 = icmp ne i1 %47, i1 0
   br bb %select.exit43
 select.exit43:
-  select44.phi = phi [bb %select.else42, i1 %48, bb %select.then41, i1 1]
+  select44.phi = phi [bb %select.else42, i1 %47, bb %select.then41, i1 1]
   br i1 %select44.phi, bb %then50, bb %else52
 then50:
   br bb %if.exit51
@@ -71,10 +70,9 @@ select.then56:
 select.else57:
   61 = call i32 func(i32 %53)
   62 = icmp ne i32 %61, i32 0
-  63 = icmp ne i1 %62, i1 0
   br bb %select.exit58
 select.exit58:
-  select59.phi = phi [bb %select.else57, i1 %63, bb %select.then56, i1 1]
+  select59.phi = phi [bb %select.else57, i1 %62, bb %select.then56, i1 1]
   br i1 %select59.phi, bb %then65, bb %else67
 then65:
   br bb %if.exit66

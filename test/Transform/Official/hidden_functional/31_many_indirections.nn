@@ -8,8 +8,7 @@ while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.exit13, i32 %28]
   M.load = load i32 from ptr @M
   8 = icmp slt i32 %i.phi, i32 %M.load
-  9 = icmp ne i1 %8, i1 0
-  br i1 %9, bb %while.body, bb %while.exit
+  br i1 %8, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond11
 while.exit:
@@ -177,8 +176,7 @@ while.cond11:
   j.phi = phi [bb %while.body, i32 0, bb %while.body12, i32 %26]
   N.load = load i32 from ptr @N
   16 = icmp slt i32 %j.phi, i32 %N.load
-  17 = icmp ne i1 %16, i1 0
-  br i1 %17, bb %while.body12, bb %while.exit13
+  br i1 %16, bb %while.body12, bb %while.exit13
 while.body12:
   19 = mul i32 %i.phi, i32 400
   20 = ptradd ptr @array, i32 %19

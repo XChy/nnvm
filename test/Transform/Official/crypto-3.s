@@ -52,8 +52,6 @@ bb1:
   REMW s6, s3, s5
   XORI s5, s6, 60
   SLTU s6, zero, s5
-  XOR s5, s6, zero
-  SLTU s6, zero, s5
   BNE s6, zero, bb2
   JAL zero, bb3
 bb2:
@@ -121,10 +119,9 @@ bb5:
   SUBW s6, s4, s5
   ADDI s4, zero, 4
   MULW s5, s6, s4
-  ADDW s4, zero, s5
   ADDI t5, sp, 0
-  ADD s5, t5, s4
-  SW zero, 0(s5)
+  ADD s4, t5, s5
+  SW zero, 0(s4)
   ADD s3, s6, zero
   JAL zero, bb4
 bb6:
@@ -175,10 +172,10 @@ bb7:
   SW t4, 336(sp)
   LW t3, 456(sp)
   ADD t4, t3, zero
-  SW t4, 416(sp)
+  SW t4, 400(sp)
   LW t3, 472(sp)
   ADD t4, t3, zero
-  SW t4, 400(sp)
+  SW t4, 416(sp)
   LW t3, 480(sp)
   ADD t4, t3, zero
   SW t4, 320(sp)
@@ -188,8 +185,6 @@ bb7:
   LW t4, 392(sp)
   LW t3, 368(sp)
   SLT s2, t4, t3
-  XOR a4, s2, zero
-  SLTU s2, zero, a4
   BNE s2, zero, bb8
   JAL zero, bb9
 bb8:
@@ -234,8 +229,6 @@ bb9:
 bb10:
   ADD a4, s2, zero
   SLTI a3, a4, 16
-  XOR a7, a3, zero
-  SLTU a3, zero, a7
   BNE a3, zero, bb11
   JAL zero, bb12
 bb11:
@@ -291,8 +284,6 @@ bb12:
 bb13:
   ADD s1, s0, zero
   SLTI s2, s1, 80
-  XOR s11, s2, zero
-  SLTU s2, zero, s11
   BNE s2, zero, bb14
   JAL zero, bb15
 bb14:
@@ -352,9 +343,9 @@ bb15:
   ADD s0, t4, zero
   LW t4, 336(sp)
   ADD s1, t4, zero
-  LW t4, 400(sp)
-  ADD s2, t4, zero
   LW t4, 416(sp)
+  ADD s2, t4, zero
+  LW t4, 400(sp)
   ADD s7, t4, zero
   LW t4, 360(sp)
   ADD s9, t4, zero
@@ -393,9 +384,7 @@ bb16:
   SLTI t4, t3, 80
   SB t4, 560(sp)
   LB t4, 560(sp)
-  XOR s3, t4, zero
-  SLTU s4, zero, s3
-  BNE s4, zero, bb17
+  BNE t4, zero, bb17
   JAL zero, bb18
 bb17:
   LW t4, 552(sp)
@@ -750,8 +739,8 @@ rotl5:
 main:
   ADDI sp, sp, -128
   SD s4, 48(sp)
-  SD ra, 56(sp)
-  SD s3, 64(sp)
+  SD s3, 56(sp)
+  SD ra, 64(sp)
   SD s2, 72(sp)
   SD s6, 80(sp)
   SD s1, 88(sp)
@@ -793,8 +782,6 @@ main:
 bb38:
   ADD s0, s1, zero
   SLT s2, zero, s0
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb39
   JAL zero, bb40
 bb39:
@@ -809,8 +796,8 @@ bb40:
   CALL putarray
   ADD a0, zero, zero
   LD s4, 48(sp)
-  LD ra, 56(sp)
-  LD s3, 64(sp)
+  LD s3, 56(sp)
+  LD ra, 64(sp)
   LD s2, 72(sp)
   LD s6, 80(sp)
   LD s1, 88(sp)
@@ -824,8 +811,6 @@ bb41:
   LUI s4, 8
   ADDI s4, s4, -768
   SLT s5, s3, s4
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
   BNE s5, zero, bb42
   JAL zero, bb43
 bb42:
@@ -855,8 +840,6 @@ bb43:
 bb44:
   ADD s3, s2, zero
   SLTI s4, s3, 5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb45
   JAL zero, bb46
 bb45:

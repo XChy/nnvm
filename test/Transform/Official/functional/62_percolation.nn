@@ -44,8 +44,7 @@ while.cond:
   9 = mul i32 %n, i32 %n
   10 = add i32 %9, i32 1
   11 = icmp sle i32 %i.phi, i32 %10
-  12 = icmp ne i1 %11, i1 0
-  br i1 %12, bb %while.body, bb %while.exit
+  br i1 %11, bb %while.body, bb %while.exit
 while.body:
   14 = mul i32 %i.phi, i32 4
   15 = ptradd ptr @array, i32 %14
@@ -104,8 +103,7 @@ while.cond82:
   select234.phi269 = phi [bb %while.body67, i1 %select234.phi270, bb %if.exit97, i1 %select234.phi268]
   tmp.phi265 = phi [bb %while.body67, i32 %tmp.phi266, bb %if.exit97, i32 %tmp.phi264]
   87 = icmp slt i32 %i73.phi, i32 10
-  88 = icmp ne i1 %87, i1 0
-  br i1 %88, bb %while.body83, bb %while.exit84
+  br i1 %87, bb %while.body83, bb %while.exit84
 while.body83:
   89 = call i32 getint()
   90 = call i32 getint()

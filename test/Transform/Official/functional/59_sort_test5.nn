@@ -7,8 +7,7 @@ entry77:
 while.cond84:
   i.phi161 = phi [bb %entry77, i32 %83, bb %while.body85, i32 %97]
   89 = icmp sgt i32 %i.phi161, i32 -1
-  90 = icmp ne i1 %89, i1 0
-  br i1 %90, bb %while.body85, bb %while.exit86
+  br i1 %89, bb %while.body85, bb %while.exit86
 while.body85:
   92 = sub i32 %len, i32 1
   95 = call i32 heap_ajust(ptr %arr, i32 %i.phi161, i32 %92)
@@ -20,8 +19,7 @@ while.exit86:
 while.cond100:
   i.phi = phi [bb %while.exit86, i32 %99, bb %while.body101, i32 %111]
   104 = icmp sgt i32 %i.phi, i32 0
-  105 = icmp ne i1 %104, i1 0
-  br i1 %105, bb %while.body101, bb %while.exit102
+  br i1 %104, bb %while.body101, bb %while.exit102
 while.body101:
   109 = call i32 swap(ptr %arr, i32 0, i32 %i.phi)
   111 = sub i32 %i.phi, i32 1
@@ -41,8 +39,7 @@ while.cond:
   dad.phi = phi [bb %entry19, i32 %start, bb %if.exit68, i32 %son.phi167]
   33 = add i32 %end, i32 1
   34 = icmp slt i32 %son.phi, i32 %33
-  35 = icmp ne i1 %34, i1 0
-  br i1 %35, bb %while.body, bb %while.exit
+  br i1 %34, bb %while.body, bb %while.exit
 while.body:
   38 = icmp slt i32 %son.phi, i32 %end
   br i1 %38, bb %select.then, bb %select.else
@@ -128,8 +125,7 @@ while.cond142:
   i139.phi = phi [bb %entry117, i32 %141, bb %while.body143, i32 %159]
   n.load146 = load i32 from ptr @n
   147 = icmp slt i32 %i139.phi, i32 %n.load146
-  148 = icmp ne i1 %147, i1 0
-  br i1 %148, bb %while.body143, bb %while.exit144
+  br i1 %147, bb %while.body143, bb %while.exit144
 while.body143:
   151 = mul i32 %i139.phi, i32 4
   152 = ptradd ptr %a, i32 %151

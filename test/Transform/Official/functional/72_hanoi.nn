@@ -13,8 +13,7 @@ entry38:
 while.cond:
   n.phi = phi [bb %entry38, i32 %40, bb %while.body, i32 %51]
   45 = icmp sgt i32 %n.phi, i32 0
-  46 = icmp ne i1 %45, i1 0
-  br i1 %46, bb %while.body, bb %while.exit
+  br i1 %45, bb %while.body, bb %while.exit
 while.body:
   47 = call i32 getint()
   call void hanoi(i32 %47, i32 1, i32 2, i32 3)

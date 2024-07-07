@@ -44,8 +44,6 @@ bb2:
   ADD s2, s1, zero
   ADD s3, s0, zero
   SLTI s4, s2, 75
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb3
   JAL zero, bb4
 bb3:

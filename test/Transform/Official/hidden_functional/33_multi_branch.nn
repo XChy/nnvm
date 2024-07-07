@@ -103,8 +103,7 @@ while.cond:
   select43.phi1414 = phi [bb %entry, i1 ub, bb %if.exit, i1 %select43.phi1413]
   select31.phi1410 = phi [bb %entry, i1 ub, bb %if.exit, i1 %select31.phi1409]
   11 = icmp slt i32 %i.phi, i32 %4
-  12 = icmp ne i1 %11, i1 0
-  br i1 %12, bb %while.body, bb %while.exit
+  br i1 %11, bb %while.body, bb %while.exit
 while.body:
   13 = call i32 getint()
   15 = icmp sgt i32 %13, i32 0

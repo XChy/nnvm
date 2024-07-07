@@ -34,8 +34,6 @@ main:
 bb1:
   ADD s3, s2, zero
   SLT s4, s3, s0
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb2
   JAL zero, bb3
 bb2:
@@ -53,8 +51,6 @@ bb3:
 bb4:
   ADD s3, s2, zero
   SLT s4, s3, s1
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb5
   JAL zero, bb6
 bb5:
@@ -80,8 +76,6 @@ bb7:
   ADD s3, s2, zero
   ADD s4, s0, zero
   SLT s5, s3, s1
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb8
   JAL zero, bb9
 bb8:
@@ -134,16 +128,16 @@ transpose:
   SD s11, 0(sp)
   SD s10, 8(sp)
   SD s9, 16(sp)
-  SD ra, 24(sp)
+  SD s8, 24(sp)
   SD s0, 32(sp)
   SD s5, 40(sp)
   SD s7, 48(sp)
   SD s1, 56(sp)
   SD s6, 64(sp)
-  SD s8, 72(sp)
-  SD s2, 80(sp)
-  SD s3, 88(sp)
-  SD s4, 96(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s4, 88(sp)
+  SD ra, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -155,8 +149,6 @@ bb14:
   ADD s5, s4, zero
   ADD s6, s0, zero
   SLT s7, s5, s3
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
   BNE s7, zero, bb15
   JAL zero, bb16
 bb15:
@@ -168,24 +160,22 @@ bb16:
   LD s11, 0(sp)
   LD s10, 8(sp)
   LD s9, 16(sp)
-  LD ra, 24(sp)
+  LD s8, 24(sp)
   LD s0, 32(sp)
   LD s5, 40(sp)
   LD s7, 48(sp)
   LD s1, 56(sp)
   LD s6, 64(sp)
-  LD s8, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  LD s4, 96(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s4, 88(sp)
+  LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb17:
   ADD s8, s6, zero
   ADD s9, s7, zero
   SLT s10, s8, s2
-  XOR s11, s10, zero
-  SLTU s10, zero, s11
   BNE s10, zero, bb18
   JAL zero, bb19
 bb18:

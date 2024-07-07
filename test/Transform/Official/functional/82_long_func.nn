@@ -66,8 +66,7 @@ while.cond:
   select168.phi3747 = phi [bb %entry, i1 ub, bb %if.exit782, i1 %select168.phi3746]
   x.phi3687 = phi [bb %entry, i32 ub, bb %if.exit782, i32 %x.phi3686]
   13 = icmp sgt i32 %pr.phi, i32 0
-  14 = icmp ne i1 %13, i1 0
-  br i1 %14, bb %while.body, bb %while.exit
+  br i1 %13, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond16
 while.exit:
@@ -81,8 +80,7 @@ while.cond16:
   x.phi3722 = phi [bb %while.body, i32 %pr.phi, bb %if.exit, i32 %43]
   ans.phi3568 = phi [bb %while.body, i32 0, bb %if.exit, i32 %ans.phi3567]
   20 = icmp slt i32 %i.phi4459, i32 16
-  21 = icmp ne i1 %20, i1 0
-  br i1 %21, bb %while.body17, bb %while.exit18
+  br i1 %20, bb %while.body17, bb %while.exit18
 while.body17:
   23 = srem i32 %x.phi3722, i32 2
   24 = icmp ne i32 %23, i32 0
@@ -161,8 +159,7 @@ while.cond63:
   x.phi3721 = phi [bb %while.body58, i32 %mr.phi, bb %if.exit81, i32 %90]
   ans.phi3566 = phi [bb %while.body58, i32 0, bb %if.exit81, i32 %ans.phi3565]
   67 = icmp slt i32 %i.phi4458, i32 16
-  68 = icmp ne i1 %67, i1 0
-  br i1 %68, bb %while.body64, bb %while.exit65
+  br i1 %67, bb %while.body64, bb %while.exit65
 while.body64:
   70 = srem i32 %x.phi3721, i32 2
   71 = icmp ne i32 %70, i32 0
@@ -222,8 +219,7 @@ while.cond111:
   x.phi3720 = phi [bb %while.body105, i32 %al.phi, bb %if.exit121, i32 %148]
   ans.phi3562 = phi [bb %while.body105, i32 0, bb %if.exit121, i32 %ans.phi3561]
   115 = icmp slt i32 %i.phi4457, i32 16
-  116 = icmp ne i1 %115, i1 0
-  br i1 %116, bb %while.body112, bb %while.exit113
+  br i1 %115, bb %while.body112, bb %while.exit113
 while.body112:
   118 = srem i32 %x.phi3720, i32 2
   119 = icmp ne i32 %118, i32 0
@@ -271,8 +267,7 @@ while.cond156:
   x.phi3719 = phi [bb %while.exit113, i32 %al.phi, bb %if.exit174, i32 %183]
   ans.phi3559 = phi [bb %while.exit113, i32 0, bb %if.exit174, i32 %ans.phi3558]
   160 = icmp slt i32 %i.phi4456, i32 16
-  161 = icmp ne i1 %160, i1 0
-  br i1 %161, bb %while.body157, bb %while.exit158
+  br i1 %160, bb %while.body157, bb %while.exit158
 while.body157:
   163 = srem i32 %x.phi3719, i32 2
   164 = icmp ne i32 %163, i32 0
@@ -318,8 +313,7 @@ while.cond198:
   x.phi3715 = phi [bb %else192, i32 %197, bb %if.exit216, i32 %225]
   ans.phi3554 = phi [bb %else192, i32 0, bb %if.exit216, i32 %ans.phi3553]
   202 = icmp slt i32 %i.phi4452, i32 16
-  203 = icmp ne i1 %202, i1 0
-  br i1 %203, bb %while.body199, bb %while.exit200
+  br i1 %202, bb %while.body199, bb %while.exit200
 while.body199:
   205 = srem i32 %x.phi3715, i32 2
   206 = icmp ne i32 %205, i32 0
@@ -368,8 +362,7 @@ while.cond246:
   x.phi3714 = phi [bb %while.body240, i32 %al234.phi, bb %if.exit256, i32 %283]
   ans.phi3552 = phi [bb %while.body240, i32 0, bb %if.exit256, i32 %ans.phi3551]
   250 = icmp slt i32 %i.phi4451, i32 16
-  251 = icmp ne i1 %250, i1 0
-  br i1 %251, bb %while.body247, bb %while.exit248
+  br i1 %250, bb %while.body247, bb %while.exit248
 while.body247:
   253 = srem i32 %x.phi3714, i32 2
   254 = icmp ne i32 %253, i32 0
@@ -417,8 +410,7 @@ while.cond291:
   x.phi3713 = phi [bb %while.exit248, i32 %al234.phi, bb %if.exit309, i32 %318]
   ans.phi3549 = phi [bb %while.exit248, i32 0, bb %if.exit309, i32 %ans.phi3548]
   295 = icmp slt i32 %i.phi4450, i32 16
-  296 = icmp ne i1 %295, i1 0
-  br i1 %296, bb %while.body292, bb %while.exit293
+  br i1 %295, bb %while.body292, bb %while.exit293
 while.body292:
   298 = srem i32 %x.phi3713, i32 2
   299 = icmp ne i32 %298, i32 0
@@ -464,8 +456,7 @@ while.cond333:
   x.phi3710 = phi [bb %else327, i32 %332, bb %if.exit351, i32 %360]
   ans.phi3545 = phi [bb %else327, i32 0, bb %if.exit351, i32 %ans.phi3544]
   337 = icmp slt i32 %i.phi4445, i32 16
-  338 = icmp ne i1 %337, i1 0
-  br i1 %338, bb %while.body334, bb %while.exit335
+  br i1 %337, bb %while.body334, bb %while.exit335
 while.body334:
   340 = srem i32 %x.phi3710, i32 2
   341 = icmp ne i32 %340, i32 0
@@ -562,8 +553,7 @@ while.cond426:
   x.phi3704 = phi [bb %while.body421, i32 %mr417.phi, bb %if.exit444, i32 %453]
   ans.phi3537 = phi [bb %while.body421, i32 0, bb %if.exit444, i32 %ans.phi3536]
   430 = icmp slt i32 %i.phi4444, i32 16
-  431 = icmp ne i1 %430, i1 0
-  br i1 %431, bb %while.body427, bb %while.exit428
+  br i1 %430, bb %while.body427, bb %while.exit428
 while.body427:
   433 = srem i32 %x.phi3704, i32 2
   434 = icmp ne i32 %433, i32 0
@@ -623,8 +613,7 @@ while.cond474:
   x.phi3703 = phi [bb %while.body468, i32 %al462.phi, bb %if.exit484, i32 %511]
   ans.phi3534 = phi [bb %while.body468, i32 0, bb %if.exit484, i32 %ans.phi3533]
   478 = icmp slt i32 %i.phi4443, i32 16
-  479 = icmp ne i1 %478, i1 0
-  br i1 %479, bb %while.body475, bb %while.exit476
+  br i1 %478, bb %while.body475, bb %while.exit476
 while.body475:
   481 = srem i32 %x.phi3703, i32 2
   482 = icmp ne i32 %481, i32 0
@@ -672,8 +661,7 @@ while.cond519:
   x.phi3702 = phi [bb %while.exit476, i32 %al462.phi, bb %if.exit537, i32 %546]
   ans.phi3531 = phi [bb %while.exit476, i32 0, bb %if.exit537, i32 %ans.phi3530]
   523 = icmp slt i32 %i.phi4442, i32 16
-  524 = icmp ne i1 %523, i1 0
-  br i1 %524, bb %while.body520, bb %while.exit521
+  br i1 %523, bb %while.body520, bb %while.exit521
 while.body520:
   526 = srem i32 %x.phi3702, i32 2
   527 = icmp ne i32 %526, i32 0
@@ -719,8 +707,7 @@ while.cond561:
   x.phi3697 = phi [bb %else555, i32 %560, bb %if.exit579, i32 %588]
   ans.phi3524 = phi [bb %else555, i32 0, bb %if.exit579, i32 %ans.phi3523]
   565 = icmp slt i32 %i.phi4437, i32 16
-  566 = icmp ne i1 %565, i1 0
-  br i1 %566, bb %while.body562, bb %while.exit563
+  br i1 %565, bb %while.body562, bb %while.exit563
 while.body562:
   568 = srem i32 %x.phi3697, i32 2
   569 = icmp ne i32 %568, i32 0
@@ -769,8 +756,7 @@ while.cond609:
   x.phi3696 = phi [bb %while.body603, i32 %al597.phi, bb %if.exit619, i32 %646]
   ans.phi3521 = phi [bb %while.body603, i32 0, bb %if.exit619, i32 %ans.phi3520]
   613 = icmp slt i32 %i.phi4436, i32 16
-  614 = icmp ne i1 %613, i1 0
-  br i1 %614, bb %while.body610, bb %while.exit611
+  br i1 %613, bb %while.body610, bb %while.exit611
 while.body610:
   616 = srem i32 %x.phi3696, i32 2
   617 = icmp ne i32 %616, i32 0
@@ -818,8 +804,7 @@ while.cond654:
   x.phi3695 = phi [bb %while.exit611, i32 %al597.phi, bb %if.exit672, i32 %681]
   ans.phi3518 = phi [bb %while.exit611, i32 0, bb %if.exit672, i32 %ans.phi3517]
   658 = icmp slt i32 %i.phi4435, i32 16
-  659 = icmp ne i1 %658, i1 0
-  br i1 %659, bb %while.body655, bb %while.exit656
+  br i1 %658, bb %while.body655, bb %while.exit656
 while.body655:
   661 = srem i32 %x.phi3695, i32 2
   662 = icmp ne i32 %661, i32 0
@@ -865,8 +850,7 @@ while.cond696:
   x.phi3692 = phi [bb %else690, i32 %695, bb %if.exit714, i32 %723]
   ans.phi3514 = phi [bb %else690, i32 0, bb %if.exit714, i32 %ans.phi3513]
   700 = icmp slt i32 %i.phi4430, i32 16
-  701 = icmp ne i1 %700, i1 0
-  br i1 %701, bb %while.body697, bb %while.exit698
+  br i1 %700, bb %while.body697, bb %while.exit698
 while.body697:
   703 = srem i32 %x.phi3692, i32 2
   704 = icmp ne i32 %703, i32 0
@@ -1008,8 +992,7 @@ while.cond829:
   y.phi3877 = phi [bb %while.exit, i32 %y.phi3906, bb %if.exit1602, i32 1]
   x.phi3649 = phi [bb %while.exit, i32 %x.phi3687, bb %if.exit1602, i32 %x.phi3648]
   833 = icmp sgt i32 %pr827.phi, i32 0
-  834 = icmp ne i1 %833, i1 0
-  br i1 %834, bb %while.body830, bb %while.exit831
+  br i1 %833, bb %while.body830, bb %while.exit831
 while.body830:
   br bb %while.cond836
 while.exit831:
@@ -1023,8 +1006,7 @@ while.cond836:
   x.phi3683 = phi [bb %while.body830, i32 %pr827.phi, bb %if.exit854, i32 %863]
   ans.phi3502 = phi [bb %while.body830, i32 0, bb %if.exit854, i32 %ans.phi3501]
   840 = icmp slt i32 %i.phi4429, i32 16
-  841 = icmp ne i1 %840, i1 0
-  br i1 %841, bb %while.body837, bb %while.exit838
+  br i1 %840, bb %while.body837, bb %while.exit838
 while.body837:
   843 = srem i32 %x.phi3683, i32 2
   844 = icmp ne i32 %843, i32 0
@@ -1103,8 +1085,7 @@ while.cond883:
   x.phi3682 = phi [bb %while.body878, i32 %mr874.phi, bb %if.exit901, i32 %910]
   ans.phi3500 = phi [bb %while.body878, i32 0, bb %if.exit901, i32 %ans.phi3499]
   887 = icmp slt i32 %i.phi4428, i32 16
-  888 = icmp ne i1 %887, i1 0
-  br i1 %888, bb %while.body884, bb %while.exit885
+  br i1 %887, bb %while.body884, bb %while.exit885
 while.body884:
   890 = srem i32 %x.phi3682, i32 2
   891 = icmp ne i32 %890, i32 0
@@ -1164,8 +1145,7 @@ while.cond931:
   x.phi3681 = phi [bb %while.body925, i32 %al919.phi, bb %if.exit941, i32 %968]
   ans.phi3497 = phi [bb %while.body925, i32 0, bb %if.exit941, i32 %ans.phi3496]
   935 = icmp slt i32 %i.phi4427, i32 16
-  936 = icmp ne i1 %935, i1 0
-  br i1 %936, bb %while.body932, bb %while.exit933
+  br i1 %935, bb %while.body932, bb %while.exit933
 while.body932:
   938 = srem i32 %x.phi3681, i32 2
   939 = icmp ne i32 %938, i32 0
@@ -1213,8 +1193,7 @@ while.cond976:
   x.phi3680 = phi [bb %while.exit933, i32 %al919.phi, bb %if.exit994, i32 %1003]
   ans.phi3494 = phi [bb %while.exit933, i32 0, bb %if.exit994, i32 %ans.phi3493]
   980 = icmp slt i32 %i.phi4426, i32 16
-  981 = icmp ne i1 %980, i1 0
-  br i1 %981, bb %while.body977, bb %while.exit978
+  br i1 %980, bb %while.body977, bb %while.exit978
 while.body977:
   983 = srem i32 %x.phi3680, i32 2
   984 = icmp ne i32 %983, i32 0
@@ -1260,8 +1239,7 @@ while.cond1018:
   x.phi3676 = phi [bb %else1012, i32 %1017, bb %if.exit1036, i32 %1045]
   ans.phi3489 = phi [bb %else1012, i32 0, bb %if.exit1036, i32 %ans.phi3488]
   1022 = icmp slt i32 %i.phi4422, i32 16
-  1023 = icmp ne i1 %1022, i1 0
-  br i1 %1023, bb %while.body1019, bb %while.exit1020
+  br i1 %1022, bb %while.body1019, bb %while.exit1020
 while.body1019:
   1025 = srem i32 %x.phi3676, i32 2
   1026 = icmp ne i32 %1025, i32 0
@@ -1310,8 +1288,7 @@ while.cond1066:
   x.phi3675 = phi [bb %while.body1060, i32 %al1054.phi, bb %if.exit1076, i32 %1103]
   ans.phi3486 = phi [bb %while.body1060, i32 0, bb %if.exit1076, i32 %ans.phi3485]
   1070 = icmp slt i32 %i.phi4421, i32 16
-  1071 = icmp ne i1 %1070, i1 0
-  br i1 %1071, bb %while.body1067, bb %while.exit1068
+  br i1 %1070, bb %while.body1067, bb %while.exit1068
 while.body1067:
   1073 = srem i32 %x.phi3675, i32 2
   1074 = icmp ne i32 %1073, i32 0
@@ -1359,8 +1336,7 @@ while.cond1111:
   x.phi3701 = phi [bb %while.exit1068, i32 %al1054.phi, bb %if.exit1129, i32 %1138]
   ans.phi3529 = phi [bb %while.exit1068, i32 0, bb %if.exit1129, i32 %ans.phi3528]
   1115 = icmp slt i32 %i.phi4441, i32 16
-  1116 = icmp ne i1 %1115, i1 0
-  br i1 %1116, bb %while.body1112, bb %while.exit1113
+  br i1 %1115, bb %while.body1112, bb %while.exit1113
 while.body1112:
   1118 = srem i32 %x.phi3701, i32 2
   1119 = icmp ne i32 %1118, i32 0
@@ -1406,8 +1382,7 @@ while.cond1153:
   x.phi3671 = phi [bb %else1147, i32 %1152, bb %if.exit1171, i32 %1180]
   ans.phi3478 = phi [bb %else1147, i32 0, bb %if.exit1171, i32 %ans.phi3477]
   1157 = icmp slt i32 %i.phi4415, i32 16
-  1158 = icmp ne i1 %1157, i1 0
-  br i1 %1158, bb %while.body1154, bb %while.exit1155
+  br i1 %1157, bb %while.body1154, bb %while.exit1155
 while.body1154:
   1160 = srem i32 %x.phi3671, i32 2
   1161 = icmp ne i32 %1160, i32 0
@@ -1504,8 +1479,7 @@ while.cond1246:
   x.phi3665 = phi [bb %while.body1241, i32 %mr1237.phi, bb %if.exit1264, i32 %1273]
   ans.phi3470 = phi [bb %while.body1241, i32 0, bb %if.exit1264, i32 %ans.phi3469]
   1250 = icmp slt i32 %i.phi4414, i32 16
-  1251 = icmp ne i1 %1250, i1 0
-  br i1 %1251, bb %while.body1247, bb %while.exit1248
+  br i1 %1250, bb %while.body1247, bb %while.exit1248
 while.body1247:
   1253 = srem i32 %x.phi3665, i32 2
   1254 = icmp ne i32 %1253, i32 0
@@ -1565,8 +1539,7 @@ while.cond1294:
   x.phi3664 = phi [bb %while.body1288, i32 %al1282.phi, bb %if.exit1304, i32 %1331]
   ans.phi3467 = phi [bb %while.body1288, i32 0, bb %if.exit1304, i32 %ans.phi3466]
   1298 = icmp slt i32 %i.phi4413, i32 16
-  1299 = icmp ne i1 %1298, i1 0
-  br i1 %1299, bb %while.body1295, bb %while.exit1296
+  br i1 %1298, bb %while.body1295, bb %while.exit1296
 while.body1295:
   1301 = srem i32 %x.phi3664, i32 2
   1302 = icmp ne i32 %1301, i32 0
@@ -1614,8 +1587,7 @@ while.cond1339:
   x.phi3663 = phi [bb %while.exit1296, i32 %al1282.phi, bb %if.exit1357, i32 %1366]
   ans.phi3464 = phi [bb %while.exit1296, i32 0, bb %if.exit1357, i32 %ans.phi3463]
   1343 = icmp slt i32 %i.phi4412, i32 16
-  1344 = icmp ne i1 %1343, i1 0
-  br i1 %1344, bb %while.body1340, bb %while.exit1341
+  br i1 %1343, bb %while.body1340, bb %while.exit1341
 while.body1340:
   1346 = srem i32 %x.phi3663, i32 2
   1347 = icmp ne i32 %1346, i32 0
@@ -1661,8 +1633,7 @@ while.cond1381:
   x.phi3659 = phi [bb %else1375, i32 %1380, bb %if.exit1399, i32 %1408]
   ans.phi3459 = phi [bb %else1375, i32 0, bb %if.exit1399, i32 %ans.phi3458]
   1385 = icmp slt i32 %i.phi4408, i32 16
-  1386 = icmp ne i1 %1385, i1 0
-  br i1 %1386, bb %while.body1382, bb %while.exit1383
+  br i1 %1385, bb %while.body1382, bb %while.exit1383
 while.body1382:
   1388 = srem i32 %x.phi3659, i32 2
   1389 = icmp ne i32 %1388, i32 0
@@ -1711,8 +1682,7 @@ while.cond1429:
   x.phi3658 = phi [bb %while.body1423, i32 %al1417.phi, bb %if.exit1439, i32 %1466]
   ans.phi3456 = phi [bb %while.body1423, i32 0, bb %if.exit1439, i32 %ans.phi3455]
   1433 = icmp slt i32 %i.phi4407, i32 16
-  1434 = icmp ne i1 %1433, i1 0
-  br i1 %1434, bb %while.body1430, bb %while.exit1431
+  br i1 %1433, bb %while.body1430, bb %while.exit1431
 while.body1430:
   1436 = srem i32 %x.phi3658, i32 2
   1437 = icmp ne i32 %1436, i32 0
@@ -1760,8 +1730,7 @@ while.cond1474:
   x.phi3657 = phi [bb %while.exit1431, i32 %al1417.phi, bb %if.exit1492, i32 %1501]
   ans.phi3453 = phi [bb %while.exit1431, i32 0, bb %if.exit1492, i32 %ans.phi3452]
   1478 = icmp slt i32 %i.phi4406, i32 16
-  1479 = icmp ne i1 %1478, i1 0
-  br i1 %1479, bb %while.body1475, bb %while.exit1476
+  br i1 %1478, bb %while.body1475, bb %while.exit1476
 while.body1475:
   1481 = srem i32 %x.phi3657, i32 2
   1482 = icmp ne i32 %1481, i32 0
@@ -1807,8 +1776,7 @@ while.cond1516:
   x.phi3654 = phi [bb %else1510, i32 %1515, bb %if.exit1534, i32 %1543]
   ans.phi3449 = phi [bb %else1510, i32 0, bb %if.exit1534, i32 %ans.phi3448]
   1520 = icmp slt i32 %i.phi4401, i32 16
-  1521 = icmp ne i1 %1520, i1 0
-  br i1 %1521, bb %while.body1517, bb %while.exit1518
+  br i1 %1520, bb %while.body1517, bb %while.exit1518
 while.body1517:
   1523 = srem i32 %x.phi3654, i32 2
   1524 = icmp ne i32 %1523, i32 0
@@ -1951,8 +1919,7 @@ while.cond1646:
   cur.phi3724 = phi [bb %while.exit831, i32 2, bb %while.exit1658, i32 %2474]
   x.phi3612 = phi [bb %while.exit831, i32 %x.phi3649, bb %while.exit1658, i32 %x.phi3611]
   1650 = icmp slt i32 %cur.phi3724, i32 16
-  1651 = icmp ne i1 %1650, i1 0
-  br i1 %1651, bb %while.body1647, bb %while.exit1648
+  br i1 %1650, bb %while.body1647, bb %while.exit1648
 while.body1647:
   br bb %while.cond1656
 while.exit1648:
@@ -1994,8 +1961,7 @@ while.cond1656:
   select1722.phi3729 = phi [bb %while.body1647, i1 %select1722.phi3730, bb %if.exit2429, i1 %select1722.phi3728]
   x.phi3611 = phi [bb %while.body1647, i32 %x.phi3612, bb %if.exit2429, i32 %x.phi3610]
   1660 = icmp sgt i32 %pr1653.phi, i32 0
-  1661 = icmp ne i1 %1660, i1 0
-  br i1 %1661, bb %while.body1657, bb %while.exit1658
+  br i1 %1660, bb %while.body1657, bb %while.exit1658
 while.body1657:
   br bb %while.cond1663
 while.exit1658:
@@ -2010,8 +1976,7 @@ while.cond1663:
   x.phi3645 = phi [bb %while.body1657, i32 %pr1653.phi, bb %if.exit1681, i32 %1690]
   ans.phi3437 = phi [bb %while.body1657, i32 0, bb %if.exit1681, i32 %ans.phi3436]
   1667 = icmp slt i32 %i.phi4400, i32 16
-  1668 = icmp ne i1 %1667, i1 0
-  br i1 %1668, bb %while.body1664, bb %while.exit1665
+  br i1 %1667, bb %while.body1664, bb %while.exit1665
 while.body1664:
   1670 = srem i32 %x.phi3645, i32 2
   1671 = icmp ne i32 %1670, i32 0
@@ -2090,8 +2055,7 @@ while.cond1710:
   x.phi3644 = phi [bb %while.body1705, i32 %mr1701.phi, bb %if.exit1728, i32 %1737]
   ans.phi3435 = phi [bb %while.body1705, i32 0, bb %if.exit1728, i32 %ans.phi3434]
   1714 = icmp slt i32 %i.phi4399, i32 16
-  1715 = icmp ne i1 %1714, i1 0
-  br i1 %1715, bb %while.body1711, bb %while.exit1712
+  br i1 %1714, bb %while.body1711, bb %while.exit1712
 while.body1711:
   1717 = srem i32 %x.phi3644, i32 2
   1718 = icmp ne i32 %1717, i32 0
@@ -2151,8 +2115,7 @@ while.cond1758:
   x.phi3643 = phi [bb %while.body1752, i32 %al1746.phi, bb %if.exit1768, i32 %1795]
   ans.phi3432 = phi [bb %while.body1752, i32 0, bb %if.exit1768, i32 %ans.phi3431]
   1762 = icmp slt i32 %i.phi4398, i32 16
-  1763 = icmp ne i1 %1762, i1 0
-  br i1 %1763, bb %while.body1759, bb %while.exit1760
+  br i1 %1762, bb %while.body1759, bb %while.exit1760
 while.body1759:
   1765 = srem i32 %x.phi3643, i32 2
   1766 = icmp ne i32 %1765, i32 0
@@ -2200,8 +2163,7 @@ while.cond1803:
   x.phi3642 = phi [bb %while.exit1760, i32 %al1746.phi, bb %if.exit1821, i32 %1830]
   ans.phi3429 = phi [bb %while.exit1760, i32 0, bb %if.exit1821, i32 %ans.phi3428]
   1807 = icmp slt i32 %i.phi4397, i32 16
-  1808 = icmp ne i1 %1807, i1 0
-  br i1 %1808, bb %while.body1804, bb %while.exit1805
+  br i1 %1807, bb %while.body1804, bb %while.exit1805
 while.body1804:
   1810 = srem i32 %x.phi3642, i32 2
   1811 = icmp ne i32 %1810, i32 0
@@ -2247,8 +2209,7 @@ while.cond1845:
   x.phi3638 = phi [bb %else1839, i32 %1844, bb %if.exit1863, i32 %1872]
   ans.phi3424 = phi [bb %else1839, i32 0, bb %if.exit1863, i32 %ans.phi3423]
   1849 = icmp slt i32 %i.phi4393, i32 16
-  1850 = icmp ne i1 %1849, i1 0
-  br i1 %1850, bb %while.body1846, bb %while.exit1847
+  br i1 %1849, bb %while.body1846, bb %while.exit1847
 while.body1846:
   1852 = srem i32 %x.phi3638, i32 2
   1853 = icmp ne i32 %1852, i32 0
@@ -2297,8 +2258,7 @@ while.cond1893:
   x.phi3637 = phi [bb %while.body1887, i32 %al1881.phi, bb %if.exit1903, i32 %1930]
   ans.phi3421 = phi [bb %while.body1887, i32 0, bb %if.exit1903, i32 %ans.phi3420]
   1897 = icmp slt i32 %i.phi4392, i32 16
-  1898 = icmp ne i1 %1897, i1 0
-  br i1 %1898, bb %while.body1894, bb %while.exit1895
+  br i1 %1897, bb %while.body1894, bb %while.exit1895
 while.body1894:
   1900 = srem i32 %x.phi3637, i32 2
   1901 = icmp ne i32 %1900, i32 0
@@ -2346,8 +2306,7 @@ while.cond1938:
   x.phi3636 = phi [bb %while.exit1895, i32 %al1881.phi, bb %if.exit1956, i32 %1965]
   ans.phi3418 = phi [bb %while.exit1895, i32 0, bb %if.exit1956, i32 %ans.phi3417]
   1942 = icmp slt i32 %i.phi4391, i32 16
-  1943 = icmp ne i1 %1942, i1 0
-  br i1 %1943, bb %while.body1939, bb %while.exit1940
+  br i1 %1942, bb %while.body1939, bb %while.exit1940
 while.body1939:
   1945 = srem i32 %x.phi3636, i32 2
   1946 = icmp ne i32 %1945, i32 0
@@ -2393,8 +2352,7 @@ while.cond1980:
   x.phi3633 = phi [bb %else1974, i32 %1979, bb %if.exit1998, i32 %2007]
   ans.phi3414 = phi [bb %else1974, i32 0, bb %if.exit1998, i32 %ans.phi3413]
   1984 = icmp slt i32 %i.phi4386, i32 16
-  1985 = icmp ne i1 %1984, i1 0
-  br i1 %1985, bb %while.body1981, bb %while.exit1982
+  br i1 %1984, bb %while.body1981, bb %while.exit1982
 while.body1981:
   1987 = srem i32 %x.phi3633, i32 2
   1988 = icmp ne i32 %1987, i32 0
@@ -2491,8 +2449,7 @@ while.cond2073:
   x.phi3627 = phi [bb %while.body2068, i32 %mr2064.phi4022, bb %if.exit2091, i32 %2100]
   ans.phi3406 = phi [bb %while.body2068, i32 0, bb %if.exit2091, i32 %ans.phi3405]
   2077 = icmp slt i32 %i.phi4385, i32 16
-  2078 = icmp ne i1 %2077, i1 0
-  br i1 %2078, bb %while.body2074, bb %while.exit2075
+  br i1 %2077, bb %while.body2074, bb %while.exit2075
 while.body2074:
   2080 = srem i32 %x.phi3627, i32 2
   2081 = icmp ne i32 %2080, i32 0
@@ -2552,8 +2509,7 @@ while.cond2121:
   x.phi3626 = phi [bb %while.body2115, i32 %al2109.phi, bb %if.exit2131, i32 %2158]
   ans.phi3403 = phi [bb %while.body2115, i32 0, bb %if.exit2131, i32 %ans.phi3402]
   2125 = icmp slt i32 %i.phi4384, i32 16
-  2126 = icmp ne i1 %2125, i1 0
-  br i1 %2126, bb %while.body2122, bb %while.exit2123
+  br i1 %2125, bb %while.body2122, bb %while.exit2123
 while.body2122:
   2128 = srem i32 %x.phi3626, i32 2
   2129 = icmp ne i32 %2128, i32 0
@@ -2601,8 +2557,7 @@ while.cond2166:
   x.phi3625 = phi [bb %while.exit2123, i32 %al2109.phi, bb %if.exit2184, i32 %2193]
   ans.phi3400 = phi [bb %while.exit2123, i32 0, bb %if.exit2184, i32 %ans.phi3399]
   2170 = icmp slt i32 %i.phi4383, i32 16
-  2171 = icmp ne i1 %2170, i1 0
-  br i1 %2171, bb %while.body2167, bb %while.exit2168
+  br i1 %2170, bb %while.body2167, bb %while.exit2168
 while.body2167:
   2173 = srem i32 %x.phi3625, i32 2
   2174 = icmp ne i32 %2173, i32 0
@@ -2648,8 +2603,7 @@ while.cond2208:
   x.phi3621 = phi [bb %else2202, i32 %2207, bb %if.exit2226, i32 %2235]
   ans.phi3395 = phi [bb %else2202, i32 0, bb %if.exit2226, i32 %ans.phi3394]
   2212 = icmp slt i32 %i.phi4379, i32 16
-  2213 = icmp ne i1 %2212, i1 0
-  br i1 %2213, bb %while.body2209, bb %while.exit2210
+  br i1 %2212, bb %while.body2209, bb %while.exit2210
 while.body2209:
   2215 = srem i32 %x.phi3621, i32 2
   2216 = icmp ne i32 %2215, i32 0
@@ -2698,8 +2652,7 @@ while.cond2256:
   x.phi3620 = phi [bb %while.body2250, i32 %al2244.phi, bb %if.exit2266, i32 %2293]
   ans.phi3392 = phi [bb %while.body2250, i32 0, bb %if.exit2266, i32 %ans.phi3391]
   2260 = icmp slt i32 %i.phi4378, i32 16
-  2261 = icmp ne i1 %2260, i1 0
-  br i1 %2261, bb %while.body2257, bb %while.exit2258
+  br i1 %2260, bb %while.body2257, bb %while.exit2258
 while.body2257:
   2263 = srem i32 %x.phi3620, i32 2
   2264 = icmp ne i32 %2263, i32 0
@@ -2747,8 +2700,7 @@ while.cond2301:
   x.phi3619 = phi [bb %while.exit2258, i32 %al2244.phi, bb %if.exit2319, i32 %2328]
   ans.phi3389 = phi [bb %while.exit2258, i32 0, bb %if.exit2319, i32 %ans.phi3388]
   2305 = icmp slt i32 %i.phi4377, i32 16
-  2306 = icmp ne i1 %2305, i1 0
-  br i1 %2306, bb %while.body2302, bb %while.exit2303
+  br i1 %2305, bb %while.body2302, bb %while.exit2303
 while.body2302:
   2308 = srem i32 %x.phi3619, i32 2
   2309 = icmp ne i32 %2308, i32 0
@@ -2794,8 +2746,7 @@ while.cond2343:
   x.phi3674 = phi [bb %else2337, i32 %2342, bb %if.exit2361, i32 %2370]
   ans.phi3483 = phi [bb %else2337, i32 0, bb %if.exit2361, i32 %ans.phi3482]
   2347 = icmp slt i32 %i.phi4420, i32 16
-  2348 = icmp ne i1 %2347, i1 0
-  br i1 %2348, bb %while.body2344, bb %while.exit2345
+  br i1 %2347, bb %while.body2344, bb %while.exit2345
 while.body2344:
   2350 = srem i32 %x.phi3674, i32 2
   2351 = icmp ne i32 %2350, i32 0
@@ -2938,8 +2889,7 @@ while.cond2475:
   cur.phi = phi [bb %while.exit1648, i32 0, bb %if.exit3306, i32 %3308]
   x.phi3573 = phi [bb %while.exit1648, i32 %x.phi3612, bb %if.exit3306, i32 %x.phi3572]
   2479 = icmp slt i32 %cur.phi, i32 16
-  2480 = icmp ne i1 %2479, i1 0
-  br i1 %2480, bb %while.body2476, bb %while.exit2477
+  br i1 %2479, bb %while.body2476, bb %while.exit2477
 while.body2476:
   br bb %while.cond2485
 while.exit2477:
@@ -2981,8 +2931,7 @@ while.cond2485:
   select2686.phi3793 = phi [bb %while.body2476, i1 %select2686.phi3794, bb %if.exit3258, i1 %select2686.phi3792]
   x.phi3572 = phi [bb %while.body2476, i32 %x.phi3573, bb %if.exit3258, i32 %x.phi3571]
   2489 = icmp sgt i32 %pr2482.phi, i32 0
-  2490 = icmp ne i1 %2489, i1 0
-  br i1 %2490, bb %while.body2486, bb %while.exit2487
+  br i1 %2489, bb %while.body2486, bb %while.exit2487
 while.body2486:
   br bb %while.cond2492
 while.exit2487:
@@ -2998,8 +2947,7 @@ while.cond2492:
   x.phi3607 = phi [bb %while.body2486, i32 %pr2482.phi, bb %if.exit2510, i32 %2519]
   ans.phi3375 = phi [bb %while.body2486, i32 0, bb %if.exit2510, i32 %ans.phi3374]
   2496 = icmp slt i32 %i.phi4371, i32 16
-  2497 = icmp ne i1 %2496, i1 0
-  br i1 %2497, bb %while.body2493, bb %while.exit2494
+  br i1 %2496, bb %while.body2493, bb %while.exit2494
 while.body2493:
   2499 = srem i32 %x.phi3607, i32 2
   2500 = icmp ne i32 %2499, i32 0
@@ -3078,8 +3026,7 @@ while.cond2539:
   x.phi3606 = phi [bb %while.body2534, i32 %mr2530.phi, bb %if.exit2557, i32 %2566]
   ans.phi3373 = phi [bb %while.body2534, i32 0, bb %if.exit2557, i32 %ans.phi3372]
   2543 = icmp slt i32 %i.phi4370, i32 16
-  2544 = icmp ne i1 %2543, i1 0
-  br i1 %2544, bb %while.body2540, bb %while.exit2541
+  br i1 %2543, bb %while.body2540, bb %while.exit2541
 while.body2540:
   2546 = srem i32 %x.phi3606, i32 2
   2547 = icmp ne i32 %2546, i32 0
@@ -3139,8 +3086,7 @@ while.cond2587:
   x.phi3605 = phi [bb %while.body2581, i32 %al2575.phi, bb %if.exit2597, i32 %2624]
   ans.phi3370 = phi [bb %while.body2581, i32 0, bb %if.exit2597, i32 %ans.phi3369]
   2591 = icmp slt i32 %i.phi4369, i32 16
-  2592 = icmp ne i1 %2591, i1 0
-  br i1 %2592, bb %while.body2588, bb %while.exit2589
+  br i1 %2591, bb %while.body2588, bb %while.exit2589
 while.body2588:
   2594 = srem i32 %x.phi3605, i32 2
   2595 = icmp ne i32 %2594, i32 0
@@ -3188,8 +3134,7 @@ while.cond2632:
   x.phi3604 = phi [bb %while.exit2589, i32 %al2575.phi, bb %if.exit2650, i32 %2659]
   ans.phi3367 = phi [bb %while.exit2589, i32 0, bb %if.exit2650, i32 %ans.phi3366]
   2636 = icmp slt i32 %i.phi4368, i32 16
-  2637 = icmp ne i1 %2636, i1 0
-  br i1 %2637, bb %while.body2633, bb %while.exit2634
+  br i1 %2636, bb %while.body2633, bb %while.exit2634
 while.body2633:
   2639 = srem i32 %x.phi3604, i32 2
   2640 = icmp ne i32 %2639, i32 0
@@ -3235,8 +3180,7 @@ while.cond2674:
   x.phi3600 = phi [bb %else2668, i32 %2673, bb %if.exit2692, i32 %2701]
   ans.phi3362 = phi [bb %else2668, i32 0, bb %if.exit2692, i32 %ans.phi3361]
   2678 = icmp slt i32 %i.phi4364, i32 16
-  2679 = icmp ne i1 %2678, i1 0
-  br i1 %2679, bb %while.body2675, bb %while.exit2676
+  br i1 %2678, bb %while.body2675, bb %while.exit2676
 while.body2675:
   2681 = srem i32 %x.phi3600, i32 2
   2682 = icmp ne i32 %2681, i32 0
@@ -3285,8 +3229,7 @@ while.cond2722:
   x.phi3599 = phi [bb %while.body2716, i32 %al2710.phi, bb %if.exit2732, i32 %2759]
   ans.phi3359 = phi [bb %while.body2716, i32 0, bb %if.exit2732, i32 %ans.phi3358]
   2726 = icmp slt i32 %i.phi4363, i32 16
-  2727 = icmp ne i1 %2726, i1 0
-  br i1 %2727, bb %while.body2723, bb %while.exit2724
+  br i1 %2726, bb %while.body2723, bb %while.exit2724
 while.body2723:
   2729 = srem i32 %x.phi3599, i32 2
   2730 = icmp ne i32 %2729, i32 0
@@ -3334,8 +3277,7 @@ while.cond2767:
   x.phi3598 = phi [bb %while.exit2724, i32 %al2710.phi, bb %if.exit2785, i32 %2794]
   ans.phi3356 = phi [bb %while.exit2724, i32 0, bb %if.exit2785, i32 %ans.phi3355]
   2771 = icmp slt i32 %i.phi4362, i32 16
-  2772 = icmp ne i1 %2771, i1 0
-  br i1 %2772, bb %while.body2768, bb %while.exit2769
+  br i1 %2771, bb %while.body2768, bb %while.exit2769
 while.body2768:
   2774 = srem i32 %x.phi3598, i32 2
   2775 = icmp ne i32 %2774, i32 0
@@ -3381,8 +3323,7 @@ while.cond2809:
   x.phi3595 = phi [bb %else2803, i32 %2808, bb %if.exit2827, i32 %2836]
   ans.phi3352 = phi [bb %else2803, i32 0, bb %if.exit2827, i32 %ans.phi3351]
   2813 = icmp slt i32 %i.phi4357, i32 16
-  2814 = icmp ne i1 %2813, i1 0
-  br i1 %2814, bb %while.body2810, bb %while.exit2811
+  br i1 %2813, bb %while.body2810, bb %while.exit2811
 while.body2810:
   2816 = srem i32 %x.phi3595, i32 2
   2817 = icmp ne i32 %2816, i32 0
@@ -3479,8 +3420,7 @@ while.cond2902:
   x.phi3589 = phi [bb %while.body2897, i32 %mr2893.phi, bb %if.exit2920, i32 %2929]
   ans.phi3344 = phi [bb %while.body2897, i32 0, bb %if.exit2920, i32 %ans.phi3343]
   2906 = icmp slt i32 %i.phi4356, i32 16
-  2907 = icmp ne i1 %2906, i1 0
-  br i1 %2907, bb %while.body2903, bb %while.exit2904
+  br i1 %2906, bb %while.body2903, bb %while.exit2904
 while.body2903:
   2909 = srem i32 %x.phi3589, i32 2
   2910 = icmp ne i32 %2909, i32 0
@@ -3540,8 +3480,7 @@ while.cond2950:
   x.phi3588 = phi [bb %while.body2944, i32 %al2938.phi, bb %if.exit2960, i32 %2987]
   ans.phi3341 = phi [bb %while.body2944, i32 0, bb %if.exit2960, i32 %ans.phi3340]
   2954 = icmp slt i32 %i.phi4355, i32 16
-  2955 = icmp ne i1 %2954, i1 0
-  br i1 %2955, bb %while.body2951, bb %while.exit2952
+  br i1 %2954, bb %while.body2951, bb %while.exit2952
 while.body2951:
   2957 = srem i32 %x.phi3588, i32 2
   2958 = icmp ne i32 %2957, i32 0
@@ -3589,8 +3528,7 @@ while.cond2995:
   x.phi3587 = phi [bb %while.exit2952, i32 %al2938.phi, bb %if.exit3013, i32 %3022]
   ans.phi3338 = phi [bb %while.exit2952, i32 0, bb %if.exit3013, i32 %ans.phi3337]
   2999 = icmp slt i32 %i.phi4354, i32 16
-  3000 = icmp ne i1 %2999, i1 0
-  br i1 %3000, bb %while.body2996, bb %while.exit2997
+  br i1 %2999, bb %while.body2996, bb %while.exit2997
 while.body2996:
   3002 = srem i32 %x.phi3587, i32 2
   3003 = icmp ne i32 %3002, i32 0
@@ -3636,8 +3574,7 @@ while.cond3037:
   x.phi3583 = phi [bb %else3031, i32 %3036, bb %if.exit3055, i32 %3064]
   ans.phi3333 = phi [bb %else3031, i32 0, bb %if.exit3055, i32 %ans.phi3332]
   3041 = icmp slt i32 %i.phi4350, i32 16
-  3042 = icmp ne i1 %3041, i1 0
-  br i1 %3042, bb %while.body3038, bb %while.exit3039
+  br i1 %3041, bb %while.body3038, bb %while.exit3039
 while.body3038:
   3044 = srem i32 %x.phi3583, i32 2
   3045 = icmp ne i32 %3044, i32 0
@@ -3686,8 +3623,7 @@ while.cond3085:
   x.phi3582 = phi [bb %while.body3079, i32 %al3073.phi, bb %if.exit3095, i32 %3122]
   ans.phi3330 = phi [bb %while.body3079, i32 0, bb %if.exit3095, i32 %ans.phi3329]
   3089 = icmp slt i32 %i.phi4349, i32 16
-  3090 = icmp ne i1 %3089, i1 0
-  br i1 %3090, bb %while.body3086, bb %while.exit3087
+  br i1 %3089, bb %while.body3086, bb %while.exit3087
 while.body3086:
   3092 = srem i32 %x.phi3582, i32 2
   3093 = icmp ne i32 %3092, i32 0
@@ -3735,8 +3671,7 @@ while.cond3130:
   x.phi3581 = phi [bb %while.exit3087, i32 %al3073.phi, bb %if.exit3148, i32 %3157]
   ans.phi3327 = phi [bb %while.exit3087, i32 0, bb %if.exit3148, i32 %ans.phi3326]
   3134 = icmp slt i32 %i.phi4348, i32 16
-  3135 = icmp ne i1 %3134, i1 0
-  br i1 %3135, bb %while.body3131, bb %while.exit3132
+  br i1 %3134, bb %while.body3131, bb %while.exit3132
 while.body3131:
   3137 = srem i32 %x.phi3581, i32 2
   3138 = icmp ne i32 %3137, i32 0
@@ -3782,8 +3717,7 @@ while.cond3172:
   x.phi3578 = phi [bb %else3166, i32 %3171, bb %if.exit3190, i32 %3199]
   ans.phi3323 = phi [bb %else3166, i32 0, bb %if.exit3190, i32 %ans.phi3322]
   3176 = icmp slt i32 %i.phi, i32 16
-  3177 = icmp ne i1 %3176, i1 0
-  br i1 %3177, bb %while.body3173, bb %while.exit3174
+  br i1 %3176, bb %while.body3173, bb %while.exit3174
 while.body3173:
   3179 = srem i32 %x.phi3578, i32 2
   3180 = icmp ne i32 %3179, i32 0

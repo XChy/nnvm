@@ -140,10 +140,9 @@ select.else:
   28 = ptradd ptr %str, i32 %27
   28.load = load i32 from ptr %28
   30 = icmp eq i32 %24.load, i32 %28.load
-  31 = icmp ne i1 %30, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %31, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %30, bb %select.then, i1 1]
   br i1 %select.phi, bb %then, bb %else
 then:
   37 = add i32 %j.phi141, i32 1

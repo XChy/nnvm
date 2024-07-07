@@ -19,8 +19,7 @@ entry67:
 while.cond74:
   i73.phi134 = phi [bb %entry67, i32 0, bb %while.body75, i32 %86]
   79 = icmp slt i32 %i73.phi134, i32 %69
-  80 = icmp ne i1 %79, i1 0
-  br i1 %80, bb %while.body75, bb %while.exit76
+  br i1 %79, bb %while.body75, bb %while.exit76
 while.body75:
   82 = mul i32 %i73.phi134, i32 4
   83 = ptradd ptr @matrix, i32 %82
@@ -32,8 +31,7 @@ while.exit76:
 while.cond87:
   i73.phi133 = phi [bb %while.exit76, i32 0, bb %while.body88, i32 %101]
   92 = icmp slt i32 %i73.phi133, i32 %71
-  93 = icmp ne i1 %92, i1 0
-  br i1 %93, bb %while.body88, bb %while.exit89
+  br i1 %92, bb %while.body88, bb %while.exit89
 while.body88:
   96 = mul i32 %i73.phi133, i32 4
   97 = ptradd ptr @a, i32 %96
@@ -47,8 +45,7 @@ while.cond103:
   ans.phi136 = phi [bb %while.exit89, i32 0, bb %while.body104, i32 %119]
   i73.phi = phi [bb %while.exit89, i32 0, bb %while.body104, i32 %121]
   108 = icmp slt i32 %i73.phi, i32 %71
-  109 = icmp ne i1 %108, i1 0
-  br i1 %109, bb %while.body104, bb %while.exit105
+  br i1 %108, bb %while.body104, bb %while.exit105
 while.body104:
   113 = mul i32 %i73.phi, i32 %i73.phi
   115 = mul i32 %i73.phi, i32 4
@@ -88,8 +85,7 @@ while.cond:
   curr.phi141 = phi [bb %entry, i32 ub, bb %while.exit18, i32 %curr.phi]
   i.phi = phi [bb %entry, i32 0, bb %while.exit18, i32 %65]
   14 = icmp slt i32 %i.phi, i32 %6
-  15 = icmp ne i1 %14, i1 0
-  br i1 %15, bb %while.body, bb %while.exit
+  br i1 %14, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond16
 while.exit:
@@ -98,8 +94,7 @@ while.cond16:
   curr.phi = phi [bb %while.body, i32 %curr.phi141, bb %if.exit, i32 %37.load, bb %then, i32 %curr.phi]
   j.phi = phi [bb %while.body, i32 0, bb %if.exit, i32 %63, bb %then, i32 %29]
   21 = icmp slt i32 %j.phi, i32 %rowsize
-  22 = icmp ne i1 %21, i1 0
-  br i1 %22, bb %while.body17, bb %while.exit18
+  br i1 %21, bb %while.body17, bb %while.exit18
 while.body17:
   25 = icmp slt i32 %i.phi, i32 %j.phi
   br i1 %25, bb %then, bb %if.exit

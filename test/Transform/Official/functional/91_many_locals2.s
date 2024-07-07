@@ -20,8 +20,6 @@ bb1:
   ADD s0, s1, zero
   XORI s2, s0, 5
   SLTIU s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   BNE s3, zero, bb2
   JAL zero, bb3
 bb2:

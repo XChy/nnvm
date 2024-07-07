@@ -1,0 +1,255 @@
+global ptr a init with 1000000 x float zeros
+float sqrt(float x) {
+entry10:
+  13 = si2f i32 0 to float
+  19 = fadd float %13, float %x
+  20 = si2f i32 2 to float
+  21 = fdiv float %19, float %20
+  br bb %while.cond
+while.cond:
+  mid.phi285 = phi [bb %entry10, float %21, bb %if.exit39, float %mid.phi]
+  end.phi283 = phi [bb %entry10, float %x, bb %if.exit39, float %end.phi]
+  start.phi281 = phi [bb %entry10, float %13, bb %if.exit39, float %start.phi]
+  27 = fmul float %mid.phi285, float %mid.phi285
+  29 = fsub float %27, float %x
+  30 = call float myAbs(float %29)
+  31 = fcmp ogt float %30, float 0.001000
+  br i1 %31, bb %while.body, bb %while.exit
+while.body:
+  37 = fcmp ogt float %27, float %x
+  br i1 %37, bb %then38, bb %else
+while.exit:
+  ret float %mid.phi285
+then38:
+  44 = fadd float %mid.phi285, float %start.phi281
+  46 = fdiv float %44, float %20
+  br bb %if.exit39
+if.exit39:
+  mid.phi = phi [bb %else, float %52, bb %then38, float %46]
+  end.phi = phi [bb %else, float %end.phi283, bb %then38, float %mid.phi285]
+  start.phi = phi [bb %else, float %mid.phi285, bb %then38, float %start.phi281]
+  br bb %while.cond
+else:
+  50 = fadd float %mid.phi285, float %end.phi283
+  52 = fdiv float %50, float %20
+  br bb %if.exit39
+}
+
+external i32 getint()
+
+external i32 getch()
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry54:
+  %var = stack 4000
+  %mean = stack 4000
+  60 = si2f i32 0 to float
+  br bb %while.cond61
+while.cond61:
+  i.phi291 = phi [bb %entry54, i32 0, bb %if.exit74, i32 %77]
+  65 = icmp slt i32 %i.phi291, i32 1000
+  br i1 %65, bb %while.body62, bb %while.exit63
+while.body62:
+  68 = mul i32 %i.phi291, i32 4000
+  69 = ptradd ptr @a, i32 %68
+  70 = call i32 getfarray(ptr %69)
+  72 = icmp ne i32 %70, i32 1000
+  br i1 %72, bb %then73, bb %if.exit74
+while.exit63:
+  call void _sysy_starttime(i32 42)
+  br bb %while.cond79
+then73:
+  ret i32 %70
+if.exit74:
+  77 = add i32 %i.phi291, i32 1
+  br bb %while.cond61
+while.cond79:
+  sum.phi305 = phi [bb %while.exit63, float %60, bb %while.exit204, float %sum.phi304]
+  k.phi = phi [bb %while.exit63, i32 0, bb %while.exit204, i32 %251]
+  j.phi295 = phi [bb %while.exit63, i32 ub, bb %while.exit204, i32 %j.phi294]
+  83 = icmp slt i32 %k.phi, i32 100
+  br i1 %83, bb %while.body80, bb %while.exit81
+while.body80:
+  br bb %while.cond86
+while.exit81:
+  br bb %while.cond252
+while.cond86:
+  j.phi300 = phi [bb %while.body80, i32 %j.phi295, bb %while.exit98, i32 %j.phi299]
+  i.phi290 = phi [bb %while.body80, i32 0, bb %while.exit98, i32 %129]
+  90 = icmp slt i32 %i.phi290, i32 1000
+  br i1 %90, bb %while.body87, bb %while.exit88
+while.body87:
+  93 = mul i32 %i.phi290, i32 4
+  94 = ptradd ptr %mean, i32 %93
+  store float %60 to ptr %94
+  br bb %while.cond96
+while.exit88:
+  br bb %while.cond131
+while.cond96:
+  j.phi299 = phi [bb %while.body87, i32 0, bb %while.body97, i32 %118]
+  100 = icmp slt i32 %j.phi299, i32 1000
+  br i1 %100, bb %while.body97, bb %while.exit98
+while.body97:
+  107.load = load float from ptr %94
+  110 = mul i32 %i.phi290, i32 4000
+  111 = ptradd ptr @a, i32 %110
+  113 = mul i32 %j.phi299, i32 4
+  114 = ptradd ptr %111, i32 %113
+  114.load = load float from ptr %114
+  116 = fadd float %107.load, float %114.load
+  store float %116 to ptr %94
+  118 = add i32 %j.phi299, i32 1
+  br bb %while.cond96
+while.exit98:
+  124.load = load float from ptr %94
+  126 = si2f i32 1000 to float
+  127 = fdiv float %124.load, float %126
+  store float %127 to ptr %94
+  129 = add i32 %i.phi290, i32 1
+  br bb %while.cond86
+while.cond131:
+  j.phi297 = phi [bb %while.exit88, i32 %j.phi300, bb %while.exit143, i32 %j.phi296]
+  i.phi288 = phi [bb %while.exit88, i32 0, bb %while.exit143, i32 %201]
+  135 = icmp slt i32 %i.phi288, i32 1000
+  br i1 %135, bb %while.body132, bb %while.exit133
+while.body132:
+  138 = mul i32 %i.phi288, i32 4
+  139 = ptradd ptr %var, i32 %138
+  store float %60 to ptr %139
+  br bb %while.cond141
+while.exit133:
+  br bb %while.cond202
+while.cond141:
+  j.phi296 = phi [bb %while.body132, i32 0, bb %while.body142, i32 %181]
+  145 = icmp slt i32 %j.phi296, i32 1000
+  br i1 %145, bb %while.body142, bb %while.exit143
+while.body142:
+  152.load = load float from ptr %139
+  155 = mul i32 %i.phi288, i32 4000
+  156 = ptradd ptr @a, i32 %155
+  158 = mul i32 %j.phi296, i32 4
+  159 = ptradd ptr %156, i32 %158
+  159.load = load float from ptr %159
+  163 = ptradd ptr %mean, i32 %138
+  163.load = load float from ptr %163
+  165 = fsub float %159.load, float %163.load
+  171.load = load float from ptr %159
+  175.load = load float from ptr %163
+  177 = fsub float %171.load, float %175.load
+  178 = fmul float %165, float %177
+  179 = fadd float %152.load, float %178
+  store float %179 to ptr %139
+  181 = add i32 %j.phi296, i32 1
+  br bb %while.cond141
+while.exit143:
+  187.load = load float from ptr %139
+  189 = si2f i32 1000 to float
+  190 = fdiv float %187.load, float %189
+  store float %190 to ptr %139
+  196.load = load float from ptr %139
+  198 = fadd float %196.load, float 0.010000
+  199 = call float sqrt(float %198)
+  store float %199 to ptr %139
+  201 = add i32 %i.phi288, i32 1
+  br bb %while.cond131
+while.cond202:
+  sum.phi304 = phi [bb %while.exit133, float %sum.phi305, bb %while.exit210, float %sum.phi]
+  j.phi294 = phi [bb %while.exit133, i32 %j.phi297, bb %while.exit210, i32 %j.phi293]
+  i.phi = phi [bb %while.exit133, i32 0, bb %while.exit210, i32 %249]
+  206 = icmp slt i32 %i.phi, i32 1000
+  br i1 %206, bb %while.body203, bb %while.exit204
+while.body203:
+  br bb %while.cond208
+while.exit204:
+  251 = add i32 %k.phi, i32 1
+  br bb %while.cond79
+while.cond208:
+  sum.phi = phi [bb %while.body203, float %sum.phi304, bb %while.body209, float %245]
+  j.phi293 = phi [bb %while.body203, i32 0, bb %while.body209, i32 %247]
+  212 = icmp slt i32 %j.phi293, i32 1000
+  br i1 %212, bb %while.body209, bb %while.exit210
+while.body209:
+  215 = mul i32 %i.phi, i32 4000
+  216 = ptradd ptr @a, i32 %215
+  218 = mul i32 %j.phi293, i32 4
+  219 = ptradd ptr %216, i32 %218
+  225.load = load float from ptr %219
+  228 = mul i32 %i.phi, i32 4
+  229 = ptradd ptr %mean, i32 %228
+  229.load = load float from ptr %229
+  231 = fsub float %225.load, float %229.load
+  234 = ptradd ptr %var, i32 %228
+  234.load = load float from ptr %234
+  236 = fdiv float %231, float %234.load
+  store float %236 to ptr %219
+  243.load = load float from ptr %219
+  245 = fadd float %sum.phi, float %243.load
+  247 = add i32 %j.phi293, i32 1
+  br bb %while.cond208
+while.exit210:
+  249 = add i32 %i.phi, i32 1
+  br bb %while.cond202
+while.cond252:
+  sum.phi307 = phi [bb %while.exit81, float %sum.phi305, bb %while.exit260, float %sum.phi306]
+  i.phi289 = phi [bb %while.exit81, i32 0, bb %while.exit260, i32 %276]
+  256 = icmp slt i32 %i.phi289, i32 1000
+  br i1 %256, bb %while.body253, bb %while.exit254
+while.body253:
+  br bb %while.cond258
+while.exit254:
+  call void _sysy_stoptime(i32 95)
+  call void putfloat(float %sum.phi307)
+  ret i32 0
+while.cond258:
+  sum.phi306 = phi [bb %while.body253, float %sum.phi307, bb %while.body259, float %272]
+  j.phi298 = phi [bb %while.body253, i32 0, bb %while.body259, i32 %274]
+  262 = icmp slt i32 %j.phi298, i32 1000
+  br i1 %262, bb %while.body259, bb %while.exit260
+while.body259:
+  266 = mul i32 %i.phi289, i32 4000
+  267 = ptradd ptr @a, i32 %266
+  269 = mul i32 %j.phi298, i32 4
+  270 = ptradd ptr %267, i32 %269
+  270.load = load float from ptr %270
+  272 = fadd float %sum.phi306, float %270.load
+  274 = add i32 %j.phi298, i32 1
+  br bb %while.cond258
+while.exit260:
+  276 = add i32 %i.phi289, i32 1
+  br bb %while.cond252
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putint(i32 )
+
+float myAbs(float x) {
+entry:
+  3 = si2f i32 0 to float
+  4 = fcmp olt float %x, float %3
+  br i1 %4, bb %then, bb %if.exit
+then:
+  8 = fneg float %x
+  br bb %if.exit
+if.exit:
+  x.stack.phi = phi [bb %entry, float %x, bb %then, float %8]
+  ret float %x.stack.phi
+}
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

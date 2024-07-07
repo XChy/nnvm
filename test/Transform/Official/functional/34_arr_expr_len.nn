@@ -7,8 +7,7 @@ while.cond:
   sum.phi = phi [bb %entry, i32 0, bb %while.body, i32 %14]
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
   7 = icmp slt i32 %i.phi, i32 6
-  8 = icmp ne i1 %7, i1 0
-  br i1 %8, bb %while.body, bb %while.exit
+  br i1 %7, bb %while.body, bb %while.exit
 while.body:
   11 = mul i32 %i.phi, i32 4
   12 = ptradd ptr @arr, i32 %11

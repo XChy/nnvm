@@ -50,6 +50,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (SDivInst *SI = dyn_cast<SDivInst>(I))
     return simplifySDiv(SI);
 
+  if (ICmpInst *ICI = dyn_cast<ICmpInst>(I))
+    return simplifyICmp(ICI);
+
   if (PhiInst *phi = dyn_cast<PhiInst>(I))
     return simplifyPhi(phi);
 
@@ -58,6 +61,15 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
 Value *CombinerPass::simplifyAdd(AddInst *I) {
   Value *A, *B, *C;
+
+  // C1 + A --> A + C1
+  if (match(I, pAdd(pConstant(A), pValue(B))))
+    return builder.buildBinOp<AddInst>(B, A, I->getType());
+
+  // A + 0 --> A
+  if (match(I, pAdd(pValue(A), pZero())))
+    return A;
+
   // (A + C1) + C2 --> A + (C1 + C2)
   if (match(I, pAdd(pAdd(pValue(A), pConstant(B)), pConstant(C)))) {
     Value *addc = builder.buildBinOp<AddInst>(B, C, I->getType());
@@ -68,6 +80,15 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
 }
 
 Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
+
+Value *CombinerPass::simplifyICmp(ICmpInst *I) {
+  Value *A, *B;
+  // A != 0  -->  A
+  if (I->getPredicate() == ICmpInst::NE &&
+      match(I, pICmp(pValue(A), pZero())) && A->getType()->isIntegerNBits(1))
+    return A;
+  return nullptr;
+}
 
 Value *CombinerPass::simplifyPhi(PhiInst *I) {
   if (I->getIncomingNum() == 1)

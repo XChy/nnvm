@@ -23,8 +23,7 @@ else77:
 while.cond79:
   i78.phi = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
   84 = icmp slt i32 %i78.phi, i32 %71
-  85 = icmp ne i1 %84, i1 0
-  br i1 %85, bb %while.body80, bb %while.exit81
+  br i1 %84, bb %while.body80, bb %while.exit81
 while.body80:
   87 = mul i32 %i78.phi, i32 4
   88 = ptradd ptr @array, i32 %87
@@ -58,8 +57,7 @@ while.cond:
   i.phi = phi [bb %entry19, i32 %start, bb %if.exit, i32 %52]
   pIndex.phi144 = phi [bb %entry19, i32 %start, bb %if.exit, i32 %pIndex.phi]
   36 = icmp slt i32 %i.phi, i32 %end
-  37 = icmp ne i1 %36, i1 0
-  br i1 %37, bb %while.body, bb %while.exit
+  br i1 %36, bb %while.body, bb %while.exit
 while.body:
   39 = mul i32 %i.phi, i32 4
   40 = ptradd ptr @array, i32 %39
@@ -97,8 +95,7 @@ entry113:
 while.cond119:
   i118.phi = phi [bb %entry113, i32 0, bb %while.body120, i32 %131]
   124 = icmp slt i32 %i118.phi, i32 %115
-  125 = icmp ne i1 %124, i1 0
-  br i1 %125, bb %while.body120, bb %while.exit121
+  br i1 %124, bb %while.body120, bb %while.exit121
 while.body120:
   127 = mul i32 %i118.phi, i32 4
   128 = ptradd ptr @array, i32 %127

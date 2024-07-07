@@ -390,8 +390,6 @@ bb24:
   LW s6, 0(s3)
   XOR s3, s2, s6
   SLTIU s2, s3, 1
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   ADD s7, s2, zero
   JAL zero, bb25
 bb25:

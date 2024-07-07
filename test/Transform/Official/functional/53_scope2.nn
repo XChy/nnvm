@@ -17,8 +17,7 @@ while.cond:
   k.phi38 = phi [bb %then, i32 112, bb %if.exit19, i32 %k.phi]
   g.phi35 = phi [bb %then, i32 ub, bb %if.exit19, i32 %g.phi]
   12 = icmp sgt i32 %k.phi38, i32 10
-  13 = icmp ne i1 %12, i1 0
-  br i1 %13, bb %while.body, bb %while.exit
+  br i1 %12, bb %while.body, bb %while.exit
 while.body:
   15 = sub i32 %k.phi38, i32 88
   17 = icmp slt i32 %15, i32 1000

@@ -28,8 +28,7 @@ entry102:
 while.cond112:
   i111.phi = phi [bb %entry102, i32 0, bb %while.body113, i32 %123]
   116 = icmp slt i32 %i111.phi, i32 100
-  117 = icmp ne i1 %116, i1 0
-  br i1 %117, bb %while.body113, bb %while.exit114
+  br i1 %116, bb %while.body113, bb %while.exit114
 while.body113:
   call void spmv(i32 %105, ptr @x, ptr @y, ptr @v, ptr @a, ptr @b)
   call void spmv(i32 %105, ptr @x, ptr @y, ptr @v, ptr @b, ptr @a)
@@ -51,8 +50,7 @@ entry:
 while.cond:
   i.phi129 = phi [bb %entry, i32 0, bb %while.body, i32 %16]
   10 = icmp slt i32 %i.phi129, i32 %n
-  11 = icmp ne i1 %10, i1 0
-  br i1 %11, bb %while.body, bb %while.exit
+  br i1 %10, bb %while.body, bb %while.exit
 while.body:
   13 = mul i32 %i.phi129, i32 4
   14 = ptradd ptr %x, i32 %13
@@ -64,8 +62,7 @@ while.exit:
 while.cond17:
   i.phi = phi [bb %while.exit, i32 0, bb %while.exit65, i32 %33]
   22 = icmp slt i32 %i.phi, i32 %n
-  23 = icmp ne i1 %22, i1 0
-  br i1 %23, bb %while.body18, bb %while.exit19
+  br i1 %22, bb %while.body18, bb %while.exit19
 while.body18:
   25 = mul i32 %i.phi, i32 4
   26 = ptradd ptr %xptr, i32 %25
@@ -80,8 +77,7 @@ while.cond28:
   35 = ptradd ptr %xptr, i32 %34
   35.load = load i32 from ptr %35
   37 = icmp slt i32 %j.phi132, i32 %35.load
-  38 = icmp ne i1 %37, i1 0
-  br i1 %38, bb %while.body29, bb %while.exit30
+  br i1 %37, bb %while.body29, bb %while.exit30
 while.body29:
   40 = mul i32 %j.phi132, i32 4
   41 = ptradd ptr %yidx, i32 %40
@@ -105,8 +101,7 @@ while.cond63:
   j.phi = phi [bb %while.exit30, i32 %61.load, bb %while.body64, i32 %99]
   70.load = load i32 from ptr %35
   72 = icmp slt i32 %j.phi, i32 %70.load
-  73 = icmp ne i1 %72, i1 0
-  br i1 %73, bb %while.body64, bb %while.exit65
+  br i1 %72, bb %while.body64, bb %while.exit65
 while.body64:
   75 = mul i32 %j.phi, i32 4
   76 = ptradd ptr %yidx, i32 %75

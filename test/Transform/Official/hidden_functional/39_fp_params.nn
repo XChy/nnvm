@@ -97,8 +97,7 @@ else247:
 while.cond:
   i.phi = phi [bb %then245, i32 0, bb %while.body, i32 %402]
   385 = icmp slt i32 %i.phi, i32 8
-  386 = icmp ne i1 %385, i1 0
-  br i1 %386, bb %while.body, bb %while.exit
+  br i1 %385, bb %while.body, bb %while.exit
 while.body:
   388 = mul i32 %i.phi, i32 4
   389 = ptradd ptr %arr2, i32 %388
@@ -140,8 +139,7 @@ entry1031:
 while.cond1036:
   i1034.phi2054 = phi [bb %entry1031, i32 0, bb %while.body1037, i32 %1047]
   1040 = icmp slt i32 %i1034.phi2054, i32 40
-  1041 = icmp ne i1 %1040, i1 0
-  br i1 %1041, bb %while.body1037, bb %while.exit1038
+  br i1 %1040, bb %while.body1037, bb %while.exit1038
 while.body1037:
   1043 = mul i32 %i1034.phi2054, i32 12
   1044 = ptradd ptr %arr1032, i32 %1043
@@ -153,8 +151,7 @@ while.exit1038:
 while.cond1048:
   i1034.phi = phi [bb %while.exit1038, i32 0, bb %while.body1049, i32 %1059]
   1052 = icmp slt i32 %i1034.phi, i32 24
-  1053 = icmp ne i1 %1052, i1 0
-  br i1 %1053, bb %while.body1049, bb %while.exit1050
+  br i1 %1052, bb %while.body1049, bb %while.exit1050
 while.body1049:
   1055 = mul i32 %i1034.phi, i32 12
   1056 = ptradd ptr %arr21033, i32 %1055
@@ -1339,8 +1336,7 @@ else957:
 while.cond961:
   i960.phi = phi [bb %then955, i32 0, bb %while.body962, i32 %982]
   965 = icmp slt i32 %i960.phi, i32 10
-  966 = icmp ne i1 %965, i1 0
-  br i1 %966, bb %while.body962, bb %while.exit963
+  br i1 %965, bb %while.body962, bb %while.exit963
 while.body962:
   968 = mul i32 %i960.phi, i32 4
   969 = ptradd ptr %arr2853, i32 %968

@@ -94,8 +94,6 @@ bb5:
   SUBW s5, s3, s2
   XOR s2, s4, s5
   SLTIU s3, s2, 1
-  XOR s2, s3, zero
-  SLTU s3, zero, s2
   ADD s0, s3, zero
   JAL zero, bb6
 bb6:

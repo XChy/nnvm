@@ -22,6 +22,8 @@ private:
   Value *simplifyInst(Instruction *I);
   Value *simplifyAdd(AddInst *I);
   Value *simplifySDiv(SDivInst *I);
+
+  Value *simplifyICmp(ICmpInst *I);
   Value *simplifyPhi(PhiInst *I);
 
   std::queue<Instruction *> worklist;

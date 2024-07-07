@@ -33,8 +33,6 @@ bb1:
   LA s2, M
   LW s3, 0(s2)
   SLT s2, s1, s3
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -327,8 +325,6 @@ bb4:
   LA s4, N
   LW s5, 0(s4)
   SLT s4, s3, s5
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
   BNE s4, zero, bb5
   JAL zero, bb6
 bb5:

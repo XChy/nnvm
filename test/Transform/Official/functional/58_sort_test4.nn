@@ -11,8 +11,7 @@ while.cond:
   i.phi = phi [bb %entry, i32 0, bb %if.exit41, i32 %15]
   10 = sub i32 %n, i32 1
   11 = icmp slt i32 %i.phi, i32 %10
-  12 = icmp ne i1 %11, i1 0
-  br i1 %12, bb %while.body, bb %while.exit
+  br i1 %11, bb %while.body, bb %while.exit
 while.body:
   15 = add i32 %i.phi, i32 1
   br bb %while.cond16
@@ -22,8 +21,7 @@ while.cond16:
   min.phi107 = phi [bb %while.body, i32 %i.phi, bb %if.exit, i32 %min.phi]
   j.phi = phi [bb %while.body, i32 %15, bb %if.exit, i32 %36]
   21 = icmp slt i32 %j.phi, i32 %n
-  22 = icmp ne i1 %21, i1 0
-  br i1 %22, bb %while.body17, bb %while.exit18
+  br i1 %21, bb %while.body17, bb %while.exit18
 while.body17:
   24 = mul i32 %min.phi107, i32 4
   25 = ptradd ptr %A, i32 %24
@@ -94,8 +92,7 @@ while.cond85:
   i82.phi = phi [bb %entry60, i32 %84, bb %while.body86, i32 %102]
   n.load89 = load i32 from ptr @n
   90 = icmp slt i32 %i82.phi, i32 %n.load89
-  91 = icmp ne i1 %90, i1 0
-  br i1 %91, bb %while.body86, bb %while.exit87
+  br i1 %90, bb %while.body86, bb %while.exit87
 while.body86:
   94 = mul i32 %i82.phi, i32 4
   95 = ptradd ptr %a, i32 %94

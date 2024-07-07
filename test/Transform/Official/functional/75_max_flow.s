@@ -132,8 +132,6 @@ bb8:
   ADD s11, s10, s4
   LW s10, 0(s11)
   SLT s11, s7, s10
-  XOR s10, s11, zero
-  SLTU s11, zero, s10
   BNE s11, zero, bb9
   JAL zero, bb10
 bb9:
@@ -143,8 +141,8 @@ bb9:
   ADD t0, s10, s11
   ADDI s10, zero, 4
   MULW t4, s7, s10
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   ADD s10, t0, t4
   LW t0, 0(s10)
   ADDI t2, zero, 4
@@ -182,10 +180,10 @@ bb11:
 bb12:
   LA t0, cap
   ADD t2, t0, s11
-  LW t3, 8(sp)
+  LW t3, 0(sp)
   ADD t4, t2, t3
-  SD t4, 0(sp)
-  LD t4, 0(sp)
+  SD t4, 8(sp)
+  LD t4, 8(sp)
   LW t2, 0(t4)
   SLT a3, zero, t2
   XORI t2, a3, 1
@@ -198,7 +196,7 @@ bb13:
   ADD s6, t2, zero
   JAL zero, bb8
 bb14:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s8, 0(t4)
   SLT s9, s2, s8
   BNE s9, zero, bb15
@@ -218,15 +216,15 @@ bb16:
   BNE t1, zero, bb18
   JAL zero, bb19
 bb17:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s3, 0(t4)
   ADD s8, s3, zero
   JAL zero, bb16
 bb18:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW t1, 0(t4)
   SUBW t2, t1, t0
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   SW t2, 0(t4)
   LW t1, 0(s10)
   ADDI t2, zero, 40
@@ -235,7 +233,7 @@ bb18:
   ADD t2, t1, a1
   LA t1, rev
   ADD a1, t1, s11
-  LW t4, 8(sp)
+  LW t4, 0(sp)
   ADD t1, a1, t4
   LW a1, 0(t1)
   ADDI a2, zero, 4
@@ -387,8 +385,6 @@ main:
 bb22:
   ADD s1, s2, zero
   SLT s3, zero, s1
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
   BNE s3, zero, bb23
   JAL zero, bb24
 bb23:
@@ -443,8 +439,6 @@ my_memset:
 bb26:
   ADD s4, s3, zero
   SLT s5, s4, s2
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb27
   JAL zero, bb28
 bb27:

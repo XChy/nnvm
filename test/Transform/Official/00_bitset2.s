@@ -91,10 +91,9 @@ bb5:
   SUBW s6, s4, s5
   ADDI s4, zero, 4
   MULW s5, s6, s4
-  ADD s4, zero, s5
   ADDI t5, sp, 0
-  ADD s5, t5, s4
-  SW zero, 0(s5)
+  ADD s4, t5, s5
+  SW zero, 0(s4)
   ADD s3, s6, zero
   JAL zero, bb4
 bb6:
@@ -157,8 +156,6 @@ bb6:
 bb7:
   ADD s4, s3, zero
   SLTI s5, s4, 30
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
   BNE s5, zero, bb8
   JAL zero, bb9
 bb8:
@@ -334,8 +331,6 @@ main:
 bb28:
   ADD s0, s1, zero
   SLT s2, zero, s0
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
   BNE s2, zero, bb29
   JAL zero, bb30
 bb29:

@@ -53,6 +53,8 @@ namespace nnvm::riscv {
 enum LIRInstID : uint64_t {
   // ==== Middle IR Reserved ====
   // .....
+  // ==== Generic ====
+  IMPLICIT_JUMP,
   // ==== RISC-V Specific ====
   ISA_BEGIN = (uint64_t)InstID::INST_END + 1,
   NONE,

@@ -8,8 +8,7 @@ entry:
 while.cond:
   i.phi183 = phi [bb %entry, i32 1, bb %while.body, i32 %43]
   13 = icmp sle i32 %i.phi183, i32 %6
-  14 = icmp ne i1 %13, i1 0
-  br i1 %14, bb %while.body, bb %while.exit
+  br i1 %13, bb %while.body, bb %while.exit
 while.body:
   15 = call i32 getint()
   17 = mul i32 %i.phi183, i32 8
@@ -37,8 +36,7 @@ while.exit:
 while.cond44:
   i.phi = phi [bb %while.exit, i32 1, bb %while.exit53, i32 %151]
   49 = icmp sle i32 %i.phi, i32 %6
-  50 = icmp ne i1 %49, i1 0
-  br i1 %50, bb %while.body45, bb %while.exit46
+  br i1 %49, bb %while.body45, bb %while.exit46
 while.body45:
   br bb %while.cond51
 while.exit46:
@@ -46,8 +44,7 @@ while.exit46:
 while.cond51:
   j.phi185 = phi [bb %while.body45, i32 1, bb %if.exit, i32 %70]
   56 = icmp sle i32 %j.phi185, i32 %7
-  57 = icmp ne i1 %56, i1 0
-  br i1 %57, bb %while.body52, bb %while.exit53
+  br i1 %56, bb %while.body52, bb %while.exit53
 while.body52:
   59 = sub i32 %i.phi, i32 1
   60 = mul i32 %59, i32 140
@@ -98,8 +95,7 @@ while.cond153:
   res.phi188 = phi [bb %while.exit46, i32 0, bb %if.exit170, i32 %res.phi]
   j.phi = phi [bb %while.exit46, i32 0, bb %if.exit170, i32 %179]
   158 = icmp sle i32 %j.phi, i32 %7
-  159 = icmp ne i1 %158, i1 0
-  br i1 %159, bb %while.body154, bb %while.exit155
+  br i1 %158, bb %while.body154, bb %while.exit155
 while.body154:
   162 = mul i32 %6, i32 140
   163 = ptradd ptr @dp, i32 %162

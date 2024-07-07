@@ -14,8 +14,7 @@ while.cond235:
   i264.phi471 = phi [bb %entry231, i32 ub, bb %while.exit245, i32 %i264.phi470]
   u234.phi = phi [bb %entry231, i32 0, bb %while.exit245, i32 %421]
   240 = icmp slt i32 %u234.phi, i32 %n
-  241 = icmp ne i1 %240, i1 0
-  br i1 %241, bb %while.body236, bb %while.exit237
+  br i1 %240, bb %while.body236, bb %while.exit237
 while.body236:
   br bb %while.cond243
 while.exit237:
@@ -25,8 +24,7 @@ while.cond243:
   i264.phi470 = phi [bb %while.body236, i32 %i264.phi471, bb %while.exit332, i32 %i264.phi]
   v242.phi = phi [bb %while.body236, i32 0, bb %while.exit332, i32 %419]
   248 = icmp slt i32 %v242.phi, i32 %m
-  249 = icmp ne i1 %248, i1 0
-  br i1 %249, bb %while.body244, bb %while.exit245
+  br i1 %248, bb %while.body244, bb %while.exit245
 while.body244:
   251 = mul i32 %u234.phi, i32 32
   252 = ptradd ptr %mat, i32 %251
@@ -46,8 +44,7 @@ while.exit245:
 while.cond266:
   i264.phi472 = phi [bb %while.body244, i32 1, bb %while.body267, i32 %297]
   271 = icmp slt i32 %i264.phi472, i32 %n
-  272 = icmp ne i1 %271, i1 0
-  br i1 %272, bb %while.body267, bb %while.exit268
+  br i1 %271, bb %while.body267, bb %while.exit268
 while.body267:
   284.load = load float from ptr %255
   287 = fdiv float %256, float 2.000000
@@ -65,8 +62,7 @@ while.exit268:
 while.cond298:
   j265.phi477 = phi [bb %while.exit268, i32 1, bb %while.body299, i32 %329]
   303 = icmp slt i32 %j265.phi477, i32 %m
-  304 = icmp ne i1 %303, i1 0
-  br i1 %304, bb %while.body299, bb %while.exit300
+  br i1 %303, bb %while.body299, bb %while.exit300
 while.body299:
   316.load = load float from ptr %255
   319 = fdiv float %256, float 2.000000
@@ -84,8 +80,7 @@ while.cond330:
   j265.phi474 = phi [bb %while.exit300, i32 %j265.phi477, bb %while.exit339, i32 %j265.phi]
   i264.phi = phi [bb %while.exit300, i32 1, bb %while.exit339, i32 %396]
   335 = icmp slt i32 %i264.phi, i32 %n
-  336 = icmp ne i1 %335, i1 0
-  br i1 %336, bb %while.body331, bb %while.exit332
+  br i1 %335, bb %while.body331, bb %while.exit332
 while.body331:
   br bb %while.cond337
 while.exit332:
@@ -102,8 +97,7 @@ while.exit332:
 while.cond337:
   j265.phi = phi [bb %while.body331, i32 1, bb %while.body338, i32 %394]
   342 = icmp slt i32 %j265.phi, i32 %m
-  343 = icmp ne i1 %342, i1 0
-  br i1 %343, bb %while.body338, bb %while.exit339
+  br i1 %342, bb %while.body338, bb %while.exit339
 while.body338:
   355.load = load float from ptr %255
   358 = mul i32 %i264.phi, i32 32
@@ -176,8 +170,7 @@ while.cond136:
   i158.phi483 = phi [bb %entry132, i32 ub, bb %while.exit146, i32 %i158.phi482]
   u.phi = phi [bb %entry132, i32 0, bb %while.exit146, i32 %230]
   141 = icmp slt i32 %u.phi, i32 %n
-  142 = icmp ne i1 %141, i1 0
-  br i1 %142, bb %while.body137, bb %while.exit138
+  br i1 %141, bb %while.body137, bb %while.exit138
 while.body137:
   br bb %while.cond144
 while.exit138:
@@ -187,8 +180,7 @@ while.cond144:
   i158.phi482 = phi [bb %while.body137, i32 %i158.phi483, bb %while.exit161, i32 %i158.phi]
   v.phi = phi [bb %while.body137, i32 0, bb %while.exit161, i32 %228]
   149 = icmp slt i32 %v.phi, i32 %m
-  150 = icmp ne i1 %149, i1 0
-  br i1 %150, bb %while.body145, bb %while.exit146
+  br i1 %149, bb %while.body145, bb %while.exit146
 while.body145:
   152 = mul i32 %u.phi, i32 32
   153 = ptradd ptr %dct_mat, i32 %152
@@ -204,8 +196,7 @@ while.cond159:
   j166.phi485 = phi [bb %while.body145, i32 %j166.phi486, bb %while.exit169, i32 %j166.phi]
   i158.phi = phi [bb %while.body145, i32 0, bb %while.exit169, i32 %226]
   164 = icmp slt i32 %i158.phi, i32 %n
-  165 = icmp ne i1 %164, i1 0
-  br i1 %165, bb %while.body160, bb %while.exit161
+  br i1 %164, bb %while.body160, bb %while.exit161
 while.body160:
   br bb %while.cond167
 while.exit161:
@@ -214,8 +205,7 @@ while.exit161:
 while.cond167:
   j166.phi = phi [bb %while.body160, i32 0, bb %while.body168, i32 %224]
   172 = icmp slt i32 %j166.phi, i32 %m
-  173 = icmp ne i1 %172, i1 0
-  br i1 %173, bb %while.body168, bb %while.exit169
+  br i1 %172, bb %while.body168, bb %while.exit169
 while.body168:
   185.load = load float from ptr %156
   188 = mul i32 %i158.phi, i32 32
@@ -264,10 +254,9 @@ select.else:
   TWO_PI.load46 = load float from ptr @TWO_PI
   47 = fneg float %TWO_PI.load46
   48 = fcmp olt float %x, float %47
-  49 = icmp ne i1 %48, i1 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %49, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %48, bb %select.then, i1 1]
   br i1 %select.phi, bb %then51, bb %if.exit52
 then51:
   TWO_PI.load55 = load float from ptr @TWO_PI
@@ -315,8 +304,7 @@ entry91:
 while.cond:
   i.phi = phi [bb %entry91, i32 0, bb %while.exit112, i32 %130]
   100 = icmp slt i32 %i.phi, i32 %n
-  101 = icmp ne i1 %100, i1 0
-  br i1 %101, bb %while.body, bb %while.exit
+  br i1 %100, bb %while.body, bb %while.exit
 while.body:
   103 = mul i32 %i.phi, i32 32
   104 = ptradd ptr %mat, i32 %103
@@ -330,8 +318,7 @@ while.exit:
 while.cond110:
   j.phi = phi [bb %while.body, i32 1, bb %while.body111, i32 %127]
   115 = icmp slt i32 %j.phi, i32 %m
-  116 = icmp ne i1 %115, i1 0
-  br i1 %116, bb %while.body111, bb %while.exit112
+  br i1 %115, bb %while.body111, bb %while.exit112
 while.body111:
   call void putch(i32 32)
   122 = mul i32 %j.phi, i32 4
@@ -368,8 +355,7 @@ entry422:
 while.cond428:
   i427.phi = phi [bb %entry422, i32 0, bb %while.exit438, i32 %453]
   433 = icmp slt i32 %i427.phi, i32 %424
-  434 = icmp ne i1 %433, i1 0
-  br i1 %434, bb %while.body429, bb %while.exit430
+  br i1 %433, bb %while.body429, bb %while.exit430
 while.body429:
   br bb %while.cond436
 while.exit430:
@@ -381,8 +367,7 @@ while.exit430:
 while.cond436:
   j435.phi = phi [bb %while.body429, i32 0, bb %while.body437, i32 %451]
   441 = icmp slt i32 %j435.phi, i32 %426
-  442 = icmp ne i1 %441, i1 0
-  br i1 %442, bb %while.body437, bb %while.exit438
+  br i1 %441, bb %while.body437, bb %while.exit438
 while.body437:
   444 = mul i32 %i427.phi, i32 32
   445 = ptradd ptr @test_block, i32 %444

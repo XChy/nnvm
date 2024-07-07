@@ -37,8 +37,7 @@ else:
 while.cond:
   b.phi35 = phi [bb %while.body, i32 %15]
   12 = icmp eq i32 %b.phi35, i32 2
-  13 = icmp ne i1 %12, i1 0
-  br i1 %13, bb %while.body, bb %while.exit
+  br i1 %12, bb %while.body, bb %while.exit
 while.body:
   15 = add i32 %b.phi35, i32 2
   br bb %while.cond
@@ -49,8 +48,7 @@ while.cond18:
   b.phi = phi [bb %else, i32 3, bb %while.body19, i32 %25]
   a.phi = phi [bb %else, i32 0, bb %while.body19, i32 %27]
   22 = icmp slt i32 %a.phi, i32 5
-  23 = icmp ne i1 %22, i1 0
-  br i1 %23, bb %while.body19, bb %while.exit20
+  br i1 %22, bb %while.body19, bb %while.exit20
 while.body19:
   25 = mul i32 %b.phi, i32 2
   27 = add i32 %a.phi, i32 1

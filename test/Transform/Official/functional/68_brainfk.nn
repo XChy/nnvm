@@ -167,8 +167,7 @@ while.cond109:
   i23.phi = phi [bb %then107, i32 %i23.phi167, bb %if.exit124, i32 %116]
   loop.phi150 = phi [bb %then107, i32 1, bb %if.exit124, i32 %loop.phi149]
   113 = icmp sgt i32 %loop.phi150, i32 0
-  114 = icmp ne i1 %113, i1 0
-  br i1 %114, bb %while.body110, bb %while.exit111
+  br i1 %113, bb %while.body110, bb %while.exit111
 while.body110:
   116 = sub i32 %i23.phi, i32 1
   118 = mul i32 %116, i32 4
@@ -204,8 +203,7 @@ entry:
 while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
   9 = icmp slt i32 %i.phi, i32 %3
-  10 = icmp ne i1 %9, i1 0
-  br i1 %10, bb %while.body, bb %while.exit
+  br i1 %9, bb %while.body, bb %while.exit
 while.body:
   12 = mul i32 %i.phi, i32 4
   13 = ptradd ptr @program, i32 %12
