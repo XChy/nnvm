@@ -30,16 +30,12 @@ external void putfarray(i32 , ptr )
 
 i32 if_if_Else() {
 entry:
-  br bb %then
-then:
-  br bb %then10
+  br bb %if.exit11
 if.exit:
   a.phi18 = phi [bb %if.exit11, i32 %a.phi]
   ret i32 %a.phi18
-then10:
-  br bb %if.exit11
 if.exit11:
-  a.phi = phi [bb %then, i32 5, bb %then10, i32 25]
+  a.phi = phi [bb %entry, i32 5, bb %entry, i32 25]
   br bb %if.exit
 }
 

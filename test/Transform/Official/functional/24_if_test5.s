@@ -19,11 +19,10 @@ if_if_Else:
   SD ra, 0(sp)
   SD s1, 8(sp)
   SD s0, 16(sp)
-  JAL zero, bb2
-bb2:
   ADDI s0, zero, 5
-  JAL zero, bb4
-bb3:
+  ADDI s0, zero, 25
+  JAL zero, bb3
+bb2:
   ADD s1, s0, zero
   ADD a0, s1, zero
   LD ra, 0(sp)
@@ -31,10 +30,7 @@ bb3:
   LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb4:
-  ADDI s0, zero, 25
-  JAL zero, bb5
-bb5:
+bb3:
   ADD s1, s0, zero
   ADD s0, s1, zero
-  JAL zero, bb3
+  JAL zero, bb2

@@ -68,21 +68,18 @@ template <typename Range> IncChangeRange<Range> incChange(Range &range) {
   return IncChangeRange<Range>(range);
 }
 
-template <typename T> struct reversion_wrapper {
-  T &iterable;
+template <typename Iter> struct RangeWrapper {
+public:
+  Iter begin() { return beginIter; }
+  Iter end() { return endIter; }
+
+private:
+  Iter beginIter;
+  Iter endIter;
 };
 
-template <typename T> auto begin(reversion_wrapper<T> w) {
-  auto begin = std::begin(w.iterable);
-  return std::reverse_iterator<decltype(begin)>(begin);
+template <typename Iter> RangeWrapper<Iter> makeRange(Iter begin, Iter end) {
+  return RangeWrapper<Iter>(begin, end);
 }
 
-template <typename T> auto end(reversion_wrapper<T> w) {
-  auto end = std::end(w.iterable);
-  return std::reverse_iterator<decltype(end)>(end);
-}
-
-template <typename T> reversion_wrapper<T> reverseRange(T &&iterable) {
-  return {iterable};
-}
 } /* namespace nnvm */

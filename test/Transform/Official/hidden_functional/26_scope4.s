@@ -168,12 +168,8 @@ main:
   CALL f1
   CALL f2
   CALL f3
-  JAL zero, bb6
-bb6:
   JAL zero, bb7
-bb7:
-  JAL zero, bb9
-bb8:
+bb6:
   LA s0, sum
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -190,46 +186,40 @@ bb8:
   LD s0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb9:
-  JAL zero, bb10
-bb10:
+bb7:
   ADD s1, zero, zero
   ADD s2, zero, zero
   ADD s3, s0, zero
-  JAL zero, bb12
-bb11:
   JAL zero, bb8
-bb12:
+bb8:
   ADD s0, s3, zero
   ADD s4, s2, zero
   ADD s5, s1, zero
   SLTI s6, s4, 3
   XOR s7, s6, zero
   SLTU s6, zero, s7
-  BNE s6, zero, bb13
-  JAL zero, bb14
-bb13:
+  BNE s6, zero, bb9
+  JAL zero, bb10
+bb9:
   ADD s6, s0, zero
-  JAL zero, bb15
-bb14:
   JAL zero, bb11
-bb15:
+bb10:
+  JAL zero, bb6
+bb11:
   ADD s0, s6, zero
-  JAL zero, bb16
-bb16:
-  JAL zero, bb18
-bb17:
+  JAL zero, bb13
+bb12:
   XORI s6, s4, 1
   SLTIU s7, s6, 1
-  BNE s7, zero, bb19
-  JAL zero, bb21
-bb18:
+  BNE s7, zero, bb14
+  JAL zero, bb16
+bb13:
   ADD a0, s0, zero
   CALL f1
   CALL f2
   CALL f3
-  JAL zero, bb17
-bb19:
+  JAL zero, bb12
+bb14:
   CALL getA
   ADD s6, a0, zero
   ADD a0, s6, zero
@@ -240,21 +230,21 @@ bb19:
   ADD s1, s6, zero
   ADD s2, s7, zero
   ADD s3, s0, zero
-  JAL zero, bb12
-bb20:
+  JAL zero, bb8
+bb15:
   CALL getA
   ADD s0, a0, zero
   ADDIW s6, s4, 1
   ADD s1, s5, zero
   ADD s2, s6, zero
   ADD s3, s0, zero
-  JAL zero, bb12
-bb21:
+  JAL zero, bb8
+bb16:
   ADD a0, s0, zero
   CALL f1
   CALL f2
   CALL f3
-  JAL zero, bb20
+  JAL zero, bb15
 f3:
   ADDI sp, sp, -32
   SD ra, 0(sp)

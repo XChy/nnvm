@@ -76,9 +76,19 @@ public:
       return *this;
     }
 
+    PredIterator operator++() {
+      PredIterator ret = cur;
+      cur++;
+      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+        cur++;
+      return ret;
+    }
+
     BasicBlock *operator*() {
       return cast<Instruction>((*cur)->getUser())->getParent();
     }
+
+    bool operator==(PredIterator other) { return cur == other.cur; }
     bool operator!=(PredIterator other) { return cur != other.cur; }
 
   private:
@@ -101,6 +111,8 @@ public:
       I->eraseFromBB();
     ListTrait<BasicBlock>::eraseFromList();
   }
+
+  const List<Instruction> &getInsts() const { return instList; }
 
   ~BasicBlock();
 

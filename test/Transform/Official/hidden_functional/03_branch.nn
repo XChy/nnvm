@@ -1,38 +1,26 @@
 i32 main() {
 entry:
-  br bb %select.then
-select.then:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.then, i1 1]
-  br i1 %select.phi, bb %then, bb %else
+  br i1 1, bb %then, bb %else
 then:
-  br bb %select.then14
+  br bb %select.exit16
 else:
   ret i32 1
-select.then14:
-  br bb %select.exit16
 select.exit16:
-  select17.phi = phi [bb %select.then14, i1 1]
-  br i1 %select17.phi, bb %then25, bb %else27
+  br i1 1, bb %then25, bb %else27
 then25:
-  br bb %select.else30
+  br bb %select.exit31
 else27:
   ret i32 2
-select.else30:
-  br bb %select.exit31
 select.exit31:
-  select32.phi = phi [bb %select.else30, i1 0]
-  br i1 %select32.phi, bb %then36, bb %else38
+  br i1 0, bb %then36, bb %else38
 then36:
   ret i32 3
 else38:
-  br bb %select.else42
-select.else42:
   br bb %select.exit43
 select.exit43:
-  select44.phi = phi [bb %select.else42, i1 0]
-  br i1 %select44.phi, bb %then47, bb %else49
+  br i1 0, bb %then47, bb %else49
 then47:
   ret i32 4
 else49:
@@ -53,8 +41,6 @@ select.exit60:
 then65:
   ret i32 6
 else67:
-  br bb %then69
-then69:
   br bb %then75
 then75:
   79 =  i1 1, i1 1

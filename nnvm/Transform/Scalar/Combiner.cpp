@@ -50,8 +50,8 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (SDivInst *SI = dyn_cast<SDivInst>(I))
     return simplifySDiv(SI);
 
-  //if (PhiInst *phi = dyn_cast<PhiInst>(I))
-    //return simplifyPhi(phi);
+  if (PhiInst *phi = dyn_cast<PhiInst>(I))
+    return simplifyPhi(phi);
 
   return nullptr;
 }
@@ -71,7 +71,8 @@ Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifyPhi(PhiInst *I) {
   if (I->getIncomingNum() == 1)
-    return I->getIncomingValue(0);
+    return I->getIncomingValue(0)->isInstruction() ? nullptr
+                                                   : I->getIncomingValue(0);
 
   return nullptr;
 }

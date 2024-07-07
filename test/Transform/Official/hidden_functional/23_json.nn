@@ -610,8 +610,6 @@ else557:
   br i1 %565, bb %then566, bb %else568
 then566:
   ret i32 0
-if.exit567:
-  br bb %if.exit556
 else568:
   pos.load569 = load i32 from ptr @pos
   570 = add i32 %pos.load569, i32 1
@@ -623,8 +621,6 @@ else568:
   br i1 %577, bb %then578, bb %else580
 then578:
   ret i32 0
-if.exit579:
-  br bb %if.exit567
 else580:
   pos.load581 = load i32 from ptr @pos
   582 = add i32 %pos.load581, i32 2
@@ -636,8 +632,6 @@ else580:
   br i1 %589, bb %then590, bb %else592
 then590:
   ret i32 0
-if.exit591:
-  br bb %if.exit579
 else592:
   pos.load593 = load i32 from ptr @pos
   594 = add i32 %pos.load593, i32 3
@@ -650,7 +644,7 @@ else592:
 then602:
   ret i32 0
 if.exit603:
-  br bb %if.exit591
+  br bb %if.exit556
 then608:
   arr.index612 = ptradd ptr %mFalse, i32 0
   store i32 102 to ptr %arr.index612
@@ -688,8 +682,6 @@ else623:
   br i1 %631, bb %then632, bb %else634
 then632:
   ret i32 0
-if.exit633:
-  br bb %if.exit622
 else634:
   pos.load635 = load i32 from ptr @pos
   636 = add i32 %pos.load635, i32 1
@@ -701,8 +693,6 @@ else634:
   br i1 %643, bb %then644, bb %else646
 then644:
   ret i32 0
-if.exit645:
-  br bb %if.exit633
 else646:
   pos.load647 = load i32 from ptr @pos
   648 = add i32 %pos.load647, i32 2
@@ -714,8 +704,6 @@ else646:
   br i1 %655, bb %then656, bb %else658
 then656:
   ret i32 0
-if.exit657:
-  br bb %if.exit645
 else658:
   pos.load659 = load i32 from ptr @pos
   660 = add i32 %pos.load659, i32 3
@@ -727,8 +715,6 @@ else658:
   br i1 %667, bb %then668, bb %else670
 then668:
   ret i32 0
-if.exit669:
-  br bb %if.exit657
 else670:
   pos.load671 = load i32 from ptr @pos
   672 = add i32 %pos.load671, i32 4
@@ -741,7 +727,7 @@ else670:
 then680:
   ret i32 0
 if.exit681:
-  br bb %if.exit669
+  br bb %if.exit622
 then686:
   arr.index690 = ptradd ptr %mNull, i32 0
   store i32 110 to ptr %arr.index690
@@ -776,8 +762,6 @@ else700:
   br i1 %708, bb %then709, bb %else711
 then709:
   ret i32 0
-if.exit710:
-  br bb %if.exit699
 else711:
   pos.load712 = load i32 from ptr @pos
   713 = add i32 %pos.load712, i32 1
@@ -789,8 +773,6 @@ else711:
   br i1 %720, bb %then721, bb %else723
 then721:
   ret i32 0
-if.exit722:
-  br bb %if.exit710
 else723:
   pos.load724 = load i32 from ptr @pos
   725 = add i32 %pos.load724, i32 2
@@ -802,8 +784,6 @@ else723:
   br i1 %732, bb %then733, bb %else735
 then733:
   ret i32 0
-if.exit734:
-  br bb %if.exit722
 else735:
   pos.load736 = load i32 from ptr @pos
   737 = add i32 %pos.load736, i32 3
@@ -816,7 +796,7 @@ else735:
 then745:
   ret i32 0
 if.exit746:
-  br bb %if.exit734
+  br bb %if.exit699
 }
 
 external i32 getint()

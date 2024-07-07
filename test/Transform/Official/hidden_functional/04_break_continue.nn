@@ -58,7 +58,7 @@ while.body25:
   br i1 %32, bb %then, bb %if.exit
 while.exit26:
   select.phi96 = phi [bb %while.cond24, i1 %select.phi101, bb %then58, i1 %select.phi]
-  br bb %while.cond73
+  br bb %while.exit75
 then:
   36 = icmp ne i32 %m.phi, i32 0
   br i1 %36, bb %then37, bb %if.exit38
@@ -102,19 +102,9 @@ while.body62:
 while.exit63:
   72 = add i32 %sum.phi, i32 1
   br bb %while.cond24
-while.cond73:
-  br bb %while.body74
-while.body74:
-  br bb %while.cond77
 while.exit75:
   82 = add i32 %k.phi, i32 1
   br bb %while.cond17
-while.cond77:
-  br bb %while.body78
-while.body78:
-  br bb %while.exit79
-while.exit79:
-  br bb %while.exit75
 }
 
 external void putfarray(i32 , ptr )

@@ -8,11 +8,7 @@ entry:
   call void putint(i32 3)
   call void putint(i32 1)
   call void putch(i32 10)
-  br bb %while.cond
-while.cond:
-  br bb %while.body
-while.body:
-  br bb %then
+  br bb %while.exit
 while.exit:
   call void putint(i32 1)
   call void putch(i32 10)
@@ -53,8 +49,6 @@ while.exit:
   47.load = load i32 from ptr %27
   49 = icmp ne i32 %47.load, i32 0
   br i1 %49, bb %then50, bb %if.exit51
-then:
-  br bb %while.exit
 then50:
   arr.index53 = ptradd ptr %c52, i32 0
   store i32 0 to ptr %arr.index53

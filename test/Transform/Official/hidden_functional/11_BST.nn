@@ -127,8 +127,6 @@ then207:
   212.load = load i32 from ptr %170
   215 = icmp eq i32 %212.load, i32 -1
   br i1 %215, bb %then216, bb %else218
-if.exit208:
-  br bb %if.exit186
 else209:
   230 = ptradd ptr @right_child, i32 %134
   230.load = load i32 from ptr %230
@@ -141,7 +139,7 @@ else209:
   249.load = load i32 from ptr %238
   251 = call i32 delete(i32 %245.load, i32 %249.load)
   store i32 %251 to ptr %230
-  br bb %if.exit208
+  br bb %if.exit186
 then216:
   221 = ptradd ptr @right_child, i32 %134
   221.load = load i32 from ptr %221

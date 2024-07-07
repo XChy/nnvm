@@ -18,6 +18,8 @@ public:
 
 private:
   bool processBB(BasicBlock *BB);
+  bool foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI);
+  bool foldBBWithCondBr(BasicBlock *BB, BranchInst *BI);
   IRBuilder builder;
 };
 } /* namespace nnvm */

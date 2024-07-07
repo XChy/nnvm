@@ -93,21 +93,13 @@ entry51:
   call void f1(i32 %57)
   call void f2()
   call void f3()
-  br bb %while.cond
-while.cond:
-  br bb %while.body
-while.body:
-  br bb %while.cond99
+  br bb %while.body100
 while.exit:
   sum.load142 = load i32 from ptr @sum
   call void putint(i32 %sum.load142)
   ret i32 0
-while.cond99:
-  br bb %while.body100
 while.body100:
   br bb %while.cond104
-while.exit101:
-  br bb %while.exit
 while.cond104:
   a127.phi = phi [bb %while.body100, i32 ub, bb %if.exit125, i32 %a127.phi, bb %then124, i32 %128]
   i.phi = phi [bb %while.body100, i32 0, bb %if.exit125, i32 %141, bb %then124, i32 %134]
@@ -118,11 +110,9 @@ while.cond104:
 while.body105:
   br bb %while.cond110
 while.exit106:
-  br bb %while.exit101
+  br bb %while.exit
 while.cond110:
   a56.phi148 = phi [bb %while.body105, i32 %a56.phi]
-  br bb %while.body111
-while.body111:
   br bb %then115
 while.exit112:
   123 = icmp eq i32 %i.phi, i32 1

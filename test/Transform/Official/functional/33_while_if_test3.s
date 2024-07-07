@@ -47,7 +47,7 @@ bb2:
 bb3:
   SLTI s4, s2, 100
   BNE s4, zero, bb5
-  JAL zero, bb11
+  JAL zero, bb10
 bb4:
   ADD a0, s2, zero
   LD s7, 0(sp)
@@ -69,7 +69,7 @@ bb5:
   ADDI s5, zero, 99
   SLT s6, s5, s4
   BNE s6, zero, bb7
-  JAL zero, bb12
+  JAL zero, bb11
 bb6:
   ADD s6, s8, zero
   ADD s10, s9, zero
@@ -78,6 +78,7 @@ bb6:
   JAL zero, bb2
 bb7:
   ADD s5, s4, zero
+  ADDI s5, zero, 168
   JAL zero, bb9
 bb8:
   ADD s6, s7, zero
@@ -86,18 +87,15 @@ bb8:
   ADD s8, s6, zero
   JAL zero, bb6
 bb9:
-  ADDI s5, zero, 168
-  JAL zero, bb10
-bb10:
   ADD s6, s5, zero
   ADDI s5, zero, 84
   ADD s7, s6, zero
   JAL zero, bb8
-bb11:
+bb10:
   ADD s9, s3, zero
   ADD s8, s2, zero
   JAL zero, bb6
-bb12:
+bb11:
   ADD s5, s3, zero
   ADD s7, s4, zero
   JAL zero, bb8

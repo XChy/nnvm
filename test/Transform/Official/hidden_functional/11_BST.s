@@ -290,16 +290,14 @@ bb24:
 bb25:
   ADD s6, s1, zero
   BNE s6, zero, bb26
-  JAL zero, bb28
+  JAL zero, bb27
 bb26:
   LW s6, 0(s2)
   XORI s7, s6, -1
   SLTIU s6, s7, 1
-  BNE s6, zero, bb29
-  JAL zero, bb30
+  BNE s6, zero, bb28
+  JAL zero, bb29
 bb27:
-  JAL zero, bb21
-bb28:
   LA s6, right_child
   ADD s7, s6, s3
   LW s6, 0(s7)
@@ -319,8 +317,8 @@ bb28:
   CALL delete
   ADD s6, a0, zero
   SW s6, 0(s7)
-  JAL zero, bb27
-bb29:
+  JAL zero, bb21
+bb28:
   LA s6, right_child
   ADD s7, s6, s3
   LW s6, 0(s7)
@@ -338,7 +336,7 @@ bb29:
   LD s4, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb30:
+bb29:
   LW s6, 0(s2)
   ADD a0, s6, zero
   LD s9, 0(sp)
@@ -364,9 +362,9 @@ find_minimum:
   ADD s0, a0, zero
   XORI s1, s0, -1
   SLTIU s2, s1, 1
-  BNE s2, zero, bb32
-  JAL zero, bb34
-bb32:
+  BNE s2, zero, bb31
+  JAL zero, bb33
+bb31:
   ADDI a0, zero, -1
   LD s3, 0(sp)
   LD ra, 8(sp)
@@ -375,7 +373,7 @@ bb32:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb33:
+bb32:
   ADD a0, s0, zero
   LD s3, 0(sp)
   LD ra, 8(sp)
@@ -384,7 +382,7 @@ bb33:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb34:
+bb33:
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s1, left_child
@@ -392,9 +390,9 @@ bb34:
   LW s1, 0(s3)
   XORI s2, s1, -1
   SLTU s1, zero, s2
-  BNE s1, zero, bb35
-  JAL zero, bb36
-bb35:
+  BNE s1, zero, bb34
+  JAL zero, bb35
+bb34:
   LW s1, 0(s3)
   ADD a0, s1, zero
   CALL find_minimum
@@ -407,8 +405,8 @@ bb35:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb36:
-  JAL zero, bb33
+bb35:
+  JAL zero, bb32
 search:
   ADDI sp, sp, -64
   SD ra, 0(sp)
@@ -422,12 +420,12 @@ search:
   ADD s1, a1, zero
   XORI s2, s0, -1
   SLTIU s3, s2, 1
-  BNE s3, zero, bb38
+  BNE s3, zero, bb37
+  JAL zero, bb38
+bb37:
+  ADDI s2, zero, 1
   JAL zero, bb39
 bb38:
-  ADDI s2, zero, 1
-  JAL zero, bb40
-bb39:
   ADDI s3, zero, 4
   MULW s4, s0, s3
   LA s3, value
@@ -438,12 +436,12 @@ bb39:
   XOR s4, s3, zero
   SLTU s3, zero, s4
   ADD s2, s3, zero
-  JAL zero, bb40
-bb40:
+  JAL zero, bb39
+bb39:
   ADD s3, s2, zero
-  BNE s3, zero, bb41
-  JAL zero, bb42
-bb41:
+  BNE s3, zero, bb40
+  JAL zero, bb41
+bb40:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -454,16 +452,16 @@ bb41:
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb42:
+bb41:
   ADDI s3, zero, 4
   MULW s4, s0, s3
   LA s3, value
   ADD s5, s3, s4
   LW s3, 0(s5)
   SLT s5, s3, s1
-  BNE s5, zero, bb43
-  JAL zero, bb44
-bb43:
+  BNE s5, zero, bb42
+  JAL zero, bb43
+bb42:
   LA s3, right_child
   ADD s5, s3, s4
   LW s3, 0(s5)
@@ -481,7 +479,7 @@ bb43:
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb44:
+bb43:
   LA s3, left_child
   ADD s5, s3, s4
   LW s3, 0(s5)
@@ -520,9 +518,9 @@ main:
   ADD s2, s1, zero
   XOR s1, s2, zero
   SLTU s2, zero, s1
-  BNE s2, zero, bb46
-  JAL zero, bb47
-bb46:
+  BNE s2, zero, bb45
+  JAL zero, bb46
+bb45:
   ADD a0, zero, zero
   LD s4, 0(sp)
   LD s3, 8(sp)
@@ -534,22 +532,22 @@ bb46:
   LD s0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb47:
+bb46:
   CALL getint
   ADD s1, a0, zero
   ADD a0, s1, zero
   CALL new_node
   ADD s1, a0, zero
   ADDI s2, zero, 1
-  JAL zero, bb48
-bb48:
+  JAL zero, bb47
+bb47:
   ADD s3, s2, zero
   SLT s4, s3, s0
   XOR s5, s4, zero
   SLTU s4, zero, s5
-  BNE s4, zero, bb49
-  JAL zero, bb50
-bb49:
+  BNE s4, zero, bb48
+  JAL zero, bb49
+bb48:
   CALL getint
   ADD s4, a0, zero
   ADD a0, s1, zero
@@ -558,8 +556,8 @@ bb49:
   ADD s4, a0, zero
   ADDIW s4, s3, 1
   ADD s2, s4, zero
-  JAL zero, bb48
-bb50:
+  JAL zero, bb47
+bb49:
   ADD a0, s1, zero
   CALL inorder
   LA s0, LF
@@ -570,16 +568,16 @@ bb50:
   ADD s0, a0, zero
   ADD s2, zero, zero
   ADD s3, s1, zero
-  JAL zero, bb51
-bb51:
+  JAL zero, bb50
+bb50:
   ADD s1, s3, zero
   ADD s4, s2, zero
   SLT s5, s4, s0
   XOR s6, s5, zero
   SLTU s5, zero, s6
-  BNE s5, zero, bb52
-  JAL zero, bb53
-bb52:
+  BNE s5, zero, bb51
+  JAL zero, bb52
+bb51:
   CALL getint
   ADD s5, a0, zero
   ADD a0, s1, zero
@@ -589,8 +587,8 @@ bb52:
   ADDIW s6, s4, 1
   ADD s2, s6, zero
   ADD s3, s5, zero
-  JAL zero, bb51
-bb53:
+  JAL zero, bb50
+bb52:
   ADD a0, s1, zero
   CALL inorder
   LA s0, LF
@@ -617,9 +615,9 @@ inorder:
   ADD s0, a0, zero
   XORI s1, s0, -1
   SLTU s2, zero, s1
-  BNE s2, zero, bb55
-  JAL zero, bb56
-bb55:
+  BNE s2, zero, bb54
+  JAL zero, bb55
+bb54:
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s0, left_child
@@ -641,8 +639,8 @@ bb55:
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL inorder
-  JAL zero, bb56
-bb56:
+  JAL zero, bb55
+bb55:
   LD ra, 0(sp)
   LD s2, 8(sp)
   LD s1, 16(sp)

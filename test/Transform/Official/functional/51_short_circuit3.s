@@ -43,20 +43,19 @@ set_b:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s11, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s1, 32(sp)
-  SD s6, 40(sp)
-  SD s10, 48(sp)
-  SD s7, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
-  SD s8, 88(sp)
-  SD s9, 96(sp)
+  SD s0, 8(sp)
+  SD s5, 16(sp)
+  SD s1, 24(sp)
+  SD s6, 32(sp)
+  SD s10, 40(sp)
+  SD s7, 48(sp)
+  SD s2, 56(sp)
+  SD s3, 64(sp)
+  SD s4, 72(sp)
+  SD s8, 80(sp)
+  SD s9, 88(sp)
   LA s0, a
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -273,150 +272,134 @@ bb35:
   CALL putch
   JAL zero, bb34
 bb36:
-  JAL zero, bb39
-bb37:
-  ADD s4, zero, zero
   JAL zero, bb38
-bb38:
-  ADD s5, s4, zero
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
-  BNE s5, zero, bb35
+bb37:
+  BNE zero, zero, bb35
   JAL zero, bb36
-bb39:
+bb38:
   ADDI s4, zero, 1
+  BNE s4, zero, bb39
+  JAL zero, bb40
+bb39:
+  ADDI a0, zero, 67
+  CALL putch
   JAL zero, bb40
 bb40:
-  ADD s5, s4, zero
+  SLTI s4, zero, 1
+  XORI s5, s4, 1
   BNE s5, zero, bb41
   JAL zero, bb42
 bb41:
-  ADDI a0, zero, 67
-  CALL putch
-  JAL zero, bb42
-bb42:
-  SLTI s4, zero, 1
-  XORI s5, s4, 1
-  BNE s5, zero, bb43
-  JAL zero, bb44
-bb43:
   ADDI s4, zero, 1
-  JAL zero, bb45
-bb44:
+  JAL zero, bb43
+bb42:
   SLTI s5, zero, 1
   XORI s6, s5, 1
   XOR s5, s6, zero
   SLTU s6, zero, s5
   ADD s4, s6, zero
-  JAL zero, bb45
-bb45:
+  JAL zero, bb43
+bb43:
   ADD s5, s4, zero
-  BNE s5, zero, bb46
-  JAL zero, bb47
-bb46:
+  BNE s5, zero, bb44
+  JAL zero, bb45
+bb44:
   ADDI a0, zero, 72
   CALL putch
-  JAL zero, bb47
-bb47:
+  JAL zero, bb45
+bb45:
   ADDI s5, zero, 2
   SLTI s6, s5, 1
   XORI s5, s6, 1
-  BNE s5, zero, bb48
-  JAL zero, bb49
-bb48:
+  BNE s5, zero, bb46
+  JAL zero, bb47
+bb46:
   ADDI s5, zero, 1
+  JAL zero, bb48
+bb47:
+  ADD s5, zero, zero
+  JAL zero, bb48
+bb48:
+  ADD s6, s5, zero
+  BNE s6, zero, bb49
   JAL zero, bb50
 bb49:
-  ADD s5, zero, zero
-  JAL zero, bb50
-bb50:
-  ADD s6, s5, zero
-  BNE s6, zero, bb51
-  JAL zero, bb52
-bb51:
   ADDI a0, zero, 73
   CALL putch
-  JAL zero, bb52
-bb52:
+  JAL zero, bb50
+bb50:
   ADDI s6, zero, 1
   XORI s7, s6, 1
   ADD s6, s7, zero
   XOR s7, zero, s6
   SLTIU s6, s7, 1
-  BNE s6, zero, bb53
-  JAL zero, bb54
-bb53:
+  BNE s6, zero, bb51
+  JAL zero, bb52
+bb51:
   ADD s7, zero, zero
+  JAL zero, bb53
+bb52:
+  ADD s7, zero, zero
+  JAL zero, bb53
+bb53:
+  ADD s8, s7, zero
+  BNE s8, zero, bb54
   JAL zero, bb55
 bb54:
-  ADD s7, zero, zero
-  JAL zero, bb55
-bb55:
-  ADD s8, s7, zero
-  BNE s8, zero, bb56
-  JAL zero, bb57
-bb56:
   ADDI s8, zero, 1
-  JAL zero, bb58
-bb57:
+  JAL zero, bb56
+bb55:
   ADDI s9, zero, 4
   SLTI s10, s9, 4
   XORI s9, s10, 1
   XOR s10, s9, zero
   SLTU s9, zero, s10
   ADD s8, s9, zero
-  JAL zero, bb58
-bb58:
+  JAL zero, bb56
+bb56:
   ADD s9, s8, zero
-  BNE s9, zero, bb59
-  JAL zero, bb60
-bb59:
+  BNE s9, zero, bb57
+  JAL zero, bb58
+bb57:
   ADDI a0, zero, 74
   CALL putch
+  JAL zero, bb58
+bb58:
+  BNE s6, zero, bb59
   JAL zero, bb60
+bb59:
+  ADDI s9, zero, 1
+  JAL zero, bb61
 bb60:
-  BNE s6, zero, bb61
   JAL zero, bb62
 bb61:
-  ADDI s9, zero, 1
-  JAL zero, bb63
-bb62:
-  JAL zero, bb64
-bb63:
   ADD s10, s9, zero
-  BNE s10, zero, bb66
-  JAL zero, bb67
-bb64:
-  ADD s10, zero, zero
-  JAL zero, bb65
-bb65:
-  ADD s11, s10, zero
-  XOR s10, s11, zero
-  SLTU s11, zero, s10
-  ADD s9, s11, zero
-  JAL zero, bb63
-bb66:
+  BNE s10, zero, bb63
+  JAL zero, bb64
+bb62:
+  ADD s9, zero, zero
+  JAL zero, bb61
+bb63:
   ADDI a0, zero, 75
   CALL putch
-  JAL zero, bb67
-bb67:
+  JAL zero, bb64
+bb64:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s11, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s1, 32(sp)
-  LD s6, 40(sp)
-  LD s10, 48(sp)
-  LD s7, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
-  ADDI sp, sp, 112
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s1, 24(sp)
+  LD s6, 32(sp)
+  LD s10, 40(sp)
+  LD s7, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD s4, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 set_a:
   ADDI sp, sp, -32
