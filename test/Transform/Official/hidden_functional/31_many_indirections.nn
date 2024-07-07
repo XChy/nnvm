@@ -1,6 +1,6 @@
 global ptr array init with 2000 x i32 zeros
-global ptr M init with i32 20
-global ptr N init with i32 100
+immutable global ptr M init with i32 20
+immutable global ptr N init with i32 100
 i32 main() {
 entry:
   br bb %while.cond

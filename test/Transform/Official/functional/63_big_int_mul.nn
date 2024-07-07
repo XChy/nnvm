@@ -1,4 +1,4 @@
-global ptr len init with i32 20
+immutable global ptr len init with i32 20
 i32 main() {
 entry:
   %result = stack 160

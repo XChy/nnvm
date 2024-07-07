@@ -1,6 +1,6 @@
 global ptr array init with 1000 x i32 zeros
-global ptr space init with i32 32
-global ptr maxN init with i32 1000
+immutable global ptr space init with i32 32
+immutable global ptr maxN init with i32 1000
 void findSmallest(i32 low, i32 high, i32 k, i32 n) {
 entry57:
   64 = icmp eq i32 %low, i32 %high

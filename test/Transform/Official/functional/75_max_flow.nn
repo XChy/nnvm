@@ -3,7 +3,7 @@ global ptr cap init with 100 x i32 zeros
 global ptr used init with 10 x i32 zeros
 global ptr to init with 100 x i32 zeros
 global ptr size init with 10 x i32 zeros
-global ptr INF init with i32 1879048192
+immutable global ptr INF init with i32 1879048192
 i32 max_flow(i32 s, i32 t) {
 entry246:
   br bb %while.cond250

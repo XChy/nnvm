@@ -19,6 +19,8 @@ bool CSEPass::EqInstImpl::operator()(Instruction *A, Instruction *B) const {
     return true;
   if (A->getOpcode() != B->getOpcode())
     return false;
+  if (A->getType() != B->getType())
+    return false;
   if (A->getOperandNum() != B->getOperandNum())
     return false;
   for (uint i = 0; i < A->getOperandNum(); i++) {
@@ -28,11 +30,11 @@ bool CSEPass::EqInstImpl::operator()(Instruction *A, Instruction *B) const {
 
   if (dyn_cast<ICmpInst>(A))
     return cast<ICmpInst>(A)->getPredicate() ==
-           dyn_cast<ICmpInst>(B)->getPredicate();
+           cast<ICmpInst>(B)->getPredicate();
 
   if (dyn_cast<FCmpInst>(A))
     return cast<FCmpInst>(A)->getPredicate() ==
-           dyn_cast<FCmpInst>(B)->getPredicate();
+           cast<FCmpInst>(B)->getPredicate();
 
   // TODO: handle commutative operators.
   return true;

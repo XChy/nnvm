@@ -1,6 +1,6 @@
 global ptr ans init with i32 0
 global ptr a init with 30000010 x i32 zeros
-global ptr base init with i32 16
+immutable global ptr base init with i32 16
 external i32 getint()
 
 external i32 getch()

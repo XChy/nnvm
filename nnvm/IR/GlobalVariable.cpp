@@ -5,11 +5,11 @@ using namespace nnvm;
 
 GlobalVariable::GlobalVariable(Module &module, Type *innerType)
     : Value(ValueID::GlobalVariable, module.getPtrType()), innerType(innerType),
-      module(module) {}
+      immutable(false), module(module) {}
 
 GlobalVariable::GlobalVariable(Module &module, Constant *initVal)
     : Value(ValueID::GlobalVariable, module.getPtrType()), initVal(initVal),
-      innerType(initVal->getType()), module(module) {
+      innerType(initVal->getType()), immutable(false), module(module) {
   module.addGlobalVar(this);
 }
 
@@ -20,8 +20,10 @@ void GlobalVariable::setName(const std::string &name) {
 }
 
 std::string GlobalVariable::dump() {
+  std::string decorator = immutable ? "immutable " : "";
   auto initDump = (initVal ? (" init with " + initVal->dumpAsOperand()) : "");
-  return "global " + type->dump() + " " + getName() + initDump + "\n";
+  return decorator + "global " + type->dump() + " " + getName() + initDump +
+         "\n";
 }
 
 std::string GlobalVariable::dumpAsOperand() {

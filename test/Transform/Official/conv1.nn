@@ -1,7 +1,7 @@
 global ptr kernelid init with 10000 x i32 zeros
 global ptr b init with 10000000 x i32 zeros
 global ptr a init with 10000000 x i32 zeros
-global ptr max init with i32 1073741824
+immutable global ptr max init with i32 1073741824
 i32 convn(i32 kernelid, ptr input, ptr output, i32 n, i32 m, i32 c) {
 entry201:
   br bb %while.cond211

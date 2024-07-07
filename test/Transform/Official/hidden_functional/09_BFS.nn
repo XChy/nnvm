@@ -4,9 +4,9 @@ global ptr inq init with 1005 x i32 zeros
 global ptr next init with 5005 x i32 zeros
 global ptr que init with 1005 x i32 zeros
 global ptr to init with 5005 x i32 zeros
-global ptr maxm init with i32 5005
+immutable global ptr maxm init with i32 5005
 global ptr cnt init with i32 0
-global ptr maxn init with i32 1005
+immutable global ptr maxn init with i32 1005
 global ptr m init with i32 0
 global ptr tail init with i32 0
 global ptr n init with i32 0

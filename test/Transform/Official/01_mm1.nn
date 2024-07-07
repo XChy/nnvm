@@ -1,7 +1,7 @@
 global ptr B init with 1048576 x i32 zeros
 global ptr C init with 1048576 x i32 zeros
 global ptr A init with 1048576 x i32 zeros
-global ptr N init with i32 1024
+immutable global ptr N init with i32 1024
 external i32 getint()
 
 external i32 getch()

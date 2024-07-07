@@ -1,4 +1,4 @@
-global ptr a init with 5 x i32 [0, 1, 2, 3, 4]
+immutable global ptr a init with 5 x i32 [0, 1, 2, 3, 4]
 i32 main() {
 entry:
   2 = ptradd ptr @a, i32 16

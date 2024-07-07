@@ -1,4 +1,4 @@
-global ptr e init with float 2.718282
+immutable global ptr e init with float 2.718282
 float my_powf(float a, float x) {
 entry309:
   314 = call float my_ln(float %a)

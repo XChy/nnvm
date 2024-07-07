@@ -1,8 +1,8 @@
 global ptr ans init with 10000000 x i32 zeros
 global ptr hashmod init with i32 0
-global ptr maxn init with i32 10000000
+immutable global ptr maxn init with i32 10000000
 global ptr cnt init with i32 0
-global ptr maxm init with i32 10000000
+immutable global ptr maxm init with i32 10000000
 global ptr bucket init with 10000000 x i32 zeros
 global ptr head init with 10000000 x i32 zeros
 global ptr value init with 10000000 x i32 zeros

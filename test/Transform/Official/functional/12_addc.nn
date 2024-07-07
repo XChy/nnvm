@@ -1,4 +1,4 @@
-global ptr a init with i32 10
+immutable global ptr a init with i32 10
 i32 main() {
 entry:
   a.load = load i32 from ptr @a

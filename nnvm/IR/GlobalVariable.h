@@ -21,9 +21,13 @@ public:
   void setInnerType(Type *innerType) { this->innerType = innerType; }
   Type *getInnerType() { return innerType; }
 
+  void setImmutable(bool immutable) { this->immutable = immutable; }
+  bool isImmutable() const { return immutable; }
+
 private:
   Constant *initVal;
   Type *innerType;
+  bool immutable;
   Module &module;
 };
 

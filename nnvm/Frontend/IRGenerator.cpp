@@ -339,6 +339,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     if (symbolTable.isGlobal()) {
       GlobalVariable *global = new GlobalVariable(*ir, constVal);
       global->setName(ctx->IDENT()->getText());
+      global->setImmutable(true);
       return symbolTable.create(symbolName, symbolType, global);
     } else {
       Type *irElementType = toIRType(symbolType->getInnerMost());
@@ -361,6 +362,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   if (symbolTable.isGlobal()) {
     GlobalVariable *global = new GlobalVariable(*ir, constVal);
     global->setName(ctx->IDENT()->getText());
+    global->setImmutable(true);
     return symbolTable.create(symbolName, symbolType, global);
   } else {
     return symbolTable.create(symbolName, symbolType, constVal);

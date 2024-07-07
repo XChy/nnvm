@@ -1,5 +1,5 @@
-global ptr b init with i32 5
-global ptr a init with i32 10
+immutable global ptr b init with i32 5
+immutable global ptr a init with i32 10
 i32 main() {
 entry:
   b.load = load i32 from ptr @b

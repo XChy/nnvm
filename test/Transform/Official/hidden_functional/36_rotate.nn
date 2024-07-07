@@ -1,11 +1,11 @@
-global ptr EPSILON init with float 0.000001
-global ptr PI init with float 3.141593
+immutable global ptr EPSILON init with float 0.000001
+immutable global ptr PI init with float 3.141593
 global ptr height init with i32 0
 global ptr width init with i32 0
 global ptr image init with 1048576 x i32 zeros
-global ptr MAX_HEIGHT init with i32 1024
-global ptr TWO_PI init with float 6.283185
-global ptr MAX_WIDTH init with i32 1024
+immutable global ptr MAX_HEIGHT init with i32 1024
+immutable global ptr TWO_PI init with float 6.283185
+immutable global ptr MAX_WIDTH init with i32 1024
 i32 rotate(i32 x, i32 y, float rad) {
 entry158:
   164 = call float my_sin(float %rad)

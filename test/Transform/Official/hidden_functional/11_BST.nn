@@ -2,9 +2,9 @@ global ptr now init with i32 0
 global ptr left_child init with 10000 x i32 zeros
 global ptr value init with 10000 x i32 zeros
 global ptr right_child init with 10000 x i32 zeros
-global ptr LF init with i32 10
-global ptr maxNode init with i32 10000
-global ptr space init with i32 32
+immutable global ptr LF init with i32 10
+immutable global ptr maxNode init with i32 10000
+immutable global ptr space init with i32 32
 i32 insert(i32 root, i32 x) {
 entry84:
   89 = icmp eq i32 %root, i32 -1

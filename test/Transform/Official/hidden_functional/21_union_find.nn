@@ -1,5 +1,5 @@
 global ptr parent init with 1005 x i32 zeros
-global ptr maxN init with i32 1005
+immutable global ptr maxN init with i32 1005
 void merge(i32 p, i32 q) {
 entry24:
   30 = call i32 find(i32 %p)
