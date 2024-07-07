@@ -69,7 +69,7 @@ then:
 else:
   br bb %while.exit
 while.cond24:
-  sum.phi = phi [bb %while.exit, i32 %c.phi104, bb %if.exit41, i32 %46]
+  sum.phi = phi [bb %while.exit, i32 %c.phi104, bb %then40, i32 %46]
   br bb %while.body25
 while.body25:
   28 = call i32 getch()
@@ -90,8 +90,6 @@ select.exit35:
 then40:
   44 = mul i32 %sum.phi, i32 10
   46 = add i32 %44, i32 %30
-  br bb %if.exit41
-if.exit41:
   br bb %while.cond24
 else42:
   br bb %while.exit26

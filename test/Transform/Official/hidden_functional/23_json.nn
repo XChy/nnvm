@@ -149,8 +149,6 @@ if.exit190:
   br bb %if.exit180
 then196:
   ret i32 0
-if.exit197:
-  br bb %while.cond207
 else198:
   pos.load199 = load i32 from ptr @pos
   200 = mul i32 %pos.load199, i32 4
@@ -162,7 +160,7 @@ else198:
 then205:
   ret i32 0
 if.exit206:
-  br bb %if.exit197
+  br bb %while.cond207
 while.cond207:
   pos.load210 = load i32 from ptr @pos
   212 = icmp slt i32 %pos.load210, i32 %len
@@ -735,8 +733,6 @@ then686:
   695 = add i32 %pos.load694, i32 3
   697 = icmp sge i32 %695, i32 %len
   br i1 %697, bb %then698, bb %else700
-if.exit687:
-  br bb %if.exit609
 else688:
   ret i32 0
 then698:
@@ -745,7 +741,7 @@ if.exit699:
   pos.load747 = load i32 from ptr @pos
   748 = add i32 %pos.load747, i32 4
   store i32 %748 to ptr @pos
-  br bb %if.exit687
+  br bb %if.exit609
 else700:
   pos.load701 = load i32 from ptr @pos
   702 = mul i32 %pos.load701, i32 4
@@ -921,8 +917,6 @@ then58:
   pos.load61 = load i32 from ptr @pos
   62 = add i32 %pos.load61, i32 1
   store i32 %62 to ptr @pos
-  br bb %if.exit59
-if.exit59:
   br bb %if.exit49
 else60:
   br bb %while.exit

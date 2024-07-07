@@ -8,11 +8,9 @@ entry50:
   63 = add i32 %end, i32 1
   br bb %while.cond65
 while.cond65:
-  xx.phi171 = phi [bb %entry50, i32 0, bb %if.exit112, i32 %xx.phi]
-  r.phi168 = phi [bb %entry50, i32 %63, bb %if.exit112, i32 %r.phi]
-  l.phi164 = phi [bb %entry50, i32 %begin, bb %if.exit112, i32 %l.phi]
-  br bb %while.body66
-while.body66:
+  xx.phi171 = phi [bb %entry50, i32 0, bb %else, i32 %xx.phi]
+  r.phi168 = phi [bb %entry50, i32 %63, bb %else, i32 %r.phi]
+  l.phi164 = phi [bb %entry50, i32 %begin, bb %else, i32 %l.phi]
   br bb %while.cond70
 while.exit67:
   xx.phi170 = phi [bb %while.cond65, i32 %xx.phi171, bb %then111, i32 %xx.phi]
@@ -22,8 +20,8 @@ while.exit67:
   126 = icmp sgt i32 %l.phi163, i32 %pos
   br i1 %126, bb %then127, bb %if.exit128
 while.cond70:
-  xx.phi172 = phi [bb %while.body66, i32 %xx.phi171, bb %if.exit, i32 %88]
-  r.phi166 = phi [bb %while.body66, i32 %r.phi168, bb %if.exit, i32 %78]
+  xx.phi172 = phi [bb %while.cond65, i32 %xx.phi171, bb %if.exit, i32 %88]
+  r.phi166 = phi [bb %while.cond65, i32 %r.phi168, bb %if.exit, i32 %78]
   75 = icmp slt i32 %l.phi164, i32 %r.phi166
   br i1 %75, bb %while.body71, bb %while.exit72
 while.body71:
@@ -64,11 +62,9 @@ if.exit105:
   br bb %while.cond89
 then111:
   br bb %while.exit67
-if.exit112:
-  br bb %while.cond65
 else:
   116 = call i32 swap(ptr %arr, i32 %l.phi, i32 %r.phi)
-  br bb %if.exit112
+  br bb %while.cond65
 then127:
   132 = call i32 median(ptr %arr, i32 %begin, i32 %l.phi163, i32 %pos)
   ret i32 %132

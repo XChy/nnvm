@@ -10,16 +10,14 @@ while.cond211:
   y.phi365 = phi [bb %entry201, i32 ub, bb %if.exit288, i32 %y.phi362]
   x.phi357 = phi [bb %entry201, i32 ub, bb %if.exit288, i32 %x.phi354]
   i206.phi347 = phi [bb %entry201, i32 0, bb %if.exit288, i32 %283]
-  br bb %while.body212
-while.body212:
   br bb %while.cond216
 while.exit213:
   ret i32 0
 while.cond216:
-  curr.phi371 = phi [bb %while.body212, i32 %curr.phi373, bb %if.exit281, i32 %curr.phi368]
-  y.phi363 = phi [bb %while.body212, i32 %y.phi365, bb %if.exit281, i32 %y.phi360]
-  x.phi355 = phi [bb %while.body212, i32 %x.phi357, bb %if.exit281, i32 %x.phi]
-  j.phi349 = phi [bb %while.body212, i32 0, bb %if.exit281, i32 %276]
+  curr.phi371 = phi [bb %while.cond211, i32 %curr.phi373, bb %if.exit281, i32 %curr.phi368]
+  y.phi363 = phi [bb %while.cond211, i32 %y.phi365, bb %if.exit281, i32 %y.phi360]
+  x.phi355 = phi [bb %while.cond211, i32 %x.phi357, bb %if.exit281, i32 %x.phi]
+  j.phi349 = phi [bb %while.cond211, i32 0, bb %if.exit281, i32 %276]
   br bb %while.body217
 while.body217:
   223 = sdiv i32 %c, i32 2

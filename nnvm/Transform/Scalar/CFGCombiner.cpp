@@ -45,8 +45,7 @@ bool CFGCombinerPass::processBB(BasicBlock *BB) {
 
 bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
   BasicBlock *succ = BI->getSucc(0);
-  if (BB == succ || BB->getPredNum() != 1 || succ->getPredNum() != 1 ||
-      BB->getInsts().size() != 1)
+  if (BB == succ || BB->getPredNum() != 1 || BB->getInsts().size() != 1)
     return false;
 
   // Those jump from pred to BB, now jump from pred to succ directly.

@@ -106,8 +106,6 @@ select.exit176:
   br i1 %select177.phi, bb %then185, bb %else187
 then185:
   ret i32 -1
-if.exit186:
-  br bb %if.exit157
 else187:
   191.load = load i32 from ptr %170
   194 = icmp eq i32 %191.load, i32 -1
@@ -138,7 +136,7 @@ else209:
   249.load = load i32 from ptr %238
   251 = call i32 delete(i32 %245.load, i32 %249.load)
   store i32 %251 to ptr %230
-  br bb %if.exit186
+  br bb %if.exit157
 then216:
   221 = ptradd ptr @right_child, i32 %134
   221.load = load i32 from ptr %221
