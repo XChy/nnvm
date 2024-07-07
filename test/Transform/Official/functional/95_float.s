@@ -440,7 +440,7 @@ bb23:
   ADD s4, s3, zero
   ADD s5, s2, zero
   LUI s6, 244141
-  ADDI s6, s6, -1536
+  ADDIW s6, s6, -1536
   SLT s7, s4, s6
   BNE s7, zero, bb24
   JAL zero, bb25

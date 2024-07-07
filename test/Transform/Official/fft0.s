@@ -192,7 +192,7 @@ bb10:
   ADD s11, a0, zero
   ADDW s3, s10, s11
   LUI s11, 243712
-  ADDI s11, s11, 1
+  ADDIW s11, s11, 1
   REMW s1, s3, s11
   SW s1, 0(s9)
   ADD a0, s7, zero
@@ -201,10 +201,10 @@ bb10:
   ADD s1, a0, zero
   SUBW s3, s10, s1
   LUI s1, 243712
-  ADDI s1, s1, 1
+  ADDIW s1, s1, 1
   ADDW s5, s3, s1
   LUI s1, 243712
-  ADDI s1, s1, 1
+  ADDIW s1, s1, 1
   REMW s3, s5, s1
   SW s3, 0(s8)
   ADD a0, s7, zero
@@ -346,7 +346,7 @@ bb20:
   LA s0, d
   LW s2, 0(s0)
   LUI s0, 243712
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   DIVW s3, s0, s2
   ADDI a0, zero, 3
   ADD a1, s3, zero
@@ -364,7 +364,7 @@ bb20:
   LA s0, d
   LW s2, 0(s0)
   LUI s0, 243712
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   DIVW s3, s0, s2
   ADDI a0, zero, 3
   ADD a1, s3, zero
@@ -409,10 +409,10 @@ bb23:
   LA s0, d
   LW s2, 0(s0)
   LUI s0, 243712
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   DIVW s3, s0, s2
   LUI s0, 243712
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   SUBW s2, s0, s3
   ADDI a0, zero, 3
   ADD a1, s2, zero
@@ -444,7 +444,7 @@ bb25:
   LW s6, 0(s3)
   ADD a0, s6, zero
   LUI s3, 243712
-  ADDI s3, s3, -1
+  ADDIW s3, s3, -1
   ADD a1, zero, s3
   CALL power
   ADD s3, a0, zero
@@ -556,7 +556,7 @@ bb33:
   JAL zero, bb35
 bb34:
   LUI s2, 243712
-  ADDI s2, s2, 1
+  ADDIW s2, s2, 1
   REMW s3, s0, s2
   ADD a0, s3, zero
   LD s4, 0(sp)
@@ -576,7 +576,7 @@ bb35:
   ADD s2, a0, zero
   ADDW s3, s2, s2
   LUI s2, 243712
-  ADDI s2, s2, 1
+  ADDIW s2, s2, 1
   REMW s4, s3, s2
   ADDI s2, zero, 2
   REMW s3, s1, s2
@@ -587,7 +587,7 @@ bb35:
 bb36:
   ADDW s1, s4, s0
   LUI s0, 243712
-  ADDI s0, s0, 1
+  ADDIW s0, s0, 1
   REMW s2, s1, s0
   ADD a0, s2, zero
   LD s4, 0(sp)

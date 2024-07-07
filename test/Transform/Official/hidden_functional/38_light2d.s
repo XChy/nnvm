@@ -113,7 +113,7 @@ bb2:
   ADD s2, a0, zero
   FCVT.S.W fs3, s2
   LUI s2, 24414
-  ADDI s2, s2, 262
+  ADDIW s2, s2, 262
   FCVT.S.W fs5, s2
   FDIV.S fs6, fs3, fs5
   FCVT.S.W fs3, s1
@@ -576,13 +576,13 @@ rand:
   LA s0, seed
   LW s1, 0(s0)
   LUI s0, 4878
-  ADDI s0, s0, -158
+  ADDIW s0, s0, -158
   MULW s2, s1, s0
   LUI s0, 6
-  ADDI s0, s0, -1243
+  ADDIW s0, s0, -1243
   ADDW s1, s2, s0
   LUI s0, 24414
-  ADDI s0, s0, 263
+  ADDIW s0, s0, 263
   REMW s2, s1, s0
   LA s0, seed
   SW s2, 0(s0)
@@ -593,7 +593,7 @@ bb39:
   LA s0, seed
   LW s1, 0(s0)
   LUI s0, 24414
-  ADDI s0, s0, 263
+  ADDIW s0, s0, 263
   ADDW s2, s1, s0
   LA s0, seed
   SW s2, 0(s0)

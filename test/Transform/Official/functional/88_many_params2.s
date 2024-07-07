@@ -5,50 +5,50 @@
 .section .text
 main:
   LUI t0, 1048569
-  ADDI t0, t0, -288
+  ADDIW t0, t0, -288
   ADD sp, sp, t0
   LUI t5, 7
-  ADDI t5, t5, 208
+  ADDIW t5, t5, 208
   ADD t5, t5, sp
   SD ra, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 216
+  ADDIW t6, t6, 216
   ADD t6, t6, sp
   SD s0, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 224
+  ADDIW t5, t5, 224
   ADD t5, t5, sp
   SD s5, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 232
+  ADDIW t6, t6, 232
   ADD t6, t6, sp
   SD s1, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   SD s6, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 248
+  ADDIW t6, t6, 248
   ADD t6, t6, sp
   SD s2, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 256
+  ADDIW t5, t5, 256
   ADD t5, t5, sp
   SD s3, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 264
+  ADDIW t6, t6, 264
   ADD t6, t6, sp
   SD s4, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 272
+  ADDIW t5, t5, 272
   ADD t5, t5, sp
   SD s7, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 280
+  ADDIW t6, t6, 280
   ADD t6, t6, sp
   SD s8, 0(t6)
   LUI s0, 1
-  ADDI s0, s0, -9
+  ADDIW s0, s0, -9
   ADD s1, zero, s0
   JAL zero, bb1
 bb1:
@@ -63,7 +63,7 @@ bb2:
   ADDI s0, zero, 4
   MULW s2, s3, s0
   LUI t5, 3
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   ADD s0, t5, s2
   SW zero, 0(s0)
@@ -71,7 +71,7 @@ bb2:
   JAL zero, bb1
 bb3:
   LUI s0, 1
-  ADDI s0, s0, -969
+  ADDIW s0, s0, -969
   ADD s1, zero, s0
   JAL zero, bb4
 bb4:
@@ -92,41 +92,41 @@ bb5:
   JAL zero, bb4
 bb6:
   LUI s0, 1
-  ADDI s0, s0, 464
+  ADDIW s0, s0, 464
   LUI t5, 3
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   ADD s1, t5, s0
   ADDI s0, zero, 6
   SW s0, 0(s1)
   LUI s0, 1
-  ADDI s0, s0, 472
+  ADDIW s0, s0, 472
   LUI t6, 3
-  ADDI t6, t6, 240
+  ADDIW t6, t6, 240
   ADD t6, t6, sp
   ADD s2, t6, s0
   ADDI s0, zero, 7
   SW s0, 0(s2)
   LUI s0, 1
-  ADDI s0, s0, 476
+  ADDIW s0, s0, 476
   LUI t5, 3
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   ADD s3, t5, s0
   ADDI s0, zero, 4
   SW s0, 0(s3)
   LUI s0, 1
-  ADDI s0, s0, 488
+  ADDIW s0, s0, 488
   LUI t6, 3
-  ADDI t6, t6, 240
+  ADDIW t6, t6, 240
   ADD t6, t6, sp
   ADD s3, t6, s0
   ADDI s0, zero, 9
   SW s0, 0(s3)
   LUI s0, 1
-  ADDI s0, s0, 504
+  ADDIW s0, s0, 504
   LUI t5, 3
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   ADD s3, t5, s0
   ADDI s0, zero, 11
@@ -146,21 +146,21 @@ bb6:
   LW s3, 0(s1)
   LW s1, 0(s2)
   LUI s2, 1
-  ADDI s2, s2, 460
+  ADDIW s2, s2, 460
   LUI t6, 3
-  ADDI t6, t6, 240
+  ADDIW t6, t6, 240
   ADD t6, t6, sp
   ADD s4, t6, s2
   LW s2, 0(s0)
   ADDI s0, sp, 1432
   LW s5, 0(s0)
   LUI s6, 2
-  ADDI s6, s6, -152
+  ADDIW s6, s6, -152
   ADDI t5, sp, 16
   ADD s7, t5, s6
   LW s6, 0(s7)
   LUI s7, 3
-  ADDI s7, s7, -180
+  ADDIW s7, s7, -180
   ADDI t6, sp, 16
   ADD s8, t6, s7
   LW s7, 0(s8)
@@ -206,47 +206,47 @@ bb9:
   CALL putch
   ADD a0, zero, zero
   LUI ra, 7
-  ADDI ra, ra, 208
+  ADDIW ra, ra, 208
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 7
-  ADDI t6, t6, 216
+  ADDIW t6, t6, 216
   ADD t6, t6, sp
   LD s0, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 224
+  ADDIW t5, t5, 224
   ADD t5, t5, sp
   LD s5, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 232
+  ADDIW t6, t6, 232
   ADD t6, t6, sp
   LD s1, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 240
+  ADDIW t5, t5, 240
   ADD t5, t5, sp
   LD s6, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 248
+  ADDIW t6, t6, 248
   ADD t6, t6, sp
   LD s2, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 256
+  ADDIW t5, t5, 256
   ADD t5, t5, sp
   LD s3, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 264
+  ADDIW t6, t6, 264
   ADD t6, t6, sp
   LD s4, 0(t6)
   LUI t5, 7
-  ADDI t5, t5, 272
+  ADDIW t5, t5, 272
   ADD t5, t5, sp
   LD s7, 0(t5)
   LUI t6, 7
-  ADDI t6, t6, 280
+  ADDIW t6, t6, 280
   ADD t6, t6, sp
   LD s8, 0(t6)
   LUI t0, 7
-  ADDI t0, t0, 288
+  ADDIW t0, t0, 288
   ADD sp, sp, t0
   JALR zero, 0(ra)
 func:
@@ -320,10 +320,10 @@ bb15:
   MULW s8, s3, s7
   ADD s7, s6, s8
   LUI s8, 31
-  ADDI s8, s8, 1899
+  ADDIW s8, s8, 1899
   MULW s9, s2, s8
   LUI s8, 1
-  ADDI s8, s8, -372
+  ADDIW s8, s8, -372
   REMW s10, s9, s8
   SW s10, 0(s7)
   ADDIW s7, s3, 1

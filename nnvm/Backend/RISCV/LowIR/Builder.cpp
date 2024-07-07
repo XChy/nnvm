@@ -70,6 +70,7 @@ LIRBuilder &LIRBuilder::loadConstantToReg(LIRConst *constant, Register *reg,
       return *this;
     }
 
+    // TODO: use ADDI for 64bits?
     if (canExpressInBits<32>(constant->getIValue())) {
       uint64_t largeValue;
       uint64_t smallValue;
@@ -82,7 +83,7 @@ LIRBuilder &LIRBuilder::loadConstantToReg(LIRConst *constant, Register *reg,
       }
 
       auto auipc = LIRInst::create(LUI, reg, LIRImm::create(largeValue));
-      auto load = LIRInst::create(ADDI, reg, reg, LIRImm::create(smallValue));
+      auto load = LIRInst::create(ADDIW, reg, reg, LIRImm::create(smallValue));
       addInst(auipc);
       addInst(load);
       return *this;

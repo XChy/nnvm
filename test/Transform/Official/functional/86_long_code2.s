@@ -13,7 +13,7 @@ main:
   SD s1, 24(sp)
   SD s0, 32(sp)
   LUI s0, 98
-  ADDI s0, s0, -1412
+  ADDIW s0, s0, -1412
   LA s1, a
   ADD s2, s1, s0
   ADDI s0, zero, 1

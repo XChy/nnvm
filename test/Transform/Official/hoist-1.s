@@ -1631,7 +1631,7 @@ bb3:
   DIVW a7, a5, a6
   ADDW a5, a4, a7
   LUI a6, 366211
-  ADDI a6, a6, -255
+  ADDIW a6, a6, -255
   REMW a7, a5, a6
   ADDIW a5, a3, 1
   ADD s8, a7, zero

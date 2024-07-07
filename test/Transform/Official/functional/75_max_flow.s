@@ -48,7 +48,7 @@ bb1:
   ADD a0, s0, zero
   ADD a1, s1, zero
   LUI s4, 458752
-  ADDI s4, s4, 0
+  ADDIW s4, s4, 0
   ADD a2, zero, s4
   CALL dfs
   ADD s4, a0, zero

@@ -245,7 +245,7 @@ init:
   SD s0, 40(sp)
   LA s0, dep
   LUI s1, 259060
-  ADDI s1, s1, -193
+  ADDIW s1, s1, -193
   SW s1, 0(s0)
   ADDI s0, zero, 1
   JAL zero, bb22

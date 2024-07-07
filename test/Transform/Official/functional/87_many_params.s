@@ -657,7 +657,7 @@ bb4:
   SUBW t2, s0, s8
   ADDW s0, s1, s2
   LUI s1, 243712
-  ADDI s1, s1, 1
+  ADDIW s1, s1, 1
   REMW s2, s0, s1
   ADD a0, t2, zero
   ADD a1, s2, zero
@@ -865,7 +865,7 @@ main:
   SW s0, 192(sp)
   ADDI s0, sp, 196
   LUI s1, 2
-  ADDI s1, s1, 656
+  ADDIW s1, s1, 656
   SW s1, 0(s0)
   ADDI s0, zero, 62
   JAL zero, bb6

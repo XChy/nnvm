@@ -328,7 +328,7 @@ bb35:
   ADD s5, s4, zero
   ADD s6, s3, zero
   LUI s7, 262144
-  ADDI s7, s7, 0
+  ADDIW s7, s7, 0
   SLT s8, s6, s7
   BNE s8, zero, bb36
   JAL zero, bb37
@@ -434,7 +434,7 @@ bb47:
   ADD s5, s4, zero
   ADD s6, s3, zero
   LUI s7, 262144
-  ADDI s7, s7, 0
+  ADDIW s7, s7, 0
   SLT s8, s5, s7
   BNE s8, zero, bb48
   JAL zero, bb49
@@ -521,7 +521,7 @@ bb58:
   ADD s4, s3, zero
   ADD s5, s0, zero
   LUI s6, 262144
-  ADDI s6, s6, 0
+  ADDIW s6, s6, 0
   SLT s7, s5, s6
   BNE s7, zero, bb59
   JAL zero, bb60
@@ -721,13 +721,13 @@ checkrange:
 bb76:
   ADD s0, s1, zero
   LUI s2, 262144
-  ADDI s2, s2, 0
+  ADDIW s2, s2, 0
   SLT s3, s2, s0
   BNE s3, zero, bb77
   JAL zero, bb78
 bb77:
   LUI s2, 262144
-  ADDI s2, s2, 0
+  ADDIW s2, s2, 0
   SUBW s3, s0, s2
   ADD s1, s3, zero
   JAL zero, bb76
@@ -741,7 +741,7 @@ bb79:
   JAL zero, bb81
 bb80:
   LUI s2, 262144
-  ADDI s2, s2, 0
+  ADDIW s2, s2, 0
   ADDW s3, s0, s2
   ADD s1, s3, zero
   JAL zero, bb79

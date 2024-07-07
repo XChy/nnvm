@@ -24,42 +24,42 @@ maxN:
 .section .text
 main:
   LUI t0, 1048575
-  ADDI t0, t0, -784
+  ADDIW t0, t0, -784
   ADD sp, sp, t0
   LUI t5, 1
-  ADDI t5, t5, 704
+  ADDIW t5, t5, 704
   ADD t5, t5, sp
   SD ra, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 712
+  ADDIW t6, t6, 712
   ADD t6, t6, sp
   SD s4, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 720
+  ADDIW t5, t5, 720
   ADD t5, t5, sp
   SD s3, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 728
+  ADDIW t6, t6, 728
   ADD t6, t6, sp
   SD s2, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 736
+  ADDIW t5, t5, 736
   ADD t5, t5, sp
   SD s6, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 744
+  ADDIW t6, t6, 744
   ADD t6, t6, sp
   SD s1, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 752
+  ADDIW t5, t5, 752
   ADD t5, t5, sp
   SD s7, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 760
+  ADDIW t6, t6, 760
   ADD t6, t6, sp
   SD s5, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 768
+  ADDIW t5, t5, 768
   ADD t5, t5, sp
   SD s0, 0(t5)
   CALL getint
@@ -144,43 +144,43 @@ bb6:
   CALL putint
   ADD a0, zero, zero
   LUI ra, 1
-  ADDI ra, ra, 704
+  ADDIW ra, ra, 704
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 1
-  ADDI t6, t6, 712
+  ADDIW t6, t6, 712
   ADD t6, t6, sp
   LD s4, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 720
+  ADDIW t5, t5, 720
   ADD t5, t5, sp
   LD s3, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 728
+  ADDIW t6, t6, 728
   ADD t6, t6, sp
   LD s2, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 736
+  ADDIW t5, t5, 736
   ADD t5, t5, sp
   LD s6, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 744
+  ADDIW t6, t6, 744
   ADD t6, t6, sp
   LD s1, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 752
+  ADDIW t5, t5, 752
   ADD t5, t5, sp
   LD s7, 0(t5)
   LUI t6, 1
-  ADDI t6, t6, 760
+  ADDIW t6, t6, 760
   ADD t6, t6, sp
   LD s5, 0(t6)
   LUI t5, 1
-  ADDI t5, t5, 768
+  ADDIW t5, t5, 768
   ADD t5, t5, sp
   LD s0, 0(t5)
   LUI t0, 1
-  ADDI t0, t0, 784
+  ADDIW t0, t0, 784
   ADD sp, sp, t0
   JALR zero, 0(ra)
 is_clique:

@@ -177,7 +177,7 @@ bb9:
   ADDI s3, zero, 30
   DIVW s4, s1, s3
   LUI s3, 2
-  ADDI s3, s3, 1808
+  ADDIW s3, s3, 1808
   SLT s5, s4, s3
   XORI s3, s5, 1
   BNE s3, zero, bb10
@@ -336,7 +336,7 @@ bb29:
   CALL rand
   ADD s0, a0, zero
   LUI s2, 73
-  ADDI s2, s2, 992
+  ADDIW s2, s2, 992
   REMW s4, s0, s2
   CALL rand
   ADD s0, a0, zero
@@ -354,7 +354,7 @@ bb30:
   ADDI a0, zero, 64
   CALL _sysy_stoptime
   LUI s0, 2
-  ADDI s0, s0, 1808
+  ADDIW s0, s0, 1808
   ADD a0, zero, s0
   LA s0, a
   ADD a1, s0, zero

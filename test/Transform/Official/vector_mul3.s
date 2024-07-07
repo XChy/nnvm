@@ -357,54 +357,54 @@ bb25:
   JAL zero, bb20
 main:
   LUI t0, 1048283
-  ADDI t0, t0, 32
+  ADDIW t0, t0, 32
   ADD sp, sp, t0
   LUI t5, 293
-  ADDI t5, t5, -128
+  ADDIW t5, t5, -128
   ADD t5, t5, sp
   SD ra, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -120
+  ADDIW t6, t6, -120
   ADD t6, t6, sp
   FSD fs3, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -112
+  ADDIW t5, t5, -112
   ADD t5, t5, sp
   FSD fs2, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -104
+  ADDIW t6, t6, -104
   ADD t6, t6, sp
   FSD fs1, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -96
+  ADDIW t5, t5, -96
   ADD t5, t5, sp
   SD s0, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -88
+  ADDIW t6, t6, -88
   ADD t6, t6, sp
   SD s5, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -80
+  ADDIW t5, t5, -80
   ADD t5, t5, sp
   SD s1, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -72
+  ADDIW t6, t6, -72
   ADD t6, t6, sp
   SD s2, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -64
+  ADDIW t5, t5, -64
   ADD t5, t5, sp
   SD s3, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -56
+  ADDIW t6, t6, -56
   ADD t6, t6, sp
   SD s4, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -48
+  ADDIW t5, t5, -48
   ADD t5, t5, sp
   FSD fs0, 0(t5)
   LUI s0, 24
-  ADDI s0, s0, 1696
+  ADDIW s0, s0, 1696
   SLT s1, zero, s0
   XORI s0, s1, 1
   BNE s0, zero, bb27
@@ -427,7 +427,7 @@ bb30:
   ADDI s4, zero, 4
   MULW s5, s3, s4
   LUI t6, 195
-  ADDI t6, t6, 1280
+  ADDIW t6, t6, 1280
   ADD t6, t6, sp
   ADD s4, t6, s5
   ADDI s5, zero, 1
@@ -446,11 +446,11 @@ bb32:
   JAL zero, bb34
 bb33:
   LUI a0, 195
-  ADDI a0, a0, 1280
+  ADDIW a0, a0, 1280
   ADD a0, a0, sp
   ADD a0, a0, zero
   LUI a1, 98
-  ADDI a1, a1, -1408
+  ADDIW a1, a1, -1408
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADD a2, s1, zero
@@ -458,11 +458,11 @@ bb33:
   ADD a3, a3, zero
   CALL mult_combin
   LUI a0, 98
-  ADDI a0, a0, -1408
+  ADDIW a0, a0, -1408
   ADD a0, a0, sp
   ADD a0, a0, zero
   LUI a1, 195
-  ADDI a1, a1, 1280
+  ADDIW a1, a1, 1280
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADD a2, s1, zero
@@ -476,22 +476,22 @@ bb34:
   ADDI a0, zero, 76
   CALL _sysy_stoptime
   LUI a0, 195
-  ADDI a0, a0, 1280
+  ADDIW a0, a0, 1280
   ADD a0, a0, sp
   ADD a0, a0, zero
   LUI a1, 98
-  ADDI a1, a1, -1408
+  ADDIW a1, a1, -1408
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADD a2, s1, zero
   CALL Vectordot
   FSGNJ.D fs0, fa0, fa0
   LUI a0, 98
-  ADDI a0, a0, -1408
+  ADDIW a0, a0, -1408
   ADD a0, a0, sp
   ADD a0, a0, zero
   LUI a1, 98
-  ADDI a1, a1, -1408
+  ADDIW a1, a1, -1408
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADD a2, s1, zero
@@ -534,51 +534,51 @@ bb39:
   CALL putch
   ADD a0, zero, zero
   LUI ra, 293
-  ADDI ra, ra, -128
+  ADDIW ra, ra, -128
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t5, 293
-  ADDI t5, t5, -120
+  ADDIW t5, t5, -120
   ADD t5, t5, sp
   FLD fs3, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -112
+  ADDIW t6, t6, -112
   ADD t6, t6, sp
   FLD fs2, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -104
+  ADDIW t5, t5, -104
   ADD t5, t5, sp
   FLD fs1, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -96
+  ADDIW t6, t6, -96
   ADD t6, t6, sp
   LD s0, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -88
+  ADDIW t5, t5, -88
   ADD t5, t5, sp
   LD s5, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -80
+  ADDIW t6, t6, -80
   ADD t6, t6, sp
   LD s1, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -72
+  ADDIW t5, t5, -72
   ADD t5, t5, sp
   LD s2, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -64
+  ADDIW t6, t6, -64
   ADD t6, t6, sp
   LD s3, 0(t6)
   LUI t5, 293
-  ADDI t5, t5, -56
+  ADDIW t5, t5, -56
   ADD t5, t5, sp
   LD s4, 0(t5)
   LUI t6, 293
-  ADDI t6, t6, -48
+  ADDIW t6, t6, -48
   ADD t6, t6, sp
   FLD fs0, 0(t6)
   LUI t0, 293
-  ADDI t0, t0, -32
+  ADDIW t0, t0, -32
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb40:
@@ -587,7 +587,7 @@ bb40:
   JAL zero, bb39
 bb41:
   LUI s1, 24
-  ADDI s1, s1, 1696
+  ADDIW s1, s1, 1696
   ADD s0, zero, s1
   JAL zero, bb28
 func:

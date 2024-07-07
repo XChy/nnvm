@@ -48,59 +48,59 @@ bb3:
   LA s0, array
   ADDI s5, s0, 2000
   LUI s0, 1
-  ADDI s0, s0, -1696
+  ADDIW s0, s0, -1696
   LA s6, array
   ADD s7, s6, s0
   LUI s0, 1
-  ADDI s0, s0, -1296
+  ADDIW s0, s0, -1296
   LA s6, array
   ADD s8, s6, s0
   LUI s0, 1
-  ADDI s0, s0, -896
+  ADDIW s0, s0, -896
   LA s6, array
   ADD s9, s6, s0
   LUI s0, 1
-  ADDI s0, s0, -496
+  ADDIW s0, s0, -496
   LA s6, array
   ADD s10, s6, s0
   LUI s0, 1
-  ADDI s0, s0, -96
+  ADDIW s0, s0, -96
   LA s6, array
   ADD s11, s6, s0
   LUI s0, 1
-  ADDI s0, s0, 304
+  ADDIW s0, s0, 304
   LA s6, array
   ADD ra, s6, s0
   LUI s0, 1
-  ADDI s0, s0, 704
+  ADDIW s0, s0, 704
   LA s6, array
   ADD t0, s6, s0
   LUI s0, 1
-  ADDI s0, s0, 1104
+  ADDIW s0, s0, 1104
   LA s6, array
   ADD t1, s6, s0
   LUI s0, 1
-  ADDI s0, s0, 1504
+  ADDIW s0, s0, 1504
   LA s6, array
   ADD t2, s6, s0
   LUI s0, 1
-  ADDI s0, s0, 1904
+  ADDIW s0, s0, 1904
   LA s6, array
   ADD a0, s6, s0
   LUI s0, 2
-  ADDI s0, s0, -1792
+  ADDIW s0, s0, -1792
   LA s6, array
   ADD a1, s6, s0
   LUI s0, 2
-  ADDI s0, s0, -1392
+  ADDIW s0, s0, -1392
   LA s6, array
   ADD a2, s6, s0
   LUI s0, 2
-  ADDI s0, s0, -992
+  ADDIW s0, s0, -992
   LA s6, array
   ADD a3, s6, s0
   LUI s0, 2
-  ADDI s0, s0, -500
+  ADDIW s0, s0, -500
   LA s6, array
   ADD a4, s6, s0
   LW s0, 0(a4)
@@ -182,7 +182,7 @@ bb3:
   ADD s1, s0, s2
   LW s0, 0(s1)
   LUI s1, 2
-  ADDI s1, s1, -520
+  ADDIW s1, s1, -520
   LA s2, array
   ADD s3, s2, s1
   LW s1, 0(s3)

@@ -7,50 +7,50 @@
 .section .text
 KMP:
   LUI t0, 1048572
-  ADDI t0, t0, -96
+  ADDIW t0, t0, -96
   ADD sp, sp, t0
   LUI t5, 4
-  ADDI t5, t5, 0
+  ADDIW t5, t5, 0
   ADD t5, t5, sp
   SD ra, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 8
+  ADDIW t6, t6, 8
   ADD t6, t6, sp
   SD s0, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 16
+  ADDIW t5, t5, 16
   ADD t5, t5, sp
   SD s5, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 24
+  ADDIW t6, t6, 24
   ADD t6, t6, sp
   SD s7, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 32
+  ADDIW t5, t5, 32
   ADD t5, t5, sp
   SD s1, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 40
+  ADDIW t6, t6, 40
   ADD t6, t6, sp
   SD s6, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 48
+  ADDIW t5, t5, 48
   ADD t5, t5, sp
   SD s8, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 56
+  ADDIW t6, t6, 56
   ADD t6, t6, sp
   SD s2, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 64
+  ADDIW t5, t5, 64
   ADD t5, t5, sp
   SD s3, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 72
+  ADDIW t6, t6, 72
   ADD t6, t6, sp
   SD s4, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 80
+  ADDIW t5, t5, 80
   ADD t5, t5, sp
   SD s9, 0(t5)
   ADD s0, a0, zero
@@ -86,51 +86,51 @@ bb2:
 bb3:
   ADDI a0, zero, -1
   LUI ra, 4
-  ADDI ra, ra, 0
+  ADDIW ra, ra, 0
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 4
-  ADDI t6, t6, 8
+  ADDIW t6, t6, 8
   ADD t6, t6, sp
   LD s0, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 16
+  ADDIW t5, t5, 16
   ADD t5, t5, sp
   LD s5, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 24
+  ADDIW t6, t6, 24
   ADD t6, t6, sp
   LD s7, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 32
+  ADDIW t5, t5, 32
   ADD t5, t5, sp
   LD s1, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 40
+  ADDIW t6, t6, 40
   ADD t6, t6, sp
   LD s6, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 48
+  ADDIW t5, t5, 48
   ADD t5, t5, sp
   LD s8, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 56
+  ADDIW t6, t6, 56
   ADD t6, t6, sp
   LD s2, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 64
+  ADDIW t5, t5, 64
   ADD t5, t5, sp
   LD s3, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 72
+  ADDIW t6, t6, 72
   ADD t6, t6, sp
   LD s4, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 80
+  ADDIW t5, t5, 80
   ADD t5, t5, sp
   LD s9, 0(t5)
   LUI t0, 4
-  ADDI t0, t0, 96
+  ADDIW t0, t0, 96
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb4:
@@ -165,51 +165,51 @@ bb6:
 bb7:
   ADD a0, s4, zero
   LUI ra, 4
-  ADDI ra, ra, 0
+  ADDIW ra, ra, 0
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t5, 4
-  ADDI t5, t5, 8
+  ADDIW t5, t5, 8
   ADD t5, t5, sp
   LD s0, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 16
+  ADDIW t6, t6, 16
   ADD t6, t6, sp
   LD s5, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 24
+  ADDIW t5, t5, 24
   ADD t5, t5, sp
   LD s7, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 32
+  ADDIW t6, t6, 32
   ADD t6, t6, sp
   LD s1, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 40
+  ADDIW t5, t5, 40
   ADD t5, t5, sp
   LD s6, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 48
+  ADDIW t6, t6, 48
   ADD t6, t6, sp
   LD s8, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 56
+  ADDIW t5, t5, 56
   ADD t5, t5, sp
   LD s2, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 64
+  ADDIW t6, t6, 64
   ADD t6, t6, sp
   LD s3, 0(t6)
   LUI t5, 4
-  ADDI t5, t5, 72
+  ADDIW t5, t5, 72
   ADD t5, t5, sp
   LD s4, 0(t5)
   LUI t6, 4
-  ADDI t6, t6, 80
+  ADDIW t6, t6, 80
   ADD t6, t6, sp
   LD s9, 0(t6)
   LUI t0, 4
-  ADDI t0, t0, 96
+  ADDIW t0, t0, 96
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb8:
@@ -275,18 +275,18 @@ bb15:
   JAL zero, bb13
 main:
   LUI t0, 1048568
-  ADDI t0, t0, -16
+  ADDIW t0, t0, -16
   ADD sp, sp, t0
   LUI t5, 8
-  ADDI t5, t5, 0
+  ADDIW t5, t5, 0
   ADD t5, t5, sp
   SD ra, 0(t5)
   LUI a0, 8
-  ADDI a0, a0, 8
+  ADDIW a0, a0, 8
   ADD a0, a0, sp
   SD s0, 0(a0)
   LUI a0, 4
-  ADDI a0, a0, 0
+  ADDIW a0, a0, 0
   ADD a0, a0, sp
   ADD a0, a0, zero
   CALL read_str
@@ -296,7 +296,7 @@ main:
   CALL read_str
   ADD s0, a0, zero
   LUI a0, 4
-  ADDI a0, a0, 0
+  ADDIW a0, a0, 0
   ADD a0, a0, sp
   ADD a0, a0, zero
   ADDI a1, sp, 0
@@ -309,15 +309,15 @@ main:
   CALL putch
   ADD a0, zero, zero
   LUI ra, 8
-  ADDI ra, ra, 0
+  ADDIW ra, ra, 0
   ADD ra, ra, sp
   LD ra, 0(ra)
   LUI t6, 8
-  ADDI t6, t6, 8
+  ADDIW t6, t6, 8
   ADD t6, t6, sp
   LD s0, 0(t6)
   LUI t0, 8
-  ADDI t0, t0, 16
+  ADDIW t0, t0, 16
   ADD sp, sp, t0
   JALR zero, 0(ra)
 get_next:

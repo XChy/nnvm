@@ -357,7 +357,7 @@ bb11:
   LW s2, 0(s5)
   SW s2, 0(s4)
   LUI s2, 256
-  ADDI s2, s2, -1024
+  ADDIW s2, s2, -1024
   ADDW s3, s1, s2
   ADDI s2, zero, 4
   MULW s4, s3, s2
@@ -374,7 +374,7 @@ bb12:
   ADDI a0, zero, 59
   CALL _sysy_stoptime
   LUI s0, 256
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   ADD a0, zero, s0
   LA s0, image_out
   ADD a1, s0, zero

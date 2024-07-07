@@ -46,17 +46,17 @@ dfs:
   ADD t4, a5, zero
   SW t4, 8(sp)
   LUI s6, 718
-  ADDI s6, s6, -1600
+  ADDIW s6, s6, -1600
   MULW s7, s0, s6
   LA s6, dp
   ADD s8, s6, s7
   LUI s6, 40
-  ADDI s6, s6, -544
+  ADDIW s6, s6, -544
   LW t4, 40(sp)
   MULW s7, t4, s6
   ADD s6, s8, s7
   LUI s7, 2
-  ADDI s7, s7, 880
+  ADDIW s7, s7, 880
   LW t4, 32(sp)
   MULW s8, t4, s7
   ADD s7, s6, s8
@@ -156,7 +156,7 @@ bb5:
   ADD s7, a0, zero
   MULW s9, s8, s7
   LUI s7, 244141
-  ADDI s7, s7, -1529
+  ADDIW s7, s7, -1529
   REMW s8, s9, s7
   ADD s7, s8, zero
   JAL zero, bb6
@@ -193,7 +193,7 @@ bb7:
   MULW s9, s10, s6
   ADDW s6, s8, s9
   LUI s9, 244141
-  ADDI s9, s9, -1529
+  ADDIW s9, s9, -1529
   REMW s10, s6, s9
   ADD s6, s10, zero
   JAL zero, bb8
@@ -230,7 +230,7 @@ bb9:
   MULW s5, s11, s4
   ADDW s4, s9, s5
   LUI s5, 244141
-  ADDI s5, s5, -1529
+  ADDIW s5, s5, -1529
   REMW s10, s4, s5
   ADD s4, s10, zero
   JAL zero, bb10
@@ -267,7 +267,7 @@ bb11:
   MULW s3, s11, s2
   ADDW s2, s5, s3
   LUI s3, 244141
-  ADDI s3, s3, -1529
+  ADDIW s3, s3, -1529
   REMW s10, s2, s3
   ADD s2, s10, zero
   JAL zero, bb12
@@ -298,14 +298,14 @@ bb13:
   MULW s10, t4, s1
   ADDW s1, s3, s10
   LUI s10, 244141
-  ADDI s10, s10, -1529
+  ADDIW s10, s10, -1529
   REMW s11, s1, s10
   ADD s1, s11, zero
   JAL zero, bb14
 bb14:
   ADD s10, s1, zero
   LUI s11, 244141
-  ADDI s11, s11, -1529
+  ADDIW s11, s11, -1529
   REMW t0, s10, s11
   LD t4, 0(sp)
   SW t0, 0(t4)
@@ -577,18 +577,18 @@ bb39:
   JAL zero, bb41
 bb40:
   LUI s4, 718
-  ADDI s4, s4, -1600
+  ADDIW s4, s4, -1600
   LW t4, 80(sp)
   MULW s1, t4, s4
   LA s4, dp
   ADD s3, s4, s1
   LUI s1, 40
-  ADDI s1, s1, -544
+  ADDIW s1, s1, -544
   LW t4, 160(sp)
   MULW s4, t4, s1
   ADD s1, s3, s4
   LUI s3, 2
-  ADDI s3, s3, 880
+  ADDIW s3, s3, 880
   LW t4, 96(sp)
   MULW s4, t4, s3
   ADD s3, s1, s4

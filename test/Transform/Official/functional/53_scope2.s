@@ -22,7 +22,7 @@ main:
   SD ra, 96(sp)
   LA s0, k
   LUI s1, 1
-  ADDI s1, s1, -707
+  ADDIW s1, s1, -707
   SW s1, 0(s0)
   LA s0, k
   LW s1, 0(s0)

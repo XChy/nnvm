@@ -58,7 +58,7 @@ search:
   JAL zero, bb2
 bb1:
   LUI s3, 262144
-  ADDI s3, s3, 0
+  ADDIW s3, s3, 0
   ADD a0, zero, s3
   LD s2, 192(sp)
   LD s10, 200(sp)
@@ -78,7 +78,7 @@ bb1:
 bb2:
   ADD s3, zero, zero
   LUI s4, 262144
-  ADDI s4, s4, 0
+  ADDIW s4, s4, 0
   ADD s5, zero, s4
   ADD s4, zero, zero
   ADD s6, zero, zero
@@ -396,7 +396,7 @@ bb33:
   JAL zero, bb3
 bb34:
   LUI s0, 262144
-  ADDI s0, s0, 0
+  ADDIW s0, s0, 0
   ADD a0, zero, s0
   LD s2, 192(sp)
   LD s10, 200(sp)

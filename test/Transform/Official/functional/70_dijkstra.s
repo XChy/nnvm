@@ -105,7 +105,7 @@ bb9:
   MULW s4, s3, s2
   ADD s2, s5, s4
   LUI s4, 16
-  ADDI s4, s4, -1
+  ADDIW s4, s4, -1
   SW s4, 0(s2)
   JAL zero, bb8
 bb10:
@@ -238,7 +238,7 @@ bb21:
   ADDI s3, zero, 1
   ADD s5, zero, zero
   LUI s6, 16
-  ADDI s6, s6, -1
+  ADDIW s6, s6, -1
   ADD s7, zero, s6
   JAL zero, bb23
 bb22:
@@ -333,7 +333,7 @@ bb32:
   ADD s6, s9, s7
   LW s9, 0(s6)
   LUI s11, 16
-  ADDI s11, s11, -1
+  ADDIW s11, s11, -1
   SLT t0, s9, s11
   BNE t0, zero, bb34
   JAL zero, bb35

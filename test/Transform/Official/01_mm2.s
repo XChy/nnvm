@@ -52,7 +52,7 @@ bb4:
   JAL zero, bb6
 bb5:
   LUI s5, 1
-  ADDI s5, s5, 0
+  ADDIW s5, s5, 0
   MULW s6, s2, s5
   LA s5, A
   ADD s7, s5, s6
@@ -89,7 +89,7 @@ bb10:
   JAL zero, bb12
 bb11:
   LUI s5, 1
-  ADDI s5, s5, 0
+  ADDIW s5, s5, 0
   MULW s6, s2, s5
   LA s5, B
   ADD s7, s5, s6
@@ -176,7 +176,7 @@ bb19:
   JAL zero, bb21
 bb20:
   LUI s9, 1
-  ADDI s9, s9, 0
+  ADDIW s9, s9, 0
   MULW s10, s3, s9
   LA s9, B
   ADD s11, s9, s10
@@ -234,7 +234,7 @@ bb26:
   JAL zero, bb28
 bb27:
   LUI s8, 1
-  ADDI s8, s8, 0
+  ADDIW s8, s8, 0
   MULW s9, s5, s8
   ADD s8, s3, s9
   ADDI s9, zero, 4
@@ -282,7 +282,7 @@ bb32:
   JAL zero, bb34
 bb33:
   LUI s11, 1
-  ADDI s11, s11, 0
+  ADDIW s11, s11, 0
   MULW t0, s9, s11
   ADD s11, s1, t0
   ADDI t1, zero, 4
@@ -319,7 +319,7 @@ bb38:
   LW a0, 0(a1)
   LW a3, 0(t1)
   LUI a4, 1
-  ADDI a4, a4, 0
+  ADDIW a4, a4, 0
   MULW a5, s7, a4
   ADD a4, s2, a5
   ADD a5, a4, a2

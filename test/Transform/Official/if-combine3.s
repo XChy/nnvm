@@ -403,7 +403,7 @@ bb9:
   JAL zero, bb8
 bb10:
   LUI s4, 16
-  ADDI s4, s4, -1
+  ADDIW s4, s4, -1
   REMW s6, s7, s4
   ADD s1, s5, zero
   ADD s2, s6, zero

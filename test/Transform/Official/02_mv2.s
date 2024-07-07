@@ -51,7 +51,7 @@ bb4:
   JAL zero, bb6
 bb5:
   LUI s5, 2
-  ADDI s5, s5, -152
+  ADDIW s5, s5, -152
   MULW s6, s2, s5
   LA s5, A
   ADD s7, s5, s6
@@ -209,7 +209,7 @@ bb20:
   JAL zero, bb22
 bb21:
   LUI t2, 2
-  ADDI t2, t2, -152
+  ADDIW t2, t2, -152
   MULW a0, s9, t2
   ADD t2, s1, a0
   ADDI a0, zero, 4

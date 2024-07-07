@@ -27,7 +27,7 @@ main:
   LA s1, loopCount
   SW s0, 0(s1)
   LUI s0, 24
-  ADDI s0, s0, 1712
+  ADDIW s0, s0, 1712
   ADD a0, zero, s0
   CALL _sysy_starttime
   ADD s0, zero, zero
@@ -47,7 +47,7 @@ bb2:
   JAL zero, bb4
 bb3:
   LUI s0, 24
-  ADDI s0, s0, 1728
+  ADDIW s0, s0, 1728
   ADD a0, zero, s0
   CALL _sysy_stoptime
   ADD a0, s3, zero
@@ -89,7 +89,7 @@ bb6:
   DIVW s5, s6, s4
   ADDW s4, s3, s5
   LUI s5, 32766
-  ADDI s5, s5, 1
+  ADDIW s5, s5, 1
   REMW s6, s4, s5
   ADDIW s4, s2, 1
   ADD s0, s6, zero
