@@ -11,7 +11,6 @@ while.cond:
 while.body:
   br bb %while.cond11
 while.exit:
-  30 = ptradd ptr @array, i32 0
   32 = ptradd ptr @array, i32 400
   34 = ptradd ptr @array, i32 800
   36 = ptradd ptr @array, i32 1200
@@ -30,9 +29,8 @@ while.exit:
   62 = ptradd ptr @array, i32 6400
   64 = ptradd ptr @array, i32 6800
   66 = ptradd ptr @array, i32 7200
-  68 = ptradd ptr @array, i32 7600
-  70 = ptradd ptr %68, i32 92
-  70.load = load i32 from ptr %70
+  236 = ptradd ptr @array, i32 7692
+  70.load = load i32 from ptr %236
   72 = mul i32 %70.load, i32 4
   73 = ptradd ptr %66, i32 %72
   73.load = load i32 from ptr %73
@@ -88,10 +86,10 @@ while.exit:
   124 = ptradd ptr %32, i32 %123
   124.load = load i32 from ptr %124
   126 = mul i32 %124.load, i32 4
-  127 = ptradd ptr %30, i32 %126
+  127 = ptradd ptr @array, i32 %126
   127.load = load i32 from ptr %127
-  132 = ptradd ptr %68, i32 72
-  132.load = load i32 from ptr %132
+  238 = ptradd ptr @array, i32 7672
+  132.load = load i32 from ptr %238
   134 = mul i32 %132.load, i32 400
   135 = ptradd ptr @array, i32 %134
   137 = ptradd ptr %135, i32 68
@@ -162,8 +160,7 @@ while.exit:
   217.load = load i32 from ptr %217
   219 = mul i32 %217.load, i32 400
   220 = ptradd ptr @array, i32 %219
-  222 = ptradd ptr %220, i32 0
-  222.load = load i32 from ptr %222
+  222.load = load i32 from ptr %220
   224 = mul i32 %222.load, i32 400
   225 = ptradd ptr @array, i32 %224
   227 = ptradd ptr %225, i32 224

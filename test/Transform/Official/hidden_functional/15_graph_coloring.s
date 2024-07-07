@@ -139,9 +139,7 @@ main:
   SD s2, 96(sp)
   SD s1, 104(sp)
   SD s0, 112(sp)
-  ADDI t5, sp, 16
-  ADD s0, t5, zero
-  SW zero, 0(s0)
+  SW zero, 16(sp)
   ADDI s0, sp, 20
   ADDI s1, zero, 1
   SW s1, 0(s0)
@@ -192,8 +190,8 @@ bb11:
 bb12:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   SW zero, 0(s2)
   ADDIW s2, s1, 1
   ADD s0, s2, zero

@@ -4,8 +4,7 @@ global ptr seed init with 3 x i32 [19971231, 19981013, 1000000007]
 i32 rand() {
 entry178:
   staticvalue.load = load i32 from ptr @staticvalue
-  181 = ptradd ptr @seed, i32 0
-  181.load = load i32 from ptr %181
+  181.load = load i32 from ptr @seed
   183 = mul i32 %staticvalue.load, i32 %181.load
   185 = ptradd ptr @seed, i32 4
   185.load = load i32 from ptr %185
@@ -45,10 +44,9 @@ init:
   store i32 0 to ptr %arr.index14
   br bb %init.cond
 init.exit:
-  16 = ptradd ptr %x, i32 0
-  store i32 1 to ptr %16
+  store i32 1 to ptr %x
   18 = ptradd ptr %x, i32 4
-  20.load = load i32 from ptr %16
+  20.load = load i32 from ptr %x
   22 = mul i32 %20.load, i32 2
   store i32 %22 to ptr %18
   24 = ptradd ptr %x, i32 8

@@ -137,6 +137,29 @@ public:
 };
 
 template <typename LSubPattern, typename RSubPattern>
+class pPtrAdd : public pSpecificInst<InstID::PtrAdd> {
+public:
+  pPtrAdd(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::PtrAdd>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::PtrAdd>::match(op))
+      return false;
+
+    PtrAddInst *I = cast<PtrAddInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
+template <typename LSubPattern, typename RSubPattern>
 class pICmp : public pSpecificInst<InstID::ICmp> {
 public:
   pICmp(LSubPattern LHS, RSubPattern RHS)

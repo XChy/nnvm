@@ -54,10 +54,8 @@ main:
   SD ra, 120(sp)
   SD s1, 128(sp)
   SD s0, 136(sp)
-  ADDI t5, sp, 56
-  ADD s0, t5, zero
-  ADDI s1, zero, 8
-  SW s1, 0(s0)
+  ADDI s0, zero, 8
+  SW s0, 56(sp)
   ADDI s0, sp, 60
   ADDI s1, zero, 7
   SW s1, 0(s0)
@@ -74,7 +72,8 @@ main:
   ADDI s1, zero, 7
   SW s1, 0(s0)
   ADDI s0, sp, 80
-  SW zero, 0(s0)
+  ADDI s1, zero, 0
+  SW s1, 0(s0)
   ADDI s0, sp, 84
   ADDI s1, zero, 1
   SW s1, 0(s0)
@@ -97,11 +96,10 @@ main:
   ADDI s1, zero, 7
   SW s1, 0(s0)
   ADDI s0, sp, 112
-  SW zero, 0(s0)
-  ADDI t6, sp, 0
-  ADD s0, t6, zero
-  ADDI s1, zero, 3
+  ADDI s1, zero, 0
   SW s1, 0(s0)
+  ADDI s0, zero, 3
+  SW s0, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 9
   SW s1, 0(s0)
@@ -130,7 +128,8 @@ main:
   ADDI s1, zero, 8
   SW s1, 0(s0)
   ADDI s0, sp, 40
-  SW zero, 0(s0)
+  ADDI s1, zero, 0
+  SW s1, 0(s0)
   ADDI s0, sp, 44
   ADDI s1, zero, 1
   SW s1, 0(s0)
@@ -197,16 +196,13 @@ bb8:
   ADD s2, s5, zero
   JAL zero, bb7
 bb9:
-  ADDI t6, sp, 0
-  ADD s2, t6, zero
-  ADD s3, s0, zero
-  LW s4, 0(s3)
-  SW s4, 0(s2)
+  LW s2, 0(s0)
+  SW s2, 0(sp)
   ADDI s2, sp, 4
-  LW s4, 0(s3)
-  ADDI s3, s0, 4
-  LW s5, 0(s3)
-  ADD a0, s4, zero
+  LW s3, 0(s0)
+  ADDI s4, s0, 4
+  LW s5, 0(s4)
+  ADD a0, s3, zero
   ADD a1, s5, zero
   CALL MAX
   ADD s3, a0, zero
@@ -221,14 +217,14 @@ bb10:
 bb11:
   ADDI s4, zero, 4
   MULW s5, s3, s4
-  ADDI t5, sp, 0
-  ADD s4, t5, s5
+  ADDI t6, sp, 0
+  ADD s4, t6, s5
   ADDI s6, zero, 2
   SUBW s7, s3, s6
   ADDI s6, zero, 4
   MULW s8, s7, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s8
+  ADDI t5, sp, 0
+  ADD s6, t5, s8
   LW s7, 0(s6)
   ADD s6, s0, s5
   LW s5, 0(s6)
@@ -237,8 +233,8 @@ bb11:
   SUBW s7, s3, s5
   ADDI s5, zero, 4
   MULW s8, s7, s5
-  ADDI t5, sp, 0
-  ADD s5, t5, s8
+  ADDI t6, sp, 0
+  ADD s5, t6, s8
   LW s7, 0(s5)
   ADD a0, s6, zero
   ADD a1, s7, zero
@@ -253,8 +249,8 @@ bb12:
   SUBW s2, s1, s0
   ADDI s0, zero, 4
   MULW s1, s2, s0
-  ADDI t6, sp, 0
-  ADD s0, t6, s1
+  ADDI t5, sp, 0
+  ADD s0, t5, s1
   LW s1, 0(s0)
   ADD a0, s1, zero
   LD ra, 64(sp)

@@ -27,8 +27,7 @@ i32 main() {
 entry175:
   %B = stack 52
   %A = stack 60
-  arr.index177 = ptradd ptr %A, i32 0
-  store i32 8 to ptr %arr.index177
+  store i32 8 to ptr %A
   arr.index178 = ptradd ptr %A, i32 4
   store i32 7 to ptr %arr.index178
   arr.index179 = ptradd ptr %A, i32 8
@@ -57,8 +56,7 @@ entry175:
   store i32 7 to ptr %arr.index190
   arr.index191 = ptradd ptr %A, i32 56
   store i32 0 to ptr %arr.index191
-  arr.index193 = ptradd ptr %B, i32 0
-  store i32 3 to ptr %arr.index193
+  store i32 3 to ptr %B
   arr.index194 = ptradd ptr %B, i32 4
   store i32 9 to ptr %arr.index194
   arr.index195 = ptradd ptr %B, i32 8
@@ -111,12 +109,10 @@ init:
   store i32 0 to ptr %arr.index31
   br bb %init.cond
 init.exit:
-  33 = ptradd ptr %temp, i32 0
-  35 = ptradd ptr %arr, i32 0
-  35.load = load i32 from ptr %35
-  store i32 %35.load to ptr %33
+  35.load = load i32 from ptr %arr
+  store i32 %35.load to ptr %temp
   38 = ptradd ptr %temp, i32 4
-  40.load = load i32 from ptr %35
+  40.load = load i32 from ptr %arr
   43 = ptradd ptr %arr, i32 4
   43.load = load i32 from ptr %43
   45 = call i32 MAX(i32 %40.load, i32 %43.load)

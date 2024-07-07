@@ -144,8 +144,7 @@ then133:
   br bb %if.exit134
 if.exit134:
   139 = si2f i32 2 to float
-  arr.index = ptradd ptr %arr, i32 0
-  store float 1.000000 to ptr %arr.index
+  store float 1.000000 to ptr %arr
   arr.index141 = ptradd ptr %arr, i32 4
   store float %139 to ptr %arr.index141
   arr.index142 = ptradd ptr %arr, i32 8

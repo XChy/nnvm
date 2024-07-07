@@ -28,10 +28,8 @@ bb2:
   ADD s0, s3, zero
   JAL zero, bb1
 bb3:
-  ADDI t6, sp, 288
-  ADD s0, t6, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 288(sp)
   ADDI s0, sp, 292
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -74,10 +72,8 @@ bb3:
   ADDI s0, sp, 344
   ADDI s1, zero, 15
   SW s1, 0(s0)
-  ADDI t5, sp, 224
-  ADD s0, t5, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 224(sp)
   ADDI s0, sp, 228
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -120,10 +116,8 @@ bb3:
   ADDI s0, sp, 280
   ADDI s1, zero, 15
   SW s1, 0(s0)
-  ADDI t6, sp, 160
-  ADD s0, t6, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 160(sp)
   ADDI s0, sp, 164
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -166,10 +160,8 @@ bb3:
   ADDI s0, sp, 216
   ADDI s1, zero, 15
   SW s1, 0(s0)
-  ADDI t5, sp, 96
-  ADD s0, t5, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 96(sp)
   ADDI s0, sp, 100
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -205,10 +197,8 @@ bb3:
   SW zero, 0(s0)
   ADDI s0, sp, 152
   SW zero, 0(s0)
-  ADDI t6, sp, 0
-  ADD s0, t6, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -235,8 +225,8 @@ bb5:
   ADDI s1, zero, 4
   MULW s2, s3, s1
   ADDIW s1, s2, 20
-  ADDI t5, sp, 0
-  ADD s2, t5, s1
+  ADDI t6, sp, 0
+  ADD s2, t6, s1
   SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb4

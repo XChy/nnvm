@@ -84,10 +84,9 @@ bb2:
   MULW s3, s1, s2
   ADDI t6, sp, 0
   ADD s2, t6, s3
-  ADD s3, s2, zero
   CALL getint
-  ADD s4, a0, zero
-  SW s4, 0(s3)
+  ADD s3, a0, zero
+  SW s3, 0(s2)
   ADDI s3, s2, 4
   CALL getint
   ADD s2, a0, zero
@@ -110,27 +109,26 @@ bb5:
   MULW s3, s1, s2
   ADDI t5, sp, 0
   ADD s2, t5, s3
-  ADD s3, s2, zero
-  LW s4, 0(s3)
-  ADDI s5, zero, 120
-  MULW s6, s4, s5
-  LA s4, graph
-  ADD s5, s4, s6
-  ADDI s4, s2, 4
-  LW s2, 0(s4)
-  ADDI s6, zero, 4
-  MULW s7, s2, s6
-  ADD s2, s5, s7
-  ADDI s5, zero, 1
-  SW s5, 0(s2)
-  LW s2, 0(s4)
+  LW s3, 0(s2)
   ADDI s4, zero, 120
-  MULW s5, s2, s4
-  LA s2, graph
-  ADD s4, s2, s5
-  LW s2, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
+  MULW s5, s3, s4
+  LA s3, graph
+  ADD s4, s3, s5
+  ADDI s3, s2, 4
+  LW s5, 0(s3)
+  ADDI s6, zero, 4
+  MULW s7, s5, s6
+  ADD s5, s4, s7
+  ADDI s4, zero, 1
+  SW s4, 0(s5)
+  LW s4, 0(s3)
+  ADDI s3, zero, 120
+  MULW s5, s4, s3
+  LA s3, graph
+  ADD s4, s3, s5
+  LW s3, 0(s2)
+  ADDI s2, zero, 4
+  MULW s5, s3, s2
   ADD s2, s4, s5
   ADDI s3, zero, 1
   SW s3, 0(s2)

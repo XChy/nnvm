@@ -610,9 +610,8 @@ stack_size:
   SD s1, 8(sp)
   SD s0, 16(sp)
   ADD s0, a0, zero
-  ADD s1, s0, zero
-  LW s0, 0(s1)
-  ADD a0, s0, zero
+  LW s1, 0(s0)
+  ADD a0, s1, zero
   LD ra, 0(sp)
   LD s1, 8(sp)
   LD s0, 16(sp)
@@ -626,10 +625,9 @@ stack_peek:
   SD s1, 24(sp)
   SD s0, 32(sp)
   ADD s0, a0, zero
-  ADD s1, s0, zero
-  LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s3, s2, s1
+  LW s1, 0(s0)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
   ADD s1, s0, s3
   LW s0, 0(s1)
   ADD a0, s0, zero
@@ -649,17 +647,16 @@ stack_pop:
   SD s1, 32(sp)
   SD s0, 40(sp)
   ADD s0, a0, zero
-  ADD s1, s0, zero
+  LW s1, 0(s0)
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  ADD s1, s0, s3
   LW s2, 0(s1)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADD s2, s0, s4
-  LW s0, 0(s2)
-  LW s2, 0(s1)
+  LW s1, 0(s0)
   ADDI s3, zero, 1
-  SUBW s4, s2, s3
-  SW s4, 0(s1)
-  ADD a0, s0, zero
+  SUBW s4, s1, s3
+  SW s4, 0(s0)
+  ADD a0, s2, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)
@@ -766,13 +763,12 @@ stack_push:
   SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADD s2, s0, zero
-  LW s3, 0(s2)
-  ADDIW s4, s3, 1
-  SW s4, 0(s2)
-  LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
+  LW s2, 0(s0)
+  ADDIW s3, s2, 1
+  SW s3, 0(s0)
+  LW s2, 0(s0)
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
   ADD s2, s0, s4
   SW s1, 0(s2)
   LD ra, 0(sp)

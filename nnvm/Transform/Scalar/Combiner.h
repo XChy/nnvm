@@ -23,6 +23,8 @@ private:
   Value *simplifyAdd(AddInst *I);
   Value *simplifySDiv(SDivInst *I);
 
+  Value *simplifyPtrAdd(PtrAddInst *I);
+
   Value *simplifyICmp(ICmpInst *I);
   Value *simplifyPhi(PhiInst *I);
 

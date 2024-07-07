@@ -141,8 +141,7 @@ if.exit97:
   249 = add i32 %i73.phi, i32 1
   br bb %while.cond82
 then111:
-  114 = ptradd ptr @array, i32 0
-  store i32 0 to ptr %114
+  store i32 0 to ptr @array
   call void mmerge(i32 %104, i32 0)
   br bb %if.exit112
 if.exit112:
@@ -238,8 +237,7 @@ then208:
   call void mmerge(i32 %104, i32 %213)
   br bb %if.exit209
 if.exit209:
-  216 = ptradd ptr @array, i32 0
-  216.load = load i32 from ptr %216
+  216.load = load i32 from ptr @array
   219 = icmp ne i32 %216.load, i32 -1
   br i1 %219, bb %select.then220, bb %select.else221
 select.then220:

@@ -50,6 +50,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (SDivInst *SI = dyn_cast<SDivInst>(I))
     return simplifySDiv(SI);
 
+  if (auto *PAI = dyn_cast<PtrAddInst>(I))
+    return simplifyPtrAdd(PAI);
+
   if (ICmpInst *ICI = dyn_cast<ICmpInst>(I))
     return simplifyICmp(ICI);
 
@@ -80,6 +83,23 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
 }
 
 Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
+
+Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
+
+  Value *A, *B, *C;
+  // (A + C1) + C2 --> A + (C1 + C2)
+  if (match(I, pPtrAdd(pPtrAdd(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *addc = builder.buildBinOp<AddInst>(B, C, B->getType());
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<PtrAddInst>(A, addc, I->getType());
+  }
+
+  // A + 0 --> A
+  if (match(I, pPtrAdd(pValue(A), pZero())))
+    return A;
+
+  return nullptr;
+}
 
 Value *CombinerPass::simplifyICmp(ICmpInst *I) {
   Value *A, *B;

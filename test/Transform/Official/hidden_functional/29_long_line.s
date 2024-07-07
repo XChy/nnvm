@@ -19058,11 +19058,11 @@ bb2062:
   XOR s9, a4, zero
   SLTU t4, zero, s9
   LUI t5, 2
-  ADDI t5, t5, 744
+  ADDI t5, t5, 696
   ADD t5, t5, sp
   SB t4, 0(t5)
   LUI t4, 2
-  ADDI t4, t4, 744
+  ADDI t4, t4, 696
   ADD t4, t4, sp
   LB t4, 0(t4)
   BNE t4, zero, bb2064
@@ -19120,7 +19120,7 @@ bb2068:
   ADD t6, t6, sp
   SW t4, 0(t6)
   LUI t4, 2
-  ADDI t4, t4, 744
+  ADDI t4, t4, 696
   ADD t4, t4, sp
   LB t4, 0(t4)
   BNE t4, zero, bb2070
@@ -19141,20 +19141,20 @@ bb2070:
   SLTU a6, zero, t2
   ADD t4, a6, zero
   LUI t6, 2
-  ADDI t6, t6, 760
+  ADDI t6, t6, 736
   ADD t6, t6, sp
   SB t4, 0(t6)
   JAL zero, bb2072
 bb2071:
   ADD t4, zero, zero
   LUI t5, 2
-  ADDI t5, t5, 760
+  ADDI t5, t5, 736
   ADD t5, t5, sp
   SB t4, 0(t5)
   JAL zero, bb2072
 bb2072:
   LUI t4, 2
-  ADDI t4, t4, 760
+  ADDI t4, t4, 736
   ADD t4, t4, sp
   LB t4, 0(t4)
   ADD a6, t4, zero
@@ -19301,13 +19301,13 @@ bb2087:
 bb2088:
   ADDI t4, zero, 1
   LUI t5, 2
-  ADDI t5, t5, 696
+  ADDI t5, t5, 760
   ADD t5, t5, sp
   SW t4, 0(t5)
   JAL zero, bb2089
 bb2089:
   LUI t3, 2
-  ADDI t3, t3, 696
+  ADDI t3, t3, 760
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -19316,7 +19316,7 @@ bb2089:
   ADD t6, t6, sp
   SW t4, 0(t6)
   LUI t4, 2
-  ADDI t4, t4, 744
+  ADDI t4, t4, 696
   ADD t4, t4, sp
   LB t4, 0(t4)
   BNE t4, zero, bb2091
@@ -19324,7 +19324,7 @@ bb2089:
 bb2090:
   ADD t4, zero, zero
   LUI t5, 2
-  ADDI t5, t5, 696
+  ADDI t5, t5, 760
   ADD t5, t5, sp
   SW t4, 0(t5)
   JAL zero, bb2089
@@ -19370,7 +19370,7 @@ bb2095:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI a2, 2
-  ADDI a2, a2, 736
+  ADDI a2, a2, 744
   ADD a2, a2, sp
   SW t4, 0(a2)
   LUI t4, 2
@@ -19397,7 +19397,7 @@ bb2097:
   JAL zero, bb2099
 bb2098:
   LUI t4, 2
-  ADDI t4, t4, 736
+  ADDI t4, t4, 744
   ADD t4, t4, sp
   LW t4, 0(t4)
   XOR s0, t4, zero

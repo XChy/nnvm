@@ -12,8 +12,7 @@ entry:
   call void putch(i32 10)
   27 = ptradd ptr @c, i32 8
   store i32 1 to ptr %27
-  arr.index = ptradd ptr %c, i32 0
-  store i32 0 to ptr %arr.index
+  store i32 0 to ptr %c
   arr.index30 = ptradd ptr %c, i32 4
   store i32 9 to ptr %arr.index30
   arr.index31 = ptradd ptr %c, i32 8
@@ -48,8 +47,7 @@ entry:
   49 = icmp ne i32 %47.load, i32 0
   br i1 %49, bb %then50, bb %if.exit51
 then50:
-  arr.index53 = ptradd ptr %c52, i32 0
-  store i32 0 to ptr %arr.index53
+  store i32 0 to ptr %c52
   arr.index54 = ptradd ptr %c52, i32 4
   store i32 0 to ptr %arr.index54
   arr.index55 = ptradd ptr %c52, i32 8
@@ -80,8 +78,7 @@ if.exit51:
   b.load105 = load i32 from ptr @b
   call void putint(i32 %b.load105)
   call void putch(i32 10)
-  109 = ptradd ptr @c, i32 0
-  109.load = load i32 from ptr %109
+  109.load = load i32 from ptr @c
   call void putint(i32 %109.load)
   113 = ptradd ptr @c, i32 4
   113.load = load i32 from ptr %113
@@ -105,15 +102,11 @@ init:
   store i32 0 to ptr %arr.index76
   br bb %init.cond
 init.exit:
-  81 = ptradd ptr %arr.index63, i32 0
-  83 = ptradd ptr %81, i32 0
-  83.load = load i32 from ptr %83
+  83.load = load i32 from ptr %arr.index63
   call void putint(i32 %83.load)
-  92 = ptradd ptr %81, i32 4
-  92.load = load i32 from ptr %92
+  92.load = load i32 from ptr %arr.index64
   call void putint(i32 %92.load)
-  101 = ptradd ptr %81, i32 8
-  101.load = load i32 from ptr %101
+  101.load = load i32 from ptr %arr.index65
   call void putint(i32 %101.load)
   br bb %if.exit51
 }

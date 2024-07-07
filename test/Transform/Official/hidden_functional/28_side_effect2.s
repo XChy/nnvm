@@ -118,9 +118,8 @@ bb11:
   JAL zero, bb13
 bb12:
   LA s2, array
-  ADD s3, s2, zero
-  LW s2, 0(s3)
-  ADD a0, s2, zero
+  LW s3, 0(s2)
+  ADD a0, s3, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)
@@ -1441,9 +1440,8 @@ bb219:
   JAL zero, bb221
 bb220:
   LA s2, array
-  ADD s3, s2, zero
-  LW s2, 0(s3)
-  ADD a0, s2, zero
+  LW s3, 0(s2)
+  ADD a0, s3, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)

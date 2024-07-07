@@ -28,8 +28,7 @@ external void putfloat(float )
 i32 foo() {
 entry:
   %arr = stack 64
-  arr.index = ptradd ptr %arr, i32 0
-  store i32 0 to ptr %arr.index
+  store i32 0 to ptr %arr
   arr.index3 = ptradd ptr %arr, i32 4
   store i32 1 to ptr %arr.index3
   arr.index4 = ptradd ptr %arr, i32 8

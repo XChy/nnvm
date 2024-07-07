@@ -566,8 +566,7 @@ if.exit538:
   store i32 %540 to ptr @pos
   br bb %if.exit431
 then543:
-  arr.index = ptradd ptr %mTrue, i32 0
-  store i32 116 to ptr %arr.index
+  store i32 116 to ptr %mTrue
   arr.index548 = ptradd ptr %mTrue, i32 4
   store i32 114 to ptr %arr.index548
   arr.index549 = ptradd ptr %mTrue, i32 8
@@ -590,7 +589,7 @@ else557:
   559 = mul i32 %pos.load558, i32 4
   560 = ptradd ptr %buf, i32 %559
   560.load = load i32 from ptr %560
-  563.load = load i32 from ptr %arr.index
+  563.load = load i32 from ptr %mTrue
   565 = icmp ne i32 %560.load, i32 %563.load
   br i1 %565, bb %then566, bb %else568
 then566:
@@ -634,8 +633,7 @@ if.exit603:
   store i32 %605 to ptr @pos
   br bb %if.exit544
 then608:
-  arr.index612 = ptradd ptr %mFalse, i32 0
-  store i32 102 to ptr %arr.index612
+  store i32 102 to ptr %mFalse
   arr.index613 = ptradd ptr %mFalse, i32 4
   store i32 97 to ptr %arr.index613
   arr.index614 = ptradd ptr %mFalse, i32 8
@@ -660,7 +658,7 @@ else623:
   625 = mul i32 %pos.load624, i32 4
   626 = ptradd ptr %buf, i32 %625
   626.load = load i32 from ptr %626
-  629.load = load i32 from ptr %arr.index612
+  629.load = load i32 from ptr %mFalse
   631 = icmp ne i32 %626.load, i32 %629.load
   br i1 %631, bb %then632, bb %else634
 then632:
@@ -715,8 +713,7 @@ if.exit681:
   store i32 %683 to ptr @pos
   br bb %if.exit609
 then686:
-  arr.index690 = ptradd ptr %mNull, i32 0
-  store i32 110 to ptr %arr.index690
+  store i32 110 to ptr %mNull
   arr.index691 = ptradd ptr %mNull, i32 4
   store i32 117 to ptr %arr.index691
   arr.index692 = ptradd ptr %mNull, i32 8
@@ -736,7 +733,7 @@ else700:
   702 = mul i32 %pos.load701, i32 4
   703 = ptradd ptr %buf, i32 %702
   703.load = load i32 from ptr %703
-  706.load = load i32 from ptr %arr.index690
+  706.load = load i32 from ptr %mNull
   708 = icmp ne i32 %703.load, i32 %706.load
   br i1 %708, bb %then709, bb %else711
 then709:

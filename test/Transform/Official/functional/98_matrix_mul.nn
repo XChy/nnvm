@@ -117,27 +117,22 @@ external void putfarray(i32 , ptr )
 
 i32 mul(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
 entry:
-  3 = ptradd ptr %c0, i32 0
-  5 = ptradd ptr %a0, i32 0
-  5.load = load float from ptr %5
-  8 = ptradd ptr %b0, i32 0
-  8.load = load float from ptr %8
+  5.load = load float from ptr %a0
+  8.load = load float from ptr %b0
   10 = fmul float %5.load, float %8.load
   12 = ptradd ptr %a0, i32 4
   12.load = load float from ptr %12
-  15 = ptradd ptr %b1, i32 0
-  15.load = load float from ptr %15
+  15.load = load float from ptr %b1
   17 = fmul float %12.load, float %15.load
   18 = fadd float %10, float %17
   20 = ptradd ptr %a0, i32 8
   20.load = load float from ptr %20
-  23 = ptradd ptr %b2, i32 0
-  23.load = load float from ptr %23
+  23.load = load float from ptr %b2
   25 = fmul float %20.load, float %23.load
   26 = fadd float %18, float %25
-  store float %26 to ptr %3
+  store float %26 to ptr %c0
   28 = ptradd ptr %c0, i32 4
-  30.load = load float from ptr %5
+  30.load = load float from ptr %a0
   33 = ptradd ptr %b0, i32 4
   33.load = load float from ptr %33
   35 = fmul float %30.load, float %33.load
@@ -153,7 +148,7 @@ entry:
   51 = fadd float %43, float %50
   store float %51 to ptr %28
   53 = ptradd ptr %c0, i32 8
-  55.load = load float from ptr %5
+  55.load = load float from ptr %a0
   58 = ptradd ptr %b0, i32 8
   58.load = load float from ptr %58
   60 = fmul float %55.load, float %58.load
@@ -168,24 +163,22 @@ entry:
   75 = fmul float %70.load, float %73.load
   76 = fadd float %68, float %75
   store float %76 to ptr %53
-  78 = ptradd ptr %c1, i32 0
-  80 = ptradd ptr %a1, i32 0
-  80.load = load float from ptr %80
-  83.load = load float from ptr %8
+  80.load = load float from ptr %a1
+  83.load = load float from ptr %b0
   85 = fmul float %80.load, float %83.load
   87 = ptradd ptr %a1, i32 4
   87.load = load float from ptr %87
-  90.load = load float from ptr %15
+  90.load = load float from ptr %b1
   92 = fmul float %87.load, float %90.load
   93 = fadd float %85, float %92
   95 = ptradd ptr %a1, i32 8
   95.load = load float from ptr %95
-  98.load = load float from ptr %23
+  98.load = load float from ptr %b2
   100 = fmul float %95.load, float %98.load
   101 = fadd float %93, float %100
-  store float %101 to ptr %78
+  store float %101 to ptr %c1
   103 = ptradd ptr %c1, i32 4
-  105.load = load float from ptr %80
+  105.load = load float from ptr %a1
   108.load = load float from ptr %33
   110 = fmul float %105.load, float %108.load
   112.load = load float from ptr %87
@@ -198,7 +191,7 @@ entry:
   126 = fadd float %118, float %125
   store float %126 to ptr %103
   128 = ptradd ptr %c1, i32 8
-  130.load = load float from ptr %80
+  130.load = load float from ptr %a1
   133.load = load float from ptr %58
   135 = fmul float %130.load, float %133.load
   137.load = load float from ptr %87
@@ -210,24 +203,22 @@ entry:
   150 = fmul float %145.load, float %148.load
   151 = fadd float %143, float %150
   store float %151 to ptr %128
-  153 = ptradd ptr %c2, i32 0
-  155 = ptradd ptr %a2, i32 0
-  155.load = load float from ptr %155
-  158.load = load float from ptr %8
+  155.load = load float from ptr %a2
+  158.load = load float from ptr %b0
   160 = fmul float %155.load, float %158.load
   162 = ptradd ptr %a2, i32 4
   162.load = load float from ptr %162
-  165.load = load float from ptr %15
+  165.load = load float from ptr %b1
   167 = fmul float %162.load, float %165.load
   168 = fadd float %160, float %167
   170 = ptradd ptr %a2, i32 8
   170.load = load float from ptr %170
-  173.load = load float from ptr %23
+  173.load = load float from ptr %b2
   175 = fmul float %170.load, float %173.load
   176 = fadd float %168, float %175
-  store float %176 to ptr %153
+  store float %176 to ptr %c2
   178 = ptradd ptr %c2, i32 4
-  180.load = load float from ptr %155
+  180.load = load float from ptr %a2
   183.load = load float from ptr %33
   185 = fmul float %180.load, float %183.load
   187.load = load float from ptr %162
@@ -240,7 +231,7 @@ entry:
   201 = fadd float %193, float %200
   store float %201 to ptr %178
   203 = ptradd ptr %c2, i32 8
-  205.load = load float from ptr %155
+  205.load = load float from ptr %a2
   208.load = load float from ptr %58
   210 = fmul float %205.load, float %208.load
   212.load = load float from ptr %162

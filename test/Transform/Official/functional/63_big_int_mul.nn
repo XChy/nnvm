@@ -6,8 +6,7 @@ entry:
   %c1 = stack 100
   %mult2 = stack 80
   %mult1 = stack 80
-  arr.index = ptradd ptr %mult1, i32 0
-  store i32 1 to ptr %arr.index
+  store i32 1 to ptr %mult1
   arr.index8 = ptradd ptr %mult1, i32 4
   store i32 2 to ptr %arr.index8
   arr.index9 = ptradd ptr %mult1, i32 8
@@ -46,8 +45,7 @@ entry:
   store i32 9 to ptr %arr.index25
   arr.index26 = ptradd ptr %mult1, i32 76
   store i32 0 to ptr %arr.index26
-  arr.index28 = ptradd ptr %mult2, i32 0
-  store i32 2 to ptr %arr.index28
+  store i32 2 to ptr %mult2
   arr.index29 = ptradd ptr %mult2, i32 4
   store i32 3 to ptr %arr.index29
   arr.index30 = ptradd ptr %mult2, i32 8
@@ -151,8 +149,7 @@ while.body117:
   125.load = load i32 from ptr %125
   br bb %while.cond129
 while.exit118:
-  183 = ptradd ptr %result, i32 0
-  183.load = load i32 from ptr %183
+  183.load = load i32 from ptr %result
   185 = icmp ne i32 %183.load, i32 0
   br i1 %185, bb %then186, bb %if.exit187
 while.cond129:
@@ -195,7 +192,7 @@ else:
   store i32 %146 to ptr %138
   br bb %if.exit
 then186:
-  189.load = load i32 from ptr %183
+  189.load = load i32 from ptr %result
   call void putint(i32 %189.load)
   br bb %if.exit187
 if.exit187:

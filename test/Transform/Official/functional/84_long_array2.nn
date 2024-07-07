@@ -98,8 +98,7 @@ init64:
   store i32 0 to ptr %arr.index73
   br bb %init.cond63
 init.exit65:
-  arr.index75 = ptradd ptr %c, i32 0
-  store i32 1 to ptr %arr.index75
+  store i32 1 to ptr %c
   arr.index76 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index76
   arr.index77 = ptradd ptr %c, i32 8
@@ -123,12 +122,11 @@ init82:
   store i32 0 to ptr %arr.index91
   br bb %init.cond81
 init.exit83:
-  94 = call i32 f1(ptr %arr.index75)
+  94 = call i32 f1(ptr %c)
   call void putint(i32 %94)
   call void putch(i32 10)
-  98 = ptradd ptr %c, i32 32
-  100 = ptradd ptr %98, i32 0
-  100.load = load i32 from ptr %100
+  113 = ptradd ptr %c, i32 32
+  100.load = load i32 from ptr %113
   ret i32 %100.load
 }
 

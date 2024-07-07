@@ -12,17 +12,15 @@ i32 main() {
 entry40:
   %y = stack 4
   %x = stack 4
-  arr.index = ptradd ptr %x, i32 0
-  store i32 1 to ptr %arr.index
-  arr.index46 = ptradd ptr %y, i32 0
-  store i32 1 to ptr %arr.index46
+  store i32 1 to ptr %x
+  store i32 1 to ptr %y
   49 = call i32 exgcd(i32 7, i32 15, ptr %x, ptr %y)
-  53.load = load i32 from ptr %arr.index
+  53.load = load i32 from ptr %x
   56 = srem i32 %53.load, i32 15
   58 = add i32 %56, i32 15
   60 = srem i32 %58, i32 15
-  store i32 %60 to ptr %arr.index
-  62.load = load i32 from ptr %arr.index
+  store i32 %60 to ptr %x
+  62.load = load i32 from ptr %x
   call void putint(i32 %62.load)
   ret i32 0
 }
@@ -46,24 +44,20 @@ entry:
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %else
 then:
-  9 = ptradd ptr %x, i32 0
-  store i32 1 to ptr %9
-  11 = ptradd ptr %y, i32 0
-  store i32 0 to ptr %11
+  store i32 1 to ptr %x
+  store i32 0 to ptr %y
   ret i32 %a
 else:
   17 = srem i32 %a, i32 %b
   18 = call i32 exgcd(i32 %b, i32 %17, ptr %x, ptr %y)
-  21 = ptradd ptr %x, i32 0
-  21.load = load i32 from ptr %21
-  26 = ptradd ptr %y, i32 0
-  26.load = load i32 from ptr %26
-  store i32 %26.load to ptr %21
+  21.load = load i32 from ptr %x
+  26.load = load i32 from ptr %y
+  store i32 %26.load to ptr %x
   33 = sdiv i32 %a, i32 %b
-  35.load = load i32 from ptr %26
+  35.load = load i32 from ptr %y
   37 = mul i32 %33, i32 %35.load
   38 = sub i32 %21.load, i32 %37
-  store i32 %38 to ptr %26
+  store i32 %38 to ptr %y
   ret i32 %18
 }
 

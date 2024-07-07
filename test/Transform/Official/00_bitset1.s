@@ -23,26 +23,25 @@ rand:
   LA s0, staticvalue
   LW s1, 0(s0)
   LA s0, seed
-  ADD s2, s0, zero
-  LW s0, 0(s2)
-  MULW s2, s1, s0
-  LA s0, seed
-  ADDI s1, s0, 4
-  LW s0, 0(s1)
-  ADDW s1, s2, s0
+  LW s2, 0(s0)
+  MULW s0, s1, s2
+  LA s1, seed
+  ADDI s2, s1, 4
+  LW s1, 0(s2)
+  ADDW s2, s0, s1
   LA s0, staticvalue
-  SW s1, 0(s0)
+  SW s2, 0(s0)
   LA s0, seed
-  ADDI s2, s0, 8
-  LW s0, 0(s2)
-  REMW s3, s1, s0
+  ADDI s1, s0, 8
+  LW s0, 0(s1)
+  REMW s3, s2, s0
   LA s0, staticvalue
   SW s3, 0(s0)
   SLT s0, s3, zero
   BNE s0, zero, bb1
   JAL zero, bb2
 bb1:
-  LW s0, 0(s2)
+  LW s0, 0(s1)
   LA s1, staticvalue
   LW s2, 0(s1)
   ADDW s1, s0, s2
@@ -97,60 +96,58 @@ bb5:
   ADD s3, s6, zero
   JAL zero, bb4
 bb6:
-  ADDI t6, sp, 0
-  ADD s3, t6, zero
-  ADDI s4, zero, 1
-  SW s4, 0(s3)
-  ADDI s4, sp, 4
+  ADDI s3, zero, 1
+  SW s3, 0(sp)
+  ADDI s3, sp, 4
+  LW s4, 0(sp)
+  ADDI s5, zero, 2
+  MULW s6, s4, s5
+  SW s6, 0(s3)
+  ADDI s4, sp, 8
   LW s5, 0(s3)
   ADDI s3, zero, 2
   MULW s6, s5, s3
   SW s6, 0(s4)
-  ADDI s3, sp, 8
+  ADDI s3, sp, 12
   LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 12
+  ADDI s4, sp, 16
   LW s5, 0(s3)
   ADDI s3, zero, 2
   MULW s6, s5, s3
   SW s6, 0(s4)
-  ADDI s3, sp, 16
+  ADDI s3, sp, 20
   LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 20
+  ADDI s4, sp, 24
   LW s5, 0(s3)
   ADDI s3, zero, 2
   MULW s6, s5, s3
   SW s6, 0(s4)
-  ADDI s3, sp, 24
+  ADDI s3, sp, 28
   LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 28
+  ADDI s4, sp, 32
   LW s5, 0(s3)
   ADDI s3, zero, 2
   MULW s6, s5, s3
   SW s6, 0(s4)
-  ADDI s3, sp, 32
+  ADDI s3, sp, 36
   LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 36
+  ADDI s4, sp, 40
   LW s5, 0(s3)
   ADDI s3, zero, 2
   MULW s6, s5, s3
   SW s6, 0(s4)
-  ADDI s3, sp, 40
-  LW s5, 0(s4)
-  ADDI s4, zero, 2
-  MULW s6, s5, s4
-  SW s6, 0(s3)
   ADDI s3, zero, 10
   JAL zero, bb7
 bb7:
@@ -162,14 +159,14 @@ bb8:
   ADDIW s5, s4, 1
   ADDI s4, zero, 4
   MULW s6, s5, s4
-  ADDI t5, sp, 0
-  ADD s4, t5, s6
+  ADDI t6, sp, 0
+  ADD s4, t6, s6
   ADDI s6, zero, 1
   SUBW s7, s5, s6
   ADDI s6, zero, 4
   MULW s8, s7, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s8
+  ADDI t5, sp, 0
+  ADD s6, t5, s8
   LW s7, 0(s6)
   ADDI s6, zero, 2
   MULW s8, s7, s6
@@ -211,8 +208,8 @@ bb11:
   REMW s5, s1, s4
   ADDI s1, zero, 4
   MULW s4, s5, s1
-  ADDI t5, sp, 0
-  ADD s1, t5, s4
+  ADDI t6, sp, 0
+  ADD s1, t6, s4
   LW s4, 0(s1)
   DIVW s5, s0, s4
   ADDI s0, zero, 2

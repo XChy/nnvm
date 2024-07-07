@@ -12,19 +12,18 @@ pos:
 .word 0x00000000
 .section .text
 detect_item:
-  ADDI sp, sp, -160
-  SD s10, 56(sp)
-  SD s9, 64(sp)
-  SD s8, 72(sp)
-  SD s0, 80(sp)
-  SD s5, 88(sp)
-  SD s7, 96(sp)
-  SD s1, 104(sp)
-  SD s6, 112(sp)
-  SD s2, 120(sp)
-  SD s3, 128(sp)
-  SD s4, 136(sp)
-  SD ra, 144(sp)
+  ADDI sp, sp, -144
+  SD s9, 56(sp)
+  SD s8, 64(sp)
+  SD s0, 72(sp)
+  SD s5, 80(sp)
+  SD s7, 88(sp)
+  SD s1, 96(sp)
+  SD s6, 104(sp)
+  SD s2, 112(sp)
+  SD s3, 120(sp)
+  SD s4, 128(sp)
+  SD ra, 136(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -36,19 +35,18 @@ detect_item:
   JAL zero, bb2
 bb1:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb2:
   ADD a0, s1, zero
@@ -71,19 +69,18 @@ bb3:
   JAL zero, bb7
 bb4:
   ADDI a0, zero, 1
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb5:
   XORI s3, s0, 1
@@ -97,19 +94,18 @@ bb6:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb7:
   LA s3, pos
@@ -129,19 +125,18 @@ bb8:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb9:
   LA s3, pos
@@ -161,19 +156,18 @@ bb10:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb11:
   LA s3, pos
@@ -196,19 +190,18 @@ bb12:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb13:
   LA s3, pos
@@ -228,19 +221,18 @@ bb14:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb15:
   LA s3, pos
@@ -260,19 +252,18 @@ bb16:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb17:
   LA s3, pos
@@ -292,19 +283,18 @@ bb18:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb19:
   LA s3, pos
@@ -324,19 +314,18 @@ bb20:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb21:
   LA s3, pos
@@ -356,35 +345,33 @@ bb22:
   CALL detect_item
   ADD s3, a0, zero
   ADD a0, s3, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb23:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb24:
   LA s3, pos
@@ -440,19 +427,18 @@ bb31:
   JAL zero, bb28
 bb32:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb33:
   JAL zero, bb37
@@ -472,19 +458,18 @@ bb34:
   JAL zero, bb36
 bb35:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb36:
   JAL zero, bb33
@@ -752,19 +737,18 @@ bb78:
   JAL zero, bb77
 bb79:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb80:
   LA s3, pos
@@ -779,19 +763,18 @@ bb80:
   JAL zero, bb82
 bb81:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb82:
   LA s3, pos
@@ -849,37 +832,35 @@ bb88:
   LA s4, pos
   SW s3, 0(s4)
   ADDI a0, zero, 1
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb89:
   JAL zero, bb87
 bb90:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb91:
   ADD a0, s1, zero
@@ -927,19 +908,18 @@ bb94:
   JAL zero, bb98
 bb95:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb96:
   ADD a0, s1, zero
@@ -948,19 +928,18 @@ bb96:
   JAL zero, bb92
 bb97:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb98:
   LA s3, pos
@@ -975,19 +954,18 @@ bb98:
   JAL zero, bb100
 bb99:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb100:
   LA s3, pos
@@ -1045,37 +1023,35 @@ bb106:
   LA s4, pos
   SW s3, 0(s4)
   ADDI a0, zero, 1
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb107:
   JAL zero, bb105
 bb108:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb109:
   ADD a0, s1, zero
@@ -1089,19 +1065,18 @@ bb109:
   JAL zero, bb111
 bb110:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb111:
   LA s3, pos
@@ -1116,19 +1091,18 @@ bb111:
   JAL zero, bb113
 bb112:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb113:
   LA s3, pos
@@ -1150,19 +1124,18 @@ bb113:
   JAL zero, bb115
 bb114:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb115:
   ADD a0, s1, zero
@@ -1210,19 +1183,18 @@ bb118:
   JAL zero, bb128
 bb119:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb120:
   ADD a0, s1, zero
@@ -1236,19 +1208,18 @@ bb120:
   JAL zero, bb122
 bb121:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb122:
   LA s3, pos
@@ -1263,19 +1234,18 @@ bb122:
   JAL zero, bb124
 bb123:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb124:
   LA s3, pos
@@ -1297,19 +1267,18 @@ bb124:
   JAL zero, bb126
 bb125:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb126:
   ADD a0, s1, zero
@@ -1318,19 +1287,18 @@ bb126:
   JAL zero, bb116
 bb127:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb128:
   LA s3, pos
@@ -1345,19 +1313,18 @@ bb128:
   JAL zero, bb130
 bb129:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb130:
   LA s3, pos
@@ -1367,25 +1334,23 @@ bb130:
   SW s3, 0(s4)
   JAL zero, bb102
 bb131:
-  ADDI t5, sp, 40
-  ADD s3, t5, zero
-  ADDI s4, zero, 116
+  ADDI s3, zero, 116
+  SW s3, 40(sp)
+  ADDI s3, sp, 44
+  ADDI s4, zero, 114
   SW s4, 0(s3)
-  ADDI s4, sp, 44
-  ADDI s5, zero, 114
+  ADDI s4, sp, 48
+  ADDI s5, zero, 117
   SW s5, 0(s4)
-  ADDI s5, sp, 48
-  ADDI s6, zero, 117
+  ADDI s5, sp, 52
+  ADDI s6, zero, 101
   SW s6, 0(s5)
-  ADDI s6, sp, 52
-  ADDI s7, zero, 101
-  SW s7, 0(s6)
-  LA s7, pos
-  LW s8, 0(s7)
-  ADDIW s7, s8, 3
-  SLT s8, s7, s2
-  XORI s7, s8, 1
-  BNE s7, zero, bb134
+  LA s6, pos
+  LW s7, 0(s6)
+  ADDIW s6, s7, 3
+  SLT s7, s6, s2
+  XORI s6, s7, 1
+  BNE s6, zero, bb134
   JAL zero, bb135
 bb132:
   JAL zero, bb102
@@ -1396,134 +1361,129 @@ bb133:
   JAL zero, bb146
 bb134:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb135:
-  LA s7, pos
-  LW s8, 0(s7)
-  ADDI s7, zero, 4
-  MULW s9, s8, s7
-  ADD s7, s1, s9
-  LW s8, 0(s7)
-  LW s7, 0(s3)
-  XOR s3, s8, s7
-  SLTU s7, zero, s3
-  BNE s7, zero, bb136
+  LA s6, pos
+  LW s7, 0(s6)
+  ADDI s6, zero, 4
+  MULW s8, s7, s6
+  ADD s6, s1, s8
+  LW s7, 0(s6)
+  LW s6, 40(sp)
+  XOR s8, s7, s6
+  SLTU s6, zero, s8
+  BNE s6, zero, bb136
   JAL zero, bb137
 bb136:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb137:
-  LA s3, pos
-  LW s7, 0(s3)
-  ADDIW s3, s7, 1
+  LA s6, pos
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
   ADDI s7, zero, 4
-  MULW s8, s3, s7
-  ADD s3, s1, s8
-  LW s7, 0(s3)
-  LW s3, 0(s4)
-  XOR s4, s7, s3
-  SLTU s3, zero, s4
-  BNE s3, zero, bb138
+  MULW s8, s6, s7
+  ADD s6, s1, s8
+  LW s7, 0(s6)
+  LW s6, 0(s3)
+  XOR s3, s7, s6
+  SLTU s6, zero, s3
+  BNE s6, zero, bb138
   JAL zero, bb139
 bb138:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb139:
   LA s3, pos
-  LW s4, 0(s3)
-  ADDIW s3, s4, 2
-  ADDI s4, zero, 4
-  MULW s7, s3, s4
+  LW s6, 0(s3)
+  ADDIW s3, s6, 2
+  ADDI s6, zero, 4
+  MULW s7, s3, s6
   ADD s3, s1, s7
-  LW s4, 0(s3)
-  LW s3, 0(s5)
-  XOR s5, s4, s3
-  SLTU s3, zero, s5
+  LW s6, 0(s3)
+  LW s3, 0(s4)
+  XOR s4, s6, s3
+  SLTU s3, zero, s4
   BNE s3, zero, bb140
   JAL zero, bb141
 bb140:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb141:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 3
   ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  MULW s6, s3, s4
+  ADD s3, s1, s6
   LW s4, 0(s3)
-  LW s3, 0(s6)
+  LW s3, 0(s5)
   XOR s5, s4, s3
   SLTU s3, zero, s5
   BNE s3, zero, bb142
   JAL zero, bb143
 bb142:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb143:
   LA s3, pos
@@ -1533,28 +1493,26 @@ bb143:
   SW s3, 0(s4)
   JAL zero, bb132
 bb144:
-  ADDI t6, sp, 16
-  ADD s3, t6, zero
-  ADDI s4, zero, 102
+  ADDI s3, zero, 102
+  SW s3, 16(sp)
+  ADDI s3, sp, 20
+  ADDI s4, zero, 97
   SW s4, 0(s3)
-  ADDI s4, sp, 20
-  ADDI s5, zero, 97
+  ADDI s4, sp, 24
+  ADDI s5, zero, 108
   SW s5, 0(s4)
-  ADDI s5, sp, 24
-  ADDI s6, zero, 108
+  ADDI s5, sp, 28
+  ADDI s6, zero, 115
   SW s6, 0(s5)
-  ADDI s6, sp, 28
-  ADDI s7, zero, 115
+  ADDI s6, sp, 32
+  ADDI s7, zero, 101
   SW s7, 0(s6)
-  ADDI s7, sp, 32
-  ADDI s8, zero, 101
-  SW s8, 0(s7)
-  LA s8, pos
-  LW s9, 0(s8)
-  ADDIW s8, s9, 4
-  SLT s9, s8, s2
-  XORI s8, s9, 1
-  BNE s8, zero, bb147
+  LA s7, pos
+  LW s8, 0(s7)
+  ADDIW s7, s8, 4
+  SLT s8, s7, s2
+  XORI s7, s8, 1
+  BNE s7, zero, bb147
   JAL zero, bb148
 bb145:
   JAL zero, bb132
@@ -1565,134 +1523,129 @@ bb146:
   JAL zero, bb160
 bb147:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb148:
-  LA s8, pos
-  LW s9, 0(s8)
-  ADDI s8, zero, 4
-  MULW s10, s9, s8
-  ADD s8, s1, s10
-  LW s9, 0(s8)
-  LW s8, 0(s3)
-  XOR s3, s9, s8
-  SLTU s8, zero, s3
-  BNE s8, zero, bb149
+  LA s7, pos
+  LW s8, 0(s7)
+  ADDI s7, zero, 4
+  MULW s9, s8, s7
+  ADD s7, s1, s9
+  LW s8, 0(s7)
+  LW s7, 16(sp)
+  XOR s9, s8, s7
+  SLTU s7, zero, s9
+  BNE s7, zero, bb149
   JAL zero, bb150
 bb149:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb150:
-  LA s3, pos
-  LW s8, 0(s3)
-  ADDIW s3, s8, 1
+  LA s7, pos
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
   ADDI s8, zero, 4
-  MULW s9, s3, s8
-  ADD s3, s1, s9
-  LW s8, 0(s3)
-  LW s3, 0(s4)
-  XOR s4, s8, s3
-  SLTU s3, zero, s4
-  BNE s3, zero, bb151
+  MULW s9, s7, s8
+  ADD s7, s1, s9
+  LW s8, 0(s7)
+  LW s7, 0(s3)
+  XOR s3, s8, s7
+  SLTU s7, zero, s3
+  BNE s7, zero, bb151
   JAL zero, bb152
 bb151:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb152:
   LA s3, pos
-  LW s4, 0(s3)
-  ADDIW s3, s4, 2
-  ADDI s4, zero, 4
-  MULW s8, s3, s4
+  LW s7, 0(s3)
+  ADDIW s3, s7, 2
+  ADDI s7, zero, 4
+  MULW s8, s3, s7
   ADD s3, s1, s8
-  LW s4, 0(s3)
-  LW s3, 0(s5)
-  XOR s5, s4, s3
-  SLTU s3, zero, s5
+  LW s7, 0(s3)
+  LW s3, 0(s4)
+  XOR s4, s7, s3
+  SLTU s3, zero, s4
   BNE s3, zero, bb153
   JAL zero, bb154
 bb153:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb154:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 3
   ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  MULW s7, s3, s4
+  ADD s3, s1, s7
   LW s4, 0(s3)
-  LW s3, 0(s6)
+  LW s3, 0(s5)
   XOR s5, s4, s3
   SLTU s3, zero, s5
   BNE s3, zero, bb155
   JAL zero, bb156
 bb155:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb156:
   LA s3, pos
@@ -1702,26 +1655,25 @@ bb156:
   MULW s5, s3, s4
   ADD s3, s1, s5
   LW s4, 0(s3)
-  LW s3, 0(s7)
+  LW s3, 0(s6)
   XOR s5, s4, s3
   SLTU s3, zero, s5
   BNE s3, zero, bb157
   JAL zero, bb158
 bb157:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb158:
   LA s3, pos
@@ -1731,143 +1683,136 @@ bb158:
   SW s3, 0(s4)
   JAL zero, bb145
 bb159:
-  ADDI t5, sp, 0
-  ADD s0, t5, zero
-  ADDI s3, zero, 110
+  ADDI s0, zero, 110
+  SW s0, 0(sp)
+  ADDI s0, sp, 4
+  ADDI s3, zero, 117
   SW s3, 0(s0)
-  ADDI s3, sp, 4
-  ADDI s4, zero, 117
+  ADDI s3, sp, 8
+  ADDI s4, zero, 108
   SW s4, 0(s3)
-  ADDI s4, sp, 8
+  ADDI s4, sp, 12
   ADDI s5, zero, 108
   SW s5, 0(s4)
-  ADDI s5, sp, 12
-  ADDI s6, zero, 108
-  SW s6, 0(s5)
-  LA s6, pos
-  LW s7, 0(s6)
-  ADDIW s6, s7, 3
-  SLT s7, s6, s2
-  XORI s2, s7, 1
+  LA s5, pos
+  LW s6, 0(s5)
+  ADDIW s5, s6, 3
+  SLT s6, s5, s2
+  XORI s2, s6, 1
   BNE s2, zero, bb161
   JAL zero, bb162
 bb160:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb161:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb162:
   LA s2, pos
-  LW s6, 0(s2)
+  LW s5, 0(s2)
   ADDI s2, zero, 4
-  MULW s7, s6, s2
-  ADD s2, s1, s7
-  LW s6, 0(s2)
-  LW s2, 0(s0)
-  XOR s0, s6, s2
-  SLTU s2, zero, s0
+  MULW s6, s5, s2
+  ADD s2, s1, s6
+  LW s5, 0(s2)
+  LW s2, 0(sp)
+  XOR s6, s5, s2
+  SLTU s2, zero, s6
   BNE s2, zero, bb163
   JAL zero, bb164
 bb163:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb164:
-  LA s0, pos
+  LA s2, pos
+  LW s5, 0(s2)
+  ADDIW s2, s5, 1
+  ADDI s5, zero, 4
+  MULW s6, s2, s5
+  ADD s2, s1, s6
+  LW s5, 0(s2)
   LW s2, 0(s0)
-  ADDIW s0, s2, 1
-  ADDI s2, zero, 4
-  MULW s6, s0, s2
-  ADD s0, s1, s6
-  LW s2, 0(s0)
-  LW s0, 0(s3)
-  XOR s3, s2, s0
-  SLTU s0, zero, s3
-  BNE s0, zero, bb165
+  XOR s0, s5, s2
+  SLTU s2, zero, s0
+  BNE s2, zero, bb165
   JAL zero, bb166
 bb165:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb166:
   LA s0, pos
   LW s2, 0(s0)
   ADDIW s0, s2, 2
   ADDI s2, zero, 4
-  MULW s3, s0, s2
-  ADD s0, s1, s3
+  MULW s5, s0, s2
+  ADD s0, s1, s5
   LW s2, 0(s0)
-  LW s0, 0(s4)
+  LW s0, 0(s3)
   XOR s3, s2, s0
   SLTU s0, zero, s3
   BNE s0, zero, bb167
   JAL zero, bb168
 bb167:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb168:
   LA s0, pos
@@ -1877,26 +1822,25 @@ bb168:
   MULW s3, s0, s2
   ADD s0, s1, s3
   LW s1, 0(s0)
-  LW s0, 0(s5)
+  LW s0, 0(s4)
   XOR s2, s1, s0
   SLTU s0, zero, s2
   BNE s0, zero, bb169
   JAL zero, bb170
 bb169:
   ADD a0, zero, zero
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s8, 72(sp)
-  LD s0, 80(sp)
-  LD s5, 88(sp)
-  LD s7, 96(sp)
-  LD s1, 104(sp)
-  LD s6, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s4, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 56(sp)
+  LD s8, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s4, 128(sp)
+  LD ra, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb170:
   LA s0, pos

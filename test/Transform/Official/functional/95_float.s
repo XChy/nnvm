@@ -392,11 +392,9 @@ bb21:
 bb22:
   ADDI s1, zero, 2
   FCVT.S.W fs0, s1
-  ADDI t5, sp, 0
-  ADD s1, t5, zero
-  LA s2, .CONSTANT.7.14
-  FLW fs1, 0(s2)
-  FSW fs1, 0(s1)
+  LA s1, .CONSTANT.7.14
+  FLW fs1, 0(s1)
+  FSW fs1, 0(sp)
   ADDI s1, sp, 4
   FSW fs0, 0(s1)
   ADDI s1, sp, 8
@@ -459,8 +457,8 @@ bb24:
   FSGNJ.D fs2, fa0, fa0
   ADDI s6, zero, 4
   MULW s7, s5, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s7
+  ADDI t5, sp, 0
+  ADD s6, t5, s7
   FLW fs3, 0(s6)
   FADD.S fs4, fs3, fs0
   FSW fs4, 0(s6)

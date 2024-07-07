@@ -98,8 +98,7 @@ entry101:
   %b = stack 40
   %a = stack 40
   store i32 10 to ptr @n
-  104 = ptradd ptr %a, i32 0
-  store i32 4 to ptr %104
+  store i32 4 to ptr %a
   106 = ptradd ptr %a, i32 4
   store i32 3 to ptr %106
   108 = ptradd ptr %a, i32 8

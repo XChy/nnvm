@@ -14,10 +14,8 @@ main:
   SD s1, 136(sp)
   SD s5, 144(sp)
   SD s0, 152(sp)
-  ADDI t5, sp, 0
-  ADD s0, t5, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADDI s0, zero, 1
+  SW s0, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -35,8 +33,8 @@ bb2:
   ADDI s1, zero, 4
   MULW s2, s3, s1
   ADDIW s1, s2, 8
-  ADDI t6, sp, 0
-  ADD s2, t6, s1
+  ADDI t5, sp, 0
+  ADD s2, t5, s1
   SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb1
@@ -53,23 +51,23 @@ bb4:
 bb5:
   ADDI s4, zero, 4
   MULW s5, s2, s4
-  ADDI t5, sp, 0
-  ADD s4, t5, s5
+  ADDI t6, sp, 0
+  ADD s4, t6, s5
   LW s5, 0(s4)
   ADDI s6, zero, 1
   SUBW s7, s2, s6
   ADDI s6, zero, 4
   MULW s8, s7, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s8
+  ADDI t5, sp, 0
+  ADD s6, t5, s8
   LW s7, 0(s6)
   ADDW s6, s5, s7
   ADDI s5, zero, 2
   SUBW s7, s2, s5
   ADDI s5, zero, 4
   MULW s8, s7, s5
-  ADDI t5, sp, 0
-  ADD s5, t5, s8
+  ADDI t6, sp, 0
+  ADD s5, t6, s8
   LW s7, 0(s5)
   ADDW s5, s6, s7
   SW s5, 0(s4)

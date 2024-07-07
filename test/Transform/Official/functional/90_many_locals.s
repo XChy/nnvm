@@ -34,9 +34,7 @@ foo:
   SD s2, 72(sp)
   SD s1, 80(sp)
   SD s0, 88(sp)
-  ADDI t5, sp, 0
-  ADD s0, t5, zero
-  SW zero, 0(s0)
+  SW zero, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 1
   SW s1, 0(s0)

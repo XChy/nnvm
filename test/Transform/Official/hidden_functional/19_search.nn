@@ -69,8 +69,7 @@ then46:
 if.exit47:
   50 = mul i32 %i.phi, i32 8
   51 = ptradd ptr @step, i32 %50
-  53 = ptradd ptr %51, i32 0
-  53.load = load i32 from ptr %53
+  53.load = load i32 from ptr %51
   55 = add i32 %x2.phi, i32 %53.load
   61 = ptradd ptr %51, i32 4
   61.load = load i32 from ptr %61
@@ -132,8 +131,7 @@ if.exit116:
   store i32 0 to ptr %31
   128 = mul i32 %i.phi, i32 8
   129 = ptradd ptr @step, i32 %128
-  131 = ptradd ptr %129, i32 0
-  131.load = load i32 from ptr %131
+  131.load = load i32 from ptr %129
   133 = sub i32 %x2.phi, i32 %131.load
   139 = ptradd ptr %129, i32 4
   139.load = load i32 from ptr %139

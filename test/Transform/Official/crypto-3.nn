@@ -71,8 +71,7 @@ while.cond147:
 while.body148:
   br bb %while.cond160
 while.exit149:
-  340 = ptradd ptr %output, i32 0
-  store i32 %h0.phi to ptr %340
+  store i32 %h0.phi to ptr %output
   343 = ptradd ptr %output, i32 4
   store i32 %h1.phi to ptr %343
   346 = ptradd ptr %output, i32 8
@@ -287,8 +286,7 @@ i32 main() {
 entry354:
   %output_buf = stack 20
   %output = stack 20
-  arr.index358 = ptradd ptr %output, i32 0
-  store i32 0 to ptr %arr.index358
+  store i32 0 to ptr %output
   arr.index359 = ptradd ptr %output, i32 4
   store i32 0 to ptr %arr.index359
   arr.index360 = ptradd ptr %output, i32 8
@@ -301,8 +299,7 @@ entry354:
   store i32 %364 to ptr @state
   365 = call i32 getint()
   call void _sysy_starttime(i32 161)
-  368 = ptradd ptr %output_buf, i32 0
-  store i32 0 to ptr %368
+  store i32 0 to ptr %output_buf
   370 = ptradd ptr %output_buf, i32 4
   store i32 0 to ptr %370
   372 = ptradd ptr %output_buf, i32 8

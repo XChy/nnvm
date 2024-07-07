@@ -13,8 +13,7 @@ i32 main() {
 entry52:
   %a = stack 40
   store i32 10 to ptr @n
-  55 = ptradd ptr %a, i32 0
-  store i32 4 to ptr %55
+  store i32 4 to ptr %a
   57 = ptradd ptr %a, i32 4
   store i32 3 to ptr %57
   59 = ptradd ptr %a, i32 8

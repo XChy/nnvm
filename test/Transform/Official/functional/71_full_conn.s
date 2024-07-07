@@ -136,1186 +136,1180 @@ model:
   SD s8, 232(sp)
   SD s9, 240(sp)
   ADD s0, a0, zero
-  ADD s1, s0, zero
-  ADD s2, s1, zero
-  LW s3, 0(s2)
-  ADDI s4, zero, 85
-  MULW s5, s3, s4
-  ADDI s3, s1, 4
+  LW s1, 0(s0)
+  ADDI s2, zero, 85
+  MULW s3, s1, s2
+  ADDI s1, s0, 4
+  LW s2, 0(s1)
+  ADDI s4, zero, 23
+  MULW s5, s2, s4
+  ADDW s2, s3, s5
+  ADDI s3, s0, 8
   LW s4, 0(s3)
-  ADDI s6, zero, 23
-  MULW s7, s4, s6
-  ADDW s4, s5, s7
-  ADDI s5, s1, 8
-  LW s6, 0(s5)
-  ADDI s7, zero, -82
+  ADDI s5, zero, -82
+  MULW s6, s4, s5
+  ADDW s4, s2, s6
+  ADDI s2, s0, 12
+  LW s5, 0(s2)
+  ADDI s6, zero, -103
+  MULW s7, s5, s6
+  ADDW s5, s4, s7
+  ADDI s4, s0, 16
+  LW s6, 0(s4)
+  ADDI s7, zero, -123
   MULW s8, s6, s7
-  ADDW s6, s4, s8
-  ADDI s4, s1, 12
-  LW s7, 0(s4)
-  ADDI s8, zero, -103
+  ADDW s6, s5, s8
+  ADDI s5, s0, 20
+  LW s7, 0(s5)
+  ADDI s8, zero, 64
   MULW s9, s7, s8
   ADDW s7, s6, s9
-  ADDI s6, s1, 16
-  LW s1, 0(s6)
-  ADDI s8, zero, -123
-  MULW s9, s1, s8
-  ADDW s1, s7, s9
-  ADDI s7, s0, 20
-  ADD s8, s7, zero
-  LW s9, 0(s8)
-  ADDI s10, zero, 64
-  MULW s11, s9, s10
-  ADDW s9, s1, s11
-  ADDI s1, s7, 4
-  LW s10, 0(s1)
-  ADDI s11, zero, -120
-  MULW ra, s10, s11
-  ADDW s10, s9, ra
-  ADDI t4, s7, 8
+  ADDI s6, s0, 24
+  LW s8, 0(s6)
+  ADDI s9, zero, -120
+  MULW s10, s8, s9
+  ADDW s8, s7, s10
+  ADDI t4, s0, 28
   SD t4, 136(sp)
   LD t4, 136(sp)
-  LW s11, 0(t4)
-  ADDI ra, zero, 50
-  MULW t0, s11, ra
-  ADDW s11, s10, t0
-  ADDI t4, s7, 12
+  LW s9, 0(t4)
+  ADDI s10, zero, 50
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  ADDI t4, s0, 32
   SD t4, 128(sp)
   LD t4, 128(sp)
-  LW ra, 0(t4)
-  ADDI t0, zero, -59
-  MULW t1, ra, t0
-  ADDW ra, s11, t1
-  ADDI t4, s7, 16
+  LW s10, 0(t4)
+  ADDI s11, zero, -59
+  MULW ra, s10, s11
+  ADDW s10, s9, ra
+  ADDI t4, s0, 36
   SD t4, 120(sp)
   LD t4, 120(sp)
-  LW s7, 0(t4)
-  ADDI t0, zero, 47
-  MULW t1, s7, t0
-  ADDW s7, ra, t1
-  ADDI ra, s0, 40
-  ADD t4, ra, zero
-  SD t4, 48(sp)
-  LD t4, 48(sp)
-  LW t1, 0(t4)
-  ADDI t2, zero, -111
-  MULW a1, t1, t2
-  ADDW t1, s7, a1
-  ADDI t4, ra, 4
+  LW s11, 0(t4)
+  ADDI ra, zero, 47
+  MULW t0, s11, ra
+  ADDW s11, s10, t0
+  ADDI t4, s0, 40
   SD t4, 112(sp)
   LD t4, 112(sp)
-  LW t2, 0(t4)
-  ADDI a1, zero, -67
-  MULW a2, t2, a1
-  ADDW t2, t1, a2
-  ADDI t4, ra, 8
-  SD t4, 72(sp)
-  LD t4, 72(sp)
-  LW a1, 0(t4)
-  ADDI a2, zero, -106
-  MULW a3, a1, a2
-  ADDW a1, t2, a3
-  ADDI t4, ra, 12
-  SD t4, 64(sp)
-  LD t4, 64(sp)
-  LW a2, 0(t4)
-  ADDI a3, zero, -75
-  MULW a4, a2, a3
-  ADDW a2, a1, a4
-  ADDI t4, ra, 16
-  SD t4, 80(sp)
-  LD t4, 80(sp)
   LW ra, 0(t4)
-  ADDI a3, zero, -102
-  MULW a4, ra, a3
-  ADDW ra, a2, a4
-  ADDI a2, s0, 60
-  ADD t4, a2, zero
+  ADDI t0, zero, -111
+  MULW t1, ra, t0
+  ADDW ra, s11, t1
+  ADDI t4, s0, 44
+  SD t4, 104(sp)
+  LD t4, 104(sp)
+  LW t0, 0(t4)
+  ADDI t1, zero, -67
+  MULW t2, t0, t1
+  ADDW t0, ra, t2
+  ADDI t4, s0, 48
   SD t4, 88(sp)
   LD t4, 88(sp)
-  LW a4, 0(t4)
-  ADDI a5, zero, 34
-  MULW a6, a4, a5
-  ADDW a4, ra, a6
-  ADDI t4, a2, 4
+  LW t1, 0(t4)
+  ADDI t2, zero, -106
+  MULW a1, t1, t2
+  ADDW t1, t0, a1
+  ADDI t4, s0, 52
   SD t4, 96(sp)
   LD t4, 96(sp)
-  LW a5, 0(t4)
-  ADDI a6, zero, -39
-  MULW a7, a5, a6
-  ADDW a5, a4, a7
-  ADDI t4, a2, 8
-  SD t4, 0(sp)
-  LD t4, 0(sp)
-  LW a6, 0(t4)
-  ADDI a7, zero, 65
-  MULW a4, a6, a7
-  ADDW a6, a5, a4
-  ADDI t4, a2, 12
-  SD t4, 8(sp)
-  LD t4, 8(sp)
-  LW a5, 0(t4)
-  ADDI a7, zero, 47
-  MULW a4, a5, a7
-  ADDW a5, a6, a4
-  ADDI t4, a2, 16
+  LW t2, 0(t4)
+  ADDI a1, zero, -75
+  MULW a2, t2, a1
+  ADDW t2, t1, a2
+  ADDI t4, s0, 56
+  SD t4, 48(sp)
+  LD t4, 48(sp)
+  LW a1, 0(t4)
+  ADDI a2, zero, -102
+  MULW a3, a1, a2
+  ADDW a1, t2, a3
+  ADDI t4, s0, 60
   SD t4, 56(sp)
   LD t4, 56(sp)
   LW a2, 0(t4)
-  ADDI a6, zero, 113
-  MULW a7, a2, a6
-  ADDW a2, a5, a7
-  ADDI a5, s0, 80
-  ADD t4, a5, zero
+  ADDI a3, zero, 34
+  MULW a4, a2, a3
+  ADDW a2, a1, a4
+  ADDI t4, s0, 64
+  SD t4, 80(sp)
+  LD t4, 80(sp)
+  LW a3, 0(t4)
+  ADDI a4, zero, -39
+  MULW a5, a3, a4
+  ADDW a3, a2, a5
+  ADDI t4, s0, 68
+  SD t4, 72(sp)
+  LD t4, 72(sp)
+  LW a4, 0(t4)
+  ADDI a5, zero, 65
+  MULW a6, a4, a5
+  ADDW a4, a3, a6
+  ADDI t4, s0, 72
+  SD t4, 64(sp)
+  LD t4, 64(sp)
+  LW a5, 0(t4)
+  ADDI a6, zero, 47
+  MULW a7, a5, a6
+  ADDW a5, a4, a7
+  ADDI t4, s0, 76
+  SD t4, 0(sp)
+  LD t4, 0(sp)
+  LW a6, 0(t4)
+  ADDI a7, zero, 113
+  MULW a4, a6, a7
+  ADDW a6, a5, a4
+  ADDI t4, s0, 80
+  SD t4, 8(sp)
+  LD t4, 8(sp)
+  LW a5, 0(t4)
+  ADDI a7, zero, 110
+  MULW a4, a5, a7
+  ADDW a5, a6, a4
+  ADDI t4, s0, 84
   SD t4, 16(sp)
   LD t4, 16(sp)
   LW a6, 0(t4)
-  ADDI a7, zero, 110
-  MULW s0, a6, a7
-  ADDW a6, a2, s0
-  ADDI t4, a5, 4
+  ADDI a7, zero, 47
+  MULW a4, a6, a7
+  ADDW a6, a5, a4
+  ADDI t4, s0, 88
   SD t4, 24(sp)
   LD t4, 24(sp)
-  LW a2, 0(t4)
-  ADDI a7, zero, 47
-  MULW s0, a2, a7
-  ADDW a2, a6, s0
-  ADDI t4, a5, 8
+  LW a5, 0(t4)
+  ADDI a7, zero, -4
+  MULW a4, a5, a7
+  ADDW a5, a6, a4
+  ADDI t4, s0, 92
   SD t4, 32(sp)
   LD t4, 32(sp)
   LW a6, 0(t4)
-  ADDI a7, zero, -4
-  MULW s0, a6, a7
-  ADDW a6, a2, s0
-  ADDI t4, a5, 12
+  ADDI a7, zero, 80
+  MULW a4, a6, a7
+  ADDW a6, a5, a4
+  ADDI t4, s0, 96
   SD t4, 40(sp)
   LD t4, 40(sp)
-  LW a2, 0(t4)
-  ADDI a7, zero, 80
-  MULW s0, a2, a7
-  ADDW a2, a6, s0
-  ADDI t4, a5, 16
-  SD t4, 104(sp)
-  LD t4, 104(sp)
   LW a5, 0(t4)
-  ADDI a6, zero, 46
-  MULW a7, a5, a6
-  ADDW a5, a2, a7
+  ADDI a7, zero, 46
+  MULW a4, a5, a7
+  ADDW a5, a6, a4
   ADD a0, a5, zero
   CALL relu_reg
-  ADD s0, a0, zero
-  ADDI s7, zero, 39
-  MULW s11, s0, s7
-  LW s0, 0(s2)
-  ADDI s7, zero, -106
-  MULW s10, s0, s7
-  LW s0, 0(s3)
-  ADDI s7, zero, 126
-  MULW s9, s0, s7
-  ADDW s0, s10, s9
-  LW s7, 0(s5)
-  ADDI s9, zero, -18
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s4)
-  ADDI s9, zero, -31
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  ADD s11, a0, zero
+  ADDI s10, zero, 39
+  MULW s9, s11, s10
+  LW s10, 0(s0)
+  ADDI s11, zero, -106
+  MULW s8, s10, s11
+  LW s10, 0(s1)
+  ADDI s11, zero, 126
+  MULW s7, s10, s11
+  ADDW s10, s8, s7
+  LW s7, 0(s3)
+  ADDI s8, zero, -18
+  MULW s11, s7, s8
+  ADDW s7, s10, s11
+  LW s8, 0(s2)
+  ADDI s10, zero, -31
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
+  LW s7, 0(s4)
+  ADDI s10, zero, -8
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
+  LW s8, 0(s5)
+  ADDI s10, zero, 47
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LW s7, 0(s6)
-  ADDI s9, zero, -8
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s8)
-  ADDI s9, zero, 47
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LW s7, 0(s1)
-  ADDI s9, zero, -4
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  ADDI s10, zero, -4
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   LD t4, 136(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, 67
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  LW s8, 0(t4)
+  ADDI s10, zero, 67
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 128(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, -94
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  ADDI s10, zero, -94
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   LD t4, 120(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -121
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  LW s8, 0(t4)
+  ADDI s10, zero, -121
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
+  LD t4, 112(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, 7
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
+  LD t4, 104(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -21
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
+  LD t4, 88(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, -60
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
+  LD t4, 96(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -43
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 48(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, 7
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LD t4, 112(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -21
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LD t4, 72(sp)
-  LW s7, 0(t4)
-  ADDI s9, zero, -60
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LD t4, 64(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -43
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  ADDI s10, zero, 105
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
+  LD t4, 56(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -42
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 80(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, 105
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LD t4, 88(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -42
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LD t4, 96(sp)
+  ADDI s10, zero, 87
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
+  LD t4, 72(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 29
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
+  LD t4, 64(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, 87
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  ADDI s10, zero, -106
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   LD t4, 0(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, 29
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  LW s8, 0(t4)
+  ADDI s10, zero, -31
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 8(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, -106
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LD t4, 56(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -31
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  ADDI s10, zero, -110
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   LD t4, 16(sp)
-  LW s7, 0(t4)
-  ADDI s9, zero, -110
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  LW s8, 0(t4)
+  ADDI s10, zero, -100
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 24(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -100
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
+  LW s7, 0(t4)
+  ADDI s10, zero, -22
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   LD t4, 32(sp)
-  LW s7, 0(t4)
-  ADDI s9, zero, -22
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  LW s8, 0(t4)
+  ADDI s10, zero, -75
+  MULW s11, s8, s10
+  ADDW s8, s7, s11
   LD t4, 40(sp)
-  LW s0, 0(t4)
-  ADDI s9, zero, -75
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LD t4, 104(sp)
   LW s7, 0(t4)
-  ADDI s9, zero, -125
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
+  ADDI s10, zero, -125
+  MULW s11, s7, s10
+  ADDW s7, s8, s11
   ADD a0, s7, zero
   CALL relu_reg
-  ADD s0, a0, zero
-  ADDI s7, zero, 77
-  MULW s9, s0, s7
-  ADDW s0, s11, s9
-  LW s7, 0(s2)
+  ADD s7, a0, zero
+  ADDI s8, zero, 77
+  MULW s10, s7, s8
+  ADDW s7, s9, s10
+  LW s8, 0(s0)
   ADDI s9, zero, 26
-  MULW s10, s7, s9
-  LW s7, 0(s3)
+  MULW s10, s8, s9
+  LW s8, 0(s1)
   ADDI s9, zero, 76
-  MULW s11, s7, s9
-  ADDW s7, s10, s11
-  LW s9, 0(s5)
+  MULW s11, s8, s9
+  ADDW s8, s10, s11
+  LW s9, 0(s3)
   ADDI s10, zero, -70
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s4)
+  ADDW s9, s8, s11
+  LW s8, 0(s2)
   ADDI s10, zero, 29
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s6)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s4)
   ADDI s10, zero, -95
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s8)
+  ADDW s9, s8, s11
+  LW s8, 0(s5)
   ADDI s10, zero, 96
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s1)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s6)
   ADDI s10, zero, 52
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   LD t4, 136(sp)
-  LW s7, 0(t4)
+  LW s8, 0(t4)
   ADDI s10, zero, -68
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
   LD t4, 128(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -5
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   LD t4, 120(sp)
-  LW s7, 0(t4)
+  LW s8, 0(t4)
   ADDI s10, zero, 34
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 48(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 112(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -34
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 112(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 104(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 102
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 72(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 88(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 6
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 64(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 96(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, -38
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 80(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 48(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 27
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 88(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 56(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 110
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 96(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 80(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 116
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 0(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 72(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 39
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 8(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 64(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -63
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 56(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 0(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, -99
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 16(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 8(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 65
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 24(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 16(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 120
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 32(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 24(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -39
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 40(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 32(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, -6
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 104(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 40(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 94
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   ADD a0, s9, zero
   CALL relu_reg
-  ADD s7, a0, zero
+  ADD s8, a0, zero
   ADDI s9, zero, 127
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s2)
+  MULW s10, s8, s9
+  ADDW s8, s7, s10
+  LW s7, 0(s0)
   ADDI s9, zero, -23
-  MULW s10, s0, s9
-  LW s0, 0(s3)
+  MULW s10, s7, s9
+  LW s7, 0(s1)
   ADDI s9, zero, -63
-  MULW s11, s0, s9
-  ADDW s0, s10, s11
-  LW s9, 0(s5)
+  MULW s11, s7, s9
+  ADDW s7, s10, s11
+  LW s9, 0(s3)
   ADDI s10, zero, 49
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s4)
+  ADDW s9, s7, s11
+  LW s7, 0(s2)
   ADDI s10, zero, 50
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s6)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s4)
   ADDI s10, zero, 72
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s8)
+  ADDW s9, s7, s11
+  LW s7, 0(s5)
   ADDI s10, zero, 85
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s1)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s6)
   ADDI s10, zero, -30
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 136(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, 12
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 128(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 125
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 120(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, -117
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 48(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 112(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -65
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 112(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -67
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 72(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 125
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 64(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 110
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 80(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -31
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 88(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -123
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 96(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 83
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 0(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 122
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 8(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 11
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 56(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -23
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 16(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -47
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 24(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -32
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 32(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -117
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 40(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 95
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  ADDW s9, s7, s11
   LD t4, 104(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 118
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  ADD a0, s9, zero
-  CALL relu_reg
-  ADD s0, a0, zero
-  ADDI s9, zero, -106
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LW s7, 0(s2)
-  ADDI s9, zero, 8
-  MULW s10, s7, s9
-  LW s7, 0(s3)
-  ADDI s9, zero, 82
-  MULW s11, s7, s9
-  ADDW s7, s10, s11
-  LW s9, 0(s5)
-  ADDI s10, zero, -104
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s4)
-  ADDI s10, zero, 101
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s6)
-  ADDI s10, zero, -116
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s8)
-  ADDI s10, zero, -63
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s1)
-  ADDI s10, zero, -16
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 136(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, -70
+  ADDI s10, zero, -67
   MULW s11, s7, s10
   ADDW s7, s9, s11
-  LD t4, 128(sp)
+  LD t4, 88(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 125
   MULW s11, s9, s10
   ADDW s9, s7, s11
-  LD t4, 120(sp)
+  LD t4, 96(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, 75
+  ADDI s10, zero, 110
   MULW s11, s7, s10
   ADDW s7, s9, s11
   LD t4, 48(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, 66
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 112(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -96
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 72(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -101
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 64(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -114
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 80(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 59
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 88(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, 12
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 96(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 5
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 0(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -95
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 8(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 116
+  ADDI s10, zero, -31
   MULW s11, s9, s10
   ADDW s9, s7, s11
   LD t4, 56(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, -93
+  ADDI s10, zero, -123
   MULW s11, s7, s10
   ADDW s7, s9, s11
+  LD t4, 80(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 83
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
+  LD t4, 72(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, 122
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 64(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 11
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
+  LD t4, 0(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, -23
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 8(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -47
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
   LD t4, 16(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 15
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
+  LW s7, 0(t4)
+  ADDI s10, zero, -32
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 24(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, 79
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 32(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, 3
+  ADDI s10, zero, -117
   MULW s11, s9, s10
   ADDW s9, s7, s11
-  LD t4, 40(sp)
+  LD t4, 32(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, 49
+  ADDI s10, zero, 95
   MULW s11, s7, s10
   ADDW s7, s9, s11
-  LD t4, 104(sp)
+  LD t4, 40(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, -124
+  ADDI s10, zero, 118
   MULW s11, s9, s10
   ADDW s9, s7, s11
   ADD a0, s9, zero
   CALL relu_reg
   ADD s7, a0, zero
-  ADDI s9, zero, -3
+  ADDI s9, zero, -106
   MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s2)
+  ADDW s7, s8, s10
+  LW s8, 0(s0)
+  ADDI s9, zero, 8
+  MULW s10, s8, s9
+  LW s8, 0(s1)
+  ADDI s9, zero, 82
+  MULW s11, s8, s9
+  ADDW s8, s10, s11
+  LW s9, 0(s3)
+  ADDI s10, zero, -104
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LW s8, 0(s2)
+  ADDI s10, zero, 101
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s4)
+  ADDI s10, zero, -116
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LW s8, 0(s5)
+  ADDI s10, zero, -63
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s6)
+  ADDI s10, zero, -16
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 136(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -70
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 128(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 125
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 120(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 75
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 112(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 66
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 104(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -96
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 88(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -101
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 96(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -114
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 48(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 59
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 56(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 12
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 80(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 5
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 72(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -95
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 64(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 116
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 0(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -93
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 8(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 15
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 16(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 79
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 24(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 3
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 32(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 49
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 40(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -124
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  ADD a0, s9, zero
+  CALL relu_reg
+  ADD s8, a0, zero
+  ADDI s9, zero, -3
+  MULW s10, s8, s9
+  ADDW s8, s7, s10
+  LW s7, 0(s0)
   ADDI s9, zero, 81
-  MULW s10, s0, s9
-  LW s0, 0(s3)
+  MULW s10, s7, s9
+  LW s7, 0(s1)
   ADDI s9, zero, 68
-  MULW s11, s0, s9
-  ADDW s0, s10, s11
-  LW s9, 0(s5)
+  MULW s11, s7, s9
+  ADDW s7, s10, s11
+  LW s9, 0(s3)
   ADDI s10, zero, -102
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s4)
+  ADDW s9, s7, s11
+  LW s7, 0(s2)
   ADDI s10, zero, -74
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s6)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s4)
   ADDI s10, zero, 121
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s8)
+  ADDW s9, s7, s11
+  LW s7, 0(s5)
   ADDI s10, zero, -15
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s1)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s6)
   ADDI s10, zero, 55
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 136(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, 101
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 128(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -13
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 120(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, -62
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 48(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 112(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 64
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 112(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 104(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, 114
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 72(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 88(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 38
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 64(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 96(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, -21
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 48(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 112
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
+  LD t4, 56(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, 114
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 80(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 112
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 88(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 114
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 96(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 112
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 0(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 72(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, -10
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 8(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 64(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -16
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 56(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 0(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, -50
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 16(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 8(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -112
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 24(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 16(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, -116
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 32(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 24(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -54
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 40(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 32(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, 82
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 104(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 40(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -72
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   ADD a0, s9, zero
   CALL relu_reg
-  ADD s0, a0, zero
+  ADD s7, a0, zero
   ADDI s9, zero, 32
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LW s7, 0(s2)
-  ADDI s9, zero, 15
   MULW s10, s7, s9
-  LW s7, 0(s3)
+  ADDW s7, s8, s10
+  LW s8, 0(s0)
+  ADDI s9, zero, 15
+  MULW s10, s8, s9
+  LW s8, 0(s1)
   ADDI s9, zero, -77
-  MULW s11, s7, s9
-  ADDW s7, s10, s11
-  LW s9, 0(s5)
+  MULW s11, s8, s9
+  ADDW s8, s10, s11
+  LW s9, 0(s3)
   ADDI s10, zero, 66
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s4)
+  ADDW s9, s8, s11
+  LW s8, 0(s2)
   ADDI s10, zero, -90
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s6)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s4)
   ADDI s10, zero, -6
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s8)
+  ADDW s9, s8, s11
+  LW s8, 0(s5)
   ADDI s10, zero, -30
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s1)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s6)
   ADDI s10, zero, -8
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   LD t4, 136(sp)
-  LW s7, 0(t4)
+  LW s8, 0(t4)
   ADDI s10, zero, 81
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
   LD t4, 128(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 2
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   LD t4, 120(sp)
-  LW s7, 0(t4)
+  LW s8, 0(t4)
   ADDI s10, zero, -110
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 48(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 112(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -95
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 112(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 104(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 59
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 72(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 88(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 52
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 64(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 96(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 15
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 80(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 48(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 55
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 88(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 56(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, -33
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 96(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 80(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 14
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 0(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 72(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 58
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 8(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 64(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 67
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 56(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 0(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 86
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 16(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 8(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -79
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 24(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 16(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, 48
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 32(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 24(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -13
   MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 40(sp)
-  LW s7, 0(t4)
+  ADDW s9, s8, s11
+  LD t4, 32(sp)
+  LW s8, 0(t4)
   ADDI s10, zero, -15
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 104(sp)
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 40(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 66
   MULW s11, s9, s10
-  ADDW s9, s7, s11
+  ADDW s9, s8, s11
   ADD a0, s9, zero
   CALL relu_reg
-  ADD s7, a0, zero
+  ADD s8, a0, zero
   ADDI s9, zero, -95
-  MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s2)
+  MULW s10, s8, s9
+  ADDW s8, s7, s10
+  LW s7, 0(s0)
   ADDI s9, zero, 33
-  MULW s10, s0, s9
-  LW s0, 0(s3)
+  MULW s10, s7, s9
+  LW s7, 0(s1)
   ADDI s9, zero, 82
-  MULW s11, s0, s9
-  ADDW s0, s10, s11
-  LW s9, 0(s5)
+  MULW s11, s7, s9
+  ADDW s7, s10, s11
+  LW s9, 0(s3)
   ADDI s10, zero, 67
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s4)
+  ADDW s9, s7, s11
+  LW s7, 0(s2)
   ADDI s10, zero, 30
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s6)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s4)
   ADDI s10, zero, -2
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LW s0, 0(s8)
+  ADDW s9, s7, s11
+  LW s7, 0(s5)
   ADDI s10, zero, 65
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LW s9, 0(s1)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LW s9, 0(s6)
   ADDI s10, zero, 120
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 136(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, -13
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 128(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 18
   MULW s11, s9, s10
-  ADDW s9, s0, s11
+  ADDW s9, s7, s11
   LD t4, 120(sp)
-  LW s0, 0(t4)
+  LW s7, 0(t4)
   ADDI s10, zero, 5
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 48(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 112(sp)
   LW s9, 0(t4)
   ADDI s10, zero, 104
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 112(sp)
-  LW s0, 0(t4)
+  ADDW s9, s7, s11
+  LD t4, 104(sp)
+  LW s7, 0(t4)
   ADDI s10, zero, -119
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 72(sp)
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 88(sp)
   LW s9, 0(t4)
   ADDI s10, zero, -7
   MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 64(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 71
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 80(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 107
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 88(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 24
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
+  ADDW s9, s7, s11
   LD t4, 96(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 82
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 0(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -96
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 8(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -104
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 56(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, -121
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 16(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 65
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 24(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 97
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 32(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 83
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  LD t4, 40(sp)
-  LW s0, 0(t4)
-  ADDI s10, zero, 46
-  MULW s11, s0, s10
-  ADDW s0, s9, s11
-  LD t4, 104(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -84
-  MULW s11, s9, s10
-  ADDW s9, s0, s11
-  ADD a0, s9, zero
-  CALL relu_reg
-  ADD s0, a0, zero
-  ADDI s9, zero, -50
-  MULW s10, s0, s9
-  ADDW s0, s7, s10
-  LW s7, 0(s2)
-  ADDI s9, zero, -29
-  MULW s10, s7, s9
-  LW s7, 0(s3)
-  ADDI s9, zero, 7
-  MULW s11, s7, s9
-  ADDW s7, s10, s11
-  LW s9, 0(s5)
-  ADDI s10, zero, -70
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s4)
-  ADDI s10, zero, 38
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s6)
-  ADDI s10, zero, -90
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LW s7, 0(s8)
-  ADDI s10, zero, -15
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LW s9, 0(s1)
-  ADDI s10, zero, -32
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 136(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, 37
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 128(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 36
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 120(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -62
+  ADDI s10, zero, 71
   MULW s11, s7, s10
   ADDW s7, s9, s11
   LD t4, 48(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, -125
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 112(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -46
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 72(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -70
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 64(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, 37
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 80(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -73
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 88(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -34
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 96(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, -87
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
-  LD t4, 0(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, -75
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 8(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 71
+  ADDI s10, zero, 107
   MULW s11, s9, s10
   ADDW s9, s7, s11
   LD t4, 56(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, -77
+  ADDI s10, zero, 24
   MULW s11, s7, s10
   ADDW s7, s9, s11
+  LD t4, 80(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 82
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
+  LD t4, 72(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, -96
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 64(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -104
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
+  LD t4, 0(sp)
+  LW s7, 0(t4)
+  ADDI s10, zero, -121
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
+  LD t4, 8(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 65
+  MULW s11, s9, s10
+  ADDW s9, s7, s11
   LD t4, 16(sp)
-  LW s9, 0(t4)
-  ADDI s10, zero, 53
-  MULW s11, s9, s10
-  ADDW s9, s7, s11
+  LW s7, 0(t4)
+  ADDI s10, zero, 97
+  MULW s11, s7, s10
+  ADDW s7, s9, s11
   LD t4, 24(sp)
-  LW s7, 0(t4)
-  ADDI s10, zero, 37
-  MULW s11, s7, s10
-  ADDW s7, s9, s11
-  LD t4, 32(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, -103
+  ADDI s10, zero, 83
   MULW s11, s9, s10
   ADDW s9, s7, s11
-  LD t4, 40(sp)
+  LD t4, 32(sp)
   LW s7, 0(t4)
-  ADDI s10, zero, -13
+  ADDI s10, zero, 46
   MULW s11, s7, s10
   ADDW s7, s9, s11
-  LD t4, 104(sp)
+  LD t4, 40(sp)
   LW s9, 0(t4)
-  ADDI s10, zero, -114
+  ADDI s10, zero, -84
   MULW s11, s9, s10
   ADDW s9, s7, s11
   ADD a0, s9, zero
   CALL relu_reg
   ADD s7, a0, zero
-  ADDI s9, zero, -23
+  ADDI s9, zero, -50
   MULW s10, s7, s9
-  ADDW s7, s0, s10
-  LW s0, 0(s2)
-  ADDI s2, zero, 67
-  MULW s9, s0, s2
-  LW s0, 0(s3)
-  ADDI s2, zero, 42
-  MULW s3, s0, s2
-  ADDW s0, s9, s3
-  LW s2, 0(s5)
+  ADDW s7, s8, s10
+  LW s8, 0(s0)
+  ADDI s9, zero, -29
+  MULW s10, s8, s9
+  LW s8, 0(s1)
+  ADDI s9, zero, 7
+  MULW s11, s8, s9
+  ADDW s8, s10, s11
+  LW s9, 0(s3)
+  ADDI s10, zero, -70
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LW s8, 0(s2)
+  ADDI s10, zero, 38
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s4)
+  ADDI s10, zero, -90
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LW s8, 0(s5)
+  ADDI s10, zero, -15
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LW s9, 0(s6)
+  ADDI s10, zero, -32
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 136(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 37
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 128(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 36
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 120(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -62
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 112(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -125
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 104(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -46
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 88(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -70
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 96(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 37
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 48(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -73
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 56(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -34
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 80(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -87
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 72(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -75
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 64(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 71
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 0(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -77
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 8(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, 53
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 16(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, 37
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 24(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -103
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  LD t4, 32(sp)
+  LW s8, 0(t4)
+  ADDI s10, zero, -13
+  MULW s11, s8, s10
+  ADDW s8, s9, s11
+  LD t4, 40(sp)
+  LW s9, 0(t4)
+  ADDI s10, zero, -114
+  MULW s11, s9, s10
+  ADDW s9, s8, s11
+  ADD a0, s9, zero
+  CALL relu_reg
+  ADD s8, a0, zero
+  ADDI s9, zero, -23
+  MULW s10, s8, s9
+  ADDW s8, s7, s10
+  LW s7, 0(s0)
+  ADDI s0, zero, 67
+  MULW s9, s7, s0
+  LW s0, 0(s1)
+  ADDI s1, zero, 42
+  MULW s7, s0, s1
+  ADDW s0, s9, s7
+  LW s1, 0(s3)
   ADDI s3, zero, 41
-  MULW s5, s2, s3
-  ADDW s2, s0, s5
-  LW s0, 0(s4)
-  ADDI s3, zero, -123
-  MULW s4, s0, s3
-  ADDW s0, s2, s4
-  LW s2, 0(s6)
-  ADDI s3, zero, -92
-  MULW s4, s2, s3
-  ADDW s2, s0, s4
-  LW s0, 0(s8)
-  ADDI s3, zero, 10
-  MULW s4, s0, s3
-  ADDW s0, s2, s4
-  LW s2, 0(s1)
-  ADDI s1, zero, -77
-  MULW s3, s2, s1
+  MULW s7, s1, s3
+  ADDW s1, s0, s7
+  LW s0, 0(s2)
+  ADDI s2, zero, -123
+  MULW s3, s0, s2
+  ADDW s0, s1, s3
+  LW s1, 0(s4)
+  ADDI s2, zero, -92
+  MULW s3, s1, s2
+  ADDW s1, s0, s3
+  LW s0, 0(s5)
+  ADDI s2, zero, 10
+  MULW s3, s0, s2
+  ADDW s0, s1, s3
+  LW s1, 0(s6)
+  ADDI s2, zero, -77
+  MULW s3, s1, s2
   ADDW s1, s0, s3
   LD t4, 136(sp)
   LW s0, 0(t4)
@@ -1332,77 +1326,77 @@ model:
   ADDI s2, zero, -51
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 48(sp)
+  LD t4, 112(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 109
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   LW s0, 0(t4)
   ADDI s2, zero, -74
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 72(sp)
+  LD t4, 88(sp)
   LW s1, 0(t4)
   ADDI s2, zero, -7
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 64(sp)
+  LD t4, 96(sp)
   LW s0, 0(t4)
   ADDI s2, zero, -122
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 80(sp)
+  LD t4, 48(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 67
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 88(sp)
+  LD t4, 56(sp)
   LW s0, 0(t4)
   ADDI s2, zero, 47
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 96(sp)
+  LD t4, 80(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 22
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 0(sp)
+  LD t4, 72(sp)
   LW s0, 0(t4)
   ADDI s2, zero, -68
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 8(sp)
+  LD t4, 64(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 38
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 56(sp)
+  LD t4, 0(sp)
   LW s0, 0(t4)
   ADDI s2, zero, 29
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 16(sp)
+  LD t4, 8(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 115
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 24(sp)
+  LD t4, 16(sp)
   LW s0, 0(t4)
   ADDI s2, zero, -121
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 32(sp)
+  LD t4, 24(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 36
   MULW s3, s1, s2
   ADDW s1, s0, s3
-  LD t4, 40(sp)
+  LD t4, 32(sp)
   LW s0, 0(t4)
   ADDI s2, zero, -49
   MULW s3, s0, s2
   ADDW s0, s1, s3
-  LD t4, 104(sp)
+  LD t4, 40(sp)
   LW s1, 0(t4)
   ADDI s2, zero, 85
   MULW s3, s1, s2
@@ -1412,7 +1406,7 @@ model:
   ADD s0, a0, zero
   ADDI s1, zero, 46
   MULW s2, s0, s1
-  ADDW s0, s7, s2
+  ADDW s0, s8, s2
   SLT s1, zero, s0
   BNE s1, zero, bb14
   JAL zero, bb15

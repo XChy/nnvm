@@ -163,19 +163,18 @@ trace:
   ADDI sp, sp, -128
   SD s3, 8(sp)
   SD ra, 16(sp)
-  SD s4, 24(sp)
-  FSD fs7, 32(sp)
-  FSD fs6, 40(sp)
-  FSD fs0, 48(sp)
-  FSD fs5, 56(sp)
-  FSD fs1, 64(sp)
-  FSD fs2, 72(sp)
-  FSD fs8, 80(sp)
-  FSD fs3, 88(sp)
-  SD s2, 96(sp)
-  SD s0, 104(sp)
-  SD s1, 112(sp)
-  FSD fs4, 120(sp)
+  FSD fs7, 24(sp)
+  FSD fs6, 32(sp)
+  FSD fs0, 40(sp)
+  FSD fs5, 48(sp)
+  FSD fs1, 56(sp)
+  FSD fs2, 64(sp)
+  FSD fs8, 72(sp)
+  FSD fs3, 80(sp)
+  SD s2, 88(sp)
+  SD s0, 96(sp)
+  SD s1, 104(sp)
+  FSD fs4, 112(sp)
   FSGNJ.D fs0, fa0, fa0
   FSGNJ.D fs1, fa1, fa1
   FSGNJ.D fs2, fa2, fa2
@@ -203,13 +202,11 @@ bb6:
   ADDI a0, sp, 0
   ADD a0, a0, zero
   CALL scene
-  ADDI t5, sp, 0
-  ADD s2, t5, zero
-  FLW fs5, 0(s2)
-  LA s4, .CONSTANT.7.2
-  FLW fs7, 0(s4)
-  FLT.S s4, fs5, fs7
-  BNE s4, zero, bb11
+  FLW fs5, 0(sp)
+  LA s2, .CONSTANT.7.2
+  FLW fs7, 0(s2)
+  FLT.S s2, fs5, fs7
+  BNE s2, zero, bb11
   JAL zero, bb12
 bb7:
   LA s0, .CONSTANT.7.0
@@ -219,19 +216,18 @@ bb7:
   FSGNJ.S fa0, fs5, fs6
   LD s3, 8(sp)
   LD ra, 16(sp)
-  LD s4, 24(sp)
-  FLD fs7, 32(sp)
-  FLD fs6, 40(sp)
-  FLD fs0, 48(sp)
-  FLD fs5, 56(sp)
-  FLD fs1, 64(sp)
-  FLD fs2, 72(sp)
-  FLD fs8, 80(sp)
-  FLD fs3, 88(sp)
-  LD s2, 96(sp)
-  LD s0, 104(sp)
-  LD s1, 112(sp)
-  FLD fs4, 120(sp)
+  FLD fs7, 24(sp)
+  FLD fs6, 32(sp)
+  FLD fs0, 40(sp)
+  FLD fs5, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs2, 64(sp)
+  FLD fs8, 72(sp)
+  FLD fs3, 80(sp)
+  LD s2, 88(sp)
+  LD s0, 96(sp)
+  LD s1, 104(sp)
+  FLD fs4, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb8:
@@ -248,28 +244,27 @@ bb10:
   BNE s2, zero, bb6
   JAL zero, bb7
 bb11:
-  ADDI s4, sp, 4
-  FLW fs5, 0(s4)
+  ADDI s2, sp, 4
+  FLW fs5, 0(s2)
   FSGNJ.S fa0, fs5, fs5
   LD s3, 8(sp)
   LD ra, 16(sp)
-  LD s4, 24(sp)
-  FLD fs7, 32(sp)
-  FLD fs6, 40(sp)
-  FLD fs0, 48(sp)
-  FLD fs5, 56(sp)
-  FLD fs1, 64(sp)
-  FLD fs2, 72(sp)
-  FLD fs8, 80(sp)
-  FLD fs3, 88(sp)
-  LD s2, 96(sp)
-  LD s0, 104(sp)
-  LD s1, 112(sp)
-  FLD fs4, 120(sp)
+  FLD fs7, 24(sp)
+  FLD fs6, 32(sp)
+  FLD fs0, 40(sp)
+  FLD fs5, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs2, 64(sp)
+  FLD fs8, 72(sp)
+  FLD fs3, 80(sp)
+  LD s2, 88(sp)
+  LD s0, 96(sp)
+  LD s1, 104(sp)
+  FLD fs4, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb12:
-  FLW fs5, 0(s2)
+  FLW fs5, 0(sp)
   FADD.S fs7, fs4, fs5
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -668,8 +663,7 @@ scene:
   BNE s1, zero, bb42
   JAL zero, bb44
 bb42:
-  ADD s1, s0, zero
-  FSW fs2, 0(s1)
+  FSW fs2, 0(s0)
   ADDI s1, s0, 4
   LA s2, .CONSTANT.7.4
   FLW fs1, 0(s2)
@@ -687,8 +681,7 @@ bb43:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb44:
-  ADD s1, s0, zero
-  FSW fs0, 0(s1)
+  FSW fs0, 0(s0)
   ADDI s1, s0, 4
   LA s0, .CONSTANT.7.0
   FLW fs0, 0(s0)

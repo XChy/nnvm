@@ -5,8 +5,7 @@ entry:
   %c = stack 32
   %b = stack 32
   %a = stack 32
-  arr.index = ptradd ptr %a, i32 0
-  store i32 1 to ptr %arr.index
+  store i32 1 to ptr %a
   arr.index3 = ptradd ptr %a, i32 4
   store i32 2 to ptr %arr.index3
   arr.index4 = ptradd ptr %a, i32 8
@@ -21,8 +20,7 @@ entry:
   store i32 7 to ptr %arr.index8
   arr.index9 = ptradd ptr %a, i32 28
   store i32 0 to ptr %arr.index9
-  arr.index11 = ptradd ptr %b, i32 0
-  store i32 0 to ptr %arr.index11
+  store i32 0 to ptr %b
   arr.index12 = ptradd ptr %b, i32 4
   store i32 0 to ptr %arr.index12
   arr.index13 = ptradd ptr %b, i32 8
@@ -37,8 +35,7 @@ entry:
   store i32 0 to ptr %arr.index17
   arr.index18 = ptradd ptr %b, i32 28
   store i32 0 to ptr %arr.index18
-  arr.index20 = ptradd ptr %c, i32 0
-  store i32 1 to ptr %arr.index20
+  store i32 1 to ptr %c
   arr.index21 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index21
   arr.index22 = ptradd ptr %c, i32 8
@@ -53,10 +50,8 @@ entry:
   store i32 7 to ptr %arr.index26
   arr.index27 = ptradd ptr %c, i32 28
   store i32 8 to ptr %arr.index27
-  32 = ptradd ptr %arr.index8, i32 0
-  32.load = load i32 from ptr %32
-  arr.index34 = ptradd ptr %d, i32 0
-  store i32 1 to ptr %arr.index34
+  32.load = load i32 from ptr %arr.index8
+  store i32 1 to ptr %d
   arr.index35 = ptradd ptr %d, i32 4
   store i32 2 to ptr %arr.index35
   arr.index36 = ptradd ptr %d, i32 8
@@ -71,12 +66,9 @@ entry:
   store i32 %32.load to ptr %arr.index40
   arr.index41 = ptradd ptr %d, i32 28
   store i32 8 to ptr %arr.index41
-  46 = ptradd ptr %arr.index38, i32 4
-  46.load = load i32 from ptr %46
-  51 = ptradd ptr %arr.index24, i32 4
-  51.load = load i32 from ptr %51
-  arr.index53 = ptradd ptr %e, i32 0
-  store i32 %46.load to ptr %arr.index53
+  46.load = load i32 from ptr %arr.index39
+  51.load = load i32 from ptr %arr.index25
+  store i32 %46.load to ptr %e
   arr.index54 = ptradd ptr %e, i32 4
   store i32 %51.load to ptr %arr.index54
   arr.index55 = ptradd ptr %e, i32 8
@@ -91,19 +83,12 @@ entry:
   store i32 7 to ptr %arr.index59
   arr.index60 = ptradd ptr %e, i32 28
   store i32 8 to ptr %arr.index60
-  64 = ptradd ptr %arr.index59, i32 4
-  66 = ptradd ptr %64, i32 0
-  66.load = load i32 from ptr %66
-  71 = ptradd ptr %arr.index53, i32 0
-  73 = ptradd ptr %71, i32 0
-  73.load = load i32 from ptr %73
+  66.load = load i32 from ptr %arr.index60
+  73.load = load i32 from ptr %e
   75 = add i32 %66.load, i32 %73.load
-  79 = ptradd ptr %arr.index53, i32 4
-  81 = ptradd ptr %79, i32 0
-  81.load = load i32 from ptr %81
+  81.load = load i32 from ptr %arr.index54
   83 = add i32 %75, i32 %81.load
-  87 = ptradd ptr %arr.index40, i32 0
-  87.load = load i32 from ptr %87
+  87.load = load i32 from ptr %arr.index40
   89 = add i32 %83, i32 %87.load
   ret i32 %89
 }

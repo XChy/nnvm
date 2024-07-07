@@ -106,8 +106,7 @@ while.exit:
   114 = call i32 func2(i32 %112, i32 %90)
   116 = call i32 func3(i32 %114, i32 %92)
   117 = call i32 func5(i32 %116)
-  119 = ptradd ptr %arr, i32 0
-  119.load = load i32 from ptr %119
+  119.load = load i32 from ptr %arr
   122 = ptradd ptr %arr, i32 4
   122.load = load i32 from ptr %122
   124 = call i32 func5(i32 %122.load)
@@ -142,7 +141,7 @@ while.exit:
   165 = call i32 func3(i32 %163, i32 %92)
   166 = call i32 func2(i32 %88, i32 %165)
   167 = call i32 func3(i32 %160, i32 %166)
-  169.load = load i32 from ptr %119
+  169.load = load i32 from ptr %arr
   172.load = load i32 from ptr %122
   174 = call i32 func1(i32 %167, i32 %169.load, i32 %172.load)
   176.load = load i32 from ptr %126

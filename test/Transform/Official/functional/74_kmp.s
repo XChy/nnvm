@@ -337,9 +337,8 @@ get_next:
   SD ra, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADD s2, s1, zero
-  ADDI s3, zero, -1
-  SW s3, 0(s2)
+  ADDI s2, zero, -1
+  SW s2, 0(s1)
   ADD s2, zero, zero
   ADDI s3, zero, -1
   JAL zero, bb18

@@ -157,15 +157,13 @@ if.exit182:
 
 i32 stack_size(ptr s) {
 entry143:
-  145 = ptradd ptr %s, i32 0
-  145.load = load i32 from ptr %145
+  145.load = load i32 from ptr %s
   ret i32 %145.load
 }
 
 i32 stack_peek(ptr s) {
 entry136:
-  138 = ptradd ptr %s, i32 0
-  138.load = load i32 from ptr %138
+  138.load = load i32 from ptr %s
   140 = mul i32 %138.load, i32 4
   141 = ptradd ptr %s, i32 %140
   141.load = load i32 from ptr %141
@@ -174,14 +172,13 @@ entry136:
 
 i32 stack_pop(ptr s) {
 entry121:
-  124 = ptradd ptr %s, i32 0
-  124.load = load i32 from ptr %124
+  124.load = load i32 from ptr %s
   126 = mul i32 %124.load, i32 4
   127 = ptradd ptr %s, i32 %126
   127.load = load i32 from ptr %127
-  132.load = load i32 from ptr %124
+  132.load = load i32 from ptr %s
   134 = sub i32 %132.load, i32 1
-  store i32 %134 to ptr %124
+  store i32 %134 to ptr %s
   ret i32 %127.load
 }
 
@@ -226,11 +223,10 @@ if.exit106:
 
 void stack_push(ptr s, i32 v) {
 entry107:
-  110 = ptradd ptr %s, i32 0
-  112.load = load i32 from ptr %110
+  112.load = load i32 from ptr %s
   114 = add i32 %112.load, i32 1
-  store i32 %114 to ptr %110
-  116.load = load i32 from ptr %110
+  store i32 %114 to ptr %s
+  116.load = load i32 from ptr %s
   118 = mul i32 %116.load, i32 4
   119 = ptradd ptr %s, i32 %118
   store i32 %v to ptr %119

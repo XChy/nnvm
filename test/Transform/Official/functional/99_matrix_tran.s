@@ -200,21 +200,17 @@ tran:
   FLW fs0, 0(s7)
   FSW fs0, 0(s5)
   ADDI s5, s3, 4
-  ADD s7, s1, zero
-  FLW fs0, 0(s7)
+  FLW fs0, 0(s1)
   FSW fs0, 0(s5)
   ADDI s5, s3, 8
-  ADD s7, s2, zero
-  FLW fs0, 0(s7)
+  FLW fs0, 0(s2)
   FSW fs0, 0(s5)
-  ADD s5, s4, zero
-  ADDI s7, s0, 4
-  FLW fs0, 0(s7)
-  FSW fs0, 0(s5)
-  ADD s5, s6, zero
-  ADDI s7, s0, 8
-  FLW fs0, 0(s7)
-  FSW fs0, 0(s5)
+  ADDI s5, s0, 4
+  FLW fs0, 0(s5)
+  FSW fs0, 0(s4)
+  ADDI s5, s0, 8
+  FLW fs0, 0(s5)
+  FSW fs0, 0(s6)
   ADDI s5, s4, 4
   ADDI s4, s1, 4
   FLW fs0, 0(s4)
@@ -223,10 +219,8 @@ tran:
   ADDI s4, s2, 8
   FLW fs0, 0(s4)
   FSW fs0, 0(s1)
-  ADD s1, s3, zero
-  ADD s2, s0, zero
-  FLW fs0, 0(s2)
-  FSW fs0, 0(s1)
+  FLW fs0, 0(s0)
+  FSW fs0, 0(s3)
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s7, 8(sp)

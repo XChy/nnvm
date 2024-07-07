@@ -80,16 +80,15 @@ bb6:
   BNE s3, zero, bb7
   JAL zero, bb9
 bb7:
-  ADD s2, s0, zero
-  LW s3, 0(s2)
-  DIVW s4, s5, s1
-  SW s4, 0(s2)
-  ADD s2, s3, zero
-  ADD s3, s5, zero
+  LW s2, 0(s0)
+  DIVW s3, s5, s1
+  SW s3, 0(s0)
+  ADD s3, s2, zero
+  ADD s2, s5, zero
   JAL zero, bb8
 bb8:
-  ADD s4, s3, zero
-  ADD s8, s2, zero
+  ADD s4, s2, zero
+  ADD s8, s3, zero
   ADD s10, s8, zero
   ADD s11, s4, zero
   JAL zero, bb5
@@ -108,8 +107,8 @@ bb9:
   LW s7, 0(s4)
   DIVW s8, s5, s1
   SW s8, 0(s4)
-  ADD s2, s7, zero
-  ADD s3, s5, zero
+  ADD s3, s7, zero
+  ADD s2, s5, zero
   JAL zero, bb8
 bb10:
   ADD s1, s2, zero
@@ -751,10 +750,8 @@ main:
   LA s0, n
   ADDI s1, zero, 32
   SW s1, 0(s0)
-  ADDI t5, sp, 128
-  ADD s0, t5, zero
-  ADDI s1, zero, 7
-  SW s1, 0(s0)
+  ADDI s0, zero, 7
+  SW s0, 128(sp)
   ADDI s0, sp, 132
   ADDI s1, zero, 23
   SW s1, 0(s0)
@@ -868,8 +865,8 @@ bb69:
 bb70:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -891,8 +888,8 @@ bb72:
 bb73:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t5, sp, 0
-  ADD s2, t5, s3
+  ADDI t6, sp, 0
+  ADD s2, t6, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -932,8 +929,8 @@ bb75:
 bb76:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -961,8 +958,8 @@ bb78:
 bb79:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t5, sp, 0
-  ADD s2, t5, s3
+  ADDI t6, sp, 0
+  ADD s2, t6, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -992,8 +989,8 @@ bb81:
 bb82:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -1022,8 +1019,8 @@ bb84:
 bb85:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t5, sp, 0
-  ADD s2, t5, s3
+  ADDI t6, sp, 0
+  ADD s2, t6, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint
@@ -1052,8 +1049,8 @@ bb87:
 bb88:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint

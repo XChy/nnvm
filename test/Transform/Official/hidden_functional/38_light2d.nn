@@ -53,8 +53,7 @@ while.body193:
   216 = fmul float %dy, float %t190.phi
   217 = fadd float %oy, float %216
   call void scene(float %212, float %217, ptr %ret)
-  220 = ptradd ptr %ret, i32 0
-  220.load = load float from ptr %220
+  220.load = load float from ptr %ret
   223 = fcmp olt float %220.load, float 0.000001
   br i1 %223, bb %then224, bb %if.exit225
 while.exit194:
@@ -72,7 +71,7 @@ then224:
   227.load = load float from ptr %227
   ret float %227.load
 if.exit225:
-  231.load = load float from ptr %220
+  231.load = load float from ptr %ret
   233 = fadd float %t190.phi, float %231.load
   235 = add i32 %i.phi, i32 1
   br bb %while.cond192
@@ -228,16 +227,14 @@ entry158:
   171 = fcmp olt float %164, float %168
   br i1 %171, bb %then172, bb %else
 then172:
-  176 = ptradd ptr %ret, i32 0
-  store float %164 to ptr %176
+  store float %164 to ptr %ret
   179 = ptradd ptr %ret, i32 4
   store float 3.000000 to ptr %179
   br bb %if.exit173
 if.exit173:
   ret 
 else:
-  181 = ptradd ptr %ret, i32 0
-  store float %168 to ptr %181
+  store float %168 to ptr %ret
   184 = ptradd ptr %ret, i32 4
   store float 0.000000 to ptr %184
   br bb %if.exit173

@@ -4,20 +4,15 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s1, 40(sp)
-  SD s0, 48(sp)
-  ADDI t5, sp, 8
-  ADD s0, t5, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI t6, sp, 0
-  ADD s1, t6, zero
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s0, 40(sp)
+  ADDI s0, zero, 1
+  SW s0, 8(sp)
+  ADDI s0, zero, 1
+  SW s0, 0(sp)
   ADDI a0, zero, 7
   ADDI a1, zero, 15
   ADDI a2, sp, 8
@@ -25,24 +20,23 @@ main:
   ADDI a3, sp, 0
   ADD a3, a3, zero
   CALL exgcd
-  ADD s1, a0, zero
-  LW s1, 0(s0)
-  ADDI s2, zero, 15
-  REMW s3, s1, s2
-  ADDIW s1, s3, 15
-  ADDI s2, zero, 15
-  REMW s3, s1, s2
-  SW s3, 0(s0)
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADD s0, a0, zero
+  LW s0, 8(sp)
+  ADDI s1, zero, 15
+  REMW s2, s0, s1
+  ADDIW s0, s2, 15
+  ADDI s1, zero, 15
+  REMW s2, s0, s1
+  SW s2, 8(sp)
+  LW s0, 8(sp)
+  ADD a0, s0, zero
   CALL putint
   ADD a0, zero, zero
   LD ra, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s1, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 exgcd:
   ADDI sp, sp, -64
@@ -63,11 +57,9 @@ exgcd:
   BNE s5, zero, bb2
   JAL zero, bb3
 bb2:
-  ADD s4, s2, zero
-  ADDI s5, zero, 1
-  SW s5, 0(s4)
-  ADD s4, s3, zero
-  SW zero, 0(s4)
+  ADDI s4, zero, 1
+  SW s4, 0(s2)
+  SW zero, 0(s3)
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -87,16 +79,14 @@ bb3:
   ADD a3, s3, zero
   CALL exgcd
   ADD s4, a0, zero
-  ADD s5, s2, zero
-  LW s2, 0(s5)
-  ADD s6, s3, zero
-  LW s3, 0(s6)
-  SW s3, 0(s5)
-  DIVW s3, s0, s1
-  LW s0, 0(s6)
-  MULW s1, s3, s0
-  SUBW s0, s2, s1
-  SW s0, 0(s6)
+  LW s5, 0(s2)
+  LW s6, 0(s3)
+  SW s6, 0(s2)
+  DIVW s2, s0, s1
+  LW s0, 0(s3)
+  MULW s1, s2, s0
+  SUBW s0, s5, s1
+  SW s0, 0(s3)
   ADD a0, s4, zero
   LD ra, 0(sp)
   LD s4, 8(sp)

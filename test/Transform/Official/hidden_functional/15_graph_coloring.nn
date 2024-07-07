@@ -52,8 +52,7 @@ i32 main() {
 entry115:
   %color = stack 16
   %graph = stack 64
-  arr.index = ptradd ptr %graph, i32 0
-  store i32 0 to ptr %arr.index
+  store i32 0 to ptr %graph
   arr.index118 = ptradd ptr %graph, i32 4
   store i32 1 to ptr %arr.index118
   arr.index119 = ptradd ptr %graph, i32 8

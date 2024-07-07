@@ -122,10 +122,8 @@ main:
   LA s0, n
   ADDI s1, zero, 10
   SW s1, 0(s0)
-  ADDI t5, sp, 0
-  ADD s0, t5, zero
-  ADDI s1, zero, 4
-  SW s1, 0(s0)
+  ADDI s0, zero, 4
+  SW s0, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 3
   SW s1, 0(s0)
@@ -171,8 +169,8 @@ bb14:
 bb15:
   ADDI s2, zero, 4
   MULW s3, s0, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   LW s3, 0(s2)
   ADD a0, s3, zero
   CALL putint

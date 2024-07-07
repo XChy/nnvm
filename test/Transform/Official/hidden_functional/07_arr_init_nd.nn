@@ -18,8 +18,7 @@ init:
   store i32 0 to ptr %arr.index13
   br bb %init.cond
 init.exit:
-  arr.index15 = ptradd ptr %c, i32 0
-  store i32 1 to ptr %arr.index15
+  store i32 1 to ptr %c
   arr.index16 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index16
   arr.index17 = ptradd ptr %c, i32 8
@@ -48,8 +47,7 @@ init.exit:
   store i32 14 to ptr %arr.index28
   arr.index29 = ptradd ptr %c, i32 56
   store i32 15 to ptr %arr.index29
-  arr.index31 = ptradd ptr %d, i32 0
-  store i32 1 to ptr %arr.index31
+  store i32 1 to ptr %d
   arr.index32 = ptradd ptr %d, i32 4
   store i32 2 to ptr %arr.index32
   arr.index33 = ptradd ptr %d, i32 8
@@ -78,8 +76,7 @@ init.exit:
   store i32 14 to ptr %arr.index44
   arr.index45 = ptradd ptr %d, i32 56
   store i32 15 to ptr %arr.index45
-  arr.index47 = ptradd ptr %e, i32 0
-  store i32 1 to ptr %arr.index47
+  store i32 1 to ptr %e
   arr.index48 = ptradd ptr %e, i32 4
   store i32 2 to ptr %arr.index48
   arr.index49 = ptradd ptr %e, i32 8
@@ -108,8 +105,7 @@ init.exit:
   store i32 14 to ptr %arr.index60
   arr.index61 = ptradd ptr %e, i32 56
   store i32 15 to ptr %arr.index61
-  arr.index64 = ptradd ptr %g, i32 0
-  store i32 1 to ptr %arr.index64
+  store i32 1 to ptr %g
   arr.index65 = ptradd ptr %g, i32 4
   store i32 2 to ptr %arr.index65
   arr.index66 = ptradd ptr %g, i32 8
@@ -138,8 +134,7 @@ init.exit:
   store i32 0 to ptr %arr.index77
   arr.index78 = ptradd ptr %g, i32 56
   store i32 0 to ptr %arr.index78
-  arr.index81 = ptradd ptr %i, i32 0
-  store i32 1 to ptr %arr.index81
+  store i32 1 to ptr %i
   arr.index82 = ptradd ptr %i, i32 4
   store i32 2 to ptr %arr.index82
   arr.index83 = ptradd ptr %i, i32 8

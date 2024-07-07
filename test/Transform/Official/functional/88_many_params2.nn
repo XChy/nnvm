@@ -36,38 +36,35 @@ init65:
   store i32 0 to ptr %arr.index74
   br bb %init.cond64
 init.exit66:
-  76 = ptradd ptr %a, i32 4556
-  78 = ptradd ptr %76, i32 4
-  store i32 6 to ptr %78
-  82 = ptradd ptr %76, i32 12
-  store i32 7 to ptr %82
-  86 = ptradd ptr %76, i32 16
-  store i32 4 to ptr %86
-  90 = ptradd ptr %76, i32 28
-  store i32 9 to ptr %90
-  94 = ptradd ptr %76, i32 44
-  store i32 11 to ptr %94
-  96 = ptradd ptr %b, i32 1416
-  98 = ptradd ptr %96, i32 4
-  store i32 1 to ptr %98
-  102 = ptradd ptr %96, i32 8
-  store i32 2 to ptr %102
-  106 = ptradd ptr %96, i32 12
-  store i32 3 to ptr %106
-  110 = ptradd ptr %96, i32 36
-  store i32 9 to ptr %110
-  115.load = load i32 from ptr %78
-  120.load = load i32 from ptr %82
-  127.load = load i32 from ptr %106
-  132 = ptradd ptr %96, i32 0
-  132.load = load i32 from ptr %132
-  137 = ptradd ptr %b, i32 8024
-  139 = ptradd ptr %137, i32 16
-  139.load = load i32 from ptr %139
-  142 = ptradd ptr %b, i32 12036
-  144 = ptradd ptr %142, i32 72
-  144.load = load i32 from ptr %144
-  146 = call i32 func(i32 %115.load, ptr %b, i32 %120.load, ptr %76, i32 %127.load, i32 %132.load, ptr %96, i32 %139.load, i32 %144.load)
+  174 = ptradd ptr %a, i32 4560
+  store i32 6 to ptr %174
+  176 = ptradd ptr %a, i32 4568
+  store i32 7 to ptr %176
+  178 = ptradd ptr %a, i32 4572
+  store i32 4 to ptr %178
+  180 = ptradd ptr %a, i32 4584
+  store i32 9 to ptr %180
+  182 = ptradd ptr %a, i32 4600
+  store i32 11 to ptr %182
+  184 = ptradd ptr %b, i32 1420
+  store i32 1 to ptr %184
+  186 = ptradd ptr %b, i32 1424
+  store i32 2 to ptr %186
+  188 = ptradd ptr %b, i32 1428
+  store i32 3 to ptr %188
+  190 = ptradd ptr %b, i32 1452
+  store i32 9 to ptr %190
+  115.load = load i32 from ptr %174
+  120.load = load i32 from ptr %176
+  123 = ptradd ptr %a, i32 4556
+  127.load = load i32 from ptr %188
+  198 = ptradd ptr %b, i32 1416
+  132.load = load i32 from ptr %198
+  200 = ptradd ptr %b, i32 8040
+  139.load = load i32 from ptr %200
+  202 = ptradd ptr %b, i32 12108
+  144.load = load i32 from ptr %202
+  146 = call i32 func(i32 %115.load, ptr %b, i32 %120.load, ptr %123, i32 %127.load, i32 %132.load, ptr %198, i32 %139.load, i32 %144.load)
   147 = mul i32 %146, i32 3
   br bb %while.cond148
 while.cond148:
@@ -76,7 +73,7 @@ while.cond148:
   br i1 %152, bb %while.body149, bb %while.exit150
 while.body149:
   157 = mul i32 %ret.phi, i32 4
-  158 = ptradd ptr %96, i32 %157
+  158 = ptradd ptr %198, i32 %157
   158.load = load i32 from ptr %158
   call void putint(i32 %158.load)
   call void putch(i32 32)

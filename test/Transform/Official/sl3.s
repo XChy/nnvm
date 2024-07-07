@@ -116,11 +116,9 @@ bb11:
 bb12:
   ADDI a0, zero, 53
   CALL _sysy_stoptime
-  LA s0, x
-  ADD s1, s0, zero
-  ADD s0, s1, zero
   LW t4, 0(sp)
   ADD a0, t4, zero
+  LA s0, x
   ADD a1, s0, zero
   CALL putarray
   ADDI s0, zero, 2

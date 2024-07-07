@@ -33,10 +33,9 @@ else395:
   405 = icmp eq i32 %i380.phi651, i32 %391
   br i1 %405, bb %then406, bb %else408
 then406:
-  410 = ptradd ptr %arr, i32 0
-  410.load = load i32 from ptr %410
+  410.load = load i32 from ptr %arr
   416 = sdiv i32 %sum379.phi649, i32 %stride
-  store i32 %416 to ptr %410
+  store i32 %416 to ptr %arr
   br bb %if.exit407
 if.exit407:
   lastnum.phi = phi [bb %else408, i32 %430.load, bb %then406, i32 %410.load]
@@ -349,8 +348,7 @@ entry459:
   %result = stack 128
   %arr = stack 128
   store i32 32 to ptr @n
-  463 = ptradd ptr %arr, i32 0
-  store i32 7 to ptr %463
+  store i32 7 to ptr %arr
   465 = ptradd ptr %arr, i32 4
   store i32 23 to ptr %465
   467 = ptradd ptr %arr, i32 8

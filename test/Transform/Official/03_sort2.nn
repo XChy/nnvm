@@ -156,13 +156,10 @@ while.body104:
   129 = add i32 %i101.phi357, i32 1
   br bb %while.cond103
 while.exit105:
-  131 = ptradd ptr %head, i32 0
-  store i32 %l to ptr %131
-  134 = ptradd ptr %tail, i32 0
-  137 = ptradd ptr %cnt74, i32 0
-  137.load = load i32 from ptr %137
+  store i32 %l to ptr %head
+  137.load = load i32 from ptr %cnt74
   139 = add i32 %l, i32 %137.load
-  store i32 %139 to ptr %134
+  store i32 %139 to ptr %tail
   br bb %while.cond140
 while.cond140:
   i101.phi356 = phi [bb %while.exit105, i32 1, bb %while.body141, i32 %168]
@@ -195,10 +192,10 @@ while.cond169:
 while.body170:
   br bb %while.cond176
 while.exit171:
-  store i32 %l to ptr %131
-  264.load = load i32 from ptr %137
+  store i32 %l to ptr %head
+  264.load = load i32 from ptr %cnt74
   266 = add i32 %l, i32 %264.load
-  store i32 %266 to ptr %134
+  store i32 %266 to ptr %tail
   br bb %while.cond267
 while.cond176:
   t.phi362 = phi [bb %while.body170, i32 %t.phi363, bb %while.exit199, i32 %t.phi]
