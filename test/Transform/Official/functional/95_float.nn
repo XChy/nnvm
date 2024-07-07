@@ -51,8 +51,7 @@ entry10:
   PI.load = load float from ptr @PI
   14 = si2f i32 %radius to float
   15 = fmul float %PI.load, float %14
-  17 = si2f i32 %radius to float
-  18 = fmul float %15, float %17
+  18 = fmul float %15, float %14
   21 = mul i32 %radius, i32 %radius
   PI.load22 = load float from ptr @PI
   23 = si2f i32 %21 to float
@@ -199,9 +198,7 @@ while.body:
   170 = call float circle_area(i32 %169)
   172 = mul i32 %p.phi, i32 4
   173 = ptradd ptr %arr, i32 %172
-  175 = mul i32 %p.phi, i32 4
-  176 = ptradd ptr %arr, i32 %175
-  176.load = load float from ptr %176
+  176.load = load float from ptr %173
   179 = fadd float %176.load, float %160
   store float %179 to ptr %173
   call void putfloat(float %166)

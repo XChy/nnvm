@@ -21,22 +21,16 @@ else92:
   100 = icmp sgt i32 %x, i32 %98.load
   br i1 %100, bb %then101, bb %else103
 then101:
-  105 = mul i32 %root, i32 4
-  106 = ptradd ptr @right_child, i32 %105
-  108 = mul i32 %root, i32 4
-  109 = ptradd ptr @right_child, i32 %108
-  109.load = load i32 from ptr %109
+  106 = ptradd ptr @right_child, i32 %97
+  109.load = load i32 from ptr %106
   112 = call i32 insert(i32 %109.load, i32 %x)
   store i32 %112 to ptr %106
   br bb %if.exit102
 if.exit102:
   br bb %if.exit91
 else103:
-  114 = mul i32 %root, i32 4
-  115 = ptradd ptr @left_child, i32 %114
-  117 = mul i32 %root, i32 4
-  118 = ptradd ptr @left_child, i32 %117
-  118.load = load i32 from ptr %118
+  115 = ptradd ptr @left_child, i32 %97
+  118.load = load i32 from ptr %115
   121 = call i32 insert(i32 %118.load, i32 %x)
   store i32 %121 to ptr %115
   br bb %if.exit102
@@ -76,42 +70,32 @@ if.exit130:
   137 = icmp sgt i32 %x, i32 %135.load
   br i1 %137, bb %then138, bb %else140
 then138:
-  142 = mul i32 %root, i32 4
-  143 = ptradd ptr @right_child, i32 %142
-  145 = mul i32 %root, i32 4
-  146 = ptradd ptr @right_child, i32 %145
-  146.load = load i32 from ptr %146
+  143 = ptradd ptr @right_child, i32 %134
+  146.load = load i32 from ptr %143
   149 = call i32 delete(i32 %146.load, i32 %x)
   store i32 %149 to ptr %143
   br bb %if.exit139
 if.exit139:
   ret i32 %root
 else140:
-  152 = mul i32 %root, i32 4
-  153 = ptradd ptr @value, i32 %152
-  153.load = load i32 from ptr %153
+  153.load = load i32 from ptr %135
   155 = icmp slt i32 %x, i32 %153.load
   br i1 %155, bb %then156, bb %else158
 then156:
-  160 = mul i32 %root, i32 4
-  161 = ptradd ptr @left_child, i32 %160
-  163 = mul i32 %root, i32 4
-  164 = ptradd ptr @left_child, i32 %163
-  164.load = load i32 from ptr %164
+  161 = ptradd ptr @left_child, i32 %134
+  164.load = load i32 from ptr %161
   167 = call i32 delete(i32 %164.load, i32 %x)
   store i32 %167 to ptr %161
   br bb %if.exit157
 if.exit157:
   br bb %if.exit139
 else158:
-  169 = mul i32 %root, i32 4
-  170 = ptradd ptr @left_child, i32 %169
+  170 = ptradd ptr @left_child, i32 %134
   170.load = load i32 from ptr %170
   173 = icmp eq i32 %170.load, i32 -1
   br i1 %173, bb %select.then174, bb %select.else175
 select.then174:
-  179 = mul i32 %root, i32 4
-  180 = ptradd ptr @right_child, i32 %179
+  180 = ptradd ptr @right_child, i32 %134
   180.load = load i32 from ptr %180
   183 = icmp eq i32 %180.load, i32 -1
   br bb %select.exit176
@@ -125,16 +109,13 @@ then185:
 if.exit186:
   br bb %if.exit157
 else187:
-  190 = mul i32 %root, i32 4
-  191 = ptradd ptr @left_child, i32 %190
-  191.load = load i32 from ptr %191
+  191.load = load i32 from ptr %170
   194 = icmp eq i32 %191.load, i32 -1
   br i1 %194, bb %select.then195, bb %select.else196
 select.then195:
   br bb %select.exit197
 select.else196:
-  200 = mul i32 %root, i32 4
-  201 = ptradd ptr @right_child, i32 %200
+  201 = ptradd ptr @right_child, i32 %134
   201.load = load i32 from ptr %201
   204 = icmp eq i32 %201.load, i32 -1
   205 = icmp ne i1 %204, i1 0
@@ -143,44 +124,30 @@ select.exit197:
   select198.phi = phi [bb %select.else196, i1 %205, bb %select.then195, i1 1]
   br i1 %select198.phi, bb %then207, bb %else209
 then207:
-  211 = mul i32 %root, i32 4
-  212 = ptradd ptr @left_child, i32 %211
-  212.load = load i32 from ptr %212
+  212.load = load i32 from ptr %170
   215 = icmp eq i32 %212.load, i32 -1
   br i1 %215, bb %then216, bb %else218
 if.exit208:
   br bb %if.exit186
 else209:
-  229 = mul i32 %root, i32 4
-  230 = ptradd ptr @right_child, i32 %229
+  230 = ptradd ptr @right_child, i32 %134
   230.load = load i32 from ptr %230
   232 = call i32 find_minimum(i32 %230.load)
-  234 = mul i32 %root, i32 4
-  235 = ptradd ptr @value, i32 %234
   237 = mul i32 %232, i32 4
   238 = ptradd ptr @value, i32 %237
   238.load = load i32 from ptr %238
-  store i32 %238.load to ptr %235
-  241 = mul i32 %root, i32 4
-  242 = ptradd ptr @right_child, i32 %241
-  244 = mul i32 %root, i32 4
-  245 = ptradd ptr @right_child, i32 %244
-  245.load = load i32 from ptr %245
-  248 = mul i32 %232, i32 4
-  249 = ptradd ptr @value, i32 %248
-  249.load = load i32 from ptr %249
+  store i32 %238.load to ptr %135
+  245.load = load i32 from ptr %230
+  249.load = load i32 from ptr %238
   251 = call i32 delete(i32 %245.load, i32 %249.load)
-  store i32 %251 to ptr %242
+  store i32 %251 to ptr %230
   br bb %if.exit208
 then216:
-  220 = mul i32 %root, i32 4
-  221 = ptradd ptr @right_child, i32 %220
+  221 = ptradd ptr @right_child, i32 %134
   221.load = load i32 from ptr %221
   ret i32 %221.load
 else218:
-  224 = mul i32 %root, i32 4
-  225 = ptradd ptr @left_child, i32 %224
-  225.load = load i32 from ptr %225
+  225.load = load i32 from ptr %170
   ret i32 %225.load
 }
 
@@ -199,9 +166,7 @@ else50:
   57 = icmp ne i32 %54.load, i32 -1
   br i1 %57, bb %then58, bb %if.exit59
 then58:
-  61 = mul i32 %root, i32 4
-  62 = ptradd ptr @left_child, i32 %61
-  62.load = load i32 from ptr %62
+  62.load = load i32 from ptr %54
   64 = call i32 find_minimum(i32 %62.load)
   ret i32 %64
 if.exit59:
@@ -237,14 +202,12 @@ else:
   27 = icmp sgt i32 %x, i32 %25.load
   br i1 %27, bb %then28, bb %else30
 then28:
-  32 = mul i32 %root, i32 4
-  33 = ptradd ptr @right_child, i32 %32
+  33 = ptradd ptr @right_child, i32 %24
   33.load = load i32 from ptr %33
   36 = call i32 search(i32 %33.load, i32 %x)
   ret i32 %36
 else30:
-  38 = mul i32 %root, i32 4
-  39 = ptradd ptr @left_child, i32 %38
+  39 = ptradd ptr @left_child, i32 %24
   39.load = load i32 from ptr %39
   42 = call i32 search(i32 %39.load, i32 %x)
   ret i32 %42
@@ -320,14 +283,12 @@ then258:
   262 = ptradd ptr @left_child, i32 %261
   262.load = load i32 from ptr %262
   call void inorder(i32 %262.load)
-  266 = mul i32 %root, i32 4
-  267 = ptradd ptr @value, i32 %266
+  267 = ptradd ptr @value, i32 %261
   267.load = load i32 from ptr %267
   call void putint(i32 %267.load)
   space.load = load i32 from ptr @space
   call void putch(i32 %space.load)
-  273 = mul i32 %root, i32 4
-  274 = ptradd ptr @right_child, i32 %273
+  274 = ptradd ptr @right_child, i32 %261
   274.load = load i32 from ptr %274
   call void inorder(i32 %274.load)
   br bb %if.exit259

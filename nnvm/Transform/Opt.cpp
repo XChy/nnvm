@@ -1,6 +1,7 @@
 #include "Opt.h"
 #include "Transform/Infra/PassManager.h"
 #include "Transform/Scalar/CFGCombiner.h"
+#include "Transform/Scalar/CSE.h"
 #include "Transform/Scalar/Combiner.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/SLPairElim.h"
@@ -13,5 +14,6 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CSEPass>();
   passManager.run(*module);
 }

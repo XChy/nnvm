@@ -11,7 +11,7 @@ bool DomTreeAnalysis::run(Function &F) {
 
   graph.dfsWithParent(F.getEntry(), [&](BasicBlock *bb, BasicBlock *parent) {
     dfn[bb] = preorderBBs.size();
-    this->parent.push_back(parent ? dfn[parent] : -1);
+    parentDFN.push_back(parent ? dfn[parent] : -1);
     preorderBBs.push_back(bb);
   });
   sdom.resize(preorderBBs.size());
@@ -31,7 +31,7 @@ bool DomTreeAnalysis::run(Function &F) {
 
         while (currentAncestor != -1 && currentAncestor >= currentDFN) {
           sdom[currentDFN] = std::min(sdom[currentAncestor], sdom[currentDFN]);
-          currentAncestor = parent[currentAncestor];
+          currentAncestor = parentDFN[currentAncestor];
         }
       }
     }
@@ -41,7 +41,7 @@ bool DomTreeAnalysis::run(Function &F) {
   parentD.resize(preorderBBs.size());
   parentD[0] = -1;
   for (int32_t currentDFN = 1; currentDFN < preorderBBs.size(); currentDFN++) {
-    int32_t v = parent[currentDFN];
+    int32_t v = parentDFN[currentDFN];
     while (v != -1) {
       if (v <= sdom[currentDFN])
         break;
@@ -51,10 +51,12 @@ bool DomTreeAnalysis::run(Function &F) {
     parentD[currentDFN] = v;
   }
 
+  // Estabilish domtree
   for (int i = 1; i < parentD.size(); i++) {
     BasicBlock *domee = preorderBBs[i];
     BasicBlock *domer = preorderBBs[parentD[i]];
-    domTree[domee] = domer;
+    domParent[domee] = domer;
+    domChildren[domer].push_back(domee);
   }
 
   return true;
@@ -62,7 +64,7 @@ bool DomTreeAnalysis::run(Function &F) {
 
 void DomTreeAnalysis::print(std::ostream &out) {
   out << "[DomTreeAnalysis]\n";
-  for (auto [domee, domer] : domTree) {
+  for (auto [domee, domer] : domParent) {
     out << domee->getName() << " dominated by " << domer->getName() << "\n";
   }
 }

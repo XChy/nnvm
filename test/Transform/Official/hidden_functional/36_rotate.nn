@@ -24,10 +24,8 @@ entry158:
   193 = si2f i32 %170 to float
   194 = fadd float %191, float %193
   195 = f2si float %194 to i32
-  199 = si2f i32 %177 to float
-  200 = fmul float %199, float %164
-  203 = si2f i32 %181 to float
-  204 = fmul float %203, float %167
+  200 = fmul float %185, float %164
+  204 = fmul float %189, float %167
   205 = fadd float %200, float %204
   207 = si2f i32 %173 to float
   208 = fadd float %205, float %207

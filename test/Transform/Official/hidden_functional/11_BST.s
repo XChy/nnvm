@@ -30,14 +30,13 @@ space:
 .word 0x00000020
 .section .text
 insert:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD s4, 0(sp)
   SD ra, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XORI s2, s0, -1
@@ -54,9 +53,8 @@ bb1:
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:
   ADD a0, s0, zero
@@ -65,9 +63,8 @@ bb2:
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
   ADDI s2, zero, 4
@@ -75,19 +72,13 @@ bb3:
   LA s2, value
   ADD s4, s2, s3
   LW s2, 0(s4)
-  SLT s3, s2, s1
-  BNE s3, zero, bb4
+  SLT s4, s2, s1
+  BNE s4, zero, bb4
   JAL zero, bb6
 bb4:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
   LA s2, right_child
   ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, right_child
-  ADD s5, s2, s3
-  LW s2, 0(s5)
+  LW s2, 0(s4)
   ADD a0, s2, zero
   ADD a1, s1, zero
   CALL insert
@@ -97,15 +88,9 @@ bb4:
 bb5:
   JAL zero, bb2
 bb6:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
   LA s2, left_child
   ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, left_child
-  ADD s5, s2, s3
-  LW s2, 0(s5)
+  LW s2, 0(s4)
   ADD a0, s2, zero
   ADD a1, s1, zero
   CALL insert
@@ -159,16 +144,18 @@ new_node:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 delete:
-  ADDI sp, sp, -80
-  SD s4, 0(sp)
-  SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  ADDI sp, sp, -96
+  SD s9, 0(sp)
+  SD s0, 8(sp)
+  SD s5, 16(sp)
+  SD s7, 24(sp)
+  SD s1, 32(sp)
+  SD s6, 40(sp)
+  SD s8, 48(sp)
+  SD s2, 56(sp)
+  SD s3, 64(sp)
+  SD ra, 72(sp)
+  SD s4, 80(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XORI s2, s0, -1
@@ -177,16 +164,18 @@ delete:
   JAL zero, bb10
 bb9:
   ADDI a0, zero, -1
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s8, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb10:
   ADDI s2, zero, 4
@@ -194,16 +183,10 @@ bb10:
   LA s2, value
   ADD s4, s2, s3
   LW s2, 0(s4)
-  SLT s3, s2, s1
-  BNE s3, zero, bb11
+  SLT s5, s2, s1
+  BNE s5, zero, bb11
   JAL zero, bb13
 bb11:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, right_child
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
   LA s2, right_child
   ADD s5, s2, s3
   LW s2, 0(s5)
@@ -211,37 +194,29 @@ bb11:
   ADD a1, s1, zero
   CALL delete
   ADD s2, a0, zero
-  SW s2, 0(s4)
+  SW s2, 0(s5)
   JAL zero, bb12
 bb12:
   ADD a0, s0, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s8, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb13:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, value
-  ADD s4, s2, s3
   LW s2, 0(s4)
-  SLT s3, s1, s2
-  BNE s3, zero, bb14
+  SLT s5, s1, s2
+  BNE s5, zero, bb14
   JAL zero, bb16
 bb14:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, left_child
-  ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
   LA s2, left_child
   ADD s5, s2, s3
   LW s2, 0(s5)
@@ -249,167 +224,135 @@ bb14:
   ADD a1, s1, zero
   CALL delete
   ADD s1, a0, zero
-  SW s1, 0(s4)
+  SW s1, 0(s5)
   JAL zero, bb15
 bb15:
   JAL zero, bb12
 bb16:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
   LA s1, left_child
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  XORI s2, s1, -1
-  SLTIU s1, s2, 1
+  ADD s2, s1, s3
+  LW s1, 0(s2)
+  XORI s5, s1, -1
+  SLTIU s1, s5, 1
   BNE s1, zero, bb17
   JAL zero, bb18
 bb17:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
   LA s1, right_child
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  XORI s2, s1, -1
-  SLTIU s1, s2, 1
-  ADD s2, s1, zero
+  ADD s5, s1, s3
+  LW s1, 0(s5)
+  XORI s5, s1, -1
+  SLTIU s1, s5, 1
+  ADD s5, s1, zero
   JAL zero, bb19
 bb18:
-  ADD s2, zero, zero
+  ADD s5, zero, zero
   JAL zero, bb19
 bb19:
-  ADD s1, s2, zero
+  ADD s1, s5, zero
   BNE s1, zero, bb20
   JAL zero, bb22
 bb20:
   ADDI a0, zero, -1
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s8, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb21:
   JAL zero, bb15
 bb22:
-  ADDI s1, zero, 4
-  MULW s3, s0, s1
-  LA s1, left_child
-  ADD s4, s1, s3
-  LW s1, 0(s4)
-  XORI s3, s1, -1
-  SLTIU s1, s3, 1
+  LW s1, 0(s2)
+  XORI s6, s1, -1
+  SLTIU s1, s6, 1
   BNE s1, zero, bb23
   JAL zero, bb24
 bb23:
   ADDI s1, zero, 1
   JAL zero, bb25
 bb24:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, right_child
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  XORI s4, s3, -1
-  SLTIU s3, s4, 1
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
-  ADD s1, s3, zero
+  LA s6, right_child
+  ADD s7, s6, s3
+  LW s6, 0(s7)
+  XORI s7, s6, -1
+  SLTIU s6, s7, 1
+  XOR s7, s6, zero
+  SLTU s6, zero, s7
+  ADD s1, s6, zero
   JAL zero, bb25
 bb25:
-  ADD s3, s1, zero
-  BNE s3, zero, bb26
+  ADD s6, s1, zero
+  BNE s6, zero, bb26
   JAL zero, bb28
 bb26:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, left_child
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  XORI s4, s3, -1
-  SLTIU s3, s4, 1
-  BNE s3, zero, bb29
+  LW s6, 0(s2)
+  XORI s7, s6, -1
+  SLTIU s6, s7, 1
+  BNE s6, zero, bb29
   JAL zero, bb30
 bb27:
   JAL zero, bb21
 bb28:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, right_child
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  ADD a0, s3, zero
+  LA s6, right_child
+  ADD s7, s6, s3
+  LW s6, 0(s7)
+  ADD a0, s6, zero
   CALL find_minimum
-  ADD s3, a0, zero
-  ADDI s4, zero, 4
-  MULW s5, s0, s4
-  LA s4, value
-  ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  LA s4, value
-  ADD s7, s4, s5
-  LW s4, 0(s7)
-  SW s4, 0(s6)
-  ADDI s4, zero, 4
-  MULW s5, s0, s4
-  LA s4, right_child
-  ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s0, s4
-  LA s4, right_child
-  ADD s7, s4, s5
-  LW s4, 0(s7)
-  ADDI s5, zero, 4
-  MULW s7, s3, s5
-  LA s3, value
-  ADD s5, s3, s7
-  LW s3, 0(s5)
-  ADD a0, s4, zero
-  ADD a1, s3, zero
+  ADD s6, a0, zero
+  ADDI s8, zero, 4
+  MULW s9, s6, s8
+  LA s6, value
+  ADD s8, s6, s9
+  LW s6, 0(s8)
+  SW s6, 0(s4)
+  LW s6, 0(s7)
+  LW s9, 0(s8)
+  ADD a0, s6, zero
+  ADD a1, s9, zero
   CALL delete
-  ADD s3, a0, zero
-  SW s3, 0(s6)
+  ADD s6, a0, zero
+  SW s6, 0(s7)
   JAL zero, bb27
 bb29:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, right_child
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  ADD a0, s3, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LA s6, right_child
+  ADD s7, s6, s3
+  LW s6, 0(s7)
+  ADD a0, s6, zero
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s8, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb30:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s3, left_child
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  ADD a0, s3, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
-  ADDI sp, sp, 80
+  LW s6, 0(s2)
+  ADD a0, s6, zero
+  LD s9, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s8, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD ra, 72(sp)
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 find_minimum:
   ADDI sp, sp, -48
@@ -452,10 +395,6 @@ bb34:
   BNE s1, zero, bb35
   JAL zero, bb36
 bb35:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, left_child
-  ADD s3, s1, s2
   LW s1, 0(s3)
   ADD a0, s1, zero
   CALL find_minimum
@@ -521,12 +460,10 @@ bb42:
   LA s3, value
   ADD s5, s3, s4
   LW s3, 0(s5)
-  SLT s4, s3, s1
-  BNE s4, zero, bb43
+  SLT s5, s3, s1
+  BNE s5, zero, bb43
   JAL zero, bb44
 bb43:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
   LA s3, right_child
   ADD s5, s3, s4
   LW s3, 0(s5)
@@ -545,8 +482,6 @@ bb43:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb44:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
   LA s3, left_child
   ADD s5, s3, s4
   LW s3, 0(s5)
@@ -674,12 +609,11 @@ bb53:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 inorder:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s2, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
   ADD s0, a0, zero
   XORI s1, s0, -1
   SLTU s2, zero, s1
@@ -688,24 +622,20 @@ inorder:
 bb55:
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LA s1, left_child
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  ADD a0, s1, zero
+  LA s0, left_child
+  ADD s1, s0, s2
+  LW s0, 0(s1)
+  ADD a0, s0, zero
   CALL inorder
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, value
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  ADD a0, s1, zero
+  LA s0, value
+  ADD s1, s0, s2
+  LW s0, 0(s1)
+  ADD a0, s0, zero
   CALL putint
-  LA s1, space
-  LW s2, 0(s1)
-  ADD a0, s2, zero
+  LA s0, space
+  LW s1, 0(s0)
+  ADD a0, s1, zero
   CALL putch
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
   LA s0, right_child
   ADD s1, s0, s2
   LW s0, 0(s1)
@@ -714,9 +644,8 @@ bb55:
   JAL zero, bb56
 bb56:
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)

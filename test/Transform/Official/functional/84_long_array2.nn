@@ -9,16 +9,14 @@ entry:
   store i32 3 to ptr %4
   6 = ptradd ptr @a, i32 16380
   store i32 7 to ptr %6
-  8 = ptradd ptr @a, i32 16380
-  8.load = load i32 from ptr %8
+  8.load = load i32 from ptr %6
   10 = mul i32 %8.load, i32 4
   11 = ptradd ptr %b, i32 %10
   13 = ptradd ptr @a, i32 8864
   13.load = load i32 from ptr %13
   15 = add i32 %13.load, i32 9
   store i32 %15 to ptr %11
-  17 = ptradd ptr @a, i32 20
-  17.load = load i32 from ptr %17
+  17.load = load i32 from ptr %2
   19 = mul i32 %17.load, i32 4
   20 = ptradd ptr @a, i32 %19
   20.load = load i32 from ptr %20
@@ -126,8 +124,7 @@ init82:
   store i32 0 to ptr %arr.index91
   br bb %init.cond81
 init.exit83:
-  93 = ptradd ptr %c, i32 0
-  94 = call i32 f1(ptr %93)
+  94 = call i32 f1(ptr %arr.index75)
   call void putint(i32 %94)
   call void putch(i32 10)
   98 = ptradd ptr %c, i32 32

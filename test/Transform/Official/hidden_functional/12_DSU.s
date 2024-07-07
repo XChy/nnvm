@@ -285,20 +285,12 @@ bb21:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb22:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, fa
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  ADD a0, s1, zero
+  LW s0, 0(s3)
+  ADD a0, s0, zero
   CALL find
-  ADD s1, a0, zero
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, fa
-  ADD s2, s0, s3
-  SW s1, 0(s2)
-  ADD a0, s1, zero
+  ADD s0, a0, zero
+  SW s0, 0(s3)
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s2, 16(sp)

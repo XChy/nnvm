@@ -138,8 +138,7 @@ then:
   46 = ptradd ptr %b, i32 %45
   46.load = load i32 from ptr %46
   48 = mul i32 %x.phi146, i32 %46.load
-  50 = mul i32 %j.phi, i32 4
-  51 = ptradd ptr %b, i32 %50
+  51 = ptradd ptr %b, i32 %36
   51.load = load i32 from ptr %51
   53 = add i32 %48, i32 %51.load
   56 = sub i32 %y.phi149, i32 %53
@@ -152,16 +151,9 @@ if.exit:
 else:
   58 = mul i32 %i.phi, i32 4
   59 = ptradd ptr %res, i32 %58
-  61 = mul i32 %i.phi, i32 4
-  62 = ptradd ptr %res, i32 %61
-  62.load = load i32 from ptr %62
-  65 = mul i32 %i.phi, i32 8040
-  66 = ptradd ptr %A, i32 %65
-  68 = mul i32 %j.phi, i32 4
-  69 = ptradd ptr %66, i32 %68
-  69.load = load i32 from ptr %69
-  72 = mul i32 %j.phi, i32 4
-  73 = ptradd ptr %b, i32 %72
+  62.load = load i32 from ptr %59
+  69.load = load i32 from ptr %37
+  73 = ptradd ptr %b, i32 %36
   73.load = load i32 from ptr %73
   75 = mul i32 %69.load, i32 %73.load
   76 = add i32 %62.load, i32 %75

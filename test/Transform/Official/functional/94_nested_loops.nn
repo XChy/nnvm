@@ -154,8 +154,7 @@ while.body258:
   302 = ptradd ptr %299, i32 %301
   304 = mul i32 %f218.phi427, i32 28
   305 = ptradd ptr %302, i32 %304
-  307 = mul i32 %g219.phi459, i32 4
-  308 = ptradd ptr %305, i32 %307
+  308 = ptradd ptr %305, i32 %284
   308.load = load i32 from ptr %308
   310 = add i32 %287, i32 %308.load
   312 = add i32 %g219.phi459, i32 1

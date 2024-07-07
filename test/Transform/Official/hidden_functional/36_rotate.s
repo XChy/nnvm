@@ -38,21 +38,23 @@ MAX_WIDTH:
 .word 0x40400000
 .section .text
 rotate:
-  ADDI sp, sp, -112
+  ADDI sp, sp, -128
   SD ra, 0(sp)
   SD s6, 8(sp)
-  FSD fs4, 16(sp)
-  FSD fs3, 24(sp)
-  SD s0, 32(sp)
-  SD s5, 40(sp)
-  SD s7, 48(sp)
-  FSD fs2, 56(sp)
-  SD s1, 64(sp)
-  FSD fs0, 72(sp)
-  SD s2, 80(sp)
-  FSD fs1, 88(sp)
-  SD s3, 96(sp)
-  SD s4, 104(sp)
+  FSD fs6, 16(sp)
+  FSD fs5, 24(sp)
+  FSD fs4, 32(sp)
+  FSD fs3, 40(sp)
+  SD s0, 48(sp)
+  SD s5, 56(sp)
+  SD s7, 64(sp)
+  FSD fs2, 72(sp)
+  SD s1, 80(sp)
+  FSD fs0, 88(sp)
+  SD s2, 96(sp)
+  FSD fs1, 104(sp)
+  SD s3, 112(sp)
+  SD s4, 120(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   FSGNJ.D fs0, fa0, fa0
@@ -74,21 +76,19 @@ rotate:
   SUBW s0, s1, s5
   FCVT.S.W fs2, s2
   FMUL.S fs3, fs2, fs0
-  FCVT.S.W fs2, s0
-  FMUL.S fs4, fs2, fs1
-  FSUB.S fs2, fs3, fs4
+  FCVT.S.W fs4, s0
+  FMUL.S fs5, fs4, fs1
+  FSUB.S fs6, fs3, fs5
   FCVT.S.W fs3, s4
-  FADD.S fs4, fs2, fs3
-  FCVT.W.S s1, fs4, rtz
-  FCVT.S.W fs2, s2
+  FADD.S fs5, fs6, fs3
+  FCVT.W.S s0, fs5, rtz
   FMUL.S fs3, fs2, fs1
-  FCVT.S.W fs1, s0
-  FMUL.S fs2, fs1, fs0
-  FADD.S fs0, fs3, fs2
+  FMUL.S fs1, fs4, fs0
+  FADD.S fs0, fs3, fs1
   FCVT.S.W fs1, s5
   FADD.S fs2, fs0, fs1
-  FCVT.W.S s0, fs2, rtz
-  SLT s2, s1, zero
+  FCVT.W.S s1, fs2, rtz
+  SLT s2, s0, zero
   BNE s2, zero, bb1
   JAL zero, bb2
 bb1:
@@ -97,7 +97,7 @@ bb1:
 bb2:
   LA s3, width
   LW s4, 0(s3)
-  SLT s3, s1, s4
+  SLT s3, s0, s4
   XORI s4, s3, 1
   XOR s3, s4, zero
   SLTU s4, zero, s3
@@ -111,7 +111,7 @@ bb4:
   ADDI s3, zero, 1
   JAL zero, bb6
 bb5:
-  SLT s4, s0, zero
+  SLT s4, s1, zero
   XOR s5, s4, zero
   SLTU s4, zero, s5
   ADD s3, s4, zero
@@ -126,7 +126,7 @@ bb7:
 bb8:
   LA s5, height
   LW s6, 0(s5)
-  SLT s5, s0, s6
+  SLT s5, s1, s6
   XORI s6, s5, 1
   XOR s5, s6, zero
   SLTU s6, zero, s5
@@ -140,25 +140,27 @@ bb10:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s6, 8(sp)
-  FLD fs4, 16(sp)
-  FLD fs3, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s7, 48(sp)
-  FLD fs2, 56(sp)
-  LD s1, 64(sp)
-  FLD fs0, 72(sp)
-  LD s2, 80(sp)
-  FLD fs1, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
-  ADDI sp, sp, 112
+  FLD fs6, 16(sp)
+  FLD fs5, 24(sp)
+  FLD fs4, 32(sp)
+  FLD fs3, 40(sp)
+  LD s0, 48(sp)
+  LD s5, 56(sp)
+  LD s7, 64(sp)
+  FLD fs2, 72(sp)
+  LD s1, 80(sp)
+  FLD fs0, 88(sp)
+  LD s2, 96(sp)
+  FLD fs1, 104(sp)
+  LD s3, 112(sp)
+  LD s4, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb11:
   LA s5, width
   LW s6, 0(s5)
-  MULW s5, s0, s6
-  ADDW s6, s5, s1
+  MULW s5, s1, s6
+  ADDW s6, s5, s0
   ADDI s5, zero, 4
   MULW s7, s6, s5
   LA s5, image
@@ -167,19 +169,21 @@ bb11:
   ADD a0, s5, zero
   LD ra, 0(sp)
   LD s6, 8(sp)
-  FLD fs4, 16(sp)
-  FLD fs3, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s7, 48(sp)
-  FLD fs2, 56(sp)
-  LD s1, 64(sp)
-  FLD fs0, 72(sp)
-  LD s2, 80(sp)
-  FLD fs1, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
-  ADDI sp, sp, 112
+  FLD fs6, 16(sp)
+  FLD fs5, 24(sp)
+  FLD fs4, 32(sp)
+  FLD fs3, 40(sp)
+  LD s0, 48(sp)
+  LD s5, 56(sp)
+  LD s7, 64(sp)
+  FLD fs2, 72(sp)
+  LD s1, 80(sp)
+  FLD fs0, 88(sp)
+  LD s2, 96(sp)
+  FLD fs1, 104(sp)
+  LD s3, 112(sp)
+  LD s4, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 my_sin_impl:
   ADDI sp, sp, -48

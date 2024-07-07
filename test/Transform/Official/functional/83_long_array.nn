@@ -34,12 +34,9 @@ while.cond22:
 while.body23:
   30 = mul i32 %i.phi188, i32 4
   31 = ptradd ptr %a2, i32 %30
-  33 = mul i32 %i.phi188, i32 4
-  34 = ptradd ptr %a1, i32 %33
+  34 = ptradd ptr %a1, i32 %30
   34.load = load i32 from ptr %34
-  37 = mul i32 %i.phi188, i32 4
-  38 = ptradd ptr %a1, i32 %37
-  38.load = load i32 from ptr %38
+  38.load = load i32 from ptr %34
   40 = mul i32 %34.load, i32 %38.load
   41 = srem i32 %40, i32 10
   store i32 %41 to ptr %31
@@ -56,16 +53,12 @@ while.cond44:
 while.body45:
   52 = mul i32 %i.phi187, i32 4
   53 = ptradd ptr %a3, i32 %52
-  55 = mul i32 %i.phi187, i32 4
-  56 = ptradd ptr %a2, i32 %55
+  56 = ptradd ptr %a2, i32 %52
   56.load = load i32 from ptr %56
-  59 = mul i32 %i.phi187, i32 4
-  60 = ptradd ptr %a2, i32 %59
-  60.load = load i32 from ptr %60
+  60.load = load i32 from ptr %56
   62 = mul i32 %56.load, i32 %60.load
   63 = srem i32 %62, i32 100
-  65 = mul i32 %i.phi187, i32 4
-  66 = ptradd ptr %a1, i32 %65
+  66 = ptradd ptr %a1, i32 %52
   66.load = load i32 from ptr %66
   68 = add i32 %63, i32 %66.load
   store i32 %68 to ptr %53

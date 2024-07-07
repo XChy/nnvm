@@ -46,7 +46,7 @@ while.exit19:
   br bb %while.cond10
 while.cond24:
   n.phi111 = phi [bb %while.body18, i32 %n.phi112, bb %while.exit63, i32 %n.phi]
-  m.phi = phi [bb %while.body18, i32 0, bb %while.exit63, i32 %70]
+  m.phi = phi [bb %while.body18, i32 0, bb %while.exit63, i32 %31]
   sum.phi = phi [bb %while.body18, i32 %sum.phi103, bb %while.exit63, i32 %72]
   select.phi101 = phi [bb %while.body18, i1 %select.phi97, bb %while.exit63, i1 %select.phi100]
   28 = icmp slt i32 %m.phi, i32 3
@@ -66,16 +66,14 @@ if.exit:
   select.phi100 = phi [bb %while.body25, i1 %select.phi101, bb %if.exit38, i1 %select.phi95]
   br bb %while.cond61
 then37:
-  40 = icmp ne i32 %m.phi, i32 0
-  br i1 %40, bb %select.then, bb %select.else
+  br i1 %36, bb %select.then, bb %select.else
 if.exit38:
   select.phi95 = phi [bb %then, i1 %select.phi101, bb %if.exit53, i1 %select.phi]
   br bb %if.exit
 select.then:
   br bb %select.exit
 select.else:
-  46 = icmp ne i32 %m.phi, i32 0
-  47 =  i1 %46, i1 1
+  47 =  i1 %36, i1 1
   48 = zext i1 %47 to i32
   49 = icmp ne i32 %48, i32 0
   50 = icmp ne i1 %49, i1 0
@@ -102,7 +100,6 @@ while.body62:
   68 = add i32 %n.phi, i32 1
   br bb %while.cond61
 while.exit63:
-  70 = add i32 %m.phi, i32 1
   72 = add i32 %sum.phi, i32 1
   br bb %while.cond24
 while.cond73:

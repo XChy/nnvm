@@ -153,13 +153,13 @@ bb9:
   MULW s9, s6, s8
   ADD s8, s0, s9
   LW s9, 0(s8)
-  ADDIW s8, s6, 1
-  ADDI s10, zero, 4
-  MULW s11, s8, s10
-  ADD s8, s0, s11
-  LW s10, 0(s8)
-  SLT s8, s10, s9
-  BNE s8, zero, bb11
+  ADDIW s10, s6, 1
+  ADDI s6, zero, 4
+  MULW s11, s10, s6
+  ADD s6, s0, s11
+  LW s11, 0(s6)
+  SLT t0, s11, s9
+  BNE t0, zero, bb11
   JAL zero, bb13
 bb10:
   ADDIW s4, s3, 1
@@ -167,32 +167,17 @@ bb10:
   ADD s2, s4, zero
   JAL zero, bb5
 bb11:
-  ADDIW s8, s6, 1
-  ADDI s9, zero, 4
-  MULW s10, s8, s9
-  ADD s8, s0, s10
-  LW s9, 0(s8)
-  ADDIW s8, s6, 1
-  ADDI s10, zero, 4
-  MULW s11, s8, s10
-  ADD s8, s0, s11
-  ADDI s10, zero, 4
-  MULW s11, s6, s10
-  ADD s10, s0, s11
-  LW s11, 0(s10)
-  SW s11, 0(s8)
-  ADDI s8, zero, 4
-  MULW s10, s6, s8
-  ADD s8, s0, s10
+  LW s9, 0(s6)
+  LW s11, 0(s8)
+  SW s11, 0(s6)
   SW s9, 0(s8)
-  ADD s8, s9, zero
+  ADD s6, s9, zero
   JAL zero, bb12
 bb12:
-  ADD s9, s8, zero
-  ADDIW s10, s6, 1
-  ADD s5, s9, zero
+  ADD s8, s6, zero
+  ADD s5, s8, zero
   ADD s4, s10, zero
   JAL zero, bb8
 bb13:
-  ADD s8, s7, zero
+  ADD s6, s7, zero
   JAL zero, bb12

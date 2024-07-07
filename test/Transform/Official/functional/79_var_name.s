@@ -57,20 +57,8 @@ bb5:
   MULW s5, s2, s4
   ADDI t5, sp, 0
   ADD s4, t5, s5
-  ADDI s5, zero, 4
-  MULW s6, s2, s5
-  ADDI t6, sp, 0
-  ADD s5, t6, s6
-  LW s6, 0(s5)
-  ADDI s5, zero, 1
-  SUBW s7, s2, s5
-  ADDI s5, zero, 4
-  MULW s8, s7, s5
-  ADDI t5, sp, 0
-  ADD s5, t5, s8
-  LW s7, 0(s5)
-  ADDW s5, s6, s7
-  ADDI s6, zero, 2
+  LW s5, 0(s4)
+  ADDI s6, zero, 1
   SUBW s7, s2, s6
   ADDI s6, zero, 4
   MULW s8, s7, s6
@@ -78,25 +66,25 @@ bb5:
   ADD s6, t6, s8
   LW s7, 0(s6)
   ADDW s6, s5, s7
-  SW s6, 0(s4)
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  ADDI t5, sp, 0
-  ADD s4, t5, s5
-  LW s5, 0(s4)
-  ADDW s4, s3, s5
+  ADDI s5, zero, 2
+  SUBW s7, s2, s5
   ADDI s5, zero, 4
-  MULW s6, s2, s5
-  ADDI t6, sp, 0
-  ADD s5, t6, s6
-  LW s6, 0(s5)
-  ADD a0, s6, zero
+  MULW s8, s7, s5
+  ADDI t5, sp, 0
+  ADD s5, t5, s8
+  LW s7, 0(s5)
+  ADDW s5, s6, s7
+  SW s5, 0(s4)
+  LW s5, 0(s4)
+  ADDW s6, s3, s5
+  LW s5, 0(s4)
+  ADD a0, s5, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s5, s2, 1
-  ADD s0, s4, zero
-  ADD s1, s5, zero
+  ADDIW s4, s2, 1
+  ADD s0, s6, zero
+  ADD s1, s4, zero
   JAL zero, bb4
 bb6:
   ADD a0, s3, zero

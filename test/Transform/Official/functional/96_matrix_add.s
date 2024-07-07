@@ -47,35 +47,20 @@ bb2:
   ADD s2, t5, s3
   FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   ADDI t6, sp, 136
   ADD s2, t6, s3
-  FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   ADDI t5, sp, 120
   ADD s2, t5, s3
-  FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   ADDI t6, sp, 104
   ADD s2, t6, s3
-  FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   ADDI t5, sp, 88
   ADD s2, t5, s3
-  FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   ADDI t6, sp, 72
   ADD s2, t6, s3
-  FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -235,40 +220,24 @@ bb15:
   ADDI s11, zero, 4
   MULW t0, s10, s11
   ADD s11, s6, t0
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s0, t1
-  FLW fs0, 0(t0)
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s3, t1
-  FLW fs1, 0(t0)
+  ADD t1, s0, t0
+  FLW fs0, 0(t1)
+  ADD t1, s3, t0
+  FLW fs1, 0(t1)
   FADD.S fs2, fs0, fs1
   FSW fs2, 0(s11)
-  ADDI s11, zero, 4
-  MULW t0, s10, s11
   ADD s11, s7, t0
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s1, t1
-  FLW fs0, 0(t0)
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s4, t1
-  FLW fs1, 0(t0)
+  ADD t1, s1, t0
+  FLW fs0, 0(t1)
+  ADD t1, s4, t0
+  FLW fs1, 0(t1)
   FADD.S fs2, fs0, fs1
   FSW fs2, 0(s11)
-  ADDI s11, zero, 4
-  MULW t0, s10, s11
   ADD s11, s9, t0
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s2, t1
-  FLW fs0, 0(t0)
-  ADDI t0, zero, 4
-  MULW t1, s10, t0
-  ADD t0, s5, t1
-  FLW fs1, 0(t0)
+  ADD t1, s2, t0
+  FLW fs0, 0(t1)
+  ADD t1, s5, t0
+  FLW fs1, 0(t1)
   FADD.S fs2, fs0, fs1
   FSW fs2, 0(s11)
   ADDIW s11, s10, 1

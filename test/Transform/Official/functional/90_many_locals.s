@@ -31,8 +31,9 @@ main:
 foo:
   ADDI sp, sp, -96
   SD ra, 64(sp)
-  SD s1, 72(sp)
-  SD s0, 80(sp)
+  SD s2, 72(sp)
+  SD s1, 80(sp)
+  SD s0, 88(sp)
   ADDI t5, sp, 0
   ADD s0, t5, zero
   SW zero, 0(s0)
@@ -45,45 +46,45 @@ foo:
   ADDI s0, sp, 12
   ADDI s1, zero, 3
   SW s1, 0(s0)
-  ADDI s0, sp, 16
-  SW zero, 0(s0)
-  ADDI s0, sp, 20
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 24
-  ADDI s1, zero, 2
-  SW s1, 0(s0)
-  ADDI s0, sp, 28
-  ADDI s1, zero, 3
-  SW s1, 0(s0)
-  ADDI s0, sp, 32
-  SW zero, 0(s0)
-  ADDI s0, sp, 36
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 40
-  ADDI s1, zero, 2
-  SW s1, 0(s0)
-  ADDI s0, sp, 44
-  ADDI s1, zero, 3
-  SW s1, 0(s0)
-  ADDI s0, sp, 48
-  SW zero, 0(s0)
-  ADDI s0, sp, 52
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 56
-  ADDI s1, zero, 2
-  SW s1, 0(s0)
-  ADDI s0, sp, 60
-  ADDI s1, zero, 3
-  SW s1, 0(s0)
-  ADDI s0, sp, 12
+  ADDI s1, sp, 16
+  SW zero, 0(s1)
+  ADDI s1, sp, 20
+  ADDI s2, zero, 1
+  SW s2, 0(s1)
+  ADDI s1, sp, 24
+  ADDI s2, zero, 2
+  SW s2, 0(s1)
+  ADDI s1, sp, 28
+  ADDI s2, zero, 3
+  SW s2, 0(s1)
+  ADDI s1, sp, 32
+  SW zero, 0(s1)
+  ADDI s1, sp, 36
+  ADDI s2, zero, 1
+  SW s2, 0(s1)
+  ADDI s1, sp, 40
+  ADDI s2, zero, 2
+  SW s2, 0(s1)
+  ADDI s1, sp, 44
+  ADDI s2, zero, 3
+  SW s2, 0(s1)
+  ADDI s1, sp, 48
+  SW zero, 0(s1)
+  ADDI s1, sp, 52
+  ADDI s2, zero, 1
+  SW s2, 0(s1)
+  ADDI s1, sp, 56
+  ADDI s2, zero, 2
+  SW s2, 0(s1)
+  ADDI s1, sp, 60
+  ADDI s2, zero, 3
+  SW s2, 0(s1)
   LW s1, 0(s0)
   ADDIW s0, s1, 71
   ADD a0, s0, zero
   LD ra, 64(sp)
-  LD s1, 72(sp)
-  LD s0, 80(sp)
+  LD s2, 72(sp)
+  LD s1, 80(sp)
+  LD s0, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)

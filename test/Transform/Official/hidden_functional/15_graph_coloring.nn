@@ -43,9 +43,7 @@ while.exit94:
 then108:
   ret i32 1
 if.exit109:
-  111 = mul i32 %i, i32 4
-  112 = ptradd ptr %color, i32 %111
-  store i32 0 to ptr %112
+  store i32 0 to ptr %101
   114 = add i32 %j91.phi, i32 1
   br bb %while.cond92
 }
@@ -120,7 +118,7 @@ entry31:
   br bb %while.cond33
 while.cond33:
   select.phi164 = phi [bb %entry31, i1 ub, bb %while.exit45, i1 %select.phi163]
-  i32.phi = phi [bb %entry31, i32 0, bb %while.exit45, i32 %77]
+  i32.phi = phi [bb %entry31, i32 0, bb %while.exit45, i32 %42]
   V.load37 = load i32 from ptr @V
   38 = icmp slt i32 %i32.phi, i32 %V.load37
   39 = icmp ne i1 %38, i1 0
@@ -146,11 +144,9 @@ while.body44:
   57 = icmp ne i32 %55.load, i32 0
   br i1 %57, bb %select.then, bb %select.else
 while.exit45:
-  77 = add i32 %i32.phi, i32 1
   br bb %while.cond33
 select.then:
-  63 = mul i32 %j.phi, i32 4
-  64 = ptradd ptr %color, i32 %63
+  64 = ptradd ptr %color, i32 %54
   64.load = load i32 from ptr %64
   67 = mul i32 %i32.phi, i32 4
   68 = ptradd ptr %color, i32 %67

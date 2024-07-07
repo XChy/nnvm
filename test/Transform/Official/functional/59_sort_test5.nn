@@ -18,7 +18,7 @@ while.exit86:
   99 = sub i32 %len, i32 1
   br bb %while.cond100
 while.cond100:
-  i.phi = phi [bb %while.exit86, i32 %99, bb %while.body101, i32 %116]
+  i.phi = phi [bb %while.exit86, i32 %99, bb %while.body101, i32 %111]
   104 = icmp sgt i32 %i.phi, i32 0
   105 = icmp ne i1 %104, i1 0
   br i1 %105, bb %while.body101, bb %while.exit102
@@ -26,7 +26,6 @@ while.body101:
   109 = call i32 swap(ptr %arr, i32 0, i32 %i.phi)
   111 = sub i32 %i.phi, i32 1
   114 = call i32 heap_ajust(ptr %arr, i32 0, i32 %111)
-  116 = sub i32 %i.phi, i32 1
   br bb %while.cond100
 while.exit102:
   ret i32 0
@@ -162,15 +161,11 @@ entry:
   5 = mul i32 %i, i32 4
   6 = ptradd ptr %array, i32 %5
   6.load = load i32 from ptr %6
-  9 = mul i32 %i, i32 4
-  10 = ptradd ptr %array, i32 %9
   12 = mul i32 %j, i32 4
   13 = ptradd ptr %array, i32 %12
   13.load = load i32 from ptr %13
-  store i32 %13.load to ptr %10
-  16 = mul i32 %j, i32 4
-  17 = ptradd ptr %array, i32 %16
-  store i32 %6.load to ptr %17
+  store i32 %13.load to ptr %6
+  store i32 %6.load to ptr %13
   ret i32 0
 }
 

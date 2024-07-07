@@ -663,17 +663,15 @@ stack_pop:
   ADD s0, a0, zero
   ADD s1, s0, zero
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s3, s2, s1
-  ADD s1, s0, s3
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  ADD s2, s0, s4
+  LW s0, 0(s2)
   LW s2, 0(s1)
-  ADD s1, s0, zero
-  ADD s3, s0, zero
-  LW s0, 0(s3)
   ADDI s3, zero, 1
-  SUBW s4, s0, s3
+  SUBW s4, s2, s3
   SW s4, 0(s1)
-  ADD a0, s2, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)
@@ -787,11 +785,9 @@ stack_push:
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, s0, zero
-  ADD s3, s0, zero
-  LW s4, 0(s3)
-  ADDIW s3, s4, 1
-  SW s3, 0(s2)
-  ADD s2, s0, zero
+  LW s3, 0(s2)
+  ADDIW s4, s3, 1
+  SW s4, 0(s2)
   LW s3, 0(s2)
   ADDI s2, zero, 4
   MULW s4, s3, s2

@@ -222,10 +222,7 @@ then200:
   call void putch(i32 74)
   br bb %if.exit201
 if.exit201:
-  206 =  i1 1, i1 1
-  207 = zext i1 %206 to i32
-  208 = icmp eq i32 0, i32 %207
-  br i1 %208, bb %select.then209, bb %select.else210
+  br i1 %182, bb %select.then209, bb %select.else210
 select.then209:
   br bb %select.exit211
 select.else210:

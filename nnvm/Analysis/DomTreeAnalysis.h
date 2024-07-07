@@ -26,28 +26,35 @@ public:
     while (cur) {
       if (idom(domer, cur))
         return true;
-      cur = domTree[cur];
+      cur = domParent[cur];
     }
     return false;
   }
 
   // Immediate dominance.
   bool idom(BasicBlock *domer, BasicBlock *domee) {
-    return domTree[domee] == domer;
+    return domParent[domee] == domer;
   }
 
-  BasicBlock *getIDom(BasicBlock *node) { return domTree[node]; }
+  BasicBlock *getIDom(BasicBlock *node) { return domParent[node]; }
+
+  size_t getChildNum(BasicBlock *node) { return domChildren[node].size(); }
+  BasicBlock *getChild(BasicBlock *node, size_t index) {
+    return domChildren[node][index];
+  }
 
   // Reachable from the entry block?
-  bool isReachable(BasicBlock *BB) { return domTree.count(BB); }
+  bool isReachable(BasicBlock *BB) const { return domParent.count(BB); }
 
   // Print out the information of the dominator tree.
   void print(std::ostream &out);
 
 private:
-  std::unordered_map<BasicBlock *, BasicBlock *> domTree;
+  std::unordered_map<BasicBlock *, BasicBlock *> domParent;
+  std::unordered_map<BasicBlock *, std::vector<BasicBlock *>> domChildren;
+
   std::vector<BasicBlock *> preorderBBs;
-  std::vector<int32_t> parent;
+  std::vector<int32_t> parentDFN;
   std::unordered_map<BasicBlock *, uint32_t> dfn;
 };
 } /* namespace nnvm */

@@ -9,9 +9,8 @@ buf:
 main:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s1, 8(sp)
+  SD s0, 16(sp)
   LA s0, buf
   ADD s1, s0, zero
   ADD a0, s1, zero
@@ -20,16 +19,13 @@ main:
   ADD a0, zero, zero
   ADD a1, s0, zero
   CALL merge_sort
-  LA s1, buf
-  ADD s2, s1, zero
   ADD a0, s0, zero
-  ADD a1, s2, zero
+  ADD a1, s1, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 merge_sort:
@@ -97,15 +93,13 @@ bb5:
   ADDI s9, zero, 4
   MULW t0, s6, s9
   ADD s9, s11, t0
-  LW s11, 0(s9)
-  LA s9, buf
-  ADD t0, s9, zero
-  ADDI s9, zero, 4
-  MULW t1, s7, s9
-  ADD s9, t0, t1
   LW t0, 0(s9)
-  SLT s9, s11, t0
-  BNE s9, zero, bb10
+  ADDI t1, zero, 4
+  MULW t2, s7, t1
+  ADD t1, s11, t2
+  LW s11, 0(t1)
+  SLT t2, t0, s11
+  BNE t2, zero, bb10
   JAL zero, bb12
 bb6:
   ADD s2, s8, zero
@@ -125,28 +119,23 @@ bb9:
   BNE s9, zero, bb5
   JAL zero, bb6
 bb10:
-  LA s9, buf
-  ADDI s11, s9, 400
-  ADDI s9, zero, 4
-  MULW t0, s8, s9
-  ADD s9, s11, t0
   LA s11, buf
-  ADD t0, s11, zero
+  ADDI t0, s11, 400
   ADDI s11, zero, 4
-  MULW t1, s6, s11
-  ADD s11, t0, t1
-  LW t0, 0(s11)
-  SW t0, 0(s9)
+  MULW t2, s8, s11
+  ADD s11, t0, t2
+  LW t0, 0(s9)
+  SW t0, 0(s11)
   ADDIW s9, s6, 1
   ADD s11, s7, zero
   ADD t0, s9, zero
   JAL zero, bb11
 bb11:
   ADD s9, t0, zero
-  ADD t1, s11, zero
-  ADDIW t2, s8, 1
-  ADD s2, t2, zero
-  ADD s3, t1, zero
+  ADD t2, s11, zero
+  ADDIW a0, s8, 1
+  ADD s2, a0, zero
+  ADD s3, t2, zero
   ADD s5, s9, zero
   JAL zero, bb4
 bb12:
@@ -155,13 +144,8 @@ bb12:
   ADDI s2, zero, 4
   MULW s5, s8, s2
   ADD s2, s3, s5
-  LA s3, buf
-  ADD s5, s3, zero
-  ADDI s3, zero, 4
-  MULW s9, s7, s3
-  ADD s3, s5, s9
-  LW s5, 0(s3)
-  SW s5, 0(s2)
+  LW s3, 0(t1)
+  SW s3, 0(s2)
   ADDIW s2, s7, 1
   ADD s11, s2, zero
   ADD t0, s6, zero
@@ -239,10 +223,8 @@ bb20:
   MULW s11, s3, s5
   ADD s5, s9, s11
   LA s9, buf
-  ADDI s11, s9, 400
-  ADDI s9, zero, 4
-  MULW t0, s3, s9
-  ADD s9, s11, t0
+  ADDI t0, s9, 400
+  ADD s9, t0, s11
   LW s11, 0(s9)
   SW s11, 0(s5)
   ADDIW s5, s3, 1

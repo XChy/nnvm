@@ -186,11 +186,9 @@ entry121:
   126 = mul i32 %124.load, i32 4
   127 = ptradd ptr %s, i32 %126
   127.load = load i32 from ptr %127
-  130 = ptradd ptr %s, i32 0
-  132 = ptradd ptr %s, i32 0
-  132.load = load i32 from ptr %132
+  132.load = load i32 from ptr %124
   134 = sub i32 %132.load, i32 1
-  store i32 %134 to ptr %130
+  store i32 %134 to ptr %124
   ret i32 %127.load
 }
 
@@ -239,12 +237,10 @@ if.exit106:
 void stack_push(ptr s, i32 v) {
 entry107:
   110 = ptradd ptr %s, i32 0
-  112 = ptradd ptr %s, i32 0
-  112.load = load i32 from ptr %112
+  112.load = load i32 from ptr %110
   114 = add i32 %112.load, i32 1
   store i32 %114 to ptr %110
-  116 = ptradd ptr %s, i32 0
-  116.load = load i32 from ptr %116
+  116.load = load i32 from ptr %110
   118 = mul i32 %116.load, i32 4
   119 = ptradd ptr %s, i32 %118
   store i32 %v to ptr %119

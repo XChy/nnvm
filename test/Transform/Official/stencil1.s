@@ -16,20 +16,20 @@ width:
 .word 0x00000400
 .section .text
 main:
-  ADDI sp, sp, -400
-  SD ra, 296(sp)
-  SD s4, 304(sp)
-  SD s1, 312(sp)
-  SD s0, 320(sp)
-  SD s5, 328(sp)
-  SD s7, 336(sp)
-  SD s10, 344(sp)
-  SD s11, 352(sp)
-  SD s9, 360(sp)
-  SD s8, 368(sp)
-  SD s6, 376(sp)
-  SD s3, 384(sp)
-  SD s2, 392(sp)
+  ADDI sp, sp, -416
+  SD ra, 304(sp)
+  SD s4, 312(sp)
+  SD s1, 320(sp)
+  SD s0, 328(sp)
+  SD s5, 336(sp)
+  SD s7, 344(sp)
+  SD s10, 352(sp)
+  SD s11, 360(sp)
+  SD s9, 368(sp)
+  SD s8, 376(sp)
+  SD s6, 384(sp)
+  SD s3, 392(sp)
+  SD s2, 400(sp)
   LA s0, image_in
   ADD a0, s0, zero
   CALL getarray
@@ -101,11 +101,11 @@ bb2:
   ADD s2, s5, zero
   ADD s3, s6, zero
   ADD t4, s7, zero
-  SW t4, 288(sp)
+  SW t4, 296(sp)
   ADD t4, s8, zero
-  SW t4, 272(sp)
+  SW t4, 280(sp)
   ADD t4, s9, zero
-  SW t4, 256(sp)
+  SW t4, 264(sp)
   ADD t4, s10, zero
   SW t4, 240(sp)
   ADD t4, s11, zero
@@ -131,13 +131,13 @@ bb4:
   LW t3, 240(sp)
   ADD t4, t3, zero
   SW t4, 128(sp)
-  LW t3, 256(sp)
+  LW t3, 264(sp)
   ADD t4, t3, zero
   SW t4, 136(sp)
-  LW t3, 272(sp)
+  LW t3, 280(sp)
   ADD t4, t3, zero
   SW t4, 144(sp)
-  LW t3, 288(sp)
+  LW t3, 296(sp)
   ADD t4, t3, zero
   SW t4, 152(sp)
   ADD t4, s3, zero
@@ -164,23 +164,19 @@ bb5:
   LW s10, 0(s8)
   MULW s8, s9, s10
   LW t4, 96(sp)
-  ADDW s9, s8, t4
+  ADDW s10, s8, t4
   ADDI s8, zero, 1
-  SUBW t4, s9, s8
+  SUBW t4, s10, s8
   SW t4, 216(sp)
-  ADDI s8, zero, 1
-  SUBW s9, s11, s8
   LA s8, width
   LW s10, 0(s8)
   MULW s8, s9, s10
   LW t3, 96(sp)
   ADDW t4, s8, t3
   SW t4, 224(sp)
-  ADDI s8, zero, 1
-  SUBW s10, s11, s8
   LA s8, width
-  LW s9, 0(s8)
-  MULW s8, s10, s9
+  LW s10, 0(s8)
+  MULW s8, s9, s10
   LW t4, 96(sp)
   ADDW s9, s8, t4
   ADDIW t4, s9, 1
@@ -192,46 +188,48 @@ bb5:
   ADDW s10, s9, t4
   ADDI s9, zero, 1
   SUBW t4, s10, s9
-  SW t4, 264(sp)
+  SW t4, 272(sp)
   LA s9, width
   LW s10, 0(s9)
   MULW s9, s11, s10
   LW t3, 96(sp)
   ADDW t4, s9, t3
-  SW t4, 248(sp)
+  SW t4, 256(sp)
   LA s9, width
   LW s7, 0(s9)
   MULW s9, s11, s7
   LW t4, 96(sp)
   ADDW s7, s9, t4
   ADDIW t4, s7, 1
-  SW t4, 280(sp)
-  ADDIW s7, s11, 1
-  LA s10, width
-  LW s6, 0(s10)
-  MULW s10, s7, s6
+  SW t4, 288(sp)
+  ADDIW t4, s11, 1
+  SW t4, 248(sp)
+  LA s7, width
+  LW s10, 0(s7)
+  LW t4, 248(sp)
+  MULW s7, t4, s10
   LW t4, 96(sp)
-  ADDW s6, s10, t4
+  ADDW s10, s7, t4
   ADDI s7, zero, 1
-  SUBW s10, s6, s7
-  ADDIW s6, s11, 1
+  SUBW s6, s10, s7
+  LA s7, width
+  LW s10, 0(s7)
+  LW t4, 248(sp)
+  MULW s7, t4, s10
+  LW t4, 96(sp)
+  ADDW s10, s7, t4
   LA s7, width
   LW s8, 0(s7)
-  MULW s7, s6, s8
-  LW t4, 96(sp)
-  ADDW s6, s7, t4
-  ADDIW s7, s11, 1
-  LA s8, width
-  LW s5, 0(s8)
-  MULW s8, s7, s5
-  LW t4, 96(sp)
-  ADDW s5, s8, t4
-  ADDIW s7, s5, 1
-  ADDI s5, zero, 4
   LW t4, 248(sp)
-  MULW s8, t4, s5
-  LA s5, image_in
-  ADD s9, s5, s8
+  MULW s7, t4, s8
+  LW t4, 96(sp)
+  ADDW s8, s7, t4
+  ADDIW s7, s8, 1
+  ADDI s8, zero, 4
+  LW t4, 256(sp)
+  MULW s5, t4, s8
+  LA s8, image_in
+  ADD s9, s8, s5
   LW s5, 0(s9)
   ADDI s8, zero, 8
   MULW s9, s5, s8
@@ -257,27 +255,27 @@ bb5:
   LW s4, 0(s9)
   SUBW s5, s8, s4
   ADDI s4, zero, 4
-  LW t4, 264(sp)
+  LW t4, 272(sp)
   MULW s8, t4, s4
   LA s4, image_in
   ADD s9, s4, s8
   LW s4, 0(s9)
   SUBW s8, s5, s4
   ADDI s4, zero, 4
-  LW t4, 280(sp)
+  LW t4, 288(sp)
   MULW s5, t4, s4
   LA s4, image_in
   ADD s9, s4, s5
   LW s4, 0(s9)
   SUBW s5, s8, s4
   ADDI s4, zero, 4
-  MULW s8, s10, s4
+  MULW s8, s6, s4
   LA s4, image_in
   ADD s9, s4, s8
   LW s4, 0(s9)
   SUBW s8, s5, s4
   ADDI s4, zero, 4
-  MULW s5, s6, s4
+  MULW s5, s10, s4
   LA s4, image_in
   ADD s9, s4, s5
   LW s4, 0(s9)
@@ -301,20 +299,19 @@ bb5:
   CALL cutout
   ADD s4, a0, zero
   SW s4, 0(s5)
-  ADDIW s4, s11, 1
   ADD s0, s8, zero
   ADD s1, s7, zero
-  ADD s2, s6, zero
-  ADD s3, s10, zero
-  LW t3, 280(sp)
+  ADD s2, s10, zero
+  ADD s3, s6, zero
+  LW t3, 288(sp)
   ADD t4, t3, zero
-  SW t4, 288(sp)
-  LW t3, 264(sp)
+  SW t4, 296(sp)
+  LW t3, 272(sp)
   ADD t4, t3, zero
-  SW t4, 272(sp)
-  LW t3, 248(sp)
+  SW t4, 280(sp)
+  LW t3, 256(sp)
   ADD t4, t3, zero
-  SW t4, 256(sp)
+  SW t4, 264(sp)
   LW t3, 232(sp)
   ADD t4, t3, zero
   SW t4, 240(sp)
@@ -324,7 +321,8 @@ bb5:
   LW t3, 216(sp)
   ADD t4, t3, zero
   SW t4, 200(sp)
-  ADD t4, s4, zero
+  LW t3, 248(sp)
+  ADD t4, t3, zero
   SW t4, 192(sp)
   JAL zero, bb4
 bb6:
@@ -435,8 +433,6 @@ bb11:
   MULW s3, s1, s2
   LA s2, image_out
   ADD s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
   LA s2, image_in
   ADD s5, s2, s3
   LW s2, 0(s5)
@@ -484,20 +480,20 @@ bb12:
   CALL putarray
   LW t4, 0(sp)
   ADD a0, t4, zero
-  LD ra, 296(sp)
-  LD s4, 304(sp)
-  LD s1, 312(sp)
-  LD s0, 320(sp)
-  LD s5, 328(sp)
-  LD s7, 336(sp)
-  LD s10, 344(sp)
-  LD s11, 352(sp)
-  LD s9, 360(sp)
-  LD s8, 368(sp)
-  LD s6, 376(sp)
-  LD s3, 384(sp)
-  LD s2, 392(sp)
-  ADDI sp, sp, 400
+  LD ra, 304(sp)
+  LD s4, 312(sp)
+  LD s1, 320(sp)
+  LD s0, 328(sp)
+  LD s5, 336(sp)
+  LD s7, 344(sp)
+  LD s10, 352(sp)
+  LD s11, 360(sp)
+  LD s9, 368(sp)
+  LD s8, 376(sp)
+  LD s6, 384(sp)
+  LD s3, 392(sp)
+  LD s2, 400(sp)
+  ADDI sp, sp, 416
   JALR zero, 0(ra)
 cutout:
   ADDI sp, sp, -48

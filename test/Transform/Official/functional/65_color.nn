@@ -21,19 +21,7 @@ entry8:
   35 = icmp ne i32 %32.load, i32 -1
   br i1 %35, bb %then36, bb %if.exit37
 then36:
-  39 = mul i32 %a, i32 2939328
-  40 = ptradd ptr @dp, i32 %39
-  42 = mul i32 %b, i32 163296
-  43 = ptradd ptr %40, i32 %42
-  45 = mul i32 %c, i32 9072
-  46 = ptradd ptr %43, i32 %45
-  48 = mul i32 %d, i32 504
-  49 = ptradd ptr %46, i32 %48
-  51 = mul i32 %e, i32 28
-  52 = ptradd ptr %49, i32 %51
-  54 = mul i32 %last, i32 4
-  55 = ptradd ptr %52, i32 %54
-  55.load = load i32 from ptr %55
+  55.load = load i32 from ptr %32
   ret i32 %55.load
 if.exit37:
   59 = add i32 %a, i32 %b
@@ -117,34 +105,10 @@ then155:
   br bb %if.exit156
 if.exit156:
   ans.phi = phi [bb %if.exit135, i32 %ans.phi340, bb %then155, i32 %170]
-  172 = mul i32 %a, i32 2939328
-  173 = ptradd ptr @dp, i32 %172
-  175 = mul i32 %b, i32 163296
-  176 = ptradd ptr %173, i32 %175
-  178 = mul i32 %c, i32 9072
-  179 = ptradd ptr %176, i32 %178
-  181 = mul i32 %d, i32 504
-  182 = ptradd ptr %179, i32 %181
-  184 = mul i32 %e, i32 28
-  185 = ptradd ptr %182, i32 %184
-  187 = mul i32 %last, i32 4
-  188 = ptradd ptr %185, i32 %187
   mod.load190 = load i32 from ptr @mod
   191 = srem i32 %ans.phi, i32 %mod.load190
-  store i32 %191 to ptr %188
-  193 = mul i32 %a, i32 2939328
-  194 = ptradd ptr @dp, i32 %193
-  196 = mul i32 %b, i32 163296
-  197 = ptradd ptr %194, i32 %196
-  199 = mul i32 %c, i32 9072
-  200 = ptradd ptr %197, i32 %199
-  202 = mul i32 %d, i32 504
-  203 = ptradd ptr %200, i32 %202
-  205 = mul i32 %e, i32 28
-  206 = ptradd ptr %203, i32 %205
-  208 = mul i32 %last, i32 4
-  209 = ptradd ptr %206, i32 %208
-  209.load = load i32 from ptr %209
+  store i32 %191 to ptr %32
+  209.load = load i32 from ptr %32
   ret i32 %209.load
 }
 
@@ -274,14 +238,10 @@ while.body293:
   301 = ptradd ptr @list, i32 %300
   302 = call i32 getint()
   store i32 %302 to ptr %301
-  304 = mul i32 %i.phi, i32 4
-  305 = ptradd ptr @list, i32 %304
-  305.load = load i32 from ptr %305
+  305.load = load i32 from ptr %301
   307 = mul i32 %305.load, i32 4
   308 = ptradd ptr @cns, i32 %307
-  310 = mul i32 %i.phi, i32 4
-  311 = ptradd ptr @list, i32 %310
-  311.load = load i32 from ptr %311
+  311.load = load i32 from ptr %301
   313 = mul i32 %311.load, i32 4
   314 = ptradd ptr @cns, i32 %313
   314.load = load i32 from ptr %314

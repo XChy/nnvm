@@ -89,8 +89,6 @@ bb7:
   ADD a0, s1, zero
   ADD a1, s3, zero
   CALL move
-  ADDI s4, zero, 1
-  SUBW s5, s0, s4
   ADD a0, s5, zero
   ADD a1, s2, zero
   ADD a2, s1, zero

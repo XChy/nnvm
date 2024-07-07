@@ -17,8 +17,7 @@ entry117:
 then126:
   ret i32 1
 if.exit127:
-  130 = mul i32 %x, i32 4
-  131 = ptradd ptr @head, i32 %130
+  131 = ptradd ptr @head, i32 %121
   131.load = load i32 from ptr %131
   br bb %while.cond133
 while.cond133:
@@ -52,8 +51,7 @@ select.exit155:
 then162:
   ret i32 1
 if.exit163:
-  165 = mul i32 %i128.phi, i32 4
-  166 = ptradd ptr @next, i32 %165
+  166 = ptradd ptr @next, i32 %142
   166.load = load i32 from ptr %166
   br bb %while.cond133
 }
@@ -96,10 +94,8 @@ entry51:
   63 = ptradd ptr @head, i32 %62
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  66 = mul i32 %from, i32 4
-  67 = ptradd ptr @head, i32 %66
   cnt.load68 = load i32 from ptr @cnt
-  store i32 %cnt.load68 to ptr %67
+  store i32 %cnt.load68 to ptr %63
   cnt.load69 = load i32 from ptr @cnt
   70 = add i32 %cnt.load69, i32 1
   store i32 %70 to ptr @cnt
@@ -113,10 +109,8 @@ entry51:
   80 = ptradd ptr @head, i32 %79
   80.load = load i32 from ptr %80
   store i32 %80.load to ptr %77
-  83 = mul i32 %To, i32 4
-  84 = ptradd ptr @head, i32 %83
   cnt.load85 = load i32 from ptr @cnt
-  store i32 %cnt.load85 to ptr %84
+  store i32 %cnt.load85 to ptr %80
   cnt.load86 = load i32 from ptr @cnt
   87 = add i32 %cnt.load86, i32 1
   store i32 %87 to ptr @cnt

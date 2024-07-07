@@ -112,8 +112,8 @@ bb3:
   ADDI s0, a5, 92
   LW s7, 0(s0)
   ADDI s0, zero, 4
-  MULW a5, s7, s0
-  ADD s0, a4, a5
+  MULW a6, s7, s0
+  ADD s0, a4, a6
   LW s7, 0(s0)
   ADDI s0, zero, 4
   MULW a4, s7, s0
@@ -187,11 +187,7 @@ bb3:
   MULW s3, s2, s0
   ADD s0, s1, s3
   LW s1, 0(s0)
-  LUI s0, 2
-  ADDI s0, s0, -592
-  LA s2, array
-  ADD s3, s2, s0
-  ADDI s0, s3, 72
+  ADDI s0, a5, 72
   LW s2, 0(s0)
   ADDI s0, zero, 400
   MULW s3, s2, s0

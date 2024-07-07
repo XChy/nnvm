@@ -123,13 +123,9 @@ entry66:
 then74:
   ret i32 %x
 else76:
-  80 = mul i32 %x, i32 4
-  81 = ptradd ptr @fa, i32 %80
-  81.load = load i32 from ptr %81
+  81.load = load i32 from ptr %70
   83 = call i32 find(i32 %81.load)
-  85 = mul i32 %x, i32 4
-  86 = ptradd ptr @fa, i32 %85
-  store i32 %83 to ptr %86
+  store i32 %83 to ptr %70
   ret i32 %83
 }
 

@@ -399,15 +399,7 @@ bb17:
   MULW s8, t4, s1
   LA s1, tape
   ADD s9, s1, s8
-  ADDI s1, zero, 4
-  LUI t4, 1
-  ADDI t4, t4, -2008
-  ADD t4, t4, sp
-  LW t4, 0(t4)
-  MULW s8, t4, s1
-  LA s1, tape
-  ADD s10, s1, s8
-  LW s1, 0(s10)
+  LW s1, 0(s9)
   ADDIW s8, s1, 1
   SW s8, 0(s9)
   LUI t4, 1
@@ -474,15 +466,7 @@ bb20:
   MULW s2, t4, s0
   LA s0, tape
   ADD s3, s0, s2
-  ADDI s0, zero, 4
-  LUI t4, 1
-  ADDI t4, t4, -2008
-  ADD t4, t4, sp
-  LW t4, 0(t4)
-  MULW s2, t4, s0
-  LA s0, tape
-  ADD s4, s0, s2
-  LW s0, 0(s4)
+  LW s0, 0(s3)
   ADDI s2, zero, 1
   SUBW s4, s0, s2
   SW s4, 0(s3)
@@ -662,22 +646,18 @@ bb32:
   JAL zero, bb33
 bb33:
   ADD s10, s6, zero
-  ADDI a3, zero, 4
-  MULW a4, s5, a3
-  LA a3, program
-  ADD a5, a3, a4
-  LW a3, 0(a5)
-  XORI a4, a3, 91
-  SLTIU a3, a4, 1
-  BNE a3, zero, bb34
+  LW a4, 0(a3)
+  XORI a5, a4, 91
+  SLTIU a4, a5, 1
+  BNE a4, zero, bb34
   JAL zero, bb51
 bb34:
-  ADDIW a3, s10, 1
-  ADD a4, a3, zero
+  ADDIW a4, s10, 1
+  ADD a5, a4, zero
   JAL zero, bb35
 bb35:
-  ADD a3, a4, zero
-  ADD s0, a3, zero
+  ADD a4, a5, zero
+  ADD s0, a4, zero
   ADD s2, s5, zero
   JAL zero, bb29
 bb36:
@@ -881,7 +861,7 @@ bb50:
   ADD s6, s4, zero
   JAL zero, bb33
 bb51:
-  ADD a4, s10, zero
+  ADD a5, s10, zero
   JAL zero, bb35
 bb52:
   LUI t4, 1

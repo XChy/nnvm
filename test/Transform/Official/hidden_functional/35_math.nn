@@ -99,19 +99,13 @@ entry152:
   185 = fcmp ole float %181, float %184
   br i1 %185, bb %then186, bb %if.exit187
 then186:
-  190 = fadd float %170, float %175
-  193 = fadd float %170, float %175
-  195 = fsub float %193, float %A
-  196 = fdiv float %195, float 15.000000
-  197 = fadd float %190, float %196
+  196 = fdiv float %180, float 15.000000
+  197 = fadd float %178, float %196
   ret float %197
 if.exit187:
-  201 = si2f i32 2 to float
-  202 = fdiv float %eps, float %201
+  202 = fdiv float %eps, float %163
   205 = call float asr5(float %a, float %165, float %202, float %170, i32 %flag)
-  209 = si2f i32 2 to float
-  210 = fdiv float %eps, float %209
-  213 = call float asr5(float %165, float %b, float %210, float %175, i32 %flag)
+  213 = call float asr5(float %165, float %b, float %202, float %175, i32 %flag)
   214 = fadd float %205, float %213
   ret float %214
 }
@@ -132,8 +126,7 @@ then113:
   121 = fadd float %116, float %120
   123 = call float F1(float %b)
   124 = fadd float %121, float %123
-  127 = fsub float %b, float %a
-  128 = fmul float %124, float %127
+  128 = fmul float %124, float %107
   129 = si2f i32 6 to float
   130 = fdiv float %128, float %129
   ret float %130
@@ -148,8 +141,7 @@ then133:
   141 = fadd float %136, float %140
   143 = call float F2(float %b)
   144 = fadd float %141, float %143
-  147 = fsub float %b, float %a
-  148 = fmul float %144, float %147
+  148 = fmul float %144, float %107
   149 = si2f i32 6 to float
   150 = fdiv float %148, float %149
   ret float %150
@@ -164,8 +156,7 @@ entry89:
   94 = si2f i32 1 to float
   95 = fsub float %94, float %93
   96 = call float my_sqrt(float %95)
-  97 = si2f i32 1 to float
-  98 = fdiv float %97, float %96
+  98 = fdiv float %94, float %96
   ret float %98
 }
 
@@ -175,8 +166,7 @@ entry43:
   47 = fcmp ogt float %x, float %46
   br i1 %47, bb %then48, bb %if.exit49
 then48:
-  51 = si2f i32 100 to float
-  52 = fdiv float %x, float %51
+  52 = fdiv float %x, float %46
   53 = call float my_sqrt(float %52)
   54 = fmul float 10.000000, float %53
   ret float %54
@@ -199,8 +189,7 @@ while.cond69:
 while.body70:
   77 = fdiv float %x, float %t.phi
   78 = fadd float %t.phi, float %77
-  79 = si2f i32 2 to float
-  80 = fdiv float %78, float %79
+  80 = fdiv float %78, float %61
   82 = sub i32 %c.phi, i32 1
   br bb %while.cond69
 while.exit71:
@@ -292,15 +281,12 @@ then348:
   br bb %if.exit349
 if.exit349:
   call void putch(i32 32)
-  357 = si2f i32 0 to float
-  358 = fcmp ogt float %326, float %357
-  br i1 %358, bb %select.then, bb %select.else
+  br i1 %347, bb %select.then, bb %select.else
 else:
   call void putch(i32 45)
   br bb %if.exit349
 select.then:
-  364 = si2f i32 0 to float
-  365 = fcmp ogt float %328, float %364
+  365 = fcmp ogt float %328, float %346
   br bb %select.exit
 select.else:
   br bb %select.exit
@@ -313,9 +299,7 @@ then367:
   br bb %if.exit368
 if.exit368:
   call void putch(i32 32)
-  377 = si2f i32 0 to float
-  378 = fcmp ogt float %326, float %377
-  br i1 %378, bb %then379, bb %else381
+  br i1 %347, bb %then379, bb %else381
 else369:
   call void putch(i32 45)
   br bb %if.exit368

@@ -38,8 +38,7 @@ while.cond225:
   x.phi353 = phi [bb %while.body217, i32 %224, bb %if.exit266, i32 %258]
   br bb %while.body226
 while.body226:
-  232 = sdiv i32 %c, i32 2
-  233 = sub i32 %j.phi349, i32 %232
+  233 = sub i32 %j.phi349, i32 %223
   br bb %while.cond234
 while.exit227:
   curr.phi368 = phi [bb %while.cond225, i32 %curr.phi369, bb %then265, i32 %curr.phi]
@@ -61,16 +60,14 @@ while.body235:
   245 = call i32 getvalue(ptr %input, i32 %n, i32 %m, i32 %x.phi353, i32 %y.phi359)
   246 = call i32 reduce(i32 %kernelid, i32 %curr.phi367, i32 %245)
   248 = add i32 %y.phi359, i32 1
-  252 = sdiv i32 %c, i32 2
-  253 = add i32 %j.phi349, i32 %252
+  253 = add i32 %j.phi349, i32 %223
   254 = icmp sge i32 %248, i32 %253
   br i1 %254, bb %then255, bb %if.exit256
 while.exit236:
   curr.phi = phi [bb %while.cond234, i32 %curr.phi367, bb %then255, i32 %246]
   y.phi = phi [bb %while.cond234, i32 %y.phi359, bb %then255, i32 %248]
   258 = add i32 %x.phi353, i32 1
-  262 = sdiv i32 %c, i32 2
-  263 = add i32 %i206.phi347, i32 %262
+  263 = add i32 %i206.phi347, i32 %223
   264 = icmp sge i32 %258, i32 %263
   br i1 %264, bb %then265, bb %if.exit266
 then255:
@@ -329,8 +326,7 @@ while.cond292:
 while.body293:
   300 = mul i32 %i291.phi, i32 4
   301 = ptradd ptr %dst, i32 %300
-  303 = mul i32 %i291.phi, i32 4
-  304 = ptradd ptr %src, i32 %303
+  304 = ptradd ptr %src, i32 %300
   304.load = load i32 from ptr %304
   store i32 %304.load to ptr %301
   307 = add i32 %i291.phi, i32 1

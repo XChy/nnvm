@@ -209,23 +209,13 @@ bb21:
   MULW t0, s11, s10
   ADD s10, s1, t0
   LW s11, 0(s10)
-  MULW s10, s8, s3
-  ADDW t0, s10, s5
-  ADDI s10, zero, 4
-  MULW t1, t0, s10
-  ADD s10, s1, t1
-  MULW t0, s5, s2
-  ADDW t1, t0, s8
+  MULW t0, s8, s3
+  ADDW t1, t0, s5
   ADDI t0, zero, 4
   MULW t2, t1, t0
   ADD t0, s1, t2
-  LW t1, 0(t0)
-  SW t1, 0(s10)
-  MULW s10, s5, s2
-  ADDW t0, s10, s8
-  ADDI s10, zero, 4
-  MULW t1, t0, s10
-  ADD s10, s1, t1
+  LW t1, 0(s10)
+  SW t1, 0(t0)
   SW s11, 0(s10)
   ADDIW s10, s8, 1
   ADD s7, s11, zero

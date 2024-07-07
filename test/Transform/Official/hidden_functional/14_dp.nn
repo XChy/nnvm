@@ -26,9 +26,7 @@ while.body:
   31 = ptradd ptr @dp, i32 %30
   33 = ptradd ptr %31, i32 0
   33.load = load i32 from ptr %33
-  36 = mul i32 %i.phi183, i32 8
-  37 = ptradd ptr @t, i32 %36
-  39 = ptradd ptr %37, i32 4
+  39 = ptradd ptr %18, i32 4
   39.load = load i32 from ptr %39
   41 = add i32 %33.load, i32 %39.load
   store i32 %41 to ptr %27
@@ -46,7 +44,7 @@ while.body45:
 while.exit46:
   br bb %while.cond153
 while.cond51:
-  j.phi185 = phi [bb %while.body45, i32 1, bb %if.exit, i32 %149]
+  j.phi185 = phi [bb %while.body45, i32 1, bb %if.exit, i32 %70]
   56 = icmp sle i32 %j.phi185, i32 %7
   57 = icmp ne i1 %56, i1 0
   br i1 %57, bb %while.body52, bb %while.exit53
@@ -65,20 +63,11 @@ while.body52:
   73 = ptradd ptr %68, i32 %72
   73.load = load i32 from ptr %73
   75 = add i32 %64.load, i32 %73.load
-  77 = sub i32 %i.phi, i32 1
-  78 = mul i32 %77, i32 140
-  79 = ptradd ptr @dp, i32 %78
   81 = sub i32 %j.phi185, i32 1
   82 = mul i32 %81, i32 4
-  83 = ptradd ptr %79, i32 %82
+  83 = ptradd ptr %61, i32 %82
   83.load = load i32 from ptr %83
-  86 = mul i32 %i.phi, i32 8
-  87 = ptradd ptr @t, i32 %86
-  89 = add i32 %j.phi185, i32 1
-  90 = srem i32 %89, i32 2
-  91 = mul i32 %90, i32 4
-  92 = ptradd ptr %87, i32 %91
-  92.load = load i32 from ptr %92
+  92.load = load i32 from ptr %73
   94 = add i32 %83.load, i32 %92.load
   95 = icmp sgt i32 %75, i32 %94
   br i1 %95, bb %then, bb %else
@@ -88,46 +77,20 @@ while.exit53:
 then:
   100 = mul i32 %i.phi, i32 140
   101 = ptradd ptr @dp, i32 %100
-  103 = mul i32 %j.phi185, i32 4
-  104 = ptradd ptr %101, i32 %103
-  106 = sub i32 %i.phi, i32 1
-  107 = mul i32 %106, i32 140
-  108 = ptradd ptr @dp, i32 %107
-  110 = mul i32 %j.phi185, i32 4
-  111 = ptradd ptr %108, i32 %110
-  111.load = load i32 from ptr %111
-  114 = mul i32 %i.phi, i32 8
-  115 = ptradd ptr @t, i32 %114
-  117 = add i32 %j.phi185, i32 1
-  118 = srem i32 %117, i32 2
-  119 = mul i32 %118, i32 4
-  120 = ptradd ptr %115, i32 %119
-  120.load = load i32 from ptr %120
+  104 = ptradd ptr %101, i32 %63
+  111.load = load i32 from ptr %64
+  120.load = load i32 from ptr %73
   122 = add i32 %111.load, i32 %120.load
   store i32 %122 to ptr %104
   br bb %if.exit
 if.exit:
-  149 = add i32 %j.phi185, i32 1
   br bb %while.cond51
 else:
   124 = mul i32 %i.phi, i32 140
   125 = ptradd ptr @dp, i32 %124
-  127 = mul i32 %j.phi185, i32 4
-  128 = ptradd ptr %125, i32 %127
-  130 = sub i32 %i.phi, i32 1
-  131 = mul i32 %130, i32 140
-  132 = ptradd ptr @dp, i32 %131
-  134 = sub i32 %j.phi185, i32 1
-  135 = mul i32 %134, i32 4
-  136 = ptradd ptr %132, i32 %135
-  136.load = load i32 from ptr %136
-  139 = mul i32 %i.phi, i32 8
-  140 = ptradd ptr @t, i32 %139
-  142 = add i32 %j.phi185, i32 1
-  143 = srem i32 %142, i32 2
-  144 = mul i32 %143, i32 4
-  145 = ptradd ptr %140, i32 %144
-  145.load = load i32 from ptr %145
+  128 = ptradd ptr %125, i32 %63
+  136.load = load i32 from ptr %83
+  145.load = load i32 from ptr %73
   147 = add i32 %136.load, i32 %145.load
   store i32 %147 to ptr %128
   br bb %if.exit
@@ -148,11 +111,7 @@ while.body154:
 while.exit155:
   ret i32 %res.phi188
 then169:
-  172 = mul i32 %6, i32 140
-  173 = ptradd ptr @dp, i32 %172
-  175 = mul i32 %j.phi, i32 4
-  176 = ptradd ptr %173, i32 %175
-  176.load = load i32 from ptr %176
+  176.load = load i32 from ptr %166
   br bb %if.exit170
 if.exit170:
   res.phi = phi [bb %while.body154, i32 %res.phi188, bb %then169, i32 %176.load]

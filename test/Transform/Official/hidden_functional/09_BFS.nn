@@ -57,14 +57,11 @@ while.body152:
 while.exit153:
   br bb %while.cond132
 then169:
-  172 = mul i32 %i146.phi, i32 4
-  173 = ptradd ptr @to, i32 %172
-  173.load = load i32 from ptr %173
+  173.load = load i32 from ptr %160
   call void inqueue(i32 %173.load)
   br bb %if.exit170
 if.exit170:
-  177 = mul i32 %i146.phi, i32 4
-  178 = ptradd ptr @next, i32 %177
+  178 = ptradd ptr @next, i32 %159
   178.load = load i32 from ptr %178
   br bb %while.cond151
 while.cond181:
@@ -138,10 +135,8 @@ entry51:
   63 = ptradd ptr @head, i32 %62
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  66 = mul i32 %from, i32 4
-  67 = ptradd ptr @head, i32 %66
   cnt.load68 = load i32 from ptr @cnt
-  store i32 %cnt.load68 to ptr %67
+  store i32 %cnt.load68 to ptr %63
   cnt.load69 = load i32 from ptr @cnt
   70 = add i32 %cnt.load69, i32 1
   store i32 %70 to ptr @cnt
@@ -155,10 +150,8 @@ entry51:
   80 = ptradd ptr @head, i32 %79
   80.load = load i32 from ptr %80
   store i32 %80.load to ptr %77
-  83 = mul i32 %To, i32 4
-  84 = ptradd ptr @head, i32 %83
   cnt.load85 = load i32 from ptr @cnt
-  store i32 %cnt.load85 to ptr %84
+  store i32 %cnt.load85 to ptr %80
   cnt.load86 = load i32 from ptr @cnt
   87 = add i32 %cnt.load86, i32 1
   store i32 %87 to ptr @cnt

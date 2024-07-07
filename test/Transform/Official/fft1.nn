@@ -27,11 +27,9 @@ while.exit95:
   136 = sdiv i32 %n, i32 2
   139 = call i32 multiply(i32 %w, i32 %w)
   140 = call i32 fft(ptr %arr, i32 %begin_pos, i32 %136, i32 %139)
-  143 = sdiv i32 %n, i32 2
-  144 = add i32 %begin_pos, i32 %143
-  146 = sdiv i32 %n, i32 2
+  144 = add i32 %begin_pos, i32 %136
   149 = call i32 multiply(i32 %w, i32 %w)
-  150 = call i32 fft(ptr %arr, i32 %144, i32 %146, i32 %149)
+  150 = call i32 fft(ptr %arr, i32 %144, i32 %136, i32 %149)
   br bb %while.cond152
 then103:
   107 = sdiv i32 %i92.phi303, i32 2
@@ -61,8 +59,7 @@ else105:
 while.cond152:
   wn.phi = phi [bb %while.exit95, i32 1, bb %while.body153, i32 %208]
   i92.phi = phi [bb %while.exit95, i32 0, bb %while.body153, i32 %210]
-  157 = sdiv i32 %n, i32 2
-  158 = icmp slt i32 %i92.phi, i32 %157
+  158 = icmp slt i32 %i92.phi, i32 %136
   159 = icmp ne i1 %158, i1 0
   br i1 %159, bb %while.body153, bb %while.exit154
 while.body153:
@@ -70,32 +67,22 @@ while.body153:
   164 = mul i32 %163, i32 4
   165 = ptradd ptr %arr, i32 %164
   165.load = load i32 from ptr %165
-  170 = add i32 %begin_pos, i32 %i92.phi
-  172 = sdiv i32 %n, i32 2
-  173 = add i32 %170, i32 %172
+  173 = add i32 %163, i32 %136
   174 = mul i32 %173, i32 4
   175 = ptradd ptr %arr, i32 %174
   175.load = load i32 from ptr %175
-  179 = add i32 %begin_pos, i32 %i92.phi
-  180 = mul i32 %179, i32 4
-  181 = ptradd ptr %arr, i32 %180
   185 = call i32 multiply(i32 %wn.phi, i32 %175.load)
   186 = add i32 %165.load, i32 %185
   mod.load187 = load i32 from ptr @mod
   188 = srem i32 %186, i32 %mod.load187
-  store i32 %188 to ptr %181
-  191 = add i32 %begin_pos, i32 %i92.phi
-  193 = sdiv i32 %n, i32 2
-  194 = add i32 %191, i32 %193
-  195 = mul i32 %194, i32 4
-  196 = ptradd ptr %arr, i32 %195
+  store i32 %188 to ptr %165
   200 = call i32 multiply(i32 %wn.phi, i32 %175.load)
   201 = sub i32 %165.load, i32 %200
   mod.load202 = load i32 from ptr @mod
   203 = add i32 %201, i32 %mod.load202
   mod.load204 = load i32 from ptr @mod
   205 = srem i32 %203, i32 %mod.load204
-  store i32 %205 to ptr %196
+  store i32 %205 to ptr %175
   208 = call i32 multiply(i32 %wn.phi, i32 %w)
   210 = add i32 %i92.phi, i32 1
   br bb %while.cond152
@@ -177,11 +164,8 @@ while.cond244:
 while.body245:
   252 = mul i32 %i243.phi308, i32 4
   253 = ptradd ptr @a, i32 %252
-  255 = mul i32 %i243.phi308, i32 4
-  256 = ptradd ptr @a, i32 %255
-  256.load = load i32 from ptr %256
-  259 = mul i32 %i243.phi308, i32 4
-  260 = ptradd ptr @b, i32 %259
+  256.load = load i32 from ptr %253
+  260 = ptradd ptr @b, i32 %252
   260.load = load i32 from ptr %260
   262 = call i32 multiply(i32 %256.load, i32 %260.load)
   store i32 %262 to ptr %253
@@ -208,9 +192,7 @@ while.cond275:
 while.body276:
   283 = mul i32 %i243.phi, i32 4
   284 = ptradd ptr @a, i32 %283
-  286 = mul i32 %i243.phi, i32 4
-  287 = ptradd ptr @a, i32 %286
-  287.load = load i32 from ptr %287
+  287.load = load i32 from ptr %284
   d.load289 = load i32 from ptr @d
   mod.load290 = load i32 from ptr @mod
   291 = sub i32 %mod.load290, i32 2
@@ -221,9 +203,7 @@ while.body276:
   br bb %while.cond275
 while.exit277:
   call void _sysy_stoptime(i32 79)
-  299 = add i32 %213, i32 %215
-  300 = sub i32 %299, i32 1
-  call void putarray(i32 %300, ptr @a)
+  call void putarray(i32 %224, ptr @a)
   ret i32 0
 }
 

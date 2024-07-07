@@ -102,9 +102,7 @@ then79:
   call void printans()
   br bb %if.exit80
 if.exit80:
-  83 = mul i32 %i28.phi, i32 4
-  84 = ptradd ptr @row, i32 %83
-  store i32 1 to ptr %84
+  store i32 1 to ptr %38
   87 = add i32 %step, i32 %i28.phi
   88 = mul i32 %87, i32 4
   89 = ptradd ptr @line1, i32 %88
@@ -117,13 +115,8 @@ if.exit80:
   store i32 1 to ptr %96
   98 = add i32 %step, i32 1
   call void f(i32 %98)
-  101 = mul i32 %i28.phi, i32 4
-  102 = ptradd ptr @row, i32 %101
-  store i32 0 to ptr %102
-  105 = add i32 %step, i32 %i28.phi
-  106 = mul i32 %105, i32 4
-  107 = ptradd ptr @line1, i32 %106
-  store i32 0 to ptr %107
+  store i32 0 to ptr %38
+  store i32 0 to ptr %89
   n.load108 = load i32 from ptr @n
   110 = add i32 %n.load108, i32 %step
   112 = sub i32 %110, i32 %i28.phi

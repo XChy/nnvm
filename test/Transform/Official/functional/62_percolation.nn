@@ -25,16 +25,10 @@ entry19:
 then:
   ret i32 %a
 else:
-  32 = mul i32 %a, i32 4
-  33 = ptradd ptr @array, i32 %32
-  35 = mul i32 %a, i32 4
-  36 = ptradd ptr @array, i32 %35
-  36.load = load i32 from ptr %36
+  36.load = load i32 from ptr %23
   38 = call i32 findfa(i32 %36.load)
-  store i32 %38 to ptr %33
-  40 = mul i32 %a, i32 4
-  41 = ptradd ptr @array, i32 %40
-  41.load = load i32 from ptr %41
+  store i32 %38 to ptr %23
+  41.load = load i32 from ptr %23
   ret i32 %41.load
 }
 

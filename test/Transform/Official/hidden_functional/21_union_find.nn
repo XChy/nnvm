@@ -94,16 +94,10 @@ entry:
 then:
   ret i32 %root
 else:
-  13 = mul i32 %root, i32 4
-  14 = ptradd ptr @parent, i32 %13
-  16 = mul i32 %root, i32 4
-  17 = ptradd ptr @parent, i32 %16
-  17.load = load i32 from ptr %17
+  17.load = load i32 from ptr %4
   19 = call i32 find(i32 %17.load)
-  store i32 %19 to ptr %14
-  21 = mul i32 %root, i32 4
-  22 = ptradd ptr @parent, i32 %21
-  22.load = load i32 from ptr %22
+  store i32 %19 to ptr %4
+  22.load = load i32 from ptr %4
   ret i32 %22.load
 }
 

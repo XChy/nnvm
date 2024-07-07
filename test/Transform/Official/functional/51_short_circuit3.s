@@ -43,19 +43,20 @@ set_b:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -112
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s1, 24(sp)
-  SD s6, 32(sp)
-  SD s10, 40(sp)
-  SD s7, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
+  SD s11, 8(sp)
+  SD s0, 16(sp)
+  SD s5, 24(sp)
+  SD s1, 32(sp)
+  SD s6, 40(sp)
+  SD s10, 48(sp)
+  SD s7, 56(sp)
+  SD s2, 64(sp)
+  SD s3, 72(sp)
+  SD s4, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
   LA s0, a
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -345,59 +346,54 @@ bb52:
   BNE s6, zero, bb53
   JAL zero, bb54
 bb53:
-  ADD s6, zero, zero
+  ADD s7, zero, zero
   JAL zero, bb55
 bb54:
-  ADD s6, zero, zero
+  ADD s7, zero, zero
   JAL zero, bb55
 bb55:
-  ADD s7, s6, zero
-  BNE s7, zero, bb56
+  ADD s8, s7, zero
+  BNE s8, zero, bb56
   JAL zero, bb57
 bb56:
-  ADDI s7, zero, 1
+  ADDI s8, zero, 1
   JAL zero, bb58
 bb57:
-  ADDI s8, zero, 4
-  SLTI s9, s8, 4
-  XORI s8, s9, 1
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
-  ADD s7, s8, zero
+  ADDI s9, zero, 4
+  SLTI s10, s9, 4
+  XORI s9, s10, 1
+  XOR s10, s9, zero
+  SLTU s9, zero, s10
+  ADD s8, s9, zero
   JAL zero, bb58
 bb58:
-  ADD s8, s7, zero
-  BNE s8, zero, bb59
+  ADD s9, s8, zero
+  BNE s9, zero, bb59
   JAL zero, bb60
 bb59:
   ADDI a0, zero, 74
   CALL putch
   JAL zero, bb60
 bb60:
-  ADDI s8, zero, 1
-  XORI s9, s8, 1
-  ADD s8, s9, zero
-  XOR s9, zero, s8
-  SLTIU s8, s9, 1
-  BNE s8, zero, bb61
+  BNE s6, zero, bb61
   JAL zero, bb62
 bb61:
-  ADDI s8, zero, 1
+  ADDI s9, zero, 1
   JAL zero, bb63
 bb62:
   JAL zero, bb64
 bb63:
-  ADD s9, s8, zero
-  BNE s9, zero, bb66
+  ADD s10, s9, zero
+  BNE s10, zero, bb66
   JAL zero, bb67
 bb64:
-  ADD s9, zero, zero
+  ADD s10, zero, zero
   JAL zero, bb65
 bb65:
-  ADD s10, s9, zero
-  XOR s9, s10, zero
-  SLTU s10, zero, s9
-  ADD s8, s10, zero
+  ADD s11, s10, zero
+  XOR s10, s11, zero
+  SLTU s11, zero, s10
+  ADD s9, s11, zero
   JAL zero, bb63
 bb66:
   ADDI a0, zero, 75
@@ -408,18 +404,19 @@ bb67:
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  LD s10, 40(sp)
-  LD s7, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 8(sp)
+  LD s0, 16(sp)
+  LD s5, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s10, 48(sp)
+  LD s7, 56(sp)
+  LD s2, 64(sp)
+  LD s3, 72(sp)
+  LD s4, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 set_a:
   ADDI sp, sp, -32

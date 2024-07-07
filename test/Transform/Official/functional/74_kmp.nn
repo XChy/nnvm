@@ -15,9 +15,7 @@ while.body54:
   62 = mul i32 %i51.phi135, i32 4
   63 = ptradd ptr %dst, i32 %62
   63.load = load i32 from ptr %63
-  66 = mul i32 %j52.phi138, i32 4
-  67 = ptradd ptr %src, i32 %66
-  67.load = load i32 from ptr %67
+  67.load = load i32 from ptr %58
   69 = icmp eq i32 %63.load, i32 %67.load
   br i1 %69, bb %then70, bb %else72
 while.exit55:
@@ -38,8 +36,7 @@ if.exit71:
   i51.phi134 = phi [bb %if.exit96, i32 %i51.phi, bb %if.exit86, i32 %74]
   br bb %while.cond53
 else72:
-  89 = mul i32 %i51.phi135, i32 4
-  90 = ptradd ptr %next, i32 %89
+  90 = ptradd ptr %next, i32 %62
   90.load = load i32 from ptr %90
   94 = icmp eq i32 %90.load, i32 -1
   br i1 %94, bb %then95, bb %if.exit96
@@ -72,15 +69,11 @@ while.body105:
   110 = ptradd ptr %buf, i32 %109
   111 = call i32 getch()
   store i32 %111 to ptr %110
-  113 = mul i32 %i103.phi, i32 4
-  114 = ptradd ptr %buf, i32 %113
-  114.load = load i32 from ptr %114
+  114.load = load i32 from ptr %110
   116 = icmp eq i32 %114.load, i32 10
   br i1 %116, bb %then117, bb %if.exit118
 while.exit106:
-  122 = mul i32 %i103.phi, i32 4
-  123 = ptradd ptr %buf, i32 %122
-  store i32 0 to ptr %123
+  store i32 0 to ptr %110
   ret i32 %i103.phi
 then117:
   br bb %while.exit106
@@ -142,9 +135,7 @@ while.exit:
 select.then:
   br bb %select.exit
 select.else:
-  23 = mul i32 %i.phi143, i32 4
-  24 = ptradd ptr %str, i32 %23
-  24.load = load i32 from ptr %24
+  24.load = load i32 from ptr %12
   27 = mul i32 %j.phi141, i32 4
   28 = ptradd ptr %str, i32 %27
   28.load = load i32 from ptr %28

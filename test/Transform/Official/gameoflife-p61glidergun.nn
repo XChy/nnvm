@@ -28,10 +28,8 @@ while.body91:
   99 = ptradd ptr @sheet1, i32 %98
   101 = mul i32 %i81.phi, i32 4
   102 = ptradd ptr %99, i32 %101
-  104 = mul i32 %j82.phi, i32 2000
-  105 = ptradd ptr @sheet2, i32 %104
-  107 = mul i32 %i81.phi, i32 4
-  108 = ptradd ptr %105, i32 %107
+  105 = ptradd ptr @sheet2, i32 %98
+  108 = ptradd ptr %105, i32 %101
   108.load = load i32 from ptr %108
   store i32 %108.load to ptr %102
   111 = add i32 %i81.phi, i32 1
@@ -163,7 +161,7 @@ while.exit119:
 while.cond124:
   select.phi289 = phi [bb %while.body118, i1 %select.phi290, bb %if.exit223, i1 %select.phi]
   alive_count.phi = phi [bb %while.body118, i32 %alive_count.phi287, bb %if.exit223, i32 %206]
-  i115.phi = phi [bb %while.body118, i32 1, bb %if.exit223, i32 %249]
+  i115.phi = phi [bb %while.body118, i32 1, bb %if.exit223, i32 %155]
   width.load128 = load i32 from ptr @width
   129 = icmp sle i32 %i115.phi, i32 %width.load128
   130 = icmp ne i1 %129, i1 0
@@ -176,62 +174,36 @@ while.body125:
   138 = mul i32 %137, i32 4
   139 = ptradd ptr %135, i32 %138
   139.load = load i32 from ptr %139
-  142 = sub i32 %j116.phi, i32 1
-  143 = mul i32 %142, i32 2000
-  144 = ptradd ptr %source, i32 %143
   146 = mul i32 %i115.phi, i32 4
-  147 = ptradd ptr %144, i32 %146
+  147 = ptradd ptr %135, i32 %146
   147.load = load i32 from ptr %147
   149 = add i32 %139.load, i32 %147.load
-  151 = sub i32 %j116.phi, i32 1
-  152 = mul i32 %151, i32 2000
-  153 = ptradd ptr %source, i32 %152
   155 = add i32 %i115.phi, i32 1
   156 = mul i32 %155, i32 4
-  157 = ptradd ptr %153, i32 %156
+  157 = ptradd ptr %135, i32 %156
   157.load = load i32 from ptr %157
   159 = add i32 %149, i32 %157.load
   161 = mul i32 %j116.phi, i32 2000
   162 = ptradd ptr %source, i32 %161
-  164 = sub i32 %i115.phi, i32 1
-  165 = mul i32 %164, i32 4
-  166 = ptradd ptr %162, i32 %165
+  166 = ptradd ptr %162, i32 %138
   166.load = load i32 from ptr %166
   168 = add i32 %159, i32 %166.load
-  170 = mul i32 %j116.phi, i32 2000
-  171 = ptradd ptr %source, i32 %170
-  173 = add i32 %i115.phi, i32 1
-  174 = mul i32 %173, i32 4
-  175 = ptradd ptr %171, i32 %174
+  175 = ptradd ptr %162, i32 %156
   175.load = load i32 from ptr %175
   177 = add i32 %168, i32 %175.load
   179 = add i32 %j116.phi, i32 1
   180 = mul i32 %179, i32 2000
   181 = ptradd ptr %source, i32 %180
-  183 = sub i32 %i115.phi, i32 1
-  184 = mul i32 %183, i32 4
-  185 = ptradd ptr %181, i32 %184
+  185 = ptradd ptr %181, i32 %138
   185.load = load i32 from ptr %185
   187 = add i32 %177, i32 %185.load
-  189 = add i32 %j116.phi, i32 1
-  190 = mul i32 %189, i32 2000
-  191 = ptradd ptr %source, i32 %190
-  193 = mul i32 %i115.phi, i32 4
-  194 = ptradd ptr %191, i32 %193
+  194 = ptradd ptr %181, i32 %146
   194.load = load i32 from ptr %194
   196 = add i32 %187, i32 %194.load
-  198 = add i32 %j116.phi, i32 1
-  199 = mul i32 %198, i32 2000
-  200 = ptradd ptr %source, i32 %199
-  202 = add i32 %i115.phi, i32 1
-  203 = mul i32 %202, i32 4
-  204 = ptradd ptr %200, i32 %203
+  204 = ptradd ptr %181, i32 %156
   204.load = load i32 from ptr %204
   206 = add i32 %196, i32 %204.load
-  208 = mul i32 %j116.phi, i32 2000
-  209 = ptradd ptr %source, i32 %208
-  211 = mul i32 %i115.phi, i32 4
-  212 = ptradd ptr %209, i32 %211
+  212 = ptradd ptr %162, i32 %146
   212.load = load i32 from ptr %212
   214 = icmp eq i32 %212.load, i32 1
   br i1 %214, bb %select.then, bb %select.else
@@ -247,32 +219,25 @@ select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %220]
   br i1 %select.phi, bb %then222, bb %else224
 then222:
-  226 = mul i32 %j116.phi, i32 2000
-  227 = ptradd ptr %target, i32 %226
-  229 = mul i32 %i115.phi, i32 4
-  230 = ptradd ptr %227, i32 %229
+  227 = ptradd ptr %target, i32 %161
+  230 = ptradd ptr %227, i32 %146
   store i32 1 to ptr %230
   br bb %if.exit223
 if.exit223:
-  249 = add i32 %i115.phi, i32 1
   br bb %while.cond124
 else224:
   232 = icmp eq i32 %206, i32 3
   br i1 %232, bb %then233, bb %else235
 then233:
-  237 = mul i32 %j116.phi, i32 2000
-  238 = ptradd ptr %target, i32 %237
-  240 = mul i32 %i115.phi, i32 4
-  241 = ptradd ptr %238, i32 %240
+  238 = ptradd ptr %target, i32 %161
+  241 = ptradd ptr %238, i32 %146
   store i32 1 to ptr %241
   br bb %if.exit234
 if.exit234:
   br bb %if.exit223
 else235:
-  243 = mul i32 %j116.phi, i32 2000
-  244 = ptradd ptr %target, i32 %243
-  246 = mul i32 %i115.phi, i32 4
-  247 = ptradd ptr %244, i32 %246
+  244 = ptradd ptr %target, i32 %161
+  247 = ptradd ptr %244, i32 %146
   store i32 0 to ptr %247
   br bb %if.exit234
 }

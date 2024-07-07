@@ -94,15 +94,11 @@ bb5:
   CALL quick_read
   ADD s3, a0, zero
   SW s3, 0(s5)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
   LA s3, v
   ADD s5, s3, s4
   CALL quick_read
   ADD s3, a0, zero
   SW s3, 0(s5)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
   LA s3, c
   ADD s5, s3, s4
   CALL quick_read
@@ -151,20 +147,12 @@ bb8:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb9:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, fa
-  ADD s3, s1, s2
-  LW s1, 0(s3)
-  ADD a0, s1, zero
+  LW s0, 0(s3)
+  ADD a0, s0, zero
   CALL find
-  ADD s1, a0, zero
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s0, fa
-  ADD s2, s0, s3
-  SW s1, 0(s2)
-  ADD a0, s1, zero
+  ADD s0, a0, zero
+  SW s0, 0(s3)
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s2, 16(sp)
@@ -209,102 +197,61 @@ bb13:
   ADDI s0, zero, 1
   JAL zero, bb19
 bb14:
-  ADD s4, s3, zero
-  ADD s6, s5, zero
-  LA s7, m
-  LW s8, 0(s7)
-  SLT s7, s4, s8
-  XOR s8, s7, zero
-  SLTU s7, zero, s8
-  BNE s7, zero, bb15
+  ADD s6, s3, zero
+  ADD s7, s5, zero
+  LA s8, m
+  LW s9, 0(s8)
+  SLT s8, s6, s9
+  XOR s9, s8, zero
+  SLTU s8, zero, s9
+  BNE s8, zero, bb15
   JAL zero, bb16
 bb15:
-  ADDI s7, zero, 4
-  MULW s8, s2, s7
-  LA s7, c
-  ADD s9, s7, s8
-  LW s7, 0(s9)
   ADDI s8, zero, 4
-  MULW s9, s4, s8
+  MULW s9, s2, s8
   LA s8, c
   ADD s10, s8, s9
   LW s8, 0(s10)
-  SLT s9, s8, s7
-  BNE s9, zero, bb17
+  ADDI s11, zero, 4
+  MULW t0, s6, s11
+  LA s11, c
+  ADD t1, s11, t0
+  LW s11, 0(t1)
+  SLT t2, s11, s8
+  BNE t2, zero, bb17
   JAL zero, bb27
 bb16:
-  ADDIW s3, s2, 1
-  ADD s0, s6, zero
-  ADD s1, s3, zero
+  ADD s0, s7, zero
+  ADD s1, s4, zero
   JAL zero, bb11
 bb17:
-  ADDI s7, zero, 4
-  MULW s8, s2, s7
-  LA s7, u
-  ADD s9, s7, s8
-  LW s7, 0(s9)
-  ADDI s8, zero, 4
-  MULW s9, s2, s8
-  LA s8, u
-  ADD s10, s8, s9
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
   LA s8, u
   ADD s11, s8, s9
   LW s8, 0(s11)
-  SW s8, 0(s10)
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
-  LA s8, u
-  ADD s10, s8, s9
-  SW s7, 0(s10)
-  ADDI s7, zero, 4
-  MULW s8, s2, s7
-  LA s7, v
-  ADD s9, s7, s8
-  LW s7, 0(s9)
-  ADDI s8, zero, 4
-  MULW s9, s2, s8
-  LA s8, v
-  ADD s10, s8, s9
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
+  LA t2, u
+  ADD a0, t2, t0
+  LW t2, 0(a0)
+  SW t2, 0(s11)
+  SW s8, 0(a0)
   LA s8, v
   ADD s11, s8, s9
   LW s8, 0(s11)
-  SW s8, 0(s10)
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
-  LA s8, v
-  ADD s10, s8, s9
-  SW s7, 0(s10)
-  ADDI s7, zero, 4
-  MULW s8, s2, s7
-  LA s7, c
-  ADD s9, s7, s8
-  LW s7, 0(s9)
-  ADDI s8, zero, 4
-  MULW s9, s2, s8
-  LA s8, c
-  ADD s10, s8, s9
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
-  LA s8, c
-  ADD s11, s8, s9
-  LW s8, 0(s11)
-  SW s8, 0(s10)
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
-  LA s8, c
-  ADD s10, s8, s9
-  SW s7, 0(s10)
-  ADD s8, s7, zero
+  LA s9, v
+  ADD t2, s9, t0
+  LW s9, 0(t2)
+  SW s9, 0(s11)
+  SW s8, 0(t2)
+  LW s8, 0(s10)
+  LW s9, 0(t1)
+  SW s9, 0(s10)
+  SW s8, 0(t1)
+  ADD s9, s8, zero
   JAL zero, bb18
 bb18:
-  ADD s7, s8, zero
-  ADDIW s9, s4, 1
-  ADD s5, s7, zero
-  ADD s3, s9, zero
+  ADD s8, s9, zero
+  ADDIW s10, s6, 1
+  ADD s5, s8, zero
+  ADD s3, s10, zero
   JAL zero, bb14
 bb19:
   ADD s1, s0, zero
@@ -345,17 +292,15 @@ bb23:
   LA s4, u
   ADD s6, s4, s5
   LW s4, 0(s6)
-  ADDI s5, zero, 4
-  MULW s6, s2, s5
-  LA s5, v
-  ADD s7, s5, s6
-  LW s5, 0(s7)
+  LA s7, v
+  ADD s8, s7, s5
+  LW s7, 0(s8)
   ADD a0, s4, zero
-  ADD a1, s5, zero
+  ADD a1, s7, zero
   CALL same
   ADD s4, a0, zero
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
+  XOR s7, s4, zero
+  SLTU s4, zero, s7
   BNE s4, zero, bb25
   JAL zero, bb26
 bb24:
@@ -380,17 +325,11 @@ bb25:
   ADD s1, s2, zero
   JAL zero, bb22
 bb26:
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
   LA s4, c
-  ADD s6, s4, s5
-  LW s4, 0(s6)
-  ADDW s5, s3, s4
-  ADDI s4, zero, 4
-  MULW s6, s2, s4
-  LA s4, u
-  ADD s7, s4, s6
+  ADD s7, s4, s5
   LW s4, 0(s7)
+  ADDW s5, s3, s4
+  LW s4, 0(s6)
   ADD a0, s4, zero
   CALL find
   ADD s4, a0, zero
@@ -398,10 +337,6 @@ bb26:
   MULW s7, s4, s6
   LA s4, fa
   ADD s6, s4, s7
-  ADDI s4, zero, 4
-  MULW s7, s2, s4
-  LA s4, v
-  ADD s8, s4, s7
   LW s4, 0(s8)
   SW s4, 0(s6)
   ADDIW s4, s2, 1
@@ -409,7 +344,7 @@ bb26:
   ADD s1, s4, zero
   JAL zero, bb22
 bb27:
-  ADD s8, s6, zero
+  ADD s9, s7, zero
   JAL zero, bb18
 quick_read:
   ADDI sp, sp, -96

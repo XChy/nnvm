@@ -73,9 +73,7 @@ while.cond:
   9 = icmp ne i32 %7.load, i32 0
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  11 = mul i32 %iNd__1X.phi, i32 4
-  12 = ptradd ptr %str, i32 %11
-  12.load = load i32 from ptr %12
+  12.load = load i32 from ptr %7
   call void putch(i32 %12.load)
   16 = add i32 %iNd__1X.phi, i32 1
   br bb %while.cond

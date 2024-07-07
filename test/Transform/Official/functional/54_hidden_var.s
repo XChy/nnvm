@@ -9,12 +9,14 @@ b:
 .word 0x00000005
 .section .text
 main:
-  ADDI sp, sp, -256
-  SD s3, 208(sp)
-  SD s2, 216(sp)
-  SD ra, 224(sp)
-  SD s1, 232(sp)
-  SD s0, 240(sp)
+  ADDI sp, sp, -272
+  SD s4, 208(sp)
+  SD ra, 216(sp)
+  SD s3, 224(sp)
+  SD s2, 232(sp)
+  SD s1, 240(sp)
+  SD s5, 248(sp)
+  SD s0, 256(sp)
   ADDI a0, zero, 3
   CALL putint
   ADDI a0, zero, 3
@@ -41,8 +43,8 @@ bb3:
   ADD s0, t5, zero
   SW zero, 0(s0)
   ADDI s0, sp, 148
-  ADDI s1, zero, 9
-  SW s1, 0(s0)
+  ADDI s2, zero, 9
+  SW s2, 0(s0)
   ADDI s0, sp, 152
   SW zero, 0(s0)
   ADDI s0, sp, 156
@@ -56,11 +58,11 @@ bb3:
   ADDI s0, sp, 172
   SW zero, 0(s0)
   ADDI s0, sp, 176
-  ADDI s1, zero, 8
-  SW s1, 0(s0)
+  ADDI s2, zero, 8
+  SW s2, 0(s0)
   ADDI s0, sp, 180
-  ADDI s1, zero, 3
-  SW s1, 0(s0)
+  ADDI s2, zero, 3
+  SW s2, 0(s0)
   ADDI s0, sp, 184
   SW zero, 0(s0)
   ADDI s0, sp, 188
@@ -73,11 +75,9 @@ bb3:
   SW zero, 0(s0)
   ADDI s0, sp, 204
   SW zero, 0(s0)
-  LA s0, c
-  ADDI s1, s0, 8
   LW s0, 0(s1)
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
+  XOR s2, s0, zero
+  SLTU s0, zero, s2
   BNE s0, zero, bb5
   JAL zero, bb6
 bb4:
@@ -105,37 +105,35 @@ bb5:
   ADDI s0, sp, 36
   SW zero, 0(s0)
   ADDI s0, sp, 40
-  ADDI s1, zero, 2
-  SW s1, 0(s0)
-  ADDI s0, sp, 44
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 48
-  ADDI s1, zero, 8
-  SW s1, 0(s0)
-  ADDI s0, zero, 22
+  ADDI s2, zero, 2
+  SW s2, 0(s0)
+  ADDI s2, sp, 44
+  ADDI s3, zero, 1
+  SW s3, 0(s2)
+  ADDI s2, sp, 48
+  ADDI s3, zero, 8
+  SW s3, 0(s2)
+  ADDI s2, zero, 22
   JAL zero, bb7
 bb6:
   ADDI a0, zero, 10
   CALL putch
   LA s0, b
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  LW s2, 0(s0)
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   LA s0, c
-  ADD s1, s0, zero
-  LW s0, 0(s1)
+  ADD s2, s0, zero
+  LW s0, 0(s2)
   ADD a0, s0, zero
   CALL putint
   LA s0, c
-  ADDI s1, s0, 4
-  LW s0, 0(s1)
+  ADDI s2, s0, 4
+  LW s0, 0(s2)
   ADD a0, s0, zero
   CALL putint
-  LA s0, c
-  ADDI s1, s0, 8
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
@@ -147,47 +145,44 @@ bb6:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD s3, 208(sp)
-  LD s2, 216(sp)
-  LD ra, 224(sp)
-  LD s1, 232(sp)
-  LD s0, 240(sp)
-  ADDI sp, sp, 256
+  LD s4, 208(sp)
+  LD ra, 216(sp)
+  LD s3, 224(sp)
+  LD s2, 232(sp)
+  LD s1, 240(sp)
+  LD s5, 248(sp)
+  LD s0, 256(sp)
+  ADDI sp, sp, 272
   JALR zero, 0(ra)
 bb7:
-  ADD s1, s0, zero
-  XOR s2, s1, zero
-  SLTU s3, zero, s2
-  BNE s3, zero, bb8
+  ADD s3, s2, zero
+  XOR s4, s3, zero
+  SLTU s5, zero, s4
+  BNE s5, zero, bb8
   JAL zero, bb9
 bb8:
-  ADDI s2, zero, 1
-  SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
-  ADDIW s1, s2, 52
+  ADDI s4, zero, 1
+  SUBW s5, s3, s4
+  ADDI s3, zero, 4
+  MULW s4, s5, s3
+  ADDIW s3, s4, 52
   ADDI t5, sp, 0
-  ADD s2, t5, s1
-  SW zero, 0(s2)
-  ADD s0, s3, zero
+  ADD s4, t5, s3
+  SW zero, 0(s4)
+  ADD s2, s5, zero
   JAL zero, bb7
 bb9:
-  ADDI s0, sp, 40
-  ADD s1, s0, zero
-  ADD s0, s1, zero
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADD s2, s0, zero
+  ADD s0, s2, zero
+  LW s3, 0(s0)
+  ADD a0, s3, zero
   CALL putint
-  ADDI s0, sp, 40
-  ADD s1, s0, zero
-  ADDI s0, s1, 4
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI s0, s2, 4
+  LW s3, 0(s0)
+  ADD a0, s3, zero
   CALL putint
-  ADDI s0, sp, 40
-  ADD s1, s0, zero
-  ADDI s0, s1, 8
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI s0, s2, 8
+  LW s2, 0(s0)
+  ADD a0, s2, zero
   CALL putint
   JAL zero, bb6

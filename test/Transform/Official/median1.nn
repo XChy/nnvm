@@ -17,9 +17,7 @@ while.body66:
 while.exit67:
   xx.phi170 = phi [bb %while.cond65, i32 %xx.phi171, bb %then111, i32 %xx.phi]
   l.phi163 = phi [bb %while.cond65, i32 %l.phi164, bb %then111, i32 %l.phi]
-  118 = mul i32 %begin, i32 4
-  119 = ptradd ptr %arr, i32 %118
-  store i32 %57.load to ptr %119
+  store i32 %57.load to ptr %57
   123 = call i32 swap(ptr %arr, i32 %begin, i32 %l.phi163)
   126 = icmp sgt i32 %l.phi163, i32 %pos
   br i1 %126, bb %then127, bb %if.exit128
@@ -92,15 +90,11 @@ entry28:
   33 = mul i32 %l, i32 4
   34 = ptradd ptr %arr, i32 %33
   34.load = load i32 from ptr %34
-  37 = mul i32 %l, i32 4
-  38 = ptradd ptr %arr, i32 %37
   40 = mul i32 %r, i32 4
   41 = ptradd ptr %arr, i32 %40
   41.load = load i32 from ptr %41
-  store i32 %41.load to ptr %38
-  44 = mul i32 %r, i32 4
-  45 = ptradd ptr %arr, i32 %44
-  store i32 %34.load to ptr %45
+  store i32 %41.load to ptr %34
+  store i32 %34.load to ptr %41
   49 = call i32 meanless_calculation(i32 %l, i32 %r)
   ret i32 %49
 }

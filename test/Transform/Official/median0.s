@@ -13,103 +13,104 @@ n:
 .section .text
 median:
   ADDI sp, sp, -224
-  SD s2, 112(sp)
-  SD s3, 120(sp)
-  SD s8, 128(sp)
-  SD s1, 136(sp)
-  SD s0, 144(sp)
-  SD ra, 152(sp)
-  SD s7, 160(sp)
-  SD s10, 168(sp)
-  SD s9, 176(sp)
-  SD s4, 184(sp)
-  SD s5, 192(sp)
-  SD s6, 200(sp)
-  SD s11, 208(sp)
+  SD s2, 120(sp)
+  SD s3, 128(sp)
+  SD s9, 136(sp)
+  SD s1, 144(sp)
+  SD s0, 152(sp)
+  SD ra, 160(sp)
+  SD s7, 168(sp)
+  SD s10, 176(sp)
+  SD s8, 184(sp)
+  SD s4, 192(sp)
+  SD s5, 200(sp)
+  SD s6, 208(sp)
+  SD s11, 216(sp)
   ADD t4, a0, zero
-  SD t4, 48(sp)
+  SD t4, 56(sp)
   ADD t4, a1, zero
-  SW t4, 40(sp)
+  SW t4, 48(sp)
   ADD t4, a2, zero
-  SW t4, 32(sp)
+  SW t4, 40(sp)
   ADD t4, a3, zero
-  SW t4, 24(sp)
+  SW t4, 32(sp)
   ADDI s4, zero, 4
-  LW t4, 40(sp)
+  LW t4, 48(sp)
   MULW s5, t4, s4
-  LD t4, 48(sp)
-  ADD s4, t4, s5
-  LW t4, 0(s4)
+  LD t3, 56(sp)
+  ADD t4, t3, s5
+  SD t4, 24(sp)
+  LD t3, 24(sp)
+  LW t4, 0(t3)
   SW t4, 16(sp)
-  LW t4, 32(sp)
-  ADDIW s4, t4, 1
-  ADD s6, zero, zero
-  ADD s7, s4, zero
   LW t4, 40(sp)
-  ADD s4, t4, zero
+  ADDIW s6, t4, 1
+  ADD s7, zero, zero
+  ADD s8, s6, zero
+  LW t4, 48(sp)
+  ADD s6, t4, zero
   JAL zero, bb1
 bb1:
-  ADD t4, s4, zero
+  ADD t4, s6, zero
   SW t4, 8(sp)
-  ADD s9, s7, zero
-  ADD s10, s6, zero
-  ADD s11, s10, zero
+  ADD s10, s8, zero
+  ADD s11, s7, zero
+  ADD ra, s11, zero
   LW t4, 8(sp)
-  ADD ra, t4, zero
+  ADD t0, t4, zero
   JAL zero, bb2
 bb2:
-  ADD t4, s10, zero
-  SW t4, 56(sp)
-  ADD s10, s9, zero
+  ADD t4, s11, zero
+  SW t4, 64(sp)
+  ADD s11, s10, zero
   JAL zero, bb4
 bb3:
-  ADD s0, ra, zero
-  ADD s1, s11, zero
-  ADDI s11, zero, 4
-  LW t4, 40(sp)
-  MULW ra, t4, s11
-  LD t4, 48(sp)
-  ADD s11, t4, ra
+  ADD s0, t0, zero
+  ADD s1, ra, zero
   LW t4, 16(sp)
-  SW t4, 0(s11)
-  LD t4, 48(sp)
+  LD t3, 24(sp)
+  SW t4, 0(t3)
+  LD t4, 56(sp)
   ADD a0, t4, zero
-  LW t4, 40(sp)
+  LW t4, 48(sp)
   ADD a1, t4, zero
   ADD a2, s0, zero
   CALL swap
-  ADD s11, a0, zero
-  LW t4, 24(sp)
-  SLT s11, t4, s0
-  BNE s11, zero, bb17
+  ADD s10, a0, zero
+  LW t4, 32(sp)
+  SLT s10, t4, s0
+  BNE s10, zero, bb17
   JAL zero, bb18
 bb4:
-  ADD s9, s10, zero
-  LW t3, 56(sp)
+  ADD t4, s11, zero
+  SW t4, 112(sp)
+  LW t3, 64(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
   LW t4, 8(sp)
-  SLT t2, t4, s9
-  XOR a4, t2, zero
-  SLTU t2, zero, a4
-  BNE t2, zero, bb5
+  LW t3, 112(sp)
+  SLT a4, t4, t3
+  XOR a5, a4, zero
+  SLTU a4, zero, a5
+  BNE a4, zero, bb5
   JAL zero, bb21
 bb5:
-  ADDI t2, zero, 1
-  SUBW t4, s9, t2
-  SW t4, 88(sp)
-  ADDI t2, zero, 4
-  LW t4, 88(sp)
-  MULW a5, t4, t2
-  LD t4, 48(sp)
-  ADD t2, t4, a5
-  LW a5, 0(t2)
+  ADDI a4, zero, 1
+  LW t3, 112(sp)
+  SUBW t4, t3, a4
+  SW t4, 72(sp)
+  ADDI a4, zero, 4
+  LW t4, 72(sp)
+  MULW a6, t4, a4
+  LD t4, 56(sp)
+  ADD a4, t4, a6
+  LW a6, 0(a4)
   LW t4, 16(sp)
-  SLT t2, a5, t4
-  BNE t2, zero, bb7
+  SLT a4, a6, t4
+  BNE a4, zero, bb7
   JAL zero, bb8
 bb6:
-  LW t3, 80(sp)
+  LW t3, 88(sp)
   ADD t4, t3, zero
   SW t4, 96(sp)
   LW t3, 0(sp)
@@ -117,51 +118,48 @@ bb6:
   SW t4, 104(sp)
   LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 64(sp)
+  SW t4, 80(sp)
   JAL zero, bb9
 bb7:
-  LW t3, 88(sp)
+  LW t3, 72(sp)
   ADD t4, t3, zero
-  SW t4, 80(sp)
+  SW t4, 88(sp)
   JAL zero, bb6
 bb8:
   LW t4, 0(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 56(sp)
-  LW t4, 88(sp)
-  ADD s10, t4, zero
+  SW t4, 64(sp)
+  LW t4, 72(sp)
+  ADD s11, t4, zero
   JAL zero, bb4
 bb9:
-  LW t3, 64(sp)
-  ADD t4, t3, zero
-  SW t4, 72(sp)
+  LW t4, 80(sp)
+  ADD s9, t4, zero
   LW t4, 104(sp)
-  ADD s8, t4, zero
-  LW t4, 72(sp)
-  LW t3, 96(sp)
-  SLT s5, t4, t3
-  XOR s3, s5, zero
-  SLTU s5, zero, s3
-  BNE s5, zero, bb10
+  ADD s5, t4, zero
+  LW t4, 96(sp)
+  SLT s4, s9, t4
+  XOR s3, s4, zero
+  SLTU s4, zero, s3
+  BNE s4, zero, bb10
   JAL zero, bb22
 bb10:
-  LW t4, 72(sp)
-  ADDIW s3, t4, 1
-  ADDI s5, zero, 4
-  MULW s2, s3, s5
-  LD t4, 48(sp)
-  ADD s5, t4, s2
-  LW s2, 0(s5)
+  ADDIW s3, s9, 1
+  ADDI s4, zero, 4
+  MULW s2, s3, s4
+  LD t4, 56(sp)
+  ADD s4, t4, s2
+  LW s2, 0(s4)
   LW t4, 16(sp)
-  SLT s5, s2, t4
-  XORI s2, s5, 1
+  SLT s4, s2, t4
+  XORI s2, s4, 1
   BNE s2, zero, bb12
   JAL zero, bb13
 bb11:
-  ADD s5, s2, zero
+  ADD s4, s2, zero
   LW t4, 96(sp)
-  XOR s1, s5, t4
+  XOR s1, s4, t4
   SLTIU s0, s1, 1
   BNE s0, zero, bb14
   JAL zero, bb16
@@ -170,113 +168,113 @@ bb12:
   JAL zero, bb11
 bb13:
   ADDI s0, zero, 1
-  SUBW s1, s8, s0
+  SUBW s1, s5, s0
   ADD t4, s1, zero
   SW t4, 104(sp)
   ADD t4, s3, zero
-  SW t4, 64(sp)
+  SW t4, 80(sp)
   JAL zero, bb9
 bb14:
-  ADD s11, s8, zero
   ADD ra, s5, zero
+  ADD t0, s4, zero
   JAL zero, bb3
 bb15:
-  ADD s6, s8, zero
+  ADD s7, s5, zero
   LW t4, 96(sp)
-  ADD s7, t4, zero
-  ADD s4, s5, zero
+  ADD s8, t4, zero
+  ADD s6, s4, zero
   JAL zero, bb1
 bb16:
-  LD t4, 48(sp)
+  LD t4, 56(sp)
   ADD a0, t4, zero
-  ADD a1, s5, zero
+  ADD a1, s4, zero
   LW t4, 96(sp)
   ADD a2, t4, zero
   CALL swap
   ADD s0, a0, zero
   JAL zero, bb15
 bb17:
-  LD t4, 48(sp)
+  LD t4, 56(sp)
   ADD a0, t4, zero
-  LW t4, 40(sp)
+  LW t4, 48(sp)
   ADD a1, t4, zero
   ADD a2, s0, zero
-  LW t4, 24(sp)
+  LW t4, 32(sp)
   ADD a3, t4, zero
   CALL median
-  ADD s11, a0, zero
-  ADD a0, s11, zero
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s8, 128(sp)
-  LD s1, 136(sp)
-  LD s0, 144(sp)
-  LD ra, 152(sp)
-  LD s7, 160(sp)
-  LD s10, 168(sp)
-  LD s9, 176(sp)
-  LD s4, 184(sp)
-  LD s5, 192(sp)
-  LD s6, 200(sp)
-  LD s11, 208(sp)
+  ADD s10, a0, zero
+  ADD a0, s10, zero
+  LD s2, 120(sp)
+  LD s3, 128(sp)
+  LD s9, 136(sp)
+  LD s1, 144(sp)
+  LD s0, 152(sp)
+  LD ra, 160(sp)
+  LD s7, 168(sp)
+  LD s10, 176(sp)
+  LD s8, 184(sp)
+  LD s4, 192(sp)
+  LD s5, 200(sp)
+  LD s6, 208(sp)
+  LD s11, 216(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb18:
-  LW t4, 24(sp)
-  SLT s11, s0, t4
-  BNE s11, zero, bb19
+  LW t4, 32(sp)
+  SLT s10, s0, t4
+  BNE s10, zero, bb19
   JAL zero, bb20
 bb19:
-  ADDIW s11, s0, 1
-  LD t4, 48(sp)
+  ADDIW s10, s0, 1
+  LD t4, 56(sp)
   ADD a0, t4, zero
-  ADD a1, s11, zero
-  LW t4, 32(sp)
+  ADD a1, s10, zero
+  LW t4, 40(sp)
   ADD a2, t4, zero
-  LW t4, 24(sp)
+  LW t4, 32(sp)
   ADD a3, t4, zero
   CALL median
   ADD s0, a0, zero
   ADD a0, s0, zero
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s8, 128(sp)
-  LD s1, 136(sp)
-  LD s0, 144(sp)
-  LD ra, 152(sp)
-  LD s7, 160(sp)
-  LD s10, 168(sp)
-  LD s9, 176(sp)
-  LD s4, 184(sp)
-  LD s5, 192(sp)
-  LD s6, 200(sp)
-  LD s11, 208(sp)
+  LD s2, 120(sp)
+  LD s3, 128(sp)
+  LD s9, 136(sp)
+  LD s1, 144(sp)
+  LD s0, 152(sp)
+  LD ra, 160(sp)
+  LD s7, 168(sp)
+  LD s10, 176(sp)
+  LD s8, 184(sp)
+  LD s4, 192(sp)
+  LD s5, 200(sp)
+  LD s6, 208(sp)
+  LD s11, 216(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb20:
   ADD a0, s1, zero
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s8, 128(sp)
-  LD s1, 136(sp)
-  LD s0, 144(sp)
-  LD ra, 152(sp)
-  LD s7, 160(sp)
-  LD s10, 168(sp)
-  LD s9, 176(sp)
-  LD s4, 184(sp)
-  LD s5, 192(sp)
-  LD s6, 200(sp)
-  LD s11, 208(sp)
+  LD s2, 120(sp)
+  LD s3, 128(sp)
+  LD s9, 136(sp)
+  LD s1, 144(sp)
+  LD s0, 152(sp)
+  LD ra, 160(sp)
+  LD s7, 168(sp)
+  LD s10, 176(sp)
+  LD s8, 184(sp)
+  LD s4, 192(sp)
+  LD s5, 200(sp)
+  LD s6, 208(sp)
+  LD s11, 216(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb21:
-  ADD t4, s9, zero
-  SW t4, 80(sp)
+  LW t3, 112(sp)
+  ADD t4, t3, zero
+  SW t4, 88(sp)
   JAL zero, bb6
 bb22:
-  LW t4, 72(sp)
-  ADD s2, t4, zero
+  ADD s2, s9, zero
   JAL zero, bb11
 swap:
   ADDI sp, sp, -64
@@ -295,18 +293,12 @@ swap:
   MULW s4, s1, s3
   ADD s3, s0, s4
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s1, s3
-  ADD s3, s0, s5
   ADDI s5, zero, 4
   MULW s6, s2, s5
   ADD s5, s0, s6
-  LW s6, 0(s5)
-  SW s6, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s3, s0, s5
-  SW s4, 0(s3)
+  LW s0, 0(s5)
+  SW s0, 0(s3)
+  SW s4, 0(s5)
   ADD a0, s1, zero
   ADD a1, s2, zero
   CALL meanless_calculation

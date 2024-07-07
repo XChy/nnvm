@@ -150,12 +150,11 @@ bb15:
   JAL zero, bb14
 find:
   ADDI sp, sp, -48
-  SD s4, 0(sp)
-  SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD ra, 0(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 4
   MULW s2, s0, s1
@@ -168,39 +167,25 @@ find:
   JAL zero, bb18
 bb17:
   ADD a0, s0, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD ra, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb18:
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, parent
-  ADD s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, parent
-  ADD s4, s1, s2
-  LW s1, 0(s4)
-  ADD a0, s1, zero
-  CALL find
-  ADD s1, a0, zero
-  SW s1, 0(s3)
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s0, parent
-  ADD s1, s0, s2
-  LW s0, 0(s1)
+  LW s0, 0(s3)
   ADD a0, s0, zero
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  CALL find
+  ADD s0, a0, zero
+  SW s0, 0(s3)
+  LW s0, 0(s3)
+  ADD a0, s0, zero
+  LD ra, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

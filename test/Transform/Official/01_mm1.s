@@ -307,12 +307,12 @@ bb33:
   ADDI s11, s11, 0
   MULW t0, s9, s11
   ADD s11, s1, t0
-  ADDI t0, zero, 4
-  MULW t1, s7, t0
-  ADD t0, s11, t1
-  LW s11, 0(t0)
-  XOR t0, s11, zero
-  SLTIU s11, t0, 1
+  ADDI t1, zero, 4
+  MULW t2, s7, t1
+  ADD t1, s11, t2
+  LW s11, 0(t1)
+  XOR t2, s11, zero
+  SLTIU s11, t2, 1
   BNE s11, zero, bb35
   JAL zero, bb36
 bb34:
@@ -329,52 +329,33 @@ bb36:
   ADD s11, zero, zero
   JAL zero, bb37
 bb37:
-  ADD t0, s11, zero
-  SLT t1, t0, s0
-  XOR t2, t1, zero
-  SLTU t1, zero, t2
-  BNE t1, zero, bb38
+  ADD t2, s11, zero
+  SLT a0, t2, s0
+  XOR a1, a0, zero
+  SLTU a0, zero, a1
+  BNE a0, zero, bb38
   JAL zero, bb39
 bb38:
-  LUI t1, 1
-  ADDI t1, t1, 0
-  MULW t2, s9, t1
-  ADD t1, s3, t2
-  ADDI t2, zero, 4
-  MULW a0, t0, t2
-  ADD t2, t1, a0
-  LUI t1, 1
-  ADDI t1, t1, 0
-  MULW a0, s9, t1
-  ADD t1, s3, a0
-  ADDI a0, zero, 4
-  MULW a1, t0, a0
-  ADD a0, t1, a1
-  LW t1, 0(a0)
-  LUI a0, 1
-  ADDI a0, a0, 0
-  MULW a1, s9, a0
-  ADD a0, s1, a1
+  ADD a0, s3, t0
   ADDI a1, zero, 4
-  MULW a2, s7, a1
+  MULW a2, t2, a1
   ADD a1, a0, a2
   LW a0, 0(a1)
-  LUI a1, 1
-  ADDI a1, a1, 0
-  MULW a2, s7, a1
-  ADD a1, s2, a2
-  ADDI a2, zero, 4
-  MULW a3, t0, a2
-  ADD a2, a1, a3
-  LW a1, 0(a2)
-  MULW a2, a0, a1
-  ADDW a0, t1, a2
-  SW a0, 0(t2)
-  ADDIW t1, t0, 1
-  ADD s11, t1, zero
+  LW a3, 0(t1)
+  LUI a4, 1
+  ADDI a4, a4, 0
+  MULW a5, s7, a4
+  ADD a4, s2, a5
+  ADD a5, a4, a2
+  LW a2, 0(a5)
+  MULW a4, a3, a2
+  ADDW a2, a0, a4
+  SW a2, 0(a1)
+  ADDIW a0, t2, 1
+  ADD s11, a0, zero
   JAL zero, bb37
 bb39:
   ADDIW s11, s9, 1
-  ADD s8, t0, zero
+  ADD s8, t2, zero
   ADD s6, s11, zero
   JAL zero, bb32

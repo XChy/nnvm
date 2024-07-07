@@ -63,15 +63,11 @@ bb2:
   MULW s8, t4, s7
   ADD s7, s0, s8
   LW s8, 0(s7)
-  XOR s7, s8, zero
-  SLTU s8, zero, s7
+  XOR s9, s8, zero
+  SLTU s8, zero, s9
   BNE s8, zero, bb3
   JAL zero, bb4
 bb3:
-  ADDI s7, zero, 4
-  LW t4, 0(sp)
-  MULW s8, t4, s7
-  ADD s7, s0, s8
   LW s8, 0(s7)
   XORI s7, s8, 62
   SLTIU s9, s7, 1

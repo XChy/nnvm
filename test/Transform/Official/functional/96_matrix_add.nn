@@ -35,26 +35,16 @@ while.body59:
   67 = ptradd ptr %a0, i32 %66
   69 = si2f i32 %i57.phi156 to float
   store float %69 to ptr %67
-  71 = mul i32 %i57.phi156, i32 4
-  72 = ptradd ptr %a1, i32 %71
-  74 = si2f i32 %i57.phi156 to float
-  store float %74 to ptr %72
-  76 = mul i32 %i57.phi156, i32 4
-  77 = ptradd ptr %a2, i32 %76
-  79 = si2f i32 %i57.phi156 to float
-  store float %79 to ptr %77
-  81 = mul i32 %i57.phi156, i32 4
-  82 = ptradd ptr %b0, i32 %81
-  84 = si2f i32 %i57.phi156 to float
-  store float %84 to ptr %82
-  86 = mul i32 %i57.phi156, i32 4
-  87 = ptradd ptr %b1, i32 %86
-  89 = si2f i32 %i57.phi156 to float
-  store float %89 to ptr %87
-  91 = mul i32 %i57.phi156, i32 4
-  92 = ptradd ptr %b2, i32 %91
-  94 = si2f i32 %i57.phi156 to float
-  store float %94 to ptr %92
+  72 = ptradd ptr %a1, i32 %66
+  store float %69 to ptr %72
+  77 = ptradd ptr %a2, i32 %66
+  store float %69 to ptr %77
+  82 = ptradd ptr %b0, i32 %66
+  store float %69 to ptr %82
+  87 = ptradd ptr %b1, i32 %66
+  store float %69 to ptr %87
+  92 = ptradd ptr %b2, i32 %66
+  store float %69 to ptr %92
   96 = add i32 %i57.phi156, i32 1
   br bb %while.cond58
 while.exit60:
@@ -141,31 +131,23 @@ while.cond:
 while.body:
   10 = mul i32 %i.phi, i32 4
   11 = ptradd ptr %c0, i32 %10
-  13 = mul i32 %i.phi, i32 4
-  14 = ptradd ptr %a0, i32 %13
+  14 = ptradd ptr %a0, i32 %10
   14.load = load float from ptr %14
-  17 = mul i32 %i.phi, i32 4
-  18 = ptradd ptr %b0, i32 %17
+  18 = ptradd ptr %b0, i32 %10
   18.load = load float from ptr %18
   20 = fadd float %14.load, float %18.load
   store float %20 to ptr %11
-  22 = mul i32 %i.phi, i32 4
-  23 = ptradd ptr %c1, i32 %22
-  25 = mul i32 %i.phi, i32 4
-  26 = ptradd ptr %a1, i32 %25
+  23 = ptradd ptr %c1, i32 %10
+  26 = ptradd ptr %a1, i32 %10
   26.load = load float from ptr %26
-  29 = mul i32 %i.phi, i32 4
-  30 = ptradd ptr %b1, i32 %29
+  30 = ptradd ptr %b1, i32 %10
   30.load = load float from ptr %30
   32 = fadd float %26.load, float %30.load
   store float %32 to ptr %23
-  34 = mul i32 %i.phi, i32 4
-  35 = ptradd ptr %c2, i32 %34
-  37 = mul i32 %i.phi, i32 4
-  38 = ptradd ptr %a2, i32 %37
+  35 = ptradd ptr %c2, i32 %10
+  38 = ptradd ptr %a2, i32 %10
   38.load = load float from ptr %38
-  41 = mul i32 %i.phi, i32 4
-  42 = ptradd ptr %b2, i32 %41
+  42 = ptradd ptr %b2, i32 %10
   42.load = load float from ptr %42
   44 = fadd float %38.load, float %42.load
   store float %44 to ptr %35

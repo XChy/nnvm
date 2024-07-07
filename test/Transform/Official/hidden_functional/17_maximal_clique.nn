@@ -34,9 +34,7 @@ while.body88:
   98 = ptradd ptr %96, i32 0
   99 = call i32 getint()
   store i32 %99 to ptr %98
-  101 = mul i32 %i86.phi152, i32 8
-  102 = ptradd ptr %edges, i32 %101
-  104 = ptradd ptr %102, i32 4
+  104 = ptradd ptr %96, i32 4
   105 = call i32 getint()
   store i32 %105 to ptr %104
   107 = add i32 %i86.phi152, i32 1
@@ -56,23 +54,15 @@ while.body109:
   119.load = load i32 from ptr %119
   121 = mul i32 %119.load, i32 120
   122 = ptradd ptr @graph, i32 %121
-  124 = mul i32 %i86.phi, i32 8
-  125 = ptradd ptr %edges, i32 %124
-  127 = ptradd ptr %125, i32 4
+  127 = ptradd ptr %117, i32 4
   127.load = load i32 from ptr %127
   129 = mul i32 %127.load, i32 4
   130 = ptradd ptr %122, i32 %129
   store i32 1 to ptr %130
-  132 = mul i32 %i86.phi, i32 8
-  133 = ptradd ptr %edges, i32 %132
-  135 = ptradd ptr %133, i32 4
-  135.load = load i32 from ptr %135
+  135.load = load i32 from ptr %127
   137 = mul i32 %135.load, i32 120
   138 = ptradd ptr @graph, i32 %137
-  140 = mul i32 %i86.phi, i32 8
-  141 = ptradd ptr %edges, i32 %140
-  143 = ptradd ptr %141, i32 0
-  143.load = load i32 from ptr %143
+  143.load = load i32 from ptr %119
   145 = mul i32 %143.load, i32 4
   146 = ptradd ptr %138, i32 %145
   store i32 1 to ptr %146
@@ -92,7 +82,7 @@ i32 is_clique(i32 num) {
 entry:
   br bb %while.cond
 while.cond:
-  i.phi = phi [bb %entry, i32 1, bb %while.exit15, i32 %39]
+  i.phi = phi [bb %entry, i32 1, bb %while.exit15, i32 %12]
   8 = icmp slt i32 %i.phi, i32 %num
   9 = icmp ne i1 %8, i1 0
   br i1 %9, bb %while.body, bb %while.exit
@@ -121,7 +111,6 @@ while.body14:
   33 = icmp eq i32 %31.load, i32 0
   br i1 %33, bb %then, bb %if.exit
 while.exit15:
-  39 = add i32 %i.phi, i32 1
   br bb %while.cond
 then:
   ret i32 0
@@ -167,8 +156,7 @@ then65:
   br bb %if.exit66
 if.exit66:
   max_.phi159 = phi [bb %then60, i32 %max_.phi158, bb %then65, i32 %k]
-  71 = add i32 %k, i32 1
-  72 = call i32 maxCliques(i32 %j44.phi, i32 %71)
+  72 = call i32 maxCliques(i32 %j44.phi, i32 %57)
   75 = icmp sgt i32 %72, i32 %max_.phi159
   br i1 %75, bb %then76, bb %if.exit77
 then76:

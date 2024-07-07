@@ -45,9 +45,7 @@ while.cond24:
   31 = icmp ne i32 %29.load, i32 0
   br i1 %31, bb %while.body25, bb %while.exit26
 while.body25:
-  33 = mul i32 %i23.phi167, i32 4
-  34 = ptradd ptr %input, i32 %33
-  34.load = load i32 from ptr %34
+  34.load = load i32 from ptr %29
   37 = icmp eq i32 %34.load, i32 62
   br i1 %37, bb %then, bb %else
 while.exit26:

@@ -93,31 +93,24 @@ while.cond160:
 while.body161:
   167 = mul i32 %i.phi438, i32 4
   168 = ptradd ptr %words, i32 %167
-  171 = mul i32 %i.phi438, i32 4
-  172 = add i32 %chunk_start.phi, i32 %171
+  172 = add i32 %chunk_start.phi, i32 %167
   173 = mul i32 %172, i32 4
   174 = ptradd ptr %input, i32 %173
   174.load = load i32 from ptr %174
   176 = mul i32 %174.load, i32 16777216
-  179 = mul i32 %i.phi438, i32 4
-  180 = add i32 %chunk_start.phi, i32 %179
-  181 = add i32 %180, i32 1
+  181 = add i32 %172, i32 1
   182 = mul i32 %181, i32 4
   183 = ptradd ptr %input, i32 %182
   183.load = load i32 from ptr %183
   185 = mul i32 %183.load, i32 65536
   186 = add i32 %176, i32 %185
-  189 = mul i32 %i.phi438, i32 4
-  190 = add i32 %chunk_start.phi, i32 %189
-  191 = add i32 %190, i32 2
+  191 = add i32 %172, i32 2
   192 = mul i32 %191, i32 4
   193 = ptradd ptr %input, i32 %192
   193.load = load i32 from ptr %193
   195 = mul i32 %193.load, i32 256
   196 = add i32 %186, i32 %195
-  199 = mul i32 %i.phi438, i32 4
-  200 = add i32 %chunk_start.phi, i32 %199
-  201 = add i32 %200, i32 3
+  201 = add i32 %172, i32 3
   202 = mul i32 %201, i32 4
   203 = ptradd ptr %input, i32 %202
   203.load = load i32 from ptr %203
@@ -231,8 +224,7 @@ if.exit276:
   k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275, i32 -1894007588]
   br bb %if.exit266
 else277:
-  291 = icmp slt i32 %i.phi, i32 80
-  br i1 %291, bb %then292, bb %if.exit293
+  br i1 %248, bb %then292, bb %if.exit293
 then292:
   296 = call i32 _xor(i32 %b.phi, i32 %c.phi)
   298 = call i32 _xor(i32 %296, i32 %d.phi)
@@ -361,11 +353,8 @@ while.cond401:
 while.body402:
   408 = mul i32 %i384.phi, i32 4
   409 = ptradd ptr %output_buf, i32 %408
-  411 = mul i32 %i384.phi, i32 4
-  412 = ptradd ptr %output_buf, i32 %411
-  412.load = load i32 from ptr %412
-  415 = mul i32 %i384.phi, i32 4
-  416 = ptradd ptr %output, i32 %415
+  412.load = load i32 from ptr %409
+  416 = ptradd ptr %output, i32 %408
   416.load = load i32 from ptr %416
   418 = call i32 _xor(i32 %412.load, i32 %416.load)
   store i32 %418 to ptr %409

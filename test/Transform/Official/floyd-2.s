@@ -47,11 +47,9 @@ bb2:
   ADDI s5, zero, 4
   MULW s6, s4, s5
   ADD s5, s1, s6
-  ADDI s6, zero, 4
-  MULW s7, s4, s6
-  ADD s6, s0, s7
-  LW s7, 0(s6)
-  SW s7, 0(s5)
+  ADD s7, s0, s6
+  LW s6, 0(s7)
+  SW s6, 0(s5)
   ADDIW s5, s4, 1
   ADD s3, s5, zero
   JAL zero, bb1
@@ -332,17 +330,17 @@ bb27:
   LA s0, temp
   ADD s1, s0, s2
   LW s0, 0(s1)
-  LA s1, temp
-  ADD a0, s1, zero
+  LA s2, temp
+  ADD a0, s2, zero
   LW t4, 8(sp)
   ADD a1, t4, zero
   ADD a2, s10, zero
   LW t4, 56(sp)
   ADD a3, t4, zero
   CALL getvalue
-  ADD s1, a0, zero
-  LA s2, temp
-  ADD a0, s2, zero
+  ADD s2, a0, zero
+  LA s4, temp
+  ADD a0, s4, zero
   LW t4, 8(sp)
   ADD a1, t4, zero
   LW t4, 56(sp)
@@ -350,20 +348,12 @@ bb27:
   LW t4, 64(sp)
   ADD a3, t4, zero
   CALL getvalue
-  ADD s2, a0, zero
-  ADDW s4, s1, s2
-  SLT s1, s4, s0
-  BNE s1, zero, bb28
+  ADD s4, a0, zero
+  ADDW s5, s2, s4
+  SLT s2, s5, s0
+  BNE s2, zero, bb28
   JAL zero, bb29
 bb28:
-  LW t4, 8(sp)
-  MULW s0, s10, t4
-  LW t4, 64(sp)
-  ADDW s1, s0, t4
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, temp
-  ADD s1, s0, s2
   LA s0, temp
   ADD a0, s0, zero
   LW t4, 8(sp)

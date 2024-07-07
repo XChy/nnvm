@@ -276,33 +276,22 @@ bb27:
   LA s9, res
   ADD s11, s9, s10
   ADDI s9, zero, 4
-  MULW s10, s5, s9
-  ADD s9, s11, s10
-  ADDI s10, zero, 400
-  MULW s11, s2, s10
-  LA s10, res
-  ADD t0, s10, s11
+  MULW t0, s5, s9
+  ADD s9, s11, t0
+  LW s11, 0(s9)
+  LA t1, a
+  ADD t2, t1, s10
   ADDI s10, zero, 4
-  MULW s11, s5, s10
-  ADD s10, t0, s11
-  LW s11, 0(s10)
-  ADDI s10, zero, 400
-  MULW t0, s2, s10
-  LA s10, a
-  ADD t1, s10, t0
-  ADDI s10, zero, 4
-  MULW t0, s8, s10
-  ADD s10, t1, t0
-  LW t0, 0(s10)
-  ADDI s10, zero, 400
   MULW t1, s8, s10
-  LA s10, b
-  ADD t2, s10, t1
-  ADDI s10, zero, 4
-  MULW t1, s5, s10
   ADD s10, t2, t1
   LW t1, 0(s10)
-  MULW s10, t0, t1
+  ADDI s10, zero, 400
+  MULW t2, s8, s10
+  LA s10, b
+  ADD a0, s10, t2
+  ADD s10, a0, t0
+  LW t0, 0(s10)
+  MULW s10, t1, t0
   ADDW t0, s11, s10
   SW t0, 0(s9)
   ADDIW s9, s8, 1

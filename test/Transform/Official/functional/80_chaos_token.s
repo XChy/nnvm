@@ -93,13 +93,14 @@ bb7:
   ADD s0, s3, zero
   JAL zero, bb1
 putstr:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s5, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   JAL zero, bb9
@@ -109,14 +110,11 @@ bb9:
   MULW s4, s2, s3
   ADD s3, s0, s4
   LW s4, 0(s3)
-  XOR s3, s4, zero
-  SLTU s4, zero, s3
+  XOR s5, s4, zero
+  SLTU s4, zero, s5
   BNE s4, zero, bb10
   JAL zero, bb11
 bb10:
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADD s3, s0, s4
   LW s4, 0(s3)
   ADD a0, s4, zero
   CALL putch
@@ -130,6 +128,7 @@ bb11:
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s0, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)

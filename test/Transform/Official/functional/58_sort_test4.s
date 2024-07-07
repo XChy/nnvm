@@ -59,69 +59,62 @@ bb3:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb4:
-  ADD s6, s8, zero
-  ADD s9, s7, zero
-  SLT s10, s6, s1
-  XOR s11, s10, zero
-  SLTU s10, zero, s11
-  BNE s10, zero, bb5
+  ADD s9, s8, zero
+  ADD s10, s7, zero
+  SLT s11, s9, s1
+  XOR t0, s11, zero
+  SLTU s11, zero, t0
+  BNE s11, zero, bb5
   JAL zero, bb6
 bb5:
-  ADDI s10, zero, 4
-  MULW s11, s9, s10
-  ADD s10, s0, s11
-  LW s11, 0(s10)
-  ADDI s10, zero, 4
-  MULW t0, s6, s10
-  ADD s10, s0, t0
-  LW t0, 0(s10)
-  SLT s10, t0, s11
-  BNE s10, zero, bb7
+  ADDI s11, zero, 4
+  MULW t0, s10, s11
+  ADD s11, s0, t0
+  LW t0, 0(s11)
+  ADDI s11, zero, 4
+  MULW t1, s9, s11
+  ADD s11, s0, t1
+  LW t1, 0(s11)
+  SLT s11, t1, t0
+  BNE s11, zero, bb7
   JAL zero, bb11
 bb6:
-  XOR s6, s9, s4
-  SLTU s7, zero, s6
-  BNE s7, zero, bb9
+  XOR s7, s10, s4
+  SLTU s8, zero, s7
+  BNE s8, zero, bb9
   JAL zero, bb12
 bb7:
-  ADD s10, s6, zero
+  ADD s11, s9, zero
   JAL zero, bb8
 bb8:
-  ADD s11, s10, zero
-  ADDIW t0, s6, 1
-  ADD s7, s11, zero
-  ADD s8, t0, zero
+  ADD t0, s11, zero
+  ADDIW t1, s9, 1
+  ADD s7, t0, zero
+  ADD s8, t1, zero
   JAL zero, bb4
 bb9:
-  ADDI s6, zero, 4
-  MULW s7, s9, s6
-  ADD s6, s0, s7
-  LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s9, s6
-  ADD s6, s0, s8
-  ADDI s8, zero, 4
-  MULW s9, s4, s8
-  ADD s8, s0, s9
-  LW s9, 0(s8)
-  SW s9, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s4, s6
-  ADD s6, s0, s8
-  SW s7, 0(s6)
-  ADD s6, s7, zero
+  ADDI s7, zero, 4
+  MULW s8, s10, s7
+  ADD s7, s0, s8
+  LW s8, 0(s7)
+  ADDI s9, zero, 4
+  MULW s10, s4, s9
+  ADD s4, s0, s10
+  LW s9, 0(s4)
+  SW s9, 0(s7)
+  SW s8, 0(s4)
+  ADD s4, s8, zero
   JAL zero, bb10
 bb10:
-  ADD s7, s6, zero
-  ADDIW s8, s4, 1
+  ADD s7, s4, zero
   ADD s2, s7, zero
-  ADD s3, s8, zero
+  ADD s3, s6, zero
   JAL zero, bb1
 bb11:
-  ADD s10, s9, zero
+  ADD s11, s10, zero
   JAL zero, bb8
 bb12:
-  ADD s6, s5, zero
+  ADD s4, s5, zero
   JAL zero, bb10
 main:
   ADDI sp, sp, -80

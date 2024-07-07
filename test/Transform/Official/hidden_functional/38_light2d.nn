@@ -82,8 +82,7 @@ then224:
   227.load = load float from ptr %227
   ret float %227.load
 if.exit225:
-  231 = ptradd ptr %ret, i32 0
-  231.load = load float from ptr %231
+  231.load = load float from ptr %220
   233 = fadd float %t190.phi, float %231.load
   235 = add i32 %i.phi, i32 1
   br bb %while.cond192
@@ -136,8 +135,7 @@ while.cond:
 while.body:
   46 = fdiv float %x, float %t.phi
   47 = fadd float %t.phi, float %46
-  48 = si2f i32 2 to float
-  49 = fdiv float %47, float %48
+  49 = fdiv float %47, float %30
   51 = sub i32 %c.phi, i32 1
   br bb %while.cond
 while.exit:

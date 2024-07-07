@@ -141,17 +141,16 @@ circle_area:
   FLW fs0, 0(s1)
   FCVT.S.W fs1, s0
   FMUL.S fs2, fs0, fs1
-  FCVT.S.W fs0, s0
-  FMUL.S fs1, fs2, fs0
+  FMUL.S fs0, fs2, fs1
   MULW s1, s0, s0
   LA s0, PI
-  FLW fs0, 0(s0)
+  FLW fs1, 0(s0)
   FCVT.S.W fs2, s1
-  FMUL.S fs3, fs2, fs0
-  FADD.S fs0, fs1, fs3
+  FMUL.S fs3, fs2, fs1
+  FADD.S fs1, fs0, fs3
   ADDI s0, zero, 2
-  FCVT.S.W fs1, s0
-  FDIV.S fs2, fs0, fs1
+  FCVT.S.W fs0, s0
+  FDIV.S fs2, fs1, fs0
   FSGNJ.S fa0, fs2, fs2
   LD ra, 0(sp)
   FLD fs3, 8(sp)
@@ -212,18 +211,17 @@ main:
   SD ra, 40(sp)
   FSD fs4, 48(sp)
   FSD fs3, 56(sp)
-  SD s8, 64(sp)
-  FSD fs2, 72(sp)
-  SD s7, 80(sp)
-  SD s0, 88(sp)
-  SD s5, 96(sp)
-  FSD fs0, 104(sp)
-  FSD fs1, 112(sp)
-  SD s2, 120(sp)
-  SD s3, 128(sp)
-  SD s1, 136(sp)
-  SD s6, 144(sp)
-  SD s4, 152(sp)
+  FSD fs2, 64(sp)
+  SD s7, 72(sp)
+  SD s0, 80(sp)
+  SD s5, 88(sp)
+  FSD fs0, 96(sp)
+  FSD fs1, 104(sp)
+  SD s2, 112(sp)
+  SD s3, 120(sp)
+  SD s1, 128(sp)
+  SD s6, 136(sp)
+  SD s4, 144(sp)
   LA s0, HEX2
   FLW fs0, 0(s0)
   LA s0, FACT
@@ -428,11 +426,7 @@ bb25:
   MULW s7, s5, s6
   ADDI t6, sp, 0
   ADD s6, t6, s7
-  ADDI s7, zero, 4
-  MULW s8, s5, s7
-  ADDI t5, sp, 0
-  ADD s7, t5, s8
-  FLW fs3, 0(s7)
+  FLW fs3, 0(s6)
   FADD.S fs4, fs3, fs0
   FSW fs4, 0(s6)
   FSGNJ.S fa0, fs1, fs1
@@ -466,18 +460,17 @@ bb26:
   LD ra, 40(sp)
   FLD fs4, 48(sp)
   FLD fs3, 56(sp)
-  LD s8, 64(sp)
-  FLD fs2, 72(sp)
-  LD s7, 80(sp)
-  LD s0, 88(sp)
-  LD s5, 96(sp)
-  FLD fs0, 104(sp)
-  FLD fs1, 112(sp)
-  LD s2, 120(sp)
-  LD s3, 128(sp)
-  LD s1, 136(sp)
-  LD s6, 144(sp)
-  LD s4, 152(sp)
+  FLD fs2, 64(sp)
+  LD s7, 72(sp)
+  LD s0, 80(sp)
+  LD s5, 88(sp)
+  FLD fs0, 96(sp)
+  FLD fs1, 104(sp)
+  LD s2, 112(sp)
+  LD s3, 120(sp)
+  LD s1, 128(sp)
+  LD s6, 136(sp)
+  LD s4, 144(sp)
   ADDI sp, sp, 160
   JALR zero, 0(ra)
 assert:

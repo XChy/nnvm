@@ -53,8 +53,8 @@ same:
   ADDI s2, zero, 1
   SW s2, 0(s4)
   XOR s2, s0, s1
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb1
+  SLTIU s0, s2, 1
+  BNE s0, zero, bb1
   JAL zero, bb2
 bb1:
   ADDI a0, zero, 1
@@ -69,8 +69,6 @@ bb1:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
   LA s0, head
   ADD s2, s0, s3
   LW s0, 0(s2)
@@ -87,21 +85,21 @@ bb3:
 bb4:
   ADDI s3, zero, 4
   MULW s4, s0, s3
-  LA s3, to
-  ADD s5, s3, s4
-  LW s3, 0(s5)
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  LA s4, vis
-  ADD s6, s4, s5
-  LW s4, 0(s6)
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
-  XORI s5, s4, 1
-  ADD s4, s5, zero
-  XOR s5, s4, zero
-  SLTU s4, zero, s5
-  BNE s4, zero, bb6
+  LA s0, to
+  ADD s3, s0, s4
+  LW s0, 0(s3)
+  ADDI s3, zero, 4
+  MULW s5, s0, s3
+  LA s3, vis
+  ADD s6, s3, s5
+  LW s3, 0(s6)
+  XOR s5, s3, zero
+  SLTU s3, zero, s5
+  XORI s5, s3, 1
+  ADD s3, s5, zero
+  XOR s5, s3, zero
+  SLTU s3, zero, s5
+  BNE s3, zero, bb6
   JAL zero, bb7
 bb5:
   ADD a0, zero, zero
@@ -116,20 +114,20 @@ bb5:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb6:
-  ADD a0, s3, zero
+  ADD a0, s0, zero
   ADD a1, s1, zero
   CALL same
-  ADD s3, a0, zero
-  XOR s4, s3, zero
-  SLTU s3, zero, s4
-  ADD s4, s3, zero
+  ADD s0, a0, zero
+  XOR s3, s0, zero
+  SLTU s0, zero, s3
+  ADD s3, s0, zero
   JAL zero, bb8
 bb7:
-  ADD s4, zero, zero
+  ADD s3, zero, zero
   JAL zero, bb8
 bb8:
-  ADD s3, s4, zero
-  BNE s3, zero, bb9
+  ADD s0, s3, zero
+  BNE s0, zero, bb9
   JAL zero, bb10
 bb9:
   ADDI a0, zero, 1
@@ -144,12 +142,10 @@ bb9:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb10:
-  ADDI s3, zero, 4
-  MULW s5, s0, s3
-  LA s3, next
-  ADD s6, s3, s5
-  LW s3, 0(s6)
-  ADD s2, s3, zero
+  LA s0, next
+  ADD s5, s0, s4
+  LW s0, 0(s5)
+  ADD s2, s0, zero
   JAL zero, bb3
 init:
   ADDI sp, sp, -48
@@ -219,13 +215,9 @@ add_edge:
   ADD s5, s2, s4
   LW s2, 0(s5)
   SW s2, 0(s3)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, head
-  ADD s4, s2, s3
   LA s2, cnt
   LW s3, 0(s2)
-  SW s3, 0(s4)
+  SW s3, 0(s5)
   LA s2, cnt
   LW s3, 0(s2)
   ADDIW s2, s3, 1
@@ -245,13 +237,9 @@ add_edge:
   ADDI s0, zero, 4
   MULW s3, s1, s0
   LA s0, head
-  ADD s4, s0, s3
-  LW s0, 0(s4)
+  ADD s1, s0, s3
+  LW s0, 0(s1)
   SW s0, 0(s2)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, head
-  ADD s1, s0, s2
   LA s0, cnt
   LW s2, 0(s0)
   SW s2, 0(s1)

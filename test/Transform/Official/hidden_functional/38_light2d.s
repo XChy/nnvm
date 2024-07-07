@@ -159,8 +159,8 @@ bb3:
   JALR zero, 0(ra)
 trace:
   ADDI sp, sp, -128
-  SD s4, 8(sp)
-  SD ra, 16(sp)
+  SD ra, 8(sp)
+  SD s4, 16(sp)
   FSD fs7, 24(sp)
   SD s3, 32(sp)
   FSD fs6, 40(sp)
@@ -206,10 +206,10 @@ bb6:
   ADDI t5, sp, 0
   ADD s2, t5, zero
   FLW fs5, 0(s2)
-  LA s2, EPSILON
-  FLW fs7, 0(s2)
-  FLT.S s2, fs5, fs7
-  BNE s2, zero, bb11
+  LA s4, EPSILON
+  FLW fs7, 0(s4)
+  FLT.S s4, fs5, fs7
+  BNE s4, zero, bb11
   JAL zero, bb12
 bb7:
   LA s0, .CONSTANT.7.0
@@ -217,8 +217,8 @@ bb7:
   LA s0, .CONSTANT.7.0
   FLW fs6, 0(s0)
   FSGNJ.S fa0, fs5, fs6
-  LD s4, 8(sp)
-  LD ra, 16(sp)
+  LD ra, 8(sp)
+  LD s4, 16(sp)
   FLD fs7, 24(sp)
   LD s3, 32(sp)
   FLD fs6, 40(sp)
@@ -250,11 +250,11 @@ bb10:
   BNE s2, zero, bb6
   JAL zero, bb7
 bb11:
-  ADDI s2, sp, 4
-  FLW fs5, 0(s2)
+  ADDI s4, sp, 4
+  FLW fs5, 0(s4)
   FSGNJ.S fa0, fs5, fs5
-  LD s4, 8(sp)
-  LD ra, 16(sp)
+  LD ra, 8(sp)
+  LD s4, 16(sp)
   FLD fs7, 24(sp)
   LD s3, 32(sp)
   FLD fs6, 40(sp)
@@ -271,8 +271,6 @@ bb11:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb12:
-  ADDI t6, sp, 0
-  ADD s2, t6, zero
   FLW fs5, 0(s2)
   FADD.S fs7, fs4, fs5
   ADDIW s2, s1, 1
@@ -373,30 +371,28 @@ my_sqrt:
   FCVT.S.W fs1, s0
   FMUL.S fs2, fs1, fs0
   ADDI s0, zero, 4
-  FCVT.S.W fs1, s0
-  FADD.S fs4, fs1, fs0
-  FDIV.S fs1, fs2, fs4
-  FADD.S fs2, fs3, fs1
+  FCVT.S.W fs4, s0
+  FADD.S fs5, fs4, fs0
+  FDIV.S fs4, fs2, fs5
+  FADD.S fs2, fs3, fs4
   ADDI s0, zero, 10
-  FSGNJ.S fs1, fs2, fs2
+  FSGNJ.S fs3, fs2, fs2
   JAL zero, bb18
 bb18:
-  FSGNJ.S fs2, fs1, fs1
+  FSGNJ.S fs2, fs3, fs3
   ADD s1, s0, zero
   XOR s2, s1, zero
   SLTU s3, zero, s2
   BNE s3, zero, bb19
   JAL zero, bb20
 bb19:
-  FDIV.S fs3, fs0, fs2
-  FADD.S fs4, fs2, fs3
-  ADDI s2, zero, 2
-  FCVT.S.W fs3, s2
-  FDIV.S fs5, fs4, fs3
+  FDIV.S fs4, fs0, fs2
+  FADD.S fs5, fs2, fs4
+  FDIV.S fs4, fs5, fs1
   ADDI s2, zero, 1
   SUBW s3, s1, s2
   ADD s0, s3, zero
-  FSGNJ.S fs1, fs5, fs5
+  FSGNJ.S fs3, fs4, fs4
   JAL zero, bb18
 bb20:
   FSGNJ.S fa0, fs2, fs2

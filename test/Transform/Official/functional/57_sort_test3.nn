@@ -41,8 +41,7 @@ while.body25:
   44 = sub i32 %j.phi161, i32 1
   br bb %while.cond24
 while.exit26:
-  47 = icmp slt i32 %i.phi154, i32 %j.phi161
-  br i1 %47, bb %then48, bb %if.exit49
+  br i1 %29, bb %then48, bb %if.exit49
 select.then:
   35 = mul i32 %j.phi161, i32 4
   36 = ptradd ptr %arr, i32 %35
@@ -76,8 +75,7 @@ while.body60:
   78 = add i32 %i.phi, i32 1
   br bb %while.cond59
 while.exit61:
-  81 = icmp slt i32 %i.phi, i32 %j.phi161
-  br i1 %81, bb %then82, bb %if.exit83
+  br i1 %64, bb %then82, bb %if.exit83
 select.then65:
   70 = mul i32 %i.phi, i32 4
   71 = ptradd ptr %arr, i32 %70

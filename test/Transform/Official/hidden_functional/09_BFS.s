@@ -45,19 +45,20 @@ n:
 .word 0x00000000
 .section .text
 same:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -112
   SD ra, 0(sp)
-  SD s10, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s7, 32(sp)
-  SD s1, 40(sp)
-  SD s6, 48(sp)
-  SD s8, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
-  SD s9, 88(sp)
+  SD s11, 8(sp)
+  SD s10, 16(sp)
+  SD s0, 24(sp)
+  SD s5, 32(sp)
+  SD s7, 40(sp)
+  SD s1, 48(sp)
+  SD s6, 56(sp)
+  SD s8, 64(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s4, 88(sp)
+  SD s9, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   LA s2, h
@@ -114,37 +115,31 @@ bb6:
 bb7:
   ADDI s8, zero, 4
   MULW s9, s6, s8
-  LA s8, to
-  ADD s10, s8, s9
-  LW s8, 0(s10)
-  ADDI s9, zero, 4
-  MULW s10, s8, s9
-  LA s8, inq
-  ADD s9, s8, s10
-  LW s8, 0(s9)
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
-  XORI s9, s8, 1
-  ADD s8, s9, zero
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
-  BNE s8, zero, bb9
+  LA s6, to
+  ADD s8, s6, s9
+  LW s6, 0(s8)
+  ADDI s10, zero, 4
+  MULW s11, s6, s10
+  LA s6, inq
+  ADD s10, s6, s11
+  LW s6, 0(s10)
+  XOR s10, s6, zero
+  SLTU s6, zero, s10
+  XORI s10, s6, 1
+  ADD s6, s10, zero
+  XOR s10, s6, zero
+  SLTU s6, zero, s10
+  BNE s6, zero, bb9
   JAL zero, bb10
 bb8:
   ADD s0, s5, zero
   JAL zero, bb1
 bb9:
-  ADDI s8, zero, 4
-  MULW s9, s6, s8
-  LA s8, to
-  ADD s10, s8, s9
-  LW s8, 0(s10)
-  ADD a0, s8, zero
+  LW s6, 0(s8)
+  ADD a0, s6, zero
   CALL inqueue
   JAL zero, bb10
 bb10:
-  ADDI s8, zero, 4
-  MULW s9, s6, s8
   LA s6, next
   ADD s8, s6, s9
   LW s6, 0(s8)
@@ -177,18 +172,19 @@ bb12:
 bb13:
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s10, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s7, 32(sp)
-  LD s1, 40(sp)
-  LD s6, 48(sp)
-  LD s8, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
-  LD s9, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 8(sp)
+  LD s10, 16(sp)
+  LD s0, 24(sp)
+  LD s5, 32(sp)
+  LD s7, 40(sp)
+  LD s1, 48(sp)
+  LD s6, 56(sp)
+  LD s8, 64(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s4, 88(sp)
+  LD s9, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb14:
   ADD s4, s2, zero
@@ -292,13 +288,9 @@ add_edge:
   ADD s5, s2, s4
   LW s2, 0(s5)
   SW s2, 0(s3)
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, head
-  ADD s4, s2, s3
   LA s2, cnt
   LW s3, 0(s2)
-  SW s3, 0(s4)
+  SW s3, 0(s5)
   LA s2, cnt
   LW s3, 0(s2)
   ADDIW s2, s3, 1
@@ -318,13 +310,9 @@ add_edge:
   ADDI s0, zero, 4
   MULW s3, s1, s0
   LA s0, head
-  ADD s4, s0, s3
-  LW s0, 0(s4)
+  ADD s1, s0, s3
+  LW s0, 0(s1)
   SW s0, 0(s2)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, head
-  ADD s1, s0, s2
   LA s0, cnt
   LW s2, 0(s0)
   SW s2, 0(s1)

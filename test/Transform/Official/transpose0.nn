@@ -119,17 +119,9 @@ if.exit:
   43 = add i32 %41, i32 %i.phi
   44 = mul i32 %43, i32 4
   45 = ptradd ptr %matrix, i32 %44
-  48 = mul i32 %i.phi, i32 %rowsize
-  50 = add i32 %48, i32 %j.phi
-  51 = mul i32 %50, i32 4
-  52 = ptradd ptr %matrix, i32 %51
-  52.load = load i32 from ptr %52
+  52.load = load i32 from ptr %37
   store i32 %52.load to ptr %45
-  56 = mul i32 %i.phi, i32 %rowsize
-  58 = add i32 %56, i32 %j.phi
-  59 = mul i32 %58, i32 4
-  60 = ptradd ptr %matrix, i32 %59
-  store i32 %37.load to ptr %60
+  store i32 %37.load to ptr %37
   63 = add i32 %j.phi, i32 1
   br bb %while.cond16
 }

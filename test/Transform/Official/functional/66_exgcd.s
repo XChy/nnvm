@@ -15,9 +15,9 @@ main:
   ADDI s1, zero, 1
   SW s1, 0(s0)
   ADDI t6, sp, 0
-  ADD s0, t6, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
+  ADD s1, t6, zero
+  ADDI s2, zero, 1
+  SW s2, 0(s1)
   ADDI a0, zero, 7
   ADDI a1, zero, 15
   ADDI a2, sp, 8
@@ -25,20 +25,14 @@ main:
   ADDI a3, sp, 0
   ADD a3, a3, zero
   CALL exgcd
-  ADD s0, a0, zero
-  ADDI t5, sp, 8
-  ADD s0, t5, zero
-  ADDI t6, sp, 8
-  ADD s1, t6, zero
-  LW s2, 0(s1)
-  ADDI s1, zero, 15
-  REMW s3, s2, s1
+  ADD s1, a0, zero
+  LW s1, 0(s0)
+  ADDI s2, zero, 15
+  REMW s3, s1, s2
   ADDIW s1, s3, 15
   ADDI s2, zero, 15
   REMW s3, s1, s2
   SW s3, 0(s0)
-  ADDI t5, sp, 8
-  ADD s0, t5, zero
   LW s1, 0(s0)
   ADD a0, s1, zero
   CALL putint
@@ -51,16 +45,15 @@ main:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 exgcd:
-  ADDI sp, sp, -80
-  SD s7, 0(sp)
-  SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s1, 24(sp)
+  ADDI sp, sp, -64
+  SD ra, 0(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
   SD s6, 32(sp)
-  SD s2, 40(sp)
-  SD s3, 48(sp)
-  SD s4, 56(sp)
-  SD ra, 64(sp)
+  SD s1, 40(sp)
+  SD s5, 48(sp)
+  SD s0, 56(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -76,16 +69,15 @@ bb2:
   ADD s4, s3, zero
   SW zero, 0(s4)
   ADD a0, s0, zero
-  LD s7, 0(sp)
-  LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
   LD s6, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD ra, 64(sp)
-  ADDI sp, sp, 80
+  LD s1, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
   REMW s4, s0, s1
@@ -96,27 +88,23 @@ bb3:
   CALL exgcd
   ADD s4, a0, zero
   ADD s5, s2, zero
-  LW s6, 0(s5)
-  ADD s5, s2, zero
-  ADD s2, s3, zero
-  LW s7, 0(s2)
-  SW s7, 0(s5)
-  ADD s2, s3, zero
-  DIVW s5, s0, s1
-  ADD s0, s3, zero
-  LW s1, 0(s0)
-  MULW s0, s5, s1
-  SUBW s1, s6, s0
-  SW s1, 0(s2)
+  LW s2, 0(s5)
+  ADD s6, s3, zero
+  LW s3, 0(s6)
+  SW s3, 0(s5)
+  DIVW s3, s0, s1
+  LW s0, 0(s6)
+  MULW s1, s3, s0
+  SUBW s0, s2, s1
+  SW s0, 0(s6)
   ADD a0, s4, zero
-  LD s7, 0(sp)
-  LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
   LD s6, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD ra, 64(sp)
-  ADDI sp, sp, 80
+  LD s1, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)

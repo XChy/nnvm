@@ -70,9 +70,7 @@ bb5:
   ADD a1, zero, zero
   ADD a2, s4, zero
   CALL heap_ajust
-  ADD s3, a0, zero
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
+  ADD s2, a0, zero
   ADD s1, s4, zero
   JAL zero, bb4
 bb6:
@@ -305,20 +303,14 @@ swap:
   ADD s2, a2, zero
   ADDI s3, zero, 4
   MULW s4, s1, s3
-  ADD s3, s0, s4
-  LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s1, s3
-  ADD s1, s0, s5
-  ADDI s3, zero, 4
-  MULW s5, s2, s3
-  ADD s3, s0, s5
-  LW s5, 0(s3)
-  SW s5, 0(s1)
-  ADDI s1, zero, 4
-  MULW s3, s2, s1
-  ADD s1, s0, s3
-  SW s4, 0(s1)
+  ADD s1, s0, s4
+  LW s3, 0(s1)
+  ADDI s4, zero, 4
+  MULW s5, s2, s4
+  ADD s2, s0, s5
+  LW s0, 0(s2)
+  SW s0, 0(s1)
+  SW s3, 0(s2)
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s4, 8(sp)

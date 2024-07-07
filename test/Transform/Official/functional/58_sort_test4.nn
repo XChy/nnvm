@@ -8,7 +8,7 @@ entry:
   br bb %while.cond
 while.cond:
   tmp.phi110 = phi [bb %entry, i32 ub, bb %if.exit41, i32 %tmp.phi]
-  i.phi = phi [bb %entry, i32 0, bb %if.exit41, i32 %59]
+  i.phi = phi [bb %entry, i32 0, bb %if.exit41, i32 %15]
   10 = sub i32 %n, i32 1
   11 = icmp slt i32 %i.phi, i32 %10
   12 = icmp ne i1 %11, i1 0
@@ -46,19 +46,14 @@ then40:
   44 = mul i32 %min.phi107, i32 4
   45 = ptradd ptr %A, i32 %44
   45.load = load i32 from ptr %45
-  48 = mul i32 %min.phi107, i32 4
-  49 = ptradd ptr %A, i32 %48
   51 = mul i32 %i.phi, i32 4
   52 = ptradd ptr %A, i32 %51
   52.load = load i32 from ptr %52
-  store i32 %52.load to ptr %49
-  55 = mul i32 %i.phi, i32 4
-  56 = ptradd ptr %A, i32 %55
-  store i32 %45.load to ptr %56
+  store i32 %52.load to ptr %45
+  store i32 %45.load to ptr %52
   br bb %if.exit41
 if.exit41:
   tmp.phi = phi [bb %while.exit18, i32 %tmp.phi110, bb %then40, i32 %45.load]
-  59 = add i32 %i.phi, i32 1
   br bb %while.cond
 }
 

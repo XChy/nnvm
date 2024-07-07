@@ -97,9 +97,7 @@ else145:
 then150:
   154 = mul i32 %read_head.phi307, i32 4
   155 = ptradd ptr @tape, i32 %154
-  157 = mul i32 %read_head.phi307, i32 4
-  158 = ptradd ptr @tape, i32 %157
-  158.load = load i32 from ptr %158
+  158.load = load i32 from ptr %155
   160 = add i32 %158.load, i32 1
   store i32 %160 to ptr %155
   br bb %if.exit151
@@ -117,9 +115,7 @@ else152:
 then163:
   167 = mul i32 %read_head.phi307, i32 4
   168 = ptradd ptr @tape, i32 %167
-  170 = mul i32 %read_head.phi307, i32 4
-  171 = ptradd ptr @tape, i32 %170
-  171.load = load i32 from ptr %171
+  171.load = load i32 from ptr %168
   173 = sub i32 %171.load, i32 1
   store i32 %173 to ptr %168
   br bb %if.exit164
@@ -184,9 +180,7 @@ then209:
   br bb %if.exit210
 if.exit210:
   loop.phi354 = phi [bb %while.body197, i32 %loop.phi346, bb %then209, i32 %212]
-  214 = mul i32 %203, i32 4
-  215 = ptradd ptr @program, i32 %214
-  215.load = load i32 from ptr %215
+  215.load = load i32 from ptr %206
   217 = icmp eq i32 %215.load, i32 91
   br i1 %217, bb %then218, bb %if.exit219
 then218:

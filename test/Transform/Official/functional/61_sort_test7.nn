@@ -14,8 +14,7 @@ entry149:
   152 = ptradd ptr @buf, i32 0
   153 = call i32 getarray(ptr %152)
   call void merge_sort(i32 0, i32 %153)
-  158 = ptradd ptr @buf, i32 0
-  call void putarray(i32 %153, ptr %158)
+  call void putarray(i32 %153, ptr %152)
   ret i32 0
 }
 
@@ -57,9 +56,8 @@ while.body:
   44 = mul i32 %i.phi163, i32 4
   45 = ptradd ptr %42, i32 %44
   45.load = load i32 from ptr %45
-  48 = ptradd ptr @buf, i32 0
   50 = mul i32 %j.phi166, i32 4
-  51 = ptradd ptr %48, i32 %50
+  51 = ptradd ptr %42, i32 %50
   51.load = load i32 from ptr %51
   53 = icmp slt i32 %45.load, i32 %51.load
   br i1 %53, bb %then54, bb %else
@@ -78,10 +76,7 @@ then54:
   58 = ptradd ptr @buf, i32 400
   60 = mul i32 %k.phi169, i32 4
   61 = ptradd ptr %58, i32 %60
-  63 = ptradd ptr @buf, i32 0
-  65 = mul i32 %i.phi163, i32 4
-  66 = ptradd ptr %63, i32 %65
-  66.load = load i32 from ptr %66
+  66.load = load i32 from ptr %45
   store i32 %66.load to ptr %61
   69 = add i32 %i.phi163, i32 1
   br bb %if.exit55
@@ -94,10 +89,7 @@ else:
   71 = ptradd ptr @buf, i32 400
   73 = mul i32 %k.phi169, i32 4
   74 = ptradd ptr %71, i32 %73
-  76 = ptradd ptr @buf, i32 0
-  78 = mul i32 %j.phi166, i32 4
-  79 = ptradd ptr %76, i32 %78
-  79.load = load i32 from ptr %79
+  79.load = load i32 from ptr %51
   store i32 %79.load to ptr %74
   82 = add i32 %j.phi166, i32 1
   br bb %if.exit55
@@ -151,8 +143,7 @@ while.body130:
   139 = mul i32 %l.stack.phi, i32 4
   140 = ptradd ptr %137, i32 %139
   142 = ptradd ptr @buf, i32 400
-  144 = mul i32 %l.stack.phi, i32 4
-  145 = ptradd ptr %142, i32 %144
+  145 = ptradd ptr %142, i32 %139
   145.load = load i32 from ptr %145
   store i32 %145.load to ptr %140
   148 = add i32 %l.stack.phi, i32 1

@@ -14,8 +14,7 @@ while.cond:
 while.body:
   54 = mul i32 %i.phi, i32 4
   55 = ptradd ptr %dst, i32 %54
-  57 = mul i32 %i.phi, i32 4
-  58 = ptradd ptr %src, i32 %57
+  58 = ptradd ptr %src, i32 %54
   58.load = load i32 from ptr %58
   store i32 %58.load to ptr %55
   61 = add i32 %i.phi, i32 1
@@ -137,14 +136,10 @@ else:
   176 = icmp sgt i32 %165.load, i32 %175
   br i1 %176, bb %then177, bb %if.exit178
 then177:
-  181 = mul i32 %i102.phi, i32 %n
-  183 = add i32 %181, i32 %j.phi
-  184 = mul i32 %183, i32 4
-  185 = ptradd ptr @temp, i32 %184
   189 = call i32 getvalue(ptr @temp, i32 %n, i32 %i102.phi, i32 %k.phi)
   193 = call i32 getvalue(ptr @temp, i32 %n, i32 %k.phi, i32 %j.phi)
   194 = add i32 %189, i32 %193
-  store i32 %194 to ptr %185
+  store i32 %194 to ptr %165
   br bb %if.exit178
 if.exit178:
   br bb %if.exit141

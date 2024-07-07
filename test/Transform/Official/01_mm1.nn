@@ -194,24 +194,14 @@ while.cond55:
   61 = icmp ne i1 %60, i1 0
   br i1 %61, bb %while.body56, bb %while.exit57
 while.body56:
-  63 = mul i32 %i.phi, i32 4096
-  64 = ptradd ptr %C, i32 %63
+  64 = ptradd ptr %C, i32 %44
   66 = mul i32 %j.phi, i32 4
   67 = ptradd ptr %64, i32 %66
-  69 = mul i32 %i.phi, i32 4096
-  70 = ptradd ptr %C, i32 %69
-  72 = mul i32 %j.phi, i32 4
-  73 = ptradd ptr %70, i32 %72
-  73.load = load i32 from ptr %73
-  76 = mul i32 %i.phi, i32 4096
-  77 = ptradd ptr %A, i32 %76
-  79 = mul i32 %k.phi, i32 4
-  80 = ptradd ptr %77, i32 %79
-  80.load = load i32 from ptr %80
+  73.load = load i32 from ptr %67
+  80.load = load i32 from ptr %48
   83 = mul i32 %k.phi, i32 4096
   84 = ptradd ptr %B, i32 %83
-  86 = mul i32 %j.phi, i32 4
-  87 = ptradd ptr %84, i32 %86
+  87 = ptradd ptr %84, i32 %66
   87.load = load i32 from ptr %87
   89 = mul i32 %80.load, i32 %87.load
   90 = add i32 %73.load, i32 %89

@@ -73,6 +73,20 @@ bool Instruction::mayWriteToMemory() const {
   }
 }
 
+bool Instruction::mayReadMemory() const {
+  switch (getOpcode()) {
+  case InstID::Load:
+  case InstID::Call:
+    return true;
+  default:
+    return false;
+  }
+}
+
+bool Instruction::haveSideEffect() const {
+  return mayWriteToMemory() || mayReadMemory();
+}
+
 std::string Instruction::dump() {
   std::string ret;
   if (getType() && !getType()->isVoid())

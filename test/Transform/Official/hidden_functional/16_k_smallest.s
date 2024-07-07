@@ -251,42 +251,32 @@ bb23:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 swap:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADDI s2, zero, 4
   MULW s3, s0, s2
-  LA s2, array
-  ADD s4, s2, s3
-  LW s2, 0(s4)
+  LA s0, array
+  ADD s2, s0, s3
+  LW s0, 0(s2)
   ADDI s3, zero, 4
-  MULW s4, s0, s3
-  LA s0, array
-  ADD s3, s0, s4
-  ADDI s0, zero, 4
-  MULW s4, s1, s0
-  LA s0, array
-  ADD s5, s0, s4
-  LW s0, 0(s5)
+  MULW s4, s1, s3
+  LA s1, array
+  ADD s3, s1, s4
+  LW s1, 0(s3)
+  SW s1, 0(s2)
   SW s0, 0(s3)
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
-  LA s0, array
-  ADD s1, s0, s3
-  SW s2, 0(s1)
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
