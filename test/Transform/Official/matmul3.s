@@ -221,17 +221,17 @@ bb21:
   BNE s2, zero, bb22
   JAL zero, bb23
 bb22:
-  LA s2, MAX
-  LW s3, 0(s2)
-  ADD s2, s3, zero
-  ADD s3, zero, zero
+  LUI s2, 524288
+  ADDI s2, s2, -1
+  ADD s3, zero, s2
+  ADD s2, zero, zero
   JAL zero, bb24
 bb23:
   ADD s0, zero, zero
   JAL zero, bb32
 bb24:
-  ADD s4, s3, zero
-  ADD s5, s2, zero
+  ADD s4, s2, zero
+  ADD s5, s3, zero
   SLTI s6, s4, 1000
   BNE s6, zero, bb25
   JAL zero, bb26
@@ -258,8 +258,8 @@ bb27:
 bb28:
   ADD s7, s6, zero
   ADDIW s8, s4, 1
-  ADD s2, s7, zero
-  ADD s3, s8, zero
+  ADD s3, s7, zero
+  ADD s2, s8, zero
   JAL zero, bb24
 bb29:
   ADD s3, s2, zero

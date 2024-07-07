@@ -94,9 +94,7 @@ bb8:
   LW s7, 0(s9)
   ADD a0, s7, zero
   CALL putint
-  LA s7, space
-  LW s8, 0(s7)
-  ADD a0, s8, zero
+  ADDI a0, zero, 32
   CALL putch
   ADDIW s7, s6, 1
   ADD s5, s7, zero

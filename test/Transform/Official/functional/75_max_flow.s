@@ -45,11 +45,11 @@ bb1:
   ADD a1, zero, zero
   ADDI a2, zero, 10
   CALL my_memset
-  LA s4, INF
-  LW s5, 0(s4)
   ADD a0, s0, zero
   ADD a1, s1, zero
-  ADD a2, s5, zero
+  LUI s4, 458752
+  ADDI s4, s4, 0
+  ADD a2, zero, s4
   CALL dfs
   ADD s4, a0, zero
   XOR s5, s4, zero
@@ -139,8 +139,8 @@ bb8:
   ADD t0, s10, s11
   ADDI s10, zero, 4
   MULW t4, s7, s10
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   ADD s10, t0, t4
   LW t0, 0(s10)
   ADDI t2, zero, 4
@@ -178,10 +178,10 @@ bb10:
 bb11:
   LA t0, cap
   ADD t2, t0, s11
-  LW t3, 8(sp)
+  LW t3, 0(sp)
   ADD t4, t2, t3
-  SD t4, 0(sp)
-  LD t4, 0(sp)
+  SD t4, 8(sp)
+  LD t4, 8(sp)
   LW t2, 0(t4)
   SLT a3, zero, t2
   XORI t2, a3, 1
@@ -194,7 +194,7 @@ bb12:
   ADD s6, t2, zero
   JAL zero, bb7
 bb13:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s8, 0(t4)
   SLT s9, s2, s8
   BNE s9, zero, bb14
@@ -214,15 +214,15 @@ bb15:
   BNE t1, zero, bb17
   JAL zero, bb18
 bb16:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s3, 0(t4)
   ADD s8, s3, zero
   JAL zero, bb15
 bb17:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW t1, 0(t4)
   SUBW t2, t1, t0
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   SW t2, 0(t4)
   LW t1, 0(s10)
   ADDI t2, zero, 40
@@ -231,7 +231,7 @@ bb17:
   ADD t2, t1, a1
   LA t1, rev
   ADD a1, t1, s11
-  LW t4, 8(sp)
+  LW t4, 0(sp)
   ADD t1, a1, t4
   LW a1, 0(t1)
   ADDI a2, zero, 4

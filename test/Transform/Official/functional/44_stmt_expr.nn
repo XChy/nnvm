@@ -6,9 +6,7 @@ entry:
   br bb %while.cond
 while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %11]
-  n.load = load i32 from ptr @n
-  7 = sub i32 %n.load, i32 1
-  8 = icmp sle i32 %i.phi, i32 %7
+  8 = icmp sle i32 %i.phi, i32 9
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
   11 = add i32 %i.phi, i32 1

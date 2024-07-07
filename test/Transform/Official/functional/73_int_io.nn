@@ -16,8 +16,7 @@ while.body53:
   59 = mul i32 %i.phi100, i32 4
   60 = ptradd ptr %b, i32 %59
   62 = srem i32 %a.stack.phi, i32 10
-  ascii_0.load63 = load i32 from ptr @ascii_0
-  64 = add i32 %62, i32 %ascii_0.load63
+  64 = add i32 %62, i32 48
   store i32 %64 to ptr %60
   66 = sdiv i32 %a.stack.phi, i32 10
   68 = add i32 %i.phi100, i32 1
@@ -46,8 +45,7 @@ entry:
   br bb %while.cond
 while.cond:
   7 = call i32 getch()
-  ascii_0.load = load i32 from ptr @ascii_0
-  9 = sub i32 %7, i32 %ascii_0.load
+  9 = sub i32 %7, i32 48
   11 = icmp slt i32 %9, i32 0
   br i1 %11, bb %select.then, bb %select.else
 while.exit:
@@ -68,8 +66,7 @@ else:
 while.cond24:
   sum.phi = phi [bb %while.exit, i32 %c.phi104, bb %if.exit41, i32 %46]
   28 = call i32 getch()
-  ascii_0.load29 = load i32 from ptr @ascii_0
-  30 = sub i32 %28, i32 %ascii_0.load29
+  30 = sub i32 %28, i32 48
   32 = icmp sge i32 %30, i32 0
   br i1 %32, bb %select.then33, bb %select.else34
 while.exit26:

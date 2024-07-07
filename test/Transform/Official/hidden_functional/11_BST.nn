@@ -239,8 +239,7 @@ while.body:
   br bb %while.cond
 while.exit:
   call void inorder(i32 %289)
-  LF.load = load i32 from ptr @LF
-  call void putch(i32 %LF.load)
+  call void putch(i32 10)
   307 = call i32 getint()
   br bb %while.cond308
 while.cond308:
@@ -255,8 +254,7 @@ while.body309:
   br bb %while.cond308
 while.exit310:
   call void inorder(i32 %root.phi)
-  LF.load322 = load i32 from ptr @LF
-  call void putch(i32 %LF.load322)
+  call void putch(i32 10)
   ret i32 0
 }
 
@@ -278,8 +276,7 @@ then258:
   267 = ptradd ptr @value, i32 %261
   267.load = load i32 from ptr %267
   call void putint(i32 %267.load)
-  space.load = load i32 from ptr @space
-  call void putch(i32 %space.load)
+  call void putch(i32 32)
   274 = ptradd ptr @right_child, i32 %261
   274.load = load i32 from ptr %274
   call void inorder(i32 %274.load)

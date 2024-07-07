@@ -29,9 +29,7 @@ while.cond:
   im1jp1.phi243 = phi [bb %entry12, i32 ub, bb %while.exit28, i32 %im1jp1.phi]
   im1j.phi241 = phi [bb %entry12, i32 ub, bb %while.exit28, i32 %im1j.phi]
   im1jm1.phi239 = phi [bb %entry12, i32 ub, bb %while.exit28, i32 %im1jm1.phi]
-  width.load = load i32 from ptr @width
-  23 = sub i32 %width.load, i32 1
-  24 = icmp slt i32 %j.phi255, i32 %23
+  24 = icmp slt i32 %j.phi255, i32 511
   br i1 %24, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond26
@@ -40,56 +38,33 @@ while.exit:
 while.cond26:
   val.phi = phi [bb %while.body, i32 %val.phi259, bb %while.body27, i32 %145]
   ip1jp1.phi = phi [bb %while.body, i32 %ip1jp1.phi257, bb %while.body27, i32 %99]
-  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %while.body27, i32 %91]
+  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %while.body27, i32 %83]
   ip1jm1.phi = phi [bb %while.body, i32 %ip1jm1.phi251, bb %while.body27, i32 %84]
   ijp1.phi = phi [bb %while.body, i32 %ijp1.phi249, bb %while.body27, i32 %76]
   ijm1.phi = phi [bb %while.body, i32 %ijm1.phi247, bb %while.body27, i32 %63]
-  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %while.body27, i32 %69]
+  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %while.body27, i32 %62]
   im1jp1.phi = phi [bb %while.body, i32 %im1jp1.phi243, bb %while.body27, i32 %56]
-  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %while.body27, i32 %48]
+  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %while.body27, i32 %40]
   im1jm1.phi = phi [bb %while.body, i32 %im1jm1.phi239, bb %while.body27, i32 %41]
   i.phi236 = phi [bb %while.body, i32 1, bb %while.body27, i32 %79]
-  height.load = load i32 from ptr @height
-  31 = sub i32 %height.load, i32 1
-  32 = icmp slt i32 %i.phi236, i32 %31
+  32 = icmp slt i32 %i.phi236, i32 1023
   br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
   36 = sub i32 %i.phi236, i32 1
-  width.load37 = load i32 from ptr @width
-  38 = mul i32 %36, i32 %width.load37
+  38 = mul i32 %36, i32 512
   40 = add i32 %38, i32 %j.phi255
   41 = sub i32 %40, i32 1
-  width.load45 = load i32 from ptr @width
-  46 = mul i32 %36, i32 %width.load45
-  48 = add i32 %46, i32 %j.phi255
-  width.load52 = load i32 from ptr @width
-  53 = mul i32 %36, i32 %width.load52
-  55 = add i32 %53, i32 %j.phi255
-  56 = add i32 %55, i32 1
-  width.load59 = load i32 from ptr @width
-  60 = mul i32 %i.phi236, i32 %width.load59
+  56 = add i32 %40, i32 1
+  60 = mul i32 %i.phi236, i32 512
   62 = add i32 %60, i32 %j.phi255
   63 = sub i32 %62, i32 1
-  width.load66 = load i32 from ptr @width
-  67 = mul i32 %i.phi236, i32 %width.load66
-  69 = add i32 %67, i32 %j.phi255
-  width.load72 = load i32 from ptr @width
-  73 = mul i32 %i.phi236, i32 %width.load72
-  75 = add i32 %73, i32 %j.phi255
-  76 = add i32 %75, i32 1
+  76 = add i32 %62, i32 1
   79 = add i32 %i.phi236, i32 1
-  width.load80 = load i32 from ptr @width
-  81 = mul i32 %79, i32 %width.load80
+  81 = mul i32 %79, i32 512
   83 = add i32 %81, i32 %j.phi255
   84 = sub i32 %83, i32 1
-  width.load88 = load i32 from ptr @width
-  89 = mul i32 %79, i32 %width.load88
-  91 = add i32 %89, i32 %j.phi255
-  width.load95 = load i32 from ptr @width
-  96 = mul i32 %79, i32 %width.load95
-  98 = add i32 %96, i32 %j.phi255
-  99 = add i32 %98, i32 1
-  102 = mul i32 %69, i32 4
+  99 = add i32 %83, i32 1
+  102 = mul i32 %62, i32 4
   103 = ptradd ptr @image_in, i32 %102
   103.load = load i32 from ptr %103
   105 = mul i32 8, i32 %103.load
@@ -97,7 +72,7 @@ while.body27:
   108 = ptradd ptr @image_in, i32 %107
   108.load = load i32 from ptr %108
   110 = sub i32 %105, i32 %108.load
-  112 = mul i32 %48, i32 4
+  112 = mul i32 %40, i32 4
   113 = ptradd ptr @image_in, i32 %112
   113.load = load i32 from ptr %113
   115 = sub i32 %110, i32 %113.load
@@ -117,7 +92,7 @@ while.body27:
   133 = ptradd ptr @image_in, i32 %132
   133.load = load i32 from ptr %133
   135 = sub i32 %130, i32 %133.load
-  137 = mul i32 %91, i32 4
+  137 = mul i32 %83, i32 4
   138 = ptradd ptr @image_in, i32 %137
   138.load = load i32 from ptr %138
   140 = sub i32 %135, i32 %138.load
@@ -125,11 +100,7 @@ while.body27:
   143 = ptradd ptr @image_in, i32 %142
   143.load = load i32 from ptr %143
   145 = sub i32 %140, i32 %143.load
-  width.load147 = load i32 from ptr @width
-  148 = mul i32 %i.phi236, i32 %width.load147
-  150 = add i32 %148, i32 %j.phi255
-  151 = mul i32 %150, i32 4
-  152 = ptradd ptr @image_out, i32 %151
+  152 = ptradd ptr @image_out, i32 %102
   154 = call i32 cutout(i32 %145)
   store i32 %154 to ptr %152
   br bb %while.cond26
@@ -138,34 +109,20 @@ while.exit28:
   br bb %while.cond
 while.cond159:
   i.phi = phi [bb %while.exit, i32 0, bb %while.body160, i32 %195]
-  height.load163 = load i32 from ptr @height
-  164 = icmp slt i32 %i.phi, i32 %height.load163
+  164 = icmp slt i32 %i.phi, i32 1024
   br i1 %164, bb %while.body160, bb %while.exit161
 while.body160:
-  width.load167 = load i32 from ptr @width
-  168 = mul i32 %i.phi, i32 %width.load167
+  168 = mul i32 %i.phi, i32 512
   169 = mul i32 %168, i32 4
   170 = ptradd ptr @image_out, i32 %169
-  width.load172 = load i32 from ptr @width
-  173 = mul i32 %i.phi, i32 %width.load172
-  174 = mul i32 %173, i32 4
-  175 = ptradd ptr @image_in, i32 %174
+  175 = ptradd ptr @image_in, i32 %169
   175.load = load i32 from ptr %175
   store i32 %175.load to ptr %170
-  width.load178 = load i32 from ptr @width
-  179 = mul i32 %i.phi, i32 %width.load178
-  width.load180 = load i32 from ptr @width
-  181 = add i32 %179, i32 %width.load180
+  181 = add i32 %168, i32 512
   182 = sub i32 %181, i32 1
   183 = mul i32 %182, i32 4
   184 = ptradd ptr @image_out, i32 %183
-  width.load186 = load i32 from ptr @width
-  187 = mul i32 %i.phi, i32 %width.load186
-  width.load188 = load i32 from ptr @width
-  189 = add i32 %187, i32 %width.load188
-  190 = sub i32 %189, i32 1
-  191 = mul i32 %190, i32 4
-  192 = ptradd ptr @image_in, i32 %191
+  192 = ptradd ptr @image_in, i32 %183
   192.load = load i32 from ptr %192
   store i32 %192.load to ptr %184
   195 = add i32 %i.phi, i32 1
@@ -174,8 +131,7 @@ while.exit161:
   br bb %while.cond196
 while.cond196:
   j.phi = phi [bb %while.exit161, i32 0, bb %while.body197, i32 %228]
-  width.load200 = load i32 from ptr @width
-  201 = icmp slt i32 %j.phi, i32 %width.load200
+  201 = icmp slt i32 %j.phi, i32 512
   br i1 %201, bb %while.body197, bb %while.exit198
 while.body197:
   204 = mul i32 %j.phi, i32 4
@@ -183,30 +139,17 @@ while.body197:
   208 = ptradd ptr @image_in, i32 %204
   208.load = load i32 from ptr %208
   store i32 %208.load to ptr %205
-  height.load210 = load i32 from ptr @height
-  211 = sub i32 %height.load210, i32 1
-  width.load212 = load i32 from ptr @width
-  213 = mul i32 %211, i32 %width.load212
-  215 = add i32 %213, i32 %j.phi
-  216 = mul i32 %215, i32 4
+  262 = add i32 %j.phi, i32 523776
+  216 = mul i32 %262, i32 4
   217 = ptradd ptr @image_out, i32 %216
-  height.load218 = load i32 from ptr @height
-  219 = sub i32 %height.load218, i32 1
-  width.load220 = load i32 from ptr @width
-  221 = mul i32 %219, i32 %width.load220
-  223 = add i32 %221, i32 %j.phi
-  224 = mul i32 %223, i32 4
-  225 = ptradd ptr @image_in, i32 %224
+  225 = ptradd ptr @image_in, i32 %216
   225.load = load i32 from ptr %225
   store i32 %225.load to ptr %217
   228 = add i32 %j.phi, i32 1
   br bb %while.cond196
 while.exit198:
   call void _sysy_stoptime(i32 59)
-  width.load230 = load i32 from ptr @width
-  height.load231 = load i32 from ptr @height
-  232 = mul i32 %width.load230, i32 %height.load231
-  call void putarray(i32 %232, ptr @image_out)
+  call void putarray(i32 524288, ptr @image_out)
   ret i32 %16
 }
 

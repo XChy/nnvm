@@ -71,9 +71,9 @@ bb4:
   DIVW s11, s5, s10
   SUBW s10, s7, s11
   ADD t4, zero, zero
-  SW t4, 0(sp)
+  SW t4, 8(sp)
   ADD t4, s10, zero
-  SW t4, 24(sp)
+  SW t4, 0(sp)
   JAL zero, bb6
 bb5:
   ADDIW a2, s7, 1
@@ -82,16 +82,16 @@ bb5:
   BNE a4, zero, bb16
   JAL zero, bb17
 bb6:
-  LW t3, 24(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
   SW t4, 48(sp)
-  LW t4, 0(sp)
+  LW t4, 8(sp)
   ADD t1, t4, zero
   SUBW t2, s9, s11
   ADD t4, t1, zero
   SW t4, 40(sp)
   ADD t4, t2, zero
-  SW t4, 16(sp)
+  SW t4, 24(sp)
   JAL zero, bb8
 bb7:
   ADD a2, a1, zero
@@ -107,12 +107,12 @@ bb7:
   BNE a3, zero, bb14
   JAL zero, bb15
 bb8:
-  LW t3, 16(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
   SW t4, 32(sp)
   LW t3, 40(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
+  SW t4, 16(sp)
   ADD a0, s1, zero
   ADD a1, s3, zero
   ADD a2, s4, zero
@@ -123,7 +123,7 @@ bb8:
   CALL getvalue
   ADD s10, a0, zero
   ADD a0, s0, zero
-  LW t4, 8(sp)
+  LW t4, 16(sp)
   ADD a1, t4, zero
   ADD a2, s10, zero
   CALL reduce
@@ -151,16 +151,16 @@ bb11:
   ADD t4, s10, zero
   SW t4, 40(sp)
   ADD t4, t0, zero
-  SW t4, 16(sp)
+  SW t4, 24(sp)
   JAL zero, bb8
 bb12:
   ADD a1, t2, zero
   JAL zero, bb7
 bb13:
   ADD t4, t2, zero
-  SW t4, 0(sp)
+  SW t4, 8(sp)
   ADD t4, t1, zero
-  SW t4, 24(sp)
+  SW t4, 0(sp)
   JAL zero, bb6
 bb14:
   JAL zero, bb5
@@ -327,10 +327,10 @@ bb34:
 bb35:
   ADD s5, s4, zero
   ADD s6, s3, zero
-  LA s7, max
-  LW s8, 0(s7)
-  SLT s7, s6, s8
-  BNE s7, zero, bb36
+  LUI s7, 262144
+  ADDI s7, s7, 0
+  SLT s8, s6, s7
+  BNE s8, zero, bb36
   JAL zero, bb37
 bb36:
   DIVW s7, s1, s6
@@ -433,10 +433,10 @@ bb46:
 bb47:
   ADD s5, s4, zero
   ADD s6, s3, zero
-  LA s7, max
-  LW s8, 0(s7)
-  SLT s7, s5, s8
-  BNE s7, zero, bb48
+  LUI s7, 262144
+  ADDI s7, s7, 0
+  SLT s8, s5, s7
+  BNE s8, zero, bb48
   JAL zero, bb49
 bb48:
   DIVW s7, s1, s5
@@ -520,10 +520,10 @@ bb57:
 bb58:
   ADD s4, s3, zero
   ADD s5, s0, zero
-  LA s6, max
-  LW s7, 0(s6)
-  SLT s6, s5, s7
-  BNE s6, zero, bb59
+  LUI s6, 262144
+  ADDI s6, s6, 0
+  SLT s7, s5, s6
+  BNE s7, zero, bb59
   JAL zero, bb60
 bb59:
   DIVW s6, s1, s5
@@ -720,16 +720,16 @@ checkrange:
   JAL zero, bb76
 bb76:
   ADD s0, s1, zero
-  LA s2, max
-  LW s3, 0(s2)
-  SLT s2, s3, s0
-  BNE s2, zero, bb77
+  LUI s2, 262144
+  ADDI s2, s2, 0
+  SLT s3, s2, s0
+  BNE s3, zero, bb77
   JAL zero, bb78
 bb77:
-  LA s2, max
-  LW s3, 0(s2)
-  SUBW s2, s0, s3
-  ADD s1, s2, zero
+  LUI s2, 262144
+  ADDI s2, s2, 0
+  SUBW s3, s0, s2
+  ADD s1, s3, zero
   JAL zero, bb76
 bb78:
   ADD s1, s0, zero
@@ -740,10 +740,10 @@ bb79:
   BNE s2, zero, bb80
   JAL zero, bb81
 bb80:
-  LA s2, max
-  LW s3, 0(s2)
-  ADDW s2, s0, s3
-  ADD s1, s2, zero
+  LUI s2, 262144
+  ADDI s2, s2, 0
+  ADDW s3, s0, s2
+  ADD s1, s3, zero
   JAL zero, bb79
 bb81:
   ADD a0, s0, zero

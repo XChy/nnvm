@@ -191,21 +191,21 @@ bb10:
   CALL multiply
   ADD s11, a0, zero
   ADDW s3, s10, s11
-  LA s11, mod
-  LW s1, 0(s11)
-  REMW s11, s3, s1
-  SW s11, 0(s9)
+  LUI s11, 243712
+  ADDI s11, s11, 1
+  REMW s1, s3, s11
+  SW s1, 0(s9)
   ADD a0, s7, zero
   ADD a1, s5, zero
   CALL multiply
   ADD s1, a0, zero
   SUBW s3, s10, s1
-  LA s1, mod
-  LW s5, 0(s1)
-  ADDW s1, s3, s5
-  LA s3, mod
-  LW s5, 0(s3)
-  REMW s3, s1, s5
+  LUI s1, 243712
+  ADDI s1, s1, 1
+  ADDW s5, s3, s1
+  LUI s1, 243712
+  ADDI s1, s1, 1
+  REMW s3, s5, s1
   SW s3, 0(s8)
   ADD a0, s7, zero
   LW t4, 8(sp)
@@ -301,15 +301,14 @@ bb16:
 main:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s8, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s7, 32(sp)
-  SD s1, 40(sp)
-  SD s6, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
+  SD s0, 8(sp)
+  SD s5, 16(sp)
+  SD s7, 24(sp)
+  SD s1, 32(sp)
+  SD s6, 40(sp)
+  SD s2, 48(sp)
+  SD s3, 56(sp)
+  SD s4, 64(sp)
   LA s0, a
   ADD a0, s0, zero
   CALL getarray
@@ -344,15 +343,13 @@ bb19:
 bb20:
   LA s0, d
   LW s1, 0(s0)
-  LA s0, mod
-  LW s2, 0(s0)
-  ADDI s0, zero, 1
-  SUBW s3, s2, s0
   LA s0, d
   LW s2, 0(s0)
-  DIVW s0, s3, s2
+  LUI s0, 243712
+  ADDI s0, s0, 0
+  DIVW s3, s0, s2
   ADDI a0, zero, 3
-  ADD a1, s0, zero
+  ADD a1, s3, zero
   CALL power
   ADD s0, a0, zero
   LA s2, a
@@ -364,15 +361,13 @@ bb20:
   ADD s0, a0, zero
   LA s0, d
   LW s1, 0(s0)
-  LA s0, mod
-  LW s2, 0(s0)
-  ADDI s0, zero, 1
-  SUBW s3, s2, s0
   LA s0, d
   LW s2, 0(s0)
-  DIVW s0, s3, s2
+  LUI s0, 243712
+  ADDI s0, s0, 0
+  DIVW s3, s0, s2
   ADDI a0, zero, 3
-  ADD a1, s0, zero
+  ADD a1, s3, zero
   CALL power
   ADD s0, a0, zero
   LA s2, b
@@ -411,18 +406,14 @@ bb22:
 bb23:
   LA s0, d
   LW s1, 0(s0)
-  LA s0, mod
-  LW s2, 0(s0)
-  ADDI s0, zero, 1
-  SUBW s3, s2, s0
-  LA s0, mod
-  LW s2, 0(s0)
-  ADDI s0, zero, 1
-  SUBW s4, s2, s0
   LA s0, d
   LW s2, 0(s0)
-  DIVW s0, s4, s2
-  SUBW s2, s3, s0
+  LUI s0, 243712
+  ADDI s0, s0, 0
+  DIVW s3, s0, s2
+  LUI s0, 243712
+  ADDI s0, s0, 0
+  SUBW s2, s0, s3
   ADDI a0, zero, 3
   ADD a1, s2, zero
   CALL power
@@ -451,12 +442,10 @@ bb25:
   LW s2, 0(s4)
   LA s3, d
   LW s6, 0(s3)
-  LA s3, mod
-  LW s7, 0(s3)
-  ADDI s3, zero, 2
-  SUBW s8, s7, s3
   ADD a0, s6, zero
-  ADD a1, s8, zero
+  LUI s3, 243712
+  ADDI s3, s3, -1
+  ADD a1, zero, s3
   CALL power
   ADD s3, a0, zero
   ADD a0, s2, zero
@@ -476,15 +465,14 @@ bb26:
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s8, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s7, 32(sp)
-  LD s1, 40(sp)
-  LD s6, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s7, 24(sp)
+  LD s1, 32(sp)
+  LD s6, 40(sp)
+  LD s2, 48(sp)
+  LD s3, 56(sp)
+  LD s4, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 memmove:
@@ -567,10 +555,10 @@ bb33:
   BNE s3, zero, bb34
   JAL zero, bb35
 bb34:
-  LA s2, mod
-  LW s3, 0(s2)
-  REMW s2, s0, s3
-  ADD a0, s2, zero
+  LUI s2, 243712
+  ADDI s2, s2, 1
+  REMW s3, s0, s2
+  ADD a0, s3, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)
@@ -587,21 +575,21 @@ bb35:
   CALL multiply
   ADD s2, a0, zero
   ADDW s3, s2, s2
-  LA s2, mod
-  LW s4, 0(s2)
-  REMW s2, s3, s4
-  ADDI s3, zero, 2
-  REMW s4, s1, s3
-  XORI s1, s4, 1
-  SLTIU s3, s1, 1
-  BNE s3, zero, bb36
+  LUI s2, 243712
+  ADDI s2, s2, 1
+  REMW s4, s3, s2
+  ADDI s2, zero, 2
+  REMW s3, s1, s2
+  XORI s1, s3, 1
+  SLTIU s2, s1, 1
+  BNE s2, zero, bb36
   JAL zero, bb37
 bb36:
-  ADDW s1, s2, s0
-  LA s0, mod
-  LW s3, 0(s0)
-  REMW s0, s1, s3
-  ADD a0, s0, zero
+  ADDW s1, s4, s0
+  LUI s0, 243712
+  ADDI s0, s0, 1
+  REMW s2, s1, s0
+  ADD a0, s2, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)
@@ -611,7 +599,7 @@ bb36:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb37:
-  ADD a0, s2, zero
+  ADD a0, s4, zero
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)

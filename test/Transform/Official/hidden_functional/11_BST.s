@@ -552,9 +552,7 @@ bb47:
 bb48:
   ADD a0, s1, zero
   CALL inorder
-  LA s0, LF
-  LW s2, 0(s0)
-  ADD a0, s2, zero
+  ADDI a0, zero, 10
   CALL putch
   CALL getint
   ADD s0, a0, zero
@@ -581,9 +579,7 @@ bb50:
 bb51:
   ADD a0, s1, zero
   CALL inorder
-  LA s0, LF
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD s4, 0(sp)
@@ -620,9 +616,7 @@ bb53:
   LW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, space
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI a0, zero, 32
   CALL putch
   LA s0, right_child
   ADD s1, s0, s2

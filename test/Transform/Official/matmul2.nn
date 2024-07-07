@@ -105,12 +105,11 @@ while.cond102:
   106 = icmp slt i32 %i.phi217, i32 1000
   br i1 %106, bb %while.body103, bb %while.exit104
 while.body103:
-  MAX.load = load i32 from ptr @MAX
   br bb %while.cond110
 while.exit104:
   br bb %while.cond153
 while.cond110:
-  temp108.phi242 = phi [bb %while.body103, i32 %MAX.load, bb %if.exit126, i32 %temp108.phi]
+  temp108.phi242 = phi [bb %while.body103, i32 2147483647, bb %if.exit126, i32 %temp108.phi]
   j.phi227 = phi [bb %while.body103, i32 0, bb %if.exit126, i32 %135]
   114 = icmp slt i32 %j.phi227, i32 1000
   br i1 %114, bb %while.body111, bb %while.exit112

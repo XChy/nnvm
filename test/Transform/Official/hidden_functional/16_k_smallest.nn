@@ -29,8 +29,7 @@ while.body80:
   88 = ptradd ptr @array, i32 %87
   88.load = load i32 from ptr %88
   call void putint(i32 %88.load)
-  space.load = load i32 from ptr @space
-  call void putch(i32 %space.load)
+  call void putch(i32 32)
   94 = add i32 %i78.phi, i32 1
   br bb %while.cond79
 while.exit81:

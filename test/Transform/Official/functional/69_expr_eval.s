@@ -128,9 +128,7 @@ bb5:
 bb6:
   LA s0, cur_token
   LW s1, 0(s0)
-  LA s0, TOKEN_NUM
-  LW s2, 0(s0)
-  XOR s0, s1, s2
+  XOR s0, s1, zero
   SLTU s1, zero, s0
   BNE s1, zero, bb7
   JAL zero, bb8
@@ -213,9 +211,7 @@ bb9:
   ADD s5, s0, zero
   LA s6, cur_token
   LW s7, 0(s6)
-  LA s6, TOKEN_OTHER
-  LW s8, 0(s6)
-  XOR s6, s7, s8
+  XORI s6, s7, 1
   SLTIU s7, s6, 1
   BNE s7, zero, bb10
   JAL zero, bb11
@@ -303,9 +299,7 @@ bb16:
   CALL stack_push
   LA s3, cur_token
   LW s4, 0(s3)
-  LA s3, TOKEN_NUM
-  LW s5, 0(s3)
-  XOR s3, s4, s5
+  XOR s3, s4, zero
   SLTU s4, zero, s3
   BNE s4, zero, bb20
   JAL zero, bb21
@@ -986,9 +980,8 @@ bb77:
   SW s1, 0(s0)
   CALL next_char
   ADD s0, a0, zero
-  LA s0, TOKEN_OTHER
-  LW s1, 0(s0)
   LA s0, cur_token
+  ADDI s1, zero, 1
   SW s1, 0(s0)
   JAL zero, bb76
 bb78:
@@ -1015,10 +1008,8 @@ bb79:
   SW s2, 0(s0)
   JAL zero, bb78
 bb80:
-  LA s0, TOKEN_NUM
-  LW s1, 0(s0)
   LA s0, cur_token
-  SW s1, 0(s0)
+  SW zero, 0(s0)
   JAL zero, bb76
 next_char:
   ADDI sp, sp, -32

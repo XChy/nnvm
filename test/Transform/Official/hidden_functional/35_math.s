@@ -20,20 +20,23 @@
 
 
 
+
 .section .data
 e:
 .word 0x402df854
 .CONSTANT.7.0:
 .word 0x322bcc77
 .CONSTANT.7.1:
-.word 0x3a83126f
+.word 0x402df854
 .CONSTANT.7.2:
-.word 0x41700000
+.word 0x3a83126f
 .CONSTANT.7.3:
-.word 0x41200000
+.word 0x41700000
 .CONSTANT.7.4:
-.word 0x3f000000
+.word 0x41200000
 .CONSTANT.7.5:
+.word 0x3f000000
+.CONSTANT.7.6:
 .word 0x3f800000
 .section .text
 my_powf:
@@ -143,9 +146,11 @@ bb5:
   FCVT.W.S s0, fs0, rtz
   FCVT.S.W fs1, s0
   FSUB.S fs2, fs0, fs1
-  LA s1, e
+  LA s1, .CONSTANT.7.1
   FLW fs0, 0(s1)
-  FSGNJ.S fa0, fs0, fs0
+  LA s1, .CONSTANT.7.1
+  FLW fs1, 0(s1)
+  FSGNJ.S fa0, fs0, fs1
   ADD a0, s0, zero
   CALL my_pow
   FSGNJ.D fs0, fa0, fa0
@@ -173,7 +178,7 @@ eee:
   SD s0, 40(sp)
   FSD fs0, 48(sp)
   FSGNJ.D fs0, fa0, fa0
-  LA s0, .CONSTANT.7.1
+  LA s0, .CONSTANT.7.2
   FLW fs1, 0(s0)
   FLT.S s0, fs1, fs0
   BNE s0, zero, bb7
@@ -321,7 +326,7 @@ asr5:
   BNE s1, zero, bb11
   JAL zero, bb12
 bb11:
-  LA s1, .CONSTANT.7.2
+  LA s1, .CONSTANT.7.3
   FLW fs3, 0(s1)
   FDIV.S fs10, fs9, fs3
   FADD.S fs3, fs8, fs10
@@ -543,7 +548,7 @@ bb20:
   FSGNJ.S fa0, fs2, fs2
   CALL my_sqrt
   FSGNJ.D fs1, fa0, fa0
-  LA s0, .CONSTANT.7.3
+  LA s0, .CONSTANT.7.4
   FLW fs2, 0(s0)
   FMUL.S fs3, fs2, fs1
   FSGNJ.S fa0, fs3, fs3
@@ -564,7 +569,7 @@ bb21:
   ADDI s0, zero, 8
   FCVT.S.W fs1, s0
   FDIV.S fs2, fs0, fs1
-  LA s0, .CONSTANT.7.4
+  LA s0, .CONSTANT.7.5
   FLW fs1, 0(s0)
   FADD.S fs3, fs2, fs1
   ADDI s0, zero, 2
@@ -672,9 +677,9 @@ bb27:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb28:
-  LA s1, .CONSTANT.7.5
+  LA s1, .CONSTANT.7.6
   FLW fs1, 0(s1)
-  LA s1, .CONSTANT.7.5
+  LA s1, .CONSTANT.7.6
   FLW fs2, 0(s1)
   FSGNJ.S fs3, fs1, fs2
   ADD s1, s0, zero

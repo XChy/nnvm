@@ -37,8 +37,7 @@ if.exit273:
   281 = f2si float %x to i32
   284 = si2f i32 %281 to float
   285 = fsub float %x, float %284
-  e.load = load float from ptr @e
-  289 = call float my_pow(float %e.load, i32 %281)
+  289 = call float my_pow(float 2.718282, i32 %281)
   292 = call float eee(float %285)
   295 = fmul float %289, float %292
   ret float %295

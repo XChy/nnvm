@@ -1,9 +1,7 @@
 immutable global ptr a init with i32 5
 i32 main() {
 entry:
-  a.load = load i32 from ptr @a
-  2 = mul i32 %a.load, i32 5
-  ret i32 %2
+  ret i32 25
 }
 
 external void putfarray(i32 , ptr )

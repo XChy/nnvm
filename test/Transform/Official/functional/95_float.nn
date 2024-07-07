@@ -48,14 +48,12 @@ entry45:
 
 float circle_area(i32 radius) {
 entry10:
-  PI.load = load float from ptr @PI
   14 = si2f i32 %radius to float
-  15 = fmul float %PI.load, float %14
+  15 = fmul float 3.141593, float %14
   18 = fmul float %15, float %14
   21 = mul i32 %radius, i32 %radius
-  PI.load22 = load float from ptr @PI
   23 = si2f i32 %21 to float
-  24 = fmul float %23, float %PI.load22
+  24 = fmul float %23, float 3.141593
   25 = fadd float %18, float %24
   26 = si2f i32 2 to float
   27 = fdiv float %25, float %26
@@ -70,8 +68,7 @@ i32 float_eq(float a, float b) {
 entry28:
   33 = fsub float %a, float %b
   34 = call float float_abs(float %33)
-  EPS.load = load float from ptr @EPS
-  36 = fcmp olt float %34, float %EPS.load
+  36 = fcmp olt float %34, float 0.000001
   br i1 %36, bb %then37, bb %else
 then37:
   40 = si2f i32 1 to float
@@ -93,28 +90,18 @@ external i32 getfarray(ptr )
 i32 main() {
 entry77:
   %arr = stack 40
-  HEX2.load = load float from ptr @HEX2
-  FACT.load = load float from ptr @FACT
-  80 = call i32 float_eq(float %HEX2.load, float %FACT.load)
+  80 = call i32 float_eq(float 0.078125, float -33000.000000)
   call void assert_not(i32 %80)
-  EVAL1.load = load float from ptr @EVAL1
-  EVAL2.load = load float from ptr @EVAL2
-  84 = call i32 float_eq(float %EVAL1.load, float %EVAL2.load)
+  84 = call i32 float_eq(float 95.033188, float 34.557522)
   call void assert_not(i32 %84)
-  EVAL2.load86 = load float from ptr @EVAL2
-  EVAL3.load = load float from ptr @EVAL3
-  88 = call i32 float_eq(float %EVAL2.load86, float %EVAL3.load)
+  88 = call i32 float_eq(float 34.557522, float 34.557522)
   call void assert(i32 %88)
-  RADIUS.load = load float from ptr @RADIUS
-  91 = f2si float %RADIUS.load to i32
+  91 = f2si float 5.500000 to i32
   92 = call float circle_area(i32 %91)
-  FIVE.load = load i32 from ptr @FIVE
-  94 = call float circle_area(i32 %FIVE.load)
+  94 = call float circle_area(i32 5)
   95 = call i32 float_eq(float %92, float %94)
   call void assert(i32 %95)
-  CONV1.load = load float from ptr @CONV1
-  CONV2.load = load float from ptr @CONV2
-  99 = call i32 float_eq(float %CONV1.load, float %CONV2.load)
+  99 = call i32 float_eq(float 233.000000, float 4095.000000)
   call void assert_not(i32 %99)
   101 = fcmp one float 1.500000, float 0.000000
   br i1 %101, bb %then102, bb %if.exit103
@@ -182,13 +169,11 @@ if.exit134:
 while.cond:
   p.phi = phi [bb %if.exit134, i32 0, bb %while.body, i32 %194]
   i.phi = phi [bb %if.exit134, i32 1, bb %while.body, i32 %192]
-  MAX.load = load i32 from ptr @MAX
-  157 = icmp slt i32 %i.phi, i32 %MAX.load
+  157 = icmp slt i32 %i.phi, i32 1000000000
   br i1 %157, bb %while.body, bb %while.exit
 while.body:
   160 = call float getfloat()
-  PI.load162 = load float from ptr @PI
-  164 = fmul float %PI.load162, float %160
+  164 = fmul float 3.141593, float %160
   166 = fmul float %164, float %160
   169 = f2si float %160 to i32
   170 = call float circle_area(i32 %169)

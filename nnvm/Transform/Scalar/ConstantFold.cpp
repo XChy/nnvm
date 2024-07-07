@@ -45,6 +45,9 @@ Value *ConstantFold::fold(Instruction *I) {
         dyn_cast<Constant>(CI->getOperand(1)))
       return foldICmp(CI);
 
+  if (LoadInst *LI = dyn_cast<LoadInst>(I))
+    return foldLoad(LI);
+
   // TODO: Handle other operator on constant operands, such as "a[0]", where "a"
   // is a constant array.
 
@@ -122,4 +125,14 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
   default:
     return nullptr;
   }
+}
+
+Value *ConstantFold::foldLoad(LoadInst *I) {
+  if (GlobalVariable *GV = dyn_cast<GlobalVariable>(I->getSrc())) {
+    if (!GV->isImmutable())
+      return nullptr;
+    if (I->getType() == GV->getInitVal()->getType())
+      return GV->getInitVal();
+  }
+  return nullptr;
 }

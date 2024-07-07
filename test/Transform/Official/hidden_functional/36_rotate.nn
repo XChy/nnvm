@@ -73,8 +73,7 @@ if.exit239:
 float my_sin_impl(float x) {
 entry23:
   26 = call float my_fabs(float %x)
-  EPSILON.load = load float from ptr @EPSILON
-  28 = fcmp ole float %26, float %EPSILON.load
+  28 = fcmp ole float %26, float 0.000001
   br i1 %28, bb %then29, bb %if.exit30
 then29:
   ret float %x
@@ -99,46 +98,38 @@ entry10:
 
 float my_sin(float x) {
 entry36:
-  TWO_PI.load = load float from ptr @TWO_PI
-  40 = fcmp ogt float %x, float %TWO_PI.load
+  40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
 select.then:
   br bb %select.exit
 select.else:
-  TWO_PI.load46 = load float from ptr @TWO_PI
-  47 = fneg float %TWO_PI.load46
+  47 = fneg float 6.283185
   48 = fcmp olt float %x, float %47
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 %48, bb %select.then, i1 1]
   br i1 %select.phi, bb %then51, bb %if.exit52
 then51:
-  TWO_PI.load55 = load float from ptr @TWO_PI
-  56 = fdiv float %x, float %TWO_PI.load55
+  56 = fdiv float %x, float 6.283185
   57 = f2si float %56 to i32
-  TWO_PI.load60 = load float from ptr @TWO_PI
   61 = si2f i32 %57 to float
-  62 = fmul float %61, float %TWO_PI.load60
+  62 = fmul float %61, float 6.283185
   63 = fsub float %x, float %62
   br bb %if.exit52
 if.exit52:
   x.stack37.phi304 = phi [bb %select.exit, float %x, bb %then51, float %63]
-  PI.load = load float from ptr @PI
-  66 = fcmp ogt float %x.stack37.phi304, float %PI.load
+  66 = fcmp ogt float %x.stack37.phi304, float 3.141593
   br i1 %66, bb %then67, bb %if.exit68
 then67:
-  TWO_PI.load70 = load float from ptr @TWO_PI
-  71 = fsub float %x.stack37.phi304, float %TWO_PI.load70
+  71 = fsub float %x.stack37.phi304, float 6.283185
   br bb %if.exit68
 if.exit68:
   x.stack37.phi303 = phi [bb %if.exit52, float %x.stack37.phi304, bb %then67, float %71]
-  PI.load73 = load float from ptr @PI
-  74 = fneg float %PI.load73
+  74 = fneg float 3.141593
   75 = fcmp olt float %x.stack37.phi303, float %74
   br i1 %75, bb %then76, bb %if.exit77
 then76:
-  TWO_PI.load79 = load float from ptr @TWO_PI
-  80 = fadd float %x.stack37.phi303, float %TWO_PI.load79
+  80 = fadd float %x.stack37.phi303, float 6.283185
   br bb %if.exit77
 if.exit77:
   x.stack37.phi = phi [bb %if.exit68, float %x.stack37.phi303, bb %then76, float %80]
@@ -156,9 +147,8 @@ external i32 getarray(ptr )
 
 float my_cos(float x) {
 entry83:
-  PI.load86 = load float from ptr @PI
   87 = si2f i32 2 to float
-  88 = fdiv float %PI.load86, float %87
+  88 = fdiv float 3.141593, float %87
   89 = fadd float %x, float %88
   90 = call float my_sin(float %89)
   ret float %90
@@ -202,15 +192,13 @@ if.exit103:
   106 = call i32 getint()
   store i32 %106 to ptr @height
   width.load = load i32 from ptr @width
-  MAX_WIDTH.load = load i32 from ptr @MAX_WIDTH
-  109 = icmp sgt i32 %width.load, i32 %MAX_WIDTH.load
+  109 = icmp sgt i32 %width.load, i32 1024
   br i1 %109, bb %select.then110, bb %select.else111
 select.then110:
   br bb %select.exit112
 select.else111:
   height.load = load i32 from ptr @height
-  MAX_HEIGHT.load = load i32 from ptr @MAX_HEIGHT
-  116 = icmp sgt i32 %height.load, i32 %MAX_HEIGHT.load
+  116 = icmp sgt i32 %height.load, i32 1024
   br bb %select.exit112
 select.exit112:
   select113.phi = phi [bb %select.else111, i1 %116, bb %select.then110, i1 1]

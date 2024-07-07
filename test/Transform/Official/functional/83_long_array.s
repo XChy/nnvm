@@ -71,10 +71,10 @@ long_array:
   JAL zero, bb1
 bb1:
   ADD s2, s1, zero
-  LA s3, N
-  LW s4, 0(s3)
-  SLT s3, s2, s4
-  BNE s3, zero, bb2
+  LUI s3, 2
+  ADDI s3, s3, 1808
+  SLT s4, s2, s3
+  BNE s4, zero, bb2
   JAL zero, bb3
 bb2:
   ADDI s3, zero, 4
@@ -95,10 +95,10 @@ bb3:
   JAL zero, bb4
 bb4:
   ADD s2, s1, zero
-  LA s3, N
-  LW s4, 0(s3)
-  SLT s3, s2, s4
-  BNE s3, zero, bb5
+  LUI s3, 2
+  ADDI s3, s3, 1808
+  SLT s4, s2, s3
+  BNE s4, zero, bb5
   JAL zero, bb6
 bb5:
   ADDI s3, zero, 4
@@ -125,10 +125,10 @@ bb6:
   JAL zero, bb7
 bb7:
   ADD s2, s1, zero
-  LA s3, N
-  LW s4, 0(s3)
-  SLT s3, s2, s4
-  BNE s3, zero, bb8
+  LUI s3, 2
+  ADDI s3, s3, 1808
+  SLT s4, s2, s3
+  BNE s4, zero, bb8
   JAL zero, bb9
 bb8:
   ADDI s3, zero, 4
@@ -177,14 +177,14 @@ bb10:
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD s8, s1, zero
-  LA s9, N
-  LW s10, 0(s9)
+  LUI s9, 2
+  ADDI s9, s9, 1808
   LUI t4, 29
   ADDI t4, t4, 1232
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SLT s9, t4, s10
-  BNE s9, zero, bb11
+  SLT s10, t4, s9
+  BNE s10, zero, bb11
   JAL zero, bb12
 bb11:
   LUI t4, 29
@@ -306,16 +306,14 @@ bb15:
   BNE s0, zero, bb16
   JAL zero, bb18
 bb16:
-  LA s0, N
-  LW s1, 0(s0)
-  ADDI s0, zero, 2
-  DIVW s2, s1, s0
-  ADD s0, s2, zero
+  LUI s0, 1
+  ADDI s0, s0, 904
+  ADD s1, zero, s0
   LUI t4, 29
   ADDI t4, t4, 1216
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADD s1, t4, zero
+  ADD s0, t4, zero
   JAL zero, bb19
 bb17:
   ADD s2, s3, zero
@@ -334,12 +332,12 @@ bb18:
   BNE s2, zero, bb22
   JAL zero, bb24
 bb19:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
-  LA s4, N
-  LW s5, 0(s4)
-  SLT s4, s3, s5
-  BNE s4, zero, bb20
+  ADD s2, s0, zero
+  ADD s3, s1, zero
+  LUI s4, 2
+  ADDI s4, s4, 1808
+  SLT s5, s3, s4
+  BNE s5, zero, bb20
   JAL zero, bb21
 bb20:
   ADDI s4, zero, 4
@@ -361,8 +359,8 @@ bb20:
   LW s7, 0(s5)
   SUBW s5, s4, s7
   ADDIW s4, s3, 1
-  ADD s0, s4, zero
-  ADD s1, s5, zero
+  ADD s1, s4, zero
+  ADD s0, s5, zero
   JAL zero, bb19
 bb21:
   ADD a0, s2, zero
@@ -372,16 +370,14 @@ bb21:
   ADD s3, s2, zero
   JAL zero, bb17
 bb22:
-  LA s2, N
-  LW s4, 0(s2)
-  ADDI s2, zero, 2
-  DIVW s5, s4, s2
-  ADD s2, s5, zero
+  LUI s2, 1
+  ADDI s2, s2, 904
+  ADD s4, zero, s2
   LUI t4, 29
   ADDI t4, t4, 1216
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADD s4, t4, zero
+  ADD s2, t4, zero
   JAL zero, bb25
 bb23:
   ADD s5, s4, zero
@@ -421,12 +417,12 @@ bb24:
   ADD s4, s3, zero
   JAL zero, bb23
 bb25:
-  ADD s5, s4, zero
-  ADD s6, s2, zero
-  LA s7, N
-  LW s9, 0(s7)
-  SLT s7, s6, s9
-  BNE s7, zero, bb26
+  ADD s5, s2, zero
+  ADD s6, s4, zero
+  LUI s7, 2
+  ADDI s7, s7, 1808
+  SLT s9, s6, s7
+  BNE s9, zero, bb26
   JAL zero, bb27
 bb26:
   LUI s7, 1
@@ -468,8 +464,8 @@ bb28:
 bb29:
   ADD s9, s7, zero
   ADD s11, s10, zero
-  ADD s2, s11, zero
-  ADD s4, s9, zero
+  ADD s4, s11, zero
+  ADD s2, s9, zero
   JAL zero, bb25
 bb30:
   ADDI s2, zero, 4

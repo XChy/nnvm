@@ -18,6 +18,9 @@ image:
 
 
 
+
+
+
 .section .data
 EPSILON:
 .word 0x358637bd
@@ -35,7 +38,13 @@ TWO_PI:
 MAX_WIDTH:
 .word 0x00000400
 .CONSTANT.7.0:
+.word 0x358637bd
+.CONSTANT.7.1:
 .word 0x40400000
+.CONSTANT.7.2:
+.word 0x40c90fdb
+.CONSTANT.7.3:
+.word 0x40490fdb
 .section .text
 rotate:
   ADDI sp, sp, -128
@@ -190,7 +199,7 @@ my_sin_impl:
   FSGNJ.S fa0, fs0, fs0
   CALL my_fabs
   FSGNJ.D fs1, fa0, fa0
-  LA s0, EPSILON
+  LA s0, .CONSTANT.7.0
   FLW fs2, 0(s0)
   FLE.S s0, fs1, fs2
   BNE s0, zero, bb13
@@ -205,7 +214,7 @@ bb13:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb14:
-  LA s0, .CONSTANT.7.0
+  LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FDIV.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
@@ -259,11 +268,11 @@ my_sin:
   FSD fs6, 40(sp)
   FSD fs1, 48(sp)
   SD s0, 56(sp)
-  SD s2, 64(sp)
+  FSD fs7, 64(sp)
   FSD fs5, 72(sp)
   FSD fs0, 80(sp)
   FSGNJ.D fs0, fa0, fa0
-  LA s0, TWO_PI
+  LA s0, .CONSTANT.7.2
   FLW fs1, 0(s0)
   FLT.S s0, fs1, fs0
   BNE s0, zero, bb17
@@ -272,10 +281,12 @@ bb17:
   ADDI s0, zero, 1
   JAL zero, bb19
 bb18:
-  LA s1, TWO_PI
+  LA s1, .CONSTANT.7.2
   FLW fs1, 0(s1)
-  FSGNJN.S fs2, fs1, fs1
-  FLT.S s1, fs0, fs2
+  LA s1, .CONSTANT.7.2
+  FLW fs2, 0(s1)
+  FSGNJN.S fs3, fs1, fs2
+  FLT.S s1, fs0, fs3
   ADD s0, s1, zero
   JAL zero, bb19
 bb19:
@@ -283,40 +294,42 @@ bb19:
   BNE s1, zero, bb20
   JAL zero, bb26
 bb20:
-  LA s1, TWO_PI
+  LA s1, .CONSTANT.7.2
   FLW fs1, 0(s1)
   FDIV.S fs2, fs0, fs1
   FCVT.W.S s1, fs2, rtz
-  LA s2, TWO_PI
-  FLW fs1, 0(s2)
-  FCVT.S.W fs2, s1
-  FMUL.S fs3, fs2, fs1
+  FCVT.S.W fs1, s1
+  LA s1, .CONSTANT.7.2
+  FLW fs2, 0(s1)
+  FMUL.S fs3, fs1, fs2
   FSUB.S fs1, fs0, fs3
   FSGNJ.S fs2, fs1, fs1
   JAL zero, bb21
 bb21:
   FSGNJ.S fs1, fs2, fs2
-  LA s1, PI
+  LA s1, .CONSTANT.7.3
   FLW fs3, 0(s1)
   FLT.S s1, fs3, fs1
   BNE s1, zero, bb22
   JAL zero, bb27
 bb22:
-  LA s1, TWO_PI
+  LA s1, .CONSTANT.7.2
   FLW fs3, 0(s1)
   FSUB.S fs4, fs1, fs3
   FSGNJ.S fs3, fs4, fs4
   JAL zero, bb23
 bb23:
   FSGNJ.S fs4, fs3, fs3
-  LA s1, PI
+  LA s1, .CONSTANT.7.3
   FLW fs5, 0(s1)
-  FSGNJN.S fs6, fs5, fs5
-  FLT.S s1, fs4, fs6
+  LA s1, .CONSTANT.7.3
+  FLW fs6, 0(s1)
+  FSGNJN.S fs7, fs5, fs6
+  FLT.S s1, fs4, fs7
   BNE s1, zero, bb24
   JAL zero, bb28
 bb24:
-  LA s1, TWO_PI
+  LA s1, .CONSTANT.7.2
   FLW fs5, 0(s1)
   FADD.S fs6, fs4, fs5
   FSGNJ.S fs5, fs6, fs6
@@ -335,7 +348,7 @@ bb25:
   FLD fs6, 40(sp)
   FLD fs1, 48(sp)
   LD s0, 56(sp)
-  LD s2, 64(sp)
+  FLD fs7, 64(sp)
   FLD fs5, 72(sp)
   FLD fs0, 80(sp)
   ADDI sp, sp, 96
@@ -353,16 +366,16 @@ my_cos:
   ADDI sp, sp, -48
   SD ra, 0(sp)
   FSD fs3, 8(sp)
-  FSD fs2, 16(sp)
-  FSD fs1, 24(sp)
+  FSD fs1, 16(sp)
+  FSD fs2, 24(sp)
   SD s0, 32(sp)
   FSD fs0, 40(sp)
   FSGNJ.D fs0, fa0, fa0
-  LA s0, PI
-  FLW fs1, 0(s0)
   ADDI s0, zero, 2
-  FCVT.S.W fs2, s0
-  FDIV.S fs3, fs1, fs2
+  FCVT.S.W fs1, s0
+  LA s0, .CONSTANT.7.3
+  FLW fs2, 0(s0)
+  FDIV.S fs3, fs2, fs1
   FADD.S fs1, fs0, fs3
   FSGNJ.S fa0, fs1, fs1
   CALL my_sin
@@ -370,8 +383,8 @@ my_cos:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   FLD fs3, 8(sp)
-  FLD fs2, 16(sp)
-  FLD fs1, 24(sp)
+  FLD fs1, 16(sp)
+  FLD fs2, 24(sp)
   LD s0, 32(sp)
   FLD fs0, 40(sp)
   ADDI sp, sp, 48
@@ -468,10 +481,9 @@ bb38:
   SW s1, 0(s2)
   LA s1, width
   LW s2, 0(s1)
-  LA s1, MAX_WIDTH
-  LW s3, 0(s1)
-  SLT s1, s3, s2
-  BNE s1, zero, bb39
+  ADDI s1, zero, 1024
+  SLT s3, s1, s2
+  BNE s3, zero, bb39
   JAL zero, bb40
 bb39:
   ADDI s1, zero, 1
@@ -479,10 +491,9 @@ bb39:
 bb40:
   LA s2, height
   LW s3, 0(s2)
-  LA s2, MAX_HEIGHT
-  LW s4, 0(s2)
-  SLT s2, s4, s3
-  ADD s1, s2, zero
+  ADDI s2, zero, 1024
+  SLT s4, s2, s3
+  ADD s1, s4, zero
   JAL zero, bb41
 bb41:
   ADD s2, s1, zero

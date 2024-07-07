@@ -127,8 +127,7 @@ if.exit37:
 while.cond40:
   i.phi = phi [bb %then36, i32 1, bb %if.exit57, i32 %65]
   ret.phi378 = phi [bb %then36, i32 0, bb %if.exit57, i32 %ret.phi]
-  max.load44 = load i32 from ptr @max
-  45 = icmp slt i32 %i.phi, i32 %max.load44
+  45 = icmp slt i32 %i.phi, i32 1073741824
   br i1 %45, bb %while.body41, bb %while.exit42
 while.body41:
   49 = sdiv i32 %x, i32 %i.phi
@@ -168,8 +167,7 @@ if.exit82:
 while.cond85:
   ret83.phi387 = phi [bb %then81, i32 0, bb %if.exit109, i32 %ret83.phi]
   i84.phi = phi [bb %then81, i32 1, bb %if.exit109, i32 %117]
-  max.load89 = load i32 from ptr @max
-  90 = icmp slt i32 %i84.phi, i32 %max.load89
+  90 = icmp slt i32 %i84.phi, i32 1073741824
   br i1 %90, bb %while.body86, bb %while.exit87
 while.body86:
   94 = sdiv i32 %x, i32 %i84.phi
@@ -206,8 +204,7 @@ if.exit122:
 while.cond125:
   i124.phi = phi [bb %then121, i32 1, bb %if.exit148, i32 %156]
   ret123.phi384 = phi [bb %then121, i32 0, bb %if.exit148, i32 %ret123.phi]
-  max.load129 = load i32 from ptr @max
-  130 = icmp slt i32 %i124.phi, i32 %max.load129
+  130 = icmp slt i32 %i124.phi, i32 1073741824
   br i1 %130, bb %while.body126, bb %while.exit127
 while.body126:
   134 = sdiv i32 %x, i32 %i124.phi
@@ -316,12 +313,10 @@ entry:
   br bb %while.cond
 while.cond:
   num.stack.phi393 = phi [bb %entry, i32 %num, bb %while.body, i32 %11]
-  max.load = load i32 from ptr @max
-  7 = icmp sgt i32 %num.stack.phi393, i32 %max.load
+  7 = icmp sgt i32 %num.stack.phi393, i32 1073741824
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
-  max.load10 = load i32 from ptr @max
-  11 = sub i32 %num.stack.phi393, i32 %max.load10
+  11 = sub i32 %num.stack.phi393, i32 1073741824
   br bb %while.cond
 while.exit:
   br bb %while.cond12
@@ -330,8 +325,7 @@ while.cond12:
   16 = icmp slt i32 %num.stack.phi, i32 0
   br i1 %16, bb %while.body13, bb %while.exit14
 while.body13:
-  max.load19 = load i32 from ptr @max
-  20 = add i32 %num.stack.phi, i32 %max.load19
+  20 = add i32 %num.stack.phi, i32 1073741824
   br bb %while.cond12
 while.exit14:
   ret i32 %num.stack.phi

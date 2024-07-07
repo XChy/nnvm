@@ -14,21 +14,17 @@ entry236:
 while.cond241:
   i240.phi = phi [bb %entry236, i32 0, bb %while.body242, i32 %274]
   sum.phi = phi [bb %entry236, float 0.000000, bb %while.body242, float %272]
-  N.load = load i32 from ptr @N
-  246 = icmp slt i32 %i240.phi, i32 %N.load
+  246 = icmp slt i32 %i240.phi, i32 24
   br i1 %246, bb %while.body242, bb %while.exit243
 while.body242:
   249 = call i32 rand()
   250 = si2f i32 %249 to float
-  TWO_PI.load252 = load float from ptr @TWO_PI
-  RAND_MAX.load = load i32 from ptr @RAND_MAX
-  256 = si2f i32 %RAND_MAX.load to float
+  256 = si2f i32 100000006 to float
   257 = fdiv float %250, float %256
   258 = si2f i32 %i240.phi to float
   259 = fadd float %258, float %257
-  260 = fmul float %TWO_PI.load252, float %259
-  N.load261 = load i32 from ptr @N
-  262 = si2f i32 %N.load261 to float
+  260 = fmul float 6.283185, float %259
+  262 = si2f i32 24 to float
   263 = fdiv float %260, float %262
   268 = call float my_cos(float %263)
   270 = call float my_sin(float %263)
@@ -37,8 +33,7 @@ while.body242:
   274 = add i32 %i240.phi, i32 1
   br bb %while.cond241
 while.exit243:
-  N.load276 = load i32 from ptr @N
-  277 = si2f i32 %N.load276 to float
+  277 = si2f i32 24 to float
   278 = fdiv float %sum.phi, float %277
   ret float %278
 }
@@ -50,8 +45,7 @@ entry185:
 while.cond192:
   i.phi = phi [bb %entry185, i32 0, bb %if.exit225, i32 %235]
   t190.phi = phi [bb %entry185, float 0.000000, bb %if.exit225, float %233]
-  MAX_STEP.load = load i32 from ptr @MAX_STEP
-  197 = icmp slt i32 %i.phi, i32 %MAX_STEP.load
+  197 = icmp slt i32 %i.phi, i32 10
   br i1 %197, bb %select.then198, bb %select.else199
 while.body193:
   211 = fmul float %dx, float %t190.phi
@@ -61,14 +55,12 @@ while.body193:
   call void scene(float %212, float %217, ptr %ret)
   220 = ptradd ptr %ret, i32 0
   220.load = load float from ptr %220
-  EPSILON.load222 = load float from ptr @EPSILON
-  223 = fcmp olt float %220.load, float %EPSILON.load222
+  223 = fcmp olt float %220.load, float 0.000001
   br i1 %223, bb %then224, bb %if.exit225
 while.exit194:
   ret float 0.000000
 select.then198:
-  MAX_DISTANCE.load = load float from ptr @MAX_DISTANCE
-  204 = fcmp olt float %t190.phi, float %MAX_DISTANCE.load
+  204 = fcmp olt float %t190.phi, float 2.000000
   br bb %select.exit200
 select.else199:
   br bb %select.exit200
@@ -89,8 +81,7 @@ if.exit225:
 float my_sin_impl(float x) {
 entry66:
   69 = call float my_fabs(float %x)
-  EPSILON.load = load float from ptr @EPSILON
-  71 = fcmp ole float %69, float %EPSILON.load
+  71 = fcmp ole float %69, float 0.000001
   br i1 %71, bb %then72, bb %if.exit73
 then72:
   ret float %x
@@ -166,46 +157,38 @@ if.exit18:
 
 float my_sin(float x) {
 entry79:
-  TWO_PI.load = load float from ptr @TWO_PI
-  83 = fcmp ogt float %x, float %TWO_PI.load
+  83 = fcmp ogt float %x, float 6.283185
   br i1 %83, bb %select.then, bb %select.else
 select.then:
   br bb %select.exit
 select.else:
-  TWO_PI.load89 = load float from ptr @TWO_PI
-  90 = fneg float %TWO_PI.load89
+  90 = fneg float 6.283185
   91 = fcmp olt float %x, float %90
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 %91, bb %select.then, i1 1]
   br i1 %select.phi, bb %then94, bb %if.exit95
 then94:
-  TWO_PI.load98 = load float from ptr @TWO_PI
-  99 = fdiv float %x, float %TWO_PI.load98
+  99 = fdiv float %x, float 6.283185
   100 = f2si float %99 to i32
-  TWO_PI.load103 = load float from ptr @TWO_PI
   104 = si2f i32 %100 to float
-  105 = fmul float %104, float %TWO_PI.load103
+  105 = fmul float %104, float 6.283185
   106 = fsub float %x, float %105
   br bb %if.exit95
 if.exit95:
   x.stack80.phi351 = phi [bb %select.exit, float %x, bb %then94, float %106]
-  PI.load = load float from ptr @PI
-  109 = fcmp ogt float %x.stack80.phi351, float %PI.load
+  109 = fcmp ogt float %x.stack80.phi351, float 3.141593
   br i1 %109, bb %then110, bb %if.exit111
 then110:
-  TWO_PI.load113 = load float from ptr @TWO_PI
-  114 = fsub float %x.stack80.phi351, float %TWO_PI.load113
+  114 = fsub float %x.stack80.phi351, float 6.283185
   br bb %if.exit111
 if.exit111:
   x.stack80.phi350 = phi [bb %if.exit95, float %x.stack80.phi351, bb %then110, float %114]
-  PI.load116 = load float from ptr @PI
-  117 = fneg float %PI.load116
+  117 = fneg float 3.141593
   118 = fcmp olt float %x.stack80.phi350, float %117
   br i1 %118, bb %then119, bb %if.exit120
 then119:
-  TWO_PI.load122 = load float from ptr @TWO_PI
-  123 = fadd float %x.stack80.phi350, float %TWO_PI.load122
+  123 = fadd float %x.stack80.phi350, float 6.283185
   br bb %if.exit120
 if.exit120:
   x.stack80.phi = phi [bb %if.exit111, float %x.stack80.phi350, bb %then119, float %123]
@@ -264,9 +247,8 @@ external i32 getarray(ptr )
 
 float my_cos(float x) {
 entry126:
-  PI.load129 = load float from ptr @PI
   130 = si2f i32 2 to float
-  131 = fdiv float %PI.load129, float %130
+  131 = fdiv float 3.141593, float %130
   132 = fadd float %x, float %131
   133 = call float my_sin(float %132)
   ret float %133
@@ -289,11 +271,9 @@ entry279:
   call void putch(i32 80)
   call void putch(i32 50)
   call void putch(i32 10)
-  W.load = load i32 from ptr @W
-  call void putint(i32 %W.load)
+  call void putint(i32 192)
   call void putch(i32 32)
-  H.load = load i32 from ptr @H
-  call void putint(i32 %H.load)
+  call void putint(i32 192)
   call void putch(i32 32)
   call void putint(i32 255)
   call void putch(i32 10)
@@ -303,8 +283,7 @@ while.cond292:
   yy.phi360 = phi [bb %entry279, float ub, bb %while.exit302, float %yy.phi]
   xx307.phi358 = phi [bb %entry279, float ub, bb %while.exit302, float %xx307.phi]
   y.phi = phi [bb %entry279, i32 0, bb %while.exit302, i32 %336]
-  H.load296 = load i32 from ptr @H
-  297 = icmp slt i32 %y.phi, i32 %H.load296
+  297 = icmp slt i32 %y.phi, i32 192
   br i1 %297, bb %while.body293, bb %while.exit294
 while.body293:
   br bb %while.cond300
@@ -315,18 +294,14 @@ while.cond300:
   yy.phi = phi [bb %while.body293, float %yy.phi360, bb %if.exit328, float %312]
   xx307.phi = phi [bb %while.body293, float %xx307.phi358, bb %if.exit328, float %309]
   x.phi = phi [bb %while.body293, i32 0, bb %if.exit328, i32 %333]
-  W.load304 = load i32 from ptr @W
-  305 = icmp slt i32 %x.phi, i32 %W.load304
+  305 = icmp slt i32 %x.phi, i32 192
   br i1 %305, bb %while.body301, bb %while.exit302
 while.body301:
   309 = si2f i32 %x.phi to float
   312 = si2f i32 %y.phi to float
-  W.load315 = load i32 from ptr @W
-  316 = si2f i32 %W.load315 to float
+  316 = si2f i32 192 to float
   317 = fdiv float %309, float %316
-  H.load319 = load i32 from ptr @H
-  320 = si2f i32 %H.load319 to float
-  321 = fdiv float %312, float %320
+  321 = fdiv float %312, float %316
   322 = call float sample(float %317, float %321)
   323 = fmul float %322, float 255.000000
   324 = f2si float %323 to i32

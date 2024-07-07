@@ -16,14 +16,12 @@ entry:
   5 = icmp sgt i32 %n, i32 10
   br i1 %5, bb %then, bb %if.exit
 then:
-  INF.load = load i32 from ptr @INF
-  ret i32 %INF.load
+  ret i32 1073741824
 if.exit:
-  INF.load10 = load i32 from ptr @INF
   br bb %while.cond
 while.cond:
   select.phi287 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select.phi285, bb %then115, i1 %select.phi285, bb %then81, i1 %select.phi285]
-  num.phi283 = phi [bb %if.exit, i32 %INF.load10, bb %if.exit150, i32 %num.phi, bb %then115, i32 %num.phi283, bb %then81, i32 %num.phi283]
+  num.phi283 = phi [bb %if.exit, i32 1073741824, bb %if.exit150, i32 %num.phi, bb %then115, i32 %num.phi283, bb %then81, i32 %num.phi283]
   select90.phi273 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select90.phi, bb %then115, i1 %select90.phi, bb %then81, i1 %select90.phi273]
   select100.phi271 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select100.phi, bb %then115, i1 %select100.phi, bb %then81, i1 %select100.phi271]
   select108.phi269 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select108.phi, bb %then115, i1 %select108.phi, bb %then81, i1 %select108.phi269]
@@ -153,8 +151,7 @@ if.exit150:
   159 = add i32 %i.phi, i32 1
   br bb %while.cond
 then162:
-  INF.load164 = load i32 from ptr @INF
-  ret i32 %INF.load164
+  ret i32 1073741824
 if.exit163:
   ret i32 %num.phi283
 }

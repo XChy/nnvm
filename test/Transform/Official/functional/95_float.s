@@ -29,6 +29,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 .section .data
 FIVE:
 .word 0x00000005
@@ -61,18 +70,36 @@ CONV2:
 TWO:
 .word 0x00000002
 .CONSTANT.7.0:
-.word 0x40000000
+.word 0x40490fdb
 .CONSTANT.7.1:
-.word 0x3fc00000
+.word 0x358637bd
 .CONSTANT.7.2:
-.word 0x00000000
+.word 0x40000000
 .CONSTANT.7.3:
-.word 0x40533333
+.word 0x3da00000
 .CONSTANT.7.4:
-.word 0x3e99999a
+.word 0xc700e800
 .CONSTANT.7.5:
-.word 0x3f800000
+.word 0x42be10fe
 .CONSTANT.7.6:
+.word 0x420a3ae7
+.CONSTANT.7.7:
+.word 0x40b00000
+.CONSTANT.7.8:
+.word 0x43690000
+.CONSTANT.7.9:
+.word 0x457ff000
+.CONSTANT.7.10:
+.word 0x3fc00000
+.CONSTANT.7.11:
+.word 0x00000000
+.CONSTANT.7.12:
+.word 0x40533333
+.CONSTANT.7.13:
+.word 0x3e99999a
+.CONSTANT.7.14:
+.word 0x3f800000
+.CONSTANT.7.15:
 .word 0x41200000
 .section .text
 assert_not:
@@ -132,31 +159,31 @@ circle_area:
   SD ra, 0(sp)
   FSD fs3, 8(sp)
   FSD fs1, 16(sp)
-  FSD fs0, 24(sp)
-  SD s1, 32(sp)
+  SD s1, 24(sp)
+  FSD fs0, 32(sp)
   FSD fs2, 40(sp)
   SD s0, 48(sp)
   ADD s0, a0, zero
-  LA s1, PI
-  FLW fs0, 0(s1)
-  FCVT.S.W fs1, s0
-  FMUL.S fs2, fs0, fs1
-  FMUL.S fs0, fs2, fs1
-  MULW s1, s0, s0
-  LA s0, PI
-  FLW fs1, 0(s0)
-  FCVT.S.W fs2, s1
-  FMUL.S fs3, fs2, fs1
-  FADD.S fs1, fs0, fs3
-  ADDI s0, zero, 2
   FCVT.S.W fs0, s0
-  FDIV.S fs2, fs1, fs0
+  LA s1, .CONSTANT.7.0
+  FLW fs1, 0(s1)
+  FMUL.S fs2, fs1, fs0
+  FMUL.S fs1, fs2, fs0
+  MULW s1, s0, s0
+  FCVT.S.W fs0, s1
+  LA s0, .CONSTANT.7.0
+  FLW fs2, 0(s0)
+  FMUL.S fs3, fs0, fs2
+  FADD.S fs0, fs1, fs3
+  ADDI s0, zero, 2
+  FCVT.S.W fs1, s0
+  FDIV.S fs2, fs0, fs1
   FSGNJ.S fa0, fs2, fs2
   LD ra, 0(sp)
   FLD fs3, 8(sp)
   FLD fs1, 16(sp)
-  FLD fs0, 24(sp)
-  LD s1, 32(sp)
+  LD s1, 24(sp)
+  FLD fs0, 32(sp)
   FLD fs2, 40(sp)
   LD s0, 48(sp)
   ADDI sp, sp, 64
@@ -174,7 +201,7 @@ float_eq:
   FSGNJ.S fa0, fs2, fs2
   CALL float_abs
   FSGNJ.D fs0, fa0, fa0
-  LA s0, EPS
+  LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs0, fs1
   BNE s0, zero, bb8
@@ -182,7 +209,7 @@ float_eq:
 bb8:
   ADDI s0, zero, 1
   FCVT.S.W fs0, s0
-  LA s0, .CONSTANT.7.0
+  LA s0, .CONSTANT.7.2
   FLW fs1, 0(s0)
   FMUL.S fs2, fs0, fs1
   ADDI s0, zero, 2
@@ -222,45 +249,55 @@ main:
   SD s1, 128(sp)
   SD s6, 136(sp)
   SD s4, 144(sp)
-  LA s0, HEX2
+  LA s0, .CONSTANT.7.3
   FLW fs0, 0(s0)
-  LA s0, FACT
+  LA s0, .CONSTANT.7.3
   FLW fs1, 0(s0)
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
+  FSGNJ.S fa0, fs0, fs1
+  LA s0, .CONSTANT.7.4
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.4
+  FLW fs1, 0(s0)
+  FSGNJ.S fa1, fs0, fs1
   CALL float_eq
   ADD s0, a0, zero
   ADD a0, s0, zero
   CALL assert_not
-  LA s0, EVAL1
+  LA s0, .CONSTANT.7.5
   FLW fs0, 0(s0)
-  LA s0, EVAL2
+  LA s0, .CONSTANT.7.5
   FLW fs1, 0(s0)
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
+  FSGNJ.S fa0, fs0, fs1
+  LA s0, .CONSTANT.7.6
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.6
+  FLW fs1, 0(s0)
+  FSGNJ.S fa1, fs0, fs1
   CALL float_eq
   ADD s0, a0, zero
   ADD a0, s0, zero
   CALL assert_not
-  LA s0, EVAL2
+  LA s0, .CONSTANT.7.6
   FLW fs0, 0(s0)
-  LA s0, EVAL3
+  LA s0, .CONSTANT.7.6
   FLW fs1, 0(s0)
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
+  FSGNJ.S fa0, fs0, fs1
+  LA s0, .CONSTANT.7.6
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.6
+  FLW fs1, 0(s0)
+  FSGNJ.S fa1, fs0, fs1
   CALL float_eq
   ADD s0, a0, zero
   ADD a0, s0, zero
   CALL assert
-  LA s0, RADIUS
+  LA s0, .CONSTANT.7.7
   FLW fs0, 0(s0)
   FCVT.W.S s0, fs0, rtz
   ADD a0, s0, zero
   CALL circle_area
   FSGNJ.D fs0, fa0, fa0
-  LA s0, FIVE
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI a0, zero, 5
   CALL circle_area
   FSGNJ.D fs1, fa0, fa0
   FSGNJ.S fa0, fs0, fs0
@@ -269,19 +306,23 @@ main:
   ADD s0, a0, zero
   ADD a0, s0, zero
   CALL assert
-  LA s0, CONV1
+  LA s0, .CONSTANT.7.8
   FLW fs0, 0(s0)
-  LA s0, CONV2
+  LA s0, .CONSTANT.7.8
   FLW fs1, 0(s0)
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
+  FSGNJ.S fa0, fs0, fs1
+  LA s0, .CONSTANT.7.9
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.9
+  FLW fs1, 0(s0)
+  FSGNJ.S fa1, fs0, fs1
   CALL float_eq
   ADD s0, a0, zero
   ADD a0, s0, zero
   CALL assert_not
-  LA s0, .CONSTANT.7.1
+  LA s0, .CONSTANT.7.10
   FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.2
+  LA s0, .CONSTANT.7.11
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1
   XORI s1, s0, 1
@@ -291,9 +332,9 @@ bb11:
   CALL ok
   JAL zero, bb12
 bb12:
-  LA s0, .CONSTANT.7.3
+  LA s0, .CONSTANT.7.12
   FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.2
+  LA s0, .CONSTANT.7.11
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1
   XORI s1, s0, 1
@@ -311,9 +352,9 @@ bb13:
   CALL ok
   JAL zero, bb14
 bb14:
-  LA s0, .CONSTANT.7.2
+  LA s0, .CONSTANT.7.11
   FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.2
+  LA s0, .CONSTANT.7.11
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1
   XORI s1, s0, 1
@@ -333,9 +374,9 @@ bb18:
   CALL error
   JAL zero, bb19
 bb19:
-  LA s1, .CONSTANT.7.4
+  LA s1, .CONSTANT.7.13
   FLW fs0, 0(s1)
-  LA s1, .CONSTANT.7.2
+  LA s1, .CONSTANT.7.11
   FLW fs1, 0(s1)
   FEQ.S s1, fs0, fs1
   XORI s2, s1, 1
@@ -353,41 +394,41 @@ bb22:
   FCVT.S.W fs0, s1
   ADDI t5, sp, 0
   ADD s1, t5, zero
-  LA s2, .CONSTANT.7.5
+  LA s2, .CONSTANT.7.14
   FLW fs1, 0(s2)
   FSW fs1, 0(s1)
   ADDI s1, sp, 4
   FSW fs0, 0(s1)
   ADDI s1, sp, 8
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 12
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 16
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 20
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 24
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 28
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 32
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI s1, sp, 36
-  LA s2, .CONSTANT.7.2
+  LA s2, .CONSTANT.7.11
   FLW fs0, 0(s2)
   FSW fs0, 0(s1)
   ADDI a0, sp, 0
@@ -400,15 +441,15 @@ bb22:
 bb23:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  LA s6, MAX
-  LW s7, 0(s6)
-  SLT s6, s4, s7
-  BNE s6, zero, bb24
+  LUI s6, 244141
+  ADDI s6, s6, -1536
+  SLT s7, s4, s6
+  BNE s7, zero, bb24
   JAL zero, bb25
 bb24:
   CALL getfloat
   FSGNJ.D fs0, fa0, fa0
-  LA s6, PI
+  LA s6, .CONSTANT.7.0
   FLW fs1, 0(s6)
   FMUL.S fs2, fs1, fs0
   FMUL.S fs1, fs2, fs0
@@ -432,9 +473,9 @@ bb24:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s6, .CONSTANT.7.6
+  LA s6, .CONSTANT.7.15
   FLW fs0, 0(s6)
-  LA s6, .CONSTANT.7.6
+  LA s6, .CONSTANT.7.15
   FLW fs1, 0(s6)
   FSGNJN.S fs2, fs0, fs1
   FSGNJN.S fs0, fs2, fs2

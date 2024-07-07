@@ -33,8 +33,7 @@ init201:
   br bb %init.cond200
 init.exit202:
   cur_token.load211 = load i32 from ptr @cur_token
-  TOKEN_NUM.load212 = load i32 from ptr @TOKEN_NUM
-  213 = icmp ne i32 %cur_token.load211, i32 %TOKEN_NUM.load212
+  213 = icmp ne i32 %cur_token.load211, i32 0
   br i1 %213, bb %then214, bb %if.exit215
 then214:
   216 = call i32 panic()
@@ -49,8 +48,7 @@ while.cond220:
   lhs.phi318 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %lhs.phi]
   cur_op.phi315 = phi [bb %if.exit215, i32 ub, bb %if.exit271, i32 %cur_op.phi]
   cur_token.load223 = load i32 from ptr @cur_token
-  TOKEN_OTHER.load224 = load i32 from ptr @TOKEN_OTHER
-  225 = icmp eq i32 %cur_token.load223, i32 %TOKEN_OTHER.load224
+  225 = icmp eq i32 %cur_token.load223, i32 1
   br i1 %225, bb %while.body221, bb %while.exit222
 while.body221:
   other.load = load i32 from ptr @other
@@ -85,8 +83,7 @@ while.body239:
 while.exit240:
   call void stack_push(ptr %ops, i32 %other.load)
   cur_token.load267 = load i32 from ptr @cur_token
-  TOKEN_NUM.load268 = load i32 from ptr @TOKEN_NUM
-  269 = icmp ne i32 %cur_token.load267, i32 %TOKEN_NUM.load268
+  269 = icmp ne i32 %cur_token.load267, i32 0
   br i1 %269, bb %then270, bb %if.exit271
 select.then243:
   247 = call i32 stack_peek(ptr %ops)
@@ -350,8 +347,7 @@ else45:
   last_char.load60 = load i32 from ptr @last_char
   store i32 %last_char.load60 to ptr @other
   61 = call i32 next_char()
-  TOKEN_OTHER.load = load i32 from ptr @TOKEN_OTHER
-  store i32 %TOKEN_OTHER.load to ptr @cur_token
+  store i32 1 to ptr @cur_token
   br bb %if.exit44
 while.cond48:
   51 = call i32 next_char()
@@ -367,8 +363,7 @@ while.body49:
   store i32 %58 to ptr @num
   br bb %while.cond48
 while.exit50:
-  TOKEN_NUM.load = load i32 from ptr @TOKEN_NUM
-  store i32 %TOKEN_NUM.load to ptr @cur_token
+  store i32 0 to ptr @cur_token
   br bb %if.exit44
 }
 

@@ -11,8 +11,7 @@ external i32 getarray(ptr )
 
 i32 graphColoring(ptr graph, i32 m, i32 i, ptr color) {
 entry78:
-  V.load82 = load i32 from ptr @V
-  83 = icmp eq i32 %i, i32 %V.load82
+  83 = icmp eq i32 %i, i32 4
   br i1 %83, bb %then84, bb %if.exit85
 then84:
   86 = call i32 isSafe(ptr %graph, ptr %color)
@@ -88,8 +87,7 @@ entry115:
   br bb %while.cond136
 while.cond136:
   i135.phi = phi [bb %entry115, i32 0, bb %while.body137, i32 %147]
-  V.load140 = load i32 from ptr @V
-  141 = icmp slt i32 %i135.phi, i32 %V.load140
+  141 = icmp slt i32 %i135.phi, i32 4
   br i1 %141, bb %while.body137, bb %while.exit138
 while.body137:
   144 = mul i32 %i135.phi, i32 4
@@ -117,8 +115,7 @@ entry31:
 while.cond33:
   select.phi164 = phi [bb %entry31, i1 ub, bb %while.exit45, i1 %select.phi163]
   i32.phi = phi [bb %entry31, i32 0, bb %while.exit45, i32 %42]
-  V.load37 = load i32 from ptr @V
-  38 = icmp slt i32 %i32.phi, i32 %V.load37
+  38 = icmp slt i32 %i32.phi, i32 4
   br i1 %38, bb %while.body34, bb %while.exit35
 while.body34:
   42 = add i32 %i32.phi, i32 1
@@ -128,8 +125,7 @@ while.exit35:
 while.cond43:
   select.phi163 = phi [bb %while.body34, i1 %select.phi164, bb %if.exit, i1 %select.phi]
   j.phi = phi [bb %while.body34, i32 %42, bb %if.exit, i32 %75]
-  V.load47 = load i32 from ptr @V
-  48 = icmp slt i32 %j.phi, i32 %V.load47
+  48 = icmp slt i32 %j.phi, i32 4
   br i1 %48, bb %while.body44, bb %while.exit45
 while.body44:
   51 = mul i32 %i32.phi, i32 16
@@ -166,8 +162,7 @@ entry20:
   call void putch(i32 78)
   call void putch(i32 111)
   call void putch(i32 116)
-  space.load24 = load i32 from ptr @space
-  call void putch(i32 %space.load24)
+  call void putch(i32 32)
   call void putch(i32 101)
   call void putch(i32 120)
   call void putch(i32 105)
@@ -193,21 +188,18 @@ entry:
   br bb %while.cond
 while.cond:
   i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %17]
-  V.load = load i32 from ptr @V
-  7 = icmp slt i32 %i.phi, i32 %V.load
+  7 = icmp slt i32 %i.phi, i32 4
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
   10 = mul i32 %i.phi, i32 4
   11 = ptradd ptr %color, i32 %10
   11.load = load i32 from ptr %11
   call void putint(i32 %11.load)
-  space.load = load i32 from ptr @space
-  call void putch(i32 %space.load)
+  call void putch(i32 32)
   17 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
-  LF.load = load i32 from ptr @LF
-  call void putch(i32 %LF.load)
+  call void putch(i32 10)
   ret 
 }
 

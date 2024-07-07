@@ -195,9 +195,7 @@ init:
   JAL zero, bb16
 bb16:
   ADD s1, s0, zero
-  LA s2, maxn
-  LW s3, 0(s2)
-  SLT s2, s1, s3
+  SLTI s2, s1, 1005
   BNE s2, zero, bb17
   JAL zero, bb18
 bb17:

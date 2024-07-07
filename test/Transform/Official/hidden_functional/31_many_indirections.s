@@ -30,9 +30,7 @@ main:
   JAL zero, bb1
 bb1:
   ADD s1, s0, zero
-  LA s2, M
-  LW s3, 0(s2)
-  SLT s2, s1, s3
+  SLTI s2, s1, 20
   BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
@@ -322,9 +320,7 @@ bb3:
   JALR zero, 0(ra)
 bb4:
   ADD s3, s2, zero
-  LA s4, N
-  LW s5, 0(s4)
-  SLT s4, s3, s5
+  SLTI s4, s3, 100
   BNE s4, zero, bb5
   JAL zero, bb6
 bb5:

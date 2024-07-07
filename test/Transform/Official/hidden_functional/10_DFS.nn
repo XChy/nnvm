@@ -60,8 +60,7 @@ entry88:
   br bb %while.cond90
 while.cond90:
   i.phi = phi [bb %entry88, i32 0, bb %while.body91, i32 %102]
-  maxn.load = load i32 from ptr @maxn
-  95 = icmp slt i32 %i.phi, i32 %maxn.load
+  95 = icmp slt i32 %i.phi, i32 1005
   br i1 %95, bb %while.body91, bb %while.exit92
 while.body91:
   98 = mul i32 %i.phi, i32 4

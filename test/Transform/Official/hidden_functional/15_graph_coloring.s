@@ -31,9 +31,7 @@ graphColoring:
   ADD s1, a1, zero
   ADD s2, a2, zero
   ADD s3, a3, zero
-  LA s4, V
-  LW s5, 0(s4)
-  XOR s4, s2, s5
+  XORI s4, s2, 4
   SLTIU s5, s4, 1
   BNE s5, zero, bb1
   JAL zero, bb2
@@ -188,9 +186,7 @@ main:
   JAL zero, bb11
 bb11:
   ADD s1, s0, zero
-  LA s2, V
-  LW s3, 0(s2)
-  SLT s2, s1, s3
+  SLTI s2, s1, 4
   BNE s2, zero, bb12
   JAL zero, bb13
 bb12:
@@ -254,9 +250,7 @@ isSafe:
 bb17:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  LA s6, V
-  LW s7, 0(s6)
-  SLT s6, s4, s7
+  SLTI s6, s4, 4
   BNE s6, zero, bb18
   JAL zero, bb19
 bb18:
@@ -284,9 +278,7 @@ bb19:
 bb20:
   ADD s8, s5, zero
   ADD s9, s7, zero
-  LA s10, V
-  LW s11, 0(s10)
-  SLT s10, s8, s11
+  SLTI s10, s8, 4
   BNE s10, zero, bb21
   JAL zero, bb22
 bb21:
@@ -346,19 +338,15 @@ bb27:
   ADD s5, t0, zero
   JAL zero, bb20
 printMessage:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
   ADDI a0, zero, 78
   CALL putch
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 116
   CALL putch
-  LA s0, space
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI a0, zero, 32
   CALL putch
   ADDI a0, zero, 101
   CALL putch
@@ -371,9 +359,7 @@ printMessage:
   ADDI a0, zero, 116
   CALL putch
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 printSolution:
   ADDI sp, sp, -48
@@ -388,9 +374,7 @@ printSolution:
   JAL zero, bb30
 bb30:
   ADD s2, s1, zero
-  LA s3, V
-  LW s4, 0(s3)
-  SLT s3, s2, s4
+  SLTI s3, s2, 4
   BNE s3, zero, bb31
   JAL zero, bb32
 bb31:
@@ -400,17 +384,13 @@ bb31:
   LW s4, 0(s3)
   ADD a0, s4, zero
   CALL putint
-  LA s3, space
-  LW s4, 0(s3)
-  ADD a0, s4, zero
+  ADDI a0, zero, 32
   CALL putch
   ADDIW s3, s2, 1
   ADD s1, s3, zero
   JAL zero, bb30
 bb32:
-  LA s0, LF
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  ADDI a0, zero, 10
   CALL putch
   LD ra, 0(sp)
   LD s4, 8(sp)

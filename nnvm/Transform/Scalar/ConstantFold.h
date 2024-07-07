@@ -25,6 +25,7 @@ public:
   Value *foldSDiv(SDivInst *I);
   Value *foldSRem(SRemInst *I);
   Value *foldICmp(ICmpInst *I);
+  Value *foldLoad(LoadInst *I);
 
   void setModule(Module *module) { this->module = module; }
 

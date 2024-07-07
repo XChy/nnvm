@@ -23,13 +23,10 @@ main:
   JAL zero, bb1
 bb1:
   ADD s1, s0, zero
-  LA s2, n
-  LW s3, 0(s2)
-  ADDI s2, zero, 1
-  SUBW s4, s3, s2
-  SLT s2, s4, s1
-  XORI s3, s2, 1
-  BNE s3, zero, bb2
+  ADDI s2, zero, 9
+  SLT s3, s2, s1
+  XORI s2, s3, 1
+  BNE s2, zero, bb2
   JAL zero, bb3
 bb2:
   ADDIW s2, s1, 1

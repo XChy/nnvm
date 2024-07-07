@@ -105,9 +105,8 @@ while.body338:
   361 = mul i32 %j265.phi, i32 4
   362 = ptradd ptr %359, i32 %361
   362.load = load float from ptr %362
-  PI.load364 = load float from ptr @PI
   366 = si2f i32 %n to float
-  367 = fdiv float %PI.load364, float %366
+  367 = fdiv float 3.141593, float %366
   369 = fdiv float 1.000000, float 2.000000
   370 = si2f i32 %u234.phi to float
   371 = fadd float %370, float %369
@@ -116,9 +115,8 @@ while.body338:
   375 = fmul float %372, float %374
   376 = call float my_cos(float %375)
   377 = fmul float %362.load, float %376
-  PI.load378 = load float from ptr @PI
   380 = si2f i32 %m to float
-  381 = fdiv float %PI.load378, float %380
+  381 = fdiv float 3.141593, float %380
   384 = si2f i32 %v242.phi to float
   385 = fadd float %384, float %369
   386 = fmul float %381, float %385
@@ -138,8 +136,7 @@ while.exit339:
 float my_sin_impl(float x) {
 entry23:
   26 = call float my_fabs(float %x)
-  EPSILON.load = load float from ptr @EPSILON
-  28 = fcmp ole float %26, float %EPSILON.load
+  28 = fcmp ole float %26, float 0.000001
   br i1 %28, bb %then29, bb %if.exit30
 then29:
   ret float %x
@@ -213,9 +210,8 @@ while.body168:
   191 = mul i32 %j166.phi, i32 4
   192 = ptradd ptr %189, i32 %191
   192.load = load float from ptr %192
-  PI.load194 = load float from ptr @PI
   196 = si2f i32 %n to float
-  197 = fdiv float %PI.load194, float %196
+  197 = fdiv float 3.141593, float %196
   199 = fdiv float 1.000000, float 2.000000
   200 = si2f i32 %i158.phi to float
   201 = fadd float %200, float %199
@@ -224,9 +220,8 @@ while.body168:
   205 = fmul float %202, float %204
   206 = call float my_cos(float %205)
   207 = fmul float %192.load, float %206
-  PI.load208 = load float from ptr @PI
   210 = si2f i32 %m to float
-  211 = fdiv float %PI.load208, float %210
+  211 = fdiv float 3.141593, float %210
   214 = si2f i32 %j166.phi to float
   215 = fadd float %214, float %199
   216 = fmul float %211, float %215
@@ -245,46 +240,38 @@ while.exit169:
 
 float my_sin(float x) {
 entry36:
-  TWO_PI.load = load float from ptr @TWO_PI
-  40 = fcmp ogt float %x, float %TWO_PI.load
+  40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
 select.then:
   br bb %select.exit
 select.else:
-  TWO_PI.load46 = load float from ptr @TWO_PI
-  47 = fneg float %TWO_PI.load46
+  47 = fneg float 6.283185
   48 = fcmp olt float %x, float %47
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 %48, bb %select.then, i1 1]
   br i1 %select.phi, bb %then51, bb %if.exit52
 then51:
-  TWO_PI.load55 = load float from ptr @TWO_PI
-  56 = fdiv float %x, float %TWO_PI.load55
+  56 = fdiv float %x, float 6.283185
   57 = f2si float %56 to i32
-  TWO_PI.load60 = load float from ptr @TWO_PI
   61 = si2f i32 %57 to float
-  62 = fmul float %61, float %TWO_PI.load60
+  62 = fmul float %61, float 6.283185
   63 = fsub float %x, float %62
   br bb %if.exit52
 if.exit52:
   x.stack37.phi490 = phi [bb %select.exit, float %x, bb %then51, float %63]
-  PI.load = load float from ptr @PI
-  66 = fcmp ogt float %x.stack37.phi490, float %PI.load
+  66 = fcmp ogt float %x.stack37.phi490, float 3.141593
   br i1 %66, bb %then67, bb %if.exit68
 then67:
-  TWO_PI.load70 = load float from ptr @TWO_PI
-  71 = fsub float %x.stack37.phi490, float %TWO_PI.load70
+  71 = fsub float %x.stack37.phi490, float 6.283185
   br bb %if.exit68
 if.exit68:
   x.stack37.phi489 = phi [bb %if.exit52, float %x.stack37.phi490, bb %then67, float %71]
-  PI.load73 = load float from ptr @PI
-  74 = fneg float %PI.load73
+  74 = fneg float 3.141593
   75 = fcmp olt float %x.stack37.phi489, float %74
   br i1 %75, bb %then76, bb %if.exit77
 then76:
-  TWO_PI.load79 = load float from ptr @TWO_PI
-  80 = fadd float %x.stack37.phi489, float %TWO_PI.load79
+  80 = fadd float %x.stack37.phi489, float 6.283185
   br bb %if.exit77
 if.exit77:
   x.stack37.phi = phi [bb %if.exit68, float %x.stack37.phi489, bb %then76, float %80]
@@ -337,9 +324,8 @@ external i32 getarray(ptr )
 
 float my_cos(float x) {
 entry83:
-  PI.load86 = load float from ptr @PI
   87 = si2f i32 2 to float
-  88 = fdiv float %PI.load86, float %87
+  88 = fdiv float 3.141593, float %87
   89 = fadd float %x, float %88
   90 = call float my_sin(float %89)
   ret float %90
