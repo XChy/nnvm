@@ -12,5 +12,6 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<SLPairElimPass>();
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
+  passManager.addFunctionPass<CombinerPass>();
   passManager.run(*module);
 }

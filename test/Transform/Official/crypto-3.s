@@ -155,10 +155,10 @@ bb6:
   LUI s11, 422994
   ADDI s11, s11, 769
   ADD t4, zero, s11
-  SW t4, 416(sp)
+  SW t4, 400(sp)
   JAL zero, bb7
 bb7:
-  LW t3, 416(sp)
+  LW t3, 400(sp)
   ADD t4, t3, zero
   SW t4, 360(sp)
   LW t3, 424(sp)
@@ -175,7 +175,7 @@ bb7:
   SW t4, 336(sp)
   LW t3, 456(sp)
   ADD t4, t3, zero
-  SW t4, 400(sp)
+  SW t4, 416(sp)
   LW t3, 472(sp)
   ADD t4, t3, zero
   SW t4, 384(sp)
@@ -368,7 +368,7 @@ bb15:
   ADD s1, t4, zero
   LW t4, 384(sp)
   ADD s2, t4, zero
-  LW t4, 400(sp)
+  LW t4, 416(sp)
   ADD s7, t4, zero
   LW t4, 360(sp)
   ADD s9, t4, zero
@@ -452,7 +452,7 @@ bb18:
   ADD t4, t3, zero
   SW t4, 424(sp)
   ADD t4, s0, zero
-  SW t4, 416(sp)
+  SW t4, 400(sp)
   JAL zero, bb7
 bb19:
   LW t4, 536(sp)

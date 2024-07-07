@@ -258,3 +258,7 @@ void PhiInst::removeIncoming(BasicBlock *incomingBB) {
 
   setOperands(newIncomings);
 }
+
+BasicBlock *PhiInst::getIncomingBB(uint64_t index) const {
+  return cast<BasicBlock>(getOperand(2 * index));
+}

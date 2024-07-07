@@ -79,26 +79,25 @@ bb5:
 bb6:
   ADDI s8, zero, 10
   SUBW s10, s9, s8
-  ADDIW s8, s10, 11
-  ADDIW s10, s8, 11
-  ADDI s8, zero, 11
+  ADDIW s8, s10, 22
+  ADDI s10, zero, 11
   ADDI s11, zero, 11
-  ADD ra, s10, zero
-  ADDI s10, zero, 10
+  ADD ra, s8, zero
+  ADDI s8, zero, 10
   JAL zero, bb7
 bb7:
-  ADD t0, s10, zero
+  ADD t0, s8, zero
   ADD t1, ra, zero
   ADD t2, s11, zero
-  ADD a0, s8, zero
+  ADD a0, s10, zero
   ADD s0, a0, zero
   ADD s1, t2, zero
   ADD s2, t1, zero
   ADD s3, t0, zero
   JAL zero, bb3
 bb8:
-  ADD s8, s7, zero
+  ADD s10, s7, zero
   ADD s11, s6, zero
   ADD ra, s9, zero
-  ADD s10, s4, zero
+  ADD s8, s4, zero
   JAL zero, bb7

@@ -2491,7 +2491,7 @@ main:
   SW t4, 0(t5)
   ADDI t4, zero, 4
   LUI t6, 2
-  ADDI t6, t6, -832
+  ADDI t6, t6, -848
   ADD t6, t6, sp
   SW t4, 0(t6)
   ADDI t4, zero, 5
@@ -2501,7 +2501,7 @@ main:
   SW t4, 0(t5)
   ADDI t4, zero, 9
   LUI t6, 2
-  ADDI t6, t6, -848
+  ADDI t6, t6, -832
   ADD t6, t6, sp
   SW t4, 0(t6)
   ADDI t4, zero, 8
@@ -5429,7 +5429,7 @@ main:
   ADD t4, t4, sp
   LW t4, 0(t4)
   LUI t3, 2
-  ADDI t3, t3, -832
+  ADDI t3, t3, -848
   ADD t3, t3, sp
   LW t3, 0(t3)
   LUI t4, 2
@@ -5437,7 +5437,7 @@ main:
   ADD t4, t4, sp
   LW t4, 0(t4)
   LUI t3, 2
-  ADDI t3, t3, -848
+  ADDI t3, t3, -832
   ADD t3, t3, sp
   LW t3, 0(t3)
   LUI t4, 1

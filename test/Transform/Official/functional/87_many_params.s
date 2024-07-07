@@ -46,16 +46,16 @@ param16:
   SW t4, 200(sp)
   ADDI s8, sp, 444
   LW t4, 0(s8)
-  SW t4, 176(sp)
+  SW t4, 184(sp)
   ADDI s8, sp, 448
   LW t4, 0(s8)
-  SW t4, 192(sp)
+  SW t4, 176(sp)
   ADDI s8, sp, 452
   LW t4, 0(s8)
-  SW t4, 184(sp)
+  SW t4, 168(sp)
   ADDI s8, sp, 456
   LW t4, 0(s8)
-  SW t4, 168(sp)
+  SW t4, 192(sp)
   ADDI s8, sp, 460
   LW t4, 0(s8)
   SW t4, 160(sp)
@@ -91,16 +91,16 @@ param16:
   LW t4, 200(sp)
   SW t4, 0(s8)
   ADDI s8, sp, 140
-  LW t4, 176(sp)
-  SW t4, 0(s8)
-  ADDI s8, sp, 144
-  LW t4, 192(sp)
-  SW t4, 0(s8)
-  ADDI s8, sp, 148
   LW t4, 184(sp)
   SW t4, 0(s8)
-  ADDI s8, sp, 152
+  ADDI s8, sp, 144
+  LW t4, 176(sp)
+  SW t4, 0(s8)
+  ADDI s8, sp, 148
   LW t4, 168(sp)
+  SW t4, 0(s8)
+  ADDI s8, sp, 152
+  LW t4, 192(sp)
   SW t4, 0(s8)
   ADDI s8, sp, 156
   LW t4, 160(sp)
@@ -214,16 +214,16 @@ param16:
   LW t4, 200(sp)
   SW t4, 0(s3)
   ADDI s3, sp, 76
-  LW t4, 176(sp)
-  SW t4, 0(s3)
-  ADDI s3, sp, 80
-  LW t4, 192(sp)
-  SW t4, 0(s3)
-  ADDI s3, sp, 84
   LW t4, 184(sp)
   SW t4, 0(s3)
-  ADDI s3, sp, 88
+  ADDI s3, sp, 80
+  LW t4, 176(sp)
+  SW t4, 0(s3)
+  ADDI s3, sp, 84
   LW t4, 168(sp)
+  SW t4, 0(s3)
+  ADDI s3, sp, 88
+  LW t4, 192(sp)
   SW t4, 0(s3)
   ADDI s3, sp, 92
   LW t4, 160(sp)
@@ -244,10 +244,10 @@ param16:
   LW t3, 216(sp)
   LW t4, 208(sp)
   LW t3, 200(sp)
-  LW t4, 176(sp)
-  LW t3, 192(sp)
   LW t4, 184(sp)
-  LW t3, 168(sp)
+  LW t3, 176(sp)
+  LW t4, 168(sp)
+  LW t3, 192(sp)
   LW t4, 160(sp)
   CALL param32_rec
   ADD s0, a0, zero
@@ -611,10 +611,10 @@ param32_rec:
   LW s11, 0(s8)
   ADDI s8, sp, 380
   LW t4, 0(s8)
-  SW t4, 256(sp)
+  SW t4, 248(sp)
   ADDI s8, sp, 384
   LW t4, 0(s8)
-  SW t4, 248(sp)
+  SW t4, 256(sp)
   ADDI s8, sp, 388
   LW t4, 0(s8)
   SW t4, 240(sp)
@@ -714,10 +714,10 @@ bb4:
   ADDI s0, sp, 4
   SW s11, 0(s0)
   ADDI s0, sp, 8
-  LW t4, 256(sp)
+  LW t4, 248(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 12
-  LW t4, 248(sp)
+  LW t4, 256(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 16
   LW t4, 240(sp)
@@ -778,8 +778,8 @@ bb4:
   SW t4, 0(s0)
   ADDI s0, sp, 92
   SW zero, 0(s0)
-  LW t4, 256(sp)
-  LW t3, 248(sp)
+  LW t4, 248(sp)
+  LW t3, 256(sp)
   LW t4, 240(sp)
   LW t3, 96(sp)
   LW t4, 104(sp)

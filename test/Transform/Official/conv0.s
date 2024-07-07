@@ -60,11 +60,11 @@ bb1:
   JAL zero, bb2
 bb2:
   ADD t4, t0, zero
-  SW t4, 144(sp)
-  ADD t4, ra, zero
-  SW t4, 152(sp)
-  ADD t4, s11, zero
   SW t4, 120(sp)
+  ADD t4, ra, zero
+  SW t4, 128(sp)
+  ADD t4, s11, zero
+  SW t4, 136(sp)
   ADD t4, zero, zero
   SW t4, 160(sp)
   JAL zero, bb4
@@ -89,15 +89,15 @@ bb4:
   LW t3, 160(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
-  LW t4, 120(sp)
+  LW t4, 136(sp)
   ADD a6, t4, zero
-  LW t4, 152(sp)
+  LW t4, 128(sp)
   ADD a7, t4, zero
-  LW t4, 144(sp)
+  LW t4, 120(sp)
   ADD t2, t4, zero
   ADD s10, t2, zero
   ADD t4, a7, zero
-  SW t4, 136(sp)
+  SW t4, 112(sp)
   ADD s5, a6, zero
   JAL zero, bb5
 bb5:
@@ -115,7 +115,7 @@ bb5:
   JAL zero, bb7
 bb6:
   ADD a1, s5, zero
-  LW t4, 136(sp)
+  LW t4, 112(sp)
   ADD s5, t4, zero
   ADD a2, s10, zero
   LW t4, 8(sp)
@@ -137,7 +137,7 @@ bb7:
   ADD s0, a6, zero
   LW t3, 40(sp)
   ADD t4, t3, zero
-  SW t4, 112(sp)
+  SW t4, 152(sp)
   JAL zero, bb8
 bb8:
   ADDI a7, zero, 2
@@ -151,7 +151,7 @@ bb8:
   SW t4, 88(sp)
   JAL zero, bb10
 bb9:
-  LW t4, 112(sp)
+  LW t4, 152(sp)
   ADD t1, t4, zero
   ADD t2, s0, zero
   ADD s0, s1, zero
@@ -175,11 +175,11 @@ bb9:
 bb10:
   LW t3, 88(sp)
   ADD t4, t3, zero
-  SW t4, 128(sp)
+  SW t4, 144(sp)
   LW t4, 96(sp)
   ADD s2, t4, zero
   ADD s3, s2, zero
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   ADD s4, t4, zero
   JAL zero, bb11
 bb11:
@@ -191,7 +191,7 @@ bb11:
   ADD a2, t4, zero
   LW t4, 40(sp)
   ADD a3, t4, zero
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   ADD a4, t4, zero
   CALL getvalue
   ADD s11, a0, zero
@@ -201,7 +201,7 @@ bb11:
   ADD a2, s11, zero
   CALL reduce
   ADD s2, a0, zero
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   ADDIW s11, t4, 1
   ADDI t0, zero, 2
   LW t4, 16(sp)
@@ -240,7 +240,7 @@ bb15:
   ADD s1, s4, zero
   ADD s0, t0, zero
   ADD t4, s3, zero
-  SW t4, 112(sp)
+  SW t4, 152(sp)
   JAL zero, bb9
 bb16:
   ADD t4, s4, zero
@@ -253,16 +253,16 @@ bb16:
 bb17:
   ADD s10, s0, zero
   ADD t4, t2, zero
-  SW t4, 136(sp)
+  SW t4, 112(sp)
   ADD s5, t1, zero
   JAL zero, bb6
 bb18:
   ADD t4, s0, zero
-  SW t4, 144(sp)
-  ADD t4, t2, zero
-  SW t4, 152(sp)
-  ADD t4, t1, zero
   SW t4, 120(sp)
+  ADD t4, t2, zero
+  SW t4, 128(sp)
+  ADD t4, t1, zero
+  SW t4, 136(sp)
   ADD t4, s1, zero
   SW t4, 160(sp)
   JAL zero, bb4

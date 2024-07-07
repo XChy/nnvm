@@ -388,6 +388,11 @@ public:
   void setIncoming(BasicBlock *incomingBB, Value *incomingValue);
   uint64_t getIncomingNum() const { return getOperandNum() / 2; }
   void removeIncoming(BasicBlock *incomingBB);
+
+  BasicBlock *getIncomingBB(uint64_t index) const;
+  Value *getIncomingValue(uint64_t index) const {
+    return getOperand(2 * index + 1);
+  }
 };
 
 } // namespace nnvm

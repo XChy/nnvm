@@ -6,6 +6,7 @@
 #pragma once
 
 #include "IR/BasicBlock.h"
+#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 #include "Transform/Scalar/ConstantFold.h"
@@ -19,10 +20,13 @@ public:
 
 private:
   Value *simplifyInst(Instruction *I);
+  Value *simplifyAdd(AddInst *I);
   Value *simplifySDiv(SDivInst *I);
+  Value *simplifyPhi(PhiInst *I);
 
   std::queue<Instruction *> worklist;
 
   ConstantFold folder;
+  IRBuilder builder;
 };
 } /* namespace nnvm */
