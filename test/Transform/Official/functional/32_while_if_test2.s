@@ -43,17 +43,17 @@ bb3:
   ADD s1, zero, zero
   JAL zero, bb7
 bb4:
-  ADD s1, s2, zero
-  XORI s6, s1, 2
+  ADD s0, s2, zero
+  XORI s6, s0, 2
   SLTIU s0, s6, 1
   BNE s0, zero, bb5
   JAL zero, bb6
 bb5:
-  ADDIW s0, s1, 2
-  ADD s2, s0, zero
+  ADDIW s1, s0, 2
+  ADD s2, s1, zero
   JAL zero, bb4
 bb6:
-  ADDIW s3, s1, 25
+  ADDIW s3, s0, 25
   ADD s4, s3, zero
   JAL zero, bb2
 bb7:

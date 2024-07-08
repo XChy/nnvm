@@ -9,8 +9,7 @@ entry:
   store i32 3 to ptr %4
   6 = ptradd ptr @a, i32 16380
   store i32 7 to ptr %6
-  8.load = load i32 from ptr %6
-  10 = mul i32 %8.load, i32 4
+  10 = mul i32 7, i32 4
   11 = ptradd ptr %b, i32 %10
   13 = ptradd ptr @a, i32 8864
   13.load = load i32 from ptr %13

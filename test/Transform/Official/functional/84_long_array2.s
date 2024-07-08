@@ -32,8 +32,8 @@ f1:
   ADD s4, s3, s1
   ADDI s1, zero, 7
   SW s1, 0(s4)
-  LW s1, 0(s4)
-  ADDI s3, zero, 4
+  ADDI s1, zero, 4
+  ADDI s3, zero, 7
   MULW s4, s1, s3
   ADD s1, s0, s4
   LUI s0, 2

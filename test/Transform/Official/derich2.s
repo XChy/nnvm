@@ -195,7 +195,6 @@ bb5:
   FADD.S ft0, ft2, fs6
   FSW ft0, 0(t0)
   FLW fs6, 0(s11)
-  FLW ft0, 0(t0)
   ADDIW s10, s9, 1
   FSGNJ.S fs9, fs8, fs8
   FSGNJ.S fs10, ft0, ft0
@@ -267,7 +266,6 @@ bb11:
   ADD s10, s2, s11
   ADD s11, s10, t1
   FLW fs6, 0(s11)
-  FLW ft1, 0(t0)
   ADDI s10, zero, 1
   SUBW s11, s9, s10
   FSGNJ.S fs9, ft1, ft1
@@ -372,7 +370,6 @@ bb23:
   FADD.S ft0, ft2, fs6
   FSW ft0, 0(s11)
   FLW fs6, 0(s10)
-  FLW ft0, 0(s11)
   ADDIW s9, s8, 1
   FSGNJ.S fs9, fs8, fs8
   FSGNJ.S fs10, ft0, ft0
@@ -443,13 +440,12 @@ bb29:
   FSW fs2, 0(s11)
   ADD s9, s3, s10
   ADD s10, s9, t0
-  FLW fs2, 0(s10)
-  FLW fs11, 0(s11)
+  FLW fs11, 0(s10)
   ADDI s9, zero, 1
   SUBW s10, s8, s9
-  FSGNJ.S fs6, fs2, fs2
+  FSGNJ.S fs6, fs11, fs11
   FSGNJ.S fs8, ft0, ft0
-  FSGNJ.S fs9, fs11, fs11
+  FSGNJ.S fs9, fs2, fs2
   FSGNJ.S fs10, fs3, fs3
   ADD s7, s10, zero
   JAL zero, bb28

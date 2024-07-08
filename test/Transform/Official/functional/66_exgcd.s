@@ -28,8 +28,7 @@ main:
   ADDI s1, zero, 15
   REMW s2, s0, s1
   SW s2, 8(sp)
-  LW s0, 8(sp)
-  ADD a0, s0, zero
+  ADD a0, s2, zero
   CALL putint
   ADD a0, zero, zero
   LD ra, 16(sp)

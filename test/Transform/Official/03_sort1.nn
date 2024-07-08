@@ -174,10 +174,9 @@ while.body141:
   153.load = load i32 from ptr %153
   store i32 %153.load to ptr %149
   157 = ptradd ptr %tail, i32 %148
-  160.load = load i32 from ptr %149
   164 = ptradd ptr %cnt74, i32 %148
   164.load = load i32 from ptr %164
-  166 = add i32 %160.load, i32 %164.load
+  166 = add i32 %153.load, i32 %164.load
   store i32 %166 to ptr %157
   168 = add i32 %i101.phi356, i32 1
   br bb %while.cond140
@@ -274,10 +273,9 @@ then276:
   284.load = load i32 from ptr %284
   store i32 %284.load to ptr %280
   288 = ptradd ptr %tail, i32 %279
-  291.load = load i32 from ptr %280
   295 = ptradd ptr %cnt74, i32 %279
   295.load = load i32 from ptr %295
-  297 = add i32 %291.load, i32 %295.load
+  297 = add i32 %284.load, i32 %295.load
   store i32 %297 to ptr %288
   br bb %if.exit277
 if.exit277:

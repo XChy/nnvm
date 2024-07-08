@@ -122,8 +122,7 @@ while.body259:
   275.load = load i32 from ptr %272
   277 = add i32 %275.load, i32 1
   store i32 %277 to ptr %272
-  280.load = load i32 from ptr %272
-  283 = icmp sgt i32 %280.load, i32 %max.phi659
+  283 = icmp sgt i32 %277, i32 %max.phi659
   br i1 %283, bb %then284, bb %if.exit285
 while.exit260:
   ret i32 %number.phi661

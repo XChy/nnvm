@@ -28,8 +28,7 @@ else:
   36.load = load i32 from ptr %23
   38 = call i32 findfa(i32 %36.load)
   store i32 %38 to ptr %23
-  41.load = load i32 from ptr %23
-  ret i32 %41.load
+  ret i32 %38
 }
 
 external i32 getint()

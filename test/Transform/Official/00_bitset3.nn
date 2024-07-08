@@ -46,44 +46,34 @@ init:
 init.exit:
   store i32 1 to ptr %x
   18 = ptradd ptr %x, i32 4
-  20.load = load i32 from ptr %x
-  22 = mul i32 %20.load, i32 2
+  22 = mul i32 1, i32 2
   store i32 %22 to ptr %18
   24 = ptradd ptr %x, i32 8
-  26.load = load i32 from ptr %18
-  28 = mul i32 %26.load, i32 2
+  28 = mul i32 %22, i32 2
   store i32 %28 to ptr %24
   30 = ptradd ptr %x, i32 12
-  32.load = load i32 from ptr %24
-  34 = mul i32 %32.load, i32 2
+  34 = mul i32 %28, i32 2
   store i32 %34 to ptr %30
   36 = ptradd ptr %x, i32 16
-  38.load = load i32 from ptr %30
-  40 = mul i32 %38.load, i32 2
+  40 = mul i32 %34, i32 2
   store i32 %40 to ptr %36
   42 = ptradd ptr %x, i32 20
-  44.load = load i32 from ptr %36
-  46 = mul i32 %44.load, i32 2
+  46 = mul i32 %40, i32 2
   store i32 %46 to ptr %42
   48 = ptradd ptr %x, i32 24
-  50.load = load i32 from ptr %42
-  52 = mul i32 %50.load, i32 2
+  52 = mul i32 %46, i32 2
   store i32 %52 to ptr %48
   54 = ptradd ptr %x, i32 28
-  56.load = load i32 from ptr %48
-  58 = mul i32 %56.load, i32 2
+  58 = mul i32 %52, i32 2
   store i32 %58 to ptr %54
   60 = ptradd ptr %x, i32 32
-  62.load = load i32 from ptr %54
-  64 = mul i32 %62.load, i32 2
+  64 = mul i32 %58, i32 2
   store i32 %64 to ptr %60
   66 = ptradd ptr %x, i32 36
-  68.load = load i32 from ptr %60
-  70 = mul i32 %68.load, i32 2
+  70 = mul i32 %64, i32 2
   store i32 %70 to ptr %66
   72 = ptradd ptr %x, i32 40
-  74.load = load i32 from ptr %66
-  76 = mul i32 %74.load, i32 2
+  76 = mul i32 %70, i32 2
   store i32 %76 to ptr %72
   br bb %while.cond
 while.cond:

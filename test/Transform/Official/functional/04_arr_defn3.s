@@ -125,11 +125,10 @@ main:
   ADDI s2, sp, 28
   ADDI s3, zero, 8
   SW s3, 0(s2)
-  LW s3, 0(s2)
   LW s2, 0(sp)
-  ADDW s4, s3, s2
+  ADDIW s3, s2, 8
   LW s2, 0(s1)
-  ADDW s1, s4, s2
+  ADDW s1, s3, s2
   LW s2, 0(s0)
   ADDW s0, s1, s2
   ADD a0, s0, zero

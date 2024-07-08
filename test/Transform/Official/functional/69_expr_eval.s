@@ -766,9 +766,8 @@ stack_push:
   LW s2, 0(s0)
   ADDIW s3, s2, 1
   SW s3, 0(s0)
-  LW s2, 0(s0)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
+  ADDI s2, zero, 4
+  MULW s4, s3, s2
   ADD s2, s0, s4
   SW s1, 0(s2)
   LD ra, 0(sp)

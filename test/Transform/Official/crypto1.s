@@ -163,7 +163,7 @@ bb7:
   SW t4, 400(sp)
   LW t3, 432(sp)
   ADD t4, t3, zero
-  SW t4, 408(sp)
+  SW t4, 416(sp)
   LW t3, 440(sp)
   ADD t4, t3, zero
   SW t4, 344(sp)
@@ -172,17 +172,17 @@ bb7:
   SW t4, 336(sp)
   LW t3, 456(sp)
   ADD t4, t3, zero
-  SW t4, 392(sp)
+  SW t4, 408(sp)
   LW t3, 472(sp)
   ADD t4, t3, zero
-  SW t4, 416(sp)
+  SW t4, 392(sp)
   LW t3, 480(sp)
   ADD t4, t3, zero
   SW t4, 320(sp)
   LW t3, 488(sp)
   ADD t4, t3, zero
   SW t4, 352(sp)
-  LW t4, 408(sp)
+  LW t4, 416(sp)
   LW t3, 368(sp)
   SLT s2, t4, t3
   BNE s2, zero, bb8
@@ -235,7 +235,7 @@ bb11:
   MULW a7, a4, a3
   ADDI a3, sp, 0
   ADD a3, a3, a7
-  LW t4, 408(sp)
+  LW t4, 416(sp)
   ADDW s11, t4, a7
   ADDI a7, zero, 4
   MULW s1, s11, a7
@@ -342,9 +342,9 @@ bb15:
   ADD s0, t4, zero
   LW t4, 336(sp)
   ADD s1, t4, zero
-  LW t4, 416(sp)
-  ADD s2, t4, zero
   LW t4, 392(sp)
+  ADD s2, t4, zero
+  LW t4, 408(sp)
   ADD s7, t4, zero
   LW t4, 360(sp)
   ADD s9, t4, zero
@@ -406,7 +406,7 @@ bb18:
   LW t4, 320(sp)
   LW t3, 496(sp)
   ADDW s4, t4, t3
-  LW t4, 408(sp)
+  LW t4, 416(sp)
   ADDIW s5, t4, 64
   ADD t4, s1, zero
   SW t4, 488(sp)

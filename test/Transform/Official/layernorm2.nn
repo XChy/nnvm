@@ -150,8 +150,7 @@ while.exit143:
   189 = si2f i32 1000 to float
   190 = fdiv float %187.load, float %189
   store float %190 to ptr %139
-  196.load = load float from ptr %139
-  198 = fadd float %196.load, float 0.010000
+  198 = fadd float %190, float 0.010000
   199 = call float sqrt(float %198)
   store float %199 to ptr %139
   201 = add i32 %i.phi288, i32 1
@@ -186,8 +185,7 @@ while.body209:
   234.load = load float from ptr %234
   236 = fdiv float %231, float %234.load
   store float %236 to ptr %219
-  243.load = load float from ptr %219
-  245 = fadd float %sum.phi, float %243.load
+  245 = fadd float %sum.phi, float %236
   247 = add i32 %j.phi293, i32 1
   br bb %while.cond208
 while.exit210:

@@ -309,9 +309,7 @@ bb14:
   REMW t0, s10, s11
   LD t4, 0(sp)
   SW t0, 0(t4)
-  LD t4, 0(sp)
-  LW s10, 0(t4)
-  ADD a0, s10, zero
+  ADD a0, t0, zero
   LD s1, 48(sp)
   LD s2, 56(sp)
   LD s3, 64(sp)
@@ -626,19 +624,17 @@ bb43:
   CALL getint
   ADD s2, a0, zero
   SW s2, 0(s4)
-  LW s2, 0(s4)
   ADDI s3, zero, 4
-  MULW s5, s2, s3
+  MULW s4, s2, s3
+  LA s3, cns
+  ADD s5, s3, s4
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
   LA s2, cns
-  ADD s3, s2, s5
-  LW s2, 0(s4)
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  LA s2, cns
-  ADD s4, s2, s5
-  LW s2, 0(s4)
-  ADDIW s4, s2, 1
-  SW s4, 0(s3)
+  ADD s3, s2, s4
+  LW s2, 0(s3)
+  ADDIW s3, s2, 1
+  SW s3, 0(s5)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb42

@@ -28,8 +28,7 @@ entry4:
   sum.load18 = load i32 from ptr @sum
   20 = add i32 %sum.load18, i32 %17
   store i32 %20 to ptr @sum
-  sum.load21 = load i32 from ptr @sum
-  23 = add i32 %sum.load21, i32 %9
+  23 = add i32 %20, i32 %9
   store i32 %23 to ptr @sum
   26 = add i32 %23, i32 %9
   store i32 %26 to ptr @sum

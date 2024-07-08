@@ -101,8 +101,7 @@ if.exit156:
   ans.phi = phi [bb %if.exit135, i32 %ans.phi340, bb %then155, i32 %170]
   191 = srem i32 %ans.phi, i32 1000000007
   store i32 %191 to ptr %32
-  209.load = load i32 from ptr %32
-  ret i32 %209.load
+  ret i32 %191
 }
 
 external i32 getint()
@@ -219,11 +218,9 @@ while.body293:
   301 = ptradd ptr @list, i32 %300
   302 = call i32 getint()
   store i32 %302 to ptr %301
-  305.load = load i32 from ptr %301
-  307 = mul i32 %305.load, i32 4
+  307 = mul i32 %302, i32 4
   308 = ptradd ptr @cns, i32 %307
-  311.load = load i32 from ptr %301
-  313 = mul i32 %311.load, i32 4
+  313 = mul i32 %302, i32 4
   314 = ptradd ptr @cns, i32 %313
   314.load = load i32 from ptr %314
   316 = add i32 %314.load, i32 1

@@ -323,13 +323,12 @@ bb29:
   LW s10, 0(s9)
   SW s10, 0(s7)
   ADDI t6, sp, 64
-  ADD s9, t6, s8
-  LW s10, 0(s7)
+  ADD s7, t6, s8
   ADDI t5, sp, 0
-  ADD s7, t5, s8
-  LW s8, 0(s7)
-  ADDW s7, s10, s8
-  SW s7, 0(s9)
+  ADD s9, t5, s8
+  LW s8, 0(s9)
+  ADDW s9, s10, s8
+  SW s9, 0(s7)
   ADDIW s7, s6, 1
   ADD s5, s7, zero
   JAL zero, bb28
@@ -526,13 +525,12 @@ bb43:
   LW s5, 0(s4)
   SW s5, 0(s2)
   ADDI t6, sp, 64
-  ADD s4, t6, s3
-  LW s5, 0(s2)
+  ADD s2, t6, s3
   ADDI t5, sp, 0
-  ADD s2, t5, s3
-  LW s3, 0(s2)
-  ADDW s2, s5, s3
-  SW s2, 0(s4)
+  ADD s4, t5, s3
+  LW s3, 0(s4)
+  ADDW s4, s5, s3
+  SW s4, 0(s2)
   JAL zero, bb44
 bb44:
   ADDI s2, zero, 1

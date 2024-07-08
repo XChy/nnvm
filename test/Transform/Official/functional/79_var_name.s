@@ -71,16 +71,14 @@ bb5:
   LW s7, 0(s5)
   ADDW s5, s6, s7
   SW s5, 0(s4)
-  LW s5, 0(s4)
-  ADDW s6, s3, s5
-  LW s5, 0(s4)
+  ADDW s4, s3, s5
   ADD a0, s5, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s4, s2, 1
-  ADD s0, s6, zero
-  ADD s1, s4, zero
+  ADDIW s5, s2, 1
+  ADD s0, s4, zero
+  ADD s1, s5, zero
   JAL zero, bb4
 bb6:
   ADD a0, s3, zero

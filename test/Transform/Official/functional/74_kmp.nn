@@ -67,8 +67,7 @@ while.cond104:
   110 = ptradd ptr %buf, i32 %109
   111 = call i32 getch()
   store i32 %111 to ptr %110
-  114.load = load i32 from ptr %110
-  116 = icmp eq i32 %114.load, i32 10
+  116 = icmp eq i32 %111, i32 10
   br i1 %116, bb %then117, bb %if.exit118
 then117:
   store i32 0 to ptr %110

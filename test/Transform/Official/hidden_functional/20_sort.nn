@@ -139,11 +139,9 @@ while.body225:
   234 = call i32 quick_read()
   store i32 %234 to ptr %233
   237 = ptradd ptr @b, i32 %232
-  240.load = load i32 from ptr %233
-  store i32 %240.load to ptr %237
+  store i32 %234 to ptr %237
   244 = ptradd ptr @c, i32 %232
-  247.load = load i32 from ptr %237
-  store i32 %247.load to ptr %244
+  store i32 %234 to ptr %244
   250 = add i32 %i223.phi333, i32 1
   br bb %while.cond224
 while.exit226:
@@ -167,8 +165,7 @@ while.body255:
   store i32 %272 to ptr %263
   275 = ptradd ptr @c, i32 %262
   278.load = load i32 from ptr %275
-  282.load = load i32 from ptr %263
-  284 = sub i32 %278.load, i32 %282.load
+  284 = sub i32 %278.load, i32 %272
   287.load = load i32 from ptr %270
   289 = sub i32 %284, i32 %287.load
   store i32 %289 to ptr %275

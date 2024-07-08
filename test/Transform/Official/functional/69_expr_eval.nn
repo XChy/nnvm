@@ -226,8 +226,7 @@ entry107:
   112.load = load i32 from ptr %s
   114 = add i32 %112.load, i32 1
   store i32 %114 to ptr %s
-  116.load = load i32 from ptr %s
-  118 = mul i32 %116.load, i32 4
+  118 = mul i32 %114, i32 4
   119 = ptradd ptr %s, i32 %118
   store i32 %v to ptr %119
   ret 

@@ -71,7 +71,7 @@ bb4:
   DIVW s11, s5, s10
   SUBW s10, s7, s11
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   ADD t4, s10, zero
   SW t4, 24(sp)
   JAL zero, bb6
@@ -85,11 +85,11 @@ bb6:
   LW t3, 24(sp)
   ADD t4, t3, zero
   SW t4, 48(sp)
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADD t1, t4, zero
   SUBW t2, s9, s11
   ADD t4, t1, zero
-  SW t4, 40(sp)
+  SW t4, 0(sp)
   ADD t4, t2, zero
   SW t4, 32(sp)
   JAL zero, bb8
@@ -109,26 +109,26 @@ bb7:
 bb8:
   LW t3, 32(sp)
   ADD t4, t3, zero
-  SW t4, 0(sp)
-  LW t3, 40(sp)
+  SW t4, 40(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
+  SW t4, 16(sp)
   ADD a0, s1, zero
   ADD a1, s3, zero
   ADD a2, s4, zero
   LW t4, 48(sp)
   ADD a3, t4, zero
-  LW t4, 0(sp)
+  LW t4, 40(sp)
   ADD a4, t4, zero
   CALL getvalue
   ADD s10, a0, zero
   ADD a0, s0, zero
-  LW t4, 8(sp)
+  LW t4, 16(sp)
   ADD a1, t4, zero
   ADD a2, s10, zero
   CALL reduce
   ADD s10, a0, zero
-  LW t4, 0(sp)
+  LW t4, 40(sp)
   ADDIW t0, t4, 1
   ADDW t1, s9, s11
   SLT t2, t0, t1
@@ -149,7 +149,7 @@ bb10:
   JAL zero, bb9
 bb11:
   ADD t4, s10, zero
-  SW t4, 40(sp)
+  SW t4, 0(sp)
   ADD t4, t0, zero
   SW t4, 32(sp)
   JAL zero, bb8
@@ -158,7 +158,7 @@ bb12:
   JAL zero, bb7
 bb13:
   ADD t4, t2, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   ADD t4, t1, zero
   SW t4, 24(sp)
   JAL zero, bb6

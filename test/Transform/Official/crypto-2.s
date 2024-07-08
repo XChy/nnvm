@@ -172,10 +172,10 @@ bb7:
   SW t4, 336(sp)
   LW t3, 456(sp)
   ADD t4, t3, zero
-  SW t4, 392(sp)
+  SW t4, 416(sp)
   LW t3, 472(sp)
   ADD t4, t3, zero
-  SW t4, 416(sp)
+  SW t4, 392(sp)
   LW t3, 480(sp)
   ADD t4, t3, zero
   SW t4, 320(sp)
@@ -342,9 +342,9 @@ bb15:
   ADD s0, t4, zero
   LW t4, 336(sp)
   ADD s1, t4, zero
-  LW t4, 416(sp)
-  ADD s2, t4, zero
   LW t4, 392(sp)
+  ADD s2, t4, zero
+  LW t4, 416(sp)
   ADD s7, t4, zero
   LW t4, 360(sp)
   ADD s9, t4, zero

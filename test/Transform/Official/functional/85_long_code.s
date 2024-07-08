@@ -284,9 +284,8 @@ bb22:
   LW s9, 0(s7)
   ADDIW s10, s9, 1
   SW s10, 0(s7)
-  LW s9, 0(s7)
-  SLT s10, s5, s9
-  BNE s10, zero, bb24
+  SLT s9, s5, s10
+  BNE s9, zero, bb24
   JAL zero, bb26
 bb23:
   ADD a0, s6, zero

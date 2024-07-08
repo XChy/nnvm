@@ -252,7 +252,6 @@ bb13:
   CALL getch
   ADD s4, a0, zero
   SW s4, 0(s3)
-  LW s4, 0(s3)
   XORI s5, s4, 10
   SLTIU s4, s5, 1
   BNE s4, zero, bb14

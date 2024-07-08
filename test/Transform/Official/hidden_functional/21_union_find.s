@@ -174,7 +174,6 @@ bb18:
   CALL find
   ADD s0, a0, zero
   SW s0, 0(s3)
-  LW s0, 0(s3)
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)

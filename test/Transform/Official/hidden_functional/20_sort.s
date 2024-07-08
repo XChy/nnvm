@@ -269,14 +269,12 @@ bb25:
   CALL quick_read
   ADD s2, a0, zero
   SW s2, 0(s4)
-  LA s2, b
-  ADD s5, s2, s3
-  LW s2, 0(s4)
+  LA s4, b
+  ADD s5, s4, s3
   SW s2, 0(s5)
-  LA s2, c
-  ADD s4, s2, s3
-  LW s2, 0(s5)
-  SW s2, 0(s4)
+  LA s4, c
+  ADD s5, s4, s3
+  SW s2, 0(s5)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb24
@@ -313,13 +311,12 @@ bb28:
   SUBW s7, s2, s5
   SW s7, 0(s4)
   LA s2, c
-  ADD s5, s2, s3
-  LW s2, 0(s5)
-  LW s3, 0(s4)
-  SUBW s4, s2, s3
+  ADD s4, s2, s3
+  LW s2, 0(s4)
+  SUBW s3, s2, s7
   LW s2, 0(s6)
-  SUBW s3, s4, s2
-  SW s3, 0(s5)
+  SUBW s5, s3, s2
+  SW s5, 0(s4)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb27

@@ -70,8 +70,6 @@ f1:
   ADDW s2, s3, s1
   LA s1, sum
   SW s2, 0(s1)
-  LA s1, sum
-  LW s2, 0(s1)
   ADDW s1, s2, s0
   LA s2, sum
   SW s1, 0(s2)

@@ -49,7 +49,7 @@ while.exit:
   br bb %while.cond208
 while.cond155:
   ym2.phi502 = phi [bb %while.body, float 0.000000, bb %while.body156, float %ym1.phi498]
-  ym1.phi498 = phi [bb %while.body, float 0.000000, bb %while.body156, float %202.load]
+  ym1.phi498 = phi [bb %while.body, float 0.000000, bb %while.body156, float %188]
   xm1.phi = phi [bb %while.body, float 0.000000, bb %while.body156, float %194.load]
   j.phi490 = phi [bb %while.body, i32 0, bb %while.body156, i32 %205]
   160 = icmp slt i32 %j.phi490, i32 %h
@@ -71,7 +71,6 @@ while.body156:
   188 = fadd float %184, float %187
   store float %188 to ptr %167
   194.load = load float from ptr %174
-  202.load = load float from ptr %167
   205 = add i32 %j.phi490, i32 1
   br bb %while.cond155
 while.exit157:
@@ -87,7 +86,7 @@ while.body209:
 while.exit210:
   br bb %while.cond264
 while.cond217:
-  yp1.phi514 = phi [bb %while.body209, float 0.000000, bb %while.body218, float %258.load]
+  yp1.phi514 = phi [bb %while.body209, float 0.000000, bb %while.body218, float %243]
   yp2.phi510 = phi [bb %while.body209, float 0.000000, bb %while.body218, float %yp1.phi514]
   xp1.phi = phi [bb %while.body209, float 0.000000, bb %while.body218, float %250.load]
   xp2.phi = phi [bb %while.body209, float 0.000000, bb %while.body218, float %xp1.phi]
@@ -110,7 +109,6 @@ while.body218:
   247 = ptradd ptr %imgIn, i32 %224
   250 = ptradd ptr %247, i32 %227
   250.load = load float from ptr %250
-  258.load = load float from ptr %228
   261 = sub i32 %j.phi488, i32 1
   br bb %while.cond217
 while.exit219:
@@ -157,7 +155,7 @@ while.exit307:
   br bb %while.cond365
 while.cond312:
   ym2.phi = phi [bb %while.body306, float 0.000000, bb %while.body313, float %ym1.phi]
-  ym1.phi = phi [bb %while.body306, float 0.000000, bb %while.body313, float %359.load]
+  ym1.phi = phi [bb %while.body306, float 0.000000, bb %while.body313, float %345]
   tm1.phi = phi [bb %while.body306, float 0.000000, bb %while.body313, float %351.load]
   i.phi477 = phi [bb %while.body306, i32 0, bb %while.body313, i32 %362]
   317 = icmp slt i32 %i.phi477, i32 %w
@@ -179,7 +177,6 @@ while.body313:
   345 = fadd float %341, float %344
   store float %345 to ptr %324
   351.load = load float from ptr %331
-  359.load = load float from ptr %324
   362 = add i32 %i.phi477, i32 1
   br bb %while.cond312
 while.exit314:
@@ -197,7 +194,7 @@ while.exit367:
 while.cond374:
   tp1.phi = phi [bb %while.body366, float 0.000000, bb %while.body375, float %407.load]
   tp2.phi = phi [bb %while.body366, float 0.000000, bb %while.body375, float %tp1.phi]
-  yp1.phi = phi [bb %while.body366, float 0.000000, bb %while.body375, float %415.load]
+  yp1.phi = phi [bb %while.body366, float 0.000000, bb %while.body375, float %400]
   yp2.phi = phi [bb %while.body366, float 0.000000, bb %while.body375, float %yp1.phi]
   i.phi475 = phi [bb %while.body366, i32 %373, bb %while.body375, i32 %418]
   378 = icmp sge i32 %i.phi475, i32 0
@@ -218,7 +215,6 @@ while.body375:
   404 = ptradd ptr %imgOut, i32 %381
   407 = ptradd ptr %404, i32 %384
   407.load = load float from ptr %407
-  415.load = load float from ptr %385
   418 = sub i32 %i.phi475, i32 1
   br bb %while.cond374
 while.exit376:

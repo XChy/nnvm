@@ -99,55 +99,46 @@ bb6:
   ADDI s3, zero, 1
   SW s3, 0(sp)
   ADDI s3, sp, 4
-  LW s4, 0(sp)
-  ADDI s5, zero, 2
+  ADDI s4, zero, 2
+  ADDI s5, zero, 1
   MULW s6, s4, s5
   SW s6, 0(s3)
-  ADDI s4, sp, 8
-  LW s5, 0(s3)
-  ADDI s3, zero, 2
-  MULW s6, s5, s3
-  SW s6, 0(s4)
+  ADDI s3, sp, 8
+  ADDI s4, zero, 2
+  MULW s5, s6, s4
+  SW s5, 0(s3)
   ADDI s3, sp, 12
-  LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 16
-  LW s5, 0(s3)
-  ADDI s3, zero, 2
-  MULW s6, s5, s3
-  SW s6, 0(s4)
+  ADDI s3, sp, 16
+  ADDI s4, zero, 2
+  MULW s5, s6, s4
+  SW s5, 0(s3)
   ADDI s3, sp, 20
-  LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 24
-  LW s5, 0(s3)
-  ADDI s3, zero, 2
-  MULW s6, s5, s3
-  SW s6, 0(s4)
+  ADDI s3, sp, 24
+  ADDI s4, zero, 2
+  MULW s5, s6, s4
+  SW s5, 0(s3)
   ADDI s3, sp, 28
-  LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 32
-  LW s5, 0(s3)
-  ADDI s3, zero, 2
-  MULW s6, s5, s3
-  SW s6, 0(s4)
+  ADDI s3, sp, 32
+  ADDI s4, zero, 2
+  MULW s5, s6, s4
+  SW s5, 0(s3)
   ADDI s3, sp, 36
-  LW s5, 0(s4)
   ADDI s4, zero, 2
   MULW s6, s5, s4
   SW s6, 0(s3)
-  ADDI s4, sp, 40
-  LW s5, 0(s3)
-  ADDI s3, zero, 2
-  MULW s6, s5, s3
-  SW s6, 0(s4)
+  ADDI s3, sp, 40
+  ADDI s4, zero, 2
+  MULW s5, s6, s4
+  SW s5, 0(s3)
   ADDI s3, zero, 10
   JAL zero, bb7
 bb7:

@@ -82,9 +82,8 @@ entry:
   store i32 7 to ptr %arr.index54
   arr.index55 = ptradd ptr %e, i32 28
   store i32 8 to ptr %arr.index55
-  59.load = load i32 from ptr %arr.index55
   64.load = load i32 from ptr %e
-  66 = add i32 %59.load, i32 %64.load
+  66 = add i32 8, i32 %64.load
   70.load = load i32 from ptr %arr.index49
   72 = add i32 %66, i32 %70.load
   76.load = load i32 from ptr %arr.index6

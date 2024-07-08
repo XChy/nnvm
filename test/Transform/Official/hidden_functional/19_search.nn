@@ -226,8 +226,7 @@ while.body207:
   218 = ptradd ptr %215, i32 %217
   219 = call i32 getint()
   store i32 %219 to ptr %218
-  225.load = load i32 from ptr %218
-  227 = icmp eq i32 %225.load, i32 2
+  227 = icmp eq i32 %219, i32 2
   br i1 %227, bb %then228, bb %else
 while.exit208:
   248 = add i32 %i175.phi, i32 1

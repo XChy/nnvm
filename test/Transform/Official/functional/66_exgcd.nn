@@ -20,8 +20,7 @@ entry40:
   58 = add i32 %56, i32 15
   60 = srem i32 %58, i32 15
   store i32 %60 to ptr %x
-  62.load = load i32 from ptr %x
-  call void putint(i32 %62.load)
+  call void putint(i32 %60)
   ret i32 0
 }
 

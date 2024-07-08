@@ -463,11 +463,10 @@ bb27:
   FCVT.S.W fs4, s0
   FDIV.S fs5, fs3, fs4
   FSW fs5, 0(s6)
-  FLW fs3, 0(s6)
   LA s0, .CONSTANT.7.1
-  FLW fs4, 0(s0)
-  FADD.S fs5, fs3, fs4
-  FSGNJ.S fa0, fs5, fs5
+  FLW fs3, 0(s0)
+  FADD.S fs4, fs5, fs3
+  FSGNJ.S fa0, fs4, fs4
   CALL sqrt
   FSGNJ.D fs3, fa0, fa0
   FSW fs3, 0(s6)
@@ -529,10 +528,9 @@ bb32:
   FLW fs7, 0(s8)
   FDIV.S fs8, fs9, fs7
   FSW fs8, 0(s7)
-  FLW fs7, 0(s7)
-  FADD.S fs8, fs6, fs7
+  FADD.S fs7, fs6, fs8
   ADDIW s7, s6, 1
-  FSGNJ.S fs5, fs8, fs8
+  FSGNJ.S fs5, fs7, fs7
   ADD s5, s7, zero
   JAL zero, bb31
 bb33:

@@ -94,8 +94,7 @@ else:
   17.load = load i32 from ptr %4
   19 = call i32 find(i32 %17.load)
   store i32 %19 to ptr %4
-  22.load = load i32 from ptr %4
-  ret i32 %22.load
+  ret i32 %19
 }
 
 external void putch(i32 )
