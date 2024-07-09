@@ -356,6 +356,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
         builder.buildStore(stored, pointer);
         offset += irElementType->getStoredBytes();
       }
+      return symbolTable.create(symbolName, symbolType, arrayStack);
     }
   }
 
