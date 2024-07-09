@@ -26,16 +26,16 @@ EightWhile.entry:
 EightWhile.while.cond:
   d.phi108114 = phi [bb %EightWhile.entry, i32 10, bb %EightWhile.while.exit15, i32 %d.phi107136]
   c.phi104115 = phi [bb %EightWhile.entry, i32 7, bb %EightWhile.while.exit15, i32 %c.phi137]
-  a.phi116 = phi [bb %EightWhile.entry, i32 5, bb %EightWhile.while.exit15, i32 %12121]
-  b.phi117 = phi [bb %EightWhile.entry, i32 6, bb %EightWhile.while.exit15, i32 %82145]
-  9118 = icmp slt i32 %a.phi116, i32 20
+  b.phi116 = phi [bb %EightWhile.entry, i32 6, bb %EightWhile.while.exit15, i32 %82145]
+  a.phi117 = phi [bb %EightWhile.entry, i32 5, bb %EightWhile.while.exit15, i32 %12121]
+  9118 = icmp slt i32 %a.phi117, i32 20
   br i1 %9118, bb %EightWhile.while.body, bb %EightWhile.while.exit
 EightWhile.while.body:
-  12121 = add i32 %a.phi116, i32 3
+  12121 = add i32 %a.phi117, i32 3
   br bb %EightWhile.while.cond13
 EightWhile.while.exit:
-  86124 = add i32 %b.phi117, i32 %d.phi108114
-  87125 = add i32 %a.phi116, i32 %86124
+  86124 = add i32 %b.phi116, i32 %d.phi108114
+  87125 = add i32 %a.phi117, i32 %86124
   89126 = add i32 %87125, i32 %c.phi104115
   e.load90127 = load i32 from ptr @e
   92128 = add i32 %e.load90127, i32 %d.phi108114
@@ -48,14 +48,14 @@ EightWhile.while.exit:
 EightWhile.while.cond13:
   d.phi107136 = phi [bb %EightWhile.while.body, i32 %d.phi108114, bb %EightWhile.while.exit23, i32 %d.phi148]
   c.phi137 = phi [bb %EightWhile.while.body, i32 %c.phi104115, bb %EightWhile.while.exit23, i32 %80156]
-  b.phi101138 = phi [bb %EightWhile.while.body, i32 %b.phi117, bb %EightWhile.while.exit23, i32 %20142]
-  17139 = icmp slt i32 %b.phi101138, i32 10
+  b.phi102138 = phi [bb %EightWhile.while.body, i32 %b.phi116, bb %EightWhile.while.exit23, i32 %20142]
+  17139 = icmp slt i32 %b.phi102138, i32 10
   br i1 %17139, bb %EightWhile.while.body14, bb %EightWhile.while.exit15
 EightWhile.while.body14:
-  20142 = add i32 %b.phi101138, i32 1
+  20142 = add i32 %b.phi102138, i32 1
   br bb %EightWhile.while.cond21
 EightWhile.while.exit15:
-  82145 = sub i32 %b.phi101138, i32 2
+  82145 = sub i32 %b.phi102138, i32 2
   br bb %EightWhile.while.cond
 EightWhile.while.cond21:
   d.phi148 = phi [bb %EightWhile.while.body14, i32 %d.phi107136, bb %EightWhile.while.exit31, i32 %78166]
@@ -156,8 +156,8 @@ entry:
 while.cond:
   d.phi108 = phi [bb %entry, i32 10, bb %while.exit15, i32 %d.phi107]
   c.phi104 = phi [bb %entry, i32 7, bb %while.exit15, i32 %c.phi]
-  a.phi = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
   b.phi = phi [bb %entry, i32 6, bb %while.exit15, i32 %82]
+  a.phi = phi [bb %entry, i32 5, bb %while.exit15, i32 %12]
   9 = icmp slt i32 %a.phi, i32 20
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
@@ -178,14 +178,14 @@ while.exit:
 while.cond13:
   d.phi107 = phi [bb %while.body, i32 %d.phi108, bb %while.exit23, i32 %d.phi]
   c.phi = phi [bb %while.body, i32 %c.phi104, bb %while.exit23, i32 %80]
-  b.phi101 = phi [bb %while.body, i32 %b.phi, bb %while.exit23, i32 %20]
-  17 = icmp slt i32 %b.phi101, i32 10
+  b.phi102 = phi [bb %while.body, i32 %b.phi, bb %while.exit23, i32 %20]
+  17 = icmp slt i32 %b.phi102, i32 10
   br i1 %17, bb %while.body14, bb %while.exit15
 while.body14:
-  20 = add i32 %b.phi101, i32 1
+  20 = add i32 %b.phi102, i32 1
   br bb %while.cond21
 while.exit15:
-  82 = sub i32 %b.phi101, i32 2
+  82 = sub i32 %b.phi102, i32 2
   br bb %while.cond
 while.cond21:
   d.phi = phi [bb %while.body14, i32 %d.phi107, bb %while.exit31, i32 %78]

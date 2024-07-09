@@ -53,7 +53,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-i32 ifWhile() {
+pure i32 ifWhile() {
 entry:
   br bb %else
 if.exit:

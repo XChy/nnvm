@@ -29,7 +29,7 @@ external void putfarray(i32 , ptr )
 
 external void putarray(i32 , ptr )
 
-i32 f(i32 f) {
+pure i32 f(i32 f) {
 entry:
   3 = mul i32 %f, i32 2
   ret i32 %3

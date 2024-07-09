@@ -1,6 +1,6 @@
 external i32 getint()
 
-i32 ifElseIf() {
+pure i32 ifElseIf() {
 entry:
   br bb %else41
 if.exit:

@@ -8,7 +8,7 @@ external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
 
-i32 main() {
+pure i32 main() {
 entry1:
   ret i32 20
 }
@@ -27,7 +27,7 @@ external void putfarray(i32 , ptr )
 
 external void putarray(i32 , ptr )
 
-i32 f() {
+pure i32 f() {
 entry:
   ret i32 10
 }

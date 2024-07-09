@@ -212,8 +212,8 @@ bb20:
 bb21:
   LB t3, 32(sp)
   ADD t4, t3, zero
-  SB t4, 24(sp)
-  LB t4, 24(sp)
+  SB t4, 8(sp)
+  LB t4, 8(sp)
   BNE t4, zero, bb22
   JAL zero, bb23
 bb22:
@@ -222,25 +222,25 @@ bb22:
   JAL zero, bb2
 bb23:
   ADDIW s3, s10, 1
-  LB t4, 24(sp)
+  LB t4, 8(sp)
   ADD s9, t4, zero
   ADD s7, s3, zero
   JAL zero, bb16
 bb24:
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 0(sp)
   JAL zero, bb25
 bb25:
-  LW t3, 8(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 24(sp)
+  LW t4, 24(sp)
   SLTI a6, t4, 4
   BNE a6, zero, bb26
   JAL zero, bb27
 bb26:
   ADDI a6, zero, 4
-  LW t4, 0(sp)
+  LW t4, 24(sp)
   MULW a7, t4, a6
   LD t4, 40(sp)
   ADD a6, t4, a7
@@ -249,10 +249,10 @@ bb26:
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  LW t4, 0(sp)
+  LW t4, 24(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 8(sp)
+  SW t4, 0(sp)
   JAL zero, bb25
 bb27:
   ADDI a0, zero, 10

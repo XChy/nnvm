@@ -90,7 +90,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-i32 get_one(i32 a) {
+pure i32 get_one(i32 a) {
 entry:
   ret i32 1
 }

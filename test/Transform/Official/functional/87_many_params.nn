@@ -90,7 +90,7 @@ sort.if.exit:
   br bb %sort.while.cond14
 }
 
-i32 param32_arr(ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18, ptr a19, ptr a20, ptr a21, ptr a22, ptr a23, ptr a24, ptr a25, ptr a26, ptr a27, ptr a28, ptr a29, ptr a30, ptr a31, ptr a32) {
+pure i32 param32_arr(ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18, ptr a19, ptr a20, ptr a21, ptr a22, ptr a23, ptr a24, ptr a25, ptr a26, ptr a27, ptr a28, ptr a29, ptr a30, ptr a31, ptr a32) {
 entry127:
   130.load = load i32 from ptr %a1
   133 = ptradd ptr %a1, i32 4
@@ -254,7 +254,7 @@ entry127:
   ret i32 %414
 }
 
-i32 param32_rec(i32 a1, i32 a2, i32 a3, i32 a4, i32 a5, i32 a6, i32 a7, i32 a8, i32 a9, i32 a10, i32 a11, i32 a12, i32 a13, i32 a14, i32 a15, i32 a16, i32 a17, i32 a18, i32 a19, i32 a20, i32 a21, i32 a22, i32 a23, i32 a24, i32 a25, i32 a26, i32 a27, i32 a28, i32 a29, i32 a30, i32 a31, i32 a32) {
+pure i32 param32_rec(i32 a1, i32 a2, i32 a3, i32 a4, i32 a5, i32 a6, i32 a7, i32 a8, i32 a9, i32 a10, i32 a11, i32 a12, i32 a13, i32 a14, i32 a15, i32 a16, i32 a17, i32 a18, i32 a19, i32 a20, i32 a21, i32 a22, i32 a23, i32 a24, i32 a25, i32 a26, i32 a27, i32 a28, i32 a29, i32 a30, i32 a31, i32 a32) {
 entry52:
   86 = icmp eq i32 %a1, i32 0
   br i1 %86, bb %then87, bb %else

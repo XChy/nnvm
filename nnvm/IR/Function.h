@@ -2,6 +2,7 @@
 
 #include "ADT/List.h"
 #include "IR/Argument.h"
+#include "IR/Attributes.h"
 #include "IR/BasicBlock.h"
 #include "IR/Type.h"
 #include "IR/Value.h"
@@ -46,10 +47,15 @@ public:
   std::string dumpAsOperand();
   std::string dump();
 
+  bool isAttached(Attribute attr) { return attributes.count(attr); }
+  void attach(Attribute attr) { attributes.insert(attr); }
+  void removeAttr(Attribute attr) { attributes.erase(attr); }
+
 private:
   List<BasicBlock> BBList;
   Module *module;
   std::vector<Argument *> arguments;
+  AttributeSet attributes;
 
   Type *retType;
   // Whether the arguments are variadic.

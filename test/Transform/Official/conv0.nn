@@ -97,7 +97,7 @@ getvalue.if.exit192:
   br bb %while.cond234.split
 }
 
-i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
+pure i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
 entry158:
   164 = icmp slt i32 %x, i32 0
   br i1 %164, bb %select.then165, bb %select.else166
@@ -461,7 +461,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 checkrange(i32 num) {
+pure i32 checkrange(i32 num) {
 entry:
   br bb %while.cond
 while.cond:

@@ -173,7 +173,7 @@ my_fabs.if.exit:
   br bb %entry23.split
 }
 
-float p(float x) {
+pure float p(float x) {
 entry10:
   13 = si2f i32 3 to float
   14 = fmul float %13, float %x
@@ -630,7 +630,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-float my_fabs(float x) {
+pure float my_fabs(float x) {
 entry:
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3

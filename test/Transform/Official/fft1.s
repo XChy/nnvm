@@ -146,20 +146,16 @@ bb10:
   ADD a0, s7, zero
   ADD a1, s4, zero
   CALL multiply
-  ADD s11, a0, zero
-  ADDW s2, s10, s11
-  LUI s11, 243712
-  ADDIW s11, s11, 1
-  REMW s1, s2, s11
+  ADD s4, a0, zero
+  ADDW s11, s10, s4
+  LUI s2, 243712
+  ADDIW s2, s2, 1
+  REMW s1, s11, s2
   SW s1, 0(s9)
-  ADD a0, s7, zero
-  ADD a1, s4, zero
-  CALL multiply
-  ADD s1, a0, zero
-  SUBW s2, s10, s1
-  LUI s1, 243712
-  ADDIW s1, s1, 1
-  ADDW s4, s2, s1
+  SUBW s1, s10, s4
+  LUI s2, 243712
+  ADDIW s2, s2, 1
+  ADDW s4, s1, s2
   LUI s1, 243712
   ADDIW s1, s1, 1
   REMW s2, s4, s1
@@ -230,21 +226,15 @@ bb15:
   ADD a2, t4, zero
   ADD a3, s3, zero
   CALL fft
-  ADD s3, a0, zero
+  ADD s5, a0, zero
   LW t4, 8(sp)
   LW t3, 16(sp)
-  ADDW s3, t4, t3
-  LW t4, 0(sp)
-  ADD a0, t4, zero
-  LW t4, 0(sp)
-  ADD a1, t4, zero
-  CALL multiply
-  ADD s5, a0, zero
+  ADDW s5, t4, t3
   ADD a0, s0, zero
-  ADD a1, s3, zero
+  ADD a1, s5, zero
   LW t4, 16(sp)
   ADD a2, t4, zero
-  ADD a3, s5, zero
+  ADD a3, s3, zero
   CALL fft
   ADD s3, a0, zero
   ADDI s3, zero, 1

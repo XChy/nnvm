@@ -181,7 +181,7 @@ if.exit155:
   ret i32 0
 }
 
-i32 isSafe(ptr graph, ptr color) {
+pure i32 isSafe(ptr graph, ptr color) {
 entry31:
   br bb %while.cond33
 while.cond33:

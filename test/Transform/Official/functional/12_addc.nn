@@ -1,5 +1,5 @@
 immutable global ptr a init with i32 10
-i32 main() {
+pure i32 main() {
 entry:
   ret i32 15
 }

@@ -157,8 +157,8 @@ bb12:
   ADD t0, s10, s11
   ADDI s10, zero, 4
   MULW t4, s7, s10
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   ADD s10, t0, t4
   LW t0, 0(s10)
   ADDI t2, zero, 4
@@ -196,10 +196,10 @@ bb14:
 bb15:
   LA t0, cap
   ADD t2, t0, s11
-  LW t3, 8(sp)
+  LW t3, 0(sp)
   ADD t4, t2, t3
-  SD t4, 0(sp)
-  LD t4, 0(sp)
+  SD t4, 8(sp)
+  LD t4, 8(sp)
   LW t2, 0(t4)
   SLT a3, zero, t2
   XORI t2, a3, 1
@@ -212,7 +212,7 @@ bb16:
   ADD s6, t2, zero
   JAL zero, bb11
 bb17:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s8, 0(t4)
   SLT s9, s2, s8
   BNE s9, zero, bb18
@@ -232,15 +232,15 @@ bb19:
   BNE t1, zero, bb21
   JAL zero, bb22
 bb20:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW s3, 0(t4)
   ADD s8, s3, zero
   JAL zero, bb19
 bb21:
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   LW t1, 0(t4)
   SUBW t2, t1, t0
-  LD t4, 0(sp)
+  LD t4, 8(sp)
   SW t2, 0(t4)
   LW t1, 0(s10)
   ADDI t2, zero, 40
@@ -249,7 +249,7 @@ bb21:
   ADD t2, t1, a1
   LA t1, rev
   ADD a1, t1, s11
-  LW t4, 8(sp)
+  LW t4, 0(sp)
   ADD t1, a1, t4
   LW a1, 0(t1)
   ADDI a2, zero, 4

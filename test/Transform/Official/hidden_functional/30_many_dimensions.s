@@ -182,15 +182,11 @@ bb4:
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADD a3, t4, zero
-  LUI t3, 512
-  ADDIW t3, t3, 8
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI a5, 512
-  ADDIW a5, a5, 296
-  ADD a5, a5, sp
-  SW t4, 0(a5)
+  LUI t4, 512
+  ADDIW t4, t4, 8
+  ADD t4, t4, sp
+  LW t4, 0(t4)
+  ADD a4, t4, zero
   LUI t4, 512
   ADDIW t4, t4, 16
   ADD t4, t4, sp
@@ -231,11 +227,15 @@ bb4:
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADD t1, t4, zero
-  LUI t4, 512
-  ADDIW t4, t4, 80
-  ADD t4, t4, sp
-  LW t4, 0(t4)
-  ADD t0, t4, zero
+  LUI t3, 512
+  ADDIW t3, t3, 80
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
+  LUI ra, 512
+  ADDIW ra, ra, 296
+  ADD ra, ra, sp
+  SW t4, 0(ra)
   LUI t4, 512
   ADDIW t4, t4, 88
   ADD t4, t4, sp
@@ -324,7 +324,7 @@ bb5:
   ADDIW t5, t5, 392
   ADD t5, t5, sp
   SW t4, 0(t5)
-  ADD t4, t0, zero
+  ADD t4, zero, zero
   LUI t6, 512
   ADDIW t6, t6, 384
   ADD t6, t6, sp
@@ -369,7 +369,7 @@ bb5:
   ADDIW t6, t6, 320
   ADD t6, t6, sp
   SW t4, 0(t6)
-  ADD t4, zero, zero
+  ADD t4, a4, zero
   LUI t5, 512
   ADDIW t5, t5, 312
   ADD t5, t5, sp
@@ -529,7 +529,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 600
+  ADDIW t3, t3, 136
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -538,7 +538,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 136
+  ADDIW t3, t3, 144
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -547,7 +547,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 144
+  ADDIW t3, t3, 152
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -556,7 +556,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 152
+  ADDIW t3, t3, 160
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -565,7 +565,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 160
+  ADDIW t3, t3, 168
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -574,7 +574,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 168
+  ADDIW t3, t3, 176
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -583,7 +583,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 176
+  ADDIW t3, t3, 184
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -592,7 +592,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 184
+  ADDIW t3, t3, 192
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -601,7 +601,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 192
+  ADDIW t3, t3, 200
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -610,7 +610,7 @@ bb7:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 200
+  ADDIW t3, t3, 600
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -926,8 +926,13 @@ bb9:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t6, 512
+  ADDIW t6, t6, 88
+  ADD t6, t6, sp
+  SW t4, 0(t6)
+  ADD t4, s0, zero
   LUI t3, 512
-  ADDIW t3, t3, 88
+  ADDIW t3, t3, 80
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -936,7 +941,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 80
+  ADDIW t3, t3, 72
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -945,7 +950,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 72
+  ADDIW t3, t3, 64
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -954,7 +959,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 64
+  ADDIW t3, t3, 56
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -963,7 +968,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 56
+  ADDIW t3, t3, 48
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -972,7 +977,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 48
+  ADDIW t3, t3, 40
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -981,7 +986,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 40
+  ADDIW t3, t3, 32
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -990,7 +995,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 32
+  ADDIW t3, t3, 24
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -999,7 +1004,7 @@ bb9:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 24
+  ADDIW t3, t3, 16
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1007,11 +1012,6 @@ bb9:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 512
-  ADDIW t6, t6, 16
-  ADD t6, t6, sp
-  SW t4, 0(t6)
-  ADD t4, s0, zero
   LUI t3, 512
   ADDIW t3, t3, 8
   ADD t3, t3, sp
@@ -1421,8 +1421,13 @@ bb12:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t5, 512
+  ADDIW t5, t5, 392
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, s0, zero
   LUI t3, 512
-  ADDIW t3, t3, 392
+  ADDIW t3, t3, 384
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1431,7 +1436,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 384
+  ADDIW t3, t3, 376
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1440,7 +1445,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 376
+  ADDIW t3, t3, 368
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1449,7 +1454,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 368
+  ADDIW t3, t3, 360
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1458,7 +1463,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 360
+  ADDIW t3, t3, 352
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1467,7 +1472,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 352
+  ADDIW t3, t3, 344
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1476,7 +1481,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 344
+  ADDIW t3, t3, 336
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1485,7 +1490,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 336
+  ADDIW t3, t3, 328
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1494,7 +1499,7 @@ bb12:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 328
+  ADDIW t3, t3, 320
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -1502,11 +1507,6 @@ bb12:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 512
-  ADDIW t5, t5, 320
-  ADD t5, t5, sp
-  SW t4, 0(t5)
-  ADD t4, s0, zero
   LUI t3, 512
   ADDIW t3, t3, 312
   ADD t3, t3, sp
@@ -1671,16 +1671,16 @@ bb13:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI a4, 512
-  ADDIW a4, a4, 872
-  ADD a4, a4, sp
-  SW t4, 0(a4)
+  LUI t0, 512
+  ADDIW t0, t0, 872
+  ADD t0, t0, sp
+  SW t4, 0(t0)
   LUI t4, 512
   ADDIW t4, t4, 720
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SLTI a4, t4, 2
-  BNE a4, zero, bb14
+  SLTI t0, t4, 2
+  BNE t0, zero, bb14
   JAL zero, bb15
 bb14:
   LUI t3, 512
@@ -2642,11 +2642,15 @@ bb20:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 512
-  ADDIW t5, t5, 1728
-  ADD t5, t5, sp
-  SW t4, 0(t5)
-  ADD t4, zero, zero
+  LUI t3, 512
+  ADDIW t3, t3, 1728
+  ADD t3, t3, sp
+  SW t4, 0(t3)
+  LUI t3, 512
+  ADDIW t3, t3, 1256
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
   LUI t3, 512
   ADDIW t3, t3, 1712
   ADD t3, t3, sp
@@ -2656,17 +2660,13 @@ bb20:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t5, 512
+  ADDIW t5, t5, 1696
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, zero, zero
   LUI t3, 512
-  ADDIW t3, t3, 1704
-  ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 512
-  ADDIW t3, t3, 1240
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI t3, 512
-  ADDIW t3, t3, 1688
+  ADDIW t3, t3, 1680
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -2873,7 +2873,7 @@ bb22:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1688
+  ADDIW t3, t3, 1680
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -2882,7 +2882,7 @@ bb22:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1704
+  ADDIW t3, t3, 1696
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -2972,7 +2972,7 @@ bb22:
   ADD t5, t5, sp
   SW t4, 0(t5)
   LUI t4, 512
-  ADDIW t4, t4, 1488
+  ADDIW t4, t4, 1464
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLTI s6, t4, 2
@@ -3048,7 +3048,7 @@ bb23:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1472
+  ADDIW t3, t3, 1488
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3057,7 +3057,7 @@ bb23:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1464
+  ADDIW t3, t3, 1472
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3265,7 +3265,7 @@ bb25:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 1680
+  ADDIW t3, t3, 1688
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3274,7 +3274,7 @@ bb25:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 512
-  ADDIW t3, t3, 1696
+  ADDIW t3, t3, 1704
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3357,7 +3357,11 @@ bb25:
   BNE a5, zero, bb26
   JAL zero, bb27
 bb26:
-  ADD t4, zero, zero
+  LUI t3, 512
+  ADDIW t3, t3, 1816
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
   LUI t3, 513
   ADDIW t3, t3, -1872
   ADD t3, t3, sp
@@ -3368,7 +3372,7 @@ bb26:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1880
+  ADDIW t3, t3, -1888
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3377,7 +3381,7 @@ bb26:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1896
+  ADDIW t3, t3, -1904
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3386,7 +3390,7 @@ bb26:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1912
+  ADDIW t3, t3, -1920
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3394,17 +3398,13 @@ bb26:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t5, 513
+  ADDIW t5, t5, -1936
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, zero, zero
   LUI t3, 513
-  ADDIW t3, t3, -1928
-  ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 512
-  ADDIW t3, t3, 1736
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI t3, 513
-  ADDIW t3, t3, -1944
+  ADDIW t3, t3, -1952
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3417,7 +3417,7 @@ bb26:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1696
+  ADDIW t3, t3, 1704
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3426,7 +3426,7 @@ bb26:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1680
+  ADDIW t3, t3, 1688
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3457,14 +3457,14 @@ bb26:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 513
-  ADDIW t5, t5, -2040
-  ADD t5, t5, sp
-  SW t4, 0(t5)
+  LUI t6, 513
+  ADDIW t6, t6, -2040
+  ADD t6, t6, sp
+  SW t4, 0(t6)
   JAL zero, bb28
 bb27:
   LUI t4, 512
-  ADDIW t4, t4, 1488
+  ADDIW t4, t4, 1464
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADDIW s0, t4, 1
@@ -3536,31 +3536,31 @@ bb27:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 512
-  ADDIW t6, t6, 1728
-  ADD t6, t6, sp
-  SW t4, 0(t6)
-  ADD t4, s0, zero
+  LUI t3, 512
+  ADDIW t3, t3, 1728
+  ADD t3, t3, sp
+  SW t4, 0(t3)
+  LUI t3, 512
+  ADDIW t3, t3, 1704
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
   LUI t3, 512
   ADDIW t3, t3, 1712
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1696
+  ADDIW t3, t3, 1688
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t3, 512
-  ADDIW t3, t3, 1704
-  ADD t3, t3, sp
-  SW t4, 0(t3)
+  LUI t5, 512
+  ADDIW t5, t5, 1696
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, s0, zero
   LUI t3, 512
   ADDIW t3, t3, 1680
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI t3, 512
-  ADDIW t3, t3, 1688
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
@@ -3586,10 +3586,10 @@ bb27:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 512
-  ADDIW t5, t5, 1632
-  ADD t5, t5, sp
-  SW t4, 0(t5)
+  LUI t6, 512
+  ADDIW t6, t6, 1632
+  ADD t6, t6, sp
+  SW t4, 0(t6)
   JAL zero, bb22
 bb28:
   LUI t3, 513
@@ -3647,7 +3647,7 @@ bb28:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1944
+  ADDIW t3, t3, -1952
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3656,7 +3656,7 @@ bb28:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1928
+  ADDIW t3, t3, -1936
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3665,7 +3665,7 @@ bb28:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1912
+  ADDIW t3, t3, -1920
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3674,7 +3674,7 @@ bb28:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1896
+  ADDIW t3, t3, -1904
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3683,7 +3683,7 @@ bb28:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1880
+  ADDIW t3, t3, -1888
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3701,7 +3701,7 @@ bb28:
   ADD ra, ra, sp
   SW t4, 0(ra)
   LUI t4, 512
-  ADDIW t4, t4, 2024
+  ADDIW t4, t4, 1944
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLTI ra, t4, 2
@@ -3714,7 +3714,7 @@ bb29:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1992
+  ADDIW t3, t3, 2008
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3723,7 +3723,7 @@ bb29:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1976
+  ADDIW t3, t3, 1992
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3732,7 +3732,7 @@ bb29:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1960
+  ADDIW t3, t3, 1976
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3741,7 +3741,7 @@ bb29:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 512
-  ADDIW t3, t3, 1944
+  ADDIW t3, t3, 1960
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -3799,10 +3799,10 @@ bb29:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 513
-  ADDIW t6, t6, -1856
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 513
+  ADDIW t5, t5, -1856
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb31
 bb30:
   LUI t4, 512
@@ -3919,10 +3919,10 @@ bb30:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 512
-  ADDIW t5, t5, 1848
-  ADD t5, t5, sp
-  SW t4, 0(t5)
+  LUI t6, 512
+  ADDIW t6, t6, 1848
+  ADD t6, t6, sp
+  SW t4, 0(t6)
   JAL zero, bb25
 bb31:
   LUI t3, 513
@@ -3985,7 +3985,7 @@ bb31:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1952
+  ADDIW t3, t3, -1944
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
@@ -3994,7 +3994,7 @@ bb31:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1936
+  ADDIW t3, t3, -1928
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
@@ -4003,7 +4003,7 @@ bb31:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1920
+  ADDIW t3, t3, -1912
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
@@ -4012,7 +4012,7 @@ bb31:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
-  ADDIW t3, t3, -1904
+  ADDIW t3, t3, -1896
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
@@ -4021,11 +4021,11 @@ bb31:
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t2, 513
-  ADDIW t2, t2, -1888
+  ADDIW t2, t2, -1880
   ADD t2, t2, sp
   SW t4, 0(t2)
   LUI t4, 513
-  ADDIW t4, t4, -1888
+  ADDIW t4, t4, -1880
   ADD t4, t4, sp
   LW t4, 0(t4)
   SLTI t2, t4, 2
@@ -4033,7 +4033,7 @@ bb31:
   JAL zero, bb33
 bb32:
   LUI t3, 513
-  ADDIW t3, t3, -1904
+  ADDIW t3, t3, -1896
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -4042,7 +4042,7 @@ bb32:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1920
+  ADDIW t3, t3, -1912
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -4051,7 +4051,7 @@ bb32:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1936
+  ADDIW t3, t3, -1928
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -4060,7 +4060,7 @@ bb32:
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1952
+  ADDIW t3, t3, -1944
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
@@ -4073,10 +4073,10 @@ bb32:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 513
-  ADDIW t6, t6, -1616
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 513
+  ADDIW t5, t5, -1616
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   ADD t4, zero, zero
   LUI t3, 513
   ADDIW t3, t3, -1632
@@ -4114,65 +4114,65 @@ bb32:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t5, 513
-  ADDIW t5, t5, -1688
-  ADD t5, t5, sp
-  SW t4, 0(t5)
+  LUI t6, 513
+  ADDIW t6, t6, -1688
+  ADD t6, t6, sp
+  SW t4, 0(t6)
   JAL zero, bb34
 bb33:
   LUI t4, 512
-  ADDIW t4, t4, 2024
+  ADDIW t4, t4, 1944
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADDIW s0, t4, 1
-  ADD t4, s0, zero
+  LUI t3, 513
+  ADDIW t3, t3, -1880
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
   LUI t3, 513
   ADDIW t3, t3, -1872
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
-  ADDIW t3, t3, -1888
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI t3, 513
-  ADDIW t3, t3, -1880
-  ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 513
-  ADDIW t3, t3, -1904
-  ADD t3, t3, sp
-  LW t3, 0(t3)
-  ADD t4, t3, zero
-  LUI t3, 513
   ADDIW t3, t3, -1896
   ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 513
-  ADDIW t3, t3, -1920
-  ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t3, 513
+  ADDIW t3, t3, -1888
+  ADD t3, t3, sp
+  SW t4, 0(t3)
   LUI t3, 513
   ADDIW t3, t3, -1912
   ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 513
-  ADDIW t3, t3, -1936
-  ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
+  LUI t3, 513
+  ADDIW t3, t3, -1904
+  ADD t3, t3, sp
+  SW t4, 0(t3)
   LUI t3, 513
   ADDIW t3, t3, -1928
   ADD t3, t3, sp
-  SW t4, 0(t3)
-  LUI t3, 513
-  ADDIW t3, t3, -1952
-  ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
   LUI t3, 513
+  ADDIW t3, t3, -1920
+  ADD t3, t3, sp
+  SW t4, 0(t3)
+  LUI t3, 513
   ADDIW t3, t3, -1944
+  ADD t3, t3, sp
+  LW t3, 0(t3)
+  ADD t4, t3, zero
+  LUI t5, 513
+  ADDIW t5, t5, -1936
+  ADD t5, t5, sp
+  SW t4, 0(t5)
+  ADD t4, s0, zero
+  LUI t3, 513
+  ADDIW t3, t3, -1952
   ADD t3, t3, sp
   SW t4, 0(t3)
   LUI t3, 513
@@ -4409,7 +4409,7 @@ bb35:
   JAL zero, bb37
 bb36:
   LUI t4, 513
-  ADDIW t4, t4, -1888
+  ADDIW t4, t4, -1880
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADDIW s0, t4, 1
@@ -4587,16 +4587,16 @@ bb37:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI a6, 513
-  ADDIW a6, a6, -1560
-  ADD a6, a6, sp
-  SW t4, 0(a6)
+  LUI a1, 513
+  ADDIW a1, a1, -1560
+  ADD a1, a1, sp
+  SW t4, 0(a1)
   LUI t4, 513
   ADDIW t4, t4, -1664
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SLTI a6, t4, 2
-  BNE a6, zero, bb38
+  SLTI a1, t4, 2
+  BNE a1, zero, bb38
   JAL zero, bb39
 bb38:
   ADD t4, zero, zero
@@ -5046,16 +5046,16 @@ bb43:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI a1, 513
-  ADDIW a1, a1, -1312
-  ADD a1, a1, sp
-  SW t4, 0(a1)
+  LUI t0, 513
+  ADDIW t0, t0, -1312
+  ADD t0, t0, sp
+  SW t4, 0(t0)
   LUI t4, 513
   ADDIW t4, t4, -1312
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SLTI a1, t4, 2
-  BNE a1, zero, bb44
+  SLTI t0, t4, 2
+  BNE t0, zero, bb44
   JAL zero, bb45
 bb44:
   ADD t4, zero, zero
@@ -5252,7 +5252,7 @@ bb47:
   ADDIW t4, t4, -1240
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADD t0, t4, zero
+  ADD s3, t4, zero
   LUI t4, 513
   ADDIW t4, t4, -1256
   ADD t4, t4, sp
@@ -5262,7 +5262,7 @@ bb47:
   ADDIW t4, t4, -1272
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADD a2, t4, zero
+  ADD s1, t4, zero
   LUI t3, 513
   ADDIW t3, t3, -1288
   ADD t3, t3, sp
@@ -5349,7 +5349,7 @@ bb49:
   ADDIW t6, t6, -1184
   ADD t6, t6, sp
   SW t4, 0(t6)
-  ADD t4, a2, zero
+  ADD t4, s1, zero
   LUI t5, 513
   ADDIW t5, t5, -1168
   ADD t5, t5, sp
@@ -5359,30 +5359,30 @@ bb49:
   ADDIW t6, t6, -1152
   ADD t6, t6, sp
   SW t4, 0(t6)
-  ADD t4, t0, zero
+  ADD t4, s3, zero
   LUI t5, 513
   ADDIW t5, t5, -1136
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD t4, t2, zero
-  LUI a4, 513
-  ADDIW a4, a4, -1120
-  ADD a4, a4, sp
-  SW t4, 0(a4)
+  LUI a0, 513
+  ADDIW a0, a0, -1120
+  ADD a0, a0, sp
+  SW t4, 0(a0)
   LUI t4, 513
   ADDIW t4, t4, -1120
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SLTI a4, t4, 2
-  BNE a4, zero, bb50
+  SLTI a0, t4, 2
+  BNE a0, zero, bb50
   JAL zero, bb51
 bb50:
-  ADD a4, zero, zero
+  ADD a0, zero, zero
   LUI t4, 513
   ADDIW t4, t4, -1152
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADD a7, t4, zero
+  ADD s6, t4, zero
   LUI t4, 513
   ADDIW t4, t4, -1168
   ADD t4, t4, sp
@@ -5453,19 +5453,19 @@ bb51:
   JAL zero, bb46
 bb52:
   ADD t4, s5, zero
-  LUI t5, 513
-  ADDIW t5, t5, -1096
-  ADD t5, t5, sp
-  SW t4, 0(t5)
-  ADD s1, s4, zero
-  ADD s0, a7, zero
-  ADD s7, a4, zero
-  SLTI a0, s7, 2
-  BNE a0, zero, bb53
+  LUI a2, 513
+  ADDIW a2, a2, -1096
+  ADD a2, a2, sp
+  SW t4, 0(a2)
+  ADD a2, s4, zero
+  ADD s2, s6, zero
+  ADD s7, a0, zero
+  SLTI a6, s7, 2
+  BNE a6, zero, bb53
   JAL zero, bb54
 bb53:
-  ADD a0, zero, zero
-  ADD s6, s1, zero
+  ADD a6, zero, zero
+  ADD a7, a2, zero
   LUI t4, 513
   ADDIW t4, t4, -1096
   ADD t4, t4, sp
@@ -5477,189 +5477,189 @@ bb54:
   ADDIW t4, t4, -1120
   ADD t4, t4, sp
   LW t4, 0(t4)
-  ADDIW s2, t4, 1
-  ADD t2, s2, zero
-  ADD t0, s7, zero
-  ADD s9, s0, zero
-  ADD a2, s1, zero
+  ADDIW s0, t4, 1
+  ADD t2, s0, zero
+  ADD s3, s7, zero
+  ADD s9, s2, zero
+  ADD s1, a2, zero
   LUI t3, 513
   ADDIW t3, t3, -1096
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 513
-  ADDIW t6, t6, -1088
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 513
+  ADDIW t5, t5, -1088
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb49
 bb55:
-  ADD s3, a3, zero
-  ADD ra, s6, zero
-  ADD s11, a0, zero
+  ADD a4, a3, zero
+  ADD ra, a7, zero
+  ADD s11, a6, zero
   SLTI s10, s11, 2
   BNE s10, zero, bb56
   JAL zero, bb57
 bb56:
   ADD s10, zero, zero
-  ADD t1, s3, zero
+  ADD t1, a4, zero
   JAL zero, bb58
 bb57:
-  ADDIW s2, s7, 1
-  ADD a4, s2, zero
-  ADD a7, s11, zero
+  ADDIW s0, s7, 1
+  ADD a0, s0, zero
+  ADD s6, s11, zero
   ADD s4, ra, zero
-  ADD s5, s3, zero
+  ADD s5, a4, zero
   JAL zero, bb52
 bb58:
-  ADD s2, t1, zero
+  ADD s0, t1, zero
   ADD s8, s10, zero
-  SLTI a1, s8, 2
-  BNE a1, zero, bb59
+  SLTI t0, s8, 2
+  BNE t0, zero, bb59
   JAL zero, bb60
 bb59:
-  LUI a1, 256
-  ADDIW a1, a1, 0
+  LUI t0, 256
+  ADDIW t0, t0, 0
   LUI t4, 512
   ADDIW t4, t4, 296
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a5, t4, a1
-  ADDI a1, sp, 0
-  ADD a1, a1, a5
+  MULW a5, t4, t0
+  ADDI t0, sp, 0
+  ADD t0, t0, a5
   LUI a5, 128
   ADDIW a5, a5, 0
   LUI t4, 512
   ADDIW t4, t4, 600
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  LUI a1, 64
-  ADDIW a1, a1, 0
+  MULW a1, t4, a5
+  ADD a5, t0, a1
+  LUI t0, 64
+  ADDIW t0, t0, 0
   LUI t4, 512
   ADDIW t4, t4, 456
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  LUI a5, 32
-  ADDIW a5, a5, 0
+  MULW a1, t4, t0
+  ADD t0, a5, a1
+  LUI a1, 32
+  ADDIW a1, a1, 0
   LUI t4, 512
   ADDIW t4, t4, 720
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  LUI a1, 16
-  ADDIW a1, a1, 0
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  LUI t0, 16
+  ADDIW t0, t0, 0
   LUI t4, 512
   ADDIW t4, t4, 968
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  LUI a5, 8
-  ADDIW a5, a5, 0
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  LUI a1, 8
+  ADDIW a1, a1, 0
   LUI t4, 512
   ADDIW t4, t4, 1216
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  LUI a1, 4
-  ADDIW a1, a1, 0
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  LUI t0, 4
+  ADDIW t0, t0, 0
   LUI t4, 512
-  ADDIW t4, t4, 1488
+  ADDIW t4, t4, 1464
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  LUI a5, 2
-  ADDIW a5, a5, 0
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  LUI a1, 2
+  ADDIW a1, a1, 0
   LUI t4, 512
   ADDIW t4, t4, 1832
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  LUI a1, 1
-  ADDIW a1, a1, 0
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  LUI t0, 1
+  ADDIW t0, t0, 0
   LUI t4, 512
-  ADDIW t4, t4, 2024
+  ADDIW t4, t4, 1944
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  LUI a5, 1
-  ADDIW a5, a5, -2048
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  LUI a1, 1
+  ADDIW a1, a1, -2048
   LUI t4, 513
-  ADDIW t4, t4, -1888
+  ADDIW t4, t4, -1880
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  ADDI a1, zero, 1024
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  ADDI t0, zero, 1024
   LUI t4, 513
   ADDIW t4, t4, -1800
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  ADDI a5, zero, 512
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  ADDI a1, zero, 512
   LUI t4, 513
   ADDIW t4, t4, -1664
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  ADDI a1, zero, 256
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  ADDI t0, zero, 256
   LUI t4, 513
   ADDIW t4, t4, -1424
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  ADDI a5, zero, 128
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  ADDI a1, zero, 128
   LUI t4, 513
   ADDIW t4, t4, -1312
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  ADDI a1, zero, 64
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  ADDI t0, zero, 64
   LUI t4, 513
   ADDIW t4, t4, -1208
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a1
-  ADD a1, a5, a6
-  ADDI a5, zero, 32
+  MULW a5, t4, t0
+  ADD t0, a1, a5
+  ADDI a1, zero, 32
   LUI t4, 513
   ADDIW t4, t4, -1120
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a6, t4, a5
-  ADD a5, a1, a6
-  ADDI a1, zero, 16
-  MULW a6, s7, a1
-  ADD a1, a5, a6
-  ADDI a5, zero, 8
-  MULW a6, s11, a5
-  ADD a5, a1, a6
-  ADDI a1, zero, 4
-  MULW a6, s8, a1
-  ADD a1, a5, a6
-  SW s2, 0(a1)
-  ADDIW a1, s2, 1
-  ADDIW a5, s8, 1
-  ADD s10, a5, zero
-  ADD t1, a1, zero
+  MULW a5, t4, a1
+  ADD a1, t0, a5
+  ADDI t0, zero, 16
+  MULW a5, s7, t0
+  ADD t0, a1, a5
+  ADDI a1, zero, 8
+  MULW a5, s11, a1
+  ADD a1, t0, a5
+  ADDI t0, zero, 4
+  MULW a5, s8, t0
+  ADD t0, a1, a5
+  SW s0, 0(t0)
+  ADDIW t0, s0, 1
+  ADDIW a1, s8, 1
+  ADD s10, a1, zero
+  ADD t1, t0, zero
   JAL zero, bb58
 bb60:
   ADDIW s10, s11, 1
-  ADD a0, s10, zero
-  ADD s6, s8, zero
-  ADD a3, s2, zero
+  ADD a6, s10, zero
+  ADD a7, s8, zero
+  ADD a3, s0, zero
   JAL zero, bb55
 sum:
   ADDI sp, sp, -112

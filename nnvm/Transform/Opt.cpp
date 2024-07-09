@@ -1,4 +1,5 @@
 #include "Opt.h"
+#include "Transform/IPO/GlobalAttributor.h"
 #include "Transform/IPO/Inliner.h"
 #include "Transform/Infra/PassManager.h"
 #include "Transform/Scalar/CFGCombiner.h"
@@ -15,6 +16,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CombinerPass>();
+  passManager.addModulePass<GlobalAttributorPass>();
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<SLPairElimPass>();
 

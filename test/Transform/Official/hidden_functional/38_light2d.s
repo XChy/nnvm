@@ -86,9 +86,9 @@ sample:
   SD s9, 88(sp)
   SD s8, 96(sp)
   FSD fs11, 104(sp)
-  FSD fs2, 112(sp)
-  FSD fs4, 120(sp)
-  FSD fs6, 128(sp)
+  FSD fs6, 112(sp)
+  FSD fs3, 120(sp)
+  FSD fs2, 128(sp)
   SD s4, 136(sp)
   FSD fs10, 144(sp)
   SD ra, 152(sp)
@@ -103,11 +103,11 @@ sample:
   FSD fs0, 224(sp)
   FSD fs1, 232(sp)
   SD s5, 240(sp)
-  FSD fs5, 248(sp)
-  FSD fs3, 256(sp)
+  FSD fs4, 248(sp)
+  FSD fs5, 256(sp)
   SD s7, 264(sp)
   FSGNJ.D ft4, fa0, fa0
-  FSW ft4, 64(sp)
+  FSW ft4, 72(sp)
   FSGNJ.D ft4, fa1, fa1
   FSW ft4, 48(sp)
   ADD s0, zero, zero
@@ -159,9 +159,9 @@ bb4:
   LD s9, 88(sp)
   LD s8, 96(sp)
   FLD fs11, 104(sp)
-  FLD fs2, 112(sp)
-  FLD fs4, 120(sp)
-  FLD fs6, 128(sp)
+  FLD fs6, 112(sp)
+  FLD fs3, 120(sp)
+  FLD fs2, 128(sp)
   LD s4, 136(sp)
   FLD fs10, 144(sp)
   LD ra, 152(sp)
@@ -176,30 +176,30 @@ bb4:
   FLD fs0, 224(sp)
   FLD fs1, 232(sp)
   LD s5, 240(sp)
-  FLD fs5, 248(sp)
-  FLD fs3, 256(sp)
+  FLD fs4, 248(sp)
+  FLD fs5, 256(sp)
   LD s7, 264(sp)
   ADDI sp, sp, 272
   JALR zero, 0(ra)
 bb5:
   ADD s4, zero, zero
   LA s5, .CONSTANT.7.0
-  FLW fs0, 0(s5)
+  FLW fs1, 0(s5)
   LA s5, .CONSTANT.7.0
   FLW ft0, 0(s5)
-  FSGNJ.S ft1, fs0, ft0
+  FSGNJ.S ft1, fs1, ft0
   JAL zero, bb6
 bb6:
-  FSGNJ.S fs0, ft1, ft1
+  FSGNJ.S fs1, ft1, ft1
   ADD s5, s4, zero
   SLTI s6, s5, 10
   BNE s6, zero, bb9
   JAL zero, bb10
 bb7:
-  FMUL.S ft0, fs5, fs0
-  FLW ft4, 64(sp)
+  FMUL.S ft0, fs4, fs1
+  FLW ft4, 72(sp)
   FADD.S ft2, ft4, ft0
-  FMUL.S ft0, fs3, fs0
+  FMUL.S ft0, fs5, fs1
   FLW ft4, 48(sp)
   FADD.S ft5, ft4, ft0
   LA s6, .CONSTANT.7.1
@@ -237,7 +237,7 @@ bb8:
 bb9:
   LA s6, .CONSTANT.7.3
   FLW ft0, 0(s6)
-  FLT.S s6, fs0, ft0
+  FLT.S s6, fs1, ft0
   ADD s7, s6, zero
   JAL zero, bb11
 bb10:
@@ -254,7 +254,7 @@ bb12:
   JAL zero, bb3
 bb13:
   FLW fs9, 0(sp)
-  FADD.S ft0, fs0, fs9
+  FADD.S ft0, fs1, fs9
   ADDIW s0, s5, 1
   ADD s4, s0, zero
   FSGNJ.S ft1, ft0, ft0
@@ -264,11 +264,11 @@ bb14:
   JAL zero, bb16
 bb15:
   LA s0, .CONSTANT.7.4
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.4
   FLW fs1, 0(s0)
-  FSGNJN.S fs3, fs0, fs1
-  FLW ft4, 72(sp)
+  LA s0, .CONSTANT.7.4
+  FLW fs2, 0(s0)
+  FSGNJN.S fs3, fs1, fs2
+  FLW ft4, 64(sp)
   FLT.S s0, ft4, fs3
   ADD s3, s0, zero
   JAL zero, bb16
@@ -279,14 +279,14 @@ bb16:
 bb17:
   LA s4, .CONSTANT.7.4
   FLW fs7, 0(s4)
-  FLW ft4, 72(sp)
+  FLW ft4, 64(sp)
   FDIV.S fs8, ft4, fs7
   FCVT.W.S s4, fs8, rtz
   FCVT.S.W fs7, s4
   LA s4, .CONSTANT.7.4
   FLW fs8, 0(s4)
   FMUL.S fs6, fs7, fs8
-  FLW ft4, 72(sp)
+  FLW ft4, 64(sp)
   FSUB.S fs7, ft4, fs6
   FSGNJ.S fs6, fs7, fs7
   JAL zero, bb18
@@ -300,25 +300,25 @@ bb18:
 bb19:
   LA s4, .CONSTANT.7.4
   FLW fs8, 0(s4)
-  FSUB.S fs4, fs7, fs8
-  FSGNJ.S fs8, fs4, fs4
+  FSUB.S fs3, fs7, fs8
+  FSGNJ.S fs8, fs3, fs3
   JAL zero, bb20
 bb20:
-  FSGNJ.S fs4, fs8, fs8
-  FLT.S s4, fs4, fs2
+  FSGNJ.S fs3, fs8, fs8
+  FLT.S s4, fs3, fs0
   BNE s4, zero, bb21
   JAL zero, bb45
 bb21:
   LA s4, .CONSTANT.7.4
-  FLW fs1, 0(s4)
-  FADD.S fs0, fs4, fs1
-  FSGNJ.S fs1, fs0, fs0
+  FLW fs2, 0(s4)
+  FADD.S fs1, fs3, fs2
+  FSGNJ.S fs2, fs1, fs1
   JAL zero, bb22
 bb22:
-  FSGNJ.S fs0, fs1, fs1
-  FSGNJ.S fa0, fs0, fs0
+  FSGNJ.S fs1, fs2, fs2
+  FSGNJ.S fa0, fs1, fs1
   CALL my_sin_impl
-  FSGNJ.D fs3, fa0, fa0
+  FSGNJ.D fs5, fa0, fa0
   JAL zero, bb5
 bb23:
   LA s2, seed
@@ -345,7 +345,7 @@ bb24:
   ADDI s2, zero, 24
   FCVT.S.W fs8, s2
   FDIV.S ft4, fs11, fs8
-  FSW ft4, 72(sp)
+  FSW ft4, 64(sp)
   ADDI s2, zero, 2
   FCVT.S.W ft4, s2
   FSW ft4, 56(sp)
@@ -353,7 +353,7 @@ bb24:
   FLW fs8, 0(s2)
   FLW ft4, 56(sp)
   FDIV.S fs10, fs8, ft4
-  FLW ft3, 72(sp)
+  FLW ft3, 64(sp)
   FADD.S ft4, ft3, fs10
   FSW ft4, 40(sp)
   LA s2, .CONSTANT.7.4
@@ -503,9 +503,9 @@ bb40:
   FLW ft2, 0(s3)
   LA s3, .CONSTANT.7.5
   FLW ft5, 0(s3)
-  FSGNJN.S fs2, ft2, ft5
+  FSGNJN.S fs0, ft2, ft5
   FLW ft4, 16(sp)
-  FLT.S s3, ft4, fs2
+  FLT.S s3, ft4, fs0
   BNE s3, zero, bb41
   JAL zero, bb48
 bb41:
@@ -522,23 +522,23 @@ bb42:
   FSGNJ.S ft5, ft4, ft3
   FSGNJ.S fa0, ft5, ft5
   CALL my_sin_impl
-  FSGNJ.D fs5, fa0, fa0
+  FSGNJ.D fs4, fa0, fa0
   LA s3, .CONSTANT.7.4
   FLW fs7, 0(s3)
-  FLW ft4, 72(sp)
+  FLW ft4, 64(sp)
   FLT.S s3, fs7, ft4
   BNE s3, zero, bb14
   JAL zero, bb15
 bb43:
-  FLW ft4, 72(sp)
-  FLW ft3, 72(sp)
+  FLW ft4, 64(sp)
+  FLW ft3, 64(sp)
   FSGNJ.S fs6, ft4, ft3
   JAL zero, bb18
 bb44:
   FSGNJ.S fs8, fs7, fs7
   JAL zero, bb20
 bb45:
-  FSGNJ.S fs1, fs4, fs4
+  FSGNJ.S fs2, fs3, fs3
   JAL zero, bb22
 bb46:
   FLW ft4, 40(sp)
@@ -1693,8 +1693,8 @@ bb141:
   LA s1, .CONSTANT.7.0
   FLW fs8, 0(s1)
   LA s1, .CONSTANT.7.0
-  FLW fs4, 0(s1)
-  FSGNJ.S fs5, fs8, fs4
+  FLW fs3, 0(s1)
+  FSGNJ.S fs5, fs8, fs3
   JAL zero, bb142
 bb142:
   FSGNJ.S ft4, fs5, fs5
@@ -1726,17 +1726,17 @@ bb143:
   FCVT.S.W fs2, s6
   FDIV.S fs8, fs10, fs2
   LA s6, .CONSTANT.7.2
-  FLW fs3, 0(s6)
-  FADD.S fs9, fs8, fs3
+  FLW fs4, 0(s6)
+  FADD.S fs9, fs8, fs4
   FLW ft4, 112(sp)
-  FMUL.S fs3, ft4, fs10
+  FMUL.S fs4, ft4, fs10
   ADDI s6, zero, 4
   FCVT.S.W fs8, s6
   FADD.S fs6, fs8, fs10
-  FDIV.S fs4, fs3, fs6
-  FADD.S fs3, fs9, fs4
+  FDIV.S fs3, fs4, fs6
+  FADD.S fs4, fs9, fs3
   ADDI s6, zero, 10
-  FSGNJ.S fs4, fs3, fs3
+  FSGNJ.S fs3, fs4, fs4
   JAL zero, bb164
 bb144:
   LA s2, .CONSTANT.7.0
@@ -1793,15 +1793,15 @@ bb153:
   LA s11, .CONSTANT.7.4
   FLW fs10, 0(s11)
   FLW ft4, 104(sp)
-  FDIV.S fs3, ft4, fs10
-  FCVT.W.S s11, fs3, rtz
-  FCVT.S.W fs3, s11
+  FDIV.S fs4, ft4, fs10
+  FCVT.W.S s11, fs4, rtz
+  FCVT.S.W fs4, s11
   LA s11, .CONSTANT.7.4
   FLW fs10, 0(s11)
-  FMUL.S fs2, fs3, fs10
+  FMUL.S fs2, fs4, fs10
   FLW ft4, 104(sp)
-  FSUB.S fs3, ft4, fs2
-  FSGNJ.S ft4, fs3, fs3
+  FSUB.S fs4, ft4, fs2
+  FSGNJ.S ft4, fs4, fs4
   FSW ft4, 200(sp)
   JAL zero, bb154
 bb154:
@@ -1913,26 +1913,26 @@ bb163:
   FSW fs1, 0(s2)
   JAL zero, bb162
 bb164:
-  FSGNJ.S fs3, fs4, fs4
+  FSGNJ.S fs4, fs3, fs3
   ADD s2, s6, zero
   XOR s5, s2, zero
   SLTU s3, zero, s5
   BNE s3, zero, bb165
   JAL zero, bb166
 bb165:
-  FDIV.S fs6, fs10, fs3
-  FADD.S fs9, fs3, fs6
+  FDIV.S fs6, fs10, fs4
+  FADD.S fs9, fs4, fs6
   FLW ft4, 112(sp)
   FDIV.S fs6, fs9, ft4
   ADDI s3, zero, 1
   SUBW s5, s2, s3
   ADD s6, s5, zero
-  FSGNJ.S fs4, fs6, fs6
+  FSGNJ.S fs3, fs6, fs6
   JAL zero, bb164
 bb166:
   LA s2, .CONSTANT.7.8
-  FLW fs4, 0(s2)
-  FSUB.S fs6, fs3, fs4
+  FLW fs3, 0(s2)
+  FSUB.S fs6, fs4, fs3
   LA s2, .CONSTANT.7.9
   FLW fs3, 0(s2)
   FSUB.S fs4, fs7, fs3

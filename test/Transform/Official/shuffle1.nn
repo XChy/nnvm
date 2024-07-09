@@ -330,7 +330,7 @@ while.exit131:
   ret i32 %ret.phi
 }
 
-i32 hash(i32 k) {
+pure i32 hash(i32 k) {
 entry:
   hashmod.load = load i32 from ptr @hashmod
   4 = srem i32 %k, i32 %hashmod.load

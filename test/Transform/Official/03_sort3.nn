@@ -60,7 +60,7 @@ external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
-i32 getNumPos(i32 num, i32 pos) {
+pure i32 getNumPos(i32 num, i32 pos) {
 entry26:
   br bb %while.cond31
 while.cond31:
@@ -205,11 +205,24 @@ while.exit178:
   254 = add i32 %i101.phi, i32 1
   br bb %while.cond169
 while.cond197:
-  t.phi = phi [bb %while.body177, i32 %t.phi362, bb %getNumPos.while.exit33480, i32 %v.phi]
-  v.phi = phi [bb %while.body177, i32 %195.load, bb %getNumPos.while.exit33480, i32 %215.load]
+  t.phi = phi [bb %while.body177, i32 %t.phi362, bb %while.body198, i32 %v.phi]
+  v.phi = phi [bb %while.body177, i32 %195.load, bb %while.body198, i32 %215.load]
   br bb %getNumPos.entry26405
 while.body198:
-  br bb %getNumPos.entry26421
+  211 = mul i32 %45417, i32 4
+  212 = ptradd ptr %head, i32 %211
+  212.load = load i32 from ptr %212
+  214 = mul i32 %212.load, i32 4
+  215 = ptradd ptr %a, i32 %214
+  215.load = load i32 from ptr %215
+  221.load = load i32 from ptr %212
+  223 = mul i32 %221.load, i32 4
+  224 = ptradd ptr %a, i32 %223
+  store i32 %v.phi to ptr %224
+  235.load = load i32 from ptr %212
+  237 = add i32 %235.load, i32 1
+  store i32 %237 to ptr %212
+  br bb %while.cond197
 while.exit199:
   240.load = load i32 from ptr %181
   242 = mul i32 %240.load, i32 4
@@ -304,84 +317,9 @@ getNumPos.while.exit33416:
   45417 = srem i32 %num.stack.phi409, i32 16
   204 = icmp ne i32 %45417, i32 %i101.phi
   br i1 %204, bb %while.body198, bb %while.exit199
-getNumPos.entry26421:
-  br bb %getNumPos.while.cond31423
-getNumPos.while.cond31423:
-  i30.phi424 = phi [bb %getNumPos.entry26421, i32 0, bb %getNumPos.while.body32428, i32 %42430]
-  num.stack.phi425 = phi [bb %getNumPos.entry26421, i32 %v.phi, bb %getNumPos.while.body32428, i32 %40429]
-  36426 = icmp slt i32 %i30.phi424, i32 %bitround
-  br i1 %36426, bb %getNumPos.while.body32428, bb %getNumPos.while.exit33432
-getNumPos.while.body32428:
-  40429 = sdiv i32 %num.stack.phi425, i32 16
-  42430 = add i32 %i30.phi424, i32 1
-  br bb %getNumPos.while.cond31423
-getNumPos.while.exit33432:
-  45433 = srem i32 %num.stack.phi425, i32 16
-  211 = mul i32 %45433, i32 4
-  212 = ptradd ptr %head, i32 %211
-  212.load = load i32 from ptr %212
-  214 = mul i32 %212.load, i32 4
-  215 = ptradd ptr %a, i32 %214
-  215.load = load i32 from ptr %215
-  br bb %getNumPos.entry26437
-getNumPos.entry26437:
-  br bb %getNumPos.while.cond31439
-getNumPos.while.cond31439:
-  i30.phi440 = phi [bb %getNumPos.entry26437, i32 0, bb %getNumPos.while.body32444, i32 %42446]
-  num.stack.phi441 = phi [bb %getNumPos.entry26437, i32 %v.phi, bb %getNumPos.while.body32444, i32 %40445]
-  36442 = icmp slt i32 %i30.phi440, i32 %bitround
-  br i1 %36442, bb %getNumPos.while.body32444, bb %getNumPos.while.exit33448
-getNumPos.while.body32444:
-  40445 = sdiv i32 %num.stack.phi441, i32 16
-  42446 = add i32 %i30.phi440, i32 1
-  br bb %getNumPos.while.cond31439
-getNumPos.while.exit33448:
-  45449 = srem i32 %num.stack.phi441, i32 16
-  220 = mul i32 %45449, i32 4
-  221 = ptradd ptr %head, i32 %220
-  221.load = load i32 from ptr %221
-  223 = mul i32 %221.load, i32 4
-  224 = ptradd ptr %a, i32 %223
-  store i32 %v.phi to ptr %224
-  br bb %getNumPos.entry26453
-getNumPos.entry26453:
-  br bb %getNumPos.while.cond31455
-getNumPos.while.cond31455:
-  i30.phi456 = phi [bb %getNumPos.entry26453, i32 0, bb %getNumPos.while.body32460, i32 %42462]
-  num.stack.phi457 = phi [bb %getNumPos.entry26453, i32 %v.phi, bb %getNumPos.while.body32460, i32 %40461]
-  36458 = icmp slt i32 %i30.phi456, i32 %bitround
-  br i1 %36458, bb %getNumPos.while.body32460, bb %getNumPos.while.exit33464
-getNumPos.while.body32460:
-  40461 = sdiv i32 %num.stack.phi457, i32 16
-  42462 = add i32 %i30.phi456, i32 1
-  br bb %getNumPos.while.cond31455
-getNumPos.while.exit33464:
-  45465 = srem i32 %num.stack.phi457, i32 16
-  229 = mul i32 %45465, i32 4
-  230 = ptradd ptr %head, i32 %229
-  br bb %getNumPos.entry26469
-getNumPos.entry26469:
-  br bb %getNumPos.while.cond31471
-getNumPos.while.cond31471:
-  i30.phi472 = phi [bb %getNumPos.entry26469, i32 0, bb %getNumPos.while.body32476, i32 %42478]
-  num.stack.phi473 = phi [bb %getNumPos.entry26469, i32 %v.phi, bb %getNumPos.while.body32476, i32 %40477]
-  36474 = icmp slt i32 %i30.phi472, i32 %bitround
-  br i1 %36474, bb %getNumPos.while.body32476, bb %getNumPos.while.exit33480
-getNumPos.while.body32476:
-  40477 = sdiv i32 %num.stack.phi473, i32 16
-  42478 = add i32 %i30.phi472, i32 1
-  br bb %getNumPos.while.cond31471
-getNumPos.while.exit33480:
-  45481 = srem i32 %num.stack.phi473, i32 16
-  234 = mul i32 %45481, i32 4
-  235 = ptradd ptr %head, i32 %234
-  235.load = load i32 from ptr %235
-  237 = add i32 %235.load, i32 1
-  store i32 %237 to ptr %230
-  br bb %while.cond197
 }
 
-i32 getMaxNum(i32 n, ptr arr) {
+pure i32 getMaxNum(i32 n, ptr arr) {
 entry:
   br bb %while.cond
 while.cond:

@@ -1,6 +1,6 @@
 global ptr arr2 init with 26880 x i32 zeros
 global ptr arr1 init with 14400 x i32 zeros
-i32 loop3(i32 h, i32 i, i32 j, i32 k, i32 l, i32 m, i32 n) {
+pure i32 loop3(i32 h, i32 i, i32 j, i32 k, i32 l, i32 m, i32 n) {
 entry205:
   br bb %while.cond221
 while.cond221:

@@ -28,8 +28,8 @@ bool InlinerPass::tryInline(Module &M) {
       // Don't inline recursive function.
       if (!CI || CI->getParent()->getParent() == F)
         break;
-      changed = true;
       inlineCall(CI);
+      changed = true;
     }
   }
   return changed;

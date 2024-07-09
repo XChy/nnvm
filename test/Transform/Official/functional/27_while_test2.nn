@@ -8,7 +8,7 @@ external i32 getfarray(ptr )
 
 external void putint(i32 )
 
-i32 FourWhile() {
+pure i32 FourWhile() {
 entry:
   br bb %while.cond
 while.cond:

@@ -1,6 +1,6 @@
 external i32 getint()
 
-i32 doubleWhile() {
+pure i32 doubleWhile() {
 entry:
   br bb %while.cond
 while.cond:

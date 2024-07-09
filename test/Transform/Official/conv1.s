@@ -74,7 +74,7 @@ bb4:
   LW t4, 24(sp)
   SUBW s10, s7, t4
   ADD t4, zero, zero
-  SW t4, 40(sp)
+  SW t4, 48(sp)
   ADD t4, s10, zero
   SW t4, 56(sp)
   JAL zero, bb5
@@ -82,7 +82,7 @@ bb5:
   LW t3, 56(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
-  LW t4, 40(sp)
+  LW t4, 48(sp)
   ADD t1, t4, zero
   LW t4, 32(sp)
   LW t3, 24(sp)
@@ -151,7 +151,7 @@ bb10:
   JAL zero, bb13
 bb11:
   ADD t4, s9, zero
-  SW t4, 40(sp)
+  SW t4, 48(sp)
   ADD t4, t1, zero
   SW t4, 56(sp)
   JAL zero, bb5
@@ -171,16 +171,16 @@ bb15:
   JAL zero, bb1
 bb16:
   ADDI t4, zero, 1
-  SB t4, 48(sp)
+  SB t4, 40(sp)
   JAL zero, bb18
 bb17:
   LW t4, 8(sp)
   SLT s6, t4, zero
   ADD t4, s6, zero
-  SB t4, 48(sp)
+  SB t4, 40(sp)
   JAL zero, bb18
 bb18:
-  LB t4, 48(sp)
+  LB t4, 40(sp)
   ADD t2, t4, zero
   BNE t2, zero, bb19
   JAL zero, bb20

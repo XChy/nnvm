@@ -40,7 +40,7 @@ entry54:
   ret 
 }
 
-i32 power(i32 b, i32 a) {
+pure i32 power(i32 b, i32 a) {
 entry13:
   br bb %while.cond
 while.cond:
@@ -1226,7 +1226,7 @@ select.exit40:
   br i1 %select41.phi, bb %while.body34, bb %while.exit35
 }
 
-i32 isdigit(i32 x) {
+pure i32 isdigit(i32 x) {
 entry:
   3 = icmp sge i32 %x, i32 48
   br i1 %3, bb %select.then, bb %select.else

@@ -550,7 +550,7 @@ bb21:
   FDIV.S fs11, fs10, ft4
   FLW ft3, 48(sp)
   FADD.S ft4, ft3, fs11
-  FSW ft4, 8(sp)
+  FSW ft4, 40(sp)
   BNE s2, zero, bb30
   JAL zero, bb31
 bb22:
@@ -558,14 +558,14 @@ bb22:
   FSW ft4, 0(sp)
   FLW ft3, 0(sp)
   FADD.S ft4, fs9, ft3
-  FSW ft4, 16(sp)
-  FLW ft3, 16(sp)
+  FSW ft4, 8(sp)
+  FLW ft3, 8(sp)
   FLW ft4, 64(sp)
   FSUB.S ft4, ft3, ft4
-  FSW ft4, 40(sp)
+  FSW ft4, 16(sp)
   ADDI s1, zero, 0
   FCVT.S.W ft6, s1
-  FLW ft4, 40(sp)
+  FLW ft4, 16(sp)
   FLT.S s1, ft6, ft4
   BNE s1, zero, bb34
   JAL zero, bb35
@@ -583,9 +583,9 @@ bb23:
 bb24:
   LA s1, .CONSTANT.7.3
   FLW ft7, 0(s1)
-  FLW ft4, 40(sp)
-  FDIV.S fa4, ft4, ft7
   FLW ft4, 16(sp)
+  FDIV.S fa4, ft4, ft7
+  FLW ft4, 8(sp)
   FADD.S ft7, ft4, fa4
   FSGNJ.S fa0, ft7, ft7
   FLD fs6, 88(sp)
@@ -726,7 +726,7 @@ bb30:
   FCVT.S.W fs11, s1
   FLW ft4, 48(sp)
   FDIV.S ft1, fs11, ft4
-  FLW ft4, 8(sp)
+  FLW ft4, 40(sp)
   FDIV.S ft2, fs11, ft4
   ADDI s1, zero, 4
   FCVT.S.W ft5, s1
@@ -757,8 +757,8 @@ bb32:
   CALL my_sqrt
   FSGNJ.D fs3, fa0, fa0
   FDIV.S fs5, fs4, fs3
-  FLW ft4, 8(sp)
-  FLW ft3, 8(sp)
+  FLW ft4, 40(sp)
+  FLW ft3, 40(sp)
   FMUL.S fs3, ft4, ft3
   FSUB.S fs2, fs4, fs3
   FSGNJ.S fa0, fs2, fs2
@@ -790,14 +790,14 @@ bb33:
   FSGNJ.S fs11, fs1, fs1
   JAL zero, bb22
 bb34:
-  FLW ft3, 40(sp)
-  FLW ft4, 40(sp)
+  FLW ft3, 16(sp)
+  FLW ft4, 16(sp)
   FSGNJ.S ft4, ft3, ft4
   FSW ft4, 24(sp)
   JAL zero, bb23
 bb35:
-  FLW ft4, 40(sp)
-  FLW ft3, 40(sp)
+  FLW ft4, 16(sp)
+  FLW ft3, 16(sp)
   FSGNJN.S fs3, ft4, ft3
   FSGNJ.S ft4, fs3, fs3
   FSW ft4, 24(sp)

@@ -2082,7 +2082,7 @@ else60:
   br bb %while.exit
 }
 
-i32 is_number(i32 ch) {
+pure i32 is_number(i32 ch) {
 entry:
   3 = icmp sge i32 %ch, i32 48
   br i1 %3, bb %then, bb %else

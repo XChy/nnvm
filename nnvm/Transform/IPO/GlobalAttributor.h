@@ -1,5 +1,5 @@
 /**
- * Inliner: inline functions
+ * GlobalAttributor: Attach attributes like pure to functions/variables.
  */
 
 #pragma once
@@ -12,7 +12,7 @@
 #include <queue>
 
 namespace nnvm {
-class InlinerPass : public ModulePass {
+class GlobalAttributorPass : public ModulePass {
 public:
   static constexpr const char *passName = "combiner";
   bool run(Module &M);

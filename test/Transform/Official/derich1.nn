@@ -24,17 +24,17 @@ entry59:
   98 = fmul float 2.000000, float %alpha
   102 = fmul float %98, float %29532
   103 = fadd float 1.000000, float %102
-  4568 = fdiv float %98, float %3522
-  5569 = fadd float 1.000000, float %4568
-  8570 = fmul float %5569, float %5569
-  11571 = fmul float %8570, float %8570
-  14572 = fmul float %11571, float %11571
-  17573 = fmul float %14572, float %14572
-  20574 = fmul float %17573, float %17573
-  23575 = fmul float %20574, float %20574
-  26576 = fmul float %23575, float %23575
-  29577 = fmul float %26576, float %26576
-  107 = fsub float %103, float %29577
+  4538 = fdiv float %98, float %3522
+  5539 = fadd float 1.000000, float %4538
+  8540 = fmul float %5539, float %5539
+  11541 = fmul float %8540, float %8540
+  14542 = fmul float %11541, float %11541
+  17543 = fmul float %14542, float %14542
+  20544 = fmul float %17543, float %17543
+  23545 = fmul float %20544, float %20544
+  26546 = fmul float %23545, float %23545
+  29547 = fmul float %26546, float %26546
+  107 = fsub float %103, float %29547
   108 = fdiv float %96, float %107
   115 = fmul float %108, float %29532
   117 = fsub float %alpha, float 1.000000
@@ -44,20 +44,20 @@ entry59:
   130 = fneg float %108
   131 = fneg float 2.000000
   133 = fmul float %131, float %alpha
-  4613 = fdiv float %133, float %3522
-  5614 = fadd float 1.000000, float %4613
-  8615 = fmul float %5614, float %5614
-  11616 = fmul float %8615, float %8615
-  14617 = fmul float %11616, float %11616
-  17618 = fmul float %14617, float %14617
-  20619 = fmul float %17618, float %17618
-  23620 = fmul float %20619, float %20619
-  26621 = fmul float %23620, float %23620
-  29622 = fmul float %26621, float %26621
-  135 = fmul float %130, float %29622
+  4553 = fdiv float %133, float %3522
+  5554 = fadd float 1.000000, float %4553
+  8555 = fmul float %5554, float %5554
+  11556 = fmul float %8555, float %8555
+  14557 = fmul float %11556, float %11556
+  17558 = fmul float %14557, float %14557
+  20559 = fmul float %17558, float %17558
+  23560 = fmul float %20559, float %20559
+  26561 = fmul float %23560, float %23560
+  29562 = fmul float %26561, float %26561
+  135 = fmul float %130, float %29562
   139 = f2si float %89 to i32
   140 = call float newPow(float 2.000000, i32 %139)
-  145 = fneg float %29622
+  145 = fneg float %29562
   146 = si2f i32 1 to float
   br bb %while.cond
 while.cond:
@@ -274,7 +274,7 @@ while.exit430:
   br bb %while.cond421
 }
 
-float newPow(float num, i32 n) {
+pure float newPow(float num, i32 n) {
 entry31:
   35 = icmp slt i32 %n, i32 0
   br i1 %35, bb %then, bb %else
@@ -342,7 +342,7 @@ external void putfarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-float newExp(float x) {
+pure float newExp(float x) {
 entry:
   3 = si2f i32 256 to float
   4 = fdiv float %x, float %3

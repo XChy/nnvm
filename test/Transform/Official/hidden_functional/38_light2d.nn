@@ -360,7 +360,7 @@ my_fabs.if.exit18:
   br bb %entry66.split
 }
 
-float p(float x) {
+pure float p(float x) {
 entry53:
   56 = si2f i32 3 to float
   57 = fmul float %56, float %x
@@ -372,7 +372,7 @@ entry53:
   ret float %65
 }
 
-float my_sqrt(float x) {
+pure float my_sqrt(float x) {
 entry22:
   26 = si2f i32 8 to float
   27 = fdiv float %x, float %26
@@ -432,7 +432,7 @@ my_sqrt.while.exit:
   ret float %157
 }
 
-float my_fabs(float x) {
+pure float my_fabs(float x) {
 entry12:
   15 = si2f i32 0 to float
   16 = fcmp ogt float %x, float %15

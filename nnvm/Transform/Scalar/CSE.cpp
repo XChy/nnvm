@@ -2,6 +2,7 @@
 #include "ADT/Hash.h"
 #include "ADT/Ranges.h"
 #include "Analysis/DomTreeAnalysis.h"
+#include "IR/Attributes.h"
 #include <stack>
 
 using namespace nnvm;
@@ -80,14 +81,21 @@ bool CSEPass::run(Function &F) {
 }
 
 static inline bool isPure(Instruction *I) {
-  if (dyn_cast<TerminatorInst>(I))
+  if (I->isa<TerminatorInst>())
     return false;
-  if (dyn_cast<StackInst>(I))
+
+  if (I->isa<StackInst>())
     return false;
+
+  if (auto *CI = dyn_cast<CallInst>(I))
+    return cast<Function>(CI->getCallee())->isAttached(Attribute::Pure);
+
   if (I->mayWriteToMemory())
     return false;
+
   if (I->mayReadMemory())
     return false;
+
   return true;
 }
 

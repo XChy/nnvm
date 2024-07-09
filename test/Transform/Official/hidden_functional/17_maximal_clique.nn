@@ -74,7 +74,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 is_clique(i32 num) {
+pure i32 is_clique(i32 num) {
 entry:
   br bb %while.cond
 while.cond:

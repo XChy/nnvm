@@ -1,4 +1,4 @@
-float func(float data, i32 num) {
+pure float func(float data, i32 num) {
 entry15:
   19 = icmp slt i32 %num, i32 0
   br i1 %19, bb %then20, bb %if.exit21
@@ -45,7 +45,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-float myabs(float num) {
+pure float myabs(float num) {
 entry:
   3 = si2f i32 0 to float
   4 = fcmp ogt float %num, float %3

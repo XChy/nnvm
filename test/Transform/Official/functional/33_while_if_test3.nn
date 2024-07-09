@@ -57,7 +57,7 @@ external void putfarray(i32 , ptr )
 
 external void putch(i32 )
 
-i32 deepWhileBr(i32 a, i32 b) {
+pure i32 deepWhileBr(i32 a, i32 b) {
 entry:
   6 = add i32 %a, i32 %b
   br bb %while.cond

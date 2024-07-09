@@ -384,7 +384,7 @@ entry89:
   ret float %98
 }
 
-float my_sqrt(float x) {
+pure float my_sqrt(float x) {
 entry43:
   46 = si2f i32 100 to float
   47 = fcmp ogt float %x, float %46
@@ -420,14 +420,14 @@ while.exit71:
   ret float %t.phi
 }
 
-float F1(float x) {
+pure float F1(float x) {
 entry84:
   87 = si2f i32 1 to float
   88 = fdiv float %87, float %x
   ret float %88
 }
 
-float my_pow(float a, i32 n) {
+pure float my_pow(float a, i32 n) {
 entry10:
   14 = icmp slt i32 %n, i32 0
   br i1 %14, bb %then15, bb %if.exit16
@@ -628,7 +628,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-float my_fabs(float x) {
+pure float my_fabs(float x) {
 entry:
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3

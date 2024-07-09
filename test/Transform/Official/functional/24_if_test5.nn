@@ -29,7 +29,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 if_if_Else() {
+pure i32 if_if_Else() {
 entry:
   br bb %if.exit
 if.exit:

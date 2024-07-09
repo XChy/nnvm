@@ -138,7 +138,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-i32 equal(i32 a, i32 b) {
+pure i32 equal(i32 a, i32 b) {
 entry:
   5 = icmp eq i32 %a, i32 %b
   br i1 %5, bb %then, bb %if.exit

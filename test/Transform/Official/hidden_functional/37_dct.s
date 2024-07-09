@@ -140,9 +140,9 @@ bb3:
 bb4:
   ADD s11, s8, zero
   ADD t4, s9, zero
-  SW t4, 40(sp)
+  SW t4, 64(sp)
   ADD t4, s10, zero
-  SW t4, 48(sp)
+  SW t4, 80(sp)
   LW t4, 0(sp)
   SLT t2, s11, t4
   BNE t2, zero, bb5
@@ -155,7 +155,7 @@ bb5:
   ADDI a4, zero, 4
   MULW a5, s11, a4
   ADD t4, t2, a5
-  SD t4, 64(sp)
+  SD t4, 56(sp)
   ADDI t2, zero, 1
   FCVT.S.W fs0, t2
   LA t2, .CONSTANT.7.0
@@ -164,15 +164,15 @@ bb5:
   LD t4, 16(sp)
   FLW fs1, 0(t4)
   FMUL.S fs3, fs2, fs1
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FSW fs3, 0(t4)
   ADDI t2, zero, 1
   JAL zero, bb7
 bb6:
   ADDIW s0, s7, 1
-  LW t4, 48(sp)
+  LW t4, 80(sp)
   ADD s4, t4, zero
-  LW t4, 40(sp)
+  LW t4, 64(sp)
   ADD s5, t4, zero
   ADD t4, s0, zero
   SW t4, 32(sp)
@@ -184,7 +184,7 @@ bb7:
   BNE a6, zero, bb8
   JAL zero, bb9
 bb8:
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FLW fs1, 0(t4)
   LA a6, .CONSTANT.7.1
   FLW fs2, 0(a6)
@@ -196,7 +196,7 @@ bb8:
   FLW fs2, 0(a6)
   FMUL.S fs4, fs3, fs2
   FADD.S fs2, fs1, fs4
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FSW fs2, 0(t4)
   ADDIW a6, a5, 1
   ADD t2, a6, zero
@@ -211,7 +211,7 @@ bb10:
   BNE a6, zero, bb11
   JAL zero, bb12
 bb11:
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FLW fs1, 0(t4)
   LA a6, .CONSTANT.7.1
   FLW fs2, 0(a6)
@@ -223,25 +223,25 @@ bb11:
   FLW fs2, 0(a6)
   FMUL.S fs4, fs3, fs2
   FADD.S fs2, fs1, fs4
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FSW fs2, 0(t4)
   ADDIW a6, a5, 1
   ADD t2, a6, zero
   JAL zero, bb10
 bb12:
   ADD t4, a5, zero
-  SW t4, 80(sp)
-  ADDI t4, zero, 1
   SW t4, 72(sp)
+  ADDI t4, zero, 1
+  SW t4, 48(sp)
   JAL zero, bb13
 bb13:
+  LW t3, 48(sp)
+  ADD t4, t3, zero
+  SW t4, 40(sp)
   LW t3, 72(sp)
   ADD t4, t3, zero
-  SW t4, 56(sp)
-  LW t3, 80(sp)
-  ADD t4, t3, zero
   SW t4, 88(sp)
-  LW t4, 56(sp)
+  LW t4, 40(sp)
   LW t3, 8(sp)
   SLT s3, t4, t3
   BNE s3, zero, bb14
@@ -250,7 +250,7 @@ bb14:
   ADDI s3, zero, 1
   JAL zero, bb16
 bb15:
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FLW fs0, 0(t4)
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
@@ -264,12 +264,12 @@ bb15:
   LW t4, 0(sp)
   FCVT.S.W fs0, t4
   FDIV.S fs1, fs2, fs0
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FSW fs1, 0(t4)
   ADDIW s0, s11, 1
   LW t4, 88(sp)
   ADD s10, t4, zero
-  LW t4, 56(sp)
+  LW t4, 40(sp)
   ADD s9, t4, zero
   ADD s8, s0, zero
   JAL zero, bb4
@@ -280,11 +280,11 @@ bb16:
   BNE s1, zero, bb17
   JAL zero, bb18
 bb17:
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FLW ft4, 0(t4)
   FSW ft4, 128(sp)
   ADDI s1, zero, 32
-  LW t4, 56(sp)
+  LW t4, 40(sp)
   MULW s0, t4, s1
   LD t4, 16(sp)
   ADD s1, t4, s0
@@ -308,7 +308,7 @@ bb17:
   FLW ft4, 112(sp)
   FADD.S fs3, fs2, ft4
   FMUL.S fs2, fs4, fs3
-  LW t4, 56(sp)
+  LW t4, 40(sp)
   FCVT.S.W fs3, t4
   FMUL.S fs4, fs2, fs3
   ADDI s0, zero, 2
@@ -327,12 +327,12 @@ bb17:
   BNE s0, zero, bb19
   JAL zero, bb20
 bb18:
-  LW t4, 56(sp)
+  LW t4, 40(sp)
   ADDIW s0, t4, 1
   ADD t4, s2, zero
-  SW t4, 80(sp)
-  ADD t4, s0, zero
   SW t4, 72(sp)
+  ADD t4, s0, zero
+  SW t4, 48(sp)
   JAL zero, bb13
 bb19:
   ADDI s0, zero, 1
@@ -485,7 +485,7 @@ bb36:
   FMUL.S ft0, fs2, fs7
   FLW ft4, 128(sp)
   FADD.S fs7, ft4, ft0
-  LD t4, 64(sp)
+  LD t4, 56(sp)
   FSW fs7, 0(t4)
   ADDIW s6, s2, 1
   ADD s3, s6, zero
@@ -696,7 +696,7 @@ bb55:
   ADD t4, s9, zero
   SW t4, 72(sp)
   ADD t4, s10, zero
-  SW t4, 64(sp)
+  SW t4, 40(sp)
   LW t4, 0(sp)
   SLT t2, s11, t4
   BNE t2, zero, bb56
@@ -709,19 +709,19 @@ bb56:
   ADDI a4, zero, 4
   MULW a5, s11, a4
   ADD t4, t2, a5
-  SD t4, 48(sp)
+  SD t4, 80(sp)
   FCVT.S.L fs0, zero
-  LD t4, 48(sp)
+  LD t4, 80(sp)
   FSW fs0, 0(t4)
-  LW t3, 64(sp)
+  LW t3, 40(sp)
   ADD t4, t3, zero
-  SW t4, 40(sp)
+  SW t4, 56(sp)
   ADD t4, zero, zero
-  SW t4, 80(sp)
+  SW t4, 48(sp)
   JAL zero, bb58
 bb57:
   ADDIW s0, s7, 1
-  LW t4, 64(sp)
+  LW t4, 40(sp)
   ADD s4, t4, zero
   LW t4, 72(sp)
   ADD s5, t4, zero
@@ -729,12 +729,12 @@ bb57:
   SW t4, 32(sp)
   JAL zero, bb52
 bb58:
-  LW t3, 80(sp)
+  LW t3, 48(sp)
   ADD t4, t3, zero
   SW t4, 88(sp)
-  LW t3, 40(sp)
+  LW t3, 56(sp)
   ADD t4, t3, zero
-  SW t4, 56(sp)
+  SW t4, 64(sp)
   LW t4, 88(sp)
   LW t3, 8(sp)
   SLT s3, t4, t3
@@ -745,7 +745,7 @@ bb59:
   JAL zero, bb61
 bb60:
   ADDIW s0, s11, 1
-  LW t4, 56(sp)
+  LW t4, 64(sp)
   ADD s10, t4, zero
   LW t4, 88(sp)
   ADD s9, t4, zero
@@ -758,7 +758,7 @@ bb61:
   BNE s1, zero, bb62
   JAL zero, bb63
 bb62:
-  LD t4, 48(sp)
+  LD t4, 80(sp)
   FLW ft4, 0(t4)
   FSW ft4, 128(sp)
   ADDI s1, zero, 32
@@ -808,9 +808,9 @@ bb63:
   LW t4, 88(sp)
   ADDIW s0, t4, 1
   ADD t4, s2, zero
-  SW t4, 40(sp)
+  SW t4, 56(sp)
   ADD t4, s0, zero
-  SW t4, 80(sp)
+  SW t4, 48(sp)
   JAL zero, bb58
 bb64:
   ADDI s0, zero, 1
@@ -963,7 +963,7 @@ bb81:
   FMUL.S ft0, fs2, fs7
   FLW ft4, 128(sp)
   FADD.S fs7, ft4, ft0
-  LD t4, 48(sp)
+  LD t4, 80(sp)
   FSW fs7, 0(t4)
   ADDIW s6, s2, 1
   ADD s3, s6, zero

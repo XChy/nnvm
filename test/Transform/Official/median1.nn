@@ -212,7 +212,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-i32 meanless_calculation(i32 x, i32 y) {
+pure i32 meanless_calculation(i32 x, i32 y) {
 entry:
   br bb %while.cond
 while.cond:

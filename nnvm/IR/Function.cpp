@@ -1,4 +1,5 @@
 #include "Function.h"
+#include "IR/Attributes.h"
 #include "Utils/Debug.h"
 
 using namespace nnvm;
@@ -41,6 +42,11 @@ std::string Function::dump() {
   std::string ret;
   if (external)
     ret += "external ";
+
+  for (auto attr : attributes) {
+    if (attr == Attribute::Pure)
+      ret += "pure ";
+  }
 
   ret += retType->dump() + " " + getName();
 

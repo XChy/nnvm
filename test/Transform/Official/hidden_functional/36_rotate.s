@@ -1154,7 +1154,7 @@ bb122:
 bb123:
   LA s2, width
   LW s3, 0(s2)
-  SLT s2, s0, s3
+  SLT s2, s1, s3
   XORI s3, s2, 1
   ADD s8, s3, zero
   JAL zero, bb124
@@ -1166,7 +1166,7 @@ bb125:
   ADDI s9, zero, 1
   JAL zero, bb127
 bb126:
-  SLT s2, s1, zero
+  SLT s2, s0, zero
   ADD s9, s2, zero
   JAL zero, bb127
 bb127:
@@ -1179,7 +1179,7 @@ bb128:
 bb129:
   LA s2, height
   LW s3, 0(s2)
-  SLT s2, s1, s3
+  SLT s2, s0, s3
   XORI s3, s2, 1
   ADD s10, s3, zero
   JAL zero, bb130
@@ -1193,8 +1193,8 @@ bb131:
 bb132:
   LA s2, width
   LW s4, 0(s2)
-  MULW s2, s1, s4
-  ADDW s4, s2, s0
+  MULW s2, s0, s4
+  ADDW s4, s2, s1
   ADDI s2, zero, 4
   MULW s3, s4, s2
   LA s2, image
@@ -1377,14 +1377,14 @@ bb150:
   FSUB.S fs8, fs7, fs4
   FCVT.S.W fs4, s10
   FADD.S fs7, fs8, fs4
-  FCVT.W.S s0, fs7, rtz
+  FCVT.W.S s1, fs7, rtz
   FMUL.S fs4, fs1, fs6
   FMUL.S fs1, fs5, fs3
   FADD.S fs3, fs4, fs1
   FCVT.S.W fs1, s11
   FADD.S fs4, fs3, fs1
-  FCVT.W.S s1, fs4, rtz
-  SLT s8, s0, zero
+  FCVT.W.S s0, fs4, rtz
+  SLT s8, s1, zero
   BNE s8, zero, bb122
   JAL zero, bb123
 bb151:
