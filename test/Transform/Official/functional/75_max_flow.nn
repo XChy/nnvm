@@ -9,16 +9,14 @@ entry246:
   br bb %while.cond250
 while.cond250:
   flow.phi = phi [bb %entry246, i32 0, bb %if.exit263, i32 %267]
-  br bb %my_memset.entry
+  br bb %my_memset.while.cond
 then262:
   ret i32 %flow.phi
 if.exit263:
   267 = add i32 %flow.phi, i32 %259
   br bb %while.cond250
-my_memset.entry:
-  br bb %my_memset.while.cond
 my_memset.while.cond:
-  i.phi373 = phi [bb %my_memset.entry, i32 0, bb %my_memset.while.body, i32 %16380]
+  i.phi373 = phi [bb %while.cond250, i32 0, bb %my_memset.while.body, i32 %16380]
   9374 = icmp slt i32 %i.phi373, i32 10
   br i1 %9374, bb %my_memset.while.body, bb %my_memset.while.exit
 my_memset.while.body:
@@ -182,11 +180,9 @@ i32 main() {
 entry268:
   271 = call i32 getint()
   272 = call i32 getint()
-  br bb %my_memset.entry385
-entry268.split:
-  br bb %while.cond274
+  br bb %my_memset.while.cond387
 while.cond274:
-  E.phi = phi [bb %entry268.split, i32 %272, bb %while.body275, i32 %291]
+  E.phi = phi [bb %my_memset.while.exit397, i32 %272, bb %while.body275, i32 %291]
   278 = icmp sgt i32 %E.phi, i32 0
   br i1 %278, bb %while.body275, bb %while.exit276
 while.body275:
@@ -240,12 +236,10 @@ while.body275:
   291 = sub i32 %E.phi, i32 1
   br bb %while.cond274
 while.exit276:
-  br bb %max_flow.entry246
-max_flow.entry246:
   br bb %max_flow.while.cond250
 max_flow.while.cond250:
-  flow.phi311 = phi [bb %max_flow.entry246, i32 0, bb %max_flow.if.exit263, i32 %267319]
-  br bb %my_memset.entry400
+  flow.phi311 = phi [bb %while.exit276, i32 0, bb %max_flow.if.exit263, i32 %267319]
+  br bb %my_memset.while.cond402
 max_flow.then262:
   call void putint(i32 %flow.phi311)
   call void putch(i32 10)
@@ -253,10 +247,8 @@ max_flow.then262:
 max_flow.if.exit263:
   267319 = add i32 %flow.phi311, i32 %259313
   br bb %max_flow.while.cond250
-my_memset.entry385:
-  br bb %my_memset.while.cond387
 my_memset.while.cond387:
-  i.phi388 = phi [bb %my_memset.entry385, i32 0, bb %my_memset.while.body391, i32 %16395]
+  i.phi388 = phi [bb %entry268, i32 0, bb %my_memset.while.body391, i32 %16395]
   9389 = icmp slt i32 %i.phi388, i32 10
   br i1 %9389, bb %my_memset.while.body391, bb %my_memset.while.exit397
 my_memset.while.body391:
@@ -266,11 +258,9 @@ my_memset.while.body391:
   16395 = add i32 %i.phi388, i32 1
   br bb %my_memset.while.cond387
 my_memset.while.exit397:
-  br bb %entry268.split
-my_memset.entry400:
-  br bb %my_memset.while.cond402
+  br bb %while.cond274
 my_memset.while.cond402:
-  i.phi403 = phi [bb %my_memset.entry400, i32 0, bb %my_memset.while.body406, i32 %16410]
+  i.phi403 = phi [bb %max_flow.while.cond250, i32 0, bb %my_memset.while.body406, i32 %16410]
   9404 = icmp slt i32 %i.phi403, i32 10
   br i1 %9404, bb %my_memset.while.body406, bb %my_memset.while.exit412
 my_memset.while.body406:

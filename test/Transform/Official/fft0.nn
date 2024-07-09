@@ -22,7 +22,7 @@ while.body94:
   102 = icmp eq i32 %101, i32 0
   br i1 %102, bb %then103, bb %else105
 while.exit95:
-  br bb %memmove.entry61
+  br bb %memmove.while.cond
 then103:
   107 = sdiv i32 %i92.phi303, i32 2
   108 = mul i32 %107, i32 4
@@ -75,10 +75,8 @@ while.body153:
   br bb %while.cond152
 while.exit154:
   ret i32 0
-memmove.entry61:
-  br bb %memmove.while.cond
 memmove.while.cond:
-  i.phi314 = phi [bb %memmove.entry61, i32 0, bb %memmove.while.body, i32 %82325]
+  i.phi314 = phi [bb %while.exit95, i32 0, bb %memmove.while.body, i32 %82325]
   70315 = icmp slt i32 %i.phi314, i32 %n
   br i1 %70315, bb %memmove.while.body, bb %memmove.while.exit
 memmove.while.body:

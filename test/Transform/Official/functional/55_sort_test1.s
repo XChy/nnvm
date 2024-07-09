@@ -53,18 +53,17 @@ main:
   ADDI s0, sp, 36
   ADDI s1, zero, 8
   SW s1, 0(s0)
-  JAL zero, bb5
-bb1:
   ADD s0, zero, zero
-  JAL zero, bb2
-bb2:
+  ADD s1, zero, zero
+  JAL zero, bb4
+bb1:
   ADD s1, s0, zero
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb3
-  JAL zero, bb4
-bb3:
+  BNE s2, zero, bb2
+  JAL zero, bb3
+bb2:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 0
@@ -76,8 +75,8 @@ bb3:
   CALL putch
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb2
-bb4:
+  JAL zero, bb1
+bb3:
   ADD a0, zero, zero
   LD s11, 40(sp)
   LD s10, 48(sp)
@@ -94,11 +93,7 @@ bb4:
   LD s9, 136(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
-bb5:
-  ADD s0, zero, zero
-  ADD s1, zero, zero
-  JAL zero, bb6
-bb6:
+bb4:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, n
@@ -106,15 +101,16 @@ bb6:
   ADDI s4, zero, 1
   SUBW s6, s5, s4
   SLT s4, s2, s6
-  BNE s4, zero, bb7
-  JAL zero, bb8
-bb7:
+  BNE s4, zero, bb5
+  JAL zero, bb6
+bb5:
   ADD s4, s3, zero
   ADD s3, zero, zero
-  JAL zero, bb9
-bb8:
+  JAL zero, bb7
+bb6:
+  ADD s0, zero, zero
   JAL zero, bb1
-bb9:
+bb7:
   ADD s5, s3, zero
   ADD s6, s4, zero
   LA s7, n
@@ -123,9 +119,9 @@ bb9:
   ADDI s8, zero, 1
   SUBW s9, s7, s8
   SLT s7, s5, s9
-  BNE s7, zero, bb10
-  JAL zero, bb11
-bb10:
+  BNE s7, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s7, zero, 4
   MULW s8, s5, s7
   ADDI t6, sp, 0
@@ -138,28 +134,28 @@ bb10:
   ADD s5, t5, s10
   LW s10, 0(s5)
   SLT s11, s10, s8
-  BNE s11, zero, bb12
-  JAL zero, bb14
-bb11:
+  BNE s11, zero, bb10
+  JAL zero, bb12
+bb9:
   ADDIW s3, s2, 1
   ADD s0, s6, zero
   ADD s1, s3, zero
-  JAL zero, bb6
-bb12:
+  JAL zero, bb4
+bb10:
   LW s8, 0(s5)
   LW s10, 0(s7)
   SW s10, 0(s5)
   SW s8, 0(s7)
   ADD s5, s8, zero
-  JAL zero, bb13
-bb13:
+  JAL zero, bb11
+bb11:
   ADD s7, s5, zero
   ADD s4, s7, zero
   ADD s3, s9, zero
-  JAL zero, bb9
-bb14:
+  JAL zero, bb7
+bb12:
   ADD s5, s6, zero
-  JAL zero, bb13
+  JAL zero, bb11
 bubblesort:
   ADDI sp, sp, -112
   SD s11, 0(sp)
@@ -178,8 +174,8 @@ bubblesort:
   ADD s0, a0, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb16
-bb16:
+  JAL zero, bb14
+bb14:
   ADD s3, s2, zero
   ADD s4, s1, zero
   LA s5, n
@@ -187,13 +183,13 @@ bb16:
   ADDI s5, zero, 1
   SUBW s7, s6, s5
   SLT s5, s3, s7
-  BNE s5, zero, bb17
-  JAL zero, bb18
-bb17:
+  BNE s5, zero, bb15
+  JAL zero, bb16
+bb15:
   ADD s5, s4, zero
   ADD s4, zero, zero
-  JAL zero, bb19
-bb18:
+  JAL zero, bb17
+bb16:
   ADD a0, zero, zero
   LD s11, 0(sp)
   LD s10, 8(sp)
@@ -210,7 +206,7 @@ bb18:
   LD s9, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb19:
+bb17:
   ADD s6, s4, zero
   ADD s7, s5, zero
   LA s8, n
@@ -219,9 +215,9 @@ bb19:
   ADDI s9, zero, 1
   SUBW s10, s8, s9
   SLT s8, s6, s10
-  BNE s8, zero, bb20
-  JAL zero, bb21
-bb20:
+  BNE s8, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDI s8, zero, 4
   MULW s9, s6, s8
   ADD s8, s0, s9
@@ -232,25 +228,25 @@ bb20:
   ADD s6, s0, s11
   LW s11, 0(s6)
   SLT t0, s11, s9
-  BNE t0, zero, bb22
-  JAL zero, bb24
-bb21:
+  BNE t0, zero, bb20
+  JAL zero, bb22
+bb19:
   ADDIW s4, s3, 1
   ADD s1, s7, zero
   ADD s2, s4, zero
-  JAL zero, bb16
-bb22:
+  JAL zero, bb14
+bb20:
   LW s9, 0(s6)
   LW s11, 0(s8)
   SW s11, 0(s6)
   SW s9, 0(s8)
   ADD s6, s9, zero
-  JAL zero, bb23
-bb23:
+  JAL zero, bb21
+bb21:
   ADD s8, s6, zero
   ADD s5, s8, zero
   ADD s4, s10, zero
-  JAL zero, bb19
-bb24:
+  JAL zero, bb17
+bb22:
   ADD s6, s7, zero
-  JAL zero, bb23
+  JAL zero, bb21

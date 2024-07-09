@@ -60,15 +60,13 @@ while.cond125:
   129 = icmp slt i32 %i84.phi, i32 50
   br i1 %129, bb %while.body126, bb %while.exit127
 while.body126:
-  br bb %mv.entry
+  br bb %mv.while.cond
 while.exit127:
   call void _sysy_stoptime(i32 67)
   call void putarray(i32 %83, ptr @C)
   ret i32 0
-mv.entry:
-  br bb %mv.while.cond
 mv.while.cond:
-  i.phi152159 = phi [bb %mv.entry, i32 0, bb %mv.while.body, i32 %17166]
+  i.phi152159 = phi [bb %while.body126, i32 0, bb %mv.while.body, i32 %17166]
   11160 = icmp slt i32 %i.phi152159, i32 %83
   br i1 %11160, bb %mv.while.body, bb %mv.while.exit
 mv.while.body:
@@ -88,7 +86,7 @@ mv.while.cond18:
 mv.while.body19:
   br bb %mv.while.cond25
 mv.while.exit20:
-  br bb %mv.entry224
+  br bb %mv.while.cond226
 mv.while.cond25:
   j.phi181 = phi [bb %mv.while.body19, i32 0, bb %mv.if.exit, i32 %78210]
   y.phi149182 = phi [bb %mv.while.body19, i32 %y.phi150172, bb %mv.if.exit, i32 %y.phi208]
@@ -132,10 +130,8 @@ mv.else:
   76220 = add i32 %62.load215, i32 %75219
   store i32 %76220 to ptr %59214
   br bb %mv.if.exit
-mv.entry224:
-  br bb %mv.while.cond226
 mv.while.cond226:
-  i.phi152227 = phi [bb %mv.entry224, i32 0, bb %mv.while.body230, i32 %17234]
+  i.phi152227 = phi [bb %mv.while.exit20, i32 0, bb %mv.while.body230, i32 %17234]
   11228 = icmp slt i32 %i.phi152227, i32 %83
   br i1 %11228, bb %mv.while.body230, bb %mv.while.exit236
 mv.while.body230:

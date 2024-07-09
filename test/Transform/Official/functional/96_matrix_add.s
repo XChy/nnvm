@@ -67,18 +67,16 @@ bb2:
   ADD s0, s2, zero
   JAL zero, bb1
 bb3:
-  JAL zero, bb14
-bb4:
   ADD s0, zero, zero
-  JAL zero, bb5
-bb5:
+  JAL zero, bb13
+bb4:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb6
-  JAL zero, bb7
-bb6:
+  BNE s2, zero, bb5
+  JAL zero, bb6
+bb5:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 32
@@ -89,20 +87,20 @@ bb6:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb5
-bb7:
+  JAL zero, bb4
+bb6:
   ADDI a0, zero, 10
   CALL putch
   ADD s0, zero, zero
-  JAL zero, bb8
-bb8:
+  JAL zero, bb7
+bb7:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s2, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t6, sp, 16
@@ -113,20 +111,20 @@ bb9:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   ADDI a0, zero, 10
   CALL putch
   ADD s0, zero, zero
-  JAL zero, bb11
-bb11:
+  JAL zero, bb10
+bb10:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE s2, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 0
@@ -137,8 +135,8 @@ bb12:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb10
+bb12:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -153,17 +151,14 @@ bb13:
   LD s0, 216(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
-bb14:
-  ADD s0, zero, zero
-  JAL zero, bb15
-bb15:
+bb13:
   ADD s1, s0, zero
   LA s2, M
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb16
-  JAL zero, bb17
-bb16:
+  BNE s2, zero, bb14
+  JAL zero, bb15
+bb14:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t6, sp, 32
@@ -198,8 +193,9 @@ bb16:
   FSW fs2, 0(s2)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb15
-bb17:
+  JAL zero, bb13
+bb15:
+  ADD s0, zero, zero
   JAL zero, bb4
 add:
   ADDI sp, sp, -128
@@ -231,15 +227,15 @@ add:
   ADD s8, t5, zero
   LD s9, 0(s8)
   ADD s8, zero, zero
-  JAL zero, bb19
-bb19:
+  JAL zero, bb17
+bb17:
   ADD s10, s8, zero
   LA s11, M
   LW t0, 0(s11)
   SLT s11, s10, t0
-  BNE s11, zero, bb20
-  JAL zero, bb21
-bb20:
+  BNE s11, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDI s11, zero, 4
   MULW t0, s10, s11
   ADD s11, s6, t0
@@ -265,8 +261,8 @@ bb20:
   FSW fs2, 0(s11)
   ADDIW s11, s10, 1
   ADD s8, s11, zero
-  JAL zero, bb19
-bb21:
+  JAL zero, bb17
+bb19:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s11, 8(sp)

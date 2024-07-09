@@ -32,11 +32,9 @@ entry55:
   store i32 7 to ptr %74
   76 = ptradd ptr %a, i32 36
   store i32 8 to ptr %76
-  br bb %bubblesort.entry
-entry55.split:
-  br bb %while.cond79
+  br bb %bubblesort.while.cond
 while.cond79:
-  i77.phi = phi [bb %entry55.split, i32 0, bb %while.body80, i32 %96]
+  i77.phi = phi [bb %bubblesort.while.exit, i32 0, bb %while.body80, i32 %96]
   n.load83 = load i32 from ptr @n
   84 = icmp slt i32 %i77.phi, i32 %n.load83
   br i1 %84, bb %while.body80, bb %while.exit81
@@ -50,11 +48,9 @@ while.body80:
   br bb %while.cond79
 while.exit81:
   ret i32 0
-bubblesort.entry:
-  br bb %bubblesort.while.cond
 bubblesort.while.cond:
-  tmp.phi104109 = phi [bb %bubblesort.entry, i32 ub, bb %bubblesort.while.exit13, i32 %tmp.phi103120]
-  i.phi110 = phi [bb %bubblesort.entry, i32 0, bb %bubblesort.while.exit13, i32 %54138]
+  tmp.phi104109 = phi [bb %entry55, i32 ub, bb %bubblesort.while.exit13, i32 %tmp.phi103120]
+  i.phi110 = phi [bb %entry55, i32 0, bb %bubblesort.while.exit13, i32 %54138]
   n.load111 = load i32 from ptr @n
   8112 = sub i32 %n.load111, i32 1
   9113 = icmp slt i32 %i.phi110, i32 %8112
@@ -62,7 +58,7 @@ bubblesort.while.cond:
 bubblesort.while.body:
   br bb %bubblesort.while.cond11
 bubblesort.while.exit:
-  br bb %entry55.split
+  br bb %while.cond79
 bubblesort.while.cond11:
   tmp.phi103120 = phi [bb %bubblesort.while.body, i32 %tmp.phi104109, bb %bubblesort.if.exit, i32 %tmp.phi147]
   j.phi121 = phi [bb %bubblesort.while.body, i32 0, bb %bubblesort.if.exit, i32 %26131]

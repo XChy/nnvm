@@ -13,86 +13,44 @@ i32 main() {
 entry8:
   10 = call i32 getint()
   12 = icmp sgt i32 %10, i32 10
-  br i1 %12, bb %select.then, bb %select.else
+  br i1 %12, bb %select.then, bb %select.exit
 select.then:
   g.load95 = load i32 from ptr @g
   496 = add i32 %g.load95, i32 %10
   store i32 %496 to ptr @g
   call void putint(i32 %496)
-  g.load799 = load i32 from ptr @g
-  19 = icmp ne i32 %g.load799, i32 0
-  br bb %select.exit
-select.else:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %19]
-  br i1 %select.phi, bb %then, bb %else
-then:
-  br bb %if.exit
-if.exit:
   24 = call i32 getint()
   26 = icmp sgt i32 %24, i32 11
-  br i1 %26, bb %select.then27, bb %select.else28
-else:
-  br bb %if.exit
+  br i1 %26, bb %select.then27, bb %select.exit29
 select.then27:
   g.load104 = load i32 from ptr @g
   4105 = add i32 %g.load104, i32 %24
   store i32 %4105 to ptr @g
   call void putint(i32 %4105)
-  g.load7108 = load i32 from ptr @g
-  33 = icmp ne i32 %g.load7108, i32 0
-  br bb %select.exit29
-select.else28:
   br bb %select.exit29
 select.exit29:
-  select30.phi = phi [bb %select.else28, i1 0, bb %select.then27, i1 %33]
-  br i1 %select30.phi, bb %then35, bb %else37
-then35:
-  br bb %if.exit36
-if.exit36:
   38 = call i32 getint()
   40 = icmp sle i32 %38, i32 99
-  br i1 %40, bb %select.then41, bb %select.else42
-else37:
-  br bb %if.exit36
-select.then41:
-  br bb %select.exit43
+  br i1 %40, bb %select.exit43, bb %select.else42
 select.else42:
   g.load113 = load i32 from ptr @g
   4114 = add i32 %g.load113, i32 %38
   store i32 %4114 to ptr @g
   call void putint(i32 %4114)
-  g.load7117 = load i32 from ptr @g
-  47 = icmp ne i32 %g.load7117, i32 0
   br bb %select.exit43
 select.exit43:
-  select44.phi = phi [bb %select.else42, i1 %47, bb %select.then41, i1 1]
-  br i1 %select44.phi, bb %then50, bb %else52
-then50:
-  br bb %if.exit51
-if.exit51:
   53 = call i32 getint()
   55 = icmp sle i32 %53, i32 100
-  br i1 %55, bb %select.then56, bb %select.else57
-else52:
-  br bb %if.exit51
-select.then56:
-  br bb %select.exit58
+  br i1 %55, bb %select.exit58, bb %select.else57
 select.else57:
   g.load122 = load i32 from ptr @g
   4123 = add i32 %g.load122, i32 %53
   store i32 %4123 to ptr @g
   call void putint(i32 %4123)
-  g.load7126 = load i32 from ptr @g
-  62 = icmp ne i32 %g.load7126, i32 0
   br bb %select.exit58
 select.exit58:
-  select59.phi = phi [bb %select.else57, i1 %62, bb %select.then56, i1 1]
-  br i1 %select59.phi, bb %then65, bb %else67
-then65:
-  br bb %if.exit66
-if.exit66:
   g.load131 = load i32 from ptr @g
   4132 = add i32 %g.load131, i32 99
   store i32 %4132 to ptr @g
@@ -102,28 +60,15 @@ if.exit66:
   70 =  i1 %69, i1 1
   71 = zext i1 %70 to i32
   72 = icmp ne i32 %71, i32 0
-  br i1 %72, bb %select.then73, bb %select.else74
-else67:
-  br bb %if.exit66
+  br i1 %72, bb %select.then73, bb %select.exit75
 select.then73:
   g.load140 = load i32 from ptr @g
   4141 = add i32 %g.load140, i32 100
   store i32 %4141 to ptr @g
   call void putint(i32 %4141)
-  g.load7144 = load i32 from ptr @g
-  78 = icmp ne i32 %g.load7144, i32 0
-  br bb %select.exit75
-select.else74:
   br bb %select.exit75
 select.exit75:
-  select76.phi = phi [bb %select.else74, i1 0, bb %select.then73, i1 %78]
-  br i1 %select76.phi, bb %then80, bb %else82
-then80:
-  br bb %if.exit81
-if.exit81:
   ret i32 0
-else82:
-  br bb %if.exit81
 }
 
 external float getfloat()

@@ -2,15 +2,11 @@ external i32 getint()
 
 pure i32 ifElseIf() {
 entry:
-  br bb %else41
-if.exit:
-  ret i32 -5
+  br bb %if.exit40
 if.exit27:
-  br bb %if.exit
+  ret i32 -5
 if.exit40:
   br bb %if.exit27
-else41:
-  br bb %if.exit40
 }
 
 external i32 getch()
@@ -23,18 +19,14 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry47:
-  br bb %ifElseIf.else41
+  br bb %ifElseIf.if.exit40
 entry47.split:
   call void putint(i32 -5)
   ret i32 0
-ifElseIf.if.exit:
-  br bb %entry47.split
 ifElseIf.if.exit27:
-  br bb %ifElseIf.if.exit
+  br bb %entry47.split
 ifElseIf.if.exit40:
   br bb %ifElseIf.if.exit27
-ifElseIf.else41:
-  br bb %ifElseIf.if.exit40
 }
 
 external float getfloat()

@@ -36,7 +36,7 @@ findSmallest:
   XOR s5, s1, s2
   SLTIU s6, s5, 1
   BNE s6, zero, bb1
-  JAL zero, bb3
+  JAL zero, bb2
 bb1:
   LD s11, 0(sp)
   LD s10, 8(sp)
@@ -54,6 +54,18 @@ bb1:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb2:
+  ADDI s5, zero, 4
+  MULW s6, s2, s5
+  LA s5, array
+  ADD s7, s5, s6
+  LW s5, 0(s7)
+  ADD s6, s1, zero
+  ADD s8, s1, zero
+  JAL zero, bb10
+bb3:
+  ADD s5, zero, zero
+  JAL zero, bb6
+bb4:
   LD s11, 0(sp)
   LD s10, 8(sp)
   LD s9, 16(sp)
@@ -69,30 +81,16 @@ bb2:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb3:
-  ADDI s5, zero, 4
-  MULW s6, s2, s5
-  LA s5, array
-  ADD s7, s5, s6
-  LW s5, 0(s7)
-  ADD s6, s1, zero
-  ADD s8, s1, zero
-  JAL zero, bb13
-bb4:
-  ADD s5, zero, zero
-  JAL zero, bb7
 bb5:
-  JAL zero, bb2
-bb6:
   SLT s5, s3, s0
-  BNE s5, zero, bb10
-  JAL zero, bb12
-bb7:
+  BNE s5, zero, bb8
+  JAL zero, bb9
+bb6:
   ADD s6, s5, zero
   SLT s7, s6, s0
-  BNE s7, zero, bb8
-  JAL zero, bb9
-bb8:
+  BNE s7, zero, bb7
+  JAL zero, bb4
+bb7:
   ADDI s7, zero, 4
   MULW s8, s6, s7
   LA s7, array
@@ -104,10 +102,8 @@ bb8:
   CALL putch
   ADDIW s7, s6, 1
   ADD s5, s7, zero
-  JAL zero, bb7
-bb9:
-  JAL zero, bb5
-bb10:
+  JAL zero, bb6
+bb8:
   ADDI s5, zero, 1
   SUBW s6, s0, s5
   ADD a0, s1, zero
@@ -115,24 +111,22 @@ bb10:
   ADD a2, s3, zero
   ADD a3, s4, zero
   CALL findSmallest
-  JAL zero, bb11
-bb11:
-  JAL zero, bb5
-bb12:
+  JAL zero, bb4
+bb9:
   ADDIW s1, s0, 1
   ADD a0, s1, zero
   ADD a1, s2, zero
   ADD a2, s3, zero
   ADD a3, s4, zero
   CALL findSmallest
-  JAL zero, bb11
-bb13:
+  JAL zero, bb4
+bb10:
   ADD s0, s8, zero
   ADD s9, s6, zero
   SLT s10, s9, s2
-  BNE s10, zero, bb14
-  JAL zero, bb15
-bb14:
+  BNE s10, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s10, zero, 4
   MULW s11, s9, s10
   LA s10, array
@@ -140,9 +134,9 @@ bb14:
   LW s10, 0(t0)
   SLT s11, s5, s10
   XORI s10, s11, 1
-  BNE s10, zero, bb16
-  JAL zero, bb18
-bb15:
+  BNE s10, zero, bb13
+  JAL zero, bb15
+bb12:
   ADDI s5, zero, 4
   MULW s6, s0, s5
   LA s5, array
@@ -153,9 +147,9 @@ bb15:
   SW s5, 0(s7)
   XOR s5, s3, s0
   SLTIU s6, s5, 1
-  BNE s6, zero, bb4
-  JAL zero, bb6
-bb16:
+  BNE s6, zero, bb3
+  JAL zero, bb5
+bb13:
   LW s10, 0(t0)
   ADDI s11, zero, 4
   MULW t1, s0, s11
@@ -166,16 +160,16 @@ bb16:
   SW s10, 0(t2)
   ADDIW s10, s0, 1
   ADD s11, s10, zero
-  JAL zero, bb17
-bb17:
+  JAL zero, bb14
+bb14:
   ADD s10, s11, zero
   ADDIW t0, s9, 1
   ADD s6, t0, zero
   ADD s8, s10, zero
-  JAL zero, bb13
-bb18:
+  JAL zero, bb10
+bb15:
   ADD s11, s0, zero
-  JAL zero, bb17
+  JAL zero, bb14
 findPivot:
   ADDI sp, sp, -112
   SD s11, 0(sp)
@@ -200,14 +194,14 @@ findPivot:
   LW s2, 0(s4)
   ADD s3, s0, zero
   ADD s5, s0, zero
-  JAL zero, bb20
-bb20:
+  JAL zero, bb17
+bb17:
   ADD s0, s5, zero
   ADD s6, s3, zero
   SLT s7, s6, s1
-  BNE s7, zero, bb21
-  JAL zero, bb22
-bb21:
+  BNE s7, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDI s7, zero, 4
   MULW s8, s6, s7
   LA s7, array
@@ -215,9 +209,9 @@ bb21:
   LW s7, 0(s9)
   SLT s8, s2, s7
   XORI s7, s8, 1
-  BNE s7, zero, bb24
-  JAL zero, bb26
-bb22:
+  BNE s7, zero, bb20
+  JAL zero, bb22
+bb19:
   ADDI s1, zero, 4
   MULW s2, s0, s1
   LA s1, array
@@ -226,8 +220,6 @@ bb22:
   LW s2, 0(s4)
   SW s2, 0(s3)
   SW s1, 0(s4)
-  JAL zero, bb23
-bb23:
   ADD a0, s0, zero
   LD s11, 0(sp)
   LD s10, 8(sp)
@@ -244,7 +236,7 @@ bb23:
   LD s9, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb24:
+bb20:
   LW s7, 0(s9)
   ADDI s8, zero, 4
   MULW s10, s0, s8
@@ -255,16 +247,16 @@ bb24:
   SW s7, 0(s11)
   ADDIW s7, s0, 1
   ADD s8, s7, zero
-  JAL zero, bb25
-bb25:
+  JAL zero, bb21
+bb21:
   ADD s7, s8, zero
   ADDIW s9, s6, 1
   ADD s3, s9, zero
   ADD s5, s7, zero
-  JAL zero, bb20
-bb26:
+  JAL zero, bb17
+bb22:
   ADD s8, s0, zero
-  JAL zero, bb25
+  JAL zero, bb21
 main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
@@ -280,13 +272,13 @@ main:
   CALL getint
   ADD s1, a0, zero
   ADD s2, zero, zero
-  JAL zero, bb28
-bb28:
+  JAL zero, bb24
+bb24:
   ADD s3, s2, zero
   SLT s4, s3, s0
-  BNE s4, zero, bb29
-  JAL zero, bb30
-bb29:
+  BNE s4, zero, bb25
+  JAL zero, bb26
+bb25:
   ADDI s4, zero, 4
   MULW s5, s3, s4
   LA s4, array
@@ -296,8 +288,8 @@ bb29:
   SW s4, 0(s6)
   ADDIW s4, s3, 1
   ADD s2, s4, zero
-  JAL zero, bb28
-bb30:
+  JAL zero, bb24
+bb26:
   ADDI s2, zero, 1
   SUBW s3, s0, s2
   ADD a0, zero, zero

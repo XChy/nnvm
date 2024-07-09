@@ -311,6 +311,7 @@ bb18:
   ADD s9, s7, s8
   SW s5, 0(s9)
   ADDIW s7, s0, 1
+  ADDI s8, zero, 1
   JAL zero, bb27
 bb19:
   LW t4, 8(sp)
@@ -318,7 +319,7 @@ bb19:
   XOR a2, t2, zero
   SLTU t2, zero, a2
   BNE t2, zero, bb21
-  JAL zero, bb36
+  JAL zero, bb35
 bb20:
   ADD a0, s4, zero
   LD s11, 32(sp)
@@ -339,7 +340,7 @@ bb20:
 bb21:
   SLT t2, s4, s0
   BNE t2, zero, bb23
-  JAL zero, bb37
+  JAL zero, bb36
 bb22:
   ADD t2, a2, zero
   ADD a3, a1, zero
@@ -355,15 +356,15 @@ bb23:
 bb24:
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
+  SW t4, 24(sp)
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
   ADD t0, a0, zero
-  LW t4, 16(sp)
+  LW t4, 24(sp)
   SLT t1, t4, t0
   BNE t1, zero, bb25
-  JAL zero, bb38
+  JAL zero, bb37
 bb25:
   ADD t1, t0, zero
   JAL zero, bb26
@@ -373,29 +374,26 @@ bb26:
   ADD a2, t2, zero
   JAL zero, bb22
 bb27:
-  ADDI s8, zero, 1
-  JAL zero, bb28
-bb28:
   ADD s9, s8, zero
   SLT s10, s9, s7
-  BNE s10, zero, bb29
-  JAL zero, bb30
-bb29:
+  BNE s10, zero, bb28
+  JAL zero, bb29
+bb28:
   ADDIW s10, s9, 1
   ADD s11, s10, zero
-  JAL zero, bb31
-bb30:
+  JAL zero, bb30
+bb29:
   ADDI t4, zero, 1
   SW t4, 8(sp)
   JAL zero, bb19
-bb31:
+bb30:
   ADD t4, s11, zero
-  SW t4, 24(sp)
-  LW t4, 24(sp)
+  SW t4, 16(sp)
+  LW t4, 16(sp)
   SLT t1, t4, s7
-  BNE t1, zero, bb32
-  JAL zero, bb33
-bb32:
+  BNE t1, zero, bb31
+  JAL zero, bb32
+bb31:
   ADDI t1, zero, 4
   MULW t2, s9, t1
   LA t1, store
@@ -406,7 +404,7 @@ bb32:
   LA t1, graph
   ADD t2, t1, a2
   ADDI t1, zero, 4
-  LW t4, 24(sp)
+  LW t4, 16(sp)
   MULW a2, t4, t1
   LA t1, store
   ADD a3, t1, a2
@@ -417,29 +415,29 @@ bb32:
   LW t2, 0(t1)
   XOR t1, t2, zero
   SLTIU t2, t1, 1
-  BNE t2, zero, bb34
-  JAL zero, bb35
-bb33:
+  BNE t2, zero, bb33
+  JAL zero, bb34
+bb32:
   ADD s8, s10, zero
-  JAL zero, bb28
-bb34:
+  JAL zero, bb27
+bb33:
   ADD t4, zero, zero
   SW t4, 8(sp)
   JAL zero, bb19
-bb35:
-  LW t4, 24(sp)
+bb34:
+  LW t4, 16(sp)
   ADDIW s1, t4, 1
   ADD s11, s1, zero
-  JAL zero, bb31
-bb36:
+  JAL zero, bb30
+bb35:
   ADD a1, s6, zero
   ADD a2, s4, zero
   JAL zero, bb22
-bb37:
+bb36:
   ADD t4, s4, zero
   SW t4, 0(sp)
   JAL zero, bb24
-bb38:
-  LW t4, 16(sp)
+bb37:
+  LW t4, 24(sp)
   ADD t1, t4, zero
   JAL zero, bb26

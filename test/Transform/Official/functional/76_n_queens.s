@@ -166,7 +166,7 @@ bb14:
   XOR s6, s0, s7
   SLTIU s7, s6, 1
   BNE s7, zero, bb16
-  JAL zero, bb18
+  JAL zero, bb17
 bb15:
   ADDIW s8, s2, 1
   ADD s1, s8, zero
@@ -178,10 +178,8 @@ bb16:
   LA s7, sum
   SW s6, 0(s7)
   ADDI s6, zero, 1
-  JAL zero, bb19
-bb17:
   JAL zero, bb18
-bb18:
+bb17:
   ADDI s8, zero, 1
   SW s8, 0(s5)
   ADDW s8, s0, s2
@@ -216,15 +214,15 @@ bb18:
   ADD s9, s8, s10
   SW zero, 0(s9)
   JAL zero, bb15
-bb19:
+bb18:
   ADD s7, s6, zero
   LA s8, n
   LW s9, 0(s8)
   SLT s8, s9, s7
   XORI s9, s8, 1
-  BNE s9, zero, bb20
-  JAL zero, bb21
-bb20:
+  BNE s9, zero, bb19
+  JAL zero, bb17
+bb19:
   ADDI s8, zero, 4
   MULW s9, s7, s8
   LA s8, ans
@@ -236,20 +234,18 @@ bb20:
   LW s9, 0(s8)
   XOR s8, s7, s9
   SLTIU s9, s8, 1
-  BNE s9, zero, bb22
-  JAL zero, bb23
-bb21:
-  JAL zero, bb17
-bb22:
+  BNE s9, zero, bb20
+  JAL zero, bb21
+bb20:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb17
-bb23:
+bb21:
   ADDI a0, zero, 32
   CALL putch
   ADDIW s1, s7, 1
   ADD s6, s1, zero
-  JAL zero, bb19
+  JAL zero, bb18
 printans:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -264,16 +260,16 @@ printans:
   LA s1, sum
   SW s0, 0(s1)
   ADDI s0, zero, 1
-  JAL zero, bb25
-bb25:
+  JAL zero, bb23
+bb23:
   ADD s1, s0, zero
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s3, s1
   XORI s3, s2, 1
-  BNE s3, zero, bb26
-  JAL zero, bb27
-bb26:
+  BNE s3, zero, bb24
+  JAL zero, bb25
+bb24:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   LA s2, ans
@@ -285,9 +281,9 @@ bb26:
   LW s3, 0(s2)
   XOR s2, s1, s3
   SLTIU s3, s2, 1
-  BNE s3, zero, bb28
-  JAL zero, bb29
-bb27:
+  BNE s3, zero, bb26
+  JAL zero, bb27
+bb25:
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)
@@ -296,7 +292,7 @@ bb27:
   LD s0, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb28:
+bb26:
   ADDI a0, zero, 10
   CALL putch
   LD ra, 0(sp)
@@ -307,9 +303,9 @@ bb28:
   LD s0, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb29:
+bb27:
   ADDI a0, zero, 32
   CALL putch
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb25
+  JAL zero, bb23

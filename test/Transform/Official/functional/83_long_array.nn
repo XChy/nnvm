@@ -183,13 +183,9 @@ entry184:
   %a1211 = stack 40000
   %a2210 = stack 40000
   %a3209 = stack 40000
-  br bb %long_array.entry
-entry184.split:
-  ret i32 %ans.phi195267
-long_array.entry:
   br bb %long_array.while.cond
 long_array.while.cond:
-  i.phi189214 = phi [bb %long_array.entry, i32 0, bb %long_array.while.body, i32 %21223]
+  i.phi189214 = phi [bb %entry184, i32 0, bb %long_array.while.body, i32 %21223]
   11215 = icmp slt i32 %i.phi189214, i32 10000
   br i1 %11215, bb %long_array.while.body, bb %long_array.while.exit
 long_array.while.body:
@@ -250,7 +246,7 @@ long_array.while.body73:
   80272 = icmp slt i32 %i.phi268, i32 10
   br i1 %80272, bb %long_array.then, bb %long_array.else
 long_array.while.exit74:
-  br bb %entry184.split
+  ret i32 %ans.phi195267
 long_array.then:
   86277 = mul i32 %i.phi268, i32 4
   87278 = ptradd ptr %a3209, i32 %86277

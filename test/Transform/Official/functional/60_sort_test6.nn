@@ -119,11 +119,9 @@ entry101:
   122 = ptradd ptr %a, i32 36
   store i32 8 to ptr %122
   n.load = load i32 from ptr @n
-  br bb %counting_sort.entry
-entry101.split:
-  br bb %while.cond127
+  br bb %counting_sort.while.cond
 while.cond127:
-  i123.phi = phi [bb %entry101.split, i32 0, bb %while.body128, i32 %144]
+  i123.phi = phi [bb %counting_sort.while.exit64, i32 0, bb %while.body128, i32 %144]
   n.load131 = load i32 from ptr @n
   132 = icmp slt i32 %i123.phi, i32 %n.load131
   br i1 %132, bb %while.body128, bb %while.exit129
@@ -137,10 +135,8 @@ while.body128:
   br bb %while.cond127
 while.exit129:
   ret i32 0
-counting_sort.entry:
-  br bb %counting_sort.while.cond
 counting_sort.while.cond:
-  k.phi148156 = phi [bb %counting_sort.entry, i32 0, bb %counting_sort.while.body, i32 %16163]
+  k.phi148156 = phi [bb %entry101, i32 0, bb %counting_sort.while.body, i32 %16163]
   10157 = icmp slt i32 %k.phi148156, i32 10
   br i1 %10157, bb %counting_sort.while.body, bb %counting_sort.while.exit
 counting_sort.while.body:
@@ -216,7 +212,7 @@ counting_sort.while.body63:
   store i32 %97.load228 to ptr %93227
   br bb %counting_sort.while.cond62
 counting_sort.while.exit64:
-  br bb %entry101.split
+  br bb %while.cond127
 }
 
 external float getfloat()

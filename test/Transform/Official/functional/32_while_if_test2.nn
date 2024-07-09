@@ -10,32 +10,28 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry29:
-  br bb %ifWhile.else
-entry29.split:
-  ret i32 %b.phi3440
-ifWhile.if.exit:
-  b.phi3440 = phi [bb %ifWhile.while.exit20, i32 %b.phi55, bb %ifWhile.while.exit, i32 %1752]
-  br bb %entry29.split
-ifWhile.else:
   br bb %ifWhile.while.cond18
+ifWhile.if.exit:
+  b.phi3440 = phi [bb %ifWhile.while.exit20, i32 %b.phi53, bb %ifWhile.while.exit, i32 %1750]
+  ret i32 %b.phi3440
 ifWhile.while.cond:
-  b.phi3545 = phi [bb %ifWhile.while.body, i32 %1549]
-  1246 = icmp eq i32 %b.phi3545, i32 2
-  br i1 %1246, bb %ifWhile.while.body, bb %ifWhile.while.exit
+  b.phi3543 = phi [bb %ifWhile.while.body, i32 %1547]
+  1244 = icmp eq i32 %b.phi3543, i32 2
+  br i1 %1244, bb %ifWhile.while.body, bb %ifWhile.while.exit
 ifWhile.while.body:
-  1549 = add i32 %b.phi3545, i32 2
+  1547 = add i32 %b.phi3543, i32 2
   br bb %ifWhile.while.cond
 ifWhile.while.exit:
-  1752 = add i32 %b.phi3545, i32 25
+  1750 = add i32 %b.phi3543, i32 25
   br bb %ifWhile.if.exit
 ifWhile.while.cond18:
-  b.phi55 = phi [bb %ifWhile.else, i32 3, bb %ifWhile.while.body19, i32 %2560]
-  a.phi56 = phi [bb %ifWhile.else, i32 0, bb %ifWhile.while.body19, i32 %2761]
-  2257 = icmp slt i32 %a.phi56, i32 5
-  br i1 %2257, bb %ifWhile.while.body19, bb %ifWhile.while.exit20
+  b.phi53 = phi [bb %entry29, i32 3, bb %ifWhile.while.body19, i32 %2558]
+  a.phi54 = phi [bb %entry29, i32 0, bb %ifWhile.while.body19, i32 %2759]
+  2255 = icmp slt i32 %a.phi54, i32 5
+  br i1 %2255, bb %ifWhile.while.body19, bb %ifWhile.while.exit20
 ifWhile.while.body19:
-  2560 = mul i32 %b.phi55, i32 2
-  2761 = add i32 %a.phi56, i32 1
+  2558 = mul i32 %b.phi53, i32 2
+  2759 = add i32 %a.phi54, i32 1
   br bb %ifWhile.while.cond18
 ifWhile.while.exit20:
   br bb %ifWhile.if.exit
@@ -55,12 +51,10 @@ external void _sysy_starttime(i32 )
 
 pure i32 ifWhile() {
 entry:
-  br bb %else
+  br bb %while.cond18
 if.exit:
   b.phi34 = phi [bb %while.exit20, i32 %b.phi, bb %while.exit, i32 %17]
   ret i32 %b.phi34
-else:
-  br bb %while.cond18
 while.cond:
   b.phi35 = phi [bb %while.body, i32 %15]
   12 = icmp eq i32 %b.phi35, i32 2
@@ -72,8 +66,8 @@ while.exit:
   17 = add i32 %b.phi35, i32 25
   br bb %if.exit
 while.cond18:
-  b.phi = phi [bb %else, i32 3, bb %while.body19, i32 %25]
-  a.phi = phi [bb %else, i32 0, bb %while.body19, i32 %27]
+  b.phi = phi [bb %entry, i32 3, bb %while.body19, i32 %25]
+  a.phi = phi [bb %entry, i32 0, bb %while.body19, i32 %27]
   22 = icmp slt i32 %a.phi, i32 5
   br i1 %22, bb %while.body19, bb %while.exit20
 while.body19:

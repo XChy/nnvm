@@ -13,11 +13,9 @@ entry639:
   %s656 = stack 400
   call void _sysy_starttime(i32 324)
   642 = call i32 getint()
-  br bb %func.entry
-func.entry:
   br bb %func.while.cond
 func.while.cond:
-  m.phi659 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %17666]
+  m.phi659 = phi [bb %entry639, i32 0, bb %func.while.body, i32 %17666]
   11660 = icmp slt i32 %m.phi659, i32 100
   br i1 %11660, bb %func.while.body, bb %func.while.exit
 func.while.body:

@@ -18,16 +18,12 @@ entry98:
   store i32 2 to ptr @h
   store i32 4 to ptr @e
   store i32 6 to ptr @f
-  br bb %EightWhile.entry
-entry98.split:
-  ret i32 %97133
-EightWhile.entry:
   br bb %EightWhile.while.cond
 EightWhile.while.cond:
-  d.phi108114 = phi [bb %EightWhile.entry, i32 10, bb %EightWhile.while.exit15, i32 %d.phi107136]
-  c.phi104115 = phi [bb %EightWhile.entry, i32 7, bb %EightWhile.while.exit15, i32 %c.phi137]
-  b.phi116 = phi [bb %EightWhile.entry, i32 6, bb %EightWhile.while.exit15, i32 %82145]
-  a.phi117 = phi [bb %EightWhile.entry, i32 5, bb %EightWhile.while.exit15, i32 %12121]
+  d.phi108114 = phi [bb %entry98, i32 10, bb %EightWhile.while.exit15, i32 %d.phi107136]
+  c.phi104115 = phi [bb %entry98, i32 7, bb %EightWhile.while.exit15, i32 %c.phi137]
+  b.phi116 = phi [bb %entry98, i32 6, bb %EightWhile.while.exit15, i32 %82145]
+  a.phi117 = phi [bb %entry98, i32 5, bb %EightWhile.while.exit15, i32 %12121]
   9118 = icmp slt i32 %a.phi117, i32 20
   br i1 %9118, bb %EightWhile.while.body, bb %EightWhile.while.exit
 EightWhile.while.body:
@@ -44,7 +40,7 @@ EightWhile.while.exit:
   h.load95131 = load i32 from ptr @h
   96132 = add i32 %94130, i32 %h.load95131
   97133 = sub i32 %89126, i32 %96132
-  br bb %entry98.split
+  ret i32 %97133
 EightWhile.while.cond13:
   d.phi107136 = phi [bb %EightWhile.while.body, i32 %d.phi108114, bb %EightWhile.while.exit23, i32 %d.phi148]
   c.phi137 = phi [bb %EightWhile.while.body, i32 %c.phi104115, bb %EightWhile.while.exit23, i32 %80156]

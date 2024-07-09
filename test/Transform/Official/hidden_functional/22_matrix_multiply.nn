@@ -61,9 +61,7 @@ while.cond92:
 while.body93:
   br bb %while.cond99
 while.exit94:
-  br bb %matrix_multiply.entry
-while.exit94.split:
-  br bb %while.cond118
+  br bb %matrix_multiply.while.cond
 while.cond99:
   j62.phi151 = phi [bb %while.body93, i32 0, bb %while.body100, i32 %114]
   n2.load103 = load i32 from ptr @n2
@@ -82,7 +80,7 @@ while.exit101:
   116 = add i32 %i61.phi147, i32 1
   br bb %while.cond92
 while.cond118:
-  i61.phi = phi [bb %while.exit94.split, i32 0, bb %while.exit127, i32 %145]
+  i61.phi = phi [bb %matrix_multiply.while.exit, i32 0, bb %while.exit127, i32 %145]
   m1.load122 = load i32 from ptr @m1
   123 = icmp slt i32 %i61.phi, i32 %m1.load122
   br i1 %123, bb %while.body119, bb %while.exit120
@@ -109,18 +107,16 @@ while.exit127:
   call void putch(i32 10)
   145 = add i32 %i61.phi, i32 1
   br bb %while.cond118
-matrix_multiply.entry:
-  br bb %matrix_multiply.while.cond
 matrix_multiply.while.cond:
-  k.phi160165 = phi [bb %matrix_multiply.entry, i32 ub, bb %matrix_multiply.while.exit12, i32 %k.phi159175]
-  i.phi166 = phi [bb %matrix_multiply.entry, i32 0, bb %matrix_multiply.while.exit12, i32 %59183]
+  k.phi160165 = phi [bb %while.exit94, i32 ub, bb %matrix_multiply.while.exit12, i32 %k.phi159175]
+  i.phi166 = phi [bb %while.exit94, i32 0, bb %matrix_multiply.while.exit12, i32 %59183]
   m1.load167 = load i32 from ptr @m1
   7168 = icmp slt i32 %i.phi166, i32 %m1.load167
   br i1 %7168, bb %matrix_multiply.while.body, bb %matrix_multiply.while.exit
 matrix_multiply.while.body:
   br bb %matrix_multiply.while.cond10
 matrix_multiply.while.exit:
-  br bb %while.exit94.split
+  br bb %while.cond118
 matrix_multiply.while.cond10:
   k.phi159175 = phi [bb %matrix_multiply.while.body, i32 %k.phi160165, bb %matrix_multiply.while.exit20, i32 %k.phi186]
   j.phi176 = phi [bb %matrix_multiply.while.body, i32 0, bb %matrix_multiply.while.exit20, i32 %57210]

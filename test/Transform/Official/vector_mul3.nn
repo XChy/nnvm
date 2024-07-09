@@ -3,8 +3,6 @@ void mult_combin(ptr v, ptr out, i32 n, ptr tmp) {
 entry119:
   46250 = si2f i32 0 to float
   br bb %mult1.while.cond47
-entry119.split.split:
-  ret 
 mult1.while.cond47:
   sum45.phi224253 = phi [bb %entry119, float %46250, bb %mult1.while.exit56, float %sum45.phi263]
   j.phi222254 = phi [bb %entry119, i32 0, bb %mult1.while.exit56, i32 %j.phi264]
@@ -50,7 +48,7 @@ mult2.while.cond86:
 mult2.while.body87:
   br bb %mult2.while.cond93
 mult2.while.exit88:
-  br bb %entry119.split.split
+  ret 
 mult2.while.cond93:
   sum84.phi448 = phi [bb %mult2.while.body87, float %sum84.phi233438, bb %mult2.while.body94, float %110459]
   j83.phi449 = phi [bb %mult2.while.body87, i32 %j83.phi231439, bb %mult2.while.body94, i32 %112460]
@@ -360,8 +358,6 @@ mult1.while.exit56347:
   store float %sum45.phi333 to ptr %76349
   79351 = add i32 %i43.phi325, i32 1
   br bb %mult1.while.cond47322
-my_sqrt.entry125:
-  br bb %my_sqrt.while.cond127
 my_sqrt.while.cond127:
   temp.load357 = load float from ptr @temp
   temp.load132358 = load float from ptr @temp
@@ -429,7 +425,7 @@ Vectordot.while.body420:
   br bb %Vectordot.while.cond415
 Vectordot.while.exit430:
   200 = fdiv float %sum.phi394, float %sum.phi416
-  br bb %my_sqrt.entry125
+  br bb %my_sqrt.while.cond127
 mult2.while.cond86472:
   sum84.phi233473 = phi [bb %mult1.while.exit49295, float %46285, bb %mult2.while.exit95497, float %sum84.phi483]
   j83.phi231474 = phi [bb %mult1.while.exit49295, i32 0, bb %mult2.while.exit95497, i32 %j83.phi484]

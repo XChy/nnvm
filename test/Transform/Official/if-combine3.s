@@ -21,16 +21,14 @@ main:
   CALL _sysy_starttime
   CALL getint
   ADD s0, a0, zero
+  ADD s1, zero, zero
   JAL zero, bb1
 bb1:
-  ADD s1, zero, zero
-  JAL zero, bb2
-bb2:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb3
-  JAL zero, bb4
-bb3:
+  BNE s3, zero, bb2
+  JAL zero, bb3
+bb2:
   ADDI s3, zero, 4
   MULW s4, s2, s3
   ADDI t5, sp, 0
@@ -38,18 +36,18 @@ bb3:
   SW zero, 0(s3)
   ADDIW s3, s2, 1
   ADD s1, s3, zero
-  JAL zero, bb2
-bb4:
+  JAL zero, bb1
+bb3:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb5
-bb5:
+  JAL zero, bb4
+bb4:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s4, s0
-  BNE s5, zero, bb6
-  JAL zero, bb7
-bb6:
+  BNE s5, zero, bb5
+  JAL zero, bb6
+bb5:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
   SW s6, 0(s5)
@@ -350,8 +348,8 @@ bb6:
   ADDIW s5, s4, 1
   ADD s4, zero, zero
   ADD s6, s3, zero
-  JAL zero, bb8
-bb7:
+  JAL zero, bb7
+bb6:
   ADD a0, s3, zero
   CALL putint
   ADDI a0, zero, 10
@@ -373,13 +371,13 @@ bb7:
   LD s9, 488(sp)
   ADDI sp, sp, 496
   JALR zero, 0(ra)
-bb8:
+bb7:
   ADD s7, s6, zero
   ADD s8, s4, zero
   SLTI s9, s8, 100
-  BNE s9, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s9, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s9, zero, 4
   MULW s10, s8, s9
   ADDI t6, sp, 0
@@ -389,14 +387,14 @@ bb9:
   ADDIW s10, s8, 1
   ADD s4, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   LUI s4, 16
   ADDIW s4, s4, -1
   REMW s6, s7, s4
   ADD s1, s5, zero
   ADD s2, s6, zero
-  JAL zero, bb5
+  JAL zero, bb4
 func:
   ADDI sp, sp, -496
   SD s10, 400(sp)
@@ -413,13 +411,13 @@ func:
   SD s9, 488(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
-  JAL zero, bb12
-bb12:
+  JAL zero, bb11
+bb11:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb13
-  JAL zero, bb14
-bb13:
+  BNE s3, zero, bb12
+  JAL zero, bb13
+bb12:
   ADDI s3, zero, 4
   MULW s4, s2, s3
   ADDI t5, sp, 0
@@ -427,18 +425,18 @@ bb13:
   SW zero, 0(s3)
   ADDIW s3, s2, 1
   ADD s1, s3, zero
-  JAL zero, bb12
-bb14:
+  JAL zero, bb11
+bb13:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb15
-bb15:
+  JAL zero, bb14
+bb14:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s4, s0
-  BNE s5, zero, bb16
-  JAL zero, bb17
-bb16:
+  BNE s5, zero, bb15
+  JAL zero, bb16
+bb15:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
   SW s6, 0(s5)
@@ -739,8 +737,8 @@ bb16:
   ADDIW s5, s4, 1
   ADD s4, zero, zero
   ADD s6, s3, zero
-  JAL zero, bb18
-bb17:
+  JAL zero, bb17
+bb16:
   ADD a0, s3, zero
   LD s10, 400(sp)
   LD s0, 408(sp)
@@ -756,13 +754,13 @@ bb17:
   LD s9, 488(sp)
   ADDI sp, sp, 496
   JALR zero, 0(ra)
-bb18:
+bb17:
   ADD s7, s6, zero
   ADD s8, s4, zero
   SLTI s9, s8, 100
-  BNE s9, zero, bb19
-  JAL zero, bb20
-bb19:
+  BNE s9, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDI s9, zero, 4
   MULW s10, s8, s9
   ADDI t6, sp, 0
@@ -772,11 +770,11 @@ bb19:
   ADDIW s10, s8, 1
   ADD s4, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb18
-bb20:
+  JAL zero, bb17
+bb19:
   LUI s4, 16
   ADDIW s4, s4, -1
   REMW s6, s7, s4
   ADD s1, s5, zero
   ADD s2, s6, zero
-  JAL zero, bb15
+  JAL zero, bb14

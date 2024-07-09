@@ -202,8 +202,6 @@ bb20:
   ADDIW s0, s1, 1
   LA s1, a
   SW s0, 0(s1)
-  JAL zero, bb21
-bb21:
   JAL zero, bb19
 inc_a:
   ADDI sp, sp, -32

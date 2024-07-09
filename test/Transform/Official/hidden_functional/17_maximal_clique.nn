@@ -132,7 +132,7 @@ while.body46:
   54 = ptradd ptr @store, i32 %53
   store i32 %j44.phi to ptr %54
   57 = add i32 %k, i32 1
-  br bb %is_clique.entry
+  br bb %is_clique.while.cond
 while.body46.split:
   58.ret = phi [bb %is_clique.while.exit, i32 1, bb %is_clique.then, i32 0]
   59 = icmp ne i32 %58.ret, i32 0
@@ -159,10 +159,8 @@ then76:
 if.exit77:
   max_.phi = phi [bb %if.exit66, i32 %max_.phi159, bb %then76, i32 %72]
   br bb %if.exit61
-is_clique.entry:
-  br bb %is_clique.while.cond
 is_clique.while.cond:
-  i.phi167 = phi [bb %is_clique.entry, i32 1, bb %is_clique.while.exit15, i32 %12171]
+  i.phi167 = phi [bb %while.body46, i32 1, bb %is_clique.while.exit15, i32 %12171]
   8168 = icmp slt i32 %i.phi167, i32 %57
   br i1 %8168, bb %is_clique.while.body, bb %is_clique.while.exit
 is_clique.while.body:

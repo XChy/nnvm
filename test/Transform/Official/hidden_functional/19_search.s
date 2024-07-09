@@ -106,7 +106,7 @@ bb3:
   JAL zero, bb5
 bb4:
   ADD t4, a4, zero
-  SB t4, 176(sp)
+  SB t4, 152(sp)
   ADD t4, zero, zero
   SW t4, 144(sp)
   LW t3, 96(sp)
@@ -132,7 +132,7 @@ bb6:
   LW t3, 144(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
-  LB t3, 176(sp)
+  LB t3, 152(sp)
   ADD t4, t3, zero
   SB t4, 112(sp)
   ADDI t2, zero, 120
@@ -185,12 +185,12 @@ bb10:
 bb11:
   LB t3, 120(sp)
   ADD t4, t3, zero
-  SB t4, 168(sp)
-  LB t4, 168(sp)
+  SB t4, 160(sp)
+  LB t4, 160(sp)
   BNE t4, zero, bb12
   JAL zero, bb13
 bb12:
-  LB t3, 168(sp)
+  LB t3, 160(sp)
   ADD t4, t3, zero
   SB t4, 104(sp)
   JAL zero, bb8
@@ -209,9 +209,9 @@ bb13:
   ADDW s0, t4, s2
   LW t4, 16(sp)
   ADDIW s2, t4, 1
-  LB t3, 168(sp)
+  LB t3, 160(sp)
   ADD t4, t3, zero
-  SB t4, 176(sp)
+  SB t4, 152(sp)
   ADD t4, s2, zero
   SW t4, 144(sp)
   ADD t4, s1, zero
@@ -307,13 +307,13 @@ bb25:
   JAL zero, bb26
 bb26:
   ADD t4, s0, zero
-  SB t4, 152(sp)
-  LB t4, 152(sp)
+  SB t4, 176(sp)
+  LB t4, 176(sp)
   BNE t4, zero, bb27
   JAL zero, bb28
 bb27:
   ADDI t4, zero, 1
-  SB t4, 160(sp)
+  SB t4, 184(sp)
   JAL zero, bb29
 bb28:
   LA s3, w
@@ -323,13 +323,13 @@ bb28:
   XOR s4, t4, s3
   SLTIU s3, s4, 1
   ADD t4, s3, zero
-  SB t4, 160(sp)
+  SB t4, 184(sp)
   JAL zero, bb29
 bb29:
-  LB t3, 160(sp)
+  LB t3, 184(sp)
   ADD t4, t3, zero
-  SB t4, 184(sp)
-  LB t4, 184(sp)
+  SB t4, 168(sp)
+  LB t4, 168(sp)
   BNE t4, zero, bb30
   JAL zero, bb31
 bb30:
@@ -339,9 +339,9 @@ bb30:
   LW t4, 0(sp)
   ADD s5, t4, zero
   ADD s4, s10, zero
-  LB t4, 152(sp)
+  LB t4, 176(sp)
   ADD s6, t4, zero
-  LB t4, 184(sp)
+  LB t4, 168(sp)
   ADD s7, t4, zero
   ADD s8, a7, zero
   LW t4, 72(sp)
@@ -387,9 +387,9 @@ bb33:
   ADD s3, s11, zero
   ADD s5, t2, zero
   ADD s4, s10, zero
-  LB t4, 152(sp)
+  LB t4, 176(sp)
   ADD s6, t4, zero
-  LB t4, 184(sp)
+  LB t4, 168(sp)
   ADD s7, t4, zero
   ADD s8, a1, zero
   ADD s9, t1, zero
@@ -551,8 +551,8 @@ bb50:
   ADDI s2, zero, 10
   SLT s3, s2, s1
   XORI s2, s3, 1
-  BNE s2, zero, bb59
-  JAL zero, bb61
+  BNE s2, zero, bb58
+  JAL zero, bb60
 bb51:
   ADD s6, s5, zero
   LA s7, w
@@ -596,22 +596,20 @@ bb56:
   XORI s7, s5, 3
   SLTIU s5, s7, 1
   BNE s5, zero, bb57
-  JAL zero, bb58
+  JAL zero, bb55
 bb57:
   LA s5, x_1
   SW s3, 0(s5)
   LA s5, y_1
   SW s6, 0(s5)
-  JAL zero, bb58
-bb58:
   JAL zero, bb55
-bb59:
+bb58:
   ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  JAL zero, bb60
-bb60:
+  JAL zero, bb59
+bb59:
   CALL getint
   ADD s1, a0, zero
   LA s2, w
@@ -622,9 +620,9 @@ bb60:
   SW s1, 0(s2)
   ADD s0, s4, zero
   JAL zero, bb39
-bb61:
+bb60:
   ADDI a0, zero, -1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  JAL zero, bb60
+  JAL zero, bb59

@@ -541,7 +541,7 @@ newPow:
   ADD s0, a0, zero
   SLT s1, s0, zero
   BNE s1, zero, bb38
-  JAL zero, bb40
+  JAL zero, bb39
 bb38:
   SUB s1, zero, s0
   FSGNJ.S fa0, fs0, fs0
@@ -563,12 +563,11 @@ bb38:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb39:
-bb40:
   XOR s1, s0, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb41
-  JAL zero, bb42
-bb41:
+  BNE s2, zero, bb40
+  JAL zero, bb41
+bb40:
   LA s1, .CONSTANT.7.0
   FLW fs1, 0(s1)
   LA s1, .CONSTANT.7.0
@@ -584,11 +583,11 @@ bb41:
   FLD fs0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb42:
+bb41:
   SLT s1, zero, s0
-  BNE s1, zero, bb43
-  JAL zero, bb44
-bb43:
+  BNE s1, zero, bb42
+  JAL zero, bb43
+bb42:
   ADDI s1, zero, 1
   SUBW s2, s0, s1
   FSGNJ.S fa0, fs0, fs0
@@ -607,8 +606,7 @@ bb43:
   FLD fs0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb44:
-  JAL zero, bb39
+bb43:
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)

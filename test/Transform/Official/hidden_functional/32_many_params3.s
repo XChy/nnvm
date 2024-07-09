@@ -7,8 +7,6 @@ main:
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  JAL zero, bb1
-bb1:
   LUI s0, 19
   ADDIW s0, s0, -1915
   ADD a0, zero, s0

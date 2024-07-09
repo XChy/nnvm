@@ -1,8 +1,6 @@
 i32 main() {
 entry:
   call void putint(i32 2)
-  br bb %if.exit58
-if.exit58:
   ret i32 0
 }
 

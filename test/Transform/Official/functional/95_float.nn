@@ -140,8 +140,6 @@ then102:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %then102.split
-then102.split:
   br bb %if.exit103
 if.exit103:
   105 = fcmp one float 3.300000, float 0.000000
@@ -156,8 +154,6 @@ then112:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %then112.split
-then112.split:
   br bb %if.exit113
 if.exit113:
   115 = fcmp one float 0.000000, float 0.000000
@@ -176,20 +172,14 @@ then122:
   call void putch(i32 111)
   call void putch(i32 114)
   call void putch(i32 10)
-  br bb %then122.split
-then122.split:
   br bb %if.exit123
 if.exit123:
   130 = fcmp one float 0.300000, float 0.000000
-  br bb %select.exit128
-select.exit128:
   br i1 %130, bb %then133, bb %if.exit134
 then133:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %then133.split
-then133.split:
   br bb %if.exit134
 if.exit134:
   store float 1.000000 to ptr %arr
@@ -267,8 +257,6 @@ assert_not.else74:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert_not.else74.split
-assert_not.else74.split:
   br bb %assert_not.if.exit73
 assert_not.then72220:
   call void putch(i32 101)
@@ -286,8 +274,6 @@ assert_not.else74225:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert_not.else74225.split
-assert_not.else74225.split:
   br bb %assert_not.if.exit73223
 assert_not.then72232:
   call void putch(i32 101)
@@ -304,8 +290,6 @@ assert_not.else74237:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert_not.else74237.split
-assert_not.else74237.split:
   br bb %assert_not.if.exit73235
 float_eq.entry28.split:
   34384.ret = phi [bb %float_abs.then537, float %8538, bb %float_abs.if.exit540, float %33383]
@@ -403,8 +387,6 @@ assert.else65:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert.else65.split
-assert.else65.split:
   br bb %assert.if.exit64
 assert.then63498:
   call void putch(i32 101)
@@ -422,8 +404,6 @@ assert.else65504:
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert.else65.split506
-assert.else65.split506:
   br bb %assert.if.exit64502
 float_abs.then537:
   8538 = fneg float %33383

@@ -283,8 +283,6 @@ then:
   42 = call float newPow(float %num, i32 %41)
   43 = fdiv float 1.000000, float %42
   ret float %43
-if.exit:
-  unreachable
 else:
   45 = icmp eq i32 %n, i32 0
   br i1 %45, bb %then46, bb %else48
@@ -299,7 +297,7 @@ then51:
   58 = fmul float %num, float %57
   ret float %58
 if.exit52:
-  br bb %if.exit
+  unreachable
 }
 
 external i32 getint()

@@ -213,11 +213,9 @@ rand.then195280:
 rand.if.exit196286:
   staticvalue.load202287 = load i32 from ptr @staticvalue
   221 = srem i32 %staticvalue.load202287, i32 2
-  br bb %set.entry
-set.entry:
   br bb %set.init.cond
 set.init.cond:
-  cnt_ptr.phi295 = phi [bb %set.entry, i32 31, bb %set.init, i32 %cnt.dec299]
+  cnt_ptr.phi295 = phi [bb %rand.if.exit196286, i32 31, bb %set.init, i32 %cnt.dec299]
   9296 = icmp ne i32 %cnt_ptr.phi295, i32 0
   br i1 %9296, bb %set.init, bb %set.init.exit
 set.init:
@@ -266,9 +264,7 @@ set.while.body:
 set.while.exit:
   97352 = sdiv i32 %219, i32 30
   98353 = icmp sge i32 %97352, i32 10000
-  br i1 %98353, bb %set.then, bb %set.if.exit
-set.then:
-  br bb %while.body211.split.split.split
+  br i1 %98353, bb %while.body211.split.split.split, bb %set.if.exit
 set.if.exit:
   103358 = mul i32 %97352, i32 4
   104359 = ptradd ptr @a, i32 %103358

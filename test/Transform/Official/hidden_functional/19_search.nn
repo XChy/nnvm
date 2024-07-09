@@ -241,12 +241,10 @@ if.exit229:
 else:
   238.load = load i32 from ptr %218
   240 = icmp eq i32 %238.load, i32 3
-  br i1 %240, bb %then241, bb %if.exit242
+  br i1 %240, bb %then241, bb %if.exit229
 then241:
   store i32 %i175.phi to ptr @x_1
   store i32 %j.phi to ptr @y_1
-  br bb %if.exit242
-if.exit242:
   br bb %if.exit229
 then255:
   call void putint(i32 %252)

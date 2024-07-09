@@ -10,21 +10,17 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry24:
-  br bb %whileIf.entry
-entry24.split:
-  ret i32 %b.phi2934
-whileIf.entry:
   br bb %whileIf.while.cond
 whileIf.while.cond:
-  b.phi2934 = phi [bb %whileIf.entry, i32 0, bb %whileIf.if.exit, i32 %b.phi2846]
-  a.phi35 = phi [bb %whileIf.entry, i32 0, bb %whileIf.if.exit, i32 %2247]
+  b.phi2934 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %b.phi2846]
+  a.phi35 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %2247]
   736 = icmp slt i32 %a.phi35, i32 100
   br i1 %736, bb %whileIf.while.body, bb %whileIf.while.exit
 whileIf.while.body:
   1039 = icmp eq i32 %a.phi35, i32 5
   br i1 %1039, bb %whileIf.then, bb %whileIf.else
 whileIf.while.exit:
-  br bb %entry24.split
+  ret i32 %b.phi2934
 whileIf.then:
   br bb %whileIf.if.exit
 whileIf.if.exit:

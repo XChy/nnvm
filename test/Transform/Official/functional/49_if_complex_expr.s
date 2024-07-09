@@ -7,8 +7,6 @@ main:
   SD ra, 0(sp)
   ADDI a0, zero, 2
   CALL putint
-  JAL zero, bb1
-bb1:
   ADD a0, zero, zero
   LD ra, 0(sp)
   ADDI sp, sp, 16

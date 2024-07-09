@@ -4299,10 +4299,10 @@ params_mix:
   SD t4, 608(sp)
   ADDI s8, sp, 1320
   FLW ft4, 0(s8)
-  FSW ft4, 792(sp)
+  FSW ft4, 800(sp)
   ADDI s8, sp, 1324
   LW t4, 0(s8)
-  SW t4, 800(sp)
+  SW t4, 792(sp)
   LA s8, k
   LW t1, 0(s8)
   ADDI s8, zero, 4
@@ -4444,7 +4444,7 @@ params_mix:
   ADD s2, t4, t0
   FLW fs9, 0(s2)
   FADD.S fs8, ft5, fs9
-  FLW ft4, 792(sp)
+  FLW ft4, 800(sp)
   FADD.S fs9, fs8, ft4
   FSW ft7, 360(sp)
   ADDI s2, sp, 364
@@ -4593,7 +4593,7 @@ params_mix:
   ADDW s5, t4, s8
   LW t4, 592(sp)
   ADDW s8, s5, t4
-  LW t4, 800(sp)
+  LW t4, 792(sp)
   ADDW s5, s8, t4
   SW s0, 320(sp)
   ADDI s0, sp, 324
@@ -4614,7 +4614,7 @@ params_mix:
   SW s5, 0(s0)
   ADDI s0, sp, 356
   SW zero, 0(s0)
-  LW t4, 800(sp)
+  LW t4, 792(sp)
   XOR s0, t4, zero
   SLTU s5, zero, s0
   BNE s5, zero, bb20
@@ -4631,9 +4631,9 @@ bb20:
   ADD s0, zero, zero
   JAL zero, bb22
 bb21:
-  LW t4, 800(sp)
+  LW t4, 792(sp)
   FCVT.S.W fs8, t4
-  FLW ft4, 792(sp)
+  FLW ft4, 800(sp)
   FCVT.W.S s0, ft4, rtz
   FSGNJ.S fa0, fs0, fs0
   ADDI a0, sp, 320

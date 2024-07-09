@@ -32,12 +32,10 @@ entry416:
   store i32 %a15 to ptr %arr.index464
   arr.index465 = ptradd ptr %arr, i32 60
   store i32 %a16 to ptr %arr.index465
-  br bb %sort.entry
-sort.entry:
   br bb %sort.while.cond
 sort.while.cond:
-  temp.phi673896 = phi [bb %sort.entry, i32 ub, bb %sort.while.exit16, i32 %temp.phi672907]
-  i.phi897 = phi [bb %sort.entry, i32 0, bb %sort.while.exit16, i32 %13902]
+  temp.phi673896 = phi [bb %entry416, i32 ub, bb %sort.while.exit16, i32 %temp.phi672907]
+  i.phi897 = phi [bb %entry416, i32 0, bb %sort.while.exit16, i32 %13902]
   9899 = icmp slt i32 %i.phi897, i32 15
   br i1 %9899, bb %sort.while.body, bb %sort.while.exit
 sort.while.body:
@@ -329,7 +327,7 @@ entry532:
   store i32 %548 to ptr %arr.index464705
   arr.index465707 = ptradd ptr %arr677, i32 60
   store i32 %549 to ptr %arr.index465707
-  br bb %sort.entry933
+  br bb %sort.while.cond935
 init.cond:
   cnt_ptr.phi = phi [bb %sort.while.exit944, i32 62, bb %init, i32 %cnt.dec]
   558 = icmp ne i32 %cnt_ptr.phi, i32 0
@@ -556,11 +554,9 @@ while.exit567:
   call void putint(i32 %414889)
   call void putch(i32 10)
   ret i32 0
-sort.entry933:
-  br bb %sort.while.cond935
 sort.while.cond935:
-  temp.phi673936 = phi [bb %sort.entry933, i32 ub, bb %sort.while.exit16960, i32 %temp.phi672947]
-  i.phi937 = phi [bb %sort.entry933, i32 0, bb %sort.while.exit16960, i32 %13942]
+  temp.phi673936 = phi [bb %entry532, i32 ub, bb %sort.while.exit16960, i32 %temp.phi672947]
+  i.phi937 = phi [bb %entry532, i32 0, bb %sort.while.exit16960, i32 %13942]
   9939 = icmp slt i32 %i.phi937, i32 15
   br i1 %9939, bb %sort.while.body941, bb %sort.while.exit944
 sort.while.body941:

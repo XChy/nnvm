@@ -194,12 +194,10 @@ then:
   53704847 = sub i32 %59698843, i32 %401134
   55705848 = add i32 %53704847, i32 %401129
   59706849 = sub i32 %55705848, i32 %401134
-  br bb %then.split
-then.split:
   br bb %if.exit
 if.exit:
-  f.phi452 = phi [bb %if.exit266, i32 %f.phi451, bb %then.split, i32 %59706849]
-  k.phi446 = phi [bb %if.exit266, i32 %k.phi445, bb %then.split, i32 1518500249]
+  f.phi452 = phi [bb %if.exit266, i32 %f.phi451, bb %then, i32 %59706849]
+  k.phi446 = phi [bb %if.exit266, i32 %k.phi445, bb %then, i32 1518500249]
   241228 = mul i32 %a.phi, i32 32
   261229 = srem i32 %a.phi, i32 32
   271230 = add i32 %241228, i32 %261229
@@ -227,12 +225,10 @@ then265:
   53744 = sub i32 %59738, i32 %401069
   55745 = add i32 %53744, i32 %d.phi
   59746 = sub i32 %55745, i32 %401069
-  br bb %then265.split.split
-then265.split.split:
   br bb %if.exit266
 if.exit266:
-  f.phi451 = phi [bb %if.exit276, i32 %f.phi450, bb %then265.split.split, i32 %59746]
-  k.phi445 = phi [bb %if.exit276, i32 %k.phi444, bb %then265.split.split, i32 1859775361]
+  f.phi451 = phi [bb %if.exit276, i32 %f.phi450, bb %then265, i32 %59746]
+  k.phi445 = phi [bb %if.exit276, i32 %k.phi444, bb %then265, i32 1859775361]
   br bb %if.exit
 else267:
   274 = icmp slt i32 %i.phi, i32 60
@@ -257,12 +253,10 @@ then275:
   53704893 = sub i32 %59698889, i32 %401164
   55705894 = add i32 %53704893, i32 %401159
   59706895 = sub i32 %55705894, i32 %401164
-  br bb %then275.split.split
-then275.split.split:
   br bb %if.exit276
 if.exit276:
-  f.phi450 = phi [bb %if.exit293, i32 %f.phi, bb %then275.split.split, i32 %59706895]
-  k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275.split.split, i32 -1894007588]
+  f.phi450 = phi [bb %if.exit293, i32 %f.phi, bb %then275, i32 %59706895]
+  k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275, i32 -1894007588]
   br bb %if.exit266
 else277:
   br i1 %248, bb %then292, bb %if.exit293
@@ -275,12 +269,10 @@ then292:
   53760 = sub i32 %59754, i32 %401079
   55761 = add i32 %53760, i32 %d.phi
   59762 = sub i32 %55761, i32 %401079
-  br bb %then292.split.split
-then292.split.split:
   br bb %if.exit293
 if.exit293:
-  f.phi = phi [bb %else277, i32 %f.phi453, bb %then292.split.split, i32 %59762]
-  k.phi = phi [bb %else277, i32 %k.phi447, bb %then292.split.split, i32 -899497722]
+  f.phi = phi [bb %else277, i32 %f.phi453, bb %then292, i32 %59762]
+  k.phi = phi [bb %else277, i32 %k.phi447, bb %then292, i32 -899497722]
   br bb %if.exit276
 }
 
@@ -303,8 +295,6 @@ entry60:
   53704 = sub i32 %59698, i32 %401044
   55705 = add i32 %53704, i32 %401039
   59706 = sub i32 %55705, i32 %401044
-  br bb %entry60.split.split
-entry60.split.split:
   ret i32 %59706
 }
 
@@ -408,10 +398,8 @@ while.exit387:
   91471 = ptradd ptr @buffer, i32 128000
   store i32 128 to ptr %91471
   br bb %pseudo_sha1.while.cond
-while.exit387.split:
-  br bb %while.cond401
 while.cond401:
-  i384.phi = phi [bb %while.exit387.split, i32 0, bb %while.body402, i32 %420]
+  i384.phi = phi [bb %pseudo_sha1.while.exit149, i32 0, bb %while.body402, i32 %420]
   405 = icmp slt i32 %i384.phi, i32 5
   br i1 %405, bb %while.body402, bb %while.exit403
 while.body402:
@@ -491,7 +479,7 @@ pseudo_sha1.while.exit149:
   store i32 %h2.phi529 to ptr %arr.index360
   store i32 %h3.phi528 to ptr %arr.index361
   store i32 %h4.phi525 to ptr %arr.index362
-  br bb %while.exit387.split
+  br bb %while.cond401
 pseudo_sha1.while.cond160:
   i.phi438549 = phi [bb %pseudo_sha1.while.body148, i32 0, bb %pseudo_sha1.while.body161, i32 %208579]
   164550 = icmp slt i32 %i.phi438549, i32 16
@@ -605,12 +593,10 @@ pseudo_sha1.then:
   53704916 = sub i32 %59698912, i32 %401179
   55705917 = add i32 %53704916, i32 %401174
   59706918 = sub i32 %55705917, i32 %401179
-  br bb %pseudo_sha1.then.split
-pseudo_sha1.then.split:
   br bb %pseudo_sha1.if.exit
 pseudo_sha1.if.exit:
-  f.phi452645 = phi [bb %pseudo_sha1.if.exit266, i32 %f.phi451666, bb %pseudo_sha1.then.split, i32 %59706918]
-  k.phi446646 = phi [bb %pseudo_sha1.if.exit266, i32 %k.phi445667, bb %pseudo_sha1.then.split, i32 1518500249]
+  f.phi452645 = phi [bb %pseudo_sha1.if.exit266, i32 %f.phi451666, bb %pseudo_sha1.then, i32 %59706918]
+  k.phi446646 = phi [bb %pseudo_sha1.if.exit266, i32 %k.phi445667, bb %pseudo_sha1.then, i32 1518500249]
   241235 = mul i32 %a.phi620, i32 32
   261236 = srem i32 %a.phi620, i32 32
   271237 = add i32 %241235, i32 %261236
@@ -638,12 +624,10 @@ pseudo_sha1.then265:
   53808 = sub i32 %59802, i32 %401109
   55809 = add i32 %53808, i32 %d.phi617
   59810 = sub i32 %55809, i32 %401109
-  br bb %pseudo_sha1.then265.split.split
-pseudo_sha1.then265.split.split:
   br bb %pseudo_sha1.if.exit266
 pseudo_sha1.if.exit266:
-  f.phi451666 = phi [bb %pseudo_sha1.if.exit276, i32 %f.phi450680, bb %pseudo_sha1.then265.split.split, i32 %59810]
-  k.phi445667 = phi [bb %pseudo_sha1.if.exit276, i32 %k.phi444681, bb %pseudo_sha1.then265.split.split, i32 1859775361]
+  f.phi451666 = phi [bb %pseudo_sha1.if.exit276, i32 %f.phi450680, bb %pseudo_sha1.then265, i32 %59810]
+  k.phi445667 = phi [bb %pseudo_sha1.if.exit276, i32 %k.phi444681, bb %pseudo_sha1.then265, i32 1859775361]
   br bb %pseudo_sha1.if.exit
 pseudo_sha1.else267:
   274670 = icmp slt i32 %i.phi621, i32 60
@@ -668,12 +652,10 @@ pseudo_sha1.then275:
   53704962 = sub i32 %59698958, i32 %401209
   55705963 = add i32 %53704962, i32 %401204
   59706964 = sub i32 %55705963, i32 %401209
-  br bb %pseudo_sha1.then275.split.split
-pseudo_sha1.then275.split.split:
   br bb %pseudo_sha1.if.exit276
 pseudo_sha1.if.exit276:
-  f.phi450680 = phi [bb %pseudo_sha1.if.exit293, i32 %f.phi690, bb %pseudo_sha1.then275.split.split, i32 %59706964]
-  k.phi444681 = phi [bb %pseudo_sha1.if.exit293, i32 %k.phi691, bb %pseudo_sha1.then275.split.split, i32 -1894007588]
+  f.phi450680 = phi [bb %pseudo_sha1.if.exit293, i32 %f.phi690, bb %pseudo_sha1.then275, i32 %59706964]
+  k.phi444681 = phi [bb %pseudo_sha1.if.exit293, i32 %k.phi691, bb %pseudo_sha1.then275, i32 -1894007588]
   br bb %pseudo_sha1.if.exit266
 pseudo_sha1.else277:
   br i1 %248625, bb %pseudo_sha1.then292, bb %pseudo_sha1.if.exit293
@@ -686,12 +668,10 @@ pseudo_sha1.then292:
   53824 = sub i32 %59818, i32 %401119
   55825 = add i32 %53824, i32 %d.phi617
   59826 = sub i32 %55825, i32 %401119
-  br bb %pseudo_sha1.then292.split.split
-pseudo_sha1.then292.split.split:
   br bb %pseudo_sha1.if.exit293
 pseudo_sha1.if.exit293:
-  f.phi690 = phi [bb %pseudo_sha1.else277, i32 %f.phi453618, bb %pseudo_sha1.then292.split.split, i32 %59826]
-  k.phi691 = phi [bb %pseudo_sha1.else277, i32 %k.phi447619, bb %pseudo_sha1.then292.split.split, i32 -899497722]
+  f.phi690 = phi [bb %pseudo_sha1.else277, i32 %f.phi453618, bb %pseudo_sha1.then292, i32 %59826]
+  k.phi691 = phi [bb %pseudo_sha1.else277, i32 %k.phi447619, bb %pseudo_sha1.then292, i32 -899497722]
   br bb %pseudo_sha1.if.exit276
 }
 

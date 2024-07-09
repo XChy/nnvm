@@ -80,7 +80,7 @@ while.cond66:
 while.body67:
   72 = sub i32 %t.phi, i32 1
   store i32 4 to ptr @n
-  br bb %init.entry
+  br bb %init.while.cond
 while.exit68:
   ret i32 0
 while.cond82:
@@ -139,9 +139,7 @@ then111:
   48307 = call i32 findfa(i32 %104)
   51308 = call i32 findfa(i32 0)
   54309 = icmp ne i32 %48307, i32 %51308
-  br i1 %54309, bb %mmerge.then55, bb %mmerge.if.exit56
-then111.split:
-  br bb %if.exit112
+  br i1 %54309, bb %mmerge.then55, bb %if.exit112
 if.exit112:
   n.load118 = load i32 from ptr @n
   119 = icmp eq i32 %89, i32 %n.load118
@@ -153,9 +151,7 @@ then120:
   48320 = call i32 findfa(i32 %104)
   51321 = call i32 findfa(i32 %81)
   54322 = icmp ne i32 %48320, i32 %51321
-  br i1 %54322, bb %mmerge.then55324, bb %mmerge.if.exit56329
-then120.split:
-  br bb %if.exit121
+  br i1 %54322, bb %mmerge.then55324, bb %if.exit121
 if.exit121:
   n.load130 = load i32 from ptr @n
   131 = icmp slt i32 %90, i32 %n.load130
@@ -177,9 +173,7 @@ then144:
   48333 = call i32 findfa(i32 %104)
   51334 = call i32 findfa(i32 %148)
   54335 = icmp ne i32 %48333, i32 %51334
-  br i1 %54335, bb %mmerge.then55337, bb %mmerge.if.exit56342
-then144.split:
-  br bb %if.exit145
+  br i1 %54335, bb %mmerge.then55337, bb %if.exit145
 if.exit145:
   151 = icmp sgt i32 %90, i32 1
   br i1 %151, bb %select.then152, bb %select.else153
@@ -200,9 +194,7 @@ then164:
   48346 = call i32 findfa(i32 %104)
   51347 = call i32 findfa(i32 %168)
   54348 = icmp ne i32 %48346, i32 %51347
-  br i1 %54348, bb %mmerge.then55350, bb %mmerge.if.exit56355
-then164.split:
-  br bb %if.exit165
+  br i1 %54348, bb %mmerge.then55350, bb %if.exit165
 if.exit165:
   n.load171 = load i32 from ptr @n
   172 = icmp slt i32 %89, i32 %n.load171
@@ -226,9 +218,7 @@ then186:
   48359 = call i32 findfa(i32 %104)
   51360 = call i32 findfa(i32 %191)
   54361 = icmp ne i32 %48359, i32 %51360
-  br i1 %54361, bb %mmerge.then55363, bb %mmerge.if.exit56368
-then186.split:
-  br bb %if.exit187
+  br i1 %54361, bb %mmerge.then55363, bb %if.exit187
 if.exit187:
   194 = icmp sgt i32 %89, i32 1
   br i1 %194, bb %select.then195, bb %select.else196
@@ -251,9 +241,7 @@ then208:
   48372 = call i32 findfa(i32 %104)
   51373 = call i32 findfa(i32 %213)
   54374 = icmp ne i32 %48372, i32 %51373
-  br i1 %54374, bb %mmerge.then55376, bb %mmerge.if.exit56381
-then208.split:
-  br bb %if.exit209
+  br i1 %54374, bb %mmerge.then55376, bb %if.exit209
 if.exit209:
   216.load = load i32 from ptr @array
   219 = icmp ne i32 %216.load, i32 -1
@@ -298,48 +286,34 @@ mmerge.then55:
   58312 = mul i32 %48307, i32 4
   59313 = ptradd ptr @array, i32 %58312
   store i32 %51308 to ptr %59313
-  br bb %mmerge.if.exit56
-mmerge.if.exit56:
-  br bb %then111.split
+  br bb %if.exit112
 mmerge.then55324:
   58325 = mul i32 %48320, i32 4
   59326 = ptradd ptr @array, i32 %58325
   store i32 %51321 to ptr %59326
-  br bb %mmerge.if.exit56329
-mmerge.if.exit56329:
-  br bb %then120.split
+  br bb %if.exit121
 mmerge.then55337:
   58338 = mul i32 %48333, i32 4
   59339 = ptradd ptr @array, i32 %58338
   store i32 %51334 to ptr %59339
-  br bb %mmerge.if.exit56342
-mmerge.if.exit56342:
-  br bb %then144.split
+  br bb %if.exit145
 mmerge.then55350:
   58351 = mul i32 %48346, i32 4
   59352 = ptradd ptr @array, i32 %58351
   store i32 %51347 to ptr %59352
-  br bb %mmerge.if.exit56355
-mmerge.if.exit56355:
-  br bb %then164.split
+  br bb %if.exit165
 mmerge.then55363:
   58364 = mul i32 %48359, i32 4
   59365 = ptradd ptr @array, i32 %58364
   store i32 %51360 to ptr %59365
-  br bb %mmerge.if.exit56368
-mmerge.if.exit56368:
-  br bb %then186.split
+  br bb %if.exit187
 mmerge.then55376:
   58377 = mul i32 %48372, i32 4
   59378 = ptradd ptr @array, i32 %58377
   store i32 %51373 to ptr %59378
-  br bb %mmerge.if.exit56381
-mmerge.if.exit56381:
-  br bb %then208.split
-init.entry:
-  br bb %init.while.cond
+  br bb %if.exit209
 init.while.cond:
-  i.phi387 = phi [bb %init.entry, i32 1, bb %init.while.body, i32 %18396]
+  i.phi387 = phi [bb %while.body67, i32 1, bb %init.while.body, i32 %18396]
   11390 = icmp sle i32 %i.phi387, i32 17
   br i1 %11390, bb %init.while.body, bb %init.while.exit
 init.while.body:

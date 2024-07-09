@@ -110,8 +110,6 @@ else:
   a.load138 = load i32 from ptr @a
   4139 = add i32 %a.load138, i32 1
   store i32 %4139 to ptr @a
-  br bb %else.split
-else.split:
   br bb %if.exit60
 }
 

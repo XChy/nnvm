@@ -14,8 +14,6 @@ main:
   LA s0, a
   ADDI s1, zero, 10
   SW s1, 0(s0)
-  JAL zero, bb1
-bb1:
   ADDI a0, zero, 9
   LD ra, 0(sp)
   LD s1, 8(sp)

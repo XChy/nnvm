@@ -8,11 +8,9 @@ while.cond:
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
   10 = icmp eq i32 %i.phi, i32 50
-  br i1 %10, bb %then, bb %if.exit
+  br i1 %10, bb %while.exit, bb %if.exit
 while.exit:
   ret i32 %sum.phi
-then:
-  br bb %while.exit
 if.exit:
   15 = add i32 %sum.phi, i32 %i.phi
   17 = add i32 %i.phi, i32 1

@@ -435,16 +435,14 @@ entry361:
   375 = call i32 getint()
   377 = call i32 getint()
   379 = call i32 getint()
-  br bb %loop1.entry
-loop2.entry113:
-  br bb %loop2.while.cond121
+  br bb %loop1.while.cond
 loop2.while.cond121:
-  g120.phi489524 = phi [bb %loop2.entry113, i32 ub, bb %loop2.while.exit129, i32 %g120.phi488537]
-  f119.phi482525 = phi [bb %loop2.entry113, i32 ub, bb %loop2.while.exit129, i32 %f119.phi481538]
-  e118.phi476526 = phi [bb %loop2.entry113, i32 ub, bb %loop2.while.exit129, i32 %e118.phi475539]
-  d117.phi471527 = phi [bb %loop2.entry113, i32 ub, bb %loop2.while.exit129, i32 %d117.phi470540]
-  c116.phi467528 = phi [bb %loop2.entry113, i32 ub, bb %loop2.while.exit129, i32 %c116.phi466541]
-  a114.phi529 = phi [bb %loop2.entry113, i32 0, bb %loop2.while.exit129, i32 %204548]
+  g120.phi489524 = phi [bb %loop1.while.exit, i32 ub, bb %loop2.while.exit129, i32 %g120.phi488537]
+  f119.phi482525 = phi [bb %loop1.while.exit, i32 ub, bb %loop2.while.exit129, i32 %f119.phi481538]
+  e118.phi476526 = phi [bb %loop1.while.exit, i32 ub, bb %loop2.while.exit129, i32 %e118.phi475539]
+  d117.phi471527 = phi [bb %loop1.while.exit, i32 ub, bb %loop2.while.exit129, i32 %d117.phi470540]
+  c116.phi467528 = phi [bb %loop1.while.exit, i32 ub, bb %loop2.while.exit129, i32 %c116.phi466541]
+  a114.phi529 = phi [bb %loop1.while.exit, i32 0, bb %loop2.while.exit129, i32 %204548]
   125530 = icmp slt i32 %a114.phi529, i32 10
   br i1 %125530, bb %loop2.while.body122, bb %loop2.while.exit123
 loop2.while.body122:
@@ -540,21 +538,19 @@ loop2.while.body158:
 loop2.while.exit159:
   194622 = add i32 %f119.phi588, i32 1
   br bb %loop2.while.cond151
-loop1.entry:
-  br bb %loop1.while.cond
 loop1.while.cond:
-  e.phi517628 = phi [bb %loop1.entry, i32 ub, bb %loop1.while.exit27, i32 %e.phi516649]
-  g.phi512629 = phi [bb %loop1.entry, i32 ub, bb %loop1.while.exit27, i32 %g.phi511650]
-  f.phi505630 = phi [bb %loop1.entry, i32 ub, bb %loop1.while.exit27, i32 %f.phi504651]
-  d.phi499631 = phi [bb %loop1.entry, i32 ub, bb %loop1.while.exit27, i32 %d.phi498652]
-  c.phi495632 = phi [bb %loop1.entry, i32 ub, bb %loop1.while.exit27, i32 %c.phi494653]
-  a.phi633 = phi [bb %loop1.entry, i32 0, bb %loop1.while.exit27, i32 %112660]
+  e.phi517628 = phi [bb %entry361, i32 ub, bb %loop1.while.exit27, i32 %e.phi516649]
+  g.phi512629 = phi [bb %entry361, i32 ub, bb %loop1.while.exit27, i32 %g.phi511650]
+  f.phi505630 = phi [bb %entry361, i32 ub, bb %loop1.while.exit27, i32 %f.phi504651]
+  d.phi499631 = phi [bb %entry361, i32 ub, bb %loop1.while.exit27, i32 %d.phi498652]
+  c.phi495632 = phi [bb %entry361, i32 ub, bb %loop1.while.exit27, i32 %c.phi494653]
+  a.phi633 = phi [bb %entry361, i32 0, bb %loop1.while.exit27, i32 %112660]
   15634 = icmp slt i32 %a.phi633, i32 %363
   br i1 %15634, bb %loop1.select.then, bb %loop1.select.else
 loop1.while.body:
   br bb %loop1.while.cond25
 loop1.while.exit:
-  br bb %loop2.entry113
+  br bb %loop2.while.cond121
 loop1.select.then:
   22641 = icmp slt i32 %a.phi633, i32 %365
   br bb %loop1.select.exit

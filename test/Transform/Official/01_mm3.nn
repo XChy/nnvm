@@ -70,7 +70,7 @@ while.cond153:
   157 = icmp slt i32 %i100.phi198, i32 5
   br i1 %157, bb %while.body154, bb %while.exit155
 while.body154:
-  br bb %mm.entry
+  br bb %mm.while.cond
 while.exit155:
   br bb %while.cond166
 while.cond166:
@@ -102,10 +102,8 @@ while.body174:
 while.exit175:
   192 = add i32 %i100.phi, i32 1
   br bb %while.cond166
-mm.entry:
-  br bb %mm.while.cond
 mm.while.cond:
-  i.phi211222 = phi [bb %mm.entry, i32 0, bb %mm.while.exit14, i32 %28242]
+  i.phi211222 = phi [bb %while.body154, i32 0, bb %mm.while.exit14, i32 %28242]
   10223 = icmp slt i32 %i.phi211222, i32 %99
   br i1 %10223, bb %mm.while.body, bb %mm.while.exit
 mm.while.body:
@@ -135,7 +133,7 @@ mm.while.cond29:
 mm.while.body30:
   br bb %mm.while.cond36
 mm.while.exit31:
-  br bb %mm.entry297
+  br bb %mm.while.cond299
 mm.while.cond36:
   j.phi213254 = phi [bb %mm.while.body30, i32 %j.phi214246, bb %mm.while.exit57, i32 %j.phi275, bb %mm.then, i32 %j.phi213254]
   i.phi255 = phi [bb %mm.while.body30, i32 0, bb %mm.while.exit57, i32 %94294, bb %mm.then, i32 %54270]
@@ -179,10 +177,8 @@ mm.while.body56:
 mm.while.exit57:
   94294 = add i32 %i.phi255, i32 1
   br bb %mm.while.cond36
-mm.entry297:
-  br bb %mm.while.cond299
 mm.while.cond299:
-  i.phi211300 = phi [bb %mm.entry297, i32 0, bb %mm.while.exit14319, i32 %28320]
+  i.phi211300 = phi [bb %mm.while.exit31, i32 0, bb %mm.while.exit14319, i32 %28320]
   10301 = icmp slt i32 %i.phi211300, i32 %99
   br i1 %10301, bb %mm.while.body303, bb %mm.while.exit305
 mm.while.body303:

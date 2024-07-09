@@ -217,10 +217,8 @@ entry281.split484.split:
   store i32 %283.ret to ptr @m
   store i32 1061109567 to ptr @dep
   br bb %init.while.cond81
-entry281.split:
-  br bb %while.cond286
 while.cond286:
-  i285.phi = phi [bb %entry281.split, i32 1, bb %while.body287.split596.split, i32 %301]
+  i285.phi = phi [bb %init.while.exit83, i32 1, bb %while.body287.split596.split, i32 %301]
   n.load290 = load i32 from ptr @n
   291 = icmp ne i32 %i285.phi, i32 %n.load290
   br i1 %291, bb %while.body287, bb %while.exit288
@@ -384,7 +382,7 @@ init.while.body82:
   93458 = add i32 %i.phi450, i32 1
   br bb %init.while.cond81
 init.while.exit83:
-  br bb %entry281.split
+  br bb %while.cond286
 quick_read.while.cond:
   f.phi345489 = phi [bb %entry281, i32 0, bb %quick_read.if.exit, i32 %f.phi509]
   ch.phi342490 = phi [bb %entry281, i32 %2486, bb %quick_read.if.exit, i32 %23510]

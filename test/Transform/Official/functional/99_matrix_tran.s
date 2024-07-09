@@ -94,18 +94,16 @@ bb3:
   FSW fs0, 0(s0)
   FLW fs0, 136(sp)
   FSW fs0, 32(sp)
+  ADD s0, zero, zero
   JAL zero, bb4
 bb4:
-  ADD s0, zero, zero
-  JAL zero, bb5
-bb5:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb6
-  JAL zero, bb7
-bb6:
+  BNE s2, zero, bb5
+  JAL zero, bb6
+bb5:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 32
@@ -116,20 +114,20 @@ bb6:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb5
-bb7:
+  JAL zero, bb4
+bb6:
   ADDI a0, zero, 10
   CALL putch
   ADD s0, zero, zero
-  JAL zero, bb8
-bb8:
+  JAL zero, bb7
+bb7:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s2, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t6, sp, 16
@@ -140,20 +138,20 @@ bb9:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   ADDI a0, zero, 10
   CALL putch
   ADD s0, zero, zero
-  JAL zero, bb11
-bb11:
+  JAL zero, bb10
+bb10:
   ADD s1, s0, zero
   LA s2, N
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE s2, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 0
@@ -164,8 +162,8 @@ bb12:
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb10
+bb12:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero

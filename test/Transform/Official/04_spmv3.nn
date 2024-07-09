@@ -30,15 +30,13 @@ while.cond112:
   116 = icmp slt i32 %i111.phi, i32 100
   br i1 %116, bb %while.body113, bb %while.exit114
 while.body113:
-  br bb %spmv.entry
+  br bb %spmv.while.cond
 while.exit114:
   call void _sysy_stoptime(i32 47)
   call void putarray(i32 %105, ptr @b)
   ret i32 0
-spmv.entry:
-  br bb %spmv.while.cond
 spmv.while.cond:
-  i.phi129137 = phi [bb %spmv.entry, i32 0, bb %spmv.while.body, i32 %16144]
+  i.phi129137 = phi [bb %while.body113, i32 0, bb %spmv.while.body, i32 %16144]
   10138 = icmp slt i32 %i.phi129137, i32 %105
   br i1 %10138, bb %spmv.while.body, bb %spmv.while.exit
 spmv.while.body:
@@ -59,7 +57,7 @@ spmv.while.body18:
   26.load155 = load i32 from ptr %26154
   br bb %spmv.while.cond28
 spmv.while.exit19:
-  br bb %spmv.entry214
+  br bb %spmv.while.cond216
 spmv.while.cond28:
   j.phi132160 = phi [bb %spmv.while.body18, i32 %26.load155, bb %spmv.while.body29, i32 %58181]
   33161 = add i32 %i.phi149, i32 1
@@ -114,10 +112,8 @@ spmv.while.body64:
   br bb %spmv.while.cond63
 spmv.while.exit65:
   br bb %spmv.while.cond17
-spmv.entry214:
-  br bb %spmv.while.cond216
 spmv.while.cond216:
-  i.phi129217 = phi [bb %spmv.entry214, i32 0, bb %spmv.while.body220, i32 %16224]
+  i.phi129217 = phi [bb %spmv.while.exit19, i32 0, bb %spmv.while.body220, i32 %16224]
   10218 = icmp slt i32 %i.phi129217, i32 %105
   br i1 %10218, bb %spmv.while.body220, bb %spmv.while.exit226
 spmv.while.body220:

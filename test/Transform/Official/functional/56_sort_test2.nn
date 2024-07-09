@@ -32,11 +32,9 @@ entry52:
   store i32 7 to ptr %71
   73 = ptradd ptr %a, i32 36
   store i32 8 to ptr %73
-  br bb %insertsort.entry
-entry52.split:
-  br bb %while.cond76
+  br bb %insertsort.while.cond
 while.cond76:
-  i74.phi = phi [bb %entry52.split, i32 0, bb %while.body77, i32 %93]
+  i74.phi = phi [bb %insertsort.while.exit, i32 0, bb %while.body77, i32 %93]
   n.load80 = load i32 from ptr @n
   81 = icmp slt i32 %i74.phi, i32 %n.load80
   br i1 %81, bb %while.body77, bb %while.exit78
@@ -50,10 +48,8 @@ while.body77:
   br bb %while.cond76
 while.exit78:
   ret i32 0
-insertsort.entry:
-  br bb %insertsort.while.cond
 insertsort.while.cond:
-  i.phi107 = phi [bb %insertsort.entry, i32 1, bb %insertsort.while.exit19, i32 %51138]
+  i.phi107 = phi [bb %entry52, i32 1, bb %insertsort.while.exit19, i32 %51138]
   n.load108 = load i32 from ptr @n
   7109 = icmp slt i32 %i.phi107, i32 %n.load108
   br i1 %7109, bb %insertsort.while.body, bb %insertsort.while.exit
@@ -64,7 +60,7 @@ insertsort.while.body:
   16115 = sub i32 %i.phi107, i32 1
   br bb %insertsort.while.cond17
 insertsort.while.exit:
-  br bb %entry52.split
+  br bb %while.cond76
 insertsort.while.cond17:
   j.phi120 = phi [bb %insertsort.while.body, i32 %16115, bb %insertsort.while.body18, i32 %44131]
   22121 = icmp sgt i32 %j.phi120, i32 -1

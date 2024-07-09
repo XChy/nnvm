@@ -10,8 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1476:
-  br bb %entry1476.split
-entry1476.split:
   ret i32 75909
 }
 

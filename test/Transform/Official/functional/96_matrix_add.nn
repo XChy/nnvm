@@ -47,11 +47,9 @@ while.body59:
   96 = add i32 %i57.phi156, i32 1
   br bb %while.cond58
 while.exit60:
-  br bb %add.entry
-while.exit60.split:
-  br bb %while.cond99
+  br bb %add.while.cond
 while.cond99:
-  i57.phi155 = phi [bb %while.exit60.split, i32 0, bb %while.body100, i32 %114]
+  i57.phi155 = phi [bb %add.while.exit, i32 0, bb %while.body100, i32 %114]
   N.load = load i32 from ptr @N
   104 = icmp slt i32 %i57.phi155, i32 %N.load
   br i1 %104, bb %while.body100, bb %while.exit101
@@ -98,10 +96,8 @@ while.body136:
 while.exit137:
   call void putch(i32 10)
   ret i32 0
-add.entry:
-  br bb %add.while.cond
 add.while.cond:
-  i.phi165 = phi [bb %add.entry, i32 0, bb %add.while.body, i32 %46192]
+  i.phi165 = phi [bb %while.exit60, i32 0, bb %add.while.body, i32 %46192]
   M.load166 = load i32 from ptr @M
   7167 = icmp slt i32 %i.phi165, i32 %M.load166
   br i1 %7167, bb %add.while.body, bb %add.while.exit
@@ -131,7 +127,7 @@ add.while.body:
   46192 = add i32 %i.phi165, i32 1
   br bb %add.while.cond
 add.while.exit:
-  br bb %while.exit60.split
+  br bb %while.cond99
 }
 
 external float getfloat()

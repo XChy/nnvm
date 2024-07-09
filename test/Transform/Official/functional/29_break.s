@@ -23,8 +23,8 @@ bb1:
 bb2:
   XORI s4, s2, 50
   SLTIU s5, s4, 1
-  BNE s5, zero, bb4
-  JAL zero, bb5
+  BNE s5, zero, bb3
+  JAL zero, bb4
 bb3:
   ADD a0, s3, zero
   LD ra, 0(sp)
@@ -37,8 +37,6 @@ bb3:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
-  JAL zero, bb3
-bb5:
   ADDW s4, s3, s2
   ADDIW s3, s2, 1
   ADD s0, s4, zero

@@ -261,6 +261,12 @@ bb8:
   ADD s5, s7, zero
   JAL zero, bb7
 bb9:
+  LA s5, .CONSTANT.7.1
+  FLW fs10, 0(s5)
+  LA s5, .CONSTANT.7.1
+  FLW fs11, 0(s5)
+  FSGNJ.S fs0, fs10, fs11
+  ADD s5, zero, zero
   JAL zero, bb15
 bb10:
   ADDI s0, zero, 1
@@ -479,20 +485,12 @@ bb14:
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb15:
-  LA s5, .CONSTANT.7.1
-  FLW fs10, 0(s5)
-  LA s5, .CONSTANT.7.1
-  FLW fs11, 0(s5)
-  FSGNJ.S fs0, fs10, fs11
-  ADD s5, zero, zero
-  JAL zero, bb16
-bb16:
   ADD s7, s5, zero
   FSGNJ.S fs10, fs0, fs0
   SLT s8, s7, s0
-  BNE s8, zero, bb17
-  JAL zero, bb18
-bb17:
+  BNE s8, zero, bb16
+  JAL zero, bb17
+bb16:
   ADDI s8, zero, 4
   MULW s9, s7, s8
   LUI t6, 2
@@ -508,8 +506,8 @@ bb17:
   ADDIW s8, s7, 1
   FSGNJ.S fs0, fs9, fs9
   ADD s5, s8, zero
-  JAL zero, bb16
-bb18:
+  JAL zero, bb15
+bb17:
   LUI t6, 4
   ADDIW t6, t6, 0
   ADD t6, t6, sp
@@ -546,14 +544,14 @@ loop:
   FLW fs1, 0(s3)
   FSGNJ.S fs2, fs0, fs1
   ADD s3, zero, zero
-  JAL zero, bb20
-bb20:
+  JAL zero, bb19
+bb19:
   ADD s4, s3, zero
   FSGNJ.S fs0, fs2, fs2
   SLT s5, s4, s2
-  BNE s5, zero, bb21
-  JAL zero, bb22
-bb21:
+  BNE s5, zero, bb20
+  JAL zero, bb21
+bb20:
   ADDI s5, zero, 4
   MULW s6, s4, s5
   ADD s5, s0, s6
@@ -565,8 +563,8 @@ bb21:
   ADDIW s5, s4, 1
   FSGNJ.S fs2, fs1, fs1
   ADD s3, s5, zero
-  JAL zero, bb20
-bb22:
+  JAL zero, bb19
+bb21:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   FLD fs4, 8(sp)

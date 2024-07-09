@@ -25,11 +25,7 @@ then90:
   now.load80355 = load i32 from ptr @now
   81356 = add i32 %now.load80355, i32 1
   store i32 %81356 to ptr @now
-  br bb %then90.split
-then90.split:
   ret i32 %now.load80355
-if.exit91:
-  ret i32 %root
 else92:
   97 = mul i32 %root, i32 4
   98 = ptradd ptr @value, i32 %97
@@ -43,7 +39,7 @@ then101:
   store i32 %112 to ptr %106
   br bb %if.exit102
 if.exit102:
-  br bb %if.exit91
+  ret i32 %root
 else103:
   115 = ptradd ptr @left_child, i32 %97
   118.load = load i32 from ptr %115
@@ -101,8 +97,6 @@ then156:
   164.load = load i32 from ptr %161
   167 = call i32 delete(i32 %164.load, i32 %x)
   store i32 %167 to ptr %161
-  br bb %if.exit157
-if.exit157:
   br bb %if.exit139
 else158:
   170 = ptradd ptr @left_child, i32 %134
@@ -151,7 +145,7 @@ else209:
   249.load = load i32 from ptr %238
   251 = call i32 delete(i32 %245.load, i32 %249.load)
   store i32 %251 to ptr %230
-  br bb %if.exit157
+  br bb %if.exit139
 then216:
   221 = ptradd ptr @right_child, i32 %134
   221.load = load i32 from ptr %221
@@ -167,8 +161,6 @@ entry43:
   br i1 %47, bb %then48, bb %else50
 then48:
   ret i32 -1
-if.exit49:
-  ret i32 %root
 else50:
   53 = mul i32 %root, i32 4
   54 = ptradd ptr @left_child, i32 %53
@@ -180,7 +172,7 @@ then58:
   64 = call i32 find_minimum(i32 %62.load)
   ret i32 %64
 if.exit59:
-  br bb %if.exit49
+  ret i32 %root
 }
 
 external i32 getint()
@@ -256,11 +248,9 @@ if.exit286:
   now.load80374 = load i32 from ptr @now
   81375 = add i32 %now.load80374, i32 1
   store i32 %81375 to ptr @now
-  br bb %if.exit286.split
-if.exit286.split:
   br bb %while.cond
 while.cond:
-  i.phi338 = phi [bb %if.exit286.split, i32 1, bb %while.body, i32 %302]
+  i.phi338 = phi [bb %if.exit286, i32 1, bb %while.body, i32 %302]
   296 = icmp slt i32 %i.phi338, i32 %279
   br i1 %296, bb %while.body, bb %while.exit
 while.body:

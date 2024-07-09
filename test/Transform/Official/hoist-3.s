@@ -22,20 +22,18 @@ main:
   SW s0, 0(s1)
   ADDI a0, zero, 121
   CALL _sysy_starttime
-  JAL zero, bb1
-bb1:
   ADD s0, zero, zero
   ADD s1, zero, zero
-  JAL zero, bb2
-bb2:
+  JAL zero, bb1
+bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, loopCount
   LW s5, 0(s4)
   SLT s4, s2, s5
-  BNE s4, zero, bb3
-  JAL zero, bb4
-bb3:
+  BNE s4, zero, bb2
+  JAL zero, bb3
+bb2:
   ADDIW s4, s3, 15
   LUI s5, 366211
   ADDIW s5, s5, -255
@@ -43,8 +41,8 @@ bb3:
   ADDIW s4, s2, 1
   ADD s0, s6, zero
   ADD s1, s4, zero
-  JAL zero, bb2
-bb4:
+  JAL zero, bb1
+bb3:
   ADDI a0, zero, 123
   CALL _sysy_stoptime
   ADD a0, s3, zero
@@ -102,16 +100,16 @@ func:
   LW a1, 0(s8)
   ADD s8, zero, zero
   ADD a2, zero, zero
-  JAL zero, bb6
-bb6:
+  JAL zero, bb5
+bb5:
   ADD a3, a2, zero
   ADD a4, s8, zero
   LA a5, loopCount
   LW a6, 0(a5)
   SLT a5, a3, a6
-  BNE a5, zero, bb7
-  JAL zero, bb8
-bb7:
+  BNE a5, zero, bb6
+  JAL zero, bb7
+bb6:
   ADDW a5, s0, s1
   ADDW a6, a5, s2
   ADDW a5, a6, s3
@@ -1620,8 +1618,8 @@ bb7:
   ADDIW a5, a3, 1
   ADD s8, a7, zero
   ADD a2, a5, zero
-  JAL zero, bb6
-bb8:
+  JAL zero, bb5
+bb7:
   ADD a0, a4, zero
   LD ra, 0(sp)
   LD s11, 8(sp)

@@ -12,8 +12,6 @@ external i32 getfarray(ptr )
 i32 main() {
 entry5:
   store i32 10 to ptr @a
-  br bb %entry5.split
-entry5.split:
   ret i32 9
 }
 

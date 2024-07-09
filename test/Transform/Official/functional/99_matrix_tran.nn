@@ -77,11 +77,9 @@ while.exit:
   store float %40.load188 to ptr %38186
   45.load190 = load float from ptr %a0
   store float %45.load190 to ptr %c0
-  br bb %while.exit.split
-while.exit.split:
   br bb %while.cond99
 while.cond99:
-  i57.phi155 = phi [bb %while.exit.split, i32 0, bb %while.body100, i32 %114]
+  i57.phi155 = phi [bb %while.exit, i32 0, bb %while.body100, i32 %114]
   N.load = load i32 from ptr @N
   104 = icmp slt i32 %i57.phi155, i32 %N.load
   br i1 %104, bb %while.body100, bb %while.exit101

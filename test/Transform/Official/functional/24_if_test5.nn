@@ -10,8 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry15:
-  br bb %entry15.split
-entry15.split:
   ret i32 25
 }
 
@@ -31,8 +29,6 @@ external void putfarray(i32 , ptr )
 
 pure i32 if_if_Else() {
 entry:
-  br bb %if.exit
-if.exit:
   ret i32 25
 }
 

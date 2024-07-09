@@ -3,11 +3,9 @@ entry48:
   %next = stack 16384
   store i32 -1 to ptr %next
   br bb %get_next.while.cond
-entry48.split:
-  br bb %while.cond53
 while.cond53:
-  j52.phi138 = phi [bb %entry48.split, i32 0, bb %if.exit71, i32 %j52.phi137]
-  i51.phi135 = phi [bb %entry48.split, i32 0, bb %if.exit71, i32 %i51.phi134]
+  j52.phi138 = phi [bb %get_next.while.exit, i32 0, bb %if.exit71, i32 %j52.phi137]
+  i51.phi135 = phi [bb %get_next.while.exit, i32 0, bb %if.exit71, i32 %i51.phi134]
   57 = mul i32 %j52.phi138, i32 4
   58 = ptradd ptr %src, i32 %57
   58.load = load i32 from ptr %58
@@ -66,7 +64,7 @@ get_next.while.body:
   17250 = icmp eq i32 %j.phi141243, i32 -1
   br i1 %17250, bb %get_next.select.then, bb %get_next.select.else
 get_next.while.exit:
-  br bb %entry48.split
+  br bb %while.cond53
 get_next.select.then:
   br bb %get_next.select.exit
 get_next.select.else:
@@ -129,17 +127,15 @@ entry125:
   %next148 = stack 16384
   %src = stack 16384
   %dst = stack 16384
-  br bb %read_str.entry102
+  br bb %read_str.while.cond104
 entry125.split:
   130.ret = phi [bb %KMP.while.exit55, i32 -1, bb %KMP.then85, i32 %76170]
   call void putint(i32 %130.ret)
   call void putch(i32 10)
   ret i32 0
-KMP.entry48.split:
-  br bb %KMP.while.cond53
 KMP.while.cond53:
-  j52.phi138152 = phi [bb %KMP.entry48.split, i32 0, bb %KMP.if.exit71, i32 %j52.phi137180]
-  i51.phi135153 = phi [bb %KMP.entry48.split, i32 0, bb %KMP.if.exit71, i32 %i51.phi134181]
+  j52.phi138152 = phi [bb %get_next.while.exit297, i32 0, bb %KMP.if.exit71, i32 %j52.phi137180]
+  i51.phi135153 = phi [bb %get_next.while.exit297, i32 0, bb %KMP.if.exit71, i32 %i51.phi134181]
   57154 = mul i32 %j52.phi138152, i32 4
   58155 = ptradd ptr %src, i32 %57154
   58.load156 = load i32 from ptr %58155
@@ -186,10 +182,8 @@ KMP.if.exit96:
   j52.phi197 = phi [bb %KMP.else72, i32 %j52.phi138152, bb %KMP.then95, i32 %100194]
   i51.phi198 = phi [bb %KMP.else72, i32 %90.load185, bb %KMP.then95, i32 %98193]
   br bb %KMP.if.exit71
-read_str.entry102:
-  br bb %read_str.while.cond104
 read_str.while.cond104:
-  i103.phi205 = phi [bb %read_str.entry102, i32 0, bb %read_str.if.exit118, i32 %120216]
+  i103.phi205 = phi [bb %entry125, i32 0, bb %read_str.if.exit118, i32 %120216]
   109206 = mul i32 %i103.phi205, i32 4
   110207 = ptradd ptr %dst, i32 %109206
   111208 = call i32 getch()
@@ -198,14 +192,12 @@ read_str.while.cond104:
   br i1 %116210, bb %read_str.then117, bb %read_str.if.exit118
 read_str.then117:
   store i32 0 to ptr %110207
-  br bb %read_str.entry102220
+  br bb %read_str.while.cond104222
 read_str.if.exit118:
   120216 = add i32 %i103.phi205, i32 1
   br bb %read_str.while.cond104
-read_str.entry102220:
-  br bb %read_str.while.cond104222
 read_str.while.cond104222:
-  i103.phi223 = phi [bb %read_str.entry102220, i32 0, bb %read_str.if.exit118233, i32 %120234]
+  i103.phi223 = phi [bb %read_str.then117, i32 0, bb %read_str.if.exit118233, i32 %120234]
   109224 = mul i32 %i103.phi223, i32 4
   110225 = ptradd ptr %src, i32 %109224
   111226 = call i32 getch()
@@ -231,7 +223,7 @@ get_next.while.body294:
   17295 = icmp eq i32 %j.phi141288, i32 -1
   br i1 %17295, bb %get_next.select.then299, bb %get_next.select.else301
 get_next.while.exit297:
-  br bb %KMP.entry48.split
+  br bb %KMP.while.cond53
 get_next.select.then299:
   br bb %get_next.select.exit308
 get_next.select.else301:

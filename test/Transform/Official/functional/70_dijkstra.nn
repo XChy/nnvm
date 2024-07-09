@@ -78,11 +78,9 @@ while.body173:
   191 = add i32 %i131.phi210, i32 1
   br bb %while.cond172
 while.exit174:
-  br bb %Dijkstra.entry
-while.exit174.split:
-  br bb %while.cond193
+  br bb %Dijkstra.while.cond
 while.cond193:
-  i131.phi = phi [bb %while.exit174.split, i32 1, bb %while.body194, i32 %207]
+  i131.phi = phi [bb %Dijkstra.while.exit28, i32 1, bb %while.body194, i32 %207]
   n.load197 = load i32 from ptr @n
   198 = icmp sle i32 %i131.phi, i32 %n.load197
   br i1 %198, bb %while.body194, bb %while.exit195
@@ -97,10 +95,8 @@ while.body194:
 while.exit195:
   call void putch(i32 10)
   ret i32 0
-Dijkstra.entry:
-  br bb %Dijkstra.while.cond
 Dijkstra.while.cond:
-  i.phi217235 = phi [bb %Dijkstra.entry, i32 1, bb %Dijkstra.while.body, i32 %23248]
+  i.phi217235 = phi [bb %while.exit174, i32 1, bb %Dijkstra.while.body, i32 %23248]
   n.load236 = load i32 from ptr @n
   8237 = icmp sle i32 %i.phi217235, i32 %n.load236
   br i1 %8237, bb %Dijkstra.while.body, bb %Dijkstra.while.exit
@@ -129,7 +125,7 @@ Dijkstra.while.cond26:
 Dijkstra.while.body27:
   br bb %Dijkstra.while.cond38
 Dijkstra.while.exit28:
-  br bb %while.exit174.split
+  br bb %while.cond193
 Dijkstra.while.cond38:
   select.phi227266 = phi [bb %Dijkstra.while.body27, i1 %select.phi228255, bb %Dijkstra.if.exit, i1 %select.phi292]
   k.phi267 = phi [bb %Dijkstra.while.body27, i32 1, bb %Dijkstra.if.exit, i32 %69300]
@@ -191,7 +187,7 @@ Dijkstra.then90:
   105.load323 = load i32 from ptr %86311
   107324 = add i32 %98.load322, i32 %105.load323
   108325 = icmp sgt i32 %94.load320, i32 %107324
-  br i1 %108325, bb %Dijkstra.then109, bb %Dijkstra.if.exit110
+  br i1 %108325, bb %Dijkstra.then109, bb %Dijkstra.if.exit91
 Dijkstra.if.exit91:
   127328 = add i32 %j73.phi303, i32 1
   br bb %Dijkstra.while.cond74
@@ -200,8 +196,6 @@ Dijkstra.then109:
   123.load332 = load i32 from ptr %86311
   125333 = add i32 %116.load331, i32 %123.load332
   store i32 %125333 to ptr %94319
-  br bb %Dijkstra.if.exit110
-Dijkstra.if.exit110:
   br bb %Dijkstra.if.exit91
 }
 
@@ -310,7 +304,7 @@ then90:
   105.load = load i32 from ptr %86
   107 = add i32 %98.load, i32 %105.load
   108 = icmp sgt i32 %94.load, i32 %107
-  br i1 %108, bb %then109, bb %if.exit110
+  br i1 %108, bb %then109, bb %if.exit91
 if.exit91:
   127 = add i32 %j73.phi, i32 1
   br bb %while.cond74
@@ -319,8 +313,6 @@ then109:
   123.load = load i32 from ptr %86
   125 = add i32 %116.load, i32 %123.load
   store i32 %125 to ptr %94
-  br bb %if.exit110
-if.exit110:
   br bb %if.exit91
 }
 

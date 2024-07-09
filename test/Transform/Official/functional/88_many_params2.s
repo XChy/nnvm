@@ -176,6 +176,7 @@ bb6:
   ADDI t5, sp, 0
   ADD s8, t5, s7
   LW s7, 0(s8)
+  ADD s8, zero, zero
   JAL zero, bb10
 bb7:
   ADD s2, s1, zero
@@ -257,14 +258,11 @@ bb9:
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb10:
-  ADD s8, zero, zero
-  JAL zero, bb11
-bb11:
   ADD s9, s8, zero
   SLTI s10, s9, 10
-  BNE s10, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE s10, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s10, zero, 236
   MULW s11, s3, s10
   ADDI t6, sp, 0
@@ -277,8 +275,8 @@ bb12:
   CALL putint
   ADDIW s10, s9, 1
   ADD s8, s10, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb10
+bb12:
   ADDI a0, zero, 10
   CALL putch
   ADDI s3, zero, 4
@@ -291,14 +289,14 @@ bb13:
   CALL putch
   ADD s1, s7, zero
   ADD s3, s6, zero
-  JAL zero, bb14
-bb14:
+  JAL zero, bb13
+bb13:
   ADD s4, s3, zero
   ADD s6, s1, zero
   SLTI s7, s6, 10
-  BNE s7, zero, bb15
-  JAL zero, bb16
-bb15:
+  BNE s7, zero, bb14
+  JAL zero, bb15
+bb14:
   ADDI s7, zero, 4
   MULW s8, s6, s7
   ADD s7, s0, s8
@@ -313,8 +311,8 @@ bb15:
   ADDIW s6, s4, 7
   ADD s1, s7, zero
   ADD s3, s6, zero
-  JAL zero, bb14
-bb16:
+  JAL zero, bb13
+bb15:
   ADDW s1, s2, s5
   ADDI s2, zero, 3
   MULW s3, s1, s2
@@ -347,13 +345,13 @@ func:
   ADD s8, t5, zero
   LW s9, 0(s8)
   ADD s8, zero, zero
-  JAL zero, bb18
-bb18:
+  JAL zero, bb17
+bb17:
   ADD s10, s8, zero
   SLTI s11, s10, 10
-  BNE s11, zero, bb19
-  JAL zero, bb20
-bb19:
+  BNE s11, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDI s11, zero, 236
   MULW ra, s0, s11
   ADD s11, s1, ra
@@ -365,8 +363,8 @@ bb19:
   CALL putint
   ADDIW s11, s10, 1
   ADD s8, s11, zero
-  JAL zero, bb18
-bb20:
+  JAL zero, bb17
+bb19:
   ADDI a0, zero, 10
   CALL putch
   ADDI s0, zero, 4
@@ -379,14 +377,14 @@ bb20:
   CALL putch
   ADD s0, s9, zero
   ADD s1, s7, zero
-  JAL zero, bb21
-bb21:
+  JAL zero, bb20
+bb20:
   ADD s2, s1, zero
   ADD s3, s0, zero
   SLTI s7, s3, 10
-  BNE s7, zero, bb22
-  JAL zero, bb23
-bb22:
+  BNE s7, zero, bb21
+  JAL zero, bb22
+bb21:
   ADDI s7, zero, 4
   MULW s8, s3, s7
   ADD s7, s6, s8
@@ -401,8 +399,8 @@ bb22:
   ADDIW s3, s2, 7
   ADD s0, s7, zero
   ADD s1, s3, zero
-  JAL zero, bb21
-bb23:
+  JAL zero, bb20
+bb22:
   ADDW s0, s4, s5
   ADD a0, s0, zero
   LD ra, 0(sp)

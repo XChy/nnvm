@@ -423,21 +423,19 @@ entry51:
   sum.load481003 = load i32 from ptr @sum
   501004 = add i32 %sum.load481003, i32 %24861014
   store i32 %501004 to ptr @sum
-  br bb %while.body100
-while.body100:
   br bb %while.cond104
-while.cond104:
-  a127.phi = phi [bb %while.body100, i32 ub, bb %else, i32 %a127.phi, bb %then124, i32 %2549]
-  i.phi = phi [bb %while.body100, i32 0, bb %else, i32 %141, bb %then124, i32 %134]
-  a56.phi = phi [bb %while.body100, i32 %2507, bb %else, i32 %2556, bb %then124, i32 %a56.phi148]
-  108 = icmp slt i32 %i.phi, i32 3
-  br i1 %108, bb %while.body105, bb %while.exit106
-while.body105:
-  br bb %while.cond110
-while.exit106:
+while.exit:
   sum.load142 = load i32 from ptr @sum
   call void putint(i32 %sum.load142)
   ret i32 0
+while.cond104:
+  a127.phi = phi [bb %entry51, i32 ub, bb %else, i32 %a127.phi, bb %then124, i32 %2549]
+  i.phi = phi [bb %entry51, i32 0, bb %else, i32 %141, bb %then124, i32 %134]
+  a56.phi = phi [bb %entry51, i32 %2507, bb %else, i32 %2556, bb %then124, i32 %a56.phi148]
+  108 = icmp slt i32 %i.phi, i32 3
+  br i1 %108, bb %while.body105, bb %while.exit
+while.body105:
+  br bb %while.cond110
 while.cond110:
   a56.phi148 = phi [bb %while.body105, i32 %a56.phi]
   sum.load403 = load i32 from ptr @sum

@@ -83,11 +83,9 @@ entry175:
   store i32 1 to ptr %arr.index204
   arr.index205 = ptradd ptr %B, i32 48
   store i32 5 to ptr %arr.index205
-  br bb %max_sum_nonadjacent.entry18
-max_sum_nonadjacent.entry18:
   br bb %max_sum_nonadjacent.init.cond
 max_sum_nonadjacent.init.cond:
-  cnt_ptr.phi269 = phi [bb %max_sum_nonadjacent.entry18, i32 16, bb %max_sum_nonadjacent.init, i32 %cnt.dec273]
+  cnt_ptr.phi269 = phi [bb %entry175, i32 16, bb %max_sum_nonadjacent.init, i32 %cnt.dec273]
   26270 = icmp ne i32 %cnt_ptr.phi269, i32 0
   br i1 %26270, bb %max_sum_nonadjacent.init, bb %max_sum_nonadjacent.init.exit
 max_sum_nonadjacent.init:
@@ -138,7 +136,7 @@ max_sum_nonadjacent.while.exit:
   78.load318 = load i32 from ptr %78317
   call void putint(i32 %78.load318)
   call void putch(i32 10)
-  br bb %longest_common_subseq.entry80
+  br bb %longest_common_subseq.init.cond84
 max_sum_nonadjacent.MAX.then:
   br bb %max_sum_nonadjacent.init.exit.split
 max_sum_nonadjacent.MAX.else:
@@ -157,10 +155,8 @@ max_sum_nonadjacent.MAX.then13245:
   br bb %max_sum_nonadjacent.while.body.split
 max_sum_nonadjacent.MAX.else15247:
   br bb %max_sum_nonadjacent.while.body.split
-longest_common_subseq.entry80:
-  br bb %longest_common_subseq.init.cond84
 longest_common_subseq.init.cond84:
-  cnt_ptr87.phi350 = phi [bb %longest_common_subseq.entry80, i32 256, bb %longest_common_subseq.init85, i32 %cnt.dec91354]
+  cnt_ptr87.phi350 = phi [bb %max_sum_nonadjacent.while.exit, i32 256, bb %longest_common_subseq.init85, i32 %cnt.dec91354]
   89351 = icmp ne i32 %cnt_ptr87.phi350, i32 0
   br i1 %89351, bb %longest_common_subseq.init85, bb %longest_common_subseq.init.exit86
 longest_common_subseq.init85:

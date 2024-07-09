@@ -14,12 +14,10 @@ entry3136:
   3137 = call i32 getint()
   store i32 %3137 to ptr @loopCount
   call void _sysy_starttime(i32 121)
-  br bb %func.entry
-func.entry:
   br bb %func.while.cond
 func.while.cond:
-  result.phi3153 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %31324660]
-  i.phi3154 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %31344661]
+  result.phi3153 = phi [bb %entry3136, i32 0, bb %func.while.body, i32 %31324660]
+  i.phi3154 = phi [bb %entry3136, i32 0, bb %func.while.body, i32 %31344661]
   loopCount.load3155 = load i32 from ptr @loopCount
   233156 = icmp slt i32 %i.phi3154, i32 %loopCount.load3155
   br i1 %233156, bb %func.while.body, bb %func.while.exit

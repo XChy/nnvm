@@ -64,7 +64,7 @@ init.exit66:
   139.load = load i32 from ptr %200
   202 = ptradd ptr %b, i32 12108
   144.load = load i32 from ptr %202
-  br bb %func.entry
+  br bb %func.while.cond
 while.cond148:
   ret.phi = phi [bb %func.while.exit33, i32 %147, bb %while.body149, i32 %163]
   152 = icmp sge i32 %ret.phi, i32 0
@@ -80,10 +80,8 @@ while.body149:
 while.exit150:
   call void putch(i32 10)
   ret i32 0
-func.entry:
-  br bb %func.while.cond
 func.while.cond:
-  index.phi207 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %23217]
+  index.phi207 = phi [bb %init.exit66, i32 0, bb %func.while.body, i32 %23217]
   12208 = icmp slt i32 %index.phi207, i32 10
   br i1 %12208, bb %func.while.body, bb %func.while.exit
 func.while.body:

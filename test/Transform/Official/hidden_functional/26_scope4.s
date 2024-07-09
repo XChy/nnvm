@@ -727,22 +727,11 @@ main:
   ADDW s2, s3, s1
   LA s1, sum
   SW s2, 0(s1)
-  JAL zero, bb4
-bb4:
   ADD s1, zero, zero
   ADD s2, zero, zero
   ADD s3, s0, zero
   JAL zero, bb5
-bb5:
-  ADD s0, s3, zero
-  ADD s4, s2, zero
-  ADD s5, s1, zero
-  SLTI s6, s4, 3
-  BNE s6, zero, bb6
-  JAL zero, bb7
-bb6:
-  JAL zero, bb8
-bb7:
+bb4:
   LA s0, sum
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -762,7 +751,16 @@ bb7:
   LD s9, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb8:
+bb5:
+  ADD s0, s3, zero
+  ADD s4, s2, zero
+  ADD s5, s1, zero
+  SLTI s6, s4, 3
+  BNE s6, zero, bb6
+  JAL zero, bb4
+bb6:
+  JAL zero, bb7
+bb7:
   LA s6, sum
   LW s7, 0(s6)
   ADDW s6, s7, s0
@@ -845,9 +843,9 @@ bb8:
   SW s7, 0(s6)
   XORI s6, s4, 1
   SLTIU s7, s6, 1
-  BNE s7, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s7, zero, bb8
+  JAL zero, bb9
+bb8:
   LA s6, count
   LW s7, 0(s6)
   ADDIW s6, s7, 1
@@ -938,7 +936,7 @@ bb9:
   ADD s2, s7, zero
   ADD s3, s0, zero
   JAL zero, bb5
-bb10:
+bb9:
   LA s6, sum
   LW s7, 0(s6)
   ADDW s6, s7, s0

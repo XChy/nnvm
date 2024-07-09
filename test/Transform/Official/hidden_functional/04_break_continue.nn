@@ -80,13 +80,11 @@ select.exit:
 then52:
   56 = sub i32 %m.phi, i32 -1
   57 = icmp sge i32 %56, i32 3
-  br i1 %57, bb %then58, bb %if.exit59
+  br i1 %57, bb %then58, bb %if.exit53
 if.exit53:
   br bb %if.exit38
 then58:
   br bb %while.exit26
-if.exit59:
-  br bb %if.exit53
 while.cond61:
   n.phi = phi [bb %if.exit, i32 0, bb %while.body62, i32 %68]
   65 = icmp slt i32 %n.phi, i32 2

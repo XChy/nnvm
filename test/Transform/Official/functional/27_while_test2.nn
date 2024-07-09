@@ -63,16 +63,12 @@ while.exit31:
 
 pure i32 main() {
 entry50:
-  br bb %FourWhile.entry
-entry50.split:
-  ret i32 %4978
-FourWhile.entry:
   br bb %FourWhile.while.cond
 FourWhile.while.cond:
-  d.phi6066 = phi [bb %FourWhile.entry, i32 10, bb %FourWhile.while.exit15, i32 %d.phi5981]
-  c.phi5667 = phi [bb %FourWhile.entry, i32 7, bb %FourWhile.while.exit15, i32 %c.phi82]
-  b.phi68 = phi [bb %FourWhile.entry, i32 6, bb %FourWhile.while.exit15, i32 %4290]
-  a.phi69 = phi [bb %FourWhile.entry, i32 5, bb %FourWhile.while.exit15, i32 %1273]
+  d.phi6066 = phi [bb %entry50, i32 10, bb %FourWhile.while.exit15, i32 %d.phi5981]
+  c.phi5667 = phi [bb %entry50, i32 7, bb %FourWhile.while.exit15, i32 %c.phi82]
+  b.phi68 = phi [bb %entry50, i32 6, bb %FourWhile.while.exit15, i32 %4290]
+  a.phi69 = phi [bb %entry50, i32 5, bb %FourWhile.while.exit15, i32 %1273]
   970 = icmp slt i32 %a.phi69, i32 20
   br i1 %970, bb %FourWhile.while.body, bb %FourWhile.while.exit
 FourWhile.while.body:
@@ -82,7 +78,7 @@ FourWhile.while.exit:
   4676 = add i32 %b.phi68, i32 %d.phi6066
   4777 = add i32 %a.phi69, i32 %4676
   4978 = add i32 %4777, i32 %c.phi5667
-  br bb %entry50.split
+  ret i32 %4978
 FourWhile.while.cond13:
   d.phi5981 = phi [bb %FourWhile.while.body, i32 %d.phi6066, bb %FourWhile.while.exit23, i32 %d.phi93]
   c.phi82 = phi [bb %FourWhile.while.body, i32 %c.phi5667, bb %FourWhile.while.exit23, i32 %40101]

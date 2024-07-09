@@ -4,8 +4,6 @@ external i32 getch()
 
 pure i32 ififElse() {
 entry:
-  br bb %if.exit
-if.exit:
   ret i32 25
 }
 
@@ -17,8 +15,6 @@ external i32 getfarray(ptr )
 
 pure i32 main() {
 entry15:
-  br bb %entry15.split
-entry15.split:
   ret i32 25
 }
 

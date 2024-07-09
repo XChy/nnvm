@@ -79,11 +79,9 @@ entry296:
   129639 = si2f i32 6 to float
   130640 = fdiv float %128638, float %129639
   br bb %asr4.entry215.split
-entry296.split:
-  ret float %228460
 asr4.entry215.split:
   228460 = call float asr5(float %298, float %x, float 0.000000, float %130640, i32 1)
-  br bb %entry296.split
+  ret float %228460
 }
 
 float my_exp(float x) {

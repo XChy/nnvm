@@ -28,14 +28,6 @@ entry12:
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
-  br bb %select.else
-select.else:
-  br bb %select.exit
-select.exit:
-  br i1 0, bb %then, bb %if.exit
-then:
-  br bb %if.exit
-if.exit:
   a.load24 = load i32 from ptr @a
   call void putint(i32 %a.load24)
   call void putch(i32 32)
@@ -45,14 +37,6 @@ if.exit:
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
-  br bb %select.else33
-select.else33:
-  br bb %select.exit34
-select.exit34:
-  br i1 0, bb %then39, bb %if.exit40
-then39:
-  br bb %if.exit40
-if.exit40:
   a.load41 = load i32 from ptr @a
   call void putint(i32 %a.load41)
   call void putch(i32 32)
@@ -61,38 +45,20 @@ if.exit40:
   call void putch(i32 10)
   store i32 2 to ptr @d
   47 = icmp sge i32 1, i32 1
-  br i1 %47, bb %select.then48, bb %select.else49
+  br i1 %47, bb %select.then48, bb %select.exit50
 select.then48:
   store i32 3 to ptr @d
-  br bb %select.then48.split
-select.then48.split:
-  br bb %select.exit50
-select.else49:
   br bb %select.exit50
 select.exit50:
-  select51.phi = phi [bb %select.else49, i1 0, bb %select.then48.split, i1 1]
-  br i1 %select51.phi, bb %then55, bb %if.exit56
-then55:
-  br bb %if.exit56
-if.exit56:
   d.load57 = load i32 from ptr @d
   call void putint(i32 %d.load57)
   call void putch(i32 32)
   60 = icmp sle i32 1, i32 1
-  br i1 %60, bb %select.then61, bb %select.else62
-select.then61:
-  br bb %select.exit63
+  br i1 %60, bb %select.exit63, bb %select.else62
 select.else62:
   store i32 4 to ptr @d
-  br bb %select.else62.split
-select.else62.split:
   br bb %select.exit63
 select.exit63:
-  select64.phi = phi [bb %select.else62.split, i1 1, bb %select.then61, i1 1]
-  br i1 %select64.phi, bb %then69, bb %if.exit70
-then69:
-  br bb %if.exit70
-if.exit70:
   d.load71 = load i32 from ptr @d
   call void putint(i32 %d.load71)
   call void putch(i32 10)
@@ -189,12 +155,10 @@ if.exit201:
 select.then209:
   br bb %select.exit211
 select.else210:
-  br bb %select.exit218
-select.exit211:
-  select212.phi = phi [bb %select.exit218, i1 0, bb %select.then209, i1 1]
-  br i1 %select212.phi, bb %then226, bb %if.exit227
-select.exit218:
   br bb %select.exit211
+select.exit211:
+  select212.phi = phi [bb %select.else210, i1 0, bb %select.then209, i1 1]
+  br i1 %select212.phi, bb %then226, bb %if.exit227
 then226:
   call void putch(i32 75)
   br bb %if.exit227

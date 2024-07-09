@@ -160,18 +160,17 @@ main:
   SW s1, 0(s0)
   LA s0, n
   LW s1, 0(s0)
-  JAL zero, bb18
-bb14:
   ADD s0, zero, zero
-  JAL zero, bb15
-bb15:
+  ADD s2, zero, zero
+  JAL zero, bb17
+bb14:
   ADD s1, s0, zero
   LA s2, n
   LW s3, 0(s2)
   SLT s2, s1, s3
-  BNE s2, zero, bb16
-  JAL zero, bb17
-bb16:
+  BNE s2, zero, bb15
+  JAL zero, bb16
+bb15:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   ADDI t5, sp, 0
@@ -183,8 +182,8 @@ bb16:
   CALL putch
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb15
-bb17:
+  JAL zero, bb14
+bb16:
   ADD a0, zero, zero
   LD s11, 40(sp)
   LD s10, 48(sp)
@@ -201,32 +200,29 @@ bb17:
   LD s9, 136(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
-bb18:
-  ADD s0, zero, zero
-  ADD s2, zero, zero
-  JAL zero, bb19
-bb19:
+bb17:
   ADD s3, s2, zero
   ADD s4, s0, zero
   ADDI s5, zero, 1
   SUBW s6, s1, s5
   SLT s5, s3, s6
-  BNE s5, zero, bb20
-  JAL zero, bb21
-bb20:
+  BNE s5, zero, bb18
+  JAL zero, bb19
+bb18:
   ADDIW s5, s3, 1
   ADD s6, s3, zero
   ADD s7, s5, zero
-  JAL zero, bb22
-bb21:
+  JAL zero, bb20
+bb19:
+  ADD s0, zero, zero
   JAL zero, bb14
-bb22:
+bb20:
   ADD s8, s7, zero
   ADD s9, s6, zero
   SLT s10, s8, s1
-  BNE s10, zero, bb23
-  JAL zero, bb24
-bb23:
+  BNE s10, zero, bb21
+  JAL zero, bb22
+bb21:
   ADDI s10, zero, 4
   MULW s11, s9, s10
   ADDI t6, sp, 0
@@ -238,23 +234,23 @@ bb23:
   ADD s10, t5, t0
   LW t0, 0(s10)
   SLT s10, t0, s11
-  BNE s10, zero, bb25
-  JAL zero, bb29
-bb24:
+  BNE s10, zero, bb23
+  JAL zero, bb27
+bb22:
   XOR s6, s9, s3
   SLTU s7, zero, s6
-  BNE s7, zero, bb27
-  JAL zero, bb30
-bb25:
+  BNE s7, zero, bb25
+  JAL zero, bb28
+bb23:
   ADD s10, s8, zero
-  JAL zero, bb26
-bb26:
+  JAL zero, bb24
+bb24:
   ADD s11, s10, zero
   ADDIW t0, s8, 1
   ADD s6, s11, zero
   ADD s7, t0, zero
-  JAL zero, bb22
-bb27:
+  JAL zero, bb20
+bb25:
   ADDI s6, zero, 4
   MULW s7, s9, s6
   ADDI t6, sp, 0
@@ -268,15 +264,15 @@ bb27:
   SW s8, 0(s6)
   SW s7, 0(s3)
   ADD s3, s7, zero
-  JAL zero, bb28
-bb28:
+  JAL zero, bb26
+bb26:
   ADD s6, s3, zero
   ADD s0, s6, zero
   ADD s2, s5, zero
-  JAL zero, bb19
-bb29:
+  JAL zero, bb17
+bb27:
   ADD s10, s9, zero
-  JAL zero, bb26
-bb30:
+  JAL zero, bb24
+bb28:
   ADD s3, s4, zero
-  JAL zero, bb28
+  JAL zero, bb26

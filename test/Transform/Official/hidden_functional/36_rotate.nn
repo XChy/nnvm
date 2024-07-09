@@ -163,8 +163,6 @@ if.exit30:
   19385 = fmul float %17384, float %34
   21386 = fmul float %19385, float %34
   22387 = fsub float %14382, float %21386
-  br bb %if.exit30.split
-if.exit30.split:
   ret float %22387
 my_fabs.then:
   br bb %entry23.split
@@ -241,8 +239,6 @@ entry83:
   89 = fadd float %x, float %88
   40392 = fcmp ogt float %89, float 6.283185
   br i1 %40392, bb %my_sin.select.then, bb %my_sin.select.else
-entry83.split:
-  ret float %82427
 my_sin.select.then:
   br bb %my_sin.select.exit
 my_sin.select.else:
@@ -277,7 +273,7 @@ my_sin.then76:
 my_sin.if.exit77:
   x.stack37.phi426 = phi [bb %my_sin.if.exit68, float %x.stack37.phi303418, bb %my_sin.then76, float %80423]
   82427 = call float my_sin_impl(float %x.stack37.phi426)
-  br bb %entry83.split
+  ret float %82427
 }
 
 external i32 getfarray(ptr )

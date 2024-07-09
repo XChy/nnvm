@@ -34,11 +34,9 @@ while.exit243:
   277 = si2f i32 24 to float
   278 = fdiv float %sum.phi, float %277
   ret float %278
-trace.entry185:
-  br bb %trace.while.cond192
 trace.while.cond192:
-  i.phi398 = phi [bb %trace.entry185, i32 0, bb %trace.if.exit225, i32 %235428]
-  t190.phi399 = phi [bb %trace.entry185, float 0.000000, bb %trace.if.exit225, float %233427]
+  i.phi398 = phi [bb %my_sin.if.exit120666, i32 0, bb %trace.if.exit225, i32 %235428]
+  t190.phi399 = phi [bb %my_sin.if.exit120666, float 0.000000, bb %trace.if.exit225, float %233427]
   197400 = icmp slt i32 %i.phi398, i32 10
   br i1 %197400, bb %trace.select.then198, bb %trace.select.else199
 trace.while.body193:
@@ -112,7 +110,7 @@ my_sin.then119663:
 my_sin.if.exit120666:
   x.stack80.phi667 = phi [bb %my_sin.if.exit111658, float %x.stack80.phi350659, bb %my_sin.then119663, float %123664]
   125668 = call float my_sin_impl(float %x.stack80.phi667)
-  br bb %trace.entry185
+  br bb %trace.while.cond192
 rand.then:
   seed.load9721 = load i32 from ptr @seed
   10722 = add i32 %seed.load9721, i32 100000007
@@ -350,8 +348,6 @@ if.exit73:
   62475 = fmul float %60474, float %77
   64476 = fmul float %62475, float %77
   65477 = fsub float %57472, float %64476
-  br bb %if.exit73.split
-if.exit73.split:
   ret float %65477
 my_fabs.then17:
   br bb %entry66.split
@@ -590,8 +586,6 @@ entry126:
   132 = fadd float %x, float %131
   83593 = fcmp ogt float %132, float 6.283185
   br i1 %83593, bb %my_sin.select.then, bb %my_sin.select.else
-entry126.split:
-  ret float %125628
 my_sin.select.then:
   br bb %my_sin.select.exit
 my_sin.select.else:
@@ -626,7 +620,7 @@ my_sin.then119:
 my_sin.if.exit120:
   x.stack80.phi627 = phi [bb %my_sin.if.exit111, float %x.stack80.phi350619, bb %my_sin.then119, float %123624]
   125628 = call float my_sin_impl(float %x.stack80.phi627)
-  br bb %entry126.split
+  ret float %125628
 }
 
 external i32 getfarray(ptr )
@@ -678,7 +672,7 @@ while.body301:
   316 = si2f i32 192 to float
   317 = fdiv float %309, float %316
   321 = fdiv float %312, float %316
-  br bb %sample.entry236
+  br bb %sample.while.cond241
 while.exit302:
   call void putch(i32 10)
   336 = add i32 %y.phi, i32 1
@@ -691,11 +685,9 @@ if.exit328:
   call void putch(i32 32)
   333 = add i32 %x.phi, i32 1
   br bb %while.cond300
-sample.entry236:
-  br bb %sample.while.cond241
 sample.while.cond241:
-  i240.phi368 = phi [bb %sample.entry236, i32 0, bb %sample.while.body242.split, i32 %274386]
-  sum.phi369 = phi [bb %sample.entry236, float 0.000000, bb %sample.while.body242.split, float %272385]
+  i240.phi368 = phi [bb %while.body301, i32 0, bb %sample.while.body242.split, i32 %274386]
+  sum.phi369 = phi [bb %while.body301, float 0.000000, bb %sample.while.body242.split, float %272385]
   246370 = icmp slt i32 %i240.phi368, i32 24
   br i1 %246370, bb %sample.while.body242, bb %sample.while.exit243
 sample.while.body242:
@@ -718,11 +710,9 @@ sample.while.exit243:
   324 = f2si float %323 to i32
   326 = icmp sgt i32 %324, i32 255
   br i1 %326, bb %then327, bb %if.exit328
-trace.entry185432:
-  br bb %trace.while.cond192435
 trace.while.cond192435:
-  i.phi436 = phi [bb %trace.entry185432, i32 0, bb %trace.if.exit225463, i32 %235466]
-  t190.phi437 = phi [bb %trace.entry185432, float 0.000000, bb %trace.if.exit225463, float %233465]
+  i.phi436 = phi [bb %my_sin.if.exit120706, i32 0, bb %trace.if.exit225463, i32 %235466]
+  t190.phi437 = phi [bb %my_sin.if.exit120706, float 0.000000, bb %trace.if.exit225463, float %233465]
   197438 = icmp slt i32 %i.phi436, i32 10
   br i1 %197438, bb %trace.select.then198451, bb %trace.select.else199454
 trace.while.body193440:
@@ -796,7 +786,7 @@ my_sin.then119703:
 my_sin.if.exit120706:
   x.stack80.phi707 = phi [bb %my_sin.if.exit111698, float %x.stack80.phi350699, bb %my_sin.then119703, float %123704]
   125708 = call float my_sin_impl(float %x.stack80.phi707)
-  br bb %trace.entry185432
+  br bb %trace.while.cond192435
 rand.then738:
   seed.load9739 = load i32 from ptr @seed
   10740 = add i32 %seed.load9739, i32 100000007

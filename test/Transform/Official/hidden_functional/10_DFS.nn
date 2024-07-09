@@ -130,14 +130,12 @@ entry168.split310:
 entry168.split310.split:
   170.ret = phi [bb %quick_read.then45416, i32 %49417, bb %quick_read.else419, i32 %x.phi395]
   store i32 %170.ret to ptr @m
-  br bb %init.entry88
-entry168.split:
-  br bb %while.cond172
+  br bb %init.while.cond90
 while.cond172:
-  y210.phi234 = phi [bb %entry168.split, i32 ub, bb %if.exit196, i32 %y210.phi]
-  x198.phi232 = phi [bb %entry168.split, i32 ub, bb %if.exit196, i32 %x198.phi]
-  x208.phi230 = phi [bb %entry168.split, i32 ub, bb %if.exit196, i32 %x208.phi]
-  y200.phi228 = phi [bb %entry168.split, i32 ub, bb %if.exit196, i32 %y200.phi]
+  y210.phi234 = phi [bb %init.while.exit92, i32 ub, bb %if.exit196, i32 %y210.phi]
+  x198.phi232 = phi [bb %init.while.exit92, i32 ub, bb %if.exit196, i32 %x198.phi]
+  x208.phi230 = phi [bb %init.while.exit92, i32 ub, bb %if.exit196, i32 %x208.phi]
+  y200.phi228 = phi [bb %init.while.exit92, i32 ub, bb %if.exit196, i32 %y200.phi]
   m.load = load i32 from ptr @m
   176 = icmp ne i32 %m.load, i32 0
   br i1 %176, bb %while.body173, bb %while.exit174
@@ -173,12 +171,12 @@ then195.split422:
   br bb %quick_read.while.cond482
 then195.split422.split:
   201.ret = phi [bb %quick_read.then45528, i32 %49529, bb %quick_read.else531, i32 %x.phi507]
-  br bb %clear.entry103
+  br bb %clear.while.cond105
 if.exit196:
-  y210.phi = phi [bb %else197.split, i32 %211.ret, bb %clear.while.exit107, i32 %y210.phi234]
-  x198.phi = phi [bb %else197.split, i32 %x198.phi232, bb %clear.while.exit107, i32 %199.ret]
-  x208.phi = phi [bb %else197.split, i32 %209.ret, bb %clear.while.exit107, i32 %x208.phi230]
-  y200.phi = phi [bb %else197.split, i32 %y200.phi228, bb %clear.while.exit107, i32 %201.ret]
+  y210.phi = phi [bb %else197.split534.split, i32 %211.ret, bb %clear.while.exit107, i32 %y210.phi234]
+  x198.phi = phi [bb %else197.split534.split, i32 %x198.phi232, bb %clear.while.exit107, i32 %199.ret]
+  x208.phi = phi [bb %else197.split534.split, i32 %209.ret, bb %clear.while.exit107, i32 %x208.phi230]
+  y200.phi = phi [bb %else197.split534.split, i32 %y200.phi228, bb %clear.while.exit107, i32 %201.ret]
   m.load215 = load i32 from ptr @m
   216 = sub i32 %m.load215, i32 1
   store i32 %216 to ptr @m
@@ -223,13 +221,9 @@ else197.split534.split:
   cnt.load86290 = load i32 from ptr @cnt
   87291 = add i32 %cnt.load86290, i32 1
   store i32 %87291 to ptr @cnt
-  br bb %else197.split
-else197.split:
   br bb %if.exit196
-init.entry88:
-  br bb %init.while.cond90
 init.while.cond90:
-  i.phi249 = phi [bb %init.entry88, i32 0, bb %init.while.body91, i32 %102256]
+  i.phi249 = phi [bb %entry168.split310.split, i32 0, bb %init.while.body91, i32 %102256]
   95250 = icmp slt i32 %i.phi249, i32 1005
   br i1 %95250, bb %init.while.body91, bb %init.while.exit92
 init.while.body91:
@@ -239,11 +233,9 @@ init.while.body91:
   102256 = add i32 %i.phi249, i32 1
   br bb %init.while.cond90
 init.while.exit92:
-  br bb %entry168.split
-clear.entry103:
-  br bb %clear.while.cond105
+  br bb %while.cond172
 clear.while.cond105:
-  i104.phi298 = phi [bb %clear.entry103, i32 1, bb %clear.while.body106, i32 %116306]
+  i104.phi298 = phi [bb %then195.split422.split, i32 1, bb %clear.while.body106, i32 %116306]
   n.load299 = load i32 from ptr @n
   110300 = icmp sle i32 %i104.phi298, i32 %n.load299
   br i1 %110300, bb %clear.while.body106, bb %clear.while.exit107

@@ -271,10 +271,8 @@ void read_program() {
 entry67:
   2444 = call i32 getch()
   br bb %get_bf_char.while.cond
-entry67.split:
-  br bb %while.cond70
 while.cond70:
-  get68.phi = phi [bb %entry67.split, i32 %get.phi447, bb %get_bf_char.while.exit531, i32 %get.phi525]
+  get68.phi = phi [bb %get_bf_char.while.exit, i32 %get.phi447, bb %get_bf_char.while.exit531, i32 %get.phi525]
   74 = icmp ne i32 %get68.phi, i32 35
   br i1 %74, bb %while.body71, bb %while.exit72
 while.body71:
@@ -317,7 +315,7 @@ get_bf_char.while.body:
   65451 = call i32 getch()
   br bb %get_bf_char.while.cond
 get_bf_char.while.exit:
-  br bb %entry67.split
+  br bb %while.cond70
 get_bf_char.select.then:
   13456 = icmp ne i32 %get.phi447, i32 60
   br bb %get_bf_char.select.exit
@@ -472,13 +470,9 @@ entry298.split399:
   call void _sysy_starttime(i32 116)
   call void run_program()
   call void _sysy_stoptime(i32 118)
-  br bb %output_.entry282
-entry298.split:
-  ret i32 0
-output_.entry282:
   br bb %output_.while.cond284
 output_.while.cond284:
-  i283.phi386 = phi [bb %output_.entry282, i32 0, bb %output_.while.body285, i32 %297395]
+  i283.phi386 = phi [bb %entry298.split399, i32 0, bb %output_.while.body285, i32 %297395]
   output_length.load288387 = load i32 from ptr @output_length
   289388 = icmp slt i32 %i283.phi386, i32 %output_length.load288387
   br i1 %289388, bb %output_.while.body285, bb %output_.while.exit286
@@ -490,11 +484,9 @@ output_.while.body285:
   297395 = add i32 %i283.phi386, i32 1
   br bb %output_.while.cond284
 output_.while.exit286:
-  br bb %entry298.split
-read_program.entry67.split:
-  br bb %read_program.while.cond70
+  ret i32 0
 read_program.while.cond70:
-  get68.phi404 = phi [bb %read_program.entry67.split, i32 %get.phi603, bb %get_bf_char.while.exit687, i32 %get.phi681]
+  get68.phi404 = phi [bb %get_bf_char.while.exit609, i32 %get.phi603, bb %get_bf_char.while.exit687, i32 %get.phi681]
   74405 = icmp ne i32 %get68.phi404, i32 35
   br i1 %74405, bb %read_program.while.body71, bb %read_program.while.exit72
 read_program.while.body71:
@@ -507,9 +499,7 @@ read_program.while.body71:
 read_program.while.exit72:
   84418 = call i32 getch()
   86419 = icmp ne i32 %84418, i32 105
-  br i1 %86419, bb %read_program.then, bb %read_program.if.exit
-read_program.then:
-  br bb %entry298.split399
+  br i1 %86419, bb %entry298.split399, bb %read_program.if.exit
 read_program.if.exit:
   89424 = call i32 getint()
   store i32 %89424 to ptr @input_length
@@ -519,7 +509,7 @@ read_program.while.cond92:
   i.phi429 = phi [bb %read_program.if.exit, i32 0, bb %read_program.while.body93, i32 %104438]
   input_length.load430 = load i32 from ptr @input_length
   97431 = icmp slt i32 %i.phi429, i32 %input_length.load430
-  br i1 %97431, bb %read_program.while.body93, bb %read_program.while.exit94
+  br i1 %97431, bb %read_program.while.body93, bb %entry298.split399
 read_program.while.body93:
   100434 = mul i32 %i.phi429, i32 4
   101435 = ptradd ptr @input, i32 %100434
@@ -527,8 +517,6 @@ read_program.while.body93:
   store i32 %102436 to ptr %101435
   104438 = add i32 %i.phi429, i32 1
   br bb %read_program.while.cond92
-read_program.while.exit94:
-  br bb %entry298.split399
 get_bf_char.while.cond602:
   get.phi603 = phi [bb %entry298, i32 %2600, bb %get_bf_char.while.body606, i32 %65607]
   7604 = icmp ne i32 %get.phi603, i32 62
@@ -537,7 +525,7 @@ get_bf_char.while.body606:
   65607 = call i32 getch()
   br bb %get_bf_char.while.cond602
 get_bf_char.while.exit609:
-  br bb %read_program.entry67.split
+  br bb %read_program.while.cond70
 get_bf_char.select.then611:
   13612 = icmp ne i32 %get.phi603, i32 60
   br bb %get_bf_char.select.exit616

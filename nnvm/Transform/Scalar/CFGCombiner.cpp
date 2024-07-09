@@ -54,43 +54,49 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
   // preds --> BB --> succ --> ...
   // After:
   // preds --> [BB -- succ] --> ...
-  if (succ->getInsts().size() > 1) {
-    // The successor must have BB as the single predecessor.
-    if (succ->getPredNum() != 1 || succ->containsPhi())
-      return false;
-
+  // The successor must have BB as the single predecessor.
+  if (succ->getPredNum() == 1 && !succ->containsPhi()) {
     BI->eraseFromBB();
     succ->replaceSelf(BB);
     moveInstInBlock(succ, BB);
 
-    IRBuilder builder;
     builder.setInsertPoint(succ->end());
     builder.buildUnreachable();
     return true;
   }
 
   // Before:
-  // pred --> BB --> succ
+  // pred --> BB (with only br) --> succ
   // After:
   // pred --> succ
 
   if (BB->getInsts().size() != 1)
     return false;
-  if (BB->getPredNum() != 1)
-    return false;
-  BasicBlock *pred = *BB->getPredBegin();
-  if (pred->getSuccNum() != 1)
-    return false;
-  // Those jump from pred to BB, now jump from pred to succ directly.
-  TerminatorInst *TI = pred->getTerminator();
-  for (int i = 0; i < TI->getSuccNum(); i++)
-    if (TI->getSucc(i) == BB)
-      TI->setSucc(i, succ);
 
-  // Replace BB in phis with pred.
-  BB->replaceSelf(pred);
+  if (succ->containsPhi()) {
+    if (BB->getPredNum() != 1)
+      return false;
+    BasicBlock *pred = *BB->getPredBegin();
+    if (pred->getSuccNum() != 1)
+      return false;
+    // Those jump from pred to BB, now jump from pred to succ directly.
+    TerminatorInst *TI = pred->getTerminator();
+    for (int i = 0; i < TI->getSuccNum(); i++)
+      if (TI->getSucc(i) == BB)
+        TI->setSucc(i, succ);
 
-  return true;
+    // Replace BB in phis with pred.
+    BB->replaceSelf(pred);
+    return true;
+  } else if ((BB != BB->getParent()->getEntry())) {
+    BB->replaceSelf(succ);
+    BI->eraseFromBB();
+    builder.setInsertPoint(BB->end());
+    builder.buildUnreachable();
+    return true;
+  }
+
+  return false;
 }
 
 bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
@@ -108,6 +114,13 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
 
     builder.setInsertPoint(BB->end());
     builder.buildBr(constCond->getValue() ? BI->getSucc(0) : BI->getSucc(1));
+    BI->eraseFromBB();
+    return true;
+  }
+
+  if (BI->getSucc(0) == BI->getSucc(1)) {
+    builder.setInsertPoint(BB->end());
+    builder.buildBr(BI->getSucc(0));
     BI->eraseFromBB();
     return true;
   }
