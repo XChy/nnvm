@@ -112,8 +112,7 @@ bb5:
   ADD t5, t5, sp
   ADD s5, t5, s4
   LW s4, 0(s5)
-  LW s6, 0(s5)
-  MULW s5, s4, s6
+  MULW s5, s4, s4
   ADDI s4, zero, 10
   REMW s6, s5, s4
   SW s6, 0(s3)
@@ -140,8 +139,7 @@ bb8:
   ADD t5, t5, sp
   ADD s5, t5, s4
   LW s6, 0(s5)
-  LW s7, 0(s5)
-  MULW s5, s6, s7
+  MULW s5, s6, s6
   ADDI s6, zero, 100
   REMW s7, s5, s6
   LUI t6, 20
@@ -590,8 +588,7 @@ bb36:
   ADDI t6, sp, 0
   ADD s4, t6, s3
   LW s3, 0(s4)
-  LW s5, 0(s4)
-  MULW s4, s3, s5
+  MULW s4, s3, s3
   ADDI s3, zero, 10
   REMW s5, s4, s3
   SW s5, 0(s2)
@@ -620,8 +617,7 @@ bb39:
   ADD t6, t6, sp
   ADD s4, t6, s3
   LW s5, 0(s4)
-  LW s6, 0(s4)
-  MULW s4, s5, s6
+  MULW s4, s5, s5
   ADDI s5, zero, 100
   REMW s6, s4, s5
   ADDI t5, sp, 0

@@ -78,7 +78,7 @@ transpose.while.exit:
   br bb %while.cond87
 transpose.while.cond16:
   curr.phi156 = phi [bb %transpose.while.body, i32 %curr.phi141147, bb %transpose.if.exit, i32 %37.load174, bb %transpose.then, i32 %curr.phi156]
-  j.phi157 = phi [bb %transpose.while.body, i32 0, bb %transpose.if.exit, i32 %63182, bb %transpose.then, i32 %29167]
+  j.phi157 = phi [bb %transpose.while.body, i32 0, bb %transpose.if.exit, i32 %63181, bb %transpose.then, i32 %29167]
   21158 = icmp slt i32 %j.phi157, i32 %97.load
   br i1 %21158, bb %transpose.while.body17, bb %transpose.while.exit18
 transpose.while.body17:
@@ -100,10 +100,9 @@ transpose.if.exit:
   43176 = add i32 %41175, i32 %i.phi148
   44177 = mul i32 %43176, i32 4
   45178 = ptradd ptr @matrix, i32 %44177
-  52.load179 = load i32 from ptr %37173
-  store i32 %52.load179 to ptr %45178
+  store i32 %37.load174 to ptr %45178
   store i32 %37.load174 to ptr %37173
-  63182 = add i32 %j.phi157, i32 1
+  63181 = add i32 %j.phi157, i32 1
   br bb %transpose.while.cond16
 }
 
@@ -152,8 +151,7 @@ if.exit:
   43 = add i32 %41, i32 %i.phi
   44 = mul i32 %43, i32 4
   45 = ptradd ptr %matrix, i32 %44
-  52.load = load i32 from ptr %37
-  store i32 %52.load to ptr %45
+  store i32 %37.load to ptr %45
   store i32 %37.load to ptr %37
   63 = add i32 %j.phi, i32 1
   br bb %while.cond16

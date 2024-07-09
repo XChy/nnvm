@@ -525,10 +525,7 @@ bb29:
   ADD s0, t6, s7
   FLW fs5, 0(s0)
   FSUB.S fs6, fs4, fs5
-  FLW fs4, 0(s10)
-  FLW fs5, 0(s0)
-  FSUB.S fs7, fs4, fs5
-  FMUL.S fs4, fs6, fs7
+  FMUL.S fs4, fs6, fs6
   FADD.S fs5, fs3, fs4
   FSW fs5, 0(s6)
   ADDIW s0, s9, 1

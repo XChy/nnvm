@@ -49,8 +49,24 @@ Instruction *CSEPass::CSENode::findAvailable(Instruction *current) {
   return nullptr;
 }
 
+Instruction *CSEPass::CSENode::findAvailableLoad(LoadInst *current) {
+  if (availableLoads.count(current))
+    return availableLoads[current];
+  if (killedLoad)
+    return nullptr;
+  if (!parent)
+    return nullptr;
+  if (parent->block->getSuccNum() != 1 || block->getPredNum() != 1)
+    return nullptr;
+  return parent->findAvailableLoad(current);
+}
+
 void CSEPass::CSENode::addAvailable(Instruction *current) {
   availables.insert({current, current});
+}
+
+void CSEPass::CSENode::addAvailableLoad(LoadInst *current) {
+  availableLoads.insert({current, current});
 }
 
 bool CSEPass::run(Function &F) {
@@ -102,12 +118,27 @@ static inline bool isPure(Instruction *I) {
 bool CSEPass::processNode(CSENode *node) {
   bool changed = false;
   for (Instruction *I : incChange(*node->block)) {
-    if (!isPure(I))
+
+    if (auto *LI = dyn_cast<LoadInst>(I)) {
+      if (Instruction *available = node->findAvailableLoad(LI)) {
+        LI->replaceSelf(available);
+        LI->eraseFromBB();
+        changed = true;
+      } else {
+        node->addAvailableLoad(LI);
+      }
       continue;
+    }
+
+    if (!isPure(I)) {
+      if (I->mayWriteToMemory()) {
+        node->killedLoad = true;
+        node->clearLoads();
+      }
+      continue;
+    }
 
     if (Instruction *available = node->findAvailable(I)) {
-      // std::cout << I->dump();
-      // std::cout << available->dump();
       I->replaceSelf(available);
       I->eraseFromBB();
       changed = true;

@@ -136,7 +136,7 @@ then99:
 if.exit100:
   br bb %while.cond103
 while.cond103:
-  i101.phi357 = phi [bb %if.exit100, i32 %l, bb %getNumPos.while.exit33400, i32 %129]
+  i101.phi357 = phi [bb %if.exit100, i32 %l, bb %getNumPos.while.exit33, i32 %129]
   108 = icmp slt i32 %i101.phi357, i32 %r
   br i1 %108, bb %while.body104, bb %while.exit105
 while.body104:
@@ -207,18 +207,15 @@ while.exit178:
 while.cond197:
   t.phi = phi [bb %while.body177, i32 %t.phi362, bb %while.body198, i32 %v.phi]
   v.phi = phi [bb %while.body177, i32 %195.load, bb %while.body198, i32 %215.load]
-  br bb %getNumPos.while.cond31407
+  br bb %getNumPos.while.cond31391
 while.body198:
-  211 = mul i32 %45417, i32 4
+  211 = mul i32 %45401, i32 4
   212 = ptradd ptr %head, i32 %211
   212.load = load i32 from ptr %212
   214 = mul i32 %212.load, i32 4
   215 = ptradd ptr %a, i32 %214
   215.load = load i32 from ptr %215
-  221.load = load i32 from ptr %212
-  223 = mul i32 %221.load, i32 4
-  224 = ptradd ptr %a, i32 %223
-  store i32 %v.phi to ptr %224
+  store i32 %v.phi to ptr %215
   235.load = load i32 from ptr %212
   237 = add i32 %235.load, i32 1
   store i32 %237 to ptr %212
@@ -278,11 +275,14 @@ getNumPos.while.exit33:
   45385 = srem i32 %num.stack.phi377, i32 16
   116 = mul i32 %45385, i32 4
   117 = ptradd ptr %cnt74, i32 %116
-  120.load = load i32 from ptr %112
-  br bb %getNumPos.while.cond31391
+  125.load = load i32 from ptr %117
+  127 = add i32 %125.load, i32 1
+  store i32 %127 to ptr %117
+  129 = add i32 %i101.phi357, i32 1
+  br bb %while.cond103
 getNumPos.while.cond31391:
-  i30.phi392 = phi [bb %getNumPos.while.exit33, i32 0, bb %getNumPos.while.body32396, i32 %42398]
-  num.stack.phi393 = phi [bb %getNumPos.while.exit33, i32 %120.load, bb %getNumPos.while.body32396, i32 %40397]
+  i30.phi392 = phi [bb %while.cond197, i32 0, bb %getNumPos.while.body32396, i32 %42398]
+  num.stack.phi393 = phi [bb %while.cond197, i32 %v.phi, bb %getNumPos.while.body32396, i32 %40397]
   36394 = icmp slt i32 %i30.phi392, i32 %bitround
   br i1 %36394, bb %getNumPos.while.body32396, bb %getNumPos.while.exit33400
 getNumPos.while.body32396:
@@ -291,25 +291,7 @@ getNumPos.while.body32396:
   br bb %getNumPos.while.cond31391
 getNumPos.while.exit33400:
   45401 = srem i32 %num.stack.phi393, i32 16
-  124 = mul i32 %45401, i32 4
-  125 = ptradd ptr %cnt74, i32 %124
-  125.load = load i32 from ptr %125
-  127 = add i32 %125.load, i32 1
-  store i32 %127 to ptr %117
-  129 = add i32 %i101.phi357, i32 1
-  br bb %while.cond103
-getNumPos.while.cond31407:
-  i30.phi408 = phi [bb %while.cond197, i32 0, bb %getNumPos.while.body32412, i32 %42414]
-  num.stack.phi409 = phi [bb %while.cond197, i32 %v.phi, bb %getNumPos.while.body32412, i32 %40413]
-  36410 = icmp slt i32 %i30.phi408, i32 %bitround
-  br i1 %36410, bb %getNumPos.while.body32412, bb %getNumPos.while.exit33416
-getNumPos.while.body32412:
-  40413 = sdiv i32 %num.stack.phi409, i32 16
-  42414 = add i32 %i30.phi408, i32 1
-  br bb %getNumPos.while.cond31407
-getNumPos.while.exit33416:
-  45417 = srem i32 %num.stack.phi409, i32 16
-  204 = icmp ne i32 %45417, i32 %i101.phi
+  204 = icmp ne i32 %45401, i32 %i101.phi
   br i1 %204, bb %while.body198, bb %while.exit199
 }
 

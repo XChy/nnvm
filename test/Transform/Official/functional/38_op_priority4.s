@@ -55,14 +55,10 @@ main:
   MULW s0, s2, s3
   SUBW s2, s1, s0
   LA s0, d
-  LW s1, 0(s0)
-  LA s0, a
-  LW s3, 0(s0)
-  LA s0, c
   LW s4, 0(s0)
-  DIVW s0, s3, s4
-  SUBW s3, s1, s0
-  XOR s0, s2, s3
+  DIVW s0, s1, s3
+  SUBW s1, s4, s0
+  XOR s0, s2, s1
   SLTU s1, zero, s0
   BNE s1, zero, bb1
   JAL zero, bb2

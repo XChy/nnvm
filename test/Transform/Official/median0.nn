@@ -177,8 +177,7 @@ entry144:
   call void _sysy_starttime(i32 59)
   n.load = load i32 from ptr @n
   148 = sub i32 %n.load, i32 1
-  n.load149 = load i32 from ptr @n
-  150 = sdiv i32 %n.load149, i32 2
+  150 = sdiv i32 %n.load, i32 2
   151 = call i32 median(ptr @a, i32 0, i32 %148, i32 %150)
   call void _sysy_stoptime(i32 61)
   n.load153 = load i32 from ptr @n

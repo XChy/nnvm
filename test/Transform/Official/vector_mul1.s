@@ -279,27 +279,23 @@ my_sqrt:
 bb21:
   LA s0, temp
   FLW fs1, 0(s0)
-  LA s0, temp
-  FLW fs2, 0(s0)
-  FDIV.S fs3, fs0, fs2
-  FSUB.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FSUB.S fs3, fs1, fs2
   LA s0, .CONSTANT.7.0
   FLW fs1, 0(s0)
-  FLT.S s0, fs1, fs2
+  FLT.S s0, fs1, fs3
   BNE s0, zero, bb24
   JAL zero, bb25
 bb22:
   LA s1, temp
   FLW fs1, 0(s1)
-  LA s1, temp
-  FLW fs2, 0(s1)
-  FDIV.S fs3, fs0, fs2
-  FADD.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FADD.S fs3, fs1, fs2
   ADDI s1, zero, 2
   FCVT.S.W fs1, s1
-  FDIV.S fs3, fs2, fs1
+  FDIV.S fs2, fs3, fs1
   LA s1, temp
-  FSW fs3, 0(s1)
+  FSW fs2, 0(s1)
   JAL zero, bb21
 bb23:
   LA s1, temp
@@ -321,16 +317,14 @@ bb24:
 bb25:
   LA s1, temp
   FLW fs1, 0(s1)
-  LA s1, temp
-  FLW fs2, 0(s1)
-  FDIV.S fs3, fs0, fs2
-  FSUB.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FSUB.S fs3, fs1, fs2
   LA s1, .CONSTANT.7.0
   FLW fs1, 0(s1)
   LA s1, .CONSTANT.7.0
-  FLW fs3, 0(s1)
-  FSGNJN.S fs4, fs1, fs3
-  FLT.S s1, fs2, fs4
+  FLW fs2, 0(s1)
+  FSGNJN.S fs4, fs1, fs2
+  FLT.S s1, fs3, fs4
   ADD s0, s1, zero
   JAL zero, bb26
 bb26:
@@ -861,27 +855,23 @@ bb64:
 bb65:
   LA s1, temp
   FLW fs1, 0(s1)
-  LA s1, temp
-  FLW fs2, 0(s1)
-  FDIV.S fs3, fs0, fs2
-  FSUB.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FSUB.S fs3, fs1, fs2
   LA s1, .CONSTANT.7.0
   FLW fs1, 0(s1)
-  FLT.S s1, fs1, fs2
+  FLT.S s1, fs1, fs3
   BNE s1, zero, bb68
   JAL zero, bb69
 bb66:
   LA s2, temp
   FLW fs1, 0(s2)
-  LA s2, temp
-  FLW fs2, 0(s2)
-  FDIV.S fs3, fs0, fs2
-  FADD.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FADD.S fs3, fs1, fs2
   ADDI s2, zero, 2
   FCVT.S.W fs1, s2
-  FDIV.S fs3, fs2, fs1
+  FDIV.S fs2, fs3, fs1
   LA s2, temp
-  FSW fs3, 0(s2)
+  FSW fs2, 0(s2)
   JAL zero, bb65
 bb67:
   LA s2, temp
@@ -900,16 +890,14 @@ bb68:
 bb69:
   LA s2, temp
   FLW fs1, 0(s2)
-  LA s2, temp
-  FLW fs2, 0(s2)
-  FDIV.S fs3, fs0, fs2
-  FSUB.S fs2, fs1, fs3
+  FDIV.S fs2, fs0, fs1
+  FSUB.S fs3, fs1, fs2
   LA s2, .CONSTANT.7.0
   FLW fs1, 0(s2)
   LA s2, .CONSTANT.7.0
-  FLW fs3, 0(s2)
-  FSGNJN.S fs4, fs1, fs3
-  FLT.S s2, fs2, fs4
+  FLW fs2, 0(s2)
+  FSGNJN.S fs4, fs1, fs2
+  FLT.S s2, fs3, fs4
   ADD s1, s2, zero
   JAL zero, bb70
 bb70:
@@ -959,9 +947,8 @@ bb75:
   ADD t5, t5, sp
   ADD s4, t5, s5
   FLW fs4, 0(s4)
-  FLW fs5, 0(s4)
-  FMUL.S fs6, fs4, fs5
-  FADD.S fs4, fs1, fs6
+  FMUL.S fs5, fs4, fs4
+  FADD.S fs4, fs1, fs5
   ADDIW s4, s3, 1
   FSGNJ.S fs2, fs4, fs4
   ADD s2, s4, zero

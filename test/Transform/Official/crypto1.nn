@@ -380,17 +380,16 @@ while.body386:
   393 = mul i32 %i384.phi465, i32 4
   394 = ptradd ptr @buffer, i32 %393
   state.load1256 = load i32 from ptr @state
-  state.load21257 = load i32 from ptr @state
-  31258 = mul i32 %state.load21257, i32 8192
-  41259 = add i32 %state.load1256, i32 %31258
-  store i32 %41259 to ptr @state
-  71261 = sdiv i32 %41259, i32 131072
-  81262 = add i32 %41259, i32 %71261
-  store i32 %81262 to ptr @state
-  111264 = mul i32 %81262, i32 32
-  121265 = add i32 %81262, i32 %111264
-  store i32 %121265 to ptr @state
-  396 = srem i32 %121265, i32 256
+  31257 = mul i32 %state.load1256, i32 8192
+  41258 = add i32 %state.load1256, i32 %31257
+  store i32 %41258 to ptr @state
+  71260 = sdiv i32 %41258, i32 131072
+  81261 = add i32 %41258, i32 %71260
+  store i32 %81261 to ptr @state
+  111263 = mul i32 %81261, i32 32
+  121264 = add i32 %81261, i32 %111263
+  store i32 %121264 to ptr @state
+  396 = srem i32 %121264, i32 256
   store i32 %396 to ptr %394
   398 = add i32 %i384.phi465, i32 1
   br bb %while.cond385
@@ -702,8 +701,7 @@ external i32 getarray(ptr )
 i32 get_random() {
 entry:
   state.load = load i32 from ptr @state
-  state.load2 = load i32 from ptr @state
-  3 = mul i32 %state.load2, i32 8192
+  3 = mul i32 %state.load, i32 8192
   4 = add i32 %state.load, i32 %3
   store i32 %4 to ptr @state
   7 = sdiv i32 %4, i32 131072

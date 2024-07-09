@@ -44,7 +44,7 @@ bb1:
   ADD s5, zero, zero
   JAL zero, bb11
 bb2:
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD a4, t4, zero
   XOR a5, a4, zero
   SLTU a4, zero, a5
@@ -55,7 +55,7 @@ bb3:
   JAL zero, bb6
 bb4:
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   JAL zero, bb22
 bb5:
   ADD a0, zero, zero
@@ -150,7 +150,7 @@ bb12:
   JAL zero, bb14
 bb13:
   ADDI t4, zero, 1
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   JAL zero, bb2
 bb14:
   ADD s10, s7, zero
@@ -201,7 +201,7 @@ bb19:
   JAL zero, bb21
 bb20:
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   JAL zero, bb2
 bb21:
   ADDIW s3, s10, 1
@@ -210,16 +210,16 @@ bb21:
   ADD s7, s3, zero
   JAL zero, bb14
 bb22:
-  LW t3, 12(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 4(sp)
-  LW t4, 4(sp)
+  SW t4, 12(sp)
+  LW t4, 12(sp)
   SLTI a6, t4, 4
   BNE a6, zero, bb23
   JAL zero, bb24
 bb23:
   ADDI a6, zero, 4
-  LW t4, 4(sp)
+  LW t4, 12(sp)
   MULW a7, t4, a6
   LD t4, 16(sp)
   ADD a6, t4, a7
@@ -228,10 +228,10 @@ bb23:
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  LW t4, 4(sp)
+  LW t4, 12(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   JAL zero, bb22
 bb24:
   ADDI a0, zero, 10

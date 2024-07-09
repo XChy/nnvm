@@ -47,6 +47,7 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
   if (AddInst *AI = dyn_cast<AddInst>(I))
     return simplifyAdd(AI);
+
   if (SubInst *SI = dyn_cast<SubInst>(I))
     return simplifySub(SI);
 
@@ -67,27 +68,35 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
 Value *CombinerPass::simplifyAdd(AddInst *I) {
   Value *A, *B, *C;
+  Type *type = I->getType();
 
   // C1 + A --> A + C1
   if (match(I, pAdd(pConstant(A), pValue(B))))
-    return builder.buildBinOp<AddInst>(B, A, I->getType());
+    return builder.buildBinOp<AddInst>(B, A, type);
 
   // A + 0 --> A
   if (match(I, pAdd(pValue(A), pZero())))
     return A;
 
+  // A + A --> A * 2
+  if (match(I, pAdd(pValue(A), pMustBe(A)))) {
+    Constant *two =
+        ConstantInt::create(*I->getParent()->getParent()->getModule(), type, 2);
+    return builder.buildBinOp<MulInst>(A, two, type);
+  }
+
   // (A + C1) + C2 --> A + (C1 + C2)
   if (match(I, pAdd(pAdd(pValue(A), pConstant(B)), pConstant(C)))) {
-    Value *addc = builder.buildBinOp<AddInst>(B, C, I->getType());
+    Value *addc = builder.buildBinOp<AddInst>(B, C, type);
     addc = folder.fold(cast<Instruction>(addc));
-    return builder.buildBinOp<AddInst>(A, addc, I->getType());
+    return builder.buildBinOp<AddInst>(A, addc, type);
   }
 
   // (A - C1) + C2 --> A + (C2 - C1)
   if (match(I, pAdd(pSub(pValue(A), pConstant(B)), pConstant(C)))) {
-    Value *subc = builder.buildBinOp<SubInst>(C, B, I->getType());
+    Value *subc = builder.buildBinOp<SubInst>(C, B, type);
     subc = folder.fold(cast<Instruction>(subc));
-    return builder.buildBinOp<AddInst>(A, subc, I->getType());
+    return builder.buildBinOp<AddInst>(A, subc, type);
   }
 
   return nullptr;
@@ -116,6 +125,8 @@ Value *CombinerPass::simplifySub(SubInst *I) {
 
   return nullptr;
 }
+
+Value *CombinerPass::simplifyMul(MulInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
 

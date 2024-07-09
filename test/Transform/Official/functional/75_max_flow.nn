@@ -102,13 +102,7 @@ then187:
   218.load = load i32 from ptr %218
   220 = mul i32 %218.load, i32 4
   221 = ptradd ptr %212, i32 %220
-  227.load = load i32 from ptr %131
-  229 = mul i32 %227.load, i32 40
-  230 = ptradd ptr @cap, i32 %229
-  236.load = load i32 from ptr %218
-  238 = mul i32 %236.load, i32 4
-  239 = ptradd ptr %230, i32 %238
-  239.load = load i32 from ptr %239
+  239.load = load i32 from ptr %221
   242 = add i32 %239.load, i32 %184
   store i32 %242 to ptr %221
   ret i32 %184

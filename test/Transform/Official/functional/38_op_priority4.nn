@@ -21,9 +21,7 @@ entry:
   10 = mul i32 %b.load, i32 %c.load
   11 = sub i32 %a.load, i32 %10
   d.load = load i32 from ptr @d
-  a.load13 = load i32 from ptr @a
-  c.load14 = load i32 from ptr @c
-  15 = sdiv i32 %a.load13, i32 %c.load14
+  15 = sdiv i32 %a.load, i32 %c.load
   16 = sub i32 %d.load, i32 %15
   17 = icmp ne i32 %11, i32 %16
   br i1 %17, bb %select.then, bb %select.else

@@ -183,34 +183,24 @@ while.exit.split.split.split302.split.split:
   165 = call i32 func3(i32 %163.ret, i32 %92)
   166 = call i32 func2(i32 %88, i32 %165)
   167 = call i32 func3(i32 %160.ret, i32 %166)
-  169.load = load i32 from ptr %arr
-  172.load = load i32 from ptr %122
-  174 = call i32 func1(i32 %167, i32 %169.load, i32 %172.load)
-  176.load = load i32 from ptr %126
-  178 = call i32 func2(i32 %174, i32 %176.load)
-  180.load = load i32 from ptr %129
-  183.load = load i32 from ptr %134
-  186.load = load i32 from ptr %137
-  58265 = sub i32 0, i32 %186.load
-  189 = call i32 func3(i32 %183.load, i32 %58265)
-  191.load = load i32 from ptr %143
-  58270 = sub i32 0, i32 %191.load
+  174 = call i32 func1(i32 %167, i32 %119.load, i32 %122.load)
+  178 = call i32 func2(i32 %174, i32 %126.load)
+  58265 = sub i32 0, i32 %137.load
+  189 = call i32 func3(i32 %134.load, i32 %58265)
+  58270 = sub i32 0, i32 %143.load
   194 = call i32 func2(i32 %189, i32 %58270)
-  196.load = load i32 from ptr %147
-  199.load = load i32 from ptr %151
-  77340 = icmp ne i32 %199.load, i32 0
+  77340 = icmp ne i32 %151.load, i32 0
   78341 =  i1 %77340, i1 1
   79342 = zext i1 %78341 to i32
   80343 = icmp ne i32 %79342, i32 0
   br i1 %80343, bb %func7.then81345, bb %func7.else83347
 while.exit.split.split.split.split.split338:
   201.ret = phi [bb %func7.then81345, i32 1, bb %func7.else83347, i32 0]
-  202 = call i32 func1(i32 %194, i32 %196.load, i32 %201.ret)
-  204.load = load i32 from ptr %154
-  58275 = sub i32 0, i32 %204.load
+  202 = call i32 func1(i32 %194, i32 %147.load, i32 %201.ret)
+  58275 = sub i32 0, i32 %154.load
   207 = call i32 func2(i32 %202, i32 %58275)
   209 = call i32 func3(i32 %207, i32 %86)
-  210 = call i32 func1(i32 %178, i32 %180.load, i32 %209)
+  210 = call i32 func1(i32 %178, i32 %129.load, i32 %209)
   ret i32 %210
 func6.select.then:
   69219 = icmp ne i32 %58250, i32 0

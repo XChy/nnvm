@@ -22,6 +22,7 @@ private:
   Value *simplifyInst(Instruction *I);
   Value *simplifyAdd(AddInst *I);
   Value *simplifySub(SubInst *I);
+  Value *simplifyMul(MulInst *I);
   Value *simplifySDiv(SDivInst *I);
 
   Value *simplifyPtrAdd(PtrAddInst *I);

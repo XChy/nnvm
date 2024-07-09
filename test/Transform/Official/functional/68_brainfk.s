@@ -183,13 +183,7 @@ bb14:
   MULW s10, s9, s7
   LA s7, tape
   ADD s9, s7, s10
-  LA s7, ptr
-  LW s10, 0(s7)
-  ADDI s7, zero, 4
-  MULW s11, s10, s7
-  LA s7, tape
-  ADD s10, s7, s11
-  LW s7, 0(s10)
+  LW s7, 0(s9)
   ADDIW s10, s7, 1
   SW s10, 0(s9)
   ADD s7, s6, zero
@@ -218,13 +212,7 @@ bb17:
   MULW s3, s2, s1
   LA s1, tape
   ADD s2, s1, s3
-  LA s1, ptr
-  LW s3, 0(s1)
-  ADDI s1, zero, 4
-  MULW s11, s3, s1
-  LA s1, tape
-  ADD s3, s1, s11
-  LW s1, 0(s3)
+  LW s1, 0(s2)
   ADDI s3, zero, 1
   SUBW s11, s1, s3
   SW s11, 0(s2)

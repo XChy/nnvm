@@ -21,6 +21,15 @@ protected:
   Value **receiver;
 };
 
+class pMustBe {
+public:
+  pMustBe(Value *specific) : specific(specific) {}
+  bool match(Value *op) { return op == specific; }
+
+protected:
+  Value *specific;
+};
+
 class pConstant {
 public:
   pConstant() : receiver(nullptr) {}

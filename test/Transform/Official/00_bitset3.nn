@@ -193,9 +193,8 @@ rand.then195:
 rand.if.exit196:
   staticvalue.load202262 = load i32 from ptr @staticvalue
   219 = srem i32 %staticvalue.load202262, i32 300000
-  staticvalue.load267 = load i32 from ptr @staticvalue
   181.load268 = load i32 from ptr @seed
-  183269 = mul i32 %staticvalue.load267, i32 %181.load268
+  183269 = mul i32 %staticvalue.load202262, i32 %181.load268
   185.load271 = load i32 from ptr %185245
   187272 = add i32 %183269, i32 %185.load271
   store i32 %187272 to ptr @staticvalue

@@ -40,8 +40,8 @@ sortB:
   SD s3, 64(sp)
   SD s4, 72(sp)
   SD s8, 80(sp)
-  SD s9, 88(sp)
-  SD ra, 96(sp)
+  SD ra, 88(sp)
+  SD s9, 96(sp)
   ADD s0, a0, zero
   ADDI s1, zero, -100
   ADD s2, zero, zero
@@ -63,12 +63,7 @@ bb2:
   MULW s8, s6, s7
   LA s6, cnt
   ADD s7, s6, s8
-  LW s6, 0(s5)
-  ADDI s8, zero, 4
-  MULW s9, s6, s8
-  LA s6, cnt
-  ADD s8, s6, s9
-  LW s6, 0(s8)
+  LW s6, 0(s7)
   ADDIW s8, s6, 1
   SW s8, 0(s7)
   LW s6, 0(s5)
@@ -117,8 +112,8 @@ bb8:
   LD s3, 64(sp)
   LD s4, 72(sp)
   LD s8, 80(sp)
-  LD s9, 88(sp)
-  LD ra, 96(sp)
+  LD ra, 88(sp)
+  LD s9, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb9:
@@ -432,12 +427,7 @@ bb40:
   MULW s7, s4, s5
   LA s4, cnt
   ADD s5, s4, s7
-  LW s4, 0(s6)
-  ADDI s7, zero, 4
-  MULW s8, s4, s7
-  LA s4, cnt
-  ADD s7, s4, s8
-  LW s4, 0(s7)
+  LW s4, 0(s5)
   ADDIW s7, s4, 1
   SW s7, 0(s5)
   LW s4, 0(s6)

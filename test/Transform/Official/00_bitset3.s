@@ -379,8 +379,6 @@ bb33:
   LUI s0, 73
   ADDIW s0, s0, 992
   REMW s6, s5, s0
-  LA s0, staticvalue
-  LW s5, 0(s0)
   LA s0, seed
   LW s7, 0(s0)
   MULW s0, s5, s7

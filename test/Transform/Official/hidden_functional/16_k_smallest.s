@@ -19,21 +19,21 @@ findSmallest:
   SD s11, 0(sp)
   SD s10, 8(sp)
   SD s9, 16(sp)
-  SD s1, 24(sp)
+  SD s0, 24(sp)
   SD s8, 32(sp)
-  SD s0, 40(sp)
-  SD s5, 48(sp)
+  SD s1, 40(sp)
+  SD s6, 48(sp)
   SD s7, 56(sp)
   SD s2, 64(sp)
   SD s3, 72(sp)
   SD s4, 80(sp)
-  SD s6, 88(sp)
+  SD s5, 88(sp)
   SD ra, 96(sp)
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   ADD s2, a1, zero
   ADD s3, a2, zero
   ADD s4, a3, zero
-  XOR s5, s0, s2
+  XOR s5, s1, s2
   SLTIU s6, s5, 1
   BNE s6, zero, bb1
   JAL zero, bb2
@@ -41,15 +41,15 @@ bb1:
   LD s11, 0(sp)
   LD s10, 8(sp)
   LD s9, 16(sp)
-  LD s1, 24(sp)
+  LD s0, 24(sp)
   LD s8, 32(sp)
-  LD s0, 40(sp)
-  LD s5, 48(sp)
+  LD s1, 40(sp)
+  LD s6, 48(sp)
   LD s7, 56(sp)
   LD s2, 64(sp)
   LD s3, 72(sp)
   LD s4, 80(sp)
-  LD s6, 88(sp)
+  LD s5, 88(sp)
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
@@ -59,8 +59,8 @@ bb2:
   LA s5, array
   ADD s7, s5, s6
   LW s5, 0(s7)
-  ADD s6, s0, zero
-  ADD s8, s0, zero
+  ADD s6, s1, zero
+  ADD s8, s1, zero
   JAL zero, bb10
 bb3:
   ADD s5, zero, zero
@@ -69,25 +69,25 @@ bb4:
   LD s11, 0(sp)
   LD s10, 8(sp)
   LD s9, 16(sp)
-  LD s1, 24(sp)
+  LD s0, 24(sp)
   LD s8, 32(sp)
-  LD s0, 40(sp)
-  LD s5, 48(sp)
+  LD s1, 40(sp)
+  LD s6, 48(sp)
   LD s7, 56(sp)
   LD s2, 64(sp)
   LD s3, 72(sp)
   LD s4, 80(sp)
-  LD s6, 88(sp)
+  LD s5, 88(sp)
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb5:
-  SLT s5, s3, s1
+  SLT s5, s3, s0
   BNE s5, zero, bb8
   JAL zero, bb9
 bb6:
   ADD s6, s5, zero
-  SLT s7, s6, s1
+  SLT s7, s6, s0
   BNE s7, zero, bb7
   JAL zero, bb4
 bb7:
@@ -105,23 +105,23 @@ bb7:
   JAL zero, bb6
 bb8:
   ADDI s5, zero, 1
-  SUBW s6, s1, s5
-  ADD a0, s0, zero
+  SUBW s6, s0, s5
+  ADD a0, s1, zero
   ADD a1, s6, zero
   ADD a2, s3, zero
   ADD a3, s4, zero
   CALL findSmallest
   JAL zero, bb4
 bb9:
-  ADDIW s0, s1, 1
-  ADD a0, s0, zero
+  ADDIW s1, s0, 1
+  ADD a0, s1, zero
   ADD a1, s2, zero
   ADD a2, s3, zero
   ADD a3, s4, zero
   CALL findSmallest
   JAL zero, bb4
 bb10:
-  ADD s1, s8, zero
+  ADD s0, s8, zero
   ADD s9, s6, zero
   SLT s10, s9, s2
   BNE s10, zero, bb11
@@ -138,27 +138,27 @@ bb11:
   JAL zero, bb15
 bb12:
   ADDI s5, zero, 4
-  MULW s6, s1, s5
+  MULW s6, s0, s5
   LA s5, array
   ADD s8, s5, s6
   LW s5, 0(s8)
   LW s6, 0(s7)
   SW s6, 0(s8)
   SW s5, 0(s7)
-  XOR s5, s3, s1
+  XOR s5, s3, s0
   SLTIU s6, s5, 1
   BNE s6, zero, bb3
   JAL zero, bb5
 bb13:
   LW s10, 0(t0)
   ADDI s11, zero, 4
-  MULW t1, s1, s11
+  MULW t1, s0, s11
   LA s11, array
   ADD t2, s11, t1
   LW s11, 0(t2)
   SW s11, 0(t0)
   SW s10, 0(t2)
-  ADDIW s10, s1, 1
+  ADDIW s10, s0, 1
   ADD s11, s10, zero
   JAL zero, bb14
 bb14:
@@ -168,7 +168,7 @@ bb14:
   ADD s8, s10, zero
   JAL zero, bb10
 bb15:
-  ADD s11, s1, zero
+  ADD s11, s0, zero
   JAL zero, bb14
 findPivot:
   ADDI sp, sp, -112

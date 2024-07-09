@@ -62,8 +62,7 @@ while.body52:
   82 = mul i32 %81, i32 4
   83 = ptradd ptr %61, i32 %82
   83.load = load i32 from ptr %83
-  92.load = load i32 from ptr %73
-  94 = add i32 %83.load, i32 %92.load
+  94 = add i32 %83.load, i32 %73.load
   95 = icmp sgt i32 %75, i32 %94
   br i1 %95, bb %then, bb %else
 while.exit53:

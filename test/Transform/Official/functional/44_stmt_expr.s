@@ -32,11 +32,10 @@ bb2:
   ADDIW s2, s1, 1
   LA s1, k
   LW s3, 0(s1)
+  ADDI s1, zero, 2
+  MULW s4, s3, s1
   LA s1, k
-  LW s4, 0(s1)
-  ADDW s1, s3, s4
-  LA s3, k
-  SW s1, 0(s3)
+  SW s4, 0(s1)
   ADD s0, s2, zero
   JAL zero, bb1
 bb3:

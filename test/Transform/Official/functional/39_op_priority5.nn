@@ -17,9 +17,8 @@ entry:
   br i1 %10, bb %select.then, bb %select.else
 select.then:
   a.load15 = load i32 from ptr @a
-  a.load16 = load i32 from ptr @a
   b.load17 = load i32 from ptr @b
-  18 = add i32 %a.load16, i32 %b.load17
+  18 = add i32 %a.load15, i32 %b.load17
   19 = mul i32 %a.load15, i32 %18
   c.load20 = load i32 from ptr @c
   21 = add i32 %19, i32 %c.load20
@@ -42,9 +41,7 @@ select.else28:
   34 = mul i32 %b.load32, i32 %c.load33
   35 = sub i32 %a.load31, i32 %34
   d.load36 = load i32 from ptr @d
-  a.load37 = load i32 from ptr @a
-  c.load38 = load i32 from ptr @c
-  39 = sdiv i32 %a.load37, i32 %c.load38
+  39 = sdiv i32 %a.load31, i32 %c.load33
   40 = sub i32 %d.load36, i32 %39
   41 = icmp eq i32 %35, i32 %40
   br bb %select.exit29

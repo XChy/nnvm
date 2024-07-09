@@ -76,18 +76,18 @@ while.body153:
 while.exit154:
   ret i32 0
 memmove.while.cond:
-  i.phi314 = phi [bb %while.exit95, i32 0, bb %memmove.while.body, i32 %82325]
-  70315 = icmp slt i32 %i.phi314, i32 %n
-  br i1 %70315, bb %memmove.while.body, bb %memmove.while.exit
+  i.phi315 = phi [bb %while.exit95, i32 0, bb %memmove.while.body, i32 %82326]
+  70316 = icmp slt i32 %i.phi315, i32 %n
+  br i1 %70316, bb %memmove.while.body, bb %memmove.while.exit
 memmove.while.body:
-  74318 = add i32 %begin_pos, i32 %i.phi314
-  75319 = mul i32 %74318, i32 4
-  76320 = ptradd ptr %arr, i32 %75319
-  78321 = mul i32 %i.phi314, i32 4
-  79322 = ptradd ptr @temp, i32 %78321
-  79.load323 = load i32 from ptr %79322
-  store i32 %79.load323 to ptr %76320
-  82325 = add i32 %i.phi314, i32 1
+  74319 = add i32 %begin_pos, i32 %i.phi315
+  75320 = mul i32 %74319, i32 4
+  76321 = ptradd ptr %arr, i32 %75320
+  78322 = mul i32 %i.phi315, i32 4
+  79323 = ptradd ptr @temp, i32 %78322
+  79.load324 = load i32 from ptr %79323
+  store i32 %79.load324 to ptr %76321
+  82326 = add i32 %i.phi315, i32 1
   br bb %memmove.while.cond
 memmove.while.exit:
   136 = sdiv i32 %n, i32 2
@@ -148,13 +148,11 @@ while.body218:
   br bb %while.cond217
 while.exit219:
   d.load229 = load i32 from ptr @d
-  d.load232 = load i32 from ptr @d
-  233 = sdiv i32 998244352, i32 %d.load232
+  233 = sdiv i32 998244352, i32 %d.load229
   234 = call i32 power(i32 3, i32 %233)
   235 = call i32 fft(ptr @a, i32 0, i32 %d.load229, i32 %234)
   d.load236 = load i32 from ptr @d
-  d.load239 = load i32 from ptr @d
-  240 = sdiv i32 998244352, i32 %d.load239
+  240 = sdiv i32 998244352, i32 %d.load236
   241 = call i32 power(i32 3, i32 %240)
   242 = call i32 fft(ptr @b, i32 0, i32 %d.load236, i32 %241)
   br bb %while.cond244
@@ -175,8 +173,7 @@ while.body245:
   br bb %while.cond244
 while.exit246:
   d.load265 = load i32 from ptr @d
-  d.load270 = load i32 from ptr @d
-  271 = sdiv i32 998244352, i32 %d.load270
+  271 = sdiv i32 998244352, i32 %d.load265
   272 = sub i32 998244352, i32 %271
   273 = call i32 power(i32 3, i32 %272)
   274 = call i32 fft(ptr @a, i32 0, i32 %d.load265, i32 %273)
@@ -250,8 +247,8 @@ then9:
 if.exit10:
   17 = sdiv i32 %b, i32 2
   18 = call i32 multiply(i32 %a, i32 %17)
-  21 = add i32 %18, i32 %18
-  23 = srem i32 %21, i32 998244353
+  310 = mul i32 %18, i32 2
+  23 = srem i32 %310, i32 998244353
   25 = srem i32 %b, i32 2
   26 = icmp eq i32 %25, i32 1
   br i1 %26, bb %then27, bb %else

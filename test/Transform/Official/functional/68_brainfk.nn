@@ -97,10 +97,7 @@ then52:
   ptr.load55 = load i32 from ptr @ptr
   56 = mul i32 %ptr.load55, i32 4
   57 = ptradd ptr @tape, i32 %56
-  ptr.load58 = load i32 from ptr @ptr
-  59 = mul i32 %ptr.load58, i32 4
-  60 = ptradd ptr @tape, i32 %59
-  60.load = load i32 from ptr %60
+  60.load = load i32 from ptr %57
   62 = add i32 %60.load, i32 1
   store i32 %62 to ptr %57
   br bb %if.exit53
@@ -116,10 +113,7 @@ then65:
   ptr.load68 = load i32 from ptr @ptr
   69 = mul i32 %ptr.load68, i32 4
   70 = ptradd ptr @tape, i32 %69
-  ptr.load71 = load i32 from ptr @ptr
-  72 = mul i32 %ptr.load71, i32 4
-  73 = ptradd ptr @tape, i32 %72
-  73.load = load i32 from ptr %73
+  73.load = load i32 from ptr %70
   75 = sub i32 %73.load, i32 1
   store i32 %75 to ptr %70
   br bb %if.exit66

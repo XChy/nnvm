@@ -11,9 +11,8 @@ while.cond:
 while.body:
   11 = add i32 %i.phi, i32 1
   k.load14 = load i32 from ptr @k
-  k.load15 = load i32 from ptr @k
-  16 = add i32 %k.load14, i32 %k.load15
-  store i32 %16 to ptr @k
+  21 = mul i32 %k.load14, i32 2
+  store i32 %21 to ptr @k
   br bb %while.cond
 while.exit:
   k.load17 = load i32 from ptr @k

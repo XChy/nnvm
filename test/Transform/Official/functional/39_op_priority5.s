@@ -47,11 +47,9 @@ main:
 bb1:
   LA s0, a
   LW s1, 0(s0)
-  LA s0, a
-  LW s2, 0(s0)
   LA s0, b
-  LW s3, 0(s0)
-  ADDW s0, s2, s3
+  LW s2, 0(s0)
+  ADDW s0, s1, s2
   MULW s2, s1, s0
   LA s0, c
   LW s1, 0(s0)
@@ -85,14 +83,10 @@ bb5:
   MULW s2, s4, s5
   SUBW s4, s3, s2
   LA s2, d
-  LW s3, 0(s2)
-  LA s2, a
-  LW s5, 0(s2)
-  LA s2, c
   LW s6, 0(s2)
-  DIVW s2, s5, s6
-  SUBW s5, s3, s2
-  XOR s2, s4, s5
+  DIVW s2, s3, s5
+  SUBW s3, s6, s2
+  XOR s2, s4, s3
   SLTIU s3, s2, 1
   ADD s0, s3, zero
   JAL zero, bb6

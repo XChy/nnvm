@@ -113,14 +113,13 @@ bb8:
   LW t0, 0(s11)
   ADDW t1, s9, t0
   ADDI s9, zero, 1
-  SUBW t0, s5, s9
+  SUBW t2, s5, s9
   ADDI s5, zero, 4
-  MULW s9, t0, s5
+  MULW s9, t2, s5
   ADD s5, s7, s9
   LW s7, 0(s5)
-  LW s9, 0(s11)
-  ADDW t0, s7, s9
-  SLT s7, t0, t1
+  ADDW s9, s7, t0
+  SLT s7, s9, t1
   BNE s7, zero, bb10
   JAL zero, bb12
 bb9:

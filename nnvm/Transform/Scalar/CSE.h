@@ -31,7 +31,11 @@ private:
     CSENode(BasicBlock *BB, CSENode *parent) : block(BB), parent(parent){};
 
     Instruction *findAvailable(Instruction *current);
+    Instruction *findAvailableLoad(LoadInst *current);
+
     void addAvailable(Instruction *current);
+    void addAvailableLoad(LoadInst *current);
+    void clearLoads() { availableLoads.clear(); }
 
     bool processed = false;
 
@@ -40,6 +44,10 @@ private:
     int currentChildIndex = 0;
     std::unordered_map<Instruction *, Instruction *, HashInstImpl, EqInstImpl>
         availables;
+
+    bool killedLoad = false;
+    std::unordered_map<Instruction *, Instruction *, HashInstImpl, EqInstImpl>
+        availableLoads;
   };
 
   bool processNode(CSENode *BB);

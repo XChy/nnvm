@@ -250,21 +250,12 @@ bb20:
   LW t4, 0(sp)
   ADD t1, a1, t4
   LW a1, 0(t1)
-  ADDI a2, zero, 4
-  MULW a3, a1, a2
-  ADD a1, t2, a3
-  LW t2, 0(s10)
-  ADDI a2, zero, 40
-  MULW a3, t2, a2
-  LA t2, cap
-  ADD a2, t2, a3
-  LW t2, 0(t1)
   ADDI t1, zero, 4
-  MULW a3, t2, t1
-  ADD t1, a2, a3
+  MULW a2, a1, t1
+  ADD t1, t2, a2
   LW t2, 0(t1)
-  ADDW t1, t2, t0
-  SW t1, 0(a1)
+  ADDW a1, t2, t0
+  SW a1, 0(t1)
   ADD a0, t0, zero
   LD s11, 16(sp)
   LD s10, 24(sp)

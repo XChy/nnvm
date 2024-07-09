@@ -189,8 +189,7 @@ bb19:
   MULW s4, s5, s3
   LA s3, matrix
   ADD s5, s3, s4
-  LW s3, 0(s2)
-  SW s3, 0(s5)
+  SW s0, 0(s5)
   SW s0, 0(s2)
   ADDIW s2, s11, 1
   ADD s10, s0, zero
@@ -280,8 +279,7 @@ bb29:
   ADDI t0, zero, 4
   MULW t2, t1, t0
   ADD t0, s1, t2
-  LW t1, 0(s10)
-  SW t1, 0(t0)
+  SW s11, 0(t0)
   SW s11, 0(s10)
   ADDIW s10, s8, 1
   ADD s7, s11, zero

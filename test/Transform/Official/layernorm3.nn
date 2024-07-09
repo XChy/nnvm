@@ -143,10 +143,7 @@ while.body142:
   163 = ptradd ptr %mean, i32 %138
   163.load = load float from ptr %163
   165 = fsub float %159.load, float %163.load
-  171.load = load float from ptr %159
-  175.load = load float from ptr %163
-  177 = fsub float %171.load, float %175.load
-  178 = fmul float %165, float %177
+  178 = fmul float %165, float %165
   179 = fadd float %152.load, float %178
   store float %179 to ptr %139
   181 = add i32 %j.phi296, i32 1
