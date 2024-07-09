@@ -36,20 +36,26 @@ if.exit68:
   71 = icmp ne i32 %a, i32 0
   br i1 %71, bb %then72, bb %if.exit73
 then72:
-  77 = call i32 equal(i32 %last, i32 2)
-  78 = sub i32 %a, i32 %77
+  5369 = icmp eq i32 %last, i32 2
+  br i1 %5369, bb %equal.then, bb %equal.if.exit
+then72.split:
+  77.ret = phi [bb %equal.then, i32 1, bb %equal.if.exit, i32 0]
+  78 = sub i32 %a, i32 %77.ret
   80 = sub i32 %a, i32 1
   85 = call i32 dfs(i32 %80, i32 %b, i32 %c, i32 %d, i32 %e, i32 1)
   86 = mul i32 %78, i32 %85
   89 = srem i32 %86, i32 1000000007
   br bb %if.exit73
 if.exit73:
-  ans.phi343 = phi [bb %if.exit68, i32 0, bb %then72, i32 %89]
+  ans.phi343 = phi [bb %if.exit68, i32 0, bb %then72.split, i32 %89]
   91 = icmp ne i32 %b, i32 0
   br i1 %91, bb %then92, bb %if.exit93
 then92:
-  97 = call i32 equal(i32 %last, i32 3)
-  98 = sub i32 %b, i32 %97
+  5378 = icmp eq i32 %last, i32 3
+  br i1 %5378, bb %equal.then380, bb %equal.if.exit382
+then92.split:
+  97.ret = phi [bb %equal.then380, i32 1, bb %equal.if.exit382, i32 0]
+  98 = sub i32 %b, i32 %97.ret
   100 = add i32 %a, i32 1
   102 = sub i32 %b, i32 1
   106 = call i32 dfs(i32 %100, i32 %102, i32 %c, i32 %d, i32 %e, i32 2)
@@ -58,12 +64,15 @@ then92:
   110 = srem i32 %108, i32 1000000007
   br bb %if.exit93
 if.exit93:
-  ans.phi342 = phi [bb %if.exit73, i32 %ans.phi343, bb %then92, i32 %110]
+  ans.phi342 = phi [bb %if.exit73, i32 %ans.phi343, bb %then92.split, i32 %110]
   112 = icmp ne i32 %c, i32 0
   br i1 %112, bb %then113, bb %if.exit114
 then113:
-  118 = call i32 equal(i32 %last, i32 4)
-  119 = sub i32 %c, i32 %118
+  5387 = icmp eq i32 %last, i32 4
+  br i1 %5387, bb %equal.then389, bb %equal.if.exit391
+then113.split:
+  118.ret = phi [bb %equal.then389, i32 1, bb %equal.if.exit391, i32 0]
+  119 = sub i32 %c, i32 %118.ret
   122 = add i32 %b, i32 1
   124 = sub i32 %c, i32 1
   127 = call i32 dfs(i32 %a, i32 %122, i32 %124, i32 %d, i32 %e, i32 3)
@@ -72,12 +81,15 @@ then113:
   131 = srem i32 %129, i32 1000000007
   br bb %if.exit114
 if.exit114:
-  ans.phi341 = phi [bb %if.exit93, i32 %ans.phi342, bb %then113, i32 %131]
+  ans.phi341 = phi [bb %if.exit93, i32 %ans.phi342, bb %then113.split, i32 %131]
   133 = icmp ne i32 %d, i32 0
   br i1 %133, bb %then134, bb %if.exit135
 then134:
-  139 = call i32 equal(i32 %last, i32 5)
-  140 = sub i32 %d, i32 %139
+  5396 = icmp eq i32 %last, i32 5
+  br i1 %5396, bb %equal.then398, bb %equal.if.exit400
+then134.split:
+  139.ret = phi [bb %equal.then398, i32 1, bb %equal.if.exit400, i32 0]
+  140 = sub i32 %d, i32 %139.ret
   144 = add i32 %c, i32 1
   146 = sub i32 %d, i32 1
   148 = call i32 dfs(i32 %a, i32 %b, i32 %144, i32 %146, i32 %e, i32 4)
@@ -86,7 +98,7 @@ then134:
   152 = srem i32 %150, i32 1000000007
   br bb %if.exit135
 if.exit135:
-  ans.phi340 = phi [bb %if.exit114, i32 %ans.phi341, bb %then134, i32 %152]
+  ans.phi340 = phi [bb %if.exit114, i32 %ans.phi341, bb %then134.split, i32 %152]
   154 = icmp ne i32 %e, i32 0
   br i1 %154, bb %then155, bb %if.exit156
 then155:
@@ -102,6 +114,22 @@ if.exit156:
   191 = srem i32 %ans.phi, i32 1000000007
   store i32 %191 to ptr %32
   ret i32 %191
+equal.then:
+  br bb %then72.split
+equal.if.exit:
+  br bb %then72.split
+equal.then380:
+  br bb %then92.split
+equal.if.exit382:
+  br bb %then92.split
+equal.then389:
+  br bb %then113.split
+equal.if.exit391:
+  br bb %then113.split
+equal.then398:
+  br bb %then134.split
+equal.if.exit400:
+  br bb %then134.split
 }
 
 external i32 getint()
@@ -220,9 +248,7 @@ while.body293:
   store i32 %302 to ptr %301
   307 = mul i32 %302, i32 4
   308 = ptradd ptr @cns, i32 %307
-  313 = mul i32 %302, i32 4
-  314 = ptradd ptr @cns, i32 %313
-  314.load = load i32 from ptr %314
+  314.load = load i32 from ptr %308
   316 = add i32 %314.load, i32 1
   store i32 %316 to ptr %308
   318 = add i32 %i.phi, i32 1

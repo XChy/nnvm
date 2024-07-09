@@ -132,8 +132,10 @@ while.body46:
   54 = ptradd ptr @store, i32 %53
   store i32 %j44.phi to ptr %54
   57 = add i32 %k, i32 1
-  58 = call i32 is_clique(i32 %57)
-  59 = icmp ne i32 %58, i32 0
+  br bb %is_clique.entry
+while.body46.split:
+  58.ret = phi [bb %is_clique.while.exit, i32 1, bb %is_clique.then, i32 0]
+  59 = icmp ne i32 %58.ret, i32 0
   br i1 %59, bb %then60, bb %if.exit61
 while.exit47:
   ret i32 %max_.phi158
@@ -141,8 +143,8 @@ then60:
   64 = icmp sgt i32 %k, i32 %max_.phi158
   br i1 %64, bb %then65, bb %if.exit66
 if.exit61:
-  tmp.phi = phi [bb %while.body46, i32 %tmp.phi162, bb %if.exit77, i32 %72]
-  max_.phi157 = phi [bb %while.body46, i32 %max_.phi158, bb %if.exit77, i32 %max_.phi]
+  tmp.phi = phi [bb %while.body46.split, i32 %tmp.phi162, bb %if.exit77, i32 %72]
+  max_.phi157 = phi [bb %while.body46.split, i32 %max_.phi158, bb %if.exit77, i32 %max_.phi]
   80 = add i32 %j44.phi, i32 1
   br bb %while.cond45
 then65:
@@ -157,6 +159,42 @@ then76:
 if.exit77:
   max_.phi = phi [bb %if.exit66, i32 %max_.phi159, bb %then76, i32 %72]
   br bb %if.exit61
+is_clique.entry:
+  br bb %is_clique.while.cond
+is_clique.while.cond:
+  i.phi167 = phi [bb %is_clique.entry, i32 1, bb %is_clique.while.exit15, i32 %12171]
+  8168 = icmp slt i32 %i.phi167, i32 %57
+  br i1 %8168, bb %is_clique.while.body, bb %is_clique.while.exit
+is_clique.while.body:
+  12171 = add i32 %i.phi167, i32 1
+  br bb %is_clique.while.cond13
+is_clique.while.exit:
+  br bb %while.body46.split
+is_clique.while.cond13:
+  j.phi176 = phi [bb %is_clique.while.body, i32 %12171, bb %is_clique.if.exit, i32 %37198]
+  18177 = icmp slt i32 %j.phi176, i32 %57
+  br i1 %18177, bb %is_clique.while.body14, bb %is_clique.while.exit15
+is_clique.while.body14:
+  21180 = mul i32 %i.phi167, i32 4
+  22181 = ptradd ptr @store, i32 %21180
+  22.load182 = load i32 from ptr %22181
+  24183 = mul i32 %22.load182, i32 120
+  25184 = ptradd ptr @graph, i32 %24183
+  27185 = mul i32 %j.phi176, i32 4
+  28186 = ptradd ptr @store, i32 %27185
+  28.load187 = load i32 from ptr %28186
+  30188 = mul i32 %28.load187, i32 4
+  31189 = ptradd ptr %25184, i32 %30188
+  31.load190 = load i32 from ptr %31189
+  33191 = icmp eq i32 %31.load190, i32 0
+  br i1 %33191, bb %is_clique.then, bb %is_clique.if.exit
+is_clique.while.exit15:
+  br bb %is_clique.while.cond
+is_clique.then:
+  br bb %while.body46.split
+is_clique.if.exit:
+  37198 = add i32 %j.phi176, i32 1
+  br bb %is_clique.while.cond13
 }
 
 external void putarray(i32 , ptr )

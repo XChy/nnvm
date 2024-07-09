@@ -36,17 +36,17 @@ while.body:
 while.exit:
   br bb %while.cond159
 while.cond26:
-  val.phi = phi [bb %while.body, i32 %val.phi259, bb %while.body27, i32 %145]
-  ip1jp1.phi = phi [bb %while.body, i32 %ip1jp1.phi257, bb %while.body27, i32 %99]
-  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %while.body27, i32 %83]
-  ip1jm1.phi = phi [bb %while.body, i32 %ip1jm1.phi251, bb %while.body27, i32 %84]
-  ijp1.phi = phi [bb %while.body, i32 %ijp1.phi249, bb %while.body27, i32 %76]
-  ijm1.phi = phi [bb %while.body, i32 %ijm1.phi247, bb %while.body27, i32 %63]
-  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %while.body27, i32 %62]
-  im1jp1.phi = phi [bb %while.body, i32 %im1jp1.phi243, bb %while.body27, i32 %56]
-  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %while.body27, i32 %40]
-  im1jm1.phi = phi [bb %while.body, i32 %im1jm1.phi239, bb %while.body27, i32 %41]
-  i.phi236 = phi [bb %while.body, i32 1, bb %while.body27, i32 %79]
+  val.phi = phi [bb %while.body, i32 %val.phi259, bb %while.body27.split, i32 %145]
+  ip1jp1.phi = phi [bb %while.body, i32 %ip1jp1.phi257, bb %while.body27.split, i32 %99]
+  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %while.body27.split, i32 %83]
+  ip1jm1.phi = phi [bb %while.body, i32 %ip1jm1.phi251, bb %while.body27.split, i32 %84]
+  ijp1.phi = phi [bb %while.body, i32 %ijp1.phi249, bb %while.body27.split, i32 %76]
+  ijm1.phi = phi [bb %while.body, i32 %ijm1.phi247, bb %while.body27.split, i32 %63]
+  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %while.body27.split, i32 %62]
+  im1jp1.phi = phi [bb %while.body, i32 %im1jp1.phi243, bb %while.body27.split, i32 %56]
+  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %while.body27.split, i32 %40]
+  im1jm1.phi = phi [bb %while.body, i32 %im1jm1.phi239, bb %while.body27.split, i32 %41]
+  i.phi236 = phi [bb %while.body, i32 1, bb %while.body27.split, i32 %79]
   32 = icmp slt i32 %i.phi236, i32 1023
   br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
@@ -101,8 +101,11 @@ while.body27:
   143.load = load i32 from ptr %143
   145 = sub i32 %140, i32 %143.load
   152 = ptradd ptr @image_out, i32 %102
-  154 = call i32 cutout(i32 %145)
-  store i32 %154 to ptr %152
+  3266 = icmp slt i32 %145, i32 0
+  br i1 %3266, bb %cutout.then, bb %cutout.else
+while.body27.split:
+  154.ret = phi [bb %cutout.if.exit, i32 %val.stack.phi261271]
+  store i32 %154.ret to ptr %152
   br bb %while.cond26
 while.exit28:
   158 = add i32 %j.phi255, i32 1
@@ -151,6 +154,19 @@ while.exit198:
   call void _sysy_stoptime(i32 59)
   call void putarray(i32 1048576, ptr @image_out)
   ret i32 %16
+cutout.then:
+  br bb %cutout.if.exit
+cutout.if.exit:
+  val.stack.phi261271 = phi [bb %cutout.if.exit10, i32 %val.stack.phi279, bb %cutout.then, i32 0]
+  br bb %while.body27.split
+cutout.else:
+  8274 = icmp sgt i32 %145, i32 255
+  br i1 %8274, bb %cutout.then9, bb %cutout.if.exit10
+cutout.then9:
+  br bb %cutout.if.exit10
+cutout.if.exit10:
+  val.stack.phi279 = phi [bb %cutout.else, i32 %145, bb %cutout.then9, i32 255]
+  br bb %cutout.if.exit
 }
 
 external float getfloat()

@@ -3,14 +3,6 @@
 #include "IR/Module.h"
 using namespace nnvm;
 
-Value *IRBuilder::buildInst(InstID opcode, const std::vector<Value *> &operands,
-                            Type *type) {
-  Instruction *I = new Instruction(opcode, operands, type);
-  I->setType(type);
-  insertPoint.insertBefore(I);
-  return I;
-}
-
 Value *IRBuilder::buildStack(Type *containedTy, const std::string &name) {
   return buildStack(containedTy, 1, name);
 }

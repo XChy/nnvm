@@ -17,8 +17,13 @@ while.cond:
   13 = icmp sge i32 %k.phi, i32 0
   br i1 %13, bb %while.body, bb %while.exit
 while.body:
-  15 = call i32 inc_a()
-  16 = icmp ne i32 %15, i32 0
+  a.load89 = load i32 from ptr @a
+  490 = add i32 %a.load89, i32 1
+  store i32 %490 to ptr @a
+  br bb %while.body.split
+while.body.split:
+  15.ret = phi [bb %while.body, i32 %490]
+  16 = icmp ne i32 %15.ret, i32 0
   br i1 %16, bb %select.then, bb %select.else
 while.exit:
   a.load70 = load i32 from ptr @a
@@ -30,22 +35,32 @@ while.exit:
   a.load76 = load i32 from ptr @a
   ret i32 %a.load76
 select.then:
-  21 = call i32 inc_a()
-  22 = icmp ne i32 %21, i32 0
+  a.load96 = load i32 from ptr @a
+  497 = add i32 %a.load96, i32 1
+  store i32 %497 to ptr @a
+  br bb %select.then.split
+select.then.split:
+  21.ret = phi [bb %select.then, i32 %497]
+  22 = icmp ne i32 %21.ret, i32 0
   br bb %select.exit
 select.else:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %22]
+  select.phi = phi [bb %select.else, i1 0, bb %select.then.split, i1 %22]
   br i1 %select.phi, bb %select.then24, bb %select.else25
 select.then24:
-  28 = call i32 inc_a()
-  29 = icmp ne i32 %28, i32 0
+  a.load103 = load i32 from ptr @a
+  4104 = add i32 %a.load103, i32 1
+  store i32 %4104 to ptr @a
+  br bb %select.then24.split
+select.then24.split:
+  28.ret = phi [bb %select.then24, i32 %4104]
+  29 = icmp ne i32 %28.ret, i32 0
   br bb %select.exit26
 select.else25:
   br bb %select.exit26
 select.exit26:
-  select27.phi = phi [bb %select.else25, i1 0, bb %select.then24, i1 %29]
+  select27.phi = phi [bb %select.else25, i1 0, bb %select.then24.split, i1 %29]
   br i1 %select27.phi, bb %then, bb %if.exit
 then:
   a.load33 = load i32 from ptr @a
@@ -56,30 +71,50 @@ then:
   call void putch(i32 10)
   br bb %if.exit
 if.exit:
-  39 = call i32 inc_a()
-  40 = icmp slt i32 %39, i32 14
+  a.load110 = load i32 from ptr @a
+  4111 = add i32 %a.load110, i32 1
+  store i32 %4111 to ptr @a
+  br bb %if.exit.split
+if.exit.split:
+  39.ret = phi [bb %if.exit, i32 %4111]
+  40 = icmp slt i32 %39.ret, i32 14
   br i1 %40, bb %select.then41, bb %select.else42
 select.then41:
   br bb %select.exit43
 select.else42:
-  45 = call i32 inc_a()
-  46 = icmp ne i32 %45, i32 0
+  a.load117 = load i32 from ptr @a
+  4118 = add i32 %a.load117, i32 1
+  store i32 %4118 to ptr @a
+  br bb %select.else42.split
+select.else42.split:
+  45.ret = phi [bb %select.else42, i32 %4118]
+  46 = icmp ne i32 %45.ret, i32 0
   br i1 %46, bb %select.then47, bb %select.else48
 select.exit43:
   select50.phi85 = phi [bb %select.exit49, i1 %select50.phi, bb %select.then41, i1 %select50.phi86]
   select44.phi = phi [bb %select.exit49, i1 %select50.phi, bb %select.then41, i1 1]
   br i1 %select44.phi, bb %then59, bb %else
 select.then47:
-  51 = call i32 inc_a()
-  52 = call i32 inc_a()
-  53 = sub i32 %51, i32 %52
+  a.load124 = load i32 from ptr @a
+  4125 = add i32 %a.load124, i32 1
+  store i32 %4125 to ptr @a
+  br bb %select.then47.split
+select.then47.split:
+  51.ret = phi [bb %select.then47, i32 %4125]
+  a.load131 = load i32 from ptr @a
+  4132 = add i32 %a.load131, i32 1
+  store i32 %4132 to ptr @a
+  br bb %select.then47.split.split
+select.then47.split.split:
+  52.ret = phi [bb %select.then47.split, i32 %4132]
+  53 = sub i32 %51.ret, i32 %52.ret
   54 = add i32 %53, i32 1
   55 = icmp ne i32 %54, i32 0
   br bb %select.exit49
 select.else48:
   br bb %select.exit49
 select.exit49:
-  select50.phi = phi [bb %select.else48, i1 0, bb %select.then47, i1 %55]
+  select50.phi = phi [bb %select.else48, i1 0, bb %select.then47.split.split, i1 %55]
   br bb %select.exit43
 then59:
   a.load62 = load i32 from ptr @a
@@ -93,7 +128,11 @@ if.exit60:
   69 = sub i32 %k.phi, i32 1
   br bb %while.cond
 else:
-  67 = call i32 inc_a()
+  a.load138 = load i32 from ptr @a
+  4139 = add i32 %a.load138, i32 1
+  store i32 %4139 to ptr @a
+  br bb %else.split
+else.split:
   br bb %if.exit60
 }
 

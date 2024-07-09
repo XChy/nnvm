@@ -10,8 +10,38 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry34:
-  38 = call i32 deepWhileBr(i32 2, i32 2)
-  ret i32 %38
+  br bb %deepWhileBr.entry
+entry34.split:
+  38.ret = phi [bb %deepWhileBr.while.exit, i32 %c.phi4253]
+  ret i32 %38.ret
+deepWhileBr.entry:
+  br bb %deepWhileBr.while.cond
+deepWhileBr.while.cond:
+  e.phi4652 = phi [bb %deepWhileBr.entry, i32 ub, bb %deepWhileBr.if.exit, i32 %e.phi4566]
+  c.phi4253 = phi [bb %deepWhileBr.entry, i32 4, bb %deepWhileBr.if.exit, i32 %c.phi4167]
+  1154 = icmp slt i32 %c.phi4253, i32 75
+  br i1 %1154, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+deepWhileBr.while.body:
+  1557 = icmp slt i32 %c.phi4253, i32 100
+  br i1 %1557, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.exit:
+  br bb %entry34.split
+deepWhileBr.then:
+  2062 = add i32 %c.phi4253, i32 42
+  2263 = icmp sgt i32 %2062, i32 99
+  br i1 %2263, bb %deepWhileBr.then23, bb %deepWhileBr.if.exit24
+deepWhileBr.if.exit:
+  e.phi4566 = phi [bb %deepWhileBr.while.body, i32 %e.phi4652, bb %deepWhileBr.if.exit24, i32 %e.phi72]
+  c.phi4167 = phi [bb %deepWhileBr.while.body, i32 %c.phi4253, bb %deepWhileBr.if.exit24, i32 %c.phi4073]
+  br bb %deepWhileBr.while.cond
+deepWhileBr.then23:
+  br bb %deepWhileBr.if.exit30
+deepWhileBr.if.exit24:
+  e.phi72 = phi [bb %deepWhileBr.then, i32 %e.phi4652, bb %deepWhileBr.if.exit30, i32 84]
+  c.phi4073 = phi [bb %deepWhileBr.then, i32 %2062, bb %deepWhileBr.if.exit30, i32 168]
+  br bb %deepWhileBr.if.exit
+deepWhileBr.if.exit30:
+  br bb %deepWhileBr.if.exit24
 }
 
 external float getfloat()
@@ -51,13 +81,11 @@ if.exit:
   c.phi41 = phi [bb %while.body, i32 %c.phi42, bb %if.exit24, i32 %c.phi40]
   br bb %while.cond
 then23:
-  br bb %then29
+  br bb %if.exit30
 if.exit24:
   e.phi = phi [bb %then, i32 %e.phi46, bb %if.exit30, i32 84]
   c.phi40 = phi [bb %then, i32 %20, bb %if.exit30, i32 168]
   br bb %if.exit
-then29:
-  br bb %if.exit30
 if.exit30:
   br bb %if.exit24
 }

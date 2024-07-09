@@ -12,8 +12,9 @@ external i32 getfarray(ptr )
 i32 main() {
 entry5:
   store i32 10 to ptr @a
-  8 = call i32 func(i32 10)
-  ret i32 %8
+  br bb %entry5.split
+entry5.split:
+  ret i32 9
 }
 
 external float getfloat()

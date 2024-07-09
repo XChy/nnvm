@@ -8,39 +8,86 @@ global ptr w init with i32 512
 void kernel_deriche(i32 w, i32 h, float alpha, ptr imgIn, ptr imgOut, ptr y1, ptr y2) {
 entry59:
   89 = fneg float %alpha
-  90 = call float newExp(float %89)
-  91 = fsub float 1.000000, float %90
-  94 = call float newExp(float %89)
-  95 = fsub float 1.000000, float %94
+  3522 = si2f i32 256 to float
+  4523 = fdiv float %89, float %3522
+  5524 = fadd float 1.000000, float %4523
+  8525 = fmul float %5524, float %5524
+  11526 = fmul float %8525, float %8525
+  14527 = fmul float %11526, float %11526
+  17528 = fmul float %14527, float %14527
+  20529 = fmul float %17528, float %17528
+  23530 = fmul float %20529, float %20529
+  26531 = fmul float %23530, float %23530
+  29532 = fmul float %26531, float %26531
+  br bb %entry59.split
+entry59.split:
+  90.ret = phi [bb %entry59, float %29532]
+  91 = fsub float 1.000000, float %90.ret
+  br bb %entry59.split.split
+entry59.split.split:
+  94.ret = phi [bb %entry59.split, float %29532]
+  95 = fsub float 1.000000, float %94.ret
   96 = fmul float %91, float %95
   98 = fmul float 2.000000, float %alpha
-  101 = call float newExp(float %89)
-  102 = fmul float %98, float %101
+  br bb %entry59.split.split.split
+entry59.split.split.split:
+  101.ret = phi [bb %entry59.split.split, float %29532]
+  102 = fmul float %98, float %101.ret
   103 = fadd float 1.000000, float %102
-  106 = call float newExp(float %98)
-  107 = fsub float %103, float %106
+  4568 = fdiv float %98, float %3522
+  5569 = fadd float 1.000000, float %4568
+  8570 = fmul float %5569, float %5569
+  11571 = fmul float %8570, float %8570
+  14572 = fmul float %11571, float %11571
+  17573 = fmul float %14572, float %14572
+  20574 = fmul float %17573, float %17573
+  23575 = fmul float %20574, float %20574
+  26576 = fmul float %23575, float %23575
+  29577 = fmul float %26576, float %26576
+  br bb %entry59.split.split.split.split
+entry59.split.split.split.split:
+  106.ret = phi [bb %entry59.split.split.split, float %29577]
+  107 = fsub float %103, float %106.ret
   108 = fdiv float %96, float %107
-  114 = call float newExp(float %89)
-  115 = fmul float %108, float %114
+  br bb %entry59.split.split.split.split.split
+entry59.split.split.split.split.split:
+  114.ret = phi [bb %entry59.split.split.split.split, float %29532]
+  115 = fmul float %108, float %114.ret
   117 = fsub float %alpha, float 1.000000
   118 = fmul float %115, float %117
-  123 = call float newExp(float %89)
-  124 = fmul float %108, float %123
+  br bb %entry59.split.split.split.split.split.split
+entry59.split.split.split.split.split.split:
+  123.ret = phi [bb %entry59.split.split.split.split.split, float %29532]
+  124 = fmul float %108, float %123.ret
   126 = fadd float %alpha, float 1.000000
   127 = fmul float %124, float %126
   130 = fneg float %108
   131 = fneg float 2.000000
   133 = fmul float %131, float %alpha
-  134 = call float newExp(float %133)
-  135 = fmul float %130, float %134
+  4613 = fdiv float %133, float %3522
+  5614 = fadd float 1.000000, float %4613
+  8615 = fmul float %5614, float %5614
+  11616 = fmul float %8615, float %8615
+  14617 = fmul float %11616, float %11616
+  17618 = fmul float %14617, float %14617
+  20619 = fmul float %17618, float %17618
+  23620 = fmul float %20619, float %20619
+  26621 = fmul float %23620, float %23620
+  29622 = fmul float %26621, float %26621
+  br bb %entry59.split.split.split.split.split.split.split
+entry59.split.split.split.split.split.split.split:
+  134.ret = phi [bb %entry59.split.split.split.split.split.split, float %29622]
+  135 = fmul float %130, float %134.ret
   139 = f2si float %89 to i32
   140 = call float newPow(float 2.000000, i32 %139)
-  144 = call float newExp(float %133)
-  145 = fneg float %144
+  br bb %entry59.split.split.split.split.split.split.split.split
+entry59.split.split.split.split.split.split.split.split:
+  144.ret = phi [bb %entry59.split.split.split.split.split.split.split, float %29622]
+  145 = fneg float %144.ret
   146 = si2f i32 1 to float
   br bb %while.cond
 while.cond:
-  i.phi481 = phi [bb %entry59, i32 0, bb %while.exit157, i32 %207]
+  i.phi481 = phi [bb %entry59.split.split.split.split.split.split.split.split, i32 0, bb %while.exit157, i32 %207]
   153 = icmp slt i32 %i.phi481, i32 %w
   br i1 %153, bb %while.body, bb %while.exit
 while.body:

@@ -14,6 +14,10 @@
     Name(Type *type) : BinOpInst(ID, type) {}                                  \
     Name(Value *lhs, Value *rhs, Type *type)                                   \
         : BinOpInst(ID, lhs, rhs, type) {}                                     \
+    Instruction *copy() override {                                             \
+      auto *ret = new Name(getLHS(), getRHS(), getType());                     \
+      return ret;                                                              \
+    }                                                                          \
   };
 
 namespace nnvm {
@@ -127,7 +131,13 @@ public:
     ListTrait<Instruction>::eraseFromList();
   }
 
+  void moveTo(BasicBlock *otherBB);
+
   std::string dump() override;
+  virtual Instruction *copy() = 0;
+  Instruction *copyWithName();
+
+  template <typename To> bool isa() { return dynamic_cast<To *>(this); }
 
 private:
   InstID instID;
@@ -148,7 +158,12 @@ public:
 
   std::string dump() override;
 
+  Instruction *copy() override {
+    return new StackInst(getType(), allocatedBytes);
+  }
+
 private:
+  StackInst(Type *type, GInt allocatedBytes);
   GInt allocatedBytes;
 };
 
@@ -156,10 +171,20 @@ class StoreInst : public Instruction {
 public:
   StoreInst() : Instruction(InstID::Store, 2, nullptr) {}
 
+  void setStoredValue(Value *stored) { setOperand(0, stored); }
   Value *getStoredValue() { return getOperand(0); }
+
+  void setDest(Value *dest) { setOperand(1, dest); }
   Value *getDest() { return getOperand(1); }
 
   std::string dump() override;
+
+  Instruction *copy() override {
+    auto *ret = new StoreInst;
+    ret->setStoredValue(getStoredValue());
+    ret->setDest(getDest());
+    return ret;
+  }
 
 private:
 };
@@ -169,6 +194,12 @@ public:
   LoadInst(Type *type) : Instruction(InstID::Load, 1, type) {}
 
   Value *getSrc() { return getOperand(0); }
+
+  Instruction *copy() override {
+    auto *ret = new LoadInst(getType());
+    ret->setOperand(0, getOperand(0));
+    return ret;
+  }
 };
 
 // ===========================
@@ -221,6 +252,13 @@ public:
   void setPredicate(Predicate pred) { this->predicate = pred; }
   Predicate getPredicate() const { return predicate; }
 
+  Instruction *copy() override {
+    auto *ret = new ICmpInst(getPredicate(), getType());
+    ret->setOperand(0, getOperand(0));
+    ret->setOperand(1, getOperand(1));
+    return ret;
+  }
+
 private:
   Predicate predicate;
 };
@@ -236,6 +274,13 @@ public:
 
   void setPredicate(Predicate pred) { this->predicate = pred; }
   Predicate getPredicate() const { return predicate; }
+
+  Instruction *copy() override {
+    auto *ret = new FCmpInst(getPredicate(), getType());
+    ret->setOperand(0, getOperand(0));
+    ret->setOperand(1, getOperand(1));
+    return ret;
+  }
 
 private:
   Predicate predicate;
@@ -255,36 +300,67 @@ public:
 class ZExtInst : public CastInst<InstID::ZExt> {
 public:
   ZExtInst(Value *src, Type *toType) : CastInst(src, toType) {}
+
+  Instruction *copy() override {
+    auto *ret = new ZExtInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class SExtInst : public CastInst<InstID::SExt> {
 public:
   SExtInst(Value *src, Type *toType) : CastInst(src, toType) {}
+
+  Instruction *copy() override {
+    auto *ret = new SExtInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class TruncInst : public CastInst<InstID::Trunc> {
 public:
   TruncInst(Value *src, Type *toType) : CastInst(src, toType) {}
+
+  Instruction *copy() override {
+    auto *ret = new TruncInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class F2SIInst : public CastInst<InstID::F2SI> {
 public:
   F2SIInst(Value *src, Type *toType) : CastInst(src, toType) {}
+  Instruction *copy() override {
+    auto *ret = new F2SIInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class F2UIInst : public CastInst<InstID::F2UI> {
 public:
   F2UIInst(Value *src, Type *toType) : CastInst(src, toType) {}
+  Instruction *copy() override {
+    auto *ret = new F2UIInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class SI2FInst : public CastInst<InstID::SI2F> {
 public:
   SI2FInst(Value *src, Type *toType) : CastInst(src, toType) {}
+  Instruction *copy() override {
+    auto *ret = new SI2FInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 class UI2FInst : public CastInst<InstID::UI2F> {
 public:
   UI2FInst(Value *src, Type *toType) : CastInst(src, toType) {}
+  Instruction *copy() override {
+    auto *ret = new UI2FInst(getOperand(0), getType());
+    return ret;
+  }
 };
 
 // ===========================
@@ -305,7 +381,7 @@ public:
     return (BasicBlock *)getOperand(getOperandNum() - successorNum + no);
   }
 
-  uint getSuccNum() { return successorNum; }
+  uint getSuccNum() const { return successorNum; }
 
 private:
   uint successorNum;
@@ -317,11 +393,22 @@ public:
   RetInst(Value *returned) : TerminatorInst(InstID::Ret, 1, 0) {
     setOperand(0, returned);
   }
+
+  Instruction *copy() override {
+    RetInst *ret;
+    if (getOperandNum() == 0)
+      ret = new RetInst();
+    else
+      ret = new RetInst(getOperand(0));
+    return ret;
+  }
 };
 
 class UnreachableInst : public TerminatorInst {
 public:
   UnreachableInst() : TerminatorInst(InstID::Unreachable, 0, 0) {}
+
+  Instruction *copy() override { return new UnreachableInst; }
 };
 
 class BranchInst : public TerminatorInst {
@@ -348,6 +435,13 @@ public:
     return getOperand(0);
   }
 
+  Instruction *copy() override {
+    auto *ret = new BranchInst(isConditional());
+    for (int i = 0; i < getOperandNum(); i++)
+      ret->setOperand(i, getOperand(i));
+    return ret;
+  }
+
 private:
   bool conditional;
 };
@@ -370,6 +464,13 @@ public:
   Value *getArg(uint i) { return getOperand(i + 1); }
   uint getArgNum() { return getOperandNum() - 1; }
 
+  Instruction *copy() override {
+    auto *ret = new CallInst(getCallee(), getType());
+    for (int i = 0; i < getArgNum(); i++)
+      ret->addOperand(getArg(i));
+    return ret;
+  }
+
 private:
   Value *callee;
 };
@@ -380,6 +481,11 @@ public:
       : Instruction(InstID::FNeg, {operand}, operand->getType()) {
     assert(operand->getType()->isFloat());
   }
+
+  Instruction *copy() override {
+    auto *ret = new FNegInst(getOperand(0));
+    return ret;
+  }
 };
 
 // operands: [incomingBB1, incomingValue1, ..., incomingBBn, incomingValuen]
@@ -388,13 +494,24 @@ public:
   PhiInst(Type *type) : Instruction(InstID::Phi, {}, type) {}
 
   void addIncoming(BasicBlock *incomingBB, Value *incomingValue);
-  void setIncoming(BasicBlock *incomingBB, Value *incomingValue);
+  void setIncomingValue(BasicBlock *incomingBB, Value *incomingValue);
   uint64_t getIncomingNum() const { return getOperandNum() / 2; }
   void removeIncoming(BasicBlock *incomingBB);
+
+  void setIncomingBB(uint64_t index, BasicBlock *incomingBB);
+  void setIncomingValue(uint64_t index, Value *incomingValue);
+  void replaceIncoming(BasicBlock *original, BasicBlock *current);
 
   BasicBlock *getIncomingBB(uint64_t index) const;
   Value *getIncomingValue(uint64_t index) const {
     return getOperand(2 * index + 1);
+  }
+
+  Instruction *copy() override {
+    auto *ret = new PhiInst(getType());
+    for (uint64_t i = 0; i < getIncomingNum(); i++)
+      ret->addIncoming(getIncomingBB(i), getIncomingValue(i));
+    return ret;
   }
 };
 

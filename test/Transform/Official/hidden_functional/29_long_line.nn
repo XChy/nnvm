@@ -55,38 +55,6 @@ entry:
 then:
   ret i32 1
 if.exit:
-  br bb %if.exit31
-if.exit31:
-  br bb %if.exit41
-if.exit41:
-  br bb %if.exit51
-if.exit51:
-  br bb %if.exit61
-if.exit61:
-  br bb %if.exit71
-if.exit71:
-  br bb %if.exit81
-if.exit81:
-  br bb %if.exit91
-if.exit91:
-  br bb %if.exit101
-if.exit101:
-  br bb %if.exit111
-if.exit111:
-  br bb %if.exit121
-if.exit121:
-  br bb %if.exit131
-if.exit131:
-  br bb %if.exit141
-if.exit141:
-  br bb %if.exit151
-if.exit151:
-  br bb %if.exit161
-if.exit161:
-  br bb %if.exit171
-if.exit171:
-  br bb %if.exit181
-if.exit181:
   204 =  i1 1, i1 1
   205 = zext i1 %204 to i32
   206 = icmp ne i32 %205, i32 0
@@ -378,38 +346,6 @@ then567:
   br bb %if.exit568
 if.exit568:
   a15410.phi = phi [bb %if.exit558, i32 %564, bb %then567, i32 %570]
-  br bb %if.exit595
-if.exit595:
-  br bb %if.exit605
-if.exit605:
-  br bb %if.exit615
-if.exit615:
-  br bb %if.exit625
-if.exit625:
-  br bb %if.exit635
-if.exit635:
-  br bb %if.exit645
-if.exit645:
-  br bb %if.exit655
-if.exit655:
-  br bb %if.exit665
-if.exit665:
-  br bb %if.exit675
-if.exit675:
-  br bb %if.exit685
-if.exit685:
-  br bb %if.exit695
-if.exit695:
-  br bb %if.exit705
-if.exit705:
-  br bb %if.exit715
-if.exit715:
-  br bb %if.exit725
-if.exit725:
-  br bb %if.exit735
-if.exit735:
-  br bb %if.exit745
-if.exit745:
   784 = icmp ne i32 %a0395.phi, i32 0
   br i1 %784, bb %select.then, bb %select.else
 select.then:
@@ -5883,39 +5819,9 @@ if.exit5577:
   5640 = mul i32 %5638, i32 2
   5642 = add i32 %5640, i32 %s03390.phi
   5645 = call i32 fib(i32 %5642)
-  br bb %if.exit5671
+  br bb %if.exit5821
 else5578:
   br bb %if.exit5577
-if.exit5671:
-  br bb %if.exit5681
-if.exit5681:
-  br bb %if.exit5691
-if.exit5691:
-  br bb %if.exit5701
-if.exit5701:
-  br bb %if.exit5711
-if.exit5711:
-  br bb %if.exit5721
-if.exit5721:
-  br bb %if.exit5731
-if.exit5731:
-  br bb %if.exit5741
-if.exit5741:
-  br bb %if.exit5751
-if.exit5751:
-  br bb %if.exit5761
-if.exit5761:
-  br bb %if.exit5771
-if.exit5771:
-  br bb %if.exit5781
-if.exit5781:
-  br bb %if.exit5791
-if.exit5791:
-  br bb %if.exit5801
-if.exit5801:
-  br bb %if.exit5811
-if.exit5811:
-  br bb %if.exit5821
 if.exit5821:
   br i1 %214, bb %then5847, bb %else5849
 then5847:
@@ -6202,38 +6108,6 @@ then6207:
   br bb %if.exit6208
 if.exit6208:
   a156050.phi = phi [bb %if.exit6198, i32 %6204, bb %then6207, i32 %6210]
-  br bb %if.exit6235
-if.exit6235:
-  br bb %if.exit6245
-if.exit6245:
-  br bb %if.exit6255
-if.exit6255:
-  br bb %if.exit6265
-if.exit6265:
-  br bb %if.exit6275
-if.exit6275:
-  br bb %if.exit6285
-if.exit6285:
-  br bb %if.exit6295
-if.exit6295:
-  br bb %if.exit6305
-if.exit6305:
-  br bb %if.exit6315
-if.exit6315:
-  br bb %if.exit6325
-if.exit6325:
-  br bb %if.exit6335
-if.exit6335:
-  br bb %if.exit6345
-if.exit6345:
-  br bb %if.exit6355
-if.exit6355:
-  br bb %if.exit6365
-if.exit6365:
-  br bb %if.exit6375
-if.exit6375:
-  br bb %if.exit6385
-if.exit6385:
   6424 = icmp ne i32 %a06035.phi, i32 0
   br i1 %6424, bb %select.then6425, bb %select.else6426
 select.then6425:

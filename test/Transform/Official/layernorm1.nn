@@ -12,8 +12,11 @@ while.cond:
   start.phi281 = phi [bb %entry10, float %13, bb %if.exit39, float %start.phi]
   27 = fmul float %mid.phi285, float %mid.phi285
   29 = fsub float %27, float %x
-  30 = call float myAbs(float %29)
-  31 = fcmp ogt float %30, float 0.001000
+  4347 = fcmp olt float %29, float %13
+  br i1 %4347, bb %myAbs.then, bb %myAbs.if.exit
+while.cond.split:
+  30.ret = phi [bb %myAbs.if.exit, float %x.stack.phi353]
+  31 = fcmp ogt float %30.ret, float 0.001000
   br i1 %31, bb %while.body, bb %while.exit
 while.body:
   37 = fcmp ogt float %27, float %x
@@ -33,6 +36,12 @@ else:
   50 = fadd float %mid.phi285, float %end.phi283
   52 = fdiv float %50, float %20
   br bb %if.exit39
+myAbs.then:
+  8350 = fneg float %29
+  br bb %myAbs.if.exit
+myAbs.if.exit:
+  x.stack.phi353 = phi [bb %while.cond, float %29, bb %myAbs.then, float %8350]
+  br bb %while.cond.split
 }
 
 external i32 getint()
@@ -112,8 +121,8 @@ while.exit98:
   129 = add i32 %i.phi290, i32 1
   br bb %while.cond86
 while.cond131:
-  j.phi297 = phi [bb %while.exit88, i32 %j.phi300, bb %while.exit143, i32 %j.phi296]
-  i.phi288 = phi [bb %while.exit88, i32 0, bb %while.exit143, i32 %201]
+  j.phi297 = phi [bb %while.exit88, i32 %j.phi300, bb %while.exit143.split, i32 %j.phi296]
+  i.phi288 = phi [bb %while.exit88, i32 0, bb %while.exit143.split, i32 %201]
   135 = icmp slt i32 %i.phi288, i32 1000
   br i1 %135, bb %while.body132, bb %while.exit133
 while.body132:
@@ -151,8 +160,13 @@ while.exit143:
   190 = fdiv float %187.load, float %189
   store float %190 to ptr %139
   198 = fadd float %190, float 0.010000
-  199 = call float sqrt(float %198)
-  store float %199 to ptr %139
+  19312 = fadd float %60, float %198
+  20313 = si2f i32 2 to float
+  21314 = fdiv float %19312, float %20313
+  br bb %sqrt.while.cond
+while.exit143.split:
+  199.ret = phi [bb %sqrt.while.exit, float %mid.phi285317]
+  store float %199.ret to ptr %139
   201 = add i32 %i.phi288, i32 1
   br bb %while.cond131
 while.cond202:
@@ -219,6 +233,42 @@ while.body259:
 while.exit260:
   276 = add i32 %i.phi289, i32 1
   br bb %while.cond252
+sqrt.while.cond:
+  mid.phi285317 = phi [bb %while.exit143, float %21314, bb %sqrt.if.exit39, float %mid.phi335]
+  end.phi283318 = phi [bb %while.exit143, float %198, bb %sqrt.if.exit39, float %end.phi336]
+  start.phi281319 = phi [bb %while.exit143, float %60, bb %sqrt.if.exit39, float %start.phi337]
+  27320 = fmul float %mid.phi285317, float %mid.phi285317
+  29321 = fsub float %27320, float %198
+  4359 = fcmp olt float %29321, float %60
+  br i1 %4359, bb %myAbs.then361, bb %myAbs.if.exit364
+sqrt.while.cond.split:
+  30322.ret = phi [bb %myAbs.if.exit364, float %x.stack.phi365]
+  31323 = fcmp ogt float %30322.ret, float 0.001000
+  br i1 %31323, bb %sqrt.while.body, bb %sqrt.while.exit
+sqrt.while.body:
+  37326 = fcmp ogt float %27320, float %198
+  br i1 %37326, bb %sqrt.then38, bb %sqrt.else
+sqrt.while.exit:
+  br bb %while.exit143.split
+sqrt.then38:
+  44331 = fadd float %mid.phi285317, float %start.phi281319
+  46332 = fdiv float %44331, float %20313
+  br bb %sqrt.if.exit39
+sqrt.if.exit39:
+  mid.phi335 = phi [bb %sqrt.else, float %52341, bb %sqrt.then38, float %46332]
+  end.phi336 = phi [bb %sqrt.else, float %end.phi283318, bb %sqrt.then38, float %mid.phi285317]
+  start.phi337 = phi [bb %sqrt.else, float %mid.phi285317, bb %sqrt.then38, float %start.phi281319]
+  br bb %sqrt.while.cond
+sqrt.else:
+  50340 = fadd float %mid.phi285317, float %end.phi283318
+  52341 = fdiv float %50340, float %20313
+  br bb %sqrt.if.exit39
+myAbs.then361:
+  8362 = fneg float %29321
+  br bb %myAbs.if.exit364
+myAbs.if.exit364:
+  x.stack.phi365 = phi [bb %sqrt.while.cond, float %29321, bb %myAbs.then361, float %8362]
+  br bb %sqrt.while.cond.split
 }
 
 external float getfloat()

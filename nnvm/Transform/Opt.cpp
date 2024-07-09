@@ -1,4 +1,5 @@
 #include "Opt.h"
+#include "Transform/IPO/Inliner.h"
 #include "Transform/Infra/PassManager.h"
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
@@ -16,5 +17,12 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<SLPairElimPass>();
+
+  // After inlining:
+  passManager.addModulePass<InlinerPass>();
+  passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CFGCombinerPass>();
+  passManager.addFunctionPass<CSEPass>();
+  passManager.addFunctionPass<CombinerPass>();
   passManager.run(*module);
 }

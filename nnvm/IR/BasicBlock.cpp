@@ -26,6 +26,13 @@ void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {
   insertPoint.insertBack(inserted);
 }
 
+bool BasicBlock::isPredecessorOf(BasicBlock *other) {
+  for (int i = 0; i < getSuccNum(); i++)
+    if (getSucc(i) == other)
+      return true;
+  return false;
+}
+
 std::string BasicBlock::dump() {
   std::string ret;
   ret += (getName() + ":\n");

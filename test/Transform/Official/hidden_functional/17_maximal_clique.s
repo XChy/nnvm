@@ -274,20 +274,20 @@ bb15:
   ADD s4, s6, zero
   JAL zero, bb11
 maxCliques:
-  ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD s10, 8(sp)
-  SD ra, 16(sp)
-  SD s0, 24(sp)
-  SD s5, 32(sp)
-  SD s7, 40(sp)
-  SD s8, 48(sp)
-  SD s1, 56(sp)
-  SD s6, 64(sp)
-  SD s2, 72(sp)
-  SD s3, 80(sp)
-  SD s4, 88(sp)
-  SD s9, 96(sp)
+  ADDI sp, sp, -144
+  SD s11, 32(sp)
+  SD s10, 40(sp)
+  SD ra, 48(sp)
+  SD s0, 56(sp)
+  SD s5, 64(sp)
+  SD s7, 72(sp)
+  SD s8, 80(sp)
+  SD s1, 88(sp)
+  SD s6, 96(sp)
+  SD s2, 104(sp)
+  SD s3, 112(sp)
+  SD s4, 120(sp)
+  SD s9, 128(sp)
   ADD s0, a0, zero
   ADD s0, a1, zero
   ADD s1, zero, zero
@@ -303,7 +303,7 @@ bb17:
   SLT s7, s8, s5
   XORI s8, s7, 1
   BNE s8, zero, bb18
-  JAL zero, bb19
+  JAL zero, bb20
 bb18:
   ADDI s7, zero, 4
   MULW s8, s0, s7
@@ -311,69 +311,135 @@ bb18:
   ADD s9, s7, s8
   SW s5, 0(s9)
   ADDIW s7, s0, 1
-  ADD a0, s7, zero
-  CALL is_clique
-  ADD s8, a0, zero
-  XOR s9, s8, zero
-  SLTU s8, zero, s9
-  BNE s8, zero, bb20
-  JAL zero, bb26
-bb19:
-  ADD a0, s4, zero
-  LD s11, 0(sp)
-  LD s10, 8(sp)
-  LD ra, 16(sp)
-  LD s0, 24(sp)
-  LD s5, 32(sp)
-  LD s7, 40(sp)
-  LD s8, 48(sp)
-  LD s1, 56(sp)
-  LD s6, 64(sp)
-  LD s2, 72(sp)
-  LD s3, 80(sp)
-  LD s4, 88(sp)
-  LD s9, 96(sp)
-  ADDI sp, sp, 112
-  JALR zero, 0(ra)
-bb20:
-  SLT s8, s4, s0
-  BNE s8, zero, bb22
   JAL zero, bb27
+bb19:
+  LW t4, 8(sp)
+  ADD t2, t4, zero
+  XOR a2, t2, zero
+  SLTU t2, zero, a2
+  BNE t2, zero, bb21
+  JAL zero, bb36
+bb20:
+  ADD a0, s4, zero
+  LD s11, 32(sp)
+  LD s10, 40(sp)
+  LD ra, 48(sp)
+  LD s0, 56(sp)
+  LD s5, 64(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s1, 88(sp)
+  LD s6, 96(sp)
+  LD s2, 104(sp)
+  LD s3, 112(sp)
+  LD s4, 120(sp)
+  LD s9, 128(sp)
+  ADDI sp, sp, 144
+  JALR zero, 0(ra)
 bb21:
-  ADD t0, t2, zero
-  ADD a1, t1, zero
-  ADDIW a2, s5, 1
-  ADD s1, a1, zero
-  ADD s2, a2, zero
-  ADD s3, t0, zero
-  JAL zero, bb17
+  SLT t2, s4, s0
+  BNE t2, zero, bb23
+  JAL zero, bb37
 bb22:
-  ADD s8, s0, zero
-  JAL zero, bb23
+  ADD t2, a2, zero
+  ADD a3, a1, zero
+  ADDIW a4, s5, 1
+  ADD s1, a3, zero
+  ADD s2, a4, zero
+  ADD s3, t2, zero
+  JAL zero, bb17
 bb23:
-  ADD s9, s8, zero
+  ADD t4, s0, zero
+  SW t4, 16(sp)
+  JAL zero, bb24
+bb24:
+  LW t3, 16(sp)
+  ADD t4, t3, zero
+  SW t4, 24(sp)
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
-  ADD s10, a0, zero
-  SLT s11, s9, s10
-  BNE s11, zero, bb24
-  JAL zero, bb28
-bb24:
-  ADD s11, s10, zero
-  JAL zero, bb25
+  ADD t0, a0, zero
+  LW t4, 24(sp)
+  SLT t1, t4, t0
+  BNE t1, zero, bb25
+  JAL zero, bb38
 bb25:
-  ADD t0, s11, zero
-  ADD t1, s10, zero
-  ADD t2, t0, zero
-  JAL zero, bb21
+  ADD t1, t0, zero
+  JAL zero, bb26
 bb26:
-  ADD t1, s6, zero
-  ADD t2, s4, zero
-  JAL zero, bb21
+  ADD t2, t1, zero
+  ADD a1, t0, zero
+  ADD a2, t2, zero
+  JAL zero, bb22
 bb27:
-  ADD s8, s4, zero
-  JAL zero, bb23
+  ADDI s8, zero, 1
+  JAL zero, bb28
 bb28:
-  ADD s11, s9, zero
-  JAL zero, bb25
+  ADD s9, s8, zero
+  SLT s10, s9, s7
+  BNE s10, zero, bb29
+  JAL zero, bb30
+bb29:
+  ADDIW s10, s9, 1
+  ADD s11, s10, zero
+  JAL zero, bb31
+bb30:
+  ADDI t4, zero, 1
+  SW t4, 8(sp)
+  JAL zero, bb19
+bb31:
+  ADD t4, s11, zero
+  SW t4, 0(sp)
+  LW t4, 0(sp)
+  SLT t1, t4, s7
+  BNE t1, zero, bb32
+  JAL zero, bb33
+bb32:
+  ADDI t1, zero, 4
+  MULW t2, s9, t1
+  LA t1, store
+  ADD a2, t1, t2
+  LW t1, 0(a2)
+  ADDI t2, zero, 120
+  MULW a2, t1, t2
+  LA t1, graph
+  ADD t2, t1, a2
+  ADDI t1, zero, 4
+  LW t4, 0(sp)
+  MULW a2, t4, t1
+  LA t1, store
+  ADD a3, t1, a2
+  LW t1, 0(a3)
+  ADDI a2, zero, 4
+  MULW a3, t1, a2
+  ADD t1, t2, a3
+  LW t2, 0(t1)
+  XOR t1, t2, zero
+  SLTIU t2, t1, 1
+  BNE t2, zero, bb34
+  JAL zero, bb35
+bb33:
+  ADD s8, s10, zero
+  JAL zero, bb28
+bb34:
+  ADD t4, zero, zero
+  SW t4, 8(sp)
+  JAL zero, bb19
+bb35:
+  LW t4, 0(sp)
+  ADDIW s1, t4, 1
+  ADD s11, s1, zero
+  JAL zero, bb31
+bb36:
+  ADD a1, s6, zero
+  ADD a2, s4, zero
+  JAL zero, bb22
+bb37:
+  ADD t4, s4, zero
+  SW t4, 16(sp)
+  JAL zero, bb24
+bb38:
+  LW t4, 24(sp)
+  ADD t1, t4, zero
+  JAL zero, bb26

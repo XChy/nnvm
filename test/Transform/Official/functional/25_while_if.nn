@@ -10,9 +10,41 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry37:
-  41 = call i32 deepWhileBr(i32 2, i32 2)
-  call void putint(i32 %41)
+  br bb %deepWhileBr.entry2
+entry37.split:
+  41.ret = phi [bb %deepWhileBr.while.exit, i32 %c.phi4758]
+  call void putint(i32 %41.ret)
   ret i32 0
+deepWhileBr.entry2:
+  br bb %deepWhileBr.while.cond
+deepWhileBr.while.cond:
+  e.phi5157 = phi [bb %deepWhileBr.entry2, i32 ub, bb %deepWhileBr.if.exit, i32 %e.phi5071]
+  c.phi4758 = phi [bb %deepWhileBr.entry2, i32 4, bb %deepWhileBr.if.exit, i32 %c.phi4672]
+  1359 = icmp slt i32 %c.phi4758, i32 75
+  br i1 %1359, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+deepWhileBr.while.body:
+  1762 = icmp slt i32 %c.phi4758, i32 100
+  br i1 %1762, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.exit:
+  br bb %entry37.split
+deepWhileBr.then:
+  2267 = add i32 %c.phi4758, i32 42
+  2468 = icmp sgt i32 %2267, i32 99
+  br i1 %2468, bb %deepWhileBr.then25, bb %deepWhileBr.if.exit26
+deepWhileBr.if.exit:
+  e.phi5071 = phi [bb %deepWhileBr.while.body, i32 %e.phi5157, bb %deepWhileBr.if.exit26, i32 %e.phi79]
+  c.phi4672 = phi [bb %deepWhileBr.while.body, i32 %c.phi4758, bb %deepWhileBr.if.exit26, i32 %c.phi4580]
+  br bb %deepWhileBr.while.cond
+deepWhileBr.then25:
+  br bb %deepWhileBr.then32
+deepWhileBr.if.exit26:
+  e.phi79 = phi [bb %deepWhileBr.then, i32 %e.phi5157, bb %deepWhileBr.if.exit33, i32 84]
+  c.phi4580 = phi [bb %deepWhileBr.then, i32 %2267, bb %deepWhileBr.if.exit33, i32 168]
+  br bb %deepWhileBr.if.exit
+deepWhileBr.then32:
+  br bb %deepWhileBr.if.exit33
+deepWhileBr.if.exit33:
+  br bb %deepWhileBr.if.exit26
 }
 
 external float getfloat()
@@ -42,17 +74,14 @@ if.exit:
   c.phi46 = phi [bb %while.body, i32 %c.phi47, bb %if.exit26, i32 %c.phi45]
   br bb %while.cond
 then25:
-  30 = call i32 get_one(i32 0)
-  31 = icmp eq i32 %30, i32 1
-  br i1 %31, bb %then32, bb %if.exit33
+  br bb %then32
 if.exit26:
   e.phi = phi [bb %then, i32 %e.phi51, bb %if.exit33, i32 84]
-  c.phi45 = phi [bb %then, i32 %22, bb %if.exit33, i32 %c.phi]
+  c.phi45 = phi [bb %then, i32 %22, bb %if.exit33, i32 168]
   br bb %if.exit
 then32:
   br bb %if.exit33
 if.exit33:
-  c.phi = phi [bb %then25, i32 %22, bb %then32, i32 168]
   br bb %if.exit26
 }
 

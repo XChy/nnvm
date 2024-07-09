@@ -2,36 +2,12 @@ external i32 getint()
 
 i32 ifElseIf() {
 entry:
-  br bb %select.else
-select.else:
-  br bb %select.exit
-select.exit:
-  br i1 0, bb %then, bb %else
-then:
-  ret i32 5
+  br bb %else41
 if.exit:
-  ret i32 %a.phi51
-else:
-  br bb %select.then19
-select.then19:
-  br bb %select.exit21
-select.exit21:
-  br i1 0, bb %then26, bb %else28
-then26:
-  br bb %if.exit27
+  ret i32 -5
 if.exit27:
-  a.phi51 = phi [bb %if.exit40, i32 %a.phi, bb %then26, i32 25]
   br bb %if.exit
-else28:
-  br bb %select.then31
-select.then31:
-  br bb %select.exit33
-select.exit33:
-  br i1 0, bb %then39, bb %else41
-then39:
-  br bb %if.exit40
 if.exit40:
-  a.phi = phi [bb %else41, i32 -5, bb %then39, i32 20]
   br bb %if.exit27
 else41:
   br bb %if.exit40
@@ -47,9 +23,18 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry47:
-  48 = call i32 ifElseIf()
-  call void putint(i32 %48)
+  br bb %ifElseIf.else41
+entry47.split:
+  call void putint(i32 -5)
   ret i32 0
+ifElseIf.if.exit:
+  br bb %entry47.split
+ifElseIf.if.exit27:
+  br bb %ifElseIf.if.exit
+ifElseIf.if.exit40:
+  br bb %ifElseIf.if.exit27
+ifElseIf.else41:
+  br bb %ifElseIf.if.exit40
 }
 
 external float getfloat()

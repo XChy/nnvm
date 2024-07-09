@@ -29,16 +29,15 @@ while.body75:
 while.exit76:
   br bb %while.cond87
 while.cond87:
-  i73.phi133 = phi [bb %while.exit76, i32 0, bb %while.body88, i32 %101]
+  i73.phi133 = phi [bb %while.exit76, i32 0, bb %transpose.while.exit, i32 %101]
   92 = icmp slt i32 %i73.phi133, i32 %71
   br i1 %92, bb %while.body88, bb %while.exit89
 while.body88:
   96 = mul i32 %i73.phi133, i32 4
   97 = ptradd ptr @a, i32 %96
   97.load = load i32 from ptr %97
-  99 = call i32 transpose(i32 %69, ptr @matrix, i32 %97.load)
-  101 = add i32 %i73.phi133, i32 1
-  br bb %while.cond87
+  6144 = sdiv i32 %69, i32 %97.load
+  br bb %transpose.while.cond
 while.exit89:
   br bb %while.cond103
 while.cond103:
@@ -67,6 +66,45 @@ if.exit125:
   call void putint(i32 %ans.phi)
   call void putch(i32 10)
   ret i32 0
+transpose.while.cond:
+  curr.phi141147 = phi [bb %while.body88, i32 ub, bb %transpose.while.exit18, i32 %curr.phi156]
+  i.phi148 = phi [bb %while.body88, i32 0, bb %transpose.while.exit18, i32 %65164]
+  14149 = icmp slt i32 %i.phi148, i32 %6144
+  br i1 %14149, bb %transpose.while.body, bb %transpose.while.exit
+transpose.while.body:
+  br bb %transpose.while.cond16
+transpose.while.exit:
+  101 = add i32 %i73.phi133, i32 1
+  br bb %while.cond87
+transpose.while.cond16:
+  curr.phi156 = phi [bb %transpose.while.body, i32 %curr.phi141147, bb %transpose.if.exit, i32 %37.load174, bb %transpose.then, i32 %curr.phi156]
+  j.phi157 = phi [bb %transpose.while.body, i32 0, bb %transpose.if.exit, i32 %63182, bb %transpose.then, i32 %29167]
+  21158 = icmp slt i32 %j.phi157, i32 %97.load
+  br i1 %21158, bb %transpose.while.body17, bb %transpose.while.exit18
+transpose.while.body17:
+  25161 = icmp slt i32 %i.phi148, i32 %j.phi157
+  br i1 %25161, bb %transpose.then, bb %transpose.if.exit
+transpose.while.exit18:
+  65164 = add i32 %i.phi148, i32 1
+  br bb %transpose.while.cond
+transpose.then:
+  29167 = add i32 %j.phi157, i32 1
+  br bb %transpose.while.cond16
+transpose.if.exit:
+  33170 = mul i32 %i.phi148, i32 %97.load
+  35171 = add i32 %33170, i32 %j.phi157
+  36172 = mul i32 %35171, i32 4
+  37173 = ptradd ptr @matrix, i32 %36172
+  37.load174 = load i32 from ptr %37173
+  41175 = mul i32 %j.phi157, i32 %6144
+  43176 = add i32 %41175, i32 %i.phi148
+  44177 = mul i32 %43176, i32 4
+  45178 = ptradd ptr @matrix, i32 %44177
+  52.load179 = load i32 from ptr %37173
+  store i32 %52.load179 to ptr %45178
+  store i32 %37.load174 to ptr %37173
+  63182 = add i32 %j.phi157, i32 1
+  br bb %transpose.while.cond16
 }
 
 external float getfloat()

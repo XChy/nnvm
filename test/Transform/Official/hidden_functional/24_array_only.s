@@ -212,7 +212,7 @@ bb15:
   LW s1, 16(sp)
   SLTI s2, s1, 5
   BNE s2, zero, bb16
-  JAL zero, bb17
+  JAL zero, bb18
 bb16:
   LA s1, i
   LW s2, 0(s1)
@@ -227,41 +227,58 @@ bb16:
   LW s1, 0(sp)
   ADD a0, s1, zero
   CALL putint
+  LA s1, k
+  LW s2, 0(s1)
   ADDI a0, sp, 0
   ADD a0, a0, zero
   ADDI a1, sp, 8
   ADD a1, a1, zero
-  CALL add
+  ADD a2, s2, zero
+  CALL add_impl
+  LA s1, k
+  LW s2, 0(s1)
   ADDI a0, sp, 16
   ADD a0, a0, zero
   ADDI a1, sp, 8
   ADD a1, a1, zero
-  CALL add
+  ADD a2, s2, zero
+  CALL add_impl
+  LA s1, k
+  LW s2, 0(s1)
   ADDI a0, sp, 0
   ADD a0, a0, zero
   ADDI a1, sp, 8
   ADD a1, a1, zero
-  CALL sub
-  JAL zero, bb15
+  ADD a2, s2, zero
+  CALL sub_impl
+  JAL zero, bb17
 bb17:
+  JAL zero, bb15
+bb18:
+  LA s1, k
+  LW s2, 0(s1)
   LA s1, i
   ADD a0, s1, zero
-  CALL inc
+  ADD a1, s2, zero
+  CALL inc_impl
+  LA s1, k
+  LW s2, 0(s1)
   LA s1, i
   ADD a0, s1, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
-  CALL add
+  ADD a2, s2, zero
+  CALL add_impl
   LA s1, i
   LW s2, 0(s1)
   LW s1, 0(s0)
   XOR s3, s2, s1
   SLTIU s1, s3, 1
-  BNE s1, zero, bb18
-  JAL zero, bb19
-bb18:
-  JAL zero, bb14
+  BNE s1, zero, bb19
+  JAL zero, bb20
 bb19:
+  JAL zero, bb14
+bb20:
   JAL zero, bb12
 inc_impl:
   ADDI sp, sp, -48
@@ -275,14 +292,14 @@ inc_impl:
   ADD s1, a1, zero
   XOR s2, s1, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb21
-  JAL zero, bb23
-bb21:
+  BNE s3, zero, bb22
+  JAL zero, bb24
+bb22:
   LW s2, 0(s0)
   ADDIW s3, s2, 1
   SW s3, 0(s0)
-  JAL zero, bb22
-bb22:
+  JAL zero, bb23
+bb23:
   LD s4, 0(sp)
   LD ra, 8(sp)
   LD s3, 16(sp)
@@ -291,7 +308,7 @@ bb22:
   LD s0, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb23:
+bb24:
   LW s2, 0(s0)
   ADDI s3, zero, 2
   MULW s4, s2, s3
@@ -301,4 +318,4 @@ bb23:
   ADD a0, s0, zero
   ADD a1, s3, zero
   CALL inc_impl
-  JAL zero, bb22
+  JAL zero, bb23

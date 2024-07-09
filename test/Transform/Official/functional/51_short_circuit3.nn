@@ -27,18 +27,12 @@ i32 main() {
 entry12:
   store i32 2 to ptr @a
   store i32 3 to ptr @b
-  13 = call i32 set_a(i32 0)
-  14 = icmp ne i32 %13, i32 0
-  br i1 %14, bb %select.then, bb %select.else
-select.then:
-  19 = call i32 set_b(i32 1)
-  20 = icmp ne i32 %19, i32 0
-  br bb %select.exit
+  store i32 0 to ptr @a
+  br bb %select.else
 select.else:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %20]
-  br i1 %select.phi, bb %then, bb %if.exit
+  br i1 0, bb %then, bb %if.exit
 then:
   br bb %if.exit
 if.exit:
@@ -50,18 +44,12 @@ if.exit:
   call void putch(i32 32)
   store i32 2 to ptr @a
   store i32 3 to ptr @b
-  30 = call i32 set_a(i32 0)
-  31 = icmp ne i32 %30, i32 0
-  br i1 %31, bb %select.then32, bb %select.else33
-select.then32:
-  36 = call i32 set_b(i32 1)
-  37 = icmp ne i32 %36, i32 0
-  br bb %select.exit34
+  store i32 0 to ptr @a
+  br bb %select.else33
 select.else33:
   br bb %select.exit34
 select.exit34:
-  select35.phi = phi [bb %select.else33, i1 0, bb %select.then32, i1 %37]
-  br i1 %select35.phi, bb %then39, bb %if.exit40
+  br i1 0, bb %then39, bb %if.exit40
 then39:
   br bb %if.exit40
 if.exit40:
@@ -75,13 +63,14 @@ if.exit40:
   47 = icmp sge i32 1, i32 1
   br i1 %47, bb %select.then48, bb %select.else49
 select.then48:
-  52 = call i32 set_d(i32 3)
-  53 = icmp ne i32 %52, i32 0
+  store i32 3 to ptr @d
+  br bb %select.then48.split
+select.then48.split:
   br bb %select.exit50
 select.else49:
   br bb %select.exit50
 select.exit50:
-  select51.phi = phi [bb %select.else49, i1 0, bb %select.then48, i1 %53]
+  select51.phi = phi [bb %select.else49, i1 0, bb %select.then48.split, i1 1]
   br i1 %select51.phi, bb %then55, bb %if.exit56
 then55:
   br bb %if.exit56
@@ -94,11 +83,12 @@ if.exit56:
 select.then61:
   br bb %select.exit63
 select.else62:
-  65 = call i32 set_d(i32 4)
-  66 = icmp ne i32 %65, i32 0
+  store i32 4 to ptr @d
+  br bb %select.else62.split
+select.else62.split:
   br bb %select.exit63
 select.exit63:
-  select64.phi = phi [bb %select.else62, i1 %66, bb %select.then61, i1 1]
+  select64.phi = phi [bb %select.else62.split, i1 1, bb %select.then61, i1 1]
   br i1 %select64.phi, bb %then69, bb %if.exit70
 then69:
   br bb %if.exit70
@@ -144,26 +134,7 @@ then112:
   br bb %if.exit113
 if.exit113:
   call void putch(i32 10)
-  br bb %while.cond
-while.cond:
-  br bb %select.else127
-while.body:
-  call void putch(i32 32)
-  br bb %while.cond
-while.exit:
-  br bb %select.else138
-select.else127:
-  br bb %select.exit128
-select.exit128:
-  br i1 0, bb %while.body, bb %while.exit
-select.else138:
-  br bb %select.exit139
-select.exit139:
-  br i1 1, bb %then145, bb %if.exit146
-then145:
   call void putch(i32 67)
-  br bb %if.exit146
-if.exit146:
   150 = icmp sge i32 0, i32 1
   br i1 %150, bb %select.then151, bb %select.else152
 select.then151:
@@ -218,12 +189,10 @@ if.exit201:
 select.then209:
   br bb %select.exit211
 select.else210:
-  br bb %select.else217
+  br bb %select.exit218
 select.exit211:
   select212.phi = phi [bb %select.exit218, i1 0, bb %select.then209, i1 1]
   br i1 %select212.phi, bb %then226, bb %if.exit227
-select.else217:
-  br bb %select.exit218
 select.exit218:
   br bb %select.exit211
 then226:

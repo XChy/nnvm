@@ -116,7 +116,7 @@ class pRet : public pInstWithType {
 public:
   pRet() : pInstWithType(JALR) {}
   bool match(const LIRInst *inst) {
-    return pInst::match(inst) && pZeroReg().match(inst->getOp(0)) &&
+    return pInstWithType::match(inst) && pZeroReg().match(inst->getOp(0)) &&
            pRAReg().match(inst->getOp(1)) &&
            pSpecificImm(0).match(inst->getOp(2));
   }

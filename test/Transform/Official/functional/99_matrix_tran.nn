@@ -47,10 +47,41 @@ while.body:
   96 = add i32 %i57.phi156, i32 1
   br bb %while.cond
 while.exit:
-  97 = call i32 tran(ptr %a0, ptr %a1, ptr %a2, ptr %b0, ptr %b1, ptr %b2, ptr %c0, ptr %c1, ptr %c2)
+  3162 = ptradd ptr %c1, i32 8
+  5163 = ptradd ptr %a2, i32 4
+  5.load164 = load float from ptr %5163
+  store float %5.load164 to ptr %3162
+  8166 = ptradd ptr %c2, i32 4
+  10167 = ptradd ptr %a1, i32 8
+  10.load168 = load float from ptr %10167
+  store float %10.load168 to ptr %8166
+  13170 = ptradd ptr %c0, i32 4
+  15.load171 = load float from ptr %a1
+  store float %15.load171 to ptr %13170
+  18173 = ptradd ptr %c0, i32 8
+  20.load174 = load float from ptr %a2
+  store float %20.load174 to ptr %18173
+  25176 = ptradd ptr %a0, i32 4
+  25.load177 = load float from ptr %25176
+  store float %25.load177 to ptr %c1
+  30179 = ptradd ptr %a0, i32 8
+  30.load180 = load float from ptr %30179
+  store float %30.load180 to ptr %c2
+  33182 = ptradd ptr %c1, i32 4
+  35183 = ptradd ptr %a1, i32 4
+  35.load184 = load float from ptr %35183
+  store float %35.load184 to ptr %33182
+  38186 = ptradd ptr %c2, i32 8
+  40187 = ptradd ptr %a2, i32 8
+  40.load188 = load float from ptr %40187
+  store float %40.load188 to ptr %38186
+  45.load190 = load float from ptr %a0
+  store float %45.load190 to ptr %c0
+  br bb %while.exit.split
+while.exit.split:
   br bb %while.cond99
 while.cond99:
-  i57.phi155 = phi [bb %while.exit, i32 %97, bb %while.body100, i32 %114]
+  i57.phi155 = phi [bb %while.exit.split, i32 0, bb %while.body100, i32 %114]
   N.load = load i32 from ptr @N
   104 = icmp slt i32 %i57.phi155, i32 %N.load
   br i1 %104, bb %while.body100, bb %while.exit101

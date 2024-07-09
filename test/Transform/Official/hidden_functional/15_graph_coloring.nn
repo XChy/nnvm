@@ -14,13 +14,16 @@ entry78:
   83 = icmp eq i32 %i, i32 4
   br i1 %83, bb %then84, bb %if.exit85
 then84:
-  86 = call i32 isSafe(ptr %graph, ptr %color)
-  87 = icmp ne i32 %86, i32 0
+  br bb %isSafe.entry31
+then84.split:
+  86.ret = phi [bb %isSafe.while.exit35, i32 1, bb %isSafe.then, i32 0]
+  87 = icmp ne i32 %86.ret, i32 0
   br i1 %87, bb %then88, bb %if.exit89
 if.exit85:
   br bb %while.cond92
 then88:
-  call void printSolution(ptr %color)
+  br bb %printSolution.entry
+then88.split:
   ret i32 1
 if.exit89:
   ret i32 0
@@ -44,6 +47,68 @@ if.exit109:
   store i32 0 to ptr %101
   114 = add i32 %j91.phi, i32 1
   br bb %while.cond92
+isSafe.entry31:
+  br bb %isSafe.while.cond33
+isSafe.while.cond33:
+  select.phi164170 = phi [bb %isSafe.entry31, i1 ub, bb %isSafe.while.exit45, i1 %select.phi163180]
+  i32.phi171 = phi [bb %isSafe.entry31, i32 0, bb %isSafe.while.exit45, i32 %42175]
+  38172 = icmp slt i32 %i32.phi171, i32 4
+  br i1 %38172, bb %isSafe.while.body34, bb %isSafe.while.exit35
+isSafe.while.body34:
+  42175 = add i32 %i32.phi171, i32 1
+  br bb %isSafe.while.cond43
+isSafe.while.exit35:
+  br bb %then84.split
+isSafe.while.cond43:
+  select.phi163180 = phi [bb %isSafe.while.body34, i1 %select.phi164170, bb %isSafe.if.exit, i1 %select.phi205]
+  j.phi181 = phi [bb %isSafe.while.body34, i32 %42175, bb %isSafe.if.exit, i32 %75210]
+  48182 = icmp slt i32 %j.phi181, i32 4
+  br i1 %48182, bb %isSafe.while.body44, bb %isSafe.while.exit45
+isSafe.while.body44:
+  51185 = mul i32 %i32.phi171, i32 16
+  52186 = ptradd ptr %graph, i32 %51185
+  54187 = mul i32 %j.phi181, i32 4
+  55188 = ptradd ptr %52186, i32 %54187
+  55.load189 = load i32 from ptr %55188
+  57190 = icmp ne i32 %55.load189, i32 0
+  br i1 %57190, bb %isSafe.select.then, bb %isSafe.select.else
+isSafe.while.exit45:
+  br bb %isSafe.while.cond33
+isSafe.select.then:
+  64195 = ptradd ptr %color, i32 %54187
+  64.load196 = load i32 from ptr %64195
+  67197 = mul i32 %i32.phi171, i32 4
+  68198 = ptradd ptr %color, i32 %67197
+  68.load199 = load i32 from ptr %68198
+  70200 = icmp eq i32 %64.load196, i32 %68.load199
+  br bb %isSafe.select.exit
+isSafe.select.else:
+  br bb %isSafe.select.exit
+isSafe.select.exit:
+  select.phi205 = phi [bb %isSafe.select.else, i1 0, bb %isSafe.select.then, i1 %70200]
+  br i1 %select.phi205, bb %isSafe.then, bb %isSafe.if.exit
+isSafe.then:
+  br bb %then84.split
+isSafe.if.exit:
+  75210 = add i32 %j.phi181, i32 1
+  br bb %isSafe.while.cond43
+printSolution.entry:
+  br bb %printSolution.while.cond
+printSolution.while.cond:
+  i.phi229 = phi [bb %printSolution.entry, i32 0, bb %printSolution.while.body, i32 %17238]
+  7230 = icmp slt i32 %i.phi229, i32 4
+  br i1 %7230, bb %printSolution.while.body, bb %printSolution.while.exit
+printSolution.while.body:
+  10233 = mul i32 %i.phi229, i32 4
+  11234 = ptradd ptr %color, i32 %10233
+  11.load235 = load i32 from ptr %11234
+  call void putint(i32 %11.load235)
+  call void putch(i32 32)
+  17238 = add i32 %i.phi229, i32 1
+  br bb %printSolution.while.cond
+printSolution.while.exit:
+  call void putch(i32 10)
+  br bb %then88.split
 }
 
 external i32 getfarray(ptr )
@@ -102,7 +167,15 @@ while.exit138:
   153 = icmp ne i32 %152, i32 0
   br i1 %153, bb %then154, bb %if.exit155
 then154:
-  call void printMessage()
+  call void putch(i32 78)
+  call void putch(i32 111)
+  call void putch(i32 116)
+  call void putch(i32 32)
+  call void putch(i32 101)
+  call void putch(i32 120)
+  call void putch(i32 105)
+  call void putch(i32 115)
+  call void putch(i32 116)
   br bb %if.exit155
 if.exit155:
   ret i32 0

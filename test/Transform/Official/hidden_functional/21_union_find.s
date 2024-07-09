@@ -89,11 +89,15 @@ bb8:
   CALL getint
   ADD s5, a0, zero
   ADD a0, s4, zero
-  ADD a1, s5, zero
-  CALL merge
-  ADDIW s4, s3, 1
-  ADD s2, s4, zero
-  JAL zero, bb7
+  CALL find
+  ADD s4, a0, zero
+  ADD a0, s5, zero
+  CALL find
+  ADD s5, a0, zero
+  XOR s6, s4, s5
+  SLTU s7, zero, s6
+  BNE s7, zero, bb15
+  JAL zero, bb16
 bb9:
   ADD s1, zero, zero
   ADD s2, zero, zero
@@ -113,7 +117,7 @@ bb11:
   XOR s6, s5, s3
   SLTIU s5, s6, 1
   BNE s5, zero, bb13
-  JAL zero, bb15
+  JAL zero, bb17
 bb12:
   ADD a0, s4, zero
   CALL putint
@@ -140,6 +144,17 @@ bb14:
   ADD s2, s7, zero
   JAL zero, bb10
 bb15:
+  ADDI s6, zero, 4
+  MULW s7, s5, s6
+  LA s5, parent
+  ADD s6, s5, s7
+  SW s4, 0(s6)
+  JAL zero, bb16
+bb16:
+  ADDIW s4, s3, 1
+  ADD s2, s4, zero
+  JAL zero, bb7
+bb17:
   ADD s6, s4, zero
   JAL zero, bb14
 find:
@@ -157,9 +172,9 @@ find:
   LW s1, 0(s3)
   XOR s2, s1, s0
   SLTIU s1, s2, 1
-  BNE s1, zero, bb17
-  JAL zero, bb18
-bb17:
+  BNE s1, zero, bb19
+  JAL zero, bb20
+bb19:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
@@ -168,7 +183,7 @@ bb17:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb18:
+bb20:
   LW s0, 0(s3)
   ADD a0, s0, zero
   CALL find

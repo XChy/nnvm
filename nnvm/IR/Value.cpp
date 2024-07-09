@@ -15,3 +15,10 @@ void Value::replaceSelf(Value *replacement) {
   for (Use *use : incChange(userList))
     use->set(replacement);
 }
+
+void Value::replaceSelfIf(Value *replacement,
+                          std::function<bool(Use *U)> func) {
+  for (Use *use : incChange(userList))
+    if (func(use))
+      use->set(replacement);
+}

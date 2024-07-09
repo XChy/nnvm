@@ -24,12 +24,10 @@ main:
   LUI s1, 1
   ADDIW s1, s1, -707
   SW s1, 0(s0)
-  ADDI s0, zero, 1
-  LUI s1, 1
-  ADDIW s1, s1, -707
-  ADDW s2, s0, s1
   LA s0, k
-  SW s2, 0(s0)
+  LUI s1, 1
+  ADDIW s1, s1, -706
+  SW s1, 0(s0)
   ADD s0, zero, zero
   ADD s1, zero, zero
   ADDI s2, zero, 112

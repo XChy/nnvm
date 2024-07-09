@@ -18,9 +18,13 @@ while.exit67:
   xx.phi170 = phi [bb %then111, i32 %xx.phi]
   l.phi163 = phi [bb %then111, i32 %l.phi]
   store i32 %57.load to ptr %57
-  123 = call i32 swap(ptr %arr, i32 %begin, i32 %l.phi163)
-  126 = icmp sgt i32 %l.phi163, i32 %pos
-  br i1 %126, bb %then127, bb %if.exit128
+  34.load194 = load i32 from ptr %57
+  40195 = mul i32 %l.phi163, i32 4
+  41196 = ptradd ptr %arr, i32 %40195
+  41.load197 = load i32 from ptr %41196
+  store i32 %41.load197 to ptr %57
+  store i32 %34.load194 to ptr %41196
+  br bb %meanless_calculation.entry252
 while.cond70:
   xx.phi172 = phi [bb %while.body66, i32 %xx.phi171, bb %if.exit, i32 %88]
   r.phi166 = phi [bb %while.body66, i32 %r.phi168, bb %if.exit, i32 %78]
@@ -67,8 +71,15 @@ then111:
 if.exit112:
   br bb %while.cond65
 else:
-  116 = call i32 swap(ptr %arr, i32 %l.phi, i32 %r.phi)
-  br bb %if.exit112
+  33179 = mul i32 %l.phi, i32 4
+  34180 = ptradd ptr %arr, i32 %33179
+  34.load181 = load i32 from ptr %34180
+  40182 = mul i32 %r.phi, i32 4
+  41183 = ptradd ptr %arr, i32 %40182
+  41.load184 = load i32 from ptr %41183
+  store i32 %41.load184 to ptr %34180
+  store i32 %34.load181 to ptr %41183
+  br bb %meanless_calculation.entry228
 then127:
   132 = call i32 median(ptr %arr, i32 %begin, i32 %l.phi163, i32 %pos)
   ret i32 %132
@@ -81,6 +92,51 @@ then136:
   ret i32 %142
 if.exit137:
   ret i32 %xx.phi170
+meanless_calculation.entry228:
+  br bb %meanless_calculation.while.cond230
+meanless_calculation.while.cond230:
+  ret.phi231 = phi [bb %meanless_calculation.entry228, i32 0, bb %meanless_calculation.while.body235, i32 %26238]
+  i.phi232 = phi [bb %meanless_calculation.entry228, i32 0, bb %meanless_calculation.while.body235, i32 %21236]
+  10233 = icmp slt i32 %i.phi232, i32 %l.phi
+  br i1 %10233, bb %meanless_calculation.select.then242, bb %meanless_calculation.select.else245
+meanless_calculation.while.body235:
+  21236 = add i32 %i.phi232, i32 1
+  24237 = add i32 %ret.phi231, i32 %l.phi
+  26238 = add i32 %24237, i32 %21236
+  br bb %meanless_calculation.while.cond230
+meanless_calculation.while.exit240:
+  br bb %if.exit112
+meanless_calculation.select.then242:
+  17243 = icmp slt i32 %i.phi232, i32 %r.phi
+  br bb %meanless_calculation.select.exit247
+meanless_calculation.select.else245:
+  br bb %meanless_calculation.select.exit247
+meanless_calculation.select.exit247:
+  select.phi248 = phi [bb %meanless_calculation.select.else245, i1 0, bb %meanless_calculation.select.then242, i1 %17243]
+  br i1 %select.phi248, bb %meanless_calculation.while.body235, bb %meanless_calculation.while.exit240
+meanless_calculation.entry252:
+  br bb %meanless_calculation.while.cond254
+meanless_calculation.while.cond254:
+  ret.phi255 = phi [bb %meanless_calculation.entry252, i32 0, bb %meanless_calculation.while.body259, i32 %26262]
+  i.phi256 = phi [bb %meanless_calculation.entry252, i32 0, bb %meanless_calculation.while.body259, i32 %21260]
+  10257 = icmp slt i32 %i.phi256, i32 %begin
+  br i1 %10257, bb %meanless_calculation.select.then266, bb %meanless_calculation.select.else269
+meanless_calculation.while.body259:
+  21260 = add i32 %i.phi256, i32 1
+  24261 = add i32 %ret.phi255, i32 %begin
+  26262 = add i32 %24261, i32 %21260
+  br bb %meanless_calculation.while.cond254
+meanless_calculation.while.exit264:
+  126 = icmp sgt i32 %l.phi163, i32 %pos
+  br i1 %126, bb %then127, bb %if.exit128
+meanless_calculation.select.then266:
+  17267 = icmp slt i32 %i.phi256, i32 %l.phi163
+  br bb %meanless_calculation.select.exit271
+meanless_calculation.select.else269:
+  br bb %meanless_calculation.select.exit271
+meanless_calculation.select.exit271:
+  select.phi272 = phi [bb %meanless_calculation.select.else269, i1 0, bb %meanless_calculation.select.then266, i1 %17267]
+  br i1 %select.phi272, bb %meanless_calculation.while.body259, bb %meanless_calculation.while.exit264
 }
 
 i32 swap(ptr arr, i32 l, i32 r) {
@@ -93,8 +149,32 @@ entry28:
   41.load = load i32 from ptr %41
   store i32 %41.load to ptr %34
   store i32 %34.load to ptr %41
-  49 = call i32 meanless_calculation(i32 %l, i32 %r)
-  ret i32 %49
+  br bb %meanless_calculation.entry
+entry28.split:
+  49.ret = phi [bb %meanless_calculation.while.exit, i32 %ret.phi207]
+  ret i32 %49.ret
+meanless_calculation.entry:
+  br bb %meanless_calculation.while.cond
+meanless_calculation.while.cond:
+  ret.phi207 = phi [bb %meanless_calculation.entry, i32 0, bb %meanless_calculation.while.body, i32 %26214]
+  i.phi208 = phi [bb %meanless_calculation.entry, i32 0, bb %meanless_calculation.while.body, i32 %21212]
+  10209 = icmp slt i32 %i.phi208, i32 %l
+  br i1 %10209, bb %meanless_calculation.select.then, bb %meanless_calculation.select.else
+meanless_calculation.while.body:
+  21212 = add i32 %i.phi208, i32 1
+  24213 = add i32 %ret.phi207, i32 %l
+  26214 = add i32 %24213, i32 %21212
+  br bb %meanless_calculation.while.cond
+meanless_calculation.while.exit:
+  br bb %entry28.split
+meanless_calculation.select.then:
+  17219 = icmp slt i32 %i.phi208, i32 %r
+  br bb %meanless_calculation.select.exit
+meanless_calculation.select.else:
+  br bb %meanless_calculation.select.exit
+meanless_calculation.select.exit:
+  select.phi224 = phi [bb %meanless_calculation.select.else, i1 0, bb %meanless_calculation.select.then, i1 %17219]
+  br i1 %select.phi224, bb %meanless_calculation.while.body, bb %meanless_calculation.while.exit
 }
 
 external i32 getint()

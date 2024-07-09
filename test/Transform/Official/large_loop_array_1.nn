@@ -15,11 +15,11 @@ entry25:
   call void _sysy_starttime(i32 22)
   br bb %while.cond36
 while.cond36:
-  b.phi108 = phi [bb %entry25, float 1.000000, bb %while.exit55, float %b.phi]
-  a.phi106 = phi [bb %entry25, float 0.000000, bb %while.exit55, float %a.phi]
-  total.phi = phi [bb %entry25, float 0.000000, bb %while.exit55, float %79]
-  j.phi103 = phi [bb %entry25, i32 0, bb %while.exit55, i32 %j.phi]
-  i26.phi = phi [bb %entry25, i32 0, bb %while.exit55, i32 %81]
+  b.phi108 = phi [bb %entry25, float 1.000000, bb %while.exit55.split, float %b.phi]
+  a.phi106 = phi [bb %entry25, float 0.000000, bb %while.exit55.split, float %a.phi]
+  total.phi = phi [bb %entry25, float 0.000000, bb %while.exit55.split, float %79]
+  j.phi103 = phi [bb %entry25, i32 0, bb %while.exit55.split, i32 %j.phi]
+  i26.phi = phi [bb %entry25, i32 0, bb %while.exit55.split, i32 %81]
   COUNT.load = load i32 from ptr @COUNT
   41 = icmp slt i32 %i26.phi, i32 %COUNT.load
   br i1 %41, bb %while.body37, bb %while.exit38
@@ -58,8 +58,10 @@ while.body54:
   75 = add i32 %j.phi, i32 1
   br bb %while.cond53
 while.exit55:
-  78 = call float loop(ptr %x, ptr %y, i32 %29)
-  79 = fadd float %total.phi, float %78
+  br bb %loop.entry
+while.exit55.split:
+  78.ret = phi [bb %loop.while.exit, float %accumulator.phi116]
+  79 = fadd float %total.phi, float %78.ret
   81 = add i32 %i26.phi, i32 1
   br bb %while.cond36
 select.then:
@@ -77,6 +79,25 @@ then96:
 else98:
   call void putint(i32 1)
   ret i32 1
+loop.entry:
+  br bb %loop.while.cond
+loop.while.cond:
+  accumulator.phi116 = phi [bb %loop.entry, float 0.000000, bb %loop.while.body, float %21127]
+  i.phi117 = phi [bb %loop.entry, i32 0, bb %loop.while.body, i32 %23128]
+  9118 = icmp slt i32 %i.phi117, i32 %29
+  br i1 %9118, bb %loop.while.body, bb %loop.while.exit
+loop.while.body:
+  13121 = mul i32 %i.phi117, i32 4
+  14122 = ptradd ptr %x, i32 %13121
+  14.load123 = load float from ptr %14122
+  18124 = ptradd ptr %y, i32 %13121
+  18.load125 = load float from ptr %18124
+  20126 = fmul float %14.load123, float %18.load125
+  21127 = fadd float %accumulator.phi116, float %20126
+  23128 = add i32 %i.phi117, i32 1
+  br bb %loop.while.cond
+loop.while.exit:
+  br bb %while.exit55.split
 }
 
 external float getfloat()

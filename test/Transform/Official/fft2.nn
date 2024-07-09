@@ -22,14 +22,7 @@ while.body94:
   102 = icmp eq i32 %101, i32 0
   br i1 %102, bb %then103, bb %else105
 while.exit95:
-  133 = call i32 memmove(ptr %arr, i32 %begin_pos, ptr @temp, i32 %n)
-  136 = sdiv i32 %n, i32 2
-  139 = call i32 multiply(i32 %w, i32 %w)
-  140 = call i32 fft(ptr %arr, i32 %begin_pos, i32 %136, i32 %139)
-  144 = add i32 %begin_pos, i32 %136
-  149 = call i32 multiply(i32 %w, i32 %w)
-  150 = call i32 fft(ptr %arr, i32 %144, i32 %136, i32 %149)
-  br bb %while.cond152
+  br bb %memmove.entry61
 then103:
   107 = sdiv i32 %i92.phi303, i32 2
   108 = mul i32 %107, i32 4
@@ -56,8 +49,8 @@ else105:
   store i32 %127.load to ptr %122
   br bb %if.exit104
 while.cond152:
-  wn.phi = phi [bb %while.exit95, i32 1, bb %while.body153, i32 %208]
-  i92.phi = phi [bb %while.exit95, i32 0, bb %while.body153, i32 %210]
+  wn.phi = phi [bb %memmove.while.exit, i32 1, bb %while.body153, i32 %208]
+  i92.phi = phi [bb %memmove.while.exit, i32 0, bb %while.body153, i32 %210]
   158 = icmp slt i32 %i92.phi, i32 %136
   br i1 %158, bb %while.body153, bb %while.exit154
 while.body153:
@@ -83,6 +76,30 @@ while.body153:
   br bb %while.cond152
 while.exit154:
   ret i32 0
+memmove.entry61:
+  br bb %memmove.while.cond
+memmove.while.cond:
+  i.phi314 = phi [bb %memmove.entry61, i32 0, bb %memmove.while.body, i32 %82325]
+  70315 = icmp slt i32 %i.phi314, i32 %n
+  br i1 %70315, bb %memmove.while.body, bb %memmove.while.exit
+memmove.while.body:
+  74318 = add i32 %begin_pos, i32 %i.phi314
+  75319 = mul i32 %74318, i32 4
+  76320 = ptradd ptr %arr, i32 %75319
+  78321 = mul i32 %i.phi314, i32 4
+  79322 = ptradd ptr @temp, i32 %78321
+  79.load323 = load i32 from ptr %79322
+  store i32 %79.load323 to ptr %76320
+  82325 = add i32 %i.phi314, i32 1
+  br bb %memmove.while.cond
+memmove.while.exit:
+  136 = sdiv i32 %n, i32 2
+  139 = call i32 multiply(i32 %w, i32 %w)
+  140 = call i32 fft(ptr %arr, i32 %begin_pos, i32 %136, i32 %139)
+  144 = add i32 %begin_pos, i32 %136
+  149 = call i32 multiply(i32 %w, i32 %w)
+  150 = call i32 fft(ptr %arr, i32 %144, i32 %136, i32 %149)
+  br bb %while.cond152
 }
 
 i32 power(i32 a, i32 b) {

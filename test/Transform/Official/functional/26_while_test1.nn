@@ -35,8 +35,32 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry22:
-  23 = call i32 doubleWhile()
-  ret i32 %23
+  br bb %doubleWhile.entry
+entry22.split:
+  23.ret = phi [bb %doubleWhile.while.exit, i32 %j.phi31]
+  ret i32 %23.ret
+doubleWhile.entry:
+  br bb %doubleWhile.while.cond
+doubleWhile.while.cond:
+  j.phi31 = phi [bb %doubleWhile.entry, i32 7, bb %doubleWhile.while.exit13, i32 %2048]
+  i.phi32 = phi [bb %doubleWhile.entry, i32 5, bb %doubleWhile.while.exit13, i32 %1036]
+  733 = icmp slt i32 %i.phi32, i32 100
+  br i1 %733, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
+doubleWhile.while.body:
+  1036 = add i32 %i.phi32, i32 30
+  br bb %doubleWhile.while.cond11
+doubleWhile.while.exit:
+  br bb %entry22.split
+doubleWhile.while.cond11:
+  j.phi2641 = phi [bb %doubleWhile.while.body, i32 %j.phi31, bb %doubleWhile.while.body12, i32 %1845]
+  1542 = icmp slt i32 %j.phi2641, i32 100
+  br i1 %1542, bb %doubleWhile.while.body12, bb %doubleWhile.while.exit13
+doubleWhile.while.body12:
+  1845 = add i32 %j.phi2641, i32 6
+  br bb %doubleWhile.while.cond11
+doubleWhile.while.exit13:
+  2048 = sub i32 %j.phi2641, i32 100
+  br bb %doubleWhile.while.cond
 }
 
 external float getfloat()

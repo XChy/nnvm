@@ -15,7 +15,23 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry136:
-  call void read_program()
+  3179 = call i32 getint()
+  br bb %read_program.while.cond
+read_program.while.cond:
+  i.phi182 = phi [bb %entry136, i32 0, bb %read_program.while.body, i32 %16190]
+  9183 = icmp slt i32 %i.phi182, i32 %3179
+  br i1 %9183, bb %read_program.while.body, bb %read_program.while.exit
+read_program.while.body:
+  12186 = mul i32 %i.phi182, i32 4
+  13187 = ptradd ptr @program, i32 %12186
+  14188 = call i32 getch()
+  store i32 %14188 to ptr %13187
+  16190 = add i32 %i.phi182, i32 1
+  br bb %read_program.while.cond
+read_program.while.exit:
+  18193 = mul i32 %i.phi182, i32 4
+  19194 = ptradd ptr @program, i32 %18193
+  store i32 0 to ptr %19194
   call void interpret(ptr @program)
   ret i32 0
 }

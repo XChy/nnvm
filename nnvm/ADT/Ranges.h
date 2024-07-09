@@ -70,8 +70,11 @@ template <typename Range> IncChangeRange<Range> incChange(Range &range) {
 
 template <typename Iter> struct RangeWrapper {
 public:
+  RangeWrapper(Iter begin, Iter end) : beginIter(begin), endIter(end) {}
   Iter begin() { return beginIter; }
   Iter end() { return endIter; }
+
+  using Iterator = Iter;
 
 private:
   Iter beginIter;

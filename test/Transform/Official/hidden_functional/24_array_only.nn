@@ -111,13 +111,20 @@ while.body118:
   call void putint(i32 %134.load)
   140.load = load i32 from ptr %z
   call void putint(i32 %140.load)
-  call void add(ptr %z, ptr %y)
-  call void add(ptr %j, ptr %y)
-  call void sub(ptr %z, ptr %y)
+  54.load178 = load i32 from ptr @k
+  call void add_impl(ptr %z, ptr %y, i32 %54.load178)
+  54.load183 = load i32 from ptr @k
+  call void add_impl(ptr %j, ptr %y, i32 %54.load183)
+  84.load168 = load i32 from ptr @k
+  call void sub_impl(ptr %z, ptr %y, i32 %84.load168)
+  br bb %while.body118.split
+while.body118.split:
   br bb %while.cond117
 while.exit119:
-  call void inc(ptr @i)
-  call void add(ptr @i, ptr %z)
+  24.load173 = load i32 from ptr @k
+  call void inc_impl(ptr @i, i32 %24.load173)
+  54.load188 = load i32 from ptr @k
+  call void add_impl(ptr @i, ptr %z, i32 %54.load188)
   155.load = load i32 from ptr @i
   160.load = load i32 from ptr %arr.index93
   162 = icmp eq i32 %155.load, i32 %160.load

@@ -5,4 +5,27 @@
 #include <memory>
 namespace nnvm {
 void moveInstInBlock(BasicBlock *from, BasicBlock *to);
+
+// Before:
+// | tosplit:     |
+// |     phi      |
+// | instruction1 |
+// | instruction2 |
+// |     pos      |
+// | instruction3 |
+// | instruction4 |
+//
+// After:
+// | tosplit:        |
+// |     phi         |
+// | instruction1    |
+// | instruction2    |
+// |                 |
+// | newSplitted:    |
+// |     pos         |
+// | instruction3    |
+// | instruction4    |
+//
+void splitBlockAt(BasicBlock *tosplit, Instruction* pos, BasicBlock*& newSplitted);
+
 } /* namespace nnvm */

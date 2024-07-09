@@ -54,13 +54,58 @@ bb6:
   ADD s1, s4, zero
   JAL zero, bb1
 main:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  CALL doubleWhile
-  ADD s0, a0, zero
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
+  ADDI sp, sp, -64
+  SD s4, 0(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD ra, 24(sp)
+  SD s5, 32(sp)
+  SD s0, 40(sp)
+  SD s6, 48(sp)
+  SD s1, 56(sp)
+  JAL zero, bb9
+bb8:
+  ADD s1, s0, zero
+  ADD a0, s1, zero
+  LD s4, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD ra, 24(sp)
+  LD s5, 32(sp)
+  LD s0, 40(sp)
+  LD s6, 48(sp)
+  LD s1, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
+bb9:
+  ADDI s0, zero, 7
+  ADDI s1, zero, 5
+  JAL zero, bb10
+bb10:
+  ADD s2, s1, zero
+  ADD s3, s0, zero
+  SLTI s4, s2, 100
+  BNE s4, zero, bb11
+  JAL zero, bb12
+bb11:
+  ADDIW s4, s2, 30
+  ADD s2, s3, zero
+  JAL zero, bb13
+bb12:
+  ADD s0, s3, zero
+  JAL zero, bb8
+bb13:
+  ADD s5, s2, zero
+  SLTI s6, s5, 100
+  BNE s6, zero, bb14
+  JAL zero, bb15
+bb14:
+  ADDIW s6, s5, 6
+  ADD s2, s6, zero
+  JAL zero, bb13
+bb15:
+  ADDI s2, zero, 100
+  SUBW s6, s5, s2
+  ADD s0, s6, zero
+  ADD s1, s4, zero
+  JAL zero, bb10

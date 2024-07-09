@@ -14,11 +14,28 @@ entry3136:
   3137 = call i32 getint()
   store i32 %3137 to ptr @loopCount
   call void _sysy_starttime(i32 121)
-  3140 = call i32 func(i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1, i32 1)
+  br bb %func.entry
+entry3136.split:
+  3140.ret = phi [bb %func.while.exit, i32 %result.phi3153]
   call void _sysy_stoptime(i32 123)
-  call void putint(i32 %3140)
+  call void putint(i32 %3140.ret)
   call void putch(i32 10)
   ret i32 0
+func.entry:
+  br bb %func.while.cond
+func.while.cond:
+  result.phi3153 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %31324660]
+  i.phi3154 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %31344661]
+  loopCount.load3155 = load i32 from ptr @loopCount
+  233156 = icmp slt i32 %i.phi3154, i32 %loopCount.load3155
+  br i1 %233156, bb %func.while.body, bb %func.while.exit
+func.while.body:
+  31304659 = add i32 %result.phi3153, i32 15
+  31324660 = srem i32 %31304659, i32 1500000001
+  31344661 = add i32 %i.phi3154, i32 1
+  br bb %func.while.cond
+func.while.exit:
+  br bb %entry3136.split
 }
 
 external float getfloat()

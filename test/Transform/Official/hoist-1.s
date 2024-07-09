@@ -7,77 +7,65 @@ loopCount:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -96
-  SD ra, 32(sp)
-  SD s6, 40(sp)
+  ADDI sp, sp, -64
+  SD s4, 0(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD ra, 24(sp)
+  SD s6, 32(sp)
+  SD s1, 40(sp)
   SD s5, 48(sp)
-  SD s4, 56(sp)
-  SD s0, 64(sp)
-  SD s1, 72(sp)
-  SD s2, 80(sp)
-  SD s3, 88(sp)
+  SD s0, 56(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, loopCount
   SW s0, 0(s1)
   ADDI a0, zero, 121
   CALL _sysy_starttime
-  ADDI a0, zero, 1
-  ADDI a1, zero, 1
-  ADDI a2, zero, 1
-  ADDI a3, zero, 1
-  ADDI a4, zero, 1
-  ADDI a5, zero, 1
-  ADDI a6, zero, 1
-  ADDI a7, zero, 1
-  ADDI t5, sp, 0
-  ADD s0, t5, zero
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 4
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 8
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 12
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 16
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 20
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, sp, 24
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s0, zero, 1
-  ADDI s1, zero, 1
-  ADDI s2, zero, 1
-  ADDI s3, zero, 1
-  ADDI s4, zero, 1
-  ADDI s5, zero, 1
-  ADDI s6, zero, 1
-  CALL func
-  ADD s0, a0, zero
+  JAL zero, bb2
+bb1:
+  ADD s1, s0, zero
   ADDI a0, zero, 123
   CALL _sysy_stoptime
-  ADD a0, s0, zero
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD ra, 32(sp)
-  LD s6, 40(sp)
+  LD s4, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD ra, 24(sp)
+  LD s6, 32(sp)
+  LD s1, 40(sp)
   LD s5, 48(sp)
-  LD s4, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  ADDI sp, sp, 96
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
+bb2:
+  ADD s0, zero, zero
+  ADD s1, zero, zero
+  JAL zero, bb3
+bb3:
+  ADD s2, s1, zero
+  ADD s3, s0, zero
+  LA s4, loopCount
+  LW s5, 0(s4)
+  SLT s4, s2, s5
+  BNE s4, zero, bb4
+  JAL zero, bb5
+bb4:
+  ADDIW s4, s3, 15
+  LUI s5, 366211
+  ADDIW s5, s5, -255
+  REMW s6, s4, s5
+  ADDIW s4, s2, 1
+  ADD s0, s6, zero
+  ADD s1, s4, zero
+  JAL zero, bb3
+bb5:
+  ADD s0, s3, zero
+  JAL zero, bb1
 func:
   ADDI sp, sp, -112
   SD ra, 0(sp)
@@ -118,16 +106,16 @@ func:
   LW a1, 0(s8)
   ADD s8, zero, zero
   ADD a2, zero, zero
-  JAL zero, bb2
-bb2:
+  JAL zero, bb7
+bb7:
   ADD a3, a2, zero
   ADD a4, s8, zero
   LA a5, loopCount
   LW a6, 0(a5)
   SLT a5, a3, a6
-  BNE a5, zero, bb3
-  JAL zero, bb4
-bb3:
+  BNE a5, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDW a5, s0, s1
   ADDW a6, a5, s2
   ADDW a5, a6, s3
@@ -1636,8 +1624,8 @@ bb3:
   ADDIW a5, a3, 1
   ADD s8, a7, zero
   ADD a2, a5, zero
-  JAL zero, bb2
-bb4:
+  JAL zero, bb7
+bb9:
   ADD a0, a4, zero
   LD ra, 0(sp)
   LD s11, 8(sp)

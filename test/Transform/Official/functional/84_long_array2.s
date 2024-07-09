@@ -32,10 +32,7 @@ f1:
   ADD s4, s3, s1
   ADDI s1, zero, 7
   SW s1, 0(s4)
-  ADDI s1, zero, 4
-  ADDI s3, zero, 7
-  MULW s4, s1, s3
-  ADD s1, s0, s4
+  ADDI s1, s0, 28
   LUI s0, 2
   ADDIW s0, s0, 672
   LA s3, a
@@ -264,10 +261,41 @@ bb15:
   ADD s1, s3, zero
   JAL zero, bb14
 bb16:
-  ADDI a0, sp, 0
-  ADD a0, a0, zero
-  CALL f1
-  ADD s0, a0, zero
+  LA s0, a
+  ADDI s1, s0, 20
+  LUI s0, 1
+  ADDIW s0, s0, -96
+  SW s0, 0(s1)
+  LUI s0, 4
+  ADDIW s0, s0, -384
+  LA s2, a
+  ADD s3, s2, s0
+  ADDI s0, zero, 3
+  SW s0, 0(s3)
+  LUI s0, 4
+  ADDIW s0, s0, -4
+  LA s2, a
+  ADD s3, s2, s0
+  ADDI s0, zero, 7
+  SW s0, 0(s3)
+  ADDI s0, sp, 28
+  LUI s2, 2
+  ADDIW s2, s2, 672
+  LA s3, a
+  ADD s4, s3, s2
+  LW s2, 0(s4)
+  ADDIW s3, s2, 9
+  SW s3, 0(s0)
+  LW s0, 0(s1)
+  ADDI s1, zero, 4
+  MULW s2, s0, s1
+  LA s0, a
+  ADD s1, s0, s2
+  LW s0, 0(s1)
+  ADD s1, s0, zero
+  JAL zero, bb17
+bb17:
+  ADD s0, s1, zero
   ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10

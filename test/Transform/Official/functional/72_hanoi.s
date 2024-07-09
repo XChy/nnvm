@@ -63,8 +63,15 @@ hanoi:
   JAL zero, bb7
 bb5:
   ADD a0, s1, zero
-  ADD a1, s3, zero
-  CALL move
+  CALL putint
+  ADDI a0, zero, 32
+  CALL putch
+  ADD a0, s3, zero
+  CALL putint
+  ADDI a0, zero, 44
+  CALL putch
+  ADDI a0, zero, 32
+  CALL putch
   JAL zero, bb6
 bb6:
   LD ra, 0(sp)
@@ -85,8 +92,15 @@ bb7:
   ADD a3, s2, zero
   CALL hanoi
   ADD a0, s1, zero
-  ADD a1, s3, zero
-  CALL move
+  CALL putint
+  ADDI a0, zero, 32
+  CALL putch
+  ADD a0, s3, zero
+  CALL putint
+  ADDI a0, zero, 44
+  CALL putch
+  ADDI a0, zero, 32
+  CALL putch
   ADD a0, s5, zero
   ADD a1, s2, zero
   ADD a2, s1, zero

@@ -16,12 +16,17 @@ Function::Function(Module *module, const std::string &name, Type *retType,
 }
 
 void Function::insert(BasicBlock *BB) {
-  if (BB->getParent() == this)
-    nnvm_unreachable("Don't insert multiple times");
   if (BB->getParent())
     BB->removeFromList();
   BB->setParent(this);
   BBList.insertBack(BB);
+}
+
+void Function::insertBack(BasicBlock *BB, Iterator pos) {
+  if (BB->getParent())
+    BB->removeFromList();
+  BB->setParent(this);
+  pos.insertBack(BB);
 }
 
 void Function::addArgument(Argument *arg) { arguments.push_back(arg); }

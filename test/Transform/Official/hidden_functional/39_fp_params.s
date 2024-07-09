@@ -3080,10 +3080,10 @@ params_fa40:
   SD t4, 528(sp)
   ADDI s8, sp, 760
   LD t4, 0(s8)
-  SD t4, 512(sp)
+  SD t4, 520(sp)
   ADDI s8, sp, 768
   LD t4, 0(s8)
-  SD t4, 520(sp)
+  SD t4, 512(sp)
   ADDI s8, sp, 776
   LD t4, 0(s8)
   SD t4, 504(sp)
@@ -3244,7 +3244,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   FADD.S fs4, fs1, fs0
@@ -3252,7 +3252,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   LA s0, k
@@ -3567,10 +3567,10 @@ bb15:
   LD t4, 528(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 16
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 24
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 32
   LD t4, 504(sp)
@@ -3657,8 +3657,8 @@ bb15:
   ADDI t4, sp, 256
   SD t4, 0(s0)
   LD t4, 528(sp)
-  LD t3, 512(sp)
-  LD t4, 520(sp)
+  LD t3, 520(sp)
+  LD t4, 512(sp)
   LD t3, 504(sp)
   LD t4, 496(sp)
   LD t3, 296(sp)
@@ -4302,10 +4302,10 @@ params_mix:
   SD t4, 608(sp)
   ADDI s8, sp, 1320
   FLW ft4, 0(s8)
-  FSW ft4, 800(sp)
+  FSW ft4, 792(sp)
   ADDI s8, sp, 1324
   LW t4, 0(s8)
-  SW t4, 792(sp)
+  SW t4, 800(sp)
   LA s8, k
   LW t1, 0(s8)
   ADDI s8, zero, 4
@@ -4447,7 +4447,7 @@ params_mix:
   ADD s2, t4, t0
   FLW fs9, 0(s2)
   FADD.S fs8, ft5, fs9
-  FLW ft4, 800(sp)
+  FLW ft4, 792(sp)
   FADD.S fs9, fs8, ft4
   FSW ft7, 360(sp)
   ADDI s2, sp, 364
@@ -4596,7 +4596,7 @@ params_mix:
   ADDW s5, t4, s8
   LW t4, 592(sp)
   ADDW s8, s5, t4
-  LW t4, 792(sp)
+  LW t4, 800(sp)
   ADDW s5, s8, t4
   SW s0, 320(sp)
   ADDI s0, sp, 324
@@ -4617,7 +4617,7 @@ params_mix:
   SW s5, 0(s0)
   ADDI s0, sp, 356
   SW zero, 0(s0)
-  LW t4, 792(sp)
+  LW t4, 800(sp)
   XOR s0, t4, zero
   SLTU s5, zero, s0
   BNE s5, zero, bb20
@@ -4634,9 +4634,9 @@ bb20:
   ADD s0, zero, zero
   JAL zero, bb22
 bb21:
-  LW t4, 792(sp)
+  LW t4, 800(sp)
   FCVT.S.W fs8, t4
-  FLW ft4, 800(sp)
+  FLW ft4, 792(sp)
   FCVT.W.S s0, ft4, rtz
   FSGNJ.S fa0, fs0, fs0
   ADDI a0, sp, 320

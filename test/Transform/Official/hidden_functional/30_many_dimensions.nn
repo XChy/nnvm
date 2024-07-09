@@ -47,8 +47,65 @@ while.cond:
 while.body:
   br bb %while.cond440
 while.exit:
-  1005 = call i32 sum(ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array, ptr %array)
-  call void putint(i32 %1005)
+  2.load1482 = load i32 from ptr %array
+  12191483 = ptradd ptr %array, i32 8
+  7.load1484 = load i32 from ptr %12191483
+  91485 = add i32 %2.load1482, i32 %7.load1484
+  151486 = ptradd ptr %array, i32 4
+  15.load1487 = load i32 from ptr %151486
+  171488 = add i32 %91485, i32 %15.load1487
+  12251489 = ptradd ptr %array, i32 40
+  25.load1490 = load i32 from ptr %12251489
+  271491 = add i32 %171488, i32 %25.load1490
+  12291492 = ptradd ptr %array, i32 24
+  37.load1493 = load i32 from ptr %12291492
+  391494 = add i32 %271491, i32 %37.load1493
+  12391495 = ptradd ptr %array, i32 228
+  51.load1496 = load i32 from ptr %12391495
+  531497 = add i32 %391494, i32 %51.load1496
+  12451498 = ptradd ptr %array, i32 56
+  67.load1499 = load i32 from ptr %12451498
+  691500 = add i32 %531497, i32 %67.load1499
+  12591501 = ptradd ptr %array, i32 964
+  85.load1502 = load i32 from ptr %12591501
+  871503 = add i32 %691500, i32 %85.load1502
+  12691504 = ptradd ptr %array, i32 224
+  105.load1505 = load i32 from ptr %12691504
+  1071506 = add i32 %871503, i32 %105.load1505
+  12831507 = ptradd ptr %array, i32 804
+  127.load1508 = load i32 from ptr %12831507
+  1291509 = add i32 %1071506, i32 %127.load1508
+  12991510 = ptradd ptr %array, i32 1996
+  151.load1511 = load i32 from ptr %12991510
+  1531512 = add i32 %1291509, i32 %151.load1511
+  13171513 = ptradd ptr %array, i32 3224
+  177.load1514 = load i32 from ptr %13171513
+  1791515 = add i32 %1531512, i32 %177.load1514
+  13411516 = ptradd ptr %array, i32 26400
+  205.load1517 = load i32 from ptr %13411516
+  2071518 = add i32 %1791515, i32 %205.load1517
+  13531519 = ptradd ptr %array, i32 508
+  235.load1520 = load i32 from ptr %13531519
+  2371521 = add i32 %2071518, i32 %235.load1520
+  13611522 = ptradd ptr %array, i32 124
+  267.load1523 = load i32 from ptr %13611522
+  2691524 = add i32 %2371521, i32 %267.load1523
+  13911525 = ptradd ptr %array, i32 246672
+  301.load1526 = load i32 from ptr %13911525
+  3031527 = add i32 %2691524, i32 %301.load1526
+  14131528 = ptradd ptr %array, i32 15956
+  337.load1529 = load i32 from ptr %14131528
+  3391530 = add i32 %3031527, i32 %337.load1529
+  14471531 = ptradd ptr %array, i32 828364
+  375.load1532 = load i32 from ptr %14471531
+  3771533 = add i32 %3391530, i32 %375.load1532
+  14791534 = ptradd ptr %array, i32 281600
+  415.load1535 = load i32 from ptr %14791534
+  4171536 = add i32 %3771533, i32 %415.load1535
+  br bb %while.exit.split
+while.exit.split:
+  1005.ret = phi [bb %while.exit, i32 %4171536]
+  call void putint(i32 %1005.ret)
   ret i32 0
 while.cond440:
   i7.phi1215 = phi [bb %while.body, i32 %i7.phi1216, bb %while.exit449, i32 %i7.phi1214]

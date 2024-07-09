@@ -32,10 +32,11 @@ entry55:
   store i32 7 to ptr %74
   76 = ptradd ptr %a, i32 36
   store i32 8 to ptr %76
-  78 = call i32 bubblesort(ptr %a)
+  br bb %bubblesort.entry
+entry55.split:
   br bb %while.cond79
 while.cond79:
-  i77.phi = phi [bb %entry55, i32 %78, bb %while.body80, i32 %96]
+  i77.phi = phi [bb %entry55.split, i32 0, bb %while.body80, i32 %96]
   n.load83 = load i32 from ptr @n
   84 = icmp slt i32 %i77.phi, i32 %n.load83
   br i1 %84, bb %while.body80, bb %while.exit81
@@ -49,6 +50,49 @@ while.body80:
   br bb %while.cond79
 while.exit81:
   ret i32 0
+bubblesort.entry:
+  br bb %bubblesort.while.cond
+bubblesort.while.cond:
+  tmp.phi104109 = phi [bb %bubblesort.entry, i32 ub, bb %bubblesort.while.exit13, i32 %tmp.phi103120]
+  i.phi110 = phi [bb %bubblesort.entry, i32 0, bb %bubblesort.while.exit13, i32 %54138]
+  n.load111 = load i32 from ptr @n
+  8112 = sub i32 %n.load111, i32 1
+  9113 = icmp slt i32 %i.phi110, i32 %8112
+  br i1 %9113, bb %bubblesort.while.body, bb %bubblesort.while.exit
+bubblesort.while.body:
+  br bb %bubblesort.while.cond11
+bubblesort.while.exit:
+  br bb %entry55.split
+bubblesort.while.cond11:
+  tmp.phi103120 = phi [bb %bubblesort.while.body, i32 %tmp.phi104109, bb %bubblesort.if.exit, i32 %tmp.phi147]
+  j.phi121 = phi [bb %bubblesort.while.body, i32 0, bb %bubblesort.if.exit, i32 %26131]
+  n.load15122 = load i32 from ptr @n
+  17123 = sub i32 %n.load15122, i32 %i.phi110
+  18124 = sub i32 %17123, i32 1
+  19125 = icmp slt i32 %j.phi121, i32 %18124
+  br i1 %19125, bb %bubblesort.while.body12, bb %bubblesort.while.exit13
+bubblesort.while.body12:
+  22128 = mul i32 %j.phi121, i32 4
+  23129 = ptradd ptr %a, i32 %22128
+  23.load130 = load i32 from ptr %23129
+  26131 = add i32 %j.phi121, i32 1
+  27132 = mul i32 %26131, i32 4
+  28133 = ptradd ptr %a, i32 %27132
+  28.load134 = load i32 from ptr %28133
+  30135 = icmp sgt i32 %23.load130, i32 %28.load134
+  br i1 %30135, bb %bubblesort.then, bb %bubblesort.if.exit
+bubblesort.while.exit13:
+  54138 = add i32 %i.phi110, i32 1
+  br bb %bubblesort.while.cond
+bubblesort.then:
+  37.load141 = load i32 from ptr %28133
+  45.load142 = load i32 from ptr %23129
+  store i32 %45.load142 to ptr %28133
+  store i32 %37.load141 to ptr %23129
+  br bb %bubblesort.if.exit
+bubblesort.if.exit:
+  tmp.phi147 = phi [bb %bubblesort.while.body12, i32 %tmp.phi103120, bb %bubblesort.then, i32 %37.load141]
+  br bb %bubblesort.while.cond11
 }
 
 external float getfloat()

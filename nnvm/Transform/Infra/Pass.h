@@ -9,7 +9,21 @@ class ModulePass {
 public:
   // Return true if changed, otherwise return false.
   virtual bool run(Module &module) { return false; }
-  virtual ~ModulePass() {}
+
+  template <typename T> T *getAnalysis(Function &F) {
+    T *analysis = new T();
+    analysisDepent.push_back(analysis);
+    analysis->run(F);
+    return analysis;
+  }
+
+  virtual ~ModulePass() {
+    for (auto *analysis : analysisDepent)
+      delete analysis;
+  }
+
+private:
+  std::vector<ModulePass *> analysisDepent;
 };
 
 class FunctionPass {

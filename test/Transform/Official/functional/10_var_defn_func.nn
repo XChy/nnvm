@@ -15,8 +15,9 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1:
-  3 = call i32 defn()
-  ret i32 %3
+  br bb %entry1.split
+entry1.split:
+  ret i32 4
 }
 
 external float getfloat()

@@ -43,15 +43,16 @@ while.body:
 while.exit:
   br bb %while.cond63
 while.cond63:
-  i.phi100 = phi [bb %while.exit, i32 0, bb %while.body64, i32 %76]
+  i.phi100 = phi [bb %while.exit, i32 0, bb %merge.if.exit37, i32 %76]
   68 = icmp slt i32 %i.phi100, i32 %46
   br i1 %68, bb %while.body64, bb %while.exit65
 while.body64:
   70 = call i32 getint()
   71 = call i32 getint()
-  call void merge(i32 %70, i32 %71)
-  76 = add i32 %i.phi100, i32 1
-  br bb %while.cond63
+  30108 = call i32 find(i32 %70)
+  32109 = call i32 find(i32 %71)
+  35110 = icmp ne i32 %30108, i32 %32109
+  br i1 %35110, bb %merge.then36, bb %merge.if.exit37
 while.exit65:
   br bb %while.cond78
 while.cond78:
@@ -75,6 +76,14 @@ if.exit92:
   clusters.phi = phi [bb %while.body79, i32 %clusters.phi105, bb %then91, i32 %94]
   96 = add i32 %i.phi, i32 1
   br bb %while.cond78
+merge.then36:
+  39113 = mul i32 %32109, i32 4
+  40114 = ptradd ptr @parent, i32 %39113
+  store i32 %30108 to ptr %40114
+  br bb %merge.if.exit37
+merge.if.exit37:
+  76 = add i32 %i.phi100, i32 1
+  br bb %while.cond63
 }
 
 external float getfloat()

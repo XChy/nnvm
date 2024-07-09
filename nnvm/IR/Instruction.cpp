@@ -162,6 +162,17 @@ std::string Instruction::dump() {
   return ret;
 }
 
+Instruction *Instruction::copyWithName() {
+  auto *ret = copy();
+  ret->setName(getName(), *getParent()->getParent()->getModule());
+  return ret;
+}
+
+void Instruction::moveTo(BasicBlock *otherBB) {
+  removeFromBB();
+  otherBB->end().insertBefore(this);
+}
+
 Instruction::~Instruction() {
   for (Use *use : useeList)
     delete use;
@@ -173,6 +184,9 @@ StackInst::StackInst(Module &module)
 StackInst::StackInst(Module &module, GInt allocatedBytes) : StackInst(module) {
   this->allocatedBytes = allocatedBytes;
 }
+
+StackInst::StackInst(Type *type, GInt allocatedBytes)
+    : Instruction(InstID::Stack, type), allocatedBytes(allocatedBytes) {}
 
 std::string StackInst::dump() {
   return "%" + getName() + " = " + "stack " + std::to_string(allocatedBytes) +
@@ -253,7 +267,7 @@ void PhiInst::addIncoming(BasicBlock *incomingBB, Value *incomingValue) {
   addOperand(incomingValue);
 }
 
-void PhiInst::setIncoming(BasicBlock *incomingBB, Value *incomingValue) {
+void PhiInst::setIncomingValue(BasicBlock *incomingBB, Value *incomingValue) {
   for (size_t i = 0; i < getOperandNum(); i += 2)
     if (getOperand(i) == incomingBB)
       setOperand(i + 1, incomingValue);
@@ -271,6 +285,19 @@ void PhiInst::removeIncoming(BasicBlock *incomingBB) {
   }
 
   setOperands(newIncomings);
+}
+
+void PhiInst::setIncomingBB(uint64_t index, BasicBlock *incomingBB) {
+  setOperand(index * 2, incomingBB);
+}
+void PhiInst::setIncomingValue(uint64_t index, Value *incomingValue) {
+  setOperand(index * 2 + 1, incomingValue);
+}
+
+void PhiInst::replaceIncoming(BasicBlock *original, BasicBlock *current) {
+  for (uint64_t i = 0; i < getIncomingNum(); i++)
+    if (getIncomingBB(i) == original)
+      setIncomingBB(i, current);
 }
 
 BasicBlock *PhiInst::getIncomingBB(uint64_t index) const {

@@ -75,8 +75,8 @@ bb4:
   BNE s8, zero, bb5
   JAL zero, bb6
 bb5:
-  ADD a0, s2, zero
-  CALL func
+  LA s8, global
+  SW s2, 0(s8)
   LA s8, global
   LW s9, 0(s8)
   ADDW s8, s6, s9

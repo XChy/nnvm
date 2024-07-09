@@ -161,38 +161,259 @@ bb21:
 bb22:
   JAL zero, bb16
 main:
-  ADDI sp, sp, -48
-  SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
-  CALL my_getint
-  ADD s0, a0, zero
-  ADD s1, s0, zero
-  JAL zero, bb24
+  ADDI sp, sp, -224
+  SD s11, 120(sp)
+  SD s10, 128(sp)
+  SD s0, 136(sp)
+  SD s4, 144(sp)
+  SD s1, 152(sp)
+  SD s6, 160(sp)
+  SD s7, 168(sp)
+  SD s2, 176(sp)
+  SD ra, 184(sp)
+  SD s8, 192(sp)
+  SD s3, 200(sp)
+  SD s5, 208(sp)
+  SD s9, 216(sp)
+  JAL zero, bb36
 bb24:
-  ADD s0, s1, zero
-  SLT s2, zero, s0
-  BNE s2, zero, bb25
-  JAL zero, bb26
+  ADD s4, s1, zero
+  ADD s1, s4, zero
+  JAL zero, bb25
 bb25:
-  CALL my_getint
-  ADD s2, a0, zero
-  ADD a0, s2, zero
-  CALL my_putint
+  ADD t4, s1, zero
+  SW t4, 112(sp)
+  LW t4, 112(sp)
+  SLT s7, zero, t4
+  BNE s7, zero, bb26
+  JAL zero, bb28
+bb26:
+  JAL zero, bb52
+bb27:
+  ADD s6, s2, zero
+  JAL zero, bb29
+bb28:
+  ADD a0, zero, zero
+  LD s11, 120(sp)
+  LD s10, 128(sp)
+  LD s0, 136(sp)
+  LD s4, 144(sp)
+  LD s1, 152(sp)
+  LD s6, 160(sp)
+  LD s7, 168(sp)
+  LD s2, 176(sp)
+  LD ra, 184(sp)
+  LD s8, 192(sp)
+  LD s3, 200(sp)
+  LD s5, 208(sp)
+  LD s9, 216(sp)
+  ADDI sp, sp, 224
+  JALR zero, 0(ra)
+bb29:
+  ADD s2, zero, zero
+  ADD s8, s6, zero
+  JAL zero, bb30
+bb30:
+  ADD s6, s8, zero
+  ADD s3, s2, zero
+  SLT s5, zero, s6
+  BNE s5, zero, bb31
+  JAL zero, bb32
+bb31:
+  ADDI s5, zero, 4
+  MULW s9, s3, s5
+  ADDI t5, sp, 0
+  ADD s5, t5, s9
+  ADDI s9, zero, 10
+  REMW s4, s6, s9
+  ADDIW s9, s4, 48
+  SW s9, 0(s5)
+  ADDI s4, zero, 10
+  DIVW s5, s6, s4
+  ADDIW s4, s3, 1
+  ADD s2, s4, zero
+  ADD s8, s5, zero
+  JAL zero, bb30
+bb32:
+  ADD s2, s3, zero
+  JAL zero, bb33
+bb33:
+  ADD s3, s2, zero
+  SLT s4, zero, s3
+  BNE s4, zero, bb34
+  JAL zero, bb35
+bb34:
+  ADDI s4, zero, 1
+  SUBW s5, s3, s4
+  ADDI s3, zero, 4
+  MULW s4, s5, s3
+  ADDI t6, sp, 0
+  ADD s3, t6, s4
+  LW s4, 0(s3)
+  ADD a0, s4, zero
+  CALL putch
+  ADD s2, s5, zero
+  JAL zero, bb33
+bb35:
   ADDI a0, zero, 10
   CALL putch
   ADDI s2, zero, 1
-  SUBW s3, s0, s2
+  LW t4, 112(sp)
+  SUBW s3, t4, s2
   ADD s1, s3, zero
+  JAL zero, bb25
+bb36:
+  JAL zero, bb37
+bb37:
+  CALL getch
+  ADD s0, a0, zero
+  ADDI s1, zero, 48
+  SUBW t4, s0, s1
+  SW t4, 64(sp)
+  LW t4, 64(sp)
+  SLT s0, t4, zero
+  BNE s0, zero, bb39
+  JAL zero, bb40
+bb38:
+  ADD s3, s1, zero
+  ADD s1, s3, zero
+  JAL zero, bb44
+bb39:
+  ADDI t4, zero, 1
+  SB t4, 72(sp)
+  JAL zero, bb41
+bb40:
+  ADDI s0, zero, 9
+  LW t4, 64(sp)
+  SLT s1, s0, t4
+  ADD t4, s1, zero
+  SB t4, 72(sp)
+  JAL zero, bb41
+bb41:
+  LB t4, 72(sp)
+  ADD s1, t4, zero
+  BNE s1, zero, bb42
+  JAL zero, bb43
+bb42:
+  JAL zero, bb37
+bb43:
+  LW t4, 64(sp)
+  ADD s1, t4, zero
+  JAL zero, bb38
+bb44:
+  ADD t4, s1, zero
+  SW t4, 88(sp)
+  CALL getch
+  ADD s4, a0, zero
+  ADDI s5, zero, 48
+  SUBW t4, s4, s5
+  SW t4, 80(sp)
+  LW t4, 80(sp)
+  SLT s4, t4, zero
+  XORI s5, s4, 1
+  BNE s5, zero, bb46
+  JAL zero, bb47
+bb45:
+  LW t4, 88(sp)
+  ADD s1, t4, zero
   JAL zero, bb24
-bb26:
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
-  JALR zero, 0(ra)
+bb46:
+  ADDI s4, zero, 9
+  LW t4, 80(sp)
+  SLT s5, s4, t4
+  XORI s4, s5, 1
+  ADD t4, s4, zero
+  SB t4, 96(sp)
+  JAL zero, bb48
+bb47:
+  ADD t4, zero, zero
+  SB t4, 96(sp)
+  JAL zero, bb48
+bb48:
+  LB t4, 96(sp)
+  ADD s4, t4, zero
+  BNE s4, zero, bb49
+  JAL zero, bb51
+bb49:
+  ADDI s4, zero, 10
+  LW t4, 88(sp)
+  MULW s7, t4, s4
+  LW t4, 80(sp)
+  ADDW s4, s7, t4
+  JAL zero, bb50
+bb50:
+  ADD s1, s4, zero
+  JAL zero, bb44
+bb51:
+  JAL zero, bb45
+bb52:
+  JAL zero, bb53
+bb53:
+  CALL getch
+  ADD s7, a0, zero
+  ADDI s8, zero, 48
+  SUBW t4, s7, s8
+  SW t4, 104(sp)
+  LW t4, 104(sp)
+  SLT s7, t4, zero
+  BNE s7, zero, bb55
+  JAL zero, bb56
+bb54:
+  ADD s10, s8, zero
+  ADD s8, s10, zero
+  JAL zero, bb60
+bb55:
+  ADDI s7, zero, 1
+  JAL zero, bb57
+bb56:
+  ADDI s0, zero, 9
+  LW t4, 104(sp)
+  SLT s1, s0, t4
+  ADD s7, s1, zero
+  JAL zero, bb57
+bb57:
+  ADD s8, s7, zero
+  BNE s8, zero, bb58
+  JAL zero, bb59
+bb58:
+  JAL zero, bb53
+bb59:
+  LW t4, 104(sp)
+  ADD s8, t4, zero
+  JAL zero, bb54
+bb60:
+  ADD s10, s8, zero
+  CALL getch
+  ADD s11, a0, zero
+  ADDI s2, zero, 48
+  SUBW s0, s11, s2
+  SLT s2, s0, zero
+  XORI s11, s2, 1
+  BNE s11, zero, bb62
+  JAL zero, bb63
+bb61:
+  ADD s2, s10, zero
+  JAL zero, bb27
+bb62:
+  ADDI s2, zero, 9
+  SLT s11, s2, s0
+  XORI s2, s11, 1
+  ADD s11, s2, zero
+  JAL zero, bb64
+bb63:
+  ADD s11, zero, zero
+  JAL zero, bb64
+bb64:
+  ADD s2, s11, zero
+  BNE s2, zero, bb65
+  JAL zero, bb67
+bb65:
+  ADDI s2, zero, 10
+  MULW s6, s10, s2
+  ADDW s2, s6, s0
+  JAL zero, bb66
+bb66:
+  ADD s8, s2, zero
+  JAL zero, bb60
+bb67:
+  JAL zero, bb61

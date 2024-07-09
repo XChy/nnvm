@@ -1,37 +1,5 @@
 i32 main() {
 entry:
-  br bb %select.then
-select.then:
-  br bb %select.exit
-select.exit:
-  br i1 1, bb %then, bb %else
-then:
-  br bb %select.then14
-else:
-  ret i32 1
-select.then14:
-  br bb %select.exit16
-select.exit16:
-  br i1 1, bb %then25, bb %else27
-then25:
-  br bb %select.else30
-else27:
-  ret i32 2
-select.else30:
-  br bb %select.exit31
-select.exit31:
-  br i1 0, bb %then36, bb %else38
-then36:
-  ret i32 3
-else38:
-  br bb %select.else42
-select.else42:
-  br bb %select.exit43
-select.exit43:
-  br i1 0, bb %then47, bb %else49
-then47:
-  ret i32 4
-else49:
   52 = icmp sge i32 3, i32 2
   br i1 %52, bb %then53, bb %else55
 then53:

@@ -134,9 +134,18 @@ entry168:
   a5.load = load i32 from ptr @a5
   a6.load = load i32 from ptr @a6
   a7.load = load i32 from ptr @a7
-  177 = call i32 testParam8(i32 %a0.load, i32 %a1.load, i32 %a2.load, i32 %a3.load, i32 %a4.load, i32 %a5.load, i32 %a6.load, i32 %a7.load)
-  store i32 %177 to ptr @a0
-  call void putint(i32 %177)
+  11290 = add i32 %a0.load, i32 %a1.load
+  13291 = add i32 %11290, i32 %a2.load
+  15292 = add i32 %13291, i32 %a3.load
+  17293 = add i32 %15292, i32 %a4.load
+  19294 = add i32 %17293, i32 %a5.load
+  21295 = add i32 %19294, i32 %a6.load
+  23296 = add i32 %21295, i32 %a7.load
+  br bb %entry168.split288
+entry168.split288:
+  177.ret = phi [bb %entry168, i32 %23296]
+  store i32 %177.ret to ptr @a0
+  call void putint(i32 %177.ret)
   a32.load = load i32 from ptr @a32
   a33.load = load i32 from ptr @a33
   a34.load = load i32 from ptr @a34
@@ -153,9 +162,26 @@ entry168:
   a13.load = load i32 from ptr @a13
   a14.load = load i32 from ptr @a14
   a15.load = load i32 from ptr @a15
-  196 = call i32 testParam16(i32 %a32.load, i32 %a33.load, i32 %a34.load, i32 %a35.load, i32 %a36.load, i32 %a37.load, i32 %a38.load, i32 %a39.load, i32 %a8.load, i32 %a9.load, i32 %a10.load, i32 %a11.load, i32 %a12.load, i32 %a13.load, i32 %a14.load, i32 %a15.load)
-  store i32 %196 to ptr @a0
-  call void putint(i32 %196)
+  43271 = add i32 %a32.load, i32 %a33.load
+  45272 = add i32 %43271, i32 %a34.load
+  47273 = sub i32 %45272, i32 %a35.load
+  49274 = sub i32 %47273, i32 %a36.load
+  51275 = sub i32 %49274, i32 %a37.load
+  53276 = sub i32 %51275, i32 %a38.load
+  55277 = sub i32 %53276, i32 %a39.load
+  57278 = add i32 %55277, i32 %a8.load
+  59279 = add i32 %57278, i32 %a9.load
+  61280 = add i32 %59279, i32 %a10.load
+  63281 = add i32 %61280, i32 %a11.load
+  65282 = add i32 %63281, i32 %a12.load
+  67283 = add i32 %65282, i32 %a13.load
+  69284 = add i32 %67283, i32 %a14.load
+  71285 = add i32 %69284, i32 %a15.load
+  br bb %entry168.split269
+entry168.split269:
+  196.ret = phi [bb %entry168.split288, i32 %71285]
+  store i32 %196.ret to ptr @a0
+  call void putint(i32 %196.ret)
   a0.load199 = load i32 from ptr @a0
   a1.load200 = load i32 from ptr @a1
   a2.load201 = load i32 from ptr @a2
@@ -188,9 +214,42 @@ entry168:
   a29.load = load i32 from ptr @a29
   a30.load = load i32 from ptr @a30
   a31.load = load i32 from ptr @a31
-  231 = call i32 testParam32(i32 %a0.load199, i32 %a1.load200, i32 %a2.load201, i32 %a3.load202, i32 %a4.load203, i32 %a5.load204, i32 %a6.load205, i32 %a7.load206, i32 %a8.load207, i32 %a9.load208, i32 %a10.load209, i32 %a11.load210, i32 %a12.load211, i32 %a13.load212, i32 %a14.load213, i32 %a15.load214, i32 %a16.load, i32 %a17.load, i32 %a18.load, i32 %a19.load, i32 %a20.load, i32 %a21.load, i32 %a22.load, i32 %a23.load, i32 %a24.load, i32 %a25.load, i32 %a26.load, i32 %a27.load, i32 %a28.load, i32 %a29.load, i32 %a30.load, i32 %a31.load)
-  store i32 %231 to ptr @a0
-  call void putint(i32 %231)
+  107236 = add i32 %a0.load199, i32 %a1.load200
+  109237 = add i32 %107236, i32 %a2.load201
+  111238 = add i32 %109237, i32 %a3.load202
+  113239 = add i32 %111238, i32 %a4.load203
+  115240 = add i32 %113239, i32 %a5.load204
+  117241 = add i32 %115240, i32 %a6.load205
+  119242 = add i32 %117241, i32 %a7.load206
+  121243 = add i32 %119242, i32 %a8.load207
+  123244 = add i32 %121243, i32 %a9.load208
+  125245 = add i32 %123244, i32 %a10.load209
+  127246 = add i32 %125245, i32 %a11.load210
+  129247 = add i32 %127246, i32 %a12.load211
+  131248 = add i32 %129247, i32 %a13.load212
+  133249 = add i32 %131248, i32 %a14.load213
+  135250 = add i32 %133249, i32 %a15.load214
+  137251 = add i32 %135250, i32 %a16.load
+  139252 = add i32 %137251, i32 %a17.load
+  141253 = sub i32 %139252, i32 %a18.load
+  143254 = sub i32 %141253, i32 %a19.load
+  145255 = sub i32 %143254, i32 %a20.load
+  147256 = sub i32 %145255, i32 %a21.load
+  149257 = sub i32 %147256, i32 %a22.load
+  151258 = add i32 %149257, i32 %a23.load
+  153259 = add i32 %151258, i32 %a24.load
+  155260 = add i32 %153259, i32 %a25.load
+  157261 = add i32 %155260, i32 %a26.load
+  159262 = add i32 %157261, i32 %a27.load
+  161263 = add i32 %159262, i32 %a28.load
+  163264 = add i32 %161263, i32 %a29.load
+  165265 = add i32 %163264, i32 %a30.load
+  167266 = add i32 %165265, i32 %a31.load
+  br bb %entry168.split
+entry168.split:
+  231.ret = phi [bb %entry168.split269, i32 %167266]
+  store i32 %231.ret to ptr @a0
+  call void putint(i32 %231.ret)
   ret i32 0
 }
 

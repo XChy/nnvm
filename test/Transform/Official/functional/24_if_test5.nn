@@ -10,8 +10,9 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry15:
-  16 = call i32 if_if_Else()
-  ret i32 %16
+  br bb %entry15.split
+entry15.split:
+  ret i32 25
 }
 
 external float getfloat()
@@ -30,13 +31,9 @@ external void putfarray(i32 , ptr )
 
 i32 if_if_Else() {
 entry:
-  br bb %then10
+  br bb %if.exit
 if.exit:
   ret i32 25
-then10:
-  br bb %if.exit11
-if.exit11:
-  br bb %if.exit
 }
 
 

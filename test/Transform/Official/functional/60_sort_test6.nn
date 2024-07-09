@@ -95,6 +95,7 @@ while.exit64:
 
 i32 main() {
 entry101:
+  %count_arr153 = stack 40
   %b = stack 40
   %a = stack 40
   store i32 10 to ptr @n
@@ -118,10 +119,11 @@ entry101:
   122 = ptradd ptr %a, i32 36
   store i32 8 to ptr %122
   n.load = load i32 from ptr @n
-  126 = call i32 counting_sort(ptr %a, ptr %b, i32 %n.load)
+  br bb %counting_sort.entry
+entry101.split:
   br bb %while.cond127
 while.cond127:
-  i123.phi = phi [bb %entry101, i32 %126, bb %while.body128, i32 %144]
+  i123.phi = phi [bb %entry101.split, i32 0, bb %while.body128, i32 %144]
   n.load131 = load i32 from ptr @n
   132 = icmp slt i32 %i123.phi, i32 %n.load131
   br i1 %132, bb %while.body128, bb %while.exit129
@@ -135,6 +137,86 @@ while.body128:
   br bb %while.cond127
 while.exit129:
   ret i32 0
+counting_sort.entry:
+  br bb %counting_sort.while.cond
+counting_sort.while.cond:
+  k.phi148156 = phi [bb %counting_sort.entry, i32 0, bb %counting_sort.while.body, i32 %16163]
+  10157 = icmp slt i32 %k.phi148156, i32 10
+  br i1 %10157, bb %counting_sort.while.body, bb %counting_sort.while.exit
+counting_sort.while.body:
+  13160 = mul i32 %k.phi148156, i32 4
+  14161 = ptradd ptr %count_arr153, i32 %13160
+  store i32 0 to ptr %14161
+  16163 = add i32 %k.phi148156, i32 1
+  br bb %counting_sort.while.cond
+counting_sort.while.exit:
+  br bb %counting_sort.while.cond17
+counting_sort.while.cond17:
+  i.phi168 = phi [bb %counting_sort.while.exit, i32 0, bb %counting_sort.while.body18, i32 %39183]
+  22169 = icmp slt i32 %i.phi168, i32 %n.load
+  br i1 %22169, bb %counting_sort.while.body18, bb %counting_sort.while.exit19
+counting_sort.while.body18:
+  25172 = mul i32 %i.phi168, i32 4
+  26173 = ptradd ptr %a, i32 %25172
+  26.load174 = load i32 from ptr %26173
+  28175 = mul i32 %26.load174, i32 4
+  29176 = ptradd ptr %count_arr153, i32 %28175
+  32.load177 = load i32 from ptr %26173
+  34178 = mul i32 %32.load177, i32 4
+  35179 = ptradd ptr %count_arr153, i32 %34178
+  35.load180 = load i32 from ptr %35179
+  37181 = add i32 %35.load180, i32 1
+  store i32 %37181 to ptr %29176
+  39183 = add i32 %i.phi168, i32 1
+  br bb %counting_sort.while.cond17
+counting_sort.while.exit19:
+  br bb %counting_sort.while.cond40
+counting_sort.while.cond40:
+  k.phi188 = phi [bb %counting_sort.while.exit19, i32 1, bb %counting_sort.while.body41, i32 %60201]
+  44189 = icmp slt i32 %k.phi188, i32 10
+  br i1 %44189, bb %counting_sort.while.body41, bb %counting_sort.while.exit42
+counting_sort.while.body41:
+  47192 = mul i32 %k.phi188, i32 4
+  48193 = ptradd ptr %count_arr153, i32 %47192
+  51.load194 = load i32 from ptr %48193
+  54195 = sub i32 %k.phi188, i32 1
+  55196 = mul i32 %54195, i32 4
+  56197 = ptradd ptr %count_arr153, i32 %55196
+  56.load198 = load i32 from ptr %56197
+  58199 = add i32 %51.load194, i32 %56.load198
+  store i32 %58199 to ptr %48193
+  60201 = add i32 %k.phi188, i32 1
+  br bb %counting_sort.while.cond40
+counting_sort.while.exit42:
+  br bb %counting_sort.while.cond62
+counting_sort.while.cond62:
+  j.phi206 = phi [bb %counting_sort.while.exit42, i32 %n.load, bb %counting_sort.while.body63, i32 %69210]
+  66207 = icmp sgt i32 %j.phi206, i32 0
+  br i1 %66207, bb %counting_sort.while.body63, bb %counting_sort.while.exit64
+counting_sort.while.body63:
+  69210 = sub i32 %j.phi206, i32 1
+  70211 = mul i32 %69210, i32 4
+  71212 = ptradd ptr %a, i32 %70211
+  71.load213 = load i32 from ptr %71212
+  73214 = mul i32 %71.load213, i32 4
+  74215 = ptradd ptr %count_arr153, i32 %73214
+  78.load216 = load i32 from ptr %71212
+  80217 = mul i32 %78.load216, i32 4
+  81218 = ptradd ptr %count_arr153, i32 %80217
+  81.load219 = load i32 from ptr %81218
+  83220 = sub i32 %81.load219, i32 1
+  store i32 %83220 to ptr %74215
+  87.load222 = load i32 from ptr %71212
+  89223 = mul i32 %87.load222, i32 4
+  90224 = ptradd ptr %count_arr153, i32 %89223
+  90.load225 = load i32 from ptr %90224
+  92226 = mul i32 %90.load225, i32 4
+  93227 = ptradd ptr %b, i32 %92226
+  97.load228 = load i32 from ptr %71212
+  store i32 %97.load228 to ptr %93227
+  br bb %counting_sort.while.cond62
+counting_sort.while.exit64:
+  br bb %entry101.split
 }
 
 external float getfloat()

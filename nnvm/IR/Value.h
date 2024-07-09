@@ -3,6 +3,7 @@
 #include "ADT/List.h"
 #include "ADT/ListNode.h"
 #include "IR/Type.h"
+#include <functional>
 #include <string>
 #include <vector>
 namespace nnvm {
@@ -32,6 +33,7 @@ public:
 
   // Replace this value in its users with the replacement.
   void replaceSelf(Value *replacement);
+  void replaceSelfIf(Value *replacement, std::function<bool(Use *U)> func);
 
   void setName(const std::string &name) { this->name = name; }
 

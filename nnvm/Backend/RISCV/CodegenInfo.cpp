@@ -137,9 +137,9 @@ std::set<Register *> riscv::getDefsOf(LIRInst *inst) {
   }
 
   if (inst->getOpcode() == CALL) {
+    LIRModule *module = inst->getParent()->getParent()->getParent();
     for (uint64_t regId : callerSavedRegIds()) {
-      Register *reg =
-          inst->getParent()->getParent()->getParent()->getPhyReg(regId);
+      Register *reg = module->getPhyReg(regId);
       ret.insert(reg);
     }
   }

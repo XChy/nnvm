@@ -115,6 +115,12 @@ public:
     return dummyEnd.getPrev();
   }
 
+  T *getLast() const {
+    if (empty())
+      return nullptr;
+    return dummyEnd.getPrev();
+  }
+
   Iterator begin() { return Iterator(dummyBegin.next); }
   Iterator end() { return Iterator(&dummyEnd); }
   ConstIterator begin() const { return ConstIterator(dummyBegin.next); }

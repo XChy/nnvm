@@ -14,10 +14,9 @@ main:
   LA s0, a
   ADDI s1, zero, 10
   SW s1, 0(s0)
-  ADDI a0, zero, 10
-  CALL func
-  ADD s0, a0, zero
-  ADD a0, s0, zero
+  JAL zero, bb1
+bb1:
+  ADDI a0, zero, 9
   LD ra, 0(sp)
   LD s1, 8(sp)
   LD s0, 16(sp)

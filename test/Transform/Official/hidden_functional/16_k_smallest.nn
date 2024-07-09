@@ -10,19 +10,24 @@ then65:
 if.exit66:
   ret 
 else:
-  71 = call i32 findPivot(i32 %low, i32 %high)
-  74 = icmp eq i32 %k, i32 %71
+  24149 = mul i32 %high, i32 4
+  25150 = ptradd ptr @array, i32 %24149
+  25.load151 = load i32 from ptr %25150
+  br bb %findPivot.while.cond
+else.split:
+  71.ret = phi [bb %findPivot.while.exit.split, i32 %pIndex.phi144155]
+  74 = icmp eq i32 %k, i32 %71.ret
   br i1 %74, bb %then75, bb %else77
 then75:
   br bb %while.cond79
 if.exit76:
   br bb %if.exit66
 else77:
-  97 = icmp slt i32 %k, i32 %71
+  97 = icmp slt i32 %k, i32 %71.ret
   br i1 %97, bb %then98, bb %else100
 while.cond79:
   i78.phi = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
-  84 = icmp slt i32 %i78.phi, i32 %71
+  84 = icmp slt i32 %i78.phi, i32 %71.ret
   br i1 %84, bb %while.body80, bb %while.exit81
 while.body80:
   87 = mul i32 %i78.phi, i32 4
@@ -35,15 +40,49 @@ while.body80:
 while.exit81:
   br bb %if.exit76
 then98:
-  103 = sub i32 %71, i32 1
+  103 = sub i32 %71.ret, i32 1
   call void findSmallest(i32 %low, i32 %103, i32 %k, i32 %n)
   br bb %if.exit99
 if.exit99:
   br bb %if.exit76
 else100:
-  108 = add i32 %71, i32 1
+  108 = add i32 %71.ret, i32 1
   call void findSmallest(i32 %108, i32 %high, i32 %k, i32 %n)
   br bb %if.exit99
+findPivot.while.cond:
+  i.phi154 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %52173]
+  pIndex.phi144155 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %pIndex.phi172]
+  36156 = icmp slt i32 %i.phi154, i32 %high
+  br i1 %36156, bb %findPivot.while.body, bb %findPivot.while.exit
+findPivot.while.body:
+  39159 = mul i32 %i.phi154, i32 4
+  40160 = ptradd ptr @array, i32 %39159
+  40.load161 = load i32 from ptr %40160
+  43162 = icmp sle i32 %40.load161, i32 %25.load151
+  br i1 %43162, bb %findPivot.then, bb %findPivot.if.exit
+findPivot.while.exit:
+  5200 = mul i32 %pIndex.phi144155, i32 4
+  6201 = ptradd ptr @array, i32 %5200
+  6.load202 = load i32 from ptr %6201
+  13.load205 = load i32 from ptr %25150
+  store i32 %13.load205 to ptr %6201
+  store i32 %6.load202 to ptr %25150
+  br bb %findPivot.while.exit.split
+findPivot.while.exit.split:
+  br bb %else.split
+findPivot.then:
+  6.load213 = load i32 from ptr %40160
+  12214 = mul i32 %pIndex.phi144155, i32 4
+  13215 = ptradd ptr @array, i32 %12214
+  13.load216 = load i32 from ptr %13215
+  store i32 %13.load216 to ptr %40160
+  store i32 %6.load213 to ptr %13215
+  50169 = add i32 %pIndex.phi144155, i32 1
+  br bb %findPivot.if.exit
+findPivot.if.exit:
+  pIndex.phi172 = phi [bb %findPivot.while.body, i32 %pIndex.phi144155, bb %findPivot.then, i32 %50169]
+  52173 = add i32 %i.phi154, i32 1
+  br bb %findPivot.while.cond
 }
 
 i32 findPivot(i32 start, i32 end) {
@@ -64,10 +103,22 @@ while.body:
   43 = icmp sle i32 %40.load, i32 %25.load
   br i1 %43, bb %then, bb %if.exit
 while.exit:
-  call void swap(i32 %pIndex.phi144, i32 %end)
+  5189 = mul i32 %pIndex.phi144, i32 4
+  6190 = ptradd ptr @array, i32 %5189
+  6.load191 = load i32 from ptr %6190
+  13.load194 = load i32 from ptr %25
+  store i32 %13.load194 to ptr %6190
+  store i32 %6.load191 to ptr %25
+  br bb %while.exit.split
+while.exit.split:
   ret i32 %pIndex.phi144
 then:
-  call void swap(i32 %i.phi, i32 %pIndex.phi144)
+  6.load180 = load i32 from ptr %40
+  12181 = mul i32 %pIndex.phi144, i32 4
+  13182 = ptradd ptr @array, i32 %12181
+  13.load183 = load i32 from ptr %13182
+  store i32 %13.load183 to ptr %40
+  store i32 %6.load180 to ptr %13182
   50 = add i32 %pIndex.phi144, i32 1
   br bb %if.exit
 if.exit:

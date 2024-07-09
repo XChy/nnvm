@@ -10,8 +10,39 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry24:
-  25 = call i32 whileIf()
-  ret i32 %25
+  br bb %whileIf.entry
+entry24.split:
+  25.ret = phi [bb %whileIf.while.exit, i32 %b.phi2934]
+  ret i32 %25.ret
+whileIf.entry:
+  br bb %whileIf.while.cond
+whileIf.while.cond:
+  b.phi2934 = phi [bb %whileIf.entry, i32 0, bb %whileIf.if.exit, i32 %b.phi2846]
+  a.phi35 = phi [bb %whileIf.entry, i32 0, bb %whileIf.if.exit, i32 %2247]
+  736 = icmp slt i32 %a.phi35, i32 100
+  br i1 %736, bb %whileIf.while.body, bb %whileIf.while.exit
+whileIf.while.body:
+  1039 = icmp eq i32 %a.phi35, i32 5
+  br i1 %1039, bb %whileIf.then, bb %whileIf.else
+whileIf.while.exit:
+  br bb %entry24.split
+whileIf.then:
+  br bb %whileIf.if.exit
+whileIf.if.exit:
+  b.phi2846 = phi [bb %whileIf.if.exit17, i32 %b.phi55, bb %whileIf.then, i32 25]
+  2247 = add i32 %a.phi35, i32 1
+  br bb %whileIf.while.cond
+whileIf.else:
+  1550 = icmp eq i32 %a.phi35, i32 10
+  br i1 %1550, bb %whileIf.then16, bb %whileIf.else18
+whileIf.then16:
+  br bb %whileIf.if.exit17
+whileIf.if.exit17:
+  b.phi55 = phi [bb %whileIf.else18, i32 %2058, bb %whileIf.then16, i32 42]
+  br bb %whileIf.if.exit
+whileIf.else18:
+  2058 = mul i32 %a.phi35, i32 2
+  br bb %whileIf.if.exit17
 }
 
 external float getfloat()

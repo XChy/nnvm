@@ -80,27 +80,22 @@ while.cond66:
 while.body67:
   72 = sub i32 %t.phi, i32 1
   store i32 4 to ptr @n
-  call void init(i32 4)
-  n.load78 = load i32 from ptr @n
-  n.load79 = load i32 from ptr @n
-  80 = mul i32 %n.load78, i32 %n.load79
-  81 = add i32 %80, i32 1
-  br bb %while.cond82
+  br bb %init.entry
 while.exit68:
   ret i32 0
 while.cond82:
-  flag.phi303 = phi [bb %while.body67, i32 0, bb %if.exit97, i32 %flag.phi302]
-  i73.phi = phi [bb %while.body67, i32 0, bb %if.exit97, i32 %249]
-  loc.phi296 = phi [bb %while.body67, i32 %loc.phi297, bb %if.exit97, i32 %loc.phi]
-  select.phi293 = phi [bb %while.body67, i1 %select.phi294, bb %if.exit97, i1 %select.phi292]
-  select198.phi289 = phi [bb %while.body67, i1 %select198.phi290, bb %if.exit97, i1 %select198.phi288]
-  b.phi = phi [bb %while.body67, i32 %b.phi286, bb %if.exit97, i32 %90]
-  select176.phi283 = phi [bb %while.body67, i1 %select176.phi284, bb %if.exit97, i1 %select176.phi282]
-  a.phi = phi [bb %while.body67, i32 %a.phi280, bb %if.exit97, i32 %89]
-  select223.phi277 = phi [bb %while.body67, i1 %select223.phi278, bb %if.exit97, i1 %select223.phi276]
-  select155.phi273 = phi [bb %while.body67, i1 %select155.phi274, bb %if.exit97, i1 %select155.phi272]
-  select234.phi269 = phi [bb %while.body67, i1 %select234.phi270, bb %if.exit97, i1 %select234.phi268]
-  tmp.phi265 = phi [bb %while.body67, i32 %tmp.phi266, bb %if.exit97, i32 %tmp.phi264]
+  flag.phi303 = phi [bb %init.while.exit, i32 0, bb %if.exit97, i32 %flag.phi302]
+  i73.phi = phi [bb %init.while.exit, i32 0, bb %if.exit97, i32 %249]
+  loc.phi296 = phi [bb %init.while.exit, i32 %loc.phi297, bb %if.exit97, i32 %loc.phi]
+  select.phi293 = phi [bb %init.while.exit, i1 %select.phi294, bb %if.exit97, i1 %select.phi292]
+  select198.phi289 = phi [bb %init.while.exit, i1 %select198.phi290, bb %if.exit97, i1 %select198.phi288]
+  b.phi = phi [bb %init.while.exit, i32 %b.phi286, bb %if.exit97, i32 %90]
+  select176.phi283 = phi [bb %init.while.exit, i1 %select176.phi284, bb %if.exit97, i1 %select176.phi282]
+  a.phi = phi [bb %init.while.exit, i32 %a.phi280, bb %if.exit97, i32 %89]
+  select223.phi277 = phi [bb %init.while.exit, i1 %select223.phi278, bb %if.exit97, i1 %select223.phi276]
+  select155.phi273 = phi [bb %init.while.exit, i1 %select155.phi274, bb %if.exit97, i1 %select155.phi272]
+  select234.phi269 = phi [bb %init.while.exit, i1 %select234.phi270, bb %if.exit97, i1 %select234.phi268]
+  tmp.phi265 = phi [bb %init.while.exit, i32 %tmp.phi266, bb %if.exit97, i32 %tmp.phi264]
   87 = icmp slt i32 %i73.phi, i32 10
   br i1 %87, bb %while.body83, bb %while.exit84
 while.body83:
@@ -141,7 +136,11 @@ if.exit97:
   br bb %while.cond82
 then111:
   store i32 0 to ptr @array
-  call void mmerge(i32 %104, i32 0)
+  48307 = call i32 findfa(i32 %104)
+  51308 = call i32 findfa(i32 0)
+  54309 = icmp ne i32 %48307, i32 %51308
+  br i1 %54309, bb %mmerge.then55, bb %mmerge.if.exit56
+then111.split:
   br bb %if.exit112
 if.exit112:
   n.load118 = load i32 from ptr @n
@@ -151,7 +150,11 @@ then120:
   123 = mul i32 %81, i32 4
   124 = ptradd ptr @array, i32 %123
   store i32 %81 to ptr %124
-  call void mmerge(i32 %104, i32 %81)
+  48320 = call i32 findfa(i32 %104)
+  51321 = call i32 findfa(i32 %81)
+  54322 = icmp ne i32 %48320, i32 %51321
+  br i1 %54322, bb %mmerge.then55324, bb %mmerge.if.exit56329
+then120.split:
   br bb %if.exit121
 if.exit121:
   n.load130 = load i32 from ptr @n
@@ -171,7 +174,11 @@ select.exit:
   br i1 %select.phi, bb %then144, bb %if.exit145
 then144:
   148 = add i32 %104, i32 1
-  call void mmerge(i32 %104, i32 %148)
+  48333 = call i32 findfa(i32 %104)
+  51334 = call i32 findfa(i32 %148)
+  54335 = icmp ne i32 %48333, i32 %51334
+  br i1 %54335, bb %mmerge.then55337, bb %mmerge.if.exit56342
+then144.split:
   br bb %if.exit145
 if.exit145:
   151 = icmp sgt i32 %90, i32 1
@@ -190,7 +197,11 @@ select.exit154:
   br i1 %select155.phi, bb %then164, bb %if.exit165
 then164:
   168 = sub i32 %104, i32 1
-  call void mmerge(i32 %104, i32 %168)
+  48346 = call i32 findfa(i32 %104)
+  51347 = call i32 findfa(i32 %168)
+  54348 = icmp ne i32 %48346, i32 %51347
+  br i1 %54348, bb %mmerge.then55350, bb %mmerge.if.exit56355
+then164.split:
   br bb %if.exit165
 if.exit165:
   n.load171 = load i32 from ptr @n
@@ -212,7 +223,11 @@ select.exit175:
 then186:
   n.load190 = load i32 from ptr @n
   191 = add i32 %104, i32 %n.load190
-  call void mmerge(i32 %104, i32 %191)
+  48359 = call i32 findfa(i32 %104)
+  51360 = call i32 findfa(i32 %191)
+  54361 = icmp ne i32 %48359, i32 %51360
+  br i1 %54361, bb %mmerge.then55363, bb %mmerge.if.exit56368
+then186.split:
   br bb %if.exit187
 if.exit187:
   194 = icmp sgt i32 %89, i32 1
@@ -233,7 +248,11 @@ select.exit197:
 then208:
   n.load212 = load i32 from ptr @n
   213 = sub i32 %104, i32 %n.load212
-  call void mmerge(i32 %104, i32 %213)
+  48372 = call i32 findfa(i32 %104)
+  51373 = call i32 findfa(i32 %213)
+  54374 = icmp ne i32 %48372, i32 %51373
+  br i1 %54374, bb %mmerge.then55376, bb %mmerge.if.exit56381
+then208.split:
   br bb %if.exit209
 if.exit209:
   216.load = load i32 from ptr @array
@@ -275,6 +294,66 @@ then255:
   br bb %if.exit256
 if.exit256:
   br bb %while.cond66
+mmerge.then55:
+  58312 = mul i32 %48307, i32 4
+  59313 = ptradd ptr @array, i32 %58312
+  store i32 %51308 to ptr %59313
+  br bb %mmerge.if.exit56
+mmerge.if.exit56:
+  br bb %then111.split
+mmerge.then55324:
+  58325 = mul i32 %48320, i32 4
+  59326 = ptradd ptr @array, i32 %58325
+  store i32 %51321 to ptr %59326
+  br bb %mmerge.if.exit56329
+mmerge.if.exit56329:
+  br bb %then120.split
+mmerge.then55337:
+  58338 = mul i32 %48333, i32 4
+  59339 = ptradd ptr @array, i32 %58338
+  store i32 %51334 to ptr %59339
+  br bb %mmerge.if.exit56342
+mmerge.if.exit56342:
+  br bb %then144.split
+mmerge.then55350:
+  58351 = mul i32 %48346, i32 4
+  59352 = ptradd ptr @array, i32 %58351
+  store i32 %51347 to ptr %59352
+  br bb %mmerge.if.exit56355
+mmerge.if.exit56355:
+  br bb %then164.split
+mmerge.then55363:
+  58364 = mul i32 %48359, i32 4
+  59365 = ptradd ptr @array, i32 %58364
+  store i32 %51360 to ptr %59365
+  br bb %mmerge.if.exit56368
+mmerge.if.exit56368:
+  br bb %then186.split
+mmerge.then55376:
+  58377 = mul i32 %48372, i32 4
+  59378 = ptradd ptr @array, i32 %58377
+  store i32 %51373 to ptr %59378
+  br bb %mmerge.if.exit56381
+mmerge.if.exit56381:
+  br bb %then208.split
+init.entry:
+  br bb %init.while.cond
+init.while.cond:
+  i.phi387 = phi [bb %init.entry, i32 1, bb %init.while.body, i32 %18396]
+  11390 = icmp sle i32 %i.phi387, i32 17
+  br i1 %11390, bb %init.while.body, bb %init.while.exit
+init.while.body:
+  14393 = mul i32 %i.phi387, i32 4
+  15394 = ptradd ptr @array, i32 %14393
+  store i32 -1 to ptr %15394
+  18396 = add i32 %i.phi387, i32 1
+  br bb %init.while.cond
+init.while.exit:
+  n.load78 = load i32 from ptr @n
+  n.load79 = load i32 from ptr @n
+  80 = mul i32 %n.load78, i32 %n.load79
+  81 = add i32 %80, i32 1
+  br bb %while.cond82
 }
 
 external float getfloat()

@@ -4,7 +4,7 @@ set -e
 riscvgcc="riscv64-unknown-linux-gnu-gcc"
 
 root_dir=$(dirname $(dirname $0))
-compiler=$root_dir/build/compiler
+compiler="$root_dir/build/compiler -O3"
 
 asm=$(mktemp --suffix=".s")
 obj=$(mktemp --suffix=".o")

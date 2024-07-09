@@ -28,18 +28,27 @@ N:
 .word 0x000186aa
 .section .text
 main:
-  ADDI sp, sp, -48
-  SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  ADDI sp, sp, -144
+  SD s9, 40(sp)
+  SD s2, 48(sp)
+  SD s11, 56(sp)
+  SD s10, 64(sp)
+  SD s0, 72(sp)
+  SD s5, 80(sp)
+  SD s7, 88(sp)
+  SD s1, 96(sp)
+  SD s6, 104(sp)
+  SD s3, 112(sp)
+  SD s8, 120(sp)
+  SD ra, 128(sp)
+  SD s4, 136(sp)
   LA s0, x
   ADD a0, s0, zero
   CALL getarray
   ADD s0, a0, zero
   ADDI s1, zero, 1
-  SUBW s2, s0, s1
+  SUBW t4, s0, s1
+  SW t4, 0(sp)
   LA s0, y
   ADD a0, s0, zero
   CALL getarray
@@ -54,56 +63,283 @@ main:
   ADD s0, a0, zero
   ADDI a0, zero, 39
   CALL _sysy_starttime
-  ADD s0, zero, zero
+  ADD t4, zero, zero
+  SW t4, 8(sp)
   JAL zero, bb1
 bb1:
-  ADD s1, s0, zero
-  SLTI s3, s1, 100
+  LW t3, 8(sp)
+  ADD t4, t3, zero
+  SW t4, 16(sp)
+  LW t4, 16(sp)
+  SLTI s3, t4, 100
   BNE s3, zero, bb2
   JAL zero, bb3
 bb2:
-  ADD a0, s2, zero
-  LA s3, x
-  ADD a1, s3, zero
-  LA s3, y
-  ADD a2, s3, zero
-  LA s3, v
-  ADD a3, s3, zero
-  LA s3, a
-  ADD a4, s3, zero
-  LA s3, b
-  ADD a5, s3, zero
-  CALL spmv
-  ADD a0, s2, zero
-  LA s3, x
-  ADD a1, s3, zero
-  LA s3, y
-  ADD a2, s3, zero
-  LA s3, v
-  ADD a3, s3, zero
-  LA s3, b
-  ADD a4, s3, zero
-  LA s3, a
-  ADD a5, s3, zero
-  CALL spmv
-  ADDIW s3, s1, 1
-  ADD s0, s3, zero
-  JAL zero, bb1
+  JAL zero, bb4
 bb3:
   ADDI a0, zero, 47
   CALL _sysy_stoptime
-  ADD a0, s2, zero
+  LW t4, 0(sp)
+  ADD a0, t4, zero
   LA s0, b
   ADD a1, s0, zero
   CALL putarray
   ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
-  ADDI sp, sp, 48
+  LD s9, 40(sp)
+  LD s2, 48(sp)
+  LD s11, 56(sp)
+  LD s10, 64(sp)
+  LD s0, 72(sp)
+  LD s5, 80(sp)
+  LD s7, 88(sp)
+  LD s1, 96(sp)
+  LD s6, 104(sp)
+  LD s3, 112(sp)
+  LD s8, 120(sp)
+  LD ra, 128(sp)
+  LD s4, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
+bb4:
+  ADD s3, zero, zero
+  JAL zero, bb5
+bb5:
+  ADD s4, s3, zero
+  LW t4, 0(sp)
+  SLT s5, s4, t4
+  BNE s5, zero, bb6
+  JAL zero, bb7
+bb6:
+  ADDI s5, zero, 4
+  MULW s6, s4, s5
+  LA s5, b
+  ADD s7, s5, s6
+  SW zero, 0(s7)
+  ADDIW s5, s4, 1
+  ADD s3, s5, zero
+  JAL zero, bb5
+bb7:
+  ADD s3, zero, zero
+  JAL zero, bb8
+bb8:
+  ADD s4, s3, zero
+  LW t4, 0(sp)
+  SLT s5, s4, t4
+  BNE s5, zero, bb9
+  JAL zero, bb10
+bb9:
+  ADDI s5, zero, 4
+  MULW s6, s4, s5
+  LA s5, x
+  ADD s7, s5, s6
+  LW s5, 0(s7)
+  ADD s8, s5, zero
+  JAL zero, bb11
+bb10:
+  JAL zero, bb17
+bb11:
+  ADD s5, s8, zero
+  ADDIW t4, s4, 1
+  SW t4, 24(sp)
+  ADDI s10, zero, 4
+  LW t4, 24(sp)
+  MULW s11, t4, s10
+  LA s10, x
+  ADD s2, s10, s11
+  LW s10, 0(s2)
+  SLT s11, s5, s10
+  BNE s11, zero, bb12
+  JAL zero, bb13
+bb12:
+  ADDI s10, zero, 4
+  MULW s11, s5, s10
+  LA s10, y
+  ADD s0, s10, s11
+  LW s10, 0(s0)
+  ADDI s1, zero, 4
+  MULW s9, s10, s1
+  LA s1, b
+  ADD s10, s1, s9
+  LW s1, 0(s0)
+  ADDI s0, zero, 4
+  MULW s9, s1, s0
+  LA s0, b
+  ADD s1, s0, s9
+  LW s0, 0(s1)
+  LA s1, v
+  ADD s9, s1, s11
+  LW s1, 0(s9)
+  ADDW s9, s0, s1
+  SW s9, 0(s10)
+  ADDIW s0, s5, 1
+  ADD s8, s0, zero
+  JAL zero, bb11
+bb13:
+  LW s0, 0(s7)
+  ADD s1, s0, zero
+  JAL zero, bb14
+bb14:
+  ADD s0, s1, zero
+  LW s4, 0(s2)
+  SLT s5, s0, s4
+  BNE s5, zero, bb15
+  JAL zero, bb16
+bb15:
+  ADDI s4, zero, 4
+  MULW s5, s0, s4
+  LA s4, y
+  ADD s7, s4, s5
+  LW s4, 0(s7)
+  ADDI s8, zero, 4
+  MULW s9, s4, s8
+  LA s4, b
+  ADD s8, s4, s9
+  LW s4, 0(s7)
+  ADDI s7, zero, 4
+  MULW s9, s4, s7
+  LA s4, b
+  ADD s7, s4, s9
+  LW s4, 0(s7)
+  LA s7, v
+  ADD s9, s7, s5
+  LW s5, 0(s9)
+  LA s7, a
+  ADD s9, s7, s6
+  LW s7, 0(s9)
+  ADDI s9, zero, 1
+  SUBW s10, s7, s9
+  MULW s7, s5, s10
+  ADDW s5, s4, s7
+  SW s5, 0(s8)
+  ADDIW s4, s0, 1
+  ADD s1, s4, zero
+  JAL zero, bb14
+bb16:
+  LW t4, 24(sp)
+  ADD s3, t4, zero
+  JAL zero, bb8
+bb17:
+  ADD s0, zero, zero
+  JAL zero, bb18
+bb18:
+  ADD s1, s0, zero
+  LW t4, 0(sp)
+  SLT s2, s1, t4
+  BNE s2, zero, bb19
+  JAL zero, bb20
+bb19:
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s2, a
+  ADD s4, s2, s3
+  SW zero, 0(s4)
+  ADDIW s2, s1, 1
+  ADD s0, s2, zero
+  JAL zero, bb18
+bb20:
+  ADD s0, zero, zero
+  JAL zero, bb21
+bb21:
+  ADD s1, s0, zero
+  LW t4, 0(sp)
+  SLT s2, s1, t4
+  BNE s2, zero, bb22
+  JAL zero, bb23
+bb22:
+  ADDI s2, zero, 4
+  MULW s3, s1, s2
+  LA s2, x
+  ADD s4, s2, s3
+  LW s2, 0(s4)
+  ADD s5, s2, zero
+  JAL zero, bb24
+bb23:
+  LW t4, 16(sp)
+  ADDIW s0, t4, 1
+  ADD t4, s0, zero
+  SW t4, 8(sp)
+  JAL zero, bb1
+bb24:
+  ADD s2, s5, zero
+  ADDIW t4, s1, 1
+  SW t4, 32(sp)
+  ADDI s7, zero, 4
+  LW t4, 32(sp)
+  MULW s8, t4, s7
+  LA s7, x
+  ADD s9, s7, s8
+  LW s7, 0(s9)
+  SLT s8, s2, s7
+  BNE s8, zero, bb25
+  JAL zero, bb26
+bb25:
+  ADDI s7, zero, 4
+  MULW s8, s2, s7
+  LA s7, y
+  ADD s10, s7, s8
+  LW s7, 0(s10)
+  ADDI s11, zero, 4
+  MULW s6, s7, s11
+  LA s7, a
+  ADD s11, s7, s6
+  LW s6, 0(s10)
+  ADDI s7, zero, 4
+  MULW s10, s6, s7
+  LA s6, a
+  ADD s7, s6, s10
+  LW s6, 0(s7)
+  LA s7, v
+  ADD s10, s7, s8
+  LW s7, 0(s10)
+  ADDW s8, s6, s7
+  SW s8, 0(s11)
+  ADDIW s6, s2, 1
+  ADD s5, s6, zero
+  JAL zero, bb24
+bb26:
+  LW s1, 0(s4)
+  ADD s2, s1, zero
+  JAL zero, bb27
+bb27:
+  ADD s1, s2, zero
+  LW s4, 0(s9)
+  SLT s5, s1, s4
+  BNE s5, zero, bb28
+  JAL zero, bb29
+bb28:
+  ADDI s4, zero, 4
+  MULW s5, s1, s4
+  LA s4, y
+  ADD s6, s4, s5
+  LW s4, 0(s6)
+  ADDI s7, zero, 4
+  MULW s8, s4, s7
+  LA s4, a
+  ADD s7, s4, s8
+  LW s4, 0(s6)
+  ADDI s6, zero, 4
+  MULW s8, s4, s6
+  LA s4, a
+  ADD s6, s4, s8
+  LW s4, 0(s6)
+  LA s6, v
+  ADD s8, s6, s5
+  LW s5, 0(s8)
+  LA s6, b
+  ADD s8, s6, s3
+  LW s6, 0(s8)
+  ADDI s8, zero, 1
+  SUBW s10, s6, s8
+  MULW s6, s5, s10
+  ADDW s5, s4, s6
+  SW s5, 0(s7)
+  ADDIW s4, s1, 1
+  ADD s2, s4, zero
+  JAL zero, bb27
+bb29:
+  LW t4, 32(sp)
+  ADD s0, t4, zero
+  JAL zero, bb21
 spmv:
   ADDI sp, sp, -112
   SD ra, 0(sp)
@@ -126,36 +362,36 @@ spmv:
   ADD s4, a4, zero
   ADD s5, a5, zero
   ADD s6, zero, zero
-  JAL zero, bb5
-bb5:
+  JAL zero, bb31
+bb31:
   ADD s7, s6, zero
   SLT s8, s7, s0
-  BNE s8, zero, bb6
-  JAL zero, bb7
-bb6:
+  BNE s8, zero, bb32
+  JAL zero, bb33
+bb32:
   ADDI s8, zero, 4
   MULW s9, s7, s8
   ADD s8, s5, s9
   SW zero, 0(s8)
   ADDIW s8, s7, 1
   ADD s6, s8, zero
-  JAL zero, bb5
-bb7:
+  JAL zero, bb31
+bb33:
   ADD s6, zero, zero
-  JAL zero, bb8
-bb8:
+  JAL zero, bb34
+bb34:
   ADD s7, s6, zero
   SLT s8, s7, s0
-  BNE s8, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s8, zero, bb35
+  JAL zero, bb36
+bb35:
   ADDI s8, zero, 4
   MULW s9, s7, s8
   ADD s8, s1, s9
   LW s10, 0(s8)
   ADD s11, s10, zero
-  JAL zero, bb11
-bb10:
+  JAL zero, bb37
+bb36:
   LD ra, 0(sp)
   LD s11, 8(sp)
   LD s10, 16(sp)
@@ -171,7 +407,7 @@ bb10:
   LD s4, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb11:
+bb37:
   ADD s10, s11, zero
   ADDIW t0, s7, 1
   ADDI t1, zero, 4
@@ -179,9 +415,9 @@ bb11:
   ADD t1, s1, t2
   LW t2, 0(t1)
   SLT a0, s10, t2
-  BNE a0, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE a0, zero, bb38
+  JAL zero, bb39
+bb38:
   ADDI t2, zero, 4
   MULW a0, s10, t2
   ADD t2, s2, a0
@@ -200,18 +436,18 @@ bb12:
   SW t2, 0(a1)
   ADDIW t2, s10, 1
   ADD s11, t2, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb37
+bb39:
   LW s7, 0(s8)
   ADD s8, s7, zero
-  JAL zero, bb14
-bb14:
+  JAL zero, bb40
+bb40:
   ADD s7, s8, zero
   LW s10, 0(t1)
   SLT s11, s7, s10
-  BNE s11, zero, bb15
-  JAL zero, bb16
-bb15:
+  BNE s11, zero, bb41
+  JAL zero, bb42
+bb41:
   ADDI s10, zero, 4
   MULW s11, s7, s10
   ADD s10, s2, s11
@@ -235,7 +471,7 @@ bb15:
   SW s11, 0(t2)
   ADDIW s10, s7, 1
   ADD s8, s10, zero
-  JAL zero, bb14
-bb16:
+  JAL zero, bb40
+bb42:
   ADD s6, t0, zero
-  JAL zero, bb8
+  JAL zero, bb34

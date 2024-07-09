@@ -18,8 +18,123 @@ entry98:
   store i32 2 to ptr @h
   store i32 4 to ptr @e
   store i32 6 to ptr @f
-  99 = call i32 EightWhile()
-  ret i32 %99
+  br bb %EightWhile.entry
+entry98.split:
+  99.ret = phi [bb %EightWhile.while.exit, i32 %97133]
+  ret i32 %99.ret
+EightWhile.entry:
+  br bb %EightWhile.while.cond
+EightWhile.while.cond:
+  d.phi108114 = phi [bb %EightWhile.entry, i32 10, bb %EightWhile.while.exit15, i32 %d.phi107136]
+  c.phi104115 = phi [bb %EightWhile.entry, i32 7, bb %EightWhile.while.exit15, i32 %c.phi137]
+  a.phi116 = phi [bb %EightWhile.entry, i32 5, bb %EightWhile.while.exit15, i32 %12121]
+  b.phi117 = phi [bb %EightWhile.entry, i32 6, bb %EightWhile.while.exit15, i32 %82145]
+  9118 = icmp slt i32 %a.phi116, i32 20
+  br i1 %9118, bb %EightWhile.while.body, bb %EightWhile.while.exit
+EightWhile.while.body:
+  12121 = add i32 %a.phi116, i32 3
+  br bb %EightWhile.while.cond13
+EightWhile.while.exit:
+  86124 = add i32 %b.phi117, i32 %d.phi108114
+  87125 = add i32 %a.phi116, i32 %86124
+  89126 = add i32 %87125, i32 %c.phi104115
+  e.load90127 = load i32 from ptr @e
+  92128 = add i32 %e.load90127, i32 %d.phi108114
+  g.load93129 = load i32 from ptr @g
+  94130 = sub i32 %92128, i32 %g.load93129
+  h.load95131 = load i32 from ptr @h
+  96132 = add i32 %94130, i32 %h.load95131
+  97133 = sub i32 %89126, i32 %96132
+  br bb %entry98.split
+EightWhile.while.cond13:
+  d.phi107136 = phi [bb %EightWhile.while.body, i32 %d.phi108114, bb %EightWhile.while.exit23, i32 %d.phi148]
+  c.phi137 = phi [bb %EightWhile.while.body, i32 %c.phi104115, bb %EightWhile.while.exit23, i32 %80156]
+  b.phi101138 = phi [bb %EightWhile.while.body, i32 %b.phi117, bb %EightWhile.while.exit23, i32 %20142]
+  17139 = icmp slt i32 %b.phi101138, i32 10
+  br i1 %17139, bb %EightWhile.while.body14, bb %EightWhile.while.exit15
+EightWhile.while.body14:
+  20142 = add i32 %b.phi101138, i32 1
+  br bb %EightWhile.while.cond21
+EightWhile.while.exit15:
+  82145 = sub i32 %b.phi101138, i32 2
+  br bb %EightWhile.while.cond
+EightWhile.while.cond21:
+  d.phi148 = phi [bb %EightWhile.while.body14, i32 %d.phi107136, bb %EightWhile.while.exit31, i32 %78166]
+  c.phi105149 = phi [bb %EightWhile.while.body14, i32 %c.phi137, bb %EightWhile.while.exit31, i32 %28153]
+  25150 = icmp eq i32 %c.phi105149, i32 7
+  br i1 %25150, bb %EightWhile.while.body22, bb %EightWhile.while.exit23
+EightWhile.while.body22:
+  28153 = sub i32 %c.phi105149, i32 1
+  br bb %EightWhile.while.cond29
+EightWhile.while.exit23:
+  80156 = add i32 %c.phi105149, i32 1
+  br bb %EightWhile.while.cond13
+EightWhile.while.cond29:
+  d.phi109159 = phi [bb %EightWhile.while.body22, i32 %d.phi148, bb %EightWhile.while.exit39, i32 %36163]
+  33160 = icmp slt i32 %d.phi109159, i32 20
+  br i1 %33160, bb %EightWhile.while.body30, bb %EightWhile.while.exit31
+EightWhile.while.body30:
+  36163 = add i32 %d.phi109159, i32 3
+  br bb %EightWhile.while.cond37
+EightWhile.while.exit31:
+  78166 = sub i32 %d.phi109159, i32 1
+  br bb %EightWhile.while.cond21
+EightWhile.while.cond37:
+  e.load169 = load i32 from ptr @e
+  41170 = icmp sgt i32 %e.load169, i32 1
+  br i1 %41170, bb %EightWhile.while.body38, bb %EightWhile.while.exit39
+EightWhile.while.body38:
+  e.load43173 = load i32 from ptr @e
+  44174 = sub i32 %e.load43173, i32 1
+  store i32 %44174 to ptr @e
+  br bb %EightWhile.while.cond45
+EightWhile.while.exit39:
+  e.load75178 = load i32 from ptr @e
+  76179 = add i32 %e.load75178, i32 1
+  store i32 %76179 to ptr @e
+  br bb %EightWhile.while.cond29
+EightWhile.while.cond45:
+  f.load183 = load i32 from ptr @f
+  49184 = icmp sgt i32 %f.load183, i32 2
+  br i1 %49184, bb %EightWhile.while.body46, bb %EightWhile.while.exit47
+EightWhile.while.body46:
+  f.load51187 = load i32 from ptr @f
+  52188 = sub i32 %f.load51187, i32 2
+  store i32 %52188 to ptr @f
+  br bb %EightWhile.while.cond53
+EightWhile.while.exit47:
+  f.load73192 = load i32 from ptr @f
+  74193 = add i32 %f.load73192, i32 1
+  store i32 %74193 to ptr @f
+  br bb %EightWhile.while.cond37
+EightWhile.while.cond53:
+  g.load197 = load i32 from ptr @g
+  57198 = icmp slt i32 %g.load197, i32 3
+  br i1 %57198, bb %EightWhile.while.body54, bb %EightWhile.while.exit55
+EightWhile.while.body54:
+  g.load59201 = load i32 from ptr @g
+  60202 = add i32 %g.load59201, i32 10
+  store i32 %60202 to ptr @g
+  br bb %EightWhile.while.cond61
+EightWhile.while.exit55:
+  g.load71206 = load i32 from ptr @g
+  72207 = sub i32 %g.load71206, i32 8
+  store i32 %72207 to ptr @g
+  br bb %EightWhile.while.cond45
+EightWhile.while.cond61:
+  h.load211 = load i32 from ptr @h
+  65212 = icmp slt i32 %h.load211, i32 10
+  br i1 %65212, bb %EightWhile.while.body62, bb %EightWhile.while.exit63
+EightWhile.while.body62:
+  h.load67215 = load i32 from ptr @h
+  68216 = add i32 %h.load67215, i32 8
+  store i32 %68216 to ptr @h
+  br bb %EightWhile.while.cond61
+EightWhile.while.exit63:
+  h.load69220 = load i32 from ptr @h
+  70221 = sub i32 %h.load69220, i32 1
+  store i32 %70221 to ptr @h
+  br bb %EightWhile.while.cond53
 }
 
 external float getfloat()

@@ -64,11 +64,13 @@ init.exit66:
   139.load = load i32 from ptr %200
   202 = ptradd ptr %b, i32 12108
   144.load = load i32 from ptr %202
-  146 = call i32 func(i32 %115.load, ptr %b, i32 %120.load, ptr %123, i32 %127.load, i32 %132.load, ptr %198, i32 %139.load, i32 %144.load)
-  147 = mul i32 %146, i32 3
+  br bb %func.entry
+init.exit66.split:
+  146.ret = phi [bb %func.while.exit33, i32 %49242]
+  147 = mul i32 %146.ret, i32 3
   br bb %while.cond148
 while.cond148:
-  ret.phi = phi [bb %init.exit66, i32 %147, bb %while.body149, i32 %163]
+  ret.phi = phi [bb %init.exit66.split, i32 %147, bb %while.body149, i32 %163]
   152 = icmp sge i32 %ret.phi, i32 0
   br i1 %152, bb %while.body149, bb %while.exit150
 while.body149:
@@ -82,6 +84,46 @@ while.body149:
 while.exit150:
   call void putch(i32 10)
   ret i32 0
+func.entry:
+  br bb %func.while.cond
+func.while.cond:
+  index.phi207 = phi [bb %func.entry, i32 0, bb %func.while.body, i32 %23217]
+  12208 = icmp slt i32 %index.phi207, i32 10
+  br i1 %12208, bb %func.while.body, bb %func.while.exit
+func.while.body:
+  15211 = mul i32 %115.load, i32 236
+  16212 = ptradd ptr %b, i32 %15211
+  18213 = mul i32 %index.phi207, i32 4
+  19214 = ptradd ptr %16212, i32 %18213
+  19.load215 = load i32 from ptr %19214
+  call void putint(i32 %19.load215)
+  23217 = add i32 %index.phi207, i32 1
+  br bb %func.while.cond
+func.while.exit:
+  call void putch(i32 10)
+  26221 = mul i32 %120.load, i32 4
+  27222 = ptradd ptr %123, i32 %26221
+  27.load223 = load i32 from ptr %27222
+  call void putint(i32 %27.load223)
+  call void putch(i32 10)
+  br bb %func.while.cond31
+func.while.cond31:
+  i.stack.phi228 = phi [bb %func.while.exit, i32 %144.load, bb %func.while.body32, i32 %44238]
+  h.stack.phi229 = phi [bb %func.while.exit, i32 %139.load, bb %func.while.body32, i32 %46239]
+  35230 = icmp slt i32 %i.stack.phi228, i32 10
+  br i1 %35230, bb %func.while.body32, bb %func.while.exit33
+func.while.body32:
+  38233 = mul i32 %i.stack.phi228, i32 4
+  39234 = ptradd ptr %198, i32 %38233
+  41235 = mul i32 %h.stack.phi229, i32 128875
+  42236 = srem i32 %41235, i32 3724
+  store i32 %42236 to ptr %39234
+  44238 = add i32 %i.stack.phi228, i32 1
+  46239 = add i32 %h.stack.phi229, i32 7
+  br bb %func.while.cond31
+func.while.exit33:
+  49242 = add i32 %127.load, i32 %132.load
+  br bb %init.exit66.split
 }
 
 external float getfloat()

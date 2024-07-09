@@ -10,8 +10,26 @@ entry84:
   89 = icmp eq i32 %root, i32 -1
   br i1 %89, bb %then90, bb %else92
 then90:
-  94 = call i32 new_node(i32 %x)
-  ret i32 %94
+  now.load341 = load i32 from ptr @now
+  69342 = mul i32 %now.load341, i32 4
+  70343 = ptradd ptr @value, i32 %69342
+  store i32 %x to ptr %70343
+  now.load72345 = load i32 from ptr @now
+  73346 = mul i32 %now.load72345, i32 4
+  74347 = ptradd ptr @left_child, i32 %73346
+  store i32 -1 to ptr %74347
+  now.load76349 = load i32 from ptr @now
+  77350 = mul i32 %now.load76349, i32 4
+  78351 = ptradd ptr @right_child, i32 %77350
+  store i32 -1 to ptr %78351
+  now.load80353 = load i32 from ptr @now
+  81354 = add i32 %now.load80353, i32 1
+  store i32 %81354 to ptr @now
+  83356 = sub i32 %81354, i32 1
+  br bb %then90.split
+then90.split:
+  94.ret = phi [bb %then90, i32 %83356]
+  ret i32 %94.ret
 if.exit91:
   ret i32 %root
 else92:
@@ -226,25 +244,43 @@ then285:
   ret i32 0
 if.exit286:
   288 = call i32 getint()
-  289 = call i32 new_node(i32 %288)
+  now.load361 = load i32 from ptr @now
+  69362 = mul i32 %now.load361, i32 4
+  70363 = ptradd ptr @value, i32 %69362
+  store i32 %288 to ptr %70363
+  now.load72365 = load i32 from ptr @now
+  73366 = mul i32 %now.load72365, i32 4
+  74367 = ptradd ptr @left_child, i32 %73366
+  store i32 -1 to ptr %74367
+  now.load76369 = load i32 from ptr @now
+  77370 = mul i32 %now.load76369, i32 4
+  78371 = ptradd ptr @right_child, i32 %77370
+  store i32 -1 to ptr %78371
+  now.load80373 = load i32 from ptr @now
+  81374 = add i32 %now.load80373, i32 1
+  store i32 %81374 to ptr @now
+  83376 = sub i32 %81374, i32 1
+  br bb %if.exit286.split
+if.exit286.split:
+  289.ret = phi [bb %if.exit286, i32 %83376]
   br bb %while.cond
 while.cond:
-  i.phi338 = phi [bb %if.exit286, i32 1, bb %while.body, i32 %302]
+  i.phi338 = phi [bb %if.exit286.split, i32 1, bb %while.body, i32 %302]
   296 = icmp slt i32 %i.phi338, i32 %279
   br i1 %296, bb %while.body, bb %while.exit
 while.body:
   299 = call i32 getint()
-  300 = call i32 insert(i32 %289, i32 %299)
+  300 = call i32 insert(i32 %289.ret, i32 %299)
   302 = add i32 %i.phi338, i32 1
   br bb %while.cond
 while.exit:
-  call void inorder(i32 %289)
+  call void inorder(i32 %289.ret)
   call void putch(i32 10)
   307 = call i32 getint()
   br bb %while.cond308
 while.cond308:
   i.phi = phi [bb %while.exit, i32 0, bb %while.body309, i32 %319]
-  root.phi = phi [bb %while.exit, i32 %289, bb %while.body309, i32 %317]
+  root.phi = phi [bb %while.exit, i32 %289.ret, bb %while.body309, i32 %317]
   313 = icmp slt i32 %i.phi, i32 %307
   br i1 %313, bb %while.body309, bb %while.exit310
 while.body309:

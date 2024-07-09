@@ -24,9 +24,6 @@ public:
   BasicBlock *getCurrentBB() { return getInsertPoint().getBB(); }
   Function *getCurrentFunc() { return getCurrentBB()->getParent(); }
 
-  Value *buildInst(InstID opcode, const std::vector<Value *> &operands,
-                   Type *type);
-
   template <typename Inst>
   Value *buildBinOp(Value *LHS, Value *RHS, Type *type,
                     const std::string &name = "") {

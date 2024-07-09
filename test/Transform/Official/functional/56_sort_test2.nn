@@ -32,10 +32,11 @@ entry52:
   store i32 7 to ptr %71
   73 = ptradd ptr %a, i32 36
   store i32 8 to ptr %73
-  75 = call i32 insertsort(ptr %a)
+  br bb %insertsort.entry
+entry52.split:
   br bb %while.cond76
 while.cond76:
-  i74.phi = phi [bb %entry52, i32 %75, bb %while.body77, i32 %93]
+  i74.phi = phi [bb %entry52.split, i32 0, bb %while.body77, i32 %93]
   n.load80 = load i32 from ptr @n
   81 = icmp slt i32 %i74.phi, i32 %n.load80
   br i1 %81, bb %while.body77, bb %while.exit78
@@ -49,6 +50,53 @@ while.body77:
   br bb %while.cond76
 while.exit78:
   ret i32 0
+insertsort.entry:
+  br bb %insertsort.while.cond
+insertsort.while.cond:
+  i.phi107 = phi [bb %insertsort.entry, i32 1, bb %insertsort.while.exit19, i32 %51138]
+  n.load108 = load i32 from ptr @n
+  7109 = icmp slt i32 %i.phi107, i32 %n.load108
+  br i1 %7109, bb %insertsort.while.body, bb %insertsort.while.exit
+insertsort.while.body:
+  11112 = mul i32 %i.phi107, i32 4
+  12113 = ptradd ptr %a, i32 %11112
+  12.load114 = load i32 from ptr %12113
+  16115 = sub i32 %i.phi107, i32 1
+  br bb %insertsort.while.cond17
+insertsort.while.exit:
+  br bb %entry52.split
+insertsort.while.cond17:
+  j.phi120 = phi [bb %insertsort.while.body, i32 %16115, bb %insertsort.while.body18, i32 %44131]
+  22121 = icmp sgt i32 %j.phi120, i32 -1
+  br i1 %22121, bb %insertsort.select.then, bb %insertsort.select.else
+insertsort.while.body18:
+  36124 = add i32 %j.phi120, i32 1
+  37125 = mul i32 %36124, i32 4
+  38126 = ptradd ptr %a, i32 %37125
+  40127 = mul i32 %j.phi120, i32 4
+  41128 = ptradd ptr %a, i32 %40127
+  41.load129 = load i32 from ptr %41128
+  store i32 %41.load129 to ptr %38126
+  44131 = sub i32 %j.phi120, i32 1
+  br bb %insertsort.while.cond17
+insertsort.while.exit19:
+  46134 = add i32 %j.phi120, i32 1
+  47135 = mul i32 %46134, i32 4
+  48136 = ptradd ptr %a, i32 %47135
+  store i32 %12.load114 to ptr %48136
+  51138 = add i32 %i.phi107, i32 1
+  br bb %insertsort.while.cond
+insertsort.select.then:
+  29141 = mul i32 %j.phi120, i32 4
+  30142 = ptradd ptr %a, i32 %29141
+  30.load143 = load i32 from ptr %30142
+  32144 = icmp slt i32 %12.load114, i32 %30.load143
+  br bb %insertsort.select.exit
+insertsort.select.else:
+  br bb %insertsort.select.exit
+insertsort.select.exit:
+  select.phi149 = phi [bb %insertsort.select.else, i1 0, bb %insertsort.select.then, i1 %32144]
+  br i1 %select.phi149, bb %insertsort.while.body18, bb %insertsort.while.exit19
 }
 
 external float getfloat()

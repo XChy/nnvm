@@ -100,6 +100,17 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
+  if (auto phi = dyn_cast<PhiInst>(I)) {
+    out << "phi " << phi->getType()->dump();
+    std::vector<std::string> incomingDumps;
+    for (int i = 0; i < phi->getIncomingNum(); i++) {
+      incomingDumps.push_back(" [ " + valueToName[phi->getIncomingValue(i)] +
+                              ", " + valueToName[phi->getIncomingBB(i)] + " ]");
+    }
+    out << join(incomingDumps.begin(), incomingDumps.end(), ",");
+    return;
+  }
+
   if (auto LI = dyn_cast<LoadInst>(I)) {
     out << "load " << LI->getType()->dump() << ", "
         << LI->getOperand(0)->getType()->dump() << " "

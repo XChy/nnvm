@@ -18,8 +18,12 @@ while.cond:
   19 = icmp slt i32 %i.phi, i32 100
   br i1 %19, bb %while.body, bb %while.exit
 while.body:
-  21 = call i32 func()
-  22 = icmp eq i32 %21, i32 1
+  a.load41 = load i32 from ptr @a
+  642 = icmp eq i32 1, i32 %a.load41
+  br i1 %642, bb %func.then, bb %func.else
+while.body.split:
+  21.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]
+  22 = icmp eq i32 %21.ret, i32 1
   br i1 %22, bb %then23, bb %if.exit24
 while.exit:
   30 = icmp slt i32 %result.phi37, i32 100
@@ -28,7 +32,7 @@ then23:
   26 = add i32 %result.phi37, i32 1
   br bb %if.exit24
 if.exit24:
-  result.phi = phi [bb %while.body, i32 %result.phi37, bb %then23, i32 %26]
+  result.phi = phi [bb %while.body.split, i32 %result.phi37, bb %then23, i32 %26]
   28 = add i32 %i.phi, i32 1
   br bb %while.cond
 then31:
@@ -39,6 +43,10 @@ if.exit32:
 else33:
   call void putint(i32 0)
   br bb %if.exit32
+func.then:
+  br bb %while.body.split
+func.else:
+  br bb %while.body.split
 }
 
 external float getfloat()

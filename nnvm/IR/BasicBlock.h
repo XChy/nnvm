@@ -41,13 +41,13 @@ public:
   Iterator begin() { return {instList.begin(), this}; }
   Iterator end() { return {instList.end(), this}; }
 
-  TerminatorInst *getTerminator() {
+  TerminatorInst *getTerminator() const {
     if (instList.empty())
       return nullptr;
     return dyn_cast<TerminatorInst>(instList.getLast());
   }
 
-  uint getSuccNum() { return getTerminator()->getSuccNum(); }
+  uint getSuccNum() const { return getTerminator()->getSuccNum(); }
   BasicBlock *getSucc(uint64_t index) {
     return getTerminator()->getSucc(index);
   }
@@ -113,6 +113,7 @@ public:
   }
 
   bool containsPhi() { return dyn_cast<PhiInst>(*begin()); }
+  bool isPredecessorOf(BasicBlock *other);
 
   const List<Instruction> &getInsts() const { return instList; }
   List<Instruction> &getInsts() { return instList; }

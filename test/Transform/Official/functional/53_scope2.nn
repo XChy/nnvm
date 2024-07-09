@@ -2,8 +2,7 @@ global ptr k init with i32 0
 i32 main() {
 entry:
   store i32 3389 to ptr @k
-  6 = add i32 3389, i32 1
-  store i32 %6 to ptr @k
+  store i32 3390 to ptr @k
   br bb %while.cond
 while.cond:
   g25.phi44 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g25.phi]

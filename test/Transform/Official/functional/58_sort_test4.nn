@@ -85,10 +85,11 @@ entry60:
   81 = ptradd ptr %a, i32 36
   store i32 8 to ptr %81
   n.load = load i32 from ptr @n
-  84 = call i32 select_sort(ptr %a, i32 %n.load)
+  br bb %select_sort.entry
+entry60.split:
   br bb %while.cond85
 while.cond85:
-  i82.phi = phi [bb %entry60, i32 %84, bb %while.body86, i32 %102]
+  i82.phi = phi [bb %entry60.split, i32 0, bb %while.body86, i32 %102]
   n.load89 = load i32 from ptr @n
   90 = icmp slt i32 %i82.phi, i32 %n.load89
   br i1 %90, bb %while.body86, bb %while.exit87
@@ -102,6 +103,55 @@ while.body86:
   br bb %while.cond85
 while.exit87:
   ret i32 0
+select_sort.entry:
+  br bb %select_sort.while.cond
+select_sort.while.cond:
+  tmp.phi110117 = phi [bb %select_sort.entry, i32 ub, bb %select_sort.if.exit41, i32 %tmp.phi161]
+  i.phi118 = phi [bb %select_sort.entry, i32 0, bb %select_sort.if.exit41, i32 %15123]
+  10119 = sub i32 %n.load, i32 1
+  11120 = icmp slt i32 %i.phi118, i32 %10119
+  br i1 %11120, bb %select_sort.while.body, bb %select_sort.while.exit
+select_sort.while.body:
+  15123 = add i32 %i.phi118, i32 1
+  br bb %select_sort.while.cond16
+select_sort.while.exit:
+  br bb %entry60.split
+select_sort.while.cond16:
+  min.phi107128 = phi [bb %select_sort.while.body, i32 %i.phi118, bb %select_sort.if.exit, i32 %min.phi147]
+  j.phi129 = phi [bb %select_sort.while.body, i32 %15123, bb %select_sort.if.exit, i32 %36148]
+  21130 = icmp slt i32 %j.phi129, i32 %n.load
+  br i1 %21130, bb %select_sort.while.body17, bb %select_sort.while.exit18
+select_sort.while.body17:
+  24133 = mul i32 %min.phi107128, i32 4
+  25134 = ptradd ptr %a, i32 %24133
+  25.load135 = load i32 from ptr %25134
+  28136 = mul i32 %j.phi129, i32 4
+  29137 = ptradd ptr %a, i32 %28136
+  29.load138 = load i32 from ptr %29137
+  31139 = icmp sgt i32 %25.load135, i32 %29.load138
+  br i1 %31139, bb %select_sort.then, bb %select_sort.if.exit
+select_sort.while.exit18:
+  39142 = icmp ne i32 %min.phi107128, i32 %i.phi118
+  br i1 %39142, bb %select_sort.then40, bb %select_sort.if.exit41
+select_sort.then:
+  br bb %select_sort.if.exit
+select_sort.if.exit:
+  min.phi147 = phi [bb %select_sort.while.body17, i32 %min.phi107128, bb %select_sort.then, i32 %j.phi129]
+  36148 = add i32 %j.phi129, i32 1
+  br bb %select_sort.while.cond16
+select_sort.then40:
+  44151 = mul i32 %min.phi107128, i32 4
+  45152 = ptradd ptr %a, i32 %44151
+  45.load153 = load i32 from ptr %45152
+  51154 = mul i32 %i.phi118, i32 4
+  52155 = ptradd ptr %a, i32 %51154
+  52.load156 = load i32 from ptr %52155
+  store i32 %52.load156 to ptr %45152
+  store i32 %45.load153 to ptr %52155
+  br bb %select_sort.if.exit41
+select_sort.if.exit41:
+  tmp.phi161 = phi [bb %select_sort.while.exit18, i32 %tmp.phi110117, bb %select_sort.then40, i32 %45.load153]
+  br bb %select_sort.while.cond
 }
 
 external float getfloat()

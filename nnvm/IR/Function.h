@@ -15,7 +15,10 @@ public:
            const std::vector<Argument *> &args, bool external = false);
   ~Function();
 
+  using Iterator = List<BasicBlock>::Iterator;
+
   void insert(BasicBlock *BB);
+  void insertBack(BasicBlock *BB, Iterator pos);
 
   List<BasicBlock>::Iterator begin() { return BBList.begin(); }
   List<BasicBlock>::Iterator end() { return BBList.end(); };
@@ -37,10 +40,11 @@ public:
   void setExternal(bool external) { this->external = external; }
   bool isExternal() { return external; }
 
+  List<BasicBlock> &getBBList() { return BBList; }
+  const List<BasicBlock> &getBBList() const { return BBList; }
+
   std::string dumpAsOperand();
   std::string dump();
-
-  using Iterator = List<BasicBlock>::Iterator;
 
 private:
   List<BasicBlock> BBList;

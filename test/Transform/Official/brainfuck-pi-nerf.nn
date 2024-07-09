@@ -269,10 +269,13 @@ external i32 getfarray(ptr )
 
 void read_program() {
 entry67:
-  69 = call i32 get_bf_char()
+  2444 = call i32 getch()
+  br bb %get_bf_char.while.cond
+entry67.split:
+  69.ret = phi [bb %get_bf_char.while.exit, i32 %get.phi447]
   br bb %while.cond70
 while.cond70:
-  get68.phi = phi [bb %entry67, i32 %69, bb %while.body71, i32 %80]
+  get68.phi = phi [bb %entry67.split, i32 %69.ret, bb %while.body71.split, i32 %80.ret]
   74 = icmp ne i32 %get68.phi, i32 35
   br i1 %74, bb %while.body71, bb %while.exit72
 while.body71:
@@ -280,7 +283,10 @@ while.body71:
   77 = mul i32 %program_length.load, i32 4
   78 = ptradd ptr @program, i32 %77
   store i32 %get68.phi to ptr %78
-  80 = call i32 get_bf_char()
+  2522 = call i32 getch()
+  br bb %get_bf_char.while.cond524
+while.body71.split:
+  80.ret = phi [bb %get_bf_char.while.exit531, i32 %get.phi525]
   program_length.load81 = load i32 from ptr @program_length
   82 = add i32 %program_length.load81, i32 1
   store i32 %82 to ptr @program_length
@@ -310,6 +316,152 @@ while.body93:
   br bb %while.cond92
 while.exit94:
   ret 
+get_bf_char.while.cond:
+  get.phi447 = phi [bb %entry67, i32 %2444, bb %get_bf_char.while.body, i32 %65451]
+  7448 = icmp ne i32 %get.phi447, i32 62
+  br i1 %7448, bb %get_bf_char.select.then, bb %get_bf_char.select.else
+get_bf_char.while.body:
+  65451 = call i32 getch()
+  br bb %get_bf_char.while.cond
+get_bf_char.while.exit:
+  br bb %entry67.split
+get_bf_char.select.then:
+  13456 = icmp ne i32 %get.phi447, i32 60
+  br bb %get_bf_char.select.exit
+get_bf_char.select.else:
+  br bb %get_bf_char.select.exit
+get_bf_char.select.exit:
+  select.phi461 = phi [bb %get_bf_char.select.else, i1 0, bb %get_bf_char.select.then, i1 %13456]
+  br i1 %select.phi461, bb %get_bf_char.select.then15, bb %get_bf_char.select.else16
+get_bf_char.select.then15:
+  20464 = icmp ne i32 %get.phi447, i32 43
+  br bb %get_bf_char.select.exit17
+get_bf_char.select.else16:
+  br bb %get_bf_char.select.exit17
+get_bf_char.select.exit17:
+  select18.phi469 = phi [bb %get_bf_char.select.else16, i1 0, bb %get_bf_char.select.then15, i1 %20464]
+  br i1 %select18.phi469, bb %get_bf_char.select.then22, bb %get_bf_char.select.else23
+get_bf_char.select.then22:
+  27472 = icmp ne i32 %get.phi447, i32 45
+  br bb %get_bf_char.select.exit24
+get_bf_char.select.else23:
+  br bb %get_bf_char.select.exit24
+get_bf_char.select.exit24:
+  select25.phi477 = phi [bb %get_bf_char.select.else23, i1 0, bb %get_bf_char.select.then22, i1 %27472]
+  br i1 %select25.phi477, bb %get_bf_char.select.then29, bb %get_bf_char.select.else30
+get_bf_char.select.then29:
+  34480 = icmp ne i32 %get.phi447, i32 91
+  br bb %get_bf_char.select.exit31
+get_bf_char.select.else30:
+  br bb %get_bf_char.select.exit31
+get_bf_char.select.exit31:
+  select32.phi485 = phi [bb %get_bf_char.select.else30, i1 0, bb %get_bf_char.select.then29, i1 %34480]
+  br i1 %select32.phi485, bb %get_bf_char.select.then36, bb %get_bf_char.select.else37
+get_bf_char.select.then36:
+  41488 = icmp ne i32 %get.phi447, i32 93
+  br bb %get_bf_char.select.exit38
+get_bf_char.select.else37:
+  br bb %get_bf_char.select.exit38
+get_bf_char.select.exit38:
+  select39.phi493 = phi [bb %get_bf_char.select.else37, i1 0, bb %get_bf_char.select.then36, i1 %41488]
+  br i1 %select39.phi493, bb %get_bf_char.select.then43, bb %get_bf_char.select.else44
+get_bf_char.select.then43:
+  48496 = icmp ne i32 %get.phi447, i32 46
+  br bb %get_bf_char.select.exit45
+get_bf_char.select.else44:
+  br bb %get_bf_char.select.exit45
+get_bf_char.select.exit45:
+  select46.phi501 = phi [bb %get_bf_char.select.else44, i1 0, bb %get_bf_char.select.then43, i1 %48496]
+  br i1 %select46.phi501, bb %get_bf_char.select.then50, bb %get_bf_char.select.else51
+get_bf_char.select.then50:
+  55504 = icmp ne i32 %get.phi447, i32 44
+  br bb %get_bf_char.select.exit52
+get_bf_char.select.else51:
+  br bb %get_bf_char.select.exit52
+get_bf_char.select.exit52:
+  select53.phi509 = phi [bb %get_bf_char.select.else51, i1 0, bb %get_bf_char.select.then50, i1 %55504]
+  br i1 %select53.phi509, bb %get_bf_char.select.then57, bb %get_bf_char.select.else58
+get_bf_char.select.then57:
+  62512 = icmp ne i32 %get.phi447, i32 35
+  br bb %get_bf_char.select.exit59
+get_bf_char.select.else58:
+  br bb %get_bf_char.select.exit59
+get_bf_char.select.exit59:
+  select60.phi517 = phi [bb %get_bf_char.select.else58, i1 0, bb %get_bf_char.select.then57, i1 %62512]
+  br i1 %select60.phi517, bb %get_bf_char.while.body, bb %get_bf_char.while.exit
+get_bf_char.while.cond524:
+  get.phi525 = phi [bb %while.body71, i32 %2522, bb %get_bf_char.while.body528, i32 %65529]
+  7526 = icmp ne i32 %get.phi525, i32 62
+  br i1 %7526, bb %get_bf_char.select.then533, bb %get_bf_char.select.else536
+get_bf_char.while.body528:
+  65529 = call i32 getch()
+  br bb %get_bf_char.while.cond524
+get_bf_char.while.exit531:
+  br bb %while.body71.split
+get_bf_char.select.then533:
+  13534 = icmp ne i32 %get.phi525, i32 60
+  br bb %get_bf_char.select.exit538
+get_bf_char.select.else536:
+  br bb %get_bf_char.select.exit538
+get_bf_char.select.exit538:
+  select.phi539 = phi [bb %get_bf_char.select.else536, i1 0, bb %get_bf_char.select.then533, i1 %13534]
+  br i1 %select.phi539, bb %get_bf_char.select.then15541, bb %get_bf_char.select.else16544
+get_bf_char.select.then15541:
+  20542 = icmp ne i32 %get.phi525, i32 43
+  br bb %get_bf_char.select.exit17546
+get_bf_char.select.else16544:
+  br bb %get_bf_char.select.exit17546
+get_bf_char.select.exit17546:
+  select18.phi547 = phi [bb %get_bf_char.select.else16544, i1 0, bb %get_bf_char.select.then15541, i1 %20542]
+  br i1 %select18.phi547, bb %get_bf_char.select.then22549, bb %get_bf_char.select.else23552
+get_bf_char.select.then22549:
+  27550 = icmp ne i32 %get.phi525, i32 45
+  br bb %get_bf_char.select.exit24554
+get_bf_char.select.else23552:
+  br bb %get_bf_char.select.exit24554
+get_bf_char.select.exit24554:
+  select25.phi555 = phi [bb %get_bf_char.select.else23552, i1 0, bb %get_bf_char.select.then22549, i1 %27550]
+  br i1 %select25.phi555, bb %get_bf_char.select.then29557, bb %get_bf_char.select.else30560
+get_bf_char.select.then29557:
+  34558 = icmp ne i32 %get.phi525, i32 91
+  br bb %get_bf_char.select.exit31562
+get_bf_char.select.else30560:
+  br bb %get_bf_char.select.exit31562
+get_bf_char.select.exit31562:
+  select32.phi563 = phi [bb %get_bf_char.select.else30560, i1 0, bb %get_bf_char.select.then29557, i1 %34558]
+  br i1 %select32.phi563, bb %get_bf_char.select.then36565, bb %get_bf_char.select.else37568
+get_bf_char.select.then36565:
+  41566 = icmp ne i32 %get.phi525, i32 93
+  br bb %get_bf_char.select.exit38570
+get_bf_char.select.else37568:
+  br bb %get_bf_char.select.exit38570
+get_bf_char.select.exit38570:
+  select39.phi571 = phi [bb %get_bf_char.select.else37568, i1 0, bb %get_bf_char.select.then36565, i1 %41566]
+  br i1 %select39.phi571, bb %get_bf_char.select.then43573, bb %get_bf_char.select.else44576
+get_bf_char.select.then43573:
+  48574 = icmp ne i32 %get.phi525, i32 46
+  br bb %get_bf_char.select.exit45578
+get_bf_char.select.else44576:
+  br bb %get_bf_char.select.exit45578
+get_bf_char.select.exit45578:
+  select46.phi579 = phi [bb %get_bf_char.select.else44576, i1 0, bb %get_bf_char.select.then43573, i1 %48574]
+  br i1 %select46.phi579, bb %get_bf_char.select.then50581, bb %get_bf_char.select.else51584
+get_bf_char.select.then50581:
+  55582 = icmp ne i32 %get.phi525, i32 44
+  br bb %get_bf_char.select.exit52586
+get_bf_char.select.else51584:
+  br bb %get_bf_char.select.exit52586
+get_bf_char.select.exit52586:
+  select53.phi587 = phi [bb %get_bf_char.select.else51584, i1 0, bb %get_bf_char.select.then50581, i1 %55582]
+  br i1 %select53.phi587, bb %get_bf_char.select.then57589, bb %get_bf_char.select.else58592
+get_bf_char.select.then57589:
+  62590 = icmp ne i32 %get.phi525, i32 35
+  br bb %get_bf_char.select.exit59594
+get_bf_char.select.else58592:
+  br bb %get_bf_char.select.exit59594
+get_bf_char.select.exit59594:
+  select60.phi595 = phi [bb %get_bf_char.select.else58592, i1 0, bb %get_bf_char.select.then57589, i1 %62590]
+  br i1 %select60.phi595, bb %get_bf_char.while.body528, bb %get_bf_char.while.exit531
 }
 
 external void putch(i32 )
@@ -318,12 +470,222 @@ external void _sysy_stoptime(i32 )
 
 i32 main() {
 entry298:
-  call void read_program()
+  2600 = call i32 getch()
+  br bb %get_bf_char.while.cond602
+entry298.split399:
   call void _sysy_starttime(i32 116)
   call void run_program()
   call void _sysy_stoptime(i32 118)
-  call void output_()
+  br bb %output_.entry282
+entry298.split:
   ret i32 0
+output_.entry282:
+  br bb %output_.while.cond284
+output_.while.cond284:
+  i283.phi386 = phi [bb %output_.entry282, i32 0, bb %output_.while.body285, i32 %297395]
+  output_length.load288387 = load i32 from ptr @output_length
+  289388 = icmp slt i32 %i283.phi386, i32 %output_length.load288387
+  br i1 %289388, bb %output_.while.body285, bb %output_.while.exit286
+output_.while.body285:
+  292391 = mul i32 %i283.phi386, i32 4
+  293392 = ptradd ptr @output, i32 %292391
+  293.load393 = load i32 from ptr %293392
+  call void putch(i32 %293.load393)
+  297395 = add i32 %i283.phi386, i32 1
+  br bb %output_.while.cond284
+output_.while.exit286:
+  br bb %entry298.split
+read_program.entry67.split:
+  69401.ret = phi [bb %get_bf_char.while.exit609, i32 %get.phi603]
+  br bb %read_program.while.cond70
+read_program.while.cond70:
+  get68.phi404 = phi [bb %read_program.entry67.split, i32 %69401.ret, bb %read_program.while.body71.split, i32 %80412.ret]
+  74405 = icmp ne i32 %get68.phi404, i32 35
+  br i1 %74405, bb %read_program.while.body71, bb %read_program.while.exit72
+read_program.while.body71:
+  program_length.load408 = load i32 from ptr @program_length
+  77409 = mul i32 %program_length.load408, i32 4
+  78410 = ptradd ptr @program, i32 %77409
+  store i32 %get68.phi404 to ptr %78410
+  2678 = call i32 getch()
+  br bb %get_bf_char.while.cond680
+read_program.while.body71.split:
+  80412.ret = phi [bb %get_bf_char.while.exit687, i32 %get.phi681]
+  program_length.load81413 = load i32 from ptr @program_length
+  82414 = add i32 %program_length.load81413, i32 1
+  store i32 %82414 to ptr @program_length
+  br bb %read_program.while.cond70
+read_program.while.exit72:
+  84418 = call i32 getch()
+  86419 = icmp ne i32 %84418, i32 105
+  br i1 %86419, bb %read_program.then, bb %read_program.if.exit
+read_program.then:
+  br bb %entry298.split399
+read_program.if.exit:
+  89424 = call i32 getint()
+  store i32 %89424 to ptr @input_length
+  90426 = call i32 getch()
+  br bb %read_program.while.cond92
+read_program.while.cond92:
+  i.phi429 = phi [bb %read_program.if.exit, i32 0, bb %read_program.while.body93, i32 %104438]
+  input_length.load430 = load i32 from ptr @input_length
+  97431 = icmp slt i32 %i.phi429, i32 %input_length.load430
+  br i1 %97431, bb %read_program.while.body93, bb %read_program.while.exit94
+read_program.while.body93:
+  100434 = mul i32 %i.phi429, i32 4
+  101435 = ptradd ptr @input, i32 %100434
+  102436 = call i32 getch()
+  store i32 %102436 to ptr %101435
+  104438 = add i32 %i.phi429, i32 1
+  br bb %read_program.while.cond92
+read_program.while.exit94:
+  br bb %entry298.split399
+get_bf_char.while.cond602:
+  get.phi603 = phi [bb %entry298, i32 %2600, bb %get_bf_char.while.body606, i32 %65607]
+  7604 = icmp ne i32 %get.phi603, i32 62
+  br i1 %7604, bb %get_bf_char.select.then611, bb %get_bf_char.select.else614
+get_bf_char.while.body606:
+  65607 = call i32 getch()
+  br bb %get_bf_char.while.cond602
+get_bf_char.while.exit609:
+  br bb %read_program.entry67.split
+get_bf_char.select.then611:
+  13612 = icmp ne i32 %get.phi603, i32 60
+  br bb %get_bf_char.select.exit616
+get_bf_char.select.else614:
+  br bb %get_bf_char.select.exit616
+get_bf_char.select.exit616:
+  select.phi617 = phi [bb %get_bf_char.select.else614, i1 0, bb %get_bf_char.select.then611, i1 %13612]
+  br i1 %select.phi617, bb %get_bf_char.select.then15619, bb %get_bf_char.select.else16622
+get_bf_char.select.then15619:
+  20620 = icmp ne i32 %get.phi603, i32 43
+  br bb %get_bf_char.select.exit17624
+get_bf_char.select.else16622:
+  br bb %get_bf_char.select.exit17624
+get_bf_char.select.exit17624:
+  select18.phi625 = phi [bb %get_bf_char.select.else16622, i1 0, bb %get_bf_char.select.then15619, i1 %20620]
+  br i1 %select18.phi625, bb %get_bf_char.select.then22627, bb %get_bf_char.select.else23630
+get_bf_char.select.then22627:
+  27628 = icmp ne i32 %get.phi603, i32 45
+  br bb %get_bf_char.select.exit24632
+get_bf_char.select.else23630:
+  br bb %get_bf_char.select.exit24632
+get_bf_char.select.exit24632:
+  select25.phi633 = phi [bb %get_bf_char.select.else23630, i1 0, bb %get_bf_char.select.then22627, i1 %27628]
+  br i1 %select25.phi633, bb %get_bf_char.select.then29635, bb %get_bf_char.select.else30638
+get_bf_char.select.then29635:
+  34636 = icmp ne i32 %get.phi603, i32 91
+  br bb %get_bf_char.select.exit31640
+get_bf_char.select.else30638:
+  br bb %get_bf_char.select.exit31640
+get_bf_char.select.exit31640:
+  select32.phi641 = phi [bb %get_bf_char.select.else30638, i1 0, bb %get_bf_char.select.then29635, i1 %34636]
+  br i1 %select32.phi641, bb %get_bf_char.select.then36643, bb %get_bf_char.select.else37646
+get_bf_char.select.then36643:
+  41644 = icmp ne i32 %get.phi603, i32 93
+  br bb %get_bf_char.select.exit38648
+get_bf_char.select.else37646:
+  br bb %get_bf_char.select.exit38648
+get_bf_char.select.exit38648:
+  select39.phi649 = phi [bb %get_bf_char.select.else37646, i1 0, bb %get_bf_char.select.then36643, i1 %41644]
+  br i1 %select39.phi649, bb %get_bf_char.select.then43651, bb %get_bf_char.select.else44654
+get_bf_char.select.then43651:
+  48652 = icmp ne i32 %get.phi603, i32 46
+  br bb %get_bf_char.select.exit45656
+get_bf_char.select.else44654:
+  br bb %get_bf_char.select.exit45656
+get_bf_char.select.exit45656:
+  select46.phi657 = phi [bb %get_bf_char.select.else44654, i1 0, bb %get_bf_char.select.then43651, i1 %48652]
+  br i1 %select46.phi657, bb %get_bf_char.select.then50659, bb %get_bf_char.select.else51662
+get_bf_char.select.then50659:
+  55660 = icmp ne i32 %get.phi603, i32 44
+  br bb %get_bf_char.select.exit52664
+get_bf_char.select.else51662:
+  br bb %get_bf_char.select.exit52664
+get_bf_char.select.exit52664:
+  select53.phi665 = phi [bb %get_bf_char.select.else51662, i1 0, bb %get_bf_char.select.then50659, i1 %55660]
+  br i1 %select53.phi665, bb %get_bf_char.select.then57667, bb %get_bf_char.select.else58670
+get_bf_char.select.then57667:
+  62668 = icmp ne i32 %get.phi603, i32 35
+  br bb %get_bf_char.select.exit59672
+get_bf_char.select.else58670:
+  br bb %get_bf_char.select.exit59672
+get_bf_char.select.exit59672:
+  select60.phi673 = phi [bb %get_bf_char.select.else58670, i1 0, bb %get_bf_char.select.then57667, i1 %62668]
+  br i1 %select60.phi673, bb %get_bf_char.while.body606, bb %get_bf_char.while.exit609
+get_bf_char.while.cond680:
+  get.phi681 = phi [bb %read_program.while.body71, i32 %2678, bb %get_bf_char.while.body684, i32 %65685]
+  7682 = icmp ne i32 %get.phi681, i32 62
+  br i1 %7682, bb %get_bf_char.select.then689, bb %get_bf_char.select.else692
+get_bf_char.while.body684:
+  65685 = call i32 getch()
+  br bb %get_bf_char.while.cond680
+get_bf_char.while.exit687:
+  br bb %read_program.while.body71.split
+get_bf_char.select.then689:
+  13690 = icmp ne i32 %get.phi681, i32 60
+  br bb %get_bf_char.select.exit694
+get_bf_char.select.else692:
+  br bb %get_bf_char.select.exit694
+get_bf_char.select.exit694:
+  select.phi695 = phi [bb %get_bf_char.select.else692, i1 0, bb %get_bf_char.select.then689, i1 %13690]
+  br i1 %select.phi695, bb %get_bf_char.select.then15697, bb %get_bf_char.select.else16700
+get_bf_char.select.then15697:
+  20698 = icmp ne i32 %get.phi681, i32 43
+  br bb %get_bf_char.select.exit17702
+get_bf_char.select.else16700:
+  br bb %get_bf_char.select.exit17702
+get_bf_char.select.exit17702:
+  select18.phi703 = phi [bb %get_bf_char.select.else16700, i1 0, bb %get_bf_char.select.then15697, i1 %20698]
+  br i1 %select18.phi703, bb %get_bf_char.select.then22705, bb %get_bf_char.select.else23708
+get_bf_char.select.then22705:
+  27706 = icmp ne i32 %get.phi681, i32 45
+  br bb %get_bf_char.select.exit24710
+get_bf_char.select.else23708:
+  br bb %get_bf_char.select.exit24710
+get_bf_char.select.exit24710:
+  select25.phi711 = phi [bb %get_bf_char.select.else23708, i1 0, bb %get_bf_char.select.then22705, i1 %27706]
+  br i1 %select25.phi711, bb %get_bf_char.select.then29713, bb %get_bf_char.select.else30716
+get_bf_char.select.then29713:
+  34714 = icmp ne i32 %get.phi681, i32 91
+  br bb %get_bf_char.select.exit31718
+get_bf_char.select.else30716:
+  br bb %get_bf_char.select.exit31718
+get_bf_char.select.exit31718:
+  select32.phi719 = phi [bb %get_bf_char.select.else30716, i1 0, bb %get_bf_char.select.then29713, i1 %34714]
+  br i1 %select32.phi719, bb %get_bf_char.select.then36721, bb %get_bf_char.select.else37724
+get_bf_char.select.then36721:
+  41722 = icmp ne i32 %get.phi681, i32 93
+  br bb %get_bf_char.select.exit38726
+get_bf_char.select.else37724:
+  br bb %get_bf_char.select.exit38726
+get_bf_char.select.exit38726:
+  select39.phi727 = phi [bb %get_bf_char.select.else37724, i1 0, bb %get_bf_char.select.then36721, i1 %41722]
+  br i1 %select39.phi727, bb %get_bf_char.select.then43729, bb %get_bf_char.select.else44732
+get_bf_char.select.then43729:
+  48730 = icmp ne i32 %get.phi681, i32 46
+  br bb %get_bf_char.select.exit45734
+get_bf_char.select.else44732:
+  br bb %get_bf_char.select.exit45734
+get_bf_char.select.exit45734:
+  select46.phi735 = phi [bb %get_bf_char.select.else44732, i1 0, bb %get_bf_char.select.then43729, i1 %48730]
+  br i1 %select46.phi735, bb %get_bf_char.select.then50737, bb %get_bf_char.select.else51740
+get_bf_char.select.then50737:
+  55738 = icmp ne i32 %get.phi681, i32 44
+  br bb %get_bf_char.select.exit52742
+get_bf_char.select.else51740:
+  br bb %get_bf_char.select.exit52742
+get_bf_char.select.exit52742:
+  select53.phi743 = phi [bb %get_bf_char.select.else51740, i1 0, bb %get_bf_char.select.then50737, i1 %55738]
+  br i1 %select53.phi743, bb %get_bf_char.select.then57745, bb %get_bf_char.select.else58748
+get_bf_char.select.then57745:
+  62746 = icmp ne i32 %get.phi681, i32 35
+  br bb %get_bf_char.select.exit59750
+get_bf_char.select.else58748:
+  br bb %get_bf_char.select.exit59750
+get_bf_char.select.exit59750:
+  select60.phi751 = phi [bb %get_bf_char.select.else58748, i1 0, bb %get_bf_char.select.then57745, i1 %62746]
+  br i1 %select60.phi751, bb %get_bf_char.while.body684, bb %get_bf_char.while.exit687
 }
 
 external float getfloat()

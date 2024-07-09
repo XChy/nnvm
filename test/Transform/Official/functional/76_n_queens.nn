@@ -97,7 +97,11 @@ if.exit71:
   116 = add i32 %i28.phi, i32 1
   br bb %while.cond29
 then79:
-  call void printans()
+  sum.load140 = load i32 from ptr @sum
+  2141 = add i32 %sum.load140, i32 1
+  store i32 %2141 to ptr @sum
+  br bb %printans.while.cond
+then79.split:
   br bb %if.exit80
 if.exit80:
   store i32 1 to ptr %38
@@ -122,6 +126,28 @@ if.exit80:
   114 = ptradd ptr @line2, i32 %113
   store i32 0 to ptr %114
   br bb %if.exit71
+printans.while.cond:
+  i.phi145 = phi [bb %then79, i32 1, bb %printans.else, i32 %25164]
+  n.load146 = load i32 from ptr @n
+  9147 = icmp sle i32 %i.phi145, i32 %n.load146
+  br i1 %9147, bb %printans.while.body, bb %printans.while.exit
+printans.while.body:
+  12150 = mul i32 %i.phi145, i32 4
+  13151 = ptradd ptr @ans, i32 %12150
+  13.load152 = load i32 from ptr %13151
+  call void putint(i32 %13.load152)
+  n.load17154 = load i32 from ptr @n
+  18155 = icmp eq i32 %i.phi145, i32 %n.load17154
+  br i1 %18155, bb %printans.then, bb %printans.else
+printans.while.exit:
+  br bb %then79.split
+printans.then:
+  call void putch(i32 10)
+  br bb %then79.split
+printans.else:
+  call void putch(i32 32)
+  25164 = add i32 %i.phi145, i32 1
+  br bb %printans.while.cond
 }
 
 external void putarray(i32 , ptr )
