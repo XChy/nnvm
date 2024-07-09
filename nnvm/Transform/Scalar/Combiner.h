@@ -34,5 +34,6 @@ private:
 
   ConstantFold folder;
   IRBuilder builder;
+  Module *module;
 };
 } /* namespace nnvm */

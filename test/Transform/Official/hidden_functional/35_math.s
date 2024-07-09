@@ -553,17 +553,17 @@ bb20:
   JAL zero, bb30
 bb21:
   FSGNJ.S ft4, fs11, fs11
+  FSW ft4, 0(sp)
+  FLW ft3, 0(sp)
+  FADD.S ft4, fs9, ft3
   FSW ft4, 8(sp)
   FLW ft3, 8(sp)
-  FADD.S ft4, fs9, ft3
-  FSW ft4, 12(sp)
-  FLW ft3, 12(sp)
   FLW ft4, 32(sp)
   FSUB.S ft4, ft3, ft4
-  FSW ft4, 0(sp)
+  FSW ft4, 12(sp)
   ADDI s1, zero, 0
   FCVT.S.W ft6, s1
-  FLW ft4, 0(sp)
+  FLW ft4, 12(sp)
   FLT.S s1, ft6, ft4
   BNE s1, zero, bb33
   JAL zero, bb34
@@ -581,9 +581,9 @@ bb22:
 bb23:
   LA s1, .CONSTANT.7.3
   FLW ft7, 0(s1)
-  FLW ft4, 0(sp)
-  FDIV.S fa4, ft4, ft7
   FLW ft4, 12(sp)
+  FDIV.S fa4, ft4, ft7
+  FLW ft4, 8(sp)
   FADD.S ft7, ft4, fa4
   FSGNJ.S fa0, ft7, ft7
   FLD fs6, 48(sp)
@@ -630,8 +630,8 @@ bb24:
   FLW ft4, 20(sp)
   FLW ft3, 20(sp)
   FSGNJ.S fa2, ft4, ft3
-  FLW ft4, 8(sp)
-  FLW ft3, 8(sp)
+  FLW ft4, 0(sp)
+  FLW ft3, 0(sp)
   FSGNJ.S fa3, ft4, ft3
   ADD a0, s0, zero
   CALL asr5
@@ -788,14 +788,14 @@ bb32:
   FSGNJ.S fs11, fs1, fs1
   JAL zero, bb21
 bb33:
-  FLW ft3, 0(sp)
-  FLW ft4, 0(sp)
+  FLW ft3, 12(sp)
+  FLW ft4, 12(sp)
   FSGNJ.S ft4, ft3, ft4
   FSW ft4, 16(sp)
   JAL zero, bb22
 bb34:
-  FLW ft4, 0(sp)
-  FLW ft3, 0(sp)
+  FLW ft4, 12(sp)
+  FLW ft3, 12(sp)
   FSGNJN.S fs3, ft4, ft3
   FSGNJ.S ft4, fs3, fs3
   FSW ft4, 16(sp)

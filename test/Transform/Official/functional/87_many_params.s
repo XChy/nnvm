@@ -170,16 +170,16 @@ bb3:
   LW s11, 0(t4)
   LD t3, 248(sp)
   LW t4, 0(t3)
-  SW t4, 332(sp)
+  SW t4, 328(sp)
   LD t3, 240(sp)
   LW t4, 0(t3)
-  SW t4, 320(sp)
+  SW t4, 324(sp)
   LD t3, 232(sp)
   LW t4, 0(t3)
-  SW t4, 324(sp)
+  SW t4, 320(sp)
   LD t3, 224(sp)
   LW t4, 0(t3)
-  SW t4, 328(sp)
+  SW t4, 332(sp)
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s2, zero
@@ -198,16 +198,16 @@ bb3:
   ADDI s0, sp, 12
   SW s11, 0(s0)
   ADDI s0, sp, 16
-  LW t4, 332(sp)
+  LW t4, 328(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 20
-  LW t4, 320(sp)
-  SW t4, 0(s0)
-  ADDI s0, sp, 24
   LW t4, 324(sp)
   SW t4, 0(s0)
+  ADDI s0, sp, 24
+  LW t4, 320(sp)
+  SW t4, 0(s0)
   ADDI s0, sp, 28
-  LW t4, 328(sp)
+  LW t4, 332(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 32
   LW t4, 220(sp)
@@ -257,10 +257,10 @@ bb3:
   ADDI s0, sp, 92
   LW t4, 160(sp)
   SW t4, 0(s0)
-  LW t4, 332(sp)
-  LW t3, 320(sp)
-  LW t4, 324(sp)
-  LW t3, 328(sp)
+  LW t4, 328(sp)
+  LW t3, 324(sp)
+  LW t4, 320(sp)
+  LW t3, 332(sp)
   LW t4, 220(sp)
   LW t3, 216(sp)
   LW t4, 212(sp)

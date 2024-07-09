@@ -153,6 +153,13 @@ public:
 };
 
 template <typename LSubPattern, typename RSubPattern>
+class pMul : public pBinOp<InstID::Mul, LSubPattern, RSubPattern> {
+public:
+  pMul(LSubPattern LHS, RSubPattern RHS)
+      : pBinOp<InstID::Mul, LSubPattern, RSubPattern>(LHS, RHS) {}
+};
+
+template <typename LSubPattern, typename RSubPattern>
 class pPtrAdd : public pSpecificInst<InstID::PtrAdd> {
 public:
   pPtrAdd(LSubPattern LHS, RSubPattern RHS)

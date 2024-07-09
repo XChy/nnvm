@@ -8,7 +8,8 @@ using namespace nnvm;
 using namespace nnvm::pattern;
 
 bool CombinerPass::run(Function &F) {
-  folder.setModule(F.getModule());
+  module = F.getModule();
+  folder.setModule(module);
 
   // TODO: Use worklist algorithm.
   bool changed = true;
@@ -51,6 +52,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (SubInst *SI = dyn_cast<SubInst>(I))
     return simplifySub(SI);
 
+  if (auto *MI = dyn_cast<MulInst>(I))
+    return simplifyMul(MI);
+
   if (SDivInst *SI = dyn_cast<SDivInst>(I))
     return simplifySDiv(SI);
 
@@ -68,6 +72,8 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
 Value *CombinerPass::simplifyAdd(AddInst *I) {
   Value *A, *B, *C;
+  Value *LHS = I->getLHS();
+  Value *RHS = I->getRHS();
   Type *type = I->getType();
 
   // C1 + A --> A + C1
@@ -79,10 +85,17 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
     return A;
 
   // A + A --> A * 2
-  if (match(I, pAdd(pValue(A), pMustBe(A)))) {
-    Constant *two =
-        ConstantInt::create(*I->getParent()->getParent()->getModule(), type, 2);
-    return builder.buildBinOp<MulInst>(A, two, type);
+  if (LHS == RHS) {
+    Constant *two = ConstantInt::create(*module, type, 2);
+    return builder.buildBinOp<MulInst>(LHS, two, type);
+  }
+
+  // (A * C) + A --> A * (C + 1)
+  if (match(LHS, pMul(pMustBe(RHS), pConstant(C)))) {
+    Constant *one = ConstantInt::create(*module, type, 1);
+    Value *addc = builder.buildBinOp<AddInst>(C, one, type);
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<MulInst>(RHS, addc, type);
   }
 
   // (A + C1) + C2 --> A + (C1 + C2)
