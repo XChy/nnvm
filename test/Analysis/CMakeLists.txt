@@ -8,5 +8,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/test)
 
 add_executable(testDomTree testDomTree.cpp)
+add_executable(testLoopAnalysis testLoopAnalysis.cpp)
 include_directories(../../nnvm)
 target_link_libraries(testDomTree PUBLIC NNVM_CORELIB)
+target_link_libraries(testLoopAnalysis PUBLIC NNVM_CORELIB)

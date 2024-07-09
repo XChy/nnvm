@@ -238,19 +238,19 @@ heap_ajust:
   ADDI s3, zero, 2
   MULW s4, s1, s3
   ADDIW s3, s4, 1
-  ADD s4, s3, zero
+  ADDIW s4, s2, 1
+  ADD s5, s3, zero
   ADD s3, s1, zero
   JAL zero, bb28
 bb28:
   ADD s1, s3, zero
-  ADD s5, s4, zero
-  ADDIW s6, s2, 1
-  SLT s7, s5, s6
+  ADD s6, s5, zero
+  SLT s7, s6, s4
   BNE s7, zero, bb29
   JAL zero, bb30
 bb29:
-  SLT s6, s5, s2
-  BNE s6, zero, bb31
+  SLT s7, s6, s2
+  BNE s7, zero, bb31
   JAL zero, bb32
 bb30:
   ADD a0, zero, zero
@@ -270,41 +270,41 @@ bb30:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb31:
-  ADDI s6, zero, 4
-  MULW s7, s5, s6
-  ADD s6, s0, s7
-  LW s7, 0(s6)
-  ADDIW s6, s5, 1
-  ADDI s8, zero, 4
-  MULW s9, s6, s8
-  ADD s6, s0, s9
-  LW s8, 0(s6)
-  SLT s6, s7, s8
-  ADD s7, s6, zero
+  ADDI s7, zero, 4
+  MULW s8, s6, s7
+  ADD s7, s0, s8
+  LW s8, 0(s7)
+  ADDIW s7, s6, 1
+  ADDI s9, zero, 4
+  MULW s10, s7, s9
+  ADD s7, s0, s10
+  LW s9, 0(s7)
+  SLT s7, s8, s9
+  ADD s8, s7, zero
   JAL zero, bb33
 bb32:
-  ADD s7, zero, zero
+  ADD s8, zero, zero
   JAL zero, bb33
 bb33:
-  ADD s6, s7, zero
-  BNE s6, zero, bb34
+  ADD s7, s8, zero
+  BNE s7, zero, bb34
   JAL zero, bb38
 bb34:
-  ADDIW s6, s5, 1
-  ADD s8, s6, zero
+  ADDIW s7, s6, 1
+  ADD s9, s7, zero
   JAL zero, bb35
 bb35:
-  ADD s6, s8, zero
-  ADDI s9, zero, 4
-  MULW s10, s1, s9
-  ADD s9, s0, s10
-  LW s10, 0(s9)
-  ADDI s11, zero, 4
-  MULW t0, s6, s11
-  ADD s11, s0, t0
-  LW t0, 0(s11)
-  SLT t1, t0, s10
-  BNE t1, zero, bb36
+  ADD s7, s9, zero
+  ADDI s10, zero, 4
+  MULW s11, s1, s10
+  ADD s10, s0, s11
+  LW s11, 0(s10)
+  ADDI t0, zero, 4
+  MULW t1, s7, t0
+  ADD t0, s0, t1
+  LW t1, 0(t0)
+  SLT t2, t1, s11
+  BNE t2, zero, bb36
   JAL zero, bb37
 bb36:
   ADD a0, zero, zero
@@ -324,18 +324,18 @@ bb36:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb37:
-  LW s10, 0(s9)
-  LW t0, 0(s11)
-  SW t0, 0(s9)
-  SW s10, 0(s11)
-  ADDI s9, zero, 2
-  MULW s10, s6, s9
-  ADDIW s9, s10, 1
-  ADD s4, s9, zero
-  ADD s3, s6, zero
+  LW s11, 0(s10)
+  LW t1, 0(t0)
+  SW t1, 0(s10)
+  SW s11, 0(t0)
+  ADDI s10, zero, 2
+  MULW s11, s7, s10
+  ADDIW s10, s11, 1
+  ADD s5, s10, zero
+  ADD s3, s7, zero
   JAL zero, bb28
 bb38:
-  ADD s8, s5, zero
+  ADD s9, s6, zero
   JAL zero, bb35
 main:
   ADDI sp, sp, -144

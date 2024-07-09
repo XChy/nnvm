@@ -13,6 +13,7 @@ while.cond:
 while.body:
   br bb %while.cond16
 while.exit:
+  59 = sub i32 %6, i32 1
   br bb %while.cond54
 while.cond16:
   j.phi195 = phi [bb %while.body, i32 0, bb %while.exit25, i32 %51]
@@ -47,7 +48,6 @@ while.exit25:
 while.cond54:
   i.phi = phi [bb %while.exit, i32 1, bb %while.exit64, i32 %165]
   j.phi194 = phi [bb %while.exit, i32 1, bb %while.exit64, i32 %j.phi]
-  59 = sub i32 %6, i32 1
   60 = icmp slt i32 %i.phi, i32 %59
   br i1 %60, bb %while.body55, bb %while.exit56
 while.body55:

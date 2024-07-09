@@ -5,6 +5,7 @@
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
 #include "Transform/Scalar/Combiner.h"
+#include "Transform/Scalar/LICM.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/SLPairElim.h"
 using namespace nnvm;
@@ -26,5 +27,6 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<LICMPass>();
   passManager.run(*module);
 }

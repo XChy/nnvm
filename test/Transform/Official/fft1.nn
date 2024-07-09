@@ -134,10 +134,10 @@ entry211:
   215 = call i32 getarray(ptr @b)
   call void _sysy_starttime(i32 60)
   store i32 1 to ptr @d
+  223 = add i32 %213, i32 %215
   br bb %while.cond217
 while.cond217:
   d.load = load i32 from ptr @d
-  223 = add i32 %213, i32 %215
   224 = sub i32 %223, i32 1
   225 = icmp slt i32 %d.load, i32 %224
   br i1 %225, bb %while.body218, bb %while.exit219

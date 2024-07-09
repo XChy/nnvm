@@ -130,11 +130,11 @@ i32 heap_ajust(ptr arr, i32 start, i32 end) {
 entry19:
   26 = mul i32 %start, i32 2
   27 = add i32 %26, i32 1
+  33 = add i32 %end, i32 1
   br bb %while.cond
 while.cond:
   son.phi = phi [bb %entry19, i32 %27, bb %else, i32 %76]
   dad.phi = phi [bb %entry19, i32 %start, bb %else, i32 %son.phi167]
-  33 = add i32 %end, i32 1
   34 = icmp slt i32 %son.phi, i32 %33
   br i1 %34, bb %while.body, bb %while.exit
 while.body:

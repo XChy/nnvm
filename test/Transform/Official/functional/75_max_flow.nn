@@ -41,12 +41,12 @@ if.exit:
   113 = mul i32 %s, i32 4
   114 = ptradd ptr @used, i32 %113
   store i32 1 to ptr %114
+  122 = ptradd ptr @size, i32 %113
   br bb %while.cond116
 while.cond116:
   d.phi = phi [bb %if.exit, i32 ub, bb %if.exit188, i32 %184, bb %then149, i32 %d.phi, bb %then137, i32 %d.phi]
   min_f.phi300 = phi [bb %if.exit, i32 ub, bb %if.exit188, i32 %min_f.phi, bb %then149, i32 %min_f.phi300, bb %then137, i32 %min_f.phi300]
   i115.phi = phi [bb %if.exit, i32 0, bb %if.exit188, i32 %245, bb %then149, i32 %152, bb %then137, i32 %140]
-  122 = ptradd ptr @size, i32 %113
   122.load = load i32 from ptr %122
   124 = icmp slt i32 %i115.phi, i32 %122.load
   br i1 %124, bb %while.body117, bb %while.exit118

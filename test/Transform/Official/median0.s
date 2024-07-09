@@ -115,16 +115,16 @@ bb6:
 bb7:
   LW t3, 104(sp)
   ADD t4, t3, zero
-  SW t4, 128(sp)
+  SW t4, 144(sp)
   LW t4, 112(sp)
   ADD s9, t4, zero
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   LW t3, 120(sp)
   SLT s5, t4, t3
   BNE s5, zero, bb8
   JAL zero, bb31
 bb8:
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   ADDIW s5, t4, 1
   ADDI s4, zero, 4
   MULW s3, s5, s4
@@ -297,14 +297,14 @@ bb23:
 bb24:
   ADD s2, s1, zero
   ADD t4, s0, zero
-  SW t4, 144(sp)
+  SW t4, 136(sp)
   LW t4, 48(sp)
   SLT s10, s2, t4
   BNE s10, zero, bb27
   JAL zero, bb28
 bb25:
   ADDIW s10, s2, 1
-  LW t4, 144(sp)
+  LW t4, 136(sp)
   LW t3, 48(sp)
   ADDW s11, t4, t3
   ADDW t0, s11, s10
@@ -319,14 +319,14 @@ bb26:
 bb27:
   SLT s10, s2, s4
   ADD t4, s10, zero
-  SB t4, 136(sp)
+  SB t4, 128(sp)
   JAL zero, bb29
 bb28:
   ADD t4, zero, zero
-  SB t4, 136(sp)
+  SB t4, 128(sp)
   JAL zero, bb29
 bb29:
-  LB t4, 136(sp)
+  LB t4, 128(sp)
   ADD s10, t4, zero
   BNE s10, zero, bb25
   JAL zero, bb26
@@ -336,7 +336,7 @@ bb30:
   SW t4, 64(sp)
   JAL zero, bb4
 bb31:
-  LW t4, 128(sp)
+  LW t4, 144(sp)
   ADD s3, t4, zero
   JAL zero, bb9
 swap:

@@ -14,10 +14,13 @@
 namespace nnvm {
 class LICMPass : public FunctionPass {
 public:
-  static constexpr const char *passName = "cse";
+  static constexpr const char *passName = "licm";
   bool run(Function &F);
 
+  bool isInvariant(Instruction *I, Loop *L);
+  bool isOperandsInvariant(Instruction *I, Loop *L);
+
 private:
-  LoopAnalysis* LA;
+  LoopAnalysis *LA;
 };
 } /* namespace nnvm */

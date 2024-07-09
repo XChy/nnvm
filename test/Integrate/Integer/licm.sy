@@ -1,0 +1,9 @@
+// INPUT: 5 4
+int main() {
+    int a = getint();
+    int b = getint();
+    while(a < b) {
+        putch(10);
+    }
+    return 0;
+}

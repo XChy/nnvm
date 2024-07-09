@@ -37,10 +37,10 @@ external i32 getch()
 
 void init(i32 n) {
 entry:
+  9 = mul i32 %n, i32 %n
   br bb %while.cond
 while.cond:
   i.phi = phi [bb %entry, i32 1, bb %while.body, i32 %18]
-  9 = mul i32 %n, i32 %n
   10 = add i32 %9, i32 1
   11 = icmp sle i32 %i.phi, i32 %10
   br i1 %11, bb %while.body, bb %while.exit

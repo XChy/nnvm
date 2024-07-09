@@ -628,11 +628,11 @@ external void putfarray(i32 , ptr )
 
 void sort(ptr arr, i32 len) {
 entry:
+  8 = sub i32 %len, i32 1
   br bb %while.cond
 while.cond:
   temp.phi673 = phi [bb %entry, i32 ub, bb %while.exit16, i32 %temp.phi672]
   i.phi = phi [bb %entry, i32 0, bb %while.exit16, i32 %13]
-  8 = sub i32 %len, i32 1
   9 = icmp slt i32 %i.phi, i32 %8
   br i1 %9, bb %while.body, bb %while.exit
 while.body:

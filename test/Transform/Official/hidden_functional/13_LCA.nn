@@ -22,6 +22,7 @@ then171:
 if.exit172:
   y.stack.phi326 = phi [bb %entry159, i32 %y, bb %then171, i32 %x]
   x.stack160.phi323 = phi [bb %entry159, i32 %x, bb %then171, i32 %y]
+  186 = mul i32 %y.stack.phi326, i32 4
   br bb %while.cond178
 while.cond178:
   i177.phi = phi [bb %if.exit172, i32 19, bb %if.exit220, i32 %229]
@@ -29,7 +30,6 @@ while.cond178:
   182 = mul i32 %x.stack160.phi322, i32 4
   183 = ptradd ptr @dep, i32 %182
   183.load = load i32 from ptr %183
-  186 = mul i32 %y.stack.phi326, i32 4
   187 = ptradd ptr @dep, i32 %186
   187.load = load i32 from ptr %187
   189 = icmp sgt i32 %183.load, i32 %187.load
@@ -131,10 +131,10 @@ entry94:
   98 = mul i32 %x, i32 4
   99 = ptradd ptr @dep, i32 %98
   store i32 %d to ptr %99
+  106 = mul i32 %x, i32 80
   br bb %while.cond102
 while.cond102:
   i101.phi334 = phi [bb %entry94, i32 0, bb %while.body103, i32 %117]
-  106 = mul i32 %x, i32 80
   107 = ptradd ptr @f, i32 %106
   109 = mul i32 %i101.phi334, i32 4
   110 = ptradd ptr %107, i32 %109
@@ -291,6 +291,7 @@ LCA.then171:
 LCA.if.exit172:
   y.stack.phi326363 = phi [bb %while.body304.split708.split, i32 %311.ret, bb %LCA.then171, i32 %309.ret]
   x.stack160.phi323364 = phi [bb %while.body304.split708.split, i32 %309.ret, bb %LCA.then171, i32 %311.ret]
+  186372 = mul i32 %y.stack.phi326363, i32 4
   br bb %LCA.while.cond178
 LCA.while.cond178:
   i177.phi367 = phi [bb %LCA.if.exit172, i32 19, bb %LCA.if.exit220, i32 %229406]
@@ -298,7 +299,6 @@ LCA.while.cond178:
   182369 = mul i32 %x.stack160.phi322368, i32 4
   183370 = ptradd ptr @dep, i32 %182369
   183.load371 = load i32 from ptr %183370
-  186372 = mul i32 %y.stack.phi326363, i32 4
   187373 = ptradd ptr @dep, i32 %186372
   187.load374 = load i32 from ptr %187373
   189375 = icmp sgt i32 %183.load371, i32 %187.load374

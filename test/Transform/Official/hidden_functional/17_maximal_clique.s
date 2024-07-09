@@ -314,7 +314,7 @@ bb18:
   ADDI s8, zero, 1
   JAL zero, bb27
 bb19:
-  LW t4, 8(sp)
+  LW t4, 16(sp)
   ADD t2, t4, zero
   XOR a2, t2, zero
   SLTU t2, zero, a2
@@ -351,17 +351,17 @@ bb22:
   JAL zero, bb17
 bb23:
   ADD t4, s0, zero
-  SW t4, 0(sp)
+  SW t4, 24(sp)
   JAL zero, bb24
 bb24:
-  LW t3, 0(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
+  SW t4, 0(sp)
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
   ADD t0, a0, zero
-  LW t4, 24(sp)
+  LW t4, 0(sp)
   SLT t1, t4, t0
   BNE t1, zero, bb25
   JAL zero, bb37
@@ -384,12 +384,12 @@ bb28:
   JAL zero, bb30
 bb29:
   ADDI t4, zero, 1
-  SW t4, 8(sp)
+  SW t4, 16(sp)
   JAL zero, bb19
 bb30:
   ADD t4, s11, zero
-  SW t4, 16(sp)
-  LW t4, 16(sp)
+  SW t4, 8(sp)
+  LW t4, 8(sp)
   SLT t1, t4, s7
   BNE t1, zero, bb31
   JAL zero, bb32
@@ -404,7 +404,7 @@ bb31:
   LA t1, graph
   ADD t2, t1, a2
   ADDI t1, zero, 4
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   MULW a2, t4, t1
   LA t1, store
   ADD a3, t1, a2
@@ -422,10 +422,10 @@ bb32:
   JAL zero, bb27
 bb33:
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 16(sp)
   JAL zero, bb19
 bb34:
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADDIW s1, t4, 1
   ADD s11, s1, zero
   JAL zero, bb30
@@ -435,9 +435,9 @@ bb35:
   JAL zero, bb22
 bb36:
   ADD t4, s4, zero
-  SW t4, 0(sp)
+  SW t4, 24(sp)
   JAL zero, bb24
 bb37:
-  LW t4, 24(sp)
+  LW t4, 0(sp)
   ADD t1, t4, zero
   JAL zero, bb26
