@@ -302,11 +302,8 @@ entry460:
   457798 = add i32 %455796, i32 %a31.load456797
   a32.load458799 = load i32 from ptr @a32
   459800 = sub i32 %457798, i32 %a32.load458799
-  br bb %entry460.split
-entry460.split:
-  469.ret = phi [bb %entry460, i32 %459800]
-  call void putint(i32 %469.ret)
-  ret i32 %469.ret
+  call void putint(i32 %459800)
+  ret i32 %459800
 }
 
 external float getfloat()

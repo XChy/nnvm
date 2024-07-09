@@ -422,10 +422,6 @@ main:
   ADDW s0, s1, s6
   ADDW s1, s0, s7
   ADDW s0, s1, s8
-  ADD s1, s0, zero
-  JAL zero, bb2
-bb2:
-  ADD s0, s1, zero
   LA s1, a0
   SW s0, 0(s1)
   ADD a0, s0, zero
@@ -487,10 +483,6 @@ bb2:
   ADDW s1, s0, t4
   LW t4, 32(sp)
   ADDW s0, s1, t4
-  ADD s1, s0, zero
-  JAL zero, bb3
-bb3:
-  ADD s0, s1, zero
   LA s1, a0
   SW s0, 0(s1)
   ADD a0, s0, zero
@@ -632,10 +624,6 @@ bb3:
   ADDW s1, s0, t4
   LW t4, 200(sp)
   ADDW s0, s1, t4
-  ADD s1, s0, zero
-  JAL zero, bb4
-bb4:
-  ADD s0, s1, zero
   LA s1, a0
   SW s0, 0(s1)
   ADD a0, s0, zero

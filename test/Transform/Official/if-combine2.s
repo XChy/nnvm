@@ -11,49 +11,26 @@ main:
   SD s5, 424(sp)
   SD s1, 432(sp)
   SD s6, 440(sp)
-  SD ra, 448(sp)
-  SD s2, 456(sp)
-  SD s3, 464(sp)
-  SD s4, 472(sp)
+  SD s2, 448(sp)
+  SD s3, 456(sp)
+  SD s4, 464(sp)
+  SD ra, 472(sp)
   SD s8, 480(sp)
   SD s9, 488(sp)
   ADDI a0, zero, 324
   CALL _sysy_starttime
   CALL getint
   ADD s0, a0, zero
-  JAL zero, bb2
+  JAL zero, bb1
 bb1:
-  ADD s1, s0, zero
-  ADD a0, s1, zero
-  CALL putint
-  ADDI a0, zero, 10
-  CALL putch
-  ADDI a0, zero, 328
-  CALL _sysy_stoptime
-  ADD a0, zero, zero
-  LD s10, 400(sp)
-  LD s7, 408(sp)
-  LD s0, 416(sp)
-  LD s5, 424(sp)
-  LD s1, 432(sp)
-  LD s6, 440(sp)
-  LD ra, 448(sp)
-  LD s2, 456(sp)
-  LD s3, 464(sp)
-  LD s4, 472(sp)
-  LD s8, 480(sp)
-  LD s9, 488(sp)
-  ADDI sp, sp, 496
-  JALR zero, 0(ra)
-bb2:
   ADD s1, zero, zero
-  JAL zero, bb3
-bb3:
+  JAL zero, bb2
+bb2:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb4
-  JAL zero, bb5
-bb4:
+  BNE s3, zero, bb3
+  JAL zero, bb4
+bb3:
   ADDI s3, zero, 4
   MULW s4, s2, s3
   ADDI t5, sp, 0
@@ -61,18 +38,18 @@ bb4:
   SW zero, 0(s3)
   ADDIW s3, s2, 1
   ADD s1, s3, zero
-  JAL zero, bb3
-bb5:
+  JAL zero, bb2
+bb4:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb6
-bb6:
+  JAL zero, bb5
+bb5:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s4, s0
-  BNE s5, zero, bb7
-  JAL zero, bb8
-bb7:
+  BNE s5, zero, bb6
+  JAL zero, bb7
+bb6:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
   SW s6, 0(s5)
@@ -373,17 +350,36 @@ bb7:
   ADDIW s5, s4, 1
   ADD s4, zero, zero
   ADD s6, s3, zero
-  JAL zero, bb9
+  JAL zero, bb8
+bb7:
+  ADD a0, s3, zero
+  CALL putint
+  ADDI a0, zero, 10
+  CALL putch
+  ADDI a0, zero, 328
+  CALL _sysy_stoptime
+  ADD a0, zero, zero
+  LD s10, 400(sp)
+  LD s7, 408(sp)
+  LD s0, 416(sp)
+  LD s5, 424(sp)
+  LD s1, 432(sp)
+  LD s6, 440(sp)
+  LD s2, 448(sp)
+  LD s3, 456(sp)
+  LD s4, 464(sp)
+  LD ra, 472(sp)
+  LD s8, 480(sp)
+  LD s9, 488(sp)
+  ADDI sp, sp, 496
+  JALR zero, 0(ra)
 bb8:
-  ADD s0, s3, zero
-  JAL zero, bb1
-bb9:
   ADD s7, s6, zero
   ADD s8, s4, zero
   SLTI s9, s8, 100
-  BNE s9, zero, bb10
-  JAL zero, bb11
-bb10:
+  BNE s9, zero, bb9
+  JAL zero, bb10
+bb9:
   ADDI s9, zero, 4
   MULW s10, s8, s9
   ADDI t6, sp, 0
@@ -393,14 +389,14 @@ bb10:
   ADDIW s10, s8, 1
   ADD s4, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb9
-bb11:
+  JAL zero, bb8
+bb10:
   LUI s4, 16
   ADDIW s4, s4, -1
   REMW s6, s7, s4
   ADD s1, s5, zero
   ADD s2, s6, zero
-  JAL zero, bb6
+  JAL zero, bb5
 func:
   ADDI sp, sp, -496
   SD s10, 400(sp)
@@ -417,13 +413,13 @@ func:
   SD s9, 488(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
-  JAL zero, bb13
-bb13:
+  JAL zero, bb12
+bb12:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb14
-  JAL zero, bb15
-bb14:
+  BNE s3, zero, bb13
+  JAL zero, bb14
+bb13:
   ADDI s3, zero, 4
   MULW s4, s2, s3
   ADDI t5, sp, 0
@@ -431,18 +427,18 @@ bb14:
   SW zero, 0(s3)
   ADDIW s3, s2, 1
   ADD s1, s3, zero
-  JAL zero, bb13
-bb15:
+  JAL zero, bb12
+bb14:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb16
-bb16:
+  JAL zero, bb15
+bb15:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s4, s0
-  BNE s5, zero, bb17
-  JAL zero, bb18
-bb17:
+  BNE s5, zero, bb16
+  JAL zero, bb17
+bb16:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
   SW s6, 0(s5)
@@ -743,8 +739,8 @@ bb17:
   ADDIW s5, s4, 1
   ADD s4, zero, zero
   ADD s6, s3, zero
-  JAL zero, bb19
-bb18:
+  JAL zero, bb18
+bb17:
   ADD a0, s3, zero
   LD s10, 400(sp)
   LD s0, 408(sp)
@@ -760,13 +756,13 @@ bb18:
   LD s9, 488(sp)
   ADDI sp, sp, 496
   JALR zero, 0(ra)
-bb19:
+bb18:
   ADD s7, s6, zero
   ADD s8, s4, zero
   SLTI s9, s8, 100
-  BNE s9, zero, bb20
-  JAL zero, bb21
-bb20:
+  BNE s9, zero, bb19
+  JAL zero, bb20
+bb19:
   ADDI s9, zero, 4
   MULW s10, s8, s9
   ADDI t6, sp, 0
@@ -776,11 +772,11 @@ bb20:
   ADDIW s10, s8, 1
   ADD s4, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb19
-bb21:
+  JAL zero, bb18
+bb20:
   LUI s4, 16
   ADDIW s4, s4, -1
   REMW s6, s7, s4
   ADD s1, s5, zero
   ADD s2, s6, zero
-  JAL zero, bb16
+  JAL zero, bb15

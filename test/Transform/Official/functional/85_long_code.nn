@@ -449,10 +449,6 @@ while.exit547.split943:
   559.ret = phi [bb %getMid.then220, i32 %235960, bb %getMid.else, i32 %240.load967]
   call void putint(i32 %559.ret)
   br bb %getMost.entry242
-while.exit547.split898:
-  562.ret = phi [bb %getMost.while.exit260, i32 %number.phi661915]
-  call void putint(i32 %562.ret)
-  br bb %arrCopy.entry324804
 while.exit547.split.split:
   br bb %while.cond567
 while.cond567:
@@ -540,8 +536,7 @@ avgPooling.while.body383:
   br i1 %392726, bb %avgPooling.then393, bb %avgPooling.else395
 avgPooling.while.exit384:
   n.load443729 = load i32 from ptr @n
-  445730 = sub i32 %n.load443729, i32 3
-  446731 = add i32 %445730, i32 1
+  1164 = add i32 %n.load443729, i32 -2
   br bb %avgPooling.while.cond447
 avgPooling.then393:
   398734 = mul i32 %i380.phi651719, i32 4
@@ -572,16 +567,15 @@ avgPooling.else408:
   420.load759 = load i32 from ptr %420758
   422760 = add i32 %sum379.phi649720, i32 %420.load759
   424761 = sub i32 %422760, i32 %lastnum.phi654718
-  427762 = sub i32 %i380.phi651719, i32 3
-  428763 = add i32 %427762, i32 1
-  429764 = mul i32 %428763, i32 4
+  1166 = add i32 %i380.phi651719, i32 -2
+  429764 = mul i32 %1166, i32 4
   430765 = ptradd ptr %result, i32 %429764
   430.load766 = load i32 from ptr %430765
   440767 = sdiv i32 %424761, i32 3
   store i32 %440767 to ptr %430765
   br bb %avgPooling.if.exit407
 avgPooling.while.cond447:
-  i380.phi771 = phi [bb %avgPooling.while.exit384, i32 %446731, bb %avgPooling.while.body448, i32 %458779]
+  i380.phi771 = phi [bb %avgPooling.while.exit384, i32 %1164, bb %avgPooling.while.body448, i32 %458779]
   n.load451772 = load i32 from ptr @n
   452773 = icmp slt i32 %i380.phi771, i32 %n.load451772
   br i1 %452773, bb %avgPooling.while.body448, bb %avgPooling.while.exit449
@@ -729,7 +723,8 @@ getMost.while.body259:
   283930 = icmp sgt i32 %277928, i32 %max.phi659916
   br i1 %283930, bb %getMost.then284, bb %getMost.if.exit285
 getMost.while.exit260:
-  br bb %while.exit547.split898
+  call void putint(i32 %number.phi661915)
+  br bb %arrCopy.entry324804
 getMost.then284:
   288.load935 = load i32 from ptr %272926
   br bb %getMost.if.exit285

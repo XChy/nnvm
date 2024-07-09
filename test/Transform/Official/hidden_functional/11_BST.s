@@ -70,14 +70,10 @@ bb1:
   LA s2, now
   LW s3, 0(s2)
   ADDIW s2, s3, 1
-  LA s3, now
-  SW s2, 0(s3)
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
-  ADD s2, s4, zero
+  LA s4, now
+  SW s2, 0(s4)
   JAL zero, bb2
 bb2:
-  ADD s3, s2, zero
   ADD a0, s3, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -162,11 +158,9 @@ new_node:
   LA s0, now
   LW s1, 0(s0)
   ADDIW s0, s1, 1
-  LA s1, now
-  SW s0, 0(s1)
-  ADDI s1, zero, 1
-  SUBW s2, s0, s1
-  ADD a0, s2, zero
+  LA s2, now
+  SW s0, 0(s2)
+  ADD a0, s1, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s2, 16(sp)
@@ -586,14 +580,10 @@ bb46:
   LA s1, now
   LW s2, 0(s1)
   ADDIW s1, s2, 1
-  LA s2, now
-  SW s1, 0(s2)
-  ADDI s2, zero, 1
-  SUBW s3, s1, s2
-  ADD s1, s3, zero
+  LA s3, now
+  SW s1, 0(s3)
   JAL zero, bb47
 bb47:
-  ADD s2, s1, zero
   ADDI s1, zero, 1
   JAL zero, bb48
 bb48:

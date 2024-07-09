@@ -70,9 +70,7 @@ bb3:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb4:
-  ADDI s8, zero, 10
-  SUBW s10, s9, s8
-  ADDIW s8, s10, 22
+  ADDIW s8, s5, -76
   ADDI s10, zero, 11
   ADDI s11, zero, 11
   ADD ra, s8, zero

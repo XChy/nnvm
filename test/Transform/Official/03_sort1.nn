@@ -136,7 +136,7 @@ then99:
 if.exit100:
   br bb %while.cond103
 while.cond103:
-  i101.phi357 = phi [bb %if.exit100, i32 %l, bb %while.body104.split.split, i32 %129]
+  i101.phi357 = phi [bb %if.exit100, i32 %l, bb %getNumPos.while.exit33400, i32 %129]
   108 = icmp slt i32 %i101.phi357, i32 %r
   br i1 %108, bb %while.body104, bb %while.exit105
 while.body104:
@@ -144,21 +144,6 @@ while.body104:
   112 = ptradd ptr %a, i32 %111
   112.load = load i32 from ptr %112
   br bb %getNumPos.entry26
-while.body104.split:
-  115.ret = phi [bb %getNumPos.while.exit33, i32 %45385]
-  116 = mul i32 %115.ret, i32 4
-  117 = ptradd ptr %cnt74, i32 %116
-  120.load = load i32 from ptr %112
-  br bb %getNumPos.entry26389
-while.body104.split.split:
-  123.ret = phi [bb %getNumPos.while.exit33400, i32 %45401]
-  124 = mul i32 %123.ret, i32 4
-  125 = ptradd ptr %cnt74, i32 %124
-  125.load = load i32 from ptr %125
-  127 = add i32 %125.load, i32 1
-  store i32 %127 to ptr %117
-  129 = add i32 %i101.phi357, i32 1
-  br bb %while.cond103
 while.exit105:
   store i32 %l to ptr %head
   137.load = load i32 from ptr %cnt74
@@ -220,46 +205,11 @@ while.exit178:
   254 = add i32 %i101.phi, i32 1
   br bb %while.cond169
 while.cond197:
-  t.phi = phi [bb %while.body177, i32 %t.phi362, bb %while.body198.split.split.split.split, i32 %v.phi]
-  v.phi = phi [bb %while.body177, i32 %195.load, bb %while.body198.split.split.split.split, i32 %215.load]
+  t.phi = phi [bb %while.body177, i32 %t.phi362, bb %getNumPos.while.exit33480, i32 %v.phi]
+  v.phi = phi [bb %while.body177, i32 %195.load, bb %getNumPos.while.exit33480, i32 %215.load]
   br bb %getNumPos.entry26405
-while.cond197.split:
-  202.ret = phi [bb %getNumPos.while.exit33416, i32 %45417]
-  204 = icmp ne i32 %202.ret, i32 %i101.phi
-  br i1 %204, bb %while.body198, bb %while.exit199
 while.body198:
   br bb %getNumPos.entry26421
-while.body198.split:
-  210.ret = phi [bb %getNumPos.while.exit33432, i32 %45433]
-  211 = mul i32 %210.ret, i32 4
-  212 = ptradd ptr %head, i32 %211
-  212.load = load i32 from ptr %212
-  214 = mul i32 %212.load, i32 4
-  215 = ptradd ptr %a, i32 %214
-  215.load = load i32 from ptr %215
-  br bb %getNumPos.entry26437
-while.body198.split.split:
-  219.ret = phi [bb %getNumPos.while.exit33448, i32 %45449]
-  220 = mul i32 %219.ret, i32 4
-  221 = ptradd ptr %head, i32 %220
-  221.load = load i32 from ptr %221
-  223 = mul i32 %221.load, i32 4
-  224 = ptradd ptr %a, i32 %223
-  store i32 %v.phi to ptr %224
-  br bb %getNumPos.entry26453
-while.body198.split.split.split:
-  228.ret = phi [bb %getNumPos.while.exit33464, i32 %45465]
-  229 = mul i32 %228.ret, i32 4
-  230 = ptradd ptr %head, i32 %229
-  br bb %getNumPos.entry26469
-while.body198.split.split.split.split:
-  233.ret = phi [bb %getNumPos.while.exit33480, i32 %45481]
-  234 = mul i32 %233.ret, i32 4
-  235 = ptradd ptr %head, i32 %234
-  235.load = load i32 from ptr %235
-  237 = add i32 %235.load, i32 1
-  store i32 %237 to ptr %230
-  br bb %while.cond197
 while.exit199:
   240.load = load i32 from ptr %181
   242 = mul i32 %240.load, i32 4
@@ -315,7 +265,10 @@ getNumPos.while.body32:
   br bb %getNumPos.while.cond31
 getNumPos.while.exit33:
   45385 = srem i32 %num.stack.phi377, i32 16
-  br bb %while.body104.split
+  116 = mul i32 %45385, i32 4
+  117 = ptradd ptr %cnt74, i32 %116
+  120.load = load i32 from ptr %112
+  br bb %getNumPos.entry26389
 getNumPos.entry26389:
   br bb %getNumPos.while.cond31391
 getNumPos.while.cond31391:
@@ -329,7 +282,13 @@ getNumPos.while.body32396:
   br bb %getNumPos.while.cond31391
 getNumPos.while.exit33400:
   45401 = srem i32 %num.stack.phi393, i32 16
-  br bb %while.body104.split.split
+  124 = mul i32 %45401, i32 4
+  125 = ptradd ptr %cnt74, i32 %124
+  125.load = load i32 from ptr %125
+  127 = add i32 %125.load, i32 1
+  store i32 %127 to ptr %117
+  129 = add i32 %i101.phi357, i32 1
+  br bb %while.cond103
 getNumPos.entry26405:
   br bb %getNumPos.while.cond31407
 getNumPos.while.cond31407:
@@ -343,7 +302,8 @@ getNumPos.while.body32412:
   br bb %getNumPos.while.cond31407
 getNumPos.while.exit33416:
   45417 = srem i32 %num.stack.phi409, i32 16
-  br bb %while.cond197.split
+  204 = icmp ne i32 %45417, i32 %i101.phi
+  br i1 %204, bb %while.body198, bb %while.exit199
 getNumPos.entry26421:
   br bb %getNumPos.while.cond31423
 getNumPos.while.cond31423:
@@ -357,7 +317,13 @@ getNumPos.while.body32428:
   br bb %getNumPos.while.cond31423
 getNumPos.while.exit33432:
   45433 = srem i32 %num.stack.phi425, i32 16
-  br bb %while.body198.split
+  211 = mul i32 %45433, i32 4
+  212 = ptradd ptr %head, i32 %211
+  212.load = load i32 from ptr %212
+  214 = mul i32 %212.load, i32 4
+  215 = ptradd ptr %a, i32 %214
+  215.load = load i32 from ptr %215
+  br bb %getNumPos.entry26437
 getNumPos.entry26437:
   br bb %getNumPos.while.cond31439
 getNumPos.while.cond31439:
@@ -371,7 +337,13 @@ getNumPos.while.body32444:
   br bb %getNumPos.while.cond31439
 getNumPos.while.exit33448:
   45449 = srem i32 %num.stack.phi441, i32 16
-  br bb %while.body198.split.split
+  220 = mul i32 %45449, i32 4
+  221 = ptradd ptr %head, i32 %220
+  221.load = load i32 from ptr %221
+  223 = mul i32 %221.load, i32 4
+  224 = ptradd ptr %a, i32 %223
+  store i32 %v.phi to ptr %224
+  br bb %getNumPos.entry26453
 getNumPos.entry26453:
   br bb %getNumPos.while.cond31455
 getNumPos.while.cond31455:
@@ -385,7 +357,9 @@ getNumPos.while.body32460:
   br bb %getNumPos.while.cond31455
 getNumPos.while.exit33464:
   45465 = srem i32 %num.stack.phi457, i32 16
-  br bb %while.body198.split.split.split
+  229 = mul i32 %45465, i32 4
+  230 = ptradd ptr %head, i32 %229
+  br bb %getNumPos.entry26469
 getNumPos.entry26469:
   br bb %getNumPos.while.cond31471
 getNumPos.while.cond31471:
@@ -399,7 +373,12 @@ getNumPos.while.body32476:
   br bb %getNumPos.while.cond31471
 getNumPos.while.exit33480:
   45481 = srem i32 %num.stack.phi473, i32 16
-  br bb %while.body198.split.split.split.split
+  234 = mul i32 %45481, i32 4
+  235 = ptradd ptr %head, i32 %234
+  235.load = load i32 from ptr %235
+  237 = add i32 %235.load, i32 1
+  store i32 %237 to ptr %230
+  br bb %while.cond197
 }
 
 i32 getMaxNum(i32 n, ptr arr) {

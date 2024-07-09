@@ -14,12 +14,6 @@ entry639:
   call void _sysy_starttime(i32 324)
   642 = call i32 getint()
   br bb %func.entry
-entry639.split:
-  644.ret = phi [bb %func.while.exit20, i32 %sum.phi672]
-  call void putint(i32 %644.ret)
-  call void putch(i32 10)
-  call void _sysy_stoptime(i32 328)
-  ret i32 0
 func.entry:
   br bb %func.while.cond
 func.while.cond:
@@ -241,7 +235,10 @@ func.while.body19:
   620874 = add i32 %j.phi671, i32 1
   br bb %func.while.cond622
 func.while.exit20:
-  br bb %entry639.split
+  call void putint(i32 %sum.phi672)
+  call void putch(i32 10)
+  call void _sysy_stoptime(i32 328)
+  ret i32 0
 func.while.cond622:
   m621.phi879 = phi [bb %func.while.body19, i32 0, bb %func.while.body623, i32 %635888]
   sum.phi649880 = phi [bb %func.while.body19, i32 %sum.phi672, bb %func.while.body623, i32 %633887]

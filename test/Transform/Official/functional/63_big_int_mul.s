@@ -270,14 +270,12 @@ bb17:
   BNE t1, zero, bb19
   JAL zero, bb21
 bb18:
-  ADDIW s4, s10, 20
+  ADDIW s4, s10, 19
   ADDI s5, zero, 1
-  SUBW s6, s4, s5
-  ADDI s4, zero, 1
-  SUBW s5, s3, s4
-  ADD s0, s6, zero
+  SUBW s6, s3, s5
+  ADD s0, s4, zero
   ADD s1, s9, zero
-  ADD s2, s5, zero
+  ADD s2, s6, zero
   JAL zero, bb13
 bb19:
   SW t2, 0(s11)

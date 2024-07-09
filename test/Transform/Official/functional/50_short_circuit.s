@@ -22,7 +22,7 @@ main:
   ADDI s1, zero, 10
   SLT s2, s1, s0
   BNE s2, zero, bb1
-  JAL zero, bb3
+  JAL zero, bb2
 bb1:
   LA s1, g
   LW s2, 0(s1)
@@ -33,33 +33,29 @@ bb1:
   CALL putint
   LA s0, g
   LW s1, 0(s0)
-  ADD s0, s1, zero
-  JAL zero, bb2
-bb2:
-  ADD s1, s0, zero
   XOR s0, s1, zero
   SLTU s1, zero, s0
   ADD s0, s1, zero
-  JAL zero, bb4
-bb3:
+  JAL zero, bb3
+bb2:
   ADD s0, zero, zero
-  JAL zero, bb4
-bb4:
+  JAL zero, bb3
+bb3:
   ADD s1, s0, zero
-  BNE s1, zero, bb5
-  JAL zero, bb7
-bb5:
+  BNE s1, zero, bb4
   JAL zero, bb6
-bb6:
+bb4:
+  JAL zero, bb5
+bb5:
   CALL getint
   ADD s1, a0, zero
   ADDI s2, zero, 11
   SLT s3, s2, s1
-  BNE s3, zero, bb8
-  JAL zero, bb10
+  BNE s3, zero, bb7
+  JAL zero, bb8
+bb6:
+  JAL zero, bb5
 bb7:
-  JAL zero, bb6
-bb8:
   LA s2, g
   LW s3, 0(s2)
   ADDW s2, s3, s1
@@ -69,37 +65,33 @@ bb8:
   CALL putint
   LA s1, g
   LW s2, 0(s1)
-  ADD s1, s2, zero
-  JAL zero, bb9
-bb9:
-  ADD s2, s1, zero
   XOR s1, s2, zero
   SLTU s2, zero, s1
   ADD s1, s2, zero
-  JAL zero, bb11
-bb10:
+  JAL zero, bb9
+bb8:
   ADD s1, zero, zero
+  JAL zero, bb9
+bb9:
+  ADD s2, s1, zero
+  BNE s2, zero, bb10
+  JAL zero, bb12
+bb10:
   JAL zero, bb11
 bb11:
-  ADD s2, s1, zero
-  BNE s2, zero, bb12
-  JAL zero, bb14
-bb12:
-  JAL zero, bb13
-bb13:
   CALL getint
   ADD s2, a0, zero
   ADDI s3, zero, 99
   SLT s4, s3, s2
   XORI s3, s4, 1
-  BNE s3, zero, bb15
-  JAL zero, bb16
-bb14:
-  JAL zero, bb13
-bb15:
+  BNE s3, zero, bb13
+  JAL zero, bb14
+bb12:
+  JAL zero, bb11
+bb13:
   ADDI s3, zero, 1
-  JAL zero, bb18
-bb16:
+  JAL zero, bb15
+bb14:
   LA s4, g
   LW s5, 0(s4)
   ADDW s4, s5, s2
@@ -109,34 +101,30 @@ bb16:
   CALL putint
   LA s2, g
   LW s4, 0(s2)
-  ADD s2, s4, zero
-  JAL zero, bb17
-bb17:
-  ADD s4, s2, zero
   XOR s2, s4, zero
   SLTU s4, zero, s2
   ADD s3, s4, zero
-  JAL zero, bb18
-bb18:
+  JAL zero, bb15
+bb15:
   ADD s4, s3, zero
-  BNE s4, zero, bb19
-  JAL zero, bb21
-bb19:
-  JAL zero, bb20
-bb20:
+  BNE s4, zero, bb16
+  JAL zero, bb18
+bb16:
+  JAL zero, bb17
+bb17:
   CALL getint
   ADD s4, a0, zero
   ADDI s5, zero, 100
   SLT s6, s5, s4
   XORI s5, s6, 1
-  BNE s5, zero, bb22
-  JAL zero, bb23
-bb21:
+  BNE s5, zero, bb19
   JAL zero, bb20
-bb22:
+bb18:
+  JAL zero, bb17
+bb19:
   ADDI s5, zero, 1
-  JAL zero, bb25
-bb23:
+  JAL zero, bb21
+bb20:
   LA s6, g
   LW s7, 0(s6)
   ADDW s6, s7, s4
@@ -146,21 +134,17 @@ bb23:
   CALL putint
   LA s4, g
   LW s6, 0(s4)
-  ADD s4, s6, zero
-  JAL zero, bb24
-bb24:
-  ADD s6, s4, zero
   XOR s4, s6, zero
   SLTU s6, zero, s4
   ADD s5, s6, zero
-  JAL zero, bb25
-bb25:
+  JAL zero, bb21
+bb21:
   ADD s6, s5, zero
-  BNE s6, zero, bb26
-  JAL zero, bb29
-bb26:
-  JAL zero, bb27
-bb27:
+  BNE s6, zero, bb22
+  JAL zero, bb24
+bb22:
+  JAL zero, bb23
+bb23:
   LA s6, g
   LW s7, 0(s6)
   ADDIW s6, s7, 99
@@ -170,21 +154,17 @@ bb27:
   CALL putint
   LA s6, g
   LW s7, 0(s6)
-  ADD s6, s7, zero
-  JAL zero, bb28
-bb28:
-  ADD s7, s6, zero
   XOR s6, s7, zero
   SLTU s7, zero, s6
   XORI s6, s7, 1
   ADD s7, s6, zero
   XOR s6, s7, zero
   SLTU s7, zero, s6
-  BNE s7, zero, bb30
-  JAL zero, bb32
-bb29:
-  JAL zero, bb27
-bb30:
+  BNE s7, zero, bb25
+  JAL zero, bb26
+bb24:
+  JAL zero, bb23
+bb25:
   LA s6, g
   LW s7, 0(s6)
   ADDIW s6, s7, 100
@@ -194,24 +174,20 @@ bb30:
   CALL putint
   LA s6, g
   LW s7, 0(s6)
-  ADD s6, s7, zero
-  JAL zero, bb31
-bb31:
-  ADD s7, s6, zero
   XOR s6, s7, zero
   SLTU s7, zero, s6
   ADD s6, s7, zero
-  JAL zero, bb33
-bb32:
+  JAL zero, bb27
+bb26:
   ADD s6, zero, zero
-  JAL zero, bb33
-bb33:
+  JAL zero, bb27
+bb27:
   ADD s7, s6, zero
-  BNE s7, zero, bb34
-  JAL zero, bb36
-bb34:
-  JAL zero, bb35
-bb35:
+  BNE s7, zero, bb28
+  JAL zero, bb30
+bb28:
+  JAL zero, bb29
+bb29:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -224,8 +200,8 @@ bb35:
   LD s0, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb36:
-  JAL zero, bb35
+bb30:
+  JAL zero, bb29
 func:
   ADDI sp, sp, -32
   SD ra, 0(sp)

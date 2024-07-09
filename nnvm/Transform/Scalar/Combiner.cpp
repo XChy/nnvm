@@ -2,6 +2,7 @@
 #include "ADT/Ranges.h"
 #include "CombinePatterns.h"
 #include "Utils/Cast.h"
+#include <algorithm>
 
 using namespace nnvm;
 using namespace nnvm::pattern;
@@ -46,6 +47,8 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
   if (AddInst *AI = dyn_cast<AddInst>(I))
     return simplifyAdd(AI);
+  if (SubInst *SI = dyn_cast<SubInst>(I))
+    return simplifySub(SI);
 
   if (SDivInst *SI = dyn_cast<SDivInst>(I))
     return simplifySDiv(SI);
@@ -79,6 +82,38 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
     addc = folder.fold(cast<Instruction>(addc));
     return builder.buildBinOp<AddInst>(A, addc, I->getType());
   }
+
+  // (A - C1) + C2 --> A + (C2 - C1)
+  if (match(I, pAdd(pSub(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *subc = builder.buildBinOp<SubInst>(C, B, I->getType());
+    subc = folder.fold(cast<Instruction>(subc));
+    return builder.buildBinOp<AddInst>(A, subc, I->getType());
+  }
+
+  return nullptr;
+}
+
+Value *CombinerPass::simplifySub(SubInst *I) {
+  Value *A, *B, *C;
+
+  // A - 0 --> A
+  if (match(I, pSub(pValue(A), pZero())))
+    return A;
+
+  // (A - C1) - C2 --> A - (C1 + C2)
+  if (match(I, pSub(pSub(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *addc = builder.buildBinOp<AddInst>(B, C, I->getType());
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<SubInst>(A, addc, I->getType());
+  }
+
+  // (A + C1) - C2 --> A + (C1 - C2)
+  if (match(I, pSub(pAdd(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *subc = builder.buildBinOp<SubInst>(B, C, I->getType());
+    subc = folder.fold(cast<Instruction>(subc));
+    return builder.buildBinOp<AddInst>(A, subc, I->getType());
+  }
+
   return nullptr;
 }
 
@@ -111,9 +146,11 @@ Value *CombinerPass::simplifyICmp(ICmpInst *I) {
 }
 
 Value *CombinerPass::simplifyPhi(PhiInst *I) {
-  if (I->getIncomingNum() == 1)
-    return I->getIncomingValue(0)->isInstruction() ? nullptr
-                                                   : I->getIncomingValue(0);
+  if (I->getIncomingNum() == 1 &&
+      std::none_of(I->users().begin(), I->users().end(), [I](Use *U) {
+        return I->getIncomingValue(0) == U->getUser();
+      }))
+    return I->getIncomingValue(0);
 
   return nullptr;
 }

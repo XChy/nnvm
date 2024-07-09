@@ -36,17 +36,17 @@ while.body:
 while.exit:
   br bb %while.cond159
 while.cond26:
-  val.phi = phi [bb %while.body, i32 %val.phi259, bb %while.body27.split, i32 %145]
-  ip1jp1.phi = phi [bb %while.body, i32 %ip1jp1.phi257, bb %while.body27.split, i32 %99]
-  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %while.body27.split, i32 %83]
-  ip1jm1.phi = phi [bb %while.body, i32 %ip1jm1.phi251, bb %while.body27.split, i32 %84]
-  ijp1.phi = phi [bb %while.body, i32 %ijp1.phi249, bb %while.body27.split, i32 %76]
-  ijm1.phi = phi [bb %while.body, i32 %ijm1.phi247, bb %while.body27.split, i32 %63]
-  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %while.body27.split, i32 %62]
-  im1jp1.phi = phi [bb %while.body, i32 %im1jp1.phi243, bb %while.body27.split, i32 %56]
-  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %while.body27.split, i32 %40]
-  im1jm1.phi = phi [bb %while.body, i32 %im1jm1.phi239, bb %while.body27.split, i32 %41]
-  i.phi236 = phi [bb %while.body, i32 1, bb %while.body27.split, i32 %79]
+  val.phi = phi [bb %while.body, i32 %val.phi259, bb %cutout.if.exit, i32 %145]
+  ip1jp1.phi = phi [bb %while.body, i32 %ip1jp1.phi257, bb %cutout.if.exit, i32 %99]
+  ip1j.phi = phi [bb %while.body, i32 %ip1j.phi253, bb %cutout.if.exit, i32 %83]
+  ip1jm1.phi = phi [bb %while.body, i32 %ip1jm1.phi251, bb %cutout.if.exit, i32 %84]
+  ijp1.phi = phi [bb %while.body, i32 %ijp1.phi249, bb %cutout.if.exit, i32 %76]
+  ijm1.phi = phi [bb %while.body, i32 %ijm1.phi247, bb %cutout.if.exit, i32 %63]
+  ij.phi = phi [bb %while.body, i32 %ij.phi245, bb %cutout.if.exit, i32 %62]
+  im1jp1.phi = phi [bb %while.body, i32 %im1jp1.phi243, bb %cutout.if.exit, i32 %56]
+  im1j.phi = phi [bb %while.body, i32 %im1j.phi241, bb %cutout.if.exit, i32 %40]
+  im1jm1.phi = phi [bb %while.body, i32 %im1jm1.phi239, bb %cutout.if.exit, i32 %41]
+  i.phi236 = phi [bb %while.body, i32 1, bb %cutout.if.exit, i32 %79]
   32 = icmp slt i32 %i.phi236, i32 1023
   br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
@@ -101,12 +101,8 @@ while.body27:
   143.load = load i32 from ptr %143
   145 = sub i32 %140, i32 %143.load
   152 = ptradd ptr @image_out, i32 %102
-  3266 = icmp slt i32 %145, i32 0
-  br i1 %3266, bb %cutout.then, bb %cutout.else
-while.body27.split:
-  154.ret = phi [bb %cutout.if.exit, i32 %val.stack.phi261271]
-  store i32 %154.ret to ptr %152
-  br bb %while.cond26
+  3270 = icmp slt i32 %145, i32 0
+  br i1 %3270, bb %cutout.then, bb %cutout.else
 while.exit28:
   158 = add i32 %j.phi255, i32 1
   br bb %while.cond
@@ -121,9 +117,8 @@ while.body160:
   175 = ptradd ptr @image_in, i32 %169
   175.load = load i32 from ptr %175
   store i32 %175.load to ptr %170
-  181 = add i32 %168, i32 1024
-  182 = sub i32 %181, i32 1
-  183 = mul i32 %182, i32 4
+  263 = add i32 %168, i32 1023
+  183 = mul i32 %263, i32 4
   184 = ptradd ptr @image_out, i32 %183
   192 = ptradd ptr @image_in, i32 %183
   192.load = load i32 from ptr %192
@@ -142,8 +137,8 @@ while.body197:
   208 = ptradd ptr @image_in, i32 %204
   208.load = load i32 from ptr %208
   store i32 %208.load to ptr %205
-  262 = add i32 %j.phi, i32 1047552
-  216 = mul i32 %262, i32 4
+  266 = add i32 %j.phi, i32 1047552
+  216 = mul i32 %266, i32 4
   217 = ptradd ptr @image_out, i32 %216
   225 = ptradd ptr @image_in, i32 %216
   225.load = load i32 from ptr %225
@@ -157,15 +152,16 @@ while.exit198:
 cutout.then:
   br bb %cutout.if.exit
 cutout.if.exit:
-  val.stack.phi261271 = phi [bb %cutout.if.exit10, i32 %val.stack.phi279, bb %cutout.then, i32 0]
-  br bb %while.body27.split
+  val.stack.phi261275 = phi [bb %cutout.if.exit10, i32 %val.stack.phi283, bb %cutout.then, i32 0]
+  store i32 %val.stack.phi261275 to ptr %152
+  br bb %while.cond26
 cutout.else:
-  8274 = icmp sgt i32 %145, i32 255
-  br i1 %8274, bb %cutout.then9, bb %cutout.if.exit10
+  8278 = icmp sgt i32 %145, i32 255
+  br i1 %8278, bb %cutout.then9, bb %cutout.if.exit10
 cutout.then9:
   br bb %cutout.if.exit10
 cutout.if.exit10:
-  val.stack.phi279 = phi [bb %cutout.else, i32 %145, bb %cutout.then9, i32 255]
+  val.stack.phi283 = phi [bb %cutout.else, i32 %145, bb %cutout.then9, i32 255]
   br bb %cutout.if.exit
 }
 

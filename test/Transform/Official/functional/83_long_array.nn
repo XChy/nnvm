@@ -185,8 +185,7 @@ entry184:
   %a3209 = stack 40000
   br bb %long_array.entry
 entry184.split:
-  185.ret = phi [bb %long_array.while.exit74, i32 %ans.phi195267]
-  ret i32 %185.ret
+  ret i32 %ans.phi195267
 long_array.entry:
   br bb %long_array.while.cond
 long_array.while.cond:

@@ -108,9 +108,6 @@ while.exit:
 while.exit.split278:
   109.ret = phi [bb %func7.then81, i32 1, bb %func7.else83, i32 0]
   58250 = sub i32 0, i32 %88
-  br bb %while.exit.split248
-while.exit.split248:
-  111.ret = phi [bb %while.exit.split278, i32 %58250]
   63216 = icmp ne i32 %109.ret, i32 0
   br i1 %63216, bb %func6.select.then, bb %func6.select.else
 while.exit.split:
@@ -118,16 +115,10 @@ while.exit.split:
   114 = call i32 func2(i32 %112.ret, i32 %90)
   116 = call i32 func3(i32 %114, i32 %92)
   58255 = sub i32 0, i32 %116
-  br bb %while.exit.split.split253
-while.exit.split.split253:
-  117.ret = phi [bb %while.exit.split, i32 %58255]
   119.load = load i32 from ptr %arr
   122 = ptradd ptr %arr, i32 4
   122.load = load i32 from ptr %122
   58260 = sub i32 0, i32 %122.load
-  br bb %while.exit.split.split253.split
-while.exit.split.split253.split:
-  124.ret = phi [bb %while.exit.split.split253, i32 %58260]
   126 = ptradd ptr %arr, i32 8
   126.load = load i32 from ptr %126
   129 = ptradd ptr %arr, i32 12
@@ -155,7 +146,7 @@ while.exit.split.split:
 while.exit.split.split.split302:
   139.ret = phi [bb %func7.then81309, i32 1, bb %func7.else83311, i32 0]
   140 = call i32 func2(i32 %134.load, i32 %139.ret)
-  49352 = icmp ne i32 %124.ret, i32 0
+  49352 = icmp ne i32 %58260, i32 0
   br i1 %49352, bb %func4.then50, bb %func4.else52
 while.exit.split.split.split302.split350:
   141.ret = phi [bb %func4.then50, i32 %132.ret, bb %func4.else52, i32 %140]
@@ -178,7 +169,7 @@ while.exit.split.split.split302.split:
   156.ret = phi [bb %func7.then81321, i32 1, bb %func7.else83323, i32 0]
   157 = call i32 func3(i32 %151.load, i32 %156.ret)
   159 = call i32 func1(i32 %149, i32 %157, i32 %86)
-  49361 = icmp ne i32 %117.ret, i32 0
+  49361 = icmp ne i32 %58255, i32 0
   br i1 %49361, bb %func4.then50363, bb %func4.else52365
 while.exit.split.split.split302.split.split359:
   160.ret = phi [bb %func4.then50363, i32 %119.load, bb %func4.else52365, i32 %159]
@@ -201,16 +192,10 @@ while.exit.split.split.split302.split.split:
   183.load = load i32 from ptr %134
   186.load = load i32 from ptr %137
   58265 = sub i32 0, i32 %186.load
-  br bb %while.exit.split.split.split
-while.exit.split.split.split:
-  188.ret = phi [bb %while.exit.split.split.split302.split.split, i32 %58265]
-  189 = call i32 func3(i32 %183.load, i32 %188.ret)
+  189 = call i32 func3(i32 %183.load, i32 %58265)
   191.load = load i32 from ptr %143
   58270 = sub i32 0, i32 %191.load
-  br bb %while.exit.split.split.split.split
-while.exit.split.split.split.split:
-  193.ret = phi [bb %while.exit.split.split.split, i32 %58270]
-  194 = call i32 func2(i32 %189, i32 %193.ret)
+  194 = call i32 func2(i32 %189, i32 %58270)
   196.load = load i32 from ptr %147
   199.load = load i32 from ptr %151
   77340 = icmp ne i32 %199.load, i32 0
@@ -223,15 +208,12 @@ while.exit.split.split.split.split.split338:
   202 = call i32 func1(i32 %194, i32 %196.load, i32 %201.ret)
   204.load = load i32 from ptr %154
   58275 = sub i32 0, i32 %204.load
-  br bb %while.exit.split.split.split.split.split
-while.exit.split.split.split.split.split:
-  206.ret = phi [bb %while.exit.split.split.split.split.split338, i32 %58275]
-  207 = call i32 func2(i32 %202, i32 %206.ret)
+  207 = call i32 func2(i32 %202, i32 %58275)
   209 = call i32 func3(i32 %207, i32 %86)
   210 = call i32 func1(i32 %178, i32 %180.load, i32 %209)
   ret i32 %210
 func6.select.then:
-  69219 = icmp ne i32 %111.ret, i32 0
+  69219 = icmp ne i32 %58250, i32 0
   br bb %func6.select.exit
 func6.select.else:
   br bb %func6.select.exit

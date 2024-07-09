@@ -272,10 +272,9 @@ entry67:
   2444 = call i32 getch()
   br bb %get_bf_char.while.cond
 entry67.split:
-  69.ret = phi [bb %get_bf_char.while.exit, i32 %get.phi447]
   br bb %while.cond70
 while.cond70:
-  get68.phi = phi [bb %entry67.split, i32 %69.ret, bb %while.body71.split, i32 %80.ret]
+  get68.phi = phi [bb %entry67.split, i32 %get.phi447, bb %get_bf_char.while.exit531, i32 %get.phi525]
   74 = icmp ne i32 %get68.phi, i32 35
   br i1 %74, bb %while.body71, bb %while.exit72
 while.body71:
@@ -285,12 +284,6 @@ while.body71:
   store i32 %get68.phi to ptr %78
   2522 = call i32 getch()
   br bb %get_bf_char.while.cond524
-while.body71.split:
-  80.ret = phi [bb %get_bf_char.while.exit531, i32 %get.phi525]
-  program_length.load81 = load i32 from ptr @program_length
-  82 = add i32 %program_length.load81, i32 1
-  store i32 %82 to ptr @program_length
-  br bb %while.cond70
 while.exit72:
   84 = call i32 getch()
   86 = icmp ne i32 %84, i32 105
@@ -397,7 +390,10 @@ get_bf_char.while.body528:
   65529 = call i32 getch()
   br bb %get_bf_char.while.cond524
 get_bf_char.while.exit531:
-  br bb %while.body71.split
+  program_length.load81 = load i32 from ptr @program_length
+  82 = add i32 %program_length.load81, i32 1
+  store i32 %82 to ptr @program_length
+  br bb %while.cond70
 get_bf_char.select.then533:
   13534 = icmp ne i32 %get.phi525, i32 60
   br bb %get_bf_char.select.exit538
@@ -496,10 +492,9 @@ output_.while.body285:
 output_.while.exit286:
   br bb %entry298.split
 read_program.entry67.split:
-  69401.ret = phi [bb %get_bf_char.while.exit609, i32 %get.phi603]
   br bb %read_program.while.cond70
 read_program.while.cond70:
-  get68.phi404 = phi [bb %read_program.entry67.split, i32 %69401.ret, bb %read_program.while.body71.split, i32 %80412.ret]
+  get68.phi404 = phi [bb %read_program.entry67.split, i32 %get.phi603, bb %get_bf_char.while.exit687, i32 %get.phi681]
   74405 = icmp ne i32 %get68.phi404, i32 35
   br i1 %74405, bb %read_program.while.body71, bb %read_program.while.exit72
 read_program.while.body71:
@@ -509,12 +504,6 @@ read_program.while.body71:
   store i32 %get68.phi404 to ptr %78410
   2678 = call i32 getch()
   br bb %get_bf_char.while.cond680
-read_program.while.body71.split:
-  80412.ret = phi [bb %get_bf_char.while.exit687, i32 %get.phi681]
-  program_length.load81413 = load i32 from ptr @program_length
-  82414 = add i32 %program_length.load81413, i32 1
-  store i32 %82414 to ptr @program_length
-  br bb %read_program.while.cond70
 read_program.while.exit72:
   84418 = call i32 getch()
   86419 = icmp ne i32 %84418, i32 105
@@ -621,7 +610,10 @@ get_bf_char.while.body684:
   65685 = call i32 getch()
   br bb %get_bf_char.while.cond680
 get_bf_char.while.exit687:
-  br bb %read_program.while.body71.split
+  program_length.load81413 = load i32 from ptr @program_length
+  82414 = add i32 %program_length.load81413, i32 1
+  store i32 %82414 to ptr @program_length
+  br bb %read_program.while.cond70
 get_bf_char.select.then689:
   13690 = icmp ne i32 %get.phi681, i32 60
   br bb %get_bf_char.select.exit694

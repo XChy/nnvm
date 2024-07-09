@@ -12,8 +12,7 @@ i32 main() {
 entry24:
   br bb %whileIf.entry
 entry24.split:
-  25.ret = phi [bb %whileIf.while.exit, i32 %b.phi2934]
-  ret i32 %25.ret
+  ret i32 %b.phi2934
 whileIf.entry:
   br bb %whileIf.while.cond
 whileIf.while.cond:

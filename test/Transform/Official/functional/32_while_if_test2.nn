@@ -12,8 +12,7 @@ i32 main() {
 entry29:
   br bb %ifWhile.else
 entry29.split:
-  30.ret = phi [bb %ifWhile.if.exit, i32 %b.phi3440]
-  ret i32 %30.ret
+  ret i32 %b.phi3440
 ifWhile.if.exit:
   b.phi3440 = phi [bb %ifWhile.while.exit20, i32 %b.phi55, bb %ifWhile.while.exit, i32 %1752]
   br bb %entry29.split

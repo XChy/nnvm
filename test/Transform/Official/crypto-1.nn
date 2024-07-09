@@ -117,7 +117,7 @@ while.body161:
 while.exit162:
   br bb %while.cond209
 while.cond209:
-  i.phi437 = phi [bb %while.exit162, i32 %i.phi438, bb %while.body210.split.split.split.split, i32 %243]
+  i.phi437 = phi [bb %while.exit162, i32 %i.phi438, bb %while.body210, i32 %243]
   213 = icmp slt i32 %i.phi437, i32 80
   br i1 %213, bb %while.body210, bb %while.exit211
 while.body210:
@@ -132,46 +132,43 @@ while.body210:
   226 = ptradd ptr %words, i32 %225
   226.load = load i32 from ptr %226
   401093 = add i32 %221.load, i32 %226.load
-  br bb %_xor.entry46712.split
-while.body210.split:
-  228.ret = phi [bb %_xor.entry46712.split.split, i32 %59717]
+  53714 = sub i32 %221.load, i32 %401093
+  55715 = add i32 %53714, i32 %226.load
+  59717 = sub i32 %55715, i32 %401093
   230 = sub i32 %i.phi437, i32 14
   231 = mul i32 %230, i32 4
   232 = ptradd ptr %words, i32 %231
   232.load = load i32 from ptr %232
-  401103 = add i32 %228.ret, i32 %232.load
-  br bb %_xor.entry46721.split
-while.body210.split.split:
-  234.ret = phi [bb %_xor.entry46721.split.split, i32 %59726]
+  401103 = add i32 %59717, i32 %232.load
+  53723 = sub i32 %59717, i32 %401103
+  55724 = add i32 %53723, i32 %232.load
+  59726 = sub i32 %55724, i32 %401103
   236 = sub i32 %i.phi437, i32 16
   237 = mul i32 %236, i32 4
   238 = ptradd ptr %words, i32 %237
   238.load = load i32 from ptr %238
-  401113 = add i32 %234.ret, i32 %238.load
-  br bb %_xor.entry46730.split
-while.body210.split.split.split:
-  240.ret = phi [bb %_xor.entry46730.split.split, i32 %59735]
-  171421 = mul i32 %240.ret, i32 2
-  191422 = srem i32 %240.ret, i32 2
+  401113 = add i32 %59726, i32 %238.load
+  53732 = sub i32 %59726, i32 %401113
+  55733 = add i32 %53732, i32 %238.load
+  59735 = sub i32 %55733, i32 %401113
+  171421 = mul i32 %59735, i32 2
+  191422 = srem i32 %59735, i32 2
   201423 = add i32 %171421, i32 %191422
-  br bb %while.body210.split.split.split.split
-while.body210.split.split.split.split:
-  241.ret = phi [bb %while.body210.split.split.split, i32 %201423]
-  store i32 %241.ret to ptr %217
+  store i32 %201423 to ptr %217
   243 = add i32 %i.phi437, i32 1
   br bb %while.cond209
 while.exit211:
   br bb %while.cond244
 while.cond244:
-  b.phi = phi [bb %while.exit211, i32 %h1.phi, bb %if.exit.split, i32 %a.phi]
-  d.phi = phi [bb %while.exit211, i32 %h3.phi, bb %if.exit.split, i32 %c.phi]
-  f.phi453 = phi [bb %while.exit211, i32 %f.phi454, bb %if.exit.split, i32 %f.phi452]
-  k.phi447 = phi [bb %while.exit211, i32 %k.phi448, bb %if.exit.split, i32 %k.phi446]
-  a.phi = phi [bb %while.exit211, i32 %h0.phi, bb %if.exit.split, i32 %313]
-  i.phi = phi [bb %while.exit211, i32 0, bb %if.exit.split, i32 %321]
-  c.phi = phi [bb %while.exit211, i32 %h2.phi, bb %if.exit.split, i32 %317.ret]
-  e.phi = phi [bb %while.exit211, i32 %h4.phi, bb %if.exit.split, i32 %d.phi]
-  t.phi = phi [bb %while.exit211, i32 %t.phi427, bb %if.exit.split, i32 %313]
+  b.phi = phi [bb %while.exit211, i32 %h1.phi, bb %if.exit, i32 %a.phi]
+  d.phi = phi [bb %while.exit211, i32 %h3.phi, bb %if.exit, i32 %c.phi]
+  f.phi453 = phi [bb %while.exit211, i32 %f.phi454, bb %if.exit, i32 %f.phi452]
+  k.phi447 = phi [bb %while.exit211, i32 %k.phi448, bb %if.exit, i32 %k.phi446]
+  a.phi = phi [bb %while.exit211, i32 %h0.phi, bb %if.exit, i32 %313]
+  i.phi = phi [bb %while.exit211, i32 0, bb %if.exit, i32 %321]
+  c.phi = phi [bb %while.exit211, i32 %h2.phi, bb %if.exit, i32 %341395]
+  e.phi = phi [bb %while.exit211, i32 %h4.phi, bb %if.exit, i32 %d.phi]
+  t.phi = phi [bb %while.exit211, i32 %t.phi427, bb %if.exit, i32 %313]
   248 = icmp slt i32 %i.phi, i32 80
   br i1 %248, bb %while.body245, bb %while.exit246
 while.body245:
@@ -187,32 +184,26 @@ while.exit246:
   br bb %while.cond147
 then:
   401023 = add i32 %b.phi, i32 %c.phi
-  br bb %then.split1021
-then.split1021:
-  257.ret = phi [bb %then, i32 %401023]
   45998 = sub i32 -1, i32 %b.phi
-  br bb %then.split996
-then.split996:
-  259.ret = phi [bb %then.split1021, i32 %45998]
-  401028 = add i32 %259.ret, i32 %d.phi
-  br bb %then.split996.split
-then.split996.split:
-  261.ret = phi [bb %then.split996, i32 %401028]
-  401248 = add i32 %257.ret, i32 %261.ret
-  br bb %_or._xor.entry46.split
+  401028 = add i32 %45998, i32 %d.phi
+  401248 = add i32 %401023, i32 %401028
+  53696858 = sub i32 %401023, i32 %401248
+  55697859 = add i32 %53696858, i32 %401028
+  59699861 = sub i32 %55697859, i32 %401248
+  401258 = add i32 %59699861, i32 %401248
+  53705865 = sub i32 %59699861, i32 %401258
+  55706866 = add i32 %53705865, i32 %401248
+  59708868 = sub i32 %55706866, i32 %401258
+  br bb %then.split
 then.split:
-  262.ret = phi [bb %_or.entry60.split.split, i32 %69.ret854]
   br bb %if.exit
 if.exit:
-  f.phi452 = phi [bb %if.exit266, i32 %f.phi451, bb %then.split, i32 %262.ret]
+  f.phi452 = phi [bb %if.exit266, i32 %f.phi451, bb %then.split, i32 %59708868]
   k.phi446 = phi [bb %if.exit266, i32 %k.phi445, bb %then.split, i32 1518500249]
   241407 = mul i32 %a.phi, i32 32
   261408 = srem i32 %a.phi, i32 32
   271409 = add i32 %241407, i32 %261408
-  br bb %if.exit.split1405
-if.exit.split1405:
-  302.ret = phi [bb %if.exit, i32 %271409]
-  304 = add i32 %302.ret, i32 %f.phi452
+  304 = add i32 %271409, i32 %f.phi452
   306 = add i32 %304, i32 %e.phi
   308 = add i32 %306, i32 %k.phi446
   310 = mul i32 %i.phi, i32 4
@@ -222,9 +213,6 @@ if.exit.split1405:
   311393 = mul i32 %b.phi, i32 1073741824
   331394 = srem i32 %b.phi, i32 1073741824
   341395 = add i32 %311393, i32 %331394
-  br bb %if.exit.split
-if.exit.split:
-  317.ret = phi [bb %if.exit.split1405, i32 %341395]
   321 = add i32 %i.phi, i32 1
   br bb %while.cond244
 else:
@@ -232,16 +220,18 @@ else:
   br i1 %264, bb %then265, bb %else267
 then265:
   401123 = add i32 %b.phi, i32 %c.phi
-  br bb %_xor.entry46739.split
-then265.split:
-  270.ret = phi [bb %_xor.entry46739.split.split, i32 %59744]
-  401133 = add i32 %270.ret, i32 %d.phi
-  br bb %_xor.entry46748.split
+  53741 = sub i32 %b.phi, i32 %401123
+  55742 = add i32 %53741, i32 %c.phi
+  59744 = sub i32 %55742, i32 %401123
+  401133 = add i32 %59744, i32 %d.phi
+  53750 = sub i32 %59744, i32 %401133
+  55751 = add i32 %53750, i32 %d.phi
+  59753 = sub i32 %55751, i32 %401133
+  br bb %then265.split.split
 then265.split.split:
-  272.ret = phi [bb %_xor.entry46748.split.split, i32 %59753]
   br bb %if.exit266
 if.exit266:
-  f.phi451 = phi [bb %if.exit276, i32 %f.phi450, bb %then265.split.split, i32 %272.ret]
+  f.phi451 = phi [bb %if.exit276, i32 %f.phi450, bb %then265.split.split, i32 %59753]
   k.phi445 = phi [bb %if.exit276, i32 %k.phi444, bb %then265.split.split, i32 1859775361]
   br bb %if.exit
 else267:
@@ -249,242 +239,73 @@ else267:
   br i1 %274, bb %then275, bb %else277
 then275:
   401033 = add i32 %b.phi, i32 %c.phi
-  br bb %then275.split1031
-then275.split1031:
-  280.ret = phi [bb %then275, i32 %401033]
   401038 = add i32 %b.phi, i32 %d.phi
-  br bb %then275.split1031.split
-then275.split1031.split:
-  283.ret = phi [bb %then275.split1031, i32 %401038]
-  401273 = add i32 %280.ret, i32 %283.ret
-  br bb %_or._xor.entry46881.split
-then275.split:
-  284.ret = phi [bb %_or.entry60.split.split878, i32 %69.ret879]
+  401273 = add i32 %401033, i32 %401038
+  53696883 = sub i32 %401033, i32 %401273
+  55697884 = add i32 %53696883, i32 %401038
+  59699886 = sub i32 %55697884, i32 %401273
+  401283 = add i32 %59699886, i32 %401273
+  53705890 = sub i32 %59699886, i32 %401283
+  55706891 = add i32 %53705890, i32 %401273
+  59708893 = sub i32 %55706891, i32 %401283
   401043 = add i32 %c.phi, i32 %d.phi
-  br bb %then275.split.split1041
-then275.split.split1041:
-  287.ret = phi [bb %then275.split, i32 %401043]
-  401298 = add i32 %284.ret, i32 %287.ret
-  br bb %_or._xor.entry46906.split
+  401298 = add i32 %59708893, i32 %401043
+  53696908 = sub i32 %59708893, i32 %401298
+  55697909 = add i32 %53696908, i32 %401043
+  59699911 = sub i32 %55697909, i32 %401298
+  401308 = add i32 %59699911, i32 %401298
+  53705915 = sub i32 %59699911, i32 %401308
+  55706916 = add i32 %53705915, i32 %401298
+  59708918 = sub i32 %55706916, i32 %401308
+  br bb %then275.split.split
 then275.split.split:
-  288.ret = phi [bb %_or.entry60.split.split903, i32 %69.ret904]
   br bb %if.exit276
 if.exit276:
-  f.phi450 = phi [bb %if.exit293, i32 %f.phi, bb %then275.split.split, i32 %288.ret]
+  f.phi450 = phi [bb %if.exit293, i32 %f.phi, bb %then275.split.split, i32 %59708918]
   k.phi444 = phi [bb %if.exit293, i32 %k.phi, bb %then275.split.split, i32 -1894007588]
   br bb %if.exit266
 else277:
   br i1 %248, bb %then292, bb %if.exit293
 then292:
   401143 = add i32 %b.phi, i32 %c.phi
-  br bb %_xor.entry46757.split
-then292.split:
-  296.ret = phi [bb %_xor.entry46757.split.split, i32 %59762]
-  401153 = add i32 %296.ret, i32 %d.phi
-  br bb %_xor.entry46766.split
+  53759 = sub i32 %b.phi, i32 %401143
+  55760 = add i32 %53759, i32 %c.phi
+  59762 = sub i32 %55760, i32 %401143
+  401153 = add i32 %59762, i32 %d.phi
+  53768 = sub i32 %59762, i32 %401153
+  55769 = add i32 %53768, i32 %d.phi
+  59771 = sub i32 %55769, i32 %401153
+  br bb %then292.split.split
 then292.split.split:
-  298.ret = phi [bb %_xor.entry46766.split.split, i32 %59771]
   br bb %if.exit293
 if.exit293:
-  f.phi = phi [bb %else277, i32 %f.phi453, bb %then292.split.split, i32 %298.ret]
+  f.phi = phi [bb %else277, i32 %f.phi453, bb %then292.split.split, i32 %59771]
   k.phi = phi [bb %else277, i32 %k.phi447, bb %then292.split.split, i32 -899497722]
   br bb %if.exit276
-_xor.entry46712.split:
-  52713.ret = phi [bb %while.body210, i32 %401093]
-  53714 = sub i32 %221.load, i32 %52713.ret
-  55715 = add i32 %53714, i32 %226.load
-  br bb %_xor.entry46712.split.split
-_xor.entry46712.split.split:
-  58716.ret = phi [bb %_xor.entry46712.split, i32 %401093]
-  59717 = sub i32 %55715, i32 %58716.ret
-  br bb %while.body210.split
-_xor.entry46721.split:
-  52722.ret = phi [bb %while.body210.split, i32 %401103]
-  53723 = sub i32 %228.ret, i32 %52722.ret
-  55724 = add i32 %53723, i32 %232.load
-  br bb %_xor.entry46721.split.split
-_xor.entry46721.split.split:
-  58725.ret = phi [bb %_xor.entry46721.split, i32 %401103]
-  59726 = sub i32 %55724, i32 %58725.ret
-  br bb %while.body210.split.split
-_xor.entry46730.split:
-  52731.ret = phi [bb %while.body210.split.split, i32 %401113]
-  53732 = sub i32 %234.ret, i32 %52731.ret
-  55733 = add i32 %53732, i32 %238.load
-  br bb %_xor.entry46730.split.split
-_xor.entry46730.split.split:
-  58734.ret = phi [bb %_xor.entry46730.split, i32 %401113]
-  59735 = sub i32 %55733, i32 %58734.ret
-  br bb %while.body210.split.split.split
-_xor.entry46739.split:
-  52740.ret = phi [bb %then265, i32 %401123]
-  53741 = sub i32 %b.phi, i32 %52740.ret
-  55742 = add i32 %53741, i32 %c.phi
-  br bb %_xor.entry46739.split.split
-_xor.entry46739.split.split:
-  58743.ret = phi [bb %_xor.entry46739.split, i32 %401123]
-  59744 = sub i32 %55742, i32 %58743.ret
-  br bb %then265.split
-_xor.entry46748.split:
-  52749.ret = phi [bb %then265.split, i32 %401133]
-  53750 = sub i32 %270.ret, i32 %52749.ret
-  55751 = add i32 %53750, i32 %d.phi
-  br bb %_xor.entry46748.split.split
-_xor.entry46748.split.split:
-  58752.ret = phi [bb %_xor.entry46748.split, i32 %401133]
-  59753 = sub i32 %55751, i32 %58752.ret
-  br bb %then265.split.split
-_xor.entry46757.split:
-  52758.ret = phi [bb %then292, i32 %401143]
-  53759 = sub i32 %b.phi, i32 %52758.ret
-  55760 = add i32 %53759, i32 %c.phi
-  br bb %_xor.entry46757.split.split
-_xor.entry46757.split.split:
-  58761.ret = phi [bb %_xor.entry46757.split, i32 %401143]
-  59762 = sub i32 %55760, i32 %58761.ret
-  br bb %then292.split
-_xor.entry46766.split:
-  52767.ret = phi [bb %then292.split, i32 %401153]
-  53768 = sub i32 %296.ret, i32 %52767.ret
-  55769 = add i32 %53768, i32 %d.phi
-  br bb %_xor.entry46766.split.split
-_xor.entry46766.split.split:
-  58770.ret = phi [bb %_xor.entry46766.split, i32 %401153]
-  59771 = sub i32 %55769, i32 %58770.ret
-  br bb %then292.split.split
-_or.entry60.split:
-  65.ret850 = phi [bb %_or._xor.entry46.split.split, i32 %59699861]
-  br bb %_or.entry60.split.split1241
-_or.entry60.split.split1241:
-  68851.ret = phi [bb %_or.entry60.split, i32 %401248]
-  401258 = add i32 %65.ret850, i32 %68851.ret
-  br bb %_or._xor.entry46703.split
-_or.entry60.split.split:
-  69.ret854 = phi [bb %_or._xor.entry46703.split.split, i32 %59708868]
-  br bb %then.split
-_or._xor.entry46.split:
-  52695857.ret = phi [bb %then.split996.split, i32 %401248]
-  53696858 = sub i32 %257.ret, i32 %52695857.ret
-  55697859 = add i32 %53696858, i32 %261.ret
-  br bb %_or._xor.entry46.split.split
-_or._xor.entry46.split.split:
-  58698860.ret = phi [bb %_or._xor.entry46.split, i32 %401248]
-  59699861 = sub i32 %55697859, i32 %58698860.ret
-  br bb %_or.entry60.split
-_or._xor.entry46703.split:
-  52704864.ret = phi [bb %_or.entry60.split.split1241, i32 %401258]
-  53705865 = sub i32 %65.ret850, i32 %52704864.ret
-  55706866 = add i32 %53705865, i32 %68851.ret
-  br bb %_or._xor.entry46703.split.split
-_or._xor.entry46703.split.split:
-  58707867.ret = phi [bb %_or._xor.entry46703.split, i32 %401258]
-  59708868 = sub i32 %55706866, i32 %58707867.ret
-  br bb %_or.entry60.split.split
-_or.entry60.split874:
-  65.ret875 = phi [bb %_or._xor.entry46881.split.split, i32 %59699886]
-  br bb %_or.entry60.split874.split
-_or.entry60.split874.split:
-  68876.ret = phi [bb %_or.entry60.split874, i32 %401273]
-  401283 = add i32 %65.ret875, i32 %68876.ret
-  br bb %_or._xor.entry46703888.split
-_or.entry60.split.split878:
-  69.ret879 = phi [bb %_or._xor.entry46703888.split.split, i32 %59708893]
-  br bb %then275.split
-_or._xor.entry46881.split:
-  52695882.ret = phi [bb %then275.split1031.split, i32 %401273]
-  53696883 = sub i32 %280.ret, i32 %52695882.ret
-  55697884 = add i32 %53696883, i32 %283.ret
-  br bb %_or._xor.entry46881.split.split
-_or._xor.entry46881.split.split:
-  58698885.ret = phi [bb %_or._xor.entry46881.split, i32 %401273]
-  59699886 = sub i32 %55697884, i32 %58698885.ret
-  br bb %_or.entry60.split874
-_or._xor.entry46703888.split:
-  52704889.ret = phi [bb %_or.entry60.split874.split, i32 %401283]
-  53705890 = sub i32 %65.ret875, i32 %52704889.ret
-  55706891 = add i32 %53705890, i32 %68876.ret
-  br bb %_or._xor.entry46703888.split.split
-_or._xor.entry46703888.split.split:
-  58707892.ret = phi [bb %_or._xor.entry46703888.split, i32 %401283]
-  59708893 = sub i32 %55706891, i32 %58707892.ret
-  br bb %_or.entry60.split.split878
-_or.entry60.split899:
-  65.ret900 = phi [bb %_or._xor.entry46906.split.split, i32 %59699911]
-  br bb %_or.entry60.split899.split
-_or.entry60.split899.split:
-  68901.ret = phi [bb %_or.entry60.split899, i32 %401298]
-  401308 = add i32 %65.ret900, i32 %68901.ret
-  br bb %_or._xor.entry46703913.split
-_or.entry60.split.split903:
-  69.ret904 = phi [bb %_or._xor.entry46703913.split.split, i32 %59708918]
-  br bb %then275.split.split
-_or._xor.entry46906.split:
-  52695907.ret = phi [bb %then275.split.split1041, i32 %401298]
-  53696908 = sub i32 %284.ret, i32 %52695907.ret
-  55697909 = add i32 %53696908, i32 %287.ret
-  br bb %_or._xor.entry46906.split.split
-_or._xor.entry46906.split.split:
-  58698910.ret = phi [bb %_or._xor.entry46906.split, i32 %401298]
-  59699911 = sub i32 %55697909, i32 %58698910.ret
-  br bb %_or.entry60.split899
-_or._xor.entry46703913.split:
-  52704914.ret = phi [bb %_or.entry60.split899.split, i32 %401308]
-  53705915 = sub i32 %65.ret900, i32 %52704914.ret
-  55706916 = add i32 %53705915, i32 %68901.ret
-  br bb %_or._xor.entry46703913.split.split
-_or._xor.entry46703913.split.split:
-  58707917.ret = phi [bb %_or._xor.entry46703913.split, i32 %401308]
-  59708918 = sub i32 %55706916, i32 %58707917.ret
-  br bb %_or.entry60.split.split903
 }
 
 i32 _xor(i32 a, i32 b) {
 entry46:
   401008 = add i32 %a, i32 %b
-  br bb %entry46.split
-entry46.split:
-  52.ret = phi [bb %entry46, i32 %401008]
-  53 = sub i32 %a, i32 %52.ret
+  53 = sub i32 %a, i32 %401008
   55 = add i32 %53, i32 %b
-  br bb %entry46.split.split
-entry46.split.split:
-  58.ret = phi [bb %entry46.split, i32 %401008]
-  59 = sub i32 %55, i32 %58.ret
+  59 = sub i32 %55, i32 %401008
   ret i32 %59
 }
 
 i32 _or(i32 a, i32 b) {
 entry60:
   401073 = add i32 %a, i32 %b
-  br bb %_xor.entry46.split
-entry60.split:
-  65.ret = phi [bb %_xor.entry46.split.split, i32 %59699]
-  br bb %entry60.split.split1016
-entry60.split.split1016:
-  68.ret = phi [bb %entry60.split, i32 %401073]
-  401083 = add i32 %65.ret, i32 %68.ret
-  br bb %_xor.entry46703.split
-entry60.split.split:
-  69.ret = phi [bb %_xor.entry46703.split.split, i32 %59708]
-  ret i32 %69.ret
-_xor.entry46.split:
-  52695.ret = phi [bb %entry60, i32 %401073]
-  53696 = sub i32 %a, i32 %52695.ret
+  53696 = sub i32 %a, i32 %401073
   55697 = add i32 %53696, i32 %b
-  br bb %_xor.entry46.split.split
-_xor.entry46.split.split:
-  58698.ret = phi [bb %_xor.entry46.split, i32 %401073]
-  59699 = sub i32 %55697, i32 %58698.ret
-  br bb %entry60.split
-_xor.entry46703.split:
-  52704.ret = phi [bb %entry60.split.split1016, i32 %401083]
-  53705 = sub i32 %65.ret, i32 %52704.ret
-  55706 = add i32 %53705, i32 %68.ret
-  br bb %_xor.entry46703.split.split
-_xor.entry46703.split.split:
-  58707.ret = phi [bb %_xor.entry46703.split, i32 %401083]
-  59708 = sub i32 %55706, i32 %58707.ret
+  59699 = sub i32 %55697, i32 %401073
+  401083 = add i32 %59699, i32 %401073
+  53705 = sub i32 %59699, i32 %401083
+  55706 = add i32 %53705, i32 %401073
+  59708 = sub i32 %55706, i32 %401083
   br bb %entry60.split.split
+entry60.split.split:
+  ret i32 %59708
 }
 
 i32 _not(i32 x) {
@@ -562,7 +383,7 @@ while.exit379:
   call void putarray(i32 5, ptr %output_buf)
   ret i32 0
 while.cond385:
-  i384.phi465 = phi [bb %while.body378, i32 0, bb %while.body386.split, i32 %398]
+  i384.phi465 = phi [bb %while.body378, i32 0, bb %while.body386, i32 %398]
   390 = icmp slt i32 %i384.phi465, i32 32000
   br i1 %390, bb %while.body386, bb %while.exit387
 while.body386:
@@ -579,10 +400,7 @@ while.body386:
   111443 = mul i32 %81441, i32 32
   121444 = add i32 %81441, i32 %111443
   store i32 %121444 to ptr @state
-  br bb %while.body386.split
-while.body386.split:
-  395.ret = phi [bb %while.body386, i32 %121444]
-  396 = srem i32 %395.ret, i32 256
+  396 = srem i32 %121444, i32 256
   store i32 %396 to ptr %394
   398 = add i32 %i384.phi465, i32 1
   br bb %while.cond385
@@ -593,7 +411,7 @@ while.exit387:
 while.exit387.split:
   br bb %while.cond401
 while.cond401:
-  i384.phi = phi [bb %while.exit387.split, i32 0, bb %while.body402.split, i32 %420]
+  i384.phi = phi [bb %while.exit387.split, i32 0, bb %while.body402, i32 %420]
   405 = icmp slt i32 %i384.phi, i32 5
   br i1 %405, bb %while.body402, bb %while.exit403
 while.body402:
@@ -603,10 +421,10 @@ while.body402:
   416 = ptradd ptr %output, i32 %408
   416.load = load i32 from ptr %416
   401163 = add i32 %412.load, i32 %416.load
-  br bb %_xor.entry46775.split
-while.body402.split:
-  418.ret = phi [bb %_xor.entry46775.split.split, i32 %59780]
-  store i32 %418.ret to ptr %409
+  53777 = sub i32 %412.load, i32 %401163
+  55778 = add i32 %53777, i32 %416.load
+  59780 = sub i32 %55778, i32 %401163
+  store i32 %59780 to ptr %409
   420 = add i32 %i384.phi, i32 1
   br bb %while.cond401
 while.exit403:
@@ -710,7 +528,7 @@ pseudo_sha1.while.body161:
 pseudo_sha1.while.exit162:
   br bb %pseudo_sha1.while.cond209
 pseudo_sha1.while.cond209:
-  i.phi437584 = phi [bb %pseudo_sha1.while.exit162, i32 %i.phi438549, bb %pseudo_sha1.while.body210.split.split.split.split, i32 %243611]
+  i.phi437584 = phi [bb %pseudo_sha1.while.exit162, i32 %i.phi438549, bb %pseudo_sha1.while.body210, i32 %243611]
   213585 = icmp slt i32 %i.phi437584, i32 80
   br i1 %213585, bb %pseudo_sha1.while.body210, bb %pseudo_sha1.while.exit211
 pseudo_sha1.while.body210:
@@ -725,46 +543,43 @@ pseudo_sha1.while.body210:
   226596 = ptradd ptr %words469, i32 %225595
   226.load597 = load i32 from ptr %226596
   401173 = add i32 %221.load593, i32 %226.load597
-  br bb %_xor.entry46784.split
-pseudo_sha1.while.body210.split:
-  228598.ret = phi [bb %_xor.entry46784.split.split, i32 %59789]
+  53786 = sub i32 %221.load593, i32 %401173
+  55787 = add i32 %53786, i32 %226.load597
+  59789 = sub i32 %55787, i32 %401173
   230599 = sub i32 %i.phi437584, i32 14
   231600 = mul i32 %230599, i32 4
   232601 = ptradd ptr %words469, i32 %231600
   232.load602 = load i32 from ptr %232601
-  401183 = add i32 %228598.ret, i32 %232.load602
-  br bb %_xor.entry46793.split
-pseudo_sha1.while.body210.split.split:
-  234603.ret = phi [bb %_xor.entry46793.split.split, i32 %59798]
+  401183 = add i32 %59789, i32 %232.load602
+  53795 = sub i32 %59789, i32 %401183
+  55796 = add i32 %53795, i32 %232.load602
+  59798 = sub i32 %55796, i32 %401183
   236604 = sub i32 %i.phi437584, i32 16
   237605 = mul i32 %236604, i32 4
   238606 = ptradd ptr %words469, i32 %237605
   238.load607 = load i32 from ptr %238606
-  401193 = add i32 %234603.ret, i32 %238.load607
-  br bb %_xor.entry46802.split
-pseudo_sha1.while.body210.split.split.split:
-  240608.ret = phi [bb %_xor.entry46802.split.split, i32 %59807]
-  171428 = mul i32 %240608.ret, i32 2
-  191429 = srem i32 %240608.ret, i32 2
+  401193 = add i32 %59798, i32 %238.load607
+  53804 = sub i32 %59798, i32 %401193
+  55805 = add i32 %53804, i32 %238.load607
+  59807 = sub i32 %55805, i32 %401193
+  171428 = mul i32 %59807, i32 2
+  191429 = srem i32 %59807, i32 2
   201430 = add i32 %171428, i32 %191429
-  br bb %pseudo_sha1.while.body210.split.split.split.split
-pseudo_sha1.while.body210.split.split.split.split:
-  241609.ret = phi [bb %pseudo_sha1.while.body210.split.split.split, i32 %201430]
-  store i32 %241609.ret to ptr %217589
+  store i32 %201430 to ptr %217589
   243611 = add i32 %i.phi437584, i32 1
   br bb %pseudo_sha1.while.cond209
 pseudo_sha1.while.exit211:
   br bb %pseudo_sha1.while.cond244
 pseudo_sha1.while.cond244:
-  b.phi616 = phi [bb %pseudo_sha1.while.exit211, i32 %h1.phi524, bb %pseudo_sha1.if.exit.split, i32 %a.phi620]
-  d.phi617 = phi [bb %pseudo_sha1.while.exit211, i32 %h3.phi528, bb %pseudo_sha1.if.exit.split, i32 %c.phi622]
-  f.phi453618 = phi [bb %pseudo_sha1.while.exit211, i32 %f.phi454526, bb %pseudo_sha1.if.exit.split, i32 %f.phi452645]
-  k.phi447619 = phi [bb %pseudo_sha1.while.exit211, i32 %k.phi448527, bb %pseudo_sha1.if.exit.split, i32 %k.phi446646]
-  a.phi620 = phi [bb %pseudo_sha1.while.exit211, i32 %h0.phi532, bb %pseudo_sha1.if.exit.split, i32 %313654]
-  i.phi621 = phi [bb %pseudo_sha1.while.exit211, i32 0, bb %pseudo_sha1.if.exit.split, i32 %321656]
-  c.phi622 = phi [bb %pseudo_sha1.while.exit211, i32 %h2.phi529, bb %pseudo_sha1.if.exit.split, i32 %317655.ret]
-  e.phi623 = phi [bb %pseudo_sha1.while.exit211, i32 %h4.phi525, bb %pseudo_sha1.if.exit.split, i32 %d.phi617]
-  t.phi624 = phi [bb %pseudo_sha1.while.exit211, i32 %t.phi427531, bb %pseudo_sha1.if.exit.split, i32 %313654]
+  b.phi616 = phi [bb %pseudo_sha1.while.exit211, i32 %h1.phi524, bb %pseudo_sha1.if.exit, i32 %a.phi620]
+  d.phi617 = phi [bb %pseudo_sha1.while.exit211, i32 %h3.phi528, bb %pseudo_sha1.if.exit, i32 %c.phi622]
+  f.phi453618 = phi [bb %pseudo_sha1.while.exit211, i32 %f.phi454526, bb %pseudo_sha1.if.exit, i32 %f.phi452645]
+  k.phi447619 = phi [bb %pseudo_sha1.while.exit211, i32 %k.phi448527, bb %pseudo_sha1.if.exit, i32 %k.phi446646]
+  a.phi620 = phi [bb %pseudo_sha1.while.exit211, i32 %h0.phi532, bb %pseudo_sha1.if.exit, i32 %313654]
+  i.phi621 = phi [bb %pseudo_sha1.while.exit211, i32 0, bb %pseudo_sha1.if.exit, i32 %321656]
+  c.phi622 = phi [bb %pseudo_sha1.while.exit211, i32 %h2.phi529, bb %pseudo_sha1.if.exit, i32 %341402]
+  e.phi623 = phi [bb %pseudo_sha1.while.exit211, i32 %h4.phi525, bb %pseudo_sha1.if.exit, i32 %d.phi617]
+  t.phi624 = phi [bb %pseudo_sha1.while.exit211, i32 %t.phi427531, bb %pseudo_sha1.if.exit, i32 %313654]
   248625 = icmp slt i32 %i.phi621, i32 80
   br i1 %248625, bb %pseudo_sha1.while.body245, bb %pseudo_sha1.while.exit246
 pseudo_sha1.while.body245:
@@ -780,32 +595,26 @@ pseudo_sha1.while.exit246:
   br bb %pseudo_sha1.while.cond147
 pseudo_sha1.then:
   401048 = add i32 %b.phi616, i32 %c.phi622
-  br bb %pseudo_sha1.then.split1046
-pseudo_sha1.then.split1046:
-  257639.ret = phi [bb %pseudo_sha1.then, i32 %401048]
   451003 = sub i32 -1, i32 %b.phi616
-  br bb %pseudo_sha1.then.split1001
-pseudo_sha1.then.split1001:
-  259640.ret = phi [bb %pseudo_sha1.then.split1046, i32 %451003]
-  401053 = add i32 %259640.ret, i32 %d.phi617
-  br bb %pseudo_sha1.then.split1001.split
-pseudo_sha1.then.split1001.split:
-  261641.ret = phi [bb %pseudo_sha1.then.split1001, i32 %401053]
-  401323 = add i32 %257639.ret, i32 %261641.ret
-  br bb %_or._xor.entry46931.split
+  401053 = add i32 %451003, i32 %d.phi617
+  401323 = add i32 %401048, i32 %401053
+  53696933 = sub i32 %401048, i32 %401323
+  55697934 = add i32 %53696933, i32 %401053
+  59699936 = sub i32 %55697934, i32 %401323
+  401333 = add i32 %59699936, i32 %401323
+  53705940 = sub i32 %59699936, i32 %401333
+  55706941 = add i32 %53705940, i32 %401323
+  59708943 = sub i32 %55706941, i32 %401333
+  br bb %pseudo_sha1.then.split
 pseudo_sha1.then.split:
-  262642.ret = phi [bb %_or.entry60.split.split928, i32 %69.ret929]
   br bb %pseudo_sha1.if.exit
 pseudo_sha1.if.exit:
-  f.phi452645 = phi [bb %pseudo_sha1.if.exit266, i32 %f.phi451666, bb %pseudo_sha1.then.split, i32 %262642.ret]
+  f.phi452645 = phi [bb %pseudo_sha1.if.exit266, i32 %f.phi451666, bb %pseudo_sha1.then.split, i32 %59708943]
   k.phi446646 = phi [bb %pseudo_sha1.if.exit266, i32 %k.phi445667, bb %pseudo_sha1.then.split, i32 1518500249]
   241414 = mul i32 %a.phi620, i32 32
   261415 = srem i32 %a.phi620, i32 32
   271416 = add i32 %241414, i32 %261415
-  br bb %pseudo_sha1.if.exit.split1412
-pseudo_sha1.if.exit.split1412:
-  302647.ret = phi [bb %pseudo_sha1.if.exit, i32 %271416]
-  304648 = add i32 %302647.ret, i32 %f.phi452645
+  304648 = add i32 %271416, i32 %f.phi452645
   306649 = add i32 %304648, i32 %e.phi623
   308650 = add i32 %306649, i32 %k.phi446646
   310651 = mul i32 %i.phi621, i32 4
@@ -815,9 +624,6 @@ pseudo_sha1.if.exit.split1412:
   311400 = mul i32 %b.phi616, i32 1073741824
   331401 = srem i32 %b.phi616, i32 1073741824
   341402 = add i32 %311400, i32 %331401
-  br bb %pseudo_sha1.if.exit.split
-pseudo_sha1.if.exit.split:
-  317655.ret = phi [bb %pseudo_sha1.if.exit.split1412, i32 %341402]
   321656 = add i32 %i.phi621, i32 1
   br bb %pseudo_sha1.while.cond244
 pseudo_sha1.else:
@@ -825,16 +631,18 @@ pseudo_sha1.else:
   br i1 %264659, bb %pseudo_sha1.then265, bb %pseudo_sha1.else267
 pseudo_sha1.then265:
   401203 = add i32 %b.phi616, i32 %c.phi622
-  br bb %_xor.entry46811.split
-pseudo_sha1.then265.split:
-  270662.ret = phi [bb %_xor.entry46811.split.split, i32 %59816]
-  401213 = add i32 %270662.ret, i32 %d.phi617
-  br bb %_xor.entry46820.split
+  53813 = sub i32 %b.phi616, i32 %401203
+  55814 = add i32 %53813, i32 %c.phi622
+  59816 = sub i32 %55814, i32 %401203
+  401213 = add i32 %59816, i32 %d.phi617
+  53822 = sub i32 %59816, i32 %401213
+  55823 = add i32 %53822, i32 %d.phi617
+  59825 = sub i32 %55823, i32 %401213
+  br bb %pseudo_sha1.then265.split.split
 pseudo_sha1.then265.split.split:
-  272663.ret = phi [bb %_xor.entry46820.split.split, i32 %59825]
   br bb %pseudo_sha1.if.exit266
 pseudo_sha1.if.exit266:
-  f.phi451666 = phi [bb %pseudo_sha1.if.exit276, i32 %f.phi450680, bb %pseudo_sha1.then265.split.split, i32 %272663.ret]
+  f.phi451666 = phi [bb %pseudo_sha1.if.exit276, i32 %f.phi450680, bb %pseudo_sha1.then265.split.split, i32 %59825]
   k.phi445667 = phi [bb %pseudo_sha1.if.exit276, i32 %k.phi444681, bb %pseudo_sha1.then265.split.split, i32 1859775361]
   br bb %pseudo_sha1.if.exit
 pseudo_sha1.else267:
@@ -842,202 +650,49 @@ pseudo_sha1.else267:
   br i1 %274670, bb %pseudo_sha1.then275, bb %pseudo_sha1.else277
 pseudo_sha1.then275:
   401058 = add i32 %b.phi616, i32 %c.phi622
-  br bb %pseudo_sha1.then275.split1056
-pseudo_sha1.then275.split1056:
-  280673.ret = phi [bb %pseudo_sha1.then275, i32 %401058]
   401063 = add i32 %b.phi616, i32 %d.phi617
-  br bb %pseudo_sha1.then275.split1056.split
-pseudo_sha1.then275.split1056.split:
-  283674.ret = phi [bb %pseudo_sha1.then275.split1056, i32 %401063]
-  401348 = add i32 %280673.ret, i32 %283674.ret
-  br bb %_or._xor.entry46956.split
-pseudo_sha1.then275.split:
-  284675.ret = phi [bb %_or.entry60.split.split953, i32 %69.ret954]
+  401348 = add i32 %401058, i32 %401063
+  53696958 = sub i32 %401058, i32 %401348
+  55697959 = add i32 %53696958, i32 %401063
+  59699961 = sub i32 %55697959, i32 %401348
+  401358 = add i32 %59699961, i32 %401348
+  53705965 = sub i32 %59699961, i32 %401358
+  55706966 = add i32 %53705965, i32 %401348
+  59708968 = sub i32 %55706966, i32 %401358
   401068 = add i32 %c.phi622, i32 %d.phi617
-  br bb %pseudo_sha1.then275.split.split1066
-pseudo_sha1.then275.split.split1066:
-  287676.ret = phi [bb %pseudo_sha1.then275.split, i32 %401068]
-  401373 = add i32 %284675.ret, i32 %287676.ret
-  br bb %_or._xor.entry46981.split
+  401373 = add i32 %59708968, i32 %401068
+  53696983 = sub i32 %59708968, i32 %401373
+  55697984 = add i32 %53696983, i32 %401068
+  59699986 = sub i32 %55697984, i32 %401373
+  401383 = add i32 %59699986, i32 %401373
+  53705990 = sub i32 %59699986, i32 %401383
+  55706991 = add i32 %53705990, i32 %401373
+  59708993 = sub i32 %55706991, i32 %401383
+  br bb %pseudo_sha1.then275.split.split
 pseudo_sha1.then275.split.split:
-  288677.ret = phi [bb %_or.entry60.split.split978, i32 %69.ret979]
   br bb %pseudo_sha1.if.exit276
 pseudo_sha1.if.exit276:
-  f.phi450680 = phi [bb %pseudo_sha1.if.exit293, i32 %f.phi690, bb %pseudo_sha1.then275.split.split, i32 %288677.ret]
+  f.phi450680 = phi [bb %pseudo_sha1.if.exit293, i32 %f.phi690, bb %pseudo_sha1.then275.split.split, i32 %59708993]
   k.phi444681 = phi [bb %pseudo_sha1.if.exit293, i32 %k.phi691, bb %pseudo_sha1.then275.split.split, i32 -1894007588]
   br bb %pseudo_sha1.if.exit266
 pseudo_sha1.else277:
   br i1 %248625, bb %pseudo_sha1.then292, bb %pseudo_sha1.if.exit293
 pseudo_sha1.then292:
   401223 = add i32 %b.phi616, i32 %c.phi622
-  br bb %_xor.entry46829.split
-pseudo_sha1.then292.split:
-  296686.ret = phi [bb %_xor.entry46829.split.split, i32 %59834]
-  401233 = add i32 %296686.ret, i32 %d.phi617
-  br bb %_xor.entry46838.split
+  53831 = sub i32 %b.phi616, i32 %401223
+  55832 = add i32 %53831, i32 %c.phi622
+  59834 = sub i32 %55832, i32 %401223
+  401233 = add i32 %59834, i32 %d.phi617
+  53840 = sub i32 %59834, i32 %401233
+  55841 = add i32 %53840, i32 %d.phi617
+  59843 = sub i32 %55841, i32 %401233
+  br bb %pseudo_sha1.then292.split.split
 pseudo_sha1.then292.split.split:
-  298687.ret = phi [bb %_xor.entry46838.split.split, i32 %59843]
   br bb %pseudo_sha1.if.exit293
 pseudo_sha1.if.exit293:
-  f.phi690 = phi [bb %pseudo_sha1.else277, i32 %f.phi453618, bb %pseudo_sha1.then292.split.split, i32 %298687.ret]
+  f.phi690 = phi [bb %pseudo_sha1.else277, i32 %f.phi453618, bb %pseudo_sha1.then292.split.split, i32 %59843]
   k.phi691 = phi [bb %pseudo_sha1.else277, i32 %k.phi447619, bb %pseudo_sha1.then292.split.split, i32 -899497722]
   br bb %pseudo_sha1.if.exit276
-_xor.entry46775.split:
-  52776.ret = phi [bb %while.body402, i32 %401163]
-  53777 = sub i32 %412.load, i32 %52776.ret
-  55778 = add i32 %53777, i32 %416.load
-  br bb %_xor.entry46775.split.split
-_xor.entry46775.split.split:
-  58779.ret = phi [bb %_xor.entry46775.split, i32 %401163]
-  59780 = sub i32 %55778, i32 %58779.ret
-  br bb %while.body402.split
-_xor.entry46784.split:
-  52785.ret = phi [bb %pseudo_sha1.while.body210, i32 %401173]
-  53786 = sub i32 %221.load593, i32 %52785.ret
-  55787 = add i32 %53786, i32 %226.load597
-  br bb %_xor.entry46784.split.split
-_xor.entry46784.split.split:
-  58788.ret = phi [bb %_xor.entry46784.split, i32 %401173]
-  59789 = sub i32 %55787, i32 %58788.ret
-  br bb %pseudo_sha1.while.body210.split
-_xor.entry46793.split:
-  52794.ret = phi [bb %pseudo_sha1.while.body210.split, i32 %401183]
-  53795 = sub i32 %228598.ret, i32 %52794.ret
-  55796 = add i32 %53795, i32 %232.load602
-  br bb %_xor.entry46793.split.split
-_xor.entry46793.split.split:
-  58797.ret = phi [bb %_xor.entry46793.split, i32 %401183]
-  59798 = sub i32 %55796, i32 %58797.ret
-  br bb %pseudo_sha1.while.body210.split.split
-_xor.entry46802.split:
-  52803.ret = phi [bb %pseudo_sha1.while.body210.split.split, i32 %401193]
-  53804 = sub i32 %234603.ret, i32 %52803.ret
-  55805 = add i32 %53804, i32 %238.load607
-  br bb %_xor.entry46802.split.split
-_xor.entry46802.split.split:
-  58806.ret = phi [bb %_xor.entry46802.split, i32 %401193]
-  59807 = sub i32 %55805, i32 %58806.ret
-  br bb %pseudo_sha1.while.body210.split.split.split
-_xor.entry46811.split:
-  52812.ret = phi [bb %pseudo_sha1.then265, i32 %401203]
-  53813 = sub i32 %b.phi616, i32 %52812.ret
-  55814 = add i32 %53813, i32 %c.phi622
-  br bb %_xor.entry46811.split.split
-_xor.entry46811.split.split:
-  58815.ret = phi [bb %_xor.entry46811.split, i32 %401203]
-  59816 = sub i32 %55814, i32 %58815.ret
-  br bb %pseudo_sha1.then265.split
-_xor.entry46820.split:
-  52821.ret = phi [bb %pseudo_sha1.then265.split, i32 %401213]
-  53822 = sub i32 %270662.ret, i32 %52821.ret
-  55823 = add i32 %53822, i32 %d.phi617
-  br bb %_xor.entry46820.split.split
-_xor.entry46820.split.split:
-  58824.ret = phi [bb %_xor.entry46820.split, i32 %401213]
-  59825 = sub i32 %55823, i32 %58824.ret
-  br bb %pseudo_sha1.then265.split.split
-_xor.entry46829.split:
-  52830.ret = phi [bb %pseudo_sha1.then292, i32 %401223]
-  53831 = sub i32 %b.phi616, i32 %52830.ret
-  55832 = add i32 %53831, i32 %c.phi622
-  br bb %_xor.entry46829.split.split
-_xor.entry46829.split.split:
-  58833.ret = phi [bb %_xor.entry46829.split, i32 %401223]
-  59834 = sub i32 %55832, i32 %58833.ret
-  br bb %pseudo_sha1.then292.split
-_xor.entry46838.split:
-  52839.ret = phi [bb %pseudo_sha1.then292.split, i32 %401233]
-  53840 = sub i32 %296686.ret, i32 %52839.ret
-  55841 = add i32 %53840, i32 %d.phi617
-  br bb %_xor.entry46838.split.split
-_xor.entry46838.split.split:
-  58842.ret = phi [bb %_xor.entry46838.split, i32 %401233]
-  59843 = sub i32 %55841, i32 %58842.ret
-  br bb %pseudo_sha1.then292.split.split
-_or.entry60.split924:
-  65.ret925 = phi [bb %_or._xor.entry46931.split.split, i32 %59699936]
-  br bb %_or.entry60.split924.split
-_or.entry60.split924.split:
-  68926.ret = phi [bb %_or.entry60.split924, i32 %401323]
-  401333 = add i32 %65.ret925, i32 %68926.ret
-  br bb %_or._xor.entry46703938.split
-_or.entry60.split.split928:
-  69.ret929 = phi [bb %_or._xor.entry46703938.split.split, i32 %59708943]
-  br bb %pseudo_sha1.then.split
-_or._xor.entry46931.split:
-  52695932.ret = phi [bb %pseudo_sha1.then.split1001.split, i32 %401323]
-  53696933 = sub i32 %257639.ret, i32 %52695932.ret
-  55697934 = add i32 %53696933, i32 %261641.ret
-  br bb %_or._xor.entry46931.split.split
-_or._xor.entry46931.split.split:
-  58698935.ret = phi [bb %_or._xor.entry46931.split, i32 %401323]
-  59699936 = sub i32 %55697934, i32 %58698935.ret
-  br bb %_or.entry60.split924
-_or._xor.entry46703938.split:
-  52704939.ret = phi [bb %_or.entry60.split924.split, i32 %401333]
-  53705940 = sub i32 %65.ret925, i32 %52704939.ret
-  55706941 = add i32 %53705940, i32 %68926.ret
-  br bb %_or._xor.entry46703938.split.split
-_or._xor.entry46703938.split.split:
-  58707942.ret = phi [bb %_or._xor.entry46703938.split, i32 %401333]
-  59708943 = sub i32 %55706941, i32 %58707942.ret
-  br bb %_or.entry60.split.split928
-_or.entry60.split949:
-  65.ret950 = phi [bb %_or._xor.entry46956.split.split, i32 %59699961]
-  br bb %_or.entry60.split949.split
-_or.entry60.split949.split:
-  68951.ret = phi [bb %_or.entry60.split949, i32 %401348]
-  401358 = add i32 %65.ret950, i32 %68951.ret
-  br bb %_or._xor.entry46703963.split
-_or.entry60.split.split953:
-  69.ret954 = phi [bb %_or._xor.entry46703963.split.split, i32 %59708968]
-  br bb %pseudo_sha1.then275.split
-_or._xor.entry46956.split:
-  52695957.ret = phi [bb %pseudo_sha1.then275.split1056.split, i32 %401348]
-  53696958 = sub i32 %280673.ret, i32 %52695957.ret
-  55697959 = add i32 %53696958, i32 %283674.ret
-  br bb %_or._xor.entry46956.split.split
-_or._xor.entry46956.split.split:
-  58698960.ret = phi [bb %_or._xor.entry46956.split, i32 %401348]
-  59699961 = sub i32 %55697959, i32 %58698960.ret
-  br bb %_or.entry60.split949
-_or._xor.entry46703963.split:
-  52704964.ret = phi [bb %_or.entry60.split949.split, i32 %401358]
-  53705965 = sub i32 %65.ret950, i32 %52704964.ret
-  55706966 = add i32 %53705965, i32 %68951.ret
-  br bb %_or._xor.entry46703963.split.split
-_or._xor.entry46703963.split.split:
-  58707967.ret = phi [bb %_or._xor.entry46703963.split, i32 %401358]
-  59708968 = sub i32 %55706966, i32 %58707967.ret
-  br bb %_or.entry60.split.split953
-_or.entry60.split974:
-  65.ret975 = phi [bb %_or._xor.entry46981.split.split, i32 %59699986]
-  br bb %_or.entry60.split974.split
-_or.entry60.split974.split:
-  68976.ret = phi [bb %_or.entry60.split974, i32 %401373]
-  401383 = add i32 %65.ret975, i32 %68976.ret
-  br bb %_or._xor.entry46703988.split
-_or.entry60.split.split978:
-  69.ret979 = phi [bb %_or._xor.entry46703988.split.split, i32 %59708993]
-  br bb %pseudo_sha1.then275.split.split
-_or._xor.entry46981.split:
-  52695982.ret = phi [bb %pseudo_sha1.then275.split.split1066, i32 %401373]
-  53696983 = sub i32 %284675.ret, i32 %52695982.ret
-  55697984 = add i32 %53696983, i32 %287676.ret
-  br bb %_or._xor.entry46981.split.split
-_or._xor.entry46981.split.split:
-  58698985.ret = phi [bb %_or._xor.entry46981.split, i32 %401373]
-  59699986 = sub i32 %55697984, i32 %58698985.ret
-  br bb %_or.entry60.split974
-_or._xor.entry46703988.split:
-  52704989.ret = phi [bb %_or.entry60.split974.split, i32 %401383]
-  53705990 = sub i32 %65.ret975, i32 %52704989.ret
-  55706991 = add i32 %53705990, i32 %68976.ret
-  br bb %_or._xor.entry46703988.split.split
-_or._xor.entry46703988.split.split:
-  58707992.ret = phi [bb %_or._xor.entry46703988.split, i32 %401383]
-  59708993 = sub i32 %55706991, i32 %58707992.ret
-  br bb %_or.entry60.split.split978
 }
 
 i32 rotl1(i32 x) {

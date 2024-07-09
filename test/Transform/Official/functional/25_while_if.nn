@@ -11,10 +11,6 @@ external i32 getfarray(ptr )
 i32 main() {
 entry37:
   br bb %deepWhileBr.entry2
-entry37.split:
-  41.ret = phi [bb %deepWhileBr.while.exit, i32 %c.phi4758]
-  call void putint(i32 %41.ret)
-  ret i32 0
 deepWhileBr.entry2:
   br bb %deepWhileBr.while.cond
 deepWhileBr.while.cond:
@@ -26,7 +22,8 @@ deepWhileBr.while.body:
   1762 = icmp slt i32 %c.phi4758, i32 100
   br i1 %1762, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:
-  br bb %entry37.split
+  call void putint(i32 %c.phi4758)
+  ret i32 0
 deepWhileBr.then:
   2267 = add i32 %c.phi4758, i32 42
   2468 = icmp sgt i32 %2267, i32 99

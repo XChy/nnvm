@@ -58,23 +58,18 @@ main:
   ADDI s2, zero, 3
   SW s2, 0(s1)
   LW s1, 0(s0)
-  ADDIW s0, s1, 71
-  ADD s1, s0, zero
-  JAL zero, bb1
-bb1:
-  ADD s0, s1, zero
-  ADDIW s1, s0, 30
-  ADDI s0, zero, 0
-  SW s0, 0(sp)
-  ADDI s0, sp, 4
+  ADDIW s0, s1, 101
+  ADDI s1, zero, 0
+  SW s1, 0(sp)
+  ADDI s1, sp, 4
   ADDI s2, zero, 1
-  SW s2, 0(s0)
-  ADDI s0, sp, 8
+  SW s2, 0(s1)
+  ADDI s1, sp, 8
   ADDI s2, zero, 2
-  SW s2, 0(s0)
-  ADDI s0, sp, 12
+  SW s2, 0(s1)
+  ADDI s1, sp, 12
   ADDI s2, zero, 3
-  SW s2, 0(s0)
+  SW s2, 0(s1)
   ADDI s2, sp, 16
   ADDI s3, zero, 0
   SW s3, 0(s2)
@@ -111,16 +106,11 @@ bb1:
   ADDI s2, sp, 60
   ADDI s3, zero, 3
   SW s3, 0(s2)
-  LW s2, 0(s0)
-  ADDIW s0, s2, 71
-  ADD s2, s0, zero
-  JAL zero, bb2
-bb2:
-  ADD s0, s2, zero
-  ADDIW s2, s0, 41
-  ADDW s0, s1, s2
-  ADDIW s1, s0, 35
-  ADD a0, s1, zero
+  LW s2, 0(s1)
+  ADDIW s1, s2, 112
+  ADDW s2, s0, s1
+  ADDIW s0, s2, 35
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch

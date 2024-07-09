@@ -84,16 +84,6 @@ entry175:
   arr.index205 = ptradd ptr %B, i32 48
   store i32 5 to ptr %arr.index205
   br bb %max_sum_nonadjacent.entry18
-entry175.split:
-  208.ret = phi [bb %max_sum_nonadjacent.while.exit, i32 %78.load318]
-  call void putint(i32 %208.ret)
-  call void putch(i32 10)
-  br bb %longest_common_subseq.entry80
-entry175.split.split:
-  211.ret = phi [bb %longest_common_subseq.while.exit99, i32 %173.load372]
-  call void putint(i32 %211.ret)
-  call void putch(i32 10)
-  ret i32 0
 max_sum_nonadjacent.entry18:
   br bb %max_sum_nonadjacent.init.cond
 max_sum_nonadjacent.init.cond:
@@ -146,7 +136,9 @@ max_sum_nonadjacent.while.body.split:
 max_sum_nonadjacent.while.exit:
   78317 = ptradd ptr %temp266, i32 56
   78.load318 = load i32 from ptr %78317
-  br bb %entry175.split
+  call void putint(i32 %78.load318)
+  call void putch(i32 10)
+  br bb %longest_common_subseq.entry80
 max_sum_nonadjacent.MAX.then:
   br bb %max_sum_nonadjacent.init.exit.split
 max_sum_nonadjacent.MAX.else:
@@ -188,7 +180,9 @@ longest_common_subseq.while.body98:
 longest_common_subseq.while.exit99:
   437 = ptradd ptr %p347, i32 1012
   173.load372 = load i32 from ptr %437
-  br bb %entry175.split.split
+  call void putint(i32 %173.load372)
+  call void putch(i32 10)
+  ret i32 0
 longest_common_subseq.while.cond104:
   j.phi375 = phi [bb %longest_common_subseq.while.body98, i32 1, bb %longest_common_subseq.if.exit123, i32 %165405]
   109376 = icmp sle i32 %j.phi375, i32 13

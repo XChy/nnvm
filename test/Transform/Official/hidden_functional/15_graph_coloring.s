@@ -42,7 +42,7 @@ graphColoring:
 bb1:
   JAL zero, bb12
 bb2:
-  LW t4, 24(sp)
+  LW t4, 16(sp)
   ADD a4, t4, zero
   XOR a5, a4, zero
   SLTU a4, zero, a5
@@ -167,7 +167,7 @@ bb14:
   JAL zero, bb16
 bb15:
   ADDI t4, zero, 1
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   JAL zero, bb2
 bb16:
   ADD s10, s7, zero
@@ -203,26 +203,26 @@ bb19:
   XOR t0, t1, t2
   SLTIU t1, t0, 1
   ADD t4, t1, zero
-  SB t4, 16(sp)
+  SB t4, 32(sp)
   JAL zero, bb21
 bb20:
   ADD t4, zero, zero
-  SB t4, 16(sp)
+  SB t4, 32(sp)
   JAL zero, bb21
 bb21:
-  LB t3, 16(sp)
+  LB t3, 32(sp)
   ADD t4, t3, zero
-  SB t4, 32(sp)
-  LB t4, 32(sp)
+  SB t4, 24(sp)
+  LB t4, 24(sp)
   BNE t4, zero, bb22
   JAL zero, bb23
 bb22:
   ADD t4, zero, zero
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   JAL zero, bb2
 bb23:
   ADDIW s3, s10, 1
-  LB t4, 32(sp)
+  LB t4, 24(sp)
   ADD s9, t4, zero
   ADD s7, s3, zero
   JAL zero, bb16

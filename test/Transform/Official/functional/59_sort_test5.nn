@@ -39,8 +39,7 @@ while.exit102:
 heap_ajust.while.cond:
   son.phi207 = phi [bb %while.body85, i32 %27204, bb %heap_ajust.if.exit68, i32 %76252]
   dad.phi208 = phi [bb %while.body85, i32 %i.phi161, bb %heap_ajust.if.exit68, i32 %son.phi167236]
-  33209 = add i32 %92, i32 1
-  34210 = icmp slt i32 %son.phi207, i32 %33209
+  34210 = icmp slt i32 %son.phi207, i32 %len
   br i1 %34210, bb %heap_ajust.while.body, bb %heap_ajust.while.exit
 heap_ajust.while.body:
   38213 = icmp slt i32 %son.phi207, i32 %92
@@ -92,8 +91,7 @@ heap_ajust.entry19256:
 heap_ajust.while.cond260:
   son.phi261 = phi [bb %heap_ajust.entry19256, i32 1, bb %heap_ajust.if.exit68301, i32 %76306]
   dad.phi262 = phi [bb %heap_ajust.entry19256, i32 0, bb %heap_ajust.if.exit68301, i32 %son.phi167290]
-  33263 = add i32 %111, i32 1
-  34264 = icmp slt i32 %son.phi261, i32 %33263
+  34264 = icmp slt i32 %son.phi261, i32 %i.phi
   br i1 %34264, bb %heap_ajust.while.body266, bb %heap_ajust.while.exit269
 heap_ajust.while.body266:
   38267 = icmp slt i32 %son.phi261, i32 %111
@@ -289,8 +287,7 @@ heap_sort.while.exit102:
 heap_ajust.while.cond314:
   son.phi315 = phi [bb %heap_sort.while.body85, i32 %27312, bb %heap_ajust.if.exit68355, i32 %76360]
   dad.phi316 = phi [bb %heap_sort.while.body85, i32 %i.phi161178, bb %heap_ajust.if.exit68355, i32 %son.phi167344]
-  33317 = add i32 %92182, i32 1
-  34318 = icmp slt i32 %son.phi315, i32 %33317
+  34318 = icmp slt i32 %son.phi315, i32 %n.load
   br i1 %34318, bb %heap_ajust.while.body320, bb %heap_ajust.while.exit323
 heap_ajust.while.body320:
   38321 = icmp slt i32 %son.phi315, i32 %92182
@@ -342,8 +339,7 @@ heap_ajust.entry19364:
 heap_ajust.while.cond368:
   son.phi369 = phi [bb %heap_ajust.entry19364, i32 1, bb %heap_ajust.if.exit68409, i32 %76414]
   dad.phi370 = phi [bb %heap_ajust.entry19364, i32 0, bb %heap_ajust.if.exit68409, i32 %son.phi167398]
-  33371 = add i32 %111195, i32 1
-  34372 = icmp slt i32 %son.phi369, i32 %33371
+  34372 = icmp slt i32 %son.phi369, i32 %i.phi190
   br i1 %34372, bb %heap_ajust.while.body374, bb %heap_ajust.while.exit377
 heap_ajust.while.body374:
   38375 = icmp slt i32 %son.phi369, i32 %111195

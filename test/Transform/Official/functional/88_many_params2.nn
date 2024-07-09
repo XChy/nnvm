@@ -65,12 +65,8 @@ init.exit66:
   202 = ptradd ptr %b, i32 12108
   144.load = load i32 from ptr %202
   br bb %func.entry
-init.exit66.split:
-  146.ret = phi [bb %func.while.exit33, i32 %49242]
-  147 = mul i32 %146.ret, i32 3
-  br bb %while.cond148
 while.cond148:
-  ret.phi = phi [bb %init.exit66.split, i32 %147, bb %while.body149, i32 %163]
+  ret.phi = phi [bb %func.while.exit33, i32 %147, bb %while.body149, i32 %163]
   152 = icmp sge i32 %ret.phi, i32 0
   br i1 %152, bb %while.body149, bb %while.exit150
 while.body149:
@@ -123,7 +119,8 @@ func.while.body32:
   br bb %func.while.cond31
 func.while.exit33:
   49242 = add i32 %127.load, i32 %132.load
-  br bb %init.exit66.split
+  147 = mul i32 %49242, i32 3
+  br bb %while.cond148
 }
 
 external float getfloat()

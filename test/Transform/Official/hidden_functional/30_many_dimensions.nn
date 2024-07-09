@@ -102,10 +102,7 @@ while.exit:
   14791534 = ptradd ptr %array, i32 281600
   415.load1535 = load i32 from ptr %14791534
   4171536 = add i32 %3771533, i32 %415.load1535
-  br bb %while.exit.split
-while.exit.split:
-  1005.ret = phi [bb %while.exit, i32 %4171536]
-  call void putint(i32 %1005.ret)
+  call void putint(i32 %4171536)
   ret i32 0
 while.cond440:
   i7.phi1215 = phi [bb %while.body, i32 %i7.phi1216, bb %while.exit449, i32 %i7.phi1214]

@@ -12,8 +12,7 @@ i32 main() {
 entry34:
   br bb %deepWhileBr.entry
 entry34.split:
-  38.ret = phi [bb %deepWhileBr.while.exit, i32 %c.phi4253]
-  ret i32 %38.ret
+  ret i32 %c.phi4253
 deepWhileBr.entry:
   br bb %deepWhileBr.while.cond
 deepWhileBr.while.cond:

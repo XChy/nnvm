@@ -31,8 +31,8 @@ while.exit:
   call void putch(i32 10)
   ret i32 0
 while.cond5014:
-  j.phi = phi [bb %while.body, i32 0, bb %while.body5015.split, i32 %8026]
-  tmp.phi8043 = phi [bb %while.body, i32 0, bb %while.body5015.split, i32 %8024]
+  j.phi = phi [bb %while.body, i32 0, bb %while.body5015, i32 %8026]
+  tmp.phi8043 = phi [bb %while.body, i32 0, bb %while.body5015, i32 %8024]
   5018 = icmp slt i32 %j.phi, i32 300
   br i1 %5018, bb %while.body5015, bb %while.exit5016
 while.body5015:
@@ -4035,11 +4035,8 @@ while.body5015:
   499510044 = add i32 %499310043, i32 %29969045
   499710045 = add i32 %499510044, i32 %29989046
   499910046 = add i32 %499710045, i32 %30009047
-  br bb %while.body5015.split
-while.body5015.split:
-  8021.ret = phi [bb %while.body5015, i32 %499910046]
   size.load = load i32 from ptr @size
-  8023 = sdiv i32 %8021.ret, i32 %size.load
+  8023 = sdiv i32 %499910046, i32 %size.load
   8024 = add i32 %tmp.phi8043, i32 %8023
   8026 = add i32 %j.phi, i32 1
   br bb %while.cond5014

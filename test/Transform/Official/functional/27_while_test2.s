@@ -118,11 +118,11 @@ main:
   SD s6, 8(sp)
   SD s11, 16(sp)
   SD s10, 24(sp)
-  SD s0, 32(sp)
-  SD s5, 40(sp)
-  SD s1, 48(sp)
-  SD s7, 56(sp)
-  SD ra, 64(sp)
+  SD s7, 32(sp)
+  SD s0, 40(sp)
+  SD s5, 48(sp)
+  SD ra, 56(sp)
+  SD s1, 64(sp)
   SD s2, 72(sp)
   SD s3, 80(sp)
   SD s4, 88(sp)
@@ -130,16 +130,15 @@ main:
   SD s9, 104(sp)
   JAL zero, bb15
 bb14:
-  ADD s0, s1, zero
   ADD a0, s0, zero
   LD s6, 8(sp)
   LD s11, 16(sp)
   LD s10, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s1, 48(sp)
-  LD s7, 56(sp)
-  LD ra, 64(sp)
+  LD s7, 32(sp)
+  LD s0, 40(sp)
+  LD s5, 48(sp)
+  LD ra, 56(sp)
+  LD s1, 64(sp)
   LD s2, 72(sp)
   LD s3, 80(sp)
   LD s4, 88(sp)
@@ -174,7 +173,6 @@ bb18:
   ADDW s1, s4, s0
   LW t4, 0(sp)
   ADDW s0, s1, t4
-  ADD s1, s0, zero
   JAL zero, bb14
 bb19:
   ADD t0, s11, zero

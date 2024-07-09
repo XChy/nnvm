@@ -6,25 +6,24 @@
 main:
   ADDI sp, sp, -64
   SD s4, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD ra, 24(sp)
+  SD s2, 8(sp)
+  SD s6, 16(sp)
+  SD s1, 24(sp)
   SD s5, 32(sp)
   SD s0, 40(sp)
-  SD s6, 48(sp)
-  SD s1, 56(sp)
+  SD ra, 48(sp)
+  SD s3, 56(sp)
   JAL zero, bb2
 bb1:
-  ADD s1, s0, zero
-  ADD a0, s1, zero
+  ADD a0, s3, zero
   LD s4, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD ra, 24(sp)
+  LD s2, 8(sp)
+  LD s6, 16(sp)
+  LD s1, 24(sp)
   LD s5, 32(sp)
   LD s0, 40(sp)
-  LD s6, 48(sp)
-  LD s1, 56(sp)
+  LD ra, 48(sp)
+  LD s3, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:
@@ -43,7 +42,6 @@ bb4:
   BNE s5, zero, bb6
   JAL zero, bb8
 bb5:
-  ADD s0, s3, zero
   JAL zero, bb1
 bb6:
   ADDI s4, zero, 25

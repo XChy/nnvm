@@ -14,10 +14,6 @@ while.cond:
   29 = fsub float %27, float %x
   4347 = fcmp olt float %29, float %13
   br i1 %4347, bb %myAbs.then, bb %myAbs.if.exit
-while.cond.split:
-  30.ret = phi [bb %myAbs.if.exit, float %x.stack.phi353]
-  31 = fcmp ogt float %30.ret, float 0.001000
-  br i1 %31, bb %while.body, bb %while.exit
 while.body:
   37 = fcmp ogt float %27, float %x
   br i1 %37, bb %then38, bb %else
@@ -41,7 +37,8 @@ myAbs.then:
   br bb %myAbs.if.exit
 myAbs.if.exit:
   x.stack.phi353 = phi [bb %while.cond, float %29, bb %myAbs.then, float %8350]
-  br bb %while.cond.split
+  31 = fcmp ogt float %x.stack.phi353, float 0.001000
+  br i1 %31, bb %while.body, bb %while.exit
 }
 
 external i32 getint()
@@ -121,8 +118,8 @@ while.exit98:
   129 = add i32 %i.phi290, i32 1
   br bb %while.cond86
 while.cond131:
-  j.phi297 = phi [bb %while.exit88, i32 %j.phi300, bb %while.exit143.split, i32 %j.phi296]
-  i.phi288 = phi [bb %while.exit88, i32 0, bb %while.exit143.split, i32 %201]
+  j.phi297 = phi [bb %while.exit88, i32 %j.phi300, bb %sqrt.while.exit, i32 %j.phi296]
+  i.phi288 = phi [bb %while.exit88, i32 0, bb %sqrt.while.exit, i32 %201]
   135 = icmp slt i32 %i.phi288, i32 1000
   br i1 %135, bb %while.body132, bb %while.exit133
 while.body132:
@@ -164,11 +161,6 @@ while.exit143:
   20313 = si2f i32 2 to float
   21314 = fdiv float %19312, float %20313
   br bb %sqrt.while.cond
-while.exit143.split:
-  199.ret = phi [bb %sqrt.while.exit, float %mid.phi285317]
-  store float %199.ret to ptr %139
-  201 = add i32 %i.phi288, i32 1
-  br bb %while.cond131
 while.cond202:
   sum.phi304 = phi [bb %while.exit133, float %sum.phi305, bb %while.exit210, float %sum.phi]
   j.phi294 = phi [bb %while.exit133, i32 %j.phi297, bb %while.exit210, i32 %j.phi293]
@@ -241,15 +233,13 @@ sqrt.while.cond:
   29321 = fsub float %27320, float %198
   4359 = fcmp olt float %29321, float %60
   br i1 %4359, bb %myAbs.then361, bb %myAbs.if.exit364
-sqrt.while.cond.split:
-  30322.ret = phi [bb %myAbs.if.exit364, float %x.stack.phi365]
-  31323 = fcmp ogt float %30322.ret, float 0.001000
-  br i1 %31323, bb %sqrt.while.body, bb %sqrt.while.exit
 sqrt.while.body:
   37326 = fcmp ogt float %27320, float %198
   br i1 %37326, bb %sqrt.then38, bb %sqrt.else
 sqrt.while.exit:
-  br bb %while.exit143.split
+  store float %mid.phi285317 to ptr %139
+  201 = add i32 %i.phi288, i32 1
+  br bb %while.cond131
 sqrt.then38:
   44331 = fadd float %mid.phi285317, float %start.phi281319
   46332 = fdiv float %44331, float %20313
@@ -268,7 +258,8 @@ myAbs.then361:
   br bb %myAbs.if.exit364
 myAbs.if.exit364:
   x.stack.phi365 = phi [bb %sqrt.while.cond, float %29321, bb %myAbs.then361, float %8362]
-  br bb %sqrt.while.cond.split
+  31323 = fcmp ogt float %x.stack.phi365, float 0.001000
+  br i1 %31323, bb %sqrt.while.body, bb %sqrt.while.exit
 }
 
 external float getfloat()

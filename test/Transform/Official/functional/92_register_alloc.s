@@ -596,10 +596,6 @@ main:
   LA s0, a32
   LW s2, 0(s0)
   SUBW s0, s1, s2
-  ADD s1, s0, zero
-  JAL zero, bb1
-bb1:
-  ADD s0, s1, zero
   ADD a0, s0, zero
   CALL putint
   ADD a0, s0, zero

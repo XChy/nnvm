@@ -177,8 +177,8 @@ bb3:
   LA s0, .CONSTANT.7.3
   FLW fs0, 0(s0)
   FLE.S s0, fs1, fs0
-  BNE s0, zero, bb11
-  JAL zero, bb12
+  BNE s0, zero, bb10
+  JAL zero, bb11
 bb4:
   LA s5, .CONSTANT.7.0
   FLW fs6, 0(s5)
@@ -261,25 +261,11 @@ bb8:
   ADD s5, s7, zero
   JAL zero, bb7
 bb9:
-  JAL zero, bb16
+  JAL zero, bb15
 bb10:
-  FSGNJ.S fs8, fs0, fs0
-  LUI t6, 8
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  FLW ft4, 0(t6)
-  FADD.S fs0, ft4, fs8
-  ADDIW s5, s3, 1
-  FSGNJ.S fs2, fs7, fs7
-  FSGNJ.S fs3, fs6, fs6
-  FSGNJ.S fs4, fs0, fs0
-  ADD s1, s6, zero
-  ADD s2, s5, zero
-  JAL zero, bb1
-bb11:
   ADDI s0, zero, 1
-  JAL zero, bb13
-bb12:
+  JAL zero, bb12
+bb11:
   LA s1, .CONSTANT.7.3
   FLW fs0, 0(s1)
   LA s1, .CONSTANT.7.3
@@ -287,245 +273,255 @@ bb12:
   FSGNJN.S fs3, fs0, fs2
   FLE.S s1, fs3, fs1
   ADD s0, s1, zero
-  JAL zero, bb13
-bb13:
+  JAL zero, bb12
+bb12:
   ADD s1, s0, zero
-  BNE s1, zero, bb14
-  JAL zero, bb15
-bb14:
+  BNE s1, zero, bb13
+  JAL zero, bb14
+bb13:
   ADD a0, zero, zero
   CALL putint
   ADD a0, zero, zero
-  LUI t5, 8
-  ADDIW t5, t5, 24
-  ADD t5, t5, sp
-  FLD fs9, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 24
+  ADD t6, t6, sp
+  FLD fs9, 0(t6)
   LUI ra, 8
   ADDIW ra, ra, 32
   ADD ra, ra, sp
   LD ra, 0(ra)
-  LUI t6, 8
-  ADDIW t6, t6, 40
-  ADD t6, t6, sp
-  FLD fs11, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 48
+  ADDIW t5, t5, 40
   ADD t5, t5, sp
-  FLD fs10, 0(t5)
+  FLD fs11, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 56
+  ADDIW t6, t6, 48
   ADD t6, t6, sp
-  FLD fs7, 0(t6)
+  FLD fs10, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 64
+  ADDIW t5, t5, 56
   ADD t5, t5, sp
-  FLD fs6, 0(t5)
+  FLD fs7, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 72
+  ADDIW t6, t6, 64
   ADD t6, t6, sp
-  LD s6, 0(t6)
+  FLD fs6, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 80
+  ADDIW t5, t5, 72
   ADD t5, t5, sp
-  LD s5, 0(t5)
+  LD s6, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 88
+  ADDIW t6, t6, 80
   ADD t6, t6, sp
-  FLD fs5, 0(t6)
+  LD s5, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 96
+  ADDIW t5, t5, 88
   ADD t5, t5, sp
-  LD s0, 0(t5)
+  FLD fs5, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 104
+  ADDIW t6, t6, 96
   ADD t6, t6, sp
-  FLD fs8, 0(t6)
+  LD s0, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 112
+  ADDIW t5, t5, 104
   ADD t5, t5, sp
-  LD s7, 0(t5)
+  FLD fs8, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 120
+  ADDIW t6, t6, 112
   ADD t6, t6, sp
-  FLD fs2, 0(t6)
+  LD s7, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 128
+  ADDIW t5, t5, 120
   ADD t5, t5, sp
-  FLD fs0, 0(t5)
+  FLD fs2, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 136
+  ADDIW t6, t6, 128
   ADD t6, t6, sp
-  FLD fs1, 0(t6)
+  FLD fs0, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 144
+  ADDIW t5, t5, 136
   ADD t5, t5, sp
-  LD s8, 0(t5)
+  FLD fs1, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 152
+  ADDIW t6, t6, 144
   ADD t6, t6, sp
-  FLD fs3, 0(t6)
+  LD s8, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 160
+  ADDIW t5, t5, 152
   ADD t5, t5, sp
-  LD s9, 0(t5)
+  FLD fs3, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 168
+  ADDIW t6, t6, 160
   ADD t6, t6, sp
-  FLD fs4, 0(t6)
+  LD s9, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 176
+  ADDIW t5, t5, 168
   ADD t5, t5, sp
-  LD s2, 0(t5)
+  FLD fs4, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 184
+  ADDIW t6, t6, 176
   ADD t6, t6, sp
-  LD s3, 0(t6)
+  LD s2, 0(t6)
   LUI t5, 8
-  ADDIW t5, t5, 192
+  ADDIW t5, t5, 184
   ADD t5, t5, sp
-  LD s4, 0(t5)
+  LD s3, 0(t5)
   LUI t6, 8
-  ADDIW t6, t6, 200
+  ADDIW t6, t6, 192
   ADD t6, t6, sp
-  LD s1, 0(t6)
+  LD s4, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 200
+  ADD t5, t5, sp
+  LD s1, 0(t5)
+  LUI t0, 8
+  ADDIW t0, t0, 208
+  ADD sp, sp, t0
+  JALR zero, 0(ra)
+bb14:
+  ADDI a0, zero, 1
+  CALL putint
+  ADDI a0, zero, 1
+  LUI t6, 8
+  ADDIW t6, t6, 24
+  ADD t6, t6, sp
+  FLD fs9, 0(t6)
+  LUI ra, 8
+  ADDIW ra, ra, 32
+  ADD ra, ra, sp
+  LD ra, 0(ra)
+  LUI t5, 8
+  ADDIW t5, t5, 40
+  ADD t5, t5, sp
+  FLD fs11, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 48
+  ADD t6, t6, sp
+  FLD fs10, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 56
+  ADD t5, t5, sp
+  FLD fs7, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 64
+  ADD t6, t6, sp
+  FLD fs6, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 72
+  ADD t5, t5, sp
+  LD s6, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 80
+  ADD t6, t6, sp
+  LD s5, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 88
+  ADD t5, t5, sp
+  FLD fs5, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 96
+  ADD t6, t6, sp
+  LD s0, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  FLD fs8, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 112
+  ADD t6, t6, sp
+  LD s7, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 120
+  ADD t5, t5, sp
+  FLD fs2, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 128
+  ADD t6, t6, sp
+  FLD fs0, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 136
+  ADD t5, t5, sp
+  FLD fs1, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 144
+  ADD t6, t6, sp
+  LD s8, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 152
+  ADD t5, t5, sp
+  FLD fs3, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 160
+  ADD t6, t6, sp
+  LD s9, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 168
+  ADD t5, t5, sp
+  FLD fs4, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 176
+  ADD t6, t6, sp
+  LD s2, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 184
+  ADD t5, t5, sp
+  LD s3, 0(t5)
+  LUI t6, 8
+  ADDIW t6, t6, 192
+  ADD t6, t6, sp
+  LD s4, 0(t6)
+  LUI t5, 8
+  ADDIW t5, t5, 200
+  ADD t5, t5, sp
+  LD s1, 0(t5)
   LUI t0, 8
   ADDIW t0, t0, 208
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb15:
-  ADDI a0, zero, 1
-  CALL putint
-  ADDI a0, zero, 1
-  LUI t5, 8
-  ADDIW t5, t5, 24
-  ADD t5, t5, sp
-  FLD fs9, 0(t5)
-  LUI ra, 8
-  ADDIW ra, ra, 32
-  ADD ra, ra, sp
-  LD ra, 0(ra)
-  LUI t6, 8
-  ADDIW t6, t6, 40
-  ADD t6, t6, sp
-  FLD fs11, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 48
-  ADD t5, t5, sp
-  FLD fs10, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 56
-  ADD t6, t6, sp
-  FLD fs7, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 64
-  ADD t5, t5, sp
-  FLD fs6, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  LD s6, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 80
-  ADD t5, t5, sp
-  LD s5, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 88
-  ADD t6, t6, sp
-  FLD fs5, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 96
-  ADD t5, t5, sp
-  LD s0, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 104
-  ADD t6, t6, sp
-  FLD fs8, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 112
-  ADD t5, t5, sp
-  LD s7, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 120
-  ADD t6, t6, sp
-  FLD fs2, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 128
-  ADD t5, t5, sp
-  FLD fs0, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 136
-  ADD t6, t6, sp
-  FLD fs1, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 144
-  ADD t5, t5, sp
-  LD s8, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 152
-  ADD t6, t6, sp
-  FLD fs3, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 160
-  ADD t5, t5, sp
-  LD s9, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 168
-  ADD t6, t6, sp
-  FLD fs4, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 176
-  ADD t5, t5, sp
-  LD s2, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 184
-  ADD t6, t6, sp
-  LD s3, 0(t6)
-  LUI t5, 8
-  ADDIW t5, t5, 192
-  ADD t5, t5, sp
-  LD s4, 0(t5)
-  LUI t6, 8
-  ADDIW t6, t6, 200
-  ADD t6, t6, sp
-  LD s1, 0(t6)
-  LUI t0, 8
-  ADDIW t0, t0, 208
-  ADD sp, sp, t0
-  JALR zero, 0(ra)
-bb16:
   LA s5, .CONSTANT.7.1
   FLW fs10, 0(s5)
   LA s5, .CONSTANT.7.1
   FLW fs11, 0(s5)
   FSGNJ.S fs0, fs10, fs11
   ADD s5, zero, zero
-  JAL zero, bb17
-bb17:
+  JAL zero, bb16
+bb16:
   ADD s7, s5, zero
   FSGNJ.S fs10, fs0, fs0
   SLT s8, s7, s0
-  BNE s8, zero, bb18
-  JAL zero, bb19
-bb18:
+  BNE s8, zero, bb17
+  JAL zero, bb18
+bb17:
   ADDI s8, zero, 4
   MULW s9, s7, s8
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
-  ADD s8, t5, s9
-  FLW fs11, 0(s8)
-  ADDI t6, sp, 0
+  LUI t6, 4
+  ADDIW t6, t6, 0
+  ADD t6, t6, sp
   ADD s8, t6, s9
+  FLW fs11, 0(s8)
+  ADDI t5, sp, 0
+  ADD s8, t5, s9
   FLW fs9, 0(s8)
   FMUL.S fs8, fs11, fs9
   FADD.S fs9, fs10, fs8
   ADDIW s8, s7, 1
   FSGNJ.S fs0, fs9, fs9
   ADD s5, s8, zero
-  JAL zero, bb17
-bb19:
-  FSGNJ.S fs0, fs10, fs10
-  JAL zero, bb10
+  JAL zero, bb16
+bb18:
+  LUI t6, 8
+  ADDIW t6, t6, 0
+  ADD t6, t6, sp
+  FLW ft4, 0(t6)
+  FADD.S fs0, ft4, fs10
+  ADDIW s5, s3, 1
+  FSGNJ.S fs2, fs7, fs7
+  FSGNJ.S fs3, fs6, fs6
+  FSGNJ.S fs4, fs0, fs0
+  ADD s1, s6, zero
+  ADD s2, s5, zero
+  JAL zero, bb1
 loop:
   ADDI sp, sp, -112
   SD ra, 0(sp)
@@ -550,14 +546,14 @@ loop:
   FLW fs1, 0(s3)
   FSGNJ.S fs2, fs0, fs1
   ADD s3, zero, zero
-  JAL zero, bb21
-bb21:
+  JAL zero, bb20
+bb20:
   ADD s4, s3, zero
   FSGNJ.S fs0, fs2, fs2
   SLT s5, s4, s2
-  BNE s5, zero, bb22
-  JAL zero, bb23
-bb22:
+  BNE s5, zero, bb21
+  JAL zero, bb22
+bb21:
   ADDI s5, zero, 4
   MULW s6, s4, s5
   ADD s5, s0, s6
@@ -569,8 +565,8 @@ bb22:
   ADDIW s5, s4, 1
   FSGNJ.S fs2, fs1, fs1
   ADD s3, s5, zero
-  JAL zero, bb21
-bb23:
+  JAL zero, bb20
+bb22:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   FLD fs4, 8(sp)

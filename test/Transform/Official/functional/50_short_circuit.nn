@@ -20,15 +20,12 @@ select.then:
   store i32 %496 to ptr @g
   call void putint(i32 %496)
   g.load799 = load i32 from ptr @g
-  br bb %select.then.split
-select.then.split:
-  18.ret = phi [bb %select.then, i32 %g.load799]
-  19 = icmp ne i32 %18.ret, i32 0
+  19 = icmp ne i32 %g.load799, i32 0
   br bb %select.exit
 select.else:
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 0, bb %select.then.split, i1 %19]
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %19]
   br i1 %select.phi, bb %then, bb %else
 then:
   br bb %if.exit
@@ -44,15 +41,12 @@ select.then27:
   store i32 %4105 to ptr @g
   call void putint(i32 %4105)
   g.load7108 = load i32 from ptr @g
-  br bb %select.then27.split
-select.then27.split:
-  32.ret = phi [bb %select.then27, i32 %g.load7108]
-  33 = icmp ne i32 %32.ret, i32 0
+  33 = icmp ne i32 %g.load7108, i32 0
   br bb %select.exit29
 select.else28:
   br bb %select.exit29
 select.exit29:
-  select30.phi = phi [bb %select.else28, i1 0, bb %select.then27.split, i1 %33]
+  select30.phi = phi [bb %select.else28, i1 0, bb %select.then27, i1 %33]
   br i1 %select30.phi, bb %then35, bb %else37
 then35:
   br bb %if.exit36
@@ -70,13 +64,10 @@ select.else42:
   store i32 %4114 to ptr @g
   call void putint(i32 %4114)
   g.load7117 = load i32 from ptr @g
-  br bb %select.else42.split
-select.else42.split:
-  46.ret = phi [bb %select.else42, i32 %g.load7117]
-  47 = icmp ne i32 %46.ret, i32 0
+  47 = icmp ne i32 %g.load7117, i32 0
   br bb %select.exit43
 select.exit43:
-  select44.phi = phi [bb %select.else42.split, i1 %47, bb %select.then41, i1 1]
+  select44.phi = phi [bb %select.else42, i1 %47, bb %select.then41, i1 1]
   br i1 %select44.phi, bb %then50, bb %else52
 then50:
   br bb %if.exit51
@@ -94,13 +85,10 @@ select.else57:
   store i32 %4123 to ptr @g
   call void putint(i32 %4123)
   g.load7126 = load i32 from ptr @g
-  br bb %select.else57.split
-select.else57.split:
-  61.ret = phi [bb %select.else57, i32 %g.load7126]
-  62 = icmp ne i32 %61.ret, i32 0
+  62 = icmp ne i32 %g.load7126, i32 0
   br bb %select.exit58
 select.exit58:
-  select59.phi = phi [bb %select.else57.split, i1 %62, bb %select.then56, i1 1]
+  select59.phi = phi [bb %select.else57, i1 %62, bb %select.then56, i1 1]
   br i1 %select59.phi, bb %then65, bb %else67
 then65:
   br bb %if.exit66
@@ -110,10 +98,7 @@ if.exit66:
   store i32 %4132 to ptr @g
   call void putint(i32 %4132)
   g.load7135 = load i32 from ptr @g
-  br bb %if.exit66.split
-if.exit66.split:
-  68.ret = phi [bb %if.exit66, i32 %g.load7135]
-  69 = icmp ne i32 %68.ret, i32 0
+  69 = icmp ne i32 %g.load7135, i32 0
   70 =  i1 %69, i1 1
   71 = zext i1 %70 to i32
   72 = icmp ne i32 %71, i32 0
@@ -126,15 +111,12 @@ select.then73:
   store i32 %4141 to ptr @g
   call void putint(i32 %4141)
   g.load7144 = load i32 from ptr @g
-  br bb %select.then73.split
-select.then73.split:
-  77.ret = phi [bb %select.then73, i32 %g.load7144]
-  78 = icmp ne i32 %77.ret, i32 0
+  78 = icmp ne i32 %g.load7144, i32 0
   br bb %select.exit75
 select.else74:
   br bb %select.exit75
 select.exit75:
-  select76.phi = phi [bb %select.else74, i1 0, bb %select.then73.split, i1 %78]
+  select76.phi = phi [bb %select.else74, i1 0, bb %select.then73, i1 %78]
   br i1 %select76.phi, bb %then80, bb %else82
 then80:
   br bb %if.exit81

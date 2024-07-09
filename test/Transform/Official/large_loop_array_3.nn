@@ -15,11 +15,11 @@ entry25:
   call void _sysy_starttime(i32 22)
   br bb %while.cond36
 while.cond36:
-  b.phi108 = phi [bb %entry25, float 1.000000, bb %while.exit55.split, float %b.phi]
-  a.phi106 = phi [bb %entry25, float 0.000000, bb %while.exit55.split, float %a.phi]
-  total.phi = phi [bb %entry25, float 0.000000, bb %while.exit55.split, float %79]
-  j.phi103 = phi [bb %entry25, i32 0, bb %while.exit55.split, i32 %j.phi]
-  i26.phi = phi [bb %entry25, i32 0, bb %while.exit55.split, i32 %81]
+  b.phi108 = phi [bb %entry25, float 1.000000, bb %loop.while.exit, float %b.phi]
+  a.phi106 = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %a.phi]
+  total.phi = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %79]
+  j.phi103 = phi [bb %entry25, i32 0, bb %loop.while.exit, i32 %j.phi]
+  i26.phi = phi [bb %entry25, i32 0, bb %loop.while.exit, i32 %81]
   COUNT.load = load i32 from ptr @COUNT
   41 = icmp slt i32 %i26.phi, i32 %COUNT.load
   br i1 %41, bb %while.body37, bb %while.exit38
@@ -59,11 +59,6 @@ while.body54:
   br bb %while.cond53
 while.exit55:
   br bb %loop.entry
-while.exit55.split:
-  78.ret = phi [bb %loop.while.exit, float %accumulator.phi116]
-  79 = fadd float %total.phi, float %78.ret
-  81 = add i32 %i26.phi, i32 1
-  br bb %while.cond36
 select.then:
   br bb %select.exit
 select.else:
@@ -97,7 +92,9 @@ loop.while.body:
   23128 = add i32 %i.phi117, i32 1
   br bb %loop.while.cond
 loop.while.exit:
-  br bb %while.exit55.split
+  79 = fadd float %total.phi, float %accumulator.phi116
+  81 = add i32 %i26.phi, i32 1
+  br bb %while.cond36
 }
 
 external float getfloat()

@@ -15,12 +15,6 @@ entry3136:
   store i32 %3137 to ptr @loopCount
   call void _sysy_starttime(i32 121)
   br bb %func.entry
-entry3136.split:
-  3140.ret = phi [bb %func.while.exit, i32 %result.phi3153]
-  call void _sysy_stoptime(i32 123)
-  call void putint(i32 %3140.ret)
-  call void putch(i32 10)
-  ret i32 0
 func.entry:
   br bb %func.while.cond
 func.while.cond:
@@ -35,7 +29,10 @@ func.while.body:
   31344661 = add i32 %i.phi3154, i32 1
   br bb %func.while.cond
 func.while.exit:
-  br bb %entry3136.split
+  call void _sysy_stoptime(i32 123)
+  call void putint(i32 %result.phi3153)
+  call void putch(i32 10)
+  ret i32 0
 }
 
 external float getfloat()

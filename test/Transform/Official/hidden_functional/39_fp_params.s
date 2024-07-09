@@ -3080,10 +3080,10 @@ params_fa40:
   SD t4, 528(sp)
   ADDI s8, sp, 760
   LD t4, 0(s8)
-  SD t4, 520(sp)
+  SD t4, 512(sp)
   ADDI s8, sp, 768
   LD t4, 0(s8)
-  SD t4, 512(sp)
+  SD t4, 520(sp)
   ADDI s8, sp, 776
   LD t4, 0(s8)
   SD t4, 504(sp)
@@ -3244,7 +3244,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   FADD.S fs4, fs1, fs0
@@ -3252,7 +3252,7 @@ params_fa40:
   LW s8, 0(s0)
   ADDI s0, zero, 4
   MULW t1, s8, s0
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   ADD s0, t4, t1
   FLW fs0, 0(s0)
   LA s0, k
@@ -3567,10 +3567,10 @@ bb15:
   LD t4, 528(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 16
-  LD t4, 520(sp)
+  LD t4, 512(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 24
-  LD t4, 512(sp)
+  LD t4, 520(sp)
   SD t4, 0(s0)
   ADDI s0, sp, 32
   LD t4, 504(sp)
@@ -3657,8 +3657,8 @@ bb15:
   ADDI t4, sp, 256
   SD t4, 0(s0)
   LD t4, 528(sp)
-  LD t3, 520(sp)
-  LD t4, 512(sp)
+  LD t3, 512(sp)
+  LD t4, 520(sp)
   LD t3, 504(sp)
   LD t4, 496(sp)
   LD t3, 296(sp)

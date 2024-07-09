@@ -138,7 +138,7 @@ while.body103:
 while.exit104:
   br bb %while.cond116
 while.cond116:
-  n.phi220 = phi [bb %while.exit104, i32 39, bb %while.exit131, i32 %179]
+  n.phi220 = phi [bb %while.exit104, i32 39, bb %while.exit131, i32 %224]
   temp.phi218 = phi [bb %while.exit104, i32 0, bb %while.exit131, i32 %temp.phi]
   i.phi213 = phi [bb %while.exit104, i32 19, bb %while.exit131, i32 %181]
   121 = icmp sgt i32 %i.phi213, i32 -1
@@ -170,8 +170,7 @@ while.body130:
   148 = icmp sge i32 %146, i32 10
   br i1 %148, bb %then, bb %else
 while.exit131:
-  178 = add i32 %n.phi, i32 20
-  179 = sub i32 %178, i32 1
+  224 = add i32 %n.phi, i32 19
   181 = sub i32 %i.phi213, i32 1
   br bb %while.cond116
 then:

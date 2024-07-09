@@ -292,10 +292,6 @@ bb16:
   LA s0, a
   ADD s1, s0, s2
   LW s0, 0(s1)
-  ADD s1, s0, zero
-  JAL zero, bb17
-bb17:
-  ADD s0, s1, zero
   ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10

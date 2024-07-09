@@ -44,11 +44,7 @@ entry74:
   arr.index17205 = ptradd ptr %arr175, i32 60
   store i32 3 to ptr %arr.index17205
   71.load207 = load i32 from ptr %arr.index5181
-  172208 = add i32 %71.load207, i32 71
-  br bb %entry74.split
-entry74.split:
-  124.ret = phi [bb %entry74, i32 %172208]
-  170 = add i32 %124.ret, i32 30
+  250 = add i32 %71.load207, i32 101
   store i32 0 to ptr %arr213
   arr.index3215 = ptradd ptr %arr213, i32 4
   store i32 1 to ptr %arr.index3215
@@ -81,12 +77,8 @@ entry74.split:
   arr.index17243 = ptradd ptr %arr213, i32 60
   store i32 3 to ptr %arr.index17243
   71.load245 = load i32 from ptr %arr.index5219
-  172246 = add i32 %71.load245, i32 71
-  br bb %entry74.split.split
-entry74.split.split:
-  135.ret = phi [bb %entry74.split, i32 %172246]
-  171 = add i32 %135.ret, i32 41
-  164 = add i32 %170, i32 %171
+  252 = add i32 %71.load245, i32 112
+  164 = add i32 %250, i32 %252
   166 = add i32 %164, i32 35
   call void putint(i32 %166)
   call void putch(i32 10)

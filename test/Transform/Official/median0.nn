@@ -14,17 +14,6 @@ while.cond65:
   br bb %while.body66
 while.body66:
   br bb %while.cond70
-while.exit67:
-  xx.phi170 = phi [bb %then111, i32 %xx.phi]
-  l.phi163 = phi [bb %then111, i32 %l.phi]
-  store i32 %57.load to ptr %57
-  34.load194 = load i32 from ptr %57
-  40195 = mul i32 %l.phi163, i32 4
-  41196 = ptradd ptr %arr, i32 %40195
-  41.load197 = load i32 from ptr %41196
-  store i32 %41.load197 to ptr %57
-  store i32 %34.load194 to ptr %41196
-  br bb %meanless_calculation.entry252
 while.cond70:
   xx.phi172 = phi [bb %while.body66, i32 %xx.phi171, bb %if.exit, i32 %88]
   r.phi166 = phi [bb %while.body66, i32 %r.phi168, bb %if.exit, i32 %78]
@@ -67,7 +56,14 @@ if.exit105:
   107 = sub i32 %xx.phi, i32 1
   br bb %while.cond89
 then111:
-  br bb %while.exit67
+  store i32 %57.load to ptr %57
+  34.load194 = load i32 from ptr %57
+  40195 = mul i32 %l.phi, i32 4
+  41196 = ptradd ptr %arr, i32 %40195
+  41.load197 = load i32 from ptr %41196
+  store i32 %41.load197 to ptr %57
+  store i32 %34.load194 to ptr %41196
+  br bb %meanless_calculation.entry252
 if.exit112:
   br bb %while.cond65
 else:
@@ -81,17 +77,17 @@ else:
   store i32 %34.load181 to ptr %41183
   br bb %meanless_calculation.entry228
 then127:
-  132 = call i32 median(ptr %arr, i32 %begin, i32 %l.phi163, i32 %pos)
+  132 = call i32 median(ptr %arr, i32 %begin, i32 %l.phi, i32 %pos)
   ret i32 %132
 if.exit128:
-  135 = icmp slt i32 %l.phi163, i32 %pos
+  135 = icmp slt i32 %l.phi, i32 %pos
   br i1 %135, bb %then136, bb %if.exit137
 then136:
-  139 = add i32 %l.phi163, i32 1
+  139 = add i32 %l.phi, i32 1
   142 = call i32 median(ptr %arr, i32 %139, i32 %end, i32 %pos)
   ret i32 %142
 if.exit137:
-  ret i32 %xx.phi170
+  ret i32 %xx.phi
 meanless_calculation.entry228:
   br bb %meanless_calculation.while.cond230
 meanless_calculation.while.cond230:
@@ -127,10 +123,10 @@ meanless_calculation.while.body259:
   26262 = add i32 %24261, i32 %21260
   br bb %meanless_calculation.while.cond254
 meanless_calculation.while.exit264:
-  126 = icmp sgt i32 %l.phi163, i32 %pos
+  126 = icmp sgt i32 %l.phi, i32 %pos
   br i1 %126, bb %then127, bb %if.exit128
 meanless_calculation.select.then266:
-  17267 = icmp slt i32 %i.phi256, i32 %l.phi163
+  17267 = icmp slt i32 %i.phi256, i32 %l.phi
   br bb %meanless_calculation.select.exit271
 meanless_calculation.select.else269:
   br bb %meanless_calculation.select.exit271
@@ -151,8 +147,7 @@ entry28:
   store i32 %34.load to ptr %41
   br bb %meanless_calculation.entry
 entry28.split:
-  49.ret = phi [bb %meanless_calculation.while.exit, i32 %ret.phi207]
-  ret i32 %49.ret
+  ret i32 %ret.phi207
 meanless_calculation.entry:
   br bb %meanless_calculation.while.cond
 meanless_calculation.while.cond:

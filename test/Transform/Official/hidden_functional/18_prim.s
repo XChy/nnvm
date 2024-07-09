@@ -67,8 +67,8 @@ bb2:
 main:
   ADDI sp, sp, -400
   SD s11, 296(sp)
-  SD s3, 304(sp)
-  SD ra, 312(sp)
+  SD ra, 304(sp)
+  SD s3, 312(sp)
   SD s0, 320(sp)
   SD s5, 328(sp)
   SD s7, 336(sp)
@@ -155,11 +155,10 @@ bb10:
 bb11:
   JAL zero, bb13
 bb12:
-  ADD s1, s0, zero
-  ADD a0, s1, zero
+  ADD a0, s3, zero
   LD s11, 296(sp)
-  LD s3, 304(sp)
-  LD ra, 312(sp)
+  LD ra, 304(sp)
+  LD s3, 312(sp)
   LD s0, 320(sp)
   LD s5, 328(sp)
   LD s7, 336(sp)
@@ -313,7 +312,6 @@ bb27:
   BNE s7, zero, bb29
   JAL zero, bb30
 bb28:
-  ADD s0, s3, zero
   JAL zero, bb12
 bb29:
   ADD s0, s3, zero

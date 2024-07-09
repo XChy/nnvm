@@ -330,14 +330,8 @@ entry532:
   arr.index465707 = ptradd ptr %arr677, i32 60
   store i32 %549 to ptr %arr.index465707
   br bb %sort.entry933
-entry532.split:
-  550.ret = phi [bb %sort.while.exit944, i32 %531726]
-  store i32 %550.ret to ptr %arr533
-  arr.index552 = ptradd ptr %arr533, i32 4
-  store i32 8848 to ptr %arr.index552
-  br bb %init.cond
 init.cond:
-  cnt_ptr.phi = phi [bb %entry532.split, i32 62, bb %init, i32 %cnt.dec]
+  cnt_ptr.phi = phi [bb %sort.while.exit944, i32 62, bb %init, i32 %cnt.dec]
   558 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %558, bb %init, bb %init.exit
 init:
@@ -559,10 +553,7 @@ while.exit567:
   1033 = ptradd ptr %arr533, i32 252
   412.load888 = load i32 from ptr %1033
   414889 = add i32 %410886, i32 %412.load888
-  br bb %while.exit567.split
-while.exit567.split:
-  663.ret = phi [bb %while.exit567, i32 %414889]
-  call void putint(i32 %663.ret)
+  call void putint(i32 %414889)
   call void putch(i32 10)
   ret i32 0
 sort.entry933:
@@ -593,7 +584,10 @@ sort.while.exit944:
   510.load724 = load i32 from ptr %arr.index464705
   513.load725 = load i32 from ptr %arr.index465707
   531726 = call i32 param32_rec(i32 %468.load710, i32 %471.load711, i32 %474.load712, i32 %477.load713, i32 %480.load714, i32 %483.load715, i32 %486.load716, i32 %489.load717, i32 %492.load718, i32 %495.load719, i32 %498.load720, i32 %501.load721, i32 %504.load722, i32 %507.load723, i32 %510.load724, i32 %513.load725, i32 %534, i32 %535, i32 %536, i32 %537, i32 %538, i32 %539, i32 %540, i32 %541, i32 %542, i32 %543, i32 %544, i32 %545, i32 %546, i32 %547, i32 %548, i32 %549)
-  br bb %entry532.split
+  store i32 %531726 to ptr %arr533
+  arr.index552 = ptradd ptr %arr533, i32 4
+  store i32 8848 to ptr %arr.index552
+  br bb %init.cond
 sort.while.cond14946:
   temp.phi672947 = phi [bb %sort.while.body941, i32 %temp.phi673936, bb %sort.if.exit968, i32 %temp.phi969]
   j.phi948 = phi [bb %sort.while.body941, i32 %13942, bb %sort.if.exit968, i32 %49970]

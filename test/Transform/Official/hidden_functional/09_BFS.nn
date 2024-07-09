@@ -39,18 +39,15 @@ while.body133:
   123445 = mul i32 %116443, i32 4
   124446 = ptradd ptr @que, i32 %123445
   124.load447 = load i32 from ptr %124446
-  br bb %while.body133.split
-while.body133.split:
-  140.ret = phi [bb %while.body133, i32 %124.load447]
-  143 = icmp eq i32 %140.ret, i32 %t
+  143 = icmp eq i32 %124.load447, i32 %t
   br i1 %143, bb %then144, bb %if.exit145
 while.exit134:
   br bb %while.cond181
 then144:
   br bb %if.exit145
 if.exit145:
-  res131.phi = phi [bb %while.body133.split, i32 %res131.phi246, bb %then144, i32 1]
-  148 = mul i32 %140.ret, i32 4
+  res131.phi = phi [bb %while.body133, i32 %res131.phi246, bb %then144, i32 1]
+  148 = mul i32 %124.load447, i32 4
   149 = ptradd ptr @head, i32 %148
   149.load = load i32 from ptr %149
   br bb %while.cond151
@@ -252,16 +249,11 @@ then224.split572.split:
   112391 = ptradd ptr @que, i32 %111390
   store i32 %228.ret to ptr %112391
   br bb %same.entry126.split
-then224.split:
-  233.ret = phi [bb %same.while.exit183, i32 %res131.phi246281]
-  call void putint(i32 %233.ret)
-  call void putch(i32 10)
-  br bb %if.exit225
 if.exit225:
-  y238.phi = phi [bb %else226.split, i32 %239.ret, bb %then224.split, i32 %y238.phi264]
-  x236.phi = phi [bb %else226.split, i32 %237.ret, bb %then224.split, i32 %x236.phi262]
-  y.phi = phi [bb %else226.split, i32 %y.phi260, bb %then224.split, i32 %230.ret]
-  x227.phi = phi [bb %else226.split, i32 %x227.phi258, bb %then224.split, i32 %228.ret]
+  y238.phi = phi [bb %else226.split, i32 %239.ret, bb %same.while.exit183, i32 %y238.phi264]
+  x236.phi = phi [bb %else226.split, i32 %237.ret, bb %same.while.exit183, i32 %x236.phi262]
+  y.phi = phi [bb %else226.split, i32 %y.phi260, bb %same.while.exit183, i32 %230.ret]
+  x227.phi = phi [bb %else226.split, i32 %x227.phi258, bb %same.while.exit183, i32 %228.ret]
   m.load243 = load i32 from ptr @m
   244 = sub i32 %m.load243, i32 1
   store i32 %244 to ptr @m
@@ -324,18 +316,15 @@ same.while.body133:
   123455 = mul i32 %116453, i32 4
   124456 = ptradd ptr @que, i32 %123455
   124.load457 = load i32 from ptr %124456
-  br bb %same.while.body133.split
-same.while.body133.split:
-  140287.ret = phi [bb %same.while.body133, i32 %124.load457]
-  143288 = icmp eq i32 %140287.ret, i32 %230.ret
+  143288 = icmp eq i32 %124.load457, i32 %230.ret
   br i1 %143288, bb %same.then144, bb %same.if.exit145
 same.while.exit134:
   br bb %same.while.cond181
 same.then144:
   br bb %same.if.exit145
 same.if.exit145:
-  res131.phi295 = phi [bb %same.while.body133.split, i32 %res131.phi246281, bb %same.then144, i32 1]
-  148296 = mul i32 %140287.ret, i32 4
+  res131.phi295 = phi [bb %same.while.body133, i32 %res131.phi246281, bb %same.then144, i32 1]
+  148296 = mul i32 %124.load457, i32 4
   149297 = ptradd ptr @head, i32 %148296
   149.load298 = load i32 from ptr %149297
   br bb %same.while.cond151
@@ -390,7 +379,9 @@ same.while.body182:
   195338 = add i32 %i180.phi327, i32 1
   br bb %same.while.cond181
 same.while.exit183:
-  br bb %then224.split
+  call void putint(i32 %res131.phi246281)
+  call void putch(i32 10)
+  br bb %if.exit225
 init.entry88:
   br bb %init.while.cond90
 init.while.cond90:

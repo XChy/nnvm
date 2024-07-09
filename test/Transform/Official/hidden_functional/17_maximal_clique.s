@@ -350,10 +350,10 @@ bb22:
   JAL zero, bb17
 bb23:
   ADD t4, s0, zero
-  SW t4, 16(sp)
+  SW t4, 0(sp)
   JAL zero, bb24
 bb24:
-  LW t3, 16(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
   SW t4, 24(sp)
   ADD a0, s5, zero
@@ -390,8 +390,8 @@ bb30:
   JAL zero, bb19
 bb31:
   ADD t4, s11, zero
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 16(sp)
+  LW t4, 16(sp)
   SLT t1, t4, s7
   BNE t1, zero, bb32
   JAL zero, bb33
@@ -406,7 +406,7 @@ bb32:
   LA t1, graph
   ADD t2, t1, a2
   ADDI t1, zero, 4
-  LW t4, 0(sp)
+  LW t4, 16(sp)
   MULW a2, t4, t1
   LA t1, store
   ADD a3, t1, a2
@@ -427,7 +427,7 @@ bb34:
   SW t4, 8(sp)
   JAL zero, bb19
 bb35:
-  LW t4, 0(sp)
+  LW t4, 16(sp)
   ADDIW s1, t4, 1
   ADD s11, s1, zero
   JAL zero, bb31
@@ -437,7 +437,7 @@ bb36:
   JAL zero, bb22
 bb37:
   ADD t4, s4, zero
-  SW t4, 16(sp)
+  SW t4, 0(sp)
   JAL zero, bb24
 bb38:
   LW t4, 24(sp)

@@ -67,8 +67,7 @@ while.body225.split.split.split:
 while.exit226:
   br bb %prim.entry85
 while.exit226.split:
-  245.ret = phi [bb %prim.while.exit181, i32 %res.phi343]
-  ret i32 %245.ret
+  ret i32 %res.phi343
 prim.entry85:
   br bb %prim.while.cond87
 prim.while.cond87:

@@ -107,7 +107,7 @@ bb2:
   JAL zero, bb4
 bb3:
   ADD s0, zero, zero
-  JAL zero, bb8
+  JAL zero, bb7
 bb4:
   LW t4, 184(sp)
   ADD s4, t4, zero
@@ -136,7 +136,7 @@ bb4:
   SW t4, 176(sp)
   SLTI s0, s4, 1023
   BNE s0, zero, bb5
-  JAL zero, bb7
+  JAL zero, bb6
 bb5:
   ADDI s0, zero, 1
   SUBW s11, s4, s0
@@ -246,38 +246,9 @@ bb5:
   LA s0, image_out
   ADD s9, s0, s4
   SLT s0, s10, zero
-  BNE s0, zero, bb14
-  JAL zero, bb16
+  BNE s0, zero, bb13
+  JAL zero, bb15
 bb6:
-  ADD s4, s11, zero
-  SW s4, 0(s9)
-  ADD s1, s10, zero
-  LW t4, 256(sp)
-  ADD s2, t4, zero
-  LW t4, 264(sp)
-  ADD s3, t4, zero
-  LW t4, 248(sp)
-  ADD s5, t4, zero
-  LW t4, 240(sp)
-  ADD s6, t4, zero
-  LW t4, 224(sp)
-  ADD s7, t4, zero
-  LW t4, 272(sp)
-  ADD s8, t4, zero
-  LW t3, 208(sp)
-  ADD t4, t3, zero
-  SW t4, 288(sp)
-  LW t3, 280(sp)
-  ADD t4, t3, zero
-  SW t4, 200(sp)
-  LW t3, 216(sp)
-  ADD t4, t3, zero
-  SW t4, 192(sp)
-  LW t3, 232(sp)
-  ADD t4, t3, zero
-  SW t4, 184(sp)
-  JAL zero, bb4
-bb7:
   LW t4, 96(sp)
   ADDIW s0, t4, 1
   LW t3, 176(sp)
@@ -313,12 +284,12 @@ bb7:
   ADD t4, t3, zero
   SW t4, 8(sp)
   JAL zero, bb1
-bb8:
+bb7:
   ADD s1, s0, zero
   SLTI s2, s1, 1024
-  BNE s2, zero, bb9
-  JAL zero, bb10
-bb9:
+  BNE s2, zero, bb8
+  JAL zero, bb9
+bb8:
   ADDI s2, zero, 1024
   MULW s3, s1, s2
   ADDI s2, zero, 4
@@ -329,29 +300,27 @@ bb9:
   ADD s6, s2, s4
   LW s2, 0(s6)
   SW s2, 0(s5)
-  ADDIW s2, s3, 1024
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
-  ADDI s2, zero, 4
-  MULW s3, s4, s2
+  ADDIW s2, s3, 1023
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
   LA s2, image_out
-  ADD s4, s2, s3
+  ADD s3, s2, s4
   LA s2, image_in
-  ADD s5, s2, s3
+  ADD s5, s2, s4
   LW s2, 0(s5)
-  SW s2, 0(s4)
+  SW s2, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb8
-bb10:
+  JAL zero, bb7
+bb9:
   ADD s0, zero, zero
-  JAL zero, bb11
-bb11:
+  JAL zero, bb10
+bb10:
   ADD s1, s0, zero
   SLTI s2, s1, 1024
-  BNE s2, zero, bb12
-  JAL zero, bb13
-bb12:
+  BNE s2, zero, bb11
+  JAL zero, bb12
+bb11:
   ADDI s2, zero, 4
   MULW s3, s1, s2
   LA s2, image_out
@@ -373,8 +342,8 @@ bb12:
   SW s2, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
-  JAL zero, bb11
-bb13:
+  JAL zero, bb10
+bb12:
   ADDI a0, zero, 59
   CALL _sysy_stoptime
   LUI s0, 256
@@ -400,28 +369,53 @@ bb13:
   LD s2, 392(sp)
   ADDI sp, sp, 400
   JALR zero, 0(ra)
-bb14:
+bb13:
   ADD s0, zero, zero
-  JAL zero, bb15
-bb15:
+  JAL zero, bb14
+bb14:
   ADD s4, s0, zero
-  ADD s11, s4, zero
-  JAL zero, bb6
-bb16:
+  SW s4, 0(s9)
+  ADD s1, s10, zero
+  LW t4, 256(sp)
+  ADD s2, t4, zero
+  LW t4, 264(sp)
+  ADD s3, t4, zero
+  LW t4, 248(sp)
+  ADD s5, t4, zero
+  LW t4, 240(sp)
+  ADD s6, t4, zero
+  LW t4, 224(sp)
+  ADD s7, t4, zero
+  LW t4, 272(sp)
+  ADD s8, t4, zero
+  LW t3, 208(sp)
+  ADD t4, t3, zero
+  SW t4, 288(sp)
+  LW t3, 280(sp)
+  ADD t4, t3, zero
+  SW t4, 200(sp)
+  LW t3, 216(sp)
+  ADD t4, t3, zero
+  SW t4, 192(sp)
+  LW t3, 232(sp)
+  ADD t4, t3, zero
+  SW t4, 184(sp)
+  JAL zero, bb4
+bb15:
   ADDI s1, zero, 255
   SLT s2, s1, s10
-  BNE s2, zero, bb17
-  JAL zero, bb19
-bb17:
-  ADDI s1, zero, 255
+  BNE s2, zero, bb16
   JAL zero, bb18
-bb18:
+bb16:
+  ADDI s1, zero, 255
+  JAL zero, bb17
+bb17:
   ADD s2, s1, zero
   ADD s0, s2, zero
-  JAL zero, bb15
-bb19:
+  JAL zero, bb14
+bb18:
   ADD s1, s10, zero
-  JAL zero, bb18
+  JAL zero, bb17
 cutout:
   ADDI sp, sp, -48
   SD s3, 0(sp)
@@ -431,12 +425,12 @@ cutout:
   SD s0, 32(sp)
   ADD s0, a0, zero
   SLT s1, s0, zero
-  BNE s1, zero, bb21
-  JAL zero, bb23
-bb21:
-  ADD s1, zero, zero
+  BNE s1, zero, bb20
   JAL zero, bb22
-bb22:
+bb20:
+  ADD s1, zero, zero
+  JAL zero, bb21
+bb21:
   ADD s2, s1, zero
   ADD a0, s2, zero
   LD s3, 0(sp)
@@ -446,18 +440,18 @@ bb22:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb23:
+bb22:
   ADDI s2, zero, 255
   SLT s3, s2, s0
-  BNE s3, zero, bb24
-  JAL zero, bb26
-bb24:
-  ADDI s2, zero, 255
+  BNE s3, zero, bb23
   JAL zero, bb25
-bb25:
+bb23:
+  ADDI s2, zero, 255
+  JAL zero, bb24
+bb24:
   ADD s3, s2, zero
   ADD s1, s3, zero
-  JAL zero, bb22
-bb26:
+  JAL zero, bb21
+bb25:
   ADD s2, s0, zero
-  JAL zero, bb25
+  JAL zero, bb24

@@ -173,7 +173,7 @@ bb4:
   LW t4, 56(sp)
   SLTI s8, t4, 300
   BNE s8, zero, bb5
-  JAL zero, bb7
+  JAL zero, bb6
 bb5:
   LA s8, multi
   LW s9, 0(s8)
@@ -21518,10 +21518,6 @@ bb5:
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADDW s0, s1, t4
-  ADD s1, s0, zero
-  JAL zero, bb6
-bb6:
-  ADD s0, s1, zero
   LA s1, size
   LW s2, 0(s1)
   DIVW s1, s0, s2
@@ -21534,7 +21530,7 @@ bb6:
   ADD t4, s0, zero
   SW t4, 40(sp)
   JAL zero, bb4
-bb7:
+bb6:
   ADDI s0, zero, 300
   LW t4, 32(sp)
   DIVW s1, t4, s0

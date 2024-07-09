@@ -135,10 +135,7 @@ init.exit83:
   19129 = mul i32 %17.load128, i32 4
   20130 = ptradd ptr @a, i32 %19129
   20.load131 = load i32 from ptr %20130
-  br bb %init.exit83.split
-init.exit83.split:
-  94.ret = phi [bb %init.exit83, i32 %20.load131]
-  call void putint(i32 %94.ret)
+  call void putint(i32 %20.load131)
   call void putch(i32 10)
   113 = ptradd ptr %c, i32 32
   100.load = load i32 from ptr %113

@@ -37,8 +37,7 @@ i32 main() {
 entry22:
   br bb %doubleWhile.entry
 entry22.split:
-  23.ret = phi [bb %doubleWhile.while.exit, i32 %j.phi31]
-  ret i32 %23.ret
+  ret i32 %j.phi31
 doubleWhile.entry:
   br bb %doubleWhile.while.cond
 doubleWhile.while.cond:

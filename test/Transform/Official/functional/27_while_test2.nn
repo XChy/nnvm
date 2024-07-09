@@ -65,8 +65,7 @@ i32 main() {
 entry50:
   br bb %FourWhile.entry
 entry50.split:
-  51.ret = phi [bb %FourWhile.while.exit, i32 %4978]
-  ret i32 %51.ret
+  ret i32 %4978
 FourWhile.entry:
   br bb %FourWhile.while.cond
 FourWhile.while.cond:

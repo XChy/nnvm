@@ -241,18 +241,15 @@ while.body275:
   br bb %while.cond274
 while.exit276:
   br bb %max_flow.entry246
-while.exit276.split:
-  293.ret = phi [bb %max_flow.then262, i32 %flow.phi311]
-  call void putint(i32 %293.ret)
-  call void putch(i32 10)
-  ret i32 0
 max_flow.entry246:
   br bb %max_flow.while.cond250
 max_flow.while.cond250:
   flow.phi311 = phi [bb %max_flow.entry246, i32 0, bb %max_flow.if.exit263, i32 %267319]
   br bb %my_memset.entry400
 max_flow.then262:
-  br bb %while.exit276.split
+  call void putint(i32 %flow.phi311)
+  call void putch(i32 10)
+  ret i32 0
 max_flow.if.exit263:
   267319 = add i32 %flow.phi311, i32 %259313
   br bb %max_flow.while.cond250

@@ -20,8 +20,7 @@ entry98:
   store i32 6 to ptr @f
   br bb %EightWhile.entry
 entry98.split:
-  99.ret = phi [bb %EightWhile.while.exit, i32 %97133]
-  ret i32 %99.ret
+  ret i32 %97133
 EightWhile.entry:
   br bb %EightWhile.while.cond
 EightWhile.while.cond:
