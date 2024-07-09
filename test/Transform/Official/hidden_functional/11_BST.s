@@ -534,10 +534,9 @@ main:
   XOR s1, s0, zero
   SLTU s2, zero, s1
   XORI s1, s2, 1
-  ADD s2, s1, zero
-  XOR s1, s2, zero
-  SLTU s2, zero, s1
-  BNE s2, zero, bb45
+  XOR s2, s1, zero
+  SLTU s1, zero, s2
+  BNE s1, zero, bb45
   JAL zero, bb46
 bb45:
   ADD a0, zero, zero

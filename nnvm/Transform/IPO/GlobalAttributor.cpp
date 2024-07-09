@@ -14,7 +14,8 @@ bool GlobalAttributorPass::run(Module &M) {
     for (BasicBlock *BB : *F) {
       for (Instruction *I : *BB) {
         if (CallInst *CI = dyn_cast<CallInst>(I)) {
-          if (CI->getCallee() != F)
+          if (CI->getCallee() != F &&
+              !cast<Function>(CI->getCallee())->isAttached(Attribute::Pure))
             isPure = false;
           continue;
         }

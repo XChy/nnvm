@@ -14,6 +14,7 @@ bool LoopAnalysis::run(Function &F) {
 
   while (!worklist.empty()) {
     BasicBlock *cur = worklist.top();
+    // Visit block in the post order of dominance tree.
     if (visited.count(cur)) {
       worklist.pop();
     } else {

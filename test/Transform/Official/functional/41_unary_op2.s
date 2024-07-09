@@ -9,19 +9,16 @@ main:
   SD s0, 16(sp)
   ADDI s0, zero, 1
   XORI s1, s0, 1
-  ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  XORI s1, s0, 1
-  ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  XORI s1, s0, 1
-  ADD s0, s1, zero
-  SUBW s1, zero, s0
   XOR s0, s1, zero
   SLTU s1, zero, s0
-  BNE s1, zero, bb1
+  XORI s0, s1, 1
+  XOR s1, s0, zero
+  SLTU s0, zero, s1
+  XORI s1, s0, 1
+  SUBW s0, zero, s1
+  XOR s1, s0, zero
+  SLTU s0, zero, s1
+  BNE s0, zero, bb1
   JAL zero, bb3
 bb1:
   ADDI s0, zero, -1

@@ -218,10 +218,9 @@ bb17:
   JAL zero, bb19
 bb18:
   XORI s1, s9, 1
-  ADD s2, s1, zero
-  XOR s1, s2, zero
-  SLTU s2, zero, s1
-  ADD s4, s2, zero
+  XOR s2, s1, zero
+  SLTU s1, zero, s2
+  ADD s4, s1, zero
   JAL zero, bb19
 bb19:
   ADD a1, s4, zero

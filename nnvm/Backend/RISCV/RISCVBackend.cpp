@@ -5,6 +5,7 @@
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
+#include "Backend/RISCV/Optimization/SSAPeephole.h"
 #include "Backend/RISCV/StackAllocator.h"
 #include <algorithm>
 
@@ -27,6 +28,10 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
       ISel().isel(*lowFunc);
   debug(std::cerr << "====ISel Done====\n");
   debug(lowModule.emit(std::cerr));
+
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal)
+      SSAPeephole().run(*lowFunc);
 
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)

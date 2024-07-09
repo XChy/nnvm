@@ -161,10 +161,9 @@ bb5:
   XOR s7, s9, zero
   SLTU s9, zero, s7
   XORI s7, s9, 1
-  ADD s9, s7, zero
-  XOR s7, s9, zero
-  SLTU s9, zero, s7
-  BNE s9, zero, bb8
+  XOR s9, s7, zero
+  SLTU s7, zero, s9
+  BNE s7, zero, bb8
   JAL zero, bb9
 bb6:
   ADD s6, s4, zero
@@ -526,10 +525,9 @@ bb32:
   XOR s7, s9, zero
   SLTU s9, zero, s7
   XORI s7, s9, 1
-  ADD s9, s7, zero
-  XOR s7, s9, zero
-  SLTU s9, zero, s7
-  BNE s9, zero, bb35
+  XOR s9, s7, zero
+  SLTU s7, zero, s9
+  BNE s7, zero, bb35
   JAL zero, bb36
 bb33:
   ADD s6, s4, zero

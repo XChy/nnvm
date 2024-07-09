@@ -89,7 +89,7 @@ public:
     return this;
   }
 
-  uint64_t getOpcode() { return type; }
+  uint64_t getOpcode() const { return type; }
 
   LIRValue *getOp(uint index) const { return operands[index].getOperand(); }
   LowOperand *getOpHandle(uint index) { return &operands[index]; }

@@ -301,10 +301,9 @@ bb13:
   XOR s6, t4, zero
   SLTU s5, zero, s6
   XORI s6, s5, 1
-  ADD s5, s6, zero
-  XOR s6, s5, zero
-  SLTU s5, zero, s6
-  BNE s5, zero, bb15
+  XOR s5, s6, zero
+  SLTU s6, zero, s5
+  BNE s6, zero, bb15
   JAL zero, bb16
 bb14:
   JAL zero, bb170
@@ -2429,10 +2428,9 @@ bb259:
   XOR s4, t4, zero
   SLTU s10, zero, s4
   XORI s4, s10, 1
-  ADD s10, s4, zero
-  XOR s4, s10, zero
-  SLTU s10, zero, s4
-  BNE s10, zero, bb261
+  XOR s10, s4, zero
+  SLTU s4, zero, s10
+  BNE s4, zero, bb261
   JAL zero, bb262
 bb260:
   JAL zero, bb387

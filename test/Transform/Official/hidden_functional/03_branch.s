@@ -48,10 +48,9 @@ bb6:
 bb7:
   ADDI s1, zero, 1
   XORI s2, s1, 1
-  ADD s1, s2, zero
-  XOR s2, s1, zero
-  SLTU s1, zero, s2
-  BNE s1, zero, bb8
+  XOR s1, s2, zero
+  SLTU s2, zero, s1
+  BNE s2, zero, bb8
   JAL zero, bb9
 bb8:
   ADDI a0, zero, 9

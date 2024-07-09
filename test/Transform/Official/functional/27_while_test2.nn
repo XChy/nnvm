@@ -61,7 +61,7 @@ while.exit31:
   br bb %while.cond21
 }
 
-i32 main() {
+pure i32 main() {
 entry50:
   br bb %FourWhile.entry
 entry50.split:

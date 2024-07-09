@@ -3494,17 +3494,14 @@ params_fa40:
   FCVT.S.L fs1, zero
   FEQ.S s0, fs0, fs1
   XORI s8, s0, 1
-  ADD s0, s8, zero
-  XOR s8, s0, zero
-  SLTU s0, zero, s8
-  ADD s8, s0, zero
+  XOR s0, s8, zero
+  SLTU s8, zero, s0
   FCVT.S.W fs0, s8
   LA s0, .CONSTANT.7.0
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1
   XORI s8, s0, 1
-  ADD s0, s8, zero
-  FCVT.S.W fs0, s0
+  FCVT.S.W fs0, s8
   LA s0, .CONSTANT.7.0
   FLW fs1, 0(s0)
   FEQ.S s0, fs0, fs1

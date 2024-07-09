@@ -144,28 +144,27 @@ bb11:
   XOR s6, s3, zero
   SLTU s3, zero, s6
   XORI s6, s3, 1
+  XOR s3, s6, zero
+  SLTU s6, zero, s3
   ADD s3, s6, zero
-  XOR s6, s3, zero
-  SLTU s3, zero, s6
-  ADD s6, s3, zero
   JAL zero, bb13
 bb12:
-  ADD s6, zero, zero
+  ADD s3, zero, zero
   JAL zero, bb13
 bb13:
-  ADD s3, s6, zero
-  BNE s3, zero, bb14
+  ADD s6, s3, zero
+  BNE s6, zero, bb14
   JAL zero, bb15
 bb14:
-  ADDI s3, zero, 4
-  MULW s7, s0, s3
-  LA s3, ans
-  ADD s8, s3, s7
+  ADDI s6, zero, 4
+  MULW s7, s0, s6
+  LA s6, ans
+  ADD s8, s6, s7
   SW s2, 0(s8)
-  LA s3, n
-  LW s7, 0(s3)
-  XOR s3, s0, s7
-  SLTIU s7, s3, 1
+  LA s6, n
+  LW s7, 0(s6)
+  XOR s6, s0, s7
+  SLTIU s7, s6, 1
   BNE s7, zero, bb16
   JAL zero, bb18
 bb15:
@@ -173,12 +172,12 @@ bb15:
   ADD s1, s8, zero
   JAL zero, bb5
 bb16:
-  LA s3, sum
-  LW s7, 0(s3)
-  ADDIW s3, s7, 1
+  LA s6, sum
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
   LA s7, sum
-  SW s3, 0(s7)
-  ADDI s3, zero, 1
+  SW s6, 0(s7)
+  ADDI s6, zero, 1
   JAL zero, bb19
 bb17:
   JAL zero, bb18
@@ -218,7 +217,7 @@ bb18:
   SW zero, 0(s9)
   JAL zero, bb15
 bb19:
-  ADD s7, s3, zero
+  ADD s7, s6, zero
   LA s8, n
   LW s9, 0(s8)
   SLT s8, s9, s7
@@ -249,7 +248,7 @@ bb23:
   ADDI a0, zero, 32
   CALL putch
   ADDIW s1, s7, 1
-  ADD s3, s1, zero
+  ADD s6, s1, zero
   JAL zero, bb19
 printans:
   ADDI sp, sp, -48

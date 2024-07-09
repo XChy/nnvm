@@ -263,20 +263,18 @@ bb15:
   XOR s3, t4, zero
   SLTU s2, zero, s3
   XORI s3, s2, 1
-  ADD s2, s3, zero
-  XOR s3, s2, zero
-  SLTU s2, zero, s3
-  BNE s2, zero, bb17
+  XOR s2, s3, zero
+  SLTU s3, zero, s2
+  BNE s3, zero, bb17
   JAL zero, bb75
 bb16:
   LW t4, 248(sp)
   XOR s0, t4, zero
   SLTU s1, zero, s0
   XORI s0, s1, 1
-  ADD s1, s0, zero
-  XOR s0, s1, zero
-  SLTU s1, zero, s0
-  BNE s1, zero, bb57
+  XOR s1, s0, zero
+  SLTU s0, zero, s1
+  BNE s0, zero, bb57
   JAL zero, bb58
 bb17:
   LA s2, n

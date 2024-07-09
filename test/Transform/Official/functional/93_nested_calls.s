@@ -144,10 +144,9 @@ func7:
   XOR s1, s0, zero
   SLTU s0, zero, s1
   XORI s1, s0, 1
-  ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  BNE s0, zero, bb14
+  XOR s0, s1, zero
+  SLTU s1, zero, s0
+  BNE s1, zero, bb14
   JAL zero, bb15
 bb14:
   ADDI a0, zero, 1
@@ -245,10 +244,9 @@ bb22:
   XOR s4, t4, zero
   SLTU s5, zero, s4
   XORI s4, s5, 1
-  ADD s5, s4, zero
-  XOR s4, s5, zero
-  SLTU s5, zero, s4
-  BNE s5, zero, bb43
+  XOR s5, s4, zero
+  SLTU s4, zero, s5
+  BNE s4, zero, bb43
   JAL zero, bb44
 bb23:
   LW t4, 72(sp)
@@ -294,10 +292,9 @@ bb24:
   XOR s0, s1, zero
   SLTU s1, zero, s0
   XORI s0, s1, 1
-  ADD s1, s0, zero
-  XOR s0, s1, zero
-  SLTU s1, zero, s0
-  BNE s1, zero, bb45
+  XOR s1, s0, zero
+  SLTU s0, zero, s1
+  BNE s0, zero, bb45
   JAL zero, bb46
 bb25:
   LW t4, 152(sp)
@@ -323,10 +320,9 @@ bb26:
   XOR s11, s10, zero
   SLTU s10, zero, s11
   XORI s11, s10, 1
-  ADD s10, s11, zero
-  XOR s11, s10, zero
-  SLTU s10, zero, s11
-  BNE s10, zero, bb47
+  XOR s10, s11, zero
+  SLTU s11, zero, s10
+  BNE s11, zero, bb47
   JAL zero, bb48
 bb27:
   LW t4, 208(sp)
@@ -374,10 +370,9 @@ bb28:
   XOR s6, s2, zero
   SLTU s2, zero, s6
   XORI s6, s2, 1
-  ADD s2, s6, zero
-  XOR s6, s2, zero
-  SLTU s2, zero, s6
-  BNE s2, zero, bb49
+  XOR s2, s6, zero
+  SLTU s6, zero, s2
+  BNE s6, zero, bb49
   JAL zero, bb50
 bb29:
   LW t4, 280(sp)
@@ -405,10 +400,9 @@ bb30:
   XOR s7, t4, zero
   SLTU s11, zero, s7
   XORI s7, s11, 1
-  ADD s11, s7, zero
-  XOR s7, s11, zero
-  SLTU s11, zero, s7
-  BNE s11, zero, bb51
+  XOR s11, s7, zero
+  SLTU s7, zero, s11
+  BNE s7, zero, bb51
   JAL zero, bb52
 bb31:
   ADD s11, s7, zero
@@ -465,10 +459,9 @@ bb31:
   XOR s9, s11, zero
   SLTU s11, zero, s9
   XORI s9, s11, 1
-  ADD s11, s9, zero
-  XOR s9, s11, zero
-  SLTU s11, zero, s9
-  BNE s11, zero, bb53
+  XOR s11, s9, zero
+  SLTU s9, zero, s11
+  BNE s9, zero, bb53
   JAL zero, bb54
 bb32:
   ADD s11, s9, zero

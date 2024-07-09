@@ -94,10 +94,9 @@ bb4:
   XOR s5, s3, zero
   SLTU s3, zero, s5
   XORI s5, s3, 1
-  ADD s3, s5, zero
-  XOR s5, s3, zero
-  SLTU s3, zero, s5
-  BNE s3, zero, bb6
+  XOR s3, s5, zero
+  SLTU s5, zero, s3
+  BNE s5, zero, bb6
   JAL zero, bb7
 bb5:
   ADD a0, zero, zero

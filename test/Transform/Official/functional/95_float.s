@@ -323,20 +323,18 @@ bb16:
   XOR s4, s0, zero
   SLTU s0, zero, s4
   XORI s4, s0, 1
-  ADD s0, s4, zero
-  XOR s4, s0, zero
-  SLTU s0, zero, s4
-  BNE s0, zero, bb65
+  XOR s0, s4, zero
+  SLTU s4, zero, s0
+  BNE s4, zero, bb65
   JAL zero, bb67
 bb17:
   ADD s0, s4, zero
   XOR s5, s0, zero
   SLTU s0, zero, s5
   XORI s5, s0, 1
-  ADD s0, s5, zero
-  XOR s5, s0, zero
-  SLTU s0, zero, s5
-  BNE s0, zero, bb69
+  XOR s0, s5, zero
+  SLTU s5, zero, s0
+  BNE s5, zero, bb69
   JAL zero, bb71
 bb18:
   ADD s0, s5, zero
@@ -362,11 +360,9 @@ bb21:
   FEQ.S s0, fs1, fs3
   XORI s6, s0, 1
   XORI s0, s6, 1
-  ADD s6, s0, zero
-  XOR s0, s6, zero
-  SLTU s6, zero, s0
-  XORI s0, s6, 1
-  ADD s6, s0, zero
+  XOR s6, s0, zero
+  SLTU s0, zero, s6
+  XORI s6, s0, 1
   XOR s0, s6, zero
   SLTU s6, zero, s0
   BNE s6, zero, bb22
@@ -941,10 +937,9 @@ assert:
   XOR s1, s0, zero
   SLTU s0, zero, s1
   XORI s1, s0, 1
-  ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  BNE s0, zero, bb84
+  XOR s0, s1, zero
+  SLTU s1, zero, s0
+  BNE s1, zero, bb84
   JAL zero, bb86
 bb84:
   ADDI a0, zero, 101

@@ -334,10 +334,9 @@ bb31:
   XOR s1, s0, zero
   SLTU s0, zero, s1
   XORI s1, s0, 1
-  ADD s0, s1, zero
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  BNE s0, zero, bb32
+  XOR s0, s1, zero
+  SLTU s1, zero, s0
+  BNE s1, zero, bb32
   JAL zero, bb33
 bb32:
   ADDI a0, zero, 78

@@ -157,10 +157,9 @@ bb23:
   XOR s6, s7, zero
   SLTU s7, zero, s6
   XORI s6, s7, 1
-  ADD s7, s6, zero
-  XOR s6, s7, zero
-  SLTU s7, zero, s6
-  BNE s7, zero, bb25
+  XOR s7, s6, zero
+  SLTU s6, zero, s7
+  BNE s6, zero, bb25
   JAL zero, bb26
 bb24:
   JAL zero, bb23

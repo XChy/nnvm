@@ -741,7 +741,6 @@ bb5:
   BNE s6, zero, bb6
   JAL zero, bb7
 bb6:
-  ADD s6, s0, zero
   JAL zero, bb8
 bb7:
   LA s0, sum
@@ -764,7 +763,6 @@ bb7:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb8:
-  ADD s0, s6, zero
   LA s6, sum
   LW s7, 0(s6)
   ADDW s6, s7, s0

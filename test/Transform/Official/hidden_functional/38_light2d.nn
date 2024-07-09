@@ -399,7 +399,7 @@ while.exit:
   ret float %t.phi
 }
 
-float circle_sdf(float x, float y, float cx, float cy, float r) {
+pure float circle_sdf(float x, float y, float cx, float cy, float r) {
 entry134:
   143 = fsub float %x, float %cx
   147 = fsub float %y, float %cy
