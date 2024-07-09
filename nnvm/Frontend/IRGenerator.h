@@ -75,7 +75,7 @@ public:
 
   std::any visitBlock(SysYParser::BlockContext *ctx) override;
 
-  Type *toIRType(SymbolType *symbolTy);
+  Type *sym2IR(SymbolType *symbolTy);
 
   Symbol genImplicitCast(Symbol original, SymbolType *expectedType);
   void widen(Symbol &lhs, Symbol &rhs);

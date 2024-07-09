@@ -18,6 +18,7 @@ IRGenerator::IRGenerator() {}
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
   builder.setModule(ir);
+  // init some const values
   constZeroInt = ConstantInt::create(*ir, ir->getIntType(), 0);
   constOneInt = ConstantInt::create(*ir, ir->getIntType(), 1);
   constZeroFloat = ConstantFloat::create(*ir, 0.0);
@@ -183,6 +184,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     nnvm_unreachable("Impossible to reach here");
   }
 
+  // binary operation
   Any lhsAny = solveConstExp(ctx->exp()[0]);
   Any rhsAny = solveConstExp(ctx->exp()[1]);
   if (any_is<float>(lhsAny) || any_is<float>(rhsAny)) {
@@ -310,7 +312,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
   string symbolName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(symbolName)) {
-    // TODO: error
+    // TODO: report duplicate symbol error
     return Symbol::none();
   }
 
@@ -335,14 +337,13 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     constVal = ConstantFloat::create(*ir, any_as<float>(initVal));
   } else if (symbolType->isArray()) {
     constVal = fetchFlatElementsFrom(ctx->constInitVal(), symbolType);
-
     if (symbolTable.isGlobal()) {
       GlobalVariable *global = new GlobalVariable(*ir, constVal);
       global->setName(ctx->IDENT()->getText());
       global->setImmutable(true);
       return symbolTable.create(symbolName, symbolType, global);
     } else {
-      Type *irElementType = toIRType(symbolType->getInnerMost());
+      Type *irElementType = sym2IR(symbolType->getInnerMost());
       Value *arrayStack =
           builder.buildStack(irElementType, symbolType->getTotalNumOfElements(),
                              ctx->IDENT()->getText());
@@ -355,7 +356,6 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
         builder.buildStore(stored, pointer);
         offset += irElementType->getStoredBytes();
       }
-      return symbolTable.create(symbolName, symbolType, arrayStack);
     }
   }
 
@@ -474,7 +474,7 @@ Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
                                              SymbolType *type) {
   SymbolType *elementTy = type->getInnerMost();
   uint totalNumOfElements = type->getTotalNumOfElements();
-  Type *arrayType = ir->getArrayType(toIRType(elementTy), totalNumOfElements);
+  Type *arrayType = ir->getArrayType(sym2IR(elementTy), totalNumOfElements);
 
   if (!ctx || ctx->initVal().empty())
     return ConstantAllZeros::create(*ir, arrayType);
@@ -482,7 +482,7 @@ Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
   std::vector<Constant *> initValList;
   initValList.reserve(totalNumOfElements);
 
-  fetchElementsFrom(ctx, type, toIRType(elementTy), initValList);
+  fetchElementsFrom(ctx, type, sym2IR(elementTy), initValList);
   return ConstantArray::create(*ir, arrayType, initValList);
 }
 
@@ -533,7 +533,7 @@ IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                    SymbolType *type) {
   SymbolType *elementTy = type->getInnerMost();
   uint totalNumOfElements = type->getTotalNumOfElements();
-  Type *arrayType = ir->getArrayType(toIRType(elementTy), totalNumOfElements);
+  Type *arrayType = ir->getArrayType(sym2IR(elementTy), totalNumOfElements);
 
   if (!ctx || ctx->constInitVal().empty())
     return ConstantAllZeros::create(*ir, arrayType);
@@ -541,7 +541,7 @@ IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
   std::vector<Constant *> initValList;
   initValList.reserve(totalNumOfElements);
 
-  fetchElementsFrom(ctx, type, toIRType(elementTy), initValList);
+  fetchElementsFrom(ctx, type, sym2IR(elementTy), initValList);
   return ConstantArray::create(*ir, arrayType, initValList);
 }
 
@@ -672,7 +672,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     } else {
       irVal = builder.buildStack(
           irElementType, symbolType->getTotalNumOfElements(), symbolName);
-      Type *irElementType = toIRType(symbolType->getInnerMost());
+      Type *irElementType = sym2IR(symbolType->getInnerMost());
 
       if (ctx->initVal()) {
         std::vector<Value *> values;
@@ -803,7 +803,6 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
     if (i == 0)
       symbolTy = SymbolType::getArrayTy(-1, symbolTy, symbolTable);
     else {
-      // TODO: check---calculate the number of element
       Any numOfElement = solveConstExp(ctx->exp()[i - 1]);
       assert(any_is<int>(numOfElement));
       symbolTy = SymbolType::getArrayTy(any_as<int>(numOfElement), symbolTy,
@@ -829,6 +828,9 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   return Symbol::none();
 }
 
+/**
+ * This function is used to generate implicit cast for the symbol
+ */
 Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
   if (!original)
     return original;
@@ -909,7 +911,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   if (builder.getCurrentBB()->getTerminator())
     return Symbol::none();
 
-  if (ctx->ASSIGN()) {
+  if (ctx->ASSIGN()) { // assign
     Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
     if (!lhs)
       return Symbol::none();
@@ -920,7 +922,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       return Symbol::none();
 
     return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
-  } else if (ctx->IF()) {
+  } else if (ctx->IF()) { // if else
     Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
     cond = genImplicitCast(cond, SymbolType::getBoolTy());
 
@@ -952,7 +954,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
     builder.setInsertPoint(exitBB->end());
     return Symbol::none();
-  } else if (ctx->returnStmt()) {
+  } else if (ctx->returnStmt()) { // return
     if (ctx->returnStmt()->exp()) {
       Symbol returned = any_as<Symbol>(ctx->returnStmt()->exp()->accept(this));
       if (!returned)
@@ -979,7 +981,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
     builder.buildBr(whileLoops.top().condBB);
-  } else if (ctx->WHILE()) {
+  } else if (ctx->WHILE()) { // while
     if (!ctx->cond()) {
       // TODO: error
       return Symbol::none();
@@ -1240,7 +1242,7 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
   return address;
 }
 
-Type *IRGenerator::toIRType(SymbolType *symbolTy) {
+Type *IRGenerator::sym2IR(SymbolType *symbolTy) {
   switch (symbolTy->symbolID) {
   case SymbolType::Int:
     return ir->getIntType();
@@ -1258,15 +1260,16 @@ Type *IRGenerator::toIRType(SymbolType *symbolTy) {
   }
 }
 
+/**
+ * Helper function to get the IRType from the btype
+ */
 static int getRadixOf(std::string_view text) {
-
   if (text.size() >= 2) {
     std::string_view prefix = text.substr(0, 2);
     if (prefix == "0x" || prefix == "0X")
       return 16;
     if (prefix[0] == '0')
       return 8;
-    // TODO: It seems that SysY don't have binary literal?
     if (prefix == "0b")
       return 2;
     return 10;
@@ -1347,7 +1350,6 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
     return Symbol::none();
 
   Value *val = operand.entity;
-  // TODO: unary op
   if (ctx->unaryOp()->PLUS())
     return operand;
 
@@ -1386,7 +1388,7 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     if (lVal.symbolType->isArray())
       return lVal;
 
-    return Symbol{builder.buildLoad(lVal.entity, toIRType(lVal.symbolType),
+    return Symbol{builder.buildLoad(lVal.entity, sym2IR(lVal.symbolType),
                                     lVal.entity->getName() + ".load"),
                   lVal.symbolType};
   }
@@ -1402,7 +1404,6 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
 
   if (auto *number = ctx->number()) {
     if (auto *floatConst = number->FLOAT_CONST()) {
-      // TODO: do we handle hexidecimal float in std::stof?
       return Symbol{createConstFloat(std::stof(floatConst->getText())),
                     SymbolType::getFloatTy()};
     }
@@ -1418,9 +1419,16 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   return visitChildren(ctx);
 }
 
+/**
+ * Use this function to create a constant integer
+ */
 Constant *IRGenerator::createConstInt(int value) {
   return ConstantInt::create(*ir, ir->getIntType(), value);
 }
+
+/**
+ * Use this function to create a constant float
+ */
 Constant *IRGenerator::createConstFloat(float value) {
   return ConstantFloat::create(*ir, value);
 }
