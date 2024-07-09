@@ -68,20 +68,20 @@ bb3:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 interpret:
-  ADDI sp, sp, -128
-  SD s4, 16(sp)
-  SD s5, 24(sp)
-  SD s11, 32(sp)
-  SD s0, 40(sp)
-  SD s7, 48(sp)
-  SD s10, 56(sp)
-  SD s1, 64(sp)
-  SD s6, 72(sp)
-  SD s2, 80(sp)
-  SD s3, 88(sp)
-  SD s8, 96(sp)
-  SD s9, 104(sp)
-  SD ra, 112(sp)
+  ADDI sp, sp, -112
+  SD s4, 8(sp)
+  SD s5, 16(sp)
+  SD s11, 24(sp)
+  SD s0, 32(sp)
+  SD s7, 40(sp)
+  SD s10, 48(sp)
+  SD s1, 56(sp)
+  SD s6, 64(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
+  SD ra, 104(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
@@ -89,7 +89,7 @@ interpret:
   JAL zero, bb5
 bb5:
   ADD t4, s3, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   ADD t4, s2, zero
   SW t4, 0(sp)
   ADD s6, s1, zero
@@ -109,20 +109,20 @@ bb6:
   BNE s9, zero, bb8
   JAL zero, bb10
 bb7:
-  LD s4, 16(sp)
-  LD s5, 24(sp)
-  LD s11, 32(sp)
-  LD s0, 40(sp)
-  LD s7, 48(sp)
-  LD s10, 56(sp)
-  LD s1, 64(sp)
-  LD s6, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  LD s8, 96(sp)
-  LD s9, 104(sp)
-  LD ra, 112(sp)
-  ADDI sp, sp, 128
+  LD s4, 8(sp)
+  LD s5, 16(sp)
+  LD s11, 24(sp)
+  LD s0, 32(sp)
+  LD s7, 40(sp)
+  LD s10, 48(sp)
+  LD s1, 56(sp)
+  LD s6, 64(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  LD ra, 104(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb8:
   LA s7, ptr
@@ -133,7 +133,7 @@ bb8:
   ADD s7, s6, zero
   LW t4, 0(sp)
   ADD s9, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s10, t4, zero
   JAL zero, bb9
 bb9:
@@ -160,7 +160,7 @@ bb11:
   ADD s1, s6, zero
   LW t4, 0(sp)
   ADD s2, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s3, t4, zero
   JAL zero, bb12
 bb12:
@@ -195,7 +195,7 @@ bb14:
   ADD s7, s6, zero
   LW t4, 0(sp)
   ADD s9, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s10, t4, zero
   JAL zero, bb15
 bb15:
@@ -231,7 +231,7 @@ bb17:
   ADD s1, s6, zero
   LW t4, 0(sp)
   ADD s2, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s3, t4, zero
   JAL zero, bb18
 bb18:
@@ -260,7 +260,7 @@ bb20:
   ADD s7, s6, zero
   LW t4, 0(sp)
   ADD s9, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s10, t4, zero
   JAL zero, bb21
 bb21:
@@ -289,7 +289,7 @@ bb23:
   ADD s1, s6, zero
   LW t4, 0(sp)
   ADD s2, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s3, t4, zero
   JAL zero, bb24
 bb24:
@@ -383,7 +383,7 @@ bb38:
 bb39:
   LW t4, 0(sp)
   ADD s6, t4, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADD s7, t4, zero
   JAL zero, bb30
 bb40:

@@ -48,31 +48,31 @@ MAX_WIDTH:
 .section .text
 rotate:
   ADDI sp, sp, -224
-  FSD fs11, 24(sp)
-  SD s0, 32(sp)
-  SD s6, 40(sp)
-  FSD fs1, 48(sp)
-  SD s4, 56(sp)
-  SD s1, 64(sp)
-  SD s8, 72(sp)
-  FSD fs3, 80(sp)
-  SD s3, 88(sp)
-  FSD fs8, 96(sp)
-  SD s7, 104(sp)
-  FSD fs2, 112(sp)
-  SD s2, 120(sp)
-  SD s9, 128(sp)
-  FSD fs4, 136(sp)
-  SD s10, 144(sp)
-  FSD fs5, 152(sp)
-  FSD fs9, 160(sp)
-  SD s11, 168(sp)
-  FSD fs6, 176(sp)
-  FSD fs0, 184(sp)
-  SD s5, 192(sp)
-  FSD fs7, 200(sp)
-  SD ra, 208(sp)
-  FSD fs10, 216(sp)
+  FSD fs11, 16(sp)
+  SD s0, 24(sp)
+  SD s6, 32(sp)
+  FSD fs1, 40(sp)
+  SD s4, 48(sp)
+  SD s1, 56(sp)
+  SD s8, 64(sp)
+  FSD fs3, 72(sp)
+  SD s3, 80(sp)
+  FSD fs8, 88(sp)
+  SD s7, 96(sp)
+  FSD fs2, 104(sp)
+  SD s2, 112(sp)
+  SD s9, 120(sp)
+  FSD fs4, 128(sp)
+  SD s10, 136(sp)
+  FSD fs5, 144(sp)
+  FSD fs9, 152(sp)
+  SD s11, 160(sp)
+  FSD fs6, 168(sp)
+  FSD fs0, 176(sp)
+  SD s5, 184(sp)
+  FSD fs7, 192(sp)
+  SD ra, 200(sp)
+  FSD fs10, 208(sp)
   ADD s2, a0, zero
   ADD s3, a1, zero
   FSGNJ.D ft4, fa0, fa0
@@ -124,31 +124,31 @@ bb9:
   JAL zero, bb11
 bb10:
   ADD a0, zero, zero
-  FLD fs11, 24(sp)
-  LD s0, 32(sp)
-  LD s6, 40(sp)
-  FLD fs1, 48(sp)
-  LD s4, 56(sp)
-  LD s1, 64(sp)
-  LD s8, 72(sp)
-  FLD fs3, 80(sp)
-  LD s3, 88(sp)
-  FLD fs8, 96(sp)
-  LD s7, 104(sp)
-  FLD fs2, 112(sp)
-  LD s2, 120(sp)
-  LD s9, 128(sp)
-  FLD fs4, 136(sp)
-  LD s10, 144(sp)
-  FLD fs5, 152(sp)
-  FLD fs9, 160(sp)
-  LD s11, 168(sp)
-  FLD fs6, 176(sp)
-  FLD fs0, 184(sp)
-  LD s5, 192(sp)
-  FLD fs7, 200(sp)
-  LD ra, 208(sp)
-  FLD fs10, 216(sp)
+  FLD fs11, 16(sp)
+  LD s0, 24(sp)
+  LD s6, 32(sp)
+  FLD fs1, 40(sp)
+  LD s4, 48(sp)
+  LD s1, 56(sp)
+  LD s8, 64(sp)
+  FLD fs3, 72(sp)
+  LD s3, 80(sp)
+  FLD fs8, 88(sp)
+  LD s7, 96(sp)
+  FLD fs2, 104(sp)
+  LD s2, 112(sp)
+  LD s9, 120(sp)
+  FLD fs4, 128(sp)
+  LD s10, 136(sp)
+  FLD fs5, 144(sp)
+  FLD fs9, 152(sp)
+  LD s11, 160(sp)
+  FLD fs6, 168(sp)
+  FLD fs0, 176(sp)
+  LD s5, 184(sp)
+  FLD fs7, 192(sp)
+  LD ra, 200(sp)
+  FLD fs10, 208(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb11:
@@ -162,31 +162,31 @@ bb11:
   ADD s10, s9, s11
   LW s9, 0(s10)
   ADD a0, s9, zero
-  FLD fs11, 24(sp)
-  LD s0, 32(sp)
-  LD s6, 40(sp)
-  FLD fs1, 48(sp)
-  LD s4, 56(sp)
-  LD s1, 64(sp)
-  LD s8, 72(sp)
-  FLD fs3, 80(sp)
-  LD s3, 88(sp)
-  FLD fs8, 96(sp)
-  LD s7, 104(sp)
-  FLD fs2, 112(sp)
-  LD s2, 120(sp)
-  LD s9, 128(sp)
-  FLD fs4, 136(sp)
-  LD s10, 144(sp)
-  FLD fs5, 152(sp)
-  FLD fs9, 160(sp)
-  LD s11, 168(sp)
-  FLD fs6, 176(sp)
-  FLD fs0, 184(sp)
-  LD s5, 192(sp)
-  FLD fs7, 200(sp)
-  LD ra, 208(sp)
-  FLD fs10, 216(sp)
+  FLD fs11, 16(sp)
+  LD s0, 24(sp)
+  LD s6, 32(sp)
+  FLD fs1, 40(sp)
+  LD s4, 48(sp)
+  LD s1, 56(sp)
+  LD s8, 64(sp)
+  FLD fs3, 72(sp)
+  LD s3, 80(sp)
+  FLD fs8, 88(sp)
+  LD s7, 96(sp)
+  FLD fs2, 104(sp)
+  LD s2, 112(sp)
+  LD s9, 120(sp)
+  FLD fs4, 128(sp)
+  LD s10, 136(sp)
+  FLD fs5, 144(sp)
+  FLD fs9, 152(sp)
+  LD s11, 160(sp)
+  FLD fs6, 168(sp)
+  FLD fs0, 176(sp)
+  LD s5, 184(sp)
+  FLD fs7, 192(sp)
+  LD ra, 200(sp)
+  FLD fs10, 208(sp)
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb12:
@@ -219,11 +219,11 @@ bb15:
   FLW ft4, 0(sp)
   FSUB.S fs1, ft4, fs3
   FSGNJ.S ft4, fs1, fs1
-  FSW ft4, 8(sp)
+  FSW ft4, 4(sp)
   JAL zero, bb16
 bb16:
-  FLW ft4, 8(sp)
-  FLW ft3, 8(sp)
+  FLW ft4, 4(sp)
+  FLW ft3, 4(sp)
   FSGNJ.S fs1, ft4, ft3
   LA s5, .CONSTANT.7.1
   FLW fs3, 0(s5)
@@ -235,11 +235,11 @@ bb17:
   FLW fs3, 0(s5)
   FSUB.S fs4, fs1, fs3
   FSGNJ.S ft4, fs4, fs4
-  FSW ft4, 16(sp)
+  FSW ft4, 8(sp)
   JAL zero, bb18
 bb18:
-  FLW ft4, 16(sp)
-  FLW ft3, 16(sp)
+  FLW ft4, 8(sp)
+  FLW ft3, 8(sp)
   FSGNJ.S fs4, ft4, ft3
   LA s5, .CONSTANT.7.1
   FLW fs5, 0(s5)
@@ -360,11 +360,11 @@ bb30:
   FLW ft3, 0(sp)
   FLW ft4, 0(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 8(sp)
+  FSW ft4, 4(sp)
   JAL zero, bb16
 bb31:
   FSGNJ.S ft4, fs1, fs1
-  FSW ft4, 16(sp)
+  FSW ft4, 8(sp)
   JAL zero, bb18
 bb32:
   FSGNJ.S fs5, fs4, fs4
@@ -1019,32 +1019,32 @@ bb111:
   ADD s3, s5, zero
   JAL zero, bb106
 write_pgm:
-  ADDI sp, sp, -288
-  FSD fs7, 80(sp)
-  FSD fs1, 88(sp)
-  SD s6, 96(sp)
-  SD s5, 104(sp)
-  SD s4, 112(sp)
-  FSD fs9, 120(sp)
-  FSD fs8, 128(sp)
-  SD s3, 136(sp)
-  SD s7, 144(sp)
-  FSD fs2, 152(sp)
-  SD s1, 160(sp)
-  SD s2, 168(sp)
-  SD s11, 176(sp)
-  FSD fs6, 184(sp)
-  SD s0, 192(sp)
-  SD s8, 200(sp)
-  FSD fs3, 208(sp)
-  SD s9, 216(sp)
-  FSD fs4, 224(sp)
-  SD s10, 232(sp)
-  FSD fs5, 240(sp)
-  FSD fs0, 248(sp)
-  SD ra, 256(sp)
-  FSD fs10, 264(sp)
-  FSD fs11, 272(sp)
+  ADDI sp, sp, -240
+  FSD fs7, 40(sp)
+  FSD fs1, 48(sp)
+  SD s6, 56(sp)
+  SD s5, 64(sp)
+  SD s4, 72(sp)
+  FSD fs9, 80(sp)
+  FSD fs8, 88(sp)
+  SD s3, 96(sp)
+  SD s7, 104(sp)
+  FSD fs2, 112(sp)
+  SD s1, 120(sp)
+  SD s2, 128(sp)
+  SD s11, 136(sp)
+  FSD fs6, 144(sp)
+  SD s0, 152(sp)
+  SD s8, 160(sp)
+  FSD fs3, 168(sp)
+  SD s9, 176(sp)
+  FSD fs4, 184(sp)
+  SD s10, 192(sp)
+  FSD fs5, 200(sp)
+  FSD fs0, 208(sp)
+  SD ra, 216(sp)
+  FSD fs10, 224(sp)
+  FSD fs11, 232(sp)
   FSGNJ.D ft4, fa0, fa0
   FSW ft4, 0(sp)
   ADDI a0, zero, 80
@@ -1070,15 +1070,15 @@ write_pgm:
   ADDI a0, zero, 10
   CALL putch
   ADD t4, zero, zero
-  SW t4, 64(sp)
+  SW t4, 32(sp)
   JAL zero, bb113
 bb113:
-  LW t3, 64(sp)
+  LW t3, 32(sp)
   ADD t4, t3, zero
-  SW t4, 72(sp)
+  SW t4, 36(sp)
   LA s4, height
   LW s5, 0(s4)
-  LW t4, 72(sp)
+  LW t4, 36(sp)
   SLT s4, t4, s5
   BNE s4, zero, bb114
   JAL zero, bb115
@@ -1086,32 +1086,32 @@ bb114:
   ADD s4, zero, zero
   JAL zero, bb116
 bb115:
-  FLD fs7, 80(sp)
-  FLD fs1, 88(sp)
-  LD s6, 96(sp)
-  LD s5, 104(sp)
-  LD s4, 112(sp)
-  FLD fs9, 120(sp)
-  FLD fs8, 128(sp)
-  LD s3, 136(sp)
-  LD s7, 144(sp)
-  FLD fs2, 152(sp)
-  LD s1, 160(sp)
-  LD s2, 168(sp)
-  LD s11, 176(sp)
-  FLD fs6, 184(sp)
-  LD s0, 192(sp)
-  LD s8, 200(sp)
-  FLD fs3, 208(sp)
-  LD s9, 216(sp)
-  FLD fs4, 224(sp)
-  LD s10, 232(sp)
-  FLD fs5, 240(sp)
-  FLD fs0, 248(sp)
-  LD ra, 256(sp)
-  FLD fs10, 264(sp)
-  FLD fs11, 272(sp)
-  ADDI sp, sp, 288
+  FLD fs7, 40(sp)
+  FLD fs1, 48(sp)
+  LD s6, 56(sp)
+  LD s5, 64(sp)
+  LD s4, 72(sp)
+  FLD fs9, 80(sp)
+  FLD fs8, 88(sp)
+  LD s3, 96(sp)
+  LD s7, 104(sp)
+  FLD fs2, 112(sp)
+  LD s1, 120(sp)
+  LD s2, 128(sp)
+  LD s11, 136(sp)
+  FLD fs6, 144(sp)
+  LD s0, 152(sp)
+  LD s8, 160(sp)
+  FLD fs3, 168(sp)
+  LD s9, 176(sp)
+  FLD fs4, 184(sp)
+  LD s10, 192(sp)
+  FLD fs5, 200(sp)
+  FLD fs0, 208(sp)
+  LD ra, 216(sp)
+  FLD fs10, 224(sp)
+  FLD fs11, 232(sp)
+  ADDI sp, sp, 240
   JALR zero, 0(ra)
 bb116:
   ADD s5, s4, zero
@@ -1139,10 +1139,10 @@ bb118:
 bb119:
   ADDI a0, zero, 10
   CALL putch
-  LW t4, 72(sp)
+  LW t4, 36(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 64(sp)
+  SW t4, 32(sp)
   JAL zero, bb113
 bb120:
   ADDI s8, zero, 1
@@ -1228,54 +1228,54 @@ bb134:
   FLW ft4, 0(sp)
   FSUB.S fs1, ft4, fs3
   FSGNJ.S ft4, fs1, fs1
-  FSW ft4, 8(sp)
+  FSW ft4, 4(sp)
   JAL zero, bb135
 bb135:
-  FLW ft3, 8(sp)
-  FLW ft4, 8(sp)
+  FLW ft3, 4(sp)
+  FLW ft4, 4(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 24(sp)
+  FSW ft4, 12(sp)
   LA s7, .CONSTANT.7.1
   FLW fs3, 0(s7)
-  FLW ft4, 24(sp)
+  FLW ft4, 12(sp)
   FLT.S s7, fs3, ft4
   BNE s7, zero, bb136
   JAL zero, bb150
 bb136:
   LA s7, .CONSTANT.7.0
   FLW fs3, 0(s7)
-  FLW ft4, 24(sp)
+  FLW ft4, 12(sp)
   FSUB.S fs4, ft4, fs3
   FSGNJ.S ft4, fs4, fs4
-  FSW ft4, 16(sp)
+  FSW ft4, 8(sp)
   JAL zero, bb137
 bb137:
-  FLW ft3, 16(sp)
-  FLW ft4, 16(sp)
+  FLW ft3, 8(sp)
+  FLW ft4, 8(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 48(sp)
+  FSW ft4, 24(sp)
   LA s7, .CONSTANT.7.1
   FLW fs5, 0(s7)
   LA s7, .CONSTANT.7.1
   FLW fs6, 0(s7)
   FSGNJN.S ft4, fs5, fs6
-  FSW ft4, 32(sp)
-  FLW ft4, 48(sp)
-  FLW ft3, 32(sp)
+  FSW ft4, 16(sp)
+  FLW ft4, 24(sp)
+  FLW ft3, 16(sp)
   FLT.S s7, ft4, ft3
   BNE s7, zero, bb138
   JAL zero, bb151
 bb138:
   LA s7, .CONSTANT.7.0
   FLW fs5, 0(s7)
-  FLW ft4, 48(sp)
+  FLW ft4, 24(sp)
   FADD.S fs6, ft4, fs5
   FSGNJ.S ft4, fs6, fs6
-  FSW ft4, 40(sp)
+  FSW ft4, 20(sp)
   JAL zero, bb139
 bb139:
-  FLW ft4, 40(sp)
-  FLW ft3, 40(sp)
+  FLW ft4, 20(sp)
+  FLW ft3, 20(sp)
   FSGNJ.S fs6, ft4, ft3
   FSGNJ.S fa0, fs6, fs6
   CALL my_sin_impl
@@ -1287,10 +1287,10 @@ bb139:
   FDIV.S fs10, fs9, fs8
   FLW ft3, 0(sp)
   FADD.S ft4, ft3, fs10
-  FSW ft4, 56(sp)
+  FSW ft4, 28(sp)
   LA s7, .CONSTANT.7.0
   FLW fs9, 0(s7)
-  FLW ft4, 56(sp)
+  FLW ft4, 28(sp)
   FLT.S s7, fs9, ft4
   BNE s7, zero, bb140
   JAL zero, bb141
@@ -1303,7 +1303,7 @@ bb141:
   LA s0, .CONSTANT.7.0
   FLW fs1, 0(s0)
   FSGNJN.S fs2, fs0, fs1
-  FLW ft4, 56(sp)
+  FLW ft4, 28(sp)
   FLT.S s0, ft4, fs2
   ADD s7, s0, zero
   JAL zero, bb142
@@ -1314,14 +1314,14 @@ bb142:
 bb143:
   LA s8, .CONSTANT.7.0
   FLW fs9, 0(s8)
-  FLW ft4, 56(sp)
+  FLW ft4, 28(sp)
   FDIV.S fs10, ft4, fs9
   FCVT.W.S s8, fs10, rtz
   FCVT.S.W fs9, s8
   LA s8, .CONSTANT.7.0
   FLW fs10, 0(s8)
   FMUL.S fs11, fs9, fs10
-  FLW ft4, 56(sp)
+  FLW ft4, 28(sp)
   FSUB.S fs9, ft4, fs11
   FSGNJ.S fs10, fs9, fs9
   JAL zero, bb144
@@ -1340,7 +1340,7 @@ bb145:
   JAL zero, bb146
 bb146:
   FSGNJ.S fs0, fs11, fs11
-  FLW ft4, 32(sp)
+  FLW ft4, 16(sp)
   FLT.S s8, fs0, ft4
   BNE s8, zero, bb147
   JAL zero, bb154
@@ -1364,7 +1364,7 @@ bb148:
   ADDI s8, zero, 2
   DIVW s11, s9, s8
   SUBW s8, s5, s10
-  LW t4, 72(sp)
+  LW t4, 36(sp)
   SUBW s9, t4, s11
   FCVT.S.W fs1, s8
   FMUL.S fs7, fs1, fs3
@@ -1387,23 +1387,23 @@ bb149:
   FLW ft3, 0(sp)
   FLW ft4, 0(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 8(sp)
+  FSW ft4, 4(sp)
   JAL zero, bb135
 bb150:
+  FLW ft3, 12(sp)
+  FLW ft4, 12(sp)
+  FSGNJ.S ft4, ft3, ft4
+  FSW ft4, 8(sp)
+  JAL zero, bb137
+bb151:
   FLW ft3, 24(sp)
   FLW ft4, 24(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 16(sp)
-  JAL zero, bb137
-bb151:
-  FLW ft3, 48(sp)
-  FLW ft4, 48(sp)
-  FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 40(sp)
+  FSW ft4, 20(sp)
   JAL zero, bb139
 bb152:
-  FLW ft4, 56(sp)
-  FLW ft3, 56(sp)
+  FLW ft4, 28(sp)
+  FLW ft3, 28(sp)
   FSGNJ.S fs10, ft4, ft3
   JAL zero, bb144
 bb153:

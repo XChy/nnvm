@@ -137,7 +137,6 @@ public:
   virtual Instruction *copy() = 0;
   Instruction *copyWithName();
 
-  template <typename To> bool isa() { return dynamic_cast<To *>(this); }
 
 private:
   InstID instID;

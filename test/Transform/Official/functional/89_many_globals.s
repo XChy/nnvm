@@ -126,20 +126,20 @@ a28:
 .word 0x00000000
 .section .text
 testParam32:
-  ADDI sp, sp, -192
-  SD ra, 80(sp)
-  SD s11, 88(sp)
-  SD s10, 96(sp)
-  SD s9, 104(sp)
-  SD s8, 112(sp)
-  SD s7, 120(sp)
-  SD s6, 128(sp)
-  SD s0, 136(sp)
-  SD s5, 144(sp)
-  SD s1, 152(sp)
-  SD s2, 160(sp)
-  SD s3, 168(sp)
-  SD s4, 176(sp)
+  ADDI sp, sp, -144
+  SD ra, 40(sp)
+  SD s11, 48(sp)
+  SD s10, 56(sp)
+  SD s9, 64(sp)
+  SD s8, 72(sp)
+  SD s7, 80(sp)
+  SD s6, 88(sp)
+  SD s0, 96(sp)
+  SD s5, 104(sp)
+  SD s1, 112(sp)
+  SD s2, 120(sp)
+  SD s3, 128(sp)
+  SD s4, 136(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -148,65 +148,65 @@ testParam32:
   ADD s5, a5, zero
   ADD s6, a6, zero
   ADD s7, a7, zero
-  ADDI t5, sp, 192
+  ADDI t5, sp, 144
   ADD s8, t5, zero
   LW s9, 0(s8)
-  ADDI s8, sp, 196
+  ADDI s8, sp, 148
   LW s10, 0(s8)
-  ADDI s8, sp, 200
+  ADDI s8, sp, 152
   LW s11, 0(s8)
-  ADDI s8, sp, 204
+  ADDI s8, sp, 156
   LW ra, 0(s8)
-  ADDI s8, sp, 208
+  ADDI s8, sp, 160
   LW t0, 0(s8)
-  ADDI s8, sp, 212
+  ADDI s8, sp, 164
   LW t1, 0(s8)
-  ADDI s8, sp, 216
+  ADDI s8, sp, 168
   LW t2, 0(s8)
-  ADDI s8, sp, 220
+  ADDI s8, sp, 172
   LW a1, 0(s8)
-  ADDI s8, sp, 224
+  ADDI s8, sp, 176
   LW a2, 0(s8)
-  ADDI s8, sp, 228
+  ADDI s8, sp, 180
   LW a3, 0(s8)
-  ADDI s8, sp, 232
+  ADDI s8, sp, 184
   LW a4, 0(s8)
-  ADDI s8, sp, 236
+  ADDI s8, sp, 188
   LW a5, 0(s8)
-  ADDI s8, sp, 240
+  ADDI s8, sp, 192
   LW a6, 0(s8)
-  ADDI s8, sp, 244
+  ADDI s8, sp, 196
   LW a7, 0(s8)
-  ADDI s8, sp, 248
+  ADDI s8, sp, 200
   LW t4, 0(s8)
   SW t4, 0(sp)
-  ADDI s8, sp, 252
+  ADDI s8, sp, 204
+  LW t4, 0(s8)
+  SW t4, 4(sp)
+  ADDI s8, sp, 208
   LW t4, 0(s8)
   SW t4, 8(sp)
-  ADDI s8, sp, 256
+  ADDI s8, sp, 212
+  LW t4, 0(s8)
+  SW t4, 12(sp)
+  ADDI s8, sp, 216
   LW t4, 0(s8)
   SW t4, 16(sp)
-  ADDI s8, sp, 260
+  ADDI s8, sp, 220
+  LW t4, 0(s8)
+  SW t4, 20(sp)
+  ADDI s8, sp, 224
   LW t4, 0(s8)
   SW t4, 24(sp)
-  ADDI s8, sp, 264
+  ADDI s8, sp, 228
+  LW t4, 0(s8)
+  SW t4, 28(sp)
+  ADDI s8, sp, 232
   LW t4, 0(s8)
   SW t4, 32(sp)
-  ADDI s8, sp, 268
+  ADDI s8, sp, 236
   LW t4, 0(s8)
-  SW t4, 40(sp)
-  ADDI s8, sp, 272
-  LW t4, 0(s8)
-  SW t4, 48(sp)
-  ADDI s8, sp, 276
-  LW t4, 0(s8)
-  SW t4, 56(sp)
-  ADDI s8, sp, 280
-  LW t4, 0(s8)
-  SW t4, 64(sp)
-  ADDI s8, sp, 284
-  LW t4, 0(s8)
-  SW t4, 72(sp)
+  SW t4, 36(sp)
   ADDW s8, s0, s1
   ADDW s0, s8, s2
   ADDW s1, s0, s3
@@ -230,55 +230,55 @@ testParam32:
   SUBW s1, s0, a7
   LW t4, 0(sp)
   SUBW s0, s1, t4
+  LW t4, 4(sp)
+  ADDW s1, s0, t4
   LW t4, 8(sp)
+  ADDW s0, s1, t4
+  LW t4, 12(sp)
   ADDW s1, s0, t4
   LW t4, 16(sp)
   ADDW s0, s1, t4
+  LW t4, 20(sp)
+  ADDW s1, s0, t4
   LW t4, 24(sp)
+  ADDW s0, s1, t4
+  LW t4, 28(sp)
   ADDW s1, s0, t4
   LW t4, 32(sp)
   ADDW s0, s1, t4
-  LW t4, 40(sp)
-  ADDW s1, s0, t4
-  LW t4, 48(sp)
-  ADDW s0, s1, t4
-  LW t4, 56(sp)
-  ADDW s1, s0, t4
-  LW t4, 64(sp)
-  ADDW s0, s1, t4
-  LW t4, 72(sp)
+  LW t4, 36(sp)
   ADDW s1, s0, t4
   ADD a0, s1, zero
-  LD ra, 80(sp)
-  LD s11, 88(sp)
-  LD s10, 96(sp)
-  LD s9, 104(sp)
-  LD s8, 112(sp)
-  LD s7, 120(sp)
-  LD s6, 128(sp)
-  LD s0, 136(sp)
-  LD s5, 144(sp)
-  LD s1, 152(sp)
-  LD s2, 160(sp)
-  LD s3, 168(sp)
-  LD s4, 176(sp)
-  ADDI sp, sp, 192
+  LD ra, 40(sp)
+  LD s11, 48(sp)
+  LD s10, 56(sp)
+  LD s9, 64(sp)
+  LD s8, 72(sp)
+  LD s7, 80(sp)
+  LD s6, 88(sp)
+  LD s0, 96(sp)
+  LD s5, 104(sp)
+  LD s1, 112(sp)
+  LD s2, 120(sp)
+  LD s3, 128(sp)
+  LD s4, 136(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -320
-  SD ra, 208(sp)
-  SD s11, 216(sp)
-  SD s0, 224(sp)
-  SD s5, 232(sp)
-  SD s1, 240(sp)
-  SD s6, 248(sp)
-  SD s10, 256(sp)
-  SD s2, 264(sp)
-  SD s3, 272(sp)
-  SD s4, 280(sp)
-  SD s7, 288(sp)
-  SD s8, 296(sp)
-  SD s9, 304(sp)
+  ADDI sp, sp, -208
+  SD ra, 104(sp)
+  SD s11, 112(sp)
+  SD s0, 120(sp)
+  SD s5, 128(sp)
+  SD s1, 136(sp)
+  SD s6, 144(sp)
+  SD s10, 152(sp)
+  SD s2, 160(sp)
+  SD s3, 168(sp)
+  SD s4, 176(sp)
+  SD s7, 184(sp)
+  SD s8, 192(sp)
+  SD s9, 200(sp)
   LA s0, a0
   ADDI s1, zero, 0
   SW s1, 0(s0)
@@ -453,16 +453,16 @@ main:
   SW t4, 0(sp)
   LA s0, a12
   LW t4, 0(s0)
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   LA s0, a13
   LW t4, 0(s0)
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   LA s0, a14
   LW t4, 0(s0)
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   LA s0, a15
   LW t4, 0(s0)
-  SW t4, 32(sp)
+  SW t4, 16(sp)
   ADDW s0, s1, s2
   ADDW s1, s0, s3
   SUBW s0, s1, s4
@@ -475,13 +475,13 @@ main:
   ADDW s1, s0, s11
   LW t4, 0(sp)
   ADDW s0, s1, t4
+  LW t4, 4(sp)
+  ADDW s1, s0, t4
   LW t4, 8(sp)
+  ADDW s0, s1, t4
+  LW t4, 12(sp)
   ADDW s1, s0, t4
   LW t4, 16(sp)
-  ADDW s0, s1, t4
-  LW t4, 24(sp)
-  ADDW s1, s0, t4
-  LW t4, 32(sp)
   ADDW s0, s1, t4
   LA s1, a0
   SW s0, 0(s1)
@@ -511,67 +511,67 @@ main:
   LW s11, 0(s0)
   LA s0, a11
   LW t4, 0(s0)
-  SW t4, 40(sp)
+  SW t4, 20(sp)
   LA s0, a12
   LW t4, 0(s0)
-  SW t4, 48(sp)
+  SW t4, 24(sp)
   LA s0, a13
   LW t4, 0(s0)
-  SW t4, 56(sp)
+  SW t4, 28(sp)
   LA s0, a14
   LW t4, 0(s0)
-  SW t4, 64(sp)
+  SW t4, 32(sp)
   LA s0, a15
   LW t4, 0(s0)
-  SW t4, 72(sp)
+  SW t4, 36(sp)
   LA s0, a16
   LW t4, 0(s0)
-  SW t4, 80(sp)
+  SW t4, 40(sp)
   LA s0, a17
   LW t4, 0(s0)
-  SW t4, 88(sp)
+  SW t4, 44(sp)
   LA s0, a18
   LW t4, 0(s0)
-  SW t4, 96(sp)
+  SW t4, 48(sp)
   LA s0, a19
   LW t4, 0(s0)
-  SW t4, 104(sp)
+  SW t4, 52(sp)
   LA s0, a20
   LW t4, 0(s0)
-  SW t4, 112(sp)
+  SW t4, 56(sp)
   LA s0, a21
   LW t4, 0(s0)
-  SW t4, 120(sp)
+  SW t4, 60(sp)
   LA s0, a22
   LW t4, 0(s0)
-  SW t4, 128(sp)
+  SW t4, 64(sp)
   LA s0, a23
   LW t4, 0(s0)
-  SW t4, 136(sp)
+  SW t4, 68(sp)
   LA s0, a24
   LW t4, 0(s0)
-  SW t4, 144(sp)
+  SW t4, 72(sp)
   LA s0, a25
   LW t4, 0(s0)
-  SW t4, 152(sp)
+  SW t4, 76(sp)
   LA s0, a26
   LW t4, 0(s0)
-  SW t4, 160(sp)
+  SW t4, 80(sp)
   LA s0, a27
   LW t4, 0(s0)
-  SW t4, 168(sp)
+  SW t4, 84(sp)
   LA s0, a28
   LW t4, 0(s0)
-  SW t4, 176(sp)
+  SW t4, 88(sp)
   LA s0, a29
   LW t4, 0(s0)
-  SW t4, 184(sp)
+  SW t4, 92(sp)
   LA s0, a30
   LW t4, 0(s0)
-  SW t4, 192(sp)
+  SW t4, 96(sp)
   LA s0, a31
   LW t4, 0(s0)
-  SW t4, 200(sp)
+  SW t4, 100(sp)
   ADDW s0, s1, s2
   ADDW s1, s0, s3
   ADDW s0, s1, s4
@@ -582,67 +582,67 @@ main:
   ADDW s1, s0, s9
   ADDW s0, s1, s10
   ADDW s1, s0, s11
+  LW t4, 20(sp)
+  ADDW s0, s1, t4
+  LW t4, 24(sp)
+  ADDW s1, s0, t4
+  LW t4, 28(sp)
+  ADDW s0, s1, t4
+  LW t4, 32(sp)
+  ADDW s1, s0, t4
+  LW t4, 36(sp)
+  ADDW s0, s1, t4
   LW t4, 40(sp)
+  ADDW s1, s0, t4
+  LW t4, 44(sp)
   ADDW s0, s1, t4
   LW t4, 48(sp)
-  ADDW s1, s0, t4
+  SUBW s1, s0, t4
+  LW t4, 52(sp)
+  SUBW s0, s1, t4
   LW t4, 56(sp)
-  ADDW s0, s1, t4
+  SUBW s1, s0, t4
+  LW t4, 60(sp)
+  SUBW s0, s1, t4
   LW t4, 64(sp)
-  ADDW s1, s0, t4
+  SUBW s1, s0, t4
+  LW t4, 68(sp)
+  ADDW s0, s1, t4
   LW t4, 72(sp)
+  ADDW s1, s0, t4
+  LW t4, 76(sp)
   ADDW s0, s1, t4
   LW t4, 80(sp)
   ADDW s1, s0, t4
+  LW t4, 84(sp)
+  ADDW s0, s1, t4
   LW t4, 88(sp)
+  ADDW s1, s0, t4
+  LW t4, 92(sp)
   ADDW s0, s1, t4
   LW t4, 96(sp)
-  SUBW s1, s0, t4
-  LW t4, 104(sp)
-  SUBW s0, s1, t4
-  LW t4, 112(sp)
-  SUBW s1, s0, t4
-  LW t4, 120(sp)
-  SUBW s0, s1, t4
-  LW t4, 128(sp)
-  SUBW s1, s0, t4
-  LW t4, 136(sp)
-  ADDW s0, s1, t4
-  LW t4, 144(sp)
   ADDW s1, s0, t4
-  LW t4, 152(sp)
-  ADDW s0, s1, t4
-  LW t4, 160(sp)
-  ADDW s1, s0, t4
-  LW t4, 168(sp)
-  ADDW s0, s1, t4
-  LW t4, 176(sp)
-  ADDW s1, s0, t4
-  LW t4, 184(sp)
-  ADDW s0, s1, t4
-  LW t4, 192(sp)
-  ADDW s1, s0, t4
-  LW t4, 200(sp)
+  LW t4, 100(sp)
   ADDW s0, s1, t4
   LA s1, a0
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
   ADD a0, zero, zero
-  LD ra, 208(sp)
-  LD s11, 216(sp)
-  LD s0, 224(sp)
-  LD s5, 232(sp)
-  LD s1, 240(sp)
-  LD s6, 248(sp)
-  LD s10, 256(sp)
-  LD s2, 264(sp)
-  LD s3, 272(sp)
-  LD s4, 280(sp)
-  LD s7, 288(sp)
-  LD s8, 296(sp)
-  LD s9, 304(sp)
-  ADDI sp, sp, 320
+  LD ra, 104(sp)
+  LD s11, 112(sp)
+  LD s0, 120(sp)
+  LD s5, 128(sp)
+  LD s1, 136(sp)
+  LD s6, 144(sp)
+  LD s10, 152(sp)
+  LD s2, 160(sp)
+  LD s3, 168(sp)
+  LD s4, 176(sp)
+  LD s7, 184(sp)
+  LD s8, 192(sp)
+  LD s9, 200(sp)
+  ADDI sp, sp, 208
   JALR zero, 0(ra)
 testParam16:
   ADDI sp, sp, -112

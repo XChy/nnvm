@@ -136,26 +136,26 @@ bb9:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 radixSort:
-  ADDI sp, sp, -352
-  SD s2, 240(sp)
-  SD s3, 248(sp)
-  SD s11, 256(sp)
-  SD s10, 264(sp)
-  SD s9, 272(sp)
-  SD s8, 280(sp)
-  SD s7, 288(sp)
-  SD s4, 296(sp)
-  SD s5, 304(sp)
-  SD s0, 312(sp)
-  SD s6, 320(sp)
-  SD s1, 328(sp)
-  SD ra, 336(sp)
+  ADDI sp, sp, -336
+  SD s2, 224(sp)
+  SD s3, 232(sp)
+  SD s11, 240(sp)
+  SD s10, 248(sp)
+  SD s9, 256(sp)
+  SD s8, 264(sp)
+  SD s7, 272(sp)
+  SD s4, 280(sp)
+  SD s5, 288(sp)
+  SD s0, 296(sp)
+  SD s6, 304(sp)
+  SD s1, 312(sp)
+  SD ra, 320(sp)
   ADD t4, a0, zero
-  SW t4, 216(sp)
+  SW t4, 208(sp)
   ADD t4, a1, zero
-  SD t4, 208(sp)
+  SD t4, 200(sp)
   ADD t4, a2, zero
-  SW t4, 200(sp)
+  SW t4, 196(sp)
   ADD t4, a3, zero
   SW t4, 192(sp)
   ADDI s4, zero, 16
@@ -215,47 +215,47 @@ bb18:
   ADD s4, s7, zero
   JAL zero, bb17
 bb19:
-  LW t4, 216(sp)
+  LW t4, 208(sp)
   XORI s4, t4, -1
   SLTIU s5, s4, 1
   BNE s5, zero, bb20
   JAL zero, bb21
 bb20:
   ADDI t4, zero, 1
-  SB t4, 224(sp)
+  SB t4, 212(sp)
   JAL zero, bb22
 bb21:
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   ADDIW s0, t4, 1
   LW t4, 192(sp)
   SLT s1, s0, t4
   XORI s0, s1, 1
   ADD t4, s0, zero
-  SB t4, 224(sp)
+  SB t4, 212(sp)
   JAL zero, bb22
 bb22:
-  LB t4, 224(sp)
+  LB t4, 212(sp)
   ADD s5, t4, zero
   BNE s5, zero, bb23
   JAL zero, bb24
 bb23:
-  LD s2, 240(sp)
-  LD s3, 248(sp)
-  LD s11, 256(sp)
-  LD s10, 264(sp)
-  LD s9, 272(sp)
-  LD s8, 280(sp)
-  LD s7, 288(sp)
-  LD s4, 296(sp)
-  LD s5, 304(sp)
-  LD s0, 312(sp)
-  LD s6, 320(sp)
-  LD s1, 328(sp)
-  LD ra, 336(sp)
-  ADDI sp, sp, 352
+  LD s2, 224(sp)
+  LD s3, 232(sp)
+  LD s11, 240(sp)
+  LD s10, 248(sp)
+  LD s9, 256(sp)
+  LD s8, 264(sp)
+  LD s7, 272(sp)
+  LD s4, 280(sp)
+  LD s5, 288(sp)
+  LD s0, 296(sp)
+  LD s6, 304(sp)
+  LD s1, 312(sp)
+  LD ra, 320(sp)
+  ADDI sp, sp, 336
   JALR zero, 0(ra)
 bb24:
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   ADD s5, t4, zero
   JAL zero, bb25
 bb25:
@@ -267,17 +267,17 @@ bb25:
 bb26:
   ADDI s7, zero, 4
   MULW s8, s6, s7
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD s7, t4, s8
   LW s8, 0(s7)
   ADD s9, zero, zero
   ADD s10, s8, zero
   JAL zero, bb45
 bb27:
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   SW t4, 128(sp)
   LW s5, 0(sp)
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   ADDW s6, t4, s5
   SW s6, 64(sp)
   ADDI s5, zero, 1
@@ -314,10 +314,10 @@ bb30:
   ADD s5, zero, zero
   ADD s6, zero, zero
   ADD t4, zero, zero
-  SW t4, 232(sp)
+  SW t4, 216(sp)
   JAL zero, bb31
 bb31:
-  LW t4, 232(sp)
+  LW t4, 216(sp)
   ADD s8, t4, zero
   ADD s9, s6, zero
   ADD s10, s5, zero
@@ -331,10 +331,10 @@ bb32:
   ADD s10, s9, zero
   JAL zero, bb34
 bb33:
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   SW t4, 128(sp)
   LW s0, 0(sp)
-  LW t4, 200(sp)
+  LW t4, 196(sp)
   ADDW s1, t4, s0
   SW s1, 64(sp)
   ADD s0, zero, zero
@@ -355,7 +355,7 @@ bb35:
   LW a4, 0(t2)
   ADDI a5, zero, 4
   MULW a6, a4, a5
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD a4, t4, a6
   LW a5, 0(a4)
   ADD a4, t1, zero
@@ -366,7 +366,7 @@ bb36:
   ADD s5, t1, zero
   ADD s6, s9, zero
   ADD t4, s0, zero
-  SW t4, 232(sp)
+  SW t4, 216(sp)
   JAL zero, bb31
 bb37:
   ADD a5, a6, zero
@@ -382,13 +382,13 @@ bb38:
   LW s1, 0(s0)
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD s1, t4, s3
   LW s2, 0(s1)
   LW s1, 0(s0)
   ADDI s3, zero, 4
   MULW s4, s1, s3
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD s1, t4, s4
   SW a5, 0(s1)
   LW s1, 0(s0)
@@ -401,7 +401,7 @@ bb39:
   LW s0, 0(t2)
   ADDI s1, zero, 4
   MULW s2, s0, s1
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD s0, t4, s2
   SW a5, 0(s0)
   LW s0, 0(t2)
@@ -420,20 +420,20 @@ bb41:
   BNE s2, zero, bb43
   JAL zero, bb44
 bb42:
-  LD s2, 240(sp)
-  LD s3, 248(sp)
-  LD s11, 256(sp)
-  LD s10, 264(sp)
-  LD s9, 272(sp)
-  LD s8, 280(sp)
-  LD s7, 288(sp)
-  LD s4, 296(sp)
-  LD s5, 304(sp)
-  LD s0, 312(sp)
-  LD s6, 320(sp)
-  LD s1, 328(sp)
-  LD ra, 336(sp)
-  ADDI sp, sp, 352
+  LD s2, 224(sp)
+  LD s3, 232(sp)
+  LD s11, 240(sp)
+  LD s10, 248(sp)
+  LD s9, 256(sp)
+  LD s8, 264(sp)
+  LD s7, 272(sp)
+  LD s4, 280(sp)
+  LD s5, 288(sp)
+  LD s0, 296(sp)
+  LD s6, 304(sp)
+  LD s1, 312(sp)
+  LD ra, 320(sp)
+  ADDI sp, sp, 336
   JALR zero, 0(ra)
 bb43:
   ADDI s2, zero, 4
@@ -458,7 +458,7 @@ bb43:
   JAL zero, bb44
 bb44:
   ADDI s2, zero, 1
-  LW t4, 216(sp)
+  LW t4, 208(sp)
   SUBW s3, t4, s2
   ADDI s2, zero, 4
   MULW s4, s1, s2
@@ -469,7 +469,7 @@ bb44:
   ADD s2, t6, s4
   LW s4, 0(s2)
   ADD a0, s3, zero
-  LD t4, 208(sp)
+  LD t4, 200(sp)
   ADD a1, t4, zero
   ADD a2, s5, zero
   ADD a3, s4, zero
@@ -480,7 +480,7 @@ bb44:
 bb45:
   ADD s8, s10, zero
   ADD s11, s9, zero
-  LW t4, 216(sp)
+  LW t4, 208(sp)
   SLT t0, s11, t4
   BNE t0, zero, bb46
   JAL zero, bb47
@@ -505,7 +505,7 @@ bb47:
 bb48:
   ADD s9, s10, zero
   ADD s11, s7, zero
-  LW t4, 216(sp)
+  LW t4, 208(sp)
   SLT t0, s11, t4
   BNE t0, zero, bb49
   JAL zero, bb50
@@ -532,7 +532,7 @@ bb50:
 bb51:
   ADD s1, s2, zero
   ADD s0, s3, zero
-  LW t4, 216(sp)
+  LW t4, 208(sp)
   SLT s4, s0, t4
   BNE s4, zero, bb52
   JAL zero, bb53

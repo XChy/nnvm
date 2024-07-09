@@ -9,6 +9,7 @@
 namespace nnvm::riscv {
 
 static inline uint64_t getFrameAlign() { return 16; }
+static inline uint64_t getMaxMemAlign() { return 8; }
 // Integer registers for argument
 std::vector<Register *> getArgGPRs(LIRModule *M);
 // Float registers for argument

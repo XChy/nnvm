@@ -47,6 +47,8 @@ public:
   bool isConstant() { return valueID == ValueID::Constant; }
   bool isInstruction() { return valueID == ValueID::Instruction; }
 
+  template <typename To> bool isa() { return dynamic_cast<To *>(this); }
+
   virtual std::string dump() { return name; };
   virtual std::string dumpAsOperand() { return type->dump() + " %" + name; };
   virtual ~Value() {}

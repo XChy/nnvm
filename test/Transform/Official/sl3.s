@@ -9,26 +9,26 @@ x:
 
 .section .text
 main:
-  ADDI sp, sp, -176
-  SD ra, 64(sp)
-  SD s1, 72(sp)
-  SD s11, 80(sp)
-  SD s7, 88(sp)
-  SD s10, 96(sp)
-  SD s2, 104(sp)
-  SD s3, 112(sp)
-  SD s4, 120(sp)
-  SD s0, 128(sp)
-  SD s5, 136(sp)
-  SD s6, 144(sp)
-  SD s8, 152(sp)
-  SD s9, 160(sp)
+  ADDI sp, sp, -144
+  SD ra, 32(sp)
+  SD s1, 40(sp)
+  SD s11, 48(sp)
+  SD s7, 56(sp)
+  SD s10, 64(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s4, 88(sp)
+  SD s0, 96(sp)
+  SD s5, 104(sp)
+  SD s6, 112(sp)
+  SD s8, 120(sp)
+  SD s9, 128(sp)
   CALL getint
   ADD t4, a0, zero
   SW t4, 0(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 32(sp)
+  SW t4, 16(sp)
   ADDI a0, zero, 13
   CALL _sysy_starttime
   ADD s2, zero, zero
@@ -46,11 +46,11 @@ bb3:
   ADDI s0, zero, 1
   LW t3, 0(sp)
   SUBW t4, t3, s0
+  SW t4, 12(sp)
+  ADDI t4, zero, 1
+  SW t4, 28(sp)
+  ADDI t4, zero, 1
   SW t4, 24(sp)
-  ADDI t4, zero, 1
-  SW t4, 56(sp)
-  ADDI t4, zero, 1
-  SW t4, 48(sp)
   JAL zero, bb10
 bb4:
   ADD s5, s4, zero
@@ -99,14 +99,14 @@ bb9:
   ADD s4, s0, zero
   JAL zero, bb4
 bb10:
-  LW t3, 48(sp)
+  LW t3, 24(sp)
+  ADD t4, t3, zero
+  SW t4, 4(sp)
+  LW t3, 28(sp)
   ADD t4, t3, zero
   SW t4, 8(sp)
-  LW t3, 56(sp)
-  ADD t4, t3, zero
-  SW t4, 16(sp)
-  LW t4, 16(sp)
-  LW t3, 24(sp)
+  LW t4, 8(sp)
+  LW t3, 12(sp)
   SLT s6, t4, t3
   BNE s6, zero, bb11
   JAL zero, bb12
@@ -138,7 +138,7 @@ bb12:
   ADD a1, s0, zero
   CALL putarray
   ADDI s0, zero, 1
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   SUBW s1, t4, s0
   LUI s0, 352
   ADDIW s0, s0, -1792
@@ -146,7 +146,7 @@ bb12:
   LA s0, x
   ADD s1, s0, s2
   ADDI s0, zero, 1
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   SUBW s2, t4, s0
   LUI s0, 1
   ADDIW s0, s0, -1696
@@ -157,26 +157,26 @@ bb12:
   ADD a1, s0, zero
   CALL putarray
   ADD a0, zero, zero
-  LD ra, 64(sp)
-  LD s1, 72(sp)
-  LD s11, 80(sp)
-  LD s7, 88(sp)
-  LD s10, 96(sp)
-  LD s2, 104(sp)
-  LD s3, 112(sp)
-  LD s4, 120(sp)
-  LD s0, 128(sp)
-  LD s5, 136(sp)
-  LD s6, 144(sp)
-  LD s8, 152(sp)
-  LD s9, 160(sp)
-  ADDI sp, sp, 176
+  LD ra, 32(sp)
+  LD s1, 40(sp)
+  LD s11, 48(sp)
+  LD s7, 56(sp)
+  LD s10, 64(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s4, 88(sp)
+  LD s0, 96(sp)
+  LD s5, 104(sp)
+  LD s6, 112(sp)
+  LD s8, 120(sp)
+  LD s9, 128(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb13:
   ADD t4, s6, zero
-  SW t4, 40(sp)
-  LW t4, 40(sp)
-  LW t3, 24(sp)
+  SW t4, 20(sp)
+  LW t4, 20(sp)
+  LW t3, 12(sp)
   SLT s8, t4, t3
   BNE s8, zero, bb14
   JAL zero, bb15
@@ -184,37 +184,37 @@ bb14:
   ADDI s8, zero, 1
   JAL zero, bb16
 bb15:
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 56(sp)
-  LW t3, 40(sp)
+  SW t4, 28(sp)
+  LW t3, 20(sp)
   ADD t4, t3, zero
-  SW t4, 48(sp)
+  SW t4, 24(sp)
   JAL zero, bb10
 bb16:
   ADD s9, s8, zero
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   SLT s10, s9, t4
   BNE s10, zero, bb17
   JAL zero, bb18
 bb17:
   LUI s10, 352
   ADDIW s10, s10, -1792
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   MULW s11, t4, s10
   LA s10, x
   ADD s4, s10, s11
   LUI s10, 1
   ADDIW s10, s10, -1696
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   MULW s11, t4, s10
   ADD s10, s4, s11
   ADDI s5, zero, 4
   MULW s2, s9, s5
   ADD s5, s10, s2
   ADDI s1, zero, 1
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   SUBW s7, t4, s1
   LUI s1, 352
   ADDIW s1, s1, -1792
@@ -224,7 +224,7 @@ bb17:
   ADD s1, s7, s11
   ADD s3, s1, s2
   LW s1, 0(s3)
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADDIW s3, t4, 1
   LUI s7, 352
   ADDIW s7, s7, -1792
@@ -236,7 +236,7 @@ bb17:
   LW s0, 0(s3)
   ADDW s3, s1, s0
   ADDI s0, zero, 1
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   SUBW s1, t4, s0
   LUI s0, 1
   ADDIW s0, s0, -1696
@@ -245,7 +245,7 @@ bb17:
   ADD s1, s0, s2
   LW s0, 0(s1)
   ADDW s1, s3, s0
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   ADDIW s0, t4, 1
   LUI s3, 1
   ADDIW s3, s3, -1696
@@ -267,13 +267,13 @@ bb17:
   ADD s2, s10, s3
   LW s3, 0(s2)
   ADDW s2, s0, s3
-  LW t4, 32(sp)
+  LW t4, 16(sp)
   DIVW s0, s2, t4
   SW s0, 0(s5)
   ADD s8, s1, zero
   JAL zero, bb16
 bb18:
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   ADDIW s0, t4, 1
   ADD s6, s0, zero
   JAL zero, bb13

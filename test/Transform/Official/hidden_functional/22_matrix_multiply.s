@@ -28,20 +28,20 @@ MAX_SIZE:
 .word 0x00000064
 .section .text
 main:
-  ADDI sp, sp, -144
-  SD s11, 32(sp)
-  SD s10, 40(sp)
-  SD s9, 48(sp)
-  SD s0, 56(sp)
-  SD s5, 64(sp)
-  SD s7, 72(sp)
-  SD s1, 80(sp)
-  SD s6, 88(sp)
-  SD s2, 96(sp)
-  SD s3, 104(sp)
-  SD s4, 112(sp)
-  SD ra, 120(sp)
-  SD s8, 128(sp)
+  ADDI sp, sp, -128
+  SD s11, 16(sp)
+  SD s10, 24(sp)
+  SD s9, 32(sp)
+  SD s0, 40(sp)
+  SD s5, 48(sp)
+  SD s7, 56(sp)
+  SD s1, 64(sp)
+  SD s6, 72(sp)
+  SD s2, 80(sp)
+  SD s3, 88(sp)
+  SD s4, 96(sp)
+  SD ra, 104(sp)
+  SD s8, 112(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, m1
@@ -110,7 +110,7 @@ bb8:
   JAL zero, bb10
 bb9:
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   ADD t4, zero, zero
   SW t4, 0(sp)
   JAL zero, bb19
@@ -151,20 +151,20 @@ bb14:
   JAL zero, bb16
 bb15:
   ADD a0, zero, zero
-  LD s11, 32(sp)
-  LD s10, 40(sp)
-  LD s9, 48(sp)
-  LD s0, 56(sp)
-  LD s5, 64(sp)
-  LD s7, 72(sp)
-  LD s1, 80(sp)
-  LD s6, 88(sp)
-  LD s2, 96(sp)
-  LD s3, 104(sp)
-  LD s4, 112(sp)
-  LD ra, 120(sp)
-  LD s8, 128(sp)
-  ADDI sp, sp, 144
+  LD s11, 16(sp)
+  LD s10, 24(sp)
+  LD s9, 32(sp)
+  LD s0, 40(sp)
+  LD s5, 48(sp)
+  LD s7, 56(sp)
+  LD s1, 64(sp)
+  LD s6, 72(sp)
+  LD s2, 80(sp)
+  LD s3, 88(sp)
+  LD s4, 96(sp)
+  LD ra, 104(sp)
+  LD s8, 112(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb16:
   ADD s3, s2, zero
@@ -198,12 +198,12 @@ bb18:
 bb19:
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
-  LW t4, 16(sp)
+  SW t4, 12(sp)
+  LW t4, 8(sp)
   ADD s3, t4, zero
   LA s4, m1
   LW s5, 0(s4)
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   SLT s4, t4, s5
   BNE s4, zero, bb20
   JAL zero, bb21
@@ -217,7 +217,7 @@ bb21:
 bb22:
   ADD s5, s3, zero
   ADD t4, s4, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   LA s7, n2
   LW s8, 0(s7)
   SLT s7, s5, s8
@@ -227,11 +227,11 @@ bb23:
   ADD s7, zero, zero
   JAL zero, bb25
 bb24:
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   ADDIW s0, t4, 1
-  LW t3, 8(sp)
+  LW t3, 4(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   ADD t4, s0, zero
   SW t4, 0(sp)
   JAL zero, bb19
@@ -244,7 +244,7 @@ bb25:
   JAL zero, bb27
 bb26:
   ADDI s9, zero, 400
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   MULW s10, t4, s9
   LA s9, res
   ADD s11, s9, s10

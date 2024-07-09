@@ -10,23 +10,23 @@ matrix:
 
 .section .text
 main:
-  ADDI sp, sp, -160
-  SD s11, 48(sp)
-  SD s10, 56(sp)
-  SD s9, 64(sp)
-  SD s7, 72(sp)
-  SD s1, 80(sp)
-  SD s6, 88(sp)
-  SD s2, 96(sp)
-  SD s3, 104(sp)
-  SD s4, 112(sp)
-  SD s5, 120(sp)
-  SD s0, 128(sp)
-  SD ra, 136(sp)
-  SD s8, 144(sp)
+  ADDI sp, sp, -128
+  SD s11, 24(sp)
+  SD s10, 32(sp)
+  SD s9, 40(sp)
+  SD s7, 48(sp)
+  SD s1, 56(sp)
+  SD s6, 64(sp)
+  SD s2, 72(sp)
+  SD s3, 80(sp)
+  SD s4, 88(sp)
+  SD s5, 96(sp)
+  SD s0, 104(sp)
+  SD ra, 112(sp)
+  SD s8, 120(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   LA s1, a
   ADD a0, s1, zero
   CALL getarray
@@ -38,7 +38,7 @@ main:
   JAL zero, bb1
 bb1:
   ADD s3, s2, zero
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   SLT s4, s3, t4
   BNE s4, zero, bb2
   JAL zero, bb3
@@ -53,29 +53,29 @@ bb2:
   JAL zero, bb1
 bb3:
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   JAL zero, bb4
 bb4:
-  LW t3, 16(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
-  LW t4, 24(sp)
+  SW t4, 12(sp)
+  LW t4, 12(sp)
   LW t3, 0(sp)
   SLT s4, t4, t3
   BNE s4, zero, bb5
   JAL zero, bb6
 bb5:
   ADDI s4, zero, 4
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   MULW s5, t4, s4
   LA s4, a
   ADD s6, s4, s5
   LW t4, 0(s6)
-  SW t4, 40(sp)
-  LW t3, 8(sp)
-  LW t4, 40(sp)
+  SW t4, 20(sp)
+  LW t3, 4(sp)
+  LW t4, 20(sp)
   DIVW t4, t3, t4
-  SW t4, 32(sp)
+  SW t4, 16(sp)
   ADD s6, zero, zero
   ADD s7, zero, zero
   JAL zero, bb12
@@ -120,25 +120,25 @@ bb11:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD s11, 48(sp)
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s7, 72(sp)
-  LD s1, 80(sp)
-  LD s6, 88(sp)
-  LD s2, 96(sp)
-  LD s3, 104(sp)
-  LD s4, 112(sp)
-  LD s5, 120(sp)
-  LD s0, 128(sp)
-  LD ra, 136(sp)
-  LD s8, 144(sp)
-  ADDI sp, sp, 160
+  LD s11, 24(sp)
+  LD s10, 32(sp)
+  LD s9, 40(sp)
+  LD s7, 48(sp)
+  LD s1, 56(sp)
+  LD s6, 64(sp)
+  LD s2, 72(sp)
+  LD s3, 80(sp)
+  LD s4, 88(sp)
+  LD s5, 96(sp)
+  LD s0, 104(sp)
+  LD ra, 112(sp)
+  LD s8, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb12:
   ADD s8, s7, zero
   ADD s9, s6, zero
-  LW t4, 32(sp)
+  LW t4, 16(sp)
   SLT s10, s8, t4
   BNE s10, zero, bb13
   JAL zero, bb14
@@ -147,15 +147,15 @@ bb13:
   ADD s9, zero, zero
   JAL zero, bb15
 bb14:
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   JAL zero, bb4
 bb15:
   ADD s11, s9, zero
   ADD s1, s10, zero
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   SLT s0, s11, t4
   BNE s0, zero, bb16
   JAL zero, bb17
@@ -174,7 +174,7 @@ bb18:
   ADD s9, s0, zero
   JAL zero, bb15
 bb19:
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   MULW s0, s8, t4
   ADDW s2, s0, s11
   ADDI s0, zero, 4
@@ -182,7 +182,7 @@ bb19:
   LA s0, matrix
   ADD s2, s0, s3
   LW s0, 0(s2)
-  LW t4, 32(sp)
+  LW t4, 16(sp)
   MULW s3, s11, t4
   ADDW s5, s3, s8
   ADDI s3, zero, 4

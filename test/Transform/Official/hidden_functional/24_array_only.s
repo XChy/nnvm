@@ -166,11 +166,11 @@ bb10:
   JAL zero, bb9
 main:
   ADDI sp, sp, -64
-  SD s3, 24(sp)
-  SD ra, 32(sp)
-  SD s2, 40(sp)
-  SD s1, 48(sp)
-  SD s0, 56(sp)
+  SD s3, 16(sp)
+  SD ra, 24(sp)
+  SD s2, 32(sp)
+  SD s1, 40(sp)
+  SD s0, 48(sp)
   ADDI s0, zero, -1
   SW s0, 0(sp)
   ADDI s0, sp, 4
@@ -195,21 +195,21 @@ bb12:
   JAL zero, bb14
 bb13:
   LW s1, 0(sp)
-  SW s1, 16(sp)
+  SW s1, 12(sp)
   JAL zero, bb15
 bb14:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD s3, 24(sp)
-  LD ra, 32(sp)
-  LD s2, 40(sp)
-  LD s1, 48(sp)
-  LD s0, 56(sp)
+  LD s3, 16(sp)
+  LD ra, 24(sp)
+  LD s2, 32(sp)
+  LD s1, 40(sp)
+  LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb15:
-  LW s1, 16(sp)
+  LW s1, 12(sp)
   SLTI s2, s1, 5
   BNE s2, zero, bb16
   JAL zero, bb17
@@ -218,7 +218,7 @@ bb16:
   LW s2, 0(s1)
   ADD a0, s2, zero
   CALL putint
-  LW s1, 16(sp)
+  LW s1, 12(sp)
   ADD a0, s1, zero
   CALL putint
   LW s1, 8(sp)
@@ -237,7 +237,7 @@ bb16:
   CALL add_impl
   LA s1, k
   LW s2, 0(s1)
-  ADDI a0, sp, 16
+  ADDI a0, sp, 12
   ADD a0, a0, zero
   ADDI a1, sp, 8
   ADD a1, a1, zero

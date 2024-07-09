@@ -12,6 +12,7 @@
 #include "IR/Type.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
+#include <algorithm>
 #include <queue>
 using namespace nnvm;
 using namespace nnvm::riscv;
@@ -202,7 +203,9 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
   case InstID::Stack: {
     uint64_t size = cast<StackInst>(I)->getAllocatedBytes();
-    defMap[I] = lowFunc->allocStackSlot(size);
+    StackSlot *slot = lowFunc->allocStackSlot(size);
+    defMap[I] = slot;
+    slot->setAlign(std::min(getMaxMemAlign(), size));
     break;
   }
 

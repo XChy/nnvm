@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Backend/RISCV/LowIR/LIRValue.h"
+#include <algorithm>
 #include <cstdint>
 
 namespace nnvm::riscv {
@@ -54,21 +55,26 @@ public:
     OutgoingArgFrame
   };
 
+  static inline uint64_t getMaxMemAlign() { return 8; }
   StackSlot() : LIRValue(LIRValue::Stack) {
     LIRValue::setType(LIRValueType::i64);
     setType(Spilled);
-    setAlign(8);
+    setAlign(getMaxMemAlign());
   }
   StackSlot(uint64_t size) : LIRValue(LIRValue::Stack), size(size) {
     LIRValue::setType(LIRValueType::i64);
     setType(Spilled);
-    setAlign(8);
+    setAlign(std::min(getMaxMemAlign(), size));
   }
 
   StackSlot(SlotType type, uint64_t size)
-      : LIRValue(LIRValue::Stack), type(type), size(size) {}
+      : LIRValue(LIRValue::Stack), type(type), size(size) {
+    setAlign(std::min(getMaxMemAlign(), size));
+  }
   StackSlot(SlotType type, uint64_t size, Register *reg)
-      : LIRValue(LIRValue::Stack), type(type), size(size), reg(reg) {}
+      : LIRValue(LIRValue::Stack), type(type), size(size), reg(reg) {
+    setAlign(std::min(getMaxMemAlign(), size));
+  }
 
   void setIndex(uint64_t index) { this->index = index; }
   uint64_t getIndex() const { return index; }

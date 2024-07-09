@@ -29,19 +29,19 @@ N:
 .section .text
 main:
   ADDI sp, sp, -128
-  SD s2, 24(sp)
-  SD s11, 32(sp)
-  SD s10, 40(sp)
-  SD s9, 48(sp)
-  SD s0, 56(sp)
-  SD s5, 64(sp)
-  SD s7, 72(sp)
-  SD s1, 80(sp)
-  SD s6, 88(sp)
-  SD s3, 96(sp)
-  SD s8, 104(sp)
-  SD ra, 112(sp)
-  SD s4, 120(sp)
+  SD s2, 16(sp)
+  SD s11, 24(sp)
+  SD s10, 32(sp)
+  SD s9, 40(sp)
+  SD s0, 48(sp)
+  SD s5, 56(sp)
+  SD s7, 64(sp)
+  SD s1, 72(sp)
+  SD s6, 80(sp)
+  SD s3, 88(sp)
+  SD s8, 96(sp)
+  SD ra, 104(sp)
+  SD s4, 112(sp)
   LA s0, x
   ADD a0, s0, zero
   CALL getarray
@@ -64,13 +64,13 @@ main:
   ADDI a0, zero, 39
   CALL _sysy_starttime
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   JAL zero, bb1
 bb1:
-  LW t3, 8(sp)
+  LW t3, 4(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
-  LW t4, 16(sp)
+  SW t4, 8(sp)
+  LW t4, 8(sp)
   SLTI s3, t4, 100
   BNE s3, zero, bb2
   JAL zero, bb3
@@ -86,19 +86,19 @@ bb3:
   ADD a1, s0, zero
   CALL putarray
   ADD a0, zero, zero
-  LD s2, 24(sp)
-  LD s11, 32(sp)
-  LD s10, 40(sp)
-  LD s9, 48(sp)
-  LD s0, 56(sp)
-  LD s5, 64(sp)
-  LD s7, 72(sp)
-  LD s1, 80(sp)
-  LD s6, 88(sp)
-  LD s3, 96(sp)
-  LD s8, 104(sp)
-  LD ra, 112(sp)
-  LD s4, 120(sp)
+  LD s2, 16(sp)
+  LD s11, 24(sp)
+  LD s10, 32(sp)
+  LD s9, 40(sp)
+  LD s0, 48(sp)
+  LD s5, 56(sp)
+  LD s7, 64(sp)
+  LD s1, 72(sp)
+  LD s6, 80(sp)
+  LD s3, 88(sp)
+  LD s8, 96(sp)
+  LD ra, 104(sp)
+  LD s4, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb4:
@@ -248,10 +248,10 @@ bb20:
   ADD s1, s2, zero
   JAL zero, bb22
 bb21:
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   JAL zero, bb1
 bb22:
   ADD s2, s1, zero

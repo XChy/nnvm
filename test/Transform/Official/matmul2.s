@@ -15,20 +15,20 @@ MAX:
 
 .section .text
 main:
-  ADDI sp, sp, -160
-  SD s9, 48(sp)
-  SD s8, 56(sp)
-  SD s11, 64(sp)
-  SD s0, 72(sp)
-  SD s5, 80(sp)
-  SD s10, 88(sp)
-  SD s1, 96(sp)
-  SD s6, 104(sp)
-  SD s2, 112(sp)
-  SD s3, 120(sp)
-  SD s4, 128(sp)
-  SD s7, 136(sp)
-  SD ra, 144(sp)
+  ADDI sp, sp, -128
+  SD s9, 24(sp)
+  SD s8, 32(sp)
+  SD s11, 40(sp)
+  SD s0, 48(sp)
+  SD s5, 56(sp)
+  SD s10, 64(sp)
+  SD s1, 72(sp)
+  SD s6, 80(sp)
+  SD s2, 88(sp)
+  SD s3, 96(sp)
+  SD s4, 104(sp)
+  SD s7, 112(sp)
+  SD ra, 120(sp)
   ADD s0, zero, zero
   JAL zero, bb1
 bb1:
@@ -56,20 +56,20 @@ bb3:
   JAL zero, bb6
 bb4:
   ADD a0, s2, zero
-  LD s9, 48(sp)
-  LD s8, 56(sp)
-  LD s11, 64(sp)
-  LD s0, 72(sp)
-  LD s5, 80(sp)
-  LD s10, 88(sp)
-  LD s1, 96(sp)
-  LD s6, 104(sp)
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s4, 128(sp)
-  LD s7, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 24(sp)
+  LD s8, 32(sp)
+  LD s11, 40(sp)
+  LD s0, 48(sp)
+  LD s5, 56(sp)
+  LD s10, 64(sp)
+  LD s1, 72(sp)
+  LD s6, 80(sp)
+  LD s2, 88(sp)
+  LD s3, 96(sp)
+  LD s4, 104(sp)
+  LD s7, 112(sp)
+  LD ra, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb5:
   ADDIW s2, s1, 1
@@ -85,9 +85,9 @@ bb7:
   JAL zero, bb9
 bb8:
   ADD t4, zero, zero
-  SW t4, 32(sp)
-  ADD t4, zero, zero
   SW t4, 16(sp)
+  ADD t4, zero, zero
+  SW t4, 8(sp)
   ADD t4, zero, zero
   SW t4, 0(sp)
   JAL zero, bb12
@@ -125,12 +125,12 @@ bb11:
 bb12:
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 40(sp)
-  LW t4, 16(sp)
+  SW t4, 20(sp)
+  LW t4, 8(sp)
   ADD s4, t4, zero
-  LW t4, 32(sp)
+  LW t4, 16(sp)
   ADD s5, t4, zero
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   SLTI s6, t4, 1000
   BNE s6, zero, bb13
   JAL zero, bb14
@@ -145,9 +145,9 @@ bb14:
 bb15:
   ADD s7, s4, zero
   ADD t4, s5, zero
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   ADD t4, s6, zero
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   SLTI s10, s7, 1000
   BNE s10, zero, bb16
   JAL zero, bb17
@@ -156,14 +156,14 @@ bb16:
   ADD s11, zero, zero
   JAL zero, bb18
 bb17:
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   ADDIW s0, t4, 1
-  LW t3, 24(sp)
-  ADD t4, t3, zero
-  SW t4, 32(sp)
-  LW t3, 8(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
+  LW t3, 4(sp)
+  ADD t4, t3, zero
+  SW t4, 8(sp)
   ADD t4, s0, zero
   SW t4, 0(sp)
   JAL zero, bb12
@@ -176,7 +176,7 @@ bb18:
 bb19:
   LUI s1, 1
   ADDIW s1, s1, -96
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   MULW s9, t4, s1
   LA s1, a
   ADD s0, s1, s9
@@ -202,7 +202,7 @@ bb19:
 bb20:
   LUI s0, 1
   ADDIW s0, s0, -96
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   MULW s1, t4, s0
   LA s0, c
   ADD s3, s0, s1
@@ -343,20 +343,20 @@ bb40:
   ADD a0, s3, zero
   CALL putint
   ADD a0, zero, zero
-  LD s9, 48(sp)
-  LD s8, 56(sp)
-  LD s11, 64(sp)
-  LD s0, 72(sp)
-  LD s5, 80(sp)
-  LD s10, 88(sp)
-  LD s1, 96(sp)
-  LD s6, 104(sp)
-  LD s2, 112(sp)
-  LD s3, 120(sp)
-  LD s4, 128(sp)
-  LD s7, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD s9, 24(sp)
+  LD s8, 32(sp)
+  LD s11, 40(sp)
+  LD s0, 48(sp)
+  LD s5, 56(sp)
+  LD s10, 64(sp)
+  LD s1, 72(sp)
+  LD s6, 80(sp)
+  LD s2, 88(sp)
+  LD s3, 96(sp)
+  LD s4, 104(sp)
+  LD s7, 112(sp)
+  LD ra, 120(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb41:
   ADD s6, s5, zero

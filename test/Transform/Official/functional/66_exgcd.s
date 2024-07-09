@@ -5,36 +5,36 @@
 .section .text
 main:
   ADDI sp, sp, -48
-  SD ra, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD ra, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADDI s0, zero, 1
-  SW s0, 8(sp)
+  SW s0, 4(sp)
   ADDI s0, zero, 1
   SW s0, 0(sp)
   ADDI a0, zero, 7
   ADDI a1, zero, 15
-  ADDI a2, sp, 8
+  ADDI a2, sp, 4
   ADD a2, a2, zero
   ADDI a3, sp, 0
   ADD a3, a3, zero
   CALL exgcd
   ADD s0, a0, zero
-  LW s0, 8(sp)
+  LW s0, 4(sp)
   ADDI s1, zero, 15
   REMW s2, s0, s1
   ADDIW s0, s2, 15
   ADDI s1, zero, 15
   REMW s2, s0, s1
-  SW s2, 8(sp)
+  SW s2, 4(sp)
   ADD a0, s2, zero
   CALL putint
   ADD a0, zero, zero
-  LD ra, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD ra, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 exgcd:

@@ -274,20 +274,20 @@ bb15:
   ADD s4, s6, zero
   JAL zero, bb11
 maxCliques:
-  ADDI sp, sp, -144
-  SD s11, 32(sp)
-  SD s10, 40(sp)
-  SD ra, 48(sp)
-  SD s0, 56(sp)
-  SD s5, 64(sp)
-  SD s7, 72(sp)
-  SD s8, 80(sp)
-  SD s1, 88(sp)
-  SD s6, 96(sp)
-  SD s2, 104(sp)
-  SD s3, 112(sp)
-  SD s4, 120(sp)
-  SD s9, 128(sp)
+  ADDI sp, sp, -128
+  SD s11, 16(sp)
+  SD s10, 24(sp)
+  SD ra, 32(sp)
+  SD s0, 40(sp)
+  SD s5, 48(sp)
+  SD s7, 56(sp)
+  SD s8, 64(sp)
+  SD s1, 72(sp)
+  SD s6, 80(sp)
+  SD s2, 88(sp)
+  SD s3, 96(sp)
+  SD s4, 104(sp)
+  SD s9, 112(sp)
   ADD s0, a0, zero
   ADD s0, a1, zero
   ADD s1, zero, zero
@@ -314,7 +314,7 @@ bb18:
   ADDI s8, zero, 1
   JAL zero, bb27
 bb19:
-  LW t4, 16(sp)
+  LW t4, 8(sp)
   ADD t2, t4, zero
   XOR a2, t2, zero
   SLTU t2, zero, a2
@@ -322,20 +322,20 @@ bb19:
   JAL zero, bb35
 bb20:
   ADD a0, s4, zero
-  LD s11, 32(sp)
-  LD s10, 40(sp)
-  LD ra, 48(sp)
-  LD s0, 56(sp)
-  LD s5, 64(sp)
-  LD s7, 72(sp)
-  LD s8, 80(sp)
-  LD s1, 88(sp)
-  LD s6, 96(sp)
-  LD s2, 104(sp)
-  LD s3, 112(sp)
-  LD s4, 120(sp)
-  LD s9, 128(sp)
-  ADDI sp, sp, 144
+  LD s11, 16(sp)
+  LD s10, 24(sp)
+  LD ra, 32(sp)
+  LD s0, 40(sp)
+  LD s5, 48(sp)
+  LD s7, 56(sp)
+  LD s8, 64(sp)
+  LD s1, 72(sp)
+  LD s6, 80(sp)
+  LD s2, 88(sp)
+  LD s3, 96(sp)
+  LD s4, 104(sp)
+  LD s9, 112(sp)
+  ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb21:
   SLT t2, s4, s0
@@ -351,10 +351,10 @@ bb22:
   JAL zero, bb17
 bb23:
   ADD t4, s0, zero
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   JAL zero, bb24
 bb24:
-  LW t3, 24(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
   ADD a0, s5, zero
@@ -384,12 +384,12 @@ bb28:
   JAL zero, bb30
 bb29:
   ADDI t4, zero, 1
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   JAL zero, bb19
 bb30:
   ADD t4, s11, zero
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   SLT t1, t4, s7
   BNE t1, zero, bb31
   JAL zero, bb32
@@ -404,7 +404,7 @@ bb31:
   LA t1, graph
   ADD t2, t1, a2
   ADDI t1, zero, 4
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   MULW a2, t4, t1
   LA t1, store
   ADD a3, t1, a2
@@ -422,10 +422,10 @@ bb32:
   JAL zero, bb27
 bb33:
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 8(sp)
   JAL zero, bb19
 bb34:
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADDIW s1, t4, 1
   ADD s11, s1, zero
   JAL zero, bb30
@@ -435,7 +435,7 @@ bb35:
   JAL zero, bb22
 bb36:
   ADD t4, s4, zero
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   JAL zero, bb24
 bb37:
   LW t4, 0(sp)
