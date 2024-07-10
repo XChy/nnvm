@@ -178,11 +178,10 @@ bb4:
 bb5:
   ADDI s6, zero, 1
   SUBW s7, s5, s6
-  ADDI s5, zero, 4
-  MULW s6, s7, s5
-  ADDIW s5, s6, 52
+  SLLIW s5, s7, 2
+  ADDIW s6, s5, 52
   ADDI t5, sp, 0
-  ADD s6, t5, s5
-  SW zero, 0(s6)
+  ADD s5, t5, s6
+  SW zero, 0(s5)
   ADD s4, s7, zero
   JAL zero, bb3

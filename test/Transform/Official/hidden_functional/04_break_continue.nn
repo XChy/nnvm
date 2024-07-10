@@ -70,12 +70,12 @@ if.exit38:
 select.then:
   br bb %select.exit
 select.else:
-  47 = xor i1 %36, i1 1
+  47 = xor i1 %36, i1 -1
   48 = zext i1 %47 to i32
   49 = icmp ne i32 %48, i32 0
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %49, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %49, bb %select.then, i1 -1]
   br i1 %select.phi, bb %then52, bb %if.exit53
 then52:
   56 = sub i32 %m.phi, i32 -1

@@ -134,24 +134,23 @@ bb5:
 bb6:
   ADDI s0, zero, 1
   XORI s1, s0, 1
-  SLTU s0, zero, s1
-  BNE s0, zero, bb37
+  SLTU s2, zero, s1
+  BNE s2, zero, bb37
   # implict jump to bb7
 bb7:
-  XOR s0, zero, zero
-  SLTIU s1, s0, 1
-  BNE s1, zero, bb36
+  XOR s1, zero, zero
+  SLTIU s2, s1, 1
+  BNE s2, zero, bb36
   # implict jump to bb8
 bb8:
-  ADDI s0, zero, 63
-  SLTI s1, s0, 102
-  XORI s0, s1, 1
-  XORI s1, s0, 1
-  SLTIU s0, s1, 1
-  BNE s0, zero, bb35
+  ADDI s1, zero, 63
+  SLTI s2, s1, 102
+  XORI s1, s2, 1
+  XORI s2, s1, 1
+  SLTIU s1, s2, 1
+  BNE s1, zero, bb35
   # implict jump to bb9
 bb9:
-  XORI s0, zero, 1
   SUBW s1, zero, s0
   XORI s0, s1, -1
   SLTIU s1, s0, 1
@@ -189,9 +188,7 @@ bb15:
   BNE s2, zero, bb30
   # implict jump to bb16
 bb16:
-  ADDI s2, zero, 1
-  XORI s3, s2, 1
-  XOR s2, zero, s3
+  XOR s2, zero, zero
   SLTIU s3, s2, 1
   BNE s3, zero, bb29
   # implict jump to bb17

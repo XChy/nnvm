@@ -38,7 +38,7 @@ bb1:
   ADD s3, s0, zero
   LA s4, loopCount
   LW s5, 0(s4)
-  SLT s4, s2, s5
+  SLT s4, s3, s5
   BNE s4, zero, bb3
   # implict jump to bb2
 bb2:
@@ -46,7 +46,7 @@ bb2:
   ADDIW s0, s0, 1728
   ADD a0, zero, s0
   CALL _sysy_stoptime
-  ADD a0, s3, zero
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -77,17 +77,17 @@ bb4:
 bb5:
   ADDI s4, zero, 60
   DIVW s5, s6, s4
-  ADDW s4, s3, s5
+  ADDW s4, s2, s5
   LUI s5, 32766
   ADDIW s5, s5, 1
   REMW s6, s4, s5
-  ADDIW s4, s2, 1
-  ADD s0, s6, zero
-  ADD s1, s4, zero
+  ADDIW s4, s3, 1
+  ADD s0, s4, zero
+  ADD s1, s6, zero
   JAL zero, bb1
 bb6:
   LA s8, global
-  SW s2, 0(s8)
+  SW s3, 0(s8)
   LA s8, global
   LW s9, 0(s8)
   ADDW s8, s6, s9

@@ -133,8 +133,9 @@ static inline const char *getNameForInstType(uint64_t type) {
 
 static inline LIRInstID toIFormat(uint64_t type) {
   static std::unordered_map<uint64_t, LIRInstID> map = {
-      {ADD, ADDI}, {ADDW, ADDIW}, {XOR, XORI},
-      {AND, ANDI}, {OR, ORI},     {SLT, SLTI}};
+      {ADD, ADDI}, {ADDW, ADDIW}, {XOR, XORI},   {AND, ANDI},
+      {OR, ORI},   {SLT, SLTI},   {SLL, SLLI},   {SLLW, SLLIW},
+      {SRL, SRLI}, {SRA, SRAI},   {SRLW, SRLIW}, {SRAW, SRAIW}};
 
   if (map.count(type))
     return map[type];

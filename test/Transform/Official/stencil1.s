@@ -131,48 +131,43 @@ bb6:
   ADDI sp, sp, 256
   JALR zero, 0(ra)
 bb7:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, image_out
-  ADD s4, s2, s3
-  LA s2, image_in
-  ADD s5, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, image_out
+  ADD s4, s3, s2
+  LA s3, image_in
+  ADD s5, s3, s2
   LW s2, 0(s5)
   SW s2, 0(s4)
   LUI s2, 256
   ADDIW s2, s2, -1024
   ADDW s3, s1, s2
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, image_out
-  ADD s3, s2, s4
-  LA s2, image_in
-  ADD s5, s2, s4
+  SLLIW s2, s3, 2
+  LA s3, image_out
+  ADD s4, s3, s2
+  LA s3, image_in
+  ADD s5, s3, s2
   LW s2, 0(s5)
-  SW s2, 0(s3)
+  SW s2, 0(s4)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb5
 bb8:
-  ADDI s2, zero, 1024
-  MULW s3, s1, s2
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, image_out
-  ADD s5, s2, s4
-  LA s2, image_in
-  ADD s6, s2, s4
-  LW s2, 0(s6)
-  SW s2, 0(s5)
-  ADDIW s2, s3, 1023
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  LA s2, image_out
-  ADD s3, s2, s4
-  LA s2, image_in
-  ADD s5, s2, s4
+  SLLIW s2, s1, 10
+  SLLIW s3, s2, 2
+  LA s4, image_out
+  ADD s5, s4, s3
+  LA s4, image_in
+  ADD s6, s4, s3
+  LW s3, 0(s6)
+  SW s3, 0(s5)
+  ADDIW s3, s2, 1023
+  SLLIW s2, s3, 2
+  LA s3, image_out
+  ADD s4, s3, s2
+  LA s3, image_in
+  ADD s5, s3, s2
   LW s2, 0(s5)
-  SW s2, 0(s3)
+  SW s2, 0(s4)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb3
@@ -187,7 +182,7 @@ bb9:
   ADD t4, s10, zero
   SW t4, 144(sp)
   ADD t4, s11, zero
-  SW t4, 100(sp)
+  SW t4, 140(sp)
   ADD t4, s0, zero
   SW t4, 96(sp)
   ADDI t4, zero, 1
@@ -199,7 +194,7 @@ bb10:
   LW t3, 96(sp)
   ADD t4, t3, zero
   SW t4, 52(sp)
-  LW t3, 100(sp)
+  LW t3, 140(sp)
   ADD t4, t3, zero
   SW t4, 56(sp)
   LW t3, 144(sp)
@@ -261,107 +256,95 @@ bb11:
 bb12:
   ADDI s0, zero, 1
   SUBW s11, s4, s0
-  ADDI s0, zero, 1024
-  MULW s10, s11, s0
+  SLLIW s0, s11, 10
   LW t3, 48(sp)
-  ADDW t4, s10, t3
-  SW t4, 140(sp)
-  ADDI s10, zero, 1
-  LW t3, 140(sp)
-  SUBW t4, t3, s10
-  SW t4, 108(sp)
-  LW t3, 140(sp)
+  ADDW t4, s0, t3
+  SW t4, 136(sp)
+  ADDI s0, zero, 1
+  LW t3, 136(sp)
+  SUBW t4, t3, s0
+  SW t4, 100(sp)
+  LW t3, 136(sp)
   ADDIW t4, t3, 1
   SW t4, 104(sp)
-  ADDI s10, zero, 1024
-  MULW s11, s4, s10
+  SLLIW s0, s4, 10
   LW t3, 48(sp)
-  ADDW t4, s11, t3
-  SW t4, 136(sp)
-  ADDI s11, zero, 1
-  LW t3, 136(sp)
-  SUBW t4, t3, s11
+  ADDW t4, s0, t3
+  SW t4, 108(sp)
+  ADDI s0, zero, 1
+  LW t3, 108(sp)
+  SUBW t4, t3, s0
   SW t4, 112(sp)
-  LW t3, 136(sp)
+  LW t3, 108(sp)
   ADDIW t4, t3, 1
-  SW t4, 120(sp)
+  SW t4, 132(sp)
   ADDIW t4, s4, 1
   SW t4, 116(sp)
-  ADDI s4, zero, 1024
   LW t4, 116(sp)
-  MULW s11, t4, s4
+  SLLIW s4, t4, 10
   LW t3, 48(sp)
-  ADDW t4, s11, t3
-  SW t4, 132(sp)
-  ADDI s11, zero, 1
-  LW t3, 132(sp)
-  SUBW t4, t3, s11
+  ADDW t4, s4, t3
+  SW t4, 120(sp)
+  ADDI s4, zero, 1
+  LW t3, 120(sp)
+  SUBW t4, t3, s4
   SW t4, 124(sp)
-  LW t3, 132(sp)
+  LW t3, 120(sp)
   ADDIW t4, t3, 1
   SW t4, 128(sp)
-  ADDI s11, zero, 4
-  LW t4, 136(sp)
-  MULW s4, t4, s11
-  LA s11, image_in
-  ADD s10, s11, s4
-  LW s11, 0(s10)
-  ADDI s10, zero, 8
-  MULW s0, s11, s10
-  ADDI s10, zero, 4
   LW t4, 108(sp)
-  MULW s11, t4, s10
+  SLLIW s4, t4, 2
+  LA s0, image_in
+  ADD s11, s0, s4
+  LW s0, 0(s11)
+  ADDI s11, zero, 8
+  MULW s10, s0, s11
+  LW t4, 100(sp)
+  SLLIW s0, t4, 2
+  LA s11, image_in
+  ADD s9, s11, s0
+  LW s0, 0(s9)
+  SUBW s9, s10, s0
+  LW t4, 136(sp)
+  SLLIW s0, t4, 2
   LA s10, image_in
-  ADD s9, s10, s11
-  LW s10, 0(s9)
-  SUBW s9, s0, s10
-  ADDI s0, zero, 4
-  LW t4, 140(sp)
-  MULW s10, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s10
+  ADD s11, s10, s0
   LW s0, 0(s11)
   SUBW s10, s9, s0
-  ADDI s0, zero, 4
   LW t4, 104(sp)
-  MULW s9, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s9
+  SLLIW s0, t4, 2
+  LA s9, image_in
+  ADD s11, s9, s0
   LW s0, 0(s11)
   SUBW s9, s10, s0
-  ADDI s0, zero, 4
   LW t4, 112(sp)
-  MULW s10, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s10
+  SLLIW s0, t4, 2
+  LA s10, image_in
+  ADD s11, s10, s0
   LW s0, 0(s11)
   SUBW s10, s9, s0
-  ADDI s0, zero, 4
-  LW t4, 120(sp)
-  MULW s9, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s9
-  LW s0, 0(s11)
-  SUBW s9, s10, s0
-  ADDI s0, zero, 4
-  LW t4, 124(sp)
-  MULW s10, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s10
-  LW s0, 0(s11)
-  SUBW s10, s9, s0
-  ADDI s0, zero, 4
   LW t4, 132(sp)
-  MULW s9, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s9
+  SLLIW s0, t4, 2
+  LA s9, image_in
+  ADD s11, s9, s0
   LW s0, 0(s11)
   SUBW s9, s10, s0
-  ADDI s0, zero, 4
+  LW t4, 124(sp)
+  SLLIW s0, t4, 2
+  LA s10, image_in
+  ADD s11, s10, s0
+  LW s0, 0(s11)
+  SUBW s10, s9, s0
+  LW t4, 120(sp)
+  SLLIW s0, t4, 2
+  LA s9, image_in
+  ADD s11, s9, s0
+  LW s0, 0(s11)
+  SUBW s9, s10, s0
   LW t4, 128(sp)
-  MULW s10, t4, s0
-  LA s0, image_in
-  ADD s11, s0, s10
+  SLLIW s0, t4, 2
+  LA s10, image_in
+  ADD s11, s10, s0
   LW s0, 0(s11)
   SUBW s10, s9, s0
   LA s0, image_out
@@ -387,23 +370,23 @@ bb16:
   ADD s1, s10, zero
   LW t4, 128(sp)
   ADD s2, t4, zero
-  LW t4, 132(sp)
+  LW t4, 120(sp)
   ADD s3, t4, zero
   LW t4, 124(sp)
   ADD s5, t4, zero
-  LW t4, 120(sp)
+  LW t4, 132(sp)
   ADD s6, t4, zero
   LW t4, 112(sp)
   ADD s7, t4, zero
-  LW t4, 136(sp)
+  LW t4, 108(sp)
   ADD s8, t4, zero
   LW t3, 104(sp)
   ADD t4, t3, zero
   SW t4, 144(sp)
-  LW t3, 140(sp)
+  LW t3, 136(sp)
   ADD t4, t3, zero
-  SW t4, 100(sp)
-  LW t3, 108(sp)
+  SW t4, 140(sp)
+  LW t3, 100(sp)
   ADD t4, t3, zero
   SW t4, 96(sp)
   LW t3, 116(sp)

@@ -12,8 +12,8 @@ while.cond:
   start.phi281 = phi [bb %entry10, float %13, bb %if.exit39, float %start.phi]
   27 = fmul float %mid.phi285, float %mid.phi285
   29 = fsub float %27, float %x
-  4347 = fcmp olt float %29, float %13
-  br i1 %4347, bb %myAbs.then, bb %myAbs.if.exit
+  4370 = fcmp olt float %29, float %13
+  br i1 %4370, bb %myAbs.then, bb %myAbs.if.exit
 while.body:
   37 = fcmp ogt float %27, float %x
   br i1 %37, bb %then38, bb %else
@@ -33,11 +33,11 @@ else:
   52 = fdiv float %50, float %20
   br bb %if.exit39
 myAbs.then:
-  8350 = fneg float %29
+  8373 = fneg float %29
   br bb %myAbs.if.exit
 myAbs.if.exit:
-  x.stack.phi353 = phi [bb %while.cond, float %29, bb %myAbs.then, float %8350]
-  31 = fcmp ogt float %x.stack.phi353, float 0.001000
+  x.stack.phi376 = phi [bb %while.cond, float %29, bb %myAbs.then, float %8373]
+  31 = fcmp ogt float %x.stack.phi376, float 0.001000
   br i1 %31, bb %while.body, bb %while.exit
 }
 
@@ -89,8 +89,8 @@ while.cond86:
   90 = icmp slt i32 %i.phi290, i32 1000
   br i1 %90, bb %while.body87, bb %while.exit88
 while.body87:
-  93 = mul i32 %i.phi290, i32 4
-  94 = ptradd ptr %mean, i32 %93
+  309 = shl i32 %i.phi290, i32 2
+  94 = ptradd ptr %mean, i32 %309
   store float %60 to ptr %94
   br bb %while.cond96
 while.exit88:
@@ -103,8 +103,8 @@ while.body97:
   107.load = load float from ptr %94
   110 = mul i32 %i.phi290, i32 4000
   111 = ptradd ptr @a, i32 %110
-  113 = mul i32 %j.phi299, i32 4
-  114 = ptradd ptr %111, i32 %113
+  312 = shl i32 %j.phi299, i32 2
+  114 = ptradd ptr %111, i32 %312
   114.load = load float from ptr %114
   116 = fadd float %107.load, float %114.load
   store float %116 to ptr %94
@@ -123,8 +123,8 @@ while.cond131:
   135 = icmp slt i32 %i.phi288, i32 1000
   br i1 %135, bb %while.body132, bb %while.exit133
 while.body132:
-  138 = mul i32 %i.phi288, i32 4
-  139 = ptradd ptr %var, i32 %138
+  315 = shl i32 %i.phi288, i32 2
+  139 = ptradd ptr %var, i32 %315
   store float %60 to ptr %139
   br bb %while.cond141
 while.exit133:
@@ -137,10 +137,10 @@ while.body142:
   152.load = load float from ptr %139
   155 = mul i32 %i.phi288, i32 4000
   156 = ptradd ptr @a, i32 %155
-  158 = mul i32 %j.phi296, i32 4
-  159 = ptradd ptr %156, i32 %158
+  318 = shl i32 %j.phi296, i32 2
+  159 = ptradd ptr %156, i32 %318
   159.load = load float from ptr %159
-  163 = ptradd ptr %mean, i32 %138
+  163 = ptradd ptr %mean, i32 %315
   163.load = load float from ptr %163
   165 = fsub float %159.load, float %163.load
   178 = fmul float %165, float %165
@@ -154,9 +154,9 @@ while.exit143:
   190 = fdiv float %187.load, float %189
   store float %190 to ptr %139
   198 = fadd float %190, float 0.010000
-  19312 = fadd float %60, float %198
-  20313 = si2f i32 2 to float
-  21314 = fdiv float %19312, float %20313
+  19335 = fadd float %60, float %198
+  20336 = si2f i32 2 to float
+  21337 = fdiv float %19335, float %20336
   br bb %sqrt.while.cond
 while.cond202:
   sum.phi304 = phi [bb %while.exit133, float %sum.phi305, bb %while.exit210, float %sum.phi]
@@ -177,14 +177,14 @@ while.cond208:
 while.body209:
   215 = mul i32 %i.phi, i32 4000
   216 = ptradd ptr @a, i32 %215
-  218 = mul i32 %j.phi293, i32 4
-  219 = ptradd ptr %216, i32 %218
+  326 = shl i32 %j.phi293, i32 2
+  219 = ptradd ptr %216, i32 %326
   225.load = load float from ptr %219
-  228 = mul i32 %i.phi, i32 4
-  229 = ptradd ptr %mean, i32 %228
+  328 = shl i32 %i.phi, i32 2
+  229 = ptradd ptr %mean, i32 %328
   229.load = load float from ptr %229
   231 = fsub float %225.load, float %229.load
-  234 = ptradd ptr %var, i32 %228
+  234 = ptradd ptr %var, i32 %328
   234.load = load float from ptr %234
   236 = fdiv float %231, float %234.load
   store float %236 to ptr %219
@@ -213,8 +213,8 @@ while.cond258:
 while.body259:
   266 = mul i32 %i.phi289, i32 4000
   267 = ptradd ptr @a, i32 %266
-  269 = mul i32 %j.phi298, i32 4
-  270 = ptradd ptr %267, i32 %269
+  331 = shl i32 %j.phi298, i32 2
+  270 = ptradd ptr %267, i32 %331
   270.load = load float from ptr %270
   272 = fadd float %sum.phi306, float %270.load
   274 = add i32 %j.phi298, i32 1
@@ -223,40 +223,40 @@ while.exit260:
   276 = add i32 %i.phi289, i32 1
   br bb %while.cond252
 sqrt.while.cond:
-  mid.phi285317 = phi [bb %while.exit143, float %21314, bb %sqrt.if.exit39, float %mid.phi335]
-  end.phi283318 = phi [bb %while.exit143, float %198, bb %sqrt.if.exit39, float %end.phi336]
-  start.phi281319 = phi [bb %while.exit143, float %60, bb %sqrt.if.exit39, float %start.phi337]
-  27320 = fmul float %mid.phi285317, float %mid.phi285317
-  29321 = fsub float %27320, float %198
-  4359 = fcmp olt float %29321, float %60
-  br i1 %4359, bb %myAbs.then361, bb %myAbs.if.exit364
+  mid.phi285340 = phi [bb %while.exit143, float %21337, bb %sqrt.if.exit39, float %mid.phi358]
+  end.phi283341 = phi [bb %while.exit143, float %198, bb %sqrt.if.exit39, float %end.phi359]
+  start.phi281342 = phi [bb %while.exit143, float %60, bb %sqrt.if.exit39, float %start.phi360]
+  27343 = fmul float %mid.phi285340, float %mid.phi285340
+  29344 = fsub float %27343, float %198
+  4382 = fcmp olt float %29344, float %60
+  br i1 %4382, bb %myAbs.then384, bb %myAbs.if.exit387
 sqrt.while.body:
-  37326 = fcmp ogt float %27320, float %198
-  br i1 %37326, bb %sqrt.then38, bb %sqrt.else
+  37349 = fcmp ogt float %27343, float %198
+  br i1 %37349, bb %sqrt.then38, bb %sqrt.else
 sqrt.while.exit:
-  store float %mid.phi285317 to ptr %139
+  store float %mid.phi285340 to ptr %139
   201 = add i32 %i.phi288, i32 1
   br bb %while.cond131
 sqrt.then38:
-  44331 = fadd float %mid.phi285317, float %start.phi281319
-  46332 = fdiv float %44331, float %20313
+  44354 = fadd float %mid.phi285340, float %start.phi281342
+  46355 = fdiv float %44354, float %20336
   br bb %sqrt.if.exit39
 sqrt.if.exit39:
-  mid.phi335 = phi [bb %sqrt.else, float %52341, bb %sqrt.then38, float %46332]
-  end.phi336 = phi [bb %sqrt.else, float %end.phi283318, bb %sqrt.then38, float %mid.phi285317]
-  start.phi337 = phi [bb %sqrt.else, float %mid.phi285317, bb %sqrt.then38, float %start.phi281319]
+  mid.phi358 = phi [bb %sqrt.else, float %52364, bb %sqrt.then38, float %46355]
+  end.phi359 = phi [bb %sqrt.else, float %end.phi283341, bb %sqrt.then38, float %mid.phi285340]
+  start.phi360 = phi [bb %sqrt.else, float %mid.phi285340, bb %sqrt.then38, float %start.phi281342]
   br bb %sqrt.while.cond
 sqrt.else:
-  50340 = fadd float %mid.phi285317, float %end.phi283318
-  52341 = fdiv float %50340, float %20313
+  50363 = fadd float %mid.phi285340, float %end.phi283341
+  52364 = fdiv float %50363, float %20336
   br bb %sqrt.if.exit39
-myAbs.then361:
-  8362 = fneg float %29321
-  br bb %myAbs.if.exit364
-myAbs.if.exit364:
-  x.stack.phi365 = phi [bb %sqrt.while.cond, float %29321, bb %myAbs.then361, float %8362]
-  31323 = fcmp ogt float %x.stack.phi365, float 0.001000
-  br i1 %31323, bb %sqrt.while.body, bb %sqrt.while.exit
+myAbs.then384:
+  8385 = fneg float %29344
+  br bb %myAbs.if.exit387
+myAbs.if.exit387:
+  x.stack.phi388 = phi [bb %sqrt.while.cond, float %29344, bb %myAbs.then384, float %8385]
+  31346 = fcmp ogt float %x.stack.phi388, float 0.001000
+  br i1 %31346, bb %sqrt.while.body, bb %sqrt.while.exit
 }
 
 external float getfloat()

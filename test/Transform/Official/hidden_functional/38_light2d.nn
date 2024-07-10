@@ -84,7 +84,7 @@ my_sin.select.else637:
   91639 = fcmp olt float %263, float %90638
   br bb %my_sin.select.exit641
 my_sin.select.exit641:
-  select.phi642 = phi [bb %my_sin.select.else637, i1 %91639, bb %my_sin.select.then635, i1 1]
+  select.phi642 = phi [bb %my_sin.select.else637, i1 %91639, bb %my_sin.select.then635, i1 -1]
   br i1 %select.phi642, bb %my_sin.then94644, bb %my_sin.if.exit95651
 my_sin.then94644:
   99645 = fdiv float %263, float 6.283185
@@ -192,7 +192,7 @@ my_cos.my_sin.select.else:
   915991039 = fcmp olt float %1321027, float %905981038
   br bb %my_cos.my_sin.select.exit
 my_cos.my_sin.select.exit:
-  select.phi6021042 = phi [bb %my_cos.my_sin.select.else, i1 %915991039, bb %my_cos.my_sin.select.then, i1 1]
+  select.phi6021042 = phi [bb %my_cos.my_sin.select.else, i1 %915991039, bb %my_cos.my_sin.select.then, i1 -1]
   br i1 %select.phi6021042, bb %my_cos.my_sin.then94, bb %my_cos.my_sin.if.exit95
 my_cos.my_sin.then94:
   996051045 = fdiv float %1321027, float 6.283185
@@ -451,7 +451,7 @@ select.else:
   91 = fcmp olt float %x, float %90
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %91, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %91, bb %select.then, i1 -1]
   br i1 %select.phi, bb %then94, bb %if.exit95
 then94:
   99 = fdiv float %x, float 6.283185
@@ -593,7 +593,7 @@ my_sin.select.else:
   91599 = fcmp olt float %132, float %90598
   br bb %my_sin.select.exit
 my_sin.select.exit:
-  select.phi602 = phi [bb %my_sin.select.else, i1 %91599, bb %my_sin.select.then, i1 1]
+  select.phi602 = phi [bb %my_sin.select.else, i1 %91599, bb %my_sin.select.then, i1 -1]
   br i1 %select.phi602, bb %my_sin.then94, bb %my_sin.if.exit95
 my_sin.then94:
   99605 = fdiv float %132, float 6.283185
@@ -760,7 +760,7 @@ my_sin.select.else677:
   91679 = fcmp olt float %263381, float %90678
   br bb %my_sin.select.exit681
 my_sin.select.exit681:
-  select.phi682 = phi [bb %my_sin.select.else677, i1 %91679, bb %my_sin.select.then675, i1 1]
+  select.phi682 = phi [bb %my_sin.select.else677, i1 %91679, bb %my_sin.select.then675, i1 -1]
   br i1 %select.phi682, bb %my_sin.then94684, bb %my_sin.if.exit95691
 my_sin.then94684:
   99685 = fdiv float %263381, float 6.283185
@@ -868,7 +868,7 @@ my_cos.my_sin.select.else1085:
   915991087 = fcmp olt float %1321075, float %905981086
   br bb %my_cos.my_sin.select.exit1089
 my_cos.my_sin.select.exit1089:
-  select.phi6021090 = phi [bb %my_cos.my_sin.select.else1085, i1 %915991087, bb %my_cos.my_sin.select.then1083, i1 1]
+  select.phi6021090 = phi [bb %my_cos.my_sin.select.else1085, i1 %915991087, bb %my_cos.my_sin.select.then1083, i1 -1]
   br i1 %select.phi6021090, bb %my_cos.my_sin.then941092, bb %my_cos.my_sin.if.exit951099
 my_cos.my_sin.then941092:
   996051093 = fdiv float %1321075, float 6.283185

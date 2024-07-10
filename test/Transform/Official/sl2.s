@@ -69,17 +69,16 @@ bb4:
   LA s0, x
   ADD a1, s0, zero
   CALL putarray
-  ADDI s0, zero, 2
   LW t4, 0(sp)
-  DIVW s1, t4, s0
-  LUI s0, 352
-  ADDIW s0, s0, -1792
-  MULW s2, s1, s0
-  LA s0, x
-  ADD s3, s0, s2
-  LUI s0, 1
-  ADDIW s0, s0, -1696
-  MULW s2, s1, s0
+  SRAIW s0, t4, 1
+  LUI s1, 352
+  ADDIW s1, s1, -1792
+  MULW s2, s0, s1
+  LA s1, x
+  ADD s3, s1, s2
+  LUI s1, 1
+  ADDIW s1, s1, -1696
+  MULW s2, s0, s1
   ADD s0, s3, s2
   LW t4, 0(sp)
   ADD a0, t4, zero
@@ -166,9 +165,8 @@ bb11:
   LW t4, 20(sp)
   MULW s11, t4, s10
   ADD s10, s4, s11
-  ADDI s5, zero, 4
-  MULW s2, s9, s5
-  ADD s5, s10, s2
+  SLLIW s5, s9, 2
+  ADD s2, s10, s5
   ADDI s1, zero, 1
   LW t4, 8(sp)
   SUBW s7, t4, s1
@@ -178,7 +176,7 @@ bb11:
   LA s1, x
   ADD s7, s1, s3
   ADD s1, s7, s11
-  ADD s3, s1, s2
+  ADD s3, s1, s5
   LW s1, 0(s3)
   LW t4, 8(sp)
   ADDIW s3, t4, 1
@@ -188,7 +186,7 @@ bb11:
   LA s3, x
   ADD s7, s3, s0
   ADD s0, s7, s11
-  ADD s3, s0, s2
+  ADD s3, s0, s5
   LW s0, 0(s3)
   ADDW s3, s1, s0
   ADDI s0, zero, 1
@@ -198,7 +196,7 @@ bb11:
   ADDIW s0, s0, -1696
   MULW s7, s1, s0
   ADD s0, s4, s7
-  ADD s1, s0, s2
+  ADD s1, s0, s5
   LW s0, 0(s1)
   ADDW s1, s3, s0
   LW t4, 20(sp)
@@ -207,26 +205,24 @@ bb11:
   ADDIW s3, s3, -1696
   MULW s7, s0, s3
   ADD s0, s4, s7
-  ADD s3, s0, s2
+  ADD s3, s0, s5
   LW s0, 0(s3)
-  ADDW s2, s1, s0
+  ADDW s3, s1, s0
   ADDI s0, zero, 1
   SUBW s1, s9, s0
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
-  ADD s0, s10, s3
-  LW s1, 0(s0)
-  ADDW s0, s2, s1
-  ADDIW s1, s9, 1
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  ADD s2, s10, s3
-  LW s3, 0(s2)
-  ADDW s2, s0, s3
+  SLLIW s0, s1, 2
+  ADD s1, s10, s0
+  LW s0, 0(s1)
+  ADDW s1, s3, s0
+  ADDIW s0, s9, 1
+  SLLIW s3, s0, 2
+  ADD s4, s10, s3
+  LW s3, 0(s4)
+  ADDW s4, s1, s3
   LW t4, 16(sp)
-  DIVW s0, s2, t4
-  SW s0, 0(s5)
-  ADD s8, s1, zero
+  DIVW s1, s4, t4
+  SW s1, 0(s2)
+  ADD s8, s0, zero
   JAL zero, bb9
 bb12:
   ADD s4, zero, zero
@@ -264,16 +260,15 @@ bb18:
   ADDIW s8, s8, -1696
   MULW s11, s5, s8
   ADD s8, s10, s11
-  ADDI s10, zero, 4
-  MULW s0, s7, s10
-  ADD s10, s8, s0
+  SLLIW s10, s7, 2
+  ADD s0, s8, s10
   ADDI s8, zero, 1
-  SW s8, 0(s10)
-  LA s8, y
-  ADD s10, s8, s9
-  ADD s8, s10, s11
-  ADD s9, s8, s0
-  SW zero, 0(s9)
+  SW s8, 0(s0)
+  LA s0, y
+  ADD s8, s0, s9
+  ADD s0, s8, s11
+  ADD s8, s0, s10
+  SW zero, 0(s8)
   ADDIW s0, s7, 1
   ADD s6, s0, zero
   JAL zero, bb16

@@ -17,8 +17,8 @@ entry100003:
   call void _sysy_starttime(i32 100016)
   br bb %while.cond
 while.cond:
-  sum.phi = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100036]
   i.phi = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100038]
+  sum.phi = phi [bb %entry100003, i32 0, bb %while.exit100019, i32 %100036]
   loopCount.load = load i32 from ptr @loopCount
   100013 = icmp slt i32 %i.phi, i32 %loopCount.load
   br i1 %100013, bb %while.body, bb %while.exit

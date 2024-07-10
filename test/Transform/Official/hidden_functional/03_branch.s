@@ -35,9 +35,7 @@ bb4:
   BNE s1, zero, bb8
   # implict jump to bb5
 bb5:
-  ADDI s1, zero, 1
-  XORI s2, s1, 1
-  XOR s1, s2, zero
+  XOR s1, zero, zero
   SLTU s2, zero, s1
   BNE s2, zero, bb7
   # implict jump to bb6

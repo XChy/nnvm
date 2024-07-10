@@ -7,9 +7,7 @@ main:
   SD ra, 0(sp)
   SD s1, 8(sp)
   SD s0, 16(sp)
-  ADDI s0, zero, 1
-  XORI s1, s0, 1
-  XOR s0, s1, zero
+  XOR s0, zero, zero
   SLTU s1, zero, s0
   XORI s0, s1, 1
   XOR s1, s0, zero

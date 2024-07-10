@@ -576,13 +576,12 @@ bb57:
   SW t4, 56(sp)
   JAL zero, bb23
 bb58:
-  ADDI s6, zero, 4
-  MULW s7, s5, s6
+  SLLIW s6, s5, 2
   ADDI t5, sp, 0
-  ADD s6, t5, s7
+  ADD s7, t5, s6
   CALL getint
-  ADD s7, a0, zero
-  SW s7, 0(s6)
+  ADD s6, a0, zero
+  SW s6, 0(s7)
   ADDIW s6, s5, 1
   ADD s4, s6, zero
   JAL zero, bb20

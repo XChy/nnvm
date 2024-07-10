@@ -5501,139 +5501,110 @@ bb58:
   ADD s7, a2, zero
   JAL zero, bb54
 bb59:
-  LUI a7, 256
-  ADDIW a7, a7, 0
   LUI t4, 512
   ADDIW t4, t4, 148
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW ra, t4, a7
-  ADDI a7, sp, 0
-  ADD a7, a7, ra
-  LUI ra, 128
-  ADDIW ra, ra, 0
+  SLLIW a7, t4, 20
+  ADDI ra, sp, 0
+  ADD ra, ra, a7
   LUI t4, 512
   ADDIW t4, t4, 300
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a5, t4, ra
-  ADD ra, a7, a5
-  LUI a5, 64
-  ADDIW a5, a5, 0
+  SLLIW a7, t4, 19
+  ADD a5, ra, a7
   LUI t4, 512
   ADDIW t4, t4, 224
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  LUI ra, 32
-  ADDIW ra, ra, 0
+  SLLIW ra, t4, 18
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 356
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  LUI a5, 16
-  ADDIW a5, a5, 0
+  SLLIW ra, t4, 17
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 480
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  LUI ra, 8
-  ADDIW ra, ra, 0
+  SLLIW ra, t4, 16
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 604
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  LUI a5, 4
-  ADDIW a5, a5, 0
+  SLLIW ra, t4, 15
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 728
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  LUI ra, 2
-  ADDIW ra, ra, 0
+  SLLIW ra, t4, 14
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 916
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  LUI a5, 1
-  ADDIW a5, a5, 0
+  SLLIW ra, t4, 13
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 972
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  LUI ra, 1
-  ADDIW ra, ra, -2048
+  SLLIW ra, t4, 12
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 1108
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  ADDI a5, zero, 1024
+  SLLIW ra, t4, 11
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 1148
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  ADDI ra, zero, 512
+  SLLIW ra, t4, 10
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 1216
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  ADDI a5, zero, 256
+  SLLIW ra, t4, 9
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 1336
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  ADDI ra, zero, 128
+  SLLIW ra, t4, 8
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 1392
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  ADDI a5, zero, 64
+  SLLIW ra, t4, 7
+  ADD a5, a7, ra
   LUI t4, 512
   ADDIW t4, t4, 1444
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, a5
-  ADD a5, ra, a7
-  ADDI ra, zero, 32
+  SLLIW ra, t4, 6
+  ADD a7, a5, ra
   LUI t4, 512
   ADDIW t4, t4, 1488
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a7, t4, ra
-  ADD ra, a5, a7
-  ADDI a5, zero, 16
-  MULW a7, s10, a5
-  ADD a5, ra, a7
-  ADDI ra, zero, 8
-  MULW a7, s11, ra
-  ADD ra, a5, a7
-  ADDI a5, zero, 4
-  MULW a7, s4, a5
-  ADD a5, ra, a7
-  SW a2, 0(a5)
+  SLLIW ra, t4, 5
+  ADD a5, a7, ra
+  SLLIW ra, s10, 4
+  ADD a7, a5, ra
+  SLLIW ra, s11, 3
+  ADD a5, a7, ra
+  SLLIW ra, s4, 2
+  ADD a7, a5, ra
+  SW a2, 0(a7)
   ADDIW ra, a2, 1
   ADDIW a5, s4, 1
   ADD s0, a5, zero
@@ -5642,11 +5613,10 @@ bb59:
 bb60:
   ADDI s2, zero, 1
   SUBW s3, s0, s2
-  ADDI s0, zero, 4
-  MULW s2, s3, s0
+  SLLIW s0, s3, 2
   ADDI t5, sp, 0
-  ADD s0, t5, s2
-  SW zero, 0(s0)
+  ADD s2, t5, s0
+  SW zero, 0(s2)
   ADD s1, s3, zero
   JAL zero, bb1
 sum:

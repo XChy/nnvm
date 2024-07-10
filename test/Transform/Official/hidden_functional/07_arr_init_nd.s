@@ -221,21 +221,19 @@ bb4:
 bb5:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
-  ADDIW s1, s2, 20
+  SLLIW s1, s3, 2
+  ADDIW s2, s1, 20
   ADDI t5, sp, 0
-  ADD s2, t5, s1
-  SW zero, 0(s2)
+  ADD s1, t5, s2
+  SW zero, 0(s1)
   ADD s0, s3, zero
   JAL zero, bb3
 bb6:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
+  SLLIW s1, s3, 2
   ADDI t5, sp, 352
-  ADD s1, t5, s2
-  SW zero, 0(s1)
+  ADD s2, t5, s1
+  SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb1

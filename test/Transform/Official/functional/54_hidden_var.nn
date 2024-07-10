@@ -96,9 +96,9 @@ init.cond:
   br i1 %71, bb %init, bb %init.exit
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
-  offset = mul i32 %cnt.dec, i32 4
-  129 = add i32 %offset, i32 52
-  arr.index76 = ptradd ptr %c52, ptr %129
+  129 = shl i32 %cnt.dec, i32 2
+  130 = add i32 %129, i32 52
+  arr.index76 = ptradd ptr %c52, ptr %130
   store i32 0 to ptr %arr.index76
   br bb %init.cond
 init.exit:

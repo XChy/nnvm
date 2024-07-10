@@ -29,8 +29,8 @@ external void putarray(i32 , ptr )
 
 pure i32 f(i32 f) {
 entry:
-  3 = mul i32 %f, i32 2
-  ret i32 %3
+  6 = shl i32 %f, i32 1
+  ret i32 %6
 }
 
 

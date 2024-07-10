@@ -143,11 +143,10 @@ bb12:
   MULW s5, s1, s4
   LA s4, res
   ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s4, s6, s5
-  LW s5, 0(s4)
-  ADD a0, s5, zero
+  SLLIW s4, s3, 2
+  ADD s5, s6, s4
+  LW s4, 0(s5)
+  ADD a0, s4, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
@@ -197,25 +196,23 @@ bb19:
   MULW s10, t4, s9
   LA s9, res
   ADD s11, s9, s10
-  ADDI s9, zero, 4
-  MULW s1, s5, s9
-  ADD s9, s11, s1
-  LW s11, 0(s9)
+  SLLIW s9, s5, 2
+  ADD s1, s11, s9
+  LW s11, 0(s1)
   LA s6, a
   ADD s0, s6, s10
-  ADDI s6, zero, 4
-  MULW s10, s8, s6
-  ADD s6, s0, s10
-  LW s0, 0(s6)
+  SLLIW s6, s8, 2
+  ADD s10, s0, s6
+  LW s0, 0(s10)
   ADDI s6, zero, 400
   MULW s10, s8, s6
   LA s6, b
   ADD s2, s6, s10
-  ADD s6, s2, s1
-  LW s1, 0(s6)
-  MULW s2, s0, s1
-  ADDW s0, s11, s2
-  SW s0, 0(s9)
+  ADD s6, s2, s9
+  LW s2, 0(s6)
+  MULW s6, s0, s2
+  ADDW s0, s11, s6
+  SW s0, 0(s1)
   ADDIW s0, s8, 1
   ADD s7, s0, zero
   JAL zero, bb17
@@ -238,12 +235,11 @@ bb23:
   MULW s5, s1, s4
   LA s4, b
   ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s4, s6, s5
+  SLLIW s4, s3, 2
+  ADD s5, s6, s4
   CALL getint
-  ADD s5, a0, zero
-  SW s5, 0(s4)
+  ADD s4, a0, zero
+  SW s4, 0(s5)
   ADDIW s4, s3, 1
   ADD s2, s4, zero
   JAL zero, bb21
@@ -266,12 +262,11 @@ bb27:
   MULW s5, s1, s4
   LA s4, a
   ADD s6, s4, s5
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s4, s6, s5
+  SLLIW s4, s3, 2
+  ADD s5, s6, s4
   CALL getint
-  ADD s5, a0, zero
-  SW s5, 0(s4)
+  ADD s4, a0, zero
+  SW s4, 0(s5)
   ADDIW s4, s3, 1
   ADD s2, s4, zero
   JAL zero, bb25
@@ -354,25 +349,23 @@ bb37:
   MULW s10, s2, s9
   LA s9, res
   ADD s11, s9, s10
-  ADDI s9, zero, 4
-  MULW t0, s5, s9
-  ADD s9, s11, t0
-  LW s11, 0(s9)
+  SLLIW s9, s5, 2
+  ADD t0, s11, s9
+  LW s11, 0(t0)
   LA t1, a
   ADD t2, t1, s10
-  ADDI s10, zero, 4
-  MULW t1, s8, s10
-  ADD s10, t2, t1
-  LW t1, 0(s10)
-  ADDI s10, zero, 400
-  MULW t2, s8, s10
-  LA s10, b
-  ADD a0, s10, t2
-  ADD s10, a0, t0
-  LW t0, 0(s10)
-  MULW s10, t1, t0
-  ADDW t0, s11, s10
-  SW t0, 0(s9)
+  SLLIW s10, s8, 2
+  ADD t1, t2, s10
+  LW s10, 0(t1)
+  ADDI t1, zero, 400
+  MULW t2, s8, t1
+  LA t1, b
+  ADD a0, t1, t2
+  ADD t1, a0, s9
+  LW s9, 0(t1)
+  MULW t1, s10, s9
+  ADDW s9, s11, t1
+  SW s9, 0(t0)
   ADDIW s9, s8, 1
   ADD s7, s9, zero
   JAL zero, bb35

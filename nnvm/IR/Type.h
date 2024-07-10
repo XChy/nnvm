@@ -40,7 +40,7 @@ public:
 
   uint getBytes();
 
-  uint getScalarBits();
+  uint getBits();
 
   // At memory level, the data of any bitwidth must be aligned as specific
   // datalayout setting. For convenience, we assume we are under RISCV-64 ISA.
@@ -50,7 +50,7 @@ public:
 
   bool isInteger() { return typeClass == Integer; }
   bool isIntegerNBits(uint64_t bits) {
-    return typeClass == Integer && getScalarBits() == bits;
+    return typeClass == Integer && getBits() == bits;
   }
   bool isPointer() { return typeClass == Pointer; }
 

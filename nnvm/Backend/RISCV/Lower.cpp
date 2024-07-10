@@ -21,7 +21,7 @@ static LIRValueType lowerType(Type *type) {
   LIRValueType ret;
   switch (type->getClass()) {
   case Type::Integer:
-    switch (type->getScalarBits()) {
+    switch (type->getBits()) {
     case 1:
       return LIRValueType::i1;
     case 8:
@@ -244,7 +244,11 @@ static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
   // For those less than 8 bytes.
   GInt value;
   if (auto *constantInt = dyn_cast<ConstantInt>(constant)) {
-    value = constantInt->getValue();
+    // For i1, zero-extended
+    if (constantInt->getType()->isIntegerNBits(1))
+      value = constantInt->getValue() & 1;
+    else
+      value = constantInt->getValue();
   } else if (auto *constantFloat = dyn_cast<ConstantFloat>(constant)) {
     float floatVal = constantFloat->getValue();
     value = reinterpret_cast<const uint32_t &>(floatVal);
@@ -264,9 +268,16 @@ void LowerHelper::mapAll(Module &module) {
   // Map the trivial constants.
   for (auto &[hash, constant] : module.getConstantPool()) {
 
-    if (ConstantInt *CI = dyn_cast<ConstantInt>(constant))
-      defMap[constant] =
-          LIRConst::createInt(CI->getValue(), lowerType(CI->getType()));
+    if (ConstantInt *CI = dyn_cast<ConstantInt>(constant)) {
+      GInt value;
+      // For i1, zero-extended
+      if (CI->getType()->isIntegerNBits(1))
+        value = CI->getValue() & 1;
+      else
+        value = CI->getValue();
+
+      defMap[constant] = LIRConst::createInt(value, lowerType(CI->getType()));
+    }
 
     if (ConstantFloat *CF = dyn_cast<ConstantFloat>(constant))
       defMap[constant] = LIRConst::createFloat(CF->getValue());

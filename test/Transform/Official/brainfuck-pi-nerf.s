@@ -54,10 +54,9 @@ bb2:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, output
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, output
+  ADD s4, s3, s2
   LW s2, 0(s4)
   ADD a0, s2, zero
   CALL putch
@@ -238,14 +237,13 @@ bb8:
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb9:
-  ADDI t2, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2032
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW a0, t4, t2
-  LA t2, program
-  ADD a1, t2, a0
+  SLLIW t2, t4, 2
+  LA a0, program
+  ADD a1, a0, t2
   LW t2, 0(a1)
   XORI a0, t2, 62
   SLTIU a1, a0, 1
@@ -420,18 +418,16 @@ bb26:
   BNE s2, zero, bb29
   # implict jump to bb27
 bb27:
-  ADDI s0, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s2, t4, s0
-  LA s0, tape
-  ADD s4, s0, s2
-  ADDI s0, zero, 4
-  MULW s2, s9, s0
-  LA s0, input
-  ADD s5, s0, s2
+  SLLIW s0, t4, 2
+  LA s2, tape
+  ADD s4, s2, s0
+  SLLIW s0, s9, 2
+  LA s2, input
+  ADD s5, s2, s0
   LW s0, 0(s5)
   SW s0, 0(s4)
   ADDIW s0, s9, 1
@@ -442,34 +438,31 @@ bb28:
   ADD s3, s2, zero
   JAL zero, bb18
 bb29:
-  ADDI s1, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s2, t4, s1
-  LA s1, tape
-  ADD s3, s1, s2
+  SLLIW s1, t4, 2
+  LA s2, tape
+  ADD s3, s2, s1
   SW zero, 0(s3)
   ADD s1, s9, zero
   JAL zero, bb28
 bb30:
   LA s0, output_length
   LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, output
-  ADD s1, s0, s2
-  ADDI s0, zero, 4
+  SLLIW s0, s1, 2
+  LA s1, output
+  ADD s2, s1, s0
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s2, t4, s0
-  LA s0, tape
-  ADD s3, s0, s2
+  SLLIW s0, t4, 2
+  LA s1, tape
+  ADD s3, s1, s0
   LW s0, 0(s3)
-  SW s0, 0(s1)
+  SW s0, 0(s2)
   LA s0, output_length
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -478,14 +471,13 @@ bb30:
   ADD s0, s9, zero
   JAL zero, bb19
 bb31:
-  ADDI s0, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s1, t4, s0
-  LA s0, tape
-  ADD s2, s0, s1
+  SLLIW s0, t4, 2
+  LA s1, tape
+  ADD s2, s1, s0
   LW s0, 0(s2)
   XOR s1, s0, zero
   SLTIU s2, s1, 1
@@ -498,17 +490,16 @@ bb32:
   ADD t4, t4, sp
   LW t4, 0(t4)
   SUBW s8, t4, s3
-  ADDI s3, zero, 4
-  MULW s10, s8, s3
+  SLLIW s3, s8, 2
   ADDI t5, sp, 0
-  ADD s3, t5, s10
-  LW s8, 0(s3)
+  ADD s8, t5, s3
+  LW s3, 0(s8)
   LUI t4, 1
   ADDIW t4, t4, -2040
   ADD t4, t4, sp
   LW t4, 0(t4)
   ADD s1, t4, zero
-  ADD s2, s8, zero
+  ADD s2, s3, zero
   # implict jump to bb33
 bb33:
   ADD s3, s2, zero
@@ -533,14 +524,13 @@ bb34:
   ADD s2, t4, zero
   JAL zero, bb33
 bb35:
-  ADDI s1, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s7, t4, s1
-  LA s1, tape
-  ADD s8, s1, s7
+  SLLIW s1, t4, 2
+  LA s7, tape
+  ADD s8, s7, s1
   LW s1, 0(s8)
   XOR s7, s1, zero
   SLTU s8, zero, s7
@@ -586,10 +576,9 @@ bb39:
   JAL zero, bb21
 bb40:
   ADDIW s5, s3, 1
-  ADDI s6, zero, 4
-  MULW s11, s5, s6
-  LA s6, program
-  ADD a4, s6, s11
+  SLLIW s6, s5, 2
+  LA s11, program
+  ADD a4, s11, s6
   LW s6, 0(a4)
   XORI s11, s6, 93
   SLTIU s6, s11, 1
@@ -623,19 +612,18 @@ bb46:
   ADD s6, s11, zero
   JAL zero, bb42
 bb47:
-  ADDI s7, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2040
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s8, t4, s7
+  SLLIW s7, t4, 2
   ADDI t5, sp, 0
-  ADD s7, t5, s8
+  ADD s8, t5, s7
   LUI t4, 1
   ADDIW t4, t4, -2032
   ADD t4, t4, sp
   LW t4, 0(t4)
-  SW t4, 0(s7)
+  SW t4, 0(s8)
   LUI t4, 1
   ADDIW t4, t4, -2040
   ADD t4, t4, sp
@@ -654,14 +642,13 @@ bb47:
   ADD s7, t4, zero
   JAL zero, bb39
 bb48:
-  ADDI s0, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s2, t4, s0
-  LA s0, tape
-  ADD s3, s0, s2
+  SLLIW s0, t4, 2
+  LA s2, tape
+  ADD s3, s2, s0
   LW s0, 0(s3)
   ADDI s2, zero, 1
   SUBW s4, s0, s2
@@ -694,14 +681,13 @@ bb48:
   ADD s6, t4, zero
   JAL zero, bb22
 bb49:
-  ADDI s1, zero, 4
   LUI t4, 1
   ADDIW t4, t4, -2028
   ADD t4, t4, sp
   LW t4, 0(t4)
-  MULW s8, t4, s1
-  LA s1, tape
-  ADD s10, s1, s8
+  SLLIW s1, t4, 2
+  LA s8, tape
+  ADD s10, s8, s1
   LW s1, 0(s10)
   ADDIW s8, s1, 1
   SW s8, 0(s10)
@@ -804,11 +790,10 @@ bb51:
 bb52:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
+  SLLIW s1, s3, 2
   ADDI t5, sp, 0
-  ADD s1, t5, s2
-  SW zero, 0(s1)
+  ADD s2, t5, s1
+  SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb5
 read_program:
@@ -960,10 +945,9 @@ bb76:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb77:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, input
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, input
+  ADD s4, s3, s2
   CALL getch
   ADD s2, a0, zero
   SW s2, 0(s4)
@@ -989,11 +973,10 @@ bb78:
 bb79:
   LA s0, program_length
   LW s11, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s11, s0
-  LA s0, program
-  ADD s11, s0, s2
-  SW s10, 0(s11)
+  SLLIW s0, s11, 2
+  LA s11, program
+  ADD s2, s11, s0
+  SW s10, 0(s2)
   CALL getch
   ADD s0, a0, zero
   ADD s2, s0, zero
@@ -1339,10 +1322,9 @@ bb141:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb142:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, output
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, output
+  ADD s4, s3, s2
   LW s2, 0(s4)
   ADD a0, s2, zero
   CALL putch
@@ -1350,10 +1332,9 @@ bb142:
   ADD s0, s2, zero
   JAL zero, bb140
 bb143:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, input
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, input
+  ADD s4, s3, s2
   CALL getch
   ADD s2, a0, zero
   SW s2, 0(s4)
@@ -1363,11 +1344,10 @@ bb143:
 bb144:
   LA s0, program_length
   LW s11, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s11, s0
-  LA s0, program
-  ADD s11, s0, s2
-  SW s10, 0(s11)
+  SLLIW s0, s11, 2
+  LA s11, program
+  ADD s2, s11, s0
+  SW s10, 0(s2)
   CALL getch
   ADD s0, a0, zero
   ADD s2, s0, zero

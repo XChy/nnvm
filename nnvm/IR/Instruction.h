@@ -114,6 +114,7 @@ public:
   bool mayWriteToMemory() const;
   bool mayReadMemory() const;
   bool haveSideEffect() const;
+  bool moveable() const;
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }

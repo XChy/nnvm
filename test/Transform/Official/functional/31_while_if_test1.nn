@@ -12,31 +12,31 @@ i32 main() {
 entry24:
   br bb %whileIf.while.cond
 whileIf.while.cond:
-  b.phi2934 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %b.phi2846]
-  a.phi35 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %2247]
-  736 = icmp slt i32 %a.phi35, i32 100
-  br i1 %736, bb %whileIf.while.body, bb %whileIf.while.exit
+  b.phi2935 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %b.phi2847]
+  a.phi36 = phi [bb %entry24, i32 0, bb %whileIf.if.exit, i32 %2248]
+  737 = icmp slt i32 %a.phi36, i32 100
+  br i1 %737, bb %whileIf.while.body, bb %whileIf.while.exit
 whileIf.while.body:
-  1039 = icmp eq i32 %a.phi35, i32 5
-  br i1 %1039, bb %whileIf.then, bb %whileIf.else
+  1040 = icmp eq i32 %a.phi36, i32 5
+  br i1 %1040, bb %whileIf.then, bb %whileIf.else
 whileIf.while.exit:
-  ret i32 %b.phi2934
+  ret i32 %b.phi2935
 whileIf.then:
   br bb %whileIf.if.exit
 whileIf.if.exit:
-  b.phi2846 = phi [bb %whileIf.if.exit17, i32 %b.phi55, bb %whileIf.then, i32 25]
-  2247 = add i32 %a.phi35, i32 1
+  b.phi2847 = phi [bb %whileIf.if.exit17, i32 %b.phi56, bb %whileIf.then, i32 25]
+  2248 = add i32 %a.phi36, i32 1
   br bb %whileIf.while.cond
 whileIf.else:
-  1550 = icmp eq i32 %a.phi35, i32 10
-  br i1 %1550, bb %whileIf.then16, bb %whileIf.else18
+  1551 = icmp eq i32 %a.phi36, i32 10
+  br i1 %1551, bb %whileIf.then16, bb %whileIf.else18
 whileIf.then16:
   br bb %whileIf.if.exit17
 whileIf.if.exit17:
-  b.phi55 = phi [bb %whileIf.else18, i32 %2058, bb %whileIf.then16, i32 42]
+  b.phi56 = phi [bb %whileIf.else18, i32 %3059, bb %whileIf.then16, i32 42]
   br bb %whileIf.if.exit
 whileIf.else18:
-  2058 = mul i32 %a.phi35, i32 2
+  3059 = shl i32 %a.phi36, i32 1
   br bb %whileIf.if.exit17
 }
 
@@ -79,10 +79,10 @@ else:
 then16:
   br bb %if.exit17
 if.exit17:
-  b.phi = phi [bb %else18, i32 %20, bb %then16, i32 42]
+  b.phi = phi [bb %else18, i32 %30, bb %then16, i32 42]
   br bb %if.exit
 else18:
-  20 = mul i32 %a.phi, i32 2
+  30 = shl i32 %a.phi, i32 1
   br bb %if.exit17
 }
 

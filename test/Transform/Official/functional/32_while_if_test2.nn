@@ -12,26 +12,26 @@ i32 main() {
 entry29:
   br bb %ifWhile.while.cond18
 ifWhile.if.exit:
-  b.phi3440 = phi [bb %ifWhile.while.exit20, i32 %b.phi53, bb %ifWhile.while.exit, i32 %1750]
-  ret i32 %b.phi3440
+  b.phi3441 = phi [bb %ifWhile.while.exit20, i32 %b.phi54, bb %ifWhile.while.exit, i32 %1751]
+  ret i32 %b.phi3441
 ifWhile.while.cond:
-  b.phi3543 = phi [bb %ifWhile.while.body, i32 %1547]
-  1244 = icmp eq i32 %b.phi3543, i32 2
-  br i1 %1244, bb %ifWhile.while.body, bb %ifWhile.while.exit
+  b.phi3544 = phi [bb %ifWhile.while.body, i32 %1548]
+  1245 = icmp eq i32 %b.phi3544, i32 2
+  br i1 %1245, bb %ifWhile.while.body, bb %ifWhile.while.exit
 ifWhile.while.body:
-  1547 = add i32 %b.phi3543, i32 2
+  1548 = add i32 %b.phi3544, i32 2
   br bb %ifWhile.while.cond
 ifWhile.while.exit:
-  1750 = add i32 %b.phi3543, i32 25
+  1751 = add i32 %b.phi3544, i32 25
   br bb %ifWhile.if.exit
 ifWhile.while.cond18:
-  b.phi53 = phi [bb %entry29, i32 3, bb %ifWhile.while.body19, i32 %2558]
-  a.phi54 = phi [bb %entry29, i32 0, bb %ifWhile.while.body19, i32 %2759]
-  2255 = icmp slt i32 %a.phi54, i32 5
-  br i1 %2255, bb %ifWhile.while.body19, bb %ifWhile.while.exit20
+  b.phi54 = phi [bb %entry29, i32 3, bb %ifWhile.while.body19, i32 %3659]
+  a.phi55 = phi [bb %entry29, i32 0, bb %ifWhile.while.body19, i32 %2760]
+  2256 = icmp slt i32 %a.phi55, i32 5
+  br i1 %2256, bb %ifWhile.while.body19, bb %ifWhile.while.exit20
 ifWhile.while.body19:
-  2558 = mul i32 %b.phi53, i32 2
-  2759 = add i32 %a.phi54, i32 1
+  3659 = shl i32 %b.phi54, i32 1
+  2760 = add i32 %a.phi55, i32 1
   br bb %ifWhile.while.cond18
 ifWhile.while.exit20:
   br bb %ifWhile.if.exit
@@ -66,12 +66,12 @@ while.exit:
   17 = add i32 %b.phi35, i32 25
   br bb %if.exit
 while.cond18:
-  b.phi = phi [bb %entry, i32 3, bb %while.body19, i32 %25]
+  b.phi = phi [bb %entry, i32 3, bb %while.body19, i32 %36]
   a.phi = phi [bb %entry, i32 0, bb %while.body19, i32 %27]
   22 = icmp slt i32 %a.phi, i32 5
   br i1 %22, bb %while.body19, bb %while.exit20
 while.body19:
-  25 = mul i32 %b.phi, i32 2
+  36 = shl i32 %b.phi, i32 1
   27 = add i32 %a.phi, i32 1
   br bb %while.cond18
 while.exit20:

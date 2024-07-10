@@ -132,21 +132,21 @@ entry460:
   500628 = add i32 %142618, i32 4
   a28.load629 = load i32 from ptr @a28
   158630 = add i32 %500628, i32 %a28.load629
-  177631 = sub i32 %463, i32 %466
-  178632 = add i32 %177631, i32 10
-  505633 = add i32 %146621, i32 1
-  a29.load181634 = load i32 from ptr @a29
-  182635 = add i32 %505633, i32 %a29.load181634
-  506636 = add i32 %150624, i32 2
-  a30.load185637 = load i32 from ptr @a30
-  186638 = add i32 %506636, i32 %a30.load185637
-  507639 = add i32 %154627, i32 3
-  a31.load189640 = load i32 from ptr @a31
-  190641 = add i32 %507639, i32 %a31.load189640
-  508642 = add i32 %158630, i32 4
-  a32.load193643 = load i32 from ptr @a32
-  194644 = add i32 %508642, i32 %a32.load193643
-  325645 = add i32 %178632, i32 %43543
+  a29.load631 = load i32 from ptr @a29
+  a30.load632 = load i32 from ptr @a30
+  a31.load633 = load i32 from ptr @a31
+  a32.load634 = load i32 from ptr @a32
+  177635 = sub i32 %463, i32 %466
+  178636 = add i32 %177635, i32 10
+  505637 = add i32 %146621, i32 1
+  182638 = add i32 %505637, i32 %a29.load631
+  506639 = add i32 %150624, i32 2
+  186640 = add i32 %506639, i32 %a30.load632
+  507641 = add i32 %154627, i32 3
+  190642 = add i32 %507641, i32 %a31.load633
+  508643 = add i32 %158630, i32 4
+  194644 = add i32 %508643, i32 %a32.load634
+  325645 = add i32 %178636, i32 %43543
   327646 = add i32 %325645, i32 %44544
   329647 = add i32 %327646, i32 %45545
   331648 = add i32 %329647, i32 %46546
@@ -178,9 +178,9 @@ entry460:
   383674 = sub i32 %381673, i32 %150624
   385675 = sub i32 %383674, i32 %154627
   387676 = sub i32 %385675, i32 %158630
-  389677 = add i32 %387676, i32 %182635
-  391678 = add i32 %389677, i32 %186638
-  393679 = add i32 %391678, i32 %190641
+  389677 = add i32 %387676, i32 %182638
+  391678 = add i32 %389677, i32 %186640
+  393679 = add i32 %391678, i32 %190642
   395680 = add i32 %393679, i32 %194644
   397681 = add i32 %395680, i32 %a1.load548
   399682 = sub i32 %397681, i32 %a2.load551
@@ -210,10 +210,10 @@ entry460:
   447706 = sub i32 %445705, i32 %a26.load623
   449707 = add i32 %447706, i32 %a27.load626
   451708 = sub i32 %449707, i32 %a28.load629
-  453709 = add i32 %451708, i32 %a29.load181634
-  455710 = sub i32 %453709, i32 %a30.load185637
-  457711 = add i32 %455710, i32 %a31.load189640
-  459712 = sub i32 %457711, i32 %a32.load193643
+  453709 = add i32 %451708, i32 %a29.load631
+  455710 = sub i32 %453709, i32 %a30.load632
+  457711 = add i32 %455710, i32 %a31.load633
+  459712 = sub i32 %457711, i32 %a32.load634
   call void putint(i32 %459712)
   ret i32 %459712
 }
@@ -322,20 +322,20 @@ entry:
   500 = add i32 %142, i32 4
   a28.load = load i32 from ptr @a28
   158 = add i32 %500, i32 %a28.load
+  a29.load = load i32 from ptr @a29
+  a30.load = load i32 from ptr @a30
+  a31.load = load i32 from ptr @a31
+  a32.load = load i32 from ptr @a32
   177 = sub i32 %a, i32 %b
   178 = add i32 %177, i32 10
   505 = add i32 %146, i32 1
-  a29.load181 = load i32 from ptr @a29
-  182 = add i32 %505, i32 %a29.load181
+  182 = add i32 %505, i32 %a29.load
   506 = add i32 %150, i32 2
-  a30.load185 = load i32 from ptr @a30
-  186 = add i32 %506, i32 %a30.load185
+  186 = add i32 %506, i32 %a30.load
   507 = add i32 %154, i32 3
-  a31.load189 = load i32 from ptr @a31
-  190 = add i32 %507, i32 %a31.load189
+  190 = add i32 %507, i32 %a31.load
   508 = add i32 %158, i32 4
-  a32.load193 = load i32 from ptr @a32
-  194 = add i32 %508, i32 %a32.load193
+  194 = add i32 %508, i32 %a32.load
   325 = add i32 %178, i32 %43
   327 = add i32 %325, i32 %44
   329 = add i32 %327, i32 %45
@@ -400,10 +400,10 @@ entry:
   447 = sub i32 %445, i32 %a26.load
   449 = add i32 %447, i32 %a27.load
   451 = sub i32 %449, i32 %a28.load
-  453 = add i32 %451, i32 %a29.load181
-  455 = sub i32 %453, i32 %a30.load185
-  457 = add i32 %455, i32 %a31.load189
-  459 = sub i32 %457, i32 %a32.load193
+  453 = add i32 %451, i32 %a29.load
+  455 = sub i32 %453, i32 %a30.load
+  457 = add i32 %455, i32 %a31.load
+  459 = sub i32 %457, i32 %a32.load
   ret i32 %459
 }
 

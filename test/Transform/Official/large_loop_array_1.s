@@ -467,16 +467,15 @@ bb14:
   ADD s2, s5, zero
   JAL zero, bb1
 bb15:
-  ADDI s8, zero, 4
-  MULW s9, s7, s8
+  SLLIW s8, s7, 2
   LUI t5, 2
   ADDIW t5, t5, 0
   ADD t5, t5, sp
-  ADD s8, t5, s9
-  FLW fs11, 0(s8)
+  ADD s9, t5, s8
+  FLW fs11, 0(s9)
   ADDI t5, sp, 0
-  ADD s8, t5, s9
-  FLW fs9, 0(s8)
+  ADD s9, t5, s8
+  FLW fs9, 0(s9)
   FMUL.S fs8, fs11, fs9
   FADD.S fs9, fs10, fs8
   ADDIW s8, s7, 1
@@ -484,19 +483,18 @@ bb15:
   ADD s5, s8, zero
   JAL zero, bb13
 bb16:
-  ADDI s7, zero, 4
-  MULW s8, s6, s7
+  SLLIW s7, s6, 2
   LUI t5, 2
   ADDIW t5, t5, 0
   ADD t5, t5, sp
-  ADD s7, t5, s8
+  ADD s8, t5, s7
   FCVT.S.W fs10, s6
   FADD.S fs11, fs6, fs10
-  FSW fs11, 0(s7)
+  FSW fs11, 0(s8)
   ADDI t5, sp, 0
-  ADD s7, t5, s8
+  ADD s8, t5, s7
   FADD.S fs11, fs7, fs10
-  FSW fs11, 0(s7)
+  FSW fs11, 0(s8)
   ADDIW s7, s6, 1
   ADD s5, s7, zero
   JAL zero, bb11
@@ -569,12 +567,11 @@ bb20:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb21:
-  ADDI s5, zero, 4
-  MULW s6, s4, s5
-  ADD s5, s0, s6
-  FLW fs1, 0(s5)
-  ADD s5, s1, s6
-  FLW fs3, 0(s5)
+  SLLIW s5, s4, 2
+  ADD s6, s0, s5
+  FLW fs1, 0(s6)
+  ADD s6, s1, s5
+  FLW fs3, 0(s6)
   FMUL.S fs4, fs1, fs3
   FADD.S fs1, fs0, fs4
   ADDIW s5, s4, 1

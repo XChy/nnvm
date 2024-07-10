@@ -22,7 +22,7 @@ uint Type::getBytes() {
   }
 }
 
-uint Type::getScalarBits() {
+uint Type::getBits() {
   switch (typeClass) {
   case Void:
     return 0;
@@ -33,7 +33,7 @@ uint Type::getScalarBits() {
   case Pointer:
     return 8;
   case Array:
-    return containedTy->getScalarBits();
+    return containedTy->getBits();
   default:
     assert("No size support for this type");
     return 0;

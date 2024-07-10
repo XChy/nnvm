@@ -241,18 +241,17 @@ bb16:
   ADDI s9, zero, 1080
   MULW s10, s6, s9
   ADD s9, s3, s10
-  ADDI s11, zero, 4
-  MULW t0, s8, s11
-  ADD s11, s9, t0
+  SLLIW s11, s8, 2
+  ADD t0, s9, s11
   ADD s9, s4, s10
-  ADD t1, s9, t0
+  ADD t1, s9, s11
   FLW fs0, 0(t1)
   ADD s9, s5, s10
-  ADD s10, s9, t0
+  ADD s10, s9, s11
   FLW fs1, 0(s10)
   FADD.S fs3, fs0, fs1
   FMUL.S fs0, fs2, fs3
-  FSW fs0, 0(s11)
+  FSW fs0, 0(t0)
   ADDIW s9, s8, 1
   ADD s7, s9, zero
   JAL zero, bb14
@@ -299,9 +298,8 @@ bb20:
   ADDI s9, zero, 1080
   MULW s10, s8, s9
   ADD s9, s5, s10
-  ADDI s11, zero, 4
-  MULW t0, s6, s11
-  ADD s11, s9, t0
+  SLLIW s11, s6, 2
+  ADD t0, s9, s11
   FMUL.S ft1, fs5, ft0
   FMUL.S ft2, fs0, fs11
   FADD.S fs11, ft1, ft2
@@ -309,9 +307,9 @@ bb20:
   FADD.S ft2, fs11, ft1
   FMUL.S fs11, fs3, fs4
   FADD.S fs4, ft2, fs11
-  FSW fs4, 0(s11)
+  FSW fs4, 0(t0)
   ADD s9, s3, s10
-  ADD s10, s9, t0
+  ADD s10, s9, s11
   FLW fs11, 0(s10)
   ADDI s9, zero, 1
   SUBW s10, s8, s9
@@ -355,11 +353,10 @@ bb24:
   ADDI s9, zero, 1080
   MULW s10, s8, s9
   ADD s9, s4, s10
-  ADDI s11, zero, 4
-  MULW t0, s6, s11
-  ADD s11, s9, t0
+  SLLIW s11, s6, 2
+  ADD t0, s9, s11
   ADD s9, s3, s10
-  ADD s10, s9, t0
+  ADD s10, s9, s11
   FLW ft1, 0(s10)
   FMUL.S ft2, fs6, ft1
   FMUL.S ft1, fs4, fs7
@@ -368,7 +365,7 @@ bb24:
   FADD.S ft2, fs7, ft1
   FMUL.S fs7, fs3, ft0
   FADD.S ft0, ft2, fs7
-  FSW ft0, 0(s11)
+  FSW ft0, 0(t0)
   FLW fs7, 0(s10)
   ADDIW s9, s8, 1
   FSGNJ.S fs9, fs8, fs8
@@ -392,18 +389,17 @@ bb28:
   ADDI s9, zero, 1080
   MULW s10, s6, s9
   ADD s9, s3, s10
-  ADDI s11, zero, 4
-  MULW t0, s8, s11
-  ADD s11, s9, t0
+  SLLIW s11, s8, 2
+  ADD t0, s9, s11
   ADD s9, s4, s10
-  ADD t1, s9, t0
+  ADD t1, s9, s11
   FLW fs7, 0(t1)
   ADD s9, s5, s10
-  ADD s10, s9, t0
+  ADD s10, s9, s11
   FLW fs8, 0(s10)
   FADD.S fs9, fs7, fs8
   FMUL.S fs7, fs2, fs9
-  FSW fs7, 0(s11)
+  FSW fs7, 0(t0)
   ADDIW s9, s8, 1
   ADD s7, s9, zero
   JAL zero, bb26
@@ -450,9 +446,8 @@ bb32:
   ADDI s10, zero, 1080
   MULW s11, s7, s10
   ADD s10, s5, s11
-  ADDI t0, zero, 4
-  MULW t1, s9, t0
-  ADD t0, s10, t1
+  SLLIW t0, s9, 2
+  ADD t1, s10, t0
   FMUL.S ft5, fs5, fs8
   FMUL.S ft6, fs0, fs7
   FADD.S fs7, ft5, ft6
@@ -460,9 +455,9 @@ bb32:
   FADD.S ft6, fs7, ft5
   FMUL.S fs7, fs3, ft1
   FADD.S ft1, ft6, fs7
-  FSW ft1, 0(t0)
+  FSW ft1, 0(t1)
   ADD s10, s2, s11
-  ADD s11, s10, t1
+  ADD s11, s10, t0
   FLW fs7, 0(s11)
   ADDI s10, zero, 1
   SUBW s11, s9, s10
@@ -506,11 +501,10 @@ bb36:
   ADDI s10, zero, 1080
   MULW s11, s7, s10
   ADD s10, s4, s11
-  ADDI t0, zero, 4
-  MULW t1, s9, t0
-  ADD t0, s10, t1
+  SLLIW t0, s9, 2
+  ADD t1, s10, t0
   ADD s10, s2, s11
-  ADD s11, s10, t1
+  ADD s11, s10, t0
   FLW ft1, 0(s11)
   FMUL.S ft2, fs6, ft1
   FMUL.S ft1, fs4, fs7
@@ -519,7 +513,7 @@ bb36:
   FADD.S ft2, fs7, ft1
   FMUL.S fs7, fs3, ft0
   FADD.S ft0, ft2, fs7
-  FSW ft0, 0(t0)
+  FSW ft0, 0(t1)
   FLW fs7, 0(s11)
   ADDIW s10, s9, 1
   FSGNJ.S fs9, fs8, fs8

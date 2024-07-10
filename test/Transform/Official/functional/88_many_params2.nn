@@ -19,8 +19,8 @@ init.cond:
   br i1 %57, bb %init, bb %init.exit
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
-  offset = mul i32 %cnt.dec, i32 4
-  arr.index62 = ptradd ptr %a, i32 %offset
+  171 = shl i32 %cnt.dec, i32 2
+  arr.index62 = ptradd ptr %a, i32 %171
   store i32 0 to ptr %arr.index62
   br bb %init.cond
 init.exit:
@@ -31,47 +31,47 @@ init.cond64:
   br i1 %69, bb %init65, bb %init.exit66
 init65:
   cnt.dec71 = sub i32 %cnt_ptr67.phi, i32 1
-  offset72 = mul i32 %cnt.dec71, i32 4
-  arr.index74 = ptradd ptr %b, i32 %offset72
+  173 = shl i32 %cnt.dec71, i32 2
+  arr.index74 = ptradd ptr %b, i32 %173
   store i32 0 to ptr %arr.index74
   br bb %init.cond64
 init.exit66:
-  174 = ptradd ptr %a, i32 4560
-  store i32 6 to ptr %174
-  176 = ptradd ptr %a, i32 4568
-  store i32 7 to ptr %176
-  178 = ptradd ptr %a, i32 4572
-  store i32 4 to ptr %178
-  180 = ptradd ptr %a, i32 4584
-  store i32 9 to ptr %180
-  182 = ptradd ptr %a, i32 4600
-  store i32 11 to ptr %182
-  184 = ptradd ptr %b, i32 1420
-  store i32 1 to ptr %184
-  186 = ptradd ptr %b, i32 1424
-  store i32 2 to ptr %186
-  188 = ptradd ptr %b, i32 1428
-  store i32 3 to ptr %188
-  190 = ptradd ptr %b, i32 1452
-  store i32 9 to ptr %190
-  115.load = load i32 from ptr %174
-  120.load = load i32 from ptr %176
+  176 = ptradd ptr %a, i32 4560
+  store i32 6 to ptr %176
+  178 = ptradd ptr %a, i32 4568
+  store i32 7 to ptr %178
+  180 = ptradd ptr %a, i32 4572
+  store i32 4 to ptr %180
+  182 = ptradd ptr %a, i32 4584
+  store i32 9 to ptr %182
+  184 = ptradd ptr %a, i32 4600
+  store i32 11 to ptr %184
+  186 = ptradd ptr %b, i32 1420
+  store i32 1 to ptr %186
+  188 = ptradd ptr %b, i32 1424
+  store i32 2 to ptr %188
+  190 = ptradd ptr %b, i32 1428
+  store i32 3 to ptr %190
+  192 = ptradd ptr %b, i32 1452
+  store i32 9 to ptr %192
+  115.load = load i32 from ptr %176
+  120.load = load i32 from ptr %178
   123 = ptradd ptr %a, i32 4556
-  127.load = load i32 from ptr %188
-  198 = ptradd ptr %b, i32 1416
-  132.load = load i32 from ptr %198
-  200 = ptradd ptr %b, i32 8040
-  139.load = load i32 from ptr %200
-  202 = ptradd ptr %b, i32 12108
-  144.load = load i32 from ptr %202
+  127.load = load i32 from ptr %190
+  200 = ptradd ptr %b, i32 1416
+  132.load = load i32 from ptr %200
+  202 = ptradd ptr %b, i32 8040
+  139.load = load i32 from ptr %202
+  204 = ptradd ptr %b, i32 12108
+  144.load = load i32 from ptr %204
   br bb %func.while.cond
 while.cond148:
   ret.phi = phi [bb %func.while.exit33, i32 %147, bb %while.body149, i32 %163]
   152 = icmp sge i32 %ret.phi, i32 0
   br i1 %152, bb %while.body149, bb %while.exit150
 while.body149:
-  157 = mul i32 %ret.phi, i32 4
-  158 = ptradd ptr %198, i32 %157
+  205 = shl i32 %ret.phi, i32 2
+  158 = ptradd ptr %200, i32 %205
   158.load = load i32 from ptr %158
   call void putint(i32 %158.load)
   call void putch(i32 32)
@@ -81,43 +81,43 @@ while.exit150:
   call void putch(i32 10)
   ret i32 0
 func.while.cond:
-  index.phi207 = phi [bb %init.exit66, i32 0, bb %func.while.body, i32 %23217]
-  12208 = icmp slt i32 %index.phi207, i32 10
-  br i1 %12208, bb %func.while.body, bb %func.while.exit
+  index.phi213 = phi [bb %init.exit66, i32 0, bb %func.while.body, i32 %23223]
+  12214 = icmp slt i32 %index.phi213, i32 10
+  br i1 %12214, bb %func.while.body, bb %func.while.exit
 func.while.body:
-  15211 = mul i32 %115.load, i32 236
-  16212 = ptradd ptr %b, i32 %15211
-  18213 = mul i32 %index.phi207, i32 4
-  19214 = ptradd ptr %16212, i32 %18213
-  19.load215 = load i32 from ptr %19214
-  call void putint(i32 %19.load215)
-  23217 = add i32 %index.phi207, i32 1
+  15217 = mul i32 %115.load, i32 236
+  16218 = ptradd ptr %b, i32 %15217
+  206219 = shl i32 %index.phi213, i32 2
+  19220 = ptradd ptr %16218, i32 %206219
+  19.load221 = load i32 from ptr %19220
+  call void putint(i32 %19.load221)
+  23223 = add i32 %index.phi213, i32 1
   br bb %func.while.cond
 func.while.exit:
   call void putch(i32 10)
-  26221 = mul i32 %120.load, i32 4
-  27222 = ptradd ptr %123, i32 %26221
-  27.load223 = load i32 from ptr %27222
-  call void putint(i32 %27.load223)
+  207227 = shl i32 %120.load, i32 2
+  27228 = ptradd ptr %123, i32 %207227
+  27.load229 = load i32 from ptr %27228
+  call void putint(i32 %27.load229)
   call void putch(i32 10)
   br bb %func.while.cond31
 func.while.cond31:
-  i.stack.phi228 = phi [bb %func.while.exit, i32 %144.load, bb %func.while.body32, i32 %44238]
-  h.stack.phi229 = phi [bb %func.while.exit, i32 %139.load, bb %func.while.body32, i32 %46239]
-  35230 = icmp slt i32 %i.stack.phi228, i32 10
-  br i1 %35230, bb %func.while.body32, bb %func.while.exit33
+  i.stack.phi234 = phi [bb %func.while.exit, i32 %144.load, bb %func.while.body32, i32 %44244]
+  h.stack.phi235 = phi [bb %func.while.exit, i32 %139.load, bb %func.while.body32, i32 %46245]
+  35236 = icmp slt i32 %i.stack.phi234, i32 10
+  br i1 %35236, bb %func.while.body32, bb %func.while.exit33
 func.while.body32:
-  38233 = mul i32 %i.stack.phi228, i32 4
-  39234 = ptradd ptr %198, i32 %38233
-  41235 = mul i32 %h.stack.phi229, i32 128875
-  42236 = srem i32 %41235, i32 3724
-  store i32 %42236 to ptr %39234
-  44238 = add i32 %i.stack.phi228, i32 1
-  46239 = add i32 %h.stack.phi229, i32 7
+  208239 = shl i32 %i.stack.phi234, i32 2
+  39240 = ptradd ptr %200, i32 %208239
+  41241 = mul i32 %h.stack.phi235, i32 128875
+  42242 = srem i32 %41241, i32 3724
+  store i32 %42242 to ptr %39240
+  44244 = add i32 %i.stack.phi234, i32 1
+  46245 = add i32 %h.stack.phi235, i32 7
   br bb %func.while.cond31
 func.while.exit33:
-  49242 = add i32 %127.load, i32 %132.load
-  147 = mul i32 %49242, i32 3
+  49248 = add i32 %127.load, i32 %132.load
+  147 = mul i32 %49248, i32 3
   br bb %while.cond148
 }
 
@@ -145,16 +145,16 @@ while.cond:
 while.body:
   15 = mul i32 %a, i32 236
   16 = ptradd ptr %b, i32 %15
-  18 = mul i32 %index.phi, i32 4
-  19 = ptradd ptr %16, i32 %18
+  206 = shl i32 %index.phi, i32 2
+  19 = ptradd ptr %16, i32 %206
   19.load = load i32 from ptr %19
   call void putint(i32 %19.load)
   23 = add i32 %index.phi, i32 1
   br bb %while.cond
 while.exit:
   call void putch(i32 10)
-  26 = mul i32 %c, i32 4
-  27 = ptradd ptr %d, i32 %26
+  207 = shl i32 %c, i32 2
+  27 = ptradd ptr %d, i32 %207
   27.load = load i32 from ptr %27
   call void putint(i32 %27.load)
   call void putch(i32 10)
@@ -165,8 +165,8 @@ while.cond31:
   35 = icmp slt i32 %i.stack.phi, i32 10
   br i1 %35, bb %while.body32, bb %while.exit33
 while.body32:
-  38 = mul i32 %i.stack.phi, i32 4
-  39 = ptradd ptr %g, i32 %38
+  208 = shl i32 %i.stack.phi, i32 2
+  39 = ptradd ptr %g, i32 %208
   41 = mul i32 %h.stack.phi, i32 128875
   42 = srem i32 %41, i32 3724
   store i32 %42 to ptr %39

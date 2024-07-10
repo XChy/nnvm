@@ -68,7 +68,7 @@ then77:
   call void putch(i32 65)
   br bb %if.exit78
 if.exit78:
-  89 = zext i1 1 to i32
+  89 = zext i1 -1 to i32
   90 = icmp ne i32 %89, i32 1
   br i1 %90, bb %then91, bb %if.exit92
 then91:
@@ -90,9 +90,7 @@ then103:
   call void putch(i32 69)
   br bb %if.exit104
 if.exit104:
-  108 = xor i1 0, i1 1
-  109 = zext i1 %108 to i32
-  110 = sub i32 0, i32 %109
+  110 = sub i32 0, i32 %89
   111 = icmp eq i32 -1, i32 %110
   br i1 %111, bb %then112, bb %if.exit113
 then112:
@@ -109,7 +107,7 @@ select.else152:
   157 = icmp sle i32 1, i32 0
   br bb %select.exit153
 select.exit153:
-  select154.phi = phi [bb %select.else152, i1 %157, bb %select.then151, i1 1]
+  select154.phi = phi [bb %select.else152, i1 %157, bb %select.then151, i1 -1]
   br i1 %select154.phi, bb %then160, bb %if.exit161
 then160:
   call void putch(i32 72)
@@ -122,15 +120,13 @@ select.then166:
 select.else167:
   br bb %select.exit168
 select.exit168:
-  select169.phi = phi [bb %select.else167, i1 0, bb %select.then166, i1 1]
+  select169.phi = phi [bb %select.else167, i1 0, bb %select.then166, i1 -1]
   br i1 %select169.phi, bb %then174, bb %if.exit175
 then174:
   call void putch(i32 73)
   br bb %if.exit175
 if.exit175:
-  180 = xor i1 1, i1 1
-  181 = zext i1 %180 to i32
-  182 = icmp eq i32 0, i32 %181
+  182 = icmp eq i32 0, i32 %95
   br i1 %182, bb %select.then183, bb %select.else184
 select.then183:
   br bb %select.exit185
@@ -145,7 +141,7 @@ select.else192:
   197 = icmp sge i32 4, i32 4
   br bb %select.exit193
 select.exit193:
-  select194.phi = phi [bb %select.else192, i1 %197, bb %select.then191, i1 1]
+  select194.phi = phi [bb %select.else192, i1 %197, bb %select.then191, i1 -1]
   br i1 %select194.phi, bb %then200, bb %if.exit201
 then200:
   call void putch(i32 74)
@@ -157,7 +153,7 @@ select.then209:
 select.else210:
   br bb %select.exit211
 select.exit211:
-  select212.phi = phi [bb %select.else210, i1 0, bb %select.then209, i1 1]
+  select212.phi = phi [bb %select.else210, i1 0, bb %select.then209, i1 -1]
   br i1 %select212.phi, bb %then226, bb %if.exit227
 then226:
   call void putch(i32 75)

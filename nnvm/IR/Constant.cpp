@@ -1,4 +1,5 @@
 #include "Constant.h"
+#include "ADT/GenericInt.h"
 #include "Module.h"
 
 using namespace nnvm;
@@ -8,7 +9,7 @@ Constant *ConstantInt::create(Module &module, Type *type, GInt value) {
 }
 
 ConstantInt::ConstantInt(Type *type, GInt value)
-    : Constant(type), value(value) {}
+    : Constant(type), value(sextOf(value, type->getBits())) {}
 
 Constant *ConstantFloat::create(Module &module, float value) {
   return module.addConstant(ConstantFloat(module.getFloatType(), value));

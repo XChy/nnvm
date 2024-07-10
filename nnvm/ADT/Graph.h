@@ -84,6 +84,35 @@ public:
     }
   }
 
+  template <typename Visit> void postOrder(BasicBlock *entry, Visit visitor) {
+    std::stack<BasicBlock *> worklist;
+    std::unordered_set<BasicBlock *> visited;
+    worklist.push(entry);
+
+    while (!worklist.empty()) {
+      BasicBlock *cur = worklist.top();
+      // Visit block in the post order of dominance tree.
+      if (visited.count(cur)) {
+        visitor(cur);
+        worklist.pop();
+      } else {
+        visited.insert(cur);
+        for (int i = 0; i < cur->getSuccNum(); i++) {
+          BasicBlock *child = cur->getSucc(i);
+          worklist.push(child);
+        }
+      }
+    }
+  }
+
+  template <typename Visit>
+  void reversePostOrder(BasicBlock *entry, Visit visitor) {
+    std::vector<BasicBlock *> RPO;
+    postOrder(entry, [&RPO](BasicBlock *BB) { RPO.push_back(BB); });
+    for (auto it = RPO.rbegin(); it != RPO.rend(); it++)
+      visitor(*it);
+  }
+
   void addEdge(BasicBlock *from, BasicBlock *to) {}
   bool hasEdge(BasicBlock *from, BasicBlock *to) {
     for (int i = 0; i < from->getSuccNum(); i++)

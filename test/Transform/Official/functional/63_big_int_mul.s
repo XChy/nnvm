@@ -219,12 +219,11 @@ bb13:
   ADDI sp, sp, 640
   JALR zero, 0(ra)
 bb14:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s3
-  LW s3, 0(s2)
-  ADD a0, s3, zero
+  ADD s3, t5, s2
+  LW s2, 0(s3)
+  ADD a0, s2, zero
   CALL putint
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -235,19 +234,18 @@ bb15:
   CALL putint
   JAL zero, bb11
 bb16:
-  ADDI s6, zero, 4
-  MULW s7, s3, s6
+  SLLIW s6, s3, 2
   ADDI t5, sp, 160
-  ADD s6, t5, s7
-  LW s7, 0(s6)
-  ADD s6, s5, zero
+  ADD s7, t5, s6
+  LW s6, 0(s7)
+  ADD s7, s5, zero
   ADD s5, s4, zero
   ADDI s4, zero, 19
   # implict jump to bb17
 bb17:
   ADD s8, s4, zero
   ADD s9, s5, zero
-  ADD s10, s6, zero
+  ADD s10, s7, zero
   ADDI s11, zero, -1
   SLT t0, s11, s8
   BNE t0, zero, bb19
@@ -261,88 +259,81 @@ bb18:
   ADD s2, s6, zero
   JAL zero, bb9
 bb19:
-  ADDI s11, zero, 4
-  MULW t0, s10, s11
-  ADDI t5, sp, 0
-  ADD s11, t5, t0
-  LW t0, 0(s11)
-  ADDI t1, zero, 4
-  MULW t2, s8, t1
-  ADDI t1, sp, 264
-  ADD t1, t1, t2
-  LW t2, 0(t1)
-  MULW t1, s7, t2
-  ADDW t2, t0, t1
-  SLTI t0, t2, 10
-  XORI t1, t0, 1
-  BNE t1, zero, bb22
+  SLLIW s11, s10, 2
+  ADDI t0, sp, 0
+  ADD t0, t0, s11
+  LW s11, 0(t0)
+  SLLIW t1, s8, 2
+  ADDI t2, sp, 264
+  ADD t2, t2, t1
+  LW t1, 0(t2)
+  MULW t2, s6, t1
+  ADDW t1, s11, t2
+  SLTI s11, t1, 10
+  XORI t2, s11, 1
+  BNE t2, zero, bb22
   # implict jump to bb20
 bb20:
-  SW t2, 0(s11)
+  SW t1, 0(t0)
   # implict jump to bb21
 bb21:
-  ADDI t0, zero, 1
-  SUBW t1, s8, t0
-  ADDI t0, zero, 1
-  SUBW a0, s10, t0
-  ADD s6, a0, zero
-  ADD s5, t2, zero
-  ADD s4, t1, zero
+  ADDI s11, zero, 1
+  SUBW t2, s8, s11
+  ADDI s11, zero, 1
+  SUBW a0, s10, s11
+  ADD s7, a0, zero
+  ADD s5, t1, zero
+  ADD s4, t2, zero
   JAL zero, bb17
 bb22:
-  SW t2, 0(s11)
-  ADDI t0, zero, 1
-  SUBW t1, s10, t0
-  ADDI t0, zero, 4
-  MULW a0, t1, t0
-  ADDI t0, sp, 0
-  ADD t0, t0, a0
-  LW t1, 0(t0)
+  SW t1, 0(t0)
+  ADDI s11, zero, 1
+  SUBW t2, s10, s11
+  SLLIW s11, t2, 2
+  ADDI t2, sp, 0
+  ADD t2, t2, s11
+  LW s11, 0(t2)
   ADDI a0, zero, 10
-  DIVW a1, t2, a0
-  ADDW a0, t1, a1
-  SW a0, 0(t0)
+  DIVW a1, t1, a0
+  ADDW a0, s11, a1
+  SW a0, 0(t2)
   JAL zero, bb21
 bb23:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s3
-  SW zero, 0(s2)
+  ADD s3, t5, s2
+  SW zero, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb7
 bb24:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 160
-  ADD s2, t5, s3
+  ADD s3, t5, s2
   ADDI t5, sp, 368
-  ADD s4, t5, s3
-  LW s3, 0(s4)
-  SW s3, 0(s2)
+  ADD s4, t5, s2
+  LW s2, 0(s4)
+  SW s2, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb5
 bb25:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 264
-  ADD s2, t5, s3
+  ADD s3, t5, s2
   ADDI t5, sp, 448
-  ADD s4, t5, s3
-  LW s3, 0(s4)
-  SW s3, 0(s2)
+  ADD s4, t5, s2
+  LW s2, 0(s4)
+  SW s2, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb3
 bb26:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
+  SLLIW s1, s3, 2
   ADDI t5, sp, 0
-  ADD s1, t5, s2
-  SW zero, 0(s1)
+  ADD s2, t5, s1
+  SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb1

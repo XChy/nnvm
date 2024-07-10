@@ -13,8 +13,8 @@ while.cond52:
   56 = icmp sgt i32 %a.stack.phi, i32 0
   br i1 %56, bb %while.body53, bb %while.exit54
 while.body53:
-  59 = mul i32 %i.phi100, i32 4
-  60 = ptradd ptr %b, i32 %59
+  114 = shl i32 %i.phi100, i32 2
+  60 = ptradd ptr %b, i32 %114
   62 = srem i32 %a.stack.phi, i32 10
   64 = add i32 %62, i32 48
   store i32 %64 to ptr %60
@@ -29,8 +29,8 @@ while.cond69:
   br i1 %73, bb %while.body70, bb %while.exit71
 while.body70:
   76 = sub i32 %i.phi, i32 1
-  78 = mul i32 %76, i32 4
-  79 = ptradd ptr %b, i32 %78
+  115 = shl i32 %76, i32 2
+  79 = ptradd ptr %b, i32 %115
   79.load = load i32 from ptr %79
   call void putch(i32 %79.load)
   br bb %while.cond69
@@ -54,7 +54,7 @@ select.else:
   17 = icmp sgt i32 %9, i32 9
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %17, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %17, bb %select.then, i1 -1]
   br i1 %select.phi, bb %while.cond, bb %else
 else:
   br bb %while.cond24
@@ -86,114 +86,114 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry82:
-  %b116 = stack 64
+  %b118 = stack 64
   br bb %my_getint.while.cond
 while.cond85:
-  n.phi = phi [bb %my_getint.else42, i32 %sum.phi170, bb %my_putint.while.exit71, i32 %97]
+  n.phi = phi [bb %my_getint.else42, i32 %sum.phi172, bb %my_putint.while.exit71, i32 %97]
   89 = icmp sgt i32 %n.phi, i32 0
-  br i1 %89, bb %my_getint.while.cond193, bb %while.exit87
+  br i1 %89, bb %my_getint.while.cond195, bb %while.exit87
 while.exit87:
   ret i32 0
 my_putint.while.cond52:
-  i.phi100119 = phi [bb %my_getint.else42230, i32 0, bb %my_putint.while.body53, i32 %68130]
-  a.stack.phi120 = phi [bb %my_getint.else42230, i32 %sum.phi213, bb %my_putint.while.body53, i32 %66129]
-  56121 = icmp sgt i32 %a.stack.phi120, i32 0
-  br i1 %56121, bb %my_putint.while.body53, bb %my_putint.while.exit54
+  i.phi100121 = phi [bb %my_getint.else42232, i32 0, bb %my_putint.while.body53, i32 %68132]
+  a.stack.phi122 = phi [bb %my_getint.else42232, i32 %sum.phi215, bb %my_putint.while.body53, i32 %66131]
+  56123 = icmp sgt i32 %a.stack.phi122, i32 0
+  br i1 %56123, bb %my_putint.while.body53, bb %my_putint.while.exit54
 my_putint.while.body53:
-  59124 = mul i32 %i.phi100119, i32 4
-  60125 = ptradd ptr %b116, i32 %59124
-  62126 = srem i32 %a.stack.phi120, i32 10
-  64127 = add i32 %62126, i32 48
-  store i32 %64127 to ptr %60125
-  66129 = sdiv i32 %a.stack.phi120, i32 10
-  68130 = add i32 %i.phi100119, i32 1
+  114126 = shl i32 %i.phi100121, i32 2
+  60127 = ptradd ptr %b118, i32 %114126
+  62128 = srem i32 %a.stack.phi122, i32 10
+  64129 = add i32 %62128, i32 48
+  store i32 %64129 to ptr %60127
+  66131 = sdiv i32 %a.stack.phi122, i32 10
+  68132 = add i32 %i.phi100121, i32 1
   br bb %my_putint.while.cond52
 my_putint.while.exit54:
   br bb %my_putint.while.cond69
 my_putint.while.cond69:
-  i.phi135 = phi [bb %my_putint.while.exit54, i32 %i.phi100119, bb %my_putint.while.body70, i32 %76139]
-  73136 = icmp sgt i32 %i.phi135, i32 0
-  br i1 %73136, bb %my_putint.while.body70, bb %my_putint.while.exit71
+  i.phi137 = phi [bb %my_putint.while.exit54, i32 %i.phi100121, bb %my_putint.while.body70, i32 %76141]
+  73138 = icmp sgt i32 %i.phi137, i32 0
+  br i1 %73138, bb %my_putint.while.body70, bb %my_putint.while.exit71
 my_putint.while.body70:
-  76139 = sub i32 %i.phi135, i32 1
-  78140 = mul i32 %76139, i32 4
-  79141 = ptradd ptr %b116, i32 %78140
-  79.load142 = load i32 from ptr %79141
-  call void putch(i32 %79.load142)
+  76141 = sub i32 %i.phi137, i32 1
+  115142 = shl i32 %76141, i32 2
+  79143 = ptradd ptr %b118, i32 %115142
+  79.load144 = load i32 from ptr %79143
+  call void putch(i32 %79.load144)
   br bb %my_putint.while.cond69
 my_putint.while.exit71:
   call void putch(i32 10)
   97 = sub i32 %n.phi, i32 1
   br bb %while.cond85
 my_getint.while.cond:
-  7151 = call i32 getch()
-  9152 = sub i32 %7151, i32 48
-  11153 = icmp slt i32 %9152, i32 0
-  br i1 %11153, bb %my_getint.select.then, bb %my_getint.select.else
+  7153 = call i32 getch()
+  9154 = sub i32 %7153, i32 48
+  11155 = icmp slt i32 %9154, i32 0
+  br i1 %11155, bb %my_getint.select.then, bb %my_getint.select.else
 my_getint.select.then:
   br bb %my_getint.select.exit
 my_getint.select.else:
-  17160 = icmp sgt i32 %9152, i32 9
+  17162 = icmp sgt i32 %9154, i32 9
   br bb %my_getint.select.exit
 my_getint.select.exit:
-  select.phi163 = phi [bb %my_getint.select.else, i1 %17160, bb %my_getint.select.then, i1 1]
-  br i1 %select.phi163, bb %my_getint.while.cond, bb %my_getint.else
+  select.phi165 = phi [bb %my_getint.select.else, i1 %17162, bb %my_getint.select.then, i1 -1]
+  br i1 %select.phi165, bb %my_getint.while.cond, bb %my_getint.else
 my_getint.else:
   br bb %my_getint.while.cond24
 my_getint.while.cond24:
-  sum.phi170 = phi [bb %my_getint.else, i32 %9152, bb %my_getint.then40, i32 %46185]
-  28171 = call i32 getch()
-  30172 = sub i32 %28171, i32 48
-  32173 = icmp sge i32 %30172, i32 0
-  br i1 %32173, bb %my_getint.select.then33, bb %my_getint.select.else34
+  sum.phi172 = phi [bb %my_getint.else, i32 %9154, bb %my_getint.then40, i32 %46187]
+  28173 = call i32 getch()
+  30174 = sub i32 %28173, i32 48
+  32175 = icmp sge i32 %30174, i32 0
+  br i1 %32175, bb %my_getint.select.then33, bb %my_getint.select.else34
 my_getint.select.then33:
-  38176 = icmp sle i32 %30172, i32 9
+  38178 = icmp sle i32 %30174, i32 9
   br bb %my_getint.select.exit35
 my_getint.select.else34:
   br bb %my_getint.select.exit35
 my_getint.select.exit35:
-  select36.phi181 = phi [bb %my_getint.select.else34, i1 0, bb %my_getint.select.then33, i1 %38176]
-  br i1 %select36.phi181, bb %my_getint.then40, bb %my_getint.else42
+  select36.phi183 = phi [bb %my_getint.select.else34, i1 0, bb %my_getint.select.then33, i1 %38178]
+  br i1 %select36.phi183, bb %my_getint.then40, bb %my_getint.else42
 my_getint.then40:
-  44184 = mul i32 %sum.phi170, i32 10
-  46185 = add i32 %44184, i32 %30172
+  44186 = mul i32 %sum.phi172, i32 10
+  46187 = add i32 %44186, i32 %30174
   br bb %my_getint.while.cond24
 my_getint.else42:
   br bb %while.cond85
-my_getint.while.cond193:
-  7194 = call i32 getch()
-  9195 = sub i32 %7194, i32 48
-  11196 = icmp slt i32 %9195, i32 0
-  br i1 %11196, bb %my_getint.select.then200, bb %my_getint.select.else202
-my_getint.select.then200:
-  br bb %my_getint.select.exit205
-my_getint.select.else202:
-  17203 = icmp sgt i32 %9195, i32 9
-  br bb %my_getint.select.exit205
-my_getint.select.exit205:
-  select.phi206 = phi [bb %my_getint.select.else202, i1 %17203, bb %my_getint.select.then200, i1 1]
-  br i1 %select.phi206, bb %my_getint.while.cond193, bb %my_getint.else210
-my_getint.else210:
-  br bb %my_getint.while.cond24212
-my_getint.while.cond24212:
-  sum.phi213 = phi [bb %my_getint.else210, i32 %9195, bb %my_getint.then40226, i32 %46228]
-  28214 = call i32 getch()
-  30215 = sub i32 %28214, i32 48
-  32216 = icmp sge i32 %30215, i32 0
-  br i1 %32216, bb %my_getint.select.then33218, bb %my_getint.select.else34221
-my_getint.select.then33218:
-  38219 = icmp sle i32 %30215, i32 9
-  br bb %my_getint.select.exit35223
-my_getint.select.else34221:
-  br bb %my_getint.select.exit35223
-my_getint.select.exit35223:
-  select36.phi224 = phi [bb %my_getint.select.else34221, i1 0, bb %my_getint.select.then33218, i1 %38219]
-  br i1 %select36.phi224, bb %my_getint.then40226, bb %my_getint.else42230
-my_getint.then40226:
-  44227 = mul i32 %sum.phi213, i32 10
-  46228 = add i32 %44227, i32 %30215
-  br bb %my_getint.while.cond24212
-my_getint.else42230:
+my_getint.while.cond195:
+  7196 = call i32 getch()
+  9197 = sub i32 %7196, i32 48
+  11198 = icmp slt i32 %9197, i32 0
+  br i1 %11198, bb %my_getint.select.then202, bb %my_getint.select.else204
+my_getint.select.then202:
+  br bb %my_getint.select.exit207
+my_getint.select.else204:
+  17205 = icmp sgt i32 %9197, i32 9
+  br bb %my_getint.select.exit207
+my_getint.select.exit207:
+  select.phi208 = phi [bb %my_getint.select.else204, i1 %17205, bb %my_getint.select.then202, i1 -1]
+  br i1 %select.phi208, bb %my_getint.while.cond195, bb %my_getint.else212
+my_getint.else212:
+  br bb %my_getint.while.cond24214
+my_getint.while.cond24214:
+  sum.phi215 = phi [bb %my_getint.else212, i32 %9197, bb %my_getint.then40228, i32 %46230]
+  28216 = call i32 getch()
+  30217 = sub i32 %28216, i32 48
+  32218 = icmp sge i32 %30217, i32 0
+  br i1 %32218, bb %my_getint.select.then33220, bb %my_getint.select.else34223
+my_getint.select.then33220:
+  38221 = icmp sle i32 %30217, i32 9
+  br bb %my_getint.select.exit35225
+my_getint.select.else34223:
+  br bb %my_getint.select.exit35225
+my_getint.select.exit35225:
+  select36.phi226 = phi [bb %my_getint.select.else34223, i1 0, bb %my_getint.select.then33220, i1 %38221]
+  br i1 %select36.phi226, bb %my_getint.then40228, bb %my_getint.else42232
+my_getint.then40228:
+  44229 = mul i32 %sum.phi215, i32 10
+  46230 = add i32 %44229, i32 %30217
+  br bb %my_getint.while.cond24214
+my_getint.else42232:
   br bb %my_putint.while.cond52
 }
 

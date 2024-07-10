@@ -54,9 +54,8 @@ sub_impl:
   # implict jump to bb2
 bb2:
   LW s3, 0(s0)
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  SW s5, 0(s0)
+  SLLIW s4, s3, 1
+  SW s4, 0(s0)
   ADDI s3, zero, 1
   SUBW s4, s2, s3
   ADD a0, s0, zero
@@ -138,9 +137,8 @@ add_impl:
   # implict jump to bb8
 bb8:
   LW s3, 0(s0)
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
-  SW s5, 0(s0)
+  SLLIW s4, s3, 1
+  SW s4, 0(s0)
   ADDI s3, zero, 1
   SUBW s4, s2, s3
   ADD a0, s0, zero
@@ -276,12 +274,11 @@ bb17:
   JAL zero, bb15
 inc_impl:
   ADDI sp, sp, -48
-  SD s4, 0(sp)
-  SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD ra, 0(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XOR s2, s1, zero
@@ -290,9 +287,8 @@ inc_impl:
   # implict jump to bb19
 bb19:
   LW s2, 0(s0)
-  ADDI s3, zero, 2
-  MULW s4, s2, s3
-  SW s4, 0(s0)
+  SLLIW s3, s2, 1
+  SW s3, 0(s0)
   ADDI s2, zero, 1
   SUBW s3, s1, s2
   ADD a0, s0, zero
@@ -300,12 +296,11 @@ bb19:
   CALL inc_impl
   # implict jump to bb20
 bb20:
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD ra, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb21:

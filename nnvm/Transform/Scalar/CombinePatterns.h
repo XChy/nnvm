@@ -179,6 +179,13 @@ public:
 };
 
 template <typename LSubPattern, typename RSubPattern>
+class pSDiv : public pBinOp<InstID::SDiv, LSubPattern, RSubPattern> {
+public:
+  pSDiv(LSubPattern LHS, RSubPattern RHS)
+      : pBinOp<InstID::SDiv, LSubPattern, RSubPattern>(LHS, RHS) {}
+};
+
+template <typename LSubPattern, typename RSubPattern>
 class pPtrAdd : public pSpecificInst<InstID::PtrAdd> {
 public:
   pPtrAdd(LSubPattern LHS, RSubPattern RHS)

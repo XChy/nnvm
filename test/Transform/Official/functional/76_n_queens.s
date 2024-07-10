@@ -104,10 +104,9 @@ bb6:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb7:
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  LA s3, row
-  ADD s5, s3, s4
+  SLLIW s3, s2, 2
+  LA s4, row
+  ADD s5, s4, s3
   LW s3, 0(s5)
   XORI s4, s3, 1
   SLTU s3, zero, s4
@@ -132,10 +131,9 @@ bb12:
   ADD s1, s8, zero
   JAL zero, bb5
 bb13:
-  ADDI s6, zero, 4
-  MULW s7, s0, s6
-  LA s6, ans
-  ADD s8, s6, s7
+  SLLIW s6, s0, 2
+  LA s7, ans
+  ADD s8, s7, s6
   SW s2, 0(s8)
   LA s6, n
   LW s7, 0(s6)
@@ -147,36 +145,33 @@ bb14:
   ADDI s8, zero, 1
   SW s8, 0(s5)
   ADDW s8, s0, s2
-  ADDI s9, zero, 4
-  MULW s10, s8, s9
+  SLLIW s9, s8, 2
   LA s8, line1
-  ADD s9, s8, s10
-  ADDI s8, zero, 1
-  SW s8, 0(s9)
-  LA s8, n
-  LW s10, 0(s8)
-  ADDW s8, s10, s0
-  SUBW s10, s8, s2
-  ADDI s8, zero, 4
-  MULW s11, s10, s8
-  LA s8, line2
-  ADD s10, s8, s11
+  ADD s10, s8, s9
   ADDI s8, zero, 1
   SW s8, 0(s10)
-  ADDIW s8, s0, 1
-  ADD a0, s8, zero
-  CALL f
-  SW zero, 0(s5)
-  SW zero, 0(s9)
   LA s8, n
   LW s9, 0(s8)
   ADDW s8, s9, s0
   SUBW s9, s8, s2
-  ADDI s8, zero, 4
-  MULW s10, s9, s8
-  LA s8, line2
-  ADD s9, s8, s10
-  SW zero, 0(s9)
+  SLLIW s8, s9, 2
+  LA s9, line2
+  ADD s11, s9, s8
+  ADDI s8, zero, 1
+  SW s8, 0(s11)
+  ADDIW s8, s0, 1
+  ADD a0, s8, zero
+  CALL f
+  SW zero, 0(s5)
+  SW zero, 0(s10)
+  LA s8, n
+  LW s9, 0(s8)
+  ADDW s8, s9, s0
+  SUBW s9, s8, s2
+  SLLIW s8, s9, 2
+  LA s9, line2
+  ADD s10, s9, s8
+  SW zero, 0(s10)
   JAL zero, bb12
 bb15:
   LA s6, sum
@@ -195,10 +190,9 @@ bb16:
   BNE s9, zero, bb17
   JAL zero, bb14
 bb17:
-  ADDI s8, zero, 4
-  MULW s9, s7, s8
-  LA s8, ans
-  ADD s10, s8, s9
+  SLLIW s8, s7, 2
+  LA s9, ans
+  ADD s10, s9, s8
   LW s8, 0(s10)
   ADD a0, s8, zero
   CALL putint
@@ -223,11 +217,10 @@ bb20:
   LW s6, 0(s3)
   ADDW s3, s6, s0
   SUBW s6, s3, s2
-  ADDI s3, zero, 4
-  MULW s7, s6, s3
-  LA s3, line2
-  ADD s6, s3, s7
-  LW s3, 0(s6)
+  SLLIW s3, s6, 2
+  LA s6, line2
+  ADD s7, s6, s3
+  LW s3, 0(s7)
   XOR s6, s3, zero
   SLTU s3, zero, s6
   XORI s6, s3, 1
@@ -237,11 +230,10 @@ bb20:
   JAL zero, bb11
 bb21:
   ADDW s3, s0, s2
-  ADDI s4, zero, 4
-  MULW s6, s3, s4
+  SLLIW s4, s3, 2
   LA s3, line1
-  ADD s4, s3, s6
-  LW s3, 0(s4)
+  ADD s6, s3, s4
+  LW s3, 0(s6)
   XOR s4, s3, zero
   SLTIU s3, s4, 1
   ADD s4, s3, zero
@@ -279,10 +271,9 @@ bb24:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb25:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, ans
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, ans
+  ADD s4, s3, s2
   LW s2, 0(s4)
   ADD a0, s2, zero
   CALL putint

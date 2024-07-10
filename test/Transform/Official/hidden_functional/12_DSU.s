@@ -77,10 +77,9 @@ bb5:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb6:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, fa
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, fa
+  ADD s4, s3, s2
   SW s1, 0(s4)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -427,10 +426,9 @@ bb57:
   ADD a0, s0, zero
   CALL find
   ADD s0, a0, zero
-  ADDI s4, zero, 4
-  MULW s5, s1, s4
-  LA s4, fa
-  ADD s8, s4, s5
+  SLLIW s4, s1, 2
+  LA s5, fa
+  ADD s8, s5, s4
   SW s0, 0(s8)
   ADD t4, s0, zero
   SW t4, 136(sp)
@@ -839,10 +837,9 @@ bb116:
   SB t4, 76(sp)
   JAL zero, bb35
 bb117:
-  ADDI s6, zero, 4
-  MULW s8, s5, s6
-  LA s6, fa
-  ADD s2, s6, s8
+  SLLIW s6, s5, 2
+  LA s8, fa
+  ADD s2, s8, s6
   SW s5, 0(s2)
   ADDIW s2, s5, 1
   ADD s0, s2, zero
@@ -957,10 +954,9 @@ find:
   SD s1, 24(sp)
   SD s0, 32(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, fa
-  ADD s3, s1, s2
+  SLLIW s1, s0, 2
+  LA s2, fa
+  ADD s3, s2, s1
   LW s1, 0(s3)
   XOR s2, s1, s0
   SLTIU s1, s2, 1

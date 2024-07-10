@@ -40,10 +40,9 @@ bb2:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
-  ADDI s4, zero, 4
-  MULW s5, s2, s4
-  LA s4, arr
-  ADD s6, s4, s5
+  SLLIW s4, s2, 2
+  LA s5, arr
+  ADD s6, s5, s4
   LW s4, 0(s6)
   ADDW s5, s3, s4
   ADDIW s4, s2, 1

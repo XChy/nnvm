@@ -76,29 +76,25 @@ bb7:
   ADD s4, s7, zero
   JAL zero, bb1
 bb8:
-  ADDI s8, zero, 4
-  MULW s9, s11, s8
-  ADD s8, s0, s9
-  LW s9, 0(s8)
-  ADDI s10, zero, 4
-  MULW s11, s5, s10
-  ADD s5, s0, s11
+  SLLIW s8, s11, 2
+  ADD s9, s0, s8
+  LW s8, 0(s9)
+  SLLIW s10, s5, 2
+  ADD s5, s0, s10
   LW s10, 0(s5)
-  SW s10, 0(s8)
-  SW s9, 0(s5)
-  ADD s5, s9, zero
+  SW s10, 0(s9)
+  SW s8, 0(s5)
+  ADD s5, s8, zero
   JAL zero, bb7
 bb9:
-  ADDI t0, zero, 4
-  MULW t1, s11, t0
-  ADD t0, s0, t1
-  LW t1, 0(t0)
-  ADDI t0, zero, 4
-  MULW t2, s10, t0
-  ADD t0, s0, t2
-  LW t2, 0(t0)
-  SLT t0, t2, t1
-  BNE t0, zero, bb12
+  SLLIW t0, s11, 2
+  ADD t1, s0, t0
+  LW t0, 0(t1)
+  SLLIW t1, s10, 2
+  ADD t2, s0, t1
+  LW t1, 0(t2)
+  SLT t2, t1, t0
+  BNE t2, zero, bb12
   # implict jump to bb10
 bb10:
   ADD t0, s11, zero
@@ -199,12 +195,11 @@ bb17:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb18:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s3
-  LW s3, 0(s2)
-  ADD a0, s3, zero
+  ADD s3, t5, s2
+  LW s2, 0(s3)
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -236,33 +231,29 @@ bb23:
   ADD s3, s6, zero
   JAL zero, bb14
 bb24:
-  ADDI s7, zero, 4
-  MULW s8, s10, s7
+  SLLIW s7, s10, 2
   ADDI t5, sp, 0
-  ADD s7, t5, s8
-  LW s8, 0(s7)
-  ADDI s9, zero, 4
-  MULW s10, s4, s9
+  ADD s8, t5, s7
+  LW s7, 0(s8)
+  SLLIW s9, s4, 2
   ADDI t5, sp, 0
-  ADD s4, t5, s10
+  ADD s4, t5, s9
   LW s9, 0(s4)
-  SW s9, 0(s7)
-  SW s8, 0(s4)
-  ADD s4, s8, zero
+  SW s9, 0(s8)
+  SW s7, 0(s4)
+  ADD s4, s7, zero
   JAL zero, bb23
 bb25:
-  ADDI s11, zero, 4
-  MULW t0, s10, s11
-  ADDI t5, sp, 0
-  ADD s11, t5, t0
-  LW t0, 0(s11)
-  ADDI s11, zero, 4
-  MULW t1, s9, s11
-  ADDI t5, sp, 0
-  ADD s11, t5, t1
-  LW t1, 0(s11)
-  SLT s11, t1, t0
-  BNE s11, zero, bb28
+  SLLIW s11, s10, 2
+  ADDI t0, sp, 0
+  ADD t0, t0, s11
+  LW s11, 0(t0)
+  SLLIW t0, s9, 2
+  ADDI t1, sp, 0
+  ADD t1, t1, t0
+  LW t0, 0(t1)
+  SLT t1, t0, s11
+  BNE t1, zero, bb28
   # implict jump to bb26
 bb26:
   ADD s11, s10, zero

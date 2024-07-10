@@ -47,6 +47,7 @@ Value *Instruction::getOperand(uint no) const {
 static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Add, "add"},       {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
     {InstID::And, "and"},       {InstID::Or, "or"},     {InstID::Xor, "xor"},
+    {InstID::Shl, "shl"},       {InstID::AShr, "ashr"}, {InstID::LShr, "lshr"},
     {InstID::UDiv, "udiv"},     {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
     {InstID::SRem, "srem"},     {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
     {InstID::FMul, "fmul"},     {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
@@ -86,6 +87,11 @@ bool Instruction::mayReadMemory() const {
 
 bool Instruction::haveSideEffect() const {
   return mayWriteToMemory() || mayReadMemory();
+}
+
+bool Instruction::moveable() const {
+  return !(mayWriteToMemory() || mayReadMemory() || isa<TerminatorInst>() ||
+           isa<PhiInst>());
 }
 
 std::string Instruction::dump() {

@@ -15,23 +15,23 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry136:
-  3179 = call i32 getint()
+  3191 = call i32 getint()
   br bb %read_program.while.cond
 read_program.while.cond:
-  i.phi182 = phi [bb %entry136, i32 0, bb %read_program.while.body, i32 %16190]
-  9183 = icmp slt i32 %i.phi182, i32 %3179
-  br i1 %9183, bb %read_program.while.body, bb %read_program.while.exit
+  i.phi194 = phi [bb %entry136, i32 0, bb %read_program.while.body, i32 %16202]
+  9195 = icmp slt i32 %i.phi194, i32 %3191
+  br i1 %9195, bb %read_program.while.body, bb %read_program.while.exit
 read_program.while.body:
-  12186 = mul i32 %i.phi182, i32 4
-  13187 = ptradd ptr @program, i32 %12186
-  14188 = call i32 getch()
-  store i32 %14188 to ptr %13187
-  16190 = add i32 %i.phi182, i32 1
+  187198 = shl i32 %i.phi194, i32 2
+  13199 = ptradd ptr @program, i32 %187198
+  14200 = call i32 getch()
+  store i32 %14200 to ptr %13199
+  16202 = add i32 %i.phi194, i32 1
   br bb %read_program.while.cond
 read_program.while.exit:
-  18193 = mul i32 %i.phi182, i32 4
-  19194 = ptradd ptr @program, i32 %18193
-  store i32 0 to ptr %19194
+  188205 = shl i32 %i.phi194, i32 2
+  19206 = ptradd ptr @program, i32 %188205
+  store i32 0 to ptr %19206
   call void interpret(ptr @program)
   ret i32 0
 }
@@ -55,8 +55,8 @@ while.cond24:
   select.phi175 = phi [bb %entry20, i1 ub, bb %if.exit, i1 %select.phi174]
   i23.phi167 = phi [bb %entry20, i32 0, bb %if.exit, i32 %135]
   loop.phi158 = phi [bb %entry20, i32 ub, bb %if.exit, i32 %loop.phi157]
-  28 = mul i32 %i23.phi167, i32 4
-  29 = ptradd ptr %input, i32 %28
+  177 = shl i32 %i23.phi167, i32 2
+  29 = ptradd ptr %input, i32 %177
   29.load = load i32 from ptr %29
   31 = icmp ne i32 %29.load, i32 0
   br i1 %31, bb %while.body25, bb %while.exit26
@@ -95,8 +95,8 @@ else47:
   br i1 %51, bb %then52, bb %else54
 then52:
   ptr.load55 = load i32 from ptr @ptr
-  56 = mul i32 %ptr.load55, i32 4
-  57 = ptradd ptr @tape, i32 %56
+  179 = shl i32 %ptr.load55, i32 2
+  57 = ptradd ptr @tape, i32 %179
   60.load = load i32 from ptr %57
   62 = add i32 %60.load, i32 1
   store i32 %62 to ptr %57
@@ -111,8 +111,8 @@ else54:
   br i1 %64, bb %then65, bb %else67
 then65:
   ptr.load68 = load i32 from ptr @ptr
-  69 = mul i32 %ptr.load68, i32 4
-  70 = ptradd ptr @tape, i32 %69
+  181 = shl i32 %ptr.load68, i32 2
+  70 = ptradd ptr @tape, i32 %181
   73.load = load i32 from ptr %70
   75 = sub i32 %73.load, i32 1
   store i32 %75 to ptr %70
@@ -127,8 +127,8 @@ else67:
   br i1 %77, bb %then78, bb %else80
 then78:
   ptr.load81 = load i32 from ptr @ptr
-  82 = mul i32 %ptr.load81, i32 4
-  83 = ptradd ptr @tape, i32 %82
+  183 = shl i32 %ptr.load81, i32 2
+  83 = ptradd ptr @tape, i32 %183
   83.load = load i32 from ptr %83
   call void putch(i32 %83.load)
   br bb %if.exit79
@@ -142,8 +142,8 @@ else80:
   br i1 %87, bb %then88, bb %else90
 then88:
   ptr.load91 = load i32 from ptr @ptr
-  92 = mul i32 %ptr.load91, i32 4
-  93 = ptradd ptr @tape, i32 %92
+  184 = shl i32 %ptr.load91, i32 2
+  93 = ptradd ptr @tape, i32 %184
   94 = call i32 getch()
   store i32 %94 to ptr %93
   br bb %if.exit89
@@ -157,8 +157,8 @@ else90:
   br i1 %96, bb %select.then, bb %select.else
 select.then:
   ptr.load101 = load i32 from ptr @ptr
-  102 = mul i32 %ptr.load101, i32 4
-  103 = ptradd ptr @tape, i32 %102
+  185 = shl i32 %ptr.load101, i32 2
+  103 = ptradd ptr @tape, i32 %185
   103.load = load i32 from ptr %103
   105 = icmp ne i32 %103.load, i32 0
   br bb %select.exit
@@ -180,8 +180,8 @@ while.cond109:
   br i1 %113, bb %while.body110, bb %while.exit111
 while.body110:
   116 = sub i32 %i23.phi, i32 1
-  118 = mul i32 %116, i32 4
-  119 = ptradd ptr %input, i32 %118
+  186 = shl i32 %116, i32 2
+  119 = ptradd ptr %input, i32 %186
   119.load = load i32 from ptr %119
   122 = icmp eq i32 %119.load, i32 91
   br i1 %122, bb %then123, bb %else125
@@ -215,15 +215,15 @@ while.cond:
   9 = icmp slt i32 %i.phi, i32 %3
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  12 = mul i32 %i.phi, i32 4
-  13 = ptradd ptr @program, i32 %12
+  187 = shl i32 %i.phi, i32 2
+  13 = ptradd ptr @program, i32 %187
   14 = call i32 getch()
   store i32 %14 to ptr %13
   16 = add i32 %i.phi, i32 1
   br bb %while.cond
 while.exit:
-  18 = mul i32 %i.phi, i32 4
-  19 = ptradd ptr @program, i32 %18
+  188 = shl i32 %i.phi, i32 2
+  19 = ptradd ptr @program, i32 %188
   store i32 0 to ptr %19
   ret 
 }

@@ -12,13 +12,12 @@ select.then58:
 select.else59:
   br bb %select.exit60
 select.exit60:
-  select61.phi = phi [bb %select.else59, i1 0, bb %select.then58, i1 1]
+  select61.phi = phi [bb %select.else59, i1 0, bb %select.then58, i1 -1]
   br i1 %select61.phi, bb %then65, bb %else67
 then65:
   ret i32 6
 else67:
-  79 = xor i1 1, i1 1
-  80 = zext i1 %79 to i32
+  80 = zext i1 0 to i32
   81 = icmp ne i32 %80, i32 0
   br i1 %81, bb %then82, bb %else84
 then82:

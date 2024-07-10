@@ -57,18 +57,14 @@ void ISel::isel(LIRFunc &func) {
 void riscv::loadGlobalToReg(LIRBuilder &builder, LIRGlobalVar *global,
                             Register *reg) {
   // TODO: replace the pseudocode "LA" with "%pcrel_hi & %pcrel_lo"
-  // auto auipc = LowInst::create(AUIPC, reg, global);
-  // auto addi = LowInst::create(ADDI, reg, reg, global);
-
-  // bb.insertBefore(it, auipc);
-  // bb.insertBefore(it, addi);
   builder.addInst(LIRInst::create(LA, reg, global));
 }
 
 static inline LIRInstID
 materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
 
-  if (operandType == LIRValueType::i1) {
+  if (operandType == LIRValueType::i1 || operandType == LIRValueType::i32 ||
+      operandType == LIRValueType::i64) {
     switch ((InstID)instID) {
     case InstID::And:
       return AND;
@@ -77,7 +73,7 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
     case InstID::Xor:
       return XOR;
     default:
-      nnvm_unreachable("No implemented");
+      break;
     }
   }
 
@@ -93,12 +89,12 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
       return DIVW;
     case InstID::UDiv:
       return DIVUW;
-    case InstID::And:
-      return AND;
-    case InstID::Or:
-      return OR;
-    case InstID::Xor:
-      return XOR;
+    case InstID::Shl:
+      return LIRInstID::SLLW;
+    case InstID::AShr:
+      return LIRInstID::SRAW;
+    case InstID::LShr:
+      return LIRInstID::SRLW;
     case InstID::SRem:
       return REMW;
     case InstID::URem:
@@ -116,16 +112,16 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
       return SUB;
     case InstID::Mul:
       return MUL;
-    case InstID::And:
-      return AND;
-    case InstID::Or:
-      return OR;
-    case InstID::Xor:
-      return XOR;
     case InstID::SDiv:
       return DIV;
     case InstID::UDiv:
       return DIVU;
+    case InstID::Shl:
+      return LIRInstID::SLL;
+    case InstID::AShr:
+      return LIRInstID::SRA;
+    case InstID::LShr:
+      return LIRInstID::SRL;
     case InstID::SRem:
       return REM;
     case InstID::URem:
@@ -166,6 +162,9 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::And:
     case InstID::Or:
     case InstID::Xor:
+    case InstID::Shl:
+    case InstID::AShr:
+    case InstID::LShr:
     case InstID::SRem:
     case InstID::URem:
     case InstID::FAdd:
@@ -175,12 +174,6 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       // TODO: the type of operator is not that accurate, we should lower them
       // before doing such thing.
       {
-        debug({
-          EmitInfo info;
-          I->emit(std::cerr, info);
-          std::cerr << "\n";
-        });
-
         I->setOpcode(
             materializeArithmeticInstType(type, I->getOp(1)->getType()));
         break;

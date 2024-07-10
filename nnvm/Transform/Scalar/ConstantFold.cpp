@@ -26,10 +26,14 @@ Value *ConstantFold::fold(Instruction *I) {
       return nullptr;
     case InstID::SDiv:
       return foldSDiv(cast<SDivInst>(I));
+    case InstID::Xor:
+      return foldXor(cast<XorInst>(I));
     case InstID::URem:
       return nullptr;
     case InstID::SRem:
       return foldSRem(cast<SRemInst>(I));
+    case InstID::Shl:
+      return foldShl(cast<ShlInst>(I));
     case InstID::FAdd:
     case InstID::FSub:
     case InstID::FMul:
@@ -58,8 +62,8 @@ Value *ConstantFold::foldAdd(AddInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  GInt result = genericAdd(lhs->getValue(), rhs->getValue(),
-                           lhs->getType()->getScalarBits());
+  GInt result =
+      genericAdd(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -67,8 +71,8 @@ Value *ConstantFold::foldSub(SubInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  GInt result = genericSub(lhs->getValue(), rhs->getValue(),
-                           lhs->getType()->getScalarBits());
+  GInt result =
+      genericSub(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -76,8 +80,8 @@ Value *ConstantFold::foldMul(MulInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  GInt result = genericMul(lhs->getValue(), rhs->getValue(),
-                           lhs->getType()->getScalarBits());
+  GInt result =
+      genericMul(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -85,8 +89,8 @@ Value *ConstantFold::foldSDiv(SDivInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  GInt result = genericSDiv(lhs->getValue(), rhs->getValue(),
-                            lhs->getType()->getScalarBits());
+  GInt result =
+      genericSDiv(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -94,8 +98,26 @@ Value *ConstantFold::foldSRem(SRemInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
 
-  GInt result = genericSRem(lhs->getValue(), rhs->getValue(),
-                            lhs->getType()->getScalarBits());
+  GInt result =
+      genericSRem(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
+
+Value *ConstantFold::foldXor(XorInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  GInt result =
+      genericXor(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
+
+Value *ConstantFold::foldShl(ShlInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  GInt result =
+      genericShl(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -106,20 +128,20 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
   bool ret;
   switch (I->getPredicate()) {
   case ICmpInst::EQ:
-    ret = genericEQ(lhs->getValue(), rhs->getValue(),
-                    lhs->getType()->getScalarBits());
+    ret =
+        genericEQ(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
     return ConstantInt::create(*module, module->getBoolType(), ret);
   case ICmpInst::NE:
-    ret = genericNE(lhs->getValue(), rhs->getValue(),
-                    lhs->getType()->getScalarBits());
+    ret =
+        genericNE(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
     return ConstantInt::create(*module, module->getBoolType(), ret);
   case ICmpInst::SLT:
-    ret = genericSLT(lhs->getValue(), rhs->getValue(),
-                     lhs->getType()->getScalarBits());
+    ret =
+        genericSLT(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
     return ConstantInt::create(*module, module->getBoolType(), ret);
   case ICmpInst::SGT:
-    ret = genericSGT(lhs->getValue(), rhs->getValue(),
-                     lhs->getType()->getScalarBits());
+    ret =
+        genericSGT(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
     return ConstantInt::create(*module, module->getBoolType(), ret);
 
   default:

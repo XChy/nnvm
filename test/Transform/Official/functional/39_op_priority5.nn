@@ -46,7 +46,7 @@ select.else28:
   41 = icmp eq i32 %35, i32 %40
   br bb %select.exit29
 select.exit29:
-  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 1]
+  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 -1]
   br i1 %select30.phi, bb %then, bb %if.exit
 then:
   br bb %if.exit

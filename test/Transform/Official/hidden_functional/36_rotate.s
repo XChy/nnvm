@@ -49,17 +49,17 @@ MAX_WIDTH:
 rotate:
   ADDI sp, sp, -224
   FSD fs11, 16(sp)
-  SD s1, 24(sp)
-  SD s6, 32(sp)
-  FSD fs1, 40(sp)
-  SD s4, 48(sp)
+  FSD fs1, 24(sp)
+  SD s4, 32(sp)
+  SD s1, 40(sp)
+  SD s2, 48(sp)
   SD s8, 56(sp)
   FSD fs3, 64(sp)
   SD s3, 72(sp)
   FSD fs8, 80(sp)
   SD s7, 88(sp)
   FSD fs2, 96(sp)
-  SD s2, 104(sp)
+  SD s6, 104(sp)
   SD s0, 112(sp)
   SD s9, 120(sp)
   FSD fs4, 128(sp)
@@ -73,7 +73,7 @@ rotate:
   FSD fs7, 192(sp)
   SD ra, 200(sp)
   FSD fs10, 208(sp)
-  ADD s2, a0, zero
+  ADD s1, a0, zero
   ADD s3, a1, zero
   FSGNJ.D ft4, fa0, fa0
   FSW ft4, 0(sp)
@@ -189,35 +189,33 @@ bb16:
   FSGNJ.D fs3, fa0, fa0
   LA s6, width
   LW s7, 0(s6)
-  ADDI s6, zero, 2
-  DIVW s8, s7, s6
-  LA s6, height
-  LW s7, 0(s6)
-  ADDI s6, zero, 2
-  DIVW s9, s7, s6
-  SUBW s6, s2, s8
-  SUBW s7, s3, s9
-  FCVT.S.W ft0, s6
+  SRAIW s6, s7, 1
+  LA s7, height
+  LW s8, 0(s7)
+  SRAIW s7, s8, 1
+  SUBW s8, s1, s6
+  SUBW s9, s3, s7
+  FCVT.S.W ft0, s8
   FMUL.S ft1, ft0, fs3
-  FCVT.S.W ft2, s7
+  FCVT.S.W ft2, s9
   FMUL.S ft5, ft2, fs6
   FSUB.S ft6, ft1, ft5
-  FCVT.S.W ft1, s8
+  FCVT.S.W ft1, s6
   FADD.S ft5, ft6, ft1
-  FCVT.W.S s1, ft5, rtz
+  FCVT.W.S s2, ft5, rtz
   FMUL.S ft1, ft0, fs6
   FMUL.S ft0, ft2, fs3
   FADD.S fs3, ft1, ft0
-  FCVT.S.W ft0, s9
+  FCVT.S.W ft0, s7
   FADD.S ft1, fs3, ft0
   FCVT.W.S s0, ft1, rtz
-  SLT s6, s1, zero
+  SLT s6, s2, zero
   BNE s6, zero, bb27
   # implict jump to bb17
 bb17:
   LA s7, width
   LW s8, 0(s7)
-  SLT s7, s1, s8
+  SLT s7, s2, s8
   XORI s8, s7, 1
   ADD s6, s8, zero
   # implict jump to bb18
@@ -248,25 +246,24 @@ bb23:
   LA s9, width
   LW s10, 0(s9)
   MULW s9, s0, s10
-  ADDW s10, s9, s1
-  ADDI s9, zero, 4
-  MULW s11, s10, s9
-  LA s9, image
-  ADD s10, s9, s11
-  LW s9, 0(s10)
+  ADDW s10, s9, s2
+  SLLIW s9, s10, 2
+  LA s10, image
+  ADD s11, s10, s9
+  LW s9, 0(s11)
   ADD a0, s9, zero
   FLD fs11, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  FLD fs1, 40(sp)
-  LD s4, 48(sp)
+  FLD fs1, 24(sp)
+  LD s4, 32(sp)
+  LD s1, 40(sp)
+  LD s2, 48(sp)
   LD s8, 56(sp)
   FLD fs3, 64(sp)
   LD s3, 72(sp)
   FLD fs8, 80(sp)
   LD s7, 88(sp)
   FLD fs2, 96(sp)
-  LD s2, 104(sp)
+  LD s6, 104(sp)
   LD s0, 112(sp)
   LD s9, 120(sp)
   FLD fs4, 128(sp)
@@ -285,17 +282,17 @@ bb23:
 bb24:
   ADD a0, zero, zero
   FLD fs11, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  FLD fs1, 40(sp)
-  LD s4, 48(sp)
+  FLD fs1, 24(sp)
+  LD s4, 32(sp)
+  LD s1, 40(sp)
+  LD s2, 48(sp)
   LD s8, 56(sp)
   FLD fs3, 64(sp)
   LD s3, 72(sp)
   FLD fs8, 80(sp)
   LD s7, 88(sp)
   FLD fs2, 96(sp)
-  LD s2, 104(sp)
+  LD s6, 104(sp)
   LD s0, 112(sp)
   LD s9, 120(sp)
   FLD fs4, 128(sp)
@@ -833,13 +830,12 @@ bb86:
   LW s9, 0(s8)
   MULW s8, s5, s9
   ADDW s9, s8, s7
-  ADDI s8, zero, 4
-  MULW s10, s9, s8
-  LA s8, image
-  ADD s9, s8, s10
+  SLLIW s8, s9, 2
+  LA s9, image
+  ADD s10, s9, s8
   CALL getint
   ADD s8, a0, zero
-  SW s8, 0(s9)
+  SW s8, 0(s10)
   ADDIW s8, s7, 1
   ADD s6, s8, zero
   JAL zero, bb84
@@ -969,13 +965,12 @@ bb106:
   LW s8, 0(s7)
   MULW s7, s4, s8
   ADDW s8, s7, s6
-  ADDI s7, zero, 4
-  MULW s9, s8, s7
-  LA s7, image
-  ADD s8, s7, s9
+  SLLIW s7, s8, 2
+  LA s8, image
+  ADD s9, s8, s7
   CALL getint
   ADD s7, a0, zero
-  SW s7, 0(s8)
+  SW s7, 0(s9)
   ADDIW s7, s6, 1
   ADD s5, s7, zero
   JAL zero, bb104
@@ -1260,27 +1255,25 @@ bb134:
   FSGNJ.D fs3, fa0, fa0
   LA s8, width
   LW s9, 0(s8)
-  ADDI s8, zero, 2
-  DIVW s10, s9, s8
-  LA s8, height
-  LW s9, 0(s8)
-  ADDI s8, zero, 2
-  DIVW s11, s9, s8
-  SUBW s8, s5, s10
+  SRAIW s8, s9, 1
+  LA s9, height
+  LW s10, 0(s9)
+  SRAIW s9, s10, 1
+  SUBW s10, s5, s8
   LW t4, 36(sp)
-  SUBW s9, t4, s11
-  FCVT.S.W fs1, s8
+  SUBW s11, t4, s9
+  FCVT.S.W fs1, s10
   FMUL.S fs7, fs1, fs3
-  FCVT.S.W fs5, s9
+  FCVT.S.W fs5, s11
   FMUL.S fs4, fs5, fs6
   FSUB.S fs8, fs7, fs4
-  FCVT.S.W fs4, s10
+  FCVT.S.W fs4, s8
   FADD.S fs7, fs8, fs4
   FCVT.W.S s0, fs7, rtz
   FMUL.S fs4, fs1, fs6
   FMUL.S fs1, fs5, fs3
   FADD.S fs3, fs4, fs1
-  FCVT.S.W fs1, s11
+  FCVT.S.W fs1, s9
   FADD.S fs4, fs3, fs1
   FCVT.W.S s1, fs4, rtz
   SLT s8, s0, zero
@@ -1321,11 +1314,10 @@ bb141:
   LW s4, 0(s2)
   MULW s2, s1, s4
   ADDW s4, s2, s0
-  ADDI s2, zero, 4
-  MULW s3, s4, s2
-  LA s2, image
-  ADD s4, s2, s3
-  LW s2, 0(s4)
+  SLLIW s2, s4, 2
+  LA s4, image
+  ADD s3, s4, s2
+  LW s2, 0(s3)
   ADD s11, s2, zero
   # implict jump to bb142
 bb142:

@@ -39,8 +39,8 @@ while.cond79:
   84 = icmp slt i32 %i77.phi, i32 %n.load83
   br i1 %84, bb %while.body80, bb %while.exit81
 while.body80:
-  88 = mul i32 %i77.phi, i32 4
-  89 = ptradd ptr %a, i32 %88
+  105 = shl i32 %i77.phi, i32 2
+  89 = ptradd ptr %a, i32 %105
   89.load = load i32 from ptr %89
   call void putint(i32 %89.load)
   call void putch(i32 10)
@@ -49,45 +49,45 @@ while.body80:
 while.exit81:
   ret i32 0
 bubblesort.while.cond:
-  tmp.phi104109 = phi [bb %entry55, i32 ub, bb %bubblesort.while.exit13, i32 %tmp.phi103120]
-  i.phi110 = phi [bb %entry55, i32 0, bb %bubblesort.while.exit13, i32 %54138]
-  n.load111 = load i32 from ptr @n
-  8112 = sub i32 %n.load111, i32 1
-  9113 = icmp slt i32 %i.phi110, i32 %8112
-  br i1 %9113, bb %bubblesort.while.body, bb %bubblesort.while.exit
+  tmp.phi104116 = phi [bb %entry55, i32 ub, bb %bubblesort.while.exit13, i32 %tmp.phi103127]
+  i.phi117 = phi [bb %entry55, i32 0, bb %bubblesort.while.exit13, i32 %54145]
+  n.load118 = load i32 from ptr @n
+  8119 = sub i32 %n.load118, i32 1
+  9120 = icmp slt i32 %i.phi117, i32 %8119
+  br i1 %9120, bb %bubblesort.while.body, bb %bubblesort.while.exit
 bubblesort.while.body:
   br bb %bubblesort.while.cond11
 bubblesort.while.exit:
   br bb %while.cond79
 bubblesort.while.cond11:
-  tmp.phi103120 = phi [bb %bubblesort.while.body, i32 %tmp.phi104109, bb %bubblesort.if.exit, i32 %tmp.phi147]
-  j.phi121 = phi [bb %bubblesort.while.body, i32 0, bb %bubblesort.if.exit, i32 %26131]
-  n.load15122 = load i32 from ptr @n
-  17123 = sub i32 %n.load15122, i32 %i.phi110
-  18124 = sub i32 %17123, i32 1
-  19125 = icmp slt i32 %j.phi121, i32 %18124
-  br i1 %19125, bb %bubblesort.while.body12, bb %bubblesort.while.exit13
+  tmp.phi103127 = phi [bb %bubblesort.while.body, i32 %tmp.phi104116, bb %bubblesort.if.exit, i32 %tmp.phi154]
+  j.phi128 = phi [bb %bubblesort.while.body, i32 0, bb %bubblesort.if.exit, i32 %26138]
+  n.load15129 = load i32 from ptr @n
+  17130 = sub i32 %n.load15129, i32 %i.phi117
+  18131 = sub i32 %17130, i32 1
+  19132 = icmp slt i32 %j.phi128, i32 %18131
+  br i1 %19132, bb %bubblesort.while.body12, bb %bubblesort.while.exit13
 bubblesort.while.body12:
-  22128 = mul i32 %j.phi121, i32 4
-  23129 = ptradd ptr %a, i32 %22128
-  23.load130 = load i32 from ptr %23129
-  26131 = add i32 %j.phi121, i32 1
-  27132 = mul i32 %26131, i32 4
-  28133 = ptradd ptr %a, i32 %27132
-  28.load134 = load i32 from ptr %28133
-  30135 = icmp sgt i32 %23.load130, i32 %28.load134
-  br i1 %30135, bb %bubblesort.then, bb %bubblesort.if.exit
+  106135 = shl i32 %j.phi128, i32 2
+  23136 = ptradd ptr %a, i32 %106135
+  23.load137 = load i32 from ptr %23136
+  26138 = add i32 %j.phi128, i32 1
+  107139 = shl i32 %26138, i32 2
+  28140 = ptradd ptr %a, i32 %107139
+  28.load141 = load i32 from ptr %28140
+  30142 = icmp sgt i32 %23.load137, i32 %28.load141
+  br i1 %30142, bb %bubblesort.then, bb %bubblesort.if.exit
 bubblesort.while.exit13:
-  54138 = add i32 %i.phi110, i32 1
+  54145 = add i32 %i.phi117, i32 1
   br bb %bubblesort.while.cond
 bubblesort.then:
-  37.load141 = load i32 from ptr %28133
-  45.load142 = load i32 from ptr %23129
-  store i32 %45.load142 to ptr %28133
-  store i32 %37.load141 to ptr %23129
+  37.load148 = load i32 from ptr %28140
+  45.load149 = load i32 from ptr %23136
+  store i32 %45.load149 to ptr %28140
+  store i32 %37.load148 to ptr %23136
   br bb %bubblesort.if.exit
 bubblesort.if.exit:
-  tmp.phi147 = phi [bb %bubblesort.while.body12, i32 %tmp.phi103120, bb %bubblesort.then, i32 %37.load141]
+  tmp.phi154 = phi [bb %bubblesort.while.body12, i32 %tmp.phi103127, bb %bubblesort.then, i32 %37.load148]
   br bb %bubblesort.while.cond11
 }
 
@@ -128,12 +128,12 @@ while.cond11:
   19 = icmp slt i32 %j.phi, i32 %18
   br i1 %19, bb %while.body12, bb %while.exit13
 while.body12:
-  22 = mul i32 %j.phi, i32 4
-  23 = ptradd ptr %arr, i32 %22
+  106 = shl i32 %j.phi, i32 2
+  23 = ptradd ptr %arr, i32 %106
   23.load = load i32 from ptr %23
   26 = add i32 %j.phi, i32 1
-  27 = mul i32 %26, i32 4
-  28 = ptradd ptr %arr, i32 %27
+  107 = shl i32 %26, i32 2
+  28 = ptradd ptr %arr, i32 %107
   28.load = load i32 from ptr %28
   30 = icmp sgt i32 %23.load, i32 %28.load
   br i1 %30, bb %then, bb %if.exit

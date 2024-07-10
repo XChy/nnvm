@@ -16,14 +16,14 @@ if.exit263:
   267 = add i32 %flow.phi, i32 %259
   br bb %while.cond250
 my_memset.while.cond:
-  i.phi373 = phi [bb %while.cond250, i32 0, bb %my_memset.while.body, i32 %16380]
-  9374 = icmp slt i32 %i.phi373, i32 10
-  br i1 %9374, bb %my_memset.while.body, bb %my_memset.while.exit
+  i.phi408 = phi [bb %while.cond250, i32 0, bb %my_memset.while.body, i32 %16415]
+  9409 = icmp slt i32 %i.phi408, i32 10
+  br i1 %9409, bb %my_memset.while.body, bb %my_memset.while.exit
 my_memset.while.body:
-  12377 = mul i32 %i.phi373, i32 4
-  13378 = ptradd ptr @used, i32 %12377
-  store i32 0 to ptr %13378
-  16380 = add i32 %i.phi373, i32 1
+  341412 = shl i32 %i.phi408, i32 2
+  13413 = ptradd ptr @used, i32 %341412
+  store i32 0 to ptr %13413
+  16415 = add i32 %i.phi408, i32 1
   br bb %my_memset.while.cond
 my_memset.while.exit:
   259 = call i32 dfs(i32 %s, i32 %t, i32 1879048192)
@@ -38,10 +38,10 @@ entry102:
 then:
   ret i32 %f
 if.exit:
-  113 = mul i32 %s, i32 4
-  114 = ptradd ptr @used, i32 %113
+  307 = shl i32 %s, i32 2
+  114 = ptradd ptr @used, i32 %307
   store i32 1 to ptr %114
-  122 = ptradd ptr @size, i32 %113
+  122 = ptradd ptr @size, i32 %307
   br bb %while.cond116
 while.cond116:
   d.phi = phi [bb %if.exit, i32 ub, bb %if.exit188, i32 %184, bb %then149, i32 %d.phi, bb %then137, i32 %d.phi]
@@ -53,11 +53,11 @@ while.cond116:
 while.body117:
   127 = mul i32 %s, i32 40
   128 = ptradd ptr @to, i32 %127
-  130 = mul i32 %i115.phi, i32 4
-  131 = ptradd ptr %128, i32 %130
+  309 = shl i32 %i115.phi, i32 2
+  131 = ptradd ptr %128, i32 %309
   131.load = load i32 from ptr %131
-  133 = mul i32 %131.load, i32 4
-  134 = ptradd ptr @used, i32 %133
+  310 = shl i32 %131.load, i32 2
+  134 = ptradd ptr @used, i32 %310
   134.load = load i32 from ptr %134
   136 = icmp ne i32 %134.load, i32 0
   br i1 %136, bb %then137, bb %if.exit138
@@ -68,7 +68,7 @@ then137:
   br bb %while.cond116
 if.exit138:
   143 = ptradd ptr @cap, i32 %127
-  146 = ptradd ptr %143, i32 %130
+  146 = ptradd ptr %143, i32 %309
   146.load = load i32 from ptr %146
   148 = icmp sle i32 %146.load, i32 0
   br i1 %148, bb %then149, bb %if.exit150
@@ -98,10 +98,10 @@ then187:
   211 = mul i32 %209.load, i32 40
   212 = ptradd ptr @cap, i32 %211
   215 = ptradd ptr @rev, i32 %127
-  218 = ptradd ptr %215, i32 %130
+  218 = ptradd ptr %215, i32 %309
   218.load = load i32 from ptr %218
-  220 = mul i32 %218.load, i32 4
-  221 = ptradd ptr %212, i32 %220
+  319 = shl i32 %218.load, i32 2
+  221 = ptradd ptr %212, i32 %319
   239.load = load i32 from ptr %221
   242 = add i32 %239.load, i32 %184
   store i32 %242 to ptr %221
@@ -115,40 +115,40 @@ void add_node(i32 u, i32 v, i32 c) {
 entry17:
   22 = mul i32 %u, i32 40
   23 = ptradd ptr @to, i32 %22
-  25 = mul i32 %u, i32 4
-  26 = ptradd ptr @size, i32 %25
+  323 = shl i32 %u, i32 2
+  26 = ptradd ptr @size, i32 %323
   26.load = load i32 from ptr %26
-  28 = mul i32 %26.load, i32 4
-  29 = ptradd ptr %23, i32 %28
+  324 = shl i32 %26.load, i32 2
+  29 = ptradd ptr %23, i32 %324
   store i32 %v to ptr %29
   33 = ptradd ptr @cap, i32 %22
   36.load = load i32 from ptr %26
-  38 = mul i32 %36.load, i32 4
-  39 = ptradd ptr %33, i32 %38
+  326 = shl i32 %36.load, i32 2
+  39 = ptradd ptr %33, i32 %326
   store i32 %c to ptr %39
   43 = ptradd ptr @rev, i32 %22
   46.load = load i32 from ptr %26
-  48 = mul i32 %46.load, i32 4
-  49 = ptradd ptr %43, i32 %48
-  51 = mul i32 %v, i32 4
-  52 = ptradd ptr @size, i32 %51
+  328 = shl i32 %46.load, i32 2
+  49 = ptradd ptr %43, i32 %328
+  329 = shl i32 %v, i32 2
+  52 = ptradd ptr @size, i32 %329
   52.load = load i32 from ptr %52
   store i32 %52.load to ptr %49
   55 = mul i32 %v, i32 40
   56 = ptradd ptr @to, i32 %55
   59.load = load i32 from ptr %52
-  61 = mul i32 %59.load, i32 4
-  62 = ptradd ptr %56, i32 %61
+  331 = shl i32 %59.load, i32 2
+  62 = ptradd ptr %56, i32 %331
   store i32 %u to ptr %62
   66 = ptradd ptr @cap, i32 %55
   69.load = load i32 from ptr %52
-  71 = mul i32 %69.load, i32 4
-  72 = ptradd ptr %66, i32 %71
+  333 = shl i32 %69.load, i32 2
+  72 = ptradd ptr %66, i32 %333
   store i32 0 to ptr %72
   75 = ptradd ptr @rev, i32 %55
   78.load = load i32 from ptr %52
-  80 = mul i32 %78.load, i32 4
-  81 = ptradd ptr %75, i32 %80
+  335 = shl i32 %78.load, i32 2
+  81 = ptradd ptr %75, i32 %335
   84.load = load i32 from ptr %26
   store i32 %84.load to ptr %81
   91.load = load i32 from ptr %26
@@ -174,99 +174,99 @@ i32 main() {
 entry268:
   271 = call i32 getint()
   272 = call i32 getint()
-  br bb %my_memset.while.cond387
+  br bb %my_memset.while.cond422
 while.cond274:
-  E.phi = phi [bb %my_memset.while.exit397, i32 %272, bb %while.body275, i32 %291]
+  E.phi = phi [bb %my_memset.while.exit432, i32 %272, bb %while.body275, i32 %291]
   278 = icmp sgt i32 %E.phi, i32 0
   br i1 %278, bb %while.body275, bb %while.exit276
 while.body275:
   282 = call i32 getint()
   283 = call i32 getint()
   285 = call i32 getint()
-  22324 = mul i32 %282, i32 40
-  23325 = ptradd ptr @to, i32 %22324
-  25326 = mul i32 %282, i32 4
-  26327 = ptradd ptr @size, i32 %25326
-  26.load328 = load i32 from ptr %26327
-  28329 = mul i32 %26.load328, i32 4
-  29330 = ptradd ptr %23325, i32 %28329
-  store i32 %283 to ptr %29330
-  33332 = ptradd ptr @cap, i32 %22324
-  36.load333 = load i32 from ptr %26327
-  38334 = mul i32 %36.load333, i32 4
-  39335 = ptradd ptr %33332, i32 %38334
-  store i32 %285 to ptr %39335
-  43337 = ptradd ptr @rev, i32 %22324
-  46.load338 = load i32 from ptr %26327
-  48339 = mul i32 %46.load338, i32 4
-  49340 = ptradd ptr %43337, i32 %48339
-  51341 = mul i32 %283, i32 4
-  52342 = ptradd ptr @size, i32 %51341
-  52.load343 = load i32 from ptr %52342
-  store i32 %52.load343 to ptr %49340
-  55345 = mul i32 %283, i32 40
-  56346 = ptradd ptr @to, i32 %55345
-  59.load347 = load i32 from ptr %52342
-  61348 = mul i32 %59.load347, i32 4
-  62349 = ptradd ptr %56346, i32 %61348
-  store i32 %282 to ptr %62349
-  66351 = ptradd ptr @cap, i32 %55345
-  69.load352 = load i32 from ptr %52342
-  71353 = mul i32 %69.load352, i32 4
-  72354 = ptradd ptr %66351, i32 %71353
-  store i32 0 to ptr %72354
-  75356 = ptradd ptr @rev, i32 %55345
-  78.load357 = load i32 from ptr %52342
-  80358 = mul i32 %78.load357, i32 4
-  81359 = ptradd ptr %75356, i32 %80358
-  84.load360 = load i32 from ptr %26327
-  store i32 %84.load360 to ptr %81359
-  91.load362 = load i32 from ptr %26327
-  93363 = add i32 %91.load362, i32 1
-  store i32 %93363 to ptr %26327
-  99.load365 = load i32 from ptr %52342
-  101366 = add i32 %99.load365, i32 1
-  store i32 %101366 to ptr %52342
+  22359 = mul i32 %282, i32 40
+  23360 = ptradd ptr @to, i32 %22359
+  323361 = shl i32 %282, i32 2
+  26362 = ptradd ptr @size, i32 %323361
+  26.load363 = load i32 from ptr %26362
+  324364 = shl i32 %26.load363, i32 2
+  29365 = ptradd ptr %23360, i32 %324364
+  store i32 %283 to ptr %29365
+  33367 = ptradd ptr @cap, i32 %22359
+  36.load368 = load i32 from ptr %26362
+  326369 = shl i32 %36.load368, i32 2
+  39370 = ptradd ptr %33367, i32 %326369
+  store i32 %285 to ptr %39370
+  43372 = ptradd ptr @rev, i32 %22359
+  46.load373 = load i32 from ptr %26362
+  328374 = shl i32 %46.load373, i32 2
+  49375 = ptradd ptr %43372, i32 %328374
+  329376 = shl i32 %283, i32 2
+  52377 = ptradd ptr @size, i32 %329376
+  52.load378 = load i32 from ptr %52377
+  store i32 %52.load378 to ptr %49375
+  55380 = mul i32 %283, i32 40
+  56381 = ptradd ptr @to, i32 %55380
+  59.load382 = load i32 from ptr %52377
+  331383 = shl i32 %59.load382, i32 2
+  62384 = ptradd ptr %56381, i32 %331383
+  store i32 %282 to ptr %62384
+  66386 = ptradd ptr @cap, i32 %55380
+  69.load387 = load i32 from ptr %52377
+  333388 = shl i32 %69.load387, i32 2
+  72389 = ptradd ptr %66386, i32 %333388
+  store i32 0 to ptr %72389
+  75391 = ptradd ptr @rev, i32 %55380
+  78.load392 = load i32 from ptr %52377
+  335393 = shl i32 %78.load392, i32 2
+  81394 = ptradd ptr %75391, i32 %335393
+  84.load395 = load i32 from ptr %26362
+  store i32 %84.load395 to ptr %81394
+  91.load397 = load i32 from ptr %26362
+  93398 = add i32 %91.load397, i32 1
+  store i32 %93398 to ptr %26362
+  99.load400 = load i32 from ptr %52377
+  101401 = add i32 %99.load400, i32 1
+  store i32 %101401 to ptr %52377
   291 = sub i32 %E.phi, i32 1
   br bb %while.cond274
 while.exit276:
   br bb %max_flow.while.cond250
 max_flow.while.cond250:
-  flow.phi311 = phi [bb %while.exit276, i32 0, bb %max_flow.if.exit263, i32 %267319]
-  br bb %my_memset.while.cond402
+  flow.phi346 = phi [bb %while.exit276, i32 0, bb %max_flow.if.exit263, i32 %267354]
+  br bb %my_memset.while.cond437
 max_flow.then262:
-  call void putint(i32 %flow.phi311)
+  call void putint(i32 %flow.phi346)
   call void putch(i32 10)
   ret i32 0
 max_flow.if.exit263:
-  267319 = add i32 %flow.phi311, i32 %259313
+  267354 = add i32 %flow.phi346, i32 %259348
   br bb %max_flow.while.cond250
-my_memset.while.cond387:
-  i.phi388 = phi [bb %entry268, i32 0, bb %my_memset.while.body391, i32 %16395]
-  9389 = icmp slt i32 %i.phi388, i32 10
-  br i1 %9389, bb %my_memset.while.body391, bb %my_memset.while.exit397
-my_memset.while.body391:
-  12392 = mul i32 %i.phi388, i32 4
-  13393 = ptradd ptr @size, i32 %12392
-  store i32 0 to ptr %13393
-  16395 = add i32 %i.phi388, i32 1
-  br bb %my_memset.while.cond387
-my_memset.while.exit397:
+my_memset.while.cond422:
+  i.phi423 = phi [bb %entry268, i32 0, bb %my_memset.while.body426, i32 %16430]
+  9424 = icmp slt i32 %i.phi423, i32 10
+  br i1 %9424, bb %my_memset.while.body426, bb %my_memset.while.exit432
+my_memset.while.body426:
+  341427 = shl i32 %i.phi423, i32 2
+  13428 = ptradd ptr @size, i32 %341427
+  store i32 0 to ptr %13428
+  16430 = add i32 %i.phi423, i32 1
+  br bb %my_memset.while.cond422
+my_memset.while.exit432:
   br bb %while.cond274
-my_memset.while.cond402:
-  i.phi403 = phi [bb %max_flow.while.cond250, i32 0, bb %my_memset.while.body406, i32 %16410]
-  9404 = icmp slt i32 %i.phi403, i32 10
-  br i1 %9404, bb %my_memset.while.body406, bb %my_memset.while.exit412
-my_memset.while.body406:
-  12407 = mul i32 %i.phi403, i32 4
-  13408 = ptradd ptr @used, i32 %12407
-  store i32 0 to ptr %13408
-  16410 = add i32 %i.phi403, i32 1
-  br bb %my_memset.while.cond402
-my_memset.while.exit412:
-  259313 = call i32 dfs(i32 1, i32 %271, i32 1879048192)
-  261314 = icmp eq i32 %259313, i32 0
-  br i1 %261314, bb %max_flow.then262, bb %max_flow.if.exit263
+my_memset.while.cond437:
+  i.phi438 = phi [bb %max_flow.while.cond250, i32 0, bb %my_memset.while.body441, i32 %16445]
+  9439 = icmp slt i32 %i.phi438, i32 10
+  br i1 %9439, bb %my_memset.while.body441, bb %my_memset.while.exit447
+my_memset.while.body441:
+  341442 = shl i32 %i.phi438, i32 2
+  13443 = ptradd ptr @used, i32 %341442
+  store i32 0 to ptr %13443
+  16445 = add i32 %i.phi438, i32 1
+  br bb %my_memset.while.cond437
+my_memset.while.exit447:
+  259348 = call i32 dfs(i32 1, i32 %271, i32 1879048192)
+  261349 = icmp eq i32 %259348, i32 0
+  br i1 %261349, bb %max_flow.then262, bb %max_flow.if.exit263
 }
 
 external float getfloat()
@@ -281,8 +281,8 @@ while.cond:
   9 = icmp slt i32 %i.phi, i32 %n
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
-  12 = mul i32 %i.phi, i32 4
-  13 = ptradd ptr %arr, i32 %12
+  341 = shl i32 %i.phi, i32 2
+  13 = ptradd ptr %arr, i32 %341
   store i32 %val to ptr %13
   16 = add i32 %i.phi, i32 1
   br bb %while.cond

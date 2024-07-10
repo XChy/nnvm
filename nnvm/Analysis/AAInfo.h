@@ -29,6 +29,6 @@ private:
   GInt size;
 };
 
-Value *getRootObj(Value *pointer);
+Value *getRootObj(Value *pointer, uint depth = 0);
 
 } /* namespace nnvm */

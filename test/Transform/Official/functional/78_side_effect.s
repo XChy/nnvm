@@ -10,20 +10,19 @@ a:
 .word 0xffffffff
 .section .text
 main:
-  ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD s10, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s1, 32(sp)
-  SD s6, 40(sp)
-  SD s2, 48(sp)
-  SD s3, 56(sp)
-  SD s4, 64(sp)
-  SD s7, 72(sp)
-  SD ra, 80(sp)
-  SD s8, 88(sp)
-  SD s9, 96(sp)
+  ADDI sp, sp, -96
+  SD s10, 0(sp)
+  SD s0, 8(sp)
+  SD s5, 16(sp)
+  SD s1, 24(sp)
+  SD s6, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s7, 64(sp)
+  SD ra, 72(sp)
+  SD s8, 80(sp)
+  SD s9, 88(sp)
   ADD s0, zero, zero
   ADDI s1, zero, 5
   # implict jump to bb1
@@ -50,20 +49,19 @@ bb2:
   LA s0, a
   LW s1, 0(s0)
   ADD a0, s1, zero
-  LD s11, 0(sp)
-  LD s10, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s1, 32(sp)
-  LD s6, 40(sp)
-  LD s2, 48(sp)
-  LD s3, 56(sp)
-  LD s4, 64(sp)
-  LD s7, 72(sp)
-  LD ra, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
-  ADDI sp, sp, 112
+  LD s10, 0(sp)
+  LD s0, 8(sp)
+  LD s5, 16(sp)
+  LD s1, 24(sp)
+  LD s6, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s7, 64(sp)
+  LD ra, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb3:
   LA s4, a
@@ -143,10 +141,9 @@ bb15:
   CALL putch
   LA s8, b
   LW s10, 0(s8)
-  ADDI s8, zero, 2
-  MULW s11, s10, s8
-  LA s8, b
-  SW s11, 0(s8)
+  SLLIW s8, s10, 1
+  LA s10, b
+  SW s8, 0(s10)
   JAL zero, bb14
 bb16:
   LA s0, a

@@ -15,8 +15,8 @@ entry8:
   26 = ptradd ptr %23, i32 %25
   28 = mul i32 %e, i32 28
   29 = ptradd ptr %26, i32 %28
-  31 = mul i32 %last, i32 4
-  32 = ptradd ptr %29, i32 %31
+  366 = shl i32 %last, i32 2
+  32 = ptradd ptr %29, i32 %366
   32.load = load i32 from ptr %32
   35 = icmp ne i32 %32.load, i32 -1
   br i1 %35, bb %then36, bb %if.exit37
@@ -36,8 +36,8 @@ if.exit68:
   71 = icmp ne i32 %a, i32 0
   br i1 %71, bb %then72, bb %if.exit73
 then72:
-  5369 = icmp eq i32 %last, i32 2
-  br i1 %5369, bb %equal.then, bb %equal.if.exit
+  5379 = icmp eq i32 %last, i32 2
+  br i1 %5379, bb %equal.then, bb %equal.if.exit
 then72.split:
   77.ret = phi [bb %equal.then, i32 1, bb %equal.if.exit, i32 0]
   78 = sub i32 %a, i32 %77.ret
@@ -51,10 +51,10 @@ if.exit73:
   91 = icmp ne i32 %b, i32 0
   br i1 %91, bb %then92, bb %if.exit93
 then92:
-  5378 = icmp eq i32 %last, i32 3
-  br i1 %5378, bb %equal.then380, bb %equal.if.exit382
+  5388 = icmp eq i32 %last, i32 3
+  br i1 %5388, bb %equal.then390, bb %equal.if.exit392
 then92.split:
-  97.ret = phi [bb %equal.then380, i32 1, bb %equal.if.exit382, i32 0]
+  97.ret = phi [bb %equal.then390, i32 1, bb %equal.if.exit392, i32 0]
   98 = sub i32 %b, i32 %97.ret
   100 = add i32 %a, i32 1
   102 = sub i32 %b, i32 1
@@ -68,10 +68,10 @@ if.exit93:
   112 = icmp ne i32 %c, i32 0
   br i1 %112, bb %then113, bb %if.exit114
 then113:
-  5387 = icmp eq i32 %last, i32 4
-  br i1 %5387, bb %equal.then389, bb %equal.if.exit391
+  5397 = icmp eq i32 %last, i32 4
+  br i1 %5397, bb %equal.then399, bb %equal.if.exit401
 then113.split:
-  118.ret = phi [bb %equal.then389, i32 1, bb %equal.if.exit391, i32 0]
+  118.ret = phi [bb %equal.then399, i32 1, bb %equal.if.exit401, i32 0]
   119 = sub i32 %c, i32 %118.ret
   122 = add i32 %b, i32 1
   124 = sub i32 %c, i32 1
@@ -85,10 +85,10 @@ if.exit114:
   133 = icmp ne i32 %d, i32 0
   br i1 %133, bb %then134, bb %if.exit135
 then134:
-  5396 = icmp eq i32 %last, i32 5
-  br i1 %5396, bb %equal.then398, bb %equal.if.exit400
+  5406 = icmp eq i32 %last, i32 5
+  br i1 %5406, bb %equal.then408, bb %equal.if.exit410
 then134.split:
-  139.ret = phi [bb %equal.then398, i32 1, bb %equal.if.exit400, i32 0]
+  139.ret = phi [bb %equal.then408, i32 1, bb %equal.if.exit410, i32 0]
   140 = sub i32 %d, i32 %139.ret
   144 = add i32 %c, i32 1
   146 = sub i32 %d, i32 1
@@ -118,17 +118,17 @@ equal.then:
   br bb %then72.split
 equal.if.exit:
   br bb %then72.split
-equal.then380:
+equal.then390:
   br bb %then92.split
-equal.if.exit382:
+equal.if.exit392:
   br bb %then92.split
-equal.then389:
+equal.then399:
   br bb %then113.split
-equal.if.exit391:
+equal.if.exit401:
   br bb %then113.split
-equal.then398:
+equal.then408:
   br bb %then134.split
-equal.if.exit400:
+equal.if.exit410:
   br bb %then134.split
 }
 
@@ -229,8 +229,8 @@ while.body256:
   272 = ptradd ptr %269, i32 %271
   274 = mul i32 %m.phi, i32 28
   275 = ptradd ptr %272, i32 %274
-  277 = mul i32 %h.phi, i32 4
-  278 = ptradd ptr %275, i32 %277
+  371 = shl i32 %h.phi, i32 2
+  278 = ptradd ptr %275, i32 %371
   store i32 -1 to ptr %278
   281 = add i32 %h.phi, i32 1
   br bb %while.cond255
@@ -242,12 +242,12 @@ while.cond292:
   297 = icmp slt i32 %i.phi, i32 %213
   br i1 %297, bb %while.body293, bb %while.exit294
 while.body293:
-  300 = mul i32 %i.phi, i32 4
-  301 = ptradd ptr @list, i32 %300
+  372 = shl i32 %i.phi, i32 2
+  301 = ptradd ptr @list, i32 %372
   302 = call i32 getint()
   store i32 %302 to ptr %301
-  307 = mul i32 %302, i32 4
-  308 = ptradd ptr @cns, i32 %307
+  374 = shl i32 %302, i32 2
+  308 = ptradd ptr @cns, i32 %374
   314.load = load i32 from ptr %308
   316 = add i32 %314.load, i32 1
   store i32 %316 to ptr %308

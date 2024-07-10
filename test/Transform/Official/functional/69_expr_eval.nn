@@ -15,8 +15,8 @@ init.cond:
   br i1 %193, bb %init, bb %init.exit
 init:
   cnt.dec = sub i32 %cnt_ptr.phi, i32 1
-  offset = mul i32 %cnt.dec, i32 4
-  arr.index198 = ptradd ptr %oprs, i32 %offset
+  331 = shl i32 %cnt.dec, i32 2
+  arr.index198 = ptradd ptr %oprs, i32 %331
   store i32 0 to ptr %arr.index198
   br bb %init.cond
 init.exit:
@@ -27,8 +27,8 @@ init.cond200:
   br i1 %205, bb %init201, bb %init.exit202
 init201:
   cnt.dec207 = sub i32 %cnt_ptr203.phi, i32 1
-  offset208 = mul i32 %cnt.dec207, i32 4
-  arr.index210 = ptradd ptr %ops, i32 %offset208
+  333 = shl i32 %cnt.dec207, i32 2
+  arr.index210 = ptradd ptr %ops, i32 %333
   store i32 0 to ptr %arr.index210
   br bb %init.cond200
 init.exit202:
@@ -46,87 +46,87 @@ then214:
   ret i32 -1
 if.exit215:
   num.load217 = load i32 from ptr @num
-  112.load907 = load i32 from ptr %oprs
-  114908 = add i32 %112.load907, i32 1
-  store i32 %114908 to ptr %oprs
-  118910 = mul i32 %114908, i32 4
-  119911 = ptradd ptr %oprs, i32 %118910
-  store i32 %num.load217 to ptr %119911
+  112.load912 = load i32 from ptr %oprs
+  114913 = add i32 %112.load912, i32 1
+  store i32 %114913 to ptr %oprs
+  337915 = shl i32 %114913, i32 2
+  119916 = ptradd ptr %oprs, i32 %337915
+  store i32 %num.load217 to ptr %119916
   br bb %next_token.while.cond
 while.cond220:
-  rhs.phi322 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441311, i32 %rhs.phi]
-  lhs.phi318 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441311, i32 %lhs.phi]
-  cur_op.phi316 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441311, i32 %cur_op.phi]
+  rhs.phi322 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %rhs.phi]
+  lhs.phi318 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %lhs.phi]
+  cur_op.phi316 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %cur_op.phi]
   cur_token.load223 = load i32 from ptr @cur_token
   225 = icmp eq i32 %cur_token.load223, i32 1
-  br i1 %225, bb %while.body221, bb %next_token.while.cond1387
+  br i1 %225, bb %while.body221, bb %next_token.while.cond1392
 while.body221:
   other.load = load i32 from ptr @other
-  76755 = icmp eq i32 %other.load, i32 43
-  br i1 %76755, bb %get_op_prec.select.then77, bb %get_op_prec.select.else78
+  76760 = icmp eq i32 %other.load, i32 43
+  br i1 %76760, bb %get_op_prec.select.then77, bb %get_op_prec.select.else78
 while.body221.split:
   230.ret = phi [bb %get_op_prec.then85, i32 10, bb %get_op_prec.then105, i32 20, bb %get_op_prec.if.exit106, i32 0]
   231 = icmp ne i32 %230.ret, i32 0
-  232 = xor i1 %231, i1 1
+  232 = xor i1 %231, i1 -1
   233 = zext i1 %232 to i32
   234 = icmp ne i32 %233, i32 0
-  br i1 %234, bb %next_token.while.cond1387, bb %next_token.while.cond1191
+  br i1 %234, bb %next_token.while.cond1392, bb %next_token.while.cond1196
 while.cond238:
-  rhs.phi = phi [bb %next_token.if.exit441213, i32 %rhs.phi322, bb %while.body239.split, i32 %127.load648]
-  lhs.phi = phi [bb %next_token.if.exit441213, i32 %lhs.phi318, bb %while.body239.split, i32 %127.load658]
-  cur_op.phi = phi [bb %next_token.if.exit441213, i32 %cur_op.phi316, bb %while.body239.split, i32 %127.load638]
-  145.load583 = load i32 from ptr %ops
-  242 = icmp ne i32 %145.load583, i32 0
+  rhs.phi = phi [bb %next_token.if.exit441218, i32 %rhs.phi322, bb %while.body239.split, i32 %127.load653]
+  lhs.phi = phi [bb %next_token.if.exit441218, i32 %lhs.phi318, bb %while.body239.split, i32 %127.load663]
+  cur_op.phi = phi [bb %next_token.if.exit441218, i32 %cur_op.phi316, bb %while.body239.split, i32 %127.load643]
+  145.load588 = load i32 from ptr %ops
+  242 = icmp ne i32 %145.load588, i32 0
   br i1 %242, bb %select.then243, bb %select.else244
 while.body239:
-  124.load635 = load i32 from ptr %ops
-  126636 = mul i32 %124.load635, i32 4
-  127637 = ptradd ptr %ops, i32 %126636
-  127.load638 = load i32 from ptr %127637
-  134639 = sub i32 %124.load635, i32 1
-  store i32 %134639 to ptr %ops
-  124.load645 = load i32 from ptr %oprs
-  126646 = mul i32 %124.load645, i32 4
-  127647 = ptradd ptr %oprs, i32 %126646
-  127.load648 = load i32 from ptr %127647
-  134649 = sub i32 %124.load645, i32 1
-  store i32 %134649 to ptr %oprs
-  124.load655 = load i32 from ptr %oprs
-  126656 = mul i32 %124.load655, i32 4
-  127657 = ptradd ptr %oprs, i32 %126656
-  127.load658 = load i32 from ptr %127657
-  134659 = sub i32 %124.load655, i32 1
-  store i32 %134659 to ptr %oprs
-  152447 = icmp eq i32 %127.load638, i32 43
-  br i1 %152447, bb %eval_op.then153, bb %eval_op.if.exit154
+  124.load640 = load i32 from ptr %ops
+  336641 = shl i32 %124.load640, i32 2
+  127642 = ptradd ptr %ops, i32 %336641
+  127.load643 = load i32 from ptr %127642
+  134644 = sub i32 %124.load640, i32 1
+  store i32 %134644 to ptr %ops
+  124.load650 = load i32 from ptr %oprs
+  336651 = shl i32 %124.load650, i32 2
+  127652 = ptradd ptr %oprs, i32 %336651
+  127.load653 = load i32 from ptr %127652
+  134654 = sub i32 %124.load650, i32 1
+  store i32 %134654 to ptr %oprs
+  124.load660 = load i32 from ptr %oprs
+  336661 = shl i32 %124.load660, i32 2
+  127662 = ptradd ptr %oprs, i32 %336661
+  127.load663 = load i32 from ptr %127662
+  134664 = sub i32 %124.load660, i32 1
+  store i32 %134664 to ptr %oprs
+  152452 = icmp eq i32 %127.load643, i32 43
+  br i1 %152452, bb %eval_op.then153, bb %eval_op.if.exit154
 while.body239.split:
-  263.ret = phi [bb %eval_op.then153, i32 %157450, bb %eval_op.then160, i32 %164456, bb %eval_op.then167, i32 %171462, bb %eval_op.then174, i32 %178468, bb %eval_op.then181, i32 %185474, bb %eval_op.if.exit182, i32 0]
-  112.load916 = load i32 from ptr %oprs
-  114917 = add i32 %112.load916, i32 1
-  store i32 %114917 to ptr %oprs
-  118919 = mul i32 %114917, i32 4
-  119920 = ptradd ptr %oprs, i32 %118919
-  store i32 %263.ret to ptr %119920
+  263.ret = phi [bb %eval_op.then153, i32 %157455, bb %eval_op.then160, i32 %164461, bb %eval_op.then167, i32 %171467, bb %eval_op.then174, i32 %178473, bb %eval_op.then181, i32 %185479, bb %eval_op.if.exit182, i32 0]
+  112.load921 = load i32 from ptr %oprs
+  114922 = add i32 %112.load921, i32 1
+  store i32 %114922 to ptr %oprs
+  337924 = shl i32 %114922, i32 2
+  119925 = ptradd ptr %oprs, i32 %337924
+  store i32 %263.ret to ptr %119925
   br bb %while.cond238
 while.exit240:
-  112.load925 = load i32 from ptr %ops
-  114926 = add i32 %112.load925, i32 1
-  store i32 %114926 to ptr %ops
-  118928 = mul i32 %114926, i32 4
-  119929 = ptradd ptr %ops, i32 %118928
-  store i32 %other.load to ptr %119929
+  112.load930 = load i32 from ptr %ops
+  114931 = add i32 %112.load930, i32 1
+  store i32 %114931 to ptr %ops
+  337933 = shl i32 %114931, i32 2
+  119934 = ptradd ptr %ops, i32 %337933
+  store i32 %other.load to ptr %119934
   cur_token.load267 = load i32 from ptr @cur_token
   269 = icmp ne i32 %cur_token.load267, i32 0
   br i1 %269, bb %then270, bb %if.exit271
 select.then243:
-  138.load603 = load i32 from ptr %ops
-  140604 = mul i32 %138.load603, i32 4
-  141605 = ptradd ptr %ops, i32 %140604
-  141.load606 = load i32 from ptr %141605
-  76793 = icmp eq i32 %141.load606, i32 43
-  br i1 %76793, bb %get_op_prec.select.then77795, bb %get_op_prec.select.else78797
+  138.load608 = load i32 from ptr %ops
+  335609 = shl i32 %138.load608, i32 2
+  141610 = ptradd ptr %ops, i32 %335609
+  141.load611 = load i32 from ptr %141610
+  76798 = icmp eq i32 %141.load611, i32 43
+  br i1 %76798, bb %get_op_prec.select.then77800, bb %get_op_prec.select.else78802
 select.then243.split.split:
-  248.ret = phi [bb %get_op_prec.then85803, i32 10, bb %get_op_prec.then105824, i32 20, bb %get_op_prec.if.exit106826, i32 0]
+  248.ret = phi [bb %get_op_prec.then85808, i32 10, bb %get_op_prec.then105829, i32 20, bb %get_op_prec.if.exit106831, i32 0]
   251 = icmp sge i32 %248.ret, i32 %230.ret
   br bb %select.exit245
 select.else244:
@@ -145,535 +145,541 @@ then270:
   ret i32 -1
 if.exit271:
   num.load273 = load i32 from ptr @num
-  112.load934 = load i32 from ptr %oprs
-  114935 = add i32 %112.load934, i32 1
-  store i32 %114935 to ptr %oprs
-  118937 = mul i32 %114935, i32 4
-  119938 = ptradd ptr %oprs, i32 %118937
-  store i32 %num.load273 to ptr %119938
-  br bb %next_token.while.cond1289
+  112.load939 = load i32 from ptr %oprs
+  114940 = add i32 %112.load939, i32 1
+  store i32 %114940 to ptr %oprs
+  337942 = shl i32 %114940, i32 2
+  119943 = ptradd ptr %oprs, i32 %337942
+  store i32 %num.load273 to ptr %119943
+  br bb %next_token.while.cond1294
 while.cond277:
-  145.load588 = load i32 from ptr %ops
-  281 = icmp ne i32 %145.load588, i32 0
+  145.load593 = load i32 from ptr %ops
+  281 = icmp ne i32 %145.load593, i32 0
   br i1 %281, bb %while.body278, bb %while.exit279
 while.body278:
-  124.load665 = load i32 from ptr %ops
-  126666 = mul i32 %124.load665, i32 4
-  127667 = ptradd ptr %ops, i32 %126666
-  127.load668 = load i32 from ptr %127667
-  134669 = sub i32 %124.load665, i32 1
-  store i32 %134669 to ptr %ops
-  124.load675 = load i32 from ptr %oprs
-  126676 = mul i32 %124.load675, i32 4
-  127677 = ptradd ptr %oprs, i32 %126676
-  127.load678 = load i32 from ptr %127677
-  134679 = sub i32 %124.load675, i32 1
-  store i32 %134679 to ptr %oprs
-  124.load685 = load i32 from ptr %oprs
-  126686 = mul i32 %124.load685, i32 4
-  127687 = ptradd ptr %oprs, i32 %126686
-  127.load688 = load i32 from ptr %127687
-  134689 = sub i32 %124.load685, i32 1
-  store i32 %134689 to ptr %oprs
-  152481 = icmp eq i32 %127.load668, i32 43
-  br i1 %152481, bb %eval_op.then153483, bb %eval_op.if.exit154486
+  124.load670 = load i32 from ptr %ops
+  336671 = shl i32 %124.load670, i32 2
+  127672 = ptradd ptr %ops, i32 %336671
+  127.load673 = load i32 from ptr %127672
+  134674 = sub i32 %124.load670, i32 1
+  store i32 %134674 to ptr %ops
+  124.load680 = load i32 from ptr %oprs
+  336681 = shl i32 %124.load680, i32 2
+  127682 = ptradd ptr %oprs, i32 %336681
+  127.load683 = load i32 from ptr %127682
+  134684 = sub i32 %124.load680, i32 1
+  store i32 %134684 to ptr %oprs
+  124.load690 = load i32 from ptr %oprs
+  336691 = shl i32 %124.load690, i32 2
+  127692 = ptradd ptr %oprs, i32 %336691
+  127.load693 = load i32 from ptr %127692
+  134694 = sub i32 %124.load690, i32 1
+  store i32 %134694 to ptr %oprs
+  152486 = icmp eq i32 %127.load673, i32 43
+  br i1 %152486, bb %eval_op.then153488, bb %eval_op.if.exit154491
 while.body278.split:
-  291.ret = phi [bb %eval_op.then153483, i32 %157484, bb %eval_op.then160489, i32 %164490, bb %eval_op.then167495, i32 %171496, bb %eval_op.then174501, i32 %178502, bb %eval_op.then181507, i32 %185508, bb %eval_op.if.exit182510, i32 0]
-  112.load943 = load i32 from ptr %oprs
-  114944 = add i32 %112.load943, i32 1
-  store i32 %114944 to ptr %oprs
-  118946 = mul i32 %114944, i32 4
-  119947 = ptradd ptr %oprs, i32 %118946
-  store i32 %291.ret to ptr %119947
+  291.ret = phi [bb %eval_op.then153488, i32 %157489, bb %eval_op.then160494, i32 %164495, bb %eval_op.then167500, i32 %171501, bb %eval_op.then174506, i32 %178507, bb %eval_op.then181512, i32 %185513, bb %eval_op.if.exit182515, i32 0]
+  112.load948 = load i32 from ptr %oprs
+  114949 = add i32 %112.load948, i32 1
+  store i32 %114949 to ptr %oprs
+  337951 = shl i32 %114949, i32 2
+  119952 = ptradd ptr %oprs, i32 %337951
+  store i32 %291.ret to ptr %119952
   br bb %while.cond277
 while.exit279:
-  138.load611 = load i32 from ptr %oprs
-  140612 = mul i32 %138.load611, i32 4
-  141613 = ptradd ptr %oprs, i32 %140612
-  141.load614 = load i32 from ptr %141613
-  ret i32 %141.load614
+  138.load616 = load i32 from ptr %oprs
+  335617 = shl i32 %138.load616, i32 2
+  141618 = ptradd ptr %oprs, i32 %335617
+  141.load619 = load i32 from ptr %141618
+  ret i32 %141.load619
 eval_op.then153:
-  157450 = add i32 %127.load658, i32 %127.load648
+  157455 = add i32 %127.load663, i32 %127.load653
   br bb %while.body239.split
 eval_op.if.exit154:
-  159453 = icmp eq i32 %127.load638, i32 45
-  br i1 %159453, bb %eval_op.then160, bb %eval_op.if.exit161
+  159458 = icmp eq i32 %127.load643, i32 45
+  br i1 %159458, bb %eval_op.then160, bb %eval_op.if.exit161
 eval_op.then160:
-  164456 = sub i32 %127.load658, i32 %127.load648
+  164461 = sub i32 %127.load663, i32 %127.load653
   br bb %while.body239.split
 eval_op.if.exit161:
-  166459 = icmp eq i32 %127.load638, i32 42
-  br i1 %166459, bb %eval_op.then167, bb %eval_op.if.exit168
+  166464 = icmp eq i32 %127.load643, i32 42
+  br i1 %166464, bb %eval_op.then167, bb %eval_op.if.exit168
 eval_op.then167:
-  171462 = mul i32 %127.load658, i32 %127.load648
+  171467 = mul i32 %127.load663, i32 %127.load653
   br bb %while.body239.split
 eval_op.if.exit168:
-  173465 = icmp eq i32 %127.load638, i32 47
-  br i1 %173465, bb %eval_op.then174, bb %eval_op.if.exit175
+  173470 = icmp eq i32 %127.load643, i32 47
+  br i1 %173470, bb %eval_op.then174, bb %eval_op.if.exit175
 eval_op.then174:
-  178468 = sdiv i32 %127.load658, i32 %127.load648
+  178473 = sdiv i32 %127.load663, i32 %127.load653
   br bb %while.body239.split
 eval_op.if.exit175:
-  180471 = icmp eq i32 %127.load638, i32 37
-  br i1 %180471, bb %eval_op.then181, bb %eval_op.if.exit182
+  180476 = icmp eq i32 %127.load643, i32 37
+  br i1 %180476, bb %eval_op.then181, bb %eval_op.if.exit182
 eval_op.then181:
-  185474 = srem i32 %127.load658, i32 %127.load648
+  185479 = srem i32 %127.load663, i32 %127.load653
   br bb %while.body239.split
 eval_op.if.exit182:
   br bb %while.body239.split
-eval_op.then153483:
-  157484 = add i32 %127.load688, i32 %127.load678
+eval_op.then153488:
+  157489 = add i32 %127.load693, i32 %127.load683
   br bb %while.body278.split
-eval_op.if.exit154486:
-  159487 = icmp eq i32 %127.load668, i32 45
-  br i1 %159487, bb %eval_op.then160489, bb %eval_op.if.exit161492
-eval_op.then160489:
-  164490 = sub i32 %127.load688, i32 %127.load678
+eval_op.if.exit154491:
+  159492 = icmp eq i32 %127.load673, i32 45
+  br i1 %159492, bb %eval_op.then160494, bb %eval_op.if.exit161497
+eval_op.then160494:
+  164495 = sub i32 %127.load693, i32 %127.load683
   br bb %while.body278.split
-eval_op.if.exit161492:
-  166493 = icmp eq i32 %127.load668, i32 42
-  br i1 %166493, bb %eval_op.then167495, bb %eval_op.if.exit168498
-eval_op.then167495:
-  171496 = mul i32 %127.load688, i32 %127.load678
+eval_op.if.exit161497:
+  166498 = icmp eq i32 %127.load673, i32 42
+  br i1 %166498, bb %eval_op.then167500, bb %eval_op.if.exit168503
+eval_op.then167500:
+  171501 = mul i32 %127.load693, i32 %127.load683
   br bb %while.body278.split
-eval_op.if.exit168498:
-  173499 = icmp eq i32 %127.load668, i32 47
-  br i1 %173499, bb %eval_op.then174501, bb %eval_op.if.exit175504
-eval_op.then174501:
-  178502 = sdiv i32 %127.load688, i32 %127.load678
+eval_op.if.exit168503:
+  173504 = icmp eq i32 %127.load673, i32 47
+  br i1 %173504, bb %eval_op.then174506, bb %eval_op.if.exit175509
+eval_op.then174506:
+  178507 = sdiv i32 %127.load693, i32 %127.load683
   br bb %while.body278.split
-eval_op.if.exit175504:
-  180505 = icmp eq i32 %127.load668, i32 37
-  br i1 %180505, bb %eval_op.then181507, bb %eval_op.if.exit182510
-eval_op.then181507:
-  185508 = srem i32 %127.load688, i32 %127.load678
+eval_op.if.exit175509:
+  180510 = icmp eq i32 %127.load673, i32 37
+  br i1 %180510, bb %eval_op.then181512, bb %eval_op.if.exit182515
+eval_op.then181512:
+  185513 = srem i32 %127.load693, i32 %127.load683
   br bb %while.body278.split
-eval_op.if.exit182510:
+eval_op.if.exit182515:
   br bb %while.body278.split
 get_op_prec.select.then77:
   br bb %get_op_prec.select.exit79
 get_op_prec.select.else78:
-  82760 = icmp eq i32 %other.load, i32 45
+  82765 = icmp eq i32 %other.load, i32 45
   br bb %get_op_prec.select.exit79
 get_op_prec.select.exit79:
-  select80.phi763 = phi [bb %get_op_prec.select.else78, i1 %82760, bb %get_op_prec.select.then77, i1 1]
-  br i1 %select80.phi763, bb %get_op_prec.then85, bb %get_op_prec.if.exit86
+  select80.phi768 = phi [bb %get_op_prec.select.else78, i1 %82765, bb %get_op_prec.select.then77, i1 -1]
+  br i1 %select80.phi768, bb %get_op_prec.then85, bb %get_op_prec.if.exit86
 get_op_prec.then85:
   br bb %while.body221.split
 get_op_prec.if.exit86:
-  88768 = icmp eq i32 %other.load, i32 42
-  br i1 %88768, bb %get_op_prec.select.then89, bb %get_op_prec.select.else90
+  88773 = icmp eq i32 %other.load, i32 42
+  br i1 %88773, bb %get_op_prec.select.then89, bb %get_op_prec.select.else90
 get_op_prec.select.then89:
   br bb %get_op_prec.select.exit91
 get_op_prec.select.else90:
-  94773 = icmp eq i32 %other.load, i32 47
+  94778 = icmp eq i32 %other.load, i32 47
   br bb %get_op_prec.select.exit91
 get_op_prec.select.exit91:
-  select92.phi776 = phi [bb %get_op_prec.select.else90, i1 %94773, bb %get_op_prec.select.then89, i1 1]
-  br i1 %select92.phi776, bb %get_op_prec.select.then97, bb %get_op_prec.select.else98
+  select92.phi781 = phi [bb %get_op_prec.select.else90, i1 %94778, bb %get_op_prec.select.then89, i1 -1]
+  br i1 %select92.phi781, bb %get_op_prec.select.then97, bb %get_op_prec.select.else98
 get_op_prec.select.then97:
   br bb %get_op_prec.select.exit99
 get_op_prec.select.else98:
-  102781 = icmp eq i32 %other.load, i32 37
+  102786 = icmp eq i32 %other.load, i32 37
   br bb %get_op_prec.select.exit99
 get_op_prec.select.exit99:
-  select100.phi784 = phi [bb %get_op_prec.select.else98, i1 %102781, bb %get_op_prec.select.then97, i1 1]
-  br i1 %select100.phi784, bb %get_op_prec.then105, bb %get_op_prec.if.exit106
+  select100.phi789 = phi [bb %get_op_prec.select.else98, i1 %102786, bb %get_op_prec.select.then97, i1 -1]
+  br i1 %select100.phi789, bb %get_op_prec.then105, bb %get_op_prec.if.exit106
 get_op_prec.then105:
   br bb %while.body221.split
 get_op_prec.if.exit106:
   br bb %while.body221.split
-get_op_prec.select.then77795:
-  br bb %get_op_prec.select.exit79800
-get_op_prec.select.else78797:
-  82798 = icmp eq i32 %141.load606, i32 45
-  br bb %get_op_prec.select.exit79800
-get_op_prec.select.exit79800:
-  select80.phi801 = phi [bb %get_op_prec.select.else78797, i1 %82798, bb %get_op_prec.select.then77795, i1 1]
-  br i1 %select80.phi801, bb %get_op_prec.then85803, bb %get_op_prec.if.exit86805
-get_op_prec.then85803:
+get_op_prec.select.then77800:
+  br bb %get_op_prec.select.exit79805
+get_op_prec.select.else78802:
+  82803 = icmp eq i32 %141.load611, i32 45
+  br bb %get_op_prec.select.exit79805
+get_op_prec.select.exit79805:
+  select80.phi806 = phi [bb %get_op_prec.select.else78802, i1 %82803, bb %get_op_prec.select.then77800, i1 -1]
+  br i1 %select80.phi806, bb %get_op_prec.then85808, bb %get_op_prec.if.exit86810
+get_op_prec.then85808:
   br bb %select.then243.split.split
-get_op_prec.if.exit86805:
-  88806 = icmp eq i32 %141.load606, i32 42
-  br i1 %88806, bb %get_op_prec.select.then89808, bb %get_op_prec.select.else90810
-get_op_prec.select.then89808:
-  br bb %get_op_prec.select.exit91813
-get_op_prec.select.else90810:
-  94811 = icmp eq i32 %141.load606, i32 47
-  br bb %get_op_prec.select.exit91813
-get_op_prec.select.exit91813:
-  select92.phi814 = phi [bb %get_op_prec.select.else90810, i1 %94811, bb %get_op_prec.select.then89808, i1 1]
-  br i1 %select92.phi814, bb %get_op_prec.select.then97816, bb %get_op_prec.select.else98818
-get_op_prec.select.then97816:
-  br bb %get_op_prec.select.exit99821
-get_op_prec.select.else98818:
-  102819 = icmp eq i32 %141.load606, i32 37
-  br bb %get_op_prec.select.exit99821
-get_op_prec.select.exit99821:
-  select100.phi822 = phi [bb %get_op_prec.select.else98818, i1 %102819, bb %get_op_prec.select.then97816, i1 1]
-  br i1 %select100.phi822, bb %get_op_prec.then105824, bb %get_op_prec.if.exit106826
-get_op_prec.then105824:
+get_op_prec.if.exit86810:
+  88811 = icmp eq i32 %141.load611, i32 42
+  br i1 %88811, bb %get_op_prec.select.then89813, bb %get_op_prec.select.else90815
+get_op_prec.select.then89813:
+  br bb %get_op_prec.select.exit91818
+get_op_prec.select.else90815:
+  94816 = icmp eq i32 %141.load611, i32 47
+  br bb %get_op_prec.select.exit91818
+get_op_prec.select.exit91818:
+  select92.phi819 = phi [bb %get_op_prec.select.else90815, i1 %94816, bb %get_op_prec.select.then89813, i1 -1]
+  br i1 %select92.phi819, bb %get_op_prec.select.then97821, bb %get_op_prec.select.else98823
+get_op_prec.select.then97821:
+  br bb %get_op_prec.select.exit99826
+get_op_prec.select.else98823:
+  102824 = icmp eq i32 %141.load611, i32 37
+  br bb %get_op_prec.select.exit99826
+get_op_prec.select.exit99826:
+  select100.phi827 = phi [bb %get_op_prec.select.else98823, i1 %102824, bb %get_op_prec.select.then97821, i1 -1]
+  br i1 %select100.phi827, bb %get_op_prec.then105829, bb %get_op_prec.if.exit106831
+get_op_prec.then105829:
   br bb %select.then243.split.split
-get_op_prec.if.exit106826:
+get_op_prec.if.exit106831:
   br bb %select.then243.split.split
 next_token.while.cond:
-  last_char.load361094 = load i32 from ptr @last_char
-  610311173 = icmp eq i32 %last_char.load361094, i32 32
-  br i1 %610311173, bb %next_token.is_space.select.then, bb %next_token.is_space.select.else
+  last_char.load361099 = load i32 from ptr @last_char
+  610361178 = icmp eq i32 %last_char.load361099, i32 32
+  br i1 %610361178, bb %next_token.is_space.select.then, bb %next_token.is_space.select.else
 next_token.while.cond.split:
-  37.ret1097 = phi [bb %next_token.is_space.then, i32 1, bb %next_token.is_space.else, i32 0]
-  381098 = icmp ne i32 %37.ret1097, i32 0
-  br i1 %381098, bb %next_token.while.body, bb %next_token.while.exit
+  37.ret1102 = phi [bb %next_token.is_space.then, i32 1, bb %next_token.is_space.else, i32 0]
+  381103 = icmp ne i32 %37.ret1102, i32 0
+  br i1 %381103, bb %next_token.while.body, bb %next_token.while.exit
 next_token.while.body:
-  11992 = call i32 getch()
-  store i32 %11992 to ptr @last_char
+  11997 = call i32 getch()
+  store i32 %11997 to ptr @last_char
   br bb %next_token.while.cond
 next_token.while.exit:
-  last_char.load401104 = load i32 from ptr @last_char
-  219971143 = icmp sge i32 %last_char.load401104, i32 48
-  br i1 %219971143, bb %next_token.is_num.select.then22, bb %next_token.is_num.select.else23
+  last_char.load401109 = load i32 from ptr @last_char
+  2110021148 = icmp sge i32 %last_char.load401109, i32 48
+  br i1 %2110021148, bb %next_token.is_num.select.then22, bb %next_token.is_num.select.else23
 next_token.while.exit.split:
-  41.ret1107 = phi [bb %next_token.is_num.then29, i32 1, bb %next_token.is_num.else31, i32 0]
-  421108 = icmp ne i32 %41.ret1107, i32 0
-  br i1 %421108, bb %next_token.then43, bb %next_token.else45
+  41.ret1112 = phi [bb %next_token.is_num.then29, i32 1, bb %next_token.is_num.else31, i32 0]
+  421113 = icmp ne i32 %41.ret1112, i32 0
+  br i1 %421113, bb %next_token.then43, bb %next_token.else45
 next_token.then43:
-  last_char.load461111 = load i32 from ptr @last_char
-  471112 = sub i32 %last_char.load461111, i32 48
-  store i32 %471112 to ptr @num
+  last_char.load461116 = load i32 from ptr @last_char
+  471117 = sub i32 %last_char.load461116, i32 48
+  store i32 %471117 to ptr @num
   br bb %next_token.while.cond48
 next_token.if.exit44:
+  cur_token.load1121 = load i32 from ptr @cur_token
   br bb %while.cond220
 next_token.else45:
-  last_char.load601119 = load i32 from ptr @last_char
-  store i32 %last_char.load601119 to ptr @other
-  11998 = call i32 getch()
-  store i32 %11998 to ptr @last_char
+  last_char.load601124 = load i32 from ptr @last_char
+  store i32 %last_char.load601124 to ptr @other
+  12003 = call i32 getch()
+  store i32 %12003 to ptr @last_char
   store i32 1 to ptr @cur_token
   br bb %next_token.if.exit44
 next_token.while.cond48:
-  12004 = call i32 getch()
-  store i32 %12004 to ptr @last_char
-  2110141158 = icmp sge i32 %12004, i32 48
-  br i1 %2110141158, bb %next_token.is_num.select.then221016, bb %next_token.is_num.select.else231019
+  12009 = call i32 getch()
+  store i32 %12009 to ptr @last_char
+  2110191163 = icmp sge i32 %12009, i32 48
+  br i1 %2110191163, bb %next_token.is_num.select.then221021, bb %next_token.is_num.select.else231024
 next_token.while.cond48.split:
-  52.ret1128 = phi [bb %next_token.is_num.then291024, i32 1, bb %next_token.is_num.else311026, i32 0]
-  531129 = icmp ne i32 %52.ret1128, i32 0
-  br i1 %531129, bb %next_token.while.body49, bb %next_token.while.exit50
+  52.ret1133 = phi [bb %next_token.is_num.then291029, i32 1, bb %next_token.is_num.else311031, i32 0]
+  531134 = icmp ne i32 %52.ret1133, i32 0
+  br i1 %531134, bb %next_token.while.body49, bb %next_token.while.exit50
 next_token.while.body49:
-  num.load1132 = load i32 from ptr @num
-  551133 = mul i32 %num.load1132, i32 10
-  last_char.load561134 = load i32 from ptr @last_char
-  571135 = add i32 %551133, i32 %last_char.load561134
-  581136 = sub i32 %571135, i32 48
-  store i32 %581136 to ptr @num
+  num.load1137 = load i32 from ptr @num
+  551138 = mul i32 %num.load1137, i32 10
+  last_char.load561139 = load i32 from ptr @last_char
+  571140 = add i32 %551138, i32 %last_char.load561139
+  581141 = sub i32 %571140, i32 48
+  store i32 %581141 to ptr @num
   br bb %next_token.while.cond48
 next_token.while.exit50:
   store i32 0 to ptr @cur_token
   br bb %next_token.if.exit44
 next_token.is_num.select.then22:
-  2710001146 = icmp sle i32 %last_char.load401104, i32 57
+  2710051151 = icmp sle i32 %last_char.load401109, i32 57
   br bb %next_token.is_num.select.exit24
 next_token.is_num.select.else23:
   br bb %next_token.is_num.select.exit24
 next_token.is_num.select.exit24:
-  select25.phi10051151 = phi [bb %next_token.is_num.select.else23, i1 0, bb %next_token.is_num.select.then22, i1 %2710001146]
-  br i1 %select25.phi10051151, bb %next_token.is_num.then29, bb %next_token.is_num.else31
+  select25.phi10101156 = phi [bb %next_token.is_num.select.else23, i1 0, bb %next_token.is_num.select.then22, i1 %2710051151]
+  br i1 %select25.phi10101156, bb %next_token.is_num.then29, bb %next_token.is_num.else31
 next_token.is_num.then29:
   br bb %next_token.while.exit.split
 next_token.is_num.else31:
   br bb %next_token.while.exit.split
-next_token.is_num.select.then221016:
-  2710171161 = icmp sle i32 %12004, i32 57
-  br bb %next_token.is_num.select.exit241021
-next_token.is_num.select.else231019:
-  br bb %next_token.is_num.select.exit241021
-next_token.is_num.select.exit241021:
-  select25.phi10221166 = phi [bb %next_token.is_num.select.else231019, i1 0, bb %next_token.is_num.select.then221016, i1 %2710171161]
-  br i1 %select25.phi10221166, bb %next_token.is_num.then291024, bb %next_token.is_num.else311026
-next_token.is_num.then291024:
+next_token.is_num.select.then221021:
+  2710221166 = icmp sle i32 %12009, i32 57
+  br bb %next_token.is_num.select.exit241026
+next_token.is_num.select.else231024:
+  br bb %next_token.is_num.select.exit241026
+next_token.is_num.select.exit241026:
+  select25.phi10271171 = phi [bb %next_token.is_num.select.else231024, i1 0, bb %next_token.is_num.select.then221021, i1 %2710221166]
+  br i1 %select25.phi10271171, bb %next_token.is_num.then291029, bb %next_token.is_num.else311031
+next_token.is_num.then291029:
   br bb %next_token.while.cond48.split
-next_token.is_num.else311026:
+next_token.is_num.else311031:
   br bb %next_token.while.cond48.split
 next_token.is_space.select.then:
   br bb %next_token.is_space.select.exit
 next_token.is_space.select.else:
-  1210361178 = icmp eq i32 %last_char.load361094, i32 10
+  1210411183 = icmp eq i32 %last_char.load361099, i32 10
   br bb %next_token.is_space.select.exit
 next_token.is_space.select.exit:
-  select.phi10391181 = phi [bb %next_token.is_space.select.else, i1 %1210361178, bb %next_token.is_space.select.then, i1 1]
-  br i1 %select.phi10391181, bb %next_token.is_space.then, bb %next_token.is_space.else
+  select.phi10441186 = phi [bb %next_token.is_space.select.else, i1 %1210411183, bb %next_token.is_space.select.then, i1 -1]
+  br i1 %select.phi10441186, bb %next_token.is_space.then, bb %next_token.is_space.else
 next_token.is_space.then:
   br bb %next_token.while.cond.split
 next_token.is_space.else:
   br bb %next_token.while.cond.split
-next_token.while.cond1191:
-  last_char.load361192 = load i32 from ptr @last_char
-  610311271 = icmp eq i32 %last_char.load361192, i32 32
-  br i1 %610311271, bb %next_token.is_space.select.then1273, bb %next_token.is_space.select.else1275
-next_token.while.cond.split1194:
-  37.ret1195 = phi [bb %next_token.is_space.then1281, i32 1, bb %next_token.is_space.else1283, i32 0]
-  381196 = icmp ne i32 %37.ret1195, i32 0
-  br i1 %381196, bb %next_token.while.body1198, bb %next_token.while.exit1201
-next_token.while.body1198:
-  12010 = call i32 getch()
-  store i32 %12010 to ptr @last_char
-  br bb %next_token.while.cond1191
-next_token.while.exit1201:
-  last_char.load401202 = load i32 from ptr @last_char
-  219971241 = icmp sge i32 %last_char.load401202, i32 48
-  br i1 %219971241, bb %next_token.is_num.select.then221243, bb %next_token.is_num.select.else231246
-next_token.while.exit.split1204:
-  41.ret1205 = phi [bb %next_token.is_num.then291251, i32 1, bb %next_token.is_num.else311253, i32 0]
-  421206 = icmp ne i32 %41.ret1205, i32 0
-  br i1 %421206, bb %next_token.then431208, bb %next_token.else451216
-next_token.then431208:
-  last_char.load461209 = load i32 from ptr @last_char
-  471210 = sub i32 %last_char.load461209, i32 48
-  store i32 %471210 to ptr @num
-  br bb %next_token.while.cond481222
-next_token.if.exit441213:
+next_token.while.cond1196:
+  last_char.load361197 = load i32 from ptr @last_char
+  610361276 = icmp eq i32 %last_char.load361197, i32 32
+  br i1 %610361276, bb %next_token.is_space.select.then1278, bb %next_token.is_space.select.else1280
+next_token.while.cond.split1199:
+  37.ret1200 = phi [bb %next_token.is_space.then1286, i32 1, bb %next_token.is_space.else1288, i32 0]
+  381201 = icmp ne i32 %37.ret1200, i32 0
+  br i1 %381201, bb %next_token.while.body1203, bb %next_token.while.exit1206
+next_token.while.body1203:
+  12015 = call i32 getch()
+  store i32 %12015 to ptr @last_char
+  br bb %next_token.while.cond1196
+next_token.while.exit1206:
+  last_char.load401207 = load i32 from ptr @last_char
+  2110021246 = icmp sge i32 %last_char.load401207, i32 48
+  br i1 %2110021246, bb %next_token.is_num.select.then221248, bb %next_token.is_num.select.else231251
+next_token.while.exit.split1209:
+  41.ret1210 = phi [bb %next_token.is_num.then291256, i32 1, bb %next_token.is_num.else311258, i32 0]
+  421211 = icmp ne i32 %41.ret1210, i32 0
+  br i1 %421211, bb %next_token.then431213, bb %next_token.else451221
+next_token.then431213:
+  last_char.load461214 = load i32 from ptr @last_char
+  471215 = sub i32 %last_char.load461214, i32 48
+  store i32 %471215 to ptr @num
+  br bb %next_token.while.cond481227
+next_token.if.exit441218:
+  cur_token.load1219 = load i32 from ptr @cur_token
   br bb %while.cond238
-next_token.else451216:
-  last_char.load601217 = load i32 from ptr @last_char
-  store i32 %last_char.load601217 to ptr @other
-  12016 = call i32 getch()
-  store i32 %12016 to ptr @last_char
+next_token.else451221:
+  last_char.load601222 = load i32 from ptr @last_char
+  store i32 %last_char.load601222 to ptr @other
+  12021 = call i32 getch()
+  store i32 %12021 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441213
-next_token.while.cond481222:
-  12022 = call i32 getch()
-  store i32 %12022 to ptr @last_char
-  2110141256 = icmp sge i32 %12022, i32 48
-  br i1 %2110141256, bb %next_token.is_num.select.then2210161258, bb %next_token.is_num.select.else2310191261
-next_token.while.cond48.split1225:
-  52.ret1226 = phi [bb %next_token.is_num.then2910241266, i32 1, bb %next_token.is_num.else3110261268, i32 0]
-  531227 = icmp ne i32 %52.ret1226, i32 0
-  br i1 %531227, bb %next_token.while.body491229, bb %next_token.while.exit501237
-next_token.while.body491229:
-  num.load1230 = load i32 from ptr @num
-  551231 = mul i32 %num.load1230, i32 10
-  last_char.load561232 = load i32 from ptr @last_char
-  571233 = add i32 %551231, i32 %last_char.load561232
-  581234 = sub i32 %571233, i32 48
-  store i32 %581234 to ptr @num
-  br bb %next_token.while.cond481222
-next_token.while.exit501237:
+  br bb %next_token.if.exit441218
+next_token.while.cond481227:
+  12027 = call i32 getch()
+  store i32 %12027 to ptr @last_char
+  2110191261 = icmp sge i32 %12027, i32 48
+  br i1 %2110191261, bb %next_token.is_num.select.then2210211263, bb %next_token.is_num.select.else2310241266
+next_token.while.cond48.split1230:
+  52.ret1231 = phi [bb %next_token.is_num.then2910291271, i32 1, bb %next_token.is_num.else3110311273, i32 0]
+  531232 = icmp ne i32 %52.ret1231, i32 0
+  br i1 %531232, bb %next_token.while.body491234, bb %next_token.while.exit501242
+next_token.while.body491234:
+  num.load1235 = load i32 from ptr @num
+  551236 = mul i32 %num.load1235, i32 10
+  last_char.load561237 = load i32 from ptr @last_char
+  571238 = add i32 %551236, i32 %last_char.load561237
+  581239 = sub i32 %571238, i32 48
+  store i32 %581239 to ptr @num
+  br bb %next_token.while.cond481227
+next_token.while.exit501242:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441213
-next_token.is_num.select.then221243:
-  2710001244 = icmp sle i32 %last_char.load401202, i32 57
-  br bb %next_token.is_num.select.exit241248
-next_token.is_num.select.else231246:
-  br bb %next_token.is_num.select.exit241248
-next_token.is_num.select.exit241248:
-  select25.phi10051249 = phi [bb %next_token.is_num.select.else231246, i1 0, bb %next_token.is_num.select.then221243, i1 %2710001244]
-  br i1 %select25.phi10051249, bb %next_token.is_num.then291251, bb %next_token.is_num.else311253
-next_token.is_num.then291251:
-  br bb %next_token.while.exit.split1204
-next_token.is_num.else311253:
-  br bb %next_token.while.exit.split1204
-next_token.is_num.select.then2210161258:
-  2710171259 = icmp sle i32 %12022, i32 57
-  br bb %next_token.is_num.select.exit2410211263
-next_token.is_num.select.else2310191261:
-  br bb %next_token.is_num.select.exit2410211263
-next_token.is_num.select.exit2410211263:
-  select25.phi10221264 = phi [bb %next_token.is_num.select.else2310191261, i1 0, bb %next_token.is_num.select.then2210161258, i1 %2710171259]
-  br i1 %select25.phi10221264, bb %next_token.is_num.then2910241266, bb %next_token.is_num.else3110261268
-next_token.is_num.then2910241266:
-  br bb %next_token.while.cond48.split1225
-next_token.is_num.else3110261268:
-  br bb %next_token.while.cond48.split1225
-next_token.is_space.select.then1273:
-  br bb %next_token.is_space.select.exit1278
-next_token.is_space.select.else1275:
-  1210361276 = icmp eq i32 %last_char.load361192, i32 10
-  br bb %next_token.is_space.select.exit1278
-next_token.is_space.select.exit1278:
-  select.phi10391279 = phi [bb %next_token.is_space.select.else1275, i1 %1210361276, bb %next_token.is_space.select.then1273, i1 1]
-  br i1 %select.phi10391279, bb %next_token.is_space.then1281, bb %next_token.is_space.else1283
-next_token.is_space.then1281:
-  br bb %next_token.while.cond.split1194
-next_token.is_space.else1283:
-  br bb %next_token.while.cond.split1194
-next_token.while.cond1289:
-  last_char.load361290 = load i32 from ptr @last_char
-  610311369 = icmp eq i32 %last_char.load361290, i32 32
-  br i1 %610311369, bb %next_token.is_space.select.then1371, bb %next_token.is_space.select.else1373
-next_token.while.cond.split1292:
-  37.ret1293 = phi [bb %next_token.is_space.then1379, i32 1, bb %next_token.is_space.else1381, i32 0]
-  381294 = icmp ne i32 %37.ret1293, i32 0
-  br i1 %381294, bb %next_token.while.body1296, bb %next_token.while.exit1299
-next_token.while.body1296:
-  12028 = call i32 getch()
-  store i32 %12028 to ptr @last_char
-  br bb %next_token.while.cond1289
-next_token.while.exit1299:
-  last_char.load401300 = load i32 from ptr @last_char
-  219971339 = icmp sge i32 %last_char.load401300, i32 48
-  br i1 %219971339, bb %next_token.is_num.select.then221341, bb %next_token.is_num.select.else231344
-next_token.while.exit.split1302:
-  41.ret1303 = phi [bb %next_token.is_num.then291349, i32 1, bb %next_token.is_num.else311351, i32 0]
-  421304 = icmp ne i32 %41.ret1303, i32 0
-  br i1 %421304, bb %next_token.then431306, bb %next_token.else451314
-next_token.then431306:
-  last_char.load461307 = load i32 from ptr @last_char
-  471308 = sub i32 %last_char.load461307, i32 48
-  store i32 %471308 to ptr @num
-  br bb %next_token.while.cond481320
-next_token.if.exit441311:
+  br bb %next_token.if.exit441218
+next_token.is_num.select.then221248:
+  2710051249 = icmp sle i32 %last_char.load401207, i32 57
+  br bb %next_token.is_num.select.exit241253
+next_token.is_num.select.else231251:
+  br bb %next_token.is_num.select.exit241253
+next_token.is_num.select.exit241253:
+  select25.phi10101254 = phi [bb %next_token.is_num.select.else231251, i1 0, bb %next_token.is_num.select.then221248, i1 %2710051249]
+  br i1 %select25.phi10101254, bb %next_token.is_num.then291256, bb %next_token.is_num.else311258
+next_token.is_num.then291256:
+  br bb %next_token.while.exit.split1209
+next_token.is_num.else311258:
+  br bb %next_token.while.exit.split1209
+next_token.is_num.select.then2210211263:
+  2710221264 = icmp sle i32 %12027, i32 57
+  br bb %next_token.is_num.select.exit2410261268
+next_token.is_num.select.else2310241266:
+  br bb %next_token.is_num.select.exit2410261268
+next_token.is_num.select.exit2410261268:
+  select25.phi10271269 = phi [bb %next_token.is_num.select.else2310241266, i1 0, bb %next_token.is_num.select.then2210211263, i1 %2710221264]
+  br i1 %select25.phi10271269, bb %next_token.is_num.then2910291271, bb %next_token.is_num.else3110311273
+next_token.is_num.then2910291271:
+  br bb %next_token.while.cond48.split1230
+next_token.is_num.else3110311273:
+  br bb %next_token.while.cond48.split1230
+next_token.is_space.select.then1278:
+  br bb %next_token.is_space.select.exit1283
+next_token.is_space.select.else1280:
+  1210411281 = icmp eq i32 %last_char.load361197, i32 10
+  br bb %next_token.is_space.select.exit1283
+next_token.is_space.select.exit1283:
+  select.phi10441284 = phi [bb %next_token.is_space.select.else1280, i1 %1210411281, bb %next_token.is_space.select.then1278, i1 -1]
+  br i1 %select.phi10441284, bb %next_token.is_space.then1286, bb %next_token.is_space.else1288
+next_token.is_space.then1286:
+  br bb %next_token.while.cond.split1199
+next_token.is_space.else1288:
+  br bb %next_token.while.cond.split1199
+next_token.while.cond1294:
+  last_char.load361295 = load i32 from ptr @last_char
+  610361374 = icmp eq i32 %last_char.load361295, i32 32
+  br i1 %610361374, bb %next_token.is_space.select.then1376, bb %next_token.is_space.select.else1378
+next_token.while.cond.split1297:
+  37.ret1298 = phi [bb %next_token.is_space.then1384, i32 1, bb %next_token.is_space.else1386, i32 0]
+  381299 = icmp ne i32 %37.ret1298, i32 0
+  br i1 %381299, bb %next_token.while.body1301, bb %next_token.while.exit1304
+next_token.while.body1301:
+  12033 = call i32 getch()
+  store i32 %12033 to ptr @last_char
+  br bb %next_token.while.cond1294
+next_token.while.exit1304:
+  last_char.load401305 = load i32 from ptr @last_char
+  2110021344 = icmp sge i32 %last_char.load401305, i32 48
+  br i1 %2110021344, bb %next_token.is_num.select.then221346, bb %next_token.is_num.select.else231349
+next_token.while.exit.split1307:
+  41.ret1308 = phi [bb %next_token.is_num.then291354, i32 1, bb %next_token.is_num.else311356, i32 0]
+  421309 = icmp ne i32 %41.ret1308, i32 0
+  br i1 %421309, bb %next_token.then431311, bb %next_token.else451319
+next_token.then431311:
+  last_char.load461312 = load i32 from ptr @last_char
+  471313 = sub i32 %last_char.load461312, i32 48
+  store i32 %471313 to ptr @num
+  br bb %next_token.while.cond481325
+next_token.if.exit441316:
+  cur_token.load1317 = load i32 from ptr @cur_token
   br bb %while.cond220
-next_token.else451314:
-  last_char.load601315 = load i32 from ptr @last_char
-  store i32 %last_char.load601315 to ptr @other
-  12034 = call i32 getch()
-  store i32 %12034 to ptr @last_char
+next_token.else451319:
+  last_char.load601320 = load i32 from ptr @last_char
+  store i32 %last_char.load601320 to ptr @other
+  12039 = call i32 getch()
+  store i32 %12039 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441311
-next_token.while.cond481320:
-  12040 = call i32 getch()
-  store i32 %12040 to ptr @last_char
-  2110141354 = icmp sge i32 %12040, i32 48
-  br i1 %2110141354, bb %next_token.is_num.select.then2210161356, bb %next_token.is_num.select.else2310191359
-next_token.while.cond48.split1323:
-  52.ret1324 = phi [bb %next_token.is_num.then2910241364, i32 1, bb %next_token.is_num.else3110261366, i32 0]
-  531325 = icmp ne i32 %52.ret1324, i32 0
-  br i1 %531325, bb %next_token.while.body491327, bb %next_token.while.exit501335
-next_token.while.body491327:
-  num.load1328 = load i32 from ptr @num
-  551329 = mul i32 %num.load1328, i32 10
-  last_char.load561330 = load i32 from ptr @last_char
-  571331 = add i32 %551329, i32 %last_char.load561330
-  581332 = sub i32 %571331, i32 48
-  store i32 %581332 to ptr @num
-  br bb %next_token.while.cond481320
-next_token.while.exit501335:
+  br bb %next_token.if.exit441316
+next_token.while.cond481325:
+  12045 = call i32 getch()
+  store i32 %12045 to ptr @last_char
+  2110191359 = icmp sge i32 %12045, i32 48
+  br i1 %2110191359, bb %next_token.is_num.select.then2210211361, bb %next_token.is_num.select.else2310241364
+next_token.while.cond48.split1328:
+  52.ret1329 = phi [bb %next_token.is_num.then2910291369, i32 1, bb %next_token.is_num.else3110311371, i32 0]
+  531330 = icmp ne i32 %52.ret1329, i32 0
+  br i1 %531330, bb %next_token.while.body491332, bb %next_token.while.exit501340
+next_token.while.body491332:
+  num.load1333 = load i32 from ptr @num
+  551334 = mul i32 %num.load1333, i32 10
+  last_char.load561335 = load i32 from ptr @last_char
+  571336 = add i32 %551334, i32 %last_char.load561335
+  581337 = sub i32 %571336, i32 48
+  store i32 %581337 to ptr @num
+  br bb %next_token.while.cond481325
+next_token.while.exit501340:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441311
-next_token.is_num.select.then221341:
-  2710001342 = icmp sle i32 %last_char.load401300, i32 57
-  br bb %next_token.is_num.select.exit241346
-next_token.is_num.select.else231344:
-  br bb %next_token.is_num.select.exit241346
-next_token.is_num.select.exit241346:
-  select25.phi10051347 = phi [bb %next_token.is_num.select.else231344, i1 0, bb %next_token.is_num.select.then221341, i1 %2710001342]
-  br i1 %select25.phi10051347, bb %next_token.is_num.then291349, bb %next_token.is_num.else311351
-next_token.is_num.then291349:
-  br bb %next_token.while.exit.split1302
-next_token.is_num.else311351:
-  br bb %next_token.while.exit.split1302
-next_token.is_num.select.then2210161356:
-  2710171357 = icmp sle i32 %12040, i32 57
-  br bb %next_token.is_num.select.exit2410211361
-next_token.is_num.select.else2310191359:
-  br bb %next_token.is_num.select.exit2410211361
-next_token.is_num.select.exit2410211361:
-  select25.phi10221362 = phi [bb %next_token.is_num.select.else2310191359, i1 0, bb %next_token.is_num.select.then2210161356, i1 %2710171357]
-  br i1 %select25.phi10221362, bb %next_token.is_num.then2910241364, bb %next_token.is_num.else3110261366
-next_token.is_num.then2910241364:
-  br bb %next_token.while.cond48.split1323
-next_token.is_num.else3110261366:
-  br bb %next_token.while.cond48.split1323
-next_token.is_space.select.then1371:
-  br bb %next_token.is_space.select.exit1376
-next_token.is_space.select.else1373:
-  1210361374 = icmp eq i32 %last_char.load361290, i32 10
-  br bb %next_token.is_space.select.exit1376
-next_token.is_space.select.exit1376:
-  select.phi10391377 = phi [bb %next_token.is_space.select.else1373, i1 %1210361374, bb %next_token.is_space.select.then1371, i1 1]
-  br i1 %select.phi10391377, bb %next_token.is_space.then1379, bb %next_token.is_space.else1381
-next_token.is_space.then1379:
-  br bb %next_token.while.cond.split1292
-next_token.is_space.else1381:
-  br bb %next_token.while.cond.split1292
-next_token.while.cond1387:
-  last_char.load361388 = load i32 from ptr @last_char
-  610311467 = icmp eq i32 %last_char.load361388, i32 32
-  br i1 %610311467, bb %next_token.is_space.select.then1469, bb %next_token.is_space.select.else1471
-next_token.while.cond.split1390:
-  37.ret1391 = phi [bb %next_token.is_space.then1477, i32 1, bb %next_token.is_space.else1479, i32 0]
-  381392 = icmp ne i32 %37.ret1391, i32 0
-  br i1 %381392, bb %next_token.while.body1394, bb %next_token.while.exit1397
-next_token.while.body1394:
-  12046 = call i32 getch()
-  store i32 %12046 to ptr @last_char
-  br bb %next_token.while.cond1387
-next_token.while.exit1397:
-  last_char.load401398 = load i32 from ptr @last_char
-  219971437 = icmp sge i32 %last_char.load401398, i32 48
-  br i1 %219971437, bb %next_token.is_num.select.then221439, bb %next_token.is_num.select.else231442
-next_token.while.exit.split1400:
-  41.ret1401 = phi [bb %next_token.is_num.then291447, i32 1, bb %next_token.is_num.else311449, i32 0]
-  421402 = icmp ne i32 %41.ret1401, i32 0
-  br i1 %421402, bb %next_token.then431404, bb %next_token.else451412
-next_token.then431404:
-  last_char.load461405 = load i32 from ptr @last_char
-  471406 = sub i32 %last_char.load461405, i32 48
-  store i32 %471406 to ptr @num
-  br bb %next_token.while.cond481418
-next_token.else451412:
-  last_char.load601413 = load i32 from ptr @last_char
-  store i32 %last_char.load601413 to ptr @other
-  12052 = call i32 getch()
-  store i32 %12052 to ptr @last_char
+  br bb %next_token.if.exit441316
+next_token.is_num.select.then221346:
+  2710051347 = icmp sle i32 %last_char.load401305, i32 57
+  br bb %next_token.is_num.select.exit241351
+next_token.is_num.select.else231349:
+  br bb %next_token.is_num.select.exit241351
+next_token.is_num.select.exit241351:
+  select25.phi10101352 = phi [bb %next_token.is_num.select.else231349, i1 0, bb %next_token.is_num.select.then221346, i1 %2710051347]
+  br i1 %select25.phi10101352, bb %next_token.is_num.then291354, bb %next_token.is_num.else311356
+next_token.is_num.then291354:
+  br bb %next_token.while.exit.split1307
+next_token.is_num.else311356:
+  br bb %next_token.while.exit.split1307
+next_token.is_num.select.then2210211361:
+  2710221362 = icmp sle i32 %12045, i32 57
+  br bb %next_token.is_num.select.exit2410261366
+next_token.is_num.select.else2310241364:
+  br bb %next_token.is_num.select.exit2410261366
+next_token.is_num.select.exit2410261366:
+  select25.phi10271367 = phi [bb %next_token.is_num.select.else2310241364, i1 0, bb %next_token.is_num.select.then2210211361, i1 %2710221362]
+  br i1 %select25.phi10271367, bb %next_token.is_num.then2910291369, bb %next_token.is_num.else3110311371
+next_token.is_num.then2910291369:
+  br bb %next_token.while.cond48.split1328
+next_token.is_num.else3110311371:
+  br bb %next_token.while.cond48.split1328
+next_token.is_space.select.then1376:
+  br bb %next_token.is_space.select.exit1381
+next_token.is_space.select.else1378:
+  1210411379 = icmp eq i32 %last_char.load361295, i32 10
+  br bb %next_token.is_space.select.exit1381
+next_token.is_space.select.exit1381:
+  select.phi10441382 = phi [bb %next_token.is_space.select.else1378, i1 %1210411379, bb %next_token.is_space.select.then1376, i1 -1]
+  br i1 %select.phi10441382, bb %next_token.is_space.then1384, bb %next_token.is_space.else1386
+next_token.is_space.then1384:
+  br bb %next_token.while.cond.split1297
+next_token.is_space.else1386:
+  br bb %next_token.while.cond.split1297
+next_token.while.cond1392:
+  last_char.load361393 = load i32 from ptr @last_char
+  610361472 = icmp eq i32 %last_char.load361393, i32 32
+  br i1 %610361472, bb %next_token.is_space.select.then1474, bb %next_token.is_space.select.else1476
+next_token.while.cond.split1395:
+  37.ret1396 = phi [bb %next_token.is_space.then1482, i32 1, bb %next_token.is_space.else1484, i32 0]
+  381397 = icmp ne i32 %37.ret1396, i32 0
+  br i1 %381397, bb %next_token.while.body1399, bb %next_token.while.exit1402
+next_token.while.body1399:
+  12051 = call i32 getch()
+  store i32 %12051 to ptr @last_char
+  br bb %next_token.while.cond1392
+next_token.while.exit1402:
+  last_char.load401403 = load i32 from ptr @last_char
+  2110021442 = icmp sge i32 %last_char.load401403, i32 48
+  br i1 %2110021442, bb %next_token.is_num.select.then221444, bb %next_token.is_num.select.else231447
+next_token.while.exit.split1405:
+  41.ret1406 = phi [bb %next_token.is_num.then291452, i32 1, bb %next_token.is_num.else311454, i32 0]
+  421407 = icmp ne i32 %41.ret1406, i32 0
+  br i1 %421407, bb %next_token.then431409, bb %next_token.else451417
+next_token.then431409:
+  last_char.load461410 = load i32 from ptr @last_char
+  471411 = sub i32 %last_char.load461410, i32 48
+  store i32 %471411 to ptr @num
+  br bb %next_token.while.cond481423
+next_token.if.exit441414:
+  cur_token.load1415 = load i32 from ptr @cur_token
+  br bb %while.cond277
+next_token.else451417:
+  last_char.load601418 = load i32 from ptr @last_char
+  store i32 %last_char.load601418 to ptr @other
+  12057 = call i32 getch()
+  store i32 %12057 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %while.cond277
-next_token.while.cond481418:
-  12058 = call i32 getch()
-  store i32 %12058 to ptr @last_char
-  2110141452 = icmp sge i32 %12058, i32 48
-  br i1 %2110141452, bb %next_token.is_num.select.then2210161454, bb %next_token.is_num.select.else2310191457
-next_token.while.cond48.split1421:
-  52.ret1422 = phi [bb %next_token.is_num.then2910241462, i32 1, bb %next_token.is_num.else3110261464, i32 0]
-  531423 = icmp ne i32 %52.ret1422, i32 0
-  br i1 %531423, bb %next_token.while.body491425, bb %next_token.while.exit501433
-next_token.while.body491425:
-  num.load1426 = load i32 from ptr @num
-  551427 = mul i32 %num.load1426, i32 10
-  last_char.load561428 = load i32 from ptr @last_char
-  571429 = add i32 %551427, i32 %last_char.load561428
-  581430 = sub i32 %571429, i32 48
-  store i32 %581430 to ptr @num
-  br bb %next_token.while.cond481418
-next_token.while.exit501433:
+  br bb %next_token.if.exit441414
+next_token.while.cond481423:
+  12063 = call i32 getch()
+  store i32 %12063 to ptr @last_char
+  2110191457 = icmp sge i32 %12063, i32 48
+  br i1 %2110191457, bb %next_token.is_num.select.then2210211459, bb %next_token.is_num.select.else2310241462
+next_token.while.cond48.split1426:
+  52.ret1427 = phi [bb %next_token.is_num.then2910291467, i32 1, bb %next_token.is_num.else3110311469, i32 0]
+  531428 = icmp ne i32 %52.ret1427, i32 0
+  br i1 %531428, bb %next_token.while.body491430, bb %next_token.while.exit501438
+next_token.while.body491430:
+  num.load1431 = load i32 from ptr @num
+  551432 = mul i32 %num.load1431, i32 10
+  last_char.load561433 = load i32 from ptr @last_char
+  571434 = add i32 %551432, i32 %last_char.load561433
+  581435 = sub i32 %571434, i32 48
+  store i32 %581435 to ptr @num
+  br bb %next_token.while.cond481423
+next_token.while.exit501438:
   store i32 0 to ptr @cur_token
-  br bb %while.cond277
-next_token.is_num.select.then221439:
-  2710001440 = icmp sle i32 %last_char.load401398, i32 57
-  br bb %next_token.is_num.select.exit241444
-next_token.is_num.select.else231442:
-  br bb %next_token.is_num.select.exit241444
-next_token.is_num.select.exit241444:
-  select25.phi10051445 = phi [bb %next_token.is_num.select.else231442, i1 0, bb %next_token.is_num.select.then221439, i1 %2710001440]
-  br i1 %select25.phi10051445, bb %next_token.is_num.then291447, bb %next_token.is_num.else311449
-next_token.is_num.then291447:
-  br bb %next_token.while.exit.split1400
-next_token.is_num.else311449:
-  br bb %next_token.while.exit.split1400
-next_token.is_num.select.then2210161454:
-  2710171455 = icmp sle i32 %12058, i32 57
-  br bb %next_token.is_num.select.exit2410211459
-next_token.is_num.select.else2310191457:
-  br bb %next_token.is_num.select.exit2410211459
-next_token.is_num.select.exit2410211459:
-  select25.phi10221460 = phi [bb %next_token.is_num.select.else2310191457, i1 0, bb %next_token.is_num.select.then2210161454, i1 %2710171455]
-  br i1 %select25.phi10221460, bb %next_token.is_num.then2910241462, bb %next_token.is_num.else3110261464
-next_token.is_num.then2910241462:
-  br bb %next_token.while.cond48.split1421
-next_token.is_num.else3110261464:
-  br bb %next_token.while.cond48.split1421
-next_token.is_space.select.then1469:
-  br bb %next_token.is_space.select.exit1474
-next_token.is_space.select.else1471:
-  1210361472 = icmp eq i32 %last_char.load361388, i32 10
-  br bb %next_token.is_space.select.exit1474
-next_token.is_space.select.exit1474:
-  select.phi10391475 = phi [bb %next_token.is_space.select.else1471, i1 %1210361472, bb %next_token.is_space.select.then1469, i1 1]
-  br i1 %select.phi10391475, bb %next_token.is_space.then1477, bb %next_token.is_space.else1479
-next_token.is_space.then1477:
-  br bb %next_token.while.cond.split1390
-next_token.is_space.else1479:
-  br bb %next_token.while.cond.split1390
+  br bb %next_token.if.exit441414
+next_token.is_num.select.then221444:
+  2710051445 = icmp sle i32 %last_char.load401403, i32 57
+  br bb %next_token.is_num.select.exit241449
+next_token.is_num.select.else231447:
+  br bb %next_token.is_num.select.exit241449
+next_token.is_num.select.exit241449:
+  select25.phi10101450 = phi [bb %next_token.is_num.select.else231447, i1 0, bb %next_token.is_num.select.then221444, i1 %2710051445]
+  br i1 %select25.phi10101450, bb %next_token.is_num.then291452, bb %next_token.is_num.else311454
+next_token.is_num.then291452:
+  br bb %next_token.while.exit.split1405
+next_token.is_num.else311454:
+  br bb %next_token.while.exit.split1405
+next_token.is_num.select.then2210211459:
+  2710221460 = icmp sle i32 %12063, i32 57
+  br bb %next_token.is_num.select.exit2410261464
+next_token.is_num.select.else2310241462:
+  br bb %next_token.is_num.select.exit2410261464
+next_token.is_num.select.exit2410261464:
+  select25.phi10271465 = phi [bb %next_token.is_num.select.else2310241462, i1 0, bb %next_token.is_num.select.then2210211459, i1 %2710221460]
+  br i1 %select25.phi10271465, bb %next_token.is_num.then2910291467, bb %next_token.is_num.else3110311469
+next_token.is_num.then2910291467:
+  br bb %next_token.while.cond48.split1426
+next_token.is_num.else3110311469:
+  br bb %next_token.while.cond48.split1426
+next_token.is_space.select.then1474:
+  br bb %next_token.is_space.select.exit1479
+next_token.is_space.select.else1476:
+  1210411477 = icmp eq i32 %last_char.load361393, i32 10
+  br bb %next_token.is_space.select.exit1479
+next_token.is_space.select.exit1479:
+  select.phi10441480 = phi [bb %next_token.is_space.select.else1476, i1 %1210411477, bb %next_token.is_space.select.then1474, i1 -1]
+  br i1 %select.phi10441480, bb %next_token.is_space.then1482, bb %next_token.is_space.else1484
+next_token.is_space.then1482:
+  br bb %next_token.while.cond.split1395
+next_token.is_space.else1484:
+  br bb %next_token.while.cond.split1395
 }
 
 pure i32 eval_op(i32 op, i32 lhs, i32 rhs) {
@@ -720,8 +726,8 @@ entry143:
 pure i32 stack_peek(ptr s) {
 entry136:
   138.load = load i32 from ptr %s
-  140 = mul i32 %138.load, i32 4
-  141 = ptradd ptr %s, i32 %140
+  335 = shl i32 %138.load, i32 2
+  141 = ptradd ptr %s, i32 %335
   141.load = load i32 from ptr %141
   ret i32 %141.load
 }
@@ -729,8 +735,8 @@ entry136:
 i32 stack_pop(ptr s) {
 entry121:
   124.load = load i32 from ptr %s
-  126 = mul i32 %124.load, i32 4
-  127 = ptradd ptr %s, i32 %126
+  336 = shl i32 %124.load, i32 2
+  127 = ptradd ptr %s, i32 %336
   127.load = load i32 from ptr %127
   134 = sub i32 %124.load, i32 1
   store i32 %134 to ptr %s
@@ -747,7 +753,7 @@ select.else78:
   82 = icmp eq i32 %op, i32 45
   br bb %select.exit79
 select.exit79:
-  select80.phi = phi [bb %select.else78, i1 %82, bb %select.then77, i1 1]
+  select80.phi = phi [bb %select.else78, i1 %82, bb %select.then77, i1 -1]
   br i1 %select80.phi, bb %then85, bb %if.exit86
 then85:
   ret i32 10
@@ -760,7 +766,7 @@ select.else90:
   94 = icmp eq i32 %op, i32 47
   br bb %select.exit91
 select.exit91:
-  select92.phi = phi [bb %select.else90, i1 %94, bb %select.then89, i1 1]
+  select92.phi = phi [bb %select.else90, i1 %94, bb %select.then89, i1 -1]
   br i1 %select92.phi, bb %select.then97, bb %select.else98
 select.then97:
   br bb %select.exit99
@@ -768,7 +774,7 @@ select.else98:
   102 = icmp eq i32 %op, i32 37
   br bb %select.exit99
 select.exit99:
-  select100.phi = phi [bb %select.else98, i1 %102, bb %select.then97, i1 1]
+  select100.phi = phi [bb %select.else98, i1 %102, bb %select.then97, i1 -1]
   br i1 %select100.phi, bb %then105, bb %if.exit106
 then105:
   ret i32 20
@@ -781,8 +787,8 @@ entry107:
   112.load = load i32 from ptr %s
   114 = add i32 %112.load, i32 1
   store i32 %114 to ptr %s
-  118 = mul i32 %114, i32 4
-  119 = ptradd ptr %s, i32 %118
+  337 = shl i32 %114, i32 2
+  119 = ptradd ptr %s, i32 %337
   store i32 %v to ptr %119
   ret 
 }
@@ -815,7 +821,7 @@ select.else:
   12 = icmp eq i32 %c, i32 10
   br bb %select.exit
 select.exit:
-  select.phi = phi [bb %select.else, i1 %12, bb %select.then, i1 1]
+  select.phi = phi [bb %select.else, i1 %12, bb %select.then, i1 -1]
   br i1 %select.phi, bb %then, bb %else
 then:
   ret i32 1
@@ -835,19 +841,19 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry294:
-  %oprs336 = stack 1024
-  %ops335 = stack 1024
+  %oprs341 = stack 1024
+  %ops340 = stack 1024
   296 = call i32 getint()
   297 = call i32 getch()
-  br bb %next_token.while.cond1485
+  br bb %next_token.while.cond1490
 while.cond299:
-  count.phi = phi [bb %next_token.if.exit441507, i32 %296, bb %while.body300.split, i32 %308]
+  count.phi = phi [bb %next_token.if.exit441512, i32 %296, bb %while.body300.split, i32 %308]
   303 = icmp ne i32 %count.phi, i32 0
   br i1 %303, bb %while.body300, bb %while.exit301
 while.body300:
   br bb %eval.init.cond
 while.body300.split:
-  304.ret = phi [bb %eval.then214, i32 -1, bb %eval.then270, i32 -1, bb %eval.while.exit279, i32 %141.load630]
+  304.ret = phi [bb %eval.then214, i32 -1, bb %eval.then270, i32 -1, bb %eval.while.exit279, i32 %141.load635]
   call void putint(i32 %304.ret)
   call void putch(i32 10)
   308 = sub i32 %count.phi, i32 1
@@ -855,31 +861,31 @@ while.body300.split:
 while.exit301:
   ret i32 0
 eval.init.cond:
-  cnt_ptr.phi339 = phi [bb %while.body300, i32 256, bb %eval.init, i32 %cnt.dec343]
-  193340 = icmp ne i32 %cnt_ptr.phi339, i32 0
-  br i1 %193340, bb %eval.init, bb %eval.init.exit
+  cnt_ptr.phi344 = phi [bb %while.body300, i32 256, bb %eval.init, i32 %cnt.dec348]
+  193345 = icmp ne i32 %cnt_ptr.phi344, i32 0
+  br i1 %193345, bb %eval.init, bb %eval.init.exit
 eval.init:
-  cnt.dec343 = sub i32 %cnt_ptr.phi339, i32 1
-  offset344 = mul i32 %cnt.dec343, i32 4
-  arr.index198345 = ptradd ptr %oprs336, i32 %offset344
-  store i32 0 to ptr %arr.index198345
+  cnt.dec348 = sub i32 %cnt_ptr.phi344, i32 1
+  331349 = shl i32 %cnt.dec348, i32 2
+  arr.index198350 = ptradd ptr %oprs341, i32 %331349
+  store i32 0 to ptr %arr.index198350
   br bb %eval.init.cond
 eval.init.exit:
   br bb %eval.init.cond200
 eval.init.cond200:
-  cnt_ptr203.phi351 = phi [bb %eval.init.exit, i32 256, bb %eval.init201, i32 %cnt.dec207355]
-  205352 = icmp ne i32 %cnt_ptr203.phi351, i32 0
-  br i1 %205352, bb %eval.init201, bb %eval.init.exit202
+  cnt_ptr203.phi356 = phi [bb %eval.init.exit, i32 256, bb %eval.init201, i32 %cnt.dec207360]
+  205357 = icmp ne i32 %cnt_ptr203.phi356, i32 0
+  br i1 %205357, bb %eval.init201, bb %eval.init.exit202
 eval.init201:
-  cnt.dec207355 = sub i32 %cnt_ptr203.phi351, i32 1
-  offset208356 = mul i32 %cnt.dec207355, i32 4
-  arr.index210357 = ptradd ptr %ops335, i32 %offset208356
-  store i32 0 to ptr %arr.index210357
+  cnt.dec207360 = sub i32 %cnt_ptr203.phi356, i32 1
+  333361 = shl i32 %cnt.dec207360, i32 2
+  arr.index210362 = ptradd ptr %ops340, i32 %333361
+  store i32 0 to ptr %arr.index210362
   br bb %eval.init.cond200
 eval.init.exit202:
-  cur_token.load211361 = load i32 from ptr @cur_token
-  213362 = icmp ne i32 %cur_token.load211361, i32 0
-  br i1 %213362, bb %eval.then214, bb %eval.if.exit215
+  cur_token.load211366 = load i32 from ptr @cur_token
+  213367 = icmp ne i32 %cur_token.load211366, i32 0
+  br i1 %213367, bb %eval.then214, bb %eval.if.exit215
 eval.then214:
   call void putch(i32 112)
   call void putch(i32 97)
@@ -890,95 +896,95 @@ eval.then214:
   call void putch(i32 10)
   br bb %while.body300.split
 eval.if.exit215:
-  num.load217368 = load i32 from ptr @num
-  112.load952 = load i32 from ptr %oprs336
-  114953 = add i32 %112.load952, i32 1
-  store i32 %114953 to ptr %oprs336
-  118955 = mul i32 %114953, i32 4
-  119956 = ptradd ptr %oprs336, i32 %118955
-  store i32 %num.load217368 to ptr %119956
-  br bb %next_token.while.cond1583
+  num.load217373 = load i32 from ptr @num
+  112.load957 = load i32 from ptr %oprs341
+  114958 = add i32 %112.load957, i32 1
+  store i32 %114958 to ptr %oprs341
+  337960 = shl i32 %114958, i32 2
+  119961 = ptradd ptr %oprs341, i32 %337960
+  store i32 %num.load217373 to ptr %119961
+  br bb %next_token.while.cond1588
 eval.while.cond220:
-  rhs.phi322373 = phi [bb %next_token.if.exit441605, i32 ub, bb %next_token.if.exit441899, i32 %rhs.phi394]
-  lhs.phi318374 = phi [bb %next_token.if.exit441605, i32 ub, bb %next_token.if.exit441899, i32 %lhs.phi395]
-  cur_op.phi316375 = phi [bb %next_token.if.exit441605, i32 ub, bb %next_token.if.exit441899, i32 %cur_op.phi396]
-  cur_token.load223376 = load i32 from ptr @cur_token
-  225377 = icmp eq i32 %cur_token.load223376, i32 1
-  br i1 %225377, bb %eval.while.body221, bb %next_token.while.cond1681
+  rhs.phi322378 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %rhs.phi399]
+  lhs.phi318379 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %lhs.phi400]
+  cur_op.phi316380 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %cur_op.phi401]
+  cur_token.load223381 = load i32 from ptr @cur_token
+  225382 = icmp eq i32 %cur_token.load223381, i32 1
+  br i1 %225382, bb %eval.while.body221, bb %next_token.while.cond1686
 eval.while.body221:
-  other.load380 = load i32 from ptr @other
-  76831 = icmp eq i32 %other.load380, i32 43
-  br i1 %76831, bb %get_op_prec.select.then77833, bb %get_op_prec.select.else78835
+  other.load385 = load i32 from ptr @other
+  76836 = icmp eq i32 %other.load385, i32 43
+  br i1 %76836, bb %get_op_prec.select.then77838, bb %get_op_prec.select.else78840
 eval.while.body221.split:
-  230381.ret = phi [bb %get_op_prec.then85841, i32 10, bb %get_op_prec.then105862, i32 20, bb %get_op_prec.if.exit106864, i32 0]
-  231382 = icmp ne i32 %230381.ret, i32 0
-  232383 = xor i1 %231382, i1 1
-  233384 = zext i1 %232383 to i32
-  234385 = icmp ne i32 %233384, i32 0
-  br i1 %234385, bb %next_token.while.cond1681, bb %next_token.while.cond1779
+  230386.ret = phi [bb %get_op_prec.then85846, i32 10, bb %get_op_prec.then105867, i32 20, bb %get_op_prec.if.exit106869, i32 0]
+  231387 = icmp ne i32 %230386.ret, i32 0
+  232388 = xor i1 %231387, i1 -1
+  233389 = zext i1 %232388 to i32
+  234390 = icmp ne i32 %233389, i32 0
+  br i1 %234390, bb %next_token.while.cond1686, bb %next_token.while.cond1784
 eval.while.cond238:
-  rhs.phi394 = phi [bb %next_token.if.exit441801, i32 %rhs.phi322373, bb %eval.while.body239.split, i32 %127.load708]
-  lhs.phi395 = phi [bb %next_token.if.exit441801, i32 %lhs.phi318374, bb %eval.while.body239.split, i32 %127.load718]
-  cur_op.phi396 = phi [bb %next_token.if.exit441801, i32 %cur_op.phi316375, bb %eval.while.body239.split, i32 %127.load698]
-  145.load593 = load i32 from ptr %ops335
-  242398 = icmp ne i32 %145.load593, i32 0
-  br i1 %242398, bb %eval.select.then243, bb %eval.select.else244
+  rhs.phi399 = phi [bb %next_token.if.exit441806, i32 %rhs.phi322378, bb %eval.while.body239.split, i32 %127.load713]
+  lhs.phi400 = phi [bb %next_token.if.exit441806, i32 %lhs.phi318379, bb %eval.while.body239.split, i32 %127.load723]
+  cur_op.phi401 = phi [bb %next_token.if.exit441806, i32 %cur_op.phi316380, bb %eval.while.body239.split, i32 %127.load703]
+  145.load598 = load i32 from ptr %ops340
+  242403 = icmp ne i32 %145.load598, i32 0
+  br i1 %242403, bb %eval.select.then243, bb %eval.select.else244
 eval.while.body239:
-  124.load695 = load i32 from ptr %ops335
-  126696 = mul i32 %124.load695, i32 4
-  127697 = ptradd ptr %ops335, i32 %126696
-  127.load698 = load i32 from ptr %127697
-  134699 = sub i32 %124.load695, i32 1
-  store i32 %134699 to ptr %ops335
-  124.load705 = load i32 from ptr %oprs336
-  126706 = mul i32 %124.load705, i32 4
-  127707 = ptradd ptr %oprs336, i32 %126706
-  127.load708 = load i32 from ptr %127707
-  134709 = sub i32 %124.load705, i32 1
-  store i32 %134709 to ptr %oprs336
-  124.load715 = load i32 from ptr %oprs336
-  126716 = mul i32 %124.load715, i32 4
-  127717 = ptradd ptr %oprs336, i32 %126716
-  127.load718 = load i32 from ptr %127717
-  134719 = sub i32 %124.load715, i32 1
-  store i32 %134719 to ptr %oprs336
-  152515 = icmp eq i32 %127.load698, i32 43
-  br i1 %152515, bb %eval_op.then153517, bb %eval_op.if.exit154520
+  124.load700 = load i32 from ptr %ops340
+  336701 = shl i32 %124.load700, i32 2
+  127702 = ptradd ptr %ops340, i32 %336701
+  127.load703 = load i32 from ptr %127702
+  134704 = sub i32 %124.load700, i32 1
+  store i32 %134704 to ptr %ops340
+  124.load710 = load i32 from ptr %oprs341
+  336711 = shl i32 %124.load710, i32 2
+  127712 = ptradd ptr %oprs341, i32 %336711
+  127.load713 = load i32 from ptr %127712
+  134714 = sub i32 %124.load710, i32 1
+  store i32 %134714 to ptr %oprs341
+  124.load720 = load i32 from ptr %oprs341
+  336721 = shl i32 %124.load720, i32 2
+  127722 = ptradd ptr %oprs341, i32 %336721
+  127.load723 = load i32 from ptr %127722
+  134724 = sub i32 %124.load720, i32 1
+  store i32 %134724 to ptr %oprs341
+  152520 = icmp eq i32 %127.load703, i32 43
+  br i1 %152520, bb %eval_op.then153522, bb %eval_op.if.exit154525
 eval.while.body239.split:
-  263404.ret = phi [bb %eval_op.then153517, i32 %157518, bb %eval_op.then160523, i32 %164524, bb %eval_op.then167529, i32 %171530, bb %eval_op.then174535, i32 %178536, bb %eval_op.then181541, i32 %185542, bb %eval_op.if.exit182544, i32 0]
-  112.load961 = load i32 from ptr %oprs336
-  114962 = add i32 %112.load961, i32 1
-  store i32 %114962 to ptr %oprs336
-  118964 = mul i32 %114962, i32 4
-  119965 = ptradd ptr %oprs336, i32 %118964
-  store i32 %263404.ret to ptr %119965
+  263409.ret = phi [bb %eval_op.then153522, i32 %157523, bb %eval_op.then160528, i32 %164529, bb %eval_op.then167534, i32 %171535, bb %eval_op.then174540, i32 %178541, bb %eval_op.then181546, i32 %185547, bb %eval_op.if.exit182549, i32 0]
+  112.load966 = load i32 from ptr %oprs341
+  114967 = add i32 %112.load966, i32 1
+  store i32 %114967 to ptr %oprs341
+  337969 = shl i32 %114967, i32 2
+  119970 = ptradd ptr %oprs341, i32 %337969
+  store i32 %263409.ret to ptr %119970
   br bb %eval.while.cond238
 eval.while.exit240:
-  112.load970 = load i32 from ptr %ops335
-  114971 = add i32 %112.load970, i32 1
-  store i32 %114971 to ptr %ops335
-  118973 = mul i32 %114971, i32 4
-  119974 = ptradd ptr %ops335, i32 %118973
-  store i32 %other.load380 to ptr %119974
-  cur_token.load267409 = load i32 from ptr @cur_token
-  269410 = icmp ne i32 %cur_token.load267409, i32 0
-  br i1 %269410, bb %eval.then270, bb %eval.if.exit271
+  112.load975 = load i32 from ptr %ops340
+  114976 = add i32 %112.load975, i32 1
+  store i32 %114976 to ptr %ops340
+  337978 = shl i32 %114976, i32 2
+  119979 = ptradd ptr %ops340, i32 %337978
+  store i32 %other.load385 to ptr %119979
+  cur_token.load267414 = load i32 from ptr @cur_token
+  269415 = icmp ne i32 %cur_token.load267414, i32 0
+  br i1 %269415, bb %eval.then270, bb %eval.if.exit271
 eval.select.then243:
-  138.load619 = load i32 from ptr %ops335
-  140620 = mul i32 %138.load619, i32 4
-  141621 = ptradd ptr %ops335, i32 %140620
-  141.load622 = load i32 from ptr %141621
-  76869 = icmp eq i32 %141.load622, i32 43
-  br i1 %76869, bb %get_op_prec.select.then77871, bb %get_op_prec.select.else78873
+  138.load624 = load i32 from ptr %ops340
+  335625 = shl i32 %138.load624, i32 2
+  141626 = ptradd ptr %ops340, i32 %335625
+  141.load627 = load i32 from ptr %141626
+  76874 = icmp eq i32 %141.load627, i32 43
+  br i1 %76874, bb %get_op_prec.select.then77876, bb %get_op_prec.select.else78878
 eval.select.then243.split.split:
-  248414.ret = phi [bb %get_op_prec.then85879, i32 10, bb %get_op_prec.then105900, i32 20, bb %get_op_prec.if.exit106902, i32 0]
-  251415 = icmp sge i32 %248414.ret, i32 %230381.ret
+  248419.ret = phi [bb %get_op_prec.then85884, i32 10, bb %get_op_prec.then105905, i32 20, bb %get_op_prec.if.exit106907, i32 0]
+  251420 = icmp sge i32 %248419.ret, i32 %230386.ret
   br bb %eval.select.exit245
 eval.select.else244:
   br bb %eval.select.exit245
 eval.select.exit245:
-  select246.phi420 = phi [bb %eval.select.else244, i1 0, bb %eval.select.then243.split.split, i1 %251415]
-  br i1 %select246.phi420, bb %eval.while.body239, bb %eval.while.exit240
+  select246.phi425 = phi [bb %eval.select.else244, i1 0, bb %eval.select.then243.split.split, i1 %251420]
+  br i1 %select246.phi425, bb %eval.while.body239, bb %eval.while.exit240
 eval.then270:
   call void putch(i32 112)
   call void putch(i32 97)
@@ -989,626 +995,633 @@ eval.then270:
   call void putch(i32 10)
   br bb %while.body300.split
 eval.if.exit271:
-  num.load273426 = load i32 from ptr @num
-  112.load979 = load i32 from ptr %oprs336
-  114980 = add i32 %112.load979, i32 1
-  store i32 %114980 to ptr %oprs336
-  118982 = mul i32 %114980, i32 4
-  119983 = ptradd ptr %oprs336, i32 %118982
-  store i32 %num.load273426 to ptr %119983
-  br bb %next_token.while.cond1877
+  num.load273431 = load i32 from ptr @num
+  112.load984 = load i32 from ptr %oprs341
+  114985 = add i32 %112.load984, i32 1
+  store i32 %114985 to ptr %oprs341
+  337987 = shl i32 %114985, i32 2
+  119988 = ptradd ptr %oprs341, i32 %337987
+  store i32 %num.load273431 to ptr %119988
+  br bb %next_token.while.cond1882
 eval.while.cond277:
-  145.load598 = load i32 from ptr %ops335
-  281432 = icmp ne i32 %145.load598, i32 0
-  br i1 %281432, bb %eval.while.body278, bb %eval.while.exit279
+  145.load603 = load i32 from ptr %ops340
+  281437 = icmp ne i32 %145.load603, i32 0
+  br i1 %281437, bb %eval.while.body278, bb %eval.while.exit279
 eval.while.body278:
-  124.load725 = load i32 from ptr %ops335
-  126726 = mul i32 %124.load725, i32 4
-  127727 = ptradd ptr %ops335, i32 %126726
-  127.load728 = load i32 from ptr %127727
-  134729 = sub i32 %124.load725, i32 1
-  store i32 %134729 to ptr %ops335
-  124.load735 = load i32 from ptr %oprs336
-  126736 = mul i32 %124.load735, i32 4
-  127737 = ptradd ptr %oprs336, i32 %126736
-  127.load738 = load i32 from ptr %127737
-  134739 = sub i32 %124.load735, i32 1
-  store i32 %134739 to ptr %oprs336
-  124.load745 = load i32 from ptr %oprs336
-  126746 = mul i32 %124.load745, i32 4
-  127747 = ptradd ptr %oprs336, i32 %126746
-  127.load748 = load i32 from ptr %127747
-  134749 = sub i32 %124.load745, i32 1
-  store i32 %134749 to ptr %oprs336
-  152549 = icmp eq i32 %127.load728, i32 43
-  br i1 %152549, bb %eval_op.then153551, bb %eval_op.if.exit154554
+  124.load730 = load i32 from ptr %ops340
+  336731 = shl i32 %124.load730, i32 2
+  127732 = ptradd ptr %ops340, i32 %336731
+  127.load733 = load i32 from ptr %127732
+  134734 = sub i32 %124.load730, i32 1
+  store i32 %134734 to ptr %ops340
+  124.load740 = load i32 from ptr %oprs341
+  336741 = shl i32 %124.load740, i32 2
+  127742 = ptradd ptr %oprs341, i32 %336741
+  127.load743 = load i32 from ptr %127742
+  134744 = sub i32 %124.load740, i32 1
+  store i32 %134744 to ptr %oprs341
+  124.load750 = load i32 from ptr %oprs341
+  336751 = shl i32 %124.load750, i32 2
+  127752 = ptradd ptr %oprs341, i32 %336751
+  127.load753 = load i32 from ptr %127752
+  134754 = sub i32 %124.load750, i32 1
+  store i32 %134754 to ptr %oprs341
+  152554 = icmp eq i32 %127.load733, i32 43
+  br i1 %152554, bb %eval_op.then153556, bb %eval_op.if.exit154559
 eval.while.body278.split:
-  291438.ret = phi [bb %eval_op.then153551, i32 %157552, bb %eval_op.then160557, i32 %164558, bb %eval_op.then167563, i32 %171564, bb %eval_op.then174569, i32 %178570, bb %eval_op.then181575, i32 %185576, bb %eval_op.if.exit182578, i32 0]
-  112.load988 = load i32 from ptr %oprs336
-  114989 = add i32 %112.load988, i32 1
-  store i32 %114989 to ptr %oprs336
-  118991 = mul i32 %114989, i32 4
-  119992 = ptradd ptr %oprs336, i32 %118991
-  store i32 %291438.ret to ptr %119992
+  291443.ret = phi [bb %eval_op.then153556, i32 %157557, bb %eval_op.then160562, i32 %164563, bb %eval_op.then167568, i32 %171569, bb %eval_op.then174574, i32 %178575, bb %eval_op.then181580, i32 %185581, bb %eval_op.if.exit182583, i32 0]
+  112.load993 = load i32 from ptr %oprs341
+  114994 = add i32 %112.load993, i32 1
+  store i32 %114994 to ptr %oprs341
+  337996 = shl i32 %114994, i32 2
+  119997 = ptradd ptr %oprs341, i32 %337996
+  store i32 %291443.ret to ptr %119997
   br bb %eval.while.cond277
 eval.while.exit279:
-  138.load627 = load i32 from ptr %oprs336
-  140628 = mul i32 %138.load627, i32 4
-  141629 = ptradd ptr %oprs336, i32 %140628
-  141.load630 = load i32 from ptr %141629
+  138.load632 = load i32 from ptr %oprs341
+  335633 = shl i32 %138.load632, i32 2
+  141634 = ptradd ptr %oprs341, i32 %335633
+  141.load635 = load i32 from ptr %141634
   br bb %while.body300.split
-eval_op.then153517:
-  157518 = add i32 %127.load718, i32 %127.load708
+eval_op.then153522:
+  157523 = add i32 %127.load723, i32 %127.load713
   br bb %eval.while.body239.split
-eval_op.if.exit154520:
-  159521 = icmp eq i32 %127.load698, i32 45
-  br i1 %159521, bb %eval_op.then160523, bb %eval_op.if.exit161526
-eval_op.then160523:
-  164524 = sub i32 %127.load718, i32 %127.load708
+eval_op.if.exit154525:
+  159526 = icmp eq i32 %127.load703, i32 45
+  br i1 %159526, bb %eval_op.then160528, bb %eval_op.if.exit161531
+eval_op.then160528:
+  164529 = sub i32 %127.load723, i32 %127.load713
   br bb %eval.while.body239.split
-eval_op.if.exit161526:
-  166527 = icmp eq i32 %127.load698, i32 42
-  br i1 %166527, bb %eval_op.then167529, bb %eval_op.if.exit168532
-eval_op.then167529:
-  171530 = mul i32 %127.load718, i32 %127.load708
+eval_op.if.exit161531:
+  166532 = icmp eq i32 %127.load703, i32 42
+  br i1 %166532, bb %eval_op.then167534, bb %eval_op.if.exit168537
+eval_op.then167534:
+  171535 = mul i32 %127.load723, i32 %127.load713
   br bb %eval.while.body239.split
-eval_op.if.exit168532:
-  173533 = icmp eq i32 %127.load698, i32 47
-  br i1 %173533, bb %eval_op.then174535, bb %eval_op.if.exit175538
-eval_op.then174535:
-  178536 = sdiv i32 %127.load718, i32 %127.load708
+eval_op.if.exit168537:
+  173538 = icmp eq i32 %127.load703, i32 47
+  br i1 %173538, bb %eval_op.then174540, bb %eval_op.if.exit175543
+eval_op.then174540:
+  178541 = sdiv i32 %127.load723, i32 %127.load713
   br bb %eval.while.body239.split
-eval_op.if.exit175538:
-  180539 = icmp eq i32 %127.load698, i32 37
-  br i1 %180539, bb %eval_op.then181541, bb %eval_op.if.exit182544
-eval_op.then181541:
-  185542 = srem i32 %127.load718, i32 %127.load708
+eval_op.if.exit175543:
+  180544 = icmp eq i32 %127.load703, i32 37
+  br i1 %180544, bb %eval_op.then181546, bb %eval_op.if.exit182549
+eval_op.then181546:
+  185547 = srem i32 %127.load723, i32 %127.load713
   br bb %eval.while.body239.split
-eval_op.if.exit182544:
+eval_op.if.exit182549:
   br bb %eval.while.body239.split
-eval_op.then153551:
-  157552 = add i32 %127.load748, i32 %127.load738
+eval_op.then153556:
+  157557 = add i32 %127.load753, i32 %127.load743
   br bb %eval.while.body278.split
-eval_op.if.exit154554:
-  159555 = icmp eq i32 %127.load728, i32 45
-  br i1 %159555, bb %eval_op.then160557, bb %eval_op.if.exit161560
-eval_op.then160557:
-  164558 = sub i32 %127.load748, i32 %127.load738
+eval_op.if.exit154559:
+  159560 = icmp eq i32 %127.load733, i32 45
+  br i1 %159560, bb %eval_op.then160562, bb %eval_op.if.exit161565
+eval_op.then160562:
+  164563 = sub i32 %127.load753, i32 %127.load743
   br bb %eval.while.body278.split
-eval_op.if.exit161560:
-  166561 = icmp eq i32 %127.load728, i32 42
-  br i1 %166561, bb %eval_op.then167563, bb %eval_op.if.exit168566
-eval_op.then167563:
-  171564 = mul i32 %127.load748, i32 %127.load738
+eval_op.if.exit161565:
+  166566 = icmp eq i32 %127.load733, i32 42
+  br i1 %166566, bb %eval_op.then167568, bb %eval_op.if.exit168571
+eval_op.then167568:
+  171569 = mul i32 %127.load753, i32 %127.load743
   br bb %eval.while.body278.split
-eval_op.if.exit168566:
-  173567 = icmp eq i32 %127.load728, i32 47
-  br i1 %173567, bb %eval_op.then174569, bb %eval_op.if.exit175572
-eval_op.then174569:
-  178570 = sdiv i32 %127.load748, i32 %127.load738
+eval_op.if.exit168571:
+  173572 = icmp eq i32 %127.load733, i32 47
+  br i1 %173572, bb %eval_op.then174574, bb %eval_op.if.exit175577
+eval_op.then174574:
+  178575 = sdiv i32 %127.load753, i32 %127.load743
   br bb %eval.while.body278.split
-eval_op.if.exit175572:
-  180573 = icmp eq i32 %127.load728, i32 37
-  br i1 %180573, bb %eval_op.then181575, bb %eval_op.if.exit182578
-eval_op.then181575:
-  185576 = srem i32 %127.load748, i32 %127.load738
+eval_op.if.exit175577:
+  180578 = icmp eq i32 %127.load733, i32 37
+  br i1 %180578, bb %eval_op.then181580, bb %eval_op.if.exit182583
+eval_op.then181580:
+  185581 = srem i32 %127.load753, i32 %127.load743
   br bb %eval.while.body278.split
-eval_op.if.exit182578:
+eval_op.if.exit182583:
   br bb %eval.while.body278.split
-get_op_prec.select.then77833:
-  br bb %get_op_prec.select.exit79838
-get_op_prec.select.else78835:
-  82836 = icmp eq i32 %other.load380, i32 45
-  br bb %get_op_prec.select.exit79838
-get_op_prec.select.exit79838:
-  select80.phi839 = phi [bb %get_op_prec.select.else78835, i1 %82836, bb %get_op_prec.select.then77833, i1 1]
-  br i1 %select80.phi839, bb %get_op_prec.then85841, bb %get_op_prec.if.exit86843
-get_op_prec.then85841:
+get_op_prec.select.then77838:
+  br bb %get_op_prec.select.exit79843
+get_op_prec.select.else78840:
+  82841 = icmp eq i32 %other.load385, i32 45
+  br bb %get_op_prec.select.exit79843
+get_op_prec.select.exit79843:
+  select80.phi844 = phi [bb %get_op_prec.select.else78840, i1 %82841, bb %get_op_prec.select.then77838, i1 -1]
+  br i1 %select80.phi844, bb %get_op_prec.then85846, bb %get_op_prec.if.exit86848
+get_op_prec.then85846:
   br bb %eval.while.body221.split
-get_op_prec.if.exit86843:
-  88844 = icmp eq i32 %other.load380, i32 42
-  br i1 %88844, bb %get_op_prec.select.then89846, bb %get_op_prec.select.else90848
-get_op_prec.select.then89846:
-  br bb %get_op_prec.select.exit91851
-get_op_prec.select.else90848:
-  94849 = icmp eq i32 %other.load380, i32 47
-  br bb %get_op_prec.select.exit91851
-get_op_prec.select.exit91851:
-  select92.phi852 = phi [bb %get_op_prec.select.else90848, i1 %94849, bb %get_op_prec.select.then89846, i1 1]
-  br i1 %select92.phi852, bb %get_op_prec.select.then97854, bb %get_op_prec.select.else98856
-get_op_prec.select.then97854:
-  br bb %get_op_prec.select.exit99859
-get_op_prec.select.else98856:
-  102857 = icmp eq i32 %other.load380, i32 37
-  br bb %get_op_prec.select.exit99859
-get_op_prec.select.exit99859:
-  select100.phi860 = phi [bb %get_op_prec.select.else98856, i1 %102857, bb %get_op_prec.select.then97854, i1 1]
-  br i1 %select100.phi860, bb %get_op_prec.then105862, bb %get_op_prec.if.exit106864
-get_op_prec.then105862:
+get_op_prec.if.exit86848:
+  88849 = icmp eq i32 %other.load385, i32 42
+  br i1 %88849, bb %get_op_prec.select.then89851, bb %get_op_prec.select.else90853
+get_op_prec.select.then89851:
+  br bb %get_op_prec.select.exit91856
+get_op_prec.select.else90853:
+  94854 = icmp eq i32 %other.load385, i32 47
+  br bb %get_op_prec.select.exit91856
+get_op_prec.select.exit91856:
+  select92.phi857 = phi [bb %get_op_prec.select.else90853, i1 %94854, bb %get_op_prec.select.then89851, i1 -1]
+  br i1 %select92.phi857, bb %get_op_prec.select.then97859, bb %get_op_prec.select.else98861
+get_op_prec.select.then97859:
+  br bb %get_op_prec.select.exit99864
+get_op_prec.select.else98861:
+  102862 = icmp eq i32 %other.load385, i32 37
+  br bb %get_op_prec.select.exit99864
+get_op_prec.select.exit99864:
+  select100.phi865 = phi [bb %get_op_prec.select.else98861, i1 %102862, bb %get_op_prec.select.then97859, i1 -1]
+  br i1 %select100.phi865, bb %get_op_prec.then105867, bb %get_op_prec.if.exit106869
+get_op_prec.then105867:
   br bb %eval.while.body221.split
-get_op_prec.if.exit106864:
+get_op_prec.if.exit106869:
   br bb %eval.while.body221.split
-get_op_prec.select.then77871:
-  br bb %get_op_prec.select.exit79876
-get_op_prec.select.else78873:
-  82874 = icmp eq i32 %141.load622, i32 45
-  br bb %get_op_prec.select.exit79876
-get_op_prec.select.exit79876:
-  select80.phi877 = phi [bb %get_op_prec.select.else78873, i1 %82874, bb %get_op_prec.select.then77871, i1 1]
-  br i1 %select80.phi877, bb %get_op_prec.then85879, bb %get_op_prec.if.exit86881
-get_op_prec.then85879:
+get_op_prec.select.then77876:
+  br bb %get_op_prec.select.exit79881
+get_op_prec.select.else78878:
+  82879 = icmp eq i32 %141.load627, i32 45
+  br bb %get_op_prec.select.exit79881
+get_op_prec.select.exit79881:
+  select80.phi882 = phi [bb %get_op_prec.select.else78878, i1 %82879, bb %get_op_prec.select.then77876, i1 -1]
+  br i1 %select80.phi882, bb %get_op_prec.then85884, bb %get_op_prec.if.exit86886
+get_op_prec.then85884:
   br bb %eval.select.then243.split.split
-get_op_prec.if.exit86881:
-  88882 = icmp eq i32 %141.load622, i32 42
-  br i1 %88882, bb %get_op_prec.select.then89884, bb %get_op_prec.select.else90886
-get_op_prec.select.then89884:
-  br bb %get_op_prec.select.exit91889
-get_op_prec.select.else90886:
-  94887 = icmp eq i32 %141.load622, i32 47
-  br bb %get_op_prec.select.exit91889
-get_op_prec.select.exit91889:
-  select92.phi890 = phi [bb %get_op_prec.select.else90886, i1 %94887, bb %get_op_prec.select.then89884, i1 1]
-  br i1 %select92.phi890, bb %get_op_prec.select.then97892, bb %get_op_prec.select.else98894
-get_op_prec.select.then97892:
-  br bb %get_op_prec.select.exit99897
-get_op_prec.select.else98894:
-  102895 = icmp eq i32 %141.load622, i32 37
-  br bb %get_op_prec.select.exit99897
-get_op_prec.select.exit99897:
-  select100.phi898 = phi [bb %get_op_prec.select.else98894, i1 %102895, bb %get_op_prec.select.then97892, i1 1]
-  br i1 %select100.phi898, bb %get_op_prec.then105900, bb %get_op_prec.if.exit106902
-get_op_prec.then105900:
+get_op_prec.if.exit86886:
+  88887 = icmp eq i32 %141.load627, i32 42
+  br i1 %88887, bb %get_op_prec.select.then89889, bb %get_op_prec.select.else90891
+get_op_prec.select.then89889:
+  br bb %get_op_prec.select.exit91894
+get_op_prec.select.else90891:
+  94892 = icmp eq i32 %141.load627, i32 47
+  br bb %get_op_prec.select.exit91894
+get_op_prec.select.exit91894:
+  select92.phi895 = phi [bb %get_op_prec.select.else90891, i1 %94892, bb %get_op_prec.select.then89889, i1 -1]
+  br i1 %select92.phi895, bb %get_op_prec.select.then97897, bb %get_op_prec.select.else98899
+get_op_prec.select.then97897:
+  br bb %get_op_prec.select.exit99902
+get_op_prec.select.else98899:
+  102900 = icmp eq i32 %141.load627, i32 37
+  br bb %get_op_prec.select.exit99902
+get_op_prec.select.exit99902:
+  select100.phi903 = phi [bb %get_op_prec.select.else98899, i1 %102900, bb %get_op_prec.select.then97897, i1 -1]
+  br i1 %select100.phi903, bb %get_op_prec.then105905, bb %get_op_prec.if.exit106907
+get_op_prec.then105905:
   br bb %eval.select.then243.split.split
-get_op_prec.if.exit106902:
+get_op_prec.if.exit106907:
   br bb %eval.select.then243.split.split
-next_token.while.cond1485:
-  last_char.load361486 = load i32 from ptr @last_char
-  610311565 = icmp eq i32 %last_char.load361486, i32 32
-  br i1 %610311565, bb %next_token.is_space.select.then1567, bb %next_token.is_space.select.else1569
-next_token.while.cond.split1488:
-  37.ret1489 = phi [bb %next_token.is_space.then1575, i32 1, bb %next_token.is_space.else1577, i32 0]
-  381490 = icmp ne i32 %37.ret1489, i32 0
-  br i1 %381490, bb %next_token.while.body1492, bb %next_token.while.exit1495
-next_token.while.body1492:
-  12064 = call i32 getch()
-  store i32 %12064 to ptr @last_char
-  br bb %next_token.while.cond1485
-next_token.while.exit1495:
-  last_char.load401496 = load i32 from ptr @last_char
-  219971535 = icmp sge i32 %last_char.load401496, i32 48
-  br i1 %219971535, bb %next_token.is_num.select.then221537, bb %next_token.is_num.select.else231540
-next_token.while.exit.split1498:
-  41.ret1499 = phi [bb %next_token.is_num.then291545, i32 1, bb %next_token.is_num.else311547, i32 0]
-  421500 = icmp ne i32 %41.ret1499, i32 0
-  br i1 %421500, bb %next_token.then431502, bb %next_token.else451510
-next_token.then431502:
-  last_char.load461503 = load i32 from ptr @last_char
-  471504 = sub i32 %last_char.load461503, i32 48
-  store i32 %471504 to ptr @num
-  br bb %next_token.while.cond481516
-next_token.if.exit441507:
+next_token.while.cond1490:
+  last_char.load361491 = load i32 from ptr @last_char
+  610361570 = icmp eq i32 %last_char.load361491, i32 32
+  br i1 %610361570, bb %next_token.is_space.select.then1572, bb %next_token.is_space.select.else1574
+next_token.while.cond.split1493:
+  37.ret1494 = phi [bb %next_token.is_space.then1580, i32 1, bb %next_token.is_space.else1582, i32 0]
+  381495 = icmp ne i32 %37.ret1494, i32 0
+  br i1 %381495, bb %next_token.while.body1497, bb %next_token.while.exit1500
+next_token.while.body1497:
+  12069 = call i32 getch()
+  store i32 %12069 to ptr @last_char
+  br bb %next_token.while.cond1490
+next_token.while.exit1500:
+  last_char.load401501 = load i32 from ptr @last_char
+  2110021540 = icmp sge i32 %last_char.load401501, i32 48
+  br i1 %2110021540, bb %next_token.is_num.select.then221542, bb %next_token.is_num.select.else231545
+next_token.while.exit.split1503:
+  41.ret1504 = phi [bb %next_token.is_num.then291550, i32 1, bb %next_token.is_num.else311552, i32 0]
+  421505 = icmp ne i32 %41.ret1504, i32 0
+  br i1 %421505, bb %next_token.then431507, bb %next_token.else451515
+next_token.then431507:
+  last_char.load461508 = load i32 from ptr @last_char
+  471509 = sub i32 %last_char.load461508, i32 48
+  store i32 %471509 to ptr @num
+  br bb %next_token.while.cond481521
+next_token.if.exit441512:
+  cur_token.load1513 = load i32 from ptr @cur_token
   br bb %while.cond299
-next_token.else451510:
-  last_char.load601511 = load i32 from ptr @last_char
-  store i32 %last_char.load601511 to ptr @other
-  12070 = call i32 getch()
-  store i32 %12070 to ptr @last_char
+next_token.else451515:
+  last_char.load601516 = load i32 from ptr @last_char
+  store i32 %last_char.load601516 to ptr @other
+  12075 = call i32 getch()
+  store i32 %12075 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441507
-next_token.while.cond481516:
-  12076 = call i32 getch()
-  store i32 %12076 to ptr @last_char
-  2110141550 = icmp sge i32 %12076, i32 48
-  br i1 %2110141550, bb %next_token.is_num.select.then2210161552, bb %next_token.is_num.select.else2310191555
-next_token.while.cond48.split1519:
-  52.ret1520 = phi [bb %next_token.is_num.then2910241560, i32 1, bb %next_token.is_num.else3110261562, i32 0]
-  531521 = icmp ne i32 %52.ret1520, i32 0
-  br i1 %531521, bb %next_token.while.body491523, bb %next_token.while.exit501531
-next_token.while.body491523:
-  num.load1524 = load i32 from ptr @num
-  551525 = mul i32 %num.load1524, i32 10
-  last_char.load561526 = load i32 from ptr @last_char
-  571527 = add i32 %551525, i32 %last_char.load561526
-  581528 = sub i32 %571527, i32 48
-  store i32 %581528 to ptr @num
-  br bb %next_token.while.cond481516
-next_token.while.exit501531:
+  br bb %next_token.if.exit441512
+next_token.while.cond481521:
+  12081 = call i32 getch()
+  store i32 %12081 to ptr @last_char
+  2110191555 = icmp sge i32 %12081, i32 48
+  br i1 %2110191555, bb %next_token.is_num.select.then2210211557, bb %next_token.is_num.select.else2310241560
+next_token.while.cond48.split1524:
+  52.ret1525 = phi [bb %next_token.is_num.then2910291565, i32 1, bb %next_token.is_num.else3110311567, i32 0]
+  531526 = icmp ne i32 %52.ret1525, i32 0
+  br i1 %531526, bb %next_token.while.body491528, bb %next_token.while.exit501536
+next_token.while.body491528:
+  num.load1529 = load i32 from ptr @num
+  551530 = mul i32 %num.load1529, i32 10
+  last_char.load561531 = load i32 from ptr @last_char
+  571532 = add i32 %551530, i32 %last_char.load561531
+  581533 = sub i32 %571532, i32 48
+  store i32 %581533 to ptr @num
+  br bb %next_token.while.cond481521
+next_token.while.exit501536:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441507
-next_token.is_num.select.then221537:
-  2710001538 = icmp sle i32 %last_char.load401496, i32 57
-  br bb %next_token.is_num.select.exit241542
-next_token.is_num.select.else231540:
-  br bb %next_token.is_num.select.exit241542
-next_token.is_num.select.exit241542:
-  select25.phi10051543 = phi [bb %next_token.is_num.select.else231540, i1 0, bb %next_token.is_num.select.then221537, i1 %2710001538]
-  br i1 %select25.phi10051543, bb %next_token.is_num.then291545, bb %next_token.is_num.else311547
-next_token.is_num.then291545:
-  br bb %next_token.while.exit.split1498
-next_token.is_num.else311547:
-  br bb %next_token.while.exit.split1498
-next_token.is_num.select.then2210161552:
-  2710171553 = icmp sle i32 %12076, i32 57
-  br bb %next_token.is_num.select.exit2410211557
-next_token.is_num.select.else2310191555:
-  br bb %next_token.is_num.select.exit2410211557
-next_token.is_num.select.exit2410211557:
-  select25.phi10221558 = phi [bb %next_token.is_num.select.else2310191555, i1 0, bb %next_token.is_num.select.then2210161552, i1 %2710171553]
-  br i1 %select25.phi10221558, bb %next_token.is_num.then2910241560, bb %next_token.is_num.else3110261562
-next_token.is_num.then2910241560:
-  br bb %next_token.while.cond48.split1519
-next_token.is_num.else3110261562:
-  br bb %next_token.while.cond48.split1519
-next_token.is_space.select.then1567:
-  br bb %next_token.is_space.select.exit1572
-next_token.is_space.select.else1569:
-  1210361570 = icmp eq i32 %last_char.load361486, i32 10
-  br bb %next_token.is_space.select.exit1572
-next_token.is_space.select.exit1572:
-  select.phi10391573 = phi [bb %next_token.is_space.select.else1569, i1 %1210361570, bb %next_token.is_space.select.then1567, i1 1]
-  br i1 %select.phi10391573, bb %next_token.is_space.then1575, bb %next_token.is_space.else1577
-next_token.is_space.then1575:
-  br bb %next_token.while.cond.split1488
-next_token.is_space.else1577:
-  br bb %next_token.while.cond.split1488
-next_token.while.cond1583:
-  last_char.load361584 = load i32 from ptr @last_char
-  610311663 = icmp eq i32 %last_char.load361584, i32 32
-  br i1 %610311663, bb %next_token.is_space.select.then1665, bb %next_token.is_space.select.else1667
-next_token.while.cond.split1586:
-  37.ret1587 = phi [bb %next_token.is_space.then1673, i32 1, bb %next_token.is_space.else1675, i32 0]
-  381588 = icmp ne i32 %37.ret1587, i32 0
-  br i1 %381588, bb %next_token.while.body1590, bb %next_token.while.exit1593
-next_token.while.body1590:
-  12082 = call i32 getch()
-  store i32 %12082 to ptr @last_char
-  br bb %next_token.while.cond1583
-next_token.while.exit1593:
-  last_char.load401594 = load i32 from ptr @last_char
-  219971633 = icmp sge i32 %last_char.load401594, i32 48
-  br i1 %219971633, bb %next_token.is_num.select.then221635, bb %next_token.is_num.select.else231638
-next_token.while.exit.split1596:
-  41.ret1597 = phi [bb %next_token.is_num.then291643, i32 1, bb %next_token.is_num.else311645, i32 0]
-  421598 = icmp ne i32 %41.ret1597, i32 0
-  br i1 %421598, bb %next_token.then431600, bb %next_token.else451608
-next_token.then431600:
-  last_char.load461601 = load i32 from ptr @last_char
-  471602 = sub i32 %last_char.load461601, i32 48
-  store i32 %471602 to ptr @num
-  br bb %next_token.while.cond481614
-next_token.if.exit441605:
+  br bb %next_token.if.exit441512
+next_token.is_num.select.then221542:
+  2710051543 = icmp sle i32 %last_char.load401501, i32 57
+  br bb %next_token.is_num.select.exit241547
+next_token.is_num.select.else231545:
+  br bb %next_token.is_num.select.exit241547
+next_token.is_num.select.exit241547:
+  select25.phi10101548 = phi [bb %next_token.is_num.select.else231545, i1 0, bb %next_token.is_num.select.then221542, i1 %2710051543]
+  br i1 %select25.phi10101548, bb %next_token.is_num.then291550, bb %next_token.is_num.else311552
+next_token.is_num.then291550:
+  br bb %next_token.while.exit.split1503
+next_token.is_num.else311552:
+  br bb %next_token.while.exit.split1503
+next_token.is_num.select.then2210211557:
+  2710221558 = icmp sle i32 %12081, i32 57
+  br bb %next_token.is_num.select.exit2410261562
+next_token.is_num.select.else2310241560:
+  br bb %next_token.is_num.select.exit2410261562
+next_token.is_num.select.exit2410261562:
+  select25.phi10271563 = phi [bb %next_token.is_num.select.else2310241560, i1 0, bb %next_token.is_num.select.then2210211557, i1 %2710221558]
+  br i1 %select25.phi10271563, bb %next_token.is_num.then2910291565, bb %next_token.is_num.else3110311567
+next_token.is_num.then2910291565:
+  br bb %next_token.while.cond48.split1524
+next_token.is_num.else3110311567:
+  br bb %next_token.while.cond48.split1524
+next_token.is_space.select.then1572:
+  br bb %next_token.is_space.select.exit1577
+next_token.is_space.select.else1574:
+  1210411575 = icmp eq i32 %last_char.load361491, i32 10
+  br bb %next_token.is_space.select.exit1577
+next_token.is_space.select.exit1577:
+  select.phi10441578 = phi [bb %next_token.is_space.select.else1574, i1 %1210411575, bb %next_token.is_space.select.then1572, i1 -1]
+  br i1 %select.phi10441578, bb %next_token.is_space.then1580, bb %next_token.is_space.else1582
+next_token.is_space.then1580:
+  br bb %next_token.while.cond.split1493
+next_token.is_space.else1582:
+  br bb %next_token.while.cond.split1493
+next_token.while.cond1588:
+  last_char.load361589 = load i32 from ptr @last_char
+  610361668 = icmp eq i32 %last_char.load361589, i32 32
+  br i1 %610361668, bb %next_token.is_space.select.then1670, bb %next_token.is_space.select.else1672
+next_token.while.cond.split1591:
+  37.ret1592 = phi [bb %next_token.is_space.then1678, i32 1, bb %next_token.is_space.else1680, i32 0]
+  381593 = icmp ne i32 %37.ret1592, i32 0
+  br i1 %381593, bb %next_token.while.body1595, bb %next_token.while.exit1598
+next_token.while.body1595:
+  12087 = call i32 getch()
+  store i32 %12087 to ptr @last_char
+  br bb %next_token.while.cond1588
+next_token.while.exit1598:
+  last_char.load401599 = load i32 from ptr @last_char
+  2110021638 = icmp sge i32 %last_char.load401599, i32 48
+  br i1 %2110021638, bb %next_token.is_num.select.then221640, bb %next_token.is_num.select.else231643
+next_token.while.exit.split1601:
+  41.ret1602 = phi [bb %next_token.is_num.then291648, i32 1, bb %next_token.is_num.else311650, i32 0]
+  421603 = icmp ne i32 %41.ret1602, i32 0
+  br i1 %421603, bb %next_token.then431605, bb %next_token.else451613
+next_token.then431605:
+  last_char.load461606 = load i32 from ptr @last_char
+  471607 = sub i32 %last_char.load461606, i32 48
+  store i32 %471607 to ptr @num
+  br bb %next_token.while.cond481619
+next_token.if.exit441610:
+  cur_token.load1611 = load i32 from ptr @cur_token
   br bb %eval.while.cond220
-next_token.else451608:
-  last_char.load601609 = load i32 from ptr @last_char
-  store i32 %last_char.load601609 to ptr @other
-  12088 = call i32 getch()
-  store i32 %12088 to ptr @last_char
+next_token.else451613:
+  last_char.load601614 = load i32 from ptr @last_char
+  store i32 %last_char.load601614 to ptr @other
+  12093 = call i32 getch()
+  store i32 %12093 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441605
-next_token.while.cond481614:
-  12094 = call i32 getch()
-  store i32 %12094 to ptr @last_char
-  2110141648 = icmp sge i32 %12094, i32 48
-  br i1 %2110141648, bb %next_token.is_num.select.then2210161650, bb %next_token.is_num.select.else2310191653
-next_token.while.cond48.split1617:
-  52.ret1618 = phi [bb %next_token.is_num.then2910241658, i32 1, bb %next_token.is_num.else3110261660, i32 0]
-  531619 = icmp ne i32 %52.ret1618, i32 0
-  br i1 %531619, bb %next_token.while.body491621, bb %next_token.while.exit501629
-next_token.while.body491621:
-  num.load1622 = load i32 from ptr @num
-  551623 = mul i32 %num.load1622, i32 10
-  last_char.load561624 = load i32 from ptr @last_char
-  571625 = add i32 %551623, i32 %last_char.load561624
-  581626 = sub i32 %571625, i32 48
-  store i32 %581626 to ptr @num
-  br bb %next_token.while.cond481614
-next_token.while.exit501629:
+  br bb %next_token.if.exit441610
+next_token.while.cond481619:
+  12099 = call i32 getch()
+  store i32 %12099 to ptr @last_char
+  2110191653 = icmp sge i32 %12099, i32 48
+  br i1 %2110191653, bb %next_token.is_num.select.then2210211655, bb %next_token.is_num.select.else2310241658
+next_token.while.cond48.split1622:
+  52.ret1623 = phi [bb %next_token.is_num.then2910291663, i32 1, bb %next_token.is_num.else3110311665, i32 0]
+  531624 = icmp ne i32 %52.ret1623, i32 0
+  br i1 %531624, bb %next_token.while.body491626, bb %next_token.while.exit501634
+next_token.while.body491626:
+  num.load1627 = load i32 from ptr @num
+  551628 = mul i32 %num.load1627, i32 10
+  last_char.load561629 = load i32 from ptr @last_char
+  571630 = add i32 %551628, i32 %last_char.load561629
+  581631 = sub i32 %571630, i32 48
+  store i32 %581631 to ptr @num
+  br bb %next_token.while.cond481619
+next_token.while.exit501634:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441605
-next_token.is_num.select.then221635:
-  2710001636 = icmp sle i32 %last_char.load401594, i32 57
-  br bb %next_token.is_num.select.exit241640
-next_token.is_num.select.else231638:
-  br bb %next_token.is_num.select.exit241640
-next_token.is_num.select.exit241640:
-  select25.phi10051641 = phi [bb %next_token.is_num.select.else231638, i1 0, bb %next_token.is_num.select.then221635, i1 %2710001636]
-  br i1 %select25.phi10051641, bb %next_token.is_num.then291643, bb %next_token.is_num.else311645
-next_token.is_num.then291643:
-  br bb %next_token.while.exit.split1596
-next_token.is_num.else311645:
-  br bb %next_token.while.exit.split1596
-next_token.is_num.select.then2210161650:
-  2710171651 = icmp sle i32 %12094, i32 57
-  br bb %next_token.is_num.select.exit2410211655
-next_token.is_num.select.else2310191653:
-  br bb %next_token.is_num.select.exit2410211655
-next_token.is_num.select.exit2410211655:
-  select25.phi10221656 = phi [bb %next_token.is_num.select.else2310191653, i1 0, bb %next_token.is_num.select.then2210161650, i1 %2710171651]
-  br i1 %select25.phi10221656, bb %next_token.is_num.then2910241658, bb %next_token.is_num.else3110261660
-next_token.is_num.then2910241658:
-  br bb %next_token.while.cond48.split1617
-next_token.is_num.else3110261660:
-  br bb %next_token.while.cond48.split1617
-next_token.is_space.select.then1665:
-  br bb %next_token.is_space.select.exit1670
-next_token.is_space.select.else1667:
-  1210361668 = icmp eq i32 %last_char.load361584, i32 10
-  br bb %next_token.is_space.select.exit1670
-next_token.is_space.select.exit1670:
-  select.phi10391671 = phi [bb %next_token.is_space.select.else1667, i1 %1210361668, bb %next_token.is_space.select.then1665, i1 1]
-  br i1 %select.phi10391671, bb %next_token.is_space.then1673, bb %next_token.is_space.else1675
-next_token.is_space.then1673:
-  br bb %next_token.while.cond.split1586
-next_token.is_space.else1675:
-  br bb %next_token.while.cond.split1586
-next_token.while.cond1681:
-  last_char.load361682 = load i32 from ptr @last_char
-  610311761 = icmp eq i32 %last_char.load361682, i32 32
-  br i1 %610311761, bb %next_token.is_space.select.then1763, bb %next_token.is_space.select.else1765
-next_token.while.cond.split1684:
-  37.ret1685 = phi [bb %next_token.is_space.then1771, i32 1, bb %next_token.is_space.else1773, i32 0]
-  381686 = icmp ne i32 %37.ret1685, i32 0
-  br i1 %381686, bb %next_token.while.body1688, bb %next_token.while.exit1691
-next_token.while.body1688:
-  12100 = call i32 getch()
-  store i32 %12100 to ptr @last_char
-  br bb %next_token.while.cond1681
-next_token.while.exit1691:
-  last_char.load401692 = load i32 from ptr @last_char
-  219971731 = icmp sge i32 %last_char.load401692, i32 48
-  br i1 %219971731, bb %next_token.is_num.select.then221733, bb %next_token.is_num.select.else231736
-next_token.while.exit.split1694:
-  41.ret1695 = phi [bb %next_token.is_num.then291741, i32 1, bb %next_token.is_num.else311743, i32 0]
-  421696 = icmp ne i32 %41.ret1695, i32 0
-  br i1 %421696, bb %next_token.then431698, bb %next_token.else451706
-next_token.then431698:
-  last_char.load461699 = load i32 from ptr @last_char
-  471700 = sub i32 %last_char.load461699, i32 48
-  store i32 %471700 to ptr @num
-  br bb %next_token.while.cond481712
-next_token.else451706:
-  last_char.load601707 = load i32 from ptr @last_char
-  store i32 %last_char.load601707 to ptr @other
-  12106 = call i32 getch()
-  store i32 %12106 to ptr @last_char
+  br bb %next_token.if.exit441610
+next_token.is_num.select.then221640:
+  2710051641 = icmp sle i32 %last_char.load401599, i32 57
+  br bb %next_token.is_num.select.exit241645
+next_token.is_num.select.else231643:
+  br bb %next_token.is_num.select.exit241645
+next_token.is_num.select.exit241645:
+  select25.phi10101646 = phi [bb %next_token.is_num.select.else231643, i1 0, bb %next_token.is_num.select.then221640, i1 %2710051641]
+  br i1 %select25.phi10101646, bb %next_token.is_num.then291648, bb %next_token.is_num.else311650
+next_token.is_num.then291648:
+  br bb %next_token.while.exit.split1601
+next_token.is_num.else311650:
+  br bb %next_token.while.exit.split1601
+next_token.is_num.select.then2210211655:
+  2710221656 = icmp sle i32 %12099, i32 57
+  br bb %next_token.is_num.select.exit2410261660
+next_token.is_num.select.else2310241658:
+  br bb %next_token.is_num.select.exit2410261660
+next_token.is_num.select.exit2410261660:
+  select25.phi10271661 = phi [bb %next_token.is_num.select.else2310241658, i1 0, bb %next_token.is_num.select.then2210211655, i1 %2710221656]
+  br i1 %select25.phi10271661, bb %next_token.is_num.then2910291663, bb %next_token.is_num.else3110311665
+next_token.is_num.then2910291663:
+  br bb %next_token.while.cond48.split1622
+next_token.is_num.else3110311665:
+  br bb %next_token.while.cond48.split1622
+next_token.is_space.select.then1670:
+  br bb %next_token.is_space.select.exit1675
+next_token.is_space.select.else1672:
+  1210411673 = icmp eq i32 %last_char.load361589, i32 10
+  br bb %next_token.is_space.select.exit1675
+next_token.is_space.select.exit1675:
+  select.phi10441676 = phi [bb %next_token.is_space.select.else1672, i1 %1210411673, bb %next_token.is_space.select.then1670, i1 -1]
+  br i1 %select.phi10441676, bb %next_token.is_space.then1678, bb %next_token.is_space.else1680
+next_token.is_space.then1678:
+  br bb %next_token.while.cond.split1591
+next_token.is_space.else1680:
+  br bb %next_token.while.cond.split1591
+next_token.while.cond1686:
+  last_char.load361687 = load i32 from ptr @last_char
+  610361766 = icmp eq i32 %last_char.load361687, i32 32
+  br i1 %610361766, bb %next_token.is_space.select.then1768, bb %next_token.is_space.select.else1770
+next_token.while.cond.split1689:
+  37.ret1690 = phi [bb %next_token.is_space.then1776, i32 1, bb %next_token.is_space.else1778, i32 0]
+  381691 = icmp ne i32 %37.ret1690, i32 0
+  br i1 %381691, bb %next_token.while.body1693, bb %next_token.while.exit1696
+next_token.while.body1693:
+  12105 = call i32 getch()
+  store i32 %12105 to ptr @last_char
+  br bb %next_token.while.cond1686
+next_token.while.exit1696:
+  last_char.load401697 = load i32 from ptr @last_char
+  2110021736 = icmp sge i32 %last_char.load401697, i32 48
+  br i1 %2110021736, bb %next_token.is_num.select.then221738, bb %next_token.is_num.select.else231741
+next_token.while.exit.split1699:
+  41.ret1700 = phi [bb %next_token.is_num.then291746, i32 1, bb %next_token.is_num.else311748, i32 0]
+  421701 = icmp ne i32 %41.ret1700, i32 0
+  br i1 %421701, bb %next_token.then431703, bb %next_token.else451711
+next_token.then431703:
+  last_char.load461704 = load i32 from ptr @last_char
+  471705 = sub i32 %last_char.load461704, i32 48
+  store i32 %471705 to ptr @num
+  br bb %next_token.while.cond481717
+next_token.if.exit441708:
+  cur_token.load1709 = load i32 from ptr @cur_token
+  br bb %eval.while.cond277
+next_token.else451711:
+  last_char.load601712 = load i32 from ptr @last_char
+  store i32 %last_char.load601712 to ptr @other
+  12111 = call i32 getch()
+  store i32 %12111 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %eval.while.cond277
-next_token.while.cond481712:
-  12112 = call i32 getch()
-  store i32 %12112 to ptr @last_char
-  2110141746 = icmp sge i32 %12112, i32 48
-  br i1 %2110141746, bb %next_token.is_num.select.then2210161748, bb %next_token.is_num.select.else2310191751
-next_token.while.cond48.split1715:
-  52.ret1716 = phi [bb %next_token.is_num.then2910241756, i32 1, bb %next_token.is_num.else3110261758, i32 0]
-  531717 = icmp ne i32 %52.ret1716, i32 0
-  br i1 %531717, bb %next_token.while.body491719, bb %next_token.while.exit501727
-next_token.while.body491719:
-  num.load1720 = load i32 from ptr @num
-  551721 = mul i32 %num.load1720, i32 10
-  last_char.load561722 = load i32 from ptr @last_char
-  571723 = add i32 %551721, i32 %last_char.load561722
-  581724 = sub i32 %571723, i32 48
-  store i32 %581724 to ptr @num
-  br bb %next_token.while.cond481712
-next_token.while.exit501727:
+  br bb %next_token.if.exit441708
+next_token.while.cond481717:
+  12117 = call i32 getch()
+  store i32 %12117 to ptr @last_char
+  2110191751 = icmp sge i32 %12117, i32 48
+  br i1 %2110191751, bb %next_token.is_num.select.then2210211753, bb %next_token.is_num.select.else2310241756
+next_token.while.cond48.split1720:
+  52.ret1721 = phi [bb %next_token.is_num.then2910291761, i32 1, bb %next_token.is_num.else3110311763, i32 0]
+  531722 = icmp ne i32 %52.ret1721, i32 0
+  br i1 %531722, bb %next_token.while.body491724, bb %next_token.while.exit501732
+next_token.while.body491724:
+  num.load1725 = load i32 from ptr @num
+  551726 = mul i32 %num.load1725, i32 10
+  last_char.load561727 = load i32 from ptr @last_char
+  571728 = add i32 %551726, i32 %last_char.load561727
+  581729 = sub i32 %571728, i32 48
+  store i32 %581729 to ptr @num
+  br bb %next_token.while.cond481717
+next_token.while.exit501732:
   store i32 0 to ptr @cur_token
-  br bb %eval.while.cond277
-next_token.is_num.select.then221733:
-  2710001734 = icmp sle i32 %last_char.load401692, i32 57
-  br bb %next_token.is_num.select.exit241738
-next_token.is_num.select.else231736:
-  br bb %next_token.is_num.select.exit241738
-next_token.is_num.select.exit241738:
-  select25.phi10051739 = phi [bb %next_token.is_num.select.else231736, i1 0, bb %next_token.is_num.select.then221733, i1 %2710001734]
-  br i1 %select25.phi10051739, bb %next_token.is_num.then291741, bb %next_token.is_num.else311743
-next_token.is_num.then291741:
-  br bb %next_token.while.exit.split1694
-next_token.is_num.else311743:
-  br bb %next_token.while.exit.split1694
-next_token.is_num.select.then2210161748:
-  2710171749 = icmp sle i32 %12112, i32 57
-  br bb %next_token.is_num.select.exit2410211753
-next_token.is_num.select.else2310191751:
-  br bb %next_token.is_num.select.exit2410211753
-next_token.is_num.select.exit2410211753:
-  select25.phi10221754 = phi [bb %next_token.is_num.select.else2310191751, i1 0, bb %next_token.is_num.select.then2210161748, i1 %2710171749]
-  br i1 %select25.phi10221754, bb %next_token.is_num.then2910241756, bb %next_token.is_num.else3110261758
-next_token.is_num.then2910241756:
-  br bb %next_token.while.cond48.split1715
-next_token.is_num.else3110261758:
-  br bb %next_token.while.cond48.split1715
-next_token.is_space.select.then1763:
-  br bb %next_token.is_space.select.exit1768
-next_token.is_space.select.else1765:
-  1210361766 = icmp eq i32 %last_char.load361682, i32 10
-  br bb %next_token.is_space.select.exit1768
-next_token.is_space.select.exit1768:
-  select.phi10391769 = phi [bb %next_token.is_space.select.else1765, i1 %1210361766, bb %next_token.is_space.select.then1763, i1 1]
-  br i1 %select.phi10391769, bb %next_token.is_space.then1771, bb %next_token.is_space.else1773
-next_token.is_space.then1771:
-  br bb %next_token.while.cond.split1684
-next_token.is_space.else1773:
-  br bb %next_token.while.cond.split1684
-next_token.while.cond1779:
-  last_char.load361780 = load i32 from ptr @last_char
-  610311859 = icmp eq i32 %last_char.load361780, i32 32
-  br i1 %610311859, bb %next_token.is_space.select.then1861, bb %next_token.is_space.select.else1863
-next_token.while.cond.split1782:
-  37.ret1783 = phi [bb %next_token.is_space.then1869, i32 1, bb %next_token.is_space.else1871, i32 0]
-  381784 = icmp ne i32 %37.ret1783, i32 0
-  br i1 %381784, bb %next_token.while.body1786, bb %next_token.while.exit1789
-next_token.while.body1786:
-  12118 = call i32 getch()
-  store i32 %12118 to ptr @last_char
-  br bb %next_token.while.cond1779
-next_token.while.exit1789:
-  last_char.load401790 = load i32 from ptr @last_char
-  219971829 = icmp sge i32 %last_char.load401790, i32 48
-  br i1 %219971829, bb %next_token.is_num.select.then221831, bb %next_token.is_num.select.else231834
-next_token.while.exit.split1792:
-  41.ret1793 = phi [bb %next_token.is_num.then291839, i32 1, bb %next_token.is_num.else311841, i32 0]
-  421794 = icmp ne i32 %41.ret1793, i32 0
-  br i1 %421794, bb %next_token.then431796, bb %next_token.else451804
-next_token.then431796:
-  last_char.load461797 = load i32 from ptr @last_char
-  471798 = sub i32 %last_char.load461797, i32 48
-  store i32 %471798 to ptr @num
-  br bb %next_token.while.cond481810
-next_token.if.exit441801:
+  br bb %next_token.if.exit441708
+next_token.is_num.select.then221738:
+  2710051739 = icmp sle i32 %last_char.load401697, i32 57
+  br bb %next_token.is_num.select.exit241743
+next_token.is_num.select.else231741:
+  br bb %next_token.is_num.select.exit241743
+next_token.is_num.select.exit241743:
+  select25.phi10101744 = phi [bb %next_token.is_num.select.else231741, i1 0, bb %next_token.is_num.select.then221738, i1 %2710051739]
+  br i1 %select25.phi10101744, bb %next_token.is_num.then291746, bb %next_token.is_num.else311748
+next_token.is_num.then291746:
+  br bb %next_token.while.exit.split1699
+next_token.is_num.else311748:
+  br bb %next_token.while.exit.split1699
+next_token.is_num.select.then2210211753:
+  2710221754 = icmp sle i32 %12117, i32 57
+  br bb %next_token.is_num.select.exit2410261758
+next_token.is_num.select.else2310241756:
+  br bb %next_token.is_num.select.exit2410261758
+next_token.is_num.select.exit2410261758:
+  select25.phi10271759 = phi [bb %next_token.is_num.select.else2310241756, i1 0, bb %next_token.is_num.select.then2210211753, i1 %2710221754]
+  br i1 %select25.phi10271759, bb %next_token.is_num.then2910291761, bb %next_token.is_num.else3110311763
+next_token.is_num.then2910291761:
+  br bb %next_token.while.cond48.split1720
+next_token.is_num.else3110311763:
+  br bb %next_token.while.cond48.split1720
+next_token.is_space.select.then1768:
+  br bb %next_token.is_space.select.exit1773
+next_token.is_space.select.else1770:
+  1210411771 = icmp eq i32 %last_char.load361687, i32 10
+  br bb %next_token.is_space.select.exit1773
+next_token.is_space.select.exit1773:
+  select.phi10441774 = phi [bb %next_token.is_space.select.else1770, i1 %1210411771, bb %next_token.is_space.select.then1768, i1 -1]
+  br i1 %select.phi10441774, bb %next_token.is_space.then1776, bb %next_token.is_space.else1778
+next_token.is_space.then1776:
+  br bb %next_token.while.cond.split1689
+next_token.is_space.else1778:
+  br bb %next_token.while.cond.split1689
+next_token.while.cond1784:
+  last_char.load361785 = load i32 from ptr @last_char
+  610361864 = icmp eq i32 %last_char.load361785, i32 32
+  br i1 %610361864, bb %next_token.is_space.select.then1866, bb %next_token.is_space.select.else1868
+next_token.while.cond.split1787:
+  37.ret1788 = phi [bb %next_token.is_space.then1874, i32 1, bb %next_token.is_space.else1876, i32 0]
+  381789 = icmp ne i32 %37.ret1788, i32 0
+  br i1 %381789, bb %next_token.while.body1791, bb %next_token.while.exit1794
+next_token.while.body1791:
+  12123 = call i32 getch()
+  store i32 %12123 to ptr @last_char
+  br bb %next_token.while.cond1784
+next_token.while.exit1794:
+  last_char.load401795 = load i32 from ptr @last_char
+  2110021834 = icmp sge i32 %last_char.load401795, i32 48
+  br i1 %2110021834, bb %next_token.is_num.select.then221836, bb %next_token.is_num.select.else231839
+next_token.while.exit.split1797:
+  41.ret1798 = phi [bb %next_token.is_num.then291844, i32 1, bb %next_token.is_num.else311846, i32 0]
+  421799 = icmp ne i32 %41.ret1798, i32 0
+  br i1 %421799, bb %next_token.then431801, bb %next_token.else451809
+next_token.then431801:
+  last_char.load461802 = load i32 from ptr @last_char
+  471803 = sub i32 %last_char.load461802, i32 48
+  store i32 %471803 to ptr @num
+  br bb %next_token.while.cond481815
+next_token.if.exit441806:
+  cur_token.load1807 = load i32 from ptr @cur_token
   br bb %eval.while.cond238
-next_token.else451804:
-  last_char.load601805 = load i32 from ptr @last_char
-  store i32 %last_char.load601805 to ptr @other
-  12124 = call i32 getch()
-  store i32 %12124 to ptr @last_char
+next_token.else451809:
+  last_char.load601810 = load i32 from ptr @last_char
+  store i32 %last_char.load601810 to ptr @other
+  12129 = call i32 getch()
+  store i32 %12129 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441801
-next_token.while.cond481810:
-  12130 = call i32 getch()
-  store i32 %12130 to ptr @last_char
-  2110141844 = icmp sge i32 %12130, i32 48
-  br i1 %2110141844, bb %next_token.is_num.select.then2210161846, bb %next_token.is_num.select.else2310191849
-next_token.while.cond48.split1813:
-  52.ret1814 = phi [bb %next_token.is_num.then2910241854, i32 1, bb %next_token.is_num.else3110261856, i32 0]
-  531815 = icmp ne i32 %52.ret1814, i32 0
-  br i1 %531815, bb %next_token.while.body491817, bb %next_token.while.exit501825
-next_token.while.body491817:
-  num.load1818 = load i32 from ptr @num
-  551819 = mul i32 %num.load1818, i32 10
-  last_char.load561820 = load i32 from ptr @last_char
-  571821 = add i32 %551819, i32 %last_char.load561820
-  581822 = sub i32 %571821, i32 48
-  store i32 %581822 to ptr @num
-  br bb %next_token.while.cond481810
-next_token.while.exit501825:
+  br bb %next_token.if.exit441806
+next_token.while.cond481815:
+  12135 = call i32 getch()
+  store i32 %12135 to ptr @last_char
+  2110191849 = icmp sge i32 %12135, i32 48
+  br i1 %2110191849, bb %next_token.is_num.select.then2210211851, bb %next_token.is_num.select.else2310241854
+next_token.while.cond48.split1818:
+  52.ret1819 = phi [bb %next_token.is_num.then2910291859, i32 1, bb %next_token.is_num.else3110311861, i32 0]
+  531820 = icmp ne i32 %52.ret1819, i32 0
+  br i1 %531820, bb %next_token.while.body491822, bb %next_token.while.exit501830
+next_token.while.body491822:
+  num.load1823 = load i32 from ptr @num
+  551824 = mul i32 %num.load1823, i32 10
+  last_char.load561825 = load i32 from ptr @last_char
+  571826 = add i32 %551824, i32 %last_char.load561825
+  581827 = sub i32 %571826, i32 48
+  store i32 %581827 to ptr @num
+  br bb %next_token.while.cond481815
+next_token.while.exit501830:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441801
-next_token.is_num.select.then221831:
-  2710001832 = icmp sle i32 %last_char.load401790, i32 57
-  br bb %next_token.is_num.select.exit241836
-next_token.is_num.select.else231834:
-  br bb %next_token.is_num.select.exit241836
-next_token.is_num.select.exit241836:
-  select25.phi10051837 = phi [bb %next_token.is_num.select.else231834, i1 0, bb %next_token.is_num.select.then221831, i1 %2710001832]
-  br i1 %select25.phi10051837, bb %next_token.is_num.then291839, bb %next_token.is_num.else311841
-next_token.is_num.then291839:
-  br bb %next_token.while.exit.split1792
-next_token.is_num.else311841:
-  br bb %next_token.while.exit.split1792
-next_token.is_num.select.then2210161846:
-  2710171847 = icmp sle i32 %12130, i32 57
-  br bb %next_token.is_num.select.exit2410211851
-next_token.is_num.select.else2310191849:
-  br bb %next_token.is_num.select.exit2410211851
-next_token.is_num.select.exit2410211851:
-  select25.phi10221852 = phi [bb %next_token.is_num.select.else2310191849, i1 0, bb %next_token.is_num.select.then2210161846, i1 %2710171847]
-  br i1 %select25.phi10221852, bb %next_token.is_num.then2910241854, bb %next_token.is_num.else3110261856
-next_token.is_num.then2910241854:
-  br bb %next_token.while.cond48.split1813
-next_token.is_num.else3110261856:
-  br bb %next_token.while.cond48.split1813
-next_token.is_space.select.then1861:
-  br bb %next_token.is_space.select.exit1866
-next_token.is_space.select.else1863:
-  1210361864 = icmp eq i32 %last_char.load361780, i32 10
-  br bb %next_token.is_space.select.exit1866
-next_token.is_space.select.exit1866:
-  select.phi10391867 = phi [bb %next_token.is_space.select.else1863, i1 %1210361864, bb %next_token.is_space.select.then1861, i1 1]
-  br i1 %select.phi10391867, bb %next_token.is_space.then1869, bb %next_token.is_space.else1871
-next_token.is_space.then1869:
-  br bb %next_token.while.cond.split1782
-next_token.is_space.else1871:
-  br bb %next_token.while.cond.split1782
-next_token.while.cond1877:
-  last_char.load361878 = load i32 from ptr @last_char
-  610311957 = icmp eq i32 %last_char.load361878, i32 32
-  br i1 %610311957, bb %next_token.is_space.select.then1959, bb %next_token.is_space.select.else1961
-next_token.while.cond.split1880:
-  37.ret1881 = phi [bb %next_token.is_space.then1967, i32 1, bb %next_token.is_space.else1969, i32 0]
-  381882 = icmp ne i32 %37.ret1881, i32 0
-  br i1 %381882, bb %next_token.while.body1884, bb %next_token.while.exit1887
-next_token.while.body1884:
-  12136 = call i32 getch()
-  store i32 %12136 to ptr @last_char
-  br bb %next_token.while.cond1877
-next_token.while.exit1887:
-  last_char.load401888 = load i32 from ptr @last_char
-  219971927 = icmp sge i32 %last_char.load401888, i32 48
-  br i1 %219971927, bb %next_token.is_num.select.then221929, bb %next_token.is_num.select.else231932
-next_token.while.exit.split1890:
-  41.ret1891 = phi [bb %next_token.is_num.then291937, i32 1, bb %next_token.is_num.else311939, i32 0]
-  421892 = icmp ne i32 %41.ret1891, i32 0
-  br i1 %421892, bb %next_token.then431894, bb %next_token.else451902
-next_token.then431894:
-  last_char.load461895 = load i32 from ptr @last_char
-  471896 = sub i32 %last_char.load461895, i32 48
-  store i32 %471896 to ptr @num
-  br bb %next_token.while.cond481908
-next_token.if.exit441899:
+  br bb %next_token.if.exit441806
+next_token.is_num.select.then221836:
+  2710051837 = icmp sle i32 %last_char.load401795, i32 57
+  br bb %next_token.is_num.select.exit241841
+next_token.is_num.select.else231839:
+  br bb %next_token.is_num.select.exit241841
+next_token.is_num.select.exit241841:
+  select25.phi10101842 = phi [bb %next_token.is_num.select.else231839, i1 0, bb %next_token.is_num.select.then221836, i1 %2710051837]
+  br i1 %select25.phi10101842, bb %next_token.is_num.then291844, bb %next_token.is_num.else311846
+next_token.is_num.then291844:
+  br bb %next_token.while.exit.split1797
+next_token.is_num.else311846:
+  br bb %next_token.while.exit.split1797
+next_token.is_num.select.then2210211851:
+  2710221852 = icmp sle i32 %12135, i32 57
+  br bb %next_token.is_num.select.exit2410261856
+next_token.is_num.select.else2310241854:
+  br bb %next_token.is_num.select.exit2410261856
+next_token.is_num.select.exit2410261856:
+  select25.phi10271857 = phi [bb %next_token.is_num.select.else2310241854, i1 0, bb %next_token.is_num.select.then2210211851, i1 %2710221852]
+  br i1 %select25.phi10271857, bb %next_token.is_num.then2910291859, bb %next_token.is_num.else3110311861
+next_token.is_num.then2910291859:
+  br bb %next_token.while.cond48.split1818
+next_token.is_num.else3110311861:
+  br bb %next_token.while.cond48.split1818
+next_token.is_space.select.then1866:
+  br bb %next_token.is_space.select.exit1871
+next_token.is_space.select.else1868:
+  1210411869 = icmp eq i32 %last_char.load361785, i32 10
+  br bb %next_token.is_space.select.exit1871
+next_token.is_space.select.exit1871:
+  select.phi10441872 = phi [bb %next_token.is_space.select.else1868, i1 %1210411869, bb %next_token.is_space.select.then1866, i1 -1]
+  br i1 %select.phi10441872, bb %next_token.is_space.then1874, bb %next_token.is_space.else1876
+next_token.is_space.then1874:
+  br bb %next_token.while.cond.split1787
+next_token.is_space.else1876:
+  br bb %next_token.while.cond.split1787
+next_token.while.cond1882:
+  last_char.load361883 = load i32 from ptr @last_char
+  610361962 = icmp eq i32 %last_char.load361883, i32 32
+  br i1 %610361962, bb %next_token.is_space.select.then1964, bb %next_token.is_space.select.else1966
+next_token.while.cond.split1885:
+  37.ret1886 = phi [bb %next_token.is_space.then1972, i32 1, bb %next_token.is_space.else1974, i32 0]
+  381887 = icmp ne i32 %37.ret1886, i32 0
+  br i1 %381887, bb %next_token.while.body1889, bb %next_token.while.exit1892
+next_token.while.body1889:
+  12141 = call i32 getch()
+  store i32 %12141 to ptr @last_char
+  br bb %next_token.while.cond1882
+next_token.while.exit1892:
+  last_char.load401893 = load i32 from ptr @last_char
+  2110021932 = icmp sge i32 %last_char.load401893, i32 48
+  br i1 %2110021932, bb %next_token.is_num.select.then221934, bb %next_token.is_num.select.else231937
+next_token.while.exit.split1895:
+  41.ret1896 = phi [bb %next_token.is_num.then291942, i32 1, bb %next_token.is_num.else311944, i32 0]
+  421897 = icmp ne i32 %41.ret1896, i32 0
+  br i1 %421897, bb %next_token.then431899, bb %next_token.else451907
+next_token.then431899:
+  last_char.load461900 = load i32 from ptr @last_char
+  471901 = sub i32 %last_char.load461900, i32 48
+  store i32 %471901 to ptr @num
+  br bb %next_token.while.cond481913
+next_token.if.exit441904:
+  cur_token.load1905 = load i32 from ptr @cur_token
   br bb %eval.while.cond220
-next_token.else451902:
-  last_char.load601903 = load i32 from ptr @last_char
-  store i32 %last_char.load601903 to ptr @other
-  12142 = call i32 getch()
-  store i32 %12142 to ptr @last_char
+next_token.else451907:
+  last_char.load601908 = load i32 from ptr @last_char
+  store i32 %last_char.load601908 to ptr @other
+  12147 = call i32 getch()
+  store i32 %12147 to ptr @last_char
   store i32 1 to ptr @cur_token
-  br bb %next_token.if.exit441899
-next_token.while.cond481908:
-  12148 = call i32 getch()
-  store i32 %12148 to ptr @last_char
-  2110141942 = icmp sge i32 %12148, i32 48
-  br i1 %2110141942, bb %next_token.is_num.select.then2210161944, bb %next_token.is_num.select.else2310191947
-next_token.while.cond48.split1911:
-  52.ret1912 = phi [bb %next_token.is_num.then2910241952, i32 1, bb %next_token.is_num.else3110261954, i32 0]
-  531913 = icmp ne i32 %52.ret1912, i32 0
-  br i1 %531913, bb %next_token.while.body491915, bb %next_token.while.exit501923
-next_token.while.body491915:
-  num.load1916 = load i32 from ptr @num
-  551917 = mul i32 %num.load1916, i32 10
-  last_char.load561918 = load i32 from ptr @last_char
-  571919 = add i32 %551917, i32 %last_char.load561918
-  581920 = sub i32 %571919, i32 48
-  store i32 %581920 to ptr @num
-  br bb %next_token.while.cond481908
-next_token.while.exit501923:
+  br bb %next_token.if.exit441904
+next_token.while.cond481913:
+  12153 = call i32 getch()
+  store i32 %12153 to ptr @last_char
+  2110191947 = icmp sge i32 %12153, i32 48
+  br i1 %2110191947, bb %next_token.is_num.select.then2210211949, bb %next_token.is_num.select.else2310241952
+next_token.while.cond48.split1916:
+  52.ret1917 = phi [bb %next_token.is_num.then2910291957, i32 1, bb %next_token.is_num.else3110311959, i32 0]
+  531918 = icmp ne i32 %52.ret1917, i32 0
+  br i1 %531918, bb %next_token.while.body491920, bb %next_token.while.exit501928
+next_token.while.body491920:
+  num.load1921 = load i32 from ptr @num
+  551922 = mul i32 %num.load1921, i32 10
+  last_char.load561923 = load i32 from ptr @last_char
+  571924 = add i32 %551922, i32 %last_char.load561923
+  581925 = sub i32 %571924, i32 48
+  store i32 %581925 to ptr @num
+  br bb %next_token.while.cond481913
+next_token.while.exit501928:
   store i32 0 to ptr @cur_token
-  br bb %next_token.if.exit441899
-next_token.is_num.select.then221929:
-  2710001930 = icmp sle i32 %last_char.load401888, i32 57
-  br bb %next_token.is_num.select.exit241934
-next_token.is_num.select.else231932:
-  br bb %next_token.is_num.select.exit241934
-next_token.is_num.select.exit241934:
-  select25.phi10051935 = phi [bb %next_token.is_num.select.else231932, i1 0, bb %next_token.is_num.select.then221929, i1 %2710001930]
-  br i1 %select25.phi10051935, bb %next_token.is_num.then291937, bb %next_token.is_num.else311939
-next_token.is_num.then291937:
-  br bb %next_token.while.exit.split1890
-next_token.is_num.else311939:
-  br bb %next_token.while.exit.split1890
-next_token.is_num.select.then2210161944:
-  2710171945 = icmp sle i32 %12148, i32 57
-  br bb %next_token.is_num.select.exit2410211949
-next_token.is_num.select.else2310191947:
-  br bb %next_token.is_num.select.exit2410211949
-next_token.is_num.select.exit2410211949:
-  select25.phi10221950 = phi [bb %next_token.is_num.select.else2310191947, i1 0, bb %next_token.is_num.select.then2210161944, i1 %2710171945]
-  br i1 %select25.phi10221950, bb %next_token.is_num.then2910241952, bb %next_token.is_num.else3110261954
-next_token.is_num.then2910241952:
-  br bb %next_token.while.cond48.split1911
-next_token.is_num.else3110261954:
-  br bb %next_token.while.cond48.split1911
-next_token.is_space.select.then1959:
-  br bb %next_token.is_space.select.exit1964
-next_token.is_space.select.else1961:
-  1210361962 = icmp eq i32 %last_char.load361878, i32 10
-  br bb %next_token.is_space.select.exit1964
-next_token.is_space.select.exit1964:
-  select.phi10391965 = phi [bb %next_token.is_space.select.else1961, i1 %1210361962, bb %next_token.is_space.select.then1959, i1 1]
-  br i1 %select.phi10391965, bb %next_token.is_space.then1967, bb %next_token.is_space.else1969
-next_token.is_space.then1967:
-  br bb %next_token.while.cond.split1880
-next_token.is_space.else1969:
-  br bb %next_token.while.cond.split1880
+  br bb %next_token.if.exit441904
+next_token.is_num.select.then221934:
+  2710051935 = icmp sle i32 %last_char.load401893, i32 57
+  br bb %next_token.is_num.select.exit241939
+next_token.is_num.select.else231937:
+  br bb %next_token.is_num.select.exit241939
+next_token.is_num.select.exit241939:
+  select25.phi10101940 = phi [bb %next_token.is_num.select.else231937, i1 0, bb %next_token.is_num.select.then221934, i1 %2710051935]
+  br i1 %select25.phi10101940, bb %next_token.is_num.then291942, bb %next_token.is_num.else311944
+next_token.is_num.then291942:
+  br bb %next_token.while.exit.split1895
+next_token.is_num.else311944:
+  br bb %next_token.while.exit.split1895
+next_token.is_num.select.then2210211949:
+  2710221950 = icmp sle i32 %12153, i32 57
+  br bb %next_token.is_num.select.exit2410261954
+next_token.is_num.select.else2310241952:
+  br bb %next_token.is_num.select.exit2410261954
+next_token.is_num.select.exit2410261954:
+  select25.phi10271955 = phi [bb %next_token.is_num.select.else2310241952, i1 0, bb %next_token.is_num.select.then2210211949, i1 %2710221950]
+  br i1 %select25.phi10271955, bb %next_token.is_num.then2910291957, bb %next_token.is_num.else3110311959
+next_token.is_num.then2910291957:
+  br bb %next_token.while.cond48.split1916
+next_token.is_num.else3110311959:
+  br bb %next_token.while.cond48.split1916
+next_token.is_space.select.then1964:
+  br bb %next_token.is_space.select.exit1969
+next_token.is_space.select.else1966:
+  1210411967 = icmp eq i32 %last_char.load361883, i32 10
+  br bb %next_token.is_space.select.exit1969
+next_token.is_space.select.exit1969:
+  select.phi10441970 = phi [bb %next_token.is_space.select.else1966, i1 %1210411967, bb %next_token.is_space.select.then1964, i1 -1]
+  br i1 %select.phi10441970, bb %next_token.is_space.then1972, bb %next_token.is_space.else1974
+next_token.is_space.then1972:
+  br bb %next_token.while.cond.split1885
+next_token.is_space.else1974:
+  br bb %next_token.while.cond.split1885
 }
 
 i32 panic() {
@@ -1632,20 +1645,20 @@ entry32:
   br bb %while.cond
 while.cond:
   last_char.load36 = load i32 from ptr @last_char
-  61031 = icmp eq i32 %last_char.load36, i32 32
-  br i1 %61031, bb %is_space.select.then, bb %is_space.select.else
+  61036 = icmp eq i32 %last_char.load36, i32 32
+  br i1 %61036, bb %is_space.select.then, bb %is_space.select.else
 while.cond.split:
   37.ret = phi [bb %is_space.then, i32 1, bb %is_space.else, i32 0]
   38 = icmp ne i32 %37.ret, i32 0
   br i1 %38, bb %while.body, bb %while.exit
 while.body:
-  11974 = call i32 getch()
-  store i32 %11974 to ptr @last_char
+  11979 = call i32 getch()
+  store i32 %11979 to ptr @last_char
   br bb %while.cond
 while.exit:
   last_char.load40 = load i32 from ptr @last_char
-  21997 = icmp sge i32 %last_char.load40, i32 48
-  br i1 %21997, bb %is_num.select.then22, bb %is_num.select.else23
+  211002 = icmp sge i32 %last_char.load40, i32 48
+  br i1 %211002, bb %is_num.select.then22, bb %is_num.select.else23
 while.exit.split:
   41.ret = phi [bb %is_num.then29, i32 1, bb %is_num.else31, i32 0]
   42 = icmp ne i32 %41.ret, i32 0
@@ -1661,17 +1674,17 @@ if.exit44:
 else45:
   last_char.load60 = load i32 from ptr @last_char
   store i32 %last_char.load60 to ptr @other
-  11986 = call i32 getch()
-  store i32 %11986 to ptr @last_char
+  11991 = call i32 getch()
+  store i32 %11991 to ptr @last_char
   store i32 1 to ptr @cur_token
   br bb %if.exit44
 while.cond48:
-  11980 = call i32 getch()
-  store i32 %11980 to ptr @last_char
-  211014 = icmp sge i32 %11980, i32 48
-  br i1 %211014, bb %is_num.select.then221016, bb %is_num.select.else231019
+  11985 = call i32 getch()
+  store i32 %11985 to ptr @last_char
+  211019 = icmp sge i32 %11985, i32 48
+  br i1 %211019, bb %is_num.select.then221021, bb %is_num.select.else231024
 while.cond48.split:
-  52.ret = phi [bb %is_num.then291024, i32 1, bb %is_num.else311026, i32 0]
+  52.ret = phi [bb %is_num.then291029, i32 1, bb %is_num.else311031, i32 0]
   53 = icmp ne i32 %52.ret, i32 0
   br i1 %53, bb %while.body49, bb %while.exit50
 while.body49:
@@ -1686,37 +1699,37 @@ while.exit50:
   store i32 0 to ptr @cur_token
   br bb %if.exit44
 is_num.select.then22:
-  271000 = icmp sle i32 %last_char.load40, i32 57
+  271005 = icmp sle i32 %last_char.load40, i32 57
   br bb %is_num.select.exit24
 is_num.select.else23:
   br bb %is_num.select.exit24
 is_num.select.exit24:
-  select25.phi1005 = phi [bb %is_num.select.else23, i1 0, bb %is_num.select.then22, i1 %271000]
-  br i1 %select25.phi1005, bb %is_num.then29, bb %is_num.else31
+  select25.phi1010 = phi [bb %is_num.select.else23, i1 0, bb %is_num.select.then22, i1 %271005]
+  br i1 %select25.phi1010, bb %is_num.then29, bb %is_num.else31
 is_num.then29:
   br bb %while.exit.split
 is_num.else31:
   br bb %while.exit.split
-is_num.select.then221016:
-  271017 = icmp sle i32 %11980, i32 57
-  br bb %is_num.select.exit241021
-is_num.select.else231019:
-  br bb %is_num.select.exit241021
-is_num.select.exit241021:
-  select25.phi1022 = phi [bb %is_num.select.else231019, i1 0, bb %is_num.select.then221016, i1 %271017]
-  br i1 %select25.phi1022, bb %is_num.then291024, bb %is_num.else311026
-is_num.then291024:
+is_num.select.then221021:
+  271022 = icmp sle i32 %11985, i32 57
+  br bb %is_num.select.exit241026
+is_num.select.else231024:
+  br bb %is_num.select.exit241026
+is_num.select.exit241026:
+  select25.phi1027 = phi [bb %is_num.select.else231024, i1 0, bb %is_num.select.then221021, i1 %271022]
+  br i1 %select25.phi1027, bb %is_num.then291029, bb %is_num.else311031
+is_num.then291029:
   br bb %while.cond48.split
-is_num.else311026:
+is_num.else311031:
   br bb %while.cond48.split
 is_space.select.then:
   br bb %is_space.select.exit
 is_space.select.else:
-  121036 = icmp eq i32 %last_char.load36, i32 10
+  121041 = icmp eq i32 %last_char.load36, i32 10
   br bb %is_space.select.exit
 is_space.select.exit:
-  select.phi1039 = phi [bb %is_space.select.else, i1 %121036, bb %is_space.select.then, i1 1]
-  br i1 %select.phi1039, bb %is_space.then, bb %is_space.else
+  select.phi1044 = phi [bb %is_space.select.else, i1 %121041, bb %is_space.select.then, i1 -1]
+  br i1 %select.phi1044, bb %is_space.then, bb %is_space.else
 is_space.then:
   br bb %while.cond.split
 is_space.else:

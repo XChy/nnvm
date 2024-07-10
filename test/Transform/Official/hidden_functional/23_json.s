@@ -43,46 +43,42 @@ bb1:
 bb2:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb307
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb307
   # implict jump to bb3
 bb3:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb306
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb306
   # implict jump to bb4
 bb4:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb305
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb305
   # implict jump to bb5
 bb5:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb304
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb304
   # implict jump to bb6
 bb6:
   XOR s3, s0, zero
@@ -161,12 +157,11 @@ bb15:
 bb16:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  LW s6, 0(sp)
-  XOR s8, s7, s6
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  LW s7, 0(sp)
+  XOR s8, s6, s7
   SLTU s6, zero, s8
   BNE s6, zero, bb25
   # implict jump to bb17
@@ -174,9 +169,8 @@ bb17:
   LA s6, pos
   LW s7, 0(s6)
   ADDIW s6, s7, 1
-  ADDI s7, zero, 4
-  MULW s8, s6, s7
-  ADD s6, s1, s8
+  SLLIW s7, s6, 2
+  ADD s6, s1, s7
   LW s7, 0(s6)
   LW s6, 0(s3)
   XOR s3, s7, s6
@@ -187,9 +181,8 @@ bb18:
   LA s3, pos
   LW s6, 0(s3)
   ADDIW s3, s6, 2
-  ADDI s6, zero, 4
-  MULW s7, s3, s6
-  ADD s3, s1, s7
+  SLLIW s6, s3, 2
+  ADD s3, s1, s6
   LW s6, 0(s3)
   LW s3, 0(s4)
   XOR s4, s6, s3
@@ -200,9 +193,8 @@ bb19:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 3
-  ADDI s4, zero, 4
-  MULW s6, s3, s4
-  ADD s3, s1, s6
+  SLLIW s4, s3, 2
+  ADD s3, s1, s4
   LW s4, 0(s3)
   LW s3, 0(s5)
   XOR s5, s4, s3
@@ -331,12 +323,11 @@ bb27:
 bb28:
   LA s7, pos
   LW s8, 0(s7)
-  ADDI s7, zero, 4
-  MULW s9, s8, s7
-  ADD s7, s1, s9
-  LW s8, 0(s7)
-  LW s7, 16(sp)
-  XOR s9, s8, s7
+  SLLIW s7, s8, 2
+  ADD s8, s1, s7
+  LW s7, 0(s8)
+  LW s8, 16(sp)
+  XOR s9, s7, s8
   SLTU s7, zero, s9
   BNE s7, zero, bb38
   # implict jump to bb29
@@ -344,9 +335,8 @@ bb29:
   LA s7, pos
   LW s8, 0(s7)
   ADDIW s7, s8, 1
-  ADDI s8, zero, 4
-  MULW s9, s7, s8
-  ADD s7, s1, s9
+  SLLIW s8, s7, 2
+  ADD s7, s1, s8
   LW s8, 0(s7)
   LW s7, 0(s3)
   XOR s3, s8, s7
@@ -357,9 +347,8 @@ bb30:
   LA s3, pos
   LW s7, 0(s3)
   ADDIW s3, s7, 2
-  ADDI s7, zero, 4
-  MULW s8, s3, s7
-  ADD s3, s1, s8
+  SLLIW s7, s3, 2
+  ADD s3, s1, s7
   LW s7, 0(s3)
   LW s3, 0(s4)
   XOR s4, s7, s3
@@ -370,9 +359,8 @@ bb31:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 3
-  ADDI s4, zero, 4
-  MULW s7, s3, s4
-  ADD s3, s1, s7
+  SLLIW s4, s3, 2
+  ADD s3, s1, s4
   LW s4, 0(s3)
   LW s3, 0(s5)
   XOR s5, s4, s3
@@ -383,9 +371,8 @@ bb32:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 4
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  ADD s3, s1, s5
+  SLLIW s4, s3, 2
+  ADD s3, s1, s4
   LW s4, 0(s3)
   LW s3, 0(s6)
   XOR s5, s4, s3
@@ -511,12 +498,11 @@ bb40:
 bb41:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  LW s6, 40(sp)
-  XOR s8, s7, s6
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  LW s7, 40(sp)
+  XOR s8, s6, s7
   SLTU s6, zero, s8
   BNE s6, zero, bb49
   # implict jump to bb42
@@ -524,9 +510,8 @@ bb42:
   LA s6, pos
   LW s7, 0(s6)
   ADDIW s6, s7, 1
-  ADDI s7, zero, 4
-  MULW s8, s6, s7
-  ADD s6, s1, s8
+  SLLIW s7, s6, 2
+  ADD s6, s1, s7
   LW s7, 0(s6)
   LW s6, 0(s3)
   XOR s3, s7, s6
@@ -537,9 +522,8 @@ bb43:
   LA s3, pos
   LW s6, 0(s3)
   ADDIW s3, s6, 2
-  ADDI s6, zero, 4
-  MULW s7, s3, s6
-  ADD s3, s1, s7
+  SLLIW s6, s3, 2
+  ADD s3, s1, s6
   LW s6, 0(s3)
   LW s3, 0(s4)
   XOR s4, s6, s3
@@ -550,9 +534,8 @@ bb44:
   LA s3, pos
   LW s4, 0(s3)
   ADDIW s3, s4, 3
-  ADDI s4, zero, 4
-  MULW s6, s3, s4
-  ADD s3, s1, s6
+  SLLIW s4, s3, 2
+  ADD s3, s1, s4
   LW s4, 0(s3)
   LW s3, 0(s5)
   XOR s5, s4, s3
@@ -658,46 +641,42 @@ bb52:
 bb53:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb160
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb160
   # implict jump to bb54
 bb54:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb159
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb159
   # implict jump to bb55
 bb55:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb158
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb158
   # implict jump to bb56
 bb56:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb157
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb157
   # implict jump to bb57
 bb57:
   LA s3, pos
@@ -725,46 +704,42 @@ bb59:
 bb60:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb153
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb153
   # implict jump to bb61
 bb61:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb152
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb152
   # implict jump to bb62
 bb62:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb151
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb151
   # implict jump to bb63
 bb63:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb150
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb150
   # implict jump to bb64
 bb64:
   LA s3, pos
@@ -776,13 +751,12 @@ bb64:
 bb65:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 58
-  SLTU s4, zero, s3
-  BNE s4, zero, bb148
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 58
+  SLTU s3, zero, s4
+  BNE s3, zero, bb148
   # implict jump to bb66
 bb66:
   LA s3, pos
@@ -801,46 +775,42 @@ bb67:
 bb68:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb147
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb147
   # implict jump to bb69
 bb69:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb146
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb146
   # implict jump to bb70
 bb70:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb145
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb145
   # implict jump to bb71
 bb71:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb144
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb144
   # implict jump to bb72
 bb72:
   ADD a0, zero, zero
@@ -862,57 +832,52 @@ bb73:
 bb74:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb142
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb142
   # implict jump to bb75
 bb75:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb141
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb141
   # implict jump to bb76
 bb76:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb140
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb140
   # implict jump to bb77
 bb77:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb139
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb139
   # implict jump to bb78
 bb78:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 44
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb93
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 44
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb93
   # implict jump to bb79
 bb79:
   LA s3, pos
@@ -924,46 +889,42 @@ bb79:
 bb80:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb92
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb92
   # implict jump to bb81
 bb81:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb91
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb91
   # implict jump to bb82
 bb82:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb90
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb90
   # implict jump to bb83
 bb83:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb89
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb89
   # implict jump to bb84
 bb84:
   LA s3, pos
@@ -975,13 +936,12 @@ bb84:
 bb85:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 125
-  SLTU s4, zero, s3
-  BNE s4, zero, bb87
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 125
+  SLTU s3, zero, s4
+  BNE s3, zero, bb87
   # implict jump to bb86
 bb86:
   LA s3, pos
@@ -1065,46 +1025,42 @@ bb94:
 bb95:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb138
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb138
   # implict jump to bb96
 bb96:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb137
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb137
   # implict jump to bb97
 bb97:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb136
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb136
   # implict jump to bb98
 bb98:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb135
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb135
   # implict jump to bb99
 bb99:
   ADDI a0, zero, 2
@@ -1126,46 +1082,42 @@ bb100:
 bb101:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb133
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb133
   # implict jump to bb102
 bb102:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb132
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb132
   # implict jump to bb103
 bb103:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb131
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb131
   # implict jump to bb104
 bb104:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb130
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb130
   # implict jump to bb105
 bb105:
   LA s3, pos
@@ -1177,13 +1129,12 @@ bb105:
 bb106:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 58
-  SLTU s4, zero, s3
-  BNE s4, zero, bb128
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 58
+  SLTU s3, zero, s4
+  BNE s3, zero, bb128
   # implict jump to bb107
 bb107:
   LA s3, pos
@@ -1202,46 +1153,42 @@ bb108:
 bb109:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb127
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb127
   # implict jump to bb110
 bb110:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb126
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb126
   # implict jump to bb111
 bb111:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb125
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb125
   # implict jump to bb112
 bb112:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb124
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb124
   # implict jump to bb113
 bb113:
   ADD a0, zero, zero
@@ -1263,46 +1210,42 @@ bb114:
 bb115:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb122
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb122
   # implict jump to bb116
 bb116:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb121
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb121
   # implict jump to bb117
 bb117:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb120
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb120
   # implict jump to bb118
 bb118:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb119
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb119
   JAL zero, bb78
 bb119:
   LA s3, pos
@@ -1623,13 +1566,12 @@ bb154:
 bb155:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 125
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb156
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 125
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb156
   JAL zero, bb58
 bb156:
   LA s3, pos
@@ -1696,46 +1638,42 @@ bb162:
 bb163:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb220
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb220
   # implict jump to bb164
 bb164:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb219
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb219
   # implict jump to bb165
 bb165:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb218
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb218
   # implict jump to bb166
 bb166:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb217
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb217
   # implict jump to bb167
 bb167:
   LA s3, pos
@@ -1763,57 +1701,52 @@ bb169:
 bb170:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb213
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb213
   # implict jump to bb171
 bb171:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb212
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb212
   # implict jump to bb172
 bb172:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb211
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb211
   # implict jump to bb173
 bb173:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb210
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb210
   # implict jump to bb174
 bb174:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 44
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb189
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 44
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb189
   # implict jump to bb175
 bb175:
   LA s3, pos
@@ -1825,46 +1758,42 @@ bb175:
 bb176:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb188
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb188
   # implict jump to bb177
 bb177:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb187
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb187
   # implict jump to bb178
 bb178:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb186
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb186
   # implict jump to bb179
 bb179:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb185
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb185
   # implict jump to bb180
 bb180:
   LA s3, pos
@@ -1876,13 +1805,12 @@ bb180:
 bb181:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 93
-  SLTU s4, zero, s3
-  BNE s4, zero, bb183
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 93
+  SLTU s3, zero, s4
+  BNE s3, zero, bb183
   # implict jump to bb182
 bb182:
   LA s3, pos
@@ -1966,46 +1894,42 @@ bb190:
 bb191:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb209
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb209
   # implict jump to bb192
 bb192:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb208
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb208
   # implict jump to bb193
 bb193:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb207
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb207
   # implict jump to bb194
 bb194:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb206
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb206
   # implict jump to bb195
 bb195:
   ADD a0, zero, zero
@@ -2027,46 +1951,42 @@ bb196:
 bb197:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 32
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb204
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 32
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb204
   # implict jump to bb198
 bb198:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 9
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb203
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 9
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb203
   # implict jump to bb199
 bb199:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb202
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 10
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb202
   # implict jump to bb200
 bb200:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 13
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb201
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 13
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb201
   JAL zero, bb174
 bb201:
   LA s3, pos
@@ -2185,13 +2105,12 @@ bb214:
 bb215:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 93
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb216
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 93
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb216
   JAL zero, bb168
 bb216:
   LA s3, pos
@@ -2264,13 +2183,12 @@ bb223:
 bb224:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 34
-  SLTU s4, zero, s3
-  BNE s4, zero, bb226
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 34
+  SLTU s3, zero, s4
+  BNE s3, zero, bb226
   # implict jump to bb225
 bb225:
   LA s3, pos
@@ -2312,24 +2230,22 @@ bb227:
 bb228:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 34
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb223
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 34
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb223
   # implict jump to bb229
 bb229:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 92
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb231
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 92
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb231
   # implict jump to bb230
 bb230:
   LA s3, pos
@@ -2348,24 +2264,22 @@ bb231:
 bb232:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 43
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb279
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 43
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb279
   # implict jump to bb233
 bb233:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 45
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb278
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 45
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb278
   # implict jump to bb234
 bb234:
   LA s3, pos
@@ -2377,12 +2291,11 @@ bb234:
 bb235:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  SLTI s3, s4, 48
-  XORI s5, s3, 1
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  SLTI s4, s3, 48
+  XORI s5, s4, 1
   BNE s5, zero, bb274
   # implict jump to bb236
 bb236:
@@ -2415,13 +2328,12 @@ bb240:
 bb241:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  XORI s6, s7, 101
-  SLTIU s7, s6, 1
-  BNE s7, zero, bb242
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  XORI s7, s6, 101
+  SLTIU s6, s7, 1
+  BNE s6, zero, bb242
   JAL zero, bb21
 bb242:
   LA s6, pos
@@ -2447,12 +2359,11 @@ bb244:
 bb245:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  SLTI s6, s7, 48
-  XORI s8, s6, 1
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  SLTI s7, s6, 48
+  XORI s8, s7, 1
   BNE s8, zero, bb249
   # implict jump to bb246
 bb246:
@@ -2472,8 +2383,8 @@ bb248:
   SW s7, 0(s8)
   JAL zero, bb244
 bb249:
-  ADDI s6, zero, 57
-  SLT s8, s6, s7
+  ADDI s7, zero, 57
+  SLT s8, s7, s6
   XORI s6, s8, 1
   BNE s6, zero, bb251
   # implict jump to bb250
@@ -2486,13 +2397,12 @@ bb251:
 bb252:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  XORI s6, s7, 45
-  SLTIU s7, s6, 1
-  BNE s7, zero, bb253
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  XORI s7, s6, 45
+  SLTIU s6, s7, 1
+  BNE s6, zero, bb253
   JAL zero, bb244
 bb253:
   LA s6, pos
@@ -2504,13 +2414,12 @@ bb253:
 bb254:
   LA s6, pos
   LW s7, 0(s6)
-  ADDI s6, zero, 4
-  MULW s8, s7, s6
-  ADD s6, s1, s8
-  LW s7, 0(s6)
-  XORI s6, s7, 43
-  SLTIU s7, s6, 1
-  BNE s7, zero, bb255
+  SLLIW s6, s7, 2
+  ADD s7, s1, s6
+  LW s6, 0(s7)
+  XORI s7, s6, 43
+  SLTIU s6, s7, 1
+  BNE s6, zero, bb255
   JAL zero, bb243
 bb255:
   LA s6, pos
@@ -2522,13 +2431,12 @@ bb255:
 bb256:
   LA s5, pos
   LW s6, 0(s5)
-  ADDI s5, zero, 4
-  MULW s7, s6, s5
-  ADD s5, s1, s7
-  LW s6, 0(s5)
-  XORI s5, s6, 46
-  SLTIU s6, s5, 1
-  BNE s6, zero, bb257
+  SLLIW s5, s6, 2
+  ADD s6, s1, s5
+  LW s5, 0(s6)
+  XORI s6, s5, 46
+  SLTIU s5, s6, 1
+  BNE s5, zero, bb257
   JAL zero, bb240
 bb257:
   LA s5, pos
@@ -2546,12 +2454,11 @@ bb258:
 bb259:
   LA s5, pos
   LW s6, 0(s5)
-  ADDI s5, zero, 4
-  MULW s7, s6, s5
-  ADD s5, s1, s7
-  LW s6, 0(s5)
-  SLTI s5, s6, 48
-  XORI s7, s5, 1
+  SLLIW s5, s6, 2
+  ADD s6, s1, s5
+  LW s5, 0(s6)
+  SLTI s6, s5, 48
+  XORI s7, s6, 1
   BNE s7, zero, bb263
   # implict jump to bb260
 bb260:
@@ -2571,8 +2478,8 @@ bb262:
   SW s6, 0(s7)
   JAL zero, bb258
 bb263:
-  ADDI s5, zero, 57
-  SLT s7, s5, s6
+  ADDI s6, zero, 57
+  SLT s7, s6, s5
   XORI s5, s7, 1
   BNE s5, zero, bb265
   # implict jump to bb264
@@ -2585,12 +2492,11 @@ bb265:
 bb266:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  SLTI s4, s5, 48
-  XORI s6, s4, 1
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  SLTI s5, s4, 48
+  XORI s6, s5, 1
   BNE s6, zero, bb270
   # implict jump to bb267
 bb267:
@@ -2610,8 +2516,8 @@ bb269:
   SW s5, 0(s6)
   JAL zero, bb238
 bb270:
-  ADDI s4, zero, 57
-  SLT s6, s4, s5
+  ADDI s5, zero, 57
+  SLT s6, s5, s4
   XORI s4, s6, 1
   BNE s4, zero, bb272
   # implict jump to bb271
@@ -2637,8 +2543,8 @@ bb273:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb274:
-  ADDI s3, zero, 57
-  SLT s5, s3, s4
+  ADDI s4, zero, 57
+  SLT s5, s4, s3
   XORI s3, s5, 1
   BNE s3, zero, bb276
   # implict jump to bb275
@@ -2680,45 +2586,41 @@ bb279:
 bb280:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 123
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb303
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 123
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb303
   # implict jump to bb281
 bb281:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 91
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb302
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 91
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb302
   # implict jump to bb282
 bb282:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  XORI s3, s4, 34
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb301
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  XORI s4, s3, 34
+  SLTIU s3, s4, 1
+  BNE s3, zero, bb301
   # implict jump to bb283
 bb283:
   LA s3, pos
   LW s4, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s4, s3
-  ADD s3, s1, s5
-  LW s4, 0(s3)
-  SLTI s3, s4, 48
-  XORI s5, s3, 1
+  SLLIW s3, s4, 2
+  ADD s4, s1, s3
+  LW s3, 0(s4)
+  SLTI s4, s3, 48
+  XORI s5, s4, 1
   BNE s5, zero, bb298
   # implict jump to bb284
 bb284:
@@ -2733,57 +2635,52 @@ bb285:
 bb286:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  XORI s4, s5, 43
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb296
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  XORI s5, s4, 43
+  SLTIU s4, s5, 1
+  BNE s4, zero, bb296
   # implict jump to bb287
 bb287:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  XORI s4, s5, 45
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb295
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  XORI s5, s4, 45
+  SLTIU s4, s5, 1
+  BNE s4, zero, bb295
   # implict jump to bb288
 bb288:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  XORI s4, s5, 116
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb294
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  XORI s5, s4, 116
+  SLTIU s4, s5, 1
+  BNE s4, zero, bb294
   # implict jump to bb289
 bb289:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  XORI s4, s5, 102
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb293
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  XORI s5, s4, 102
+  SLTIU s4, s5, 1
+  BNE s4, zero, bb293
   # implict jump to bb290
 bb290:
   LA s4, pos
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s6, s5, s4
-  ADD s4, s1, s6
-  LW s5, 0(s4)
-  XORI s4, s5, 110
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb292
+  SLLIW s4, s5, 2
+  ADD s5, s1, s4
+  LW s4, 0(s5)
+  XORI s5, s4, 110
+  SLTIU s4, s5, 1
+  BNE s4, zero, bb292
   # implict jump to bb291
 bb291:
   ADD a0, zero, zero
@@ -2921,8 +2818,8 @@ bb297:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb298:
-  ADDI s3, zero, 57
-  SLT s5, s3, s4
+  ADDI s4, zero, 57
+  SLT s5, s4, s3
   XORI s3, s5, 1
   BNE s3, zero, bb300
   # implict jump to bb299
@@ -3067,11 +2964,10 @@ bb311:
 bb312:
   LA s0, pos
   LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, buffer
-  ADD s1, s0, s2
-  LW s0, 0(s1)
+  SLLIW s0, s1, 2
+  LA s1, buffer
+  ADD s2, s1, s0
+  LW s0, 0(s2)
   XORI s1, s0, 32
   SLTIU s0, s1, 1
   BNE s0, zero, bb332
@@ -3079,11 +2975,10 @@ bb312:
 bb313:
   LA s0, pos
   LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, buffer
-  ADD s1, s0, s2
-  LW s0, 0(s1)
+  SLLIW s0, s1, 2
+  LA s1, buffer
+  ADD s2, s1, s0
+  LW s0, 0(s2)
   XORI s1, s0, 9
   SLTIU s0, s1, 1
   BNE s0, zero, bb331
@@ -3091,11 +2986,10 @@ bb313:
 bb314:
   LA s0, pos
   LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, buffer
-  ADD s1, s0, s2
-  LW s0, 0(s1)
+  SLLIW s0, s1, 2
+  LA s1, buffer
+  ADD s2, s1, s0
+  LW s0, 0(s2)
   XORI s1, s0, 10
   SLTIU s0, s1, 1
   BNE s0, zero, bb330
@@ -3103,11 +2997,10 @@ bb314:
 bb315:
   LA s0, pos
   LW s1, 0(s0)
-  ADDI s0, zero, 4
-  MULW s2, s1, s0
-  LA s0, buffer
-  ADD s1, s0, s2
-  LW s0, 0(s1)
+  SLLIW s0, s1, 2
+  LA s1, buffer
+  ADD s2, s1, s0
+  LW s0, 0(s2)
   XORI s1, s0, 13
   SLTIU s0, s1, 1
   BNE s0, zero, bb329
@@ -3130,11 +3023,10 @@ bb317:
 bb318:
   LA s1, pos
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s2, s1
-  LA s1, buffer
-  ADD s2, s1, s4
-  LW s1, 0(s2)
+  SLLIW s1, s2, 2
+  LA s2, buffer
+  ADD s4, s2, s1
+  LW s1, 0(s4)
   XORI s2, s1, 32
   SLTIU s1, s2, 1
   BNE s1, zero, bb328
@@ -3142,11 +3034,10 @@ bb318:
 bb319:
   LA s1, pos
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s2, s1
-  LA s1, buffer
-  ADD s2, s1, s4
-  LW s1, 0(s2)
+  SLLIW s1, s2, 2
+  LA s2, buffer
+  ADD s4, s2, s1
+  LW s1, 0(s4)
   XORI s2, s1, 9
   SLTIU s1, s2, 1
   BNE s1, zero, bb327
@@ -3154,11 +3045,10 @@ bb319:
 bb320:
   LA s1, pos
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s2, s1
-  LA s1, buffer
-  ADD s2, s1, s4
-  LW s1, 0(s2)
+  SLLIW s1, s2, 2
+  LA s2, buffer
+  ADD s4, s2, s1
+  LW s1, 0(s4)
   XORI s2, s1, 10
   SLTIU s1, s2, 1
   BNE s1, zero, bb326
@@ -3166,11 +3056,10 @@ bb320:
 bb321:
   LA s1, pos
   LW s2, 0(s1)
-  ADDI s1, zero, 4
-  MULW s4, s2, s1
-  LA s1, buffer
-  ADD s2, s1, s4
-  LW s1, 0(s2)
+  SLLIW s1, s2, 2
+  LA s2, buffer
+  ADD s4, s2, s1
+  LW s1, 0(s4)
   XORI s2, s1, 13
   SLTIU s1, s2, 1
   BNE s1, zero, bb325
@@ -3281,10 +3170,9 @@ bb332:
   SW s0, 0(s1)
   JAL zero, bb311
 bb333:
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  LA s4, buffer
-  ADD s6, s4, s5
+  SLLIW s4, s3, 2
+  LA s5, buffer
+  ADD s6, s5, s4
   SW s0, 0(s6)
   ADDIW s0, s3, 1
   CALL getch
@@ -3294,12 +3182,11 @@ bb333:
   JAL zero, bb310
 skip_space:
   ADDI sp, sp, -48
-  SD s4, 0(sp)
-  SD ra, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD ra, 0(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   # implict jump to bb335
@@ -3313,54 +3200,49 @@ bb335:
 bb336:
   LA s2, pos
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  ADD s2, s0, s4
-  LW s3, 0(s2)
-  XORI s2, s3, 32
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb344
+  SLLIW s2, s3, 2
+  ADD s3, s0, s2
+  LW s2, 0(s3)
+  XORI s3, s2, 32
+  SLTIU s2, s3, 1
+  BNE s2, zero, bb344
   # implict jump to bb337
 bb337:
   LA s2, pos
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  ADD s2, s0, s4
-  LW s3, 0(s2)
-  XORI s2, s3, 9
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb343
+  SLLIW s2, s3, 2
+  ADD s3, s0, s2
+  LW s2, 0(s3)
+  XORI s3, s2, 9
+  SLTIU s2, s3, 1
+  BNE s2, zero, bb343
   # implict jump to bb338
 bb338:
   LA s2, pos
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  ADD s2, s0, s4
-  LW s3, 0(s2)
-  XORI s2, s3, 10
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb342
+  SLLIW s2, s3, 2
+  ADD s3, s0, s2
+  LW s2, 0(s3)
+  XORI s3, s2, 10
+  SLTIU s2, s3, 1
+  BNE s2, zero, bb342
   # implict jump to bb339
 bb339:
   LA s2, pos
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  ADD s2, s0, s4
-  LW s3, 0(s2)
-  XORI s2, s3, 13
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb341
+  SLLIW s2, s3, 2
+  ADD s3, s0, s2
+  LW s2, 0(s3)
+  XORI s3, s2, 13
+  SLTIU s2, s3, 1
+  BNE s2, zero, bb341
   # implict jump to bb340
 bb340:
-  LD s4, 0(sp)
-  LD ra, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD ra, 0(sp)
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb341:

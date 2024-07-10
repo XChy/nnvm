@@ -14,10 +14,10 @@ global ptr nextvalue init with 10000000 x i32 zeros
 global ptr requests init with 10000000 x i32 zeros
 i32 insert(i32 k, i32 v) {
 entry5:
-  hashmod.load334 = load i32 from ptr @hashmod
-  4335 = srem i32 %k, i32 %hashmod.load334
-  12 = mul i32 %4335, i32 4
-  13 = ptradd ptr @head, i32 %12
+  hashmod.load362 = load i32 from ptr @hashmod
+  4363 = srem i32 %k, i32 %hashmod.load362
+  204 = shl i32 %4363, i32 2
+  13 = ptradd ptr @head, i32 %204
   13.load = load i32 from ptr %13
   15 = icmp eq i32 %13.load, i32 0
   br i1 %15, bb %then, bb %if.exit
@@ -27,20 +27,20 @@ then:
   store i32 %19 to ptr @cnt
   store i32 %19 to ptr %13
   cnt.load24 = load i32 from ptr @cnt
-  25 = mul i32 %cnt.load24, i32 4
-  26 = ptradd ptr @key, i32 %25
+  206 = shl i32 %cnt.load24, i32 2
+  26 = ptradd ptr @key, i32 %206
   store i32 %k to ptr %26
   cnt.load28 = load i32 from ptr @cnt
-  29 = mul i32 %cnt.load28, i32 4
-  30 = ptradd ptr @value, i32 %29
+  207 = shl i32 %cnt.load28, i32 2
+  30 = ptradd ptr @value, i32 %207
   store i32 %v to ptr %30
   cnt.load32 = load i32 from ptr @cnt
-  33 = mul i32 %cnt.load32, i32 4
-  34 = ptradd ptr @next, i32 %33
+  208 = shl i32 %cnt.load32, i32 2
+  34 = ptradd ptr @next, i32 %208
   store i32 0 to ptr %34
   cnt.load35 = load i32 from ptr @cnt
-  36 = mul i32 %cnt.load35, i32 4
-  37 = ptradd ptr @nextvalue, i32 %36
+  209 = shl i32 %cnt.load35, i32 2
+  37 = ptradd ptr @nextvalue, i32 %209
   store i32 0 to ptr %37
   ret i32 0
 if.exit:
@@ -51,8 +51,8 @@ while.cond:
   47 = icmp ne i32 %p.phi, i32 0
   br i1 %47, bb %while.body, bb %while.exit
 while.body:
-  50 = mul i32 %p.phi, i32 4
-  51 = ptradd ptr @key, i32 %50
+  211 = shl i32 %p.phi, i32 2
+  51 = ptradd ptr @key, i32 %211
   51.load = load i32 from ptr %51
   54 = icmp eq i32 %51.load, i32 %k
   br i1 %54, bb %then55, bb %if.exit56
@@ -60,43 +60,43 @@ while.exit:
   cnt.load78 = load i32 from ptr @cnt
   79 = add i32 %cnt.load78, i32 1
   store i32 %79 to ptr @cnt
-  81 = mul i32 %79, i32 4
-  82 = ptradd ptr @next, i32 %81
+  212 = shl i32 %79, i32 2
+  82 = ptradd ptr @next, i32 %212
   85.load = load i32 from ptr %13
   store i32 %85.load to ptr %82
   cnt.load90 = load i32 from ptr @cnt
   store i32 %cnt.load90 to ptr %13
   cnt.load91 = load i32 from ptr @cnt
-  92 = mul i32 %cnt.load91, i32 4
-  93 = ptradd ptr @key, i32 %92
+  215 = shl i32 %cnt.load91, i32 2
+  93 = ptradd ptr @key, i32 %215
   store i32 %k to ptr %93
   cnt.load95 = load i32 from ptr @cnt
-  96 = mul i32 %cnt.load95, i32 4
-  97 = ptradd ptr @value, i32 %96
+  216 = shl i32 %cnt.load95, i32 2
+  97 = ptradd ptr @value, i32 %216
   store i32 %v to ptr %97
   cnt.load99 = load i32 from ptr @cnt
-  100 = mul i32 %cnt.load99, i32 4
-  101 = ptradd ptr @nextvalue, i32 %100
+  217 = shl i32 %cnt.load99, i32 2
+  101 = ptradd ptr @nextvalue, i32 %217
   store i32 0 to ptr %101
   ret i32 0
 then55:
   cnt.load57 = load i32 from ptr @cnt
   58 = add i32 %cnt.load57, i32 1
   store i32 %58 to ptr @cnt
-  60 = mul i32 %58, i32 4
-  61 = ptradd ptr @nextvalue, i32 %60
-  64 = ptradd ptr @nextvalue, i32 %50
+  218 = shl i32 %58, i32 2
+  61 = ptradd ptr @nextvalue, i32 %218
+  64 = ptradd ptr @nextvalue, i32 %211
   64.load = load i32 from ptr %64
   store i32 %64.load to ptr %61
   cnt.load69 = load i32 from ptr @cnt
   store i32 %cnt.load69 to ptr %64
   cnt.load70 = load i32 from ptr @cnt
-  71 = mul i32 %cnt.load70, i32 4
-  72 = ptradd ptr @value, i32 %71
+  221 = shl i32 %cnt.load70, i32 2
+  72 = ptradd ptr @value, i32 %221
   store i32 %v to ptr %72
   ret i32 1
 if.exit56:
-  76 = ptradd ptr @next, i32 %50
+  76 = ptradd ptr @next, i32 %211
   76.load = load i32 from ptr %76
   br bb %while.cond
 }
@@ -125,18 +125,18 @@ while.cond160:
   165 = icmp slt i32 %i.phi200, i32 %153
   br i1 %165, bb %while.body161, bb %while.exit162
 while.body161:
-  168 = mul i32 %i.phi200, i32 4
-  169 = ptradd ptr @keys, i32 %168
+  223 = shl i32 %i.phi200, i32 2
+  169 = ptradd ptr @keys, i32 %223
   169.load = load i32 from ptr %169
-  173 = ptradd ptr @values, i32 %168
+  173 = ptradd ptr @values, i32 %223
   173.load = load i32 from ptr %173
-  hashmod.load346 = load i32 from ptr @hashmod
-  4347 = srem i32 %169.load, i32 %hashmod.load346
-  12207 = mul i32 %4347, i32 4
-  13208 = ptradd ptr @head, i32 %12207
-  13.load209 = load i32 from ptr %13208
-  15210 = icmp eq i32 %13.load209, i32 0
-  br i1 %15210, bb %insert.then, bb %insert.if.exit
+  hashmod.load374 = load i32 from ptr @hashmod
+  4375 = srem i32 %169.load, i32 %hashmod.load374
+  204235 = shl i32 %4375, i32 2
+  13236 = ptradd ptr @head, i32 %204235
+  13.load237 = load i32 from ptr %13236
+  15238 = icmp eq i32 %13.load237, i32 0
+  br i1 %15238, bb %insert.then, bb %insert.if.exit
 while.body161.split:
   177 = add i32 %i.phi200, i32 1
   br bb %while.cond160
@@ -147,18 +147,18 @@ while.cond178:
   183 = icmp slt i32 %i.phi, i32 %157
   br i1 %183, bb %while.body179, bb %while.exit180
 while.body179:
-  186 = mul i32 %i.phi, i32 4
-  187 = ptradd ptr @ans, i32 %186
-  190 = ptradd ptr @requests, i32 %186
+  225 = shl i32 %i.phi, i32 2
+  187 = ptradd ptr @ans, i32 %225
+  190 = ptradd ptr @requests, i32 %225
   190.load = load i32 from ptr %190
-  hashmod.load352 = load i32 from ptr @hashmod
-  4353 = srem i32 %190.load, i32 %hashmod.load352
-  109294 = mul i32 %4353, i32 4
-  110295 = ptradd ptr @head, i32 %109294
-  110.load296 = load i32 from ptr %110295
+  hashmod.load380 = load i32 from ptr @hashmod
+  4381 = srem i32 %190.load, i32 %hashmod.load380
+  227322 = shl i32 %4381, i32 2
+  110323 = ptradd ptr @head, i32 %227322
+  110.load324 = load i32 from ptr %110323
   br bb %reduce.while.cond112
 while.body179.split:
-  192.ret = phi [bb %reduce.while.exit114, i32 0, bb %reduce.while.exit131, i32 %ret.phi318]
+  192.ret = phi [bb %reduce.while.exit114, i32 0, bb %reduce.while.exit131, i32 %ret.phi346]
   store i32 %192.ret to ptr %187
   194 = add i32 %i.phi, i32 1
   br bb %while.cond178
@@ -167,113 +167,113 @@ while.exit180:
   call void putarray(i32 %157, ptr @ans)
   ret i32 0
 insert.then:
-  cnt.load213 = load i32 from ptr @cnt
-  19214 = add i32 %cnt.load213, i32 1
-  store i32 %19214 to ptr @cnt
-  store i32 %19214 to ptr %13208
-  cnt.load24217 = load i32 from ptr @cnt
-  25218 = mul i32 %cnt.load24217, i32 4
-  26219 = ptradd ptr @key, i32 %25218
-  store i32 %169.load to ptr %26219
-  cnt.load28221 = load i32 from ptr @cnt
-  29222 = mul i32 %cnt.load28221, i32 4
-  30223 = ptradd ptr @value, i32 %29222
-  store i32 %173.load to ptr %30223
-  cnt.load32225 = load i32 from ptr @cnt
-  33226 = mul i32 %cnt.load32225, i32 4
-  34227 = ptradd ptr @next, i32 %33226
-  store i32 0 to ptr %34227
-  cnt.load35229 = load i32 from ptr @cnt
-  36230 = mul i32 %cnt.load35229, i32 4
-  37231 = ptradd ptr @nextvalue, i32 %36230
-  store i32 0 to ptr %37231
+  cnt.load241 = load i32 from ptr @cnt
+  19242 = add i32 %cnt.load241, i32 1
+  store i32 %19242 to ptr @cnt
+  store i32 %19242 to ptr %13236
+  cnt.load24245 = load i32 from ptr @cnt
+  206246 = shl i32 %cnt.load24245, i32 2
+  26247 = ptradd ptr @key, i32 %206246
+  store i32 %169.load to ptr %26247
+  cnt.load28249 = load i32 from ptr @cnt
+  207250 = shl i32 %cnt.load28249, i32 2
+  30251 = ptradd ptr @value, i32 %207250
+  store i32 %173.load to ptr %30251
+  cnt.load32253 = load i32 from ptr @cnt
+  208254 = shl i32 %cnt.load32253, i32 2
+  34255 = ptradd ptr @next, i32 %208254
+  store i32 0 to ptr %34255
+  cnt.load35257 = load i32 from ptr @cnt
+  209258 = shl i32 %cnt.load35257, i32 2
+  37259 = ptradd ptr @nextvalue, i32 %209258
+  store i32 0 to ptr %37259
   br bb %while.body161.split
 insert.if.exit:
-  41.load235 = load i32 from ptr %13208
+  41.load263 = load i32 from ptr %13236
   br bb %insert.while.cond
 insert.while.cond:
-  p.phi238 = phi [bb %insert.if.exit, i32 %41.load235, bb %insert.if.exit56, i32 %76.load288]
-  47239 = icmp ne i32 %p.phi238, i32 0
-  br i1 %47239, bb %insert.while.body, bb %insert.while.exit
+  p.phi266 = phi [bb %insert.if.exit, i32 %41.load263, bb %insert.if.exit56, i32 %76.load316]
+  47267 = icmp ne i32 %p.phi266, i32 0
+  br i1 %47267, bb %insert.while.body, bb %insert.while.exit
 insert.while.body:
-  50242 = mul i32 %p.phi238, i32 4
-  51243 = ptradd ptr @key, i32 %50242
-  51.load244 = load i32 from ptr %51243
-  54245 = icmp eq i32 %51.load244, i32 %169.load
-  br i1 %54245, bb %insert.then55, bb %insert.if.exit56
+  211270 = shl i32 %p.phi266, i32 2
+  51271 = ptradd ptr @key, i32 %211270
+  51.load272 = load i32 from ptr %51271
+  54273 = icmp eq i32 %51.load272, i32 %169.load
+  br i1 %54273, bb %insert.then55, bb %insert.if.exit56
 insert.while.exit:
-  cnt.load78248 = load i32 from ptr @cnt
-  79249 = add i32 %cnt.load78248, i32 1
-  store i32 %79249 to ptr @cnt
-  81251 = mul i32 %79249, i32 4
-  82252 = ptradd ptr @next, i32 %81251
-  85.load253 = load i32 from ptr %13208
-  store i32 %85.load253 to ptr %82252
-  cnt.load90255 = load i32 from ptr @cnt
-  store i32 %cnt.load90255 to ptr %13208
-  cnt.load91257 = load i32 from ptr @cnt
-  92258 = mul i32 %cnt.load91257, i32 4
-  93259 = ptradd ptr @key, i32 %92258
-  store i32 %169.load to ptr %93259
-  cnt.load95261 = load i32 from ptr @cnt
-  96262 = mul i32 %cnt.load95261, i32 4
-  97263 = ptradd ptr @value, i32 %96262
-  store i32 %173.load to ptr %97263
-  cnt.load99265 = load i32 from ptr @cnt
-  100266 = mul i32 %cnt.load99265, i32 4
-  101267 = ptradd ptr @nextvalue, i32 %100266
-  store i32 0 to ptr %101267
+  cnt.load78276 = load i32 from ptr @cnt
+  79277 = add i32 %cnt.load78276, i32 1
+  store i32 %79277 to ptr @cnt
+  212279 = shl i32 %79277, i32 2
+  82280 = ptradd ptr @next, i32 %212279
+  85.load281 = load i32 from ptr %13236
+  store i32 %85.load281 to ptr %82280
+  cnt.load90283 = load i32 from ptr @cnt
+  store i32 %cnt.load90283 to ptr %13236
+  cnt.load91285 = load i32 from ptr @cnt
+  215286 = shl i32 %cnt.load91285, i32 2
+  93287 = ptradd ptr @key, i32 %215286
+  store i32 %169.load to ptr %93287
+  cnt.load95289 = load i32 from ptr @cnt
+  216290 = shl i32 %cnt.load95289, i32 2
+  97291 = ptradd ptr @value, i32 %216290
+  store i32 %173.load to ptr %97291
+  cnt.load99293 = load i32 from ptr @cnt
+  217294 = shl i32 %cnt.load99293, i32 2
+  101295 = ptradd ptr @nextvalue, i32 %217294
+  store i32 0 to ptr %101295
   br bb %while.body161.split
 insert.then55:
-  cnt.load57271 = load i32 from ptr @cnt
-  58272 = add i32 %cnt.load57271, i32 1
-  store i32 %58272 to ptr @cnt
-  60274 = mul i32 %58272, i32 4
-  61275 = ptradd ptr @nextvalue, i32 %60274
-  64276 = ptradd ptr @nextvalue, i32 %50242
-  64.load277 = load i32 from ptr %64276
-  store i32 %64.load277 to ptr %61275
-  cnt.load69279 = load i32 from ptr @cnt
-  store i32 %cnt.load69279 to ptr %64276
-  cnt.load70281 = load i32 from ptr @cnt
-  71282 = mul i32 %cnt.load70281, i32 4
-  72283 = ptradd ptr @value, i32 %71282
-  store i32 %173.load to ptr %72283
+  cnt.load57299 = load i32 from ptr @cnt
+  58300 = add i32 %cnt.load57299, i32 1
+  store i32 %58300 to ptr @cnt
+  218302 = shl i32 %58300, i32 2
+  61303 = ptradd ptr @nextvalue, i32 %218302
+  64304 = ptradd ptr @nextvalue, i32 %211270
+  64.load305 = load i32 from ptr %64304
+  store i32 %64.load305 to ptr %61303
+  cnt.load69307 = load i32 from ptr @cnt
+  store i32 %cnt.load69307 to ptr %64304
+  cnt.load70309 = load i32 from ptr @cnt
+  221310 = shl i32 %cnt.load70309, i32 2
+  72311 = ptradd ptr @value, i32 %221310
+  store i32 %173.load to ptr %72311
   br bb %while.body161.split
 insert.if.exit56:
-  76287 = ptradd ptr @next, i32 %50242
-  76.load288 = load i32 from ptr %76287
+  76315 = ptradd ptr @next, i32 %211270
+  76.load316 = load i32 from ptr %76315
   br bb %insert.while.cond
 reduce.while.cond112:
-  p107.phi299 = phi [bb %while.body179, i32 %110.load296, bb %reduce.if.exit125, i32 %148.load314]
-  116300 = icmp ne i32 %p107.phi299, i32 0
-  br i1 %116300, bb %reduce.while.body113, bb %reduce.while.exit114
+  p107.phi327 = phi [bb %while.body179, i32 %110.load324, bb %reduce.if.exit125, i32 %148.load342]
+  116328 = icmp ne i32 %p107.phi327, i32 0
+  br i1 %116328, bb %reduce.while.body113, bb %reduce.while.exit114
 reduce.while.body113:
-  119303 = mul i32 %p107.phi299, i32 4
-  120304 = ptradd ptr @key, i32 %119303
-  120.load305 = load i32 from ptr %120304
-  123306 = icmp eq i32 %120.load305, i32 %190.load
-  br i1 %123306, bb %reduce.then124, bb %reduce.if.exit125
+  228331 = shl i32 %p107.phi327, i32 2
+  120332 = ptradd ptr @key, i32 %228331
+  120.load333 = load i32 from ptr %120332
+  123334 = icmp eq i32 %120.load333, i32 %190.load
+  br i1 %123334, bb %reduce.then124, bb %reduce.if.exit125
 reduce.while.exit114:
   br bb %while.body179.split
 reduce.then124:
   br bb %reduce.while.cond129
 reduce.if.exit125:
-  148313 = ptradd ptr @next, i32 %119303
-  148.load314 = load i32 from ptr %148313
+  148341 = ptradd ptr @next, i32 %228331
+  148.load342 = load i32 from ptr %148341
   br bb %reduce.while.cond112
 reduce.while.cond129:
-  x.phi317 = phi [bb %reduce.then124, i32 %p107.phi299, bb %reduce.while.body130, i32 %143.load327]
-  ret.phi318 = phi [bb %reduce.then124, i32 0, bb %reduce.while.body130, i32 %140325]
-  133319 = icmp ne i32 %x.phi317, i32 0
-  br i1 %133319, bb %reduce.while.body130, bb %reduce.while.exit131
+  x.phi345 = phi [bb %reduce.then124, i32 %p107.phi327, bb %reduce.while.body130, i32 %143.load355]
+  ret.phi346 = phi [bb %reduce.then124, i32 0, bb %reduce.while.body130, i32 %140353]
+  133347 = icmp ne i32 %x.phi345, i32 0
+  br i1 %133347, bb %reduce.while.body130, bb %reduce.while.exit131
 reduce.while.body130:
-  137322 = mul i32 %x.phi317, i32 4
-  138323 = ptradd ptr @value, i32 %137322
-  138.load324 = load i32 from ptr %138323
-  140325 = add i32 %ret.phi318, i32 %138.load324
-  143326 = ptradd ptr @nextvalue, i32 %137322
-  143.load327 = load i32 from ptr %143326
+  230350 = shl i32 %x.phi345, i32 2
+  138351 = ptradd ptr @value, i32 %230350
+  138.load352 = load i32 from ptr %138351
+  140353 = add i32 %ret.phi346, i32 %138.load352
+  143354 = ptradd ptr @nextvalue, i32 %230350
+  143.load355 = load i32 from ptr %143354
   br bb %reduce.while.cond129
 reduce.while.exit131:
   br bb %while.body179.split
@@ -289,10 +289,10 @@ external void _sysy_stoptime(i32 )
 
 i32 reduce(i32 k) {
 entry102:
-  hashmod.load340 = load i32 from ptr @hashmod
-  4341 = srem i32 %k, i32 %hashmod.load340
-  109 = mul i32 %4341, i32 4
-  110 = ptradd ptr @head, i32 %109
+  hashmod.load368 = load i32 from ptr @hashmod
+  4369 = srem i32 %k, i32 %hashmod.load368
+  227 = shl i32 %4369, i32 2
+  110 = ptradd ptr @head, i32 %227
   110.load = load i32 from ptr %110
   br bb %while.cond112
 while.cond112:
@@ -300,8 +300,8 @@ while.cond112:
   116 = icmp ne i32 %p107.phi, i32 0
   br i1 %116, bb %while.body113, bb %while.exit114
 while.body113:
-  119 = mul i32 %p107.phi, i32 4
-  120 = ptradd ptr @key, i32 %119
+  228 = shl i32 %p107.phi, i32 2
+  120 = ptradd ptr @key, i32 %228
   120.load = load i32 from ptr %120
   123 = icmp eq i32 %120.load, i32 %k
   br i1 %123, bb %then124, bb %if.exit125
@@ -310,7 +310,7 @@ while.exit114:
 then124:
   br bb %while.cond129
 if.exit125:
-  148 = ptradd ptr @next, i32 %119
+  148 = ptradd ptr @next, i32 %228
   148.load = load i32 from ptr %148
   br bb %while.cond112
 while.cond129:
@@ -319,11 +319,11 @@ while.cond129:
   133 = icmp ne i32 %x.phi, i32 0
   br i1 %133, bb %while.body130, bb %while.exit131
 while.body130:
-  137 = mul i32 %x.phi, i32 4
-  138 = ptradd ptr @value, i32 %137
+  230 = shl i32 %x.phi, i32 2
+  138 = ptradd ptr @value, i32 %230
   138.load = load i32 from ptr %138
   140 = add i32 %ret.phi, i32 %138.load
-  143 = ptradd ptr @nextvalue, i32 %137
+  143 = ptradd ptr @nextvalue, i32 %230
   143.load = load i32 from ptr %143
   br bb %while.cond129
 while.exit131:

@@ -336,38 +336,38 @@ main:
   SW t4, 200(sp)
   LW t4, 200(sp)
   ADDW s8, s6, t4
+  LA s6, a29
+  LW t4, 0(s6)
+  SW t4, 204(sp)
+  LA s6, a30
+  LW t4, 0(s6)
+  SW t4, 208(sp)
+  LA s6, a31
+  LW t4, 0(s6)
+  SW t4, 212(sp)
+  LA s6, a32
+  LW t4, 0(s6)
+  SW t4, 216(sp)
   SUBW s6, s0, s1
   ADDIW s0, s6, 10
   LW t4, 180(sp)
   ADDIW s1, t4, 1
-  LA s6, a29
-  LW t4, 0(s6)
-  SW t4, 204(sp)
-  LW t3, 204(sp)
-  ADDW t4, s1, t3
-  SW t4, 208(sp)
+  LW t4, 204(sp)
+  ADDW s6, s1, t4
   LW t4, 188(sp)
   ADDIW s1, t4, 2
-  LA s6, a30
-  LW t4, 0(s6)
-  SW t4, 212(sp)
-  LW t3, 212(sp)
+  LW t3, 208(sp)
   ADDW t4, s1, t3
-  SW t4, 216(sp)
+  SW t4, 220(sp)
   LW t4, 196(sp)
   ADDIW s1, t4, 3
-  LA s6, a31
-  LW t4, 0(s6)
-  SW t4, 220(sp)
-  LW t3, 220(sp)
+  LW t3, 212(sp)
   ADDW t4, s1, t3
   SW t4, 224(sp)
   ADDIW s1, s8, 4
-  LA s6, a32
-  LW t4, 0(s6)
+  LW t3, 216(sp)
+  ADDW t4, s1, t3
   SW t4, 228(sp)
-  LW t4, 228(sp)
-  ADDW s6, s1, t4
   ADDW s1, s0, s2
   ADDW s0, s1, s3
   ADDW s1, s0, s4
@@ -423,13 +423,13 @@ main:
   LW t4, 196(sp)
   SUBW s1, s0, t4
   SUBW s0, s1, s8
-  LW t4, 208(sp)
-  ADDW s1, s0, t4
-  LW t4, 216(sp)
+  ADDW s1, s0, s6
+  LW t4, 220(sp)
   ADDW s0, s1, t4
   LW t4, 224(sp)
   ADDW s1, s0, t4
-  ADDW s0, s1, s6
+  LW t4, 228(sp)
+  ADDW s0, s1, t4
   LW t4, 12(sp)
   ADDW s1, s0, t4
   LW t4, 4(sp)
@@ -488,11 +488,11 @@ main:
   SUBW s0, s1, t4
   LW t4, 204(sp)
   ADDW s1, s0, t4
-  LW t4, 212(sp)
+  LW t4, 208(sp)
   SUBW s0, s1, t4
-  LW t4, 220(sp)
+  LW t4, 212(sp)
   ADDW s1, s0, t4
-  LW t4, 228(sp)
+  LW t4, 216(sp)
   SUBW s0, s1, t4
   ADD a0, s0, zero
   CALL putint
@@ -726,38 +726,38 @@ func:
   SW t4, 156(sp)
   LW t4, 156(sp)
   ADDW s8, s6, t4
+  LA s6, a29
+  LW t4, 0(s6)
+  SW t4, 160(sp)
+  LA s6, a30
+  LW t4, 0(s6)
+  SW t4, 164(sp)
+  LA s6, a31
+  LW t4, 0(s6)
+  SW t4, 168(sp)
+  LA s6, a32
+  LW t4, 0(s6)
+  SW t4, 172(sp)
   SUBW s6, s0, s1
   ADDIW s0, s6, 10
   LW t4, 136(sp)
   ADDIW s1, t4, 1
-  LA s6, a29
-  LW t4, 0(s6)
-  SW t4, 160(sp)
-  LW t3, 160(sp)
-  ADDW t4, s1, t3
-  SW t4, 164(sp)
+  LW t4, 160(sp)
+  ADDW s6, s1, t4
   LW t4, 144(sp)
   ADDIW s1, t4, 2
-  LA s6, a30
-  LW t4, 0(s6)
-  SW t4, 168(sp)
-  LW t3, 168(sp)
+  LW t3, 164(sp)
   ADDW t4, s1, t3
-  SW t4, 172(sp)
+  SW t4, 176(sp)
   LW t4, 152(sp)
   ADDIW s1, t4, 3
-  LA s6, a31
-  LW t4, 0(s6)
-  SW t4, 176(sp)
-  LW t3, 176(sp)
+  LW t3, 168(sp)
   ADDW t4, s1, t3
   SW t4, 180(sp)
   ADDIW s1, s8, 4
-  LA s6, a32
-  LW t4, 0(s6)
+  LW t3, 172(sp)
+  ADDW t4, s1, t3
   SW t4, 184(sp)
-  LW t4, 184(sp)
-  ADDW s6, s1, t4
   ADDW s1, s0, s2
   ADDW s0, s1, s3
   ADDW s1, s0, s4
@@ -802,13 +802,13 @@ func:
   LW t4, 152(sp)
   SUBW s1, s0, t4
   SUBW s0, s1, s8
-  LW t4, 164(sp)
-  ADDW s1, s0, t4
-  LW t4, 172(sp)
+  ADDW s1, s0, s6
+  LW t4, 176(sp)
   ADDW s0, s1, t4
   LW t4, 180(sp)
   ADDW s1, s0, t4
-  ADDW s0, s1, s6
+  LW t4, 184(sp)
+  ADDW s0, s1, t4
   LW t4, 56(sp)
   ADDW s1, s0, t4
   LW t4, 48(sp)
@@ -867,11 +867,11 @@ func:
   SUBW s0, s1, t4
   LW t4, 160(sp)
   ADDW s1, s0, t4
-  LW t4, 168(sp)
+  LW t4, 164(sp)
   SUBW s0, s1, t4
-  LW t4, 176(sp)
+  LW t4, 168(sp)
   ADDW s1, s0, t4
-  LW t4, 184(sp)
+  LW t4, 172(sp)
   SUBW s0, s1, t4
   ADD a0, s0, zero
   LD ra, 192(sp)

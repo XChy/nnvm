@@ -94,12 +94,11 @@ bb4:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb5:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s3
-  LW s3, 0(s2)
-  ADD a0, s3, zero
+  ADD s3, t5, s2
+  LW s2, 0(s3)
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -127,34 +126,32 @@ bb8:
   ADD s1, s3, zero
   JAL zero, bb1
 bb9:
-  ADDI s7, zero, 4
-  MULW s8, s5, s7
+  SLLIW s7, s5, 2
   ADDI t5, sp, 0
-  ADD s7, t5, s8
-  LW s8, 0(s7)
+  ADD s8, t5, s7
+  LW s7, 0(s8)
   ADDIW s9, s5, 1
-  ADDI s5, zero, 4
-  MULW s10, s9, s5
+  SLLIW s5, s9, 2
   ADDI t5, sp, 0
-  ADD s5, t5, s10
-  LW s10, 0(s5)
-  SLT s11, s10, s8
+  ADD s10, t5, s5
+  LW s5, 0(s10)
+  SLT s11, s5, s7
   BNE s11, zero, bb12
   # implict jump to bb10
 bb10:
-  ADD s5, s6, zero
+  ADD s7, s6, zero
   # implict jump to bb11
 bb11:
-  ADD s7, s5, zero
-  ADD s4, s7, zero
+  ADD s5, s7, zero
+  ADD s4, s5, zero
   ADD s3, s9, zero
   JAL zero, bb7
 bb12:
-  LW s8, 0(s5)
-  LW s10, 0(s7)
-  SW s10, 0(s5)
-  SW s8, 0(s7)
-  ADD s5, s8, zero
+  LW s5, 0(s10)
+  LW s7, 0(s8)
+  SW s7, 0(s10)
+  SW s5, 0(s8)
+  ADD s7, s5, zero
   JAL zero, bb11
 bubblesort:
   ADDI sp, sp, -112
@@ -223,30 +220,28 @@ bb18:
   ADD s2, s4, zero
   JAL zero, bb14
 bb19:
-  ADDI s8, zero, 4
-  MULW s9, s6, s8
-  ADD s8, s0, s9
-  LW s9, 0(s8)
+  SLLIW s8, s6, 2
+  ADD s9, s0, s8
+  LW s8, 0(s9)
   ADDIW s10, s6, 1
-  ADDI s6, zero, 4
-  MULW s11, s10, s6
-  ADD s6, s0, s11
-  LW s11, 0(s6)
-  SLT t0, s11, s9
+  SLLIW s6, s10, 2
+  ADD s11, s0, s6
+  LW s6, 0(s11)
+  SLT t0, s6, s8
   BNE t0, zero, bb22
   # implict jump to bb20
 bb20:
-  ADD s6, s7, zero
+  ADD s8, s7, zero
   # implict jump to bb21
 bb21:
-  ADD s8, s6, zero
-  ADD s5, s8, zero
+  ADD s6, s8, zero
+  ADD s5, s6, zero
   ADD s4, s10, zero
   JAL zero, bb17
 bb22:
-  LW s9, 0(s6)
-  LW s11, 0(s8)
-  SW s11, 0(s6)
-  SW s9, 0(s8)
-  ADD s6, s9, zero
+  LW s6, 0(s11)
+  LW s8, 0(s9)
+  SW s8, 0(s11)
+  SW s6, 0(s9)
+  ADD s8, s6, zero
   JAL zero, bb21

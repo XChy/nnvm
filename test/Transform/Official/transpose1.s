@@ -103,10 +103,9 @@ bb9:
   JAL zero, bb8
 bb10:
   MULW s4, s2, s2
-  ADDI s5, zero, 4
-  MULW s6, s2, s5
-  LA s5, matrix
-  ADD s7, s5, s6
+  SLLIW s5, s2, 2
+  LA s6, matrix
+  ADD s7, s6, s5
   LW s5, 0(s7)
   MULW s6, s4, s5
   ADDW s4, s3, s6
@@ -115,11 +114,10 @@ bb10:
   ADD s1, s5, zero
   JAL zero, bb5
 bb11:
-  ADDI s4, zero, 4
   LW t4, 12(sp)
-  MULW s5, t4, s4
-  LA s4, a
-  ADD s6, s4, s5
+  SLLIW s4, t4, 2
+  LA s5, a
+  ADD s6, s5, s4
   LW t4, 0(s6)
   SW t4, 20(sp)
   LW t3, 4(sp)
@@ -166,20 +164,18 @@ bb18:
   LW t4, 20(sp)
   MULW s0, s8, t4
   ADDW s2, s0, s11
-  ADDI s0, zero, 4
-  MULW s3, s2, s0
-  LA s0, matrix
-  ADD s2, s0, s3
-  LW s0, 0(s2)
+  SLLIW s0, s2, 2
+  LA s2, matrix
+  ADD s3, s2, s0
+  LW s0, 0(s3)
   LW t4, 16(sp)
-  MULW s3, s11, t4
-  ADDW s5, s3, s8
-  ADDI s3, zero, 4
-  MULW s4, s5, s3
-  LA s3, matrix
-  ADD s5, s3, s4
-  SW s0, 0(s5)
-  SW s0, 0(s2)
+  MULW s2, s11, t4
+  ADDW s5, s2, s8
+  SLLIW s2, s5, 2
+  LA s5, matrix
+  ADD s4, s5, s2
+  SW s0, 0(s4)
+  SW s0, 0(s3)
   ADDIW s2, s11, 1
   ADD s10, s0, zero
   ADD s9, s2, zero
@@ -190,10 +186,9 @@ bb19:
   ADD s9, s0, zero
   JAL zero, bb15
 bb20:
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  LA s4, matrix
-  ADD s6, s4, s5
+  SLLIW s4, s3, 2
+  LA s5, matrix
+  ADD s6, s5, s4
   SW s3, 0(s6)
   ADDIW s4, s3, 1
   ADD s2, s4, zero
@@ -265,20 +260,18 @@ bb27:
 bb28:
   MULW s10, s5, s2
   ADDW s11, s10, s8
-  ADDI s10, zero, 4
-  MULW t0, s11, s10
-  ADD s10, s1, t0
-  LW s11, 0(s10)
+  SLLIW s10, s11, 2
+  ADD s11, s1, s10
+  LW s10, 0(s11)
   MULW t0, s8, s3
   ADDW t1, t0, s5
-  ADDI t0, zero, 4
-  MULW t2, t1, t0
-  ADD t0, s1, t2
-  SW s11, 0(t0)
-  SW s11, 0(s10)
-  ADDIW s10, s8, 1
-  ADD s7, s11, zero
-  ADD s6, s10, zero
+  SLLIW t0, t1, 2
+  ADD t1, s1, t0
+  SW s10, 0(t1)
+  SW s10, 0(s11)
+  ADDIW s11, s8, 1
+  ADD s7, s10, zero
+  ADD s6, s11, zero
   JAL zero, bb25
 bb29:
   ADDIW s10, s8, 1

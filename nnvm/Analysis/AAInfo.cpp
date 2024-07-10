@@ -4,8 +4,12 @@
 
 using namespace nnvm;
 
-Value *nnvm::getRootObj(Value *pointer) {
+Value *nnvm::getRootObj(Value *pointer, uint depth) {
+  if (depth > 5)
+    return pointer;
+
   if (auto *ptradd = dyn_cast<PtrAddInst>(pointer))
-    return getRootObj(ptradd->getLHS());
+    return getRootObj(ptradd->getLHS(), depth + 1);
+
   return pointer;
 }

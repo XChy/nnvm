@@ -19,6 +19,7 @@ select.then:
   496 = add i32 %g.load95, i32 %10
   store i32 %496 to ptr @g
   call void putint(i32 %496)
+  g.load799 = load i32 from ptr @g
   br bb %select.exit
 select.exit:
   24 = call i32 getint()
@@ -29,6 +30,7 @@ select.then27:
   4105 = add i32 %g.load104, i32 %24
   store i32 %4105 to ptr @g
   call void putint(i32 %4105)
+  g.load7108 = load i32 from ptr @g
   br bb %select.exit29
 select.exit29:
   38 = call i32 getint()
@@ -39,6 +41,7 @@ select.else42:
   4114 = add i32 %g.load113, i32 %38
   store i32 %4114 to ptr @g
   call void putint(i32 %4114)
+  g.load7117 = load i32 from ptr @g
   br bb %select.exit43
 select.exit43:
   53 = call i32 getint()
@@ -49,6 +52,7 @@ select.else57:
   4123 = add i32 %g.load122, i32 %53
   store i32 %4123 to ptr @g
   call void putint(i32 %4123)
+  g.load7126 = load i32 from ptr @g
   br bb %select.exit58
 select.exit58:
   g.load131 = load i32 from ptr @g
@@ -57,7 +61,7 @@ select.exit58:
   call void putint(i32 %4132)
   g.load7135 = load i32 from ptr @g
   69 = icmp ne i32 %g.load7135, i32 0
-  70 = xor i1 %69, i1 1
+  70 = xor i1 %69, i1 -1
   71 = zext i1 %70 to i32
   72 = icmp ne i32 %71, i32 0
   br i1 %72, bb %select.then73, bb %select.exit75
@@ -66,6 +70,7 @@ select.then73:
   4141 = add i32 %g.load140, i32 100
   store i32 %4141 to ptr @g
   call void putint(i32 %4141)
+  g.load7144 = load i32 from ptr @g
   br bb %select.exit75
 select.exit75:
   ret i32 0

@@ -9,8 +9,8 @@ while.cond:
   7 = icmp slt i32 %i.phi, i32 6
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
-  11 = mul i32 %i.phi, i32 4
-  12 = ptradd ptr @arr, i32 %11
+  20 = shl i32 %i.phi, i32 2
+  12 = ptradd ptr @arr, i32 %20
   12.load = load i32 from ptr %12
   14 = add i32 %sum.phi, i32 %12.load
   16 = add i32 %i.phi, i32 1

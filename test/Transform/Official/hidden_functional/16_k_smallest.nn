@@ -8,76 +8,76 @@ entry57:
 then65:
   ret 
 else:
-  24149 = mul i32 %high, i32 4
-  25150 = ptradd ptr @array, i32 %24149
-  25.load151 = load i32 from ptr %25150
+  148157 = shl i32 %high, i32 2
+  25158 = ptradd ptr @array, i32 %148157
+  25.load159 = load i32 from ptr %25158
   br bb %findPivot.while.cond
 then75:
   br bb %while.cond79
 if.exit76:
   ret 
 else77:
-  97 = icmp slt i32 %k, i32 %pIndex.phi144155
+  97 = icmp slt i32 %k, i32 %pIndex.phi144163
   br i1 %97, bb %then98, bb %else100
 while.cond79:
   i78.phi = phi [bb %then75, i32 0, bb %while.body80, i32 %94]
-  84 = icmp slt i32 %i78.phi, i32 %pIndex.phi144155
+  84 = icmp slt i32 %i78.phi, i32 %pIndex.phi144163
   br i1 %84, bb %while.body80, bb %if.exit76
 while.body80:
-  87 = mul i32 %i78.phi, i32 4
-  88 = ptradd ptr @array, i32 %87
+  147 = shl i32 %i78.phi, i32 2
+  88 = ptradd ptr @array, i32 %147
   88.load = load i32 from ptr %88
   call void putint(i32 %88.load)
   call void putch(i32 32)
   94 = add i32 %i78.phi, i32 1
   br bb %while.cond79
 then98:
-  103 = sub i32 %pIndex.phi144155, i32 1
+  103 = sub i32 %pIndex.phi144163, i32 1
   call void findSmallest(i32 %low, i32 %103, i32 %k, i32 %n)
   br bb %if.exit76
 else100:
-  108 = add i32 %pIndex.phi144155, i32 1
+  108 = add i32 %pIndex.phi144163, i32 1
   call void findSmallest(i32 %108, i32 %high, i32 %k, i32 %n)
   br bb %if.exit76
 findPivot.while.cond:
-  i.phi154 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %52173]
-  pIndex.phi144155 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %pIndex.phi172]
-  36156 = icmp slt i32 %i.phi154, i32 %high
-  br i1 %36156, bb %findPivot.while.body, bb %findPivot.while.exit
+  i.phi162 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %52181]
+  pIndex.phi144163 = phi [bb %else, i32 %low, bb %findPivot.if.exit, i32 %pIndex.phi180]
+  36164 = icmp slt i32 %i.phi162, i32 %high
+  br i1 %36164, bb %findPivot.while.body, bb %findPivot.while.exit
 findPivot.while.body:
-  39159 = mul i32 %i.phi154, i32 4
-  40160 = ptradd ptr @array, i32 %39159
-  40.load161 = load i32 from ptr %40160
-  43162 = icmp sle i32 %40.load161, i32 %25.load151
-  br i1 %43162, bb %findPivot.then, bb %findPivot.if.exit
+  149167 = shl i32 %i.phi162, i32 2
+  40168 = ptradd ptr @array, i32 %149167
+  40.load169 = load i32 from ptr %40168
+  43170 = icmp sle i32 %40.load169, i32 %25.load159
+  br i1 %43170, bb %findPivot.then, bb %findPivot.if.exit
 findPivot.while.exit:
-  5200 = mul i32 %pIndex.phi144155, i32 4
-  6201 = ptradd ptr @array, i32 %5200
-  6.load202 = load i32 from ptr %6201
-  13.load205 = load i32 from ptr %25150
-  store i32 %13.load205 to ptr %6201
-  store i32 %6.load202 to ptr %25150
-  74 = icmp eq i32 %k, i32 %pIndex.phi144155
+  151208 = shl i32 %pIndex.phi144163, i32 2
+  6209 = ptradd ptr @array, i32 %151208
+  6.load210 = load i32 from ptr %6209
+  13.load213 = load i32 from ptr %25158
+  store i32 %13.load213 to ptr %6209
+  store i32 %6.load210 to ptr %25158
+  74 = icmp eq i32 %k, i32 %pIndex.phi144163
   br i1 %74, bb %then75, bb %else77
 findPivot.then:
-  6.load213 = load i32 from ptr %40160
-  12214 = mul i32 %pIndex.phi144155, i32 4
-  13215 = ptradd ptr @array, i32 %12214
-  13.load216 = load i32 from ptr %13215
-  store i32 %13.load216 to ptr %40160
-  store i32 %6.load213 to ptr %13215
-  50169 = add i32 %pIndex.phi144155, i32 1
+  6.load221 = load i32 from ptr %40168
+  153222 = shl i32 %pIndex.phi144163, i32 2
+  13223 = ptradd ptr @array, i32 %153222
+  13.load224 = load i32 from ptr %13223
+  store i32 %13.load224 to ptr %40168
+  store i32 %6.load221 to ptr %13223
+  50177 = add i32 %pIndex.phi144163, i32 1
   br bb %findPivot.if.exit
 findPivot.if.exit:
-  pIndex.phi172 = phi [bb %findPivot.while.body, i32 %pIndex.phi144155, bb %findPivot.then, i32 %50169]
-  52173 = add i32 %i.phi154, i32 1
+  pIndex.phi180 = phi [bb %findPivot.while.body, i32 %pIndex.phi144163, bb %findPivot.then, i32 %50177]
+  52181 = add i32 %i.phi162, i32 1
   br bb %findPivot.while.cond
 }
 
 i32 findPivot(i32 start, i32 end) {
 entry19:
-  24 = mul i32 %end, i32 4
-  25 = ptradd ptr @array, i32 %24
+  148 = shl i32 %end, i32 2
+  25 = ptradd ptr @array, i32 %148
   25.load = load i32 from ptr %25
   br bb %while.cond
 while.cond:
@@ -86,26 +86,26 @@ while.cond:
   36 = icmp slt i32 %i.phi, i32 %end
   br i1 %36, bb %while.body, bb %while.exit
 while.body:
-  39 = mul i32 %i.phi, i32 4
-  40 = ptradd ptr @array, i32 %39
+  149 = shl i32 %i.phi, i32 2
+  40 = ptradd ptr @array, i32 %149
   40.load = load i32 from ptr %40
   43 = icmp sle i32 %40.load, i32 %25.load
   br i1 %43, bb %then, bb %if.exit
 while.exit:
-  5189 = mul i32 %pIndex.phi144, i32 4
-  6190 = ptradd ptr @array, i32 %5189
-  6.load191 = load i32 from ptr %6190
-  13.load194 = load i32 from ptr %25
-  store i32 %13.load194 to ptr %6190
-  store i32 %6.load191 to ptr %25
+  151197 = shl i32 %pIndex.phi144, i32 2
+  6198 = ptradd ptr @array, i32 %151197
+  6.load199 = load i32 from ptr %6198
+  13.load202 = load i32 from ptr %25
+  store i32 %13.load202 to ptr %6198
+  store i32 %6.load199 to ptr %25
   ret i32 %pIndex.phi144
 then:
-  6.load180 = load i32 from ptr %40
-  12181 = mul i32 %pIndex.phi144, i32 4
-  13182 = ptradd ptr @array, i32 %12181
-  13.load183 = load i32 from ptr %13182
-  store i32 %13.load183 to ptr %40
-  store i32 %6.load180 to ptr %13182
+  6.load188 = load i32 from ptr %40
+  153189 = shl i32 %pIndex.phi144, i32 2
+  13190 = ptradd ptr @array, i32 %153189
+  13.load191 = load i32 from ptr %13190
+  store i32 %13.load191 to ptr %40
+  store i32 %6.load188 to ptr %13190
   50 = add i32 %pIndex.phi144, i32 1
   br bb %if.exit
 if.exit:
@@ -134,8 +134,8 @@ while.cond119:
   124 = icmp slt i32 %i118.phi, i32 %115
   br i1 %124, bb %while.body120, bb %while.exit121
 while.body120:
-  127 = mul i32 %i118.phi, i32 4
-  128 = ptradd ptr @array, i32 %127
+  150 = shl i32 %i118.phi, i32 2
+  128 = ptradd ptr @array, i32 %150
   129 = call i32 getint()
   store i32 %129 to ptr %128
   131 = add i32 %i118.phi, i32 1
@@ -162,11 +162,11 @@ external void putfarray(i32 , ptr )
 
 void swap(i32 i, i32 j) {
 entry:
-  5 = mul i32 %i, i32 4
-  6 = ptradd ptr @array, i32 %5
+  151 = shl i32 %i, i32 2
+  6 = ptradd ptr @array, i32 %151
   6.load = load i32 from ptr %6
-  12 = mul i32 %j, i32 4
-  13 = ptradd ptr @array, i32 %12
+  153 = shl i32 %j, i32 2
+  13 = ptradd ptr @array, i32 %153
   13.load = load i32 from ptr %13
   store i32 %13.load to ptr %6
   store i32 %6.load to ptr %13

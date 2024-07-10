@@ -1,4 +1,5 @@
 #include "Combiner.h"
+#include "ADT/GenericInt.h"
 #include "ADT/Ranges.h"
 #include "CombinePatterns.h"
 #include "Utils/Cast.h"
@@ -18,8 +19,7 @@ bool CombinerPass::run(Function &F) {
     for (auto *BB : F) {
       for (auto *I : incChange(*BB)) {
 
-        if (!I->mayWriteToMemory() && !dyn_cast<TerminatorInst>(I) &&
-            I->users().empty()) {
+        if ((I->moveable() || I->isa<PhiInst>()) && I->users().empty()) {
           I->eraseFromBB();
           changed = true;
           continue;
@@ -139,9 +139,38 @@ Value *CombinerPass::simplifySub(SubInst *I) {
   return nullptr;
 }
 
-Value *CombinerPass::simplifyMul(MulInst *I) { return nullptr; }
+Value *CombinerPass::simplifyMul(MulInst *I) {
+  Value *A, *B, *C;
+  Type *type = I->getType();
+  ConstantInt *C1;
+  // A * (powerof2 ** 2) --> A << powerof2
+  GInt powerOfTwo;
 
-Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
+  if (match(I, pMul(pValue(A), pConstantInt(C1))) &&
+      genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
+                           powerOfTwo)) {
+    return builder.buildBinOp<ShlInst>(
+        A, builder.getConstantInt(type, powerOfTwo), type);
+  }
+  return nullptr;
+}
+
+Value *CombinerPass::simplifySDiv(SDivInst *I) {
+  Value *A, *B, *C;
+  Type *type = I->getType();
+  ConstantInt *C1;
+  // A * (powerof2 ** 2) --> A << powerof2
+  GInt powerOfTwo;
+
+  if (match(I, pSDiv(pValue(A), pConstantInt(C1))) &&
+      genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
+                           powerOfTwo)) {
+    return builder.buildBinOp<AShrInst>(
+        A, builder.getConstantInt(type, powerOfTwo), type);
+  }
+
+  return nullptr;
+}
 
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 

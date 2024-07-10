@@ -46,20 +46,19 @@ same:
   SD s0, 56(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  ADDI s2, zero, 4
-  MULW s3, s0, s2
-  LA s2, vis
-  ADD s4, s2, s3
-  ADDI s2, zero, 1
-  SW s2, 0(s4)
-  XOR s2, s0, s1
-  SLTIU s0, s2, 1
+  SLLIW s2, s0, 2
+  LA s3, vis
+  ADD s4, s3, s2
+  ADDI s3, zero, 1
+  SW s3, 0(s4)
+  XOR s3, s0, s1
+  SLTIU s0, s3, 1
   BNE s0, zero, bb10
   # implict jump to bb1
 bb1:
   LA s0, head
-  ADD s2, s0, s3
-  LW s0, 0(s2)
+  ADD s3, s0, s2
+  LW s0, 0(s3)
   ADD s2, s0, zero
   # implict jump to bb2
 bb2:
@@ -81,33 +80,31 @@ bb3:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
-  ADDI s3, zero, 4
-  MULW s4, s0, s3
+  SLLIW s3, s0, 2
   LA s0, to
-  ADD s3, s0, s4
-  LW s0, 0(s3)
-  ADDI s3, zero, 4
-  MULW s5, s0, s3
-  LA s3, vis
-  ADD s6, s3, s5
-  LW s3, 0(s6)
-  XOR s5, s3, zero
-  SLTU s3, zero, s5
-  XORI s5, s3, 1
-  XOR s3, s5, zero
-  SLTU s5, zero, s3
+  ADD s4, s0, s3
+  LW s0, 0(s4)
+  SLLIW s4, s0, 2
+  LA s5, vis
+  ADD s6, s5, s4
+  LW s4, 0(s6)
+  XOR s5, s4, zero
+  SLTU s4, zero, s5
+  XORI s5, s4, 1
+  XOR s4, s5, zero
+  SLTU s5, zero, s4
   BNE s5, zero, bb9
   # implict jump to bb5
 bb5:
-  ADD s3, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s0, s3, zero
+  ADD s0, s4, zero
   BNE s0, zero, bb8
   # implict jump to bb7
 bb7:
   LA s0, next
-  ADD s5, s0, s4
+  ADD s5, s0, s3
   LW s0, 0(s5)
   ADD s2, s0, zero
   JAL zero, bb2
@@ -128,9 +125,9 @@ bb9:
   ADD a1, s1, zero
   CALL same
   ADD s0, a0, zero
-  XOR s3, s0, zero
-  SLTU s0, zero, s3
-  ADD s3, s0, zero
+  XOR s4, s0, zero
+  SLTU s0, zero, s4
+  ADD s4, s0, zero
   JAL zero, bb6
 bb10:
   ADDI a0, zero, 1
@@ -169,10 +166,9 @@ bb13:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb14:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, head
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, head
+  ADD s4, s3, s2
   ADDI s2, zero, -1
   SW s2, 0(s4)
   ADDIW s2, s1, 1
@@ -191,23 +187,20 @@ add_edge:
   ADD s1, a1, zero
   LA s2, cnt
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, to
-  ADD s3, s2, s4
-  SW s1, 0(s3)
+  SLLIW s2, s3, 2
+  LA s3, to
+  ADD s4, s3, s2
+  SW s1, 0(s4)
   LA s2, cnt
   LW s3, 0(s2)
-  ADDI s2, zero, 4
-  MULW s4, s3, s2
-  LA s2, next
-  ADD s3, s2, s4
-  ADDI s2, zero, 4
-  MULW s4, s0, s2
-  LA s2, head
-  ADD s5, s2, s4
+  SLLIW s2, s3, 2
+  LA s3, next
+  ADD s4, s3, s2
+  SLLIW s2, s0, 2
+  LA s3, head
+  ADD s5, s3, s2
   LW s2, 0(s5)
-  SW s2, 0(s3)
+  SW s2, 0(s4)
   LA s2, cnt
   LW s3, 0(s2)
   SW s3, 0(s5)
@@ -216,26 +209,23 @@ add_edge:
   ADDIW s2, s3, 1
   LA s3, cnt
   SW s2, 0(s3)
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
+  SLLIW s3, s2, 2
   LA s2, to
-  ADD s3, s2, s4
+  ADD s4, s2, s3
+  SW s0, 0(s4)
+  LA s0, cnt
+  LW s2, 0(s0)
+  SLLIW s0, s2, 2
+  LA s2, next
+  ADD s3, s2, s0
+  SLLIW s0, s1, 2
+  LA s1, head
+  ADD s2, s1, s0
+  LW s0, 0(s2)
   SW s0, 0(s3)
   LA s0, cnt
-  LW s2, 0(s0)
-  ADDI s0, zero, 4
-  MULW s3, s2, s0
-  LA s0, next
-  ADD s2, s0, s3
-  ADDI s0, zero, 4
-  MULW s3, s1, s0
-  LA s0, head
-  ADD s1, s0, s3
-  LW s0, 0(s1)
-  SW s0, 0(s2)
-  LA s0, cnt
-  LW s2, 0(s0)
-  SW s2, 0(s1)
+  LW s1, 0(s0)
+  SW s1, 0(s2)
   LA s0, cnt
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -585,23 +575,20 @@ bb66:
   ADD s0, s2, zero
   LA s4, cnt
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s8, s5, s4
-  LA s4, to
-  ADD s5, s4, s8
-  SW s0, 0(s5)
+  SLLIW s4, s5, 2
+  LA s5, to
+  ADD s8, s5, s4
+  SW s0, 0(s8)
   LA s4, cnt
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s8, s5, s4
-  LA s4, next
-  ADD s5, s4, s8
-  ADDI s4, zero, 4
-  MULW s8, s1, s4
-  LA s4, head
-  ADD t0, s4, s8
+  SLLIW s4, s5, 2
+  LA s5, next
+  ADD s8, s5, s4
+  SLLIW s4, s1, 2
+  LA s5, head
+  ADD t0, s5, s4
   LW s4, 0(t0)
-  SW s4, 0(s5)
+  SW s4, 0(s8)
   LA s4, cnt
   LW s5, 0(s4)
   SW s5, 0(t0)
@@ -610,23 +597,20 @@ bb66:
   ADDIW s4, s5, 1
   LA s5, cnt
   SW s4, 0(s5)
-  ADDI s5, zero, 4
-  MULW s8, s4, s5
+  SLLIW s5, s4, 2
   LA s4, to
-  ADD s5, s4, s8
-  SW s1, 0(s5)
+  ADD s8, s4, s5
+  SW s1, 0(s8)
   LA s4, cnt
   LW s5, 0(s4)
-  ADDI s4, zero, 4
-  MULW s8, s5, s4
-  LA s4, next
-  ADD s5, s4, s8
-  ADDI s4, zero, 4
-  MULW s8, s0, s4
-  LA s4, head
-  ADD t0, s4, s8
+  SLLIW s4, s5, 2
+  LA s5, next
+  ADD s8, s5, s4
+  SLLIW s4, s0, 2
+  LA s5, head
+  ADD t0, s5, s4
   LW s4, 0(t0)
-  SW s4, 0(s5)
+  SW s4, 0(s8)
   LA s4, cnt
   LW s5, 0(s4)
   SW s5, 0(t0)
@@ -920,10 +904,9 @@ bb106:
   SW t4, 132(sp)
   JAL zero, bb67
 bb107:
-  ADDI s8, zero, 4
-  MULW s10, s7, s8
-  LA s8, vis
-  ADD s9, s8, s10
+  SLLIW s8, s7, 2
+  LA s10, vis
+  ADD s9, s10, s8
   SW zero, 0(s9)
   ADDIW s8, s7, 1
   ADD s4, s8, zero
@@ -1042,10 +1025,9 @@ bb125:
   SB t4, 76(sp)
   JAL zero, bb44
 bb126:
-  ADDI s6, zero, 4
-  MULW s8, s5, s6
-  LA s6, head
-  ADD s2, s6, s8
+  SLLIW s6, s5, 2
+  LA s8, head
+  ADD s2, s8, s6
   ADDI s6, zero, -1
   SW s6, 0(s2)
   ADDIW s2, s5, 1
@@ -1181,10 +1163,9 @@ bb145:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb146:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
-  LA s2, vis
-  ADD s4, s2, s3
+  SLLIW s2, s1, 2
+  LA s3, vis
+  ADD s4, s3, s2
   SW zero, 0(s4)
   ADDIW s2, s1, 1
   ADD s0, s2, zero

@@ -8,8 +8,8 @@ while.cond:
   8 = icmp ne i32 %7, i32 0
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
-  10 = mul i32 %i.phi31, i32 4
-  11 = ptradd ptr %arr, i32 %10
+  33 = shl i32 %i.phi31, i32 2
+  11 = ptradd ptr %arr, i32 %33
   12 = call i32 getint()
   store i32 %12 to ptr %11
   14 = add i32 %i.phi31, i32 1
@@ -23,8 +23,8 @@ while.cond15:
   br i1 %19, bb %while.body16, bb %while.exit17
 while.body16:
   21 = sub i32 %i.phi, i32 1
-  24 = mul i32 %21, i32 4
-  25 = ptradd ptr %arr, i32 %24
+  34 = shl i32 %21, i32 2
+  25 = ptradd ptr %arr, i32 %34
   25.load = load i32 from ptr %25
   27 = add i32 %sum.phi, i32 %25.load
   br bb %while.cond15

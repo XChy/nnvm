@@ -45,9 +45,8 @@ bb4:
   BNE s1, zero, bb8
   # implict jump to bb5
 bb5:
-  ADDI s1, zero, 2
-  MULW s4, s2, s1
-  ADD s0, s4, zero
+  SLLIW s1, s2, 1
+  ADD s0, s1, zero
   # implict jump to bb6
 bb6:
   ADD s1, s0, zero
@@ -107,9 +106,8 @@ bb14:
   BNE s1, zero, bb18
   # implict jump to bb15
 bb15:
-  ADDI s1, zero, 2
-  MULW s4, s2, s1
-  ADD s0, s4, zero
+  SLLIW s1, s2, 1
+  ADD s0, s1, zero
   # implict jump to bb16
 bb16:
   ADD s1, s0, zero

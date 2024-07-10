@@ -65,6 +65,51 @@ static inline GInt genericSRem(GInt a, GInt b, uint64_t bits) {
   return retInt;
 }
 
+static inline GInt genericAnd(GInt a, GInt b, uint64_t bits) {
+  GInt retInt = sextOf(a & b, bits);
+  return retInt;
+}
+
+static inline GInt genericOr(GInt a, GInt b, uint64_t bits) {
+  GInt retInt = sextOf(a | b, bits);
+  return retInt;
+}
+
+static inline GInt genericXor(GInt a, GInt b, uint64_t bits) {
+  GInt retInt = sextOf(a ^ b, bits);
+  return retInt;
+}
+
+static inline GInt genericShl(GInt a, GInt b, uint64_t bits) {
+  GInt retInt = sextOf(a << b, bits);
+  return retInt;
+}
+
+static inline GInt genericLShr(GInt a, GInt b, uint64_t bits) {
+  if (bits != 32)
+    nnvm_unimpl();
+  GInt retInt = (uint32_t)a >> (uint32_t)b;
+  return retInt;
+}
+
+static inline GInt genericRShr(GInt a, GInt b, uint64_t bits) {
+  if (bits != 32)
+    nnvm_unimpl();
+  GInt retInt = sextOf((int32_t)a >> (int32_t)b, bits);
+  return retInt;
+}
+
+static inline bool genericGetPowerOfTwo(GInt a, uint64_t bits, GInt &power) {
+  for (int i = 0; i < bits; i++) {
+    if (a == (1 << i)) {
+      power = i;
+      return true;
+    }
+  }
+
+  return false;
+}
+
 static inline GInt genericEQ(GInt a, GInt b, uint64_t bits) {
   return sextOf(a == b, 1);
 }

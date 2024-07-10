@@ -48,23 +48,21 @@ bb4:
 bb5:
   ADDI s4, zero, 1
   SUBW s5, s1, s4
-  ADDI s1, zero, 4
-  MULW s4, s5, s1
+  SLLIW s1, s5, 2
   ADDI t5, sp, 0
-  ADD s1, t5, s4
-  LW s4, 0(s1)
-  ADDW s1, s3, s4
-  ADD s0, s1, zero
+  ADD s4, t5, s1
+  LW s1, 0(s4)
+  ADDW s4, s3, s1
+  ADD s0, s4, zero
   ADD s2, s5, zero
   JAL zero, bb3
 bb6:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s3
+  ADD s3, t5, s2
   CALL getint
-  ADD s3, a0, zero
-  SW s3, 0(s2)
+  ADD s2, a0, zero
+  SW s2, 0(s3)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
   JAL zero, bb1

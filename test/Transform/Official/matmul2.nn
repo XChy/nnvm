@@ -38,12 +38,12 @@ while.cond30:
 while.body31:
   37 = mul i32 %i.phi219, i32 4000
   38 = ptradd ptr @b, i32 %37
-  40 = mul i32 %j.phi230, i32 4
-  41 = ptradd ptr %38, i32 %40
+  244 = shl i32 %j.phi230, i32 2
+  41 = ptradd ptr %38, i32 %244
   43 = mul i32 %j.phi230, i32 4000
   44 = ptradd ptr @a, i32 %43
-  46 = mul i32 %i.phi219, i32 4
-  47 = ptradd ptr %44, i32 %46
+  245 = shl i32 %i.phi219, i32 2
+  47 = ptradd ptr %44, i32 %245
   47.load = load i32 from ptr %47
   store i32 %47.load to ptr %41
   50 = add i32 %j.phi230, i32 1
@@ -80,13 +80,13 @@ while.cond66:
 while.body67:
   74 = mul i32 %i.phi218, i32 4000
   75 = ptradd ptr @a, i32 %74
-  77 = mul i32 %k.phi, i32 4
-  78 = ptradd ptr %75, i32 %77
+  246 = shl i32 %k.phi, i32 2
+  78 = ptradd ptr %75, i32 %246
   78.load = load i32 from ptr %78
   81 = mul i32 %k.phi, i32 4000
   82 = ptradd ptr @b, i32 %81
-  84 = mul i32 %j.phi228, i32 4
-  85 = ptradd ptr %82, i32 %84
+  247 = shl i32 %j.phi228, i32 2
+  85 = ptradd ptr %82, i32 %247
   85.load = load i32 from ptr %85
   87 = mul i32 %78.load, i32 %85.load
   88 = add i32 %temp.phi, i32 %87
@@ -95,8 +95,8 @@ while.body67:
 while.exit68:
   92 = mul i32 %i.phi218, i32 4000
   93 = ptradd ptr @c, i32 %92
-  95 = mul i32 %j.phi228, i32 4
-  96 = ptradd ptr %93, i32 %95
+  248 = shl i32 %j.phi228, i32 2
+  96 = ptradd ptr %93, i32 %248
   store i32 %temp.phi to ptr %96
   99 = add i32 %j.phi228, i32 1
   br bb %while.cond59
@@ -116,8 +116,8 @@ while.cond110:
 while.body111:
   117 = mul i32 %i.phi217, i32 4000
   118 = ptradd ptr @c, i32 %117
-  120 = mul i32 %j.phi227, i32 4
-  121 = ptradd ptr %118, i32 %120
+  249 = shl i32 %j.phi227, i32 2
+  121 = ptradd ptr %118, i32 %249
   121.load = load i32 from ptr %121
   124 = icmp slt i32 %121.load, i32 %temp108.phi242
   br i1 %124, bb %then125, bb %if.exit126
@@ -137,8 +137,8 @@ while.cond136:
 while.body137:
   143 = mul i32 %i.phi217, i32 4000
   144 = ptradd ptr @c, i32 %143
-  146 = mul i32 %j.phi225, i32 4
-  147 = ptradd ptr %144, i32 %146
+  251 = shl i32 %j.phi225, i32 2
+  147 = ptradd ptr %144, i32 %251
   store i32 %temp108.phi242 to ptr %147
   150 = add i32 %j.phi225, i32 1
   br bb %while.cond136
@@ -160,12 +160,12 @@ while.cond161:
 while.body162:
   168 = mul i32 %i.phi216, i32 4000
   169 = ptradd ptr @c, i32 %168
-  171 = mul i32 %j.phi223, i32 4
-  172 = ptradd ptr %169, i32 %171
+  252 = shl i32 %j.phi223, i32 2
+  172 = ptradd ptr %169, i32 %252
   174 = mul i32 %j.phi223, i32 4000
   175 = ptradd ptr @c, i32 %174
-  177 = mul i32 %i.phi216, i32 4
-  178 = ptradd ptr %175, i32 %177
+  253 = shl i32 %i.phi216, i32 2
+  178 = ptradd ptr %175, i32 %253
   178.load = load i32 from ptr %178
   180 = sub i32 0, i32 %178.load
   store i32 %180 to ptr %172
@@ -193,8 +193,8 @@ while.cond193:
 while.body194:
   201 = mul i32 %i.phi, i32 4000
   202 = ptradd ptr @c, i32 %201
-  204 = mul i32 %j.phi, i32 4
-  205 = ptradd ptr %202, i32 %204
+  254 = shl i32 %j.phi, i32 2
+  205 = ptradd ptr %202, i32 %254
   205.load = load i32 from ptr %205
   207 = add i32 %sum.phi, i32 %205.load
   209 = add i32 %j.phi, i32 1

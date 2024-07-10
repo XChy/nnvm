@@ -684,13 +684,12 @@ bb52:
   FMUL.S fs7, fs4, fs6
   FADD.S fs4, fs5, fs7
   FDIV.S fs5, fs4, fs0
-  ADDI s1, zero, 4
-  MULW s11, s10, s1
+  SLLIW s1, s10, 2
   ADDI t5, sp, 0
-  ADD s1, t5, s11
-  FLW fs4, 0(s1)
+  ADD s11, t5, s1
+  FLW fs4, 0(s11)
   FADD.S fs6, fs4, fs1
-  FSW fs6, 0(s1)
+  FSW fs6, 0(s11)
   FSGNJ.S fa0, fs3, fs3
   CALL putfloat
   ADDI a0, zero, 32

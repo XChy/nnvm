@@ -51,58 +51,58 @@ while.cond26:
   br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
   36 = sub i32 %i.phi236, i32 1
-  38 = mul i32 %36, i32 512
-  40 = add i32 %38, i32 %j.phi255
+  262 = shl i32 %36, i32 9
+  40 = add i32 %262, i32 %j.phi255
   41 = sub i32 %40, i32 1
   56 = add i32 %40, i32 1
-  60 = mul i32 %i.phi236, i32 512
-  62 = add i32 %60, i32 %j.phi255
+  265 = shl i32 %i.phi236, i32 9
+  62 = add i32 %265, i32 %j.phi255
   63 = sub i32 %62, i32 1
   76 = add i32 %62, i32 1
   79 = add i32 %i.phi236, i32 1
-  81 = mul i32 %79, i32 512
-  83 = add i32 %81, i32 %j.phi255
+  268 = shl i32 %79, i32 9
+  83 = add i32 %268, i32 %j.phi255
   84 = sub i32 %83, i32 1
   99 = add i32 %83, i32 1
-  102 = mul i32 %62, i32 4
-  103 = ptradd ptr @image_in, i32 %102
+  271 = shl i32 %62, i32 2
+  103 = ptradd ptr @image_in, i32 %271
   103.load = load i32 from ptr %103
   105 = mul i32 8, i32 %103.load
-  107 = mul i32 %41, i32 4
-  108 = ptradd ptr @image_in, i32 %107
+  272 = shl i32 %41, i32 2
+  108 = ptradd ptr @image_in, i32 %272
   108.load = load i32 from ptr %108
   110 = sub i32 %105, i32 %108.load
-  112 = mul i32 %40, i32 4
-  113 = ptradd ptr @image_in, i32 %112
+  273 = shl i32 %40, i32 2
+  113 = ptradd ptr @image_in, i32 %273
   113.load = load i32 from ptr %113
   115 = sub i32 %110, i32 %113.load
-  117 = mul i32 %56, i32 4
-  118 = ptradd ptr @image_in, i32 %117
+  274 = shl i32 %56, i32 2
+  118 = ptradd ptr @image_in, i32 %274
   118.load = load i32 from ptr %118
   120 = sub i32 %115, i32 %118.load
-  122 = mul i32 %63, i32 4
-  123 = ptradd ptr @image_in, i32 %122
+  275 = shl i32 %63, i32 2
+  123 = ptradd ptr @image_in, i32 %275
   123.load = load i32 from ptr %123
   125 = sub i32 %120, i32 %123.load
-  127 = mul i32 %76, i32 4
-  128 = ptradd ptr @image_in, i32 %127
+  276 = shl i32 %76, i32 2
+  128 = ptradd ptr @image_in, i32 %276
   128.load = load i32 from ptr %128
   130 = sub i32 %125, i32 %128.load
-  132 = mul i32 %84, i32 4
-  133 = ptradd ptr @image_in, i32 %132
+  277 = shl i32 %84, i32 2
+  133 = ptradd ptr @image_in, i32 %277
   133.load = load i32 from ptr %133
   135 = sub i32 %130, i32 %133.load
-  137 = mul i32 %83, i32 4
-  138 = ptradd ptr @image_in, i32 %137
+  278 = shl i32 %83, i32 2
+  138 = ptradd ptr @image_in, i32 %278
   138.load = load i32 from ptr %138
   140 = sub i32 %135, i32 %138.load
-  142 = mul i32 %99, i32 4
-  143 = ptradd ptr @image_in, i32 %142
+  279 = shl i32 %99, i32 2
+  143 = ptradd ptr @image_in, i32 %279
   143.load = load i32 from ptr %143
   145 = sub i32 %140, i32 %143.load
-  152 = ptradd ptr @image_out, i32 %102
-  3270 = icmp slt i32 %145, i32 0
-  br i1 %3270, bb %cutout.then, bb %cutout.else
+  152 = ptradd ptr @image_out, i32 %271
+  3302 = icmp slt i32 %145, i32 0
+  br i1 %3302, bb %cutout.then, bb %cutout.else
 while.exit28:
   158 = add i32 %j.phi255, i32 1
   br bb %while.cond
@@ -111,16 +111,16 @@ while.cond159:
   164 = icmp slt i32 %i.phi, i32 1024
   br i1 %164, bb %while.body160, bb %while.exit161
 while.body160:
-  168 = mul i32 %i.phi, i32 512
-  169 = mul i32 %168, i32 4
-  170 = ptradd ptr @image_out, i32 %169
-  175 = ptradd ptr @image_in, i32 %169
+  282 = shl i32 %i.phi, i32 9
+  283 = shl i32 %282, i32 2
+  170 = ptradd ptr @image_out, i32 %283
+  175 = ptradd ptr @image_in, i32 %283
   175.load = load i32 from ptr %175
   store i32 %175.load to ptr %170
-  263 = add i32 %168, i32 511
-  183 = mul i32 %263, i32 4
-  184 = ptradd ptr @image_out, i32 %183
-  192 = ptradd ptr @image_in, i32 %183
+  288 = add i32 %282, i32 511
+  289 = shl i32 %288, i32 2
+  184 = ptradd ptr @image_out, i32 %289
+  192 = ptradd ptr @image_in, i32 %289
   192.load = load i32 from ptr %192
   store i32 %192.load to ptr %184
   195 = add i32 %i.phi, i32 1
@@ -132,15 +132,15 @@ while.cond196:
   201 = icmp slt i32 %j.phi, i32 512
   br i1 %201, bb %while.body197, bb %while.exit198
 while.body197:
-  204 = mul i32 %j.phi, i32 4
-  205 = ptradd ptr @image_out, i32 %204
-  208 = ptradd ptr @image_in, i32 %204
+  294 = shl i32 %j.phi, i32 2
+  205 = ptradd ptr @image_out, i32 %294
+  208 = ptradd ptr @image_in, i32 %294
   208.load = load i32 from ptr %208
   store i32 %208.load to ptr %205
-  266 = add i32 %j.phi, i32 523776
-  216 = mul i32 %266, i32 4
-  217 = ptradd ptr @image_out, i32 %216
-  225 = ptradd ptr @image_in, i32 %216
+  296 = add i32 %j.phi, i32 523776
+  297 = shl i32 %296, i32 2
+  217 = ptradd ptr @image_out, i32 %297
+  225 = ptradd ptr @image_in, i32 %297
   225.load = load i32 from ptr %225
   store i32 %225.load to ptr %217
   228 = add i32 %j.phi, i32 1
@@ -152,16 +152,16 @@ while.exit198:
 cutout.then:
   br bb %cutout.if.exit
 cutout.if.exit:
-  val.stack.phi261275 = phi [bb %cutout.if.exit10, i32 %val.stack.phi283, bb %cutout.then, i32 0]
-  store i32 %val.stack.phi261275 to ptr %152
+  val.stack.phi261307 = phi [bb %cutout.if.exit10, i32 %val.stack.phi315, bb %cutout.then, i32 0]
+  store i32 %val.stack.phi261307 to ptr %152
   br bb %while.cond26
 cutout.else:
-  8278 = icmp sgt i32 %145, i32 255
-  br i1 %8278, bb %cutout.then9, bb %cutout.if.exit10
+  8310 = icmp sgt i32 %145, i32 255
+  br i1 %8310, bb %cutout.then9, bb %cutout.if.exit10
 cutout.then9:
   br bb %cutout.if.exit10
 cutout.if.exit10:
-  val.stack.phi283 = phi [bb %cutout.else, i32 %145, bb %cutout.then9, i32 255]
+  val.stack.phi315 = phi [bb %cutout.else, i32 %145, bb %cutout.then9, i32 255]
   br bb %cutout.if.exit
 }
 

@@ -38,11 +38,10 @@ bb1:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:
-  ADDI s2, zero, 4
-  MULW s3, s1, s2
+  SLLIW s2, s1, 2
   LA s1, parent
-  ADD s2, s1, s3
-  SW s0, 0(s2)
+  ADD s3, s1, s2
+  SW s0, 0(s3)
   JAL zero, bb1
 main:
   ADDI sp, sp, -80
@@ -100,10 +99,9 @@ bb9:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb10:
-  ADDI s5, zero, 4
-  MULW s6, s3, s5
-  LA s5, parent
-  ADD s7, s5, s6
+  SLLIW s5, s3, 2
+  LA s6, parent
+  ADD s7, s6, s5
   LW s5, 0(s7)
   XOR s6, s5, s3
   SLTIU s5, s6, 1
@@ -142,17 +140,15 @@ bb15:
   ADD s2, s4, zero
   JAL zero, bb6
 bb16:
-  ADDI s6, zero, 4
-  MULW s7, s5, s6
+  SLLIW s6, s5, 2
   LA s5, parent
-  ADD s6, s5, s7
-  SW s4, 0(s6)
+  ADD s7, s5, s6
+  SW s4, 0(s7)
   JAL zero, bb15
 bb17:
-  ADDI s4, zero, 4
-  MULW s5, s3, s4
-  LA s4, parent
-  ADD s6, s4, s5
+  SLLIW s4, s3, 2
+  LA s5, parent
+  ADD s6, s5, s4
   SW s3, 0(s6)
   ADDIW s4, s3, 1
   ADD s2, s4, zero
@@ -165,10 +161,9 @@ find:
   SD s1, 24(sp)
   SD s0, 32(sp)
   ADD s0, a0, zero
-  ADDI s1, zero, 4
-  MULW s2, s0, s1
-  LA s1, parent
-  ADD s3, s1, s2
+  SLLIW s1, s0, 2
+  LA s2, parent
+  ADD s3, s2, s1
   LW s1, 0(s3)
   XOR s2, s1, s0
   SLTIU s1, s2, 1
