@@ -9,8 +9,8 @@
 .section .text
 func:
   ADDI sp, sp, -64
-  SD ra, 0(sp)
-  FSD fs1, 8(sp)
+  FSD fs1, 0(sp)
+  SD ra, 8(sp)
   SD s1, 16(sp)
   FSD fs2, 24(sp)
   SD s0, 32(sp)
@@ -35,8 +35,8 @@ bb1:
   FSGNJ.D fs0, fa0, fa0
   FSUB.S fs1, fs2, fs0
   FSGNJ.S fa0, fs1, fs1
-  LD ra, 0(sp)
-  FLD fs1, 8(sp)
+  FLD fs1, 0(sp)
+  LD ra, 8(sp)
   LD s1, 16(sp)
   FLD fs2, 24(sp)
   LD s0, 32(sp)
@@ -45,10 +45,10 @@ bb1:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:
-  FCVT.S.W fs1, zero
-  FSGNJ.S fa0, fs1, fs1
-  LD ra, 0(sp)
-  FLD fs1, 8(sp)
+  FCVT.S.W fs0, zero
+  FSGNJ.S fa0, fs0, fs0
+  FLD fs1, 0(sp)
+  LD ra, 8(sp)
   LD s1, 16(sp)
   FLD fs2, 24(sp)
   LD s0, 32(sp)

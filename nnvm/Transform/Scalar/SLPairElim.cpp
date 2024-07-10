@@ -1,5 +1,6 @@
 #include "SLPairElim.h"
 #include "ADT/Ranges.h"
+#include "Analysis/AliasAnalysis.h"
 #include "Analysis/DomTreeAnalysis.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
@@ -11,6 +12,7 @@
 using namespace nnvm;
 
 bool SLPairElimPass::run(Function &F) {
+  AliasAnalysis *AA = getAnalysis<AliasAnalysis>(F);
   bool changed = false;
 
   for (BasicBlock *BB : F) {
@@ -19,6 +21,8 @@ bool SLPairElimPass::run(Function &F) {
     for (Instruction *I : incChange(*BB)) {
       if (auto *def = dyn_cast<StoreInst>(I)) {
         // TODO: alias analysis
+        if (ptr2Store.count(def->getDest()))
+          ptr2Store[def->getDest()] = def;
         ptr2Store.clear();
         ptr2Store[def->getDest()] = def;
         continue;

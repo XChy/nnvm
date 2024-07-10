@@ -200,10 +200,10 @@ bb11:
   JALR zero, 0(ra)
 bb12:
   LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
+  FLW fs0, 0(s0)
   LA s0, .CONSTANT.7.0
-  FLW fs2, 0(s0)
-  FSGNJ.S fa0, fs1, fs2
+  FLW fs1, 0(s0)
+  FSGNJ.S fa0, fs0, fs1
   FLD fs3, 0(sp)
   LD ra, 8(sp)
   FLD fs2, 16(sp)

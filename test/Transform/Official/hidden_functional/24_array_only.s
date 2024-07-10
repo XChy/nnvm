@@ -37,14 +37,13 @@ sub:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 sub_impl:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -69,15 +68,14 @@ bb3:
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:
-  LW s3, 0(s0)
-  LW s4, 0(s1)
-  SUBW s5, s3, s4
-  SW s5, 0(s0)
+  LW s2, 0(s0)
+  LW s3, 0(s1)
+  SUBW s1, s2, s3
+  SW s1, 0(s0)
   JAL zero, bb3
 inc:
   ADDI sp, sp, -32
@@ -120,14 +118,13 @@ add:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 add_impl:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s4, 8(sp)
   SD s3, 16(sp)
   SD s2, 24(sp)
   SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s0, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -152,15 +149,14 @@ bb9:
   LD s3, 16(sp)
   LD s2, 24(sp)
   LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
-  ADDI sp, sp, 64
+  LD s0, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb10:
-  LW s3, 0(s0)
-  LW s4, 0(s1)
-  ADDW s5, s3, s4
-  SW s5, 0(s0)
+  LW s2, 0(s0)
+  LW s3, 0(s1)
+  ADDW s1, s2, s3
+  SW s1, 0(s0)
   JAL zero, bb9
 main:
   ADDI sp, sp, -64
@@ -304,7 +300,7 @@ bb20:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb21:
-  LW s2, 0(s0)
-  ADDIW s3, s2, 1
-  SW s3, 0(s0)
+  LW s1, 0(s0)
+  ADDIW s2, s1, 1
+  SW s2, 0(s0)
   JAL zero, bb20

@@ -34,19 +34,18 @@ struct RegCompare {
 
 class LinearScanRA : public RegisterAllocator {
 public:
-  using IntervalItertator = std::set<LiveInterval, IntervalEndCompare>::iterator;
+  using IntervalItertator =
+      std::set<LiveInterval, IntervalEndCompare>::iterator;
   void allocate(LIRFunc &func);
   void mapVRegs(LIRFunc &func);
   void replaceVRegRef(LIRFunc &func);
   void addCalleeSaved(LIRFunc &func);
   void spillAtInterval(const LiveInterval &current, LIRFunc &func);
   void expireOldInterval(const LiveInterval &current);
-  uint64_t indexOf(LIRBB *BB, uint64_t localIndex);
+
+  bool tryCoalescingInterval(const LiveInterval &interval);
 
 private:
-  // We assign numbers in DFS order of basicblock.
-  std::unordered_map<LIRBB *, uint64_t> BBNumber;
-
   // Active virtual registers.
   std::multiset<LiveInterval, IntervalEndCompare> active;
   std::unordered_set<Register *> used;

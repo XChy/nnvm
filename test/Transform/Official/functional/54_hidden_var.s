@@ -90,28 +90,28 @@ main:
 bb1:
   ADDI a0, zero, 10
   CALL putch
-  LA s0, b
-  LW s2, 0(s0)
-  ADD a0, s2, zero
+  LA s6, b
+  LW s7, 0(s6)
+  ADD a0, s7, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s0, c
-  LW s2, 0(s0)
-  ADD a0, s2, zero
+  LA s6, c
+  LW s7, 0(s6)
+  ADD a0, s7, zero
   CALL putint
-  LA s0, c
-  ADDI s2, s0, 4
-  LW s0, 0(s2)
-  ADD a0, s0, zero
+  LA s6, c
+  ADDI s7, s6, 4
+  LW s6, 0(s7)
+  ADD a0, s6, zero
   CALL putint
-  LW s0, 0(s1)
-  ADD a0, s0, zero
+  LW s6, 0(s1)
+  ADD a0, s6, zero
   CALL putint
-  LA s0, c
-  ADDI s1, s0, 12
-  LW s0, 0(s1)
-  ADD a0, s0, zero
+  LA s6, c
+  ADDI s7, s6, 12
+  LW s6, 0(s7)
+  ADD a0, s6, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -165,14 +165,14 @@ bb3:
   BNE s7, zero, bb5
   # implict jump to bb4
 bb4:
-  LW s4, 0(s0)
-  ADD a0, s4, zero
+  LW s6, 0(s0)
+  ADD a0, s6, zero
   CALL putint
-  LW s0, 0(s2)
-  ADD a0, s0, zero
+  LW s6, 0(s2)
+  ADD a0, s6, zero
   CALL putint
-  LW s0, 0(s3)
-  ADD a0, s0, zero
+  LW s6, 0(s3)
+  ADD a0, s6, zero
   CALL putint
   JAL zero, bb1
 bb5:

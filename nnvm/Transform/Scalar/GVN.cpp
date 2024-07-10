@@ -63,7 +63,8 @@ static inline bool isPure(Instruction *I) {
 
 bool GVNPass::run(Function &F) {
   domTree = getAnalysis<DomTreeAnalysis>(F);
-  Graph<BasicBlock *>().reversePostOrder(F.getEntry(), [this](BasicBlock *BB) {
+  Graph<BasicBlock *> graph;
+  GraphVisitor::reversePostorder(graph, F.getEntry(), [this](BasicBlock *BB) {
     // TODO
   });
   return true;

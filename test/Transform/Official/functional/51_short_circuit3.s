@@ -43,15 +43,11 @@ set_b:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
-  SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s5, 48(sp)
-  SD s0, 56(sp)
+  SD s2, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
   LA s0, a
   ADDI s1, zero, 2
   SW s1, 0(s0)
@@ -166,96 +162,92 @@ bb10:
   BNE s1, zero, bb33
   # implict jump to bb11
 bb11:
-  SLTI s1, zero, 1
-  XORI s2, s1, 1
-  ADD s0, s2, zero
+  SLTI s0, zero, 1
+  XORI s1, s0, 1
+  ADD s0, s1, zero
   # implict jump to bb12
 bb12:
   ADD s1, s0, zero
   BNE s1, zero, bb32
   # implict jump to bb13
 bb13:
-  ADDI s1, zero, 2
-  SLTI s2, s1, 1
-  XORI s1, s2, 1
-  BNE s1, zero, bb31
+  ADDI s0, zero, 2
+  SLTI s1, s0, 1
+  XORI s0, s1, 1
+  BNE s0, zero, bb31
   # implict jump to bb14
 bb14:
-  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb15
 bb15:
-  ADD s2, s1, zero
-  BNE s2, zero, bb30
+  ADD s1, s0, zero
+  BNE s1, zero, bb30
   # implict jump to bb16
 bb16:
-  XOR s2, zero, zero
-  SLTIU s3, s2, 1
-  BNE s3, zero, bb29
+  XOR s0, zero, zero
+  SLTIU s1, s0, 1
+  BNE s1, zero, bb29
   # implict jump to bb17
 bb17:
-  ADD s2, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb18
 bb18:
-  ADD s4, s2, zero
-  BNE s4, zero, bb28
+  ADD s2, s0, zero
+  BNE s2, zero, bb28
   # implict jump to bb19
 bb19:
-  ADDI s5, zero, 4
-  SLTI s6, s5, 4
-  XORI s5, s6, 1
-  ADD s4, s5, zero
+  ADDI s0, zero, 4
+  SLTI s2, s0, 4
+  XORI s0, s2, 1
+  ADD s2, s0, zero
   # implict jump to bb20
 bb20:
-  ADD s5, s4, zero
-  BNE s5, zero, bb27
+  ADD s0, s2, zero
+  BNE s0, zero, bb27
   # implict jump to bb21
 bb21:
-  BNE s3, zero, bb26
+  BNE s1, zero, bb26
   # implict jump to bb22
 bb22:
-  ADD s5, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s6, s5, zero
-  BNE s6, zero, bb25
+  ADD s1, s0, zero
+  BNE s1, zero, bb25
   # implict jump to bb24
 bb24:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s5, 48(sp)
-  LD s0, 56(sp)
-  ADDI sp, sp, 64
+  LD s2, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb25:
   ADDI a0, zero, 75
   CALL putch
   JAL zero, bb24
 bb26:
-  ADDI s5, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb23
 bb27:
   ADDI a0, zero, 74
   CALL putch
   JAL zero, bb21
 bb28:
-  ADDI s4, zero, 1
+  ADDI s2, zero, 1
   JAL zero, bb20
 bb29:
-  ADD s2, zero, zero
+  ADD s0, zero, zero
   JAL zero, bb18
 bb30:
   ADDI a0, zero, 73
   CALL putch
   JAL zero, bb16
 bb31:
-  ADDI s1, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb15
 bb32:
   ADDI a0, zero, 72

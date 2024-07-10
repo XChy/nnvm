@@ -4,10 +4,9 @@
 .section .text
 main:
   ADDI sp, sp, -32
-  SD s2, 0(sp)
-  SD ra, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD ra, 0(sp)
+  SD s1, 8(sp)
+  SD s0, 16(sp)
   ADDI s0, zero, 3
   SLTI s1, s0, 2
   XORI s0, s1, 1
@@ -15,10 +14,9 @@ main:
   # implict jump to bb1
 bb1:
   ADDI a0, zero, 5
-  LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD ra, 0(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb2:
@@ -35,32 +33,29 @@ bb4:
   BNE s1, zero, bb8
   # implict jump to bb5
 bb5:
-  XOR s1, zero, zero
-  SLTU s2, zero, s1
-  BNE s2, zero, bb7
+  XOR s0, zero, zero
+  SLTU s1, zero, s0
+  BNE s1, zero, bb7
   # implict jump to bb6
 bb6:
   ADDI a0, zero, 10
-  LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD ra, 0(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb7:
   ADDI a0, zero, 9
-  LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD ra, 0(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb8:
   ADDI a0, zero, 6
-  LD s2, 0(sp)
-  LD ra, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD ra, 0(sp)
+  LD s1, 8(sp)
+  LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb9:

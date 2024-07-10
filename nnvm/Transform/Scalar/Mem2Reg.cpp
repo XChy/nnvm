@@ -141,7 +141,7 @@ void Mem2RegPass::rename(Function &F) {
   for (auto [stack, info] : candidates)
     incomingValuesMap[F.getEntry()][stack] = UBValue::create(info.valueType);
 
-  graph.dfs(F.getEntry(), [&](BasicBlock *BB) {
+  GraphVisitor::dfs(graph, F.getEntry(), [&](BasicBlock *BB) {
     std::unordered_map<StackInst *, Value *> &incomingValues =
         incomingValuesMap[BB];
 

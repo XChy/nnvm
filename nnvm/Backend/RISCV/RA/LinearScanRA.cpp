@@ -1,22 +1,20 @@
+#include "LinearScanRA.h"
+#include "ADT/PatternMatch.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/Builder.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
+#include "Backend/RISCV/LowIR/Patterns.h"
 #include "Backend/RISCV/StackSlot.h"
 #include "Utils/Debug.h"
 #include <Backend/RISCV/Analysis/LiveIntervalAnalysis.h>
-#include <Backend/RISCV/LinearScanRA.h>
 #include <iterator>
 
 using namespace nnvm::riscv;
 
 static bool isSameClass(Register *a, Register *b) {
   return ((a->isFP() && b->isFP()) || (!a->isFP() && !b->isFP()));
-}
-
-uint64_t LinearScanRA::indexOf(LIRBB *BB, uint64_t localIndex) {
-  return BBNumber[BB] + localIndex;
 }
 
 void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
@@ -30,6 +28,7 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
     auto spilledIt = active.begin();
     while (spilledIt != active.end()) {
       if (reg2Reg[spilledIt->reg] == current.reg) {
+        reg2Reg[spilledIt->reg] = nullptr;
         vregToStack[spilledIt->reg] =
             func.allocStackSlot(spilledIt->reg->bytes());
         spilledIt = active.erase(spilledIt);
@@ -67,7 +66,6 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
     vregToStack[spilledIt->reg] = func.allocStackSlot(spilledIt->reg->bytes());
     // NOTE: Erase a reverse iterator
     active.erase(std::next(spilledIt).base());
-    ;
     active.insert(current);
     debug({
       std::cerr << "Map ";
@@ -106,6 +104,27 @@ void LinearScanRA::expireOldInterval(const LiveInterval &current) {
     freeRegs.insert(reg2Reg[it->reg]);
     it = active.erase(it);
   }
+}
+
+bool LinearScanRA::tryCoalescingInterval(const LiveInterval &interval) {
+  LIRValue *A, *B;
+  if (interval.reg->getDefs().size() != 1)
+    return false;
+  LIRInst *copyInst = interval.reg->getDefs().getFirst()->getInst();
+  if (!match(copyInst, pattern::pCopy(pattern::pReg(A), pattern::pReg(B))))
+    return false;
+
+  Register *BReg = B->as<Register>();
+  if (!reg2Reg.count(BReg) || !reg2Reg[BReg])
+    return false;
+  Register *candidate = reg2Reg[BReg];
+  if (!freeRegs.count(candidate))
+    return false;
+
+  reg2Reg[interval.reg] = candidate;
+  freeRegs.erase(candidate);
+  active.insert(interval);
+  return true;
 }
 
 void LinearScanRA::mapVRegs(LIRFunc &func) {
@@ -148,11 +167,13 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
 
     if (!interval.fixed()) {
 
-      auto regIter = freeRegs.begin();
+      //if (tryCoalescingInterval(interval))
+        //continue;
+
       Register *phyReg = nullptr;
-      for (; regIter != freeRegs.end(); ++regIter) {
-        if (isSameClass((*regIter), interval.reg)) {
-          phyReg = *regIter;
+      for (Register *freeReg : freeRegs) {
+        if (isSameClass(freeReg, interval.reg)) {
+          phyReg = freeReg;
           break;
         }
       }
@@ -167,7 +188,7 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
           std::cerr << "\n";
         });
         reg2Reg[interval.reg] = phyReg;
-        freeRegs.erase(regIter);
+        freeRegs.erase(phyReg);
         active.insert(interval);
       } else {
         spillAtInterval(interval, func);

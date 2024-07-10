@@ -45,7 +45,7 @@ bb3:
   JALR zero, 0(ra)
 bb4:
   CALL getint
-  ADD s1, a0, zero
-  ADD a0, s1, zero
+  ADD s0, a0, zero
+  ADD a0, s0, zero
   CALL putint
   JAL zero, bb3

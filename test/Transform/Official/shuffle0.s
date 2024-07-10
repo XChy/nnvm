@@ -82,37 +82,37 @@ bb2:
   BNE s6, zero, bb4
   # implict jump to bb3
 bb3:
-  LA s2, cnt
-  LW s3, 0(s2)
-  ADDIW s2, s3, 1
-  LA s3, cnt
-  SW s2, 0(s3)
-  SLLIW s3, s2, 2
-  LA s2, next
-  ADD s5, s2, s3
-  LW s2, 0(s4)
-  SW s2, 0(s5)
-  LA s2, cnt
-  LW s3, 0(s2)
-  SW s3, 0(s4)
-  LA s2, cnt
-  LW s3, 0(s2)
-  SLLIW s2, s3, 2
-  LA s3, key
-  ADD s4, s3, s2
-  SW s0, 0(s4)
-  LA s0, cnt
-  LW s2, 0(s0)
-  SLLIW s0, s2, 2
-  LA s2, value
-  ADD s3, s2, s0
-  SW s1, 0(s3)
-  LA s0, cnt
-  LW s1, 0(s0)
-  SLLIW s0, s1, 2
-  LA s1, nextvalue
-  ADD s2, s1, s0
-  SW zero, 0(s2)
+  LA s5, cnt
+  LW s6, 0(s5)
+  ADDIW s5, s6, 1
+  LA s6, cnt
+  SW s5, 0(s6)
+  SLLIW s6, s5, 2
+  LA s5, next
+  ADD s7, s5, s6
+  LW s5, 0(s4)
+  SW s5, 0(s7)
+  LA s5, cnt
+  LW s6, 0(s5)
+  SW s6, 0(s4)
+  LA s5, cnt
+  LW s6, 0(s5)
+  SLLIW s5, s6, 2
+  LA s6, key
+  ADD s7, s6, s5
+  SW s0, 0(s7)
+  LA s5, cnt
+  LW s6, 0(s5)
+  SLLIW s5, s6, 2
+  LA s6, value
+  ADD s7, s6, s5
+  SW s1, 0(s7)
+  LA s5, cnt
+  LW s6, 0(s5)
+  SLLIW s5, s6, 2
+  LA s6, nextvalue
+  ADD s7, s6, s5
+  SW zero, 0(s7)
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -142,26 +142,26 @@ bb5:
   JAL zero, bb2
 bb6:
   LA s2, cnt
-  LW s6, 0(s2)
-  ADDIW s2, s6, 1
-  LA s6, cnt
+  LW s3, 0(s2)
+  ADDIW s2, s3, 1
+  LA s3, cnt
+  SW s2, 0(s3)
+  SLLIW s3, s2, 2
+  LA s2, nextvalue
+  ADD s6, s2, s3
+  LA s2, nextvalue
+  ADD s3, s2, s5
+  LW s2, 0(s3)
   SW s2, 0(s6)
-  SLLIW s6, s2, 2
-  LA s2, nextvalue
-  ADD s7, s2, s6
-  LA s2, nextvalue
-  ADD s6, s2, s5
-  LW s2, 0(s6)
-  SW s2, 0(s7)
   LA s2, cnt
-  LW s7, 0(s2)
-  SW s7, 0(s6)
+  LW s5, 0(s2)
+  SW s5, 0(s3)
   LA s2, cnt
-  LW s6, 0(s2)
-  SLLIW s2, s6, 2
-  LA s6, value
-  ADD s7, s6, s2
-  SW s1, 0(s7)
+  LW s3, 0(s2)
+  SLLIW s2, s3, 2
+  LA s3, value
+  ADD s5, s3, s2
+  SW s1, 0(s5)
   ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -185,26 +185,26 @@ bb7:
   LW s3, 0(s2)
   SLLIW s2, s3, 2
   LA s3, key
-  ADD s5, s3, s2
-  SW s0, 0(s5)
-  LA s2, cnt
-  LW s3, 0(s2)
-  SLLIW s2, s3, 2
-  LA s3, value
-  ADD s5, s3, s2
-  SW s1, 0(s5)
-  LA s2, cnt
-  LW s3, 0(s2)
-  SLLIW s2, s3, 2
-  LA s3, next
-  ADD s5, s3, s2
-  SW zero, 0(s5)
-  LA s2, cnt
-  LW s3, 0(s2)
-  SLLIW s2, s3, 2
-  LA s3, nextvalue
-  ADD s5, s3, s2
-  SW zero, 0(s5)
+  ADD s4, s3, s2
+  SW s0, 0(s4)
+  LA s0, cnt
+  LW s2, 0(s0)
+  SLLIW s0, s2, 2
+  LA s2, value
+  ADD s3, s2, s0
+  SW s1, 0(s3)
+  LA s0, cnt
+  LW s1, 0(s0)
+  SLLIW s0, s1, 2
+  LA s1, next
+  ADD s2, s1, s0
+  SW zero, 0(s2)
+  LA s0, cnt
+  LW s1, 0(s0)
+  SLLIW s0, s1, 2
+  LA s1, nextvalue
+  ADD s2, s1, s0
+  SW zero, 0(s2)
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -218,20 +218,20 @@ bb7:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 main:
-  ADDI sp, sp, -128
-  SD s11, 16(sp)
-  SD s10, 24(sp)
-  SD s9, 32(sp)
-  SD ra, 40(sp)
-  SD s0, 48(sp)
-  SD s5, 56(sp)
-  SD s7, 64(sp)
-  SD s1, 72(sp)
-  SD s6, 80(sp)
-  SD s2, 88(sp)
-  SD s3, 96(sp)
-  SD s4, 104(sp)
-  SD s8, 112(sp)
+  ADDI sp, sp, -112
+  SD s11, 0(sp)
+  SD ra, 8(sp)
+  SD s0, 16(sp)
+  SD s5, 24(sp)
+  SD s7, 32(sp)
+  SD s10, 40(sp)
+  SD s1, 48(sp)
+  SD s6, 56(sp)
+  SD s2, 64(sp)
+  SD s3, 72(sp)
+  SD s4, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, hashmod
@@ -247,8 +247,7 @@ main:
   LA s1, requests
   ADD a0, s1, zero
   CALL getarray
-  ADD t4, a0, zero
-  SW t4, 0(sp)
+  ADD s1, a0, zero
   ADDI a0, zero, 78
   CALL _sysy_starttime
   ADD s2, zero, zero
@@ -259,111 +258,107 @@ bb9:
   BNE s4, zero, bb23
   # implict jump to bb10
 bb10:
-  ADD s0, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb11
 bb11:
-  ADD s2, s0, zero
-  LW t4, 0(sp)
-  SLT s3, s2, t4
-  BNE s3, zero, bb13
+  ADD s5, s4, zero
+  SLT s6, s5, s1
+  BNE s6, zero, bb13
   # implict jump to bb12
 bb12:
   ADDI a0, zero, 90
   CALL _sysy_stoptime
-  LW t4, 0(sp)
-  ADD a0, t4, zero
-  LA s0, ans
-  ADD a1, s0, zero
+  ADD a0, s1, zero
+  LA s6, ans
+  ADD a1, s6, zero
   CALL putarray
   ADD a0, zero, zero
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s9, 32(sp)
-  LD ra, 40(sp)
-  LD s0, 48(sp)
-  LD s5, 56(sp)
-  LD s7, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
-  LD s8, 112(sp)
-  ADDI sp, sp, 128
+  LD s11, 0(sp)
+  LD ra, 8(sp)
+  LD s0, 16(sp)
+  LD s5, 24(sp)
+  LD s7, 32(sp)
+  LD s10, 40(sp)
+  LD s1, 48(sp)
+  LD s6, 56(sp)
+  LD s2, 64(sp)
+  LD s3, 72(sp)
+  LD s4, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb13:
-  SLLIW s3, s2, 2
-  LA s4, ans
-  ADD t4, s4, s3
-  SD t4, 8(sp)
-  LA s4, requests
-  ADD s6, s4, s3
-  LW s3, 0(s6)
-  LA s4, hashmod
-  LW s6, 0(s4)
-  REMW s4, s3, s6
-  SLLIW s6, s4, 2
-  LA s4, head
-  ADD s7, s4, s6
-  LW s4, 0(s7)
-  ADD s6, s4, zero
+  SLLIW s6, s5, 2
+  LA s7, ans
+  ADD s8, s7, s6
+  LA s7, requests
+  ADD s9, s7, s6
+  LW s6, 0(s9)
+  LA s7, hashmod
+  LW s9, 0(s7)
+  REMW s7, s6, s9
+  SLLIW s9, s7, 2
+  LA s7, head
+  ADD s10, s7, s9
+  LW s7, 0(s10)
+  ADD s9, s7, zero
   # implict jump to bb14
 bb14:
-  ADD s4, s6, zero
-  XOR s7, s4, zero
-  SLTU s8, zero, s7
-  BNE s8, zero, bb17
+  ADD s7, s9, zero
+  XOR s10, s7, zero
+  SLTU s11, zero, s10
+  BNE s11, zero, bb17
   # implict jump to bb15
 bb15:
-  ADD s1, zero, zero
+  ADD s10, zero, zero
   # implict jump to bb16
 bb16:
-  ADD s4, s1, zero
-  LD t4, 8(sp)
-  SW s4, 0(t4)
-  ADDIW s4, s2, 1
-  ADD s0, s4, zero
+  ADD ra, s10, zero
+  SW ra, 0(s8)
+  ADDIW s10, s5, 1
+  ADD s4, s10, zero
   JAL zero, bb11
 bb17:
-  SLLIW s7, s4, 2
-  LA s8, key
-  ADD s9, s8, s7
-  LW s8, 0(s9)
-  XOR s9, s8, s3
-  SLTIU s8, s9, 1
-  BNE s8, zero, bb19
+  SLLIW s11, s7, 2
+  LA ra, key
+  ADD t0, ra, s11
+  LW ra, 0(t0)
+  XOR t0, ra, s6
+  SLTIU ra, t0, 1
+  BNE ra, zero, bb19
   # implict jump to bb18
 bb18:
-  LA s0, next
-  ADD s4, s0, s7
-  LW s0, 0(s4)
-  ADD s6, s0, zero
+  LA ra, next
+  ADD t0, ra, s11
+  LW s11, 0(t0)
+  ADD s9, s11, zero
   JAL zero, bb14
 bb19:
-  ADD s8, s4, zero
-  ADD s4, zero, zero
+  ADD s6, s7, zero
+  ADD s7, zero, zero
   # implict jump to bb20
 bb20:
-  ADD s9, s4, zero
-  ADD s10, s8, zero
-  XOR s11, s10, zero
-  SLTU s1, zero, s11
-  BNE s1, zero, bb22
+  ADD s9, s7, zero
+  ADD s11, s6, zero
+  XOR ra, s11, zero
+  SLTU t0, zero, ra
+  BNE t0, zero, bb22
   # implict jump to bb21
 bb21:
-  ADD s1, s9, zero
+  ADD s10, s9, zero
   JAL zero, bb16
 bb22:
-  SLLIW s1, s10, 2
+  SLLIW s4, s11, 2
   LA s10, value
-  ADD s11, s10, s1
+  ADD s11, s10, s4
   LW s10, 0(s11)
   ADDW s11, s9, s10
-  LA s10, nextvalue
-  ADD s5, s10, s1
-  LW s1, 0(s5)
-  ADD s8, s1, zero
-  ADD s4, s11, zero
+  LA s9, nextvalue
+  ADD s10, s9, s4
+  LW s4, 0(s10)
+  ADD s6, s4, zero
+  ADD s7, s11, zero
   JAL zero, bb20
 bb23:
   SLLIW s4, s3, 2
@@ -385,89 +380,89 @@ bb23:
   BNE s6, zero, bb31
   # implict jump to bb24
 bb24:
-  LW s2, 0(s8)
-  ADD s6, s2, zero
+  LW s6, 0(s8)
+  ADD s7, s6, zero
   # implict jump to bb25
 bb25:
-  ADD s2, s6, zero
-  XOR s7, s2, zero
-  SLTU s9, zero, s7
-  BNE s9, zero, bb28
+  ADD s6, s7, zero
+  XOR s9, s6, zero
+  SLTU s10, zero, s9
+  BNE s10, zero, bb28
   # implict jump to bb26
 bb26:
-  LA s2, cnt
-  LW s6, 0(s2)
-  ADDIW s2, s6, 1
-  LA s6, cnt
-  SW s2, 0(s6)
-  SLLIW s6, s2, 2
-  LA s2, next
-  ADD s7, s2, s6
-  LW s2, 0(s8)
-  SW s2, 0(s7)
-  LA s2, cnt
-  LW s6, 0(s2)
-  SW s6, 0(s8)
-  LA s2, cnt
-  LW s6, 0(s2)
-  SLLIW s2, s6, 2
-  LA s6, key
-  ADD s7, s6, s2
-  SW s5, 0(s7)
-  LA s2, cnt
-  LW s5, 0(s2)
-  SLLIW s2, s5, 2
-  LA s5, value
-  ADD s6, s5, s2
-  SW s4, 0(s6)
-  LA s2, cnt
-  LW s4, 0(s2)
-  SLLIW s2, s4, 2
-  LA s4, nextvalue
-  ADD s5, s4, s2
-  SW zero, 0(s5)
+  LA s9, cnt
+  LW s10, 0(s9)
+  ADDIW s9, s10, 1
+  LA s10, cnt
+  SW s9, 0(s10)
+  SLLIW s10, s9, 2
+  LA s9, next
+  ADD s11, s9, s10
+  LW s9, 0(s8)
+  SW s9, 0(s11)
+  LA s9, cnt
+  LW s10, 0(s9)
+  SW s10, 0(s8)
+  LA s9, cnt
+  LW s10, 0(s9)
+  SLLIW s9, s10, 2
+  LA s10, key
+  ADD s11, s10, s9
+  SW s5, 0(s11)
+  LA s9, cnt
+  LW s10, 0(s9)
+  SLLIW s9, s10, 2
+  LA s10, value
+  ADD s11, s10, s9
+  SW s4, 0(s11)
+  LA s9, cnt
+  LW s10, 0(s9)
+  SLLIW s9, s10, 2
+  LA s10, nextvalue
+  ADD s11, s10, s9
+  SW zero, 0(s11)
   # implict jump to bb27
 bb27:
-  ADDIW s6, s3, 1
-  ADD s2, s6, zero
+  ADDIW s4, s3, 1
+  ADD s2, s4, zero
   JAL zero, bb9
 bb28:
-  SLLIW s7, s2, 2
-  LA s2, key
-  ADD s9, s2, s7
-  LW s2, 0(s9)
-  XOR s9, s2, s5
-  SLTIU s2, s9, 1
-  BNE s2, zero, bb30
+  SLLIW s9, s6, 2
+  LA s6, key
+  ADD s10, s6, s9
+  LW s6, 0(s10)
+  XOR s10, s6, s5
+  SLTIU s6, s10, 1
+  BNE s6, zero, bb30
   # implict jump to bb29
 bb29:
-  LA s2, next
-  ADD s9, s2, s7
-  LW s2, 0(s9)
-  ADD s6, s2, zero
+  LA s6, next
+  ADD s10, s6, s9
+  LW s6, 0(s10)
+  ADD s7, s6, zero
   JAL zero, bb25
 bb30:
-  LA s2, cnt
-  LW s9, 0(s2)
-  ADDIW s2, s9, 1
-  LA s9, cnt
-  SW s2, 0(s9)
-  SLLIW s9, s2, 2
-  LA s2, nextvalue
-  ADD s10, s2, s9
-  LA s2, nextvalue
-  ADD s9, s2, s7
-  LW s2, 0(s9)
-  SW s2, 0(s10)
-  LA s2, cnt
-  LW s10, 0(s2)
-  SW s10, 0(s9)
-  LA s2, cnt
-  LW s9, 0(s2)
-  SLLIW s2, s9, 2
-  LA s9, value
-  ADD s10, s9, s2
-  SW s4, 0(s10)
+  LA s6, cnt
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, cnt
+  SW s6, 0(s7)
+  SLLIW s7, s6, 2
+  LA s6, nextvalue
+  ADD s10, s6, s7
+  LA s6, nextvalue
+  ADD s7, s6, s9
+  LW s6, 0(s7)
+  SW s6, 0(s10)
+  LA s6, cnt
+  LW s9, 0(s6)
+  SW s9, 0(s7)
+  LA s6, cnt
+  LW s7, 0(s6)
+  SLLIW s6, s7, 2
+  LA s7, value
+  ADD s9, s7, s6
+  SW s4, 0(s9)
   JAL zero, bb27
 bb31:
   LA s6, cnt
@@ -480,40 +475,36 @@ bb31:
   LW s7, 0(s6)
   SLLIW s6, s7, 2
   LA s7, key
-  ADD s9, s7, s6
-  SW s5, 0(s9)
-  LA s6, cnt
-  LW s7, 0(s6)
-  SLLIW s6, s7, 2
-  LA s7, value
-  ADD s9, s7, s6
-  SW s4, 0(s9)
-  LA s6, cnt
-  LW s7, 0(s6)
-  SLLIW s6, s7, 2
-  LA s7, next
-  ADD s9, s7, s6
-  SW zero, 0(s9)
-  LA s6, cnt
-  LW s7, 0(s6)
-  SLLIW s6, s7, 2
-  LA s7, nextvalue
-  ADD s9, s7, s6
-  SW zero, 0(s9)
+  ADD s8, s7, s6
+  SW s5, 0(s8)
+  LA s5, cnt
+  LW s6, 0(s5)
+  SLLIW s5, s6, 2
+  LA s6, value
+  ADD s7, s6, s5
+  SW s4, 0(s7)
+  LA s4, cnt
+  LW s5, 0(s4)
+  SLLIW s4, s5, 2
+  LA s5, next
+  ADD s6, s5, s4
+  SW zero, 0(s6)
+  LA s4, cnt
+  LW s5, 0(s4)
+  SLLIW s4, s5, 2
+  LA s5, nextvalue
+  ADD s6, s5, s4
+  SW zero, 0(s6)
   JAL zero, bb27
 reduce:
-  ADDI sp, sp, -96
-  SD s9, 0(sp)
-  SD s8, 8(sp)
-  SD ra, 16(sp)
-  SD s4, 24(sp)
-  SD s3, 32(sp)
-  SD s2, 40(sp)
-  SD s6, 48(sp)
-  SD s1, 56(sp)
-  SD s7, 64(sp)
-  SD s5, 72(sp)
-  SD s0, 80(sp)
+  ADDI sp, sp, -64
+  SD ra, 0(sp)
+  SD s4, 8(sp)
+  SD s3, 16(sp)
+  SD s2, 24(sp)
+  SD s1, 32(sp)
+  SD s5, 40(sp)
+  SD s0, 48(sp)
   ADD s0, a0, zero
   LA s1, hashmod
   LW s2, 0(s1)
@@ -532,18 +523,14 @@ bb33:
   # implict jump to bb34
 bb34:
   ADD a0, zero, zero
-  LD s9, 0(sp)
-  LD s8, 8(sp)
-  LD ra, 16(sp)
-  LD s4, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s6, 48(sp)
-  LD s1, 56(sp)
-  LD s7, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb35:
   SLLIW s3, s1, 2
@@ -555,48 +542,44 @@ bb35:
   BNE s4, zero, bb37
   # implict jump to bb36
 bb36:
-  LA s1, next
-  ADD s4, s1, s3
-  LW s1, 0(s4)
-  ADD s2, s1, zero
+  LA s4, next
+  ADD s5, s4, s3
+  LW s3, 0(s5)
+  ADD s2, s3, zero
   JAL zero, bb33
 bb37:
-  ADD s4, s1, zero
+  ADD s0, s1, zero
   ADD s1, zero, zero
   # implict jump to bb38
 bb38:
-  ADD s5, s1, zero
-  ADD s6, s4, zero
-  XOR s7, s6, zero
-  SLTU s8, zero, s7
-  BNE s8, zero, bb40
+  ADD s2, s1, zero
+  ADD s3, s0, zero
+  XOR s4, s3, zero
+  SLTU s5, zero, s4
+  BNE s5, zero, bb40
   # implict jump to bb39
 bb39:
-  ADD a0, s5, zero
-  LD s9, 0(sp)
-  LD s8, 8(sp)
-  LD ra, 16(sp)
-  LD s4, 24(sp)
-  LD s3, 32(sp)
-  LD s2, 40(sp)
-  LD s6, 48(sp)
-  LD s1, 56(sp)
-  LD s7, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
-  ADDI sp, sp, 96
+  ADD a0, s2, zero
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s1, 32(sp)
+  LD s5, 40(sp)
+  LD s0, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb40:
-  SLLIW s7, s6, 2
-  LA s6, value
-  ADD s8, s6, s7
-  LW s6, 0(s8)
-  ADDW s8, s5, s6
-  LA s6, nextvalue
-  ADD s9, s6, s7
-  LW s6, 0(s9)
-  ADD s4, s6, zero
-  ADD s1, s8, zero
+  SLLIW s4, s3, 2
+  LA s3, value
+  ADD s5, s3, s4
+  LW s3, 0(s5)
+  ADDW s5, s2, s3
+  LA s2, nextvalue
+  ADD s3, s2, s4
+  LW s2, 0(s3)
+  ADD s0, s2, zero
+  ADD s1, s5, zero
   JAL zero, bb38
 hash:
   ADDI sp, sp, -32

@@ -9,11 +9,12 @@ bool DomTreeAnalysis::run(Function &F) {
   std::vector<int32_t> sdom;
   std::vector<int32_t> idom;
 
-  graph.dfsWithParent(F.getEntry(), [&](BasicBlock *bb, BasicBlock *parent) {
-    dfn[bb] = preorderBBs.size();
-    parentDFN.push_back(parent ? dfn[parent] : -1);
-    preorderBBs.push_back(bb);
-  });
+  GraphVisitor::dfsWithParent(graph, F.getEntry(),
+                             [&](BasicBlock *bb, BasicBlock *parent) {
+                               dfn[bb] = preorderBBs.size();
+                               parentDFN.push_back(parent ? dfn[parent] : -1);
+                               preorderBBs.push_back(bb);
+                             });
   sdom.resize(preorderBBs.size());
 
   // Reversed preorder traversal, compute the sdom of each node.

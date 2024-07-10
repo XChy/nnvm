@@ -38,7 +38,7 @@ bb3:
   # implict jump to bb4
 bb4:
   ADDW s4, s3, s2
-  ADDIW s3, s2, 1
+  ADDIW s5, s2, 1
   ADD s0, s4, zero
-  ADD s1, s3, zero
+  ADD s1, s5, zero
   JAL zero, bb1

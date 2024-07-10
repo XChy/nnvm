@@ -2,11 +2,11 @@
 #include "Backend/RISCV/CodeLayoutOpt.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
-#include "Backend/RISCV/LinearScanRA.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/Optimization/SSAPeephole.h"
+#include "Backend/RISCV/RA/LinearScanRA.h"
 #include "Backend/RISCV/StackAllocator.h"
 #include <algorithm>
 

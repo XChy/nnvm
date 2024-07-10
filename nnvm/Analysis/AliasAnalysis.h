@@ -18,6 +18,7 @@ public:
   bool run(Function &F);
 
   AAFlag alias(Value *a, Value *b);
+  bool mayAlias(Value *a, Value *b) { return alias(a, b) == MayAlias; }
 
 private:
 };

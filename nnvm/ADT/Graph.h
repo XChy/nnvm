@@ -13,40 +13,25 @@ template <typename NodeTy> class Graph {
 public:
   Graph() {}
 
-  template <typename Visit> bool dfs(NodeTy *entry, Visit visitor) {
-    visitor(entry);
-    auto iter = edges.find(entry);
-    for (; iter != edges.end(); iter++) {
-      dfs(iter.second);
-    }
-  }
-
-  void addEdge(NodeTy from, NodeTy to) { edges.insert({from, to}); }
-  bool hasEdge(NodeTy from, NodeTy to) {
-    auto iter = edges.find(from);
-    for (; iter != edges.end(); iter++)
-      if (iter.second == to)
-        return true;
-    return false;
-  }
-
-protected:
-  std::unordered_multimap<NodeTy, NodeTy> edges;
+  uint64_t getSuccNum(NodeTy node) {}
+  NodeTy getSucc(NodeTy node, uint64_t index) {}
 };
-
-class BasicBlock;
 
 template <> class Graph<BasicBlock *> {
 public:
-  struct DFSNode {
-    BasicBlock *node;
-    BasicBlock *parent;
-  };
+  uint64_t getSuccNum(BasicBlock *node) const { return node->getSuccNum(); }
+  BasicBlock *getSucc(BasicBlock *node, uint64_t index) const {
+    return node->getSucc(index);
+  }
+};
 
-  template <typename Visit>
-  void dfsWithParent(BasicBlock *entry, const Visit &visitor) {
-    std::unordered_set<BasicBlock *> visited;
-    std::stack<DFSNode> toVisit;
+class GraphVisitor {
+public:
+  template <typename NodeTy, typename Visit>
+  static inline void dfsWithParent(Graph<NodeTy> graph, NodeTy entry,
+                                   const Visit &visitor) {
+    std::unordered_set<NodeTy> visited;
+    std::stack<std::tuple<NodeTy, NodeTy>> toVisit;
     toVisit.push({entry, nullptr});
 
     while (!toVisit.empty()) {
@@ -59,69 +44,63 @@ public:
       visitor(current, parent);
       visited.insert(current);
 
-      for (int i = 0; i < current->getSuccNum(); i++)
-        toVisit.push({current->getSucc(i), current});
+      for (int i = 0; i < graph.getSuccNum(current); i++)
+        toVisit.push({graph.getSucc(current, i), current});
     }
   }
 
-  template <typename Visit> void dfs(BasicBlock *entry, Visit visitor) {
-    std::unordered_set<BasicBlock *> visited;
-    std::stack<BasicBlock *> toVisit;
+  template <typename NodeTy, typename Visit>
+  static inline void dfs(Graph<NodeTy> graph, NodeTy entry, Visit visitor) {
+    std::unordered_set<NodeTy> visited;
+    std::stack<NodeTy> toVisit;
     toVisit.push(entry);
 
     while (!toVisit.empty()) {
-      BasicBlock *current = toVisit.top();
+      NodeTy current = toVisit.top();
       toVisit.pop();
-
       if (visited.count(current))
         continue;
-
-      visitor(current);
       visited.insert(current);
 
-      for (int i = 0; i < current->getSuccNum(); i++)
-        toVisit.push(current->getSucc(i));
+      visitor(current);
+
+      for (int i = 0; i < graph.getSuccNum(current); i++)
+        toVisit.push(graph.getSucc(current, i));
     }
   }
 
-  template <typename Visit> void postOrder(BasicBlock *entry, Visit visitor) {
-    std::stack<BasicBlock *> worklist;
-    std::unordered_set<BasicBlock *> visited;
-    worklist.push(entry);
-
-    while (!worklist.empty()) {
-      BasicBlock *cur = worklist.top();
-      // Visit block in the post order of dominance tree.
-      if (visited.count(cur)) {
+  template <typename NodeTy, typename Visit>
+  static inline void postorder(Graph<NodeTy> graph, NodeTy entry,
+                               Visit visitor) {
+    // Use flag to imply whether the children of the node is visited.
+    std::stack<std::pair<NodeTy, bool>> stack;
+    std::unordered_set<NodeTy> visited;
+    stack.push(std::pair<NodeTy, bool>(entry, false));
+    while (!stack.empty()) {
+      std::pair<NodeTy, bool> item = stack.top();
+      stack.pop();
+      NodeTy cur = item.first;
+      if (item.second) {
         visitor(cur);
-        worklist.pop();
-      } else {
+      } else if (!visited.count(cur)) {
         visited.insert(cur);
-        for (int i = 0; i < cur->getSuccNum(); i++) {
-          BasicBlock *child = cur->getSucc(i);
-          worklist.push(child);
-        }
+        stack.push(std::pair<NodeTy, bool>(cur, true));
+        for (int i = 0; i < graph.getSuccNum(cur); i++)
+          stack.push(std::pair<NodeTy, bool>(graph.getSucc(cur, i), false));
       }
     }
   }
 
-  template <typename Visit>
-  void reversePostOrder(BasicBlock *entry, Visit visitor) {
-    std::vector<BasicBlock *> RPO;
-    postOrder(entry, [&RPO](BasicBlock *BB) { RPO.push_back(BB); });
-    for (auto it = RPO.rbegin(); it != RPO.rend(); it++)
-      visitor(*it);
+  template <typename NodeTy, typename Visit>
+  static inline void reversePostorder(Graph<NodeTy> graph, NodeTy entry,
+                                      Visit visitor) {
+    std::stack<NodeTy> order;
+    postorder(graph, entry, [&order](NodeTy node) { order.push(node); });
+    while (!order.empty()) {
+      visitor(order.top());
+      order.pop();
+    }
   }
-
-  void addEdge(BasicBlock *from, BasicBlock *to) {}
-  bool hasEdge(BasicBlock *from, BasicBlock *to) {
-    for (int i = 0; i < from->getSuccNum(); i++)
-      if (from->getSucc(i) == to)
-        return true;
-    return false;
-  }
-
-protected:
 };
 
 } /* namespace nnvm */

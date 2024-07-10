@@ -36,11 +36,11 @@ bb2:
   BNE s1, zero, bb5
   # implict jump to bb3
 bb3:
-  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s2, s1, zero
-  ADD a0, s2, zero
+  ADD s1, s0, zero
+  ADD a0, s1, zero
   LD ra, 0(sp)
   LD s2, 8(sp)
   LD s1, 16(sp)
@@ -48,12 +48,12 @@ bb4:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:
-  ADDI s1, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb4
 bb6:
-  LA s0, a
-  LW s1, 0(s0)
-  XORI s0, s1, 3
-  SLTU s1, zero, s0
-  ADD s0, s1, zero
+  LA s1, a
+  LW s2, 0(s1)
+  XORI s1, s2, 3
+  SLTU s2, zero, s1
+  ADD s0, s2, zero
   JAL zero, bb2

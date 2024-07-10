@@ -39,19 +39,19 @@ bb3:
   ADD s2, s3, zero
   # implict jump to bb4
 bb4:
-  ADD s5, s2, zero
-  SLTI s6, s5, 100
-  BNE s6, zero, bb6
+  ADD s3, s2, zero
+  SLTI s5, s3, 100
+  BNE s5, zero, bb6
   # implict jump to bb5
 bb5:
-  ADDI s2, zero, 100
-  SUBW s6, s5, s2
+  ADDI s5, zero, 100
+  SUBW s6, s3, s5
   ADD s0, s6, zero
   ADD s1, s4, zero
   JAL zero, bb1
 bb6:
-  ADDIW s6, s5, 6
-  ADD s2, s6, zero
+  ADDIW s0, s3, 6
+  ADD s2, s0, zero
   JAL zero, bb4
 main:
   ADDI sp, sp, -64
@@ -89,17 +89,17 @@ bb10:
   ADD s2, s3, zero
   # implict jump to bb11
 bb11:
-  ADD s5, s2, zero
-  SLTI s6, s5, 100
-  BNE s6, zero, bb13
+  ADD s3, s2, zero
+  SLTI s5, s3, 100
+  BNE s5, zero, bb13
   # implict jump to bb12
 bb12:
-  ADDI s2, zero, 100
-  SUBW s6, s5, s2
+  ADDI s5, zero, 100
+  SUBW s6, s3, s5
   ADD s0, s6, zero
   ADD s1, s4, zero
   JAL zero, bb8
 bb13:
-  ADDIW s6, s5, 6
-  ADD s2, s6, zero
+  ADDIW s0, s3, 6
+  ADD s2, s0, zero
   JAL zero, bb11

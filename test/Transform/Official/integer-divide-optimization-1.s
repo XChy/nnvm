@@ -76,31 +76,31 @@ bb4:
   BNE s8, zero, bb6
   # implict jump to bb5
 bb5:
-  ADDI s4, zero, 300
-  DIVW s5, s6, s4
-  ADDW s4, s2, s5
-  LUI s5, 524264
-  ADDIW s5, s5, 3
-  REMW s6, s4, s5
-  ADDIW s4, s3, 1
-  ADD s0, s4, zero
-  ADD s1, s6, zero
+  ADDI s8, zero, 300
+  DIVW s9, s6, s8
+  ADDW s8, s2, s9
+  LUI s9, 524264
+  ADDIW s9, s9, 3
+  REMW s10, s8, s9
+  ADDIW s8, s3, 1
+  ADD s0, s8, zero
+  ADD s1, s10, zero
   JAL zero, bb1
 bb6:
-  LA s8, multi
-  LW s9, 0(s8)
-  MULW s8, s3, s9
-  ADDI s9, zero, 2
-  DIVW s10, s8, s9
-  ADDI s8, zero, 1000
-  MULW s9, s10, s8
-  LA s8, size
-  LW s10, 0(s8)
-  DIVW s8, s9, s10
-  ADDW s9, s6, s8
-  ADDIW s8, s7, 1
-  ADD s4, s8, zero
-  ADD s5, s9, zero
+  LA s0, multi
+  LW s1, 0(s0)
+  MULW s0, s3, s1
+  ADDI s1, zero, 2
+  DIVW s8, s0, s1
+  ADDI s0, zero, 1000
+  MULW s1, s8, s0
+  LA s0, size
+  LW s8, 0(s0)
+  DIVW s0, s1, s8
+  ADDW s1, s6, s0
+  ADDIW s0, s7, 1
+  ADD s4, s0, zero
+  ADD s5, s1, zero
   JAL zero, bb4
 func:
   LUI t0, 1048574

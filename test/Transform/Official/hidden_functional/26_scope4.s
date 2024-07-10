@@ -110,18 +110,17 @@ getA:
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -96
-  SD s10, 0(sp)
-  SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s1, 24(sp)
-  SD s6, 32(sp)
-  SD s2, 40(sp)
-  SD s3, 48(sp)
-  SD s4, 56(sp)
-  SD s7, 64(sp)
-  SD ra, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
+  SD s9, 0(sp)
+  SD s8, 8(sp)
+  SD ra, 16(sp)
+  SD s7, 24(sp)
+  SD s4, 32(sp)
+  SD s3, 40(sp)
+  SD s2, 48(sp)
+  SD s6, 56(sp)
+  SD s1, 64(sp)
+  SD s5, 72(sp)
+  SD s0, 80(sp)
   LA s0, sum
   ADDI s1, zero, 0
   SW s1, 0(s0)
@@ -739,23 +738,22 @@ bb4:
   BNE s6, zero, bb6
   # implict jump to bb5
 bb5:
-  LA s0, sum
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  LA s6, sum
+  LW s7, 0(s6)
+  ADD a0, s7, zero
   CALL putint
   ADD a0, zero, zero
-  LD s10, 0(sp)
-  LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD s7, 64(sp)
-  LD ra, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
+  LD s9, 0(sp)
+  LD s8, 8(sp)
+  LD ra, 16(sp)
+  LD s7, 24(sp)
+  LD s4, 32(sp)
+  LD s3, 40(sp)
+  LD s2, 48(sp)
+  LD s6, 56(sp)
+  LD s1, 64(sp)
+  LD s5, 72(sp)
+  LD s0, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb6:
@@ -849,16 +847,51 @@ bb8:
   LA s6, sum
   LW s7, 0(s6)
   ADDW s6, s7, s0
-  LA s0, sum
-  SW s6, 0(s0)
-  LA s0, count
-  LW s6, 0(s0)
-  ADDIW s0, s6, 1
+  LA s7, sum
+  SW s6, 0(s7)
   LA s6, count
-  SW s0, 0(s6)
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s8, sum
+  LW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s7, sum
+  SW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
+  ADDW s8, s7, s6
+  LA s6, sum
+  SW s8, 0(s6)
   LA s6, sum
   LW s7, 0(s6)
-  ADDW s6, s7, s0
+  LA s6, a
+  LW s8, 0(s6)
+  ADDW s6, s7, s8
+  LA s7, sum
+  SW s6, 0(s7)
+  LA s6, count
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s6, sum
+  LW s7, 0(s6)
+  LA s6, a
+  LW s8, 0(s6)
+  ADDW s6, s7, s8
   LA s7, sum
   SW s6, 0(s7)
   LA s6, count
@@ -871,72 +904,47 @@ bb8:
   ADDW s7, s8, s6
   LA s6, sum
   SW s7, 0(s6)
-  ADDW s6, s7, s0
-  LA s7, sum
-  SW s6, 0(s7)
-  ADDW s7, s6, s0
-  LA s0, sum
-  SW s7, 0(s0)
-  LA s0, sum
-  LW s6, 0(s0)
-  LA s0, a
-  LW s7, 0(s0)
-  ADDW s0, s6, s7
-  LA s6, sum
-  SW s0, 0(s6)
-  LA s0, count
-  LW s6, 0(s0)
-  ADDIW s0, s6, 1
-  LA s6, count
-  SW s0, 0(s6)
-  LA s0, sum
-  LW s6, 0(s0)
-  LA s0, a
-  LW s7, 0(s0)
-  ADDW s0, s6, s7
-  LA s6, sum
-  SW s0, 0(s6)
-  LA s0, count
-  LW s6, 0(s0)
-  ADDIW s0, s6, 1
-  LA s6, count
-  SW s0, 0(s6)
-  LA s6, sum
-  LW s7, 0(s6)
-  ADDW s6, s7, s0
-  LA s0, sum
-  SW s6, 0(s0)
-  LA s0, count
-  LW s6, 0(s0)
-  ADDIW s0, s6, 1
-  LA s6, count
-  SW s0, 0(s6)
-  LA s6, sum
-  LW s7, 0(s6)
-  ADDW s6, s7, s0
-  LA s7, sum
-  SW s6, 0(s7)
   LA s6, count
   LW s7, 0(s6)
   ADDIW s6, s7, 1
   LA s7, count
   SW s6, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
   LA s6, sum
-  LW s7, 0(s6)
-  ADDW s6, s7, s0
-  LA s0, sum
-  SW s6, 0(s0)
-  LA s0, count
-  LW s6, 0(s0)
-  ADDIW s0, s6, 1
+  SW s7, 0(s6)
   LA s6, count
-  SW s0, 0(s6)
-  ADDIW s6, s4, 1
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  ADDIW s7, s4, 1
   ADD s1, s5, zero
-  ADD s2, s6, zero
-  ADD s3, s0, zero
+  ADD s2, s7, zero
+  ADD s3, s6, zero
   JAL zero, bb4
 bb9:
+  LA s5, count
+  LW s6, 0(s5)
+  ADDIW s5, s6, 1
+  LA s6, count
+  SW s5, 0(s6)
+  LA s6, sum
+  LW s7, 0(s6)
+  ADDW s6, s7, s5
+  LA s7, sum
+  SW s6, 0(s7)
   LA s6, count
   LW s7, 0(s6)
   ADDIW s6, s7, 1
@@ -955,76 +963,66 @@ bb9:
   LA s8, sum
   LW s9, 0(s8)
   ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  LA s8, count
-  LW s9, 0(s8)
-  ADDIW s8, s9, 1
-  LA s9, count
-  SW s8, 0(s9)
-  LA s9, sum
-  LW s10, 0(s9)
-  ADDW s9, s10, s8
-  LA s8, sum
-  SW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDW s9, s8, s7
-  LA s7, sum
-  SW s9, 0(s7)
-  LA s7, sum
-  LW s8, 0(s7)
-  LA s7, a
-  LW s9, 0(s7)
-  ADDW s7, s8, s9
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s7, sum
-  LW s8, 0(s7)
-  LA s7, a
-  LW s9, 0(s7)
-  ADDW s7, s8, s9
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
   LA s7, sum
   SW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
+  ADDW s8, s7, s6
+  LA s6, sum
+  SW s8, 0(s6)
+  LA s6, sum
+  LW s7, 0(s6)
+  LA s6, a
+  LW s8, 0(s6)
+  ADDW s6, s7, s8
+  LA s7, sum
+  SW s6, 0(s7)
+  LA s6, count
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s6, sum
+  LW s7, 0(s6)
+  LA s6, a
+  LW s8, 0(s6)
+  ADDW s6, s7, s8
+  LA s7, sum
+  SW s6, 0(s7)
+  LA s6, count
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s6, sum
+  SW s7, 0(s6)
+  LA s6, count
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
   LA s7, count
   LW s8, 0(s7)
   ADDIW s7, s8, 1
   LA s8, count
   SW s7, 0(s8)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  LA s8, count
-  LW s9, 0(s8)
-  ADDIW s8, s9, 1
-  LA s9, count
-  SW s8, 0(s9)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
   LA s7, sum
-  SW s8, 0(s7)
-  ADDIW s7, s4, 1
-  ADD s1, s6, zero
-  ADD s2, s7, zero
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s6, sum
+  SW s7, 0(s6)
+  ADDIW s6, s4, 1
+  ADD s1, s5, zero
+  ADD s2, s6, zero
   ADD s3, s0, zero
   JAL zero, bb4
 f3:

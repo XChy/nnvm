@@ -109,6 +109,18 @@ public:
     prev->insertBack(inserted);
   }
 
+  T *getFirst() {
+    if (empty())
+      return nullptr;
+    return dummyBegin.getNext();
+  }
+
+  T *getFirst() const {
+    if (empty())
+      return nullptr;
+    return dummyBegin.getNext();
+  }
+
   T *getLast() {
     if (empty())
       return nullptr;

@@ -45,7 +45,7 @@ bb3:
   ADD s6, s5, s4
   LW s4, 0(s6)
   ADDW s5, s3, s4
-  ADDIW s4, s2, 1
+  ADDIW s3, s2, 1
   ADD s0, s5, zero
-  ADD s1, s4, zero
+  ADD s1, s3, zero
   JAL zero, bb1

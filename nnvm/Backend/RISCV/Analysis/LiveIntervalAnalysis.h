@@ -41,7 +41,7 @@ public:
    * Assign the number of basic block at DFS order.
    * @return the total number of instructions.
    */
-  uint64_t assignBBNumber(LIRFunc &func);
+  void assignBBNumber(LIRFunc &func);
 
   void meetReg(Register *value, uint64_t index, LowOperand::OperandFlag flag);
   bool runOn(LIRFunc &func);

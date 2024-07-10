@@ -28,13 +28,13 @@ bb1:
   BNE s2, zero, bb3
   # implict jump to bb2
 bb2:
-  LA s0, k
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  LA s2, k
+  LW s3, 0(s2)
+  ADD a0, s3, zero
   CALL putint
-  LA s0, k
-  LW s1, 0(s0)
-  ADD a0, s1, zero
+  LA s2, k
+  LW s3, 0(s2)
+  ADD a0, s3, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s2, 16(sp)

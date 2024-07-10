@@ -1,3 +1,4 @@
+#include "ADT/Graph.h"
 #include "Backend/RISCV/Analysis/LivenessAnalysis.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
@@ -10,6 +11,8 @@
 #include <stack>
 #include <unordered_set>
 
+using nnvm::Graph;
+using nnvm::GraphVisitor;
 using namespace nnvm::riscv;
 
 uint64_t LiveIntervalAnalysis::indexOf(LIRBB *BB, uint64_t localIndex) {
@@ -32,26 +35,38 @@ LiveIntervalAnalysis::IntervalSet LiveIntervalAnalysis::getResult() const {
   return intervals;
 }
 
-uint64_t LiveIntervalAnalysis::assignBBNumber(LIRFunc &func) {
+template <> class nnvm::Graph<LIRBB *> {
+public:
+  uint64_t getSuccNum(LIRBB *node) const { return node->getSuccNum(); }
+  LIRBB *getSucc(LIRBB *node, uint64_t index) const {
+    return node->getSucc(index);
+  }
+};
+
+static inline void
+assignDFSNumber(LIRFunc &func,
+                std::unordered_map<LIRBB *, uint64_t> &BBNumber) {
+  Graph<LIRBB *> graph;
   uint64_t instructionCount = 0;
-
-  std::unordered_set<LIRBB *> visited;
-  std::stack<LIRBB *> toVisit;
-  toVisit.push(func.getEntry());
-  while (!toVisit.empty()) {
-    LIRBB *cur = toVisit.top();
-    toVisit.pop();
-    if (visited.count(cur))
-      continue;
-    visited.insert(cur);
-
+  GraphVisitor::dfs(graph, func.getEntry(), [&](LIRBB *cur) {
     BBNumber[cur] = instructionCount;
     instructionCount += cur->getInsts().size();
-    for (uint i = 0; i < cur->getSuccNum(); i++) {
-      toVisit.push(cur->getSucc(i));
-    }
-  }
-  return instructionCount;
+  });
+}
+
+static inline void
+assignRPONumber(LIRFunc &func,
+                std::unordered_map<LIRBB *, uint64_t> &BBNumber) {
+  Graph<LIRBB *> graph;
+  uint64_t instructionCount = 0;
+  GraphVisitor::reversePostorder(graph, func.getEntry(), [&](LIRBB *cur) {
+    BBNumber[cur] = instructionCount;
+    instructionCount += cur->getInsts().size();
+  });
+}
+
+void LiveIntervalAnalysis::assignBBNumber(LIRFunc &func) {
+  assignRPONumber(func, BBNumber);
 }
 
 void LiveIntervalAnalysis::meetReg(Register *reg, uint64_t index,
