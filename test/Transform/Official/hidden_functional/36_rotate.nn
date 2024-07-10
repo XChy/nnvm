@@ -6,7 +6,7 @@ global ptr image init with 1048576 x i32 zeros
 immutable global ptr MAX_HEIGHT init with i32 1024
 immutable global ptr TWO_PI init with float 6.283185
 immutable global ptr MAX_WIDTH init with i32 1024
-i32 rotate(i32 x, i32 y, float rad) {
+pure i32 rotate(i32 x, i32 y, float rad) {
 entry158:
   40434 = fcmp ogt float %rad, float 6.283185
   br i1 %40434, bb %my_sin.select.then436, bb %my_sin.select.else438
@@ -142,7 +142,7 @@ my_cos.my_sin.if.exit77:
   br i1 %211, bb %select.then212, bb %select.else213
 }
 
-float my_sin_impl(float x) {
+pure float my_sin_impl(float x) {
 entry23:
   3684 = si2f i32 0 to float
   4685 = fcmp ogt float %x, float %3684
@@ -183,7 +183,7 @@ entry10:
   ret float %22
 }
 
-float my_sin(float x) {
+pure float my_sin(float x) {
 entry36:
   40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
@@ -232,7 +232,7 @@ external void putint(i32 )
 
 external i32 getarray(ptr )
 
-float my_cos(float x) {
+pure float my_cos(float x) {
 entry83:
   87 = si2f i32 2 to float
   88 = fdiv float 3.141593, float %87

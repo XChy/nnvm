@@ -98,7 +98,7 @@ memmove.while.exit:
   br bb %while.cond152
 }
 
-i32 power(i32 a, i32 b) {
+pure i32 power(i32 a, i32 b) {
 entry36:
   40 = icmp eq i32 %b, i32 0
   br i1 %40, bb %then41, bb %if.exit42

@@ -8,7 +8,7 @@ external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
 
-i32 main() {
+pure i32 main() {
 entry24:
   br bb %whileIf.while.cond
 whileIf.while.cond:

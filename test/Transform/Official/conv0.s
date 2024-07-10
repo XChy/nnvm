@@ -54,32 +54,32 @@ bb2:
   SUBW s10, s7, s5
   SUBW s11, s9, s5
   ADD t4, zero, zero
-  SW t4, 20(sp)
+  SW t4, 12(sp)
   # implict jump to bb3
 bb3:
   ADD t4, s10, zero
   SW t4, 8(sp)
-  LW t4, 20(sp)
+  LW t4, 12(sp)
   ADD t1, t4, zero
   LW t3, 8(sp)
   SLT t4, t3, zero
   SB t4, 0(sp)
   ADD t4, t1, zero
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   ADD t4, s11, zero
-  SW t4, 12(sp)
+  SW t4, 20(sp)
   # implict jump to bb4
 bb4:
-  LW t3, 12(sp)
+  LW t3, 20(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
-  LW t4, 24(sp)
+  SW t4, 24(sp)
+  LW t4, 16(sp)
   ADD t6, t4, zero
   LB t4, 0(sp)
   BNE t4, zero, bb24
   # implict jump to bb5
 bb5:
-  LW t4, 16(sp)
+  LW t4, 24(sp)
   SLT s4, t4, zero
   # implict jump to bb6
 bb6:
@@ -94,7 +94,7 @@ bb8:
   BNE s4, zero, bb22
   # implict jump to bb9
 bb9:
-  LW t4, 16(sp)
+  LW t4, 24(sp)
   LW t3, 4(sp)
   SLT s4, t4, t3
   XORI s4, s4, 1
@@ -106,7 +106,7 @@ bb11:
   LW t4, 8(sp)
   LW t3, 4(sp)
   MULW s4, t4, t3
-  LW t4, 16(sp)
+  LW t4, 24(sp)
   ADDW s4, s4, t4
   SLLIW s4, s4, 2
   ADD s4, s1, s4
@@ -118,7 +118,7 @@ bb12:
   ADD a2, s4, zero
   CALL reduce
   ADD s4, a0, zero
-  LW t4, 16(sp)
+  LW t4, 24(sp)
   ADDIW t0, t4, 1
   ADDW t1, s9, s5
   SLT t1, t0, t1
@@ -127,9 +127,9 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD t4, s4, zero
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   ADD t4, t0, zero
-  SW t4, 12(sp)
+  SW t4, 20(sp)
   JAL zero, bb4
 bb14:
   LW t4, 8(sp)
@@ -141,7 +141,7 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, s4, zero
-  SW t4, 20(sp)
+  SW t4, 12(sp)
   ADD s10, t0, zero
   JAL zero, bb3
 bb16:

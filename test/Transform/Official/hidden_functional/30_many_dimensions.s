@@ -72,10 +72,10 @@ bb2:
 bb3:
   LW t3, 396(sp)
   ADD t4, t3, zero
-  SW t4, 316(sp)
+  SW t4, 324(sp)
   LW t3, 392(sp)
   ADD t4, t3, zero
-  SW t4, 320(sp)
+  SW t4, 316(sp)
   LW t3, 388(sp)
   ADD t4, t3, zero
   SW t4, 292(sp)
@@ -106,7 +106,7 @@ bb3:
   SW t4, 284(sp)
   LW t3, 312(sp)
   ADD t4, t3, zero
-  SW t4, 324(sp)
+  SW t4, 320(sp)
   LW t3, 280(sp)
   ADD t4, t3, zero
   SW t4, 300(sp)
@@ -231,7 +231,7 @@ bb5:
   LW t3, 300(sp)
   ADD t4, t3, zero
   SW t4, 520(sp)
-  LW t3, 324(sp)
+  LW t3, 320(sp)
   ADD t4, t3, zero
   SW t4, 516(sp)
   LW t3, 284(sp)
@@ -261,10 +261,10 @@ bb5:
   LW t3, 292(sp)
   ADD t4, t3, zero
   SW t4, 476(sp)
-  LW t3, 320(sp)
+  LW t3, 316(sp)
   ADD t4, t3, zero
   SW t4, 340(sp)
-  LW t3, 316(sp)
+  LW t3, 324(sp)
   ADD t4, t3, zero
   SW t4, 336(sp)
   # implict jump to bb6

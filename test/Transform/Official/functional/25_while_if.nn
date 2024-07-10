@@ -44,7 +44,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 deepWhileBr(i32 a, i32 b) {
+pure i32 deepWhileBr(i32 a, i32 b) {
 entry2:
   8 = add i32 %a, i32 %b
   br bb %while.cond

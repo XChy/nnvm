@@ -7,9 +7,20 @@
 using namespace nnvm;
 
 bool GlobalAttributorPass::run(Module &M) {
+  bool changed = true;
+  while (changed) {
+    changed = attachPure(M);
+  }
+  return true;
+}
+
+bool GlobalAttributorPass::attachPure(Module &M) {
+  bool changed = false;
+
   for (auto [_, F] : M.getFunctionMap()) {
-    if (F->isExternal())
+    if (F->isExternal() || F->isAttached(Attribute::Pure))
       continue;
+
     bool isPure = true;
     for (BasicBlock *BB : *F) {
       for (Instruction *I : *BB) {
@@ -24,9 +35,11 @@ bool GlobalAttributorPass::run(Module &M) {
       }
     }
 
-    if (isPure)
+    if (isPure) {
       F->attach(Attribute::Pure);
+      changed = true;
+    }
   }
 
-  return true;
+  return changed;
 }

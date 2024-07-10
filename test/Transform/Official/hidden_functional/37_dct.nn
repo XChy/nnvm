@@ -203,7 +203,7 @@ my_cos.my_sin.if.exit771035:
   br bb %while.cond337
 }
 
-float my_sin_impl(float x) {
+pure float my_sin_impl(float x) {
 entry23:
   31234 = si2f i32 0 to float
   41235 = fcmp ogt float %x, float %31234
@@ -396,7 +396,7 @@ my_cos.my_sin.if.exit77939:
   br bb %while.cond167
 }
 
-float my_sin(float x) {
+pure float my_sin(float x) {
 entry36:
   40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
@@ -479,7 +479,7 @@ while.exit112:
 
 external i32 getarray(ptr )
 
-float my_cos(float x) {
+pure float my_cos(float x) {
 entry83:
   87 = si2f i32 2 to float
   88 = fdiv float 3.141593, float %87

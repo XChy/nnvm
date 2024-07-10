@@ -287,7 +287,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-i32 reduce(i32 k) {
+pure i32 reduce(i32 k) {
 entry102:
   hashmod.load368 = load i32 from ptr @hashmod
   4369 = srem i32 %k, i32 %hashmod.load368

@@ -276,7 +276,7 @@ if.exit293:
   br bb %if.exit276
 }
 
-i32 _xor(i32 a, i32 b) {
+pure i32 _xor(i32 a, i32 b) {
 entry46:
   401014 = add i32 %a, i32 %b
   53 = sub i32 %a, i32 %401014
@@ -285,7 +285,7 @@ entry46:
   ret i32 %59
 }
 
-i32 _or(i32 a, i32 b) {
+pure i32 _or(i32 a, i32 b) {
 entry60:
   401074 = add i32 %a, i32 %b
   53731 = sub i32 %a, i32 %401074

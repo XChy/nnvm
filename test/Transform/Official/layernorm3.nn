@@ -1,5 +1,5 @@
 global ptr a init with 1000000 x float zeros
-float sqrt(float x) {
+pure float sqrt(float x) {
 entry10:
   13 = si2f i32 0 to float
   19 = fadd float %13, float %x

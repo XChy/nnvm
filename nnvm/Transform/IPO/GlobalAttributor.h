@@ -14,9 +14,8 @@
 namespace nnvm {
 class GlobalAttributorPass : public ModulePass {
 public:
-  static constexpr const char *passName = "combiner";
+  static constexpr const char *passName = "global-attr";
   bool run(Module &M);
-  bool tryInline(Module &M);
-  void inlineCall(CallInst *callsite);
+  bool attachPure(Module &M);
 };
 } /* namespace nnvm */

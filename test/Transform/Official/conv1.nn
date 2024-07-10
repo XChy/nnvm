@@ -132,7 +132,7 @@ if.exit192:
   ret i32 %199.load
 }
 
-i32 reduce(i32 kernelid, i32 x, i32 y) {
+pure i32 reduce(i32 kernelid, i32 x, i32 y) {
 entry22:
   27 = icmp eq i32 %kernelid, i32 0
   br i1 %27, bb %then, bb %if.exit

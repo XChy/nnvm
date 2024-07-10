@@ -1,5 +1,5 @@
 immutable global ptr e init with float 2.718282
-float my_powf(float a, float x) {
+pure float my_powf(float a, float x) {
 entry309:
   298429 = si2f i32 1 to float
   107741 = fsub float %a, float %298429
@@ -24,7 +24,7 @@ asr4.entry215476.split:
   ret float %316
 }
 
-float my_log(float a, float N) {
+pure float my_log(float a, float N) {
 entry301:
   298417 = si2f i32 1 to float
   107663 = fsub float %N, float %298417
@@ -61,7 +61,7 @@ asr4.entry215470.split:
   ret float %308
 }
 
-float my_ln(float x) {
+pure float my_ln(float x) {
 entry296:
   298 = si2f i32 1 to float
   107624 = fsub float %x, float %298
@@ -84,7 +84,7 @@ asr4.entry215.split:
   ret float %228460
 }
 
-float my_exp(float x) {
+pure float my_exp(float x) {
 entry267:
   270 = si2f i32 0 to float
   271 = fcmp olt float %x, float %270
@@ -105,7 +105,7 @@ if.exit273:
   ret float %295
 }
 
-float eee(float x) {
+pure float eee(float x) {
 entry229:
   232 = fcmp ogt float %x, float 0.001000
   br i1 %232, bb %then233, bb %if.exit234
@@ -137,7 +137,7 @@ if.exit234:
   ret float %266
 }
 
-float asr4(float a, float b, float eps, i32 flag) {
+pure float asr4(float a, float b, float eps, i32 flag) {
 entry215:
   107585 = fsub float %b, float %a
   108586 = si2f i32 2 to float
@@ -192,7 +192,7 @@ simpson.if.exit134618:
   br bb %entry215.split
 }
 
-float asr5(float a, float b, float eps, float A, i32 flag) {
+pure float asr5(float a, float b, float eps, float A, i32 flag) {
 entry152:
   162 = fsub float %b, float %a
   163 = si2f i32 2 to float
@@ -321,7 +321,7 @@ my_fabs.if.exit:
   br bb %entry152.split.split.split
 }
 
-float simpson(float a, float b, i32 flag) {
+pure float simpson(float a, float b, i32 flag) {
 entry99:
   107 = fsub float %b, float %a
   108 = si2f i32 2 to float
@@ -372,7 +372,7 @@ if.exit134:
   ret float %151
 }
 
-float F2(float x) {
+pure float F2(float x) {
 entry89:
   93 = fmul float %x, float %x
   94 = si2f i32 1 to float

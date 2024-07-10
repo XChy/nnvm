@@ -327,7 +327,7 @@ scene.circle_sdf.my_sqrt.while.exit577:
   br i1 %171755, bb %scene.then172, bb %scene.else
 }
 
-float my_sin_impl(float x) {
+pure float my_sin_impl(float x) {
 entry66:
   15582 = si2f i32 0 to float
   16583 = fcmp ogt float %x, float %15582
@@ -440,7 +440,7 @@ if.exit18:
   ret float %21
 }
 
-float my_sin(float x) {
+pure float my_sin(float x) {
 entry79:
   83 = fcmp ogt float %x, float 6.283185
   br i1 %83, bb %select.then, bb %select.else
@@ -579,7 +579,7 @@ circle_sdf.my_sqrt.while.exit577:
 
 external i32 getarray(ptr )
 
-float my_cos(float x) {
+pure float my_cos(float x) {
 entry126:
   130 = si2f i32 2 to float
   131 = fdiv float 3.141593, float %130
