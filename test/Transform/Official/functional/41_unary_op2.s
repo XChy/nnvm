@@ -21,7 +21,6 @@ bb1:
   ADDI s0, zero, 4
   # implict jump to bb2
 bb2:
-  ADD s0, s0, zero
   ADD a0, s0, zero
   CALL putint
   ADD a0, zero, zero

@@ -313,11 +313,8 @@ bb14:
   ADD a7, a6, zero
   # implict jump to bb15
 bb15:
-  ADD a7, a7, zero
-  ADD a7, a7, zero
   # implict jump to bb16
 bb16:
-  ADD a7, a7, zero
   SW a7, 0(a5)
   ADD s0, a6, zero
   ADD s1, a4, zero
@@ -352,14 +349,10 @@ bb20:
   BNE s1, zero, bb24
   # implict jump to bb21
 bb21:
-  ADD s0, s0, zero
   # implict jump to bb22
 bb22:
-  ADD s0, s0, zero
-  ADD s0, s0, zero
   # implict jump to bb23
 bb23:
-  ADD s0, s0, zero
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

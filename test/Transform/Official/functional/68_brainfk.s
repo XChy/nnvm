@@ -58,7 +58,6 @@ bb3:
   LA s4, program
   ADD s3, s4, s3
   CALL getch
-  ADD a0, a0, zero
   SW a0, 0(s3)
   ADDIW s2, s2, 1
   ADD s1, s2, zero
@@ -150,7 +149,6 @@ bb14:
   ADD s7, zero, zero
   # implict jump to bb15
 bb15:
-  ADD s7, s7, zero
   BNE s7, zero, bb24
   # implict jump to bb16
 bb16:
@@ -158,58 +156,22 @@ bb16:
   ADD s9, s4, zero
   # implict jump to bb17
 bb17:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
   ADD t4, s7, zero
   SB t4, 0(sp)
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb18
 bb18:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
   LB t4, 0(sp)
   ADD s7, t4, zero
-  ADD s7, s7, zero
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb19
 bb19:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
-  ADD s7, s7, zero
-  ADD s7, s7, zero
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb20
 bb20:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
-  ADD s7, s7, zero
-  ADD s7, s7, zero
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb21
 bb21:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
-  ADD s7, s7, zero
-  ADD s7, s7, zero
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb22
 bb22:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
-  ADD s7, s7, zero
-  ADD s7, s7, zero
-  ADD s8, s8, zero
-  ADD s9, s9, zero
   # implict jump to bb23
 bb23:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
-  ADD s7, s7, zero
   ADDIW s4, s8, 1
   ADD s1, s7, zero
   ADD s2, s4, zero
@@ -248,11 +210,8 @@ bb29:
   ADD a1, t0, zero
   # implict jump to bb30
 bb30:
-  ADD a1, a1, zero
-  ADD a1, a1, zero
   # implict jump to bb31
 bb31:
-  ADD a1, a1, zero
   ADD s10, t1, zero
   ADD s11, a1, zero
   JAL zero, bb25
@@ -386,7 +345,6 @@ bb44:
   LA s4, program
   ADD s3, s4, s3
   CALL getch
-  ADD a0, a0, zero
   SW a0, 0(s3)
   ADDIW s2, s2, 1
   ADD s1, s2, zero

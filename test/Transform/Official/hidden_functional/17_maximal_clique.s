@@ -120,7 +120,6 @@ bb6:
   SW s3, 0(s2)
   ADDI s2, s2, 4
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
@@ -271,18 +270,14 @@ bb21:
   ADDI s10, zero, 1
   # implict jump to bb22
 bb22:
-  ADD s10, s10, zero
   XOR s8, s10, zero
   SLTU s8, zero, s8
   BNE s8, zero, bb25
   # implict jump to bb23
 bb23:
-  ADD s6, s6, zero
   ADD s8, s4, zero
   # implict jump to bb24
 bb24:
-  ADD s8, s8, zero
-  ADD s6, s6, zero
   ADDIW s4, s5, 1
   ADD s1, s6, zero
   ADD s2, s4, zero
@@ -293,22 +288,17 @@ bb25:
   BNE s9, zero, bb31
   # implict jump to bb26
 bb26:
-  ADD s4, s4, zero
   # implict jump to bb27
 bb27:
-  ADD s4, s4, zero
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
-  ADD a0, a0, zero
   SLT s7, s4, a0
   BNE s7, zero, bb30
   # implict jump to bb28
 bb28:
-  ADD s4, s4, zero
   # implict jump to bb29
 bb29:
-  ADD s4, s4, zero
   ADD s6, a0, zero
   ADD s8, s4, zero
   JAL zero, bb24

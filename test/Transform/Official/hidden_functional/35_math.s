@@ -407,10 +407,8 @@ bb14:
 bb15:
   ADDI s1, zero, 0
   FCVT.S.W fs5, s1
-  FSGNJ.S fs5, fs5, fs5
   # implict jump to bb16
 bb16:
-  FSGNJ.S fs5, fs5, fs5
   FSGNJ.S fa0, fs0, fs0
   FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs2, fs2
@@ -530,10 +528,8 @@ bb20:
 bb21:
   ADDI s2, zero, 0
   FCVT.S.W fs8, s2
-  FSGNJ.S fs8, fs8, fs8
   # implict jump to bb22
 bb22:
-  FSGNJ.S fs8, fs8, fs8
   FLW ft4, 0(sp)
   FLW ft3, 4(sp)
   FSUB.S fs1, ft4, ft3
@@ -550,10 +546,8 @@ bb23:
 bb24:
   ADDI s1, zero, 0
   FCVT.S.W fs7, s1
-  FSGNJ.S fs7, fs7, fs7
   # implict jump to bb25
 bb25:
-  FSGNJ.S fs7, fs7, fs7
   FADD.S fs1, fs8, fs7
   FSUB.S fs3, fs1, fs3
   ADDI s1, zero, 0
@@ -563,10 +557,8 @@ bb25:
   # implict jump to bb26
 bb26:
   FSGNJN.S fs4, fs3, fs3
-  FSGNJ.S fs4, fs4, fs4
   # implict jump to bb27
 bb27:
-  FSGNJ.S fs4, fs4, fs4
   ADDI s1, zero, 15
   FCVT.S.W fs6, s1
   FMUL.S fs6, fs6, fs2
@@ -925,7 +917,6 @@ bb42:
   FDIV.S fs4, fs4, fs5
   FADD.S fs2, fs2, fs4
   ADDI s0, zero, 10
-  FSGNJ.S fs2, fs2, fs2
   # implict jump to bb43
 bb43:
   FSGNJ.S fs4, fs2, fs2
@@ -1056,7 +1047,6 @@ bb53:
   FSGNJ.S fs5, fs4, fs4
   # implict jump to bb54
 bb54:
-  FSGNJ.S fs5, fs5, fs5
   FMUL.S fs3, fs3, fs3
   ADDI s3, zero, 2
   DIVW s2, s2, s3
@@ -1111,7 +1101,6 @@ main:
   FSD fs9, 120(sp)
   CALL getint
   ADD s0, a0, zero
-  ADD s0, s0, zero
   # implict jump to bb58
 bb58:
   ADD s1, s0, zero
@@ -1150,10 +1139,8 @@ bb60:
   # implict jump to bb61
 bb61:
   FSGNJN.S fs3, fs0, fs0
-  FSGNJ.S fs3, fs3, fs3
   # implict jump to bb62
 bb62:
-  FSGNJ.S fs3, fs3, fs3
   FSGNJ.S fa0, fs3, fs3
   CALL putfloat
   ADDI a0, zero, 32
@@ -1195,7 +1182,6 @@ bb65:
   ADD s3, zero, zero
   # implict jump to bb66
 bb66:
-  ADD s3, s3, zero
   BNE s3, zero, bb73
   # implict jump to bb67
 bb67:

@@ -65,7 +65,6 @@ bb7:
   ADD s10, s9, zero
   # implict jump to bb8
 bb8:
-  ADD s10, s10, zero
   ADDI a0, zero, 47
   CALL _sysy_stoptime
   ADD a0, s10, zero
@@ -186,8 +185,6 @@ transpose:
   SD s7, 64(sp)
   SD s8, 72(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   DIVW s0, s0, a2
   ADD s1, zero, zero
   ADD s2, zero, zero
@@ -213,7 +210,6 @@ bb23:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb24:
-  ADD s4, s4, zero
   ADD s5, zero, zero
   # implict jump to bb25
 bb25:

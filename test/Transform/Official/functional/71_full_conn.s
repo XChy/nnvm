@@ -245,10 +245,8 @@ bb6:
   BNE s2, zero, bb60
   # implict jump to bb7
 bb7:
-  ADD s0, s0, zero
   # implict jump to bb8
 bb8:
-  ADD s0, s0, zero
   ADDI s2, zero, 39
   MULW s0, s0, s2
   ADDI s2, zero, -106
@@ -355,10 +353,8 @@ bb9:
   BNE s3, zero, bb58
   # implict jump to bb10
 bb10:
-  ADD s2, s2, zero
   # implict jump to bb11
 bb11:
-  ADD s2, s2, zero
   ADDI s3, zero, 77
   MULW s2, s2, s3
   ADDW s0, s0, s2
@@ -466,10 +462,8 @@ bb12:
   BNE s5, zero, bb56
   # implict jump to bb13
 bb13:
-  ADD s2, s2, zero
   # implict jump to bb14
 bb14:
-  ADD s2, s2, zero
   ADDI s5, zero, 127
   MULW s2, s2, s5
   ADDW s0, s0, s2
@@ -574,10 +568,8 @@ bb15:
   BNE s6, zero, bb54
   # implict jump to bb16
 bb16:
-  ADD s2, s2, zero
   # implict jump to bb17
 bb17:
-  ADD s2, s2, zero
   ADDI s6, zero, -106
   MULW s2, s2, s6
   ADDW s0, s0, s2
@@ -681,10 +673,8 @@ bb18:
   BNE s5, zero, bb52
   # implict jump to bb19
 bb19:
-  ADD s2, s2, zero
   # implict jump to bb20
 bb20:
-  ADD s2, s2, zero
   ADDI s5, zero, -3
   MULW s2, s2, s5
   ADDW s0, s0, s2
@@ -791,10 +781,8 @@ bb21:
   BNE s11, zero, bb50
   # implict jump to bb22
 bb22:
-  ADD s2, s2, zero
   # implict jump to bb23
 bb23:
-  ADD s2, s2, zero
   SLLIW s2, s2, 5
   ADDW s0, s0, s2
   ADDI s2, zero, 15
@@ -900,10 +888,8 @@ bb24:
   BNE s11, zero, bb48
   # implict jump to bb25
 bb25:
-  ADD s2, s2, zero
   # implict jump to bb26
 bb26:
-  ADD s2, s2, zero
   ADDI s11, zero, -95
   MULW s2, s2, s11
   ADDW s0, s0, s2
@@ -1006,10 +992,8 @@ bb27:
   BNE s4, zero, bb46
   # implict jump to bb28
 bb28:
-  ADD s2, s2, zero
   # implict jump to bb29
 bb29:
-  ADD s2, s2, zero
   ADDI s4, zero, -50
   MULW s2, s2, s4
   ADDW s0, s0, s2
@@ -1109,10 +1093,8 @@ bb30:
   BNE s2, zero, bb44
   # implict jump to bb31
 bb31:
-  ADD s1, s1, zero
   # implict jump to bb32
 bb32:
-  ADD s1, s1, zero
   ADDI s2, zero, -23
   MULW s1, s1, s2
   ADDW s0, s0, s1
@@ -1218,10 +1200,8 @@ bb33:
   BNE s2, zero, bb42
   # implict jump to bb34
 bb34:
-  ADD s1, s1, zero
   # implict jump to bb35
 bb35:
-  ADD s1, s1, zero
   ADDI s2, zero, 46
   MULW s1, s1, s2
   ADDW s0, s0, s1
@@ -1232,7 +1212,6 @@ bb36:
   ADD s0, zero, zero
   # implict jump to bb37
 bb37:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb40
@@ -1355,7 +1334,6 @@ bb65:
   SLLIW s3, s1, 2
   ADD s2, s2, s3
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
@@ -1527,10 +1505,8 @@ bb67:
   BNE t6, zero, bb117
   # implict jump to bb68
 bb68:
-  ADD s2, s2, zero
   # implict jump to bb69
 bb69:
-  ADD s2, s2, zero
   ADDI t6, zero, 39
   MULW s2, s2, t6
   ADDI t6, zero, -106
@@ -1626,10 +1602,8 @@ bb70:
   BNE t6, zero, bb115
   # implict jump to bb71
 bb71:
-  ADD s0, s0, zero
   # implict jump to bb72
 bb72:
-  ADD s0, s0, zero
   ADDI t6, zero, 77
   MULW s0, s0, t6
   ADDW s0, s2, s0
@@ -1726,10 +1700,8 @@ bb73:
   BNE a6, zero, bb113
   # implict jump to bb74
 bb74:
-  ADD s2, s2, zero
   # implict jump to bb75
 bb75:
-  ADD s2, s2, zero
   ADDI a6, zero, 127
   MULW s2, s2, a6
   ADDW s0, s0, s2
@@ -1824,10 +1796,8 @@ bb76:
   BNE t2, zero, bb111
   # implict jump to bb77
 bb77:
-  ADD s2, s2, zero
   # implict jump to bb78
 bb78:
-  ADD s2, s2, zero
   ADDI t2, zero, -106
   MULW s2, s2, t2
   ADDW s0, s0, s2
@@ -1921,10 +1891,8 @@ bb79:
   BNE a5, zero, bb109
   # implict jump to bb80
 bb80:
-  ADD s2, s2, zero
   # implict jump to bb81
 bb81:
-  ADD s2, s2, zero
   ADDI a5, zero, -3
   MULW s2, s2, a5
   ADDW s0, s0, s2
@@ -2020,10 +1988,8 @@ bb82:
   BNE a4, zero, bb107
   # implict jump to bb83
 bb83:
-  ADD s2, s2, zero
   # implict jump to bb84
 bb84:
-  ADD s2, s2, zero
   SLLIW s2, s2, 5
   ADDW s0, s0, s2
   ADDI s2, zero, 15
@@ -2118,10 +2084,8 @@ bb85:
   BNE a4, zero, bb105
   # implict jump to bb86
 bb86:
-  ADD s2, s2, zero
   # implict jump to bb87
 bb87:
-  ADD s2, s2, zero
   ADDI a4, zero, -95
   MULW s2, s2, a4
   ADDW s0, s0, s2
@@ -2213,10 +2177,8 @@ bb88:
   BNE a4, zero, bb103
   # implict jump to bb89
 bb89:
-  ADD s2, s2, zero
   # implict jump to bb90
 bb90:
-  ADD s2, s2, zero
   ADDI a4, zero, -50
   MULW s2, s2, a4
   ADDW s0, s0, s2
@@ -2307,10 +2269,8 @@ bb91:
   BNE a1, zero, bb101
   # implict jump to bb92
 bb92:
-  ADD s2, s2, zero
   # implict jump to bb93
 bb93:
-  ADD s2, s2, zero
   ADDI a1, zero, -23
   MULW s2, s2, a1
   ADDW s0, s0, s2
@@ -2405,10 +2365,8 @@ bb94:
   BNE s2, zero, bb99
   # implict jump to bb95
 bb95:
-  ADD s1, s1, zero
   # implict jump to bb96
 bb96:
-  ADD s1, s1, zero
   ADDI s2, zero, 46
   MULW s1, s1, s2
   ADDW s0, s0, s1

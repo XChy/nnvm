@@ -567,7 +567,6 @@ bb13:
   JAL zero, bb9
 bb14:
   ADD s0, s10, zero
-  ADD s1, s1, zero
   ADD s2, s11, zero
   ADD s3, ra, zero
   ADD s4, t0, zero
@@ -1177,8 +1176,6 @@ bb41:
   ADD s9, a2, zero
   ADD s11, a0, zero
   ADD t0, t2, zero
-  ADD t1, t1, zero
-  ADD ra, ra, zero
   # implict jump to bb42
 bb42:
   ADD t2, ra, zero
@@ -1234,8 +1231,6 @@ bb47:
   ADD s7, zero, zero
   ADD s8, a0, zero
   ADD s9, t2, zero
-  ADD s10, s10, zero
-  ADD s6, s6, zero
   # implict jump to bb48
 bb48:
   ADD s11, s6, zero
@@ -1279,8 +1274,6 @@ bb52:
   JAL zero, bb48
 bb53:
   ADD s6, zero, zero
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   # implict jump to bb54
 bb54:
   ADD s7, s4, zero
@@ -1397,13 +1390,6 @@ sum:
   SD s10, 88(sp)
   SD s11, 96(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   ADDI t5, sp, 112
   ADD s1, t5, zero
   LD s1, 0(s1)

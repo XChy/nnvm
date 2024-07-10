@@ -163,10 +163,8 @@ bb10:
 bb11:
   SLTI s0, zero, 1
   XORI s0, s0, 1
-  ADD s0, s0, zero
   # implict jump to bb12
 bb12:
-  ADD s0, s0, zero
   BNE s0, zero, bb32
   # implict jump to bb13
 bb13:
@@ -179,7 +177,6 @@ bb14:
   ADD s0, zero, zero
   # implict jump to bb15
 bb15:
-  ADD s0, s0, zero
   BNE s0, zero, bb30
   # implict jump to bb16
 bb16:
@@ -191,17 +188,14 @@ bb17:
   ADD s1, zero, zero
   # implict jump to bb18
 bb18:
-  ADD s1, s1, zero
   BNE s1, zero, bb28
   # implict jump to bb19
 bb19:
   ADDI s1, zero, 4
   SLTI s1, s1, 4
   XORI s1, s1, 1
-  ADD s1, s1, zero
   # implict jump to bb20
 bb20:
-  ADD s1, s1, zero
   BNE s1, zero, bb27
   # implict jump to bb21
 bb21:
@@ -211,7 +205,6 @@ bb22:
   ADD s0, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s0, s0, zero
   BNE s0, zero, bb25
   # implict jump to bb24
 bb24:

@@ -42,14 +42,10 @@ bb4:
   # implict jump to bb5
 bb5:
   SLLIW s3, s2, 1
-  ADD s3, s3, zero
   # implict jump to bb6
 bb6:
-  ADD s3, s3, zero
-  ADD s3, s3, zero
   # implict jump to bb7
 bb7:
-  ADD s3, s3, zero
   ADDIW s2, s2, 1
   ADD s0, s3, zero
   ADD s1, s2, zero
@@ -99,14 +95,10 @@ bb14:
   # implict jump to bb15
 bb15:
   SLLIW s3, s2, 1
-  ADD s3, s3, zero
   # implict jump to bb16
 bb16:
-  ADD s3, s3, zero
-  ADD s3, s3, zero
   # implict jump to bb17
 bb17:
-  ADD s3, s3, zero
   ADDIW s2, s2, 1
   ADD s0, s3, zero
   ADD s1, s2, zero

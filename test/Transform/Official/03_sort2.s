@@ -99,9 +99,7 @@ getNumPos:
   SD s3, 32(sp)
   SD s4, 40(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADD s1, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb7
 bb7:
   ADD s2, s0, zero
@@ -191,10 +189,8 @@ bb17:
   LW t4, 4(sp)
   SLT s10, s10, t4
   XORI s10, s10, 1
-  ADD s10, s10, zero
   # implict jump to bb18
 bb18:
-  ADD s10, s10, zero
   BNE s10, zero, bb46
   # implict jump to bb19
 bb19:
@@ -356,8 +352,6 @@ bb34:
   LD t4, 72(sp)
   ADD s3, t4, s3
   LW s3, 0(s3)
-  ADD s4, s4, zero
-  ADD s3, s3, zero
   # implict jump to bb35
 bb35:
   ADD t1, s3, zero
@@ -446,7 +440,6 @@ bb42:
   ADD s0, t4, s0
   LW s0, 0(s0)
   ADD s1, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb43
 bb43:
   ADD s2, s0, zero
@@ -532,7 +525,6 @@ getMaxNum:
   SD s5, 48(sp)
   SD s6, 56(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
   # implict jump to bb52
@@ -562,10 +554,8 @@ bb54:
   BNE s6, zero, bb57
   # implict jump to bb55
 bb55:
-  ADD s3, s3, zero
   # implict jump to bb56
 bb56:
-  ADD s3, s3, zero
   ADDIW s4, s4, 1
   ADD s1, s4, zero
   ADD s2, s3, zero

@@ -84,7 +84,6 @@ bb3:
   ADD s7, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s7, s7, zero
   XOR s8, s1, zero
   SLTU s8, zero, s8
   BNE s8, zero, bb22
@@ -93,7 +92,6 @@ bb5:
   ADD s8, s7, zero
   # implict jump to bb6
 bb6:
-  ADD s8, s8, zero
   XOR s7, s2, zero
   SLTU s7, zero, s7
   BNE s7, zero, bb18
@@ -102,7 +100,6 @@ bb7:
   ADD s7, s8, zero
   # implict jump to bb8
 bb8:
-  ADD s7, s7, zero
   XOR s8, s3, zero
   SLTU s8, zero, s8
   BNE s8, zero, bb14
@@ -111,7 +108,6 @@ bb9:
   ADD s8, s7, zero
   # implict jump to bb10
 bb10:
-  ADD s8, s8, zero
   XOR s5, s4, zero
   SLTU s5, zero, s5
   BNE s5, zero, bb13
@@ -120,7 +116,6 @@ bb11:
   ADD s5, s8, zero
   # implict jump to bb12
 bb12:
-  ADD s5, s5, zero
   LUI s0, 244141
   ADDIW s0, s0, -1529
   REMW s0, s5, s0
@@ -169,7 +164,6 @@ bb15:
   ADD s5, zero, zero
   # implict jump to bb16
 bb16:
-  ADD s5, s5, zero
   SUBW s5, s3, s5
   ADDIW s9, s2, 1
   ADDI s10, zero, 1
@@ -201,7 +195,6 @@ bb19:
   ADD s9, zero, zero
   # implict jump to bb20
 bb20:
-  ADD s9, s9, zero
   SUBW s9, s2, s9
   ADDIW s10, s1, 1
   ADDI s11, zero, 1
@@ -233,7 +226,6 @@ bb23:
   ADD s9, zero, zero
   # implict jump to bb24
 bb24:
-  ADD s9, s9, zero
   SUBW s9, s1, s9
   ADDIW s10, s0, 1
   ADDI s11, zero, 1
@@ -265,7 +257,6 @@ bb27:
   ADD s8, zero, zero
   # implict jump to bb28
 bb28:
-  ADD s8, s8, zero
   SUBW s8, s0, s8
   ADDI s9, zero, 1
   SUBW s9, s0, s9
@@ -326,7 +317,6 @@ equal:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   XOR s0, s0, a1
   SLTIU s0, s0, 1
   BNE s0, zero, bb34
@@ -442,7 +432,6 @@ bb40:
   LA s2, list
   ADD s0, s2, s0
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s0)
   SLLIW s0, a0, 2
   LA s2, cns
@@ -485,7 +474,6 @@ bb43:
 bb44:
   ADD s1, s10, zero
   ADD s7, s9, zero
-  ADD s8, s8, zero
   ADD s9, zero, zero
   # implict jump to bb45
 bb45:

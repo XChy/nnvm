@@ -50,7 +50,6 @@ f1:
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD a0, a0, zero
   LA s0, sum
   LW s0, 0(s0)
   ADDW s0, s0, a0
@@ -723,7 +722,6 @@ main:
   SW s1, 0(s2)
   ADD s1, zero, zero
   ADD s2, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb4
 bb4:
   ADD s3, s0, zero

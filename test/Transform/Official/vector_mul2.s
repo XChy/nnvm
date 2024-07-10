@@ -37,10 +37,6 @@ mult_combin:
   FSD fs4, 120(sp)
   FSD fs5, 128(sp)
   FSD fs6, 136(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
   ADDI s0, zero, 0
   FCVT.S.W fs0, s0
   FSGNJ.S fs1, fs0, fs0
@@ -88,8 +84,6 @@ bb4:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb5:
-  FSGNJ.S fs4, fs4, fs4
-  ADD s7, s7, zero
   # implict jump to bb6
 bb6:
   ADD s8, s7, zero
@@ -125,8 +119,6 @@ bb8:
   ADD s7, s4, zero
   JAL zero, bb6
 bb9:
-  FSGNJ.S fs2, fs2, fs2
-  ADD s3, s3, zero
   # implict jump to bb10
 bb10:
   ADD s4, s3, zero
@@ -174,11 +166,7 @@ mult1:
   FSD fs1, 64(sp)
   FSD fs2, 72(sp)
   FSD fs3, 80(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   FCVT.S.L fs0, zero
-  FSGNJ.S fs0, fs0, fs0
   ADD s0, zero, zero
   ADD s1, zero, zero
   # implict jump to bb14
@@ -204,8 +192,6 @@ bb15:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb16:
-  FSGNJ.S fs1, fs1, fs1
-  ADD s3, s3, zero
   # implict jump to bb17
 bb17:
   ADD s4, s3, zero
@@ -271,10 +257,8 @@ bb22:
   FLW fs3, 0(s0)
   FSGNJN.S fs2, fs2, fs3
   FLT.S s0, fs1, fs2
-  ADD s0, s0, zero
   # implict jump to bb23
 bb23:
-  ADD s0, s0, zero
   BNE s0, zero, bb25
   # implict jump to bb24
 bb24:
@@ -314,11 +298,7 @@ Vectordot:
   FSD fs1, 48(sp)
   FSD fs2, 56(sp)
   FSD fs3, 64(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   FCVT.S.L fs0, zero
-  FSGNJ.S fs0, fs0, fs0
   ADD s0, zero, zero
   # implict jump to bb28
 bb28:
@@ -365,11 +345,7 @@ mult2:
   FSD fs1, 64(sp)
   FSD fs2, 72(sp)
   FSD fs3, 80(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   FCVT.S.L fs0, zero
-  FSGNJ.S fs0, fs0, fs0
   ADD s0, zero, zero
   ADD s1, zero, zero
   # implict jump to bb32
@@ -395,8 +371,6 @@ bb33:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb34:
-  FSGNJ.S fs1, fs1, fs1
-  ADD s3, s3, zero
   # implict jump to bb35
 bb35:
   ADD s4, s3, zero
@@ -471,7 +445,6 @@ bb39:
   ADD s0, zero, s0
   # implict jump to bb40
 bb40:
-  ADD s0, s0, zero
   ADDI a0, zero, 62
   CALL _sysy_starttime
   ADD s1, zero, zero
@@ -536,10 +509,8 @@ bb50:
   FLW fs8, 0(s9)
   FSGNJN.S fs7, fs7, fs8
   FLT.S s9, fs6, fs7
-  ADD s9, s9, zero
   # implict jump to bb51
 bb51:
-  ADD s9, s9, zero
   BNE s9, zero, bb59
   # implict jump to bb52
 bb52:
@@ -557,7 +528,6 @@ bb53:
   ADD s9, zero, zero
   # implict jump to bb54
 bb54:
-  ADD s9, s9, zero
   BNE s9, zero, bb57
   # implict jump to bb55
 bb55:
@@ -706,7 +676,6 @@ bb71:
   ADD s3, a5, zero
   JAL zero, bb43
 bb72:
-  FSGNJ.S fs8, fs8, fs8
   ADD s3, a4, zero
   # implict jump to bb73
 bb73:
@@ -747,7 +716,6 @@ bb75:
   ADD s3, a1, zero
   JAL zero, bb73
 bb76:
-  FSGNJ.S fs6, fs6, fs6
   ADD s3, a0, zero
   # implict jump to bb77
 bb77:
@@ -790,7 +758,6 @@ bb79:
   ADD s3, t0, zero
   JAL zero, bb77
 bb80:
-  FSGNJ.S fs4, fs4, fs4
   ADD s3, ra, zero
   # implict jump to bb81
 bb81:
@@ -833,7 +800,6 @@ bb83:
   ADD s3, s9, zero
   JAL zero, bb81
 bb84:
-  FSGNJ.S fs2, fs2, fs2
   ADD s3, s8, zero
   # implict jump to bb85
 bb85:
@@ -893,7 +859,6 @@ func:
   SD s1, 16(sp)
   SD s2, 24(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDW s1, s0, a1
   ADDIW s2, s1, 1
   MULW s1, s1, s2

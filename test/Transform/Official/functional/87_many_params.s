@@ -336,10 +336,8 @@ bb6:
   BNE s6, zero, bb9
   # implict jump to bb7
 bb7:
-  ADD s4, s4, zero
   # implict jump to bb8
 bb8:
-  ADD s4, s4, zero
   ADDIW s3, s3, 1
   ADD s1, s4, zero
   ADD s2, s3, zero
@@ -367,13 +365,6 @@ param32_arr:
   SD s10, 88(sp)
   SD s11, 96(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   ADDI t5, sp, 176
   ADD s1, t5, zero
   LD s1, 0(s1)
@@ -1509,10 +1500,8 @@ bb26:
   BNE s6, zero, bb29
   # implict jump to bb27
 bb27:
-  ADD s4, s4, zero
   # implict jump to bb28
 bb28:
-  ADD s4, s4, zero
   ADDIW s3, s3, 1
   ADD s1, s4, zero
   ADD s2, s3, zero
@@ -1538,8 +1527,6 @@ sort:
   SD s8, 72(sp)
   SD s9, 80(sp)
   SD s10, 88(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   ADDI s0, zero, 1
   SUBW s0, a1, s0
   ADD s1, zero, zero
@@ -1568,7 +1555,6 @@ bb32:
   JALR zero, 0(ra)
 bb33:
   ADDIW s5, s3, 1
-  ADD s4, s4, zero
   ADD s6, s5, zero
   # implict jump to bb34
 bb34:
@@ -1595,7 +1581,6 @@ bb37:
   ADD s2, s8, zero
   # implict jump to bb38
 bb38:
-  ADD s2, s2, zero
   ADDIW s1, s7, 1
   ADD s4, s2, zero
   ADD s6, s1, zero

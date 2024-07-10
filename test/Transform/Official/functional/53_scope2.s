@@ -66,16 +66,8 @@ bb3:
   BNE s9, zero, bb6
   # implict jump to bb4
 bb4:
-  ADD s7, s7, zero
-  ADD s6, s6, zero
-  ADD s8, s8, zero
-  ADD s4, s4, zero
   # implict jump to bb5
 bb5:
-  ADD s4, s4, zero
-  ADD s8, s8, zero
-  ADD s6, s6, zero
-  ADD s7, s7, zero
   ADD s0, s7, zero
   ADD s1, s6, zero
   ADD s2, s8, zero

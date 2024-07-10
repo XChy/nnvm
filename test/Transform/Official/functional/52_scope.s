@@ -56,7 +56,6 @@ bb7:
   ADD s4, zero, zero
   # implict jump to bb8
 bb8:
-  ADD s4, s4, zero
   XORI s4, s4, 1
   SLTIU s4, s4, 1
   BNE s4, zero, bb11
@@ -65,7 +64,6 @@ bb9:
   ADD s4, s2, zero
   # implict jump to bb10
 bb10:
-  ADD s4, s4, zero
   ADDIW s2, s3, 1
   ADD s0, s2, zero
   ADD s1, s4, zero

@@ -92,10 +92,8 @@ bb7:
   BNE s11, zero, bb10
   # implict jump to bb8
 bb8:
-  ADD s9, s9, zero
   # implict jump to bb9
 bb9:
-  ADD s9, s9, zero
   ADDIW s8, s8, 1
   ADD s6, s9, zero
   ADD s7, s8, zero
@@ -174,7 +172,6 @@ bb17:
   JAL zero, bb16
 bb18:
   CALL getint
-  ADD a0, a0, zero
   SLLIW s0, s3, 3
   LA s1, t
   ADD s0, s1, s0

@@ -76,10 +76,8 @@ bb1:
   ADDW s1, s1, s2
   XOR s0, s0, s1
   SLTIU s0, s0, 1
-  ADD s0, s0, zero
   # implict jump to bb2
 bb2:
-  ADD s0, s0, zero
   BNE s0, zero, bb8
   # implict jump to bb3
 bb3:
@@ -98,17 +96,14 @@ bb3:
   ADDW s1, s1, s2
   XOR s0, s0, s1
   SLTIU s0, s0, 1
-  ADD s0, s0, zero
   # implict jump to bb4
 bb4:
-  ADD s0, s0, zero
   BNE s0, zero, bb7
   # implict jump to bb5
 bb5:
   ADD s0, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s0, s0, zero
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

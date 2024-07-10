@@ -175,7 +175,6 @@ circle_area:
   FSD fs0, 16(sp)
   FSD fs1, 24(sp)
   FSD fs2, 32(sp)
-  ADD a0, a0, zero
   FCVT.S.W fs0, a0
   LA s0, .CONSTANT.7.0
   FLW fs1, 0(s0)
@@ -204,8 +203,6 @@ float_eq:
   SD s0, 8(sp)
   FSD fs0, 16(sp)
   FSD fs1, 24(sp)
-  FSGNJ.D fa0, fa0, fa0
-  FSGNJ.D fa1, fa1, fa1
   FSUB.S fs0, fa0, fa1
   FCVT.S.L fs1, zero
   FLT.S s0, fs0, fs1
@@ -215,7 +212,6 @@ bb8:
   FSGNJ.S fs1, fs0, fs0
   # implict jump to bb9
 bb9:
-  FSGNJ.S fs1, fs1, fs1
   LA s0, .CONSTANT.7.1
   FLW fs0, 0(s0)
   FLT.S s0, fs1, fs0
@@ -279,7 +275,6 @@ bb14:
   FSGNJ.S fs3, fs1, fs1
   # implict jump to bb15
 bb15:
-  FSGNJ.S fs3, fs3, fs3
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs3, fs1
@@ -289,7 +284,6 @@ bb16:
   ADD s0, zero, zero
   # implict jump to bb17
 bb17:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb70
@@ -315,7 +309,6 @@ bb20:
   FSGNJ.S fs3, fs1, fs1
   # implict jump to bb21
 bb21:
-  FSGNJ.S fs3, fs3, fs3
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs3, fs1
@@ -325,7 +318,6 @@ bb22:
   ADD s0, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb67
@@ -351,7 +343,6 @@ bb26:
   FSGNJ.S fs3, fs1, fs1
   # implict jump to bb27
 bb27:
-  FSGNJ.S fs3, fs3, fs3
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs3, fs1
@@ -361,7 +352,6 @@ bb28:
   ADD s0, zero, zero
   # implict jump to bb29
 bb29:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
@@ -416,7 +406,6 @@ bb32:
   FSGNJ.S fs3, fs1, fs1
   # implict jump to bb33
 bb33:
-  FSGNJ.S fs3, fs3, fs3
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs3, fs1
@@ -426,7 +415,6 @@ bb34:
   ADD s0, zero, zero
   # implict jump to bb35
 bb35:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
@@ -455,7 +443,6 @@ bb38:
   FSGNJ.S fs2, fs1, fs1
   # implict jump to bb39
 bb39:
-  FSGNJ.S fs2, fs2, fs2
   LA s0, .CONSTANT.7.1
   FLW fs1, 0(s0)
   FLT.S s0, fs2, fs1
@@ -465,7 +452,6 @@ bb40:
   ADD s0, zero, zero
   # implict jump to bb41
 bb41:
-  ADD s0, s0, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb58
@@ -515,7 +501,6 @@ bb46:
   ADD s0, zero, zero
   # implict jump to bb47
 bb47:
-  ADD s0, s0, zero
   BNE s0, zero, bb54
   # implict jump to bb48
 bb48:

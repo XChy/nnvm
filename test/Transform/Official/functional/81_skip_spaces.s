@@ -63,7 +63,6 @@ bb6:
   ADDI t5, sp, 0
   ADD s2, t5, s2
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero

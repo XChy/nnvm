@@ -2228,7 +2228,6 @@ bb236:
   ADD s3, zero, zero
   # implict jump to bb237
 bb237:
-  ADD s3, s3, zero
   XOR s0, s3, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb273
@@ -2296,7 +2295,6 @@ bb246:
   ADD s3, zero, zero
   # implict jump to bb247
 bb247:
-  ADD s3, s3, zero
   XORI s0, s3, 1
   SLTU s0, zero, s0
   BNE s0, zero, bb21
@@ -2391,7 +2389,6 @@ bb260:
   ADD s3, zero, zero
   # implict jump to bb261
 bb261:
-  ADD s3, s3, zero
   XORI s0, s3, 1
   SLTU s0, zero, s0
   BNE s0, zero, bb240
@@ -2429,7 +2426,6 @@ bb267:
   ADD s3, zero, zero
   # implict jump to bb268
 bb268:
-  ADD s3, s3, zero
   XORI s0, s3, 1
   SLTU s0, zero, s0
   BNE s0, zero, bb239
@@ -2549,7 +2545,6 @@ bb284:
   ADD s3, zero, zero
   # implict jump to bb285
 bb285:
-  ADD s3, s3, zero
   XORI s0, s3, 1
   SLTIU s0, s0, 1
   BNE s0, zero, bb297
@@ -2845,7 +2840,6 @@ main:
   CALL getch
   ADD s0, a0, zero
   ADD s1, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb310
 bb310:
   ADD s2, s0, zero
@@ -3076,7 +3070,6 @@ bb333:
   SW s2, 0(s4)
   ADDIW s2, s3, 1
   CALL getch
-  ADD a0, a0, zero
   ADD s1, s2, zero
   ADD s0, a0, zero
   JAL zero, bb310
@@ -3085,8 +3078,6 @@ skip_space:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   # implict jump to bb335
 bb335:
   LA s0, pos

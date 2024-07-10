@@ -316,29 +316,14 @@ bb17:
   # implict jump to bb18
 bb18:
   ADD s4, t6, zero
-  ADD s2, s2, zero
   # implict jump to bb19
 bb19:
-  ADD s2, s2, zero
-  ADD s4, s4, zero
-  ADD s4, s4, zero
-  ADD s2, s2, zero
   # implict jump to bb20
 bb20:
-  ADD s2, s2, zero
-  ADD s4, s4, zero
-  ADD s4, s4, zero
-  ADD s2, s2, zero
   # implict jump to bb21
 bb21:
-  ADD s2, s2, zero
-  ADD s4, s4, zero
-  ADD s4, s4, zero
-  ADD s2, s2, zero
   # implict jump to bb22
 bb22:
-  ADD s2, s2, zero
-  ADD s4, s4, zero
   SLLIW s5, s1, 5
   ADDI s6, zero, 32
   REMW s6, s1, s6
@@ -585,7 +570,6 @@ _xor:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDW s1, s0, a1
   SUBW s0, s0, s1
   ADDW s0, s0, a1
@@ -603,7 +587,6 @@ _or:
   SD s1, 16(sp)
   SD s2, 24(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDW s1, s0, a1
   SUBW s0, s0, s1
   ADDW s0, s0, a1
@@ -638,7 +621,6 @@ _and:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDW s0, s0, a1
   ADD a0, s0, zero
   LD ra, 0(sp)
@@ -731,7 +713,6 @@ main:
   SW zero, 0(s5)
   ADDI s5, sp, 296
   SW zero, 0(s5)
-  ADD s4, s4, zero
   # implict jump to bb38
 bb38:
   ADD t4, s4, zero
@@ -1047,26 +1028,12 @@ bb63:
   ADD s2, s8, zero
   # implict jump to bb64
 bb64:
-  ADD s2, s2, zero
-  ADD s1, s1, zero
-  ADD s1, s1, zero
-  ADD s2, s2, zero
   # implict jump to bb65
 bb65:
-  ADD s2, s2, zero
-  ADD s1, s1, zero
-  ADD s1, s1, zero
-  ADD s2, s2, zero
   # implict jump to bb66
 bb66:
-  ADD s2, s2, zero
-  ADD s1, s1, zero
-  ADD s1, s1, zero
-  ADD s2, s2, zero
   # implict jump to bb67
 bb67:
-  ADD s2, s2, zero
-  ADD s1, s1, zero
   SLLIW s5, s7, 5
   ADDI s8, zero, 32
   REMW s8, s7, s8

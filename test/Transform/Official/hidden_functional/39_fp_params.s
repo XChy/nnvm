@@ -2214,7 +2214,6 @@ bb12:
   ADD s0, a0, s0
   ADD a0, s0, zero
   CALL getfarray
-  ADD a0, a0, zero
   LW t4, 604(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero

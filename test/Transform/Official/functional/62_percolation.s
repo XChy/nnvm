@@ -23,7 +23,6 @@ mmerge:
   ADD s0, a0, zero
   ADD a0, s1, zero
   CALL findfa
-  ADD a0, a0, zero
   XOR s1, s0, a0
   SLTU s1, zero, s1
   BNE s1, zero, bb2
@@ -84,7 +83,6 @@ init:
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD a0, a0, zero
   MULW s0, a0, a0
   ADDI s1, zero, 1
   # implict jump to bb7
@@ -364,8 +362,6 @@ bb21:
   ADD s11, s0, zero
   # implict jump to bb22
 bb22:
-  ADD s11, s11, zero
-  ADD s10, s10, zero
   LB t4, 15(sp)
   ADD s0, t4, zero
   LB t4, 16(sp)
@@ -446,7 +442,6 @@ bb26:
   ADD s2, zero, zero
   # implict jump to bb27
 bb27:
-  ADD s2, s2, zero
   BNE s2, zero, bb56
   # implict jump to bb28
 bb28:
@@ -459,7 +454,6 @@ bb29:
   ADD s3, zero, zero
   # implict jump to bb30
 bb30:
-  ADD s3, s3, zero
   BNE s3, zero, bb53
   # implict jump to bb31
 bb31:
@@ -473,7 +467,6 @@ bb32:
   ADD s4, zero, zero
   # implict jump to bb33
 bb33:
-  ADD s4, s4, zero
   BNE s4, zero, bb50
   # implict jump to bb34
 bb34:
@@ -486,7 +479,6 @@ bb35:
   ADD s5, zero, zero
   # implict jump to bb36
 bb36:
-  ADD s5, s5, zero
   BNE s5, zero, bb47
   # implict jump to bb37
 bb37:
@@ -500,24 +492,19 @@ bb38:
   ADD s6, zero, zero
   # implict jump to bb39
 bb39:
-  ADD s6, s6, zero
   BNE s6, zero, bb45
   # implict jump to bb40
 bb40:
   ADD s7, zero, zero
   # implict jump to bb41
 bb41:
-  ADD s7, s7, zero
   BNE s7, zero, bb44
   # implict jump to bb42
 bb42:
   LW t4, 40(sp)
   ADD s8, t4, zero
-  ADD s0, s0, zero
   # implict jump to bb43
 bb43:
-  ADD s0, s0, zero
-  ADD s8, s8, zero
   ADD t4, s8, zero
   SW t4, 104(sp)
   ADD t4, s1, zero

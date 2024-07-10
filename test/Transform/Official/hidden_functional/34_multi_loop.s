@@ -525,9 +525,6 @@ bb20:
 bb21:
   ADD s10, zero, zero
   ADD t0, a4, zero
-  ADD a3, a3, zero
-  ADD a2, a2, zero
-  ADD a1, a1, zero
   ADD t4, a0, zero
   SW t4, 120(sp)
   ADD t4, t2, zero
@@ -613,11 +610,6 @@ bb26:
 bb27:
   ADD s10, zero, zero
   ADD t0, a0, zero
-  ADD t2, t2, zero
-  ADD t1, t1, zero
-  ADD s11, s11, zero
-  ADD s9, s9, zero
-  ADD s8, s8, zero
   # implict jump to bb28
 bb28:
   ADD a0, s8, zero
@@ -673,8 +665,6 @@ bb33:
   ADD s8, zero, zero
   ADD s9, a1, zero
   ADD s10, a0, zero
-  ADD s7, s7, zero
-  ADD s6, s6, zero
   # implict jump to bb34
 bb34:
   ADD s11, s6, zero
@@ -718,8 +708,6 @@ bb38:
   JAL zero, bb34
 bb39:
   ADD s6, zero, zero
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   # implict jump to bb40
 bb40:
   ADD s7, s4, zero

@@ -369,8 +369,6 @@ bb42:
   SW s6, 0(s7)
   JAL zero, bb20
 bb43:
-  ADD s9, s9, zero
-  ADD s8, s8, zero
   ADDI s10, zero, 1
   # implict jump to bb44
 bb44:
@@ -448,7 +446,6 @@ bb47:
   ADD s1, zero, zero
   # implict jump to bb48
 bb48:
-  ADD s1, s1, zero
   BNE s1, zero, bb53
   # implict jump to bb49
 bb49:
@@ -509,8 +506,6 @@ bb57:
   SW s7, 0(s6)
   JAL zero, bb42
 bb58:
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   ADDI s6, zero, 1
   # implict jump to bb59
 bb59:
@@ -588,7 +583,6 @@ bb62:
   ADD s1, zero, zero
   # implict jump to bb63
 bb63:
-  ADD s1, s1, zero
   BNE s1, zero, bb68
   # implict jump to bb64
 bb64:
@@ -652,7 +646,6 @@ bb72:
   JAL zero, bb18
 bb73:
   CALL getch
-  ADD a0, a0, zero
   XORI s3, a0, 35
   SLTIU s3, s3, 1
   BNE s3, zero, bb76
@@ -698,8 +691,6 @@ step:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   ADD s0, zero, zero
   ADD s1, zero, zero
   ADDI s2, zero, 1
@@ -731,8 +722,6 @@ bb79:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb80:
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   ADDI s6, zero, 1
   # implict jump to bb81
 bb81:
@@ -803,7 +792,6 @@ bb84:
   ADD s1, zero, zero
   # implict jump to bb85
 bb85:
-  ADD s1, s1, zero
   BNE s1, zero, bb90
   # implict jump to bb86
 bb86:
@@ -888,7 +876,6 @@ bb94:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb95:
-  ADD s3, s3, zero
   ADDI s4, zero, 1
   # implict jump to bb96
 bb96:
@@ -909,7 +896,6 @@ bb97:
   JAL zero, bb93
 bb98:
   CALL getch
-  ADD a0, a0, zero
   XORI s0, a0, 35
   SLTIU s0, s0, 1
   BNE s0, zero, bb101

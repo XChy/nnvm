@@ -134,7 +134,6 @@ bb12:
   ADD s11, s11, s1
   LW ra, 0(s11)
   ADDIW s10, s10, 1
-  ADD ra, ra, zero
   # implict jump to bb13
 bb13:
   ADD t0, ra, zero
@@ -147,7 +146,6 @@ bb13:
   # implict jump to bb14
 bb14:
   LW t2, 0(s11)
-  ADD t2, t2, zero
   # implict jump to bb15
 bb15:
   ADD a0, t2, zero
@@ -212,7 +210,6 @@ bb20:
   ADD s7, s7, s1
   LW s8, 0(s7)
   ADDIW s6, s6, 1
-  ADD s8, s8, zero
   # implict jump to bb21
 bb21:
   ADD s9, s8, zero
@@ -225,7 +222,6 @@ bb21:
   # implict jump to bb22
 bb22:
   LW s11, 0(s7)
-  ADD s11, s11, zero
   # implict jump to bb23
 bb23:
   ADD ra, s11, zero
@@ -299,12 +295,6 @@ spmv:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
   ADD s0, zero, zero
   # implict jump to bb29
 bb29:
@@ -341,7 +331,6 @@ bb33:
   ADD s5, a1, s4
   LW s6, 0(s5)
   ADDIW s3, s3, 1
-  ADD s6, s6, zero
   # implict jump to bb34
 bb34:
   ADD s7, s6, zero
@@ -353,7 +342,6 @@ bb34:
   # implict jump to bb35
 bb35:
   LW s9, 0(s5)
-  ADD s9, s9, zero
   # implict jump to bb36
 bb36:
   ADD s10, s9, zero

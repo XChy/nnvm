@@ -1507,7 +1507,6 @@ bb4:
   ADD s2, zero, zero
   # implict jump to bb5
 bb5:
-  ADD s2, s2, zero
   BNE s2, zero, bb8
   # implict jump to bb6
 bb6:
@@ -114498,9 +114497,6 @@ bb481:
   ADDI s3, zero, 5
   # implict jump to bb482
 bb482:
-  ADD s3, s3, zero
-  ADD s0, s0, zero
-  ADD s7, s7, zero
   LUI t4, 1
   ADDIW t4, t4, -1918
   ADD t4, t4, sp
@@ -114547,7 +114543,6 @@ bb484:
   ADD s6, zero, zero
   # implict jump to bb485
 bb485:
-  ADD s6, s6, zero
   BNE s6, zero, bb488
   # implict jump to bb486
 bb486:
@@ -114564,9 +114559,6 @@ bb486:
   ADDI s2, zero, 4
   # implict jump to bb487
 bb487:
-  ADD s2, s2, zero
-  ADD s5, s5, zero
-  ADD s8, s8, zero
   ADD t4, s8, zero
   LUI t5, 1
   ADDIW t5, t5, -1918
@@ -114587,7 +114579,6 @@ bb489:
   ADD s11, zero, zero
   # implict jump to bb490
 bb490:
-  ADD s11, s11, zero
   BNE s11, zero, bb493
   # implict jump to bb491
 bb491:
@@ -114599,8 +114590,6 @@ bb491:
   ADDI s1, zero, 3
   # implict jump to bb492
 bb492:
-  ADD s1, s1, zero
-  ADD s4, s4, zero
   ADD s8, s4, zero
   ADD s5, s11, zero
   ADD s2, s1, zero
@@ -114616,14 +114605,12 @@ bb494:
   ADD s9, zero, zero
   # implict jump to bb495
 bb495:
-  ADD s9, s9, zero
   BNE s9, zero, bb498
   # implict jump to bb496
 bb496:
   ADDI s10, zero, 2
   # implict jump to bb497
 bb497:
-  ADD s10, s10, zero
   ADD s4, s9, zero
   ADD s1, s10, zero
   JAL zero, bb492

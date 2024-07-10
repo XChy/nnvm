@@ -260,7 +260,6 @@ bb27:
   SLLIW s3, s1, 2
   ADD s2, s2, s3
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
@@ -304,7 +303,6 @@ bb30:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb31:
-  ADD s3, s3, zero
   ADD s4, zero, zero
   # implict jump to bb32
 bb32:

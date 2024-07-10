@@ -22,8 +22,6 @@ counting_sort:
   SD s10, 128(sp)
   SD s11, 136(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   ADD s1, zero, zero
   # implict jump to bb1
 bb1:

@@ -35,15 +35,12 @@ median:
   LW s5, 0(s4)
   ADDIW s6, s2, 1
   ADD s7, zero, zero
-  ADD s6, s6, zero
   ADD s8, s1, zero
   # implict jump to bb1
 bb1:
   ADD s9, s8, zero
   ADD s10, s6, zero
   ADD s11, s7, zero
-  ADD s11, s11, zero
-  ADD s10, s10, zero
   # implict jump to bb2
 bb2:
   ADD t0, s10, zero
@@ -55,9 +52,7 @@ bb3:
   ADD t2, t0, zero
   # implict jump to bb4
 bb4:
-  ADD t2, t2, zero
   ADD s10, t1, zero
-  ADD s9, s9, zero
   # implict jump to bb5
 bb5:
   ADD s11, s9, zero
@@ -101,7 +96,6 @@ bb10:
   ADD a5, zero, zero
   # implict jump to bb11
 bb11:
-  ADD a5, a5, zero
   BNE a5, zero, bb13
   # implict jump to bb12
 bb12:
@@ -145,7 +139,6 @@ bb17:
   ADD s8, zero, zero
   # implict jump to bb18
 bb18:
-  ADD s8, s8, zero
   BNE s8, zero, bb24
   # implict jump to bb19
 bb19:
@@ -283,8 +276,6 @@ swap:
   SD s4, 40(sp)
   SD s5, 48(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   SLLIW s1, a1, 2
   ADD s1, s0, s1
   LW s2, 0(s1)
@@ -306,7 +297,6 @@ bb34:
   ADD s4, zero, zero
   # implict jump to bb35
 bb35:
-  ADD s4, s4, zero
   BNE s4, zero, bb37
   # implict jump to bb36
 bb36:
@@ -394,7 +384,6 @@ meanless_calculation:
   SD s5, 48(sp)
   SD s6, 56(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
   # implict jump to bb41
@@ -408,7 +397,6 @@ bb42:
   ADD s5, zero, zero
   # implict jump to bb43
 bb43:
-  ADD s5, s5, zero
   BNE s5, zero, bb45
   # implict jump to bb44
 bb44:

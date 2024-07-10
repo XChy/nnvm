@@ -115,7 +115,6 @@ bb9:
   ADDI s6, zero, 1
   # implict jump to bb10
 bb10:
-  ADD s6, s6, zero
   XOR s0, s6, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb12
@@ -177,7 +176,6 @@ bb15:
   JAL zero, bb13
 bb16:
   ADDIW s7, s4, 1
-  ADD s5, s5, zero
   ADD s8, s7, zero
   # implict jump to bb17
 bb17:
@@ -204,7 +202,6 @@ bb20:
   ADD s1, zero, zero
   # implict jump to bb21
 bb21:
-  ADD s1, s1, zero
   BNE s1, zero, bb23
   # implict jump to bb22
 bb22:
@@ -345,7 +342,6 @@ isSafe:
   SD s8, 72(sp)
   SD s9, 80(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
   # implict jump to bb32
@@ -372,7 +368,6 @@ bb33:
   JALR zero, 0(ra)
 bb34:
   ADDIW s5, s3, 1
-  ADD s4, s4, zero
   ADD s6, s5, zero
   # implict jump to bb35
 bb35:
@@ -399,7 +394,6 @@ bb38:
   ADD s1, zero, zero
   # implict jump to bb39
 bb39:
-  ADD s1, s1, zero
   BNE s1, zero, bb41
   # implict jump to bb40
 bb40:

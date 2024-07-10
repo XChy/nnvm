@@ -100,7 +100,6 @@ bb5:
   ADD s4, s5, zero
   JAL zero, bb3
 bb6:
-  ADD s3, s3, zero
   ADD s4, zero, zero
   # implict jump to bb7
 bb7:
@@ -136,7 +135,6 @@ bb10:
   ADD s1, s6, zero
   # implict jump to bb11
 bb11:
-  ADD s1, s1, zero
   ADD s3, s1, zero
   ADD s4, s5, zero
   JAL zero, bb7
@@ -190,7 +188,6 @@ bb15:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb16:
-  ADD s4, s4, zero
   ADD s5, zero, zero
   # implict jump to bb17
 bb17:
@@ -224,7 +221,6 @@ bb20:
   ADD s2, s7, zero
   # implict jump to bb21
 bb21:
-  ADD s2, s2, zero
   ADD s4, s2, zero
   ADD s5, s6, zero
   JAL zero, bb17

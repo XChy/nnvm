@@ -99,7 +99,6 @@ func:
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  ADD a0, a0, zero
   LA s0, global
   SW a0, 0(s0)
   LD ra, 0(sp)

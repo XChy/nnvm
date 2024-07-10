@@ -43,8 +43,6 @@ bb4:
   ADD s5, s2, zero
   # implict jump to bb5
 bb5:
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   ADD s0, s4, zero
   ADD s1, s5, zero
   JAL zero, bb1
@@ -55,12 +53,8 @@ bb6:
   BNE s6, zero, bb9
   # implict jump to bb7
 bb7:
-  ADD s3, s3, zero
-  ADD s2, s2, zero
   # implict jump to bb8
 bb8:
-  ADD s2, s2, zero
-  ADD s3, s3, zero
   ADD s4, s3, zero
   ADD s5, s2, zero
   JAL zero, bb5
@@ -79,10 +73,8 @@ deepWhileBr:
   SD s5, 48(sp)
   SD s6, 56(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDW s0, s0, a1
   ADD s1, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb11
 bb11:
   ADD s2, s0, zero
@@ -111,8 +103,6 @@ bb14:
   ADD s5, s2, zero
   # implict jump to bb15
 bb15:
-  ADD s5, s5, zero
-  ADD s4, s4, zero
   ADD s1, s4, zero
   ADD s0, s5, zero
   JAL zero, bb11
@@ -123,12 +113,8 @@ bb16:
   BNE s6, zero, bb19
   # implict jump to bb17
 bb17:
-  ADD s3, s3, zero
-  ADD s2, s2, zero
   # implict jump to bb18
 bb18:
-  ADD s2, s2, zero
-  ADD s3, s3, zero
   ADD s4, s3, zero
   ADD s5, s2, zero
   JAL zero, bb15

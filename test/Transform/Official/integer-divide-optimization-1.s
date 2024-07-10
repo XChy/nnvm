@@ -157,13 +157,6 @@ func:
   ADD t5, t5, sp
   SD s11, 0(t5)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   LUI t5, 2
   ADDIW t5, t5, -272
   ADD t5, t5, sp

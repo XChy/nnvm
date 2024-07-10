@@ -31,14 +31,12 @@ bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s0, s0, zero
   BNE s0, zero, bb5
   # implict jump to bb3
 bb3:
   ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s0, s0, zero
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

@@ -141,7 +141,6 @@ bb12:
   ADD s4, s0, zero
   # implict jump to bb13
 bb13:
-  ADD s4, s4, zero
   ADDIW s0, s9, 1
   ADD s7, s0, zero
   ADD s8, s4, zero
@@ -188,13 +187,11 @@ findPivot:
   SD s9, 80(sp)
   SD s10, 88(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   SLLIW s1, a1, 2
   LA s2, array
   ADD s1, s2, s1
   LW s2, 0(s1)
   ADD s3, s0, zero
-  ADD s0, s0, zero
   # implict jump to bb17
 bb17:
   ADD s4, s0, zero
@@ -238,7 +235,6 @@ bb20:
   ADD s7, s4, zero
   # implict jump to bb21
 bb21:
-  ADD s7, s7, zero
   ADDIW s4, s5, 1
   ADD s3, s4, zero
   ADD s0, s7, zero
@@ -297,7 +293,6 @@ bb26:
   LA s5, array
   ADD s4, s5, s4
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s4)
   ADDIW s3, s3, 1
   ADD s2, s3, zero
@@ -309,8 +304,6 @@ swap:
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   SLLIW s0, a0, 2
   LA s1, array
   ADD s0, s1, s0

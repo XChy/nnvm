@@ -62,7 +62,6 @@ KMP:
   ADD t5, t5, sp
   SD s11, 0(t5)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDI s1, zero, -1
   SW s1, 0(sp)
   ADD s1, zero, zero
@@ -172,14 +171,10 @@ bb7:
   ADD t0, s10, zero
   # implict jump to bb8
 bb8:
-  ADD t0, t0, zero
-  ADD s11, s11, zero
   ADD s10, s11, zero
   ADD s11, t0, zero
   # implict jump to bb9
 bb9:
-  ADD s11, s11, zero
-  ADD s10, s10, zero
   ADD s6, s10, zero
   ADD s7, s11, zero
   JAL zero, bb3
@@ -276,10 +271,8 @@ bb15:
   LW s6, 0(s6)
   XOR s5, s5, s6
   SLTIU s5, s5, 1
-  ADD s5, s5, zero
   # implict jump to bb16
 bb16:
-  ADD s5, s5, zero
   BNE s5, zero, bb19
   # implict jump to bb17
 bb17:
@@ -288,11 +281,8 @@ bb17:
   ADD s5, t5, s5
   LW s5, 0(s5)
   ADD s6, s4, zero
-  ADD s5, s5, zero
   # implict jump to bb18
 bb18:
-  ADD s5, s5, zero
-  ADD s6, s6, zero
   ADD s1, s6, zero
   ADD s2, s5, zero
   JAL zero, bb1
@@ -461,7 +451,6 @@ bb35:
   ADDI s10, zero, -1
   # implict jump to bb36
 bb36:
-  ADD s10, s10, zero
   ADD a0, s10, zero
   CALL putint
   ADDI a0, zero, 10
@@ -521,14 +510,10 @@ bb39:
   ADD s11, s1, zero
   # implict jump to bb40
 bb40:
-  ADD s11, s11, zero
-  ADD s9, s9, zero
   ADD s0, s9, zero
   ADD s1, s11, zero
   # implict jump to bb41
 bb41:
-  ADD s1, s1, zero
-  ADD s0, s0, zero
   ADD s5, s0, zero
   ADD s6, s1, zero
   JAL zero, bb34
@@ -572,10 +557,8 @@ bb47:
   LW s1, 0(s1)
   XOR s0, s0, s1
   SLTIU s0, s0, 1
-  ADD s0, s0, zero
   # implict jump to bb48
 bb48:
-  ADD s0, s0, zero
   BNE s0, zero, bb51
   # implict jump to bb49
 bb49:
@@ -586,11 +569,8 @@ bb49:
   ADD s0, t5, s0
   LW s0, 0(s0)
   ADD s1, s3, zero
-  ADD s0, s0, zero
   # implict jump to bb50
 bb50:
-  ADD s0, s0, zero
-  ADD s1, s1, zero
   ADD t4, s1, zero
   SW t4, 0(sp)
   ADD t4, s0, zero
@@ -621,8 +601,6 @@ get_next:
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   ADDI s0, zero, -1
   SW s0, 0(a1)
   ADD s0, zero, zero
@@ -661,10 +639,8 @@ bb57:
   LW s5, 0(s5)
   XOR s4, s4, s5
   SLTIU s4, s4, 1
-  ADD s4, s4, zero
   # implict jump to bb58
 bb58:
-  ADD s4, s4, zero
   BNE s4, zero, bb61
   # implict jump to bb59
 bb59:
@@ -672,11 +648,8 @@ bb59:
   ADD s4, a1, s4
   LW s4, 0(s4)
   ADD s5, s3, zero
-  ADD s4, s4, zero
   # implict jump to bb60
 bb60:
-  ADD s4, s4, zero
-  ADD s5, s5, zero
   ADD s0, s5, zero
   ADD s1, s4, zero
   JAL zero, bb54

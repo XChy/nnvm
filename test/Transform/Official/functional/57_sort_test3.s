@@ -76,7 +76,6 @@ bb4:
   ADD s8, a0, zero
   JAL zero, bb1
 bb5:
-  ADD s7, s7, zero
   # implict jump to bb6
 bb6:
   ADD s8, s7, zero
@@ -87,7 +86,6 @@ bb7:
   ADD s10, zero, zero
   # implict jump to bb8
 bb8:
-  ADD s10, s10, zero
   BNE s10, zero, bb22
   # implict jump to bb9
 bb9:
@@ -97,8 +95,6 @@ bb10:
   ADD s9, s6, zero
   # implict jump to bb11
 bb11:
-  ADD s9, s9, zero
-  ADD s9, s9, zero
   # implict jump to bb12
 bb12:
   ADD s10, s9, zero
@@ -109,7 +105,6 @@ bb13:
   ADD ra, zero, zero
   # implict jump to bb14
 bb14:
-  ADD ra, ra, zero
   BNE ra, zero, bb19
   # implict jump to bb15
 bb15:
@@ -119,7 +114,6 @@ bb16:
   ADD s11, s8, zero
   # implict jump to bb17
 bb17:
-  ADD s11, s11, zero
   ADD s4, s11, zero
   ADD s5, s10, zero
   JAL zero, bb3
@@ -212,7 +206,6 @@ main:
   ADDI a2, zero, 9
   CALL QuickSort
   ADD s0, a0, zero
-  ADD s0, s0, zero
   # implict jump to bb25
 bb25:
   ADD s1, s0, zero

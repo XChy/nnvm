@@ -12,7 +12,6 @@ main:
   SD s2, 24(sp)
   CALL getint
   ADD s0, a0, zero
-  ADD s0, s0, zero
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero

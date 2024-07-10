@@ -167,7 +167,6 @@ bb15:
 bb16:
   ADD s5, zero, zero
   ADD s9, s11, zero
-  ADD s1, s1, zero
   # implict jump to bb17
 bb17:
   ADD s11, s1, zero
@@ -212,8 +211,6 @@ bb20:
   ADD s4, s11, zero
   # implict jump to bb21
 bb21:
-  ADD s4, s4, zero
-  ADD s3, s3, zero
   ADDIW s0, s0, 1
   ADD s5, s0, zero
   ADD s9, s3, zero
@@ -300,8 +297,6 @@ bb28:
   ADD s8, s3, zero
   # implict jump to bb29
 bb29:
-  ADD s8, s8, zero
-  ADD s6, s6, zero
   ADDIW s3, s5, 1
   ADD s0, s3, zero
   ADD s1, s6, zero
@@ -371,7 +366,6 @@ bb36:
   SLLIW s3, s1, 2
   ADD s2, s2, s3
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
@@ -391,10 +385,6 @@ mv:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
   ADD s0, zero, zero
   # implict jump to bb38
 bb38:
@@ -432,8 +422,6 @@ bb41:
   JALR zero, 0(ra)
 bb42:
   ADD s8, zero, zero
-  ADD s6, s6, zero
-  ADD s5, s5, zero
   # implict jump to bb43
 bb43:
   ADD s9, s5, zero
@@ -474,8 +462,6 @@ bb46:
   ADD s4, s9, zero
   # implict jump to bb47
 bb47:
-  ADD s4, s4, zero
-  ADD s2, s2, zero
   ADDIW s3, s11, 1
   ADD s8, s3, zero
   ADD s6, s2, zero

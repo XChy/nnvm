@@ -197,7 +197,6 @@ bb11:
   ADD s5, zero, zero
   # implict jump to bb12
 bb12:
-  ADD s5, s5, zero
   BNE s5, zero, bb22
   # implict jump to bb13
 bb13:
@@ -212,10 +211,8 @@ bb14:
   LW s5, 0(s5)
   XORI s5, s5, -1
   SLTIU s5, s5, 1
-  ADD s5, s5, zero
   # implict jump to bb15
 bb15:
-  ADD s5, s5, zero
   BNE s5, zero, bb18
   # implict jump to bb16
 bb16:
@@ -412,10 +409,8 @@ bb33:
   LW s2, 0(s2)
   XOR s2, s2, s1
   SLTIU s2, s2, 1
-  ADD s2, s2, zero
   # implict jump to bb34
 bb34:
-  ADD s2, s2, zero
   BNE s2, zero, bb38
   # implict jump to bb35
 bb35:

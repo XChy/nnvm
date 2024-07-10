@@ -45,7 +45,6 @@ bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s0, s0, zero
   BNE s0, zero, bb8
   # implict jump to bb3
 bb3:
@@ -63,17 +62,14 @@ bb3:
   SUBW s0, s3, s0
   XOR s0, s1, s0
   SLTIU s0, s0, 1
-  ADD s0, s0, zero
   # implict jump to bb4
 bb4:
-  ADD s0, s0, zero
   BNE s0, zero, bb7
   # implict jump to bb5
 bb5:
   ADD s0, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s0, s0, zero
   ADD a0, s0, zero
   CALL putint
   ADD a0, s0, zero

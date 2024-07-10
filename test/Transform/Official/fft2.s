@@ -471,7 +471,6 @@ bb28:
   ADD a0, s6, zero
   ADD a1, s4, zero
   CALL multiply
-  ADD a0, a0, zero
   SW a0, 0(s5)
   ADDIW s3, s3, 1
   ADD s1, s3, zero
@@ -492,9 +491,6 @@ memmove:
   SD s3, 32(sp)
   SD s4, 40(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
   ADD s1, zero, zero
   # implict jump to bb31
 bb31:

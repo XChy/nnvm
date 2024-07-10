@@ -105,7 +105,6 @@ bb8:
   ADDI sp, sp, 192
   JALR zero, 0(ra)
 bb9:
-  ADD s10, s10, zero
   ADD s11, zero, zero
   # implict jump to bb10
 bb10:
@@ -450,7 +449,6 @@ bb55:
   SLLIW s3, s1, 2
   ADD s2, s2, s3
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
@@ -470,10 +468,6 @@ mm:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
   ADD s0, zero, zero
   # implict jump to bb57
 bb57:
@@ -508,7 +502,6 @@ bb60:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb61:
-  ADD s4, s4, zero
   ADD s6, zero, zero
   # implict jump to bb62
 bb62:

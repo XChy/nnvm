@@ -98,7 +98,6 @@ bb6:
   LW s2, 0(s2)
   ADDI s3, zero, 1
   SUBW s3, s1, s3
-  ADD s3, s3, zero
   # implict jump to bb7
 bb7:
   ADD s4, s3, zero
@@ -110,7 +109,6 @@ bb8:
   ADD s5, zero, zero
   # implict jump to bb9
 bb9:
-  ADD s5, s5, zero
   BNE s5, zero, bb11
   # implict jump to bb10
 bb10:
@@ -184,7 +182,6 @@ bb16:
   LW s3, 0(s3)
   ADDI s4, zero, 1
   SUBW s4, s2, s4
-  ADD s4, s4, zero
   # implict jump to bb17
 bb17:
   ADD s5, s4, zero
@@ -196,7 +193,6 @@ bb18:
   ADD s6, zero, zero
   # implict jump to bb19
 bb19:
-  ADD s6, s6, zero
   BNE s6, zero, bb21
   # implict jump to bb20
 bb20:

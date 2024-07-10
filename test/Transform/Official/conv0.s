@@ -55,7 +55,6 @@ bb2:
   SUBW s11, s9, s5
   ADD t4, zero, zero
   SW t4, 20(sp)
-  ADD s10, s10, zero
   # implict jump to bb3
 bb3:
   ADD t4, s10, zero
@@ -82,20 +81,16 @@ bb4:
 bb5:
   LW t4, 16(sp)
   SLT s4, t4, zero
-  ADD s4, s4, zero
   # implict jump to bb6
 bb6:
-  ADD s4, s4, zero
   BNE s4, zero, bb23
   # implict jump to bb7
 bb7:
   LW t4, 8(sp)
   SLT s4, t4, s3
   XORI s4, s4, 1
-  ADD s4, s4, zero
   # implict jump to bb8
 bb8:
-  ADD s4, s4, zero
   BNE s4, zero, bb22
   # implict jump to bb9
 bb9:
@@ -103,10 +98,8 @@ bb9:
   LW t3, 4(sp)
   SLT s4, t4, t3
   XORI s4, s4, 1
-  ADD s4, s4, zero
   # implict jump to bb10
 bb10:
-  ADD s4, s4, zero
   BNE s4, zero, bb21
   # implict jump to bb11
 bb11:
@@ -118,10 +111,8 @@ bb11:
   SLLIW s4, s4, 2
   ADD s4, s1, s4
   LW s4, 0(s4)
-  ADD s4, s4, zero
   # implict jump to bb12
 bb12:
-  ADD s4, s4, zero
   ADD a0, s0, zero
   ADD a1, t6, zero
   ADD a2, s4, zero
@@ -213,37 +204,27 @@ getvalue:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
   SLT s1, a3, zero
   BNE s1, zero, bb36
   # implict jump to bb26
 bb26:
   SLT s1, a4, zero
-  ADD s1, s1, zero
   # implict jump to bb27
 bb27:
-  ADD s1, s1, zero
   BNE s1, zero, bb35
   # implict jump to bb28
 bb28:
   SLT s1, a3, a1
   XORI s1, s1, 1
-  ADD s1, s1, zero
   # implict jump to bb29
 bb29:
-  ADD s1, s1, zero
   BNE s1, zero, bb34
   # implict jump to bb30
 bb30:
   SLT s1, a4, a2
   XORI s1, s1, 1
-  ADD s1, s1, zero
   # implict jump to bb31
 bb31:
-  ADD s1, s1, zero
   BNE s1, zero, bb33
   # implict jump to bb32
 bb32:
@@ -285,8 +266,6 @@ reduce:
   SD s5, 48(sp)
   SD s6, 56(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   XOR s1, s0, zero
   SLTIU s1, s1, 1
   BNE s1, zero, bb73
@@ -359,15 +338,12 @@ bb47:
   ADD s4, zero, zero
   # implict jump to bb48
 bb48:
-  ADD s4, s4, zero
   BNE s4, zero, bb51
   # implict jump to bb49
 bb49:
   SLLIW s4, s2, 1
-  ADD s4, s4, zero
   # implict jump to bb50
 bb50:
-  ADD s4, s4, zero
   SLLIW s2, s3, 1
   ADD s0, s2, zero
   ADD s1, s4, zero
@@ -423,18 +399,14 @@ bb57:
   REMW s4, s4, s5
   XORI s4, s4, 1
   SLTIU s4, s4, 1
-  ADD s4, s4, zero
   # implict jump to bb58
 bb58:
-  ADD s4, s4, zero
   BNE s4, zero, bb61
   # implict jump to bb59
 bb59:
   SLLIW s4, s3, 1
-  ADD s4, s4, zero
   # implict jump to bb60
 bb60:
-  ADD s4, s4, zero
   SLLIW s2, s2, 1
   ADD s0, s4, zero
   ADD s1, s2, zero
@@ -513,10 +485,8 @@ bb69:
 bb70:
   SLLIW s4, s2, 1
   ADDIW s4, s4, 1
-  ADD s4, s4, zero
   # implict jump to bb71
 bb71:
-  ADD s4, s4, zero
   SLLIW s2, s3, 1
   ADD s0, s2, zero
   ADD s1, s4, zero
@@ -527,7 +497,6 @@ bb72:
   JAL zero, bb71
 bb73:
   ADDW s0, a1, a2
-  ADD s0, s0, zero
   # implict jump to bb74
 bb74:
   ADD s1, s0, zero
@@ -671,13 +640,11 @@ bb85:
   LW t4, 16(sp)
   SUBW s3, s11, t4
   ADD s2, zero, zero
-  ADD s5, s5, zero
   # implict jump to bb86
 bb86:
   ADD s1, s5, zero
   ADD s0, s2, zero
   SLT s4, s1, zero
-  ADD s0, s0, zero
   ADD s7, s3, zero
   # implict jump to bb87
 bb87:
@@ -687,30 +654,24 @@ bb87:
   # implict jump to bb88
 bb88:
   SLT s9, s6, zero
-  ADD s9, s9, zero
   # implict jump to bb89
 bb89:
-  ADD s9, s9, zero
   BNE s9, zero, bb109
   # implict jump to bb90
 bb90:
   LW t4, 32(sp)
   SLT s9, s1, t4
   XORI s9, s9, 1
-  ADD s9, s9, zero
   # implict jump to bb91
 bb91:
-  ADD s9, s9, zero
   BNE s9, zero, bb108
   # implict jump to bb92
 bb92:
   LW t4, 28(sp)
   SLT s9, s6, t4
   XORI s9, s9, 1
-  ADD s9, s9, zero
   # implict jump to bb93
 bb93:
-  ADD s9, s9, zero
   BNE s9, zero, bb107
   # implict jump to bb94
 bb94:
@@ -721,16 +682,13 @@ bb94:
   LA s10, a
   ADD s9, s10, s9
   LW s9, 0(s9)
-  ADD s9, s9, zero
   # implict jump to bb95
 bb95:
-  ADD s9, s9, zero
   LW t4, 12(sp)
   ADD a0, t4, zero
   ADD a1, s8, zero
   ADD a2, s9, zero
   CALL reduce
-  ADD a0, a0, zero
   ADDIW s6, s6, 1
   LW t4, 16(sp)
   ADDW s8, s11, t4
@@ -833,9 +791,6 @@ memmove:
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   ADD s0, zero, zero
   # implict jump to bb112
 bb112:
@@ -869,7 +824,6 @@ checkrange:
   SD s3, 32(sp)
   SD s4, 40(sp)
   ADD s0, a0, zero
-  ADD s0, s0, zero
   # implict jump to bb116
 bb116:
   ADD s1, s0, zero

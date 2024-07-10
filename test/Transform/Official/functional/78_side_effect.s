@@ -71,14 +71,12 @@ bb4:
   ADD s4, zero, zero
   # implict jump to bb5
 bb5:
-  ADD s4, s4, zero
   BNE s4, zero, bb19
   # implict jump to bb6
 bb6:
   ADD s4, zero, zero
   # implict jump to bb7
 bb7:
-  ADD s4, s4, zero
   BNE s4, zero, bb18
   # implict jump to bb8
 bb8:
@@ -104,13 +102,9 @@ bb10:
   ADD s4, zero, zero
   # implict jump to bb11
 bb11:
-  ADD s4, s4, zero
   ADD s5, s4, zero
-  ADD s4, s4, zero
   # implict jump to bb12
 bb12:
-  ADD s4, s4, zero
-  ADD s5, s5, zero
   BNE s4, zero, bb15
   # implict jump to bb13
 bb13:

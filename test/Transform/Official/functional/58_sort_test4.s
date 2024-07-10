@@ -22,7 +22,6 @@ select_sort:
   SD s10, 88(sp)
   SD s11, 96(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDI s1, zero, 1
   SUBW s1, a1, s1
   ADD s2, zero, zero
@@ -71,7 +70,6 @@ bb6:
   ADD s11, s5, zero
   # implict jump to bb7
 bb7:
-  ADD s11, s11, zero
   ADD s2, s11, zero
   ADD s3, s6, zero
   JAL zero, bb1
@@ -100,7 +98,6 @@ bb10:
   ADD s2, s10, zero
   # implict jump to bb11
 bb11:
-  ADD s2, s2, zero
   ADDIW s3, s9, 1
   ADD s7, s2, zero
   ADD s8, s3, zero
@@ -226,7 +223,6 @@ bb22:
   ADD s11, s5, zero
   # implict jump to bb23
 bb23:
-  ADD s11, s11, zero
   ADD s2, s11, zero
   ADD s3, s6, zero
   JAL zero, bb14
@@ -259,7 +255,6 @@ bb26:
   ADD s2, s10, zero
   # implict jump to bb27
 bb27:
-  ADD s2, s2, zero
   ADDIW s3, s9, 1
   ADD s7, s2, zero
   ADD s8, s3, zero

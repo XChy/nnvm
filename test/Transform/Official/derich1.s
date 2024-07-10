@@ -146,7 +146,6 @@ kernel_deriche:
   FSGNJ.S fa0, fs1, fs6
   ADD a0, s6, zero
   CALL newPow
-  FSGNJ.D fa0, fa0, fa0
   FSGNJN.S fs0, fs0, fs0
   ADDI s6, zero, 1
   FCVT.S.W fs1, s6
@@ -278,7 +277,6 @@ bb17:
   LA a2, .CONSTANT.7.2
   FLW fs10, 0(a2)
   FSGNJ.S fs9, fs9, fs10
-  ADD a1, a1, zero
   # implict jump to bb18
 bb18:
   ADD a2, a1, zero
@@ -426,7 +424,6 @@ bb29:
   LA s11, .CONSTANT.7.2
   FLW fs10, 0(s11)
   FSGNJ.S fs9, fs9, fs10
-  ADD s10, s10, zero
   # implict jump to bb30
 bb30:
   ADD s11, s10, zero

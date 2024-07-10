@@ -57,7 +57,6 @@ insert:
   SD s4, 40(sp)
   SD s5, 48(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   LA s1, hashmod
   LW s1, 0(s1)
   REMW s1, s0, s1
@@ -71,7 +70,6 @@ insert:
   # implict jump to bb1
 bb1:
   LW s2, 0(s1)
-  ADD s2, s2, zero
   # implict jump to bb2
 bb2:
   ADD s3, s2, zero
@@ -294,7 +292,6 @@ bb13:
   LA s9, head
   ADD s8, s9, s8
   LW s8, 0(s8)
-  ADD s8, s8, zero
   # implict jump to bb14
 bb14:
   ADD s9, s8, zero
@@ -306,7 +303,6 @@ bb15:
   ADD s10, zero, zero
   # implict jump to bb16
 bb16:
-  ADD s10, s10, zero
   SW s10, 0(s7)
   ADDIW s10, s5, 1
   ADD s4, s10, zero
@@ -373,7 +369,6 @@ bb23:
   # implict jump to bb24
 bb24:
   LW s7, 0(s6)
-  ADD s7, s7, zero
   # implict jump to bb25
 bb25:
   ADD s8, s7, zero
@@ -504,7 +499,6 @@ reduce:
   LA s2, head
   ADD s1, s2, s1
   LW s1, 0(s1)
-  ADD s1, s1, zero
   # implict jump to bb33
 bb33:
   ADD s2, s1, zero

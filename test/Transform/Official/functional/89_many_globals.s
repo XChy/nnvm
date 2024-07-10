@@ -141,13 +141,6 @@ testParam32:
   SD s10, 120(sp)
   SD s11, 128(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   ADDI t5, sp, 144
   ADD s1, t5, zero
   LW s1, 0(s1)
@@ -649,13 +642,6 @@ testParam16:
   SD s7, 64(sp)
   SD s8, 72(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   ADDI t5, sp, 80
   ADD s1, t5, zero
   LW s1, 0(s1)
@@ -706,13 +692,6 @@ testParam8:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
-  ADD a4, a4, zero
-  ADD a5, a5, zero
-  ADD a6, a6, zero
-  ADD a7, a7, zero
   ADDW s0, s0, a1
   ADDW s0, s0, a2
   ADDW s0, s0, a3

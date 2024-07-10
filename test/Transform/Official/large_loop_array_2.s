@@ -98,10 +98,8 @@ bb3:
   FLW fs8, 0(s5)
   FSGNJN.S fs7, fs7, fs8
   FLE.S s5, fs7, fs6
-  ADD s5, s5, zero
   # implict jump to bb4
 bb4:
-  ADD s5, s5, zero
   BNE s5, zero, bb6
   # implict jump to bb5
 bb5:
@@ -175,13 +173,8 @@ bb9:
   LA s5, .CONSTANT.7.5
   FLW fs6, 0(s5)
   FADD.S fs5, fs5, fs6
-  FSGNJ.S fs5, fs5, fs5
-  FSGNJ.S fs4, fs4, fs4
   # implict jump to bb10
 bb10:
-  FSGNJ.S fs4, fs4, fs4
-  FSGNJ.S fs5, fs5, fs5
-  ADD s4, s4, zero
   # implict jump to bb11
 bb11:
   ADD s5, s4, zero
@@ -266,9 +259,6 @@ loop:
   FSD fs1, 48(sp)
   FSD fs2, 56(sp)
   FSD fs3, 64(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   LA s0, .CONSTANT.7.1
   FLW fs0, 0(s0)
   LA s0, .CONSTANT.7.1

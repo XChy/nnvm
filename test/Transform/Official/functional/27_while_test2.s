@@ -53,9 +53,6 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   ADDIW s4, s4, 3
-  ADD s7, s7, zero
-  ADD s6, s6, zero
-  ADD s5, s5, zero
   # implict jump to bb4
 bb4:
   ADD s8, s5, zero
@@ -160,9 +157,6 @@ bb15:
   JALR zero, 0(ra)
 bb16:
   ADDIW s4, s4, 3
-  ADD s7, s7, zero
-  ADD s6, s6, zero
-  ADD s5, s5, zero
   # implict jump to bb17
 bb17:
   ADD s8, s5, zero

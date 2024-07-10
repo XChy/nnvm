@@ -23,7 +23,6 @@ merge:
   ADD s0, a0, zero
   ADD a0, s1, zero
   CALL find
-  ADD a0, a0, zero
   XOR s1, s0, a0
   SLTU s1, zero, s1
   BNE s1, zero, bb2
@@ -117,7 +116,6 @@ bb11:
   ADD s10, s9, zero
   # implict jump to bb12
 bb12:
-  ADD s10, s10, zero
   ADDIW s8, s8, 1
   ADD s6, s10, zero
   ADD s7, s8, zero
@@ -136,7 +134,6 @@ bb14:
   ADD s6, a0, zero
   ADD a0, s7, zero
   CALL find
-  ADD a0, a0, zero
   XOR s7, s6, a0
   SLTU s7, zero, s7
   BNE s7, zero, bb16

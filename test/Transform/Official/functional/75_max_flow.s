@@ -183,7 +183,6 @@ bb13:
 bb14:
   LD t4, 112(sp)
   LW t2, 0(t4)
-  ADD t2, t2, zero
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
@@ -282,9 +281,6 @@ add_node:
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   ADDI s0, zero, 40
   MULW s0, a0, s0
   LA s1, to
@@ -444,7 +440,6 @@ bb34:
   CALL getint
   ADD s7, a0, zero
   CALL getint
-  ADD a0, a0, zero
   ADDI s8, zero, 40
   MULW s8, s6, s8
   LA s9, to
@@ -517,9 +512,6 @@ my_memset:
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   ADD s0, zero, zero
   # implict jump to bb37
 bb37:

@@ -24,12 +24,10 @@ heap_sort:
   SD s10, 88(sp)
   SD s11, 96(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDI s1, zero, 2
   DIVW s1, a1, s1
   ADDI s2, zero, 1
   SUBW s1, s1, s2
-  ADD s1, s1, zero
   # implict jump to bb1
 bb1:
   ADD s2, s1, zero
@@ -40,7 +38,6 @@ bb1:
 bb2:
   ADDI s3, zero, 1
   SUBW s3, a1, s3
-  ADD s3, s3, zero
   # implict jump to bb3
 bb3:
   ADD s4, s3, zero
@@ -94,14 +91,12 @@ bb9:
   ADD s10, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s10, s10, zero
   BNE s10, zero, bb14
   # implict jump to bb11
 bb11:
   ADD s10, s9, zero
   # implict jump to bb12
 bb12:
-  ADD s10, s10, zero
   SLLIW s8, s8, 2
   ADD s8, s0, s8
   LW s9, 0(s8)
@@ -141,7 +136,6 @@ bb16:
   SUBW s3, a1, s3
   SLLIW s4, s2, 1
   ADDIW s4, s4, 1
-  ADD s4, s4, zero
   ADD s5, s2, zero
   # implict jump to bb17
 bb17:
@@ -163,14 +157,12 @@ bb20:
   ADD s8, zero, zero
   # implict jump to bb21
 bb21:
-  ADD s8, s8, zero
   BNE s8, zero, bb25
   # implict jump to bb22
 bb22:
   ADD s8, s7, zero
   # implict jump to bb23
 bb23:
-  ADD s8, s8, zero
   SLLIW s6, s6, 2
   ADD s6, s0, s6
   LW s7, 0(s6)
@@ -218,12 +210,9 @@ heap_ajust:
   SD s7, 64(sp)
   SD s8, 72(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   SLLIW s1, a1, 1
   ADDIW s1, s1, 1
   ADDIW s2, a2, 1
-  ADD s1, s1, zero
   ADD s3, a1, zero
   # implict jump to bb28
 bb28:
@@ -254,14 +243,12 @@ bb31:
   ADD s6, zero, zero
   # implict jump to bb32
 bb32:
-  ADD s6, s6, zero
   BNE s6, zero, bb37
   # implict jump to bb33
 bb33:
   ADD s6, s5, zero
   # implict jump to bb34
 bb34:
-  ADD s6, s6, zero
   SLLIW s4, s4, 2
   ADD s4, s0, s4
   LW s5, 0(s4)
@@ -362,7 +349,6 @@ main:
   DIVW s1, s0, s1
   ADDI s2, zero, 1
   SUBW s1, s1, s2
-  ADD s1, s1, zero
   # implict jump to bb40
 bb40:
   ADD s2, s1, zero
@@ -373,7 +359,6 @@ bb40:
 bb41:
   ADDI s3, zero, 1
   SUBW s3, s0, s3
-  ADD s3, s3, zero
   # implict jump to bb42
 bb42:
   ADD s4, s3, zero
@@ -449,14 +434,12 @@ bb51:
   ADD s10, zero, zero
   # implict jump to bb52
 bb52:
-  ADD s10, s10, zero
   BNE s10, zero, bb56
   # implict jump to bb53
 bb53:
   ADD s10, s9, zero
   # implict jump to bb54
 bb54:
-  ADD s10, s10, zero
   SLLIW s8, s8, 2
   ADDI t5, sp, 104
   ADD s8, t5, s8
@@ -500,7 +483,6 @@ bb58:
   SUBW s3, s0, s3
   SLLIW s4, s2, 1
   ADDIW s4, s4, 1
-  ADD s4, s4, zero
   ADD s5, s2, zero
   # implict jump to bb59
 bb59:
@@ -522,14 +504,12 @@ bb62:
   ADD s8, zero, zero
   # implict jump to bb63
 bb63:
-  ADD s8, s8, zero
   BNE s8, zero, bb67
   # implict jump to bb64
 bb64:
   ADD s8, s7, zero
   # implict jump to bb65
 bb65:
-  ADD s8, s8, zero
   SLLIW s6, s6, 2
   ADDI t5, sp, 104
   ADD s6, t5, s6
@@ -576,8 +556,6 @@ swap:
   SD s2, 24(sp)
   SD s3, 32(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   SLLIW s1, a1, 2
   ADD s1, s0, s1
   LW s2, 0(s1)

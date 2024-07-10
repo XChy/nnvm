@@ -258,7 +258,6 @@ bb22:
   ADD s3, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s3, s3, zero
   BNE s3, zero, bb26
   # implict jump to bb24
 bb24:
@@ -266,8 +265,6 @@ bb24:
   ADD s2, s11, zero
   # implict jump to bb25
 bb25:
-  ADD s2, s2, zero
-  ADD s0, s0, zero
   LW t4, 4(sp)
   ADDIW s1, t4, 1
   ADD t4, s3, zero
@@ -322,7 +319,6 @@ bb29:
   SLLIW s1, s1, 2
   ADD s0, s0, s1
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s0)
   LW t4, 40(sp)
   ADDIW s0, t4, 1
@@ -438,7 +434,6 @@ bb41:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb42:
-  ADD s5, s5, zero
   ADDI s6, zero, 1
   ADD s7, zero, zero
   LUI s8, 16
@@ -523,16 +518,12 @@ bb52:
   ADD t0, zero, zero
   # implict jump to bb53
 bb53:
-  ADD t0, t0, zero
   BNE t0, zero, bb56
   # implict jump to bb54
 bb54:
   ADD s2, s10, zero
-  ADD s9, s9, zero
   # implict jump to bb55
 bb55:
-  ADD s9, s9, zero
-  ADD s2, s2, zero
   ADDIW s3, s11, 1
   ADD s5, t0, zero
   ADD s6, s3, zero

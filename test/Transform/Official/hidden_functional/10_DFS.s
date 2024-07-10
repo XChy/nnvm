@@ -58,7 +58,6 @@ bb1:
   LA s0, head
   ADD s0, s0, s2
   LW s0, 0(s0)
-  ADD s0, s0, zero
   # implict jump to bb2
 bb2:
   ADD s2, s0, zero
@@ -97,7 +96,6 @@ bb5:
   ADD s4, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s4, s4, zero
   BNE s4, zero, bb8
   # implict jump to bb7
 bb7:
@@ -174,8 +172,6 @@ add_edge:
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD a0, a0, zero
-  ADD a1, a1, zero
   LA s0, cnt
   LW s0, 0(s0)
   SLLIW s0, s0, 2
@@ -265,10 +261,8 @@ bb18:
   ADDI s4, zero, 57
   LW t4, 112(sp)
   SLT s4, s4, t4
-  ADD s4, s4, zero
   # implict jump to bb19
 bb19:
-  ADD s4, s4, zero
   BNE s4, zero, bb138
   # implict jump to bb20
 bb20:
@@ -294,7 +288,6 @@ bb22:
   ADD s8, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s8, s8, zero
   BNE s8, zero, bb136
   # implict jump to bb24
 bb24:
@@ -308,7 +301,6 @@ bb25:
   ADD s8, t4, zero
   # implict jump to bb26
 bb26:
-  ADD s8, s8, zero
   LA s9, n
   SW s8, 0(s9)
   CALL getch
@@ -333,10 +325,8 @@ bb28:
   ADDI s0, zero, 57
   LW t4, 28(sp)
   SLT s0, s0, t4
-  ADD s0, s0, zero
   # implict jump to bb29
 bb29:
-  ADD s0, s0, zero
   BNE s0, zero, bb130
   # implict jump to bb30
 bb30:
@@ -362,7 +352,6 @@ bb32:
   ADD s5, zero, zero
   # implict jump to bb33
 bb33:
-  ADD s5, s5, zero
   BNE s5, zero, bb128
   # implict jump to bb34
 bb34:
@@ -376,7 +365,6 @@ bb35:
   ADD s4, t4, zero
   # implict jump to bb36
 bb36:
-  ADD s4, s4, zero
   LA s5, m
   SW s4, 0(s5)
   ADD t4, zero, zero
@@ -453,7 +441,6 @@ bb43:
   ADD s4, zero, zero
   # implict jump to bb44
 bb44:
-  ADD s4, s4, zero
   BNE s4, zero, bb124
   # implict jump to bb45
 bb45:
@@ -484,10 +471,8 @@ bb48:
   ADDI s10, zero, 57
   LW t4, 104(sp)
   SLT s10, s10, t4
-  ADD s10, s10, zero
   # implict jump to bb49
 bb49:
-  ADD s10, s10, zero
   BNE s10, zero, bb79
   # implict jump to bb50
 bb50:
@@ -513,7 +498,6 @@ bb52:
   ADD s9, zero, zero
   # implict jump to bb53
 bb53:
-  ADD s9, s9, zero
   BNE s9, zero, bb77
   # implict jump to bb54
 bb54:
@@ -532,7 +516,6 @@ bb56:
   CALL getch
   ADD s9, a0, zero
   ADD s7, zero, zero
-  ADD s9, s9, zero
   # implict jump to bb57
 bb57:
   ADD s6, s9, zero
@@ -543,10 +526,8 @@ bb57:
 bb58:
   ADDI s4, zero, 57
   SLT s4, s4, s6
-  ADD s4, s4, zero
   # implict jump to bb59
 bb59:
-  ADD s4, s4, zero
   BNE s4, zero, bb71
   # implict jump to bb60
 bb60:
@@ -564,7 +545,6 @@ bb62:
   ADD s10, zero, zero
   # implict jump to bb63
 bb63:
-  ADD s10, s10, zero
   BNE s10, zero, bb69
   # implict jump to bb64
 bb64:
@@ -576,7 +556,6 @@ bb65:
   ADD s0, s1, zero
   # implict jump to bb66
 bb66:
-  ADD s0, s0, zero
   LA s10, cnt
   LW s10, 0(s10)
   SLLIW s10, s10, 2
@@ -635,9 +614,6 @@ bb66:
   ADD s10, t4, zero
   # implict jump to bb67
 bb67:
-  ADD s10, s10, zero
-  ADD s8, s8, zero
-  ADD s3, s3, zero
   LW t4, 172(sp)
   ADD s2, t4, zero
   LA s4, m
@@ -685,7 +661,6 @@ bb72:
   ADD s0, s2, zero
   # implict jump to bb73
 bb73:
-  ADD s0, s0, zero
   CALL getch
   ADD s1, a0, zero
   ADD s7, s0, zero
@@ -735,7 +710,6 @@ bb80:
   ADD s0, t4, zero
   # implict jump to bb81
 bb81:
-  ADD s0, s0, zero
   CALL getch
   ADD s1, a0, zero
   ADD t4, s0, zero
@@ -772,10 +746,8 @@ bb86:
   ADDI s5, zero, 57
   LW t4, 156(sp)
   SLT s5, s5, t4
-  ADD s5, s5, zero
   # implict jump to bb87
 bb87:
-  ADD s5, s5, zero
   BNE s5, zero, bb119
   # implict jump to bb88
 bb88:
@@ -801,7 +773,6 @@ bb90:
   ADD s11, zero, zero
   # implict jump to bb91
 bb91:
-  ADD s11, s11, zero
   BNE s11, zero, bb117
   # implict jump to bb92
 bb92:
@@ -839,10 +810,8 @@ bb96:
   ADDI s6, zero, 57
   LW t4, 120(sp)
   SLT s6, s6, t4
-  ADD s6, s6, zero
   # implict jump to bb97
 bb97:
-  ADD s6, s6, zero
   BNE s6, zero, bb111
   # implict jump to bb98
 bb98:
@@ -863,7 +832,6 @@ bb100:
   ADD s0, zero, zero
   # implict jump to bb101
 bb101:
-  ADD s0, s0, zero
   BNE s0, zero, bb109
   # implict jump to bb102
 bb102:
@@ -876,7 +844,6 @@ bb103:
   ADD s0, s9, zero
   # implict jump to bb104
 bb104:
-  ADD s0, s0, zero
   ADDI s11, zero, 1
   # implict jump to bb105
 bb105:
@@ -947,7 +914,6 @@ bb112:
   ADD s0, t4, zero
   # implict jump to bb113
 bb113:
-  ADD s0, s0, zero
   CALL getch
   ADD s1, a0, zero
   ADD t4, s0, zero
@@ -999,7 +965,6 @@ bb120:
   ADD s0, t4, zero
   # implict jump to bb121
 bb121:
-  ADD s0, s0, zero
   CALL getch
   ADD s1, a0, zero
   ADD t4, s0, zero
@@ -1074,7 +1039,6 @@ bb131:
   ADD s0, t4, zero
   # implict jump to bb132
 bb132:
-  ADD s0, s0, zero
   CALL getch
   ADD s1, a0, zero
   ADD t4, s0, zero
@@ -1126,9 +1090,7 @@ bb139:
   ADD s0, t4, zero
   # implict jump to bb140
 bb140:
-  ADD s0, s0, zero
   CALL getch
-  ADD a0, a0, zero
   ADD t4, s0, zero
   SW t4, 196(sp)
   ADD t4, a0, zero
@@ -1189,7 +1151,6 @@ quick_read:
   CALL getch
   ADD s0, a0, zero
   ADD s1, zero, zero
-  ADD s0, s0, zero
   # implict jump to bb148
 bb148:
   ADD s2, s0, zero
@@ -1200,10 +1161,8 @@ bb148:
 bb149:
   ADDI s4, zero, 57
   SLT s4, s4, s2
-  ADD s4, s4, zero
   # implict jump to bb150
 bb150:
-  ADD s4, s4, zero
   BNE s4, zero, bb160
   # implict jump to bb151
 bb151:
@@ -1221,7 +1180,6 @@ bb153:
   ADD s8, zero, zero
   # implict jump to bb154
 bb154:
-  ADD s8, s8, zero
   BNE s8, zero, bb158
   # implict jump to bb155
 bb155:
@@ -1286,9 +1244,7 @@ bb161:
   ADD s2, s3, zero
   # implict jump to bb162
 bb162:
-  ADD s2, s2, zero
   CALL getch
-  ADD a0, a0, zero
   ADD s1, s2, zero
   ADD s0, a0, zero
   JAL zero, bb148

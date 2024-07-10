@@ -94,7 +94,6 @@ func:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   LUI s1, 2
   ADDIW s1, s1, 1808
   ADDW s0, s0, s1

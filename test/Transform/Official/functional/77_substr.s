@@ -11,7 +11,6 @@ MAX:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   XOR s1, s0, a1
   SLTIU s1, s1, 1
   BNE s1, zero, bb4
@@ -161,10 +160,8 @@ bb8:
   BNE s6, zero, bb36
   # implict jump to bb9
 bb9:
-  ADD s5, s5, zero
   # implict jump to bb10
 bb10:
-  ADD s5, s5, zero
   SW s5, 0(s3)
   ADDI s3, zero, 2
   # implict jump to bb11
@@ -274,10 +271,8 @@ bb22:
   BNE t2, zero, bb26
   # implict jump to bb23
 bb23:
-  ADD s11, s11, zero
   # implict jump to bb24
 bb24:
-  ADD s11, s11, zero
   SW s11, 0(t1)
   # implict jump to bb25
 bb25:
@@ -342,10 +337,8 @@ bb31:
   BNE s8, zero, bb34
   # implict jump to bb32
 bb32:
-  ADD s7, s7, zero
   # implict jump to bb33
 bb33:
-  ADD s7, s7, zero
   SW s7, 0(s6)
   ADDIW s4, s4, 1
   ADD s3, s4, zero
@@ -384,7 +377,6 @@ max_sum_nonadjacent:
   SD s7, 128(sp)
   SD s8, 136(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   ADDI s1, zero, 16
   # implict jump to bb40
 bb40:
@@ -409,10 +401,8 @@ bb42:
   BNE s6, zero, bb53
   # implict jump to bb43
 bb43:
-  ADD s5, s5, zero
   # implict jump to bb44
 bb44:
-  ADD s5, s5, zero
   SW s5, 0(s3)
   ADDI s3, zero, 2
   # implict jump to bb45
@@ -469,10 +459,8 @@ bb48:
   BNE s8, zero, bb51
   # implict jump to bb49
 bb49:
-  ADD s7, s7, zero
   # implict jump to bb50
 bb50:
-  ADD s7, s7, zero
   SW s7, 0(s6)
   ADDIW s4, s4, 1
   ADD s3, s4, zero
@@ -514,9 +502,6 @@ longest_common_subseq:
   SD s10, 1112(sp)
   SD s11, 1120(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
-  ADD a3, a3, zero
   ADDI s1, zero, 256
   # implict jump to bb57
 bb57:
@@ -607,10 +592,8 @@ bb66:
   BNE s11, zero, bb70
   # implict jump to bb67
 bb67:
-  ADD s7, s7, zero
   # implict jump to bb68
 bb68:
-  ADD s7, s7, zero
   SW s7, 0(s10)
   # implict jump to bb69
 bb69:

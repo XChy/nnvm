@@ -360,7 +360,6 @@ bb5:
   SW s8, 0(s7)
   ADDIW s6, s6, 1
   ADD s7, zero, zero
-  ADD s5, s5, zero
   # implict jump to bb6
 bb6:
   ADD s8, s5, zero
@@ -741,7 +740,6 @@ bb15:
   SW s8, 0(s7)
   ADDIW s6, s6, 1
   ADD s7, zero, zero
-  ADD s5, s5, zero
   # implict jump to bb16
 bb16:
   ADD s8, s5, zero

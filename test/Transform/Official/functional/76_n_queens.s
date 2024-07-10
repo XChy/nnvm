@@ -31,7 +31,6 @@ main:
   SD s3, 32(sp)
   CALL getint
   ADD s0, a0, zero
-  ADD s0, s0, zero
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
@@ -108,14 +107,12 @@ bb8:
   ADD s4, zero, zero
   # implict jump to bb9
 bb9:
-  ADD s4, s4, zero
   BNE s4, zero, bb20
   # implict jump to bb10
 bb10:
   ADD s4, zero, zero
   # implict jump to bb11
 bb11:
-  ADD s4, s4, zero
   BNE s4, zero, bb13
   # implict jump to bb12
 bb12:

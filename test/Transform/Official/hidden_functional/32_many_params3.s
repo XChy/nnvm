@@ -32,13 +32,10 @@ func:
   ADD s0, a0, zero
   ADD t4, a1, zero
   SW t4, 276(sp)
-  ADD a2, a2, zero
   ADD t4, a3, zero
   SW t4, 836(sp)
   ADD t4, a4, zero
   SW t4, 780(sp)
-  ADD a5, a5, zero
-  ADD a6, a6, zero
   ADD t4, a7, zero
   SW t4, 800(sp)
   ADDI t5, sp, 1280

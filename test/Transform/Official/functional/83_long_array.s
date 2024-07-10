@@ -144,23 +144,12 @@ bb13:
   ADD s0, t4, zero
   LW t4, 24(sp)
   ADD s1, t4, zero
-  ADD s1, s1, zero
   LW t4, 0(sp)
   ADD s2, t4, zero
-  ADD s0, s0, zero
   # implict jump to bb14
 bb14:
-  ADD s0, s0, zero
-  ADD s2, s2, zero
-  ADD s1, s1, zero
-  ADD s1, s1, zero
-  ADD s2, s2, zero
-  ADD s0, s0, zero
   # implict jump to bb15
 bb15:
-  ADD s0, s0, zero
-  ADD s2, s2, zero
-  ADD s1, s1, zero
   ADDIW s3, s11, 1
   ADD s7, s1, zero
   ADD s8, s2, zero
@@ -228,12 +217,8 @@ bb20:
   REMW s3, s3, s4
   LW t4, 16(sp)
   ADDIW s4, t4, 2
-  ADD s4, s4, zero
-  ADD s3, s3, zero
   # implict jump to bb21
 bb21:
-  ADD s3, s3, zero
-  ADD s4, s4, zero
   ADD t4, s4, zero
   SW t4, 40(sp)
   ADD t4, s3, zero
@@ -511,23 +496,12 @@ bb44:
   ADD s0, t4, zero
   LW t4, 0(sp)
   ADD s1, t4, zero
-  ADD s1, s1, zero
   LW t4, 40(sp)
   ADD s2, t4, zero
-  ADD s0, s0, zero
   # implict jump to bb45
 bb45:
-  ADD s0, s0, zero
-  ADD s2, s2, zero
-  ADD s1, s1, zero
-  ADD s1, s1, zero
-  ADD s2, s2, zero
-  ADD s0, s0, zero
   # implict jump to bb46
 bb46:
-  ADD s0, s0, zero
-  ADD s2, s2, zero
-  ADD s1, s1, zero
   ADDIW s3, s10, 1
   ADD s6, s1, zero
   ADD s7, s2, zero
@@ -595,12 +569,8 @@ bb51:
   REMW s3, s3, s4
   LW t4, 24(sp)
   ADDIW s4, t4, 2
-  ADD s4, s4, zero
-  ADD s3, s3, zero
   # implict jump to bb52
 bb52:
-  ADD s3, s3, zero
-  ADD s4, s4, zero
   ADD t4, s4, zero
   SW t4, 32(sp)
   ADD t4, s3, zero

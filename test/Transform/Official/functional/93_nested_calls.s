@@ -15,7 +15,6 @@ func6:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb5
@@ -24,7 +23,6 @@ bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s0, s0, zero
   BNE s0, zero, bb4
   # implict jump to bb3
 bb3:
@@ -153,8 +151,6 @@ func4:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   XOR s0, s0, zero
   SLTU s0, zero, s0
   BNE s0, zero, bb18
@@ -222,7 +218,6 @@ bb22:
   ADD s6, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s6, s6, zero
   LW t4, 8(sp)
   SUB s7, zero, t4
   XOR s6, s6, zero
@@ -233,14 +228,12 @@ bb24:
   ADD s6, zero, zero
   # implict jump to bb25
 bb25:
-  ADD s6, s6, zero
   BNE s6, zero, bb55
   # implict jump to bb26
 bb26:
   ADD s6, zero, zero
   # implict jump to bb27
 bb27:
-  ADD s6, s6, zero
   ADD a0, s6, zero
   LW t4, 4(sp)
   ADD a1, t4, zero
@@ -273,7 +266,6 @@ bb28:
   ADD s3, zero, zero
   # implict jump to bb29
 bb29:
-  ADD s3, s3, zero
   XOR s2, s10, zero
   SLTU s2, zero, s2
   BNE s2, zero, bb53
@@ -282,14 +274,12 @@ bb30:
   ADD s2, zero, zero
   # implict jump to bb31
 bb31:
-  ADD s2, s2, zero
   BNE s2, zero, bb52
   # implict jump to bb32
 bb32:
   ADD s2, zero, zero
   # implict jump to bb33
 bb33:
-  ADD s2, s2, zero
   ADDI s3, sp, 152
   LW s3, 0(s3)
   ADDI s1, sp, 156
@@ -305,7 +295,6 @@ bb34:
   ADD s0, zero, zero
   # implict jump to bb35
 bb35:
-  ADD s0, s0, zero
   ADD a0, s3, zero
   ADD a1, s0, zero
   CALL func2
@@ -315,10 +304,8 @@ bb35:
   BNE s9, zero, bb50
   # implict jump to bb36
 bb36:
-  ADD s0, s0, zero
   # implict jump to bb37
 bb37:
-  ADD s0, s0, zero
   ADDI s2, sp, 160
   LW s2, 0(s2)
   ADD a0, s0, zero
@@ -346,7 +333,6 @@ bb38:
   ADD s11, zero, zero
   # implict jump to bb39
 bb39:
-  ADD s11, s11, zero
   ADD a0, s4, zero
   ADD a1, s11, zero
   CALL func3
@@ -362,10 +348,8 @@ bb39:
   BNE s6, zero, bb48
   # implict jump to bb40
 bb40:
-  ADD s0, s0, zero
   # implict jump to bb41
 bb41:
-  ADD s0, s0, zero
   LW t4, 4(sp)
   XOR s6, t4, zero
   SLTU s6, zero, s6
@@ -378,7 +362,6 @@ bb42:
   ADD s6, zero, zero
   # implict jump to bb43
 bb43:
-  ADD s6, s6, zero
   ADD a0, s6, zero
   LW t4, 0(sp)
   ADD a1, t4, zero
@@ -423,7 +406,6 @@ bb44:
   ADD s2, zero, zero
   # implict jump to bb45
 bb45:
-  ADD s2, s2, zero
   ADD a0, s1, zero
   ADD a1, s9, zero
   ADD a2, s2, zero
@@ -507,7 +489,6 @@ bb58:
   ADDI t4, sp, 136
   ADD s0, t4, s0
   CALL getint
-  ADD a0, a0, zero
   SW a0, 0(s0)
   LW t4, 20(sp)
   ADDIW s0, t4, 1

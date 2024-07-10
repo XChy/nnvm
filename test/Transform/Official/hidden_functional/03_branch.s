@@ -27,7 +27,6 @@ bb3:
   ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s0, s0, zero
   BNE s0, zero, bb8
   # implict jump to bb5
 bb5:

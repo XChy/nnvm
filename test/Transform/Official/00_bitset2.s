@@ -72,8 +72,6 @@ set:
   SD s9, 208(sp)
   SD s10, 216(sp)
   ADD s0, a0, zero
-  ADD a1, a1, zero
-  ADD a2, a2, zero
   ADDI s1, zero, 31
   # implict jump to bb4
 bb4:
@@ -152,7 +150,6 @@ bb9:
   ADD s6, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s6, s6, zero
   LW s7, 0(s5)
   ADDW s6, s7, s6
   SW s6, 0(s5)
@@ -185,7 +182,6 @@ bb12:
   ADD s8, zero, zero
   # implict jump to bb13
 bb13:
-  ADD s8, s8, zero
   LW s9, 0(s5)
   LW s10, 0(s7)
   DIVW s9, s9, s10
@@ -199,7 +195,6 @@ bb14:
   ADD s9, s8, zero
   # implict jump to bb15
 bb15:
-  ADD s9, s9, zero
   ADD s6, s9, zero
   JAL zero, bb10
 bb16:
@@ -211,7 +206,6 @@ bb17:
   ADD s10, s8, zero
   # implict jump to bb18
 bb18:
-  ADD s10, s10, zero
   ADD s9, s10, zero
   JAL zero, bb15
 bb19:
@@ -228,7 +222,6 @@ bb21:
   ADD s9, zero, zero
   # implict jump to bb22
 bb22:
-  ADD s9, s9, zero
   ADD s8, s9, zero
   JAL zero, bb13
 bb23:
@@ -296,7 +289,6 @@ main:
   SW s1, 0(s2)
   ADDI a0, zero, 56
   CALL _sysy_starttime
-  ADD s0, s0, zero
   # implict jump to bb28
 bb28:
   ADD s1, s0, zero
@@ -455,7 +447,6 @@ bb38:
   ADD s9, zero, zero
   # implict jump to bb39
 bb39:
-  ADD s9, s9, zero
   LW s10, 0(s8)
   ADDW s9, s10, s9
   SW s9, 0(s8)
@@ -477,7 +468,6 @@ bb42:
   ADD s11, zero, zero
   # implict jump to bb43
 bb43:
-  ADD s11, s11, zero
   LW ra, 0(s8)
   LW t0, 0(s10)
   DIVW ra, ra, t0
@@ -491,7 +481,6 @@ bb44:
   ADD ra, s11, zero
   # implict jump to bb45
 bb45:
-  ADD ra, ra, zero
   ADD s9, ra, zero
   JAL zero, bb39
 bb46:
@@ -503,7 +492,6 @@ bb47:
   ADD t0, s11, zero
   # implict jump to bb48
 bb48:
-  ADD t0, t0, zero
   ADD ra, t0, zero
   JAL zero, bb45
 bb49:
@@ -520,7 +508,6 @@ bb51:
   ADD ra, zero, zero
   # implict jump to bb52
 bb52:
-  ADD ra, ra, zero
   ADD s11, ra, zero
   JAL zero, bb43
 bb53:

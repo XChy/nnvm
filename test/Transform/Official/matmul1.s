@@ -234,10 +234,8 @@ bb27:
   BNE s5, zero, bb30
   # implict jump to bb28
 bb28:
-  ADD s3, s3, zero
   # implict jump to bb29
 bb29:
-  ADD s3, s3, zero
   ADDIW s2, s2, 1
   ADD s0, s3, zero
   ADD s1, s2, zero

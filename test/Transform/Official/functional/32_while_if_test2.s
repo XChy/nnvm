@@ -25,7 +25,6 @@ bb2:
   ADD s4, s3, zero
   # implict jump to bb3
 bb3:
-  ADD s4, s4, zero
   ADD a0, s4, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -64,7 +63,6 @@ bb7:
   ADD s3, s4, zero
   # implict jump to bb8
 bb8:
-  ADD s3, s3, zero
   ADD a0, s3, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

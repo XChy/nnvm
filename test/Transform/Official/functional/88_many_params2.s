@@ -173,7 +173,6 @@ bb8:
   ADDW s11, s6, t4
   ADDI s10, zero, 3
   MULW s10, s11, s10
-  ADD s10, s10, zero
   # implict jump to bb9
 bb9:
   ADD s11, s10, zero
