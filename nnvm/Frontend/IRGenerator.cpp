@@ -62,6 +62,10 @@ Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
   return nullptr;
 }
 
+/**
+ * Visit the basic type context
+ * @return Int / Float SymbolType on success
+ */
 Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
   if (ctx->INT())
     return SymbolType::getIntTy();
@@ -71,6 +75,10 @@ Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
   return nullptr;
 }
 
+/**
+ * Visit the function type context
+ * @return Int / Float / Void SymbolType on success
+ */
 Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
 
   if (ctx->INT())
@@ -85,7 +93,7 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
 /**
  * This function is used to solve the constant lval
  * @param ctx the context of the lval
- * @return The value of the lval, type is int or float
+ * @return The value of the lval, a int or float
  */
 Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
   std::vector<nnvm::SysYParser::ExpContext *> indexs = ctx->exp();
@@ -129,7 +137,7 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
 }
 
 /**
- * This function is used to convert the value from float to int, or reversely.
+ * Convert the value from float to int, or reversely.
  * @param value inner type is int or float
  */
 template <typename MayFrom, typename To>
@@ -139,9 +147,8 @@ static inline To castConstExp(Any value) {
 }
 
 /**
- * This function is used to solve the constant expression
- * @param ctx the context of the expression
- * @return The value of the expression, type is int or float
+ * Solve the constant expression
+ * @return The value of the expression, a int or float
  */
 Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   if (ctx->exp().size() < 2) {
@@ -229,51 +236,15 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   nnvm_unreachable("Impossible to reach here");
 }
 
+/* A top function that
+ * visits the constant decline context, call constDef for each constDef context,
+ */
 Any IRGenerator::visitConstDecl(SysYParser::ConstDeclContext *ctx) {
   for (auto ctxDef : ctx->constDef()) {
     // TODO: type check
     constDef(ctxDef, ctx->btype());
   }
   return Symbol::none();
-}
-
-Any IRGenerator::solveConstInit(
-    std::vector<SysYParser::ConstInitValContext *> initVals,
-    std::list<int> dims) {
-  std::vector<Constant *> arrayElements;
-  if (dims.size() == 0) {
-    // recursion end
-    // TODO: Report invalid init value error.
-    if (initVals.size() == 0)
-      return ConstantInt::create(*ir, ir->getIntType(), 0);
-
-    Any val = solveConstExp(initVals[0]->constExp()->exp());
-    // TODO: float
-    return ConstantInt::create(*ir, ir->getIntType(), any_as<int>(val));
-  }
-  int initValIndex = 0;
-  int currentDim = dims.front();
-  dims.pop_front();
-  for (int i = 0; i < currentDim; i += 1) {
-    if (initVals[initValIndex]->L_BRACE()) {
-      Constant *element = any_as<Constant *>(
-          solveConstInit(initVals[initValIndex++]->constInitVal(), dims));
-      arrayElements.push_back(element);
-    } else {
-      int numOfElement = 1;
-      for (auto dim = dims.begin(); dim != dims.end(); dim++) {
-        numOfElement *= *dim;
-      }
-      std::vector<SysYParser::ConstInitValContext *> constInitVals;
-      for (int i = 0; i < numOfElement; i++) {
-        constInitVals.push_back(initVals[initValIndex++]);
-      }
-      Constant *element =
-          any_as<Constant *>(solveConstInit(constInitVals, dims));
-      arrayElements.push_back(element);
-    }
-  }
-  return ConstantArray::create(*ir, ir->getPtrType(), arrayElements);
 }
 
 /**
@@ -306,18 +277,20 @@ Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
  * This function defines constant value
  * @param ctx The constant definition(context)
  * @param btype Type of the constant(context)
+ * @return Created symbol on success
  */
 Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
                           SysYParser::BtypeContext *btype) {
   SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
   string symbolName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(symbolName)) {
-    // TODO: report duplicate symbol error
+    // TODO: report duplicate define error
     return Symbol::none();
   }
 
-  auto constExps = ctx->constExp();
-  for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
+  auto indexExps = ctx->constExp();
+  for (auto it = indexExps.rbegin(); it != indexExps.rend(); it++) {
+    // TODO: report index not constant int error
     Any nrElements = solveConstExp((*it)->exp());
     assert(any_is<int>(nrElements));
     symbolType = SymbolType::getArrayTy(any_as<int>(nrElements), symbolType,
@@ -360,6 +333,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     }
   }
 
+  // global && none array
   if (symbolTable.isGlobal()) {
     GlobalVariable *global = new GlobalVariable(*ir, constVal);
     global->setName(ctx->IDENT()->getText());
@@ -546,6 +520,14 @@ IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
   return ConstantArray::create(*ir, arrayType, initValList);
 }
 
+/**
+ *  Roll up the same values' init in a array
+ *  @param valueCount the number of the same values
+ *  @param offset the offset of the array
+ *  @param currentValue the value to be stored
+ *  @param irVal the array
+ *  @param irElementType the type of the array
+ */
 void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
                               Value *currentValue, Value *irVal,
                               Type *irElementType) {
@@ -601,10 +583,14 @@ void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
   }
 }
 
+/**
+ * Define varible with given context and type
+ * @param ctx The context of the variable
+ * @param btype The type of the variable
+ */
 Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
                         SysYParser::BtypeContext *btype) {
   SymbolType *symbolType = any_as<SymbolType *>(btype->accept(this));
-  SymbolType *elementType = symbolType;
   string symbolName = ctx->IDENT()->getText();
 
   if (symbolTable.lookupInCurrentScope(symbolName)) {
@@ -621,7 +607,6 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   }
 
   Type *irType = getIRType(symbolType, btype);
-  Type *irElementType = getIRType(elementType, btype);
   Value *irVal = nullptr;
   if (irType->isInteger()) {
     if (symbolTable.isGlobal()) {
@@ -669,10 +654,11 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       initVal = fetchFlatElementsFrom(ctx->initVal(), symbolType);
       globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
+      globalVar->setImmutable(false);
       irVal = globalVar;
     } else {
-      irVal = builder.buildStack(
-          irElementType, symbolType->getTotalNumOfElements(), symbolName);
+      irVal = builder.buildStack(irType, symbolType->getTotalNumOfElements(),
+                                 symbolName);
       Type *irElementType = sym2IR(symbolType->getInnerMost());
 
       if (ctx->initVal()) {
@@ -680,7 +666,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
         if (!solveInit(ctx->initVal(), symbolType, irElementType, values))
           return Symbol::none();
         uint offset = 0;
-        // we put same values together
+        // we put the same values together
         Value *currentValue = nullptr;
         uint valueCount = 0;
         for (Value *stored : values) {
@@ -715,6 +701,10 @@ Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
   return Symbol::none();
 }
 
+/**
+ *  Visit the function define context, a top function
+ *  @return None
+ */
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(funcName)) {
@@ -830,7 +820,9 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
 }
 
 /**
- * This function is used to generate implicit cast for the symbol
+ * Cast original to expectedType
+ * @param original The original symbol
+ * @param expectedType The expected type
  */
 Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
   if (!original)
@@ -890,6 +882,11 @@ Symbol IRGenerator::genImplicitCast(Symbol original, SymbolType *expectedType) {
   return Symbol::none();
 }
 
+/**
+ * Widen lower type to higher type
+ * @param lhs reference to the left Symbol
+ * @param rhs reference to the right Symbol
+ */
 void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
   std::map<SymbolType *, int> levelOf = {
       {SymbolType::getBoolTy(), 0},
@@ -907,6 +904,10 @@ void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
   rhs = genImplicitCast(rhs, topType);
 }
 
+/**
+ *  Visit statement
+ *  @return Return inst on success, nullptr on failure
+ */
 Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
   if (builder.getCurrentBB()->getTerminator())
@@ -1019,6 +1020,10 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   return Symbol::none();
 }
 
+/**
+ * Visit Condition
+ * @return Bool Symbol on success, Symbol::none() on failure
+ */
 Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   if (ctx->exp()) {
     Symbol exp = any_as<Symbol>(ctx->exp()->accept(this));
@@ -1157,6 +1162,10 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   nnvm_unreachable("Not implemented");
 }
 
+/**
+ * Visit Call
+ * @return Symbol on success, Symbol::none() on failure
+ */
 Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
   auto calleeName = ctx->IDENT()->getText();
 
@@ -1189,6 +1198,9 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
                 calleeSymbol->symbolType->containedTy);
 }
 
+/**
+ * This function is used to call starttime and stoptime
+ */
 Symbol IRGenerator::visitSpecialCallWithLineNo(const std::string &name,
                                                uint64_t lineNo) {
 
@@ -1213,8 +1225,11 @@ static inline uint getByteSizeOf(SymbolType *type) {
   nnvm_unreachable("WTF?")
 }
 
+/**
+ * Visit lval
+ * @return Symbol on success, Symbol::none() on failure
+ */
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
-  // TODO: handle array index
   Symbol address = *symbolTable.lookup(ctx->IDENT()->getText());
 
   if (!address)
@@ -1243,6 +1258,9 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
   return address;
 }
 
+/**
+ * Get the IRType from the symbol type.
+ */
 Type *IRGenerator::sym2IR(SymbolType *symbolTy) {
   switch (symbolTy->symbolID) {
   case SymbolType::Int:
