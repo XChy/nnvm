@@ -79,10 +79,10 @@ bb3:
 bb4:
   LW t3, 48(sp)
   ADD t4, t3, zero
-  SW t4, 72(sp)
+  SW t4, 76(sp)
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 84(sp)
+  SW t4, 72(sp)
   LW t3, 4(sp)
   ADD t4, t3, zero
   SW t4, 68(sp)
@@ -91,11 +91,11 @@ bb5:
   LW t3, 68(sp)
   ADD t4, t3, zero
   SW t4, 64(sp)
-  LW t3, 84(sp)
-  ADD t4, t3, zero
-  SW t4, 76(sp)
-  LW t4, 64(sp)
   LW t3, 72(sp)
+  ADD t4, t3, zero
+  SW t4, 84(sp)
+  LW t4, 64(sp)
+  LW t3, 76(sp)
   SLT s9, t4, t3
   BNE s9, zero, bb26
   # implict jump to bb6
@@ -105,7 +105,7 @@ bb6:
   # implict jump to bb7
 bb7:
   ADD s5, s4, zero
-  LW t4, 72(sp)
+  LW t4, 76(sp)
   XOR s3, s5, t4
   SLTIU s2, s3, 1
   BNE s2, zero, bb15
@@ -115,7 +115,7 @@ bb8:
   LD t4, 40(sp)
   ADD s1, t4, s0
   LW s0, 0(s1)
-  LW t4, 72(sp)
+  LW t4, 76(sp)
   SLLIW s2, t4, 2
   LD t4, 40(sp)
   ADD s3, t4, s2
@@ -139,9 +139,9 @@ bb11:
   BNE s10, zero, bb13
   # implict jump to bb12
 bb12:
-  LW t4, 76(sp)
+  LW t4, 84(sp)
   ADD s7, t4, zero
-  LW t4, 72(sp)
+  LW t4, 76(sp)
   ADD s8, t4, zero
   ADD s6, s5, zero
   JAL zero, bb1
@@ -153,7 +153,7 @@ bb13:
   ADD s1, s10, zero
   JAL zero, bb9
 bb14:
-  LW t4, 72(sp)
+  LW t4, 76(sp)
   SLT s10, s2, t4
   ADD s11, s10, zero
   JAL zero, bb11
@@ -198,7 +198,7 @@ bb20:
   BNE s1, zero, bb22
   # implict jump to bb21
 bb21:
-  LW t4, 76(sp)
+  LW t4, 84(sp)
   ADD a0, t4, zero
   LD ra, 88(sp)
   LD s1, 96(sp)
@@ -294,10 +294,10 @@ bb26:
   # implict jump to bb27
 bb27:
   ADDI s0, zero, 1
-  LW t4, 76(sp)
+  LW t4, 84(sp)
   SUBW s1, t4, s0
   ADD t4, s1, zero
-  SW t4, 84(sp)
+  SW t4, 72(sp)
   ADD t4, s9, zero
   SW t4, 68(sp)
   JAL zero, bb5
@@ -399,11 +399,12 @@ bb38:
   ADD s7, s6, zero
   JAL zero, bb35
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s2, 8(sp)
-  SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s3, 8(sp)
+  SD s2, 16(sp)
+  SD s1, 24(sp)
+  SD s0, 32(sp)
   LA s0, a
   ADD a0, s0, zero
   CALL getarray
@@ -416,12 +417,13 @@ main:
   LW s1, 0(s0)
   ADDI s0, zero, 1
   SUBW s2, s1, s0
-  SRAIW s0, s1, 1
-  LA s1, a
-  ADD a0, s1, zero
+  ADDI s0, zero, 2
+  DIVW s3, s1, s0
+  LA s0, a
+  ADD a0, s0, zero
   ADD a1, zero, zero
   ADD a2, s2, zero
-  ADD a3, s0, zero
+  ADD a3, s3, zero
   CALL median
   ADD s0, a0, zero
   ADDI a0, zero, 61
@@ -434,19 +436,21 @@ main:
   CALL putarray
   LA s0, n
   LW s1, 0(s0)
-  SRAIW s0, s1, 1
-  SLLIW s1, s0, 2
-  LA s0, a
-  ADD s2, s0, s1
+  ADDI s0, zero, 2
+  DIVW s2, s1, s0
+  SLLIW s0, s2, 2
+  LA s1, a
+  ADD s2, s1, s0
   LW s0, 0(s2)
   ADDI s1, zero, 256
   REMW s2, s0, s1
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
-  LD s1, 16(sp)
-  LD s0, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 8(sp)
+  LD s2, 16(sp)
+  LD s1, 24(sp)
+  LD s0, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 meanless_calculation:
   ADDI sp, sp, -96

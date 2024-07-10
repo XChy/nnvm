@@ -69,16 +69,17 @@ bb4:
   LA s0, x
   ADD a1, s0, zero
   CALL putarray
+  ADDI s0, zero, 2
   LW t4, 0(sp)
-  SRAIW s0, t4, 1
-  LUI s1, 352
-  ADDIW s1, s1, -1792
-  MULW s2, s0, s1
-  LA s1, x
-  ADD s3, s1, s2
-  LUI s1, 1
-  ADDIW s1, s1, -1696
-  MULW s2, s0, s1
+  DIVW s1, t4, s0
+  LUI s0, 352
+  ADDIW s0, s0, -1792
+  MULW s2, s1, s0
+  LA s0, x
+  ADD s3, s0, s2
+  LUI s0, 1
+  ADDIW s0, s0, -1696
+  MULW s2, s1, s0
   ADD s0, s3, s2
   LW t4, 0(sp)
   ADD a0, t4, zero

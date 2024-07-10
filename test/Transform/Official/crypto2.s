@@ -57,25 +57,30 @@ bb2:
   SLLIW s4, s3, 2
   LD t4, 360(sp)
   ADD s5, t4, s4
-  SRAIW s4, s1, 24
-  ADDI s6, zero, 256
-  REMW s7, s4, s6
+  LUI s4, 4096
+  ADDIW s4, s4, 0
+  DIVW s6, s1, s4
+  ADDI s4, zero, 256
+  REMW s7, s6, s4
   SW s7, 0(s5)
   ADDIW s4, s3, 1
   SLLIW s5, s4, 2
   LD t4, 360(sp)
   ADD s4, t4, s5
-  SRAIW s5, s1, 16
-  ADDI s6, zero, 256
-  REMW s7, s5, s6
+  LUI s5, 16
+  ADDIW s5, s5, 0
+  DIVW s6, s1, s5
+  ADDI s5, zero, 256
+  REMW s7, s6, s5
   SW s7, 0(s4)
   ADDIW s4, s3, 2
   SLLIW s5, s4, 2
   LD t4, 360(sp)
   ADD s4, t4, s5
-  SRAIW s5, s1, 8
-  ADDI s6, zero, 256
-  REMW s7, s5, s6
+  ADDI s5, zero, 256
+  DIVW s6, s1, s5
+  ADDI s5, zero, 256
+  REMW s7, s6, s5
   SW s7, 0(s4)
   ADDIW s4, s3, 3
   SLLIW s5, s4, 2
@@ -750,32 +755,18 @@ bb44:
   SLLIW s7, s6, 2
   LA s8, buffer
   ADD s9, s8, s7
-  LUI s7, 8
-  ADDIW s7, s7, -768
-  SRAIW s8, s7, 24
-  ADDI s7, zero, 256
-  REMW s10, s8, s7
-  SW s10, 0(s9)
+  SW zero, 0(s9)
   ADDIW s7, s6, 1
   SLLIW s8, s7, 2
   LA s7, buffer
   ADD s9, s7, s8
-  LUI s7, 8
-  ADDIW s7, s7, -768
-  SRAIW s8, s7, 16
-  ADDI s7, zero, 256
-  REMW s10, s8, s7
-  SW s10, 0(s9)
+  SW zero, 0(s9)
   ADDIW s7, s6, 2
   SLLIW s8, s7, 2
   LA s7, buffer
   ADD s9, s7, s8
-  LUI s7, 8
-  ADDIW s7, s7, -768
-  SRAIW s8, s7, 8
-  ADDI s7, zero, 256
-  REMW s10, s8, s7
-  SW s10, 0(s9)
+  ADDI s7, zero, 125
+  SW s7, 0(s9)
   ADDIW s7, s6, 3
   SLLIW s8, s7, 2
   LA s7, buffer
@@ -1296,12 +1287,14 @@ bb76:
   ADDW s11, s9, s8
   LA s8, state
   SW s11, 0(s8)
-  SRAIW s8, s11, 17
-  ADDW s9, s11, s8
-  LA s8, state
-  SW s9, 0(s8)
-  SLLIW s8, s9, 5
-  ADDW s11, s9, s8
+  LUI s8, 32
+  ADDIW s8, s8, 0
+  DIVW s9, s11, s8
+  ADDW s8, s11, s9
+  LA s9, state
+  SW s8, 0(s9)
+  SLLIW s9, s8, 5
+  ADDW s11, s8, s9
   LA s8, state
   SW s11, 0(s8)
   ADDI s8, zero, 256
@@ -1342,12 +1335,14 @@ get_random:
   ADDW s2, s1, s0
   LA s0, state
   SW s2, 0(s0)
-  SRAIW s0, s2, 17
-  ADDW s1, s2, s0
-  LA s0, state
-  SW s1, 0(s0)
-  SLLIW s0, s1, 5
-  ADDW s2, s1, s0
+  LUI s0, 32
+  ADDIW s0, s0, 0
+  DIVW s1, s2, s0
+  ADDW s0, s2, s1
+  LA s1, state
+  SW s0, 0(s1)
+  SLLIW s1, s0, 5
+  ADDW s2, s0, s1
   LA s0, state
   SW s2, 0(s0)
   ADD a0, s2, zero

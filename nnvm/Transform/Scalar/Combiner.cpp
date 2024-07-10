@@ -159,15 +159,15 @@ Value *CombinerPass::simplifySDiv(SDivInst *I) {
   Value *A, *B, *C;
   Type *type = I->getType();
   ConstantInt *C1;
-  // A * (powerof2 ** 2) --> A << powerof2
   GInt powerOfTwo;
 
-  if (match(I, pSDiv(pValue(A), pConstantInt(C1))) &&
-      genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
-                           powerOfTwo)) {
-    return builder.buildBinOp<AShrInst>(
-        A, builder.getConstantInt(type, powerOfTwo), type);
-  }
+  // TODO: fold sdiv
+  // if (match(I, pSDiv(pValue(A), pConstantInt(C1))) &&
+  // genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
+  // powerOfTwo)) {
+  // return builder.buildBinOp<AShrInst>(
+  // A, builder.getConstantInt(type, powerOfTwo), type);
+  //}
 
   return nullptr;
 }

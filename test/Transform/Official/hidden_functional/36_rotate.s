@@ -49,17 +49,17 @@ MAX_WIDTH:
 rotate:
   ADDI sp, sp, -224
   FSD fs11, 16(sp)
-  FSD fs1, 24(sp)
-  SD s4, 32(sp)
-  SD s1, 40(sp)
-  SD s2, 48(sp)
-  SD s8, 56(sp)
-  FSD fs3, 64(sp)
-  SD s3, 72(sp)
-  FSD fs8, 80(sp)
-  SD s7, 88(sp)
-  FSD fs2, 96(sp)
-  SD s6, 104(sp)
+  SD s6, 24(sp)
+  FSD fs1, 32(sp)
+  SD s4, 40(sp)
+  SD s1, 48(sp)
+  SD s2, 56(sp)
+  SD s8, 64(sp)
+  FSD fs3, 72(sp)
+  SD s3, 80(sp)
+  FSD fs8, 88(sp)
+  SD s7, 96(sp)
+  FSD fs2, 104(sp)
   SD s0, 112(sp)
   SD s9, 120(sp)
   FSD fs4, 128(sp)
@@ -73,7 +73,7 @@ rotate:
   FSD fs7, 192(sp)
   SD ra, 200(sp)
   FSD fs10, 208(sp)
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   ADD s3, a1, zero
   FSGNJ.D ft4, fa0, fa0
   FSW ft4, 0(sp)
@@ -84,14 +84,14 @@ rotate:
   BNE s4, zero, bb35
   # implict jump to bb1
 bb1:
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
+  LA s1, .CONSTANT.7.0
+  FLW fs0, 0(s1)
+  LA s1, .CONSTANT.7.0
+  FLW fs1, 0(s1)
   FSGNJN.S fs2, fs0, fs1
   FLW ft4, 0(sp)
-  FLT.S s0, ft4, fs2
-  ADD s4, s0, zero
+  FLT.S s1, ft4, fs2
+  ADD s4, s1, zero
   # implict jump to bb2
 bb2:
   ADD s5, s4, zero
@@ -149,13 +149,13 @@ bb8:
   BNE s5, zero, bb31
   # implict jump to bb9
 bb9:
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs2, 0(s0)
+  LA s1, .CONSTANT.7.0
+  FLW fs0, 0(s1)
+  LA s1, .CONSTANT.7.0
+  FLW fs2, 0(s1)
   FSGNJN.S fs3, fs0, fs2
-  FLT.S s0, fs8, fs3
-  ADD s5, s0, zero
+  FLT.S s1, fs8, fs3
+  ADD s5, s1, zero
   # implict jump to bb10
 bb10:
   ADD s6, s5, zero
@@ -189,26 +189,28 @@ bb16:
   FSGNJ.D fs3, fa0, fa0
   LA s6, width
   LW s7, 0(s6)
-  SRAIW s6, s7, 1
-  LA s7, height
-  LW s8, 0(s7)
-  SRAIW s7, s8, 1
-  SUBW s8, s1, s6
-  SUBW s9, s3, s7
-  FCVT.S.W ft0, s8
+  ADDI s6, zero, 2
+  DIVW s8, s7, s6
+  LA s6, height
+  LW s7, 0(s6)
+  ADDI s6, zero, 2
+  DIVW s9, s7, s6
+  SUBW s6, s0, s8
+  SUBW s7, s3, s9
+  FCVT.S.W ft0, s6
   FMUL.S ft1, ft0, fs3
-  FCVT.S.W ft2, s9
+  FCVT.S.W ft2, s7
   FMUL.S ft5, ft2, fs6
   FSUB.S ft6, ft1, ft5
-  FCVT.S.W ft1, s6
+  FCVT.S.W ft1, s8
   FADD.S ft5, ft6, ft1
   FCVT.W.S s2, ft5, rtz
   FMUL.S ft1, ft0, fs6
   FMUL.S ft0, ft2, fs3
   FADD.S fs3, ft1, ft0
-  FCVT.S.W ft0, s7
+  FCVT.S.W ft0, s9
   FADD.S ft1, fs3, ft0
-  FCVT.W.S s0, ft1, rtz
+  FCVT.W.S s1, ft1, rtz
   SLT s6, s2, zero
   BNE s6, zero, bb27
   # implict jump to bb17
@@ -224,7 +226,7 @@ bb18:
   BNE s7, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s8, s0, zero
+  SLT s8, s1, zero
   ADD s7, s8, zero
   # implict jump to bb20
 bb20:
@@ -234,7 +236,7 @@ bb20:
 bb21:
   LA s9, height
   LW s10, 0(s9)
-  SLT s9, s0, s10
+  SLT s9, s1, s10
   XORI s10, s9, 1
   ADD s8, s10, zero
   # implict jump to bb22
@@ -245,7 +247,7 @@ bb22:
 bb23:
   LA s9, width
   LW s10, 0(s9)
-  MULW s9, s0, s10
+  MULW s9, s1, s10
   ADDW s10, s9, s2
   SLLIW s9, s10, 2
   LA s10, image
@@ -253,17 +255,17 @@ bb23:
   LW s9, 0(s11)
   ADD a0, s9, zero
   FLD fs11, 16(sp)
-  FLD fs1, 24(sp)
-  LD s4, 32(sp)
-  LD s1, 40(sp)
-  LD s2, 48(sp)
-  LD s8, 56(sp)
-  FLD fs3, 64(sp)
-  LD s3, 72(sp)
-  FLD fs8, 80(sp)
-  LD s7, 88(sp)
-  FLD fs2, 96(sp)
-  LD s6, 104(sp)
+  LD s6, 24(sp)
+  FLD fs1, 32(sp)
+  LD s4, 40(sp)
+  LD s1, 48(sp)
+  LD s2, 56(sp)
+  LD s8, 64(sp)
+  FLD fs3, 72(sp)
+  LD s3, 80(sp)
+  FLD fs8, 88(sp)
+  LD s7, 96(sp)
+  FLD fs2, 104(sp)
   LD s0, 112(sp)
   LD s9, 120(sp)
   FLD fs4, 128(sp)
@@ -282,17 +284,17 @@ bb23:
 bb24:
   ADD a0, zero, zero
   FLD fs11, 16(sp)
-  FLD fs1, 24(sp)
-  LD s4, 32(sp)
-  LD s1, 40(sp)
-  LD s2, 48(sp)
-  LD s8, 56(sp)
-  FLD fs3, 64(sp)
-  LD s3, 72(sp)
-  FLD fs8, 80(sp)
-  LD s7, 88(sp)
-  FLD fs2, 96(sp)
-  LD s6, 104(sp)
+  LD s6, 24(sp)
+  FLD fs1, 32(sp)
+  LD s4, 40(sp)
+  LD s1, 48(sp)
+  LD s2, 56(sp)
+  LD s8, 64(sp)
+  FLD fs3, 72(sp)
+  LD s3, 80(sp)
+  FLD fs8, 88(sp)
+  LD s7, 96(sp)
+  FLD fs2, 104(sp)
   LD s0, 112(sp)
   LD s9, 120(sp)
   FLD fs4, 128(sp)
@@ -1255,34 +1257,36 @@ bb134:
   FSGNJ.D fs3, fa0, fa0
   LA s8, width
   LW s9, 0(s8)
-  SRAIW s8, s9, 1
-  LA s9, height
-  LW s10, 0(s9)
-  SRAIW s9, s10, 1
-  SUBW s10, s5, s8
+  ADDI s8, zero, 2
+  DIVW s10, s9, s8
+  LA s8, height
+  LW s9, 0(s8)
+  ADDI s8, zero, 2
+  DIVW s11, s9, s8
+  SUBW s8, s5, s10
   LW t4, 36(sp)
-  SUBW s11, t4, s9
-  FCVT.S.W fs1, s10
+  SUBW s9, t4, s11
+  FCVT.S.W fs1, s8
   FMUL.S fs7, fs1, fs3
-  FCVT.S.W fs5, s11
+  FCVT.S.W fs5, s9
   FMUL.S fs4, fs5, fs6
   FSUB.S fs8, fs7, fs4
-  FCVT.S.W fs4, s8
+  FCVT.S.W fs4, s10
   FADD.S fs7, fs8, fs4
-  FCVT.W.S s0, fs7, rtz
+  FCVT.W.S s1, fs7, rtz
   FMUL.S fs4, fs1, fs6
   FMUL.S fs1, fs5, fs3
   FADD.S fs3, fs4, fs1
-  FCVT.S.W fs1, s9
+  FCVT.S.W fs1, s11
   FADD.S fs4, fs3, fs1
-  FCVT.W.S s1, fs4, rtz
-  SLT s8, s0, zero
+  FCVT.W.S s0, fs4, rtz
+  SLT s8, s1, zero
   BNE s8, zero, bb146
   # implict jump to bb135
 bb135:
   LA s2, width
   LW s3, 0(s2)
-  SLT s2, s0, s3
+  SLT s2, s1, s3
   XORI s3, s2, 1
   ADD s8, s3, zero
   # implict jump to bb136
@@ -1291,7 +1295,7 @@ bb136:
   BNE s9, zero, bb145
   # implict jump to bb137
 bb137:
-  SLT s2, s1, zero
+  SLT s2, s0, zero
   ADD s9, s2, zero
   # implict jump to bb138
 bb138:
@@ -1301,7 +1305,7 @@ bb138:
 bb139:
   LA s2, height
   LW s3, 0(s2)
-  SLT s2, s1, s3
+  SLT s2, s0, s3
   XORI s3, s2, 1
   ADD s10, s3, zero
   # implict jump to bb140
@@ -1312,8 +1316,8 @@ bb140:
 bb141:
   LA s2, width
   LW s4, 0(s2)
-  MULW s2, s1, s4
-  ADDW s4, s2, s0
+  MULW s2, s0, s4
+  ADDW s4, s2, s1
   SLLIW s2, s4, 2
   LA s4, image
   ADD s3, s4, s2

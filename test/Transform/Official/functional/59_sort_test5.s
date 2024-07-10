@@ -25,9 +25,10 @@ heap_sort:
   SD ra, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  SRAIW s2, s1, 1
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
+  ADDI s2, zero, 2
+  DIVW s3, s1, s2
+  ADDI s2, zero, 1
+  SUBW s4, s3, s2
   ADD s2, s4, zero
   # implict jump to bb1
 bb1:
@@ -366,9 +367,10 @@ main:
   SW s1, 0(s0)
   LA s0, n
   LW s1, 0(s0)
-  SRAIW s0, s1, 1
-  ADDI s2, zero, 1
-  SUBW s3, s0, s2
+  ADDI s0, zero, 2
+  DIVW s2, s1, s0
+  ADDI s0, zero, 1
+  SUBW s3, s2, s0
   ADD s0, s3, zero
   # implict jump to bb40
 bb40:

@@ -209,8 +209,8 @@ then417:
   br bb %if.exit418
 if.exit418:
   a0395.phi = phi [bb %if.exit328, i32 %414, bb %then417, i32 %420]
-  15773 = ashr i32 %393, i32 1
-  424 = srem i32 %15773, i32 2
+  422 = sdiv i32 %393, i32 2
+  424 = srem i32 %422, i32 2
   426 = icmp slt i32 %424, i32 0
   br i1 %426, bb %then427, bb %if.exit428
 then427:
@@ -218,8 +218,8 @@ then427:
   br bb %if.exit428
 if.exit428:
   a1396.phi = phi [bb %if.exit418, i32 %424, bb %then427, i32 %430]
-  15774 = ashr i32 %15773, i32 1
-  434 = srem i32 %15774, i32 2
+  432 = sdiv i32 %422, i32 2
+  434 = srem i32 %432, i32 2
   436 = icmp slt i32 %434, i32 0
   br i1 %436, bb %then437, bb %if.exit438
 then437:
@@ -227,8 +227,8 @@ then437:
   br bb %if.exit438
 if.exit438:
   a2397.phi = phi [bb %if.exit428, i32 %434, bb %then437, i32 %440]
-  15775 = ashr i32 %15774, i32 1
-  444 = srem i32 %15775, i32 2
+  442 = sdiv i32 %432, i32 2
+  444 = srem i32 %442, i32 2
   446 = icmp slt i32 %444, i32 0
   br i1 %446, bb %then447, bb %if.exit448
 then447:
@@ -236,8 +236,8 @@ then447:
   br bb %if.exit448
 if.exit448:
   a3398.phi = phi [bb %if.exit438, i32 %444, bb %then447, i32 %450]
-  15776 = ashr i32 %15775, i32 1
-  454 = srem i32 %15776, i32 2
+  452 = sdiv i32 %442, i32 2
+  454 = srem i32 %452, i32 2
   456 = icmp slt i32 %454, i32 0
   br i1 %456, bb %then457, bb %if.exit458
 then457:
@@ -245,8 +245,8 @@ then457:
   br bb %if.exit458
 if.exit458:
   a4399.phi = phi [bb %if.exit448, i32 %454, bb %then457, i32 %460]
-  15777 = ashr i32 %15776, i32 1
-  464 = srem i32 %15777, i32 2
+  462 = sdiv i32 %452, i32 2
+  464 = srem i32 %462, i32 2
   466 = icmp slt i32 %464, i32 0
   br i1 %466, bb %then467, bb %if.exit468
 then467:
@@ -254,8 +254,8 @@ then467:
   br bb %if.exit468
 if.exit468:
   a5400.phi = phi [bb %if.exit458, i32 %464, bb %then467, i32 %470]
-  15778 = ashr i32 %15777, i32 1
-  474 = srem i32 %15778, i32 2
+  472 = sdiv i32 %462, i32 2
+  474 = srem i32 %472, i32 2
   476 = icmp slt i32 %474, i32 0
   br i1 %476, bb %then477, bb %if.exit478
 then477:
@@ -263,8 +263,8 @@ then477:
   br bb %if.exit478
 if.exit478:
   a6401.phi = phi [bb %if.exit468, i32 %474, bb %then477, i32 %480]
-  15779 = ashr i32 %15778, i32 1
-  484 = srem i32 %15779, i32 2
+  482 = sdiv i32 %472, i32 2
+  484 = srem i32 %482, i32 2
   486 = icmp slt i32 %484, i32 0
   br i1 %486, bb %then487, bb %if.exit488
 then487:
@@ -272,8 +272,8 @@ then487:
   br bb %if.exit488
 if.exit488:
   a7402.phi = phi [bb %if.exit478, i32 %484, bb %then487, i32 %490]
-  15780 = ashr i32 %15779, i32 1
-  494 = srem i32 %15780, i32 2
+  492 = sdiv i32 %482, i32 2
+  494 = srem i32 %492, i32 2
   496 = icmp slt i32 %494, i32 0
   br i1 %496, bb %then497, bb %if.exit498
 then497:
@@ -281,8 +281,8 @@ then497:
   br bb %if.exit498
 if.exit498:
   a8403.phi = phi [bb %if.exit488, i32 %494, bb %then497, i32 %500]
-  15781 = ashr i32 %15780, i32 1
-  504 = srem i32 %15781, i32 2
+  502 = sdiv i32 %492, i32 2
+  504 = srem i32 %502, i32 2
   506 = icmp slt i32 %504, i32 0
   br i1 %506, bb %then507, bb %if.exit508
 then507:
@@ -290,8 +290,8 @@ then507:
   br bb %if.exit508
 if.exit508:
   a9404.phi = phi [bb %if.exit498, i32 %504, bb %then507, i32 %510]
-  15782 = ashr i32 %15781, i32 1
-  514 = srem i32 %15782, i32 2
+  512 = sdiv i32 %502, i32 2
+  514 = srem i32 %512, i32 2
   516 = icmp slt i32 %514, i32 0
   br i1 %516, bb %then517, bb %if.exit518
 then517:
@@ -299,8 +299,8 @@ then517:
   br bb %if.exit518
 if.exit518:
   a10405.phi = phi [bb %if.exit508, i32 %514, bb %then517, i32 %520]
-  15783 = ashr i32 %15782, i32 1
-  524 = srem i32 %15783, i32 2
+  522 = sdiv i32 %512, i32 2
+  524 = srem i32 %522, i32 2
   526 = icmp slt i32 %524, i32 0
   br i1 %526, bb %then527, bb %if.exit528
 then527:
@@ -308,8 +308,8 @@ then527:
   br bb %if.exit528
 if.exit528:
   a11406.phi = phi [bb %if.exit518, i32 %524, bb %then527, i32 %530]
-  15784 = ashr i32 %15783, i32 1
-  534 = srem i32 %15784, i32 2
+  532 = sdiv i32 %522, i32 2
+  534 = srem i32 %532, i32 2
   536 = icmp slt i32 %534, i32 0
   br i1 %536, bb %then537, bb %if.exit538
 then537:
@@ -317,8 +317,8 @@ then537:
   br bb %if.exit538
 if.exit538:
   a12407.phi = phi [bb %if.exit528, i32 %534, bb %then537, i32 %540]
-  15785 = ashr i32 %15784, i32 1
-  544 = srem i32 %15785, i32 2
+  542 = sdiv i32 %532, i32 2
+  544 = srem i32 %542, i32 2
   546 = icmp slt i32 %544, i32 0
   br i1 %546, bb %then547, bb %if.exit548
 then547:
@@ -326,8 +326,8 @@ then547:
   br bb %if.exit548
 if.exit548:
   a13408.phi = phi [bb %if.exit538, i32 %544, bb %then547, i32 %550]
-  15786 = ashr i32 %15785, i32 1
-  554 = srem i32 %15786, i32 2
+  552 = sdiv i32 %542, i32 2
+  554 = srem i32 %552, i32 2
   556 = icmp slt i32 %554, i32 0
   br i1 %556, bb %then557, bb %if.exit558
 then557:
@@ -335,8 +335,8 @@ then557:
   br bb %if.exit558
 if.exit558:
   a14409.phi = phi [bb %if.exit548, i32 %554, bb %then557, i32 %560]
-  15787 = ashr i32 %15786, i32 1
-  564 = srem i32 %15787, i32 2
+  562 = sdiv i32 %552, i32 2
+  564 = srem i32 %562, i32 2
   566 = icmp slt i32 %564, i32 0
   br i1 %566, bb %then567, bb %if.exit568
 then567:
@@ -2859,36 +2859,36 @@ select.then2931:
 select.else2932:
   br bb %select.exit2933
 select.exit2933:
-  15789 = shl i32 %s15.phi, i32 1
-  2961 = add i32 %15789, i32 %s14.phi
-  15790 = shl i32 %2961, i32 1
-  2965 = add i32 %15790, i32 %s13.phi
-  15791 = shl i32 %2965, i32 1
-  2969 = add i32 %15791, i32 %s12.phi
-  15792 = shl i32 %2969, i32 1
-  2973 = add i32 %15792, i32 %s11.phi
-  15793 = shl i32 %2973, i32 1
-  2977 = add i32 %15793, i32 %s10.phi
-  15794 = shl i32 %2977, i32 1
-  2981 = add i32 %15794, i32 %s9.phi
-  15795 = shl i32 %2981, i32 1
-  2985 = add i32 %15795, i32 %s8.phi
-  15796 = shl i32 %2985, i32 1
-  2989 = add i32 %15796, i32 %s7.phi
-  15797 = shl i32 %2989, i32 1
-  2993 = add i32 %15797, i32 %s6.phi
-  15798 = shl i32 %2993, i32 1
-  2997 = add i32 %15798, i32 %s5.phi
-  15799 = shl i32 %2997, i32 1
-  3001 = add i32 %15799, i32 %s4.phi
-  15800 = shl i32 %3001, i32 1
-  3005 = add i32 %15800, i32 %s3.phi
-  15801 = shl i32 %3005, i32 1
-  3009 = add i32 %15801, i32 %s2.phi
-  15802 = shl i32 %3009, i32 1
-  3013 = add i32 %15802, i32 %s1.phi
-  15803 = shl i32 %3013, i32 1
-  3017 = add i32 %15803, i32 %s0.phi
+  15774 = shl i32 %s15.phi, i32 1
+  2961 = add i32 %15774, i32 %s14.phi
+  15775 = shl i32 %2961, i32 1
+  2965 = add i32 %15775, i32 %s13.phi
+  15776 = shl i32 %2965, i32 1
+  2969 = add i32 %15776, i32 %s12.phi
+  15777 = shl i32 %2969, i32 1
+  2973 = add i32 %15777, i32 %s11.phi
+  15778 = shl i32 %2973, i32 1
+  2977 = add i32 %15778, i32 %s10.phi
+  15779 = shl i32 %2977, i32 1
+  2981 = add i32 %15779, i32 %s9.phi
+  15780 = shl i32 %2981, i32 1
+  2985 = add i32 %15780, i32 %s8.phi
+  15781 = shl i32 %2985, i32 1
+  2989 = add i32 %15781, i32 %s7.phi
+  15782 = shl i32 %2989, i32 1
+  2993 = add i32 %15782, i32 %s6.phi
+  15783 = shl i32 %2993, i32 1
+  2997 = add i32 %15783, i32 %s5.phi
+  15784 = shl i32 %2997, i32 1
+  3001 = add i32 %15784, i32 %s4.phi
+  15785 = shl i32 %3001, i32 1
+  3005 = add i32 %15785, i32 %s3.phi
+  15786 = shl i32 %3005, i32 1
+  3009 = add i32 %15786, i32 %s2.phi
+  15787 = shl i32 %3009, i32 1
+  3013 = add i32 %15787, i32 %s1.phi
+  15788 = shl i32 %3013, i32 1
+  3017 = add i32 %15788, i32 %s0.phi
   3038 = srem i32 %n, i32 2
   3040 = icmp slt i32 %3038, i32 0
   br i1 %3040, bb %then3041, bb %if.exit3042
@@ -2897,8 +2897,8 @@ then3041:
   br bb %if.exit3042
 if.exit3042:
   a03019.phi = phi [bb %select.exit2933, i32 %3038, bb %then3041, i32 %3044]
-  15804 = ashr i32 %n, i32 1
-  3048 = srem i32 %15804, i32 2
+  3046 = sdiv i32 %n, i32 2
+  3048 = srem i32 %3046, i32 2
   3050 = icmp slt i32 %3048, i32 0
   br i1 %3050, bb %then3051, bb %if.exit3052
 then3051:
@@ -2906,8 +2906,8 @@ then3051:
   br bb %if.exit3052
 if.exit3052:
   a13020.phi = phi [bb %if.exit3042, i32 %3048, bb %then3051, i32 %3054]
-  15805 = ashr i32 %15804, i32 1
-  3058 = srem i32 %15805, i32 2
+  3056 = sdiv i32 %3046, i32 2
+  3058 = srem i32 %3056, i32 2
   3060 = icmp slt i32 %3058, i32 0
   br i1 %3060, bb %then3061, bb %if.exit3062
 then3061:
@@ -2915,8 +2915,8 @@ then3061:
   br bb %if.exit3062
 if.exit3062:
   a23021.phi = phi [bb %if.exit3052, i32 %3058, bb %then3061, i32 %3064]
-  15806 = ashr i32 %15805, i32 1
-  3068 = srem i32 %15806, i32 2
+  3066 = sdiv i32 %3056, i32 2
+  3068 = srem i32 %3066, i32 2
   3070 = icmp slt i32 %3068, i32 0
   br i1 %3070, bb %then3071, bb %if.exit3072
 then3071:
@@ -2924,8 +2924,8 @@ then3071:
   br bb %if.exit3072
 if.exit3072:
   a33022.phi = phi [bb %if.exit3062, i32 %3068, bb %then3071, i32 %3074]
-  15807 = ashr i32 %15806, i32 1
-  3078 = srem i32 %15807, i32 2
+  3076 = sdiv i32 %3066, i32 2
+  3078 = srem i32 %3076, i32 2
   3080 = icmp slt i32 %3078, i32 0
   br i1 %3080, bb %then3081, bb %if.exit3082
 then3081:
@@ -2933,8 +2933,8 @@ then3081:
   br bb %if.exit3082
 if.exit3082:
   a43023.phi = phi [bb %if.exit3072, i32 %3078, bb %then3081, i32 %3084]
-  15808 = ashr i32 %15807, i32 1
-  3088 = srem i32 %15808, i32 2
+  3086 = sdiv i32 %3076, i32 2
+  3088 = srem i32 %3086, i32 2
   3090 = icmp slt i32 %3088, i32 0
   br i1 %3090, bb %then3091, bb %if.exit3092
 then3091:
@@ -2942,8 +2942,8 @@ then3091:
   br bb %if.exit3092
 if.exit3092:
   a53024.phi = phi [bb %if.exit3082, i32 %3088, bb %then3091, i32 %3094]
-  15809 = ashr i32 %15808, i32 1
-  3098 = srem i32 %15809, i32 2
+  3096 = sdiv i32 %3086, i32 2
+  3098 = srem i32 %3096, i32 2
   3100 = icmp slt i32 %3098, i32 0
   br i1 %3100, bb %then3101, bb %if.exit3102
 then3101:
@@ -2951,8 +2951,8 @@ then3101:
   br bb %if.exit3102
 if.exit3102:
   a63025.phi = phi [bb %if.exit3092, i32 %3098, bb %then3101, i32 %3104]
-  15810 = ashr i32 %15809, i32 1
-  3108 = srem i32 %15810, i32 2
+  3106 = sdiv i32 %3096, i32 2
+  3108 = srem i32 %3106, i32 2
   3110 = icmp slt i32 %3108, i32 0
   br i1 %3110, bb %then3111, bb %if.exit3112
 then3111:
@@ -2960,8 +2960,8 @@ then3111:
   br bb %if.exit3112
 if.exit3112:
   a73026.phi = phi [bb %if.exit3102, i32 %3108, bb %then3111, i32 %3114]
-  15811 = ashr i32 %15810, i32 1
-  3118 = srem i32 %15811, i32 2
+  3116 = sdiv i32 %3106, i32 2
+  3118 = srem i32 %3116, i32 2
   3120 = icmp slt i32 %3118, i32 0
   br i1 %3120, bb %then3121, bb %if.exit3122
 then3121:
@@ -2969,8 +2969,8 @@ then3121:
   br bb %if.exit3122
 if.exit3122:
   a83027.phi = phi [bb %if.exit3112, i32 %3118, bb %then3121, i32 %3124]
-  15812 = ashr i32 %15811, i32 1
-  3128 = srem i32 %15812, i32 2
+  3126 = sdiv i32 %3116, i32 2
+  3128 = srem i32 %3126, i32 2
   3130 = icmp slt i32 %3128, i32 0
   br i1 %3130, bb %then3131, bb %if.exit3132
 then3131:
@@ -2978,8 +2978,8 @@ then3131:
   br bb %if.exit3132
 if.exit3132:
   a93028.phi = phi [bb %if.exit3122, i32 %3128, bb %then3131, i32 %3134]
-  15813 = ashr i32 %15812, i32 1
-  3138 = srem i32 %15813, i32 2
+  3136 = sdiv i32 %3126, i32 2
+  3138 = srem i32 %3136, i32 2
   3140 = icmp slt i32 %3138, i32 0
   br i1 %3140, bb %then3141, bb %if.exit3142
 then3141:
@@ -2987,8 +2987,8 @@ then3141:
   br bb %if.exit3142
 if.exit3142:
   a103029.phi = phi [bb %if.exit3132, i32 %3138, bb %then3141, i32 %3144]
-  15814 = ashr i32 %15813, i32 1
-  3148 = srem i32 %15814, i32 2
+  3146 = sdiv i32 %3136, i32 2
+  3148 = srem i32 %3146, i32 2
   3150 = icmp slt i32 %3148, i32 0
   br i1 %3150, bb %then3151, bb %if.exit3152
 then3151:
@@ -2996,8 +2996,8 @@ then3151:
   br bb %if.exit3152
 if.exit3152:
   a113030.phi = phi [bb %if.exit3142, i32 %3148, bb %then3151, i32 %3154]
-  15815 = ashr i32 %15814, i32 1
-  3158 = srem i32 %15815, i32 2
+  3156 = sdiv i32 %3146, i32 2
+  3158 = srem i32 %3156, i32 2
   3160 = icmp slt i32 %3158, i32 0
   br i1 %3160, bb %then3161, bb %if.exit3162
 then3161:
@@ -3005,8 +3005,8 @@ then3161:
   br bb %if.exit3162
 if.exit3162:
   a123031.phi = phi [bb %if.exit3152, i32 %3158, bb %then3161, i32 %3164]
-  15816 = ashr i32 %15815, i32 1
-  3168 = srem i32 %15816, i32 2
+  3166 = sdiv i32 %3156, i32 2
+  3168 = srem i32 %3166, i32 2
   3170 = icmp slt i32 %3168, i32 0
   br i1 %3170, bb %then3171, bb %if.exit3172
 then3171:
@@ -3014,8 +3014,8 @@ then3171:
   br bb %if.exit3172
 if.exit3172:
   a133032.phi = phi [bb %if.exit3162, i32 %3168, bb %then3171, i32 %3174]
-  15817 = ashr i32 %15816, i32 1
-  3178 = srem i32 %15817, i32 2
+  3176 = sdiv i32 %3166, i32 2
+  3178 = srem i32 %3176, i32 2
   3180 = icmp slt i32 %3178, i32 0
   br i1 %3180, bb %then3181, bb %if.exit3182
 then3181:
@@ -3023,8 +3023,8 @@ then3181:
   br bb %if.exit3182
 if.exit3182:
   a143033.phi = phi [bb %if.exit3172, i32 %3178, bb %then3181, i32 %3184]
-  15818 = ashr i32 %15817, i32 1
-  3188 = srem i32 %15818, i32 2
+  3186 = sdiv i32 %3176, i32 2
+  3188 = srem i32 %3186, i32 2
   3190 = icmp slt i32 %3188, i32 0
   br i1 %3190, bb %then3191, bb %if.exit3192
 then3191:
@@ -3040,8 +3040,8 @@ then3219:
   br bb %if.exit3220
 if.exit3220:
   b03197.phi = phi [bb %if.exit3192, i32 %3216, bb %then3219, i32 %3222]
-  15819 = ashr i32 %3017, i32 1
-  3226 = srem i32 %15819, i32 2
+  3224 = sdiv i32 %3017, i32 2
+  3226 = srem i32 %3224, i32 2
   3228 = icmp slt i32 %3226, i32 0
   br i1 %3228, bb %then3229, bb %if.exit3230
 then3229:
@@ -3049,8 +3049,8 @@ then3229:
   br bb %if.exit3230
 if.exit3230:
   b13198.phi = phi [bb %if.exit3220, i32 %3226, bb %then3229, i32 %3232]
-  15820 = ashr i32 %15819, i32 1
-  3236 = srem i32 %15820, i32 2
+  3234 = sdiv i32 %3224, i32 2
+  3236 = srem i32 %3234, i32 2
   3238 = icmp slt i32 %3236, i32 0
   br i1 %3238, bb %then3239, bb %if.exit3240
 then3239:
@@ -3058,8 +3058,8 @@ then3239:
   br bb %if.exit3240
 if.exit3240:
   b23199.phi = phi [bb %if.exit3230, i32 %3236, bb %then3239, i32 %3242]
-  15821 = ashr i32 %15820, i32 1
-  3246 = srem i32 %15821, i32 2
+  3244 = sdiv i32 %3234, i32 2
+  3246 = srem i32 %3244, i32 2
   3248 = icmp slt i32 %3246, i32 0
   br i1 %3248, bb %then3249, bb %if.exit3250
 then3249:
@@ -3067,8 +3067,8 @@ then3249:
   br bb %if.exit3250
 if.exit3250:
   b33200.phi = phi [bb %if.exit3240, i32 %3246, bb %then3249, i32 %3252]
-  15822 = ashr i32 %15821, i32 1
-  3256 = srem i32 %15822, i32 2
+  3254 = sdiv i32 %3244, i32 2
+  3256 = srem i32 %3254, i32 2
   3258 = icmp slt i32 %3256, i32 0
   br i1 %3258, bb %then3259, bb %if.exit3260
 then3259:
@@ -3076,8 +3076,8 @@ then3259:
   br bb %if.exit3260
 if.exit3260:
   b43201.phi = phi [bb %if.exit3250, i32 %3256, bb %then3259, i32 %3262]
-  15823 = ashr i32 %15822, i32 1
-  3266 = srem i32 %15823, i32 2
+  3264 = sdiv i32 %3254, i32 2
+  3266 = srem i32 %3264, i32 2
   3268 = icmp slt i32 %3266, i32 0
   br i1 %3268, bb %then3269, bb %if.exit3270
 then3269:
@@ -3085,8 +3085,8 @@ then3269:
   br bb %if.exit3270
 if.exit3270:
   b53202.phi = phi [bb %if.exit3260, i32 %3266, bb %then3269, i32 %3272]
-  15824 = ashr i32 %15823, i32 1
-  3276 = srem i32 %15824, i32 2
+  3274 = sdiv i32 %3264, i32 2
+  3276 = srem i32 %3274, i32 2
   3278 = icmp slt i32 %3276, i32 0
   br i1 %3278, bb %then3279, bb %if.exit3280
 then3279:
@@ -3094,8 +3094,8 @@ then3279:
   br bb %if.exit3280
 if.exit3280:
   b63203.phi = phi [bb %if.exit3270, i32 %3276, bb %then3279, i32 %3282]
-  15825 = ashr i32 %15824, i32 1
-  3286 = srem i32 %15825, i32 2
+  3284 = sdiv i32 %3274, i32 2
+  3286 = srem i32 %3284, i32 2
   3288 = icmp slt i32 %3286, i32 0
   br i1 %3288, bb %then3289, bb %if.exit3290
 then3289:
@@ -3103,8 +3103,8 @@ then3289:
   br bb %if.exit3290
 if.exit3290:
   b73204.phi = phi [bb %if.exit3280, i32 %3286, bb %then3289, i32 %3292]
-  15826 = ashr i32 %15825, i32 1
-  3296 = srem i32 %15826, i32 2
+  3294 = sdiv i32 %3284, i32 2
+  3296 = srem i32 %3294, i32 2
   3298 = icmp slt i32 %3296, i32 0
   br i1 %3298, bb %then3299, bb %if.exit3300
 then3299:
@@ -3112,8 +3112,8 @@ then3299:
   br bb %if.exit3300
 if.exit3300:
   b83205.phi = phi [bb %if.exit3290, i32 %3296, bb %then3299, i32 %3302]
-  15827 = ashr i32 %15826, i32 1
-  3306 = srem i32 %15827, i32 2
+  3304 = sdiv i32 %3294, i32 2
+  3306 = srem i32 %3304, i32 2
   3308 = icmp slt i32 %3306, i32 0
   br i1 %3308, bb %then3309, bb %if.exit3310
 then3309:
@@ -3121,8 +3121,8 @@ then3309:
   br bb %if.exit3310
 if.exit3310:
   b93206.phi = phi [bb %if.exit3300, i32 %3306, bb %then3309, i32 %3312]
-  15828 = ashr i32 %15827, i32 1
-  3316 = srem i32 %15828, i32 2
+  3314 = sdiv i32 %3304, i32 2
+  3316 = srem i32 %3314, i32 2
   3318 = icmp slt i32 %3316, i32 0
   br i1 %3318, bb %then3319, bb %if.exit3320
 then3319:
@@ -3130,8 +3130,8 @@ then3319:
   br bb %if.exit3320
 if.exit3320:
   b103207.phi = phi [bb %if.exit3310, i32 %3316, bb %then3319, i32 %3322]
-  15829 = ashr i32 %15828, i32 1
-  3326 = srem i32 %15829, i32 2
+  3324 = sdiv i32 %3314, i32 2
+  3326 = srem i32 %3324, i32 2
   3328 = icmp slt i32 %3326, i32 0
   br i1 %3328, bb %then3329, bb %if.exit3330
 then3329:
@@ -3139,8 +3139,8 @@ then3329:
   br bb %if.exit3330
 if.exit3330:
   b113208.phi = phi [bb %if.exit3320, i32 %3326, bb %then3329, i32 %3332]
-  15830 = ashr i32 %15829, i32 1
-  3336 = srem i32 %15830, i32 2
+  3334 = sdiv i32 %3324, i32 2
+  3336 = srem i32 %3334, i32 2
   3338 = icmp slt i32 %3336, i32 0
   br i1 %3338, bb %then3339, bb %if.exit3340
 then3339:
@@ -3148,8 +3148,8 @@ then3339:
   br bb %if.exit3340
 if.exit3340:
   b123209.phi = phi [bb %if.exit3330, i32 %3336, bb %then3339, i32 %3342]
-  15831 = ashr i32 %15830, i32 1
-  3346 = srem i32 %15831, i32 2
+  3344 = sdiv i32 %3334, i32 2
+  3346 = srem i32 %3344, i32 2
   3348 = icmp slt i32 %3346, i32 0
   br i1 %3348, bb %then3349, bb %if.exit3350
 then3349:
@@ -3157,8 +3157,8 @@ then3349:
   br bb %if.exit3350
 if.exit3350:
   b133210.phi = phi [bb %if.exit3340, i32 %3346, bb %then3349, i32 %3352]
-  15832 = ashr i32 %15831, i32 1
-  3356 = srem i32 %15832, i32 2
+  3354 = sdiv i32 %3344, i32 2
+  3356 = srem i32 %3354, i32 2
   3358 = icmp slt i32 %3356, i32 0
   br i1 %3358, bb %then3359, bb %if.exit3360
 then3359:
@@ -3166,8 +3166,8 @@ then3359:
   br bb %if.exit3360
 if.exit3360:
   b143211.phi = phi [bb %if.exit3350, i32 %3356, bb %then3359, i32 %3362]
-  15833 = ashr i32 %15832, i32 1
-  3366 = srem i32 %15833, i32 2
+  3364 = sdiv i32 %3354, i32 2
+  3366 = srem i32 %3364, i32 2
   3368 = icmp slt i32 %3366, i32 0
   br i1 %3368, bb %then3369, bb %if.exit3370
 then3369:
@@ -5738,36 +5738,36 @@ select.then5556:
 select.else5557:
   br bb %select.exit5558
 select.exit5558:
-  15835 = shl i32 %s153405.phi, i32 1
-  5586 = add i32 %15835, i32 %s143404.phi
-  15836 = shl i32 %5586, i32 1
-  5590 = add i32 %15836, i32 %s133403.phi
-  15837 = shl i32 %5590, i32 1
-  5594 = add i32 %15837, i32 %s123402.phi
-  15838 = shl i32 %5594, i32 1
-  5598 = add i32 %15838, i32 %s113401.phi
-  15839 = shl i32 %5598, i32 1
-  5602 = add i32 %15839, i32 %s103400.phi
-  15840 = shl i32 %5602, i32 1
-  5606 = add i32 %15840, i32 %s93399.phi
-  15841 = shl i32 %5606, i32 1
-  5610 = add i32 %15841, i32 %s83398.phi
-  15842 = shl i32 %5610, i32 1
-  5614 = add i32 %15842, i32 %s73397.phi
-  15843 = shl i32 %5614, i32 1
-  5618 = add i32 %15843, i32 %s63396.phi
-  15844 = shl i32 %5618, i32 1
-  5622 = add i32 %15844, i32 %s53395.phi
-  15845 = shl i32 %5622, i32 1
-  5626 = add i32 %15845, i32 %s43394.phi
-  15846 = shl i32 %5626, i32 1
-  5630 = add i32 %15846, i32 %s33393.phi
-  15847 = shl i32 %5630, i32 1
-  5634 = add i32 %15847, i32 %s23392.phi
-  15848 = shl i32 %5634, i32 1
-  5638 = add i32 %15848, i32 %s13391.phi
-  15849 = shl i32 %5638, i32 1
-  5642 = add i32 %15849, i32 %s03390.phi
+  15790 = shl i32 %s153405.phi, i32 1
+  5586 = add i32 %15790, i32 %s143404.phi
+  15791 = shl i32 %5586, i32 1
+  5590 = add i32 %15791, i32 %s133403.phi
+  15792 = shl i32 %5590, i32 1
+  5594 = add i32 %15792, i32 %s123402.phi
+  15793 = shl i32 %5594, i32 1
+  5598 = add i32 %15793, i32 %s113401.phi
+  15794 = shl i32 %5598, i32 1
+  5602 = add i32 %15794, i32 %s103400.phi
+  15795 = shl i32 %5602, i32 1
+  5606 = add i32 %15795, i32 %s93399.phi
+  15796 = shl i32 %5606, i32 1
+  5610 = add i32 %15796, i32 %s83398.phi
+  15797 = shl i32 %5610, i32 1
+  5614 = add i32 %15797, i32 %s73397.phi
+  15798 = shl i32 %5614, i32 1
+  5618 = add i32 %15798, i32 %s63396.phi
+  15799 = shl i32 %5618, i32 1
+  5622 = add i32 %15799, i32 %s53395.phi
+  15800 = shl i32 %5622, i32 1
+  5626 = add i32 %15800, i32 %s43394.phi
+  15801 = shl i32 %5626, i32 1
+  5630 = add i32 %15801, i32 %s33393.phi
+  15802 = shl i32 %5630, i32 1
+  5634 = add i32 %15802, i32 %s23392.phi
+  15803 = shl i32 %5634, i32 1
+  5638 = add i32 %15803, i32 %s13391.phi
+  15804 = shl i32 %5638, i32 1
+  5642 = add i32 %15804, i32 %s03390.phi
   5645 = call i32 fib(i32 %5642)
   br i1 %214, bb %then5847, bb %else5849
 then5847:
@@ -5879,36 +5879,36 @@ then5967:
   br bb %if.exit5968
 if.exit5968:
   o155841.phi = phi [bb %else5969, i32 0, bb %then5967, i32 1]
-  15851 = shl i32 %o155841.phi, i32 1
-  5977 = add i32 %15851, i32 %o145840.phi
-  15852 = shl i32 %5977, i32 1
-  5981 = add i32 %15852, i32 %o135839.phi
-  15853 = shl i32 %5981, i32 1
-  5985 = add i32 %15853, i32 %o125838.phi
-  15854 = shl i32 %5985, i32 1
-  5989 = add i32 %15854, i32 %o115837.phi
-  15855 = shl i32 %5989, i32 1
-  5993 = add i32 %15855, i32 %o105836.phi
-  15856 = shl i32 %5993, i32 1
-  5997 = add i32 %15856, i32 %o95835.phi
-  15857 = shl i32 %5997, i32 1
-  6001 = add i32 %15857, i32 %o85834.phi
-  15858 = shl i32 %6001, i32 1
-  6005 = add i32 %15858, i32 %o75833.phi
-  15859 = shl i32 %6005, i32 1
-  6009 = add i32 %15859, i32 %o65832.phi
-  15860 = shl i32 %6009, i32 1
-  6013 = add i32 %15860, i32 %o55831.phi
-  15861 = shl i32 %6013, i32 1
-  6017 = add i32 %15861, i32 %o45830.phi
-  15862 = shl i32 %6017, i32 1
-  6021 = add i32 %15862, i32 %o35829.phi
-  15863 = shl i32 %6021, i32 1
-  6025 = add i32 %15863, i32 %o25828.phi
-  15864 = shl i32 %6025, i32 1
-  6029 = add i32 %15864, i32 %o15827.phi
-  15865 = shl i32 %6029, i32 1
-  6033 = add i32 %15865, i32 %o05826.phi
+  15806 = shl i32 %o155841.phi, i32 1
+  5977 = add i32 %15806, i32 %o145840.phi
+  15807 = shl i32 %5977, i32 1
+  5981 = add i32 %15807, i32 %o135839.phi
+  15808 = shl i32 %5981, i32 1
+  5985 = add i32 %15808, i32 %o125838.phi
+  15809 = shl i32 %5985, i32 1
+  5989 = add i32 %15809, i32 %o115837.phi
+  15810 = shl i32 %5989, i32 1
+  5993 = add i32 %15810, i32 %o105836.phi
+  15811 = shl i32 %5993, i32 1
+  5997 = add i32 %15811, i32 %o95835.phi
+  15812 = shl i32 %5997, i32 1
+  6001 = add i32 %15812, i32 %o85834.phi
+  15813 = shl i32 %6001, i32 1
+  6005 = add i32 %15813, i32 %o75833.phi
+  15814 = shl i32 %6005, i32 1
+  6009 = add i32 %15814, i32 %o65832.phi
+  15815 = shl i32 %6009, i32 1
+  6013 = add i32 %15815, i32 %o55831.phi
+  15816 = shl i32 %6013, i32 1
+  6017 = add i32 %15816, i32 %o45830.phi
+  15817 = shl i32 %6017, i32 1
+  6021 = add i32 %15817, i32 %o35829.phi
+  15818 = shl i32 %6021, i32 1
+  6025 = add i32 %15818, i32 %o25828.phi
+  15819 = shl i32 %6025, i32 1
+  6029 = add i32 %15819, i32 %o15827.phi
+  15820 = shl i32 %6029, i32 1
+  6033 = add i32 %15820, i32 %o05826.phi
   6054 = srem i32 %6033, i32 2
   6056 = icmp slt i32 %6054, i32 0
   br i1 %6056, bb %then6057, bb %if.exit6058
@@ -5919,8 +5919,8 @@ then6057:
   br bb %if.exit6058
 if.exit6058:
   a06035.phi = phi [bb %if.exit5968, i32 %6054, bb %then6057, i32 %6060]
-  15866 = ashr i32 %6033, i32 1
-  6064 = srem i32 %15866, i32 2
+  6062 = sdiv i32 %6033, i32 2
+  6064 = srem i32 %6062, i32 2
   6066 = icmp slt i32 %6064, i32 0
   br i1 %6066, bb %then6067, bb %if.exit6068
 then6067:
@@ -5928,8 +5928,8 @@ then6067:
   br bb %if.exit6068
 if.exit6068:
   a16036.phi = phi [bb %if.exit6058, i32 %6064, bb %then6067, i32 %6070]
-  15867 = ashr i32 %15866, i32 1
-  6074 = srem i32 %15867, i32 2
+  6072 = sdiv i32 %6062, i32 2
+  6074 = srem i32 %6072, i32 2
   6076 = icmp slt i32 %6074, i32 0
   br i1 %6076, bb %then6077, bb %if.exit6078
 then6077:
@@ -5937,8 +5937,8 @@ then6077:
   br bb %if.exit6078
 if.exit6078:
   a26037.phi = phi [bb %if.exit6068, i32 %6074, bb %then6077, i32 %6080]
-  15868 = ashr i32 %15867, i32 1
-  6084 = srem i32 %15868, i32 2
+  6082 = sdiv i32 %6072, i32 2
+  6084 = srem i32 %6082, i32 2
   6086 = icmp slt i32 %6084, i32 0
   br i1 %6086, bb %then6087, bb %if.exit6088
 then6087:
@@ -5946,8 +5946,8 @@ then6087:
   br bb %if.exit6088
 if.exit6088:
   a36038.phi = phi [bb %if.exit6078, i32 %6084, bb %then6087, i32 %6090]
-  15869 = ashr i32 %15868, i32 1
-  6094 = srem i32 %15869, i32 2
+  6092 = sdiv i32 %6082, i32 2
+  6094 = srem i32 %6092, i32 2
   6096 = icmp slt i32 %6094, i32 0
   br i1 %6096, bb %then6097, bb %if.exit6098
 then6097:
@@ -5955,8 +5955,8 @@ then6097:
   br bb %if.exit6098
 if.exit6098:
   a46039.phi = phi [bb %if.exit6088, i32 %6094, bb %then6097, i32 %6100]
-  15870 = ashr i32 %15869, i32 1
-  6104 = srem i32 %15870, i32 2
+  6102 = sdiv i32 %6092, i32 2
+  6104 = srem i32 %6102, i32 2
   6106 = icmp slt i32 %6104, i32 0
   br i1 %6106, bb %then6107, bb %if.exit6108
 then6107:
@@ -5964,8 +5964,8 @@ then6107:
   br bb %if.exit6108
 if.exit6108:
   a56040.phi = phi [bb %if.exit6098, i32 %6104, bb %then6107, i32 %6110]
-  15871 = ashr i32 %15870, i32 1
-  6114 = srem i32 %15871, i32 2
+  6112 = sdiv i32 %6102, i32 2
+  6114 = srem i32 %6112, i32 2
   6116 = icmp slt i32 %6114, i32 0
   br i1 %6116, bb %then6117, bb %if.exit6118
 then6117:
@@ -5973,8 +5973,8 @@ then6117:
   br bb %if.exit6118
 if.exit6118:
   a66041.phi = phi [bb %if.exit6108, i32 %6114, bb %then6117, i32 %6120]
-  15872 = ashr i32 %15871, i32 1
-  6124 = srem i32 %15872, i32 2
+  6122 = sdiv i32 %6112, i32 2
+  6124 = srem i32 %6122, i32 2
   6126 = icmp slt i32 %6124, i32 0
   br i1 %6126, bb %then6127, bb %if.exit6128
 then6127:
@@ -5982,8 +5982,8 @@ then6127:
   br bb %if.exit6128
 if.exit6128:
   a76042.phi = phi [bb %if.exit6118, i32 %6124, bb %then6127, i32 %6130]
-  15873 = ashr i32 %15872, i32 1
-  6134 = srem i32 %15873, i32 2
+  6132 = sdiv i32 %6122, i32 2
+  6134 = srem i32 %6132, i32 2
   6136 = icmp slt i32 %6134, i32 0
   br i1 %6136, bb %then6137, bb %if.exit6138
 then6137:
@@ -5991,8 +5991,8 @@ then6137:
   br bb %if.exit6138
 if.exit6138:
   a86043.phi = phi [bb %if.exit6128, i32 %6134, bb %then6137, i32 %6140]
-  15874 = ashr i32 %15873, i32 1
-  6144 = srem i32 %15874, i32 2
+  6142 = sdiv i32 %6132, i32 2
+  6144 = srem i32 %6142, i32 2
   6146 = icmp slt i32 %6144, i32 0
   br i1 %6146, bb %then6147, bb %if.exit6148
 then6147:
@@ -6000,8 +6000,8 @@ then6147:
   br bb %if.exit6148
 if.exit6148:
   a96044.phi = phi [bb %if.exit6138, i32 %6144, bb %then6147, i32 %6150]
-  15875 = ashr i32 %15874, i32 1
-  6154 = srem i32 %15875, i32 2
+  6152 = sdiv i32 %6142, i32 2
+  6154 = srem i32 %6152, i32 2
   6156 = icmp slt i32 %6154, i32 0
   br i1 %6156, bb %then6157, bb %if.exit6158
 then6157:
@@ -6009,8 +6009,8 @@ then6157:
   br bb %if.exit6158
 if.exit6158:
   a106045.phi = phi [bb %if.exit6148, i32 %6154, bb %then6157, i32 %6160]
-  15876 = ashr i32 %15875, i32 1
-  6164 = srem i32 %15876, i32 2
+  6162 = sdiv i32 %6152, i32 2
+  6164 = srem i32 %6162, i32 2
   6166 = icmp slt i32 %6164, i32 0
   br i1 %6166, bb %then6167, bb %if.exit6168
 then6167:
@@ -6018,8 +6018,8 @@ then6167:
   br bb %if.exit6168
 if.exit6168:
   a116046.phi = phi [bb %if.exit6158, i32 %6164, bb %then6167, i32 %6170]
-  15877 = ashr i32 %15876, i32 1
-  6174 = srem i32 %15877, i32 2
+  6172 = sdiv i32 %6162, i32 2
+  6174 = srem i32 %6172, i32 2
   6176 = icmp slt i32 %6174, i32 0
   br i1 %6176, bb %then6177, bb %if.exit6178
 then6177:
@@ -6027,8 +6027,8 @@ then6177:
   br bb %if.exit6178
 if.exit6178:
   a126047.phi = phi [bb %if.exit6168, i32 %6174, bb %then6177, i32 %6180]
-  15878 = ashr i32 %15877, i32 1
-  6184 = srem i32 %15878, i32 2
+  6182 = sdiv i32 %6172, i32 2
+  6184 = srem i32 %6182, i32 2
   6186 = icmp slt i32 %6184, i32 0
   br i1 %6186, bb %then6187, bb %if.exit6188
 then6187:
@@ -6036,8 +6036,8 @@ then6187:
   br bb %if.exit6188
 if.exit6188:
   a136048.phi = phi [bb %if.exit6178, i32 %6184, bb %then6187, i32 %6190]
-  15879 = ashr i32 %15878, i32 1
-  6194 = srem i32 %15879, i32 2
+  6192 = sdiv i32 %6182, i32 2
+  6194 = srem i32 %6192, i32 2
   6196 = icmp slt i32 %6194, i32 0
   br i1 %6196, bb %then6197, bb %if.exit6198
 then6197:
@@ -6045,8 +6045,8 @@ then6197:
   br bb %if.exit6198
 if.exit6198:
   a146049.phi = phi [bb %if.exit6188, i32 %6194, bb %then6197, i32 %6200]
-  15880 = ashr i32 %15879, i32 1
-  6204 = srem i32 %15880, i32 2
+  6202 = sdiv i32 %6192, i32 2
+  6204 = srem i32 %6202, i32 2
   6206 = icmp slt i32 %6204, i32 0
   br i1 %6206, bb %then6207, bb %if.exit6208
 then6207:
@@ -8569,36 +8569,36 @@ select.then8571:
 select.else8572:
   br bb %select.exit8573
 select.exit8573:
-  15882 = shl i32 %s156420.phi, i32 1
-  8601 = add i32 %15882, i32 %s146419.phi
-  15883 = shl i32 %8601, i32 1
-  8605 = add i32 %15883, i32 %s136418.phi
-  15884 = shl i32 %8605, i32 1
-  8609 = add i32 %15884, i32 %s126417.phi
-  15885 = shl i32 %8609, i32 1
-  8613 = add i32 %15885, i32 %s116416.phi
-  15886 = shl i32 %8613, i32 1
-  8617 = add i32 %15886, i32 %s106415.phi
-  15887 = shl i32 %8617, i32 1
-  8621 = add i32 %15887, i32 %s96414.phi
-  15888 = shl i32 %8621, i32 1
-  8625 = add i32 %15888, i32 %s86413.phi
-  15889 = shl i32 %8625, i32 1
-  8629 = add i32 %15889, i32 %s76412.phi
-  15890 = shl i32 %8629, i32 1
-  8633 = add i32 %15890, i32 %s66411.phi
-  15891 = shl i32 %8633, i32 1
-  8637 = add i32 %15891, i32 %s56410.phi
-  15892 = shl i32 %8637, i32 1
-  8641 = add i32 %15892, i32 %s46409.phi
-  15893 = shl i32 %8641, i32 1
-  8645 = add i32 %15893, i32 %s36408.phi
-  15894 = shl i32 %8645, i32 1
-  8649 = add i32 %15894, i32 %s26407.phi
-  15895 = shl i32 %8649, i32 1
-  8653 = add i32 %15895, i32 %s16406.phi
-  15896 = shl i32 %8653, i32 1
-  8657 = add i32 %15896, i32 %s06405.phi
+  15822 = shl i32 %s156420.phi, i32 1
+  8601 = add i32 %15822, i32 %s146419.phi
+  15823 = shl i32 %8601, i32 1
+  8605 = add i32 %15823, i32 %s136418.phi
+  15824 = shl i32 %8605, i32 1
+  8609 = add i32 %15824, i32 %s126417.phi
+  15825 = shl i32 %8609, i32 1
+  8613 = add i32 %15825, i32 %s116416.phi
+  15826 = shl i32 %8613, i32 1
+  8617 = add i32 %15826, i32 %s106415.phi
+  15827 = shl i32 %8617, i32 1
+  8621 = add i32 %15827, i32 %s96414.phi
+  15828 = shl i32 %8621, i32 1
+  8625 = add i32 %15828, i32 %s86413.phi
+  15829 = shl i32 %8625, i32 1
+  8629 = add i32 %15829, i32 %s76412.phi
+  15830 = shl i32 %8629, i32 1
+  8633 = add i32 %15830, i32 %s66411.phi
+  15831 = shl i32 %8633, i32 1
+  8637 = add i32 %15831, i32 %s56410.phi
+  15832 = shl i32 %8637, i32 1
+  8641 = add i32 %15832, i32 %s46409.phi
+  15833 = shl i32 %8641, i32 1
+  8645 = add i32 %15833, i32 %s36408.phi
+  15834 = shl i32 %8645, i32 1
+  8649 = add i32 %15834, i32 %s26407.phi
+  15835 = shl i32 %8649, i32 1
+  8653 = add i32 %15835, i32 %s16406.phi
+  15836 = shl i32 %8653, i32 1
+  8657 = add i32 %15836, i32 %s06405.phi
   br i1 %3040, bb %then8681, bb %if.exit8682
 then8681:
   8684 = sub i32 0, i32 %3038
@@ -8703,8 +8703,8 @@ then8859:
   br bb %if.exit8860
 if.exit8860:
   b08837.phi = phi [bb %if.exit8832, i32 %8856, bb %then8859, i32 %8862]
-  15912 = ashr i32 %8657, i32 1
-  8866 = srem i32 %15912, i32 2
+  8864 = sdiv i32 %8657, i32 2
+  8866 = srem i32 %8864, i32 2
   8868 = icmp slt i32 %8866, i32 0
   br i1 %8868, bb %then8869, bb %if.exit8870
 then8869:
@@ -8712,8 +8712,8 @@ then8869:
   br bb %if.exit8870
 if.exit8870:
   b18838.phi = phi [bb %if.exit8860, i32 %8866, bb %then8869, i32 %8872]
-  15913 = ashr i32 %15912, i32 1
-  8876 = srem i32 %15913, i32 2
+  8874 = sdiv i32 %8864, i32 2
+  8876 = srem i32 %8874, i32 2
   8878 = icmp slt i32 %8876, i32 0
   br i1 %8878, bb %then8879, bb %if.exit8880
 then8879:
@@ -8721,8 +8721,8 @@ then8879:
   br bb %if.exit8880
 if.exit8880:
   b28839.phi = phi [bb %if.exit8870, i32 %8876, bb %then8879, i32 %8882]
-  15914 = ashr i32 %15913, i32 1
-  8886 = srem i32 %15914, i32 2
+  8884 = sdiv i32 %8874, i32 2
+  8886 = srem i32 %8884, i32 2
   8888 = icmp slt i32 %8886, i32 0
   br i1 %8888, bb %then8889, bb %if.exit8890
 then8889:
@@ -8730,8 +8730,8 @@ then8889:
   br bb %if.exit8890
 if.exit8890:
   b38840.phi = phi [bb %if.exit8880, i32 %8886, bb %then8889, i32 %8892]
-  15915 = ashr i32 %15914, i32 1
-  8896 = srem i32 %15915, i32 2
+  8894 = sdiv i32 %8884, i32 2
+  8896 = srem i32 %8894, i32 2
   8898 = icmp slt i32 %8896, i32 0
   br i1 %8898, bb %then8899, bb %if.exit8900
 then8899:
@@ -8739,8 +8739,8 @@ then8899:
   br bb %if.exit8900
 if.exit8900:
   b48841.phi = phi [bb %if.exit8890, i32 %8896, bb %then8899, i32 %8902]
-  15916 = ashr i32 %15915, i32 1
-  8906 = srem i32 %15916, i32 2
+  8904 = sdiv i32 %8894, i32 2
+  8906 = srem i32 %8904, i32 2
   8908 = icmp slt i32 %8906, i32 0
   br i1 %8908, bb %then8909, bb %if.exit8910
 then8909:
@@ -8748,8 +8748,8 @@ then8909:
   br bb %if.exit8910
 if.exit8910:
   b58842.phi = phi [bb %if.exit8900, i32 %8906, bb %then8909, i32 %8912]
-  15917 = ashr i32 %15916, i32 1
-  8916 = srem i32 %15917, i32 2
+  8914 = sdiv i32 %8904, i32 2
+  8916 = srem i32 %8914, i32 2
   8918 = icmp slt i32 %8916, i32 0
   br i1 %8918, bb %then8919, bb %if.exit8920
 then8919:
@@ -8757,8 +8757,8 @@ then8919:
   br bb %if.exit8920
 if.exit8920:
   b68843.phi = phi [bb %if.exit8910, i32 %8916, bb %then8919, i32 %8922]
-  15918 = ashr i32 %15917, i32 1
-  8926 = srem i32 %15918, i32 2
+  8924 = sdiv i32 %8914, i32 2
+  8926 = srem i32 %8924, i32 2
   8928 = icmp slt i32 %8926, i32 0
   br i1 %8928, bb %then8929, bb %if.exit8930
 then8929:
@@ -8766,8 +8766,8 @@ then8929:
   br bb %if.exit8930
 if.exit8930:
   b78844.phi = phi [bb %if.exit8920, i32 %8926, bb %then8929, i32 %8932]
-  15919 = ashr i32 %15918, i32 1
-  8936 = srem i32 %15919, i32 2
+  8934 = sdiv i32 %8924, i32 2
+  8936 = srem i32 %8934, i32 2
   8938 = icmp slt i32 %8936, i32 0
   br i1 %8938, bb %then8939, bb %if.exit8940
 then8939:
@@ -8775,8 +8775,8 @@ then8939:
   br bb %if.exit8940
 if.exit8940:
   b88845.phi = phi [bb %if.exit8930, i32 %8936, bb %then8939, i32 %8942]
-  15920 = ashr i32 %15919, i32 1
-  8946 = srem i32 %15920, i32 2
+  8944 = sdiv i32 %8934, i32 2
+  8946 = srem i32 %8944, i32 2
   8948 = icmp slt i32 %8946, i32 0
   br i1 %8948, bb %then8949, bb %if.exit8950
 then8949:
@@ -8784,8 +8784,8 @@ then8949:
   br bb %if.exit8950
 if.exit8950:
   b98846.phi = phi [bb %if.exit8940, i32 %8946, bb %then8949, i32 %8952]
-  15921 = ashr i32 %15920, i32 1
-  8956 = srem i32 %15921, i32 2
+  8954 = sdiv i32 %8944, i32 2
+  8956 = srem i32 %8954, i32 2
   8958 = icmp slt i32 %8956, i32 0
   br i1 %8958, bb %then8959, bb %if.exit8960
 then8959:
@@ -8793,8 +8793,8 @@ then8959:
   br bb %if.exit8960
 if.exit8960:
   b108847.phi = phi [bb %if.exit8950, i32 %8956, bb %then8959, i32 %8962]
-  15922 = ashr i32 %15921, i32 1
-  8966 = srem i32 %15922, i32 2
+  8964 = sdiv i32 %8954, i32 2
+  8966 = srem i32 %8964, i32 2
   8968 = icmp slt i32 %8966, i32 0
   br i1 %8968, bb %then8969, bb %if.exit8970
 then8969:
@@ -8802,8 +8802,8 @@ then8969:
   br bb %if.exit8970
 if.exit8970:
   b118848.phi = phi [bb %if.exit8960, i32 %8966, bb %then8969, i32 %8972]
-  15923 = ashr i32 %15922, i32 1
-  8976 = srem i32 %15923, i32 2
+  8974 = sdiv i32 %8964, i32 2
+  8976 = srem i32 %8974, i32 2
   8978 = icmp slt i32 %8976, i32 0
   br i1 %8978, bb %then8979, bb %if.exit8980
 then8979:
@@ -8811,8 +8811,8 @@ then8979:
   br bb %if.exit8980
 if.exit8980:
   b128849.phi = phi [bb %if.exit8970, i32 %8976, bb %then8979, i32 %8982]
-  15924 = ashr i32 %15923, i32 1
-  8986 = srem i32 %15924, i32 2
+  8984 = sdiv i32 %8974, i32 2
+  8986 = srem i32 %8984, i32 2
   8988 = icmp slt i32 %8986, i32 0
   br i1 %8988, bb %then8989, bb %if.exit8990
 then8989:
@@ -8820,8 +8820,8 @@ then8989:
   br bb %if.exit8990
 if.exit8990:
   b138850.phi = phi [bb %if.exit8980, i32 %8986, bb %then8989, i32 %8992]
-  15925 = ashr i32 %15924, i32 1
-  8996 = srem i32 %15925, i32 2
+  8994 = sdiv i32 %8984, i32 2
+  8996 = srem i32 %8994, i32 2
   8998 = icmp slt i32 %8996, i32 0
   br i1 %8998, bb %then8999, bb %if.exit9000
 then8999:
@@ -8829,8 +8829,8 @@ then8999:
   br bb %if.exit9000
 if.exit9000:
   b148851.phi = phi [bb %if.exit8990, i32 %8996, bb %then8999, i32 %9002]
-  15926 = ashr i32 %15925, i32 1
-  9006 = srem i32 %15926, i32 2
+  9004 = sdiv i32 %8994, i32 2
+  9006 = srem i32 %9004, i32 2
   9008 = icmp slt i32 %9006, i32 0
   br i1 %9008, bb %then9009, bb %if.exit9010
 then9009:
@@ -11401,36 +11401,36 @@ select.then11196:
 select.else11197:
   br bb %select.exit11198
 select.exit11198:
-  15928 = shl i32 %s159045.phi, i32 1
-  11226 = add i32 %15928, i32 %s149044.phi
-  15929 = shl i32 %11226, i32 1
-  11230 = add i32 %15929, i32 %s139043.phi
-  15930 = shl i32 %11230, i32 1
-  11234 = add i32 %15930, i32 %s129042.phi
-  15931 = shl i32 %11234, i32 1
-  11238 = add i32 %15931, i32 %s119041.phi
-  15932 = shl i32 %11238, i32 1
-  11242 = add i32 %15932, i32 %s109040.phi
-  15933 = shl i32 %11242, i32 1
-  11246 = add i32 %15933, i32 %s99039.phi
-  15934 = shl i32 %11246, i32 1
-  11250 = add i32 %15934, i32 %s89038.phi
-  15935 = shl i32 %11250, i32 1
-  11254 = add i32 %15935, i32 %s79037.phi
-  15936 = shl i32 %11254, i32 1
-  11258 = add i32 %15936, i32 %s69036.phi
-  15937 = shl i32 %11258, i32 1
-  11262 = add i32 %15937, i32 %s59035.phi
-  15938 = shl i32 %11262, i32 1
-  11266 = add i32 %15938, i32 %s49034.phi
-  15939 = shl i32 %11266, i32 1
-  11270 = add i32 %15939, i32 %s39033.phi
-  15940 = shl i32 %11270, i32 1
-  11274 = add i32 %15940, i32 %s29032.phi
-  15941 = shl i32 %11274, i32 1
-  11278 = add i32 %15941, i32 %s19031.phi
-  15942 = shl i32 %11278, i32 1
-  11282 = add i32 %15942, i32 %s09030.phi
+  15838 = shl i32 %s159045.phi, i32 1
+  11226 = add i32 %15838, i32 %s149044.phi
+  15839 = shl i32 %11226, i32 1
+  11230 = add i32 %15839, i32 %s139043.phi
+  15840 = shl i32 %11230, i32 1
+  11234 = add i32 %15840, i32 %s129042.phi
+  15841 = shl i32 %11234, i32 1
+  11238 = add i32 %15841, i32 %s119041.phi
+  15842 = shl i32 %11238, i32 1
+  11242 = add i32 %15842, i32 %s109040.phi
+  15843 = shl i32 %11242, i32 1
+  11246 = add i32 %15843, i32 %s99039.phi
+  15844 = shl i32 %11246, i32 1
+  11250 = add i32 %15844, i32 %s89038.phi
+  15845 = shl i32 %11250, i32 1
+  11254 = add i32 %15845, i32 %s79037.phi
+  15846 = shl i32 %11254, i32 1
+  11258 = add i32 %15846, i32 %s69036.phi
+  15847 = shl i32 %11258, i32 1
+  11262 = add i32 %15847, i32 %s59035.phi
+  15848 = shl i32 %11262, i32 1
+  11266 = add i32 %15848, i32 %s49034.phi
+  15849 = shl i32 %11266, i32 1
+  11270 = add i32 %15849, i32 %s39033.phi
+  15850 = shl i32 %11270, i32 1
+  11274 = add i32 %15850, i32 %s29032.phi
+  15851 = shl i32 %11274, i32 1
+  11278 = add i32 %15851, i32 %s19031.phi
+  15852 = shl i32 %11278, i32 1
+  11282 = add i32 %15852, i32 %s09030.phi
   11285 = call i32 fib(i32 %11282)
   11307 = srem i32 %5645, i32 2
   11309 = icmp slt i32 %11307, i32 0
@@ -11440,8 +11440,8 @@ then11310:
   br bb %if.exit11311
 if.exit11311:
   a011288.phi = phi [bb %select.exit11198, i32 %11307, bb %then11310, i32 %11313]
-  15943 = ashr i32 %5645, i32 1
-  11317 = srem i32 %15943, i32 2
+  11315 = sdiv i32 %5645, i32 2
+  11317 = srem i32 %11315, i32 2
   11319 = icmp slt i32 %11317, i32 0
   br i1 %11319, bb %then11320, bb %if.exit11321
 then11320:
@@ -11449,8 +11449,8 @@ then11320:
   br bb %if.exit11321
 if.exit11321:
   a111289.phi = phi [bb %if.exit11311, i32 %11317, bb %then11320, i32 %11323]
-  15944 = ashr i32 %15943, i32 1
-  11327 = srem i32 %15944, i32 2
+  11325 = sdiv i32 %11315, i32 2
+  11327 = srem i32 %11325, i32 2
   11329 = icmp slt i32 %11327, i32 0
   br i1 %11329, bb %then11330, bb %if.exit11331
 then11330:
@@ -11458,8 +11458,8 @@ then11330:
   br bb %if.exit11331
 if.exit11331:
   a211290.phi = phi [bb %if.exit11321, i32 %11327, bb %then11330, i32 %11333]
-  15945 = ashr i32 %15944, i32 1
-  11337 = srem i32 %15945, i32 2
+  11335 = sdiv i32 %11325, i32 2
+  11337 = srem i32 %11335, i32 2
   11339 = icmp slt i32 %11337, i32 0
   br i1 %11339, bb %then11340, bb %if.exit11341
 then11340:
@@ -11467,8 +11467,8 @@ then11340:
   br bb %if.exit11341
 if.exit11341:
   a311291.phi = phi [bb %if.exit11331, i32 %11337, bb %then11340, i32 %11343]
-  15946 = ashr i32 %15945, i32 1
-  11347 = srem i32 %15946, i32 2
+  11345 = sdiv i32 %11335, i32 2
+  11347 = srem i32 %11345, i32 2
   11349 = icmp slt i32 %11347, i32 0
   br i1 %11349, bb %then11350, bb %if.exit11351
 then11350:
@@ -11476,8 +11476,8 @@ then11350:
   br bb %if.exit11351
 if.exit11351:
   a411292.phi = phi [bb %if.exit11341, i32 %11347, bb %then11350, i32 %11353]
-  15947 = ashr i32 %15946, i32 1
-  11357 = srem i32 %15947, i32 2
+  11355 = sdiv i32 %11345, i32 2
+  11357 = srem i32 %11355, i32 2
   11359 = icmp slt i32 %11357, i32 0
   br i1 %11359, bb %then11360, bb %if.exit11361
 then11360:
@@ -11485,8 +11485,8 @@ then11360:
   br bb %if.exit11361
 if.exit11361:
   a511293.phi = phi [bb %if.exit11351, i32 %11357, bb %then11360, i32 %11363]
-  15948 = ashr i32 %15947, i32 1
-  11367 = srem i32 %15948, i32 2
+  11365 = sdiv i32 %11355, i32 2
+  11367 = srem i32 %11365, i32 2
   11369 = icmp slt i32 %11367, i32 0
   br i1 %11369, bb %then11370, bb %if.exit11371
 then11370:
@@ -11494,8 +11494,8 @@ then11370:
   br bb %if.exit11371
 if.exit11371:
   a611294.phi = phi [bb %if.exit11361, i32 %11367, bb %then11370, i32 %11373]
-  15949 = ashr i32 %15948, i32 1
-  11377 = srem i32 %15949, i32 2
+  11375 = sdiv i32 %11365, i32 2
+  11377 = srem i32 %11375, i32 2
   11379 = icmp slt i32 %11377, i32 0
   br i1 %11379, bb %then11380, bb %if.exit11381
 then11380:
@@ -11503,8 +11503,8 @@ then11380:
   br bb %if.exit11381
 if.exit11381:
   a711295.phi = phi [bb %if.exit11371, i32 %11377, bb %then11380, i32 %11383]
-  15950 = ashr i32 %15949, i32 1
-  11387 = srem i32 %15950, i32 2
+  11385 = sdiv i32 %11375, i32 2
+  11387 = srem i32 %11385, i32 2
   11389 = icmp slt i32 %11387, i32 0
   br i1 %11389, bb %then11390, bb %if.exit11391
 then11390:
@@ -11512,8 +11512,8 @@ then11390:
   br bb %if.exit11391
 if.exit11391:
   a811296.phi = phi [bb %if.exit11381, i32 %11387, bb %then11390, i32 %11393]
-  15951 = ashr i32 %15950, i32 1
-  11397 = srem i32 %15951, i32 2
+  11395 = sdiv i32 %11385, i32 2
+  11397 = srem i32 %11395, i32 2
   11399 = icmp slt i32 %11397, i32 0
   br i1 %11399, bb %then11400, bb %if.exit11401
 then11400:
@@ -11521,8 +11521,8 @@ then11400:
   br bb %if.exit11401
 if.exit11401:
   a911297.phi = phi [bb %if.exit11391, i32 %11397, bb %then11400, i32 %11403]
-  15952 = ashr i32 %15951, i32 1
-  11407 = srem i32 %15952, i32 2
+  11405 = sdiv i32 %11395, i32 2
+  11407 = srem i32 %11405, i32 2
   11409 = icmp slt i32 %11407, i32 0
   br i1 %11409, bb %then11410, bb %if.exit11411
 then11410:
@@ -11530,8 +11530,8 @@ then11410:
   br bb %if.exit11411
 if.exit11411:
   a1011298.phi = phi [bb %if.exit11401, i32 %11407, bb %then11410, i32 %11413]
-  15953 = ashr i32 %15952, i32 1
-  11417 = srem i32 %15953, i32 2
+  11415 = sdiv i32 %11405, i32 2
+  11417 = srem i32 %11415, i32 2
   11419 = icmp slt i32 %11417, i32 0
   br i1 %11419, bb %then11420, bb %if.exit11421
 then11420:
@@ -11539,8 +11539,8 @@ then11420:
   br bb %if.exit11421
 if.exit11421:
   a1111299.phi = phi [bb %if.exit11411, i32 %11417, bb %then11420, i32 %11423]
-  15954 = ashr i32 %15953, i32 1
-  11427 = srem i32 %15954, i32 2
+  11425 = sdiv i32 %11415, i32 2
+  11427 = srem i32 %11425, i32 2
   11429 = icmp slt i32 %11427, i32 0
   br i1 %11429, bb %then11430, bb %if.exit11431
 then11430:
@@ -11548,8 +11548,8 @@ then11430:
   br bb %if.exit11431
 if.exit11431:
   a1211300.phi = phi [bb %if.exit11421, i32 %11427, bb %then11430, i32 %11433]
-  15955 = ashr i32 %15954, i32 1
-  11437 = srem i32 %15955, i32 2
+  11435 = sdiv i32 %11425, i32 2
+  11437 = srem i32 %11435, i32 2
   11439 = icmp slt i32 %11437, i32 0
   br i1 %11439, bb %then11440, bb %if.exit11441
 then11440:
@@ -11557,8 +11557,8 @@ then11440:
   br bb %if.exit11441
 if.exit11441:
   a1311301.phi = phi [bb %if.exit11431, i32 %11437, bb %then11440, i32 %11443]
-  15956 = ashr i32 %15955, i32 1
-  11447 = srem i32 %15956, i32 2
+  11445 = sdiv i32 %11435, i32 2
+  11447 = srem i32 %11445, i32 2
   11449 = icmp slt i32 %11447, i32 0
   br i1 %11449, bb %then11450, bb %if.exit11451
 then11450:
@@ -11566,8 +11566,8 @@ then11450:
   br bb %if.exit11451
 if.exit11451:
   a1411302.phi = phi [bb %if.exit11441, i32 %11447, bb %then11450, i32 %11453]
-  15957 = ashr i32 %15956, i32 1
-  11457 = srem i32 %15957, i32 2
+  11455 = sdiv i32 %11445, i32 2
+  11457 = srem i32 %11455, i32 2
   11459 = icmp slt i32 %11457, i32 0
   br i1 %11459, bb %then11460, bb %if.exit11461
 then11460:
@@ -11583,8 +11583,8 @@ then11488:
   br bb %if.exit11489
 if.exit11489:
   b011466.phi = phi [bb %if.exit11461, i32 %11485, bb %then11488, i32 %11491]
-  15958 = ashr i32 %11285, i32 1
-  11495 = srem i32 %15958, i32 2
+  11493 = sdiv i32 %11285, i32 2
+  11495 = srem i32 %11493, i32 2
   11497 = icmp slt i32 %11495, i32 0
   br i1 %11497, bb %then11498, bb %if.exit11499
 then11498:
@@ -11592,8 +11592,8 @@ then11498:
   br bb %if.exit11499
 if.exit11499:
   b111467.phi = phi [bb %if.exit11489, i32 %11495, bb %then11498, i32 %11501]
-  15959 = ashr i32 %15958, i32 1
-  11505 = srem i32 %15959, i32 2
+  11503 = sdiv i32 %11493, i32 2
+  11505 = srem i32 %11503, i32 2
   11507 = icmp slt i32 %11505, i32 0
   br i1 %11507, bb %then11508, bb %if.exit11509
 then11508:
@@ -11601,8 +11601,8 @@ then11508:
   br bb %if.exit11509
 if.exit11509:
   b211468.phi = phi [bb %if.exit11499, i32 %11505, bb %then11508, i32 %11511]
-  15960 = ashr i32 %15959, i32 1
-  11515 = srem i32 %15960, i32 2
+  11513 = sdiv i32 %11503, i32 2
+  11515 = srem i32 %11513, i32 2
   11517 = icmp slt i32 %11515, i32 0
   br i1 %11517, bb %then11518, bb %if.exit11519
 then11518:
@@ -11610,8 +11610,8 @@ then11518:
   br bb %if.exit11519
 if.exit11519:
   b311469.phi = phi [bb %if.exit11509, i32 %11515, bb %then11518, i32 %11521]
-  15961 = ashr i32 %15960, i32 1
-  11525 = srem i32 %15961, i32 2
+  11523 = sdiv i32 %11513, i32 2
+  11525 = srem i32 %11523, i32 2
   11527 = icmp slt i32 %11525, i32 0
   br i1 %11527, bb %then11528, bb %if.exit11529
 then11528:
@@ -11619,8 +11619,8 @@ then11528:
   br bb %if.exit11529
 if.exit11529:
   b411470.phi = phi [bb %if.exit11519, i32 %11525, bb %then11528, i32 %11531]
-  15962 = ashr i32 %15961, i32 1
-  11535 = srem i32 %15962, i32 2
+  11533 = sdiv i32 %11523, i32 2
+  11535 = srem i32 %11533, i32 2
   11537 = icmp slt i32 %11535, i32 0
   br i1 %11537, bb %then11538, bb %if.exit11539
 then11538:
@@ -11628,8 +11628,8 @@ then11538:
   br bb %if.exit11539
 if.exit11539:
   b511471.phi = phi [bb %if.exit11529, i32 %11535, bb %then11538, i32 %11541]
-  15963 = ashr i32 %15962, i32 1
-  11545 = srem i32 %15963, i32 2
+  11543 = sdiv i32 %11533, i32 2
+  11545 = srem i32 %11543, i32 2
   11547 = icmp slt i32 %11545, i32 0
   br i1 %11547, bb %then11548, bb %if.exit11549
 then11548:
@@ -11637,8 +11637,8 @@ then11548:
   br bb %if.exit11549
 if.exit11549:
   b611472.phi = phi [bb %if.exit11539, i32 %11545, bb %then11548, i32 %11551]
-  15964 = ashr i32 %15963, i32 1
-  11555 = srem i32 %15964, i32 2
+  11553 = sdiv i32 %11543, i32 2
+  11555 = srem i32 %11553, i32 2
   11557 = icmp slt i32 %11555, i32 0
   br i1 %11557, bb %then11558, bb %if.exit11559
 then11558:
@@ -11646,8 +11646,8 @@ then11558:
   br bb %if.exit11559
 if.exit11559:
   b711473.phi = phi [bb %if.exit11549, i32 %11555, bb %then11558, i32 %11561]
-  15965 = ashr i32 %15964, i32 1
-  11565 = srem i32 %15965, i32 2
+  11563 = sdiv i32 %11553, i32 2
+  11565 = srem i32 %11563, i32 2
   11567 = icmp slt i32 %11565, i32 0
   br i1 %11567, bb %then11568, bb %if.exit11569
 then11568:
@@ -11655,8 +11655,8 @@ then11568:
   br bb %if.exit11569
 if.exit11569:
   b811474.phi = phi [bb %if.exit11559, i32 %11565, bb %then11568, i32 %11571]
-  15966 = ashr i32 %15965, i32 1
-  11575 = srem i32 %15966, i32 2
+  11573 = sdiv i32 %11563, i32 2
+  11575 = srem i32 %11573, i32 2
   11577 = icmp slt i32 %11575, i32 0
   br i1 %11577, bb %then11578, bb %if.exit11579
 then11578:
@@ -11664,8 +11664,8 @@ then11578:
   br bb %if.exit11579
 if.exit11579:
   b911475.phi = phi [bb %if.exit11569, i32 %11575, bb %then11578, i32 %11581]
-  15967 = ashr i32 %15966, i32 1
-  11585 = srem i32 %15967, i32 2
+  11583 = sdiv i32 %11573, i32 2
+  11585 = srem i32 %11583, i32 2
   11587 = icmp slt i32 %11585, i32 0
   br i1 %11587, bb %then11588, bb %if.exit11589
 then11588:
@@ -11673,8 +11673,8 @@ then11588:
   br bb %if.exit11589
 if.exit11589:
   b1011476.phi = phi [bb %if.exit11579, i32 %11585, bb %then11588, i32 %11591]
-  15968 = ashr i32 %15967, i32 1
-  11595 = srem i32 %15968, i32 2
+  11593 = sdiv i32 %11583, i32 2
+  11595 = srem i32 %11593, i32 2
   11597 = icmp slt i32 %11595, i32 0
   br i1 %11597, bb %then11598, bb %if.exit11599
 then11598:
@@ -11682,8 +11682,8 @@ then11598:
   br bb %if.exit11599
 if.exit11599:
   b1111477.phi = phi [bb %if.exit11589, i32 %11595, bb %then11598, i32 %11601]
-  15969 = ashr i32 %15968, i32 1
-  11605 = srem i32 %15969, i32 2
+  11603 = sdiv i32 %11593, i32 2
+  11605 = srem i32 %11603, i32 2
   11607 = icmp slt i32 %11605, i32 0
   br i1 %11607, bb %then11608, bb %if.exit11609
 then11608:
@@ -11691,8 +11691,8 @@ then11608:
   br bb %if.exit11609
 if.exit11609:
   b1211478.phi = phi [bb %if.exit11599, i32 %11605, bb %then11608, i32 %11611]
-  15970 = ashr i32 %15969, i32 1
-  11615 = srem i32 %15970, i32 2
+  11613 = sdiv i32 %11603, i32 2
+  11615 = srem i32 %11613, i32 2
   11617 = icmp slt i32 %11615, i32 0
   br i1 %11617, bb %then11618, bb %if.exit11619
 then11618:
@@ -11700,8 +11700,8 @@ then11618:
   br bb %if.exit11619
 if.exit11619:
   b1311479.phi = phi [bb %if.exit11609, i32 %11615, bb %then11618, i32 %11621]
-  15971 = ashr i32 %15970, i32 1
-  11625 = srem i32 %15971, i32 2
+  11623 = sdiv i32 %11613, i32 2
+  11625 = srem i32 %11623, i32 2
   11627 = icmp slt i32 %11625, i32 0
   br i1 %11627, bb %then11628, bb %if.exit11629
 then11628:
@@ -11709,8 +11709,8 @@ then11628:
   br bb %if.exit11629
 if.exit11629:
   b1411480.phi = phi [bb %if.exit11619, i32 %11625, bb %then11628, i32 %11631]
-  15972 = ashr i32 %15971, i32 1
-  11635 = srem i32 %15972, i32 2
+  11633 = sdiv i32 %11623, i32 2
+  11635 = srem i32 %11633, i32 2
   11637 = icmp slt i32 %11635, i32 0
   br i1 %11637, bb %then11638, bb %if.exit11639
 then11638:
@@ -14281,36 +14281,36 @@ select.then13825:
 select.else13826:
   br bb %select.exit13827
 select.exit13827:
-  15974 = shl i32 %s1511674.phi, i32 1
-  13855 = add i32 %15974, i32 %s1411673.phi
-  15975 = shl i32 %13855, i32 1
-  13859 = add i32 %15975, i32 %s1311672.phi
-  15976 = shl i32 %13859, i32 1
-  13863 = add i32 %15976, i32 %s1211671.phi
-  15977 = shl i32 %13863, i32 1
-  13867 = add i32 %15977, i32 %s1111670.phi
-  15978 = shl i32 %13867, i32 1
-  13871 = add i32 %15978, i32 %s1011669.phi
-  15979 = shl i32 %13871, i32 1
-  13875 = add i32 %15979, i32 %s911668.phi
-  15980 = shl i32 %13875, i32 1
-  13879 = add i32 %15980, i32 %s811667.phi
-  15981 = shl i32 %13879, i32 1
-  13883 = add i32 %15981, i32 %s711666.phi
-  15982 = shl i32 %13883, i32 1
-  13887 = add i32 %15982, i32 %s611665.phi
-  15983 = shl i32 %13887, i32 1
-  13891 = add i32 %15983, i32 %s511664.phi
-  15984 = shl i32 %13891, i32 1
-  13895 = add i32 %15984, i32 %s411663.phi
-  15985 = shl i32 %13895, i32 1
-  13899 = add i32 %15985, i32 %s311662.phi
-  15986 = shl i32 %13899, i32 1
-  13903 = add i32 %15986, i32 %s211661.phi
-  15987 = shl i32 %13903, i32 1
-  13907 = add i32 %15987, i32 %s111660.phi
-  15988 = shl i32 %13907, i32 1
-  13911 = add i32 %15988, i32 %s011659.phi
+  15854 = shl i32 %s1511674.phi, i32 1
+  13855 = add i32 %15854, i32 %s1411673.phi
+  15855 = shl i32 %13855, i32 1
+  13859 = add i32 %15855, i32 %s1311672.phi
+  15856 = shl i32 %13859, i32 1
+  13863 = add i32 %15856, i32 %s1211671.phi
+  15857 = shl i32 %13863, i32 1
+  13867 = add i32 %15857, i32 %s1111670.phi
+  15858 = shl i32 %13867, i32 1
+  13871 = add i32 %15858, i32 %s1011669.phi
+  15859 = shl i32 %13871, i32 1
+  13875 = add i32 %15859, i32 %s911668.phi
+  15860 = shl i32 %13875, i32 1
+  13879 = add i32 %15860, i32 %s811667.phi
+  15861 = shl i32 %13879, i32 1
+  13883 = add i32 %15861, i32 %s711666.phi
+  15862 = shl i32 %13883, i32 1
+  13887 = add i32 %15862, i32 %s611665.phi
+  15863 = shl i32 %13887, i32 1
+  13891 = add i32 %15863, i32 %s511664.phi
+  15864 = shl i32 %13891, i32 1
+  13895 = add i32 %15864, i32 %s411663.phi
+  15865 = shl i32 %13895, i32 1
+  13899 = add i32 %15865, i32 %s311662.phi
+  15866 = shl i32 %13899, i32 1
+  13903 = add i32 %15866, i32 %s211661.phi
+  15867 = shl i32 %13903, i32 1
+  13907 = add i32 %15867, i32 %s111660.phi
+  15868 = shl i32 %13907, i32 1
+  13911 = add i32 %15868, i32 %s011659.phi
   ret i32 %13911
 }
 

@@ -50,22 +50,23 @@ merge_sort:
   # implict jump to bb2
 bb2:
   ADDW s2, s0, s1
-  SRAIW s3, s2, 1
+  ADDI s3, zero, 2
+  DIVW s4, s2, s3
   ADD a0, s0, zero
-  ADD a1, s3, zero
+  ADD a1, s4, zero
   CALL merge_sort
-  ADD a0, s3, zero
+  ADD a0, s4, zero
   ADD a1, s1, zero
   CALL merge_sort
   ADD s2, s0, zero
-  ADD s4, s3, zero
+  ADD s3, s4, zero
   ADD s5, s0, zero
   # implict jump to bb3
 bb3:
   ADD s6, s5, zero
-  ADD s7, s4, zero
+  ADD s7, s3, zero
   ADD s8, s2, zero
-  SLT s9, s6, s3
+  SLT s9, s6, s4
   BNE s9, zero, bb20
   # implict jump to bb4
 bb4:
@@ -77,20 +78,20 @@ bb5:
   # implict jump to bb6
 bb6:
   ADD s2, s8, zero
-  ADD s4, s6, zero
+  ADD s3, s6, zero
   # implict jump to bb7
 bb7:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   ADD s9, s2, zero
-  SLT s11, s5, s3
+  SLT s11, s5, s4
   BNE s11, zero, bb15
   # implict jump to bb8
 bb8:
   ADD s2, s9, zero
-  ADD s4, s7, zero
+  ADD s3, s7, zero
   # implict jump to bb9
 bb9:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   ADD s9, s2, zero
   SLT s11, s5, s1
   BNE s11, zero, bb14
@@ -99,8 +100,8 @@ bb10:
   ADD s2, s0, zero
   # implict jump to bb11
 bb11:
-  ADD s4, s2, zero
-  SLT s5, s4, s1
+  ADD s3, s2, zero
+  SLT s5, s3, s1
   BNE s5, zero, bb13
   # implict jump to bb12
 bb12:
@@ -120,7 +121,7 @@ bb12:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb13:
-  SLLIW s5, s4, 2
+  SLLIW s5, s3, 2
   LA s9, buf
   ADD s11, s9, s5
   LA s9, buf
@@ -128,7 +129,7 @@ bb13:
   ADD s9, t0, s5
   LW s5, 0(s9)
   SW s5, 0(s11)
-  ADDIW s5, s4, 1
+  ADDIW s5, s3, 1
   ADD s2, s5, zero
   JAL zero, bb11
 bb14:
@@ -144,7 +145,7 @@ bb14:
   ADDIW s11, s5, 1
   ADDIW s5, s9, 1
   ADD s2, s5, zero
-  ADD s4, s11, zero
+  ADD s3, s11, zero
   JAL zero, bb9
 bb15:
   LA s11, buf
@@ -159,7 +160,7 @@ bb15:
   ADDIW s11, s5, 1
   ADDIW s5, s9, 1
   ADD s2, s5, zero
-  ADD s4, s11, zero
+  ADD s3, s11, zero
   JAL zero, bb7
 bb16:
   SLLIW s9, s6, 2
@@ -175,9 +176,9 @@ bb16:
   # implict jump to bb17
 bb17:
   LA s2, buf
-  ADDI s4, s2, 400
+  ADDI s3, s2, 400
   SLLIW s2, s8, 2
-  ADD s5, s4, s2
+  ADD s5, s3, s2
   LW s2, 0(t2)
   SW s2, 0(s5)
   ADDIW s2, s7, 1
@@ -189,7 +190,7 @@ bb18:
   ADD t1, s11, zero
   ADDIW a0, s8, 1
   ADD s2, a0, zero
-  ADD s4, t1, zero
+  ADD s3, t1, zero
   ADD s5, s9, zero
   JAL zero, bb3
 bb19:

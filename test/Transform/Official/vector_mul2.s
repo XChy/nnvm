@@ -117,10 +117,11 @@ bb8:
   ADDW s8, s6, s5
   ADDIW s9, s8, 1
   MULW s10, s8, s9
-  SRAIW s8, s10, 1
-  ADDW s9, s8, s6
-  ADDIW s8, s9, 1
-  FCVT.S.W fs4, s8
+  ADDI s8, zero, 2
+  DIVW s9, s10, s8
+  ADDW s8, s9, s6
+  ADDIW s9, s8, 1
+  FCVT.S.W fs4, s9
   FDIV.S fs5, fs3, fs4
   FADD.S fs3, fs0, fs5
   ADDIW s8, s6, 1
@@ -153,10 +154,11 @@ bb12:
   ADDW s9, s6, s7
   ADDIW s10, s9, 1
   MULW s11, s9, s10
-  SRAIW s9, s11, 1
-  ADDW s10, s9, s6
-  ADDIW s9, s10, 1
-  FCVT.S.W fs5, s9
+  ADDI s9, zero, 2
+  DIVW s10, s11, s9
+  ADDW s9, s10, s6
+  ADDIW s10, s9, 1
+  FCVT.S.W fs5, s10
   FDIV.S fs6, fs4, fs5
   FADD.S fs4, fs2, fs6
   ADDIW s9, s7, 1
@@ -245,10 +247,11 @@ bb19:
   ADDW s8, s5, s6
   ADDIW s9, s8, 1
   MULW s10, s8, s9
-  SRAIW s8, s10, 1
-  ADDW s9, s8, s5
-  ADDIW s8, s9, 1
-  FCVT.S.W fs4, s8
+  ADDI s8, zero, 2
+  DIVW s9, s10, s8
+  ADDW s8, s9, s5
+  ADDIW s9, s8, 1
+  FCVT.S.W fs4, s9
   FDIV.S fs5, fs3, fs4
   FADD.S fs3, fs0, fs5
   ADDIW s8, s6, 1
@@ -461,10 +464,11 @@ bb37:
   ADDW s8, s6, s5
   ADDIW s9, s8, 1
   MULW s10, s8, s9
-  SRAIW s8, s10, 1
-  ADDW s9, s8, s6
-  ADDIW s8, s9, 1
-  FCVT.S.W fs4, s8
+  ADDI s8, zero, 2
+  DIVW s9, s10, s8
+  ADDW s8, s9, s6
+  ADDIW s9, s8, 1
+  FCVT.S.W fs4, s9
   FDIV.S fs5, fs3, fs4
   FADD.S fs3, fs0, fs5
   ADDIW s8, s6, 1
@@ -897,10 +901,11 @@ bb75:
   ADDW s9, s7, s6
   ADDIW s10, s9, 1
   MULW s11, s9, s10
-  SRAIW s9, s11, 1
-  ADDW s10, s9, s7
-  ADDIW s9, s10, 1
-  FCVT.S.W fs5, s9
+  ADDI s9, zero, 2
+  DIVW s10, s11, s9
+  ADDW s9, s10, s7
+  ADDIW s10, s9, 1
+  FCVT.S.W fs5, s10
   FDIV.S fs6, fs4, fs5
   FADD.S fs4, fs1, fs6
   ADDIW s9, s7, 1
@@ -937,10 +942,11 @@ bb79:
   ADDW s9, s6, s7
   ADDIW s10, s9, 1
   MULW s11, s9, s10
-  SRAIW s9, s11, 1
-  ADDW s10, s9, s6
-  ADDIW s9, s10, 1
-  FCVT.S.W fs6, s9
+  ADDI s9, zero, 2
+  DIVW s10, s11, s9
+  ADDW s9, s10, s6
+  ADDIW s10, s9, 1
+  FCVT.S.W fs6, s10
   FDIV.S fs7, fs5, fs6
   FADD.S fs5, fs3, fs7
   ADDIW s9, s7, 1
@@ -977,10 +983,11 @@ bb83:
   ADDW s9, s7, s6
   ADDIW s10, s9, 1
   MULW s11, s9, s10
-  SRAIW s9, s11, 1
-  ADDW s10, s9, s7
-  ADDIW s9, s10, 1
-  FCVT.S.W fs6, s9
+  ADDI s9, zero, 2
+  DIVW s10, s11, s9
+  ADDW s9, s10, s7
+  ADDIW s10, s9, 1
+  FCVT.S.W fs6, s10
   FDIV.S fs7, fs5, fs6
   FADD.S fs5, fs3, fs7
   ADDIW s9, s7, 1
@@ -1017,10 +1024,11 @@ bb87:
   ADDW s9, s6, s7
   ADDIW s10, s9, 1
   MULW s11, s9, s10
-  SRAIW s9, s11, 1
-  ADDW s10, s9, s6
-  ADDIW s9, s10, 1
-  FCVT.S.W fs6, s9
+  ADDI s9, zero, 2
+  DIVW s10, s11, s9
+  ADDW s9, s10, s6
+  ADDIW s10, s9, 1
+  FCVT.S.W fs6, s10
   FDIV.S fs7, fs5, fs6
   FADD.S fs5, fs3, fs7
   ADDIW s9, s7, 1
@@ -1054,9 +1062,10 @@ func:
   ADDW s2, s0, s1
   ADDIW s1, s2, 1
   MULW s3, s2, s1
-  SRAIW s1, s3, 1
-  ADDW s2, s1, s0
-  ADDIW s0, s2, 1
+  ADDI s1, zero, 2
+  DIVW s2, s3, s1
+  ADDW s1, s2, s0
+  ADDIW s0, s1, 1
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s3, 8(sp)

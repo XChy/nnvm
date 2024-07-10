@@ -128,10 +128,11 @@ bb8:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb9:
-  SRAIW s5, s0, 4
-  ADDIW s6, s4, 1
-  ADD s2, s6, zero
-  ADD s3, s5, zero
+  ADDI s5, zero, 16
+  DIVW s6, s0, s5
+  ADDIW s5, s4, 1
+  ADD s2, s5, zero
+  ADD s3, s6, zero
   JAL zero, bb7
 radixSort:
   ADDI sp, sp, -320
@@ -392,10 +393,11 @@ bb39:
   ADD a6, s2, zero
   JAL zero, bb35
 bb40:
-  SRAIW s0, s2, 4
-  ADDIW s4, s1, 1
-  ADD t6, s4, zero
-  ADD s3, s0, zero
+  ADDI s0, zero, 16
+  DIVW s4, s2, s0
+  ADDIW s0, s1, 1
+  ADD t6, s0, zero
+  ADD s3, s4, zero
   JAL zero, bb36
 bb41:
   SLLIW s7, s6, 2
@@ -446,10 +448,11 @@ bb44:
   ADD s5, s7, zero
   JAL zero, bb20
 bb45:
-  SRAIW s11, s7, 4
-  ADDIW t0, s10, 1
-  ADD s8, t0, zero
-  ADD s9, s11, zero
+  ADDI s11, zero, 16
+  DIVW t0, s7, s11
+  ADDIW s11, s10, 1
+  ADD s8, s11, zero
+  ADD s9, t0, zero
   JAL zero, bb43
 bb46:
   LD s2, 216(sp)

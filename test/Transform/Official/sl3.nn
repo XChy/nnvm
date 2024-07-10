@@ -55,10 +55,10 @@ while.body55:
 while.exit56:
   call void _sysy_stoptime(i32 53)
   call void putarray(i32 %6, ptr @x)
-  207 = ashr i32 %6, i32 1
-  176 = mul i32 %207, i32 1440000
+  175 = sdiv i32 %6, i32 2
+  176 = mul i32 %175, i32 1440000
   177 = ptradd ptr @x, i32 %176
-  180 = mul i32 %207, i32 2400
+  180 = mul i32 %175, i32 2400
   181 = ptradd ptr %177, i32 %180
   call void putarray(i32 %6, ptr %181)
   185 = sub i32 %i.phi, i32 1
@@ -87,41 +87,41 @@ while.body71:
   80 = ptradd ptr @x, i32 %79
   82 = mul i32 %j.phi, i32 2400
   83 = ptradd ptr %80, i32 %82
-  209 = shl i32 %k.phi, i32 2
-  86 = ptradd ptr %83, i32 %209
+  207 = shl i32 %k.phi, i32 2
+  86 = ptradd ptr %83, i32 %207
   88 = sub i32 %i.phi, i32 1
   89 = mul i32 %88, i32 1440000
   90 = ptradd ptr @x, i32 %89
   93 = ptradd ptr %90, i32 %82
-  96 = ptradd ptr %93, i32 %209
+  96 = ptradd ptr %93, i32 %207
   96.load = load i32 from ptr %96
   99 = add i32 %i.phi, i32 1
   100 = mul i32 %99, i32 1440000
   101 = ptradd ptr @x, i32 %100
   104 = ptradd ptr %101, i32 %82
-  107 = ptradd ptr %104, i32 %209
+  107 = ptradd ptr %104, i32 %207
   107.load = load i32 from ptr %107
   109 = add i32 %96.load, i32 %107.load
   114 = sub i32 %j.phi, i32 1
   115 = mul i32 %114, i32 2400
   116 = ptradd ptr %80, i32 %115
-  119 = ptradd ptr %116, i32 %209
+  119 = ptradd ptr %116, i32 %207
   119.load = load i32 from ptr %119
   121 = add i32 %109, i32 %119.load
   126 = add i32 %j.phi, i32 1
   127 = mul i32 %126, i32 2400
   128 = ptradd ptr %80, i32 %127
-  131 = ptradd ptr %128, i32 %209
+  131 = ptradd ptr %128, i32 %207
   131.load = load i32 from ptr %131
   133 = add i32 %121, i32 %131.load
   141 = sub i32 %k.phi, i32 1
-  214 = shl i32 %141, i32 2
-  143 = ptradd ptr %83, i32 %214
+  212 = shl i32 %141, i32 2
+  143 = ptradd ptr %83, i32 %212
   143.load = load i32 from ptr %143
   145 = add i32 %133, i32 %143.load
   153 = add i32 %k.phi, i32 1
-  215 = shl i32 %153, i32 2
-  155 = ptradd ptr %83, i32 %215
+  213 = shl i32 %153, i32 2
+  155 = ptradd ptr %83, i32 %213
   155.load = load i32 from ptr %155
   157 = add i32 %145, i32 %155.load
   159 = sdiv i32 %157, i32 %7

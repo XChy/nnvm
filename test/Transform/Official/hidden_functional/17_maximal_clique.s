@@ -353,17 +353,17 @@ bb26:
 bb27:
   LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 0(sp)
+  SW t4, 12(sp)
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
   ADD t0, a0, zero
-  LW t4, 0(sp)
+  LW t4, 12(sp)
   SLT t1, t4, t0
   BNE t1, zero, bb30
   # implict jump to bb28
 bb28:
-  LW t4, 0(sp)
+  LW t4, 12(sp)
   ADD t1, t4, zero
   # implict jump to bb29
 bb29:
@@ -384,8 +384,8 @@ bb32:
   # implict jump to bb33
 bb33:
   ADD t4, s11, zero
-  SW t4, 12(sp)
-  LW t4, 12(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   SLT t1, t4, s7
   BNE t1, zero, bb35
   # implict jump to bb34
@@ -401,7 +401,7 @@ bb35:
   MULW a2, t1, t2
   LA t1, graph
   ADD t2, t1, a2
-  LW t4, 12(sp)
+  LW t4, 0(sp)
   SLLIW t1, t4, 2
   LA a2, store
   ADD a3, a2, t1
@@ -414,7 +414,7 @@ bb35:
   BNE t2, zero, bb37
   # implict jump to bb36
 bb36:
-  LW t4, 12(sp)
+  LW t4, 0(sp)
   ADDIW s1, t4, 1
   ADD s11, s1, zero
   JAL zero, bb33
