@@ -9,9 +9,9 @@ g:
 main:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   CALL getint
   ADD s0, a0, zero
   ADDI s1, zero, 10
@@ -83,9 +83,9 @@ bb6:
 bb7:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb8:
@@ -124,9 +124,9 @@ bb10:
 func:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   ADD s0, a0, zero
   LA s1, g
   LW s2, 0(s1)
@@ -139,8 +139,8 @@ func:
   LW s1, 0(s0)
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

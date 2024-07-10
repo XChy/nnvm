@@ -17,77 +17,77 @@ width:
 .section .text
 main:
   ADDI sp, sp, -176
-  SD s10, 72(sp)
-  SD ra, 80(sp)
-  SD s11, 88(sp)
-  SD s0, 96(sp)
-  SD s5, 104(sp)
-  SD s7, 112(sp)
-  SD s9, 120(sp)
-  SD s8, 128(sp)
-  SD s6, 136(sp)
-  SD s1, 144(sp)
-  SD s4, 152(sp)
+  SD ra, 72(sp)
+  SD s0, 80(sp)
+  SD s1, 88(sp)
+  SD s2, 96(sp)
+  SD s10, 104(sp)
+  SD s11, 112(sp)
+  SD s5, 120(sp)
+  SD s6, 128(sp)
+  SD s7, 136(sp)
+  SD s8, 144(sp)
+  SD s9, 152(sp)
   SD s3, 160(sp)
-  SD s2, 168(sp)
+  SD s4, 168(sp)
   LA s0, image_in
   ADD a0, s0, zero
   CALL getarray
   ADD t4, a0, zero
-  SW t4, 0(sp)
+  SW t4, 64(sp)
   ADDI a0, zero, 23
   CALL _sysy_starttime
   ADD t4, zero, zero
-  SW t4, 48(sp)
-  ADD t4, zero, zero
-  SW t4, 44(sp)
-  ADDI t4, zero, 1
-  SW t4, 40(sp)
-  ADD t4, zero, zero
-  SW t4, 36(sp)
-  ADD t4, zero, zero
-  SW t4, 28(sp)
-  ADD t4, zero, zero
-  SW t4, 24(sp)
-  ADD t4, zero, zero
   SW t4, 20(sp)
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 24(sp)
+  ADDI t4, zero, 1
+  SW t4, 28(sp)
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 32(sp)
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 40(sp)
   ADD t4, zero, zero
-  SW t4, 4(sp)
+  SW t4, 0(sp)
+  ADD t4, zero, zero
+  SW t4, 44(sp)
+  ADD t4, zero, zero
+  SW t4, 48(sp)
+  ADD t4, zero, zero
+  SW t4, 52(sp)
+  ADD t4, zero, zero
+  SW t4, 56(sp)
+  ADD t4, zero, zero
+  SW t4, 60(sp)
   # implict jump to bb1
 bb1:
-  LW t3, 4(sp)
+  LW t3, 60(sp)
   ADD t4, t3, zero
-  SW t4, 52(sp)
-  LW t3, 8(sp)
+  SW t4, 16(sp)
+  LW t3, 56(sp)
   ADD t4, t3, zero
-  SW t4, 56(sp)
-  LW t3, 12(sp)
+  SW t4, 12(sp)
+  LW t3, 52(sp)
   ADD t4, t3, zero
-  SW t4, 60(sp)
-  LW t4, 16(sp)
-  ADD s9, t4, zero
-  LW t4, 20(sp)
-  ADD s8, t4, zero
-  LW t4, 24(sp)
-  ADD s7, t4, zero
-  LW t4, 28(sp)
-  ADD s6, t4, zero
-  LW t4, 36(sp)
-  ADD s5, t4, zero
-  LW t3, 40(sp)
-  ADD t4, t3, zero
-  SW t4, 32(sp)
-  LW t4, 44(sp)
-  ADD s4, t4, zero
+  SW t4, 8(sp)
   LW t4, 48(sp)
-  ADD s3, t4, zero
+  ADD s9, t4, zero
+  LW t4, 44(sp)
+  ADD s8, t4, zero
+  LW t4, 0(sp)
+  ADD s7, t4, zero
+  LW t4, 40(sp)
+  ADD s6, t4, zero
   LW t4, 32(sp)
+  ADD s5, t4, zero
+  LW t3, 28(sp)
+  ADD t4, t3, zero
+  SW t4, 36(sp)
+  LW t4, 24(sp)
+  ADD s4, t4, zero
+  LW t4, 20(sp)
+  ADD s3, t4, zero
+  LW t4, 36(sp)
   SLTI s2, t4, 1023
   BNE s2, zero, bb9
   # implict jump to bb2
@@ -116,21 +116,21 @@ bb6:
   LA s10, image_out
   ADD a1, s10, zero
   CALL putarray
-  LW t4, 0(sp)
+  LW t4, 64(sp)
   ADD a0, t4, zero
-  LD s10, 72(sp)
-  LD ra, 80(sp)
-  LD s11, 88(sp)
-  LD s0, 96(sp)
-  LD s5, 104(sp)
-  LD s7, 112(sp)
-  LD s9, 120(sp)
-  LD s8, 128(sp)
-  LD s6, 136(sp)
-  LD s1, 144(sp)
-  LD s4, 152(sp)
+  LD ra, 72(sp)
+  LD s0, 80(sp)
+  LD s1, 88(sp)
+  LD s2, 96(sp)
+  LD s10, 104(sp)
+  LD s11, 112(sp)
+  LD s5, 120(sp)
+  LD s6, 128(sp)
+  LD s7, 136(sp)
+  LD s8, 144(sp)
+  LD s9, 152(sp)
   LD s3, 160(sp)
-  LD s2, 168(sp)
+  LD s4, 168(sp)
   ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb7:
@@ -182,17 +182,17 @@ bb9:
   ADD s4, s7, zero
   ADD s5, s8, zero
   ADD s6, s9, zero
-  LW t4, 60(sp)
+  LW t4, 8(sp)
   ADD s7, t4, zero
-  LW t4, 56(sp)
+  LW t4, 12(sp)
   ADD s8, t4, zero
-  LW t4, 52(sp)
+  LW t4, 16(sp)
   ADD s9, t4, zero
   ADDI t4, zero, 1
-  SW t4, 64(sp)
+  SW t4, 4(sp)
   # implict jump to bb10
 bb10:
-  LW t4, 64(sp)
+  LW t4, 4(sp)
   ADD s11, t4, zero
   ADD ra, s9, zero
   ADD t0, s8, zero
@@ -208,49 +208,49 @@ bb10:
   BNE a6, zero, bb12
   # implict jump to bb11
 bb11:
-  LW t4, 32(sp)
+  LW t4, 36(sp)
   ADDIW a6, t4, 1
   ADD t4, a5, zero
-  SW t4, 48(sp)
-  ADD t4, a4, zero
-  SW t4, 44(sp)
-  ADD t4, a6, zero
-  SW t4, 40(sp)
-  ADD t4, a3, zero
-  SW t4, 36(sp)
-  ADD t4, a2, zero
-  SW t4, 28(sp)
-  ADD t4, a1, zero
-  SW t4, 24(sp)
-  ADD t4, a0, zero
   SW t4, 20(sp)
+  ADD t4, a4, zero
+  SW t4, 24(sp)
+  ADD t4, a6, zero
+  SW t4, 28(sp)
+  ADD t4, a3, zero
+  SW t4, 32(sp)
+  ADD t4, a2, zero
+  SW t4, 40(sp)
+  ADD t4, a1, zero
+  SW t4, 0(sp)
+  ADD t4, a0, zero
+  SW t4, 44(sp)
   ADD t4, t2, zero
-  SW t4, 16(sp)
+  SW t4, 48(sp)
   ADD t4, t1, zero
-  SW t4, 12(sp)
+  SW t4, 52(sp)
   ADD t4, t0, zero
-  SW t4, 8(sp)
+  SW t4, 56(sp)
   ADD t4, ra, zero
-  SW t4, 4(sp)
+  SW t4, 60(sp)
   JAL zero, bb1
 bb12:
   ADDI ra, zero, 1
   SUBW t0, s11, ra
   SLLIW ra, t0, 10
-  LW t4, 32(sp)
+  LW t4, 36(sp)
   ADDW t0, ra, t4
   ADDI ra, zero, 1
   SUBW t1, t0, ra
   ADDIW ra, t0, 1
   SLLIW t2, s11, 10
-  LW t4, 32(sp)
+  LW t4, 36(sp)
   ADDW a0, t2, t4
   ADDI t2, zero, 1
   SUBW a1, a0, t2
   ADDIW t2, a0, 1
   ADDIW a2, s11, 1
   SLLIW s11, a2, 10
-  LW t4, 32(sp)
+  LW t4, 36(sp)
   ADDW a3, s11, t4
   ADDI s11, zero, 1
   SUBW a4, a3, s11
@@ -332,7 +332,7 @@ bb16:
   ADD s8, t0, zero
   ADD s9, t1, zero
   ADD t4, a2, zero
-  SW t4, 64(sp)
+  SW t4, 4(sp)
   JAL zero, bb10
 bb17:
   ADDI s10, zero, 255
@@ -342,10 +342,10 @@ bb18:
   JAL zero, bb16
 cutout:
   ADDI sp, sp, -32
-  SD s2, 0(sp)
-  SD ra, 8(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   ADD s0, a0, zero
   SLT s1, s0, zero
   BNE s1, zero, bb25
@@ -365,10 +365,10 @@ bb22:
 bb23:
   ADD s0, s1, zero
   ADD a0, s0, zero
-  LD s2, 0(sp)
-  LD ra, 8(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb24:

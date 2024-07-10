@@ -36,9 +36,16 @@ class StackAllocator {
 public:
   StackAllocator();
   void allocate(LIRFunc &func);
+
   FunctionStackInfo calculateStackInfo(LIRFunc &func);
+
+  void orderSlots(LIRFunc &func);
+
   void emitPrologue(LIRBuilder &builder, LIRFunc &func);
+
   void emitEpilogue(LIRBuilder &builder, LIRFunc &func);
+
+  void replaceAllSlotRefs(LIRBuilder &builder, LIRFunc &func);
 
   bool resolveSlotRef(LIRBuilder &builder, LIRBB::Iterator it,
                       uint64_t slotOperandIndex);
@@ -52,5 +59,7 @@ private:
   Register *scratchReg;
 
   std::unordered_map<uint64_t, uint64_t> vregNum;
+
+  std::vector<StackSlot *> slots;
 };
 } /* namespace nnvm::riscv */

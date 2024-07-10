@@ -5,14 +5,14 @@
 main:
   ADDI sp, sp, -480
   SD ra, 400(sp)
-  SD s4, 408(sp)
-  SD s3, 416(sp)
-  SD s7, 424(sp)
-  SD s2, 432(sp)
-  SD s6, 440(sp)
-  SD s1, 448(sp)
-  SD s5, 456(sp)
-  SD s0, 464(sp)
+  SD s0, 408(sp)
+  SD s1, 416(sp)
+  SD s2, 424(sp)
+  SD s3, 432(sp)
+  SD s4, 440(sp)
+  SD s5, 448(sp)
+  SD s6, 456(sp)
+  SD s7, 464(sp)
   ADD s0, zero, zero
   # implict jump to bb1
 bb1:
@@ -39,14 +39,14 @@ bb4:
   REMW s7, s5, s6
   ADD a0, s7, zero
   LD ra, 400(sp)
-  LD s4, 408(sp)
-  LD s3, 416(sp)
-  LD s7, 424(sp)
-  LD s2, 432(sp)
-  LD s6, 440(sp)
-  LD s1, 448(sp)
-  LD s5, 456(sp)
-  LD s0, 464(sp)
+  LD s0, 408(sp)
+  LD s1, 416(sp)
+  LD s2, 424(sp)
+  LD s3, 432(sp)
+  LD s4, 440(sp)
+  LD s5, 448(sp)
+  LD s6, 456(sp)
+  LD s7, 464(sp)
   ADDI sp, sp, 480
   JALR zero, 0(ra)
 bb5:

@@ -6,10 +6,10 @@
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADDI s0, zero, 1
   # implict jump to bb1
 bb1:
@@ -22,10 +22,10 @@ bb1:
 bb2:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
@@ -58,20 +58,20 @@ bb3:
   ADD s0, s2, zero
   JAL zero, bb1
 fib:
-  ADDI sp, sp, -560
-  SD s11, 456(sp)
-  SD s10, 464(sp)
-  SD s9, 472(sp)
-  SD s0, 480(sp)
-  SD s5, 488(sp)
-  SD s7, 496(sp)
-  SD s1, 504(sp)
-  SD s6, 512(sp)
-  SD s2, 520(sp)
-  SD ra, 528(sp)
-  SD s3, 536(sp)
-  SD s4, 544(sp)
-  SD s8, 552(sp)
+  ADDI sp, sp, -528
+  SD ra, 424(sp)
+  SD s0, 432(sp)
+  SD s1, 440(sp)
+  SD s2, 448(sp)
+  SD s3, 456(sp)
+  SD s4, 464(sp)
+  SD s5, 472(sp)
+  SD s6, 480(sp)
+  SD s7, 488(sp)
+  SD s8, 496(sp)
+  SD s9, 504(sp)
+  SD s10, 512(sp)
+  SD s11, 520(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 2
   SLT s2, s1, s0
@@ -81,8 +81,8 @@ fib:
 bb5:
   XOR s1, zero, zero
   SLTU t4, zero, s1
-  SB t4, 1(sp)
-  LB t4, 1(sp)
+  SB t4, 14(sp)
+  LB t4, 14(sp)
   BNE t4, zero, bb5240
   # implict jump to bb6
 bb6:
@@ -93,8 +93,8 @@ bb7:
   ADDI s1, zero, 1
   XOR s4, s1, zero
   SLTU t4, zero, s4
-  SB t4, 0(sp)
-  LB t4, 0(sp)
+  SB t4, 13(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5239
   # implict jump to bb8
 bb8:
@@ -102,7 +102,7 @@ bb8:
   # implict jump to bb9
 bb9:
   ADD s5, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5238
   # implict jump to bb10
 bb10:
@@ -110,7 +110,7 @@ bb10:
   # implict jump to bb11
 bb11:
   ADD s6, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5237
   # implict jump to bb12
 bb12:
@@ -118,7 +118,7 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD s7, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5236
   # implict jump to bb14
 bb14:
@@ -126,7 +126,7 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD s8, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5235
   # implict jump to bb16
 bb16:
@@ -134,7 +134,7 @@ bb16:
   # implict jump to bb17
 bb17:
   ADD s9, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5234
   # implict jump to bb18
 bb18:
@@ -142,7 +142,7 @@ bb18:
   # implict jump to bb19
 bb19:
   ADD s10, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5233
   # implict jump to bb20
 bb20:
@@ -150,7 +150,7 @@ bb20:
   # implict jump to bb21
 bb21:
   ADD s11, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5232
   # implict jump to bb22
 bb22:
@@ -158,7 +158,7 @@ bb22:
   # implict jump to bb23
 bb23:
   ADD t0, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5231
   # implict jump to bb24
 bb24:
@@ -166,7 +166,7 @@ bb24:
   # implict jump to bb25
 bb25:
   ADD t1, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5230
   # implict jump to bb26
 bb26:
@@ -174,7 +174,7 @@ bb26:
   # implict jump to bb27
 bb27:
   ADD t2, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5229
   # implict jump to bb28
 bb28:
@@ -182,7 +182,7 @@ bb28:
   # implict jump to bb29
 bb29:
   ADD a1, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5228
   # implict jump to bb30
 bb30:
@@ -190,7 +190,7 @@ bb30:
   # implict jump to bb31
 bb31:
   ADD a2, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5227
   # implict jump to bb32
 bb32:
@@ -198,7 +198,7 @@ bb32:
   # implict jump to bb33
 bb33:
   ADD a3, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5226
   # implict jump to bb34
 bb34:
@@ -206,7 +206,7 @@ bb34:
   # implict jump to bb35
 bb35:
   ADD a4, s4, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb5225
   # implict jump to bb36
 bb36:
@@ -3059,15 +3059,15 @@ bb703:
   ADDW s2, s1, a7
   ADDI s1, zero, 2
   REMW t4, s0, s1
-  SW t4, 108(sp)
-  LW t3, 108(sp)
+  SW t4, 264(sp)
+  LW t3, 264(sp)
   SLT t4, t3, zero
-  SB t4, 112(sp)
-  LB t4, 112(sp)
+  SB t4, 11(sp)
+  LB t4, 11(sp)
   BNE t4, zero, bb4891
   # implict jump to bb704
 bb704:
-  LW t4, 108(sp)
+  LW t4, 264(sp)
   ADD s4, t4, zero
   # implict jump to bb705
 bb705:
@@ -3076,15 +3076,15 @@ bb705:
   DIVW s6, s0, s4
   ADDI s0, zero, 2
   REMW t4, s6, s0
-  SW t4, 100(sp)
-  LW t3, 100(sp)
+  SW t4, 268(sp)
+  LW t3, 268(sp)
   SLT t4, t3, zero
-  SB t4, 104(sp)
-  LB t4, 104(sp)
+  SB t4, 8(sp)
+  LB t4, 8(sp)
   BNE t4, zero, bb4890
   # implict jump to bb706
 bb706:
-  LW t4, 100(sp)
+  LW t4, 268(sp)
   ADD s7, t4, zero
   # implict jump to bb707
 bb707:
@@ -3093,15 +3093,15 @@ bb707:
   DIVW s9, s6, s7
   ADDI s6, zero, 2
   REMW t4, s9, s6
-  SW t4, 80(sp)
-  LW t3, 80(sp)
+  SW t4, 228(sp)
+  LW t3, 228(sp)
   SLT t4, t3, zero
-  SB t4, 89(sp)
-  LB t4, 89(sp)
+  SB t4, 2(sp)
+  LB t4, 2(sp)
   BNE t4, zero, bb4889
   # implict jump to bb708
 bb708:
-  LW t4, 80(sp)
+  LW t4, 228(sp)
   ADD s10, t4, zero
   # implict jump to bb709
 bb709:
@@ -3110,15 +3110,15 @@ bb709:
   DIVW t0, s9, s10
   ADDI s9, zero, 2
   REMW t4, t0, s9
-  SW t4, 60(sp)
-  LW t3, 60(sp)
+  SW t4, 292(sp)
+  LW t3, 292(sp)
   SLT t4, t3, zero
-  SB t4, 69(sp)
-  LB t4, 69(sp)
+  SB t4, 4(sp)
+  LB t4, 4(sp)
   BNE t4, zero, bb4888
   # implict jump to bb710
 bb710:
-  LW t4, 60(sp)
+  LW t4, 292(sp)
   ADD t1, t4, zero
   # implict jump to bb711
 bb711:
@@ -3127,15 +3127,15 @@ bb711:
   DIVW a1, t0, t1
   ADDI t0, zero, 2
   REMW t4, a1, t0
-  SW t4, 40(sp)
-  LW t3, 40(sp)
+  SW t4, 304(sp)
+  LW t3, 304(sp)
   SLT t4, t3, zero
-  SB t4, 49(sp)
-  LB t4, 49(sp)
+  SB t4, 9(sp)
+  LB t4, 9(sp)
   BNE t4, zero, bb4887
   # implict jump to bb712
 bb712:
-  LW t4, 40(sp)
+  LW t4, 304(sp)
   ADD a2, t4, zero
   # implict jump to bb713
 bb713:
@@ -3144,15 +3144,15 @@ bb713:
   DIVW a4, a1, a2
   ADDI a1, zero, 2
   REMW t4, a4, a1
-  SW t4, 20(sp)
-  LW t3, 20(sp)
+  SW t4, 316(sp)
+  LW t3, 316(sp)
   SLT t4, t3, zero
-  SB t4, 29(sp)
-  LB t4, 29(sp)
+  SB t4, 16(sp)
+  LB t4, 16(sp)
   BNE t4, zero, bb4886
   # implict jump to bb714
 bb714:
-  LW t4, 20(sp)
+  LW t4, 316(sp)
   ADD a5, t4, zero
   # implict jump to bb715
 bb715:
@@ -3161,15 +3161,15 @@ bb715:
   DIVW a7, a4, a5
   ADDI a4, zero, 2
   REMW t4, a7, a4
-  SW t4, 4(sp)
-  LW t3, 4(sp)
+  SW t4, 324(sp)
+  LW t3, 324(sp)
   SLT t4, t3, zero
-  SB t4, 8(sp)
-  LB t4, 8(sp)
+  SB t4, 17(sp)
+  LB t4, 17(sp)
   BNE t4, zero, bb4885
   # implict jump to bb716
 bb716:
-  LW t4, 4(sp)
+  LW t4, 324(sp)
   ADD t6, t4, zero
   # implict jump to bb717
 bb717:
@@ -3178,15 +3178,15 @@ bb717:
   DIVW a4, a7, t6
   ADDI a7, zero, 2
   REMW t4, a4, a7
-  SW t4, 12(sp)
-  LW t3, 12(sp)
+  SW t4, 320(sp)
+  LW t3, 320(sp)
   SLT t4, t3, zero
-  SB t4, 16(sp)
-  LB t4, 16(sp)
+  SB t4, 15(sp)
+  LB t4, 15(sp)
   BNE t4, zero, bb4884
   # implict jump to bb718
 bb718:
-  LW t4, 12(sp)
+  LW t4, 320(sp)
   ADD t6, t4, zero
   # implict jump to bb719
 bb719:
@@ -3195,15 +3195,15 @@ bb719:
   DIVW a2, a4, t6
   ADDI a4, zero, 2
   REMW t4, a2, a4
-  SW t4, 24(sp)
-  LW t3, 24(sp)
+  SW t4, 312(sp)
+  LW t3, 312(sp)
   SLT t4, t3, zero
-  SB t4, 28(sp)
-  LB t4, 28(sp)
+  SB t4, 12(sp)
+  LB t4, 12(sp)
   BNE t4, zero, bb4883
   # implict jump to bb720
 bb720:
-  LW t4, 24(sp)
+  LW t4, 312(sp)
   ADD t6, t4, zero
   # implict jump to bb721
 bb721:
@@ -3212,15 +3212,15 @@ bb721:
   DIVW a1, a2, t6
   ADDI a2, zero, 2
   REMW t4, a1, a2
-  SW t4, 32(sp)
-  LW t3, 32(sp)
+  SW t4, 308(sp)
+  LW t3, 308(sp)
   SLT t4, t3, zero
-  SB t4, 36(sp)
-  LB t4, 36(sp)
+  SB t4, 0(sp)
+  LB t4, 0(sp)
   BNE t4, zero, bb4882
   # implict jump to bb722
 bb722:
-  LW t4, 32(sp)
+  LW t4, 308(sp)
   ADD t6, t4, zero
   # implict jump to bb723
 bb723:
@@ -3229,110 +3229,110 @@ bb723:
   DIVW t1, a1, t6
   ADDI a1, zero, 2
   REMW t4, t1, a1
-  SW t4, 44(sp)
-  LW t3, 44(sp)
+  SW t4, 300(sp)
+  LW t3, 300(sp)
   SLT t4, t3, zero
-  SB t4, 48(sp)
-  LB t4, 48(sp)
+  SB t4, 10(sp)
+  LB t4, 10(sp)
   BNE t4, zero, bb4881
   # implict jump to bb724
 bb724:
-  LW t4, 44(sp)
+  LW t4, 300(sp)
   ADD t6, t4, zero
   # implict jump to bb725
 bb725:
   ADD t4, t6, zero
-  SW t4, 136(sp)
+  SW t4, 240(sp)
   ADDI t6, zero, 2
   DIVW t0, t1, t6
   ADDI t1, zero, 2
   REMW t4, t0, t1
-  SW t4, 52(sp)
-  LW t3, 52(sp)
+  SW t4, 296(sp)
+  LW t3, 296(sp)
   SLT t4, t3, zero
-  SB t4, 56(sp)
-  LB t4, 56(sp)
+  SB t4, 7(sp)
+  LB t4, 7(sp)
   BNE t4, zero, bb4880
   # implict jump to bb726
 bb726:
-  LW t4, 52(sp)
+  LW t4, 296(sp)
   ADD t6, t4, zero
   # implict jump to bb727
 bb727:
   ADD t4, t6, zero
-  SW t4, 132(sp)
+  SW t4, 244(sp)
   ADDI t6, zero, 2
   DIVW s10, t0, t6
   ADDI t0, zero, 2
   REMW t4, s10, t0
-  SW t4, 64(sp)
-  LW t3, 64(sp)
+  SW t4, 288(sp)
+  LW t3, 288(sp)
   SLT t4, t3, zero
-  SB t4, 68(sp)
-  LB t4, 68(sp)
+  SB t4, 5(sp)
+  LB t4, 5(sp)
   BNE t4, zero, bb4879
   # implict jump to bb728
 bb728:
-  LW t4, 64(sp)
+  LW t4, 288(sp)
   ADD t6, t4, zero
   # implict jump to bb729
 bb729:
   ADD t4, t6, zero
-  SW t4, 128(sp)
+  SW t4, 248(sp)
   ADDI t6, zero, 2
   DIVW s9, s10, t6
   ADDI s10, zero, 2
   REMW t4, s9, s10
-  SW t4, 72(sp)
-  LW t3, 72(sp)
+  SW t4, 284(sp)
+  LW t3, 284(sp)
   SLT t4, t3, zero
-  SB t4, 76(sp)
-  LB t4, 76(sp)
+  SB t4, 3(sp)
+  LB t4, 3(sp)
   BNE t4, zero, bb4878
   # implict jump to bb730
 bb730:
-  LW t4, 72(sp)
+  LW t4, 284(sp)
   ADD t6, t4, zero
   # implict jump to bb731
 bb731:
   ADD t4, t6, zero
-  SW t4, 124(sp)
+  SW t4, 252(sp)
   ADDI t6, zero, 2
   DIVW s7, s9, t6
   ADDI s9, zero, 2
   REMW t4, s7, s9
-  SW t4, 84(sp)
-  LW t3, 84(sp)
+  SW t4, 276(sp)
+  LW t3, 276(sp)
   SLT t4, t3, zero
-  SB t4, 88(sp)
-  LB t4, 88(sp)
+  SB t4, 1(sp)
+  LB t4, 1(sp)
   BNE t4, zero, bb4877
   # implict jump to bb732
 bb732:
-  LW t4, 84(sp)
+  LW t4, 276(sp)
   ADD t6, t4, zero
   # implict jump to bb733
 bb733:
   ADD t4, t6, zero
-  SW t4, 120(sp)
+  SW t4, 256(sp)
   ADDI t6, zero, 2
   DIVW s6, s7, t6
   ADDI s7, zero, 2
   REMW t4, s6, s7
-  SW t4, 92(sp)
-  LW t3, 92(sp)
+  SW t4, 272(sp)
+  LW t3, 272(sp)
   SLT t4, t3, zero
-  SB t4, 96(sp)
-  LB t4, 96(sp)
+  SB t4, 6(sp)
+  LB t4, 6(sp)
   BNE t4, zero, bb4876
   # implict jump to bb734
 bb734:
-  LW t4, 92(sp)
+  LW t4, 272(sp)
   ADD s7, t4, zero
   # implict jump to bb735
 bb735:
   ADD t4, s7, zero
-  SW t4, 116(sp)
+  SW t4, 260(sp)
   ADDI s7, zero, 2
   REMW s6, s2, s7
   SLT s7, s6, zero
@@ -3451,7 +3451,7 @@ bb754:
   # implict jump to bb755
 bb755:
   ADD t4, s2, zero
-  SW t4, 140(sp)
+  SW t4, 236(sp)
   ADDI s2, zero, 2
   DIVW a1, t6, s2
   ADDI s2, zero, 2
@@ -3464,7 +3464,7 @@ bb756:
   # implict jump to bb757
 bb757:
   ADD t4, s2, zero
-  SW t4, 144(sp)
+  SW t4, 232(sp)
   ADDI s2, zero, 2
   DIVW t6, a1, s2
   ADDI s2, zero, 2
@@ -3477,7 +3477,7 @@ bb758:
   # implict jump to bb759
 bb759:
   ADD t4, s2, zero
-  SW t4, 148(sp)
+  SW t4, 420(sp)
   ADDI s2, zero, 2
   DIVW a1, t6, s2
   ADDI s2, zero, 2
@@ -3490,7 +3490,7 @@ bb760:
   # implict jump to bb761
 bb761:
   ADD t4, s2, zero
-  SW t4, 152(sp)
+  SW t4, 328(sp)
   ADDI s2, zero, 2
   DIVW t6, a1, s2
   ADDI s2, zero, 2
@@ -3503,7 +3503,7 @@ bb762:
   # implict jump to bb763
 bb763:
   ADD t4, s2, zero
-  SW t4, 156(sp)
+  SW t4, 416(sp)
   ADDI s2, zero, 2
   DIVW a1, t6, s2
   ADDI s2, zero, 2
@@ -3516,7 +3516,7 @@ bb764:
   # implict jump to bb765
 bb765:
   ADD t4, s2, zero
-  SW t4, 164(sp)
+  SW t4, 408(sp)
   ADDI s2, zero, 2
   DIVW t6, a1, s2
   ADDI s2, zero, 2
@@ -3529,7 +3529,7 @@ bb766:
   # implict jump to bb767
 bb767:
   ADD t4, s2, zero
-  SW t4, 160(sp)
+  SW t4, 412(sp)
   XOR s2, s5, zero
   SLTU s5, zero, s2
   BNE s5, zero, bb4859
@@ -3648,7 +3648,7 @@ bb794:
   # implict jump to bb795
 bb795:
   ADD t4, s2, zero
-  SW t4, 168(sp)
+  SW t4, 404(sp)
   BNE s5, zero, bb4845
   # implict jump to bb796
 bb796:
@@ -5028,7 +5028,7 @@ bb1127:
   BNE s2, zero, bb4679
   # implict jump to bb1128
 bb1128:
-  LW t4, 140(sp)
+  LW t4, 236(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -5190,13 +5190,13 @@ bb1166:
   # implict jump to bb1167
 bb1167:
   ADD s1, s0, zero
-  LW t4, 136(sp)
+  LW t4, 240(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4659
   # implict jump to bb1168
 bb1168:
-  LW t4, 144(sp)
+  LW t4, 232(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -5358,13 +5358,13 @@ bb1206:
   # implict jump to bb1207
 bb1207:
   ADD s1, s0, zero
-  LW t4, 132(sp)
+  LW t4, 244(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4639
   # implict jump to bb1208
 bb1208:
-  LW t4, 148(sp)
+  LW t4, 420(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -5526,13 +5526,13 @@ bb1246:
   # implict jump to bb1247
 bb1247:
   ADD s1, s0, zero
-  LW t4, 128(sp)
+  LW t4, 248(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4619
   # implict jump to bb1248
 bb1248:
-  LW t4, 152(sp)
+  LW t4, 328(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -5694,13 +5694,13 @@ bb1286:
   # implict jump to bb1287
 bb1287:
   ADD s1, s0, zero
-  LW t4, 124(sp)
+  LW t4, 252(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4599
   # implict jump to bb1288
 bb1288:
-  LW t4, 156(sp)
+  LW t4, 416(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -5862,13 +5862,13 @@ bb1326:
   # implict jump to bb1327
 bb1327:
   ADD s1, s0, zero
-  LW t4, 120(sp)
+  LW t4, 256(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4579
   # implict jump to bb1328
 bb1328:
-  LW t4, 164(sp)
+  LW t4, 408(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -6030,13 +6030,13 @@ bb1366:
   # implict jump to bb1367
 bb1367:
   ADD s1, s0, zero
-  LW t4, 116(sp)
+  LW t4, 260(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4559
   # implict jump to bb1368
 bb1368:
-  LW t4, 160(sp)
+  LW t4, 412(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -6198,13 +6198,13 @@ bb1401:
   SLLIW s0, s1, 1
   ADDW s1, s0, t0
   SLLIW s0, s1, 1
-  LW t4, 168(sp)
+  LW t4, 404(sp)
   ADDW s1, s0, t4
   ADD a0, s1, zero
   CALL fib
   ADD t4, a0, zero
-  SW t4, 172(sp)
-  LB t4, 0(sp)
+  SW t4, 400(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4542
   # implict jump to bb1402
 bb1402:
@@ -6212,8 +6212,8 @@ bb1402:
   # implict jump to bb1403
 bb1403:
   ADD t4, s1, zero
-  SW t4, 176(sp)
-  LB t4, 1(sp)
+  SW t4, 396(sp)
+  LB t4, 14(sp)
   BNE t4, zero, bb4541
   # implict jump to bb1404
 bb1404:
@@ -6221,8 +6221,8 @@ bb1404:
   # implict jump to bb1405
 bb1405:
   ADD t4, s1, zero
-  SW t4, 180(sp)
-  LB t4, 0(sp)
+  SW t4, 392(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4540
   # implict jump to bb1406
 bb1406:
@@ -6230,8 +6230,8 @@ bb1406:
   # implict jump to bb1407
 bb1407:
   ADD t4, s1, zero
-  SW t4, 184(sp)
-  LB t4, 0(sp)
+  SW t4, 388(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4539
   # implict jump to bb1408
 bb1408:
@@ -6239,8 +6239,8 @@ bb1408:
   # implict jump to bb1409
 bb1409:
   ADD t4, s1, zero
-  SW t4, 188(sp)
-  LB t4, 0(sp)
+  SW t4, 384(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4538
   # implict jump to bb1410
 bb1410:
@@ -6248,8 +6248,8 @@ bb1410:
   # implict jump to bb1411
 bb1411:
   ADD t4, s1, zero
-  SW t4, 192(sp)
-  LB t4, 0(sp)
+  SW t4, 380(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4537
   # implict jump to bb1412
 bb1412:
@@ -6257,7 +6257,7 @@ bb1412:
   # implict jump to bb1413
 bb1413:
   ADD s7, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4536
   # implict jump to bb1414
 bb1414:
@@ -6265,7 +6265,7 @@ bb1414:
   # implict jump to bb1415
 bb1415:
   ADD s8, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4535
   # implict jump to bb1416
 bb1416:
@@ -6273,7 +6273,7 @@ bb1416:
   # implict jump to bb1417
 bb1417:
   ADD s9, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4534
   # implict jump to bb1418
 bb1418:
@@ -6281,7 +6281,7 @@ bb1418:
   # implict jump to bb1419
 bb1419:
   ADD s10, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4533
   # implict jump to bb1420
 bb1420:
@@ -6289,7 +6289,7 @@ bb1420:
   # implict jump to bb1421
 bb1421:
   ADD s11, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4532
   # implict jump to bb1422
 bb1422:
@@ -6297,7 +6297,7 @@ bb1422:
   # implict jump to bb1423
 bb1423:
   ADD s0, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4531
   # implict jump to bb1424
 bb1424:
@@ -6305,7 +6305,7 @@ bb1424:
   # implict jump to bb1425
 bb1425:
   ADD s2, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4530
   # implict jump to bb1426
 bb1426:
@@ -6313,7 +6313,7 @@ bb1426:
   # implict jump to bb1427
 bb1427:
   ADD s3, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4529
   # implict jump to bb1428
 bb1428:
@@ -6321,7 +6321,7 @@ bb1428:
   # implict jump to bb1429
 bb1429:
   ADD s4, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4528
   # implict jump to bb1430
 bb1430:
@@ -6329,7 +6329,7 @@ bb1430:
   # implict jump to bb1431
 bb1431:
   ADD s5, s1, zero
-  LB t4, 0(sp)
+  LB t4, 13(sp)
   BNE t4, zero, bb4527
   # implict jump to bb1432
 bb1432:
@@ -6358,19 +6358,19 @@ bb1433:
   SLLIW s0, s1, 1
   ADDW s1, s0, s7
   SLLIW s0, s1, 1
-  LW t4, 192(sp)
+  LW t4, 380(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 188(sp)
+  LW t4, 384(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 184(sp)
+  LW t4, 388(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 180(sp)
+  LW t4, 392(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 176(sp)
+  LW t4, 396(sp)
   ADDW s1, s0, t4
   ADDI s0, zero, 2
   REMW s2, s1, s0
@@ -6466,7 +6466,7 @@ bb1448:
   # implict jump to bb1449
 bb1449:
   ADD t4, s0, zero
-  SW t4, 232(sp)
+  SW t4, 344(sp)
   ADDI s0, zero, 2
   DIVW s10, s9, s0
   ADDI s0, zero, 2
@@ -6479,7 +6479,7 @@ bb1450:
   # implict jump to bb1451
 bb1451:
   ADD t4, s0, zero
-  SW t4, 196(sp)
+  SW t4, 376(sp)
   ADDI s0, zero, 2
   DIVW s11, s10, s0
   ADDI s0, zero, 2
@@ -6492,7 +6492,7 @@ bb1452:
   # implict jump to bb1453
 bb1453:
   ADD t4, s0, zero
-  SW t4, 200(sp)
+  SW t4, 372(sp)
   ADDI s0, zero, 2
   DIVW s10, s11, s0
   ADDI s0, zero, 2
@@ -6505,7 +6505,7 @@ bb1454:
   # implict jump to bb1455
 bb1455:
   ADD t4, s0, zero
-  SW t4, 204(sp)
+  SW t4, 368(sp)
   ADDI s0, zero, 2
   DIVW s11, s10, s0
   ADDI s0, zero, 2
@@ -6518,7 +6518,7 @@ bb1456:
   # implict jump to bb1457
 bb1457:
   ADD t4, s0, zero
-  SW t4, 208(sp)
+  SW t4, 364(sp)
   ADDI s0, zero, 2
   DIVW s10, s11, s0
   ADDI s0, zero, 2
@@ -6531,7 +6531,7 @@ bb1458:
   # implict jump to bb1459
 bb1459:
   ADD t4, s0, zero
-  SW t4, 212(sp)
+  SW t4, 196(sp)
   ADDI s0, zero, 2
   DIVW s11, s10, s0
   ADDI s0, zero, 2
@@ -6544,7 +6544,7 @@ bb1460:
   # implict jump to bb1461
 bb1461:
   ADD t4, s0, zero
-  SW t4, 216(sp)
+  SW t4, 360(sp)
   ADDI s0, zero, 2
   DIVW s10, s11, s0
   ADDI s0, zero, 2
@@ -6557,7 +6557,7 @@ bb1462:
   # implict jump to bb1463
 bb1463:
   ADD t4, s0, zero
-  SW t4, 224(sp)
+  SW t4, 352(sp)
   ADDI s0, zero, 2
   DIVW s11, s10, s0
   ADDI s0, zero, 2
@@ -6570,7 +6570,7 @@ bb1464:
   # implict jump to bb1465
 bb1465:
   ADD t4, s0, zero
-  SW t4, 220(sp)
+  SW t4, 356(sp)
   XOR s0, s2, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4510
@@ -6687,7 +6687,7 @@ bb1492:
   # implict jump to bb1493
 bb1493:
   ADD t4, s0, zero
-  SW t4, 228(sp)
+  SW t4, 348(sp)
   BNE s2, zero, bb4496
   # implict jump to bb1494
 bb1494:
@@ -6852,7 +6852,7 @@ bb1532:
   # implict jump to bb1533
 bb1533:
   ADD t4, s0, zero
-  SW t4, 236(sp)
+  SW t4, 340(sp)
   BNE s1, zero, bb4476
   # implict jump to bb1534
 bb1534:
@@ -7017,7 +7017,7 @@ bb1572:
   # implict jump to bb1573
 bb1573:
   ADD t4, s0, zero
-  SW t4, 240(sp)
+  SW t4, 336(sp)
   BNE s2, zero, bb4456
   # implict jump to bb1574
 bb1574:
@@ -7182,7 +7182,7 @@ bb1612:
   # implict jump to bb1613
 bb1613:
   ADD t4, s0, zero
-  SW t4, 244(sp)
+  SW t4, 280(sp)
   BNE s2, zero, bb4436
   # implict jump to bb1614
 bb1614:
@@ -7347,7 +7347,7 @@ bb1652:
   # implict jump to bb1653
 bb1653:
   ADD t4, s0, zero
-  SW t4, 248(sp)
+  SW t4, 332(sp)
   BNE s2, zero, bb4416
   # implict jump to bb1654
 bb1654:
@@ -7512,7 +7512,7 @@ bb1692:
   # implict jump to bb1693
 bb1693:
   ADD t4, s0, zero
-  SW t4, 252(sp)
+  SW t4, 120(sp)
   BNE s2, zero, bb4396
   # implict jump to bb1694
 bb1694:
@@ -7677,7 +7677,7 @@ bb1732:
   # implict jump to bb1733
 bb1733:
   ADD t4, s0, zero
-  SW t4, 256(sp)
+  SW t4, 116(sp)
   BNE s2, zero, bb4376
   # implict jump to bb1734
 bb1734:
@@ -7724,7 +7724,7 @@ bb1744:
   # implict jump to bb1745
 bb1745:
   ADD s1, s0, zero
-  LW t4, 232(sp)
+  LW t4, 344(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4370
@@ -7843,7 +7843,7 @@ bb1772:
   # implict jump to bb1773
 bb1773:
   ADD t4, s0, zero
-  SW t4, 260(sp)
+  SW t4, 112(sp)
   BNE s2, zero, bb4356
   # implict jump to bb1774
 bb1774:
@@ -7890,7 +7890,7 @@ bb1784:
   # implict jump to bb1785
 bb1785:
   ADD s1, s0, zero
-  LW t4, 196(sp)
+  LW t4, 376(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4350
@@ -8009,7 +8009,7 @@ bb1812:
   # implict jump to bb1813
 bb1813:
   ADD t4, s0, zero
-  SW t4, 264(sp)
+  SW t4, 108(sp)
   BNE s2, zero, bb4336
   # implict jump to bb1814
 bb1814:
@@ -8056,7 +8056,7 @@ bb1824:
   # implict jump to bb1825
 bb1825:
   ADD s1, s0, zero
-  LW t4, 200(sp)
+  LW t4, 372(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4330
@@ -8221,7 +8221,7 @@ bb1864:
   # implict jump to bb1865
 bb1865:
   ADD s1, s0, zero
-  LW t4, 204(sp)
+  LW t4, 368(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4310
@@ -8386,7 +8386,7 @@ bb1904:
   # implict jump to bb1905
 bb1905:
   ADD s1, s0, zero
-  LW t4, 208(sp)
+  LW t4, 364(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4290
@@ -8551,7 +8551,7 @@ bb1944:
   # implict jump to bb1945
 bb1945:
   ADD s1, s0, zero
-  LW t4, 212(sp)
+  LW t4, 196(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4270
@@ -8716,7 +8716,7 @@ bb1984:
   # implict jump to bb1985
 bb1985:
   ADD s1, s0, zero
-  LW t4, 216(sp)
+  LW t4, 360(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4250
@@ -8881,7 +8881,7 @@ bb2024:
   # implict jump to bb2025
 bb2025:
   ADD s1, s0, zero
-  LW t4, 224(sp)
+  LW t4, 352(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4230
@@ -9046,7 +9046,7 @@ bb2064:
   # implict jump to bb2065
 bb2065:
   ADD s1, s0, zero
-  LW t4, 220(sp)
+  LW t4, 356(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4210
@@ -9195,188 +9195,188 @@ bb2099:
   SLLIW s0, s1, 1
   ADDW s1, s0, s4
   SLLIW s0, s1, 1
-  LW t4, 264(sp)
+  LW t4, 108(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 260(sp)
+  LW t4, 112(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 256(sp)
+  LW t4, 116(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 252(sp)
+  LW t4, 120(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 248(sp)
+  LW t4, 332(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 244(sp)
+  LW t4, 280(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 240(sp)
+  LW t4, 336(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 236(sp)
+  LW t4, 340(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 228(sp)
+  LW t4, 348(sp)
   ADDW s1, s0, t4
-  LB t4, 112(sp)
+  LB t4, 11(sp)
   BNE t4, zero, bb4193
   # implict jump to bb2100
 bb2100:
-  LW t4, 108(sp)
+  LW t4, 264(sp)
   ADD s0, t4, zero
   # implict jump to bb2101
 bb2101:
   ADD s2, s0, zero
-  LB t4, 104(sp)
+  LB t4, 8(sp)
   BNE t4, zero, bb4192
   # implict jump to bb2102
 bb2102:
-  LW t4, 100(sp)
+  LW t4, 268(sp)
   ADD s0, t4, zero
   # implict jump to bb2103
 bb2103:
   ADD s3, s0, zero
-  LB t4, 89(sp)
+  LB t4, 2(sp)
   BNE t4, zero, bb4191
   # implict jump to bb2104
 bb2104:
-  LW t4, 80(sp)
+  LW t4, 228(sp)
   ADD s0, t4, zero
   # implict jump to bb2105
 bb2105:
   ADD s4, s0, zero
-  LB t4, 69(sp)
+  LB t4, 4(sp)
   BNE t4, zero, bb4190
   # implict jump to bb2106
 bb2106:
-  LW t4, 60(sp)
+  LW t4, 292(sp)
   ADD s0, t4, zero
   # implict jump to bb2107
 bb2107:
   ADD s5, s0, zero
-  LB t4, 49(sp)
+  LB t4, 9(sp)
   BNE t4, zero, bb4189
   # implict jump to bb2108
 bb2108:
-  LW t4, 40(sp)
+  LW t4, 304(sp)
   ADD s0, t4, zero
   # implict jump to bb2109
 bb2109:
   ADD t4, s0, zero
-  SW t4, 312(sp)
-  LB t4, 29(sp)
+  SW t4, 32(sp)
+  LB t4, 16(sp)
   BNE t4, zero, bb4188
   # implict jump to bb2110
 bb2110:
-  LW t4, 20(sp)
+  LW t4, 316(sp)
   ADD s0, t4, zero
   # implict jump to bb2111
 bb2111:
   ADD t4, s0, zero
-  SW t4, 308(sp)
-  LB t4, 8(sp)
+  SW t4, 64(sp)
+  LB t4, 17(sp)
   BNE t4, zero, bb4187
   # implict jump to bb2112
 bb2112:
-  LW t4, 4(sp)
+  LW t4, 324(sp)
   ADD s0, t4, zero
   # implict jump to bb2113
 bb2113:
   ADD t4, s0, zero
-  SW t4, 304(sp)
-  LB t4, 16(sp)
+  SW t4, 68(sp)
+  LB t4, 15(sp)
   BNE t4, zero, bb4186
   # implict jump to bb2114
 bb2114:
-  LW t4, 12(sp)
+  LW t4, 320(sp)
   ADD s0, t4, zero
   # implict jump to bb2115
 bb2115:
   ADD t4, s0, zero
-  SW t4, 300(sp)
-  LB t4, 28(sp)
+  SW t4, 72(sp)
+  LB t4, 12(sp)
   BNE t4, zero, bb4185
   # implict jump to bb2116
 bb2116:
-  LW t4, 24(sp)
+  LW t4, 312(sp)
   ADD s0, t4, zero
   # implict jump to bb2117
 bb2117:
   ADD t4, s0, zero
-  SW t4, 296(sp)
-  LB t4, 36(sp)
+  SW t4, 56(sp)
+  LB t4, 0(sp)
   BNE t4, zero, bb4184
   # implict jump to bb2118
 bb2118:
-  LW t4, 32(sp)
+  LW t4, 308(sp)
   ADD s0, t4, zero
   # implict jump to bb2119
 bb2119:
   ADD t4, s0, zero
-  SW t4, 268(sp)
-  LB t4, 48(sp)
+  SW t4, 104(sp)
+  LB t4, 10(sp)
   BNE t4, zero, bb4183
   # implict jump to bb2120
 bb2120:
-  LW t4, 44(sp)
+  LW t4, 300(sp)
   ADD s0, t4, zero
   # implict jump to bb2121
 bb2121:
   ADD t4, s0, zero
-  SW t4, 272(sp)
-  LB t4, 56(sp)
+  SW t4, 100(sp)
+  LB t4, 7(sp)
   BNE t4, zero, bb4182
   # implict jump to bb2122
 bb2122:
-  LW t4, 52(sp)
+  LW t4, 296(sp)
   ADD s0, t4, zero
   # implict jump to bb2123
 bb2123:
   ADD t4, s0, zero
-  SW t4, 276(sp)
-  LB t4, 68(sp)
+  SW t4, 96(sp)
+  LB t4, 5(sp)
   BNE t4, zero, bb4181
   # implict jump to bb2124
 bb2124:
-  LW t4, 64(sp)
+  LW t4, 288(sp)
   ADD s0, t4, zero
   # implict jump to bb2125
 bb2125:
   ADD t4, s0, zero
-  SW t4, 280(sp)
-  LB t4, 76(sp)
+  SW t4, 92(sp)
+  LB t4, 3(sp)
   BNE t4, zero, bb4180
   # implict jump to bb2126
 bb2126:
-  LW t4, 72(sp)
+  LW t4, 284(sp)
   ADD s0, t4, zero
   # implict jump to bb2127
 bb2127:
   ADD t4, s0, zero
-  SW t4, 284(sp)
-  LB t4, 88(sp)
+  SW t4, 88(sp)
+  LB t4, 1(sp)
   BNE t4, zero, bb4179
   # implict jump to bb2128
 bb2128:
-  LW t4, 84(sp)
+  LW t4, 276(sp)
   ADD s0, t4, zero
   # implict jump to bb2129
 bb2129:
   ADD t4, s0, zero
-  SW t4, 288(sp)
-  LB t4, 96(sp)
+  SW t4, 84(sp)
+  LB t4, 6(sp)
   BNE t4, zero, bb4178
   # implict jump to bb2130
 bb2130:
-  LW t4, 92(sp)
+  LW t4, 272(sp)
   ADD s0, t4, zero
   # implict jump to bb2131
 bb2131:
   ADD t4, s0, zero
-  SW t4, 292(sp)
+  SW t4, 80(sp)
   ADDI s0, zero, 2
   REMW s11, s1, s0
   SLT s0, s11, zero
@@ -9435,7 +9435,7 @@ bb2140:
   # implict jump to bb2141
 bb2141:
   ADD t4, s0, zero
-  SW t4, 316(sp)
+  SW t4, 40(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9448,7 +9448,7 @@ bb2142:
   # implict jump to bb2143
 bb2143:
   ADD t4, s0, zero
-  SW t4, 320(sp)
+  SW t4, 52(sp)
   ADDI s0, zero, 2
   DIVW s9, s11, s0
   ADDI s0, zero, 2
@@ -9461,7 +9461,7 @@ bb2144:
   # implict jump to bb2145
 bb2145:
   ADD t4, s0, zero
-  SW t4, 324(sp)
+  SW t4, 60(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9474,7 +9474,7 @@ bb2146:
   # implict jump to bb2147
 bb2147:
   ADD t4, s0, zero
-  SW t4, 328(sp)
+  SW t4, 48(sp)
   ADDI s0, zero, 2
   DIVW s9, s11, s0
   ADDI s0, zero, 2
@@ -9487,7 +9487,7 @@ bb2148:
   # implict jump to bb2149
 bb2149:
   ADD t4, s0, zero
-  SW t4, 332(sp)
+  SW t4, 44(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9500,7 +9500,7 @@ bb2150:
   # implict jump to bb2151
 bb2151:
   ADD t4, s0, zero
-  SW t4, 336(sp)
+  SW t4, 20(sp)
   ADDI s0, zero, 2
   DIVW s9, s11, s0
   ADDI s0, zero, 2
@@ -9513,7 +9513,7 @@ bb2152:
   # implict jump to bb2153
 bb2153:
   ADD t4, s0, zero
-  SW t4, 340(sp)
+  SW t4, 36(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9526,7 +9526,7 @@ bb2154:
   # implict jump to bb2155
 bb2155:
   ADD t4, s0, zero
-  SW t4, 344(sp)
+  SW t4, 28(sp)
   ADDI s0, zero, 2
   DIVW s9, s11, s0
   ADDI s0, zero, 2
@@ -9539,7 +9539,7 @@ bb2156:
   # implict jump to bb2157
 bb2157:
   ADD t4, s0, zero
-  SW t4, 348(sp)
+  SW t4, 24(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9552,7 +9552,7 @@ bb2158:
   # implict jump to bb2159
 bb2159:
   ADD t4, s0, zero
-  SW t4, 352(sp)
+  SW t4, 176(sp)
   ADDI s0, zero, 2
   DIVW s9, s11, s0
   ADDI s0, zero, 2
@@ -9565,7 +9565,7 @@ bb2160:
   # implict jump to bb2161
 bb2161:
   ADD t4, s0, zero
-  SW t4, 360(sp)
+  SW t4, 220(sp)
   ADDI s0, zero, 2
   DIVW s11, s9, s0
   ADDI s0, zero, 2
@@ -9578,7 +9578,7 @@ bb2162:
   # implict jump to bb2163
 bb2163:
   ADD t4, s0, zero
-  SW t4, 356(sp)
+  SW t4, 224(sp)
   XOR s0, s2, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4161
@@ -9697,7 +9697,7 @@ bb2190:
   # implict jump to bb2191
 bb2191:
   ADD t4, s0, zero
-  SW t4, 364(sp)
+  SW t4, 216(sp)
   BNE s2, zero, bb4147
   # implict jump to bb2192
 bb2192:
@@ -9864,7 +9864,7 @@ bb2230:
   # implict jump to bb2231
 bb2231:
   ADD t4, s0, zero
-  SW t4, 368(sp)
+  SW t4, 212(sp)
   BNE s3, zero, bb4127
   # implict jump to bb2232
 bb2232:
@@ -10031,7 +10031,7 @@ bb2270:
   # implict jump to bb2271
 bb2271:
   ADD t4, s0, zero
-  SW t4, 372(sp)
+  SW t4, 208(sp)
   BNE s2, zero, bb4107
   # implict jump to bb2272
 bb2272:
@@ -10198,7 +10198,7 @@ bb2310:
   # implict jump to bb2311
 bb2311:
   ADD t4, s0, zero
-  SW t4, 376(sp)
+  SW t4, 204(sp)
   BNE s2, zero, bb4087
   # implict jump to bb2312
 bb2312:
@@ -10245,13 +10245,13 @@ bb2322:
   # implict jump to bb2323
 bb2323:
   ADD s1, s0, zero
-  LW t4, 312(sp)
+  LW t4, 32(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4081
   # implict jump to bb2324
 bb2324:
-  LW t4, 316(sp)
+  LW t4, 40(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -10367,7 +10367,7 @@ bb2350:
   # implict jump to bb2351
 bb2351:
   ADD t4, s0, zero
-  SW t4, 380(sp)
+  SW t4, 200(sp)
   BNE s2, zero, bb4067
   # implict jump to bb2352
 bb2352:
@@ -10414,13 +10414,13 @@ bb2362:
   # implict jump to bb2363
 bb2363:
   ADD s1, s0, zero
-  LW t4, 308(sp)
+  LW t4, 64(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4061
   # implict jump to bb2364
 bb2364:
-  LW t4, 320(sp)
+  LW t4, 52(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -10536,7 +10536,7 @@ bb2390:
   # implict jump to bb2391
 bb2391:
   ADD t4, s0, zero
-  SW t4, 384(sp)
+  SW t4, 76(sp)
   BNE s2, zero, bb4047
   # implict jump to bb2392
 bb2392:
@@ -10583,13 +10583,13 @@ bb2402:
   # implict jump to bb2403
 bb2403:
   ADD s1, s0, zero
-  LW t4, 304(sp)
+  LW t4, 68(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4041
   # implict jump to bb2404
 bb2404:
-  LW t4, 324(sp)
+  LW t4, 60(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -10705,7 +10705,7 @@ bb2430:
   # implict jump to bb2431
 bb2431:
   ADD t4, s0, zero
-  SW t4, 388(sp)
+  SW t4, 192(sp)
   BNE s2, zero, bb4027
   # implict jump to bb2432
 bb2432:
@@ -10752,13 +10752,13 @@ bb2442:
   # implict jump to bb2443
 bb2443:
   ADD s1, s0, zero
-  LW t4, 300(sp)
+  LW t4, 72(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4021
   # implict jump to bb2444
 bb2444:
-  LW t4, 328(sp)
+  LW t4, 48(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -10874,7 +10874,7 @@ bb2470:
   # implict jump to bb2471
 bb2471:
   ADD t4, s0, zero
-  SW t4, 392(sp)
+  SW t4, 188(sp)
   BNE s2, zero, bb4007
   # implict jump to bb2472
 bb2472:
@@ -10921,13 +10921,13 @@ bb2482:
   # implict jump to bb2483
 bb2483:
   ADD s1, s0, zero
-  LW t4, 296(sp)
+  LW t4, 56(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb4001
   # implict jump to bb2484
 bb2484:
-  LW t4, 332(sp)
+  LW t4, 44(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11043,7 +11043,7 @@ bb2510:
   # implict jump to bb2511
 bb2511:
   ADD t4, s0, zero
-  SW t4, 396(sp)
+  SW t4, 184(sp)
   BNE s2, zero, bb3987
   # implict jump to bb2512
 bb2512:
@@ -11090,13 +11090,13 @@ bb2522:
   # implict jump to bb2523
 bb2523:
   ADD s1, s0, zero
-  LW t4, 268(sp)
+  LW t4, 104(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3981
   # implict jump to bb2524
 bb2524:
-  LW t4, 336(sp)
+  LW t4, 20(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11258,13 +11258,13 @@ bb2562:
   # implict jump to bb2563
 bb2563:
   ADD s1, s0, zero
-  LW t4, 272(sp)
+  LW t4, 100(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3961
   # implict jump to bb2564
 bb2564:
-  LW t4, 340(sp)
+  LW t4, 36(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11426,13 +11426,13 @@ bb2602:
   # implict jump to bb2603
 bb2603:
   ADD s1, s0, zero
-  LW t4, 276(sp)
+  LW t4, 96(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3941
   # implict jump to bb2604
 bb2604:
-  LW t4, 344(sp)
+  LW t4, 28(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11594,13 +11594,13 @@ bb2642:
   # implict jump to bb2643
 bb2643:
   ADD s1, s0, zero
-  LW t4, 280(sp)
+  LW t4, 92(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3921
   # implict jump to bb2644
 bb2644:
-  LW t4, 348(sp)
+  LW t4, 24(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11762,13 +11762,13 @@ bb2682:
   # implict jump to bb2683
 bb2683:
   ADD s1, s0, zero
-  LW t4, 284(sp)
+  LW t4, 88(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3901
   # implict jump to bb2684
 bb2684:
-  LW t4, 352(sp)
+  LW t4, 176(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -11930,13 +11930,13 @@ bb2722:
   # implict jump to bb2723
 bb2723:
   ADD s1, s0, zero
-  LW t4, 288(sp)
+  LW t4, 84(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3881
   # implict jump to bb2724
 bb2724:
-  LW t4, 360(sp)
+  LW t4, 220(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -12098,13 +12098,13 @@ bb2762:
   # implict jump to bb2763
 bb2763:
   ADD s1, s0, zero
-  LW t4, 292(sp)
+  LW t4, 80(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3861
   # implict jump to bb2764
 bb2764:
-  LW t4, 356(sp)
+  LW t4, 224(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -12250,37 +12250,37 @@ bb2797:
   SLLIW s0, s1, 1
   ADDW s1, s0, s5
   SLLIW s0, s1, 1
-  LW t4, 396(sp)
+  LW t4, 184(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 392(sp)
+  LW t4, 188(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 388(sp)
+  LW t4, 192(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 384(sp)
+  LW t4, 76(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 380(sp)
+  LW t4, 200(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 376(sp)
+  LW t4, 204(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 372(sp)
+  LW t4, 208(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 368(sp)
+  LW t4, 212(sp)
   ADDW s1, s0, t4
   SLLIW s0, s1, 1
-  LW t4, 364(sp)
+  LW t4, 216(sp)
   ADDW s1, s0, t4
   ADD a0, s1, zero
   CALL fib
   ADD s0, a0, zero
   ADDI s1, zero, 2
-  LW t4, 172(sp)
+  LW t4, 400(sp)
   REMW s2, t4, s1
   SLT s1, s2, zero
   BNE s1, zero, bb3844
@@ -12291,7 +12291,7 @@ bb2798:
 bb2799:
   ADD s2, s1, zero
   ADDI s1, zero, 2
-  LW t4, 172(sp)
+  LW t4, 400(sp)
   DIVW s3, t4, s1
   ADDI s1, zero, 2
   REMW s4, s3, s1
@@ -12411,7 +12411,7 @@ bb2818:
   # implict jump to bb2819
 bb2819:
   ADD t4, s1, zero
-  SW t4, 420(sp)
+  SW t4, 160(sp)
   ADDI s1, zero, 2
   DIVW t2, t1, s1
   ADDI s1, zero, 2
@@ -12424,7 +12424,7 @@ bb2820:
   # implict jump to bb2821
 bb2821:
   ADD t4, s1, zero
-  SW t4, 416(sp)
+  SW t4, 164(sp)
   ADDI s1, zero, 2
   DIVW a1, t2, s1
   ADDI s1, zero, 2
@@ -12437,7 +12437,7 @@ bb2822:
   # implict jump to bb2823
 bb2823:
   ADD t4, s1, zero
-  SW t4, 412(sp)
+  SW t4, 168(sp)
   ADDI s1, zero, 2
   DIVW a2, a1, s1
   ADDI s1, zero, 2
@@ -12450,7 +12450,7 @@ bb2824:
   # implict jump to bb2825
 bb2825:
   ADD t4, s1, zero
-  SW t4, 408(sp)
+  SW t4, 172(sp)
   ADDI s1, zero, 2
   DIVW a3, a2, s1
   ADDI s1, zero, 2
@@ -12463,7 +12463,7 @@ bb2826:
   # implict jump to bb2827
 bb2827:
   ADD t4, s1, zero
-  SW t4, 404(sp)
+  SW t4, 124(sp)
   ADDI s1, zero, 2
   DIVW a4, a3, s1
   ADDI s1, zero, 2
@@ -12476,7 +12476,7 @@ bb2828:
   # implict jump to bb2829
 bb2829:
   ADD t4, s1, zero
-  SW t4, 400(sp)
+  SW t4, 180(sp)
   ADDI s1, zero, 2
   REMW a4, s0, s1
   SLT s1, a4, zero
@@ -12595,7 +12595,7 @@ bb2848:
   # implict jump to bb2849
 bb2849:
   ADD t4, s0, zero
-  SW t4, 424(sp)
+  SW t4, 156(sp)
   ADDI s0, zero, 2
   DIVW t6, a7, s0
   ADDI s0, zero, 2
@@ -12608,7 +12608,7 @@ bb2850:
   # implict jump to bb2851
 bb2851:
   ADD t4, s0, zero
-  SW t4, 428(sp)
+  SW t4, 152(sp)
   ADDI s0, zero, 2
   DIVW a7, t6, s0
   ADDI s0, zero, 2
@@ -12621,7 +12621,7 @@ bb2852:
   # implict jump to bb2853
 bb2853:
   ADD t4, s0, zero
-  SW t4, 432(sp)
+  SW t4, 148(sp)
   ADDI s0, zero, 2
   DIVW t6, a7, s0
   ADDI s0, zero, 2
@@ -12634,7 +12634,7 @@ bb2854:
   # implict jump to bb2855
 bb2855:
   ADD t4, s0, zero
-  SW t4, 436(sp)
+  SW t4, 144(sp)
   ADDI s0, zero, 2
   DIVW a7, t6, s0
   ADDI s0, zero, 2
@@ -12647,7 +12647,7 @@ bb2856:
   # implict jump to bb2857
 bb2857:
   ADD t4, s0, zero
-  SW t4, 440(sp)
+  SW t4, 140(sp)
   ADDI s0, zero, 2
   DIVW t6, a7, s0
   ADDI s0, zero, 2
@@ -12660,7 +12660,7 @@ bb2858:
   # implict jump to bb2859
 bb2859:
   ADD t4, s0, zero
-  SW t4, 448(sp)
+  SW t4, 132(sp)
   ADDI s0, zero, 2
   DIVW a7, t6, s0
   ADDI s0, zero, 2
@@ -12673,7 +12673,7 @@ bb2860:
   # implict jump to bb2861
 bb2861:
   ADD t4, s0, zero
-  SW t4, 444(sp)
+  SW t4, 136(sp)
   XOR s0, s2, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3812
@@ -12792,7 +12792,7 @@ bb2888:
   # implict jump to bb2889
 bb2889:
   ADD t4, s0, zero
-  SW t4, 452(sp)
+  SW t4, 128(sp)
   BNE s2, zero, bb3798
   # implict jump to bb2890
 bb2890:
@@ -14172,7 +14172,7 @@ bb3221:
   BNE s2, zero, bb3632
   # implict jump to bb3222
 bb3222:
-  LW t4, 424(sp)
+  LW t4, 156(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -14334,13 +14334,13 @@ bb3260:
   # implict jump to bb3261
 bb3261:
   ADD s1, s0, zero
-  LW t4, 420(sp)
+  LW t4, 160(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3612
   # implict jump to bb3262
 bb3262:
-  LW t4, 428(sp)
+  LW t4, 152(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -14502,13 +14502,13 @@ bb3300:
   # implict jump to bb3301
 bb3301:
   ADD s1, s0, zero
-  LW t4, 416(sp)
+  LW t4, 164(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3592
   # implict jump to bb3302
 bb3302:
-  LW t4, 432(sp)
+  LW t4, 148(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -14670,13 +14670,13 @@ bb3340:
   # implict jump to bb3341
 bb3341:
   ADD s1, s0, zero
-  LW t4, 412(sp)
+  LW t4, 168(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3572
   # implict jump to bb3342
 bb3342:
-  LW t4, 436(sp)
+  LW t4, 144(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -14838,13 +14838,13 @@ bb3380:
   # implict jump to bb3381
 bb3381:
   ADD s1, s0, zero
-  LW t4, 408(sp)
+  LW t4, 172(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3552
   # implict jump to bb3382
 bb3382:
-  LW t4, 440(sp)
+  LW t4, 140(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -15006,13 +15006,13 @@ bb3420:
   # implict jump to bb3421
 bb3421:
   ADD s1, s0, zero
-  LW t4, 404(sp)
+  LW t4, 124(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3532
   # implict jump to bb3422
 bb3422:
-  LW t4, 448(sp)
+  LW t4, 132(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -15174,13 +15174,13 @@ bb3460:
   # implict jump to bb3461
 bb3461:
   ADD s1, s0, zero
-  LW t4, 400(sp)
+  LW t4, 180(sp)
   XOR s0, t4, zero
   SLTU s2, zero, s0
   BNE s2, zero, bb3512
   # implict jump to bb3462
 bb3462:
-  LW t4, 444(sp)
+  LW t4, 136(sp)
   XOR s0, t4, zero
   SLTU s3, zero, s0
   ADD s0, s3, zero
@@ -15342,30 +15342,30 @@ bb3495:
   SLLIW s0, s1, 1
   ADDW s1, s0, a4
   SLLIW s0, s1, 1
-  LW t4, 452(sp)
+  LW t4, 128(sp)
   ADDW s1, s0, t4
   ADD a0, s1, zero
-  LD s11, 456(sp)
-  LD s10, 464(sp)
-  LD s9, 472(sp)
-  LD s0, 480(sp)
-  LD s5, 488(sp)
-  LD s7, 496(sp)
-  LD s1, 504(sp)
-  LD s6, 512(sp)
-  LD s2, 520(sp)
-  LD ra, 528(sp)
-  LD s3, 536(sp)
-  LD s4, 544(sp)
-  LD s8, 552(sp)
-  ADDI sp, sp, 560
+  LD ra, 424(sp)
+  LD s0, 432(sp)
+  LD s1, 440(sp)
+  LD s2, 448(sp)
+  LD s3, 456(sp)
+  LD s4, 464(sp)
+  LD s5, 472(sp)
+  LD s6, 480(sp)
+  LD s7, 488(sp)
+  LD s8, 496(sp)
+  LD s9, 504(sp)
+  LD s10, 512(sp)
+  LD s11, 520(sp)
+  ADDI sp, sp, 528
   JALR zero, 0(ra)
 bb3496:
   JAL zero, bb3495
 bb3497:
   JAL zero, bb3493
 bb3498:
-  LW t4, 444(sp)
+  LW t4, 136(sp)
   XOR s2, t4, zero
   SLTU a3, zero, s2
   ADD s0, a3, zero
@@ -15410,7 +15410,7 @@ bb3509:
   ADDI s0, zero, 1
   JAL zero, bb3469
 bb3510:
-  LW t4, 444(sp)
+  LW t4, 136(sp)
   XOR a3, t4, zero
   SLTU a5, zero, a3
   ADD s0, a5, zero
@@ -15439,7 +15439,7 @@ bb3517:
   ADDI s0, zero, 1
   JAL zero, bb3453
 bb3518:
-  LW t4, 448(sp)
+  LW t4, 132(sp)
   XOR s2, t4, zero
   SLTU a3, zero, s2
   ADD s0, a3, zero
@@ -15484,7 +15484,7 @@ bb3529:
   ADDI s0, zero, 1
   JAL zero, bb3429
 bb3530:
-  LW t4, 448(sp)
+  LW t4, 132(sp)
   XOR a2, t4, zero
   SLTU a3, zero, a2
   ADD s0, a3, zero
@@ -15513,7 +15513,7 @@ bb3537:
   ADDI s0, zero, 1
   JAL zero, bb3413
 bb3538:
-  LW t4, 440(sp)
+  LW t4, 140(sp)
   XOR s2, t4, zero
   SLTU a2, zero, s2
   ADD s0, a2, zero
@@ -15558,7 +15558,7 @@ bb3549:
   ADDI s0, zero, 1
   JAL zero, bb3389
 bb3550:
-  LW t4, 440(sp)
+  LW t4, 140(sp)
   XOR a1, t4, zero
   SLTU a2, zero, a1
   ADD s0, a2, zero
@@ -15587,7 +15587,7 @@ bb3557:
   ADDI s0, zero, 1
   JAL zero, bb3373
 bb3558:
-  LW t4, 436(sp)
+  LW t4, 144(sp)
   XOR s2, t4, zero
   SLTU a1, zero, s2
   ADD s0, a1, zero
@@ -15632,7 +15632,7 @@ bb3569:
   ADDI s0, zero, 1
   JAL zero, bb3349
 bb3570:
-  LW t4, 436(sp)
+  LW t4, 144(sp)
   XOR t2, t4, zero
   SLTU a1, zero, t2
   ADD s0, a1, zero
@@ -15661,7 +15661,7 @@ bb3577:
   ADDI s0, zero, 1
   JAL zero, bb3333
 bb3578:
-  LW t4, 432(sp)
+  LW t4, 148(sp)
   XOR s2, t4, zero
   SLTU t2, zero, s2
   ADD s0, t2, zero
@@ -15706,7 +15706,7 @@ bb3589:
   ADDI s0, zero, 1
   JAL zero, bb3309
 bb3590:
-  LW t4, 432(sp)
+  LW t4, 148(sp)
   XOR t1, t4, zero
   SLTU t2, zero, t1
   ADD s0, t2, zero
@@ -15735,7 +15735,7 @@ bb3597:
   ADDI s0, zero, 1
   JAL zero, bb3293
 bb3598:
-  LW t4, 428(sp)
+  LW t4, 152(sp)
   XOR s2, t4, zero
   SLTU t1, zero, s2
   ADD s0, t1, zero
@@ -15780,7 +15780,7 @@ bb3609:
   ADDI s0, zero, 1
   JAL zero, bb3269
 bb3610:
-  LW t4, 428(sp)
+  LW t4, 152(sp)
   XOR t0, t4, zero
   SLTU t1, zero, t0
   ADD s0, t1, zero
@@ -15809,7 +15809,7 @@ bb3617:
   ADDI s0, zero, 1
   JAL zero, bb3253
 bb3618:
-  LW t4, 424(sp)
+  LW t4, 156(sp)
   XOR s2, t4, zero
   SLTU t0, zero, s2
   ADD s0, t0, zero
@@ -15854,7 +15854,7 @@ bb3629:
   ADDI s0, zero, 1
   JAL zero, bb3229
 bb3630:
-  LW t4, 424(sp)
+  LW t4, 156(sp)
   XOR s11, t4, zero
   SLTU t0, zero, s11
   ADD s0, t0, zero
@@ -16642,7 +16642,7 @@ bb3845:
 bb3846:
   JAL zero, bb2795
 bb3847:
-  LW t4, 356(sp)
+  LW t4, 224(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -16687,7 +16687,7 @@ bb3858:
   ADDI s0, zero, 1
   JAL zero, bb2771
 bb3859:
-  LW t4, 356(sp)
+  LW t4, 224(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -16716,7 +16716,7 @@ bb3866:
   ADDI s0, zero, 1
   JAL zero, bb2755
 bb3867:
-  LW t4, 360(sp)
+  LW t4, 220(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -16761,7 +16761,7 @@ bb3878:
   ADDI s0, zero, 1
   JAL zero, bb2731
 bb3879:
-  LW t4, 360(sp)
+  LW t4, 220(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -16790,7 +16790,7 @@ bb3886:
   ADDI s0, zero, 1
   JAL zero, bb2715
 bb3887:
-  LW t4, 352(sp)
+  LW t4, 176(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -16835,7 +16835,7 @@ bb3898:
   ADDI s0, zero, 1
   JAL zero, bb2691
 bb3899:
-  LW t4, 352(sp)
+  LW t4, 176(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -16864,7 +16864,7 @@ bb3906:
   ADDI s0, zero, 1
   JAL zero, bb2675
 bb3907:
-  LW t4, 348(sp)
+  LW t4, 24(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -16909,7 +16909,7 @@ bb3918:
   ADDI s0, zero, 1
   JAL zero, bb2651
 bb3919:
-  LW t4, 348(sp)
+  LW t4, 24(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -16938,7 +16938,7 @@ bb3926:
   ADDI s0, zero, 1
   JAL zero, bb2635
 bb3927:
-  LW t4, 344(sp)
+  LW t4, 28(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -16983,7 +16983,7 @@ bb3938:
   ADDI s0, zero, 1
   JAL zero, bb2611
 bb3939:
-  LW t4, 344(sp)
+  LW t4, 28(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -17012,7 +17012,7 @@ bb3946:
   ADDI s0, zero, 1
   JAL zero, bb2595
 bb3947:
-  LW t4, 340(sp)
+  LW t4, 36(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -17057,7 +17057,7 @@ bb3958:
   ADDI s0, zero, 1
   JAL zero, bb2571
 bb3959:
-  LW t4, 340(sp)
+  LW t4, 36(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -17086,7 +17086,7 @@ bb3966:
   ADDI s0, zero, 1
   JAL zero, bb2555
 bb3967:
-  LW t4, 336(sp)
+  LW t4, 20(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -17131,7 +17131,7 @@ bb3978:
   ADDI s0, zero, 1
   JAL zero, bb2531
 bb3979:
-  LW t4, 336(sp)
+  LW t4, 20(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -17160,7 +17160,7 @@ bb3986:
   ADDI s0, zero, 1
   JAL zero, bb2515
 bb3987:
-  LW t4, 332(sp)
+  LW t4, 44(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -17205,7 +17205,7 @@ bb3998:
   ADDI s0, zero, 1
   JAL zero, bb2491
 bb3999:
-  LW t4, 332(sp)
+  LW t4, 44(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -17234,7 +17234,7 @@ bb4006:
   ADDI s0, zero, 1
   JAL zero, bb2475
 bb4007:
-  LW t4, 328(sp)
+  LW t4, 48(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -17279,7 +17279,7 @@ bb4018:
   ADDI s0, zero, 1
   JAL zero, bb2451
 bb4019:
-  LW t4, 328(sp)
+  LW t4, 48(sp)
   XOR s10, t4, zero
   SLTU s11, zero, s10
   ADD s0, s11, zero
@@ -17308,7 +17308,7 @@ bb4026:
   ADDI s0, zero, 1
   JAL zero, bb2435
 bb4027:
-  LW t4, 324(sp)
+  LW t4, 60(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   ADD s0, s10, zero
@@ -17353,7 +17353,7 @@ bb4038:
   ADDI s0, zero, 1
   JAL zero, bb2411
 bb4039:
-  LW t4, 324(sp)
+  LW t4, 60(sp)
   XOR s8, t4, zero
   SLTU s10, zero, s8
   ADD s0, s10, zero
@@ -17382,7 +17382,7 @@ bb4046:
   ADDI s0, zero, 1
   JAL zero, bb2395
 bb4047:
-  LW t4, 320(sp)
+  LW t4, 52(sp)
   XOR s2, t4, zero
   SLTU s8, zero, s2
   ADD s0, s8, zero
@@ -17427,7 +17427,7 @@ bb4058:
   ADDI s0, zero, 1
   JAL zero, bb2371
 bb4059:
-  LW t4, 320(sp)
+  LW t4, 52(sp)
   XOR s7, t4, zero
   SLTU s8, zero, s7
   ADD s0, s8, zero
@@ -17456,7 +17456,7 @@ bb4066:
   ADDI s0, zero, 1
   JAL zero, bb2355
 bb4067:
-  LW t4, 316(sp)
+  LW t4, 40(sp)
   XOR s2, t4, zero
   SLTU s7, zero, s2
   ADD s0, s7, zero
@@ -17501,7 +17501,7 @@ bb4078:
   ADDI s0, zero, 1
   JAL zero, bb2331
 bb4079:
-  LW t4, 316(sp)
+  LW t4, 40(sp)
   XOR s6, t4, zero
   SLTU s7, zero, s6
   ADD s0, s7, zero
@@ -17861,82 +17861,82 @@ bb4177:
   ADD s0, s10, zero
   JAL zero, bb2133
 bb4178:
-  LW t4, 92(sp)
+  LW t4, 272(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2131
 bb4179:
-  LW t4, 84(sp)
+  LW t4, 276(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2129
 bb4180:
-  LW t4, 72(sp)
+  LW t4, 284(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2127
 bb4181:
-  LW t4, 64(sp)
+  LW t4, 288(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2125
 bb4182:
-  LW t4, 52(sp)
+  LW t4, 296(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2123
 bb4183:
-  LW t4, 44(sp)
+  LW t4, 300(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2121
 bb4184:
-  LW t4, 32(sp)
+  LW t4, 308(sp)
   SUB s11, zero, t4
   ADD s0, s11, zero
   JAL zero, bb2119
 bb4185:
-  LW t4, 24(sp)
+  LW t4, 312(sp)
   SUB s10, zero, t4
   ADD s0, s10, zero
   JAL zero, bb2117
 bb4186:
-  LW t4, 12(sp)
+  LW t4, 320(sp)
   SUB s9, zero, t4
   ADD s0, s9, zero
   JAL zero, bb2115
 bb4187:
-  LW t4, 4(sp)
+  LW t4, 324(sp)
   SUB s8, zero, t4
   ADD s0, s8, zero
   JAL zero, bb2113
 bb4188:
-  LW t4, 20(sp)
+  LW t4, 316(sp)
   SUB s7, zero, t4
   ADD s0, s7, zero
   JAL zero, bb2111
 bb4189:
-  LW t4, 40(sp)
+  LW t4, 304(sp)
   SUB s6, zero, t4
   ADD s0, s6, zero
   JAL zero, bb2109
 bb4190:
-  LW t4, 60(sp)
+  LW t4, 292(sp)
   SUB s5, zero, t4
   ADD s0, s5, zero
   JAL zero, bb2107
 bb4191:
-  LW t4, 80(sp)
+  LW t4, 228(sp)
   SUB s4, zero, t4
   ADD s0, s4, zero
   JAL zero, bb2105
 bb4192:
-  LW t4, 100(sp)
+  LW t4, 268(sp)
   SUB s3, zero, t4
   ADD s0, s3, zero
   JAL zero, bb2103
 bb4193:
-  LW t4, 108(sp)
+  LW t4, 264(sp)
   SUB s2, zero, t4
   ADD s0, s2, zero
   JAL zero, bb2101
@@ -19128,7 +19128,7 @@ bb4543:
 bb4544:
   JAL zero, bb1399
 bb4545:
-  LW t4, 160(sp)
+  LW t4, 412(sp)
   XOR s2, t4, zero
   SLTU a4, zero, s2
   ADD s0, a4, zero
@@ -19173,7 +19173,7 @@ bb4556:
   ADDI s0, zero, 1
   JAL zero, bb1375
 bb4557:
-  LW t4, 160(sp)
+  LW t4, 412(sp)
   XOR a4, t4, zero
   SLTU a5, zero, a4
   ADD s0, a5, zero
@@ -19202,7 +19202,7 @@ bb4564:
   ADDI s0, zero, 1
   JAL zero, bb1359
 bb4565:
-  LW t4, 164(sp)
+  LW t4, 408(sp)
   XOR s2, t4, zero
   SLTU a4, zero, s2
   ADD s0, a4, zero
@@ -19247,7 +19247,7 @@ bb4576:
   ADDI s0, zero, 1
   JAL zero, bb1335
 bb4577:
-  LW t4, 164(sp)
+  LW t4, 408(sp)
   XOR a3, t4, zero
   SLTU a4, zero, a3
   ADD s0, a4, zero
@@ -19276,7 +19276,7 @@ bb4584:
   ADDI s0, zero, 1
   JAL zero, bb1319
 bb4585:
-  LW t4, 156(sp)
+  LW t4, 416(sp)
   XOR s2, t4, zero
   SLTU a3, zero, s2
   ADD s0, a3, zero
@@ -19321,7 +19321,7 @@ bb4596:
   ADDI s0, zero, 1
   JAL zero, bb1295
 bb4597:
-  LW t4, 156(sp)
+  LW t4, 416(sp)
   XOR a2, t4, zero
   SLTU a3, zero, a2
   ADD s0, a3, zero
@@ -19350,7 +19350,7 @@ bb4604:
   ADDI s0, zero, 1
   JAL zero, bb1279
 bb4605:
-  LW t4, 152(sp)
+  LW t4, 328(sp)
   XOR s2, t4, zero
   SLTU a2, zero, s2
   ADD s0, a2, zero
@@ -19395,7 +19395,7 @@ bb4616:
   ADDI s0, zero, 1
   JAL zero, bb1255
 bb4617:
-  LW t4, 152(sp)
+  LW t4, 328(sp)
   XOR a1, t4, zero
   SLTU a2, zero, a1
   ADD s0, a2, zero
@@ -19424,7 +19424,7 @@ bb4624:
   ADDI s0, zero, 1
   JAL zero, bb1239
 bb4625:
-  LW t4, 148(sp)
+  LW t4, 420(sp)
   XOR s2, t4, zero
   SLTU a1, zero, s2
   ADD s0, a1, zero
@@ -19469,7 +19469,7 @@ bb4636:
   ADDI s0, zero, 1
   JAL zero, bb1215
 bb4637:
-  LW t4, 148(sp)
+  LW t4, 420(sp)
   XOR t2, t4, zero
   SLTU a1, zero, t2
   ADD s0, a1, zero
@@ -19498,7 +19498,7 @@ bb4644:
   ADDI s0, zero, 1
   JAL zero, bb1199
 bb4645:
-  LW t4, 144(sp)
+  LW t4, 232(sp)
   XOR s2, t4, zero
   SLTU t2, zero, s2
   ADD s0, t2, zero
@@ -19543,7 +19543,7 @@ bb4656:
   ADDI s0, zero, 1
   JAL zero, bb1175
 bb4657:
-  LW t4, 144(sp)
+  LW t4, 232(sp)
   XOR t1, t4, zero
   SLTU t2, zero, t1
   ADD s0, t2, zero
@@ -19572,7 +19572,7 @@ bb4664:
   ADDI s0, zero, 1
   JAL zero, bb1159
 bb4665:
-  LW t4, 140(sp)
+  LW t4, 236(sp)
   XOR s2, t4, zero
   SLTU t1, zero, s2
   ADD s0, t1, zero
@@ -19617,7 +19617,7 @@ bb4676:
   ADDI s0, zero, 1
   JAL zero, bb1135
 bb4677:
-  LW t4, 140(sp)
+  LW t4, 236(sp)
   XOR s11, t4, zero
   SLTU t1, zero, s11
   ADD s0, t1, zero
@@ -20337,82 +20337,82 @@ bb4875:
   ADD s7, s4, zero
   JAL zero, bb737
 bb4876:
-  LW t4, 92(sp)
+  LW t4, 272(sp)
   SUB t6, zero, t4
   ADD s7, t6, zero
   JAL zero, bb735
 bb4877:
-  LW t4, 84(sp)
+  LW t4, 276(sp)
   SUB s9, zero, t4
   ADD t6, s9, zero
   JAL zero, bb733
 bb4878:
-  LW t4, 72(sp)
+  LW t4, 284(sp)
   SUB s10, zero, t4
   ADD t6, s10, zero
   JAL zero, bb731
 bb4879:
-  LW t4, 64(sp)
+  LW t4, 288(sp)
   SUB t0, zero, t4
   ADD t6, t0, zero
   JAL zero, bb729
 bb4880:
-  LW t4, 52(sp)
+  LW t4, 296(sp)
   SUB t1, zero, t4
   ADD t6, t1, zero
   JAL zero, bb727
 bb4881:
-  LW t4, 44(sp)
+  LW t4, 300(sp)
   SUB a1, zero, t4
   ADD t6, a1, zero
   JAL zero, bb725
 bb4882:
-  LW t4, 32(sp)
+  LW t4, 308(sp)
   SUB a2, zero, t4
   ADD t6, a2, zero
   JAL zero, bb723
 bb4883:
-  LW t4, 24(sp)
+  LW t4, 312(sp)
   SUB a4, zero, t4
   ADD t6, a4, zero
   JAL zero, bb721
 bb4884:
-  LW t4, 12(sp)
+  LW t4, 320(sp)
   SUB a7, zero, t4
   ADD t6, a7, zero
   JAL zero, bb719
 bb4885:
-  LW t4, 4(sp)
+  LW t4, 324(sp)
   SUB a5, zero, t4
   ADD t6, a5, zero
   JAL zero, bb717
 bb4886:
-  LW t4, 20(sp)
+  LW t4, 316(sp)
   SUB a6, zero, t4
   ADD a5, a6, zero
   JAL zero, bb715
 bb4887:
-  LW t4, 40(sp)
+  LW t4, 304(sp)
   SUB a3, zero, t4
   ADD a2, a3, zero
   JAL zero, bb713
 bb4888:
-  LW t4, 60(sp)
+  LW t4, 292(sp)
   SUB t2, zero, t4
   ADD t1, t2, zero
   JAL zero, bb711
 bb4889:
-  LW t4, 80(sp)
+  LW t4, 228(sp)
   SUB s11, zero, t4
   ADD s10, s11, zero
   JAL zero, bb709
 bb4890:
-  LW t4, 100(sp)
+  LW t4, 268(sp)
   SUB s8, zero, t4
   ADD s7, s8, zero
   JAL zero, bb707
 bb4891:
-  LW t4, 108(sp)
+  LW t4, 264(sp)
   SUB s5, zero, t4
   ADD s4, s5, zero
   JAL zero, bb705
@@ -21601,18 +21601,18 @@ bb5240:
   JAL zero, bb7
 bb5241:
   ADDI a0, zero, 1
-  LD s11, 456(sp)
-  LD s10, 464(sp)
-  LD s9, 472(sp)
-  LD s0, 480(sp)
-  LD s5, 488(sp)
-  LD s7, 496(sp)
-  LD s1, 504(sp)
-  LD s6, 512(sp)
-  LD s2, 520(sp)
-  LD ra, 528(sp)
-  LD s3, 536(sp)
-  LD s4, 544(sp)
-  LD s8, 552(sp)
-  ADDI sp, sp, 560
+  LD ra, 424(sp)
+  LD s0, 432(sp)
+  LD s1, 440(sp)
+  LD s2, 448(sp)
+  LD s3, 456(sp)
+  LD s4, 464(sp)
+  LD s5, 472(sp)
+  LD s6, 480(sp)
+  LD s7, 488(sp)
+  LD s8, 496(sp)
+  LD s9, 504(sp)
+  LD s10, 512(sp)
+  LD s11, 520(sp)
+  ADDI sp, sp, 528
   JALR zero, 0(ra)

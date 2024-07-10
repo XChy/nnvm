@@ -12,9 +12,9 @@
 func6:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XOR s2, s0, zero
@@ -31,17 +31,17 @@ bb2:
 bb3:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb4:
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:
@@ -52,23 +52,23 @@ bb5:
 func5:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   ADD s0, a0, zero
   SUB s1, zero, s0
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 func2:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XOR s2, s1, zero
@@ -78,10 +78,10 @@ func2:
 bb8:
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb9:
@@ -92,19 +92,19 @@ bb9:
   ADD s0, a0, zero
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 func3:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XOR s2, s1, zero
@@ -119,27 +119,27 @@ bb11:
   ADD s1, a0, zero
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb12:
   ADDIW s1, s0, 1
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 func7:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   ADD s0, a0, zero
   XOR s1, s0, zero
   SLTU s0, zero, s1
@@ -151,24 +151,24 @@ func7:
 bb14:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb15:
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 func4:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -179,61 +179,61 @@ func4:
 bb17:
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb18:
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -176
-  SD ra, 72(sp)
-  SD s3, 80(sp)
-  SD s5, 88(sp)
-  SD s4, 96(sp)
-  SD s7, 104(sp)
-  SD s10, 112(sp)
-  SD s6, 120(sp)
-  SD s1, 128(sp)
-  SD s0, 136(sp)
-  SD s8, 144(sp)
-  SD s9, 152(sp)
-  SD s11, 160(sp)
-  SD s2, 168(sp)
+  SD s2, 32(sp)
+  SD ra, 40(sp)
+  SD s0, 48(sp)
+  SD s1, 56(sp)
+  SD s3, 64(sp)
+  SD s4, 72(sp)
+  SD s5, 80(sp)
+  SD s6, 88(sp)
+  SD s7, 96(sp)
+  SD s8, 104(sp)
+  SD s9, 112(sp)
+  SD s10, 120(sp)
+  SD s11, 128(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 52(sp)
+  SW t4, 12(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 48(sp)
+  SW t4, 8(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 44(sp)
+  SW t4, 4(sp)
   CALL getint
   ADD t4, a0, zero
-  SW t4, 40(sp)
+  SW t4, 0(sp)
   ADD t4, zero, zero
-  SW t4, 56(sp)
+  SW t4, 16(sp)
   # implict jump to bb20
 bb20:
-  LW t3, 56(sp)
+  LW t3, 16(sp)
   ADD t4, t3, zero
-  SW t4, 60(sp)
-  LW t4, 60(sp)
+  SW t4, 20(sp)
+  LW t4, 20(sp)
   SLTI s6, t4, 10
   BNE s6, zero, bb58
   # implict jump to bb21
 bb21:
-  LW t4, 52(sp)
+  LW t4, 12(sp)
   XOR s6, t4, zero
   SLTU s7, zero, s6
   XORI s6, s7, 1
@@ -246,7 +246,7 @@ bb22:
   # implict jump to bb23
 bb23:
   ADD s7, s6, zero
-  LW t4, 48(sp)
+  LW t4, 8(sp)
   SUB s6, zero, t4
   XOR s8, s7, zero
   SLTU s7, zero, s8
@@ -265,26 +265,26 @@ bb26:
 bb27:
   ADD s7, s6, zero
   ADD a0, s7, zero
-  LW t4, 44(sp)
+  LW t4, 4(sp)
   ADD a1, t4, zero
   CALL func2
   ADD s6, a0, zero
   ADD a0, s6, zero
-  LW t4, 40(sp)
+  LW t4, 0(sp)
   ADD a1, t4, zero
   CALL func3
   ADD s6, a0, zero
   SUB s7, zero, s6
-  LW s6, 0(sp)
-  ADDI s8, sp, 4
+  LW s6, 136(sp)
+  ADDI s8, sp, 140
   LW s9, 0(s8)
   SUB s8, zero, s9
-  ADDI s10, sp, 8
+  ADDI s10, sp, 144
   LW s11, 0(s10)
-  ADDI s10, sp, 12
+  ADDI s10, sp, 148
   LW t4, 0(s10)
-  SW t4, 64(sp)
-  LW t4, 64(sp)
+  SW t4, 24(sp)
+  LW t4, 24(sp)
   XOR s10, t4, zero
   SLTU s2, zero, s10
   XORI s10, s2, 1
@@ -313,9 +313,9 @@ bb32:
   # implict jump to bb33
 bb33:
   ADD s2, s1, zero
-  ADDI s1, sp, 16
+  ADDI s1, sp, 152
   LW s10, 0(s1)
-  ADDI s1, sp, 20
+  ADDI s1, sp, 156
   LW s0, 0(s1)
   XOR s1, s0, zero
   SLTU s4, zero, s1
@@ -342,24 +342,24 @@ bb36:
   # implict jump to bb37
 bb37:
   ADD s1, s4, zero
-  ADDI s2, sp, 24
+  ADDI s2, sp, 160
   LW s4, 0(s2)
   ADD a0, s1, zero
   ADD a1, s4, zero
   CALL func3
   ADD s1, a0, zero
-  ADDI s2, sp, 28
+  ADDI s2, sp, 164
   LW s8, 0(s2)
   ADD a0, s1, zero
   ADD a1, s8, zero
   CALL func2
   ADD s1, a0, zero
-  ADDI s2, sp, 32
+  ADDI s2, sp, 168
   LW s5, 0(s2)
-  ADDI s2, sp, 36
+  ADDI s2, sp, 172
   LW t4, 0(s2)
-  SW t4, 68(sp)
-  LW t4, 68(sp)
+  SW t4, 28(sp)
+  LW t4, 28(sp)
   XOR s2, t4, zero
   SLTU s3, zero, s2
   XORI s2, s3, 1
@@ -378,7 +378,7 @@ bb39:
   ADD s2, a0, zero
   ADD a0, s1, zero
   ADD a1, s2, zero
-  LW t4, 52(sp)
+  LW t4, 12(sp)
   ADD a2, t4, zero
   CALL func1
   ADD s1, a0, zero
@@ -391,7 +391,7 @@ bb40:
   # implict jump to bb41
 bb41:
   ADD s1, s2, zero
-  LW t4, 44(sp)
+  LW t4, 4(sp)
   XOR s2, t4, zero
   SLTU s3, zero, s2
   XORI s2, s3, 1
@@ -405,11 +405,11 @@ bb42:
 bb43:
   ADD s3, s2, zero
   ADD a0, s3, zero
-  LW t4, 40(sp)
+  LW t4, 0(sp)
   ADD a1, t4, zero
   CALL func3
   ADD s2, a0, zero
-  LW t4, 48(sp)
+  LW t4, 8(sp)
   ADD a0, t4, zero
   ADD a1, s2, zero
   CALL func2
@@ -454,37 +454,37 @@ bb45:
   ADD a2, s3, zero
   CALL func1
   ADD s0, a0, zero
-  LW t4, 68(sp)
+  LW t4, 28(sp)
   SUB s2, zero, t4
   ADD a0, s0, zero
   ADD a1, s2, zero
   CALL func2
   ADD s0, a0, zero
   ADD a0, s0, zero
-  LW t4, 52(sp)
+  LW t4, 12(sp)
   ADD a1, t4, zero
   CALL func3
   ADD s0, a0, zero
   ADD a0, s1, zero
-  LW t4, 64(sp)
+  LW t4, 24(sp)
   ADD a1, t4, zero
   ADD a2, s0, zero
   CALL func1
   ADD s0, a0, zero
   ADD a0, s0, zero
-  LD ra, 72(sp)
-  LD s3, 80(sp)
-  LD s5, 88(sp)
-  LD s4, 96(sp)
-  LD s7, 104(sp)
-  LD s10, 112(sp)
-  LD s6, 120(sp)
-  LD s1, 128(sp)
-  LD s0, 136(sp)
-  LD s8, 144(sp)
-  LD s9, 152(sp)
-  LD s11, 160(sp)
-  LD s2, 168(sp)
+  LD s2, 32(sp)
+  LD ra, 40(sp)
+  LD s0, 48(sp)
+  LD s1, 56(sp)
+  LD s3, 64(sp)
+  LD s4, 72(sp)
+  LD s5, 80(sp)
+  LD s6, 88(sp)
+  LD s7, 96(sp)
+  LD s8, 104(sp)
+  LD s9, 112(sp)
+  LD s10, 120(sp)
+  LD s11, 128(sp)
   ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb46:
@@ -528,26 +528,26 @@ bb57:
   ADDI s6, zero, 1
   JAL zero, bb23
 bb58:
-  LW t4, 60(sp)
+  LW t4, 20(sp)
   SLLIW s0, t4, 2
-  ADDI t5, sp, 0
+  ADDI t5, sp, 136
   ADD s1, t5, s0
   CALL getint
   ADD s0, a0, zero
   SW s0, 0(s1)
-  LW t4, 60(sp)
+  LW t4, 20(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 56(sp)
+  SW t4, 16(sp)
   JAL zero, bb20
 func1:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -564,21 +564,21 @@ bb60:
   ADD s2, a0, zero
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb61:
   MULW s2, s0, s1
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

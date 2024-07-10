@@ -50,14 +50,14 @@ maxm:
 insert:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   LA s2, hashmod
@@ -115,14 +115,14 @@ bb3:
   SW zero, 0(s7)
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb4:
@@ -164,14 +164,14 @@ bb6:
   SW s1, 0(s5)
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb7:
@@ -207,31 +207,31 @@ bb7:
   SW zero, 0(s2)
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD ra, 8(sp)
-  SD s0, 16(sp)
-  SD s5, 24(sp)
-  SD s7, 32(sp)
-  SD s10, 40(sp)
-  SD s1, 48(sp)
-  SD s6, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
-  SD s8, 88(sp)
-  SD s9, 96(sp)
+  SD ra, 0(sp)
+  SD s1, 8(sp)
+  SD s2, 16(sp)
+  SD s3, 24(sp)
+  SD s4, 32(sp)
+  SD s8, 40(sp)
+  SD s9, 48(sp)
+  SD s0, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s10, 88(sp)
+  SD s11, 96(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, hashmod
@@ -273,19 +273,19 @@ bb12:
   ADD a1, s6, zero
   CALL putarray
   ADD a0, zero, zero
-  LD s11, 0(sp)
-  LD ra, 8(sp)
-  LD s0, 16(sp)
-  LD s5, 24(sp)
-  LD s7, 32(sp)
-  LD s10, 40(sp)
-  LD s1, 48(sp)
-  LD s6, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
+  LD ra, 0(sp)
+  LD s1, 8(sp)
+  LD s2, 16(sp)
+  LD s3, 24(sp)
+  LD s4, 32(sp)
+  LD s8, 40(sp)
+  LD s9, 48(sp)
+  LD s0, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s10, 88(sp)
+  LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb13:
@@ -499,12 +499,12 @@ bb31:
 reduce:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   ADD s0, a0, zero
   LA s1, hashmod
   LW s2, 0(s1)
@@ -524,12 +524,12 @@ bb33:
 bb34:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb35:
@@ -561,12 +561,12 @@ bb38:
 bb39:
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb40:
@@ -584,17 +584,17 @@ bb40:
 hash:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   ADD s0, a0, zero
   LA s1, hashmod
   LW s2, 0(s1)
   REMW s1, s0, s2
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

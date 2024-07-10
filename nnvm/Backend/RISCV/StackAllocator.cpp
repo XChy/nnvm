@@ -20,7 +20,6 @@ void RegClearer::clear(LIRFunc &func,
                        std::unordered_map<uint64_t, uint64_t> &vregNum) {
   // NOTE: now it can only handle one use of virtual register
   int scratchIndex = 0;
-  int fscratchIndex = 0;
 
   std::vector<Register *> scratches;
   std::vector<Register *> fscratches;
@@ -104,17 +103,30 @@ void StackAllocator::allocate(LIRFunc &func) {
   scratchReg = *getScratchRegs(func.getParent()).begin();
   clearer.setScratchReg(scratchReg);
 
+  orderSlots(func);
+  LIRBuilder builder(*func.getParent());
+
+  emitPrologue(builder, func);
+  emitEpilogue(builder, func);
+  replaceAllSlotRefs(builder, func);
+
+  clearer.clear(func, vregNum);
+}
+
+void StackAllocator::orderSlots(LIRFunc &func) {
+
   stackInfo = calculateStackInfo(func);
   frameSize = 0;
 
   StackSlot *incomingSlot = nullptr;
   StackSlot *outgoingSlot = nullptr;
 
+  slots = func.getStackSlots();
+
   // Pick the largest outgoing frame.
-  for (auto *slot : func.getStackSlots()) {
+  for (auto *slot : slots) {
     if (slot->getType() != StackSlot::OutgoingArgFrame)
       continue;
-
     if (!outgoingSlot) {
       outgoingSlot = slot;
     } else if (slot->getSize() > outgoingSlot->getSize()) {
@@ -127,14 +139,20 @@ void StackAllocator::allocate(LIRFunc &func) {
     }
   }
 
-  // TODO: reorder the slots to save space.
   if (outgoingSlot) {
     outgoingSlot->setOffset(0);
     frameSize += outgoingSlot->getSize();
   }
   // std::cerr << "Outgoing frame: size: " << frameSize << "\n";
 
-  for (auto *slot : func.getStackSlots()) {
+  std::sort(slots.begin(), slots.end(), [](StackSlot *A, StackSlot *B) {
+    if (A->getType() == StackSlot::CalleeSaved &&
+        B->getType() == StackSlot::CalleeSaved)
+      return A->getReg()->getRegId() < B->getReg()->getRegId();
+    return A->getAlign() < B->getAlign();
+  });
+
+  for (auto *slot : slots) {
     if (slot->getType() == StackSlot::IncomingArgFrame) {
       incomingSlot = slot;
       continue;
@@ -147,28 +165,10 @@ void StackAllocator::allocate(LIRFunc &func) {
     frameSize = alignWith(frameSize, slot->getAlign());
     slot->setOffset(frameSize);
     frameSize += slot->getSize();
-
-    // std::cerr << "offset of stack " << slot->getIndex() << " is "
-    //<< slot->getOffset() << " with size " << slot->getSize() << "\n";
   }
 
-  frameSize =
-      (frameSize + getFrameAlign() - 1) / getFrameAlign() * getFrameAlign();
-
+  frameSize = alignWith(frameSize, getFrameAlign());
   incomingSlot->setOffset(frameSize);
-
-  LIRBuilder builder(*func.getParent());
-
-  emitPrologue(builder, func);
-  emitEpilogue(builder, func);
-
-  for (auto *bb : func)
-    for (auto *inst : *bb)
-      for (int i = 0; i < inst->getNumOp(); i++)
-        if (inst->getOp(i)->isStackSlot())
-          resolveSlotRef(builder, LIRBB::Iterator(inst, bb), i);
-
-  clearer.clear(func, vregNum);
 }
 
 void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
@@ -179,7 +179,7 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
       builder.phyReg(SP), LIRConst::createInt(-frameSize, LIRValueType::i64),
       builder.phyReg(SP), builder.phyReg(T0));
 
-  for (StackSlot *slot : func.getStackSlots()) {
+  for (StackSlot *slot : slots) {
     if (slot->getType() == StackSlot::CalleeSaved) {
       builder.setInsertPoint(bodyBegin);
       builder.storeValueTo(slot->getReg(), slot, slot->getReg()->getType());
@@ -191,11 +191,10 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
 }
 
 void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
-  // TODO: handle big frame larger than 2 ^ 12 bytes
   for (LIRBB *bb : stackInfo.exitBBs) {
     builder.setInsertPoint(bb, bb->getInsts().getLast());
 
-    for (StackSlot *slot : func.getStackSlots()) {
+    for (StackSlot *slot : slots) {
       if (slot->getType() == StackSlot::CalleeSaved) {
         builder.loadValueFrom(slot->getReg(), slot, slot->getReg()->getType());
       }
@@ -205,4 +204,12 @@ void StackAllocator::emitEpilogue(LIRBuilder &builder, LIRFunc &func) {
         builder.phyReg(SP), LIRConst::createInt(frameSize, LIRValueType::i64),
         builder.phyReg(SP), builder.phyReg(T0));
   }
+}
+
+void StackAllocator::replaceAllSlotRefs(LIRBuilder &builder, LIRFunc &func) {
+  for (auto *bb : func)
+    for (auto *inst : *bb)
+      for (int i = 0; i < inst->getNumOp(); i++)
+        if (inst->getOp(i)->isStackSlot())
+          resolveSlotRef(builder, LIRBB::Iterator(inst, bb), i);
 }

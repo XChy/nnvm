@@ -8,16 +8,16 @@ k:
 main:
   ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s9, 8(sp)
-  SD s8, 16(sp)
-  SD s7, 24(sp)
-  SD s4, 32(sp)
-  SD s3, 40(sp)
-  SD s2, 48(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s1, 64(sp)
-  SD s5, 72(sp)
-  SD s0, 80(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
   LA s0, k
   LUI s1, 1
   ADDIW s1, s1, -707
@@ -47,16 +47,16 @@ bb2:
   LW s9, 0(s8)
   ADD a0, s9, zero
   LD ra, 0(sp)
-  LD s9, 8(sp)
-  LD s8, 16(sp)
-  LD s7, 24(sp)
-  LD s4, 32(sp)
-  LD s3, 40(sp)
-  LD s2, 48(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s1, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb3:

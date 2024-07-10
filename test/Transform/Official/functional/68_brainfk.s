@@ -22,12 +22,12 @@ TAPE_LEN:
 main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, zero, zero
@@ -47,12 +47,12 @@ bb2:
   CALL interpret
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
@@ -67,21 +67,21 @@ bb3:
   JAL zero, bb1
 interpret:
   ADDI sp, sp, -128
-  SD s11, 16(sp)
-  SD s10, 24(sp)
-  SD s0, 32(sp)
-  SD s7, 40(sp)
-  SD s1, 48(sp)
-  SD s6, 56(sp)
+  SD ra, 8(sp)
+  SD s1, 16(sp)
+  SD s0, 24(sp)
+  SD s10, 32(sp)
+  SD s11, 40(sp)
+  SD s7, 56(sp)
   SD s2, 64(sp)
   SD s3, 72(sp)
   SD s4, 80(sp)
   SD s5, 88(sp)
-  SD s8, 96(sp)
-  SD s9, 104(sp)
-  SD ra, 112(sp)
+  SD s6, 96(sp)
+  SD s8, 104(sp)
+  SD s9, 112(sp)
   ADD t4, a0, zero
-  SD t4, 8(sp)
+  SD t4, 48(sp)
   ADD s1, zero, zero
   ADD s2, zero, zero
   ADD s3, zero, zero
@@ -91,7 +91,7 @@ bb5:
   ADD s5, s2, zero
   ADD s6, s1, zero
   SLLIW s7, s5, 2
-  LD t4, 8(sp)
+  LD t4, 48(sp)
   ADD s8, t4, s7
   LW s7, 0(s8)
   XOR s9, s7, zero
@@ -99,19 +99,19 @@ bb5:
   BNE s7, zero, bb7
   # implict jump to bb6
 bb6:
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s0, 32(sp)
-  LD s7, 40(sp)
-  LD s1, 48(sp)
-  LD s6, 56(sp)
+  LD ra, 8(sp)
+  LD s1, 16(sp)
+  LD s0, 24(sp)
+  LD s10, 32(sp)
+  LD s11, 40(sp)
+  LD s7, 56(sp)
   LD s2, 64(sp)
   LD s3, 72(sp)
   LD s4, 80(sp)
   LD s5, 88(sp)
-  LD s8, 96(sp)
-  LD s9, 104(sp)
-  LD ra, 112(sp)
+  LD s6, 96(sp)
+  LD s8, 104(sp)
+  LD s9, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb7:
@@ -237,7 +237,7 @@ bb27:
   ADDI t2, zero, 1
   SUBW a2, t1, t2
   SLLIW t1, a2, 2
-  LD t4, 8(sp)
+  LD t4, 48(sp)
   ADD t2, t4, t1
   LW t1, 0(t2)
   XORI t2, t1, 91
@@ -359,12 +359,12 @@ bb40:
 read_program:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, zero, zero
@@ -380,12 +380,12 @@ bb43:
   ADD s5, s4, s3
   SW zero, 0(s5)
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb44:

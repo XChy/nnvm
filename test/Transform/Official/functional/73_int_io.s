@@ -10,14 +10,14 @@ ascii_0:
 my_putint:
   ADDI sp, sp, -144
   SD ra, 64(sp)
-  SD s4, 72(sp)
-  SD s3, 80(sp)
+  SD s0, 72(sp)
+  SD s1, 80(sp)
   SD s2, 88(sp)
-  SD s6, 96(sp)
-  SD s1, 104(sp)
-  SD s7, 112(sp)
-  SD s5, 120(sp)
-  SD s0, 128(sp)
+  SD s3, 96(sp)
+  SD s4, 104(sp)
+  SD s5, 112(sp)
+  SD s6, 120(sp)
+  SD s7, 128(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   ADD s2, s0, zero
@@ -38,14 +38,14 @@ bb3:
   # implict jump to bb4
 bb4:
   LD ra, 64(sp)
-  LD s4, 72(sp)
-  LD s3, 80(sp)
+  LD s0, 72(sp)
+  LD s1, 80(sp)
   LD s2, 88(sp)
-  LD s6, 96(sp)
-  LD s1, 104(sp)
-  LD s7, 112(sp)
-  LD s5, 120(sp)
-  LD s0, 128(sp)
+  LD s3, 96(sp)
+  LD s4, 104(sp)
+  LD s5, 112(sp)
+  LD s6, 120(sp)
+  LD s7, 128(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb5:
@@ -76,12 +76,12 @@ bb6:
 my_getint:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   # implict jump to bb8
 bb8:
   CALL getch
@@ -123,12 +123,12 @@ bb14:
 bb15:
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb16:
@@ -148,19 +148,19 @@ bb18:
   JAL zero, bb10
 main:
   ADDI sp, sp, -192
-  SD s9, 80(sp)
-  SD s6, 88(sp)
-  SD s3, 96(sp)
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
   SD s10, 104(sp)
-  SD s2, 112(sp)
-  SD s5, 120(sp)
-  SD s0, 128(sp)
-  SD s7, 136(sp)
-  SD ra, 144(sp)
-  SD s11, 152(sp)
-  SD s8, 160(sp)
-  SD s1, 168(sp)
-  SD s4, 176(sp)
+  SD s11, 112(sp)
   # implict jump to bb20
 bb20:
   CALL getch
@@ -181,18 +181,18 @@ bb22:
   # implict jump to bb23
 bb23:
   ADD t4, s2, zero
-  SW t4, 64(sp)
+  SW t4, 0(sp)
   # implict jump to bb24
 bb24:
-  LW t3, 64(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 72(sp)
+  SW t4, 8(sp)
   CALL getch
   ADD s2, a0, zero
   ADDI s3, zero, 48
   SUBW t4, s2, s3
-  SW t4, 68(sp)
-  LW t4, 68(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   SLT s2, t4, zero
   XORI s3, s2, 1
   BNE s3, zero, bb48
@@ -205,31 +205,31 @@ bb26:
   BNE s3, zero, bb47
   # implict jump to bb27
 bb27:
-  LW t4, 72(sp)
+  LW t4, 8(sp)
   ADD s2, t4, zero
   # implict jump to bb28
 bb28:
   ADD t4, s2, zero
-  SW t4, 76(sp)
-  LW t4, 76(sp)
+  SW t4, 12(sp)
+  LW t4, 12(sp)
   SLT s5, zero, t4
   BNE s5, zero, bb30
   # implict jump to bb29
 bb29:
   ADD a0, zero, zero
-  LD s9, 80(sp)
-  LD s6, 88(sp)
-  LD s3, 96(sp)
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
   LD s10, 104(sp)
-  LD s2, 112(sp)
-  LD s5, 120(sp)
-  LD s0, 128(sp)
-  LD s7, 136(sp)
-  LD ra, 144(sp)
-  LD s11, 152(sp)
-  LD s8, 160(sp)
-  LD s1, 168(sp)
-  LD s4, 176(sp)
+  LD s11, 112(sp)
   ADDI sp, sp, 192
   JALR zero, 0(ra)
 bb30:
@@ -291,7 +291,7 @@ bb41:
   ADDI a0, zero, 10
   CALL putch
   ADDI s1, zero, 1
-  LW t4, 76(sp)
+  LW t4, 12(sp)
   SUBW s3, t4, s1
   ADD s2, s3, zero
   JAL zero, bb28
@@ -299,7 +299,7 @@ bb42:
   ADDI s1, zero, 1
   SUBW s2, s4, s1
   SLLIW s1, s2, 2
-  ADDI t5, sp, 0
+  ADDI t5, sp, 120
   ADD s3, t5, s1
   LW s1, 0(s3)
   ADD a0, s1, zero
@@ -308,7 +308,7 @@ bb42:
   JAL zero, bb40
 bb43:
   SLLIW s0, s11, 2
-  ADDI t5, sp, 0
+  ADDI t5, sp, 120
   ADD s1, t5, s0
   ADDI s0, zero, 10
   REMW s2, s10, s0
@@ -337,16 +337,16 @@ bb46:
   JAL zero, bb32
 bb47:
   ADDI s0, zero, 10
-  LW t4, 72(sp)
+  LW t4, 8(sp)
   MULW s1, t4, s0
-  LW t4, 68(sp)
+  LW t4, 4(sp)
   ADDW s0, s1, t4
   ADD t4, s0, zero
-  SW t4, 64(sp)
+  SW t4, 0(sp)
   JAL zero, bb24
 bb48:
   ADDI s3, zero, 9
-  LW t4, 68(sp)
+  LW t4, 4(sp)
   SLT s5, s3, t4
   XORI s3, s5, 1
   ADD s2, s3, zero

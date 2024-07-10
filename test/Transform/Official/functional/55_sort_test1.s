@@ -8,17 +8,17 @@ n:
 .section .text
 main:
   ADDI sp, sp, -128
-  SD s9, 40(sp)
-  SD s8, 48(sp)
-  SD s3, 56(sp)
+  SD ra, 40(sp)
+  SD s0, 48(sp)
+  SD s1, 56(sp)
   SD s2, 64(sp)
-  SD ra, 72(sp)
-  SD s7, 80(sp)
-  SD s4, 88(sp)
+  SD s3, 72(sp)
+  SD s4, 80(sp)
+  SD s5, 88(sp)
   SD s6, 96(sp)
-  SD s1, 104(sp)
-  SD s5, 112(sp)
-  SD s0, 120(sp)
+  SD s7, 104(sp)
+  SD s8, 112(sp)
+  SD s9, 120(sp)
   LA s0, n
   ADDI s1, zero, 10
   SW s1, 0(s0)
@@ -76,17 +76,17 @@ bb3:
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
-  LD s9, 40(sp)
-  LD s8, 48(sp)
-  LD s3, 56(sp)
+  LD ra, 40(sp)
+  LD s0, 48(sp)
+  LD s1, 56(sp)
   LD s2, 64(sp)
-  LD ra, 72(sp)
-  LD s7, 80(sp)
-  LD s4, 88(sp)
+  LD s3, 72(sp)
+  LD s4, 80(sp)
+  LD s5, 88(sp)
   LD s6, 96(sp)
-  LD s1, 104(sp)
-  LD s5, 112(sp)
-  LD s0, 120(sp)
+  LD s7, 104(sp)
+  LD s8, 112(sp)
+  LD s9, 120(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb5:
@@ -151,18 +151,18 @@ bb12:
   JAL zero, bb11
 bubblesort:
   ADDI sp, sp, -96
-  SD s10, 0(sp)
+  SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s7, 24(sp)
-  SD s1, 32(sp)
-  SD s6, 40(sp)
-  SD s2, 48(sp)
-  SD s3, 56(sp)
-  SD s4, 64(sp)
-  SD ra, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   ADD s2, zero, zero
@@ -179,18 +179,18 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD a0, zero, zero
-  LD s10, 0(sp)
+  LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s7, 24(sp)
-  LD s1, 32(sp)
-  LD s6, 40(sp)
-  LD s2, 48(sp)
-  LD s3, 56(sp)
-  LD s4, 64(sp)
-  LD ra, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb16:

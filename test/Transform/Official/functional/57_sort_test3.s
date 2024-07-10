@@ -8,19 +8,19 @@ n:
 .section .text
 QuickSort:
   ADDI sp, sp, -112
-  SD s10, 0(sp)
-  SD s11, 8(sp)
-  SD s9, 16(sp)
-  SD s8, 24(sp)
-  SD s0, 32(sp)
-  SD s5, 40(sp)
-  SD s7, 48(sp)
-  SD s1, 56(sp)
-  SD s6, 64(sp)
-  SD s2, 72(sp)
-  SD s3, 80(sp)
-  SD s4, 88(sp)
-  SD ra, 96(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
+  SD s11, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -29,19 +29,19 @@ QuickSort:
   # implict jump to bb1
 bb1:
   ADD a0, zero, zero
-  LD s10, 0(sp)
-  LD s11, 8(sp)
-  LD s9, 16(sp)
-  LD s8, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s7, 48(sp)
-  LD s1, 56(sp)
-  LD s6, 64(sp)
-  LD s2, 72(sp)
-  LD s3, 80(sp)
-  LD s4, 88(sp)
-  LD ra, 96(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
+  LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb2:
@@ -172,10 +172,10 @@ bb23:
 main:
   ADDI sp, sp, -80
   SD ra, 40(sp)
-  SD s3, 48(sp)
-  SD s2, 56(sp)
-  SD s1, 64(sp)
-  SD s0, 72(sp)
+  SD s0, 48(sp)
+  SD s1, 56(sp)
+  SD s2, 64(sp)
+  SD s3, 72(sp)
   LA s0, n
   ADDI s1, zero, 10
   SW s1, 0(s0)
@@ -225,10 +225,10 @@ bb25:
 bb26:
   ADD a0, zero, zero
   LD ra, 40(sp)
-  LD s3, 48(sp)
-  LD s2, 56(sp)
-  LD s1, 64(sp)
-  LD s0, 72(sp)
+  LD s0, 48(sp)
+  LD s1, 56(sp)
+  LD s2, 64(sp)
+  LD s3, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb27:

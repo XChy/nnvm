@@ -7,10 +7,10 @@
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, s0, zero
@@ -24,10 +24,10 @@ bb1:
 bb2:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
@@ -47,12 +47,12 @@ bb3:
 hanoi:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -87,12 +87,12 @@ bb5:
   # implict jump to bb6
 bb6:
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:
@@ -110,8 +110,8 @@ bb7:
 move:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD a0, s0, zero
@@ -125,7 +125,7 @@ move:
   ADDI a0, zero, 32
   CALL putch
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

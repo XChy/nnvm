@@ -25,10 +25,10 @@ sum:
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   CALL getint
   ADD s0, a0, zero
   ADD s1, s0, zero
@@ -44,10 +44,10 @@ bb2:
   LW s3, 0(s2)
   ADD a0, s3, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
@@ -63,16 +63,16 @@ bb3:
   JAL zero, bb1
 f:
   ADDI sp, sp, -80
-  SD s8, 0(sp)
-  SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s6, 40(sp)
-  SD s1, 48(sp)
-  SD s7, 56(sp)
-  SD s5, 64(sp)
-  SD s0, 72(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 1
   # implict jump to bb5
@@ -85,16 +85,16 @@ bb5:
   BNE s4, zero, bb7
   # implict jump to bb6
 bb6:
-  LD s8, 0(sp)
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s6, 40(sp)
-  LD s1, 48(sp)
-  LD s7, 56(sp)
-  LD s5, 64(sp)
-  LD s0, 72(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb7:
@@ -235,11 +235,11 @@ bb21:
 printans:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   LA s0, sum
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -257,11 +257,11 @@ bb23:
   # implict jump to bb24
 bb24:
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb25:
@@ -287,10 +287,10 @@ bb27:
   ADDI a0, zero, 10
   CALL putch
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

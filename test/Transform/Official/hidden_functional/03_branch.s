@@ -5,8 +5,8 @@
 main:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   ADDI s0, zero, 3
   SLTI s1, s0, 2
   XORI s0, s1, 1
@@ -15,8 +15,8 @@ main:
 bb1:
   ADDI a0, zero, 5
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb2:
@@ -40,22 +40,22 @@ bb5:
 bb6:
   ADDI a0, zero, 10
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb7:
   ADDI a0, zero, 9
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb8:
   ADDI a0, zero, 6
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb9:

@@ -5,11 +5,11 @@
 main:
   ADDI sp, sp, -208
   SD ra, 160(sp)
-  SD s4, 168(sp)
-  SD s3, 176(sp)
+  SD s0, 168(sp)
+  SD s1, 176(sp)
   SD s2, 184(sp)
-  SD s1, 192(sp)
-  SD s0, 200(sp)
+  SD s3, 192(sp)
+  SD s4, 200(sp)
   ADDI s0, zero, 1
   SW s0, 128(sp)
   ADDI s0, sp, 132
@@ -133,10 +133,10 @@ main:
   ADDW s2, s1, s0
   ADD a0, s2, zero
   LD ra, 160(sp)
-  LD s4, 168(sp)
-  LD s3, 176(sp)
+  LD s0, 168(sp)
+  LD s1, 176(sp)
   LD s2, 184(sp)
-  LD s1, 192(sp)
-  LD s0, 200(sp)
+  LD s3, 192(sp)
+  LD s4, 200(sp)
   ADDI sp, sp, 208
   JALR zero, 0(ra)

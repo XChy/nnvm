@@ -12,14 +12,14 @@ a:
 main:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s7, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s6, 40(sp)
-  SD s1, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, zero, zero
   ADDI s1, zero, 5
   # implict jump to bb1
@@ -47,14 +47,14 @@ bb2:
   LW s5, 0(s4)
   ADD a0, s5, zero
   LD ra, 0(sp)
-  LD s7, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s6, 40(sp)
-  LD s1, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
@@ -197,8 +197,8 @@ bb20:
 inc_a:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   LA s0, a
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -206,7 +206,7 @@ inc_a:
   SW s0, 0(s1)
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

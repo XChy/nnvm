@@ -6,13 +6,13 @@
 doubleWhile:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s0, 56(sp)
+  SD s6, 56(sp)
   ADDI s0, zero, 7
   ADDI s1, zero, 5
   # implict jump to bb1
@@ -25,13 +25,13 @@ bb1:
 bb2:
   ADD a0, s3, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s0, 56(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
@@ -56,13 +56,13 @@ bb6:
 main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s0, 56(sp)
+  SD s6, 56(sp)
   ADDI s0, zero, 7
   ADDI s1, zero, 5
   # implict jump to bb8
@@ -75,13 +75,13 @@ bb8:
 bb9:
   ADD a0, s3, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s0, 56(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb10:

@@ -23,14 +23,14 @@ maxlen:
 mem_move:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -43,14 +43,14 @@ bb1:
   # implict jump to bb2
 bb2:
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
@@ -65,18 +65,18 @@ bb3:
 floyd:
   ADDI sp, sp, -112
   SD ra, 0(sp)
-  SD s11, 8(sp)
-  SD s10, 16(sp)
-  SD s9, 24(sp)
-  SD s0, 32(sp)
-  SD s5, 40(sp)
-  SD s7, 48(sp)
-  SD s1, 56(sp)
-  SD s6, 64(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   SD s8, 72(sp)
-  SD s2, 80(sp)
-  SD s3, 88(sp)
-  SD s4, 96(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
+  SD s11, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -110,18 +110,18 @@ bb9:
   # implict jump to bb10
 bb10:
   LD ra, 0(sp)
-  LD s11, 8(sp)
-  LD s10, 16(sp)
-  LD s9, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s7, 48(sp)
-  LD s1, 56(sp)
-  LD s6, 64(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   LD s8, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  LD s4, 96(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
+  LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb11:
@@ -548,19 +548,19 @@ bb102:
   JAL zero, bb92
 main:
   ADDI sp, sp, -112
-  SD ra, 8(sp)
-  SD s11, 16(sp)
-  SD s10, 24(sp)
-  SD s0, 32(sp)
-  SD s5, 40(sp)
-  SD s7, 48(sp)
+  SD s2, 8(sp)
+  SD s4, 16(sp)
+  SD s8, 24(sp)
+  SD s9, 32(sp)
+  SD ra, 40(sp)
+  SD s0, 48(sp)
   SD s1, 56(sp)
-  SD s6, 64(sp)
-  SD s3, 72(sp)
-  SD s2, 80(sp)
-  SD s4, 88(sp)
-  SD s8, 96(sp)
-  SD s9, 104(sp)
+  SD s3, 64(sp)
+  SD s5, 72(sp)
+  SD s6, 80(sp)
+  SD s7, 88(sp)
+  SD s10, 96(sp)
+  SD s11, 104(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, w
@@ -607,19 +607,19 @@ bb109:
   ADD a1, s2, zero
   CALL putarray
   ADD a0, zero, zero
-  LD ra, 8(sp)
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s0, 32(sp)
-  LD s5, 40(sp)
-  LD s7, 48(sp)
+  LD s2, 8(sp)
+  LD s4, 16(sp)
+  LD s8, 24(sp)
+  LD s9, 32(sp)
+  LD ra, 40(sp)
+  LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s6, 64(sp)
-  LD s3, 72(sp)
-  LD s2, 80(sp)
-  LD s4, 88(sp)
-  LD s8, 96(sp)
-  LD s9, 104(sp)
+  LD s3, 64(sp)
+  LD s5, 72(sp)
+  LD s6, 80(sp)
+  LD s7, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb110:
@@ -1053,12 +1053,12 @@ bb201:
 getvalue:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -1100,23 +1100,23 @@ bb209:
   LW s0, 0(s1)
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb210:
   ADDI a0, zero, -1
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb211:

@@ -6,10 +6,10 @@
 main:
   ADDI sp, sp, -176
   SD ra, 128(sp)
-  SD s3, 136(sp)
-  SD s2, 144(sp)
-  SD s1, 152(sp)
-  SD s0, 160(sp)
+  SD s0, 136(sp)
+  SD s1, 144(sp)
+  SD s2, 152(sp)
+  SD s3, 160(sp)
   ADDI s0, zero, 0
   SW s0, 64(sp)
   ADDI s0, sp, 68
@@ -116,18 +116,18 @@ main:
   CALL putch
   ADD a0, zero, zero
   LD ra, 128(sp)
-  LD s3, 136(sp)
-  LD s2, 144(sp)
-  LD s1, 152(sp)
-  LD s0, 160(sp)
+  LD s0, 136(sp)
+  LD s1, 144(sp)
+  LD s2, 152(sp)
+  LD s3, 160(sp)
   ADDI sp, sp, 176
   JALR zero, 0(ra)
 foo:
   ADDI sp, sp, -96
   SD ra, 64(sp)
-  SD s2, 72(sp)
+  SD s0, 72(sp)
   SD s1, 80(sp)
-  SD s0, 88(sp)
+  SD s2, 88(sp)
   SW zero, 0(sp)
   ADDI s0, sp, 4
   ADDI s1, zero, 1
@@ -175,8 +175,8 @@ foo:
   ADDIW s0, s1, 71
   ADD a0, s0, zero
   LD ra, 64(sp)
-  LD s2, 72(sp)
+  LD s0, 72(sp)
   LD s1, 80(sp)
-  LD s0, 88(sp)
+  LD s2, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)

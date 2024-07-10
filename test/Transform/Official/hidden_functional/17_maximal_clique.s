@@ -26,46 +26,16 @@ main:
   LUI t0, 1048575
   ADDIW t0, t0, -784
   ADD sp, sp, t0
-  LUI t5, 1
-  ADDIW t5, t5, 704
-  ADD t5, t5, sp
-  SD ra, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 712
-  ADD t5, t5, sp
-  SD s8, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 720
-  ADD t5, t5, sp
-  SD s4, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 728
-  ADD t5, t5, sp
-  SD s3, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 736
-  ADD t5, t5, sp
-  SD s2, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 744
-  ADD t5, t5, sp
-  SD s6, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 752
-  ADD t5, t5, sp
-  SD s1, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 760
-  ADD t5, t5, sp
-  SD s7, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 768
-  ADD t5, t5, sp
-  SD s5, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 776
-  ADD t5, t5, sp
-  SD s0, 0(t5)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, n
@@ -101,53 +71,23 @@ bb4:
   ADD a0, s4, zero
   CALL putint
   ADD a0, zero, zero
-  LUI ra, 1
-  ADDIW ra, ra, 704
-  ADD ra, ra, sp
-  LD ra, 0(ra)
-  LUI t5, 1
-  ADDIW t5, t5, 712
-  ADD t5, t5, sp
-  LD s8, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 720
-  ADD t5, t5, sp
-  LD s4, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 728
-  ADD t5, t5, sp
-  LD s3, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 736
-  ADD t5, t5, sp
-  LD s2, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 744
-  ADD t5, t5, sp
-  LD s6, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 752
-  ADD t5, t5, sp
-  LD s1, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 760
-  ADD t5, t5, sp
-  LD s7, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 768
-  ADD t5, t5, sp
-  LD s5, 0(t5)
-  LUI t5, 1
-  ADDIW t5, t5, 776
-  ADD t5, t5, sp
-  LD s0, 0(t5)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
   LUI t0, 1
   ADDIW t0, t0, 784
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb5:
   SLLIW s4, s3, 3
-  ADDI t5, sp, 0
+  ADDI t5, sp, 80
   ADD s5, t5, s4
   LW s4, 0(s5)
   ADDI s6, zero, 120
@@ -175,7 +115,7 @@ bb5:
   JAL zero, bb3
 bb6:
   SLLIW s2, s1, 3
-  ADDI t5, sp, 0
+  ADDI t5, sp, 80
   ADD s3, t5, s2
   CALL getint
   ADD s2, a0, zero
@@ -189,16 +129,16 @@ bb6:
   JAL zero, bb1
 is_clique:
   ADDI sp, sp, -80
-  SD s8, 0(sp)
-  SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s3, 24(sp)
-  SD s2, 32(sp)
-  SD s6, 40(sp)
-  SD s1, 48(sp)
-  SD s7, 56(sp)
-  SD s5, 64(sp)
-  SD s0, 72(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 1
   # implict jump to bb8
@@ -209,16 +149,16 @@ bb8:
   # implict jump to bb9
 bb9:
   ADDI a0, zero, 1
-  LD s8, 0(sp)
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s6, 40(sp)
-  LD s1, 48(sp)
-  LD s7, 56(sp)
-  LD s5, 64(sp)
-  LD s0, 72(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb10:
@@ -259,33 +199,33 @@ bb14:
   JAL zero, bb11
 bb15:
   ADD a0, zero, zero
-  LD s8, 0(sp)
-  LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s3, 24(sp)
-  LD s2, 32(sp)
-  LD s6, 40(sp)
-  LD s1, 48(sp)
-  LD s7, 56(sp)
-  LD s5, 64(sp)
-  LD s0, 72(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 maxCliques:
   ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD ra, 8(sp)
-  SD s10, 16(sp)
-  SD s0, 24(sp)
-  SD s5, 32(sp)
-  SD s7, 40(sp)
-  SD s8, 48(sp)
-  SD s1, 56(sp)
-  SD s6, 64(sp)
-  SD s2, 72(sp)
-  SD s3, 80(sp)
-  SD s4, 88(sp)
-  SD s9, 96(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
+  SD s11, 96(sp)
   ADD s0, a0, zero
   ADD s0, a1, zero
   ADD s1, zero, zero
@@ -304,19 +244,19 @@ bb17:
   # implict jump to bb18
 bb18:
   ADD a0, s4, zero
-  LD s11, 0(sp)
-  LD ra, 8(sp)
-  LD s10, 16(sp)
-  LD s0, 24(sp)
-  LD s5, 32(sp)
-  LD s7, 40(sp)
-  LD s8, 48(sp)
-  LD s1, 56(sp)
-  LD s6, 64(sp)
-  LD s2, 72(sp)
-  LD s3, 80(sp)
-  LD s4, 88(sp)
-  LD s9, 96(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
+  LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb19:

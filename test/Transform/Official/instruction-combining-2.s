@@ -8,18 +8,18 @@ loopCount:
 .section .text
 main:
   ADDI sp, sp, -96
-  SD s10, 0(sp)
-  SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s7, 24(sp)
+  SD ra, 0(sp)
+  SD s8, 8(sp)
+  SD s9, 16(sp)
+  SD s0, 24(sp)
   SD s1, 32(sp)
-  SD s6, 40(sp)
-  SD s2, 48(sp)
-  SD s3, 56(sp)
-  SD s4, 64(sp)
-  SD ra, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s10, 88(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, loopCount
@@ -49,18 +49,18 @@ bb2:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD s10, 0(sp)
-  LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s7, 24(sp)
+  LD ra, 0(sp)
+  LD s8, 8(sp)
+  LD s9, 16(sp)
+  LD s0, 24(sp)
   LD s1, 32(sp)
-  LD s6, 40(sp)
-  LD s2, 48(sp)
-  LD s3, 56(sp)
-  LD s4, 64(sp)
-  LD ra, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb3:
@@ -93,10 +93,10 @@ bb6:
 func:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   LUI s2, 2
@@ -105,9 +105,9 @@ func:
   SUBW s0, s3, s1
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

@@ -14,18 +14,18 @@ n:
 median:
   ADDI sp, sp, -112
   SD ra, 8(sp)
-  SD s11, 16(sp)
-  SD s10, 24(sp)
-  SD s9, 32(sp)
-  SD s8, 40(sp)
-  SD s0, 48(sp)
+  SD s0, 16(sp)
+  SD s1, 24(sp)
+  SD s2, 32(sp)
+  SD s3, 40(sp)
+  SD s4, 48(sp)
   SD s5, 56(sp)
-  SD s7, 64(sp)
-  SD s1, 72(sp)
-  SD s6, 80(sp)
-  SD s2, 88(sp)
-  SD s3, 96(sp)
-  SD s4, 104(sp)
+  SD s6, 64(sp)
+  SD s7, 72(sp)
+  SD s8, 80(sp)
+  SD s9, 88(sp)
+  SD s10, 96(sp)
+  SD s11, 104(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -153,18 +153,18 @@ bb21:
   LW t4, 0(sp)
   ADD a0, t4, zero
   LD ra, 8(sp)
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s9, 32(sp)
-  LD s8, 40(sp)
-  LD s0, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
-  LD s7, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
+  LD s6, 64(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb22:
@@ -177,18 +177,18 @@ bb22:
   ADD s8, a0, zero
   ADD a0, s8, zero
   LD ra, 8(sp)
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s9, 32(sp)
-  LD s8, 40(sp)
-  LD s0, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
-  LD s7, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
+  LD s6, 64(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb23:
@@ -200,18 +200,18 @@ bb23:
   ADD s8, a0, zero
   ADD a0, s8, zero
   LD ra, 8(sp)
-  LD s11, 16(sp)
-  LD s10, 24(sp)
-  LD s9, 32(sp)
-  LD s8, 40(sp)
-  LD s0, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
-  LD s7, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
-  LD s3, 96(sp)
-  LD s4, 104(sp)
+  LD s6, 64(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb24:
@@ -264,14 +264,14 @@ bb31:
 swap:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -302,14 +302,14 @@ bb35:
 bb36:
   ADD a0, s5, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb37:
@@ -326,10 +326,10 @@ bb38:
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   LA s0, a
   ADD a0, s0, zero
   CALL getarray
@@ -371,23 +371,23 @@ main:
   REMW s2, s0, s1
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 meanless_calculation:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
-  SD s7, 48(sp)
-  SD s5, 56(sp)
-  SD s0, 64(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, zero, zero
@@ -409,14 +409,14 @@ bb43:
 bb44:
   ADD a0, s5, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s7, 48(sp)
-  LD s5, 56(sp)
-  LD s0, 64(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb45:

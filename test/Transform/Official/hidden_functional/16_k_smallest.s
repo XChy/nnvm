@@ -16,19 +16,19 @@ maxN:
 .section .text
 findSmallest:
   ADDI sp, sp, -128
-  SD s9, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s11, 48(sp)
-  SD s0, 56(sp)
-  SD s1, 64(sp)
-  SD s6, 72(sp)
-  SD s7, 80(sp)
-  SD s10, 88(sp)
-  SD s8, 96(sp)
-  SD s5, 104(sp)
-  SD ra, 112(sp)
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s3, 40(sp)
+  SD s2, 48(sp)
+  SD s9, 56(sp)
+  SD s4, 64(sp)
+  SD s11, 72(sp)
+  SD s5, 80(sp)
+  SD s6, 88(sp)
+  SD s7, 96(sp)
+  SD s8, 104(sp)
+  SD s10, 112(sp)
   ADD s1, a0, zero
   ADD t4, a1, zero
   SW t4, 8(sp)
@@ -87,19 +87,19 @@ bb5:
   CALL findSmallest
   # implict jump to bb6
 bb6:
-  LD s9, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s11, 48(sp)
-  LD s0, 56(sp)
-  LD s1, 64(sp)
-  LD s6, 72(sp)
-  LD s7, 80(sp)
-  LD s10, 88(sp)
-  LD s8, 96(sp)
-  LD s5, 104(sp)
-  LD ra, 112(sp)
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s3, 40(sp)
+  LD s2, 48(sp)
+  LD s9, 56(sp)
+  LD s4, 64(sp)
+  LD s11, 72(sp)
+  LD s5, 80(sp)
+  LD s6, 88(sp)
+  LD s7, 96(sp)
+  LD s8, 104(sp)
+  LD s10, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb7:
@@ -163,36 +163,36 @@ bb14:
   ADD s2, s3, zero
   JAL zero, bb13
 bb15:
-  LD s9, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s11, 48(sp)
-  LD s0, 56(sp)
-  LD s1, 64(sp)
-  LD s6, 72(sp)
-  LD s7, 80(sp)
-  LD s10, 88(sp)
-  LD s8, 96(sp)
-  LD s5, 104(sp)
-  LD ra, 112(sp)
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s3, 40(sp)
+  LD s2, 48(sp)
+  LD s9, 56(sp)
+  LD s4, 64(sp)
+  LD s11, 72(sp)
+  LD s5, 80(sp)
+  LD s6, 88(sp)
+  LD s7, 96(sp)
+  LD s8, 104(sp)
+  LD s10, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 findPivot:
   ADDI sp, sp, -112
-  SD s11, 0(sp)
-  SD s10, 8(sp)
-  SD ra, 16(sp)
-  SD s0, 24(sp)
-  SD s5, 32(sp)
-  SD s7, 40(sp)
-  SD s1, 48(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s8, 64(sp)
-  SD s2, 72(sp)
-  SD s3, 80(sp)
-  SD s4, 88(sp)
-  SD s9, 96(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
+  SD s11, 96(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLLIW s2, s1, 2
@@ -217,19 +217,19 @@ bb18:
   SW s8, 0(s9)
   SW s7, 0(s4)
   ADD a0, s0, zero
-  LD s11, 0(sp)
-  LD s10, 8(sp)
-  LD ra, 16(sp)
-  LD s0, 24(sp)
-  LD s5, 32(sp)
-  LD s7, 40(sp)
-  LD s1, 48(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s8, 64(sp)
-  LD s2, 72(sp)
-  LD s3, 80(sp)
-  LD s4, 88(sp)
-  LD s9, 96(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
+  LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb19:
@@ -264,13 +264,13 @@ bb22:
 main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s6, 32(sp)
-  SD s1, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s0, 56(sp)
+  SD s6, 56(sp)
   CALL getint
   ADD s0, a0, zero
   CALL getint
@@ -292,13 +292,13 @@ bb25:
   CALL findSmallest
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s0, 56(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb26:
@@ -314,11 +314,11 @@ bb26:
 swap:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLLIW s2, s0, 2
@@ -332,10 +332,10 @@ swap:
   SW s1, 0(s3)
   SW s0, 0(s4)
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

@@ -14,18 +14,18 @@ M:
 .section .text
 main:
   ADDI sp, sp, -256
-  SD ra, 152(sp)
-  SD s0, 160(sp)
-  SD s5, 168(sp)
-  SD s1, 176(sp)
-  SD s6, 184(sp)
-  SD s2, 192(sp)
-  SD s3, 200(sp)
-  FSD fs0, 208(sp)
-  SD s4, 216(sp)
-  SD s7, 224(sp)
-  SD s8, 232(sp)
-  SD s9, 240(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  FSD fs0, 88(sp)
   LA s0, N
   ADDI s1, zero, 3
   SW s1, 0(s0)
@@ -45,36 +45,36 @@ bb1:
   BNE s2, zero, bb12
   # implict jump to bb2
 bb2:
-  ADDI s2, sp, 24
-  ADDI s3, sp, 108
+  ADDI s2, sp, 224
+  ADDI s3, sp, 132
   FLW fs0, 0(s3)
   FSW fs0, 0(s2)
-  ADDI s2, sp, 4
-  ADDI s3, sp, 128
+  ADDI s2, sp, 236
+  ADDI s3, sp, 120
   FLW fs0, 0(s3)
   FSW fs0, 0(s2)
-  ADDI s2, sp, 36
-  FLW fs0, 120(sp)
+  ADDI s2, sp, 196
+  FLW fs0, 112(sp)
   FSW fs0, 0(s2)
-  ADDI s2, sp, 40
-  FLW fs0, 104(sp)
+  ADDI s2, sp, 200
+  FLW fs0, 128(sp)
   FSW fs0, 0(s2)
-  ADDI s2, sp, 140
+  ADDI s2, sp, 100
   FLW fs0, 0(s2)
-  FSW fs0, 16(sp)
-  ADDI s2, sp, 144
+  FSW fs0, 216(sp)
+  ADDI s2, sp, 104
   FLW fs0, 0(s2)
-  FSW fs0, 0(sp)
-  ADDI s2, sp, 20
-  ADDI s3, sp, 124
+  FSW fs0, 232(sp)
+  ADDI s2, sp, 220
+  ADDI s3, sp, 116
   FLW fs0, 0(s3)
   FSW fs0, 0(s2)
-  ADDI s2, sp, 8
-  ADDI s3, sp, 112
+  ADDI s2, sp, 240
+  ADDI s3, sp, 136
   FLW fs0, 0(s3)
   FSW fs0, 0(s2)
-  FLW fs0, 136(sp)
-  FSW fs0, 32(sp)
+  FLW fs0, 96(sp)
+  FSW fs0, 192(sp)
   ADD s2, zero, zero
   # implict jump to bb3
 bb3:
@@ -112,23 +112,23 @@ bb8:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD ra, 152(sp)
-  LD s0, 160(sp)
-  LD s5, 168(sp)
-  LD s1, 176(sp)
-  LD s6, 184(sp)
-  LD s2, 192(sp)
-  LD s3, 200(sp)
-  FLD fs0, 208(sp)
-  LD s4, 216(sp)
-  LD s7, 224(sp)
-  LD s8, 232(sp)
-  LD s9, 240(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  FLD fs0, 88(sp)
   ADDI sp, sp, 256
   JALR zero, 0(ra)
 bb9:
   SLLIW s8, s7, 2
-  ADDI t5, sp, 0
+  ADDI t5, sp, 232
   ADD s9, t5, s8
   FLW fs0, 0(s9)
   FCVT.W.S s8, fs0, rtz
@@ -139,7 +139,7 @@ bb9:
   JAL zero, bb7
 bb10:
   SLLIW s6, s5, 2
-  ADDI t5, sp, 16
+  ADDI t5, sp, 216
   ADD s7, t5, s6
   FLW fs0, 0(s7)
   FCVT.W.S s6, fs0, rtz
@@ -150,7 +150,7 @@ bb10:
   JAL zero, bb5
 bb11:
   SLLIW s4, s3, 2
-  ADDI t5, sp, 32
+  ADDI t5, sp, 192
   ADD s5, t5, s4
   FLW fs0, 0(s5)
   FCVT.W.S s4, fs0, rtz
@@ -161,23 +161,23 @@ bb11:
   JAL zero, bb3
 bb12:
   SLLIW s2, s1, 2
-  ADDI t5, sp, 136
+  ADDI t5, sp, 96
   ADD s3, t5, s2
   FCVT.S.W fs0, s1
   FSW fs0, 0(s3)
-  ADDI t5, sp, 120
+  ADDI t5, sp, 112
   ADD s3, t5, s2
   FSW fs0, 0(s3)
-  ADDI t5, sp, 104
+  ADDI t5, sp, 128
   ADD s3, t5, s2
   FSW fs0, 0(s3)
-  ADDI t5, sp, 88
+  ADDI t5, sp, 144
   ADD s3, t5, s2
   FSW fs0, 0(s3)
-  ADDI t5, sp, 72
+  ADDI t5, sp, 160
   ADD s3, t5, s2
   FSW fs0, 0(s3)
-  ADDI t5, sp, 56
+  ADDI t5, sp, 176
   ADD s3, t5, s2
   FSW fs0, 0(s3)
   ADDIW s2, s1, 1
@@ -186,15 +186,15 @@ bb12:
 tran:
   ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s7, 8(sp)
-  SD s6, 16(sp)
-  SD s5, 24(sp)
-  SD s0, 32(sp)
-  FSD fs0, 40(sp)
-  SD s1, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  FSD fs0, 72(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -238,14 +238,14 @@ tran:
   FSW fs0, 0(s3)
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s7, 8(sp)
-  LD s6, 16(sp)
-  LD s5, 24(sp)
-  LD s0, 32(sp)
-  FLD fs0, 40(sp)
-  LD s1, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  FLD fs0, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)

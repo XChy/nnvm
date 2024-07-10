@@ -128,6 +128,14 @@ StackSlot *LIRFunc::allocStackSlot(uint64_t size) {
   return slot;
 }
 
+StackSlot *LIRFunc::allocSpilledSlot(uint64_t size) {
+  StackSlot *slot = new StackSlot(size);
+  slot->setIndex(stackSlots.size());
+  slot->setType(StackSlot::Spilled);
+  stackSlots.push_back(slot);
+  return slot;
+}
+
 StackSlot *LIRFunc::allocCalleeSavedSlot(Register *reg) {
   for (StackSlot *slot : stackSlots)
     if (slot->getType() == StackSlot::CalleeSaved && slot->getReg() == reg)

@@ -16,20 +16,20 @@ __HELLO:
 .byte 87, 0, 0, 0, 101, 0, 0, 0, 108, 0, 0, 0, 99, 0, 0, 0, 111, 0, 0, 0, 109, 0, 0, 0, 101, 0, 0, 0, 32, 0, 0, 0, 116, 0, 0, 0, 111, 0, 0, 0, 32, 0, 0, 0, 116, 0, 0, 0, 104, 0, 0, 0, 101, 0, 0, 0, 32, 0, 0, 0, 74, 0, 0, 0, 97, 0, 0, 0, 112, 0, 0, 0, 97, 0, 0, 0, 114, 0, 0, 0, 105, 0, 0, 0, 32, 0, 0, 0, 80, 0, 0, 0, 97, 0, 0, 0, 114, 0, 0, 0, 107, 0, 0, 0, 33, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 .section .text
 main:
-  ADDI sp, sp, -160
-  SD s11, 48(sp)
-  SD s10, 56(sp)
-  SD s9, 64(sp)
-  SD s4, 72(sp)
-  SD s1, 80(sp)
-  SD s0, 88(sp)
-  SD s5, 96(sp)
-  SD s3, 104(sp)
-  SD s2, 112(sp)
-  SD s6, 120(sp)
-  SD s7, 128(sp)
-  SD s8, 136(sp)
-  SD ra, 144(sp)
+  ADDI sp, sp, -144
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
+  SD s10, 104(sp)
+  SD s11, 112(sp)
   ADD s0, zero, zero
   # implict jump to bb1
 bb1:
@@ -70,20 +70,20 @@ bb5:
   JAL zero, bb3
 bb6:
   ADD a0, zero, zero
-  LD s11, 48(sp)
-  LD s10, 56(sp)
-  LD s9, 64(sp)
-  LD s4, 72(sp)
-  LD s1, 80(sp)
-  LD s0, 88(sp)
-  LD s5, 96(sp)
-  LD s3, 104(sp)
-  LD s2, 112(sp)
-  LD s6, 120(sp)
-  LD s7, 128(sp)
-  LD s8, 136(sp)
-  LD ra, 144(sp)
-  ADDI sp, sp, 160
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  LD s10, 104(sp)
+  LD s11, 112(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb7:
   ADDI s5, zero, 200
@@ -109,8 +109,8 @@ bb10:
   SLLIW t0, s11, 2
   LA t1, saY_HeI10_To
   ADD t4, t1, t0
-  SD t4, 24(sp)
-  LD t4, 24(sp)
+  SD t4, 128(sp)
+  LD t4, 128(sp)
   LW t0, 0(t4)
   XOR t1, t0, zero
   SLTU t0, zero, t1
@@ -121,20 +121,20 @@ bb11:
   MULW t1, s7, t0
   LA t0, N4__mE___
   ADD t4, t0, t1
-  SD t4, 0(sp)
+  SD t4, 136(sp)
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   # implict jump to bb12
 bb12:
-  LW t3, 12(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
-  LW t4, 16(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   SLLIW a1, t4, 2
-  LD t3, 0(sp)
+  LD t3, 136(sp)
   ADD t4, t3, a1
-  SD t4, 40(sp)
-  LD t4, 40(sp)
+  SD t4, 120(sp)
+  LD t4, 120(sp)
   LW a1, 0(t4)
   XOR a3, a1, zero
   SLTU a1, zero, a3
@@ -142,13 +142,13 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD t4, zero, zero
-  SW t4, 32(sp)
+  SW t4, 12(sp)
   # implict jump to bb14
 bb14:
-  LW t3, 32(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   SLLIW a4, t4, 2
   LA a5, RET
   ADD a6, a5, a4
@@ -161,23 +161,23 @@ bb15:
   LW s2, 0(a6)
   ADD a0, s2, zero
   CALL putch
-  LW t4, 8(sp)
-  ADDIW s2, t4, 1
-  ADD t4, s2, zero
-  SW t4, 32(sp)
-  JAL zero, bb14
-bb16:
-  LD t4, 40(sp)
-  LW s2, 0(t4)
-  ADD a0, s2, zero
-  CALL putch
-  LW t4, 16(sp)
+  LW t4, 0(sp)
   ADDIW s2, t4, 1
   ADD t4, s2, zero
   SW t4, 12(sp)
+  JAL zero, bb14
+bb16:
+  LD t4, 120(sp)
+  LW s2, 0(t4)
+  ADD a0, s2, zero
+  CALL putch
+  LW t4, 4(sp)
+  ADDIW s2, t4, 1
+  ADD t4, s2, zero
+  SW t4, 8(sp)
   JAL zero, bb12
 bb17:
-  LD t4, 24(sp)
+  LD t4, 128(sp)
   LW s2, 0(t4)
   ADD a0, s2, zero
   CALL putch
@@ -201,12 +201,12 @@ bb19:
 putstr:
   ADDI sp, sp, -64
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s5, 40(sp)
-  SD s0, 48(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
   # implict jump to bb21
@@ -222,12 +222,12 @@ bb21:
 bb22:
   ADD a0, s2, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s5, 40(sp)
-  LD s0, 48(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb23:

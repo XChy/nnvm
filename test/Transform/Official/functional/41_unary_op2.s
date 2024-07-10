@@ -5,8 +5,8 @@
 main:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   XOR s0, zero, zero
   SLTU s1, zero, s0
   XORI s0, s1, 1
@@ -27,8 +27,8 @@ bb2:
   CALL putint
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:

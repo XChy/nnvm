@@ -33,9 +33,9 @@ maxm:
 same:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD a0, s0, zero
@@ -51,55 +51,55 @@ same:
 bb1:
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb2:
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -288
-  SD ra, 184(sp)
-  SD s11, 192(sp)
-  SD s5, 200(sp)
-  SD s0, 208(sp)
-  SD s7, 216(sp)
-  SD s10, 224(sp)
-  SD s4, 232(sp)
-  SD s1, 240(sp)
-  SD s6, 248(sp)
-  SD s2, 256(sp)
-  SD s8, 264(sp)
-  SD s9, 272(sp)
-  SD s3, 280(sp)
+  SD ra, 176(sp)
+  SD s0, 184(sp)
+  SD s1, 192(sp)
+  SD s2, 200(sp)
+  SD s3, 208(sp)
+  SD s8, 216(sp)
+  SD s9, 224(sp)
+  SD s6, 232(sp)
+  SD s4, 240(sp)
+  SD s7, 248(sp)
+  SD s10, 256(sp)
+  SD s5, 264(sp)
+  SD s11, 272(sp)
   CALL getch
   ADD s0, a0, zero
   ADD t4, zero, zero
-  SW t4, 4(sp)
+  SW t4, 152(sp)
   ADD t4, s0, zero
-  SW t4, 0(sp)
+  SW t4, 148(sp)
   # implict jump to bb4
 bb4:
-  LW t3, 0(sp)
+  LW t3, 148(sp)
   ADD t4, t3, zero
-  SW t4, 12(sp)
-  LW t3, 4(sp)
+  SW t4, 160(sp)
+  LW t3, 152(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
-  LW t4, 12(sp)
+  SW t4, 156(sp)
+  LW t4, 160(sp)
   SLTI s4, t4, 48
   BNE s4, zero, bb113
   # implict jump to bb5
 bb5:
   ADDI s4, zero, 57
-  LW t4, 12(sp)
+  LW t4, 160(sp)
   SLT s5, s4, t4
   ADD s4, s5, zero
   # implict jump to bb6
@@ -109,19 +109,19 @@ bb6:
   # implict jump to bb7
 bb7:
   ADD t4, zero, zero
-  SW t4, 20(sp)
-  LW t3, 12(sp)
+  SW t4, 48(sp)
+  LW t3, 160(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
+  SW t4, 96(sp)
   # implict jump to bb8
 bb8:
-  LW t3, 16(sp)
+  LW t3, 96(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
-  LW t3, 20(sp)
+  SW t4, 4(sp)
+  LW t3, 48(sp)
   ADD t4, t3, zero
-  SW t4, 28(sp)
-  LW t4, 24(sp)
+  SW t4, 8(sp)
+  LW t4, 4(sp)
   SLTI s8, t4, 48
   XORI s9, s8, 1
   BNE s9, zero, bb108
@@ -137,24 +137,24 @@ bb11:
   CALL getch
   ADD s8, a0, zero
   ADD t4, zero, zero
-  SW t4, 36(sp)
+  SW t4, 16(sp)
   ADD t4, s8, zero
-  SW t4, 32(sp)
+  SW t4, 12(sp)
   # implict jump to bb12
 bb12:
-  LW t3, 32(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
-  SW t4, 44(sp)
-  LW t3, 36(sp)
+  SW t4, 24(sp)
+  LW t3, 16(sp)
   ADD t4, t3, zero
-  SW t4, 40(sp)
-  LW t4, 44(sp)
+  SW t4, 20(sp)
+  LW t4, 24(sp)
   SLTI s2, t4, 48
   BNE s2, zero, bb106
   # implict jump to bb13
 bb13:
   ADDI s2, zero, 57
-  LW t4, 44(sp)
+  LW t4, 24(sp)
   SLT s1, s2, t4
   ADD s2, s1, zero
   # implict jump to bb14
@@ -164,19 +164,19 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, zero, zero
-  SW t4, 52(sp)
-  LW t3, 44(sp)
+  SW t4, 32(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
-  SW t4, 48(sp)
+  SW t4, 28(sp)
   # implict jump to bb16
 bb16:
-  LW t3, 48(sp)
+  LW t3, 28(sp)
   ADD t4, t3, zero
-  SW t4, 56(sp)
-  LW t3, 52(sp)
+  SW t4, 36(sp)
+  LW t3, 32(sp)
   ADD t4, t3, zero
-  SW t4, 60(sp)
-  LW t4, 56(sp)
+  SW t4, 40(sp)
+  LW t4, 36(sp)
   SLTI s5, t4, 48
   XORI s4, s5, 1
   BNE s4, zero, bb101
@@ -189,46 +189,46 @@ bb18:
   BNE s5, zero, bb100
   # implict jump to bb19
 bb19:
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   XOR s4, t4, zero
   SLTU s5, zero, s4
   BNE s5, zero, bb99
   # implict jump to bb20
 bb20:
-  LW t4, 60(sp)
+  LW t4, 40(sp)
   ADD s4, t4, zero
   # implict jump to bb21
 bb21:
   ADD t4, s4, zero
-  SW t4, 68(sp)
+  SW t4, 0(sp)
   ADD t4, zero, zero
-  SW t4, 72(sp)
+  SW t4, 52(sp)
   # implict jump to bb22
 bb22:
-  LW t3, 72(sp)
+  LW t3, 52(sp)
   ADD t4, t3, zero
-  SW t4, 64(sp)
-  LW t4, 64(sp)
-  LW t3, 68(sp)
+  SW t4, 44(sp)
+  LW t4, 44(sp)
+  LW t3, 0(sp)
   SLT s7, t4, t3
   BNE s7, zero, bb44
   # implict jump to bb23
 bb23:
   ADD t4, zero, zero
-  SW t4, 84(sp)
+  SW t4, 64(sp)
   ADD t4, zero, zero
-  SW t4, 80(sp)
+  SW t4, 60(sp)
   # implict jump to bb24
 bb24:
-  LW t3, 80(sp)
+  LW t3, 60(sp)
   ADD t4, t3, zero
-  SW t4, 76(sp)
-  LW t3, 84(sp)
+  SW t4, 56(sp)
+  LW t3, 64(sp)
   ADD t4, t3, zero
-  SW t4, 88(sp)
+  SW t4, 68(sp)
   LA s8, m
   LW s2, 0(s8)
-  LW t4, 76(sp)
+  LW t4, 56(sp)
   SLT s8, t4, s2
   BNE s8, zero, bb37
   # implict jump to bb25
@@ -257,19 +257,19 @@ bb28:
   # implict jump to bb29
 bb29:
   ADD a0, s6, zero
-  LD ra, 184(sp)
-  LD s11, 192(sp)
-  LD s5, 200(sp)
-  LD s0, 208(sp)
-  LD s7, 216(sp)
-  LD s10, 224(sp)
-  LD s4, 232(sp)
-  LD s1, 240(sp)
-  LD s6, 248(sp)
-  LD s2, 256(sp)
-  LD s8, 264(sp)
-  LD s9, 272(sp)
-  LD s3, 280(sp)
+  LD ra, 176(sp)
+  LD s0, 184(sp)
+  LD s1, 192(sp)
+  LD s2, 200(sp)
+  LD s3, 208(sp)
+  LD s8, 216(sp)
+  LD s9, 224(sp)
+  LD s6, 232(sp)
+  LD s4, 240(sp)
+  LD s7, 248(sp)
+  LD s10, 256(sp)
+  LD s5, 264(sp)
+  LD s11, 272(sp)
   ADDI sp, sp, 288
   JALR zero, 0(ra)
 bb30:
@@ -333,12 +333,12 @@ bb36:
   ADD s2, s0, zero
   JAL zero, bb26
 bb37:
-  LW t3, 76(sp)
+  LW t3, 56(sp)
   ADDIW t4, t3, 1
-  SW t4, 92(sp)
-  LW t4, 88(sp)
+  SW t4, 72(sp)
+  LW t4, 68(sp)
   ADD s1, t4, zero
-  LW t4, 92(sp)
+  LW t4, 72(sp)
   ADD s2, t4, zero
   # implict jump to bb38
 bb38:
@@ -351,13 +351,13 @@ bb38:
   # implict jump to bb39
 bb39:
   ADD t4, s4, zero
-  SW t4, 84(sp)
-  LW t3, 92(sp)
+  SW t4, 64(sp)
+  LW t3, 72(sp)
   ADD t4, t3, zero
-  SW t4, 80(sp)
+  SW t4, 60(sp)
   JAL zero, bb24
 bb40:
-  LW t4, 76(sp)
+  LW t4, 56(sp)
   SLLIW s5, t4, 2
   LA s6, c
   ADD s7, s6, s5
@@ -402,34 +402,34 @@ bb43:
   ADD s6, s0, zero
   JAL zero, bb42
 bb44:
-  LW t3, 64(sp)
+  LW t3, 44(sp)
   SLLIW t4, t3, 2
-  SW t4, 104(sp)
+  SW t4, 80(sp)
   LA s1, u
-  LW t3, 104(sp)
+  LW t3, 80(sp)
   ADD t4, s1, t3
-  SD t4, 96(sp)
+  SD t4, 280(sp)
   CALL getch
   ADD s1, a0, zero
   ADD t4, zero, zero
-  SW t4, 112(sp)
+  SW t4, 88(sp)
   ADD t4, s1, zero
-  SW t4, 108(sp)
+  SW t4, 84(sp)
   # implict jump to bb45
 bb45:
-  LW t3, 108(sp)
+  LW t3, 84(sp)
   ADD t4, t3, zero
-  SW t4, 120(sp)
-  LW t3, 112(sp)
+  SW t4, 76(sp)
+  LW t3, 88(sp)
   ADD t4, t3, zero
-  SW t4, 116(sp)
-  LW t4, 120(sp)
+  SW t4, 92(sp)
+  LW t4, 76(sp)
   SLTI s6, t4, 48
   BNE s6, zero, bb98
   # implict jump to bb46
 bb46:
   ADDI s6, zero, 57
-  LW t4, 120(sp)
+  LW t4, 76(sp)
   SLT s7, s6, t4
   ADD s6, s7, zero
   # implict jump to bb47
@@ -439,19 +439,19 @@ bb47:
   # implict jump to bb48
 bb48:
   ADD t4, zero, zero
-  SW t4, 128(sp)
-  LW t3, 120(sp)
+  SW t4, 140(sp)
+  LW t3, 76(sp)
   ADD t4, t3, zero
-  SW t4, 124(sp)
+  SW t4, 144(sp)
   # implict jump to bb49
 bb49:
-  LW t3, 124(sp)
-  ADD t4, t3, zero
-  SW t4, 132(sp)
-  LW t3, 128(sp)
+  LW t3, 144(sp)
   ADD t4, t3, zero
   SW t4, 136(sp)
-  LW t4, 132(sp)
+  LW t3, 140(sp)
+  ADD t4, t3, zero
+  SW t4, 132(sp)
+  LW t4, 136(sp)
   SLTI s10, t4, 48
   XORI s11, s10, 1
   BNE s11, zero, bb93
@@ -464,44 +464,44 @@ bb51:
   BNE s2, zero, bb92
   # implict jump to bb52
 bb52:
-  LW t4, 116(sp)
+  LW t4, 92(sp)
   XOR s2, t4, zero
   SLTU s10, zero, s2
   BNE s10, zero, bb91
   # implict jump to bb53
 bb53:
-  LW t4, 136(sp)
+  LW t4, 132(sp)
   ADD s2, t4, zero
   # implict jump to bb54
 bb54:
   ADD s10, s2, zero
-  LD t4, 96(sp)
+  LD t4, 280(sp)
   SW s10, 0(t4)
   LA s2, v
-  LW t3, 104(sp)
+  LW t3, 80(sp)
   ADD t4, s2, t3
-  SD t4, 144(sp)
+  SD t4, 168(sp)
   CALL getch
   ADD s2, a0, zero
   ADD t4, zero, zero
-  SW t4, 156(sp)
+  SW t4, 124(sp)
   ADD t4, s2, zero
-  SW t4, 152(sp)
+  SW t4, 128(sp)
   # implict jump to bb55
 bb55:
-  LW t3, 152(sp)
+  LW t3, 128(sp)
   ADD t4, t3, zero
-  SW t4, 164(sp)
-  LW t3, 156(sp)
+  SW t4, 116(sp)
+  LW t3, 124(sp)
   ADD t4, t3, zero
-  SW t4, 160(sp)
-  LW t4, 164(sp)
+  SW t4, 120(sp)
+  LW t4, 116(sp)
   SLTI s3, t4, 48
   BNE s3, zero, bb90
   # implict jump to bb56
 bb56:
   ADDI s3, zero, 57
-  LW t4, 164(sp)
+  LW t4, 116(sp)
   SLT s5, s3, t4
   ADD s3, s5, zero
   # implict jump to bb57
@@ -511,19 +511,19 @@ bb57:
   # implict jump to bb58
 bb58:
   ADD t4, zero, zero
-  SW t4, 172(sp)
-  LW t3, 164(sp)
+  SW t4, 108(sp)
+  LW t3, 116(sp)
   ADD t4, t3, zero
-  SW t4, 168(sp)
+  SW t4, 112(sp)
   # implict jump to bb59
 bb59:
-  LW t3, 168(sp)
+  LW t3, 112(sp)
   ADD t4, t3, zero
-  SW t4, 176(sp)
-  LW t3, 172(sp)
+  SW t4, 104(sp)
+  LW t3, 108(sp)
   ADD t4, t3, zero
-  SW t4, 180(sp)
-  LW t4, 176(sp)
+  SW t4, 100(sp)
+  LW t4, 104(sp)
   SLTI s6, t4, 48
   XORI s8, s6, 1
   BNE s8, zero, bb85
@@ -536,21 +536,21 @@ bb61:
   BNE s8, zero, bb84
   # implict jump to bb62
 bb62:
-  LW t4, 160(sp)
+  LW t4, 120(sp)
   XOR s6, t4, zero
   SLTU s8, zero, s6
   BNE s8, zero, bb83
   # implict jump to bb63
 bb63:
-  LW t4, 180(sp)
+  LW t4, 100(sp)
   ADD s6, t4, zero
   # implict jump to bb64
 bb64:
   ADD s8, s6, zero
-  LD t4, 144(sp)
+  LD t4, 168(sp)
   SW s8, 0(t4)
   LA s6, c
-  LW t4, 104(sp)
+  LW t4, 80(sp)
   ADD s8, s6, t4
   CALL getch
   ADD s6, a0, zero
@@ -601,10 +601,10 @@ bb73:
 bb74:
   ADD s3, s1, zero
   SW s3, 0(s8)
-  LW t4, 64(sp)
+  LW t4, 44(sp)
   ADDIW s1, t4, 1
   ADD t4, s1, zero
-  SW t4, 72(sp)
+  SW t4, 52(sp)
   JAL zero, bb22
 bb75:
   SUB s3, zero, s5
@@ -649,40 +649,40 @@ bb82:
   ADDI s11, zero, 1
   JAL zero, bb67
 bb83:
-  LW t4, 180(sp)
+  LW t4, 100(sp)
   SUB s8, zero, t4
   ADD s6, s8, zero
   JAL zero, bb64
 bb84:
   ADDI s0, zero, 10
-  LW t4, 180(sp)
+  LW t4, 100(sp)
   MULW s1, t4, s0
-  LW t4, 176(sp)
+  LW t4, 104(sp)
   ADDW s0, s1, t4
   ADDI s1, zero, 48
   SUBW s2, s0, s1
   CALL getch
   ADD s0, a0, zero
   ADD t4, s2, zero
-  SW t4, 172(sp)
+  SW t4, 108(sp)
   ADD t4, s0, zero
-  SW t4, 168(sp)
+  SW t4, 112(sp)
   JAL zero, bb59
 bb85:
   ADDI s8, zero, 57
-  LW t4, 176(sp)
+  LW t4, 104(sp)
   SLT s9, s8, t4
   XORI s8, s9, 1
   ADD s6, s8, zero
   JAL zero, bb61
 bb86:
-  LW t4, 164(sp)
+  LW t4, 116(sp)
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   BNE s1, zero, bb89
   # implict jump to bb87
 bb87:
-  LW t4, 160(sp)
+  LW t4, 120(sp)
   ADD s0, t4, zero
   # implict jump to bb88
 bb88:
@@ -690,9 +690,9 @@ bb88:
   CALL getch
   ADD s0, a0, zero
   ADD t4, s1, zero
-  SW t4, 156(sp)
+  SW t4, 124(sp)
   ADD t4, s0, zero
-  SW t4, 152(sp)
+  SW t4, 128(sp)
   JAL zero, bb55
 bb89:
   ADDI s0, zero, 1
@@ -701,40 +701,40 @@ bb90:
   ADDI s3, zero, 1
   JAL zero, bb57
 bb91:
-  LW t4, 136(sp)
+  LW t4, 132(sp)
   SUB s10, zero, t4
   ADD s2, s10, zero
   JAL zero, bb54
 bb92:
   ADDI s0, zero, 10
-  LW t4, 136(sp)
-  MULW s1, t4, s0
   LW t4, 132(sp)
+  MULW s1, t4, s0
+  LW t4, 136(sp)
   ADDW s0, s1, t4
   ADDI s1, zero, 48
   SUBW s2, s0, s1
   CALL getch
   ADD s0, a0, zero
   ADD t4, s2, zero
-  SW t4, 128(sp)
+  SW t4, 140(sp)
   ADD t4, s0, zero
-  SW t4, 124(sp)
+  SW t4, 144(sp)
   JAL zero, bb49
 bb93:
   ADDI s11, zero, 57
-  LW t4, 132(sp)
+  LW t4, 136(sp)
   SLT s2, s11, t4
   XORI s11, s2, 1
   ADD s10, s11, zero
   JAL zero, bb51
 bb94:
-  LW t4, 120(sp)
+  LW t4, 76(sp)
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   BNE s1, zero, bb97
   # implict jump to bb95
 bb95:
-  LW t4, 116(sp)
+  LW t4, 92(sp)
   ADD s0, t4, zero
   # implict jump to bb96
 bb96:
@@ -742,9 +742,9 @@ bb96:
   CALL getch
   ADD s0, a0, zero
   ADD t4, s1, zero
-  SW t4, 112(sp)
+  SW t4, 88(sp)
   ADD t4, s0, zero
-  SW t4, 108(sp)
+  SW t4, 84(sp)
   JAL zero, bb45
 bb97:
   ADDI s0, zero, 1
@@ -753,40 +753,40 @@ bb98:
   ADDI s6, zero, 1
   JAL zero, bb47
 bb99:
-  LW t4, 60(sp)
+  LW t4, 40(sp)
   SUB s5, zero, t4
   ADD s4, s5, zero
   JAL zero, bb21
 bb100:
   ADDI s0, zero, 10
-  LW t4, 60(sp)
+  LW t4, 40(sp)
   MULW s1, t4, s0
-  LW t4, 56(sp)
+  LW t4, 36(sp)
   ADDW s0, s1, t4
   ADDI s1, zero, 48
   SUBW s2, s0, s1
   CALL getch
   ADD s0, a0, zero
   ADD t4, s2, zero
-  SW t4, 52(sp)
+  SW t4, 32(sp)
   ADD t4, s0, zero
-  SW t4, 48(sp)
+  SW t4, 28(sp)
   JAL zero, bb16
 bb101:
   ADDI s5, zero, 57
-  LW t4, 56(sp)
+  LW t4, 36(sp)
   SLT s6, s5, t4
   XORI s5, s6, 1
   ADD s4, s5, zero
   JAL zero, bb18
 bb102:
-  LW t4, 44(sp)
+  LW t4, 24(sp)
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   BNE s1, zero, bb105
   # implict jump to bb103
 bb103:
-  LW t4, 40(sp)
+  LW t4, 20(sp)
   ADD s0, t4, zero
   # implict jump to bb104
 bb104:
@@ -794,9 +794,9 @@ bb104:
   CALL getch
   ADD s0, a0, zero
   ADD t4, s1, zero
-  SW t4, 36(sp)
+  SW t4, 16(sp)
   ADD t4, s0, zero
-  SW t4, 32(sp)
+  SW t4, 12(sp)
   JAL zero, bb12
 bb105:
   ADDI s0, zero, 1
@@ -806,34 +806,34 @@ bb106:
   JAL zero, bb14
 bb107:
   ADDI s0, zero, 10
-  LW t4, 28(sp)
+  LW t4, 8(sp)
   MULW s1, t4, s0
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   ADDW s0, s1, t4
   ADDI s1, zero, 48
   SUBW s2, s0, s1
   CALL getch
   ADD s0, a0, zero
   ADD t4, s2, zero
-  SW t4, 20(sp)
+  SW t4, 48(sp)
   ADD t4, s0, zero
-  SW t4, 16(sp)
+  SW t4, 96(sp)
   JAL zero, bb8
 bb108:
   ADDI s9, zero, 57
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   SLT s10, s9, t4
   XORI s9, s10, 1
   ADD s8, s9, zero
   JAL zero, bb10
 bb109:
-  LW t4, 12(sp)
+  LW t4, 160(sp)
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   BNE s1, zero, bb112
   # implict jump to bb110
 bb110:
-  LW t4, 8(sp)
+  LW t4, 156(sp)
   ADD s0, t4, zero
   # implict jump to bb111
 bb111:
@@ -841,9 +841,9 @@ bb111:
   CALL getch
   ADD s0, a0, zero
   ADD t4, s1, zero
-  SW t4, 4(sp)
+  SW t4, 152(sp)
   ADD t4, s0, zero
-  SW t4, 0(sp)
+  SW t4, 148(sp)
   JAL zero, bb4
 bb112:
   ADDI s0, zero, 1
@@ -854,10 +854,10 @@ bb113:
 find:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   SLLIW s1, s0, 2
   LA s2, fa
@@ -875,48 +875,48 @@ bb115:
   SW s1, 0(s3)
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb116:
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 prim:
   ADDI sp, sp, -144
-  SD ra, 32(sp)
-  SD s11, 40(sp)
-  SD s0, 48(sp)
-  SD s5, 56(sp)
-  SD s10, 64(sp)
+  SD s2, 16(sp)
+  SD s7, 24(sp)
+  SD s8, 32(sp)
+  SD s9, 40(sp)
+  SD ra, 48(sp)
+  SD s0, 56(sp)
+  SD s1, 64(sp)
   SD s3, 72(sp)
   SD s4, 80(sp)
-  SD s1, 88(sp)
+  SD s5, 88(sp)
   SD s6, 96(sp)
-  SD s2, 104(sp)
-  SD s7, 112(sp)
-  SD s8, 120(sp)
-  SD s9, 128(sp)
+  SD s10, 104(sp)
+  SD s11, 112(sp)
   ADD s0, zero, zero
   ADD t4, zero, zero
-  SW t4, 24(sp)
+  SW t4, 8(sp)
   # implict jump to bb118
 bb118:
-  LW t3, 24(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 20(sp)
+  SW t4, 4(sp)
   ADD s3, s0, zero
   LA s4, m
   LW s5, 0(s4)
-  LW t4, 20(sp)
+  LW t4, 4(sp)
   SLT s4, t4, s5
   BNE s4, zero, bb131
   # implict jump to bb119
@@ -945,38 +945,38 @@ bb122:
   # implict jump to bb123
 bb123:
   ADD a0, s9, zero
-  LD ra, 32(sp)
-  LD s11, 40(sp)
-  LD s0, 48(sp)
-  LD s5, 56(sp)
-  LD s10, 64(sp)
+  LD s2, 16(sp)
+  LD s7, 24(sp)
+  LD s8, 32(sp)
+  LD s9, 40(sp)
+  LD ra, 48(sp)
+  LD s0, 56(sp)
+  LD s1, 64(sp)
   LD s3, 72(sp)
   LD s4, 80(sp)
-  LD s1, 88(sp)
+  LD s5, 88(sp)
   LD s6, 96(sp)
-  LD s2, 104(sp)
-  LD s7, 112(sp)
-  LD s8, 120(sp)
-  LD s9, 128(sp)
+  LD s10, 104(sp)
+  LD s11, 112(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb124:
   SLLIW s10, s8, 2
   LA s11, u
   ADD t4, s11, s10
-  SD t4, 8(sp)
-  LD t4, 8(sp)
+  SD t4, 120(sp)
+  LD t4, 120(sp)
   LW s11, 0(t4)
   LA t1, v
   ADD t4, t1, s10
-  SD t4, 0(sp)
-  LD t3, 0(sp)
+  SD t4, 128(sp)
+  LD t3, 128(sp)
   LW t4, 0(t3)
-  SW t4, 16(sp)
+  SW t4, 0(sp)
   ADD a0, s11, zero
   CALL find
   ADD s11, a0, zero
-  LW t4, 16(sp)
+  LW t4, 0(sp)
   ADD a0, t4, zero
   CALL find
   ADD s2, a0, zero
@@ -998,7 +998,7 @@ bb127:
   ADD s2, s1, s10
   LW s1, 0(s2)
   ADDW s2, s9, s1
-  LD t4, 8(sp)
+  LD t4, 120(sp)
   LW s1, 0(t4)
   ADD a0, s1, zero
   CALL find
@@ -1006,7 +1006,7 @@ bb127:
   SLLIW s10, s1, 2
   LA s1, fa
   ADD s11, s1, s10
-  LD t4, 0(sp)
+  LD t4, 128(sp)
   LW s1, 0(t4)
   SW s1, 0(s11)
   ADDIW s1, s8, 1
@@ -1029,7 +1029,7 @@ bb130:
   ADD s4, s1, zero
   JAL zero, bb120
 bb131:
-  LW t4, 20(sp)
+  LW t4, 4(sp)
   ADDIW s1, t4, 1
   ADD s2, s3, zero
   ADD s3, s1, zero
@@ -1045,10 +1045,10 @@ bb132:
 bb133:
   ADD s0, s5, zero
   ADD t4, s1, zero
-  SW t4, 24(sp)
+  SW t4, 8(sp)
   JAL zero, bb118
 bb134:
-  LW t4, 20(sp)
+  LW t4, 4(sp)
   SLLIW s0, t4, 2
   LA s6, c
   ADD s7, s6, s0
@@ -1096,16 +1096,16 @@ quick_read:
   ADDI sp, sp, -96
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s7, 24(sp)
-  SD s10, 32(sp)
-  SD s1, 40(sp)
-  SD s6, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
   CALL getch
   ADD s0, a0, zero
   ADD s1, zero, zero
@@ -1153,16 +1153,16 @@ bb147:
   ADD a0, s7, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s7, 24(sp)
-  LD s10, 32(sp)
-  LD s1, 40(sp)
-  LD s6, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb148:
@@ -1170,16 +1170,16 @@ bb148:
   ADD a0, s8, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s7, 24(sp)
-  LD s10, 32(sp)
-  LD s1, 40(sp)
-  LD s6, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb149:

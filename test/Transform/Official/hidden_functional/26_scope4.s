@@ -18,9 +18,9 @@ a:
 f2:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   LA s0, sum
   LW s1, 0(s0)
   LA s0, a
@@ -41,18 +41,18 @@ f2:
   LA s1, sum
   SW s0, 0(s1)
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 f1:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   LA s1, sum
   LW s2, 0(s1)
@@ -86,17 +86,17 @@ f1:
   LA s0, sum
   SW s2, 0(s0)
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 getA:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s0, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   LA s0, count
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -104,23 +104,23 @@ getA:
   SW s0, 0(s1)
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s0, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -96
-  SD s9, 0(sp)
-  SD s8, 8(sp)
-  SD ra, 16(sp)
-  SD s7, 24(sp)
-  SD s4, 32(sp)
-  SD s3, 40(sp)
-  SD s2, 48(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s1, 64(sp)
-  SD s5, 72(sp)
-  SD s0, 80(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
   LA s0, sum
   ADDI s1, zero, 0
   SW s1, 0(s0)
@@ -743,17 +743,17 @@ bb5:
   ADD a0, s7, zero
   CALL putint
   ADD a0, zero, zero
-  LD s9, 0(sp)
-  LD s8, 8(sp)
-  LD ra, 16(sp)
-  LD s7, 24(sp)
-  LD s4, 32(sp)
-  LD s3, 40(sp)
-  LD s2, 48(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s1, 64(sp)
-  LD s5, 72(sp)
-  LD s0, 80(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb6:
@@ -1028,9 +1028,9 @@ bb9:
 f3:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   LA s0, count
   LW s1, 0(s0)
   ADDIW s0, s1, 1
@@ -1062,8 +1062,8 @@ f3:
   LA s0, sum
   SW s1, 0(s0)
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

@@ -29,18 +29,18 @@ MAX_SIZE:
 .section .text
 main:
   ADDI sp, sp, -128
-  SD s7, 16(sp)
-  SD s6, 24(sp)
-  SD ra, 32(sp)
-  SD s0, 40(sp)
-  SD s5, 48(sp)
-  SD s10, 56(sp)
-  SD s1, 64(sp)
-  SD s2, 72(sp)
-  SD s3, 80(sp)
-  SD s4, 88(sp)
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
   SD s9, 96(sp)
-  SD s8, 104(sp)
+  SD s10, 104(sp)
   SD s11, 112(sp)
   CALL getint
   ADD s0, a0, zero
@@ -107,18 +107,18 @@ bb7:
   # implict jump to bb8
 bb8:
   ADD a0, zero, zero
-  LD s7, 16(sp)
-  LD s6, 24(sp)
-  LD ra, 32(sp)
-  LD s0, 40(sp)
-  LD s5, 48(sp)
-  LD s10, 56(sp)
-  LD s1, 64(sp)
-  LD s2, 72(sp)
-  LD s3, 80(sp)
-  LD s4, 88(sp)
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
   LD s9, 96(sp)
-  LD s8, 104(sp)
+  LD s10, 104(sp)
   LD s11, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
@@ -271,18 +271,18 @@ bb27:
   JAL zero, bb25
 matrix_multiply:
   ADDI sp, sp, -96
-  SD s9, 0(sp)
-  SD s8, 8(sp)
-  SD s7, 16(sp)
-  SD ra, 24(sp)
-  SD s4, 32(sp)
-  SD s3, 40(sp)
-  SD s2, 48(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s1, 64(sp)
-  SD s10, 72(sp)
-  SD s5, 80(sp)
-  SD s0, 88(sp)
+  SD s7, 64(sp)
+  SD s8, 72(sp)
+  SD s9, 80(sp)
+  SD s10, 88(sp)
   ADD s0, zero, zero
   ADD s1, zero, zero
   # implict jump to bb29
@@ -295,18 +295,18 @@ bb29:
   BNE s4, zero, bb31
   # implict jump to bb30
 bb30:
-  LD s9, 0(sp)
-  LD s8, 8(sp)
-  LD s7, 16(sp)
-  LD ra, 24(sp)
-  LD s4, 32(sp)
-  LD s3, 40(sp)
-  LD s2, 48(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s1, 64(sp)
-  LD s10, 72(sp)
-  LD s5, 80(sp)
-  LD s0, 88(sp)
+  LD s7, 64(sp)
+  LD s8, 72(sp)
+  LD s9, 80(sp)
+  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb31:

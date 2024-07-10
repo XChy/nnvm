@@ -11,9 +11,9 @@ a:
 main:
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s2, 8(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s0, 24(sp)
+  SD s2, 24(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, a
@@ -42,9 +42,9 @@ bb4:
   ADD s1, s0, zero
   ADD a0, s1, zero
   LD ra, 0(sp)
-  LD s2, 8(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s0, 24(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:

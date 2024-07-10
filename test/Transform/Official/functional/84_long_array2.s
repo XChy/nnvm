@@ -9,11 +9,11 @@ a:
 f1:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  SD s4, 8(sp)
-  SD s3, 16(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s1, 32(sp)
-  SD s0, 40(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   ADD s0, a0, zero
   LA s1, a
   ADDI s2, s1, 20
@@ -47,69 +47,30 @@ f1:
   LW s0, 0(s2)
   ADD a0, s0, zero
   LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s1, 32(sp)
-  LD s0, 40(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 main:
   LUI t0, 1048568
   ADDIW t0, t0, -112
   ADD sp, sp, t0
-  LUI t5, 8
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
-  SD ra, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 8
-  ADD t5, t5, sp
-  SD s0, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 16
-  ADD t5, t5, sp
-  SD s5, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 24
-  ADD t5, t5, sp
-  SD s10, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 32
-  ADD t5, t5, sp
-  SD s1, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 40
-  ADD t5, t5, sp
-  SD s6, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 48
-  ADD t5, t5, sp
-  SD s2, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 56
-  ADD t5, t5, sp
-  SD s3, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 64
-  ADD t5, t5, sp
-  SD s4, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 72
-  ADD t5, t5, sp
-  SD s7, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 80
-  ADD t5, t5, sp
-  SD s8, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 88
-  ADD t5, t5, sp
-  SD s9, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 96
-  ADD t5, t5, sp
-  SD s11, 0(t5)
+  SD ra, 0(sp)
+  SD s7, 8(sp)
+  SD s8, 16(sp)
+  SD s9, 24(sp)
+  SD s11, 32(sp)
+  SD s0, 40(sp)
+  SD s1, 48(sp)
+  SD s2, 56(sp)
+  SD s3, 64(sp)
+  SD s4, 72(sp)
+  SD s5, 80(sp)
+  SD s6, 88(sp)
+  SD s10, 96(sp)
   ADDI s0, zero, 1024
   # implict jump to bb2
 bb2:
@@ -121,9 +82,7 @@ bb2:
 bb3:
   LUI s2, 1
   ADDIW s2, s2, 0
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s3, t5, s2
   ADDI s2, zero, 1
   SW s2, 0(s3)
@@ -138,17 +97,13 @@ bb4:
 bb5:
   LUI s4, 2
   ADDIW s4, s4, 0
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s5, t5, s4
   ADDI s4, zero, 2
   SW s4, 0(s5)
   LUI s4, 2
   ADDIW s4, s4, 4
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s5, t5, s4
   ADDI s4, zero, 3
   SW s4, 0(s5)
@@ -163,25 +118,19 @@ bb6:
 bb7:
   LUI s6, 3
   ADDIW s6, s6, 0
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s7, t5, s6
   ADDI s6, zero, 4
   SW s6, 0(s7)
   LUI s6, 3
   ADDIW s6, s6, 4
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s7, t5, s6
   ADDI s6, zero, 5
   SW s6, 0(s7)
   LUI s6, 3
   ADDIW s6, s6, 8
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s7, t5, s6
   ADDI s6, zero, 6
   SW s6, 0(s7)
@@ -195,18 +144,36 @@ bb8:
   # implict jump to bb9
 bb9:
   ADDI s8, zero, 1
-  SW s8, 0(sp)
-  ADDI s8, sp, 4
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  SW s8, 0(t5)
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s8, t5, 4
   ADDI s9, zero, 2
   SW s9, 0(s8)
-  ADDI s8, sp, 8
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s8, t5, 8
   SW zero, 0(s8)
-  ADDI s8, sp, 12
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s8, t5, 12
   SW zero, 0(s8)
-  ADDI s8, sp, 16
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s8, t5, 16
   ADDI s9, zero, 3
   SW s9, 0(s8)
-  ADDI s8, sp, 20
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s8, t5, 20
   ADDI s9, zero, 4
   SW s9, 0(s8)
   LUI s8, 1
@@ -237,7 +204,10 @@ bb11:
   ADD t0, ra, s10
   ADDI s10, zero, 7
   SW s10, 0(t0)
-  ADDI s10, sp, 28
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s10, t5, 28
   LUI ra, 2
   ADDIW ra, ra, 672
   LA t0, a
@@ -254,61 +224,25 @@ bb11:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDI s10, sp, 32
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
+  ADDI s10, t5, 32
   LW s11, 0(s10)
   ADD a0, s11, zero
-  LUI ra, 8
-  ADDIW ra, ra, 0
-  ADD ra, ra, sp
-  LD ra, 0(ra)
-  LUI t5, 8
-  ADDIW t5, t5, 8
-  ADD t5, t5, sp
-  LD s0, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 16
-  ADD t5, t5, sp
-  LD s5, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 24
-  ADD t5, t5, sp
-  LD s10, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 32
-  ADD t5, t5, sp
-  LD s1, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 40
-  ADD t5, t5, sp
-  LD s6, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 48
-  ADD t5, t5, sp
-  LD s2, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 56
-  ADD t5, t5, sp
-  LD s3, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 64
-  ADD t5, t5, sp
-  LD s4, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 72
-  ADD t5, t5, sp
-  LD s7, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 80
-  ADD t5, t5, sp
-  LD s8, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 88
-  ADD t5, t5, sp
-  LD s9, 0(t5)
-  LUI t5, 8
-  ADDIW t5, t5, 96
-  ADD t5, t5, sp
-  LD s11, 0(t5)
+  LD ra, 0(sp)
+  LD s7, 8(sp)
+  LD s8, 16(sp)
+  LD s9, 24(sp)
+  LD s11, 32(sp)
+  LD s0, 40(sp)
+  LD s1, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  LD s4, 72(sp)
+  LD s5, 80(sp)
+  LD s6, 88(sp)
+  LD s10, 96(sp)
   LUI t0, 8
   ADDIW t0, t0, 112
   ADD sp, sp, t0
@@ -318,7 +252,9 @@ bb12:
   SUBW s11, s8, s10
   SLLIW s8, s11, 2
   ADDIW s10, s8, 24
-  ADDI t5, sp, 0
+  LUI t5, 4
+  ADDIW t5, t5, 104
+  ADD t5, t5, sp
   ADD s8, t5, s10
   SW zero, 0(s8)
   ADD s9, s11, zero
@@ -330,9 +266,7 @@ bb13:
   LUI s8, 3
   ADDIW s8, s8, 12
   ADDW s10, s7, s8
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s7, t5, s10
   SW zero, 0(s7)
   ADD s6, s9, zero
@@ -344,9 +278,7 @@ bb14:
   LUI s6, 2
   ADDIW s6, s6, 8
   ADDW s8, s5, s6
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s5, t5, s8
   SW zero, 0(s5)
   ADD s4, s7, zero
@@ -358,9 +290,7 @@ bb15:
   LUI s4, 1
   ADDIW s4, s4, 4
   ADDW s6, s3, s4
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s3, t5, s6
   SW zero, 0(s3)
   ADD s2, s5, zero
@@ -369,9 +299,7 @@ bb16:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
   SLLIW s1, s3, 2
-  LUI t5, 4
-  ADDIW t5, t5, 0
-  ADD t5, t5, sp
+  ADDI t5, sp, 104
   ADD s2, t5, s1
   SW zero, 0(s2)
   ADD s0, s3, zero

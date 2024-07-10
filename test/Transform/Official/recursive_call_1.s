@@ -12,13 +12,13 @@
 .section .text
 func:
   ADDI sp, sp, -64
-  FSD fs1, 0(sp)
-  SD ra, 8(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
   SD s1, 16(sp)
-  FSD fs2, 24(sp)
-  SD s0, 32(sp)
-  SD s2, 40(sp)
-  FSD fs0, 48(sp)
+  SD s2, 24(sp)
+  FSD fs0, 32(sp)
+  FSD fs1, 40(sp)
+  FSD fs2, 48(sp)
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
   SLT s1, s0, zero
@@ -38,34 +38,34 @@ bb1:
   FSGNJ.D fs0, fa0, fa0
   FSUB.S fs1, fs2, fs0
   FSGNJ.S fa0, fs1, fs1
-  FLD fs1, 0(sp)
-  LD ra, 8(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  FLD fs2, 24(sp)
-  LD s0, 32(sp)
-  LD s2, 40(sp)
-  FLD fs0, 48(sp)
+  LD s2, 24(sp)
+  FLD fs0, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:
   FCVT.S.W fs0, zero
   FSGNJ.S fa0, fs0, fs0
-  FLD fs1, 0(sp)
-  LD ra, 8(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
   LD s1, 16(sp)
-  FLD fs2, 24(sp)
-  LD s0, 32(sp)
-  LD s2, 40(sp)
-  FLD fs0, 48(sp)
+  LD s2, 24(sp)
+  FLD fs0, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -48
   SD ra, 0(sp)
-  FSD fs1, 8(sp)
-  FSD fs0, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  FSD fs0, 24(sp)
+  FSD fs1, 32(sp)
   FSD fs2, 40(sp)
   ADDI a0, zero, 21
   CALL _sysy_starttime
@@ -91,10 +91,10 @@ bb4:
   CALL _sysy_stoptime
   ADD a0, zero, zero
   LD ra, 0(sp)
-  FLD fs1, 8(sp)
-  FLD fs0, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  FLD fs0, 24(sp)
+  FLD fs1, 32(sp)
   FLD fs2, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
@@ -106,8 +106,8 @@ myabs:
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
-  FSD fs1, 16(sp)
-  FSD fs0, 24(sp)
+  FSD fs0, 16(sp)
+  FSD fs1, 24(sp)
   FSGNJ.D fs0, fa0, fa0
   FCVT.S.L fs1, zero
   FLT.S s0, fs1, fs0
@@ -123,15 +123,15 @@ bb9:
   FSGNJ.S fa0, fs1, fs1
   LD ra, 0(sp)
   LD s0, 8(sp)
-  FLD fs1, 16(sp)
-  FLD fs0, 24(sp)
+  FLD fs0, 16(sp)
+  FLD fs1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb10:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   LD s0, 8(sp)
-  FLD fs1, 16(sp)
-  FLD fs0, 24(sp)
+  FLD fs0, 16(sp)
+  FLD fs1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

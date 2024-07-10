@@ -6,9 +6,9 @@
 main:
   ADDI sp, sp, -48
   SD ra, 8(sp)
-  SD s2, 16(sp)
+  SD s0, 16(sp)
   SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD s2, 32(sp)
   ADDI s0, zero, 1
   SW s0, 4(sp)
   ADDI s0, zero, 1
@@ -32,22 +32,22 @@ main:
   CALL putint
   ADD a0, zero, zero
   LD ra, 8(sp)
-  LD s2, 16(sp)
+  LD s0, 16(sp)
   LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD s2, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 exgcd:
   ADDI sp, sp, -80
-  SD s7, 0(sp)
+  SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s5, 16(sp)
-  SD s1, 24(sp)
-  SD s6, 32(sp)
-  SD s2, 40(sp)
-  SD s3, 48(sp)
-  SD s4, 56(sp)
-  SD ra, 64(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -73,15 +73,15 @@ bb2:
   SUBW s1, s5, s7
   SW s1, 0(s3)
   ADD a0, s4, zero
-  LD s7, 0(sp)
+  LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD ra, 64(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
@@ -89,14 +89,14 @@ bb3:
   SW s1, 0(s2)
   SW zero, 0(s3)
   ADD a0, s0, zero
-  LD s7, 0(sp)
+  LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s5, 16(sp)
-  LD s1, 24(sp)
-  LD s6, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD ra, 64(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)

@@ -5,12 +5,12 @@
 main:
   ADDI sp, sp, -480
   SD ra, 416(sp)
-  SD s4, 424(sp)
-  SD s3, 432(sp)
+  SD s0, 424(sp)
+  SD s1, 432(sp)
   SD s2, 440(sp)
-  SD s1, 448(sp)
-  SD s5, 456(sp)
-  SD s0, 464(sp)
+  SD s3, 448(sp)
+  SD s4, 456(sp)
+  SD s5, 464(sp)
   ADDI s0, zero, 15
   # implict jump to bb1
 bb1:
@@ -214,12 +214,12 @@ bb3:
 bb4:
   ADDI a0, zero, 4
   LD ra, 416(sp)
-  LD s4, 424(sp)
-  LD s3, 432(sp)
+  LD s0, 424(sp)
+  LD s1, 432(sp)
   LD s2, 440(sp)
-  LD s1, 448(sp)
-  LD s5, 456(sp)
-  LD s0, 464(sp)
+  LD s3, 448(sp)
+  LD s4, 456(sp)
+  LD s5, 464(sp)
   ADDI sp, sp, 480
   JALR zero, 0(ra)
 bb5:

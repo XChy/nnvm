@@ -14,11 +14,11 @@ main:
   JALR zero, 0(ra)
 reverse:
   ADDI sp, sp, -48
-  SD s3, 0(sp)
-  SD ra, 8(sp)
-  SD s2, 16(sp)
-  SD s1, 24(sp)
-  SD s0, 32(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 1
   SLT s2, s1, s0
@@ -36,11 +36,11 @@ bb2:
   CALL putint
   # implict jump to bb3
 bb3:
-  LD s3, 0(sp)
-  LD ra, 8(sp)
-  LD s2, 16(sp)
-  LD s1, 24(sp)
-  LD s0, 32(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:
