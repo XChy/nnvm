@@ -54,6 +54,7 @@ bool riscv::isBranch(uint64_t instType) {
   switch (instType) {
   case JAL:
   case JALR:
+  case IMPLICIT_JUMP:
   case (B_BEGIN + 1)...(B_END - 1):
     return true;
   default:
@@ -63,6 +64,8 @@ bool riscv::isBranch(uint64_t instType) {
 
 LIRBB *riscv::getBranchDest(LIRInst *inst) {
   switch (inst->getOpcode()) {
+  case IMPLICIT_JUMP:
+    return inst->getOp(0)->as<LIRBB>();
   case JAL:
     return inst->getOp(1)->as<LIRBB>();
   case JALR:

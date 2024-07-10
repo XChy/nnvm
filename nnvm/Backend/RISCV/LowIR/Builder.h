@@ -13,6 +13,7 @@ public:
 
   LIRBuilder &copy(LIRValue *from, Register *to);
   LIRBuilder &jumpTo(LIRBB *dest);
+  LIRBuilder &implicitJumpTo(LIRBB *dest);
 
   LIRBuilder &storeValueTo(LIRValue *value, LIRValue *ptr, LIRValueType type);
   LIRBuilder &loadValueFrom(LIRValue *dest, LIRValue *ptr, LIRValueType type);

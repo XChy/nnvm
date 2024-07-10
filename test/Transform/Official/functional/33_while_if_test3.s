@@ -19,18 +19,14 @@ main:
   SD s8, 88(sp)
   ADD s0, zero, zero
   ADDI s1, zero, 4
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   SLTI s4, s2, 75
-  BNE s4, zero, bb2
-  JAL zero, bb3
+  BNE s4, zero, bb3
+  # implict jump to bb2
 bb2:
-  SLTI s4, s2, 100
-  BNE s4, zero, bb4
-  JAL zero, bb8
-bb3:
   ADD a0, s2, zero
   LD s9, 0(sp)
   LD s0, 8(sp)
@@ -46,12 +42,14 @@ bb3:
   LD s8, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
+bb3:
+  SLTI s4, s2, 100
+  BNE s4, zero, bb6
+  # implict jump to bb4
 bb4:
-  ADDIW s4, s2, 42
-  ADDI s5, zero, 99
-  SLT s6, s5, s4
-  BNE s6, zero, bb6
-  JAL zero, bb9
+  ADD s9, s3, zero
+  ADD s8, s2, zero
+  # implict jump to bb5
 bb5:
   ADD s7, s8, zero
   ADD s10, s9, zero
@@ -59,23 +57,25 @@ bb5:
   ADD s1, s7, zero
   JAL zero, bb1
 bb6:
-  ADDI s5, zero, 84
-  ADDI s6, zero, 168
-  JAL zero, bb7
+  ADDIW s4, s2, 42
+  ADDI s5, zero, 99
+  SLT s6, s5, s4
+  BNE s6, zero, bb9
+  # implict jump to bb7
 bb7:
+  ADD s5, s3, zero
+  ADD s6, s4, zero
+  # implict jump to bb8
+bb8:
   ADD s7, s6, zero
   ADD s8, s5, zero
   ADD s9, s8, zero
   ADD s8, s7, zero
   JAL zero, bb5
-bb8:
-  ADD s9, s3, zero
-  ADD s8, s2, zero
-  JAL zero, bb5
 bb9:
-  ADD s5, s3, zero
-  ADD s6, s4, zero
-  JAL zero, bb7
+  ADDI s5, zero, 84
+  ADDI s6, zero, 168
+  JAL zero, bb8
 deepWhileBr:
   ADDI sp, sp, -96
   SD s9, 0(sp)
@@ -95,18 +95,14 @@ deepWhileBr:
   ADDW s2, s0, s1
   ADD s0, zero, zero
   ADD s1, s2, zero
-  JAL zero, bb11
+  # implict jump to bb11
 bb11:
   ADD s2, s1, zero
   ADD s3, s0, zero
   SLTI s4, s2, 75
-  BNE s4, zero, bb12
-  JAL zero, bb13
+  BNE s4, zero, bb13
+  # implict jump to bb12
 bb12:
-  SLTI s4, s2, 100
-  BNE s4, zero, bb14
-  JAL zero, bb18
-bb13:
   ADD a0, s2, zero
   LD s9, 0(sp)
   LD s10, 8(sp)
@@ -122,12 +118,14 @@ bb13:
   LD ra, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
+bb13:
+  SLTI s4, s2, 100
+  BNE s4, zero, bb16
+  # implict jump to bb14
 bb14:
-  ADDIW s4, s2, 42
-  ADDI s5, zero, 99
-  SLT s6, s5, s4
-  BNE s6, zero, bb16
-  JAL zero, bb19
+  ADD s9, s3, zero
+  ADD s8, s2, zero
+  # implict jump to bb15
 bb15:
   ADD s7, s8, zero
   ADD s10, s9, zero
@@ -135,20 +133,22 @@ bb15:
   ADD s1, s7, zero
   JAL zero, bb11
 bb16:
-  ADDI s5, zero, 84
-  ADDI s6, zero, 168
-  JAL zero, bb17
+  ADDIW s4, s2, 42
+  ADDI s5, zero, 99
+  SLT s6, s5, s4
+  BNE s6, zero, bb19
+  # implict jump to bb17
 bb17:
+  ADD s5, s3, zero
+  ADD s6, s4, zero
+  # implict jump to bb18
+bb18:
   ADD s7, s6, zero
   ADD s8, s5, zero
   ADD s9, s8, zero
   ADD s8, s7, zero
   JAL zero, bb15
-bb18:
-  ADD s9, s3, zero
-  ADD s8, s2, zero
-  JAL zero, bb15
 bb19:
-  ADD s5, s3, zero
-  ADD s6, s4, zero
-  JAL zero, bb17
+  ADDI s5, zero, 84
+  ADDI s6, zero, 168
+  JAL zero, bb18

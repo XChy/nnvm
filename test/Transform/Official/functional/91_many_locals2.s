@@ -15,18 +15,14 @@ main:
   CALL getint
   ADD s0, a0, zero
   ADD s1, s0, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s0, s1, zero
   XORI s2, s0, 5
   SLTIU s3, s2, 1
-  BNE s3, zero, bb2
-  JAL zero, bb3
+  BNE s3, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADDIW s2, s0, 1
-  ADD s1, s2, zero
-  JAL zero, bb1
-bb3:
   ADD a0, zero, zero
   CALL putint
   ADDI a0, zero, 1
@@ -101,3 +97,7 @@ bb3:
   LD s0, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
+bb3:
+  ADDIW s2, s0, 1
+  ADD s1, s2, zero
+  JAL zero, bb1

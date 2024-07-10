@@ -32,20 +32,16 @@ main:
   CALL _sysy_starttime
   ADD s0, zero, zero
   ADD s1, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, loopCount
   LW s5, 0(s4)
   SLT s4, s2, s5
-  BNE s4, zero, bb2
-  JAL zero, bb3
+  BNE s4, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADD s4, zero, zero
-  ADD s5, zero, zero
-  JAL zero, bb4
-bb3:
   LUI s0, 24
   ADDIW s0, s0, 1728
   ADD a0, zero, s0
@@ -68,23 +64,17 @@ bb3:
   LD s0, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
+bb3:
+  ADD s4, zero, zero
+  ADD s5, zero, zero
+  # implict jump to bb4
 bb4:
   ADD s6, s5, zero
   ADD s7, s4, zero
   SLTI s8, s7, 60
-  BNE s8, zero, bb5
-  JAL zero, bb6
+  BNE s8, zero, bb6
+  # implict jump to bb5
 bb5:
-  LA s8, global
-  SW s2, 0(s8)
-  LA s8, global
-  LW s9, 0(s8)
-  ADDW s8, s6, s9
-  ADDIW s9, s7, 1
-  ADD s4, s9, zero
-  ADD s5, s8, zero
-  JAL zero, bb4
-bb6:
   ADDI s4, zero, 60
   DIVW s5, s6, s4
   ADDW s4, s3, s5
@@ -95,6 +85,16 @@ bb6:
   ADD s0, s6, zero
   ADD s1, s4, zero
   JAL zero, bb1
+bb6:
+  LA s8, global
+  SW s2, 0(s8)
+  LA s8, global
+  LW s9, 0(s8)
+  ADDW s8, s6, s9
+  ADDIW s9, s7, 1
+  ADD s4, s9, zero
+  ADD s5, s8, zero
+  JAL zero, bb4
 func:
   ADDI sp, sp, -32
   SD ra, 0(sp)

@@ -10,24 +10,14 @@ main:
   SD s1, 440(sp)
   SD s0, 448(sp)
   ADDI s0, zero, 15
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s1, s0, zero
   XOR s2, s1, zero
   SLTU s3, zero, s2
-  BNE s3, zero, bb2
-  JAL zero, bb3
+  BNE s3, zero, bb6
+  # implict jump to bb2
 bb2:
-  ADDI s2, zero, 1
-  SUBW s3, s1, s2
-  ADDI s1, zero, 4
-  MULW s2, s3, s1
-  ADDI t5, sp, 352
-  ADD s1, t5, s2
-  SW zero, 0(s1)
-  ADD s0, s3, zero
-  JAL zero, bb1
-bb3:
   ADDI s0, zero, 1
   SW s0, 288(sp)
   ADDI s0, sp, 292
@@ -212,13 +202,22 @@ bb3:
   ADDI s1, zero, 5
   SW s1, 0(s0)
   ADDI s0, zero, 19
-  JAL zero, bb4
-bb4:
+  # implict jump to bb3
+bb3:
   ADD s1, s0, zero
   XOR s2, s1, zero
   SLTU s3, zero, s2
   BNE s3, zero, bb5
-  JAL zero, bb6
+  # implict jump to bb4
+bb4:
+  ADDI a0, zero, 4
+  LD ra, 416(sp)
+  LD s3, 424(sp)
+  LD s2, 432(sp)
+  LD s1, 440(sp)
+  LD s0, 448(sp)
+  ADDI sp, sp, 464
+  JALR zero, 0(ra)
 bb5:
   ADDI s2, zero, 1
   SUBW s3, s1, s2
@@ -229,13 +228,14 @@ bb5:
   ADD s2, t5, s1
   SW zero, 0(s2)
   ADD s0, s3, zero
-  JAL zero, bb4
+  JAL zero, bb3
 bb6:
-  ADDI a0, zero, 4
-  LD ra, 416(sp)
-  LD s3, 424(sp)
-  LD s2, 432(sp)
-  LD s1, 440(sp)
-  LD s0, 448(sp)
-  ADDI sp, sp, 464
-  JALR zero, 0(ra)
+  ADDI s2, zero, 1
+  SUBW s3, s1, s2
+  ADDI s1, zero, 4
+  MULW s2, s3, s1
+  ADDI t5, sp, 352
+  ADD s1, t5, s2
+  SW zero, 0(s1)
+  ADD s0, s3, zero
+  JAL zero, bb1

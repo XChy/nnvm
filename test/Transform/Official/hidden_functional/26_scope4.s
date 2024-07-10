@@ -730,8 +730,15 @@ main:
   ADD s1, zero, zero
   ADD s2, zero, zero
   ADD s3, s0, zero
-  JAL zero, bb5
+  # implict jump to bb4
 bb4:
+  ADD s0, s3, zero
+  ADD s4, s2, zero
+  ADD s5, s1, zero
+  SLTI s6, s4, 3
+  BNE s6, zero, bb6
+  # implict jump to bb5
+bb5:
   LA s0, sum
   LW s1, 0(s0)
   ADD a0, s1, zero
@@ -751,15 +758,8 @@ bb4:
   LD s9, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb5:
-  ADD s0, s3, zero
-  ADD s4, s2, zero
-  ADD s5, s1, zero
-  SLTI s6, s4, 3
-  BNE s6, zero, bb6
-  JAL zero, bb4
 bb6:
-  JAL zero, bb7
+  # implict jump to bb7
 bb7:
   LA s6, sum
   LW s7, 0(s6)
@@ -843,100 +843,9 @@ bb7:
   SW s7, 0(s6)
   XORI s6, s4, 1
   SLTIU s7, s6, 1
-  BNE s7, zero, bb8
-  JAL zero, bb9
+  BNE s7, zero, bb9
+  # implict jump to bb8
 bb8:
-  LA s6, count
-  LW s7, 0(s6)
-  ADDIW s6, s7, 1
-  LA s7, count
-  SW s6, 0(s7)
-  LA s7, sum
-  LW s8, 0(s7)
-  ADDW s7, s8, s6
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  LA s8, count
-  LW s9, 0(s8)
-  ADDIW s8, s9, 1
-  LA s9, count
-  SW s8, 0(s9)
-  LA s9, sum
-  LW s10, 0(s9)
-  ADDW s9, s10, s8
-  LA s8, sum
-  SW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDW s9, s8, s7
-  LA s7, sum
-  SW s9, 0(s7)
-  LA s7, sum
-  LW s8, 0(s7)
-  LA s7, a
-  LW s9, 0(s7)
-  ADDW s7, s8, s9
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s7, sum
-  LW s8, 0(s7)
-  LA s7, a
-  LW s9, 0(s7)
-  ADDW s7, s8, s9
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s7, sum
-  SW s8, 0(s7)
-  LA s7, count
-  LW s8, 0(s7)
-  ADDIW s7, s8, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  LA s8, count
-  LW s9, 0(s8)
-  ADDIW s8, s9, 1
-  LA s9, count
-  SW s8, 0(s9)
-  LA s8, sum
-  LW s9, 0(s8)
-  ADDW s8, s9, s7
-  LA s7, sum
-  SW s8, 0(s7)
-  ADDIW s7, s4, 1
-  ADD s1, s6, zero
-  ADD s2, s7, zero
-  ADD s3, s0, zero
-  JAL zero, bb5
-bb9:
   LA s6, sum
   LW s7, 0(s6)
   ADDW s6, s7, s0
@@ -1026,7 +935,98 @@ bb9:
   ADD s1, s5, zero
   ADD s2, s6, zero
   ADD s3, s0, zero
-  JAL zero, bb5
+  JAL zero, bb4
+bb9:
+  LA s6, count
+  LW s7, 0(s6)
+  ADDIW s6, s7, 1
+  LA s7, count
+  SW s6, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  ADDW s7, s8, s6
+  LA s8, sum
+  SW s7, 0(s8)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s8, sum
+  LW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s9, sum
+  SW s8, 0(s9)
+  LA s8, count
+  LW s9, 0(s8)
+  ADDIW s8, s9, 1
+  LA s9, count
+  SW s8, 0(s9)
+  LA s9, sum
+  LW s10, 0(s9)
+  ADDW s9, s10, s8
+  LA s8, sum
+  SW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s9, sum
+  SW s8, 0(s9)
+  ADDW s9, s8, s7
+  LA s7, sum
+  SW s9, 0(s7)
+  LA s7, sum
+  LW s8, 0(s7)
+  LA s7, a
+  LW s9, 0(s7)
+  ADDW s7, s8, s9
+  LA s8, sum
+  SW s7, 0(s8)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s7, sum
+  LW s8, 0(s7)
+  LA s7, a
+  LW s9, 0(s7)
+  ADDW s7, s8, s9
+  LA s8, sum
+  SW s7, 0(s8)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s8, sum
+  LW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s7, sum
+  SW s8, 0(s7)
+  LA s7, count
+  LW s8, 0(s7)
+  ADDIW s7, s8, 1
+  LA s8, count
+  SW s7, 0(s8)
+  LA s8, sum
+  LW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s9, sum
+  SW s8, 0(s9)
+  LA s8, count
+  LW s9, 0(s8)
+  ADDIW s8, s9, 1
+  LA s9, count
+  SW s8, 0(s9)
+  LA s8, sum
+  LW s9, 0(s8)
+  ADDW s8, s9, s7
+  LA s7, sum
+  SW s8, 0(s7)
+  ADDIW s7, s4, 1
+  ADD s1, s6, zero
+  ADD s2, s7, zero
+  ADD s3, s0, zero
+  JAL zero, bb4
 f3:
   ADDI sp, sp, -32
   SD ra, 0(sp)

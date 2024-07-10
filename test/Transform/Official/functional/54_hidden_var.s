@@ -85,40 +85,9 @@ main:
   LW s0, 0(s1)
   XOR s2, s0, zero
   SLTU s0, zero, s2
-  BNE s0, zero, bb1
-  JAL zero, bb2
+  BNE s0, zero, bb2
+  # implict jump to bb1
 bb1:
-  SW zero, 0(sp)
-  ADDI s0, sp, 4
-  SW zero, 0(s0)
-  ADDI s0, sp, 8
-  SW zero, 0(s0)
-  ADDI s0, sp, 12
-  SW zero, 0(s0)
-  ADDI s0, sp, 16
-  SW zero, 0(s0)
-  ADDI s0, sp, 20
-  SW zero, 0(s0)
-  ADDI s0, sp, 24
-  SW zero, 0(s0)
-  ADDI s0, sp, 28
-  SW zero, 0(s0)
-  ADDI s0, sp, 32
-  SW zero, 0(s0)
-  ADDI s0, sp, 36
-  SW zero, 0(s0)
-  ADDI s0, sp, 40
-  ADDI s2, zero, 2
-  SW s2, 0(s0)
-  ADDI s2, sp, 44
-  ADDI s3, zero, 1
-  SW s3, 0(s2)
-  ADDI s3, sp, 48
-  ADDI s4, zero, 8
-  SW s4, 0(s3)
-  ADDI s4, zero, 22
-  JAL zero, bb3
-bb2:
   ADDI a0, zero, 10
   CALL putch
   LA s0, b
@@ -158,13 +127,55 @@ bb2:
   LD s7, 272(sp)
   ADDI sp, sp, 288
   JALR zero, 0(ra)
+bb2:
+  SW zero, 0(sp)
+  ADDI s0, sp, 4
+  SW zero, 0(s0)
+  ADDI s0, sp, 8
+  SW zero, 0(s0)
+  ADDI s0, sp, 12
+  SW zero, 0(s0)
+  ADDI s0, sp, 16
+  SW zero, 0(s0)
+  ADDI s0, sp, 20
+  SW zero, 0(s0)
+  ADDI s0, sp, 24
+  SW zero, 0(s0)
+  ADDI s0, sp, 28
+  SW zero, 0(s0)
+  ADDI s0, sp, 32
+  SW zero, 0(s0)
+  ADDI s0, sp, 36
+  SW zero, 0(s0)
+  ADDI s0, sp, 40
+  ADDI s2, zero, 2
+  SW s2, 0(s0)
+  ADDI s2, sp, 44
+  ADDI s3, zero, 1
+  SW s3, 0(s2)
+  ADDI s3, sp, 48
+  ADDI s4, zero, 8
+  SW s4, 0(s3)
+  ADDI s4, zero, 22
+  # implict jump to bb3
 bb3:
   ADD s5, s4, zero
   XOR s6, s5, zero
   SLTU s7, zero, s6
-  BNE s7, zero, bb4
-  JAL zero, bb5
+  BNE s7, zero, bb5
+  # implict jump to bb4
 bb4:
+  LW s4, 0(s0)
+  ADD a0, s4, zero
+  CALL putint
+  LW s0, 0(s2)
+  ADD a0, s0, zero
+  CALL putint
+  LW s0, 0(s3)
+  ADD a0, s0, zero
+  CALL putint
+  JAL zero, bb1
+bb5:
   ADDI s6, zero, 1
   SUBW s7, s5, s6
   ADDI s5, zero, 4
@@ -175,14 +186,3 @@ bb4:
   SW zero, 0(s6)
   ADD s4, s7, zero
   JAL zero, bb3
-bb5:
-  LW s4, 0(s0)
-  ADD a0, s4, zero
-  CALL putint
-  LW s0, 0(s2)
-  ADD a0, s0, zero
-  CALL putint
-  LW s0, 0(s3)
-  ADD a0, s0, zero
-  CALL putint
-  JAL zero, bb2

@@ -27,16 +27,13 @@ main:
   SD s9, 88(sp)
   SD s11, 96(sp)
   ADD s0, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s1, s0, zero
   SLTI s2, s1, 20
-  BNE s2, zero, bb2
-  JAL zero, bb3
+  BNE s2, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADD s2, zero, zero
-  JAL zero, bb4
-bb3:
   LA s0, array
   ADDI s1, s0, 400
   LA s0, array
@@ -318,12 +315,19 @@ bb3:
   LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
+bb3:
+  ADD s2, zero, zero
+  # implict jump to bb4
 bb4:
   ADD s3, s2, zero
   SLTI s4, s3, 100
-  BNE s4, zero, bb5
-  JAL zero, bb6
+  BNE s4, zero, bb6
+  # implict jump to bb5
 bb5:
+  ADDIW s2, s1, 1
+  ADD s0, s2, zero
+  JAL zero, bb1
+bb6:
   ADDI s4, zero, 400
   MULW s5, s1, s4
   LA s4, array
@@ -335,7 +339,3 @@ bb5:
   ADDIW s4, s3, 1
   ADD s2, s4, zero
   JAL zero, bb4
-bb6:
-  ADDIW s2, s1, 1
-  ADD s0, s2, zero
-  JAL zero, bb1

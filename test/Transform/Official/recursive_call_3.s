@@ -19,21 +19,9 @@ func:
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
   SLT s1, s0, zero
-  BNE s1, zero, bb1
-  JAL zero, bb2
+  BNE s1, zero, bb2
+  # implict jump to bb1
 bb1:
-  FCVT.S.W fs1, zero
-  FSGNJ.S fa0, fs1, fs1
-  LD ra, 0(sp)
-  FLD fs1, 8(sp)
-  LD s1, 16(sp)
-  FLD fs2, 24(sp)
-  LD s0, 32(sp)
-  LD s2, 40(sp)
-  FLD fs0, 48(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb2:
   ADDI s1, zero, 1
   SUBW s2, s0, s1
   FSGNJ.S fa0, fs0, fs0
@@ -46,6 +34,18 @@ bb2:
   CALL func
   FSGNJ.D fs0, fa0, fa0
   FSUB.S fs1, fs2, fs0
+  FSGNJ.S fa0, fs1, fs1
+  LD ra, 0(sp)
+  FLD fs1, 8(sp)
+  LD s1, 16(sp)
+  FLD fs2, 24(sp)
+  LD s0, 32(sp)
+  LD s2, 40(sp)
+  FLD fs0, 48(sp)
+  ADDI sp, sp, 64
+  JALR zero, 0(ra)
+bb2:
+  FCVT.S.W fs1, zero
   FSGNJ.S fa0, fs1, fs1
   LD ra, 0(sp)
   FLD fs1, 8(sp)
@@ -81,13 +81,9 @@ main:
   FSUB.S fs2, fs0, fs1
   FCVT.S.L fs0, zero
   FEQ.S s0, fs2, fs0
-  BNE s0, zero, bb4
-  JAL zero, bb5
+  BNE s0, zero, bb5
+  # implict jump to bb4
 bb4:
-  ADDI a0, zero, 112
-  CALL putch
-  JAL zero, bb5
-bb5:
   ADDI a0, zero, 32
   CALL _sysy_stoptime
   ADD a0, zero, zero
@@ -99,6 +95,10 @@ bb5:
   FLD fs2, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
+bb5:
+  ADDI a0, zero, 112
+  CALL putch
+  JAL zero, bb4
 myabs:
   ADDI sp, sp, -32
   SD ra, 0(sp)
@@ -108,20 +108,13 @@ myabs:
   FSGNJ.D fs0, fa0, fa0
   FCVT.S.L fs1, zero
   FLT.S s0, fs1, fs0
-  BNE s0, zero, bb7
-  JAL zero, bb8
+  BNE s0, zero, bb10
+  # implict jump to bb7
 bb7:
-  FSGNJ.S fa0, fs0, fs0
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs1, 16(sp)
-  FLD fs0, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb8:
   FLT.S s0, fs0, fs1
   BNE s0, zero, bb9
-  JAL zero, bb10
+  # implict jump to bb8
+bb8:
 bb9:
   FSGNJN.S fs1, fs0, fs0
   FSGNJ.S fa0, fs1, fs1
@@ -132,3 +125,10 @@ bb9:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb10:
+  FSGNJ.S fa0, fs0, fs0
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  FLD fs1, 16(sp)
+  FLD fs0, 24(sp)
+  ADDI sp, sp, 32
+  JALR zero, 0(ra)

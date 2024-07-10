@@ -6,7 +6,7 @@ namespace nnvm::riscv {
 
 class CodeLayoutOpt {
 public:
-  void layout(LIRFunc &func);
+  void run(LIRFunc &func);
 };
 
 } /* namespace nnvm::riscv */

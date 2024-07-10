@@ -34,20 +34,16 @@ main:
   CALL _sysy_starttime
   ADD s0, zero, zero
   ADD s1, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, loopCount
   LW s5, 0(s4)
   SLT s4, s3, s5
-  BNE s4, zero, bb2
-  JAL zero, bb3
+  BNE s4, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADD s4, zero, zero
-  ADD s5, zero, zero
-  JAL zero, bb4
-bb3:
   ADDI a0, zero, 1031
   CALL _sysy_stoptime
   ADD a0, s2, zero
@@ -69,13 +65,28 @@ bb3:
   LD s9, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
+bb3:
+  ADD s4, zero, zero
+  ADD s5, zero, zero
+  # implict jump to bb4
 bb4:
   ADD s6, s5, zero
   ADD s7, s4, zero
   SLTI s8, s7, 300
-  BNE s8, zero, bb5
-  JAL zero, bb6
+  BNE s8, zero, bb6
+  # implict jump to bb5
 bb5:
+  ADDI s4, zero, 300
+  DIVW s5, s6, s4
+  ADDW s4, s2, s5
+  LUI s5, 524264
+  ADDIW s5, s5, 3
+  REMW s6, s4, s5
+  ADDIW s4, s3, 1
+  ADD s0, s4, zero
+  ADD s1, s6, zero
+  JAL zero, bb1
+bb6:
   LA s8, multi
   LW s9, 0(s8)
   MULW s8, s3, s9
@@ -91,17 +102,6 @@ bb5:
   ADD s4, s8, zero
   ADD s5, s9, zero
   JAL zero, bb4
-bb6:
-  ADDI s4, zero, 300
-  DIVW s5, s6, s4
-  ADDW s4, s2, s5
-  LUI s5, 524264
-  ADDIW s5, s5, 3
-  REMW s6, s4, s5
-  ADDIW s4, s3, 1
-  ADD s0, s4, zero
-  ADD s1, s6, zero
-  JAL zero, bb1
 func:
   LUI t0, 1048574
   ADDIW t0, t0, 256

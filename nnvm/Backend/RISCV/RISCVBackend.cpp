@@ -1,4 +1,5 @@
 #include "Backend/RISCV/RISCVBackend.h"
+#include "Backend/RISCV/CodeLayoutOpt.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/ISel.h"
 #include "Backend/RISCV/LinearScanRA.h"
@@ -52,8 +53,15 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
       StackAllocator().allocate(*lowFunc);
 
   debug(std::cerr << "====SA Done====\n");
+  debug(lowModule.emit(std::cerr));
 
-  lowModule.emit(out);
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal)
+      CodeLayoutOpt().run(*lowFunc);
+
+  debug(std::cerr << "====CLO Done====\n");
+  debug(lowModule.emit(std::cerr));
 
   debug(std::cerr << "====Emit Done====\n");
+  lowModule.emit(out);
 }

@@ -32,7 +32,7 @@ main:
   ADD s1, zero, zero
   ADDI s2, zero, 112
   ADD s3, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s4, s3, zero
   ADD s5, s2, zero
@@ -40,15 +40,9 @@ bb1:
   ADD s7, s0, zero
   ADDI s8, zero, 10
   SLT s9, s8, s5
-  BNE s9, zero, bb2
-  JAL zero, bb3
+  BNE s9, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADDI s8, zero, 88
-  SUBW s9, s5, s8
-  SLTI s8, s9, 1000
-  BNE s8, zero, bb4
-  JAL zero, bb6
-bb3:
   ADD a0, s5, zero
   CALL putint
   LA s0, k
@@ -69,13 +63,18 @@ bb3:
   LD ra, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
+bb3:
+  ADDI s8, zero, 88
+  SUBW s9, s5, s8
+  SLTI s8, s9, 1000
+  BNE s8, zero, bb6
+  # implict jump to bb4
 bb4:
-  ADDIW s8, s5, -76
-  ADDI s10, zero, 11
-  ADDI s11, zero, 11
-  ADD ra, s8, zero
-  ADDI s8, zero, 10
-  JAL zero, bb5
+  ADD s10, s7, zero
+  ADD s11, s6, zero
+  ADD ra, s9, zero
+  ADD s8, s4, zero
+  # implict jump to bb5
 bb5:
   ADD t0, s8, zero
   ADD t1, ra, zero
@@ -87,8 +86,9 @@ bb5:
   ADD s3, t0, zero
   JAL zero, bb1
 bb6:
-  ADD s10, s7, zero
-  ADD s11, s6, zero
-  ADD ra, s9, zero
-  ADD s8, s4, zero
+  ADDIW s8, s5, -76
+  ADDI s10, zero, 11
+  ADDI s11, zero, 11
+  ADD ra, s8, zero
+  ADDI s8, zero, 10
   JAL zero, bb5

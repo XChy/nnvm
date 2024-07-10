@@ -223,6 +223,8 @@ public:
     BBs.freeAll();
   }
 
+  using Iterator = List<LIRBB>::Iterator;
+
 private:
   List<LIRBB> BBs;
   LIRModule *parent = nullptr;

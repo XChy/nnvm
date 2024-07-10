@@ -39,6 +39,12 @@ LIRBuilder &LIRBuilder::jumpTo(LIRBB *dest) {
   return *this;
 }
 
+LIRBuilder &LIRBuilder::implicitJumpTo(LIRBB *dest) {
+  LIRInst *inst = LIRInst::create(IMPLICIT_JUMP, 1)->setUse(0, dest);
+  addInst(inst);
+  return *this;
+}
+
 LIRBuilder &LIRBuilder::storeValueTo(LIRValue *value, LIRValue *ptr,
                                      LIRValueType type) {
   auto *saveReg = LIRInst::createAllUse(getStoreInstType(type), value, ptr,

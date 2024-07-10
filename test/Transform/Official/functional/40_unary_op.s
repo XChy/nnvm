@@ -18,11 +18,11 @@ main:
   SUBW s0, zero, s1
   XOR s1, s0, zero
   SLTU s0, zero, s1
-  BNE s0, zero, bb1
-  JAL zero, bb3
+  BNE s0, zero, bb3
+  # implict jump to bb1
 bb1:
-  ADDI s0, zero, -1
-  JAL zero, bb2
+  ADD s0, zero, zero
+  # implict jump to bb2
 bb2:
   ADD s1, s0, zero
   ADD a0, s1, zero
@@ -32,5 +32,5 @@ bb2:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:
-  ADD s0, zero, zero
+  ADDI s0, zero, -1
   JAL zero, bb2

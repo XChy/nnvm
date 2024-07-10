@@ -53,24 +53,9 @@ exgcd:
   ADD s3, a3, zero
   XOR s4, s1, zero
   SLTIU s5, s4, 1
-  BNE s5, zero, bb2
-  JAL zero, bb3
+  BNE s5, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADDI s4, zero, 1
-  SW s4, 0(s2)
-  SW zero, 0(s3)
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s4, 8(sp)
-  LD s3, 16(sp)
-  LD s2, 24(sp)
-  LD s6, 32(sp)
-  LD s1, 40(sp)
-  LD s5, 48(sp)
-  LD s0, 56(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb3:
   REMW s4, s0, s1
   ADD a0, s1, zero
   ADD a1, s4, zero
@@ -87,6 +72,21 @@ bb3:
   SUBW s0, s5, s1
   SW s0, 0(s3)
   ADD a0, s4, zero
+  LD ra, 0(sp)
+  LD s4, 8(sp)
+  LD s3, 16(sp)
+  LD s2, 24(sp)
+  LD s6, 32(sp)
+  LD s1, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  ADDI sp, sp, 64
+  JALR zero, 0(ra)
+bb3:
+  ADDI s4, zero, 1
+  SW s4, 0(s2)
+  SW zero, 0(s3)
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s4, 8(sp)
   LD s3, 16(sp)

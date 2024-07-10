@@ -22,31 +22,44 @@ main:
   CALL getint
   ADD s0, a0, zero
   ADD s1, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb2
-  JAL zero, bb3
+  BNE s3, zero, bb9
+  # implict jump to bb2
 bb2:
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADDI t5, sp, 0
-  ADD s3, t5, s4
-  SW zero, 0(s3)
-  ADDIW s3, s2, 1
-  ADD s1, s3, zero
-  JAL zero, bb1
-bb3:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb4
-bb4:
+  # implict jump to bb3
+bb3:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s3, s0
   BNE s5, zero, bb5
-  JAL zero, bb6
+  # implict jump to bb4
+bb4:
+  ADD a0, s4, zero
+  CALL putint
+  ADDI a0, zero, 10
+  CALL putch
+  ADDI a0, zero, 328
+  CALL _sysy_stoptime
+  ADD a0, zero, zero
+  LD s10, 400(sp)
+  LD s7, 408(sp)
+  LD s0, 416(sp)
+  LD s5, 424(sp)
+  LD s1, 432(sp)
+  LD s6, 440(sp)
+  LD s2, 448(sp)
+  LD s3, 456(sp)
+  LD s4, 464(sp)
+  LD ra, 472(sp)
+  LD s8, 480(sp)
+  LD s9, 488(sp)
+  ADDI sp, sp, 496
+  JALR zero, 0(ra)
 bb5:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
@@ -348,35 +361,20 @@ bb5:
   ADDIW s5, s3, 1
   ADD s3, zero, zero
   ADD s6, s4, zero
-  JAL zero, bb7
+  # implict jump to bb6
 bb6:
-  ADD a0, s4, zero
-  CALL putint
-  ADDI a0, zero, 10
-  CALL putch
-  ADDI a0, zero, 328
-  CALL _sysy_stoptime
-  ADD a0, zero, zero
-  LD s10, 400(sp)
-  LD s7, 408(sp)
-  LD s0, 416(sp)
-  LD s5, 424(sp)
-  LD s1, 432(sp)
-  LD s6, 440(sp)
-  LD s2, 448(sp)
-  LD s3, 456(sp)
-  LD s4, 464(sp)
-  LD ra, 472(sp)
-  LD s8, 480(sp)
-  LD s9, 488(sp)
-  ADDI sp, sp, 496
-  JALR zero, 0(ra)
-bb7:
   ADD s7, s6, zero
   ADD s8, s3, zero
   SLTI s9, s8, 100
   BNE s9, zero, bb8
-  JAL zero, bb9
+  # implict jump to bb7
+bb7:
+  LUI s3, 16
+  ADDIW s3, s3, -1
+  REMW s6, s7, s3
+  ADD s1, s6, zero
+  ADD s2, s5, zero
+  JAL zero, bb3
 bb8:
   ADDI s9, zero, 4
   MULW s10, s8, s9
@@ -387,14 +385,16 @@ bb8:
   ADDIW s10, s8, 1
   ADD s3, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb7
+  JAL zero, bb6
 bb9:
-  LUI s3, 16
-  ADDIW s3, s3, -1
-  REMW s6, s7, s3
-  ADD s1, s6, zero
-  ADD s2, s5, zero
-  JAL zero, bb4
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  ADDI t5, sp, 0
+  ADD s3, t5, s4
+  SW zero, 0(s3)
+  ADDIW s3, s2, 1
+  ADD s1, s3, zero
+  JAL zero, bb1
 func:
   ADDI sp, sp, -496
   SD s10, 400(sp)
@@ -411,31 +411,38 @@ func:
   SD s9, 488(sp)
   ADD s0, a0, zero
   ADD s1, zero, zero
-  JAL zero, bb11
+  # implict jump to bb11
 bb11:
   ADD s2, s1, zero
   SLTI s3, s2, 100
-  BNE s3, zero, bb12
-  JAL zero, bb13
+  BNE s3, zero, bb19
+  # implict jump to bb12
 bb12:
-  ADDI s3, zero, 4
-  MULW s4, s2, s3
-  ADDI t5, sp, 0
-  ADD s3, t5, s4
-  SW zero, 0(s3)
-  ADDIW s3, s2, 1
-  ADD s1, s3, zero
-  JAL zero, bb11
-bb13:
   ADD s1, zero, zero
   ADD s2, zero, zero
-  JAL zero, bb14
-bb14:
+  # implict jump to bb13
+bb13:
   ADD s3, s2, zero
   ADD s4, s1, zero
   SLT s5, s3, s0
   BNE s5, zero, bb15
-  JAL zero, bb16
+  # implict jump to bb14
+bb14:
+  ADD a0, s4, zero
+  LD s10, 400(sp)
+  LD s0, 408(sp)
+  LD s5, 416(sp)
+  LD s7, 424(sp)
+  LD s1, 432(sp)
+  LD s6, 440(sp)
+  LD s2, 448(sp)
+  LD s3, 456(sp)
+  LD s4, 464(sp)
+  LD ra, 472(sp)
+  LD s8, 480(sp)
+  LD s9, 488(sp)
+  ADDI sp, sp, 496
+  JALR zero, 0(ra)
 bb15:
   ADDI s5, sp, 4
   ADDI s6, zero, 1
@@ -737,29 +744,20 @@ bb15:
   ADDIW s5, s3, 1
   ADD s3, zero, zero
   ADD s6, s4, zero
-  JAL zero, bb17
+  # implict jump to bb16
 bb16:
-  ADD a0, s4, zero
-  LD s10, 400(sp)
-  LD s0, 408(sp)
-  LD s5, 416(sp)
-  LD s7, 424(sp)
-  LD s1, 432(sp)
-  LD s6, 440(sp)
-  LD s2, 448(sp)
-  LD s3, 456(sp)
-  LD s4, 464(sp)
-  LD ra, 472(sp)
-  LD s8, 480(sp)
-  LD s9, 488(sp)
-  ADDI sp, sp, 496
-  JALR zero, 0(ra)
-bb17:
   ADD s7, s6, zero
   ADD s8, s3, zero
   SLTI s9, s8, 100
   BNE s9, zero, bb18
-  JAL zero, bb19
+  # implict jump to bb17
+bb17:
+  LUI s3, 16
+  ADDIW s3, s3, -1
+  REMW s6, s7, s3
+  ADD s1, s6, zero
+  ADD s2, s5, zero
+  JAL zero, bb13
 bb18:
   ADDI s9, zero, 4
   MULW s10, s8, s9
@@ -770,11 +768,13 @@ bb18:
   ADDIW s10, s8, 1
   ADD s3, s10, zero
   ADD s6, s9, zero
-  JAL zero, bb17
+  JAL zero, bb16
 bb19:
-  LUI s3, 16
-  ADDIW s3, s3, -1
-  REMW s6, s7, s3
-  ADD s1, s6, zero
-  ADD s2, s5, zero
-  JAL zero, bb14
+  ADDI s3, zero, 4
+  MULW s4, s2, s3
+  ADDI t5, sp, 0
+  ADD s3, t5, s4
+  SW zero, 0(s3)
+  ADDIW s3, s2, 1
+  ADD s1, s3, zero
+  JAL zero, bb11

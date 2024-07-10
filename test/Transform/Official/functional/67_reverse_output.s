@@ -23,14 +23,18 @@ reverse:
   ADDI s1, zero, 1
   SLT s2, s1, s0
   XORI s1, s2, 1
-  BNE s1, zero, bb2
-  JAL zero, bb4
+  BNE s1, zero, bb4
+  # implict jump to bb2
 bb2:
   CALL getint
   ADD s1, a0, zero
+  ADDI s2, zero, 1
+  SUBW s3, s0, s2
+  ADD a0, s3, zero
+  CALL reverse
   ADD a0, s1, zero
   CALL putint
-  JAL zero, bb3
+  # implict jump to bb3
 bb3:
   LD s3, 0(sp)
   LD ra, 8(sp)
@@ -42,10 +46,6 @@ bb3:
 bb4:
   CALL getint
   ADD s1, a0, zero
-  ADDI s2, zero, 1
-  SUBW s3, s0, s2
-  ADD a0, s3, zero
-  CALL reverse
   ADD a0, s1, zero
   CALL putint
   JAL zero, bb3

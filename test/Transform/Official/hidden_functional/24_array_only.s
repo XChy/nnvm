@@ -50,14 +50,20 @@ sub_impl:
   ADD s2, a2, zero
   XOR s3, s2, zero
   SLTIU s4, s3, 1
-  BNE s4, zero, bb2
-  JAL zero, bb4
+  BNE s4, zero, bb4
+  # implict jump to bb2
 bb2:
   LW s3, 0(s0)
-  LW s4, 0(s1)
-  SUBW s5, s3, s4
+  ADDI s4, zero, 2
+  MULW s5, s3, s4
   SW s5, 0(s0)
-  JAL zero, bb3
+  ADDI s3, zero, 1
+  SUBW s4, s2, s3
+  ADD a0, s0, zero
+  ADD a1, s1, zero
+  ADD a2, s4, zero
+  CALL sub_impl
+  # implict jump to bb3
 bb3:
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -70,15 +76,9 @@ bb3:
   JALR zero, 0(ra)
 bb4:
   LW s3, 0(s0)
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
+  LW s4, 0(s1)
+  SUBW s5, s3, s4
   SW s5, 0(s0)
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s4, zero
-  CALL sub_impl
   JAL zero, bb3
 inc:
   ADDI sp, sp, -32
@@ -134,14 +134,20 @@ add_impl:
   ADD s2, a2, zero
   XOR s3, s2, zero
   SLTIU s4, s3, 1
-  BNE s4, zero, bb8
-  JAL zero, bb10
+  BNE s4, zero, bb10
+  # implict jump to bb8
 bb8:
   LW s3, 0(s0)
-  LW s4, 0(s1)
-  ADDW s5, s3, s4
+  ADDI s4, zero, 2
+  MULW s5, s3, s4
   SW s5, 0(s0)
-  JAL zero, bb9
+  ADDI s3, zero, 1
+  SUBW s4, s2, s3
+  ADD a0, s0, zero
+  ADD a1, s1, zero
+  ADD a2, s4, zero
+  CALL add_impl
+  # implict jump to bb9
 bb9:
   LD ra, 0(sp)
   LD s4, 8(sp)
@@ -154,15 +160,9 @@ bb9:
   JALR zero, 0(ra)
 bb10:
   LW s3, 0(s0)
-  ADDI s4, zero, 2
-  MULW s5, s3, s4
+  LW s4, 0(s1)
+  ADDW s5, s3, s4
   SW s5, 0(s0)
-  ADDI s3, zero, 1
-  SUBW s4, s2, s3
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s4, zero
-  CALL add_impl
   JAL zero, bb9
 main:
   ADDI sp, sp, -64
@@ -186,18 +186,14 @@ main:
   ADD a0, a0, zero
   CALL getarray
   ADD s1, a0, zero
-  JAL zero, bb12
+  # implict jump to bb12
 bb12:
   LW s1, 8(sp)
   XOR s2, s1, zero
   SLTU s1, zero, s2
-  BNE s1, zero, bb13
-  JAL zero, bb14
+  BNE s1, zero, bb14
+  # implict jump to bb13
 bb13:
-  LW s1, 0(sp)
-  SW s1, 12(sp)
-  JAL zero, bb15
-bb14:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -208,12 +204,38 @@ bb14:
   LD s0, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
+bb14:
+  LW s1, 0(sp)
+  SW s1, 12(sp)
+  # implict jump to bb15
 bb15:
   LW s1, 12(sp)
   SLTI s2, s1, 5
-  BNE s2, zero, bb16
-  JAL zero, bb17
+  BNE s2, zero, bb17
+  # implict jump to bb16
 bb16:
+  LA s1, k
+  LW s2, 0(s1)
+  LA s1, i
+  ADD a0, s1, zero
+  ADD a1, s2, zero
+  CALL inc_impl
+  LA s1, k
+  LW s2, 0(s1)
+  LA s1, i
+  ADD a0, s1, zero
+  ADDI a1, sp, 0
+  ADD a1, a1, zero
+  ADD a2, s2, zero
+  CALL add_impl
+  LA s1, i
+  LW s2, 0(s1)
+  LW s1, 0(s0)
+  XOR s3, s2, s1
+  SLTIU s1, s3, 1
+  BNE s1, zero, bb13
+  JAL zero, bb12
+bb17:
   LA s1, i
   LW s2, 0(s1)
   ADD a0, s2, zero
@@ -252,28 +274,6 @@ bb16:
   ADD a2, s2, zero
   CALL sub_impl
   JAL zero, bb15
-bb17:
-  LA s1, k
-  LW s2, 0(s1)
-  LA s1, i
-  ADD a0, s1, zero
-  ADD a1, s2, zero
-  CALL inc_impl
-  LA s1, k
-  LW s2, 0(s1)
-  LA s1, i
-  ADD a0, s1, zero
-  ADDI a1, sp, 0
-  ADD a1, a1, zero
-  ADD a2, s2, zero
-  CALL add_impl
-  LA s1, i
-  LW s2, 0(s1)
-  LW s1, 0(s0)
-  XOR s3, s2, s1
-  SLTIU s1, s3, 1
-  BNE s1, zero, bb14
-  JAL zero, bb12
 inc_impl:
   ADDI sp, sp, -48
   SD s4, 0(sp)
@@ -286,13 +286,19 @@ inc_impl:
   ADD s1, a1, zero
   XOR s2, s1, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb19
-  JAL zero, bb21
+  BNE s3, zero, bb21
+  # implict jump to bb19
 bb19:
   LW s2, 0(s0)
-  ADDIW s3, s2, 1
-  SW s3, 0(s0)
-  JAL zero, bb20
+  ADDI s3, zero, 2
+  MULW s4, s2, s3
+  SW s4, 0(s0)
+  ADDI s2, zero, 1
+  SUBW s3, s1, s2
+  ADD a0, s0, zero
+  ADD a1, s3, zero
+  CALL inc_impl
+  # implict jump to bb20
 bb20:
   LD s4, 0(sp)
   LD ra, 8(sp)
@@ -304,12 +310,6 @@ bb20:
   JALR zero, 0(ra)
 bb21:
   LW s2, 0(s0)
-  ADDI s3, zero, 2
-  MULW s4, s2, s3
-  SW s4, 0(s0)
-  ADDI s2, zero, 1
-  SUBW s3, s1, s2
-  ADD a0, s0, zero
-  ADD a1, s3, zero
-  CALL inc_impl
+  ADDIW s3, s2, 1
+  SW s3, 0(s0)
   JAL zero, bb20

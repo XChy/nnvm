@@ -13,10 +13,42 @@
 using namespace nnvm;
 using namespace nnvm::riscv;
 
-void CodeLayoutOpt::layout(LIRFunc &func) {
+void CodeLayoutOpt::run(LIRFunc &func) {
+  LIRBuilder builder(*func.getParent());
   std::list<LIRBB *> result;
   std::unordered_set<LIRBB *> visited;
 
   std::stack<LIRBB *> worklist;
   worklist.push(func.getEntry());
+  while (!worklist.empty()) {
+    LIRBB *cur = worklist.top();
+    worklist.pop();
+    if (visited.count(cur))
+      continue;
+    visited.insert(cur);
+    result.push_back(cur);
+
+    LIRBB *directSucc = nullptr;
+    if (cur->getSuccNum() != 0)
+      directSucc = cur->getSucc(0);
+
+    if (directSucc && !visited.count(directSucc) &&
+        cur->getInsts().getLast()->getOpcode() == JAL) {
+      cur->getInsts().getLast()->eraseFromList();
+      builder.setInsertPoint(cur->end());
+      builder.implicitJumpTo(directSucc);
+    }
+
+    for (int i = 1; i < cur->getSuccNum(); i++)
+      worklist.push(cur->getSucc(i));
+    if (directSucc)
+      worklist.push(directSucc);
+  }
+
+  for (LIRBB *toremove : incChange(func)) {
+    toremove->removeFromList();
+  }
+  for (LIRBB *toadd : result) {
+    func.end().insertBefore(toadd);
+  }
 }

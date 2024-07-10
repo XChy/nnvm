@@ -26,26 +26,19 @@ main:
   LW s2, 0(s1)
   XOR s1, s2, s0
   SLTIU s0, s1, 1
-  BNE s0, zero, bb1
-  JAL zero, bb2
+  BNE s0, zero, bb6
+  # implict jump to bb1
 bb1:
-  LA s0, a
-  LW s1, 0(s0)
-  XORI s0, s1, 3
-  SLTU s1, zero, s0
-  ADD s0, s1, zero
-  JAL zero, bb3
-bb2:
   ADD s0, zero, zero
-  JAL zero, bb3
-bb3:
+  # implict jump to bb2
+bb2:
   ADD s1, s0, zero
-  BNE s1, zero, bb4
-  JAL zero, bb6
+  BNE s1, zero, bb5
+  # implict jump to bb3
+bb3:
+  ADD s1, zero, zero
+  # implict jump to bb4
 bb4:
-  ADDI s1, zero, 1
-  JAL zero, bb5
-bb5:
   ADD s2, s1, zero
   ADD a0, s2, zero
   LD ra, 0(sp)
@@ -54,6 +47,13 @@ bb5:
   LD s0, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
+bb5:
+  ADDI s1, zero, 1
+  JAL zero, bb4
 bb6:
-  ADD s1, zero, zero
-  JAL zero, bb5
+  LA s0, a
+  LW s1, 0(s0)
+  XORI s0, s1, 3
+  SLTU s1, zero, s0
+  ADD s0, s1, zero
+  JAL zero, bb2

@@ -24,25 +24,16 @@ main:
   CALL _sysy_starttime
   ADD s0, zero, zero
   ADD s1, zero, zero
-  JAL zero, bb1
+  # implict jump to bb1
 bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, loopCount
   LW s5, 0(s4)
   SLT s4, s2, s5
-  BNE s4, zero, bb2
-  JAL zero, bb3
+  BNE s4, zero, bb3
+  # implict jump to bb2
 bb2:
-  ADDIW s4, s3, 15
-  LUI s5, 366211
-  ADDIW s5, s5, -255
-  REMW s6, s4, s5
-  ADDIW s4, s2, 1
-  ADD s0, s6, zero
-  ADD s1, s4, zero
-  JAL zero, bb1
-bb3:
   ADDI a0, zero, 123
   CALL _sysy_stoptime
   ADD a0, s3, zero
@@ -60,6 +51,15 @@ bb3:
   LD s0, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
+bb3:
+  ADDIW s4, s3, 15
+  LUI s5, 366211
+  ADDIW s5, s5, -255
+  REMW s6, s4, s5
+  ADDIW s4, s2, 1
+  ADD s0, s6, zero
+  ADD s1, s4, zero
+  JAL zero, bb1
 func:
   ADDI sp, sp, -112
   SD ra, 0(sp)
@@ -100,16 +100,33 @@ func:
   LW a1, 0(s8)
   ADD s8, zero, zero
   ADD a2, zero, zero
-  JAL zero, bb5
+  # implict jump to bb5
 bb5:
   ADD a3, a2, zero
   ADD a4, s8, zero
   LA a5, loopCount
   LW a6, 0(a5)
   SLT a5, a3, a6
-  BNE a5, zero, bb6
-  JAL zero, bb7
+  BNE a5, zero, bb7
+  # implict jump to bb6
 bb6:
+  ADD a0, a4, zero
+  LD ra, 0(sp)
+  LD s11, 8(sp)
+  LD s10, 16(sp)
+  LD s9, 24(sp)
+  LD s8, 32(sp)
+  LD s7, 40(sp)
+  LD s6, 48(sp)
+  LD s0, 56(sp)
+  LD s5, 64(sp)
+  LD s1, 72(sp)
+  LD s2, 80(sp)
+  LD s3, 88(sp)
+  LD s4, 96(sp)
+  ADDI sp, sp, 112
+  JALR zero, 0(ra)
+bb7:
   ADDW a5, s0, s1
   ADDW a6, a5, s2
   ADDW a5, a6, s3
@@ -1619,20 +1636,3 @@ bb6:
   ADD s8, a7, zero
   ADD a2, a5, zero
   JAL zero, bb5
-bb7:
-  ADD a0, a4, zero
-  LD ra, 0(sp)
-  LD s11, 8(sp)
-  LD s10, 16(sp)
-  LD s9, 24(sp)
-  LD s8, 32(sp)
-  LD s7, 40(sp)
-  LD s6, 48(sp)
-  LD s0, 56(sp)
-  LD s5, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  LD s3, 88(sp)
-  LD s4, 96(sp)
-  ADDI sp, sp, 112
-  JALR zero, 0(ra)
