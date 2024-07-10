@@ -23,7 +23,8 @@ public:
 struct IntervalEndCompare {
 public:
   bool operator()(const LiveInterval &a, const LiveInterval &b) const {
-    return a.end < b.end;
+    return a.end < b.end ||
+           (a.end == b.end && a.reg->getRegId() < b.reg->getRegId());
   }
 };
 

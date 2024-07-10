@@ -19,15 +19,13 @@ namespace nnvm::riscv {
 struct RegCompare {
   int scoreOf(Register *reg) const {
     if (reg->isCalleeSaved())
-      return 200;
-    return 100;
+      return 200 - reg->getRegId();
+    return 100 - reg->getRegId();
   }
 
   bool operator()(Register *reg1, Register *reg2) const {
     int score1 = scoreOf(reg1);
     int score2 = scoreOf(reg2);
-    if (score1 == score2)
-      return reg1->getRegId() < reg2->getRegId();
     return score1 > score2;
   }
 };

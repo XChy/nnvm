@@ -196,16 +196,16 @@ bb21:
   JAL zero, bb5
 bb22:
   ADD t4, s1, zero
-  SW t4, 68(sp)
+  SW t4, 64(sp)
   ADD t4, zero, zero
   SW t4, 60(sp)
   # implict jump to bb23
 bb23:
   LW t4, 60(sp)
   ADD s5, t4, zero
-  LW t3, 68(sp)
+  LW t3, 64(sp)
   ADD t4, t3, zero
-  SW t4, 64(sp)
+  SW t4, 68(sp)
   LW t4, 4(sp)
   SLT s7, s5, t4
   BNE s7, zero, bb25
@@ -214,7 +214,7 @@ bb24:
   LW t4, 56(sp)
   ADDIW s7, t4, 1
   ADD s4, s7, zero
-  LW t4, 64(sp)
+  LW t4, 68(sp)
   ADD s3, t4, zero
   JAL zero, bb20
 bb25:
@@ -241,7 +241,7 @@ bb27:
 bb28:
   ADDIW s8, s5, 1
   ADD t4, s7, zero
-  SW t4, 68(sp)
+  SW t4, 64(sp)
   ADD t4, s8, zero
   SW t4, 60(sp)
   JAL zero, bb23
@@ -254,21 +254,21 @@ bb29:
   LW s6, 0(s2)
   LW t4, 56(sp)
   SLLIW s1, t4, 12
-  LA s9, C
-  ADD s0, s9, s1
-  ADD s1, s0, s8
-  LW s0, 0(s1)
-  MULW s1, s6, s0
-  ADDW s0, s11, s1
-  SW s0, 0(s10)
+  LA s0, C
+  ADD s9, s0, s1
+  ADD s0, s9, s8
+  LW s1, 0(s0)
+  MULW s0, s6, s1
+  ADDW s1, s11, s0
+  SW s1, 0(s10)
   ADDIW s0, s7, 1
   ADD s4, s0, zero
   JAL zero, bb27
 bb30:
   ADDIW s0, s5, 1
-  LW t3, 64(sp)
+  LW t3, 68(sp)
   ADD t4, t3, zero
-  SW t4, 68(sp)
+  SW t4, 64(sp)
   ADD t4, s0, zero
   SW t4, 60(sp)
   JAL zero, bb23
@@ -301,16 +301,16 @@ bb34:
 bb35:
   LW t3, 44(sp)
   ADD t4, t3, zero
-  SW t4, 80(sp)
+  SW t4, 76(sp)
   ADD t4, zero, zero
   SW t4, 72(sp)
   # implict jump to bb36
 bb36:
   LW t4, 72(sp)
   ADD s2, t4, zero
-  LW t3, 80(sp)
+  LW t3, 76(sp)
   ADD t4, t3, zero
-  SW t4, 76(sp)
+  SW t4, 80(sp)
   LW t4, 4(sp)
   SLT s4, s2, t4
   BNE s4, zero, bb38
@@ -320,7 +320,7 @@ bb37:
   ADDIW s4, t4, 1
   ADD t4, s4, zero
   SW t4, 40(sp)
-  LW t3, 76(sp)
+  LW t3, 80(sp)
   ADD t4, t3, zero
   SW t4, 36(sp)
   JAL zero, bb16
@@ -348,7 +348,7 @@ bb40:
 bb41:
   ADDIW s8, s2, 1
   ADD t4, s6, zero
-  SW t4, 80(sp)
+  SW t4, 76(sp)
   ADD t4, s8, zero
   SW t4, 72(sp)
   JAL zero, bb36
@@ -361,21 +361,21 @@ bb42:
   LW s11, 0(s7)
   LW t4, 32(sp)
   SLLIW s1, t4, 12
-  LA s3, B
-  ADD s0, s3, s1
-  ADD s1, s0, s8
-  LW s0, 0(s1)
-  MULW s1, s11, s0
-  ADDW s0, s9, s1
-  SW s0, 0(s10)
+  LA s0, B
+  ADD s3, s0, s1
+  ADD s0, s3, s8
+  LW s1, 0(s0)
+  MULW s0, s11, s1
+  ADDW s1, s9, s0
+  SW s1, 0(s10)
   ADDIW s0, s6, 1
   ADD s5, s0, zero
   JAL zero, bb40
 bb43:
   ADDIW s0, s2, 1
-  LW t3, 76(sp)
+  LW t3, 80(sp)
   ADD t4, t3, zero
-  SW t4, 80(sp)
+  SW t4, 76(sp)
   ADD t4, s0, zero
   SW t4, 72(sp)
   JAL zero, bb36

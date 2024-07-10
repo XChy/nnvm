@@ -16,43 +16,45 @@ maxN:
 .section .text
 findSmallest:
   ADDI sp, sp, -128
-  SD s9, 24(sp)
-  SD s4, 32(sp)
-  SD s7, 40(sp)
+  SD s9, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   SD s11, 48(sp)
   SD s0, 56(sp)
-  SD s10, 64(sp)
-  SD s1, 72(sp)
-  SD s6, 80(sp)
-  SD s2, 88(sp)
+  SD s1, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s10, 88(sp)
   SD s8, 96(sp)
-  SD s3, 104(sp)
-  SD s5, 112(sp)
-  SD ra, 120(sp)
+  SD s5, 104(sp)
+  SD ra, 112(sp)
   ADD s1, a0, zero
-  ADD s2, a1, zero
-  ADD s3, a2, zero
+  ADD t4, a1, zero
+  SW t4, 8(sp)
+  ADD t4, a2, zero
+  SW t4, 4(sp)
   ADD t4, a3, zero
-  SW t4, 16(sp)
-  XOR s5, s1, s2
+  SW t4, 0(sp)
+  LW t4, 8(sp)
+  XOR s5, s1, t4
   SLTIU s6, s5, 1
   BNE s6, zero, bb15
   # implict jump to bb1
 bb1:
-  SLLIW s5, s2, 2
+  LW t4, 8(sp)
+  SLLIW s5, t4, 2
   LA s6, array
-  ADD t4, s6, s5
-  SD t4, 8(sp)
-  LD t3, 8(sp)
-  LW t4, 0(t3)
-  SW t4, 0(sp)
+  ADD s7, s6, s5
+  LW s5, 0(s7)
   ADD s6, s1, zero
   ADD s8, s1, zero
   # implict jump to bb2
 bb2:
   ADD s0, s8, zero
   ADD s9, s6, zero
-  SLT s10, s9, s2
+  LW t4, 8(sp)
+  SLT s10, s9, t4
   BNE s10, zero, bb11
   # implict jump to bb3
 bb3:
@@ -60,42 +62,44 @@ bb3:
   LA s11, array
   ADD t0, s11, s10
   LW s10, 0(t0)
-  LD t4, 8(sp)
-  LW s11, 0(t4)
+  LW s11, 0(s7)
   SW s11, 0(t0)
-  LD t4, 8(sp)
-  SW s10, 0(t4)
-  XOR s10, s3, s0
+  SW s10, 0(s7)
+  LW t4, 4(sp)
+  XOR s10, t4, s0
   SLTIU s11, s10, 1
   BNE s11, zero, bb8
   # implict jump to bb4
 bb4:
-  SLT s10, s3, s0
+  LW t4, 4(sp)
+  SLT s10, t4, s0
   BNE s10, zero, bb7
   # implict jump to bb5
 bb5:
   ADDIW s10, s0, 1
   ADD a0, s10, zero
-  ADD a1, s2, zero
-  ADD a2, s3, zero
-  LW t4, 16(sp)
+  LW t4, 8(sp)
+  ADD a1, t4, zero
+  LW t4, 4(sp)
+  ADD a2, t4, zero
+  LW t4, 0(sp)
   ADD a3, t4, zero
   CALL findSmallest
   # implict jump to bb6
 bb6:
-  LD s9, 24(sp)
-  LD s4, 32(sp)
-  LD s7, 40(sp)
+  LD s9, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   LD s11, 48(sp)
   LD s0, 56(sp)
-  LD s10, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
+  LD s1, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s10, 88(sp)
   LD s8, 96(sp)
-  LD s3, 104(sp)
-  LD s5, 112(sp)
-  LD ra, 120(sp)
+  LD s5, 104(sp)
+  LD ra, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb7:
@@ -103,8 +107,9 @@ bb7:
   SUBW s11, s0, s10
   ADD a0, s1, zero
   ADD a1, s11, zero
-  ADD a2, s3, zero
-  LW t4, 16(sp)
+  LW t4, 4(sp)
+  ADD a2, t4, zero
+  LW t4, 0(sp)
   ADD a3, t4, zero
   CALL findSmallest
   JAL zero, bb6
@@ -113,65 +118,64 @@ bb8:
   # implict jump to bb9
 bb9:
   ADD s11, s10, zero
-  SLT s5, s11, s0
-  BNE s5, zero, bb10
+  SLT s4, s11, s0
+  BNE s4, zero, bb10
   JAL zero, bb6
 bb10:
-  SLLIW s5, s11, 2
-  LA s7, array
-  ADD s4, s7, s5
-  LW s5, 0(s4)
-  ADD a0, s5, zero
+  SLLIW s4, s11, 2
+  LA s3, array
+  ADD s2, s3, s4
+  LW s3, 0(s2)
+  ADD a0, s3, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s4, s11, 1
-  ADD s10, s4, zero
+  ADDIW s2, s11, 1
+  ADD s10, s2, zero
   JAL zero, bb9
 bb11:
-  SLLIW s4, s9, 2
-  LA s5, array
-  ADD s7, s5, s4
-  LW s4, 0(s7)
-  LW t4, 0(sp)
-  SLT s5, t4, s4
-  XORI s4, s5, 1
-  BNE s4, zero, bb14
+  SLLIW s2, s9, 2
+  LA s3, array
+  ADD s4, s3, s2
+  LW s2, 0(s4)
+  SLT s3, s5, s2
+  XORI s2, s3, 1
+  BNE s2, zero, bb14
   # implict jump to bb12
 bb12:
-  ADD s4, s0, zero
+  ADD s2, s0, zero
   # implict jump to bb13
 bb13:
-  ADD s0, s4, zero
-  ADDIW s4, s9, 1
-  ADD s6, s4, zero
+  ADD s0, s2, zero
+  ADDIW s2, s9, 1
+  ADD s6, s2, zero
   ADD s8, s0, zero
   JAL zero, bb2
 bb14:
-  LW s5, 0(s7)
+  LW s3, 0(s4)
   SLLIW s10, s0, 2
   LA s11, array
   ADD t0, s11, s10
   LW s10, 0(t0)
-  SW s10, 0(s7)
-  SW s5, 0(t0)
-  ADDIW s5, s0, 1
-  ADD s4, s5, zero
+  SW s10, 0(s4)
+  SW s3, 0(t0)
+  ADDIW s3, s0, 1
+  ADD s2, s3, zero
   JAL zero, bb13
 bb15:
-  LD s9, 24(sp)
-  LD s4, 32(sp)
-  LD s7, 40(sp)
+  LD s9, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
   LD s11, 48(sp)
   LD s0, 56(sp)
-  LD s10, 64(sp)
-  LD s1, 72(sp)
-  LD s6, 80(sp)
-  LD s2, 88(sp)
+  LD s1, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s10, 88(sp)
   LD s8, 96(sp)
-  LD s3, 104(sp)
-  LD s5, 112(sp)
-  LD ra, 120(sp)
+  LD s5, 104(sp)
+  LD ra, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 findPivot:

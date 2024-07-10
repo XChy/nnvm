@@ -17,9 +17,9 @@ width:
 .section .text
 main:
   ADDI sp, sp, -176
-  SD ra, 72(sp)
-  SD s11, 80(sp)
-  SD s10, 88(sp)
+  SD s10, 72(sp)
+  SD ra, 80(sp)
+  SD s11, 88(sp)
   SD s0, 96(sp)
   SD s5, 104(sp)
   SD s7, 112(sp)
@@ -118,9 +118,9 @@ bb6:
   CALL putarray
   LW t4, 0(sp)
   ADD a0, t4, zero
-  LD ra, 72(sp)
-  LD s11, 80(sp)
-  LD s10, 88(sp)
+  LD s10, 72(sp)
+  LD ra, 80(sp)
+  LD s11, 88(sp)
   LD s0, 96(sp)
   LD s5, 104(sp)
   LD s7, 112(sp)
@@ -188,10 +188,12 @@ bb9:
   ADD s8, t4, zero
   LW t4, 52(sp)
   ADD s9, t4, zero
-  ADDI s10, zero, 1
+  ADDI t4, zero, 1
+  SW t4, 64(sp)
   # implict jump to bb10
 bb10:
-  ADD s11, s10, zero
+  LW t4, 64(sp)
+  ADD s11, t4, zero
   ADD ra, s9, zero
   ADD t0, s8, zero
   ADD t1, s7, zero
@@ -246,10 +248,8 @@ bb12:
   ADDI t2, zero, 1
   SUBW a1, a0, t2
   ADDIW t2, a0, 1
-  ADDIW t4, s11, 1
-  SW t4, 64(sp)
-  LW t4, 64(sp)
-  SLLIW s11, t4, 9
+  ADDIW a2, s11, 1
+  SLLIW s11, a2, 9
   LW t4, 32(sp)
   ADDW a3, s11, t4
   ADDI s11, zero, 1
@@ -263,63 +263,63 @@ bb12:
   MULW t6, a6, a7
   SLLIW a6, t1, 2
   LA a7, image_in
-  ADD a2, a7, a6
-  LW a6, 0(a2)
-  SUBW a2, t6, a6
+  ADD s10, a7, a6
+  LW a6, 0(s10)
+  SUBW s10, t6, a6
   SLLIW a6, t0, 2
   LA a7, image_in
   ADD t6, a7, a6
   LW a6, 0(t6)
-  SUBW a7, a2, a6
-  SLLIW a2, ra, 2
+  SUBW a7, s10, a6
+  SLLIW s10, ra, 2
   LA a6, image_in
-  ADD t6, a6, a2
-  LW a2, 0(t6)
-  SUBW a6, a7, a2
-  SLLIW a2, a1, 2
+  ADD t6, a6, s10
+  LW s10, 0(t6)
+  SUBW a6, a7, s10
+  SLLIW s10, a1, 2
   LA a7, image_in
-  ADD t6, a7, a2
-  LW a2, 0(t6)
-  SUBW a7, a6, a2
-  SLLIW a2, t2, 2
+  ADD t6, a7, s10
+  LW s10, 0(t6)
+  SUBW a7, a6, s10
+  SLLIW s10, t2, 2
   LA a6, image_in
-  ADD t6, a6, a2
-  LW a2, 0(t6)
-  SUBW a6, a7, a2
-  SLLIW a2, a4, 2
+  ADD t6, a6, s10
+  LW s10, 0(t6)
+  SUBW a6, a7, s10
+  SLLIW s10, a4, 2
   LA a7, image_in
-  ADD t6, a7, a2
-  LW a2, 0(t6)
-  SUBW a7, a6, a2
-  SLLIW a2, a3, 2
+  ADD t6, a7, s10
+  LW s10, 0(t6)
+  SUBW a7, a6, s10
+  SLLIW s10, a3, 2
   LA a6, image_in
-  ADD t6, a6, a2
-  LW a2, 0(t6)
-  SUBW a6, a7, a2
-  SLLIW a2, s11, 2
+  ADD t6, a6, s10
+  LW s10, 0(t6)
+  SUBW a6, a7, s10
+  SLLIW s10, s11, 2
   LA a7, image_in
-  ADD t6, a7, a2
-  LW a2, 0(t6)
-  SUBW a7, a6, a2
-  LA a2, image_out
-  ADD a6, a2, a5
-  SLT a2, a7, zero
-  BNE a2, zero, bb18
+  ADD t6, a7, s10
+  LW s10, 0(t6)
+  SUBW a7, a6, s10
+  LA s10, image_out
+  ADD a6, s10, a5
+  SLT s10, a7, zero
+  BNE s10, zero, bb18
   # implict jump to bb13
 bb13:
-  ADDI a2, zero, 255
-  SLT a5, a2, a7
+  ADDI s10, zero, 255
+  SLT a5, s10, a7
   BNE a5, zero, bb17
   # implict jump to bb14
 bb14:
-  ADD a2, a7, zero
+  ADD s10, a7, zero
   # implict jump to bb15
 bb15:
-  ADD a5, a2, zero
-  ADD a2, a5, zero
+  ADD a5, s10, zero
+  ADD s10, a5, zero
   # implict jump to bb16
 bb16:
-  ADD a5, a2, zero
+  ADD a5, s10, zero
   SW a5, 0(a6)
   ADD s0, a7, zero
   ADD s1, s11, zero
@@ -331,14 +331,14 @@ bb16:
   ADD s7, ra, zero
   ADD s8, t0, zero
   ADD s9, t1, zero
-  LW t4, 64(sp)
-  ADD s10, t4, zero
+  ADD t4, a2, zero
+  SW t4, 64(sp)
   JAL zero, bb10
 bb17:
-  ADDI a2, zero, 255
+  ADDI s10, zero, 255
   JAL zero, bb15
 bb18:
-  ADD a2, zero, zero
+  ADD s10, zero, zero
   JAL zero, bb16
 cutout:
   ADDI sp, sp, -32
