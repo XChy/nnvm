@@ -17,7 +17,6 @@ main:
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
   ADD s0, zero, zero
   ADD s1, zero, zero
   # implict jump to bb1
@@ -36,16 +35,15 @@ bb2:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
   SLLIW s4, s2, 2
   LA s5, arr
-  ADD s6, s5, s4
-  LW s4, 0(s6)
-  ADDW s5, s3, s4
-  ADDIW s3, s2, 1
-  ADD s0, s5, zero
-  ADD s1, s3, zero
+  ADD s4, s5, s4
+  LW s4, 0(s4)
+  ADDW s3, s3, s4
+  ADDIW s2, s2, 1
+  ADD s0, s3, zero
+  ADD s1, s2, zero
   JAL zero, bb1

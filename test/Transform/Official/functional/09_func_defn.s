@@ -25,14 +25,12 @@ func:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 1
-  SUBW s2, s0, s1
-  ADD a0, s2, zero
+  SUBW s0, s0, s1
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

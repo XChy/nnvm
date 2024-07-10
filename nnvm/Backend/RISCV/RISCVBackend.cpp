@@ -5,6 +5,7 @@
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowInstType.h"
 #include "Backend/RISCV/Lower.h"
+#include "Backend/RISCV/Optimization/Peephole.h"
 #include "Backend/RISCV/Optimization/SSAPeephole.h"
 #include "Backend/RISCV/RA/LinearScanRA.h"
 #include "Backend/RISCV/StackAllocator.h"
@@ -46,6 +47,10 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
 
   debug(std::cerr << "====RA Done====\n");
   debug(lowModule.emit(std::cerr));
+
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal)
+      Peephole().run(*lowFunc);
 
   // Replace abstract stack reference and emit Prologue&Epilogue
   for (auto *lowFunc : lowModule.funcs)

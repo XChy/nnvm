@@ -37,15 +37,15 @@ bb1:
   ADD s6, s1, zero
   ADD s7, s0, zero
   ADDI s8, zero, 10
-  SLT s9, s8, s5
-  BNE s9, zero, bb3
+  SLT s8, s8, s5
+  BNE s8, zero, bb3
   # implict jump to bb2
 bb2:
   ADD a0, s5, zero
   CALL putint
   LA s8, k
-  LW s9, 0(s8)
-  ADD a0, s9, zero
+  LW s8, 0(s8)
+  ADD a0, s8, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -61,30 +61,30 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   ADDI s8, zero, 88
-  SUBW s9, s5, s8
-  SLTI s8, s9, 1000
-  BNE s8, zero, bb6
+  SUBW s8, s5, s8
+  SLTI s9, s8, 1000
+  BNE s9, zero, bb6
   # implict jump to bb4
 bb4:
-  ADD s8, s7, zero
-  ADD s7, s6, zero
-  ADD s6, s9, zero
-  ADD s9, s4, zero
+  ADD s7, s7, zero
+  ADD s6, s6, zero
+  ADD s8, s8, zero
+  ADD s4, s4, zero
   # implict jump to bb5
 bb5:
-  ADD s4, s9, zero
-  ADD s5, s6, zero
-  ADD s6, s7, zero
-  ADD s7, s8, zero
+  ADD s4, s4, zero
+  ADD s8, s8, zero
+  ADD s6, s6, zero
+  ADD s7, s7, zero
   ADD s0, s7, zero
   ADD s1, s6, zero
-  ADD s2, s5, zero
+  ADD s2, s8, zero
   ADD s3, s4, zero
   JAL zero, bb1
 bb6:
-  ADDIW s4, s5, -76
-  ADDI s8, zero, 11
+  ADDIW s5, s5, -76
   ADDI s7, zero, 11
-  ADD s6, s4, zero
-  ADDI s9, zero, 10
+  ADDI s6, zero, 11
+  ADD s8, s5, zero
+  ADDI s4, zero, 10
   JAL zero, bb5

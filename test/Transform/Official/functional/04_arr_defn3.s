@@ -102,35 +102,35 @@ main:
   ADDI s3, sp, 60
   ADDI s4, zero, 8
   SW s4, 0(s3)
-  LW s3, 0(s2)
-  LW s2, 0(s1)
-  SW s3, 0(sp)
-  ADDI s1, sp, 4
-  SW s2, 0(s1)
-  ADDI s2, sp, 8
+  LW s2, 0(s2)
+  LW s1, 0(s1)
+  SW s2, 0(sp)
+  ADDI s2, sp, 4
+  SW s1, 0(s2)
+  ADDI s1, sp, 8
   ADDI s3, zero, 3
-  SW s3, 0(s2)
-  ADDI s2, sp, 12
+  SW s3, 0(s1)
+  ADDI s1, sp, 12
   ADDI s3, zero, 4
-  SW s3, 0(s2)
-  ADDI s2, sp, 16
+  SW s3, 0(s1)
+  ADDI s1, sp, 16
   ADDI s3, zero, 5
-  SW s3, 0(s2)
-  ADDI s2, sp, 20
+  SW s3, 0(s1)
+  ADDI s1, sp, 20
   ADDI s3, zero, 6
-  SW s3, 0(s2)
-  ADDI s2, sp, 24
+  SW s3, 0(s1)
+  ADDI s1, sp, 24
   ADDI s3, zero, 7
-  SW s3, 0(s2)
-  ADDI s2, sp, 28
+  SW s3, 0(s1)
+  ADDI s1, sp, 28
   ADDI s3, zero, 8
-  SW s3, 0(s2)
-  LW s2, 0(sp)
-  ADDIW s3, s2, 8
-  LW s2, 0(s1)
-  ADDW s1, s3, s2
-  LW s2, 0(s0)
-  ADDW s0, s1, s2
+  SW s3, 0(s1)
+  LW s1, 0(sp)
+  ADDIW s1, s1, 8
+  LW s2, 0(s2)
+  ADDW s1, s1, s2
+  LW s0, 0(s0)
+  ADDW s0, s1, s0
   ADD a0, s0, zero
   LD ra, 160(sp)
   LD s0, 168(sp)

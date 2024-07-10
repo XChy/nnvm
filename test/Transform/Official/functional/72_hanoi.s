@@ -5,21 +5,20 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
   CALL getint
   ADD s0, a0, zero
-  ADD s1, s0, zero
+  ADD s0, s0, zero
   # implict jump to bb1
 bb1:
-  ADD s0, s1, zero
+  ADD s1, s0, zero
   ADDI s2, zero, 0
-  SLT s3, s2, s0
-  BNE s3, zero, bb3
+  SLT s2, s2, s1
+  BNE s2, zero, bb3
   # implict jump to bb2
 bb2:
   ADD a0, zero, zero
@@ -27,8 +26,7 @@ bb2:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:
   CALL getint
@@ -41,30 +39,29 @@ bb3:
   ADDI a0, zero, 10
   CALL putch
   ADDI s2, zero, 1
-  SUBW s3, s0, s2
-  ADD s1, s3, zero
+  SUBW s1, s1, s2
+  ADD s0, s1, zero
   JAL zero, bb1
 hanoi:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  SD s5, 48(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
   ADD s3, a3, zero
   XORI s4, s0, 1
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb7
+  SLTIU s4, s4, 1
+  BNE s4, zero, bb7
   # implict jump to bb5
 bb5:
   ADDI s4, zero, 1
-  SUBW s5, s0, s4
-  ADD a0, s5, zero
+  SUBW s0, s0, s4
+  ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
   ADD a3, s2, zero
@@ -79,7 +76,7 @@ bb5:
   CALL putch
   ADDI a0, zero, 32
   CALL putch
-  ADD a0, s5, zero
+  ADD a0, s0, zero
   ADD a1, s2, zero
   ADD a2, s1, zero
   ADD a3, s3, zero
@@ -92,8 +89,7 @@ bb6:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb7:
   ADD a0, s1, zero

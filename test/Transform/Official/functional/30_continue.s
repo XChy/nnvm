@@ -33,8 +33,8 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   XORI s4, s2, 50
-  SLTIU s5, s4, 1
-  BNE s5, zero, bb5
+  SLTIU s4, s4, 1
+  BNE s4, zero, bb5
   # implict jump to bb4
 bb4:
   ADDW s4, s3, s2
@@ -43,7 +43,7 @@ bb4:
   ADD s1, s5, zero
   JAL zero, bb1
 bb5:
-  ADDIW s4, s2, 1
+  ADDIW s2, s2, 1
   ADD s0, s3, zero
-  ADD s1, s4, zero
+  ADD s1, s2, zero
   JAL zero, bb1

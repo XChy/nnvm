@@ -16,7 +16,7 @@ using nnvm::GraphVisitor;
 using namespace nnvm::riscv;
 
 uint64_t LiveIntervalAnalysis::indexOf(LIRBB *BB, uint64_t localIndex) {
-  return BBNumber[BB] + localIndex;
+  return BBNumber[BB] + localIndex * 10;
 }
 
 uint64_t LiveIntervalAnalysis::indexOf(LIRInst *inst) {
@@ -28,7 +28,7 @@ uint64_t LiveIntervalAnalysis::indexOf(LIRInst *inst) {
     localIndex++;
   }
 
-  return BBNumber[inst->getParent()] + localIndex;
+  return BBNumber[inst->getParent()] + localIndex * 10;
 }
 
 LiveIntervalAnalysis::IntervalSet LiveIntervalAnalysis::getResult() const {
@@ -50,7 +50,7 @@ assignDFSNumber(LIRFunc &func,
   uint64_t instructionCount = 0;
   GraphVisitor::dfs(graph, func.getEntry(), [&](LIRBB *cur) {
     BBNumber[cur] = instructionCount;
-    instructionCount += cur->getInsts().size();
+    instructionCount += cur->getInsts().size() * 10;
   });
 }
 
@@ -61,7 +61,7 @@ assignRPONumber(LIRFunc &func,
   uint64_t instructionCount = 0;
   GraphVisitor::reversePostorder(graph, func.getEntry(), [&](LIRBB *cur) {
     BBNumber[cur] = instructionCount;
-    instructionCount += cur->getInsts().size();
+    instructionCount += cur->getInsts().size() * 10;
   });
 }
 
@@ -74,6 +74,8 @@ void LiveIntervalAnalysis::meetReg(Register *reg, uint64_t index,
   // Ignore those with fixed value
   if (reg->getRegId() == ZERO)
     return;
+  if (flag == LowOperand::Def)
+    index++;
   if (!regToIntervals.count(reg)) {
     regToIntervals[reg].reg = reg;
     regToIntervals[reg].begin = index;
@@ -106,7 +108,7 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
             std::min(regToIntervals[liveReg].begin, BBNumber[BB]);
         regToIntervals[liveReg].end =
             std::max(regToIntervals[liveReg].end,
-                     BBNumber[BB] + BB->getInsts().size() - 1);
+                     BBNumber[BB] + (BB->getInsts().size() - 1) * 10);
       }
     }
 
@@ -125,6 +127,7 @@ bool LiveIntervalAnalysis::runOn(LIRFunc &func) {
       if (inst->getOpcode() == CALL) {
         for (uint64_t regId : callerSavedRegIds()) {
           Register *reg = func.getParent()->getPhyReg(regId);
+          meetReg(reg, globalIndex, LowOperand::Use);
           meetReg(reg, globalIndex, LowOperand::Def);
         }
       }

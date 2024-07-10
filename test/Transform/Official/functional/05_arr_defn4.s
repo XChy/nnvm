@@ -79,59 +79,59 @@ main:
   ADDI s2, sp, 92
   ADDI s3, zero, 8
   SW s3, 0(s2)
-  LW s2, 0(s0)
-  ADDI s0, zero, 1
-  SW s0, 32(sp)
-  ADDI s0, sp, 36
+  LW s0, 0(s0)
+  ADDI s2, zero, 1
+  SW s2, 32(sp)
+  ADDI s2, sp, 36
   ADDI s3, zero, 2
-  SW s3, 0(s0)
-  ADDI s0, sp, 40
+  SW s3, 0(s2)
+  ADDI s2, sp, 40
   ADDI s3, zero, 3
-  SW s3, 0(s0)
-  ADDI s0, sp, 44
+  SW s3, 0(s2)
+  ADDI s2, sp, 44
   ADDI s3, zero, 0
-  SW s3, 0(s0)
-  ADDI s0, sp, 48
+  SW s3, 0(s2)
+  ADDI s2, sp, 48
   ADDI s3, zero, 5
-  SW s3, 0(s0)
-  ADDI s0, sp, 52
+  SW s3, 0(s2)
+  ADDI s2, sp, 52
   ADDI s3, zero, 0
-  SW s3, 0(s0)
+  SW s3, 0(s2)
   ADDI s3, sp, 56
-  SW s2, 0(s3)
-  ADDI s2, sp, 60
+  SW s0, 0(s3)
+  ADDI s0, sp, 60
   ADDI s4, zero, 8
-  SW s4, 0(s2)
-  LW s2, 0(s0)
-  LW s0, 0(s1)
-  SW s2, 0(sp)
-  ADDI s1, sp, 4
-  SW s0, 0(s1)
-  ADDI s0, sp, 8
+  SW s4, 0(s0)
+  LW s0, 0(s2)
+  LW s1, 0(s1)
+  SW s0, 0(sp)
+  ADDI s0, sp, 4
+  SW s1, 0(s0)
+  ADDI s1, sp, 8
   ADDI s2, zero, 3
-  SW s2, 0(s0)
-  ADDI s0, sp, 12
+  SW s2, 0(s1)
+  ADDI s1, sp, 12
   ADDI s2, zero, 4
-  SW s2, 0(s0)
-  ADDI s0, sp, 16
+  SW s2, 0(s1)
+  ADDI s1, sp, 16
   ADDI s2, zero, 5
-  SW s2, 0(s0)
-  ADDI s0, sp, 20
+  SW s2, 0(s1)
+  ADDI s1, sp, 20
   ADDI s2, zero, 6
-  SW s2, 0(s0)
-  ADDI s0, sp, 24
+  SW s2, 0(s1)
+  ADDI s1, sp, 24
   ADDI s2, zero, 7
-  SW s2, 0(s0)
-  ADDI s0, sp, 28
+  SW s2, 0(s1)
+  ADDI s1, sp, 28
   ADDI s2, zero, 8
-  SW s2, 0(s0)
-  LW s0, 0(sp)
-  ADDIW s2, s0, 8
-  LW s0, 0(s1)
-  ADDW s1, s2, s0
-  LW s0, 0(s3)
-  ADDW s2, s1, s0
-  ADD a0, s2, zero
+  SW s2, 0(s1)
+  LW s1, 0(sp)
+  ADDIW s1, s1, 8
+  LW s0, 0(s0)
+  ADDW s0, s1, s0
+  LW s1, 0(s3)
+  ADDW s0, s0, s1
+  ADD a0, s0, zero
   LD ra, 160(sp)
   LD s0, 168(sp)
   LD s1, 176(sp)

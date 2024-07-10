@@ -32,33 +32,33 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   XORI s3, s2, 5
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb9
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb9
   # implict jump to bb4
 bb4:
   XORI s3, s2, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb8
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb8
   # implict jump to bb5
 bb5:
   SLLIW s3, s2, 1
-  ADD s4, s3, zero
+  ADD s3, s3, zero
   # implict jump to bb6
 bb6:
-  ADD s3, s4, zero
-  ADD s4, s3, zero
+  ADD s3, s3, zero
+  ADD s3, s3, zero
   # implict jump to bb7
 bb7:
-  ADD s3, s4, zero
-  ADDIW s4, s2, 1
+  ADD s3, s3, zero
+  ADDIW s2, s2, 1
   ADD s0, s3, zero
-  ADD s1, s4, zero
+  ADD s1, s2, zero
   JAL zero, bb1
 bb8:
-  ADDI s4, zero, 42
+  ADDI s3, zero, 42
   JAL zero, bb6
 bb9:
-  ADDI s4, zero, 25
+  ADDI s3, zero, 25
   JAL zero, bb7
 whileIf:
   ADDI sp, sp, -48
@@ -89,31 +89,31 @@ bb12:
   JALR zero, 0(ra)
 bb13:
   XORI s3, s2, 5
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb19
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb19
   # implict jump to bb14
 bb14:
   XORI s3, s2, 10
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb18
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb18
   # implict jump to bb15
 bb15:
   SLLIW s3, s2, 1
-  ADD s4, s3, zero
+  ADD s3, s3, zero
   # implict jump to bb16
 bb16:
-  ADD s3, s4, zero
-  ADD s4, s3, zero
+  ADD s3, s3, zero
+  ADD s3, s3, zero
   # implict jump to bb17
 bb17:
-  ADD s3, s4, zero
-  ADDIW s4, s2, 1
+  ADD s3, s3, zero
+  ADDIW s2, s2, 1
   ADD s0, s3, zero
-  ADD s1, s4, zero
+  ADD s1, s2, zero
   JAL zero, bb11
 bb18:
-  ADDI s4, zero, 42
+  ADDI s3, zero, 42
   JAL zero, bb16
 bb19:
-  ADDI s4, zero, 25
+  ADDI s3, zero, 25
   JAL zero, bb17

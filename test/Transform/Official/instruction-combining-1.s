@@ -9,9 +9,9 @@ loopCount:
 main:
   ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s8, 8(sp)
-  SD s9, 16(sp)
-  SD s0, 24(sp)
+  SD s0, 8(sp)
+  SD s8, 16(sp)
+  SD s9, 24(sp)
   SD s1, 32(sp)
   SD s2, 40(sp)
   SD s3, 48(sp)
@@ -19,7 +19,6 @@ main:
   SD s5, 64(sp)
   SD s6, 72(sp)
   SD s7, 80(sp)
-  SD s10, 88(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, loopCount
@@ -35,8 +34,8 @@ bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   LA s4, loopCount
-  LW s5, 0(s4)
-  SLT s4, s3, s5
+  LW s4, 0(s4)
+  SLT s4, s3, s4
   BNE s4, zero, bb3
   # implict jump to bb2
 bb2:
@@ -50,9 +49,9 @@ bb2:
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s8, 8(sp)
-  LD s9, 16(sp)
-  LD s0, 24(sp)
+  LD s0, 8(sp)
+  LD s8, 16(sp)
+  LD s9, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
   LD s3, 48(sp)
@@ -60,7 +59,6 @@ bb2:
   LD s5, 64(sp)
   LD s6, 72(sp)
   LD s7, 80(sp)
-  LD s10, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb3:
@@ -75,14 +73,14 @@ bb4:
   # implict jump to bb5
 bb5:
   ADDI s8, zero, 60
-  DIVW s9, s6, s8
-  ADDW s8, s2, s9
+  DIVW s8, s6, s8
+  ADDW s8, s2, s8
   LUI s9, 131068
   ADDIW s9, s9, 1
-  REMW s10, s8, s9
-  ADDIW s8, s3, 1
-  ADD s0, s8, zero
-  ADD s1, s10, zero
+  REMW s8, s8, s9
+  ADDIW s9, s3, 1
+  ADD s0, s9, zero
+  ADD s1, s8, zero
   JAL zero, bb1
 bb6:
   ADDW s0, s6, s3
@@ -91,23 +89,19 @@ bb6:
   ADD s5, s0, zero
   JAL zero, bb4
 func:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
   ADD s0, a0, zero
-  ADD s1, a1, zero
-  LUI s2, 2
-  ADDIW s2, s2, 1808
-  ADDW s3, s0, s2
-  SUBW s0, s3, s1
+  ADD a1, a1, zero
+  LUI s1, 2
+  ADDIW s1, s1, 1808
+  ADDW s0, s0, s1
+  SUBW s0, s0, a1
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)

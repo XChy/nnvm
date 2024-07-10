@@ -3,31 +3,29 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s1, 16(sp)
   XOR s0, zero, zero
-  SLTU s1, zero, s0
-  XORI s0, s1, 1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
-  XORI s1, s0, 1
-  SUBW s0, zero, s1
-  XOR s1, s0, zero
-  SLTU s0, zero, s1
+  SLTU s0, zero, s0
+  XORI s0, s0, 1
+  XOR s0, s0, zero
+  SLTU s0, zero, s0
+  XORI s0, s0, 1
+  SUBW s0, zero, s0
+  XOR s0, s0, zero
+  SLTU s0, zero, s0
   BNE s0, zero, bb3
   # implict jump to bb1
 bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s1, s0, zero
-  ADD a0, s1, zero
+  ADD s0, s0, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:
   ADDI s0, zero, -1

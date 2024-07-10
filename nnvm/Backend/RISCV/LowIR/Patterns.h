@@ -43,6 +43,15 @@ public:
   }
 };
 
+class pMustBe {
+public:
+  pMustBe(LIRValue *receiver);
+  bool match(LIRValue *op) { return op == specific; }
+
+private:
+  LIRValue *specific;
+};
+
 class pImm : public pOperand {
 public:
   bool match(LIRValue *imm) {

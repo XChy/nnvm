@@ -13,7 +13,6 @@ main:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, a
@@ -23,28 +22,27 @@ main:
   LA s1, b
   SW s0, 0(s1)
   LA s1, a
-  LW s2, 0(s1)
-  XOR s1, s2, s0
-  SLTIU s0, s1, 1
+  LW s1, 0(s1)
+  XOR s0, s1, s0
+  SLTIU s0, s0, 1
   BNE s0, zero, bb6
   # implict jump to bb1
 bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s1, s0, zero
-  BNE s1, zero, bb5
+  ADD s0, s0, zero
+  BNE s0, zero, bb5
   # implict jump to bb3
 bb3:
   ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s1, s0, zero
-  ADD a0, s1, zero
+  ADD s0, s0, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:
@@ -52,8 +50,8 @@ bb5:
   JAL zero, bb4
 bb6:
   LA s1, a
-  LW s2, 0(s1)
-  XORI s1, s2, 3
-  SLTU s2, zero, s1
-  ADD s0, s2, zero
+  LW s1, 0(s1)
+  XORI s1, s1, 3
+  SLTU s1, zero, s1
+  ADD s0, s1, zero
   JAL zero, bb2

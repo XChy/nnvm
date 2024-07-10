@@ -57,8 +57,8 @@ main:
   ADDI s1, sp, 124
   ADDI s2, zero, 3
   SW s2, 0(s1)
-  LW s1, 0(s0)
-  ADDIW s0, s1, 101
+  LW s0, 0(s0)
+  ADDIW s0, s0, 101
   ADDI s1, zero, 0
   SW s1, 0(sp)
   ADDI s1, sp, 4
@@ -106,10 +106,10 @@ main:
   ADDI s2, sp, 60
   ADDI s3, zero, 3
   SW s3, 0(s2)
-  LW s2, 0(s1)
-  ADDIW s1, s2, 112
-  ADDW s2, s0, s1
-  ADDIW s0, s2, 35
+  LW s1, 0(s1)
+  ADDIW s1, s1, 112
+  ADDW s0, s0, s1
+  ADDIW s0, s0, 35
   ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
@@ -171,8 +171,8 @@ foo:
   ADDI s1, sp, 60
   ADDI s2, zero, 3
   SW s2, 0(s1)
-  LW s1, 0(s0)
-  ADDIW s0, s1, 71
+  LW s0, 0(s0)
+  ADDIW s0, s0, 71
   ADD a0, s0, zero
   LD ra, 64(sp)
   LD s0, 72(sp)

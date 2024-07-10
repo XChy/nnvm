@@ -17,7 +17,7 @@
 .word 0x40000000
 .section .text
 takFP:
-  ADDI sp, sp, -80
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
@@ -26,7 +26,6 @@ takFP:
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
   FSD fs5, 56(sp)
-  FSD fs6, 64(sp)
   FSGNJ.D fs0, fa0, fa0
   FSGNJ.D fs1, fa1, fa1
   FSGNJ.D fs2, fa2, fa2
@@ -43,30 +42,29 @@ bb1:
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
   FLD fs5, 56(sp)
-  FLD fs6, 64(sp)
-  ADDI sp, sp, 80
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:
   LA s0, .CONSTANT.7.0
   FLW fs3, 0(s0)
-  FSUB.S fs4, fs0, fs3
-  FSGNJ.S fa0, fs4, fs4
+  FSUB.S fs3, fs0, fs3
+  FSGNJ.S fa0, fs3, fs3
   FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs2, fs2
   CALL takFP
   FSGNJ.D fs3, fa0, fa0
   LA s0, .CONSTANT.7.0
   FLW fs4, 0(s0)
-  FSUB.S fs5, fs1, fs4
-  FSGNJ.S fa0, fs5, fs5
+  FSUB.S fs4, fs1, fs4
+  FSGNJ.S fa0, fs4, fs4
   FSGNJ.S fa1, fs2, fs2
   FSGNJ.S fa2, fs0, fs0
   CALL takFP
   FSGNJ.D fs4, fa0, fa0
   LA s0, .CONSTANT.7.0
   FLW fs5, 0(s0)
-  FSUB.S fs6, fs2, fs5
-  FSGNJ.S fa0, fs6, fs6
+  FSUB.S fs2, fs2, fs5
+  FSGNJ.S fa0, fs2, fs2
   FSGNJ.S fa1, fs0, fs0
   FSGNJ.S fa2, fs1, fs1
   CALL takFP
@@ -85,8 +83,7 @@ bb2:
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
   FLD fs5, 56(sp)
-  FLD fs6, 64(sp)
-  ADDI sp, sp, 80
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -64
@@ -97,7 +94,6 @@ main:
   FSD fs2, 32(sp)
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
-  FSD fs5, 56(sp)
   ADDI a0, zero, 20
   CALL _sysy_starttime
   CALL getint
@@ -111,8 +107,8 @@ main:
   FCVT.S.W fs3, s0
   LA s0, .CONSTANT.7.1
   FLW fs4, 0(s0)
-  FADD.S fs5, fs4, fs3
-  FSGNJ.S fa0, fs5, fs5
+  FADD.S fs3, fs4, fs3
+  FSGNJ.S fa0, fs3, fs3
   CALL fibFP
   FSGNJ.D fs3, fa0, fa0
   FSGNJ.S fa0, fs0, fs0
@@ -150,7 +146,6 @@ bb7:
   FLD fs2, 32(sp)
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
-  FLD fs5, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb8:
@@ -168,7 +163,6 @@ fibFP:
   FSD fs0, 16(sp)
   FSD fs1, 24(sp)
   FSD fs2, 32(sp)
-  FSD fs3, 40(sp)
   FSGNJ.D fs0, fa0, fa0
   LA s0, .CONSTANT.7.3
   FLW fs1, 0(s0)
@@ -178,24 +172,23 @@ fibFP:
 bb11:
   LA s0, .CONSTANT.7.3
   FLW fs1, 0(s0)
-  FSUB.S fs2, fs0, fs1
-  FSGNJ.S fa0, fs2, fs2
+  FSUB.S fs1, fs0, fs1
+  FSGNJ.S fa0, fs1, fs1
   CALL fibFP
   FSGNJ.D fs1, fa0, fa0
   LA s0, .CONSTANT.7.0
   FLW fs2, 0(s0)
-  FSUB.S fs3, fs0, fs2
-  FSGNJ.S fa0, fs3, fs3
+  FSUB.S fs0, fs0, fs2
+  FSGNJ.S fa0, fs0, fs0
   CALL fibFP
   FSGNJ.D fs0, fa0, fa0
-  FADD.S fs2, fs1, fs0
-  FSGNJ.S fa0, fs2, fs2
+  FADD.S fs0, fs1, fs0
+  FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
   FLD fs2, 32(sp)
-  FLD fs3, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb12:
@@ -209,6 +202,5 @@ bb12:
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
   FLD fs2, 32(sp)
-  FLD fs3, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)

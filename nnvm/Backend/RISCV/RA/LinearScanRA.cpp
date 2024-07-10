@@ -28,7 +28,6 @@ void LinearScanRA::spillAtInterval(const LiveInterval &current, LIRFunc &func) {
     auto spilledIt = active.begin();
     while (spilledIt != active.end()) {
       if (reg2Reg[spilledIt->reg] == current.reg) {
-        reg2Reg[spilledIt->reg] = nullptr;
         vregToStack[spilledIt->reg] =
             func.allocStackSlot(spilledIt->reg->bytes());
         spilledIt = active.erase(spilledIt);
@@ -113,9 +112,8 @@ bool LinearScanRA::tryCoalescingInterval(const LiveInterval &interval) {
   LIRInst *copyInst = interval.reg->getDefs().getFirst()->getInst();
   if (!match(copyInst, pattern::pCopy(pattern::pReg(A), pattern::pReg(B))))
     return false;
-
   Register *BReg = B->as<Register>();
-  if (!reg2Reg.count(BReg) || !reg2Reg[BReg])
+  if (vregToStack.count(BReg) || !reg2Reg.count(BReg))
     return false;
   Register *candidate = reg2Reg[BReg];
   if (!freeRegs.count(candidate))
@@ -167,8 +165,8 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
 
     if (!interval.fixed()) {
 
-      //if (tryCoalescingInterval(interval))
-        //continue;
+      if (tryCoalescingInterval(interval))
+        continue;
 
       Register *phyReg = nullptr;
       for (Register *freeReg : freeRegs) {

@@ -13,24 +13,23 @@ main:
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 reverse:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 1
-  SLT s2, s1, s0
-  XORI s1, s2, 1
+  SLT s1, s1, s0
+  XORI s1, s1, 1
   BNE s1, zero, bb4
   # implict jump to bb2
 bb2:
   CALL getint
   ADD s1, a0, zero
   ADDI s2, zero, 1
-  SUBW s3, s0, s2
-  ADD a0, s3, zero
+  SUBW s0, s0, s2
+  ADD a0, s0, zero
   CALL reverse
   ADD a0, s1, zero
   CALL putint
@@ -40,8 +39,7 @@ bb3:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb4:
   CALL getint

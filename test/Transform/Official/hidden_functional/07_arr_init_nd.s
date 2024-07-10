@@ -3,21 +3,20 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -480
+  ADDI sp, sp, -464
   SD ra, 416(sp)
   SD s0, 424(sp)
   SD s1, 432(sp)
   SD s2, 440(sp)
   SD s3, 448(sp)
   SD s4, 456(sp)
-  SD s5, 464(sp)
   ADDI s0, zero, 15
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
   XOR s2, s1, zero
-  SLTU s3, zero, s2
-  BNE s3, zero, bb6
+  SLTU s2, zero, s2
+  BNE s2, zero, bb6
   # implict jump to bb2
 bb2:
   ADDI s2, zero, 1
@@ -208,8 +207,8 @@ bb2:
 bb3:
   ADD s3, s2, zero
   XOR s4, s3, zero
-  SLTU s5, zero, s4
-  BNE s5, zero, bb5
+  SLTU s4, zero, s4
+  BNE s4, zero, bb5
   # implict jump to bb4
 bb4:
   ADDI a0, zero, 4
@@ -219,25 +218,24 @@ bb4:
   LD s2, 440(sp)
   LD s3, 448(sp)
   LD s4, 456(sp)
-  LD s5, 464(sp)
-  ADDI sp, sp, 480
+  ADDI sp, sp, 464
   JALR zero, 0(ra)
 bb5:
   ADDI s4, zero, 1
-  SUBW s5, s3, s4
-  SLLIW s3, s5, 2
-  ADDIW s4, s3, 20
+  SUBW s3, s3, s4
+  SLLIW s4, s3, 2
+  ADDIW s4, s4, 20
   ADDI t5, sp, 0
-  ADD s3, t5, s4
-  SW zero, 0(s3)
-  ADD s2, s5, zero
+  ADD s4, t5, s4
+  SW zero, 0(s4)
+  ADD s2, s3, zero
   JAL zero, bb3
 bb6:
   ADDI s2, zero, 1
-  SUBW s3, s1, s2
-  SLLIW s1, s3, 2
+  SUBW s1, s1, s2
+  SLLIW s2, s1, 2
   ADDI t5, sp, 352
-  ADD s2, t5, s1
+  ADD s2, t5, s2
   SW zero, 0(s2)
-  ADD s0, s3, zero
+  ADD s0, s1, zero
   JAL zero, bb1
