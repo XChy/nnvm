@@ -1,7 +1,9 @@
 #include "CFGCombiner.h"
+#include "ADT/PatternMatch.h"
 #include "ADT/Ranges.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/BlockUtils.h"
+#include "Transform/Scalar/CombinePatterns.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
 using namespace nnvm;
@@ -101,11 +103,13 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
 
 bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
   // Replace "br true, a, b" with "br a".
+  BasicBlock *trueSucc = BI->getSucc(0);
+  BasicBlock *falseSucc = BI->getSucc(1);
+
   if (BI->getCondition()->isConstant()) {
     ConstantInt *constCond = dyn_cast<ConstantInt>(BI->getCondition());
 
-    BasicBlock *unlinked =
-        constCond->getValue() ? BI->getSucc(1) : BI->getSucc(0);
+    BasicBlock *unlinked = constCond->getValue() ? falseSucc : trueSucc;
     for (Instruction *I : *unlinked)
       if (PhiInst *phi = dyn_cast<PhiInst>(I))
         phi->removeIncoming(BB);
@@ -113,16 +117,77 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
         break;
 
     builder.setInsertPoint(BB->end());
-    builder.buildBr(constCond->getValue() ? BI->getSucc(0) : BI->getSucc(1));
+    builder.buildBr(constCond->getValue() ? trueSucc : falseSucc);
     BI->eraseFromBB();
     return true;
   }
 
-  if (BI->getSucc(0) == BI->getSucc(1)) {
+  // "br cond, dest, dest"  --> "br dest"
+  if (trueSucc == falseSucc) {
     builder.setInsertPoint(BB->end());
-    builder.buildBr(BI->getSucc(0));
+    builder.buildBr(trueSucc);
     BI->eraseFromBB();
     return true;
   }
+
+  // phi elimination in if-else
+
+  if (foldIfElse(BB, BI, trueSucc, falseSucc))
+    return true;
+
   return false;
+}
+
+bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
+                                 BasicBlock *trueSucc, BasicBlock *falseSucc) {
+  BasicBlock *destBB = nullptr;
+  BasicBlock *trueIncoming = nullptr;
+  BasicBlock *falseIncoming = nullptr;
+  bool changed = false;
+  if (trueSucc->getSuccNum() == 1 && trueSucc->getSucc(0) == falseSucc) {
+    trueIncoming = trueSucc;
+    falseIncoming = BB;
+    destBB = falseSucc;
+  } else if (falseSucc->getSuccNum() == 1 &&
+             falseSucc->getSucc(0) == trueSucc) {
+    trueIncoming = BB;
+    falseIncoming = falseSucc;
+    destBB = trueSucc;
+  } else if (trueSucc->getSuccNum() == 1 && falseSucc->getSuccNum() == 1) {
+    if (trueSucc->getSucc(0) == falseSucc->getSucc(0)) {
+      trueIncoming = trueSucc;
+      falseIncoming = falseSucc;
+      destBB = trueSucc->getSucc(0);
+    }
+  }
+
+  if (!destBB || destBB == BB)
+    return false;
+
+  // for (auto *I : incChange(*destBB)) {
+  // PhiInst *phi = dyn_cast<PhiInst>(I);
+  // if (!phi || phi->getIncomingNum() != 2)
+  // break;
+  // Value *trueValue = phi->getIncomingValueOf(trueIncoming);
+  // Value *falseValue = phi->getIncomingValueOf(falseIncoming);
+  // if (phi->getType()->isIntegerNBits(1)) {
+  // Value *newCond = nullptr;
+  // builder.setInsertPoint(destBB->begin());
+  // if (match(trueValue, pattern::pOne())) {
+  // newCond = builder.buildBinOp<OrInst>(BI->getCondition(), falseValue,
+  // phi->getType());
+  //} else if (match(falseValue, pattern::pZero())) {
+  // newCond = builder.buildBinOp<AndInst>(BI->getCondition(), trueValue,
+  // phi->getType());
+  //} else {
+  // continue;
+  //}
+
+  // phi->replaceSelf(newCond);
+  // phi->eraseFromBB();
+  // changed = true;
+  //}
+  //}
+
+  return changed;
 }

@@ -45,20 +45,20 @@ bb2:
   ADD s2, t5, s3
   FCVT.S.W fs0, s1
   FSW fs0, 0(s2)
-  ADDI t6, sp, 120
-  ADD s2, t6, s3
+  ADDI t5, sp, 120
+  ADD s2, t5, s3
   FSW fs0, 0(s2)
   ADDI t5, sp, 104
   ADD s2, t5, s3
   FSW fs0, 0(s2)
-  ADDI t6, sp, 88
-  ADD s2, t6, s3
+  ADDI t5, sp, 88
+  ADD s2, t5, s3
   FSW fs0, 0(s2)
   ADDI t5, sp, 72
   ADD s2, t5, s3
   FSW fs0, 0(s2)
-  ADDI t6, sp, 56
-  ADD s2, t6, s3
+  ADDI t5, sp, 56
+  ADD s2, t5, s3
   FSW fs0, 0(s2)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -130,8 +130,8 @@ bb7:
 bb8:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 16
-  ADD s2, t6, s3
+  ADDI t5, sp, 16
+  ADD s2, t5, s3
   FLW fs0, 0(s2)
   FCVT.W.S s2, fs0, rtz
   ADD a0, s2, zero

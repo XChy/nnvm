@@ -55,8 +55,8 @@ bb5:
   SUBW s3, s1, s2
   ADDI s1, zero, 4
   MULW s2, s3, s1
-  ADDI t6, sp, 0
-  ADD s1, t6, s2
+  ADDI t5, sp, 0
+  ADD s1, t5, s2
   LW s2, 0(s1)
   ADD a0, s2, zero
   CALL putch
@@ -224,8 +224,8 @@ bb26:
   SUBW s5, s3, s4
   ADDI s3, zero, 4
   MULW s4, s5, s3
-  ADDI t6, sp, 0
-  ADD s3, t6, s4
+  ADDI t5, sp, 0
+  ADD s3, t5, s4
   LW s4, 0(s3)
   ADD a0, s4, zero
   CALL putch

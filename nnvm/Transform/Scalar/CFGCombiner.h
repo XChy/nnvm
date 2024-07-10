@@ -20,6 +20,8 @@ private:
   bool processBB(BasicBlock *BB);
   bool foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI);
   bool foldBBWithCondBr(BasicBlock *BB, BranchInst *BI);
+  bool foldIfElse(BasicBlock *BB, BranchInst *BI, BasicBlock *trueSucc,
+                  BasicBlock *falseSucc);
   IRBuilder builder;
 };
 } /* namespace nnvm */

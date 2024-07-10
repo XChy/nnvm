@@ -17,7 +17,7 @@ select.exit60:
 then65:
   ret i32 6
 else67:
-  79 =  i1 1, i1 1
+  79 = xor i1 1, i1 1
   80 = zext i1 %79 to i32
   81 = icmp ne i32 %80, i32 0
   br i1 %81, bb %then82, bb %else84

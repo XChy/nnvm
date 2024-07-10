@@ -225,8 +225,8 @@ bb20:
 bb21:
   ADDI s11, zero, 4
   MULW t0, s10, s11
-  ADDI t6, sp, 0
-  ADD s11, t6, t0
+  ADDI t5, sp, 0
+  ADD s11, t5, t0
   LW t0, 0(s11)
   ADDI s11, zero, 4
   MULW t1, s9, s11
@@ -253,8 +253,8 @@ bb24:
 bb25:
   ADDI s7, zero, 4
   MULW s8, s10, s7
-  ADDI t6, sp, 0
-  ADD s7, t6, s8
+  ADDI t5, sp, 0
+  ADD s7, t5, s8
   LW s8, 0(s7)
   ADDI s9, zero, 4
   MULW s10, s4, s9

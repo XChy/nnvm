@@ -56,7 +56,7 @@ external void putint(i32 )
 pure i32 func7(i32 x) {
 entry74:
   77 = icmp ne i32 %x, i32 0
-  78 =  i1 %77, i1 1
+  78 = xor i1 %77, i1 1
   79 = zext i1 %78 to i32
   80 = icmp ne i32 %79, i32 0
   br i1 %80, bb %then81, bb %else83
@@ -101,7 +101,7 @@ while.body:
   br bb %while.cond
 while.exit:
   77280 = icmp ne i32 %86, i32 0
-  78281 =  i1 %77280, i1 1
+  78281 = xor i1 %77280, i1 1
   79282 = zext i1 %78281 to i32
   80283 = icmp ne i32 %79282, i32 0
   br i1 %80283, bb %func7.then81, bb %func7.else83
@@ -124,7 +124,7 @@ while.exit.split:
   129 = ptradd ptr %arr, i32 12
   129.load = load i32 from ptr %129
   77292 = icmp ne i32 %129.load, i32 0
-  78293 =  i1 %77292, i1 1
+  78293 = xor i1 %77292, i1 1
   79294 = zext i1 %78293 to i32
   80295 = icmp ne i32 %79294, i32 0
   br i1 %80295, bb %func7.then81297, bb %func7.else83299
@@ -139,7 +139,7 @@ while.exit.split.split:
   137 = ptradd ptr %arr, i32 20
   137.load = load i32 from ptr %137
   77304 = icmp ne i32 %137.load, i32 0
-  78305 =  i1 %77304, i1 1
+  78305 = xor i1 %77304, i1 1
   79306 = zext i1 %78305 to i32
   80307 = icmp ne i32 %79306, i32 0
   br i1 %80307, bb %func7.then81309, bb %func7.else83311
@@ -161,7 +161,7 @@ while.exit.split.split.split302.split350:
   154 = ptradd ptr %arr, i32 36
   154.load = load i32 from ptr %154
   77316 = icmp ne i32 %154.load, i32 0
-  78317 =  i1 %77316, i1 1
+  78317 = xor i1 %77316, i1 1
   79318 = zext i1 %78317 to i32
   80319 = icmp ne i32 %79318, i32 0
   br i1 %80319, bb %func7.then81321, bb %func7.else83323
@@ -174,7 +174,7 @@ while.exit.split.split.split302.split:
 while.exit.split.split.split302.split.split359:
   160.ret = phi [bb %func4.then50363, i32 %119.load, bb %func4.else52365, i32 %159]
   77328 = icmp ne i32 %90, i32 0
-  78329 =  i1 %77328, i1 1
+  78329 = xor i1 %77328, i1 1
   79330 = zext i1 %78329 to i32
   80331 = icmp ne i32 %79330, i32 0
   br i1 %80331, bb %func7.then81333, bb %func7.else83335
@@ -190,7 +190,7 @@ while.exit.split.split.split302.split.split:
   58270 = sub i32 0, i32 %143.load
   194 = call i32 func2(i32 %189, i32 %58270)
   77340 = icmp ne i32 %151.load, i32 0
-  78341 =  i1 %77340, i1 1
+  78341 = xor i1 %77340, i1 1
   79342 = zext i1 %78341 to i32
   80343 = icmp ne i32 %79342, i32 0
   br i1 %80343, bb %func7.then81345, bb %func7.else83347

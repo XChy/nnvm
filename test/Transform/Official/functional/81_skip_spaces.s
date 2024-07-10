@@ -48,8 +48,8 @@ bb5:
   SUBW s5, s1, s4
   ADDI s1, zero, 4
   MULW s4, s5, s1
-  ADDI t6, sp, 0
-  ADD s1, t6, s4
+  ADDI t5, sp, 0
+  ADD s1, t5, s4
   LW s4, 0(s1)
   ADDW s1, s3, s4
   ADD s0, s1, zero

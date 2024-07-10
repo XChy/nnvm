@@ -103,6 +103,10 @@ public:
     nnvm_unimpl();
   }
 
+  Constant *getConstantInt(Type *type, GInt value) {
+    return ConstantInt::create(*module, type, value);
+  }
+
 private:
   BasicBlock::Iterator insertPoint;
   Module *module;

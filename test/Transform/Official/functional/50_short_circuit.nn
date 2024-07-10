@@ -57,7 +57,7 @@ select.exit58:
   call void putint(i32 %4132)
   g.load7135 = load i32 from ptr @g
   69 = icmp ne i32 %g.load7135, i32 0
-  70 =  i1 %69, i1 1
+  70 = xor i1 %69, i1 1
   71 = zext i1 %70 to i32
   72 = icmp ne i32 %71, i32 0
   br i1 %72, bb %select.then73, bb %select.exit75

@@ -40,50 +40,50 @@ eval:
   ADDIW t5, t5, -1912
   ADD t5, t5, sp
   SD s10, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1904
-  ADD t6, t6, sp
-  SD s11, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1904
+  ADD t5, t5, sp
+  SD s11, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1896
   ADD t5, t5, sp
   SD s7, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1888
-  ADD t6, t6, sp
-  SD s0, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1888
+  ADD t5, t5, sp
+  SD s0, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1880
   ADD t5, t5, sp
   SD s5, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1872
-  ADD t6, t6, sp
-  SD s1, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1872
+  ADD t5, t5, sp
+  SD s1, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1864
   ADD t5, t5, sp
   SD s6, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1856
-  ADD t6, t6, sp
-  SD s2, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1856
+  ADD t5, t5, sp
+  SD s2, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1848
   ADD t5, t5, sp
   SD s3, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1840
-  ADD t6, t6, sp
-  SD ra, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1840
+  ADD t5, t5, sp
+  SD ra, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1832
   ADD t5, t5, sp
   SD s4, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  SD s9, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1824
+  ADD t5, t5, sp
+  SD s9, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1816
   ADD t5, t5, sp
@@ -101,8 +101,8 @@ bb2:
   SUBW s3, s1, s2
   ADDI s1, zero, 4
   MULW s2, s3, s1
-  ADDI t6, sp, 1024
-  ADD s1, t6, s2
+  ADDI t5, sp, 1024
+  ADD s1, t5, s2
   SW zero, 0(s1)
   ADD s0, s3, zero
   JAL zero, bb1
@@ -148,42 +148,42 @@ bb7:
   ADDI a0, zero, 10
   CALL putch
   ADDI a0, zero, -1
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  LD s10, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1912
+  ADD t5, t5, sp
+  LD s10, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1904
   ADD t5, t5, sp
   LD s11, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  LD s7, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1896
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1888
   ADD t5, t5, sp
   LD s0, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1880
-  ADD t6, t6, sp
-  LD s5, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1880
+  ADD t5, t5, sp
+  LD s5, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1872
   ADD t5, t5, sp
   LD s1, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1864
-  ADD t6, t6, sp
-  LD s6, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1864
+  ADD t5, t5, sp
+  LD s6, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1856
   ADD t5, t5, sp
   LD s2, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1848
-  ADD t6, t6, sp
-  LD s3, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1848
+  ADD t5, t5, sp
+  LD s3, 0(t5)
   LUI ra, 1
   ADDIW ra, ra, -1840
   ADD ra, ra, sp
@@ -192,10 +192,10 @@ bb7:
   ADDIW t5, t5, -1832
   ADD t5, t5, sp
   LD s4, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  LD s9, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1824
+  ADD t5, t5, sp
+  LD s9, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1816
   ADD t5, t5, sp
@@ -212,8 +212,8 @@ bb8:
   SW s2, 1024(sp)
   ADDI s0, zero, 4
   MULW s3, s2, s0
-  ADDI t6, sp, 1024
-  ADD s0, t6, s3
+  ADDI t5, sp, 1024
+  ADD s0, t5, s3
   SW s1, 0(s0)
   JAL zero, bb72
 bb9:
@@ -253,10 +253,10 @@ bb9:
 bb10:
   LA s1, other
   LW t4, 0(s1)
-  LUI t6, 1
-  ADDIW t6, t6, -2020
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2020
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LUI t4, 1
   ADDIW t4, t4, -2020
   ADD t4, t4, sp
@@ -288,20 +288,20 @@ bb11:
   JAL zero, bb99
 bb12:
   ADD t4, s9, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1932
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1932
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   ADD t4, s8, zero
   LUI t5, 1
   ADDIW t5, t5, -1936
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD t4, s7, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1940
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1940
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LW s1, 0(sp)
   XOR s2, s1, zero
   SLTU s1, zero, s2
@@ -320,8 +320,8 @@ bb13:
   LW s3, 1024(sp)
   ADDI s5, zero, 4
   MULW s11, s3, s5
-  ADDI t6, sp, 1024
-  ADD s5, t6, s11
+  ADDI t5, sp, 1024
+  ADD s5, t5, s11
   LW s11, 0(s5)
   ADDI s5, zero, 1
   SUBW s10, s3, s5
@@ -346,8 +346,8 @@ bb14:
   SW s2, 1024(sp)
   ADDI s6, zero, 4
   MULW s1, s2, s6
-  ADDI t6, sp, 1024
-  ADD s2, t6, s1
+  ADDI t5, sp, 1024
+  ADD s2, t5, s1
   SW s3, 0(s2)
   ADD s7, s11, zero
   ADD s8, s10, zero
@@ -376,8 +376,8 @@ bb16:
   LW s1, 0(sp)
   ADDI s2, zero, 4
   MULW s4, s1, s2
-  ADDI t6, sp, 0
-  ADD s1, t6, s4
+  ADDI t5, sp, 0
+  ADD s1, t5, s4
   LW t4, 0(s1)
   LUI t5, 1
   ADDIW t5, t5, -1924
@@ -400,10 +400,10 @@ bb17:
   SLT s6, s3, t4
   XORI s3, s6, 1
   ADD t4, s3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1928
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb19
 bb18:
   ADD t4, zero, zero
@@ -436,42 +436,42 @@ bb20:
   ADDI a0, zero, 10
   CALL putch
   ADDI a0, zero, -1
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  LD s10, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1912
+  ADD t5, t5, sp
+  LD s10, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1904
   ADD t5, t5, sp
   LD s11, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  LD s7, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1896
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1888
   ADD t5, t5, sp
   LD s0, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1880
-  ADD t6, t6, sp
-  LD s5, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1880
+  ADD t5, t5, sp
+  LD s5, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1872
   ADD t5, t5, sp
   LD s1, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1864
-  ADD t6, t6, sp
-  LD s6, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1864
+  ADD t5, t5, sp
+  LD s6, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1856
   ADD t5, t5, sp
   LD s2, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1848
-  ADD t6, t6, sp
-  LD s3, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1848
+  ADD t5, t5, sp
+  LD s3, 0(t5)
   LUI ra, 1
   ADDIW ra, ra, -1840
   ADD ra, ra, sp
@@ -480,10 +480,10 @@ bb20:
   ADDIW t5, t5, -1832
   ADD t5, t5, sp
   LD s4, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  LD s9, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1824
+  ADD t5, t5, sp
+  LD s9, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1816
   ADD t5, t5, sp
@@ -500,8 +500,8 @@ bb21:
   SW s2, 1024(sp)
   ADDI s0, zero, 4
   MULW s3, s2, s0
-  ADDI t6, sp, 1024
-  ADD s0, t6, s3
+  ADDI t5, sp, 1024
+  ADD s0, t5, s3
   SW s1, 0(s0)
   JAL zero, bb126
 bb22:
@@ -523,8 +523,8 @@ bb23:
   LW s3, 1024(sp)
   ADDI s8, zero, 4
   MULW s9, s3, s8
-  ADDI t6, sp, 1024
-  ADD s8, t6, s9
+  ADDI t5, sp, 1024
+  ADD s8, t5, s9
   LW s9, 0(s8)
   ADDI s8, zero, 1
   SUBW s7, s3, s8
@@ -549,8 +549,8 @@ bb24:
   SW s6, 1024(sp)
   ADDI s7, zero, 4
   MULW s5, s6, s7
-  ADDI t6, sp, 1024
-  ADD s6, t6, s5
+  ADDI t5, sp, 1024
+  ADD s6, t5, s5
   SW s2, 0(s6)
   JAL zero, bb22
 bb25:
@@ -561,42 +561,42 @@ bb25:
   ADD s2, t5, s5
   LW s3, 0(s2)
   ADD a0, s3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  LD s10, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1912
+  ADD t5, t5, sp
+  LD s10, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1904
   ADD t5, t5, sp
   LD s11, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  LD s7, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1896
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1888
   ADD t5, t5, sp
   LD s0, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1880
-  ADD t6, t6, sp
-  LD s5, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1880
+  ADD t5, t5, sp
+  LD s5, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1872
   ADD t5, t5, sp
   LD s1, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1864
-  ADD t6, t6, sp
-  LD s6, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1864
+  ADD t5, t5, sp
+  LD s6, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1856
   ADD t5, t5, sp
   LD s2, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1848
-  ADD t6, t6, sp
-  LD s3, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1848
+  ADD t5, t5, sp
+  LD s3, 0(t5)
   LUI ra, 1
   ADDIW ra, ra, -1840
   ADD ra, ra, sp
@@ -605,10 +605,10 @@ bb25:
   ADDIW t5, t5, -1832
   ADD t5, t5, sp
   LD s4, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  LD s9, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1824
+  ADD t5, t5, sp
+  LD s9, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1816
   ADD t5, t5, sp
@@ -705,10 +705,10 @@ bb45:
   JAL zero, bb24
 bb46:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2004
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb48
 bb47:
   LUI t4, 1
@@ -733,10 +733,10 @@ bb48:
   JAL zero, bb50
 bb49:
   ADDI t4, zero, 10
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2000
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb11
 bb50:
   LUI t4, 1
@@ -788,10 +788,10 @@ bb57:
   JAL zero, bb11
 bb58:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2000
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb11
 bb59:
   ADDI t4, zero, 1
@@ -808,10 +808,10 @@ bb60:
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1920
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1920
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb61
 bb61:
   LUI t4, 1
@@ -929,20 +929,20 @@ bb77:
   JAL zero, bb80
 bb78:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1984
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1984
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   ADD t4, zero, zero
   LUI t5, 1
   ADDIW t5, t5, -1988
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1992
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb9
 bb79:
   LA s0, last_char
@@ -1005,10 +1005,10 @@ bb84:
   JAL zero, bb86
 bb85:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2036
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2036
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb86
 bb86:
   LUI t4, 1
@@ -1027,10 +1027,10 @@ bb87:
   JAL zero, bb76
 bb88:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2032
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2032
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb76
 bb89:
   ADDI s6, zero, 57
@@ -1044,10 +1044,10 @@ bb89:
   JAL zero, bb91
 bb90:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2028
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2028
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb91
 bb91:
   LUI t4, 1
@@ -1066,10 +1066,10 @@ bb92:
   JAL zero, bb81
 bb93:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2024
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2024
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb81
 bb94:
   ADDI t4, zero, 1
@@ -1086,10 +1086,10 @@ bb95:
   XORI s0, t4, 10
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2048
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2048
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb96
 bb96:
   LUI t4, 1
@@ -1108,10 +1108,10 @@ bb97:
   JAL zero, bb73
 bb98:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2040
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb73
 bb99:
   LA s0, last_char
@@ -1240,10 +1240,10 @@ bb111:
   SLT s5, s3, s4
   XORI s3, s5, 1
   ADD t4, s3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1956
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1956
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb113
 bb112:
   ADD t4, zero, zero
@@ -1262,10 +1262,10 @@ bb113:
   JAL zero, bb115
 bb114:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1952
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1952
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb103
 bb115:
   ADD t4, zero, zero
@@ -1279,10 +1279,10 @@ bb116:
   SLT s7, s6, s5
   XORI s5, s7, 1
   ADD t4, s5, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1948
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1948
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb118
 bb117:
   ADD t4, zero, zero
@@ -1301,10 +1301,10 @@ bb118:
   JAL zero, bb120
 bb119:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1944
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1944
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb108
 bb120:
   ADD t4, zero, zero
@@ -1315,10 +1315,10 @@ bb120:
   JAL zero, bb108
 bb121:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1968
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1968
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb123
 bb122:
   LUI t4, 1
@@ -1343,10 +1343,10 @@ bb123:
   JAL zero, bb125
 bb124:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1960
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1960
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb100
 bb125:
   ADD t4, zero, zero
@@ -1419,10 +1419,10 @@ bb132:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1992
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb9
 bb133:
   LA s6, last_char
@@ -1662,10 +1662,10 @@ bb173:
   JAL zero, bb161
 bb174:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1980
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1980
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb176
 bb175:
   LUI t4, 1
@@ -1690,10 +1690,10 @@ bb176:
   JAL zero, bb178
 bb177:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1972
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1972
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb154
 bb178:
   ADD t4, zero, zero
@@ -2062,42 +2062,42 @@ main:
   ADDIW t5, t5, -1872
   ADD t5, t5, sp
   SD s6, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1864
-  ADD t6, t6, sp
-  SD s5, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1864
+  ADD t5, t5, sp
+  SD s5, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1856
   ADD t5, t5, sp
   SD s7, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1848
-  ADD t6, t6, sp
-  SD s10, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1848
+  ADD t5, t5, sp
+  SD s10, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1840
   ADD t5, t5, sp
   SD s1, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1832
-  ADD t6, t6, sp
-  SD s8, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1832
+  ADD t5, t5, sp
+  SD s8, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1824
   ADD t5, t5, sp
   SD s11, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1816
-  ADD t6, t6, sp
-  SD ra, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1816
+  ADD t5, t5, sp
+  SD ra, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1808
   ADD t5, t5, sp
   SD s0, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1800
-  ADD t6, t6, sp
-  SD s3, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1800
+  ADD t5, t5, sp
+  SD s3, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1792
   ADD t5, t5, sp
@@ -2112,10 +2112,10 @@ main:
   SD s9, 0(t4)
   CALL getint
   ADD t4, a0, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2048
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2048
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb296
@@ -2156,34 +2156,34 @@ bb223:
   JAL zero, bb221
 bb224:
   ADD a0, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1872
-  ADD t6, t6, sp
-  LD s6, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1872
+  ADD t5, t5, sp
+  LD s6, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1864
   ADD t5, t5, sp
   LD s5, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1856
-  ADD t6, t6, sp
-  LD s7, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1856
+  ADD t5, t5, sp
+  LD s7, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1848
   ADD t5, t5, sp
   LD s10, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1840
-  ADD t6, t6, sp
-  LD s1, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1840
+  ADD t5, t5, sp
+  LD s1, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1832
   ADD t5, t5, sp
   LD s8, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  LD s11, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1824
+  ADD t5, t5, sp
+  LD s11, 0(t5)
   LUI ra, 1
   ADDIW ra, ra, -1816
   ADD ra, ra, sp
@@ -2192,18 +2192,18 @@ bb224:
   ADDIW t5, t5, -1808
   ADD t5, t5, sp
   LD s0, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1800
-  ADD t6, t6, sp
-  LD s3, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1800
+  ADD t5, t5, sp
+  LD s3, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1792
   ADD t5, t5, sp
   LD s2, 0(t5)
-  LUI t6, 1
-  ADDIW t6, t6, -1784
-  ADD t6, t6, sp
-  LD s4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1784
+  ADD t5, t5, sp
+  LD s4, 0(t5)
   LUI t5, 1
   ADDIW t5, t5, -1776
   ADD t5, t5, sp
@@ -2223,8 +2223,8 @@ bb226:
   SUBW s1, s11, s0
   ADDI s0, zero, 4
   MULW s11, s1, s0
-  ADDI t6, sp, 0
-  ADD s0, t6, s11
+  ADDI t5, sp, 0
+  ADD s0, t5, s11
   SW zero, 0(s0)
   ADD s10, s1, zero
   JAL zero, bb225
@@ -2270,10 +2270,10 @@ bb231:
   ADDI a0, zero, 10
   CALL putch
   ADDI t4, zero, -1
-  LUI t6, 1
-  ADDIW t6, t6, -1944
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1944
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb223
 bb232:
   LA s1, num
@@ -2311,10 +2311,10 @@ bb233:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1980
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1980
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LA s10, cur_token
   LW s3, 0(s10)
   XORI s10, s3, 1
@@ -2342,10 +2342,10 @@ bb235:
   ADD t3, t3, sp
   LW t3, 0(t3)
   ADD t4, t3, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1960
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1960
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LUI t4, 1
   ADDIW t4, t4, -1960
   ADD t4, t4, sp
@@ -2364,10 +2364,10 @@ bb236:
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD t4, s8, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1896
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   ADD t4, s7, zero
   LUI t5, 1
   ADDIW t5, t5, -1900
@@ -2382,8 +2382,8 @@ bb237:
   LW s3, 1024(sp)
   ADDI s5, zero, 4
   MULW s0, s3, s5
-  ADDI t6, sp, 1024
-  ADD s5, t6, s0
+  ADDI t5, sp, 1024
+  ADD s5, t5, s0
   LW s0, 0(s5)
   ADDI s5, zero, 1
   SUBW s11, s3, s5
@@ -2400,8 +2400,8 @@ bb237:
   LW s3, 0(sp)
   ADDI s5, zero, 4
   MULW s10, s3, s5
-  ADDI t6, sp, 0
-  ADD s5, t6, s10
+  ADDI t5, sp, 0
+  ADD s5, t5, s10
   LW s10, 0(s5)
   ADDI s5, zero, 1
   SUBW s6, s3, s5
@@ -2430,8 +2430,8 @@ bb239:
   SW s1, 1024(sp)
   ADDI s0, zero, 4
   MULW s2, s1, s0
-  ADDI t6, sp, 1024
-  ADD s0, t6, s2
+  ADDI t5, sp, 1024
+  ADD s0, t5, s2
   LUI t4, 1
   ADDIW t4, t4, -1984
   ADD t4, t4, sp
@@ -2450,10 +2450,10 @@ bb240:
   ADDI t5, sp, 1024
   ADD s1, t5, s4
   LW t4, 0(s1)
-  LUI t6, 1
-  ADDIW t6, t6, -1884
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1884
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LUI t4, 1
   ADDIW t4, t4, -1884
   ADD t4, t4, sp
@@ -2478,10 +2478,10 @@ bb241:
   JAL zero, bb243
 bb242:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1888
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1888
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb243
 bb243:
   LUI t4, 1
@@ -2520,8 +2520,8 @@ bb245:
   SW s2, 0(sp)
   ADDI s0, zero, 4
   MULW s3, s2, s0
-  ADDI t6, sp, 0
-  ADD s0, t6, s3
+  ADDI t5, sp, 0
+  ADD s0, t5, s3
   SW s1, 0(s0)
   JAL zero, bb403
 bb246:
@@ -2543,8 +2543,8 @@ bb247:
   LW s6, 0(sp)
   ADDI s7, zero, 4
   MULW s9, s6, s7
-  ADDI t6, sp, 0
-  ADD s7, t6, s9
+  ADDI t5, sp, 0
+  ADD s7, t5, s9
   LW s9, 0(s7)
   ADDI s7, zero, 1
   SUBW s0, s6, s7
@@ -2569,8 +2569,8 @@ bb248:
   SW s10, 0(sp)
   ADDI s6, zero, 4
   MULW s8, s10, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s8
+  ADDI t5, sp, 0
+  ADD s6, t5, s8
   SW s0, 0(s6)
   JAL zero, bb246
 bb249:
@@ -2581,10 +2581,10 @@ bb249:
   ADD s0, t5, s6
   LW s4, 0(s0)
   ADD t4, s4, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1944
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1944
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb223
 bb250:
   ADDW s3, s10, s11
@@ -2687,10 +2687,10 @@ bb271:
   XORI s0, t4, 45
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1968
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1968
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb272
 bb272:
   LUI t4, 1
@@ -2750,10 +2750,10 @@ bb280:
   JAL zero, bb282
 bb281:
   ADDI t4, zero, 20
-  LUI t6, 1
-  ADDIW t6, t6, -1964
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1964
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb235
 bb282:
   ADD t4, zero, zero
@@ -2764,10 +2764,10 @@ bb282:
   JAL zero, bb235
 bb283:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1880
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1880
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb285
 bb284:
   LUI t4, 1
@@ -2843,10 +2843,10 @@ bb295:
 bb296:
   LA s1, last_char
   LW t4, 0(s1)
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2040
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LUI t4, 1
   ADDIW t4, t4, -2040
   ADD t4, t4, sp
@@ -2964,10 +2964,10 @@ bb308:
   JAL zero, bb310
 bb309:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2032
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2032
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb310
 bb310:
   LUI t4, 1
@@ -2986,10 +2986,10 @@ bb311:
   JAL zero, bb300
 bb312:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2028
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2028
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb300
 bb313:
   ADDI s7, zero, 57
@@ -3003,10 +3003,10 @@ bb313:
   JAL zero, bb315
 bb314:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2024
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2024
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb315
 bb315:
   LUI t4, 1
@@ -3025,10 +3025,10 @@ bb316:
   JAL zero, bb305
 bb317:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2020
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2020
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb305
 bb318:
   ADDI t4, zero, 1
@@ -3045,10 +3045,10 @@ bb319:
   XORI s0, t4, 10
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2044
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2044
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb320
 bb320:
   LUI t4, 1
@@ -3067,10 +3067,10 @@ bb321:
   JAL zero, bb297
 bb322:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2036
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2036
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb297
 bb323:
   LA s1, last_char
@@ -3130,20 +3130,20 @@ bb328:
   JAL zero, bb331
 bb329:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1948
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1948
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   ADD t4, zero, zero
   LUI t5, 1
   ADDIW t5, t5, -1952
   ADD t5, t5, sp
   SW t4, 0(t5)
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1956
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1956
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb233
 bb330:
   LA s0, last_char
@@ -3206,10 +3206,10 @@ bb335:
   JAL zero, bb337
 bb336:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2000
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb337
 bb337:
   LUI t4, 1
@@ -3228,10 +3228,10 @@ bb338:
   JAL zero, bb327
 bb339:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1996
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1996
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb327
 bb340:
   ADDI s5, zero, 57
@@ -3245,10 +3245,10 @@ bb340:
   JAL zero, bb342
 bb341:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1992
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb342
 bb342:
   LUI t4, 1
@@ -3267,10 +3267,10 @@ bb343:
   JAL zero, bb332
 bb344:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1988
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1988
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb332
 bb345:
   ADDI t4, zero, 1
@@ -3287,10 +3287,10 @@ bb346:
   XORI s0, t4, 10
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2012
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2012
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb347
 bb347:
   LUI t4, 1
@@ -3309,10 +3309,10 @@ bb348:
   JAL zero, bb324
 bb349:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -2004
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb324
 bb350:
   LA s4, last_char
@@ -3451,10 +3451,10 @@ bb370:
   JAL zero, bb358
 bb371:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1940
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1940
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb373
 bb372:
   LUI t4, 1
@@ -3479,10 +3479,10 @@ bb373:
   JAL zero, bb375
 bb374:
   ADDI t4, zero, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1932
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1932
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb351
 bb375:
   ADD t4, zero, zero
@@ -3494,10 +3494,10 @@ bb375:
 bb376:
   LA s0, last_char
   LW t4, 0(s0)
-  LUI t6, 1
-  ADDIW t6, t6, -1924
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1924
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   LUI t4, 1
   ADDIW t4, t4, -1924
   ADD t4, t4, sp
@@ -3625,10 +3625,10 @@ bb388:
   JAL zero, bb390
 bb389:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1916
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1916
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb390
 bb390:
   LUI t4, 1
@@ -3647,10 +3647,10 @@ bb391:
   JAL zero, bb380
 bb392:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1912
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb380
 bb393:
   ADDI s6, zero, 57
@@ -3664,10 +3664,10 @@ bb393:
   JAL zero, bb395
 bb394:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1908
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1908
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb395
 bb395:
   LUI t4, 1
@@ -3686,10 +3686,10 @@ bb396:
   JAL zero, bb385
 bb397:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1904
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1904
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb385
 bb398:
   ADDI t4, zero, 1
@@ -3706,10 +3706,10 @@ bb399:
   XORI s0, t4, 10
   SLTIU s1, s0, 1
   ADD t4, s1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  SB t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1928
+  ADD t5, t5, sp
+  SB t4, 0(t5)
   JAL zero, bb400
 bb400:
   LUI t4, 1
@@ -3728,10 +3728,10 @@ bb401:
   JAL zero, bb377
 bb402:
   ADD t4, zero, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1920
-  ADD t6, t6, sp
-  SW t4, 0(t6)
+  LUI t5, 1
+  ADDIW t5, t5, -1920
+  ADD t5, t5, sp
+  SW t4, 0(t5)
   JAL zero, bb377
 bb403:
   LA s0, last_char

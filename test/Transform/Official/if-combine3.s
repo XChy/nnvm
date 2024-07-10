@@ -44,7 +44,7 @@ bb3:
 bb4:
   ADD s3, s2, zero
   ADD s4, s1, zero
-  SLT s5, s4, s0
+  SLT s5, s3, s0
   BNE s5, zero, bb5
   JAL zero, bb6
 bb5:
@@ -345,12 +345,12 @@ bb5:
   ADDI s5, sp, 396
   ADDI s6, zero, 99
   SW s6, 0(s5)
-  ADDIW s5, s4, 1
-  ADD s4, zero, zero
-  ADD s6, s3, zero
+  ADDIW s5, s3, 1
+  ADD s3, zero, zero
+  ADD s6, s4, zero
   JAL zero, bb7
 bb6:
-  ADD a0, s3, zero
+  ADD a0, s4, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -373,27 +373,27 @@ bb6:
   JALR zero, 0(ra)
 bb7:
   ADD s7, s6, zero
-  ADD s8, s4, zero
+  ADD s8, s3, zero
   SLTI s9, s8, 100
   BNE s9, zero, bb8
   JAL zero, bb9
 bb8:
   ADDI s9, zero, 4
   MULW s10, s8, s9
-  ADDI t6, sp, 0
-  ADD s9, t6, s10
+  ADDI t5, sp, 0
+  ADD s9, t5, s10
   LW s10, 0(s9)
   ADDW s9, s7, s10
   ADDIW s10, s8, 1
-  ADD s4, s10, zero
+  ADD s3, s10, zero
   ADD s6, s9, zero
   JAL zero, bb7
 bb9:
-  LUI s4, 16
-  ADDIW s4, s4, -1
-  REMW s6, s7, s4
-  ADD s1, s5, zero
-  ADD s2, s6, zero
+  LUI s3, 16
+  ADDIW s3, s3, -1
+  REMW s6, s7, s3
+  ADD s1, s6, zero
+  ADD s2, s5, zero
   JAL zero, bb4
 func:
   ADDI sp, sp, -496
@@ -433,7 +433,7 @@ bb13:
 bb14:
   ADD s3, s2, zero
   ADD s4, s1, zero
-  SLT s5, s4, s0
+  SLT s5, s3, s0
   BNE s5, zero, bb15
   JAL zero, bb16
 bb15:
@@ -734,12 +734,12 @@ bb15:
   ADDI s5, sp, 396
   ADDI s6, zero, 99
   SW s6, 0(s5)
-  ADDIW s5, s4, 1
-  ADD s4, zero, zero
-  ADD s6, s3, zero
+  ADDIW s5, s3, 1
+  ADD s3, zero, zero
+  ADD s6, s4, zero
   JAL zero, bb17
 bb16:
-  ADD a0, s3, zero
+  ADD a0, s4, zero
   LD s10, 400(sp)
   LD s0, 408(sp)
   LD s5, 416(sp)
@@ -756,25 +756,25 @@ bb16:
   JALR zero, 0(ra)
 bb17:
   ADD s7, s6, zero
-  ADD s8, s4, zero
+  ADD s8, s3, zero
   SLTI s9, s8, 100
   BNE s9, zero, bb18
   JAL zero, bb19
 bb18:
   ADDI s9, zero, 4
   MULW s10, s8, s9
-  ADDI t6, sp, 0
-  ADD s9, t6, s10
+  ADDI t5, sp, 0
+  ADD s9, t5, s10
   LW s10, 0(s9)
   ADDW s9, s7, s10
   ADDIW s10, s8, 1
-  ADD s4, s10, zero
+  ADD s3, s10, zero
   ADD s6, s9, zero
   JAL zero, bb17
 bb19:
-  LUI s4, 16
-  ADDIW s4, s4, -1
-  REMW s6, s7, s4
-  ADD s1, s5, zero
-  ADD s2, s6, zero
+  LUI s3, 16
+  ADDIW s3, s3, -1
+  REMW s6, s7, s3
+  ADD s1, s6, zero
+  ADD s2, s5, zero
   JAL zero, bb14

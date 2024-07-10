@@ -26,8 +26,6 @@ void RegClearer::clear(LIRFunc &func,
   std::vector<Register *> fscratches;
   for (Register *reg : getScratchRegs(func.getParent()))
     scratches.push_back(reg);
-  for (Register *reg : getScratchFRegs(func.getParent()))
-    fscratches.push_back(reg);
 
   for (auto *bb : func) {
     for (auto *I : *bb) {
@@ -38,12 +36,7 @@ void RegClearer::clear(LIRFunc &func,
                               .getFreeRegs();
 
           // TODO: floating-point ?
-          if (op.getOperand()->isFP()) {
-            op.getOperand()->replaceWith(fscratches[fscratchIndex]);
-            fscratchIndex = (fscratchIndex + 1) % fscratches.size();
-            continue;
-          }
-
+          assert(op.getOperand()->isInteger());
           if (!freeRegs.empty() &&
               !calleeSavedRegs().count(freeRegs.front()->getRegId()) &&
               freeRegs.front()->isInteger()) {

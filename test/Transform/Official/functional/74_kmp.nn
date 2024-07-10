@@ -27,7 +27,7 @@ then70:
   79 = ptradd ptr %dst, i32 %78
   79.load = load i32 from ptr %79
   81 = icmp ne i32 %79.load, i32 0
-  82 =  i1 %81, i1 1
+  82 = xor i1 %81, i1 1
   83 = zext i1 %82 to i32
   84 = icmp ne i32 %83, i32 0
   br i1 %84, bb %then85, bb %if.exit86
@@ -157,7 +157,7 @@ KMP.then70:
   79172 = ptradd ptr %dst, i32 %78171
   79.load173 = load i32 from ptr %79172
   81174 = icmp ne i32 %79.load173, i32 0
-  82175 =  i1 %81174, i1 1
+  82175 = xor i1 %81174, i1 1
   83176 = zext i1 %82175 to i32
   84177 = icmp ne i32 %83176, i32 0
   br i1 %84177, bb %KMP.then85, bb %KMP.if.exit86

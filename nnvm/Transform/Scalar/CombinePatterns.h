@@ -82,6 +82,25 @@ protected:
   ConstantInt **receiver;
 };
 
+class pOne {
+public:
+  pOne() : receiver(nullptr) {}
+  pOne(ConstantInt *&receiver) : receiver(&receiver) {}
+  bool match(Value *op) {
+    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    if (!opcasted)
+      return false;
+    if (opcasted->getValue() != 1)
+      return false;
+    if (receiver)
+      *receiver = opcasted;
+    return true;
+  }
+
+protected:
+  ConstantInt **receiver;
+};
+
 class pInst {
 public:
   pInst() : receiver(nullptr) {}

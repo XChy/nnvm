@@ -32,7 +32,7 @@ while.body134:
   147 = ptradd ptr @vis, i32 %146
   147.load = load i32 from ptr %147
   149 = icmp ne i32 %147.load, i32 0
-  150 =  i1 %149, i1 1
+  150 = xor i1 %149, i1 1
   151 = zext i1 %150 to i32
   152 = icmp ne i32 %151, i32 0
   br i1 %152, bb %select.then153, bb %select.else154

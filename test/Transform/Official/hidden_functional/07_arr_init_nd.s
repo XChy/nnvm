@@ -225,8 +225,8 @@ bb5:
   ADDI s1, zero, 4
   MULW s2, s3, s1
   ADDIW s1, s2, 20
-  ADDI t6, sp, 0
-  ADD s2, t6, s1
+  ADDI t5, sp, 0
+  ADD s2, t5, s1
   SW zero, 0(s2)
   ADD s0, s3, zero
   JAL zero, bb4

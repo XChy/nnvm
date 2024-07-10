@@ -46,6 +46,7 @@ Value *Instruction::getOperand(uint no) const {
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Add, "add"},       {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
+    {InstID::And, "and"},       {InstID::Or, "or"},     {InstID::Xor, "xor"},
     {InstID::UDiv, "udiv"},     {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
     {InstID::SRem, "srem"},     {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
     {InstID::FMul, "fmul"},     {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
@@ -302,4 +303,11 @@ void PhiInst::replaceIncoming(BasicBlock *original, BasicBlock *current) {
 
 BasicBlock *PhiInst::getIncomingBB(uint64_t index) const {
   return cast<BasicBlock>(getOperand(2 * index));
+}
+
+Value *PhiInst::getIncomingValueOf(BasicBlock *incoming) const {
+  for (size_t i = 0; i < getOperandNum(); i += 2)
+    if (getOperand(i) == incoming)
+      return getOperand(i + 1);
+  return nullptr;
 }

@@ -67,7 +67,7 @@ while.body221:
 while.body221.split:
   230.ret = phi [bb %get_op_prec.then85, i32 10, bb %get_op_prec.then105, i32 20, bb %get_op_prec.if.exit106, i32 0]
   231 = icmp ne i32 %230.ret, i32 0
-  232 =  i1 %231, i1 1
+  232 = xor i1 %231, i1 1
   233 = zext i1 %232 to i32
   234 = icmp ne i32 %233, i32 0
   br i1 %234, bb %next_token.while.cond1387, bb %next_token.while.cond1191
@@ -912,7 +912,7 @@ eval.while.body221:
 eval.while.body221.split:
   230381.ret = phi [bb %get_op_prec.then85841, i32 10, bb %get_op_prec.then105862, i32 20, bb %get_op_prec.if.exit106864, i32 0]
   231382 = icmp ne i32 %230381.ret, i32 0
-  232383 =  i1 %231382, i1 1
+  232383 = xor i1 %231382, i1 1
   233384 = zext i1 %232383 to i32
   234385 = icmp ne i32 %233384, i32 0
   br i1 %234385, bb %next_token.while.cond1681, bb %next_token.while.cond1779

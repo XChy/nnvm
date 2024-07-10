@@ -190,8 +190,8 @@ bb10:
 bb11:
   ADDI s6, zero, 4
   MULW s7, s5, s6
-  ADDI t6, sp, 1024
-  ADD s6, t6, s7
+  ADDI t5, sp, 1024
+  ADD s6, t5, s7
   ADDI s8, zero, 2
   SUBW s9, s5, s8
   ADDI s8, zero, 4
@@ -199,8 +199,8 @@ bb11:
   ADDI t5, sp, 1024
   ADD s8, t5, s10
   LW s9, 0(s8)
-  ADDI t6, sp, 1144
-  ADD s8, t6, s7
+  ADDI t5, sp, 1144
+  ADD s8, t5, s7
   LW s7, 0(s8)
   ADDW s8, s9, s7
   ADDI s7, zero, 1
@@ -269,8 +269,8 @@ bb23:
   SUBW s7, s5, s6
   ADDI s5, zero, 4
   MULW s6, s7, s5
-  ADDI t6, sp, 0
-  ADD s5, t6, s6
+  ADDI t5, sp, 0
+  ADD s5, t5, s6
   SW zero, 0(s5)
   ADD s4, s7, zero
   JAL zero, bb22
@@ -329,8 +329,8 @@ bb29:
   SUBW s11, s7, s8
   ADDI s8, zero, 4
   MULW s1, s11, s8
-  ADDI t6, sp, 1088
-  ADD s8, t6, s1
+  ADDI t5, sp, 1088
+  ADD s8, t5, s1
   LW s11, 0(s8)
   XOR s8, s10, s11
   SLTIU s10, s8, 1
@@ -350,8 +350,8 @@ bb31:
   ADD s10, s8, s11
   ADDI s8, zero, 64
   MULW s11, s9, s8
-  ADDI t6, sp, 0
-  ADD s8, t6, s11
+  ADDI t5, sp, 0
+  ADD s8, t5, s11
   ADD s11, s8, s1
   LW s8, 0(s11)
   ADDIW s11, s8, 1
@@ -371,8 +371,8 @@ bb33:
   ADD s8, s6, s10
   ADDI s11, zero, 64
   MULW s0, s9, s11
-  ADDI t6, sp, 0
-  ADD s9, t6, s0
+  ADDI t5, sp, 0
+  ADD s9, t5, s0
   ADD s0, s9, s10
   LW s9, 0(s0)
   ADD s0, s6, s1
@@ -457,8 +457,8 @@ bb44:
 bb45:
   ADDI s8, zero, 4
   MULW s9, s7, s8
-  ADDI t6, sp, 0
-  ADD s8, t6, s9
+  ADDI t5, sp, 0
+  ADD s8, t5, s9
   ADDI s10, zero, 2
   SUBW s11, s7, s10
   ADDI s10, zero, 4
@@ -473,8 +473,8 @@ bb45:
   SUBW s11, s7, s9
   ADDI s9, zero, 4
   MULW t0, s11, s9
-  ADDI t6, sp, 0
-  ADD s9, t6, t0
+  ADDI t5, sp, 0
+  ADD s9, t5, t0
   LW s11, 0(s9)
   XOR s9, s10, s11
   SLTIU t0, s9, 1
@@ -588,8 +588,8 @@ bb61:
 bb62:
   ADDI s0, zero, 64
   MULW s2, s1, s0
-  ADDI t6, sp, 0
-  ADD s0, t6, s2
+  ADDI t5, sp, 0
+  ADD s0, t5, s2
   ADDI s1, zero, 4
   MULW s2, s3, s1
   ADD s1, s0, s2
@@ -647,8 +647,8 @@ bb66:
   ADD s10, s8, s11
   ADDI s8, zero, 64
   MULW s11, s9, s8
-  ADDI t6, sp, 0
-  ADD s8, t6, s11
+  ADDI t5, sp, 0
+  ADD s8, t5, s11
   ADD s11, s8, t0
   LW s8, 0(s11)
   ADDIW s11, s8, 1
@@ -668,8 +668,8 @@ bb68:
   ADD s8, s6, s10
   ADDI s11, zero, 64
   MULW t1, s9, s11
-  ADDI t6, sp, 0
-  ADD s9, t6, t1
+  ADDI t5, sp, 0
+  ADD s9, t5, t1
   ADD s11, s9, s10
   LW s9, 0(s11)
   ADD s10, s6, t0

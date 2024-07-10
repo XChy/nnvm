@@ -167,8 +167,8 @@ bb4:
 bb5:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 264
-  ADD s2, t6, s3
+  ADDI t5, sp, 264
+  ADD s2, t5, s3
   ADDI t5, sp, 448
   ADD s4, t5, s3
   LW s3, 0(s4)
@@ -187,8 +187,8 @@ bb7:
 bb8:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 160
-  ADD s2, t6, s3
+  ADDI t5, sp, 160
+  ADD s2, t5, s3
   ADDI t5, sp, 368
   ADD s4, t5, s3
   LW s3, 0(s4)
@@ -209,8 +209,8 @@ bb10:
 bb11:
   ADDI s2, zero, 4
   MULW s3, s1, s2
-  ADDI t6, sp, 0
-  ADD s2, t6, s3
+  ADDI t5, sp, 0
+  ADD s2, t5, s3
   SW zero, 0(s2)
   ADDIW s2, s1, 1
   ADD s0, s2, zero
@@ -255,8 +255,8 @@ bb16:
 bb17:
   ADDI s11, zero, 4
   MULW t0, s10, s11
-  ADDI t6, sp, 0
-  ADD s11, t6, t0
+  ADDI t5, sp, 0
+  ADD s11, t5, t0
   LW t0, 0(s11)
   ADDI t1, zero, 4
   MULW t2, s8, t1

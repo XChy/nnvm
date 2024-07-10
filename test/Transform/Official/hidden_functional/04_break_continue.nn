@@ -70,7 +70,7 @@ if.exit38:
 select.then:
   br bb %select.exit
 select.else:
-  47 =  i1 %36, i1 1
+  47 = xor i1 %36, i1 1
   48 = zext i1 %47 to i32
   49 = icmp ne i32 %48, i32 0
   br bb %select.exit

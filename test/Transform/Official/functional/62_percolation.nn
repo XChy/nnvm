@@ -102,13 +102,13 @@ while.body83:
   89 = call i32 getint()
   90 = call i32 getint()
   92 = icmp ne i32 %flag.phi303, i32 0
-  93 =  i1 %92, i1 1
+  93 = xor i1 %92, i1 1
   94 = zext i1 %93 to i32
   95 = icmp ne i32 %94, i32 0
   br i1 %95, bb %then96, bb %if.exit97
 while.exit84:
   251 = icmp ne i32 %flag.phi303, i32 0
-  252 =  i1 %251, i1 1
+  252 = xor i1 %251, i1 1
   253 = zext i1 %252 to i32
   254 = icmp ne i32 %253, i32 0
   br i1 %254, bb %then255, bb %if.exit256

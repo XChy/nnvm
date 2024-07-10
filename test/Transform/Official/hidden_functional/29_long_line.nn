@@ -55,7 +55,7 @@ entry:
 then:
   ret i32 1
 if.exit:
-  204 =  i1 1, i1 1
+  204 = xor i1 1, i1 1
   205 = zext i1 %204 to i32
   206 = icmp ne i32 %205, i32 0
   br i1 %206, bb %then207, bb %else
@@ -63,7 +63,7 @@ then207:
   br bb %if.exit208
 if.exit208:
   o0.phi = phi [bb %else, i32 0, bb %then207, i32 1]
-  212 =  i1 0, i1 1
+  212 = xor i1 0, i1 1
   213 = zext i1 %212 to i32
   214 = icmp ne i32 %213, i32 0
   br i1 %214, bb %then215, bb %else217
@@ -374,7 +374,7 @@ then806:
 if.exit807:
   a_and_b.phi = phi [bb %else808, i32 0, bb %then806, i32 1]
   811 = icmp ne i32 %a_and_b.phi, i32 0
-  812 =  i1 %811, i1 1
+  812 = xor i1 %811, i1 1
   813 = zext i1 %812 to i32
   814 = icmp ne i32 %813, i32 0
   br i1 %814, bb %then815, bb %else817
@@ -430,7 +430,7 @@ then852:
 if.exit853:
   a_and_b843.phi = phi [bb %else854, i32 0, bb %then852, i32 1]
   857 = icmp ne i32 %a_and_b843.phi, i32 0
-  858 =  i1 %857, i1 1
+  858 = xor i1 %857, i1 1
   859 = zext i1 %858 to i32
   860 = icmp ne i32 %859, i32 0
   br i1 %860, bb %then861, bb %else863
@@ -530,7 +530,7 @@ then939:
 if.exit940:
   a_and_b929.phi = phi [bb %else941, i32 0, bb %then939, i32 1]
   944 = icmp ne i32 %a_and_b929.phi, i32 0
-  945 =  i1 %944, i1 1
+  945 = xor i1 %944, i1 1
   946 = zext i1 %945 to i32
   947 = icmp ne i32 %946, i32 0
   br i1 %947, bb %then948, bb %else950
@@ -588,7 +588,7 @@ then987:
 if.exit988:
   a_and_b977.phi = phi [bb %else989, i32 0, bb %then987, i32 1]
   992 = icmp ne i32 %a_and_b977.phi, i32 0
-  993 =  i1 %992, i1 1
+  993 = xor i1 %992, i1 1
   994 = zext i1 %993 to i32
   995 = icmp ne i32 %994, i32 0
   br i1 %995, bb %then996, bb %else998
@@ -689,7 +689,7 @@ then1075:
 if.exit1076:
   a_and_b1065.phi = phi [bb %else1077, i32 0, bb %then1075, i32 1]
   1080 = icmp ne i32 %a_and_b1065.phi, i32 0
-  1081 =  i1 %1080, i1 1
+  1081 = xor i1 %1080, i1 1
   1082 = zext i1 %1081 to i32
   1083 = icmp ne i32 %1082, i32 0
   br i1 %1083, bb %then1084, bb %else1086
@@ -747,7 +747,7 @@ then1123:
 if.exit1124:
   a_and_b1113.phi = phi [bb %else1125, i32 0, bb %then1123, i32 1]
   1128 = icmp ne i32 %a_and_b1113.phi, i32 0
-  1129 =  i1 %1128, i1 1
+  1129 = xor i1 %1128, i1 1
   1130 = zext i1 %1129 to i32
   1131 = icmp ne i32 %1130, i32 0
   br i1 %1131, bb %then1132, bb %else1134
@@ -848,7 +848,7 @@ then1211:
 if.exit1212:
   a_and_b1201.phi = phi [bb %else1213, i32 0, bb %then1211, i32 1]
   1216 = icmp ne i32 %a_and_b1201.phi, i32 0
-  1217 =  i1 %1216, i1 1
+  1217 = xor i1 %1216, i1 1
   1218 = zext i1 %1217 to i32
   1219 = icmp ne i32 %1218, i32 0
   br i1 %1219, bb %then1220, bb %else1222
@@ -906,7 +906,7 @@ then1259:
 if.exit1260:
   a_and_b1249.phi = phi [bb %else1261, i32 0, bb %then1259, i32 1]
   1264 = icmp ne i32 %a_and_b1249.phi, i32 0
-  1265 =  i1 %1264, i1 1
+  1265 = xor i1 %1264, i1 1
   1266 = zext i1 %1265 to i32
   1267 = icmp ne i32 %1266, i32 0
   br i1 %1267, bb %then1268, bb %else1270
@@ -1007,7 +1007,7 @@ then1347:
 if.exit1348:
   a_and_b1337.phi = phi [bb %else1349, i32 0, bb %then1347, i32 1]
   1352 = icmp ne i32 %a_and_b1337.phi, i32 0
-  1353 =  i1 %1352, i1 1
+  1353 = xor i1 %1352, i1 1
   1354 = zext i1 %1353 to i32
   1355 = icmp ne i32 %1354, i32 0
   br i1 %1355, bb %then1356, bb %else1358
@@ -1065,7 +1065,7 @@ then1395:
 if.exit1396:
   a_and_b1385.phi = phi [bb %else1397, i32 0, bb %then1395, i32 1]
   1400 = icmp ne i32 %a_and_b1385.phi, i32 0
-  1401 =  i1 %1400, i1 1
+  1401 = xor i1 %1400, i1 1
   1402 = zext i1 %1401 to i32
   1403 = icmp ne i32 %1402, i32 0
   br i1 %1403, bb %then1404, bb %else1406
@@ -1166,7 +1166,7 @@ then1483:
 if.exit1484:
   a_and_b1473.phi = phi [bb %else1485, i32 0, bb %then1483, i32 1]
   1488 = icmp ne i32 %a_and_b1473.phi, i32 0
-  1489 =  i1 %1488, i1 1
+  1489 = xor i1 %1488, i1 1
   1490 = zext i1 %1489 to i32
   1491 = icmp ne i32 %1490, i32 0
   br i1 %1491, bb %then1492, bb %else1494
@@ -1224,7 +1224,7 @@ then1531:
 if.exit1532:
   a_and_b1521.phi = phi [bb %else1533, i32 0, bb %then1531, i32 1]
   1536 = icmp ne i32 %a_and_b1521.phi, i32 0
-  1537 =  i1 %1536, i1 1
+  1537 = xor i1 %1536, i1 1
   1538 = zext i1 %1537 to i32
   1539 = icmp ne i32 %1538, i32 0
   br i1 %1539, bb %then1540, bb %else1542
@@ -1325,7 +1325,7 @@ then1619:
 if.exit1620:
   a_and_b1609.phi = phi [bb %else1621, i32 0, bb %then1619, i32 1]
   1624 = icmp ne i32 %a_and_b1609.phi, i32 0
-  1625 =  i1 %1624, i1 1
+  1625 = xor i1 %1624, i1 1
   1626 = zext i1 %1625 to i32
   1627 = icmp ne i32 %1626, i32 0
   br i1 %1627, bb %then1628, bb %else1630
@@ -1383,7 +1383,7 @@ then1667:
 if.exit1668:
   a_and_b1657.phi = phi [bb %else1669, i32 0, bb %then1667, i32 1]
   1672 = icmp ne i32 %a_and_b1657.phi, i32 0
-  1673 =  i1 %1672, i1 1
+  1673 = xor i1 %1672, i1 1
   1674 = zext i1 %1673 to i32
   1675 = icmp ne i32 %1674, i32 0
   br i1 %1675, bb %then1676, bb %else1678
@@ -1484,7 +1484,7 @@ then1755:
 if.exit1756:
   a_and_b1745.phi = phi [bb %else1757, i32 0, bb %then1755, i32 1]
   1760 = icmp ne i32 %a_and_b1745.phi, i32 0
-  1761 =  i1 %1760, i1 1
+  1761 = xor i1 %1760, i1 1
   1762 = zext i1 %1761 to i32
   1763 = icmp ne i32 %1762, i32 0
   br i1 %1763, bb %then1764, bb %else1766
@@ -1542,7 +1542,7 @@ then1803:
 if.exit1804:
   a_and_b1793.phi = phi [bb %else1805, i32 0, bb %then1803, i32 1]
   1808 = icmp ne i32 %a_and_b1793.phi, i32 0
-  1809 =  i1 %1808, i1 1
+  1809 = xor i1 %1808, i1 1
   1810 = zext i1 %1809 to i32
   1811 = icmp ne i32 %1810, i32 0
   br i1 %1811, bb %then1812, bb %else1814
@@ -1643,7 +1643,7 @@ then1891:
 if.exit1892:
   a_and_b1881.phi = phi [bb %else1893, i32 0, bb %then1891, i32 1]
   1896 = icmp ne i32 %a_and_b1881.phi, i32 0
-  1897 =  i1 %1896, i1 1
+  1897 = xor i1 %1896, i1 1
   1898 = zext i1 %1897 to i32
   1899 = icmp ne i32 %1898, i32 0
   br i1 %1899, bb %then1900, bb %else1902
@@ -1701,7 +1701,7 @@ then1939:
 if.exit1940:
   a_and_b1929.phi = phi [bb %else1941, i32 0, bb %then1939, i32 1]
   1944 = icmp ne i32 %a_and_b1929.phi, i32 0
-  1945 =  i1 %1944, i1 1
+  1945 = xor i1 %1944, i1 1
   1946 = zext i1 %1945 to i32
   1947 = icmp ne i32 %1946, i32 0
   br i1 %1947, bb %then1948, bb %else1950
@@ -1802,7 +1802,7 @@ then2027:
 if.exit2028:
   a_and_b2017.phi = phi [bb %else2029, i32 0, bb %then2027, i32 1]
   2032 = icmp ne i32 %a_and_b2017.phi, i32 0
-  2033 =  i1 %2032, i1 1
+  2033 = xor i1 %2032, i1 1
   2034 = zext i1 %2033 to i32
   2035 = icmp ne i32 %2034, i32 0
   br i1 %2035, bb %then2036, bb %else2038
@@ -1860,7 +1860,7 @@ then2075:
 if.exit2076:
   a_and_b2065.phi = phi [bb %else2077, i32 0, bb %then2075, i32 1]
   2080 = icmp ne i32 %a_and_b2065.phi, i32 0
-  2081 =  i1 %2080, i1 1
+  2081 = xor i1 %2080, i1 1
   2082 = zext i1 %2081 to i32
   2083 = icmp ne i32 %2082, i32 0
   br i1 %2083, bb %then2084, bb %else2086
@@ -1961,7 +1961,7 @@ then2163:
 if.exit2164:
   a_and_b2153.phi = phi [bb %else2165, i32 0, bb %then2163, i32 1]
   2168 = icmp ne i32 %a_and_b2153.phi, i32 0
-  2169 =  i1 %2168, i1 1
+  2169 = xor i1 %2168, i1 1
   2170 = zext i1 %2169 to i32
   2171 = icmp ne i32 %2170, i32 0
   br i1 %2171, bb %then2172, bb %else2174
@@ -2019,7 +2019,7 @@ then2211:
 if.exit2212:
   a_and_b2201.phi = phi [bb %else2213, i32 0, bb %then2211, i32 1]
   2216 = icmp ne i32 %a_and_b2201.phi, i32 0
-  2217 =  i1 %2216, i1 1
+  2217 = xor i1 %2216, i1 1
   2218 = zext i1 %2217 to i32
   2219 = icmp ne i32 %2218, i32 0
   br i1 %2219, bb %then2220, bb %else2222
@@ -2120,7 +2120,7 @@ then2299:
 if.exit2300:
   a_and_b2289.phi = phi [bb %else2301, i32 0, bb %then2299, i32 1]
   2304 = icmp ne i32 %a_and_b2289.phi, i32 0
-  2305 =  i1 %2304, i1 1
+  2305 = xor i1 %2304, i1 1
   2306 = zext i1 %2305 to i32
   2307 = icmp ne i32 %2306, i32 0
   br i1 %2307, bb %then2308, bb %else2310
@@ -2178,7 +2178,7 @@ then2347:
 if.exit2348:
   a_and_b2337.phi = phi [bb %else2349, i32 0, bb %then2347, i32 1]
   2352 = icmp ne i32 %a_and_b2337.phi, i32 0
-  2353 =  i1 %2352, i1 1
+  2353 = xor i1 %2352, i1 1
   2354 = zext i1 %2353 to i32
   2355 = icmp ne i32 %2354, i32 0
   br i1 %2355, bb %then2356, bb %else2358
@@ -2279,7 +2279,7 @@ then2435:
 if.exit2436:
   a_and_b2425.phi = phi [bb %else2437, i32 0, bb %then2435, i32 1]
   2440 = icmp ne i32 %a_and_b2425.phi, i32 0
-  2441 =  i1 %2440, i1 1
+  2441 = xor i1 %2440, i1 1
   2442 = zext i1 %2441 to i32
   2443 = icmp ne i32 %2442, i32 0
   br i1 %2443, bb %then2444, bb %else2446
@@ -2337,7 +2337,7 @@ then2483:
 if.exit2484:
   a_and_b2473.phi = phi [bb %else2485, i32 0, bb %then2483, i32 1]
   2488 = icmp ne i32 %a_and_b2473.phi, i32 0
-  2489 =  i1 %2488, i1 1
+  2489 = xor i1 %2488, i1 1
   2490 = zext i1 %2489 to i32
   2491 = icmp ne i32 %2490, i32 0
   br i1 %2491, bb %then2492, bb %else2494
@@ -2438,7 +2438,7 @@ then2571:
 if.exit2572:
   a_and_b2561.phi = phi [bb %else2573, i32 0, bb %then2571, i32 1]
   2576 = icmp ne i32 %a_and_b2561.phi, i32 0
-  2577 =  i1 %2576, i1 1
+  2577 = xor i1 %2576, i1 1
   2578 = zext i1 %2577 to i32
   2579 = icmp ne i32 %2578, i32 0
   br i1 %2579, bb %then2580, bb %else2582
@@ -2496,7 +2496,7 @@ then2619:
 if.exit2620:
   a_and_b2609.phi = phi [bb %else2621, i32 0, bb %then2619, i32 1]
   2624 = icmp ne i32 %a_and_b2609.phi, i32 0
-  2625 =  i1 %2624, i1 1
+  2625 = xor i1 %2624, i1 1
   2626 = zext i1 %2625 to i32
   2627 = icmp ne i32 %2626, i32 0
   br i1 %2627, bb %then2628, bb %else2630
@@ -2597,7 +2597,7 @@ then2707:
 if.exit2708:
   a_and_b2697.phi = phi [bb %else2709, i32 0, bb %then2707, i32 1]
   2712 = icmp ne i32 %a_and_b2697.phi, i32 0
-  2713 =  i1 %2712, i1 1
+  2713 = xor i1 %2712, i1 1
   2714 = zext i1 %2713 to i32
   2715 = icmp ne i32 %2714, i32 0
   br i1 %2715, bb %then2716, bb %else2718
@@ -2655,7 +2655,7 @@ then2755:
 if.exit2756:
   a_and_b2745.phi = phi [bb %else2757, i32 0, bb %then2755, i32 1]
   2760 = icmp ne i32 %a_and_b2745.phi, i32 0
-  2761 =  i1 %2760, i1 1
+  2761 = xor i1 %2760, i1 1
   2762 = zext i1 %2761 to i32
   2763 = icmp ne i32 %2762, i32 0
   br i1 %2763, bb %then2764, bb %else2766
@@ -2756,7 +2756,7 @@ then2843:
 if.exit2844:
   a_and_b2833.phi = phi [bb %else2845, i32 0, bb %then2843, i32 1]
   2848 = icmp ne i32 %a_and_b2833.phi, i32 0
-  2849 =  i1 %2848, i1 1
+  2849 = xor i1 %2848, i1 1
   2850 = zext i1 %2849 to i32
   2851 = icmp ne i32 %2850, i32 0
   br i1 %2851, bb %then2852, bb %else2854
@@ -2814,7 +2814,7 @@ then2891:
 if.exit2892:
   a_and_b2881.phi = phi [bb %else2893, i32 0, bb %then2891, i32 1]
   2896 = icmp ne i32 %a_and_b2881.phi, i32 0
-  2897 =  i1 %2896, i1 1
+  2897 = xor i1 %2896, i1 1
   2898 = zext i1 %2897 to i32
   2899 = icmp ne i32 %2898, i32 0
   br i1 %2899, bb %then2900, bb %else2902
@@ -3207,7 +3207,7 @@ then3431:
 if.exit3432:
   a_and_b3421.phi = phi [bb %else3433, i32 0, bb %then3431, i32 1]
   3436 = icmp ne i32 %a_and_b3421.phi, i32 0
-  3437 =  i1 %3436, i1 1
+  3437 = xor i1 %3436, i1 1
   3438 = zext i1 %3437 to i32
   3439 = icmp ne i32 %3438, i32 0
   br i1 %3439, bb %then3440, bb %else3442
@@ -3263,7 +3263,7 @@ then3477:
 if.exit3478:
   a_and_b3468.phi = phi [bb %else3479, i32 0, bb %then3477, i32 1]
   3482 = icmp ne i32 %a_and_b3468.phi, i32 0
-  3483 =  i1 %3482, i1 1
+  3483 = xor i1 %3482, i1 1
   3484 = zext i1 %3483 to i32
   3485 = icmp ne i32 %3484, i32 0
   br i1 %3485, bb %then3486, bb %else3488
@@ -3366,7 +3366,7 @@ then3564:
 if.exit3565:
   a_and_b3554.phi = phi [bb %else3566, i32 0, bb %then3564, i32 1]
   3569 = icmp ne i32 %a_and_b3554.phi, i32 0
-  3570 =  i1 %3569, i1 1
+  3570 = xor i1 %3569, i1 1
   3571 = zext i1 %3570 to i32
   3572 = icmp ne i32 %3571, i32 0
   br i1 %3572, bb %then3573, bb %else3575
@@ -3424,7 +3424,7 @@ then3612:
 if.exit3613:
   a_and_b3602.phi = phi [bb %else3614, i32 0, bb %then3612, i32 1]
   3617 = icmp ne i32 %a_and_b3602.phi, i32 0
-  3618 =  i1 %3617, i1 1
+  3618 = xor i1 %3617, i1 1
   3619 = zext i1 %3618 to i32
   3620 = icmp ne i32 %3619, i32 0
   br i1 %3620, bb %then3621, bb %else3623
@@ -3528,7 +3528,7 @@ then3700:
 if.exit3701:
   a_and_b3690.phi = phi [bb %else3702, i32 0, bb %then3700, i32 1]
   3705 = icmp ne i32 %a_and_b3690.phi, i32 0
-  3706 =  i1 %3705, i1 1
+  3706 = xor i1 %3705, i1 1
   3707 = zext i1 %3706 to i32
   3708 = icmp ne i32 %3707, i32 0
   br i1 %3708, bb %then3709, bb %else3711
@@ -3586,7 +3586,7 @@ then3748:
 if.exit3749:
   a_and_b3738.phi = phi [bb %else3750, i32 0, bb %then3748, i32 1]
   3753 = icmp ne i32 %a_and_b3738.phi, i32 0
-  3754 =  i1 %3753, i1 1
+  3754 = xor i1 %3753, i1 1
   3755 = zext i1 %3754 to i32
   3756 = icmp ne i32 %3755, i32 0
   br i1 %3756, bb %then3757, bb %else3759
@@ -3690,7 +3690,7 @@ then3836:
 if.exit3837:
   a_and_b3826.phi = phi [bb %else3838, i32 0, bb %then3836, i32 1]
   3841 = icmp ne i32 %a_and_b3826.phi, i32 0
-  3842 =  i1 %3841, i1 1
+  3842 = xor i1 %3841, i1 1
   3843 = zext i1 %3842 to i32
   3844 = icmp ne i32 %3843, i32 0
   br i1 %3844, bb %then3845, bb %else3847
@@ -3748,7 +3748,7 @@ then3884:
 if.exit3885:
   a_and_b3874.phi = phi [bb %else3886, i32 0, bb %then3884, i32 1]
   3889 = icmp ne i32 %a_and_b3874.phi, i32 0
-  3890 =  i1 %3889, i1 1
+  3890 = xor i1 %3889, i1 1
   3891 = zext i1 %3890 to i32
   3892 = icmp ne i32 %3891, i32 0
   br i1 %3892, bb %then3893, bb %else3895
@@ -3852,7 +3852,7 @@ then3972:
 if.exit3973:
   a_and_b3962.phi = phi [bb %else3974, i32 0, bb %then3972, i32 1]
   3977 = icmp ne i32 %a_and_b3962.phi, i32 0
-  3978 =  i1 %3977, i1 1
+  3978 = xor i1 %3977, i1 1
   3979 = zext i1 %3978 to i32
   3980 = icmp ne i32 %3979, i32 0
   br i1 %3980, bb %then3981, bb %else3983
@@ -3910,7 +3910,7 @@ then4020:
 if.exit4021:
   a_and_b4010.phi = phi [bb %else4022, i32 0, bb %then4020, i32 1]
   4025 = icmp ne i32 %a_and_b4010.phi, i32 0
-  4026 =  i1 %4025, i1 1
+  4026 = xor i1 %4025, i1 1
   4027 = zext i1 %4026 to i32
   4028 = icmp ne i32 %4027, i32 0
   br i1 %4028, bb %then4029, bb %else4031
@@ -4014,7 +4014,7 @@ then4108:
 if.exit4109:
   a_and_b4098.phi = phi [bb %else4110, i32 0, bb %then4108, i32 1]
   4113 = icmp ne i32 %a_and_b4098.phi, i32 0
-  4114 =  i1 %4113, i1 1
+  4114 = xor i1 %4113, i1 1
   4115 = zext i1 %4114 to i32
   4116 = icmp ne i32 %4115, i32 0
   br i1 %4116, bb %then4117, bb %else4119
@@ -4072,7 +4072,7 @@ then4156:
 if.exit4157:
   a_and_b4146.phi = phi [bb %else4158, i32 0, bb %then4156, i32 1]
   4161 = icmp ne i32 %a_and_b4146.phi, i32 0
-  4162 =  i1 %4161, i1 1
+  4162 = xor i1 %4161, i1 1
   4163 = zext i1 %4162 to i32
   4164 = icmp ne i32 %4163, i32 0
   br i1 %4164, bb %then4165, bb %else4167
@@ -4176,7 +4176,7 @@ then4244:
 if.exit4245:
   a_and_b4234.phi = phi [bb %else4246, i32 0, bb %then4244, i32 1]
   4249 = icmp ne i32 %a_and_b4234.phi, i32 0
-  4250 =  i1 %4249, i1 1
+  4250 = xor i1 %4249, i1 1
   4251 = zext i1 %4250 to i32
   4252 = icmp ne i32 %4251, i32 0
   br i1 %4252, bb %then4253, bb %else4255
@@ -4234,7 +4234,7 @@ then4292:
 if.exit4293:
   a_and_b4282.phi = phi [bb %else4294, i32 0, bb %then4292, i32 1]
   4297 = icmp ne i32 %a_and_b4282.phi, i32 0
-  4298 =  i1 %4297, i1 1
+  4298 = xor i1 %4297, i1 1
   4299 = zext i1 %4298 to i32
   4300 = icmp ne i32 %4299, i32 0
   br i1 %4300, bb %then4301, bb %else4303
@@ -4338,7 +4338,7 @@ then4380:
 if.exit4381:
   a_and_b4370.phi = phi [bb %else4382, i32 0, bb %then4380, i32 1]
   4385 = icmp ne i32 %a_and_b4370.phi, i32 0
-  4386 =  i1 %4385, i1 1
+  4386 = xor i1 %4385, i1 1
   4387 = zext i1 %4386 to i32
   4388 = icmp ne i32 %4387, i32 0
   br i1 %4388, bb %then4389, bb %else4391
@@ -4396,7 +4396,7 @@ then4428:
 if.exit4429:
   a_and_b4418.phi = phi [bb %else4430, i32 0, bb %then4428, i32 1]
   4433 = icmp ne i32 %a_and_b4418.phi, i32 0
-  4434 =  i1 %4433, i1 1
+  4434 = xor i1 %4433, i1 1
   4435 = zext i1 %4434 to i32
   4436 = icmp ne i32 %4435, i32 0
   br i1 %4436, bb %then4437, bb %else4439
@@ -4500,7 +4500,7 @@ then4516:
 if.exit4517:
   a_and_b4506.phi = phi [bb %else4518, i32 0, bb %then4516, i32 1]
   4521 = icmp ne i32 %a_and_b4506.phi, i32 0
-  4522 =  i1 %4521, i1 1
+  4522 = xor i1 %4521, i1 1
   4523 = zext i1 %4522 to i32
   4524 = icmp ne i32 %4523, i32 0
   br i1 %4524, bb %then4525, bb %else4527
@@ -4558,7 +4558,7 @@ then4564:
 if.exit4565:
   a_and_b4554.phi = phi [bb %else4566, i32 0, bb %then4564, i32 1]
   4569 = icmp ne i32 %a_and_b4554.phi, i32 0
-  4570 =  i1 %4569, i1 1
+  4570 = xor i1 %4569, i1 1
   4571 = zext i1 %4570 to i32
   4572 = icmp ne i32 %4571, i32 0
   br i1 %4572, bb %then4573, bb %else4575
@@ -4662,7 +4662,7 @@ then4652:
 if.exit4653:
   a_and_b4642.phi = phi [bb %else4654, i32 0, bb %then4652, i32 1]
   4657 = icmp ne i32 %a_and_b4642.phi, i32 0
-  4658 =  i1 %4657, i1 1
+  4658 = xor i1 %4657, i1 1
   4659 = zext i1 %4658 to i32
   4660 = icmp ne i32 %4659, i32 0
   br i1 %4660, bb %then4661, bb %else4663
@@ -4720,7 +4720,7 @@ then4700:
 if.exit4701:
   a_and_b4690.phi = phi [bb %else4702, i32 0, bb %then4700, i32 1]
   4705 = icmp ne i32 %a_and_b4690.phi, i32 0
-  4706 =  i1 %4705, i1 1
+  4706 = xor i1 %4705, i1 1
   4707 = zext i1 %4706 to i32
   4708 = icmp ne i32 %4707, i32 0
   br i1 %4708, bb %then4709, bb %else4711
@@ -4824,7 +4824,7 @@ then4788:
 if.exit4789:
   a_and_b4778.phi = phi [bb %else4790, i32 0, bb %then4788, i32 1]
   4793 = icmp ne i32 %a_and_b4778.phi, i32 0
-  4794 =  i1 %4793, i1 1
+  4794 = xor i1 %4793, i1 1
   4795 = zext i1 %4794 to i32
   4796 = icmp ne i32 %4795, i32 0
   br i1 %4796, bb %then4797, bb %else4799
@@ -4882,7 +4882,7 @@ then4836:
 if.exit4837:
   a_and_b4826.phi = phi [bb %else4838, i32 0, bb %then4836, i32 1]
   4841 = icmp ne i32 %a_and_b4826.phi, i32 0
-  4842 =  i1 %4841, i1 1
+  4842 = xor i1 %4841, i1 1
   4843 = zext i1 %4842 to i32
   4844 = icmp ne i32 %4843, i32 0
   br i1 %4844, bb %then4845, bb %else4847
@@ -4986,7 +4986,7 @@ then4924:
 if.exit4925:
   a_and_b4914.phi = phi [bb %else4926, i32 0, bb %then4924, i32 1]
   4929 = icmp ne i32 %a_and_b4914.phi, i32 0
-  4930 =  i1 %4929, i1 1
+  4930 = xor i1 %4929, i1 1
   4931 = zext i1 %4930 to i32
   4932 = icmp ne i32 %4931, i32 0
   br i1 %4932, bb %then4933, bb %else4935
@@ -5044,7 +5044,7 @@ then4972:
 if.exit4973:
   a_and_b4962.phi = phi [bb %else4974, i32 0, bb %then4972, i32 1]
   4977 = icmp ne i32 %a_and_b4962.phi, i32 0
-  4978 =  i1 %4977, i1 1
+  4978 = xor i1 %4977, i1 1
   4979 = zext i1 %4978 to i32
   4980 = icmp ne i32 %4979, i32 0
   br i1 %4980, bb %then4981, bb %else4983
@@ -5148,7 +5148,7 @@ then5060:
 if.exit5061:
   a_and_b5050.phi = phi [bb %else5062, i32 0, bb %then5060, i32 1]
   5065 = icmp ne i32 %a_and_b5050.phi, i32 0
-  5066 =  i1 %5065, i1 1
+  5066 = xor i1 %5065, i1 1
   5067 = zext i1 %5066 to i32
   5068 = icmp ne i32 %5067, i32 0
   br i1 %5068, bb %then5069, bb %else5071
@@ -5206,7 +5206,7 @@ then5108:
 if.exit5109:
   a_and_b5098.phi = phi [bb %else5110, i32 0, bb %then5108, i32 1]
   5113 = icmp ne i32 %a_and_b5098.phi, i32 0
-  5114 =  i1 %5113, i1 1
+  5114 = xor i1 %5113, i1 1
   5115 = zext i1 %5114 to i32
   5116 = icmp ne i32 %5115, i32 0
   br i1 %5116, bb %then5117, bb %else5119
@@ -5310,7 +5310,7 @@ then5196:
 if.exit5197:
   a_and_b5186.phi = phi [bb %else5198, i32 0, bb %then5196, i32 1]
   5201 = icmp ne i32 %a_and_b5186.phi, i32 0
-  5202 =  i1 %5201, i1 1
+  5202 = xor i1 %5201, i1 1
   5203 = zext i1 %5202 to i32
   5204 = icmp ne i32 %5203, i32 0
   br i1 %5204, bb %then5205, bb %else5207
@@ -5368,7 +5368,7 @@ then5244:
 if.exit5245:
   a_and_b5234.phi = phi [bb %else5246, i32 0, bb %then5244, i32 1]
   5249 = icmp ne i32 %a_and_b5234.phi, i32 0
-  5250 =  i1 %5249, i1 1
+  5250 = xor i1 %5249, i1 1
   5251 = zext i1 %5250 to i32
   5252 = icmp ne i32 %5251, i32 0
   br i1 %5252, bb %then5253, bb %else5255
@@ -5472,7 +5472,7 @@ then5332:
 if.exit5333:
   a_and_b5322.phi = phi [bb %else5334, i32 0, bb %then5332, i32 1]
   5337 = icmp ne i32 %a_and_b5322.phi, i32 0
-  5338 =  i1 %5337, i1 1
+  5338 = xor i1 %5337, i1 1
   5339 = zext i1 %5338 to i32
   5340 = icmp ne i32 %5339, i32 0
   br i1 %5340, bb %then5341, bb %else5343
@@ -5530,7 +5530,7 @@ then5380:
 if.exit5381:
   a_and_b5370.phi = phi [bb %else5382, i32 0, bb %then5380, i32 1]
   5385 = icmp ne i32 %a_and_b5370.phi, i32 0
-  5386 =  i1 %5385, i1 1
+  5386 = xor i1 %5385, i1 1
   5387 = zext i1 %5386 to i32
   5388 = icmp ne i32 %5387, i32 0
   br i1 %5388, bb %then5389, bb %else5391
@@ -5634,7 +5634,7 @@ then5468:
 if.exit5469:
   a_and_b5458.phi = phi [bb %else5470, i32 0, bb %then5468, i32 1]
   5473 = icmp ne i32 %a_and_b5458.phi, i32 0
-  5474 =  i1 %5473, i1 1
+  5474 = xor i1 %5473, i1 1
   5475 = zext i1 %5474 to i32
   5476 = icmp ne i32 %5475, i32 0
   br i1 %5476, bb %then5477, bb %else5479
@@ -5692,7 +5692,7 @@ then5516:
 if.exit5517:
   a_and_b5506.phi = phi [bb %else5518, i32 0, bb %then5516, i32 1]
   5521 = icmp ne i32 %a_and_b5506.phi, i32 0
-  5522 =  i1 %5521, i1 1
+  5522 = xor i1 %5521, i1 1
   5523 = zext i1 %5522 to i32
   5524 = icmp ne i32 %5523, i32 0
   br i1 %5524, bb %then5525, bb %else5527
@@ -6084,7 +6084,7 @@ then6446:
 if.exit6447:
   a_and_b6436.phi = phi [bb %else6448, i32 0, bb %then6446, i32 1]
   6451 = icmp ne i32 %a_and_b6436.phi, i32 0
-  6452 =  i1 %6451, i1 1
+  6452 = xor i1 %6451, i1 1
   6453 = zext i1 %6452 to i32
   6454 = icmp ne i32 %6453, i32 0
   br i1 %6454, bb %then6455, bb %else6457
@@ -6140,7 +6140,7 @@ then6492:
 if.exit6493:
   a_and_b6483.phi = phi [bb %else6494, i32 0, bb %then6492, i32 1]
   6497 = icmp ne i32 %a_and_b6483.phi, i32 0
-  6498 =  i1 %6497, i1 1
+  6498 = xor i1 %6497, i1 1
   6499 = zext i1 %6498 to i32
   6500 = icmp ne i32 %6499, i32 0
   br i1 %6500, bb %then6501, bb %else6503
@@ -6240,7 +6240,7 @@ then6579:
 if.exit6580:
   a_and_b6569.phi = phi [bb %else6581, i32 0, bb %then6579, i32 1]
   6584 = icmp ne i32 %a_and_b6569.phi, i32 0
-  6585 =  i1 %6584, i1 1
+  6585 = xor i1 %6584, i1 1
   6586 = zext i1 %6585 to i32
   6587 = icmp ne i32 %6586, i32 0
   br i1 %6587, bb %then6588, bb %else6590
@@ -6298,7 +6298,7 @@ then6627:
 if.exit6628:
   a_and_b6617.phi = phi [bb %else6629, i32 0, bb %then6627, i32 1]
   6632 = icmp ne i32 %a_and_b6617.phi, i32 0
-  6633 =  i1 %6632, i1 1
+  6633 = xor i1 %6632, i1 1
   6634 = zext i1 %6633 to i32
   6635 = icmp ne i32 %6634, i32 0
   br i1 %6635, bb %then6636, bb %else6638
@@ -6399,7 +6399,7 @@ then6715:
 if.exit6716:
   a_and_b6705.phi = phi [bb %else6717, i32 0, bb %then6715, i32 1]
   6720 = icmp ne i32 %a_and_b6705.phi, i32 0
-  6721 =  i1 %6720, i1 1
+  6721 = xor i1 %6720, i1 1
   6722 = zext i1 %6721 to i32
   6723 = icmp ne i32 %6722, i32 0
   br i1 %6723, bb %then6724, bb %else6726
@@ -6457,7 +6457,7 @@ then6763:
 if.exit6764:
   a_and_b6753.phi = phi [bb %else6765, i32 0, bb %then6763, i32 1]
   6768 = icmp ne i32 %a_and_b6753.phi, i32 0
-  6769 =  i1 %6768, i1 1
+  6769 = xor i1 %6768, i1 1
   6770 = zext i1 %6769 to i32
   6771 = icmp ne i32 %6770, i32 0
   br i1 %6771, bb %then6772, bb %else6774
@@ -6558,7 +6558,7 @@ then6851:
 if.exit6852:
   a_and_b6841.phi = phi [bb %else6853, i32 0, bb %then6851, i32 1]
   6856 = icmp ne i32 %a_and_b6841.phi, i32 0
-  6857 =  i1 %6856, i1 1
+  6857 = xor i1 %6856, i1 1
   6858 = zext i1 %6857 to i32
   6859 = icmp ne i32 %6858, i32 0
   br i1 %6859, bb %then6860, bb %else6862
@@ -6616,7 +6616,7 @@ then6899:
 if.exit6900:
   a_and_b6889.phi = phi [bb %else6901, i32 0, bb %then6899, i32 1]
   6904 = icmp ne i32 %a_and_b6889.phi, i32 0
-  6905 =  i1 %6904, i1 1
+  6905 = xor i1 %6904, i1 1
   6906 = zext i1 %6905 to i32
   6907 = icmp ne i32 %6906, i32 0
   br i1 %6907, bb %then6908, bb %else6910
@@ -6717,7 +6717,7 @@ then6987:
 if.exit6988:
   a_and_b6977.phi = phi [bb %else6989, i32 0, bb %then6987, i32 1]
   6992 = icmp ne i32 %a_and_b6977.phi, i32 0
-  6993 =  i1 %6992, i1 1
+  6993 = xor i1 %6992, i1 1
   6994 = zext i1 %6993 to i32
   6995 = icmp ne i32 %6994, i32 0
   br i1 %6995, bb %then6996, bb %else6998
@@ -6775,7 +6775,7 @@ then7035:
 if.exit7036:
   a_and_b7025.phi = phi [bb %else7037, i32 0, bb %then7035, i32 1]
   7040 = icmp ne i32 %a_and_b7025.phi, i32 0
-  7041 =  i1 %7040, i1 1
+  7041 = xor i1 %7040, i1 1
   7042 = zext i1 %7041 to i32
   7043 = icmp ne i32 %7042, i32 0
   br i1 %7043, bb %then7044, bb %else7046
@@ -6876,7 +6876,7 @@ then7123:
 if.exit7124:
   a_and_b7113.phi = phi [bb %else7125, i32 0, bb %then7123, i32 1]
   7128 = icmp ne i32 %a_and_b7113.phi, i32 0
-  7129 =  i1 %7128, i1 1
+  7129 = xor i1 %7128, i1 1
   7130 = zext i1 %7129 to i32
   7131 = icmp ne i32 %7130, i32 0
   br i1 %7131, bb %then7132, bb %else7134
@@ -6934,7 +6934,7 @@ then7171:
 if.exit7172:
   a_and_b7161.phi = phi [bb %else7173, i32 0, bb %then7171, i32 1]
   7176 = icmp ne i32 %a_and_b7161.phi, i32 0
-  7177 =  i1 %7176, i1 1
+  7177 = xor i1 %7176, i1 1
   7178 = zext i1 %7177 to i32
   7179 = icmp ne i32 %7178, i32 0
   br i1 %7179, bb %then7180, bb %else7182
@@ -7035,7 +7035,7 @@ then7259:
 if.exit7260:
   a_and_b7249.phi = phi [bb %else7261, i32 0, bb %then7259, i32 1]
   7264 = icmp ne i32 %a_and_b7249.phi, i32 0
-  7265 =  i1 %7264, i1 1
+  7265 = xor i1 %7264, i1 1
   7266 = zext i1 %7265 to i32
   7267 = icmp ne i32 %7266, i32 0
   br i1 %7267, bb %then7268, bb %else7270
@@ -7093,7 +7093,7 @@ then7307:
 if.exit7308:
   a_and_b7297.phi = phi [bb %else7309, i32 0, bb %then7307, i32 1]
   7312 = icmp ne i32 %a_and_b7297.phi, i32 0
-  7313 =  i1 %7312, i1 1
+  7313 = xor i1 %7312, i1 1
   7314 = zext i1 %7313 to i32
   7315 = icmp ne i32 %7314, i32 0
   br i1 %7315, bb %then7316, bb %else7318
@@ -7194,7 +7194,7 @@ then7395:
 if.exit7396:
   a_and_b7385.phi = phi [bb %else7397, i32 0, bb %then7395, i32 1]
   7400 = icmp ne i32 %a_and_b7385.phi, i32 0
-  7401 =  i1 %7400, i1 1
+  7401 = xor i1 %7400, i1 1
   7402 = zext i1 %7401 to i32
   7403 = icmp ne i32 %7402, i32 0
   br i1 %7403, bb %then7404, bb %else7406
@@ -7252,7 +7252,7 @@ then7443:
 if.exit7444:
   a_and_b7433.phi = phi [bb %else7445, i32 0, bb %then7443, i32 1]
   7448 = icmp ne i32 %a_and_b7433.phi, i32 0
-  7449 =  i1 %7448, i1 1
+  7449 = xor i1 %7448, i1 1
   7450 = zext i1 %7449 to i32
   7451 = icmp ne i32 %7450, i32 0
   br i1 %7451, bb %then7452, bb %else7454
@@ -7353,7 +7353,7 @@ then7531:
 if.exit7532:
   a_and_b7521.phi = phi [bb %else7533, i32 0, bb %then7531, i32 1]
   7536 = icmp ne i32 %a_and_b7521.phi, i32 0
-  7537 =  i1 %7536, i1 1
+  7537 = xor i1 %7536, i1 1
   7538 = zext i1 %7537 to i32
   7539 = icmp ne i32 %7538, i32 0
   br i1 %7539, bb %then7540, bb %else7542
@@ -7411,7 +7411,7 @@ then7579:
 if.exit7580:
   a_and_b7569.phi = phi [bb %else7581, i32 0, bb %then7579, i32 1]
   7584 = icmp ne i32 %a_and_b7569.phi, i32 0
-  7585 =  i1 %7584, i1 1
+  7585 = xor i1 %7584, i1 1
   7586 = zext i1 %7585 to i32
   7587 = icmp ne i32 %7586, i32 0
   br i1 %7587, bb %then7588, bb %else7590
@@ -7512,7 +7512,7 @@ then7667:
 if.exit7668:
   a_and_b7657.phi = phi [bb %else7669, i32 0, bb %then7667, i32 1]
   7672 = icmp ne i32 %a_and_b7657.phi, i32 0
-  7673 =  i1 %7672, i1 1
+  7673 = xor i1 %7672, i1 1
   7674 = zext i1 %7673 to i32
   7675 = icmp ne i32 %7674, i32 0
   br i1 %7675, bb %then7676, bb %else7678
@@ -7570,7 +7570,7 @@ then7715:
 if.exit7716:
   a_and_b7705.phi = phi [bb %else7717, i32 0, bb %then7715, i32 1]
   7720 = icmp ne i32 %a_and_b7705.phi, i32 0
-  7721 =  i1 %7720, i1 1
+  7721 = xor i1 %7720, i1 1
   7722 = zext i1 %7721 to i32
   7723 = icmp ne i32 %7722, i32 0
   br i1 %7723, bb %then7724, bb %else7726
@@ -7671,7 +7671,7 @@ then7803:
 if.exit7804:
   a_and_b7793.phi = phi [bb %else7805, i32 0, bb %then7803, i32 1]
   7808 = icmp ne i32 %a_and_b7793.phi, i32 0
-  7809 =  i1 %7808, i1 1
+  7809 = xor i1 %7808, i1 1
   7810 = zext i1 %7809 to i32
   7811 = icmp ne i32 %7810, i32 0
   br i1 %7811, bb %then7812, bb %else7814
@@ -7729,7 +7729,7 @@ then7851:
 if.exit7852:
   a_and_b7841.phi = phi [bb %else7853, i32 0, bb %then7851, i32 1]
   7856 = icmp ne i32 %a_and_b7841.phi, i32 0
-  7857 =  i1 %7856, i1 1
+  7857 = xor i1 %7856, i1 1
   7858 = zext i1 %7857 to i32
   7859 = icmp ne i32 %7858, i32 0
   br i1 %7859, bb %then7860, bb %else7862
@@ -7830,7 +7830,7 @@ then7939:
 if.exit7940:
   a_and_b7929.phi = phi [bb %else7941, i32 0, bb %then7939, i32 1]
   7944 = icmp ne i32 %a_and_b7929.phi, i32 0
-  7945 =  i1 %7944, i1 1
+  7945 = xor i1 %7944, i1 1
   7946 = zext i1 %7945 to i32
   7947 = icmp ne i32 %7946, i32 0
   br i1 %7947, bb %then7948, bb %else7950
@@ -7888,7 +7888,7 @@ then7987:
 if.exit7988:
   a_and_b7977.phi = phi [bb %else7989, i32 0, bb %then7987, i32 1]
   7992 = icmp ne i32 %a_and_b7977.phi, i32 0
-  7993 =  i1 %7992, i1 1
+  7993 = xor i1 %7992, i1 1
   7994 = zext i1 %7993 to i32
   7995 = icmp ne i32 %7994, i32 0
   br i1 %7995, bb %then7996, bb %else7998
@@ -7989,7 +7989,7 @@ then8075:
 if.exit8076:
   a_and_b8065.phi = phi [bb %else8077, i32 0, bb %then8075, i32 1]
   8080 = icmp ne i32 %a_and_b8065.phi, i32 0
-  8081 =  i1 %8080, i1 1
+  8081 = xor i1 %8080, i1 1
   8082 = zext i1 %8081 to i32
   8083 = icmp ne i32 %8082, i32 0
   br i1 %8083, bb %then8084, bb %else8086
@@ -8047,7 +8047,7 @@ then8123:
 if.exit8124:
   a_and_b8113.phi = phi [bb %else8125, i32 0, bb %then8123, i32 1]
   8128 = icmp ne i32 %a_and_b8113.phi, i32 0
-  8129 =  i1 %8128, i1 1
+  8129 = xor i1 %8128, i1 1
   8130 = zext i1 %8129 to i32
   8131 = icmp ne i32 %8130, i32 0
   br i1 %8131, bb %then8132, bb %else8134
@@ -8148,7 +8148,7 @@ then8211:
 if.exit8212:
   a_and_b8201.phi = phi [bb %else8213, i32 0, bb %then8211, i32 1]
   8216 = icmp ne i32 %a_and_b8201.phi, i32 0
-  8217 =  i1 %8216, i1 1
+  8217 = xor i1 %8216, i1 1
   8218 = zext i1 %8217 to i32
   8219 = icmp ne i32 %8218, i32 0
   br i1 %8219, bb %then8220, bb %else8222
@@ -8206,7 +8206,7 @@ then8259:
 if.exit8260:
   a_and_b8249.phi = phi [bb %else8261, i32 0, bb %then8259, i32 1]
   8264 = icmp ne i32 %a_and_b8249.phi, i32 0
-  8265 =  i1 %8264, i1 1
+  8265 = xor i1 %8264, i1 1
   8266 = zext i1 %8265 to i32
   8267 = icmp ne i32 %8266, i32 0
   br i1 %8267, bb %then8268, bb %else8270
@@ -8307,7 +8307,7 @@ then8347:
 if.exit8348:
   a_and_b8337.phi = phi [bb %else8349, i32 0, bb %then8347, i32 1]
   8352 = icmp ne i32 %a_and_b8337.phi, i32 0
-  8353 =  i1 %8352, i1 1
+  8353 = xor i1 %8352, i1 1
   8354 = zext i1 %8353 to i32
   8355 = icmp ne i32 %8354, i32 0
   br i1 %8355, bb %then8356, bb %else8358
@@ -8365,7 +8365,7 @@ then8395:
 if.exit8396:
   a_and_b8385.phi = phi [bb %else8397, i32 0, bb %then8395, i32 1]
   8400 = icmp ne i32 %a_and_b8385.phi, i32 0
-  8401 =  i1 %8400, i1 1
+  8401 = xor i1 %8400, i1 1
   8402 = zext i1 %8401 to i32
   8403 = icmp ne i32 %8402, i32 0
   br i1 %8403, bb %then8404, bb %else8406
@@ -8466,7 +8466,7 @@ then8483:
 if.exit8484:
   a_and_b8473.phi = phi [bb %else8485, i32 0, bb %then8483, i32 1]
   8488 = icmp ne i32 %a_and_b8473.phi, i32 0
-  8489 =  i1 %8488, i1 1
+  8489 = xor i1 %8488, i1 1
   8490 = zext i1 %8489 to i32
   8491 = icmp ne i32 %8490, i32 0
   br i1 %8491, bb %then8492, bb %else8494
@@ -8524,7 +8524,7 @@ then8531:
 if.exit8532:
   a_and_b8521.phi = phi [bb %else8533, i32 0, bb %then8531, i32 1]
   8536 = icmp ne i32 %a_and_b8521.phi, i32 0
-  8537 =  i1 %8536, i1 1
+  8537 = xor i1 %8536, i1 1
   8538 = zext i1 %8537 to i32
   8539 = icmp ne i32 %8538, i32 0
   br i1 %8539, bb %then8540, bb %else8542
@@ -8870,7 +8870,7 @@ then9071:
 if.exit9072:
   a_and_b9061.phi = phi [bb %else9073, i32 0, bb %then9071, i32 1]
   9076 = icmp ne i32 %a_and_b9061.phi, i32 0
-  9077 =  i1 %9076, i1 1
+  9077 = xor i1 %9076, i1 1
   9078 = zext i1 %9077 to i32
   9079 = icmp ne i32 %9078, i32 0
   br i1 %9079, bb %then9080, bb %else9082
@@ -8926,7 +8926,7 @@ then9117:
 if.exit9118:
   a_and_b9108.phi = phi [bb %else9119, i32 0, bb %then9117, i32 1]
   9122 = icmp ne i32 %a_and_b9108.phi, i32 0
-  9123 =  i1 %9122, i1 1
+  9123 = xor i1 %9122, i1 1
   9124 = zext i1 %9123 to i32
   9125 = icmp ne i32 %9124, i32 0
   br i1 %9125, bb %then9126, bb %else9128
@@ -9029,7 +9029,7 @@ then9204:
 if.exit9205:
   a_and_b9194.phi = phi [bb %else9206, i32 0, bb %then9204, i32 1]
   9209 = icmp ne i32 %a_and_b9194.phi, i32 0
-  9210 =  i1 %9209, i1 1
+  9210 = xor i1 %9209, i1 1
   9211 = zext i1 %9210 to i32
   9212 = icmp ne i32 %9211, i32 0
   br i1 %9212, bb %then9213, bb %else9215
@@ -9087,7 +9087,7 @@ then9252:
 if.exit9253:
   a_and_b9242.phi = phi [bb %else9254, i32 0, bb %then9252, i32 1]
   9257 = icmp ne i32 %a_and_b9242.phi, i32 0
-  9258 =  i1 %9257, i1 1
+  9258 = xor i1 %9257, i1 1
   9259 = zext i1 %9258 to i32
   9260 = icmp ne i32 %9259, i32 0
   br i1 %9260, bb %then9261, bb %else9263
@@ -9191,7 +9191,7 @@ then9340:
 if.exit9341:
   a_and_b9330.phi = phi [bb %else9342, i32 0, bb %then9340, i32 1]
   9345 = icmp ne i32 %a_and_b9330.phi, i32 0
-  9346 =  i1 %9345, i1 1
+  9346 = xor i1 %9345, i1 1
   9347 = zext i1 %9346 to i32
   9348 = icmp ne i32 %9347, i32 0
   br i1 %9348, bb %then9349, bb %else9351
@@ -9249,7 +9249,7 @@ then9388:
 if.exit9389:
   a_and_b9378.phi = phi [bb %else9390, i32 0, bb %then9388, i32 1]
   9393 = icmp ne i32 %a_and_b9378.phi, i32 0
-  9394 =  i1 %9393, i1 1
+  9394 = xor i1 %9393, i1 1
   9395 = zext i1 %9394 to i32
   9396 = icmp ne i32 %9395, i32 0
   br i1 %9396, bb %then9397, bb %else9399
@@ -9353,7 +9353,7 @@ then9476:
 if.exit9477:
   a_and_b9466.phi = phi [bb %else9478, i32 0, bb %then9476, i32 1]
   9481 = icmp ne i32 %a_and_b9466.phi, i32 0
-  9482 =  i1 %9481, i1 1
+  9482 = xor i1 %9481, i1 1
   9483 = zext i1 %9482 to i32
   9484 = icmp ne i32 %9483, i32 0
   br i1 %9484, bb %then9485, bb %else9487
@@ -9411,7 +9411,7 @@ then9524:
 if.exit9525:
   a_and_b9514.phi = phi [bb %else9526, i32 0, bb %then9524, i32 1]
   9529 = icmp ne i32 %a_and_b9514.phi, i32 0
-  9530 =  i1 %9529, i1 1
+  9530 = xor i1 %9529, i1 1
   9531 = zext i1 %9530 to i32
   9532 = icmp ne i32 %9531, i32 0
   br i1 %9532, bb %then9533, bb %else9535
@@ -9515,7 +9515,7 @@ then9612:
 if.exit9613:
   a_and_b9602.phi = phi [bb %else9614, i32 0, bb %then9612, i32 1]
   9617 = icmp ne i32 %a_and_b9602.phi, i32 0
-  9618 =  i1 %9617, i1 1
+  9618 = xor i1 %9617, i1 1
   9619 = zext i1 %9618 to i32
   9620 = icmp ne i32 %9619, i32 0
   br i1 %9620, bb %then9621, bb %else9623
@@ -9573,7 +9573,7 @@ then9660:
 if.exit9661:
   a_and_b9650.phi = phi [bb %else9662, i32 0, bb %then9660, i32 1]
   9665 = icmp ne i32 %a_and_b9650.phi, i32 0
-  9666 =  i1 %9665, i1 1
+  9666 = xor i1 %9665, i1 1
   9667 = zext i1 %9666 to i32
   9668 = icmp ne i32 %9667, i32 0
   br i1 %9668, bb %then9669, bb %else9671
@@ -9677,7 +9677,7 @@ then9748:
 if.exit9749:
   a_and_b9738.phi = phi [bb %else9750, i32 0, bb %then9748, i32 1]
   9753 = icmp ne i32 %a_and_b9738.phi, i32 0
-  9754 =  i1 %9753, i1 1
+  9754 = xor i1 %9753, i1 1
   9755 = zext i1 %9754 to i32
   9756 = icmp ne i32 %9755, i32 0
   br i1 %9756, bb %then9757, bb %else9759
@@ -9735,7 +9735,7 @@ then9796:
 if.exit9797:
   a_and_b9786.phi = phi [bb %else9798, i32 0, bb %then9796, i32 1]
   9801 = icmp ne i32 %a_and_b9786.phi, i32 0
-  9802 =  i1 %9801, i1 1
+  9802 = xor i1 %9801, i1 1
   9803 = zext i1 %9802 to i32
   9804 = icmp ne i32 %9803, i32 0
   br i1 %9804, bb %then9805, bb %else9807
@@ -9839,7 +9839,7 @@ then9884:
 if.exit9885:
   a_and_b9874.phi = phi [bb %else9886, i32 0, bb %then9884, i32 1]
   9889 = icmp ne i32 %a_and_b9874.phi, i32 0
-  9890 =  i1 %9889, i1 1
+  9890 = xor i1 %9889, i1 1
   9891 = zext i1 %9890 to i32
   9892 = icmp ne i32 %9891, i32 0
   br i1 %9892, bb %then9893, bb %else9895
@@ -9897,7 +9897,7 @@ then9932:
 if.exit9933:
   a_and_b9922.phi = phi [bb %else9934, i32 0, bb %then9932, i32 1]
   9937 = icmp ne i32 %a_and_b9922.phi, i32 0
-  9938 =  i1 %9937, i1 1
+  9938 = xor i1 %9937, i1 1
   9939 = zext i1 %9938 to i32
   9940 = icmp ne i32 %9939, i32 0
   br i1 %9940, bb %then9941, bb %else9943
@@ -10001,7 +10001,7 @@ then10020:
 if.exit10021:
   a_and_b10010.phi = phi [bb %else10022, i32 0, bb %then10020, i32 1]
   10025 = icmp ne i32 %a_and_b10010.phi, i32 0
-  10026 =  i1 %10025, i1 1
+  10026 = xor i1 %10025, i1 1
   10027 = zext i1 %10026 to i32
   10028 = icmp ne i32 %10027, i32 0
   br i1 %10028, bb %then10029, bb %else10031
@@ -10059,7 +10059,7 @@ then10068:
 if.exit10069:
   a_and_b10058.phi = phi [bb %else10070, i32 0, bb %then10068, i32 1]
   10073 = icmp ne i32 %a_and_b10058.phi, i32 0
-  10074 =  i1 %10073, i1 1
+  10074 = xor i1 %10073, i1 1
   10075 = zext i1 %10074 to i32
   10076 = icmp ne i32 %10075, i32 0
   br i1 %10076, bb %then10077, bb %else10079
@@ -10163,7 +10163,7 @@ then10156:
 if.exit10157:
   a_and_b10146.phi = phi [bb %else10158, i32 0, bb %then10156, i32 1]
   10161 = icmp ne i32 %a_and_b10146.phi, i32 0
-  10162 =  i1 %10161, i1 1
+  10162 = xor i1 %10161, i1 1
   10163 = zext i1 %10162 to i32
   10164 = icmp ne i32 %10163, i32 0
   br i1 %10164, bb %then10165, bb %else10167
@@ -10221,7 +10221,7 @@ then10204:
 if.exit10205:
   a_and_b10194.phi = phi [bb %else10206, i32 0, bb %then10204, i32 1]
   10209 = icmp ne i32 %a_and_b10194.phi, i32 0
-  10210 =  i1 %10209, i1 1
+  10210 = xor i1 %10209, i1 1
   10211 = zext i1 %10210 to i32
   10212 = icmp ne i32 %10211, i32 0
   br i1 %10212, bb %then10213, bb %else10215
@@ -10325,7 +10325,7 @@ then10292:
 if.exit10293:
   a_and_b10282.phi = phi [bb %else10294, i32 0, bb %then10292, i32 1]
   10297 = icmp ne i32 %a_and_b10282.phi, i32 0
-  10298 =  i1 %10297, i1 1
+  10298 = xor i1 %10297, i1 1
   10299 = zext i1 %10298 to i32
   10300 = icmp ne i32 %10299, i32 0
   br i1 %10300, bb %then10301, bb %else10303
@@ -10383,7 +10383,7 @@ then10340:
 if.exit10341:
   a_and_b10330.phi = phi [bb %else10342, i32 0, bb %then10340, i32 1]
   10345 = icmp ne i32 %a_and_b10330.phi, i32 0
-  10346 =  i1 %10345, i1 1
+  10346 = xor i1 %10345, i1 1
   10347 = zext i1 %10346 to i32
   10348 = icmp ne i32 %10347, i32 0
   br i1 %10348, bb %then10349, bb %else10351
@@ -10487,7 +10487,7 @@ then10428:
 if.exit10429:
   a_and_b10418.phi = phi [bb %else10430, i32 0, bb %then10428, i32 1]
   10433 = icmp ne i32 %a_and_b10418.phi, i32 0
-  10434 =  i1 %10433, i1 1
+  10434 = xor i1 %10433, i1 1
   10435 = zext i1 %10434 to i32
   10436 = icmp ne i32 %10435, i32 0
   br i1 %10436, bb %then10437, bb %else10439
@@ -10545,7 +10545,7 @@ then10476:
 if.exit10477:
   a_and_b10466.phi = phi [bb %else10478, i32 0, bb %then10476, i32 1]
   10481 = icmp ne i32 %a_and_b10466.phi, i32 0
-  10482 =  i1 %10481, i1 1
+  10482 = xor i1 %10481, i1 1
   10483 = zext i1 %10482 to i32
   10484 = icmp ne i32 %10483, i32 0
   br i1 %10484, bb %then10485, bb %else10487
@@ -10649,7 +10649,7 @@ then10564:
 if.exit10565:
   a_and_b10554.phi = phi [bb %else10566, i32 0, bb %then10564, i32 1]
   10569 = icmp ne i32 %a_and_b10554.phi, i32 0
-  10570 =  i1 %10569, i1 1
+  10570 = xor i1 %10569, i1 1
   10571 = zext i1 %10570 to i32
   10572 = icmp ne i32 %10571, i32 0
   br i1 %10572, bb %then10573, bb %else10575
@@ -10707,7 +10707,7 @@ then10612:
 if.exit10613:
   a_and_b10602.phi = phi [bb %else10614, i32 0, bb %then10612, i32 1]
   10617 = icmp ne i32 %a_and_b10602.phi, i32 0
-  10618 =  i1 %10617, i1 1
+  10618 = xor i1 %10617, i1 1
   10619 = zext i1 %10618 to i32
   10620 = icmp ne i32 %10619, i32 0
   br i1 %10620, bb %then10621, bb %else10623
@@ -10811,7 +10811,7 @@ then10700:
 if.exit10701:
   a_and_b10690.phi = phi [bb %else10702, i32 0, bb %then10700, i32 1]
   10705 = icmp ne i32 %a_and_b10690.phi, i32 0
-  10706 =  i1 %10705, i1 1
+  10706 = xor i1 %10705, i1 1
   10707 = zext i1 %10706 to i32
   10708 = icmp ne i32 %10707, i32 0
   br i1 %10708, bb %then10709, bb %else10711
@@ -10869,7 +10869,7 @@ then10748:
 if.exit10749:
   a_and_b10738.phi = phi [bb %else10750, i32 0, bb %then10748, i32 1]
   10753 = icmp ne i32 %a_and_b10738.phi, i32 0
-  10754 =  i1 %10753, i1 1
+  10754 = xor i1 %10753, i1 1
   10755 = zext i1 %10754 to i32
   10756 = icmp ne i32 %10755, i32 0
   br i1 %10756, bb %then10757, bb %else10759
@@ -10973,7 +10973,7 @@ then10836:
 if.exit10837:
   a_and_b10826.phi = phi [bb %else10838, i32 0, bb %then10836, i32 1]
   10841 = icmp ne i32 %a_and_b10826.phi, i32 0
-  10842 =  i1 %10841, i1 1
+  10842 = xor i1 %10841, i1 1
   10843 = zext i1 %10842 to i32
   10844 = icmp ne i32 %10843, i32 0
   br i1 %10844, bb %then10845, bb %else10847
@@ -11031,7 +11031,7 @@ then10884:
 if.exit10885:
   a_and_b10874.phi = phi [bb %else10886, i32 0, bb %then10884, i32 1]
   10889 = icmp ne i32 %a_and_b10874.phi, i32 0
-  10890 =  i1 %10889, i1 1
+  10890 = xor i1 %10889, i1 1
   10891 = zext i1 %10890 to i32
   10892 = icmp ne i32 %10891, i32 0
   br i1 %10892, bb %then10893, bb %else10895
@@ -11135,7 +11135,7 @@ then10972:
 if.exit10973:
   a_and_b10962.phi = phi [bb %else10974, i32 0, bb %then10972, i32 1]
   10977 = icmp ne i32 %a_and_b10962.phi, i32 0
-  10978 =  i1 %10977, i1 1
+  10978 = xor i1 %10977, i1 1
   10979 = zext i1 %10978 to i32
   10980 = icmp ne i32 %10979, i32 0
   br i1 %10980, bb %then10981, bb %else10983
@@ -11193,7 +11193,7 @@ then11020:
 if.exit11021:
   a_and_b11010.phi = phi [bb %else11022, i32 0, bb %then11020, i32 1]
   11025 = icmp ne i32 %a_and_b11010.phi, i32 0
-  11026 =  i1 %11025, i1 1
+  11026 = xor i1 %11025, i1 1
   11027 = zext i1 %11026 to i32
   11028 = icmp ne i32 %11027, i32 0
   br i1 %11028, bb %then11029, bb %else11031
@@ -11297,7 +11297,7 @@ then11108:
 if.exit11109:
   a_and_b11098.phi = phi [bb %else11110, i32 0, bb %then11108, i32 1]
   11113 = icmp ne i32 %a_and_b11098.phi, i32 0
-  11114 =  i1 %11113, i1 1
+  11114 = xor i1 %11113, i1 1
   11115 = zext i1 %11114 to i32
   11116 = icmp ne i32 %11115, i32 0
   br i1 %11116, bb %then11117, bb %else11119
@@ -11355,7 +11355,7 @@ then11156:
 if.exit11157:
   a_and_b11146.phi = phi [bb %else11158, i32 0, bb %then11156, i32 1]
   11161 = icmp ne i32 %a_and_b11146.phi, i32 0
-  11162 =  i1 %11161, i1 1
+  11162 = xor i1 %11161, i1 1
   11163 = zext i1 %11162 to i32
   11164 = icmp ne i32 %11163, i32 0
   br i1 %11164, bb %then11165, bb %else11167
@@ -11750,7 +11750,7 @@ then11700:
 if.exit11701:
   a_and_b11690.phi = phi [bb %else11702, i32 0, bb %then11700, i32 1]
   11705 = icmp ne i32 %a_and_b11690.phi, i32 0
-  11706 =  i1 %11705, i1 1
+  11706 = xor i1 %11705, i1 1
   11707 = zext i1 %11706 to i32
   11708 = icmp ne i32 %11707, i32 0
   br i1 %11708, bb %then11709, bb %else11711
@@ -11806,7 +11806,7 @@ then11746:
 if.exit11747:
   a_and_b11737.phi = phi [bb %else11748, i32 0, bb %then11746, i32 1]
   11751 = icmp ne i32 %a_and_b11737.phi, i32 0
-  11752 =  i1 %11751, i1 1
+  11752 = xor i1 %11751, i1 1
   11753 = zext i1 %11752 to i32
   11754 = icmp ne i32 %11753, i32 0
   br i1 %11754, bb %then11755, bb %else11757
@@ -11909,7 +11909,7 @@ then11833:
 if.exit11834:
   a_and_b11823.phi = phi [bb %else11835, i32 0, bb %then11833, i32 1]
   11838 = icmp ne i32 %a_and_b11823.phi, i32 0
-  11839 =  i1 %11838, i1 1
+  11839 = xor i1 %11838, i1 1
   11840 = zext i1 %11839 to i32
   11841 = icmp ne i32 %11840, i32 0
   br i1 %11841, bb %then11842, bb %else11844
@@ -11967,7 +11967,7 @@ then11881:
 if.exit11882:
   a_and_b11871.phi = phi [bb %else11883, i32 0, bb %then11881, i32 1]
   11886 = icmp ne i32 %a_and_b11871.phi, i32 0
-  11887 =  i1 %11886, i1 1
+  11887 = xor i1 %11886, i1 1
   11888 = zext i1 %11887 to i32
   11889 = icmp ne i32 %11888, i32 0
   br i1 %11889, bb %then11890, bb %else11892
@@ -12071,7 +12071,7 @@ then11969:
 if.exit11970:
   a_and_b11959.phi = phi [bb %else11971, i32 0, bb %then11969, i32 1]
   11974 = icmp ne i32 %a_and_b11959.phi, i32 0
-  11975 =  i1 %11974, i1 1
+  11975 = xor i1 %11974, i1 1
   11976 = zext i1 %11975 to i32
   11977 = icmp ne i32 %11976, i32 0
   br i1 %11977, bb %then11978, bb %else11980
@@ -12129,7 +12129,7 @@ then12017:
 if.exit12018:
   a_and_b12007.phi = phi [bb %else12019, i32 0, bb %then12017, i32 1]
   12022 = icmp ne i32 %a_and_b12007.phi, i32 0
-  12023 =  i1 %12022, i1 1
+  12023 = xor i1 %12022, i1 1
   12024 = zext i1 %12023 to i32
   12025 = icmp ne i32 %12024, i32 0
   br i1 %12025, bb %then12026, bb %else12028
@@ -12233,7 +12233,7 @@ then12105:
 if.exit12106:
   a_and_b12095.phi = phi [bb %else12107, i32 0, bb %then12105, i32 1]
   12110 = icmp ne i32 %a_and_b12095.phi, i32 0
-  12111 =  i1 %12110, i1 1
+  12111 = xor i1 %12110, i1 1
   12112 = zext i1 %12111 to i32
   12113 = icmp ne i32 %12112, i32 0
   br i1 %12113, bb %then12114, bb %else12116
@@ -12291,7 +12291,7 @@ then12153:
 if.exit12154:
   a_and_b12143.phi = phi [bb %else12155, i32 0, bb %then12153, i32 1]
   12158 = icmp ne i32 %a_and_b12143.phi, i32 0
-  12159 =  i1 %12158, i1 1
+  12159 = xor i1 %12158, i1 1
   12160 = zext i1 %12159 to i32
   12161 = icmp ne i32 %12160, i32 0
   br i1 %12161, bb %then12162, bb %else12164
@@ -12395,7 +12395,7 @@ then12241:
 if.exit12242:
   a_and_b12231.phi = phi [bb %else12243, i32 0, bb %then12241, i32 1]
   12246 = icmp ne i32 %a_and_b12231.phi, i32 0
-  12247 =  i1 %12246, i1 1
+  12247 = xor i1 %12246, i1 1
   12248 = zext i1 %12247 to i32
   12249 = icmp ne i32 %12248, i32 0
   br i1 %12249, bb %then12250, bb %else12252
@@ -12453,7 +12453,7 @@ then12289:
 if.exit12290:
   a_and_b12279.phi = phi [bb %else12291, i32 0, bb %then12289, i32 1]
   12294 = icmp ne i32 %a_and_b12279.phi, i32 0
-  12295 =  i1 %12294, i1 1
+  12295 = xor i1 %12294, i1 1
   12296 = zext i1 %12295 to i32
   12297 = icmp ne i32 %12296, i32 0
   br i1 %12297, bb %then12298, bb %else12300
@@ -12557,7 +12557,7 @@ then12377:
 if.exit12378:
   a_and_b12367.phi = phi [bb %else12379, i32 0, bb %then12377, i32 1]
   12382 = icmp ne i32 %a_and_b12367.phi, i32 0
-  12383 =  i1 %12382, i1 1
+  12383 = xor i1 %12382, i1 1
   12384 = zext i1 %12383 to i32
   12385 = icmp ne i32 %12384, i32 0
   br i1 %12385, bb %then12386, bb %else12388
@@ -12615,7 +12615,7 @@ then12425:
 if.exit12426:
   a_and_b12415.phi = phi [bb %else12427, i32 0, bb %then12425, i32 1]
   12430 = icmp ne i32 %a_and_b12415.phi, i32 0
-  12431 =  i1 %12430, i1 1
+  12431 = xor i1 %12430, i1 1
   12432 = zext i1 %12431 to i32
   12433 = icmp ne i32 %12432, i32 0
   br i1 %12433, bb %then12434, bb %else12436
@@ -12719,7 +12719,7 @@ then12513:
 if.exit12514:
   a_and_b12503.phi = phi [bb %else12515, i32 0, bb %then12513, i32 1]
   12518 = icmp ne i32 %a_and_b12503.phi, i32 0
-  12519 =  i1 %12518, i1 1
+  12519 = xor i1 %12518, i1 1
   12520 = zext i1 %12519 to i32
   12521 = icmp ne i32 %12520, i32 0
   br i1 %12521, bb %then12522, bb %else12524
@@ -12777,7 +12777,7 @@ then12561:
 if.exit12562:
   a_and_b12551.phi = phi [bb %else12563, i32 0, bb %then12561, i32 1]
   12566 = icmp ne i32 %a_and_b12551.phi, i32 0
-  12567 =  i1 %12566, i1 1
+  12567 = xor i1 %12566, i1 1
   12568 = zext i1 %12567 to i32
   12569 = icmp ne i32 %12568, i32 0
   br i1 %12569, bb %then12570, bb %else12572
@@ -12881,7 +12881,7 @@ then12649:
 if.exit12650:
   a_and_b12639.phi = phi [bb %else12651, i32 0, bb %then12649, i32 1]
   12654 = icmp ne i32 %a_and_b12639.phi, i32 0
-  12655 =  i1 %12654, i1 1
+  12655 = xor i1 %12654, i1 1
   12656 = zext i1 %12655 to i32
   12657 = icmp ne i32 %12656, i32 0
   br i1 %12657, bb %then12658, bb %else12660
@@ -12939,7 +12939,7 @@ then12697:
 if.exit12698:
   a_and_b12687.phi = phi [bb %else12699, i32 0, bb %then12697, i32 1]
   12702 = icmp ne i32 %a_and_b12687.phi, i32 0
-  12703 =  i1 %12702, i1 1
+  12703 = xor i1 %12702, i1 1
   12704 = zext i1 %12703 to i32
   12705 = icmp ne i32 %12704, i32 0
   br i1 %12705, bb %then12706, bb %else12708
@@ -13043,7 +13043,7 @@ then12785:
 if.exit12786:
   a_and_b12775.phi = phi [bb %else12787, i32 0, bb %then12785, i32 1]
   12790 = icmp ne i32 %a_and_b12775.phi, i32 0
-  12791 =  i1 %12790, i1 1
+  12791 = xor i1 %12790, i1 1
   12792 = zext i1 %12791 to i32
   12793 = icmp ne i32 %12792, i32 0
   br i1 %12793, bb %then12794, bb %else12796
@@ -13101,7 +13101,7 @@ then12833:
 if.exit12834:
   a_and_b12823.phi = phi [bb %else12835, i32 0, bb %then12833, i32 1]
   12838 = icmp ne i32 %a_and_b12823.phi, i32 0
-  12839 =  i1 %12838, i1 1
+  12839 = xor i1 %12838, i1 1
   12840 = zext i1 %12839 to i32
   12841 = icmp ne i32 %12840, i32 0
   br i1 %12841, bb %then12842, bb %else12844
@@ -13205,7 +13205,7 @@ then12921:
 if.exit12922:
   a_and_b12911.phi = phi [bb %else12923, i32 0, bb %then12921, i32 1]
   12926 = icmp ne i32 %a_and_b12911.phi, i32 0
-  12927 =  i1 %12926, i1 1
+  12927 = xor i1 %12926, i1 1
   12928 = zext i1 %12927 to i32
   12929 = icmp ne i32 %12928, i32 0
   br i1 %12929, bb %then12930, bb %else12932
@@ -13263,7 +13263,7 @@ then12969:
 if.exit12970:
   a_and_b12959.phi = phi [bb %else12971, i32 0, bb %then12969, i32 1]
   12974 = icmp ne i32 %a_and_b12959.phi, i32 0
-  12975 =  i1 %12974, i1 1
+  12975 = xor i1 %12974, i1 1
   12976 = zext i1 %12975 to i32
   12977 = icmp ne i32 %12976, i32 0
   br i1 %12977, bb %then12978, bb %else12980
@@ -13367,7 +13367,7 @@ then13057:
 if.exit13058:
   a_and_b13047.phi = phi [bb %else13059, i32 0, bb %then13057, i32 1]
   13062 = icmp ne i32 %a_and_b13047.phi, i32 0
-  13063 =  i1 %13062, i1 1
+  13063 = xor i1 %13062, i1 1
   13064 = zext i1 %13063 to i32
   13065 = icmp ne i32 %13064, i32 0
   br i1 %13065, bb %then13066, bb %else13068
@@ -13425,7 +13425,7 @@ then13105:
 if.exit13106:
   a_and_b13095.phi = phi [bb %else13107, i32 0, bb %then13105, i32 1]
   13110 = icmp ne i32 %a_and_b13095.phi, i32 0
-  13111 =  i1 %13110, i1 1
+  13111 = xor i1 %13110, i1 1
   13112 = zext i1 %13111 to i32
   13113 = icmp ne i32 %13112, i32 0
   br i1 %13113, bb %then13114, bb %else13116
@@ -13529,7 +13529,7 @@ then13193:
 if.exit13194:
   a_and_b13183.phi = phi [bb %else13195, i32 0, bb %then13193, i32 1]
   13198 = icmp ne i32 %a_and_b13183.phi, i32 0
-  13199 =  i1 %13198, i1 1
+  13199 = xor i1 %13198, i1 1
   13200 = zext i1 %13199 to i32
   13201 = icmp ne i32 %13200, i32 0
   br i1 %13201, bb %then13202, bb %else13204
@@ -13587,7 +13587,7 @@ then13241:
 if.exit13242:
   a_and_b13231.phi = phi [bb %else13243, i32 0, bb %then13241, i32 1]
   13246 = icmp ne i32 %a_and_b13231.phi, i32 0
-  13247 =  i1 %13246, i1 1
+  13247 = xor i1 %13246, i1 1
   13248 = zext i1 %13247 to i32
   13249 = icmp ne i32 %13248, i32 0
   br i1 %13249, bb %then13250, bb %else13252
@@ -13691,7 +13691,7 @@ then13329:
 if.exit13330:
   a_and_b13319.phi = phi [bb %else13331, i32 0, bb %then13329, i32 1]
   13334 = icmp ne i32 %a_and_b13319.phi, i32 0
-  13335 =  i1 %13334, i1 1
+  13335 = xor i1 %13334, i1 1
   13336 = zext i1 %13335 to i32
   13337 = icmp ne i32 %13336, i32 0
   br i1 %13337, bb %then13338, bb %else13340
@@ -13749,7 +13749,7 @@ then13377:
 if.exit13378:
   a_and_b13367.phi = phi [bb %else13379, i32 0, bb %then13377, i32 1]
   13382 = icmp ne i32 %a_and_b13367.phi, i32 0
-  13383 =  i1 %13382, i1 1
+  13383 = xor i1 %13382, i1 1
   13384 = zext i1 %13383 to i32
   13385 = icmp ne i32 %13384, i32 0
   br i1 %13385, bb %then13386, bb %else13388
@@ -13853,7 +13853,7 @@ then13465:
 if.exit13466:
   a_and_b13455.phi = phi [bb %else13467, i32 0, bb %then13465, i32 1]
   13470 = icmp ne i32 %a_and_b13455.phi, i32 0
-  13471 =  i1 %13470, i1 1
+  13471 = xor i1 %13470, i1 1
   13472 = zext i1 %13471 to i32
   13473 = icmp ne i32 %13472, i32 0
   br i1 %13473, bb %then13474, bb %else13476
@@ -13911,7 +13911,7 @@ then13513:
 if.exit13514:
   a_and_b13503.phi = phi [bb %else13515, i32 0, bb %then13513, i32 1]
   13518 = icmp ne i32 %a_and_b13503.phi, i32 0
-  13519 =  i1 %13518, i1 1
+  13519 = xor i1 %13518, i1 1
   13520 = zext i1 %13519 to i32
   13521 = icmp ne i32 %13520, i32 0
   br i1 %13521, bb %then13522, bb %else13524
@@ -14015,7 +14015,7 @@ then13601:
 if.exit13602:
   a_and_b13591.phi = phi [bb %else13603, i32 0, bb %then13601, i32 1]
   13606 = icmp ne i32 %a_and_b13591.phi, i32 0
-  13607 =  i1 %13606, i1 1
+  13607 = xor i1 %13606, i1 1
   13608 = zext i1 %13607 to i32
   13609 = icmp ne i32 %13608, i32 0
   br i1 %13609, bb %then13610, bb %else13612
@@ -14073,7 +14073,7 @@ then13649:
 if.exit13650:
   a_and_b13639.phi = phi [bb %else13651, i32 0, bb %then13649, i32 1]
   13654 = icmp ne i32 %a_and_b13639.phi, i32 0
-  13655 =  i1 %13654, i1 1
+  13655 = xor i1 %13654, i1 1
   13656 = zext i1 %13655 to i32
   13657 = icmp ne i32 %13656, i32 0
   br i1 %13657, bb %then13658, bb %else13660
@@ -14177,7 +14177,7 @@ then13737:
 if.exit13738:
   a_and_b13727.phi = phi [bb %else13739, i32 0, bb %then13737, i32 1]
   13742 = icmp ne i32 %a_and_b13727.phi, i32 0
-  13743 =  i1 %13742, i1 1
+  13743 = xor i1 %13742, i1 1
   13744 = zext i1 %13743 to i32
   13745 = icmp ne i32 %13744, i32 0
   br i1 %13745, bb %then13746, bb %else13748
@@ -14235,7 +14235,7 @@ then13785:
 if.exit13786:
   a_and_b13775.phi = phi [bb %else13787, i32 0, bb %then13785, i32 1]
   13790 = icmp ne i32 %a_and_b13775.phi, i32 0
-  13791 =  i1 %13790, i1 1
+  13791 = xor i1 %13790, i1 1
   13792 = zext i1 %13791 to i32
   13793 = icmp ne i32 %13792, i32 0
   br i1 %13793, bb %then13794, bb %else13796

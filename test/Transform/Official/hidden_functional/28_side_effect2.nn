@@ -720,7 +720,7 @@ select.else468:
 select.else468.split:
   471.ret = phi [bb %h.then82844, i32 0, bb %h.if.exit83846, i32 %86.load849]
   472 = icmp ne i32 %471.ret, i32 0
-  473 =  i1 %472, i1 1
+  473 = xor i1 %472, i1 1
   474 = zext i1 %473 to i32
   475 = icmp ne i32 %474, i32 0
   br bb %select.exit469
@@ -741,7 +741,7 @@ select.exit480:
 select.exit480.split:
   491.ret = phi [bb %h.then82890, i32 0, bb %h.if.exit83892, i32 %86.load895]
   492 = icmp ne i32 %491.ret, i32 0
-  493 =  i1 %492, i1 1
+  493 = xor i1 %492, i1 1
   494 = zext i1 %493 to i32
   495 = icmp ne i32 %494, i32 0
   br i1 %495, bb %select.then496, bb %select.else497
@@ -769,7 +769,7 @@ select.then502:
 select.then502.split:
   506.ret = phi [bb %h.then82936, i32 0, bb %h.if.exit83938, i32 %86.load941]
   507 = icmp ne i32 %506.ret, i32 0
-  508 =  i1 %507, i1 1
+  508 = xor i1 %507, i1 1
   509 = zext i1 %508 to i32
   510 = icmp ne i32 %509, i32 0
   br bb %select.exit504
@@ -817,7 +817,7 @@ select.then539:
 select.then539.split:
   543.ret = phi [bb %h.then821028, i32 0, bb %h.if.exit831030, i32 %86.load1033]
   544 = icmp ne i32 %543.ret, i32 0
-  545 =  i1 %544, i1 1
+  545 = xor i1 %544, i1 1
   546 = zext i1 %545 to i32
   547 = icmp ne i32 %546, i32 0
   br bb %select.exit541
@@ -837,7 +837,7 @@ select.else550:
 select.else550.split:
   553.ret = phi [bb %h.then821051, i32 0, bb %h.if.exit831053, i32 %86.load1056]
   554 = icmp ne i32 %553.ret, i32 0
-  555 =  i1 %554, i1 1
+  555 = xor i1 %554, i1 1
   556 = zext i1 %555 to i32
   557 = icmp ne i32 %556, i32 0
   br bb %select.exit551
@@ -855,7 +855,7 @@ select.else561:
 select.else561.split:
   564.ret = phi [bb %h.then821074, i32 0, bb %h.if.exit831076, i32 %86.load1079]
   565 = icmp ne i32 %564.ret, i32 0
-  566 =  i1 %565, i1 1
+  566 = xor i1 %565, i1 1
   567 = zext i1 %566 to i32
   568 = icmp ne i32 %567, i32 0
   br bb %select.exit562
@@ -873,7 +873,7 @@ select.else572:
 select.else572.split:
   575.ret = phi [bb %h.then821097, i32 0, bb %h.if.exit831099, i32 %86.load1102]
   576 = icmp ne i32 %575.ret, i32 0
-  577 =  i1 %576, i1 1
+  577 = xor i1 %576, i1 1
   578 = zext i1 %577 to i32
   579 = icmp ne i32 %578, i32 0
   br bb %select.exit573
@@ -928,7 +928,7 @@ select.then611:
 select.then611.split:
   615.ret = phi [bb %h.then821212, i32 0, bb %h.if.exit831214, i32 %86.load1217]
   616 = icmp ne i32 %615.ret, i32 0
-  617 =  i1 %616, i1 1
+  617 = xor i1 %616, i1 1
   618 = zext i1 %617 to i32
   619 = icmp ne i32 %618, i32 0
   br bb %select.exit613
@@ -945,7 +945,7 @@ select.then621:
 select.then621.split:
   625.ret = phi [bb %h.then821235, i32 0, bb %h.if.exit831237, i32 %86.load1240]
   626 = icmp ne i32 %625.ret, i32 0
-  627 =  i1 %626, i1 1
+  627 = xor i1 %626, i1 1
   628 = zext i1 %627 to i32
   629 = icmp ne i32 %628, i32 0
   br bb %select.exit623
@@ -993,7 +993,7 @@ select.then645:
 select.then645.split:
   649.ret = phi [bb %h.then821304, i32 0, bb %h.if.exit831306, i32 %86.load1309]
   650 = icmp ne i32 %649.ret, i32 0
-  651 =  i1 %650, i1 1
+  651 = xor i1 %650, i1 1
   652 = zext i1 %651 to i32
   653 = icmp ne i32 %652, i32 0
   br bb %select.exit647

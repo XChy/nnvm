@@ -139,8 +139,8 @@ bb8:
   ADDIW s5, s4, 1
   ADDI s6, zero, 4
   MULW s7, s5, s6
-  ADDI t6, sp, 0
-  ADD s6, t6, s7
+  ADDI t5, sp, 0
+  ADD s6, t5, s7
   ADDI s7, zero, 4
   MULW s8, s4, s7
   ADDI t5, sp, 0
@@ -186,8 +186,8 @@ bb11:
   REMW s5, s1, s4
   ADDI s1, zero, 4
   MULW s4, s5, s1
-  ADDI t6, sp, 0
-  ADD s1, t6, s4
+  ADDI t5, sp, 0
+  ADD s1, t5, s4
   LW s4, 0(s1)
   DIVW s5, s0, s4
   ADDI s0, zero, 2
@@ -468,8 +468,8 @@ bb40:
   ADDIW s5, s2, 1
   ADDI s7, zero, 4
   MULW s8, s5, s7
-  ADDI t6, sp, 0
-  ADD s7, t6, s8
+  ADDI t5, sp, 0
+  ADD s7, t5, s8
   ADDI s8, zero, 4
   MULW s9, s2, s8
   ADDI t5, sp, 0
@@ -501,8 +501,8 @@ bb42:
   REMW s5, s6, s1
   ADDI s1, zero, 4
   MULW s6, s5, s1
-  ADDI t6, sp, 0
-  ADD s1, t6, s6
+  ADDI t5, sp, 0
+  ADD s1, t5, s6
   LW s5, 0(s1)
   DIVW s6, s0, s5
   ADDI s0, zero, 2

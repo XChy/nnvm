@@ -27,9 +27,9 @@ func.while.body:
 func.while.exit:
   br bb %func.while.cond18
 func.while.cond18:
-  j.phi671 = phi [bb %func.while.exit, i32 0, bb %func.while.exit624, i32 %620874]
-  sum.phi672 = phi [bb %func.while.exit, i32 0, bb %func.while.exit624, i32 %637891]
-  23673 = icmp slt i32 %j.phi671, i32 %642
+  sum.phi671 = phi [bb %func.while.exit, i32 0, bb %func.while.exit624, i32 %637891]
+  j.phi672 = phi [bb %func.while.exit, i32 0, bb %func.while.exit624, i32 %620874]
+  23673 = icmp slt i32 %j.phi672, i32 %642
   br i1 %23673, bb %func.while.body19, bb %func.while.exit20
 func.while.body19:
   30676 = ptradd ptr %s656, i32 4
@@ -230,27 +230,27 @@ func.while.body19:
   store i32 98 to ptr %612870
   618872 = ptradd ptr %s656, i32 396
   store i32 99 to ptr %618872
-  620874 = add i32 %j.phi671, i32 1
+  620874 = add i32 %j.phi672, i32 1
   br bb %func.while.cond622
 func.while.exit20:
-  call void putint(i32 %sum.phi672)
+  call void putint(i32 %sum.phi671)
   call void putch(i32 10)
   call void _sysy_stoptime(i32 328)
   ret i32 0
 func.while.cond622:
   m621.phi879 = phi [bb %func.while.body19, i32 0, bb %func.while.body623, i32 %635888]
-  sum.phi649880 = phi [bb %func.while.body19, i32 %sum.phi672, bb %func.while.body623, i32 %633887]
+  sum.phi651880 = phi [bb %func.while.body19, i32 %sum.phi671, bb %func.while.body623, i32 %633887]
   626881 = icmp slt i32 %m621.phi879, i32 100
   br i1 %626881, bb %func.while.body623, bb %func.while.exit624
 func.while.body623:
   630884 = mul i32 %m621.phi879, i32 4
   631885 = ptradd ptr %s656, i32 %630884
   631.load886 = load i32 from ptr %631885
-  633887 = add i32 %sum.phi649880, i32 %631.load886
+  633887 = add i32 %sum.phi651880, i32 %631.load886
   635888 = add i32 %m621.phi879, i32 1
   br bb %func.while.cond622
 func.while.exit624:
-  637891 = srem i32 %sum.phi649880, i32 65535
+  637891 = srem i32 %sum.phi651880, i32 65535
   br bb %func.while.cond18
 }
 
@@ -285,8 +285,8 @@ while.body:
 while.exit:
   br bb %while.cond18
 while.cond18:
-  j.phi = phi [bb %while.exit, i32 0, bb %while.exit624, i32 %620]
   sum.phi = phi [bb %while.exit, i32 0, bb %while.exit624, i32 %637]
+  j.phi = phi [bb %while.exit, i32 0, bb %while.exit624, i32 %620]
   23 = icmp slt i32 %j.phi, i32 %n
   br i1 %23, bb %while.body19, bb %while.exit20
 while.body19:
@@ -494,18 +494,18 @@ while.exit20:
   ret i32 %sum.phi
 while.cond622:
   m621.phi = phi [bb %while.body19, i32 0, bb %while.body623, i32 %635]
-  sum.phi649 = phi [bb %while.body19, i32 %sum.phi, bb %while.body623, i32 %633]
+  sum.phi651 = phi [bb %while.body19, i32 %sum.phi, bb %while.body623, i32 %633]
   626 = icmp slt i32 %m621.phi, i32 100
   br i1 %626, bb %while.body623, bb %while.exit624
 while.body623:
   630 = mul i32 %m621.phi, i32 4
   631 = ptradd ptr %s, i32 %630
   631.load = load i32 from ptr %631
-  633 = add i32 %sum.phi649, i32 %631.load
+  633 = add i32 %sum.phi651, i32 %631.load
   635 = add i32 %m621.phi, i32 1
   br bb %while.cond622
 while.exit624:
-  637 = srem i32 %sum.phi649, i32 65535
+  637 = srem i32 %sum.phi651, i32 65535
   br bb %while.cond18
 }
 

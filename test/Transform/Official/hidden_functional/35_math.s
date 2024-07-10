@@ -548,7 +548,7 @@ bb20:
   FDIV.S fs11, fs10, ft4
   FLW ft3, 24(sp)
   FADD.S ft4, ft3, fs11
-  FSW ft4, 4(sp)
+  FSW ft4, 8(sp)
   BNE s2, zero, bb29
   JAL zero, bb30
 bb21:
@@ -556,8 +556,8 @@ bb21:
   FSW ft4, 0(sp)
   FLW ft3, 0(sp)
   FADD.S ft4, fs9, ft3
-  FSW ft4, 8(sp)
-  FLW ft3, 8(sp)
+  FSW ft4, 4(sp)
+  FLW ft3, 4(sp)
   FLW ft4, 32(sp)
   FSUB.S ft4, ft3, ft4
   FSW ft4, 12(sp)
@@ -568,8 +568,8 @@ bb21:
   BNE s1, zero, bb33
   JAL zero, bb34
 bb22:
-  FLW ft4, 16(sp)
-  FLW ft3, 16(sp)
+  FLW ft4, 20(sp)
+  FLW ft3, 20(sp)
   FSGNJ.S ft7, ft4, ft3
   ADDI s1, zero, 15
   FCVT.S.W fa4, s1
@@ -583,7 +583,7 @@ bb23:
   FLW ft7, 0(s1)
   FLW ft4, 12(sp)
   FDIV.S fa4, ft4, ft7
-  FLW ft4, 8(sp)
+  FLW ft4, 4(sp)
   FADD.S ft7, ft4, fa4
   FSGNJ.S fa0, ft7, ft7
   FLD fs6, 48(sp)
@@ -609,13 +609,13 @@ bb24:
   FLW ft3, 36(sp)
   FLW ft4, 28(sp)
   FDIV.S ft4, ft3, ft4
-  FSW ft4, 20(sp)
+  FSW ft4, 16(sp)
   FSGNJ.S fa0, fs0, fs0
   FLW ft4, 24(sp)
   FLW ft3, 24(sp)
   FSGNJ.S fa1, ft4, ft3
-  FLW ft4, 20(sp)
-  FLW ft3, 20(sp)
+  FLW ft4, 16(sp)
+  FLW ft3, 16(sp)
   FSGNJ.S fa2, ft4, ft3
   FSGNJ.S fa3, fs9, fs9
   ADD a0, s0, zero
@@ -627,8 +627,8 @@ bb24:
   FLW ft4, 40(sp)
   FLW ft3, 40(sp)
   FSGNJ.S fa1, ft4, ft3
-  FLW ft4, 20(sp)
-  FLW ft3, 20(sp)
+  FLW ft4, 16(sp)
+  FLW ft3, 16(sp)
   FSGNJ.S fa2, ft4, ft3
   FLW ft4, 0(sp)
   FLW ft3, 0(sp)
@@ -724,7 +724,7 @@ bb29:
   FCVT.S.W fs11, s1
   FLW ft4, 24(sp)
   FDIV.S ft1, fs11, ft4
-  FLW ft4, 4(sp)
+  FLW ft4, 8(sp)
   FDIV.S ft2, fs11, ft4
   ADDI s1, zero, 4
   FCVT.S.W ft5, s1
@@ -755,8 +755,8 @@ bb31:
   CALL my_sqrt
   FSGNJ.D fs3, fa0, fa0
   FDIV.S fs5, fs4, fs3
-  FLW ft4, 4(sp)
-  FLW ft3, 4(sp)
+  FLW ft4, 8(sp)
+  FLW ft3, 8(sp)
   FMUL.S fs3, ft4, ft3
   FSUB.S fs2, fs4, fs3
   FSGNJ.S fa0, fs2, fs2
@@ -791,14 +791,14 @@ bb33:
   FLW ft3, 12(sp)
   FLW ft4, 12(sp)
   FSGNJ.S ft4, ft3, ft4
-  FSW ft4, 16(sp)
+  FSW ft4, 20(sp)
   JAL zero, bb22
 bb34:
   FLW ft4, 12(sp)
   FLW ft3, 12(sp)
   FSGNJN.S fs3, ft4, ft3
   FSGNJ.S ft4, fs3, fs3
-  FSW ft4, 16(sp)
+  FSW ft4, 20(sp)
   JAL zero, bb22
 simpson:
   ADDI sp, sp, -112

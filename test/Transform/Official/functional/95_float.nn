@@ -121,14 +121,14 @@ entry77.split.split397:
 entry77.split.split.split413:
   88.ret = phi [bb %float_eq.then37419, i32 %44424, bb %float_eq.else426, i32 0]
   59463 = icmp ne i32 %88.ret, i32 0
-  60464 =  i1 %59463, i1 1
+  60464 = xor i1 %59463, i1 1
   61465 = zext i1 %60464 to i32
   62466 = icmp ne i32 %61465, i32 0
   br i1 %62466, bb %assert.then63, bb %assert.else65
 entry77.split.split.split342.split.split:
   95.ret = phi [bb %float_eq.then37435, i32 %44440, bb %float_eq.else442, i32 0]
   59493 = icmp ne i32 %95.ret, i32 0
-  60494 =  i1 %59493, i1 1
+  60494 = xor i1 %59493, i1 1
   61495 = zext i1 %60494 to i32
   62496 = icmp ne i32 %61495, i32 0
   br i1 %62496, bb %assert.then63498, bb %assert.else65504
@@ -143,10 +143,10 @@ then102:
   br bb %if.exit103
 if.exit103:
   105 = fcmp one float 3.300000, float 0.000000
-  106 =  i1 %105, i1 1
+  106 = xor i1 %105, i1 1
   107 = zext i1 %106 to i32
   108 = icmp ne i32 %107, i32 0
-  109 =  i1 %108, i1 1
+  109 = xor i1 %108, i1 1
   110 = zext i1 %109 to i32
   111 = icmp ne i32 %110, i32 0
   br i1 %111, bb %then112, bb %if.exit113
@@ -445,7 +445,7 @@ external void putarray(i32 , ptr )
 void assert(i32 cond) {
 entry56:
   59 = icmp ne i32 %cond, i32 0
-  60 =  i1 %59, i1 1
+  60 = xor i1 %59, i1 1
   61 = zext i1 %60 to i32
   62 = icmp ne i32 %61, i32 0
   br i1 %62, bb %then63, bb %else65

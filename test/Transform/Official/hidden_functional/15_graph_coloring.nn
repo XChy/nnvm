@@ -156,7 +156,7 @@ while.body137:
 while.exit138:
   149 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
   150 = icmp ne i32 %149, i32 0
-  151 =  i1 %150, i1 1
+  151 = xor i1 %150, i1 1
   152 = zext i1 %151 to i32
   153 = icmp ne i32 %152, i32 0
   br i1 %153, bb %then154, bb %if.exit155

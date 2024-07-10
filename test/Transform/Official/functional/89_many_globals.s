@@ -178,35 +178,34 @@ testParam32:
   ADDI s8, sp, 196
   LW a7, 0(s8)
   ADDI s8, sp, 200
-  LW t4, 0(s8)
-  SW t4, 0(sp)
+  LW t6, 0(s8)
   ADDI s8, sp, 204
   LW t4, 0(s8)
-  SW t4, 4(sp)
+  SW t4, 0(sp)
   ADDI s8, sp, 208
   LW t4, 0(s8)
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   ADDI s8, sp, 212
   LW t4, 0(s8)
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   ADDI s8, sp, 216
   LW t4, 0(s8)
-  SW t4, 16(sp)
+  SW t4, 12(sp)
   ADDI s8, sp, 220
   LW t4, 0(s8)
-  SW t4, 20(sp)
+  SW t4, 16(sp)
   ADDI s8, sp, 224
   LW t4, 0(s8)
-  SW t4, 24(sp)
+  SW t4, 20(sp)
   ADDI s8, sp, 228
   LW t4, 0(s8)
-  SW t4, 28(sp)
+  SW t4, 24(sp)
   ADDI s8, sp, 232
   LW t4, 0(s8)
-  SW t4, 32(sp)
+  SW t4, 28(sp)
   ADDI s8, sp, 236
   LW t4, 0(s8)
-  SW t4, 36(sp)
+  SW t4, 32(sp)
   ADDW s8, s0, s1
   ADDW s0, s8, s2
   ADDW s1, s0, s3
@@ -228,25 +227,24 @@ testParam32:
   SUBW s1, s0, a5
   SUBW s0, s1, a6
   SUBW s1, s0, a7
+  SUBW s0, s1, t6
   LW t4, 0(sp)
-  SUBW s0, s1, t4
+  ADDW s1, s0, t4
   LW t4, 4(sp)
-  ADDW s1, s0, t4
+  ADDW s0, s1, t4
   LW t4, 8(sp)
-  ADDW s0, s1, t4
+  ADDW s1, s0, t4
   LW t4, 12(sp)
-  ADDW s1, s0, t4
+  ADDW s0, s1, t4
   LW t4, 16(sp)
-  ADDW s0, s1, t4
+  ADDW s1, s0, t4
   LW t4, 20(sp)
-  ADDW s1, s0, t4
+  ADDW s0, s1, t4
   LW t4, 24(sp)
-  ADDW s0, s1, t4
-  LW t4, 28(sp)
   ADDW s1, s0, t4
-  LW t4, 32(sp)
+  LW t4, 28(sp)
   ADDW s0, s1, t4
-  LW t4, 36(sp)
+  LW t4, 32(sp)
   ADDW s1, s0, t4
   ADD a0, s1, zero
   LD ra, 40(sp)

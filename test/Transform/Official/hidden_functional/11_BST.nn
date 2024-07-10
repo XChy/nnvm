@@ -225,7 +225,7 @@ entry277:
   store i32 0 to ptr @now
   279 = call i32 getint()
   281 = icmp ne i32 %279, i32 0
-  282 =  i1 %281, i1 1
+  282 = xor i1 %281, i1 1
   283 = zext i1 %282 to i32
   284 = icmp ne i32 %283, i32 0
   br i1 %284, bb %then285, bb %if.exit286

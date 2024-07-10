@@ -61,7 +61,7 @@ while.body152:
   163 = ptradd ptr @inq, i32 %162
   163.load = load i32 from ptr %163
   165 = icmp ne i32 %163.load, i32 0
-  166 =  i1 %165, i1 1
+  166 = xor i1 %165, i1 1
   167 = zext i1 %166 to i32
   168 = icmp ne i32 %167, i32 0
   br i1 %168, bb %then169, bb %if.exit170
@@ -330,7 +330,7 @@ same.while.body152:
   163309 = ptradd ptr @inq, i32 %162308
   163.load310 = load i32 from ptr %163309
   165311 = icmp ne i32 %163.load310, i32 0
-  166312 =  i1 %165311, i1 1
+  166312 = xor i1 %165311, i1 1
   167313 = zext i1 %166312 to i32
   168314 = icmp ne i32 %167313, i32 0
   br i1 %168314, bb %same.then169, bb %same.if.exit170

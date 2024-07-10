@@ -121,7 +121,6 @@ void LinearScanRA::mapVRegs(LIRFunc &func) {
 
   std::set<Register *> allScratchRegs;
   allScratchRegs.merge(getScratchRegs(func.getParent()));
-  allScratchRegs.merge(getScratchFRegs(func.getParent()));
   allScratchRegs.insert(func.getParent()->getPhyReg(T3));
   allScratchRegs.insert(func.getParent()->getPhyReg(FT3));
   allScratchRegs.insert(func.getParent()->getPhyReg(T4));

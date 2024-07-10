@@ -137,7 +137,6 @@ public:
   virtual Instruction *copy() = 0;
   Instruction *copyWithName();
 
-
 private:
   InstID instID;
   std::vector<Use *> useeList;
@@ -505,6 +504,8 @@ public:
   Value *getIncomingValue(uint64_t index) const {
     return getOperand(2 * index + 1);
   }
+
+  Value *getIncomingValueOf(BasicBlock *incoming) const;
 
   Instruction *copy() override {
     auto *ret = new PhiInst(getType());

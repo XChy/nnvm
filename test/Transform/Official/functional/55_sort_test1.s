@@ -124,8 +124,8 @@ bb7:
 bb8:
   ADDI s7, zero, 4
   MULW s8, s5, s7
-  ADDI t6, sp, 0
-  ADD s7, t6, s8
+  ADDI t5, sp, 0
+  ADD s7, t5, s8
   LW s8, 0(s7)
   ADDIW s9, s5, 1
   ADDI s5, zero, 4
