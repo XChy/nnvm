@@ -137,5 +137,9 @@ private:
   Type *getIRType(SysYParser::BtypeContext *ctx);
   Type *getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx);
   Type *getIRType(SysYParser::FuncTypeContext *ctx);
+
+  SymbolType *
+  getArrayType(SymbolType *containedTy,
+               std::vector<nnvm::SysYParser::ConstExpContext *> dimCtxs);
 };
 } // namespace nnvm

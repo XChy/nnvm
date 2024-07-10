@@ -64,7 +64,7 @@ Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
 
 /**
  * Visit the basic type context
- * @return Int / Float SymbolType on success
+ * @return Int / Float SymbolType* on success
  */
 Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
   if (ctx->INT())
@@ -273,6 +273,19 @@ Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
   return constVals;
 }
 
+SymbolType *IRGenerator::getArrayType(
+    SymbolType *containedTy,
+    std::vector<nnvm::SysYParser::ConstExpContext *> dimCtxs) {
+  SymbolType *arrayTy = containedTy;
+  for (auto it = dimCtxs.rbegin(); it != dimCtxs.rend(); it++) {
+    Any nrElements = solveConstExp((*it)->exp());
+    assert(any_is<int>(nrElements));
+    arrayTy =
+        SymbolType::getArrayTy(any_as<int>(nrElements), arrayTy, symbolTable);
+  }
+  return arrayTy;
+}
+
 /**
  * This function defines constant value
  * @param ctx The constant definition(context)
@@ -288,14 +301,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     return Symbol::none();
   }
 
-  auto indexExps = ctx->constExp();
-  for (auto it = indexExps.rbegin(); it != indexExps.rend(); it++) {
-    // TODO: report index not constant int error
-    Any nrElements = solveConstExp((*it)->exp());
-    assert(any_is<int>(nrElements));
-    symbolType = SymbolType::getArrayTy(any_as<int>(nrElements), symbolType,
-                                        symbolTable);
-  }
+  symbolType = getArrayType(symbolType, ctx->constExp());
 
   Type *irType = getIRType(symbolType, btype);
   Constant *constVal = nullptr;
@@ -598,13 +604,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
     return Symbol::none();
   }
 
-  auto constExps = ctx->constExp();
-  for (auto it = constExps.rbegin(); it != constExps.rend(); it++) {
-    Any nrElements = solveConstExp((*it)->exp());
-    assert(any_is<int>(nrElements));
-    symbolType = SymbolType::getArrayTy(any_as<int>(nrElements), symbolType,
-                                        symbolTable);
-  }
+  symbolType = getArrayType(symbolType, ctx->constExp());
 
   Type *irType = getIRType(symbolType, btype);
   Value *irVal = nullptr;
@@ -692,6 +692,9 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   return Symbol::none();
 }
 
+/**
+ * Enter a new scope and visit all statments in the block.
+ */
 Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
   symbolTable.enterScope();
   for (auto stmtCtx : ctx->blockItem()) {
