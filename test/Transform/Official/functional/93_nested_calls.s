@@ -15,8 +15,6 @@ func6:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb5
   # implict jump to bb1
 bb1:
@@ -40,8 +38,7 @@ bb4:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:
-  XOR s1, a1, zero
-  SLTU s1, zero, s1
+  SLTU s1, zero, a1
   ADD s0, s1, zero
   JAL zero, bb2
 func5:
@@ -60,19 +57,15 @@ func2:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  XOR s2, s1, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb9
+  BNE s1, zero, bb9
   # implict jump to bb8
 bb8:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb9:
@@ -85,7 +78,6 @@ bb9:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 func3:
@@ -96,8 +88,7 @@ func3:
   SD s2, 24(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  XOR s2, s1, zero
-  SLTIU s2, s2, 1
+  SLTIU s2, s1, 1
   BNE s2, zero, bb12
   # implict jump to bb11
 bb11:
@@ -127,11 +118,8 @@ func7:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb15
   # implict jump to bb14
 bb14:
@@ -151,8 +139,6 @@ func4:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb18
   # implict jump to bb17
 bb17:
@@ -207,11 +193,8 @@ bb20:
   # implict jump to bb21
 bb21:
   LW t4, 12(sp)
-  XOR s6, t4, zero
-  SLTU s6, zero, s6
+  SLTU s6, zero, t4
   XORI s6, s6, 1
-  XOR s6, s6, zero
-  SLTU s6, zero, s6
   BNE s6, zero, bb57
   # implict jump to bb22
 bb22:
@@ -220,8 +203,6 @@ bb22:
 bb23:
   LW t4, 8(sp)
   SUB s7, zero, t4
-  XOR s6, s6, zero
-  SLTU s6, zero, s6
   BNE s6, zero, bb56
   # implict jump to bb24
 bb24:
@@ -255,20 +236,15 @@ bb27:
   LW t4, 0(s11)
   SW t4, 24(sp)
   LW t4, 24(sp)
-  XOR s3, t4, zero
-  SLTU s3, zero, s3
+  SLTU s3, zero, t4
   XORI s3, s3, 1
-  XOR s3, s3, zero
-  SLTU s3, zero, s3
   BNE s3, zero, bb54
   # implict jump to bb28
 bb28:
   ADD s3, zero, zero
   # implict jump to bb29
 bb29:
-  XOR s2, s10, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb53
+  BNE s10, zero, bb53
   # implict jump to bb30
 bb30:
   ADD s2, zero, zero
@@ -284,11 +260,8 @@ bb33:
   LW s3, 0(s3)
   ADDI s1, sp, 156
   LW s1, 0(s1)
-  XOR s0, s1, zero
-  SLTU s0, zero, s0
+  SLTU s0, zero, s1
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb51
   # implict jump to bb34
 bb34:
@@ -299,8 +272,6 @@ bb35:
   ADD a1, s0, zero
   CALL func2
   ADD s0, a0, zero
-  XOR s9, s9, zero
-  SLTU s9, zero, s9
   BNE s9, zero, bb50
   # implict jump to bb36
 bb36:
@@ -322,11 +293,8 @@ bb37:
   LW s4, 0(s4)
   ADDI s5, sp, 172
   LW s5, 0(s5)
-  XOR s11, s5, zero
-  SLTU s11, zero, s11
+  SLTU s11, zero, s5
   XORI s11, s11, 1
-  XOR s11, s11, zero
-  SLTU s11, zero, s11
   BNE s11, zero, bb49
   # implict jump to bb38
 bb38:
@@ -343,19 +311,14 @@ bb39:
   ADD a2, t4, zero
   CALL func1
   ADD s0, a0, zero
-  XOR s6, s6, zero
-  SLTU s6, zero, s6
   BNE s6, zero, bb48
   # implict jump to bb40
 bb40:
   # implict jump to bb41
 bb41:
   LW t4, 4(sp)
-  XOR s6, t4, zero
-  SLTU s6, zero, s6
+  SLTU s6, zero, t4
   XORI s6, s6, 1
-  XOR s6, s6, zero
-  SLTU s6, zero, s6
   BNE s6, zero, bb47
   # implict jump to bb42
 bb42:
@@ -395,11 +358,8 @@ bb43:
   ADD a1, s2, zero
   CALL func2
   ADD s1, a0, zero
-  XOR s2, s4, zero
-  SLTU s2, zero, s2
+  SLTU s2, zero, s4
   XORI s2, s2, 1
-  XOR s2, s2, zero
-  SLTU s2, zero, s2
   BNE s2, zero, bb46
   # implict jump to bb44
 bb44:
@@ -465,7 +425,6 @@ bb52:
   ADDI s2, zero, 1
   JAL zero, bb33
 bb53:
-  XOR s3, s3, zero
   SLTU s3, zero, s3
   ADD s2, s3, zero
   JAL zero, bb31
@@ -476,7 +435,6 @@ bb55:
   ADDI s6, zero, 1
   JAL zero, bb27
 bb56:
-  XOR s7, s7, zero
   SLTU s7, zero, s7
   ADD s6, s7, zero
   JAL zero, bb25
@@ -505,8 +463,7 @@ func1:
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  XOR s3, s2, zero
-  SLTIU s3, s3, 1
+  SLTIU s3, s2, 1
   BNE s3, zero, bb61
   # implict jump to bb60
 bb60:

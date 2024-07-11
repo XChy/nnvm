@@ -57,7 +57,6 @@ bb1:
   LW t4, 96(sp)
   REMW s2, t4, s2
   XORI s2, s2, 60
-  SLTU s2, zero, s2
   BNE s2, zero, bb30
   # implict jump to bb2
 bb2:
@@ -115,9 +114,7 @@ bb3:
   ADD t4, t3, zero
   SW t4, 84(sp)
   LW t4, 84(sp)
-  XOR s5, t4, zero
-  SLTU s5, zero, s5
-  BNE s5, zero, bb29
+  BNE t4, zero, bb29
   # implict jump to bb4
 bb4:
   LUI s5, 982235
@@ -161,8 +158,7 @@ bb5:
   SW t4, 52(sp)
   LW t4, 72(sp)
   LW t3, 92(sp)
-  SLT a0, t4, t3
-  BNE a0, zero, bb7
+  BLT t4, t3, bb7
   # implict jump to bb6
 bb6:
   LW t4, 80(sp)
@@ -677,8 +673,8 @@ main:
   SD s7, 184(sp)
   SD s8, 192(sp)
   SD s9, 200(sp)
-  SD s10, 224(sp)
-  SD s11, 232(sp)
+  SD s10, 232(sp)
+  SD s11, 240(sp)
   SW zero, 256(sp)
   ADDI t4, sp, 260
   SD t4, 208(sp)
@@ -689,8 +685,8 @@ main:
   LD t4, 216(sp)
   SW zero, 0(t4)
   ADDI t4, sp, 268
-  SD t4, 240(sp)
-  LD t4, 240(sp)
+  SD t4, 224(sp)
+  LD t4, 224(sp)
   SW zero, 0(t4)
   ADDI t4, sp, 272
   SD t4, 248(sp)
@@ -718,8 +714,7 @@ bb38:
   ADD t4, s4, zero
   SW t4, 116(sp)
   LW t4, 116(sp)
-  SLT s6, zero, t4
-  BNE s6, zero, bb40
+  BLT zero, t4, bb40
   # implict jump to bb39
 bb39:
   ADDI a0, zero, 184
@@ -740,8 +735,8 @@ bb39:
   LD s7, 184(sp)
   LD s8, 192(sp)
   LD s9, 200(sp)
-  LD s10, 224(sp)
-  LD s11, 232(sp)
+  LD s10, 232(sp)
+  LD s11, 240(sp)
   ADDI sp, sp, 624
   JALR zero, 0(ra)
 bb40:
@@ -778,7 +773,6 @@ bb43:
   LW t4, 96(sp)
   REMW s10, t4, s10
   XORI s10, s10, 60
-  SLTU s10, zero, s10
   BNE s10, zero, bb75
   # implict jump to bb44
 bb44:
@@ -817,9 +811,7 @@ bb45:
   ADD t4, t3, zero
   SW t4, 84(sp)
   LW t4, 84(sp)
-  XOR t0, t4, zero
-  SLTU t0, zero, t0
-  BNE t0, zero, bb74
+  BNE t4, zero, bb74
   # implict jump to bb46
 bb46:
   LUI t0, 982235
@@ -863,8 +855,7 @@ bb47:
   SW t4, 32(sp)
   LW t4, 8(sp)
   LW t3, 92(sp)
-  SLT s7, t4, t3
-  BNE s7, zero, bb52
+  BLT t4, t3, bb52
   # implict jump to bb48
 bb48:
   LW t4, 44(sp)
@@ -876,7 +867,7 @@ bb48:
   LD t3, 216(sp)
   SW t4, 0(t3)
   LW t4, 16(sp)
-  LD t3, 240(sp)
+  LD t3, 224(sp)
   SW t4, 0(t3)
   LW t4, 28(sp)
   LD t3, 248(sp)

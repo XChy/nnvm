@@ -48,8 +48,7 @@ exgcd:
   ADD s1, a1, zero
   ADD s2, a2, zero
   ADD s3, a3, zero
-  XOR s4, s1, zero
-  SLTIU s4, s4, 1
+  SLTIU s4, s1, 1
   BNE s4, zero, bb3
   # implict jump to bb2
 bb2:

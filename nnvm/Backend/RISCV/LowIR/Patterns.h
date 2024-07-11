@@ -38,9 +38,34 @@ public:
   pSSAReg(LIRValue *&receiver) : pReg(receiver){};
   bool match(LIRValue *op) {
     if (pReg::match(op))
-      return op->isVReg() && op->getDefs().size() == 1;
+      return (op->isVReg() && op->getDefs().size() == 1) ||
+             op->as<Register>()->getRegId() == ZERO;
     return false;
   }
+};
+
+class pSSARegNonZero : public pReg {
+public:
+  pSSARegNonZero() : pReg(){};
+  pSSARegNonZero(LIRValue *&receiver) : pReg(receiver){};
+  bool match(LIRValue *op) {
+    if (pReg::match(op))
+      return (op->isVReg() && op->getDefs().size() == 1);
+    return false;
+  }
+};
+template <typename Sub> class pSingleDef : public pSSARegNonZero {
+public:
+  pSingleDef(Sub subpattern) : subpattern(subpattern){};
+  bool match(LIRValue *op) {
+    if (pSSARegNonZero::match(op) &&
+        subpattern.match(op->getDefs().getFirst()->getInst()))
+      return true;
+    return false;
+  }
+
+private:
+  Sub subpattern;
 };
 
 class pMustBe {
@@ -197,6 +222,33 @@ private:
   UsePattern2 usePattern2;
 };
 
+template <typename UsePattern1, typename UsePattern2, typename UsePattern3>
+class pUUUInst : public pInst {
+public:
+  pUUUInst(UsePattern1 usePattern1, UsePattern2 usePattern2,
+           UsePattern3 usePattern3)
+      : pInst(), usePattern1(usePattern1), usePattern2(usePattern2),
+        usePattern3(usePattern3) {}
+
+  bool match(const LIRInst *inst) {
+    if (!pInst::match(inst))
+      return false;
+
+    if (inst->numOps == 3 && inst->operands[0].isUse() &&
+        inst->operands[1].isUse() && inst->operands[2].isUse())
+      return usePattern1.match(inst->getOp(0)) &&
+             usePattern2.match(inst->getOp(1)) &&
+             usePattern3.match(inst->getOp(2));
+
+    return false;
+  }
+
+private:
+  UsePattern1 usePattern1;
+  UsePattern2 usePattern2;
+  UsePattern3 usePattern3;
+};
+
 template <typename DefPattern, typename UsePattern1, typename UsePattern2>
 class pSpecificDUUInst : public pDUUInst<DefPattern, UsePattern1, UsePattern2> {
 public:
@@ -215,4 +267,22 @@ private:
   LIRInstID opcode;
 };
 
+template <typename UsePattern1, typename UsePattern2, typename UsePattern3>
+class pSpecificUUUInst
+    : public pUUUInst<UsePattern1, UsePattern2, UsePattern3> {
+public:
+  pSpecificUUUInst(LIRInstID opcode, UsePattern1 usePattern1,
+                   UsePattern2 usePattern2, UsePattern3 usePattern3)
+      : pUUUInst<UsePattern1, UsePattern2, UsePattern3>(
+            usePattern1, usePattern2, usePattern3),
+        opcode(opcode) {}
+
+  bool match(const LIRInst *inst) {
+    return inst->getOpcode() == opcode &&
+           pUUUInst<UsePattern1, UsePattern2, UsePattern3>::match(inst);
+  }
+
+private:
+  LIRInstID opcode;
+};
 } /* namespace nnvm::riscv::pattern */

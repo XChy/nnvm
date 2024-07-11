@@ -94,32 +94,28 @@ bb3:
   # implict jump to bb4
 bb4:
   ADD s4, s3, zero
-  SLT s5, s4, s0
-  BNE s5, zero, bb27
+  BLT s4, s0, bb27
   # implict jump to bb5
 bb5:
   ADD s5, zero, zero
   # implict jump to bb6
 bb6:
   ADD s6, s5, zero
-  SLT s7, s6, s0
-  BNE s7, zero, bb20
+  BLT s6, s0, bb20
   # implict jump to bb7
 bb7:
   ADD s7, zero, zero
   # implict jump to bb8
 bb8:
   ADD s8, s7, zero
-  SLT s9, s8, s0
-  BNE s9, zero, bb19
+  BLT s8, s0, bb19
   # implict jump to bb9
 bb9:
   ADD s9, zero, zero
   # implict jump to bb10
 bb10:
   ADD s10, s9, zero
-  SLT s11, s10, s0
-  BNE s11, zero, bb12
+  BLT s10, s0, bb12
   # implict jump to bb11
 bb11:
   ADDIW s11, s2, 1
@@ -138,8 +134,7 @@ bb13:
   LA t2, x
   ADD t1, t2, t1
   LW t2, 0(t1)
-  SLT t2, t0, t2
-  BNE t2, zero, bb18
+  BLT t0, t2, bb18
   # implict jump to bb14
 bb14:
   LW t2, 0(s11)
@@ -147,8 +142,7 @@ bb14:
 bb15:
   ADD a0, t2, zero
   LW a1, 0(t1)
-  SLT a1, a0, a1
-  BNE a1, zero, bb17
+  BLT a0, a1, bb17
   # implict jump to bb16
 bb16:
   ADD s9, s10, zero
@@ -214,8 +208,7 @@ bb21:
   LA s11, x
   ADD s10, s11, s10
   LW s11, 0(s10)
-  SLT s11, s9, s11
-  BNE s11, zero, bb26
+  BLT s9, s11, bb26
   # implict jump to bb22
 bb22:
   LW s11, 0(s7)
@@ -223,8 +216,7 @@ bb22:
 bb23:
   ADD ra, s11, zero
   LW t0, 0(s10)
-  SLT t0, ra, t0
-  BNE t0, zero, bb25
+  BLT ra, t0, bb25
   # implict jump to bb24
 bb24:
   ADD s5, s6, zero
@@ -296,16 +288,14 @@ spmv:
   # implict jump to bb29
 bb29:
   ADD s1, s0, zero
-  SLT s2, s1, a0
-  BNE s2, zero, bb40
+  BLT s1, a0, bb40
   # implict jump to bb30
 bb30:
   ADD s2, zero, zero
   # implict jump to bb31
 bb31:
   ADD s3, s2, zero
-  SLT s4, s3, a0
-  BNE s4, zero, bb33
+  BLT s3, a0, bb33
   # implict jump to bb32
 bb32:
   LD ra, 0(sp)
@@ -334,8 +324,7 @@ bb34:
   SLLIW s8, s3, 2
   ADD s8, a1, s8
   LW s9, 0(s8)
-  SLT s9, s7, s9
-  BNE s9, zero, bb39
+  BLT s7, s9, bb39
   # implict jump to bb35
 bb35:
   LW s9, 0(s5)
@@ -343,8 +332,7 @@ bb35:
 bb36:
   ADD s10, s9, zero
   LW s11, 0(s8)
-  SLT s11, s10, s11
-  BNE s11, zero, bb38
+  BLT s10, s11, bb38
   # implict jump to bb37
 bb37:
   ADD s2, s3, zero

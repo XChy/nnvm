@@ -107,8 +107,6 @@ assert_not:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb3
   # implict jump to bb1
 bb1:
@@ -284,8 +282,6 @@ bb16:
   ADD s0, zero, zero
   # implict jump to bb17
 bb17:
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb70
   # implict jump to bb18
 bb18:
@@ -318,8 +314,6 @@ bb22:
   ADD s0, zero, zero
   # implict jump to bb23
 bb23:
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb67
   # implict jump to bb24
 bb24:
@@ -352,11 +346,8 @@ bb28:
   ADD s0, zero, zero
   # implict jump to bb29
 bb29:
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb64
   # implict jump to bb30
 bb30:
@@ -415,11 +406,8 @@ bb34:
   ADD s0, zero, zero
   # implict jump to bb35
 bb35:
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb61
   # implict jump to bb36
 bb36:
@@ -452,8 +440,6 @@ bb40:
   ADD s0, zero, zero
   # implict jump to bb41
 bb41:
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb58
   # implict jump to bb42
 bb42:
@@ -481,11 +467,8 @@ bb44:
   FEQ.S s0, fs1, fs2
   XORI s0, s0, 1
   XORI s0, s0, 1
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb56
   # implict jump to bb45
 bb45:
@@ -827,11 +810,8 @@ assert:
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb76
   # implict jump to bb74
 bb74:

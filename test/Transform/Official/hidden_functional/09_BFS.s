@@ -82,8 +82,7 @@ bb1:
   LW s2, 0(s2)
   LA s3, tail
   LW s3, 0(s3)
-  SLT s2, s2, s3
-  BNE s2, zero, bb6
+  BLT s2, s3, bb6
   # implict jump to bb2
 bb2:
   ADD s2, zero, zero
@@ -144,7 +143,6 @@ bb8:
 bb9:
   ADD s3, s2, zero
   XORI s4, s3, -1
-  SLTU s4, zero, s4
   BNE s4, zero, bb11
   # implict jump to bb10
 bb10:
@@ -159,11 +157,8 @@ bb11:
   LA s5, inq
   ADD s4, s5, s4
   LW s4, 0(s4)
-  XOR s4, s4, zero
   SLTU s4, zero, s4
   XORI s4, s4, 1
-  XOR s4, s4, zero
-  SLTU s4, zero, s4
   BNE s4, zero, bb13
   # implict jump to bb12
 bb12:
@@ -373,9 +368,7 @@ bb28:
   # implict jump to bb29
 bb29:
   LW t4, 204(sp)
-  XOR s8, t4, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb151
+  BNE t4, zero, bb151
   # implict jump to bb30
 bb30:
   LW t4, 8(sp)
@@ -437,9 +430,7 @@ bb38:
   # implict jump to bb39
 bb39:
   LW t4, 20(sp)
-  XOR s4, t4, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb143
+  BNE t4, zero, bb143
   # implict jump to bb40
 bb40:
   LW t4, 40(sp)
@@ -484,8 +475,6 @@ bb44:
   SW t4, 64(sp)
   LA s3, m
   LW s3, 0(s3)
-  XOR s3, s3, zero
-  SLTU s3, zero, s3
   BNE s3, zero, bb46
   # implict jump to bb45
 bb45:
@@ -515,7 +504,6 @@ bb47:
   LW t4, 68(sp)
   ADD s2, t4, zero
   XORI s4, s2, 81
-  SLTU s4, zero, s4
   BNE s4, zero, bb141
   # implict jump to bb48
 bb48:
@@ -583,9 +571,7 @@ bb58:
   # implict jump to bb59
 bb59:
   LW t4, 96(sp)
-  XOR s8, t4, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb81
+  BNE t4, zero, bb81
   # implict jump to bb60
 bb60:
   LW t4, 192(sp)
@@ -629,9 +615,7 @@ bb68:
   BNE s10, zero, bb74
   # implict jump to bb69
 bb69:
-  XOR s0, s2, zero
-  SLTU s0, zero, s0
-  BNE s0, zero, bb73
+  BNE s2, zero, bb73
   # implict jump to bb70
 bb70:
   ADD s0, s1, zero
@@ -858,9 +842,7 @@ bb96:
   # implict jump to bb97
 bb97:
   LW t4, 172(sp)
-  XOR s0, t4, zero
-  SLTU s0, zero, s0
-  BNE s0, zero, bb132
+  BNE t4, zero, bb132
   # implict jump to bb98
 bb98:
   LW t4, 152(sp)
@@ -921,9 +903,7 @@ bb106:
   # implict jump to bb107
 bb107:
   LW t4, 136(sp)
-  XOR s0, t4, zero
-  SLTU s0, zero, s0
-  BNE s0, zero, bb124
+  BNE t4, zero, bb124
   # implict jump to bb108
 bb108:
   ADD s0, s9, zero
@@ -957,8 +937,7 @@ bb110:
   LW s2, 0(s2)
   LA s4, tail
   LW s4, 0(s4)
-  SLT s2, s2, s4
-  BNE s2, zero, bb115
+  BLT s2, s4, bb115
   # implict jump to bb111
 bb111:
   ADD s2, zero, zero
@@ -1023,7 +1002,6 @@ bb117:
 bb118:
   ADD s4, s2, zero
   XORI s5, s4, -1
-  SLTU s5, zero, s5
   BNE s5, zero, bb120
   # implict jump to bb119
 bb119:
@@ -1038,11 +1016,8 @@ bb120:
   LA s6, inq
   ADD s5, s6, s5
   LW s5, 0(s5)
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   XORI s5, s5, 1
-  XOR s5, s5, zero
-  SLTU s5, zero, s5
   BNE s5, zero, bb122
   # implict jump to bb121
 bb121:
@@ -1363,9 +1338,7 @@ bb167:
   BNE s8, zero, bb171
   # implict jump to bb168
 bb168:
-  XOR s8, s3, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb170
+  BNE s3, zero, bb170
   # implict jump to bb169
 bb169:
   ADD a0, s7, zero

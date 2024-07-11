@@ -77,8 +77,7 @@ bb1:
   FSGNJ.S fs5, fs0, fs0
   LA s5, COUNT
   LW s5, 0(s5)
-  SLT s5, s3, s5
-  BNE s5, zero, bb8
+  BLT s3, s5, bb8
   # implict jump to bb2
 bb2:
   ADDI a0, zero, 39
@@ -162,8 +161,6 @@ bb7:
 bb8:
   ADDI s5, zero, 10
   REMW s5, s3, s5
-  XOR s5, s5, zero
-  SLTU s5, zero, s5
   BNE s5, zero, bb17
   # implict jump to bb9
 bb9:
@@ -178,8 +175,7 @@ bb10:
   # implict jump to bb11
 bb11:
   ADD s5, s4, zero
-  SLT s6, s5, s0
-  BNE s6, zero, bb16
+  BLT s5, s0, bb16
   # implict jump to bb12
 bb12:
   LA s6, .CONSTANT.7.1
@@ -192,8 +188,7 @@ bb12:
 bb13:
   ADD s7, s6, zero
   FSGNJ.S fs7, fs6, fs6
-  SLT s8, s7, s0
-  BNE s8, zero, bb15
+  BLT s7, s0, bb15
   # implict jump to bb14
 bb14:
   FADD.S fs8, fs3, fs7
@@ -269,8 +264,7 @@ loop:
 bb19:
   ADD s1, s0, zero
   FSGNJ.S fs1, fs0, fs0
-  SLT s2, s1, a2
-  BNE s2, zero, bb21
+  BLT s1, a2, bb21
   # implict jump to bb20
 bb20:
   FSGNJ.S fa0, fs1, fs1

@@ -36,16 +36,14 @@ main:
   # implict jump to bb1
 bb1:
   ADD s3, s2, zero
-  SLT s4, s3, s0
-  BNE s4, zero, bb20
+  BLT s3, s0, bb20
   # implict jump to bb2
 bb2:
   ADD s4, zero, zero
   # implict jump to bb3
 bb3:
   ADD s5, s4, zero
-  SLT s6, s5, s1
-  BNE s6, zero, bb11
+  BLT s5, s1, bb11
   # implict jump to bb4
 bb4:
   ADD s6, zero, zero
@@ -54,12 +52,10 @@ bb4:
 bb5:
   ADD s8, s7, zero
   ADD s9, s6, zero
-  SLT s10, s8, s1
-  BNE s10, zero, bb10
+  BLT s8, s1, bb10
   # implict jump to bb6
 bb6:
-  SLT s10, s9, zero
-  BNE s10, zero, bb9
+  BLT s9, zero, bb9
   # implict jump to bb7
 bb7:
   ADD s10, s9, zero
@@ -115,8 +111,7 @@ bb11:
 bb12:
   ADD s10, s9, zero
   ADD s11, s8, zero
-  SLT ra, s10, s7
-  BNE ra, zero, bb14
+  BLT s10, s7, bb14
   # implict jump to bb13
 bb13:
   ADDIW ra, s5, 1
@@ -129,8 +124,7 @@ bb14:
 bb15:
   ADD ra, s11, zero
   ADD t0, s4, zero
-  SLT t1, ra, s6
-  BNE t1, zero, bb17
+  BLT ra, s6, bb17
   # implict jump to bb16
 bb16:
   ADDIW t1, s10, 1
@@ -138,8 +132,7 @@ bb16:
   ADD s9, t1, zero
   JAL zero, bb12
 bb17:
-  SLT s8, s10, ra
-  BNE s8, zero, bb19
+  BLT s10, ra, bb19
   # implict jump to bb18
 bb18:
   MULW s8, s10, s6
@@ -192,8 +185,7 @@ transpose:
 bb22:
   ADD s3, s2, zero
   ADD s4, s1, zero
-  SLT s5, s3, s0
-  BNE s5, zero, bb24
+  BLT s3, s0, bb24
   # implict jump to bb23
 bb23:
   ADDI a0, zero, -1
@@ -215,8 +207,7 @@ bb24:
 bb25:
   ADD s6, s5, zero
   ADD s7, s4, zero
-  SLT s8, s6, a2
-  BNE s8, zero, bb27
+  BLT s6, a2, bb27
   # implict jump to bb26
 bb26:
   ADDIW s8, s3, 1
@@ -224,8 +215,7 @@ bb26:
   ADD s2, s8, zero
   JAL zero, bb22
 bb27:
-  SLT s1, s3, s6
-  BNE s1, zero, bb29
+  BLT s3, s6, bb29
   # implict jump to bb28
 bb28:
   MULW s1, s3, a2

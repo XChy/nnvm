@@ -30,8 +30,7 @@ select_sort:
 bb1:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  SLT s6, s4, s1
-  BNE s6, zero, bb3
+  BLT s4, s1, bb3
   # implict jump to bb2
 bb2:
   ADD a0, zero, zero
@@ -58,13 +57,10 @@ bb3:
 bb4:
   ADD s9, s8, zero
   ADD s10, s7, zero
-  SLT s11, s9, a1
-  BNE s11, zero, bb9
+  BLT s9, a1, bb9
   # implict jump to bb5
 bb5:
-  XOR s11, s10, s4
-  SLTU s11, zero, s11
-  BNE s11, zero, bb8
+  BNE s10, s4, bb8
   # implict jump to bb6
 bb6:
   ADD s11, s5, zero
@@ -91,8 +87,7 @@ bb9:
   SLLIW s3, s9, 2
   ADD s3, s0, s3
   LW s3, 0(s3)
-  SLT s2, s3, s2
-  BNE s2, zero, bb12
+  BLT s3, s2, bb12
   # implict jump to bb10
 bb10:
   ADD s2, s10, zero
@@ -161,8 +156,7 @@ main:
 bb14:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  SLT s6, s4, s1
-  BNE s6, zero, bb19
+  BLT s4, s1, bb19
   # implict jump to bb15
 bb15:
   ADD s6, zero, zero
@@ -171,8 +165,7 @@ bb16:
   ADD s7, s6, zero
   LA s8, n
   LW s8, 0(s8)
-  SLT s8, s7, s8
-  BNE s8, zero, bb18
+  BLT s7, s8, bb18
   # implict jump to bb17
 bb17:
   ADD a0, zero, zero
@@ -211,13 +204,10 @@ bb19:
 bb20:
   ADD s9, s8, zero
   ADD s10, s7, zero
-  SLT s11, s9, s0
-  BNE s11, zero, bb25
+  BLT s9, s0, bb25
   # implict jump to bb21
 bb21:
-  XOR s11, s10, s4
-  SLTU s11, zero, s11
-  BNE s11, zero, bb24
+  BNE s10, s4, bb24
   # implict jump to bb22
 bb22:
   ADD s11, s5, zero
@@ -248,8 +238,7 @@ bb25:
   ADDI t5, sp, 104
   ADD s3, t5, s3
   LW s3, 0(s3)
-  SLT s2, s3, s2
-  BNE s2, zero, bb28
+  BLT s3, s2, bb28
   # implict jump to bb26
 bb26:
   ADD s2, s10, zero

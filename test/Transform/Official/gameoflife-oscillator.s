@@ -208,8 +208,7 @@ bb20:
   LA s4, steps
   LW s4, 0(s4)
   ADDI s5, zero, 0
-  SLT s4, s5, s4
-  BNE s4, zero, bb38
+  BLT s5, s4, bb38
   # implict jump to bb21
 bb21:
   ADDI a0, zero, 106

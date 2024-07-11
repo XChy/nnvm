@@ -14,15 +14,13 @@ main:
   CALL getint
   ADD s0, a0, zero
   ADDI s1, zero, 10
-  SLT s1, s1, s0
-  BNE s1, zero, bb10
+  BLT s1, s0, bb10
   # implict jump to bb1
 bb1:
   CALL getint
   ADD s0, a0, zero
   ADDI s1, zero, 11
-  SLT s1, s1, s0
-  BNE s1, zero, bb9
+  BLT s1, s0, bb9
   # implict jump to bb2
 bb2:
   CALL getint
@@ -70,11 +68,8 @@ bb6:
   CALL putint
   LA s0, g
   LW s0, 0(s0)
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb8
   # implict jump to bb7
 bb7:

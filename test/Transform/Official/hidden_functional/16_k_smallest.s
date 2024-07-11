@@ -50,8 +50,7 @@ bb1:
 bb2:
   ADD s0, s8, zero
   ADD s9, s7, zero
-  SLT s10, s9, s2
-  BNE s10, zero, bb11
+  BLT s9, s2, bb11
   # implict jump to bb3
 bb3:
   SLLIW s10, s0, 2
@@ -68,8 +67,7 @@ bb3:
   # implict jump to bb4
 bb4:
   LW t4, 4(sp)
-  SLT s10, t4, s0
-  BNE s10, zero, bb7
+  BLT t4, s0, bb7
   # implict jump to bb5
 bb5:
   ADDIW s10, s0, 1
@@ -113,8 +111,7 @@ bb8:
   # implict jump to bb9
 bb9:
   ADD s11, s10, zero
-  SLT s4, s11, s0
-  BNE s4, zero, bb10
+  BLT s11, s0, bb10
   JAL zero, bb6
 bb10:
   SLLIW s4, s11, 2
@@ -196,8 +193,7 @@ findPivot:
 bb17:
   ADD s4, s0, zero
   ADD s5, s3, zero
-  SLT s6, s5, a1
-  BNE s6, zero, bb19
+  BLT s5, a1, bb19
   # implict jump to bb18
 bb18:
   SLLIW s6, s4, 2
@@ -267,8 +263,7 @@ main:
   # implict jump to bb24
 bb24:
   ADD s3, s2, zero
-  SLT s4, s3, s0
-  BNE s4, zero, bb26
+  BLT s3, s0, bb26
   # implict jump to bb25
 bb25:
   ADDI s4, zero, 1

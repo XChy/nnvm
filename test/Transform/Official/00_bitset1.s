@@ -36,8 +36,7 @@ rand:
   REMW s0, s0, s2
   LA s2, staticvalue
   SW s0, 0(s2)
-  SLT s0, s0, zero
-  BNE s0, zero, bb2
+  BLT s0, zero, bb2
   # implict jump to bb1
 bb1:
   LA s0, staticvalue
@@ -76,9 +75,7 @@ set:
   # implict jump to bb4
 bb4:
   ADD s2, s1, zero
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb26
+  BNE s2, zero, bb26
   # implict jump to bb5
 bb5:
   ADDI s3, zero, 1
@@ -142,9 +139,7 @@ bb8:
   DIVW s6, s6, s8
   ADDI s8, zero, 2
   REMW s6, s6, s8
-  XOR s6, s6, a2
-  SLTU s6, zero, s6
-  BNE s6, zero, bb11
+  BNE s6, a2, bb11
   # implict jump to bb9
 bb9:
   ADD s6, zero, zero
@@ -174,7 +169,6 @@ bb11:
   DIVW s8, s8, s9
   ADDI s9, zero, 2
   REMW s8, s8, s9
-  XOR s8, s8, zero
   SLTIU s8, s8, 1
   BNE s8, zero, bb20
   # implict jump to bb12
@@ -198,8 +192,7 @@ bb15:
   ADD s6, s9, zero
   JAL zero, bb10
 bb16:
-  XOR s10, a2, zero
-  SLTIU s10, s10, 1
+  SLTIU s10, a2, 1
   BNE s10, zero, bb19
   # implict jump to bb17
 bb17:
@@ -292,8 +285,7 @@ main:
   # implict jump to bb28
 bb28:
   ADD s1, s0, zero
-  SLT s2, zero, s1
-  BNE s2, zero, bb30
+  BLT zero, s1, bb30
   # implict jump to bb29
 bb29:
   ADDI a0, zero, 64
@@ -340,8 +332,7 @@ bb30:
   REMW s2, s2, s5
   LA s5, staticvalue
   SW s2, 0(s5)
-  SLT s2, s2, zero
-  BNE s2, zero, bb57
+  BLT s2, zero, bb57
   # implict jump to bb31
 bb31:
   LA s2, staticvalue
@@ -360,8 +351,7 @@ bb31:
   REMW s2, s2, s3
   LA s3, staticvalue
   SW s2, 0(s3)
-  SLT s2, s2, zero
-  BNE s2, zero, bb56
+  BLT s2, zero, bb56
   # implict jump to bb32
 bb32:
   LA s2, staticvalue
@@ -372,9 +362,7 @@ bb32:
   # implict jump to bb33
 bb33:
   ADD s4, s3, zero
-  XOR s6, s4, zero
-  SLTU s6, zero, s6
-  BNE s6, zero, bb55
+  BNE s4, zero, bb55
   # implict jump to bb34
 bb34:
   ADDI s6, zero, 1
@@ -439,9 +427,7 @@ bb37:
   DIVW s9, s9, s11
   ADDI s11, zero, 2
   REMW s9, s9, s11
-  XOR s9, s9, s2
-  SLTU s9, zero, s9
-  BNE s9, zero, bb41
+  BNE s9, s2, bb41
   # implict jump to bb38
 bb38:
   ADD s9, zero, zero
@@ -460,7 +446,6 @@ bb41:
   DIVW s11, s11, ra
   ADDI ra, zero, 2
   REMW s11, s11, ra
-  XOR s11, s11, zero
   SLTIU s11, s11, 1
   BNE s11, zero, bb50
   # implict jump to bb42
@@ -484,8 +469,7 @@ bb45:
   ADD s9, ra, zero
   JAL zero, bb39
 bb46:
-  XOR t0, s2, zero
-  SLTIU t0, t0, 1
+  SLTIU t0, s2, 1
   BNE t0, zero, bb49
   # implict jump to bb47
 bb47:

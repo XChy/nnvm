@@ -301,13 +301,11 @@ bb12:
   SUBW a6, a6, a7
   LA a7, image_out
   ADD a5, a7, a5
-  SLT a7, a6, zero
-  BNE a7, zero, bb18
+  BLT a6, zero, bb18
   # implict jump to bb13
 bb13:
   ADDI a7, zero, 255
-  SLT a7, a7, a6
-  BNE a7, zero, bb17
+  BLT a7, a6, bb17
   # implict jump to bb14
 bb14:
   ADD a7, a6, zero
@@ -340,13 +338,11 @@ cutout:
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  SLT s1, s0, zero
-  BNE s1, zero, bb25
+  BLT s0, zero, bb25
   # implict jump to bb20
 bb20:
   ADDI s1, zero, 255
-  SLT s1, s1, s0
-  BNE s1, zero, bb24
+  BLT s1, s0, bb24
   # implict jump to bb21
 bb21:
   # implict jump to bb22

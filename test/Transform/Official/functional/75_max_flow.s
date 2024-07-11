@@ -56,8 +56,7 @@ bb3:
   ADD a2, zero, s6
   CALL dfs
   ADD s6, a0, zero
-  XOR s7, s6, zero
-  SLTIU s7, s7, 1
+  SLTIU s7, s6, 1
   BNE s7, zero, bb5
   # implict jump to bb4
 bb4:
@@ -124,8 +123,7 @@ bb9:
   ADD s8, s5, zero
   ADD s9, s4, zero
   LW s10, 0(s3)
-  SLT s10, s7, s10
-  BNE s10, zero, bb11
+  BLT s7, s10, bb11
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
@@ -150,22 +148,20 @@ bb11:
   LA s11, to
   ADD s11, s11, s10
   SLLIW t4, s7, 2
-  SW t4, 4(sp)
-  LW t4, 4(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   ADD s11, s11, t4
   LW t1, 0(s11)
   SLLIW t1, t1, 2
   LA t2, used
   ADD t1, t2, t1
   LW t1, 0(t1)
-  XOR t1, t1, zero
-  SLTU t1, zero, t1
   BNE t1, zero, bb20
   # implict jump to bb12
 bb12:
   LA t1, cap
   ADD t1, t1, s10
-  LW t3, 4(sp)
+  LW t3, 0(sp)
   ADD t4, t1, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
@@ -177,8 +173,7 @@ bb12:
 bb13:
   LD t4, 112(sp)
   LW t2, 0(t4)
-  SLT t2, s2, t2
-  BNE t2, zero, bb18
+  BLT s2, t2, bb18
   # implict jump to bb14
 bb14:
   LD t4, 112(sp)
@@ -186,21 +181,20 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
-  SW t4, 0(sp)
+  SW t4, 4(sp)
   LW a3, 0(s11)
   ADD a0, a3, zero
   ADD a1, s1, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD a2, t4, zero
   CALL dfs
   ADD t0, a0, zero
-  SLT t1, zero, t0
-  BNE t1, zero, bb17
+  BLT zero, t0, bb17
   # implict jump to bb16
 bb16:
   ADDIW t1, s7, 1
   ADD s4, t0, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s5, t4, zero
   ADD s6, t1, zero
   JAL zero, bb9
@@ -217,7 +211,7 @@ bb17:
   ADD s11, t1, s11
   LA t1, rev
   ADD s10, t1, s10
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s10, s10, t4
   LW s10, 0(s10)
   SLLIW s10, s10, 2
@@ -374,8 +368,7 @@ bb25:
   # implict jump to bb26
 bb26:
   ADD s5, s4, zero
-  SLT s6, zero, s5
-  BNE s6, zero, bb34
+  BLT zero, s5, bb34
   # implict jump to bb27
 bb27:
   ADD s6, zero, zero
@@ -397,8 +390,7 @@ bb30:
   ADD a2, zero, s10
   CALL dfs
   ADD s10, a0, zero
-  XOR s11, s10, zero
-  SLTIU s11, s11, 1
+  SLTIU s11, s10, 1
   BNE s11, zero, bb32
   # implict jump to bb31
 bb31:
@@ -516,8 +508,7 @@ my_memset:
   # implict jump to bb37
 bb37:
   ADD s1, s0, zero
-  SLT s2, s1, a2
-  BNE s2, zero, bb39
+  BLT s1, a2, bb39
   # implict jump to bb38
 bb38:
   LD ra, 0(sp)

@@ -28,8 +28,7 @@ bb1:
   ADD s3, s0, zero
   LA s4, loopCount
   LW s4, 0(s4)
-  SLT s4, s2, s4
-  BNE s4, zero, bb3
+  BLT s2, s4, bb3
   # implict jump to bb2
 bb2:
   ADDI a0, zero, 123
@@ -95,8 +94,7 @@ bb5:
   ADD s11, s8, zero
   LA t0, loopCount
   LW t0, 0(t0)
-  SLT t0, s10, t0
-  BNE t0, zero, bb7
+  BLT s10, t0, bb7
   # implict jump to bb6
 bb6:
   ADD a0, s11, zero

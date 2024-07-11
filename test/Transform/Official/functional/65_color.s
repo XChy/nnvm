@@ -63,7 +63,6 @@ dfs:
   ADD s6, s6, s7
   LW s7, 0(s6)
   XORI s7, s7, -1
-  SLTU s7, zero, s7
   BNE s7, zero, bb31
   # implict jump to bb1
 bb1:
@@ -71,46 +70,35 @@ bb1:
   ADDW s7, s7, s2
   ADDW s7, s7, s3
   ADDW s7, s7, s4
-  XOR s7, s7, zero
   SLTIU s7, s7, 1
   BNE s7, zero, bb30
   # implict jump to bb2
 bb2:
-  XOR s7, s0, zero
-  SLTU s7, zero, s7
-  BNE s7, zero, bb26
+  BNE s0, zero, bb26
   # implict jump to bb3
 bb3:
   ADD s7, zero, zero
   # implict jump to bb4
 bb4:
-  XOR s8, s1, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb22
+  BNE s1, zero, bb22
   # implict jump to bb5
 bb5:
   ADD s8, s7, zero
   # implict jump to bb6
 bb6:
-  XOR s7, s2, zero
-  SLTU s7, zero, s7
-  BNE s7, zero, bb18
+  BNE s2, zero, bb18
   # implict jump to bb7
 bb7:
   ADD s7, s8, zero
   # implict jump to bb8
 bb8:
-  XOR s8, s3, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb14
+  BNE s3, zero, bb14
   # implict jump to bb9
 bb9:
   ADD s8, s7, zero
   # implict jump to bb10
 bb10:
-  XOR s5, s4, zero
-  SLTU s5, zero, s5
-  BNE s5, zero, bb13
+  BNE s4, zero, bb13
   # implict jump to bb11
 bb11:
   ADD s5, s8, zero
@@ -382,8 +370,7 @@ bb37:
 bb38:
   ADD s7, s11, zero
   LW t4, 4(sp)
-  SLT s0, s7, t4
-  BNE s0, zero, bb40
+  BLT s7, t4, bb40
   # implict jump to bb39
 bb39:
   LA s0, cns

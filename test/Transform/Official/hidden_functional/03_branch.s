@@ -30,9 +30,7 @@ bb4:
   BNE s0, zero, bb8
   # implict jump to bb5
 bb5:
-  XOR s0, zero, zero
-  SLTU s0, zero, s0
-  BNE s0, zero, bb7
+  BNE zero, zero, bb7
   # implict jump to bb6
 bb6:
   ADDI a0, zero, 10

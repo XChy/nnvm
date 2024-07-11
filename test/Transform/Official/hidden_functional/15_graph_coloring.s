@@ -75,8 +75,6 @@ bb4:
   ADD a3, s3, zero
   CALL graphColoring
   ADD s7, a0, zero
-  XOR s7, s7, zero
-  SLTU s7, zero, s7
   BNE s7, zero, bb6
   # implict jump to bb5
 bb5:
@@ -115,9 +113,7 @@ bb9:
   ADDI s6, zero, 1
   # implict jump to bb10
 bb10:
-  XOR s0, s6, zero
-  SLTU s0, zero, s0
-  BNE s0, zero, bb12
+  BNE s6, zero, bb12
   # implict jump to bb11
 bb11:
   ADD a0, zero, zero
@@ -194,8 +190,6 @@ bb19:
   SLLIW s2, s9, 2
   ADD s1, s1, s2
   LW s1, 0(s1)
-  XOR s1, s1, zero
-  SLTU s1, zero, s1
   BNE s1, zero, bb24
   # implict jump to bb20
 bb20:
@@ -285,11 +279,8 @@ bb27:
   ADD a3, a3, zero
   CALL graphColoring
   ADD s2, a0, zero
-  XOR s2, s2, zero
   SLTU s2, zero, s2
   XORI s2, s2, 1
-  XOR s2, s2, zero
-  SLTU s2, zero, s2
   BNE s2, zero, bb29
   # implict jump to bb28
 bb28:
@@ -386,8 +377,6 @@ bb37:
   SLLIW s2, s7, 2
   ADD s1, s1, s2
   LW s1, 0(s1)
-  XOR s1, s1, zero
-  SLTU s1, zero, s1
   BNE s1, zero, bb42
   # implict jump to bb38
 bb38:

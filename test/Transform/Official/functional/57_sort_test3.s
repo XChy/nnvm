@@ -24,8 +24,7 @@ QuickSort:
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  SLT s3, s1, s2
-  BNE s3, zero, bb2
+  BLT s1, s2, bb2
   # implict jump to bb1
 bb1:
   ADD a0, zero, zero
@@ -54,8 +53,7 @@ bb2:
 bb3:
   ADD s6, s5, zero
   ADD s7, s4, zero
-  SLT s8, s6, s7
-  BNE s8, zero, bb5
+  BLT s6, s7, bb5
   # implict jump to bb4
 bb4:
   SLLIW s8, s6, 2
@@ -77,17 +75,16 @@ bb5:
   # implict jump to bb6
 bb6:
   ADD s8, s7, zero
-  SLT s9, s6, s8
-  BNE s9, zero, bb23
+  BLT s6, s8, bb23
   # implict jump to bb7
 bb7:
-  ADD s10, zero, zero
+  ADD s9, zero, zero
   # implict jump to bb8
 bb8:
-  BNE s10, zero, bb22
+  BNE s9, zero, bb22
   # implict jump to bb9
 bb9:
-  BNE s9, zero, bb21
+  BLT s6, s8, bb21
   # implict jump to bb10
 bb10:
   ADD s9, s6, zero
@@ -96,17 +93,16 @@ bb11:
   # implict jump to bb12
 bb12:
   ADD s10, s9, zero
-  SLT s11, s10, s8
-  BNE s11, zero, bb20
+  BLT s10, s8, bb20
   # implict jump to bb13
 bb13:
-  ADD ra, zero, zero
+  ADD s11, zero, zero
   # implict jump to bb14
 bb14:
-  BNE ra, zero, bb19
+  BNE s11, zero, bb19
   # implict jump to bb15
 bb15:
-  BNE s11, zero, bb18
+  BLT s10, s8, bb18
   # implict jump to bb16
 bb16:
   ADD s11, s8, zero
@@ -131,11 +127,11 @@ bb19:
   ADD s9, s4, zero
   JAL zero, bb12
 bb20:
-  SLLIW t0, s10, 2
-  ADD t0, s0, t0
-  LW t0, 0(t0)
-  SLT t0, t0, s3
-  ADD ra, t0, zero
+  SLLIW ra, s10, 2
+  ADD ra, s0, ra
+  LW ra, 0(ra)
+  SLT ra, ra, s3
+  ADD s11, ra, zero
   JAL zero, bb14
 bb21:
   SLLIW s10, s6, 2
@@ -153,13 +149,13 @@ bb22:
   ADD s7, s4, zero
   JAL zero, bb6
 bb23:
-  SLLIW s11, s8, 2
-  ADD s11, s0, s11
-  LW s11, 0(s11)
-  ADDI ra, zero, 1
-  SUBW ra, s3, ra
-  SLT s11, ra, s11
-  ADD s10, s11, zero
+  SLLIW s10, s8, 2
+  ADD s10, s0, s10
+  LW s10, 0(s10)
+  ADDI s11, zero, 1
+  SUBW s11, s3, s11
+  SLT s10, s11, s10
+  ADD s9, s10, zero
   JAL zero, bb8
 main:
   ADDI sp, sp, -80
@@ -209,8 +205,7 @@ bb25:
   ADD s1, s0, zero
   LA s2, n
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb27
+  BLT s1, s2, bb27
   # implict jump to bb26
 bb26:
   ADD a0, zero, zero

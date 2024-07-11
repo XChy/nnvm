@@ -230,8 +230,7 @@ bb27:
   SLLIW s5, s2, 2
   ADD s4, s4, s5
   LW s5, 0(s4)
-  SLT s5, s5, s3
-  BNE s5, zero, bb30
+  BLT s5, s3, bb30
   # implict jump to bb28
 bb28:
   # implict jump to bb29
@@ -364,7 +363,6 @@ bb42:
   CALL getarray
   ADD s0, a0, zero
   XORI s1, s0, 1000
-  SLTU s1, zero, s1
   BNE s1, zero, bb44
   # implict jump to bb43
 bb43:

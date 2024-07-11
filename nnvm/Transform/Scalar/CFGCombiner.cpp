@@ -22,11 +22,15 @@ bool CFGCombinerPass::run(Function &F) {
 
       if (BB->getPredNum() == 0) {
         for (Use *U : incChange(BB->users())) {
-          if (PhiInst *phi = dyn_cast<PhiInst>(U->getUser()))
+          if (auto *phi = dyn_cast<PhiInst>(U->getUser()))
             phi->removeIncoming(BB);
           else
             nnvm_unimpl();
         }
+        for (Instruction *I : *BB)
+          if (I->getType() && !I->getType()->isVoid())
+            I->replaceSelf(UBValue::create(I->getType()));
+
         BB->eraseFromFunc();
         changed = true;
       }

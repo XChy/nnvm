@@ -33,9 +33,7 @@ bb1:
   ADD t4, t3, zero
   SW t4, 20(sp)
   LW t4, 20(sp)
-  XOR s2, t4, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb15
+  BNE t4, zero, bb15
   # implict jump to bb2
 bb2:
   LUI s2, 1
@@ -48,9 +46,7 @@ bb3:
   ADD t4, t3, zero
   SW t4, 12(sp)
   LW t4, 12(sp)
-  XOR s4, t4, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb14
+  BNE t4, zero, bb14
   # implict jump to bb4
 bb4:
   LUI s4, 1
@@ -137,13 +133,13 @@ bb4:
   LW t4, 0(s11)
   SW t4, 8(sp)
   ADD t4, zero, zero
-  SW t4, 32(sp)
+  SW t4, 28(sp)
   # implict jump to bb5
 bb5:
-  LW t3, 32(sp)
+  LW t3, 28(sp)
   ADD t4, t3, zero
-  SW t4, 28(sp)
-  LW t4, 28(sp)
+  SW t4, 32(sp)
+  LW t4, 32(sp)
   SLTI t1, t4, 10
   BNE t1, zero, bb13
   # implict jump to bb6
@@ -238,16 +234,16 @@ bb13:
   ADDIW t4, t4, 112
   ADD t4, t4, sp
   ADD s0, t4, s0
-  LW t4, 28(sp)
+  LW t4, 32(sp)
   SLLIW s1, t4, 2
   ADD s0, s0, s1
   LW s0, 0(s0)
   ADD a0, s0, zero
   CALL putint
-  LW t4, 28(sp)
+  LW t4, 32(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 32(sp)
+  SW t4, 28(sp)
   JAL zero, bb5
 bb14:
   ADDI s0, zero, 1

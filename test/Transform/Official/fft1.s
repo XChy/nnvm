@@ -39,11 +39,11 @@ fft:
   SD s6, 80(sp)
   SD s7, 88(sp)
   SD s8, 96(sp)
-  SD s9, 104(sp)
+  SD s9, 112(sp)
   SD s10, 120(sp)
   SD s11, 128(sp)
   ADD t4, a0, zero
-  SD t4, 112(sp)
+  SD t4, 104(sp)
   ADD t4, a1, zero
   SW t4, 8(sp)
   ADD t4, a2, zero
@@ -65,8 +65,7 @@ bb2:
   SW t4, 16(sp)
   LW t4, 16(sp)
   LW t3, 4(sp)
-  SLT s7, t4, t3
-  BNE s7, zero, bb10
+  BLT t4, t3, bb10
   # implict jump to bb3
 bb3:
   ADD t4, zero, zero
@@ -76,8 +75,7 @@ bb4:
   LW t4, 20(sp)
   ADD s8, t4, zero
   LW t4, 4(sp)
-  SLT s9, s8, t4
-  BNE s9, zero, bb9
+  BLT s8, t4, bb9
   # implict jump to bb5
 bb5:
   ADDI s9, zero, 2
@@ -89,7 +87,7 @@ bb5:
   ADD a1, t4, zero
   CALL multiply
   ADD s9, a0, zero
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD a0, t4, zero
   LW t4, 8(sp)
   ADD a1, t4, zero
@@ -98,7 +96,7 @@ bb5:
   CALL fft
   LW t4, 8(sp)
   ADDW s10, t4, s0
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD a0, t4, zero
   ADD a1, s10, zero
   ADD a2, s0, zero
@@ -110,8 +108,7 @@ bb5:
 bb6:
   ADD s11, s10, zero
   ADD s4, s9, zero
-  SLT s3, s11, s0
-  BNE s3, zero, bb8
+  BLT s11, s0, bb8
   # implict jump to bb7
 bb7:
   ADD a0, zero, zero
@@ -125,7 +122,7 @@ bb7:
   LD s6, 80(sp)
   LD s7, 88(sp)
   LD s8, 96(sp)
-  LD s9, 104(sp)
+  LD s9, 112(sp)
   LD s10, 120(sp)
   LD s11, 128(sp)
   ADDI sp, sp, 144
@@ -134,12 +131,12 @@ bb8:
   LW t4, 8(sp)
   ADDW s3, t4, s11
   SLLIW s2, s3, 2
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD s2, t4, s2
   LW s1, 0(s2)
   ADDW s3, s3, s0
   SLLIW s3, s3, 2
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD s3, t4, s3
   LW s5, 0(s3)
   ADD a0, s4, zero
@@ -172,7 +169,7 @@ bb9:
   LW t4, 8(sp)
   ADDW s0, t4, s8
   SLLIW s0, s0, 2
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD s0, t4, s0
   SLLIW s1, s8, 2
   LA s2, temp
@@ -187,7 +184,6 @@ bb10:
   ADDI s0, zero, 2
   LW t4, 16(sp)
   REMW s0, t4, s0
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb13
   # implict jump to bb11
@@ -206,7 +202,7 @@ bb11:
   LW t3, 8(sp)
   ADDW s1, t4, t3
   SLLIW s1, s1, 2
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD s1, t4, s1
   LW s1, 0(s1)
   SW s1, 0(s0)
@@ -228,7 +224,7 @@ bb13:
   LW t3, 8(sp)
   ADDW s1, t4, t3
   SLLIW s1, s1, 2
-  LD t4, 112(sp)
+  LD t4, 104(sp)
   ADD s1, t4, s1
   LW s1, 0(s1)
   SW s1, 0(s0)
@@ -245,7 +241,7 @@ bb14:
   LD s6, 80(sp)
   LD s7, 88(sp)
   LD s8, 96(sp)
-  LD s9, 104(sp)
+  LD s9, 112(sp)
   LD s10, 120(sp)
   LD s11, 128(sp)
   ADDI sp, sp, 144
@@ -259,8 +255,7 @@ power:
   SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  XOR s2, s1, zero
-  SLTIU s2, s2, 1
+  SLTIU s2, s1, 1
   BNE s2, zero, bb19
   # implict jump to bb16
 bb16:
@@ -343,8 +338,7 @@ bb21:
   LW s1, 0(s1)
   ADDI s2, zero, 1
   SUBW s2, s0, s2
-  SLT s1, s1, s2
-  BNE s1, zero, bb29
+  BLT s1, s2, bb29
   # implict jump to bb22
 bb22:
   LA s1, d
@@ -383,8 +377,7 @@ bb23:
   ADD s3, s1, zero
   LA s4, d
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb28
+  BLT s3, s4, bb28
   # implict jump to bb24
 bb24:
   LA s4, d
@@ -411,8 +404,7 @@ bb25:
   ADD s5, s4, zero
   LA s6, d
   LW s6, 0(s6)
-  SLT s6, s5, s6
-  BNE s6, zero, bb27
+  BLT s5, s6, bb27
   # implict jump to bb26
 bb26:
   ADDI a0, zero, 79
@@ -490,8 +482,7 @@ memmove:
   # implict jump to bb31
 bb31:
   ADD s2, s1, zero
-  SLT s3, s2, a3
-  BNE s3, zero, bb33
+  BLT s2, a3, bb33
   # implict jump to bb32
 bb32:
   ADD a0, s2, zero
@@ -523,8 +514,7 @@ multiply:
   SD s3, 32(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  XOR s2, s1, zero
-  SLTIU s2, s2, 1
+  SLTIU s2, s1, 1
   BNE s2, zero, bb40
   # implict jump to bb35
 bb35:

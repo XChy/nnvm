@@ -16,8 +16,7 @@ main:
 bb1:
   ADD s1, s0, zero
   ADDI s2, zero, 0
-  SLT s2, s2, s1
-  BNE s2, zero, bb3
+  BLT s2, s1, bb3
   # implict jump to bb2
 bb2:
   ADD a0, zero, zero

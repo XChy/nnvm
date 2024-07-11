@@ -40,8 +40,7 @@ bb1:
   ADD s1, s0, zero
   LA s2, output_length
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb3
+  BLT s1, s2, bb3
   # implict jump to bb2
 bb2:
   LD ra, 0(sp)
@@ -86,9 +85,7 @@ bb5:
   ADD t4, t3, zero
   SW t4, 4(sp)
   LW t4, 4(sp)
-  XOR s2, t4, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb52
+  BNE t4, zero, bb52
   # implict jump to bb6
 bb6:
   LA s2, output_length
@@ -125,8 +122,7 @@ bb7:
   ADD a0, t4, zero
   LA a1, program_length
   LW a1, 0(a1)
-  SLT a1, s10, a1
-  BNE a1, zero, bb9
+  BLT s10, a1, bb9
   # implict jump to bb8
 bb8:
   LD ra, 40(sp)
@@ -287,8 +283,7 @@ bb31:
   LA a6, tape
   ADD a5, a6, a5
   LW a5, 0(a5)
-  XOR a6, a5, zero
-  SLTIU a6, a6, 1
+  SLTIU a6, a5, 1
   BNE a6, zero, bb34
   # implict jump to bb32
 bb32:
@@ -317,9 +312,7 @@ bb35:
   LA t6, tape
   ADD a7, t6, a7
   LW a7, 0(a7)
-  XOR t6, a7, zero
-  SLTU t6, zero, t6
-  BNE t6, zero, bb47
+  BNE a7, zero, bb47
   # implict jump to bb36
 bb36:
   ADDI t6, zero, 1
@@ -328,8 +321,7 @@ bb36:
 bb37:
   ADD s1, s0, zero
   ADD s8, t6, zero
-  SLT s7, zero, s8
-  BNE s7, zero, bb40
+  BLT zero, s8, bb40
   # implict jump to bb38
 bb38:
   ADD s7, s8, zero
@@ -466,7 +458,6 @@ read_program:
 bb54:
   ADD s1, s0, zero
   XORI s2, s1, 62
-  SLTU s2, zero, s2
   BNE s2, zero, bb115
   # implict jump to bb55
 bb55:
@@ -522,14 +513,12 @@ bb71:
 bb72:
   ADD s2, s1, zero
   XORI s3, s2, 35
-  SLTU s3, zero, s3
   BNE s3, zero, bb79
   # implict jump to bb73
 bb73:
   CALL getch
   ADD s3, a0, zero
   XORI s3, s3, 105
-  SLTU s3, zero, s3
   BNE s3, zero, bb78
   # implict jump to bb74
 bb74:
@@ -544,8 +533,7 @@ bb75:
   ADD s4, s3, zero
   LA s5, input_length
   LW s5, 0(s5)
-  SLT s5, s4, s5
-  BNE s5, zero, bb77
+  BLT s4, s5, bb77
   # implict jump to bb76
 bb76:
   LD ra, 0(sp)
@@ -592,7 +580,6 @@ bb79:
 bb80:
   ADD s3, s2, zero
   XORI s4, s3, 62
-  SLTU s4, zero, s4
   BNE s4, zero, bb106
   # implict jump to bb81
 bb81:
@@ -756,7 +743,6 @@ main:
 bb117:
   ADD s1, s0, zero
   XORI s2, s1, 62
-  SLTU s2, zero, s2
   BNE s2, zero, bb180
   # implict jump to bb118
 bb118:
@@ -812,14 +798,12 @@ bb134:
 bb135:
   ADD s2, s1, zero
   XORI s3, s2, 35
-  SLTU s3, zero, s3
   BNE s3, zero, bb144
   # implict jump to bb136
 bb136:
   CALL getch
   ADD s3, a0, zero
   XORI s3, s3, 105
-  SLTU s3, zero, s3
   BNE s3, zero, bb139
   # implict jump to bb137
 bb137:
@@ -834,8 +818,7 @@ bb138:
   ADD s4, s3, zero
   LA s5, input_length
   LW s5, 0(s5)
-  SLT s5, s4, s5
-  BNE s5, zero, bb143
+  BLT s4, s5, bb143
   # implict jump to bb139
 bb139:
   ADDI a0, zero, 116
@@ -849,8 +832,7 @@ bb140:
   ADD s4, s3, zero
   LA s5, output_length
   LW s5, 0(s5)
-  SLT s5, s4, s5
-  BNE s5, zero, bb142
+  BLT s4, s5, bb142
   # implict jump to bb141
 bb141:
   ADD a0, zero, zero
@@ -897,7 +879,6 @@ bb144:
 bb145:
   ADD s3, s2, zero
   XORI s4, s3, 62
-  SLTU s4, zero, s4
   BNE s4, zero, bb171
   # implict jump to bb146
 bb146:
@@ -1058,7 +1039,6 @@ get_bf_char:
 bb182:
   ADD s1, s0, zero
   XORI s2, s1, 62
-  SLTU s2, zero, s2
   BNE s2, zero, bb208
   # implict jump to bb183
 bb183:

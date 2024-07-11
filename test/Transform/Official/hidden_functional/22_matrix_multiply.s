@@ -60,8 +60,7 @@ bb1:
   LA s2, m1
   LW s2, 0(s2)
   LW t4, 0(sp)
-  SLT s2, t4, s2
-  BNE s2, zero, bb24
+  BLT t4, s2, bb24
   # implict jump to bb2
 bb2:
   CALL getint
@@ -78,8 +77,7 @@ bb3:
   ADD s3, s2, zero
   LA s4, m2
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb20
+  BLT s3, s4, bb20
   # implict jump to bb4
 bb4:
   ADD s4, zero, zero
@@ -90,8 +88,7 @@ bb5:
   ADD s7, s4, zero
   LA s8, m1
   LW s8, 0(s8)
-  SLT s8, s6, s8
-  BNE s8, zero, bb13
+  BLT s6, s8, bb13
   # implict jump to bb6
 bb6:
   ADD s8, zero, zero
@@ -100,8 +97,7 @@ bb7:
   ADD s9, s8, zero
   LA s10, m1
   LW s10, 0(s10)
-  SLT s10, s9, s10
-  BNE s10, zero, bb9
+  BLT s9, s10, bb9
   # implict jump to bb8
 bb8:
   ADD a0, zero, zero
@@ -127,8 +123,7 @@ bb10:
   ADD s11, s10, zero
   LA s1, n2
   LW s1, 0(s1)
-  SLT s1, s11, s1
-  BNE s1, zero, bb12
+  BLT s11, s1, bb12
   # implict jump to bb11
 bb11:
   ADDI a0, zero, 10
@@ -160,8 +155,7 @@ bb14:
   ADD s9, s1, zero
   LA s10, n2
   LW s10, 0(s10)
-  SLT s10, s8, s10
-  BNE s10, zero, bb16
+  BLT s8, s10, bb16
   # implict jump to bb15
 bb15:
   ADDIW s10, s6, 1
@@ -175,8 +169,7 @@ bb17:
   ADD s5, s4, zero
   LA s9, n1
   LW s9, 0(s9)
-  SLT s9, s5, s9
-  BNE s9, zero, bb19
+  BLT s5, s9, bb19
   # implict jump to bb18
 bb18:
   ADDIW s9, s8, 1
@@ -215,8 +208,7 @@ bb21:
   ADD s1, s0, zero
   LA s4, n2
   LW s4, 0(s4)
-  SLT s4, s1, s4
-  BNE s4, zero, bb23
+  BLT s1, s4, bb23
   # implict jump to bb22
 bb22:
   ADDIW s4, s3, 1
@@ -242,8 +234,7 @@ bb25:
   ADD s1, s0, zero
   LA s2, n1
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb27
+  BLT s1, s2, bb27
   # implict jump to bb26
 bb26:
   LW t4, 0(sp)
@@ -285,8 +276,7 @@ bb29:
   ADD s3, s0, zero
   LA s4, m1
   LW s4, 0(s4)
-  SLT s4, s2, s4
-  BNE s4, zero, bb31
+  BLT s2, s4, bb31
   # implict jump to bb30
 bb30:
   LD ra, 0(sp)
@@ -310,8 +300,7 @@ bb32:
   ADD s6, s3, zero
   LA s7, n2
   LW s7, 0(s7)
-  SLT s7, s5, s7
-  BNE s7, zero, bb34
+  BLT s5, s7, bb34
   # implict jump to bb33
 bb33:
   ADDIW s7, s2, 1
@@ -325,8 +314,7 @@ bb35:
   ADD s1, s0, zero
   LA s6, n1
   LW s6, 0(s6)
-  SLT s6, s1, s6
-  BNE s6, zero, bb37
+  BLT s1, s6, bb37
   # implict jump to bb36
 bb36:
   ADDIW s6, s5, 1

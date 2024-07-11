@@ -798,8 +798,7 @@ bb66:
   ADD s9, s2, zero
   ADD s10, s1, zero
   ADD s11, s0, zero
-  SLT t0, s6, a0
-  BNE t0, zero, bb89
+  BLT s6, a0, bb89
   # implict jump to bb67
 bb67:
   ADD t0, zero, zero
@@ -1055,8 +1054,7 @@ bb91:
   SW t4, 80(sp)
   LW t4, 48(sp)
   LW t3, 24(sp)
-  SLT s0, t4, t3
-  BNE s0, zero, bb135
+  BLT t4, t3, bb135
   # implict jump to bb92
 bb92:
   ADD s0, zero, zero

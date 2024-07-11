@@ -34,8 +34,7 @@ bb2:
   # implict jump to bb3
 bb3:
   ADD s4, s3, zero
-  SLT s5, s4, a2
-  BNE s5, zero, bb11
+  BLT s4, a2, bb11
   # implict jump to bb4
 bb4:
   ADDI s5, zero, 1
@@ -50,8 +49,7 @@ bb6:
   # implict jump to bb7
 bb7:
   ADD s8, s7, zero
-  SLT s9, zero, s8
-  BNE s9, zero, bb9
+  BLT zero, s8, bb9
   # implict jump to bb8
 bb8:
   ADD a0, zero, zero
@@ -190,8 +188,7 @@ bb15:
   # implict jump to bb16
 bb16:
   ADD s4, s3, zero
-  SLT s5, s4, s0
-  BNE s5, zero, bb27
+  BLT s4, s0, bb27
   # implict jump to bb17
 bb17:
   ADDI s5, zero, 1
@@ -206,8 +203,7 @@ bb19:
   # implict jump to bb20
 bb20:
   ADD s8, s7, zero
-  SLT s9, zero, s8
-  BNE s9, zero, bb25
+  BLT zero, s8, bb25
   # implict jump to bb21
 bb21:
   ADD s9, zero, zero
@@ -216,8 +212,7 @@ bb22:
   ADD s10, s9, zero
   LA s11, n
   LW s11, 0(s11)
-  SLT s11, s10, s11
-  BNE s11, zero, bb24
+  BLT s10, s11, bb24
   # implict jump to bb23
 bb23:
   ADD a0, zero, zero

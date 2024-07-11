@@ -16,8 +16,7 @@ MAX:
   BNE s1, zero, bb4
   # implict jump to bb1
 bb1:
-  SLT s1, a1, s0
-  BNE s1, zero, bb3
+  BLT a1, s0, bb3
   # implict jump to bb2
 bb2:
   ADD a0, a1, zero
@@ -141,9 +140,7 @@ main:
   # implict jump to bb6
 bb6:
   ADD s2, s1, zero
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb38
+  BNE s2, zero, bb38
   # implict jump to bb7
 bb7:
   LW s3, 16(sp)
@@ -156,8 +153,7 @@ bb7:
   BNE s6, zero, bb37
   # implict jump to bb8
 bb8:
-  SLT s6, s5, s4
-  BNE s6, zero, bb36
+  BLT s5, s4, bb36
   # implict jump to bb9
 bb9:
   # implict jump to bb10
@@ -181,9 +177,7 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD s6, s5, zero
-  XOR s7, s6, zero
-  SLTU s7, zero, s7
-  BNE s7, zero, bb29
+  BNE s6, zero, bb29
   # implict jump to bb14
 bb14:
   ADDI s7, zero, 1
@@ -267,8 +261,7 @@ bb21:
   BNE t2, zero, bb27
   # implict jump to bb22
 bb22:
-  SLT t2, s11, t0
-  BNE t2, zero, bb26
+  BLT s11, t0, bb26
   # implict jump to bb23
 bb23:
   # implict jump to bb24
@@ -333,8 +326,7 @@ bb30:
   BNE s8, zero, bb35
   # implict jump to bb31
 bb31:
-  SLT s8, s7, s5
-  BNE s8, zero, bb34
+  BLT s7, s5, bb34
   # implict jump to bb32
 bb32:
   # implict jump to bb33
@@ -381,9 +373,7 @@ max_sum_nonadjacent:
   # implict jump to bb40
 bb40:
   ADD s2, s1, zero
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb55
+  BNE s2, zero, bb55
   # implict jump to bb41
 bb41:
   LW s3, 0(s0)
@@ -397,8 +387,7 @@ bb41:
   BNE s6, zero, bb54
   # implict jump to bb42
 bb42:
-  SLT s6, s5, s4
-  BNE s6, zero, bb53
+  BLT s5, s4, bb53
   # implict jump to bb43
 bb43:
   # implict jump to bb44
@@ -408,8 +397,7 @@ bb44:
   # implict jump to bb45
 bb45:
   ADD s4, s3, zero
-  SLT s5, s4, a1
-  BNE s5, zero, bb47
+  BLT s4, a1, bb47
   # implict jump to bb46
 bb46:
   ADDI s5, zero, 1
@@ -455,8 +443,7 @@ bb47:
   BNE s8, zero, bb52
   # implict jump to bb48
 bb48:
-  SLT s8, s7, s5
-  BNE s8, zero, bb51
+  BLT s7, s5, bb51
   # implict jump to bb49
 bb49:
   # implict jump to bb50
@@ -506,9 +493,7 @@ longest_common_subseq:
   # implict jump to bb57
 bb57:
   ADD s2, s1, zero
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb73
+  BNE s2, zero, bb73
   # implict jump to bb58
 bb58:
   ADDI s3, zero, 1
@@ -588,8 +573,7 @@ bb65:
   BNE s11, zero, bb71
   # implict jump to bb66
 bb66:
-  SLT s11, s7, s9
-  BNE s11, zero, bb70
+  BLT s7, s9, bb70
   # implict jump to bb67
 bb67:
   # implict jump to bb68

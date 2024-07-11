@@ -88,8 +88,7 @@ bb7:
   SLLIW s11, s8, 2
   ADD s10, s10, s11
   LW s11, 0(s10)
-  SLT s11, s9, s11
-  BNE s11, zero, bb10
+  BLT s9, s11, bb10
   # implict jump to bb8
 bb8:
   # implict jump to bb9
@@ -142,8 +141,7 @@ bb14:
   ADD s2, s4, s2
   LW s4, 0(s2)
   ADDW s1, s4, s1
-  SLT s1, s1, s10
-  BNE s1, zero, bb17
+  BLT s1, s10, bb17
   # implict jump to bb15
 bb15:
   ADDI s1, zero, 140

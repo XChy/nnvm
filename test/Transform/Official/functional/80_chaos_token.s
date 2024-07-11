@@ -38,8 +38,6 @@ bb1:
   LA s3, __HELLO
   ADD s2, s3, s2
   LW s3, 0(s2)
-  XOR s3, s3, zero
-  SLTU s3, zero, s3
   BNE s3, zero, bb19
   # implict jump to bb2
 bb2:
@@ -51,9 +49,7 @@ bb3:
   DIVW s5, s4, s5
   ADDI s6, zero, 6
   REMW s6, s4, s6
-  XOR s7, s5, s6
-  SLTU s7, zero, s7
-  BNE s7, zero, bb7
+  BNE s5, s6, bb7
   # implict jump to bb4
 bb4:
   ADDI a5, zero, 17
@@ -61,8 +57,7 @@ bb4:
   ADDIW a5, a5, 23
   ADDI a6, zero, 32
   REMW a5, a5, a6
-  XOR a6, a5, zero
-  SLTIU a6, a6, 1
+  SLTIU a6, a5, 1
   BNE a6, zero, bb6
   # implict jump to bb5
 bb5:
@@ -97,8 +92,6 @@ bb8:
   SLLIW s9, s8, 2
   ADD s9, s5, s9
   LW s10, 0(s9)
-  XOR s10, s10, zero
-  SLTU s10, zero, s10
   BNE s10, zero, bb18
   # implict jump to bb9
 bb9:
@@ -112,8 +105,6 @@ bb10:
   SD t4, 136(sp)
   LD t4, 136(sp)
   LW t1, 0(t4)
-  XOR t1, t1, zero
-  SLTU t1, zero, t1
   BNE t1, zero, bb17
   # implict jump to bb11
 bb11:
@@ -123,10 +114,10 @@ bb11:
   ADD t4, t2, t1
   SD t4, 128(sp)
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   # implict jump to bb12
 bb12:
-  LW t3, 12(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
   SW t4, 4(sp)
   LW t4, 4(sp)
@@ -136,35 +127,31 @@ bb12:
   SD t4, 120(sp)
   LD t4, 120(sp)
   LW a2, 0(t4)
-  XOR a2, a2, zero
-  SLTU a2, zero, a2
   BNE a2, zero, bb16
   # implict jump to bb13
 bb13:
   ADD t4, zero, zero
-  SW t4, 8(sp)
+  SW t4, 0(sp)
   # implict jump to bb14
 bb14:
-  LW t3, 8(sp)
+  LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 12(sp)
+  LW t4, 12(sp)
   SLLIW a4, t4, 2
   LA a5, RET
   ADD a4, a5, a4
   LW a5, 0(a4)
-  XOR a5, a5, zero
-  SLTU a5, zero, a5
   BNE a5, zero, bb15
   JAL zero, bb4
 bb15:
   LW s3, 0(a4)
   ADD a0, s3, zero
   CALL putch
-  LW t4, 0(sp)
+  LW t4, 12(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 8(sp)
+  SW t4, 0(sp)
   JAL zero, bb14
 bb16:
   LD t4, 120(sp)
@@ -174,7 +161,7 @@ bb16:
   LW t4, 4(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   JAL zero, bb12
 bb17:
   LD t4, 136(sp)
@@ -214,8 +201,6 @@ bb21:
   SLLIW s3, s2, 2
   ADD s3, s0, s3
   LW s4, 0(s3)
-  XOR s4, s4, zero
-  SLTU s4, zero, s4
   BNE s4, zero, bb23
   # implict jump to bb22
 bb22:

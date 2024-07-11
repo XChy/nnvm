@@ -47,7 +47,11 @@ void CodeLayoutOpt::run(LIRFunc &func) {
 
   for (LIRBB *toremove : incChange(func)) {
     toremove->removeFromList();
+    // Free unreachable blocks. 
+    if (!visited.count(toremove)) 
+      delete toremove;
   }
+
   for (LIRBB *toadd : result) {
     func.end().insertBefore(toadd);
   }

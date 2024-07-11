@@ -63,8 +63,6 @@ bb3:
   ADDIW s4, s4, 1
   LA s5, a
   SW s4, 0(s5)
-  XOR s4, s4, zero
-  SLTU s4, zero, s4
   BNE s4, zero, bb20
   # implict jump to bb4
 bb4:
@@ -94,8 +92,6 @@ bb9:
   ADDIW s4, s4, 1
   LA s5, a
   SW s4, 0(s5)
-  XOR s4, s4, zero
-  SLTU s4, zero, s4
   BNE s4, zero, bb16
   # implict jump to bb10
 bb10:
@@ -146,7 +142,6 @@ bb16:
   SW s6, 0(s7)
   SUBW s5, s5, s6
   ADDIW s5, s5, 1
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   ADD s4, s5, zero
   JAL zero, bb11
@@ -174,7 +169,6 @@ bb19:
   ADDIW s5, s5, 1
   LA s6, a
   SW s5, 0(s6)
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   ADD s4, s5, zero
   JAL zero, bb7
@@ -184,7 +178,6 @@ bb20:
   ADDIW s5, s5, 1
   LA s6, a
   SW s5, 0(s6)
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   ADD s4, s5, zero
   JAL zero, bb5

@@ -19,8 +19,7 @@ func:
   FSD fs1, 32(sp)
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
-  SLT s1, s0, zero
-  BNE s1, zero, bb2
+  BLT s0, zero, bb2
   # implict jump to bb1
 bb1:
   ADDI s1, zero, 1

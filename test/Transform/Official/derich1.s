@@ -153,48 +153,42 @@ kernel_deriche:
   # implict jump to bb1
 bb1:
   ADD s7, s6, zero
-  SLT s8, s7, s0
-  BNE s8, zero, bb33
+  BLT s7, s0, bb33
   # implict jump to bb2
 bb2:
   ADD s8, zero, zero
   # implict jump to bb3
 bb3:
   ADD s9, s8, zero
-  SLT s10, s9, s0
-  BNE s10, zero, bb29
+  BLT s9, s0, bb29
   # implict jump to bb4
 bb4:
   ADD s10, zero, zero
   # implict jump to bb5
 bb5:
   ADD s11, s10, zero
-  SLT t0, s11, s0
-  BNE t0, zero, bb25
+  BLT s11, s0, bb25
   # implict jump to bb6
 bb6:
   ADD t0, zero, zero
   # implict jump to bb7
 bb7:
   ADD t1, t0, zero
-  SLT t2, t1, s1
-  BNE t2, zero, bb21
+  BLT t1, s1, bb21
   # implict jump to bb8
 bb8:
   ADD t2, zero, zero
   # implict jump to bb9
 bb9:
   ADD a0, t2, zero
-  SLT a1, a0, s1
-  BNE a1, zero, bb17
+  BLT a0, s1, bb17
   # implict jump to bb10
 bb10:
   ADD a1, zero, zero
   # implict jump to bb11
 bb11:
   ADD a2, a1, zero
-  SLT a3, a2, s0
-  BNE a3, zero, bb13
+  BLT a2, s0, bb13
   # implict jump to bb12
 bb12:
   LD ra, 0(sp)
@@ -229,8 +223,7 @@ bb13:
   # implict jump to bb14
 bb14:
   ADD a4, a3, zero
-  SLT a5, a4, s1
-  BNE a5, zero, bb16
+  BLT a4, s1, bb16
   # implict jump to bb15
 bb15:
   ADDIW a5, a2, 1
@@ -340,8 +333,7 @@ bb22:
   FSGNJ.S fs9, fs8, fs8
   FSGNJ.S fs10, fs7, fs7
   FSGNJ.S fs11, fs6, fs6
-  SLT a1, a0, s0
-  BNE a1, zero, bb24
+  BLT a0, s0, bb24
   # implict jump to bb23
 bb23:
   ADDIW a1, t1, 1
@@ -376,8 +368,7 @@ bb25:
   # implict jump to bb26
 bb26:
   ADD t1, t0, zero
-  SLT t2, t1, s1
-  BNE t2, zero, bb28
+  BLT t1, s1, bb28
   # implict jump to bb27
 bb27:
   ADDIW t2, s11, 1
@@ -487,8 +478,7 @@ bb34:
   FSGNJ.S fs9, fs8, fs8
   FSGNJ.S fs10, fs7, fs7
   FSGNJ.S fs11, fs6, fs6
-  SLT s10, s9, s1
-  BNE s10, zero, bb36
+  BLT s9, s1, bb36
   # implict jump to bb35
 bb35:
   ADDIW s10, s7, 1
@@ -528,17 +518,14 @@ newPow:
   FSD fs2, 40(sp)
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
-  SLT s1, s0, zero
-  BNE s1, zero, bb43
+  BLT s0, zero, bb43
   # implict jump to bb38
 bb38:
-  XOR s1, s0, zero
-  SLTIU s1, s1, 1
+  SLTIU s1, s0, 1
   BNE s1, zero, bb42
   # implict jump to bb39
 bb39:
-  SLT s1, zero, s0
-  BNE s1, zero, bb41
+  BLT zero, s0, bb41
   # implict jump to bb40
 bb40:
 bb41:

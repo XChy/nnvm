@@ -56,9 +56,7 @@ main:
   LW s3, 0(s3)
   DIVW s0, s0, s2
   SUBW s0, s3, s0
-  XOR s0, s1, s0
-  SLTU s0, zero, s0
-  BNE s0, zero, bb9
+  BNE s1, s0, bb9
   # implict jump to bb1
 bb1:
   LA s0, a

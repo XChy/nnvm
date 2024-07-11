@@ -471,7 +471,6 @@ bb49:
   CALL getfarray
   ADD s0, a0, zero
   XORI s1, s0, 1000
-  SLTU s1, zero, s1
   BNE s1, zero, bb51
   # implict jump to bb50
 bb50:

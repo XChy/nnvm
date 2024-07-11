@@ -14,9 +14,7 @@ main:
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
-  XOR s2, s1, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb6
+  BNE s1, zero, bb6
   # implict jump to bb2
 bb2:
   ADDI s2, zero, 1
@@ -206,9 +204,7 @@ bb2:
   # implict jump to bb3
 bb3:
   ADD s3, s2, zero
-  XOR s4, s3, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb5
+  BNE s3, zero, bb5
   # implict jump to bb4
 bb4:
   ADDI a0, zero, 4

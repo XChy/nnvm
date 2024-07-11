@@ -6,15 +6,11 @@ main:
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  XOR s0, zero, zero
-  SLTU s0, zero, s0
+  SLTU s0, zero, zero
   XORI s0, s0, 1
-  XOR s0, s0, zero
   SLTU s0, zero, s0
   XORI s0, s0, 1
   SUBW s0, zero, s0
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb3
   # implict jump to bb1
 bb1:

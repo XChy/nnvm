@@ -33,8 +33,7 @@ main:
   # implict jump to bb1
 bb1:
   ADD s2, s1, zero
-  SLT s3, s2, s0
-  BNE s3, zero, bb3
+  BLT s2, s0, bb3
   # implict jump to bb2
 bb2:
   SLLIW s3, s2, 2
@@ -89,8 +88,6 @@ bb5:
   SLLIW s7, s5, 2
   ADD s7, s0, s7
   LW s8, 0(s7)
-  XOR s8, s8, zero
-  SLTU s8, zero, s8
   BNE s8, zero, bb7
   # implict jump to bb6
 bb6:
@@ -184,8 +181,7 @@ bb24:
 bb25:
   ADD t0, s11, zero
   ADD t1, s10, zero
-  SLT t2, zero, t0
-  BNE t2, zero, bb27
+  BLT zero, t0, bb27
   # implict jump to bb26
 bb26:
   ADD s8, t1, zero
@@ -231,7 +227,6 @@ bb34:
   LA s9, tape
   ADD s8, s9, s8
   LW s8, 0(s8)
-  XOR s8, s8, zero
   SLTU s8, zero, s8
   ADD s7, s8, zero
   JAL zero, bb15
@@ -324,8 +319,7 @@ read_program:
   # implict jump to bb42
 bb42:
   ADD s2, s1, zero
-  SLT s3, s2, s0
-  BNE s3, zero, bb44
+  BLT s2, s0, bb44
   # implict jump to bb43
 bb43:
   SLLIW s3, s2, 2

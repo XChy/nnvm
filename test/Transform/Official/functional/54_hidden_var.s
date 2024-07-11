@@ -82,8 +82,6 @@ main:
   ADDI s2, zero, 0
   SW s2, 0(s1)
   LW s1, 0(s0)
-  XOR s1, s1, zero
-  SLTU s1, zero, s1
   BNE s1, zero, bb2
   # implict jump to bb1
 bb1:
@@ -158,9 +156,7 @@ bb2:
   # implict jump to bb3
 bb3:
   ADD s5, s4, zero
-  XOR s6, s5, zero
-  SLTU s6, zero, s6
-  BNE s6, zero, bb5
+  BNE s5, zero, bb5
   # implict jump to bb4
 bb4:
   LW s6, 0(s1)

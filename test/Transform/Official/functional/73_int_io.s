@@ -23,16 +23,14 @@ my_putint:
 bb1:
   ADD s2, s0, zero
   ADD s3, s1, zero
-  SLT s4, zero, s2
-  BNE s4, zero, bb6
+  BLT zero, s2, bb6
   # implict jump to bb2
 bb2:
   ADD s4, s3, zero
   # implict jump to bb3
 bb3:
   ADD s5, s4, zero
-  SLT s6, zero, s5
-  BNE s6, zero, bb5
+  BLT zero, s5, bb5
   # implict jump to bb4
 bb4:
   LD ra, 64(sp)
@@ -84,8 +82,7 @@ bb8:
   ADD s0, a0, zero
   ADDI s1, zero, 48
   SUBW s0, s0, s1
-  SLT s1, s0, zero
-  BNE s1, zero, bb18
+  BLT s0, zero, bb18
   # implict jump to bb9
 bb9:
   ADDI s1, zero, 9
@@ -158,8 +155,7 @@ bb20:
   ADD s0, a0, zero
   ADDI s1, zero, 48
   SUBW s0, s0, s1
-  SLT s1, s0, zero
-  BNE s1, zero, bb49
+  BLT s0, zero, bb49
   # implict jump to bb21
 bb21:
   ADDI s1, zero, 9
@@ -198,8 +194,7 @@ bb27:
   # implict jump to bb28
 bb28:
   ADD s4, s3, zero
-  SLT s5, zero, s4
-  BNE s5, zero, bb30
+  BLT zero, s4, bb30
   # implict jump to bb29
 bb29:
   ADD a0, zero, zero
@@ -223,8 +218,7 @@ bb30:
   ADD s5, a0, zero
   ADDI s6, zero, 48
   SUBW s5, s5, s6
-  SLT s6, s5, zero
-  BNE s6, zero, bb46
+  BLT s5, zero, bb46
   # implict jump to bb31
 bb31:
   ADDI s6, zero, 9
@@ -258,16 +252,14 @@ bb37:
 bb38:
   ADD s10, s9, zero
   ADD s11, s8, zero
-  SLT s0, zero, s10
-  BNE s0, zero, bb43
+  BLT zero, s10, bb43
   # implict jump to bb39
 bb39:
   ADD s0, s11, zero
   # implict jump to bb40
 bb40:
   ADD s2, s0, zero
-  SLT s1, zero, s2
-  BNE s1, zero, bb42
+  BLT zero, s2, bb42
   # implict jump to bb41
 bb41:
   ADDI a0, zero, 10

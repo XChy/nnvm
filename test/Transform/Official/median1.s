@@ -45,8 +45,7 @@ bb1:
 bb2:
   ADD t0, s10, zero
   ADD t1, s11, zero
-  SLT t2, s9, t0
-  BNE t2, zero, bb29
+  BLT s9, t0, bb29
   # implict jump to bb3
 bb3:
   ADD t2, t0, zero
@@ -57,23 +56,22 @@ bb4:
 bb5:
   ADD s11, s9, zero
   ADD t4, s10, zero
-  SW t4, 0(sp)
-  SLT t1, s11, t2
-  BNE t1, zero, bb26
+  SW t4, 4(sp)
+  BLT s11, t2, bb26
   # implict jump to bb6
 bb6:
   ADD t1, s11, zero
   # implict jump to bb7
 bb7:
   ADD t4, t1, zero
-  SW t4, 4(sp)
-  LW t4, 4(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   XOR s9, t4, t2
   SLTIU s9, s9, 1
   BNE s9, zero, bb15
   # implict jump to bb8
 bb8:
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   SLLIW s9, t4, 2
   ADD s9, s0, s9
   LW s10, 0(s9)
@@ -88,9 +86,8 @@ bb8:
 bb9:
   ADD s11, s10, zero
   ADD a4, s9, zero
-  LW t4, 4(sp)
-  SLT a5, s11, t4
-  BNE a5, zero, bb14
+  LW t4, 0(sp)
+  BLT s11, t4, bb14
   # implict jump to bb10
 bb10:
   ADD a5, zero, zero
@@ -99,15 +96,15 @@ bb11:
   BNE a5, zero, bb13
   # implict jump to bb12
 bb12:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s7, t4, zero
   ADD s6, t2, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s8, t4, zero
   JAL zero, bb1
 bb13:
   ADDIW s6, s11, 1
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADDW s7, a4, t4
   ADDW s7, s7, s6
   ADD s9, s7, zero
@@ -120,7 +117,7 @@ bb14:
 bb15:
   SW s5, 0(s4)
   LW s5, 0(s4)
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   SLLIW s6, t4, 2
   ADD s6, s0, s6
   LW s7, 0(s6)
@@ -132,8 +129,7 @@ bb15:
 bb16:
   ADD s6, s5, zero
   ADD s7, s4, zero
-  SLT s8, s6, s1
-  BNE s8, zero, bb25
+  BLT s6, s1, bb25
   # implict jump to bb17
 bb17:
   ADD s8, zero, zero
@@ -142,17 +138,15 @@ bb18:
   BNE s8, zero, bb24
   # implict jump to bb19
 bb19:
-  LW t4, 4(sp)
-  SLT s8, s3, t4
-  BNE s8, zero, bb23
+  LW t4, 0(sp)
+  BLT s3, t4, bb23
   # implict jump to bb20
 bb20:
-  LW t4, 4(sp)
-  SLT s8, t4, s3
-  BNE s8, zero, bb22
+  LW t4, 0(sp)
+  BLT t4, s3, bb22
   # implict jump to bb21
 bb21:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD a0, t4, zero
   LD ra, 8(sp)
   LD s0, 16(sp)
@@ -170,7 +164,7 @@ bb21:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb22:
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADDIW s8, t4, 1
   ADD a0, s0, zero
   ADD a1, s8, zero
@@ -197,7 +191,7 @@ bb22:
 bb23:
   ADD a0, s0, zero
   ADD a1, s1, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD a2, t4, zero
   ADD a3, s3, zero
   CALL median
@@ -226,7 +220,7 @@ bb24:
   ADD s5, s6, zero
   JAL zero, bb16
 bb25:
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   SLT s9, s6, t4
   ADD s8, s9, zero
   JAL zero, bb18
@@ -241,7 +235,7 @@ bb26:
   # implict jump to bb27
 bb27:
   ADDI a4, zero, 1
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   SUBW a4, t4, a4
   ADD s10, a4, zero
   ADD s9, s11, zero
@@ -255,8 +249,7 @@ bb29:
   SLLIW a4, t0, 2
   ADD a4, s0, a4
   LW a4, 0(a4)
-  SLT a4, a4, s5
-  BNE a4, zero, bb31
+  BLT a4, s5, bb31
   # implict jump to bb30
 bb30:
   ADDIW a4, t1, 1
@@ -290,8 +283,7 @@ swap:
 bb33:
   ADD s2, s1, zero
   ADD s3, s0, zero
-  SLT s4, s2, a1
-  BNE s4, zero, bb38
+  BLT s2, a1, bb38
   # implict jump to bb34
 bb34:
   ADD s4, zero, zero
@@ -389,8 +381,7 @@ meanless_calculation:
 bb41:
   ADD s3, s2, zero
   ADD s4, s1, zero
-  SLT s5, s3, s0
-  BNE s5, zero, bb46
+  BLT s3, s0, bb46
   # implict jump to bb42
 bb42:
   ADD s5, zero, zero

@@ -236,8 +236,7 @@ bb19:
   LW s0, 0(s9)
   LW s3, 0(s6)
   ADDW s0, s0, s3
-  SLT s0, s0, s7
-  BNE s0, zero, bb20
+  BLT s0, s7, bb20
   JAL zero, bb18
 bb20:
   LW s0, 0(s9)
@@ -251,8 +250,7 @@ bb21:
   LA s1, dis
   ADD s1, s1, s0
   LW s3, 0(s1)
-  SLT s3, s3, s11
-  BNE s3, zero, bb27
+  BLT s3, s11, bb27
   # implict jump to bb22
 bb22:
   ADD s3, zero, zero
@@ -286,7 +284,6 @@ bb27:
   LA s4, book
   ADD s0, s4, s0
   LW s0, 0(s0)
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   ADD s3, s0, zero
   JAL zero, bb23
@@ -497,8 +494,7 @@ bb49:
   LW a3, 0(a2)
   LW a4, 0(s2)
   ADDW a3, a3, a4
-  SLT a1, a3, a1
-  BNE a1, zero, bb50
+  BLT a3, a1, bb50
   JAL zero, bb48
 bb50:
   LW a1, 0(a2)
@@ -511,8 +507,7 @@ bb51:
   LA s3, dis
   ADD s3, s3, s2
   LW t0, 0(s3)
-  SLT t0, t0, s9
-  BNE t0, zero, bb57
+  BLT t0, s9, bb57
   # implict jump to bb52
 bb52:
   ADD t0, zero, zero
@@ -539,7 +534,6 @@ bb57:
   LA t1, book
   ADD s2, t1, s2
   LW s2, 0(s2)
-  XOR s2, s2, zero
   SLTIU s2, s2, 1
   ADD t0, s2, zero
   JAL zero, bb53

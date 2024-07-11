@@ -49,8 +49,7 @@ bb5:
 bb6:
   ADDIW s2, s2, 42
   ADDI s6, zero, 99
-  SLT s6, s6, s2
-  BNE s6, zero, bb9
+  BLT s6, s2, bb9
   # implict jump to bb7
 bb7:
   # implict jump to bb8
@@ -109,8 +108,7 @@ bb15:
 bb16:
   ADDIW s2, s2, 42
   ADDI s6, zero, 99
-  SLT s6, s6, s2
-  BNE s6, zero, bb19
+  BLT s6, s2, bb19
   # implict jump to bb17
 bb17:
   # implict jump to bb18

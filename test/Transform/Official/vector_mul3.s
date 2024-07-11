@@ -20,20 +20,20 @@ temp:
 mult_combin:
   ADDI sp, sp, -144
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  SD s7, 64(sp)
-  SD s8, 72(sp)
-  SD s9, 80(sp)
-  FSD fs0, 88(sp)
-  FSD fs1, 96(sp)
-  FSD fs2, 104(sp)
-  FSD fs3, 112(sp)
+  SD s8, 8(sp)
+  FSD fs3, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s9, 88(sp)
+  FSD fs0, 96(sp)
+  FSD fs1, 104(sp)
+  FSD fs2, 112(sp)
   FSD fs4, 120(sp)
   FSD fs5, 128(sp)
   FSD fs6, 136(sp)
@@ -47,8 +47,7 @@ bb1:
   ADD s2, s1, zero
   ADD s3, s0, zero
   FSGNJ.S fs2, fs1, fs1
-  SLT s4, s2, a2
-  BNE s4, zero, bb9
+  BLT s2, a2, bb9
   # implict jump to bb2
 bb2:
   FSGNJ.S fs3, fs0, fs0
@@ -59,25 +58,24 @@ bb3:
   ADD s6, s5, zero
   ADD s7, s4, zero
   FSGNJ.S fs4, fs3, fs3
-  SLT s8, s6, a2
-  BNE s8, zero, bb5
+  BLT s6, a2, bb5
   # implict jump to bb4
 bb4:
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  LD s7, 64(sp)
-  LD s8, 72(sp)
-  LD s9, 80(sp)
-  FLD fs0, 88(sp)
-  FLD fs1, 96(sp)
-  FLD fs2, 104(sp)
-  FLD fs3, 112(sp)
+  LD s8, 8(sp)
+  FLD fs3, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s9, 88(sp)
+  FLD fs0, 96(sp)
+  FLD fs1, 104(sp)
+  FLD fs2, 112(sp)
   FLD fs4, 120(sp)
   FLD fs5, 128(sp)
   FLD fs6, 136(sp)
@@ -88,8 +86,7 @@ bb5:
 bb6:
   ADD s8, s7, zero
   FSGNJ.S fs5, fs4, fs4
-  SLT s9, s8, a2
-  BNE s9, zero, bb8
+  BLT s8, a2, bb8
   # implict jump to bb7
 bb7:
   SLLIW s9, s6, 2
@@ -123,8 +120,7 @@ bb9:
 bb10:
   ADD s4, s3, zero
   FSGNJ.S fs3, fs2, fs2
-  SLT s5, s4, a2
-  BNE s5, zero, bb12
+  BLT s4, a2, bb12
   # implict jump to bb11
 bb11:
   SLLIW s5, s2, 2
@@ -174,8 +170,7 @@ bb14:
   ADD s2, s1, zero
   ADD s3, s0, zero
   FSGNJ.S fs1, fs0, fs0
-  SLT s4, s2, a2
-  BNE s4, zero, bb16
+  BLT s2, a2, bb16
   # implict jump to bb15
 bb15:
   LD ra, 0(sp)
@@ -196,8 +191,7 @@ bb16:
 bb17:
   ADD s4, s3, zero
   FSGNJ.S fs2, fs1, fs1
-  SLT s5, s4, a2
-  BNE s5, zero, bb19
+  BLT s4, a2, bb19
   # implict jump to bb18
 bb18:
   SLLIW s5, s2, 2
@@ -304,8 +298,7 @@ Vectordot:
 bb28:
   ADD s1, s0, zero
   FSGNJ.S fs1, fs0, fs0
-  SLT s2, s1, a2
-  BNE s2, zero, bb30
+  BLT s1, a2, bb30
   # implict jump to bb29
 bb29:
   FSGNJ.S fa0, fs1, fs1
@@ -353,8 +346,7 @@ bb32:
   ADD s2, s1, zero
   ADD s3, s0, zero
   FSGNJ.S fs1, fs0, fs0
-  SLT s4, s2, a2
-  BNE s4, zero, bb34
+  BLT s2, a2, bb34
   # implict jump to bb33
 bb33:
   LD ra, 0(sp)
@@ -375,8 +367,7 @@ bb34:
 bb35:
   ADD s4, s3, zero
   FSGNJ.S fs2, fs1, fs1
-  SLT s5, s4, a2
-  BNE s5, zero, bb37
+  BLT s4, a2, bb37
   # implict jump to bb36
 bb36:
   SLLIW s5, s2, 2
@@ -451,8 +442,7 @@ bb40:
   # implict jump to bb41
 bb41:
   ADD s2, s1, zero
-  SLT s3, s2, s0
-  BNE s3, zero, bb88
+  BLT s2, s0, bb88
   # implict jump to bb42
 bb42:
   ADD s3, zero, zero
@@ -472,8 +462,7 @@ bb44:
 bb45:
   ADD s6, s5, zero
   FSGNJ.S fs3, fs2, fs2
-  SLT s7, s6, s0
-  BNE s7, zero, bb62
+  BLT s6, s0, bb62
   # implict jump to bb46
 bb46:
   FSGNJ.S fs4, fs1, fs1
@@ -482,8 +471,7 @@ bb46:
 bb47:
   ADD s8, s7, zero
   FSGNJ.S fs5, fs4, fs4
-  SLT s9, s8, s0
-  BNE s9, zero, bb61
+  BLT s8, s0, bb61
   # implict jump to bb48
 bb48:
   FDIV.S fs0, fs3, fs5
@@ -632,8 +620,7 @@ bb64:
   ADD s7, s6, zero
   ADD s8, s5, zero
   FSGNJ.S fs2, fs1, fs1
-  SLT s9, s7, s0
-  BNE s9, zero, bb84
+  BLT s7, s0, bb84
   # implict jump to bb65
 bb65:
   FSGNJ.S fs3, fs0, fs0
@@ -644,8 +631,7 @@ bb66:
   ADD s11, s10, zero
   ADD ra, s9, zero
   FSGNJ.S fs4, fs3, fs3
-  SLT t0, s11, s0
-  BNE t0, zero, bb80
+  BLT s11, s0, bb80
   # implict jump to bb67
 bb67:
   FSGNJ.S fs5, fs0, fs0
@@ -656,8 +642,7 @@ bb68:
   ADD t2, t1, zero
   ADD a0, t0, zero
   FSGNJ.S fs6, fs5, fs5
-  SLT a1, t2, s0
-  BNE a1, zero, bb76
+  BLT t2, s0, bb76
   # implict jump to bb69
 bb69:
   FSGNJ.S fs7, fs0, fs0
@@ -668,8 +653,7 @@ bb70:
   ADD a3, a2, zero
   ADD a4, a1, zero
   FSGNJ.S fs8, fs7, fs7
-  SLT a5, a3, s0
-  BNE a5, zero, bb72
+  BLT a3, s0, bb72
   # implict jump to bb71
 bb71:
   ADDIW a5, s4, 1
@@ -681,8 +665,7 @@ bb72:
 bb73:
   ADD a4, s3, zero
   FSGNJ.S fs9, fs8, fs8
-  SLT a5, a4, s0
-  BNE a5, zero, bb75
+  BLT a4, s0, bb75
   # implict jump to bb74
 bb74:
   SLLIW a5, a3, 2
@@ -721,8 +704,7 @@ bb76:
 bb77:
   ADD a0, s3, zero
   FSGNJ.S fs7, fs6, fs6
-  SLT a1, a0, s0
-  BNE a1, zero, bb79
+  BLT a0, s0, bb79
   # implict jump to bb78
 bb78:
   SLLIW a1, t2, 2
@@ -763,8 +745,7 @@ bb80:
 bb81:
   ADD ra, s3, zero
   FSGNJ.S fs5, fs4, fs4
-  SLT t0, ra, s0
-  BNE t0, zero, bb83
+  BLT ra, s0, bb83
   # implict jump to bb82
 bb82:
   SLLIW t0, s11, 2
@@ -805,8 +786,7 @@ bb84:
 bb85:
   ADD s8, s3, zero
   FSGNJ.S fs3, fs2, fs2
-  SLT s9, s8, s0
-  BNE s9, zero, bb87
+  BLT s8, s0, bb87
   # implict jump to bb86
 bb86:
   SLLIW s9, s7, 2

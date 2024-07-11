@@ -73,9 +73,7 @@ main:
   # implict jump to bb2
 bb2:
   ADD s1, s0, zero
-  XOR s2, s1, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb16
+  BNE s1, zero, bb16
   # implict jump to bb3
 bb3:
   LUI s2, 1
@@ -88,9 +86,7 @@ bb3:
   # implict jump to bb4
 bb4:
   ADD s3, s2, zero
-  XOR s4, s3, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb15
+  BNE s3, zero, bb15
   # implict jump to bb5
 bb5:
   LUI s4, 2
@@ -109,9 +105,7 @@ bb5:
   # implict jump to bb6
 bb6:
   ADD s5, s4, zero
-  XOR s6, s5, zero
-  SLTU s6, zero, s6
-  BNE s6, zero, bb14
+  BNE s5, zero, bb14
   # implict jump to bb7
 bb7:
   LUI s6, 3
@@ -136,9 +130,7 @@ bb7:
   # implict jump to bb8
 bb8:
   ADD s7, s6, zero
-  XOR s8, s7, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb13
+  BNE s7, zero, bb13
   # implict jump to bb9
 bb9:
   ADDI s8, zero, 1
@@ -180,9 +172,7 @@ bb9:
   # implict jump to bb10
 bb10:
   ADD s9, s8, zero
-  XOR s10, s9, zero
-  SLTU s10, zero, s10
-  BNE s10, zero, bb12
+  BNE s9, zero, bb12
   # implict jump to bb11
 bb11:
   LA s10, a

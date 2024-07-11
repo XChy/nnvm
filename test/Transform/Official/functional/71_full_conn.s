@@ -34,8 +34,7 @@ bb1:
   ADD s3, t4, zero
   ADDI s4, zero, 0
   LW t4, 104(sp)
-  SLT s4, s4, t4
-  BNE s4, zero, bb3
+  BLT s4, t4, bb3
   # implict jump to bb2
 bb2:
   ADD a0, zero, zero
@@ -237,12 +236,10 @@ bb5:
   MULW s2, t4, s2
   ADDW s0, s0, s2
   ADDI s2, zero, 127
-  SLT s2, s2, s0
-  BNE s2, zero, bb61
+  BLT s2, s0, bb61
   # implict jump to bb6
 bb6:
-  SLT s2, s0, zero
-  BNE s2, zero, bb60
+  BLT s0, zero, bb60
   # implict jump to bb7
 bb7:
   # implict jump to bb8
@@ -345,12 +342,10 @@ bb8:
   MULW s3, t4, s3
   ADDW s2, s2, s3
   ADDI s3, zero, 127
-  SLT s3, s3, s2
-  BNE s3, zero, bb59
+  BLT s3, s2, bb59
   # implict jump to bb9
 bb9:
-  SLT s3, s2, zero
-  BNE s3, zero, bb58
+  BLT s2, zero, bb58
   # implict jump to bb10
 bb10:
   # implict jump to bb11
@@ -454,12 +449,10 @@ bb11:
   MULW s5, t4, s5
   ADDW s2, s2, s5
   ADDI s5, zero, 127
-  SLT s5, s5, s2
-  BNE s5, zero, bb57
+  BLT s5, s2, bb57
   # implict jump to bb12
 bb12:
-  SLT s5, s2, zero
-  BNE s5, zero, bb56
+  BLT s2, zero, bb56
   # implict jump to bb13
 bb13:
   # implict jump to bb14
@@ -560,12 +553,10 @@ bb14:
   MULW s6, t4, s6
   ADDW s2, s2, s6
   ADDI s6, zero, 127
-  SLT s6, s6, s2
-  BNE s6, zero, bb55
+  BLT s6, s2, bb55
   # implict jump to bb15
 bb15:
-  SLT s6, s2, zero
-  BNE s6, zero, bb54
+  BLT s2, zero, bb54
   # implict jump to bb16
 bb16:
   # implict jump to bb17
@@ -665,12 +656,10 @@ bb17:
   MULW s5, t4, s5
   ADDW s2, s2, s5
   ADDI s5, zero, 127
-  SLT s5, s5, s2
-  BNE s5, zero, bb53
+  BLT s5, s2, bb53
   # implict jump to bb18
 bb18:
-  SLT s5, s2, zero
-  BNE s5, zero, bb52
+  BLT s2, zero, bb52
   # implict jump to bb19
 bb19:
   # implict jump to bb20
@@ -773,12 +762,10 @@ bb20:
   MULW s11, t4, s11
   ADDW s2, s2, s11
   ADDI s11, zero, 127
-  SLT s11, s11, s2
-  BNE s11, zero, bb51
+  BLT s11, s2, bb51
   # implict jump to bb21
 bb21:
-  SLT s11, s2, zero
-  BNE s11, zero, bb50
+  BLT s2, zero, bb50
   # implict jump to bb22
 bb22:
   # implict jump to bb23
@@ -880,12 +867,10 @@ bb23:
   MULW s11, t4, s11
   ADDW s2, s2, s11
   ADDI s11, zero, 127
-  SLT s11, s11, s2
-  BNE s11, zero, bb49
+  BLT s11, s2, bb49
   # implict jump to bb24
 bb24:
-  SLT s11, s2, zero
-  BNE s11, zero, bb48
+  BLT s2, zero, bb48
   # implict jump to bb25
 bb25:
   # implict jump to bb26
@@ -984,12 +969,10 @@ bb26:
   MULW s4, t4, s4
   ADDW s2, s2, s4
   ADDI s4, zero, 127
-  SLT s4, s4, s2
-  BNE s4, zero, bb47
+  BLT s4, s2, bb47
   # implict jump to bb27
 bb27:
-  SLT s4, s2, zero
-  BNE s4, zero, bb46
+  BLT s2, zero, bb46
   # implict jump to bb28
 bb28:
   # implict jump to bb29
@@ -1085,12 +1068,10 @@ bb29:
   MULW s2, t4, s2
   ADDW s1, s1, s2
   ADDI s2, zero, 127
-  SLT s2, s2, s1
-  BNE s2, zero, bb45
+  BLT s2, s1, bb45
   # implict jump to bb30
 bb30:
-  SLT s2, s1, zero
-  BNE s2, zero, bb44
+  BLT s1, zero, bb44
   # implict jump to bb31
 bb31:
   # implict jump to bb32
@@ -1192,12 +1173,10 @@ bb32:
   MULW s2, t4, s2
   ADDW s1, s1, s2
   ADDI s2, zero, 127
-  SLT s2, s2, s1
-  BNE s2, zero, bb43
+  BLT s2, s1, bb43
   # implict jump to bb33
 bb33:
-  SLT s2, s1, zero
-  BNE s2, zero, bb42
+  BLT s1, zero, bb42
   # implict jump to bb34
 bb34:
   # implict jump to bb35
@@ -1205,15 +1184,12 @@ bb35:
   ADDI s2, zero, 46
   MULW s1, s1, s2
   ADDW s0, s0, s1
-  SLT s0, zero, s0
-  BNE s0, zero, bb41
+  BLT zero, s0, bb41
   # implict jump to bb36
 bb36:
   ADD s0, zero, zero
   # implict jump to bb37
 bb37:
-  XOR s0, s0, zero
-  SLTU s0, zero, s0
   BNE s0, zero, bb40
   # implict jump to bb38
 bb38:
@@ -1497,12 +1473,10 @@ model:
   MULW t6, t4, t6
   ADDW s2, s2, t6
   ADDI t6, zero, 127
-  SLT t6, t6, s2
-  BNE t6, zero, bb118
+  BLT t6, s2, bb118
   # implict jump to bb67
 bb67:
-  SLT t6, s2, zero
-  BNE t6, zero, bb117
+  BLT s2, zero, bb117
   # implict jump to bb68
 bb68:
   # implict jump to bb69
@@ -1594,12 +1568,10 @@ bb69:
   MULW t6, t4, t6
   ADDW s0, s0, t6
   ADDI t6, zero, 127
-  SLT t6, t6, s0
-  BNE t6, zero, bb116
+  BLT t6, s0, bb116
   # implict jump to bb70
 bb70:
-  SLT t6, s0, zero
-  BNE t6, zero, bb115
+  BLT s0, zero, bb115
   # implict jump to bb71
 bb71:
   # implict jump to bb72
@@ -1692,12 +1664,10 @@ bb72:
   MULW a6, t4, a6
   ADDW s2, s2, a6
   ADDI a6, zero, 127
-  SLT a6, a6, s2
-  BNE a6, zero, bb114
+  BLT a6, s2, bb114
   # implict jump to bb73
 bb73:
-  SLT a6, s2, zero
-  BNE a6, zero, bb113
+  BLT s2, zero, bb113
   # implict jump to bb74
 bb74:
   # implict jump to bb75
@@ -1788,12 +1758,10 @@ bb75:
   MULW t2, t4, t2
   ADDW s2, s2, t2
   ADDI t2, zero, 127
-  SLT t2, t2, s2
-  BNE t2, zero, bb112
+  BLT t2, s2, bb112
   # implict jump to bb76
 bb76:
-  SLT t2, s2, zero
-  BNE t2, zero, bb111
+  BLT s2, zero, bb111
   # implict jump to bb77
 bb77:
   # implict jump to bb78
@@ -1883,12 +1851,10 @@ bb78:
   MULW a5, t4, a5
   ADDW s2, s2, a5
   ADDI a5, zero, 127
-  SLT a5, a5, s2
-  BNE a5, zero, bb110
+  BLT a5, s2, bb110
   # implict jump to bb79
 bb79:
-  SLT a5, s2, zero
-  BNE a5, zero, bb109
+  BLT s2, zero, bb109
   # implict jump to bb80
 bb80:
   # implict jump to bb81
@@ -1980,12 +1946,10 @@ bb81:
   MULW a4, t4, a4
   ADDW s2, s2, a4
   ADDI a4, zero, 127
-  SLT a4, a4, s2
-  BNE a4, zero, bb108
+  BLT a4, s2, bb108
   # implict jump to bb82
 bb82:
-  SLT a4, s2, zero
-  BNE a4, zero, bb107
+  BLT s2, zero, bb107
   # implict jump to bb83
 bb83:
   # implict jump to bb84
@@ -2076,12 +2040,10 @@ bb84:
   MULW a4, t4, a4
   ADDW s2, s2, a4
   ADDI a4, zero, 127
-  SLT a4, a4, s2
-  BNE a4, zero, bb106
+  BLT a4, s2, bb106
   # implict jump to bb85
 bb85:
-  SLT a4, s2, zero
-  BNE a4, zero, bb105
+  BLT s2, zero, bb105
   # implict jump to bb86
 bb86:
   # implict jump to bb87
@@ -2169,12 +2131,10 @@ bb87:
   MULW a4, t4, a4
   ADDW s2, s2, a4
   ADDI a4, zero, 127
-  SLT a4, a4, s2
-  BNE a4, zero, bb104
+  BLT a4, s2, bb104
   # implict jump to bb88
 bb88:
-  SLT a4, s2, zero
-  BNE a4, zero, bb103
+  BLT s2, zero, bb103
   # implict jump to bb89
 bb89:
   # implict jump to bb90
@@ -2261,12 +2221,10 @@ bb90:
   MULW a1, t4, a1
   ADDW s2, s2, a1
   ADDI a1, zero, 127
-  SLT a1, a1, s2
-  BNE a1, zero, bb102
+  BLT a1, s2, bb102
   # implict jump to bb91
 bb91:
-  SLT a1, s2, zero
-  BNE a1, zero, bb101
+  BLT s2, zero, bb101
   # implict jump to bb92
 bb92:
   # implict jump to bb93
@@ -2357,12 +2315,10 @@ bb93:
   MULW s2, t4, s2
   ADDW s1, s1, s2
   ADDI s2, zero, 127
-  SLT s2, s2, s1
-  BNE s2, zero, bb100
+  BLT s2, s1, bb100
   # implict jump to bb94
 bb94:
-  SLT s2, s1, zero
-  BNE s2, zero, bb99
+  BLT s1, zero, bb99
   # implict jump to bb95
 bb95:
   # implict jump to bb96
@@ -2370,8 +2326,7 @@ bb96:
   ADDI s2, zero, 46
   MULW s1, s1, s2
   ADDW s0, s0, s1
-  SLT s0, zero, s0
-  BNE s0, zero, bb98
+  BLT zero, s0, bb98
   # implict jump to bb97
 bb97:
   ADD a0, zero, zero
@@ -2474,12 +2429,10 @@ relu_reg:
   SD s1, 16(sp)
   ADD s0, a0, zero
   ADDI s1, zero, 127
-  SLT s1, s1, s0
-  BNE s1, zero, bb123
+  BLT s1, s0, bb123
   # implict jump to bb120
 bb120:
-  SLT s1, s0, zero
-  BNE s1, zero, bb122
+  BLT s0, zero, bb122
   # implict jump to bb121
 bb121:
   ADD a0, s0, zero

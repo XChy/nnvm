@@ -35,8 +35,7 @@ bb2:
 bb3:
   ADD s5, s4, zero
   ADD s6, s3, zero
-  SLT s7, s6, s0
-  BNE s7, zero, bb5
+  BLT s6, s0, bb5
   # implict jump to bb4
 bb4:
   ADD a0, s5, zero
@@ -421,8 +420,7 @@ bb12:
 bb13:
   ADD s5, s4, zero
   ADD s6, s3, zero
-  SLT s7, s6, s0
-  BNE s7, zero, bb15
+  BLT s6, s0, bb15
   # implict jump to bb14
 bb14:
   ADD a0, s5, zero

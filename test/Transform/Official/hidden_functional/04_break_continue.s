@@ -151,9 +151,8 @@ bb18:
   ADD s11, s5, zero
   JAL zero, bb16
 bb19:
-  XOR a4, t0, zero
-  SLTU a4, zero, a4
-  BNE a4, zero, bb22
+  SLTU a4, zero, t0
+  BNE t0, zero, bb22
   # implict jump to bb20
 bb20:
   # implict jump to bb21
@@ -161,11 +160,10 @@ bb21:
   ADD a3, s11, zero
   JAL zero, bb15
 bb22:
-  BNE a4, zero, bb28
+  BNE t0, zero, bb28
   # implict jump to bb23
 bb23:
   XORI a4, a4, 1
-  XOR a4, a4, zero
   SLTU a4, zero, a4
   # implict jump to bb24
 bb24:

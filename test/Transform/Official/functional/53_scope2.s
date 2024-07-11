@@ -37,8 +37,7 @@ bb1:
   ADD s6, s1, zero
   ADD s7, s0, zero
   ADDI s8, zero, 10
-  SLT s8, s8, s5
-  BNE s8, zero, bb3
+  BLT s8, s5, bb3
   # implict jump to bb2
 bb2:
   ADD a0, s5, zero

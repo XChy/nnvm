@@ -64,7 +64,6 @@ insert:
   LA s2, head
   ADD s1, s2, s1
   LW s2, 0(s1)
-  XOR s2, s2, zero
   SLTIU s2, s2, 1
   BNE s2, zero, bb7
   # implict jump to bb1
@@ -73,9 +72,7 @@ bb1:
   # implict jump to bb2
 bb2:
   ADD s3, s2, zero
-  XOR s4, s3, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb4
+  BNE s3, zero, bb4
   # implict jump to bb3
 bb3:
   LA s4, cnt
@@ -243,16 +240,14 @@ main:
   # implict jump to bb9
 bb9:
   ADD s3, s2, zero
-  SLT s4, s3, s0
-  BNE s4, zero, bb23
+  BLT s3, s0, bb23
   # implict jump to bb10
 bb10:
   ADD s4, zero, zero
   # implict jump to bb11
 bb11:
   ADD s5, s4, zero
-  SLT s6, s5, s1
-  BNE s6, zero, bb13
+  BLT s5, s1, bb13
   # implict jump to bb12
 bb12:
   ADDI a0, zero, 90
@@ -294,9 +289,7 @@ bb13:
   # implict jump to bb14
 bb14:
   ADD s9, s8, zero
-  XOR s10, s9, zero
-  SLTU s10, zero, s10
-  BNE s10, zero, bb17
+  BNE s9, zero, bb17
   # implict jump to bb15
 bb15:
   ADD s10, zero, zero
@@ -328,9 +321,7 @@ bb19:
 bb20:
   ADD s9, s8, zero
   ADD s11, s6, zero
-  XOR ra, s11, zero
-  SLTU ra, zero, ra
-  BNE ra, zero, bb22
+  BNE s11, zero, bb22
   # implict jump to bb21
 bb21:
   ADD s10, s9, zero
@@ -362,7 +353,6 @@ bb23:
   LA s7, head
   ADD s6, s7, s6
   LW s7, 0(s6)
-  XOR s7, s7, zero
   SLTIU s7, s7, 1
   BNE s7, zero, bb31
   # implict jump to bb24
@@ -371,9 +361,7 @@ bb24:
   # implict jump to bb25
 bb25:
   ADD s8, s7, zero
-  XOR s9, s8, zero
-  SLTU s9, zero, s9
-  BNE s9, zero, bb28
+  BNE s8, zero, bb28
   # implict jump to bb26
 bb26:
   LA s9, cnt
@@ -501,9 +489,7 @@ reduce:
   # implict jump to bb33
 bb33:
   ADD s2, s1, zero
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb35
+  BNE s2, zero, bb35
   # implict jump to bb34
 bb34:
   ADD a0, zero, zero
@@ -537,9 +523,7 @@ bb37:
 bb38:
   ADD s2, s1, zero
   ADD s3, s0, zero
-  XOR s4, s3, zero
-  SLTU s4, zero, s4
-  BNE s4, zero, bb40
+  BNE s3, zero, bb40
   # implict jump to bb39
 bb39:
   ADD a0, s2, zero

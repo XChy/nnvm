@@ -921,9 +921,7 @@ bb42:
 bb43:
   FSGNJ.S fs4, fs2, fs2
   ADD s1, s0, zero
-  XOR s2, s1, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb45
+  BNE s1, zero, bb45
   # implict jump to bb44
 bb44:
   FSGNJ.S fa0, fs4, fs4
@@ -1001,8 +999,7 @@ my_pow:
   FSD fs5, 80(sp)
   FSGNJ.D fs0, fa0, fa0
   ADD s0, a0, zero
-  SLT s1, s0, zero
-  BNE s1, zero, bb56
+  BLT s0, zero, bb56
   # implict jump to bb49
 bb49:
   LA s1, .CONSTANT.7.6
@@ -1017,9 +1014,7 @@ bb50:
   FSGNJ.S fs3, fs2, fs2
   ADD s2, s1, zero
   FSGNJ.S fs4, fs1, fs1
-  XOR s3, s2, zero
-  SLTU s3, zero, s3
-  BNE s3, zero, bb52
+  BNE s2, zero, bb52
   # implict jump to bb51
 bb51:
   FSGNJ.S fa0, fs4, fs4
@@ -1039,8 +1034,6 @@ bb51:
 bb52:
   ADDI s3, zero, 2
   REMW s3, s2, s3
-  XOR s3, s3, zero
-  SLTU s3, zero, s3
   BNE s3, zero, bb55
   # implict jump to bb53
 bb53:
@@ -1086,10 +1079,10 @@ main:
   SD ra, 0(sp)
   SD s3, 8(sp)
   SD s4, 16(sp)
-  SD s0, 24(sp)
-  SD s1, 32(sp)
-  SD s2, 40(sp)
-  FSD fs0, 48(sp)
+  FSD fs0, 24(sp)
+  SD s0, 32(sp)
+  SD s1, 40(sp)
+  SD s2, 48(sp)
   FSD fs1, 56(sp)
   FSD fs2, 64(sp)
   FSD fs3, 72(sp)
@@ -1104,19 +1097,17 @@ main:
   # implict jump to bb58
 bb58:
   ADD s1, s0, zero
-  XOR s2, s1, zero
-  SLTU s2, zero, s2
-  BNE s2, zero, bb60
+  BNE s1, zero, bb60
   # implict jump to bb59
 bb59:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s3, 8(sp)
   LD s4, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  FLD fs0, 48(sp)
+  FLD fs0, 24(sp)
+  LD s0, 32(sp)
+  LD s1, 40(sp)
+  LD s2, 48(sp)
   FLD fs1, 56(sp)
   FLD fs2, 64(sp)
   FLD fs3, 72(sp)

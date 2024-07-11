@@ -66,8 +66,7 @@ bb3:
   ADD s6, s5, zero
   ADD s7, s4, zero
   ADD s8, s3, zero
-  SLT s9, s6, s2
-  BNE s9, zero, bb20
+  BLT s6, s2, bb20
   # implict jump to bb4
 bb4:
   ADD s9, zero, zero
@@ -82,8 +81,7 @@ bb6:
 bb7:
   ADD s11, s10, zero
   ADD t0, s9, zero
-  SLT t1, s11, s2
-  BNE t1, zero, bb15
+  BLT s11, s2, bb15
   # implict jump to bb8
 bb8:
   ADD t1, t0, zero
@@ -92,16 +90,14 @@ bb8:
 bb9:
   ADD a0, t2, zero
   ADD a1, t1, zero
-  SLT a2, a0, s1
-  BNE a2, zero, bb14
+  BLT a0, s1, bb14
   # implict jump to bb10
 bb10:
   ADD a2, s0, zero
   # implict jump to bb11
 bb11:
   ADD a3, a2, zero
-  SLT a4, a3, s1
-  BNE a4, zero, bb13
+  BLT a3, s1, bb13
   # implict jump to bb12
 bb12:
   LD ra, 0(sp)
@@ -170,8 +166,7 @@ bb16:
   LA t0, buf
   ADD s11, t0, s11
   LW t0, 0(s11)
-  SLT s10, s10, t0
-  BNE s10, zero, bb19
+  BLT s10, t0, bb19
   # implict jump to bb17
 bb17:
   LA s10, buf

@@ -23,9 +23,7 @@ merge:
   ADD s0, a0, zero
   ADD a0, s1, zero
   CALL find
-  XOR s1, s0, a0
-  SLTU s1, zero, s1
-  BNE s1, zero, bb2
+  BNE s0, a0, bb2
   # implict jump to bb1
 bb1:
   LD ra, 0(sp)
@@ -63,16 +61,14 @@ main:
   # implict jump to bb4
 bb4:
   ADD s3, s2, zero
-  SLT s4, s3, s0
-  BNE s4, zero, bb17
+  BLT s3, s0, bb17
   # implict jump to bb5
 bb5:
   ADD s4, zero, zero
   # implict jump to bb6
 bb6:
   ADD s5, s4, zero
-  SLT s6, s5, s1
-  BNE s6, zero, bb14
+  BLT s5, s1, bb14
   # implict jump to bb7
 bb7:
   ADD s6, zero, zero
@@ -81,8 +77,7 @@ bb7:
 bb8:
   ADD s8, s7, zero
   ADD s9, s6, zero
-  SLT s10, s8, s0
-  BNE s10, zero, bb10
+  BLT s8, s0, bb10
   # implict jump to bb9
 bb9:
   ADD a0, s9, zero
@@ -134,9 +129,7 @@ bb14:
   ADD s6, a0, zero
   ADD a0, s7, zero
   CALL find
-  XOR s7, s6, a0
-  SLTU s7, zero, s7
-  BNE s7, zero, bb16
+  BNE s6, a0, bb16
   # implict jump to bb15
 bb15:
   ADDIW s5, s5, 1

@@ -35,8 +35,7 @@ main:
 bb1:
   ADD s1, s0, zero
   ADDI s2, zero, 0
-  SLT s2, s2, s1
-  BNE s2, zero, bb3
+  BLT s2, s1, bb3
   # implict jump to bb2
 bb2:
   LA s2, sum
@@ -100,7 +99,6 @@ bb7:
   ADD s3, s4, s3
   LW s4, 0(s3)
   XORI s4, s4, 1
-  SLTU s4, zero, s4
   BNE s4, zero, bb21
   # implict jump to bb8
 bb8:
@@ -210,10 +208,8 @@ bb20:
   LA s6, line2
   ADD s5, s6, s5
   LW s5, 0(s5)
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   XORI s5, s5, 1
-  XOR s5, s5, zero
   SLTU s5, zero, s5
   ADD s4, s5, zero
   JAL zero, bb11
@@ -223,7 +219,6 @@ bb21:
   LA s6, line1
   ADD s5, s6, s5
   LW s5, 0(s5)
-  XOR s5, s5, zero
   SLTIU s5, s5, 1
   ADD s4, s5, zero
   JAL zero, bb9

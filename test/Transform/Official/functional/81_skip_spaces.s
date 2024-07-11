@@ -18,8 +18,6 @@ bb1:
   ADD s1, s0, zero
   CALL getint
   ADD s2, a0, zero
-  XOR s2, s2, zero
-  SLTU s2, zero, s2
   BNE s2, zero, bb6
   # implict jump to bb2
 bb2:
@@ -29,9 +27,7 @@ bb2:
 bb3:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  XOR s6, s4, zero
-  SLTU s6, zero, s6
-  BNE s6, zero, bb5
+  BNE s4, zero, bb5
   # implict jump to bb4
 bb4:
   ADDI s6, zero, 79

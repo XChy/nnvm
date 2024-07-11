@@ -39,8 +39,7 @@ bb1:
   ADD s3, s0, zero
   LA s4, loopCount
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb3
+  BLT s3, s4, bb3
   # implict jump to bb2
 bb2:
   ADDI a0, zero, 1031

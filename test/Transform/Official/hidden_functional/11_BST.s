@@ -48,8 +48,7 @@ bb1:
   LA s3, value
   ADD s3, s3, s2
   LW s3, 0(s3)
-  SLT s3, s3, s1
-  BNE s3, zero, bb4
+  BLT s3, s1, bb4
   # implict jump to bb2
 bb2:
   LA s3, left_child
@@ -177,13 +176,11 @@ bb8:
   LA s3, value
   ADD s3, s3, s2
   LW s4, 0(s3)
-  SLT s4, s4, s1
-  BNE s4, zero, bb25
+  BLT s4, s1, bb25
   # implict jump to bb9
 bb9:
   LW s4, 0(s3)
-  SLT s4, s1, s4
-  BNE s4, zero, bb24
+  BLT s1, s4, bb24
   # implict jump to bb10
 bb10:
   LA s4, left_child
@@ -358,7 +355,6 @@ bb28:
   ADD s1, s2, s1
   LW s2, 0(s1)
   XORI s2, s2, -1
-  SLTU s2, zero, s2
   BNE s2, zero, bb30
   # implict jump to bb29
 bb29:
@@ -418,8 +414,7 @@ bb35:
   LA s3, value
   ADD s3, s3, s2
   LW s3, 0(s3)
-  SLT s3, s3, s1
-  BNE s3, zero, bb37
+  BLT s3, s1, bb37
   # implict jump to bb36
 bb36:
   LA s3, left_child
@@ -483,11 +478,8 @@ main:
   SW s1, 0(s0)
   CALL getint
   ADD s0, a0, zero
-  XOR s1, s0, zero
-  SLTU s1, zero, s1
+  SLTU s1, zero, s0
   XORI s1, s1, 1
-  XOR s1, s1, zero
-  SLTU s1, zero, s1
   BNE s1, zero, bb48
   # implict jump to bb41
 bb41:
@@ -522,8 +514,7 @@ bb41:
   # implict jump to bb42
 bb42:
   ADD s3, s2, zero
-  SLT s4, s3, s0
-  BNE s4, zero, bb47
+  BLT s3, s0, bb47
   # implict jump to bb43
 bb43:
   ADD a0, s1, zero
@@ -538,8 +529,7 @@ bb43:
 bb44:
   ADD s7, s6, zero
   ADD s8, s5, zero
-  SLT s9, s8, s4
-  BNE s9, zero, bb46
+  BLT s8, s4, bb46
   # implict jump to bb45
 bb45:
   ADD a0, s7, zero
@@ -602,7 +592,6 @@ inorder:
   SD s1, 16(sp)
   ADD s0, a0, zero
   XORI s1, s0, -1
-  SLTU s1, zero, s1
   BNE s1, zero, bb51
   # implict jump to bb50
 bb50:

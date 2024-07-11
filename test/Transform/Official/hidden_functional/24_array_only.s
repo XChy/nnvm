@@ -44,8 +44,7 @@ sub_impl:
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  XOR s3, s2, zero
-  SLTIU s3, s3, 1
+  SLTIU s3, s2, 1
   BNE s3, zero, bb4
   # implict jump to bb2
 bb2:
@@ -119,8 +118,7 @@ add_impl:
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
-  XOR s3, s2, zero
-  SLTIU s3, s3, 1
+  SLTIU s3, s2, 1
   BNE s3, zero, bb10
   # implict jump to bb8
 bb8:
@@ -171,8 +169,6 @@ main:
   # implict jump to bb12
 bb12:
   LW s1, 0(sp)
-  XOR s1, s1, zero
-  SLTU s1, zero, s1
   BNE s1, zero, bb14
   # implict jump to bb13
 bb13:
@@ -263,8 +259,7 @@ inc_impl:
   SD s2, 24(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  XOR s2, s1, zero
-  SLTIU s2, s2, 1
+  SLTIU s2, s1, 1
   BNE s2, zero, bb21
   # implict jump to bb19
 bb19:

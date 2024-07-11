@@ -170,27 +170,26 @@ bb16:
   FSUB.S fs1, fs1, fs4
   FCVT.S.W fs4, s4
   FADD.S fs1, fs1, fs4
-  FCVT.W.S s1, fs1, rtz
+  FCVT.W.S s0, fs1, rtz
   FMUL.S fs0, fs0, fs2
   FMUL.S fs1, fs3, fa0
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s5
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s0, fs0, rtz
-  SLT s2, s1, zero
-  BNE s2, zero, bb27
+  FCVT.W.S s1, fs0, rtz
+  BLT s0, zero, bb27
   # implict jump to bb17
 bb17:
   LA s2, width
   LW s2, 0(s2)
-  SLT s2, s1, s2
+  SLT s2, s0, s2
   XORI s2, s2, 1
   # implict jump to bb18
 bb18:
   BNE s2, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s2, s0, zero
+  SLT s2, s1, zero
   # implict jump to bb20
 bb20:
   BNE s2, zero, bb25
@@ -198,7 +197,7 @@ bb20:
 bb21:
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s0, s2
+  SLT s2, s1, s2
   XORI s2, s2, 1
   # implict jump to bb22
 bb22:
@@ -207,8 +206,8 @@ bb22:
 bb23:
   LA s2, width
   LW s2, 0(s2)
-  MULW s0, s0, s2
-  ADDW s0, s0, s1
+  MULW s1, s1, s2
+  ADDW s0, s1, s0
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -596,7 +595,6 @@ main:
   CALL getch
   ADD s0, a0, zero
   XORI s0, s0, 80
-  SLTU s0, zero, s0
   BNE s0, zero, bb91
   # implict jump to bb70
 bb70:
@@ -620,8 +618,7 @@ bb72:
   LA s0, width
   LW s0, 0(s0)
   ADDI s1, zero, 1024
-  SLT s0, s1, s0
-  BNE s0, zero, bb89
+  BLT s1, s0, bb89
   # implict jump to bb73
 bb73:
   LA s0, height
@@ -648,15 +645,13 @@ bb78:
   ADD s1, s0, zero
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb83
+  BLT s1, s2, bb83
   # implict jump to bb79
 bb79:
   ADD s2, zero, zero
   # implict jump to bb80
 bb80:
-  SLT s0, s2, zero
-  BNE s0, zero, bb82
+  BLT s2, zero, bb82
   # implict jump to bb81
 bb81:
   FSGNJ.S fa0, fs0, fs0
@@ -691,8 +686,7 @@ bb84:
   ADD s4, s3, zero
   LA s5, width
   LW s5, 0(s5)
-  SLT s5, s4, s5
-  BNE s5, zero, bb86
+  BLT s4, s5, bb86
   # implict jump to bb85
 bb85:
   ADDIW s5, s1, 1
@@ -738,7 +732,6 @@ read_image:
   CALL getch
   ADD s0, a0, zero
   XORI s0, s0, 80
-  SLTU s0, zero, s0
   BNE s0, zero, bb111
   # implict jump to bb93
 bb93:
@@ -762,8 +755,7 @@ bb95:
   LA s0, width
   LW s0, 0(s0)
   ADDI s1, zero, 1024
-  SLT s0, s1, s0
-  BNE s0, zero, bb109
+  BLT s1, s0, bb109
   # implict jump to bb96
 bb96:
   LA s0, height
@@ -790,8 +782,7 @@ bb101:
   ADD s1, s0, zero
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb103
+  BLT s1, s2, bb103
   # implict jump to bb102
 bb102:
   ADD a0, zero, zero
@@ -810,8 +801,7 @@ bb104:
   ADD s3, s2, zero
   LA s4, width
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb106
+  BLT s3, s4, bb106
   # implict jump to bb105
 bb105:
   ADDIW s4, s1, 1
@@ -908,8 +898,7 @@ bb113:
   ADD s3, s2, zero
   LA s4, height
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb115
+  BLT s3, s4, bb115
   # implict jump to bb114
 bb114:
   LD ra, 0(sp)
@@ -938,8 +927,7 @@ bb116:
   ADD s5, s4, zero
   LA s6, width
   LW s6, 0(s6)
-  SLT s6, s5, s6
-  BNE s6, zero, bb118
+  BLT s5, s6, bb118
   # implict jump to bb117
 bb117:
   ADDI a0, zero, 10
@@ -1054,27 +1042,26 @@ bb134:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s2
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s0, fs4, rtz
+  FCVT.W.S s1, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s6
   FADD.S fs1, fs1, fs2
-  FCVT.W.S s1, fs1, rtz
-  SLT s2, s0, zero
-  BNE s2, zero, bb146
+  FCVT.W.S s0, fs1, rtz
+  BLT s1, zero, bb146
   # implict jump to bb135
 bb135:
   LA s2, width
   LW s2, 0(s2)
-  SLT s2, s0, s2
+  SLT s2, s1, s2
   XORI s2, s2, 1
   # implict jump to bb136
 bb136:
   BNE s2, zero, bb145
   # implict jump to bb137
 bb137:
-  SLT s2, s1, zero
+  SLT s2, s0, zero
   # implict jump to bb138
 bb138:
   BNE s2, zero, bb144
@@ -1082,7 +1069,7 @@ bb138:
 bb139:
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s1, s2
+  SLT s2, s0, s2
   XORI s2, s2, 1
   # implict jump to bb140
 bb140:
@@ -1091,8 +1078,8 @@ bb140:
 bb141:
   LA s2, width
   LW s2, 0(s2)
-  MULW s1, s1, s2
-  ADDW s0, s1, s0
+  MULW s0, s0, s2
+  ADDW s0, s0, s1
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0

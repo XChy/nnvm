@@ -79,8 +79,7 @@ bb5:
   BNE s3, zero, bb304
   # implict jump to bb6
 bb6:
-  XOR s3, s0, zero
-  SLTIU s3, s3, 1
+  SLTIU s3, s0, 1
   BNE s3, zero, bb280
   # implict jump to bb7
 bb7:
@@ -157,9 +156,7 @@ bb16:
   ADD s5, s1, s5
   LW s5, 0(s5)
   LW s6, 112(sp)
-  XOR s5, s5, s6
-  SLTU s5, zero, s5
-  BNE s5, zero, bb25
+  BNE s5, s6, bb25
   # implict jump to bb17
 bb17:
   LA s5, pos
@@ -169,9 +166,7 @@ bb17:
   ADD s5, s1, s5
   LW s5, 0(s5)
   LW s0, 0(s0)
-  XOR s0, s5, s0
-  SLTU s0, zero, s0
-  BNE s0, zero, bb24
+  BNE s5, s0, bb24
   # implict jump to bb18
 bb18:
   LA s0, pos
@@ -181,9 +176,7 @@ bb18:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s3)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb23
+  BNE s0, s3, bb23
   # implict jump to bb19
 bb19:
   LA s0, pos
@@ -193,9 +186,7 @@ bb19:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s4)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb22
+  BNE s0, s3, bb22
   # implict jump to bb20
 bb20:
   LA s0, pos
@@ -311,9 +302,7 @@ bb28:
   ADD s6, s1, s6
   LW s6, 0(s6)
   LW s7, 88(sp)
-  XOR s6, s6, s7
-  SLTU s6, zero, s6
-  BNE s6, zero, bb38
+  BNE s6, s7, bb38
   # implict jump to bb29
 bb29:
   LA s6, pos
@@ -323,9 +312,7 @@ bb29:
   ADD s6, s1, s6
   LW s6, 0(s6)
   LW s0, 0(s0)
-  XOR s0, s6, s0
-  SLTU s0, zero, s0
-  BNE s0, zero, bb37
+  BNE s6, s0, bb37
   # implict jump to bb30
 bb30:
   LA s0, pos
@@ -335,9 +322,7 @@ bb30:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s3)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb36
+  BNE s0, s3, bb36
   # implict jump to bb31
 bb31:
   LA s0, pos
@@ -347,9 +332,7 @@ bb31:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s4)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb35
+  BNE s0, s3, bb35
   # implict jump to bb32
 bb32:
   LA s0, pos
@@ -359,9 +342,7 @@ bb32:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s5)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb34
+  BNE s0, s3, bb34
   # implict jump to bb33
 bb33:
   LA s0, pos
@@ -474,9 +455,7 @@ bb41:
   ADD s5, s1, s5
   LW s5, 0(s5)
   LW s6, 72(sp)
-  XOR s5, s5, s6
-  SLTU s5, zero, s5
-  BNE s5, zero, bb49
+  BNE s5, s6, bb49
   # implict jump to bb42
 bb42:
   LA s5, pos
@@ -486,9 +465,7 @@ bb42:
   ADD s5, s1, s5
   LW s5, 0(s5)
   LW s0, 0(s0)
-  XOR s0, s5, s0
-  SLTU s0, zero, s0
-  BNE s0, zero, bb48
+  BNE s5, s0, bb48
   # implict jump to bb43
 bb43:
   LA s0, pos
@@ -498,9 +475,7 @@ bb43:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s3)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb47
+  BNE s0, s3, bb47
   # implict jump to bb44
 bb44:
   LA s0, pos
@@ -510,9 +485,7 @@ bb44:
   ADD s0, s1, s0
   LW s0, 0(s0)
   LW s3, 0(s4)
-  XOR s0, s0, s3
-  SLTU s0, zero, s0
-  BNE s0, zero, bb46
+  BNE s0, s3, bb46
   # implict jump to bb45
 bb45:
   LA s0, pos
@@ -643,8 +616,7 @@ bb56:
 bb57:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb155
+  BLT s0, s2, bb155
   # implict jump to bb58
 bb58:
   ADDI a0, zero, 2
@@ -652,7 +624,6 @@ bb58:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb154
   # implict jump to bb59
@@ -717,7 +688,6 @@ bb65:
   ADD s0, s1, s0
   LW s0, 0(s0)
   XORI s0, s0, 58
-  SLTU s0, zero, s0
   BNE s0, zero, bb148
   # implict jump to bb66
 bb66:
@@ -780,7 +750,6 @@ bb72:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb143
   # implict jump to bb73
@@ -902,7 +871,6 @@ bb85:
   ADD s0, s1, s0
   LW s0, 0(s0)
   XORI s0, s0, 125
-  SLTU s0, zero, s0
   BNE s0, zero, bb87
   # implict jump to bb86
 bb86:
@@ -1026,7 +994,6 @@ bb99:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb134
   # implict jump to bb100
@@ -1091,7 +1058,6 @@ bb106:
   ADD s0, s1, s0
   LW s0, 0(s0)
   XORI s0, s0, 58
-  SLTU s0, zero, s0
   BNE s0, zero, bb128
   # implict jump to bb107
 bb107:
@@ -1154,7 +1120,6 @@ bb113:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb123
   # implict jump to bb114
@@ -1618,8 +1583,7 @@ bb166:
 bb167:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb215
+  BLT s0, s2, bb215
   # implict jump to bb168
 bb168:
   ADD a0, zero, zero
@@ -1627,7 +1591,6 @@ bb168:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb214
   # implict jump to bb169
@@ -1749,7 +1712,6 @@ bb181:
   ADD s0, s1, s0
   LW s0, 0(s0)
   XORI s0, s0, 93
-  SLTU s0, zero, s0
   BNE s0, zero, bb183
   # implict jump to bb182
 bb182:
@@ -1873,7 +1835,6 @@ bb195:
   ADD a2, s2, zero
   CALL detect_item
   ADD s0, a0, zero
-  XOR s0, s0, zero
   SLTIU s0, s0, 1
   BNE s0, zero, bb205
   # implict jump to bb196
@@ -2100,8 +2061,7 @@ bb221:
 bb222:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb228
+  BLT s0, s2, bb228
   # implict jump to bb223
 bb223:
   LA s0, pos
@@ -2117,7 +2077,6 @@ bb224:
   ADD s0, s1, s0
   LW s0, 0(s0)
   XORI s0, s0, 34
-  SLTU s0, zero, s0
   BNE s0, zero, bb226
   # implict jump to bb225
 bb225:
@@ -2228,27 +2187,23 @@ bb236:
   ADD s3, zero, zero
   # implict jump to bb237
 bb237:
-  XOR s0, s3, zero
-  SLTIU s0, s0, 1
+  SLTIU s0, s3, 1
   BNE s0, zero, bb273
   # implict jump to bb238
 bb238:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb266
+  BLT s0, s2, bb266
   # implict jump to bb239
 bb239:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb256
+  BLT s0, s2, bb256
   # implict jump to bb240
 bb240:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb241
+  BLT s0, s2, bb241
   JAL zero, bb21
 bb241:
   LA s0, pos
@@ -2266,20 +2221,17 @@ bb242:
   ADDIW s0, s0, 1
   LA s3, pos
   SW s0, 0(s3)
-  SLT s0, s0, s2
-  BNE s0, zero, bb254
+  BLT s0, s2, bb254
   # implict jump to bb243
 bb243:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb252
+  BLT s0, s2, bb252
   # implict jump to bb244
 bb244:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb245
+  BLT s0, s2, bb245
   JAL zero, bb21
 bb245:
   LA s0, pos
@@ -2296,7 +2248,6 @@ bb246:
   # implict jump to bb247
 bb247:
   XORI s0, s3, 1
-  SLTU s0, zero, s0
   BNE s0, zero, bb21
   # implict jump to bb248
 bb248:
@@ -2372,8 +2323,7 @@ bb257:
 bb258:
   LA s0, pos
   LW s0, 0(s0)
-  SLT s0, s0, s2
-  BNE s0, zero, bb259
+  BLT s0, s2, bb259
   JAL zero, bb240
 bb259:
   LA s0, pos
@@ -2390,7 +2340,6 @@ bb260:
   # implict jump to bb261
 bb261:
   XORI s0, s3, 1
-  SLTU s0, zero, s0
   BNE s0, zero, bb240
   # implict jump to bb262
 bb262:
@@ -2427,7 +2376,6 @@ bb267:
   # implict jump to bb268
 bb268:
   XORI s0, s3, 1
-  SLTU s0, zero, s0
   BNE s0, zero, bb239
   # implict jump to bb269
 bb269:
@@ -2845,7 +2793,6 @@ bb310:
   ADD s2, s0, zero
   ADD s3, s1, zero
   XORI s4, s2, 35
-  SLTU s4, zero, s4
   BNE s4, zero, bb333
   # implict jump to bb311
 bb311:
@@ -2959,8 +2906,6 @@ bb321:
   BNE s5, zero, bb325
   # implict jump to bb322
 bb322:
-  XOR s4, s4, zero
-  SLTU s4, zero, s4
   BNE s4, zero, bb324
   # implict jump to bb323
 bb323:

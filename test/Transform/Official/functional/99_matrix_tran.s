@@ -40,8 +40,7 @@ bb1:
   ADD s1, s0, zero
   LA s2, M
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb12
+  BLT s1, s2, bb12
   # implict jump to bb2
 bb2:
   ADDI s2, sp, 216
@@ -80,8 +79,7 @@ bb3:
   ADD s3, s2, zero
   LA s4, N
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb11
+  BLT s3, s4, bb11
   # implict jump to bb4
 bb4:
   ADDI a0, zero, 10
@@ -92,8 +90,7 @@ bb5:
   ADD s5, s4, zero
   LA s6, N
   LW s6, 0(s6)
-  SLT s6, s5, s6
-  BNE s6, zero, bb10
+  BLT s5, s6, bb10
   # implict jump to bb6
 bb6:
   ADDI a0, zero, 10
@@ -104,8 +101,7 @@ bb7:
   ADD s7, s6, zero
   LA s8, N
   LW s8, 0(s8)
-  SLT s8, s7, s8
-  BNE s8, zero, bb9
+  BLT s7, s8, bb9
   # implict jump to bb8
 bb8:
   ADDI a0, zero, 10

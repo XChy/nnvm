@@ -49,8 +49,7 @@ bb1:
   ADD s1, s0, zero
   LA s2, m
   LW s2, 0(s2)
-  SLT s2, s1, s2
-  BNE s2, zero, bb6
+  BLT s1, s2, bb6
   # implict jump to bb2
 bb2:
   ADD s2, zero, zero
@@ -59,8 +58,7 @@ bb3:
   ADD s3, s2, zero
   LA s4, m
   LW s4, 0(s4)
-  SLT s4, s3, s4
-  BNE s4, zero, bb5
+  BLT s3, s4, bb5
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -140,8 +138,7 @@ is_clique:
   # implict jump to bb8
 bb8:
   ADD s2, s1, zero
-  SLT s3, s2, s0
-  BNE s3, zero, bb10
+  BLT s2, s0, bb10
   # implict jump to bb9
 bb9:
   ADDI a0, zero, 1
@@ -162,8 +159,7 @@ bb10:
   # implict jump to bb11
 bb11:
   ADD s5, s4, zero
-  SLT s6, s5, s0
-  BNE s6, zero, bb13
+  BLT s5, s0, bb13
   # implict jump to bb12
 bb12:
   ADD s1, s3, zero
@@ -184,7 +180,6 @@ bb13:
   SLLIW s6, s6, 2
   ADD s1, s1, s6
   LW s1, 0(s1)
-  XOR s1, s1, zero
   SLTIU s1, s1, 1
   BNE s1, zero, bb15
   # implict jump to bb14
@@ -262,16 +257,13 @@ bb19:
   # implict jump to bb20
 bb20:
   ADD s9, s8, zero
-  SLT s10, s9, s7
-  BNE s10, zero, bb32
+  BLT s9, s7, bb32
   # implict jump to bb21
 bb21:
   ADDI s10, zero, 1
   # implict jump to bb22
 bb22:
-  XOR s8, s10, zero
-  SLTU s8, zero, s8
-  BNE s8, zero, bb25
+  BNE s10, zero, bb25
   # implict jump to bb23
 bb23:
   ADD s8, s4, zero
@@ -283,8 +275,7 @@ bb24:
   ADD s3, s8, zero
   JAL zero, bb17
 bb25:
-  SLT s9, s4, s0
-  BNE s9, zero, bb31
+  BLT s4, s0, bb31
   # implict jump to bb26
 bb26:
   # implict jump to bb27
@@ -292,8 +283,7 @@ bb27:
   ADD a0, s5, zero
   ADD a1, s7, zero
   CALL maxCliques
-  SLT s7, s4, a0
-  BNE s7, zero, bb30
+  BLT s4, a0, bb30
   # implict jump to bb28
 bb28:
   # implict jump to bb29
@@ -313,8 +303,7 @@ bb32:
   # implict jump to bb33
 bb33:
   ADD t1, t0, zero
-  SLT t2, t1, s7
-  BNE t2, zero, bb35
+  BLT t1, s7, bb35
   # implict jump to bb34
 bb34:
   ADD s8, s11, zero
@@ -335,7 +324,6 @@ bb35:
   SLLIW t2, t2, 2
   ADD s8, s8, t2
   LW s8, 0(s8)
-  XOR s8, s8, zero
   SLTIU s8, s8, 1
   BNE s8, zero, bb37
   # implict jump to bb36

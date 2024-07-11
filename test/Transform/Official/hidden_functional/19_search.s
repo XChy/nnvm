@@ -53,8 +53,7 @@ search:
   SW t4, 4(sp)
   ADDI s3, zero, 10
   LW t4, 4(sp)
-  SLT s3, s3, t4
-  BNE s3, zero, bb37
+  BLT s3, t4, bb37
   # implict jump to bb1
 bb1:
   ADD s3, zero, zero
@@ -92,8 +91,7 @@ bb2:
 bb3:
   ADDI a5, zero, 10
   LW t4, 28(sp)
-  SLT a5, a5, t4
-  BNE a5, zero, bb5
+  BLT a5, t4, bb5
   # implict jump to bb4
 bb4:
   LW t4, 28(sp)
@@ -152,7 +150,6 @@ bb7:
   ADD s9, s9, s10
   LW s10, 0(s9)
   XORI s10, s10, 1
-  SLTU s10, zero, s10
   BNE s10, zero, bb31
   # implict jump to bb8
 bb8:
@@ -177,8 +174,7 @@ bb12:
   BNE s1, zero, bb28
   # implict jump to bb13
 bb13:
-  XOR s1, s2, zero
-  SLTIU s1, s1, 1
+  SLTIU s1, s2, 1
   BNE s1, zero, bb27
   # implict jump to bb14
 bb14:
@@ -192,8 +188,7 @@ bb15:
   BNE s1, zero, bb26
   # implict jump to bb16
 bb16:
-  XOR s7, t6, zero
-  SLTIU s7, s7, 1
+  SLTIU s7, t6, 1
   # implict jump to bb17
 bb17:
   BNE s7, zero, bb25
@@ -227,8 +222,7 @@ bb20:
   ADD s2, a0, zero
   ADDIW s2, s2, 1
   LW t4, 28(sp)
-  SLT s10, s2, t4
-  BNE s10, zero, bb23
+  BLT s2, t4, bb23
   # implict jump to bb21
 bb21:
   LW t4, 28(sp)
@@ -402,8 +396,6 @@ bb39:
   ADD s1, s0, zero
   LA s2, w
   LW s2, 0(s2)
-  XOR s2, s2, zero
-  SLTU s2, zero, s2
   BNE s2, zero, bb41
   # implict jump to bb40
 bb40:

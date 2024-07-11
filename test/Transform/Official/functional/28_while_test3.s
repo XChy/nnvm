@@ -144,8 +144,7 @@ bb13:
   LA s2, e
   LW s2, 0(s2)
   ADDI s6, zero, 1
-  SLT s2, s6, s2
-  BNE s2, zero, bb15
+  BLT s6, s2, bb15
   # implict jump to bb14
 bb14:
   LA s2, e
@@ -167,8 +166,7 @@ bb16:
   LA s2, f
   LW s2, 0(s2)
   ADDI s5, zero, 2
-  SLT s2, s5, s2
-  BNE s2, zero, bb18
+  BLT s5, s2, bb18
   # implict jump to bb17
 bb17:
   LA s2, f
@@ -344,8 +342,7 @@ bb38:
   LA s2, e
   LW s2, 0(s2)
   ADDI s6, zero, 1
-  SLT s2, s6, s2
-  BNE s2, zero, bb40
+  BLT s6, s2, bb40
   # implict jump to bb39
 bb39:
   LA s2, e
@@ -367,8 +364,7 @@ bb41:
   LA s2, f
   LW s2, 0(s2)
   ADDI s5, zero, 2
-  SLT s2, s5, s2
-  BNE s2, zero, bb43
+  BLT s5, s2, bb43
   # implict jump to bb42
 bb42:
   LA s2, f
