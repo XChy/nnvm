@@ -233,7 +233,6 @@ main:
   LA s1, values
   ADD a0, s1, zero
   CALL getarray
-  ADD s1, a0, zero
   LA s1, requests
   ADD a0, s1, zero
   CALL getarray

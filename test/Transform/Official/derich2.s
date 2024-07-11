@@ -600,7 +600,6 @@ main:
   LA s0, imgIn
   ADD a0, s0, zero
   CALL getfarray
-  ADD s0, a0, zero
   ADDI a0, zero, 156
   CALL _sysy_starttime
   LA s0, w

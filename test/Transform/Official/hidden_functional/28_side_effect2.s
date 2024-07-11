@@ -237,7 +237,6 @@ bb34:
 bb35:
   LA s7, array
   ADDI s7, s7, 12
-  LW s7, 0(s7)
   # implict jump to bb36
 bb36:
   LA s7, sum
@@ -318,7 +317,6 @@ bb50:
 bb51:
   LA s8, array
   ADDI s8, s8, 32
-  LW s8, 0(s8)
   # implict jump to bb52
 bb52:
   LA s8, sum
@@ -748,7 +746,6 @@ bb135:
 bb136:
   LA s8, array
   ADDI s8, s8, 60
-  LW s8, 0(s8)
   JAL zero, bb77
 bb137:
   ADD s8, zero, zero
@@ -1623,7 +1620,6 @@ bb297:
   SW zero, 0(s4)
   LA s4, array
   ADDI s4, s4, 72
-  LW s4, 0(s4)
   # implict jump to bb298
 bb298:
   ADDIW s3, s3, 1
@@ -1967,7 +1963,6 @@ bb401:
   SW s3, 0(s2)
   LA s2, array
   ADDI s2, s2, 72
-  LW s2, 0(s2)
   JAL zero, bb397
 bb402:
   ADDI s2, zero, 1

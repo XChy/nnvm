@@ -132,10 +132,7 @@ bb21:
 get_one:
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  ADD s0, a0, zero
   ADDI a0, zero, 1
   LD ra, 0(sp)
-  LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)

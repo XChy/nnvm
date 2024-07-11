@@ -150,8 +150,8 @@ bb11:
   LA s11, to
   ADD s11, s11, s10
   SLLIW t4, s7, 2
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   ADD s11, s11, t4
   LW t1, 0(s11)
   SLLIW t1, t1, 2
@@ -165,7 +165,7 @@ bb11:
 bb12:
   LA t1, cap
   ADD t1, t1, s10
-  LW t3, 0(sp)
+  LW t3, 4(sp)
   ADD t4, t1, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
@@ -186,11 +186,11 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
-  SW t4, 4(sp)
+  SW t4, 0(sp)
   LW a3, 0(s11)
   ADD a0, a3, zero
   ADD a1, s1, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD a2, t4, zero
   CALL dfs
   ADD t0, a0, zero
@@ -200,7 +200,7 @@ bb15:
 bb16:
   ADDIW t1, s7, 1
   ADD s4, t0, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s5, t4, zero
   ADD s6, t1, zero
   JAL zero, bb9
@@ -217,7 +217,7 @@ bb17:
   ADD s11, t1, s11
   LA t1, rev
   ADD s10, t1, s10
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s10, s10, t4
   LW s10, 0(s10)
   SLLIW s10, s10, 2

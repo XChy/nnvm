@@ -564,7 +564,6 @@ main:
   LA s3, a
   ADD a0, s3, zero
   CALL getarray
-  ADD s3, a0, zero
   LA s3, kernelid
   ADD a0, s3, zero
   CALL getarray

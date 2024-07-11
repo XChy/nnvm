@@ -347,7 +347,6 @@ main:
   ADD a2, s1, zero
   ADD a3, s0, zero
   CALL median
-  ADD s0, a0, zero
   ADDI a0, zero, 61
   CALL _sysy_stoptime
   LA s0, n

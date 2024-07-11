@@ -96,7 +96,6 @@ bb5:
   ADD a2, s0, zero
   ADD a3, s9, zero
   CALL fft
-  ADD s10, a0, zero
   LW t4, 8(sp)
   ADDW s10, t4, s0
   LD t4, 112(sp)
@@ -105,7 +104,6 @@ bb5:
   ADD a2, s0, zero
   ADD a3, s9, zero
   CALL fft
-  ADD s9, a0, zero
   ADDI s9, zero, 1
   ADD s10, zero, zero
   # implict jump to bb6
@@ -364,7 +362,6 @@ bb22:
   ADD a2, s1, zero
   ADD a3, s3, zero
   CALL fft
-  ADD s1, a0, zero
   LA s1, d
   LW s1, 0(s1)
   LUI s3, 243712
@@ -380,7 +377,6 @@ bb22:
   ADD a2, s1, zero
   ADD a3, s3, zero
   CALL fft
-  ADD s1, a0, zero
   ADD s1, zero, zero
   # implict jump to bb23
 bb23:
@@ -409,7 +405,6 @@ bb24:
   ADD a2, s4, zero
   ADD a3, s5, zero
   CALL fft
-  ADD s4, a0, zero
   ADD s4, zero, zero
   # implict jump to bb25
 bb25:

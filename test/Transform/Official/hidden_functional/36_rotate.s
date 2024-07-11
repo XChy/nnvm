@@ -170,27 +170,27 @@ bb16:
   FSUB.S fs1, fs1, fs4
   FCVT.S.W fs4, s4
   FADD.S fs1, fs1, fs4
-  FCVT.W.S s0, fs1, rtz
+  FCVT.W.S s1, fs1, rtz
   FMUL.S fs0, fs0, fs2
   FMUL.S fs1, fs3, fa0
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s5
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s1, fs0, rtz
-  SLT s2, s0, zero
+  FCVT.W.S s0, fs0, rtz
+  SLT s2, s1, zero
   BNE s2, zero, bb27
   # implict jump to bb17
 bb17:
   LA s2, width
   LW s2, 0(s2)
-  SLT s2, s0, s2
+  SLT s2, s1, s2
   XORI s2, s2, 1
   # implict jump to bb18
 bb18:
   BNE s2, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s2, s1, zero
+  SLT s2, s0, zero
   # implict jump to bb20
 bb20:
   BNE s2, zero, bb25
@@ -198,7 +198,7 @@ bb20:
 bb21:
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s1, s2
+  SLT s2, s0, s2
   XORI s2, s2, 1
   # implict jump to bb22
 bb22:
@@ -207,8 +207,8 @@ bb22:
 bb23:
   LA s2, width
   LW s2, 0(s2)
-  MULW s1, s1, s2
-  ADDW s0, s1, s0
+  MULW s0, s0, s2
+  ADDW s0, s0, s1
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -593,7 +593,6 @@ main:
   CALL getfloat
   FSGNJ.D fs0, fa0, fa0
   CALL getch
-  ADD s0, a0, zero
   CALL getch
   ADD s0, a0, zero
   XORI s0, s0, 80
@@ -1055,27 +1054,27 @@ bb134:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s2
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s1, fs4, rtz
+  FCVT.W.S s0, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s6
   FADD.S fs1, fs1, fs2
-  FCVT.W.S s0, fs1, rtz
-  SLT s2, s1, zero
+  FCVT.W.S s1, fs1, rtz
+  SLT s2, s0, zero
   BNE s2, zero, bb146
   # implict jump to bb135
 bb135:
   LA s2, width
   LW s2, 0(s2)
-  SLT s2, s1, s2
+  SLT s2, s0, s2
   XORI s2, s2, 1
   # implict jump to bb136
 bb136:
   BNE s2, zero, bb145
   # implict jump to bb137
 bb137:
-  SLT s2, s0, zero
+  SLT s2, s1, zero
   # implict jump to bb138
 bb138:
   BNE s2, zero, bb144
@@ -1083,7 +1082,7 @@ bb138:
 bb139:
   LA s2, height
   LW s2, 0(s2)
-  SLT s2, s0, s2
+  SLT s2, s1, s2
   XORI s2, s2, 1
   # implict jump to bb140
 bb140:
@@ -1092,8 +1091,8 @@ bb140:
 bb141:
   LA s2, width
   LW s2, 0(s2)
-  MULW s0, s0, s2
-  ADDW s0, s0, s1
+  MULW s1, s1, s2
+  ADDW s0, s1, s0
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0

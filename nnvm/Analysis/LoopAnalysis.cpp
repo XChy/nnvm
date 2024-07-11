@@ -17,9 +17,10 @@ bool LoopAnalysis::run(Function &F) {
     BasicBlock *cur = worklist.top();
     // Visit block in the post order of dominance tree.
     if (visited.count(cur)) {
-      if (Loop *found = tryToFindLoop(cur)) {
-        loops.push_back(found);
-        headerToLoop[found->header] = found;
+      if (Loop *loop = tryToFindLoop(cur)) {
+        loops.push_back(loop);
+        headerToLoop[loop->getHeader()] = loop;
+        analyzeLoop(loop);
       }
       worklist.pop();
     } else {
@@ -45,20 +46,21 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
     return nullptr;
 
   Loop *loop = new Loop;
-  loop->header = header;
-  loop->blocks.insert(header);
+  loop->setHeader(header);
+  loop->addBlock(header);
 
   std::deque<BasicBlock *> worklist(backNodes.begin(), backNodes.end());
   while (!worklist.empty()) {
     BasicBlock *current = worklist.front();
     worklist.pop_front();
-    if (loop->blocks.count(current))
+    if (loop->contains(current))
       continue;
-    loop->blocks.insert(current);
+
+    loop->addBlock(current);
     if (headerToLoop.count(current) &&
-        headerToLoop[current]->parent == nullptr) {
-      loop->children.push_back(headerToLoop[current]);
-      headerToLoop[current]->parent = loop;
+        headerToLoop[current]->getParent() == nullptr) {
+      loop->addChild(headerToLoop[current]);
+      headerToLoop[current]->setParent(loop);
     }
 
     for (BasicBlock *pred :
@@ -68,9 +70,43 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
   return loop;
 }
 
+void LoopAnalysis::analyzeLoop(Loop *loop) {
+  // Look for preheader
+  BasicBlock *preheader = nullptr;
+  auto preds = makeRange(loop->getHeader()->getPredBegin(),
+                         loop->getHeader()->getPredEnd());
+  for (auto *pred : preds) {
+    if (loop->contains(pred))
+      continue;
+
+    if (!preheader) {
+      preheader = pred;
+      continue;
+    }
+
+    if (preheader) {
+      preheader = nullptr;
+      break;
+    }
+  }
+
+  if (preheader && preheader->getSuccNum() != 1)
+    preheader = nullptr;
+
+  loop->setPreheader(preheader);
+
+  // Look for exits
+  for (auto *bb : loop->getBlocks()) {
+    for (int i = 0; i < bb->getSuccNum(); i++) {
+      if (!loop->contains(bb->getSucc(i)))
+        loop->addExit({bb, bb->getSucc(i)});
+    }
+  }
+}
+
 void LoopAnalysis::print(std::ostream &out) {
   for (Loop *loop : loops) {
-    std::cout << loop->header->dump();
+    std::cout << loop->getHeader()->dump();
   }
 }
 

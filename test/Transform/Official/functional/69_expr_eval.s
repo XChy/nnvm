@@ -150,7 +150,6 @@ bb16:
   # implict jump to bb17
 bb17:
   LA s4, cur_token
-  LW s4, 0(s4)
   ADD s4, zero, zero
   ADD s5, zero, zero
   ADD s6, zero, zero
@@ -226,7 +225,6 @@ bb29:
   # implict jump to bb30
 bb30:
   LA s0, cur_token
-  LW s0, 0(s0)
   # implict jump to bb31
 bb31:
   LW s0, 144(sp)
@@ -528,7 +526,6 @@ bb80:
   # implict jump to bb81
 bb81:
   LA s0, cur_token
-  LW s0, 0(s0)
   LW t4, 8(sp)
   ADD s0, t4, zero
   LW t4, 4(sp)
@@ -635,7 +632,6 @@ bb97:
   # implict jump to bb98
 bb98:
   LA s7, cur_token
-  LW s7, 0(s7)
   ADD s4, s10, zero
   ADD s5, s11, zero
   ADD s6, s3, zero
@@ -1422,7 +1418,6 @@ main:
   ADD t4, a0, zero
   SW t4, 44(sp)
   CALL getch
-  ADD s1, a0, zero
   # implict jump to bb222
 bb222:
   LA s1, last_char
@@ -1482,7 +1477,6 @@ bb232:
   # implict jump to bb233
 bb233:
   LA s1, cur_token
-  LW s1, 0(s1)
   LW t3, 44(sp)
   ADD t4, t3, zero
   SW t4, 24(sp)
@@ -1617,7 +1611,6 @@ bb252:
   # implict jump to bb253
 bb253:
   LA s7, cur_token
-  LW s7, 0(s7)
   ADD s7, zero, zero
   ADD s8, zero, zero
   ADD s9, zero, zero
@@ -1693,7 +1686,6 @@ bb265:
   # implict jump to bb266
 bb266:
   LA s1, cur_token
-  LW s1, 0(s1)
   # implict jump to bb267
 bb267:
   LW s1, 1176(sp)
@@ -1990,7 +1982,6 @@ bb317:
   # implict jump to bb318
 bb318:
   LA s4, cur_token
-  LW s4, 0(s4)
   LW t4, 16(sp)
   ADD s4, t4, zero
   LW t4, 12(sp)
@@ -2097,7 +2088,6 @@ bb334:
   # implict jump to bb335
 bb335:
   LA s0, cur_token
-  LW s0, 0(s0)
   ADD s7, s2, zero
   ADD s8, s3, zero
   ADD s9, s1, zero

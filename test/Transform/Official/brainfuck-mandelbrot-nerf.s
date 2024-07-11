@@ -538,7 +538,6 @@ bb74:
   LA s4, input_length
   SW s3, 0(s4)
   CALL getch
-  ADD s3, a0, zero
   ADD s3, zero, zero
   # implict jump to bb75
 bb75:
@@ -829,7 +828,6 @@ bb137:
   LA s4, input_length
   SW s3, 0(s4)
   CALL getch
-  ADD s3, a0, zero
   ADD s3, zero, zero
   # implict jump to bb138
 bb138:

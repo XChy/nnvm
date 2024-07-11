@@ -168,7 +168,6 @@ main:
   ADDI a0, sp, 40
   ADD a0, a0, zero
   CALL getarray
-  ADD s1, a0, zero
   # implict jump to bb12
 bb12:
   LW s1, 0(sp)

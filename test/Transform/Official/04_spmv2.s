@@ -51,15 +51,12 @@ main:
   LA s1, y
   ADD a0, s1, zero
   CALL getarray
-  ADD s1, a0, zero
   LA s1, v
   ADD a0, s1, zero
   CALL getarray
-  ADD s1, a0, zero
   LA s1, a
   ADD a0, s1, zero
   CALL getarray
-  ADD s1, a0, zero
   ADDI a0, zero, 39
   CALL _sysy_starttime
   ADD s1, zero, zero

@@ -181,7 +181,6 @@ main:
   LA s1, steps
   SW s0, 0(s1)
   CALL getch
-  ADD s0, a0, zero
   ADD t4, zero, zero
   SW t4, 12(sp)
   ADDI t4, zero, 1
@@ -636,7 +635,6 @@ bb71:
   # implict jump to bb72
 bb72:
   CALL getch
-  ADD s4, a0, zero
   LW t4, 20(sp)
   ADDIW s4, t4, 1
   ADD t4, s3, zero
@@ -850,7 +848,6 @@ read_map:
   LA s1, steps
   SW s0, 0(s1)
   CALL getch
-  ADD s0, a0, zero
   ADD s0, zero, zero
   ADDI s1, zero, 1
   # implict jump to bb93
@@ -889,7 +886,6 @@ bb96:
   # implict jump to bb97
 bb97:
   CALL getch
-  ADD s7, a0, zero
   ADDIW s7, s2, 1
   ADD s0, s6, zero
   ADD s1, s7, zero

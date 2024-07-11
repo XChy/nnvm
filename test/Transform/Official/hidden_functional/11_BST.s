@@ -577,7 +577,6 @@ bb47:
   ADD a0, s1, zero
   ADD a1, s4, zero
   CALL insert
-  ADD s4, a0, zero
   ADDIW s3, s3, 1
   ADD s2, s3, zero
   JAL zero, bb42

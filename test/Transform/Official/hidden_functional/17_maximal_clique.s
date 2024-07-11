@@ -220,7 +220,6 @@ maxCliques:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD s0, a0, zero
   ADD s0, a1, zero
   ADD s1, zero, zero
   ADDI s2, zero, 1

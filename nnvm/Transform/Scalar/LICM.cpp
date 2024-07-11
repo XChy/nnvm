@@ -12,8 +12,8 @@ bool LICMPass::run(Function &F) {
   for (Loop *loop : loops) {
     BasicBlock *preheader = nullptr;
 
-    auto preds =
-        makeRange(loop->header->getPredBegin(), loop->header->getPredEnd());
+    auto preds = makeRange(loop->getHeader()->getPredBegin(),
+                           loop->getHeader()->getPredEnd());
     for (auto *pred : preds) {
       if (loop->contains(pred))
         continue;
@@ -35,7 +35,7 @@ bool LICMPass::run(Function &F) {
       continue;
 
     // Hoisting code
-    for (Instruction *I : incChange(*loop->header)) {
+    for (Instruction *I : incChange(*loop->getHeader())) {
       if (isInvariant(I, loop)) {
         I->removeFromBB();
         (--preheader->end()).insertBefore(I);

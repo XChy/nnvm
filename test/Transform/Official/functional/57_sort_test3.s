@@ -67,13 +67,11 @@ bb4:
   ADD a1, s1, zero
   ADD a2, s8, zero
   CALL QuickSort
-  ADD s8, a0, zero
   ADDIW s8, s6, 1
   ADD a0, s0, zero
   ADD a1, s8, zero
   ADD a2, s2, zero
   CALL QuickSort
-  ADD s8, a0, zero
   JAL zero, bb1
 bb5:
   # implict jump to bb6

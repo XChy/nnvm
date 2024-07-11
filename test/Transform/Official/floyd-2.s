@@ -501,7 +501,6 @@ main:
   LA s1, w
   ADD a0, s1, zero
   CALL getarray
-  ADD s1, a0, zero
   ADDI a0, zero, 62
   CALL _sysy_starttime
   ADD s1, zero, zero

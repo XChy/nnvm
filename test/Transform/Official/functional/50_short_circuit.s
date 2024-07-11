@@ -41,7 +41,6 @@ bb3:
   ADD a0, s0, zero
   CALL putint
   LA s0, g
-  LW s0, 0(s0)
   # implict jump to bb4
 bb4:
   CALL getint
@@ -60,7 +59,6 @@ bb5:
   ADD a0, s0, zero
   CALL putint
   LA s0, g
-  LW s0, 0(s0)
   # implict jump to bb6
 bb6:
   LA s0, g
@@ -95,7 +93,6 @@ bb8:
   ADD a0, s0, zero
   CALL putint
   LA s0, g
-  LW s0, 0(s0)
   JAL zero, bb7
 bb9:
   LA s1, g
@@ -106,7 +103,6 @@ bb9:
   ADD a0, s0, zero
   CALL putint
   LA s0, g
-  LW s0, 0(s0)
   JAL zero, bb2
 bb10:
   LA s1, g
@@ -117,7 +113,6 @@ bb10:
   ADD a0, s0, zero
   CALL putint
   LA s0, g
-  LW s0, 0(s0)
   JAL zero, bb1
 func:
   ADDI sp, sp, -32

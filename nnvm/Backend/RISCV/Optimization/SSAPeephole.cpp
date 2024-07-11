@@ -22,7 +22,7 @@ bool SSAPeephole::run(LIRFunc &func) {
         continue;
       }
 
-      if (match(I, pDUUInst(pSSAReg(A), pSSAReg(B), pSSAReg(C))) &&
+      if (match(I, pDUUInst(pSSAReg(A), pOperand(), pOperand())) &&
           A->getUses().empty()) {
         I->eraseFromList();
         continue;

@@ -582,13 +582,11 @@ bb48:
   ADD a1, s1, zero
   ADD a2, s8, zero
   CALL QuickSort
-  ADD s8, a0, zero
   ADDIW s8, s6, 1
   ADD a0, s0, zero
   ADD a1, s8, zero
   ADD a2, s2, zero
   CALL QuickSort
-  ADD s8, a0, zero
   JAL zero, bb45
 bb49:
   # implict jump to bb50
@@ -1169,7 +1167,6 @@ bb98:
   ADD a1, zero, zero
   ADDI a2, zero, 31
   CALL QuickSort
-  ADD s8, a0, zero
   ADD t4, zero, zero
   SW t4, 148(sp)
   # implict jump to bb99

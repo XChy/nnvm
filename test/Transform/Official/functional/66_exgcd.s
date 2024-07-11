@@ -19,7 +19,6 @@ main:
   ADDI a3, sp, 0
   ADD a3, a3, zero
   CALL exgcd
-  ADD s0, a0, zero
   LW s0, 4(sp)
   ADDI s1, zero, 15
   REMW s0, s0, s1
