@@ -75,7 +75,7 @@ public:
 
   std::any visitBlock(SysYParser::BlockContext *ctx) override;
 
-  Type *toIRType(SymbolType *symbolTy);
+  Type *sym2IR(SymbolType *symbolTy);
 
   Symbol genImplicitCast(Symbol original, SymbolType *expectedType);
   void widen(Symbol &lhs, Symbol &rhs);
@@ -116,26 +116,26 @@ private:
   void arrInitRoll(uint &valueCount, uint &offset, Value *currentValue,
                    Value *irVal, Type *irEl);
 
-  bool solveInit(SysYParser::InitValContext *initVal, SymbolType *currentType,
-                 Type *irElementType, std::vector<Value *> &output);
+  template <typename InitCtx, typename GetVal, typename GetInitVal,
+            typename GetInitVals>
+  bool solveInit(InitCtx *initVal, SymbolType *currentType, Type *irElementType,
+                 std::vector<Value *> &output, GetVal getVal,
+                 GetInitVal getInitVal, GetInitVals getInitVals, bool isConst);
 
-  bool fetchElementsFrom(SysYParser::InitValContext *initVal,
-                         SymbolType *currentType, Type *irElementType,
-                         std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
                                   SymbolType *type);
 
-  bool fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
-                         SymbolType *currentType, Type *irElementType,
-                         std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                   SymbolType *type);
-
   Constant *createConstInt(int value);
   Constant *createConstFloat(float value);
 
   Type *getIRType(SysYParser::BtypeContext *ctx);
   Type *getIRType(SymbolType *symTy, SysYParser::BtypeContext *ctx);
   Type *getIRType(SysYParser::FuncTypeContext *ctx);
+
+  SymbolType *
+  getArrayType(SymbolType *containedTy,
+               std::vector<nnvm::SysYParser::ConstExpContext *> dimCtxs);
 };
 } // namespace nnvm
