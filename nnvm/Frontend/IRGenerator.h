@@ -116,21 +116,17 @@ private:
   void arrInitRoll(uint &valueCount, uint &offset, Value *currentValue,
                    Value *irVal, Type *irEl);
 
-  bool solveInit(SysYParser::InitValContext *initVal, SymbolType *currentType,
-                 Type *irElementType, std::vector<Value *> &output);
+  template <typename InitCtx, typename GetVal, typename GetInitVal,
+            typename GetInitVals>
+  bool solveInit(InitCtx *initVal, SymbolType *currentType, Type *irElementType,
+                 std::vector<Value *> &output, GetVal getVal,
+                 GetInitVal getInitVal, GetInitVals getInitVals, bool isConst);
 
-  bool fetchElementsFrom(SysYParser::InitValContext *initVal,
-                         SymbolType *currentType, Type *irElementType,
-                         std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
                                   SymbolType *type);
 
-  bool fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
-                         SymbolType *currentType, Type *irElementType,
-                         std::vector<Constant *> &output);
   Constant *fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                   SymbolType *type);
-
   Constant *createConstInt(int value);
   Constant *createConstFloat(float value);
 

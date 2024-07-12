@@ -11,6 +11,7 @@
 #include <string_view>
 
 using namespace nnvm;
+using std::is_same_v;
 static int getRadixOf(std::string_view text);
 
 IRGenerator::IRGenerator() {}
@@ -357,173 +358,126 @@ Any IRGenerator::visitVarDecl(SysYParser::VarDeclContext *ctx) {
   return Symbol::none();
 }
 
-bool IRGenerator::solveInit(SysYParser::InitValContext *initVal,
-                            SymbolType *currentType, Type *irElementType,
-                            std::vector<Value *> &output) {
-  if (initVal->exp()) {
-    Symbol exp = any_as<Symbol>(initVal->exp()->accept(this));
-    if (currentType->isArray()) {
-      exp = genImplicitCast(exp, currentType->getInnerMost());
-    } else {
-      exp = genImplicitCast(exp, currentType);
+/**
+ * Solve the init value of a array
+ * @param initVal The context of the init value
+ * @param currentType The type of the current value
+ * @param irElementType The type of the element in the array
+ * @param getVal The function to get the value from the context
+ * @param getInitVal The function to get the init value from the context
+ * @param getInitVals The function to get the init values from the context
+ * @param isConst Whether the value is a constant
+ * @return True on success
+ */
+template <typename InitCtx, typename GetVal, typename GetInitVal,
+          typename GetInitVals>
+bool IRGenerator::solveInit(InitCtx *initVal, SymbolType *currentType,
+                            Type *irElementType, std::vector<Value *> &output,
+                            GetVal getVal, GetInitVal getInitVal,
+                            GetInitVals getInitVals, bool isConst) {
+  if (!isConst) {
+    if (getVal(initVal)) {
+      Symbol exp = any_as<Symbol>(getVal(initVal)->accept(this));
+      if (currentType->isArray()) {
+        exp = genImplicitCast(exp, currentType->getInnerMost());
+      } else {
+        exp = genImplicitCast(exp, currentType);
+      }
+      if (!exp)
+        return false;
+      output.push_back(exp.entity);
+      return true;
     }
-    // TODO: make it clear
-    if (!exp)
-      return false;
-    output.push_back(exp.entity);
-    return true;
+  } else {
+    if (getVal(initVal)) {
+      Any exp = solveConstExp(getVal(initVal));
+      if (any_is<int>(exp)) {
+        output.push_back(
+            ConstantInt::create(*ir, irElementType, any_as<int>(exp)));
+      } else if (any_is<float>(exp)) {
+        output.push_back(ConstantFloat::create(*ir, any_as<float>(exp)));
+      } else {
+        nnvm_unreachable("Should not reach here");
+      }
+      return true;
+    }
   }
-
   size_t numBefore = output.size();
   if (currentType->isArray()) {
     int initValIndex = 0;
-
     if (numBefore % currentType->getTotalNumOfElements() != 0) {
-      solveInit(initVal, currentType->containedTy, irElementType, output);
+      solveInit(initVal, currentType->containedTy, irElementType, output,
+                getVal, getInitVal, getInitVals, isConst);
       return true;
     }
-
-    while (initValIndex < currentType->getTotalNumOfElements() &&
-           output.size() - numBefore < currentType->getTotalNumOfElements()) {
-      if (initValIndex >= initVal->initVal().size()) {
+    while (output.size() - numBefore < currentType->getTotalNumOfElements()) {
+      if (initValIndex >= getInitVals(initVal).size()) {
         output.push_back(builder.getZero(irElementType));
       } else {
-        bool success =
-            solveInit(initVal->initVal(initValIndex), currentType->containedTy,
-                      irElementType, output);
+        bool success = solveInit(
+            getInitVal(initVal, initValIndex), currentType->containedTy,
+            irElementType, output, getVal, getInitVal, getInitVals, isConst);
         if (!success)
           return false;
       }
-
       initValIndex++;
     }
     return true;
   }
-
-  nnvm_unimpl();
+  nnvm_unreachable("Should not reach here");
 }
 
-bool IRGenerator::fetchElementsFrom(SysYParser::InitValContext *initVal,
-                                    SymbolType *currentType,
-                                    Type *irElementType,
-                                    std::vector<Constant *> &output) {
-
-  if (initVal->exp()) {
-    Constant *constant;
-    Any value = solveConstExp(initVal->exp());
-    if (any_is<int>(value))
-      constant = ConstantInt::create(*ir, ir->getIntType(), any_as<int>(value));
-    else if (any_is<float>(value))
-      constant = ConstantFloat::create(*ir, any_as<float>(value));
-    else
-      nnvm_unimpl();
-
-    // TODO: non-constant? Float to int or int to float?
-    output.push_back(constant);
-    return true;
-  }
-
-  if (currentType->isArray()) {
-    int initValIndex = 0;
-    uint oldNum = output.size();
-    if (oldNum % currentType->getTotalNumOfElements() != 0) {
-      fetchElementsFrom(initVal, currentType->containedTy, irElementType,
-                        output);
-      return true;
-    }
-    while (initValIndex < currentType->getTotalNumOfElements() &&
-           output.size() - oldNum < currentType->getTotalNumOfElements()) {
-      if (initValIndex >= initVal->initVal().size()) {
-        output.push_back(builder.getZero(irElementType));
-      } else {
-        bool success =
-            fetchElementsFrom(initVal->initVal(initValIndex),
-                              currentType->containedTy, irElementType, output);
-        if (!success)
-          return false;
-      }
-
-      initValIndex++;
-    }
-    return true;
-  }
-
-  nnvm_unimpl();
-}
-
-Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
-                                             SymbolType *type) {
-  SymbolType *elementTy = type->getInnerMost();
-  uint totalNumOfElements = type->getTotalNumOfElements();
-  Type *arrayType = ir->getArrayType(sym2IR(elementTy), totalNumOfElements);
-
-  if (!ctx || ctx->initVal().empty())
-    return ConstantAllZeros::create(*ir, arrayType);
-
-  std::vector<Constant *> initValList;
-  initValList.reserve(totalNumOfElements);
-
-  fetchElementsFrom(ctx, type, sym2IR(elementTy), initValList);
-  return ConstantArray::create(*ir, arrayType, initValList);
-}
-
-bool IRGenerator::fetchElementsFrom(SysYParser::ConstInitValContext *initVal,
-                                    SymbolType *currentType,
-                                    Type *irElementType,
-                                    std::vector<Constant *> &output) {
-
-  if (initVal->constExp()) {
-    Symbol exp = any_as<Symbol>(initVal->constExp()->accept(this));
-    if (!exp)
-      return false;
-    // TODO: non-constant? Float to int or int to float?
-    output.push_back(cast<Constant>(exp.entity));
-    return true;
-  }
-
-  if (currentType->isArray()) {
-    int initValIndex = 0;
-    size_t oldNum = output.size();
-    if (oldNum % currentType->getTotalNumOfElements() != 0) {
-      fetchElementsFrom(initVal, currentType->containedTy, irElementType,
-                        output);
-      return true;
-    }
-    while (initValIndex < currentType->getTotalNumOfElements() &&
-           output.size() - oldNum < currentType->getTotalNumOfElements()) {
-      if (initValIndex >= initVal->constInitVal().size()) {
-        output.push_back(builder.getZero(irElementType));
-      } else {
-        bool success =
-            fetchElementsFrom(initVal->constInitVal(initValIndex),
-                              currentType->containedTy, irElementType, output);
-        if (!success)
-          return false;
-      }
-
-      initValIndex++;
-    }
-    return true;
-  }
-
-  nnvm_unimpl();
-}
-
+/**
+ * Helper function to fetch *Constant* elements from a const init value context,
+ * the main logic is in the solveInit function
+ */
 Constant *
 IRGenerator::fetchFlatElementsFrom(SysYParser::ConstInitValContext *ctx,
                                    SymbolType *type) {
   SymbolType *elementTy = type->getInnerMost();
   uint totalNumOfElements = type->getTotalNumOfElements();
   Type *arrayType = ir->getArrayType(sym2IR(elementTy), totalNumOfElements);
-
   if (!ctx || ctx->constInitVal().empty())
     return ConstantAllZeros::create(*ir, arrayType);
-
-  std::vector<Constant *> initValList;
+  std::vector<Value *> initValList;
   initValList.reserve(totalNumOfElements);
+  solveInit(
+      ctx, type, sym2IR(elementTy), initValList,
+      [](auto ctx) { return ctx->constExp() ? ctx->constExp()->exp() : NULL; },
+      [](auto ctx, int index) { return ctx->constInitVal(index); },
+      [](auto ctx) { return ctx->constInitVal(); }, true);
 
-  fetchElementsFrom(ctx, type, sym2IR(elementTy), initValList);
-  return ConstantArray::create(*ir, arrayType, initValList);
+  std::vector<Constant *> initValListConst;
+  std::transform(initValList.begin(), initValList.end(),
+                 std::back_inserter(initValListConst),
+                 [](Value *val) { return cast<Constant>(val); });
+  return ConstantArray::create(*ir, arrayType, initValListConst);
+}
+
+/**
+ * Helper function to fetch *Constant* elements from a init value context,
+ * the main logic is in the solveInit function
+ */
+Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
+                                             SymbolType *type) {
+  SymbolType *elementTy = type->getInnerMost();
+  uint totalNumOfElements = type->getTotalNumOfElements();
+  Type *arrayType = ir->getArrayType(sym2IR(elementTy), totalNumOfElements);
+  if (!ctx || ctx->initVal().empty())
+    return ConstantAllZeros::create(*ir, arrayType);
+  std::vector<Value *> initValList;
+  initValList.reserve(totalNumOfElements);
+  solveInit(
+      ctx, type, sym2IR(elementTy), initValList,
+      [](auto ctx) { return ctx->exp(); },
+      [](auto ctx, int index) { return ctx->initVal(index); },
+      [](auto ctx) { return ctx->initVal(); }, true);
+
+  std::vector<Constant *> initValListConst;
+  std::transform(initValList.begin(), initValList.end(),
+                 std::back_inserter(initValListConst),
+                 [](Value *val) { return cast<Constant>(val); });
+  return ConstantArray::create(*ir, arrayType, initValListConst);
 }
 
 /**
@@ -663,7 +617,11 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
 
       if (ctx->initVal()) {
         std::vector<Value *> values;
-        if (!solveInit(ctx->initVal(), symbolType, irElementType, values))
+        if (!solveInit(
+                ctx->initVal(), symbolType, irElementType, values,
+                [](auto ctx) { return ctx->exp(); },
+                [](auto ctx, int index) { return ctx->initVal(index); },
+                [](auto ctx) { return ctx->initVal(); }, false))
           return Symbol::none();
         uint offset = 0;
         // we put the same values together
