@@ -100,6 +100,7 @@ private:
   Constant *constOneFloat;
   Constant *constTrue;
   Constant *constFalse;
+  Constant *constMinusOneInt;
 
   // helper function
   std::any expBinOp(SysYParser::ExpContext *);

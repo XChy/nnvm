@@ -10,5 +10,7 @@ int main() {
     putint(2 << 1);
     putint(b >> 1); //1
     putint(2 >> 1);
+    putint(~b);
+    putint(~2);
     return 0;       //0
 }

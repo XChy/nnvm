@@ -26,6 +26,7 @@ void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   constOneFloat = ConstantFloat::create(*ir, 1.0);
   constTrue = ConstantInt::create(*ir, ir->getBoolType(), 1);
   constFalse = ConstantInt::create(*ir, ir->getBoolType(), 0);
+  constMinusOneInt = ConstantInt::create(*ir, ir->getIntType(), -1);
   visit(ast);
 }
 
@@ -1420,8 +1421,9 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
       // TODO: report error
       nnvm_unimpl();
     }
-    // TODO: implement not.
-    nnvm_unimpl();
+    operand.entity = builder.buildBinOp<XorInst>(
+        operand.entity, constMinusOneInt, ir->getIntType());
+    return operand;
   }
   nnvm_unreachable("UnaryOp Not implemented!");
 }
