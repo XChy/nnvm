@@ -23,9 +23,14 @@ public:
   Value *foldSub(SubInst *I);
   Value *foldMul(MulInst *I);
   Value *foldSDiv(SDivInst *I);
+  Value *foldFAdd(FAddInst *I);
+  Value *foldFSub(FSubInst *I);
+  Value *foldFMul(FMulInst *I);
+  Value *foldFDiv(FDivInst *I);
   Value *foldXor(XorInst *I);
   Value *foldShl(ShlInst *I);
   Value *foldSRem(SRemInst *I);
+  Value *foldFRem(FRemInst *I);
   Value *foldICmp(ICmpInst *I);
   Value *foldLoad(LoadInst *I);
 

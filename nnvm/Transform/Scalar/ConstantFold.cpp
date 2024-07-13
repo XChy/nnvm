@@ -4,6 +4,7 @@
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
+#include <cmath>
 
 using namespace nnvm;
 
@@ -35,10 +36,15 @@ Value *ConstantFold::fold(Instruction *I) {
     case InstID::Shl:
       return foldShl(cast<ShlInst>(I));
     case InstID::FAdd:
+      return foldFAdd(cast<FAddInst>(I));
     case InstID::FSub:
+      return foldFSub(cast<FSubInst>(I));
     case InstID::FMul:
+      return foldFMul(cast<FMulInst>(I));
     case InstID::FDiv:
+      return foldFDiv(cast<FDivInst>(I));
     case InstID::FRem:
+      return foldFRem(cast<FRemInst>(I));
     default:
       return nullptr;
     }
@@ -61,7 +67,6 @@ Value *ConstantFold::fold(Instruction *I) {
 Value *ConstantFold::foldAdd(AddInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-
   GInt result =
       genericAdd(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
@@ -70,7 +75,6 @@ Value *ConstantFold::foldAdd(AddInst *I) {
 Value *ConstantFold::foldSub(SubInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-
   GInt result =
       genericSub(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
@@ -79,7 +83,6 @@ Value *ConstantFold::foldSub(SubInst *I) {
 Value *ConstantFold::foldMul(MulInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-
   GInt result =
       genericMul(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
@@ -88,7 +91,6 @@ Value *ConstantFold::foldMul(MulInst *I) {
 Value *ConstantFold::foldSDiv(SDivInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-
   GInt result =
       genericSDiv(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
@@ -97,7 +99,6 @@ Value *ConstantFold::foldSDiv(SDivInst *I) {
 Value *ConstantFold::foldSRem(SRemInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-
   GInt result =
       genericSRem(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
@@ -157,4 +158,39 @@ Value *ConstantFold::foldLoad(LoadInst *I) {
       return GV->getInitVal();
   }
   return nullptr;
+}
+
+Value *ConstantFold::foldFAdd(FAddInst *I) {
+  ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
+  ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  float result = lhs->getValue() + rhs->getValue();
+  return ConstantFloat::create(*module, result);
+}
+
+Value *ConstantFold::foldFSub(FSubInst *I) {
+  ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
+  ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  float result = lhs->getValue() - rhs->getValue();
+  return ConstantFloat::create(*module, result);
+}
+
+Value *ConstantFold::foldFMul(FMulInst *I) {
+  ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
+  ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  float result = lhs->getValue() * rhs->getValue();
+  return ConstantFloat::create(*module, result);
+}
+
+Value *ConstantFold::foldFDiv(FDivInst *I) {
+  ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
+  ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  float result = lhs->getValue() / rhs->getValue();
+  return ConstantFloat::create(*module, result);
+}
+
+Value *ConstantFold::foldFRem(FRemInst *I) {
+  ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
+  ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  float result = std::fmod(lhs->getValue(), rhs->getValue());
+  return ConstantFloat::create(*module, result);
 }
