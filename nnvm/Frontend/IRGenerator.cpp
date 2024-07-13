@@ -208,6 +208,10 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       return lhs * rhs;
     }
     if (ctx->DIV()) {
+      if (rhs == 0) {
+        // TODO: error.
+        nnvm_unimpl();
+      }
       return lhs / rhs;
     }
     if (ctx->MOD()) {

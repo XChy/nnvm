@@ -184,6 +184,9 @@ Value *ConstantFold::foldFMul(FMulInst *I) {
 Value *ConstantFold::foldFDiv(FDivInst *I) {
   ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
   ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  // refine a / 0 -> 0
+  if (rhs->getValue() == 0.0f)
+    return ConstantFloat::create(*module, 0.0f);
   float result = lhs->getValue() / rhs->getValue();
   return ConstantFloat::create(*module, result);
 }
@@ -191,6 +194,9 @@ Value *ConstantFold::foldFDiv(FDivInst *I) {
 Value *ConstantFold::foldFRem(FRemInst *I) {
   ConstantFloat *lhs = cast<ConstantFloat>(I->getLHS());
   ConstantFloat *rhs = cast<ConstantFloat>(I->getRHS());
+  // refine a % 0 -> 0
+  if (rhs->getValue() == 0.0f)
+    return ConstantFloat::create(*module, 0.0f);
   float result = std::fmod(lhs->getValue(), rhs->getValue());
   return ConstantFloat::create(*module, result);
 }
