@@ -181,8 +181,10 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
           return (int)(any_as<int>(operand) != 0);
         if (ctx->unaryOp()->MINUS())
           return -any_as<int>(operand);
+        if (ctx->unaryOp()->BITNOT())
+          return ~any_as<int>(operand);
       }
-
+      // TODO: report error
       nnvm_unimpl();
     }
 
@@ -214,10 +216,8 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
       }
       return lhs / rhs;
     }
-    if (ctx->MOD()) {
-      nnvm_unimpl();
-    }
-    nnvm_unreachable("Impossible to reach here");
+    // TODO: report error
+    nnvm_unimpl();
   } else if (any_is<int>(lhsAny) && any_is<int>(rhsAny)) {
     int lhs = any_as<int>(lhsAny);
     int rhs = any_as<int>(rhsAny);
@@ -235,6 +235,21 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     }
     if (ctx->MOD()) {
       return lhs % rhs;
+    }
+    if (ctx->BITAND()) {
+      return lhs & rhs;
+    }
+    if (ctx->BITOR()) {
+      return lhs | rhs;
+    }
+    if (ctx->BITSHL()) {
+      return lhs << rhs;
+    }
+    if (ctx->BITSHR()) {
+      return lhs >> rhs;
+    }
+    if (ctx->BITXOR()) {
+      return lhs ^ rhs;
     }
     nnvm_unreachable("Impossible to reach here");
   }
@@ -1324,6 +1339,49 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     }
     return Symbol{val, lhs.symbolType};
   }
+  if (ctx->BITAND()) {
+    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    val = builder.buildBinOp<AndInst>(lhs.entity, rhs.entity, ir->getIntType());
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->BITOR()) {
+    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    val = builder.buildBinOp<OrInst>(lhs.entity, rhs.entity, ir->getIntType());
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->BITXOR()) {
+    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    val = builder.buildBinOp<XorInst>(lhs.entity, rhs.entity, ir->getIntType());
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->BITSHL()) {
+    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    val = builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity, ir->getIntType());
+    return Symbol{val, lhs.symbolType};
+  }
+  if (ctx->BITSHR()) {
+    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    // signed Integer : Arithmetic shift right
+    val =
+        builder.buildBinOp<AShrInst>(lhs.entity, rhs.entity, ir->getIntType());
+    return Symbol{val, lhs.symbolType};
+  }
+
   nnvm_unreachable("Should not reach here!");
 }
 
@@ -1356,6 +1414,15 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
     operand = genImplicitCast(operand, SymbolType::getIntTy());
     return operand;
   }
+
+  if (ctx->unaryOp()->BITNOT()) {
+    if (!operand.symbolType->isInt()) {
+      // TODO: report error
+      nnvm_unimpl();
+    }
+    // TODO: implement not.
+    nnvm_unimpl();
+  }
   nnvm_unreachable("UnaryOp Not implemented!");
 }
 
@@ -1380,7 +1447,9 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   if (ctx->L_PAREN())
     return ctx->exp(0)->accept(this);
 
-  if (ctx->PLUS() || ctx->MINUS() || ctx->DIV() || ctx->MOD() || ctx->MUL())
+  if (ctx->PLUS() || ctx->MINUS() || ctx->DIV() || ctx->MOD() || ctx->MUL() ||
+      ctx->BITAND() || ctx->BITOR() || ctx->BITXOR() || ctx->BITSHL() ||
+      ctx->BITSHR())
     return expBinOp(ctx);
 
   if (ctx->unaryOp())

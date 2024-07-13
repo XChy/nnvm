@@ -98,6 +98,10 @@ exp
    | unaryOp exp
    | exp (MUL | DIV | MOD) exp
    | exp (PLUS | MINUS) exp
+   | exp (BITSHL | BITSHR) exp
+   | exp BITAND exp
+   | exp BITXOR exp
+   | exp BITOR exp
    ;
 
 
@@ -125,7 +129,7 @@ number
 unaryOp
    : PLUS
    | MINUS
-   | NOT
+   | (NOT | BITNOT)
    ;
 
 funcRParams
