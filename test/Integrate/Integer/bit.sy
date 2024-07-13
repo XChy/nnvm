@@ -1,0 +1,16 @@
+int main() {
+    int a = 3, b = 2;
+    putint(a & b);  //2
+    putint(3 & 2);
+    putint(a | b);  //3
+    putint(3 | 2);
+    putint(a ^ b);  //1
+    putint(3 ^ 2);
+    putint(b << 1); //4
+    putint(2 << 1);
+    putint(b >> 1); //1
+    putint(2 >> 1);
+    putint(~b);
+    putint(~2);
+    return 0;       //0
+}

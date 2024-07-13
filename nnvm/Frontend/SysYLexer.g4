@@ -29,6 +29,12 @@ GE : '>=';
 NOT : '!';
 AND : '&&';
 OR : '||';
+BITAND : '&';
+BITOR : '|';
+BITXOR : '^';
+BITNOT : '~';
+BITSHL : '<<';
+BITSHR : '>>';
 
 L_PAREN : '(';
 R_PAREN : ')';
