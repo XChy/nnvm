@@ -52,6 +52,7 @@ public:
   bool isIntegerNBits(uint64_t bits) {
     return typeClass == Integer && getBits() == bits;
   }
+  bool isArray() { return typeClass == Array; }
   bool isPointer() { return typeClass == Pointer; }
 
   bool isIntegerOrPtr() { return isInteger() || isPointer(); }

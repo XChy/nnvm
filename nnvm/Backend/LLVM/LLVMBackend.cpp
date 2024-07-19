@@ -8,6 +8,24 @@
 
 using namespace nnvm::llvm;
 
+namespace nnvm {
+static void emitConstant(nnvm::Constant *CV, std::ostream &out) {
+  if (auto *zeros = dyn_cast<ConstantAllZeros>(CV)) {
+    out << "zeroinitializer";
+  } else if (auto *C = dyn_cast<ConstantInt>(CV)) {
+    out << (int64_t)C->getValue();
+  } else if (auto *C = dyn_cast<ConstantFloat>(CV)) {
+    out << C->getValue();
+  } else if (auto *CA = dyn_cast<ConstantArray>(CV)) {
+    for (Constant *element : CA->getValue()) {
+      emitConstant(element, out);
+      if (element != CA->getValue()[0])
+        out << ", ";
+    }
+  }
+}
+} // namespace nnvm
+
 void LLVMBackend::emit(Module &ir, std::ostream &out) {
   uint64_t localValueIndex = 0;
   auto allocName = [&localValueIndex](const std::string &prefix) {
@@ -18,11 +36,17 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
   for (auto &[name, var] : ir.getGlobalVarMap()) {
     valueToName[var] = "@" + name;
     // TODO: initializer?
-    if (var->getInitVal())
-      out << "@" << name << " = global " << var->getInitVal()->dumpAsOperand()
-          << "\n";
+
+    if (var->getInnerType()->isArray())
+      out << "@" << name << " = global <" << var->getInnerType()->dump()
+          << "> ";
     else
-      out << "@" << name << " = global " << var->getInnerType()->dump() << "\n";
+      out << "@" << name << " = global " << var->getInnerType()->dump() << " ";
+
+    if (var->getInitVal()) {
+      emitConstant(var->getInitVal(), out);
+    }
+    out << "\n";
   }
 
   for (auto &[hash, constant] : ir.getConstantPool())
