@@ -85,7 +85,7 @@ public:
     }
 
     BasicBlock *operator*() {
-      return cast<Instruction>((*cur)->getUser())->getParent();
+      return cast<Instruction>((*cur)->getUser())->getBlock();
     }
 
     bool operator==(PredIterator other) { return cur == other.cur; }
@@ -98,6 +98,7 @@ public:
 
   PredIterator getPredBegin() { return PredIterator(this); }
   PredIterator getPredEnd() { return PredIterator(users().end()); }
+  auto getPredRange() { return makeRange(getPredBegin(), getPredEnd()); };
 
   void insert(Iterator insertPoint, Instruction *inserted);
 

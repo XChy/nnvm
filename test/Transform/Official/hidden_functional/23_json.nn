@@ -231,8 +231,7 @@ then265:
   271 = icmp slt i32 %268, i32 %len
   br i1 %271, bb %then272, bb %if.exit273
 then272:
-  pos.load274 = load i32 from ptr @pos
-  806 = shl i32 %pos.load274, i32 2
+  806 = shl i32 %268, i32 2
   276 = ptradd ptr %buf, i32 %806
   276.load = load i32 from ptr %276
   278 = icmp eq i32 %276.load, i32 43
@@ -537,8 +536,7 @@ else592:
   823 = shl i32 %594, i32 2
   596 = ptradd ptr %buf, i32 %823
   596.load = load i32 from ptr %596
-  599.load = load i32 from ptr %arr.index550
-  601 = icmp ne i32 %596.load, i32 %599.load
+  601 = icmp ne i32 %596.load, i32 101
   br i1 %601, bb %then602, bb %if.exit603
 then602:
   ret i32 0
@@ -615,8 +613,7 @@ else670:
   828 = shl i32 %672, i32 2
   674 = ptradd ptr %buf, i32 %828
   674.load = load i32 from ptr %674
-  677.load = load i32 from ptr %arr.index616
-  679 = icmp ne i32 %674.load, i32 %677.load
+  679 = icmp ne i32 %674.load, i32 101
   br i1 %679, bb %then680, bb %if.exit681
 then680:
   ret i32 0
@@ -679,8 +676,7 @@ else735:
   832 = shl i32 %737, i32 2
   739 = ptradd ptr %buf, i32 %832
   739.load = load i32 from ptr %739
-  742.load = load i32 from ptr %arr.index693
-  744 = icmp ne i32 %739.load, i32 %742.load
+  744 = icmp ne i32 %739.load, i32 108
   br i1 %744, bb %then745, bb %if.exit746
 then745:
   ret i32 0

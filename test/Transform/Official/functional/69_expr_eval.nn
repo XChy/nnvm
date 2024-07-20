@@ -55,8 +55,8 @@ if.exit215:
   br bb %next_token.while.cond
 while.cond220:
   rhs.phi322 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %rhs.phi]
-  lhs.phi318 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %lhs.phi]
-  cur_op.phi316 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %cur_op.phi]
+  lhs.phi319 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %lhs.phi]
+  cur_op.phi317 = phi [bb %next_token.if.exit44, i32 ub, bb %next_token.if.exit441316, i32 %cur_op.phi]
   cur_token.load223 = load i32 from ptr @cur_token
   225 = icmp eq i32 %cur_token.load223, i32 1
   br i1 %225, bb %while.body221, bb %next_token.while.cond1392
@@ -73,8 +73,8 @@ while.body221.split:
   br i1 %234, bb %next_token.while.cond1392, bb %next_token.while.cond1196
 while.cond238:
   rhs.phi = phi [bb %next_token.if.exit441218, i32 %rhs.phi322, bb %while.body239.split, i32 %127.load653]
-  lhs.phi = phi [bb %next_token.if.exit441218, i32 %lhs.phi318, bb %while.body239.split, i32 %127.load663]
-  cur_op.phi = phi [bb %next_token.if.exit441218, i32 %cur_op.phi316, bb %while.body239.split, i32 %127.load643]
+  lhs.phi = phi [bb %next_token.if.exit441218, i32 %lhs.phi319, bb %while.body239.split, i32 %127.load663]
+  cur_op.phi = phi [bb %next_token.if.exit441218, i32 %cur_op.phi317, bb %while.body239.split, i32 %127.load643]
   145.load588 = load i32 from ptr %ops
   242 = icmp ne i32 %145.load588, i32 0
   br i1 %242, bb %select.then243, bb %select.else244
@@ -91,11 +91,10 @@ while.body239:
   127.load653 = load i32 from ptr %127652
   134654 = sub i32 %124.load650, i32 1
   store i32 %134654 to ptr %oprs
-  124.load660 = load i32 from ptr %oprs
-  336661 = shl i32 %124.load660, i32 2
+  336661 = shl i32 %134654, i32 2
   127662 = ptradd ptr %oprs, i32 %336661
   127.load663 = load i32 from ptr %127662
-  134664 = sub i32 %124.load660, i32 1
+  134664 = sub i32 %134654, i32 1
   store i32 %134664 to ptr %oprs
   152452 = icmp eq i32 %127.load643, i32 43
   br i1 %152452, bb %eval_op.then153, bb %eval_op.if.exit154
@@ -169,11 +168,10 @@ while.body278:
   127.load683 = load i32 from ptr %127682
   134684 = sub i32 %124.load680, i32 1
   store i32 %134684 to ptr %oprs
-  124.load690 = load i32 from ptr %oprs
-  336691 = shl i32 %124.load690, i32 2
+  336691 = shl i32 %134684, i32 2
   127692 = ptradd ptr %oprs, i32 %336691
   127.load693 = load i32 from ptr %127692
-  134694 = sub i32 %124.load690, i32 1
+  134694 = sub i32 %134684, i32 1
   store i32 %134694 to ptr %oprs
   152486 = icmp eq i32 %127.load673, i32 43
   br i1 %152486, bb %eval_op.then153488, bb %eval_op.if.exit154491
@@ -363,8 +361,7 @@ next_token.while.cond48.split:
 next_token.while.body49:
   num.load1137 = load i32 from ptr @num
   551138 = mul i32 %num.load1137, i32 10
-  last_char.load561139 = load i32 from ptr @last_char
-  571140 = add i32 %551138, i32 %last_char.load561139
+  571140 = add i32 %551138, i32 %12009
   581141 = sub i32 %571140, i32 48
   store i32 %581141 to ptr @num
   br bb %next_token.while.cond48
@@ -454,8 +451,7 @@ next_token.while.cond48.split1230:
 next_token.while.body491234:
   num.load1235 = load i32 from ptr @num
   551236 = mul i32 %num.load1235, i32 10
-  last_char.load561237 = load i32 from ptr @last_char
-  571238 = add i32 %551236, i32 %last_char.load561237
+  571238 = add i32 %551236, i32 %12027
   581239 = sub i32 %571238, i32 48
   store i32 %581239 to ptr @num
   br bb %next_token.while.cond481227
@@ -545,8 +541,7 @@ next_token.while.cond48.split1328:
 next_token.while.body491332:
   num.load1333 = load i32 from ptr @num
   551334 = mul i32 %num.load1333, i32 10
-  last_char.load561335 = load i32 from ptr @last_char
-  571336 = add i32 %551334, i32 %last_char.load561335
+  571336 = add i32 %551334, i32 %12045
   581337 = sub i32 %571336, i32 48
   store i32 %581337 to ptr @num
   br bb %next_token.while.cond481325
@@ -636,8 +631,7 @@ next_token.while.cond48.split1426:
 next_token.while.body491430:
   num.load1431 = load i32 from ptr @num
   551432 = mul i32 %num.load1431, i32 10
-  last_char.load561433 = load i32 from ptr @last_char
-  571434 = add i32 %551432, i32 %last_char.load561433
+  571434 = add i32 %551432, i32 %12063
   581435 = sub i32 %571434, i32 48
   store i32 %581435 to ptr @num
   br bb %next_token.while.cond481423
@@ -906,8 +900,8 @@ eval.if.exit215:
   br bb %next_token.while.cond1588
 eval.while.cond220:
   rhs.phi322378 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %rhs.phi399]
-  lhs.phi318379 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %lhs.phi400]
-  cur_op.phi316380 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %cur_op.phi401]
+  lhs.phi319379 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %lhs.phi400]
+  cur_op.phi317380 = phi [bb %next_token.if.exit441610, i32 ub, bb %next_token.if.exit441904, i32 %cur_op.phi401]
   cur_token.load223381 = load i32 from ptr @cur_token
   225382 = icmp eq i32 %cur_token.load223381, i32 1
   br i1 %225382, bb %eval.while.body221, bb %next_token.while.cond1686
@@ -924,8 +918,8 @@ eval.while.body221.split:
   br i1 %234390, bb %next_token.while.cond1686, bb %next_token.while.cond1784
 eval.while.cond238:
   rhs.phi399 = phi [bb %next_token.if.exit441806, i32 %rhs.phi322378, bb %eval.while.body239.split, i32 %127.load713]
-  lhs.phi400 = phi [bb %next_token.if.exit441806, i32 %lhs.phi318379, bb %eval.while.body239.split, i32 %127.load723]
-  cur_op.phi401 = phi [bb %next_token.if.exit441806, i32 %cur_op.phi316380, bb %eval.while.body239.split, i32 %127.load703]
+  lhs.phi400 = phi [bb %next_token.if.exit441806, i32 %lhs.phi319379, bb %eval.while.body239.split, i32 %127.load723]
+  cur_op.phi401 = phi [bb %next_token.if.exit441806, i32 %cur_op.phi317380, bb %eval.while.body239.split, i32 %127.load703]
   145.load598 = load i32 from ptr %ops340
   242403 = icmp ne i32 %145.load598, i32 0
   br i1 %242403, bb %eval.select.then243, bb %eval.select.else244
@@ -942,11 +936,10 @@ eval.while.body239:
   127.load713 = load i32 from ptr %127712
   134714 = sub i32 %124.load710, i32 1
   store i32 %134714 to ptr %oprs341
-  124.load720 = load i32 from ptr %oprs341
-  336721 = shl i32 %124.load720, i32 2
+  336721 = shl i32 %134714, i32 2
   127722 = ptradd ptr %oprs341, i32 %336721
   127.load723 = load i32 from ptr %127722
-  134724 = sub i32 %124.load720, i32 1
+  134724 = sub i32 %134714, i32 1
   store i32 %134724 to ptr %oprs341
   152520 = icmp eq i32 %127.load703, i32 43
   br i1 %152520, bb %eval_op.then153522, bb %eval_op.if.exit154525
@@ -1020,11 +1013,10 @@ eval.while.body278:
   127.load743 = load i32 from ptr %127742
   134744 = sub i32 %124.load740, i32 1
   store i32 %134744 to ptr %oprs341
-  124.load750 = load i32 from ptr %oprs341
-  336751 = shl i32 %124.load750, i32 2
+  336751 = shl i32 %134744, i32 2
   127752 = ptradd ptr %oprs341, i32 %336751
   127.load753 = load i32 from ptr %127752
-  134754 = sub i32 %124.load750, i32 1
+  134754 = sub i32 %134744, i32 1
   store i32 %134754 to ptr %oprs341
   152554 = icmp eq i32 %127.load733, i32 43
   br i1 %152554, bb %eval_op.then153556, bb %eval_op.if.exit154559
@@ -1214,8 +1206,7 @@ next_token.while.cond48.split1524:
 next_token.while.body491528:
   num.load1529 = load i32 from ptr @num
   551530 = mul i32 %num.load1529, i32 10
-  last_char.load561531 = load i32 from ptr @last_char
-  571532 = add i32 %551530, i32 %last_char.load561531
+  571532 = add i32 %551530, i32 %12081
   581533 = sub i32 %571532, i32 48
   store i32 %581533 to ptr @num
   br bb %next_token.while.cond481521
@@ -1305,8 +1296,7 @@ next_token.while.cond48.split1622:
 next_token.while.body491626:
   num.load1627 = load i32 from ptr @num
   551628 = mul i32 %num.load1627, i32 10
-  last_char.load561629 = load i32 from ptr @last_char
-  571630 = add i32 %551628, i32 %last_char.load561629
+  571630 = add i32 %551628, i32 %12099
   581631 = sub i32 %571630, i32 48
   store i32 %581631 to ptr @num
   br bb %next_token.while.cond481619
@@ -1396,8 +1386,7 @@ next_token.while.cond48.split1720:
 next_token.while.body491724:
   num.load1725 = load i32 from ptr @num
   551726 = mul i32 %num.load1725, i32 10
-  last_char.load561727 = load i32 from ptr @last_char
-  571728 = add i32 %551726, i32 %last_char.load561727
+  571728 = add i32 %551726, i32 %12117
   581729 = sub i32 %571728, i32 48
   store i32 %581729 to ptr @num
   br bb %next_token.while.cond481717
@@ -1487,8 +1476,7 @@ next_token.while.cond48.split1818:
 next_token.while.body491822:
   num.load1823 = load i32 from ptr @num
   551824 = mul i32 %num.load1823, i32 10
-  last_char.load561825 = load i32 from ptr @last_char
-  571826 = add i32 %551824, i32 %last_char.load561825
+  571826 = add i32 %551824, i32 %12135
   581827 = sub i32 %571826, i32 48
   store i32 %581827 to ptr @num
   br bb %next_token.while.cond481815
@@ -1578,8 +1566,7 @@ next_token.while.cond48.split1916:
 next_token.while.body491920:
   num.load1921 = load i32 from ptr @num
   551922 = mul i32 %num.load1921, i32 10
-  last_char.load561923 = load i32 from ptr @last_char
-  571924 = add i32 %551922, i32 %last_char.load561923
+  571924 = add i32 %551922, i32 %12153
   581925 = sub i32 %571924, i32 48
   store i32 %581925 to ptr @num
   br bb %next_token.while.cond481913
@@ -1690,8 +1677,7 @@ while.cond48.split:
 while.body49:
   num.load = load i32 from ptr @num
   55 = mul i32 %num.load, i32 10
-  last_char.load56 = load i32 from ptr @last_char
-  57 = add i32 %55, i32 %last_char.load56
+  57 = add i32 %55, i32 %11985
   58 = sub i32 %57, i32 48
   store i32 %58 to ptr @num
   br bb %while.cond48

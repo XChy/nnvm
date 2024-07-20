@@ -42,9 +42,8 @@ main:
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
-  LA s2, M
-  LW s2, 0(s2)
-  BLT s1, s2, bb12
+  SLTI s2, s1, 3
+  BNE s2, zero, bb12
   # implict jump to bb2
 bb2:
   FLW fs0, 120(sp)

@@ -111,7 +111,6 @@ entry101:
   store i32 7 to ptr %120
   122 = ptradd ptr %a, i32 36
   store i32 8 to ptr %122
-  n.load = load i32 from ptr @n
   br bb %counting_sort.while.cond
 while.cond127:
   i123.phi = phi [bb %counting_sort.while.exit64, i32 0, bb %while.body128, i32 %144]
@@ -142,7 +141,7 @@ counting_sort.while.exit:
   br bb %counting_sort.while.cond17
 counting_sort.while.cond17:
   i.phi185 = phi [bb %counting_sort.while.exit, i32 0, bb %counting_sort.while.body18, i32 %39197]
-  22186 = icmp slt i32 %i.phi185, i32 %n.load
+  22186 = icmp slt i32 %i.phi185, i32 10
   br i1 %22186, bb %counting_sort.while.body18, bb %counting_sort.while.exit19
 counting_sort.while.body18:
   152189 = shl i32 %i.phi185, i32 2
@@ -176,7 +175,7 @@ counting_sort.while.body41:
 counting_sort.while.exit42:
   br bb %counting_sort.while.cond62
 counting_sort.while.cond62:
-  j.phi220 = phi [bb %counting_sort.while.exit42, i32 %n.load, bb %counting_sort.while.body63, i32 %69224]
+  j.phi220 = phi [bb %counting_sort.while.exit42, i32 10, bb %counting_sort.while.body63, i32 %69224]
   66221 = icmp sgt i32 %j.phi220, i32 0
   br i1 %66221, bb %counting_sort.while.body63, bb %counting_sort.while.exit64
 counting_sort.while.body63:

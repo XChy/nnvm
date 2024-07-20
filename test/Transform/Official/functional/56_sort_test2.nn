@@ -50,8 +50,7 @@ while.exit78:
   ret i32 0
 insertsort.while.cond:
   i.phi113 = phi [bb %entry52, i32 1, bb %insertsort.while.exit19, i32 %51144]
-  n.load114 = load i32 from ptr @n
-  7115 = icmp slt i32 %i.phi113, i32 %n.load114
+  7115 = icmp slt i32 %i.phi113, i32 10
   br i1 %7115, bb %insertsort.while.body, bb %insertsort.while.exit
 insertsort.while.body:
   104118 = shl i32 %i.phi113, i32 2

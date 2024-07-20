@@ -323,8 +323,7 @@ init.while.body:
   18409 = add i32 %i.phi400, i32 1
   br bb %init.while.cond
 init.while.exit:
-  n.load78 = load i32 from ptr @n
-  80 = mul i32 %n.load78, i32 %n.load78
+  80 = mul i32 4, i32 4
   81 = add i32 %80, i32 1
   br bb %while.cond82
 }

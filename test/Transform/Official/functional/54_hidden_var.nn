@@ -43,8 +43,7 @@ entry:
   store i32 0 to ptr %arr.index43
   arr.index44 = ptradd ptr %c, i32 60
   store i32 0 to ptr %arr.index44
-  47.load = load i32 from ptr %27
-  49 = icmp ne i32 %47.load, i32 0
+  49 = icmp ne i32 1, i32 0
   br i1 %49, bb %then50, bb %if.exit51
 then50:
   store i32 0 to ptr %c52

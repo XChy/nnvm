@@ -135,9 +135,7 @@ bb16:
   ADDIW s5, s5, 1
   LA s6, a
   SW s5, 0(s6)
-  LA s6, a
-  LW s6, 0(s6)
-  ADDIW s6, s6, 1
+  ADDIW s6, s5, 1
   LA s7, a
   SW s6, 0(s7)
   SUBW s5, s5, s6

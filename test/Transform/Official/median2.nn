@@ -55,12 +55,11 @@ if.exit105:
   br bb %while.cond89
 then111:
   store i32 %57.load to ptr %57
-  34.load203 = load i32 from ptr %57
   183204 = shl i32 %l.phi, i32 2
   41205 = ptradd ptr %arr, i32 %183204
   41.load206 = load i32 from ptr %41205
   store i32 %41.load206 to ptr %57
-  store i32 %34.load203 to ptr %41205
+  store i32 %57.load to ptr %41205
   br bb %meanless_calculation.while.cond263
 else:
   181188 = shl i32 %l.phi, i32 2

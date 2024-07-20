@@ -95,21 +95,21 @@ entry242:
   %count = stack 4000
   br bb %while.cond245
 while.cond245:
-  i244.phi657 = phi [bb %entry242, i32 0, bb %while.body246, i32 %255]
-  249 = icmp slt i32 %i244.phi657, i32 1000
+  i244.phi659 = phi [bb %entry242, i32 0, bb %while.body246, i32 %255]
+  249 = icmp slt i32 %i244.phi659, i32 1000
   br i1 %249, bb %while.body246, bb %while.exit247
 while.body246:
-  721 = shl i32 %i244.phi657, i32 2
+  721 = shl i32 %i244.phi659, i32 2
   253 = ptradd ptr %count, i32 %721
   store i32 0 to ptr %253
-  255 = add i32 %i244.phi657, i32 1
+  255 = add i32 %i244.phi659, i32 1
   br bb %while.cond245
 while.exit247:
   br bb %while.cond258
 while.cond258:
   number.phi661 = phi [bb %while.exit247, i32 ub, bb %if.exit285, i32 %number.phi]
-  max.phi659 = phi [bb %while.exit247, i32 0, bb %if.exit285, i32 %max.phi]
   i244.phi = phi [bb %while.exit247, i32 0, bb %if.exit285, i32 %292]
+  max.phi657 = phi [bb %while.exit247, i32 0, bb %if.exit285, i32 %max.phi]
   n.load262 = load i32 from ptr @n
   263 = icmp slt i32 %i244.phi, i32 %n.load262
   br i1 %263, bb %while.body259, bb %while.exit260
@@ -122,16 +122,15 @@ while.body259:
   275.load = load i32 from ptr %272
   277 = add i32 %275.load, i32 1
   store i32 %277 to ptr %272
-  283 = icmp sgt i32 %277, i32 %max.phi659
+  283 = icmp sgt i32 %277, i32 %max.phi657
   br i1 %283, bb %then284, bb %if.exit285
 while.exit260:
   ret i32 %number.phi661
 then284:
-  288.load = load i32 from ptr %272
   br bb %if.exit285
 if.exit285:
   number.phi = phi [bb %while.body259, i32 %number.phi661, bb %then284, i32 %268.load]
-  max.phi = phi [bb %while.body259, i32 %max.phi659, bb %then284, i32 %288.load]
+  max.phi = phi [bb %while.body259, i32 %max.phi657, bb %then284, i32 %277]
   292 = add i32 %i244.phi, i32 1
   br bb %while.cond258
 }
@@ -575,8 +574,7 @@ avgPooling.while.exit449:
   br bb %while.cond633
 arrCopy.while.cond326:
   i325.phi837 = phi [bb %entry459, i32 0, bb %arrCopy.while.body327, i32 %341847]
-  n.load330838 = load i32 from ptr @n
-  331839 = icmp slt i32 %i325.phi837, i32 %n.load330838
+  331839 = icmp slt i32 %i325.phi837, i32 32
   br i1 %331839, bb %arrCopy.while.body327, bb %arrCopy.while.exit328
 arrCopy.while.body327:
   719842 = shl i32 %i325.phi837, i32 2
@@ -665,26 +663,26 @@ arrCopy.while.body327936:
 arrCopy.while.exit328944:
   br bb %avgPooling.while.cond382
 getMost.while.cond245:
-  i244.phi657952 = phi [bb %while.exit547.split992, i32 0, bb %getMost.while.body246, i32 %255959]
-  249953 = icmp slt i32 %i244.phi657952, i32 1000
+  i244.phi659952 = phi [bb %while.exit547.split992, i32 0, bb %getMost.while.body246, i32 %255959]
+  249953 = icmp slt i32 %i244.phi659952, i32 1000
   br i1 %249953, bb %getMost.while.body246, bb %getMost.while.exit247
 getMost.while.body246:
-  721956 = shl i32 %i244.phi657952, i32 2
+  721956 = shl i32 %i244.phi659952, i32 2
   253957 = ptradd ptr %count949, i32 %721956
   store i32 0 to ptr %253957
-  255959 = add i32 %i244.phi657952, i32 1
+  255959 = add i32 %i244.phi659952, i32 1
   br bb %getMost.while.cond245
 getMost.while.exit247:
   br bb %getMost.while.cond258
 getMost.while.cond258:
   number.phi661964 = phi [bb %getMost.while.exit247, i32 ub, bb %getMost.if.exit285, i32 %number.phi987]
-  max.phi659965 = phi [bb %getMost.while.exit247, i32 0, bb %getMost.if.exit285, i32 %max.phi988]
-  i244.phi966 = phi [bb %getMost.while.exit247, i32 0, bb %getMost.if.exit285, i32 %292989]
+  i244.phi965 = phi [bb %getMost.while.exit247, i32 0, bb %getMost.if.exit285, i32 %292989]
+  max.phi657966 = phi [bb %getMost.while.exit247, i32 0, bb %getMost.if.exit285, i32 %max.phi988]
   n.load262967 = load i32 from ptr @n
-  263968 = icmp slt i32 %i244.phi966, i32 %n.load262967
+  263968 = icmp slt i32 %i244.phi965, i32 %n.load262967
   br i1 %263968, bb %getMost.while.body259, bb %getMost.while.exit260
 getMost.while.body259:
-  722971 = shl i32 %i244.phi966, i32 2
+  722971 = shl i32 %i244.phi965, i32 2
   268972 = ptradd ptr %result, i32 %722971
   268.load973 = load i32 from ptr %268972
   723974 = shl i32 %268.load973, i32 2
@@ -692,18 +690,17 @@ getMost.while.body259:
   275.load976 = load i32 from ptr %272975
   277977 = add i32 %275.load976, i32 1
   store i32 %277977 to ptr %272975
-  283979 = icmp sgt i32 %277977, i32 %max.phi659965
+  283979 = icmp sgt i32 %277977, i32 %max.phi657966
   br i1 %283979, bb %getMost.then284, bb %getMost.if.exit285
 getMost.while.exit260:
   call void putint(i32 %number.phi661964)
   br bb %arrCopy.while.cond326855
 getMost.then284:
-  288.load984 = load i32 from ptr %272975
   br bb %getMost.if.exit285
 getMost.if.exit285:
   number.phi987 = phi [bb %getMost.while.body259, i32 %number.phi661964, bb %getMost.then284, i32 %268.load973]
-  max.phi988 = phi [bb %getMost.while.body259, i32 %max.phi659965, bb %getMost.then284, i32 %288.load984]
-  292989 = add i32 %i244.phi966, i32 1
+  max.phi988 = phi [bb %getMost.while.body259, i32 %max.phi657966, bb %getMost.then284, i32 %277977]
+  292989 = add i32 %i244.phi965, i32 1
   br bb %getMost.while.cond258
 getMid.then220:
   n.load223999 = load i32 from ptr @n

@@ -50,7 +50,7 @@ bool LICMPass::isOperandsInvariant(Instruction *I, Loop *L) {
   for (size_t i = 0; i < I->getOperandNum(); i++) {
     Value *operand = I->getOperand(i);
     if (operand->isInstruction() &&
-        L->contains(cast<Instruction>(operand)->getParent()))
+        L->contains(cast<Instruction>(operand)->getBlock()))
       return false;
   }
   return true;

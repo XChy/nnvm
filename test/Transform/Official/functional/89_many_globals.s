@@ -259,12 +259,12 @@ main:
   SD s0, 104(sp)
   SD s1, 112(sp)
   SD s2, 120(sp)
-  SD s4, 128(sp)
-  SD s5, 136(sp)
-  SD s7, 144(sp)
-  SD s8, 152(sp)
-  SD s3, 160(sp)
-  SD s6, 168(sp)
+  SD s3, 128(sp)
+  SD s4, 136(sp)
+  SD s5, 144(sp)
+  SD s6, 152(sp)
+  SD s7, 160(sp)
+  SD s8, 168(sp)
   SD s9, 176(sp)
   SD s10, 184(sp)
   SD s11, 192(sp)
@@ -388,29 +388,14 @@ main:
   LA s0, a39
   ADDI s1, zero, 1
   SW s1, 0(s0)
-  LA s0, a0
-  LW s0, 0(s0)
-  LA s1, a1
-  LW s1, 0(s1)
-  LA s2, a2
-  LW s2, 0(s2)
-  LA s3, a3
-  LW s3, 0(s3)
-  LA s4, a4
-  LW s4, 0(s4)
-  LA s5, a5
-  LW s5, 0(s5)
-  LA s6, a6
-  LW s6, 0(s6)
-  LA s7, a7
-  LW s7, 0(s7)
-  ADDW s0, s0, s1
-  ADDW s0, s0, s2
-  ADDW s0, s0, s3
-  ADDW s0, s0, s4
-  ADDW s0, s0, s5
-  ADDW s0, s0, s6
-  ADDW s0, s0, s7
+  ADDI s0, zero, 1
+  ADDW s0, s0, zero
+  ADDIW s0, s0, 2
+  ADDIW s0, s0, 3
+  ADDIW s0, s0, 4
+  ADDIW s0, s0, 5
+  ADDIW s0, s0, 6
+  ADDIW s0, s0, 7
   LA s1, a0
   SW s0, 0(s1)
   ADD a0, s0, zero
@@ -439,16 +424,16 @@ main:
   LW s10, 0(s10)
   LA s11, a11
   LW t4, 0(s11)
-  SW t4, 92(sp)
+  SW t4, 88(sp)
   LA s11, a12
   LW t4, 0(s11)
-  SW t4, 88(sp)
+  SW t4, 84(sp)
   LA s11, a13
   LW t4, 0(s11)
-  SW t4, 84(sp)
+  SW t4, 80(sp)
   LA s11, a14
   LW t4, 0(s11)
-  SW t4, 80(sp)
+  SW t4, 76(sp)
   LA s11, a15
   LW s11, 0(s11)
   ADDW s0, s0, s1
@@ -461,13 +446,13 @@ main:
   ADDW s0, s0, s8
   ADDW s0, s0, s9
   ADDW s0, s0, s10
-  LW t4, 92(sp)
-  ADDW s0, s0, t4
   LW t4, 88(sp)
   ADDW s0, s0, t4
   LW t4, 84(sp)
   ADDW s0, s0, t4
   LW t4, 80(sp)
+  ADDW s0, s0, t4
+  LW t4, 76(sp)
   ADDW s0, s0, t4
   ADDW s0, s0, s11
   LA s1, a0
@@ -498,64 +483,64 @@ main:
   LW s10, 0(s10)
   LA s11, a11
   LW t4, 0(s11)
-  SW t4, 76(sp)
+  SW t4, 72(sp)
   LA s11, a12
   LW t4, 0(s11)
-  SW t4, 72(sp)
+  SW t4, 68(sp)
   LA s11, a13
   LW t4, 0(s11)
-  SW t4, 68(sp)
+  SW t4, 64(sp)
   LA s11, a14
   LW t4, 0(s11)
-  SW t4, 64(sp)
+  SW t4, 60(sp)
   LA s11, a15
   LW t4, 0(s11)
-  SW t4, 60(sp)
+  SW t4, 56(sp)
   LA s11, a16
   LW t4, 0(s11)
-  SW t4, 56(sp)
+  SW t4, 0(sp)
   LA s11, a17
   LW t4, 0(s11)
-  SW t4, 0(sp)
+  SW t4, 52(sp)
   LA s11, a18
   LW t4, 0(s11)
-  SW t4, 52(sp)
+  SW t4, 48(sp)
   LA s11, a19
   LW t4, 0(s11)
-  SW t4, 48(sp)
+  SW t4, 44(sp)
   LA s11, a20
   LW t4, 0(s11)
-  SW t4, 44(sp)
+  SW t4, 40(sp)
   LA s11, a21
   LW t4, 0(s11)
-  SW t4, 40(sp)
+  SW t4, 36(sp)
   LA s11, a22
   LW t4, 0(s11)
-  SW t4, 36(sp)
+  SW t4, 32(sp)
   LA s11, a23
   LW t4, 0(s11)
-  SW t4, 32(sp)
+  SW t4, 28(sp)
   LA s11, a24
   LW t4, 0(s11)
-  SW t4, 28(sp)
+  SW t4, 24(sp)
   LA s11, a25
   LW t4, 0(s11)
-  SW t4, 24(sp)
+  SW t4, 20(sp)
   LA s11, a26
   LW t4, 0(s11)
-  SW t4, 20(sp)
+  SW t4, 16(sp)
   LA s11, a27
   LW t4, 0(s11)
-  SW t4, 16(sp)
+  SW t4, 12(sp)
   LA s11, a28
   LW t4, 0(s11)
-  SW t4, 12(sp)
+  SW t4, 8(sp)
   LA s11, a29
   LW t4, 0(s11)
-  SW t4, 8(sp)
+  SW t4, 4(sp)
   LA s11, a30
   LW t4, 0(s11)
-  SW t4, 4(sp)
+  SW t4, 92(sp)
   LA s11, a31
   LW s11, 0(s11)
   ADDW s0, s0, s1
@@ -568,8 +553,6 @@ main:
   ADDW s0, s0, s8
   ADDW s0, s0, s9
   ADDW s0, s0, s10
-  LW t4, 76(sp)
-  ADDW s0, s0, t4
   LW t4, 72(sp)
   ADDW s0, s0, t4
   LW t4, 68(sp)
@@ -583,7 +566,7 @@ main:
   LW t4, 0(sp)
   ADDW s0, s0, t4
   LW t4, 52(sp)
-  SUBW s0, s0, t4
+  ADDW s0, s0, t4
   LW t4, 48(sp)
   SUBW s0, s0, t4
   LW t4, 44(sp)
@@ -593,7 +576,7 @@ main:
   LW t4, 36(sp)
   SUBW s0, s0, t4
   LW t4, 32(sp)
-  ADDW s0, s0, t4
+  SUBW s0, s0, t4
   LW t4, 28(sp)
   ADDW s0, s0, t4
   LW t4, 24(sp)
@@ -608,6 +591,8 @@ main:
   ADDW s0, s0, t4
   LW t4, 4(sp)
   ADDW s0, s0, t4
+  LW t4, 92(sp)
+  ADDW s0, s0, t4
   ADDW s0, s0, s11
   LA s1, a0
   SW s0, 0(s1)
@@ -618,12 +603,12 @@ main:
   LD s0, 104(sp)
   LD s1, 112(sp)
   LD s2, 120(sp)
-  LD s4, 128(sp)
-  LD s5, 136(sp)
-  LD s7, 144(sp)
-  LD s8, 152(sp)
-  LD s3, 160(sp)
-  LD s6, 168(sp)
+  LD s3, 128(sp)
+  LD s4, 136(sp)
+  LD s5, 144(sp)
+  LD s6, 152(sp)
+  LD s7, 160(sp)
+  LD s8, 168(sp)
   LD s9, 176(sp)
   LD s10, 184(sp)
   LD s11, 192(sp)

@@ -87,9 +87,7 @@ bb5:
 bb6:
   LA s0, global
   SW s3, 0(s0)
-  LA s0, global
-  LW s0, 0(s0)
-  ADDW s0, s6, s0
+  ADDW s0, s6, s3
   ADDIW s1, s7, 1
   ADD s4, s1, zero
   ADD s5, s0, zero

@@ -7,11 +7,13 @@
 #include "Transform/Scalar/Combiner.h"
 #include "Transform/Scalar/LICM.h"
 #include "Transform/Scalar/Mem2Reg.h"
+#include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
 using namespace nnvm;
 
 void Optimizer::transform(Module *module) {
   PassManager passManager;
+  // Before inlining.
   passManager.addFunctionPass<Mem2RegPass>();
   passManager.addFunctionPass<SLPairElimPass>();
   passManager.addFunctionPass<CombinerPass>();
@@ -21,12 +23,15 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<SLPairElimPass>();
 
-  // After inlining:
+  // Inline, increasing codesize massively.
   passManager.addModulePass<InlinerPass>();
+
+  // After inlining:
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<MemPropPass>();
   passManager.addFunctionPass<LICMPass>();
   passManager.run(*module);
 }

@@ -28,8 +28,7 @@ entry12:
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
-  a.load24 = load i32 from ptr @a
-  call void putint(i32 %a.load24)
+  call void putint(i32 0)
   call void putch(i32 32)
   b.load27 = load i32 from ptr @b
   call void putint(i32 %b.load27)
@@ -37,8 +36,7 @@ entry12:
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
-  a.load41 = load i32 from ptr @a
-  call void putint(i32 %a.load41)
+  call void putint(i32 0)
   call void putch(i32 32)
   b.load44 = load i32 from ptr @b
   call void putint(i32 %b.load44)

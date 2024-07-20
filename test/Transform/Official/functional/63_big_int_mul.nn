@@ -138,8 +138,8 @@ while.body103:
 while.exit104:
   br bb %while.cond116
 while.cond116:
-  n.phi220 = phi [bb %while.exit104, i32 39, bb %while.exit131, i32 %233]
-  temp.phi218 = phi [bb %while.exit104, i32 0, bb %while.exit131, i32 %temp.phi]
+  temp.phi220 = phi [bb %while.exit104, i32 0, bb %while.exit131, i32 %temp.phi]
+  n.phi218 = phi [bb %while.exit104, i32 39, bb %while.exit131, i32 %233]
   i.phi210 = phi [bb %while.exit104, i32 19, bb %while.exit131, i32 %181]
   121 = icmp sgt i32 %i.phi210, i32 -1
   br i1 %121, bb %while.body117, bb %while.exit118
@@ -153,8 +153,8 @@ while.exit118:
   185 = icmp ne i32 %183.load, i32 0
   br i1 %185, bb %then186, bb %if.exit187
 while.cond129:
-  n.phi = phi [bb %while.body117, i32 %n.phi220, bb %if.exit, i32 %175]
-  temp.phi = phi [bb %while.body117, i32 %temp.phi218, bb %if.exit, i32 %146]
+  temp.phi = phi [bb %while.body117, i32 %temp.phi220, bb %if.exit, i32 %146]
+  n.phi = phi [bb %while.body117, i32 %n.phi218, bb %if.exit, i32 %175]
   j.phi = phi [bb %while.body117, i32 19, bb %if.exit, i32 %173]
   134 = icmp sgt i32 %j.phi, i32 -1
   br i1 %134, bb %while.body130, bb %while.exit131

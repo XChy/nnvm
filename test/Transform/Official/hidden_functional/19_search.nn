@@ -20,25 +20,25 @@ then:
 if.exit:
   br bb %while.cond
 while.cond:
-  select.phi287 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select.phi285, bb %then115, i1 %select.phi285, bb %then81, i1 %select.phi285]
-  num.phi283 = phi [bb %if.exit, i32 1073741824, bb %if.exit150, i32 %num.phi, bb %then115, i32 %num.phi283, bb %then81, i32 %num.phi283]
-  select90.phi273 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select90.phi, bb %then115, i1 %select90.phi, bb %then81, i1 %select90.phi273]
-  select100.phi271 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select100.phi, bb %then115, i1 %select100.phi, bb %then81, i1 %select100.phi271]
-  select108.phi269 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select108.phi, bb %then115, i1 %select108.phi, bb %then81, i1 %select108.phi269]
+  num.phi287 = phi [bb %if.exit, i32 1073741824, bb %if.exit150, i32 %num.phi, bb %then115, i32 %num.phi287, bb %then81, i32 %num.phi287]
+  select.phi279 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select.phi277, bb %then115, i1 %select.phi277, bb %then81, i1 %select.phi277]
   i.phi = phi [bb %if.exit, i32 0, bb %if.exit150, i32 %159, bb %then115, i32 %118, bb %then81, i32 %84]
+  select90.phi272 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select90.phi, bb %then115, i1 %select90.phi, bb %then81, i1 %select90.phi272]
+  select100.phi270 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select100.phi, bb %then115, i1 %select100.phi, bb %then81, i1 %select100.phi270]
+  select108.phi268 = phi [bb %if.exit, i1 ub, bb %if.exit150, i1 %select108.phi, bb %then115, i1 %select108.phi, bb %then81, i1 %select108.phi268]
   searchResult.phi = phi [bb %if.exit, i32 ub, bb %if.exit150, i32 %145, bb %then115, i32 %searchResult.phi, bb %then81, i32 %searchResult.phi]
   16 = icmp slt i32 %i.phi, i32 4
   br i1 %16, bb %while.body, bb %while.exit
 while.body:
   br bb %while.cond23
 while.exit:
-  161 = icmp sgt i32 %num.phi283, i32 10
+  161 = icmp sgt i32 %num.phi287, i32 10
   br i1 %161, bb %then162, bb %if.exit163
 while.cond23:
-  select.phi286 = phi [bb %while.body, i1 %select.phi287, bb %if.exit47, i1 %select.phi]
-  coun.phi = phi [bb %while.body, i32 0, bb %if.exit47, i32 %65]
   x2.phi = phi [bb %while.body, i32 %x, bb %if.exit47, i32 %55]
+  coun.phi = phi [bb %while.body, i32 0, bb %if.exit47, i32 %65]
   y2.phi = phi [bb %while.body, i32 %y, bb %if.exit47, i32 %63]
+  select.phi278 = phi [bb %while.body, i1 %select.phi279, bb %if.exit47, i1 %select.phi]
   27 = mul i32 %x2.phi, i32 120
   28 = ptradd ptr @a, i32 %27
   297 = shl i32 %y2.phi, i32 2
@@ -51,7 +51,7 @@ while.body24:
   37 = icmp eq i32 %x2.phi, i32 %x_1.load
   br i1 %37, bb %select.then, bb %select.else
 while.exit25:
-  select.phi285 = phi [bb %while.cond23, i1 %select.phi286, bb %then46, i1 %select.phi]
+  select.phi277 = phi [bb %while.cond23, i1 %select.phi278, bb %then46, i1 %select.phi]
   x_1.load67 = load i32 from ptr @x_1
   68 = icmp eq i32 %x2.phi, i32 %x_1.load67
   br i1 %68, bb %select.then69, bb %select.else70
@@ -139,19 +139,19 @@ if.exit116:
   143 = add i32 %n, i32 1
   144 = call i32 search(i32 %133, i32 %141, i32 %143)
   145 = add i32 %144, i32 1
-  148 = icmp slt i32 %145, i32 %num.phi283
+  148 = icmp slt i32 %145, i32 %num.phi287
   br i1 %148, bb %then149, bb %if.exit150
 then149:
   br bb %if.exit150
 if.exit150:
-  num.phi = phi [bb %if.exit116, i32 %num.phi283, bb %then149, i32 %145]
+  num.phi = phi [bb %if.exit116, i32 %num.phi287, bb %then149, i32 %145]
   store i32 1 to ptr %31
   159 = add i32 %i.phi, i32 1
   br bb %while.cond
 then162:
   ret i32 1073741824
 if.exit163:
-  ret i32 %num.phi283
+  ret i32 %num.phi287
 }
 
 external void putint(i32 )
@@ -239,8 +239,7 @@ if.exit229:
   246 = add i32 %j.phi, i32 1
   br bb %while.cond206
 else:
-  238.load = load i32 from ptr %218
-  240 = icmp eq i32 %238.load, i32 3
+  240 = icmp eq i32 %219, i32 3
   br i1 %240, bb %then241, bb %if.exit229
 then241:
   store i32 %i175.phi to ptr @x_1

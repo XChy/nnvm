@@ -118,7 +118,7 @@ public:
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }
-  BasicBlock *getParent() { return parent; }
+  BasicBlock *getBlock() { return parent; }
 
   void setMetadata(Metadata *metadata) { this->metadata = metadata; }
   const Metadata *getMetadata() const { return metadata; }

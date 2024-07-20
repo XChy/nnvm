@@ -7,7 +7,7 @@ n:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -128
+  ADDI sp, sp, -144
   SD ra, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
@@ -18,6 +18,8 @@ main:
   SD s6, 96(sp)
   SD s7, 104(sp)
   SD s8, 112(sp)
+  SD s9, 120(sp)
+  SD s10, 128(sp)
   LA s0, n
   ADDI s1, zero, 10
   SW s1, 0(s0)
@@ -50,26 +52,25 @@ main:
   ADDI s0, sp, 36
   ADDI s1, zero, 8
   SW s1, 0(s0)
-  ADD s0, zero, zero
+  ADDI s0, zero, 10
+  ADDI s1, zero, 1
+  SUBW s0, s0, s1
   ADD s1, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb1
 bb1:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
-  LA s4, n
-  LW s4, 0(s4)
-  ADDI s5, zero, 1
-  SUBW s4, s4, s5
-  BLT s2, s4, bb6
+  ADD s3, s2, zero
+  ADD s4, s1, zero
+  BLT s3, s0, bb6
   # implict jump to bb2
 bb2:
-  ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb3
 bb3:
-  ADD s5, s4, zero
-  LA s6, n
-  LW s6, 0(s6)
-  BLT s5, s6, bb5
+  ADD s6, s5, zero
+  LA s7, n
+  LW s7, 0(s7)
+  BLT s6, s7, bb5
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -83,63 +84,64 @@ bb4:
   LD s6, 96(sp)
   LD s7, 104(sp)
   LD s8, 112(sp)
-  ADDI sp, sp, 128
+  LD s9, 120(sp)
+  LD s10, 128(sp)
+  ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb5:
-  SLLIW s6, s5, 2
+  SLLIW s7, s6, 2
   ADDI a0, sp, 0
-  ADD s6, a0, s6
-  LW s6, 0(s6)
-  ADD a0, s6, zero
+  ADD s7, a0, s7
+  LW s7, 0(s7)
+  ADD a0, s7, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s5, s5, 1
-  ADD s4, s5, zero
+  ADDIW s6, s6, 1
+  ADD s5, s6, zero
   JAL zero, bb3
 bb6:
-  ADD s4, zero, zero
+  ADDI s5, zero, 10
+  SUBW s5, s5, s3
+  ADD s6, zero, zero
   # implict jump to bb7
 bb7:
-  ADD s5, s4, zero
-  ADD s6, s3, zero
-  LA s7, n
-  LW s7, 0(s7)
-  SUBW s7, s7, s2
-  ADDI s8, zero, 1
-  SUBW s7, s7, s8
-  BLT s5, s7, bb9
+  ADD s7, s6, zero
+  ADD s8, s4, zero
+  ADDI s9, zero, 1
+  SUBW s9, s5, s9
+  BLT s7, s9, bb9
   # implict jump to bb8
 bb8:
-  ADDIW s7, s2, 1
-  ADD s0, s6, zero
-  ADD s1, s7, zero
+  ADDIW s9, s3, 1
+  ADD s1, s8, zero
+  ADD s2, s9, zero
   JAL zero, bb1
 bb9:
-  SLLIW s0, s5, 2
+  SLLIW s1, s7, 2
   ADDI t5, sp, 0
-  ADD s0, t5, s0
-  LW s1, 0(s0)
-  ADDIW s5, s5, 1
-  SLLIW s7, s5, 2
+  ADD s1, t5, s1
+  LW s2, 0(s1)
+  ADDIW s7, s7, 1
+  SLLIW s9, s7, 2
   ADDI t5, sp, 0
-  ADD s7, t5, s7
-  LW s8, 0(s7)
-  BLT s8, s1, bb12
+  ADD s9, t5, s9
+  LW s10, 0(s9)
+  BLT s10, s2, bb12
   # implict jump to bb10
 bb10:
-  ADD s1, s6, zero
+  ADD s2, s8, zero
   # implict jump to bb11
 bb11:
-  ADD s3, s1, zero
-  ADD s4, s5, zero
+  ADD s4, s2, zero
+  ADD s6, s7, zero
   JAL zero, bb7
 bb12:
-  LW s6, 0(s7)
-  LW s8, 0(s0)
-  SW s8, 0(s7)
-  SW s6, 0(s0)
-  ADD s1, s6, zero
+  LW s8, 0(s9)
+  LW s10, 0(s1)
+  SW s10, 0(s9)
+  SW s8, 0(s1)
+  ADD s2, s8, zero
   JAL zero, bb11
 bubblesort:
   ADDI sp, sp, -96

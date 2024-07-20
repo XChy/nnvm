@@ -6,6 +6,8 @@
 #pragma once
 
 #include "Analysis/AAInfo.h"
+#include "Analysis/AliasAnalysis.h"
+#include "Analysis/DomTreeAnalysis.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 #include <unordered_map>
@@ -13,7 +15,12 @@
 
 namespace nnvm {
 
-enum AccessFlag { MemUse, MemDef, MemClobber };
+enum AccessFlag {
+  MemNoop,
+  MemUse,
+  MemDef,
+  MemClobber,
+};
 
 struct AccessInfo {
   Instruction *accessInst;
@@ -27,6 +34,19 @@ public:
   AccessInfo getDomMemDef(Instruction *I);
   AccessInfo getDomMemUse(Instruction *I);
 
+  // Check whether there exists clobber between domer and domee (excludes domer
+  // ).
+  bool hasClobber(Instruction *I, BasicBlock *domer, BasicBlock *domee);
+
 private:
+  AccessInfo getMemDefInBlock(Instruction *I, BasicBlock *block);
+  AccessInfo getLocalDomMemDef(Instruction *I);
+
+  AccessInfo getMemDefForBlockIter(Instruction *I, BasicBlock::Iterator begin,
+                                   BasicBlock::Iterator end);
+
+  AliasAnalysis *AA;
+  DomTreeAnalysis *domTree;
 };
+
 } /* namespace nnvm */

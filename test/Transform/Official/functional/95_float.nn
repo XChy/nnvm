@@ -106,9 +106,8 @@ external i32 getfarray(ptr )
 i32 main() {
 entry77:
   %arr = stack 40
-  33385 = fsub float 0.078125, float -33000.000000
   3536 = si2f i32 0 to float
-  4537 = fcmp olt float %33385, float %3536
+  4537 = fcmp olt float 33000.078125, float %3536
   br i1 %4537, bb %float_abs.then539, bb %float_abs.if.exit542
 entry77.split383:
   80.ret = phi [bb %float_eq.then37, i32 %44394, bb %float_eq.else, i32 0]
@@ -250,8 +249,7 @@ assert_not.then72:
   call void putch(i32 10)
   br bb %assert_not.if.exit73
 assert_not.if.exit73:
-  33401 = fsub float 95.033188, float 34.557522
-  4548 = fcmp olt float %33401, float %3536
+  4548 = fcmp olt float 60.475666, float %3536
   br i1 %4548, bb %float_abs.then550, bb %float_abs.if.exit553
 assert_not.else74:
   call void putch(i32 111)
@@ -267,8 +265,7 @@ assert_not.then72222:
   call void putch(i32 10)
   br bb %assert_not.if.exit73225
 assert_not.if.exit73225:
-  33417 = fsub float 34.557522, float 34.557522
-  4559 = fcmp olt float %33417, float %3536
+  4559 = fcmp olt float 0.000000, float %3536
   br i1 %4559, bb %float_abs.then561, bb %float_abs.if.exit564
 assert_not.else74227:
   call void putch(i32 111)
@@ -292,7 +289,7 @@ assert_not.else74239:
   call void putch(i32 10)
   br bb %assert_not.if.exit73237
 float_eq.entry28.split:
-  34386.ret = phi [bb %float_abs.then539, float %8540, bb %float_abs.if.exit542, float %33385]
+  34386.ret = phi [bb %float_abs.then539, float %8540, bb %float_abs.if.exit542, float 33000.078125]
   36387 = fcmp olt float %34386.ret, float 0.000001
   br i1 %36387, bb %float_eq.then37, bb %float_eq.else
 float_eq.then37:
@@ -305,7 +302,7 @@ float_eq.then37:
 float_eq.else:
   br bb %entry77.split383
 float_eq.entry28400.split:
-  34402.ret = phi [bb %float_abs.then550, float %8551, bb %float_abs.if.exit553, float %33401]
+  34402.ret = phi [bb %float_abs.then550, float %8551, bb %float_abs.if.exit553, float 60.475666]
   36403 = fcmp olt float %34402.ret, float 0.000001
   br i1 %36403, bb %float_eq.then37405, bb %float_eq.else412
 float_eq.then37405:
@@ -318,7 +315,7 @@ float_eq.then37405:
 float_eq.else412:
   br bb %entry77.split.split399
 float_eq.entry28416.split:
-  34418.ret = phi [bb %float_abs.then561, float %8562, bb %float_abs.if.exit564, float %33417]
+  34418.ret = phi [bb %float_abs.then561, float %8562, bb %float_abs.if.exit564, float 0.000000]
   36419 = fcmp olt float %34418.ret, float 0.000001
   br i1 %36419, bb %float_eq.then37421, bb %float_eq.else428
 float_eq.then37421:
@@ -343,7 +340,7 @@ float_eq.then37437:
 float_eq.else444:
   br bb %entry77.split.split.split344.split.split
 float_eq.entry28448.split:
-  34450.ret = phi [bb %float_abs.then583, float %8584, bb %float_abs.if.exit586, float %33449]
+  34450.ret = phi [bb %float_abs.then583, float %8584, bb %float_abs.if.exit586, float -3862.000000]
   36451 = fcmp olt float %34450.ret, float 0.000001
   br i1 %36451, bb %float_eq.then37453, bb %float_eq.else460
 float_eq.then37453:
@@ -397,8 +394,7 @@ assert.then63500:
   call void putch(i32 10)
   br bb %assert.if.exit64504
 assert.if.exit64504:
-  33449 = fsub float 233.000000, float 4095.000000
-  4581 = fcmp olt float %33449, float %3536
+  4581 = fcmp olt float -3862.000000, float %3536
   br i1 %4581, bb %float_abs.then583, bb %float_abs.if.exit586
 assert.else65506:
   call void putch(i32 111)
@@ -406,17 +402,17 @@ assert.else65506:
   call void putch(i32 10)
   br bb %assert.if.exit64504
 float_abs.then539:
-  8540 = fneg float %33385
+  8540 = fneg float 33000.078125
   br bb %float_eq.entry28.split
 float_abs.if.exit542:
   br bb %float_eq.entry28.split
 float_abs.then550:
-  8551 = fneg float %33401
+  8551 = fneg float 60.475666
   br bb %float_eq.entry28400.split
 float_abs.if.exit553:
   br bb %float_eq.entry28400.split
 float_abs.then561:
-  8562 = fneg float %33417
+  8562 = fneg float 0.000000
   br bb %float_eq.entry28416.split
 float_abs.if.exit564:
   br bb %float_eq.entry28416.split
@@ -426,7 +422,7 @@ float_abs.then572:
 float_abs.if.exit575:
   br bb %float_eq.entry28432.split
 float_abs.then583:
-  8584 = fneg float %33449
+  8584 = fneg float -3862.000000
   br bb %float_eq.entry28448.split
 float_abs.if.exit586:
   br bb %float_eq.entry28448.split

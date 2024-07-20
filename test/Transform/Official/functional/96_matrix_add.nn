@@ -26,8 +26,7 @@ entry47:
   br bb %while.cond58
 while.cond58:
   i57.phi156 = phi [bb %entry47, i32 0, bb %while.body59, i32 %96]
-  M.load62 = load i32 from ptr @M
-  63 = icmp slt i32 %i57.phi156, i32 %M.load62
+  63 = icmp slt i32 %i57.phi156, i32 3
   br i1 %63, bb %while.body59, bb %while.exit60
 while.body59:
   161 = shl i32 %i57.phi156, i32 2
@@ -98,8 +97,7 @@ while.exit137:
   ret i32 0
 add.while.cond:
   i.phi183 = phi [bb %while.exit60, i32 0, bb %add.while.body, i32 %46210]
-  M.load184 = load i32 from ptr @M
-  7185 = icmp slt i32 %i.phi183, i32 %M.load184
+  7185 = icmp slt i32 %i.phi183, i32 3
   br i1 %7185, bb %add.while.body, bb %add.while.exit
 add.while.body:
   170188 = shl i32 %i.phi183, i32 2

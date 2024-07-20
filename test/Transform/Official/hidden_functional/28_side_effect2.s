@@ -931,8 +931,7 @@ bb183:
 bb184:
   LA s4, array
   SW zero, 0(s4)
-  LA s4, array
-  LW s4, 0(s4)
+  ADD s4, zero, zero
   # implict jump to bb185
 bb185:
   BNE s4, zero, bb353
@@ -1751,8 +1750,7 @@ bb359:
   LA s2, array
   ADDI s3, zero, 1
   SW s3, 0(s2)
-  LA s2, array
-  LW s2, 0(s2)
+  ADDI s2, zero, 1
   # implict jump to bb360
 bb360:
   BNE s2, zero, bb522

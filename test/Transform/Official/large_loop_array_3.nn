@@ -15,11 +15,11 @@ entry25:
   call void _sysy_starttime(i32 22)
   br bb %while.cond36
 while.cond36:
-  b.phi108 = phi [bb %entry25, float 1.000000, bb %loop.while.exit, float %b.phi]
-  a.phi106 = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %a.phi]
-  total.phi = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %79]
-  j.phi103 = phi [bb %entry25, i32 0, bb %loop.while.exit, i32 %j.phi]
   i26.phi = phi [bb %entry25, i32 0, bb %loop.while.exit, i32 %81]
+  b.phi107 = phi [bb %entry25, float 1.000000, bb %loop.while.exit, float %b.phi]
+  a.phi105 = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %a.phi]
+  total.phi = phi [bb %entry25, float 0.000000, bb %loop.while.exit, float %79]
+  j.phi102 = phi [bb %entry25, i32 0, bb %loop.while.exit, i32 %j.phi]
   COUNT.load = load i32 from ptr @COUNT
   41 = icmp slt i32 %i26.phi, i32 %COUNT.load
   br i1 %41, bb %while.body37, bb %while.exit38
@@ -39,11 +39,11 @@ if.exit:
   a.phi = phi [bb %else, float %50, bb %then, float 0.000000]
   br bb %while.cond53
 else:
-  50 = fadd float %a.phi106, float 0.100000
-  52 = fadd float %b.phi108, float 0.200000
+  50 = fadd float %a.phi105, float 0.100000
+  52 = fadd float %b.phi107, float 0.200000
   br bb %if.exit
 while.cond53:
-  j.phi = phi [bb %if.exit, i32 %j.phi103, bb %while.body54, i32 %75]
+  j.phi = phi [bb %if.exit, i32 %j.phi102, bb %while.body54, i32 %75]
   58 = icmp slt i32 %j.phi, i32 %29
   br i1 %58, bb %while.body54, bb %while.exit55
 while.body54:

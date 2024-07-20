@@ -215,8 +215,7 @@ entry117:
   store i32 7 to ptr %136
   138 = ptradd ptr %a, i32 36
   store i32 8 to ptr %138
-  n.load = load i32 from ptr @n
-  82185 = sdiv i32 %n.load, i32 2
+  82185 = sdiv i32 10, i32 2
   83186 = sub i32 %82185, i32 1
   br bb %heap_sort.while.cond84
 while.cond142:
@@ -239,7 +238,7 @@ heap_sort.while.cond84:
   89190 = icmp sgt i32 %i.phi161189, i32 -1
   br i1 %89190, bb %heap_sort.while.body85, bb %heap_sort.while.exit86
 heap_sort.while.body85:
-  92193 = sub i32 %n.load, i32 1
+  92193 = sub i32 10, i32 1
   172318 = shl i32 %i.phi161189, i32 1
   27319 = add i32 %172318, i32 1
   br bb %heap_ajust.while.cond321
@@ -247,7 +246,7 @@ heap_sort.while.body85.split:
   97195 = sub i32 %i.phi161189, i32 1
   br bb %heap_sort.while.cond84
 heap_sort.while.exit86:
-  99198 = sub i32 %n.load, i32 1
+  99198 = sub i32 10, i32 1
   br bb %heap_sort.while.cond100
 heap_sort.while.cond100:
   i.phi201 = phi [bb %heap_sort.while.exit86, i32 %99198, bb %heap_sort.while.body101.split, i32 %111206]
@@ -269,7 +268,7 @@ heap_sort.while.exit102:
 heap_ajust.while.cond321:
   son.phi322 = phi [bb %heap_sort.while.body85, i32 %27319, bb %heap_ajust.else362, i32 %76365]
   dad.phi323 = phi [bb %heap_sort.while.body85, i32 %i.phi161189, bb %heap_ajust.else362, i32 %son.phi167351]
-  34325 = icmp slt i32 %son.phi322, i32 %n.load
+  34325 = icmp slt i32 %son.phi322, i32 10
   br i1 %34325, bb %heap_ajust.while.body327, bb %heap_sort.while.body85.split
 heap_ajust.while.body327:
   38328 = icmp slt i32 %son.phi322, i32 %92193

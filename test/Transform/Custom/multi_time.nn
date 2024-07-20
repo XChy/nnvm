@@ -1,0 +1,34 @@
+i32 main() {
+entry:
+  call void _sysy_starttime(i32 2)
+  call void _sysy_stoptime(i32 3)
+  call void _sysy_starttime(i32 4)
+  call void _sysy_stoptime(i32 5)
+  unreachable
+}
+
+external void putfarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_stoptime(i32 )
+
+external void putch(i32 )
+
+external void putfloat(float )
+
+external i32 getfarray(ptr )
+
+external i32 getarray(ptr )
+
+external void putint(i32 )
+
+external float getfloat()
+
+external i32 getch()
+
+external i32 getint()
+
+

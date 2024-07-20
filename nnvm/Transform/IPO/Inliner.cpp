@@ -26,7 +26,7 @@ bool InlinerPass::tryInline(Module &M) {
     for (Use *U : incChange(F->users())) {
       CallInst *CI = mayCast<CallInst>(U->getUser());
       // Don't inline recursive function.
-      if (!CI || CI->getParent()->getParent() == F)
+      if (!CI || CI->getBlock()->getParent() == F)
         break;
       inlineCall(CI);
       changed = true;
@@ -36,7 +36,7 @@ bool InlinerPass::tryInline(Module &M) {
 }
 
 void InlinerPass::inlineCall(CallInst *callsite) {
-  BasicBlock *callsiteBlock = callsite->getParent();
+  BasicBlock *callsiteBlock = callsite->getBlock();
   Function *caller = callsiteBlock->getParent();
   Function *callee = cast<Function>(callsite->getCallee());
   assert(caller != callee && "Don't inline recursive function");
@@ -77,7 +77,7 @@ void InlinerPass::inlineCall(CallInst *callsite) {
 
   auto replacer = [&](Value *callerValue) {
     callerValue->replaceSelfIf(valueMap[callerValue], [&](Use *U) -> bool {
-      return U->getUser()->getParent()->getParent() == caller;
+      return U->getUser()->getBlock()->getParent() == caller;
     });
   };
 

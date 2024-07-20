@@ -171,7 +171,7 @@ std::string Instruction::dump() {
 
 Instruction *Instruction::copyWithName() {
   auto *ret = copy();
-  ret->setName(getName(), *getParent()->getParent()->getModule());
+  ret->setName(getName(), *getBlock()->getParent()->getModule());
   return ret;
 }
 

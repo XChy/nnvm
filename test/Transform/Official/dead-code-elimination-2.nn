@@ -36,8 +36,7 @@ while.cond100017:
   br i1 %100021, bb %while.body100018, bb %while.exit100019
 while.body100018:
   store i32 %i.phi to ptr @global
-  global.load = load i32 from ptr @global
-  100027 = add i32 %tmp.phi100046, i32 %global.load
+  100027 = add i32 %tmp.phi100046, i32 %i.phi
   100029 = add i32 %j.phi, i32 1
   br bb %while.cond100017
 while.exit100019:

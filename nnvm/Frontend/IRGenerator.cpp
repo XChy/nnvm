@@ -630,9 +630,9 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       globalVar->setImmutable(false);
       irVal = globalVar;
     } else {
-      irVal = builder.buildStack(irType, symbolType->getTotalNumOfElements(),
-                                 symbolName);
       Type *irElementType = sym2IR(symbolType->getInnerMost());
+      irVal = builder.buildStack(irElementType, symbolType->getTotalNumOfElements(),
+                                 symbolName);
 
       if (ctx->initVal()) {
         std::vector<Value *> values;

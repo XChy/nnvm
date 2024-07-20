@@ -83,8 +83,7 @@ select.then47:
   a.load125 = load i32 from ptr @a
   4126 = add i32 %a.load125, i32 1
   store i32 %4126 to ptr @a
-  a.load132 = load i32 from ptr @a
-  4133 = add i32 %a.load132, i32 1
+  4133 = add i32 %4126, i32 1
   store i32 %4133 to ptr @a
   53 = sub i32 %4126, i32 %4133
   54 = add i32 %53, i32 1

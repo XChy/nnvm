@@ -150,7 +150,7 @@ bb1:
   SW t4, 104(sp)
   LW t3, 168(sp)
   ADD t4, t3, zero
-  SW t4, 172(sp)
+  SW t4, 176(sp)
   LW t4, 104(sp)
   SLTI ra, t4, 15
   BNE ra, zero, bb3
@@ -183,7 +183,7 @@ bb2:
   LW s0, 0(t4)
   LD t3, 456(sp)
   LW t4, 0(t3)
-  SW t4, 176(sp)
+  SW t4, 172(sp)
   LD t3, 464(sp)
   LW t4, 0(t3)
   SW t4, 180(sp)
@@ -210,7 +210,7 @@ bb2:
   ADDI s5, sp, 16
   SW s0, 0(s5)
   ADDI s5, sp, 20
-  LW t4, 176(sp)
+  LW t4, 172(sp)
   SW t4, 0(s5)
   ADDI s5, sp, 24
   LW t4, 180(sp)
@@ -266,7 +266,7 @@ bb2:
   ADDI s5, sp, 92
   LW t4, 132(sp)
   SW t4, 0(s5)
-  LW t4, 176(sp)
+  LW t4, 172(sp)
   LW t3, 180(sp)
   LW t4, 184(sp)
   LW t3, 160(sp)
@@ -306,7 +306,7 @@ bb2:
 bb3:
   LW t4, 104(sp)
   ADDIW s0, t4, 1
-  LW t4, 172(sp)
+  LW t4, 176(sp)
   ADD s1, t4, zero
   ADD s2, s0, zero
   # implict jump to bb4
@@ -656,10 +656,10 @@ param32_rec:
   SW t4, 100(sp)
   ADDI t2, sp, 312
   LW t4, 0(t2)
-  SW t4, 108(sp)
+  SW t4, 112(sp)
   ADDI t6, sp, 316
   LW t4, 0(t6)
-  SW t4, 112(sp)
+  SW t4, 108(sp)
   ADDI s1, sp, 320
   LW t4, 0(s1)
   SW t4, 172(sp)
@@ -741,10 +741,10 @@ bb12:
   LW t4, 100(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 20
-  LW t4, 108(sp)
+  LW t4, 112(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 24
-  LW t4, 112(sp)
+  LW t4, 108(sp)
   SW t4, 0(s0)
   ADDI s0, sp, 28
   LW t4, 172(sp)
@@ -798,8 +798,8 @@ bb12:
   SW zero, 0(s0)
   LW t4, 104(sp)
   LW t3, 100(sp)
-  LW t4, 108(sp)
-  LW t3, 112(sp)
+  LW t4, 112(sp)
+  LW t3, 108(sp)
   LW t4, 172(sp)
   LW t3, 168(sp)
   LW t4, 164(sp)

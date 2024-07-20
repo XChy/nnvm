@@ -187,25 +187,25 @@ bb16:
   BNE a1, zero, bb26
   # implict jump to bb17
 bb17:
-  ADD a1, s11, zero
+  ADD a1, t0, zero
   # implict jump to bb18
 bb18:
   # implict jump to bb19
 bb19:
   ADD a2, a0, zero
-  ADD a3, t1, zero
+  ADD a3, s11, zero
   ADD a4, s10, zero
   # implict jump to bb20
 bb20:
   ADD a5, t2, zero
-  ADD a6, t0, zero
+  ADD a6, t1, zero
   # implict jump to bb21
 bb21:
   ADD s0, a2, zero
   ADD s1, a5, zero
-  ADD s2, a3, zero
-  ADD s3, a6, zero
-  ADD s4, a1, zero
+  ADD s2, a6, zero
+  ADD s3, a1, zero
+  ADD s4, a3, zero
   ADD s5, a4, zero
   # implict jump to bb22
 bb22:
@@ -235,7 +235,7 @@ bb25:
 bb26:
   LA a2, input_length
   LW a2, 0(a2)
-  SLT a2, s11, a2
+  SLT a2, t0, a2
   XORI a2, a2, 1
   BNE a2, zero, bb29
   # implict jump to bb27
@@ -243,12 +243,12 @@ bb27:
   SLLIW a2, s9, 2
   LA a3, tape
   ADD a2, a3, a2
-  SLLIW a3, s11, 2
+  SLLIW a3, t0, 2
   LA a4, input
   ADD a3, a4, a3
   LW a3, 0(a3)
   SW a3, 0(a2)
-  ADDIW a2, s11, 1
+  ADDIW a2, t0, 1
   # implict jump to bb28
 bb28:
   ADD a1, a2, zero
@@ -258,7 +258,7 @@ bb29:
   LA a4, tape
   ADD a3, a4, a3
   SW zero, 0(a3)
-  ADD a2, s11, zero
+  ADD a2, t0, zero
   JAL zero, bb28
 bb30:
   LA a2, output_length
@@ -276,7 +276,7 @@ bb30:
   ADDIW a2, a2, 1
   LA a3, output_length
   SW a2, 0(a3)
-  ADD a1, s11, zero
+  ADD a1, t0, zero
   JAL zero, bb19
 bb31:
   SLLIW a5, s9, 2
@@ -288,22 +288,22 @@ bb31:
   # implict jump to bb32
 bb32:
   ADDI a6, zero, 1
-  SUBW a6, t1, a6
+  SUBW a6, s11, a6
   SLLIW a6, a6, 2
   ADDI a7, sp, 144
   ADD a6, a7, a6
   LW a6, 0(a6)
-  ADD a7, t1, zero
+  ADD a7, s11, zero
   # implict jump to bb33
 bb33:
   ADD a2, a5, zero
+  ADD a1, t0, zero
   ADD a3, a7, zero
-  ADD a1, s11, zero
   ADD a4, a6, zero
   JAL zero, bb20
 bb34:
   ADDI t6, zero, 1
-  SUBW t6, t1, t6
+  SUBW t6, s11, t6
   ADD a7, t6, zero
   ADD a6, s10, zero
   JAL zero, bb33
@@ -325,15 +325,15 @@ bb37:
   # implict jump to bb38
 bb38:
   ADD s7, s8, zero
-  ADD s6, t1, zero
+  ADD s6, s11, zero
   ADD s5, s1, zero
   # implict jump to bb39
 bb39:
   ADD a2, a0, zero
   ADD a5, s7, zero
-  ADD a3, s6, zero
   ADD a6, a7, zero
-  ADD a1, s11, zero
+  ADD a1, t0, zero
+  ADD a3, s6, zero
   ADD a4, s5, zero
   JAL zero, bb21
 bb40:
@@ -372,11 +372,11 @@ bb46:
   ADD s4, s2, zero
   JAL zero, bb42
 bb47:
-  SLLIW s0, t1, 2
+  SLLIW s0, s11, 2
   ADDI t5, sp, 144
   ADD s0, t5, s0
   SW s10, 0(s0)
-  ADDIW s0, t1, 1
+  ADDIW s0, s11, 1
   ADD s7, t2, zero
   ADD s6, s0, zero
   ADD s5, s10, zero

@@ -41,18 +41,16 @@ main:
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
-  LA s2, M
-  LW s2, 0(s2)
-  BLT s1, s2, bb15
+  SLTI s2, s1, 3
+  BNE s2, zero, bb15
   # implict jump to bb2
 bb2:
   ADD s2, zero, zero
   # implict jump to bb3
 bb3:
   ADD s3, s2, zero
-  LA s4, M
-  LW s4, 0(s4)
-  BLT s3, s4, bb14
+  SLTI s4, s3, 3
+  BNE s4, zero, bb14
   # implict jump to bb4
 bb4:
   ADD s4, zero, zero

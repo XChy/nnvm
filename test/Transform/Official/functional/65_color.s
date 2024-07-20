@@ -350,11 +350,11 @@ main:
   SW t4, 8(sp)
   # implict jump to bb36
 bb36:
-  LW t4, 8(sp)
-  ADD s6, t4, zero
-  LW t3, 12(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
+  LW t4, 12(sp)
+  ADD s7, t4, zero
   LW t4, 16(sp)
   ADD s8, t4, zero
   LW t4, 20(sp)
@@ -368,9 +368,9 @@ bb37:
   ADD s11, zero, zero
   # implict jump to bb38
 bb38:
-  ADD s7, s11, zero
+  ADD s6, s11, zero
   LW t4, 4(sp)
-  BLT s7, t4, bb40
+  BLT s6, t4, bb40
   # implict jump to bb39
 bb39:
   LA s0, cns
@@ -415,7 +415,7 @@ bb39:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb40:
-  SLLIW s0, s7, 2
+  SLLIW s0, s6, 2
   LA s2, list
   ADD s0, s2, s0
   CALL getint
@@ -426,14 +426,14 @@ bb40:
   LW s2, 0(s0)
   ADDIW s2, s2, 1
   SW s2, 0(s0)
-  ADDIW s0, s7, 1
+  ADDIW s0, s6, 1
   ADD s11, s0, zero
   JAL zero, bb38
 bb41:
   ADD s0, s10, zero
   ADD s2, s9, zero
   ADD s3, s8, zero
-  ADD s4, s6, zero
+  ADD s4, s7, zero
   ADD s5, zero, zero
   # implict jump to bb42
 bb42:
@@ -453,22 +453,21 @@ bb43:
   SW t4, 20(sp)
   ADD t4, s8, zero
   SW t4, 16(sp)
-  ADD t4, s11, zero
-  SW t4, 12(sp)
   ADD t4, s7, zero
+  SW t4, 12(sp)
+  ADD t4, s11, zero
   SW t4, 8(sp)
   JAL zero, bb36
 bb44:
   ADD s1, s10, zero
-  ADD s7, s9, zero
   ADD s9, zero, zero
   # implict jump to bb45
 bb45:
-  ADD s10, s9, zero
+  ADD s10, s7, zero
   ADD s11, s8, zero
-  ADD ra, s7, zero
+  ADD ra, s9, zero
   ADD t0, s1, zero
-  SLTI t1, s10, 18
+  SLTI t1, ra, 18
   BNE t1, zero, bb47
   # implict jump to bb46
 bb46:
@@ -481,25 +480,25 @@ bb46:
   JAL zero, bb42
 bb47:
   ADD s0, t0, zero
-  ADD s2, ra, zero
+  ADD s2, s11, zero
   ADD s3, zero, zero
   # implict jump to bb48
 bb48:
   ADD s4, s3, zero
   ADD s5, s2, zero
-  ADD s11, s0, zero
-  SLTI ra, s4, 18
-  BNE ra, zero, bb50
+  ADD s10, s0, zero
+  SLTI s11, s4, 18
+  BNE s11, zero, bb50
   # implict jump to bb49
 bb49:
-  ADDIW ra, s10, 1
-  ADD s1, s11, zero
-  ADD s7, s5, zero
-  ADD s8, s4, zero
-  ADD s9, ra, zero
+  ADDIW s11, ra, 1
+  ADD s1, s10, zero
+  ADD s9, s11, zero
+  ADD s8, s5, zero
+  ADD s7, s4, zero
   JAL zero, bb45
 bb50:
-  ADD s1, s11, zero
+  ADD s1, s10, zero
   ADD s5, zero, zero
   # implict jump to bb51
 bb51:
@@ -540,7 +539,7 @@ bb56:
   ADD s1, s1, s3
   LUI s3, 2
   ADDIW s3, s3, 880
-  MULW s3, s10, s3
+  MULW s3, ra, s3
   ADD s1, s1, s3
   ADDI s3, zero, 504
   MULW s3, s4, s3

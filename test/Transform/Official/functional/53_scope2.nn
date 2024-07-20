@@ -7,26 +7,26 @@ entry:
 while.cond:
   g25.phi44 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g25.phi]
   l.phi41 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %l.phi]
-  k.phi38 = phi [bb %entry, i32 112, bb %if.exit19, i32 %k.phi]
-  g.phi35 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g.phi]
-  12 = icmp sgt i32 %k.phi38, i32 10
+  g.phi38 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g.phi]
+  k.phi35 = phi [bb %entry, i32 112, bb %if.exit19, i32 %k.phi]
+  12 = icmp sgt i32 %k.phi35, i32 10
   br i1 %12, bb %while.body, bb %while.exit
 while.body:
-  15 = sub i32 %k.phi38, i32 88
+  15 = sub i32 %k.phi35, i32 88
   17 = icmp slt i32 %15, i32 1000
   br i1 %17, bb %then18, bb %if.exit19
 while.exit:
-  call void putint(i32 %k.phi38)
+  call void putint(i32 %k.phi35)
   k.load33 = load i32 from ptr @k
   ret i32 %k.load33
 then18:
-  51 = add i32 %k.phi38, i32 -76
+  51 = add i32 %k.phi35, i32 -76
   br bb %if.exit19
 if.exit19:
   g25.phi = phi [bb %while.body, i32 %g25.phi44, bb %then18, i32 11]
   l.phi = phi [bb %while.body, i32 %l.phi41, bb %then18, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi38, bb %then18, i32 10]
   k.phi = phi [bb %while.body, i32 %15, bb %then18, i32 %51]
-  g.phi = phi [bb %while.body, i32 %g.phi35, bb %then18, i32 10]
   br bb %while.cond
 }
 

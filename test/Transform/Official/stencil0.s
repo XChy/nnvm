@@ -34,17 +34,19 @@ main:
   ADD a0, s0, zero
   CALL getarray
   ADD t4, a0, zero
-  SW t4, 60(sp)
+  SW t4, 56(sp)
   ADDI a0, zero, 23
   CALL _sysy_starttime
   ADD t4, zero, zero
   SW t4, 16(sp)
   ADD t4, zero, zero
   SW t4, 20(sp)
-  ADDI t4, zero, 1
+  ADD t4, zero, zero
   SW t4, 24(sp)
   ADD t4, zero, zero
   SW t4, 28(sp)
+  ADD t4, zero, zero
+  SW t4, 32(sp)
   ADD t4, zero, zero
   SW t4, 36(sp)
   ADD t4, zero, zero
@@ -55,39 +57,37 @@ main:
   SW t4, 44(sp)
   ADD t4, zero, zero
   SW t4, 48(sp)
-  ADD t4, zero, zero
+  ADDI t4, zero, 1
   SW t4, 52(sp)
-  ADD t4, zero, zero
-  SW t4, 56(sp)
   # implict jump to bb1
 bb1:
-  LW t3, 56(sp)
-  ADD t4, t3, zero
-  SW t4, 12(sp)
   LW t3, 52(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
+  SW t4, 60(sp)
   LW t3, 48(sp)
   ADD t4, t3, zero
-  SW t4, 4(sp)
-  LW t4, 44(sp)
-  ADD s9, t4, zero
-  LW t4, 0(sp)
-  ADD s8, t4, zero
-  LW t4, 40(sp)
-  ADD s7, t4, zero
-  LW t4, 36(sp)
-  ADD s6, t4, zero
-  LW t4, 28(sp)
-  ADD s5, t4, zero
-  LW t3, 24(sp)
+  SW t4, 12(sp)
+  LW t3, 44(sp)
   ADD t4, t3, zero
-  SW t4, 32(sp)
+  SW t4, 8(sp)
+  LW t3, 0(sp)
+  ADD t4, t3, zero
+  SW t4, 4(sp)
+  LW t4, 40(sp)
+  ADD s9, t4, zero
+  LW t4, 36(sp)
+  ADD s8, t4, zero
+  LW t4, 32(sp)
+  ADD s7, t4, zero
+  LW t4, 28(sp)
+  ADD s6, t4, zero
+  LW t4, 24(sp)
+  ADD s5, t4, zero
   LW t4, 20(sp)
   ADD s4, t4, zero
   LW t4, 16(sp)
   ADD s3, t4, zero
-  LW t4, 32(sp)
+  LW t4, 60(sp)
   SLTI s2, t4, 511
   BNE s2, zero, bb9
   # implict jump to bb2
@@ -116,7 +116,7 @@ bb6:
   LA s10, image_out
   ADD a1, s10, zero
   CALL putarray
-  LW t4, 60(sp)
+  LW t4, 56(sp)
   ADD a0, t4, zero
   LD ra, 64(sp)
   LD s0, 72(sp)
@@ -181,14 +181,14 @@ bb9:
   ADD s3, s6, zero
   ADD s4, s7, zero
   ADD s5, s8, zero
-  ADD s6, s9, zero
+  ADDI s6, zero, 1
+  ADD s7, s9, zero
   LW t4, 4(sp)
-  ADD s7, t4, zero
-  LW t4, 8(sp)
   ADD s8, t4, zero
-  LW t4, 12(sp)
+  LW t4, 8(sp)
   ADD s9, t4, zero
-  ADDI s10, zero, 1
+  LW t4, 12(sp)
+  ADD s10, t4, zero
   # implict jump to bb10
 bb10:
   ADD s11, s10, zero
@@ -202,74 +202,74 @@ bb10:
   ADD a3, s2, zero
   ADD a4, s1, zero
   ADD a5, s0, zero
-  SLTI a6, s11, 1023
+  SLTI a6, t2, 1023
   BNE a6, zero, bb12
   # implict jump to bb11
 bb11:
-  LW t4, 32(sp)
+  LW t4, 60(sp)
   ADDIW a6, t4, 1
   ADD t4, a5, zero
   SW t4, 16(sp)
   ADD t4, a4, zero
   SW t4, 20(sp)
-  ADD t4, a6, zero
-  SW t4, 24(sp)
   ADD t4, a3, zero
-  SW t4, 28(sp)
+  SW t4, 24(sp)
   ADD t4, a2, zero
-  SW t4, 36(sp)
+  SW t4, 28(sp)
   ADD t4, a1, zero
-  SW t4, 40(sp)
+  SW t4, 32(sp)
   ADD t4, a0, zero
-  SW t4, 0(sp)
-  ADD t4, t2, zero
-  SW t4, 44(sp)
+  SW t4, 36(sp)
   ADD t4, t1, zero
-  SW t4, 48(sp)
+  SW t4, 40(sp)
   ADD t4, t0, zero
-  SW t4, 52(sp)
+  SW t4, 0(sp)
   ADD t4, ra, zero
-  SW t4, 56(sp)
+  SW t4, 44(sp)
+  ADD t4, s11, zero
+  SW t4, 48(sp)
+  ADD t4, a6, zero
+  SW t4, 52(sp)
   JAL zero, bb1
 bb12:
+  ADDI s11, zero, 1
+  SUBW s11, t2, s11
+  SLLIW s11, s11, 9
+  LW t4, 60(sp)
+  ADDW s11, s11, t4
   ADDI ra, zero, 1
   SUBW ra, s11, ra
-  SLLIW ra, ra, 9
-  LW t4, 32(sp)
-  ADDW ra, ra, t4
-  ADDI t0, zero, 1
-  SUBW t0, ra, t0
-  ADDIW t1, ra, 1
-  SLLIW t2, s11, 9
-  LW t4, 32(sp)
-  ADDW t2, t2, t4
+  ADDIW t0, s11, 1
+  SLLIW t1, t2, 9
+  LW t4, 60(sp)
+  ADDW t1, t1, t4
   ADDI a0, zero, 1
-  SUBW a0, t2, a0
-  ADDIW a1, t2, 1
-  ADDIW s11, s11, 1
-  SLLIW a2, s11, 9
-  LW t4, 32(sp)
+  SUBW a0, t1, a0
+  ADDIW a1, t1, 1
+  ADDIW t2, t2, 1
+  SLLIW a2, t2, 9
+  LW t4, 60(sp)
   ADDW a2, a2, t4
   ADDI a3, zero, 1
   SUBW a3, a2, a3
   ADDIW a4, a2, 1
-  SLLIW a5, t2, 2
+  SLLIW a5, t1, 2
   LA a6, image_in
   ADD a6, a6, a5
   LW a6, 0(a6)
   ADDI a7, zero, 8
   MULW a6, a6, a7
-  SLLIW a7, t0, 2
-  LA t6, image_in
-  ADD a7, t6, a7
-  LW a7, 0(a7)
-  SUBW a6, a6, a7
   SLLIW a7, ra, 2
   LA t6, image_in
   ADD a7, t6, a7
   LW a7, 0(a7)
   SUBW a6, a6, a7
-  SLLIW a7, t1, 2
+  SLLIW a7, s11, 2
+  LA t6, image_in
+  ADD a7, t6, a7
+  LW a7, 0(a7)
+  SUBW a6, a6, a7
+  SLLIW a7, t0, 2
   LA t6, image_in
   ADD a7, t6, a7
   LW a7, 0(a7)
@@ -316,15 +316,15 @@ bb16:
   SW a7, 0(a5)
   ADD s0, a6, zero
   ADD s1, a4, zero
-  ADD s2, a2, zero
-  ADD s3, a3, zero
-  ADD s4, a1, zero
-  ADD s5, a0, zero
+  ADD s2, t0, zero
+  ADD s3, a2, zero
+  ADD s4, s11, zero
+  ADD s5, ra, zero
   ADD s6, t2, zero
-  ADD s7, t1, zero
-  ADD s8, ra, zero
-  ADD s9, t0, zero
-  ADD s10, s11, zero
+  ADD s7, a3, zero
+  ADD s8, a1, zero
+  ADD s9, t1, zero
+  ADD s10, a0, zero
   JAL zero, bb10
 bb17:
   ADDI a7, zero, 255

@@ -21,7 +21,6 @@ detect_item:
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s7, 64(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADD s2, a2, zero
@@ -127,46 +126,45 @@ bb14:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb15:
   ADDI s0, zero, 110
-  SW s0, 112(sp)
-  ADDI s0, sp, 116
+  SW s0, 104(sp)
+  ADDI s0, sp, 108
   ADDI s3, zero, 117
   SW s3, 0(s0)
-  ADDI s3, sp, 120
+  ADDI s3, sp, 112
   ADDI s4, zero, 108
   SW s4, 0(s3)
-  ADDI s4, sp, 124
+  ADDI s4, sp, 116
   ADDI s5, zero, 108
   SW s5, 0(s4)
-  LA s5, pos
-  LW s5, 0(s5)
-  ADDIW s5, s5, 3
-  SLT s5, s5, s2
-  XORI s5, s5, 1
-  BNE s5, zero, bb26
+  LA s4, pos
+  LW s4, 0(s4)
+  ADDIW s4, s4, 3
+  SLT s4, s4, s2
+  XORI s4, s4, 1
+  BNE s4, zero, bb26
   # implict jump to bb16
 bb16:
-  LA s5, pos
-  LW s5, 0(s5)
-  SLLIW s5, s5, 2
-  ADD s5, s1, s5
-  LW s5, 0(s5)
-  LW s6, 112(sp)
-  BNE s5, s6, bb25
+  LA s4, pos
+  LW s4, 0(s4)
+  SLLIW s4, s4, 2
+  ADD s4, s1, s4
+  LW s4, 0(s4)
+  LW s5, 104(sp)
+  BNE s4, s5, bb25
   # implict jump to bb17
 bb17:
-  LA s5, pos
-  LW s5, 0(s5)
-  ADDIW s5, s5, 1
-  SLLIW s5, s5, 2
-  ADD s5, s1, s5
-  LW s5, 0(s5)
+  LA s4, pos
+  LW s4, 0(s4)
+  ADDIW s4, s4, 1
+  SLLIW s4, s4, 2
+  ADD s4, s1, s4
+  LW s4, 0(s4)
   LW s0, 0(s0)
-  BNE s5, s0, bb24
+  BNE s4, s0, bb24
   # implict jump to bb18
 bb18:
   LA s0, pos
@@ -185,8 +183,8 @@ bb19:
   SLLIW s0, s0, 2
   ADD s0, s1, s0
   LW s0, 0(s0)
-  LW s3, 0(s4)
-  BNE s0, s3, bb22
+  XORI s0, s0, 108
+  BNE s0, zero, bb22
   # implict jump to bb20
 bb20:
   LA s0, pos
@@ -205,7 +203,6 @@ bb21:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb22:
@@ -218,7 +215,6 @@ bb22:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb23:
@@ -231,7 +227,6 @@ bb23:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb24:
@@ -244,7 +239,6 @@ bb24:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb25:
@@ -257,7 +251,6 @@ bb25:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb26:
@@ -270,49 +263,48 @@ bb26:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb27:
   ADDI s0, zero, 102
-  SW s0, 88(sp)
-  ADDI s0, sp, 92
+  SW s0, 80(sp)
+  ADDI s0, sp, 84
   ADDI s3, zero, 97
   SW s3, 0(s0)
-  ADDI s3, sp, 96
+  ADDI s3, sp, 88
   ADDI s4, zero, 108
   SW s4, 0(s3)
-  ADDI s4, sp, 100
+  ADDI s4, sp, 92
   ADDI s5, zero, 115
   SW s5, 0(s4)
-  ADDI s5, sp, 104
+  ADDI s5, sp, 96
   ADDI s6, zero, 101
   SW s6, 0(s5)
-  LA s6, pos
-  LW s6, 0(s6)
-  ADDIW s6, s6, 4
-  SLT s6, s6, s2
-  XORI s6, s6, 1
-  BNE s6, zero, bb39
+  LA s5, pos
+  LW s5, 0(s5)
+  ADDIW s5, s5, 4
+  SLT s5, s5, s2
+  XORI s5, s5, 1
+  BNE s5, zero, bb39
   # implict jump to bb28
 bb28:
-  LA s6, pos
-  LW s6, 0(s6)
-  SLLIW s6, s6, 2
-  ADD s6, s1, s6
-  LW s6, 0(s6)
-  LW s7, 88(sp)
-  BNE s6, s7, bb38
+  LA s5, pos
+  LW s5, 0(s5)
+  SLLIW s5, s5, 2
+  ADD s5, s1, s5
+  LW s5, 0(s5)
+  LW s6, 80(sp)
+  BNE s5, s6, bb38
   # implict jump to bb29
 bb29:
-  LA s6, pos
-  LW s6, 0(s6)
-  ADDIW s6, s6, 1
-  SLLIW s6, s6, 2
-  ADD s6, s1, s6
-  LW s6, 0(s6)
+  LA s5, pos
+  LW s5, 0(s5)
+  ADDIW s5, s5, 1
+  SLLIW s5, s5, 2
+  ADD s5, s1, s5
+  LW s5, 0(s5)
   LW s0, 0(s0)
-  BNE s6, s0, bb37
+  BNE s5, s0, bb37
   # implict jump to bb30
 bb30:
   LA s0, pos
@@ -341,8 +333,8 @@ bb32:
   SLLIW s0, s0, 2
   ADD s0, s1, s0
   LW s0, 0(s0)
-  LW s3, 0(s5)
-  BNE s0, s3, bb34
+  XORI s0, s0, 101
+  BNE s0, zero, bb34
   # implict jump to bb33
 bb33:
   LA s0, pos
@@ -361,7 +353,6 @@ bb34:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb35:
@@ -374,7 +365,6 @@ bb35:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb36:
@@ -387,7 +377,6 @@ bb36:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb37:
@@ -400,7 +389,6 @@ bb37:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb38:
@@ -413,7 +401,6 @@ bb38:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb39:
@@ -426,46 +413,45 @@ bb39:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb40:
   ADDI s0, zero, 116
-  SW s0, 72(sp)
-  ADDI s0, sp, 76
+  SW s0, 64(sp)
+  ADDI s0, sp, 68
   ADDI s3, zero, 114
   SW s3, 0(s0)
-  ADDI s3, sp, 80
+  ADDI s3, sp, 72
   ADDI s4, zero, 117
   SW s4, 0(s3)
-  ADDI s4, sp, 84
+  ADDI s4, sp, 76
   ADDI s5, zero, 101
   SW s5, 0(s4)
-  LA s5, pos
-  LW s5, 0(s5)
-  ADDIW s5, s5, 3
-  SLT s5, s5, s2
-  XORI s5, s5, 1
-  BNE s5, zero, bb50
+  LA s4, pos
+  LW s4, 0(s4)
+  ADDIW s4, s4, 3
+  SLT s4, s4, s2
+  XORI s4, s4, 1
+  BNE s4, zero, bb50
   # implict jump to bb41
 bb41:
-  LA s5, pos
-  LW s5, 0(s5)
-  SLLIW s5, s5, 2
-  ADD s5, s1, s5
-  LW s5, 0(s5)
-  LW s6, 72(sp)
-  BNE s5, s6, bb49
+  LA s4, pos
+  LW s4, 0(s4)
+  SLLIW s4, s4, 2
+  ADD s4, s1, s4
+  LW s4, 0(s4)
+  LW s5, 64(sp)
+  BNE s4, s5, bb49
   # implict jump to bb42
 bb42:
-  LA s5, pos
-  LW s5, 0(s5)
-  ADDIW s5, s5, 1
-  SLLIW s5, s5, 2
-  ADD s5, s1, s5
-  LW s5, 0(s5)
+  LA s4, pos
+  LW s4, 0(s4)
+  ADDIW s4, s4, 1
+  SLLIW s4, s4, 2
+  ADD s4, s1, s4
+  LW s4, 0(s4)
   LW s0, 0(s0)
-  BNE s5, s0, bb48
+  BNE s4, s0, bb48
   # implict jump to bb43
 bb43:
   LA s0, pos
@@ -484,8 +470,8 @@ bb44:
   SLLIW s0, s0, 2
   ADD s0, s1, s0
   LW s0, 0(s0)
-  LW s3, 0(s4)
-  BNE s0, s3, bb46
+  XORI s0, s0, 101
+  BNE s0, zero, bb46
   # implict jump to bb45
 bb45:
   LA s0, pos
@@ -504,7 +490,6 @@ bb46:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb47:
@@ -517,7 +502,6 @@ bb47:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb48:
@@ -530,7 +514,6 @@ bb48:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb49:
@@ -543,7 +526,6 @@ bb49:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb50:
@@ -556,7 +538,6 @@ bb50:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb51:
@@ -890,7 +871,6 @@ bb87:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb88:
@@ -903,7 +883,6 @@ bb88:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb89:
@@ -1208,7 +1187,6 @@ bb123:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb124:
@@ -1249,7 +1227,6 @@ bb128:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb129:
@@ -1262,7 +1239,6 @@ bb129:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb130:
@@ -1303,7 +1279,6 @@ bb134:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb135:
@@ -1372,7 +1347,6 @@ bb143:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb144:
@@ -1413,7 +1387,6 @@ bb148:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb149:
@@ -1426,7 +1399,6 @@ bb149:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb150:
@@ -1467,7 +1439,6 @@ bb154:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb155:
@@ -1495,7 +1466,6 @@ bb156:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb157:
@@ -1731,7 +1701,6 @@ bb183:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb184:
@@ -1744,7 +1713,6 @@ bb184:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb185:
@@ -1923,7 +1891,6 @@ bb205:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb206:
@@ -1992,7 +1959,6 @@ bb214:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb215:
@@ -2020,7 +1986,6 @@ bb216:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb217:
@@ -2096,7 +2061,6 @@ bb226:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb227:
@@ -2109,7 +2073,6 @@ bb227:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb228:
@@ -2287,8 +2250,6 @@ bb253:
   SW s0, 0(s3)
   JAL zero, bb244
 bb254:
-  LA s0, pos
-  LW s0, 0(s0)
   SLLIW s0, s0, 2
   ADD s0, s1, s0
   LW s0, 0(s0)
@@ -2407,7 +2368,6 @@ bb273:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb274:
@@ -2432,7 +2392,6 @@ bb277:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb278:
@@ -2557,7 +2516,6 @@ bb291:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb292:
@@ -2575,7 +2533,6 @@ bb292:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb293:
@@ -2593,7 +2550,6 @@ bb293:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb294:
@@ -2611,7 +2567,6 @@ bb294:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb295:
@@ -2629,7 +2584,6 @@ bb295:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb296:
@@ -2647,7 +2601,6 @@ bb296:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb297:
@@ -2665,7 +2618,6 @@ bb297:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb298:
@@ -2695,7 +2647,6 @@ bb301:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb302:
@@ -2713,7 +2664,6 @@ bb302:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb303:
@@ -2731,7 +2681,6 @@ bb303:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb304:
@@ -2772,7 +2721,6 @@ bb308:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 main:

@@ -84,8 +84,7 @@ entry60:
   store i32 7 to ptr %79
   81 = ptradd ptr %a, i32 36
   store i32 8 to ptr %81
-  n.load = load i32 from ptr @n
-  10126 = sub i32 %n.load, i32 1
+  10126 = sub i32 10, i32 1
   br bb %select_sort.while.cond
 while.cond85:
   i82.phi = phi [bb %select_sort.while.exit, i32 0, bb %while.body86, i32 %102]
@@ -115,7 +114,7 @@ select_sort.while.exit:
 select_sort.while.cond16:
   min.phi107135 = phi [bb %select_sort.while.body, i32 %i.phi125, bb %select_sort.if.exit, i32 %min.phi154]
   j.phi136 = phi [bb %select_sort.while.body, i32 %15130, bb %select_sort.if.exit, i32 %36155]
-  21137 = icmp slt i32 %j.phi136, i32 %n.load
+  21137 = icmp slt i32 %j.phi136, i32 10
   br i1 %21137, bb %select_sort.while.body17, bb %select_sort.while.exit18
 select_sort.while.body17:
   113140 = shl i32 %min.phi107135, i32 2

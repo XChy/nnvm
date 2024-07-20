@@ -126,21 +126,13 @@ entry168:
   store i32 9 to ptr @a37
   store i32 0 to ptr @a38
   store i32 1 to ptr @a39
-  a0.load = load i32 from ptr @a0
-  a1.load = load i32 from ptr @a1
-  a2.load = load i32 from ptr @a2
-  a3.load = load i32 from ptr @a3
-  a4.load = load i32 from ptr @a4
-  a5.load = load i32 from ptr @a5
-  a6.load = load i32 from ptr @a6
-  a7.load = load i32 from ptr @a7
-  11290 = add i32 %a0.load, i32 %a1.load
-  13291 = add i32 %11290, i32 %a2.load
-  15292 = add i32 %13291, i32 %a3.load
-  17293 = add i32 %15292, i32 %a4.load
-  19294 = add i32 %17293, i32 %a5.load
-  21295 = add i32 %19294, i32 %a6.load
-  23296 = add i32 %21295, i32 %a7.load
+  11290 = add i32 0, i32 1
+  13291 = add i32 %11290, i32 2
+  15292 = add i32 %13291, i32 3
+  17293 = add i32 %15292, i32 4
+  19294 = add i32 %17293, i32 5
+  21295 = add i32 %19294, i32 6
+  23296 = add i32 %21295, i32 7
   store i32 %23296 to ptr @a0
   call void putint(i32 %23296)
   a32.load = load i32 from ptr @a32

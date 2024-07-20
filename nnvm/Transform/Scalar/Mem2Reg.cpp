@@ -52,13 +52,13 @@ bool Mem2RegPass::run(Function &F) {
       if (auto *def = mayCast<StoreInst>(user)) {
         if (def->getDest() == SI) {
           valueType = def->getStoredValue()->getType();
-          localDefBBs.insert(def->getParent());
+          localDefBBs.insert(def->getBlock());
           continue;
         }
       }
 
       if (auto *use = mayCast<LoadInst>(user)) {
-        localUseBBs.insert(use->getParent());
+        localUseBBs.insert(use->getBlock());
         continue;
       }
 

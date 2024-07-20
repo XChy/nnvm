@@ -615,14 +615,12 @@ bb72:
   ADD s0, a0, zero
   LA s1, height
   SW s0, 0(s1)
-  LA s0, width
-  LW s0, 0(s0)
-  ADDI s1, zero, 1024
-  BLT s1, s0, bb89
+  LA s1, width
+  LW s1, 0(s1)
+  ADDI s2, zero, 1024
+  BLT s2, s1, bb89
   # implict jump to bb73
 bb73:
-  LA s0, height
-  LW s0, 0(s0)
   ADDI s1, zero, 1024
   SLT s0, s1, s0
   # implict jump to bb74
@@ -752,14 +750,12 @@ bb95:
   ADD s0, a0, zero
   LA s1, height
   SW s0, 0(s1)
-  LA s0, width
-  LW s0, 0(s0)
-  ADDI s1, zero, 1024
-  BLT s1, s0, bb109
+  LA s1, width
+  LW s1, 0(s1)
+  ADDI s2, zero, 1024
+  BLT s2, s1, bb109
   # implict jump to bb96
 bb96:
-  LA s0, height
-  LW s0, 0(s0)
   ADDI s1, zero, 1024
   SLT s0, s1, s0
   # implict jump to bb97

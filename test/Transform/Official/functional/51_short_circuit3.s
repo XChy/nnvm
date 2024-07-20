@@ -56,9 +56,7 @@ main:
   LA s0, a
   ADDI s1, zero, 0
   SW s1, 0(s0)
-  LA s0, a
-  LW s0, 0(s0)
-  ADD a0, s0, zero
+  ADD a0, zero, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
@@ -75,11 +73,8 @@ main:
   ADDI s1, zero, 3
   SW s1, 0(s0)
   LA s0, a
-  ADDI s1, zero, 0
-  SW s1, 0(s0)
-  LA s0, a
-  LW s0, 0(s0)
-  ADD a0, s0, zero
+  SW zero, 0(s0)
+  ADD a0, zero, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch

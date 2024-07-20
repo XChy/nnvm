@@ -82,7 +82,7 @@ while.body:
   72005 = icmp sge i32 0, i32 %i.phi675
   br i1 %72005, bb %f.select.then, bb %f.select.else
 while.body.split:
-  97.ret = phi [bb %f.then, i32 0, bb %f.if.exit, i32 %27.load2024]
+  97.ret = phi [bb %f.then, i32 0, bb %f.if.exit, i32 1]
   98 = icmp ne i32 %97.ret, i32 0
   br i1 %98, bb %select.then99, bb %select.else100
 while.exit:
@@ -377,7 +377,7 @@ while.body256:
   411345 = icmp sge i32 0, i32 %i.phi674
   br i1 %411345, bb %g.select.then42, bb %g.select.else43
 while.body256.split:
-  262.ret = phi [bb %g.then50, i32 1, bb %g.if.exit51, i32 %61.load1364]
+  262.ret = phi [bb %g.then50, i32 1, bb %g.if.exit51, i32 0]
   263 = icmp ne i32 %262.ret, i32 0
   br i1 %263, bb %select.then264, bb %select.else265
 while.exit257:
@@ -1224,7 +1224,6 @@ g.then50:
   br bb %while.body256.split
 g.if.exit51:
   store i32 0 to ptr @array
-  61.load1364 = load i32 from ptr @array
   br bb %while.body256.split
 g.select.then421380:
   br bb %g.select.exit441385
@@ -1539,7 +1538,6 @@ f.then:
   br bb %while.body.split
 f.if.exit:
   store i32 1 to ptr @array
-  27.load2024 = load i32 from ptr @array
   br bb %while.body.split
 f.select.then2040:
   br bb %f.select.exit2045

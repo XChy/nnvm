@@ -56,6 +56,7 @@ insert:
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
+  SD s6, 56(sp)
   ADD s0, a0, zero
   LA s1, hashmod
   LW s1, 0(s1)
@@ -80,28 +81,20 @@ bb3:
   ADDIW s4, s4, 1
   LA s5, cnt
   SW s4, 0(s5)
-  SLLIW s4, s4, 2
-  LA s5, next
-  ADD s4, s5, s4
-  LW s5, 0(s1)
-  SW s5, 0(s4)
-  LA s4, cnt
-  LW s4, 0(s4)
+  SLLIW s5, s4, 2
+  LA s6, next
+  ADD s5, s6, s5
+  LW s6, 0(s1)
+  SW s6, 0(s5)
   SW s4, 0(s1)
-  LA s4, cnt
-  LW s4, 0(s4)
-  SLLIW s4, s4, 2
-  LA s5, key
-  ADD s4, s5, s4
-  SW s0, 0(s4)
-  LA s4, cnt
-  LW s4, 0(s4)
-  SLLIW s4, s4, 2
-  LA s5, value
-  ADD s4, s5, s4
-  SW a1, 0(s4)
-  LA s4, cnt
-  LW s4, 0(s4)
+  SLLIW s5, s4, 2
+  LA s6, key
+  ADD s5, s6, s5
+  SW s0, 0(s5)
+  SLLIW s5, s4, 2
+  LA s6, value
+  ADD s5, s6, s5
+  SW a1, 0(s5)
   SLLIW s4, s4, 2
   LA s5, nextvalue
   ADD s4, s5, s4
@@ -114,6 +107,7 @@ bb3:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
@@ -137,18 +131,14 @@ bb6:
   ADDIW s2, s2, 1
   LA s4, cnt
   SW s2, 0(s4)
-  SLLIW s2, s2, 2
-  LA s4, nextvalue
-  ADD s2, s4, s2
-  LA s4, nextvalue
-  ADD s3, s4, s3
-  LW s4, 0(s3)
-  SW s4, 0(s2)
-  LA s2, cnt
-  LW s2, 0(s2)
+  SLLIW s4, s2, 2
+  LA s5, nextvalue
+  ADD s4, s5, s4
+  LA s5, nextvalue
+  ADD s3, s5, s3
+  LW s5, 0(s3)
+  SW s5, 0(s4)
   SW s2, 0(s3)
-  LA s2, cnt
-  LW s2, 0(s2)
   SLLIW s2, s2, 2
   LA s3, value
   ADD s2, s3, s2
@@ -161,6 +151,7 @@ bb6:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:
@@ -170,27 +161,19 @@ bb7:
   LA s3, cnt
   SW s2, 0(s3)
   SW s2, 0(s1)
-  LA s1, cnt
-  LW s1, 0(s1)
-  SLLIW s1, s1, 2
-  LA s2, key
-  ADD s1, s2, s1
+  SLLIW s1, s2, 2
+  LA s3, key
+  ADD s1, s3, s1
   SW s0, 0(s1)
-  LA s0, cnt
-  LW s0, 0(s0)
-  SLLIW s0, s0, 2
+  SLLIW s0, s2, 2
   LA s1, value
   ADD s0, s1, s0
   SW a1, 0(s0)
-  LA s0, cnt
-  LW s0, 0(s0)
-  SLLIW s0, s0, 2
+  SLLIW s0, s2, 2
   LA s1, next
   ADD s0, s1, s0
   SW zero, 0(s0)
-  LA s0, cnt
-  LW s0, 0(s0)
-  SLLIW s0, s0, 2
+  SLLIW s0, s2, 2
   LA s1, nextvalue
   ADD s0, s1, s0
   SW zero, 0(s0)
@@ -202,6 +185,7 @@ bb7:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
@@ -369,28 +353,20 @@ bb26:
   ADDIW s9, s9, 1
   LA s10, cnt
   SW s9, 0(s10)
-  SLLIW s9, s9, 2
-  LA s10, next
-  ADD s9, s10, s9
-  LW s10, 0(s6)
-  SW s10, 0(s9)
-  LA s9, cnt
-  LW s9, 0(s9)
+  SLLIW s10, s9, 2
+  LA s11, next
+  ADD s10, s11, s10
+  LW s11, 0(s6)
+  SW s11, 0(s10)
   SW s9, 0(s6)
-  LA s9, cnt
-  LW s9, 0(s9)
-  SLLIW s9, s9, 2
-  LA s10, key
-  ADD s9, s10, s9
-  SW s5, 0(s9)
-  LA s9, cnt
-  LW s9, 0(s9)
-  SLLIW s9, s9, 2
-  LA s10, value
-  ADD s9, s10, s9
-  SW s4, 0(s9)
-  LA s9, cnt
-  LW s9, 0(s9)
+  SLLIW s10, s9, 2
+  LA s11, key
+  ADD s10, s11, s10
+  SW s5, 0(s10)
+  SLLIW s10, s9, 2
+  LA s11, value
+  ADD s10, s11, s10
+  SW s4, 0(s10)
   SLLIW s9, s9, 2
   LA s10, nextvalue
   ADD s9, s10, s9
@@ -421,18 +397,14 @@ bb30:
   ADDIW s7, s7, 1
   LA s9, cnt
   SW s7, 0(s9)
-  SLLIW s7, s7, 2
-  LA s9, nextvalue
-  ADD s7, s9, s7
-  LA s9, nextvalue
-  ADD s8, s9, s8
-  LW s9, 0(s8)
-  SW s9, 0(s7)
-  LA s7, cnt
-  LW s7, 0(s7)
+  SLLIW s9, s7, 2
+  LA s10, nextvalue
+  ADD s9, s10, s9
+  LA s10, nextvalue
+  ADD s8, s10, s8
+  LW s10, 0(s8)
+  SW s10, 0(s9)
   SW s7, 0(s8)
-  LA s7, cnt
-  LW s7, 0(s7)
   SLLIW s7, s7, 2
   LA s8, value
   ADD s7, s8, s7
@@ -445,27 +417,19 @@ bb31:
   LA s8, cnt
   SW s7, 0(s8)
   SW s7, 0(s6)
-  LA s6, cnt
-  LW s6, 0(s6)
-  SLLIW s6, s6, 2
-  LA s7, key
-  ADD s6, s7, s6
+  SLLIW s6, s7, 2
+  LA s8, key
+  ADD s6, s8, s6
   SW s5, 0(s6)
-  LA s5, cnt
-  LW s5, 0(s5)
-  SLLIW s5, s5, 2
+  SLLIW s5, s7, 2
   LA s6, value
   ADD s5, s6, s5
   SW s4, 0(s5)
-  LA s4, cnt
-  LW s4, 0(s4)
-  SLLIW s4, s4, 2
+  SLLIW s4, s7, 2
   LA s5, next
   ADD s4, s5, s4
   SW zero, 0(s4)
-  LA s4, cnt
-  LW s4, 0(s4)
-  SLLIW s4, s4, 2
+  SLLIW s4, s7, 2
   LA s5, nextvalue
   ADD s4, s5, s4
   SW zero, 0(s4)

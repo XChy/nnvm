@@ -316,8 +316,7 @@ read_image.if.exit103:
 read_image.select.then110:
   br bb %read_image.select.exit112
 read_image.select.else111:
-  height.load635 = load i32 from ptr @height
-  116636 = icmp sgt i32 %height.load635, i32 1024
+  116636 = icmp sgt i32 %106627, i32 1024
   br bb %read_image.select.exit112
 read_image.select.exit112:
   select113.phi639 = phi [bb %read_image.select.else111, i1 %116636, bb %read_image.select.then110, i1 -1]
@@ -391,8 +390,7 @@ if.exit103:
 select.then110:
   br bb %select.exit112
 select.else111:
-  height.load = load i32 from ptr @height
-  116 = icmp sgt i32 %height.load, i32 1024
+  116 = icmp sgt i32 %106, i32 1024
   br bb %select.exit112
 select.exit112:
   select113.phi = phi [bb %select.else111, i1 %116, bb %select.then110, i1 -1]

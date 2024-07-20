@@ -242,15 +242,15 @@ if.exit:
   call void _sysy_starttime(i32 62)
   br bb %while.cond169
 while.cond169:
-  i168.phi235 = phi [bb %if.exit, i32 ub, bb %while.body170, i32 %181]
-  174 = icmp slt i32 %i168.phi235, i32 %n.phi
+  i168.phi236 = phi [bb %if.exit, i32 ub, bb %while.body170, i32 %181]
+  174 = icmp slt i32 %i168.phi236, i32 %n.phi
   br i1 %174, bb %while.body170, bb %while.exit171
 while.body170:
-  244 = shl i32 %i168.phi235, i32 2
+  244 = shl i32 %i168.phi236, i32 2
   178 = ptradd ptr %vectorA, i32 %244
   179 = si2f i32 1 to float
   store float %179 to ptr %178
-  181 = add i32 %i168.phi235, i32 1
+  181 = add i32 %i168.phi236, i32 1
   br bb %while.cond169
 while.exit171:
   br bb %while.cond182

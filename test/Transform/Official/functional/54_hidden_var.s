@@ -81,7 +81,8 @@ main:
   ADDI s1, sp, 124
   ADDI s2, zero, 0
   SW s2, 0(s1)
-  LW s1, 0(s0)
+  ADDI s1, zero, 0
+  XORI s1, s1, 1
   BNE s1, zero, bb2
   # implict jump to bb1
 bb1:
@@ -124,25 +125,35 @@ bb1:
   ADDI sp, sp, 272
   JALR zero, 0(ra)
 bb2:
-  SW zero, 128(sp)
+  ADDI s1, zero, 0
+  SW s1, 128(sp)
   ADDI s1, sp, 132
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 136
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 140
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 144
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 148
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 152
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 156
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 160
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 164
-  SW zero, 0(s1)
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
   ADDI s1, sp, 168
   ADDI s2, zero, 2
   SW s2, 0(s1)

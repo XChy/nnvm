@@ -10,9 +10,8 @@ entry27:
   count.load471 = load i32 from ptr @count
   2472 = add i32 %count.load471, i32 1
   store i32 %2472 to ptr @count
-  sum.load33 = load i32 from ptr @sum
   a.load34 = load i32 from ptr @a
-  35 = add i32 %sum.load33, i32 %a.load34
+  35 = add i32 %30, i32 %a.load34
   store i32 %35 to ptr @sum
   ret 
 }
@@ -25,14 +24,11 @@ entry4:
   count.load457 = load i32 from ptr @count
   2458 = add i32 %count.load457, i32 1
   store i32 %2458 to ptr @count
-  sum.load10 = load i32 from ptr @sum
-  12 = add i32 %sum.load10, i32 %2458
+  12 = add i32 %8, i32 %2458
   store i32 %12 to ptr @sum
-  count.load464 = load i32 from ptr @count
-  2465 = add i32 %count.load464, i32 1
+  2465 = add i32 %2458, i32 1
   store i32 %2465 to ptr @count
-  sum.load18 = load i32 from ptr @sum
-  20 = add i32 %sum.load18, i32 %2465
+  20 = add i32 %12, i32 %2465
   store i32 %20 to ptr @sum
   23 = add i32 %20, i32 %2458
   store i32 %23 to ptr @sum
@@ -66,362 +62,243 @@ entry51:
   2500 = add i32 %count.load499, i32 1
   store i32 %2500 to ptr @count
   store i32 %2500 to ptr @a
-  sum.load53 = load i32 from ptr @sum
-  55 = add i32 %sum.load53, i32 %2500
+  55 = add i32 0, i32 %2500
   store i32 %55 to ptr @sum
-  count.load506 = load i32 from ptr @count
-  2507 = add i32 %count.load506, i32 1
+  2507 = add i32 %2500, i32 1
   store i32 %2507 to ptr @count
-  sum.load277 = load i32 from ptr @sum
-  8278 = add i32 %sum.load277, i32 %2507
+  8278 = add i32 %55, i32 %2507
   store i32 %8278 to ptr @sum
-  count.load632 = load i32 from ptr @count
-  2633 = add i32 %count.load632, i32 1
+  2633 = add i32 %2507, i32 1
   store i32 %2633 to ptr @count
-  sum.load10281 = load i32 from ptr @sum
-  12282 = add i32 %sum.load10281, i32 %2633
+  12282 = add i32 %8278, i32 %2633
   store i32 %12282 to ptr @sum
-  count.load639 = load i32 from ptr @count
-  2640 = add i32 %count.load639, i32 1
+  2640 = add i32 %2633, i32 1
   store i32 %2640 to ptr @count
-  sum.load18285 = load i32 from ptr @sum
-  20286 = add i32 %sum.load18285, i32 %2640
+  20286 = add i32 %12282, i32 %2640
   store i32 %20286 to ptr @sum
   23288 = add i32 %20286, i32 %2633
   store i32 %23288 to ptr @sum
   26290 = add i32 %23288, i32 %2633
   store i32 %26290 to ptr @sum
-  sum.load28157 = load i32 from ptr @sum
-  a.load29158 = load i32 from ptr @a
-  30159 = add i32 %sum.load28157, i32 %a.load29158
+  30159 = add i32 %26290, i32 %2500
   store i32 %30159 to ptr @sum
-  count.load562 = load i32 from ptr @count
-  2563 = add i32 %count.load562, i32 1
+  2563 = add i32 %2640, i32 1
   store i32 %2563 to ptr @count
-  sum.load33162 = load i32 from ptr @sum
-  a.load34163 = load i32 from ptr @a
-  35164 = add i32 %sum.load33162, i32 %a.load34163
+  35164 = add i32 %30159, i32 %2500
   store i32 %35164 to ptr @sum
-  count.load478792 = load i32 from ptr @count
-  2479793 = add i32 %count.load478792, i32 1
+  2479793 = add i32 %2563, i32 1
   store i32 %2479793 to ptr @count
-  sum.load39775 = load i32 from ptr @sum
-  41776 = add i32 %sum.load39775, i32 %2479793
+  41776 = add i32 %35164, i32 %2479793
   store i32 %41776 to ptr @sum
-  count.load485797 = load i32 from ptr @count
-  2486798 = add i32 %count.load485797, i32 1
+  2486798 = add i32 %2479793, i32 1
   store i32 %2486798 to ptr @count
-  sum.load43781 = load i32 from ptr @sum
-  45782 = add i32 %sum.load43781, i32 %2486798
+  45782 = add i32 %41776, i32 %2486798
   store i32 %45782 to ptr @sum
-  count.load492802 = load i32 from ptr @count
-  2493803 = add i32 %count.load492802, i32 1
+  2493803 = add i32 %2486798, i32 1
   store i32 %2493803 to ptr @count
-  sum.load48787 = load i32 from ptr @sum
-  50788 = add i32 %sum.load48787, i32 %2486798
+  50788 = add i32 %45782, i32 %2486798
   store i32 %50788 to ptr @sum
-  sum.load295 = load i32 from ptr @sum
-  8296 = add i32 %sum.load295, i32 %2507
+  8296 = add i32 %50788, i32 %2507
   store i32 %8296 to ptr @sum
-  count.load646 = load i32 from ptr @count
-  2647 = add i32 %count.load646, i32 1
+  2647 = add i32 %2493803, i32 1
   store i32 %2647 to ptr @count
-  sum.load10299 = load i32 from ptr @sum
-  12300 = add i32 %sum.load10299, i32 %2647
+  12300 = add i32 %8296, i32 %2647
   store i32 %12300 to ptr @sum
-  count.load653 = load i32 from ptr @count
-  2654 = add i32 %count.load653, i32 1
+  2654 = add i32 %2647, i32 1
   store i32 %2654 to ptr @count
-  sum.load18303 = load i32 from ptr @sum
-  20304 = add i32 %sum.load18303, i32 %2654
+  20304 = add i32 %12300, i32 %2654
   store i32 %20304 to ptr @sum
   23306 = add i32 %20304, i32 %2647
   store i32 %23306 to ptr @sum
   26308 = add i32 %23306, i32 %2647
   store i32 %26308 to ptr @sum
-  sum.load28169 = load i32 from ptr @sum
-  a.load29170 = load i32 from ptr @a
-  30171 = add i32 %sum.load28169, i32 %a.load29170
+  30171 = add i32 %26308, i32 %2500
   store i32 %30171 to ptr @sum
-  count.load569 = load i32 from ptr @count
-  2570 = add i32 %count.load569, i32 1
+  2570 = add i32 %2654, i32 1
   store i32 %2570 to ptr @count
-  sum.load33174 = load i32 from ptr @sum
-  a.load34175 = load i32 from ptr @a
-  35176 = add i32 %sum.load33174, i32 %a.load34175
+  35176 = add i32 %30171, i32 %2500
   store i32 %35176 to ptr @sum
-  count.load478828 = load i32 from ptr @count
-  2479829 = add i32 %count.load478828, i32 1
+  2479829 = add i32 %2570, i32 1
   store i32 %2479829 to ptr @count
-  sum.load39811 = load i32 from ptr @sum
-  41812 = add i32 %sum.load39811, i32 %2479829
+  41812 = add i32 %35176, i32 %2479829
   store i32 %41812 to ptr @sum
-  count.load485833 = load i32 from ptr @count
-  2486834 = add i32 %count.load485833, i32 1
+  2486834 = add i32 %2479829, i32 1
   store i32 %2486834 to ptr @count
-  sum.load43817 = load i32 from ptr @sum
-  45818 = add i32 %sum.load43817, i32 %2486834
+  45818 = add i32 %41812, i32 %2486834
   store i32 %45818 to ptr @sum
-  count.load492838 = load i32 from ptr @count
-  2493839 = add i32 %count.load492838, i32 1
+  2493839 = add i32 %2486834, i32 1
   store i32 %2493839 to ptr @count
-  sum.load48823 = load i32 from ptr @sum
-  50824 = add i32 %sum.load48823, i32 %2486834
+  50824 = add i32 %45818, i32 %2486834
   store i32 %50824 to ptr @sum
-  count.load513 = load i32 from ptr @count
-  2514 = add i32 %count.load513, i32 1
+  2514 = add i32 %2493839, i32 1
   store i32 %2514 to ptr @count
-  sum.load313 = load i32 from ptr @sum
-  8314 = add i32 %sum.load313, i32 %2507
+  8314 = add i32 %50824, i32 %2507
   store i32 %8314 to ptr @sum
-  count.load660 = load i32 from ptr @count
-  2661 = add i32 %count.load660, i32 1
+  2661 = add i32 %2514, i32 1
   store i32 %2661 to ptr @count
-  sum.load10317 = load i32 from ptr @sum
-  12318 = add i32 %sum.load10317, i32 %2661
+  12318 = add i32 %8314, i32 %2661
   store i32 %12318 to ptr @sum
-  count.load667 = load i32 from ptr @count
-  2668 = add i32 %count.load667, i32 1
+  2668 = add i32 %2661, i32 1
   store i32 %2668 to ptr @count
-  sum.load18321 = load i32 from ptr @sum
-  20322 = add i32 %sum.load18321, i32 %2668
+  20322 = add i32 %12318, i32 %2668
   store i32 %20322 to ptr @sum
   23324 = add i32 %20322, i32 %2661
   store i32 %23324 to ptr @sum
   26326 = add i32 %23324, i32 %2661
   store i32 %26326 to ptr @sum
-  sum.load28181 = load i32 from ptr @sum
-  a.load29182 = load i32 from ptr @a
-  30183 = add i32 %sum.load28181, i32 %a.load29182
+  30183 = add i32 %26326, i32 %2500
   store i32 %30183 to ptr @sum
-  count.load576 = load i32 from ptr @count
-  2577 = add i32 %count.load576, i32 1
+  2577 = add i32 %2668, i32 1
   store i32 %2577 to ptr @count
-  sum.load33186 = load i32 from ptr @sum
-  a.load34187 = load i32 from ptr @a
-  35188 = add i32 %sum.load33186, i32 %a.load34187
+  35188 = add i32 %30183, i32 %2500
   store i32 %35188 to ptr @sum
-  count.load478864 = load i32 from ptr @count
-  2479865 = add i32 %count.load478864, i32 1
+  2479865 = add i32 %2577, i32 1
   store i32 %2479865 to ptr @count
-  sum.load39847 = load i32 from ptr @sum
-  41848 = add i32 %sum.load39847, i32 %2479865
+  41848 = add i32 %35188, i32 %2479865
   store i32 %41848 to ptr @sum
-  count.load485869 = load i32 from ptr @count
-  2486870 = add i32 %count.load485869, i32 1
+  2486870 = add i32 %2479865, i32 1
   store i32 %2486870 to ptr @count
-  sum.load43853 = load i32 from ptr @sum
-  45854 = add i32 %sum.load43853, i32 %2486870
+  45854 = add i32 %41848, i32 %2486870
   store i32 %45854 to ptr @sum
-  count.load492874 = load i32 from ptr @count
-  2493875 = add i32 %count.load492874, i32 1
+  2493875 = add i32 %2486870, i32 1
   store i32 %2493875 to ptr @count
-  sum.load48859 = load i32 from ptr @sum
-  50860 = add i32 %sum.load48859, i32 %2486870
+  50860 = add i32 %45854, i32 %2486870
   store i32 %50860 to ptr @sum
-  count.load520 = load i32 from ptr @count
-  2521 = add i32 %count.load520, i32 1
+  2521 = add i32 %2493875, i32 1
   store i32 %2521 to ptr @count
-  count.load527 = load i32 from ptr @count
-  2528 = add i32 %count.load527, i32 1
+  2528 = add i32 %2521, i32 1
   store i32 %2528 to ptr @count
-  sum.load331 = load i32 from ptr @sum
-  8332 = add i32 %sum.load331, i32 %2528
+  8332 = add i32 %50860, i32 %2528
   store i32 %8332 to ptr @sum
-  count.load674 = load i32 from ptr @count
-  2675 = add i32 %count.load674, i32 1
+  2675 = add i32 %2528, i32 1
   store i32 %2675 to ptr @count
-  sum.load10335 = load i32 from ptr @sum
-  12336 = add i32 %sum.load10335, i32 %2675
+  12336 = add i32 %8332, i32 %2675
   store i32 %12336 to ptr @sum
-  count.load681 = load i32 from ptr @count
-  2682 = add i32 %count.load681, i32 1
+  2682 = add i32 %2675, i32 1
   store i32 %2682 to ptr @count
-  sum.load18339 = load i32 from ptr @sum
-  20340 = add i32 %sum.load18339, i32 %2682
+  20340 = add i32 %12336, i32 %2682
   store i32 %20340 to ptr @sum
   23342 = add i32 %20340, i32 %2675
   store i32 %23342 to ptr @sum
   26344 = add i32 %23342, i32 %2675
   store i32 %26344 to ptr @sum
-  sum.load28193 = load i32 from ptr @sum
-  a.load29194 = load i32 from ptr @a
-  30195 = add i32 %sum.load28193, i32 %a.load29194
+  30195 = add i32 %26344, i32 %2500
   store i32 %30195 to ptr @sum
-  count.load583 = load i32 from ptr @count
-  2584 = add i32 %count.load583, i32 1
+  2584 = add i32 %2682, i32 1
   store i32 %2584 to ptr @count
-  sum.load33198 = load i32 from ptr @sum
-  a.load34199 = load i32 from ptr @a
-  35200 = add i32 %sum.load33198, i32 %a.load34199
+  35200 = add i32 %30195, i32 %2500
   store i32 %35200 to ptr @sum
-  count.load478900 = load i32 from ptr @count
-  2479901 = add i32 %count.load478900, i32 1
+  2479901 = add i32 %2584, i32 1
   store i32 %2479901 to ptr @count
-  sum.load39883 = load i32 from ptr @sum
-  41884 = add i32 %sum.load39883, i32 %2479901
+  41884 = add i32 %35200, i32 %2479901
   store i32 %41884 to ptr @sum
-  count.load485905 = load i32 from ptr @count
-  2486906 = add i32 %count.load485905, i32 1
+  2486906 = add i32 %2479901, i32 1
   store i32 %2486906 to ptr @count
-  sum.load43889 = load i32 from ptr @sum
-  45890 = add i32 %sum.load43889, i32 %2486906
+  45890 = add i32 %41884, i32 %2486906
   store i32 %45890 to ptr @sum
-  count.load492910 = load i32 from ptr @count
-  2493911 = add i32 %count.load492910, i32 1
+  2493911 = add i32 %2486906, i32 1
   store i32 %2493911 to ptr @count
-  sum.load48895 = load i32 from ptr @sum
-  50896 = add i32 %sum.load48895, i32 %2486906
+  50896 = add i32 %45890, i32 %2486906
   store i32 %50896 to ptr @sum
-  count.load534 = load i32 from ptr @count
-  2535 = add i32 %count.load534, i32 1
+  2535 = add i32 %2493911, i32 1
   store i32 %2535 to ptr @count
-  sum.load349 = load i32 from ptr @sum
-  8350 = add i32 %sum.load349, i32 %2535
+  8350 = add i32 %50896, i32 %2535
   store i32 %8350 to ptr @sum
-  count.load688 = load i32 from ptr @count
-  2689 = add i32 %count.load688, i32 1
+  2689 = add i32 %2535, i32 1
   store i32 %2689 to ptr @count
-  sum.load10353 = load i32 from ptr @sum
-  12354 = add i32 %sum.load10353, i32 %2689
+  12354 = add i32 %8350, i32 %2689
   store i32 %12354 to ptr @sum
-  count.load695 = load i32 from ptr @count
-  2696 = add i32 %count.load695, i32 1
+  2696 = add i32 %2689, i32 1
   store i32 %2696 to ptr @count
-  sum.load18357 = load i32 from ptr @sum
-  20358 = add i32 %sum.load18357, i32 %2696
+  20358 = add i32 %12354, i32 %2696
   store i32 %20358 to ptr @sum
   23360 = add i32 %20358, i32 %2689
   store i32 %23360 to ptr @sum
   26362 = add i32 %23360, i32 %2689
   store i32 %26362 to ptr @sum
-  sum.load28205 = load i32 from ptr @sum
-  a.load29206 = load i32 from ptr @a
-  30207 = add i32 %sum.load28205, i32 %a.load29206
+  30207 = add i32 %26362, i32 %2500
   store i32 %30207 to ptr @sum
-  count.load590 = load i32 from ptr @count
-  2591 = add i32 %count.load590, i32 1
+  2591 = add i32 %2696, i32 1
   store i32 %2591 to ptr @count
-  sum.load33210 = load i32 from ptr @sum
-  a.load34211 = load i32 from ptr @a
-  35212 = add i32 %sum.load33210, i32 %a.load34211
+  35212 = add i32 %30207, i32 %2500
   store i32 %35212 to ptr @sum
-  count.load478936 = load i32 from ptr @count
-  2479937 = add i32 %count.load478936, i32 1
+  2479937 = add i32 %2591, i32 1
   store i32 %2479937 to ptr @count
-  sum.load39919 = load i32 from ptr @sum
-  41920 = add i32 %sum.load39919, i32 %2479937
+  41920 = add i32 %35212, i32 %2479937
   store i32 %41920 to ptr @sum
-  count.load485941 = load i32 from ptr @count
-  2486942 = add i32 %count.load485941, i32 1
+  2486942 = add i32 %2479937, i32 1
   store i32 %2486942 to ptr @count
-  sum.load43925 = load i32 from ptr @sum
-  45926 = add i32 %sum.load43925, i32 %2486942
+  45926 = add i32 %41920, i32 %2486942
   store i32 %45926 to ptr @sum
-  count.load492946 = load i32 from ptr @count
-  2493947 = add i32 %count.load492946, i32 1
+  2493947 = add i32 %2486942, i32 1
   store i32 %2493947 to ptr @count
-  sum.load48931 = load i32 from ptr @sum
-  50932 = add i32 %sum.load48931, i32 %2486942
+  50932 = add i32 %45926, i32 %2486942
   store i32 %50932 to ptr @sum
-  count.load541 = load i32 from ptr @count
-  2542 = add i32 %count.load541, i32 1
+  2542 = add i32 %2493947, i32 1
   store i32 %2542 to ptr @count
-  sum.load367 = load i32 from ptr @sum
-  8368 = add i32 %sum.load367, i32 %2542
+  8368 = add i32 %50932, i32 %2542
   store i32 %8368 to ptr @sum
-  count.load702 = load i32 from ptr @count
-  2703 = add i32 %count.load702, i32 1
+  2703 = add i32 %2542, i32 1
   store i32 %2703 to ptr @count
-  sum.load10371 = load i32 from ptr @sum
-  12372 = add i32 %sum.load10371, i32 %2703
+  12372 = add i32 %8368, i32 %2703
   store i32 %12372 to ptr @sum
-  count.load709 = load i32 from ptr @count
-  2710 = add i32 %count.load709, i32 1
+  2710 = add i32 %2703, i32 1
   store i32 %2710 to ptr @count
-  sum.load18375 = load i32 from ptr @sum
-  20376 = add i32 %sum.load18375, i32 %2710
+  20376 = add i32 %12372, i32 %2710
   store i32 %20376 to ptr @sum
   23378 = add i32 %20376, i32 %2703
   store i32 %23378 to ptr @sum
   26380 = add i32 %23378, i32 %2703
   store i32 %26380 to ptr @sum
-  sum.load28217 = load i32 from ptr @sum
-  a.load29218 = load i32 from ptr @a
-  30219 = add i32 %sum.load28217, i32 %a.load29218
+  30219 = add i32 %26380, i32 %2500
   store i32 %30219 to ptr @sum
-  count.load597 = load i32 from ptr @count
-  2598 = add i32 %count.load597, i32 1
+  2598 = add i32 %2710, i32 1
   store i32 %2598 to ptr @count
-  sum.load33222 = load i32 from ptr @sum
-  a.load34223 = load i32 from ptr @a
-  35224 = add i32 %sum.load33222, i32 %a.load34223
+  35224 = add i32 %30219, i32 %2500
   store i32 %35224 to ptr @sum
-  count.load478972 = load i32 from ptr @count
-  2479973 = add i32 %count.load478972, i32 1
+  2479973 = add i32 %2598, i32 1
   store i32 %2479973 to ptr @count
-  sum.load39955 = load i32 from ptr @sum
-  41956 = add i32 %sum.load39955, i32 %2479973
+  41956 = add i32 %35224, i32 %2479973
   store i32 %41956 to ptr @sum
-  count.load485977 = load i32 from ptr @count
-  2486978 = add i32 %count.load485977, i32 1
+  2486978 = add i32 %2479973, i32 1
   store i32 %2486978 to ptr @count
-  sum.load43961 = load i32 from ptr @sum
-  45962 = add i32 %sum.load43961, i32 %2486978
+  45962 = add i32 %41956, i32 %2486978
   store i32 %45962 to ptr @sum
-  count.load492982 = load i32 from ptr @count
-  2493983 = add i32 %count.load492982, i32 1
+  2493983 = add i32 %2486978, i32 1
   store i32 %2493983 to ptr @count
-  sum.load48967 = load i32 from ptr @sum
-  50968 = add i32 %sum.load48967, i32 %2486978
+  50968 = add i32 %45962, i32 %2486978
   store i32 %50968 to ptr @sum
-  sum.load385 = load i32 from ptr @sum
-  8386 = add i32 %sum.load385, i32 %2507
+  8386 = add i32 %50968, i32 %2507
   store i32 %8386 to ptr @sum
-  count.load716 = load i32 from ptr @count
-  2717 = add i32 %count.load716, i32 1
+  2717 = add i32 %2493983, i32 1
   store i32 %2717 to ptr @count
-  sum.load10389 = load i32 from ptr @sum
-  12390 = add i32 %sum.load10389, i32 %2717
+  12390 = add i32 %8386, i32 %2717
   store i32 %12390 to ptr @sum
-  count.load723 = load i32 from ptr @count
-  2724 = add i32 %count.load723, i32 1
+  2724 = add i32 %2717, i32 1
   store i32 %2724 to ptr @count
-  sum.load18393 = load i32 from ptr @sum
-  20394 = add i32 %sum.load18393, i32 %2724
+  20394 = add i32 %12390, i32 %2724
   store i32 %20394 to ptr @sum
   23396 = add i32 %20394, i32 %2717
   store i32 %23396 to ptr @sum
   26398 = add i32 %23396, i32 %2717
   store i32 %26398 to ptr @sum
-  sum.load28229 = load i32 from ptr @sum
-  a.load29230 = load i32 from ptr @a
-  30231 = add i32 %sum.load28229, i32 %a.load29230
+  30231 = add i32 %26398, i32 %2500
   store i32 %30231 to ptr @sum
-  count.load604 = load i32 from ptr @count
-  2605 = add i32 %count.load604, i32 1
+  2605 = add i32 %2724, i32 1
   store i32 %2605 to ptr @count
-  sum.load33234 = load i32 from ptr @sum
-  a.load34235 = load i32 from ptr @a
-  35236 = add i32 %sum.load33234, i32 %a.load34235
+  35236 = add i32 %30231, i32 %2500
   store i32 %35236 to ptr @sum
-  count.load4781008 = load i32 from ptr @count
-  24791009 = add i32 %count.load4781008, i32 1
+  24791009 = add i32 %2605, i32 1
   store i32 %24791009 to ptr @count
-  sum.load39991 = load i32 from ptr @sum
-  41992 = add i32 %sum.load39991, i32 %24791009
+  41992 = add i32 %35236, i32 %24791009
   store i32 %41992 to ptr @sum
-  count.load4851013 = load i32 from ptr @count
-  24861014 = add i32 %count.load4851013, i32 1
+  24861014 = add i32 %24791009, i32 1
   store i32 %24861014 to ptr @count
-  sum.load43997 = load i32 from ptr @sum
-  45998 = add i32 %sum.load43997, i32 %24861014
+  45998 = add i32 %41992, i32 %24861014
   store i32 %45998 to ptr @sum
-  count.load4921018 = load i32 from ptr @count
-  24931019 = add i32 %count.load4921018, i32 1
+  24931019 = add i32 %24861014, i32 1
   store i32 %24931019 to ptr @count
-  sum.load481003 = load i32 from ptr @sum
-  501004 = add i32 %sum.load481003, i32 %24861014
+  501004 = add i32 %45998, i32 %24861014
   store i32 %501004 to ptr @sum
   br bb %while.cond104
 while.exit:
@@ -444,47 +321,33 @@ while.cond110:
   count.load730 = load i32 from ptr @count
   2731 = add i32 %count.load730, i32 1
   store i32 %2731 to ptr @count
-  sum.load10407 = load i32 from ptr @sum
-  12408 = add i32 %sum.load10407, i32 %2731
+  12408 = add i32 %8404, i32 %2731
   store i32 %12408 to ptr @sum
-  count.load737 = load i32 from ptr @count
-  2738 = add i32 %count.load737, i32 1
+  2738 = add i32 %2731, i32 1
   store i32 %2738 to ptr @count
-  sum.load18411 = load i32 from ptr @sum
-  20412 = add i32 %sum.load18411, i32 %2738
+  20412 = add i32 %12408, i32 %2738
   store i32 %20412 to ptr @sum
   23414 = add i32 %20412, i32 %2731
   store i32 %23414 to ptr @sum
   26416 = add i32 %23414, i32 %2731
   store i32 %26416 to ptr @sum
-  sum.load28241 = load i32 from ptr @sum
-  a.load29242 = load i32 from ptr @a
-  30243 = add i32 %sum.load28241, i32 %a.load29242
+  30243 = add i32 %26416, i32 %2500
   store i32 %30243 to ptr @sum
-  count.load611 = load i32 from ptr @count
-  2612 = add i32 %count.load611, i32 1
+  2612 = add i32 %2738, i32 1
   store i32 %2612 to ptr @count
-  sum.load33246 = load i32 from ptr @sum
-  a.load34247 = load i32 from ptr @a
-  35248 = add i32 %sum.load33246, i32 %a.load34247
+  35248 = add i32 %30243, i32 %2500
   store i32 %35248 to ptr @sum
-  count.load4781044 = load i32 from ptr @count
-  24791045 = add i32 %count.load4781044, i32 1
+  24791045 = add i32 %2612, i32 1
   store i32 %24791045 to ptr @count
-  sum.load391027 = load i32 from ptr @sum
-  411028 = add i32 %sum.load391027, i32 %24791045
+  411028 = add i32 %35248, i32 %24791045
   store i32 %411028 to ptr @sum
-  count.load4851049 = load i32 from ptr @count
-  24861050 = add i32 %count.load4851049, i32 1
+  24861050 = add i32 %24791045, i32 1
   store i32 %24861050 to ptr @count
-  sum.load431033 = load i32 from ptr @sum
-  451034 = add i32 %sum.load431033, i32 %24861050
+  451034 = add i32 %411028, i32 %24861050
   store i32 %451034 to ptr @sum
-  count.load4921054 = load i32 from ptr @count
-  24931055 = add i32 %count.load4921054, i32 1
+  24931055 = add i32 %24861050, i32 1
   store i32 %24931055 to ptr @count
-  sum.load481039 = load i32 from ptr @sum
-  501040 = add i32 %sum.load481039, i32 %24861050
+  501040 = add i32 %451034, i32 %24861050
   store i32 %501040 to ptr @sum
   123 = icmp eq i32 %i.phi, i32 1
   br i1 %123, bb %then124, bb %else
@@ -495,50 +358,35 @@ then124:
   sum.load421 = load i32 from ptr @sum
   8422 = add i32 %sum.load421, i32 %2549
   store i32 %8422 to ptr @sum
-  count.load744 = load i32 from ptr @count
-  2745 = add i32 %count.load744, i32 1
+  2745 = add i32 %2549, i32 1
   store i32 %2745 to ptr @count
-  sum.load10425 = load i32 from ptr @sum
-  12426 = add i32 %sum.load10425, i32 %2745
+  12426 = add i32 %8422, i32 %2745
   store i32 %12426 to ptr @sum
-  count.load751 = load i32 from ptr @count
-  2752 = add i32 %count.load751, i32 1
+  2752 = add i32 %2745, i32 1
   store i32 %2752 to ptr @count
-  sum.load18429 = load i32 from ptr @sum
-  20430 = add i32 %sum.load18429, i32 %2752
+  20430 = add i32 %12426, i32 %2752
   store i32 %20430 to ptr @sum
   23432 = add i32 %20430, i32 %2745
   store i32 %23432 to ptr @sum
   26434 = add i32 %23432, i32 %2745
   store i32 %26434 to ptr @sum
-  sum.load28253 = load i32 from ptr @sum
-  a.load29254 = load i32 from ptr @a
-  30255 = add i32 %sum.load28253, i32 %a.load29254
+  30255 = add i32 %26434, i32 %2500
   store i32 %30255 to ptr @sum
-  count.load618 = load i32 from ptr @count
-  2619 = add i32 %count.load618, i32 1
+  2619 = add i32 %2752, i32 1
   store i32 %2619 to ptr @count
-  sum.load33258 = load i32 from ptr @sum
-  a.load34259 = load i32 from ptr @a
-  35260 = add i32 %sum.load33258, i32 %a.load34259
+  35260 = add i32 %30255, i32 %2500
   store i32 %35260 to ptr @sum
-  count.load4781080 = load i32 from ptr @count
-  24791081 = add i32 %count.load4781080, i32 1
+  24791081 = add i32 %2619, i32 1
   store i32 %24791081 to ptr @count
-  sum.load391063 = load i32 from ptr @sum
-  411064 = add i32 %sum.load391063, i32 %24791081
+  411064 = add i32 %35260, i32 %24791081
   store i32 %411064 to ptr @sum
-  count.load4851085 = load i32 from ptr @count
-  24861086 = add i32 %count.load4851085, i32 1
+  24861086 = add i32 %24791081, i32 1
   store i32 %24861086 to ptr @count
-  sum.load431069 = load i32 from ptr @sum
-  451070 = add i32 %sum.load431069, i32 %24861086
+  451070 = add i32 %411064, i32 %24861086
   store i32 %451070 to ptr @sum
-  count.load4921090 = load i32 from ptr @count
-  24931091 = add i32 %count.load4921090, i32 1
+  24931091 = add i32 %24861086, i32 1
   store i32 %24931091 to ptr @count
-  sum.load481075 = load i32 from ptr @sum
-  501076 = add i32 %sum.load481075, i32 %24861086
+  501076 = add i32 %451070, i32 %24861086
   store i32 %501076 to ptr @sum
   134 = add i32 %i.phi, i32 1
   br bb %while.cond104
@@ -549,50 +397,35 @@ else:
   count.load758 = load i32 from ptr @count
   2759 = add i32 %count.load758, i32 1
   store i32 %2759 to ptr @count
-  sum.load10443 = load i32 from ptr @sum
-  12444 = add i32 %sum.load10443, i32 %2759
+  12444 = add i32 %8440, i32 %2759
   store i32 %12444 to ptr @sum
-  count.load765 = load i32 from ptr @count
-  2766 = add i32 %count.load765, i32 1
+  2766 = add i32 %2759, i32 1
   store i32 %2766 to ptr @count
-  sum.load18447 = load i32 from ptr @sum
-  20448 = add i32 %sum.load18447, i32 %2766
+  20448 = add i32 %12444, i32 %2766
   store i32 %20448 to ptr @sum
   23450 = add i32 %20448, i32 %2759
   store i32 %23450 to ptr @sum
   26452 = add i32 %23450, i32 %2759
   store i32 %26452 to ptr @sum
-  sum.load28265 = load i32 from ptr @sum
-  a.load29266 = load i32 from ptr @a
-  30267 = add i32 %sum.load28265, i32 %a.load29266
+  30267 = add i32 %26452, i32 %2500
   store i32 %30267 to ptr @sum
-  count.load625 = load i32 from ptr @count
-  2626 = add i32 %count.load625, i32 1
+  2626 = add i32 %2766, i32 1
   store i32 %2626 to ptr @count
-  sum.load33270 = load i32 from ptr @sum
-  a.load34271 = load i32 from ptr @a
-  35272 = add i32 %sum.load33270, i32 %a.load34271
+  35272 = add i32 %30267, i32 %2500
   store i32 %35272 to ptr @sum
-  count.load4781116 = load i32 from ptr @count
-  24791117 = add i32 %count.load4781116, i32 1
+  24791117 = add i32 %2626, i32 1
   store i32 %24791117 to ptr @count
-  sum.load391099 = load i32 from ptr @sum
-  411100 = add i32 %sum.load391099, i32 %24791117
+  411100 = add i32 %35272, i32 %24791117
   store i32 %411100 to ptr @sum
-  count.load4851121 = load i32 from ptr @count
-  24861122 = add i32 %count.load4851121, i32 1
+  24861122 = add i32 %24791117, i32 1
   store i32 %24861122 to ptr @count
-  sum.load431105 = load i32 from ptr @sum
-  451106 = add i32 %sum.load431105, i32 %24861122
+  451106 = add i32 %411100, i32 %24861122
   store i32 %451106 to ptr @sum
-  count.load4921126 = load i32 from ptr @count
-  24931127 = add i32 %count.load4921126, i32 1
+  24931127 = add i32 %24861122, i32 1
   store i32 %24931127 to ptr @count
-  sum.load481111 = load i32 from ptr @sum
-  501112 = add i32 %sum.load481111, i32 %24861122
+  501112 = add i32 %451106, i32 %24861122
   store i32 %501112 to ptr @sum
-  count.load555 = load i32 from ptr @count
-  2556 = add i32 %count.load555, i32 1
+  2556 = add i32 %24931127, i32 1
   store i32 %2556 to ptr @count
   141 = add i32 %i.phi, i32 1
   br bb %while.cond104
@@ -616,17 +449,13 @@ entry36:
   sum.load39 = load i32 from ptr @sum
   41 = add i32 %sum.load39, i32 %2479
   store i32 %41 to ptr @sum
-  count.load485 = load i32 from ptr @count
-  2486 = add i32 %count.load485, i32 1
+  2486 = add i32 %2479, i32 1
   store i32 %2486 to ptr @count
-  sum.load43 = load i32 from ptr @sum
-  45 = add i32 %sum.load43, i32 %2486
+  45 = add i32 %41, i32 %2486
   store i32 %45 to ptr @sum
-  count.load492 = load i32 from ptr @count
-  2493 = add i32 %count.load492, i32 1
+  2493 = add i32 %2486, i32 1
   store i32 %2493 to ptr @count
-  sum.load48 = load i32 from ptr @sum
-  50 = add i32 %sum.load48, i32 %2486
+  50 = add i32 %45, i32 %2486
   store i32 %50 to ptr @sum
   ret 
 }

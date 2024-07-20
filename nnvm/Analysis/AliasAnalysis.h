@@ -14,6 +14,14 @@
 
 namespace nnvm {
 
+static inline Value *getAccessedObj(Instruction *a) {
+  if (auto *SI = mayCast<StoreInst>(a))
+    return SI->getDest();
+  if (auto *LI = mayCast<LoadInst>(a))
+    return LI->getSrc();
+  return nullptr;
+}
+
 class AliasAnalysis : public FunctionPass {
 public:
   bool run(Function &F);

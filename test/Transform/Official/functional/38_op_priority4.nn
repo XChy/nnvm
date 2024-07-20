@@ -33,9 +33,8 @@ select.else:
   24 = mul i32 %a.load22, i32 %b.load23
   c.load25 = load i32 from ptr @c
   26 = sdiv i32 %24, i32 %c.load25
-  e.load = load i32 from ptr @e
   d.load28 = load i32 from ptr @d
-  29 = add i32 %e.load, i32 %d.load28
+  29 = add i32 %5, i32 %d.load28
   30 = icmp eq i32 %26, i32 %29
   br bb %select.exit
 select.exit:
@@ -50,8 +49,7 @@ select.else34:
   c.load40 = load i32 from ptr @c
   41 = add i32 %39, i32 %c.load40
   d.load42 = load i32 from ptr @d
-  e.load43 = load i32 from ptr @e
-  44 = add i32 %d.load42, i32 %e.load43
+  44 = add i32 %d.load42, i32 %5
   45 = icmp eq i32 %41, i32 %44
   br bb %select.exit35
 select.exit35:
