@@ -30,11 +30,11 @@ bool GVNPass::EqInstImpl::operator()(Instruction *A, Instruction *B) const {
       return false;
   }
 
-  if (dyn_cast<ICmpInst>(A))
+  if (mayCast<ICmpInst>(A))
     return cast<ICmpInst>(A)->getPredicate() ==
            cast<ICmpInst>(B)->getPredicate();
 
-  if (dyn_cast<FCmpInst>(A))
+  if (mayCast<FCmpInst>(A))
     return cast<FCmpInst>(A)->getPredicate() ==
            cast<FCmpInst>(B)->getPredicate();
 
@@ -49,7 +49,7 @@ static inline bool isPure(Instruction *I) {
   if (I->isa<StackInst>())
     return false;
 
-  if (auto *CI = dyn_cast<CallInst>(I))
+  if (auto *CI = mayCast<CallInst>(I))
     return cast<Function>(CI->getCallee())->isAttached(Attribute::Pure);
 
   if (I->mayWriteToMemory())

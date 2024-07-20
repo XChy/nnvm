@@ -11,8 +11,8 @@ using namespace nnvm;
 Value *ConstantFold::fold(Instruction *I) {
 
   if (I->isBinOp()) {
-    Constant *lhs = dyn_cast<Constant>(I->getOperand(0));
-    Constant *rhs = dyn_cast<Constant>(I->getOperand(1));
+    Constant *lhs = mayCast<Constant>(I->getOperand(0));
+    Constant *rhs = mayCast<Constant>(I->getOperand(1));
     if (!lhs || !rhs)
       return nullptr;
 
@@ -50,12 +50,12 @@ Value *ConstantFold::fold(Instruction *I) {
     }
   }
 
-  if (ICmpInst *CI = dyn_cast<ICmpInst>(I))
-    if (dyn_cast<Constant>(CI->getOperand(0)) &&
-        dyn_cast<Constant>(CI->getOperand(1)))
+  if (ICmpInst *CI = mayCast<ICmpInst>(I))
+    if (mayCast<Constant>(CI->getOperand(0)) &&
+        mayCast<Constant>(CI->getOperand(1)))
       return foldICmp(CI);
 
-  if (LoadInst *LI = dyn_cast<LoadInst>(I))
+  if (LoadInst *LI = mayCast<LoadInst>(I))
     return foldLoad(LI);
 
   // TODO: Handle other operator on constant operands, such as "a[0]", where "a"
@@ -151,7 +151,7 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
 }
 
 Value *ConstantFold::foldLoad(LoadInst *I) {
-  if (GlobalVariable *GV = dyn_cast<GlobalVariable>(I->getSrc())) {
+  if (GlobalVariable *GV = mayCast<GlobalVariable>(I->getSrc())) {
     if (!GV->isImmutable())
       return nullptr;
     if (I->getType() == GV->getInitVal()->getType())

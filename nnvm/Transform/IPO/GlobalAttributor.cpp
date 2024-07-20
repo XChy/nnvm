@@ -24,7 +24,7 @@ bool GlobalAttributorPass::attachPure(Module &M) {
     bool isPure = true;
     for (BasicBlock *BB : *F) {
       for (Instruction *I : *BB) {
-        if (CallInst *CI = dyn_cast<CallInst>(I)) {
+        if (CallInst *CI = mayCast<CallInst>(I)) {
           if (CI->getCallee() != F &&
               !cast<Function>(CI->getCallee())->isAttached(Attribute::Pure))
             isPure = false;

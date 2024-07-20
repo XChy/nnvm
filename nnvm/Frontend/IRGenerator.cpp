@@ -100,21 +100,20 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
 Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
   std::vector<nnvm::SysYParser::ExpContext *> indexs = ctx->exp();
   Constant *valConstant;
+  Symbol *lvalSymbol = symbolTable.lookup(ctx->IDENT()->getText());
 
-  if (auto *globalConstant = dyn_cast<GlobalVariable>(
-          symbolTable.lookup(ctx->IDENT()->getText())->entity))
+  if (auto *globalConstant = mayCast<GlobalVariable>(lvalSymbol->entity))
     valConstant = globalConstant->getInitVal();
   else
-    valConstant =
-        cast<Constant>(symbolTable.lookup(ctx->IDENT()->getText())->entity);
+    valConstant = cast<Constant>(lvalSymbol->entity);
 
-  if (auto constInt = dyn_cast<ConstantInt>(valConstant))
+  if (auto constInt = mayCast<ConstantInt>(valConstant))
     return (int)constInt->getValue();
 
-  if (auto constFloat = dyn_cast<ConstantFloat>(valConstant))
+  if (auto constFloat = mayCast<ConstantFloat>(valConstant))
     return constFloat->getValue();
 
-  if (auto constArray = dyn_cast<ConstantArray>(valConstant)) {
+  if (auto constArray = mayCast<ConstantArray>(valConstant)) {
     size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
@@ -125,10 +124,10 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
             cast<ConstantArray>(constArray->getValue()[any_as<int>(index)]);
       } else {
         valConstant = constArray->getValue()[any_as<int>(index)];
-        if (auto constInt = dyn_cast<ConstantInt>(valConstant)) {
+        if (auto constInt = mayCast<ConstantInt>(valConstant)) {
           return (int)constInt->getValue();
         }
-        if (auto constFloat = dyn_cast<ConstantFloat>(valConstant)) {
+        if (auto constFloat = mayCast<ConstantFloat>(valConstant)) {
           return constFloat->getValue();
         }
       }
@@ -1435,7 +1434,7 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     if (!lVal)
       return Symbol::none();
 
-    if (auto constVal = dyn_cast<Constant>(lVal.entity))
+    if (auto constVal = mayCast<Constant>(lVal.entity))
       return lVal;
 
     if (lVal.symbolType->isArray())

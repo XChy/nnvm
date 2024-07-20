@@ -61,7 +61,7 @@ bool LICMPass::isInvariant(Instruction *I, Loop *L) {
     return false;
   if (I->isa<TerminatorInst>())
     return false;
-  if (auto *CI = dyn_cast<CallInst>(I))
+  if (auto *CI = mayCast<CallInst>(I))
     return cast<Function>(CI->getCallee())->isAttached(Attribute::Pure) &&
            isOperandsInvariant(I, L);
   if (I->mayReadMemory() || I->mayWriteToMemory())

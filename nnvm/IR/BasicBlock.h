@@ -44,7 +44,7 @@ public:
   TerminatorInst *getTerminator() const {
     if (instList.empty())
       return nullptr;
-    return dyn_cast<TerminatorInst>(instList.getLast());
+    return mayCast<TerminatorInst>(instList.getLast());
   }
 
   uint getSuccNum() const { return getTerminator()->getSuccNum(); }
@@ -54,7 +54,7 @@ public:
 
   uint64_t getPredNum() {
     return std::count_if(userList.begin(), userList.end(), [](Use *U) {
-      return dyn_cast<TerminatorInst>(U->getUser()) != nullptr;
+      return mayCast<TerminatorInst>(U->getUser()) != nullptr;
     });
   }
 
@@ -63,7 +63,7 @@ public:
     PredIterator(BasicBlock *BB) {
       cur = BB->users().begin();
       end = BB->users().end();
-      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+      while (cur != end && !mayCast<TerminatorInst>((*cur)->getUser()))
         cur++;
     }
 
@@ -71,7 +71,7 @@ public:
 
     PredIterator &operator++(int) {
       cur++;
-      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+      while (cur != end && !mayCast<TerminatorInst>((*cur)->getUser()))
         cur++;
       return *this;
     }
@@ -79,7 +79,7 @@ public:
     PredIterator operator++() {
       PredIterator ret = cur;
       cur++;
-      while (cur != end && !dyn_cast<TerminatorInst>((*cur)->getUser()))
+      while (cur != end && !mayCast<TerminatorInst>((*cur)->getUser()))
         cur++;
       return ret;
     }
@@ -112,7 +112,7 @@ public:
     ListTrait<BasicBlock>::eraseFromList();
   }
 
-  bool containsPhi() { return dyn_cast<PhiInst>(*begin()); }
+  bool containsPhi() { return mayCast<PhiInst>(*begin()); }
   bool isPredecessorOf(BasicBlock *other);
 
   const List<Instruction> &getInsts() const { return instList; }

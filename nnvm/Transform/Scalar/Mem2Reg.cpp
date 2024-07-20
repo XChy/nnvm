@@ -35,7 +35,7 @@ bool Mem2RegPass::run(Function &F) {
 
   std::vector<StackInst *> stackToRemove;
   for (Instruction *I : incChange(*F.getEntry())) {
-    StackInst *SI = dyn_cast<StackInst>(I);
+    StackInst *SI = mayCast<StackInst>(I);
     // We assume that all the stack instructions are declared at the beginning
     // of the entry block.
     if (!SI)
@@ -49,7 +49,7 @@ bool Mem2RegPass::run(Function &F) {
     for (Use *use : SI->users()) {
       Instruction *user = use->getUser();
 
-      if (auto *def = dyn_cast<StoreInst>(user)) {
+      if (auto *def = mayCast<StoreInst>(user)) {
         if (def->getDest() == SI) {
           valueType = def->getStoredValue()->getType();
           localDefBBs.insert(def->getParent());
@@ -57,7 +57,7 @@ bool Mem2RegPass::run(Function &F) {
         }
       }
 
-      if (auto *use = dyn_cast<LoadInst>(user)) {
+      if (auto *use = mayCast<LoadInst>(user)) {
         localUseBBs.insert(use->getParent());
         continue;
       }
@@ -146,7 +146,7 @@ void Mem2RegPass::rename(Function &F) {
         incomingValuesMap[BB];
 
     for (Instruction *I : incChange(*BB)) {
-      if (auto *def = dyn_cast<StoreInst>(I)) {
+      if (auto *def = mayCast<StoreInst>(I)) {
         StackInst *dest = (StackInst *)def->getDest();
         if (!candidates.count(dest))
           continue;
@@ -155,7 +155,7 @@ void Mem2RegPass::rename(Function &F) {
         continue;
       }
 
-      if (auto *use = dyn_cast<LoadInst>(I)) {
+      if (auto *use = mayCast<LoadInst>(I)) {
         StackInst *src = (StackInst *)use->getSrc();
         if (!candidates.count(src))
           continue;
@@ -164,7 +164,7 @@ void Mem2RegPass::rename(Function &F) {
         continue;
       }
 
-      if (auto *phi = dyn_cast<PhiInst>(I)) {
+      if (auto *phi = mayCast<PhiInst>(I)) {
         if (!phi2Stack.count(phi))
           continue;
         incomingValues[phi2Stack[phi]] = phi;
@@ -178,7 +178,7 @@ void Mem2RegPass::rename(Function &F) {
         incomingValuesMap[succ].insert(pair);
       for (Instruction *I : *succ) {
 
-        if (PhiInst *phi = dyn_cast<PhiInst>(I)) {
+        if (PhiInst *phi = mayCast<PhiInst>(I)) {
           if (!phi2Stack.count(phi))
             continue;
           phi->addIncoming(BB, incomingValues[phi2Stack[phi]]);

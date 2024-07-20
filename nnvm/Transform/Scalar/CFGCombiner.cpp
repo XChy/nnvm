@@ -22,7 +22,7 @@ bool CFGCombinerPass::run(Function &F) {
 
       if (BB->getPredNum() == 0) {
         for (Use *U : incChange(BB->users())) {
-          if (auto *phi = dyn_cast<PhiInst>(U->getUser()))
+          if (auto *phi = mayCast<PhiInst>(U->getUser()))
             phi->removeIncoming(BB);
           else
             nnvm_unimpl();
@@ -40,7 +40,7 @@ bool CFGCombinerPass::run(Function &F) {
 }
 
 bool CFGCombinerPass::processBB(BasicBlock *BB) {
-  if (BranchInst *BI = dyn_cast<BranchInst>(BB->getTerminator())) {
+  if (BranchInst *BI = mayCast<BranchInst>(BB->getTerminator())) {
     if (!BI->isConditional())
       return foldBBWithUncondBr(BB, BI);
 
@@ -111,11 +111,11 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
   BasicBlock *falseSucc = BI->getSucc(1);
 
   if (BI->getCondition()->isConstant()) {
-    ConstantInt *constCond = dyn_cast<ConstantInt>(BI->getCondition());
+    ConstantInt *constCond = mayCast<ConstantInt>(BI->getCondition());
 
     BasicBlock *unlinked = constCond->getValue() ? falseSucc : trueSucc;
     for (Instruction *I : *unlinked)
-      if (PhiInst *phi = dyn_cast<PhiInst>(I))
+      if (PhiInst *phi = mayCast<PhiInst>(I))
         phi->removeIncoming(BB);
       else
         break;
@@ -169,7 +169,7 @@ bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
     return false;
 
   // for (auto *I : incChange(*destBB)) {
-  // PhiInst *phi = dyn_cast<PhiInst>(I);
+  // PhiInst *phi = mayCast<PhiInst>(I);
   // if (!phi || phi->getIncomingNum() != 2)
   // break;
   // Value *trueValue = phi->getIncomingValueOf(trueIncoming);

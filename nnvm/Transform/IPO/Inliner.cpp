@@ -24,7 +24,7 @@ bool InlinerPass::tryInline(Module &M) {
       continue;
 
     for (Use *U : incChange(F->users())) {
-      CallInst *CI = dyn_cast<CallInst>(U->getUser());
+      CallInst *CI = mayCast<CallInst>(U->getUser());
       // Don't inline recursive function.
       if (!CI || CI->getParent()->getParent() == F)
         break;

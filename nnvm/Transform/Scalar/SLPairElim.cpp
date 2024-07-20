@@ -19,7 +19,7 @@ bool SLPairElimPass::run(Function &F) {
     std::map<Value *, StoreInst *> ptr2Store;
 
     for (Instruction *I : incChange(*BB)) {
-      if (auto *def = dyn_cast<StoreInst>(I)) {
+      if (auto *def = mayCast<StoreInst>(I)) {
         // TODO: alias analysis
         if (ptr2Store.count(def->getDest()))
           ptr2Store[def->getDest()] = def;
@@ -28,7 +28,7 @@ bool SLPairElimPass::run(Function &F) {
         continue;
       }
 
-      if (auto *load = dyn_cast<LoadInst>(I)) {
+      if (auto *load = mayCast<LoadInst>(I)) {
         if (!ptr2Store.count(load->getSrc()))
           continue;
         Value *predefinedValue = ptr2Store[load->getSrc()]->getStoredValue();

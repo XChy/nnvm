@@ -10,13 +10,13 @@ using namespace nnvm::llvm;
 
 namespace nnvm {
 static void emitConstant(nnvm::Constant *CV, std::ostream &out) {
-  if (auto *zeros = dyn_cast<ConstantAllZeros>(CV)) {
+  if (auto *zeros = mayCast<ConstantAllZeros>(CV)) {
     out << "zeroinitializer";
-  } else if (auto *C = dyn_cast<ConstantInt>(CV)) {
+  } else if (auto *C = mayCast<ConstantInt>(CV)) {
     out << (int64_t)C->getValue();
-  } else if (auto *C = dyn_cast<ConstantFloat>(CV)) {
+  } else if (auto *C = mayCast<ConstantFloat>(CV)) {
     out << C->getValue();
-  } else if (auto *CA = dyn_cast<ConstantArray>(CV)) {
+  } else if (auto *CA = mayCast<ConstantArray>(CV)) {
     for (Constant *element : CA->getValue()) {
       emitConstant(element, out);
       if (element != CA->getValue()[0])
@@ -99,7 +99,7 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
 void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   // Instructions without defs
 
-  if (auto SI = dyn_cast<StoreInst>(I)) {
+  if (auto SI = mayCast<StoreInst>(I)) {
     out << "store " << SI->getStoredValue()->getType()->dump() << " "
         << valueToName[SI->getStoredValue()] << ", "
         << SI->getDest()->getType()->dump() << " "
@@ -107,7 +107,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-  if (auto RI = dyn_cast<RetInst>(I)) {
+  if (auto RI = mayCast<RetInst>(I)) {
     out << "ret";
     if (RI->getOperandNum() != 0)
       out << " " << RI->getOperand(0)->getType()->dump() << " "
@@ -119,12 +119,12 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   if (I->getType() && !I->getType()->isVoid())
     out << valueToName[I] << " = ";
 
-  if (auto SI = dyn_cast<StackInst>(I)) {
+  if (auto SI = mayCast<StackInst>(I)) {
     out << "alloca i8, i32 " << SI->getAllocatedBytes() << ", align 4";
     return;
   }
 
-  if (auto phi = dyn_cast<PhiInst>(I)) {
+  if (auto phi = mayCast<PhiInst>(I)) {
     out << "phi " << phi->getType()->dump();
     std::vector<std::string> incomingDumps;
     for (int i = 0; i < phi->getIncomingNum(); i++) {
@@ -135,29 +135,29 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-  if (auto LI = dyn_cast<LoadInst>(I)) {
+  if (auto LI = mayCast<LoadInst>(I)) {
     out << "load " << LI->getType()->dump() << ", "
         << LI->getOperand(0)->getType()->dump() << " "
         << valueToName[LI->getOperand(0)];
     return;
   }
 
-  if (auto *ptrAdd = dyn_cast<PtrAddInst>(I)) {
+  if (auto *ptrAdd = mayCast<PtrAddInst>(I)) {
     out << "getelementptr i8, ptr " << valueToName[ptrAdd->getOperand(0)]
         << ", " << ptrAdd->getOperand(1)->getType()->dump() << " "
         << valueToName[ptrAdd->getOperand(1)];
     return;
   }
 
-  if (auto binOp = dyn_cast<BinOpInst>(I)) {
+  if (auto binOp = mayCast<BinOpInst>(I)) {
     out << binOp->getOpName() << " " << binOp->getOperand(0)->getType()->dump()
         << " " << valueToName[binOp->getLHS()] << ", "
         << valueToName[binOp->getRHS()];
     return;
   }
 
-  if (auto callInst = dyn_cast<CallInst>(I)) {
-    if (auto *F = dyn_cast<Function>(callInst->getCallee())) {
+  if (auto callInst = mayCast<CallInst>(I)) {
+    if (auto *F = mayCast<Function>(callInst->getCallee())) {
       std::vector<std::string> args(callInst->getArgNum());
       for (int i = 0; i < callInst->getArgNum(); i++)
         args[i] = callInst->getArg(i)->getType()->dump() + " " +
@@ -171,7 +171,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     nnvm_unimpl();
   }
 
-  if (auto Br = dyn_cast<BranchInst>(I)) {
+  if (auto Br = mayCast<BranchInst>(I)) {
     out << "br"
         << " ";
     if (Br->isConditional()) {
@@ -188,7 +188,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-  if (auto *CI = dyn_cast<ICmpInst>(I)) {
+  if (auto *CI = mayCast<ICmpInst>(I)) {
     out << "icmp"
         << " " << ICmpInst::getPredName(CI->getPredicate()) << " "
         << CI->getOperand(0)->getType()->dump() << " "

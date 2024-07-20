@@ -6,7 +6,6 @@
 #pragma once
 
 #include "Analysis/AAInfo.h"
-#include "Analysis/BasicAA.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 #include <unordered_map>
@@ -14,16 +13,20 @@
 
 namespace nnvm {
 
-class AliasAnalysis : public FunctionPass {
+enum AccessFlag { MemUse, MemDef, MemClobber };
+
+struct AccessInfo {
+  Instruction *accessInst;
+  AccessFlag flag;
+};
+
+class MemAccAnalysis : public FunctionPass {
 public:
   bool run(Function &F);
 
-  AAFlag alias(Value *a, Value *b);
-  bool mayAlias(Value *a, Value *b) { return alias(a, b) == MayAlias; }
-
-  AAFlag alias(Instruction *a, Instruction *b);
+  AccessInfo getDomMemDef(Instruction *I);
+  AccessInfo getDomMemUse(Instruction *I);
 
 private:
-  BasicAA BAA;
 };
 } /* namespace nnvm */

@@ -9,15 +9,15 @@ template <typename From, typename To> To *cast(From *from) {
   nnvm_unreachable("Cannot cast unknown types!");
 }
 
-template <typename From, typename To> To *dyn_cast(From *from) {
+template <typename From, typename To> To *mayCast(From *from) {
   return dynamic_cast<To *>(from);
 }
 
-template <typename To> To *dyn_cast(Value *from) {
+template <typename To> To *mayCast(Value *from) {
   return dynamic_cast<To *>(from);
 }
 
-template <typename To> const To *dyn_cast(const Value *from) {
+template <typename To> const To *mayCast(const Value *from) {
   return dynamic_cast<const To *>(from);
 }
 

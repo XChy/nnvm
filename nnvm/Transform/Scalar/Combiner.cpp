@@ -46,25 +46,25 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (Value *ret = folder.fold(I))
     return ret;
 
-  if (AddInst *AI = dyn_cast<AddInst>(I))
+  if (AddInst *AI = mayCast<AddInst>(I))
     return simplifyAdd(AI);
 
-  if (SubInst *SI = dyn_cast<SubInst>(I))
+  if (SubInst *SI = mayCast<SubInst>(I))
     return simplifySub(SI);
 
-  if (auto *MI = dyn_cast<MulInst>(I))
+  if (auto *MI = mayCast<MulInst>(I))
     return simplifyMul(MI);
 
-  if (SDivInst *SI = dyn_cast<SDivInst>(I))
+  if (SDivInst *SI = mayCast<SDivInst>(I))
     return simplifySDiv(SI);
 
-  if (auto *PAI = dyn_cast<PtrAddInst>(I))
+  if (auto *PAI = mayCast<PtrAddInst>(I))
     return simplifyPtrAdd(PAI);
 
-  if (ICmpInst *ICI = dyn_cast<ICmpInst>(I))
+  if (ICmpInst *ICI = mayCast<ICmpInst>(I))
     return simplifyICmp(ICI);
 
-  if (PhiInst *phi = dyn_cast<PhiInst>(I))
+  if (PhiInst *phi = mayCast<PhiInst>(I))
     return simplifyPhi(phi);
 
   return nullptr;

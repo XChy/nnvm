@@ -36,7 +36,7 @@ public:
   uint64_t hash() const { return value; }
   uint64_t getValue() const { return value; }
   bool eq(const Constant *other) const {
-    if (auto *otherInt = dyn_cast<ConstantInt>(other))
+    if (auto *otherInt = mayCast<ConstantInt>(other))
       return value == otherInt->value && getType() == other->getType();
     return false;
   }
@@ -62,7 +62,7 @@ public:
   virtual uint64_t hash() const { return value; }
   float getValue() const { return value; }
   bool eq(const Constant *other) const {
-    if (auto *otherFloat = dyn_cast<ConstantFloat>(other))
+    if (auto *otherFloat = mayCast<ConstantFloat>(other))
       return value == otherFloat->value;
     return false;
   }
@@ -95,7 +95,7 @@ public:
 
   std::vector<Constant *> getValue() const { return value; }
   bool eq(const Constant *other) const {
-    if (auto *otherFloat = dyn_cast<ConstantArray>(other))
+    if (auto *otherFloat = mayCast<ConstantArray>(other))
       return value == otherFloat->value;
     return false;
   }
@@ -129,7 +129,7 @@ public:
 
   virtual uint64_t hash() const { return 0; }
   bool eq(const Constant *other) const {
-    if (auto *otherZeros = dyn_cast<ConstantAllZeros>(other))
+    if (auto *otherZeros = mayCast<ConstantAllZeros>(other))
       return getType() == other->getType();
     return false;
   }

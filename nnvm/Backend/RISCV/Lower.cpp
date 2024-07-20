@@ -70,7 +70,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
       availableArgFPR.push(fpr);
 
     // TODO: variadic?
-    if (Function *F = dyn_cast<Function>(CI->getCallee())) {
+    if (Function *F = mayCast<Function>(CI->getCallee())) {
       LIRInst *lowered = LIRInst::create(CALL, F->getArguments().size() + 1);
       lowered->setUse(0, funcMap[F]);
 
@@ -231,7 +231,7 @@ static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
   uint numBytes = constant->getType()->getStoredBytes();
   std::vector<std::byte> ret(numBytes);
 
-  if (auto *constantArr = dyn_cast<ConstantArray>(constant)) {
+  if (auto *constantArr = mayCast<ConstantArray>(constant)) {
     uint index = 0;
     for (nnvm::Constant *element : constantArr->getValue()) {
       std::vector<std::byte> elementData = breakIntoBytes(element);
@@ -243,13 +243,13 @@ static std::vector<std::byte> breakIntoBytes(nnvm::Constant *constant) {
 
   // For those less than 8 bytes.
   GInt value;
-  if (auto *constantInt = dyn_cast<ConstantInt>(constant)) {
+  if (auto *constantInt = mayCast<ConstantInt>(constant)) {
     // For i1, zero-extended
     if (constantInt->getType()->isIntegerNBits(1))
       value = constantInt->getValue() & 1;
     else
       value = constantInt->getValue();
-  } else if (auto *constantFloat = dyn_cast<ConstantFloat>(constant)) {
+  } else if (auto *constantFloat = mayCast<ConstantFloat>(constant)) {
     float floatVal = constantFloat->getValue();
     value = reinterpret_cast<const uint32_t &>(floatVal);
   } else {
@@ -268,7 +268,7 @@ void LowerHelper::mapAll(Module &module) {
   // Map the trivial constants.
   for (auto &[hash, constant] : module.getConstantPool()) {
 
-    if (ConstantInt *CI = dyn_cast<ConstantInt>(constant)) {
+    if (ConstantInt *CI = mayCast<ConstantInt>(constant)) {
       GInt value;
       // For i1, zero-extended
       if (CI->getType()->isIntegerNBits(1))
@@ -279,7 +279,7 @@ void LowerHelper::mapAll(Module &module) {
       defMap[constant] = LIRConst::createInt(value, lowerType(CI->getType()));
     }
 
-    if (ConstantFloat *CF = dyn_cast<ConstantFloat>(constant))
+    if (ConstantFloat *CF = mayCast<ConstantFloat>(constant))
       defMap[constant] = LIRConst::createFloat(CF->getValue());
   }
 
@@ -290,7 +290,7 @@ void LowerHelper::mapAll(Module &module) {
     lowVar->size = var->getInnerType()->getStoredBytes();
     lowVar->isAllZeros = false;
 
-    if (auto allZeros = dyn_cast<ConstantAllZeros>(var->getInitVal()))
+    if (auto allZeros = mayCast<ConstantAllZeros>(var->getInitVal()))
       lowVar->isAllZeros = true;
     else
       lowVar->data = breakIntoBytes(var->getInitVal());

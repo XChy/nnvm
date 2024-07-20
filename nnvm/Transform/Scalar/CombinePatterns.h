@@ -51,7 +51,7 @@ public:
   pConstantInt() : receiver(nullptr) {}
   pConstantInt(ConstantInt *&receiver) : receiver(&receiver) {}
   bool match(Value *op) {
-    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    ConstantInt *opcasted = mayCast<ConstantInt>(op);
     if (!opcasted)
       return false;
     if (receiver)
@@ -68,7 +68,7 @@ public:
   pZero() : receiver(nullptr) {}
   pZero(ConstantInt *&receiver) : receiver(&receiver) {}
   bool match(Value *op) {
-    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    ConstantInt *opcasted = mayCast<ConstantInt>(op);
     if (!opcasted)
       return false;
     if (opcasted->getValue() != 0)
@@ -87,7 +87,7 @@ public:
   pOne() : receiver(nullptr) {}
   pOne(ConstantInt *&receiver) : receiver(&receiver) {}
   bool match(Value *op) {
-    ConstantInt *opcasted = dyn_cast<ConstantInt>(op);
+    ConstantInt *opcasted = mayCast<ConstantInt>(op);
     if (!opcasted)
       return false;
     if (opcasted->getValue() != 1)

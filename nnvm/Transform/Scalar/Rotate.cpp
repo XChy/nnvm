@@ -19,7 +19,7 @@ bool RotatePass::run(Function &F) {
 bool RotatePass::rotate(Loop *loop) {
   bool changed = false;
   auto *oldHeader = loop->getHeader();
-  if (auto BI = dyn_cast<BranchInst>(oldHeader->getTerminator())) {
+  if (auto BI = mayCast<BranchInst>(oldHeader->getTerminator())) {
     if (!BI->isConditional())
       return false;
     // TODO: necessary single exit?
@@ -28,8 +28,6 @@ bool RotatePass::rotate(Loop *loop) {
     auto [exiting, exited] = loop->getExits().front();
     if (exiting != oldHeader)
       return false;
-
-
   }
   return changed;
 }
