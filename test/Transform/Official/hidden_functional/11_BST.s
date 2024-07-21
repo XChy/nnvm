@@ -85,16 +85,14 @@ bb5:
   LW s0, 0(s0)
   SLLIW s2, s0, 2
   LA s3, value
-  ADD s2, s3, s2
-  SW s1, 0(s2)
-  SLLIW s1, s0, 2
-  LA s2, left_child
-  ADD s1, s2, s1
-  ADDI s2, zero, -1
-  SW s2, 0(s1)
-  SLLIW s1, s0, 2
-  LA s2, right_child
-  ADD s1, s2, s1
+  ADD s3, s3, s2
+  SW s1, 0(s3)
+  LA s1, left_child
+  ADD s1, s1, s2
+  ADDI s3, zero, -1
+  SW s3, 0(s1)
+  LA s1, right_child
+  ADD s1, s1, s2
   ADDI s2, zero, -1
   SW s2, 0(s1)
   ADDIW s1, s0, 1
@@ -121,16 +119,14 @@ new_node:
   LW s1, 0(s1)
   SLLIW s2, s1, 2
   LA s3, value
-  ADD s2, s3, s2
-  SW s0, 0(s2)
-  SLLIW s0, s1, 2
-  LA s2, left_child
-  ADD s0, s2, s0
-  ADDI s2, zero, -1
-  SW s2, 0(s0)
-  SLLIW s0, s1, 2
-  LA s2, right_child
-  ADD s0, s2, s0
+  ADD s3, s3, s2
+  SW s0, 0(s3)
+  LA s0, left_child
+  ADD s0, s0, s2
+  ADDI s3, zero, -1
+  SW s3, 0(s0)
+  LA s0, right_child
+  ADD s0, s0, s2
   ADDI s2, zero, -1
   SW s2, 0(s0)
   ADDIW s0, s1, 1
@@ -155,6 +151,7 @@ delete:
   SD s5, 48(sp)
   SD s6, 56(sp)
   SD s7, 64(sp)
+  SD s8, 72(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
   XORI s2, s0, -1
@@ -180,45 +177,43 @@ bb10:
   BNE s5, zero, bb23
   # implict jump to bb11
 bb11:
-  ADD s5, zero, zero
+  ADD s6, zero, zero
   # implict jump to bb12
 bb12:
-  BNE s5, zero, bb22
+  BNE s6, zero, bb22
   # implict jump to bb13
 bb13:
-  XORI s5, s4, -1
-  SLTIU s5, s5, 1
   BNE s5, zero, bb21
   # implict jump to bb14
 bb14:
-  LA s5, right_child
-  ADD s5, s5, s2
-  LW s5, 0(s5)
-  XORI s5, s5, -1
-  SLTIU s5, s5, 1
+  LA s6, right_child
+  ADD s6, s6, s2
+  LW s6, 0(s6)
+  XORI s6, s6, -1
+  SLTIU s6, s6, 1
   # implict jump to bb15
 bb15:
-  BNE s5, zero, bb18
+  BNE s6, zero, bb18
   # implict jump to bb16
 bb16:
-  LA s5, right_child
-  ADD s5, s5, s2
-  LW s6, 0(s5)
-  ADD a0, s6, zero
-  CALL find_minimum
-  ADD s6, a0, zero
-  SLLIW s6, s6, 2
-  LA s7, value
-  ADD s6, s7, s6
+  LA s6, right_child
+  ADD s6, s6, s2
   LW s7, 0(s6)
-  SW s7, 0(s3)
-  LW s3, 0(s5)
-  LW s6, 0(s6)
+  ADD a0, s7, zero
+  CALL find_minimum
+  ADD s7, a0, zero
+  SLLIW s7, s7, 2
+  LA s8, value
+  ADD s7, s8, s7
+  LW s8, 0(s7)
+  SW s8, 0(s3)
+  LW s3, 0(s6)
+  LW s7, 0(s7)
   ADD a0, s3, zero
-  ADD a1, s6, zero
+  ADD a1, s7, zero
   CALL delete
   ADD s3, a0, zero
-  SW s3, 0(s5)
+  SW s3, 0(s6)
   # implict jump to bb17
 bb17:
   ADD a0, s0, zero
@@ -231,12 +226,11 @@ bb17:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb18:
-  XORI s3, s4, -1
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb20
+  BNE s5, zero, bb20
   # implict jump to bb19
 bb19:
   ADD a0, s4, zero
@@ -249,6 +243,7 @@ bb19:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb20:
@@ -265,10 +260,11 @@ bb20:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb21:
-  ADDI s5, zero, 1
+  ADDI s6, zero, 1
   JAL zero, bb15
 bb22:
   ADDI a0, zero, -1
@@ -281,15 +277,16 @@ bb22:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb23:
-  LA s6, right_child
-  ADD s6, s6, s2
-  LW s6, 0(s6)
-  XORI s6, s6, -1
-  SLTIU s6, s6, 1
-  ADD s5, s6, zero
+  LA s7, right_child
+  ADD s7, s7, s2
+  LW s7, 0(s7)
+  XORI s7, s7, -1
+  SLTIU s7, s7, 1
+  ADD s6, s7, zero
   JAL zero, bb12
 bb24:
   LA s3, left_child
@@ -322,6 +319,7 @@ bb26:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 find_minimum:
@@ -475,16 +473,14 @@ bb41:
   LW s2, 0(s2)
   SLLIW s3, s2, 2
   LA s4, value
-  ADD s3, s4, s3
-  SW s1, 0(s3)
-  SLLIW s1, s2, 2
-  LA s3, left_child
-  ADD s1, s3, s1
-  ADDI s3, zero, -1
-  SW s3, 0(s1)
-  SLLIW s1, s2, 2
-  LA s3, right_child
-  ADD s1, s3, s1
+  ADD s4, s4, s3
+  SW s1, 0(s4)
+  LA s1, left_child
+  ADD s1, s1, s3
+  ADDI s4, zero, -1
+  SW s4, 0(s1)
+  LA s1, right_child
+  ADD s1, s1, s3
   ADDI s3, zero, -1
   SW s3, 0(s1)
   ADDIW s1, s2, 1

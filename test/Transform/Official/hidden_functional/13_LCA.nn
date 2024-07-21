@@ -176,8 +176,7 @@ entry51:
   372 = shl i32 %cnt.load, i32 2
   56 = ptradd ptr @to, i32 %372
   store i32 %To to ptr %56
-  373 = shl i32 %cnt.load, i32 2
-  60 = ptradd ptr @next, i32 %373
+  60 = ptradd ptr @next, i32 %372
   374 = shl i32 %from, i32 2
   63 = ptradd ptr @head, i32 %374
   63.load = load i32 from ptr %63
@@ -227,8 +226,7 @@ while.body287.split622.split:
   372491 = shl i32 %cnt.load490, i32 2
   56492 = ptradd ptr @to, i32 %372491
   store i32 %296.ret to ptr %56492
-  373495 = shl i32 %cnt.load490, i32 2
-  60496 = ptradd ptr @next, i32 %373495
+  60496 = ptradd ptr @next, i32 %372491
   374497 = shl i32 %294.ret, i32 2
   63498 = ptradd ptr @head, i32 %374497
   63.load499 = load i32 from ptr %63498

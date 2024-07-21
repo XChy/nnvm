@@ -159,9 +159,9 @@ bb16:
   ADDI s6, zero, 2
   DIVW s6, s3, s6
   LA s7, height
-  LW s0, 0(s7)
+  LW s1, 0(s7)
   ADDI s7, zero, 2
-  DIVW s7, s0, s7
+  DIVW s7, s1, s7
   SUBW s4, s4, s6
   SUBW s5, s5, s7
   FCVT.S.W fs0, s4
@@ -171,38 +171,38 @@ bb16:
   FSUB.S fs1, fs1, fs4
   FCVT.S.W fs4, s6
   FADD.S fs1, fs1, fs4
-  FCVT.W.S s1, fs1, rtz
+  FCVT.W.S s2, fs1, rtz
   FMUL.S fs0, fs0, fs2
   FMUL.S fs1, fs3, fa0
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s7
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s2, fs0, rtz
-  BLT s1, zero, bb27
+  FCVT.W.S s0, fs0, rtz
+  BLT s2, zero, bb27
   # implict jump to bb17
 bb17:
-  SLT s4, s1, s3
+  SLT s4, s2, s3
   XORI s4, s4, 1
   # implict jump to bb18
 bb18:
   BNE s4, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s4, s2, zero
+  SLT s4, s0, zero
   # implict jump to bb20
 bb20:
   BNE s4, zero, bb25
   # implict jump to bb21
 bb21:
-  SLT s0, s2, s0
-  XORI s0, s0, 1
+  SLT s1, s0, s1
+  XORI s1, s1, 1
   # implict jump to bb22
 bb22:
-  BNE s0, zero, bb24
+  BNE s1, zero, bb24
   # implict jump to bb23
 bb23:
-  MULW s0, s2, s3
-  ADDW s0, s0, s1
+  MULW s0, s0, s3
+  ADDW s0, s0, s2
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -245,7 +245,7 @@ bb24:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb25:
-  ADDI s0, zero, 1
+  ADDI s1, zero, 1
   JAL zero, bb22
 bb26:
   ADDI s4, zero, 1
@@ -1023,13 +1023,13 @@ bb134:
   CALL my_sin_impl
   FSGNJ.D fs1, fa0, fa0
   LA s4, width
-  LW s1, 0(s4)
+  LW s0, 0(s4)
   ADDI s4, zero, 2
-  DIVW s4, s1, s4
+  DIVW s4, s0, s4
   LA s8, height
-  LW s0, 0(s8)
+  LW s1, 0(s8)
   ADDI s8, zero, 2
-  DIVW s8, s0, s8
+  DIVW s8, s1, s8
   SUBW s9, s7, s4
   SUBW s10, s5, s8
   FCVT.S.W fs3, s9
@@ -1049,7 +1049,7 @@ bb134:
   BLT s3, zero, bb146
   # implict jump to bb135
 bb135:
-  SLT s4, s3, s1
+  SLT s4, s3, s0
   XORI s4, s4, 1
   # implict jump to bb136
 bb136:
@@ -1062,14 +1062,14 @@ bb138:
   BNE s4, zero, bb144
   # implict jump to bb139
 bb139:
-  SLT s0, s2, s0
-  XORI s0, s0, 1
+  SLT s1, s2, s1
+  XORI s1, s1, 1
   # implict jump to bb140
 bb140:
-  BNE s0, zero, bb143
+  BNE s1, zero, bb143
   # implict jump to bb141
 bb141:
-  MULW s0, s2, s1
+  MULW s0, s2, s0
   ADDW s0, s0, s3
   SLLIW s0, s0, 2
   LA s1, image
@@ -1088,7 +1088,7 @@ bb143:
   ADD s0, zero, zero
   JAL zero, bb142
 bb144:
-  ADDI s0, zero, 1
+  ADDI s1, zero, 1
   JAL zero, bb140
 bb145:
   ADDI s4, zero, 1

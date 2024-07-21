@@ -135,10 +135,10 @@ bb8:
   ADDI t5, sp, 0
   ADD s7, t5, s7
   LW s7, 0(s7)
-  DIVW s8, s6, s7
-  ADDI s9, zero, 2
-  REMW s8, s8, s9
-  BNE s8, a2, bb11
+  DIVW s6, s6, s7
+  ADDI s8, zero, 2
+  REMW s6, s6, s8
+  BNE s6, a2, bb11
   # implict jump to bb9
 bb9:
   ADD s8, zero, zero
@@ -163,19 +163,13 @@ bb10:
   ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb11:
-  DIVW s9, s6, s7
-  ADDI s10, zero, 2
-  REMW s9, s9, s10
-  SLTIU s9, s9, 1
+  SLTIU s9, s6, 1
   BNE s9, zero, bb20
   # implict jump to bb12
 bb12:
   ADD s9, zero, zero
   # implict jump to bb13
 bb13:
-  DIVW s6, s6, s7
-  ADDI s10, zero, 2
-  REMW s6, s6, s10
   XORI s6, s6, 1
   SLTIU s6, s6, 1
   BNE s6, zero, bb16
@@ -413,10 +407,10 @@ bb37:
   ADDI t5, sp, 104
   ADD s10, t5, s10
   LW s10, 0(s10)
-  DIVW s11, s9, s10
-  ADDI ra, zero, 2
-  REMW s11, s11, ra
-  BNE s11, s2, bb41
+  DIVW s9, s9, s10
+  ADDI s11, zero, 2
+  REMW s9, s9, s11
+  BNE s9, s2, bb41
   # implict jump to bb38
 bb38:
   ADD s11, zero, zero
@@ -430,19 +424,13 @@ bb40:
   ADD s0, s1, zero
   JAL zero, bb28
 bb41:
-  DIVW ra, s9, s10
-  ADDI t0, zero, 2
-  REMW ra, ra, t0
-  SLTIU ra, ra, 1
+  SLTIU ra, s9, 1
   BNE ra, zero, bb50
   # implict jump to bb42
 bb42:
   ADD ra, zero, zero
   # implict jump to bb43
 bb43:
-  DIVW s9, s9, s10
-  ADDI t0, zero, 2
-  REMW s9, s9, t0
   XORI s9, s9, 1
   SLTIU s9, s9, 1
   BNE s9, zero, bb46

@@ -120,12 +120,10 @@ entry17:
   29 = ptradd ptr %23, i32 %324
   store i32 %v to ptr %29
   33 = ptradd ptr @cap, i32 %22
-  326 = shl i32 %26.load, i32 2
-  39 = ptradd ptr %33, i32 %326
+  39 = ptradd ptr %33, i32 %324
   store i32 %c to ptr %39
   43 = ptradd ptr @rev, i32 %22
-  328 = shl i32 %26.load, i32 2
-  49 = ptradd ptr %43, i32 %328
+  49 = ptradd ptr %43, i32 %324
   329 = shl i32 %v, i32 2
   52 = ptradd ptr @size, i32 %329
   52.load = load i32 from ptr %52
@@ -136,12 +134,10 @@ entry17:
   62 = ptradd ptr %56, i32 %331
   store i32 %u to ptr %62
   66 = ptradd ptr @cap, i32 %55
-  333 = shl i32 %52.load, i32 2
-  72 = ptradd ptr %66, i32 %333
+  72 = ptradd ptr %66, i32 %331
   store i32 0 to ptr %72
   75 = ptradd ptr @rev, i32 %55
-  335 = shl i32 %52.load, i32 2
-  81 = ptradd ptr %75, i32 %335
+  81 = ptradd ptr %75, i32 %331
   store i32 %26.load to ptr %81
   93 = add i32 %26.load, i32 1
   store i32 %93 to ptr %26
@@ -183,12 +179,10 @@ while.body275:
   29365 = ptradd ptr %23360, i32 %324364
   store i32 %283 to ptr %29365
   33367 = ptradd ptr @cap, i32 %22359
-  326369 = shl i32 %26.load363, i32 2
-  39370 = ptradd ptr %33367, i32 %326369
+  39370 = ptradd ptr %33367, i32 %324364
   store i32 %285 to ptr %39370
   43372 = ptradd ptr @rev, i32 %22359
-  328374 = shl i32 %26.load363, i32 2
-  49375 = ptradd ptr %43372, i32 %328374
+  49375 = ptradd ptr %43372, i32 %324364
   329376 = shl i32 %283, i32 2
   52377 = ptradd ptr @size, i32 %329376
   52.load378 = load i32 from ptr %52377
@@ -199,12 +193,10 @@ while.body275:
   62384 = ptradd ptr %56381, i32 %331383
   store i32 %282 to ptr %62384
   66386 = ptradd ptr @cap, i32 %55380
-  333388 = shl i32 %52.load378, i32 2
-  72389 = ptradd ptr %66386, i32 %333388
+  72389 = ptradd ptr %66386, i32 %331383
   store i32 0 to ptr %72389
   75391 = ptradd ptr @rev, i32 %55380
-  335393 = shl i32 %52.load378, i32 2
-  81394 = ptradd ptr %75391, i32 %335393
+  81394 = ptradd ptr %75391, i32 %331383
   store i32 %26.load363 to ptr %81394
   93398 = add i32 %26.load363, i32 1
   store i32 %93398 to ptr %26362

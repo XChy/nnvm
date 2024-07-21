@@ -102,8 +102,8 @@ bb10:
   SLLIW t0, s11, 2
   LA t1, saY_HeI10_To
   ADD t4, t1, t0
-  SD t4, 128(sp)
-  LD t4, 128(sp)
+  SD t4, 136(sp)
+  LD t4, 136(sp)
   LW t1, 0(t4)
   BNE t1, zero, bb17
   # implict jump to bb11
@@ -112,17 +112,17 @@ bb11:
   MULW t1, s6, t1
   LA t2, N4__mE___
   ADD t4, t2, t1
-  SD t4, 136(sp)
+  SD t4, 128(sp)
   ADD t4, zero, zero
-  SW t4, 4(sp)
+  SW t4, 12(sp)
   # implict jump to bb12
 bb12:
-  LW t3, 4(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
   SW t4, 8(sp)
   LW t4, 8(sp)
   SLLIW a1, t4, 2
-  LD t3, 136(sp)
+  LD t3, 128(sp)
   ADD t4, t3, a1
   SD t4, 120(sp)
   LD t4, 120(sp)
@@ -131,10 +131,10 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 4(sp)
   # implict jump to bb14
 bb14:
-  LW t3, 12(sp)
+  LW t3, 4(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
   LW t4, 0(sp)
@@ -151,7 +151,7 @@ bb15:
   LW t4, 0(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 12(sp)
+  SW t4, 4(sp)
   JAL zero, bb14
 bb16:
   LD t4, 120(sp)
@@ -161,10 +161,10 @@ bb16:
   LW t4, 8(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 4(sp)
+  SW t4, 12(sp)
   JAL zero, bb12
 bb17:
-  LD t4, 128(sp)
+  LD t4, 136(sp)
   LW s3, 0(t4)
   ADD a0, s3, zero
   CALL putch

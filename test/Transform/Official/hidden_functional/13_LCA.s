@@ -343,9 +343,8 @@ add_edge:
   LW s0, 0(s0)
   SLLIW s1, s0, 2
   LA s2, to
-  ADD s1, s2, s1
-  SW a1, 0(s1)
-  SLLIW s1, s0, 2
+  ADD s2, s2, s1
+  SW a1, 0(s2)
   LA s2, next
   ADD s1, s2, s1
   SLLIW s2, a0, 2
@@ -1070,9 +1069,8 @@ bb138:
   LW s6, 0(s6)
   SLLIW s7, s6, 2
   LA s8, to
-  ADD s7, s8, s7
-  SW s4, 0(s7)
-  SLLIW s7, s6, 2
+  ADD s8, s8, s7
+  SW s4, 0(s8)
   LA s8, next
   ADD s7, s8, s7
   LW t4, 124(sp)

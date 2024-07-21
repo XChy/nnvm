@@ -908,13 +908,13 @@ bb124:
   SLLIW s11, s9, 2
   LA t0, u
   ADD t4, t0, s11
-  SD t4, 120(sp)
-  LD t4, 120(sp)
+  SD t4, 128(sp)
+  LD t4, 128(sp)
   LW t1, 0(t4)
   LA t2, v
   ADD t4, t2, s11
-  SD t4, 128(sp)
-  LD t3, 128(sp)
+  SD t4, 120(sp)
+  LD t3, 120(sp)
   LW t4, 0(t3)
   SW t4, 0(sp)
   ADD a0, t1, zero
@@ -939,14 +939,14 @@ bb127:
   ADD s2, s2, s11
   LW s2, 0(s2)
   ADDW s2, s10, s2
-  LD t4, 120(sp)
+  LD t4, 128(sp)
   LW s4, 0(t4)
   ADD a0, s4, zero
   CALL find
   SLLIW s4, a0, 2
   LA s11, fa
   ADD s4, s11, s4
-  LD t4, 128(sp)
+  LD t4, 120(sp)
   LW s11, 0(t4)
   SW s11, 0(s4)
   ADDIW s4, s9, 1

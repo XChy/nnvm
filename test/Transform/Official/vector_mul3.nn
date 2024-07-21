@@ -141,10 +141,8 @@ while.exit129:
 select.then:
   br bb %select.exit
 select.else:
-  143 = fdiv float %input, float %temp.load
-  144 = fsub float %temp.load, float %143
   145 = fneg float 0.000001
-  146 = fcmp olt float %144, float %145
+  146 = fcmp olt float %134, float %145
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 %146, bb %select.then, i1 -1]
@@ -374,10 +372,8 @@ my_sqrt.while.exit129:
 my_sqrt.select.then:
   br bb %my_sqrt.select.exit
 my_sqrt.select.else:
-  143384 = fdiv float %200, float %temp.load364
-  144385 = fsub float %temp.load364, float %143384
   145386 = fneg float 0.000001
-  146387 = fcmp olt float %144385, float %145386
+  146387 = fcmp olt float %134366, float %145386
   br bb %my_sqrt.select.exit
 my_sqrt.select.exit:
   select.phi390 = phi [bb %my_sqrt.select.else, i1 %146387, bb %my_sqrt.select.then, i1 -1]

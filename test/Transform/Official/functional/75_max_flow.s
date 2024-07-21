@@ -148,8 +148,8 @@ bb11:
   LA s11, to
   ADD s11, s11, s10
   SLLIW t4, s7, 2
-  SW t4, 4(sp)
-  LW t4, 4(sp)
+  SW t4, 0(sp)
+  LW t4, 0(sp)
   ADD s11, s11, t4
   LW t1, 0(s11)
   SLLIW t1, t1, 2
@@ -161,7 +161,7 @@ bb11:
 bb12:
   LA t1, cap
   ADD t1, t1, s10
-  LW t3, 4(sp)
+  LW t3, 0(sp)
   ADD t4, t1, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
@@ -177,11 +177,11 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
-  SW t4, 0(sp)
+  SW t4, 4(sp)
   LW a3, 0(s11)
   ADD a0, a3, zero
   ADD a1, s1, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD a2, t4, zero
   CALL dfs
   ADD t0, a0, zero
@@ -190,7 +190,7 @@ bb15:
 bb16:
   ADDIW t1, s7, 1
   ADD s4, t0, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s5, t4, zero
   ADD s6, t1, zero
   JAL zero, bb9
@@ -207,7 +207,7 @@ bb17:
   ADD s11, t1, s11
   LA t1, rev
   ADD s10, t1, s10
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s10, s10, t4
   LW s10, 0(s10)
   SLLIW s10, s10, 2
@@ -272,7 +272,6 @@ add_node:
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
   ADDI s0, zero, 40
   MULW s0, a0, s0
   LA s1, to
@@ -286,13 +285,11 @@ add_node:
   SW a1, 0(s1)
   LA s1, cap
   ADD s1, s1, s0
-  SLLIW s4, s3, 2
   ADD s1, s1, s4
   SW a2, 0(s1)
   LA s1, rev
   ADD s0, s1, s0
-  SLLIW s1, s3, 2
-  ADD s0, s0, s1
+  ADD s0, s0, s4
   SLLIW s1, a1, 2
   LA s4, size
   ADD s1, s4, s1
@@ -302,17 +299,15 @@ add_node:
   MULW s0, a1, s0
   LA s5, to
   ADD s5, s5, s0
-  SLLIW s6, s4, 2
-  ADD s5, s5, s6
+  SLLIW s4, s4, 2
+  ADD s5, s5, s4
   SW a0, 0(s5)
   LA s5, cap
   ADD s5, s5, s0
-  SLLIW s6, s4, 2
-  ADD s5, s5, s6
+  ADD s5, s5, s4
   SW zero, 0(s5)
   LA s5, rev
   ADD s0, s5, s0
-  SLLIW s4, s4, 2
   ADD s0, s0, s4
   SW s3, 0(s0)
   ADDIW s0, s3, 1
@@ -327,7 +322,6 @@ add_node:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
@@ -438,13 +432,11 @@ bb34:
   SW s7, 0(s9)
   LA s9, cap
   ADD s9, s9, s8
-  SLLIW ra, s11, 2
   ADD s9, s9, ra
   SW a0, 0(s9)
   LA s9, rev
   ADD s8, s9, s8
-  SLLIW s9, s11, 2
-  ADD s8, s8, s9
+  ADD s8, s8, ra
   SLLIW s9, s7, 2
   LA ra, size
   ADD s9, ra, s9
@@ -454,18 +446,16 @@ bb34:
   MULW s7, s7, s8
   LA s8, to
   ADD s8, s8, s7
-  SLLIW t0, ra, 2
-  ADD s8, s8, t0
+  SLLIW ra, ra, 2
+  ADD s8, s8, ra
   SW s6, 0(s8)
   LA s6, cap
   ADD s6, s6, s7
-  SLLIW s8, ra, 2
-  ADD s6, s6, s8
+  ADD s6, s6, ra
   SW zero, 0(s6)
   LA s6, rev
   ADD s6, s6, s7
-  SLLIW s7, ra, 2
-  ADD s6, s6, s7
+  ADD s6, s6, ra
   SW s11, 0(s6)
   ADDIW s6, s11, 1
   SW s6, 0(s10)

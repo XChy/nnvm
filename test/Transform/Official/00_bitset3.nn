@@ -98,9 +98,7 @@ if.exit:
   114 = icmp ne i32 %112, i32 %d
   br i1 %114, bb %then115, bb %if.exit116
 then115:
-  127 = sdiv i32 %104.load, i32 %109.load
-  128 = srem i32 %127, i32 2
-  129 = icmp eq i32 %128, i32 0
+  129 = icmp eq i32 %112, i32 0
   br i1 %129, bb %then130, bb %if.exit131
 if.exit116:
   v.phi231 = phi [bb %if.exit, i32 0, bb %if.exit155, i32 %v.phi230]
@@ -113,9 +111,7 @@ then130:
   br i1 %133, bb %then134, bb %if.exit135
 if.exit131:
   v.phi233 = phi [bb %then115, i32 0, bb %if.exit135, i32 %v.phi232]
-  151 = sdiv i32 %104.load, i32 %109.load
-  152 = srem i32 %151, i32 2
-  153 = icmp eq i32 %152, i32 1
+  153 = icmp eq i32 %112, i32 1
   br i1 %153, bb %then154, bb %if.exit155
 then134:
   br bb %if.exit135
@@ -265,9 +261,7 @@ set.if.exit:
   114391 = icmp ne i32 %112390, i32 %221
   br i1 %114391, bb %set.then115, bb %set.if.exit116
 set.then115:
-  127396 = sdiv i32 %104.load384, i32 %109.load388
-  128397 = srem i32 %127396, i32 2
-  129398 = icmp eq i32 %128397, i32 0
+  129398 = icmp eq i32 %112390, i32 0
   br i1 %129398, bb %set.then130, bb %set.if.exit131
 set.if.exit116:
   v.phi231401 = phi [bb %set.if.exit, i32 0, bb %set.if.exit155, i32 %v.phi230427]
@@ -280,9 +274,7 @@ set.then130:
   br i1 %133407, bb %set.then134, bb %set.if.exit135
 set.if.exit131:
   v.phi233410 = phi [bb %set.then115, i32 0, bb %set.if.exit135, i32 %v.phi232421]
-  151413 = sdiv i32 %104.load384, i32 %109.load388
-  152414 = srem i32 %151413, i32 2
-  153415 = icmp eq i32 %152414, i32 1
+  153415 = icmp eq i32 %112390, i32 1
   br i1 %153415, bb %set.then154, bb %set.if.exit155
 set.then134:
   br bb %set.if.exit135

@@ -48,7 +48,7 @@ maxm:
 
 .section .text
 insert:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -57,6 +57,7 @@ insert:
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
+  SD s7, 64(sp)
   ADD s0, a0, zero
   LA s1, hashmod
   LW s1, 0(s1)
@@ -82,21 +83,18 @@ bb3:
   SW s4, 0(s5)
   SLLIW s5, s4, 2
   LA s6, next
-  ADD s5, s6, s5
-  LW s6, 0(s1)
-  SW s6, 0(s5)
+  ADD s6, s6, s5
+  LW s7, 0(s1)
+  SW s7, 0(s6)
   SW s4, 0(s1)
-  SLLIW s5, s4, 2
-  LA s6, key
-  ADD s5, s6, s5
-  SW s0, 0(s5)
-  SLLIW s5, s4, 2
-  LA s6, value
-  ADD s5, s6, s5
-  SW a1, 0(s5)
-  SLLIW s4, s4, 2
-  LA s5, nextvalue
-  ADD s4, s5, s4
+  LA s4, key
+  ADD s4, s4, s5
+  SW s0, 0(s4)
+  LA s4, value
+  ADD s4, s4, s5
+  SW a1, 0(s4)
+  LA s4, nextvalue
+  ADD s4, s4, s5
   SW zero, 0(s4)
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -107,7 +105,8 @@ bb3:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  ADDI sp, sp, 64
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb4:
   SLLIW s3, s3, 2
@@ -132,15 +131,14 @@ bb6:
   SW s2, 0(s4)
   SLLIW s4, s2, 2
   LA s5, nextvalue
-  ADD s4, s5, s4
-  LA s5, nextvalue
-  ADD s3, s5, s3
-  LW s5, 0(s3)
-  SW s5, 0(s4)
+  ADD s5, s5, s4
+  LA s6, nextvalue
+  ADD s3, s6, s3
+  LW s6, 0(s3)
+  SW s6, 0(s5)
   SW s2, 0(s3)
-  SLLIW s2, s2, 2
-  LA s3, value
-  ADD s2, s3, s2
+  LA s2, value
+  ADD s2, s2, s4
   SW a1, 0(s2)
   ADDI a0, zero, 1
   LD ra, 0(sp)
@@ -151,7 +149,8 @@ bb6:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  ADDI sp, sp, 64
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb7:
   LA s2, cnt
@@ -161,20 +160,17 @@ bb7:
   SW s2, 0(s3)
   SW s2, 0(s1)
   SLLIW s1, s2, 2
-  LA s3, key
-  ADD s1, s3, s1
-  SW s0, 0(s1)
-  SLLIW s0, s2, 2
-  LA s1, value
-  ADD s0, s1, s0
+  LA s2, key
+  ADD s2, s2, s1
+  SW s0, 0(s2)
+  LA s0, value
+  ADD s0, s0, s1
   SW a1, 0(s0)
-  SLLIW s0, s2, 2
-  LA s1, next
-  ADD s0, s1, s0
+  LA s0, next
+  ADD s0, s0, s1
   SW zero, 0(s0)
-  SLLIW s0, s2, 2
-  LA s1, nextvalue
-  ADD s0, s1, s0
+  LA s0, nextvalue
+  ADD s0, s0, s1
   SW zero, 0(s0)
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -185,7 +181,8 @@ bb7:
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  ADDI sp, sp, 64
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -112
@@ -353,21 +350,18 @@ bb26:
   SW s9, 0(s10)
   SLLIW s10, s9, 2
   LA s11, next
-  ADD s10, s11, s10
-  LW s11, 0(s6)
-  SW s11, 0(s10)
+  ADD s11, s11, s10
+  LW ra, 0(s6)
+  SW ra, 0(s11)
   SW s9, 0(s6)
-  SLLIW s10, s9, 2
-  LA s11, key
-  ADD s10, s11, s10
-  SW s5, 0(s10)
-  SLLIW s10, s9, 2
-  LA s11, value
-  ADD s10, s11, s10
-  SW s4, 0(s10)
-  SLLIW s9, s9, 2
-  LA s10, nextvalue
-  ADD s9, s10, s9
+  LA s9, key
+  ADD s9, s9, s10
+  SW s5, 0(s9)
+  LA s9, value
+  ADD s9, s9, s10
+  SW s4, 0(s9)
+  LA s9, nextvalue
+  ADD s9, s9, s10
   SW zero, 0(s9)
   # implict jump to bb27
 bb27:
@@ -397,15 +391,14 @@ bb30:
   SW s7, 0(s9)
   SLLIW s9, s7, 2
   LA s10, nextvalue
-  ADD s9, s10, s9
-  LA s10, nextvalue
-  ADD s8, s10, s8
-  LW s10, 0(s8)
-  SW s10, 0(s9)
+  ADD s10, s10, s9
+  LA s11, nextvalue
+  ADD s8, s11, s8
+  LW s11, 0(s8)
+  SW s11, 0(s10)
   SW s7, 0(s8)
-  SLLIW s7, s7, 2
-  LA s8, value
-  ADD s7, s8, s7
+  LA s7, value
+  ADD s7, s7, s9
   SW s4, 0(s7)
   JAL zero, bb27
 bb31:
@@ -416,20 +409,17 @@ bb31:
   SW s7, 0(s8)
   SW s7, 0(s6)
   SLLIW s6, s7, 2
-  LA s8, key
-  ADD s6, s8, s6
-  SW s5, 0(s6)
-  SLLIW s5, s7, 2
-  LA s6, value
-  ADD s5, s6, s5
+  LA s7, key
+  ADD s7, s7, s6
+  SW s5, 0(s7)
+  LA s5, value
+  ADD s5, s5, s6
   SW s4, 0(s5)
-  SLLIW s4, s7, 2
-  LA s5, next
-  ADD s4, s5, s4
+  LA s4, next
+  ADD s4, s4, s6
   SW zero, 0(s4)
-  SLLIW s4, s7, 2
-  LA s5, nextvalue
-  ADD s4, s5, s4
+  LA s4, nextvalue
+  ADD s4, s4, s6
   SW zero, 0(s4)
   JAL zero, bb27
 reduce:

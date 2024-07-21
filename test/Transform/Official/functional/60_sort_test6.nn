@@ -74,9 +74,7 @@ while.body63:
   81.load = load i32 from ptr %74
   83 = sub i32 %81.load, i32 1
   store i32 %83 to ptr %74
-  164 = shl i32 %71.load, i32 2
-  90 = ptradd ptr %count_arr, i32 %164
-  90.load = load i32 from ptr %90
+  90.load = load i32 from ptr %74
   165 = shl i32 %90.load, i32 2
   93 = ptradd ptr %sorted_arr, i32 %165
   store i32 %71.load to ptr %93
@@ -187,9 +185,7 @@ counting_sort.while.body63:
   81.load230 = load i32 from ptr %74229
   83231 = sub i32 %81.load230, i32 1
   store i32 %83231 to ptr %74229
-  164234 = shl i32 %71.load227, i32 2
-  90235 = ptradd ptr %count_arr170, i32 %164234
-  90.load236 = load i32 from ptr %90235
+  90.load236 = load i32 from ptr %74229
   165237 = shl i32 %90.load236, i32 2
   93238 = ptradd ptr %b, i32 %165237
   store i32 %71.load227 to ptr %93238

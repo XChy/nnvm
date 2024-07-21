@@ -67,9 +67,7 @@ while.body152:
 while.exit153:
   br bb %while.cond132
 then169:
-  282392 = shl i32 %160.load, i32 2
-  107393 = ptradd ptr @inq, i32 %282392
-  store i32 1 to ptr %107393
+  store i32 1 to ptr %163
   tail.load395 = load i32 from ptr @tail
   109396 = add i32 %tail.load395, i32 1
   store i32 %109396 to ptr @tail
@@ -142,8 +140,7 @@ entry51:
   284 = shl i32 %cnt.load, i32 2
   56 = ptradd ptr @to, i32 %284
   store i32 %To to ptr %56
-  285 = shl i32 %cnt.load, i32 2
-  60 = ptradd ptr @next, i32 %285
+  60 = ptradd ptr @next, i32 %284
   286 = shl i32 %from, i32 2
   63 = ptradd ptr @head, i32 %286
   63.load = load i32 from ptr %63
@@ -154,8 +151,7 @@ entry51:
   288 = shl i32 %70, i32 2
   73 = ptradd ptr @to, i32 %288
   store i32 %from to ptr %73
-  289 = shl i32 %70, i32 2
-  77 = ptradd ptr @next, i32 %289
+  77 = ptradd ptr @next, i32 %288
   290 = shl i32 %To, i32 2
   80 = ptradd ptr @head, i32 %290
   80.load = load i32 from ptr %80
@@ -256,8 +252,7 @@ else226.split704.split:
   284429 = shl i32 %cnt.load428, i32 2
   56430 = ptradd ptr @to, i32 %284429
   store i32 %239.ret to ptr %56430
-  285433 = shl i32 %cnt.load428, i32 2
-  60434 = ptradd ptr @next, i32 %285433
+  60434 = ptradd ptr @next, i32 %284429
   286435 = shl i32 %237.ret, i32 2
   63436 = ptradd ptr @head, i32 %286435
   63.load437 = load i32 from ptr %63436
@@ -268,8 +263,7 @@ else226.split704.split:
   288444 = shl i32 %70442, i32 2
   73445 = ptradd ptr @to, i32 %288444
   store i32 %237.ret to ptr %73445
-  289448 = shl i32 %70442, i32 2
-  77449 = ptradd ptr @next, i32 %289448
+  77449 = ptradd ptr @next, i32 %288444
   290450 = shl i32 %239.ret, i32 2
   80451 = ptradd ptr @head, i32 %290450
   80.load452 = load i32 from ptr %80451
@@ -322,9 +316,7 @@ same.while.body152:
 same.while.exit153:
   br bb %same.while.cond132
 same.then169:
-  282416 = shl i32 %160.load327, i32 2
-  107417 = ptradd ptr @inq, i32 %282416
-  store i32 1 to ptr %107417
+  store i32 1 to ptr %163329
   tail.load419 = load i32 from ptr @tail
   109420 = add i32 %tail.load419, i32 1
   store i32 %109420 to ptr @tail

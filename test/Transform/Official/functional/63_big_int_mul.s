@@ -184,9 +184,9 @@ bb8:
 bb9:
   ADD s11, s10, zero
   ADD t4, s9, zero
-  SW t4, 16(sp)
-  ADD t4, s8, zero
   SW t4, 12(sp)
+  ADD t4, s8, zero
+  SW t4, 16(sp)
   ADDI t2, zero, -1
   BLT t2, s11, bb16
   # implict jump to bb10
@@ -241,9 +241,9 @@ bb16:
   ADDI t4, sp, 392
   ADD s0, t4, s0
   LW s0, 0(s0)
-  LW t4, 12(sp)
-  ADD s1, t4, zero
   LW t4, 16(sp)
+  ADD s1, t4, zero
+  LW t4, 12(sp)
   ADD s2, t4, zero
   ADDI t0, zero, 19
   # implict jump to bb17

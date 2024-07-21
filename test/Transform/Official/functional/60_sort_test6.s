@@ -81,9 +81,6 @@ bb9:
   ADDI t0, zero, 1
   SUBW s11, s11, t0
   SW s11, 0(s10)
-  SLLIW s10, s9, 2
-  ADDI t5, sp, 0
-  ADD s10, t5, s10
   LW s10, 0(s10)
   SLLIW s10, s10, 2
   ADD s10, a1, s10
@@ -255,9 +252,6 @@ bb25:
   ADDI s11, zero, 1
   SUBW s10, s10, s11
   SW s10, 0(s9)
-  SLLIW s9, s8, 2
-  ADDI t5, sp, 184
-  ADD s9, t5, s9
   LW s9, 0(s9)
   SLLIW s9, s9, 2
   ADDI t5, sp, 144

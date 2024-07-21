@@ -66,11 +66,9 @@ entry86:
   93.load = load i32 from ptr %90
   95 = mul i32 %93.load, i32 10
   store i32 %95 to ptr %90
-  847 = shl i32 %intt.load88, i32 2
-  98 = ptradd ptr @ints, i32 %847
-  101.load = load i32 from ptr %98
+  101.load = load i32 from ptr %90
   104 = add i32 %101.load, i32 %x
-  store i32 %104 to ptr %98
+  store i32 %104 to ptr %90
   ret 
 }
 
@@ -125,9 +123,7 @@ then137:
   ii.load140 = load i32 from ptr @ii
   850 = shl i32 %ii.load140, i32 2
   142 = ptradd ptr @get2, i32 %850
-  851 = shl i32 %i.load, i32 2
-  145 = ptradd ptr @get, i32 %851
-  145.load = load i32 from ptr %145
+  145.load = load i32 from ptr %133
   store i32 %145.load to ptr %142
   148 = add i32 %ii.load140, i32 1
   store i32 %148 to ptr @ii
@@ -157,9 +153,7 @@ if.exit138:
   store i32 %510 to ptr @i
   br bb %while.cond124
 else:
-  852 = shl i32 %i.load, i32 2
-  151 = ptradd ptr @get, i32 %852
-  151.load = load i32 from ptr %151
+  151.load = load i32 from ptr %133
   153 = icmp eq i32 %151.load, i32 40
   br i1 %153, bb %then154, bb %if.exit155
 then154:
@@ -171,9 +165,7 @@ then154:
   store i32 40 to ptr %68959
   br bb %if.exit155
 if.exit155:
-  853 = shl i32 %i.load, i32 2
-  159 = ptradd ptr @get, i32 %853
-  159.load = load i32 from ptr %159
+  159.load = load i32 from ptr %133
   161 = icmp eq i32 %159.load, i32 94
   br i1 %161, bb %then162, bb %if.exit163
 then162:
@@ -185,9 +177,7 @@ then162:
   store i32 94 to ptr %68968
   br bb %if.exit163
 if.exit163:
-  854 = shl i32 %i.load, i32 2
-  167 = ptradd ptr @get, i32 %854
-  167.load = load i32 from ptr %167
+  167.load = load i32 from ptr %133
   169 = icmp eq i32 %167.load, i32 41
   br i1 %169, bb %then170, bb %if.exit171
 then170:
@@ -200,9 +190,7 @@ then170:
   store i32 %84.load930 to ptr @c
   br bb %while.cond173
 if.exit171:
-  855 = shl i32 %i.load, i32 2
-  192 = ptradd ptr @get, i32 %855
-  192.load = load i32 from ptr %192
+  192.load = load i32 from ptr %133
   194 = icmp eq i32 %192.load, i32 43
   br i1 %194, bb %while.cond197, bb %if.exit196
 while.cond173:
@@ -235,9 +223,7 @@ if.exit196:
   select241.phi733 = phi [bb %if.exit171, i1 %select241.phi736, bb %while.exit199, i1 %select241.phi]
   select252.phi723 = phi [bb %if.exit171, i1 %select252.phi726, bb %while.exit199, i1 %select252.phi]
   select219.phi718 = phi [bb %if.exit171, i1 %select219.phi721, bb %while.exit199, i1 %select219.phi]
-  858 = shl i32 %i.load, i32 2
-  268 = ptradd ptr @get, i32 %858
-  268.load = load i32 from ptr %268
+  268.load = load i32 from ptr %133
   270 = icmp eq i32 %268.load, i32 45
   br i1 %270, bb %while.cond273, bb %if.exit272
 while.cond197:
@@ -282,9 +268,7 @@ while.exit199:
 select.then205:
   br bb %select.exit207
 select.else206:
-  860 = shl i32 %chat.load200, i32 2
-  211 = ptradd ptr @chas, i32 %860
-  211.load = load i32 from ptr %211
+  211.load = load i32 from ptr %202
   213 = icmp eq i32 %211.load, i32 45
   br bb %select.exit207
 select.exit207:
@@ -293,9 +277,7 @@ select.exit207:
 select.then216:
   br bb %select.exit218
 select.else217:
-  861 = shl i32 %chat.load200, i32 2
-  222 = ptradd ptr @chas, i32 %861
-  222.load = load i32 from ptr %222
+  222.load = load i32 from ptr %202
   224 = icmp eq i32 %222.load, i32 42
   br bb %select.exit218
 select.exit218:
@@ -304,9 +286,7 @@ select.exit218:
 select.then227:
   br bb %select.exit229
 select.else228:
-  862 = shl i32 %chat.load200, i32 2
-  233 = ptradd ptr @chas, i32 %862
-  233.load = load i32 from ptr %233
+  233.load = load i32 from ptr %202
   235 = icmp eq i32 %233.load, i32 47
   br bb %select.exit229
 select.exit229:
@@ -315,9 +295,7 @@ select.exit229:
 select.then238:
   br bb %select.exit240
 select.else239:
-  863 = shl i32 %chat.load200, i32 2
-  244 = ptradd ptr @chas, i32 %863
-  244.load = load i32 from ptr %244
+  244.load = load i32 from ptr %202
   246 = icmp eq i32 %244.load, i32 37
   br bb %select.exit240
 select.exit240:
@@ -326,9 +304,7 @@ select.exit240:
 select.then249:
   br bb %select.exit251
 select.else250:
-  864 = shl i32 %chat.load200, i32 2
-  255 = ptradd ptr @chas, i32 %864
-  255.load = load i32 from ptr %255
+  255.load = load i32 from ptr %202
   257 = icmp eq i32 %255.load, i32 94
   br bb %select.exit251
 select.exit251:
@@ -340,9 +316,7 @@ if.exit272:
   select306.phi743 = phi [bb %if.exit196, i1 %select306.phi746, bb %while.exit275, i1 %select306.phi]
   select295.phi738 = phi [bb %if.exit196, i1 %select295.phi741, bb %while.exit275, i1 %select295.phi]
   select284.phi728 = phi [bb %if.exit196, i1 %select284.phi731, bb %while.exit275, i1 %select284.phi]
-  865 = shl i32 %i.load, i32 2
-  344 = ptradd ptr @get, i32 %865
-  344.load = load i32 from ptr %344
+  344.load = load i32 from ptr %133
   346 = icmp eq i32 %344.load, i32 42
   br i1 %346, bb %while.cond349, bb %if.exit348
 while.cond273:
@@ -387,9 +361,7 @@ while.exit275:
 select.then281:
   br bb %select.exit283
 select.else282:
-  867 = shl i32 %chat.load276, i32 2
-  287 = ptradd ptr @chas, i32 %867
-  287.load = load i32 from ptr %287
+  287.load = load i32 from ptr %278
   289 = icmp eq i32 %287.load, i32 45
   br bb %select.exit283
 select.exit283:
@@ -398,9 +370,7 @@ select.exit283:
 select.then292:
   br bb %select.exit294
 select.else293:
-  868 = shl i32 %chat.load276, i32 2
-  298 = ptradd ptr @chas, i32 %868
-  298.load = load i32 from ptr %298
+  298.load = load i32 from ptr %278
   300 = icmp eq i32 %298.load, i32 42
   br bb %select.exit294
 select.exit294:
@@ -409,9 +379,7 @@ select.exit294:
 select.then303:
   br bb %select.exit305
 select.else304:
-  869 = shl i32 %chat.load276, i32 2
-  309 = ptradd ptr @chas, i32 %869
-  309.load = load i32 from ptr %309
+  309.load = load i32 from ptr %278
   311 = icmp eq i32 %309.load, i32 47
   br bb %select.exit305
 select.exit305:
@@ -420,9 +388,7 @@ select.exit305:
 select.then314:
   br bb %select.exit316
 select.else315:
-  870 = shl i32 %chat.load276, i32 2
-  320 = ptradd ptr @chas, i32 %870
-  320.load = load i32 from ptr %320
+  320.load = load i32 from ptr %278
   322 = icmp eq i32 %320.load, i32 37
   br bb %select.exit316
 select.exit316:
@@ -431,9 +397,7 @@ select.exit316:
 select.then325:
   br bb %select.exit327
 select.else326:
-  871 = shl i32 %chat.load276, i32 2
-  331 = ptradd ptr @chas, i32 %871
-  331.load = load i32 from ptr %331
+  331.load = load i32 from ptr %278
   333 = icmp eq i32 %331.load, i32 94
   br bb %select.exit327
 select.exit327:
@@ -443,9 +407,7 @@ if.exit348:
   select382.phi773 = phi [bb %if.exit272, i1 %select382.phi776, bb %while.exit351, i1 %select382.phi]
   select371.phi768 = phi [bb %if.exit272, i1 %select371.phi771, bb %while.exit351, i1 %select371.phi]
   select360.phi763 = phi [bb %if.exit272, i1 %select360.phi766, bb %while.exit351, i1 %select360.phi]
-  872 = shl i32 %i.load, i32 2
-  398 = ptradd ptr @get, i32 %872
-  398.load = load i32 from ptr %398
+  398.load = load i32 from ptr %133
   400 = icmp eq i32 %398.load, i32 47
   br i1 %400, bb %while.cond403, bb %if.exit402
 while.cond349:
@@ -490,9 +452,7 @@ while.exit351:
 select.then357:
   br bb %select.exit359
 select.else358:
-  874 = shl i32 %chat.load352, i32 2
-  363 = ptradd ptr @chas, i32 %874
-  363.load = load i32 from ptr %363
+  363.load = load i32 from ptr %354
   365 = icmp eq i32 %363.load, i32 47
   br bb %select.exit359
 select.exit359:
@@ -501,9 +461,7 @@ select.exit359:
 select.then368:
   br bb %select.exit370
 select.else369:
-  875 = shl i32 %chat.load352, i32 2
-  374 = ptradd ptr @chas, i32 %875
-  374.load = load i32 from ptr %374
+  374.load = load i32 from ptr %354
   376 = icmp eq i32 %374.load, i32 37
   br bb %select.exit370
 select.exit370:
@@ -512,9 +470,7 @@ select.exit370:
 select.then379:
   br bb %select.exit381
 select.else380:
-  876 = shl i32 %chat.load352, i32 2
-  385 = ptradd ptr @chas, i32 %876
-  385.load = load i32 from ptr %385
+  385.load = load i32 from ptr %354
   387 = icmp eq i32 %385.load, i32 94
   br bb %select.exit381
 select.exit381:
@@ -524,9 +480,7 @@ if.exit402:
   select436.phi831 = phi [bb %if.exit348, i1 %select436.phi834, bb %while.exit405, i1 %select436.phi]
   select414.phi804 = phi [bb %if.exit348, i1 %select414.phi807, bb %while.exit405, i1 %select414.phi]
   select425.phi778 = phi [bb %if.exit348, i1 %select425.phi781, bb %while.exit405, i1 %select425.phi]
-  877 = shl i32 %i.load, i32 2
-  452 = ptradd ptr @get, i32 %877
-  452.load = load i32 from ptr %452
+  452.load = load i32 from ptr %133
   454 = icmp eq i32 %452.load, i32 37
   br i1 %454, bb %while.cond457, bb %if.exit456
 while.cond403:
@@ -571,9 +525,7 @@ while.exit405:
 select.then411:
   br bb %select.exit413
 select.else412:
-  879 = shl i32 %chat.load406, i32 2
-  417 = ptradd ptr @chas, i32 %879
-  417.load = load i32 from ptr %417
+  417.load = load i32 from ptr %408
   419 = icmp eq i32 %417.load, i32 47
   br bb %select.exit413
 select.exit413:
@@ -582,9 +534,7 @@ select.exit413:
 select.then422:
   br bb %select.exit424
 select.else423:
-  880 = shl i32 %chat.load406, i32 2
-  428 = ptradd ptr @chas, i32 %880
-  428.load = load i32 from ptr %428
+  428.load = load i32 from ptr %408
   430 = icmp eq i32 %428.load, i32 37
   br bb %select.exit424
 select.exit424:
@@ -593,9 +543,7 @@ select.exit424:
 select.then433:
   br bb %select.exit435
 select.else434:
-  881 = shl i32 %chat.load406, i32 2
-  439 = ptradd ptr @chas, i32 %881
-  439.load = load i32 from ptr %439
+  439.load = load i32 from ptr %408
   441 = icmp eq i32 %439.load, i32 94
   br bb %select.exit435
 select.exit435:
@@ -654,9 +602,7 @@ while.exit459:
 select.then465:
   br bb %select.exit467
 select.else466:
-  884 = shl i32 %chat.load460, i32 2
-  471 = ptradd ptr @chas, i32 %884
-  471.load = load i32 from ptr %471
+  471.load = load i32 from ptr %462
   473 = icmp eq i32 %471.load, i32 47
   br bb %select.exit467
 select.exit467:
@@ -665,9 +611,7 @@ select.exit467:
 select.then476:
   br bb %select.exit478
 select.else477:
-  885 = shl i32 %chat.load460, i32 2
-  482 = ptradd ptr @chas, i32 %885
-  482.load = load i32 from ptr %482
+  482.load = load i32 from ptr %462
   484 = icmp eq i32 %482.load, i32 37
   br bb %select.exit478
 select.exit478:
@@ -676,9 +620,7 @@ select.exit478:
 select.then487:
   br bb %select.exit489
 select.else488:
-  886 = shl i32 %chat.load460, i32 2
-  493 = ptradd ptr @chas, i32 %886
-  493.load = load i32 from ptr %493
+  493.load = load i32 from ptr %462
   495 = icmp eq i32 %493.load, i32 94
   br bb %select.exit489
 select.exit489:
@@ -927,16 +869,12 @@ while.body685:
   699 = ptradd ptr @get2, i32 %906
   699.load = load i32 from ptr %699
   701 = sub i32 %699.load, i32 48
-  8451052 = shl i32 %571028, i32 2
-  901053 = ptradd ptr @ints, i32 %8451052
-  93.load1054 = load i32 from ptr %901053
+  93.load1054 = load i32 from ptr %601031
   951055 = mul i32 %93.load1054, i32 10
-  store i32 %951055 to ptr %901053
-  8471058 = shl i32 %571028, i32 2
-  981059 = ptradd ptr @ints, i32 %8471058
-  101.load1060 = load i32 from ptr %981059
+  store i32 %951055 to ptr %601031
+  101.load1060 = load i32 from ptr %601031
   1041061 = add i32 %101.load1060, i32 %701
-  store i32 %1041061 to ptr %981059
+  store i32 %1041061 to ptr %601031
   ii.load703 = load i32 from ptr @ii
   704 = add i32 %ii.load703, i32 1
   store i32 %704 to ptr @ii

@@ -182,8 +182,7 @@ while.body170:
   br bb %while.cond176
 while.exit171:
   store i32 %l to ptr %head
-  266 = add i32 %l, i32 %137.load
-  store i32 %266 to ptr %tail
+  store i32 %139 to ptr %tail
   br bb %while.cond267
 while.cond176:
   t.phi362 = phi [bb %while.body170, i32 %t.phi363, bb %while.exit199, i32 %t.phi]

@@ -242,8 +242,6 @@ bb21:
   BNE s0, zero, bb26
   # implict jump to bb22
 bb22:
-  FDIV.S fs2, fs0, fs1
-  FSUB.S fs2, fs1, fs2
   LA s0, .CONSTANT.7.0
   FLW fs3, 0(s0)
   LA s0, .CONSTANT.7.0
@@ -488,8 +486,6 @@ bb49:
   BNE s9, zero, bb60
   # implict jump to bb50
 bb50:
-  FDIV.S fs7, fs0, fs6
-  FSUB.S fs7, fs6, fs7
   LA s9, .CONSTANT.7.0
   FLW fs8, 0(s9)
   LA s9, .CONSTANT.7.0

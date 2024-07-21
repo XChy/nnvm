@@ -14,11 +14,9 @@ then90:
   344380 = shl i32 %now.load379, i32 2
   70381 = ptradd ptr @value, i32 %344380
   store i32 %x to ptr %70381
-  345384 = shl i32 %now.load379, i32 2
-  74385 = ptradd ptr @left_child, i32 %345384
+  74385 = ptradd ptr @left_child, i32 %344380
   store i32 -1 to ptr %74385
-  346388 = shl i32 %now.load379, i32 2
-  78389 = ptradd ptr @right_child, i32 %346388
+  78389 = ptradd ptr @right_child, i32 %344380
   store i32 -1 to ptr %78389
   81392 = add i32 %now.load379, i32 1
   store i32 %81392 to ptr @now
@@ -51,11 +49,9 @@ entry66:
   344 = shl i32 %now.load, i32 2
   70 = ptradd ptr @value, i32 %344
   store i32 %x to ptr %70
-  345 = shl i32 %now.load, i32 2
-  74 = ptradd ptr @left_child, i32 %345
+  74 = ptradd ptr @left_child, i32 %344
   store i32 -1 to ptr %74
-  346 = shl i32 %now.load, i32 2
-  78 = ptradd ptr @right_child, i32 %346
+  78 = ptradd ptr @right_child, i32 %344
   store i32 -1 to ptr %78
   81 = add i32 %now.load, i32 1
   store i32 %81 to ptr @now
@@ -109,8 +105,7 @@ select.exit176:
 then185:
   ret i32 -1
 else187:
-  194 = icmp eq i32 %170.load, i32 -1
-  br i1 %194, bb %select.then195, bb %select.else196
+  br i1 %173, bb %select.then195, bb %select.else196
 select.then195:
   br bb %select.exit197
 select.else196:
@@ -122,8 +117,7 @@ select.exit197:
   select198.phi = phi [bb %select.else196, i1 %204, bb %select.then195, i1 -1]
   br i1 %select198.phi, bb %then207, bb %else209
 then207:
-  215 = icmp eq i32 %170.load, i32 -1
-  br i1 %215, bb %then216, bb %else218
+  br i1 %173, bb %then216, bb %else218
 else209:
   230 = ptradd ptr @right_child, i32 %349
   230.load = load i32 from ptr %230
@@ -227,11 +221,9 @@ if.exit286:
   344399 = shl i32 %now.load398, i32 2
   70400 = ptradd ptr @value, i32 %344399
   store i32 %288 to ptr %70400
-  345403 = shl i32 %now.load398, i32 2
-  74404 = ptradd ptr @left_child, i32 %345403
+  74404 = ptradd ptr @left_child, i32 %344399
   store i32 -1 to ptr %74404
-  346407 = shl i32 %now.load398, i32 2
-  78408 = ptradd ptr @right_child, i32 %346407
+  78408 = ptradd ptr @right_child, i32 %344399
   store i32 -1 to ptr %78408
   81411 = add i32 %now.load398, i32 1
   store i32 %81411 to ptr @now
