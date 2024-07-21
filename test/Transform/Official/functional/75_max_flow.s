@@ -86,8 +86,8 @@ bb6:
   JAL zero, bb2
 dfs:
   ADDI sp, sp, -128
-  SD ra, 8(sp)
-  SD s4, 16(sp)
+  SD s4, 8(sp)
+  SD ra, 16(sp)
   SD s0, 24(sp)
   SD s1, 32(sp)
   SD s2, 40(sp)
@@ -127,8 +127,8 @@ bb9:
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -148,8 +148,8 @@ bb11:
   LA s11, to
   ADD s11, s11, s10
   SLLIW t4, s7, 2
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   ADD s11, s11, t4
   LW t1, 0(s11)
   SLLIW t1, t1, 2
@@ -161,31 +161,27 @@ bb11:
 bb12:
   LA t1, cap
   ADD t1, t1, s10
-  LW t3, 0(sp)
+  LW t3, 4(sp)
   ADD t4, t1, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
   LW t2, 0(t4)
-  SLT t2, zero, t2
-  XORI t2, t2, 1
-  BNE t2, zero, bb19
+  SLT a3, zero, t2
+  XORI a3, a3, 1
+  BNE a3, zero, bb19
   # implict jump to bb13
 bb13:
-  LD t4, 112(sp)
-  LW t2, 0(t4)
   BLT s2, t2, bb18
   # implict jump to bb14
 bb14:
-  LD t4, 112(sp)
-  LW t2, 0(t4)
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
-  SW t4, 4(sp)
+  SW t4, 0(sp)
   LW a3, 0(s11)
   ADD a0, a3, zero
   ADD a1, s1, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD a2, t4, zero
   CALL dfs
   ADD t0, a0, zero
@@ -194,7 +190,7 @@ bb15:
 bb16:
   ADDIW t1, s7, 1
   ADD s4, t0, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s5, t4, zero
   ADD s6, t1, zero
   JAL zero, bb9
@@ -211,7 +207,7 @@ bb17:
   ADD s11, t1, s11
   LA t1, rev
   ADD s10, t1, s10
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s10, s10, t4
   LW s10, 0(s10)
   SLLIW s10, s10, 2
@@ -220,8 +216,8 @@ bb17:
   ADDW s11, s11, t0
   SW s11, 0(s10)
   ADD a0, t0, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -252,8 +248,8 @@ bb20:
   JAL zero, bb9
 bb21:
   ADD a0, s2, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -268,13 +264,15 @@ bb21:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 add_node:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
   ADDI s0, zero, 40
   MULW s0, a0, s0
   LA s1, to
@@ -283,48 +281,41 @@ add_node:
   LA s3, size
   ADD s2, s3, s2
   LW s3, 0(s2)
-  SLLIW s3, s3, 2
-  ADD s1, s1, s3
+  SLLIW s4, s3, 2
+  ADD s1, s1, s4
   SW a1, 0(s1)
   LA s1, cap
   ADD s1, s1, s0
-  LW s3, 0(s2)
-  SLLIW s3, s3, 2
-  ADD s1, s1, s3
+  SLLIW s4, s3, 2
+  ADD s1, s1, s4
   SW a2, 0(s1)
   LA s1, rev
   ADD s0, s1, s0
-  LW s1, 0(s2)
-  SLLIW s1, s1, 2
+  SLLIW s1, s3, 2
   ADD s0, s0, s1
   SLLIW s1, a1, 2
-  LA s3, size
-  ADD s1, s3, s1
-  LW s3, 0(s1)
-  SW s3, 0(s0)
+  LA s4, size
+  ADD s1, s4, s1
+  LW s4, 0(s1)
+  SW s4, 0(s0)
   ADDI s0, zero, 40
   MULW s0, a1, s0
-  LA s3, to
-  ADD s3, s3, s0
-  LW s4, 0(s1)
+  LA s5, to
+  ADD s5, s5, s0
+  SLLIW s6, s4, 2
+  ADD s5, s5, s6
+  SW a0, 0(s5)
+  LA s5, cap
+  ADD s5, s5, s0
+  SLLIW s6, s4, 2
+  ADD s5, s5, s6
+  SW zero, 0(s5)
+  LA s5, rev
+  ADD s0, s5, s0
   SLLIW s4, s4, 2
-  ADD s3, s3, s4
-  SW a0, 0(s3)
-  LA s3, cap
-  ADD s3, s3, s0
-  LW s4, 0(s1)
-  SLLIW s4, s4, 2
-  ADD s3, s3, s4
-  SW zero, 0(s3)
-  LA s3, rev
-  ADD s0, s3, s0
-  LW s3, 0(s1)
-  SLLIW s3, s3, 2
-  ADD s0, s0, s3
-  LW s3, 0(s2)
+  ADD s0, s0, s4
   SW s3, 0(s0)
-  LW s0, 0(s2)
-  ADDIW s0, s0, 1
+  ADDIW s0, s3, 1
   SW s0, 0(s2)
   LW s0, 0(s1)
   ADDIW s0, s0, 1
@@ -335,7 +326,9 @@ add_node:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -112
@@ -440,48 +433,41 @@ bb34:
   LA s11, size
   ADD s10, s11, s10
   LW s11, 0(s10)
-  SLLIW s11, s11, 2
-  ADD s9, s9, s11
+  SLLIW ra, s11, 2
+  ADD s9, s9, ra
   SW s7, 0(s9)
   LA s9, cap
   ADD s9, s9, s8
-  LW s11, 0(s10)
-  SLLIW s11, s11, 2
-  ADD s9, s9, s11
+  SLLIW ra, s11, 2
+  ADD s9, s9, ra
   SW a0, 0(s9)
   LA s9, rev
   ADD s8, s9, s8
-  LW s9, 0(s10)
-  SLLIW s9, s9, 2
+  SLLIW s9, s11, 2
   ADD s8, s8, s9
   SLLIW s9, s7, 2
-  LA s11, size
-  ADD s9, s11, s9
-  LW s11, 0(s9)
-  SW s11, 0(s8)
+  LA ra, size
+  ADD s9, ra, s9
+  LW ra, 0(s9)
+  SW ra, 0(s8)
   ADDI s8, zero, 40
   MULW s7, s7, s8
   LA s8, to
   ADD s8, s8, s7
-  LW s11, 0(s9)
-  SLLIW s11, s11, 2
-  ADD s8, s8, s11
+  SLLIW t0, ra, 2
+  ADD s8, s8, t0
   SW s6, 0(s8)
   LA s6, cap
   ADD s6, s6, s7
-  LW s8, 0(s9)
-  SLLIW s8, s8, 2
+  SLLIW s8, ra, 2
   ADD s6, s6, s8
   SW zero, 0(s6)
   LA s6, rev
   ADD s6, s6, s7
-  LW s7, 0(s9)
-  SLLIW s7, s7, 2
+  SLLIW s7, ra, 2
   ADD s6, s6, s7
-  LW s7, 0(s10)
-  SW s7, 0(s6)
-  LW s6, 0(s10)
-  ADDIW s6, s6, 1
+  SW s11, 0(s6)
+  ADDIW s6, s11, 1
   SW s6, 0(s10)
   LW s6, 0(s9)
   ADDIW s6, s6, 1

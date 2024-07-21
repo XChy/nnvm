@@ -35,6 +35,8 @@ public:
 
   uint64_t hash() const { return value; }
   uint64_t getValue() const { return value; }
+  int64_t getSignedValue() const { return value; }
+
   bool eq(const Constant *other) const {
     if (auto *otherInt = mayCast<ConstantInt>(other))
       return value == otherInt->value && getType() == other->getType();

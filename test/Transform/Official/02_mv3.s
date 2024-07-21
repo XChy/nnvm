@@ -183,8 +183,8 @@ bb19:
   ADD s3, s6, s3
   SLLIW s6, s0, 2
   ADD s3, s3, s6
-  LW s7, 0(s3)
-  SLTIU s7, s7, 1
+  LW s3, 0(s3)
+  SLTIU s7, s3, 1
   BNE s7, zero, bb22
   # implict jump to bb20
 bb20:
@@ -192,7 +192,6 @@ bb20:
   LA s8, B
   ADD s7, s8, s7
   LW s8, 0(s7)
-  LW s3, 0(s3)
   LA s4, C
   ADD s4, s4, s6
   LW s4, 0(s4)
@@ -266,8 +265,8 @@ bb27:
   ADD s6, s7, s6
   SLLIW s7, s5, 2
   ADD s6, s6, s7
-  LW s8, 0(s6)
-  SLTIU s8, s8, 1
+  LW s6, 0(s6)
+  SLTIU s8, s6, 1
   BNE s8, zero, bb30
   # implict jump to bb28
 bb28:
@@ -276,7 +275,6 @@ bb28:
   LA s9, C
   ADD s8, s9, s8
   LW s9, 0(s8)
-  LW s6, 0(s6)
   LA s10, B
   ADD s10, s10, s7
   LW s10, 0(s10)

@@ -77,8 +77,7 @@ prim.while.exit89:
 prim.while.cond97:
   t.phi253318 = phi [bb %prim.while.body88, i32 %t.phi254307, bb %prim.if.exit114, i32 %t.phi353]
   j.phi319 = phi [bb %prim.while.body88, i32 %96313, bb %prim.if.exit114, i32 %162354]
-  m.load101320 = load i32 from ptr @m
-  102321 = icmp slt i32 %j.phi319, i32 %m.load101320
+  102321 = icmp slt i32 %j.phi319, i32 %m.load309
   br i1 %102321, bb %prim.while.body98, bb %prim.while.exit99
 prim.while.body98:
   271324 = shl i32 %i.phi249308, i32 2
@@ -463,8 +462,7 @@ while.exit89:
 while.cond97:
   t.phi253 = phi [bb %while.body88, i32 %t.phi254, bb %if.exit114, i32 %t.phi]
   j.phi = phi [bb %while.body88, i32 %96, bb %if.exit114, i32 %162]
-  m.load101 = load i32 from ptr @m
-  102 = icmp slt i32 %j.phi, i32 %m.load101
+  102 = icmp slt i32 %j.phi, i32 %m.load
   br i1 %102, bb %while.body98, bb %while.exit99
 while.body98:
   271 = shl i32 %i.phi249, i32 2

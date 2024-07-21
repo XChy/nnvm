@@ -176,8 +176,7 @@ then209:
   br bb %if.exit210
 if.exit210:
   loop.phi354 = phi [bb %while.body197, i32 %loop.phi346, bb %then209, i32 %212]
-  215.load = load i32 from ptr %206
-  217 = icmp eq i32 %215.load, i32 91
+  217 = icmp eq i32 %206.load, i32 91
   br i1 %217, bb %then218, bb %if.exit219
 then218:
   221 = add i32 %loop.phi354, i32 1

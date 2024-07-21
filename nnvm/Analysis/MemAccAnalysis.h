@@ -45,6 +45,12 @@ private:
   AccessInfo getMemDefForBlockIter(Instruction *I, BasicBlock::Iterator begin,
                                    BasicBlock::Iterator end);
 
+  AccessInfo getMemUseInBlock(Instruction *I, BasicBlock *block);
+  AccessInfo getLocalDomMemUse(Instruction *I);
+
+  AccessInfo getMemUseForBlockIter(Instruction *I, BasicBlock::Iterator begin,
+                                   BasicBlock::Iterator end);
+
   AliasAnalysis *AA;
   DomTreeAnalysis *domTree;
 };

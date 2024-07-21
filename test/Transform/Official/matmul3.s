@@ -229,8 +229,8 @@ bb27:
   ADD s4, s5, s4
   SLLIW s5, s2, 2
   ADD s4, s4, s5
-  LW s5, 0(s4)
-  BLT s5, s3, bb30
+  LW s4, 0(s4)
+  BLT s4, s3, bb30
   # implict jump to bb28
 bb28:
   # implict jump to bb29
@@ -240,7 +240,6 @@ bb29:
   ADD s1, s2, zero
   JAL zero, bb22
 bb30:
-  LW s4, 0(s4)
   ADD s3, s4, zero
   JAL zero, bb29
 bb31:

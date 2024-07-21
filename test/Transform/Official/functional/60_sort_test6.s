@@ -73,15 +73,14 @@ bb9:
   SUBW s8, s8, s9
   SLLIW s9, s8, 2
   ADD s9, s0, s9
-  LW s10, 0(s9)
-  SLLIW s10, s10, 2
+  LW s9, 0(s9)
+  SLLIW s10, s9, 2
   ADDI t5, sp, 0
   ADD s10, t5, s10
   LW s11, 0(s10)
   ADDI t0, zero, 1
   SUBW s11, s11, t0
   SW s11, 0(s10)
-  LW s9, 0(s9)
   SLLIW s10, s9, 2
   ADDI t5, sp, 0
   ADD s10, t5, s10
@@ -248,15 +247,14 @@ bb25:
   SLLIW s8, s7, 2
   ADDI t5, sp, 104
   ADD s8, t5, s8
-  LW s9, 0(s8)
-  SLLIW s9, s9, 2
+  LW s8, 0(s8)
+  SLLIW s9, s8, 2
   ADDI t5, sp, 184
   ADD s9, t5, s9
   LW s10, 0(s9)
   ADDI s11, zero, 1
   SUBW s10, s10, s11
   SW s10, 0(s9)
-  LW s8, 0(s8)
   SLLIW s9, s8, 2
   ADDI t5, sp, 184
   ADD s9, t5, s9

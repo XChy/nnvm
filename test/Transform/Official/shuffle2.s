@@ -65,11 +65,10 @@ insert:
   LA s2, head
   ADD s1, s2, s1
   LW s2, 0(s1)
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb7
+  SLTIU s3, s2, 1
+  BNE s3, zero, bb7
   # implict jump to bb1
 bb1:
-  LW s2, 0(s1)
   # implict jump to bb2
 bb2:
   ADD s3, s2, zero
@@ -337,11 +336,10 @@ bb23:
   LA s7, head
   ADD s6, s7, s6
   LW s7, 0(s6)
-  SLTIU s7, s7, 1
-  BNE s7, zero, bb31
+  SLTIU s8, s7, 1
+  BNE s8, zero, bb31
   # implict jump to bb24
 bb24:
-  LW s7, 0(s6)
   # implict jump to bb25
 bb25:
   ADD s8, s7, zero

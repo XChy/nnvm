@@ -47,8 +47,6 @@ bb5:
   ADDI s0, zero, 1
   JAL zero, bb4
 bb6:
-  LA s1, a
-  LW s1, 0(s1)
   XORI s1, s1, 3
   SLTU s1, zero, s1
   ADD s0, s1, zero

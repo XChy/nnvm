@@ -46,12 +46,10 @@ while.exit180:
   232 = icmp eq i32 %x.stack160.phi322, i32 %y.stack.phi326
   br i1 %232, bb %then233, bb %if.exit234
 select.then199:
-  208.load = load i32 from ptr %196
-  356 = shl i32 %208.load, i32 2
+  356 = shl i32 %196.load, i32 2
   211 = ptradd ptr @dep, i32 %356
   211.load = load i32 from ptr %211
-  215.load = load i32 from ptr %187
-  217 = icmp sge i32 %211.load, i32 %215.load
+  217 = icmp sge i32 %211.load, i32 %187.load
   br bb %select.exit201
 select.else200:
   br bb %select.exit201
@@ -59,10 +57,9 @@ select.exit201:
   select202.phi = phi [bb %select.else200, i1 0, bb %select.then199, i1 %217]
   br i1 %select202.phi, bb %then219, bb %if.exit220
 then219:
-  226.load = load i32 from ptr %196
   br bb %if.exit220
 if.exit220:
-  x.stack160.phi321 = phi [bb %select.exit201, i32 %x.stack160.phi322, bb %then219, i32 %226.load]
+  x.stack160.phi321 = phi [bb %select.exit201, i32 %x.stack160.phi322, bb %then219, i32 %196.load]
   229 = sub i32 %i177.phi, i32 1
   br bb %while.cond178
 then233:
@@ -93,12 +90,10 @@ while.exit238:
   279.load = load i32 from ptr %277
   ret i32 %279.load
 then257:
-  264.load = load i32 from ptr %247
-  271.load = load i32 from ptr %254
   br bb %if.exit258
 if.exit258:
-  y.stack.phi = phi [bb %while.body237, i32 %y.stack.phi325, bb %then257, i32 %271.load]
-  x.stack160.phi = phi [bb %while.body237, i32 %x.stack160.phi320, bb %then257, i32 %264.load]
+  y.stack.phi = phi [bb %while.body237, i32 %y.stack.phi325, bb %then257, i32 %254.load]
+  x.stack160.phi = phi [bb %while.body237, i32 %x.stack160.phi320, bb %then257, i32 %247.load]
   274 = sub i32 %i177.phi329, i32 1
   br bb %while.cond236
 }
@@ -181,17 +176,14 @@ entry51:
   372 = shl i32 %cnt.load, i32 2
   56 = ptradd ptr @to, i32 %372
   store i32 %To to ptr %56
-  cnt.load58 = load i32 from ptr @cnt
-  373 = shl i32 %cnt.load58, i32 2
+  373 = shl i32 %cnt.load, i32 2
   60 = ptradd ptr @next, i32 %373
   374 = shl i32 %from, i32 2
   63 = ptradd ptr @head, i32 %374
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  cnt.load68 = load i32 from ptr @cnt
-  store i32 %cnt.load68 to ptr %63
-  cnt.load69 = load i32 from ptr @cnt
-  70 = add i32 %cnt.load69, i32 1
+  store i32 %cnt.load to ptr %63
+  70 = add i32 %cnt.load, i32 1
   store i32 %70 to ptr @cnt
   72 = mul i32 %To, i32 80
   73 = ptradd ptr @f, i32 %72
@@ -235,17 +227,14 @@ while.body287.split622.split:
   372491 = shl i32 %cnt.load490, i32 2
   56492 = ptradd ptr @to, i32 %372491
   store i32 %296.ret to ptr %56492
-  cnt.load58494 = load i32 from ptr @cnt
-  373495 = shl i32 %cnt.load58494, i32 2
+  373495 = shl i32 %cnt.load490, i32 2
   60496 = ptradd ptr @next, i32 %373495
   374497 = shl i32 %294.ret, i32 2
   63498 = ptradd ptr @head, i32 %374497
   63.load499 = load i32 from ptr %63498
   store i32 %63.load499 to ptr %60496
-  cnt.load68501 = load i32 from ptr @cnt
-  store i32 %cnt.load68501 to ptr %63498
-  cnt.load69503 = load i32 from ptr @cnt
-  70504 = add i32 %cnt.load69503, i32 1
+  store i32 %cnt.load490 to ptr %63498
+  70504 = add i32 %cnt.load490, i32 1
   store i32 %70504 to ptr @cnt
   72506 = mul i32 %296.ret, i32 80
   73507 = ptradd ptr @f, i32 %72506
@@ -315,12 +304,10 @@ LCA.while.exit180:
   232412 = icmp eq i32 %x.stack160.phi322394, i32 %y.stack.phi326389
   br i1 %232412, bb %LCA.then233, bb %LCA.if.exit234
 LCA.select.then199:
-  208.load415 = load i32 from ptr %196407
-  356416 = shl i32 %208.load415, i32 2
+  356416 = shl i32 %196.load408, i32 2
   211417 = ptradd ptr @dep, i32 %356416
   211.load418 = load i32 from ptr %211417
-  215.load419 = load i32 from ptr %187399
-  217420 = icmp sge i32 %211.load418, i32 %215.load419
+  217420 = icmp sge i32 %211.load418, i32 %187.load400
   br bb %LCA.select.exit201
 LCA.select.else200:
   br bb %LCA.select.exit201
@@ -328,10 +315,9 @@ LCA.select.exit201:
   select202.phi425 = phi [bb %LCA.select.else200, i1 0, bb %LCA.select.then199, i1 %217420]
   br i1 %select202.phi425, bb %LCA.then219, bb %LCA.if.exit220
 LCA.then219:
-  226.load428 = load i32 from ptr %196407
   br bb %LCA.if.exit220
 LCA.if.exit220:
-  x.stack160.phi321431 = phi [bb %LCA.select.exit201, i32 %x.stack160.phi322394, bb %LCA.then219, i32 %226.load428]
+  x.stack160.phi321431 = phi [bb %LCA.select.exit201, i32 %x.stack160.phi322394, bb %LCA.then219, i32 %196.load408]
   229432 = sub i32 %i177.phi393, i32 1
   br bb %LCA.while.cond178
 LCA.then233:
@@ -362,12 +348,10 @@ LCA.while.exit238:
   279.load459 = load i32 from ptr %277458
   br bb %while.body304.split
 LCA.then257:
-  264.load462 = load i32 from ptr %247448
-  271.load463 = load i32 from ptr %254452
   br bb %LCA.if.exit258
 LCA.if.exit258:
-  y.stack.phi466 = phi [bb %LCA.while.body237, i32 %y.stack.phi325440, bb %LCA.then257, i32 %271.load463]
-  x.stack160.phi467 = phi [bb %LCA.while.body237, i32 %x.stack160.phi320441, bb %LCA.then257, i32 %264.load462]
+  y.stack.phi466 = phi [bb %LCA.while.body237, i32 %y.stack.phi325440, bb %LCA.then257, i32 %254.load453]
+  x.stack160.phi467 = phi [bb %LCA.while.body237, i32 %x.stack160.phi320441, bb %LCA.then257, i32 %247.load449]
   274468 = sub i32 %i177.phi329439, i32 1
   br bb %LCA.while.cond236
 init.while.cond81:

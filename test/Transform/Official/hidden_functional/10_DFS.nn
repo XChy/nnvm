@@ -84,17 +84,14 @@ entry51:
   251 = shl i32 %cnt.load, i32 2
   56 = ptradd ptr @to, i32 %251
   store i32 %To to ptr %56
-  cnt.load58 = load i32 from ptr @cnt
-  252 = shl i32 %cnt.load58, i32 2
+  252 = shl i32 %cnt.load, i32 2
   60 = ptradd ptr @next, i32 %252
   253 = shl i32 %from, i32 2
   63 = ptradd ptr @head, i32 %253
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  cnt.load68 = load i32 from ptr @cnt
-  store i32 %cnt.load68 to ptr %63
-  cnt.load69 = load i32 from ptr @cnt
-  70 = add i32 %cnt.load69, i32 1
+  store i32 %cnt.load to ptr %63
+  70 = add i32 %cnt.load, i32 1
   store i32 %70 to ptr @cnt
   255 = shl i32 %70, i32 2
   73 = ptradd ptr @to, i32 %255
@@ -191,17 +188,14 @@ else197.split549.split:
   251278 = shl i32 %cnt.load277, i32 2
   56279 = ptradd ptr @to, i32 %251278
   store i32 %211.ret to ptr %56279
-  cnt.load58281 = load i32 from ptr @cnt
-  252282 = shl i32 %cnt.load58281, i32 2
+  252282 = shl i32 %cnt.load277, i32 2
   60283 = ptradd ptr @next, i32 %252282
   253284 = shl i32 %209.ret, i32 2
   63285 = ptradd ptr @head, i32 %253284
   63.load286 = load i32 from ptr %63285
   store i32 %63.load286 to ptr %60283
-  cnt.load68288 = load i32 from ptr @cnt
-  store i32 %cnt.load68288 to ptr %63285
-  cnt.load69290 = load i32 from ptr @cnt
-  70291 = add i32 %cnt.load69290, i32 1
+  store i32 %cnt.load277 to ptr %63285
+  70291 = add i32 %cnt.load277, i32 1
   store i32 %70291 to ptr @cnt
   255293 = shl i32 %70291, i32 2
   73294 = ptradd ptr @to, i32 %255293

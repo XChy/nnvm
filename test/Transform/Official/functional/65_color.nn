@@ -21,8 +21,7 @@ entry8:
   35 = icmp ne i32 %32.load, i32 -1
   br i1 %35, bb %then36, bb %if.exit37
 then36:
-  55.load = load i32 from ptr %32
-  ret i32 %55.load
+  ret i32 %32.load
 if.exit37:
   59 = add i32 %a, i32 %b
   61 = add i32 %59, i32 %c

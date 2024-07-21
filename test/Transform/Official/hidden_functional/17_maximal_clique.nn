@@ -55,11 +55,9 @@ while.body109:
   167 = shl i32 %127.load, i32 2
   130 = ptradd ptr %122, i32 %167
   store i32 1 to ptr %130
-  135.load = load i32 from ptr %127
-  137 = mul i32 %135.load, i32 120
+  137 = mul i32 %127.load, i32 120
   138 = ptradd ptr @graph, i32 %137
-  143.load = load i32 from ptr %117
-  170 = shl i32 %143.load, i32 2
+  170 = shl i32 %119.load, i32 2
   146 = ptradd ptr %138, i32 %170
   store i32 1 to ptr %146
   148 = add i32 %i86.phi, i32 1

@@ -658,8 +658,7 @@ entry473:
   store float %645 to ptr %arr.index673
   arr.index674 = ptradd ptr %arr474, i32 36
   store float %664 to ptr %arr.index674
-  k.load675 = load i32 from ptr @k
-  2239 = shl i32 %k.load675, i32 2
+  2239 = shl i32 %k.load475, i32 2
   677 = ptradd ptr %x39, i32 %2239
   677.load = load float from ptr %677
   679 = si2f i32 0 to float
@@ -840,8 +839,7 @@ entry698:
   store float %842 to ptr %arr.index851
   arr.index852 = ptradd ptr %arr734, i32 36
   store float 0.000000 to ptr %arr.index852
-  k.load854 = load i32 from ptr @k
-  2257 = shl i32 %k.load854, i32 2
+  2257 = shl i32 %k.load736, i32 2
   856 = ptradd ptr %i1, i32 %2257
   856.load = load i32 from ptr %856
   859 = add i32 %856.load, i32 %i2

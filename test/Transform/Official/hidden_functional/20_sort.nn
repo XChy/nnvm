@@ -29,10 +29,9 @@ while.body106:
 while.exit107:
   br bb %while.cond141
 then132:
-  136.load = load i32 from ptr %114
   br bb %if.exit133
 if.exit133:
-  mx.phi = phi [bb %while.body106, i32 %mx.phi321, bb %then132, i32 %136.load]
+  mx.phi = phi [bb %while.body106, i32 %mx.phi321, bb %then132, i32 %128.load]
   139 = add i32 %i102.phi317, i32 1
   br bb %while.cond105
 while.cond141:
@@ -84,8 +83,7 @@ while.exit172:
 while.cond182:
   j179.phi = phi [bb %while.body171, i32 %181, bb %if.exit199, i32 %202]
   id.phi326 = phi [bb %while.body171, i32 %i169.phi, bb %if.exit199, i32 %id.phi]
-  n.load186 = load i32 from ptr @n
-  187 = icmp slt i32 %j179.phi, i32 %n.load186
+  187 = icmp slt i32 %j179.phi, i32 %n.load174
   br i1 %187, bb %while.body183, bb %while.exit184
 while.body183:
   357 = shl i32 %j179.phi, i32 2
@@ -166,8 +164,7 @@ while.body255:
   275 = ptradd ptr @c, i32 %368
   278.load = load i32 from ptr %275
   284 = sub i32 %278.load, i32 %272
-  287.load = load i32 from ptr %270
-  289 = sub i32 %284, i32 %287.load
+  289 = sub i32 %284, i32 %270.load
   store i32 %289 to ptr %275
   291 = add i32 %i223.phi332, i32 1
   br bb %while.cond254
@@ -214,16 +211,14 @@ sortB.while.body106:
   123.load398 = load i32 from ptr %117397
   125399 = add i32 %123.load398, i32 1
   store i32 %125399 to ptr %117397
-  128.load401 = load i32 from ptr %114394
-  131402 = icmp sgt i32 %128.load401, i32 %mx.phi321387
+  131402 = icmp sgt i32 %114.load395, i32 %mx.phi321387
   br i1 %131402, bb %sortB.then132, bb %sortB.if.exit133
 sortB.while.exit107:
   br bb %sortB.while.cond141
 sortB.then132:
-  136.load407 = load i32 from ptr %114394
   br bb %sortB.if.exit133
 sortB.if.exit133:
-  mx.phi410 = phi [bb %sortB.while.body106, i32 %mx.phi321387, bb %sortB.then132, i32 %136.load407]
+  mx.phi410 = phi [bb %sortB.while.body106, i32 %mx.phi321387, bb %sortB.then132, i32 %114.load395]
   139411 = add i32 %i102.phi317388, i32 1
   br bb %sortB.while.cond105
 sortB.while.cond141:

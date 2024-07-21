@@ -341,8 +341,8 @@ bb40:
   SLLIW s4, s1, 2
   LA s3, program
   ADD s3, s3, s4
-  LW s4, 0(s3)
-  XORI s4, s4, 93
+  LW s3, 0(s3)
+  XORI s4, s3, 93
   SLTIU s4, s4, 1
   BNE s4, zero, bb46
   # implict jump to bb41
@@ -350,8 +350,7 @@ bb41:
   ADD s4, s8, zero
   # implict jump to bb42
 bb42:
-  LW s2, 0(s3)
-  XORI s2, s2, 91
+  XORI s2, s3, 91
   SLTIU s2, s2, 1
   BNE s2, zero, bb45
   # implict jump to bb43

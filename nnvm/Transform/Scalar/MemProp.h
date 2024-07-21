@@ -17,6 +17,9 @@ public:
   bool run(Function &F);
   bool processBB(BasicBlock *BB);
 
+  bool tryReplaceWithDef(Instruction *I);
+  bool tryReplaceWithLoad(Instruction *I);
+
 private:
   MemAccAnalysis *memAcc;
 };

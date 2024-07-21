@@ -170,25 +170,19 @@ add_edge:
   SD s3, 32(sp)
   LA s0, cnt
   LW s0, 0(s0)
-  SLLIW s0, s0, 2
-  LA s1, to
-  ADD s0, s1, s0
-  SW a1, 0(s0)
-  LA s0, cnt
-  LW s0, 0(s0)
-  SLLIW s0, s0, 2
-  LA s1, next
-  ADD s0, s1, s0
-  SLLIW s1, a0, 2
-  LA s2, head
+  SLLIW s1, s0, 2
+  LA s2, to
   ADD s1, s2, s1
-  LW s2, 0(s1)
-  SW s2, 0(s0)
-  LA s0, cnt
-  LW s0, 0(s0)
-  SW s0, 0(s1)
-  LA s0, cnt
-  LW s0, 0(s0)
+  SW a1, 0(s1)
+  SLLIW s1, s0, 2
+  LA s2, next
+  ADD s1, s2, s1
+  SLLIW s2, a0, 2
+  LA s3, head
+  ADD s2, s3, s2
+  LW s3, 0(s2)
+  SW s3, 0(s1)
+  SW s0, 0(s2)
   ADDIW s0, s0, 1
   LA s1, cnt
   SW s0, 0(s1)
@@ -541,40 +535,34 @@ bb65:
 bb66:
   LA s10, cnt
   LW s10, 0(s10)
-  SLLIW s10, s10, 2
-  LA s3, to
-  ADD s3, s3, s10
+  SLLIW s3, s10, 2
+  LA s8, to
+  ADD s3, s8, s3
   SW s0, 0(s3)
-  LA s3, cnt
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  LA s10, next
-  ADD s3, s10, s3
+  SLLIW s3, s10, 2
+  LA s8, next
+  ADD s3, s8, s3
   LW t4, 176(sp)
-  SLLIW s10, t4, 2
-  LA s8, head
-  ADD s8, s8, s10
-  LW s10, 0(s8)
-  SW s10, 0(s3)
-  LA s3, cnt
-  LW s3, 0(s3)
-  SW s3, 0(s8)
-  LA s3, cnt
-  LW s3, 0(s3)
-  ADDIW s3, s3, 1
+  SLLIW s8, t4, 2
+  LA s9, head
+  ADD s8, s9, s8
+  LW s9, 0(s8)
+  SW s9, 0(s3)
+  SW s10, 0(s8)
+  ADDIW s3, s10, 1
   LA s8, cnt
   SW s3, 0(s8)
   SLLIW s8, s3, 2
-  LA s10, to
-  ADD s8, s10, s8
+  LA s9, to
+  ADD s8, s9, s8
   LW t4, 176(sp)
   SW t4, 0(s8)
   SLLIW s8, s3, 2
-  LA s10, next
-  ADD s8, s10, s8
-  SLLIW s10, s0, 2
-  LA s9, head
-  ADD s9, s9, s10
+  LA s9, next
+  ADD s8, s9, s8
+  SLLIW s9, s0, 2
+  LA s10, head
+  ADD s9, s10, s9
   LW s10, 0(s9)
   SW s10, 0(s8)
   SW s3, 0(s9)

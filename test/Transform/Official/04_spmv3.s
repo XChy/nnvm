@@ -125,24 +125,24 @@ bb12:
   SLLIW s1, s10, 2
   LA s11, x
   ADD s11, s11, s1
-  LW ra, 0(s11)
+  LW s11, 0(s11)
   ADDIW s10, s10, 1
+  ADD ra, s11, zero
   # implict jump to bb13
 bb13:
   ADD t0, ra, zero
   SLLIW t1, s10, 2
   LA t2, x
   ADD t1, t2, t1
-  LW t2, 0(t1)
-  BLT t0, t2, bb18
+  LW t1, 0(t1)
+  BLT t0, t1, bb18
   # implict jump to bb14
 bb14:
-  LW t2, 0(s11)
+  ADD t2, s11, zero
   # implict jump to bb15
 bb15:
   ADD a0, t2, zero
-  LW a1, 0(t1)
-  BLT a0, a1, bb17
+  BLT a0, t1, bb17
   # implict jump to bb16
 bb16:
   ADD s9, s10, zero
@@ -199,24 +199,24 @@ bb20:
   SLLIW s1, s6, 2
   LA s7, x
   ADD s7, s7, s1
-  LW s8, 0(s7)
+  LW s7, 0(s7)
   ADDIW s6, s6, 1
+  ADD s8, s7, zero
   # implict jump to bb21
 bb21:
   ADD s9, s8, zero
   SLLIW s10, s6, 2
   LA s11, x
   ADD s10, s11, s10
-  LW s11, 0(s10)
-  BLT s9, s11, bb26
+  LW s10, 0(s10)
+  BLT s9, s10, bb26
   # implict jump to bb22
 bb22:
-  LW s11, 0(s7)
+  ADD s11, s7, zero
   # implict jump to bb23
 bb23:
   ADD ra, s11, zero
-  LW t0, 0(s10)
-  BLT ra, t0, bb25
+  BLT ra, s10, bb25
   # implict jump to bb24
 bb24:
   ADD s5, s6, zero

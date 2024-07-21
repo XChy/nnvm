@@ -123,10 +123,9 @@ mv.else:
   161223 = shl i32 %i.phi181, i32 2
   59224 = ptradd ptr @C, i32 %161223
   62.load225 = load i32 from ptr %59224
-  69.load226 = load i32 from ptr %37200
   73227 = ptradd ptr @B, i32 %158199
   73.load228 = load i32 from ptr %73227
-  75229 = mul i32 %69.load226, i32 %73.load228
+  75229 = mul i32 %37.load201, i32 %73.load228
   76230 = add i32 %62.load225, i32 %75229
   store i32 %76230 to ptr %59224
   br bb %mv.if.exit
@@ -189,10 +188,9 @@ mv.else290:
   161291 = shl i32 %i.phi249, i32 2
   59292 = ptradd ptr @B, i32 %161291
   62.load293 = load i32 from ptr %59292
-  69.load294 = load i32 from ptr %37268
   73295 = ptradd ptr @C, i32 %158267
   73.load296 = load i32 from ptr %73295
-  75297 = mul i32 %69.load294, i32 %73.load296
+  75297 = mul i32 %37.load269, i32 %73.load296
   76298 = add i32 %62.load293, i32 %75297
   store i32 %76298 to ptr %59292
   br bb %mv.if.exit285

@@ -18,13 +18,15 @@ a:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
   CALL getint
   ADD s0, a0, zero
   LA s1, a
@@ -51,44 +53,28 @@ main:
   LW s2, 0(s2)
   LA s3, c
   LW s3, 0(s3)
-  MULW s2, s2, s3
-  SUBW s2, s1, s2
-  LA s4, d
-  LW s4, 0(s4)
-  DIVW s1, s1, s3
-  SUBW s1, s4, s1
-  BNE s2, s1, bb9
+  MULW s4, s2, s3
+  SUBW s4, s1, s4
+  LA s5, d
+  LW s5, 0(s5)
+  DIVW s6, s1, s3
+  SUBW s6, s5, s6
+  BNE s4, s6, bb9
   # implict jump to bb1
 bb1:
-  LA s1, a
-  LW s1, 0(s1)
-  LA s2, b
-  LW s2, 0(s2)
-  MULW s1, s1, s2
-  LA s2, c
-  LW s2, 0(s2)
-  DIVW s1, s1, s2
-  LA s2, d
-  LW s2, 0(s2)
-  ADDW s2, s0, s2
-  XOR s1, s1, s2
-  SLTIU s1, s1, 1
+  MULW s4, s1, s2
+  DIVW s4, s4, s3
+  ADDW s6, s0, s5
+  XOR s4, s4, s6
+  SLTIU s4, s4, 1
   # implict jump to bb2
 bb2:
-  BNE s1, zero, bb8
+  BNE s4, zero, bb8
   # implict jump to bb3
 bb3:
-  LA s1, a
-  LW s1, 0(s1)
-  LA s2, b
-  LW s2, 0(s2)
   ADDW s1, s1, s2
-  LA s2, c
-  LW s2, 0(s2)
-  ADDW s1, s1, s2
-  LA s2, d
-  LW s2, 0(s2)
-  ADDW s0, s2, s0
+  ADDW s1, s1, s3
+  ADDW s0, s5, s0
   XOR s0, s1, s0
   SLTIU s0, s0, 1
   # implict jump to bb4
@@ -106,7 +92,9 @@ bb6:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:
   ADDI s0, zero, 1
@@ -115,5 +103,5 @@ bb8:
   ADDI s0, zero, 1
   JAL zero, bb4
 bb9:
-  ADDI s1, zero, 1
+  ADDI s4, zero, 1
   JAL zero, bb2

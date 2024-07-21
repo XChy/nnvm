@@ -200,8 +200,7 @@ if.exit165:
   172 = icmp slt i32 %89, i32 %n.load171
   br i1 %172, bb %select.then173, bb %select.else174
 select.then173:
-  n.load178 = load i32 from ptr @n
-  179 = add i32 %104, i32 %n.load178
+  179 = add i32 %104, i32 %n.load171
   315 = shl i32 %179, i32 2
   181 = ptradd ptr @array, i32 %315
   181.load = load i32 from ptr %181

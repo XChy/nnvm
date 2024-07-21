@@ -137,14 +137,12 @@ while.body128:
   store float %156 to ptr @temp
   br bb %while.cond127
 while.exit129:
-  temp.load157 = load float from ptr @temp
-  ret float %temp.load157
+  ret float %temp.load
 select.then:
   br bb %select.exit
 select.else:
-  temp.load140 = load float from ptr @temp
-  143 = fdiv float %input, float %temp.load140
-  144 = fsub float %temp.load140, float %143
+  143 = fdiv float %input, float %temp.load
+  144 = fsub float %temp.load, float %143
   145 = fneg float 0.000001
   146 = fcmp olt float %144, float %145
   br bb %select.exit
@@ -370,16 +368,14 @@ my_sqrt.while.body128:
   store float %156374 to ptr @temp
   br bb %my_sqrt.while.cond127
 my_sqrt.while.exit129:
-  temp.load157378 = load float from ptr @temp
-  203 = fsub float %temp.load157378, float 1.000000
+  203 = fsub float %temp.load364, float 1.000000
   204 = fcmp ole float %203, float 0.000001
   br i1 %204, bb %select.then205, bb %select.else206
 my_sqrt.select.then:
   br bb %my_sqrt.select.exit
 my_sqrt.select.else:
-  temp.load140383 = load float from ptr @temp
-  143384 = fdiv float %200, float %temp.load140383
-  144385 = fsub float %temp.load140383, float %143384
+  143384 = fdiv float %200, float %temp.load364
+  144385 = fsub float %temp.load364, float %143384
   145386 = fneg float 0.000001
   146387 = fcmp olt float %144385, float %145386
   br bb %my_sqrt.select.exit

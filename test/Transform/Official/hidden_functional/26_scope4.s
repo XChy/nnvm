@@ -16,25 +16,24 @@ a:
 .word 0x00000000
 .section .text
 f2:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
+  SD s3, 32(sp)
   LA s0, sum
   LW s0, 0(s0)
   LA s1, a
   LW s1, 0(s1)
   ADDW s0, s0, s1
-  LA s1, sum
-  SW s0, 0(s1)
-  LA s1, count
-  LW s1, 0(s1)
-  ADDIW s1, s1, 1
+  LA s2, sum
+  SW s0, 0(s2)
   LA s2, count
-  SW s1, 0(s2)
-  LA s1, a
-  LW s1, 0(s1)
+  LW s2, 0(s2)
+  ADDIW s2, s2, 1
+  LA s3, count
+  SW s2, 0(s3)
   ADDW s0, s0, s1
   LA s1, sum
   SW s0, 0(s1)
@@ -42,7 +41,8 @@ f2:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 f1:
   ADDI sp, sp, -48

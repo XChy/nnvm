@@ -17,9 +17,8 @@ entry178:
   194 = icmp slt i32 %192, i32 0
   br i1 %194, bb %then195, bb %if.exit196
 then195:
-  198.load = load i32 from ptr %190
   staticvalue.load200 = load i32 from ptr @staticvalue
-  201 = add i32 %198.load, i32 %staticvalue.load200
+  201 = add i32 %190.load, i32 %staticvalue.load200
   store i32 %201 to ptr @staticvalue
   br bb %if.exit196
 if.exit196:
@@ -99,9 +98,7 @@ if.exit:
   114 = icmp ne i32 %112, i32 %d
   br i1 %114, bb %then115, bb %if.exit116
 then115:
-  120.load = load i32 from ptr %104
-  125.load = load i32 from ptr %109
-  127 = sdiv i32 %120.load, i32 %125.load
+  127 = sdiv i32 %104.load, i32 %109.load
   128 = srem i32 %127, i32 2
   129 = icmp eq i32 %128, i32 0
   br i1 %129, bb %then130, bb %if.exit131
@@ -116,17 +113,14 @@ then130:
   br i1 %133, bb %then134, bb %if.exit135
 if.exit131:
   v.phi233 = phi [bb %then115, i32 0, bb %if.exit135, i32 %v.phi232]
-  144.load = load i32 from ptr %104
-  149.load = load i32 from ptr %109
-  151 = sdiv i32 %144.load, i32 %149.load
+  151 = sdiv i32 %104.load, i32 %109.load
   152 = srem i32 %151, i32 2
   153 = icmp eq i32 %152, i32 1
   br i1 %153, bb %then154, bb %if.exit155
 then134:
-  139.load = load i32 from ptr %109
   br bb %if.exit135
 if.exit135:
-  v.phi232 = phi [bb %then130, i32 0, bb %then134, i32 %139.load]
+  v.phi232 = phi [bb %then130, i32 0, bb %then134, i32 %109.load]
   br bb %if.exit131
 then154:
   157 = icmp eq i32 %d, i32 0
@@ -135,8 +129,7 @@ if.exit155:
   v.phi230 = phi [bb %if.exit131, i32 %v.phi233, bb %if.exit159, i32 %v.phi]
   br bb %if.exit116
 then158:
-  164.load = load i32 from ptr %109
-  166 = sub i32 %v.phi233, i32 %164.load
+  166 = sub i32 %v.phi233, i32 %109.load
   br bb %if.exit159
 if.exit159:
   v.phi = phi [bb %then154, i32 %v.phi233, bb %then158, i32 %166]
@@ -185,28 +178,23 @@ while.exit212:
   call void putarray(i32 10000, ptr @a)
   ret i32 0
 rand.then195:
-  198.load280 = load i32 from ptr %190273
   staticvalue.load200281 = load i32 from ptr @staticvalue
-  201282 = add i32 %198.load280, i32 %staticvalue.load200281
+  201282 = add i32 %190.load274, i32 %staticvalue.load200281
   store i32 %201282 to ptr @staticvalue
   br bb %rand.if.exit196
 rand.if.exit196:
   staticvalue.load202286 = load i32 from ptr @staticvalue
   219 = srem i32 %staticvalue.load202286, i32 300000
-  181.load292 = load i32 from ptr @seed
-  183293 = mul i32 %staticvalue.load202286, i32 %181.load292
-  185.load295 = load i32 from ptr %185269
-  187296 = add i32 %183293, i32 %185.load295
+  183293 = mul i32 %staticvalue.load202286, i32 %181.load267
+  187296 = add i32 %183293, i32 %185.load270
   store i32 %187296 to ptr @staticvalue
-  190.load299 = load i32 from ptr %190273
-  192300 = srem i32 %187296, i32 %190.load299
+  192300 = srem i32 %187296, i32 %190.load274
   store i32 %192300 to ptr @staticvalue
   194302 = icmp slt i32 %192300, i32 0
   br i1 %194302, bb %rand.then195304, bb %rand.if.exit196310
 rand.then195304:
-  198.load305 = load i32 from ptr %190273
   staticvalue.load200306 = load i32 from ptr @staticvalue
-  201307 = add i32 %198.load305, i32 %staticvalue.load200306
+  201307 = add i32 %190.load274, i32 %staticvalue.load200306
   store i32 %201307 to ptr @staticvalue
   br bb %rand.if.exit196310
 rand.if.exit196310:
@@ -277,9 +265,7 @@ set.if.exit:
   114391 = icmp ne i32 %112390, i32 %221
   br i1 %114391, bb %set.then115, bb %set.if.exit116
 set.then115:
-  120.load394 = load i32 from ptr %104383
-  125.load395 = load i32 from ptr %109387
-  127396 = sdiv i32 %120.load394, i32 %125.load395
+  127396 = sdiv i32 %104.load384, i32 %109.load388
   128397 = srem i32 %127396, i32 2
   129398 = icmp eq i32 %128397, i32 0
   br i1 %129398, bb %set.then130, bb %set.if.exit131
@@ -294,17 +280,14 @@ set.then130:
   br i1 %133407, bb %set.then134, bb %set.if.exit135
 set.if.exit131:
   v.phi233410 = phi [bb %set.then115, i32 0, bb %set.if.exit135, i32 %v.phi232421]
-  144.load411 = load i32 from ptr %104383
-  149.load412 = load i32 from ptr %109387
-  151413 = sdiv i32 %144.load411, i32 %149.load412
+  151413 = sdiv i32 %104.load384, i32 %109.load388
   152414 = srem i32 %151413, i32 2
   153415 = icmp eq i32 %152414, i32 1
   br i1 %153415, bb %set.then154, bb %set.if.exit155
 set.then134:
-  139.load418 = load i32 from ptr %109387
   br bb %set.if.exit135
 set.if.exit135:
-  v.phi232421 = phi [bb %set.then130, i32 0, bb %set.then134, i32 %139.load418]
+  v.phi232421 = phi [bb %set.then130, i32 0, bb %set.then134, i32 %109.load388]
   br bb %set.if.exit131
 set.then154:
   157424 = icmp eq i32 %221, i32 0
@@ -313,8 +296,7 @@ set.if.exit155:
   v.phi230427 = phi [bb %set.if.exit131, i32 %v.phi233410, bb %set.if.exit159, i32 %v.phi434]
   br bb %set.if.exit116
 set.then158:
-  164.load430 = load i32 from ptr %109387
-  166431 = sub i32 %v.phi233410, i32 %164.load430
+  166431 = sub i32 %v.phi233410, i32 %109.load388
   br bb %set.if.exit159
 set.if.exit159:
   v.phi434 = phi [bb %set.then154, i32 %v.phi233410, bb %set.then158, i32 %166431]

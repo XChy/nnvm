@@ -15,8 +15,7 @@ while.body54:
   147 = shl i32 %i51.phi135, i32 2
   63 = ptradd ptr %dst, i32 %147
   63.load = load i32 from ptr %63
-  67.load = load i32 from ptr %58
-  69 = icmp eq i32 %63.load, i32 %67.load
+  69 = icmp eq i32 %63.load, i32 %58.load
   br i1 %69, bb %then70, bb %else72
 while.exit55:
   ret i32 -1
@@ -68,11 +67,10 @@ get_next.while.exit:
 get_next.select.then:
   br bb %get_next.select.exit
 get_next.select.else:
-  24.load270 = load i32 from ptr %12258
   156271 = shl i32 %j.phi141256, i32 2
   28272 = ptradd ptr %dst, i32 %156271
   28.load273 = load i32 from ptr %28272
-  30274 = icmp eq i32 %24.load270, i32 %28.load273
+  30274 = icmp eq i32 %12.load259, i32 %28.load273
   br bb %get_next.select.exit
 get_next.select.exit:
   select.phi277 = phi [bb %get_next.select.else, i1 %30274, bb %get_next.select.then, i1 -1]
@@ -145,8 +143,7 @@ KMP.while.body54:
   147173 = shl i32 %i51.phi135166, i32 2
   63174 = ptradd ptr %dst, i32 %147173
   63.load175 = load i32 from ptr %63174
-  67.load176 = load i32 from ptr %58168
-  69177 = icmp eq i32 %63.load175, i32 %67.load176
+  69177 = icmp eq i32 %63.load175, i32 %58.load169
   br i1 %69177, bb %KMP.then70, bb %KMP.else72
 KMP.while.exit55:
   br bb %entry125.split
@@ -227,11 +224,10 @@ get_next.while.exit310:
 get_next.select.then312:
   br bb %get_next.select.exit321
 get_next.select.else314:
-  24.load315 = load i32 from ptr %12303
   156316 = shl i32 %j.phi141301, i32 2
   28317 = ptradd ptr %dst, i32 %156316
   28.load318 = load i32 from ptr %28317
-  30319 = icmp eq i32 %24.load315, i32 %28.load318
+  30319 = icmp eq i32 %12.load304, i32 %28.load318
   br bb %get_next.select.exit321
 get_next.select.exit321:
   select.phi322 = phi [bb %get_next.select.else314, i1 %30319, bb %get_next.select.then312, i1 -1]
@@ -290,11 +286,10 @@ while.exit:
 select.then:
   br bb %select.exit
 select.else:
-  24.load = load i32 from ptr %12
   156 = shl i32 %j.phi141, i32 2
   28 = ptradd ptr %str, i32 %156
   28.load = load i32 from ptr %28
-  30 = icmp eq i32 %24.load, i32 %28.load
+  30 = icmp eq i32 %12.load, i32 %28.load
   br bb %select.exit
 select.exit:
   select.phi = phi [bb %select.else, i1 %30, bb %select.then, i1 -1]

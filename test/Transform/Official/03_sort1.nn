@@ -182,8 +182,7 @@ while.body170:
   br bb %while.cond176
 while.exit171:
   store i32 %l to ptr %head
-  264.load = load i32 from ptr %cnt74
-  266 = add i32 %l, i32 %264.load
+  266 = add i32 %l, i32 %137.load
   store i32 %266 to ptr %tail
   br bb %while.cond267
 while.cond176:
@@ -196,8 +195,7 @@ while.cond176:
   187 = icmp slt i32 %181.load, i32 %185.load
   br i1 %187, bb %while.body177, bb %while.exit178
 while.body177:
-  192.load = load i32 from ptr %181
-  388 = shl i32 %192.load, i32 2
+  388 = shl i32 %181.load, i32 2
   195 = ptradd ptr %a, i32 %388
   195.load = load i32 from ptr %195
   br bb %while.cond197
@@ -216,8 +214,7 @@ while.body198:
   215 = ptradd ptr %a, i32 %390
   215.load = load i32 from ptr %215
   store i32 %v.phi to ptr %215
-  235.load = load i32 from ptr %212
-  237 = add i32 %235.load, i32 1
+  237 = add i32 %212.load, i32 1
   store i32 %237 to ptr %212
   br bb %while.cond197
 while.exit199:
@@ -225,8 +222,7 @@ while.exit199:
   396 = shl i32 %240.load, i32 2
   243 = ptradd ptr %a, i32 %396
   store i32 %v.phi to ptr %243
-  250.load = load i32 from ptr %181
-  252 = add i32 %250.load, i32 1
+  252 = add i32 %240.load, i32 1
   store i32 %252 to ptr %181
   br bb %while.cond176
 while.cond267:
@@ -312,10 +308,9 @@ while.body:
 while.exit:
   ret i32 %ret.phi366
 then:
-  21.load = load i32 from ptr %13
   br bb %if.exit
 if.exit:
-  ret.phi = phi [bb %while.body, i32 %ret.phi366, bb %then, i32 %21.load]
+  ret.phi = phi [bb %while.body, i32 %ret.phi366, bb %then, i32 %13.load]
   24 = add i32 %i.phi, i32 1
   br bb %while.cond
 }

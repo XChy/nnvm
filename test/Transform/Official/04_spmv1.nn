@@ -80,12 +80,10 @@ spmv.while.body29:
   58194 = add i32 %j.phi132176, i32 1
   br bb %spmv.while.cond28
 spmv.while.exit30:
-  61.load197 = load i32 from ptr %26170
   br bb %spmv.while.cond63
 spmv.while.cond63:
-  j.phi200 = phi [bb %spmv.while.exit30, i32 %61.load197, bb %spmv.while.body64, i32 %99219]
-  70.load201 = load i32 from ptr %35179
-  72202 = icmp slt i32 %j.phi200, i32 %70.load201
+  j.phi200 = phi [bb %spmv.while.exit30, i32 %26.load171, bb %spmv.while.body64, i32 %99219]
+  72202 = icmp slt i32 %j.phi200, i32 %35.load180
   br i1 %72202, bb %spmv.while.body64, bb %spmv.while.exit65
 spmv.while.body64:
   143205 = shl i32 %j.phi200, i32 2
@@ -152,12 +150,10 @@ spmv.while.body29257:
   58268 = add i32 %j.phi132250, i32 1
   br bb %spmv.while.cond28249
 spmv.while.exit30270:
-  61.load271 = load i32 from ptr %26244
   br bb %spmv.while.cond63273
 spmv.while.cond63273:
-  j.phi274 = phi [bb %spmv.while.exit30270, i32 %61.load271, bb %spmv.while.body64278, i32 %99293]
-  70.load275 = load i32 from ptr %35253
-  72276 = icmp slt i32 %j.phi274, i32 %70.load275
+  j.phi274 = phi [bb %spmv.while.exit30270, i32 %26.load245, bb %spmv.while.body64278, i32 %99293]
+  72276 = icmp slt i32 %j.phi274, i32 %35.load254
   br i1 %72276, bb %spmv.while.body64278, bb %spmv.while.exit65295
 spmv.while.body64278:
   143279 = shl i32 %j.phi274, i32 2

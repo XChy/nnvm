@@ -87,8 +87,8 @@ bb5:
   ADD s6, s1, zero
   SLLIW s7, s5, 2
   ADD s7, s0, s7
-  LW s8, 0(s7)
-  BNE s8, zero, bb7
+  LW s7, 0(s7)
+  BNE s7, zero, bb7
   # implict jump to bb6
 bb6:
   LD ra, 8(sp)
@@ -107,7 +107,6 @@ bb6:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb7:
-  LW s7, 0(s7)
   XORI s8, s7, 62
   SLTIU s8, s8, 1
   BNE s8, zero, bb40

@@ -40,10 +40,9 @@ then:
   store i32 0 to ptr %37
   ret i32 0
 if.exit:
-  41.load = load i32 from ptr %13
   br bb %while.cond
 while.cond:
-  p.phi = phi [bb %if.exit, i32 %41.load, bb %if.exit56, i32 %76.load]
+  p.phi = phi [bb %if.exit, i32 %13.load, bb %if.exit56, i32 %76.load]
   47 = icmp ne i32 %p.phi, i32 0
   br i1 %47, bb %while.body, bb %while.exit
 while.body:
@@ -175,10 +174,9 @@ insert.then:
   store i32 0 to ptr %37259
   br bb %while.body161.split
 insert.if.exit:
-  41.load263 = load i32 from ptr %13236
   br bb %insert.while.cond
 insert.while.cond:
-  p.phi266 = phi [bb %insert.if.exit, i32 %41.load263, bb %insert.if.exit56, i32 %76.load316]
+  p.phi266 = phi [bb %insert.if.exit, i32 %13.load237, bb %insert.if.exit56, i32 %76.load316]
   47267 = icmp ne i32 %p.phi266, i32 0
   br i1 %47267, bb %insert.while.body, bb %insert.while.exit
 insert.while.body:

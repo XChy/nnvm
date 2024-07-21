@@ -67,8 +67,7 @@ while.body152:
 while.exit153:
   br bb %while.cond132
 then169:
-  173.load = load i32 from ptr %160
-  282392 = shl i32 %173.load, i32 2
+  282392 = shl i32 %160.load, i32 2
   107393 = ptradd ptr @inq, i32 %282392
   store i32 1 to ptr %107393
   tail.load395 = load i32 from ptr @tail
@@ -76,7 +75,7 @@ then169:
   store i32 %109396 to ptr @tail
   283398 = shl i32 %109396, i32 2
   112399 = ptradd ptr @que, i32 %283398
-  store i32 %173.load to ptr %112399
+  store i32 %160.load to ptr %112399
   br bb %if.exit170
 if.exit170:
   178 = ptradd ptr @next, i32 %275
@@ -143,17 +142,14 @@ entry51:
   284 = shl i32 %cnt.load, i32 2
   56 = ptradd ptr @to, i32 %284
   store i32 %To to ptr %56
-  cnt.load58 = load i32 from ptr @cnt
-  285 = shl i32 %cnt.load58, i32 2
+  285 = shl i32 %cnt.load, i32 2
   60 = ptradd ptr @next, i32 %285
   286 = shl i32 %from, i32 2
   63 = ptradd ptr @head, i32 %286
   63.load = load i32 from ptr %63
   store i32 %63.load to ptr %60
-  cnt.load68 = load i32 from ptr @cnt
-  store i32 %cnt.load68 to ptr %63
-  cnt.load69 = load i32 from ptr @cnt
-  70 = add i32 %cnt.load69, i32 1
+  store i32 %cnt.load to ptr %63
+  70 = add i32 %cnt.load, i32 1
   store i32 %70 to ptr @cnt
   288 = shl i32 %70, i32 2
   73 = ptradd ptr @to, i32 %288
@@ -260,17 +256,14 @@ else226.split704.split:
   284429 = shl i32 %cnt.load428, i32 2
   56430 = ptradd ptr @to, i32 %284429
   store i32 %239.ret to ptr %56430
-  cnt.load58432 = load i32 from ptr @cnt
-  285433 = shl i32 %cnt.load58432, i32 2
+  285433 = shl i32 %cnt.load428, i32 2
   60434 = ptradd ptr @next, i32 %285433
   286435 = shl i32 %237.ret, i32 2
   63436 = ptradd ptr @head, i32 %286435
   63.load437 = load i32 from ptr %63436
   store i32 %63.load437 to ptr %60434
-  cnt.load68439 = load i32 from ptr @cnt
-  store i32 %cnt.load68439 to ptr %63436
-  cnt.load69441 = load i32 from ptr @cnt
-  70442 = add i32 %cnt.load69441, i32 1
+  store i32 %cnt.load428 to ptr %63436
+  70442 = add i32 %cnt.load428, i32 1
   store i32 %70442 to ptr @cnt
   288444 = shl i32 %70442, i32 2
   73445 = ptradd ptr @to, i32 %288444
@@ -329,8 +322,7 @@ same.while.body152:
 same.while.exit153:
   br bb %same.while.cond132
 same.then169:
-  173.load339 = load i32 from ptr %160326
-  282416 = shl i32 %173.load339, i32 2
+  282416 = shl i32 %160.load327, i32 2
   107417 = ptradd ptr @inq, i32 %282416
   store i32 1 to ptr %107417
   tail.load419 = load i32 from ptr @tail
@@ -338,7 +330,7 @@ same.then169:
   store i32 %109420 to ptr @tail
   283422 = shl i32 %109420, i32 2
   112423 = ptradd ptr @que, i32 %283422
-  store i32 %173.load339 to ptr %112423
+  store i32 %160.load327 to ptr %112423
   br bb %same.if.exit170
 same.if.exit170:
   178343 = ptradd ptr @next, i32 %275325

@@ -164,12 +164,11 @@ mm.while.body56:
   229298 = shl i32 %j.phi293, i32 2
   67299 = ptradd ptr %64297, i32 %229298
   73.load300 = load i32 from ptr %67299
-  80.load301 = load i32 from ptr %48280
   234302 = shl i32 %k.phi263, i32 12
   84303 = ptradd ptr @B, i32 %234302
   87304 = ptradd ptr %84303, i32 %229298
   87.load305 = load i32 from ptr %87304
-  89306 = mul i32 %80.load301, i32 %87.load305
+  89306 = mul i32 %48.load281, i32 %87.load305
   90307 = add i32 %73.load300, i32 %89306
   store i32 %90307 to ptr %67299
   92309 = add i32 %j.phi293, i32 1
@@ -240,12 +239,11 @@ mm.while.body56374:
   229376 = shl i32 %j.phi371, i32 2
   67377 = ptradd ptr %64375, i32 %229376
   73.load378 = load i32 from ptr %67377
-  80.load379 = load i32 from ptr %48358
   234380 = shl i32 %k.phi341, i32 12
   84381 = ptradd ptr @C, i32 %234380
   87382 = ptradd ptr %84381, i32 %229376
   87.load383 = load i32 from ptr %87382
-  89384 = mul i32 %80.load379, i32 %87.load383
+  89384 = mul i32 %48.load359, i32 %87.load383
   90385 = add i32 %73.load378, i32 %89384
   store i32 %90385 to ptr %67377
   92387 = add i32 %j.phi371, i32 1

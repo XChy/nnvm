@@ -77,9 +77,9 @@ bb5:
   ADD s2, s1, zero
   LA s3, n
   LW s3, 0(s3)
-  SLT s3, s3, s2
-  XORI s3, s3, 1
-  BNE s3, zero, bb7
+  SLT s4, s3, s2
+  XORI s4, s4, 1
+  BNE s4, zero, bb7
   # implict jump to bb6
 bb6:
   LD ra, 0(sp)
@@ -94,49 +94,47 @@ bb6:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb7:
-  SLLIW s3, s2, 2
-  LA s4, row
-  ADD s3, s4, s3
-  LW s4, 0(s3)
-  XORI s4, s4, 1
-  BNE s4, zero, bb21
+  SLLIW s4, s2, 2
+  LA s5, row
+  ADD s4, s5, s4
+  LW s5, 0(s4)
+  XORI s5, s5, 1
+  BNE s5, zero, bb21
   # implict jump to bb8
 bb8:
-  ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb9
 bb9:
-  BNE s4, zero, bb20
+  BNE s5, zero, bb20
   # implict jump to bb10
 bb10:
-  ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb11
 bb11:
-  BNE s4, zero, bb13
+  BNE s5, zero, bb13
   # implict jump to bb12
 bb12:
   ADDIW s2, s2, 1
   ADD s1, s2, zero
   JAL zero, bb5
 bb13:
-  SLLIW s4, s0, 2
-  LA s5, ans
-  ADD s4, s5, s4
-  SW s2, 0(s4)
-  LA s4, n
-  LW s4, 0(s4)
-  XOR s4, s0, s4
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb15
+  SLLIW s5, s0, 2
+  LA s6, ans
+  ADD s5, s6, s5
+  SW s2, 0(s5)
+  XOR s3, s0, s3
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb15
   # implict jump to bb14
 bb14:
-  ADDI s4, zero, 1
-  SW s4, 0(s3)
-  ADDW s4, s0, s2
-  SLLIW s4, s4, 2
+  ADDI s3, zero, 1
+  SW s3, 0(s4)
+  ADDW s3, s0, s2
+  SLLIW s3, s3, 2
   LA s5, line1
-  ADD s4, s5, s4
+  ADD s3, s5, s3
   ADDI s5, zero, 1
-  SW s5, 0(s4)
+  SW s5, 0(s3)
   LA s5, n
   LW s5, 0(s5)
   ADDW s5, s5, s0
@@ -149,8 +147,8 @@ bb14:
   ADDIW s5, s0, 1
   ADD a0, s5, zero
   CALL f
-  SW zero, 0(s3)
   SW zero, 0(s4)
+  SW zero, 0(s3)
   LA s3, n
   LW s3, 0(s3)
   ADDW s3, s3, s0
@@ -161,15 +159,15 @@ bb14:
   SW zero, 0(s3)
   JAL zero, bb12
 bb15:
-  LA s4, sum
-  LW s4, 0(s4)
-  ADDIW s4, s4, 1
+  LA s3, sum
+  LW s3, 0(s3)
+  ADDIW s3, s3, 1
   LA s5, sum
-  SW s4, 0(s5)
-  ADDI s4, zero, 1
+  SW s3, 0(s5)
+  ADDI s3, zero, 1
   # implict jump to bb16
 bb16:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   LA s6, n
   LW s6, 0(s6)
   SLT s6, s6, s5
@@ -193,34 +191,32 @@ bb18:
   ADDI a0, zero, 32
   CALL putch
   ADDIW s5, s5, 1
-  ADD s4, s5, zero
+  ADD s3, s5, zero
   JAL zero, bb16
 bb19:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb14
 bb20:
-  LA s5, n
-  LW s5, 0(s5)
-  ADDW s5, s5, s0
-  SUBW s5, s5, s2
-  SLLIW s5, s5, 2
-  LA s6, line2
-  ADD s5, s6, s5
-  LW s5, 0(s5)
-  SLTU s5, zero, s5
-  XORI s5, s5, 1
-  SLTU s5, zero, s5
-  ADD s4, s5, zero
+  ADDW s6, s3, s0
+  SUBW s6, s6, s2
+  SLLIW s6, s6, 2
+  LA s7, line2
+  ADD s6, s7, s6
+  LW s6, 0(s6)
+  SLTU s6, zero, s6
+  XORI s6, s6, 1
+  SLTU s6, zero, s6
+  ADD s5, s6, zero
   JAL zero, bb11
 bb21:
-  ADDW s5, s0, s2
-  SLLIW s5, s5, 2
-  LA s6, line1
-  ADD s5, s6, s5
-  LW s5, 0(s5)
-  SLTIU s5, s5, 1
-  ADD s4, s5, zero
+  ADDW s6, s0, s2
+  SLLIW s6, s6, 2
+  LA s7, line1
+  ADD s6, s7, s6
+  LW s6, 0(s6)
+  SLTIU s6, s6, 1
+  ADD s5, s6, zero
   JAL zero, bb9
 printans:
   ADDI sp, sp, -48

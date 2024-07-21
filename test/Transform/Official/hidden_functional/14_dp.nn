@@ -73,8 +73,7 @@ then:
   101 = ptradd ptr @dp, i32 %100
   104 = ptradd ptr %101, i32 %192
   111.load = load i32 from ptr %64
-  120.load = load i32 from ptr %73
-  122 = add i32 %111.load, i32 %120.load
+  122 = add i32 %111.load, i32 %73.load
   store i32 %122 to ptr %104
   br bb %if.exit
 if.exit:
@@ -84,8 +83,7 @@ else:
   125 = ptradd ptr @dp, i32 %124
   128 = ptradd ptr %125, i32 %192
   136.load = load i32 from ptr %83
-  145.load = load i32 from ptr %73
-  147 = add i32 %136.load, i32 %145.load
+  147 = add i32 %136.load, i32 %73.load
   store i32 %147 to ptr %128
   br bb %if.exit
 while.cond153:
@@ -104,10 +102,9 @@ while.body154:
 while.exit155:
   ret i32 %res.phi188
 then169:
-  176.load = load i32 from ptr %166
   br bb %if.exit170
 if.exit170:
-  res.phi = phi [bb %while.body154, i32 %res.phi188, bb %then169, i32 %176.load]
+  res.phi = phi [bb %while.body154, i32 %res.phi188, bb %then169, i32 %166.load]
   179 = add i32 %j.phi, i32 1
   br bb %while.cond153
 }

@@ -124,10 +124,9 @@ while.body111:
 while.exit112:
   br bb %while.cond136
 then125:
-  132.load = load i32 from ptr %121
   br bb %if.exit126
 if.exit126:
-  temp108.phi = phi [bb %while.body111, i32 %temp108.phi242, bb %then125, i32 %132.load]
+  temp108.phi = phi [bb %while.body111, i32 %temp108.phi242, bb %then125, i32 %121.load]
   135 = add i32 %j.phi227, i32 1
   br bb %while.cond110
 while.cond136:

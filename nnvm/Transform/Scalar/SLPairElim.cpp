@@ -12,7 +12,6 @@
 using namespace nnvm;
 
 bool SLPairElimPass::run(Function &F) {
-  AliasAnalysis *AA = getAnalysis<AliasAnalysis>(F);
   bool changed = false;
 
   for (BasicBlock *BB : F) {

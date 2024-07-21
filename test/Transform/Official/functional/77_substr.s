@@ -145,20 +145,19 @@ bb6:
 bb7:
   LW s3, 16(sp)
   SW s3, 152(sp)
-  ADDI s3, sp, 156
-  LW s4, 16(sp)
+  ADDI s4, sp, 156
   LW s5, 0(s0)
-  XOR s6, s4, s5
+  XOR s6, s3, s5
   SLTIU s6, s6, 1
   BNE s6, zero, bb37
   # implict jump to bb8
 bb8:
-  BLT s5, s4, bb36
+  BLT s5, s3, bb36
   # implict jump to bb9
 bb9:
   # implict jump to bb10
 bb10:
-  SW s5, 0(s3)
+  SW s5, 0(s4)
   ADDI s3, zero, 2
   # implict jump to bb11
 bb11:
@@ -342,10 +341,10 @@ bb35:
   ADD s7, s5, zero
   JAL zero, bb33
 bb36:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   JAL zero, bb10
 bb37:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   JAL zero, bb10
 bb38:
   ADDI s3, zero, 1
@@ -378,21 +377,20 @@ bb40:
 bb41:
   LW s3, 0(s0)
   SW s3, 0(sp)
-  ADDI s3, sp, 4
-  LW s4, 0(s0)
+  ADDI s4, sp, 4
   ADDI s5, s0, 4
   LW s5, 0(s5)
-  XOR s6, s4, s5
+  XOR s6, s3, s5
   SLTIU s6, s6, 1
   BNE s6, zero, bb54
   # implict jump to bb42
 bb42:
-  BLT s5, s4, bb53
+  BLT s5, s3, bb53
   # implict jump to bb43
 bb43:
   # implict jump to bb44
 bb44:
-  SW s5, 0(s3)
+  SW s5, 0(s4)
   ADDI s3, zero, 2
   # implict jump to bb45
 bb45:
@@ -459,10 +457,10 @@ bb52:
   ADD s7, s5, zero
   JAL zero, bb50
 bb53:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   JAL zero, bb44
 bb54:
-  ADD s5, s4, zero
+  ADD s5, s3, zero
   JAL zero, bb44
 bb55:
   ADDI s3, zero, 1

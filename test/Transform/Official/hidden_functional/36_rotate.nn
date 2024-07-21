@@ -13,8 +13,7 @@ entry158:
 select.then212:
   br bb %select.exit214
 select.else213:
-  width.load217 = load i32 from ptr @width
-  218 = icmp sge i32 %195, i32 %width.load217
+  218 = icmp sge i32 %195, i32 %width.load169
   br bb %select.exit214
 select.exit214:
   select215.phi = phi [bb %select.else213, i1 %218, bb %select.then212, i1 -1]
@@ -30,8 +29,7 @@ select.exit223:
 select.then229:
   br bb %select.exit231
 select.else230:
-  height.load234 = load i32 from ptr @height
-  235 = icmp sge i32 %209, i32 %height.load234
+  235 = icmp sge i32 %209, i32 %height.load172
   br bb %select.exit231
 select.exit231:
   select232.phi = phi [bb %select.else230, i1 %235, bb %select.then229, i1 -1]
@@ -39,8 +37,7 @@ select.exit231:
 then238:
   ret i32 0
 if.exit239:
-  width.load241 = load i32 from ptr @width
-  242 = mul i32 %209, i32 %width.load241
+  242 = mul i32 %209, i32 %width.load169
   244 = add i32 %242, i32 %195
   316 = shl i32 %244, i32 2
   246 = ptradd ptr @image, i32 %316
@@ -485,8 +482,7 @@ while.exit272:
 rotate.select.then212:
   br bb %rotate.select.exit214
 rotate.select.else213:
-  width.load217347 = load i32 from ptr @width
-  218348 = icmp sge i32 %195335, i32 %width.load217347
+  218348 = icmp sge i32 %195335, i32 %width.load169322
   br bb %rotate.select.exit214
 rotate.select.exit214:
   select215.phi351 = phi [bb %rotate.select.else213, i1 %218348, bb %rotate.select.then212, i1 -1]
@@ -502,8 +498,7 @@ rotate.select.exit223:
 rotate.select.then229:
   br bb %rotate.select.exit231
 rotate.select.else230:
-  height.load234364 = load i32 from ptr @height
-  235365 = icmp sge i32 %209341, i32 %height.load234364
+  235365 = icmp sge i32 %209341, i32 %height.load172324
   br bb %rotate.select.exit231
 rotate.select.exit231:
   select232.phi368 = phi [bb %rotate.select.else230, i1 %235365, bb %rotate.select.then229, i1 -1]
@@ -511,8 +506,7 @@ rotate.select.exit231:
 rotate.then238:
   br bb %while.body271.split
 rotate.if.exit239:
-  width.load241373 = load i32 from ptr @width
-  242374 = mul i32 %209341, i32 %width.load241373
+  242374 = mul i32 %209341, i32 %width.load169322
   244375 = add i32 %242374, i32 %195335
   316376 = shl i32 %244375, i32 2
   246377 = ptradd ptr @image, i32 %316376

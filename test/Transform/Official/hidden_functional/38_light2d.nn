@@ -73,8 +73,7 @@ trace.then224:
   227.load423 = load float from ptr %227422
   br bb %while.body242.split
 trace.if.exit225:
-  231.load426 = load float from ptr %ret395
-  233427 = fadd float %t190.phi399, float %231.load426
+  233427 = fadd float %t190.phi399, float %220.load408
   235428 = add i32 %i.phi398, i32 1
   br bb %trace.while.cond192
 my_sin.select.then635:
@@ -267,8 +266,7 @@ then224:
   227.load = load float from ptr %227
   ret float %227.load
 if.exit225:
-  231.load = load float from ptr %ret
-  233 = fadd float %t190.phi, float %231.load
+  233 = fadd float %t190.phi, float %220.load
   235 = add i32 %i.phi, i32 1
   br bb %while.cond192
 scene.then172:
@@ -749,8 +747,7 @@ trace.then224459:
   227.load461 = load float from ptr %227460
   br bb %sample.while.body242.split
 trace.if.exit225463:
-  231.load464 = load float from ptr %ret433
-  233465 = fadd float %t190.phi437, float %231.load464
+  233465 = fadd float %t190.phi437, float %220.load446
   235466 = add i32 %i.phi436, i32 1
   br bb %trace.while.cond192435
 my_sin.select.then675:

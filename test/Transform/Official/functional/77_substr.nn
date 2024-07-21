@@ -98,12 +98,11 @@ max_sum_nonadjacent.init.exit:
   35.load300 = load i32 from ptr %A
   store i32 %35.load300 to ptr %temp287
   38302 = ptradd ptr %temp287, i32 4
-  40.load303 = load i32 from ptr %A
   43.load305 = load i32 from ptr %arr.index178
-  5245342 = icmp eq i32 %40.load303, i32 %43.load305
+  5245342 = icmp eq i32 %35.load300, i32 %43.load305
   br i1 %5245342, bb %max_sum_nonadjacent.MAX.then, bb %max_sum_nonadjacent.MAX.else
 max_sum_nonadjacent.init.exit.split:
-  45.ret308 = phi [bb %max_sum_nonadjacent.MAX.then, i32 %40.load303, bb %max_sum_nonadjacent.MAX.then13, i32 %40.load303, bb %max_sum_nonadjacent.MAX.else15, i32 %43.load305]
+  45.ret308 = phi [bb %max_sum_nonadjacent.MAX.then, i32 %35.load300, bb %max_sum_nonadjacent.MAX.then13, i32 %35.load300, bb %max_sum_nonadjacent.MAX.else15, i32 %43.load305]
   store i32 %45.ret308 to ptr %38302
   br bb %max_sum_nonadjacent.while.cond
 max_sum_nonadjacent.while.cond:
@@ -140,7 +139,7 @@ max_sum_nonadjacent.while.exit:
 max_sum_nonadjacent.MAX.then:
   br bb %max_sum_nonadjacent.init.exit.split
 max_sum_nonadjacent.MAX.else:
-  12250347 = icmp sgt i32 %40.load303, i32 %43.load305
+  12250347 = icmp sgt i32 %35.load300, i32 %43.load305
   br i1 %12250347, bb %max_sum_nonadjacent.MAX.then13, bb %max_sum_nonadjacent.MAX.else15
 max_sum_nonadjacent.MAX.then13:
   br bb %max_sum_nonadjacent.init.exit.split
@@ -262,13 +261,12 @@ init.exit:
   35.load = load i32 from ptr %arr
   store i32 %35.load to ptr %temp
   38 = ptradd ptr %temp, i32 4
-  40.load = load i32 from ptr %arr
   43 = ptradd ptr %arr, i32 4
   43.load = load i32 from ptr %43
-  5245 = icmp eq i32 %40.load, i32 %43.load
+  5245 = icmp eq i32 %35.load, i32 %43.load
   br i1 %5245, bb %MAX.then, bb %MAX.else
 init.exit.split:
-  45.ret = phi [bb %MAX.then, i32 %40.load, bb %MAX.then13, i32 %40.load, bb %MAX.else15, i32 %43.load]
+  45.ret = phi [bb %MAX.then, i32 %35.load, bb %MAX.then13, i32 %35.load, bb %MAX.else15, i32 %43.load]
   store i32 %45.ret to ptr %38
   br bb %while.cond
 while.cond:
@@ -305,7 +303,7 @@ while.exit:
 MAX.then:
   br bb %init.exit.split
 MAX.else:
-  12250 = icmp sgt i32 %40.load, i32 %43.load
+  12250 = icmp sgt i32 %35.load, i32 %43.load
   br i1 %12250, bb %MAX.then13, bb %MAX.else15
 MAX.then13:
   br bb %init.exit.split

@@ -70,8 +70,7 @@ select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %51]
   br i1 %select.phi, bb %select.then53, bb %select.else54
 select.then53:
-  n.load57 = load i32 from ptr @n
-  59 = add i32 %n.load57, i32 %step
+  59 = add i32 %n.load33, i32 %step
   61 = sub i32 %59, i32 %i28.phi
   140 = shl i32 %61, i32 2
   63 = ptradd ptr @line2, i32 %140
@@ -90,8 +89,7 @@ then70:
   141 = shl i32 %step, i32 2
   74 = ptradd ptr @ans, i32 %141
   store i32 %i28.phi to ptr %74
-  n.load77 = load i32 from ptr @n
-  78 = icmp eq i32 %step, i32 %n.load77
+  78 = icmp eq i32 %step, i32 %n.load33
   br i1 %78, bb %then79, bb %if.exit80
 if.exit71:
   116 = add i32 %i28.phi, i32 1

@@ -35,8 +35,7 @@ while.exit136:
   br bb %while.cond172
 while.cond142:
   j141.phi = phi [bb %while.body135, i32 1, bb %if.exit153, i32 %169]
-  n.load146 = load i32 from ptr @n
-  147 = icmp sle i32 %j141.phi, i32 %n.load146
+  147 = icmp sle i32 %j141.phi, i32 %n.load138
   br i1 %147, bb %while.body143, bb %while.exit144
 while.body143:
   151 = icmp eq i32 %i131.phi213, i32 %j141.phi
@@ -114,12 +113,11 @@ Dijkstra.while.body:
 Dijkstra.while.exit:
   25275 = ptradd ptr @book, i32 4
   store i32 1 to ptr %25275
+  31282 = sub i32 %n.load260, i32 1
   br bb %Dijkstra.while.cond26
 Dijkstra.while.cond26:
   select.phi226279 = phi [bb %Dijkstra.while.exit, i1 ub, bb %Dijkstra.while.exit76, i1 %select.phi225291]
   i.phi280 = phi [bb %Dijkstra.while.exit, i32 1, bb %Dijkstra.while.exit76, i32 %129340]
-  n.load30281 = load i32 from ptr @n
-  31282 = sub i32 %n.load30281, i32 1
   32283 = icmp sle i32 %i.phi280, i32 %31282
   br i1 %32283, bb %Dijkstra.while.body27, bb %Dijkstra.while.exit28
 Dijkstra.while.body27:
@@ -131,8 +129,7 @@ Dijkstra.while.cond38:
   select.phi225291 = phi [bb %Dijkstra.while.body27, i1 %select.phi226279, bb %Dijkstra.if.exit, i1 %select.phi316]
   min_index.phi222292 = phi [bb %Dijkstra.while.body27, i32 0, bb %Dijkstra.if.exit, i32 %min_index.phi322]
   min_num.phi217293 = phi [bb %Dijkstra.while.body27, i32 65535, bb %Dijkstra.if.exit, i32 %min_num.phi323]
-  n.load42294 = load i32 from ptr @n
-  43295 = icmp sle i32 %k.phi290, i32 %n.load42294
+  43295 = icmp sle i32 %k.phi290, i32 %n.load260
   br i1 %43295, bb %Dijkstra.while.body39, bb %Dijkstra.while.exit40
 Dijkstra.while.body39:
   241298 = shl i32 %k.phi290, i32 2
@@ -156,17 +153,15 @@ Dijkstra.select.exit:
   select.phi316 = phi [bb %Dijkstra.select.else, i1 0, bb %Dijkstra.select.then, i1 %59311]
   br i1 %select.phi316, bb %Dijkstra.then, bb %Dijkstra.if.exit
 Dijkstra.then:
-  65.load319 = load i32 from ptr %48299
   br bb %Dijkstra.if.exit
 Dijkstra.if.exit:
   min_index.phi322 = phi [bb %Dijkstra.select.exit, i32 %min_index.phi222292, bb %Dijkstra.then, i32 %k.phi290]
-  min_num.phi323 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi217293, bb %Dijkstra.then, i32 %65.load319]
+  min_num.phi323 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi217293, bb %Dijkstra.then, i32 %48.load300]
   69324 = add i32 %k.phi290, i32 1
   br bb %Dijkstra.while.cond38
 Dijkstra.while.cond74:
   j73.phi327 = phi [bb %Dijkstra.while.exit40, i32 1, bb %Dijkstra.if.exit91, i32 %127352]
-  n.load78328 = load i32 from ptr @n
-  79329 = icmp sle i32 %j73.phi327, i32 %n.load78328
+  79329 = icmp sle i32 %j73.phi327, i32 %n.load260
   br i1 %79329, bb %Dijkstra.while.body75, bb %Dijkstra.while.exit76
 Dijkstra.while.body75:
   245332 = shl i32 %min_index.phi222292, i32 6
@@ -184,8 +179,7 @@ Dijkstra.then90:
   94.load344 = load i32 from ptr %94343
   98345 = ptradd ptr @dis, i32 %242304
   98.load346 = load i32 from ptr %98345
-  105.load347 = load i32 from ptr %86335
-  107348 = add i32 %98.load346, i32 %105.load347
+  107348 = add i32 %98.load346, i32 %86.load336
   108349 = icmp sgt i32 %94.load344, i32 %107348
   br i1 %108349, bb %Dijkstra.then109, bb %Dijkstra.if.exit91
 Dijkstra.if.exit91:
@@ -193,8 +187,7 @@ Dijkstra.if.exit91:
   br bb %Dijkstra.while.cond74
 Dijkstra.then109:
   116.load355 = load i32 from ptr %98345
-  123.load356 = load i32 from ptr %86335
-  125357 = add i32 %116.load355, i32 %123.load356
+  125357 = add i32 %116.load355, i32 %86.load336
   store i32 %125357 to ptr %94343
   br bb %Dijkstra.if.exit91
 }
@@ -231,12 +224,11 @@ while.body:
 while.exit:
   25 = ptradd ptr @book, i32 4
   store i32 1 to ptr %25
+  31 = sub i32 %n.load, i32 1
   br bb %while.cond26
 while.cond26:
   select.phi226 = phi [bb %while.exit, i1 ub, bb %while.exit76, i1 %select.phi225]
   i.phi = phi [bb %while.exit, i32 1, bb %while.exit76, i32 %129]
-  n.load30 = load i32 from ptr @n
-  31 = sub i32 %n.load30, i32 1
   32 = icmp sle i32 %i.phi, i32 %31
   br i1 %32, bb %while.body27, bb %while.exit28
 while.body27:
@@ -248,8 +240,7 @@ while.cond38:
   select.phi225 = phi [bb %while.body27, i1 %select.phi226, bb %if.exit, i1 %select.phi]
   min_index.phi222 = phi [bb %while.body27, i32 0, bb %if.exit, i32 %min_index.phi]
   min_num.phi217 = phi [bb %while.body27, i32 65535, bb %if.exit, i32 %min_num.phi]
-  n.load42 = load i32 from ptr @n
-  43 = icmp sle i32 %k.phi, i32 %n.load42
+  43 = icmp sle i32 %k.phi, i32 %n.load
   br i1 %43, bb %while.body39, bb %while.exit40
 while.body39:
   241 = shl i32 %k.phi, i32 2
@@ -273,17 +264,15 @@ select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %59]
   br i1 %select.phi, bb %then, bb %if.exit
 then:
-  65.load = load i32 from ptr %48
   br bb %if.exit
 if.exit:
   min_index.phi = phi [bb %select.exit, i32 %min_index.phi222, bb %then, i32 %k.phi]
-  min_num.phi = phi [bb %select.exit, i32 %min_num.phi217, bb %then, i32 %65.load]
+  min_num.phi = phi [bb %select.exit, i32 %min_num.phi217, bb %then, i32 %48.load]
   69 = add i32 %k.phi, i32 1
   br bb %while.cond38
 while.cond74:
   j73.phi = phi [bb %while.exit40, i32 1, bb %if.exit91, i32 %127]
-  n.load78 = load i32 from ptr @n
-  79 = icmp sle i32 %j73.phi, i32 %n.load78
+  79 = icmp sle i32 %j73.phi, i32 %n.load
   br i1 %79, bb %while.body75, bb %while.exit76
 while.body75:
   245 = shl i32 %min_index.phi222, i32 6
@@ -301,8 +290,7 @@ then90:
   94.load = load i32 from ptr %94
   98 = ptradd ptr @dis, i32 %242
   98.load = load i32 from ptr %98
-  105.load = load i32 from ptr %86
-  107 = add i32 %98.load, i32 %105.load
+  107 = add i32 %98.load, i32 %86.load
   108 = icmp sgt i32 %94.load, i32 %107
   br i1 %108, bb %then109, bb %if.exit91
 if.exit91:
@@ -310,8 +298,7 @@ if.exit91:
   br bb %while.cond74
 then109:
   116.load = load i32 from ptr %98
-  123.load = load i32 from ptr %86
-  125 = add i32 %116.load, i32 %123.load
+  125 = add i32 %116.load, i32 %86.load
   store i32 %125 to ptr %94
   br bb %if.exit91
 }

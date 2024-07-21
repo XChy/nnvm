@@ -61,8 +61,7 @@ while.cond24:
   31 = icmp ne i32 %29.load, i32 0
   br i1 %31, bb %while.body25, bb %while.exit26
 while.body25:
-  34.load = load i32 from ptr %29
-  37 = icmp eq i32 %34.load, i32 62
+  37 = icmp eq i32 %29.load, i32 62
   br i1 %37, bb %then, bb %else
 while.exit26:
   ret 
@@ -78,7 +77,7 @@ if.exit:
   135 = add i32 %i23.phi166, i32 1
   br bb %while.cond24
 else:
-  44 = icmp eq i32 %34.load, i32 60
+  44 = icmp eq i32 %29.load, i32 60
   br i1 %44, bb %then45, bb %else47
 then45:
   ptr.load48 = load i32 from ptr @ptr
@@ -91,7 +90,7 @@ if.exit46:
   loop.phi156 = phi [bb %if.exit53, i32 %loop.phi155, bb %then45, i32 %loop.phi158]
   br bb %if.exit
 else47:
-  51 = icmp eq i32 %34.load, i32 43
+  51 = icmp eq i32 %29.load, i32 43
   br i1 %51, bb %then52, bb %else54
 then52:
   ptr.load55 = load i32 from ptr @ptr
@@ -107,7 +106,7 @@ if.exit53:
   loop.phi155 = phi [bb %if.exit66, i32 %loop.phi154, bb %then52, i32 %loop.phi158]
   br bb %if.exit46
 else54:
-  64 = icmp eq i32 %34.load, i32 45
+  64 = icmp eq i32 %29.load, i32 45
   br i1 %64, bb %then65, bb %else67
 then65:
   ptr.load68 = load i32 from ptr @ptr
@@ -123,7 +122,7 @@ if.exit66:
   loop.phi154 = phi [bb %if.exit79, i32 %loop.phi153, bb %then65, i32 %loop.phi158]
   br bb %if.exit53
 else67:
-  77 = icmp eq i32 %34.load, i32 46
+  77 = icmp eq i32 %29.load, i32 46
   br i1 %77, bb %then78, bb %else80
 then78:
   ptr.load81 = load i32 from ptr @ptr
@@ -138,7 +137,7 @@ if.exit79:
   loop.phi153 = phi [bb %if.exit89, i32 %loop.phi152, bb %then78, i32 %loop.phi158]
   br bb %if.exit66
 else80:
-  87 = icmp eq i32 %34.load, i32 44
+  87 = icmp eq i32 %29.load, i32 44
   br i1 %87, bb %then88, bb %else90
 then88:
   ptr.load91 = load i32 from ptr @ptr
@@ -153,7 +152,7 @@ if.exit89:
   loop.phi152 = phi [bb %if.exit108, i32 %loop.phi151, bb %then88, i32 %loop.phi158]
   br bb %if.exit79
 else90:
-  96 = icmp eq i32 %34.load, i32 93
+  96 = icmp eq i32 %29.load, i32 93
   br i1 %96, bb %select.then, bb %select.else
 select.then:
   ptr.load101 = load i32 from ptr @ptr

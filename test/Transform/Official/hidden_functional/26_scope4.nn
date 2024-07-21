@@ -10,8 +10,7 @@ entry27:
   count.load471 = load i32 from ptr @count
   2472 = add i32 %count.load471, i32 1
   store i32 %2472 to ptr @count
-  a.load34 = load i32 from ptr @a
-  35 = add i32 %30, i32 %a.load34
+  35 = add i32 %30, i32 %a.load29
   store i32 %35 to ptr @sum
   ret 
 }

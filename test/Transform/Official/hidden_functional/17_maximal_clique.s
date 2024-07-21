@@ -87,23 +87,21 @@ bb5:
   ADD s4, t5, s4
   LW s5, 0(s4)
   ADDI s6, zero, 120
-  MULW s5, s5, s6
-  LA s6, graph
-  ADD s5, s6, s5
-  ADDI s6, s4, 4
-  LW s7, 0(s6)
-  SLLIW s7, s7, 2
-  ADD s5, s5, s7
-  ADDI s7, zero, 1
-  SW s7, 0(s5)
-  LW s5, 0(s6)
-  ADDI s6, zero, 120
-  MULW s5, s5, s6
-  LA s6, graph
-  ADD s5, s6, s5
+  MULW s6, s5, s6
+  LA s7, graph
+  ADD s6, s7, s6
+  ADDI s4, s4, 4
   LW s4, 0(s4)
-  SLLIW s4, s4, 2
-  ADD s4, s5, s4
+  SLLIW s7, s4, 2
+  ADD s6, s6, s7
+  ADDI s7, zero, 1
+  SW s7, 0(s6)
+  ADDI s6, zero, 120
+  MULW s4, s4, s6
+  LA s6, graph
+  ADD s4, s6, s4
+  SLLIW s5, s5, 2
+  ADD s4, s4, s5
   ADDI s5, zero, 1
   SW s5, 0(s4)
   ADDIW s3, s3, 1

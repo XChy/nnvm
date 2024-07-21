@@ -32,15 +32,27 @@ AccessInfo MemAccAnalysis::getDomMemDef(Instruction *I) {
 }
 
 AccessInfo MemAccAnalysis::getDomMemUse(Instruction *I) {
-  return {nullptr, MemNoop};
+  AccessInfo ret = getLocalDomMemUse(I);
+  if (ret.flag != MemNoop)
+    return ret;
+
+  BasicBlock *current = I->getBlock();
+
+  // The uses in I->getBlock() must dominates I.
+  current = domTree->getIDom(current);
+
+  while (current) {
+    ret = getMemUseInBlock(I, current);
+    if (ret.flag != MemNoop)
+      return ret;
+    current = domTree->getIDom(current);
+  }
+
+  return ret;
 }
 
 AccessInfo MemAccAnalysis::getMemDefInBlock(Instruction *I, BasicBlock *block) {
   return getMemDefForBlockIter(I, block->begin(), block->end());
-}
-
-template <typename I> std::reverse_iterator<I> reverseIter(I i) {
-  return std::reverse_iterator<I>{i};
 }
 
 AccessInfo MemAccAnalysis::getLocalDomMemDef(Instruction *I) {
@@ -110,4 +122,43 @@ bool MemAccAnalysis::hasClobber(Instruction *I, BasicBlock *domer,
   }
 
   return false;
+}
+
+AccessInfo MemAccAnalysis::getMemUseInBlock(Instruction *I, BasicBlock *block) {
+  return getMemUseForBlockIter(I, block->begin(), block->end());
+}
+
+AccessInfo MemAccAnalysis::getLocalDomMemUse(Instruction *I) {
+  BasicBlock *block = I->getBlock();
+  BasicBlock::Iterator end = BasicBlock::Iterator(I, block);
+  return getMemUseForBlockIter(I, block->begin(), end);
+}
+
+AccessInfo MemAccAnalysis::getMemUseForBlockIter(Instruction *I,
+                                                 BasicBlock::Iterator begin,
+                                                 BasicBlock::Iterator end) {
+
+  if (!getAccessedObj(I))
+    return {nullptr, MemNoop};
+
+  for (auto it = end; it != begin; it--) {
+    auto prevIt = it;
+    Instruction *cur = *(--prevIt);
+
+    // Bail out if there is write clobber.
+    if (cur->mayWriteToMemory()) {
+      auto AAResult = AA->alias(I, cur);
+      if (AAResult != NotAlias)
+        return {cur, MemClobber};
+    }
+
+    if (cur->mayReadMemory()) {
+      if (!getAccessedObj(cur))
+        continue;
+      if (getAccessedObj(I) == getAccessedObj(cur))
+        return {cur, MemUse};
+    }
+  }
+
+  return {nullptr, MemNoop};
 }
