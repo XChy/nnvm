@@ -1,13 +1,8 @@
 #include "SLPairElim.h"
 #include "ADT/Ranges.h"
-#include "Analysis/AliasAnalysis.h"
-#include "Analysis/DomTreeAnalysis.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
-#include "Utils/Debug.h"
 #include <map>
-#include <set>
-#include <vector>
 
 using namespace nnvm;
 

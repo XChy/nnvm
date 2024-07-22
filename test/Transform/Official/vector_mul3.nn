@@ -149,7 +149,7 @@ select.exit:
   br i1 %select.phi, bb %while.body128, bb %while.exit129
 }
 
-pure float Vectordot(ptr v, ptr u, i32 n) {
+float Vectordot(ptr v, ptr u, i32 n) {
 entry15:
   19 = si2f i32 0 to float
   br bb %while.cond

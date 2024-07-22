@@ -119,8 +119,8 @@ bb11:
 bb12:
   LW t3, 12(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
-  LW t4, 8(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   SLLIW a1, t4, 2
   LD t3, 128(sp)
   ADD t4, t3, a1
@@ -131,10 +131,10 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD t4, zero, zero
-  SW t4, 4(sp)
+  SW t4, 8(sp)
   # implict jump to bb14
 bb14:
-  LW t3, 4(sp)
+  LW t3, 8(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
   LW t4, 0(sp)
@@ -151,14 +151,14 @@ bb15:
   LW t4, 0(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
-  SW t4, 4(sp)
+  SW t4, 8(sp)
   JAL zero, bb14
 bb16:
   LD t4, 120(sp)
   LW s3, 0(t4)
   ADD a0, s3, zero
   CALL putch
-  LW t4, 8(sp)
+  LW t4, 4(sp)
   ADDIW s3, t4, 1
   ADD t4, s3, zero
   SW t4, 12(sp)

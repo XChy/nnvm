@@ -496,7 +496,7 @@ external void putfarray(i32 , ptr )
 
 external void putint(i32 )
 
-pure i32 sum(ptr a0, ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18) {
+i32 sum(ptr a0, ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18) {
 entry:
   2.load = load i32 from ptr %a0
   1239 = ptradd ptr %a1, i32 8

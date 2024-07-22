@@ -290,7 +290,7 @@ getNumPos.while.exit33436:
   br i1 %204, bb %while.body198, bb %while.exit199
 }
 
-pure i32 getMaxNum(i32 n, ptr arr) {
+i32 getMaxNum(i32 n, ptr arr) {
 entry:
   br bb %while.cond
 while.cond:

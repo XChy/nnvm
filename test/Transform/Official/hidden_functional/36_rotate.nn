@@ -6,7 +6,7 @@ global ptr image init with 1048576 x i32 zeros
 immutable global ptr MAX_HEIGHT init with i32 1024
 immutable global ptr TWO_PI init with float 6.283185
 immutable global ptr MAX_WIDTH init with i32 1024
-pure i32 rotate(i32 x, i32 y, float rad) {
+i32 rotate(i32 x, i32 y, float rad) {
 entry158:
   40434 = fcmp ogt float %rad, float 6.283185
   br i1 %40434, bb %my_sin.select.then436, bb %my_sin.select.else438

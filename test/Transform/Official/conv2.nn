@@ -93,7 +93,7 @@ getvalue.if.exit192:
   br bb %while.cond234.split
 }
 
-pure i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
+i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
 entry158:
   164 = icmp slt i32 %x, i32 0
   br i1 %164, bb %select.then165, bb %select.else166

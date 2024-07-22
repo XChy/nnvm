@@ -105,7 +105,7 @@ external void _sysy_stoptime(i32 )
 
 external i32 getarray(ptr )
 
-pure float loop(ptr x, ptr y, i32 length) {
+float loop(ptr x, ptr y, i32 length) {
 entry:
   br bb %while.cond
 while.cond:

@@ -88,7 +88,7 @@ sort.if.exit:
   br bb %sort.while.cond14
 }
 
-pure i32 param32_arr(ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18, ptr a19, ptr a20, ptr a21, ptr a22, ptr a23, ptr a24, ptr a25, ptr a26, ptr a27, ptr a28, ptr a29, ptr a30, ptr a31, ptr a32) {
+i32 param32_arr(ptr a1, ptr a2, ptr a3, ptr a4, ptr a5, ptr a6, ptr a7, ptr a8, ptr a9, ptr a10, ptr a11, ptr a12, ptr a13, ptr a14, ptr a15, ptr a16, ptr a17, ptr a18, ptr a19, ptr a20, ptr a21, ptr a22, ptr a23, ptr a24, ptr a25, ptr a26, ptr a27, ptr a28, ptr a29, ptr a30, ptr a31, ptr a32) {
 entry127:
   130.load = load i32 from ptr %a1
   133 = ptradd ptr %a1, i32 4

@@ -80,6 +80,7 @@ enum class InstID : uint64_t {
   // Other
   OTHER_BEGIN,
   FNeg,
+  Pin,
   Call,
   Phi,
   OTHER_END,
@@ -483,6 +484,17 @@ public:
 
   Instruction *copy() override {
     auto *ret = new FNegInst(getOperand(0));
+    return ret;
+  }
+};
+
+class PinInst : public Instruction {
+public:
+  PinInst(Value *operand)
+      : Instruction(InstID::Pin, {operand}, operand->getType()) {}
+
+  Instruction *copy() override {
+    auto *ret = new PinInst(getOperand(0));
     return ret;
   }
 };

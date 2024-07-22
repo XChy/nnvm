@@ -139,7 +139,7 @@ else218:
   ret i32 %170.load
 }
 
-pure i32 find_minimum(i32 root) {
+i32 find_minimum(i32 root) {
 entry43:
   47 = icmp eq i32 %root, i32 -1
   br i1 %47, bb %then48, bb %else50
@@ -163,7 +163,7 @@ external i32 getint()
 
 external i32 getch()
 
-pure i32 search(i32 root, i32 x) {
+i32 search(i32 root, i32 x) {
 entry:
   5 = icmp eq i32 %root, i32 -1
   br i1 %5, bb %select.then, bb %select.else

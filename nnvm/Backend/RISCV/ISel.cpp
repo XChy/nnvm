@@ -208,6 +208,9 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       return newInst;
     }
 
+    case InstID::Pin:
+      return builder.copy(I->getOp(1), I->getOp(0)->as<Register>());
+
     case InstID::ZExt: {
       I->getOp(1)->setType(I->getOp(0)->getType());
       auto *newInst =

@@ -701,13 +701,13 @@ if.exit182:
   ret i32 0
 }
 
-pure i32 stack_size(ptr s) {
+i32 stack_size(ptr s) {
 entry143:
   145.load = load i32 from ptr %s
   ret i32 %145.load
 }
 
-pure i32 stack_peek(ptr s) {
+i32 stack_peek(ptr s) {
 entry136:
   138.load = load i32 from ptr %s
   335 = shl i32 %138.load, i32 2

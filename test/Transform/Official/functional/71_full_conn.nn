@@ -759,7 +759,7 @@ external void putfloat(float )
 
 external void putch(i32 )
 
-pure i32 model(ptr a) {
+i32 model(ptr a) {
 entry11:
   15.load = load i32 from ptr %a
   17 = mul i32 %15.load, i32 85

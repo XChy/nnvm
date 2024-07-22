@@ -37,6 +37,7 @@ public:
   }
 
   BasicBlock *getIDom(BasicBlock *node) { return domParent[node]; }
+  BasicBlock *getCommonDom(BasicBlock *left, BasicBlock *right);
 
   size_t getChildNum(BasicBlock *node) { return domChildren[node].size(); }
   BasicBlock *getChild(BasicBlock *node, size_t index) {

@@ -86,8 +86,8 @@ bb6:
   JAL zero, bb2
 dfs:
   ADDI sp, sp, -128
-  SD s4, 8(sp)
-  SD ra, 16(sp)
+  SD ra, 8(sp)
+  SD s4, 16(sp)
   SD s0, 24(sp)
   SD s1, 32(sp)
   SD s2, 40(sp)
@@ -127,8 +127,8 @@ bb9:
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
-  LD s4, 8(sp)
-  LD ra, 16(sp)
+  LD ra, 8(sp)
+  LD s4, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -216,8 +216,8 @@ bb17:
   ADDW s11, s11, t0
   SW s11, 0(s10)
   ADD a0, t0, zero
-  LD s4, 8(sp)
-  LD ra, 16(sp)
+  LD ra, 8(sp)
+  LD s4, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -248,8 +248,8 @@ bb20:
   JAL zero, bb9
 bb21:
   ADD a0, s2, zero
-  LD s4, 8(sp)
-  LD ra, 16(sp)
+  LD ra, 8(sp)
+  LD s4, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)

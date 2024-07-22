@@ -78,9 +78,9 @@ bb2:
   SB t4, 1(sp)
   LB t3, 2(sp)
   ADD t4, t3, zero
-  SB t4, 4(sp)
-  ADD t4, s6, zero
   SB t4, 3(sp)
+  ADD t4, s6, zero
+  SB t4, 4(sp)
   ADD t4, s5, zero
   SW t4, 28(sp)
   ADD a3, s4, zero
@@ -283,9 +283,9 @@ bb28:
   ADD s3, t4, zero
   ADD s4, s10, zero
   ADD s5, s0, zero
-  LB t4, 3(sp)
+  LB t4, 4(sp)
   ADD s6, t4, zero
-  LB t3, 4(sp)
+  LB t3, 3(sp)
   ADD t4, t3, zero
   SB t4, 2(sp)
   LB t3, 1(sp)

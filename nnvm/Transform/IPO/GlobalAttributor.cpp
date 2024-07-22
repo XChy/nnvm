@@ -1,5 +1,6 @@
 #include "GlobalAttributor.h"
 #include "ADT/Ranges.h"
+#include "Analysis/AAInfo.h"
 #include "IR/Attributes.h"
 #include "Transform/Infra/BlockUtils.h"
 #include "Utils/Cast.h"
@@ -22,6 +23,7 @@ bool GlobalAttributorPass::attachPure(Module &M) {
       continue;
 
     bool isPure = true;
+
     for (BasicBlock *BB : *F) {
       for (Instruction *I : *BB) {
         if (CallInst *CI = mayCast<CallInst>(I)) {
@@ -30,8 +32,17 @@ bool GlobalAttributorPass::attachPure(Module &M) {
             isPure = false;
           continue;
         }
+
         if (I->mayWriteToMemory())
           isPure = false;
+
+        if (I->mayReadMemory()) {
+          if (auto *LI = mayCast<LoadInst>(I)) {
+            isPure &= getRootObj(LI->getSrc())->isa<StackInst>();
+          } else {
+            isPure = false;
+          }
+        }
       }
     }
 

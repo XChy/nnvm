@@ -134,7 +134,7 @@ if.exit285:
   br bb %while.cond258
 }
 
-pure i32 getMid(ptr arr) {
+i32 getMid(ptr arr) {
 entry215:
   n.load217 = load i32 from ptr @n
   218 = srem i32 %n.load217, i32 2

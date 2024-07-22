@@ -12,20 +12,20 @@ main:
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  ADDI s1, zero, 3
+  ADDI s2, zero, 3
   ADD s3, zero, zero
   # implict jump to bb1
 bb1:
   ADD s0, s3, zero
-  ADD s4, s1, zero
+  ADD s1, s2, zero
   SLTI s5, s0, 5
   BNE s5, zero, bb4
   # implict jump to bb2
 bb2:
-  ADD s2, s4, zero
+  ADD s4, s1, zero
   # implict jump to bb3
 bb3:
-  ADD a0, s2, zero
+  ADD a0, s4, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -36,9 +36,9 @@ bb3:
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:
-  SLLIW s2, s4, 1
+  SLLIW s1, s1, 1
   ADDIW s0, s0, 1
-  ADD s1, s2, zero
+  ADD s2, s1, zero
   ADD s3, s0, zero
   JAL zero, bb1
 ifWhile:

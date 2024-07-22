@@ -151,6 +151,10 @@ std::string Instruction::dump() {
       ret += "fneg ";
       ret += getOperand(0)->dumpAsOperand();
       break;
+    case InstID::Pin:
+      ret += "pin ";
+      ret += getOperand(0)->dumpAsOperand();
+      break;
     case InstID::Call:
       ret += "call ";
       ret += getOperand(0)->dumpAsOperand();

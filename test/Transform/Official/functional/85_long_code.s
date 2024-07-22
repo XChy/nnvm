@@ -951,7 +951,7 @@ bb75:
   SW t4, 208(sp)
   LW t3, 112(sp)
   ADD t4, t3, zero
-  SW t4, 164(sp)
+  SW t4, 168(sp)
   LA t0, n
   LW t0, 0(t0)
   ADDI t1, zero, 1
@@ -961,13 +961,13 @@ bb75:
   # implict jump to bb76
 bb76:
   ADD t4, zero, zero
-  SW t4, 172(sp)
+  SW t4, 164(sp)
   # implict jump to bb77
 bb77:
-  LW t3, 172(sp)
+  LW t3, 164(sp)
   ADD t4, t3, zero
-  SW t4, 168(sp)
-  LW t4, 168(sp)
+  SW t4, 172(sp)
+  LW t4, 172(sp)
   SLTI t2, t4, 32
   BNE t2, zero, bb157
   # implict jump to bb78
@@ -1741,7 +1741,7 @@ bb156:
   ADD t2, a0, zero
   JAL zero, bb80
 bb157:
-  LW t4, 168(sp)
+  LW t4, 172(sp)
   SLLIW s0, t4, 2
   LUI a0, 1
   ADDIW a0, a0, 184
@@ -1750,13 +1750,13 @@ bb157:
   LW s0, 0(s0)
   ADD a0, s0, zero
   CALL putint
-  LW t4, 168(sp)
+  LW t4, 172(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero
-  SW t4, 172(sp)
+  SW t4, 164(sp)
   JAL zero, bb77
 bb158:
-  LW t4, 164(sp)
+  LW t4, 168(sp)
   ADD s0, t4, zero
   ADD s1, zero, zero
   # implict jump to bb159

@@ -7,7 +7,7 @@ global ptr n init with i32 0
 global ptr cnt init with i32 0
 global ptr m init with i32 0
 immutable global ptr maxn init with i32 10005
-pure i32 LCA(i32 x, i32 y) {
+i32 LCA(i32 x, i32 y) {
 entry159:
   350 = shl i32 %x, i32 2
   164 = ptradd ptr @dep, i32 %350

@@ -1,5 +1,5 @@
 immutable global ptr a init with 5 x i32 [0, 1, 2, 3, 4]
-pure i32 main() {
+i32 main() {
 entry:
   2 = ptradd ptr @a, i32 16
   2.load = load i32 from ptr %2
