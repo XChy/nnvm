@@ -294,9 +294,21 @@ def __init_random():
   with open(CSMITH_HDR, 'r') as f:
     csmith_hdr = f.read()
   code = completed.stdout.replace(
-      '#include "csmith.h"', csmith_hdr).replace('#define NO_LONGLONG', '').replace('long', 'int').replace('static ', '')
-  code = re.sub(r'u?int(8|16|32)_t', 'int', code)
-  code = re.sub(r'(0x[\d|A-Fa-f]+)[Uu][Ll]?', r'\1', code)
+      '#include "csmith.h"', csmith_hdr).replace(
+      '#define NO_LONGLONG', '').replace(
+      'static ', '').replace(
+      '(void)', '()').replace(
+      'int print_hash_value = 0', 'int print_hash_value = 1').replace(
+      'printf("index [%d]\\n", ', 'putdim(').replace(
+      'printf("index [%d][%d]\\n", ', 'putdim2(').replace(
+      'printf("index [%d][%d][%d]\\n", ', 'putdim3(')
+  code = re.sub(r'(?:u?int(8|16|32)_t|long)', 'int', code)
+  code = re.sub(r'(0x[\dA-Fa-f]+)[UuLl]+', r'\1', code)
+  code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
+  code = re.sub(
+      r'(transparent_crc\([^, ]+, )[^, ]+, ([^, ]+\))', r'\1\2', code)
+  code = re.sub(
+      r'(transparent_crc_bytes\()[^, ]+, [^, ]+, [^, ]+, ([^, ]+\))', r'\1\2', code)
   with tempfile.NamedTemporaryFile(
           suffix='.sy', prefix='csmith-', delete=False) as f:
     f.write(code.encode())
@@ -311,7 +323,7 @@ def __init_verbose():
 def __parse_args():
   try:
     opts, args = getopt.getopt(sys.argv[1:], 'bd:e:E:fhO:rv', [
-                               'brief', 'difftest=', 'regexp=', 'exclude=', 'frontend', 'help', 'O=', 'opaque-pointers', 'random', 'verbose'])
+        'brief', 'difftest=', 'regexp=', 'exclude=', 'frontend', 'help', 'O=', 'opaque-pointers', 'random', 'verbose'])
   except getopt.GetoptError as err:
     print(err)
     exit(1)
