@@ -106,9 +106,8 @@ bb5:
   # implict jump to bb6
 bb6:
   LA s9, book
-  ADDI s9, s9, 4
   ADDI s10, zero, 1
-  SW s10, 0(s9)
+  SW s10, 4(s9)
   ADDI s9, zero, 1
   LW t3, 16(sp)
   SUBW t4, t3, s9
@@ -395,9 +394,8 @@ bb38:
   # implict jump to bb39
 bb39:
   LA s4, book
-  ADDI s4, s4, 4
   ADDI s5, zero, 1
-  SW s5, 0(s4)
+  SW s5, 4(s4)
   ADDI s4, zero, 1
   SUBW s4, s3, s4
   ADD s5, zero, zero

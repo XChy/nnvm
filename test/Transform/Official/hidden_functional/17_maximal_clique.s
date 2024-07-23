@@ -90,8 +90,7 @@ bb5:
   MULW s6, s5, s6
   LA s7, graph
   ADD s6, s7, s6
-  ADDI s4, s4, 4
-  LW s4, 0(s4)
+  LW s4, 4(s4)
   SLLIW s7, s4, 2
   ADD s6, s6, s7
   ADDI s7, zero, 1
@@ -114,9 +113,8 @@ bb6:
   CALL getint
   ADD s3, a0, zero
   SW s3, 0(s2)
-  ADDI s2, s2, 4
   CALL getint
-  SW a0, 0(s2)
+  SW a0, 4(s2)
   ADDIW s1, s1, 1
   ADD s0, s1, zero
   JAL zero, bb1

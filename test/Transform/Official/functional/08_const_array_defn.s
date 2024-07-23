@@ -10,8 +10,7 @@ main:
   SD ra, 0(sp)
   SD s0, 8(sp)
   LA s0, a
-  ADDI s0, s0, 16
-  LW s0, 0(s0)
+  LW s0, 16(s0)
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

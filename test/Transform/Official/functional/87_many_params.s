@@ -426,181 +426,149 @@ param32_arr:
   LD t4, 0(t6)
   SD t4, 104(sp)
   LW t6, 0(s0)
-  ADDI s0, s0, 4
-  LW s0, 0(s0)
+  LW s0, 4(s0)
   ADDW s0, t6, s0
   LW t6, 0(a1)
   ADDW s0, s0, t6
-  ADDI a1, a1, 4
-  LW a1, 0(a1)
+  LW a1, 4(a1)
   ADDW s0, s0, a1
   LW a1, 0(a2)
   ADDW s0, s0, a1
-  ADDI a1, a2, 4
-  LW a1, 0(a1)
+  LW a1, 4(a2)
   ADDW s0, s0, a1
   LW a1, 0(a3)
   ADDW s0, s0, a1
-  ADDI a1, a3, 4
-  LW a1, 0(a1)
+  LW a1, 4(a3)
   ADDW s0, s0, a1
   LW a1, 0(a4)
   ADDW s0, s0, a1
-  ADDI a1, a4, 4
-  LW a1, 0(a1)
+  LW a1, 4(a4)
   ADDW s0, s0, a1
   LW a1, 0(a5)
   ADDW s0, s0, a1
-  ADDI a1, a5, 4
-  LW a1, 0(a1)
+  LW a1, 4(a5)
   ADDW s0, s0, a1
   LW a1, 0(a6)
   ADDW s0, s0, a1
-  ADDI a1, a6, 4
-  LW a1, 0(a1)
+  LW a1, 4(a6)
   ADDW s0, s0, a1
   LW a1, 0(a7)
   ADDW s0, s0, a1
-  ADDI a1, a7, 4
-  LW a1, 0(a1)
+  LW a1, 4(a7)
   ADDW s0, s0, a1
   LW a1, 0(s1)
   ADDW s0, s0, a1
-  ADDI s1, s1, 4
-  LW s1, 0(s1)
+  LW s1, 4(s1)
   ADDW s0, s0, s1
   LW s1, 0(s2)
   ADDW s0, s0, s1
-  ADDI s1, s2, 4
-  LW s1, 0(s1)
+  LW s1, 4(s2)
   ADDW s0, s0, s1
   LW s1, 0(s3)
   ADDW s0, s0, s1
-  ADDI s1, s3, 4
-  LW s1, 0(s1)
+  LW s1, 4(s3)
   ADDW s0, s0, s1
   LW s1, 0(s4)
   ADDW s0, s0, s1
-  ADDI s1, s4, 4
-  LW s1, 0(s1)
+  LW s1, 4(s4)
   ADDW s0, s0, s1
   LW s1, 0(s5)
   ADDW s0, s0, s1
-  ADDI s1, s5, 4
-  LW s1, 0(s1)
+  LW s1, 4(s5)
   ADDW s0, s0, s1
   LW s1, 0(s6)
   ADDW s0, s0, s1
-  ADDI s1, s6, 4
-  LW s1, 0(s1)
+  LW s1, 4(s6)
   ADDW s0, s0, s1
   LW s1, 0(s7)
   ADDW s0, s0, s1
-  ADDI s1, s7, 4
-  LW s1, 0(s1)
+  LW s1, 4(s7)
   ADDW s0, s0, s1
   LW s1, 0(s8)
   ADDW s0, s0, s1
-  ADDI s1, s8, 4
-  LW s1, 0(s1)
+  LW s1, 4(s8)
   ADDW s0, s0, s1
   LW s1, 0(s9)
   ADDW s0, s0, s1
-  ADDI s1, s9, 4
-  LW s1, 0(s1)
+  LW s1, 4(s9)
   ADDW s0, s0, s1
   LW s1, 0(s10)
   ADDW s0, s0, s1
-  ADDI s1, s10, 4
-  LW s1, 0(s1)
+  LW s1, 4(s10)
   ADDW s0, s0, s1
   LW s1, 0(s11)
   ADDW s0, s0, s1
-  ADDI s1, s11, 4
-  LW s1, 0(s1)
+  LW s1, 4(s11)
   ADDW s0, s0, s1
   LW s1, 0(ra)
   ADDW s0, s0, s1
-  ADDI s1, ra, 4
-  LW s1, 0(s1)
+  LW s1, 4(ra)
   ADDW s0, s0, s1
   LW s1, 0(t0)
   ADDW s0, s0, s1
-  ADDI s1, t0, 4
-  LW s1, 0(s1)
+  LW s1, 4(t0)
   ADDW s0, s0, s1
   LW s1, 0(t1)
   ADDW s0, s0, s1
-  ADDI s1, t1, 4
-  LW s1, 0(s1)
+  LW s1, 4(t1)
   ADDW s0, s0, s1
   LW s1, 0(t2)
   ADDW s0, s0, s1
-  ADDI s1, t2, 4
-  LW s1, 0(s1)
+  LW s1, 4(t2)
   ADDW s0, s0, s1
   LD t4, 168(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 168(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 160(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 160(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 152(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 152(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 144(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 144(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 136(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 136(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 128(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 128(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 120(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 120(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 112(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 112(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   LD t4, 104(sp)
   LW s1, 0(t4)
   ADDW s0, s0, s1
   LD t4, 104(sp)
-  ADDI s1, t4, 4
-  LW s1, 0(s1)
+  LW s1, 4(t4)
   ADDW s0, s0, s1
   ADD a0, s0, zero
   LD ra, 0(sp)
@@ -1439,16 +1407,14 @@ bb21:
   SLLIW s1, s1, 3
   ADDI t5, sp, 480
   ADD s1, t5, s1
-  ADDI s2, s1, 4
-  LW s2, 0(s2)
+  LW s2, 4(s1)
   ADDI s3, zero, 1
   SUBW s2, s2, s3
   SW s2, 0(s0)
-  ADDI s0, s0, 4
   LW s1, 0(s1)
   ADDI s2, zero, 2
   SUBW s1, s1, s2
-  SW s1, 0(s0)
+  SW s1, 4(s0)
   LW t4, 100(sp)
   ADDIW s0, t4, 1
   ADD t4, s0, zero

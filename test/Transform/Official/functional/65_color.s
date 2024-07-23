@@ -376,20 +376,15 @@ bb38:
   # implict jump to bb39
 bb39:
   LA s0, cns
-  ADDI s0, s0, 4
-  LW s0, 0(s0)
+  LW s0, 4(s0)
   LA s5, cns
-  ADDI s5, s5, 8
-  LW s5, 0(s5)
+  LW s5, 8(s5)
   LA s4, cns
-  ADDI s4, s4, 12
-  LW s4, 0(s4)
+  LW s4, 12(s4)
   LA s3, cns
-  ADDI s3, s3, 16
-  LW s3, 0(s3)
+  LW s3, 16(s3)
   LA s2, cns
-  ADDI s2, s2, 20
-  LW s2, 0(s2)
+  LW s2, 20(s2)
   ADD a0, s0, zero
   ADD a1, s5, zero
   ADD a2, s4, zero

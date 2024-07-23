@@ -31,9 +31,8 @@ main:
   ADDI a0, zero, 10
   CALL putch
   LA s0, c
-  ADDI s0, s0, 8
   ADDI s1, zero, 1
-  SW s1, 0(s0)
+  SW s1, 8(s0)
   ADDI s1, zero, 0
   SW s1, 64(sp)
   ADDI s1, sp, 68
@@ -99,16 +98,14 @@ bb1:
   ADD a0, s6, zero
   CALL putint
   LA s6, c
-  ADDI s6, s6, 4
-  LW s6, 0(s6)
+  LW s6, 4(s6)
   ADD a0, s6, zero
   CALL putint
-  LW s6, 0(s0)
+  LW s6, 8(s0)
   ADD a0, s6, zero
   CALL putint
   LA s6, c
-  ADDI s6, s6, 12
-  LW s6, 0(s6)
+  LW s6, 12(s6)
   ADD a0, s6, zero
   CALL putint
   ADDI a0, zero, 10

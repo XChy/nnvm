@@ -177,53 +177,37 @@ bb12:
   ADD s0, s1, zero
   JAL zero, bb1
 tran:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  FSD fs0, 40(sp)
+  FSD fs0, 24(sp)
   ADD s0, a0, zero
-  ADDI t5, sp, 48
+  ADDI t5, sp, 32
   ADD s1, t5, zero
   LD s1, 0(s1)
-  ADDI s2, a7, 8
-  ADDI s3, a2, 4
-  FLW fs0, 0(s3)
-  FSW fs0, 0(s2)
-  ADDI s2, s1, 4
-  ADDI s3, a1, 8
-  FLW fs0, 0(s3)
-  FSW fs0, 0(s2)
-  ADDI s2, a6, 4
+  FLW fs0, 4(a2)
+  FSW fs0, 8(a7)
+  FLW fs0, 8(a1)
+  FSW fs0, 4(s1)
   FLW fs0, 0(a1)
-  FSW fs0, 0(s2)
-  ADDI s2, a6, 8
+  FSW fs0, 4(a6)
   FLW fs0, 0(a2)
-  FSW fs0, 0(s2)
-  ADDI s2, s0, 4
-  FLW fs0, 0(s2)
+  FSW fs0, 8(a6)
+  FLW fs0, 4(s0)
   FSW fs0, 0(a7)
-  ADDI s2, s0, 8
-  FLW fs0, 0(s2)
+  FLW fs0, 8(s0)
   FSW fs0, 0(s1)
-  ADDI s2, a7, 4
-  ADDI s3, a1, 4
-  FLW fs0, 0(s3)
-  FSW fs0, 0(s2)
-  ADDI s1, s1, 8
-  ADDI s2, a2, 8
-  FLW fs0, 0(s2)
-  FSW fs0, 0(s1)
+  FLW fs0, 4(a1)
+  FSW fs0, 4(a7)
+  FLW fs0, 8(a2)
+  FSW fs0, 8(s1)
   FLW fs0, 0(s0)
   FSW fs0, 0(a6)
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  FLD fs0, 40(sp)
-  ADDI sp, sp, 48
+  FLD fs0, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)

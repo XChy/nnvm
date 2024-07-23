@@ -15,10 +15,9 @@ f1:
   SD s3, 32(sp)
   ADD s0, a0, zero
   LA s1, a
-  ADDI s1, s1, 20
   LUI s2, 1
   ADDIW s2, s2, -96
-  SW s2, 0(s1)
+  SW s2, 20(s1)
   LUI s2, 4
   ADDIW s2, s2, -384
   LA s3, a
@@ -31,15 +30,14 @@ f1:
   ADD s2, s3, s2
   ADDI s3, zero, 7
   SW s3, 0(s2)
-  ADDI s0, s0, 28
   LUI s2, 2
   ADDIW s2, s2, 672
   LA s3, a
   ADD s2, s3, s2
   LW s2, 0(s2)
   ADDIW s2, s2, 9
-  SW s2, 0(s0)
-  LW s0, 0(s1)
+  SW s2, 28(s0)
+  LW s0, 20(s1)
   SLLIW s0, s0, 2
   LA s1, a
   ADD s0, s1, s0
@@ -176,10 +174,9 @@ bb10:
   # implict jump to bb11
 bb11:
   LA s10, a
-  ADDI s10, s10, 20
   LUI s11, 1
   ADDIW s11, s11, -96
-  SW s11, 0(s10)
+  SW s11, 20(s10)
   LUI s11, 4
   ADDIW s11, s11, -384
   LA ra, a
@@ -203,7 +200,7 @@ bb11:
   LW ra, 0(ra)
   ADDIW ra, ra, 9
   SW ra, 0(s11)
-  LW s10, 0(s10)
+  LW s10, 20(s10)
   SLLIW s10, s10, 2
   LA s11, a
   ADD s10, s11, s10

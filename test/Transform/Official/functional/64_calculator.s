@@ -344,8 +344,7 @@ bb16:
   # implict jump to bb17
 bb17:
   LA s6, ints
-  ADDI s6, s6, 4
-  LW s6, 0(s6)
+  LW s6, 4(s6)
   ADD a0, s6, zero
   CALL putint
   ADD a0, zero, zero

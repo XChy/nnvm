@@ -194,8 +194,7 @@ bb18:
   LA s3, dp
   ADD s2, s3, s2
   LW s2, 0(s2)
-  ADDI s0, s0, 4
-  LW s0, 0(s0)
+  LW s0, 4(s0)
   ADDW s0, s2, s0
   SW s0, 0(s1)
   LW t4, 12(sp)

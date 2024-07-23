@@ -25,14 +25,12 @@ rand:
   LW s1, 0(s1)
   MULW s0, s0, s1
   LA s1, seed
-  ADDI s1, s1, 4
-  LW s1, 0(s1)
+  LW s1, 4(s1)
   ADDW s0, s0, s1
   LA s1, staticvalue
   SW s0, 0(s1)
   LA s1, seed
-  ADDI s1, s1, 8
-  LW s1, 0(s1)
+  LW s1, 8(s1)
   REMW s0, s0, s1
   LA s2, staticvalue
   SW s0, 0(s2)
@@ -269,10 +267,10 @@ main:
   SW s1, 0(s2)
   ADDI a0, zero, 56
   CALL _sysy_starttime
-  LA s1, seed
-  ADDI s1, s1, 4
-  LA s2, seed
-  ADDI s2, s2, 8
+  LA t4, seed
+  SD t4, 104(sp)
+  LA t4, seed
+  SD t4, 112(sp)
   ADDI s3, sp, 132
   ADDI s4, sp, 136
   ADDI s5, sp, 140
@@ -280,25 +278,23 @@ main:
   ADDI s7, sp, 148
   ADDI s8, sp, 152
   ADDI s9, sp, 156
-  ADDI t4, sp, 160
-  SD t4, 104(sp)
-  ADDI t4, sp, 164
-  SD t4, 112(sp)
+  ADDI s10, sp, 160
+  ADDI s11, sp, 164
   ADDI t4, sp, 168
   SD t4, 120(sp)
   # implict jump to bb28
 bb28:
-  ADD s11, s0, zero
-  BLT zero, s11, bb30
+  ADD s2, s0, zero
+  BLT zero, s2, bb30
   # implict jump to bb29
 bb29:
   ADDI a0, zero, 64
   CALL _sysy_stoptime
-  LUI s10, 2
-  ADDIW s10, s10, 1808
-  ADD a0, zero, s10
-  LA s10, a
-  ADD a1, s10, zero
+  LUI s1, 2
+  ADDIW s1, s1, 1808
+  ADD a0, zero, s1
+  LA s1, a
+  ADD a1, s1, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -317,43 +313,45 @@ bb29:
   ADDI sp, sp, 256
   JALR zero, 0(ra)
 bb30:
-  ADDI s10, zero, 1
-  SUBW s10, s11, s10
-  LA s11, staticvalue
-  LW s11, 0(s11)
+  ADDI s1, zero, 1
+  SUBW s1, s2, s1
+  LA s2, staticvalue
+  LW s2, 0(s2)
   LA ra, seed
   LW ra, 0(ra)
-  MULW s11, s11, ra
-  LW t0, 0(s1)
-  ADDW s11, s11, t0
+  MULW s2, s2, ra
+  LD t4, 104(sp)
+  LW t0, 4(t4)
+  ADDW s2, s2, t0
   LA t1, staticvalue
-  SW s11, 0(t1)
-  LW t1, 0(s2)
-  REMW s11, s11, t1
+  SW s2, 0(t1)
+  LD t4, 112(sp)
+  LW t1, 8(t4)
+  REMW s2, s2, t1
   LA t2, staticvalue
-  SW s11, 0(t2)
-  BLT s11, zero, bb57
+  SW s2, 0(t2)
+  BLT s2, zero, bb57
   # implict jump to bb31
 bb31:
-  LA s11, staticvalue
-  LW s11, 0(s11)
+  LA s2, staticvalue
+  LW s2, 0(s2)
   LUI t2, 73
   ADDIW t2, t2, 992
-  REMW t2, s11, t2
-  MULW s11, s11, ra
-  ADDW s11, s11, t0
+  REMW t2, s2, t2
+  MULW s2, s2, ra
+  ADDW s2, s2, t0
   LA ra, staticvalue
-  SW s11, 0(ra)
-  REMW s11, s11, t1
+  SW s2, 0(ra)
+  REMW s2, s2, t1
   LA ra, staticvalue
-  SW s11, 0(ra)
-  BLT s11, zero, bb56
+  SW s2, 0(ra)
+  BLT s2, zero, bb56
   # implict jump to bb32
 bb32:
-  LA s11, staticvalue
-  LW s11, 0(s11)
+  LA s2, staticvalue
+  LW s2, 0(s2)
   ADDI ra, zero, 2
-  REMW s11, s11, ra
+  REMW s2, s2, ra
   ADDI ra, zero, 31
   # implict jump to bb33
 bb33:
@@ -378,11 +376,9 @@ bb34:
   ADDI t1, zero, 128
   SW t1, 0(s9)
   ADDI t1, zero, 256
-  LD t4, 104(sp)
-  SW t1, 0(t4)
+  SW t1, 0(s10)
   ADDI t1, zero, 512
-  LD t4, 112(sp)
-  SW t1, 0(t4)
+  SW t1, 0(s11)
   ADDI t1, zero, 1024
   LD t4, 120(sp)
   SW t1, 0(t4)
@@ -416,7 +412,7 @@ bb37:
   DIVW a2, a2, a3
   ADDI a4, zero, 2
   REMW a2, a2, a4
-  BNE a2, s11, bb41
+  BNE a2, s2, bb41
   # implict jump to bb38
 bb38:
   ADD a4, zero, zero
@@ -427,7 +423,7 @@ bb39:
   SW a2, 0(a1)
   # implict jump to bb40
 bb40:
-  ADD s0, s10, zero
+  ADD s0, s1, zero
   JAL zero, bb28
 bb41:
   SLTIU a5, a2, 1
@@ -448,7 +444,7 @@ bb45:
   ADD a4, a2, zero
   JAL zero, bb39
 bb46:
-  SLTIU a6, s11, 1
+  SLTIU a6, s2, 1
   BNE a6, zero, bb49
   # implict jump to bb47
 bb47:
@@ -462,7 +458,7 @@ bb49:
   ADD a6, a3, zero
   JAL zero, bb48
 bb50:
-  XORI a6, s11, 1
+  XORI a6, s2, 1
   SLTIU a6, a6, 1
   BNE a6, zero, bb53
   # implict jump to bb51
@@ -498,16 +494,16 @@ bb55:
   ADD ra, s0, zero
   JAL zero, bb33
 bb56:
-  LA s11, staticvalue
-  LW s11, 0(s11)
-  ADDW s11, t1, s11
+  LA s2, staticvalue
+  LW s2, 0(s2)
+  ADDW s2, t1, s2
   LA ra, staticvalue
-  SW s11, 0(ra)
+  SW s2, 0(ra)
   JAL zero, bb32
 bb57:
-  LA s11, staticvalue
-  LW s11, 0(s11)
-  ADDW s11, t1, s11
+  LA s2, staticvalue
+  LW s2, 0(s2)
+  ADDW s2, t1, s2
   LA t2, staticvalue
-  SW s11, 0(t2)
+  SW s2, 0(t2)
   JAL zero, bb31

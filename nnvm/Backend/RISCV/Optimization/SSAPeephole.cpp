@@ -107,18 +107,21 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
   // ADDI a, b, imm1
   // sw v, imm2(a)
   // -->
-  // sw v, (imm1 + imm2)(a)
-  // LIRImm *imm1;
-  // LIRImm *imm2;
-  // if (match(I, pLoadOrStore(pOperand(),
-  // pSingleDef(pSpecificDUUInst(
-  // ADDI, pSSAReg(A), pSSAReg(B), pImm(imm1))),
-  // pImm(imm2)))) {
-  // auto newImmValue = imm1->getSignedValue() + imm2->getSignedValue();
-  // if (canExpressInBits<12>(newImmValue))
-  // I->setUse(2, LIRImm::create(newImmValue));
-  // return true;
-  //}
+  // sw v, (imm1 + imm2)(b)
+  LIRImm *imm1;
+  LIRImm *imm2;
+  if (match(I, pLoadOrStore(pOperand(),
+                            pSingleDef(pSpecificDUUInst(
+                                ADDI, pSSAReg(A), pSSAReg(B), pImm(imm1))),
+                            pImm(imm2)))) {
+    auto newImmValue = imm1->getSignedValue() + imm2->getSignedValue();
+    if (canExpressInBits<12>(newImmValue)) {
+      I->setUse(1, B);
+      I->setUse(2, LIRImm::create(newImmValue));
+      return true;
+    }
+    return false;
+  }
 
   return false;
 }

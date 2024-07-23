@@ -378,8 +378,7 @@ bb41:
   LW s3, 0(s0)
   SW s3, 0(sp)
   ADDI s4, sp, 4
-  ADDI s5, s0, 4
-  LW s5, 0(s5)
+  LW s5, 4(s0)
   XOR s6, s3, s5
   SLTIU s6, s6, 1
   BNE s6, zero, bb54

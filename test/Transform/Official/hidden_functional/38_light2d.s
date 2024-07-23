@@ -1099,18 +1099,17 @@ scene:
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  SD s5, 48(sp)
-  FSD fs0, 56(sp)
-  FSD fs1, 64(sp)
-  FSD fs2, 72(sp)
-  FSD fs3, 80(sp)
-  FSD fs4, 88(sp)
-  FSD fs5, 96(sp)
-  FSD fs6, 104(sp)
-  FSD fs7, 112(sp)
-  FSD fs8, 120(sp)
-  FSD fs9, 128(sp)
-  FSD fs10, 136(sp)
+  FSD fs0, 48(sp)
+  FSD fs1, 56(sp)
+  FSD fs2, 64(sp)
+  FSD fs3, 72(sp)
+  FSD fs4, 80(sp)
+  FSD fs5, 88(sp)
+  FSD fs6, 96(sp)
+  FSD fs7, 104(sp)
+  FSD fs8, 112(sp)
+  FSD fs9, 120(sp)
+  FSD fs10, 128(sp)
   LA s0, .CONSTANT.7.3
   FLW fs0, 0(s0)
   FSUB.S fs0, fa0, fs0
@@ -1178,10 +1177,9 @@ bb104:
   # implict jump to bb105
 bb105:
   FSW fs10, 0(a0)
-  ADDI s4, a0, 4
-  LA s5, .CONSTANT.7.2
-  FLW fs10, 0(s5)
-  FSW fs10, 0(s4)
+  LA s4, .CONSTANT.7.2
+  FLW fs10, 0(s4)
+  FSW fs10, 4(a0)
   # implict jump to bb106
 bb106:
   LD ra, 0(sp)
@@ -1190,26 +1188,24 @@ bb106:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  LD s5, 48(sp)
-  FLD fs0, 56(sp)
-  FLD fs1, 64(sp)
-  FLD fs2, 72(sp)
-  FLD fs3, 80(sp)
-  FLD fs4, 88(sp)
-  FLD fs5, 96(sp)
-  FLD fs6, 104(sp)
-  FLD fs7, 112(sp)
-  FLD fs8, 120(sp)
-  FLD fs9, 128(sp)
-  FLD fs10, 136(sp)
+  FLD fs0, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs2, 64(sp)
+  FLD fs3, 72(sp)
+  FLD fs4, 80(sp)
+  FLD fs5, 88(sp)
+  FLD fs6, 96(sp)
+  FLD fs7, 104(sp)
+  FLD fs8, 112(sp)
+  FLD fs9, 120(sp)
+  FLD fs10, 128(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb107:
   FSW fs6, 0(a0)
-  ADDI s4, a0, 4
-  LA s5, .CONSTANT.7.6
-  FLW fs10, 0(s5)
-  FSW fs10, 0(s4)
+  LA s4, .CONSTANT.7.6
+  FLW fs10, 0(s4)
+  FSW fs10, 4(a0)
   JAL zero, bb106
 bb108:
   FDIV.S fs10, fs7, fs9

@@ -1433,35 +1433,25 @@ sum:
   ADDI s11, sp, 192
   LD s11, 0(s11)
   LW s0, 0(s0)
-  ADDI ra, a1, 8
-  LW ra, 0(ra)
+  LW ra, 8(a1)
   ADDW s0, s0, ra
-  ADDI ra, a2, 4
-  LW ra, 0(ra)
+  LW ra, 4(a2)
   ADDW s0, s0, ra
-  ADDI ra, a3, 40
-  LW ra, 0(ra)
+  LW ra, 40(a3)
   ADDW s0, s0, ra
-  ADDI ra, a4, 24
-  LW ra, 0(ra)
+  LW ra, 24(a4)
   ADDW s0, s0, ra
-  ADDI ra, a5, 228
-  LW ra, 0(ra)
+  LW ra, 228(a5)
   ADDW s0, s0, ra
-  ADDI ra, a6, 56
-  LW ra, 0(ra)
+  LW ra, 56(a6)
   ADDW s0, s0, ra
-  ADDI ra, a7, 964
-  LW ra, 0(ra)
+  LW ra, 964(a7)
   ADDW s0, s0, ra
-  ADDI s1, s1, 224
-  LW s1, 0(s1)
+  LW s1, 224(s1)
   ADDW s0, s0, s1
-  ADDI s1, s2, 804
-  LW s1, 0(s1)
+  LW s1, 804(s2)
   ADDW s0, s0, s1
-  ADDI s1, s3, 1996
-  LW s1, 0(s1)
+  LW s1, 1996(s3)
   ADDW s0, s0, s1
   LUI s1, 1
   ADDIW s1, s1, -872
@@ -1473,11 +1463,9 @@ sum:
   ADD s1, s5, s1
   LW s1, 0(s1)
   ADDW s0, s0, s1
-  ADDI s1, s6, 508
-  LW s1, 0(s1)
+  LW s1, 508(s6)
   ADDW s0, s0, s1
-  ADDI s1, s7, 124
-  LW s1, 0(s1)
+  LW s1, 124(s7)
   ADDW s0, s0, s1
   LUI s1, 60
   ADDIW s1, s1, 912

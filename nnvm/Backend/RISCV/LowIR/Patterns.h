@@ -184,7 +184,8 @@ static inline bool isLoadOrStore(const LIRInst *inst) {
 template <typename SubPattern1, typename SubPattern2, typename SubPattern3>
 class pLoadOrStore : public pInst {
 public:
-  pLoadOrStore(SubPattern1 sub1, SubPattern2 sub2, SubPattern3 sub3);
+  pLoadOrStore(SubPattern1 sub1, SubPattern2 sub2, SubPattern3 sub3)
+      : sub1(sub1), sub2(sub2), sub3(sub3) {}
   bool match(const LIRInst *inst) {
     return isLoadOrStore(inst) && pInst::match(inst) &&
            sub1.match(inst->getOp(0)) && sub2.match(inst->getOp(1)) &&

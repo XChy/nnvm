@@ -168,104 +168,87 @@ bb2:
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 68
-  LW s3, 0(s3)
+  LW s3, 68(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 64
-  LW s3, 0(s3)
+  LW s3, 64(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 60
-  LW s3, 0(s3)
+  LW s3, 60(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 56
-  LW s3, 0(s3)
+  LW s3, 56(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 52
-  LW s3, 0(s3)
+  LW s3, 52(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 48
-  LW s3, 0(s3)
+  LW s3, 48(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 44
-  LW s3, 0(s3)
+  LW s3, 44(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 40
-  LW s3, 0(s3)
+  LW s3, 40(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 36
-  LW s3, 0(s3)
+  LW s3, 36(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 32
-  LW s3, 0(s3)
+  LW s3, 32(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 28
-  LW s3, 0(s3)
+  LW s3, 28(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 24
-  LW s3, 0(s3)
+  LW s3, 24(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 20
-  LW s3, 0(s3)
+  LW s3, 20(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 16
-  LW s3, 0(s3)
+  LW s3, 16(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 12
-  LW s3, 0(s3)
+  LW s3, 12(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 8
-  LW s3, 0(s3)
+  LW s3, 8(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 4
-  LW s3, 0(s3)
+  LW s3, 4(s3)
   ADDI s4, zero, 400
   MULW s3, s3, s4
   LA s4, array
@@ -275,8 +258,7 @@ bb2:
   MULW s3, s3, s4
   LA s4, array
   ADD s3, s4, s3
-  ADDI s3, s3, 224
-  LW s3, 0(s3)
+  LW s3, 224(s3)
   ADDW s2, s2, s3
   ADD a0, s2, zero
   CALL putint
