@@ -121,6 +121,8 @@ while.exit56:
 
 float my_sqrt(float input) {
 entry125:
+  155 = si2f i32 2 to float
+  145 = fneg float 0.000001
   br bb %while.cond127
 while.cond127:
   temp.load = load float from ptr @temp
@@ -132,7 +134,6 @@ while.body128:
   temp.load150 = load float from ptr @temp
   153 = fdiv float %input, float %temp.load150
   154 = fadd float %temp.load150, float %153
-  155 = si2f i32 2 to float
   156 = fdiv float %154, float %155
   store float %156 to ptr @temp
   br bb %while.cond127
@@ -141,7 +142,6 @@ while.exit129:
 select.then:
   br bb %select.exit
 select.else:
-  145 = fneg float 0.000001
   146 = fcmp olt float %134, float %145
   br bb %select.exit
 select.exit:
@@ -236,6 +236,7 @@ then:
 if.exit:
   n.phi = phi [bb %entry158, i32 100000, bb %then, i32 2000]
   call void _sysy_starttime(i32 62)
+  179 = si2f i32 1 to float
   br bb %while.cond169
 while.cond169:
   i168.phi236 = phi [bb %if.exit, i32 ub, bb %while.body170, i32 %181]
@@ -244,18 +245,17 @@ while.cond169:
 while.body170:
   244 = shl i32 %i168.phi236, i32 2
   178 = ptradd ptr %vectorA, i32 %244
-  179 = si2f i32 1 to float
   store float %179 to ptr %178
   181 = add i32 %i168.phi236, i32 1
   br bb %while.cond169
 while.exit171:
+  46292 = si2f i32 0 to float
   br bb %while.cond182
 while.cond182:
   i168.phi = phi [bb %while.exit171, i32 0, bb %mult2.while.exit88519, i32 %193]
   186 = icmp slt i32 %i168.phi, i32 1000
   br i1 %186, bb %while.body183, bb %while.exit184
 while.body183:
-  46292 = si2f i32 0 to float
   br bb %mult1.while.cond47294
 while.exit184:
   call void _sysy_stoptime(i32 76)
@@ -361,7 +361,6 @@ my_sqrt.while.body128:
   temp.load150370 = load float from ptr @temp
   153371 = fdiv float %200, float %temp.load150370
   154372 = fadd float %temp.load150370, float %153371
-  155373 = si2f i32 2 to float
   156374 = fdiv float %154372, float %155373
   store float %156374 to ptr @temp
   br bb %my_sqrt.while.cond127
@@ -372,7 +371,6 @@ my_sqrt.while.exit129:
 my_sqrt.select.then:
   br bb %my_sqrt.select.exit
 my_sqrt.select.else:
-  145386 = fneg float 0.000001
   146387 = fcmp olt float %134366, float %145386
   br bb %my_sqrt.select.exit
 my_sqrt.select.exit:
@@ -410,6 +408,8 @@ Vectordot.while.body424:
   br bb %Vectordot.while.cond419
 Vectordot.while.exit434:
   200 = fdiv float %sum.phi398, float %sum.phi420
+  155373 = si2f i32 2 to float
+  145386 = fneg float 0.000001
   br bb %my_sqrt.while.cond127
 mult2.while.cond86476:
   sum84.phi233477 = phi [bb %mult1.while.exit49302, float %46292, bb %mult2.while.exit95501, float %sum84.phi487]

@@ -43,6 +43,9 @@ external void _sysy_stoptime(i32 )
 
 void f(i32 step) {
 entry26:
+  141 = shl i32 %step, i32 2
+  74 = ptradd ptr @ans, i32 %141
+  98 = add i32 %step, i32 1
   br bb %while.cond29
 while.cond29:
   i28.phi = phi [bb %entry26, i32 1, bb %if.exit71, i32 %116]
@@ -86,8 +89,6 @@ select.exit55:
   select56.phi = phi [bb %select.else54, i1 0, bb %select.then53, i1 %68]
   br i1 %select56.phi, bb %then70, bb %if.exit71
 then70:
-  141 = shl i32 %step, i32 2
-  74 = ptradd ptr @ans, i32 %141
   store i32 %i28.phi to ptr %74
   78 = icmp eq i32 %step, i32 %n.load33
   br i1 %78, bb %then79, bb %if.exit80
@@ -111,7 +112,6 @@ if.exit80:
   144 = shl i32 %94, i32 2
   96 = ptradd ptr @line2, i32 %144
   store i32 1 to ptr %96
-  98 = add i32 %step, i32 1
   call void f(i32 %98)
   store i32 0 to ptr %38
   store i32 0 to ptr %89

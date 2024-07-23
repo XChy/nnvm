@@ -297,6 +297,8 @@ sortA.while.cond54:
   br i1 %59491, bb %sortA.while.body55, bb %sortA.while.exit56
 sortA.while.body55:
   62494 = add i32 %i.phi489, i32 1
+  377505 = shl i32 %i.phi489, i32 2
+  72506 = ptradd ptr @a, i32 %377505
   br bb %sortA.while.cond63
 sortA.while.exit56:
   br bb %sortB.while.cond105
@@ -307,8 +309,6 @@ sortA.while.cond63:
   68502 = icmp slt i32 %j.phi500, i32 %n.load67501
   br i1 %68502, bb %sortA.while.body64, bb %sortA.while.exit65
 sortA.while.body64:
-  377505 = shl i32 %i.phi489, i32 2
-  72506 = ptradd ptr @a, i32 %377505
   72.load507 = load i32 from ptr %72506
   378508 = shl i32 %j.phi500, i32 2
   76509 = ptradd ptr @a, i32 %378508
@@ -450,6 +450,8 @@ while.cond54:
   br i1 %59, bb %while.body55, bb %while.exit56
 while.body55:
   62 = add i32 %i.phi, i32 1
+  377 = shl i32 %i.phi, i32 2
+  72 = ptradd ptr %a, i32 %377
   br bb %while.cond63
 while.exit56:
   ret 
@@ -460,8 +462,6 @@ while.cond63:
   68 = icmp slt i32 %j.phi, i32 %n.load67
   br i1 %68, bb %while.body64, bb %while.exit65
 while.body64:
-  377 = shl i32 %i.phi, i32 2
-  72 = ptradd ptr %a, i32 %377
   72.load = load i32 from ptr %72
   378 = shl i32 %j.phi, i32 2
   76 = ptradd ptr %a, i32 %378

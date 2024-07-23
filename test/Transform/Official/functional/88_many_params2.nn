@@ -64,6 +64,8 @@ init.exit66:
   139.load = load i32 from ptr %202
   204 = ptradd ptr %b, i32 12108
   144.load = load i32 from ptr %204
+  15217 = mul i32 %115.load, i32 236
+  16218 = ptradd ptr %b, i32 %15217
   br bb %func.while.cond
 while.cond148:
   ret.phi = phi [bb %func.while.exit33, i32 %147, bb %while.body149, i32 %163]
@@ -85,8 +87,6 @@ func.while.cond:
   12214 = icmp slt i32 %index.phi213, i32 10
   br i1 %12214, bb %func.while.body, bb %func.while.exit
 func.while.body:
-  15217 = mul i32 %115.load, i32 236
-  16218 = ptradd ptr %b, i32 %15217
   206219 = shl i32 %index.phi213, i32 2
   19220 = ptradd ptr %16218, i32 %206219
   19.load221 = load i32 from ptr %19220
@@ -137,14 +137,14 @@ external void putfarray(i32 , ptr )
 
 i32 func(i32 a, ptr b, i32 c, ptr d, i32 e, i32 f, ptr g, i32 h, i32 i) {
 entry:
+  15 = mul i32 %a, i32 236
+  16 = ptradd ptr %b, i32 %15
   br bb %while.cond
 while.cond:
   index.phi = phi [bb %entry, i32 0, bb %while.body, i32 %23]
   12 = icmp slt i32 %index.phi, i32 10
   br i1 %12, bb %while.body, bb %while.exit
 while.body:
-  15 = mul i32 %a, i32 236
-  16 = ptradd ptr %b, i32 %15
   206 = shl i32 %index.phi, i32 2
   19 = ptradd ptr %16, i32 %206
   19.load = load i32 from ptr %19

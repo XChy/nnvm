@@ -35,10 +35,12 @@ bool LICMPass::run(Function &F) {
       continue;
 
     // Hoisting code
-    for (Instruction *I : incChange(*loop->getHeader())) {
-      if (isInvariant(I, loop)) {
-        I->removeFromBB();
-        (--preheader->end()).insertBefore(I);
+    for (auto *block : loop->getBlocks()) {
+      for (Instruction *I : incChange(*block)) {
+        if (isInvariant(I, loop)) {
+          I->removeFromBB();
+          preheader->termEnd().insertBefore(I);
+        }
       }
     }
   }

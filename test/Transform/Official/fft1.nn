@@ -12,6 +12,7 @@ entry84:
 then90:
   ret i32 1
 if.exit91:
+  117 = sdiv i32 %n, i32 2
   br bb %while.cond93
 while.cond93:
   i92.phi303 = phi [bb %if.exit91, i32 0, bb %if.exit104, i32 %130]
@@ -37,7 +38,6 @@ if.exit104:
   130 = add i32 %i92.phi303, i32 1
   br bb %while.cond93
 else105:
-  117 = sdiv i32 %n, i32 2
   119 = sdiv i32 %i92.phi303, i32 2
   120 = add i32 %117, i32 %119
   312 = shl i32 %120, i32 2
@@ -135,10 +135,10 @@ entry211:
   call void _sysy_starttime(i32 60)
   store i32 1 to ptr @d
   223 = add i32 %213, i32 %215
+  224 = sub i32 %223, i32 1
   br bb %while.cond217
 while.cond217:
   d.load = load i32 from ptr @d
-  224 = sub i32 %223, i32 1
   225 = icmp slt i32 %d.load, i32 %224
   br i1 %225, bb %while.body218, bb %while.exit219
 while.body218:

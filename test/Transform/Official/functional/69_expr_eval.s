@@ -137,7 +137,6 @@ bb16:
   SW s7, 0(s6)
   # implict jump to bb17
 bb17:
-  LA s6, cur_token
   ADD s6, zero, zero
   ADD s7, zero, zero
   ADD s8, zero, zero
@@ -206,7 +205,6 @@ bb29:
   SW s2, 0(s1)
   # implict jump to bb30
 bb30:
-  LA s1, cur_token
   # implict jump to bb31
 bb31:
   LW s1, 152(sp)
@@ -586,7 +584,6 @@ bb97:
   SW s11, 0(s3)
   # implict jump to bb98
 bb98:
-  LA s3, cur_token
   ADD s6, s10, zero
   ADD s7, s9, zero
   ADD s8, s1, zero
@@ -1415,7 +1412,6 @@ bb232:
   SW s4, 0(s3)
   # implict jump to bb233
 bb233:
-  LA s3, cur_token
   LW t3, 60(sp)
   ADD t4, t3, zero
   SW t4, 36(sp)
@@ -1535,7 +1531,6 @@ bb252:
   SW s11, 0(s10)
   # implict jump to bb253
 bb253:
-  LA s10, cur_token
   ADD s10, zero, zero
   ADD s11, zero, zero
   ADD s1, zero, zero
@@ -1604,7 +1599,6 @@ bb265:
   SW s3, 0(s2)
   # implict jump to bb266
 bb266:
-  LA s2, cur_token
   # implict jump to bb267
 bb267:
   LW s2, 1192(sp)
@@ -1979,7 +1973,6 @@ bb334:
   SW s5, 0(s3)
   # implict jump to bb335
 bb335:
-  LA s3, cur_token
   ADD s10, s4, zero
   ADD s11, s2, zero
   ADD s1, s6, zero

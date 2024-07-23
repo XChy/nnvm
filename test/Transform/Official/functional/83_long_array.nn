@@ -88,6 +88,8 @@ else:
   94 = icmp slt i32 %i.phi, i32 20
   br i1 %94, bb %then95, bb %else97
 then95:
+  216 = shl i32 %i.phi, i32 2
+  111 = ptradd ptr %a3, i32 %216
   br bb %while.cond101
 if.exit96:
   j128.phi204 = phi [bb %if.exit126, i32 %j128.phi203, bb %while.exit103, i32 %j128.phi206]
@@ -103,8 +105,6 @@ while.cond101:
   106 = icmp slt i32 %j.phi, i32 10000
   br i1 %106, bb %while.body102, bb %while.exit103
 while.body102:
-  216 = shl i32 %i.phi, i32 2
-  111 = ptradd ptr %a3, i32 %216
   111.load = load i32 from ptr %111
   113 = add i32 %ans.phi196, i32 %111.load
   217 = shl i32 %j.phi, i32 2
@@ -117,6 +117,10 @@ while.exit103:
   call void putint(i32 %ans.phi196)
   br bb %if.exit96
 then125:
+  219 = shl i32 %i.phi, i32 2
+  146 = ptradd ptr %a2, i32 %219
+  221 = shl i32 %i.phi, i32 2
+  159 = ptradd ptr %a1, i32 %221
   br bb %while.cond131
 if.exit126:
   j128.phi203 = phi [bb %else127, i32 %j128.phi206, bb %while.exit133, i32 %j128.phi202]
@@ -142,8 +146,6 @@ while.exit133:
   call void putint(i32 %ans.phi191)
   br bb %if.exit126
 then140:
-  219 = shl i32 %i.phi, i32 2
-  146 = ptradd ptr %a2, i32 %219
   146.load = load i32 from ptr %146
   148 = add i32 %ans.phi191, i32 %146.load
   220 = shl i32 %j128.phi202, i32 2
@@ -157,8 +159,6 @@ if.exit141:
   ans.phi = phi [bb %else142, i32 %167, bb %then140, i32 %153]
   br bb %while.cond131
 else142:
-  221 = shl i32 %i.phi, i32 2
-  159 = ptradd ptr %a1, i32 %221
   159.load = load i32 from ptr %159
   161 = add i32 %ans.phi191, i32 %159.load
   222 = shl i32 %j128.phi202, i32 2
@@ -261,6 +261,8 @@ long_array.else:
   94305 = icmp slt i32 %i.phi282, i32 20
   br i1 %94305, bb %long_array.then95, bb %long_array.else97
 long_array.then95:
+  216323 = shl i32 %i.phi282, i32 2
+  111324 = ptradd ptr %a3225, i32 %216323
   br bb %long_array.while.cond101
 long_array.if.exit96:
   j128.phi204310 = phi [bb %long_array.if.exit126, i32 %j128.phi203339, bb %long_array.while.exit103, i32 %j128.phi206279]
@@ -276,8 +278,6 @@ long_array.while.cond101:
   106320 = icmp slt i32 %j.phi318, i32 10000
   br i1 %106320, bb %long_array.while.body102, bb %long_array.while.exit103
 long_array.while.body102:
-  216323 = shl i32 %i.phi282, i32 2
-  111324 = ptradd ptr %a3225, i32 %216323
   111.load325 = load i32 from ptr %111324
   113326 = add i32 %ans.phi196319, i32 %111.load325
   217327 = shl i32 %j.phi318, i32 2
@@ -290,6 +290,10 @@ long_array.while.exit103:
   call void putint(i32 %ans.phi196319)
   br bb %long_array.if.exit96
 long_array.then125:
+  219362 = shl i32 %i.phi282, i32 2
+  146363 = ptradd ptr %a2226, i32 %219362
+  221377 = shl i32 %i.phi282, i32 2
+  159378 = ptradd ptr %a1227, i32 %221377
   br bb %long_array.while.cond131
 long_array.if.exit126:
   j128.phi203339 = phi [bb %long_array.else127, i32 %j128.phi206279, bb %long_array.while.exit133, i32 %j128.phi202351]
@@ -315,8 +319,6 @@ long_array.while.exit133:
   call void putint(i32 %ans.phi191352)
   br bb %long_array.if.exit126
 long_array.then140:
-  219362 = shl i32 %i.phi282, i32 2
-  146363 = ptradd ptr %a2226, i32 %219362
   146.load364 = load i32 from ptr %146363
   148365 = add i32 %ans.phi191352, i32 %146.load364
   220366 = shl i32 %j128.phi202351, i32 2
@@ -330,8 +332,6 @@ long_array.if.exit141:
   ans.phi374 = phi [bb %long_array.else142, i32 %167385, bb %long_array.then140, i32 %153369]
   br bb %long_array.while.cond131
 long_array.else142:
-  221377 = shl i32 %i.phi282, i32 2
-  159378 = ptradd ptr %a1227, i32 %221377
   159.load379 = load i32 from ptr %159378
   161380 = add i32 %ans.phi191352, i32 %159.load379
   222381 = shl i32 %j128.phi202351, i32 2

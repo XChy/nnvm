@@ -171,6 +171,17 @@ longest_common_subseq.while.cond97:
   102384 = icmp sle i32 %i95.phi383, i32 15
   br i1 %102384, bb %longest_common_subseq.while.body98, bb %longest_common_subseq.while.exit99
 longest_common_subseq.while.body98:
+  112400 = sub i32 %i95.phi383, i32 1
+  231401 = shl i32 %112400, i32 2
+  114402 = ptradd ptr %A, i32 %231401
+  233414 = shl i32 %i95.phi383, i32 6
+  127415 = ptradd ptr %p368, i32 %233414
+  235418 = shl i32 %112400, i32 6
+  134419 = ptradd ptr %p368, i32 %235418
+  237429 = shl i32 %i95.phi383, i32 6
+  143430 = ptradd ptr %p368, i32 %237429
+  239433 = shl i32 %112400, i32 6
+  150434 = ptradd ptr %p368, i32 %239433
   br bb %longest_common_subseq.while.cond104
 longest_common_subseq.while.exit99:
   458 = ptradd ptr %p368, i32 1012
@@ -183,9 +194,6 @@ longest_common_subseq.while.cond104:
   109397 = icmp sle i32 %j.phi396, i32 13
   br i1 %109397, bb %longest_common_subseq.while.body105, bb %longest_common_subseq.while.exit106
 longest_common_subseq.while.body105:
-  112400 = sub i32 %i95.phi383, i32 1
-  231401 = shl i32 %112400, i32 2
-  114402 = ptradd ptr %A, i32 %231401
   114.load403 = load i32 from ptr %114402
   117404 = sub i32 %j.phi396, i32 1
   232405 = shl i32 %117404, i32 2
@@ -197,12 +205,8 @@ longest_common_subseq.while.exit106:
   167411 = add i32 %i95.phi383, i32 1
   br bb %longest_common_subseq.while.cond97
 longest_common_subseq.then122:
-  233414 = shl i32 %i95.phi383, i32 6
-  127415 = ptradd ptr %p368, i32 %233414
   234416 = shl i32 %j.phi396, i32 2
   130417 = ptradd ptr %127415, i32 %234416
-  235418 = shl i32 %112400, i32 6
-  134419 = ptradd ptr %p368, i32 %235418
   138420 = ptradd ptr %134419, i32 %232405
   138.load421 = load i32 from ptr %138420
   140422 = add i32 %138.load421, i32 1
@@ -212,12 +216,8 @@ longest_common_subseq.if.exit123:
   165426 = add i32 %j.phi396, i32 1
   br bb %longest_common_subseq.while.cond104
 longest_common_subseq.else124:
-  237429 = shl i32 %i95.phi383, i32 6
-  143430 = ptradd ptr %p368, i32 %237429
   238431 = shl i32 %j.phi396, i32 2
   146432 = ptradd ptr %143430, i32 %238431
-  239433 = shl i32 %112400, i32 6
-  150434 = ptradd ptr %p368, i32 %239433
   153435 = ptradd ptr %150434, i32 %238431
   153.load436 = load i32 from ptr %153435
   161437 = ptradd ptr %143430, i32 %232405
@@ -349,6 +349,17 @@ while.cond97:
   102 = icmp sle i32 %i95.phi, i32 %len1
   br i1 %102, bb %while.body98, bb %while.exit99
 while.body98:
+  112 = sub i32 %i95.phi, i32 1
+  231 = shl i32 %112, i32 2
+  114 = ptradd ptr %arr1, i32 %231
+  233 = shl i32 %i95.phi, i32 6
+  127 = ptradd ptr %p, i32 %233
+  235 = shl i32 %112, i32 6
+  134 = ptradd ptr %p, i32 %235
+  237 = shl i32 %i95.phi, i32 6
+  143 = ptradd ptr %p, i32 %237
+  239 = shl i32 %112, i32 6
+  150 = ptradd ptr %p, i32 %239
   br bb %while.cond104
 while.exit99:
   229 = shl i32 %len1, i32 6
@@ -362,9 +373,6 @@ while.cond104:
   109 = icmp sle i32 %j.phi, i32 %len2
   br i1 %109, bb %while.body105, bb %while.exit106
 while.body105:
-  112 = sub i32 %i95.phi, i32 1
-  231 = shl i32 %112, i32 2
-  114 = ptradd ptr %arr1, i32 %231
   114.load = load i32 from ptr %114
   117 = sub i32 %j.phi, i32 1
   232 = shl i32 %117, i32 2
@@ -376,12 +384,8 @@ while.exit106:
   167 = add i32 %i95.phi, i32 1
   br bb %while.cond97
 then122:
-  233 = shl i32 %i95.phi, i32 6
-  127 = ptradd ptr %p, i32 %233
   234 = shl i32 %j.phi, i32 2
   130 = ptradd ptr %127, i32 %234
-  235 = shl i32 %112, i32 6
-  134 = ptradd ptr %p, i32 %235
   138 = ptradd ptr %134, i32 %232
   138.load = load i32 from ptr %138
   140 = add i32 %138.load, i32 1
@@ -391,12 +395,8 @@ if.exit123:
   165 = add i32 %j.phi, i32 1
   br bb %while.cond104
 else124:
-  237 = shl i32 %i95.phi, i32 6
-  143 = ptradd ptr %p, i32 %237
   238 = shl i32 %j.phi, i32 2
   146 = ptradd ptr %143, i32 %238
-  239 = shl i32 %112, i32 6
-  150 = ptradd ptr %p, i32 %239
   153 = ptradd ptr %150, i32 %238
   153.load = load i32 from ptr %153
   161 = ptradd ptr %143, i32 %232

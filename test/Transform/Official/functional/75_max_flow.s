@@ -87,11 +87,11 @@ bb6:
 dfs:
   ADDI sp, sp, -128
   SD ra, 8(sp)
-  SD s4, 16(sp)
-  SD s0, 24(sp)
-  SD s1, 32(sp)
-  SD s2, 40(sp)
-  SD s3, 48(sp)
+  SD s0, 16(sp)
+  SD s1, 24(sp)
+  SD s2, 32(sp)
+  SD s3, 40(sp)
+  SD s4, 48(sp)
   SD s5, 56(sp)
   SD s6, 64(sp)
   SD s7, 72(sp)
@@ -114,25 +114,31 @@ bb8:
   SW s5, 0(s4)
   LA s4, size
   ADD s3, s4, s3
-  ADD s4, zero, zero
-  ADD s5, zero, zero
+  ADDI s4, zero, 40
+  MULW s0, s0, s4
+  LA s4, to
+  ADD s4, s4, s0
+  LA s5, cap
+  ADD s5, s5, s0
   ADD s6, zero, zero
+  ADD s7, zero, zero
+  ADD s8, zero, zero
   # implict jump to bb9
 bb9:
-  ADD s7, s6, zero
-  ADD s8, s5, zero
-  ADD s9, s4, zero
-  LW s10, 0(s3)
-  BLT s7, s10, bb11
+  ADD s9, s8, zero
+  ADD s10, s7, zero
+  ADD s11, s6, zero
+  LW t0, 0(s3)
+  BLT s9, t0, bb11
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
   LD s6, 64(sp)
   LD s7, 72(sp)
@@ -143,43 +149,40 @@ bb10:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb11:
-  ADDI s10, zero, 40
-  MULW s10, s0, s10
-  LA s11, to
-  ADD s11, s11, s10
-  SLLIW t4, s7, 2
+  SLLIW t4, s9, 2
   SW t4, 0(sp)
-  LW t4, 0(sp)
-  ADD s11, s11, t4
-  LW t1, 0(s11)
-  SLLIW t1, t1, 2
-  LA t2, used
-  ADD t1, t2, t1
-  LW t1, 0(t1)
-  BNE t1, zero, bb20
+  LW t3, 0(sp)
+  ADD t4, s4, t3
+  SD t4, 120(sp)
+  LD t4, 120(sp)
+  LW t2, 0(t4)
+  SLLIW t2, t2, 2
+  LA a3, used
+  ADD t2, a3, t2
+  LW t2, 0(t2)
+  BNE t2, zero, bb20
   # implict jump to bb12
 bb12:
-  LA t1, cap
-  ADD t1, t1, s10
   LW t3, 0(sp)
-  ADD t4, t1, t3
+  ADD t4, s5, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
-  LW t2, 0(t4)
-  SLT a3, zero, t2
-  XORI a3, a3, 1
-  BNE a3, zero, bb19
+  LW a3, 0(t4)
+  SLT a4, zero, a3
+  XORI a4, a4, 1
+  BNE a4, zero, bb19
   # implict jump to bb13
 bb13:
-  BLT s2, t2, bb18
+  BLT s2, a3, bb18
   # implict jump to bb14
 bb14:
   # implict jump to bb15
 bb15:
-  ADD t4, t2, zero
+  ADD t4, a3, zero
   SW t4, 4(sp)
-  LW a3, 0(s11)
-  ADD a0, a3, zero
+  LD t4, 120(sp)
+  LW a4, 0(t4)
+  ADD a0, a4, zero
   ADD a1, s1, zero
   LW t4, 4(sp)
   ADD a2, t4, zero
@@ -188,11 +191,11 @@ bb15:
   BLT zero, t0, bb17
   # implict jump to bb16
 bb16:
-  ADDIW t1, s7, 1
-  ADD s4, t0, zero
+  ADDIW t1, s9, 1
+  ADD s6, t0, zero
   LW t4, 4(sp)
-  ADD s5, t4, zero
-  ADD s6, t1, zero
+  ADD s7, t4, zero
+  ADD s8, t1, zero
   JAL zero, bb9
 bb17:
   LD t4, 112(sp)
@@ -200,28 +203,29 @@ bb17:
   SUBW t1, t1, t0
   LD t4, 112(sp)
   SW t1, 0(t4)
-  LW s11, 0(s11)
-  ADDI t1, zero, 40
-  MULW s11, s11, t1
-  LA t1, cap
-  ADD s11, t1, s11
-  LA t1, rev
-  ADD s10, t1, s10
+  LD t4, 120(sp)
+  LW t1, 0(t4)
+  ADDI t2, zero, 40
+  MULW t1, t1, t2
+  LA t2, cap
+  ADD t1, t2, t1
+  LA t2, rev
+  ADD t2, t2, s0
   LW t4, 0(sp)
-  ADD s10, s10, t4
-  LW s10, 0(s10)
-  SLLIW s10, s10, 2
-  ADD s10, s11, s10
-  LW s11, 0(s10)
-  ADDW s11, s11, t0
-  SW s11, 0(s10)
+  ADD t2, t2, t4
+  LW t2, 0(t2)
+  SLLIW t2, t2, 2
+  ADD t1, t1, t2
+  LW t2, 0(t1)
+  ADDW t2, t2, t0
+  SW t2, 0(t1)
   ADD a0, t0, zero
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
   LD s6, 64(sp)
   LD s7, 72(sp)
@@ -232,28 +236,28 @@ bb17:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb18:
-  ADD t2, s2, zero
+  ADD a3, s2, zero
   JAL zero, bb15
 bb19:
-  ADDIW s10, s7, 1
-  ADD s4, s9, zero
-  ADD s5, s8, zero
-  ADD s6, s10, zero
+  ADDIW t0, s9, 1
+  ADD s6, s11, zero
+  ADD s7, s10, zero
+  ADD s8, t0, zero
   JAL zero, bb9
 bb20:
-  ADDIW s7, s7, 1
-  ADD s4, s9, zero
-  ADD s5, s8, zero
-  ADD s6, s7, zero
+  ADDIW s9, s9, 1
+  ADD s6, s11, zero
+  ADD s7, s10, zero
+  ADD s8, s9, zero
   JAL zero, bb9
 bb21:
   ADD a0, s2, zero
   LD ra, 8(sp)
-  LD s4, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
+  LD s0, 16(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s4, 48(sp)
   LD s5, 56(sp)
   LD s6, 64(sp)
   LD s7, 72(sp)

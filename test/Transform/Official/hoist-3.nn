@@ -49,14 +49,6 @@ external void putfarray(i32 , ptr )
 
 i32 func(i32 i1, i32 i2, i32 i3, i32 i4, i32 i5, i32 i6, i32 i7, i32 i8, i32 i9, i32 i10, i32 i11, i32 i12, i32 i13, i32 i14, i32 i15) {
 entry:
-  br bb %while.cond
-while.cond:
-  result.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3132]
-  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3134]
-  loopCount.load = load i32 from ptr @loopCount
-  23 = icmp slt i32 %i.phi, i32 %loopCount.load
-  br i1 %23, bb %while.body, bb %while.exit
-while.body:
   30 = add i32 %i1, i32 %i2
   32 = add i32 %30, i32 %i3
   34 = add i32 %32, i32 %i4
@@ -1557,6 +1549,14 @@ while.body:
   3123 = add i32 %3121, i32 %i14
   3125 = add i32 %3123, i32 %i15
   3127 = sdiv i32 %3125, i32 100
+  br bb %while.cond
+while.cond:
+  result.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3132]
+  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %3134]
+  loopCount.load = load i32 from ptr @loopCount
+  23 = icmp slt i32 %i.phi, i32 %loopCount.load
+  br i1 %23, bb %while.body, bb %while.exit
+while.body:
   3130 = add i32 %result.phi, i32 %3127
   3132 = srem i32 %3130, i32 1500000001
   3134 = add i32 %i.phi, i32 1

@@ -67,6 +67,9 @@ while.body62:
   br i1 %72, bb %then73, bb %if.exit74
 while.exit63:
   call void _sysy_starttime(i32 42)
+  126 = si2f i32 1000 to float
+  189 = si2f i32 1000 to float
+  20336 = si2f i32 2 to float
   br bb %while.cond79
 then73:
   ret i32 %70
@@ -92,6 +95,8 @@ while.body87:
   309 = shl i32 %i.phi290, i32 2
   94 = ptradd ptr %mean, i32 %309
   store float %60 to ptr %94
+  110 = mul i32 %i.phi290, i32 4000
+  111 = ptradd ptr @a, i32 %110
   br bb %while.cond96
 while.exit88:
   br bb %while.cond131
@@ -101,8 +106,6 @@ while.cond96:
   br i1 %100, bb %while.body97, bb %while.exit98
 while.body97:
   107.load = load float from ptr %94
-  110 = mul i32 %i.phi290, i32 4000
-  111 = ptradd ptr @a, i32 %110
   312 = shl i32 %j.phi299, i32 2
   114 = ptradd ptr %111, i32 %312
   114.load = load float from ptr %114
@@ -112,7 +115,6 @@ while.body97:
   br bb %while.cond96
 while.exit98:
   124.load = load float from ptr %94
-  126 = si2f i32 1000 to float
   127 = fdiv float %124.load, float %126
   store float %127 to ptr %94
   129 = add i32 %i.phi290, i32 1
@@ -126,6 +128,9 @@ while.body132:
   315 = shl i32 %i.phi288, i32 2
   139 = ptradd ptr %var, i32 %315
   store float %60 to ptr %139
+  155 = mul i32 %i.phi288, i32 4000
+  156 = ptradd ptr @a, i32 %155
+  163 = ptradd ptr %mean, i32 %315
   br bb %while.cond141
 while.exit133:
   br bb %while.cond202
@@ -135,12 +140,9 @@ while.cond141:
   br i1 %145, bb %while.body142, bb %while.exit143
 while.body142:
   152.load = load float from ptr %139
-  155 = mul i32 %i.phi288, i32 4000
-  156 = ptradd ptr @a, i32 %155
   318 = shl i32 %j.phi296, i32 2
   159 = ptradd ptr %156, i32 %318
   159.load = load float from ptr %159
-  163 = ptradd ptr %mean, i32 %315
   163.load = load float from ptr %163
   165 = fsub float %159.load, float %163.load
   178 = fmul float %165, float %165
@@ -150,12 +152,10 @@ while.body142:
   br bb %while.cond141
 while.exit143:
   187.load = load float from ptr %139
-  189 = si2f i32 1000 to float
   190 = fdiv float %187.load, float %189
   store float %190 to ptr %139
   198 = fadd float %190, float 0.010000
   19335 = fadd float %60, float %198
-  20336 = si2f i32 2 to float
   21337 = fdiv float %19335, float %20336
   br bb %sqrt.while.cond
 while.cond202:
@@ -165,6 +165,11 @@ while.cond202:
   206 = icmp slt i32 %i.phi, i32 1000
   br i1 %206, bb %while.body203, bb %while.exit204
 while.body203:
+  215 = mul i32 %i.phi, i32 4000
+  216 = ptradd ptr @a, i32 %215
+  328 = shl i32 %i.phi, i32 2
+  229 = ptradd ptr %mean, i32 %328
+  234 = ptradd ptr %var, i32 %328
   br bb %while.cond208
 while.exit204:
   251 = add i32 %k.phi, i32 1
@@ -175,16 +180,11 @@ while.cond208:
   212 = icmp slt i32 %j.phi293, i32 1000
   br i1 %212, bb %while.body209, bb %while.exit210
 while.body209:
-  215 = mul i32 %i.phi, i32 4000
-  216 = ptradd ptr @a, i32 %215
   326 = shl i32 %j.phi293, i32 2
   219 = ptradd ptr %216, i32 %326
   225.load = load float from ptr %219
-  328 = shl i32 %i.phi, i32 2
-  229 = ptradd ptr %mean, i32 %328
   229.load = load float from ptr %229
   231 = fsub float %225.load, float %229.load
-  234 = ptradd ptr %var, i32 %328
   234.load = load float from ptr %234
   236 = fdiv float %231, float %234.load
   store float %236 to ptr %219
@@ -200,6 +200,8 @@ while.cond252:
   256 = icmp slt i32 %i.phi289, i32 1000
   br i1 %256, bb %while.body253, bb %while.exit254
 while.body253:
+  266 = mul i32 %i.phi289, i32 4000
+  267 = ptradd ptr @a, i32 %266
   br bb %while.cond258
 while.exit254:
   call void _sysy_stoptime(i32 95)
@@ -211,8 +213,6 @@ while.cond258:
   262 = icmp slt i32 %j.phi298, i32 1000
   br i1 %262, bb %while.body259, bb %while.exit260
 while.body259:
-  266 = mul i32 %i.phi289, i32 4000
-  267 = ptradd ptr @a, i32 %266
   331 = shl i32 %j.phi298, i32 2
   270 = ptradd ptr %267, i32 %331
   270.load = load float from ptr %270

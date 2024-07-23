@@ -13,6 +13,7 @@ then:
   173 = shl i32 %low, i32 2
   15 = ptradd ptr %arr, i32 %173
   15.load = load i32 from ptr %15
+  39 = sub i32 %15.load, i32 1
   br bb %while.cond
 if.exit:
   ret i32 0
@@ -45,7 +46,6 @@ select.then:
   175 = shl i32 %j.phi160, i32 2
   36 = ptradd ptr %arr, i32 %175
   36.load = load i32 from ptr %36
-  39 = sub i32 %15.load, i32 1
   40 = icmp sgt i32 %36.load, i32 %39
   br bb %select.exit
 select.else:

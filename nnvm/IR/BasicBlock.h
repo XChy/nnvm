@@ -41,6 +41,9 @@ public:
   Iterator begin() { return {instList.begin(), this}; }
   Iterator end() { return {instList.end(), this}; }
 
+  // Return the iterator of terminator.
+  Iterator termEnd() { return {getTerminator(), this}; }
+
   TerminatorInst *getTerminator() const {
     if (instList.empty())
       return nullptr;

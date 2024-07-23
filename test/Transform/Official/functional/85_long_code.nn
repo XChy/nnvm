@@ -1,6 +1,7 @@
 global ptr n init with i32 0
 i32 avgPooling(ptr arr, i32 stride) {
 entry377:
+  391 = sub i32 %stride, i32 1
   br bb %while.cond382
 while.cond382:
   lastnum.phi654 = phi [bb %entry377, i32 ub, bb %if.exit394, i32 %lastnum.phi653]
@@ -10,7 +11,6 @@ while.cond382:
   387 = icmp slt i32 %i380.phi651, i32 %n.load386
   br i1 %387, bb %while.body383, bb %while.exit384
 while.body383:
-  391 = sub i32 %stride, i32 1
   392 = icmp slt i32 %i380.phi651, i32 %391
   br i1 %392, bb %then393, bb %else395
 while.exit384:
@@ -248,6 +248,7 @@ then113:
   739 = shl i32 %low, i32 2
   122 = ptradd ptr %arr, i32 %739
   122.load = load i32 from ptr %122
+  146 = sub i32 %122.load, i32 1
   br bb %while.cond124
 if.exit114:
   ret i32 0
@@ -280,7 +281,6 @@ select.then137:
   741 = shl i32 %j117.phi680, i32 2
   143 = ptradd ptr %arr, i32 %741
   143.load = load i32 from ptr %143
-  146 = sub i32 %122.load, i32 1
   147 = icmp sgt i32 %143.load, i32 %146
   br bb %select.exit139
 select.else138:
@@ -853,13 +853,13 @@ bubblesort.while.cond1170:
   br i1 %91175, bb %bubblesort.while.body1177, bb %bubblesort.while.exit1179
 bubblesort.while.body1177:
   171185 = sub i32 %n.load330857, i32 %i.phi1172
+  181186 = sub i32 %171185, i32 1
   br bb %bubblesort.while.cond111181
 bubblesort.while.exit1179:
   br bb %while.cond567
 bubblesort.while.cond111181:
   tmp.phi7121182 = phi [bb %bubblesort.while.body1177, i32 %tmp.phi7131171, bb %bubblesort.if.exit1208, i32 %tmp.phi1209]
   j.phi1183 = phi [bb %bubblesort.while.body1177, i32 0, bb %bubblesort.if.exit1208, i32 %261193]
-  181186 = sub i32 %171185, i32 1
   191187 = icmp slt i32 %j.phi1183, i32 %181186
   br i1 %191187, bb %bubblesort.while.body121189, bb %bubblesort.while.exit131199
 bubblesort.while.body121189:
@@ -902,6 +902,7 @@ external void putfarray(i32 , ptr )
 
 i32 calSum(ptr arr, i32 stride) {
 entry342:
+  363 = sub i32 %stride, i32 1
   br bb %while.cond346
 while.cond346:
   i345.phi = phi [bb %entry342, i32 0, bb %if.exit366, i32 %376]
@@ -915,7 +916,6 @@ while.body347:
   356.load = load i32 from ptr %356
   358 = add i32 %sum.phi706, i32 %356.load
   361 = srem i32 %i345.phi, i32 %stride
-  363 = sub i32 %stride, i32 1
   364 = icmp ne i32 %361, i32 %363
   br i1 %364, bb %then365, bb %else367
 while.exit348:

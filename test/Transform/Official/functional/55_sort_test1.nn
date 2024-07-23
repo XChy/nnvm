@@ -56,13 +56,13 @@ bubblesort.while.cond:
   br i1 %9120, bb %bubblesort.while.body, bb %bubblesort.while.exit
 bubblesort.while.body:
   17130 = sub i32 10, i32 %i.phi117
+  18131 = sub i32 %17130, i32 1
   br bb %bubblesort.while.cond11
 bubblesort.while.exit:
   br bb %while.cond79
 bubblesort.while.cond11:
   tmp.phi103127 = phi [bb %bubblesort.while.body, i32 %tmp.phi104116, bb %bubblesort.if.exit, i32 %tmp.phi154]
   j.phi128 = phi [bb %bubblesort.while.body, i32 0, bb %bubblesort.if.exit, i32 %26138]
-  18131 = sub i32 %17130, i32 1
   19132 = icmp slt i32 %j.phi128, i32 %18131
   br i1 %19132, bb %bubblesort.while.body12, bb %bubblesort.while.exit13
 bubblesort.while.body12:

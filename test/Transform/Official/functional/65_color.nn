@@ -164,6 +164,8 @@ while.cond:
   220 = icmp slt i32 %i.phi345, i32 18
   br i1 %220, bb %while.body, bb %while.exit
 while.body:
+  262 = mul i32 %i.phi345, i32 2939328
+  263 = ptradd ptr @dp, i32 %262
   br bb %while.cond223
 while.exit:
   br bb %while.cond292
@@ -176,6 +178,8 @@ while.cond223:
   228 = icmp slt i32 %j.phi, i32 18
   br i1 %228, bb %while.body224, bb %while.exit225
 while.body224:
+  265 = mul i32 %j.phi, i32 163296
+  266 = ptradd ptr %263, i32 %265
   br bb %while.cond231
 while.exit225:
   291 = add i32 %i.phi345, i32 1
@@ -188,6 +192,8 @@ while.cond231:
   236 = icmp slt i32 %k.phi, i32 18
   br i1 %236, bb %while.body232, bb %while.exit233
 while.body232:
+  268 = mul i32 %k.phi, i32 9072
+  269 = ptradd ptr %266, i32 %268
   br bb %while.cond239
 while.exit233:
   289 = add i32 %j.phi, i32 1
@@ -199,6 +205,8 @@ while.cond239:
   244 = icmp slt i32 %l.phi, i32 18
   br i1 %244, bb %while.body240, bb %while.exit241
 while.body240:
+  271 = mul i32 %l.phi, i32 504
+  272 = ptradd ptr %269, i32 %271
   br bb %while.cond247
 while.exit241:
   287 = add i32 %k.phi, i32 1
@@ -209,6 +217,8 @@ while.cond247:
   252 = icmp slt i32 %m.phi, i32 18
   br i1 %252, bb %while.body248, bb %while.exit249
 while.body248:
+  274 = mul i32 %m.phi, i32 28
+  275 = ptradd ptr %272, i32 %274
   br bb %while.cond255
 while.exit249:
   285 = add i32 %l.phi, i32 1
@@ -218,16 +228,6 @@ while.cond255:
   259 = icmp slt i32 %h.phi, i32 7
   br i1 %259, bb %while.body256, bb %while.exit257
 while.body256:
-  262 = mul i32 %i.phi345, i32 2939328
-  263 = ptradd ptr @dp, i32 %262
-  265 = mul i32 %j.phi, i32 163296
-  266 = ptradd ptr %263, i32 %265
-  268 = mul i32 %k.phi, i32 9072
-  269 = ptradd ptr %266, i32 %268
-  271 = mul i32 %l.phi, i32 504
-  272 = ptradd ptr %269, i32 %271
-  274 = mul i32 %m.phi, i32 28
-  275 = ptradd ptr %272, i32 %274
   371 = shl i32 %h.phi, i32 2
   278 = ptradd ptr %275, i32 %371
   store i32 -1 to ptr %278

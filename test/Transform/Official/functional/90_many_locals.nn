@@ -10,7 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry74:
-  %arr213 = stack 64
   %arr175 = stack 64
   store i32 0 to ptr %arr175
   arr.index3177 = ptradd ptr %arr175, i32 4
@@ -44,41 +43,9 @@ entry74:
   arr.index17205 = ptradd ptr %arr175, i32 60
   store i32 3 to ptr %arr.index17205
   71.load207 = load i32 from ptr %arr.index5181
-  250 = add i32 %71.load207, i32 101
-  store i32 0 to ptr %arr213
-  arr.index3215 = ptradd ptr %arr213, i32 4
-  store i32 1 to ptr %arr.index3215
-  arr.index4217 = ptradd ptr %arr213, i32 8
-  store i32 2 to ptr %arr.index4217
-  arr.index5219 = ptradd ptr %arr213, i32 12
-  store i32 3 to ptr %arr.index5219
-  arr.index6221 = ptradd ptr %arr213, i32 16
-  store i32 0 to ptr %arr.index6221
-  arr.index7223 = ptradd ptr %arr213, i32 20
-  store i32 1 to ptr %arr.index7223
-  arr.index8225 = ptradd ptr %arr213, i32 24
-  store i32 2 to ptr %arr.index8225
-  arr.index9227 = ptradd ptr %arr213, i32 28
-  store i32 3 to ptr %arr.index9227
-  arr.index10229 = ptradd ptr %arr213, i32 32
-  store i32 0 to ptr %arr.index10229
-  arr.index11231 = ptradd ptr %arr213, i32 36
-  store i32 1 to ptr %arr.index11231
-  arr.index12233 = ptradd ptr %arr213, i32 40
-  store i32 2 to ptr %arr.index12233
-  arr.index13235 = ptradd ptr %arr213, i32 44
-  store i32 3 to ptr %arr.index13235
-  arr.index14237 = ptradd ptr %arr213, i32 48
-  store i32 0 to ptr %arr.index14237
-  arr.index15239 = ptradd ptr %arr213, i32 52
-  store i32 1 to ptr %arr.index15239
-  arr.index16241 = ptradd ptr %arr213, i32 56
-  store i32 2 to ptr %arr.index16241
-  arr.index17243 = ptradd ptr %arr213, i32 60
-  store i32 3 to ptr %arr.index17243
-  71.load245 = load i32 from ptr %arr.index5219
-  252 = add i32 %71.load245, i32 112
-  164 = add i32 %250, i32 %252
+  212 = add i32 %71.load207, i32 101
+  214 = add i32 %71.load207, i32 112
+  164 = add i32 %212, i32 %214
   166 = add i32 %164, i32 35
   call void putint(i32 %166)
   call void putch(i32 10)
@@ -89,7 +56,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 foo() {
+pure i32 foo() {
 entry:
   %arr = stack 64
   store i32 0 to ptr %arr

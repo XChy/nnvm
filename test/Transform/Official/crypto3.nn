@@ -361,6 +361,7 @@ entry354:
   store i32 0 to ptr %374
   376 = ptradd ptr %output_buf, i32 16
   store i32 0 to ptr %376
+  91506 = ptradd ptr @buffer, i32 128000
   br bb %while.cond377
 while.cond377:
   rounds.phi = phi [bb %entry354, i32 %365, bb %while.exit403, i32 %422]
@@ -394,7 +395,6 @@ while.body386:
   398 = add i32 %i384.phi465, i32 1
   br bb %while.cond385
 while.exit387:
-  91506 = ptradd ptr @buffer, i32 128000
   store i32 128 to ptr %91506
   br bb %pseudo_sha1.while.cond
 while.cond401:

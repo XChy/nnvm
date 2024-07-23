@@ -432,127 +432,127 @@ bb40:
   ADD s11, s0, zero
   JAL zero, bb38
 bb41:
-  ADD s0, s10, zero
-  ADD s2, s9, zero
-  ADD s3, s8, zero
-  ADD s4, s7, zero
-  ADD s5, zero, zero
+  LUI s0, 718
+  ADDIW s0, s0, -1600
+  LW t4, 0(sp)
+  MULW s0, t4, s0
+  LA s2, dp
+  ADD s0, s2, s0
+  ADD s2, s10, zero
+  ADD s3, s9, zero
+  ADD s4, s8, zero
+  ADD s5, s7, zero
+  ADD s6, zero, zero
   # implict jump to bb42
 bb42:
-  ADD s6, s5, zero
-  ADD s7, s4, zero
-  ADD s8, s3, zero
-  ADD s9, s2, zero
-  ADD s10, s0, zero
-  SLTI s11, s6, 18
-  BNE s11, zero, bb44
+  ADD s7, s6, zero
+  ADD s8, s5, zero
+  ADD s9, s4, zero
+  ADD s10, s3, zero
+  ADD s11, s2, zero
+  SLTI ra, s7, 18
+  BNE ra, zero, bb44
   # implict jump to bb43
 bb43:
   LW t4, 0(sp)
-  ADDIW s11, t4, 1
-  ADD s1, s10, zero
-  ADD t4, s9, zero
+  ADDIW ra, t4, 1
+  ADD s1, s11, zero
+  ADD t4, s10, zero
   SW t4, 20(sp)
-  ADD t4, s8, zero
+  ADD t4, s9, zero
   SW t4, 16(sp)
-  ADD t4, s7, zero
+  ADD t4, s8, zero
   SW t4, 12(sp)
-  ADD t4, s11, zero
+  ADD t4, ra, zero
   SW t4, 8(sp)
   JAL zero, bb36
 bb44:
-  ADD s1, s10, zero
-  ADD s9, zero, zero
+  LUI s1, 40
+  ADDIW s1, s1, -544
+  MULW s1, s7, s1
+  ADD s1, s0, s1
+  ADD s10, s11, zero
+  ADD s11, zero, zero
   # implict jump to bb45
 bb45:
-  ADD s10, s7, zero
-  ADD s11, s8, zero
-  ADD ra, s9, zero
-  ADD t0, s1, zero
-  SLTI t1, ra, 18
-  BNE t1, zero, bb47
+  ADD ra, s8, zero
+  ADD t0, s9, zero
+  ADD t1, s11, zero
+  ADD t2, s10, zero
+  SLTI a0, t1, 18
+  BNE a0, zero, bb47
   # implict jump to bb46
 bb46:
-  ADDIW t1, s6, 1
-  ADD s0, t0, zero
-  ADD s2, ra, zero
-  ADD s3, s11, zero
-  ADD s4, s10, zero
-  ADD s5, t1, zero
+  ADDIW a0, s7, 1
+  ADD s2, t2, zero
+  ADD s3, t1, zero
+  ADD s4, t0, zero
+  ADD s5, ra, zero
+  ADD s6, a0, zero
   JAL zero, bb42
 bb47:
-  ADD s0, t0, zero
-  ADD s2, s11, zero
-  ADD s3, zero, zero
+  LUI s2, 2
+  ADDIW s2, s2, 880
+  MULW s2, t1, s2
+  ADD s2, s1, s2
+  ADD s3, t2, zero
+  ADD s4, t0, zero
+  ADD s5, zero, zero
   # implict jump to bb48
 bb48:
-  ADD s4, s3, zero
-  ADD s5, s2, zero
-  ADD s10, s0, zero
-  SLTI s11, s4, 18
-  BNE s11, zero, bb50
+  ADD s6, s5, zero
+  ADD ra, s4, zero
+  ADD t0, s3, zero
+  SLTI t2, s6, 18
+  BNE t2, zero, bb50
   # implict jump to bb49
 bb49:
-  ADDIW s11, ra, 1
-  ADD s1, s10, zero
-  ADD s9, s11, zero
-  ADD s8, s5, zero
-  ADD s7, s4, zero
+  ADDIW t2, t1, 1
+  ADD s10, t0, zero
+  ADD s11, t2, zero
+  ADD s9, ra, zero
+  ADD s8, s6, zero
   JAL zero, bb45
 bb50:
-  ADD s1, s10, zero
-  ADD s5, zero, zero
+  ADDI s8, zero, 504
+  MULW s8, s6, s8
+  ADD s8, s2, s8
+  ADD s9, t0, zero
+  ADD s10, zero, zero
   # implict jump to bb51
 bb51:
-  ADD s7, s5, zero
-  ADD s8, s1, zero
-  SLTI s9, s7, 18
-  BNE s9, zero, bb53
+  ADD s11, s10, zero
+  ADD ra, s9, zero
+  SLTI t0, s11, 18
+  BNE t0, zero, bb53
   # implict jump to bb52
 bb52:
-  ADDIW s9, s4, 1
-  ADD s0, s8, zero
-  ADD s2, s7, zero
-  ADD s3, s9, zero
+  ADDIW t0, s6, 1
+  ADD s3, ra, zero
+  ADD s4, s11, zero
+  ADD s5, t0, zero
   JAL zero, bb48
 bb53:
-  ADD s0, zero, zero
+  ADDI s3, zero, 28
+  MULW s3, s11, s3
+  ADD s3, s8, s3
+  ADD s4, zero, zero
   # implict jump to bb54
 bb54:
-  ADD s2, s0, zero
-  SLTI s3, s2, 7
-  BNE s3, zero, bb56
+  ADD s5, s4, zero
+  SLTI ra, s5, 7
+  BNE ra, zero, bb56
   # implict jump to bb55
 bb55:
-  ADDIW s3, s7, 1
-  ADD s1, s2, zero
-  ADD s5, s3, zero
+  ADDIW ra, s11, 1
+  ADD s9, s5, zero
+  ADD s10, ra, zero
   JAL zero, bb51
 bb56:
-  LUI s1, 718
-  ADDIW s1, s1, -1600
-  LW t4, 0(sp)
-  MULW s1, t4, s1
-  LA s3, dp
-  ADD s1, s3, s1
-  LUI s3, 40
-  ADDIW s3, s3, -544
-  MULW s3, s6, s3
-  ADD s1, s1, s3
-  LUI s3, 2
-  ADDIW s3, s3, 880
-  MULW s3, ra, s3
-  ADD s1, s1, s3
-  ADDI s3, zero, 504
-  MULW s3, s4, s3
-  ADD s1, s1, s3
-  ADDI s3, zero, 28
-  MULW s3, s7, s3
-  ADD s1, s1, s3
-  SLLIW s3, s2, 2
-  ADD s1, s1, s3
-  ADDI s3, zero, -1
-  SW s3, 0(s1)
-  ADDIW s1, s2, 1
-  ADD s0, s1, zero
+  SLLIW s9, s5, 2
+  ADD s9, s3, s9
+  ADDI s10, zero, -1
+  SW s10, 0(s9)
+  ADDIW s5, s5, 1
+  ADD s4, s5, zero
   JAL zero, bb54

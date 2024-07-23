@@ -237,20 +237,21 @@ bb12:
   JAL zero, bb9
 main:
   ADDI sp, sp, -160
-  FSD fs3, 0(sp)
-  SD ra, 8(sp)
-  SD s0, 16(sp)
-  SD s1, 24(sp)
-  SD s2, 32(sp)
-  SD s3, 40(sp)
-  SD s4, 48(sp)
-  SD s5, 56(sp)
-  SD s6, 64(sp)
-  FSD fs0, 72(sp)
-  FSD fs1, 80(sp)
-  FSD fs2, 88(sp)
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  FSD fs0, 64(sp)
+  FSD fs1, 72(sp)
+  FSD fs2, 80(sp)
+  FSD fs3, 88(sp)
   FSD fs4, 96(sp)
   FSD fs5, 104(sp)
+  FSD fs6, 112(sp)
   FCVT.S.L fs1, zero
   LA s0, .CONSTANT.7.3
   FLW fs2, 0(s0)
@@ -493,17 +494,9 @@ bb48:
 bb49:
   LA s0, .CONSTANT.7.7
   FLW fs1, 0(s0)
-  FSW fs1, 112(sp)
-  ADDI s0, sp, 116
-  FSW fs0, 0(s0)
-  ADDI s0, sp, 120
-  LA s1, .CONSTANT.7.5
-  FLW fs1, 0(s1)
-  FSW fs1, 0(s0)
+  FSW fs1, 120(sp)
   ADDI s0, sp, 124
-  LA s1, .CONSTANT.7.5
-  FLW fs1, 0(s1)
-  FSW fs1, 0(s0)
+  FSW fs0, 0(s0)
   ADDI s0, sp, 128
   LA s1, .CONSTANT.7.5
   FLW fs1, 0(s1)
@@ -528,10 +521,24 @@ bb49:
   LA s1, .CONSTANT.7.5
   FLW fs1, 0(s1)
   FSW fs1, 0(s0)
-  ADDI a0, sp, 112
+  ADDI s0, sp, 152
+  LA s1, .CONSTANT.7.5
+  FLW fs1, 0(s1)
+  FSW fs1, 0(s0)
+  ADDI s0, sp, 156
+  LA s1, .CONSTANT.7.5
+  FLW fs1, 0(s1)
+  FSW fs1, 0(s0)
+  ADDI a0, sp, 120
   ADD a0, a0, zero
   CALL getfarray
   ADD s0, a0, zero
+  LA s1, .CONSTANT.7.8
+  FLW fs1, 0(s1)
+  LA s1, .CONSTANT.7.8
+  FLW fs2, 0(s1)
+  FSGNJN.S fs1, fs1, fs2
+  FSGNJN.S fs1, fs1, fs1
   ADD s1, zero, zero
   ADDI s2, zero, 1
   # implict jump to bb50
@@ -545,70 +552,65 @@ bb50:
   # implict jump to bb51
 bb51:
   ADD a0, s0, zero
-  ADDI a1, sp, 112
+  ADDI a1, sp, 120
   ADD a1, a1, zero
   CALL putfarray
   ADD a0, zero, zero
-  FLD fs3, 0(sp)
-  LD ra, 8(sp)
-  LD s0, 16(sp)
-  LD s1, 24(sp)
-  LD s2, 32(sp)
-  LD s3, 40(sp)
-  LD s4, 48(sp)
-  LD s5, 56(sp)
-  LD s6, 64(sp)
-  FLD fs0, 72(sp)
-  FLD fs1, 80(sp)
-  FLD fs2, 88(sp)
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  FLD fs0, 64(sp)
+  FLD fs1, 72(sp)
+  FLD fs2, 80(sp)
+  FLD fs3, 88(sp)
   FLD fs4, 96(sp)
   FLD fs5, 104(sp)
+  FLD fs6, 112(sp)
   ADDI sp, sp, 160
   JALR zero, 0(ra)
 bb52:
   CALL getfloat
-  FSGNJ.D fs1, fa0, fa0
+  FSGNJ.D fs2, fa0, fa0
   LA s5, .CONSTANT.7.0
-  FLW fs2, 0(s5)
-  FMUL.S fs2, fs2, fs1
-  FMUL.S fs2, fs2, fs1
-  FCVT.W.S s5, fs1, rtz
-  FCVT.S.W fs3, s5
-  LA s6, .CONSTANT.7.0
-  FLW fs4, 0(s6)
-  FMUL.S fs4, fs4, fs3
-  FMUL.S fs3, fs4, fs3
-  MULW s5, s5, s5
+  FLW fs3, 0(s5)
+  FMUL.S fs3, fs3, fs2
+  FMUL.S fs3, fs3, fs2
+  FCVT.W.S s5, fs2, rtz
   FCVT.S.W fs4, s5
+  LA s6, .CONSTANT.7.0
+  FLW fs5, 0(s6)
+  FMUL.S fs5, fs5, fs4
+  FMUL.S fs4, fs5, fs4
+  MULW s5, s5, s5
+  FCVT.S.W fs5, s5
   LA s5, .CONSTANT.7.0
-  FLW fs5, 0(s5)
-  FMUL.S fs4, fs4, fs5
-  FADD.S fs3, fs3, fs4
-  FDIV.S fs3, fs3, fs0
+  FLW fs6, 0(s5)
+  FMUL.S fs5, fs5, fs6
+  FADD.S fs4, fs4, fs5
+  FDIV.S fs4, fs4, fs0
   SLLIW s5, s4, 2
-  ADDI t5, sp, 112
+  ADDI t5, sp, 120
   ADD s5, t5, s5
-  FLW fs4, 0(s5)
-  FADD.S fs1, fs4, fs1
-  FSW fs1, 0(s5)
-  FSGNJ.S fa0, fs2, fs2
+  FLW fs5, 0(s5)
+  FADD.S fs2, fs5, fs2
+  FSW fs2, 0(s5)
+  FSGNJ.S fa0, fs3, fs3
   CALL putfloat
   ADDI a0, zero, 32
   CALL putch
-  FCVT.W.S s5, fs3, rtz
+  FCVT.W.S s5, fs4, rtz
   ADD a0, s5, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s5, .CONSTANT.7.8
-  FLW fs1, 0(s5)
-  LA s5, .CONSTANT.7.8
-  FLW fs2, 0(s5)
-  FSGNJN.S fs1, fs1, fs2
-  FSGNJN.S fs1, fs1, fs1
   FCVT.S.W fs2, s3
-  FMUL.S fs1, fs2, fs1
-  FCVT.W.S s3, fs1, rtz
+  FMUL.S fs2, fs2, fs1
+  FCVT.W.S s3, fs2, rtz
   ADDIW s4, s4, 1
   ADD s1, s4, zero
   ADD s2, s3, zero

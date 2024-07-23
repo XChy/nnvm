@@ -43,6 +43,8 @@ if.exit:
   13 = sdiv i32 %12, i32 2
   call void merge_sort(i32 %l, i32 %13)
   call void merge_sort(i32 %13, i32 %r)
+  58 = ptradd ptr @buf, i32 400
+  71 = ptradd ptr @buf, i32 400
   br bb %while.cond
 while.cond:
   k.phi169 = phi [bb %if.exit, i32 %l, bb %if.exit55, i32 %84]
@@ -60,6 +62,7 @@ while.body:
   53 = icmp slt i32 %45.load, i32 %51.load
   br i1 %53, bb %then54, bb %else
 while.exit:
+  93 = ptradd ptr @buf, i32 400
   br bb %while.cond85
 select.then:
   38 = icmp slt i32 %j.phi166, i32 %r
@@ -70,7 +73,6 @@ select.exit:
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %38]
   br i1 %select.phi, bb %while.body, bb %while.exit
 then54:
-  58 = ptradd ptr @buf, i32 400
   174 = shl i32 %k.phi169, i32 2
   61 = ptradd ptr %58, i32 %174
   66.load = load i32 from ptr %45
@@ -83,7 +85,6 @@ if.exit55:
   84 = add i32 %k.phi169, i32 1
   br bb %while.cond
 else:
-  71 = ptradd ptr @buf, i32 400
   176 = shl i32 %k.phi169, i32 2
   74 = ptradd ptr %71, i32 %176
   79.load = load i32 from ptr %51
@@ -96,7 +97,6 @@ while.cond85:
   90 = icmp slt i32 %i.phi, i32 %13
   br i1 %90, bb %while.body86, bb %while.exit87
 while.body86:
-  93 = ptradd ptr @buf, i32 400
   178 = shl i32 %k.phi168, i32 2
   96 = ptradd ptr %93, i32 %178
   179 = shl i32 %i.phi, i32 2
@@ -107,6 +107,7 @@ while.body86:
   106 = add i32 %k.phi168, i32 1
   br bb %while.cond85
 while.exit87:
+  115 = ptradd ptr @buf, i32 400
   br bb %while.cond107
 while.cond107:
   k.phi = phi [bb %while.exit87, i32 %k.phi168, bb %while.body108, i32 %128]
@@ -114,7 +115,6 @@ while.cond107:
   112 = icmp slt i32 %j.phi, i32 %r
   br i1 %112, bb %while.body108, bb %while.exit109
 while.body108:
-  115 = ptradd ptr @buf, i32 400
   180 = shl i32 %k.phi, i32 2
   118 = ptradd ptr %115, i32 %180
   181 = shl i32 %j.phi, i32 2
@@ -125,6 +125,7 @@ while.body108:
   128 = add i32 %k.phi, i32 1
   br bb %while.cond107
 while.exit109:
+  142 = ptradd ptr @buf, i32 400
   br bb %while.cond129
 while.cond129:
   l.stack.phi = phi [bb %while.exit109, i32 %l, bb %while.body130, i32 %148]
@@ -133,7 +134,6 @@ while.cond129:
 while.body130:
   182 = shl i32 %l.stack.phi, i32 2
   140 = ptradd ptr @buf, i32 %182
-  142 = ptradd ptr @buf, i32 400
   145 = ptradd ptr %142, i32 %182
   145.load = load i32 from ptr %145
   store i32 %145.load to ptr %140

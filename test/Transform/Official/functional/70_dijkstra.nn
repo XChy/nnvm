@@ -30,6 +30,10 @@ while.cond134:
   139 = icmp sle i32 %i131.phi213, i32 %n.load138
   br i1 %139, bb %while.body135, bb %while.exit136
 while.body135:
+  231 = shl i32 %i131.phi213, i32 6
+  157 = ptradd ptr @e, i32 %231
+  233 = shl i32 %i131.phi213, i32 6
+  163 = ptradd ptr @e, i32 %233
   br bb %while.cond142
 while.exit136:
   br bb %while.cond172
@@ -44,8 +48,6 @@ while.exit144:
   171 = add i32 %i131.phi213, i32 1
   br bb %while.cond134
 then152:
-  231 = shl i32 %i131.phi213, i32 6
-  157 = ptradd ptr @e, i32 %231
   232 = shl i32 %j141.phi, i32 2
   160 = ptradd ptr %157, i32 %232
   store i32 0 to ptr %160
@@ -54,8 +56,6 @@ if.exit153:
   169 = add i32 %j141.phi, i32 1
   br bb %while.cond142
 else:
-  233 = shl i32 %i131.phi213, i32 6
-  163 = ptradd ptr @e, i32 %233
   234 = shl i32 %j141.phi, i32 2
   166 = ptradd ptr %163, i32 %234
   store i32 65535 to ptr %166
@@ -77,6 +77,7 @@ while.body173:
   191 = add i32 %i131.phi212, i32 1
   br bb %while.cond172
 while.exit174:
+  14266 = ptradd ptr @e, i32 64
   br bb %Dijkstra.while.cond
 while.cond193:
   i131.phi = phi [bb %Dijkstra.while.exit28, i32 1, bb %while.body194, i32 %207]
@@ -102,7 +103,6 @@ Dijkstra.while.cond:
 Dijkstra.while.body:
   238264 = shl i32 %i.phi220259, i32 2
   12265 = ptradd ptr @dis, i32 %238264
-  14266 = ptradd ptr @e, i32 64
   17267 = ptradd ptr %14266, i32 %238264
   17.load268 = load i32 from ptr %17267
   store i32 %17.load268 to ptr %12265
@@ -141,6 +141,9 @@ Dijkstra.while.exit40:
   242304 = shl i32 %min_index.phi222292, i32 2
   72305 = ptradd ptr @book, i32 %242304
   store i32 1 to ptr %72305
+  245332 = shl i32 %min_index.phi222292, i32 6
+  83333 = ptradd ptr @e, i32 %245332
+  98345 = ptradd ptr @dis, i32 %242304
   br bb %Dijkstra.while.cond74
 Dijkstra.select.then:
   57309 = ptradd ptr @book, i32 %241298
@@ -164,8 +167,6 @@ Dijkstra.while.cond74:
   79329 = icmp sle i32 %j73.phi327, i32 %n.load260
   br i1 %79329, bb %Dijkstra.while.body75, bb %Dijkstra.while.exit76
 Dijkstra.while.body75:
-  245332 = shl i32 %min_index.phi222292, i32 6
-  83333 = ptradd ptr @e, i32 %245332
   246334 = shl i32 %j73.phi327, i32 2
   86335 = ptradd ptr %83333, i32 %246334
   86.load336 = load i32 from ptr %86335
@@ -177,7 +178,6 @@ Dijkstra.while.exit76:
 Dijkstra.then90:
   94343 = ptradd ptr @dis, i32 %246334
   94.load344 = load i32 from ptr %94343
-  98345 = ptradd ptr @dis, i32 %242304
   98.load346 = load i32 from ptr %98345
   107348 = add i32 %98.load346, i32 %86.load336
   108349 = icmp sgt i32 %94.load344, i32 %107348
@@ -204,6 +204,7 @@ external void putarray(i32 , ptr )
 
 void Dijkstra() {
 entry:
+  14 = ptradd ptr @e, i32 64
   br bb %while.cond
 while.cond:
   i.phi220 = phi [bb %entry, i32 1, bb %while.body, i32 %23]
@@ -213,7 +214,6 @@ while.cond:
 while.body:
   238 = shl i32 %i.phi220, i32 2
   12 = ptradd ptr @dis, i32 %238
-  14 = ptradd ptr @e, i32 64
   17 = ptradd ptr %14, i32 %238
   17.load = load i32 from ptr %17
   store i32 %17.load to ptr %12
@@ -252,6 +252,9 @@ while.exit40:
   242 = shl i32 %min_index.phi222, i32 2
   72 = ptradd ptr @book, i32 %242
   store i32 1 to ptr %72
+  245 = shl i32 %min_index.phi222, i32 6
+  83 = ptradd ptr @e, i32 %245
+  98 = ptradd ptr @dis, i32 %242
   br bb %while.cond74
 select.then:
   57 = ptradd ptr @book, i32 %241
@@ -275,8 +278,6 @@ while.cond74:
   79 = icmp sle i32 %j73.phi, i32 %n.load
   br i1 %79, bb %while.body75, bb %while.exit76
 while.body75:
-  245 = shl i32 %min_index.phi222, i32 6
-  83 = ptradd ptr @e, i32 %245
   246 = shl i32 %j73.phi, i32 2
   86 = ptradd ptr %83, i32 %246
   86.load = load i32 from ptr %86
@@ -288,7 +289,6 @@ while.exit76:
 then90:
   94 = ptradd ptr @dis, i32 %246
   94.load = load i32 from ptr %94
-  98 = ptradd ptr @dis, i32 %242
   98.load = load i32 from ptr %98
   107 = add i32 %98.load, i32 %86.load
   108 = icmp sgt i32 %94.load, i32 %107

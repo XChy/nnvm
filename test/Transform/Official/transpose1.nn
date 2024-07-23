@@ -72,6 +72,7 @@ transpose.while.cond:
   14156 = icmp slt i32 %i.phi155, i32 %6151
   br i1 %14156, bb %transpose.while.body, bb %transpose.while.exit
 transpose.while.body:
+  33177 = mul i32 %i.phi155, i32 %97.load
   br bb %transpose.while.cond16
 transpose.while.exit:
   101 = add i32 %i73.phi133, i32 1
@@ -91,7 +92,6 @@ transpose.then:
   29174 = add i32 %j.phi164, i32 1
   br bb %transpose.while.cond16
 transpose.if.exit:
-  33177 = mul i32 %i.phi155, i32 %97.load
   35178 = add i32 %33177, i32 %j.phi164
   145179 = shl i32 %35178, i32 2
   37180 = ptradd ptr @matrix, i32 %145179
@@ -124,6 +124,7 @@ while.cond:
   14 = icmp slt i32 %i.phi, i32 %6
   br i1 %14, bb %while.body, bb %while.exit
 while.body:
+  33 = mul i32 %i.phi, i32 %rowsize
   br bb %while.cond16
 while.exit:
   ret i32 -1
@@ -142,7 +143,6 @@ then:
   29 = add i32 %j.phi, i32 1
   br bb %while.cond16
 if.exit:
-  33 = mul i32 %i.phi, i32 %rowsize
   35 = add i32 %33, i32 %j.phi
   145 = shl i32 %35, i32 2
   37 = ptradd ptr %matrix, i32 %145

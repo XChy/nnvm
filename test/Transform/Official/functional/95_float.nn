@@ -201,6 +201,8 @@ if.exit134:
   arr.index149 = ptradd ptr %arr, i32 36
   store float 0.000000 to ptr %arr.index149
   151 = call i32 getfarray(ptr %arr)
+  188 = fneg float 10.000000
+  189 = fneg float %188
   br bb %while.cond
 while.cond:
   p.phi = phi [bb %if.exit134, i32 0, bb %while.body, i32 %194]
@@ -230,8 +232,6 @@ while.body:
   184 = f2si float %27380 to i32
   call void putint(i32 %184)
   call void putch(i32 10)
-  188 = fneg float 10.000000
-  189 = fneg float %188
   190 = si2f i32 %i.phi to float
   191 = fmul float %190, float %189
   192 = f2si float %191 to i32

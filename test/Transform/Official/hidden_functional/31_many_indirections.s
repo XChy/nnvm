@@ -297,25 +297,25 @@ bb2:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb3:
-  ADD s2, zero, zero
+  ADDI s2, zero, 400
+  MULW s2, s1, s2
+  LA s3, array
+  ADD s2, s3, s2
+  ADD s3, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s3, s2, zero
-  SLTI s4, s3, 100
-  BNE s4, zero, bb6
+  ADD s4, s3, zero
+  SLTI s5, s4, 100
+  BNE s5, zero, bb6
   # implict jump to bb5
 bb5:
-  ADDIW s4, s1, 1
-  ADD s0, s4, zero
+  ADDIW s5, s1, 1
+  ADD s0, s5, zero
   JAL zero, bb1
 bb6:
-  ADDI s0, zero, 400
-  MULW s0, s1, s0
-  LA s4, array
-  ADD s0, s4, s0
-  SLLIW s4, s3, 2
-  ADD s0, s0, s4
-  SW s3, 0(s0)
-  ADDIW s0, s3, 1
-  ADD s2, s0, zero
+  SLLIW s0, s4, 2
+  ADD s0, s2, s0
+  SW s4, 0(s0)
+  ADDIW s0, s4, 1
+  ADD s3, s0, zero
   JAL zero, bb4

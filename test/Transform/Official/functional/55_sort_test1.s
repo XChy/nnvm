@@ -103,14 +103,14 @@ bb5:
 bb6:
   ADDI s5, zero, 10
   SUBW s5, s5, s3
+  ADDI s6, zero, 1
+  SUBW s5, s5, s6
   ADD s6, zero, zero
   # implict jump to bb7
 bb7:
   ADD s7, s6, zero
   ADD s8, s4, zero
-  ADDI s9, zero, 1
-  SUBW s9, s5, s9
-  BLT s7, s9, bb9
+  BLT s7, s5, bb9
   # implict jump to bb8
 bb8:
   ADDIW s9, s3, 1

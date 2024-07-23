@@ -18,6 +18,7 @@ entry:
 then:
   ret i32 1073741824
 if.exit:
+  143 = add i32 %n, i32 1
   br bb %while.cond
 while.cond:
   num.phi287 = phi [bb %if.exit, i32 1073741824, bb %if.exit150, i32 %num.phi, bb %then115, i32 %num.phi287, bb %then81, i32 %num.phi287]
@@ -30,6 +31,9 @@ while.cond:
   16 = icmp slt i32 %i.phi, i32 4
   br i1 %16, bb %while.body, bb %while.exit
 while.body:
+  298 = shl i32 %i.phi, i32 3
+  51 = ptradd ptr @step, i32 %298
+  61 = ptradd ptr %51, i32 4
   br bb %while.cond23
 while.exit:
   161 = icmp sgt i32 %num.phi287, i32 10
@@ -67,11 +71,8 @@ select.exit:
 then46:
   br bb %while.exit25
 if.exit47:
-  298 = shl i32 %i.phi, i32 3
-  51 = ptradd ptr @step, i32 %298
   53.load = load i32 from ptr %51
   55 = add i32 %x2.phi, i32 %53.load
-  61 = ptradd ptr %51, i32 4
   61.load = load i32 from ptr %61
   63 = add i32 %y2.phi, i32 %61.load
   65 = add i32 %coun.phi, i32 1
@@ -136,7 +137,6 @@ if.exit116:
   139 = ptradd ptr %129, i32 4
   139.load = load i32 from ptr %139
   141 = sub i32 %y2.phi, i32 %139.load
-  143 = add i32 %n, i32 1
   144 = call i32 search(i32 %133, i32 %141, i32 %143)
   145 = add i32 %144, i32 1
   148 = icmp slt i32 %145, i32 %num.phi287
@@ -182,6 +182,8 @@ while.cond177:
   181 = icmp slt i32 %i175.phi290, i32 30
   br i1 %181, bb %while.body178, bb %while.exit179
 while.body178:
+  190 = mul i32 %i175.phi290, i32 120
+  191 = ptradd ptr @a, i32 %190
   br bb %while.cond183
 while.exit179:
   br bb %while.cond199
@@ -190,8 +192,6 @@ while.cond183:
   187 = icmp slt i32 %j.phi294, i32 30
   br i1 %187, bb %while.body184, bb %while.exit185
 while.body184:
-  190 = mul i32 %i175.phi290, i32 120
-  191 = ptradd ptr @a, i32 %190
   304 = shl i32 %j.phi294, i32 2
   194 = ptradd ptr %191, i32 %304
   store i32 1 to ptr %194
@@ -207,6 +207,8 @@ while.cond199:
   204 = icmp sle i32 %i175.phi, i32 %h.load203
   br i1 %204, bb %while.body200, bb %while.exit201
 while.body200:
+  214 = mul i32 %i175.phi, i32 120
+  215 = ptradd ptr @a, i32 %214
   br bb %while.cond206
 while.exit201:
   x_0.load = load i32 from ptr @x_0
@@ -220,8 +222,6 @@ while.cond206:
   211 = icmp sle i32 %j.phi, i32 %w.load210
   br i1 %211, bb %while.body207, bb %while.exit208
 while.body207:
-  214 = mul i32 %i175.phi, i32 120
-  215 = ptradd ptr @a, i32 %214
   305 = shl i32 %j.phi, i32 2
   218 = ptradd ptr %215, i32 %305
   219 = call i32 getint()

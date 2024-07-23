@@ -70,6 +70,63 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry88:
+  132373 = icmp sge i32 11, i32 20
+  202382 = ptradd ptr @array, i32 44
+  322392 = ptradd ptr @array, i32 40
+  132406 = icmp sge i32 12, i32 20
+  202415 = ptradd ptr @array, i32 48
+  322425 = ptradd ptr @array, i32 44
+  132010 = icmp sge i32 0, i32 20
+  132043 = icmp sge i32 1, i32 20
+  202052 = ptradd ptr @array, i32 4
+  132439 = icmp sge i32 13, i32 20
+  202448 = ptradd ptr @array, i32 52
+  322458 = ptradd ptr @array, i32 48
+  132472 = icmp sge i32 14, i32 20
+  202481 = ptradd ptr @array, i32 56
+  322491 = ptradd ptr @array, i32 52
+  132505 = icmp sge i32 15, i32 20
+  202514 = ptradd ptr @array, i32 60
+  322524 = ptradd ptr @array, i32 56
+  132538 = icmp sge i32 16, i32 20
+  202547 = ptradd ptr @array, i32 64
+  322557 = ptradd ptr @array, i32 60
+  132571 = icmp sge i32 17, i32 20
+  202580 = ptradd ptr @array, i32 68
+  322590 = ptradd ptr @array, i32 64
+  132604 = icmp sge i32 18, i32 20
+  202613 = ptradd ptr @array, i32 72
+  322623 = ptradd ptr @array, i32 68
+  132637 = icmp sge i32 19, i32 20
+  202646 = ptradd ptr @array, i32 76
+  322656 = ptradd ptr @array, i32 72
+  132076 = icmp sge i32 2, i32 20
+  202085 = ptradd ptr @array, i32 8
+  322095 = ptradd ptr @array, i32 4
+  132109 = icmp sge i32 3, i32 20
+  202118 = ptradd ptr @array, i32 12
+  322128 = ptradd ptr @array, i32 8
+  132142 = icmp sge i32 4, i32 20
+  202151 = ptradd ptr @array, i32 16
+  322161 = ptradd ptr @array, i32 12
+  132175 = icmp sge i32 5, i32 20
+  202184 = ptradd ptr @array, i32 20
+  322194 = ptradd ptr @array, i32 16
+  132208 = icmp sge i32 6, i32 20
+  202217 = ptradd ptr @array, i32 24
+  322227 = ptradd ptr @array, i32 20
+  132241 = icmp sge i32 7, i32 20
+  202250 = ptradd ptr @array, i32 28
+  322260 = ptradd ptr @array, i32 24
+  132274 = icmp sge i32 8, i32 20
+  202283 = ptradd ptr @array, i32 32
+  322293 = ptradd ptr @array, i32 28
+  132307 = icmp sge i32 9, i32 20
+  202316 = ptradd ptr @array, i32 36
+  322326 = ptradd ptr @array, i32 32
+  132340 = icmp sge i32 10, i32 20
+  202349 = ptradd ptr @array, i32 40
+  322359 = ptradd ptr @array, i32 36
   br bb %while.cond
 while.cond:
   i.phi675 = phi [bb %entry88, i32 0, bb %select.exit245, i32 %254]
@@ -86,6 +143,63 @@ while.body.split:
   98 = icmp ne i32 %97.ret, i32 0
   br i1 %98, bb %select.then99, bb %select.else100
 while.exit:
+  471416 = icmp sge i32 2, i32 20
+  541425 = ptradd ptr @array, i32 8
+  661435 = ptradd ptr @array, i32 4
+  471449 = icmp sge i32 3, i32 20
+  471383 = icmp sge i32 1, i32 20
+  541392 = ptradd ptr @array, i32 4
+  541458 = ptradd ptr @array, i32 12
+  661468 = ptradd ptr @array, i32 8
+  471482 = icmp sge i32 4, i32 20
+  541491 = ptradd ptr @array, i32 16
+  661501 = ptradd ptr @array, i32 12
+  471515 = icmp sge i32 5, i32 20
+  541854 = ptradd ptr @array, i32 60
+  661864 = ptradd ptr @array, i32 56
+  471878 = icmp sge i32 16, i32 20
+  541887 = ptradd ptr @array, i32 64
+  661897 = ptradd ptr @array, i32 60
+  471911 = icmp sge i32 17, i32 20
+  541920 = ptradd ptr @array, i32 68
+  661930 = ptradd ptr @array, i32 64
+  471944 = icmp sge i32 18, i32 20
+  541953 = ptradd ptr @array, i32 72
+  661963 = ptradd ptr @array, i32 68
+  471977 = icmp sge i32 19, i32 20
+  541986 = ptradd ptr @array, i32 76
+  661996 = ptradd ptr @array, i32 72
+  471680 = icmp sge i32 10, i32 20
+  541689 = ptradd ptr @array, i32 40
+  661699 = ptradd ptr @array, i32 36
+  471713 = icmp sge i32 11, i32 20
+  541722 = ptradd ptr @array, i32 44
+  661732 = ptradd ptr @array, i32 40
+  471746 = icmp sge i32 12, i32 20
+  541755 = ptradd ptr @array, i32 48
+  661765 = ptradd ptr @array, i32 44
+  471779 = icmp sge i32 13, i32 20
+  541788 = ptradd ptr @array, i32 52
+  661798 = ptradd ptr @array, i32 48
+  471812 = icmp sge i32 14, i32 20
+  541821 = ptradd ptr @array, i32 56
+  661831 = ptradd ptr @array, i32 52
+  471845 = icmp sge i32 15, i32 20
+  541524 = ptradd ptr @array, i32 20
+  661534 = ptradd ptr @array, i32 16
+  471548 = icmp sge i32 6, i32 20
+  541557 = ptradd ptr @array, i32 24
+  661567 = ptradd ptr @array, i32 20
+  471581 = icmp sge i32 7, i32 20
+  541590 = ptradd ptr @array, i32 28
+  661600 = ptradd ptr @array, i32 24
+  471614 = icmp sge i32 8, i32 20
+  541623 = ptradd ptr @array, i32 32
+  661633 = ptradd ptr @array, i32 28
+  471647 = icmp sge i32 9, i32 20
+  541656 = ptradd ptr @array, i32 36
+  661666 = ptradd ptr @array, i32 32
+  471350 = icmp sge i32 0, i32 20
   br bb %while.cond255
 select.then99:
   sum.load2035 = load i32 from ptr @sum
@@ -1215,7 +1329,6 @@ h.if.exit831334:
 g.select.then42:
   br bb %g.select.exit44
 g.select.else43:
-  471350 = icmp sge i32 0, i32 20
   br bb %g.select.exit44
 g.select.exit44:
   select45.phi1353 = phi [bb %g.select.else43, i1 %471350, bb %g.select.then42, i1 -1]
@@ -1228,7 +1341,6 @@ g.if.exit51:
 g.select.then421380:
   br bb %g.select.exit441385
 g.select.else431382:
-  471383 = icmp sge i32 1, i32 20
   br bb %g.select.exit441385
 g.select.exit441385:
   select45.phi1386 = phi [bb %g.select.else431382, i1 %471383, bb %g.select.then421380, i1 -1]
@@ -1236,14 +1348,12 @@ g.select.exit441385:
 g.then501388:
   br bb %select.else265.split
 g.if.exit511390:
-  541392 = ptradd ptr @array, i32 4
   store i32 0 to ptr %541392
   66.load1403 = load i32 from ptr @array
   br bb %select.else265.split
 g.select.then421413:
   br bb %g.select.exit441418
 g.select.else431415:
-  471416 = icmp sge i32 2, i32 20
   br bb %g.select.exit441418
 g.select.exit441418:
   select45.phi1419 = phi [bb %g.select.else431415, i1 %471416, bb %g.select.then421413, i1 -1]
@@ -1251,15 +1361,12 @@ g.select.exit441418:
 g.then501421:
   br bb %select.else274.split
 g.if.exit511423:
-  541425 = ptradd ptr @array, i32 8
   store i32 0 to ptr %541425
-  661435 = ptradd ptr @array, i32 4
   66.load1436 = load i32 from ptr %661435
   br bb %select.else274.split
 g.select.then421446:
   br bb %g.select.exit441451
 g.select.else431448:
-  471449 = icmp sge i32 3, i32 20
   br bb %g.select.exit441451
 g.select.exit441451:
   select45.phi1452 = phi [bb %g.select.else431448, i1 %471449, bb %g.select.then421446, i1 -1]
@@ -1267,15 +1374,12 @@ g.select.exit441451:
 g.then501454:
   br bb %select.else283.split
 g.if.exit511456:
-  541458 = ptradd ptr @array, i32 12
   store i32 0 to ptr %541458
-  661468 = ptradd ptr @array, i32 8
   66.load1469 = load i32 from ptr %661468
   br bb %select.else283.split
 g.select.then421479:
   br bb %g.select.exit441484
 g.select.else431481:
-  471482 = icmp sge i32 4, i32 20
   br bb %g.select.exit441484
 g.select.exit441484:
   select45.phi1485 = phi [bb %g.select.else431481, i1 %471482, bb %g.select.then421479, i1 -1]
@@ -1283,15 +1387,12 @@ g.select.exit441484:
 g.then501487:
   br bb %select.else292.split
 g.if.exit511489:
-  541491 = ptradd ptr @array, i32 16
   store i32 0 to ptr %541491
-  661501 = ptradd ptr @array, i32 12
   66.load1502 = load i32 from ptr %661501
   br bb %select.else292.split
 g.select.then421512:
   br bb %g.select.exit441517
 g.select.else431514:
-  471515 = icmp sge i32 5, i32 20
   br bb %g.select.exit441517
 g.select.exit441517:
   select45.phi1518 = phi [bb %g.select.else431514, i1 %471515, bb %g.select.then421512, i1 -1]
@@ -1299,15 +1400,12 @@ g.select.exit441517:
 g.then501520:
   br bb %select.else301.split
 g.if.exit511522:
-  541524 = ptradd ptr @array, i32 20
   store i32 0 to ptr %541524
-  661534 = ptradd ptr @array, i32 16
   66.load1535 = load i32 from ptr %661534
   br bb %select.else301.split
 g.select.then421545:
   br bb %g.select.exit441550
 g.select.else431547:
-  471548 = icmp sge i32 6, i32 20
   br bb %g.select.exit441550
 g.select.exit441550:
   select45.phi1551 = phi [bb %g.select.else431547, i1 %471548, bb %g.select.then421545, i1 -1]
@@ -1315,15 +1413,12 @@ g.select.exit441550:
 g.then501553:
   br bb %select.else310.split
 g.if.exit511555:
-  541557 = ptradd ptr @array, i32 24
   store i32 0 to ptr %541557
-  661567 = ptradd ptr @array, i32 20
   66.load1568 = load i32 from ptr %661567
   br bb %select.else310.split
 g.select.then421578:
   br bb %g.select.exit441583
 g.select.else431580:
-  471581 = icmp sge i32 7, i32 20
   br bb %g.select.exit441583
 g.select.exit441583:
   select45.phi1584 = phi [bb %g.select.else431580, i1 %471581, bb %g.select.then421578, i1 -1]
@@ -1331,15 +1426,12 @@ g.select.exit441583:
 g.then501586:
   br bb %select.else319.split
 g.if.exit511588:
-  541590 = ptradd ptr @array, i32 28
   store i32 0 to ptr %541590
-  661600 = ptradd ptr @array, i32 24
   66.load1601 = load i32 from ptr %661600
   br bb %select.else319.split
 g.select.then421611:
   br bb %g.select.exit441616
 g.select.else431613:
-  471614 = icmp sge i32 8, i32 20
   br bb %g.select.exit441616
 g.select.exit441616:
   select45.phi1617 = phi [bb %g.select.else431613, i1 %471614, bb %g.select.then421611, i1 -1]
@@ -1347,15 +1439,12 @@ g.select.exit441616:
 g.then501619:
   br bb %select.else328.split
 g.if.exit511621:
-  541623 = ptradd ptr @array, i32 32
   store i32 0 to ptr %541623
-  661633 = ptradd ptr @array, i32 28
   66.load1634 = load i32 from ptr %661633
   br bb %select.else328.split
 g.select.then421644:
   br bb %g.select.exit441649
 g.select.else431646:
-  471647 = icmp sge i32 9, i32 20
   br bb %g.select.exit441649
 g.select.exit441649:
   select45.phi1650 = phi [bb %g.select.else431646, i1 %471647, bb %g.select.then421644, i1 -1]
@@ -1363,15 +1452,12 @@ g.select.exit441649:
 g.then501652:
   br bb %select.else337.split
 g.if.exit511654:
-  541656 = ptradd ptr @array, i32 36
   store i32 0 to ptr %541656
-  661666 = ptradd ptr @array, i32 32
   66.load1667 = load i32 from ptr %661666
   br bb %select.else337.split
 g.select.then421677:
   br bb %g.select.exit441682
 g.select.else431679:
-  471680 = icmp sge i32 10, i32 20
   br bb %g.select.exit441682
 g.select.exit441682:
   select45.phi1683 = phi [bb %g.select.else431679, i1 %471680, bb %g.select.then421677, i1 -1]
@@ -1379,15 +1465,12 @@ g.select.exit441682:
 g.then501685:
   br bb %select.else346.split
 g.if.exit511687:
-  541689 = ptradd ptr @array, i32 40
   store i32 0 to ptr %541689
-  661699 = ptradd ptr @array, i32 36
   66.load1700 = load i32 from ptr %661699
   br bb %select.else346.split
 g.select.then421710:
   br bb %g.select.exit441715
 g.select.else431712:
-  471713 = icmp sge i32 11, i32 20
   br bb %g.select.exit441715
 g.select.exit441715:
   select45.phi1716 = phi [bb %g.select.else431712, i1 %471713, bb %g.select.then421710, i1 -1]
@@ -1395,15 +1478,12 @@ g.select.exit441715:
 g.then501718:
   br bb %select.else355.split
 g.if.exit511720:
-  541722 = ptradd ptr @array, i32 44
   store i32 0 to ptr %541722
-  661732 = ptradd ptr @array, i32 40
   66.load1733 = load i32 from ptr %661732
   br bb %select.else355.split
 g.select.then421743:
   br bb %g.select.exit441748
 g.select.else431745:
-  471746 = icmp sge i32 12, i32 20
   br bb %g.select.exit441748
 g.select.exit441748:
   select45.phi1749 = phi [bb %g.select.else431745, i1 %471746, bb %g.select.then421743, i1 -1]
@@ -1411,15 +1491,12 @@ g.select.exit441748:
 g.then501751:
   br bb %select.else364.split
 g.if.exit511753:
-  541755 = ptradd ptr @array, i32 48
   store i32 0 to ptr %541755
-  661765 = ptradd ptr @array, i32 44
   66.load1766 = load i32 from ptr %661765
   br bb %select.else364.split
 g.select.then421776:
   br bb %g.select.exit441781
 g.select.else431778:
-  471779 = icmp sge i32 13, i32 20
   br bb %g.select.exit441781
 g.select.exit441781:
   select45.phi1782 = phi [bb %g.select.else431778, i1 %471779, bb %g.select.then421776, i1 -1]
@@ -1427,15 +1504,12 @@ g.select.exit441781:
 g.then501784:
   br bb %select.else373.split
 g.if.exit511786:
-  541788 = ptradd ptr @array, i32 52
   store i32 0 to ptr %541788
-  661798 = ptradd ptr @array, i32 48
   66.load1799 = load i32 from ptr %661798
   br bb %select.else373.split
 g.select.then421809:
   br bb %g.select.exit441814
 g.select.else431811:
-  471812 = icmp sge i32 14, i32 20
   br bb %g.select.exit441814
 g.select.exit441814:
   select45.phi1815 = phi [bb %g.select.else431811, i1 %471812, bb %g.select.then421809, i1 -1]
@@ -1443,15 +1517,12 @@ g.select.exit441814:
 g.then501817:
   br bb %select.else382.split
 g.if.exit511819:
-  541821 = ptradd ptr @array, i32 56
   store i32 0 to ptr %541821
-  661831 = ptradd ptr @array, i32 52
   66.load1832 = load i32 from ptr %661831
   br bb %select.else382.split
 g.select.then421842:
   br bb %g.select.exit441847
 g.select.else431844:
-  471845 = icmp sge i32 15, i32 20
   br bb %g.select.exit441847
 g.select.exit441847:
   select45.phi1848 = phi [bb %g.select.else431844, i1 %471845, bb %g.select.then421842, i1 -1]
@@ -1459,15 +1530,12 @@ g.select.exit441847:
 g.then501850:
   br bb %select.else391.split
 g.if.exit511852:
-  541854 = ptradd ptr @array, i32 60
   store i32 0 to ptr %541854
-  661864 = ptradd ptr @array, i32 56
   66.load1865 = load i32 from ptr %661864
   br bb %select.else391.split
 g.select.then421875:
   br bb %g.select.exit441880
 g.select.else431877:
-  471878 = icmp sge i32 16, i32 20
   br bb %g.select.exit441880
 g.select.exit441880:
   select45.phi1881 = phi [bb %g.select.else431877, i1 %471878, bb %g.select.then421875, i1 -1]
@@ -1475,15 +1543,12 @@ g.select.exit441880:
 g.then501883:
   br bb %select.else400.split
 g.if.exit511885:
-  541887 = ptradd ptr @array, i32 64
   store i32 0 to ptr %541887
-  661897 = ptradd ptr @array, i32 60
   66.load1898 = load i32 from ptr %661897
   br bb %select.else400.split
 g.select.then421908:
   br bb %g.select.exit441913
 g.select.else431910:
-  471911 = icmp sge i32 17, i32 20
   br bb %g.select.exit441913
 g.select.exit441913:
   select45.phi1914 = phi [bb %g.select.else431910, i1 %471911, bb %g.select.then421908, i1 -1]
@@ -1491,15 +1556,12 @@ g.select.exit441913:
 g.then501916:
   br bb %select.else409.split
 g.if.exit511918:
-  541920 = ptradd ptr @array, i32 68
   store i32 0 to ptr %541920
-  661930 = ptradd ptr @array, i32 64
   66.load1931 = load i32 from ptr %661930
   br bb %select.else409.split
 g.select.then421941:
   br bb %g.select.exit441946
 g.select.else431943:
-  471944 = icmp sge i32 18, i32 20
   br bb %g.select.exit441946
 g.select.exit441946:
   select45.phi1947 = phi [bb %g.select.else431943, i1 %471944, bb %g.select.then421941, i1 -1]
@@ -1507,29 +1569,23 @@ g.select.exit441946:
 g.then501949:
   br bb %select.else418.split
 g.if.exit511951:
-  541953 = ptradd ptr @array, i32 72
   store i32 0 to ptr %541953
-  661963 = ptradd ptr @array, i32 68
   66.load1964 = load i32 from ptr %661963
   br bb %select.else418.split
 g.select.then421974:
   br bb %g.select.exit441979
 g.select.else431976:
-  471977 = icmp sge i32 19, i32 20
   br bb %g.select.exit441979
 g.select.exit441979:
   select45.phi1980 = phi [bb %g.select.else431976, i1 %471977, bb %g.select.then421974, i1 -1]
   br i1 %select45.phi1980, bb %select.exit428, bb %g.if.exit511984
 g.if.exit511984:
-  541986 = ptradd ptr @array, i32 76
   store i32 0 to ptr %541986
-  661996 = ptradd ptr @array, i32 72
   66.load1997 = load i32 from ptr %661996
   br bb %select.exit428
 f.select.then:
   br bb %f.select.exit
 f.select.else:
-  132010 = icmp sge i32 0, i32 20
   br bb %f.select.exit
 f.select.exit:
   select.phi2013 = phi [bb %f.select.else, i1 %132010, bb %f.select.then, i1 -1]
@@ -1542,7 +1598,6 @@ f.if.exit:
 f.select.then2040:
   br bb %f.select.exit2045
 f.select.else2042:
-  132043 = icmp sge i32 1, i32 20
   br bb %f.select.exit2045
 f.select.exit2045:
   select.phi2046 = phi [bb %f.select.else2042, i1 %132043, bb %f.select.then2040, i1 -1]
@@ -1550,14 +1605,12 @@ f.select.exit2045:
 f.then2048:
   br bb %select.then99.split
 f.if.exit2050:
-  202052 = ptradd ptr @array, i32 4
   store i32 1 to ptr %202052
   32.load2063 = load i32 from ptr @array
   br bb %select.then99.split
 f.select.then2073:
   br bb %f.select.exit2078
 f.select.else2075:
-  132076 = icmp sge i32 2, i32 20
   br bb %f.select.exit2078
 f.select.exit2078:
   select.phi2079 = phi [bb %f.select.else2075, i1 %132076, bb %f.select.then2073, i1 -1]
@@ -1565,15 +1618,12 @@ f.select.exit2078:
 f.then2081:
   br bb %select.then107.split
 f.if.exit2083:
-  202085 = ptradd ptr @array, i32 8
   store i32 1 to ptr %202085
-  322095 = ptradd ptr @array, i32 4
   32.load2096 = load i32 from ptr %322095
   br bb %select.then107.split
 f.select.then2106:
   br bb %f.select.exit2111
 f.select.else2108:
-  132109 = icmp sge i32 3, i32 20
   br bb %f.select.exit2111
 f.select.exit2111:
   select.phi2112 = phi [bb %f.select.else2108, i1 %132109, bb %f.select.then2106, i1 -1]
@@ -1581,15 +1631,12 @@ f.select.exit2111:
 f.then2114:
   br bb %select.then115.split
 f.if.exit2116:
-  202118 = ptradd ptr @array, i32 12
   store i32 1 to ptr %202118
-  322128 = ptradd ptr @array, i32 8
   32.load2129 = load i32 from ptr %322128
   br bb %select.then115.split
 f.select.then2139:
   br bb %f.select.exit2144
 f.select.else2141:
-  132142 = icmp sge i32 4, i32 20
   br bb %f.select.exit2144
 f.select.exit2144:
   select.phi2145 = phi [bb %f.select.else2141, i1 %132142, bb %f.select.then2139, i1 -1]
@@ -1597,15 +1644,12 @@ f.select.exit2144:
 f.then2147:
   br bb %select.then123.split
 f.if.exit2149:
-  202151 = ptradd ptr @array, i32 16
   store i32 1 to ptr %202151
-  322161 = ptradd ptr @array, i32 12
   32.load2162 = load i32 from ptr %322161
   br bb %select.then123.split
 f.select.then2172:
   br bb %f.select.exit2177
 f.select.else2174:
-  132175 = icmp sge i32 5, i32 20
   br bb %f.select.exit2177
 f.select.exit2177:
   select.phi2178 = phi [bb %f.select.else2174, i1 %132175, bb %f.select.then2172, i1 -1]
@@ -1613,15 +1657,12 @@ f.select.exit2177:
 f.then2180:
   br bb %select.then131.split
 f.if.exit2182:
-  202184 = ptradd ptr @array, i32 20
   store i32 1 to ptr %202184
-  322194 = ptradd ptr @array, i32 16
   32.load2195 = load i32 from ptr %322194
   br bb %select.then131.split
 f.select.then2205:
   br bb %f.select.exit2210
 f.select.else2207:
-  132208 = icmp sge i32 6, i32 20
   br bb %f.select.exit2210
 f.select.exit2210:
   select.phi2211 = phi [bb %f.select.else2207, i1 %132208, bb %f.select.then2205, i1 -1]
@@ -1629,15 +1670,12 @@ f.select.exit2210:
 f.then2213:
   br bb %select.then139.split
 f.if.exit2215:
-  202217 = ptradd ptr @array, i32 24
   store i32 1 to ptr %202217
-  322227 = ptradd ptr @array, i32 20
   32.load2228 = load i32 from ptr %322227
   br bb %select.then139.split
 f.select.then2238:
   br bb %f.select.exit2243
 f.select.else2240:
-  132241 = icmp sge i32 7, i32 20
   br bb %f.select.exit2243
 f.select.exit2243:
   select.phi2244 = phi [bb %f.select.else2240, i1 %132241, bb %f.select.then2238, i1 -1]
@@ -1645,15 +1683,12 @@ f.select.exit2243:
 f.then2246:
   br bb %select.then147.split
 f.if.exit2248:
-  202250 = ptradd ptr @array, i32 28
   store i32 1 to ptr %202250
-  322260 = ptradd ptr @array, i32 24
   32.load2261 = load i32 from ptr %322260
   br bb %select.then147.split
 f.select.then2271:
   br bb %f.select.exit2276
 f.select.else2273:
-  132274 = icmp sge i32 8, i32 20
   br bb %f.select.exit2276
 f.select.exit2276:
   select.phi2277 = phi [bb %f.select.else2273, i1 %132274, bb %f.select.then2271, i1 -1]
@@ -1661,15 +1696,12 @@ f.select.exit2276:
 f.then2279:
   br bb %select.then155.split
 f.if.exit2281:
-  202283 = ptradd ptr @array, i32 32
   store i32 1 to ptr %202283
-  322293 = ptradd ptr @array, i32 28
   32.load2294 = load i32 from ptr %322293
   br bb %select.then155.split
 f.select.then2304:
   br bb %f.select.exit2309
 f.select.else2306:
-  132307 = icmp sge i32 9, i32 20
   br bb %f.select.exit2309
 f.select.exit2309:
   select.phi2310 = phi [bb %f.select.else2306, i1 %132307, bb %f.select.then2304, i1 -1]
@@ -1677,15 +1709,12 @@ f.select.exit2309:
 f.then2312:
   br bb %select.then163.split
 f.if.exit2314:
-  202316 = ptradd ptr @array, i32 36
   store i32 1 to ptr %202316
-  322326 = ptradd ptr @array, i32 32
   32.load2327 = load i32 from ptr %322326
   br bb %select.then163.split
 f.select.then2337:
   br bb %f.select.exit2342
 f.select.else2339:
-  132340 = icmp sge i32 10, i32 20
   br bb %f.select.exit2342
 f.select.exit2342:
   select.phi2343 = phi [bb %f.select.else2339, i1 %132340, bb %f.select.then2337, i1 -1]
@@ -1693,15 +1722,12 @@ f.select.exit2342:
 f.then2345:
   br bb %select.then171.split
 f.if.exit2347:
-  202349 = ptradd ptr @array, i32 40
   store i32 1 to ptr %202349
-  322359 = ptradd ptr @array, i32 36
   32.load2360 = load i32 from ptr %322359
   br bb %select.then171.split
 f.select.then2370:
   br bb %f.select.exit2375
 f.select.else2372:
-  132373 = icmp sge i32 11, i32 20
   br bb %f.select.exit2375
 f.select.exit2375:
   select.phi2376 = phi [bb %f.select.else2372, i1 %132373, bb %f.select.then2370, i1 -1]
@@ -1709,15 +1735,12 @@ f.select.exit2375:
 f.then2378:
   br bb %select.then179.split
 f.if.exit2380:
-  202382 = ptradd ptr @array, i32 44
   store i32 1 to ptr %202382
-  322392 = ptradd ptr @array, i32 40
   32.load2393 = load i32 from ptr %322392
   br bb %select.then179.split
 f.select.then2403:
   br bb %f.select.exit2408
 f.select.else2405:
-  132406 = icmp sge i32 12, i32 20
   br bb %f.select.exit2408
 f.select.exit2408:
   select.phi2409 = phi [bb %f.select.else2405, i1 %132406, bb %f.select.then2403, i1 -1]
@@ -1725,15 +1748,12 @@ f.select.exit2408:
 f.then2411:
   br bb %select.then187.split
 f.if.exit2413:
-  202415 = ptradd ptr @array, i32 48
   store i32 1 to ptr %202415
-  322425 = ptradd ptr @array, i32 44
   32.load2426 = load i32 from ptr %322425
   br bb %select.then187.split
 f.select.then2436:
   br bb %f.select.exit2441
 f.select.else2438:
-  132439 = icmp sge i32 13, i32 20
   br bb %f.select.exit2441
 f.select.exit2441:
   select.phi2442 = phi [bb %f.select.else2438, i1 %132439, bb %f.select.then2436, i1 -1]
@@ -1741,15 +1761,12 @@ f.select.exit2441:
 f.then2444:
   br bb %select.then195.split
 f.if.exit2446:
-  202448 = ptradd ptr @array, i32 52
   store i32 1 to ptr %202448
-  322458 = ptradd ptr @array, i32 48
   32.load2459 = load i32 from ptr %322458
   br bb %select.then195.split
 f.select.then2469:
   br bb %f.select.exit2474
 f.select.else2471:
-  132472 = icmp sge i32 14, i32 20
   br bb %f.select.exit2474
 f.select.exit2474:
   select.phi2475 = phi [bb %f.select.else2471, i1 %132472, bb %f.select.then2469, i1 -1]
@@ -1757,15 +1774,12 @@ f.select.exit2474:
 f.then2477:
   br bb %select.then203.split
 f.if.exit2479:
-  202481 = ptradd ptr @array, i32 56
   store i32 1 to ptr %202481
-  322491 = ptradd ptr @array, i32 52
   32.load2492 = load i32 from ptr %322491
   br bb %select.then203.split
 f.select.then2502:
   br bb %f.select.exit2507
 f.select.else2504:
-  132505 = icmp sge i32 15, i32 20
   br bb %f.select.exit2507
 f.select.exit2507:
   select.phi2508 = phi [bb %f.select.else2504, i1 %132505, bb %f.select.then2502, i1 -1]
@@ -1773,15 +1787,12 @@ f.select.exit2507:
 f.then2510:
   br bb %select.then211.split
 f.if.exit2512:
-  202514 = ptradd ptr @array, i32 60
   store i32 1 to ptr %202514
-  322524 = ptradd ptr @array, i32 56
   32.load2525 = load i32 from ptr %322524
   br bb %select.then211.split
 f.select.then2535:
   br bb %f.select.exit2540
 f.select.else2537:
-  132538 = icmp sge i32 16, i32 20
   br bb %f.select.exit2540
 f.select.exit2540:
   select.phi2541 = phi [bb %f.select.else2537, i1 %132538, bb %f.select.then2535, i1 -1]
@@ -1789,15 +1800,12 @@ f.select.exit2540:
 f.then2543:
   br bb %select.then219.split
 f.if.exit2545:
-  202547 = ptradd ptr @array, i32 64
   store i32 1 to ptr %202547
-  322557 = ptradd ptr @array, i32 60
   32.load2558 = load i32 from ptr %322557
   br bb %select.then219.split
 f.select.then2568:
   br bb %f.select.exit2573
 f.select.else2570:
-  132571 = icmp sge i32 17, i32 20
   br bb %f.select.exit2573
 f.select.exit2573:
   select.phi2574 = phi [bb %f.select.else2570, i1 %132571, bb %f.select.then2568, i1 -1]
@@ -1805,15 +1813,12 @@ f.select.exit2573:
 f.then2576:
   br bb %select.then227.split
 f.if.exit2578:
-  202580 = ptradd ptr @array, i32 68
   store i32 1 to ptr %202580
-  322590 = ptradd ptr @array, i32 64
   32.load2591 = load i32 from ptr %322590
   br bb %select.then227.split
 f.select.then2601:
   br bb %f.select.exit2606
 f.select.else2603:
-  132604 = icmp sge i32 18, i32 20
   br bb %f.select.exit2606
 f.select.exit2606:
   select.phi2607 = phi [bb %f.select.else2603, i1 %132604, bb %f.select.then2601, i1 -1]
@@ -1821,23 +1826,18 @@ f.select.exit2606:
 f.then2609:
   br bb %select.then235.split
 f.if.exit2611:
-  202613 = ptradd ptr @array, i32 72
   store i32 1 to ptr %202613
-  322623 = ptradd ptr @array, i32 68
   32.load2624 = load i32 from ptr %322623
   br bb %select.then235.split
 f.select.then2634:
   br bb %f.select.exit2639
 f.select.else2636:
-  132637 = icmp sge i32 19, i32 20
   br bb %f.select.exit2639
 f.select.exit2639:
   select.phi2640 = phi [bb %f.select.else2636, i1 %132637, bb %f.select.then2634, i1 -1]
   br i1 %select.phi2640, bb %select.exit245, bb %f.if.exit2644
 f.if.exit2644:
-  202646 = ptradd ptr @array, i32 76
   store i32 1 to ptr %202646
-  322656 = ptradd ptr @array, i32 72
   32.load2657 = load i32 from ptr %322656
   br bb %select.exit245
 f.select.then2667:

@@ -105,6 +105,14 @@ public:
   Value *getOperand(uint no) const;
   uint getOperandNum() const { return useeList.size(); }
 
+  template <typename Mapper> void replaceOps(Mapper mapper) {
+    for (Use *use : useeList) {
+      Value *mapped = mapper(use->getUsee());
+      if (mapped)
+        use->set(mapped);
+    }
+  }
+
   InstID getOpcode() const { return instID; }
   std::string getOpName() const;
 

@@ -9,6 +9,8 @@ while.cond:
   8 = icmp slt i32 %i.phi, i32 20
   br i1 %8, bb %while.body, bb %while.exit
 while.body:
+  19 = mul i32 %i.phi, i32 400
+  20 = ptradd ptr @array, i32 %19
   br bb %while.cond11
 while.exit:
   32 = ptradd ptr @array, i32 400
@@ -173,8 +175,6 @@ while.cond11:
   16 = icmp slt i32 %j.phi, i32 100
   br i1 %16, bb %while.body12, bb %while.exit13
 while.body12:
-  19 = mul i32 %i.phi, i32 400
-  20 = ptradd ptr @array, i32 %19
   258 = shl i32 %j.phi, i32 2
   23 = ptradd ptr %20, i32 %258
   store i32 %j.phi to ptr %23

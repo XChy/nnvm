@@ -8,6 +8,21 @@ immutable global ptr MAX_DIM_Y init with i32 8
 immutable global ptr MAX_DIM_X init with i32 8
 void idct(ptr mat, ptr dct_mat, i32 n, i32 m) {
 entry231:
+  256 = si2f i32 1 to float
+  257 = fdiv float %256, float 4.000000
+  287 = fdiv float %256, float 2.000000
+  319 = fdiv float %256, float 2.000000
+  366 = si2f i32 %n to float
+  367 = fdiv float 3.141593, float %366
+  87944 = si2f i32 2 to float
+  88945 = fdiv float 3.141593, float %87944
+  47749957 = fneg float 6.283185
+  74771979 = fneg float 3.141593
+  380 = si2f i32 %m to float
+  381 = fdiv float 3.141593, float %380
+  477491005 = fneg float 6.283185
+  412 = si2f i32 %n to float
+  416 = si2f i32 %m to float
   br bb %while.cond235
 while.cond235:
   j265.phi476 = phi [bb %entry231, i32 ub, bb %while.exit245, i32 %j265.phi475]
@@ -16,6 +31,11 @@ while.cond235:
   240 = icmp slt i32 %u234.phi, i32 %n
   br i1 %240, bb %while.body236, bb %while.exit237
 while.body236:
+  499 = shl i32 %u234.phi, i32 5
+  252 = ptradd ptr %mat, i32 %499
+  370 = si2f i32 %u234.phi to float
+  371 = fadd float %370, float 0.500000
+  372 = fmul float %367, float %371
   br bb %while.cond243
 while.exit237:
   ret 
@@ -26,12 +46,8 @@ while.cond243:
   248 = icmp slt i32 %v242.phi, i32 %m
   br i1 %248, bb %while.body244, bb %while.exit245
 while.body244:
-  499 = shl i32 %u234.phi, i32 5
-  252 = ptradd ptr %mat, i32 %499
   500 = shl i32 %v242.phi, i32 2
   255 = ptradd ptr %252, i32 %500
-  256 = si2f i32 1 to float
-  257 = fdiv float %256, float 4.000000
   261.load = load float from ptr %dct_mat
   263 = fmul float %257, float %261.load
   store float %263 to ptr %255
@@ -45,7 +61,6 @@ while.cond266:
   br i1 %271, bb %while.body267, bb %while.exit268
 while.body267:
   284.load = load float from ptr %255
-  287 = fdiv float %256, float 2.000000
   505 = shl i32 %i264.phi472, i32 5
   290 = ptradd ptr %dct_mat, i32 %505
   292.load = load float from ptr %290
@@ -62,7 +77,6 @@ while.cond298:
   br i1 %303, bb %while.body299, bb %while.exit300
 while.body299:
   316.load = load float from ptr %255
-  319 = fdiv float %256, float 2.000000
   510 = shl i32 %j265.phi477, i32 2
   324 = ptradd ptr %dct_mat, i32 %510
   324.load = load float from ptr %324
@@ -72,6 +86,9 @@ while.body299:
   329 = add i32 %j265.phi477, i32 1
   br bb %while.cond298
 while.exit300:
+  384 = si2f i32 %v242.phi to float
+  385 = fadd float %384, float 0.500000
+  386 = fmul float %381, float %385
   br bb %while.cond330
 while.cond330:
   j265.phi474 = phi [bb %while.exit300, i32 %j265.phi477, bb %while.exit339, i32 %j265.phi]
@@ -79,14 +96,24 @@ while.cond330:
   335 = icmp slt i32 %i264.phi, i32 %n
   br i1 %335, bb %while.body331, bb %while.exit332
 while.body331:
+  519 = shl i32 %i264.phi, i32 5
+  359 = ptradd ptr %dct_mat, i32 %519
+  374 = si2f i32 %i264.phi to float
+  375 = fmul float %372, float %374
+  89946 = fadd float %375, float %88945
+  40744952 = fcmp ogt float %89946, float 6.283185
+  48750958 = fcmp olt float %89946, float %47749957
+  56756964 = fdiv float %89946, float 6.283185
+  57757965 = f2si float %56756964 to i32
+  61758966 = si2f i32 %57757965 to float
+  62759967 = fmul float %61758966, float 6.283185
+  63760968 = fsub float %89946, float %62759967
   br bb %while.cond337
 while.exit332:
   408.load = load float from ptr %255
   410 = fmul float %408.load, float 2.000000
-  412 = si2f i32 %n to float
   413 = fdiv float %410, float %412
   414 = fmul float %413, float 2.000000
-  416 = si2f i32 %m to float
   417 = fdiv float %414, float %416
   store float %417 to ptr %255
   419 = add i32 %v242.phi, i32 1
@@ -97,22 +124,9 @@ while.cond337:
   br i1 %342, bb %while.body338, bb %while.exit339
 while.body338:
   355.load = load float from ptr %255
-  519 = shl i32 %i264.phi, i32 5
-  359 = ptradd ptr %dct_mat, i32 %519
   520 = shl i32 %j265.phi, i32 2
   362 = ptradd ptr %359, i32 %520
   362.load = load float from ptr %362
-  366 = si2f i32 %n to float
-  367 = fdiv float 3.141593, float %366
-  370 = si2f i32 %u234.phi to float
-  371 = fadd float %370, float 0.500000
-  372 = fmul float %367, float %371
-  374 = si2f i32 %i264.phi to float
-  375 = fmul float %372, float %374
-  87944 = si2f i32 2 to float
-  88945 = fdiv float 3.141593, float %87944
-  89946 = fadd float %375, float %88945
-  40744952 = fcmp ogt float %89946, float 6.283185
   br i1 %40744952, bb %my_cos.my_sin.select.then954, bb %my_cos.my_sin.select.else956
 while.exit339:
   396 = add i32 %i264.phi, i32 1
@@ -120,18 +134,11 @@ while.exit339:
 my_cos.my_sin.select.then954:
   br bb %my_cos.my_sin.select.exit960
 my_cos.my_sin.select.else956:
-  47749957 = fneg float 6.283185
-  48750958 = fcmp olt float %89946, float %47749957
   br bb %my_cos.my_sin.select.exit960
 my_cos.my_sin.select.exit960:
   select.phi753961 = phi [bb %my_cos.my_sin.select.else956, i1 %48750958, bb %my_cos.my_sin.select.then954, i1 -1]
   br i1 %select.phi753961, bb %my_cos.my_sin.then51963, bb %my_cos.my_sin.if.exit52970
 my_cos.my_sin.then51963:
-  56756964 = fdiv float %89946, float 6.283185
-  57757965 = f2si float %56756964 to i32
-  61758966 = si2f i32 %57757965 to float
-  62759967 = fmul float %61758966, float 6.283185
-  63760968 = fsub float %89946, float %62759967
   br bb %my_cos.my_sin.if.exit52970
 my_cos.my_sin.if.exit52970:
   x.stack37.phi490763971 = phi [bb %my_cos.my_sin.select.exit960, float %89946, bb %my_cos.my_sin.then51963, float %63760968]
@@ -142,7 +149,6 @@ my_cos.my_sin.then67974:
   br bb %my_cos.my_sin.if.exit68977
 my_cos.my_sin.if.exit68977:
   x.stack37.phi489770978 = phi [bb %my_cos.my_sin.if.exit52970, float %x.stack37.phi490763971, bb %my_cos.my_sin.then67974, float %71767975]
-  74771979 = fneg float 3.141593
   75772980 = fcmp olt float %x.stack37.phi489770978, float %74771979
   br i1 %75772980, bb %my_cos.my_sin.then76982, bb %my_cos.my_sin.if.exit77985
 my_cos.my_sin.then76982:
@@ -152,11 +158,6 @@ my_cos.my_sin.if.exit77985:
   x.stack37.phi778986 = phi [bb %my_cos.my_sin.if.exit68977, float %x.stack37.phi489770978, bb %my_cos.my_sin.then76982, float %80775983]
   82779987 = call float my_sin_impl(float %x.stack37.phi778986)
   377 = fmul float %362.load, float %82779987
-  380 = si2f i32 %m to float
-  381 = fdiv float 3.141593, float %380
-  384 = si2f i32 %v242.phi to float
-  385 = fadd float %384, float 0.500000
-  386 = fmul float %381, float %385
   388 = si2f i32 %j265.phi to float
   389 = fmul float %386, float %388
   89994 = fadd float %389, float %88945
@@ -165,7 +166,6 @@ my_cos.my_sin.if.exit77985:
 my_cos.my_sin.select.then1002:
   br bb %my_cos.my_sin.select.exit1008
 my_cos.my_sin.select.else1004:
-  477491005 = fneg float 6.283185
   487501006 = fcmp olt float %89994, float %477491005
   br bb %my_cos.my_sin.select.exit1008
 my_cos.my_sin.select.exit1008:
@@ -245,6 +245,16 @@ entry10:
 
 void dct(ptr dct_mat, ptr mat, i32 n, i32 m) {
 entry132:
+  157 = si2f i32 0 to float
+  196 = si2f i32 %n to float
+  197 = fdiv float 3.141593, float %196
+  87848 = si2f i32 2 to float
+  88849 = fdiv float 3.141593, float %87848
+  47749861 = fneg float 6.283185
+  74771883 = fneg float 3.141593
+  210 = si2f i32 %m to float
+  211 = fdiv float 3.141593, float %210
+  47749909 = fneg float 6.283185
   br bb %while.cond136
 while.cond136:
   j166.phi487 = phi [bb %entry132, i32 ub, bb %while.exit146, i32 %j166.phi486]
@@ -253,6 +263,9 @@ while.cond136:
   141 = icmp slt i32 %u.phi, i32 %n
   br i1 %141, bb %while.body137, bb %while.exit138
 while.body137:
+  521 = shl i32 %u.phi, i32 5
+  153 = ptradd ptr %dct_mat, i32 %521
+  204 = si2f i32 %u.phi to float
   br bb %while.cond144
 while.exit138:
   ret 
@@ -263,12 +276,10 @@ while.cond144:
   149 = icmp slt i32 %v.phi, i32 %m
   br i1 %149, bb %while.body145, bb %while.exit146
 while.body145:
-  521 = shl i32 %u.phi, i32 5
-  153 = ptradd ptr %dct_mat, i32 %521
   522 = shl i32 %v.phi, i32 2
   156 = ptradd ptr %153, i32 %522
-  157 = si2f i32 0 to float
   store float %157 to ptr %156
+  218 = si2f i32 %v.phi to float
   br bb %while.cond159
 while.exit146:
   230 = add i32 %u.phi, i32 1
@@ -279,6 +290,20 @@ while.cond159:
   164 = icmp slt i32 %i158.phi, i32 %n
   br i1 %164, bb %while.body160, bb %while.exit161
 while.body160:
+  527 = shl i32 %i158.phi, i32 5
+  189 = ptradd ptr %mat, i32 %527
+  200 = si2f i32 %i158.phi to float
+  201 = fadd float %200, float 0.500000
+  202 = fmul float %197, float %201
+  205 = fmul float %202, float %204
+  89850 = fadd float %205, float %88849
+  40744856 = fcmp ogt float %89850, float 6.283185
+  48750862 = fcmp olt float %89850, float %47749861
+  56756868 = fdiv float %89850, float 6.283185
+  57757869 = f2si float %56756868 to i32
+  61758870 = si2f i32 %57757869 to float
+  62759871 = fmul float %61758870, float 6.283185
+  63760872 = fsub float %89850, float %62759871
   br bb %while.cond167
 while.exit161:
   228 = add i32 %v.phi, i32 1
@@ -289,22 +314,9 @@ while.cond167:
   br i1 %172, bb %while.body168, bb %while.exit169
 while.body168:
   185.load = load float from ptr %156
-  527 = shl i32 %i158.phi, i32 5
-  189 = ptradd ptr %mat, i32 %527
   528 = shl i32 %j166.phi, i32 2
   192 = ptradd ptr %189, i32 %528
   192.load = load float from ptr %192
-  196 = si2f i32 %n to float
-  197 = fdiv float 3.141593, float %196
-  200 = si2f i32 %i158.phi to float
-  201 = fadd float %200, float 0.500000
-  202 = fmul float %197, float %201
-  204 = si2f i32 %u.phi to float
-  205 = fmul float %202, float %204
-  87848 = si2f i32 2 to float
-  88849 = fdiv float 3.141593, float %87848
-  89850 = fadd float %205, float %88849
-  40744856 = fcmp ogt float %89850, float 6.283185
   br i1 %40744856, bb %my_cos.my_sin.select.then, bb %my_cos.my_sin.select.else
 while.exit169:
   226 = add i32 %i158.phi, i32 1
@@ -312,18 +324,11 @@ while.exit169:
 my_cos.my_sin.select.then:
   br bb %my_cos.my_sin.select.exit
 my_cos.my_sin.select.else:
-  47749861 = fneg float 6.283185
-  48750862 = fcmp olt float %89850, float %47749861
   br bb %my_cos.my_sin.select.exit
 my_cos.my_sin.select.exit:
   select.phi753865 = phi [bb %my_cos.my_sin.select.else, i1 %48750862, bb %my_cos.my_sin.select.then, i1 -1]
   br i1 %select.phi753865, bb %my_cos.my_sin.then51, bb %my_cos.my_sin.if.exit52
 my_cos.my_sin.then51:
-  56756868 = fdiv float %89850, float 6.283185
-  57757869 = f2si float %56756868 to i32
-  61758870 = si2f i32 %57757869 to float
-  62759871 = fmul float %61758870, float 6.283185
-  63760872 = fsub float %89850, float %62759871
   br bb %my_cos.my_sin.if.exit52
 my_cos.my_sin.if.exit52:
   x.stack37.phi490763875 = phi [bb %my_cos.my_sin.select.exit, float %89850, bb %my_cos.my_sin.then51, float %63760872]
@@ -334,7 +339,6 @@ my_cos.my_sin.then67:
   br bb %my_cos.my_sin.if.exit68
 my_cos.my_sin.if.exit68:
   x.stack37.phi489770882 = phi [bb %my_cos.my_sin.if.exit52, float %x.stack37.phi490763875, bb %my_cos.my_sin.then67, float %71767879]
-  74771883 = fneg float 3.141593
   75772884 = fcmp olt float %x.stack37.phi489770882, float %74771883
   br i1 %75772884, bb %my_cos.my_sin.then76, bb %my_cos.my_sin.if.exit77
 my_cos.my_sin.then76:
@@ -344,12 +348,9 @@ my_cos.my_sin.if.exit77:
   x.stack37.phi778890 = phi [bb %my_cos.my_sin.if.exit68, float %x.stack37.phi489770882, bb %my_cos.my_sin.then76, float %80775887]
   82779891 = call float my_sin_impl(float %x.stack37.phi778890)
   207 = fmul float %192.load, float %82779891
-  210 = si2f i32 %m to float
-  211 = fdiv float 3.141593, float %210
   214 = si2f i32 %j166.phi to float
   215 = fadd float %214, float 0.500000
   216 = fmul float %211, float %215
-  218 = si2f i32 %v.phi to float
   219 = fmul float %216, float %218
   89898 = fadd float %219, float %88849
   40744904 = fcmp ogt float %89898, float 6.283185
@@ -357,7 +358,6 @@ my_cos.my_sin.if.exit77:
 my_cos.my_sin.select.then906:
   br bb %my_cos.my_sin.select.exit912
 my_cos.my_sin.select.else908:
-  47749909 = fneg float 6.283185
   48750910 = fcmp olt float %89898, float %47749909
   br bb %my_cos.my_sin.select.exit912
 my_cos.my_sin.select.exit912:
@@ -533,16 +533,26 @@ while.cond428:
   433 = icmp slt i32 %i427.phi, i32 %424
   br i1 %433, bb %while.body429, bb %while.exit430
 while.body429:
+  532 = shl i32 %i427.phi, i32 5
+  445 = ptradd ptr @test_block, i32 %532
   br bb %while.cond436
 while.exit430:
+  157690 = si2f i32 0 to float
+  196717 = si2f i32 %424 to float
+  197718 = fdiv float 3.141593, float %196717
+  871136 = si2f i32 2 to float
+  881137 = fdiv float 3.141593, float %871136
+  477491149 = fneg float 6.283185
+  747711171 = fneg float 3.141593
+  210726 = si2f i32 %426 to float
+  211727 = fdiv float 3.141593, float %210726
+  477491197 = fneg float 6.283185
   br bb %dct.while.cond136
 while.cond436:
   j435.phi = phi [bb %while.body429, i32 0, bb %while.body437, i32 %451]
   441 = icmp slt i32 %j435.phi, i32 %426
   br i1 %441, bb %while.body437, bb %while.exit438
 while.body437:
-  532 = shl i32 %i427.phi, i32 5
-  445 = ptradd ptr @test_block, i32 %532
   533 = shl i32 %j435.phi, i32 2
   448 = ptradd ptr %445, i32 %533
   449 = call float getfloat()
@@ -559,6 +569,11 @@ idct.while.cond235:
   240541 = icmp slt i32 %u234.phi540, i32 %424
   br i1 %240541, bb %idct.while.body236, bb %idct.while.exit237
 idct.while.body236:
+  370632 = si2f i32 %u234.phi540 to float
+  371633 = fadd float %370632, float 0.500000
+  372634 = fmul float %367631, float %371633
+  499554 = shl i32 %u234.phi540, i32 5
+  252555 = ptradd ptr @test_idct, i32 %499554
   br bb %idct.while.cond243
 idct.while.exit237:
   br bb %write_mat.while.cond817
@@ -569,12 +584,8 @@ idct.while.cond243:
   248551 = icmp slt i32 %v242.phi550, i32 %426
   br i1 %248551, bb %idct.while.body244, bb %idct.while.exit245
 idct.while.body244:
-  499554 = shl i32 %u234.phi540, i32 5
-  252555 = ptradd ptr @test_idct, i32 %499554
   500556 = shl i32 %v242.phi550, i32 2
   255557 = ptradd ptr %252555, i32 %500556
-  256558 = si2f i32 1 to float
-  257559 = fdiv float %256558, float 4.000000
   261.load560 = load float from ptr @test_dct
   263561 = fmul float %257559, float %261.load560
   store float %263561 to ptr %255557
@@ -588,7 +599,6 @@ idct.while.cond266:
   br i1 %271569, bb %idct.while.body267, bb %idct.while.exit268
 idct.while.body267:
   284.load572 = load float from ptr %255557
-  287573 = fdiv float %256558, float 2.000000
   505574 = shl i32 %i264.phi472568, i32 5
   290575 = ptradd ptr @test_dct, i32 %505574
   292.load576 = load float from ptr %290575
@@ -605,7 +615,6 @@ idct.while.cond298:
   br i1 %303586, bb %idct.while.body299, bb %idct.while.exit300
 idct.while.body299:
   316.load589 = load float from ptr %255557
-  319590 = fdiv float %256558, float 2.000000
   510591 = shl i32 %j265.phi477585, i32 2
   324592 = ptradd ptr @test_dct, i32 %510591
   324.load593 = load float from ptr %324592
@@ -615,6 +624,9 @@ idct.while.body299:
   329597 = add i32 %j265.phi477585, i32 1
   br bb %idct.while.cond298
 idct.while.exit300:
+  384641 = si2f i32 %v242.phi550 to float
+  385642 = fadd float %384641, float 0.500000
+  386643 = fmul float %381640, float %385642
   br bb %idct.while.cond330
 idct.while.cond330:
   j265.phi474602 = phi [bb %idct.while.exit300, i32 %j265.phi477585, bb %idct.while.exit339, i32 %j265.phi620]
@@ -622,14 +634,24 @@ idct.while.cond330:
   335604 = icmp slt i32 %i264.phi603, i32 %424
   br i1 %335604, bb %idct.while.body331, bb %idct.while.exit332
 idct.while.body331:
+  519625 = shl i32 %i264.phi603, i32 5
+  359626 = ptradd ptr @test_dct, i32 %519625
+  374635 = si2f i32 %i264.phi603 to float
+  375636 = fmul float %372634, float %374635
+  891042 = fadd float %375636, float %881041
+  407441048 = fcmp ogt float %891042, float 6.283185
+  487501054 = fcmp olt float %891042, float %477491053
+  567561060 = fdiv float %891042, float 6.283185
+  577571061 = f2si float %567561060 to i32
+  617581062 = si2f i32 %577571061 to float
+  627591063 = fmul float %617581062, float 6.283185
+  637601064 = fsub float %891042, float %627591063
   br bb %idct.while.cond337
 idct.while.exit332:
   408.load609 = load float from ptr %255557
   410610 = fmul float %408.load609, float 2.000000
-  412611 = si2f i32 %424 to float
   413612 = fdiv float %410610, float %412611
   414613 = fmul float %413612, float 2.000000
-  416614 = si2f i32 %426 to float
   417615 = fdiv float %414613, float %416614
   store float %417615 to ptr %255557
   419617 = add i32 %v242.phi550, i32 1
@@ -640,22 +662,9 @@ idct.while.cond337:
   br i1 %342621, bb %idct.while.body338, bb %idct.while.exit339
 idct.while.body338:
   355.load624 = load float from ptr %255557
-  519625 = shl i32 %i264.phi603, i32 5
-  359626 = ptradd ptr @test_dct, i32 %519625
   520627 = shl i32 %j265.phi620, i32 2
   362628 = ptradd ptr %359626, i32 %520627
   362.load629 = load float from ptr %362628
-  366630 = si2f i32 %424 to float
-  367631 = fdiv float 3.141593, float %366630
-  370632 = si2f i32 %u234.phi540 to float
-  371633 = fadd float %370632, float 0.500000
-  372634 = fmul float %367631, float %371633
-  374635 = si2f i32 %i264.phi603 to float
-  375636 = fmul float %372634, float %374635
-  871040 = si2f i32 2 to float
-  881041 = fdiv float 3.141593, float %871040
-  891042 = fadd float %375636, float %881041
-  407441048 = fcmp ogt float %891042, float 6.283185
   br i1 %407441048, bb %my_cos.my_sin.select.then1050, bb %my_cos.my_sin.select.else1052
 idct.while.exit339:
   396653 = add i32 %i264.phi603, i32 1
@@ -667,6 +676,9 @@ dct.while.cond136:
   141673 = icmp slt i32 %u.phi672, i32 %424
   br i1 %141673, bb %dct.while.body137, bb %dct.while.exit138
 dct.while.body137:
+  521686 = shl i32 %u.phi672, i32 5
+  153687 = ptradd ptr @test_dct, i32 %521686
+  204722 = si2f i32 %u.phi672 to float
   br bb %dct.while.cond144
 dct.while.exit138:
   br bb %write_mat.while.cond
@@ -677,12 +689,10 @@ dct.while.cond144:
   149683 = icmp slt i32 %v.phi682, i32 %426
   br i1 %149683, bb %dct.while.body145, bb %dct.while.exit146
 dct.while.body145:
-  521686 = shl i32 %u.phi672, i32 5
-  153687 = ptradd ptr @test_dct, i32 %521686
   522688 = shl i32 %v.phi682, i32 2
   156689 = ptradd ptr %153687, i32 %522688
-  157690 = si2f i32 0 to float
   store float %157690 to ptr %156689
+  218731 = si2f i32 %v.phi682 to float
   br bb %dct.while.cond159
 dct.while.exit146:
   230694 = add i32 %u.phi672, i32 1
@@ -693,6 +703,20 @@ dct.while.cond159:
   164699 = icmp slt i32 %i158.phi698, i32 %424
   br i1 %164699, bb %dct.while.body160, bb %dct.while.exit161
 dct.while.body160:
+  527712 = shl i32 %i158.phi698, i32 5
+  189713 = ptradd ptr @test_block, i32 %527712
+  200719 = si2f i32 %i158.phi698 to float
+  201720 = fadd float %200719, float 0.500000
+  202721 = fmul float %197718, float %201720
+  205723 = fmul float %202721, float %204722
+  891138 = fadd float %205723, float %881137
+  407441144 = fcmp ogt float %891138, float 6.283185
+  487501150 = fcmp olt float %891138, float %477491149
+  567561156 = fdiv float %891138, float 6.283185
+  577571157 = f2si float %567561156 to i32
+  617581158 = si2f i32 %577571157 to float
+  627591159 = fmul float %617581158, float 6.283185
+  637601160 = fsub float %891138, float %627591159
   br bb %dct.while.cond167
 dct.while.exit161:
   228704 = add i32 %v.phi682, i32 1
@@ -703,22 +727,9 @@ dct.while.cond167:
   br i1 %172708, bb %dct.while.body168, bb %dct.while.exit169
 dct.while.body168:
   185.load711 = load float from ptr %156689
-  527712 = shl i32 %i158.phi698, i32 5
-  189713 = ptradd ptr @test_block, i32 %527712
   528714 = shl i32 %j166.phi707, i32 2
   192715 = ptradd ptr %189713, i32 %528714
   192.load716 = load float from ptr %192715
-  196717 = si2f i32 %424 to float
-  197718 = fdiv float 3.141593, float %196717
-  200719 = si2f i32 %i158.phi698 to float
-  201720 = fadd float %200719, float 0.500000
-  202721 = fmul float %197718, float %201720
-  204722 = si2f i32 %u.phi672 to float
-  205723 = fmul float %202721, float %204722
-  871136 = si2f i32 2 to float
-  881137 = fdiv float 3.141593, float %871136
-  891138 = fadd float %205723, float %881137
-  407441144 = fcmp ogt float %891138, float 6.283185
   br i1 %407441144, bb %my_cos.my_sin.select.then1146, bb %my_cos.my_sin.select.else1148
 dct.while.exit169:
   226740 = add i32 %i158.phi698, i32 1
@@ -735,6 +746,21 @@ write_mat.while.body:
   br bb %write_mat.while.cond110
 write_mat.while.exit:
   call void putch(i32 10)
+  366630 = si2f i32 %424 to float
+  367631 = fdiv float 3.141593, float %366630
+  871040 = si2f i32 2 to float
+  881041 = fdiv float 3.141593, float %871040
+  477491053 = fneg float 6.283185
+  747711075 = fneg float 3.141593
+  380639 = si2f i32 %426 to float
+  381640 = fdiv float 3.141593, float %380639
+  477491101 = fneg float 6.283185
+  412611 = si2f i32 %424 to float
+  416614 = si2f i32 %426 to float
+  256558 = si2f i32 1 to float
+  257559 = fdiv float %256558, float 4.000000
+  287573 = fdiv float %256558, float 2.000000
+  319590 = fdiv float %256558, float 2.000000
   br bb %idct.while.cond235
 write_mat.while.cond110:
   j.phi799 = phi [bb %write_mat.while.body, i32 1, bb %write_mat.while.body111, i32 %127808]
@@ -784,18 +810,11 @@ write_mat.while.exit112842:
 my_cos.my_sin.select.then1050:
   br bb %my_cos.my_sin.select.exit1056
 my_cos.my_sin.select.else1052:
-  477491053 = fneg float 6.283185
-  487501054 = fcmp olt float %891042, float %477491053
   br bb %my_cos.my_sin.select.exit1056
 my_cos.my_sin.select.exit1056:
   select.phi7531057 = phi [bb %my_cos.my_sin.select.else1052, i1 %487501054, bb %my_cos.my_sin.select.then1050, i1 -1]
   br i1 %select.phi7531057, bb %my_cos.my_sin.then511059, bb %my_cos.my_sin.if.exit521066
 my_cos.my_sin.then511059:
-  567561060 = fdiv float %891042, float 6.283185
-  577571061 = f2si float %567561060 to i32
-  617581062 = si2f i32 %577571061 to float
-  627591063 = fmul float %617581062, float 6.283185
-  637601064 = fsub float %891042, float %627591063
   br bb %my_cos.my_sin.if.exit521066
 my_cos.my_sin.if.exit521066:
   x.stack37.phi4907631067 = phi [bb %my_cos.my_sin.select.exit1056, float %891042, bb %my_cos.my_sin.then511059, float %637601064]
@@ -806,7 +825,6 @@ my_cos.my_sin.then671070:
   br bb %my_cos.my_sin.if.exit681073
 my_cos.my_sin.if.exit681073:
   x.stack37.phi4897701074 = phi [bb %my_cos.my_sin.if.exit521066, float %x.stack37.phi4907631067, bb %my_cos.my_sin.then671070, float %717671071]
-  747711075 = fneg float 3.141593
   757721076 = fcmp olt float %x.stack37.phi4897701074, float %747711075
   br i1 %757721076, bb %my_cos.my_sin.then761078, bb %my_cos.my_sin.if.exit771081
 my_cos.my_sin.then761078:
@@ -816,11 +834,6 @@ my_cos.my_sin.if.exit771081:
   x.stack37.phi7781082 = phi [bb %my_cos.my_sin.if.exit681073, float %x.stack37.phi4897701074, bb %my_cos.my_sin.then761078, float %807751079]
   827791083 = call float my_sin_impl(float %x.stack37.phi7781082)
   377638 = fmul float %362.load629, float %827791083
-  380639 = si2f i32 %426 to float
-  381640 = fdiv float 3.141593, float %380639
-  384641 = si2f i32 %v242.phi550 to float
-  385642 = fadd float %384641, float 0.500000
-  386643 = fmul float %381640, float %385642
   388644 = si2f i32 %j265.phi620 to float
   389645 = fmul float %386643, float %388644
   891090 = fadd float %389645, float %881041
@@ -829,7 +842,6 @@ my_cos.my_sin.if.exit771081:
 my_cos.my_sin.select.then1098:
   br bb %my_cos.my_sin.select.exit1104
 my_cos.my_sin.select.else1100:
-  477491101 = fneg float 6.283185
   487501102 = fcmp olt float %891090, float %477491101
   br bb %my_cos.my_sin.select.exit1104
 my_cos.my_sin.select.exit1104:
@@ -867,18 +879,11 @@ my_cos.my_sin.if.exit771129:
 my_cos.my_sin.select.then1146:
   br bb %my_cos.my_sin.select.exit1152
 my_cos.my_sin.select.else1148:
-  477491149 = fneg float 6.283185
-  487501150 = fcmp olt float %891138, float %477491149
   br bb %my_cos.my_sin.select.exit1152
 my_cos.my_sin.select.exit1152:
   select.phi7531153 = phi [bb %my_cos.my_sin.select.else1148, i1 %487501150, bb %my_cos.my_sin.select.then1146, i1 -1]
   br i1 %select.phi7531153, bb %my_cos.my_sin.then511155, bb %my_cos.my_sin.if.exit521162
 my_cos.my_sin.then511155:
-  567561156 = fdiv float %891138, float 6.283185
-  577571157 = f2si float %567561156 to i32
-  617581158 = si2f i32 %577571157 to float
-  627591159 = fmul float %617581158, float 6.283185
-  637601160 = fsub float %891138, float %627591159
   br bb %my_cos.my_sin.if.exit521162
 my_cos.my_sin.if.exit521162:
   x.stack37.phi4907631163 = phi [bb %my_cos.my_sin.select.exit1152, float %891138, bb %my_cos.my_sin.then511155, float %637601160]
@@ -889,7 +894,6 @@ my_cos.my_sin.then671166:
   br bb %my_cos.my_sin.if.exit681169
 my_cos.my_sin.if.exit681169:
   x.stack37.phi4897701170 = phi [bb %my_cos.my_sin.if.exit521162, float %x.stack37.phi4907631163, bb %my_cos.my_sin.then671166, float %717671167]
-  747711171 = fneg float 3.141593
   757721172 = fcmp olt float %x.stack37.phi4897701170, float %747711171
   br i1 %757721172, bb %my_cos.my_sin.then761174, bb %my_cos.my_sin.if.exit771177
 my_cos.my_sin.then761174:
@@ -899,12 +903,9 @@ my_cos.my_sin.if.exit771177:
   x.stack37.phi7781178 = phi [bb %my_cos.my_sin.if.exit681169, float %x.stack37.phi4897701170, bb %my_cos.my_sin.then761174, float %807751175]
   827791179 = call float my_sin_impl(float %x.stack37.phi7781178)
   207725 = fmul float %192.load716, float %827791179
-  210726 = si2f i32 %426 to float
-  211727 = fdiv float 3.141593, float %210726
   214728 = si2f i32 %j166.phi707 to float
   215729 = fadd float %214728, float 0.500000
   216730 = fmul float %211727, float %215729
-  218731 = si2f i32 %v.phi682 to float
   219732 = fmul float %216730, float %218731
   891186 = fadd float %219732, float %881137
   407441192 = fcmp ogt float %891186, float 6.283185
@@ -912,7 +913,6 @@ my_cos.my_sin.if.exit771177:
 my_cos.my_sin.select.then1194:
   br bb %my_cos.my_sin.select.exit1200
 my_cos.my_sin.select.else1196:
-  477491197 = fneg float 6.283185
   487501198 = fcmp olt float %891186, float %477491197
   br bb %my_cos.my_sin.select.exit1200
 my_cos.my_sin.select.exit1200:

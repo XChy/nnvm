@@ -3,13 +3,13 @@ i32 heap_sort(ptr arr, i32 len) {
 entry77:
   82 = sdiv i32 %len, i32 2
   83 = sub i32 %82, i32 1
+  92 = sub i32 %len, i32 1
   br bb %while.cond84
 while.cond84:
   i.phi161 = phi [bb %entry77, i32 %83, bb %while.body85.split, i32 %97]
   89 = icmp sgt i32 %i.phi161, i32 -1
   br i1 %89, bb %while.body85, bb %while.exit86
 while.body85:
-  92 = sub i32 %len, i32 1
   172214 = shl i32 %i.phi161, i32 1
   27215 = add i32 %172214, i32 1
   br bb %heap_ajust.while.cond
@@ -217,6 +217,7 @@ entry117:
   store i32 8 to ptr %138
   82185 = sdiv i32 10, i32 2
   83186 = sub i32 %82185, i32 1
+  92193 = sub i32 10, i32 1
   br bb %heap_sort.while.cond84
 while.cond142:
   i139.phi = phi [bb %heap_sort.while.exit102, i32 0, bb %while.body143, i32 %159]
@@ -238,7 +239,6 @@ heap_sort.while.cond84:
   89190 = icmp sgt i32 %i.phi161189, i32 -1
   br i1 %89190, bb %heap_sort.while.body85, bb %heap_sort.while.exit86
 heap_sort.while.body85:
-  92193 = sub i32 10, i32 1
   172318 = shl i32 %i.phi161189, i32 1
   27319 = add i32 %172318, i32 1
   br bb %heap_ajust.while.cond321

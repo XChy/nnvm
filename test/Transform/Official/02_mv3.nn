@@ -22,6 +22,8 @@ while.cond86:
   91 = icmp slt i32 %i84.phi142, i32 %83
   br i1 %91, bb %while.body87, bb %while.exit88
 while.body87:
+  101 = mul i32 %i84.phi142, i32 8040
+  102 = ptradd ptr @A, i32 %101
   br bb %while.cond93
 while.exit88:
   br bb %while.cond111
@@ -30,8 +32,6 @@ while.cond93:
   98 = icmp slt i32 %j85.phi, i32 %83
   br i1 %98, bb %while.body94, bb %while.exit95
 while.body94:
-  101 = mul i32 %i84.phi142, i32 8040
-  102 = ptradd ptr @A, i32 %101
   155 = shl i32 %j85.phi, i32 2
   105 = ptradd ptr %102, i32 %155
   106 = call i32 getint()
@@ -84,6 +84,12 @@ mv.while.cond18:
   23184 = icmp slt i32 %i.phi181, i32 %83
   br i1 %23184, bb %mv.while.body19, bb %mv.while.exit20
 mv.while.body19:
+  33197 = mul i32 %i.phi181, i32 8040
+  34198 = ptradd ptr @A, i32 %33197
+  159208 = shl i32 %i.phi181, i32 2
+  46209 = ptradd ptr @B, i32 %159208
+  161223 = shl i32 %i.phi181, i32 2
+  59224 = ptradd ptr @C, i32 %161223
   br bb %mv.while.cond25
 mv.while.exit20:
   br bb %mv.while.cond236
@@ -94,8 +100,6 @@ mv.while.cond25:
   30194 = icmp slt i32 %j.phi191, i32 %83
   br i1 %30194, bb %mv.while.body26, bb %mv.while.exit27
 mv.while.body26:
-  33197 = mul i32 %i.phi181, i32 8040
-  34198 = ptradd ptr @A, i32 %33197
   158199 = shl i32 %j.phi191, i32 2
   37200 = ptradd ptr %34198, i32 %158199
   37.load201 = load i32 from ptr %37200
@@ -105,8 +109,6 @@ mv.while.exit27:
   80205 = add i32 %i.phi181, i32 1
   br bb %mv.while.cond18
 mv.then:
-  159208 = shl i32 %i.phi181, i32 2
-  46209 = ptradd ptr @B, i32 %159208
   46.load210 = load i32 from ptr %46209
   48211 = mul i32 %x.phi146193, i32 %46.load210
   51212 = ptradd ptr @B, i32 %158199
@@ -120,8 +122,6 @@ mv.if.exit:
   78220 = add i32 %j.phi191, i32 1
   br bb %mv.while.cond25
 mv.else:
-  161223 = shl i32 %i.phi181, i32 2
-  59224 = ptradd ptr @C, i32 %161223
   62.load225 = load i32 from ptr %59224
   73227 = ptradd ptr @B, i32 %158199
   73.load228 = load i32 from ptr %73227
@@ -148,6 +148,12 @@ mv.while.cond18248:
   23252 = icmp slt i32 %i.phi249, i32 %83
   br i1 %23252, bb %mv.while.body19254, bb %mv.while.exit20256
 mv.while.body19254:
+  33265 = mul i32 %i.phi249, i32 8040
+  34266 = ptradd ptr @A, i32 %33265
+  159276 = shl i32 %i.phi249, i32 2
+  46277 = ptradd ptr @C, i32 %159276
+  161291 = shl i32 %i.phi249, i32 2
+  59292 = ptradd ptr @B, i32 %161291
   br bb %mv.while.cond25258
 mv.while.exit20256:
   136 = add i32 %i84.phi, i32 1
@@ -159,8 +165,6 @@ mv.while.cond25258:
   30262 = icmp slt i32 %j.phi259, i32 %83
   br i1 %30262, bb %mv.while.body26264, bb %mv.while.exit27272
 mv.while.body26264:
-  33265 = mul i32 %i.phi249, i32 8040
-  34266 = ptradd ptr @A, i32 %33265
   158267 = shl i32 %j.phi259, i32 2
   37268 = ptradd ptr %34266, i32 %158267
   37.load269 = load i32 from ptr %37268
@@ -170,8 +174,6 @@ mv.while.exit27272:
   80273 = add i32 %i.phi249, i32 1
   br bb %mv.while.cond18248
 mv.then275:
-  159276 = shl i32 %i.phi249, i32 2
-  46277 = ptradd ptr @C, i32 %159276
   46.load278 = load i32 from ptr %46277
   48279 = mul i32 %x.phi146261, i32 %46.load278
   51280 = ptradd ptr @C, i32 %158267
@@ -185,8 +187,6 @@ mv.if.exit285:
   78288 = add i32 %j.phi259, i32 1
   br bb %mv.while.cond25258
 mv.else290:
-  161291 = shl i32 %i.phi249, i32 2
-  59292 = ptradd ptr @B, i32 %161291
   62.load293 = load i32 from ptr %59292
   73295 = ptradd ptr @C, i32 %158267
   73.load296 = load i32 from ptr %73295
@@ -232,6 +232,12 @@ while.cond18:
   23 = icmp slt i32 %i.phi, i32 %n
   br i1 %23, bb %while.body19, bb %while.exit20
 while.body19:
+  33 = mul i32 %i.phi, i32 8040
+  34 = ptradd ptr %A, i32 %33
+  159 = shl i32 %i.phi, i32 2
+  46 = ptradd ptr %b, i32 %159
+  161 = shl i32 %i.phi, i32 2
+  59 = ptradd ptr %res, i32 %161
   br bb %while.cond25
 while.exit20:
   ret 
@@ -242,8 +248,6 @@ while.cond25:
   30 = icmp slt i32 %j.phi, i32 %n
   br i1 %30, bb %while.body26, bb %while.exit27
 while.body26:
-  33 = mul i32 %i.phi, i32 8040
-  34 = ptradd ptr %A, i32 %33
   158 = shl i32 %j.phi, i32 2
   37 = ptradd ptr %34, i32 %158
   37.load = load i32 from ptr %37
@@ -253,8 +257,6 @@ while.exit27:
   80 = add i32 %i.phi, i32 1
   br bb %while.cond18
 then:
-  159 = shl i32 %i.phi, i32 2
-  46 = ptradd ptr %b, i32 %159
   46.load = load i32 from ptr %46
   48 = mul i32 %x.phi146, i32 %46.load
   51 = ptradd ptr %b, i32 %158
@@ -268,8 +270,6 @@ if.exit:
   78 = add i32 %j.phi, i32 1
   br bb %while.cond25
 else:
-  161 = shl i32 %i.phi, i32 2
-  59 = ptradd ptr %res, i32 %161
   62.load = load i32 from ptr %59
   69.load = load i32 from ptr %37
   73 = ptradd ptr %b, i32 %158

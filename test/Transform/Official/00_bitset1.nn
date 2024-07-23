@@ -147,6 +147,18 @@ entry203:
   206 = call i32 getint()
   store i32 %206 to ptr @staticvalue
   call void _sysy_starttime(i32 56)
+  185269 = ptradd ptr @seed, i32 4
+  190273 = ptradd ptr @seed, i32 8
+  18330 = ptradd ptr %x316, i32 4
+  24333 = ptradd ptr %x316, i32 8
+  30336 = ptradd ptr %x316, i32 12
+  36339 = ptradd ptr %x316, i32 16
+  42342 = ptradd ptr %x316, i32 20
+  48345 = ptradd ptr %x316, i32 24
+  54348 = ptradd ptr %x316, i32 28
+  60351 = ptradd ptr %x316, i32 32
+  66354 = ptradd ptr %x316, i32 36
+  72357 = ptradd ptr %x316, i32 40
   br bb %while.cond210
 while.cond210:
   n.phi = phi [bb %entry203, i32 %205, bb %while.body211.split.split.split, i32 %217]
@@ -157,11 +169,9 @@ while.body211:
   staticvalue.load266 = load i32 from ptr @staticvalue
   181.load267 = load i32 from ptr @seed
   183268 = mul i32 %staticvalue.load266, i32 %181.load267
-  185269 = ptradd ptr @seed, i32 4
   185.load270 = load i32 from ptr %185269
   187271 = add i32 %183268, i32 %185.load270
   store i32 %187271 to ptr @staticvalue
-  190273 = ptradd ptr @seed, i32 8
   190.load274 = load i32 from ptr %190273
   192275 = srem i32 %187271, i32 %190.load274
   store i32 %192275 to ptr @staticvalue
@@ -209,25 +219,15 @@ set.init:
   br bb %set.init.cond
 set.init.exit:
   store i32 1 to ptr %x316
-  18330 = ptradd ptr %x316, i32 4
   store i32 2 to ptr %18330
-  24333 = ptradd ptr %x316, i32 8
   store i32 4 to ptr %24333
-  30336 = ptradd ptr %x316, i32 12
   store i32 8 to ptr %30336
-  36339 = ptradd ptr %x316, i32 16
   store i32 16 to ptr %36339
-  42342 = ptradd ptr %x316, i32 20
   store i32 32 to ptr %42342
-  48345 = ptradd ptr %x316, i32 24
   store i32 64 to ptr %48345
-  54348 = ptradd ptr %x316, i32 28
   store i32 128 to ptr %54348
-  60351 = ptradd ptr %x316, i32 32
   store i32 256 to ptr %60351
-  66354 = ptradd ptr %x316, i32 36
   store i32 512 to ptr %66354
-  72357 = ptradd ptr %x316, i32 40
   store i32 1024 to ptr %72357
   br bb %set.while.cond
 set.while.cond:

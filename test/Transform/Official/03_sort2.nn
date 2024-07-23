@@ -179,17 +179,18 @@ while.cond169:
   br i1 %174, bb %while.body170, bb %while.exit171
 while.body170:
   385 = shl i32 %i101.phi, i32 2
+  181 = ptradd ptr %head, i32 %385
+  185 = ptradd ptr %tail, i32 %385
   br bb %while.cond176
 while.exit171:
   store i32 %l to ptr %head
   store i32 %139 to ptr %tail
+  299 = sub i32 %bitround, i32 1
   br bb %while.cond267
 while.cond176:
   t.phi362 = phi [bb %while.body170, i32 %t.phi363, bb %while.exit199, i32 %t.phi]
   v.phi359 = phi [bb %while.body170, i32 %v.phi360, bb %while.exit199, i32 %v.phi]
-  181 = ptradd ptr %head, i32 %385
   181.load = load i32 from ptr %181
-  185 = ptradd ptr %tail, i32 %385
   185.load = load i32 from ptr %185
   187 = icmp slt i32 %181.load, i32 %185.load
   br i1 %187, bb %while.body177, bb %while.exit178
@@ -248,7 +249,6 @@ then276:
   store i32 %297 to ptr %288
   br bb %if.exit277
 if.exit277:
-  299 = sub i32 %bitround, i32 1
   404 = shl i32 %i255.phi, i32 2
   302 = ptradd ptr %head, i32 %404
   302.load = load i32 from ptr %302

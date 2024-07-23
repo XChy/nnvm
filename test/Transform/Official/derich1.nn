@@ -65,8 +65,12 @@ while.cond:
   153 = icmp slt i32 %i.phi481, i32 %w
   br i1 %153, bb %while.body, bb %while.exit
 while.body:
+  163 = mul i32 %i.phi481, i32 1080
+  164 = ptradd ptr %y1, i32 %163
+  171 = ptradd ptr %imgIn, i32 %163
   br bb %while.cond155
 while.exit:
+  216 = sub i32 %h, i32 1
   br bb %while.cond208
 while.cond155:
   ym2.phi502 = phi [bb %while.body, float 0.000000, bb %while.body156, float %ym1.phi498]
@@ -76,11 +80,8 @@ while.cond155:
   160 = icmp slt i32 %j.phi490, i32 %h
   br i1 %160, bb %while.body156, bb %while.exit157
 while.body156:
-  163 = mul i32 %i.phi481, i32 1080
-  164 = ptradd ptr %y1, i32 %163
   520 = shl i32 %j.phi490, i32 2
   167 = ptradd ptr %164, i32 %520
-  171 = ptradd ptr %imgIn, i32 %163
   174 = ptradd ptr %171, i32 %520
   174.load = load float from ptr %174
   176 = fmul float %108, float %174.load
@@ -102,7 +103,9 @@ while.cond208:
   213 = icmp slt i32 %i.phi480, i32 %w
   br i1 %213, bb %while.body209, bb %while.exit210
 while.body209:
-  216 = sub i32 %h, i32 1
+  224 = mul i32 %i.phi480, i32 1080
+  225 = ptradd ptr %y2, i32 %224
+  247 = ptradd ptr %imgIn, i32 %224
   br bb %while.cond217
 while.exit210:
   br bb %while.cond264
@@ -115,8 +118,6 @@ while.cond217:
   221 = icmp sge i32 %j.phi488, i32 0
   br i1 %221, bb %while.body218, bb %while.exit219
 while.body218:
-  224 = mul i32 %i.phi480, i32 1080
-  225 = ptradd ptr %y2, i32 %224
   524 = shl i32 %j.phi488, i32 2
   228 = ptradd ptr %225, i32 %524
   231 = fmul float %127, float %xp1.phi
@@ -127,7 +128,6 @@ while.body218:
   242 = fmul float %145, float %yp2.phi510
   243 = fadd float %239, float %242
   store float %243 to ptr %228
-  247 = ptradd ptr %imgIn, i32 %224
   250 = ptradd ptr %247, i32 %524
   250.load = load float from ptr %250
   261 = sub i32 %j.phi488, i32 1
@@ -140,6 +140,10 @@ while.cond264:
   269 = icmp slt i32 %i.phi479, i32 %w
   br i1 %269, bb %while.body265, bb %while.exit266
 while.body265:
+  279 = mul i32 %i.phi479, i32 1080
+  280 = ptradd ptr %imgOut, i32 %279
+  287 = ptradd ptr %y1, i32 %279
+  294 = ptradd ptr %y2, i32 %279
   br bb %while.cond271
 while.exit266:
   br bb %while.cond305
@@ -148,14 +152,10 @@ while.cond271:
   276 = icmp slt i32 %j.phi486, i32 %h
   br i1 %276, bb %while.body272, bb %while.exit273
 while.body272:
-  279 = mul i32 %i.phi479, i32 1080
-  280 = ptradd ptr %imgOut, i32 %279
   527 = shl i32 %j.phi486, i32 2
   283 = ptradd ptr %280, i32 %527
-  287 = ptradd ptr %y1, i32 %279
   290 = ptradd ptr %287, i32 %527
   290.load = load float from ptr %290
-  294 = ptradd ptr %y2, i32 %279
   297 = ptradd ptr %294, i32 %527
   297.load = load float from ptr %297
   299 = fadd float %290.load, float %297.load
@@ -171,8 +171,10 @@ while.cond305:
   310 = icmp slt i32 %j.phi485, i32 %h
   br i1 %310, bb %while.body306, bb %while.exit307
 while.body306:
+  530 = shl i32 %j.phi485, i32 2
   br bb %while.cond312
 while.exit307:
+  373 = sub i32 %w, i32 1
   br bb %while.cond365
 while.cond312:
   ym2.phi = phi [bb %while.body306, float 0.000000, bb %while.body313, float %ym1.phi]
@@ -184,7 +186,6 @@ while.cond312:
 while.body313:
   320 = mul i32 %i.phi477, i32 1080
   321 = ptradd ptr %y1, i32 %320
-  530 = shl i32 %j.phi485, i32 2
   324 = ptradd ptr %321, i32 %530
   328 = ptradd ptr %imgOut, i32 %320
   331 = ptradd ptr %328, i32 %530
@@ -208,7 +209,7 @@ while.cond365:
   370 = icmp slt i32 %j.phi484, i32 %h
   br i1 %370, bb %while.body366, bb %while.exit367
 while.body366:
-  373 = sub i32 %w, i32 1
+  534 = shl i32 %j.phi484, i32 2
   br bb %while.cond374
 while.exit367:
   br bb %while.cond421
@@ -223,7 +224,6 @@ while.cond374:
 while.body375:
   381 = mul i32 %i.phi475, i32 1080
   382 = ptradd ptr %y2, i32 %381
-  534 = shl i32 %j.phi484, i32 2
   385 = ptradd ptr %382, i32 %534
   388 = fmul float %127, float %tp1.phi
   391 = fmul float %135, float %tp2.phi
@@ -246,6 +246,10 @@ while.cond421:
   426 = icmp slt i32 %i.phi, i32 %w
   br i1 %426, bb %while.body422, bb %while.exit423
 while.body422:
+  436 = mul i32 %i.phi, i32 1080
+  437 = ptradd ptr %imgOut, i32 %436
+  444 = ptradd ptr %y1, i32 %436
+  451 = ptradd ptr %y2, i32 %436
   br bb %while.cond428
 while.exit423:
   ret 
@@ -254,14 +258,10 @@ while.cond428:
   433 = icmp slt i32 %j.phi, i32 %h
   br i1 %433, bb %while.body429, bb %while.exit430
 while.body429:
-  436 = mul i32 %i.phi, i32 1080
-  437 = ptradd ptr %imgOut, i32 %436
   537 = shl i32 %j.phi, i32 2
   440 = ptradd ptr %437, i32 %537
-  444 = ptradd ptr %y1, i32 %436
   447 = ptradd ptr %444, i32 %537
   447.load = load float from ptr %447
-  451 = ptradd ptr %y2, i32 %436
   454 = ptradd ptr %451, i32 %537
   454.load = load float from ptr %454
   456 = fadd float %447.load, float %454.load

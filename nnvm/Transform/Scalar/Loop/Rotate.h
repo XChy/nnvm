@@ -1,13 +1,11 @@
 /**
- * Rotate: replace while loops with do-while loops
+ * Rotate: transform while-loops into do-while-loops
  */
 
 #pragma once
 
-#include "Analysis/DomTreeAnalysis.h"
 #include "Analysis/LoopAnalysis.h"
 #include "IR/BasicBlock.h"
-#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 

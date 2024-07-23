@@ -23,6 +23,7 @@ if.exit172:
   y.stack.phi326 = phi [bb %entry159, i32 %y, bb %then171, i32 %x]
   x.stack160.phi323 = phi [bb %entry159, i32 %x, bb %then171, i32 %y]
   353 = shl i32 %y.stack.phi326, i32 2
+  187 = ptradd ptr @dep, i32 %353
   br bb %while.cond178
 while.cond178:
   i177.phi = phi [bb %if.exit172, i32 19, bb %if.exit220, i32 %229]
@@ -30,7 +31,6 @@ while.cond178:
   352 = shl i32 %x.stack160.phi322, i32 2
   183 = ptradd ptr @dep, i32 %352
   183.load = load i32 from ptr %183
-  187 = ptradd ptr @dep, i32 %353
   187.load = load i32 from ptr %187
   189 = icmp sgt i32 %183.load, i32 %187.load
   br i1 %189, bb %while.body179, bb %while.exit180
@@ -127,10 +127,10 @@ entry94:
   99 = ptradd ptr @dep, i32 %364
   store i32 %d to ptr %99
   106 = mul i32 %x, i32 80
+  107 = ptradd ptr @f, i32 %106
   br bb %while.cond102
 while.cond102:
   i101.phi334 = phi [bb %entry94, i32 0, bb %while.body103, i32 %117]
-  107 = ptradd ptr @f, i32 %106
   365 = shl i32 %i101.phi334, i32 2
   110 = ptradd ptr %107, i32 %365
   110.load = load i32 from ptr %110
@@ -150,6 +150,7 @@ while.body103:
 while.exit104:
   137 = ptradd ptr @head, i32 %364
   137.load = load i32 from ptr %137
+  153 = add i32 %d, i32 1
   br bb %while.cond139
 while.cond139:
   i101.phi = phi [bb %while.exit104, i32 %137.load, bb %while.body140, i32 %157.load]
@@ -159,7 +160,6 @@ while.body140:
   370 = shl i32 %i101.phi, i32 2
   149 = ptradd ptr @to, i32 %370
   149.load = load i32 from ptr %149
-  153 = add i32 %d, i32 1
   call void tree(i32 %149.load, i32 %153)
   157 = ptradd ptr @next, i32 %370
   157.load = load i32 from ptr %157
@@ -279,6 +279,7 @@ LCA.if.exit172:
   y.stack.phi326389 = phi [bb %while.body304.split734.split, i32 %311.ret, bb %LCA.then171, i32 %309.ret]
   x.stack160.phi323390 = phi [bb %while.body304.split734.split, i32 %309.ret, bb %LCA.then171, i32 %311.ret]
   353398 = shl i32 %y.stack.phi326389, i32 2
+  187399 = ptradd ptr @dep, i32 %353398
   br bb %LCA.while.cond178
 LCA.while.cond178:
   i177.phi393 = phi [bb %LCA.if.exit172, i32 19, bb %LCA.if.exit220, i32 %229432]
@@ -286,7 +287,6 @@ LCA.while.cond178:
   352395 = shl i32 %x.stack160.phi322394, i32 2
   183396 = ptradd ptr @dep, i32 %352395
   183.load397 = load i32 from ptr %183396
-  187399 = ptradd ptr @dep, i32 %353398
   187.load400 = load i32 from ptr %187399
   189401 = icmp sgt i32 %183.load397, i32 %187.load400
   br i1 %189401, bb %LCA.while.body179, bb %LCA.while.exit180

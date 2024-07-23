@@ -42,6 +42,9 @@ if.exit:
   114 = ptradd ptr @used, i32 %307
   store i32 1 to ptr %114
   122 = ptradd ptr @size, i32 %307
+  127 = mul i32 %s, i32 40
+  128 = ptradd ptr @to, i32 %127
+  143 = ptradd ptr @cap, i32 %127
   br bb %while.cond116
 while.cond116:
   d.phi = phi [bb %if.exit, i32 ub, bb %if.exit188, i32 %184, bb %then149, i32 %d.phi, bb %then137, i32 %d.phi]
@@ -51,8 +54,6 @@ while.cond116:
   124 = icmp slt i32 %i115.phi, i32 %122.load
   br i1 %124, bb %while.body117, bb %while.exit118
 while.body117:
-  127 = mul i32 %s, i32 40
-  128 = ptradd ptr @to, i32 %127
   309 = shl i32 %i115.phi, i32 2
   131 = ptradd ptr %128, i32 %309
   131.load = load i32 from ptr %131
@@ -67,7 +68,6 @@ then137:
   140 = add i32 %i115.phi, i32 1
   br bb %while.cond116
 if.exit138:
-  143 = ptradd ptr @cap, i32 %127
   146 = ptradd ptr %143, i32 %309
   146.load = load i32 from ptr %146
   148 = icmp sle i32 %146.load, i32 0

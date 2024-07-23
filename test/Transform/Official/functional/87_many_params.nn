@@ -40,6 +40,8 @@ sort.while.cond:
   br i1 %9910, bb %sort.while.body, bb %sort.while.exit
 sort.while.body:
   13913 = add i32 %i.phi908, i32 1
+  680923 = shl i32 %i.phi908, i32 2
+  23924 = ptradd ptr %arr, i32 %680923
   br bb %sort.while.cond14
 sort.while.exit:
   468.load = load i32 from ptr %arr
@@ -66,8 +68,6 @@ sort.while.cond14:
   19920 = icmp slt i32 %j.phi919, i32 16
   br i1 %19920, bb %sort.while.body15, bb %sort.while.exit16
 sort.while.body15:
-  680923 = shl i32 %i.phi908, i32 2
-  23924 = ptradd ptr %arr, i32 %680923
   23.load925 = load i32 from ptr %23924
   681926 = shl i32 %j.phi919, i32 2
   27927 = ptradd ptr %arr, i32 %681926
@@ -561,6 +561,8 @@ sort.while.cond946:
   br i1 %9950, bb %sort.while.body952, bb %sort.while.exit955
 sort.while.body952:
   13953 = add i32 %i.phi948, i32 1
+  680963 = shl i32 %i.phi948, i32 2
+  23964 = ptradd ptr %arr688, i32 %680963
   br bb %sort.while.cond14957
 sort.while.exit955:
   468.load721 = load i32 from ptr %arr688
@@ -590,8 +592,6 @@ sort.while.cond14957:
   19960 = icmp slt i32 %j.phi959, i32 16
   br i1 %19960, bb %sort.while.body15962, bb %sort.while.exit16971
 sort.while.body15962:
-  680963 = shl i32 %i.phi948, i32 2
-  23964 = ptradd ptr %arr688, i32 %680963
   23.load965 = load i32 from ptr %23964
   681966 = shl i32 %j.phi959, i32 2
   27967 = ptradd ptr %arr688, i32 %681966
@@ -637,6 +637,8 @@ while.cond:
   br i1 %9, bb %while.body, bb %while.exit
 while.body:
   13 = add i32 %i.phi, i32 1
+  680 = shl i32 %i.phi, i32 2
+  23 = ptradd ptr %arr, i32 %680
   br bb %while.cond14
 while.exit:
   ret 
@@ -646,8 +648,6 @@ while.cond14:
   19 = icmp slt i32 %j.phi, i32 %len
   br i1 %19, bb %while.body15, bb %while.exit16
 while.body15:
-  680 = shl i32 %i.phi, i32 2
-  23 = ptradd ptr %arr, i32 %680
   23.load = load i32 from ptr %23
   681 = shl i32 %j.phi, i32 2
   27 = ptradd ptr %arr, i32 %681

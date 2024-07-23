@@ -5,6 +5,18 @@
 
 using namespace nnvm;
 
+BasicBlock *Loop::getSingleLatch() const {
+  for (auto *pred : header->getPredRange())
+    if (contains(pred))
+      return pred;
+  return nullptr;
+}
+
+bool Loop::isExiting(BasicBlock *BB) const {
+  return std::any_of(exits.begin(), exits.end(),
+                     [BB](ExitEdge edge) { return edge.from == BB; });
+}
+
 bool LoopAnalysis::run(Function &F) {
   domTree = getAnalysis<DomTreeAnalysis>(F);
   // post order
@@ -37,8 +49,7 @@ bool LoopAnalysis::run(Function &F) {
 
 Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
   std::vector<BasicBlock *> backNodes;
-  auto preds = makeRange(header->getPredBegin(), header->getPredEnd());
-  for (BasicBlock *pred : preds)
+  for (BasicBlock *pred : header->getPredRange())
     if (domTree->dom(header, pred))
       backNodes.push_back(pred);
 
@@ -49,6 +60,8 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
   loop->setHeader(header);
   loop->addBlock(header);
 
+  // Visit blocks in post order of dominator tree, ensuring we have analyzed the
+  // sub loop before analyzing the parent loop.
   std::deque<BasicBlock *> worklist(backNodes.begin(), backNodes.end());
   while (!worklist.empty()) {
     BasicBlock *current = worklist.front();
@@ -63,8 +76,7 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
       headerToLoop[current]->setParent(loop);
     }
 
-    for (BasicBlock *pred :
-         makeRange(current->getPredBegin(), current->getPredEnd()))
+    for (BasicBlock *pred : current->getPredRange())
       worklist.push_back(pred);
   }
   return loop;

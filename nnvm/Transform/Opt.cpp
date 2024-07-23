@@ -5,7 +5,8 @@
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
 #include "Transform/Scalar/Combiner.h"
-#include "Transform/Scalar/LICM.h"
+#include "Transform/Scalar/Loop/LICM.h"
+#include "Transform/Scalar/Loop/Rotate.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
@@ -33,6 +34,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<MemPropPass>();
   passManager.addFunctionPass<CSEPass>();
+  //passManager.addFunctionPass<RotatePass>();
   passManager.addFunctionPass<LICMPass>();
   passManager.run(*module);
 }

@@ -71,6 +71,10 @@ prim.while.cond87:
   br i1 %92310, bb %prim.while.body88, bb %prim.while.exit89
 prim.while.body88:
   96313 = add i32 %i.phi249308, i32 1
+  271324 = shl i32 %i.phi249308, i32 2
+  106325 = ptradd ptr @c, i32 %271324
+  118335 = ptradd ptr @u, i32 %271324
+  133341 = ptradd ptr @v, i32 %271324
   br bb %prim.while.cond97
 prim.while.exit89:
   br bb %prim.while.cond165
@@ -80,8 +84,6 @@ prim.while.cond97:
   102321 = icmp slt i32 %j.phi319, i32 %m.load309
   br i1 %102321, bb %prim.while.body98, bb %prim.while.exit99
 prim.while.body98:
-  271324 = shl i32 %i.phi249308, i32 2
-  106325 = ptradd ptr @c, i32 %271324
   106.load326 = load i32 from ptr %106325
   272327 = shl i32 %j.phi319, i32 2
   110328 = ptradd ptr @c, i32 %272327
@@ -91,13 +93,11 @@ prim.while.body98:
 prim.while.exit99:
   br bb %prim.while.cond87
 prim.then113:
-  118335 = ptradd ptr @u, i32 %271324
   118.load336 = load i32 from ptr %118335
   125337 = ptradd ptr @u, i32 %272327
   125.load338 = load i32 from ptr %125337
   store i32 %125.load338 to ptr %118335
   store i32 %118.load336 to ptr %125337
-  133341 = ptradd ptr @v, i32 %271324
   133.load342 = load i32 from ptr %133341
   140343 = ptradd ptr @v, i32 %272327
   140.load344 = load i32 from ptr %140343
@@ -456,6 +456,10 @@ while.cond87:
   br i1 %92, bb %while.body88, bb %while.exit89
 while.body88:
   96 = add i32 %i.phi249, i32 1
+  271 = shl i32 %i.phi249, i32 2
+  106 = ptradd ptr @c, i32 %271
+  118 = ptradd ptr @u, i32 %271
+  133 = ptradd ptr @v, i32 %271
   br bb %while.cond97
 while.exit89:
   br bb %while.cond165
@@ -465,8 +469,6 @@ while.cond97:
   102 = icmp slt i32 %j.phi, i32 %m.load
   br i1 %102, bb %while.body98, bb %while.exit99
 while.body98:
-  271 = shl i32 %i.phi249, i32 2
-  106 = ptradd ptr @c, i32 %271
   106.load = load i32 from ptr %106
   272 = shl i32 %j.phi, i32 2
   110 = ptradd ptr @c, i32 %272
@@ -476,13 +478,11 @@ while.body98:
 while.exit99:
   br bb %while.cond87
 then113:
-  118 = ptradd ptr @u, i32 %271
   118.load = load i32 from ptr %118
   125 = ptradd ptr @u, i32 %272
   125.load = load i32 from ptr %125
   store i32 %125.load to ptr %118
   store i32 %118.load to ptr %125
-  133 = ptradd ptr @v, i32 %271
   133.load = load i32 from ptr %133
   140 = ptradd ptr @v, i32 %272
   140.load = load i32 from ptr %140

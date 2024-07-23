@@ -41,11 +41,16 @@ public:
   BasicBlock *getHeader() const { return header; }
   void setHeader(BasicBlock *header) { this->header = header; }
 
+  BasicBlock *getSingleLatch() const;
+
   const std::vector<ExitEdge> &getExits() const { return exits; }
   void addExit(ExitEdge exit) { exits.push_back(exit); }
   void removeExit(ExitEdge exit) {
     exits.erase(std::remove(exits.begin(), exits.end(), exit), exits.end());
   }
+
+  // Return whether BB is one of the exiting block, which may go out of loop.
+  bool isExiting(BasicBlock *BB) const;
 
   const std::set<BasicBlock *> &getBlocks() const { return blocks; }
   void addBlock(BasicBlock *Block) { blocks.insert(Block); }

@@ -29,6 +29,8 @@ while.cond65:
   70 = icmp slt i32 %i61.phi148, i32 %m1.load69
   br i1 %70, bb %while.body66, bb %while.exit67
 while.body66:
+  80 = mul i32 %i61.phi148, i32 400
+  81 = ptradd ptr @a, i32 %80
   br bb %while.cond72
 while.exit67:
   90 = call i32 getint()
@@ -42,8 +44,6 @@ while.cond72:
   77 = icmp slt i32 %j62.phi153, i32 %n1.load76
   br i1 %77, bb %while.body73, bb %while.exit74
 while.body73:
-  80 = mul i32 %i61.phi148, i32 400
-  81 = ptradd ptr @a, i32 %80
   161 = shl i32 %j62.phi153, i32 2
   84 = ptradd ptr %81, i32 %161
   85 = call i32 getint()
@@ -59,6 +59,8 @@ while.cond92:
   97 = icmp slt i32 %i61.phi147, i32 %m2.load
   br i1 %97, bb %while.body93, bb %while.exit94
 while.body93:
+  107 = mul i32 %i61.phi147, i32 400
+  108 = ptradd ptr @b, i32 %107
   br bb %while.cond99
 while.exit94:
   br bb %matrix_multiply.while.cond
@@ -68,8 +70,6 @@ while.cond99:
   104 = icmp slt i32 %j62.phi151, i32 %n2.load103
   br i1 %104, bb %while.body100, bb %while.exit101
 while.body100:
-  107 = mul i32 %i61.phi147, i32 400
-  108 = ptradd ptr @b, i32 %107
   162 = shl i32 %j62.phi151, i32 2
   111 = ptradd ptr %108, i32 %162
   112 = call i32 getint()
@@ -85,6 +85,8 @@ while.cond118:
   123 = icmp slt i32 %i61.phi, i32 %m1.load122
   br i1 %123, bb %while.body119, bb %while.exit120
 while.body119:
+  133 = mul i32 %i61.phi, i32 400
+  134 = ptradd ptr @res, i32 %133
   br bb %while.cond125
 while.exit120:
   ret i32 0
@@ -94,8 +96,6 @@ while.cond125:
   130 = icmp slt i32 %j62.phi, i32 %n2.load129
   br i1 %130, bb %while.body126, bb %while.exit127
 while.body126:
-  133 = mul i32 %i61.phi, i32 400
-  134 = ptradd ptr @res, i32 %133
   163 = shl i32 %j62.phi, i32 2
   137 = ptradd ptr %134, i32 %163
   137.load = load i32 from ptr %137
@@ -114,6 +114,9 @@ matrix_multiply.while.cond:
   7175 = icmp slt i32 %i.phi173, i32 %m1.load174
   br i1 %7175, bb %matrix_multiply.while.body, bb %matrix_multiply.while.exit
 matrix_multiply.while.body:
+  26198 = mul i32 %i.phi173, i32 400
+  27199 = ptradd ptr @res, i32 %26198
+  40203 = ptradd ptr @a, i32 %26198
   br bb %matrix_multiply.while.cond10
 matrix_multiply.while.exit:
   br bb %while.cond118
@@ -124,6 +127,8 @@ matrix_multiply.while.cond10:
   15185 = icmp slt i32 %j.phi183, i32 %n2.load184
   br i1 %15185, bb %matrix_multiply.while.body11, bb %matrix_multiply.while.exit12
 matrix_multiply.while.body11:
+  164200 = shl i32 %j.phi183, i32 2
+  30201 = ptradd ptr %27199, i32 %164200
   br bb %matrix_multiply.while.cond18
 matrix_multiply.while.exit12:
   59190 = add i32 %i.phi173, i32 1
@@ -134,12 +139,7 @@ matrix_multiply.while.cond18:
   23195 = icmp slt i32 %k.phi193, i32 %n1.load194
   br i1 %23195, bb %matrix_multiply.while.body19, bb %matrix_multiply.while.exit20
 matrix_multiply.while.body19:
-  26198 = mul i32 %i.phi173, i32 400
-  27199 = ptradd ptr @res, i32 %26198
-  164200 = shl i32 %j.phi183, i32 2
-  30201 = ptradd ptr %27199, i32 %164200
   36.load202 = load i32 from ptr %30201
-  40203 = ptradd ptr @a, i32 %26198
   166204 = shl i32 %k.phi193, i32 2
   43205 = ptradd ptr %40203, i32 %166204
   43.load206 = load i32 from ptr %43205
@@ -181,6 +181,9 @@ while.cond:
   7 = icmp slt i32 %i.phi, i32 %m1.load
   br i1 %7, bb %while.body, bb %while.exit
 while.body:
+  26 = mul i32 %i.phi, i32 400
+  27 = ptradd ptr @res, i32 %26
+  40 = ptradd ptr @a, i32 %26
   br bb %while.cond10
 while.exit:
   ret 
@@ -191,6 +194,8 @@ while.cond10:
   15 = icmp slt i32 %j.phi, i32 %n2.load
   br i1 %15, bb %while.body11, bb %while.exit12
 while.body11:
+  164 = shl i32 %j.phi, i32 2
+  30 = ptradd ptr %27, i32 %164
   br bb %while.cond18
 while.exit12:
   59 = add i32 %i.phi, i32 1
@@ -201,12 +206,7 @@ while.cond18:
   23 = icmp slt i32 %k.phi, i32 %n1.load
   br i1 %23, bb %while.body19, bb %while.exit20
 while.body19:
-  26 = mul i32 %i.phi, i32 400
-  27 = ptradd ptr @res, i32 %26
-  164 = shl i32 %j.phi, i32 2
-  30 = ptradd ptr %27, i32 %164
   36.load = load i32 from ptr %30
-  40 = ptradd ptr @a, i32 %26
   166 = shl i32 %k.phi, i32 2
   43 = ptradd ptr %40, i32 %166
   43.load = load i32 from ptr %43

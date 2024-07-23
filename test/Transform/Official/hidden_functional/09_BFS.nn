@@ -224,10 +224,7 @@ then224.split592.split:
   282404 = shl i32 %228.ret, i32 2
   107405 = ptradd ptr @inq, i32 %282404
   store i32 1 to ptr %107405
-  109408 = add i32 0, i32 1
   store i32 %109408 to ptr @tail
-  283410 = shl i32 %109408, i32 2
-  112411 = ptradd ptr @que, i32 %283410
   store i32 %228.ret to ptr %112411
   br bb %same.while.cond132
 if.exit225:
@@ -357,6 +354,9 @@ init.while.body91:
   102374 = add i32 %i.phi367, i32 1
   br bb %init.while.cond90
 init.while.exit92:
+  109408 = add i32 0, i32 1
+  283410 = shl i32 %109408, i32 2
+  112411 = ptradd ptr @que, i32 %283410
   br bb %while.cond201
 quick_read.while.cond:
   f.phi269485 = phi [bb %entry197, i32 0, bb %quick_read.if.exit, i32 %f.phi505]

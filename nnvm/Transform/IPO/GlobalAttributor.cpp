@@ -26,6 +26,7 @@ bool GlobalAttributorPass::attachPure(Module &M) {
 
     for (BasicBlock *BB : *F) {
       for (Instruction *I : *BB) {
+
         if (CallInst *CI = mayCast<CallInst>(I)) {
           if (CI->getCallee() != F &&
               !cast<Function>(CI->getCallee())->isAttached(Attribute::Pure))
@@ -33,8 +34,13 @@ bool GlobalAttributorPass::attachPure(Module &M) {
           continue;
         }
 
-        if (I->mayWriteToMemory())
-          isPure = false;
+        if (I->mayWriteToMemory()) {
+          if (auto *SI = mayCast<StoreInst>(I)) {
+            isPure &= getRootObj(SI->getDest())->isa<StackInst>();
+          } else {
+            isPure = false;
+          }
+        }
 
         if (I->mayReadMemory()) {
           if (auto *LI = mayCast<LoadInst>(I)) {
@@ -43,6 +49,7 @@ bool GlobalAttributorPass::attachPure(Module &M) {
             isPure = false;
           }
         }
+
       }
     }
 
