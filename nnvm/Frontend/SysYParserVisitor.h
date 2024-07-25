@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -53,6 +53,12 @@ public:
     virtual std::any visitBlockItem(SysYParser::BlockItemContext *context) = 0;
 
     virtual std::any visitReturnStmt(SysYParser::ReturnStmtContext *context) = 0;
+
+    virtual std::any visitForInit(SysYParser::ForInitContext *context) = 0;
+
+    virtual std::any visitForUpdate(SysYParser::ForUpdateContext *context) = 0;
+
+    virtual std::any visitLValUpdate(SysYParser::LValUpdateContext *context) = 0;
 
     virtual std::any visitStmt(SysYParser::StmtContext *context) = 0;
 

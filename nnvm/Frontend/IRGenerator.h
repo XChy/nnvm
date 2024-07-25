@@ -75,6 +75,9 @@ public:
 
   std::any visitBlock(SysYParser::BlockContext *ctx) override;
 
+  std::any visitForInit(SysYParser::ForInitContext *ctx) override;
+  std::any visitLValUpdate(SysYParser::LValUpdateContext *ctx) override;
+
   Type *sym2IR(SymbolType *symbolTy);
 
   Symbol genImplicitCast(Symbol original, SymbolType *expectedType);
@@ -113,6 +116,9 @@ private:
                     SysYParser::BtypeContext *btypeCtx);
   std::any varDef(SysYParser::VarDefContext *ctx,
                   SysYParser::BtypeContext *btypeCtx);
+  std::any buildLoop(SysYParser::CondContext *condCtx,
+                     SysYParser::StmtContext *stmts,
+                     SysYParser::ForUpdateContext *updateCtx);
 
   void arrInitRoll(uint &valueCount, uint &offset, Value *currentValue,
                    Value *irVal, Type *irEl);

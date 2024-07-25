@@ -1,145 +1,97 @@
 parser grammar SysYParser;
 
 options {
-    tokenVocab = SysYLexer;
-    }
+	tokenVocab = SysYLexer;
+}
 
-program
-   : compUnit
-   ;
+program: compUnit;
 
+compUnit: (funcDef | decl)+ EOF;
 
-compUnit
-   : (funcDef | decl)+ EOF
-   ;
+decl: constDecl | varDecl;
 
-decl
-   : constDecl
-   | varDecl
-   ;
+constDecl: CONST btype constDef (COMMA constDef)* SEMICOLON;
 
-constDecl
-    : CONST btype constDef (COMMA constDef)* SEMICOLON
-    ;
+btype: INT | FLOAT;
 
-btype
-    : INT
-    | FLOAT
-    ;
+constDef:
+	IDENT (L_BRACKT constExp R_BRACKT)* ASSIGN constInitVal;
 
+constInitVal:
+	constExp
+	| L_BRACE ((constInitVal (COMMA constInitVal)*)?) R_BRACE;
 
-constDef
-    : IDENT (L_BRACKT constExp R_BRACKT)* ASSIGN constInitVal
-    ;
+varDecl: btype varDef (COMMA varDef)* SEMICOLON;
 
-constInitVal
-    : constExp
-    | L_BRACE ((constInitVal (COMMA constInitVal)*)?) R_BRACE
-    ;
+varDef: IDENT (L_BRACKT constExp R_BRACKT)* (ASSIGN initVal)?;
 
-varDecl
-    : btype varDef (COMMA varDef)* SEMICOLON
-    ;
+initVal: exp | L_BRACE ( initVal (COMMA initVal)*)? R_BRACE;
 
-varDef
-    : IDENT (L_BRACKT constExp R_BRACKT)* (ASSIGN initVal)?
-    ;
+funcDef: funcType IDENT L_PAREN funcFParams? R_PAREN block;
 
-initVal
-    : exp
-    | L_BRACE ( initVal (COMMA initVal)* )? R_BRACE
-    ;
+funcType: VOID | INT | FLOAT;
 
-funcDef
-    : funcType IDENT L_PAREN funcFParams? R_PAREN block
-    ;
+funcFParams: funcFParam (COMMA funcFParam)*;
 
-funcType
-    : VOID | INT | FLOAT
-    ;
+funcFParam:
+	btype IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?;
 
-funcFParams
-    : funcFParam (COMMA funcFParam)*
-    ;
+block: L_BRACE blockItem* R_BRACE;
 
-funcFParam
-    : btype IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?
-    ;
+blockItem: decl | stmt;
 
-block
-    : L_BRACE blockItem* R_BRACE
-    ;
+returnStmt: RETURN exp? SEMICOLON;
 
-blockItem
-    : decl
-    | stmt
-    ;
+forInit: (
+		(btype varDef (COMMA varDef)*)
+		| (lValUpdate (COMMA lValUpdate)*)
+	)?;
 
-returnStmt
-    :  RETURN exp? SEMICOLON
-    ;
+forUpdate: (lValUpdate (COMMA lValUpdate)*)?;
 
-stmt
-    : lVal ASSIGN exp SEMICOLON
-    | exp? SEMICOLON
-    | block
-    | IF L_PAREN cond R_PAREN stmt (ELSE stmt)?
-    | WHILE L_PAREN cond R_PAREN stmt
-    | BREAK SEMICOLON
-    | CONTINUE SEMICOLON
-    | returnStmt
-    ;
+lValUpdate: lVal ASSIGN exp;
 
-exp
-   : L_PAREN exp R_PAREN
-   | lVal 
-   | number
-   | call
-   | unaryOp exp
-   | exp (MUL | DIV | MOD) exp
-   | exp (PLUS | MINUS) exp
-   | exp (BITSHL | BITSHR) exp
-   | exp BITAND exp
-   | exp BITXOR exp
-   | exp BITOR exp
-   ;
+stmt:
+	lValUpdate SEMICOLON
+	| exp? SEMICOLON
+	| block
+	| IF L_PAREN cond R_PAREN stmt (ELSE stmt)?
+	| WHILE L_PAREN cond R_PAREN stmt
+	| FOR L_PAREN forInit SEMICOLON cond SEMICOLON forUpdate R_PAREN stmt
+	| BREAK SEMICOLON
+	| CONTINUE SEMICOLON
+	| returnStmt;
 
+exp:
+	L_PAREN exp R_PAREN
+	| lVal
+	| number
+	| call
+	| unaryOp exp
+	| exp (MUL | DIV | MOD) exp
+	| exp (PLUS | MINUS) exp
+	| exp (BITSHL | BITSHR) exp
+	| exp BITAND exp
+	| exp BITXOR exp
+	| exp BITOR exp;
 
-call
-   : IDENT L_PAREN funcRParams? R_PAREN
-   ;
+call: IDENT L_PAREN funcRParams? R_PAREN;
 
-cond
-   : exp 
-   | cond (LT | GT | LE | GE) cond
-   | cond (EQ | NEQ) cond 
-   | cond AND cond 
-   | cond OR cond 
-   ;
+cond:
+	exp
+	| cond (LT | GT | LE | GE) cond
+	| cond (EQ | NEQ) cond
+	| cond AND cond
+	| cond OR cond;
 
-lVal
-   : IDENT (L_BRACKT exp R_BRACKT)*
-   ;
+lVal: IDENT (L_BRACKT exp R_BRACKT)*;
 
-number
-   : INTEGER_CONST
-   | FLOAT_CONST
-   ;
+number: INTEGER_CONST | FLOAT_CONST;
 
-unaryOp
-   : PLUS
-   | MINUS
-   | (NOT | BITNOT)
-   ;
+unaryOp: PLUS | MINUS | (NOT | BITNOT);
 
-funcRParams
-   : param (COMMA param)*
-   ;
+funcRParams: param (COMMA param)*;
 
-param
-   : exp
-   ;
+param: exp;
 
-constExp
-   : exp
-   ;
+constExp: exp;

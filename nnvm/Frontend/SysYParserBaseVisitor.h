@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -82,6 +82,18 @@ public:
   }
 
   virtual std::any visitReturnStmt(SysYParser::ReturnStmtContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitForInit(SysYParser::ForInitContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitForUpdate(SysYParser::ForUpdateContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitLValUpdate(SysYParser::LValUpdateContext *ctx) override {
     return visitChildren(ctx);
   }
 

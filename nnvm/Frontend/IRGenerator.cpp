@@ -631,8 +631,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       irVal = globalVar;
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());
-      irVal = builder.buildStack(irElementType, symbolType->getTotalNumOfElements(),
-                                 symbolName);
+      irVal = builder.buildStack(
+          irElementType, symbolType->getTotalNumOfElements(), symbolName);
 
       if (ctx->initVal()) {
         std::vector<Value *> values;
@@ -885,6 +885,46 @@ void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
 }
 
 /**
+ * Build a loop with given condition and statements
+ * If stmt's size > 1, we will link them in sequence.
+ */
+Any IRGenerator::buildLoop(SysYParser::CondContext *condCtx,
+                           SysYParser::StmtContext *stmtCtx,
+                           SysYParser::ForUpdateContext *updateCtx) {
+  BasicBlock *whileCond =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
+  BasicBlock *whileBody =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+  BasicBlock *whileExit =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
+
+  builder.buildBr(whileCond);
+  // While Conditon
+  builder.setInsertPoint(whileCond->end());
+  Symbol cond = any_as<Symbol>(condCtx->accept(this));
+  if (!cond)
+    return Symbol::none();
+  cond.entity = builder.buildICmpNEZero(cond.entity);
+  builder.buildBr(cond.entity, whileBody, whileExit);
+
+  // While Body
+  builder.setInsertPoint(whileBody->end());
+  whileLoops.push({whileCond, whileExit});
+  stmtCtx->accept(this);
+  if (updateCtx) {
+    for (auto lValUpdate : updateCtx->lValUpdate()) {
+      lValUpdate->accept(this);
+    }
+  }
+  whileLoops.pop();
+  if (!builder.getCurrentBB()->getTerminator())
+    builder.buildBr(whileCond);
+
+  builder.setInsertPoint(whileExit->end());
+  return Symbol::none();
+}
+
+/**
  *  Visit statement
  *  @return Return inst on success, nullptr on failure
  */
@@ -893,17 +933,9 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   if (builder.getCurrentBB()->getTerminator())
     return Symbol::none();
 
-  if (ctx->ASSIGN()) { // assign
-    Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
-    if (!lhs)
-      return Symbol::none();
+  if (ctx->lValUpdate()) { // assign
+    return ctx->lValUpdate()->accept(this);
 
-    Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
-    rhs = genImplicitCast(rhs, lhs.symbolType);
-    if (!rhs)
-      return Symbol::none();
-
-    return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
   } else if (ctx->IF()) { // if else
     Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
     cond = genImplicitCast(cond, SymbolType::getBoolTy());
@@ -968,34 +1000,18 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       // TODO: error
       return Symbol::none();
     }
-    BasicBlock *whileCond =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
-    BasicBlock *whileBody =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
-    BasicBlock *whileExit =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
-
-    builder.buildBr(whileCond);
-    // While Conditon
-    builder.setInsertPoint(whileCond->end());
-    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
-    if (!cond)
-      return Symbol::none();
-    cond.entity = builder.buildICmpNEZero(cond.entity);
-    builder.buildBr(cond.entity, whileBody, whileExit);
-
-    // While Body
-    builder.setInsertPoint(whileBody->end());
-    whileLoops.push({whileCond, whileExit});
-    ctx->stmt(0)->accept(this);
-    whileLoops.pop();
-    if (!builder.getCurrentBB()->getTerminator())
-      builder.buildBr(whileCond);
-
-    builder.setInsertPoint(whileExit->end());
-    return Symbol::none();
+    return buildLoop(ctx->cond(), ctx->stmt(0), nullptr);
   } else if (ctx->BREAK()) {
     builder.buildBr(whileLoops.top().afterBB);
+  } else if (ctx->FOR()) {
+    symbolTable.enterScope();
+    ctx->forInit()->accept(this);
+    auto condCtx = ctx->cond();
+    auto stmtCtx = ctx->stmt(0);
+    auto updateCtx = ctx->forUpdate();
+    buildLoop(condCtx, stmtCtx, updateCtx);
+    symbolTable.exitScope();
+    return Symbol::none();
   }
   return Symbol::none();
 }
@@ -1471,6 +1487,32 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     nnvm_unreachable("No such literal number")
   }
   return visitChildren(ctx);
+}
+
+Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
+  Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
+  if (!lhs)
+    return Symbol::none();
+
+  Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
+  rhs = genImplicitCast(rhs, lhs.symbolType);
+  if (!rhs)
+    return Symbol::none();
+
+  return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+}
+
+Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {
+  if (ctx->btype()) {
+    for (auto *varDefCtx : ctx->varDef()) {
+      varDef(varDefCtx, ctx->btype());
+    }
+  } else {
+    for (auto lValUpdate : ctx->lValUpdate()) {
+      lValUpdate->accept(this);
+    }
+  }
+  return Symbol::none();
 }
 
 /**

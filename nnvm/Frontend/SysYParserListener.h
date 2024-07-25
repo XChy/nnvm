@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -66,6 +66,15 @@ public:
 
   virtual void enterReturnStmt(SysYParser::ReturnStmtContext *ctx) = 0;
   virtual void exitReturnStmt(SysYParser::ReturnStmtContext *ctx) = 0;
+
+  virtual void enterForInit(SysYParser::ForInitContext *ctx) = 0;
+  virtual void exitForInit(SysYParser::ForInitContext *ctx) = 0;
+
+  virtual void enterForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
+  virtual void exitForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
+
+  virtual void enterLValUpdate(SysYParser::LValUpdateContext *ctx) = 0;
+  virtual void exitLValUpdate(SysYParser::LValUpdateContext *ctx) = 0;
 
   virtual void enterStmt(SysYParser::StmtContext *ctx) = 0;
   virtual void exitStmt(SysYParser::StmtContext *ctx) = 0;
