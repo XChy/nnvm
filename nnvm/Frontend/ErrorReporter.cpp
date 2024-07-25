@@ -12,7 +12,8 @@ void ErrorReporter::errorBtype(SysYParser::BtypeContext *ctx, const std::string 
     Token *temp = ctx->getStart();
     size_t line = temp->getLine();
     size_t charPositonInLine = temp->getCharPositionInLine();
-    ErrorReporter::report(line, charPositonInLine, msg);
+    std::string error = "line" + std::to_string(line) + ":" + std::to_string(charPositonInLine) + ": " + msg;
+    errors.push_back(error);
 }
 
 
@@ -20,16 +21,28 @@ void ErrorReporter::errorFuncType(SysYParser::FuncTypeContext *ctx, const std::s
     Token *temp = ctx->getStart();
     size_t line = temp->getLine();
     size_t charPositonInLine = temp->getCharPositionInLine();
-    ErrorReporter::report(line, charPositonInLine, msg);
+    std::string error = "line" + std::to_string(line) + ":" + std::to_string(charPositonInLine) + ": " + msg;
+    errors.push_back(error);
 }
 
 void ErrorReporter::errorConstInitVal(SysYParser::ConstInitValContext *ctx, const std::string &msg) {
     Token *temp = ctx->getStart();
     size_t line = temp->getLine();
     size_t charPositonInLine = temp->getCharPositionInLine();
-    ErrorReporter::report(line, charPositonInLine, msg);
+    std::string error = "line" + std::to_string(line) + ":" + std::to_string(charPositonInLine) + ": " + msg;
+    errors.push_back(error);
 }
 
-void ErrorReporter::report(size_t line,size_t charPositionInLine,  const std::string &msg) {
-    std::cerr << "line " << line << ":" << charPositionInLine << ": " << msg << std::endl;
+void ErrorReporter::errorRecord(antlr4::ParserRuleContext *ctx, const std::string &msg) {
+    Token *temp = ctx->getStart();
+    size_t line = temp->getLine();
+    size_t charPositonInLine = temp->getCharPositionInLine();
+    std::string error = "line " + std::to_string(line) + ":" + std::to_string(charPositonInLine) + " : " + msg;
+    errors.push_back(error);
+}
+
+void ErrorReporter::report() {
+    for(const auto& error : errors) {
+        std::cerr << error << std::endl;
+    }
 }
