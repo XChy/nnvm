@@ -1490,16 +1490,63 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
 }
 
 Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
-  Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
-  if (!lhs)
+  Symbol lhs_addr = any_as<Symbol>(ctx->lVal()->accept(this));
+  if (!lhs_addr)
     return Symbol::none();
+
+  Symbol lhs = {builder.buildLoad(lhs_addr.entity, sym2IR(lhs_addr.symbolType),
+                                  lhs_addr.entity->getName() + ".load"),
+                lhs_addr.symbolType};
 
   Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
   rhs = genImplicitCast(rhs, lhs.symbolType);
   if (!rhs)
     return Symbol::none();
-
-  return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
+  Symbol ans = rhs;
+  if (ctx->PLUS_ASSIGN()) {
+    ans = {builder.buildBinOp<AddInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SUB_ASSIGN()) {
+    ans = {builder.buildBinOp<SubInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->MULT_ASSIGN()) {
+    ans = {builder.buildBinOp<MulInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->DIV_ASSIGN()) {
+    ans = {builder.buildBinOp<SDivInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->MOD_ASSIGN()) {
+    ans = {builder.buildBinOp<SRemInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->AND_ASSIGN()) {
+    ans = {builder.buildBinOp<AndInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->OR_ASSIGN()) {
+    ans = {builder.buildBinOp<OrInst>(lhs.entity, rhs.entity,
+                                      lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->XOR_ASSIGN()) {
+    ans = {builder.buildBinOp<XorInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SHL_ASSIGN()) {
+    ans = {builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SHR_ASSIGN()) {
+    ans = {builder.buildBinOp<AShrInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (!ctx->ASSIGN()) {
+    nnvm_unreachable("No such operator");
+  }
+  return builder.buildStore(ans.entity, lhs_addr.entity);
 }
 
 Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {

@@ -49,7 +49,20 @@ forInit: (
 
 forUpdate: (lValUpdate (COMMA lValUpdate)*)?;
 
-lValUpdate: lVal ASSIGN exp;
+lValUpdate:
+	lVal (
+		ASSIGN
+		| PLUS_ASSIGN
+		| SUB_ASSIGN
+		| MULT_ASSIGN
+		| DIV_ASSIGN
+		| MOD_ASSIGN
+		| AND_ASSIGN
+		| OR_ASSIGN
+		| XOR_ASSIGN
+		| SHR_ASSIGN
+		| SHL_ASSIGN
+	) exp;
 
 stmt:
 	lValUpdate SEMICOLON
