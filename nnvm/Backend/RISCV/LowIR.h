@@ -145,6 +145,10 @@ public:
     return inst;
   }
 
+  [[nodiscard]] bool isMoveInst() const {
+    return false;
+  }
+
   uint64_t type;
   LIRBB *parent;
   std::vector<LowOperand> operands;
