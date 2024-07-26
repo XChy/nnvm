@@ -9,7 +9,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry74:
+entry74:  pred()
   %arr175 = stack 64
   store i32 0 to ptr %arr175
   arr.index3177 = ptradd ptr %arr175, i32 4
@@ -57,7 +57,7 @@ external float getfloat()
 external void putfloat(float )
 
 pure i32 foo() {
-entry:
+entry:  pred()
   %arr = stack 64
   store i32 0 to ptr %arr
   arr.index3 = ptradd ptr %arr, i32 4

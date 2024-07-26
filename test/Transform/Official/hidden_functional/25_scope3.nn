@@ -1,5 +1,5 @@
 i32 main() {
-entry:
+entry:  pred()
   call void putch(i32 97)
   call void putch(i32 10)
   ret i32 46

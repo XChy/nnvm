@@ -11,7 +11,7 @@
 #include "Transform/Infra/Pass.h"
 
 namespace nnvm {
-class GlobalHoist : public FunctionPass {
+class GlobalHoistPass : public FunctionPass {
 public:
   static constexpr const char *passName = "memprop";
   bool run(Function &F);

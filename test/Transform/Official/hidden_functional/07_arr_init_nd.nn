@@ -1,23 +1,25 @@
 pure i32 main() {
-entry:
+entry:  pred()
   %i = stack 96
   %g = stack 60
   %e = stack 60
   %d = stack 60
   %c = stack 60
   %b = stack 60
-  br bb %init.cond
-init.cond:
-  cnt_ptr.phi = phi [bb %entry, i32 15, bb %init, i32 %cnt.dec]
+  8105 = icmp ne i32 15, i32 0
+  br i1 %8105, bb %init, bb %init.exit
+init.cond:  pred(init)
+  cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   8 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %8, bb %init, bb %init.exit
-init:
-  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
+init:  pred(init.cond, entry)
+  cnt_ptr.phi106 = phi [bb %entry, i32 15, bb %init.cond, i32 %cnt_ptr.phi]
+  cnt.dec = sub i32 %cnt_ptr.phi106, i32 1
   99 = shl i32 %cnt.dec, i32 2
   arr.index13 = ptradd ptr %b, i32 %99
   store i32 0 to ptr %arr.index13
   br bb %init.cond
-init.exit:
+init.exit:  pred(init.cond, entry)
   store i32 1 to ptr %c
   arr.index16 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index16
@@ -143,19 +145,21 @@ init.exit:
   store i32 4 to ptr %arr.index84
   arr.index85 = ptradd ptr %i, i32 16
   store i32 5 to ptr %arr.index85
-  br bb %init.cond86
-init.cond86:
-  cnt_ptr89.phi = phi [bb %init.exit, i32 19, bb %init87, i32 %cnt.dec93]
+  91103 = icmp ne i32 19, i32 0
+  br i1 %91103, bb %init87, bb %init.exit88
+init.cond86:  pred(init87)
+  cnt_ptr89.phi = phi [bb %init87, i32 %cnt.dec93]
   91 = icmp ne i32 %cnt_ptr89.phi, i32 0
   br i1 %91, bb %init87, bb %init.exit88
-init87:
-  cnt.dec93 = sub i32 %cnt_ptr89.phi, i32 1
+init87:  pred(init.cond86, init.exit)
+  cnt_ptr89.phi104 = phi [bb %init.exit, i32 19, bb %init.cond86, i32 %cnt_ptr89.phi]
+  cnt.dec93 = sub i32 %cnt_ptr89.phi104, i32 1
   101 = shl i32 %cnt.dec93, i32 2
   102 = add i32 %101, i32 20
   arr.index96 = ptradd ptr %i, ptr %102
   store i32 0 to ptr %arr.index96
   br bb %init.cond86
-init.exit88:
+init.exit88:  pred(init.cond86, init.exit)
   ret i32 4
 }
 

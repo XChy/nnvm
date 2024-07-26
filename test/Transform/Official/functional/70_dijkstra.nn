@@ -18,54 +18,63 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry130:
+entry130:  pred()
   132 = call i32 getint()
   store i32 %132 to ptr @n
   133 = call i32 getint()
   store i32 %133 to ptr @m
-  br bb %while.cond134
-while.cond134:
-  i131.phi213 = phi [bb %entry130, i32 1, bb %while.exit144, i32 %171]
+  n.load138385 = load i32 from ptr @n
+  139386 = icmp sle i32 1, i32 %n.load138385
+  br i1 %139386, bb %while.body135, bb %while.exit136
+while.cond134:  pred(while.exit144)
+  i131.phi213 = phi [bb %while.exit144, i32 %171]
   n.load138 = load i32 from ptr @n
   139 = icmp sle i32 %i131.phi213, i32 %n.load138
   br i1 %139, bb %while.body135, bb %while.exit136
-while.body135:
-  231 = shl i32 %i131.phi213, i32 6
-  157 = ptradd ptr @e, i32 %231
-  233 = shl i32 %i131.phi213, i32 6
-  163 = ptradd ptr @e, i32 %233
-  br bb %while.cond142
-while.exit136:
-  br bb %while.cond172
-while.cond142:
-  j141.phi = phi [bb %while.body135, i32 1, bb %if.exit153, i32 %169]
-  147 = icmp sle i32 %j141.phi, i32 %n.load138
+while.body135:  pred(while.cond134, entry130)
+  n.load138385388 = phi [bb %while.cond134, i32 %n.load138, bb %entry130, i32 %n.load138385]
+  i131.phi213387 = phi [bb %entry130, i32 1, bb %while.cond134, i32 %i131.phi213]
+  147360 = icmp sle i32 1, i32 %n.load138385388
+  br i1 %147360, bb %while.body143, bb %while.exit144
+while.exit136:  pred(while.cond134, entry130)
+  m.load382 = load i32 from ptr @m
+  177383 = icmp sle i32 1, i32 %m.load382
+  br i1 %177383, bb %while.body173, bb %while.exit174
+while.cond142:  pred(if.exit153)
+  j141.phi = phi [bb %if.exit153, i32 %169]
+  147 = icmp sle i32 %j141.phi, i32 %n.load138385388
   br i1 %147, bb %while.body143, bb %while.exit144
-while.body143:
-  151 = icmp eq i32 %i131.phi213, i32 %j141.phi
+while.body143:  pred(while.cond142, while.body135)
+  j141.phi361 = phi [bb %while.body135, i32 1, bb %while.cond142, i32 %j141.phi]
+  151 = icmp eq i32 %i131.phi213387, i32 %j141.phi361
   br i1 %151, bb %then152, bb %else
-while.exit144:
-  171 = add i32 %i131.phi213, i32 1
+while.exit144:  pred(while.cond142, while.body135)
+  171 = add i32 %i131.phi213387, i32 1
   br bb %while.cond134
-then152:
-  232 = shl i32 %j141.phi, i32 2
+then152:  pred(while.body143)
+  231 = shl i32 %i131.phi213387, i32 6
+  157 = ptradd ptr @e, i32 %231
+  232 = shl i32 %j141.phi361, i32 2
   160 = ptradd ptr %157, i32 %232
   store i32 0 to ptr %160
   br bb %if.exit153
-if.exit153:
-  169 = add i32 %j141.phi, i32 1
+if.exit153:  pred(then152, else)
+  169 = add i32 %j141.phi361, i32 1
   br bb %while.cond142
-else:
-  234 = shl i32 %j141.phi, i32 2
+else:  pred(while.body143)
+  233 = shl i32 %i131.phi213387, i32 6
+  163 = ptradd ptr @e, i32 %233
+  234 = shl i32 %j141.phi361, i32 2
   166 = ptradd ptr %163, i32 %234
   store i32 65535 to ptr %166
   br bb %if.exit153
-while.cond172:
-  i131.phi212 = phi [bb %while.exit136, i32 1, bb %while.body173, i32 %191]
+while.cond172:  pred(while.body173)
+  i131.phi212 = phi [bb %while.body173, i32 %191]
   m.load = load i32 from ptr @m
   177 = icmp sle i32 %i131.phi212, i32 %m.load
   br i1 %177, bb %while.body173, bb %while.exit174
-while.body173:
+while.body173:  pred(while.cond172, while.exit136)
+  i131.phi212384 = phi [bb %while.exit136, i32 1, bb %while.cond172, i32 %i131.phi212]
   180 = call i32 getint()
   182 = call i32 getint()
   235 = shl i32 %180, i32 6
@@ -74,118 +83,138 @@ while.body173:
   188 = ptradd ptr %185, i32 %236
   189 = call i32 getint()
   store i32 %189 to ptr %188
-  191 = add i32 %i131.phi212, i32 1
+  191 = add i32 %i131.phi212384, i32 1
   br bb %while.cond172
-while.exit174:
-  14266 = ptradd ptr @e, i32 64
-  br bb %Dijkstra.while.cond
-while.cond193:
-  i131.phi = phi [bb %Dijkstra.while.exit28, i32 1, bb %while.body194, i32 %207]
+while.exit174:  pred(while.cond172, while.exit136)
+  n.load260378 = load i32 from ptr @n
+  8261379 = icmp sle i32 1, i32 %n.load260378
+  br i1 %8261379, bb %Dijkstra.while.body, bb %Dijkstra.while.exit
+while.cond193:  pred(while.body194)
+  i131.phi = phi [bb %while.body194, i32 %207]
   n.load197 = load i32 from ptr @n
   198 = icmp sle i32 %i131.phi, i32 %n.load197
   br i1 %198, bb %while.body194, bb %while.exit195
-while.body194:
-  237 = shl i32 %i131.phi, i32 2
+while.body194:  pred(while.cond193, Dijkstra.while.exit28)
+  i131.phi373 = phi [bb %Dijkstra.while.exit28, i32 1, bb %while.cond193, i32 %i131.phi]
+  237 = shl i32 %i131.phi373, i32 2
   202 = ptradd ptr @dis, i32 %237
   202.load = load i32 from ptr %202
   call void putint(i32 %202.load)
   call void putch(i32 32)
-  207 = add i32 %i131.phi, i32 1
+  207 = add i32 %i131.phi373, i32 1
   br bb %while.cond193
-while.exit195:
+while.exit195:  pred(while.cond193, Dijkstra.while.exit28)
   call void putch(i32 10)
   ret i32 0
-Dijkstra.while.cond:
-  i.phi220259 = phi [bb %while.exit174, i32 1, bb %Dijkstra.while.body, i32 %23272]
+Dijkstra.while.cond:  pred(Dijkstra.while.body)
+  i.phi220259 = phi [bb %Dijkstra.while.body, i32 %23272]
   n.load260 = load i32 from ptr @n
   8261 = icmp sle i32 %i.phi220259, i32 %n.load260
   br i1 %8261, bb %Dijkstra.while.body, bb %Dijkstra.while.exit
-Dijkstra.while.body:
-  238264 = shl i32 %i.phi220259, i32 2
+Dijkstra.while.body:  pred(Dijkstra.while.cond, while.exit174)
+  i.phi220259381 = phi [bb %while.exit174, i32 1, bb %Dijkstra.while.cond, i32 %i.phi220259]
+  238264 = shl i32 %i.phi220259381, i32 2
   12265 = ptradd ptr @dis, i32 %238264
+  14266 = ptradd ptr @e, i32 64
   17267 = ptradd ptr %14266, i32 %238264
   17.load268 = load i32 from ptr %17267
   store i32 %17.load268 to ptr %12265
   21270 = ptradd ptr @book, i32 %238264
   store i32 0 to ptr %21270
-  23272 = add i32 %i.phi220259, i32 1
+  23272 = add i32 %i.phi220259381, i32 1
   br bb %Dijkstra.while.cond
-Dijkstra.while.exit:
+Dijkstra.while.exit:  pred(Dijkstra.while.cond, while.exit174)
+  n.load260378380 = phi [bb %Dijkstra.while.cond, i32 %n.load260, bb %while.exit174, i32 %n.load260378]
   25275 = ptradd ptr @book, i32 4
   store i32 1 to ptr %25275
-  31282 = sub i32 %n.load260, i32 1
-  br bb %Dijkstra.while.cond26
-Dijkstra.while.cond26:
-  select.phi226279 = phi [bb %Dijkstra.while.exit, i1 ub, bb %Dijkstra.while.exit76, i1 %select.phi225291]
-  i.phi280 = phi [bb %Dijkstra.while.exit, i32 1, bb %Dijkstra.while.exit76, i32 %129340]
+  31282374 = sub i32 %n.load260378380, i32 1
+  32283375 = icmp sle i32 1, i32 %31282374
+  br i1 %32283375, bb %Dijkstra.while.body27, bb %Dijkstra.while.exit28
+Dijkstra.while.cond26:  pred(Dijkstra.while.exit76)
+  select.phi226279 = phi [bb %Dijkstra.while.exit76, i1 %select.phi226279365]
+  i.phi280 = phi [bb %Dijkstra.while.exit76, i32 %129340]
+  31282 = sub i32 %n.load260378380, i32 1
   32283 = icmp sle i32 %i.phi280, i32 %31282
   br i1 %32283, bb %Dijkstra.while.body27, bb %Dijkstra.while.exit28
-Dijkstra.while.body27:
-  br bb %Dijkstra.while.cond38
-Dijkstra.while.exit28:
-  br bb %while.cond193
-Dijkstra.while.cond38:
-  k.phi290 = phi [bb %Dijkstra.while.body27, i32 1, bb %Dijkstra.if.exit, i32 %69324]
-  select.phi225291 = phi [bb %Dijkstra.while.body27, i1 %select.phi226279, bb %Dijkstra.if.exit, i1 %select.phi316]
-  min_index.phi222292 = phi [bb %Dijkstra.while.body27, i32 0, bb %Dijkstra.if.exit, i32 %min_index.phi322]
-  min_num.phi217293 = phi [bb %Dijkstra.while.body27, i32 65535, bb %Dijkstra.if.exit, i32 %min_num.phi323]
-  43295 = icmp sle i32 %k.phi290, i32 %n.load260
+Dijkstra.while.body27:  pred(Dijkstra.while.cond26, Dijkstra.while.exit)
+  i.phi280377 = phi [bb %Dijkstra.while.exit, i32 1, bb %Dijkstra.while.cond26, i32 %i.phi280]
+  select.phi226279376 = phi [bb %Dijkstra.while.exit, i1 0, bb %Dijkstra.while.cond26, i1 %select.phi226279]
+  43295364 = icmp sle i32 1, i32 %n.load260378380
+  br i1 %43295364, bb %Dijkstra.while.body39, bb %Dijkstra.while.exit40
+Dijkstra.while.exit28:  pred(Dijkstra.while.cond26, Dijkstra.while.exit)
+  n.load197371 = load i32 from ptr @n
+  198372 = icmp sle i32 1, i32 %n.load197371
+  br i1 %198372, bb %while.body194, bb %while.exit195
+Dijkstra.while.cond38:  pred(Dijkstra.if.exit)
+  k.phi290 = phi [bb %Dijkstra.if.exit, i32 %69324]
+  select.phi225291 = phi [bb %Dijkstra.if.exit, i1 %select.phi316]
+  min_index.phi222292 = phi [bb %Dijkstra.if.exit, i32 %min_index.phi322]
+  min_num.phi217293 = phi [bb %Dijkstra.if.exit, i32 %min_num.phi323]
+  43295 = icmp sle i32 %k.phi290, i32 %n.load260378380
   br i1 %43295, bb %Dijkstra.while.body39, bb %Dijkstra.while.exit40
-Dijkstra.while.body39:
-  241298 = shl i32 %k.phi290, i32 2
+Dijkstra.while.body39:  pred(Dijkstra.while.cond38, Dijkstra.while.body27)
+  min_num.phi217293370 = phi [bb %Dijkstra.while.body27, i32 65535, bb %Dijkstra.while.cond38, i32 %min_num.phi217293]
+  min_index.phi222292369 = phi [bb %Dijkstra.while.body27, i32 0, bb %Dijkstra.while.cond38, i32 %min_index.phi222292]
+  select.phi225291368 = phi [bb %Dijkstra.while.body27, i1 %select.phi226279376, bb %Dijkstra.while.cond38, i1 %select.phi225291]
+  k.phi290367 = phi [bb %Dijkstra.while.body27, i32 1, bb %Dijkstra.while.cond38, i32 %k.phi290]
+  241298 = shl i32 %k.phi290367, i32 2
   48299 = ptradd ptr @dis, i32 %241298
   48.load300 = load i32 from ptr %48299
-  50301 = icmp sgt i32 %min_num.phi217293, i32 %48.load300
+  50301 = icmp sgt i32 %min_num.phi217293370, i32 %48.load300
   br i1 %50301, bb %Dijkstra.select.then, bb %Dijkstra.select.else
-Dijkstra.while.exit40:
-  242304 = shl i32 %min_index.phi222292, i32 2
+Dijkstra.while.exit40:  pred(Dijkstra.while.cond38, Dijkstra.while.body27)
+  366 = phi [bb %Dijkstra.while.cond38, i32 %min_index.phi222292, bb %Dijkstra.while.body27, i32 0]
+  select.phi226279365 = phi [bb %Dijkstra.while.cond38, i1 %select.phi225291, bb %Dijkstra.while.body27, i1 %select.phi226279376]
+  242304 = shl i32 %366, i32 2
   72305 = ptradd ptr @book, i32 %242304
   store i32 1 to ptr %72305
-  245332 = shl i32 %min_index.phi222292, i32 6
-  83333 = ptradd ptr @e, i32 %245332
-  98345 = ptradd ptr @dis, i32 %242304
-  br bb %Dijkstra.while.cond74
-Dijkstra.select.then:
+  79329362 = icmp sle i32 1, i32 %n.load260378380
+  br i1 %79329362, bb %Dijkstra.while.body75, bb %Dijkstra.while.exit76
+Dijkstra.select.then:  pred(Dijkstra.while.body39)
   57309 = ptradd ptr @book, i32 %241298
   57.load310 = load i32 from ptr %57309
   59311 = icmp eq i32 %57.load310, i32 0
   br bb %Dijkstra.select.exit
-Dijkstra.select.else:
+Dijkstra.select.else:  pred(Dijkstra.while.body39)
   br bb %Dijkstra.select.exit
-Dijkstra.select.exit:
+Dijkstra.select.exit:  pred(Dijkstra.select.then, Dijkstra.select.else)
   select.phi316 = phi [bb %Dijkstra.select.else, i1 0, bb %Dijkstra.select.then, i1 %59311]
   br i1 %select.phi316, bb %Dijkstra.then, bb %Dijkstra.if.exit
-Dijkstra.then:
+Dijkstra.then:  pred(Dijkstra.select.exit)
   br bb %Dijkstra.if.exit
-Dijkstra.if.exit:
-  min_index.phi322 = phi [bb %Dijkstra.select.exit, i32 %min_index.phi222292, bb %Dijkstra.then, i32 %k.phi290]
-  min_num.phi323 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi217293, bb %Dijkstra.then, i32 %48.load300]
-  69324 = add i32 %k.phi290, i32 1
+Dijkstra.if.exit:  pred(Dijkstra.select.exit, Dijkstra.then)
+  min_index.phi322 = phi [bb %Dijkstra.select.exit, i32 %min_index.phi222292369, bb %Dijkstra.then, i32 %k.phi290367]
+  min_num.phi323 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi217293370, bb %Dijkstra.then, i32 %48.load300]
+  69324 = add i32 %k.phi290367, i32 1
   br bb %Dijkstra.while.cond38
-Dijkstra.while.cond74:
-  j73.phi327 = phi [bb %Dijkstra.while.exit40, i32 1, bb %Dijkstra.if.exit91, i32 %127352]
-  79329 = icmp sle i32 %j73.phi327, i32 %n.load260
+Dijkstra.while.cond74:  pred(Dijkstra.if.exit91)
+  j73.phi327 = phi [bb %Dijkstra.if.exit91, i32 %127352]
+  79329 = icmp sle i32 %j73.phi327, i32 %n.load260378380
   br i1 %79329, bb %Dijkstra.while.body75, bb %Dijkstra.while.exit76
-Dijkstra.while.body75:
-  246334 = shl i32 %j73.phi327, i32 2
+Dijkstra.while.body75:  pred(Dijkstra.while.cond74, Dijkstra.while.exit40)
+  j73.phi327363 = phi [bb %Dijkstra.while.exit40, i32 1, bb %Dijkstra.while.cond74, i32 %j73.phi327]
+  245332 = shl i32 %366, i32 6
+  83333 = ptradd ptr @e, i32 %245332
+  246334 = shl i32 %j73.phi327363, i32 2
   86335 = ptradd ptr %83333, i32 %246334
   86.load336 = load i32 from ptr %86335
   89337 = icmp slt i32 %86.load336, i32 65535
   br i1 %89337, bb %Dijkstra.then90, bb %Dijkstra.if.exit91
-Dijkstra.while.exit76:
-  129340 = add i32 %i.phi280, i32 1
+Dijkstra.while.exit76:  pred(Dijkstra.while.cond74, Dijkstra.while.exit40)
+  129340 = add i32 %i.phi280377, i32 1
   br bb %Dijkstra.while.cond26
-Dijkstra.then90:
+Dijkstra.then90:  pred(Dijkstra.while.body75)
   94343 = ptradd ptr @dis, i32 %246334
   94.load344 = load i32 from ptr %94343
+  98345 = ptradd ptr @dis, i32 %242304
   98.load346 = load i32 from ptr %98345
   107348 = add i32 %98.load346, i32 %86.load336
   108349 = icmp sgt i32 %94.load344, i32 %107348
   br i1 %108349, bb %Dijkstra.then109, bb %Dijkstra.if.exit91
-Dijkstra.if.exit91:
-  127352 = add i32 %j73.phi327, i32 1
+Dijkstra.if.exit91:  pred(Dijkstra.while.body75, Dijkstra.then90, Dijkstra.then109)
+  127352 = add i32 %j73.phi327363, i32 1
   br bb %Dijkstra.while.cond74
-Dijkstra.then109:
+Dijkstra.then109:  pred(Dijkstra.then90)
   116.load355 = load i32 from ptr %98345
   125357 = add i32 %116.load355, i32 %86.load336
   store i32 %125357 to ptr %94343
@@ -203,100 +232,117 @@ external void _sysy_stoptime(i32 )
 external void putarray(i32 , ptr )
 
 void Dijkstra() {
-entry:
-  14 = ptradd ptr @e, i32 64
-  br bb %while.cond
-while.cond:
-  i.phi220 = phi [bb %entry, i32 1, bb %while.body, i32 %23]
+entry:  pred()
+  n.load402 = load i32 from ptr @n
+  8403 = icmp sle i32 1, i32 %n.load402
+  br i1 %8403, bb %while.body, bb %while.exit
+while.cond:  pred(while.body)
+  i.phi220 = phi [bb %while.body, i32 %23]
   n.load = load i32 from ptr @n
   8 = icmp sle i32 %i.phi220, i32 %n.load
   br i1 %8, bb %while.body, bb %while.exit
-while.body:
-  238 = shl i32 %i.phi220, i32 2
+while.body:  pred(while.cond, entry)
+  i.phi220405 = phi [bb %entry, i32 1, bb %while.cond, i32 %i.phi220]
+  238 = shl i32 %i.phi220405, i32 2
   12 = ptradd ptr @dis, i32 %238
+  14 = ptradd ptr @e, i32 64
   17 = ptradd ptr %14, i32 %238
   17.load = load i32 from ptr %17
   store i32 %17.load to ptr %12
   21 = ptradd ptr @book, i32 %238
   store i32 0 to ptr %21
-  23 = add i32 %i.phi220, i32 1
+  23 = add i32 %i.phi220405, i32 1
   br bb %while.cond
-while.exit:
+while.exit:  pred(while.cond, entry)
+  n.load402404 = phi [bb %while.cond, i32 %n.load, bb %entry, i32 %n.load402]
   25 = ptradd ptr @book, i32 4
   store i32 1 to ptr %25
-  31 = sub i32 %n.load, i32 1
-  br bb %while.cond26
-while.cond26:
-  select.phi226 = phi [bb %while.exit, i1 ub, bb %while.exit76, i1 %select.phi225]
-  i.phi = phi [bb %while.exit, i32 1, bb %while.exit76, i32 %129]
+  31398 = sub i32 %n.load402404, i32 1
+  32399 = icmp sle i32 1, i32 %31398
+  br i1 %32399, bb %while.body27, bb %while.exit28
+while.cond26:  pred(while.exit76)
+  select.phi226 = phi [bb %while.exit76, i1 %select.phi226392]
+  i.phi = phi [bb %while.exit76, i32 %129]
+  31 = sub i32 %n.load402404, i32 1
   32 = icmp sle i32 %i.phi, i32 %31
   br i1 %32, bb %while.body27, bb %while.exit28
-while.body27:
-  br bb %while.cond38
-while.exit28:
+while.body27:  pred(while.cond26, while.exit)
+  i.phi401 = phi [bb %while.exit, i32 1, bb %while.cond26, i32 %i.phi]
+  select.phi226400 = phi [bb %while.exit, i1 0, bb %while.cond26, i1 %select.phi226]
+  43391 = icmp sle i32 1, i32 %n.load402404
+  br i1 %43391, bb %while.body39, bb %while.exit40
+while.exit28:  pred(while.cond26, while.exit)
   ret 
-while.cond38:
-  k.phi = phi [bb %while.body27, i32 1, bb %if.exit, i32 %69]
-  select.phi225 = phi [bb %while.body27, i1 %select.phi226, bb %if.exit, i1 %select.phi]
-  min_index.phi222 = phi [bb %while.body27, i32 0, bb %if.exit, i32 %min_index.phi]
-  min_num.phi217 = phi [bb %while.body27, i32 65535, bb %if.exit, i32 %min_num.phi]
-  43 = icmp sle i32 %k.phi, i32 %n.load
+while.cond38:  pred(if.exit)
+  k.phi = phi [bb %if.exit, i32 %69]
+  select.phi225 = phi [bb %if.exit, i1 %select.phi]
+  min_index.phi222 = phi [bb %if.exit, i32 %min_index.phi]
+  min_num.phi217 = phi [bb %if.exit, i32 %min_num.phi]
+  43 = icmp sle i32 %k.phi, i32 %n.load402404
   br i1 %43, bb %while.body39, bb %while.exit40
-while.body39:
-  241 = shl i32 %k.phi, i32 2
+while.body39:  pred(while.cond38, while.body27)
+  min_num.phi217397 = phi [bb %while.body27, i32 65535, bb %while.cond38, i32 %min_num.phi217]
+  min_index.phi222396 = phi [bb %while.body27, i32 0, bb %while.cond38, i32 %min_index.phi222]
+  select.phi225395 = phi [bb %while.body27, i1 %select.phi226400, bb %while.cond38, i1 %select.phi225]
+  k.phi394 = phi [bb %while.body27, i32 1, bb %while.cond38, i32 %k.phi]
+  241 = shl i32 %k.phi394, i32 2
   48 = ptradd ptr @dis, i32 %241
   48.load = load i32 from ptr %48
-  50 = icmp sgt i32 %min_num.phi217, i32 %48.load
+  50 = icmp sgt i32 %min_num.phi217397, i32 %48.load
   br i1 %50, bb %select.then, bb %select.else
-while.exit40:
-  242 = shl i32 %min_index.phi222, i32 2
+while.exit40:  pred(while.cond38, while.body27)
+  393 = phi [bb %while.cond38, i32 %min_index.phi222, bb %while.body27, i32 0]
+  select.phi226392 = phi [bb %while.cond38, i1 %select.phi225, bb %while.body27, i1 %select.phi226400]
+  242 = shl i32 %393, i32 2
   72 = ptradd ptr @book, i32 %242
   store i32 1 to ptr %72
-  245 = shl i32 %min_index.phi222, i32 6
-  83 = ptradd ptr @e, i32 %245
-  98 = ptradd ptr @dis, i32 %242
-  br bb %while.cond74
-select.then:
+  79389 = icmp sle i32 1, i32 %n.load402404
+  br i1 %79389, bb %while.body75, bb %while.exit76
+select.then:  pred(while.body39)
   57 = ptradd ptr @book, i32 %241
   57.load = load i32 from ptr %57
   59 = icmp eq i32 %57.load, i32 0
   br bb %select.exit
-select.else:
+select.else:  pred(while.body39)
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %59]
   br i1 %select.phi, bb %then, bb %if.exit
-then:
+then:  pred(select.exit)
   br bb %if.exit
-if.exit:
-  min_index.phi = phi [bb %select.exit, i32 %min_index.phi222, bb %then, i32 %k.phi]
-  min_num.phi = phi [bb %select.exit, i32 %min_num.phi217, bb %then, i32 %48.load]
-  69 = add i32 %k.phi, i32 1
+if.exit:  pred(select.exit, then)
+  min_index.phi = phi [bb %select.exit, i32 %min_index.phi222396, bb %then, i32 %k.phi394]
+  min_num.phi = phi [bb %select.exit, i32 %min_num.phi217397, bb %then, i32 %48.load]
+  69 = add i32 %k.phi394, i32 1
   br bb %while.cond38
-while.cond74:
-  j73.phi = phi [bb %while.exit40, i32 1, bb %if.exit91, i32 %127]
-  79 = icmp sle i32 %j73.phi, i32 %n.load
+while.cond74:  pred(if.exit91)
+  j73.phi = phi [bb %if.exit91, i32 %127]
+  79 = icmp sle i32 %j73.phi, i32 %n.load402404
   br i1 %79, bb %while.body75, bb %while.exit76
-while.body75:
-  246 = shl i32 %j73.phi, i32 2
+while.body75:  pred(while.cond74, while.exit40)
+  j73.phi390 = phi [bb %while.exit40, i32 1, bb %while.cond74, i32 %j73.phi]
+  245 = shl i32 %393, i32 6
+  83 = ptradd ptr @e, i32 %245
+  246 = shl i32 %j73.phi390, i32 2
   86 = ptradd ptr %83, i32 %246
   86.load = load i32 from ptr %86
   89 = icmp slt i32 %86.load, i32 65535
   br i1 %89, bb %then90, bb %if.exit91
-while.exit76:
-  129 = add i32 %i.phi, i32 1
+while.exit76:  pred(while.cond74, while.exit40)
+  129 = add i32 %i.phi401, i32 1
   br bb %while.cond26
-then90:
+then90:  pred(while.body75)
   94 = ptradd ptr @dis, i32 %246
   94.load = load i32 from ptr %94
+  98 = ptradd ptr @dis, i32 %242
   98.load = load i32 from ptr %98
   107 = add i32 %98.load, i32 %86.load
   108 = icmp sgt i32 %94.load, i32 %107
   br i1 %108, bb %then109, bb %if.exit91
-if.exit91:
-  127 = add i32 %j73.phi, i32 1
+if.exit91:  pred(while.body75, then90, then109)
+  127 = add i32 %j73.phi390, i32 1
   br bb %while.cond74
-then109:
+then109:  pred(then90)
   116.load = load i32 from ptr %98
   125 = add i32 %116.load, i32 %86.load
   store i32 %125 to ptr %94

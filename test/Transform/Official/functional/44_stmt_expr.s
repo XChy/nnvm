@@ -15,19 +15,15 @@ main:
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  LA s0, k
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADD s0, zero, zero
+  LA s1, k
+  ADDI s2, zero, 1
+  SW s2, 0(s1)
+  ADDI s1, zero, 9
+  SLT s1, s1, zero
+  XORI s1, s1, 1
+  BNE s1, zero, bb2
   # implict jump to bb1
 bb1:
-  ADD s1, s0, zero
-  ADDI s2, zero, 9
-  SLT s2, s2, s1
-  XORI s2, s2, 1
-  BNE s2, zero, bb3
-  # implict jump to bb2
-bb2:
   LA s2, k
   LW s2, 0(s2)
   ADD a0, s2, zero
@@ -42,12 +38,24 @@ bb2:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
+bb2:
+  ADD s1, zero, zero
+  # implict jump to bb3
 bb3:
-  ADDIW s1, s1, 1
+  ADD s2, s1, zero
+  ADDIW s0, s2, 1
   LA s2, k
   LW s2, 0(s2)
   SLLIW s2, s2, 1
   LA s3, k
   SW s2, 0(s3)
-  ADD s0, s1, zero
+  # implict jump to bb4
+bb4:
+  ADDI s2, zero, 9
+  SLT s2, s2, s0
+  XORI s2, s2, 1
+  BNE s2, zero, bb5
   JAL zero, bb1
+bb5:
+  ADD s1, s0, zero
+  JAL zero, bb3

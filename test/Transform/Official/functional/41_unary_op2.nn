@@ -1,5 +1,5 @@
 i32 main() {
-entry:
+entry:  pred()
   11 = zext i1 0 to i32
   12 = icmp ne i32 %11, i32 0
   13 = xor i1 %12, i1 -1
@@ -10,13 +10,13 @@ entry:
   18 = sub i32 0, i32 %17
   19 = icmp ne i32 %18, i32 0
   br i1 %19, bb %then, bb %else
-then:
+then:  pred(entry)
   br bb %if.exit
-if.exit:
+if.exit:  pred(then, else)
   a.phi = phi [bb %else, i32 4, bb %then, i32 -1]
   call void putint(i32 %a.phi)
   ret i32 0
-else:
+else:  pred(entry)
   br bb %if.exit
 }
 

@@ -1,49 +1,49 @@
 pure i32 func6(i32 x, i32 y) {
-entry59:
+entry59:  pred()
   63 = icmp ne i32 %x, i32 0
   br i1 %63, bb %select.then, bb %select.else
-select.then:
+select.then:  pred(entry59)
   69 = icmp ne i32 %y, i32 0
   br bb %select.exit
-select.else:
+select.else:  pred(entry59)
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %69]
   br i1 %select.phi, bb %then71, bb %else73
-then71:
+then71:  pred(select.exit)
   ret i32 1
-else73:
+else73:  pred(select.exit)
   ret i32 0
 }
 
 pure i32 func5(i32 x) {
-entry55:
+entry55:  pred()
   58 = sub i32 0, i32 %x
   ret i32 %58
 }
 
 pure i32 func2(i32 x, i32 y) {
-entry17:
+entry17:  pred()
   21 = icmp ne i32 %y, i32 0
   br i1 %21, bb %then22, bb %else24
-then22:
+then22:  pred(entry17)
   27 = srem i32 %x, i32 %y
   28 = call i32 func2(i32 %27, i32 0)
   ret i32 %28
-else24:
+else24:  pred(entry17)
   ret i32 %x
 }
 
 external i32 getint()
 
 pure i32 func3(i32 x, i32 y) {
-entry30:
+entry30:  pred()
   34 = icmp eq i32 %y, i32 0
   br i1 %34, bb %then35, bb %else37
-then35:
+then35:  pred(entry30)
   39 = add i32 %x, i32 1
   ret i32 %39
-else37:
+else37:  pred(entry30)
   42 = add i32 %x, i32 %y
   43 = call i32 func3(i32 %42, i32 0)
   ret i32 %43
@@ -54,25 +54,25 @@ external i32 getch()
 external void putint(i32 )
 
 pure i32 func7(i32 x) {
-entry74:
+entry74:  pred()
   77 = icmp ne i32 %x, i32 0
   78 = xor i1 %77, i1 -1
   79 = zext i1 %78 to i32
   80 = icmp ne i32 %79, i32 0
   br i1 %80, bb %then81, bb %else83
-then81:
+then81:  pred(entry74)
   ret i32 1
-else83:
+else83:  pred(entry74)
   ret i32 0
 }
 
 pure i32 func4(i32 x, i32 y, i32 z) {
-entry44:
+entry44:  pred()
   49 = icmp ne i32 %x, i32 0
   br i1 %49, bb %then50, bb %else52
-then50:
+then50:  pred(entry44)
   ret i32 %y
-else52:
+else52:  pred(entry44)
   ret i32 %z
 }
 
@@ -81,36 +81,38 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry84:
+entry84:  pred()
   %arr = stack 40
   86 = call i32 getint()
   88 = call i32 getint()
   90 = call i32 getint()
   92 = call i32 getint()
-  br bb %while.cond
-while.cond:
-  i.phi = phi [bb %entry84, i32 0, bb %while.body, i32 %106]
+  99369 = icmp slt i32 0, i32 10
+  br i1 %99369, bb %while.body, bb %while.exit
+while.cond:  pred(while.body)
+  i.phi = phi [bb %while.body, i32 %106]
   99 = icmp slt i32 %i.phi, i32 10
   br i1 %99, bb %while.body, bb %while.exit
-while.body:
-  214 = shl i32 %i.phi, i32 2
+while.body:  pred(while.cond, entry84)
+  i.phi370 = phi [bb %entry84, i32 0, bb %while.cond, i32 %i.phi]
+  214 = shl i32 %i.phi370, i32 2
   103 = ptradd ptr %arr, i32 %214
   104 = call i32 getint()
   store i32 %104 to ptr %103
-  106 = add i32 %i.phi, i32 1
+  106 = add i32 %i.phi370, i32 1
   br bb %while.cond
-while.exit:
+while.exit:  pred(while.cond, entry84)
   77281 = icmp ne i32 %86, i32 0
   78282 = xor i1 %77281, i1 -1
   79283 = zext i1 %78282 to i32
   80284 = icmp ne i32 %79283, i32 0
   br i1 %80284, bb %func7.then81, bb %func7.else83
-while.exit.split279:
+while.exit.split279:  pred(func7.then81, func7.else83)
   109.ret = phi [bb %func7.then81, i32 1, bb %func7.else83, i32 0]
   58251 = sub i32 0, i32 %88
   63217 = icmp ne i32 %109.ret, i32 0
   br i1 %63217, bb %func6.select.then, bb %func6.select.else
-while.exit.split:
+while.exit.split:  pred(func6.then71, func6.else73)
   112.ret = phi [bb %func6.then71, i32 1, bb %func6.else73, i32 0]
   114 = call i32 func2(i32 %112.ret, i32 %90)
   116 = call i32 func3(i32 %114, i32 %92)
@@ -128,11 +130,11 @@ while.exit.split:
   79295 = zext i1 %78294 to i32
   80296 = icmp ne i32 %79295, i32 0
   br i1 %80296, bb %func7.then81298, bb %func7.else83300
-while.exit.split.split254.split.split:
+while.exit.split.split254.split.split:  pred(func7.then81298, func7.else83300)
   131.ret = phi [bb %func7.then81298, i32 1, bb %func7.else83300, i32 0]
   63234 = icmp ne i32 %126.load, i32 0
   br i1 %63234, bb %func6.select.then236, bb %func6.select.else239
-while.exit.split.split:
+while.exit.split.split:  pred(func6.then71244, func6.else73246)
   132.ret = phi [bb %func6.then71244, i32 1, bb %func6.else73246, i32 0]
   134 = ptradd ptr %arr, i32 16
   134.load = load i32 from ptr %134
@@ -143,12 +145,12 @@ while.exit.split.split:
   79307 = zext i1 %78306 to i32
   80308 = icmp ne i32 %79307, i32 0
   br i1 %80308, bb %func7.then81310, bb %func7.else83312
-while.exit.split.split.split303:
+while.exit.split.split.split303:  pred(func7.then81310, func7.else83312)
   139.ret = phi [bb %func7.then81310, i32 1, bb %func7.else83312, i32 0]
   140 = call i32 func2(i32 %134.load, i32 %139.ret)
   49353 = icmp ne i32 %58261, i32 0
   br i1 %49353, bb %func4.then50, bb %func4.else52
-while.exit.split.split.split303.split351:
+while.exit.split.split.split303.split351:  pred(func4.then50, func4.else52)
   141.ret = phi [bb %func4.then50, i32 %132.ret, bb %func4.else52, i32 %140]
   143 = ptradd ptr %arr, i32 24
   143.load = load i32 from ptr %143
@@ -165,20 +167,20 @@ while.exit.split.split.split303.split351:
   79319 = zext i1 %78318 to i32
   80320 = icmp ne i32 %79319, i32 0
   br i1 %80320, bb %func7.then81322, bb %func7.else83324
-while.exit.split.split.split303.split:
+while.exit.split.split.split303.split:  pred(func7.then81322, func7.else83324)
   156.ret = phi [bb %func7.then81322, i32 1, bb %func7.else83324, i32 0]
   157 = call i32 func3(i32 %151.load, i32 %156.ret)
   159 = call i32 func1(i32 %149, i32 %157, i32 %86)
   49362 = icmp ne i32 %58256, i32 0
   br i1 %49362, bb %func4.then50364, bb %func4.else52366
-while.exit.split.split.split303.split.split360:
+while.exit.split.split.split303.split.split360:  pred(func4.then50364, func4.else52366)
   160.ret = phi [bb %func4.then50364, i32 %119.load, bb %func4.else52366, i32 %159]
   77329 = icmp ne i32 %90, i32 0
   78330 = xor i1 %77329, i1 -1
   79331 = zext i1 %78330 to i32
   80332 = icmp ne i32 %79331, i32 0
   br i1 %80332, bb %func7.then81334, bb %func7.else83336
-while.exit.split.split.split303.split.split:
+while.exit.split.split.split303.split.split:  pred(func7.then81334, func7.else83336)
   163.ret = phi [bb %func7.then81334, i32 1, bb %func7.else83336, i32 0]
   165 = call i32 func3(i32 %163.ret, i32 %92)
   166 = call i32 func2(i32 %88, i32 %165)
@@ -194,7 +196,7 @@ while.exit.split.split.split303.split.split:
   79343 = zext i1 %78342 to i32
   80344 = icmp ne i32 %79343, i32 0
   br i1 %80344, bb %func7.then81346, bb %func7.else83348
-while.exit.split.split.split.split.split339:
+while.exit.split.split.split.split.split339:  pred(func7.then81346, func7.else83348)
   201.ret = phi [bb %func7.then81346, i32 1, bb %func7.else83348, i32 0]
   202 = call i32 func1(i32 %194, i32 %147.load, i32 %201.ret)
   58276 = sub i32 0, i32 %154.load
@@ -202,61 +204,61 @@ while.exit.split.split.split.split.split339:
   209 = call i32 func3(i32 %207, i32 %86)
   210 = call i32 func1(i32 %178, i32 %129.load, i32 %209)
   ret i32 %210
-func6.select.then:
+func6.select.then:  pred(while.exit.split279)
   69220 = icmp ne i32 %58251, i32 0
   br bb %func6.select.exit
-func6.select.else:
+func6.select.else:  pred(while.exit.split279)
   br bb %func6.select.exit
-func6.select.exit:
+func6.select.exit:  pred(func6.select.then, func6.select.else)
   select.phi225 = phi [bb %func6.select.else, i1 0, bb %func6.select.then, i1 %69220]
   br i1 %select.phi225, bb %func6.then71, bb %func6.else73
-func6.then71:
+func6.then71:  pred(func6.select.exit)
   br bb %while.exit.split
-func6.else73:
+func6.else73:  pred(func6.select.exit)
   br bb %while.exit.split
-func6.select.then236:
+func6.select.then236:  pred(while.exit.split.split254.split.split)
   69237 = icmp ne i32 %131.ret, i32 0
   br bb %func6.select.exit241
-func6.select.else239:
+func6.select.else239:  pred(while.exit.split.split254.split.split)
   br bb %func6.select.exit241
-func6.select.exit241:
+func6.select.exit241:  pred(func6.select.then236, func6.select.else239)
   select.phi242 = phi [bb %func6.select.else239, i1 0, bb %func6.select.then236, i1 %69237]
   br i1 %select.phi242, bb %func6.then71244, bb %func6.else73246
-func6.then71244:
+func6.then71244:  pred(func6.select.exit241)
   br bb %while.exit.split.split
-func6.else73246:
+func6.else73246:  pred(func6.select.exit241)
   br bb %while.exit.split.split
-func7.then81:
+func7.then81:  pred(while.exit)
   br bb %while.exit.split279
-func7.else83:
+func7.else83:  pred(while.exit)
   br bb %while.exit.split279
-func7.then81298:
+func7.then81298:  pred(while.exit.split)
   br bb %while.exit.split.split254.split.split
-func7.else83300:
+func7.else83300:  pred(while.exit.split)
   br bb %while.exit.split.split254.split.split
-func7.then81310:
+func7.then81310:  pred(while.exit.split.split)
   br bb %while.exit.split.split.split303
-func7.else83312:
+func7.else83312:  pred(while.exit.split.split)
   br bb %while.exit.split.split.split303
-func7.then81322:
+func7.then81322:  pred(while.exit.split.split.split303.split351)
   br bb %while.exit.split.split.split303.split
-func7.else83324:
+func7.else83324:  pred(while.exit.split.split.split303.split351)
   br bb %while.exit.split.split.split303.split
-func7.then81334:
+func7.then81334:  pred(while.exit.split.split.split303.split.split360)
   br bb %while.exit.split.split.split303.split.split
-func7.else83336:
+func7.else83336:  pred(while.exit.split.split.split303.split.split360)
   br bb %while.exit.split.split.split303.split.split
-func7.then81346:
+func7.then81346:  pred(while.exit.split.split.split303.split.split)
   br bb %while.exit.split.split.split.split.split339
-func7.else83348:
+func7.else83348:  pred(while.exit.split.split.split303.split.split)
   br bb %while.exit.split.split.split.split.split339
-func4.then50:
+func4.then50:  pred(while.exit.split.split.split303)
   br bb %while.exit.split.split.split303.split351
-func4.else52:
+func4.else52:  pred(while.exit.split.split.split303)
   br bb %while.exit.split.split.split303.split351
-func4.then50364:
+func4.then50364:  pred(while.exit.split.split.split303.split)
   br bb %while.exit.split.split.split303.split.split360
-func4.else52366:
+func4.else52366:  pred(while.exit.split.split.split303.split)
   br bb %while.exit.split.split.split303.split.split360
 }
 
@@ -269,13 +271,13 @@ external void putch(i32 )
 external void _sysy_stoptime(i32 )
 
 pure i32 func1(i32 x, i32 y, i32 z) {
-entry:
+entry:  pred()
   5 = icmp eq i32 %z, i32 0
   br i1 %5, bb %then, bb %else
-then:
+then:  pred(entry)
   11 = mul i32 %x, i32 %y
   ret i32 %11
-else:
+else:  pred(entry)
   15 = sub i32 %y, i32 %z
   16 = call i32 func1(i32 %x, i32 %15, i32 0)
   ret i32 %16

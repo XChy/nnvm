@@ -1,35 +1,43 @@
 i32 main() {
-entry:
+entry:  pred()
   %arr = stack 400
-  br bb %while.cond
-while.cond:
-  i.phi31 = phi [bb %entry, i32 0, bb %while.body, i32 %14]
+  739 = call i32 getint()
+  840 = icmp ne i32 %739, i32 0
+  br i1 %840, bb %while.body, bb %while.exit
+while.cond:  pred(while.body)
+  i.phi31 = phi [bb %while.body, i32 %14]
   7 = call i32 getint()
   8 = icmp ne i32 %7, i32 0
   br i1 %8, bb %while.body, bb %while.exit
-while.body:
-  33 = shl i32 %i.phi31, i32 2
+while.body:  pred(while.cond, entry)
+  i.phi3142 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi31]
+  33 = shl i32 %i.phi3142, i32 2
   11 = ptradd ptr %arr, i32 %33
   12 = call i32 getint()
   store i32 %12 to ptr %11
-  14 = add i32 %i.phi31, i32 1
+  14 = add i32 %i.phi3142, i32 1
   br bb %while.cond
-while.exit:
-  br bb %while.cond15
-while.cond15:
-  sum.phi = phi [bb %while.exit, i32 0, bb %while.body16, i32 %27]
-  i.phi = phi [bb %while.exit, i32 %i.phi31, bb %while.body16, i32 %21]
+while.exit:  pred(while.cond, entry)
+  41 = phi [bb %while.cond, i32 %i.phi31, bb %entry, i32 0]
+  1935 = icmp ne i32 %41, i32 0
+  br i1 %1935, bb %while.body16, bb %while.exit17
+while.cond15:  pred(while.body16)
+  sum.phi = phi [bb %while.body16, i32 %27]
+  i.phi = phi [bb %while.body16, i32 %21]
   19 = icmp ne i32 %i.phi, i32 0
   br i1 %19, bb %while.body16, bb %while.exit17
-while.body16:
-  21 = sub i32 %i.phi, i32 1
+while.body16:  pred(while.cond15, while.exit)
+  i.phi38 = phi [bb %while.exit, i32 %41, bb %while.cond15, i32 %i.phi]
+  sum.phi37 = phi [bb %while.exit, i32 0, bb %while.cond15, i32 %sum.phi]
+  21 = sub i32 %i.phi38, i32 1
   34 = shl i32 %21, i32 2
   25 = ptradd ptr %arr, i32 %34
   25.load = load i32 from ptr %25
-  27 = add i32 %sum.phi, i32 %25.load
+  27 = add i32 %sum.phi37, i32 %25.load
   br bb %while.cond15
-while.exit17:
-  29 = srem i32 %sum.phi, i32 79
+while.exit17:  pred(while.cond15, while.exit)
+  36 = phi [bb %while.cond15, i32 %sum.phi, bb %while.exit, i32 0]
+  29 = srem i32 %36, i32 79
   ret i32 %29
 }
 

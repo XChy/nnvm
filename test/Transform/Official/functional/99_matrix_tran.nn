@@ -10,7 +10,7 @@ external void putint(i32 )
 external i32 getarray(ptr )
 
 i32 main() {
-entry47:
+entry47:  pred()
   %c2 = stack 12
   %c1 = stack 12
   %c0 = stack 24
@@ -23,15 +23,17 @@ entry47:
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
-  br bb %while.cond
-while.cond:
-  i57.phi156 = phi [bb %entry47, i32 0, bb %while.body, i32 %96]
+  63212 = icmp slt i32 0, i32 3
+  br i1 %63212, bb %while.body, bb %while.exit
+while.cond:  pred(while.body)
+  i57.phi156 = phi [bb %while.body, i32 %96]
   63 = icmp slt i32 %i57.phi156, i32 3
   br i1 %63, bb %while.body, bb %while.exit
-while.body:
-  160 = shl i32 %i57.phi156, i32 2
+while.body:  pred(while.cond, entry47)
+  i57.phi156213 = phi [bb %entry47, i32 0, bb %while.cond, i32 %i57.phi156]
+  160 = shl i32 %i57.phi156213, i32 2
   67 = ptradd ptr %a0, i32 %160
-  69 = si2f i32 %i57.phi156 to float
+  69 = si2f i32 %i57.phi156213 to float
   store float %69 to ptr %67
   72 = ptradd ptr %a1, i32 %160
   store float %69 to ptr %72
@@ -43,9 +45,9 @@ while.body:
   store float %69 to ptr %87
   92 = ptradd ptr %b2, i32 %160
   store float %69 to ptr %92
-  96 = add i32 %i57.phi156, i32 1
+  96 = add i32 %i57.phi156213, i32 1
   br bb %while.cond
-while.exit:
+while.exit:  pred(while.cond, entry47)
   3171 = ptradd ptr %c1, i32 8
   5172 = ptradd ptr %a2, i32 4
   5.load173 = load float from ptr %5172
@@ -76,53 +78,62 @@ while.exit:
   store float %40.load197 to ptr %38195
   45.load199 = load float from ptr %a0
   store float %45.load199 to ptr %c0
-  br bb %while.cond99
-while.cond99:
-  i57.phi155 = phi [bb %while.exit, i32 0, bb %while.body100, i32 %114]
+  N.load209 = load i32 from ptr @N
+  104210 = icmp slt i32 0, i32 %N.load209
+  br i1 %104210, bb %while.body100, bb %while.exit101
+while.cond99:  pred(while.body100)
+  i57.phi155 = phi [bb %while.body100, i32 %114]
   N.load = load i32 from ptr @N
   104 = icmp slt i32 %i57.phi155, i32 %N.load
   br i1 %104, bb %while.body100, bb %while.exit101
-while.body100:
-  166 = shl i32 %i57.phi155, i32 2
+while.body100:  pred(while.cond99, while.exit)
+  i57.phi155211 = phi [bb %while.exit, i32 0, bb %while.cond99, i32 %i57.phi155]
+  166 = shl i32 %i57.phi155211, i32 2
   108 = ptradd ptr %c0, i32 %166
   108.load = load float from ptr %108
   110 = f2si float %108.load to i32
   call void putint(i32 %110)
-  114 = add i32 %i57.phi155, i32 1
+  114 = add i32 %i57.phi155211, i32 1
   br bb %while.cond99
-while.exit101:
+while.exit101:  pred(while.cond99, while.exit)
   call void putch(i32 10)
-  br bb %while.cond117
-while.cond117:
-  i57.phi154 = phi [bb %while.exit101, i32 0, bb %while.body118, i32 %132]
+  N.load121206 = load i32 from ptr @N
+  122207 = icmp slt i32 0, i32 %N.load121206
+  br i1 %122207, bb %while.body118, bb %while.exit119
+while.cond117:  pred(while.body118)
+  i57.phi154 = phi [bb %while.body118, i32 %132]
   N.load121 = load i32 from ptr @N
   122 = icmp slt i32 %i57.phi154, i32 %N.load121
   br i1 %122, bb %while.body118, bb %while.exit119
-while.body118:
-  167 = shl i32 %i57.phi154, i32 2
+while.body118:  pred(while.cond117, while.exit101)
+  i57.phi154208 = phi [bb %while.exit101, i32 0, bb %while.cond117, i32 %i57.phi154]
+  167 = shl i32 %i57.phi154208, i32 2
   126 = ptradd ptr %c1, i32 %167
   126.load = load float from ptr %126
   128 = f2si float %126.load to i32
   call void putint(i32 %128)
-  132 = add i32 %i57.phi154, i32 1
+  132 = add i32 %i57.phi154208, i32 1
   br bb %while.cond117
-while.exit119:
+while.exit119:  pred(while.cond117, while.exit101)
   call void putch(i32 10)
-  br bb %while.cond135
-while.cond135:
-  i57.phi = phi [bb %while.exit119, i32 0, bb %while.body136, i32 %150]
+  N.load139203 = load i32 from ptr @N
+  140204 = icmp slt i32 0, i32 %N.load139203
+  br i1 %140204, bb %while.body136, bb %while.exit137
+while.cond135:  pred(while.body136)
+  i57.phi = phi [bb %while.body136, i32 %150]
   N.load139 = load i32 from ptr @N
   140 = icmp slt i32 %i57.phi, i32 %N.load139
   br i1 %140, bb %while.body136, bb %while.exit137
-while.body136:
-  168 = shl i32 %i57.phi, i32 2
+while.body136:  pred(while.cond135, while.exit119)
+  i57.phi205 = phi [bb %while.exit119, i32 0, bb %while.cond135, i32 %i57.phi]
+  168 = shl i32 %i57.phi205, i32 2
   144 = ptradd ptr %c2, i32 %168
   144.load = load float from ptr %144
   146 = f2si float %144.load to i32
   call void putint(i32 %146)
-  150 = add i32 %i57.phi, i32 1
+  150 = add i32 %i57.phi205, i32 1
   br bb %while.cond135
-while.exit137:
+while.exit137:  pred(while.cond135, while.exit119)
   call void putch(i32 10)
   ret i32 0
 }
@@ -138,7 +149,7 @@ external void _sysy_stoptime(i32 )
 external i32 getfarray(ptr )
 
 i32 tran(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
-entry:
+entry:  pred()
   3 = ptradd ptr %c1, i32 8
   5 = ptradd ptr %a2, i32 4
   5.load = load float from ptr %5

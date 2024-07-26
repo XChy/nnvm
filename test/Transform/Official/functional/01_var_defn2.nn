@@ -1,7 +1,7 @@
 global ptr b init with i32 5
 global ptr a init with i32 3
 i32 main() {
-entry:
+entry:  pred()
   b.load = load i32 from ptr @b
   5 = add i32 %b.load, i32 5
   ret i32 %5

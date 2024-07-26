@@ -12,6 +12,8 @@ public:
 
   static std::vector<UBValue *> allUBValues();
 
+  Value *refineDefault(Module& M);
+
 private:
   UBValue(Type *type) : Value(ValueID::UBValue, type) {}
 };

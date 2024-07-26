@@ -43,10 +43,12 @@ public:
 
   BasicBlock *getSingleLatch() const;
 
-  const std::vector<ExitEdge> &getExits() const { return exits; }
-  void addExit(ExitEdge exit) { exits.push_back(exit); }
+  const std::vector<ExitEdge> &getExitEdges() const { return exitEdges; }
+  std::set<BasicBlock *> getExits() const;
+
+  void addExit(ExitEdge exit) { exitEdges.push_back(exit); }
   void removeExit(ExitEdge exit) {
-    exits.erase(std::remove(exits.begin(), exits.end(), exit), exits.end());
+    exitEdges.erase(std::remove(exitEdges.begin(), exitEdges.end(), exit), exitEdges.end());
   }
 
   // Return whether BB is one of the exiting block, which may go out of loop.
@@ -62,7 +64,7 @@ private:
 
   BasicBlock *preheader;
   BasicBlock *header;
-  std::vector<ExitEdge> exits;
+  std::vector<ExitEdge> exitEdges;
   std::set<BasicBlock *> blocks;
 };
 

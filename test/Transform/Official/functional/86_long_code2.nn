@@ -1,6 +1,6 @@
 global ptr a init with 100000 x i32 zeros
 i32 main() {
-entry:
+entry:  pred()
   32007 = ptradd ptr @a, i32 399996
   store i32 1 to ptr %32007
   ret i32 4000

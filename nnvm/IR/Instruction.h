@@ -141,6 +141,9 @@ public:
     ListTrait<Instruction>::eraseFromList();
   }
 
+  std::vector<Use *> &getUseeList() { return useeList; }
+  const std::vector<Use *> &getUseeList() const { return useeList; }
+
   void moveTo(BasicBlock *otherBB);
 
   std::string dump() override;
@@ -525,6 +528,8 @@ public:
   Value *getIncomingValue(uint64_t index) const {
     return getOperand(2 * index + 1);
   }
+
+  std::vector<BasicBlock *> getAllIncomingBBs() const;
 
   Value *getIncomingValueOf(BasicBlock *incoming) const;
 

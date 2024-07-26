@@ -7,25 +7,26 @@ a:
 .word 0x00000007
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD s0, zero, zero
-  ADD s1, zero, zero
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  ADDI s2, zero, 0
+  SLTI s2, s2, 100
+  BNE s2, zero, bb6
   # implict jump to bb1
 bb1:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
-  SLTI s4, s3, 100
-  BNE s4, zero, bb6
+  ADD s2, zero, zero
   # implict jump to bb2
 bb2:
-  SLTI s4, s2, 100
-  BNE s4, zero, bb5
+  SLTI s2, s2, 100
+  BNE s2, zero, bb5
   # implict jump to bb3
 bb3:
   ADD a0, zero, zero
@@ -39,42 +40,61 @@ bb4:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb5:
   ADDI a0, zero, 1
   CALL putint
   JAL zero, bb4
 bb6:
-  LA s4, a
-  LW s4, 0(s4)
-  XORI s4, s4, 1
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb12
+  ADD s3, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb7
 bb7:
-  ADD s4, zero, zero
+  ADD s5, s4, zero
+  ADD s6, s3, zero
+  LA s7, a
+  LW s7, 0(s7)
+  XORI s7, s7, 1
+  SLTIU s7, s7, 1
+  BNE s7, zero, bb16
   # implict jump to bb8
 bb8:
-  XORI s4, s4, 1
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb11
+  ADD s7, zero, zero
   # implict jump to bb9
 bb9:
-  ADD s4, s2, zero
+  XORI s7, s7, 1
+  SLTIU s7, s7, 1
+  BNE s7, zero, bb15
   # implict jump to bb10
 bb10:
-  ADDIW s2, s3, 1
-  ADD s0, s2, zero
-  ADD s1, s4, zero
-  JAL zero, bb1
+  ADD s7, s6, zero
+  # implict jump to bb11
 bb11:
-  ADDIW s2, s2, 1
-  ADD s4, s2, zero
-  JAL zero, bb10
+  ADD s0, s7, zero
+  ADDIW s1, s5, 1
+  # implict jump to bb12
 bb12:
-  ADDI s4, zero, 1
-  JAL zero, bb8
+  SLTI s5, s1, 100
+  BNE s5, zero, bb14
+  # implict jump to bb13
+bb13:
+  ADD s2, s0, zero
+  JAL zero, bb2
+bb14:
+  ADD s3, s0, zero
+  ADD s4, s1, zero
+  JAL zero, bb7
+bb15:
+  ADDIW s6, s6, 1
+  ADD s7, s6, zero
+  JAL zero, bb11
+bb16:
+  ADDI s7, zero, 1
+  JAL zero, bb9
 func:
   ADDI sp, sp, -16
   SD ra, 0(sp)
@@ -83,15 +103,15 @@ func:
   LW s0, 0(s0)
   XORI s0, s0, 1
   SLTIU s0, s0, 1
-  BNE s0, zero, bb15
-  # implict jump to bb14
-bb14:
+  BNE s0, zero, bb19
+  # implict jump to bb18
+bb18:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb15:
+bb19:
   ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s0, 8(sp)

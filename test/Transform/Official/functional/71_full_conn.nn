@@ -9,163 +9,173 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry1911:
+entry1911:  pred()
   %a = stack 100
   1913 = call i32 getint()
-  212377 = ptradd ptr %a, i32 4
-  282381 = ptradd ptr %a, i32 8
-  362385 = ptradd ptr %a, i32 12
-  442389 = ptradd ptr %a, i32 16
-  19692393 = ptradd ptr %a, i32 20
-  19722397 = ptradd ptr %a, i32 24
-  19742401 = ptradd ptr %a, i32 28
-  19762405 = ptradd ptr %a, i32 32
-  19782409 = ptradd ptr %a, i32 36
-  19802413 = ptradd ptr %a, i32 40
-  19822417 = ptradd ptr %a, i32 44
-  19842421 = ptradd ptr %a, i32 48
-  19862425 = ptradd ptr %a, i32 52
-  19882429 = ptradd ptr %a, i32 56
-  19902433 = ptradd ptr %a, i32 60
-  19922437 = ptradd ptr %a, i32 64
-  19942441 = ptradd ptr %a, i32 68
-  19962445 = ptradd ptr %a, i32 72
-  19982449 = ptradd ptr %a, i32 76
-  20002453 = ptradd ptr %a, i32 80
-  20022457 = ptradd ptr %a, i32 84
-  20042461 = ptradd ptr %a, i32 88
-  20062465 = ptradd ptr %a, i32 92
-  20082469 = ptradd ptr %a, i32 96
-  br bb %while.cond
-while.cond:
-  j.phi1966 = phi [bb %entry1911, i32 ub, bb %if.exit1949, i32 %j.phi1965]
-  N.phi = phi [bb %entry1911, i32 %1913, bb %if.exit1949, i32 %1960]
+  19193229 = icmp sgt i32 %1913, i32 0
+  br i1 %19193229, bb %while.body, bb %while.exit
+while.cond:  pred(if.exit1949)
+  j.phi1966 = phi [bb %if.exit1949, i32 %j.phi19663226]
+  N.phi = phi [bb %if.exit1949, i32 %1960]
   1919 = icmp sgt i32 %N.phi, i32 0
   br i1 %1919, bb %while.body, bb %while.exit
-while.body:
-  br bb %while.cond1922
-while.exit:
+while.body:  pred(while.cond, entry1911)
+  N.phi3231 = phi [bb %entry1911, i32 %1913, bb %while.cond, i32 %N.phi]
+  j.phi19663230 = phi [bb %entry1911, i32 0, bb %while.cond, i32 %j.phi1966]
+  19263225 = icmp slt i32 0, i32 5
+  br i1 %19263225, bb %while.body1923, bb %while.exit1924
+while.exit:  pred(while.cond, entry1911)
   ret i32 0
-while.cond1922:
-  j.phi1965 = phi [bb %while.body, i32 %j.phi1966, bb %while.exit1931, i32 %j.phi]
-  i.phi = phi [bb %while.body, i32 0, bb %while.exit1931, i32 %1945]
+while.cond1922:  pred(while.exit1931)
+  j.phi1965 = phi [bb %while.exit1931, i32 %3223]
+  i.phi = phi [bb %while.exit1931, i32 %1945]
   1926 = icmp slt i32 %i.phi, i32 5
   br i1 %1926, bb %while.body1923, bb %while.exit1924
-while.body1923:
-  1936 = mul i32 %i.phi, i32 20
-  1937 = ptradd ptr %a, i32 %1936
-  br bb %while.cond1929
-while.exit1924:
+while.body1923:  pred(while.cond1922, while.body)
+  i.phi3228 = phi [bb %while.body, i32 0, bb %while.cond1922, i32 %i.phi]
+  j.phi19653227 = phi [bb %while.body, i32 %j.phi19663230, bb %while.cond1922, i32 %j.phi1965]
+  19333222 = icmp slt i32 0, i32 5
+  br i1 %19333222, bb %while.body1930, bb %while.exit1931
+while.exit1924:  pred(while.cond1922, while.body)
+  j.phi19663226 = phi [bb %while.cond1922, i32 %j.phi1965, bb %while.body, i32 %j.phi19663230]
   15.load2375 = load i32 from ptr %a
   172376 = mul i32 %15.load2375, i32 85
+  212377 = ptradd ptr %a, i32 4
   21.load2378 = load i32 from ptr %212377
   232379 = mul i32 %21.load2378, i32 23
   242380 = add i32 %172376, i32 %232379
+  282381 = ptradd ptr %a, i32 8
   28.load2382 = load i32 from ptr %282381
   312383 = mul i32 %28.load2382, i32 -82
   322384 = add i32 %242380, i32 %312383
+  362385 = ptradd ptr %a, i32 12
   36.load2386 = load i32 from ptr %362385
   392387 = mul i32 %36.load2386, i32 -103
   402388 = add i32 %322384, i32 %392387
+  442389 = ptradd ptr %a, i32 16
   44.load2390 = load i32 from ptr %442389
   472391 = mul i32 %44.load2390, i32 -123
   482392 = add i32 %402388, i32 %472391
+  19692393 = ptradd ptr %a, i32 20
   52.load2394 = load i32 from ptr %19692393
   19702395 = shl i32 %52.load2394, i32 6
   552396 = add i32 %482392, i32 %19702395
+  19722397 = ptradd ptr %a, i32 24
   59.load2398 = load i32 from ptr %19722397
   622399 = mul i32 %59.load2398, i32 -120
   632400 = add i32 %552396, i32 %622399
+  19742401 = ptradd ptr %a, i32 28
   67.load2402 = load i32 from ptr %19742401
   692403 = mul i32 %67.load2402, i32 50
   702404 = add i32 %632400, i32 %692403
+  19762405 = ptradd ptr %a, i32 32
   74.load2406 = load i32 from ptr %19762405
   772407 = mul i32 %74.load2406, i32 -59
   782408 = add i32 %702404, i32 %772407
+  19782409 = ptradd ptr %a, i32 36
   82.load2410 = load i32 from ptr %19782409
   842411 = mul i32 %82.load2410, i32 47
   852412 = add i32 %782408, i32 %842411
+  19802413 = ptradd ptr %a, i32 40
   89.load2414 = load i32 from ptr %19802413
   922415 = mul i32 %89.load2414, i32 -111
   932416 = add i32 %852412, i32 %922415
+  19822417 = ptradd ptr %a, i32 44
   97.load2418 = load i32 from ptr %19822417
   1002419 = mul i32 %97.load2418, i32 -67
   1012420 = add i32 %932416, i32 %1002419
+  19842421 = ptradd ptr %a, i32 48
   105.load2422 = load i32 from ptr %19842421
   1082423 = mul i32 %105.load2422, i32 -106
   1092424 = add i32 %1012420, i32 %1082423
+  19862425 = ptradd ptr %a, i32 52
   113.load2426 = load i32 from ptr %19862425
   1162427 = mul i32 %113.load2426, i32 -75
   1172428 = add i32 %1092424, i32 %1162427
+  19882429 = ptradd ptr %a, i32 56
   121.load2430 = load i32 from ptr %19882429
   1242431 = mul i32 %121.load2430, i32 -102
   1252432 = add i32 %1172428, i32 %1242431
+  19902433 = ptradd ptr %a, i32 60
   129.load2434 = load i32 from ptr %19902433
   1312435 = mul i32 %129.load2434, i32 34
   1322436 = add i32 %1252432, i32 %1312435
+  19922437 = ptradd ptr %a, i32 64
   136.load2438 = load i32 from ptr %19922437
   1392439 = mul i32 %136.load2438, i32 -39
   1402440 = add i32 %1322436, i32 %1392439
+  19942441 = ptradd ptr %a, i32 68
   144.load2442 = load i32 from ptr %19942441
   1462443 = mul i32 %144.load2442, i32 65
   1472444 = add i32 %1402440, i32 %1462443
+  19962445 = ptradd ptr %a, i32 72
   151.load2446 = load i32 from ptr %19962445
   1532447 = mul i32 %151.load2446, i32 47
   1542448 = add i32 %1472444, i32 %1532447
+  19982449 = ptradd ptr %a, i32 76
   158.load2450 = load i32 from ptr %19982449
   1602451 = mul i32 %158.load2450, i32 113
   1612452 = add i32 %1542448, i32 %1602451
+  20002453 = ptradd ptr %a, i32 80
   165.load2454 = load i32 from ptr %20002453
   1672455 = mul i32 %165.load2454, i32 110
   1682456 = add i32 %1612452, i32 %1672455
+  20022457 = ptradd ptr %a, i32 84
   172.load2458 = load i32 from ptr %20022457
   1742459 = mul i32 %172.load2458, i32 47
   1752460 = add i32 %1682456, i32 %1742459
+  20042461 = ptradd ptr %a, i32 88
   179.load2462 = load i32 from ptr %20042461
   1822463 = mul i32 %179.load2462, i32 -4
   1832464 = add i32 %1752460, i32 %1822463
+  20062465 = ptradd ptr %a, i32 92
   187.load2466 = load i32 from ptr %20062465
   1892467 = mul i32 %187.load2466, i32 80
   1902468 = add i32 %1832464, i32 %1892467
+  20082469 = ptradd ptr %a, i32 96
   194.load2470 = load i32 from ptr %20082469
   1962471 = mul i32 %194.load2470, i32 46
   1972472 = add i32 %1902468, i32 %1962471
   33084 = icmp sgt i32 %1972472, i32 127
   br i1 %33084, bb %relu_reg.then3086, bb %relu_reg.if.exit3088
-while.exit1924.split:
+while.exit1924.split:  pred(model.then1909, model.if.exit1910)
   1946.ret = phi [bb %model.then1909, i32 1, bb %model.if.exit1910, i32 0]
   1947 = icmp ne i32 %1946.ret, i32 0
   br i1 %1947, bb %then1948, bb %else
-while.cond1929:
-  j.phi = phi [bb %while.body1923, i32 0, bb %while.body1930, i32 %1943]
+while.cond1929:  pred(while.body1930)
+  j.phi = phi [bb %while.body1930, i32 %1943]
   1933 = icmp slt i32 %j.phi, i32 5
   br i1 %1933, bb %while.body1930, bb %while.exit1931
-while.body1930:
-  1967 = shl i32 %j.phi, i32 2
+while.body1930:  pred(while.cond1929, while.body1923)
+  j.phi3224 = phi [bb %while.body1923, i32 0, bb %while.cond1929, i32 %j.phi]
+  1936 = mul i32 %i.phi3228, i32 20
+  1937 = ptradd ptr %a, i32 %1936
+  1967 = shl i32 %j.phi3224, i32 2
   1940 = ptradd ptr %1937, i32 %1967
   1941 = call i32 getint()
   store i32 %1941 to ptr %1940
-  1943 = add i32 %j.phi, i32 1
+  1943 = add i32 %j.phi3224, i32 1
   br bb %while.cond1929
-while.exit1931:
-  1945 = add i32 %i.phi, i32 1
+while.exit1931:  pred(while.cond1929, while.body1923)
+  3223 = phi [bb %while.cond1929, i32 %j.phi, bb %while.body1923, i32 0]
+  1945 = add i32 %i.phi3228, i32 1
   br bb %while.cond1922
-then1948:
+then1948:  pred(while.exit1924.split)
   call void putch(i32 99)
   call void putch(i32 97)
   call void putch(i32 116)
   call void putch(i32 10)
   br bb %if.exit1949
-if.exit1949:
-  1960 = sub i32 %N.phi, i32 1
+if.exit1949:  pred(then1948, else)
+  1960 = sub i32 %N.phi3231, i32 1
   br bb %while.cond
-else:
+else:  pred(while.exit1924.split)
   call void putch(i32 100)
   call void putch(i32 111)
   call void putch(i32 103)
   call void putch(i32 10)
   br bb %if.exit1949
-model.entry11.split:
+model.entry11.split:  pred(relu_reg.then3086, relu_reg.then83091, relu_reg.if.exit93093)
   1982473.ret = phi [bb %relu_reg.then3086, i32 127, bb %relu_reg.then83091, i32 0, bb %relu_reg.if.exit93093, i32 %1972472]
   1992474 = mul i32 %1982473.ret, i32 39
   2062475 = mul i32 %15.load2375, i32 -106
@@ -219,7 +229,7 @@ model.entry11.split:
   3912523 = add i32 %3832521, i32 %3902522
   33098 = icmp sgt i32 %3912523, i32 127
   br i1 %33098, bb %relu_reg.then3100, bb %relu_reg.if.exit3102
-model.entry11.split.split:
+model.entry11.split.split:  pred(relu_reg.then3100, relu_reg.then83105, relu_reg.if.exit93107)
   3922524.ret = phi [bb %relu_reg.then3100, i32 127, bb %relu_reg.then83105, i32 0, bb %relu_reg.if.exit93107, i32 %3912523]
   3932525 = mul i32 %3922524.ret, i32 77
   3942526 = add i32 %1992474, i32 %3932525
@@ -274,7 +284,7 @@ model.entry11.split.split:
   5782575 = add i32 %5712573, i32 %5772574
   33112 = icmp sgt i32 %5782575, i32 127
   br i1 %33112, bb %relu_reg.then3114, bb %relu_reg.if.exit3116
-model.entry11.split.split.split:
+model.entry11.split.split.split:  pred(relu_reg.then3114, relu_reg.then83119, relu_reg.if.exit93121)
   5792576.ret = phi [bb %relu_reg.then3114, i32 127, bb %relu_reg.then83119, i32 0, bb %relu_reg.if.exit93121, i32 %5782575]
   5802577 = mul i32 %5792576.ret, i32 127
   5812578 = add i32 %3942526, i32 %5802577
@@ -328,7 +338,7 @@ model.entry11.split.split.split:
   7672626 = add i32 %7602624, i32 %7662625
   33126 = icmp sgt i32 %7672626, i32 127
   br i1 %33126, bb %relu_reg.then3128, bb %relu_reg.if.exit3130
-model.entry11.split.split.split.split:
+model.entry11.split.split.split.split:  pred(relu_reg.then3128, relu_reg.then83133, relu_reg.if.exit93135)
   7682627.ret = phi [bb %relu_reg.then3128, i32 127, bb %relu_reg.then83133, i32 0, bb %relu_reg.if.exit93135, i32 %7672626]
   7702628 = mul i32 %7682627.ret, i32 -106
   7712629 = add i32 %5812578, i32 %7702628
@@ -382,7 +392,7 @@ model.entry11.split.split.split.split:
   9562677 = add i32 %9482675, i32 %9552676
   33140 = icmp sgt i32 %9562677, i32 127
   br i1 %33140, bb %relu_reg.then3142, bb %relu_reg.if.exit3144
-model.entry11.split.split.split.split.split:
+model.entry11.split.split.split.split.split:  pred(relu_reg.then3142, relu_reg.then83147, relu_reg.if.exit93149)
   9572678.ret = phi [bb %relu_reg.then3142, i32 127, bb %relu_reg.then83147, i32 0, bb %relu_reg.if.exit93149, i32 %9562677]
   9592679 = mul i32 %9572678.ret, i32 -3
   9602680 = add i32 %7712629, i32 %9592679
@@ -437,7 +447,7 @@ model.entry11.split.split.split.split.split:
   11472729 = add i32 %11392727, i32 %11462728
   33154 = icmp sgt i32 %11472729, i32 127
   br i1 %33154, bb %relu_reg.then3156, bb %relu_reg.if.exit3158
-model.entry11.split.split.split.split.split.split:
+model.entry11.split.split.split.split.split.split:  pred(relu_reg.then3156, relu_reg.then83161, relu_reg.if.exit93163)
   11482730.ret = phi [bb %relu_reg.then3156, i32 127, bb %relu_reg.then83161, i32 0, bb %relu_reg.if.exit93163, i32 %11472729]
   22112731 = shl i32 %11482730.ret, i32 5
   11502732 = add i32 %9602680, i32 %22112731
@@ -492,7 +502,7 @@ model.entry11.split.split.split.split.split.split:
   13352781 = add i32 %13282779, i32 %13342780
   33168 = icmp sgt i32 %13352781, i32 127
   br i1 %33168, bb %relu_reg.then3170, bb %relu_reg.if.exit3172
-model.entry11.split.split.split.split.split.split.split:
+model.entry11.split.split.split.split.split.split.split:  pred(relu_reg.then3170, relu_reg.then83175, relu_reg.if.exit93177)
   13362782.ret = phi [bb %relu_reg.then3170, i32 127, bb %relu_reg.then83175, i32 0, bb %relu_reg.if.exit93177, i32 %13352781]
   13382783 = mul i32 %13362782.ret, i32 -95
   13392784 = add i32 %11502732, i32 %13382783
@@ -545,7 +555,7 @@ model.entry11.split.split.split.split.split.split.split:
   15212831 = add i32 %15132829, i32 %15202830
   33182 = icmp sgt i32 %15212831, i32 127
   br i1 %33182, bb %relu_reg.then3184, bb %relu_reg.if.exit3186
-model.entry11.split.split.split.split.split.split.split.split:
+model.entry11.split.split.split.split.split.split.split.split:  pred(relu_reg.then3184, relu_reg.then83189, relu_reg.if.exit93191)
   15222832.ret = phi [bb %relu_reg.then3184, i32 127, bb %relu_reg.then83189, i32 0, bb %relu_reg.if.exit93191, i32 %15212831]
   15242833 = mul i32 %15222832.ret, i32 -50
   15252834 = add i32 %13392784, i32 %15242833
@@ -597,7 +607,7 @@ model.entry11.split.split.split.split.split.split.split.split:
   17162880 = add i32 %17082878, i32 %17152879
   33196 = icmp sgt i32 %17162880, i32 127
   br i1 %33196, bb %relu_reg.then3198, bb %relu_reg.if.exit3200
-model.entry11.split.split.split.split.split.split.split.split.split:
+model.entry11.split.split.split.split.split.split.split.split.split:  pred(relu_reg.then3198, relu_reg.then83203, relu_reg.if.exit93205)
   17172881.ret = phi [bb %relu_reg.then3198, i32 127, bb %relu_reg.then83203, i32 0, bb %relu_reg.if.exit93205, i32 %17162880]
   17192882 = mul i32 %17172881.ret, i32 -23
   17202883 = add i32 %15252834, i32 %17192882
@@ -651,105 +661,105 @@ model.entry11.split.split.split.split.split.split.split.split.split:
   19042931 = add i32 %18972929, i32 %19032930
   33210 = icmp sgt i32 %19042931, i32 127
   br i1 %33210, bb %relu_reg.then3212, bb %relu_reg.if.exit3214
-model.entry11.split.split.split.split.split.split.split.split.split.split:
+model.entry11.split.split.split.split.split.split.split.split.split.split:  pred(relu_reg.then3212, relu_reg.then83217, relu_reg.if.exit93219)
   19052932.ret = phi [bb %relu_reg.then3212, i32 127, bb %relu_reg.then83217, i32 0, bb %relu_reg.if.exit93219, i32 %19042931]
   19062933 = mul i32 %19052932.ret, i32 46
   19072934 = add i32 %17202883, i32 %19062933
   19082935 = icmp sgt i32 %19072934, i32 0
   br i1 %19082935, bb %model.then1909, bb %model.if.exit1910
-model.then1909:
+model.then1909:  pred(model.entry11.split.split.split.split.split.split.split.split.split.split)
   br bb %while.exit1924.split
-model.if.exit1910:
+model.if.exit1910:  pred(model.entry11.split.split.split.split.split.split.split.split.split.split)
   br bb %while.exit1924.split
-relu_reg.then3086:
+relu_reg.then3086:  pred(while.exit1924)
   br bb %model.entry11.split
-relu_reg.if.exit3088:
+relu_reg.if.exit3088:  pred(while.exit1924)
   73089 = icmp slt i32 %1972472, i32 0
   br i1 %73089, bb %relu_reg.then83091, bb %relu_reg.if.exit93093
-relu_reg.then83091:
+relu_reg.then83091:  pred(relu_reg.if.exit3088)
   br bb %model.entry11.split
-relu_reg.if.exit93093:
+relu_reg.if.exit93093:  pred(relu_reg.if.exit3088)
   br bb %model.entry11.split
-relu_reg.then3100:
+relu_reg.then3100:  pred(model.entry11.split)
   br bb %model.entry11.split.split
-relu_reg.if.exit3102:
+relu_reg.if.exit3102:  pred(model.entry11.split)
   73103 = icmp slt i32 %3912523, i32 0
   br i1 %73103, bb %relu_reg.then83105, bb %relu_reg.if.exit93107
-relu_reg.then83105:
+relu_reg.then83105:  pred(relu_reg.if.exit3102)
   br bb %model.entry11.split.split
-relu_reg.if.exit93107:
+relu_reg.if.exit93107:  pred(relu_reg.if.exit3102)
   br bb %model.entry11.split.split
-relu_reg.then3114:
+relu_reg.then3114:  pred(model.entry11.split.split)
   br bb %model.entry11.split.split.split
-relu_reg.if.exit3116:
+relu_reg.if.exit3116:  pred(model.entry11.split.split)
   73117 = icmp slt i32 %5782575, i32 0
   br i1 %73117, bb %relu_reg.then83119, bb %relu_reg.if.exit93121
-relu_reg.then83119:
+relu_reg.then83119:  pred(relu_reg.if.exit3116)
   br bb %model.entry11.split.split.split
-relu_reg.if.exit93121:
+relu_reg.if.exit93121:  pred(relu_reg.if.exit3116)
   br bb %model.entry11.split.split.split
-relu_reg.then3128:
+relu_reg.then3128:  pred(model.entry11.split.split.split)
   br bb %model.entry11.split.split.split.split
-relu_reg.if.exit3130:
+relu_reg.if.exit3130:  pred(model.entry11.split.split.split)
   73131 = icmp slt i32 %7672626, i32 0
   br i1 %73131, bb %relu_reg.then83133, bb %relu_reg.if.exit93135
-relu_reg.then83133:
+relu_reg.then83133:  pred(relu_reg.if.exit3130)
   br bb %model.entry11.split.split.split.split
-relu_reg.if.exit93135:
+relu_reg.if.exit93135:  pred(relu_reg.if.exit3130)
   br bb %model.entry11.split.split.split.split
-relu_reg.then3142:
+relu_reg.then3142:  pred(model.entry11.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split
-relu_reg.if.exit3144:
+relu_reg.if.exit3144:  pred(model.entry11.split.split.split.split)
   73145 = icmp slt i32 %9562677, i32 0
   br i1 %73145, bb %relu_reg.then83147, bb %relu_reg.if.exit93149
-relu_reg.then83147:
+relu_reg.then83147:  pred(relu_reg.if.exit3144)
   br bb %model.entry11.split.split.split.split.split
-relu_reg.if.exit93149:
+relu_reg.if.exit93149:  pred(relu_reg.if.exit3144)
   br bb %model.entry11.split.split.split.split.split
-relu_reg.then3156:
+relu_reg.then3156:  pred(model.entry11.split.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split.split
-relu_reg.if.exit3158:
+relu_reg.if.exit3158:  pred(model.entry11.split.split.split.split.split)
   73159 = icmp slt i32 %11472729, i32 0
   br i1 %73159, bb %relu_reg.then83161, bb %relu_reg.if.exit93163
-relu_reg.then83161:
+relu_reg.then83161:  pred(relu_reg.if.exit3158)
   br bb %model.entry11.split.split.split.split.split.split
-relu_reg.if.exit93163:
+relu_reg.if.exit93163:  pred(relu_reg.if.exit3158)
   br bb %model.entry11.split.split.split.split.split.split
-relu_reg.then3170:
+relu_reg.then3170:  pred(model.entry11.split.split.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split.split.split
-relu_reg.if.exit3172:
+relu_reg.if.exit3172:  pred(model.entry11.split.split.split.split.split.split)
   73173 = icmp slt i32 %13352781, i32 0
   br i1 %73173, bb %relu_reg.then83175, bb %relu_reg.if.exit93177
-relu_reg.then83175:
+relu_reg.then83175:  pred(relu_reg.if.exit3172)
   br bb %model.entry11.split.split.split.split.split.split.split
-relu_reg.if.exit93177:
+relu_reg.if.exit93177:  pred(relu_reg.if.exit3172)
   br bb %model.entry11.split.split.split.split.split.split.split
-relu_reg.then3184:
+relu_reg.then3184:  pred(model.entry11.split.split.split.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split.split.split.split
-relu_reg.if.exit3186:
+relu_reg.if.exit3186:  pred(model.entry11.split.split.split.split.split.split.split)
   73187 = icmp slt i32 %15212831, i32 0
   br i1 %73187, bb %relu_reg.then83189, bb %relu_reg.if.exit93191
-relu_reg.then83189:
+relu_reg.then83189:  pred(relu_reg.if.exit3186)
   br bb %model.entry11.split.split.split.split.split.split.split.split
-relu_reg.if.exit93191:
+relu_reg.if.exit93191:  pred(relu_reg.if.exit3186)
   br bb %model.entry11.split.split.split.split.split.split.split.split
-relu_reg.then3198:
+relu_reg.then3198:  pred(model.entry11.split.split.split.split.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit3200:
+relu_reg.if.exit3200:  pred(model.entry11.split.split.split.split.split.split.split.split)
   73201 = icmp slt i32 %17162880, i32 0
   br i1 %73201, bb %relu_reg.then83203, bb %relu_reg.if.exit93205
-relu_reg.then83203:
+relu_reg.then83203:  pred(relu_reg.if.exit3200)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit93205:
+relu_reg.if.exit93205:  pred(relu_reg.if.exit3200)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split
-relu_reg.then3212:
+relu_reg.then3212:  pred(model.entry11.split.split.split.split.split.split.split.split.split)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit3214:
+relu_reg.if.exit3214:  pred(model.entry11.split.split.split.split.split.split.split.split.split)
   73215 = icmp slt i32 %19042931, i32 0
   br i1 %73215, bb %relu_reg.then83217, bb %relu_reg.if.exit93219
-relu_reg.then83217:
+relu_reg.then83217:  pred(relu_reg.if.exit3214)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit93219:
+relu_reg.if.exit93219:  pred(relu_reg.if.exit3214)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split.split
 }
 
@@ -760,7 +770,7 @@ external void putfloat(float )
 external void putch(i32 )
 
 i32 model(ptr a) {
-entry11:
+entry11:  pred()
   15.load = load i32 from ptr %a
   17 = mul i32 %15.load, i32 85
   21 = ptradd ptr %a, i32 4
@@ -861,7 +871,7 @@ entry11:
   197 = add i32 %190, i32 %196
   32944 = icmp sgt i32 %197, i32 127
   br i1 %32944, bb %relu_reg.then, bb %relu_reg.if.exit
-entry11.split:
+entry11.split:  pred(relu_reg.then, relu_reg.then8, relu_reg.if.exit9)
   198.ret = phi [bb %relu_reg.then, i32 127, bb %relu_reg.then8, i32 0, bb %relu_reg.if.exit9, i32 %197]
   199 = mul i32 %198.ret, i32 39
   206 = mul i32 %15.load, i32 -106
@@ -915,7 +925,7 @@ entry11.split:
   391 = add i32 %383, i32 %390
   32958 = icmp sgt i32 %391, i32 127
   br i1 %32958, bb %relu_reg.then2960, bb %relu_reg.if.exit2962
-entry11.split.split:
+entry11.split.split:  pred(relu_reg.then2960, relu_reg.then82965, relu_reg.if.exit92967)
   392.ret = phi [bb %relu_reg.then2960, i32 127, bb %relu_reg.then82965, i32 0, bb %relu_reg.if.exit92967, i32 %391]
   393 = mul i32 %392.ret, i32 77
   394 = add i32 %199, i32 %393
@@ -970,7 +980,7 @@ entry11.split.split:
   578 = add i32 %571, i32 %577
   32972 = icmp sgt i32 %578, i32 127
   br i1 %32972, bb %relu_reg.then2974, bb %relu_reg.if.exit2976
-entry11.split.split.split:
+entry11.split.split.split:  pred(relu_reg.then2974, relu_reg.then82979, relu_reg.if.exit92981)
   579.ret = phi [bb %relu_reg.then2974, i32 127, bb %relu_reg.then82979, i32 0, bb %relu_reg.if.exit92981, i32 %578]
   580 = mul i32 %579.ret, i32 127
   581 = add i32 %394, i32 %580
@@ -1024,7 +1034,7 @@ entry11.split.split.split:
   767 = add i32 %760, i32 %766
   32986 = icmp sgt i32 %767, i32 127
   br i1 %32986, bb %relu_reg.then2988, bb %relu_reg.if.exit2990
-entry11.split.split.split.split:
+entry11.split.split.split.split:  pred(relu_reg.then2988, relu_reg.then82993, relu_reg.if.exit92995)
   768.ret = phi [bb %relu_reg.then2988, i32 127, bb %relu_reg.then82993, i32 0, bb %relu_reg.if.exit92995, i32 %767]
   770 = mul i32 %768.ret, i32 -106
   771 = add i32 %581, i32 %770
@@ -1078,7 +1088,7 @@ entry11.split.split.split.split:
   956 = add i32 %948, i32 %955
   33000 = icmp sgt i32 %956, i32 127
   br i1 %33000, bb %relu_reg.then3002, bb %relu_reg.if.exit3004
-entry11.split.split.split.split.split:
+entry11.split.split.split.split.split:  pred(relu_reg.then3002, relu_reg.then83007, relu_reg.if.exit93009)
   957.ret = phi [bb %relu_reg.then3002, i32 127, bb %relu_reg.then83007, i32 0, bb %relu_reg.if.exit93009, i32 %956]
   959 = mul i32 %957.ret, i32 -3
   960 = add i32 %771, i32 %959
@@ -1133,7 +1143,7 @@ entry11.split.split.split.split.split:
   1147 = add i32 %1139, i32 %1146
   33014 = icmp sgt i32 %1147, i32 127
   br i1 %33014, bb %relu_reg.then3016, bb %relu_reg.if.exit3018
-entry11.split.split.split.split.split.split:
+entry11.split.split.split.split.split.split:  pred(relu_reg.then3016, relu_reg.then83021, relu_reg.if.exit93023)
   1148.ret = phi [bb %relu_reg.then3016, i32 127, bb %relu_reg.then83021, i32 0, bb %relu_reg.if.exit93023, i32 %1147]
   2211 = shl i32 %1148.ret, i32 5
   1150 = add i32 %960, i32 %2211
@@ -1188,7 +1198,7 @@ entry11.split.split.split.split.split.split:
   1335 = add i32 %1328, i32 %1334
   33028 = icmp sgt i32 %1335, i32 127
   br i1 %33028, bb %relu_reg.then3030, bb %relu_reg.if.exit3032
-entry11.split.split.split.split.split.split.split:
+entry11.split.split.split.split.split.split.split:  pred(relu_reg.then3030, relu_reg.then83035, relu_reg.if.exit93037)
   1336.ret = phi [bb %relu_reg.then3030, i32 127, bb %relu_reg.then83035, i32 0, bb %relu_reg.if.exit93037, i32 %1335]
   1338 = mul i32 %1336.ret, i32 -95
   1339 = add i32 %1150, i32 %1338
@@ -1241,7 +1251,7 @@ entry11.split.split.split.split.split.split.split:
   1521 = add i32 %1513, i32 %1520
   33042 = icmp sgt i32 %1521, i32 127
   br i1 %33042, bb %relu_reg.then3044, bb %relu_reg.if.exit3046
-entry11.split.split.split.split.split.split.split.split:
+entry11.split.split.split.split.split.split.split.split:  pred(relu_reg.then3044, relu_reg.then83049, relu_reg.if.exit93051)
   1522.ret = phi [bb %relu_reg.then3044, i32 127, bb %relu_reg.then83049, i32 0, bb %relu_reg.if.exit93051, i32 %1521]
   1524 = mul i32 %1522.ret, i32 -50
   1525 = add i32 %1339, i32 %1524
@@ -1293,7 +1303,7 @@ entry11.split.split.split.split.split.split.split.split:
   1716 = add i32 %1708, i32 %1715
   33056 = icmp sgt i32 %1716, i32 127
   br i1 %33056, bb %relu_reg.then3058, bb %relu_reg.if.exit3060
-entry11.split.split.split.split.split.split.split.split.split:
+entry11.split.split.split.split.split.split.split.split.split:  pred(relu_reg.then3058, relu_reg.then83063, relu_reg.if.exit93065)
   1717.ret = phi [bb %relu_reg.then3058, i32 127, bb %relu_reg.then83063, i32 0, bb %relu_reg.if.exit93065, i32 %1716]
   1719 = mul i32 %1717.ret, i32 -23
   1720 = add i32 %1525, i32 %1719
@@ -1347,105 +1357,105 @@ entry11.split.split.split.split.split.split.split.split.split:
   1904 = add i32 %1897, i32 %1903
   33070 = icmp sgt i32 %1904, i32 127
   br i1 %33070, bb %relu_reg.then3072, bb %relu_reg.if.exit3074
-entry11.split.split.split.split.split.split.split.split.split.split:
+entry11.split.split.split.split.split.split.split.split.split.split:  pred(relu_reg.then3072, relu_reg.then83077, relu_reg.if.exit93079)
   1905.ret = phi [bb %relu_reg.then3072, i32 127, bb %relu_reg.then83077, i32 0, bb %relu_reg.if.exit93079, i32 %1904]
   1906 = mul i32 %1905.ret, i32 46
   1907 = add i32 %1720, i32 %1906
   1908 = icmp sgt i32 %1907, i32 0
   br i1 %1908, bb %then1909, bb %if.exit1910
-then1909:
+then1909:  pred(entry11.split.split.split.split.split.split.split.split.split.split)
   ret i32 1
-if.exit1910:
+if.exit1910:  pred(entry11.split.split.split.split.split.split.split.split.split.split)
   ret i32 0
-relu_reg.then:
+relu_reg.then:  pred(entry11)
   br bb %entry11.split
-relu_reg.if.exit:
+relu_reg.if.exit:  pred(entry11)
   72949 = icmp slt i32 %197, i32 0
   br i1 %72949, bb %relu_reg.then8, bb %relu_reg.if.exit9
-relu_reg.then8:
+relu_reg.then8:  pred(relu_reg.if.exit)
   br bb %entry11.split
-relu_reg.if.exit9:
+relu_reg.if.exit9:  pred(relu_reg.if.exit)
   br bb %entry11.split
-relu_reg.then2960:
+relu_reg.then2960:  pred(entry11.split)
   br bb %entry11.split.split
-relu_reg.if.exit2962:
+relu_reg.if.exit2962:  pred(entry11.split)
   72963 = icmp slt i32 %391, i32 0
   br i1 %72963, bb %relu_reg.then82965, bb %relu_reg.if.exit92967
-relu_reg.then82965:
+relu_reg.then82965:  pred(relu_reg.if.exit2962)
   br bb %entry11.split.split
-relu_reg.if.exit92967:
+relu_reg.if.exit92967:  pred(relu_reg.if.exit2962)
   br bb %entry11.split.split
-relu_reg.then2974:
+relu_reg.then2974:  pred(entry11.split.split)
   br bb %entry11.split.split.split
-relu_reg.if.exit2976:
+relu_reg.if.exit2976:  pred(entry11.split.split)
   72977 = icmp slt i32 %578, i32 0
   br i1 %72977, bb %relu_reg.then82979, bb %relu_reg.if.exit92981
-relu_reg.then82979:
+relu_reg.then82979:  pred(relu_reg.if.exit2976)
   br bb %entry11.split.split.split
-relu_reg.if.exit92981:
+relu_reg.if.exit92981:  pred(relu_reg.if.exit2976)
   br bb %entry11.split.split.split
-relu_reg.then2988:
+relu_reg.then2988:  pred(entry11.split.split.split)
   br bb %entry11.split.split.split.split
-relu_reg.if.exit2990:
+relu_reg.if.exit2990:  pred(entry11.split.split.split)
   72991 = icmp slt i32 %767, i32 0
   br i1 %72991, bb %relu_reg.then82993, bb %relu_reg.if.exit92995
-relu_reg.then82993:
+relu_reg.then82993:  pred(relu_reg.if.exit2990)
   br bb %entry11.split.split.split.split
-relu_reg.if.exit92995:
+relu_reg.if.exit92995:  pred(relu_reg.if.exit2990)
   br bb %entry11.split.split.split.split
-relu_reg.then3002:
+relu_reg.then3002:  pred(entry11.split.split.split.split)
   br bb %entry11.split.split.split.split.split
-relu_reg.if.exit3004:
+relu_reg.if.exit3004:  pred(entry11.split.split.split.split)
   73005 = icmp slt i32 %956, i32 0
   br i1 %73005, bb %relu_reg.then83007, bb %relu_reg.if.exit93009
-relu_reg.then83007:
+relu_reg.then83007:  pred(relu_reg.if.exit3004)
   br bb %entry11.split.split.split.split.split
-relu_reg.if.exit93009:
+relu_reg.if.exit93009:  pred(relu_reg.if.exit3004)
   br bb %entry11.split.split.split.split.split
-relu_reg.then3016:
+relu_reg.then3016:  pred(entry11.split.split.split.split.split)
   br bb %entry11.split.split.split.split.split.split
-relu_reg.if.exit3018:
+relu_reg.if.exit3018:  pred(entry11.split.split.split.split.split)
   73019 = icmp slt i32 %1147, i32 0
   br i1 %73019, bb %relu_reg.then83021, bb %relu_reg.if.exit93023
-relu_reg.then83021:
+relu_reg.then83021:  pred(relu_reg.if.exit3018)
   br bb %entry11.split.split.split.split.split.split
-relu_reg.if.exit93023:
+relu_reg.if.exit93023:  pred(relu_reg.if.exit3018)
   br bb %entry11.split.split.split.split.split.split
-relu_reg.then3030:
+relu_reg.then3030:  pred(entry11.split.split.split.split.split.split)
   br bb %entry11.split.split.split.split.split.split.split
-relu_reg.if.exit3032:
+relu_reg.if.exit3032:  pred(entry11.split.split.split.split.split.split)
   73033 = icmp slt i32 %1335, i32 0
   br i1 %73033, bb %relu_reg.then83035, bb %relu_reg.if.exit93037
-relu_reg.then83035:
+relu_reg.then83035:  pred(relu_reg.if.exit3032)
   br bb %entry11.split.split.split.split.split.split.split
-relu_reg.if.exit93037:
+relu_reg.if.exit93037:  pred(relu_reg.if.exit3032)
   br bb %entry11.split.split.split.split.split.split.split
-relu_reg.then3044:
+relu_reg.then3044:  pred(entry11.split.split.split.split.split.split.split)
   br bb %entry11.split.split.split.split.split.split.split.split
-relu_reg.if.exit3046:
+relu_reg.if.exit3046:  pred(entry11.split.split.split.split.split.split.split)
   73047 = icmp slt i32 %1521, i32 0
   br i1 %73047, bb %relu_reg.then83049, bb %relu_reg.if.exit93051
-relu_reg.then83049:
+relu_reg.then83049:  pred(relu_reg.if.exit3046)
   br bb %entry11.split.split.split.split.split.split.split.split
-relu_reg.if.exit93051:
+relu_reg.if.exit93051:  pred(relu_reg.if.exit3046)
   br bb %entry11.split.split.split.split.split.split.split.split
-relu_reg.then3058:
+relu_reg.then3058:  pred(entry11.split.split.split.split.split.split.split.split)
   br bb %entry11.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit3060:
+relu_reg.if.exit3060:  pred(entry11.split.split.split.split.split.split.split.split)
   73061 = icmp slt i32 %1716, i32 0
   br i1 %73061, bb %relu_reg.then83063, bb %relu_reg.if.exit93065
-relu_reg.then83063:
+relu_reg.then83063:  pred(relu_reg.if.exit3060)
   br bb %entry11.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit93065:
+relu_reg.if.exit93065:  pred(relu_reg.if.exit3060)
   br bb %entry11.split.split.split.split.split.split.split.split.split
-relu_reg.then3072:
+relu_reg.then3072:  pred(entry11.split.split.split.split.split.split.split.split.split)
   br bb %entry11.split.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit3074:
+relu_reg.if.exit3074:  pred(entry11.split.split.split.split.split.split.split.split.split)
   73075 = icmp slt i32 %1904, i32 0
   br i1 %73075, bb %relu_reg.then83077, bb %relu_reg.if.exit93079
-relu_reg.then83077:
+relu_reg.then83077:  pred(relu_reg.if.exit3074)
   br bb %entry11.split.split.split.split.split.split.split.split.split.split
-relu_reg.if.exit93079:
+relu_reg.if.exit93079:  pred(relu_reg.if.exit3074)
   br bb %entry11.split.split.split.split.split.split.split.split.split.split
 }
 
@@ -1458,17 +1468,17 @@ external void _sysy_starttime(i32 )
 external void putfarray(i32 , ptr )
 
 pure i32 relu_reg(i32 a) {
-entry:
+entry:  pred()
   3 = icmp sgt i32 %a, i32 127
   br i1 %3, bb %then, bb %if.exit
-then:
+then:  pred(entry)
   ret i32 127
-if.exit:
+if.exit:  pred(entry)
   7 = icmp slt i32 %a, i32 0
   br i1 %7, bb %then8, bb %if.exit9
-then8:
+then8:  pred(if.exit)
   ret i32 0
-if.exit9:
+if.exit9:  pred(if.exit)
   ret i32 %a
 }
 

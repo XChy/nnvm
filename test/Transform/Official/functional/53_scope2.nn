@@ -1,31 +1,37 @@
 global ptr k init with i32 0
 i32 main() {
-entry:
+entry:  pred()
   store i32 3389 to ptr @k
   store i32 3390 to ptr @k
-  br bb %while.cond
-while.cond:
-  g25.phi44 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g25.phi]
-  l.phi41 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %l.phi]
-  g.phi38 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g.phi]
-  k.phi35 = phi [bb %entry, i32 112, bb %if.exit19, i32 %k.phi]
+  1252 = icmp sgt i32 112, i32 10
+  br i1 %1252, bb %while.body, bb %while.exit
+while.cond:  pred(if.exit19)
+  g25.phi44 = phi [bb %if.exit19, i32 %g25.phi]
+  l.phi41 = phi [bb %if.exit19, i32 %l.phi]
+  g.phi38 = phi [bb %if.exit19, i32 %g.phi]
+  k.phi35 = phi [bb %if.exit19, i32 %k.phi]
   12 = icmp sgt i32 %k.phi35, i32 10
   br i1 %12, bb %while.body, bb %while.exit
-while.body:
-  15 = sub i32 %k.phi35, i32 88
+while.body:  pred(while.cond, entry)
+  k.phi3557 = phi [bb %entry, i32 112, bb %while.cond, i32 %k.phi35]
+  g.phi3856 = phi [bb %entry, i32 0, bb %while.cond, i32 %g.phi38]
+  l.phi4155 = phi [bb %entry, i32 0, bb %while.cond, i32 %l.phi41]
+  g25.phi4454 = phi [bb %entry, i32 0, bb %while.cond, i32 %g25.phi44]
+  15 = sub i32 %k.phi3557, i32 88
   17 = icmp slt i32 %15, i32 1000
   br i1 %17, bb %then18, bb %if.exit19
-while.exit:
-  call void putint(i32 %k.phi35)
+while.exit:  pred(while.cond, entry)
+  53 = phi [bb %while.cond, i32 %k.phi35, bb %entry, i32 112]
+  call void putint(i32 %53)
   k.load33 = load i32 from ptr @k
   ret i32 %k.load33
-then18:
-  51 = add i32 %k.phi35, i32 -76
+then18:  pred(while.body)
+  51 = add i32 %k.phi3557, i32 -76
   br bb %if.exit19
-if.exit19:
-  g25.phi = phi [bb %while.body, i32 %g25.phi44, bb %then18, i32 11]
-  l.phi = phi [bb %while.body, i32 %l.phi41, bb %then18, i32 11]
-  g.phi = phi [bb %while.body, i32 %g.phi38, bb %then18, i32 10]
+if.exit19:  pred(while.body, then18)
+  g25.phi = phi [bb %while.body, i32 %g25.phi4454, bb %then18, i32 11]
+  l.phi = phi [bb %while.body, i32 %l.phi4155, bb %then18, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi3856, bb %then18, i32 10]
   k.phi = phi [bb %while.body, i32 %15, bb %then18, i32 %51]
   br bb %while.cond
 }

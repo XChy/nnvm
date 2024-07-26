@@ -1,7 +1,7 @@
 global ptr b init with i32 0
 global ptr a init with i32 0
 i32 main() {
-entry:
+entry:  pred()
   1 = call i32 getint()
   store i32 %1 to ptr @a
   2 = call i32 getint()
@@ -9,20 +9,20 @@ entry:
   a.load = load i32 from ptr @a
   6 = icmp eq i32 %a.load, i32 %2
   br i1 %6, bb %select.then, bb %select.else
-select.then:
+select.then:  pred(entry)
   12 = icmp ne i32 %a.load, i32 3
   br bb %select.exit
-select.else:
+select.else:  pred(entry)
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %12]
   br i1 %select.phi, bb %then, bb %else
-then:
+then:  pred(select.exit)
   br bb %if.exit
-if.exit:
+if.exit:  pred(then, else)
   c.phi = phi [bb %else, i32 0, bb %then, i32 1]
   ret i32 %c.phi
-else:
+else:  pred(select.exit)
   br bb %if.exit
 }
 

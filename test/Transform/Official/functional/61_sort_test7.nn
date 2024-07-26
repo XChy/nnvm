@@ -10,7 +10,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry149:
+entry149:  pred()
   153 = call i32 getarray(ptr @buf)
   call void merge_sort(i32 0, i32 %153)
   call void putarray(i32 %153, ptr @buf)
@@ -32,27 +32,25 @@ external void _sysy_starttime(i32 )
 external void putfarray(i32 , ptr )
 
 void merge_sort(i32 l, i32 r) {
-entry:
+entry:  pred()
   4 = add i32 %l, i32 1
   6 = icmp sge i32 %4, i32 %r
   br i1 %6, bb %then, bb %if.exit
-then:
+then:  pred(entry)
   ret 
-if.exit:
+if.exit:  pred(entry)
   12 = add i32 %l, i32 %r
   13 = sdiv i32 %12, i32 2
   call void merge_sort(i32 %l, i32 %13)
   call void merge_sort(i32 %13, i32 %r)
-  58 = ptradd ptr @buf, i32 400
-  71 = ptradd ptr @buf, i32 400
   br bb %while.cond
-while.cond:
+while.cond:  pred(if.exit, if.exit55)
   k.phi169 = phi [bb %if.exit, i32 %l, bb %if.exit55, i32 %84]
   j.phi166 = phi [bb %if.exit, i32 %13, bb %if.exit55, i32 %j.phi165]
   i.phi163 = phi [bb %if.exit, i32 %l, bb %if.exit55, i32 %i.phi162]
   31 = icmp slt i32 %i.phi163, i32 %13
   br i1 %31, bb %select.then, bb %select.else
-while.body:
+while.body:  pred(select.exit)
   172 = shl i32 %i.phi163, i32 2
   45 = ptradd ptr @buf, i32 %172
   45.load = load i32 from ptr %45
@@ -61,85 +59,96 @@ while.body:
   51.load = load i32 from ptr %51
   53 = icmp slt i32 %45.load, i32 %51.load
   br i1 %53, bb %then54, bb %else
-while.exit:
-  93 = ptradd ptr @buf, i32 400
-  br bb %while.cond85
-select.then:
+while.exit:  pred(select.exit)
+  90189 = icmp slt i32 %i.phi163, i32 %13
+  br i1 %90189, bb %while.body86, bb %while.exit87
+select.then:  pred(while.cond)
   38 = icmp slt i32 %j.phi166, i32 %r
   br bb %select.exit
-select.else:
+select.else:  pred(while.cond)
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %38]
   br i1 %select.phi, bb %while.body, bb %while.exit
-then54:
+then54:  pred(while.body)
+  58 = ptradd ptr @buf, i32 400
   174 = shl i32 %k.phi169, i32 2
   61 = ptradd ptr %58, i32 %174
   66.load = load i32 from ptr %45
   store i32 %66.load to ptr %61
   69 = add i32 %i.phi163, i32 1
   br bb %if.exit55
-if.exit55:
+if.exit55:  pred(then54, else)
   j.phi165 = phi [bb %else, i32 %82, bb %then54, i32 %j.phi166]
   i.phi162 = phi [bb %else, i32 %i.phi163, bb %then54, i32 %69]
   84 = add i32 %k.phi169, i32 1
   br bb %while.cond
-else:
+else:  pred(while.body)
+  71 = ptradd ptr @buf, i32 400
   176 = shl i32 %k.phi169, i32 2
   74 = ptradd ptr %71, i32 %176
   79.load = load i32 from ptr %51
   store i32 %79.load to ptr %74
   82 = add i32 %j.phi166, i32 1
   br bb %if.exit55
-while.cond85:
-  k.phi168 = phi [bb %while.exit, i32 %k.phi169, bb %while.body86, i32 %106]
-  i.phi = phi [bb %while.exit, i32 %i.phi163, bb %while.body86, i32 %104]
+while.cond85:  pred(while.body86)
+  k.phi168 = phi [bb %while.body86, i32 %106]
+  i.phi = phi [bb %while.body86, i32 %104]
   90 = icmp slt i32 %i.phi, i32 %13
   br i1 %90, bb %while.body86, bb %while.exit87
-while.body86:
-  178 = shl i32 %k.phi168, i32 2
+while.body86:  pred(while.cond85, while.exit)
+  i.phi192 = phi [bb %while.exit, i32 %i.phi163, bb %while.cond85, i32 %i.phi]
+  k.phi168191 = phi [bb %while.exit, i32 %k.phi169, bb %while.cond85, i32 %k.phi168]
+  93 = ptradd ptr @buf, i32 400
+  178 = shl i32 %k.phi168191, i32 2
   96 = ptradd ptr %93, i32 %178
-  179 = shl i32 %i.phi, i32 2
+  179 = shl i32 %i.phi192, i32 2
   101 = ptradd ptr @buf, i32 %179
   101.load = load i32 from ptr %101
   store i32 %101.load to ptr %96
-  104 = add i32 %i.phi, i32 1
-  106 = add i32 %k.phi168, i32 1
+  104 = add i32 %i.phi192, i32 1
+  106 = add i32 %k.phi168191, i32 1
   br bb %while.cond85
-while.exit87:
-  115 = ptradd ptr @buf, i32 400
-  br bb %while.cond107
-while.cond107:
-  k.phi = phi [bb %while.exit87, i32 %k.phi168, bb %while.body108, i32 %128]
-  j.phi = phi [bb %while.exit87, i32 %j.phi166, bb %while.body108, i32 %126]
+while.exit87:  pred(while.cond85, while.exit)
+  k.phi169190 = phi [bb %while.cond85, i32 %k.phi168, bb %while.exit, i32 %k.phi169]
+  112186 = icmp slt i32 %j.phi166, i32 %r
+  br i1 %112186, bb %while.body108, bb %while.exit109
+while.cond107:  pred(while.body108)
+  k.phi = phi [bb %while.body108, i32 %128]
+  j.phi = phi [bb %while.body108, i32 %126]
   112 = icmp slt i32 %j.phi, i32 %r
   br i1 %112, bb %while.body108, bb %while.exit109
-while.body108:
-  180 = shl i32 %k.phi, i32 2
+while.body108:  pred(while.cond107, while.exit87)
+  j.phi188 = phi [bb %while.exit87, i32 %j.phi166, bb %while.cond107, i32 %j.phi]
+  k.phi187 = phi [bb %while.exit87, i32 %k.phi169190, bb %while.cond107, i32 %k.phi]
+  115 = ptradd ptr @buf, i32 400
+  180 = shl i32 %k.phi187, i32 2
   118 = ptradd ptr %115, i32 %180
-  181 = shl i32 %j.phi, i32 2
+  181 = shl i32 %j.phi188, i32 2
   123 = ptradd ptr @buf, i32 %181
   123.load = load i32 from ptr %123
   store i32 %123.load to ptr %118
-  126 = add i32 %j.phi, i32 1
-  128 = add i32 %k.phi, i32 1
+  126 = add i32 %j.phi188, i32 1
+  128 = add i32 %k.phi187, i32 1
   br bb %while.cond107
-while.exit109:
-  142 = ptradd ptr @buf, i32 400
-  br bb %while.cond129
-while.cond129:
-  l.stack.phi = phi [bb %while.exit109, i32 %l, bb %while.body130, i32 %148]
+while.exit109:  pred(while.cond107, while.exit87)
+  134184 = icmp slt i32 %l, i32 %r
+  br i1 %134184, bb %while.body130, bb %while.exit131
+while.cond129:  pred(while.body130)
+  l.stack.phi = phi [bb %while.body130, i32 %148]
   134 = icmp slt i32 %l.stack.phi, i32 %r
   br i1 %134, bb %while.body130, bb %while.exit131
-while.body130:
-  182 = shl i32 %l.stack.phi, i32 2
+while.body130:  pred(while.cond129, while.exit109)
+  l.stack.phi185 = phi [bb %while.exit109, i32 %l, bb %while.cond129, i32 %l.stack.phi]
+  182 = shl i32 %l.stack.phi185, i32 2
   140 = ptradd ptr @buf, i32 %182
+  142 = ptradd ptr @buf, i32 400
   145 = ptradd ptr %142, i32 %182
   145.load = load i32 from ptr %145
   store i32 %145.load to ptr %140
-  148 = add i32 %l.stack.phi, i32 1
+  148 = add i32 %l.stack.phi185, i32 1
   br bb %while.cond129
-while.exit131:
+while.exit131:  pred(while.cond129, while.exit109)
   ret 
 }
 

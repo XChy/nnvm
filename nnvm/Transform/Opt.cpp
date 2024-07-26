@@ -1,4 +1,5 @@
 #include "Opt.h"
+#include "Transform/BeforeCodegen/GlobalHoist.h"
 #include "Transform/IPO/GlobalAttributor.h"
 #include "Transform/IPO/Inliner.h"
 #include "Transform/Infra/PassManager.h"
@@ -34,7 +35,11 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<MemPropPass>();
   passManager.addFunctionPass<CSEPass>();
-  //passManager.addFunctionPass<RotatePass>();
-  passManager.addFunctionPass<LICMPass>();
+  passManager.addFunctionPass<RotatePass>();
+  //passManager.addFunctionPass<LICMPass>();
+
+  // Before codegen
+  // passManager.addFunctionPass<GlobalHoistPass>();
+
   passManager.run(*module);
 }

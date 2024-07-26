@@ -1,7 +1,7 @@
 global ptr c init with 4 x i32 [6, 7, 8, 9]
 global ptr b init with i32 5
 i32 main() {
-entry:
+entry:  pred()
   %c52 = stack 140
   %c = stack 64
   call void putint(i32 3)
@@ -45,7 +45,7 @@ entry:
   store i32 0 to ptr %arr.index44
   49 = icmp ne i32 1, i32 0
   br i1 %49, bb %then50, bb %if.exit51
-then50:
+then50:  pred(entry)
   store i32 0 to ptr %c52
   arr.index54 = ptradd ptr %c52, i32 4
   store i32 0 to ptr %arr.index54
@@ -71,8 +71,9 @@ then50:
   store i32 1 to ptr %arr.index64
   arr.index65 = ptradd ptr %c52, i32 48
   store i32 8 to ptr %arr.index65
-  br bb %init.cond
-if.exit51:
+  71143 = icmp ne i32 22, i32 0
+  br i1 %71143, bb %init, bb %init.exit
+if.exit51:  pred(entry, init.exit)
   call void putch(i32 10)
   b.load105 = load i32 from ptr @b
   call void putint(i32 %b.load105)
@@ -89,18 +90,19 @@ if.exit51:
   call void putint(i32 %121.load)
   call void putch(i32 10)
   ret i32 0
-init.cond:
-  cnt_ptr.phi = phi [bb %then50, i32 22, bb %init, i32 %cnt.dec]
+init.cond:  pred(init)
+  cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   71 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %71, bb %init, bb %init.exit
-init:
-  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
+init:  pred(init.cond, then50)
+  cnt_ptr.phi144 = phi [bb %then50, i32 22, bb %init.cond, i32 %cnt_ptr.phi]
+  cnt.dec = sub i32 %cnt_ptr.phi144, i32 1
   129 = shl i32 %cnt.dec, i32 2
   130 = add i32 %129, i32 52
   arr.index76 = ptradd ptr %c52, ptr %130
   store i32 0 to ptr %arr.index76
   br bb %init.cond
-init.exit:
+init.exit:  pred(init.cond, then50)
   83.load = load i32 from ptr %arr.index63
   call void putint(i32 %83.load)
   92.load = load i32 from ptr %arr.index64

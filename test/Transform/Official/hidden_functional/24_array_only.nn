@@ -1,25 +1,25 @@
 global ptr k init with 1 x i32 zeros
 global ptr i init with 1 x i32 zeros
 void sub(ptr x, ptr y) {
-entry82:
+entry82:  pred()
   84.load = load i32 from ptr @k
   call void sub_impl(ptr %x, ptr %y, i32 %84.load)
   ret 
 }
 
 void sub_impl(ptr x, ptr y, i32 rec) {
-entry57:
+entry57:  pred()
   60 = icmp eq i32 %rec, i32 0
   br i1 %60, bb %then61, bb %else63
-then61:
+then61:  pred(entry57)
   67.load = load i32 from ptr %x
   70.load = load i32 from ptr %y
   72 = sub i32 %67.load, i32 %70.load
   store i32 %72 to ptr %x
   br bb %if.exit62
-if.exit62:
+if.exit62:  pred(then61, else63)
   ret 
-else63:
+else63:  pred(entry57)
   76.load = load i32 from ptr %x
   166 = shl i32 %76.load, i32 1
   store i32 %166 to ptr %x
@@ -29,7 +29,7 @@ else63:
 }
 
 void inc(ptr x) {
-entry22:
+entry22:  pred()
   24.load = load i32 from ptr @k
   call void inc_impl(ptr %x, i32 %24.load)
   ret 
@@ -42,7 +42,7 @@ external i32 getch()
 external void putint(i32 )
 
 void add(ptr x, ptr y) {
-entry52:
+entry52:  pred()
   54.load = load i32 from ptr @k
   call void add_impl(ptr %x, ptr %y, i32 %54.load)
   ret 
@@ -51,18 +51,18 @@ entry52:
 external i32 getarray(ptr )
 
 void add_impl(ptr x, ptr y, i32 rec) {
-entry27:
+entry27:  pred()
   30 = icmp eq i32 %rec, i32 0
   br i1 %30, bb %then31, bb %else33
-then31:
+then31:  pred(entry27)
   37.load = load i32 from ptr %x
   40.load = load i32 from ptr %y
   42 = add i32 %37.load, i32 %40.load
   store i32 %42 to ptr %x
   br bb %if.exit32
-if.exit32:
+if.exit32:  pred(then31, else33)
   ret 
-else33:
+else33:  pred(entry27)
   46.load = load i32 from ptr %x
   167 = shl i32 %46.load, i32 1
   store i32 %167 to ptr %x
@@ -74,7 +74,7 @@ else33:
 external i32 getfarray(ptr )
 
 i32 main() {
-entry87:
+entry87:  pred()
   %z = stack 8
   %y = stack 4
   %j = stack 4
@@ -87,22 +87,24 @@ entry87:
   store i32 %99 to ptr %y
   102 = call i32 getarray(ptr %z)
   br bb %while.cond
-while.cond:
+while.cond:  pred(entry87, while.exit119)
   107.load = load i32 from ptr %y
   109 = icmp ne i32 %107.load, i32 0
   br i1 %109, bb %while.body, bb %while.exit
-while.body:
+while.body:  pred(while.cond)
   115.load = load i32 from ptr %z
   store i32 %115.load to ptr %j
-  br bb %while.cond117
-while.exit:
+  121.load194 = load i32 from ptr %j
+  123195 = icmp slt i32 %121.load194, i32 5
+  br i1 %123195, bb %while.body118, bb %while.exit119
+while.exit:  pred(while.cond, while.exit119)
   call void putch(i32 10)
   ret i32 0
-while.cond117:
+while.cond117:  pred(while.body118)
   121.load = load i32 from ptr %j
   123 = icmp slt i32 %121.load, i32 5
   br i1 %123, bb %while.body118, bb %while.exit119
-while.body118:
+while.body118:  pred(while.cond117, while.body)
   126.load = load i32 from ptr @i
   call void putint(i32 %126.load)
   130.load = load i32 from ptr %j
@@ -118,7 +120,7 @@ while.body118:
   84.load171 = load i32 from ptr @k
   call void sub_impl(ptr %z, ptr %y, i32 %84.load171)
   br bb %while.cond117
-while.exit119:
+while.exit119:  pred(while.cond117, while.body)
   24.load176 = load i32 from ptr @k
   call void inc_impl(ptr @i, i32 %24.load176)
   54.load191 = load i32 from ptr @k
@@ -144,17 +146,17 @@ external void putfarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 void inc_impl(ptr x, i32 rec) {
-entry:
+entry:  pred()
   3 = icmp eq i32 %rec, i32 0
   br i1 %3, bb %then, bb %else
-then:
+then:  pred(entry)
   10.load = load i32 from ptr %x
   12 = add i32 %10.load, i32 1
   store i32 %12 to ptr %x
   br bb %if.exit
-if.exit:
+if.exit:  pred(then, else)
   ret 
-else:
+else:  pred(entry)
   16.load = load i32 from ptr %x
   168 = shl i32 %16.load, i32 1
   store i32 %168 to ptr %x

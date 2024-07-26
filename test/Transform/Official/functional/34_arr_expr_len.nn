@@ -1,22 +1,26 @@
 global ptr arr init with 6 x i32 [1, 2, 33, 4, 5, 6]
 immutable global ptr N init with i32 -1
 i32 main() {
-entry:
-  br bb %while.cond
-while.cond:
-  sum.phi = phi [bb %entry, i32 0, bb %while.body, i32 %14]
-  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
+entry:  pred()
+  721 = icmp slt i32 0, i32 6
+  br i1 %721, bb %while.body, bb %while.exit
+while.cond:  pred(while.body)
+  sum.phi = phi [bb %while.body, i32 %14]
+  i.phi = phi [bb %while.body, i32 %16]
   7 = icmp slt i32 %i.phi, i32 6
   br i1 %7, bb %while.body, bb %while.exit
-while.body:
-  20 = shl i32 %i.phi, i32 2
+while.body:  pred(while.cond, entry)
+  i.phi24 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
+  sum.phi23 = phi [bb %entry, i32 0, bb %while.cond, i32 %sum.phi]
+  20 = shl i32 %i.phi24, i32 2
   12 = ptradd ptr @arr, i32 %20
   12.load = load i32 from ptr %12
-  14 = add i32 %sum.phi, i32 %12.load
-  16 = add i32 %i.phi, i32 1
+  14 = add i32 %sum.phi23, i32 %12.load
+  16 = add i32 %i.phi24, i32 1
   br bb %while.cond
-while.exit:
-  ret i32 %sum.phi
+while.exit:  pred(while.cond, entry)
+  22 = phi [bb %while.cond, i32 %sum.phi, bb %entry, i32 0]
+  ret i32 %22
 }
 
 external void putfarray(i32 , ptr )

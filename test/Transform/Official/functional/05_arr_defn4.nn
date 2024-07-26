@@ -1,5 +1,5 @@
 pure i32 main() {
-entry:
+entry:  pred()
   %e = stack 32
   %d = stack 32
   %c = stack 32

@@ -1,27 +1,34 @@
 external i32 getint()
 
 pure i32 doubleWhile() {
-entry:
-  br bb %while.cond
-while.cond:
-  j.phi = phi [bb %entry, i32 7, bb %while.exit13, i32 %20]
-  i.phi = phi [bb %entry, i32 5, bb %while.exit13, i32 %10]
+entry:  pred()
+  754 = icmp slt i32 5, i32 100
+  br i1 %754, bb %while.body, bb %while.exit
+while.cond:  pred(while.exit13)
+  j.phi = phi [bb %while.exit13, i32 %20]
+  i.phi = phi [bb %while.exit13, i32 %10]
   7 = icmp slt i32 %i.phi, i32 100
   br i1 %7, bb %while.body, bb %while.exit
-while.body:
-  10 = add i32 %i.phi, i32 30
-  br bb %while.cond11
-while.exit:
-  ret i32 %j.phi
-while.cond11:
-  j.phi26 = phi [bb %while.body, i32 %j.phi, bb %while.body12, i32 %18]
+while.body:  pred(while.cond, entry)
+  i.phi57 = phi [bb %entry, i32 5, bb %while.cond, i32 %i.phi]
+  j.phi56 = phi [bb %entry, i32 7, bb %while.cond, i32 %j.phi]
+  10 = add i32 %i.phi57, i32 30
+  1551 = icmp slt i32 %j.phi56, i32 100
+  br i1 %1551, bb %while.body12, bb %while.exit13
+while.exit:  pred(while.cond, entry)
+  55 = phi [bb %while.cond, i32 %j.phi, bb %entry, i32 7]
+  ret i32 %55
+while.cond11:  pred(while.body12)
+  j.phi26 = phi [bb %while.body12, i32 %18]
   15 = icmp slt i32 %j.phi26, i32 100
   br i1 %15, bb %while.body12, bb %while.exit13
-while.body12:
-  18 = add i32 %j.phi26, i32 6
+while.body12:  pred(while.cond11, while.body)
+  j.phi2653 = phi [bb %while.body, i32 %j.phi56, bb %while.cond11, i32 %j.phi26]
+  18 = add i32 %j.phi2653, i32 6
   br bb %while.cond11
-while.exit13:
-  20 = sub i32 %j.phi26, i32 100
+while.exit13:  pred(while.cond11, while.body)
+  j.phi52 = phi [bb %while.cond11, i32 %j.phi26, bb %while.body, i32 %j.phi56]
+  20 = sub i32 %j.phi52, i32 100
   br bb %while.cond
 }
 
@@ -34,27 +41,34 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 pure i32 main() {
-entry22:
-  br bb %doubleWhile.while.cond
-doubleWhile.while.cond:
-  j.phi31 = phi [bb %entry22, i32 7, bb %doubleWhile.while.exit13, i32 %2048]
-  i.phi32 = phi [bb %entry22, i32 5, bb %doubleWhile.while.exit13, i32 %1036]
+entry22:  pred()
+  73361 = icmp slt i32 5, i32 100
+  br i1 %73361, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
+doubleWhile.while.cond:  pred(doubleWhile.while.exit13)
+  j.phi31 = phi [bb %doubleWhile.while.exit13, i32 %2048]
+  i.phi32 = phi [bb %doubleWhile.while.exit13, i32 %1036]
   733 = icmp slt i32 %i.phi32, i32 100
   br i1 %733, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
-doubleWhile.while.body:
-  1036 = add i32 %i.phi32, i32 30
-  br bb %doubleWhile.while.cond11
-doubleWhile.while.exit:
-  ret i32 %j.phi31
-doubleWhile.while.cond11:
-  j.phi2641 = phi [bb %doubleWhile.while.body, i32 %j.phi31, bb %doubleWhile.while.body12, i32 %1845]
+doubleWhile.while.body:  pred(doubleWhile.while.cond, entry22)
+  i.phi3264 = phi [bb %entry22, i32 5, bb %doubleWhile.while.cond, i32 %i.phi32]
+  j.phi3163 = phi [bb %entry22, i32 7, bb %doubleWhile.while.cond, i32 %j.phi31]
+  1036 = add i32 %i.phi3264, i32 30
+  154258 = icmp slt i32 %j.phi3163, i32 100
+  br i1 %154258, bb %doubleWhile.while.body12, bb %doubleWhile.while.exit13
+doubleWhile.while.exit:  pred(doubleWhile.while.cond, entry22)
+  62 = phi [bb %doubleWhile.while.cond, i32 %j.phi31, bb %entry22, i32 7]
+  ret i32 %62
+doubleWhile.while.cond11:  pred(doubleWhile.while.body12)
+  j.phi2641 = phi [bb %doubleWhile.while.body12, i32 %1845]
   1542 = icmp slt i32 %j.phi2641, i32 100
   br i1 %1542, bb %doubleWhile.while.body12, bb %doubleWhile.while.exit13
-doubleWhile.while.body12:
-  1845 = add i32 %j.phi2641, i32 6
+doubleWhile.while.body12:  pred(doubleWhile.while.cond11, doubleWhile.while.body)
+  j.phi264160 = phi [bb %doubleWhile.while.body, i32 %j.phi3163, bb %doubleWhile.while.cond11, i32 %j.phi2641]
+  1845 = add i32 %j.phi264160, i32 6
   br bb %doubleWhile.while.cond11
-doubleWhile.while.exit13:
-  2048 = sub i32 %j.phi2641, i32 100
+doubleWhile.while.exit13:  pred(doubleWhile.while.cond11, doubleWhile.while.body)
+  j.phi3159 = phi [bb %doubleWhile.while.cond11, i32 %j.phi2641, bb %doubleWhile.while.body, i32 %j.phi3163]
+  2048 = sub i32 %j.phi3159, i32 100
   br bb %doubleWhile.while.cond
 }
 

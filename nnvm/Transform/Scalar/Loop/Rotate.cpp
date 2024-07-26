@@ -13,6 +13,12 @@ bool RotatePass::run(Function &F) {
   return changed;
 }
 
+static bool usedOutsides(Value *value, Loop *loop) {
+  return std::any_of(
+      value->users().begin(), value->users().end(),
+      [loop](Use *U) { return !loop->contains(U->getUser()->getBlock()); });
+}
+
 //    preheader
 // -- oldHeader <--
 // |  newHeader   |
@@ -25,7 +31,6 @@ bool RotatePass::run(Function &F) {
 // --->  exit
 
 bool RotatePass::rotate(Loop *loop) {
-  bool changed = false;
   auto *oldHeader = loop->getHeader();
   auto *oldLatch = loop->getSingleLatch();
   auto *preheader = loop->getPreheader();
@@ -34,6 +39,10 @@ bool RotatePass::rotate(Loop *loop) {
   // Otherwise, the loop has been rotated.
   auto *oldBranch = mayCast<BranchInst>(oldHeader->getTerminator());
   if (!oldBranch->isConditional() || !loop->isExiting(oldHeader))
+    return false;
+
+  // TODO: handle multiple exits
+  if (loop->getExits().size() > 1)
     return false;
 
   // If the latch is already an exiting block, the loop has been rotated.
@@ -76,22 +85,19 @@ bool RotatePass::rotate(Loop *loop) {
   // Replace the terminator of preheader.
   preheader->termEnd().insertBefore(oldHeader->getTerminator()->copy());
   preheader->getTerminator()->eraseFromBB();
+  preheader->getTerminator()->replaceOps(
+      [&old2NewMap](Value *old) { return old2NewMap[old]; });
 
   IRBuilder builder;
-  builder.setInsertPoint(newHeader->begin());
-  // Rewrite outside uses
-  for (auto it = oldHeader->begin(); PhiInst *phi = mayCast<PhiInst>(*it);
-       it++) {
-    auto *newPhi = builder.buildPhi(phi->getType(), phi->getName());
-    newPhi->addIncoming(preheader, phi->getIncomingValueOf(preheader));
-    newPhi->addIncoming(oldHeader, phi->getIncomingValueOf(oldLatch));
-    phi->replaceSelf(newPhi);
-    phi->eraseFromBB();
-  }
 
+  // Rewrite outside uses, TODO: handle multiple exits
   for (auto *I : *oldHeader) {
+    if (!usedOutsides(I, loop))
+      continue;
+
     Value *preheaderVal = old2NewMap[I];
     Value *headerVal = I;
+
     for (Use *U : incChange(I->users())) {
       Instruction *user = U->getUser();
       if (user->getBlock() == oldHeader)
@@ -101,7 +107,75 @@ bool RotatePass::rotate(Loop *loop) {
         continue;
       }
     }
+
+    builder.setInsertPoint(exit->begin());
+    auto *outsidePhi =
+        builder.buildPhi(preheaderVal->getType(), preheaderVal->getName());
+    headerVal->replaceSelfIf(outsidePhi, [loop](Use *U) {
+      return !loop->contains(U->getUser()->getBlock());
+    });
+    for (auto *pred : exit->getPredRange()) {
+      if (pred == preheader)
+        outsidePhi->addIncoming(pred, preheaderVal);
+      else
+        outsidePhi->addIncoming(pred, headerVal);
+    }
   }
 
-  return changed;
+  // Move phis in oldHeader to newHeader
+  builder.setInsertPoint(newHeader->begin());
+  for (Instruction *I : incChange(*oldHeader)) {
+    PhiInst *phi = mayCast<PhiInst>(I);
+    if (!phi)
+      break;
+
+    auto *newPhi = builder.buildPhi(phi->getType(), phi->getName());
+
+    Value *preheaderVal = phi->getIncomingValueOf(preheader);
+    phi->removeIncoming(preheader);
+
+    phi->replaceOps([&](Value *a) { return a == phi ? newPhi : nullptr; });
+    phi->replaceSelfIf(newPhi, [&](Use *U) {
+      auto *userBB = U->getUser()->getBlock();
+      if (userBB == oldHeader)
+        return U->getUser()->isa<PhiInst>();
+      return loop->contains(userBB);
+    });
+    newPhi->addIncoming(preheader, preheaderVal);
+    newPhi->addIncoming(oldHeader, phi);
+  }
+
+  // Rewrite inside uses
+  builder.setInsertPoint(newHeader->begin());
+  for (auto *I : *oldHeader) {
+    if (I->isa<PhiInst>())
+      continue;
+    Value *preheaderVal = old2NewMap[I];
+    Value *headerVal = I;
+
+    bool usedInside = std::any_of(
+        headerVal->users().begin(), headerVal->users().end(), [&](Use *U) {
+          auto *userBB = U->getUser()->getBlock();
+          return loop->contains(userBB) && userBB != oldHeader;
+        });
+
+    if (!usedInside)
+      continue;
+
+    auto *insidePhi =
+        builder.buildPhi(preheaderVal->getType(), preheaderVal->getName());
+    headerVal->replaceSelfIf(insidePhi, [&](Use *U) {
+      auto *userBB = U->getUser()->getBlock();
+      return loop->contains(userBB) && userBB != oldHeader;
+    });
+
+    for (auto *pred : newHeader->getPredRange()) {
+      if (pred == preheader)
+        insidePhi->addIncoming(pred, preheaderVal);
+      else
+        insidePhi->addIncoming(pred, headerVal);
+    }
+  }
+
+  return true;
 }

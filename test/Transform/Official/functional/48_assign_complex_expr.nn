@@ -1,5 +1,5 @@
 i32 main() {
-entry:
+entry:  pred()
   call void putint(i32 -1)
   call void putint(i32 71)
   ret i32 0

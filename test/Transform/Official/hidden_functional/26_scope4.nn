@@ -2,7 +2,7 @@ global ptr count init with i32 0
 global ptr sum init with i32 0
 global ptr a init with i32 0
 void f2() {
-entry27:
+entry27:  pred()
   sum.load28 = load i32 from ptr @sum
   a.load29 = load i32 from ptr @a
   30 = add i32 %sum.load28, i32 %a.load29
@@ -16,7 +16,7 @@ entry27:
 }
 
 void f1(i32 a) {
-entry4:
+entry4:  pred()
   sum.load = load i32 from ptr @sum
   8 = add i32 %sum.load, i32 %a
   store i32 %8 to ptr @sum
@@ -43,7 +43,7 @@ external i32 getch()
 external void putint(i32 )
 
 i32 getA() {
-entry:
+entry:  pred()
   count.load = load i32 from ptr @count
   2 = add i32 %count.load, i32 1
   store i32 %2 to ptr @count
@@ -55,7 +55,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry51:
+entry51:  pred()
   store i32 0 to ptr @sum
   count.load499 = load i32 from ptr @count
   2500 = add i32 %count.load499, i32 1
@@ -300,19 +300,19 @@ entry51:
   501004 = add i32 %45998, i32 %24861014
   store i32 %501004 to ptr @sum
   br bb %while.cond104
-while.exit:
+while.exit:  pred(while.cond104)
   sum.load142 = load i32 from ptr @sum
   call void putint(i32 %sum.load142)
   ret i32 0
-while.cond104:
-  a127.phi = phi [bb %entry51, i32 ub, bb %else, i32 %a127.phi, bb %then124, i32 %2549]
+while.cond104:  pred(then124, else, entry51)
+  a127.phi = phi [bb %entry51, i32 0, bb %else, i32 %a127.phi, bb %then124, i32 %2549]
   i.phi = phi [bb %entry51, i32 0, bb %else, i32 %141, bb %then124, i32 %134]
   a56.phi = phi [bb %entry51, i32 %2507, bb %else, i32 %2556, bb %then124, i32 %a56.phi148]
   108 = icmp slt i32 %i.phi, i32 3
   br i1 %108, bb %while.body105, bb %while.exit
-while.body105:
+while.body105:  pred(while.cond104)
   br bb %while.cond110
-while.cond110:
+while.cond110:  pred(while.body105)
   a56.phi148 = phi [bb %while.body105, i32 %a56.phi]
   sum.load403 = load i32 from ptr @sum
   8404 = add i32 %sum.load403, i32 %a56.phi148
@@ -350,7 +350,7 @@ while.cond110:
   store i32 %501040 to ptr @sum
   123 = icmp eq i32 %i.phi, i32 1
   br i1 %123, bb %then124, bb %else
-then124:
+then124:  pred(while.cond110)
   count.load548 = load i32 from ptr @count
   2549 = add i32 %count.load548, i32 1
   store i32 %2549 to ptr @count
@@ -389,7 +389,7 @@ then124:
   store i32 %501076 to ptr @sum
   134 = add i32 %i.phi, i32 1
   br bb %while.cond104
-else:
+else:  pred(while.cond110)
   sum.load439 = load i32 from ptr @sum
   8440 = add i32 %sum.load439, i32 %a56.phi148
   store i32 %8440 to ptr @sum
@@ -441,7 +441,7 @@ external void _sysy_stoptime(i32 )
 external void putarray(i32 , ptr )
 
 void f3() {
-entry36:
+entry36:  pred()
   count.load478 = load i32 from ptr @count
   2479 = add i32 %count.load478, i32 1
   store i32 %2479 to ptr @count

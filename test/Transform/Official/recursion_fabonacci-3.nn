@@ -1,8 +1,8 @@
 pure float takFP(float x, float y, float z) {
-entry13:
+entry13:  pred()
   19 = fcmp olt float %y, float %x
   br i1 %19, bb %then20, bb %if.exit21
-then20:
+then20:  pred(entry13)
   23 = fsub float %x, float 1.000000
   26 = call float takFP(float %23, float %y, float %z)
   28 = fsub float %y, float 1.000000
@@ -11,7 +11,7 @@ then20:
   36 = call float takFP(float %33, float %x, float %y)
   37 = call float takFP(float %26, float %31, float %36)
   ret float %37
-if.exit21:
+if.exit21:  pred(entry13)
   ret float %z
 }
 
@@ -26,7 +26,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry39:
+entry39:  pred()
   call void _sysy_starttime(i32 20)
   42 = call i32 getint()
   44 = call float getfloat()
@@ -38,22 +38,22 @@ entry39:
   58 = call float takFP(float %44, float %46, float %48)
   60 = fcmp oeq float %53, float 165580128.000000
   br i1 %60, bb %then61, bb %else
-then61:
+then61:  pred(entry39)
   call void putch(i32 112)
   br bb %if.exit62
-if.exit62:
+if.exit62:  pred(then61, else)
   67 = fcmp oeq float %58, float 2.000000
   br i1 %67, bb %then68, bb %else70
-else:
+else:  pred(entry39)
   call void putint(i32 1)
   br bb %if.exit62
-then68:
+then68:  pred(if.exit62)
   call void putch(i32 112)
   br bb %if.exit69
-if.exit69:
+if.exit69:  pred(then68, else70)
   call void _sysy_stoptime(i32 41)
   ret i32 0
-else70:
+else70:  pred(if.exit62)
   call void putint(i32 1)
   br bb %if.exit69
 }
@@ -67,12 +67,12 @@ external void putch(i32 )
 external void _sysy_stoptime(i32 )
 
 pure float fibFP(float n) {
-entry:
+entry:  pred()
   3 = fcmp olt float %n, float 2.000000
   br i1 %3, bb %then, bb %if.exit
-then:
+then:  pred(entry)
   ret float 1.000000
-if.exit:
+if.exit:  pred(entry)
   7 = fsub float %n, float 2.000000
   8 = call float fibFP(float %7)
   10 = fsub float %n, float 1.000000

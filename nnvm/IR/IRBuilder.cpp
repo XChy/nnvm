@@ -47,6 +47,13 @@ PhiInst *IRBuilder::buildPhi(Type *type, const std::string &name) {
   return I;
 }
 
+Value *IRBuilder::buildPin(Value *orig, const std::string &name) {
+  PinInst *pin = new PinInst(orig);
+  pin->setName(name, *module);
+  insertPoint.insertBefore(pin);
+  return pin;
+}
+
 Value *IRBuilder::buildRet() {
   RetInst *I = new RetInst();
   insertPoint.insertBefore(I);

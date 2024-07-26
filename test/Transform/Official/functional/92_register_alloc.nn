@@ -41,7 +41,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry460:
+entry460:  pred()
   463 = call i32 getint()
   466 = add i32 %463, i32 18
   43543 = call i32 getint()
@@ -233,7 +233,7 @@ external void _sysy_starttime(i32 )
 external void putfarray(i32 , ptr )
 
 i32 func(i32 a, i32 b) {
-entry:
+entry:  pred()
   43 = call i32 getint()
   44 = call i32 getint()
   45 = call i32 getint()

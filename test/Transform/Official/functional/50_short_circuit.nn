@@ -10,51 +10,51 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry8:
+entry8:  pred()
   10 = call i32 getint()
   12 = icmp sgt i32 %10, i32 10
   br i1 %12, bb %select.then, bb %select.exit
-select.then:
+select.then:  pred(entry8)
   g.load95 = load i32 from ptr @g
   496 = add i32 %g.load95, i32 %10
   store i32 %496 to ptr @g
   call void putint(i32 %496)
   g.load799 = load i32 from ptr @g
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, entry8)
   24 = call i32 getint()
   26 = icmp sgt i32 %24, i32 11
   br i1 %26, bb %select.then27, bb %select.exit29
-select.then27:
+select.then27:  pred(select.exit)
   g.load104 = load i32 from ptr @g
   4105 = add i32 %g.load104, i32 %24
   store i32 %4105 to ptr @g
   call void putint(i32 %4105)
   g.load7108 = load i32 from ptr @g
   br bb %select.exit29
-select.exit29:
+select.exit29:  pred(select.then27, select.exit)
   38 = call i32 getint()
   40 = icmp sle i32 %38, i32 99
   br i1 %40, bb %select.exit43, bb %select.else42
-select.else42:
+select.else42:  pred(select.exit29)
   g.load113 = load i32 from ptr @g
   4114 = add i32 %g.load113, i32 %38
   store i32 %4114 to ptr @g
   call void putint(i32 %4114)
   g.load7117 = load i32 from ptr @g
   br bb %select.exit43
-select.exit43:
+select.exit43:  pred(select.exit29, select.else42)
   53 = call i32 getint()
   55 = icmp sle i32 %53, i32 100
   br i1 %55, bb %select.exit58, bb %select.else57
-select.else57:
+select.else57:  pred(select.exit43)
   g.load122 = load i32 from ptr @g
   4123 = add i32 %g.load122, i32 %53
   store i32 %4123 to ptr @g
   call void putint(i32 %4123)
   g.load7126 = load i32 from ptr @g
   br bb %select.exit58
-select.exit58:
+select.exit58:  pred(select.exit43, select.else57)
   g.load131 = load i32 from ptr @g
   4132 = add i32 %g.load131, i32 99
   store i32 %4132 to ptr @g
@@ -65,14 +65,14 @@ select.exit58:
   71 = zext i1 %70 to i32
   72 = icmp ne i32 %71, i32 0
   br i1 %72, bb %select.then73, bb %select.exit75
-select.then73:
+select.then73:  pred(select.exit58)
   g.load140 = load i32 from ptr @g
   4141 = add i32 %g.load140, i32 100
   store i32 %4141 to ptr @g
   call void putint(i32 %4141)
   g.load7144 = load i32 from ptr @g
   br bb %select.exit75
-select.exit75:
+select.exit75:  pred(select.then73, select.exit58)
   ret i32 0
 }
 
@@ -91,7 +91,7 @@ external void _sysy_starttime(i32 )
 external void putfarray(i32 , ptr )
 
 i32 func(i32 n) {
-entry:
+entry:  pred()
   g.load = load i32 from ptr @g
   4 = add i32 %g.load, i32 %n
   store i32 %4 to ptr @g

@@ -6,14 +6,27 @@
 using namespace nnvm;
 
 BasicBlock *Loop::getSingleLatch() const {
-  for (auto *pred : header->getPredRange())
-    if (contains(pred))
-      return pred;
-  return nullptr;
+  BasicBlock *ret = nullptr;
+  for (auto *pred : header->getPredRange()) {
+    if (contains(pred)) {
+      if (ret)
+        return nullptr;
+      ret = pred;
+    }
+  }
+  return ret;
+}
+
+std::set<BasicBlock *> Loop::getExits() const {
+  std::set<BasicBlock *> ret;
+  for (auto [from, to] : exitEdges) {
+    ret.insert(to);
+  }
+  return ret;
 }
 
 bool Loop::isExiting(BasicBlock *BB) const {
-  return std::any_of(exits.begin(), exits.end(),
+  return std::any_of(exitEdges.begin(), exitEdges.end(),
                      [BB](ExitEdge edge) { return edge.from == BB; });
 }
 

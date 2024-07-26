@@ -321,3 +321,10 @@ Value *PhiInst::getIncomingValueOf(BasicBlock *incoming) const {
       return getOperand(i + 1);
   return nullptr;
 }
+
+std::vector<BasicBlock *> PhiInst::getAllIncomingBBs() const {
+  std::vector<BasicBlock *> ret;
+  for (uint64_t i = 0; i < getIncomingNum(); i++)
+    ret.push_back(getIncomingBB(i));
+  return ret;
+}

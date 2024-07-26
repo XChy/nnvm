@@ -9,7 +9,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry40:
+entry40:  pred()
   %y = stack 4
   %x = stack 4
   store i32 1 to ptr %x
@@ -39,14 +39,14 @@ external void putfarray(i32 , ptr )
 external void putch(i32 )
 
 i32 exgcd(i32 a, i32 b, ptr x, ptr y) {
-entry:
+entry:  pred()
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %else
-then:
+then:  pred(entry)
   store i32 1 to ptr %x
   store i32 0 to ptr %y
   ret i32 %a
-else:
+else:  pred(entry)
   17 = srem i32 %a, i32 %b
   18 = call i32 exgcd(i32 %b, i32 %17, ptr %x, ptr %y)
   21.load = load i32 from ptr %x

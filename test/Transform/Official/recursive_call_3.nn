@@ -1,11 +1,11 @@
 pure float func(float data, i32 num) {
-entry15:
+entry15:  pred()
   19 = icmp slt i32 %num, i32 0
   br i1 %19, bb %then20, bb %if.exit21
-then20:
+then20:  pred(entry15)
   22 = si2f i32 0 to float
   ret float %22
-if.exit21:
+if.exit21:  pred(entry15)
   24 = sub i32 %num, i32 1
   28 = call float func(float %data, i32 %24)
   29 = fadd float %data, float %28
@@ -25,7 +25,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry36:
+entry36:  pred()
   call void _sysy_starttime(i32 21)
   40 = call i32 getint()
   45 = call float func(float 1.001000, i32 %40)
@@ -33,10 +33,10 @@ entry36:
   49 = si2f i32 0 to float
   50 = fcmp oeq float %48, float %49
   br i1 %50, bb %then51, bb %if.exit52
-then51:
+then51:  pred(entry36)
   call void putch(i32 112)
   br bb %if.exit52
-if.exit52:
+if.exit52:  pred(entry36, then51)
   call void _sysy_stoptime(i32 32)
   ret i32 0
 }
@@ -46,19 +46,19 @@ external float getfloat()
 external void putfloat(float )
 
 pure float myabs(float num) {
-entry:
+entry:  pred()
   3 = si2f i32 0 to float
   4 = fcmp ogt float %num, float %3
   br i1 %4, bb %then, bb %if.exit
-then:
+then:  pred(entry)
   ret float %num
-if.exit:
+if.exit:  pred(entry)
   10 = fcmp olt float %num, float %3
   br i1 %10, bb %then11, bb %if.exit12
-then11:
+then11:  pred(if.exit)
   14 = fneg float %num
   ret float %14
-if.exit12:
+if.exit12:  pred(if.exit)
   unreachable
 }
 

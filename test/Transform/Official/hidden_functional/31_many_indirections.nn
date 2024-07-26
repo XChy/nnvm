@@ -2,17 +2,18 @@ global ptr array init with 2000 x i32 zeros
 immutable global ptr M init with i32 20
 immutable global ptr N init with i32 100
 i32 main() {
-entry:
-  br bb %while.cond
-while.cond:
-  i.phi = phi [bb %entry, i32 0, bb %while.exit13, i32 %28]
+entry:  pred()
+  8261 = icmp slt i32 0, i32 20
+  br i1 %8261, bb %while.body, bb %while.exit
+while.cond:  pred(while.exit13)
+  i.phi = phi [bb %while.exit13, i32 %28]
   8 = icmp slt i32 %i.phi, i32 20
   br i1 %8, bb %while.body, bb %while.exit
-while.body:
-  19 = mul i32 %i.phi, i32 400
-  20 = ptradd ptr @array, i32 %19
-  br bb %while.cond11
-while.exit:
+while.body:  pred(while.cond, entry)
+  i.phi262 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
+  16259 = icmp slt i32 0, i32 100
+  br i1 %16259, bb %while.body12, bb %while.exit13
+while.exit:  pred(while.cond, entry)
   32 = ptradd ptr @array, i32 400
   34 = ptradd ptr @array, i32 800
   36 = ptradd ptr @array, i32 1200
@@ -170,18 +171,21 @@ while.exit:
   229 = add i32 %127.load, i32 %227.load
   call void putint(i32 %229)
   ret i32 0
-while.cond11:
-  j.phi = phi [bb %while.body, i32 0, bb %while.body12, i32 %26]
+while.cond11:  pred(while.body12)
+  j.phi = phi [bb %while.body12, i32 %26]
   16 = icmp slt i32 %j.phi, i32 100
   br i1 %16, bb %while.body12, bb %while.exit13
-while.body12:
-  258 = shl i32 %j.phi, i32 2
+while.body12:  pred(while.cond11, while.body)
+  j.phi260 = phi [bb %while.body, i32 0, bb %while.cond11, i32 %j.phi]
+  19 = mul i32 %i.phi262, i32 400
+  20 = ptradd ptr @array, i32 %19
+  258 = shl i32 %j.phi260, i32 2
   23 = ptradd ptr %20, i32 %258
-  store i32 %j.phi to ptr %23
-  26 = add i32 %j.phi, i32 1
+  store i32 %j.phi260 to ptr %23
+  26 = add i32 %j.phi260, i32 1
   br bb %while.cond11
-while.exit13:
-  28 = add i32 %i.phi, i32 1
+while.exit13:  pred(while.cond11, while.body)
+  28 = add i32 %i.phi262, i32 1
   br bb %while.cond
 }
 

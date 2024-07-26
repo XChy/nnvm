@@ -2,7 +2,7 @@ global ptr a init with 4096 x i32 zeros
 external i32 getint()
 
 i32 f1(ptr b) {
-entry:
+entry:  pred()
   2 = ptradd ptr @a, i32 20
   store i32 4000 to ptr %2
   4 = ptradd ptr @a, i32 16000
@@ -30,72 +30,80 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry22:
+entry22:  pred()
   %c = stack 16384
   %b = stack 16384
-  br bb %init.cond
-init.cond:
-  cnt_ptr.phi = phi [bb %entry22, i32 1024, bb %init, i32 %cnt.dec]
+  29149 = icmp ne i32 1024, i32 0
+  br i1 %29149, bb %init, bb %init.exit
+init.cond:  pred(init)
+  cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   29 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %29, bb %init, bb %init.exit
-init:
-  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
+init:  pred(init.cond, entry22)
+  cnt_ptr.phi150 = phi [bb %entry22, i32 1024, bb %init.cond, i32 %cnt_ptr.phi]
+  cnt.dec = sub i32 %cnt_ptr.phi150, i32 1
   109 = shl i32 %cnt.dec, i32 2
   arr.index34 = ptradd ptr %b, i32 %109
   store i32 0 to ptr %arr.index34
   br bb %init.cond
-init.exit:
+init.exit:  pred(init.cond, entry22)
   arr.index35 = ptradd ptr %b, i32 4096
   store i32 1 to ptr %arr.index35
-  br bb %init.cond36
-init.cond36:
-  cnt_ptr39.phi = phi [bb %init.exit, i32 1023, bb %init37, i32 %cnt.dec43]
+  41147 = icmp ne i32 1023, i32 0
+  br i1 %41147, bb %init37, bb %init.exit38
+init.cond36:  pred(init37)
+  cnt_ptr39.phi = phi [bb %init37, i32 %cnt.dec43]
   41 = icmp ne i32 %cnt_ptr39.phi, i32 0
   br i1 %41, bb %init37, bb %init.exit38
-init37:
-  cnt.dec43 = sub i32 %cnt_ptr39.phi, i32 1
+init37:  pred(init.cond36, init.exit)
+  cnt_ptr39.phi148 = phi [bb %init.exit, i32 1023, bb %init.cond36, i32 %cnt_ptr39.phi]
+  cnt.dec43 = sub i32 %cnt_ptr39.phi148, i32 1
   111 = shl i32 %cnt.dec43, i32 2
   112 = add i32 %111, i32 4100
   arr.index46 = ptradd ptr %b, ptr %112
   store i32 0 to ptr %arr.index46
   br bb %init.cond36
-init.exit38:
+init.exit38:  pred(init.cond36, init.exit)
   arr.index47 = ptradd ptr %b, i32 8192
   store i32 2 to ptr %arr.index47
   arr.index48 = ptradd ptr %b, i32 8196
   store i32 3 to ptr %arr.index48
-  br bb %init.cond49
-init.cond49:
-  cnt_ptr52.phi = phi [bb %init.exit38, i32 1022, bb %init50, i32 %cnt.dec56]
+  54145 = icmp ne i32 1022, i32 0
+  br i1 %54145, bb %init50, bb %init.exit51
+init.cond49:  pred(init50)
+  cnt_ptr52.phi = phi [bb %init50, i32 %cnt.dec56]
   54 = icmp ne i32 %cnt_ptr52.phi, i32 0
   br i1 %54, bb %init50, bb %init.exit51
-init50:
-  cnt.dec56 = sub i32 %cnt_ptr52.phi, i32 1
+init50:  pred(init.cond49, init.exit38)
+  cnt_ptr52.phi146 = phi [bb %init.exit38, i32 1022, bb %init.cond49, i32 %cnt_ptr52.phi]
+  cnt.dec56 = sub i32 %cnt_ptr52.phi146, i32 1
   113 = shl i32 %cnt.dec56, i32 2
   114 = add i32 %113, i32 8200
   arr.index59 = ptradd ptr %b, ptr %114
   store i32 0 to ptr %arr.index59
   br bb %init.cond49
-init.exit51:
+init.exit51:  pred(init.cond49, init.exit38)
   arr.index60 = ptradd ptr %b, i32 12288
   store i32 4 to ptr %arr.index60
   arr.index61 = ptradd ptr %b, i32 12292
   store i32 5 to ptr %arr.index61
   arr.index62 = ptradd ptr %b, i32 12296
   store i32 6 to ptr %arr.index62
-  br bb %init.cond63
-init.cond63:
-  cnt_ptr66.phi = phi [bb %init.exit51, i32 1021, bb %init64, i32 %cnt.dec70]
+  68143 = icmp ne i32 1021, i32 0
+  br i1 %68143, bb %init64, bb %init.exit65
+init.cond63:  pred(init64)
+  cnt_ptr66.phi = phi [bb %init64, i32 %cnt.dec70]
   68 = icmp ne i32 %cnt_ptr66.phi, i32 0
   br i1 %68, bb %init64, bb %init.exit65
-init64:
-  cnt.dec70 = sub i32 %cnt_ptr66.phi, i32 1
+init64:  pred(init.cond63, init.exit51)
+  cnt_ptr66.phi144 = phi [bb %init.exit51, i32 1021, bb %init.cond63, i32 %cnt_ptr66.phi]
+  cnt.dec70 = sub i32 %cnt_ptr66.phi144, i32 1
   115 = shl i32 %cnt.dec70, i32 2
   116 = add i32 %115, i32 12300
   arr.index73 = ptradd ptr %b, ptr %116
   store i32 0 to ptr %arr.index73
   br bb %init.cond63
-init.exit65:
+init.exit65:  pred(init.cond63, init.exit51)
   store i32 1 to ptr %c
   arr.index76 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index76
@@ -107,19 +115,21 @@ init.exit65:
   store i32 3 to ptr %arr.index79
   arr.index80 = ptradd ptr %c, i32 20
   store i32 4 to ptr %arr.index80
-  br bb %init.cond81
-init.cond81:
-  cnt_ptr84.phi = phi [bb %init.exit65, i32 4090, bb %init82, i32 %cnt.dec88]
+  86141 = icmp ne i32 4090, i32 0
+  br i1 %86141, bb %init82, bb %init.exit83
+init.cond81:  pred(init82)
+  cnt_ptr84.phi = phi [bb %init82, i32 %cnt.dec88]
   86 = icmp ne i32 %cnt_ptr84.phi, i32 0
   br i1 %86, bb %init82, bb %init.exit83
-init82:
-  cnt.dec88 = sub i32 %cnt_ptr84.phi, i32 1
+init82:  pred(init.cond81, init.exit65)
+  cnt_ptr84.phi142 = phi [bb %init.exit65, i32 4090, bb %init.cond81, i32 %cnt_ptr84.phi]
+  cnt.dec88 = sub i32 %cnt_ptr84.phi142, i32 1
   117 = shl i32 %cnt.dec88, i32 2
   118 = add i32 %117, i32 24
   arr.index91 = ptradd ptr %c, ptr %118
   store i32 0 to ptr %arr.index91
   br bb %init.cond81
-init.exit83:
+init.exit83:  pred(init.cond81, init.exit65)
   2123 = ptradd ptr @a, i32 20
   store i32 4000 to ptr %2123
   4125 = ptradd ptr @a, i32 16000

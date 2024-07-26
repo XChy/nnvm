@@ -10,38 +10,47 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry20007:
+entry20007:  pred()
   20010 = call i32 getint()
   store i32 %20010 to ptr @loopCount
   call void _sysy_starttime(i32 10015)
-  br bb %while.cond
-while.cond:
-  i.phi = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20041]
-  sum.phi = phi [bb %entry20007, i32 0, bb %while.exit20023, i32 %20039]
+  loopCount.load40062 = load i32 from ptr @loopCount
+  2001740063 = icmp slt i32 0, i32 %loopCount.load40062
+  br i1 %2001740063, bb %while.body, bb %while.exit
+while.cond:  pred(while.exit20023)
+  i.phi = phi [bb %while.exit20023, i32 %20041]
+  sum.phi = phi [bb %while.exit20023, i32 %20039]
   loopCount.load = load i32 from ptr @loopCount
   20017 = icmp slt i32 %i.phi, i32 %loopCount.load
   br i1 %20017, bb %while.body, bb %while.exit
-while.body:
-  br bb %while.cond20021
-while.exit:
+while.body:  pred(while.cond, entry20007)
+  sum.phi40066 = phi [bb %entry20007, i32 0, bb %while.cond, i32 %sum.phi]
+  i.phi40065 = phi [bb %entry20007, i32 0, bb %while.cond, i32 %i.phi]
+  2002540058 = icmp slt i32 0, i32 60
+  br i1 %2002540058, bb %while.body20022, bb %while.exit20023
+while.exit:  pred(while.cond, entry20007)
+  40064 = phi [bb %while.cond, i32 %sum.phi, bb %entry20007, i32 0]
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %sum.phi)
+  call void putint(i32 %40064)
   call void putch(i32 10)
   ret i32 0
-while.cond20021:
-  j.phi = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20032]
-  tmp.phi20049 = phi [bb %while.body, i32 0, bb %while.body20022, i32 %20030]
+while.cond20021:  pred(while.body20022)
+  j.phi = phi [bb %while.body20022, i32 %20032]
+  tmp.phi20049 = phi [bb %while.body20022, i32 %20030]
   20025 = icmp slt i32 %j.phi, i32 60
   br i1 %20025, bb %while.body20022, bb %while.exit20023
-while.body20022:
-  20030 = add i32 %tmp.phi20049, i32 %i.phi
-  20032 = add i32 %j.phi, i32 1
+while.body20022:  pred(while.cond20021, while.body)
+  tmp.phi2004940061 = phi [bb %while.body, i32 0, bb %while.cond20021, i32 %tmp.phi20049]
+  j.phi40060 = phi [bb %while.body, i32 0, bb %while.cond20021, i32 %j.phi]
+  20030 = add i32 %tmp.phi2004940061, i32 %i.phi40065
+  20032 = add i32 %j.phi40060, i32 1
   br bb %while.cond20021
-while.exit20023:
-  20034 = sdiv i32 %tmp.phi20049, i32 60
-  20037 = add i32 %sum.phi, i32 %20034
+while.exit20023:  pred(while.cond20021, while.body)
+  40059 = phi [bb %while.cond20021, i32 %tmp.phi20049, bb %while.body, i32 0]
+  20034 = sdiv i32 %40059, i32 60
+  20037 = add i32 %sum.phi40066, i32 %20034
   20039 = srem i32 %20037, i32 536854529
-  20041 = add i32 %i.phi, i32 1
+  20041 = add i32 %i.phi40065, i32 1
   br bb %while.cond
 }
 
@@ -60,7 +69,7 @@ external void _sysy_starttime(i32 )
 external void putfarray(i32 , ptr )
 
 pure i32 func(i32 input, i32 size) {
-entry:
+entry:  pred()
   40049 = add i32 %input, i32 10000
   20005 = sub i32 %40049, i32 %size
   ret i32 %20005

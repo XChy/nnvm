@@ -1,5 +1,5 @@
 i32 main() {
-entry:
+entry:  pred()
   call void _sysy_starttime(i32 2)
   call void _sysy_stoptime(i32 3)
   call void _sysy_starttime(i32 4)
