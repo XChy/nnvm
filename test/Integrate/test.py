@@ -303,7 +303,7 @@ def __init_random():
       'printf("index = [%d][%d]\\n", ', 'putdim2(').replace(
       'printf("index = [%d][%d][%d]\\n", ', 'putdim3(')
   code = re.sub(r'(?:u?int(8|16|32|64)_t|long)', 'int', code)
-  code = re.sub(r'((?:0[Xx]?)?[\dA-Fa-f]+)[UuLl]+', r'\1', code)
+  code = re.sub(r'\b(0[Xx][\dA-Fa-f]+|0[0-7]+|\d+)[UuLl]+\b', r'\1', code)
   code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
   code = re.sub(
       r'(transparent_crc\([^, ]+, )[^, ]+, ([^, ]+\))', r'\1\2', code)
