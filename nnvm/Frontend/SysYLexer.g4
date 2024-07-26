@@ -20,6 +20,8 @@ MUL: '*';
 DIV: '/';
 MOD: '%';
 ASSIGN: '=';
+SELF_PLUS: '++';
+SELF_MINUS: '--';
 PLUS_ASSIGN: '+=';
 SUB_ASSIGN: '-=';
 MULT_ASSIGN: '*=';

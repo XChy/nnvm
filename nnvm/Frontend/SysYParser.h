@@ -15,15 +15,15 @@ public:
   enum {
     CONST = 1, INT = 2, FLOAT = 3, VOID = 4, IF = 5, ELSE = 6, WHILE = 7, 
     FOR = 8, BREAK = 9, CONTINUE = 10, RETURN = 11, PLUS = 12, MINUS = 13, 
-    MUL = 14, DIV = 15, MOD = 16, ASSIGN = 17, PLUS_ASSIGN = 18, SUB_ASSIGN = 19, 
-    MULT_ASSIGN = 20, DIV_ASSIGN = 21, MOD_ASSIGN = 22, AND_ASSIGN = 23, 
-    OR_ASSIGN = 24, XOR_ASSIGN = 25, SHL_ASSIGN = 26, SHR_ASSIGN = 27, EQ = 28, 
-    NEQ = 29, LT = 30, GT = 31, LE = 32, GE = 33, NOT = 34, AND = 35, OR = 36, 
-    BITAND = 37, BITOR = 38, BITXOR = 39, BITNOT = 40, BITSHL = 41, BITSHR = 42, 
-    L_PAREN = 43, R_PAREN = 44, L_BRACE = 45, R_BRACE = 46, L_BRACKT = 47, 
-    R_BRACKT = 48, COMMA = 49, SEMICOLON = 50, IDENT = 51, INTEGER_CONST = 52, 
-    FLOAT_CONST = 53, DecimalFloatingConstant = 54, HexadecimalFloatingConstant = 55, 
-    WS = 56, LINE_COMMENT = 57, MULTILINE_COMMENT = 58
+    MUL = 14, DIV = 15, MOD = 16, ASSIGN = 17, SELF_PLUS = 18, SELF_MINUS = 19, 
+    PLUS_ASSIGN = 20, SUB_ASSIGN = 21, MULT_ASSIGN = 22, DIV_ASSIGN = 23, 
+    MOD_ASSIGN = 24, AND_ASSIGN = 25, OR_ASSIGN = 26, XOR_ASSIGN = 27, SHL_ASSIGN = 28, 
+    SHR_ASSIGN = 29, EQ = 30, NEQ = 31, LT = 32, GT = 33, LE = 34, GE = 35, 
+    NOT = 36, AND = 37, OR = 38, BITAND = 39, BITOR = 40, BITXOR = 41, BITNOT = 42, 
+    BITSHL = 43, BITSHR = 44, L_PAREN = 45, R_PAREN = 46, L_BRACE = 47, 
+    R_BRACE = 48, L_BRACKT = 49, R_BRACKT = 50, COMMA = 51, SEMICOLON = 52, 
+    IDENT = 53, INTEGER_CONST = 54, FLOAT_CONST = 55, DecimalFloatingConstant = 56, 
+    HexadecimalFloatingConstant = 57, WS = 58, LINE_COMMENT = 59, MULTILINE_COMMENT = 60
   };
 
   enum {
@@ -453,6 +453,8 @@ public:
     virtual size_t getRuleIndex() const override;
     LValContext *lVal();
     ExpContext *exp();
+    antlr4::tree::TerminalNode *SELF_PLUS();
+    antlr4::tree::TerminalNode *SELF_MINUS();
     antlr4::tree::TerminalNode *ASSIGN();
     antlr4::tree::TerminalNode *PLUS_ASSIGN();
     antlr4::tree::TerminalNode *SUB_ASSIGN();
@@ -519,6 +521,7 @@ public:
     NumberContext *number();
     CallContext *call();
     UnaryOpContext *unaryOp();
+    LValUpdateContext *lValUpdate();
     antlr4::tree::TerminalNode *MUL();
     antlr4::tree::TerminalNode *DIV();
     antlr4::tree::TerminalNode *MOD();

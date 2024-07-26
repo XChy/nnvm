@@ -50,19 +50,25 @@ forInit: (
 forUpdate: (lValUpdate (COMMA lValUpdate)*)?;
 
 lValUpdate:
-	lVal (
-		ASSIGN
-		| PLUS_ASSIGN
-		| SUB_ASSIGN
-		| MULT_ASSIGN
-		| DIV_ASSIGN
-		| MOD_ASSIGN
-		| AND_ASSIGN
-		| OR_ASSIGN
-		| XOR_ASSIGN
-		| SHR_ASSIGN
-		| SHL_ASSIGN
-	) exp;
+	(
+		lVal (
+			ASSIGN
+			| PLUS_ASSIGN
+			| SUB_ASSIGN
+			| MULT_ASSIGN
+			| DIV_ASSIGN
+			| MOD_ASSIGN
+			| AND_ASSIGN
+			| OR_ASSIGN
+			| XOR_ASSIGN
+			| SHR_ASSIGN
+			| SHL_ASSIGN
+		) exp
+		| lVal SELF_PLUS
+		| lVal SELF_MINUS
+		| SELF_MINUS lVal
+		| SELF_PLUS lVal
+	);
 
 stmt:
 	lValUpdate SEMICOLON
@@ -86,7 +92,8 @@ exp:
 	| exp (BITSHL | BITSHR) exp
 	| exp BITAND exp
 	| exp BITXOR exp
-	| exp BITOR exp;
+	| exp BITOR exp
+	| lValUpdate;
 
 call: IDENT L_PAREN funcRParams? R_PAREN;
 

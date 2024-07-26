@@ -1444,6 +1444,9 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 }
 
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
+  if (ctx->lValUpdate()) {
+    return ctx->lValUpdate()->accept(this);
+  }
   if (ctx->lVal()) {
     Symbol lVal = any_as<Symbol>(ctx->lVal()->accept(this));
 
@@ -1498,6 +1501,44 @@ Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
                                   lhs_addr.entity->getName() + ".load"),
                 lhs_addr.symbolType};
 
+  if (ctx->SELF_MINUS()) {
+    Symbol newLhs;
+    if (lhs.symbolType->isInt()) {
+      newLhs = {builder.buildBinOp<SubInst>(lhs.entity, constOneInt,
+                                            lhs.entity->getType()),
+                lhs.symbolType};
+    } else if (lhs.symbolType->isFloat()) {
+      newLhs = {builder.buildBinOp<FSubInst>(lhs.entity, constOneFloat,
+                                             lhs.entity->getType()),
+                lhs.symbolType};
+    } else {
+      nnvm_unreachable("No such type");
+    }
+    builder.buildStore(newLhs.entity, lhs_addr.entity);
+    if (ctx->children[0] == ctx->SELF_MINUS()) //--a
+      return newLhs;
+    else // a--
+      return lhs;
+  } else if (ctx->SELF_PLUS()) {
+    Symbol newLhs;
+    if (lhs.symbolType->isInt()) {
+      newLhs = {builder.buildBinOp<AddInst>(lhs.entity, constOneInt,
+                                            lhs.entity->getType()),
+                lhs.symbolType};
+    } else if (lhs.symbolType->isFloat()) {
+      newLhs = {builder.buildBinOp<FAddInst>(lhs.entity, constOneFloat,
+                                             lhs.entity->getType()),
+                lhs.symbolType};
+    } else {
+      nnvm_unreachable("No such type");
+    }
+    builder.buildStore(newLhs.entity, lhs_addr.entity);
+    if (ctx->children[0] == ctx->SELF_PLUS()) // ++a
+      return newLhs;
+    else // a++
+      return lhs;
+  }
+
   Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
   rhs = genImplicitCast(rhs, lhs.symbolType);
   if (!rhs)
@@ -1546,7 +1587,8 @@ Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
   } else if (!ctx->ASSIGN()) {
     nnvm_unreachable("No such operator");
   }
-  return builder.buildStore(ans.entity, lhs_addr.entity);
+  builder.buildStore(ans.entity, lhs_addr.entity);
+  return ans;
 }
 
 Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {
