@@ -99,6 +99,7 @@ call: IDENT L_PAREN funcRParams? R_PAREN;
 
 cond:
 	exp
+	| L_PAREN cond R_PAREN
 	| cond (LT | GT | LE | GE) cond
 	| cond (EQ | NEQ) cond
 	| cond AND cond

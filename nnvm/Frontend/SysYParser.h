@@ -565,8 +565,10 @@ public:
     CondContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ExpContext *exp();
+    antlr4::tree::TerminalNode *L_PAREN();
     std::vector<CondContext *> cond();
     CondContext* cond(size_t i);
+    antlr4::tree::TerminalNode *R_PAREN();
     antlr4::tree::TerminalNode *LT();
     antlr4::tree::TerminalNode *GT();
     antlr4::tree::TerminalNode *LE();

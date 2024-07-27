@@ -1024,6 +1024,8 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   if (ctx->exp()) {
     Symbol exp = any_as<Symbol>(ctx->exp()->accept(this));
     return exp;
+  } else if (ctx->L_PAREN()) {
+    return ctx->cond()[0]->accept(this);
   } else if (ctx->AND()) {
 
     // lhs && rhs  -->  if lhs then rhs else false;
