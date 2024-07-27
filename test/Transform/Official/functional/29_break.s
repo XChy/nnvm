@@ -34,31 +34,33 @@ bb2:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
-  ADD s3, zero, zero
-  ADD s4, zero, zero
   # implict jump to bb4
 bb4:
+  ADD s3, zero, zero
+  ADD s4, zero, zero
+  # implict jump to bb5
+bb5:
   ADD s5, s4, zero
   ADD s6, s3, zero
   XORI s7, s6, 50
   SLTIU s7, s7, 1
-  BNE s7, zero, bb9
-  # implict jump to bb5
-bb5:
-  ADDW s0, s5, s6
-  ADDIW s1, s6, 1
+  BNE s7, zero, bb10
   # implict jump to bb6
 bb6:
-  SLTI s5, s1, 100
-  BNE s5, zero, bb8
+  ADDW s0, s5, s6
+  ADDIW s1, s6, 1
   # implict jump to bb7
 bb7:
+  SLTI s5, s1, 100
+  BNE s5, zero, bb9
+  # implict jump to bb8
+bb8:
   ADD s2, s0, zero
   JAL zero, bb2
-bb8:
+bb9:
   ADD s3, s1, zero
   ADD s4, s0, zero
-  JAL zero, bb4
-bb9:
+  JAL zero, bb5
+bb10:
   ADD s2, s0, zero
   JAL zero, bb2

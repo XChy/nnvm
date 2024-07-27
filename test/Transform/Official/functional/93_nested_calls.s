@@ -434,10 +434,12 @@ bb56:
   ADDI s6, zero, 1
   JAL zero, bb22
 bb57:
-  ADD t4, zero, zero
-  SW t4, 16(sp)
   # implict jump to bb58
 bb58:
+  ADD t4, zero, zero
+  SW t4, 16(sp)
+  # implict jump to bb59
+bb59:
   LW t4, 16(sp)
   ADD s6, t4, zero
   SLLIW s7, s6, 2
@@ -448,17 +450,17 @@ bb58:
   SW s8, 0(s7)
   ADDIW t4, s6, 1
   SW t4, 20(sp)
-  # implict jump to bb59
-bb59:
+  # implict jump to bb60
+bb60:
   LW t4, 20(sp)
   SLTI s6, t4, 10
-  BNE s6, zero, bb60
+  BNE s6, zero, bb61
   JAL zero, bb20
-bb60:
+bb61:
   LW t3, 20(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
-  JAL zero, bb58
+  JAL zero, bb59
 func1:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -470,9 +472,9 @@ func1:
   ADD s1, a1, zero
   ADD s2, a2, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb63
-  # implict jump to bb62
-bb62:
+  BNE s3, zero, bb64
+  # implict jump to bb63
+bb63:
   SUBW s2, s1, s2
   ADD a0, s0, zero
   ADD a1, s2, zero
@@ -487,7 +489,7 @@ bb62:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb63:
+bb64:
   MULW s0, s0, s1
   ADD a0, s0, zero
   LD ra, 0(sp)

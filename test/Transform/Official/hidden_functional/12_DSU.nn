@@ -17,14 +17,17 @@ void init() {
 entry51:  pred()
   n.load541 = load i32 from ptr @n
   58542 = icmp sle i32 1, i32 %n.load541
-  br i1 %58542, bb %while.body54, bb %while.exit55
+  br i1 %58542, bb %while.body54_preheader, bb %while.exit55
 while.cond53:  pred(while.body54)
   i.phi = phi [bb %while.body54, i32 %65]
   n.load = load i32 from ptr @n
   58 = icmp sle i32 %i.phi, i32 %n.load
   br i1 %58, bb %while.body54, bb %while.exit55
-while.body54:  pred(while.cond53, entry51)
-  i.phi543 = phi [bb %entry51, i32 1, bb %while.cond53, i32 %i.phi]
+while.body54_preheader:  pred(entry51)
+  i.phi543_ph_val = phi [bb %entry51, i32 1]
+  br bb %while.body54
+while.body54:  pred(while.cond53, while.body54_preheader)
+  i.phi543 = phi [bb %while.cond53, i32 %i.phi, bb %while.body54_preheader, i32 %i.phi543_ph_val]
   173 = shl i32 %i.phi543, i32 2
   62 = ptradd ptr @fa, i32 %173
   store i32 %i.phi543 to ptr %62
@@ -58,7 +61,7 @@ entry99.split205.split:  pred(quick_read.then45311, quick_read.else314)
   store i32 %101.ret to ptr @m
   n.load194550 = load i32 from ptr @n
   58195551 = icmp sle i32 1, i32 %n.load194550
-  br i1 %58195551, bb %init.while.body54, bb %init.while.exit55
+  br i1 %58195551, bb %init.while.body54_preheader, bb %init.while.exit55
 while.cond103:  pred(if.exit127)
   y141.phi163 = phi [bb %if.exit127, i32 %y141.phi]
   x138.phi161 = phi [bb %if.exit127, i32 %x138.phi]
@@ -67,11 +70,17 @@ while.cond103:  pred(if.exit127)
   m.load = load i32 from ptr @m
   107 = icmp ne i32 %m.load, i32 0
   br i1 %107, bb %while.body104, bb %while.exit105
-while.body104:  pred(while.cond103, init.while.exit55)
-  x129.phi157549 = phi [bb %init.while.exit55, i32 0, bb %while.cond103, i32 %x129.phi157]
-  y.phi159548 = phi [bb %init.while.exit55, i32 0, bb %while.cond103, i32 %y.phi159]
-  x138.phi161547 = phi [bb %init.while.exit55, i32 0, bb %while.cond103, i32 %x138.phi161]
-  y141.phi163546 = phi [bb %init.while.exit55, i32 0, bb %while.cond103, i32 %y141.phi163]
+while.body104_preheader:  pred(init.while.exit55)
+  y141.phi163546_ph_val = phi [bb %init.while.exit55, i32 0]
+  x138.phi161547_ph_val = phi [bb %init.while.exit55, i32 0]
+  y.phi159548_ph_val = phi [bb %init.while.exit55, i32 0]
+  x129.phi157549_ph_val = phi [bb %init.while.exit55, i32 0]
+  br bb %while.body104
+while.body104:  pred(while.cond103, while.body104_preheader)
+  x129.phi157549 = phi [bb %while.cond103, i32 %x129.phi157, bb %while.body104_preheader, i32 %x129.phi157549_ph_val]
+  y.phi159548 = phi [bb %while.cond103, i32 %y.phi159, bb %while.body104_preheader, i32 %y.phi159548_ph_val]
+  x138.phi161547 = phi [bb %while.cond103, i32 %x138.phi161, bb %while.body104_preheader, i32 %x138.phi161547_ph_val]
+  y141.phi163546 = phi [bb %while.cond103, i32 %y141.phi163, bb %while.body104_preheader, i32 %y141.phi163546_ph_val]
   109 = call i32 getch()
   br bb %while.cond110
 while.exit105:  pred(while.cond103, init.while.exit55)
@@ -145,8 +154,11 @@ init.while.cond53:  pred(init.while.body54)
   n.load194 = load i32 from ptr @n
   58195 = icmp sle i32 %i.phi193, i32 %n.load194
   br i1 %58195, bb %init.while.body54, bb %init.while.exit55
-init.while.body54:  pred(init.while.cond53, entry99.split205.split)
-  i.phi193552 = phi [bb %entry99.split205.split, i32 1, bb %init.while.cond53, i32 %i.phi193]
+init.while.body54_preheader:  pred(entry99.split205.split)
+  i.phi193552_ph_val = phi [bb %entry99.split205.split, i32 1]
+  br bb %init.while.body54
+init.while.body54:  pred(init.while.cond53, init.while.body54_preheader)
+  i.phi193552 = phi [bb %init.while.cond53, i32 %i.phi193, bb %init.while.body54_preheader, i32 %i.phi193552_ph_val]
   173198 = shl i32 %i.phi193552, i32 2
   62199 = ptradd ptr @fa, i32 %173198
   store i32 %i.phi193552 to ptr %62199
@@ -155,7 +167,7 @@ init.while.body54:  pred(init.while.cond53, entry99.split205.split)
 init.while.exit55:  pred(init.while.cond53, entry99.split205.split)
   m.load544 = load i32 from ptr @m
   107545 = icmp ne i32 %m.load544, i32 0
-  br i1 %107545, bb %while.body104, bb %while.exit105
+  br i1 %107545, bb %while.body104_preheader, bb %while.exit105
 quick_read.while.cond:  pred(entry99, quick_read.if.exit)
   f.phi168210 = phi [bb %entry99, i32 0, bb %quick_read.if.exit, i32 %f.phi230]
   ch.phi165211 = phi [bb %entry99, i32 %2207, bb %quick_read.if.exit, i32 %23231]

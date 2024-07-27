@@ -181,6 +181,8 @@ bb4:
   ADDI s5, zero, 22
   # implict jump to bb5
 bb5:
+  # implict jump to bb6
+bb6:
   ADD s6, s5, zero
   ADDI s7, zero, 1
   SUBW s0, s6, s7
@@ -189,10 +191,10 @@ bb5:
   ADDI t5, sp, 136
   ADD s6, t5, s6
   SW zero, 0(s6)
-  # implict jump to bb6
-bb6:
-  BNE s0, zero, bb7
-  JAL zero, bb3
+  # implict jump to bb7
 bb7:
+  BNE s0, zero, bb8
+  JAL zero, bb3
+bb8:
   ADD s5, s0, zero
-  JAL zero, bb5
+  JAL zero, bb6

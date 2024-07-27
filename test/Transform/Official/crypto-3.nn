@@ -9,14 +9,17 @@ entry70:  pred()
   93 = add i32 %input_len, i32 1
   981344 = srem i32 %93, i32 64
   991345 = icmp ne i32 %981344, i32 60
-  br i1 %991345, bb %while.body, bb %while.exit
+  br i1 %991345, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   input_len.stack.phi = phi [bb %while.body, i32 %105]
   98 = srem i32 %input_len.stack.phi, i32 64
   99 = icmp ne i32 %98, i32 60
   br i1 %99, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry70)
-  input_len.stack.phi1347 = phi [bb %entry70, i32 %93, bb %while.cond, i32 %input_len.stack.phi]
+while.body_preheader:  pred(entry70)
+  input_len.stack.phi1347_ph_val = phi [bb %entry70, i32 %93]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  input_len.stack.phi1347 = phi [bb %while.cond, i32 %input_len.stack.phi, bb %while.body_preheader, i32 %input_len.stack.phi1347_ph_val]
   467 = shl i32 %input_len.stack.phi1347, i32 2
   103 = ptradd ptr %input, i32 %467
   store i32 0 to ptr %103
@@ -48,13 +51,16 @@ while.exit:  pred(while.cond, entry70)
   store i32 %131 to ptr %129
   133 = add i32 %931346, i32 4
   1411342 = icmp ne i32 80, i32 0
-  br i1 %1411342, bb %init, bb %init.exit
+  br i1 %1411342, bb %init_preheader, bb %init.exit
 init.cond:  pred(init)
   cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   141 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %141, bb %init, bb %init.exit
-init:  pred(init.cond, while.exit)
-  cnt_ptr.phi1343 = phi [bb %while.exit, i32 80, bb %init.cond, i32 %cnt_ptr.phi]
+init_preheader:  pred(while.exit)
+  cnt_ptr.phi1343_ph_val = phi [bb %while.exit, i32 80]
+  br bb %init
+init:  pred(init.cond, init_preheader)
+  cnt_ptr.phi1343 = phi [bb %init.cond, i32 %cnt_ptr.phi, bb %init_preheader, i32 %cnt_ptr.phi1343_ph_val]
   cnt.dec = sub i32 %cnt_ptr.phi1343, i32 1
   472 = shl i32 %cnt.dec, i32 2
   arr.index146 = ptradd ptr %words, i32 %472
@@ -62,7 +68,7 @@ init:  pred(init.cond, while.exit)
   br bb %init.cond
 init.exit:  pred(init.cond, while.exit)
   1521327 = icmp slt i32 0, i32 %133
-  br i1 %1521327, bb %while.body148, bb %while.exit149
+  br i1 %1521327, bb %while.body148_preheader, bb %while.exit149
 while.cond147:  pred(while.exit246)
   h3.phi = phi [bb %while.exit246, i32 %333]
   h1.phi = phi [bb %while.exit246, i32 %327]
@@ -75,18 +81,29 @@ while.cond147:  pred(while.exit246)
   h0.phi = phi [bb %while.exit246, i32 %324]
   152 = icmp slt i32 %chunk_start.phi, i32 %133
   br i1 %152, bb %while.body148, bb %while.exit149
-while.body148:  pred(while.cond147, init.exit)
-  h0.phi1341 = phi [bb %init.exit, i32 1732584193, bb %while.cond147, i32 %h0.phi]
-  t.phi4271340 = phi [bb %init.exit, i32 0, bb %while.cond147, i32 %t.phi427]
-  chunk_start.phi1339 = phi [bb %init.exit, i32 0, bb %while.cond147, i32 %chunk_start.phi]
-  k.phi4441338 = phi [bb %init.exit, i32 0, bb %while.cond147, i32 %k.phi444]
-  f.phi4501337 = phi [bb %init.exit, i32 0, bb %while.cond147, i32 %f.phi450]
-  h2.phi1336 = phi [bb %init.exit, i32 -1732584194, bb %while.cond147, i32 %h2.phi]
-  h4.phi1335 = phi [bb %init.exit, i32 -1009589776, bb %while.cond147, i32 %h4.phi]
-  h1.phi1334 = phi [bb %init.exit, i32 -271733879, bb %while.cond147, i32 %h1.phi]
-  h3.phi1333 = phi [bb %init.exit, i32 271733878, bb %while.cond147, i32 %h3.phi]
+while.body148_preheader:  pred(init.exit)
+  h3.phi1333_ph_val = phi [bb %init.exit, i32 271733878]
+  h1.phi1334_ph_val = phi [bb %init.exit, i32 -271733879]
+  h4.phi1335_ph_val = phi [bb %init.exit, i32 -1009589776]
+  h2.phi1336_ph_val = phi [bb %init.exit, i32 -1732584194]
+  f.phi4501337_ph_val = phi [bb %init.exit, i32 0]
+  k.phi4441338_ph_val = phi [bb %init.exit, i32 0]
+  chunk_start.phi1339_ph_val = phi [bb %init.exit, i32 0]
+  t.phi4271340_ph_val = phi [bb %init.exit, i32 0]
+  h0.phi1341_ph_val = phi [bb %init.exit, i32 1732584193]
+  br bb %while.body148
+while.body148:  pred(while.cond147, while.body148_preheader)
+  h0.phi1341 = phi [bb %while.cond147, i32 %h0.phi, bb %while.body148_preheader, i32 %h0.phi1341_ph_val]
+  t.phi4271340 = phi [bb %while.cond147, i32 %t.phi427, bb %while.body148_preheader, i32 %t.phi4271340_ph_val]
+  chunk_start.phi1339 = phi [bb %while.cond147, i32 %chunk_start.phi, bb %while.body148_preheader, i32 %chunk_start.phi1339_ph_val]
+  k.phi4441338 = phi [bb %while.cond147, i32 %k.phi444, bb %while.body148_preheader, i32 %k.phi4441338_ph_val]
+  f.phi4501337 = phi [bb %while.cond147, i32 %f.phi450, bb %while.body148_preheader, i32 %f.phi4501337_ph_val]
+  h2.phi1336 = phi [bb %while.cond147, i32 %h2.phi, bb %while.body148_preheader, i32 %h2.phi1336_ph_val]
+  h4.phi1335 = phi [bb %while.cond147, i32 %h4.phi, bb %while.body148_preheader, i32 %h4.phi1335_ph_val]
+  h1.phi1334 = phi [bb %while.cond147, i32 %h1.phi, bb %while.body148_preheader, i32 %h1.phi1334_ph_val]
+  h3.phi1333 = phi [bb %while.cond147, i32 %h3.phi, bb %while.body148_preheader, i32 %h3.phi1333_ph_val]
   1641324 = icmp slt i32 0, i32 16
-  br i1 %1641324, bb %while.body161, bb %while.exit162
+  br i1 %1641324, bb %while.body161_preheader, bb %while.exit162
 while.exit149:  pred(while.cond147, init.exit)
   1332 = phi [bb %while.cond147, i32 %h0.phi, bb %init.exit, i32 1732584193]
   1331 = phi [bb %while.cond147, i32 %h2.phi, bb %init.exit, i32 -1732584194]
@@ -107,8 +124,11 @@ while.cond160:  pred(while.body161)
   i.phi435 = phi [bb %while.body161, i32 %208]
   164 = icmp slt i32 %i.phi435, i32 16
   br i1 %164, bb %while.body161, bb %while.exit162
-while.body161:  pred(while.cond160, while.body148)
-  i.phi4351326 = phi [bb %while.body148, i32 0, bb %while.cond160, i32 %i.phi435]
+while.body161_preheader:  pred(while.body148)
+  i.phi4351326_ph_val = phi [bb %while.body148, i32 0]
+  br bb %while.body161
+while.body161:  pred(while.cond160, while.body161_preheader)
+  i.phi4351326 = phi [bb %while.cond160, i32 %i.phi435, bb %while.body161_preheader, i32 %i.phi4351326_ph_val]
   474 = shl i32 %i.phi4351326, i32 2
   168 = ptradd ptr %words, i32 %474
   172 = add i32 %chunk_start.phi1339, i32 %474
@@ -140,13 +160,16 @@ while.body161:  pred(while.cond160, while.body148)
 while.exit162:  pred(while.cond160, while.body148)
   1325 = phi [bb %while.cond160, i32 %i.phi435, bb %while.body148, i32 0]
   2131322 = icmp slt i32 %1325, i32 80
-  br i1 %2131322, bb %while.body210, bb %while.exit211
+  br i1 %2131322, bb %while.body210_preheader, bb %while.exit211
 while.cond209:  pred(while.body210)
   i.phi434 = phi [bb %while.body210, i32 %243]
   213 = icmp slt i32 %i.phi434, i32 80
   br i1 %213, bb %while.body210, bb %while.exit211
-while.body210:  pred(while.cond209, while.exit162)
-  i.phi4341323 = phi [bb %while.exit162, i32 %1325, bb %while.cond209, i32 %i.phi434]
+while.body210_preheader:  pred(while.exit162)
+  i.phi4341323_ph_val = phi [bb %while.exit162, i32 %1325]
+  br bb %while.body210
+while.body210:  pred(while.cond209, while.body210_preheader)
+  i.phi4341323 = phi [bb %while.cond209, i32 %i.phi434, bb %while.body210_preheader, i32 %i.phi4341323_ph_val]
   487 = shl i32 %i.phi4341323, i32 2
   217 = ptradd ptr %words, i32 %487
   219 = sub i32 %i.phi4341323, i32 3
@@ -185,7 +208,7 @@ while.body210:  pred(while.cond209, while.exit162)
   br bb %while.cond209
 while.exit211:  pred(while.cond209, while.exit162)
   2481303 = icmp slt i32 0, i32 80
-  br i1 %2481303, bb %while.body245, bb %while.exit246
+  br i1 %2481303, bb %while.body245_preheader, bb %while.exit246
 while.cond244:  pred(if.exit)
   a.phi = phi [bb %if.exit, i32 %313]
   b.phi = phi [bb %if.exit, i32 %a.phi1312]
@@ -198,17 +221,29 @@ while.cond244:  pred(if.exit)
   t.phi = phi [bb %if.exit, i32 %313]
   248 = icmp slt i32 %i.phi, i32 80
   br i1 %248, bb %while.body245, bb %while.exit246
-while.body245:  pred(while.cond244, while.exit211)
-  24813031321 = phi [bb %while.cond244, i1 %248, bb %while.exit211, i1 %2481303]
-  t.phi1320 = phi [bb %while.exit211, i32 %t.phi4271340, bb %while.cond244, i32 %t.phi]
-  e.phi1319 = phi [bb %while.exit211, i32 %h4.phi1335, bb %while.cond244, i32 %e.phi]
-  i.phi1318 = phi [bb %while.exit211, i32 0, bb %while.cond244, i32 %i.phi]
-  c.phi1317 = phi [bb %while.exit211, i32 %h2.phi1336, bb %while.cond244, i32 %c.phi]
-  k.phi4431316 = phi [bb %while.exit211, i32 %k.phi4441338, bb %while.cond244, i32 %k.phi443]
-  f.phi4491315 = phi [bb %while.exit211, i32 %f.phi4501337, bb %while.cond244, i32 %f.phi449]
-  d.phi1314 = phi [bb %while.exit211, i32 %h3.phi1333, bb %while.cond244, i32 %d.phi]
-  b.phi1313 = phi [bb %while.exit211, i32 %h1.phi1334, bb %while.cond244, i32 %b.phi]
-  a.phi1312 = phi [bb %while.exit211, i32 %h0.phi1341, bb %while.cond244, i32 %a.phi]
+while.body245_preheader:  pred(while.exit211)
+  a.phi1312_ph_val = phi [bb %while.exit211, i32 %h0.phi1341]
+  b.phi1313_ph_val = phi [bb %while.exit211, i32 %h1.phi1334]
+  d.phi1314_ph_val = phi [bb %while.exit211, i32 %h3.phi1333]
+  f.phi4491315_ph_val = phi [bb %while.exit211, i32 %f.phi4501337]
+  k.phi4431316_ph_val = phi [bb %while.exit211, i32 %k.phi4441338]
+  c.phi1317_ph_val = phi [bb %while.exit211, i32 %h2.phi1336]
+  i.phi1318_ph_val = phi [bb %while.exit211, i32 0]
+  e.phi1319_ph_val = phi [bb %while.exit211, i32 %h4.phi1335]
+  t.phi1320_ph_val = phi [bb %while.exit211, i32 %t.phi4271340]
+  24813031321_ph_val = phi [bb %while.exit211, i1 %2481303]
+  br bb %while.body245
+while.body245:  pred(while.cond244, while.body245_preheader)
+  24813031321 = phi [bb %while.cond244, i1 %248, bb %while.body245_preheader, i1 %24813031321_ph_val]
+  t.phi1320 = phi [bb %while.cond244, i32 %t.phi, bb %while.body245_preheader, i32 %t.phi1320_ph_val]
+  e.phi1319 = phi [bb %while.cond244, i32 %e.phi, bb %while.body245_preheader, i32 %e.phi1319_ph_val]
+  i.phi1318 = phi [bb %while.cond244, i32 %i.phi, bb %while.body245_preheader, i32 %i.phi1318_ph_val]
+  c.phi1317 = phi [bb %while.cond244, i32 %c.phi, bb %while.body245_preheader, i32 %c.phi1317_ph_val]
+  k.phi4431316 = phi [bb %while.cond244, i32 %k.phi443, bb %while.body245_preheader, i32 %k.phi4431316_ph_val]
+  f.phi4491315 = phi [bb %while.cond244, i32 %f.phi449, bb %while.body245_preheader, i32 %f.phi4491315_ph_val]
+  d.phi1314 = phi [bb %while.cond244, i32 %d.phi, bb %while.body245_preheader, i32 %d.phi1314_ph_val]
+  b.phi1313 = phi [bb %while.cond244, i32 %b.phi, bb %while.body245_preheader, i32 %b.phi1313_ph_val]
+  a.phi1312 = phi [bb %while.cond244, i32 %a.phi, bb %while.body245_preheader, i32 %a.phi1312_ph_val]
   251 = icmp slt i32 %i.phi1318, i32 20
   br i1 %251, bb %then, bb %else
 while.exit246:  pred(while.cond244, while.exit211)
@@ -407,15 +442,18 @@ entry354:  pred()
   376 = ptradd ptr %output_buf, i32 16
   store i32 0 to ptr %376
   3811397 = icmp sgt i32 %365, i32 0
-  br i1 %3811397, bb %while.body378, bb %while.exit379
+  br i1 %3811397, bb %while.body378_preheader, bb %while.exit379
 while.cond377:  pred(while.exit403)
   rounds.phi = phi [bb %while.exit403, i32 %422]
   381 = icmp sgt i32 %rounds.phi, i32 0
   br i1 %381, bb %while.body378, bb %while.exit379
-while.body378:  pred(while.cond377, entry354)
-  rounds.phi1398 = phi [bb %entry354, i32 %365, bb %while.cond377, i32 %rounds.phi]
+while.body378_preheader:  pred(entry354)
+  rounds.phi1398_ph_val = phi [bb %entry354, i32 %365]
+  br bb %while.body378
+while.body378:  pred(while.cond377, while.body378_preheader)
+  rounds.phi1398 = phi [bb %while.cond377, i32 %rounds.phi, bb %while.body378_preheader, i32 %rounds.phi1398_ph_val]
   3901395 = icmp slt i32 0, i32 32000
-  br i1 %3901395, bb %while.body386, bb %while.exit387
+  br i1 %3901395, bb %while.body386_preheader, bb %while.exit387
 while.exit379:  pred(while.cond377, entry354)
   call void _sysy_stoptime(i32 184)
   call void putarray(i32 5, ptr %output_buf)
@@ -424,8 +462,11 @@ while.cond385:  pred(while.body386)
   i384.phi465 = phi [bb %while.body386, i32 %398]
   390 = icmp slt i32 %i384.phi465, i32 32000
   br i1 %390, bb %while.body386, bb %while.exit387
-while.body386:  pred(while.cond385, while.body378)
-  i384.phi4651396 = phi [bb %while.body378, i32 0, bb %while.cond385, i32 %i384.phi465]
+while.body386_preheader:  pred(while.body378)
+  i384.phi4651396_ph_val = phi [bb %while.body378, i32 0]
+  br bb %while.body386
+while.body386:  pred(while.cond385, while.body386_preheader)
+  i384.phi4651396 = phi [bb %while.cond385, i32 %i384.phi465, bb %while.body386_preheader, i32 %i384.phi4651396_ph_val]
   495 = shl i32 %i384.phi4651396, i32 2
   394 = ptradd ptr @buffer, i32 %495
   state.load1291 = load i32 from ptr @state
@@ -447,13 +488,16 @@ while.exit387:  pred(while.cond385, while.body378)
   store i32 128 to ptr %91506
   985121391 = srem i32 32001, i32 64
   995131392 = icmp ne i32 %985121391, i32 60
-  br i1 %995131392, bb %pseudo_sha1.while.body, bb %pseudo_sha1.while.exit
+  br i1 %995131392, bb %pseudo_sha1.while.body_preheader, bb %pseudo_sha1.while.exit
 while.cond401:  pred(while.body402)
   i384.phi = phi [bb %while.body402, i32 %420]
   405 = icmp slt i32 %i384.phi, i32 5
   br i1 %405, bb %while.body402, bb %while.exit403
-while.body402:  pred(while.cond401, pseudo_sha1.while.exit149)
-  i384.phi1373 = phi [bb %pseudo_sha1.while.exit149, i32 0, bb %while.cond401, i32 %i384.phi]
+while.body402_preheader:  pred(pseudo_sha1.while.exit149)
+  i384.phi1373_ph_val = phi [bb %pseudo_sha1.while.exit149, i32 0]
+  br bb %while.body402
+while.body402:  pred(while.cond401, while.body402_preheader)
+  i384.phi1373 = phi [bb %while.cond401, i32 %i384.phi, bb %while.body402_preheader, i32 %i384.phi1373_ph_val]
   496 = shl i32 %i384.phi1373, i32 2
   409 = ptradd ptr %output_buf, i32 %496
   412.load = load i32 from ptr %409
@@ -474,8 +518,11 @@ pseudo_sha1.while.cond:  pred(pseudo_sha1.while.body)
   98512 = srem i32 %input_len.stack.phi511, i32 64
   99513 = icmp ne i32 %98512, i32 60
   br i1 %99513, bb %pseudo_sha1.while.body, bb %pseudo_sha1.while.exit
-pseudo_sha1.while.body:  pred(pseudo_sha1.while.cond, while.exit387)
-  input_len.stack.phi5111394 = phi [bb %while.exit387, i32 32001, bb %pseudo_sha1.while.cond, i32 %input_len.stack.phi511]
+pseudo_sha1.while.body_preheader:  pred(while.exit387)
+  input_len.stack.phi5111394_ph_val = phi [bb %while.exit387, i32 32001]
+  br bb %pseudo_sha1.while.body
+pseudo_sha1.while.body:  pred(pseudo_sha1.while.cond, pseudo_sha1.while.body_preheader)
+  input_len.stack.phi5111394 = phi [bb %pseudo_sha1.while.cond, i32 %input_len.stack.phi511, bb %pseudo_sha1.while.body_preheader, i32 %input_len.stack.phi5111394_ph_val]
   467516 = shl i32 %input_len.stack.phi5111394, i32 2
   103517 = ptradd ptr @buffer, i32 %467516
   store i32 0 to ptr %103517
@@ -500,13 +547,16 @@ pseudo_sha1.while.exit:  pred(pseudo_sha1.while.cond, while.exit387)
   store i32 0 to ptr %129541
   133544 = add i32 %1393, i32 4
   1415481389 = icmp ne i32 80, i32 0
-  br i1 %1415481389, bb %pseudo_sha1.init, bb %pseudo_sha1.init.exit
+  br i1 %1415481389, bb %pseudo_sha1.init_preheader, bb %pseudo_sha1.init.exit
 pseudo_sha1.init.cond:  pred(pseudo_sha1.init)
   cnt_ptr.phi547 = phi [bb %pseudo_sha1.init, i32 %cnt.dec551]
   141548 = icmp ne i32 %cnt_ptr.phi547, i32 0
   br i1 %141548, bb %pseudo_sha1.init, bb %pseudo_sha1.init.exit
-pseudo_sha1.init:  pred(pseudo_sha1.init.cond, pseudo_sha1.while.exit)
-  cnt_ptr.phi5471390 = phi [bb %pseudo_sha1.while.exit, i32 80, bb %pseudo_sha1.init.cond, i32 %cnt_ptr.phi547]
+pseudo_sha1.init_preheader:  pred(pseudo_sha1.while.exit)
+  cnt_ptr.phi5471390_ph_val = phi [bb %pseudo_sha1.while.exit, i32 80]
+  br bb %pseudo_sha1.init
+pseudo_sha1.init:  pred(pseudo_sha1.init.cond, pseudo_sha1.init_preheader)
+  cnt_ptr.phi5471390 = phi [bb %pseudo_sha1.init.cond, i32 %cnt_ptr.phi547, bb %pseudo_sha1.init_preheader, i32 %cnt_ptr.phi5471390_ph_val]
   cnt.dec551 = sub i32 %cnt_ptr.phi5471390, i32 1
   472552 = shl i32 %cnt.dec551, i32 2
   arr.index146553 = ptradd ptr %words504, i32 %472552
@@ -514,7 +564,7 @@ pseudo_sha1.init:  pred(pseudo_sha1.init.cond, pseudo_sha1.while.exit)
   br bb %pseudo_sha1.init.cond
 pseudo_sha1.init.exit:  pred(pseudo_sha1.init.cond, pseudo_sha1.while.exit)
   1525681374 = icmp slt i32 0, i32 %133544
-  br i1 %1525681374, bb %pseudo_sha1.while.body148, bb %pseudo_sha1.while.exit149
+  br i1 %1525681374, bb %pseudo_sha1.while.body148_preheader, bb %pseudo_sha1.while.exit149
 pseudo_sha1.while.cond147:  pred(pseudo_sha1.while.exit246)
   h3.phi559 = phi [bb %pseudo_sha1.while.exit246, i32 %333669]
   h1.phi560 = phi [bb %pseudo_sha1.while.exit246, i32 %327667]
@@ -527,18 +577,29 @@ pseudo_sha1.while.cond147:  pred(pseudo_sha1.while.exit246)
   h0.phi567 = phi [bb %pseudo_sha1.while.exit246, i32 %324666]
   152568 = icmp slt i32 %chunk_start.phi565, i32 %133544
   br i1 %152568, bb %pseudo_sha1.while.body148, bb %pseudo_sha1.while.exit149
-pseudo_sha1.while.body148:  pred(pseudo_sha1.while.cond147, pseudo_sha1.init.exit)
-  h0.phi5671388 = phi [bb %pseudo_sha1.init.exit, i32 1732584193, bb %pseudo_sha1.while.cond147, i32 %h0.phi567]
-  t.phi4275661387 = phi [bb %pseudo_sha1.init.exit, i32 0, bb %pseudo_sha1.while.cond147, i32 %t.phi427566]
-  chunk_start.phi5651386 = phi [bb %pseudo_sha1.init.exit, i32 0, bb %pseudo_sha1.while.cond147, i32 %chunk_start.phi565]
-  k.phi4445641385 = phi [bb %pseudo_sha1.init.exit, i32 0, bb %pseudo_sha1.while.cond147, i32 %k.phi444564]
-  f.phi4505631384 = phi [bb %pseudo_sha1.init.exit, i32 0, bb %pseudo_sha1.while.cond147, i32 %f.phi450563]
-  h2.phi5621383 = phi [bb %pseudo_sha1.init.exit, i32 -1732584194, bb %pseudo_sha1.while.cond147, i32 %h2.phi562]
-  h4.phi5611382 = phi [bb %pseudo_sha1.init.exit, i32 -1009589776, bb %pseudo_sha1.while.cond147, i32 %h4.phi561]
-  h1.phi5601381 = phi [bb %pseudo_sha1.init.exit, i32 -271733879, bb %pseudo_sha1.while.cond147, i32 %h1.phi560]
-  h3.phi5591380 = phi [bb %pseudo_sha1.init.exit, i32 271733878, bb %pseudo_sha1.while.cond147, i32 %h3.phi559]
+pseudo_sha1.while.body148_preheader:  pred(pseudo_sha1.init.exit)
+  h3.phi5591380_ph_val = phi [bb %pseudo_sha1.init.exit, i32 271733878]
+  h1.phi5601381_ph_val = phi [bb %pseudo_sha1.init.exit, i32 -271733879]
+  h4.phi5611382_ph_val = phi [bb %pseudo_sha1.init.exit, i32 -1009589776]
+  h2.phi5621383_ph_val = phi [bb %pseudo_sha1.init.exit, i32 -1732584194]
+  f.phi4505631384_ph_val = phi [bb %pseudo_sha1.init.exit, i32 0]
+  k.phi4445641385_ph_val = phi [bb %pseudo_sha1.init.exit, i32 0]
+  chunk_start.phi5651386_ph_val = phi [bb %pseudo_sha1.init.exit, i32 0]
+  t.phi4275661387_ph_val = phi [bb %pseudo_sha1.init.exit, i32 0]
+  h0.phi5671388_ph_val = phi [bb %pseudo_sha1.init.exit, i32 1732584193]
+  br bb %pseudo_sha1.while.body148
+pseudo_sha1.while.body148:  pred(pseudo_sha1.while.cond147, pseudo_sha1.while.body148_preheader)
+  h0.phi5671388 = phi [bb %pseudo_sha1.while.cond147, i32 %h0.phi567, bb %pseudo_sha1.while.body148_preheader, i32 %h0.phi5671388_ph_val]
+  t.phi4275661387 = phi [bb %pseudo_sha1.while.cond147, i32 %t.phi427566, bb %pseudo_sha1.while.body148_preheader, i32 %t.phi4275661387_ph_val]
+  chunk_start.phi5651386 = phi [bb %pseudo_sha1.while.cond147, i32 %chunk_start.phi565, bb %pseudo_sha1.while.body148_preheader, i32 %chunk_start.phi5651386_ph_val]
+  k.phi4445641385 = phi [bb %pseudo_sha1.while.cond147, i32 %k.phi444564, bb %pseudo_sha1.while.body148_preheader, i32 %k.phi4445641385_ph_val]
+  f.phi4505631384 = phi [bb %pseudo_sha1.while.cond147, i32 %f.phi450563, bb %pseudo_sha1.while.body148_preheader, i32 %f.phi4505631384_ph_val]
+  h2.phi5621383 = phi [bb %pseudo_sha1.while.cond147, i32 %h2.phi562, bb %pseudo_sha1.while.body148_preheader, i32 %h2.phi5621383_ph_val]
+  h4.phi5611382 = phi [bb %pseudo_sha1.while.cond147, i32 %h4.phi561, bb %pseudo_sha1.while.body148_preheader, i32 %h4.phi5611382_ph_val]
+  h1.phi5601381 = phi [bb %pseudo_sha1.while.cond147, i32 %h1.phi560, bb %pseudo_sha1.while.body148_preheader, i32 %h1.phi5601381_ph_val]
+  h3.phi5591380 = phi [bb %pseudo_sha1.while.cond147, i32 %h3.phi559, bb %pseudo_sha1.while.body148_preheader, i32 %h3.phi5591380_ph_val]
   1645851369 = icmp slt i32 0, i32 16
-  br i1 %1645851369, bb %pseudo_sha1.while.body161, bb %pseudo_sha1.while.exit162
+  br i1 %1645851369, bb %pseudo_sha1.while.body161_preheader, bb %pseudo_sha1.while.exit162
 pseudo_sha1.while.exit149:  pred(pseudo_sha1.while.cond147, pseudo_sha1.init.exit)
   1379 = phi [bb %pseudo_sha1.while.cond147, i32 %h0.phi567, bb %pseudo_sha1.init.exit, i32 1732584193]
   1378 = phi [bb %pseudo_sha1.while.cond147, i32 %h2.phi562, bb %pseudo_sha1.init.exit, i32 -1732584194]
@@ -551,13 +612,16 @@ pseudo_sha1.while.exit149:  pred(pseudo_sha1.while.cond147, pseudo_sha1.init.exi
   store i32 %1375 to ptr %arr.index361
   store i32 %1377 to ptr %arr.index362
   4051372 = icmp slt i32 0, i32 5
-  br i1 %4051372, bb %while.body402, bb %while.exit403
+  br i1 %4051372, bb %while.body402_preheader, bb %while.exit403
 pseudo_sha1.while.cond160:  pred(pseudo_sha1.while.body161)
   i.phi435584 = phi [bb %pseudo_sha1.while.body161, i32 %208614]
   164585 = icmp slt i32 %i.phi435584, i32 16
   br i1 %164585, bb %pseudo_sha1.while.body161, bb %pseudo_sha1.while.exit162
-pseudo_sha1.while.body161:  pred(pseudo_sha1.while.cond160, pseudo_sha1.while.body148)
-  i.phi4355841371 = phi [bb %pseudo_sha1.while.body148, i32 0, bb %pseudo_sha1.while.cond160, i32 %i.phi435584]
+pseudo_sha1.while.body161_preheader:  pred(pseudo_sha1.while.body148)
+  i.phi4355841371_ph_val = phi [bb %pseudo_sha1.while.body148, i32 0]
+  br bb %pseudo_sha1.while.body161
+pseudo_sha1.while.body161:  pred(pseudo_sha1.while.cond160, pseudo_sha1.while.body161_preheader)
+  i.phi4355841371 = phi [bb %pseudo_sha1.while.cond160, i32 %i.phi435584, bb %pseudo_sha1.while.body161_preheader, i32 %i.phi4355841371_ph_val]
   474588 = shl i32 %i.phi4355841371, i32 2
   168589 = ptradd ptr %words504, i32 %474588
   172590 = add i32 %chunk_start.phi5651386, i32 %474588
@@ -589,13 +653,16 @@ pseudo_sha1.while.body161:  pred(pseudo_sha1.while.cond160, pseudo_sha1.while.bo
 pseudo_sha1.while.exit162:  pred(pseudo_sha1.while.cond160, pseudo_sha1.while.body148)
   1370 = phi [bb %pseudo_sha1.while.cond160, i32 %i.phi435584, bb %pseudo_sha1.while.body148, i32 0]
   2136201367 = icmp slt i32 %1370, i32 80
-  br i1 %2136201367, bb %pseudo_sha1.while.body210, bb %pseudo_sha1.while.exit211
+  br i1 %2136201367, bb %pseudo_sha1.while.body210_preheader, bb %pseudo_sha1.while.exit211
 pseudo_sha1.while.cond209:  pred(pseudo_sha1.while.body210)
   i.phi434619 = phi [bb %pseudo_sha1.while.body210, i32 %243646]
   213620 = icmp slt i32 %i.phi434619, i32 80
   br i1 %213620, bb %pseudo_sha1.while.body210, bb %pseudo_sha1.while.exit211
-pseudo_sha1.while.body210:  pred(pseudo_sha1.while.cond209, pseudo_sha1.while.exit162)
-  i.phi4346191368 = phi [bb %pseudo_sha1.while.exit162, i32 %1370, bb %pseudo_sha1.while.cond209, i32 %i.phi434619]
+pseudo_sha1.while.body210_preheader:  pred(pseudo_sha1.while.exit162)
+  i.phi4346191368_ph_val = phi [bb %pseudo_sha1.while.exit162, i32 %1370]
+  br bb %pseudo_sha1.while.body210
+pseudo_sha1.while.body210:  pred(pseudo_sha1.while.cond209, pseudo_sha1.while.body210_preheader)
+  i.phi4346191368 = phi [bb %pseudo_sha1.while.cond209, i32 %i.phi434619, bb %pseudo_sha1.while.body210_preheader, i32 %i.phi4346191368_ph_val]
   487623 = shl i32 %i.phi4346191368, i32 2
   217624 = ptradd ptr %words504, i32 %487623
   219625 = sub i32 %i.phi4346191368, i32 3
@@ -634,7 +701,7 @@ pseudo_sha1.while.body210:  pred(pseudo_sha1.while.cond209, pseudo_sha1.while.ex
   br bb %pseudo_sha1.while.cond209
 pseudo_sha1.while.exit211:  pred(pseudo_sha1.while.cond209, pseudo_sha1.while.exit162)
   2486601348 = icmp slt i32 0, i32 80
-  br i1 %2486601348, bb %pseudo_sha1.while.body245, bb %pseudo_sha1.while.exit246
+  br i1 %2486601348, bb %pseudo_sha1.while.body245_preheader, bb %pseudo_sha1.while.exit246
 pseudo_sha1.while.cond244:  pred(pseudo_sha1.if.exit)
   a.phi651 = phi [bb %pseudo_sha1.if.exit, i32 %313689]
   b.phi652 = phi [bb %pseudo_sha1.if.exit, i32 %a.phi6511357]
@@ -647,17 +714,29 @@ pseudo_sha1.while.cond244:  pred(pseudo_sha1.if.exit)
   t.phi659 = phi [bb %pseudo_sha1.if.exit, i32 %313689]
   248660 = icmp slt i32 %i.phi657, i32 80
   br i1 %248660, bb %pseudo_sha1.while.body245, bb %pseudo_sha1.while.exit246
-pseudo_sha1.while.body245:  pred(pseudo_sha1.while.cond244, pseudo_sha1.while.exit211)
-  24866013481366 = phi [bb %pseudo_sha1.while.cond244, i1 %248660, bb %pseudo_sha1.while.exit211, i1 %2486601348]
-  t.phi6591365 = phi [bb %pseudo_sha1.while.exit211, i32 %t.phi4275661387, bb %pseudo_sha1.while.cond244, i32 %t.phi659]
-  e.phi6581364 = phi [bb %pseudo_sha1.while.exit211, i32 %h4.phi5611382, bb %pseudo_sha1.while.cond244, i32 %e.phi658]
-  i.phi6571363 = phi [bb %pseudo_sha1.while.exit211, i32 0, bb %pseudo_sha1.while.cond244, i32 %i.phi657]
-  c.phi6561362 = phi [bb %pseudo_sha1.while.exit211, i32 %h2.phi5621383, bb %pseudo_sha1.while.cond244, i32 %c.phi656]
-  k.phi4436551361 = phi [bb %pseudo_sha1.while.exit211, i32 %k.phi4445641385, bb %pseudo_sha1.while.cond244, i32 %k.phi443655]
-  f.phi4496541360 = phi [bb %pseudo_sha1.while.exit211, i32 %f.phi4505631384, bb %pseudo_sha1.while.cond244, i32 %f.phi449654]
-  d.phi6531359 = phi [bb %pseudo_sha1.while.exit211, i32 %h3.phi5591380, bb %pseudo_sha1.while.cond244, i32 %d.phi653]
-  b.phi6521358 = phi [bb %pseudo_sha1.while.exit211, i32 %h1.phi5601381, bb %pseudo_sha1.while.cond244, i32 %b.phi652]
-  a.phi6511357 = phi [bb %pseudo_sha1.while.exit211, i32 %h0.phi5671388, bb %pseudo_sha1.while.cond244, i32 %a.phi651]
+pseudo_sha1.while.body245_preheader:  pred(pseudo_sha1.while.exit211)
+  a.phi6511357_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %h0.phi5671388]
+  b.phi6521358_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %h1.phi5601381]
+  d.phi6531359_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %h3.phi5591380]
+  f.phi4496541360_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %f.phi4505631384]
+  k.phi4436551361_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %k.phi4445641385]
+  c.phi6561362_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %h2.phi5621383]
+  i.phi6571363_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 0]
+  e.phi6581364_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %h4.phi5611382]
+  t.phi6591365_ph_val = phi [bb %pseudo_sha1.while.exit211, i32 %t.phi4275661387]
+  24866013481366_ph_val = phi [bb %pseudo_sha1.while.exit211, i1 %2486601348]
+  br bb %pseudo_sha1.while.body245
+pseudo_sha1.while.body245:  pred(pseudo_sha1.while.cond244, pseudo_sha1.while.body245_preheader)
+  24866013481366 = phi [bb %pseudo_sha1.while.cond244, i1 %248660, bb %pseudo_sha1.while.body245_preheader, i1 %24866013481366_ph_val]
+  t.phi6591365 = phi [bb %pseudo_sha1.while.cond244, i32 %t.phi659, bb %pseudo_sha1.while.body245_preheader, i32 %t.phi6591365_ph_val]
+  e.phi6581364 = phi [bb %pseudo_sha1.while.cond244, i32 %e.phi658, bb %pseudo_sha1.while.body245_preheader, i32 %e.phi6581364_ph_val]
+  i.phi6571363 = phi [bb %pseudo_sha1.while.cond244, i32 %i.phi657, bb %pseudo_sha1.while.body245_preheader, i32 %i.phi6571363_ph_val]
+  c.phi6561362 = phi [bb %pseudo_sha1.while.cond244, i32 %c.phi656, bb %pseudo_sha1.while.body245_preheader, i32 %c.phi6561362_ph_val]
+  k.phi4436551361 = phi [bb %pseudo_sha1.while.cond244, i32 %k.phi443655, bb %pseudo_sha1.while.body245_preheader, i32 %k.phi4436551361_ph_val]
+  f.phi4496541360 = phi [bb %pseudo_sha1.while.cond244, i32 %f.phi449654, bb %pseudo_sha1.while.body245_preheader, i32 %f.phi4496541360_ph_val]
+  d.phi6531359 = phi [bb %pseudo_sha1.while.cond244, i32 %d.phi653, bb %pseudo_sha1.while.body245_preheader, i32 %d.phi6531359_ph_val]
+  b.phi6521358 = phi [bb %pseudo_sha1.while.cond244, i32 %b.phi652, bb %pseudo_sha1.while.body245_preheader, i32 %b.phi6521358_ph_val]
+  a.phi6511357 = phi [bb %pseudo_sha1.while.cond244, i32 %a.phi651, bb %pseudo_sha1.while.body245_preheader, i32 %a.phi6511357_ph_val]
   251663 = icmp slt i32 %i.phi6571363, i32 20
   br i1 %251663, bb %pseudo_sha1.then, bb %pseudo_sha1.else
 pseudo_sha1.while.exit246:  pred(pseudo_sha1.while.cond244, pseudo_sha1.while.exit211)

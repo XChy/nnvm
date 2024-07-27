@@ -20,6 +20,7 @@ public:
 
   void insert(BasicBlock *BB);
   void insertBack(BasicBlock *BB, Iterator pos);
+  void insertBefore(BasicBlock *BB, Iterator pos);
 
   List<BasicBlock>::Iterator begin() { return BBList.begin(); }
   List<BasicBlock>::Iterator end() { return BBList.end(); };

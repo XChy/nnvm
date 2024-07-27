@@ -58,11 +58,13 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   ADDI s5, zero, 112
+  # implict jump to bb4
+bb4:
   ADD s6, zero, zero
   ADD s7, zero, zero
   ADD s8, zero, zero
-  # implict jump to bb4
-bb4:
+  # implict jump to bb5
+bb5:
   ADD s9, s8, zero
   ADD s10, s7, zero
   ADD s11, s6, zero
@@ -70,33 +72,33 @@ bb4:
   ADDI t0, zero, 88
   SUBW t0, ra, t0
   SLTI t1, t0, 1000
-  BNE t1, zero, bb10
-  # implict jump to bb5
-bb5:
+  BNE t1, zero, bb11
   # implict jump to bb6
 bb6:
-  ADD s1, t0, zero
-  ADD s2, s11, zero
-  ADD s0, s10, zero
-  ADD s3, s9, zero
   # implict jump to bb7
 bb7:
-  ADDI s9, zero, 10
-  BLT s9, s1, bb9
+  ADD s0, t0, zero
+  ADD s3, s11, zero
+  ADD s1, s10, zero
+  ADD s2, s9, zero
   # implict jump to bb8
 bb8:
-  ADD s4, s1, zero
-  JAL zero, bb2
+  ADDI s9, zero, 10
+  BLT s9, s0, bb10
+  # implict jump to bb9
 bb9:
-  ADD s5, s1, zero
-  ADD s6, s2, zero
-  ADD s7, s0, zero
-  ADD s8, s3, zero
-  JAL zero, bb4
+  ADD s4, s0, zero
+  JAL zero, bb2
 bb10:
+  ADD s5, s0, zero
+  ADD s6, s3, zero
+  ADD s7, s1, zero
+  ADD s8, s2, zero
+  JAL zero, bb5
+bb11:
   ADDIW ra, ra, -76
   ADDI s9, zero, 11
   ADDI s10, zero, 11
   ADDI s11, zero, 10
   ADD t0, ra, zero
-  JAL zero, bb6
+  JAL zero, bb7

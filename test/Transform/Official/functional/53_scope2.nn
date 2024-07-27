@@ -4,7 +4,7 @@ entry:  pred()
   store i32 3389 to ptr @k
   store i32 3390 to ptr @k
   1252 = icmp sgt i32 112, i32 10
-  br i1 %1252, bb %while.body, bb %while.exit
+  br i1 %1252, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit19)
   g25.phi44 = phi [bb %if.exit19, i32 %g25.phi]
   l.phi41 = phi [bb %if.exit19, i32 %l.phi]
@@ -12,11 +12,17 @@ while.cond:  pred(if.exit19)
   k.phi35 = phi [bb %if.exit19, i32 %k.phi]
   12 = icmp sgt i32 %k.phi35, i32 10
   br i1 %12, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  k.phi3557 = phi [bb %entry, i32 112, bb %while.cond, i32 %k.phi35]
-  g.phi3856 = phi [bb %entry, i32 0, bb %while.cond, i32 %g.phi38]
-  l.phi4155 = phi [bb %entry, i32 0, bb %while.cond, i32 %l.phi41]
-  g25.phi4454 = phi [bb %entry, i32 0, bb %while.cond, i32 %g25.phi44]
+while.body_preheader:  pred(entry)
+  g25.phi4454_ph_val = phi [bb %entry, i32 0]
+  l.phi4155_ph_val = phi [bb %entry, i32 0]
+  g.phi3856_ph_val = phi [bb %entry, i32 0]
+  k.phi3557_ph_val = phi [bb %entry, i32 112]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  k.phi3557 = phi [bb %while.cond, i32 %k.phi35, bb %while.body_preheader, i32 %k.phi3557_ph_val]
+  g.phi3856 = phi [bb %while.cond, i32 %g.phi38, bb %while.body_preheader, i32 %g.phi3856_ph_val]
+  l.phi4155 = phi [bb %while.cond, i32 %l.phi41, bb %while.body_preheader, i32 %l.phi4155_ph_val]
+  g25.phi4454 = phi [bb %while.cond, i32 %g25.phi44, bb %while.body_preheader, i32 %g25.phi4454_ph_val]
   15 = sub i32 %k.phi3557, i32 88
   17 = icmp slt i32 %15, i32 1000
   br i1 %17, bb %then18, bb %if.exit19

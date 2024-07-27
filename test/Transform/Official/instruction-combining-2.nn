@@ -16,18 +16,22 @@ entry20007:  pred()
   call void _sysy_starttime(i32 10015)
   loopCount.load40062 = load i32 from ptr @loopCount
   2001740063 = icmp slt i32 0, i32 %loopCount.load40062
-  br i1 %2001740063, bb %while.body, bb %while.exit
+  br i1 %2001740063, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.exit20023)
   i.phi = phi [bb %while.exit20023, i32 %20041]
   sum.phi = phi [bb %while.exit20023, i32 %20039]
   loopCount.load = load i32 from ptr @loopCount
   20017 = icmp slt i32 %i.phi, i32 %loopCount.load
   br i1 %20017, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry20007)
-  sum.phi40066 = phi [bb %entry20007, i32 0, bb %while.cond, i32 %sum.phi]
-  i.phi40065 = phi [bb %entry20007, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry20007)
+  i.phi40065_ph_val = phi [bb %entry20007, i32 0]
+  sum.phi40066_ph_val = phi [bb %entry20007, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  sum.phi40066 = phi [bb %while.cond, i32 %sum.phi, bb %while.body_preheader, i32 %sum.phi40066_ph_val]
+  i.phi40065 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi40065_ph_val]
   2002540058 = icmp slt i32 0, i32 60
-  br i1 %2002540058, bb %while.body20022, bb %while.exit20023
+  br i1 %2002540058, bb %while.body20022_preheader, bb %while.exit20023
 while.exit:  pred(while.cond, entry20007)
   40064 = phi [bb %while.cond, i32 %sum.phi, bb %entry20007, i32 0]
   call void _sysy_stoptime(i32 10030)
@@ -39,9 +43,13 @@ while.cond20021:  pred(while.body20022)
   tmp.phi20049 = phi [bb %while.body20022, i32 %20030]
   20025 = icmp slt i32 %j.phi, i32 60
   br i1 %20025, bb %while.body20022, bb %while.exit20023
-while.body20022:  pred(while.cond20021, while.body)
-  tmp.phi2004940061 = phi [bb %while.body, i32 0, bb %while.cond20021, i32 %tmp.phi20049]
-  j.phi40060 = phi [bb %while.body, i32 0, bb %while.cond20021, i32 %j.phi]
+while.body20022_preheader:  pred(while.body)
+  j.phi40060_ph_val = phi [bb %while.body, i32 0]
+  tmp.phi2004940061_ph_val = phi [bb %while.body, i32 0]
+  br bb %while.body20022
+while.body20022:  pred(while.cond20021, while.body20022_preheader)
+  tmp.phi2004940061 = phi [bb %while.cond20021, i32 %tmp.phi20049, bb %while.body20022_preheader, i32 %tmp.phi2004940061_ph_val]
+  j.phi40060 = phi [bb %while.cond20021, i32 %j.phi, bb %while.body20022_preheader, i32 %j.phi40060_ph_val]
   20030 = add i32 %tmp.phi2004940061, i32 %i.phi40065
   20032 = add i32 %j.phi40060, i32 1
   br bb %while.cond20021

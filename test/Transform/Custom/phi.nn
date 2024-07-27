@@ -5,14 +5,17 @@ i32 go() {
 entry:  pred()
   value.load13 = load i32 from ptr @value
   714 = icmp slt i32 0, i32 %value.load13
-  br i1 %714, bb %while.body, bb %while.exit
+  br i1 %714, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   a.phi = phi [bb %while.body, i32 %10]
   value.load = load i32 from ptr @value
   7 = icmp slt i32 %a.phi, i32 %value.load
   br i1 %7, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  a.phi16 = phi [bb %entry, i32 0, bb %while.cond, i32 %a.phi]
+while.body_preheader:  pred(entry)
+  a.phi16_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  a.phi16 = phi [bb %while.cond, i32 %a.phi, bb %while.body_preheader, i32 %a.phi16_ph_val]
   10 = add i32 %a.phi16, i32 1
   br bb %while.cond
 while.exit:  pred(while.cond, entry)

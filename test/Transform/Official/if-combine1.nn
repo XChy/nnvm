@@ -14,13 +14,16 @@ entry639:  pred()
   call void _sysy_starttime(i32 324)
   642 = call i32 getint()
   11662904 = icmp slt i32 0, i32 100
-  br i1 %11662904, bb %func.while.body, bb %func.while.exit
+  br i1 %11662904, bb %func.while.body_preheader, bb %func.while.exit
 func.while.cond:  pred(func.while.body)
   m.phi661 = phi [bb %func.while.body, i32 %17668]
   11662 = icmp slt i32 %m.phi661, i32 100
   br i1 %11662, bb %func.while.body, bb %func.while.exit
-func.while.body:  pred(func.while.cond, entry639)
-  m.phi661905 = phi [bb %entry639, i32 0, bb %func.while.cond, i32 %m.phi661]
+func.while.body_preheader:  pred(entry639)
+  m.phi661905_ph_val = phi [bb %entry639, i32 0]
+  br bb %func.while.body
+func.while.body:  pred(func.while.cond, func.while.body_preheader)
+  m.phi661905 = phi [bb %func.while.cond, i32 %m.phi661, bb %func.while.body_preheader, i32 %m.phi661905_ph_val]
   654665 = shl i32 %m.phi661905, i32 2
   15666 = ptradd ptr %s658, i32 %654665
   store i32 0 to ptr %15666
@@ -28,15 +31,19 @@ func.while.body:  pred(func.while.cond, entry639)
   br bb %func.while.cond
 func.while.exit:  pred(func.while.cond, entry639)
   23675900 = icmp slt i32 0, i32 %642
-  br i1 %23675900, bb %func.while.body19, bb %func.while.exit20
+  br i1 %23675900, bb %func.while.body19_preheader, bb %func.while.exit20
 func.while.cond18:  pred(func.while.exit624)
   j.phi673 = phi [bb %func.while.exit624, i32 %620876]
   sum.phi674 = phi [bb %func.while.exit624, i32 %637893]
   23675 = icmp slt i32 %j.phi673, i32 %642
   br i1 %23675, bb %func.while.body19, bb %func.while.exit20
-func.while.body19:  pred(func.while.cond18, func.while.exit)
-  sum.phi674903 = phi [bb %func.while.exit, i32 0, bb %func.while.cond18, i32 %sum.phi674]
-  j.phi673902 = phi [bb %func.while.exit, i32 0, bb %func.while.cond18, i32 %j.phi673]
+func.while.body19_preheader:  pred(func.while.exit)
+  j.phi673902_ph_val = phi [bb %func.while.exit, i32 0]
+  sum.phi674903_ph_val = phi [bb %func.while.exit, i32 0]
+  br bb %func.while.body19
+func.while.body19:  pred(func.while.cond18, func.while.body19_preheader)
+  sum.phi674903 = phi [bb %func.while.cond18, i32 %sum.phi674, bb %func.while.body19_preheader, i32 %sum.phi674903_ph_val]
+  j.phi673902 = phi [bb %func.while.cond18, i32 %j.phi673, bb %func.while.body19_preheader, i32 %j.phi673902_ph_val]
   30678 = ptradd ptr %s658, i32 4
   store i32 1 to ptr %30678
   36680 = ptradd ptr %s658, i32 8
@@ -237,7 +244,7 @@ func.while.body19:  pred(func.while.cond18, func.while.exit)
   store i32 99 to ptr %618874
   620876 = add i32 %j.phi673902, i32 1
   626883896 = icmp slt i32 0, i32 100
-  br i1 %626883896, bb %func.while.body623, bb %func.while.exit624
+  br i1 %626883896, bb %func.while.body623_preheader, bb %func.while.exit624
 func.while.exit20:  pred(func.while.cond18, func.while.exit)
   901 = phi [bb %func.while.cond18, i32 %sum.phi674, bb %func.while.exit, i32 0]
   call void putint(i32 %901)
@@ -249,9 +256,13 @@ func.while.cond622:  pred(func.while.body623)
   sum.phi649882 = phi [bb %func.while.body623, i32 %633889]
   626883 = icmp slt i32 %m621.phi881, i32 100
   br i1 %626883, bb %func.while.body623, bb %func.while.exit624
-func.while.body623:  pred(func.while.cond622, func.while.body19)
-  sum.phi649882899 = phi [bb %func.while.body19, i32 %sum.phi674903, bb %func.while.cond622, i32 %sum.phi649882]
-  m621.phi881898 = phi [bb %func.while.body19, i32 0, bb %func.while.cond622, i32 %m621.phi881]
+func.while.body623_preheader:  pred(func.while.body19)
+  m621.phi881898_ph_val = phi [bb %func.while.body19, i32 0]
+  sum.phi649882899_ph_val = phi [bb %func.while.body19, i32 %sum.phi674903]
+  br bb %func.while.body623
+func.while.body623:  pred(func.while.cond622, func.while.body623_preheader)
+  sum.phi649882899 = phi [bb %func.while.cond622, i32 %sum.phi649882, bb %func.while.body623_preheader, i32 %sum.phi649882899_ph_val]
+  m621.phi881898 = phi [bb %func.while.cond622, i32 %m621.phi881, bb %func.while.body623_preheader, i32 %m621.phi881898_ph_val]
   655886 = shl i32 %m621.phi881898, i32 2
   631887 = ptradd ptr %s658, i32 %655886
   631.load888 = load i32 from ptr %631887
@@ -282,13 +293,16 @@ pure i32 func(i32 n) {
 entry:  pred()
   %s = stack 400
   11914 = icmp slt i32 0, i32 100
-  br i1 %11914, bb %while.body, bb %while.exit
+  br i1 %11914, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   m.phi = phi [bb %while.body, i32 %17]
   11 = icmp slt i32 %m.phi, i32 100
   br i1 %11, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  m.phi915 = phi [bb %entry, i32 0, bb %while.cond, i32 %m.phi]
+while.body_preheader:  pred(entry)
+  m.phi915_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  m.phi915 = phi [bb %while.cond, i32 %m.phi, bb %while.body_preheader, i32 %m.phi915_ph_val]
   654 = shl i32 %m.phi915, i32 2
   15 = ptradd ptr %s, i32 %654
   store i32 0 to ptr %15
@@ -296,15 +310,19 @@ while.body:  pred(while.cond, entry)
   br bb %while.cond
 while.exit:  pred(while.cond, entry)
   23910 = icmp slt i32 0, i32 %n
-  br i1 %23910, bb %while.body19, bb %while.exit20
+  br i1 %23910, bb %while.body19_preheader, bb %while.exit20
 while.cond18:  pred(while.exit624)
   j.phi = phi [bb %while.exit624, i32 %620]
   sum.phi = phi [bb %while.exit624, i32 %637]
   23 = icmp slt i32 %j.phi, i32 %n
   br i1 %23, bb %while.body19, bb %while.exit20
-while.body19:  pred(while.cond18, while.exit)
-  sum.phi913 = phi [bb %while.exit, i32 0, bb %while.cond18, i32 %sum.phi]
-  j.phi912 = phi [bb %while.exit, i32 0, bb %while.cond18, i32 %j.phi]
+while.body19_preheader:  pred(while.exit)
+  j.phi912_ph_val = phi [bb %while.exit, i32 0]
+  sum.phi913_ph_val = phi [bb %while.exit, i32 0]
+  br bb %while.body19
+while.body19:  pred(while.cond18, while.body19_preheader)
+  sum.phi913 = phi [bb %while.cond18, i32 %sum.phi, bb %while.body19_preheader, i32 %sum.phi913_ph_val]
+  j.phi912 = phi [bb %while.cond18, i32 %j.phi, bb %while.body19_preheader, i32 %j.phi912_ph_val]
   30 = ptradd ptr %s, i32 4
   store i32 1 to ptr %30
   36 = ptradd ptr %s, i32 8
@@ -505,7 +523,7 @@ while.body19:  pred(while.cond18, while.exit)
   store i32 99 to ptr %618
   620 = add i32 %j.phi912, i32 1
   626906 = icmp slt i32 0, i32 100
-  br i1 %626906, bb %while.body623, bb %while.exit624
+  br i1 %626906, bb %while.body623_preheader, bb %while.exit624
 while.exit20:  pred(while.cond18, while.exit)
   911 = phi [bb %while.cond18, i32 %sum.phi, bb %while.exit, i32 0]
   ret i32 %911
@@ -514,9 +532,13 @@ while.cond622:  pred(while.body623)
   sum.phi649 = phi [bb %while.body623, i32 %633]
   626 = icmp slt i32 %m621.phi, i32 100
   br i1 %626, bb %while.body623, bb %while.exit624
-while.body623:  pred(while.cond622, while.body19)
-  sum.phi649909 = phi [bb %while.body19, i32 %sum.phi913, bb %while.cond622, i32 %sum.phi649]
-  m621.phi908 = phi [bb %while.body19, i32 0, bb %while.cond622, i32 %m621.phi]
+while.body623_preheader:  pred(while.body19)
+  m621.phi908_ph_val = phi [bb %while.body19, i32 0]
+  sum.phi649909_ph_val = phi [bb %while.body19, i32 %sum.phi913]
+  br bb %while.body623
+while.body623:  pred(while.cond622, while.body623_preheader)
+  sum.phi649909 = phi [bb %while.cond622, i32 %sum.phi649, bb %while.body623_preheader, i32 %sum.phi649909_ph_val]
+  m621.phi908 = phi [bb %while.cond622, i32 %m621.phi, bb %while.body623_preheader, i32 %m621.phi908_ph_val]
   655 = shl i32 %m621.phi908, i32 2
   631 = ptradd ptr %s, i32 %655
   631.load = load i32 from ptr %631

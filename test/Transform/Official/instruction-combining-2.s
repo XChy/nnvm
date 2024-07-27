@@ -18,8 +18,8 @@ main:
   SD s6, 64(sp)
   SD s7, 72(sp)
   SD s8, 80(sp)
-  SD s9, 88(sp)
-  SD s10, 96(sp)
+  SD s10, 88(sp)
+  SD s9, 96(sp)
   SD s11, 104(sp)
   CALL getint
   ADD s4, a0, zero
@@ -57,28 +57,30 @@ bb2:
   LD s6, 64(sp)
   LD s7, 72(sp)
   LD s8, 80(sp)
-  LD s9, 88(sp)
-  LD s10, 96(sp)
+  LD s10, 88(sp)
+  LD s9, 96(sp)
   LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb3:
-  ADD s5, zero, zero
-  ADD s6, zero, zero
   # implict jump to bb4
 bb4:
+  ADD s5, zero, zero
+  ADD s6, zero, zero
+  # implict jump to bb5
+bb5:
   ADD t4, s6, zero
   SW t4, 0(sp)
   ADD t4, s5, zero
   SW t4, 4(sp)
   ADDI s9, zero, 0
   SLTI s9, s9, 60
-  BNE s9, zero, bb10
-  # implict jump to bb5
-bb5:
-  ADD s9, zero, zero
+  BNE s9, zero, bb11
   # implict jump to bb6
 bb6:
+  ADD s9, zero, zero
+  # implict jump to bb7
+bb7:
   ADDI s7, zero, 60
   DIVW s7, s9, s7
   LW t4, 4(sp)
@@ -87,42 +89,44 @@ bb6:
   ADDIW s8, s8, 1
   REMW s1, s7, s8
   LW t4, 0(sp)
-  ADDIW s0, t4, 1
-  # implict jump to bb7
-bb7:
-  LA s7, loopCount
-  LW s7, 0(s7)
-  BLT s0, s7, bb9
+  ADDIW s3, t4, 1
   # implict jump to bb8
 bb8:
+  LA s7, loopCount
+  LW s7, 0(s7)
+  BLT s3, s7, bb10
+  # implict jump to bb9
+bb9:
   ADD s4, s1, zero
   JAL zero, bb2
-bb9:
-  ADD s5, s1, zero
-  ADD s6, s0, zero
-  JAL zero, bb4
 bb10:
+  ADD s5, s1, zero
+  ADD s6, s3, zero
+  JAL zero, bb5
+bb11:
+  # implict jump to bb12
+bb12:
   ADD s10, zero, zero
   ADD s11, zero, zero
-  # implict jump to bb11
-bb11:
+  # implict jump to bb13
+bb13:
   ADD s7, s11, zero
   ADD s8, s10, zero
   LW t4, 0(sp)
-  ADDW s2, s8, t4
-  ADDIW s3, s7, 1
-  # implict jump to bb12
-bb12:
-  SLTI s7, s3, 60
-  BNE s7, zero, bb14
-  # implict jump to bb13
-bb13:
-  ADD s9, s2, zero
-  JAL zero, bb6
+  ADDW s0, s8, t4
+  ADDIW s2, s7, 1
+  # implict jump to bb14
 bb14:
-  ADD s10, s2, zero
-  ADD s11, s3, zero
-  JAL zero, bb11
+  SLTI s7, s2, 60
+  BNE s7, zero, bb16
+  # implict jump to bb15
+bb15:
+  ADD s9, s0, zero
+  JAL zero, bb7
+bb16:
+  ADD s10, s0, zero
+  ADD s11, s2, zero
+  JAL zero, bb13
 func:
   ADDI sp, sp, -32
   SD ra, 0(sp)

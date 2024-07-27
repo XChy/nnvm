@@ -7,15 +7,19 @@ void my_putint(i32 a) {
 entry48:  pred()
   %b = stack 64
   56237 = icmp sgt i32 %a, i32 0
-  br i1 %56237, bb %while.body53, bb %while.exit54
+  br i1 %56237, bb %while.body53_preheader, bb %while.exit54
 while.cond52:  pred(while.body53)
   i.phi100 = phi [bb %while.body53, i32 %68]
   a.stack.phi = phi [bb %while.body53, i32 %66]
   56 = icmp sgt i32 %a.stack.phi, i32 0
   br i1 %56, bb %while.body53, bb %while.exit54
-while.body53:  pred(while.cond52, entry48)
-  a.stack.phi240 = phi [bb %entry48, i32 %a, bb %while.cond52, i32 %a.stack.phi]
-  i.phi100239 = phi [bb %entry48, i32 0, bb %while.cond52, i32 %i.phi100]
+while.body53_preheader:  pred(entry48)
+  i.phi100239_ph_val = phi [bb %entry48, i32 0]
+  a.stack.phi240_ph_val = phi [bb %entry48, i32 %a]
+  br bb %while.body53
+while.body53:  pred(while.cond52, while.body53_preheader)
+  a.stack.phi240 = phi [bb %while.cond52, i32 %a.stack.phi, bb %while.body53_preheader, i32 %a.stack.phi240_ph_val]
+  i.phi100239 = phi [bb %while.cond52, i32 %i.phi100, bb %while.body53_preheader, i32 %i.phi100239_ph_val]
   114 = shl i32 %i.phi100239, i32 2
   60 = ptradd ptr %b, i32 %114
   62 = srem i32 %a.stack.phi240, i32 10
@@ -27,13 +31,16 @@ while.body53:  pred(while.cond52, entry48)
 while.exit54:  pred(while.cond52, entry48)
   238 = phi [bb %while.cond52, i32 %i.phi100, bb %entry48, i32 0]
   73235 = icmp sgt i32 %238, i32 0
-  br i1 %73235, bb %while.body70, bb %while.exit71
+  br i1 %73235, bb %while.body70_preheader, bb %while.exit71
 while.cond69:  pred(while.body70)
   i.phi = phi [bb %while.body70, i32 %76]
   73 = icmp sgt i32 %i.phi, i32 0
   br i1 %73, bb %while.body70, bb %while.exit71
-while.body70:  pred(while.cond69, while.exit54)
-  i.phi236 = phi [bb %while.exit54, i32 %238, bb %while.cond69, i32 %i.phi]
+while.body70_preheader:  pred(while.exit54)
+  i.phi236_ph_val = phi [bb %while.exit54, i32 %238]
+  br bb %while.body70
+while.body70:  pred(while.cond69, while.body70_preheader)
+  i.phi236 = phi [bb %while.cond69, i32 %i.phi, bb %while.body70_preheader, i32 %i.phi236_ph_val]
   76 = sub i32 %i.phi236, i32 1
   115 = shl i32 %76, i32 2
   79 = ptradd ptr %b, i32 %115
@@ -105,9 +112,13 @@ my_putint.while.cond52:  pred(my_putint.while.body53)
   a.stack.phi122 = phi [bb %my_putint.while.body53, i32 %66131]
   56123 = icmp sgt i32 %a.stack.phi122, i32 0
   br i1 %56123, bb %my_putint.while.body53, bb %my_putint.while.exit54
-my_putint.while.body53:  pred(my_putint.while.cond52, my_getint.else42232)
-  a.stack.phi122246 = phi [bb %my_getint.else42232, i32 %sum.phi215, bb %my_putint.while.cond52, i32 %a.stack.phi122]
-  i.phi100121245 = phi [bb %my_getint.else42232, i32 0, bb %my_putint.while.cond52, i32 %i.phi100121]
+my_putint.while.body53_preheader:  pred(my_getint.else42232)
+  i.phi100121245_ph_val = phi [bb %my_getint.else42232, i32 0]
+  a.stack.phi122246_ph_val = phi [bb %my_getint.else42232, i32 %sum.phi215]
+  br bb %my_putint.while.body53
+my_putint.while.body53:  pred(my_putint.while.cond52, my_putint.while.body53_preheader)
+  a.stack.phi122246 = phi [bb %my_putint.while.cond52, i32 %a.stack.phi122, bb %my_putint.while.body53_preheader, i32 %a.stack.phi122246_ph_val]
+  i.phi100121245 = phi [bb %my_putint.while.cond52, i32 %i.phi100121, bb %my_putint.while.body53_preheader, i32 %i.phi100121245_ph_val]
   114126 = shl i32 %i.phi100121245, i32 2
   60127 = ptradd ptr %b118, i32 %114126
   62128 = srem i32 %a.stack.phi122246, i32 10
@@ -119,13 +130,16 @@ my_putint.while.body53:  pred(my_putint.while.cond52, my_getint.else42232)
 my_putint.while.exit54:  pred(my_putint.while.cond52, my_getint.else42232)
   244 = phi [bb %my_putint.while.cond52, i32 %i.phi100121, bb %my_getint.else42232, i32 0]
   73138241 = icmp sgt i32 %244, i32 0
-  br i1 %73138241, bb %my_putint.while.body70, bb %my_putint.while.exit71
+  br i1 %73138241, bb %my_putint.while.body70_preheader, bb %my_putint.while.exit71
 my_putint.while.cond69:  pred(my_putint.while.body70)
   i.phi137 = phi [bb %my_putint.while.body70, i32 %76141]
   73138 = icmp sgt i32 %i.phi137, i32 0
   br i1 %73138, bb %my_putint.while.body70, bb %my_putint.while.exit71
-my_putint.while.body70:  pred(my_putint.while.cond69, my_putint.while.exit54)
-  i.phi137242 = phi [bb %my_putint.while.exit54, i32 %244, bb %my_putint.while.cond69, i32 %i.phi137]
+my_putint.while.body70_preheader:  pred(my_putint.while.exit54)
+  i.phi137242_ph_val = phi [bb %my_putint.while.exit54, i32 %244]
+  br bb %my_putint.while.body70
+my_putint.while.body70:  pred(my_putint.while.cond69, my_putint.while.body70_preheader)
+  i.phi137242 = phi [bb %my_putint.while.cond69, i32 %i.phi137, bb %my_putint.while.body70_preheader, i32 %i.phi137242_ph_val]
   76141 = sub i32 %i.phi137242, i32 1
   115142 = shl i32 %76141, i32 2
   79143 = ptradd ptr %b118, i32 %115142
@@ -171,9 +185,12 @@ my_getint.then40:  pred(my_getint.select.exit35)
   br bb %my_getint.while.cond24
 my_getint.else42:  pred(my_getint.select.exit35)
   89247 = icmp sgt i32 %sum.phi172, i32 0
-  br i1 %89247, bb %my_getint.while.cond195, bb %while.exit87
-my_getint.while.cond195:  pred(my_getint.select.exit207, while.cond85, my_getint.else42)
-  n.phi248 = phi [bb %my_getint.else42, i32 %sum.phi172, bb %while.cond85, i32 %n.phi]
+  br i1 %89247, bb %my_getint.while.cond195_preheader, bb %while.exit87
+my_getint.while.cond195_preheader:  pred(my_getint.else42)
+  n.phi248_ph_val = phi [bb %my_getint.else42, i32 %sum.phi172]
+  br bb %my_getint.while.cond195
+my_getint.while.cond195:  pred(my_getint.select.exit207, while.cond85, my_getint.while.cond195_preheader)
+  n.phi248 = phi [bb %while.cond85, i32 %n.phi, bb %my_getint.while.cond195_preheader, i32 %n.phi248_ph_val]
   7196 = call i32 getch()
   9197 = sub i32 %7196, i32 48
   11198 = icmp slt i32 %9197, i32 0
@@ -208,7 +225,7 @@ my_getint.then40228:  pred(my_getint.select.exit35225)
   br bb %my_getint.while.cond24214
 my_getint.else42232:  pred(my_getint.select.exit35225)
   56123243 = icmp sgt i32 %sum.phi215, i32 0
-  br i1 %56123243, bb %my_putint.while.body53, bb %my_putint.while.exit54
+  br i1 %56123243, bb %my_putint.while.body53_preheader, bb %my_putint.while.exit54
 }
 
 external float getfloat()

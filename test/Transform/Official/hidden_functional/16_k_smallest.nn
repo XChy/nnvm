@@ -12,10 +12,10 @@ else:  pred(entry57)
   25158 = ptradd ptr @array, i32 %148157
   25.load159 = load i32 from ptr %25158
   36164230 = icmp slt i32 %low, i32 %high
-  br i1 %36164230, bb %findPivot.while.body, bb %findPivot.while.exit
+  br i1 %36164230, bb %findPivot.while.body_preheader, bb %findPivot.while.exit
 then75:  pred(findPivot.while.exit)
   84228 = icmp slt i32 0, i32 %low231
-  br i1 %84228, bb %while.body80, bb %if.exit76
+  br i1 %84228, bb %while.body80_preheader, bb %if.exit76
 if.exit76:  pred(while.cond79, then98, else100, then75)
   ret 
 else77:  pred(findPivot.while.exit)
@@ -25,8 +25,11 @@ while.cond79:  pred(while.body80)
   i78.phi = phi [bb %while.body80, i32 %94]
   84 = icmp slt i32 %i78.phi, i32 %low231
   br i1 %84, bb %while.body80, bb %if.exit76
-while.body80:  pred(while.cond79, then75)
-  i78.phi229 = phi [bb %then75, i32 0, bb %while.cond79, i32 %i78.phi]
+while.body80_preheader:  pred(then75)
+  i78.phi229_ph_val = phi [bb %then75, i32 0]
+  br bb %while.body80
+while.body80:  pred(while.cond79, while.body80_preheader)
+  i78.phi229 = phi [bb %while.cond79, i32 %i78.phi, bb %while.body80_preheader, i32 %i78.phi229_ph_val]
   147 = shl i32 %i78.phi229, i32 2
   88 = ptradd ptr @array, i32 %147
   88.load = load i32 from ptr %88
@@ -47,9 +50,13 @@ findPivot.while.cond:  pred(findPivot.if.exit)
   pIndex.phi144163 = phi [bb %findPivot.if.exit, i32 %pIndex.phi180]
   36164 = icmp slt i32 %i.phi162, i32 %high
   br i1 %36164, bb %findPivot.while.body, bb %findPivot.while.exit
-findPivot.while.body:  pred(findPivot.while.cond, else)
-  pIndex.phi144163233 = phi [bb %else, i32 %low, bb %findPivot.while.cond, i32 %pIndex.phi144163]
-  i.phi162232 = phi [bb %else, i32 %low, bb %findPivot.while.cond, i32 %i.phi162]
+findPivot.while.body_preheader:  pred(else)
+  i.phi162232_ph_val = phi [bb %else, i32 %low]
+  pIndex.phi144163233_ph_val = phi [bb %else, i32 %low]
+  br bb %findPivot.while.body
+findPivot.while.body:  pred(findPivot.while.cond, findPivot.while.body_preheader)
+  pIndex.phi144163233 = phi [bb %findPivot.while.cond, i32 %pIndex.phi144163, bb %findPivot.while.body_preheader, i32 %pIndex.phi144163233_ph_val]
+  i.phi162232 = phi [bb %findPivot.while.cond, i32 %i.phi162, bb %findPivot.while.body_preheader, i32 %i.phi162232_ph_val]
   149167 = shl i32 %i.phi162232, i32 2
   40168 = ptradd ptr @array, i32 %149167
   40.load169 = load i32 from ptr %40168
@@ -86,15 +93,19 @@ entry19:  pred()
   25 = ptradd ptr @array, i32 %148
   25.load = load i32 from ptr %25
   36234 = icmp slt i32 %start, i32 %end
-  br i1 %36234, bb %while.body, bb %while.exit
+  br i1 %36234, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit)
   i.phi = phi [bb %if.exit, i32 %52]
   pIndex.phi144 = phi [bb %if.exit, i32 %pIndex.phi]
   36 = icmp slt i32 %i.phi, i32 %end
   br i1 %36, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry19)
-  pIndex.phi144237 = phi [bb %entry19, i32 %start, bb %while.cond, i32 %pIndex.phi144]
-  i.phi236 = phi [bb %entry19, i32 %start, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry19)
+  i.phi236_ph_val = phi [bb %entry19, i32 %start]
+  pIndex.phi144237_ph_val = phi [bb %entry19, i32 %start]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  pIndex.phi144237 = phi [bb %while.cond, i32 %pIndex.phi144, bb %while.body_preheader, i32 %pIndex.phi144237_ph_val]
+  i.phi236 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi236_ph_val]
   149 = shl i32 %i.phi236, i32 2
   40 = ptradd ptr @array, i32 %149
   40.load = load i32 from ptr %40
@@ -139,13 +150,16 @@ entry113:  pred()
   115 = call i32 getint()
   117 = call i32 getint()
   124238 = icmp slt i32 0, i32 %115
-  br i1 %124238, bb %while.body120, bb %while.exit121
+  br i1 %124238, bb %while.body120_preheader, bb %while.exit121
 while.cond119:  pred(while.body120)
   i118.phi = phi [bb %while.body120, i32 %131]
   124 = icmp slt i32 %i118.phi, i32 %115
   br i1 %124, bb %while.body120, bb %while.exit121
-while.body120:  pred(while.cond119, entry113)
-  i118.phi239 = phi [bb %entry113, i32 0, bb %while.cond119, i32 %i118.phi]
+while.body120_preheader:  pred(entry113)
+  i118.phi239_ph_val = phi [bb %entry113, i32 0]
+  br bb %while.body120
+while.body120:  pred(while.cond119, while.body120_preheader)
+  i118.phi239 = phi [bb %while.cond119, i32 %i118.phi, bb %while.body120_preheader, i32 %i118.phi239_ph_val]
   150 = shl i32 %i118.phi239, i32 2
   128 = ptradd ptr @array, i32 %150
   129 = call i32 getint()

@@ -4,15 +4,18 @@ immutable global ptr N init with i32 100
 i32 main() {
 entry:  pred()
   8261 = icmp slt i32 0, i32 20
-  br i1 %8261, bb %while.body, bb %while.exit
+  br i1 %8261, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.exit13)
   i.phi = phi [bb %while.exit13, i32 %28]
   8 = icmp slt i32 %i.phi, i32 20
   br i1 %8, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi262 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry)
+  i.phi262_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi262 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi262_ph_val]
   16259 = icmp slt i32 0, i32 100
-  br i1 %16259, bb %while.body12, bb %while.exit13
+  br i1 %16259, bb %while.body12_preheader, bb %while.exit13
 while.exit:  pred(while.cond, entry)
   32 = ptradd ptr @array, i32 400
   34 = ptradd ptr @array, i32 800
@@ -175,8 +178,11 @@ while.cond11:  pred(while.body12)
   j.phi = phi [bb %while.body12, i32 %26]
   16 = icmp slt i32 %j.phi, i32 100
   br i1 %16, bb %while.body12, bb %while.exit13
-while.body12:  pred(while.cond11, while.body)
-  j.phi260 = phi [bb %while.body, i32 0, bb %while.cond11, i32 %j.phi]
+while.body12_preheader:  pred(while.body)
+  j.phi260_ph_val = phi [bb %while.body, i32 0]
+  br bb %while.body12
+while.body12:  pred(while.cond11, while.body12_preheader)
+  j.phi260 = phi [bb %while.cond11, i32 %j.phi, bb %while.body12_preheader, i32 %j.phi260_ph_val]
   19 = mul i32 %i.phi262, i32 400
   20 = ptradd ptr @array, i32 %19
   258 = shl i32 %j.phi260, i32 2

@@ -228,13 +228,16 @@ if.exit286:  pred(entry277)
   81411 = add i32 %now.load398, i32 1
   store i32 %81411 to ptr @now
   296419 = icmp slt i32 1, i32 %279
-  br i1 %296419, bb %while.body, bb %while.exit
+  br i1 %296419, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi338 = phi [bb %while.body, i32 %302]
   296 = icmp slt i32 %i.phi338, i32 %279
   br i1 %296, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, if.exit286)
-  i.phi338420 = phi [bb %if.exit286, i32 1, bb %while.cond, i32 %i.phi338]
+while.body_preheader:  pred(if.exit286)
+  i.phi338420_ph_val = phi [bb %if.exit286, i32 1]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi338420 = phi [bb %while.cond, i32 %i.phi338, bb %while.body_preheader, i32 %i.phi338420_ph_val]
   299 = call i32 getint()
   300 = call i32 insert(i32 %now.load398, i32 %299)
   302 = add i32 %i.phi338420, i32 1
@@ -244,15 +247,19 @@ while.exit:  pred(while.cond, if.exit286)
   call void putch(i32 10)
   307 = call i32 getint()
   313415 = icmp slt i32 0, i32 %307
-  br i1 %313415, bb %while.body309, bb %while.exit310
+  br i1 %313415, bb %while.body309_preheader, bb %while.exit310
 while.cond308:  pred(while.body309)
   i.phi = phi [bb %while.body309, i32 %319]
   root.phi = phi [bb %while.body309, i32 %317]
   313 = icmp slt i32 %i.phi, i32 %307
   br i1 %313, bb %while.body309, bb %while.exit310
-while.body309:  pred(while.cond308, while.exit)
-  root.phi418 = phi [bb %while.exit, i32 %now.load398, bb %while.cond308, i32 %root.phi]
-  i.phi417 = phi [bb %while.exit, i32 0, bb %while.cond308, i32 %i.phi]
+while.body309_preheader:  pred(while.exit)
+  i.phi417_ph_val = phi [bb %while.exit, i32 0]
+  root.phi418_ph_val = phi [bb %while.exit, i32 %now.load398]
+  br bb %while.body309
+while.body309:  pred(while.cond308, while.body309_preheader)
+  root.phi418 = phi [bb %while.cond308, i32 %root.phi, bb %while.body309_preheader, i32 %root.phi418_ph_val]
+  i.phi417 = phi [bb %while.cond308, i32 %i.phi, bb %while.body309_preheader, i32 %i.phi417_ph_val]
   316 = call i32 getint()
   317 = call i32 delete(i32 %root.phi418, i32 %316)
   319 = add i32 %i.phi417, i32 1

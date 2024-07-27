@@ -332,17 +332,20 @@ read_image.then127:  pred(read_image.select.exit121)
 read_image.if.exit128:  pred(read_image.select.exit121)
   height.load135656696 = load i32 from ptr @height
   136657697 = icmp slt i32 0, i32 %height.load135656696
-  br i1 %136657697, bb %read_image.while.body, bb %read_image.while.exit
+  br i1 %136657697, bb %read_image.while.body_preheader, bb %read_image.while.exit
 read_image.while.cond:  pred(read_image.while.exit141)
   y.phi655 = phi [bb %read_image.while.exit141, i32 %157679]
   height.load135656 = load i32 from ptr @height
   136657 = icmp slt i32 %y.phi655, i32 %height.load135656
   br i1 %136657, bb %read_image.while.body, bb %read_image.while.exit
-read_image.while.body:  pred(read_image.while.cond, read_image.if.exit128)
-  y.phi655698 = phi [bb %read_image.if.exit128, i32 0, bb %read_image.while.cond, i32 %y.phi655]
+read_image.while.body_preheader:  pred(read_image.if.exit128)
+  y.phi655698_ph_val = phi [bb %read_image.if.exit128, i32 0]
+  br bb %read_image.while.body
+read_image.while.body:  pred(read_image.while.cond, read_image.while.body_preheader)
+  y.phi655698 = phi [bb %read_image.while.cond, i32 %y.phi655, bb %read_image.while.body_preheader, i32 %y.phi655698_ph_val]
   width.load143665693 = load i32 from ptr @width
   144666694 = icmp slt i32 0, i32 %width.load143665693
-  br i1 %144666694, bb %read_image.while.body140, bb %read_image.while.exit141
+  br i1 %144666694, bb %read_image.while.body140_preheader, bb %read_image.while.exit141
 read_image.while.exit:  pred(read_image.while.cond, read_image.if.exit128)
   br bb %entry288.split
 read_image.while.cond139:  pred(read_image.while.body140)
@@ -350,8 +353,11 @@ read_image.while.cond139:  pred(read_image.while.body140)
   width.load143665 = load i32 from ptr @width
   144666 = icmp slt i32 %x.phi664, i32 %width.load143665
   br i1 %144666, bb %read_image.while.body140, bb %read_image.while.exit141
-read_image.while.body140:  pred(read_image.while.cond139, read_image.while.body)
-  x.phi664695 = phi [bb %read_image.while.body, i32 0, bb %read_image.while.cond139, i32 %x.phi664]
+read_image.while.body140_preheader:  pred(read_image.while.body)
+  x.phi664695_ph_val = phi [bb %read_image.while.body, i32 0]
+  br bb %read_image.while.body140
+read_image.while.body140:  pred(read_image.while.cond139, read_image.while.body140_preheader)
+  x.phi664695 = phi [bb %read_image.while.cond139, i32 %x.phi664, bb %read_image.while.body140_preheader, i32 %x.phi664695_ph_val]
   width.load147669 = load i32 from ptr @width
   148670 = mul i32 %y.phi655698, i32 %width.load147669
   150671 = add i32 %148670, i32 %x.phi664695
@@ -412,17 +418,20 @@ then127:  pred(select.exit121)
 if.exit128:  pred(select.exit121)
   height.load135702 = load i32 from ptr @height
   136703 = icmp slt i32 0, i32 %height.load135702
-  br i1 %136703, bb %while.body, bb %while.exit
+  br i1 %136703, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.exit141)
   y.phi = phi [bb %while.exit141, i32 %157]
   height.load135 = load i32 from ptr @height
   136 = icmp slt i32 %y.phi, i32 %height.load135
   br i1 %136, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, if.exit128)
-  y.phi704 = phi [bb %if.exit128, i32 0, bb %while.cond, i32 %y.phi]
+while.body_preheader:  pred(if.exit128)
+  y.phi704_ph_val = phi [bb %if.exit128, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  y.phi704 = phi [bb %while.cond, i32 %y.phi, bb %while.body_preheader, i32 %y.phi704_ph_val]
   width.load143699 = load i32 from ptr @width
   144700 = icmp slt i32 0, i32 %width.load143699
-  br i1 %144700, bb %while.body140, bb %while.exit141
+  br i1 %144700, bb %while.body140_preheader, bb %while.exit141
 while.exit:  pred(while.cond, if.exit128)
   ret i32 0
 while.cond139:  pred(while.body140)
@@ -430,8 +439,11 @@ while.cond139:  pred(while.body140)
   width.load143 = load i32 from ptr @width
   144 = icmp slt i32 %x.phi, i32 %width.load143
   br i1 %144, bb %while.body140, bb %while.exit141
-while.body140:  pred(while.cond139, while.body)
-  x.phi701 = phi [bb %while.body, i32 0, bb %while.cond139, i32 %x.phi]
+while.body140_preheader:  pred(while.body)
+  x.phi701_ph_val = phi [bb %while.body, i32 0]
+  br bb %while.body140
+while.body140:  pred(while.cond139, while.body140_preheader)
+  x.phi701 = phi [bb %while.cond139, i32 %x.phi, bb %while.body140_preheader, i32 %x.phi701_ph_val]
   width.load147 = load i32 from ptr @width
   148 = mul i32 %y.phi704, i32 %width.load147
   150 = add i32 %148, i32 %x.phi701
@@ -465,17 +477,20 @@ entry248:  pred()
   call void putch(i32 10)
   height.load266708 = load i32 from ptr @height
   267709 = icmp slt i32 0, i32 %height.load266708
-  br i1 %267709, bb %while.body263, bb %while.exit264
+  br i1 %267709, bb %while.body263_preheader, bb %while.exit264
 while.cond262:  pred(while.exit272)
   y261.phi = phi [bb %while.exit272, i32 %287]
   height.load266 = load i32 from ptr @height
   267 = icmp slt i32 %y261.phi, i32 %height.load266
   br i1 %267, bb %while.body263, bb %while.exit264
-while.body263:  pred(while.cond262, entry248)
-  y261.phi710 = phi [bb %entry248, i32 0, bb %while.cond262, i32 %y261.phi]
+while.body263_preheader:  pred(entry248)
+  y261.phi710_ph_val = phi [bb %entry248, i32 0]
+  br bb %while.body263
+while.body263:  pred(while.cond262, while.body263_preheader)
+  y261.phi710 = phi [bb %while.cond262, i32 %y261.phi, bb %while.body263_preheader, i32 %y261.phi710_ph_val]
   width.load274705 = load i32 from ptr @width
   275706 = icmp slt i32 0, i32 %width.load274705
-  br i1 %275706, bb %while.body271, bb %while.exit272
+  br i1 %275706, bb %while.body271_preheader, bb %while.exit272
 while.exit264:  pred(while.cond262, entry248)
   ret 
 while.cond270:  pred(while.body271.split)
@@ -483,8 +498,11 @@ while.cond270:  pred(while.body271.split)
   width.load274 = load i32 from ptr @width
   275 = icmp slt i32 %x269.phi, i32 %width.load274
   br i1 %275, bb %while.body271, bb %while.exit272
-while.body271:  pred(while.cond270, while.body263)
-  x269.phi707 = phi [bb %while.body263, i32 0, bb %while.cond270, i32 %x269.phi]
+while.body271_preheader:  pred(while.body263)
+  x269.phi707_ph_val = phi [bb %while.body263, i32 0]
+  br bb %while.body271
+while.body271:  pred(while.cond270, while.body271_preheader)
+  x269.phi707 = phi [bb %while.cond270, i32 %x269.phi, bb %while.body271_preheader, i32 %x269.phi707_ph_val]
   40474 = fcmp ogt float %rad, float 6.283185
   br i1 %40474, bb %my_sin.select.then476, bb %my_sin.select.else478
 while.body271.split:  pred(rotate.then238, rotate.if.exit239)

@@ -3,15 +3,19 @@ immutable global ptr N init with i32 -1
 i32 main() {
 entry:  pred()
   721 = icmp slt i32 0, i32 6
-  br i1 %721, bb %while.body, bb %while.exit
+  br i1 %721, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   sum.phi = phi [bb %while.body, i32 %14]
   i.phi = phi [bb %while.body, i32 %16]
   7 = icmp slt i32 %i.phi, i32 6
   br i1 %7, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi24 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
-  sum.phi23 = phi [bb %entry, i32 0, bb %while.cond, i32 %sum.phi]
+while.body_preheader:  pred(entry)
+  sum.phi23_ph_val = phi [bb %entry, i32 0]
+  i.phi24_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi24 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi24_ph_val]
+  sum.phi23 = phi [bb %while.cond, i32 %sum.phi, bb %while.body_preheader, i32 %sum.phi23_ph_val]
   20 = shl i32 %i.phi24, i32 2
   12 = ptradd ptr @arr, i32 %20
   12.load = load i32 from ptr %12

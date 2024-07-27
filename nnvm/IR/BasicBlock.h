@@ -63,6 +63,12 @@ public:
 
   class PredIterator {
   public:
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = uint64_t;
+    using value_type = BasicBlock *;
+    using pointer = BasicBlock **;
+    using reference = BasicBlock *&;
+
     PredIterator(BasicBlock *BB) {
       cur = BB->users().begin();
       end = BB->users().end();

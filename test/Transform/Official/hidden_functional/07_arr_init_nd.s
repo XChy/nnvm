@@ -13,7 +13,7 @@ main:
   SD s5, 464(sp)
   ADDI s2, zero, 0
   XORI s2, s2, 15
-  BNE s2, zero, bb7
+  BNE s2, zero, bb8
   # implict jump to bb1
 bb1:
   ADDI s3, zero, 1
@@ -217,6 +217,8 @@ bb3:
   ADDI s3, zero, 19
   # implict jump to bb4
 bb4:
+  # implict jump to bb5
+bb5:
   ADD s4, s3, zero
   ADDI s5, zero, 1
   SUBW s0, s4, s5
@@ -225,17 +227,19 @@ bb4:
   ADDI t5, sp, 0
   ADD s4, t5, s4
   SW zero, 0(s4)
-  # implict jump to bb5
-bb5:
-  BNE s0, zero, bb6
-  JAL zero, bb2
+  # implict jump to bb6
 bb6:
-  ADD s3, s0, zero
-  JAL zero, bb4
+  BNE s0, zero, bb7
+  JAL zero, bb2
 bb7:
-  ADDI s2, zero, 15
-  # implict jump to bb8
+  ADD s3, s0, zero
+  JAL zero, bb5
 bb8:
+  ADDI s2, zero, 15
+  # implict jump to bb9
+bb9:
+  # implict jump to bb10
+bb10:
   ADD s3, s2, zero
   ADDI s4, zero, 1
   SUBW s1, s3, s4
@@ -243,10 +247,10 @@ bb8:
   ADDI t5, sp, 352
   ADD s3, t5, s3
   SW zero, 0(s3)
-  # implict jump to bb9
-bb9:
-  BNE s1, zero, bb10
+  # implict jump to bb11
+bb11:
+  BNE s1, zero, bb12
   JAL zero, bb1
-bb10:
+bb12:
   ADD s2, s1, zero
-  JAL zero, bb8
+  JAL zero, bb10

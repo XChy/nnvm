@@ -211,6 +211,8 @@ bb15:
   BNE s1, zero, bb13
   JAL zero, bb12
 bb16:
+  # implict jump to bb17
+bb17:
   LA s1, i
   LW s1, 0(s1)
   ADD a0, s1, zero
@@ -248,11 +250,11 @@ bb16:
   ADD a1, a1, zero
   ADD a2, s1, zero
   CALL sub_impl
-  # implict jump to bb17
-bb17:
+  # implict jump to bb18
+bb18:
   LW s1, 4(sp)
   SLTI s1, s1, 5
-  BNE s1, zero, bb16
+  BNE s1, zero, bb17
   JAL zero, bb15
 inc_impl:
   ADDI sp, sp, -32
@@ -263,9 +265,9 @@ inc_impl:
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb21
-  # implict jump to bb19
-bb19:
+  BNE s2, zero, bb22
+  # implict jump to bb20
+bb20:
   LW s2, 0(s0)
   SLLIW s2, s2, 1
   SW s2, 0(s0)
@@ -274,16 +276,16 @@ bb19:
   ADD a0, s0, zero
   ADD a1, s1, zero
   CALL inc_impl
-  # implict jump to bb20
-bb20:
+  # implict jump to bb21
+bb21:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb21:
+bb22:
   LW s1, 0(s0)
   ADDIW s1, s1, 1
   SW s1, 0(s0)
-  JAL zero, bb20
+  JAL zero, bb21

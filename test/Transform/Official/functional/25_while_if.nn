@@ -11,15 +11,19 @@ external i32 getfarray(ptr )
 i32 main() {
 entry37:  pred()
   135996 = icmp slt i32 4, i32 75
-  br i1 %135996, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+  br i1 %135996, bb %deepWhileBr.while.body_preheader, bb %deepWhileBr.while.exit
 deepWhileBr.while.cond:  pred(deepWhileBr.if.exit)
   e.phi5157 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5071]
   c.phi4758 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4672]
   1359 = icmp slt i32 %c.phi4758, i32 75
   br i1 %1359, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
-deepWhileBr.while.body:  pred(deepWhileBr.while.cond, entry37)
-  c.phi475899 = phi [bb %entry37, i32 4, bb %deepWhileBr.while.cond, i32 %c.phi4758]
-  e.phi515798 = phi [bb %entry37, i32 0, bb %deepWhileBr.while.cond, i32 %e.phi5157]
+deepWhileBr.while.body_preheader:  pred(entry37)
+  e.phi515798_ph_val = phi [bb %entry37, i32 0]
+  c.phi475899_ph_val = phi [bb %entry37, i32 4]
+  br bb %deepWhileBr.while.body
+deepWhileBr.while.body:  pred(deepWhileBr.while.cond, deepWhileBr.while.body_preheader)
+  c.phi475899 = phi [bb %deepWhileBr.while.cond, i32 %c.phi4758, bb %deepWhileBr.while.body_preheader, i32 %c.phi475899_ph_val]
+  e.phi515798 = phi [bb %deepWhileBr.while.cond, i32 %e.phi5157, bb %deepWhileBr.while.body_preheader, i32 %e.phi515798_ph_val]
   1762 = icmp slt i32 %c.phi475899, i32 100
   br i1 %1762, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:  pred(deepWhileBr.while.cond, entry37)
@@ -52,15 +56,19 @@ pure i32 deepWhileBr(i32 a, i32 b) {
 entry2:  pred()
   8 = add i32 %a, i32 %b
   13100 = icmp slt i32 %8, i32 75
-  br i1 %13100, bb %while.body, bb %while.exit
+  br i1 %13100, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit)
   e.phi51 = phi [bb %if.exit, i32 %e.phi50]
   c.phi47 = phi [bb %if.exit, i32 %c.phi46]
   13 = icmp slt i32 %c.phi47, i32 75
   br i1 %13, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry2)
-  c.phi47103 = phi [bb %entry2, i32 %8, bb %while.cond, i32 %c.phi47]
-  e.phi51102 = phi [bb %entry2, i32 0, bb %while.cond, i32 %e.phi51]
+while.body_preheader:  pred(entry2)
+  e.phi51102_ph_val = phi [bb %entry2, i32 0]
+  c.phi47103_ph_val = phi [bb %entry2, i32 %8]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  c.phi47103 = phi [bb %while.cond, i32 %c.phi47, bb %while.body_preheader, i32 %c.phi47103_ph_val]
+  e.phi51102 = phi [bb %while.cond, i32 %e.phi51, bb %while.body_preheader, i32 %e.phi51102_ph_val]
   17 = icmp slt i32 %c.phi47103, i32 100
   br i1 %17, bb %then, bb %if.exit
 while.exit:  pred(while.cond, entry2)

@@ -155,9 +155,9 @@ bb16:
   FSGNJ.S fa0, fs1, fs1
   CALL my_sin_impl
   LA s6, width
-  LW s1, 0(s6)
+  LW s0, 0(s6)
   ADDI s6, zero, 2
-  DIVW s6, s1, s6
+  DIVW s6, s0, s6
   LA s7, height
   LW s2, 0(s7)
   ADDI s7, zero, 2
@@ -177,31 +177,31 @@ bb16:
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s7
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s0, fs0, rtz
+  FCVT.W.S s1, fs0, rtz
   BLT s3, zero, bb27
   # implict jump to bb17
 bb17:
-  SLT s4, s3, s1
+  SLT s4, s3, s0
   XORI s4, s4, 1
   # implict jump to bb18
 bb18:
   BNE s4, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s4, s0, zero
+  SLT s4, s1, zero
   # implict jump to bb20
 bb20:
   BNE s4, zero, bb25
   # implict jump to bb21
 bb21:
-  SLT s2, s0, s2
+  SLT s2, s1, s2
   XORI s2, s2, 1
   # implict jump to bb22
 bb22:
   BNE s2, zero, bb24
   # implict jump to bb23
 bb23:
-  MULW s0, s0, s1
+  MULW s0, s1, s0
   ADDW s0, s0, s3
   SLLIW s0, s0, 2
   LA s1, image
@@ -594,7 +594,7 @@ main:
   CALL getch
   ADD s2, a0, zero
   XORI s2, s2, 80
-  BNE s2, zero, bb95
+  BNE s2, zero, bb97
   # implict jump to bb70
 bb70:
   CALL getch
@@ -603,7 +603,7 @@ bb70:
   SLTU s2, zero, s2
   # implict jump to bb71
 bb71:
-  BNE s2, zero, bb94
+  BNE s2, zero, bb96
   # implict jump to bb72
 bb72:
   CALL getint
@@ -617,14 +617,14 @@ bb72:
   LA s3, width
   LW s3, 0(s3)
   ADDI s4, zero, 1024
-  BLT s4, s3, bb93
+  BLT s4, s3, bb95
   # implict jump to bb73
 bb73:
   ADDI s3, zero, 1024
   SLT s2, s3, s2
   # implict jump to bb74
 bb74:
-  BNE s2, zero, bb92
+  BNE s2, zero, bb94
   # implict jump to bb75
 bb75:
   CALL getint
@@ -633,7 +633,7 @@ bb75:
   SLTU s2, zero, s2
   # implict jump to bb76
 bb76:
-  BNE s2, zero, bb91
+  BNE s2, zero, bb93
   # implict jump to bb77
 bb77:
   LA s2, height
@@ -677,29 +677,33 @@ bb81:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb82:
-  ADD s2, zero, zero
   # implict jump to bb83
 bb83:
+  ADD s2, zero, zero
+  # implict jump to bb84
+bb84:
   ADD s3, s2, zero
   LA s4, width
   LW s4, 0(s4)
-  BLT zero, s4, bb87
-  # implict jump to bb84
-bb84:
-  ADDIW s1, s3, 1
+  BLT zero, s4, bb88
   # implict jump to bb85
 bb85:
+  ADDIW s0, s3, 1
+  # implict jump to bb86
+bb86:
   LA s5, height
   LW s5, 0(s5)
-  BLT s1, s5, bb86
+  BLT s0, s5, bb87
   JAL zero, bb78
-bb86:
-  ADD s2, s1, zero
-  JAL zero, bb83
 bb87:
-  ADD s4, zero, zero
-  # implict jump to bb88
+  ADD s2, s0, zero
+  JAL zero, bb84
 bb88:
+  # implict jump to bb89
+bb89:
+  ADD s4, zero, zero
+  # implict jump to bb90
+bb90:
   ADD s5, s4, zero
   LA s6, width
   LW s6, 0(s6)
@@ -711,29 +715,29 @@ bb88:
   CALL getint
   ADD s7, a0, zero
   SW s7, 0(s6)
-  ADDIW s0, s5, 1
-  # implict jump to bb89
-bb89:
+  ADDIW s1, s5, 1
+  # implict jump to bb91
+bb91:
   LA s5, width
   LW s5, 0(s5)
-  BLT s0, s5, bb90
-  JAL zero, bb84
-bb90:
-  ADD s4, s0, zero
-  JAL zero, bb88
-bb91:
+  BLT s1, s5, bb92
+  JAL zero, bb85
+bb92:
+  ADD s4, s1, zero
+  JAL zero, bb90
+bb93:
   ADDI s5, zero, -1
   JAL zero, bb79
-bb92:
+bb94:
   ADDI s2, zero, 1
   JAL zero, bb76
-bb93:
+bb95:
   ADDI s2, zero, 1
   JAL zero, bb74
-bb94:
+bb96:
   ADDI s5, zero, -1
   JAL zero, bb79
-bb95:
+bb97:
   ADDI s2, zero, 1
   JAL zero, bb71
 read_image:
@@ -750,18 +754,18 @@ read_image:
   CALL getch
   ADD s2, a0, zero
   XORI s2, s2, 80
-  BNE s2, zero, bb119
-  # implict jump to bb97
-bb97:
+  BNE s2, zero, bb123
+  # implict jump to bb99
+bb99:
   CALL getch
   ADD s2, a0, zero
   XORI s2, s2, 50
   SLTU s2, zero, s2
-  # implict jump to bb98
-bb98:
-  BNE s2, zero, bb118
-  # implict jump to bb99
-bb99:
+  # implict jump to bb100
+bb100:
+  BNE s2, zero, bb122
+  # implict jump to bb101
+bb101:
   CALL getint
   ADD s2, a0, zero
   LA s3, width
@@ -773,30 +777,30 @@ bb99:
   LA s3, width
   LW s3, 0(s3)
   ADDI s4, zero, 1024
-  BLT s4, s3, bb117
-  # implict jump to bb100
-bb100:
-  ADDI s3, zero, 1024
-  SLT s2, s3, s2
-  # implict jump to bb101
-bb101:
-  BNE s2, zero, bb116
+  BLT s4, s3, bb121
   # implict jump to bb102
 bb102:
+  ADDI s3, zero, 1024
+  SLT s2, s3, s2
+  # implict jump to bb103
+bb103:
+  BNE s2, zero, bb120
+  # implict jump to bb104
+bb104:
   CALL getint
   ADD s2, a0, zero
   XORI s2, s2, 255
   SLTU s2, zero, s2
-  # implict jump to bb103
-bb103:
-  BNE s2, zero, bb115
-  # implict jump to bb104
-bb104:
-  LA s2, height
-  LW s2, 0(s2)
-  BLT zero, s2, bb106
   # implict jump to bb105
 bb105:
+  BNE s2, zero, bb119
+  # implict jump to bb106
+bb106:
+  LA s2, height
+  LW s2, 0(s2)
+  BLT zero, s2, bb108
+  # implict jump to bb107
+bb107:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -809,30 +813,34 @@ bb105:
   LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb106:
+bb108:
+  # implict jump to bb109
+bb109:
   ADD s2, zero, zero
-  # implict jump to bb107
-bb107:
+  # implict jump to bb110
+bb110:
   ADD s3, s2, zero
   LA s4, width
   LW s4, 0(s4)
-  BLT zero, s4, bb111
-  # implict jump to bb108
-bb108:
-  ADDIW s1, s3, 1
-  # implict jump to bb109
-bb109:
-  LA s5, height
-  LW s5, 0(s5)
-  BLT s1, s5, bb110
-  JAL zero, bb105
-bb110:
-  ADD s2, s1, zero
-  JAL zero, bb107
+  BLT zero, s4, bb114
+  # implict jump to bb111
 bb111:
-  ADD s4, zero, zero
+  ADDIW s1, s3, 1
   # implict jump to bb112
 bb112:
+  LA s5, height
+  LW s5, 0(s5)
+  BLT s1, s5, bb113
+  JAL zero, bb107
+bb113:
+  ADD s2, s1, zero
+  JAL zero, bb110
+bb114:
+  # implict jump to bb115
+bb115:
+  ADD s4, zero, zero
+  # implict jump to bb116
+bb116:
   ADD s5, s4, zero
   LA s6, width
   LW s6, 0(s6)
@@ -845,16 +853,16 @@ bb112:
   ADD s7, a0, zero
   SW s7, 0(s6)
   ADDIW s0, s5, 1
-  # implict jump to bb113
-bb113:
+  # implict jump to bb117
+bb117:
   LA s5, width
   LW s5, 0(s5)
-  BLT s0, s5, bb114
-  JAL zero, bb108
-bb114:
+  BLT s0, s5, bb118
+  JAL zero, bb111
+bb118:
   ADD s4, s0, zero
-  JAL zero, bb112
-bb115:
+  JAL zero, bb116
+bb119:
   ADDI a0, zero, -1
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -867,13 +875,13 @@ bb115:
   LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb116:
+bb120:
+  ADDI s2, zero, 1
+  JAL zero, bb105
+bb121:
   ADDI s2, zero, 1
   JAL zero, bb103
-bb117:
-  ADDI s2, zero, 1
-  JAL zero, bb101
-bb118:
+bb122:
   ADDI a0, zero, -1
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -886,9 +894,9 @@ bb118:
   LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb119:
+bb123:
   ADDI s2, zero, 1
-  JAL zero, bb98
+  JAL zero, bb100
 write_pgm:
   ADDI sp, sp, -176
   SD ra, 8(sp)
@@ -936,9 +944,9 @@ write_pgm:
   CALL putch
   LA s6, height
   LW s6, 0(s6)
-  BLT zero, s6, bb122
-  # implict jump to bb121
-bb121:
+  BLT zero, s6, bb126
+  # implict jump to bb125
+bb125:
   LD ra, 8(sp)
   LD s0, 16(sp)
   LD s1, 24(sp)
@@ -961,78 +969,82 @@ bb121:
   FLD fs6, 160(sp)
   ADDI sp, sp, 176
   JALR zero, 0(ra)
-bb122:
+bb126:
+  # implict jump to bb127
+bb127:
   ADD s6, zero, zero
-  # implict jump to bb123
-bb123:
+  # implict jump to bb128
+bb128:
   ADD t4, s6, zero
   SW t4, 4(sp)
   LA s8, width
   LW s8, 0(s8)
-  BLT zero, s8, bb127
-  # implict jump to bb124
-bb124:
+  BLT zero, s8, bb132
+  # implict jump to bb129
+bb129:
   ADDI a0, zero, 10
   CALL putch
   LW t4, 4(sp)
-  ADDIW s2, t4, 1
-  # implict jump to bb125
-bb125:
+  ADDIW s3, t4, 1
+  # implict jump to bb130
+bb130:
   LA s0, height
   LW s0, 0(s0)
-  BLT s2, s0, bb126
-  JAL zero, bb121
-bb126:
-  ADD s6, s2, zero
-  JAL zero, bb123
-bb127:
+  BLT s3, s0, bb131
+  JAL zero, bb125
+bb131:
+  ADD s6, s3, zero
+  JAL zero, bb128
+bb132:
+  # implict jump to bb133
+bb133:
   ADD t4, zero, zero
   SW t4, 0(sp)
-  # implict jump to bb128
-bb128:
+  # implict jump to bb134
+bb134:
   LW t4, 0(sp)
   ADD s9, t4, zero
   LA s10, .CONSTANT.7.0
   FLW fs1, 0(s10)
   FLT.S s10, fs1, fs0
-  BNE s10, zero, bb166
-  # implict jump to bb129
-bb129:
+  BNE s10, zero, bb172
+  # implict jump to bb135
+bb135:
   LA s10, .CONSTANT.7.0
   FLW fs1, 0(s10)
   LA s10, .CONSTANT.7.0
   FLW fs2, 0(s10)
   FSGNJN.S fs1, fs1, fs2
   FLT.S s10, fs0, fs1
-  # implict jump to bb130
-bb130:
-  BNE s10, zero, bb165
-  # implict jump to bb131
-bb131:
+  # implict jump to bb136
+bb136:
+  BNE s10, zero, bb171
+  # implict jump to bb137
+bb137:
   FSGNJ.S fs1, fs0, fs0
-  # implict jump to bb132
-bb132:
+  # implict jump to bb138
+bb138:
   LA s10, .CONSTANT.7.1
   FLW fs2, 0(s10)
   FLT.S s10, fs2, fs1
-  BNE s10, zero, bb164
-  # implict jump to bb133
-bb133:
+  BNE s10, zero, bb170
+  # implict jump to bb139
+bb139:
   FSGNJ.S fs2, fs1, fs1
-  # implict jump to bb134
-bb134:
+  # implict jump to bb140
+bb140:
   LA s10, .CONSTANT.7.1
   FLW fs1, 0(s10)
   LA s10, .CONSTANT.7.1
   FLW fs3, 0(s10)
   FSGNJN.S fs1, fs1, fs3
   FLT.S s10, fs2, fs1
-  BNE s10, zero, bb163
-  # implict jump to bb135
-bb135:
+  BNE s10, zero, bb169
+  # implict jump to bb141
+bb141:
   FSGNJ.S fs3, fs2, fs2
-  # implict jump to bb136
-bb136:
+  # implict jump to bb142
+bb142:
   FSGNJ.S fa0, fs3, fs3
   CALL my_sin_impl
   FSGNJ.D fs2, fa0, fa0
@@ -1045,50 +1057,50 @@ bb136:
   LA s10, .CONSTANT.7.0
   FLW fs4, 0(s10)
   FLT.S s10, fs4, fs3
-  BNE s10, zero, bb162
-  # implict jump to bb137
-bb137:
+  BNE s10, zero, bb168
+  # implict jump to bb143
+bb143:
   LA s10, .CONSTANT.7.0
   FLW fs4, 0(s10)
   LA s10, .CONSTANT.7.0
   FLW fs5, 0(s10)
   FSGNJN.S fs4, fs4, fs5
   FLT.S s10, fs3, fs4
-  # implict jump to bb138
-bb138:
-  BNE s10, zero, bb161
-  # implict jump to bb139
-bb139:
+  # implict jump to bb144
+bb144:
+  BNE s10, zero, bb167
+  # implict jump to bb145
+bb145:
   FSGNJ.S fs4, fs3, fs3
-  # implict jump to bb140
-bb140:
+  # implict jump to bb146
+bb146:
   LA s10, .CONSTANT.7.1
   FLW fs3, 0(s10)
   FLT.S s10, fs3, fs4
-  BNE s10, zero, bb160
-  # implict jump to bb141
-bb141:
+  BNE s10, zero, bb166
+  # implict jump to bb147
+bb147:
   FSGNJ.S fs3, fs4, fs4
-  # implict jump to bb142
-bb142:
+  # implict jump to bb148
+bb148:
   FLT.S s10, fs3, fs1
-  BNE s10, zero, bb159
-  # implict jump to bb143
-bb143:
+  BNE s10, zero, bb165
+  # implict jump to bb149
+bb149:
   FSGNJ.S fs1, fs3, fs3
-  # implict jump to bb144
-bb144:
+  # implict jump to bb150
+bb150:
   FSGNJ.S fa0, fs1, fs1
   CALL my_sin_impl
   FSGNJ.D fs1, fa0, fa0
   LA s10, width
-  LW s4, 0(s10)
+  LW s5, 0(s10)
   ADDI s10, zero, 2
-  DIVW s10, s4, s10
+  DIVW s10, s5, s10
   LA s11, height
-  LW s1, 0(s11)
+  LW s0, 0(s11)
   ADDI s11, zero, 2
-  DIVW s11, s1, s11
+  DIVW s11, s0, s11
   SUBW s7, s9, s10
   LW t4, 4(sp)
   SUBW s8, t4, s11
@@ -1099,84 +1111,84 @@ bb144:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s10
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s0, fs4, rtz
+  FCVT.W.S s4, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s11
   FADD.S fs1, fs1, fs2
-  FCVT.W.S s5, fs1, rtz
-  BLT s0, zero, bb158
-  # implict jump to bb145
-bb145:
-  SLT s7, s0, s4
-  XORI s7, s7, 1
-  # implict jump to bb146
-bb146:
-  BNE s7, zero, bb157
-  # implict jump to bb147
-bb147:
-  SLT s7, s5, zero
-  # implict jump to bb148
-bb148:
-  BNE s7, zero, bb156
-  # implict jump to bb149
-bb149:
-  SLT s1, s5, s1
-  XORI s1, s1, 1
-  # implict jump to bb150
-bb150:
-  BNE s1, zero, bb155
+  FCVT.W.S s2, fs1, rtz
+  BLT s4, zero, bb164
   # implict jump to bb151
 bb151:
-  MULW s1, s5, s4
-  ADDW s0, s1, s0
-  SLLIW s0, s0, 2
-  LA s1, image
-  ADD s0, s1, s0
-  LW s0, 0(s0)
+  SLT s7, s4, s5
+  XORI s7, s7, 1
   # implict jump to bb152
 bb152:
+  BNE s7, zero, bb163
+  # implict jump to bb153
+bb153:
+  SLT s7, s2, zero
+  # implict jump to bb154
+bb154:
+  BNE s7, zero, bb162
+  # implict jump to bb155
+bb155:
+  SLT s0, s2, s0
+  XORI s0, s0, 1
+  # implict jump to bb156
+bb156:
+  BNE s0, zero, bb161
+  # implict jump to bb157
+bb157:
+  MULW s0, s2, s5
+  ADDW s0, s0, s4
+  SLLIW s0, s0, 2
+  LA s2, image
+  ADD s0, s2, s0
+  LW s0, 0(s0)
+  # implict jump to bb158
+bb158:
   ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s3, s9, 1
-  # implict jump to bb153
-bb153:
+  ADDIW s1, s9, 1
+  # implict jump to bb159
+bb159:
   LA s0, width
   LW s0, 0(s0)
-  BLT s3, s0, bb154
-  JAL zero, bb124
-bb154:
-  ADD t4, s3, zero
+  BLT s1, s0, bb160
+  JAL zero, bb129
+bb160:
+  ADD t4, s1, zero
   SW t4, 0(sp)
-  JAL zero, bb128
-bb155:
+  JAL zero, bb134
+bb161:
   ADD s0, zero, zero
+  JAL zero, bb158
+bb162:
+  ADDI s0, zero, 1
+  JAL zero, bb156
+bb163:
+  ADDI s7, zero, 1
+  JAL zero, bb154
+bb164:
+  ADDI s7, zero, 1
   JAL zero, bb152
-bb156:
-  ADDI s1, zero, 1
-  JAL zero, bb150
-bb157:
-  ADDI s7, zero, 1
-  JAL zero, bb148
-bb158:
-  ADDI s7, zero, 1
-  JAL zero, bb146
-bb159:
+bb165:
   LA s10, .CONSTANT.7.0
   FLW fs4, 0(s10)
   FADD.S fs3, fs3, fs4
   FSGNJ.S fs1, fs3, fs3
-  JAL zero, bb144
-bb160:
+  JAL zero, bb150
+bb166:
   LA s10, .CONSTANT.7.0
   FLW fs5, 0(s10)
   FSUB.S fs4, fs4, fs5
   FSGNJ.S fs3, fs4, fs4
-  JAL zero, bb142
-bb161:
+  JAL zero, bb148
+bb167:
   LA s10, .CONSTANT.7.0
   FLW fs5, 0(s10)
   FDIV.S fs5, fs3, fs5
@@ -1187,23 +1199,23 @@ bb161:
   FMUL.S fs5, fs5, fs6
   FSUB.S fs3, fs3, fs5
   FSGNJ.S fs4, fs3, fs3
-  JAL zero, bb140
-bb162:
+  JAL zero, bb146
+bb168:
   ADDI s10, zero, 1
-  JAL zero, bb138
-bb163:
+  JAL zero, bb144
+bb169:
   LA s10, .CONSTANT.7.0
   FLW fs4, 0(s10)
   FADD.S fs2, fs2, fs4
   FSGNJ.S fs3, fs2, fs2
-  JAL zero, bb136
-bb164:
+  JAL zero, bb142
+bb170:
   LA s10, .CONSTANT.7.0
   FLW fs3, 0(s10)
   FSUB.S fs1, fs1, fs3
   FSGNJ.S fs2, fs1, fs1
-  JAL zero, bb134
-bb165:
+  JAL zero, bb140
+bb171:
   LA s10, .CONSTANT.7.0
   FLW fs2, 0(s10)
   FDIV.S fs2, fs0, fs2
@@ -1214,10 +1226,10 @@ bb165:
   FMUL.S fs2, fs2, fs3
   FSUB.S fs2, fs0, fs2
   FSGNJ.S fs1, fs2, fs2
-  JAL zero, bb132
-bb166:
+  JAL zero, bb138
+bb172:
   ADDI s10, zero, 1
-  JAL zero, bb130
+  JAL zero, bb136
 my_fabs:
   ADDI sp, sp, -32
   SD ra, 0(sp)
@@ -1227,9 +1239,9 @@ my_fabs:
   FSGNJ.D fs0, fa0, fa0
   FCVT.S.L fs1, zero
   FLT.S s0, fs1, fs0
-  BNE s0, zero, bb169
-  # implict jump to bb168
-bb168:
+  BNE s0, zero, bb175
+  # implict jump to bb174
+bb174:
   FSGNJN.S fs1, fs0, fs0
   FSGNJ.S fa0, fs1, fs1
   LD ra, 0(sp)
@@ -1238,7 +1250,7 @@ bb168:
   FLD fs1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb169:
+bb175:
   FSGNJ.S fa0, fs0, fs0
   LD ra, 0(sp)
   LD s0, 8(sp)

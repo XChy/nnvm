@@ -403,15 +403,19 @@ if.exit49:  pred(entry43)
   66 = fdiv float %62, float %65
   67 = fadd float %59, float %66
   731496 = icmp ne i32 10, i32 0
-  br i1 %731496, bb %while.body70, bb %while.exit71
+  br i1 %731496, bb %while.body70_preheader, bb %while.exit71
 while.cond69:  pred(while.body70)
   c.phi = phi [bb %while.body70, i32 %82]
   t.phi = phi [bb %while.body70, float %80]
   73 = icmp ne i32 %c.phi, i32 0
   br i1 %73, bb %while.body70, bb %while.exit71
-while.body70:  pred(while.cond69, if.exit49)
-  t.phi1499 = phi [bb %if.exit49, float %67, bb %while.cond69, float %t.phi]
-  c.phi1498 = phi [bb %if.exit49, i32 10, bb %while.cond69, i32 %c.phi]
+while.body70_preheader:  pred(if.exit49)
+  c.phi1498_ph_val = phi [bb %if.exit49, i32 10]
+  t.phi1499_ph_val = phi [bb %if.exit49, float %67]
+  br bb %while.body70
+while.body70:  pred(while.cond69, while.body70_preheader)
+  t.phi1499 = phi [bb %while.cond69, float %t.phi, bb %while.body70_preheader, float %t.phi1499_ph_val]
+  c.phi1498 = phi [bb %while.cond69, i32 %c.phi, bb %while.body70_preheader, i32 %c.phi1498_ph_val]
   77 = fdiv float %x, float %t.phi1499
   78 = fadd float %t.phi1499, float %77
   80 = fdiv float %78, float %61
@@ -441,17 +445,22 @@ then15:  pred(entry10)
   ret float %22
 if.exit16:  pred(entry10)
   281500 = icmp ne i32 %n, i32 0
-  br i1 %281500, bb %while.body, bb %while.exit
+  br i1 %281500, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit33)
   res.phi395 = phi [bb %if.exit33, float %res.phi]
   n.stack.phi = phi [bb %if.exit33, i32 %41]
   a.stack.phi = phi [bb %if.exit33, float %39]
   28 = icmp ne i32 %n.stack.phi, i32 0
   br i1 %28, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, if.exit16)
-  a.stack.phi1504 = phi [bb %if.exit16, float %a, bb %while.cond, float %a.stack.phi]
-  n.stack.phi1503 = phi [bb %if.exit16, i32 %n, bb %while.cond, i32 %n.stack.phi]
-  res.phi3951502 = phi [bb %if.exit16, float 1.000000, bb %while.cond, float %res.phi395]
+while.body_preheader:  pred(if.exit16)
+  res.phi3951502_ph_val = phi [bb %if.exit16, float 1.000000]
+  n.stack.phi1503_ph_val = phi [bb %if.exit16, i32 %n]
+  a.stack.phi1504_ph_val = phi [bb %if.exit16, float %a]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  a.stack.phi1504 = phi [bb %while.cond, float %a.stack.phi, bb %while.body_preheader, float %a.stack.phi1504_ph_val]
+  n.stack.phi1503 = phi [bb %while.cond, i32 %n.stack.phi, bb %while.body_preheader, i32 %n.stack.phi1503_ph_val]
+  res.phi3951502 = phi [bb %while.cond, float %res.phi395, bb %while.body_preheader, float %res.phi3951502_ph_val]
   30 = srem i32 %n.stack.phi1503, i32 2
   31 = icmp ne i32 %30, i32 0
   br i1 %31, bb %then32, bb %if.exit33
@@ -482,13 +491,16 @@ i32 main() {
 entry317:  pred()
   319 = call i32 getint()
   3241505 = icmp ne i32 %319, i32 0
-  br i1 %3241505, bb %while.body321, bb %while.exit322
+  br i1 %3241505, bb %while.body321_preheader, bb %while.exit322
 while.cond320:  pred(if.exit380)
   num.phi = phi [bb %if.exit380, i32 %389]
   324 = icmp ne i32 %num.phi, i32 0
   br i1 %324, bb %while.body321, bb %while.exit322
-while.body321:  pred(while.cond320, entry317)
-  num.phi1506 = phi [bb %entry317, i32 %319, bb %while.cond320, i32 %num.phi]
+while.body321_preheader:  pred(entry317)
+  num.phi1506_ph_val = phi [bb %entry317, i32 %319]
+  br bb %while.body321
+while.body321:  pred(while.cond320, while.body321_preheader)
+  num.phi1506 = phi [bb %while.cond320, i32 %num.phi, bb %while.body321_preheader, i32 %num.phi1506_ph_val]
   326 = call float getfloat()
   328 = call float getfloat()
   31487 = si2f i32 0 to float

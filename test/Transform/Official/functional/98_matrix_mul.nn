@@ -26,13 +26,16 @@ entry227:  pred()
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   243488 = icmp slt i32 0, i32 3
-  br i1 %243488, bb %while.body, bb %while.exit
+  br i1 %243488, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i237.phi336 = phi [bb %while.body, i32 %276]
   243 = icmp slt i32 %i237.phi336, i32 3
   br i1 %243, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry227)
-  i237.phi336489 = phi [bb %entry227, i32 0, bb %while.cond, i32 %i237.phi336]
+while.body_preheader:  pred(entry227)
+  i237.phi336489_ph_val = phi [bb %entry227, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i237.phi336489 = phi [bb %while.cond, i32 %i237.phi336, bb %while.body_preheader, i32 %i237.phi336489_ph_val]
   340 = shl i32 %i237.phi336489, i32 2
   247 = ptradd ptr %a0, i32 %340
   249 = si2f i32 %i237.phi336489 to float
@@ -142,14 +145,17 @@ while.exit:  pred(while.cond, entry227)
   store float %226475 to ptr %203464
   N.load485 = load i32 from ptr @N
   284486 = icmp slt i32 0, i32 %N.load485
-  br i1 %284486, bb %while.body280, bb %while.exit281
+  br i1 %284486, bb %while.body280_preheader, bb %while.exit281
 while.cond279:  pred(while.body280)
   i237.phi335 = phi [bb %while.body280, i32 %294]
   N.load = load i32 from ptr @N
   284 = icmp slt i32 %i237.phi335, i32 %N.load
   br i1 %284, bb %while.body280, bb %while.exit281
-while.body280:  pred(while.cond279, while.exit)
-  i237.phi335487 = phi [bb %while.exit, i32 0, bb %while.cond279, i32 %i237.phi335]
+while.body280_preheader:  pred(while.exit)
+  i237.phi335487_ph_val = phi [bb %while.exit, i32 0]
+  br bb %while.body280
+while.body280:  pred(while.cond279, while.body280_preheader)
+  i237.phi335487 = phi [bb %while.cond279, i32 %i237.phi335, bb %while.body280_preheader, i32 %i237.phi335487_ph_val]
   346 = shl i32 %i237.phi335487, i32 2
   288 = ptradd ptr %c0, i32 %346
   288.load = load float from ptr %288
@@ -161,14 +167,17 @@ while.exit281:  pred(while.cond279, while.exit)
   call void putch(i32 10)
   N.load301482 = load i32 from ptr @N
   302483 = icmp slt i32 0, i32 %N.load301482
-  br i1 %302483, bb %while.body298, bb %while.exit299
+  br i1 %302483, bb %while.body298_preheader, bb %while.exit299
 while.cond297:  pred(while.body298)
   i237.phi334 = phi [bb %while.body298, i32 %312]
   N.load301 = load i32 from ptr @N
   302 = icmp slt i32 %i237.phi334, i32 %N.load301
   br i1 %302, bb %while.body298, bb %while.exit299
-while.body298:  pred(while.cond297, while.exit281)
-  i237.phi334484 = phi [bb %while.exit281, i32 0, bb %while.cond297, i32 %i237.phi334]
+while.body298_preheader:  pred(while.exit281)
+  i237.phi334484_ph_val = phi [bb %while.exit281, i32 0]
+  br bb %while.body298
+while.body298:  pred(while.cond297, while.body298_preheader)
+  i237.phi334484 = phi [bb %while.cond297, i32 %i237.phi334, bb %while.body298_preheader, i32 %i237.phi334484_ph_val]
   347 = shl i32 %i237.phi334484, i32 2
   306 = ptradd ptr %c1, i32 %347
   306.load = load float from ptr %306
@@ -180,14 +189,17 @@ while.exit299:  pred(while.cond297, while.exit281)
   call void putch(i32 10)
   N.load319479 = load i32 from ptr @N
   320480 = icmp slt i32 0, i32 %N.load319479
-  br i1 %320480, bb %while.body316, bb %while.exit317
+  br i1 %320480, bb %while.body316_preheader, bb %while.exit317
 while.cond315:  pred(while.body316)
   i237.phi = phi [bb %while.body316, i32 %330]
   N.load319 = load i32 from ptr @N
   320 = icmp slt i32 %i237.phi, i32 %N.load319
   br i1 %320, bb %while.body316, bb %while.exit317
-while.body316:  pred(while.cond315, while.exit299)
-  i237.phi481 = phi [bb %while.exit299, i32 0, bb %while.cond315, i32 %i237.phi]
+while.body316_preheader:  pred(while.exit299)
+  i237.phi481_ph_val = phi [bb %while.exit299, i32 0]
+  br bb %while.body316
+while.body316:  pred(while.cond315, while.body316_preheader)
+  i237.phi481 = phi [bb %while.cond315, i32 %i237.phi, bb %while.body316_preheader, i32 %i237.phi481_ph_val]
   348 = shl i32 %i237.phi481, i32 2
   324 = ptradd ptr %c2, i32 %348
   324.load = load float from ptr %324

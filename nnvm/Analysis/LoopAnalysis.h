@@ -42,13 +42,15 @@ public:
   void setHeader(BasicBlock *header) { this->header = header; }
 
   BasicBlock *getSingleLatch() const;
+  std::set<BasicBlock *> getLatches() const;
 
   const std::vector<ExitEdge> &getExitEdges() const { return exitEdges; }
   std::set<BasicBlock *> getExits() const;
 
   void addExit(ExitEdge exit) { exitEdges.push_back(exit); }
   void removeExit(ExitEdge exit) {
-    exitEdges.erase(std::remove(exitEdges.begin(), exitEdges.end(), exit), exitEdges.end());
+    exitEdges.erase(std::remove(exitEdges.begin(), exitEdges.end(), exit),
+                    exitEdges.end());
   }
 
   // Return whether BB is one of the exiting block, which may go out of loop.

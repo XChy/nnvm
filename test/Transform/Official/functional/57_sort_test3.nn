@@ -14,7 +14,7 @@ then:  pred(entry)
   15 = ptradd ptr %arr, i32 %173
   15.load = load i32 from ptr %15
   22182 = icmp slt i32 %low, i32 %high
-  br i1 %22182, bb %while.body, bb %while.exit
+  br i1 %22182, bb %while.body_preheader, bb %while.exit
 if.exit:  pred(entry, while.exit)
   ret i32 0
 while.cond:  pred(if.exit83)
@@ -22,9 +22,13 @@ while.cond:  pred(if.exit83)
   i.phi154 = phi [bb %if.exit83, i32 %i.phi]
   22 = icmp slt i32 %i.phi154, i32 %j.phi158
   br i1 %22, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, then)
-  i.phi154185 = phi [bb %then, i32 %low, bb %while.cond, i32 %i.phi154]
-  j.phi158184 = phi [bb %then, i32 %high, bb %while.cond, i32 %j.phi158]
+while.body_preheader:  pred(then)
+  j.phi158184_ph_val = phi [bb %then, i32 %high]
+  i.phi154185_ph_val = phi [bb %then, i32 %low]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi154185 = phi [bb %while.cond, i32 %i.phi154, bb %while.body_preheader, i32 %i.phi154185_ph_val]
+  j.phi158184 = phi [bb %while.cond, i32 %j.phi158, bb %while.body_preheader, i32 %j.phi158184_ph_val]
   br bb %while.cond24
 while.exit:  pred(while.cond, then)
   low = phi [bb %while.cond, i32 %i.phi154, bb %then, i32 %low]
@@ -133,14 +137,17 @@ entry108:  pred()
   134 = call i32 QuickSort(ptr %a, i32 0, i32 9)
   n.load186 = load i32 from ptr @n
   140187 = icmp slt i32 %134, i32 %n.load186
-  br i1 %140187, bb %while.body136, bb %while.exit137
+  br i1 %140187, bb %while.body136_preheader, bb %while.exit137
 while.cond135:  pred(while.body136)
   i130.phi = phi [bb %while.body136, i32 %152]
   n.load = load i32 from ptr @n
   140 = icmp slt i32 %i130.phi, i32 %n.load
   br i1 %140, bb %while.body136, bb %while.exit137
-while.body136:  pred(while.cond135, entry108)
-  i130.phi188 = phi [bb %entry108, i32 %134, bb %while.cond135, i32 %i130.phi]
+while.body136_preheader:  pred(entry108)
+  i130.phi188_ph_val = phi [bb %entry108, i32 %134]
+  br bb %while.body136
+while.body136:  pred(while.cond135, while.body136_preheader)
+  i130.phi188 = phi [bb %while.cond135, i32 %i130.phi, bb %while.body136_preheader, i32 %i130.phi188_ph_val]
   181 = shl i32 %i130.phi188, i32 2
   145 = ptradd ptr %a, i32 %181
   145.load = load i32 from ptr %145

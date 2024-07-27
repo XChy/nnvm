@@ -3,13 +3,16 @@ i32 main() {
 entry:  pred()
   32 = call i32 getint()
   37169 = icmp eq i32 %32, i32 5
-  br i1 %37169, bb %while.body, bb %while.exit
+  br i1 %37169, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   b.phi = phi [bb %while.body, i32 %40]
   37 = icmp eq i32 %b.phi, i32 5
   br i1 %37, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  b.phi171 = phi [bb %entry, i32 %32, bb %while.cond, i32 %b.phi]
+while.body_preheader:  pred(entry)
+  b.phi171_ph_val = phi [bb %entry, i32 %32]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  b.phi171 = phi [bb %while.cond, i32 %b.phi, bb %while.body_preheader, i32 %b.phi171_ph_val]
   40 = add i32 %b.phi171, i32 1
   br bb %while.cond
 while.exit:  pred(while.cond, entry)

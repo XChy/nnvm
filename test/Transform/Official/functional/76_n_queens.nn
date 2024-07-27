@@ -18,13 +18,16 @@ i32 main() {
 entry117:  pred()
   119 = call i32 getint()
   124177 = icmp sgt i32 %119, i32 0
-  br i1 %124177, bb %while.body121, bb %while.exit122
+  br i1 %124177, bb %while.body121_preheader, bb %while.exit122
 while.cond120:  pred(while.body121)
   N.phi = phi [bb %while.body121, i32 %129]
   124 = icmp sgt i32 %N.phi, i32 0
   br i1 %124, bb %while.body121, bb %while.exit122
-while.body121:  pred(while.cond120, entry117)
-  N.phi178 = phi [bb %entry117, i32 %119, bb %while.cond120, i32 %N.phi]
+while.body121_preheader:  pred(entry117)
+  N.phi178_ph_val = phi [bb %entry117, i32 %119]
+  br bb %while.body121
+while.body121:  pred(while.cond120, while.body121_preheader)
+  N.phi178 = phi [bb %while.cond120, i32 %N.phi, bb %while.body121_preheader, i32 %N.phi178_ph_val]
   126 = call i32 getint()
   store i32 %126 to ptr @n
   call void f(i32 1)
@@ -47,15 +50,19 @@ void f(i32 step) {
 entry26:  pred()
   n.load33179 = load i32 from ptr @n
   34180 = icmp sle i32 1, i32 %n.load33179
-  br i1 %34180, bb %while.body30, bb %while.exit31
+  br i1 %34180, bb %while.body30_preheader, bb %while.exit31
 while.cond29:  pred(if.exit71)
   i28.phi = phi [bb %if.exit71, i32 %116]
   n.load33 = load i32 from ptr @n
   34 = icmp sle i32 %i28.phi, i32 %n.load33
   br i1 %34, bb %while.body30, bb %while.exit31
-while.body30:  pred(while.cond29, entry26)
-  n.load33179182 = phi [bb %while.cond29, i32 %n.load33, bb %entry26, i32 %n.load33179]
-  i28.phi181 = phi [bb %entry26, i32 1, bb %while.cond29, i32 %i28.phi]
+while.body30_preheader:  pred(entry26)
+  i28.phi181_ph_val = phi [bb %entry26, i32 1]
+  n.load33179182_ph_val = phi [bb %entry26, i32 %n.load33179]
+  br bb %while.body30
+while.body30:  pred(while.cond29, while.body30_preheader)
+  n.load33179182 = phi [bb %while.cond29, i32 %n.load33, bb %while.body30_preheader, i32 %n.load33179182_ph_val]
+  i28.phi181 = phi [bb %while.cond29, i32 %i28.phi, bb %while.body30_preheader, i32 %i28.phi181_ph_val]
   138 = shl i32 %i28.phi181, i32 2
   38 = ptradd ptr @row, i32 %138
   38.load = load i32 from ptr %38

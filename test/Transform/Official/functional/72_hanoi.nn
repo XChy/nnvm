@@ -10,13 +10,16 @@ i32 main() {
 entry38:  pred()
   40 = call i32 getint()
   4569 = icmp sgt i32 %40, i32 0
-  br i1 %4569, bb %while.body, bb %while.exit
+  br i1 %4569, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   n.phi = phi [bb %while.body, i32 %51]
   45 = icmp sgt i32 %n.phi, i32 0
   br i1 %45, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry38)
-  n.phi70 = phi [bb %entry38, i32 %40, bb %while.cond, i32 %n.phi]
+while.body_preheader:  pred(entry38)
+  n.phi70_ph_val = phi [bb %entry38, i32 %40]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  n.phi70 = phi [bb %while.cond, i32 %n.phi, bb %while.body_preheader, i32 %n.phi70_ph_val]
   47 = call i32 getint()
   call void hanoi(i32 %47, i32 1, i32 2, i32 3)
   call void putch(i32 10)

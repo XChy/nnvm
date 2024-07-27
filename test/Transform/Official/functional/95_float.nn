@@ -202,15 +202,19 @@ if.exit134:  pred(if.exit123, then133)
   store float 0.000000 to ptr %arr.index149
   151 = call i32 getfarray(ptr %arr)
   157589 = icmp slt i32 1, i32 1000000000
-  br i1 %157589, bb %while.body, bb %while.exit
+  br i1 %157589, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   p.phi = phi [bb %while.body, i32 %194]
   i.phi = phi [bb %while.body, i32 %192]
   157 = icmp slt i32 %i.phi, i32 1000000000
   br i1 %157, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, if.exit134)
-  i.phi591 = phi [bb %if.exit134, i32 1, bb %while.cond, i32 %i.phi]
-  p.phi590 = phi [bb %if.exit134, i32 0, bb %while.cond, i32 %p.phi]
+while.body_preheader:  pred(if.exit134)
+  p.phi590_ph_val = phi [bb %if.exit134, i32 0]
+  i.phi591_ph_val = phi [bb %if.exit134, i32 1]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi591 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi591_ph_val]
+  p.phi590 = phi [bb %while.cond, i32 %p.phi, bb %while.body_preheader, i32 %p.phi590_ph_val]
   160 = call float getfloat()
   164 = fmul float 3.141593, float %160
   166 = fmul float %164, float %160

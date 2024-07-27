@@ -99,17 +99,19 @@ bb2:
 bb3:
   # implict jump to bb4
 bb4:
-  ADD s3, s1, zero
-  ADDIW s0, s3, 1
   # implict jump to bb5
 bb5:
-  XORI s3, s0, 5
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb7
+  ADD s3, s1, zero
+  ADDIW s0, s3, 1
   # implict jump to bb6
 bb6:
+  XORI s3, s0, 5
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb8
+  # implict jump to bb7
+bb7:
   ADD s2, s0, zero
   JAL zero, bb2
-bb7:
+bb8:
   ADD s1, s0, zero
-  JAL zero, bb4
+  JAL zero, bb5

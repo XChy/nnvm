@@ -11,13 +11,16 @@ external i32 getfarray(ptr )
 i32 main() {
 entry13913:  pred()
   1391915869 = icmp sle i32 1, i32 20
-  br i1 %1391915869, bb %while.body, bb %while.exit
+  br i1 %1391915869, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi = phi [bb %while.body, i32 %13936]
   13919 = icmp sle i32 %i.phi, i32 20
   br i1 %13919, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry13913)
-  i.phi15870 = phi [bb %entry13913, i32 1, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry13913)
+  i.phi15870_ph_val = phi [bb %entry13913, i32 1]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi15870 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi15870_ph_val]
   call void putch(i32 102)
   call void putch(i32 105)
   call void putch(i32 98)

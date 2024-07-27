@@ -11,15 +11,19 @@ external i32 getfarray(ptr )
 pure i32 main() {
 entry24:  pred()
   73762 = icmp slt i32 0, i32 100
-  br i1 %73762, bb %whileIf.while.body, bb %whileIf.while.exit
+  br i1 %73762, bb %whileIf.while.body_preheader, bb %whileIf.while.exit
 whileIf.while.cond:  pred(whileIf.if.exit)
   b.phi2935 = phi [bb %whileIf.if.exit, i32 %b.phi2847]
   a.phi36 = phi [bb %whileIf.if.exit, i32 %2248]
   737 = icmp slt i32 %a.phi36, i32 100
   br i1 %737, bb %whileIf.while.body, bb %whileIf.while.exit
-whileIf.while.body:  pred(whileIf.while.cond, entry24)
-  a.phi3665 = phi [bb %entry24, i32 0, bb %whileIf.while.cond, i32 %a.phi36]
-  b.phi293564 = phi [bb %entry24, i32 0, bb %whileIf.while.cond, i32 %b.phi2935]
+whileIf.while.body_preheader:  pred(entry24)
+  b.phi293564_ph_val = phi [bb %entry24, i32 0]
+  a.phi3665_ph_val = phi [bb %entry24, i32 0]
+  br bb %whileIf.while.body
+whileIf.while.body:  pred(whileIf.while.cond, whileIf.while.body_preheader)
+  a.phi3665 = phi [bb %whileIf.while.cond, i32 %a.phi36, bb %whileIf.while.body_preheader, i32 %a.phi3665_ph_val]
+  b.phi293564 = phi [bb %whileIf.while.cond, i32 %b.phi2935, bb %whileIf.while.body_preheader, i32 %b.phi293564_ph_val]
   1040 = icmp eq i32 %a.phi3665, i32 5
   br i1 %1040, bb %whileIf.then, bb %whileIf.else
 whileIf.while.exit:  pred(whileIf.while.cond, entry24)
@@ -61,15 +65,19 @@ external void putfarray(i32 , ptr )
 pure i32 whileIf() {
 entry:  pred()
   766 = icmp slt i32 0, i32 100
-  br i1 %766, bb %while.body, bb %while.exit
+  br i1 %766, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit)
   b.phi29 = phi [bb %if.exit, i32 %b.phi28]
   a.phi = phi [bb %if.exit, i32 %22]
   7 = icmp slt i32 %a.phi, i32 100
   br i1 %7, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  a.phi69 = phi [bb %entry, i32 0, bb %while.cond, i32 %a.phi]
-  b.phi2968 = phi [bb %entry, i32 0, bb %while.cond, i32 %b.phi29]
+while.body_preheader:  pred(entry)
+  b.phi2968_ph_val = phi [bb %entry, i32 0]
+  a.phi69_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  a.phi69 = phi [bb %while.cond, i32 %a.phi, bb %while.body_preheader, i32 %a.phi69_ph_val]
+  b.phi2968 = phi [bb %while.cond, i32 %b.phi29, bb %while.body_preheader, i32 %b.phi2968_ph_val]
   10 = icmp eq i32 %a.phi69, i32 5
   br i1 %10, bb %then, bb %else
 while.exit:  pred(while.cond, entry)

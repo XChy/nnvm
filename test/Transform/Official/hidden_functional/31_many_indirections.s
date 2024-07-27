@@ -276,28 +276,32 @@ bb1:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb2:
-  ADD s2, zero, zero
   # implict jump to bb3
 bb3:
+  ADD s2, zero, zero
+  # implict jump to bb4
+bb4:
   ADD s3, s2, zero
   ADDI s4, zero, 0
   SLTI s4, s4, 100
-  BNE s4, zero, bb7
-  # implict jump to bb4
-bb4:
-  ADDIW s0, s3, 1
+  BNE s4, zero, bb8
   # implict jump to bb5
 bb5:
-  SLTI s5, s0, 20
-  BNE s5, zero, bb6
-  JAL zero, bb1
+  ADDIW s0, s3, 1
+  # implict jump to bb6
 bb6:
-  ADD s2, s0, zero
-  JAL zero, bb3
+  SLTI s5, s0, 20
+  BNE s5, zero, bb7
+  JAL zero, bb1
 bb7:
-  ADD s4, zero, zero
-  # implict jump to bb8
+  ADD s2, s0, zero
+  JAL zero, bb4
 bb8:
+  # implict jump to bb9
+bb9:
+  ADD s4, zero, zero
+  # implict jump to bb10
+bb10:
   ADD s5, s4, zero
   ADDI s6, zero, 400
   MULW s6, s3, s6
@@ -307,11 +311,11 @@ bb8:
   ADD s6, s6, s7
   SW s5, 0(s6)
   ADDIW s1, s5, 1
-  # implict jump to bb9
-bb9:
+  # implict jump to bb11
+bb11:
   SLTI s5, s1, 100
-  BNE s5, zero, bb10
-  JAL zero, bb4
-bb10:
+  BNE s5, zero, bb12
+  JAL zero, bb5
+bb12:
   ADD s4, s1, zero
-  JAL zero, bb8
+  JAL zero, bb10

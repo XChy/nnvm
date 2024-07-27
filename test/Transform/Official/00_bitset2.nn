@@ -32,13 +32,16 @@ i32 set(ptr a, i32 pos, i32 d) {
 entry:  pred()
   %x = stack 124
   9439 = icmp ne i32 31, i32 0
-  br i1 %9439, bb %init, bb %init.exit
+  br i1 %9439, bb %init_preheader, bb %init.exit
 init.cond:  pred(init)
   cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   9 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %9, bb %init, bb %init.exit
-init:  pred(init.cond, entry)
-  cnt_ptr.phi440 = phi [bb %entry, i32 31, bb %init.cond, i32 %cnt_ptr.phi]
+init_preheader:  pred(entry)
+  cnt_ptr.phi440_ph_val = phi [bb %entry, i32 31]
+  br bb %init
+init:  pred(init.cond, init_preheader)
+  cnt_ptr.phi440 = phi [bb %init.cond, i32 %cnt_ptr.phi, bb %init_preheader, i32 %cnt_ptr.phi440_ph_val]
   cnt.dec = sub i32 %cnt_ptr.phi440, i32 1
   237 = shl i32 %cnt.dec, i32 2
   arr.index14 = ptradd ptr %x, i32 %237
@@ -67,13 +70,16 @@ init.exit:  pred(init.cond, entry)
   72 = ptradd ptr %x, i32 40
   store i32 1024 to ptr %72
   82437 = icmp slt i32 10, i32 30
-  br i1 %82437, bb %while.body, bb %while.exit
+  br i1 %82437, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi = phi [bb %while.body, i32 %85]
   82 = icmp slt i32 %i.phi, i32 30
   br i1 %82, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, init.exit)
-  i.phi438 = phi [bb %init.exit, i32 10, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(init.exit)
+  i.phi438_ph_val = phi [bb %init.exit, i32 10]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi438 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi438_ph_val]
   85 = add i32 %i.phi438, i32 1
   249 = shl i32 %85, i32 2
   88 = ptradd ptr %x, i32 %249
@@ -152,13 +158,16 @@ entry203:  pred()
   store i32 %206 to ptr @staticvalue
   call void _sysy_starttime(i32 56)
   214445 = icmp sgt i32 %205, i32 0
-  br i1 %214445, bb %while.body211, bb %while.exit212
+  br i1 %214445, bb %while.body211_preheader, bb %while.exit212
 while.cond210:  pred(while.body211.split.split.split)
   n.phi = phi [bb %while.body211.split.split.split, i32 %217]
   214 = icmp sgt i32 %n.phi, i32 0
   br i1 %214, bb %while.body211, bb %while.exit212
-while.body211:  pred(while.cond210, entry203)
-  n.phi446 = phi [bb %entry203, i32 %205, bb %while.cond210, i32 %n.phi]
+while.body211_preheader:  pred(entry203)
+  n.phi446_ph_val = phi [bb %entry203, i32 %205]
+  br bb %while.body211
+while.body211:  pred(while.cond210, while.body211_preheader)
+  n.phi446 = phi [bb %while.cond210, i32 %n.phi, bb %while.body211_preheader, i32 %n.phi446_ph_val]
   217 = sub i32 %n.phi446, i32 1
   staticvalue.load266 = load i32 from ptr @staticvalue
   181.load267 = load i32 from ptr @seed
@@ -203,13 +212,16 @@ rand.if.exit196310:  pred(rand.if.exit196, rand.then195304)
   staticvalue.load202311 = load i32 from ptr @staticvalue
   221 = srem i32 %staticvalue.load202311, i32 2
   9320443 = icmp ne i32 31, i32 0
-  br i1 %9320443, bb %set.init, bb %set.init.exit
+  br i1 %9320443, bb %set.init_preheader, bb %set.init.exit
 set.init.cond:  pred(set.init)
   cnt_ptr.phi319 = phi [bb %set.init, i32 %cnt.dec323]
   9320 = icmp ne i32 %cnt_ptr.phi319, i32 0
   br i1 %9320, bb %set.init, bb %set.init.exit
-set.init:  pred(set.init.cond, rand.if.exit196310)
-  cnt_ptr.phi319444 = phi [bb %rand.if.exit196310, i32 31, bb %set.init.cond, i32 %cnt_ptr.phi319]
+set.init_preheader:  pred(rand.if.exit196310)
+  cnt_ptr.phi319444_ph_val = phi [bb %rand.if.exit196310, i32 31]
+  br bb %set.init
+set.init:  pred(set.init.cond, set.init_preheader)
+  cnt_ptr.phi319444 = phi [bb %set.init.cond, i32 %cnt_ptr.phi319, bb %set.init_preheader, i32 %cnt_ptr.phi319444_ph_val]
   cnt.dec323 = sub i32 %cnt_ptr.phi319444, i32 1
   237324 = shl i32 %cnt.dec323, i32 2
   arr.index14325 = ptradd ptr %x316, i32 %237324
@@ -238,13 +250,16 @@ set.init.exit:  pred(set.init.cond, rand.if.exit196310)
   72357 = ptradd ptr %x316, i32 40
   store i32 1024 to ptr %72357
   82363441 = icmp slt i32 10, i32 30
-  br i1 %82363441, bb %set.while.body, bb %set.while.exit
+  br i1 %82363441, bb %set.while.body_preheader, bb %set.while.exit
 set.while.cond:  pred(set.while.body)
   i.phi362 = phi [bb %set.while.body, i32 %85366]
   82363 = icmp slt i32 %i.phi362, i32 30
   br i1 %82363, bb %set.while.body, bb %set.while.exit
-set.while.body:  pred(set.while.cond, set.init.exit)
-  i.phi362442 = phi [bb %set.init.exit, i32 10, bb %set.while.cond, i32 %i.phi362]
+set.while.body_preheader:  pred(set.init.exit)
+  i.phi362442_ph_val = phi [bb %set.init.exit, i32 10]
+  br bb %set.while.body
+set.while.body:  pred(set.while.cond, set.while.body_preheader)
+  i.phi362442 = phi [bb %set.while.cond, i32 %i.phi362, bb %set.while.body_preheader, i32 %i.phi362442_ph_val]
   85366 = add i32 %i.phi362442, i32 1
   249367 = shl i32 %85366, i32 2
   88368 = ptradd ptr %x316, i32 %249367

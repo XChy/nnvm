@@ -16,13 +16,16 @@ entry67:  pred()
   71 = call i32 getarray(ptr @a)
   call void _sysy_starttime(i32 28)
   79200 = icmp slt i32 0, i32 %69
-  br i1 %79200, bb %while.body75, bb %while.exit76
+  br i1 %79200, bb %while.body75_preheader, bb %while.exit76
 while.cond74:  pred(while.body75)
   i73.phi134 = phi [bb %while.body75, i32 %86]
   79 = icmp slt i32 %i73.phi134, i32 %69
   br i1 %79, bb %while.body75, bb %while.exit76
-while.body75:  pred(while.cond74, entry67)
-  i73.phi134201 = phi [bb %entry67, i32 0, bb %while.cond74, i32 %i73.phi134]
+while.body75_preheader:  pred(entry67)
+  i73.phi134201_ph_val = phi [bb %entry67, i32 0]
+  br bb %while.body75
+while.body75:  pred(while.cond74, while.body75_preheader)
+  i73.phi134201 = phi [bb %while.cond74, i32 %i73.phi134, bb %while.body75_preheader, i32 %i73.phi134201_ph_val]
   142 = shl i32 %i73.phi134201, i32 2
   83 = ptradd ptr @matrix, i32 %142
   store i32 %i73.phi134201 to ptr %83
@@ -30,30 +33,37 @@ while.body75:  pred(while.cond74, entry67)
   br bb %while.cond74
 while.exit76:  pred(while.cond74, entry67)
   92198 = icmp slt i32 0, i32 %71
-  br i1 %92198, bb %while.body88, bb %while.exit89
+  br i1 %92198, bb %while.body88_preheader, bb %while.exit89
 while.cond87:  pred(transpose.while.exit)
   i73.phi133 = phi [bb %transpose.while.exit, i32 %101]
   92 = icmp slt i32 %i73.phi133, i32 %71
   br i1 %92, bb %while.body88, bb %while.exit89
-while.body88:  pred(while.cond87, while.exit76)
-  i73.phi133199 = phi [bb %while.exit76, i32 0, bb %while.cond87, i32 %i73.phi133]
+while.body88_preheader:  pred(while.exit76)
+  i73.phi133199_ph_val = phi [bb %while.exit76, i32 0]
+  br bb %while.body88
+while.body88:  pred(while.cond87, while.body88_preheader)
+  i73.phi133199 = phi [bb %while.cond87, i32 %i73.phi133, bb %while.body88_preheader, i32 %i73.phi133199_ph_val]
   143 = shl i32 %i73.phi133199, i32 2
   97 = ptradd ptr @a, i32 %143
   97.load = load i32 from ptr %97
   6151 = sdiv i32 %69, i32 %97.load
   14156191 = icmp slt i32 0, i32 %6151
-  br i1 %14156191, bb %transpose.while.body, bb %transpose.while.exit
+  br i1 %14156191, bb %transpose.while.body_preheader, bb %transpose.while.exit
 while.exit89:  pred(while.cond87, while.exit76)
   108194 = icmp slt i32 0, i32 %71
-  br i1 %108194, bb %while.body104, bb %while.exit105
+  br i1 %108194, bb %while.body104_preheader, bb %while.exit105
 while.cond103:  pred(while.body104)
   ans.phi136 = phi [bb %while.body104, i32 %119]
   i73.phi = phi [bb %while.body104, i32 %121]
   108 = icmp slt i32 %i73.phi, i32 %71
   br i1 %108, bb %while.body104, bb %while.exit105
-while.body104:  pred(while.cond103, while.exit89)
-  i73.phi197 = phi [bb %while.exit89, i32 0, bb %while.cond103, i32 %i73.phi]
-  ans.phi136196 = phi [bb %while.exit89, i32 0, bb %while.cond103, i32 %ans.phi136]
+while.body104_preheader:  pred(while.exit89)
+  ans.phi136196_ph_val = phi [bb %while.exit89, i32 0]
+  i73.phi197_ph_val = phi [bb %while.exit89, i32 0]
+  br bb %while.body104
+while.body104:  pred(while.cond103, while.body104_preheader)
+  i73.phi197 = phi [bb %while.cond103, i32 %i73.phi, bb %while.body104_preheader, i32 %i73.phi197_ph_val]
+  ans.phi136196 = phi [bb %while.cond103, i32 %ans.phi136, bb %while.body104_preheader, i32 %ans.phi136196_ph_val]
   113 = mul i32 %i73.phi197, i32 %i73.phi197
   144 = shl i32 %i73.phi197, i32 2
   116 = ptradd ptr @matrix, i32 %144
@@ -80,9 +90,13 @@ transpose.while.cond:  pred(transpose.while.exit18)
   i.phi155 = phi [bb %transpose.while.exit18, i32 %65171]
   14156 = icmp slt i32 %i.phi155, i32 %6151
   br i1 %14156, bb %transpose.while.body, bb %transpose.while.exit
-transpose.while.body:  pred(transpose.while.cond, while.body88)
-  i.phi155193 = phi [bb %while.body88, i32 0, bb %transpose.while.cond, i32 %i.phi155]
-  curr.phi141154192 = phi [bb %while.body88, i32 0, bb %transpose.while.cond, i32 %curr.phi141154]
+transpose.while.body_preheader:  pred(while.body88)
+  curr.phi141154192_ph_val = phi [bb %while.body88, i32 0]
+  i.phi155193_ph_val = phi [bb %while.body88, i32 0]
+  br bb %transpose.while.body
+transpose.while.body:  pred(transpose.while.cond, transpose.while.body_preheader)
+  i.phi155193 = phi [bb %transpose.while.cond, i32 %i.phi155, bb %transpose.while.body_preheader, i32 %i.phi155193_ph_val]
+  curr.phi141154192 = phi [bb %transpose.while.cond, i32 %curr.phi141154, bb %transpose.while.body_preheader, i32 %curr.phi141154192_ph_val]
   br bb %transpose.while.cond16
 transpose.while.exit:  pred(transpose.while.cond, while.body88)
   101 = add i32 %i73.phi133199, i32 1
@@ -129,15 +143,19 @@ i32 transpose(i32 n, ptr matrix, i32 rowsize) {
 entry:  pred()
   6 = sdiv i32 %n, i32 %rowsize
   14202 = icmp slt i32 0, i32 %6
-  br i1 %14202, bb %while.body, bb %while.exit
+  br i1 %14202, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.exit18)
   curr.phi141 = phi [bb %while.exit18, i32 %curr.phi]
   i.phi = phi [bb %while.exit18, i32 %65]
   14 = icmp slt i32 %i.phi, i32 %6
   br i1 %14, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi204 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
-  curr.phi141203 = phi [bb %entry, i32 0, bb %while.cond, i32 %curr.phi141]
+while.body_preheader:  pred(entry)
+  curr.phi141203_ph_val = phi [bb %entry, i32 0]
+  i.phi204_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi204 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi204_ph_val]
+  curr.phi141203 = phi [bb %while.cond, i32 %curr.phi141, bb %while.body_preheader, i32 %curr.phi141203_ph_val]
   br bb %while.cond16
 while.exit:  pred(while.cond, entry)
   ret i32 -1

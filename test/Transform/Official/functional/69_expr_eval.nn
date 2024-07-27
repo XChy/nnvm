@@ -9,13 +9,16 @@ entry186:  pred()
   %ops = stack 1024
   %oprs = stack 1024
   1932161 = icmp ne i32 256, i32 0
-  br i1 %1932161, bb %init, bb %init.exit
+  br i1 %1932161, bb %init_preheader, bb %init.exit
 init.cond:  pred(init)
   cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   193 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %193, bb %init, bb %init.exit
-init:  pred(init.cond, entry186)
-  cnt_ptr.phi2162 = phi [bb %entry186, i32 256, bb %init.cond, i32 %cnt_ptr.phi]
+init_preheader:  pred(entry186)
+  cnt_ptr.phi2162_ph_val = phi [bb %entry186, i32 256]
+  br bb %init
+init:  pred(init.cond, init_preheader)
+  cnt_ptr.phi2162 = phi [bb %init.cond, i32 %cnt_ptr.phi, bb %init_preheader, i32 %cnt_ptr.phi2162_ph_val]
   cnt.dec = sub i32 %cnt_ptr.phi2162, i32 1
   331 = shl i32 %cnt.dec, i32 2
   arr.index198 = ptradd ptr %oprs, i32 %331
@@ -23,13 +26,16 @@ init:  pred(init.cond, entry186)
   br bb %init.cond
 init.exit:  pred(init.cond, entry186)
   2052159 = icmp ne i32 256, i32 0
-  br i1 %2052159, bb %init201, bb %init.exit202
+  br i1 %2052159, bb %init201_preheader, bb %init.exit202
 init.cond200:  pred(init201)
   cnt_ptr203.phi = phi [bb %init201, i32 %cnt.dec207]
   205 = icmp ne i32 %cnt_ptr203.phi, i32 0
   br i1 %205, bb %init201, bb %init.exit202
-init201:  pred(init.cond200, init.exit)
-  cnt_ptr203.phi2160 = phi [bb %init.exit, i32 256, bb %init.cond200, i32 %cnt_ptr203.phi]
+init201_preheader:  pred(init.exit)
+  cnt_ptr203.phi2160_ph_val = phi [bb %init.exit, i32 256]
+  br bb %init201
+init201:  pred(init.cond200, init201_preheader)
+  cnt_ptr203.phi2160 = phi [bb %init.cond200, i32 %cnt_ptr203.phi, bb %init201_preheader, i32 %cnt_ptr203.phi2160_ph_val]
   cnt.dec207 = sub i32 %cnt_ptr203.phi2160, i32 1
   333 = shl i32 %cnt.dec207, i32 2
   arr.index210 = ptradd ptr %ops, i32 %333
@@ -63,7 +69,7 @@ while.cond220:  pred(next_token.if.exit44, next_token.if.exit441316)
   cur_op.phi317 = phi [bb %next_token.if.exit44, i32 0, bb %next_token.if.exit441316, i32 %cur_op.phi]
   cur_token.load223 = load i32 from ptr @cur_token
   225 = icmp eq i32 %cur_token.load223, i32 1
-  br i1 %225, bb %while.body221, bb %next_token.while.cond1392
+  br i1 %225, bb %while.body221, bb %next_token.while.cond1392_preheader
 while.body221:  pred(while.cond220)
   other.load = load i32 from ptr @other
   76760 = icmp eq i32 %other.load, i32 43
@@ -74,7 +80,7 @@ while.body221.split:  pred(get_op_prec.then85, get_op_prec.then105, get_op_prec.
   232 = xor i1 %231, i1 -1
   233 = zext i1 %232 to i32
   234 = icmp ne i32 %233, i32 0
-  br i1 %234, bb %next_token.while.cond1392, bb %next_token.while.cond1196
+  br i1 %234, bb %next_token.while.cond1392_preheader, bb %next_token.while.cond1196_preheader
 while.cond238:  pred(next_token.if.exit441218, while.body239.split)
   rhs.phi = phi [bb %next_token.if.exit441218, i32 %rhs.phi322, bb %while.body239.split, i32 %127.load653]
   lhs.phi = phi [bb %next_token.if.exit441218, i32 %lhs.phi319, bb %while.body239.split, i32 %127.load663]
@@ -157,7 +163,9 @@ while.cond277:  pred(while.body278.split)
   145.load593 = load i32 from ptr %ops
   281 = icmp ne i32 %145.load593, i32 0
   br i1 %281, bb %while.body278, bb %while.exit279
-while.body278:  pred(while.cond277, next_token.if.exit441414)
+while.body278_preheader:  pred(next_token.if.exit441414)
+  br bb %while.body278
+while.body278:  pred(while.cond277, while.body278_preheader)
   124.load670 = load i32 from ptr %ops
   336671 = shl i32 %124.load670, i32 2
   127672 = ptradd ptr %ops, i32 %336671
@@ -404,7 +412,9 @@ next_token.is_space.then:  pred(next_token.is_space.select.exit)
   br bb %next_token.while.cond.split
 next_token.is_space.else:  pred(next_token.is_space.select.exit)
   br bb %next_token.while.cond.split
-next_token.while.cond1196:  pred(next_token.while.body1203, while.body221.split)
+next_token.while.cond1196_preheader:  pred(while.body221.split)
+  br bb %next_token.while.cond1196
+next_token.while.cond1196:  pred(next_token.while.body1203, next_token.while.cond1196_preheader)
   last_char.load361197 = load i32 from ptr @last_char
   610361276 = icmp eq i32 %last_char.load361197, i32 32
   br i1 %610361276, bb %next_token.is_space.select.then1278, bb %next_token.is_space.select.else1280
@@ -580,7 +590,9 @@ next_token.is_space.then1384:  pred(next_token.is_space.select.exit1381)
   br bb %next_token.while.cond.split1297
 next_token.is_space.else1386:  pred(next_token.is_space.select.exit1381)
   br bb %next_token.while.cond.split1297
-next_token.while.cond1392:  pred(next_token.while.body1399, while.cond220, while.body221.split)
+next_token.while.cond1392_preheader:  pred(while.cond220, while.body221.split)
+  br bb %next_token.while.cond1392
+next_token.while.cond1392:  pred(next_token.while.body1399, next_token.while.cond1392_preheader)
   last_char.load361393 = load i32 from ptr @last_char
   610361472 = icmp eq i32 %last_char.load361393, i32 32
   br i1 %610361472, bb %next_token.is_space.select.then1474, bb %next_token.is_space.select.else1476
@@ -607,7 +619,7 @@ next_token.if.exit441414:  pred(next_token.else451417, next_token.while.exit5014
   cur_token.load1415 = load i32 from ptr @cur_token
   145.load5932157 = load i32 from ptr %ops
   2812158 = icmp ne i32 %145.load5932157, i32 0
-  br i1 %2812158, bb %while.body278, bb %while.exit279
+  br i1 %2812158, bb %while.body278_preheader, bb %while.exit279
 next_token.else451417:  pred(next_token.while.exit.split1405)
   last_char.load601418 = load i32 from ptr @last_char
   store i32 %last_char.load601418 to ptr @other
@@ -840,10 +852,13 @@ while.cond299:  pred(while.body300.split)
   count.phi = phi [bb %while.body300.split, i32 %308]
   303 = icmp ne i32 %count.phi, i32 0
   br i1 %303, bb %while.body300, bb %while.exit301
-while.body300:  pred(while.cond299, next_token.if.exit441512)
-  count.phi2170 = phi [bb %next_token.if.exit441512, i32 %296, bb %while.cond299, i32 %count.phi]
+while.body300_preheader:  pred(next_token.if.exit441512)
+  count.phi2170_ph_val = phi [bb %next_token.if.exit441512, i32 %296]
+  br bb %while.body300
+while.body300:  pred(while.cond299, while.body300_preheader)
+  count.phi2170 = phi [bb %while.cond299, i32 %count.phi, bb %while.body300_preheader, i32 %count.phi2170_ph_val]
   1933452167 = icmp ne i32 256, i32 0
-  br i1 %1933452167, bb %eval.init, bb %eval.init.exit
+  br i1 %1933452167, bb %eval.init_preheader, bb %eval.init.exit
 while.body300.split:  pred(eval.then214, eval.then270, eval.while.exit279)
   304.ret = phi [bb %eval.then214, i32 -1, bb %eval.then270, i32 -1, bb %eval.while.exit279, i32 %141.load635]
   call void putint(i32 %304.ret)
@@ -856,8 +871,11 @@ eval.init.cond:  pred(eval.init)
   cnt_ptr.phi344 = phi [bb %eval.init, i32 %cnt.dec348]
   193345 = icmp ne i32 %cnt_ptr.phi344, i32 0
   br i1 %193345, bb %eval.init, bb %eval.init.exit
-eval.init:  pred(eval.init.cond, while.body300)
-  cnt_ptr.phi3442168 = phi [bb %while.body300, i32 256, bb %eval.init.cond, i32 %cnt_ptr.phi344]
+eval.init_preheader:  pred(while.body300)
+  cnt_ptr.phi3442168_ph_val = phi [bb %while.body300, i32 256]
+  br bb %eval.init
+eval.init:  pred(eval.init.cond, eval.init_preheader)
+  cnt_ptr.phi3442168 = phi [bb %eval.init.cond, i32 %cnt_ptr.phi344, bb %eval.init_preheader, i32 %cnt_ptr.phi3442168_ph_val]
   cnt.dec348 = sub i32 %cnt_ptr.phi3442168, i32 1
   331349 = shl i32 %cnt.dec348, i32 2
   arr.index198350 = ptradd ptr %oprs341, i32 %331349
@@ -865,13 +883,16 @@ eval.init:  pred(eval.init.cond, while.body300)
   br bb %eval.init.cond
 eval.init.exit:  pred(eval.init.cond, while.body300)
   2053572165 = icmp ne i32 256, i32 0
-  br i1 %2053572165, bb %eval.init201, bb %eval.init.exit202
+  br i1 %2053572165, bb %eval.init201_preheader, bb %eval.init.exit202
 eval.init.cond200:  pred(eval.init201)
   cnt_ptr203.phi356 = phi [bb %eval.init201, i32 %cnt.dec207360]
   205357 = icmp ne i32 %cnt_ptr203.phi356, i32 0
   br i1 %205357, bb %eval.init201, bb %eval.init.exit202
-eval.init201:  pred(eval.init.cond200, eval.init.exit)
-  cnt_ptr203.phi3562166 = phi [bb %eval.init.exit, i32 256, bb %eval.init.cond200, i32 %cnt_ptr203.phi356]
+eval.init201_preheader:  pred(eval.init.exit)
+  cnt_ptr203.phi3562166_ph_val = phi [bb %eval.init.exit, i32 256]
+  br bb %eval.init201
+eval.init201:  pred(eval.init.cond200, eval.init201_preheader)
+  cnt_ptr203.phi3562166 = phi [bb %eval.init.cond200, i32 %cnt_ptr203.phi356, bb %eval.init201_preheader, i32 %cnt_ptr203.phi3562166_ph_val]
   cnt.dec207360 = sub i32 %cnt_ptr203.phi3562166, i32 1
   333361 = shl i32 %cnt.dec207360, i32 2
   arr.index210362 = ptradd ptr %ops340, i32 %333361
@@ -905,7 +926,7 @@ eval.while.cond220:  pred(next_token.if.exit441610, next_token.if.exit441904)
   cur_op.phi317380 = phi [bb %next_token.if.exit441610, i32 0, bb %next_token.if.exit441904, i32 %cur_op.phi401]
   cur_token.load223381 = load i32 from ptr @cur_token
   225382 = icmp eq i32 %cur_token.load223381, i32 1
-  br i1 %225382, bb %eval.while.body221, bb %next_token.while.cond1686
+  br i1 %225382, bb %eval.while.body221, bb %next_token.while.cond1686_preheader
 eval.while.body221:  pred(eval.while.cond220)
   other.load385 = load i32 from ptr @other
   76836 = icmp eq i32 %other.load385, i32 43
@@ -916,7 +937,7 @@ eval.while.body221.split:  pred(get_op_prec.then85846, get_op_prec.then105867, g
   232388 = xor i1 %231387, i1 -1
   233389 = zext i1 %232388 to i32
   234390 = icmp ne i32 %233389, i32 0
-  br i1 %234390, bb %next_token.while.cond1686, bb %next_token.while.cond1784
+  br i1 %234390, bb %next_token.while.cond1686_preheader, bb %next_token.while.cond1784_preheader
 eval.while.cond238:  pred(next_token.if.exit441806, eval.while.body239.split)
   rhs.phi399 = phi [bb %next_token.if.exit441806, i32 %rhs.phi322378, bb %eval.while.body239.split, i32 %127.load713]
   lhs.phi400 = phi [bb %next_token.if.exit441806, i32 %lhs.phi319379, bb %eval.while.body239.split, i32 %127.load723]
@@ -999,7 +1020,9 @@ eval.while.cond277:  pred(eval.while.body278.split)
   145.load603 = load i32 from ptr %ops340
   281437 = icmp ne i32 %145.load603, i32 0
   br i1 %281437, bb %eval.while.body278, bb %eval.while.exit279
-eval.while.body278:  pred(eval.while.cond277, next_token.if.exit441708)
+eval.while.body278_preheader:  pred(next_token.if.exit441708)
+  br bb %eval.while.body278
+eval.while.body278:  pred(eval.while.cond277, eval.while.body278_preheader)
   124.load730 = load i32 from ptr %ops340
   336731 = shl i32 %124.load730, i32 2
   127732 = ptradd ptr %ops340, i32 %336731
@@ -1184,7 +1207,7 @@ next_token.then431507:  pred(next_token.while.exit.split1503)
 next_token.if.exit441512:  pred(next_token.else451515, next_token.while.exit501536)
   cur_token.load1513 = load i32 from ptr @cur_token
   3032169 = icmp ne i32 %296, i32 0
-  br i1 %3032169, bb %while.body300, bb %while.exit301
+  br i1 %3032169, bb %while.body300_preheader, bb %while.exit301
 next_token.else451515:  pred(next_token.while.exit.split1503)
   last_char.load601516 = load i32 from ptr @last_char
   store i32 %last_char.load601516 to ptr @other
@@ -1335,7 +1358,9 @@ next_token.is_space.then1678:  pred(next_token.is_space.select.exit1675)
   br bb %next_token.while.cond.split1591
 next_token.is_space.else1680:  pred(next_token.is_space.select.exit1675)
   br bb %next_token.while.cond.split1591
-next_token.while.cond1686:  pred(next_token.while.body1693, eval.while.cond220, eval.while.body221.split)
+next_token.while.cond1686_preheader:  pred(eval.while.cond220, eval.while.body221.split)
+  br bb %next_token.while.cond1686
+next_token.while.cond1686:  pred(next_token.while.body1693, next_token.while.cond1686_preheader)
   last_char.load361687 = load i32 from ptr @last_char
   610361766 = icmp eq i32 %last_char.load361687, i32 32
   br i1 %610361766, bb %next_token.is_space.select.then1768, bb %next_token.is_space.select.else1770
@@ -1362,7 +1387,7 @@ next_token.if.exit441708:  pred(next_token.else451711, next_token.while.exit5017
   cur_token.load1709 = load i32 from ptr @cur_token
   145.load6032163 = load i32 from ptr %ops340
   2814372164 = icmp ne i32 %145.load6032163, i32 0
-  br i1 %2814372164, bb %eval.while.body278, bb %eval.while.exit279
+  br i1 %2814372164, bb %eval.while.body278_preheader, bb %eval.while.exit279
 next_token.else451711:  pred(next_token.while.exit.split1699)
   last_char.load601712 = load i32 from ptr @last_char
   store i32 %last_char.load601712 to ptr @other
@@ -1425,7 +1450,9 @@ next_token.is_space.then1776:  pred(next_token.is_space.select.exit1773)
   br bb %next_token.while.cond.split1689
 next_token.is_space.else1778:  pred(next_token.is_space.select.exit1773)
   br bb %next_token.while.cond.split1689
-next_token.while.cond1784:  pred(next_token.while.body1791, eval.while.body221.split)
+next_token.while.cond1784_preheader:  pred(eval.while.body221.split)
+  br bb %next_token.while.cond1784
+next_token.while.cond1784:  pred(next_token.while.body1791, next_token.while.cond1784_preheader)
   last_char.load361785 = load i32 from ptr @last_char
   610361864 = icmp eq i32 %last_char.load361785, i32 32
   br i1 %610361864, bb %next_token.is_space.select.then1866, bb %next_token.is_space.select.else1868

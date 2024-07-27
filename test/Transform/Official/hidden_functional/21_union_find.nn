@@ -30,13 +30,16 @@ entry42:  pred()
   44 = call i32 getint()
   46 = call i32 getint()
   55132 = icmp slt i32 0, i32 %44
-  br i1 %55132, bb %while.body, bb %while.exit
+  br i1 %55132, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi101 = phi [bb %while.body, i32 %62]
   55 = icmp slt i32 %i.phi101, i32 %44
   br i1 %55, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry42)
-  i.phi101133 = phi [bb %entry42, i32 0, bb %while.cond, i32 %i.phi101]
+while.body_preheader:  pred(entry42)
+  i.phi101133_ph_val = phi [bb %entry42, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi101133 = phi [bb %while.cond, i32 %i.phi101, bb %while.body_preheader, i32 %i.phi101133_ph_val]
   107 = shl i32 %i.phi101133, i32 2
   59 = ptradd ptr @parent, i32 %107
   store i32 %i.phi101133 to ptr %59
@@ -44,13 +47,16 @@ while.body:  pred(while.cond, entry42)
   br bb %while.cond
 while.exit:  pred(while.cond, entry42)
   68130 = icmp slt i32 0, i32 %46
-  br i1 %68130, bb %while.body64, bb %while.exit65
+  br i1 %68130, bb %while.body64_preheader, bb %while.exit65
 while.cond63:  pred(merge.if.exit37)
   i.phi100 = phi [bb %merge.if.exit37, i32 %76]
   68 = icmp slt i32 %i.phi100, i32 %46
   br i1 %68, bb %while.body64, bb %while.exit65
-while.body64:  pred(while.cond63, while.exit)
-  i.phi100131 = phi [bb %while.exit, i32 0, bb %while.cond63, i32 %i.phi100]
+while.body64_preheader:  pred(while.exit)
+  i.phi100131_ph_val = phi [bb %while.exit, i32 0]
+  br bb %while.body64
+while.body64:  pred(while.cond63, while.body64_preheader)
+  i.phi100131 = phi [bb %while.cond63, i32 %i.phi100, bb %while.body64_preheader, i32 %i.phi100131_ph_val]
   70 = call i32 getint()
   71 = call i32 getint()
   30115 = call i32 find(i32 %70)
@@ -59,15 +65,19 @@ while.body64:  pred(while.cond63, while.exit)
   br i1 %35117, bb %merge.then36, bb %merge.if.exit37
 while.exit65:  pred(while.cond63, while.exit)
   83126 = icmp slt i32 0, i32 %44
-  br i1 %83126, bb %while.body79, bb %while.exit80
+  br i1 %83126, bb %while.body79_preheader, bb %while.exit80
 while.cond78:  pred(if.exit92)
   clusters.phi105 = phi [bb %if.exit92, i32 %clusters.phi]
   i.phi = phi [bb %if.exit92, i32 %96]
   83 = icmp slt i32 %i.phi, i32 %44
   br i1 %83, bb %while.body79, bb %while.exit80
-while.body79:  pred(while.cond78, while.exit65)
-  i.phi129 = phi [bb %while.exit65, i32 0, bb %while.cond78, i32 %i.phi]
-  clusters.phi105128 = phi [bb %while.exit65, i32 0, bb %while.cond78, i32 %clusters.phi105]
+while.body79_preheader:  pred(while.exit65)
+  clusters.phi105128_ph_val = phi [bb %while.exit65, i32 0]
+  i.phi129_ph_val = phi [bb %while.exit65, i32 0]
+  br bb %while.body79
+while.body79:  pred(while.cond78, while.body79_preheader)
+  i.phi129 = phi [bb %while.cond78, i32 %i.phi, bb %while.body79_preheader, i32 %i.phi129_ph_val]
+  clusters.phi105128 = phi [bb %while.cond78, i32 %clusters.phi105, bb %while.body79_preheader, i32 %clusters.phi105128_ph_val]
   108 = shl i32 %i.phi129, i32 2
   87 = ptradd ptr @parent, i32 %108
   87.load = load i32 from ptr %87

@@ -12,15 +12,19 @@ external i32 getfarray(ptr )
 i32 main() {
 entry12:  pred()
   1949 = icmp slt i32 0, i32 100
-  br i1 %1949, bb %while.body, bb %while.exit
+  br i1 %1949, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(if.exit24)
   i.phi = phi [bb %if.exit24, i32 %28]
   result.phi37 = phi [bb %if.exit24, i32 %result.phi]
   19 = icmp slt i32 %i.phi, i32 100
   br i1 %19, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry12)
-  result.phi3752 = phi [bb %entry12, i32 0, bb %while.cond, i32 %result.phi37]
-  i.phi51 = phi [bb %entry12, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry12)
+  i.phi51_ph_val = phi [bb %entry12, i32 0]
+  result.phi3752_ph_val = phi [bb %entry12, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  result.phi3752 = phi [bb %while.cond, i32 %result.phi37, bb %while.body_preheader, i32 %result.phi3752_ph_val]
+  i.phi51 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi51_ph_val]
   a.load41 = load i32 from ptr @a
   642 = icmp eq i32 1, i32 %a.load41
   br i1 %642, bb %func.then, bb %func.else

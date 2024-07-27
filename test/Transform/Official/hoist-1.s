@@ -51,10 +51,12 @@ bb2:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
-  ADD s3, zero, zero
-  ADD s4, zero, zero
   # implict jump to bb4
 bb4:
+  ADD s3, zero, zero
+  ADD s4, zero, zero
+  # implict jump to bb5
+bb5:
   ADD s5, s4, zero
   ADD s6, s3, zero
   ADDIW s5, s5, 15
@@ -62,19 +64,19 @@ bb4:
   ADDIW s7, s7, -255
   REMW s0, s5, s7
   ADDIW s1, s6, 1
-  # implict jump to bb5
-bb5:
-  LA s5, loopCount
-  LW s5, 0(s5)
-  BLT s1, s5, bb7
   # implict jump to bb6
 bb6:
+  LA s5, loopCount
+  LW s5, 0(s5)
+  BLT s1, s5, bb8
+  # implict jump to bb7
+bb7:
   ADD s2, s0, zero
   JAL zero, bb2
-bb7:
+bb8:
   ADD s3, s1, zero
   ADD s4, s0, zero
-  JAL zero, bb4
+  JAL zero, bb5
 func:
   ADDI sp, sp, -112
   SD ra, 8(sp)
@@ -109,12 +111,12 @@ func:
   SW t4, 0(sp)
   LA s10, loopCount
   LW s10, 0(s10)
-  BLT zero, s10, bb11
-  # implict jump to bb9
-bb9:
-  ADD s10, zero, zero
+  BLT zero, s10, bb12
   # implict jump to bb10
 bb10:
+  ADD s10, zero, zero
+  # implict jump to bb11
+bb11:
   ADD a0, s10, zero
   LD ra, 8(sp)
   LD s0, 16(sp)
@@ -131,11 +133,13 @@ bb10:
   LD s11, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb11:
+bb12:
+  # implict jump to bb13
+bb13:
   ADD s11, zero, zero
   ADD t0, zero, zero
-  # implict jump to bb12
-bb12:
+  # implict jump to bb14
+bb14:
   ADD t1, t0, zero
   ADD t2, s11, zero
   ADDW t6, s2, a1
@@ -1744,16 +1748,16 @@ bb12:
   ADDIW t1, t1, -255
   REMW s1, s9, t1
   ADDIW s0, t2, 1
-  # implict jump to bb13
-bb13:
+  # implict jump to bb15
+bb15:
   LA s9, loopCount
   LW s9, 0(s9)
-  BLT s0, s9, bb15
-  # implict jump to bb14
-bb14:
+  BLT s0, s9, bb17
+  # implict jump to bb16
+bb16:
   ADD s10, s1, zero
-  JAL zero, bb10
-bb15:
+  JAL zero, bb11
+bb17:
   ADD s11, s0, zero
   ADD t0, s1, zero
-  JAL zero, bb12
+  JAL zero, bb14

@@ -25,15 +25,18 @@ entry126:  pred()
   h.load135821 = load i32 from ptr @h
   tail.load136822 = load i32 from ptr @tail
   137823 = icmp slt i32 %h.load135821, i32 %tail.load136822
-  br i1 %137823, bb %while.body133, bb %while.exit134
+  br i1 %137823, bb %while.body133_preheader, bb %while.exit134
 while.cond132:  pred(while.exit153)
   res131.phi246 = phi [bb %while.exit153, i32 %res131.phi]
   h.load135 = load i32 from ptr @h
   tail.load136 = load i32 from ptr @tail
   137 = icmp slt i32 %h.load135, i32 %tail.load136
   br i1 %137, bb %while.body133, bb %while.exit134
-while.body133:  pred(while.cond132, entry126)
-  res131.phi246825 = phi [bb %entry126, i32 0, bb %while.cond132, i32 %res131.phi246]
+while.body133_preheader:  pred(entry126)
+  res131.phi246825_ph_val = phi [bb %entry126, i32 0]
+  br bb %while.body133
+while.body133:  pred(while.cond132, while.body133_preheader)
+  res131.phi246825 = phi [bb %while.cond132, i32 %res131.phi246, bb %while.body133_preheader, i32 %res131.phi246825_ph_val]
   h.load462 = load i32 from ptr @h
   116463 = add i32 %h.load462, i32 1
   store i32 %116463 to ptr @h
@@ -46,7 +49,7 @@ while.exit134:  pred(while.cond132, entry126)
   824 = phi [bb %while.cond132, i32 %res131.phi246, bb %entry126, i32 0]
   tail.load185818 = load i32 from ptr @tail
   186819 = icmp sle i32 0, i32 %tail.load185818
-  br i1 %186819, bb %while.body182, bb %while.exit183
+  br i1 %186819, bb %while.body182_preheader, bb %while.exit183
 then144:  pred(while.body133)
   br bb %if.exit145
 if.exit145:  pred(while.body133, then144)
@@ -55,13 +58,16 @@ if.exit145:  pred(while.body133, then144)
   149 = ptradd ptr @head, i32 %274
   149.load = load i32 from ptr %149
   156816 = icmp ne i32 %149.load, i32 -1
-  br i1 %156816, bb %while.body152, bb %while.exit153
+  br i1 %156816, bb %while.body152_preheader, bb %while.exit153
 while.cond151:  pred(if.exit170)
   i146.phi = phi [bb %if.exit170, i32 %178.load]
   156 = icmp ne i32 %i146.phi, i32 -1
   br i1 %156, bb %while.body152, bb %while.exit153
-while.body152:  pred(while.cond151, if.exit145)
-  i146.phi817 = phi [bb %if.exit145, i32 %149.load, bb %while.cond151, i32 %i146.phi]
+while.body152_preheader:  pred(if.exit145)
+  i146.phi817_ph_val = phi [bb %if.exit145, i32 %149.load]
+  br bb %while.body152
+while.body152:  pred(while.cond151, while.body152_preheader)
+  i146.phi817 = phi [bb %while.cond151, i32 %i146.phi, bb %while.body152_preheader, i32 %i146.phi817_ph_val]
   275 = shl i32 %i146.phi817, i32 2
   160 = ptradd ptr @to, i32 %275
   160.load = load i32 from ptr %160
@@ -93,8 +99,11 @@ while.cond181:  pred(while.body182)
   tail.load185 = load i32 from ptr @tail
   186 = icmp sle i32 %i180.phi, i32 %tail.load185
   br i1 %186, bb %while.body182, bb %while.exit183
-while.body182:  pred(while.cond181, while.exit134)
-  i180.phi820 = phi [bb %while.exit134, i32 0, bb %while.cond181, i32 %i180.phi]
+while.body182_preheader:  pred(while.exit134)
+  i180.phi820_ph_val = phi [bb %while.exit134, i32 0]
+  br bb %while.body182
+while.body182:  pred(while.cond181, while.body182_preheader)
+  i180.phi820 = phi [bb %while.cond181, i32 %i180.phi, bb %while.body182_preheader, i32 %i180.phi820_ph_val]
   279 = shl i32 %i180.phi820, i32 2
   190 = ptradd ptr @que, i32 %279
   190.load = load i32 from ptr %190
@@ -110,13 +119,16 @@ while.exit183:  pred(while.cond181, while.exit134)
 void init() {
 entry88:  pred()
   95826 = icmp slt i32 0, i32 1005
-  br i1 %95826, bb %while.body91, bb %while.exit92
+  br i1 %95826, bb %while.body91_preheader, bb %while.exit92
 while.cond90:  pred(while.body91)
   i.phi = phi [bb %while.body91, i32 %102]
   95 = icmp slt i32 %i.phi, i32 1005
   br i1 %95, bb %while.body91, bb %while.exit92
-while.body91:  pred(while.cond90, entry88)
-  i.phi827 = phi [bb %entry88, i32 0, bb %while.cond90, i32 %i.phi]
+while.body91_preheader:  pred(entry88)
+  i.phi827_ph_val = phi [bb %entry88, i32 0]
+  br bb %while.body91
+while.body91:  pred(while.cond90, while.body91_preheader)
+  i.phi827 = phi [bb %while.cond90, i32 %i.phi, bb %while.body91_preheader, i32 %i.phi827_ph_val]
   281 = shl i32 %i.phi827, i32 2
   99 = ptradd ptr @head, i32 %281
   store i32 -1 to ptr %99
@@ -191,7 +203,7 @@ entry197.split480.split:  pred(quick_read.then45586, quick_read.else589)
   199.ret = phi [bb %quick_read.then45586, i32 %49587, bb %quick_read.else589, i32 %x.phi565]
   store i32 %199.ret to ptr @m
   95368844 = icmp slt i32 0, i32 1005
-  br i1 %95368844, bb %init.while.body91, bb %init.while.exit92
+  br i1 %95368844, bb %init.while.body91_preheader, bb %init.while.exit92
 while.cond201:  pred(if.exit225)
   y238.phi264 = phi [bb %if.exit225, i32 %y238.phi]
   x236.phi262 = phi [bb %if.exit225, i32 %x236.phi]
@@ -200,11 +212,17 @@ while.cond201:  pred(if.exit225)
   m.load = load i32 from ptr @m
   205 = icmp ne i32 %m.load, i32 0
   br i1 %205, bb %while.body202, bb %while.exit203
-while.body202:  pred(while.cond201, init.while.exit92)
-  x227.phi258843 = phi [bb %init.while.exit92, i32 0, bb %while.cond201, i32 %x227.phi258]
-  y.phi260842 = phi [bb %init.while.exit92, i32 0, bb %while.cond201, i32 %y.phi260]
-  x236.phi262841 = phi [bb %init.while.exit92, i32 0, bb %while.cond201, i32 %x236.phi262]
-  y238.phi264840 = phi [bb %init.while.exit92, i32 0, bb %while.cond201, i32 %y238.phi264]
+while.body202_preheader:  pred(init.while.exit92)
+  y238.phi264840_ph_val = phi [bb %init.while.exit92, i32 0]
+  x236.phi262841_ph_val = phi [bb %init.while.exit92, i32 0]
+  y.phi260842_ph_val = phi [bb %init.while.exit92, i32 0]
+  x227.phi258843_ph_val = phi [bb %init.while.exit92, i32 0]
+  br bb %while.body202
+while.body202:  pred(while.cond201, while.body202_preheader)
+  x227.phi258843 = phi [bb %while.cond201, i32 %x227.phi258, bb %while.body202_preheader, i32 %x227.phi258843_ph_val]
+  y.phi260842 = phi [bb %while.cond201, i32 %y.phi260, bb %while.body202_preheader, i32 %y.phi260842_ph_val]
+  x236.phi262841 = phi [bb %while.cond201, i32 %x236.phi262, bb %while.body202_preheader, i32 %x236.phi262841_ph_val]
+  y238.phi264840 = phi [bb %while.cond201, i32 %y238.phi264, bb %while.body202_preheader, i32 %y238.phi264840_ph_val]
   207 = call i32 getch()
   br bb %while.cond208
 while.exit203:  pred(while.cond201, init.while.exit92)
@@ -249,7 +267,7 @@ then224.split592.split:  pred(quick_read.then45698, quick_read.else701)
   h.load135302833 = load i32 from ptr @h
   tail.load136303834 = load i32 from ptr @tail
   137304835 = icmp slt i32 %h.load135302833, i32 %tail.load136303834
-  br i1 %137304835, bb %same.while.body133, bb %same.while.exit134
+  br i1 %137304835, bb %same.while.body133_preheader, bb %same.while.exit134
 if.exit225:  pred(same.while.exit183, else226.split704.split)
   y238.phi = phi [bb %else226.split704.split, i32 %239.ret, bb %same.while.exit183, i32 %y238.phi264840]
   x236.phi = phi [bb %else226.split704.split, i32 %237.ret, bb %same.while.exit183, i32 %x236.phi262841]
@@ -298,8 +316,11 @@ same.while.cond132:  pred(same.while.exit153)
   tail.load136303 = load i32 from ptr @tail
   137304 = icmp slt i32 %h.load135302, i32 %tail.load136303
   br i1 %137304, bb %same.while.body133, bb %same.while.exit134
-same.while.body133:  pred(same.while.cond132, then224.split592.split)
-  res131.phi246301837 = phi [bb %then224.split592.split, i32 0, bb %same.while.cond132, i32 %res131.phi246301]
+same.while.body133_preheader:  pred(then224.split592.split)
+  res131.phi246301837_ph_val = phi [bb %then224.split592.split, i32 0]
+  br bb %same.while.body133
+same.while.body133:  pred(same.while.cond132, same.while.body133_preheader)
+  res131.phi246301837 = phi [bb %same.while.cond132, i32 %res131.phi246301, bb %same.while.body133_preheader, i32 %res131.phi246301837_ph_val]
   h.load472 = load i32 from ptr @h
   116473 = add i32 %h.load472, i32 1
   store i32 %116473 to ptr @h
@@ -312,7 +333,7 @@ same.while.exit134:  pred(same.while.cond132, then224.split592.split)
   836 = phi [bb %same.while.cond132, i32 %res131.phi246301, bb %then224.split592.split, i32 0]
   tail.load185348830 = load i32 from ptr @tail
   186349831 = icmp sle i32 0, i32 %tail.load185348830
-  br i1 %186349831, bb %same.while.body182, bb %same.while.exit183
+  br i1 %186349831, bb %same.while.body182_preheader, bb %same.while.exit183
 same.then144:  pred(same.while.body133)
   br bb %same.if.exit145
 same.if.exit145:  pred(same.while.body133, same.then144)
@@ -321,13 +342,16 @@ same.if.exit145:  pred(same.while.body133, same.then144)
   149317 = ptradd ptr @head, i32 %274316
   149.load318 = load i32 from ptr %149317
   156322828 = icmp ne i32 %149.load318, i32 -1
-  br i1 %156322828, bb %same.while.body152, bb %same.while.exit153
+  br i1 %156322828, bb %same.while.body152_preheader, bb %same.while.exit153
 same.while.cond151:  pred(same.if.exit170)
   i146.phi321 = phi [bb %same.if.exit170, i32 %178.load344]
   156322 = icmp ne i32 %i146.phi321, i32 -1
   br i1 %156322, bb %same.while.body152, bb %same.while.exit153
-same.while.body152:  pred(same.while.cond151, same.if.exit145)
-  i146.phi321829 = phi [bb %same.if.exit145, i32 %149.load318, bb %same.while.cond151, i32 %i146.phi321]
+same.while.body152_preheader:  pred(same.if.exit145)
+  i146.phi321829_ph_val = phi [bb %same.if.exit145, i32 %149.load318]
+  br bb %same.while.body152
+same.while.body152:  pred(same.while.cond151, same.while.body152_preheader)
+  i146.phi321829 = phi [bb %same.while.cond151, i32 %i146.phi321, bb %same.while.body152_preheader, i32 %i146.phi321829_ph_val]
   275325 = shl i32 %i146.phi321829, i32 2
   160326 = ptradd ptr @to, i32 %275325
   160.load327 = load i32 from ptr %160326
@@ -359,8 +383,11 @@ same.while.cond181:  pred(same.while.body182)
   tail.load185348 = load i32 from ptr @tail
   186349 = icmp sle i32 %i180.phi347, i32 %tail.load185348
   br i1 %186349, bb %same.while.body182, bb %same.while.exit183
-same.while.body182:  pred(same.while.cond181, same.while.exit134)
-  i180.phi347832 = phi [bb %same.while.exit134, i32 0, bb %same.while.cond181, i32 %i180.phi347]
+same.while.body182_preheader:  pred(same.while.exit134)
+  i180.phi347832_ph_val = phi [bb %same.while.exit134, i32 0]
+  br bb %same.while.body182
+same.while.body182:  pred(same.while.cond181, same.while.body182_preheader)
+  i180.phi347832 = phi [bb %same.while.cond181, i32 %i180.phi347, bb %same.while.body182_preheader, i32 %i180.phi347832_ph_val]
   279352 = shl i32 %i180.phi347832, i32 2
   190353 = ptradd ptr @que, i32 %279352
   190.load354 = load i32 from ptr %190353
@@ -377,8 +404,11 @@ init.while.cond90:  pred(init.while.body91)
   i.phi367 = phi [bb %init.while.body91, i32 %102374]
   95368 = icmp slt i32 %i.phi367, i32 1005
   br i1 %95368, bb %init.while.body91, bb %init.while.exit92
-init.while.body91:  pred(init.while.cond90, entry197.split480.split)
-  i.phi367845 = phi [bb %entry197.split480.split, i32 0, bb %init.while.cond90, i32 %i.phi367]
+init.while.body91_preheader:  pred(entry197.split480.split)
+  i.phi367845_ph_val = phi [bb %entry197.split480.split, i32 0]
+  br bb %init.while.body91
+init.while.body91:  pred(init.while.cond90, init.while.body91_preheader)
+  i.phi367845 = phi [bb %init.while.cond90, i32 %i.phi367, bb %init.while.body91_preheader, i32 %i.phi367845_ph_val]
   281371 = shl i32 %i.phi367845, i32 2
   99372 = ptradd ptr @head, i32 %281371
   store i32 -1 to ptr %99372
@@ -387,7 +417,7 @@ init.while.body91:  pred(init.while.cond90, entry197.split480.split)
 init.while.exit92:  pred(init.while.cond90, entry197.split480.split)
   m.load838 = load i32 from ptr @m
   205839 = icmp ne i32 %m.load838, i32 0
-  br i1 %205839, bb %while.body202, bb %while.exit203
+  br i1 %205839, bb %while.body202_preheader, bb %while.exit203
 quick_read.while.cond:  pred(entry197, quick_read.if.exit)
   f.phi269485 = phi [bb %entry197, i32 0, bb %quick_read.if.exit, i32 %f.phi505]
   ch.phi266486 = phi [bb %entry197, i32 %2482, bb %quick_read.if.exit, i32 %23506]

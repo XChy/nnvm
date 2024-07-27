@@ -16,16 +16,20 @@ entry3136:  pred()
   call void _sysy_starttime(i32 121)
   loopCount.load31554666 = load i32 from ptr @loopCount
   2331564667 = icmp slt i32 0, i32 %loopCount.load31554666
-  br i1 %2331564667, bb %func.while.body, bb %func.while.exit
+  br i1 %2331564667, bb %func.while.body_preheader, bb %func.while.exit
 func.while.cond:  pred(func.while.body)
   result.phi3153 = phi [bb %func.while.body, i32 %31324660]
   i.phi3154 = phi [bb %func.while.body, i32 %31344661]
   loopCount.load3155 = load i32 from ptr @loopCount
   233156 = icmp slt i32 %i.phi3154, i32 %loopCount.load3155
   br i1 %233156, bb %func.while.body, bb %func.while.exit
-func.while.body:  pred(func.while.cond, entry3136)
-  i.phi31544670 = phi [bb %entry3136, i32 0, bb %func.while.cond, i32 %i.phi3154]
-  result.phi31534669 = phi [bb %entry3136, i32 0, bb %func.while.cond, i32 %result.phi3153]
+func.while.body_preheader:  pred(entry3136)
+  result.phi31534669_ph_val = phi [bb %entry3136, i32 0]
+  i.phi31544670_ph_val = phi [bb %entry3136, i32 0]
+  br bb %func.while.body
+func.while.body:  pred(func.while.cond, func.while.body_preheader)
+  i.phi31544670 = phi [bb %func.while.cond, i32 %i.phi3154, bb %func.while.body_preheader, i32 %i.phi31544670_ph_val]
+  result.phi31534669 = phi [bb %func.while.cond, i32 %result.phi3153, bb %func.while.body_preheader, i32 %result.phi31534669_ph_val]
   31304659 = add i32 %result.phi31534669, i32 15
   31324660 = srem i32 %31304659, i32 1500000001
   31344661 = add i32 %i.phi31544670, i32 1
@@ -56,16 +60,20 @@ i32 func(i32 i1, i32 i2, i32 i3, i32 i4, i32 i5, i32 i6, i32 i7, i32 i8, i32 i9,
 entry:  pred()
   loopCount.load4671 = load i32 from ptr @loopCount
   234672 = icmp slt i32 0, i32 %loopCount.load4671
-  br i1 %234672, bb %while.body, bb %while.exit
+  br i1 %234672, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   result.phi = phi [bb %while.body, i32 %3132]
   i.phi = phi [bb %while.body, i32 %3134]
   loopCount.load = load i32 from ptr @loopCount
   23 = icmp slt i32 %i.phi, i32 %loopCount.load
   br i1 %23, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi4675 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
-  result.phi4674 = phi [bb %entry, i32 0, bb %while.cond, i32 %result.phi]
+while.body_preheader:  pred(entry)
+  result.phi4674_ph_val = phi [bb %entry, i32 0]
+  i.phi4675_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi4675 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi4675_ph_val]
+  result.phi4674 = phi [bb %while.cond, i32 %result.phi, bb %while.body_preheader, i32 %result.phi4674_ph_val]
   30 = add i32 %i1, i32 %i2
   32 = add i32 %30, i32 %i3
   34 = add i32 %32, i32 %i4

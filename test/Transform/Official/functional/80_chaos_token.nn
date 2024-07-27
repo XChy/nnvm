@@ -18,7 +18,7 @@ entry18:  pred()
   769178 = ptradd ptr @__HELLO, i32 %6168177
   7.load70179 = load i32 from ptr %769178
   971180 = icmp ne i32 %7.load70179, i32 0
-  br i1 %971180, bb %putstr.while.body, bb %putstr.while.exit
+  br i1 %971180, bb %putstr.while.body_preheader, bb %putstr.while.exit
 while.cond21:  pred(if.exit53, putstr.while.exit)
   i.phi55 = phi [bb %putstr.while.exit, i32 0, bb %if.exit53, i32 %49]
   27 = sdiv i32 %i.phi55, i32 6
@@ -32,7 +32,7 @@ then:  pred(while.cond21)
   787172 = ptradd ptr %38, i32 %6186171
   7.load88173 = load i32 from ptr %787172
   989174 = icmp ne i32 %7.load88173, i32 0
-  br i1 %989174, bb %putstr.while.body91, bb %putstr.while.exit96
+  br i1 %989174, bb %putstr.while.body91_preheader, bb %putstr.while.exit96
 if.exit:  pred(while.cond21, putstr.while.cond138, putstr.while.exit132)
   47 = mul i32 %i.phi55, i32 17
   48 = add i32 %47, i32 23
@@ -50,9 +50,13 @@ putstr.while.cond:  pred(putstr.while.body)
   7.load70 = load i32 from ptr %769
   971 = icmp ne i32 %7.load70, i32 0
   br i1 %971, bb %putstr.while.body, bb %putstr.while.exit
-putstr.while.body:  pred(putstr.while.cond, entry18)
-  769178182 = phi [bb %putstr.while.cond, ptr %769, bb %entry18, ptr %769178]
-  iNd__1X.phi67181 = phi [bb %entry18, i32 0, bb %putstr.while.cond, i32 %iNd__1X.phi67]
+putstr.while.body_preheader:  pred(entry18)
+  iNd__1X.phi67181_ph_val = phi [bb %entry18, i32 0]
+  769178182_ph_val = phi [bb %entry18, ptr %769178]
+  br bb %putstr.while.body
+putstr.while.body:  pred(putstr.while.cond, putstr.while.body_preheader)
+  769178182 = phi [bb %putstr.while.cond, ptr %769, bb %putstr.while.body_preheader, ptr %769178182_ph_val]
+  iNd__1X.phi67181 = phi [bb %putstr.while.cond, i32 %iNd__1X.phi67, bb %putstr.while.body_preheader, i32 %iNd__1X.phi67181_ph_val]
   12.load74 = load i32 from ptr %769178182
   call void putch(i32 %12.load74)
   1676 = add i32 %iNd__1X.phi67181, i32 1
@@ -66,9 +70,13 @@ putstr.while.cond84:  pred(putstr.while.body91)
   7.load88 = load i32 from ptr %787
   989 = icmp ne i32 %7.load88, i32 0
   br i1 %989, bb %putstr.while.body91, bb %putstr.while.exit96
-putstr.while.body91:  pred(putstr.while.cond84, then)
-  787172176 = phi [bb %putstr.while.cond84, ptr %787, bb %then, ptr %787172]
-  iNd__1X.phi85175 = phi [bb %then, i32 0, bb %putstr.while.cond84, i32 %iNd__1X.phi85]
+putstr.while.body91_preheader:  pred(then)
+  iNd__1X.phi85175_ph_val = phi [bb %then, i32 0]
+  787172176_ph_val = phi [bb %then, ptr %787172]
+  br bb %putstr.while.body91
+putstr.while.body91:  pred(putstr.while.cond84, putstr.while.body91_preheader)
+  787172176 = phi [bb %putstr.while.cond84, ptr %787, bb %putstr.while.body91_preheader, ptr %787172176_ph_val]
+  iNd__1X.phi85175 = phi [bb %putstr.while.cond84, i32 %iNd__1X.phi85, bb %putstr.while.body91_preheader, i32 %iNd__1X.phi85175_ph_val]
   12.load92 = load i32 from ptr %787172176
   call void putch(i32 %12.load92)
   1694 = add i32 %iNd__1X.phi85175, i32 1
@@ -78,7 +86,7 @@ putstr.while.exit96:  pred(putstr.while.cond84, then)
   7105166 = ptradd ptr @saY_HeI10_To, i32 %61104165
   7.load106167 = load i32 from ptr %7105166
   9107168 = icmp ne i32 %7.load106167, i32 0
-  br i1 %9107168, bb %putstr.while.body109, bb %putstr.while.exit114
+  br i1 %9107168, bb %putstr.while.body109_preheader, bb %putstr.while.exit114
 putstr.while.cond102:  pred(putstr.while.body109)
   iNd__1X.phi103 = phi [bb %putstr.while.body109, i32 %16112]
   61104 = shl i32 %iNd__1X.phi103, i32 2
@@ -86,9 +94,13 @@ putstr.while.cond102:  pred(putstr.while.body109)
   7.load106 = load i32 from ptr %7105
   9107 = icmp ne i32 %7.load106, i32 0
   br i1 %9107, bb %putstr.while.body109, bb %putstr.while.exit114
-putstr.while.body109:  pred(putstr.while.cond102, putstr.while.exit96)
-  7105166170 = phi [bb %putstr.while.cond102, ptr %7105, bb %putstr.while.exit96, ptr %7105166]
-  iNd__1X.phi103169 = phi [bb %putstr.while.exit96, i32 0, bb %putstr.while.cond102, i32 %iNd__1X.phi103]
+putstr.while.body109_preheader:  pred(putstr.while.exit96)
+  iNd__1X.phi103169_ph_val = phi [bb %putstr.while.exit96, i32 0]
+  7105166170_ph_val = phi [bb %putstr.while.exit96, ptr %7105166]
+  br bb %putstr.while.body109
+putstr.while.body109:  pred(putstr.while.cond102, putstr.while.body109_preheader)
+  7105166170 = phi [bb %putstr.while.cond102, ptr %7105, bb %putstr.while.body109_preheader, ptr %7105166170_ph_val]
+  iNd__1X.phi103169 = phi [bb %putstr.while.cond102, i32 %iNd__1X.phi103, bb %putstr.while.body109_preheader, i32 %iNd__1X.phi103169_ph_val]
   12.load110 = load i32 from ptr %7105166170
   call void putch(i32 %12.load110)
   16112 = add i32 %iNd__1X.phi103169, i32 1
@@ -100,7 +112,7 @@ putstr.while.exit114:  pred(putstr.while.cond102, putstr.while.exit96)
   7123160 = ptradd ptr %43, i32 %61122159
   7.load124161 = load i32 from ptr %7123160
   9125162 = icmp ne i32 %7.load124161, i32 0
-  br i1 %9125162, bb %putstr.while.body127, bb %putstr.while.exit132
+  br i1 %9125162, bb %putstr.while.body127_preheader, bb %putstr.while.exit132
 putstr.while.cond120:  pred(putstr.while.body127)
   iNd__1X.phi121 = phi [bb %putstr.while.body127, i32 %16130]
   61122 = shl i32 %iNd__1X.phi121, i32 2
@@ -108,9 +120,13 @@ putstr.while.cond120:  pred(putstr.while.body127)
   7.load124 = load i32 from ptr %7123
   9125 = icmp ne i32 %7.load124, i32 0
   br i1 %9125, bb %putstr.while.body127, bb %putstr.while.exit132
-putstr.while.body127:  pred(putstr.while.cond120, putstr.while.exit114)
-  7123160164 = phi [bb %putstr.while.cond120, ptr %7123, bb %putstr.while.exit114, ptr %7123160]
-  iNd__1X.phi121163 = phi [bb %putstr.while.exit114, i32 0, bb %putstr.while.cond120, i32 %iNd__1X.phi121]
+putstr.while.body127_preheader:  pred(putstr.while.exit114)
+  iNd__1X.phi121163_ph_val = phi [bb %putstr.while.exit114, i32 0]
+  7123160164_ph_val = phi [bb %putstr.while.exit114, ptr %7123160]
+  br bb %putstr.while.body127
+putstr.while.body127:  pred(putstr.while.cond120, putstr.while.body127_preheader)
+  7123160164 = phi [bb %putstr.while.cond120, ptr %7123, bb %putstr.while.body127_preheader, ptr %7123160164_ph_val]
+  iNd__1X.phi121163 = phi [bb %putstr.while.cond120, i32 %iNd__1X.phi121, bb %putstr.while.body127_preheader, i32 %iNd__1X.phi121163_ph_val]
   12.load128 = load i32 from ptr %7123160164
   call void putch(i32 %12.load128)
   16130 = add i32 %iNd__1X.phi121163, i32 1
@@ -120,7 +136,7 @@ putstr.while.exit132:  pred(putstr.while.cond120, putstr.while.exit114)
   7141154 = ptradd ptr @RET, i32 %61140153
   7.load142155 = load i32 from ptr %7141154
   9143156 = icmp ne i32 %7.load142155, i32 0
-  br i1 %9143156, bb %putstr.while.body145, bb %if.exit
+  br i1 %9143156, bb %putstr.while.body145_preheader, bb %if.exit
 putstr.while.cond138:  pred(putstr.while.body145)
   iNd__1X.phi139 = phi [bb %putstr.while.body145, i32 %16148]
   61140 = shl i32 %iNd__1X.phi139, i32 2
@@ -128,9 +144,13 @@ putstr.while.cond138:  pred(putstr.while.body145)
   7.load142 = load i32 from ptr %7141
   9143 = icmp ne i32 %7.load142, i32 0
   br i1 %9143, bb %putstr.while.body145, bb %if.exit
-putstr.while.body145:  pred(putstr.while.cond138, putstr.while.exit132)
-  7141154158 = phi [bb %putstr.while.cond138, ptr %7141, bb %putstr.while.exit132, ptr %7141154]
-  iNd__1X.phi139157 = phi [bb %putstr.while.exit132, i32 0, bb %putstr.while.cond138, i32 %iNd__1X.phi139]
+putstr.while.body145_preheader:  pred(putstr.while.exit132)
+  iNd__1X.phi139157_ph_val = phi [bb %putstr.while.exit132, i32 0]
+  7141154158_ph_val = phi [bb %putstr.while.exit132, ptr %7141154]
+  br bb %putstr.while.body145
+putstr.while.body145:  pred(putstr.while.cond138, putstr.while.body145_preheader)
+  7141154158 = phi [bb %putstr.while.cond138, ptr %7141, bb %putstr.while.body145_preheader, ptr %7141154158_ph_val]
+  iNd__1X.phi139157 = phi [bb %putstr.while.cond138, i32 %iNd__1X.phi139, bb %putstr.while.body145_preheader, i32 %iNd__1X.phi139157_ph_val]
   12.load146 = load i32 from ptr %7141154158
   call void putch(i32 %12.load146)
   16148 = add i32 %iNd__1X.phi139157, i32 1
@@ -157,7 +177,7 @@ entry:  pred()
   7184 = ptradd ptr %str, i32 %61183
   7.load185 = load i32 from ptr %7184
   9186 = icmp ne i32 %7.load185, i32 0
-  br i1 %9186, bb %while.body, bb %while.exit
+  br i1 %9186, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   iNd__1X.phi = phi [bb %while.body, i32 %16]
   61 = shl i32 %iNd__1X.phi, i32 2
@@ -165,9 +185,13 @@ while.cond:  pred(while.body)
   7.load = load i32 from ptr %7
   9 = icmp ne i32 %7.load, i32 0
   br i1 %9, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  7184189 = phi [bb %while.cond, ptr %7, bb %entry, ptr %7184]
-  iNd__1X.phi188 = phi [bb %entry, i32 0, bb %while.cond, i32 %iNd__1X.phi]
+while.body_preheader:  pred(entry)
+  iNd__1X.phi188_ph_val = phi [bb %entry, i32 0]
+  7184189_ph_val = phi [bb %entry, ptr %7184]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  7184189 = phi [bb %while.cond, ptr %7, bb %while.body_preheader, ptr %7184189_ph_val]
+  iNd__1X.phi188 = phi [bb %while.cond, i32 %iNd__1X.phi, bb %while.body_preheader, i32 %iNd__1X.phi188_ph_val]
   12.load = load i32 from ptr %7184189
   call void putch(i32 %12.load)
   16 = add i32 %iNd__1X.phi188, i32 1

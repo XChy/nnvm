@@ -28,6 +28,8 @@ bb1:
 bb2:
   # implict jump to bb3
 bb3:
+  # implict jump to bb4
+bb4:
   ADD s2, s1, zero
   CALL getint
   ADD s3, a0, zero
@@ -40,14 +42,14 @@ bb3:
   CALL putch
   ADDI s3, zero, 1
   SUBW s0, s2, s3
-  # implict jump to bb4
-bb4:
-  ADDI s2, zero, 0
-  BLT s2, s0, bb5
-  JAL zero, bb1
+  # implict jump to bb5
 bb5:
+  ADDI s2, zero, 0
+  BLT s2, s0, bb6
+  JAL zero, bb1
+bb6:
   ADD s1, s0, zero
-  JAL zero, bb3
+  JAL zero, bb4
 hanoi:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -62,9 +64,9 @@ hanoi:
   ADD s3, a3, zero
   XORI s4, s0, 1
   SLTIU s4, s4, 1
-  BNE s4, zero, bb9
-  # implict jump to bb7
-bb7:
+  BNE s4, zero, bb10
+  # implict jump to bb8
+bb8:
   ADDI s4, zero, 1
   SUBW s0, s0, s4
   ADD a0, s0, zero
@@ -87,8 +89,8 @@ bb7:
   ADD a2, s1, zero
   ADD a3, s3, zero
   CALL hanoi
-  # implict jump to bb8
-bb8:
+  # implict jump to bb9
+bb9:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -97,7 +99,7 @@ bb8:
   LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb9:
+bb10:
   ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 32
@@ -108,7 +110,7 @@ bb9:
   CALL putch
   ADDI a0, zero, 32
   CALL putch
-  JAL zero, bb8
+  JAL zero, bb9
 move:
   ADDI sp, sp, -32
   SD ra, 0(sp)

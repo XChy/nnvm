@@ -39,9 +39,11 @@ bb1:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:
-  ADD s1, zero, zero
   # implict jump to bb3
 bb3:
+  ADD s1, zero, zero
+  # implict jump to bb4
+bb4:
   ADD s2, s1, zero
   ADDIW s0, s2, 1
   LA s2, k
@@ -49,13 +51,13 @@ bb3:
   SLLIW s2, s2, 1
   LA s3, k
   SW s2, 0(s3)
-  # implict jump to bb4
-bb4:
+  # implict jump to bb5
+bb5:
   ADDI s2, zero, 9
   SLT s2, s2, s0
   XORI s2, s2, 1
-  BNE s2, zero, bb5
+  BNE s2, zero, bb6
   JAL zero, bb1
-bb5:
+bb6:
   ADD s1, s0, zero
-  JAL zero, bb3
+  JAL zero, bb4

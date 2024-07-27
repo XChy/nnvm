@@ -86,8 +86,26 @@ AccessInfo MemAccAnalysis::getMemDefForBlockIter(Instruction *I,
   return {nullptr, MemNoop};
 }
 
-bool MemAccAnalysis::hasClobber(Instruction *I, BasicBlock *domer,
-                                BasicBlock *domee) {
+bool MemAccAnalysis::hasWriteClobberInBlock(Instruction *I, BasicBlock *block) {
+  for (auto *cur : *block) {
+    if (!cur->mayWriteToMemory())
+      continue;
+    // Itself is not a clobber.
+    if (cur == I)
+      continue;
+
+    auto AAResult = AA->alias(I, cur);
+    if (AAResult == NotAlias)
+      continue;
+    else
+      return true;
+  }
+
+  return false;
+}
+
+bool MemAccAnalysis::hasWriteClobber(Instruction *I, BasicBlock *domer,
+                                     BasicBlock *domee) {
   std::unordered_set<BasicBlock *> visited;
   std::stack<BasicBlock *> worklist;
   worklist.push(domee);

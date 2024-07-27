@@ -72,7 +72,7 @@ then50:  pred(entry)
   arr.index65 = ptradd ptr %c52, i32 48
   store i32 8 to ptr %arr.index65
   71143 = icmp ne i32 22, i32 0
-  br i1 %71143, bb %init, bb %init.exit
+  br i1 %71143, bb %init_preheader, bb %init.exit
 if.exit51:  pred(entry, init.exit)
   call void putch(i32 10)
   b.load105 = load i32 from ptr @b
@@ -94,8 +94,11 @@ init.cond:  pred(init)
   cnt_ptr.phi = phi [bb %init, i32 %cnt.dec]
   71 = icmp ne i32 %cnt_ptr.phi, i32 0
   br i1 %71, bb %init, bb %init.exit
-init:  pred(init.cond, then50)
-  cnt_ptr.phi144 = phi [bb %then50, i32 22, bb %init.cond, i32 %cnt_ptr.phi]
+init_preheader:  pred(then50)
+  cnt_ptr.phi144_ph_val = phi [bb %then50, i32 22]
+  br bb %init
+init:  pred(init.cond, init_preheader)
+  cnt_ptr.phi144 = phi [bb %init.cond, i32 %cnt_ptr.phi, bb %init_preheader, i32 %cnt_ptr.phi144_ph_val]
   cnt.dec = sub i32 %cnt_ptr.phi144, i32 1
   129 = shl i32 %cnt.dec, i32 2
   130 = add i32 %129, i32 52

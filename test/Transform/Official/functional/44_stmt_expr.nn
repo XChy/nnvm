@@ -4,13 +4,16 @@ i32 main() {
 entry:  pred()
   store i32 1 to ptr @k
   823 = icmp sle i32 0, i32 9
-  br i1 %823, bb %while.body, bb %while.exit
+  br i1 %823, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi = phi [bb %while.body, i32 %11]
   8 = icmp sle i32 %i.phi, i32 9
   br i1 %8, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi24 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry)
+  i.phi24_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi24 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi24_ph_val]
   11 = add i32 %i.phi24, i32 1
   k.load = load i32 from ptr @k
   22 = shl i32 %k.load, i32 1

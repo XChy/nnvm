@@ -17,6 +17,14 @@ BasicBlock *Loop::getSingleLatch() const {
   return ret;
 }
 
+std::set<BasicBlock *> Loop::getLatches() const {
+  std::set<BasicBlock *> ret;
+  for (auto *pred : header->getPredRange())
+    if (contains(pred))
+      ret.insert(pred);
+  return ret;
+}
+
 std::set<BasicBlock *> Loop::getExits() const {
   std::set<BasicBlock *> ret;
   for (auto [from, to] : exitEdges) {

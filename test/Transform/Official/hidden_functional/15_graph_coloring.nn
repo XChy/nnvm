@@ -23,7 +23,7 @@ if.exit85:  pred(entry78)
   br bb %while.cond92
 then88:  pred(then84.split)
   7238251 = icmp slt i32 0, i32 4
-  br i1 %7238251, bb %printSolution.while.body, bb %printSolution.while.exit
+  br i1 %7238251, bb %printSolution.while.body_preheader, bb %printSolution.while.exit
 if.exit89:  pred(then84.split)
   ret i32 0
 while.cond92:  pred(if.exit85, if.exit109)
@@ -93,8 +93,11 @@ printSolution.while.cond:  pred(printSolution.while.body)
   i.phi237 = phi [bb %printSolution.while.body, i32 %17246]
   7238 = icmp slt i32 %i.phi237, i32 4
   br i1 %7238, bb %printSolution.while.body, bb %printSolution.while.exit
-printSolution.while.body:  pred(printSolution.while.cond, then88)
-  i.phi237252 = phi [bb %then88, i32 0, bb %printSolution.while.cond, i32 %i.phi237]
+printSolution.while.body_preheader:  pred(then88)
+  i.phi237252_ph_val = phi [bb %then88, i32 0]
+  br bb %printSolution.while.body
+printSolution.while.body:  pred(printSolution.while.cond, printSolution.while.body_preheader)
+  i.phi237252 = phi [bb %printSolution.while.cond, i32 %i.phi237, bb %printSolution.while.body_preheader, i32 %i.phi237252_ph_val]
   173241 = shl i32 %i.phi237252, i32 2
   11242 = ptradd ptr %color, i32 %173241
   11.load243 = load i32 from ptr %11242
@@ -145,13 +148,16 @@ entry115:  pred()
   arr.index132 = ptradd ptr %graph, i32 60
   store i32 0 to ptr %arr.index132
   141253 = icmp slt i32 0, i32 4
-  br i1 %141253, bb %while.body137, bb %while.exit138
+  br i1 %141253, bb %while.body137_preheader, bb %while.exit138
 while.cond136:  pred(while.body137)
   i135.phi = phi [bb %while.body137, i32 %147]
   141 = icmp slt i32 %i135.phi, i32 4
   br i1 %141, bb %while.body137, bb %while.exit138
-while.body137:  pred(while.cond136, entry115)
-  i135.phi254 = phi [bb %entry115, i32 0, bb %while.cond136, i32 %i135.phi]
+while.body137_preheader:  pred(entry115)
+  i135.phi254_ph_val = phi [bb %entry115, i32 0]
+  br bb %while.body137
+while.body137:  pred(while.cond136, while.body137_preheader)
+  i135.phi254 = phi [bb %while.cond136, i32 %i135.phi, bb %while.body137_preheader, i32 %i135.phi254_ph_val]
   168 = shl i32 %i135.phi254, i32 2
   145 = ptradd ptr %color, i32 %168
   store i32 0 to ptr %145
@@ -256,13 +262,16 @@ external void _sysy_stoptime(i32 )
 void printSolution(ptr color) {
 entry:  pred()
   7255 = icmp slt i32 0, i32 4
-  br i1 %7255, bb %while.body, bb %while.exit
+  br i1 %7255, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi = phi [bb %while.body, i32 %17]
   7 = icmp slt i32 %i.phi, i32 4
   br i1 %7, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry)
-  i.phi256 = phi [bb %entry, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry)
+  i.phi256_ph_val = phi [bb %entry, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi256 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi256_ph_val]
   173 = shl i32 %i.phi256, i32 2
   11 = ptradd ptr %color, i32 %173
   11.load = load i32 from ptr %11

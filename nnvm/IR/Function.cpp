@@ -30,6 +30,13 @@ void Function::insertBack(BasicBlock *BB, Iterator pos) {
   pos.insertBack(BB);
 }
 
+void Function::insertBefore(BasicBlock *BB, Iterator pos) {
+  if (BB->getParent())
+    BB->removeFromList();
+  BB->setParent(this);
+  pos.insertBefore(BB);
+}
+
 void Function::addArgument(Argument *arg) { arguments.push_back(arg); }
 
 std::vector<Argument *> Function::getArguments() { return arguments; }

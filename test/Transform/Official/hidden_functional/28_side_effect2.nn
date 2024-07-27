@@ -71,13 +71,16 @@ external i32 getfarray(ptr )
 i32 main() {
 entry88:  pred()
   942697 = icmp slt i32 0, i32 20
-  br i1 %942697, bb %while.body, bb %while.exit
+  br i1 %942697, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(select.exit245)
   i.phi675 = phi [bb %select.exit245, i32 %254]
   94 = icmp slt i32 %i.phi675, i32 20
   br i1 %94, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry88)
-  i.phi6752698 = phi [bb %entry88, i32 0, bb %while.cond, i32 %i.phi675]
+while.body_preheader:  pred(entry88)
+  i.phi6752698_ph_val = phi [bb %entry88, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi6752698 = phi [bb %while.cond, i32 %i.phi675, bb %while.body_preheader, i32 %i.phi6752698_ph_val]
   sum.load2002 = load i32 from ptr @sum
   42003 = add i32 %sum.load2002, i32 1
   store i32 %42003 to ptr @sum
@@ -89,7 +92,7 @@ while.body.split:  pred(f.then, f.if.exit)
   br i1 %98, bb %select.then99, bb %select.else100
 while.exit:  pred(while.cond, entry88)
   2592695 = icmp slt i32 0, i32 20
-  br i1 %2592695, bb %while.body256, bb %while.exit257
+  br i1 %2592695, bb %while.body256_preheader, bb %while.exit257
 select.then99:  pred(while.body.split)
   sum.load2035 = load i32 from ptr @sum
   42036 = add i32 %sum.load2035, i32 1
@@ -373,8 +376,11 @@ while.cond255:  pred(select.exit428)
   i.phi674 = phi [bb %select.exit428, i32 %438]
   259 = icmp slt i32 %i.phi674, i32 20
   br i1 %259, bb %while.body256, bb %while.exit257
-while.body256:  pred(while.cond255, while.exit)
-  i.phi6742696 = phi [bb %while.exit, i32 0, bb %while.cond255, i32 %i.phi674]
+while.body256_preheader:  pred(while.exit)
+  i.phi6742696_ph_val = phi [bb %while.exit, i32 0]
+  br bb %while.body256
+while.body256:  pred(while.cond255, while.body256_preheader)
+  i.phi6742696 = phi [bb %while.cond255, i32 %i.phi674, bb %while.body256_preheader, i32 %i.phi6742696_ph_val]
   sum.load371342 = load i32 from ptr @sum
   381343 = add i32 %sum.load371342, i32 2
   store i32 %381343 to ptr @sum

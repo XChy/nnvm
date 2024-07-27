@@ -88,13 +88,16 @@ entry84:  pred()
   90 = call i32 getint()
   92 = call i32 getint()
   99369 = icmp slt i32 0, i32 10
-  br i1 %99369, bb %while.body, bb %while.exit
+  br i1 %99369, bb %while.body_preheader, bb %while.exit
 while.cond:  pred(while.body)
   i.phi = phi [bb %while.body, i32 %106]
   99 = icmp slt i32 %i.phi, i32 10
   br i1 %99, bb %while.body, bb %while.exit
-while.body:  pred(while.cond, entry84)
-  i.phi370 = phi [bb %entry84, i32 0, bb %while.cond, i32 %i.phi]
+while.body_preheader:  pred(entry84)
+  i.phi370_ph_val = phi [bb %entry84, i32 0]
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi370 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi370_ph_val]
   214 = shl i32 %i.phi370, i32 2
   103 = ptradd ptr %arr, i32 %214
   104 = call i32 getint()
