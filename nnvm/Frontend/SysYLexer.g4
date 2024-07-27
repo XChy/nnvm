@@ -68,8 +68,11 @@ INTEGER_CONST:
 	| ('0x' | '0X') [0-9a-fA-F]+;
 
 FLOAT_CONST:
-	DecimalFloatingConstant
-	| HexadecimalFloatingConstant;
+	(DecimalFloatingConstant | HexadecimalFloatingConstant) (
+		FLOAT_SUFFIX
+	)?;
+
+FLOAT_SUFFIX: 'f';
 
 DecimalFloatingConstant:
 	FractionalConstant ExponentPart?

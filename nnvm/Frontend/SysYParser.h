@@ -22,8 +22,9 @@ public:
     NOT = 36, AND = 37, OR = 38, BITAND = 39, BITOR = 40, BITXOR = 41, BITNOT = 42, 
     BITSHL = 43, BITSHR = 44, L_PAREN = 45, R_PAREN = 46, L_BRACE = 47, 
     R_BRACE = 48, L_BRACKT = 49, R_BRACKT = 50, COMMA = 51, SEMICOLON = 52, 
-    IDENT = 53, INTEGER_CONST = 54, FLOAT_CONST = 55, DecimalFloatingConstant = 56, 
-    HexadecimalFloatingConstant = 57, WS = 58, LINE_COMMENT = 59, MULTILINE_COMMENT = 60
+    IDENT = 53, INTEGER_CONST = 54, FLOAT_CONST = 55, FLOAT_SUFFIX = 56, 
+    DecimalFloatingConstant = 57, HexadecimalFloatingConstant = 58, WS = 59, 
+    LINE_COMMENT = 60, MULTILINE_COMMENT = 61
   };
 
   enum {
