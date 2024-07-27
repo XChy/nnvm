@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -42,6 +42,8 @@ public:
 
     virtual std::any visitFuncDef(SysYParser::FuncDefContext *context) = 0;
 
+    virtual std::any visitFuncDecl(SysYParser::FuncDeclContext *context) = 0;
+
     virtual std::any visitFuncType(SysYParser::FuncTypeContext *context) = 0;
 
     virtual std::any visitFuncFParams(SysYParser::FuncFParamsContext *context) = 0;
@@ -54,13 +56,15 @@ public:
 
     virtual std::any visitReturnStmt(SysYParser::ReturnStmtContext *context) = 0;
 
+    virtual std::any visitForInit(SysYParser::ForInitContext *context) = 0;
+
+    virtual std::any visitForUpdate(SysYParser::ForUpdateContext *context) = 0;
+
     virtual std::any visitStmt(SysYParser::StmtContext *context) = 0;
 
     virtual std::any visitExp(SysYParser::ExpContext *context) = 0;
 
     virtual std::any visitCall(SysYParser::CallContext *context) = 0;
-
-    virtual std::any visitCond(SysYParser::CondContext *context) = 0;
 
     virtual std::any visitLVal(SysYParser::LValContext *context) = 0;
 

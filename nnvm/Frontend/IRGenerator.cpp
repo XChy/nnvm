@@ -156,7 +156,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (auto numCtx = ctx->number()) {
       if (auto intCtx = numCtx->INTEGER_CONST()) {
         string sText = intCtx->getText();
-        return std::stoi(sText, 0, getRadixOf(sText));
+        return (int)(std::stol(sText, 0, getRadixOf(sText)));
       }
       if (auto floatCtx = numCtx->FLOAT_CONST()) {
         string sText = floatCtx->getText();
@@ -631,8 +631,8 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       irVal = globalVar;
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());
-      irVal = builder.buildStack(irElementType, symbolType->getTotalNumOfElements(),
-                                 symbolName);
+      irVal = builder.buildStack(
+          irElementType, symbolType->getTotalNumOfElements(), symbolName);
 
       if (ctx->initVal()) {
         std::vector<Value *> values;
@@ -682,26 +682,16 @@ Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
 }
 
 /**
- *  Visit the function define context, a top function
- *  @return None
+ * Helper function to get function type
  */
-Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
-  string funcName = ctx->IDENT()->getText();
-  if (symbolTable.lookupInCurrentScope(funcName)) {
-    // TODO: error
-    return Symbol::none();
-  }
-
-  // TODO: some checks
-  Function *func = new Function(ir, funcName);
-
-  ir->addFunction(func);
-  SymbolType *returnType = any_as<SymbolType *>(ctx->funcType()->accept(this));
-
+SymbolType *
+IRGenerator::getFuncType(SysYParser::FuncTypeContext *funcTypeCtx,
+                         SysYParser::FuncFParamsContext *funcFParamsCtx) {
+  SymbolType *returnType = any_as<SymbolType *>(funcTypeCtx->accept(this));
   vector<SymbolType *> argsType;
 
-  if (ctx->funcFParams()) {
-    for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
+  if (funcFParamsCtx) {
+    for (auto paramCtx : funcFParamsCtx->funcFParam()) {
       SymbolType *symbolTy =
           any_as<SymbolType *>(paramCtx->btype()->accept(this));
       for (int i = paramCtx->L_BRACKT().size() - 1; i >= 0; i--) {
@@ -717,9 +707,46 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       argsType.push_back(symbolTy);
     }
   }
+  return SymbolType::getFuncTy(returnType, argsType, symbolTable);
+}
 
-  currentFunc = symbolTable.create(
-      funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
+Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
+  string funcName = ctx->IDENT()->getText();
+  SymbolType *lookedType;
+  if (symbolTable.lookup(funcName))
+    lookedType = symbolTable.lookup(funcName)->symbolType;
+  SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
+  if (lookedType && !lookedType->isIdentical(*funcTy)) {
+    // error report
+    nnvm_unimpl();
+  }
+  symbolTable.create(funcName, funcTy, nullptr);
+  return Symbol::none();
+}
+
+/**
+ *  Visit the function define context, a top function
+ *  @return None
+ */
+Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
+  string funcName = ctx->IDENT()->getText();
+  SymbolType *lookedType = nullptr;
+  if (symbolTable.lookup(funcName)) {
+    lookedType = symbolTable.lookup(funcName)->symbolType;
+  }
+  // TODO: some checks
+  Function *func = new Function(ir, funcName);
+
+  ir->addFunction(func);
+
+  SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
+
+  if (lookedType && !lookedType->isIdentical(*funcTy)) {
+    // error report
+    nnvm_unimpl();
+  }
+
+  currentFunc = symbolTable.create(funcName, funcTy, func);
 
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock(func, "entry");
@@ -784,8 +811,8 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   Type *irTy = getIRType(symbolTy, ctx->btype());
   Argument *arg = new Argument(irTy, paramName);
 
-  // As the C semantics, the array pointer is immutable. Thus, we don't create
-  // stack for the pointer to array. Instead, we use it directly.
+  // As the C semantics, the array pointer is immutable. Thus, we don't
+  // create stack for the pointer to array. Instead, we use it directly.
   ((Function *)currentFunc->entity)->addArgument(arg);
   if (symbolTy->isArray()) {
     symbolTable.create(paramName, symbolTy, arg);
@@ -885,6 +912,44 @@ void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
 }
 
 /**
+ * Build a loop with given condition and statements
+ * If stmt's size > 1, we will link them in sequence.
+ */
+Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
+                           SysYParser::StmtContext *stmtCtx,
+                           SysYParser::ForUpdateContext *updateCtx) {
+  BasicBlock *whileCond =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
+  BasicBlock *whileBody =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+  BasicBlock *whileExit =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
+
+  builder.buildBr(whileCond);
+  // While Conditon
+  builder.setInsertPoint(whileCond->end());
+  Symbol cond = any_as<Symbol>(condCtx->accept(this));
+  if (!cond)
+    return Symbol::none();
+  cond.entity = builder.buildICmpNEZero(cond.entity);
+  builder.buildBr(cond.entity, whileBody, whileExit);
+
+  // While Body
+  builder.setInsertPoint(whileBody->end());
+  whileLoops.push({whileCond, whileExit});
+  stmtCtx->accept(this);
+  if (updateCtx) {
+    updateCtx->exp()->accept(this);
+  }
+  whileLoops.pop();
+  if (!builder.getCurrentBB()->getTerminator())
+    builder.buildBr(whileCond);
+
+  builder.setInsertPoint(whileExit->end());
+  return Symbol::none();
+}
+
+/**
  *  Visit statement
  *  @return Return inst on success, nullptr on failure
  */
@@ -892,20 +957,8 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
   if (builder.getCurrentBB()->getTerminator())
     return Symbol::none();
-
-  if (ctx->ASSIGN()) { // assign
-    Symbol lhs = any_as<Symbol>(ctx->lVal()->accept(this));
-    if (!lhs)
-      return Symbol::none();
-
-    Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
-    rhs = genImplicitCast(rhs, lhs.symbolType);
-    if (!rhs)
-      return Symbol::none();
-
-    return Symbol{builder.buildStore(rhs.entity, lhs.entity), nullptr};
-  } else if (ctx->IF()) { // if else
-    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
+  if (ctx->IF()) { // if else
+    Symbol cond = any_as<Symbol>(ctx->exp()->accept(this));
     cond = genImplicitCast(cond, SymbolType::getBoolTy());
 
     if (!cond)
@@ -959,43 +1012,27 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     }
   } else if (ctx->block()) {
     return ctx->block()->accept(this);
-  } else if (ctx->exp()) {
-    return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
     builder.buildBr(whileLoops.top().condBB);
   } else if (ctx->WHILE()) { // while
-    if (!ctx->cond()) {
+    if (!ctx->exp()) {
       // TODO: error
       return Symbol::none();
     }
-    BasicBlock *whileCond =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.cond");
-    BasicBlock *whileBody =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
-    BasicBlock *whileExit =
-        new BasicBlock(cast<Function>(currentFunc->entity), "while.exit");
-
-    builder.buildBr(whileCond);
-    // While Conditon
-    builder.setInsertPoint(whileCond->end());
-    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
-    if (!cond)
-      return Symbol::none();
-    cond.entity = builder.buildICmpNEZero(cond.entity);
-    builder.buildBr(cond.entity, whileBody, whileExit);
-
-    // While Body
-    builder.setInsertPoint(whileBody->end());
-    whileLoops.push({whileCond, whileExit});
-    ctx->stmt(0)->accept(this);
-    whileLoops.pop();
-    if (!builder.getCurrentBB()->getTerminator())
-      builder.buildBr(whileCond);
-
-    builder.setInsertPoint(whileExit->end());
-    return Symbol::none();
+    return buildLoop(ctx->exp(), ctx->stmt(0), nullptr);
   } else if (ctx->BREAK()) {
     builder.buildBr(whileLoops.top().afterBB);
+  } else if (ctx->FOR()) {
+    symbolTable.enterScope();
+    ctx->forInit()->accept(this);
+    auto condCtx = ctx->exp();
+    auto stmtCtx = ctx->stmt(0);
+    auto updateCtx = ctx->forUpdate();
+    buildLoop(condCtx, stmtCtx, updateCtx);
+    symbolTable.exitScope();
+    return Symbol::none();
+  } else if (ctx->exp()) {
+    return ctx->exp()->accept(this);
   }
   return Symbol::none();
 }
@@ -1004,14 +1041,16 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
  * Visit Condition
  * @return Bool Symbol on success, Symbol::none() on failure
  */
-Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
-  if (ctx->exp()) {
-    Symbol exp = any_as<Symbol>(ctx->exp()->accept(this));
+Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
+  if (ctx->L_PAREN()) {
+    Symbol exp = any_as<Symbol>(ctx->exp()[0]->accept(this));
     return exp;
+  } else if (ctx->L_PAREN()) {
+    return ctx->exp()[0]->accept(this);
   } else if (ctx->AND()) {
 
     // lhs && rhs  -->  if lhs then rhs else false;
-    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
@@ -1029,7 +1068,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // then
     builder.setInsertPoint(thenBB->end());
-    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
@@ -1047,7 +1086,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   } else if (ctx->OR()) {
 
     // lhs || rhs  -->  if lhs then true else rhs;
-    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
@@ -1070,7 +1109,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // else
     builder.setInsertPoint(elseBB->end());
-    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
@@ -1082,11 +1121,11 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     return Symbol{builder.buildLoad(result, ir->getBoolType()),
                   SymbolType::getBoolTy()};
   } else {
-    Symbol exp1 = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol exp1 = any_as<Symbol>(ctx->exp(0)->accept(this));
     if (!exp1)
       return Symbol::none();
 
-    Symbol exp2 = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol exp2 = any_as<Symbol>(ctx->exp(1)->accept(this));
     if (!exp2)
       return Symbol::none();
 
@@ -1428,6 +1467,17 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 }
 
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
+  if (ctx->ASSIGN() || ctx->SELF_MINUS() || ctx->SELF_PLUS() ||
+      ctx->PLUS_ASSIGN() || ctx->SUB_ASSIGN() || ctx->MULT_ASSIGN() ||
+      ctx->DIV_ASSIGN() || ctx->MOD_ASSIGN() || ctx->AND_ASSIGN() ||
+      ctx->OR_ASSIGN() || ctx->XOR_ASSIGN() || ctx->SHL_ASSIGN() ||
+      ctx->SHR_ASSIGN()) {
+    return expLValUpdate(ctx);
+  }
+  if (ctx->LT() || ctx->GT() || ctx->LE() || ctx->GE() || ctx->EQ() ||
+      ctx->NEQ() || ctx->AND() || ctx->OR()) {
+    return expCond(ctx);
+  }
   if (ctx->lVal()) {
     Symbol lVal = any_as<Symbol>(ctx->lVal()->accept(this));
 
@@ -1471,6 +1521,121 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     nnvm_unreachable("No such literal number")
   }
   return visitChildren(ctx);
+}
+
+Any IRGenerator::expLValUpdate(SysYParser::ExpContext *ctx) {
+  Symbol lhs_addr = any_as<Symbol>(ctx->lVal()->accept(this));
+  if (!lhs_addr)
+    return Symbol::none();
+
+  Symbol lhs = {builder.buildLoad(lhs_addr.entity, sym2IR(lhs_addr.symbolType),
+                                  lhs_addr.entity->getName() + ".load"),
+                lhs_addr.symbolType};
+
+  if (ctx->SELF_MINUS()) {
+    Symbol newLhs;
+    if (lhs.symbolType->isInt()) {
+      newLhs = {builder.buildBinOp<SubInst>(lhs.entity, constOneInt,
+                                            lhs.entity->getType()),
+                lhs.symbolType};
+    } else if (lhs.symbolType->isFloat()) {
+      newLhs = {builder.buildBinOp<FSubInst>(lhs.entity, constOneFloat,
+                                             lhs.entity->getType()),
+                lhs.symbolType};
+    } else {
+      nnvm_unreachable("No such type");
+    }
+    builder.buildStore(newLhs.entity, lhs_addr.entity);
+    if (ctx->children[0] == ctx->SELF_MINUS()) //--a
+      return newLhs;
+    else // a--
+      return lhs;
+  } else if (ctx->SELF_PLUS()) {
+    Symbol newLhs;
+    if (lhs.symbolType->isInt()) {
+      newLhs = {builder.buildBinOp<AddInst>(lhs.entity, constOneInt,
+                                            lhs.entity->getType()),
+                lhs.symbolType};
+    } else if (lhs.symbolType->isFloat()) {
+      newLhs = {builder.buildBinOp<FAddInst>(lhs.entity, constOneFloat,
+                                             lhs.entity->getType()),
+                lhs.symbolType};
+    } else {
+      nnvm_unreachable("No such type");
+    }
+    builder.buildStore(newLhs.entity, lhs_addr.entity);
+    if (ctx->children[0] == ctx->SELF_PLUS()) // ++a
+      return newLhs;
+    else // a++
+      return lhs;
+  }
+
+  Symbol rhs;
+  if (ctx->exp().size() == 1) {
+    rhs = any_as<Symbol>(ctx->exp(0)->accept(this));
+  } else {
+    rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
+  }
+  rhs = genImplicitCast(rhs, lhs.symbolType);
+  if (!rhs)
+    return Symbol::none();
+  Symbol ans = rhs;
+  if (ctx->PLUS_ASSIGN()) {
+    ans = {builder.buildBinOp<AddInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SUB_ASSIGN()) {
+    ans = {builder.buildBinOp<SubInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->MULT_ASSIGN()) {
+    ans = {builder.buildBinOp<MulInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->DIV_ASSIGN()) {
+    ans = {builder.buildBinOp<SDivInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->MOD_ASSIGN()) {
+    ans = {builder.buildBinOp<SRemInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->AND_ASSIGN()) {
+    ans = {builder.buildBinOp<AndInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->OR_ASSIGN()) {
+    ans = {builder.buildBinOp<OrInst>(lhs.entity, rhs.entity,
+                                      lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->XOR_ASSIGN()) {
+    ans = {builder.buildBinOp<XorInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SHL_ASSIGN()) {
+    ans = {builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity,
+                                       lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (ctx->SHR_ASSIGN()) {
+    ans = {builder.buildBinOp<AShrInst>(lhs.entity, rhs.entity,
+                                        lhs.entity->getType()),
+           lhs.symbolType};
+  } else if (!ctx->ASSIGN()) {
+    nnvm_unreachable("No such operator");
+  }
+  builder.buildStore(ans.entity, lhs_addr.entity);
+  return ans;
+}
+
+Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {
+  if (ctx->btype()) {
+    for (auto *varDefCtx : ctx->varDef()) {
+      varDef(varDefCtx, ctx->btype());
+    }
+  } else {
+    ctx->exp()->accept(this);
+  }
+  return Symbol::none();
 }
 
 /**

@@ -1,145 +1,105 @@
 parser grammar SysYParser;
 
 options {
-    tokenVocab = SysYLexer;
-    }
+	tokenVocab = SysYLexer;
+}
 
-program
-   : compUnit
-   ;
+program: compUnit;
 
+compUnit: (funcDef | decl)+ EOF;
 
-compUnit
-   : (funcDef | decl)+ EOF
-   ;
+decl: constDecl | varDecl | funcDecl;
 
-decl
-   : constDecl
-   | varDecl
-   ;
+constDecl: CONST btype constDef (COMMA constDef)* SEMICOLON;
 
-constDecl
-    : CONST btype constDef (COMMA constDef)* SEMICOLON
-    ;
+btype: INT | FLOAT;
 
-btype
-    : INT
-    | FLOAT
-    ;
+constDef:
+	IDENT (L_BRACKT constExp R_BRACKT)* ASSIGN constInitVal;
 
+constInitVal:
+	constExp
+	| L_BRACE ((constInitVal (COMMA constInitVal)*)?) R_BRACE;
 
-constDef
-    : IDENT (L_BRACKT constExp R_BRACKT)* ASSIGN constInitVal
-    ;
+varDecl: btype varDef (COMMA varDef)* SEMICOLON;
 
-constInitVal
-    : constExp
-    | L_BRACE ((constInitVal (COMMA constInitVal)*)?) R_BRACE
-    ;
+varDef: IDENT (L_BRACKT constExp R_BRACKT)* (ASSIGN initVal)?;
 
-varDecl
-    : btype varDef (COMMA varDef)* SEMICOLON
-    ;
+initVal: exp | L_BRACE ( initVal (COMMA initVal)*)? R_BRACE;
 
-varDef
-    : IDENT (L_BRACKT constExp R_BRACKT)* (ASSIGN initVal)?
-    ;
+funcDef: funcType IDENT L_PAREN funcFParams? R_PAREN block;
 
-initVal
-    : exp
-    | L_BRACE ( initVal (COMMA initVal)* )? R_BRACE
-    ;
+funcDecl: funcType IDENT L_PAREN funcFParams? R_PAREN SEMICOLON;
 
-funcDef
-    : funcType IDENT L_PAREN funcFParams? R_PAREN block
-    ;
+funcType: VOID | CONST? (INT | FLOAT);
 
-funcType
-    : VOID | INT | FLOAT
-    ;
+funcFParams: funcFParam (COMMA funcFParam)*;
 
-funcFParams
-    : funcFParam (COMMA funcFParam)*
-    ;
+funcFParam:
+	btype (IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?)?;
 
-funcFParam
-    : btype IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?
-    ;
+block: L_BRACE blockItem* R_BRACE;
 
-block
-    : L_BRACE blockItem* R_BRACE
-    ;
+blockItem: decl | stmt;
 
-blockItem
-    : decl
-    | stmt
-    ;
+returnStmt: RETURN exp? SEMICOLON;
 
-returnStmt
-    :  RETURN exp? SEMICOLON
-    ;
+forInit: ( (btype varDef (COMMA varDef)*) | exp)?;
 
-stmt
-    : lVal ASSIGN exp SEMICOLON
-    | exp? SEMICOLON
-    | block
-    | IF L_PAREN cond R_PAREN stmt (ELSE stmt)?
-    | WHILE L_PAREN cond R_PAREN stmt
-    | BREAK SEMICOLON
-    | CONTINUE SEMICOLON
-    | returnStmt
-    ;
+forUpdate: exp?;
 
-exp
-   : L_PAREN exp R_PAREN
-   | lVal 
-   | number
-   | call
-   | unaryOp exp
-   | exp (MUL | DIV | MOD) exp
-   | exp (PLUS | MINUS) exp
-   | exp (BITSHL | BITSHR) exp
-   | exp BITAND exp
-   | exp BITXOR exp
-   | exp BITOR exp
-   ;
+stmt:
+	exp? SEMICOLON
+	| block
+	| IF L_PAREN exp R_PAREN stmt (ELSE stmt)?
+	| WHILE L_PAREN exp R_PAREN stmt
+	| FOR L_PAREN forInit SEMICOLON exp SEMICOLON forUpdate R_PAREN stmt
+	| BREAK SEMICOLON
+	| CONTINUE SEMICOLON
+	| returnStmt;
 
+exp:
+	L_PAREN exp R_PAREN
+	| lVal (SELF_MINUS | SELF_PLUS)
+	| lVal
+	| number
+	| call
+	| (SELF_MINUS | SELF_PLUS) lVal
+	| unaryOp exp
+	| exp (MUL | DIV | MOD) exp
+	| exp (PLUS | MINUS) exp
+	| exp (BITSHL | BITSHR) exp
+	| exp (LT | GT | LE | GE) exp
+	| exp (EQ | NEQ) exp
+	| exp BITAND exp
+	| exp BITXOR exp
+	| exp BITOR exp
+	| exp AND exp
+	| exp OR exp
+	| lVal (
+		ASSIGN
+		| PLUS_ASSIGN
+		| SUB_ASSIGN
+		| MULT_ASSIGN
+		| DIV_ASSIGN
+		| MOD_ASSIGN
+		| AND_ASSIGN
+		| OR_ASSIGN
+		| XOR_ASSIGN
+		| SHL_ASSIGN
+		| SHR_ASSIGN
+	) exp;
 
-call
-   : IDENT L_PAREN funcRParams? R_PAREN
-   ;
+call: IDENT L_PAREN funcRParams? R_PAREN;
 
-cond
-   : exp 
-   | cond (LT | GT | LE | GE) cond
-   | cond (EQ | NEQ) cond 
-   | cond AND cond 
-   | cond OR cond 
-   ;
+lVal: IDENT (L_BRACKT exp R_BRACKT)*;
 
-lVal
-   : IDENT (L_BRACKT exp R_BRACKT)*
-   ;
+number: INTEGER_CONST | FLOAT_CONST;
 
-number
-   : INTEGER_CONST
-   | FLOAT_CONST
-   ;
+unaryOp: PLUS | MINUS | (NOT | BITNOT);
 
-unaryOp
-   : PLUS
-   | MINUS
-   | (NOT | BITNOT)
-   ;
+funcRParams: param (COMMA param)*;
 
-funcRParams
-   : param (COMMA param)*
-   ;
+param: exp;
 
-param
-   : exp
-   ;
-
-constExp
-   : exp
-   ;
+constExp: exp;

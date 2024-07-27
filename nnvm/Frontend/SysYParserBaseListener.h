@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -51,6 +51,9 @@ public:
   virtual void enterFuncDef(SysYParser::FuncDefContext * /*ctx*/) override { }
   virtual void exitFuncDef(SysYParser::FuncDefContext * /*ctx*/) override { }
 
+  virtual void enterFuncDecl(SysYParser::FuncDeclContext * /*ctx*/) override { }
+  virtual void exitFuncDecl(SysYParser::FuncDeclContext * /*ctx*/) override { }
+
   virtual void enterFuncType(SysYParser::FuncTypeContext * /*ctx*/) override { }
   virtual void exitFuncType(SysYParser::FuncTypeContext * /*ctx*/) override { }
 
@@ -69,6 +72,12 @@ public:
   virtual void enterReturnStmt(SysYParser::ReturnStmtContext * /*ctx*/) override { }
   virtual void exitReturnStmt(SysYParser::ReturnStmtContext * /*ctx*/) override { }
 
+  virtual void enterForInit(SysYParser::ForInitContext * /*ctx*/) override { }
+  virtual void exitForInit(SysYParser::ForInitContext * /*ctx*/) override { }
+
+  virtual void enterForUpdate(SysYParser::ForUpdateContext * /*ctx*/) override { }
+  virtual void exitForUpdate(SysYParser::ForUpdateContext * /*ctx*/) override { }
+
   virtual void enterStmt(SysYParser::StmtContext * /*ctx*/) override { }
   virtual void exitStmt(SysYParser::StmtContext * /*ctx*/) override { }
 
@@ -77,9 +86,6 @@ public:
 
   virtual void enterCall(SysYParser::CallContext * /*ctx*/) override { }
   virtual void exitCall(SysYParser::CallContext * /*ctx*/) override { }
-
-  virtual void enterCond(SysYParser::CondContext * /*ctx*/) override { }
-  virtual void exitCond(SysYParser::CondContext * /*ctx*/) override { }
 
   virtual void enterLVal(SysYParser::LValContext * /*ctx*/) override { }
   virtual void exitLVal(SysYParser::LValContext * /*ctx*/) override { }
