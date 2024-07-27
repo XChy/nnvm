@@ -73,9 +73,6 @@ public:
   virtual void enterForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
   virtual void exitForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
 
-  virtual void enterLValUpdate(SysYParser::LValUpdateContext *ctx) = 0;
-  virtual void exitLValUpdate(SysYParser::LValUpdateContext *ctx) = 0;
-
   virtual void enterStmt(SysYParser::StmtContext *ctx) = 0;
   virtual void exitStmt(SysYParser::StmtContext *ctx) = 0;
 
@@ -84,9 +81,6 @@ public:
 
   virtual void enterCall(SysYParser::CallContext *ctx) = 0;
   virtual void exitCall(SysYParser::CallContext *ctx) = 0;
-
-  virtual void enterCond(SysYParser::CondContext *ctx) = 0;
-  virtual void exitCond(SysYParser::CondContext *ctx) = 0;
 
   virtual void enterLVal(SysYParser::LValContext *ctx) = 0;
   virtual void exitLVal(SysYParser::LValContext *ctx) = 0;

@@ -75,9 +75,6 @@ public:
   virtual void enterForUpdate(SysYParser::ForUpdateContext * /*ctx*/) override { }
   virtual void exitForUpdate(SysYParser::ForUpdateContext * /*ctx*/) override { }
 
-  virtual void enterLValUpdate(SysYParser::LValUpdateContext * /*ctx*/) override { }
-  virtual void exitLValUpdate(SysYParser::LValUpdateContext * /*ctx*/) override { }
-
   virtual void enterStmt(SysYParser::StmtContext * /*ctx*/) override { }
   virtual void exitStmt(SysYParser::StmtContext * /*ctx*/) override { }
 
@@ -86,9 +83,6 @@ public:
 
   virtual void enterCall(SysYParser::CallContext * /*ctx*/) override { }
   virtual void exitCall(SysYParser::CallContext * /*ctx*/) override { }
-
-  virtual void enterCond(SysYParser::CondContext * /*ctx*/) override { }
-  virtual void exitCond(SysYParser::CondContext * /*ctx*/) override { }
 
   virtual void enterLVal(SysYParser::LValContext * /*ctx*/) override { }
   virtual void exitLVal(SysYParser::LValContext * /*ctx*/) override { }

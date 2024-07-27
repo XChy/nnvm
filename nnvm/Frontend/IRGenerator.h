@@ -62,8 +62,6 @@ public:
 
   std::any visitStmt(SysYParser::StmtContext *ctx) override;
 
-  std::any visitCond(SysYParser::CondContext *ctx) override;
-
   std::any visitCall(SysYParser::CallContext *ctx) override;
   Symbol visitSpecialCallWithLineNo(const std::string &name, uint64_t lineNo);
   std::any visitLVal(SysYParser::LValContext *ctx) override;
@@ -76,7 +74,6 @@ public:
   std::any visitBlock(SysYParser::BlockContext *ctx) override;
 
   std::any visitForInit(SysYParser::ForInitContext *ctx) override;
-  std::any visitLValUpdate(SysYParser::LValUpdateContext *ctx) override;
 
   Type *sym2IR(SymbolType *symbolTy);
 
@@ -106,6 +103,9 @@ private:
   Constant *constMinusOneInt;
 
   // helper function
+
+  std::any expCond(SysYParser::ExpContext *ctx);
+  std::any expLValUpdate(SysYParser::ExpContext *ctx);
   std::any expBinOp(SysYParser::ExpContext *);
   std::any expUnaryOp(SysYParser::ExpContext *);
   std::any solveConstExp(SysYParser::ExpContext *);
@@ -116,7 +116,7 @@ private:
                     SysYParser::BtypeContext *btypeCtx);
   std::any varDef(SysYParser::VarDefContext *ctx,
                   SysYParser::BtypeContext *btypeCtx);
-  std::any buildLoop(SysYParser::CondContext *condCtx,
+  std::any buildLoop(SysYParser::ExpContext *condCtx,
                      SysYParser::StmtContext *stmts,
                      SysYParser::ForUpdateContext *updateCtx);
 

@@ -888,7 +888,7 @@ void IRGenerator::widen(Symbol &lhs, Symbol &rhs) {
  * Build a loop with given condition and statements
  * If stmt's size > 1, we will link them in sequence.
  */
-Any IRGenerator::buildLoop(SysYParser::CondContext *condCtx,
+Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
                            SysYParser::StmtContext *stmtCtx,
                            SysYParser::ForUpdateContext *updateCtx) {
   BasicBlock *whileCond =
@@ -912,7 +912,7 @@ Any IRGenerator::buildLoop(SysYParser::CondContext *condCtx,
   whileLoops.push({whileCond, whileExit});
   stmtCtx->accept(this);
   if (updateCtx) {
-    for (auto lValUpdate : updateCtx->lValUpdate()) {
+    for (auto lValUpdate : updateCtx->exp()) {
       lValUpdate->accept(this);
     }
   }
@@ -932,12 +932,8 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
 
   if (builder.getCurrentBB()->getTerminator())
     return Symbol::none();
-
-  if (ctx->lValUpdate()) { // assign
-    return ctx->lValUpdate()->accept(this);
-
-  } else if (ctx->IF()) { // if else
-    Symbol cond = any_as<Symbol>(ctx->cond()->accept(this));
+  if (ctx->IF()) { // if else
+    Symbol cond = any_as<Symbol>(ctx->exp()->accept(this));
     cond = genImplicitCast(cond, SymbolType::getBoolTy());
 
     if (!cond)
@@ -991,27 +987,27 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     }
   } else if (ctx->block()) {
     return ctx->block()->accept(this);
-  } else if (ctx->exp()) {
-    return ctx->exp()->accept(this);
   } else if (ctx->CONTINUE()) {
     builder.buildBr(whileLoops.top().condBB);
   } else if (ctx->WHILE()) { // while
-    if (!ctx->cond()) {
+    if (!ctx->exp()) {
       // TODO: error
       return Symbol::none();
     }
-    return buildLoop(ctx->cond(), ctx->stmt(0), nullptr);
+    return buildLoop(ctx->exp(), ctx->stmt(0), nullptr);
   } else if (ctx->BREAK()) {
     builder.buildBr(whileLoops.top().afterBB);
   } else if (ctx->FOR()) {
     symbolTable.enterScope();
     ctx->forInit()->accept(this);
-    auto condCtx = ctx->cond();
+    auto condCtx = ctx->exp();
     auto stmtCtx = ctx->stmt(0);
     auto updateCtx = ctx->forUpdate();
     buildLoop(condCtx, stmtCtx, updateCtx);
     symbolTable.exitScope();
     return Symbol::none();
+  } else if (ctx->exp()) {
+    return ctx->exp()->accept(this);
   }
   return Symbol::none();
 }
@@ -1020,16 +1016,16 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
  * Visit Condition
  * @return Bool Symbol on success, Symbol::none() on failure
  */
-Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
-  if (ctx->exp()) {
-    Symbol exp = any_as<Symbol>(ctx->exp()->accept(this));
+Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
+  if (ctx->L_PAREN()) {
+    Symbol exp = any_as<Symbol>(ctx->exp()[0]->accept(this));
     return exp;
   } else if (ctx->L_PAREN()) {
-    return ctx->cond()[0]->accept(this);
+    return ctx->exp()[0]->accept(this);
   } else if (ctx->AND()) {
 
     // lhs && rhs  -->  if lhs then rhs else false;
-    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
@@ -1047,7 +1043,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // then
     builder.setInsertPoint(thenBB->end());
-    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
@@ -1065,7 +1061,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
   } else if (ctx->OR()) {
 
     // lhs || rhs  -->  if lhs then true else rhs;
-    Symbol lhs = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
     if (!lhs)
       return Symbol::none();
@@ -1088,7 +1084,7 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
 
     // else
     builder.setInsertPoint(elseBB->end());
-    Symbol rhs = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
       return Symbol::none();
@@ -1100,11 +1096,11 @@ Any IRGenerator::visitCond(SysYParser::CondContext *ctx) {
     return Symbol{builder.buildLoad(result, ir->getBoolType()),
                   SymbolType::getBoolTy()};
   } else {
-    Symbol exp1 = any_as<Symbol>(ctx->cond(0)->accept(this));
+    Symbol exp1 = any_as<Symbol>(ctx->exp(0)->accept(this));
     if (!exp1)
       return Symbol::none();
 
-    Symbol exp2 = any_as<Symbol>(ctx->cond(1)->accept(this));
+    Symbol exp2 = any_as<Symbol>(ctx->exp(1)->accept(this));
     if (!exp2)
       return Symbol::none();
 
@@ -1446,8 +1442,16 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
 }
 
 Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
-  if (ctx->lValUpdate()) {
-    return ctx->lValUpdate()->accept(this);
+  if (ctx->ASSIGN() || ctx->SELF_MINUS() || ctx->SELF_PLUS() ||
+      ctx->PLUS_ASSIGN() || ctx->SUB_ASSIGN() || ctx->MULT_ASSIGN() ||
+      ctx->DIV_ASSIGN() || ctx->MOD_ASSIGN() || ctx->AND_ASSIGN() ||
+      ctx->OR_ASSIGN() || ctx->XOR_ASSIGN() || ctx->SHL_ASSIGN() ||
+      ctx->SHR_ASSIGN()) {
+    return expLValUpdate(ctx);
+  }
+  if (ctx->LT() || ctx->GT() || ctx->LE() || ctx->GE() || ctx->EQ() ||
+      ctx->NEQ() || ctx->AND() || ctx->OR()) {
+    return expCond(ctx);
   }
   if (ctx->lVal()) {
     Symbol lVal = any_as<Symbol>(ctx->lVal()->accept(this));
@@ -1494,7 +1498,7 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
   return visitChildren(ctx);
 }
 
-Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
+Any IRGenerator::expLValUpdate(SysYParser::ExpContext *ctx) {
   Symbol lhs_addr = any_as<Symbol>(ctx->lVal()->accept(this));
   if (!lhs_addr)
     return Symbol::none();
@@ -1541,7 +1545,12 @@ Any IRGenerator::visitLValUpdate(SysYParser::LValUpdateContext *ctx) {
       return lhs;
   }
 
-  Symbol rhs = any_as<Symbol>(ctx->exp()->accept(this));
+  Symbol rhs;
+  if (ctx->exp().size() == 1) {
+    rhs = any_as<Symbol>(ctx->exp(0)->accept(this));
+  } else {
+    rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
+  }
   rhs = genImplicitCast(rhs, lhs.symbolType);
   if (!rhs)
     return Symbol::none();
@@ -1599,7 +1608,7 @@ Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {
       varDef(varDefCtx, ctx->btype());
     }
   } else {
-    for (auto lValUpdate : ctx->lValUpdate()) {
+    for (auto lValUpdate : ctx->exp()) {
       lValUpdate->accept(this);
     }
   }

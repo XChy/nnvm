@@ -93,10 +93,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitLValUpdate(SysYParser::LValUpdateContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitStmt(SysYParser::StmtContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -106,10 +102,6 @@ public:
   }
 
   virtual std::any visitCall(SysYParser::CallContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitCond(SysYParser::CondContext *ctx) override {
     return visitChildren(ctx);
   }
 

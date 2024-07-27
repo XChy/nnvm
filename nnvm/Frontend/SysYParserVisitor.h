@@ -58,15 +58,11 @@ public:
 
     virtual std::any visitForUpdate(SysYParser::ForUpdateContext *context) = 0;
 
-    virtual std::any visitLValUpdate(SysYParser::LValUpdateContext *context) = 0;
-
     virtual std::any visitStmt(SysYParser::StmtContext *context) = 0;
 
     virtual std::any visitExp(SysYParser::ExpContext *context) = 0;
 
     virtual std::any visitCall(SysYParser::CallContext *context) = 0;
-
-    virtual std::any visitCond(SysYParser::CondContext *context) = 0;
 
     virtual std::any visitLVal(SysYParser::LValContext *context) = 0;
 

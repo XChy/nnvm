@@ -32,10 +32,9 @@ public:
     RuleBtype = 4, RuleConstDef = 5, RuleConstInitVal = 6, RuleVarDecl = 7, 
     RuleVarDef = 8, RuleInitVal = 9, RuleFuncDef = 10, RuleFuncType = 11, 
     RuleFuncFParams = 12, RuleFuncFParam = 13, RuleBlock = 14, RuleBlockItem = 15, 
-    RuleReturnStmt = 16, RuleForInit = 17, RuleForUpdate = 18, RuleLValUpdate = 19, 
-    RuleStmt = 20, RuleExp = 21, RuleCall = 22, RuleCond = 23, RuleLVal = 24, 
-    RuleNumber = 25, RuleUnaryOp = 26, RuleFuncRParams = 27, RuleParam = 28, 
-    RuleConstExp = 29
+    RuleReturnStmt = 16, RuleForInit = 17, RuleForUpdate = 18, RuleStmt = 19, 
+    RuleExp = 20, RuleCall = 21, RuleLVal = 22, RuleNumber = 23, RuleUnaryOp = 24, 
+    RuleFuncRParams = 25, RuleParam = 26, RuleConstExp = 27
   };
 
   explicit SysYParser(antlr4::TokenStream *input);
@@ -74,11 +73,9 @@ public:
   class ReturnStmtContext;
   class ForInitContext;
   class ForUpdateContext;
-  class LValUpdateContext;
   class StmtContext;
   class ExpContext;
   class CallContext;
-  class CondContext;
   class LValContext;
   class NumberContext;
   class UnaryOpContext;
@@ -416,8 +413,8 @@ public:
     BtypeContext *btype();
     std::vector<VarDefContext *> varDef();
     VarDefContext* varDef(size_t i);
-    std::vector<LValUpdateContext *> lValUpdate();
-    LValUpdateContext* lValUpdate(size_t i);
+    std::vector<ExpContext *> exp();
+    ExpContext* exp(size_t i);
     std::vector<antlr4::tree::TerminalNode *> COMMA();
     antlr4::tree::TerminalNode* COMMA(size_t i);
 
@@ -434,8 +431,8 @@ public:
   public:
     ForUpdateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<LValUpdateContext *> lValUpdate();
-    LValUpdateContext* lValUpdate(size_t i);
+    std::vector<ExpContext *> exp();
+    ExpContext* exp(size_t i);
     std::vector<antlr4::tree::TerminalNode *> COMMA();
     antlr4::tree::TerminalNode* COMMA(size_t i);
 
@@ -448,47 +445,16 @@ public:
 
   ForUpdateContext* forUpdate();
 
-  class  LValUpdateContext : public antlr4::ParserRuleContext {
-  public:
-    LValUpdateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    LValContext *lVal();
-    ExpContext *exp();
-    antlr4::tree::TerminalNode *SELF_PLUS();
-    antlr4::tree::TerminalNode *SELF_MINUS();
-    antlr4::tree::TerminalNode *ASSIGN();
-    antlr4::tree::TerminalNode *PLUS_ASSIGN();
-    antlr4::tree::TerminalNode *SUB_ASSIGN();
-    antlr4::tree::TerminalNode *MULT_ASSIGN();
-    antlr4::tree::TerminalNode *DIV_ASSIGN();
-    antlr4::tree::TerminalNode *MOD_ASSIGN();
-    antlr4::tree::TerminalNode *AND_ASSIGN();
-    antlr4::tree::TerminalNode *OR_ASSIGN();
-    antlr4::tree::TerminalNode *XOR_ASSIGN();
-    antlr4::tree::TerminalNode *SHR_ASSIGN();
-    antlr4::tree::TerminalNode *SHL_ASSIGN();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  LValUpdateContext* lValUpdate();
-
   class  StmtContext : public antlr4::ParserRuleContext {
   public:
     StmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    LValUpdateContext *lValUpdate();
     std::vector<antlr4::tree::TerminalNode *> SEMICOLON();
     antlr4::tree::TerminalNode* SEMICOLON(size_t i);
     ExpContext *exp();
     BlockContext *block();
     antlr4::tree::TerminalNode *IF();
     antlr4::tree::TerminalNode *L_PAREN();
-    CondContext *cond();
     antlr4::tree::TerminalNode *R_PAREN();
     std::vector<StmtContext *> stmt();
     StmtContext* stmt(size_t i);
@@ -519,10 +485,22 @@ public:
     ExpContext* exp(size_t i);
     antlr4::tree::TerminalNode *R_PAREN();
     LValContext *lVal();
+    antlr4::tree::TerminalNode *SELF_MINUS();
+    antlr4::tree::TerminalNode *SELF_PLUS();
     NumberContext *number();
     CallContext *call();
     UnaryOpContext *unaryOp();
-    LValUpdateContext *lValUpdate();
+    antlr4::tree::TerminalNode *ASSIGN();
+    antlr4::tree::TerminalNode *PLUS_ASSIGN();
+    antlr4::tree::TerminalNode *SUB_ASSIGN();
+    antlr4::tree::TerminalNode *MULT_ASSIGN();
+    antlr4::tree::TerminalNode *DIV_ASSIGN();
+    antlr4::tree::TerminalNode *MOD_ASSIGN();
+    antlr4::tree::TerminalNode *AND_ASSIGN();
+    antlr4::tree::TerminalNode *OR_ASSIGN();
+    antlr4::tree::TerminalNode *XOR_ASSIGN();
+    antlr4::tree::TerminalNode *SHL_ASSIGN();
+    antlr4::tree::TerminalNode *SHR_ASSIGN();
     antlr4::tree::TerminalNode *MUL();
     antlr4::tree::TerminalNode *DIV();
     antlr4::tree::TerminalNode *MOD();
@@ -530,9 +508,17 @@ public:
     antlr4::tree::TerminalNode *MINUS();
     antlr4::tree::TerminalNode *BITSHL();
     antlr4::tree::TerminalNode *BITSHR();
+    antlr4::tree::TerminalNode *LT();
+    antlr4::tree::TerminalNode *GT();
+    antlr4::tree::TerminalNode *LE();
+    antlr4::tree::TerminalNode *GE();
+    antlr4::tree::TerminalNode *EQ();
+    antlr4::tree::TerminalNode *NEQ();
     antlr4::tree::TerminalNode *BITAND();
     antlr4::tree::TerminalNode *BITXOR();
     antlr4::tree::TerminalNode *BITOR();
+    antlr4::tree::TerminalNode *AND();
+    antlr4::tree::TerminalNode *OR();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -561,33 +547,6 @@ public:
 
   CallContext* call();
 
-  class  CondContext : public antlr4::ParserRuleContext {
-  public:
-    CondContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    ExpContext *exp();
-    antlr4::tree::TerminalNode *L_PAREN();
-    std::vector<CondContext *> cond();
-    CondContext* cond(size_t i);
-    antlr4::tree::TerminalNode *R_PAREN();
-    antlr4::tree::TerminalNode *LT();
-    antlr4::tree::TerminalNode *GT();
-    antlr4::tree::TerminalNode *LE();
-    antlr4::tree::TerminalNode *GE();
-    antlr4::tree::TerminalNode *EQ();
-    antlr4::tree::TerminalNode *NEQ();
-    antlr4::tree::TerminalNode *AND();
-    antlr4::tree::TerminalNode *OR();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  CondContext* cond();
-  CondContext* cond(int precedence);
   class  LValContext : public antlr4::ParserRuleContext {
   public:
     LValContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -695,7 +654,6 @@ public:
   bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
 
   bool expSempred(ExpContext *_localctx, size_t predicateIndex);
-  bool condSempred(CondContext *_localctx, size_t predicateIndex);
 
   // By default the static state used to implement the parser is lazily initialized during the first
   // call to the constructor. You can call this function if you wish to initialize the static state

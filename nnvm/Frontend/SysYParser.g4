@@ -42,68 +42,53 @@ blockItem: decl | stmt;
 
 returnStmt: RETURN exp? SEMICOLON;
 
-forInit: (
-		(btype varDef (COMMA varDef)*)
-		| (lValUpdate (COMMA lValUpdate)*)
-	)?;
+forInit: ( (btype varDef (COMMA varDef)*) | (exp (COMMA exp)*))?;
 
-forUpdate: (lValUpdate (COMMA lValUpdate)*)?;
-
-lValUpdate:
-	(
-		lVal (
-			ASSIGN
-			| PLUS_ASSIGN
-			| SUB_ASSIGN
-			| MULT_ASSIGN
-			| DIV_ASSIGN
-			| MOD_ASSIGN
-			| AND_ASSIGN
-			| OR_ASSIGN
-			| XOR_ASSIGN
-			| SHR_ASSIGN
-			| SHL_ASSIGN
-		) exp
-		| lVal SELF_PLUS
-		| lVal SELF_MINUS
-		| SELF_MINUS lVal
-		| SELF_PLUS lVal
-	);
+forUpdate: (exp (COMMA exp)*)?;
 
 stmt:
-	lValUpdate SEMICOLON
-	| exp? SEMICOLON
+	exp? SEMICOLON
 	| block
-	| IF L_PAREN cond R_PAREN stmt (ELSE stmt)?
-	| WHILE L_PAREN cond R_PAREN stmt
-	| FOR L_PAREN forInit SEMICOLON cond SEMICOLON forUpdate R_PAREN stmt
+	| IF L_PAREN exp R_PAREN stmt (ELSE stmt)?
+	| WHILE L_PAREN exp R_PAREN stmt
+	| FOR L_PAREN forInit SEMICOLON exp SEMICOLON forUpdate R_PAREN stmt
 	| BREAK SEMICOLON
 	| CONTINUE SEMICOLON
 	| returnStmt;
 
 exp:
 	L_PAREN exp R_PAREN
+	| lVal (SELF_MINUS | SELF_PLUS)
 	| lVal
 	| number
 	| call
+	| (SELF_MINUS | SELF_PLUS) lVal
 	| unaryOp exp
 	| exp (MUL | DIV | MOD) exp
 	| exp (PLUS | MINUS) exp
 	| exp (BITSHL | BITSHR) exp
+	| exp (LT | GT | LE | GE) exp
+	| exp (EQ | NEQ) exp
 	| exp BITAND exp
 	| exp BITXOR exp
 	| exp BITOR exp
-	| lValUpdate;
+	| exp AND exp
+	| exp OR exp
+	| lVal (
+		ASSIGN
+		| PLUS_ASSIGN
+		| SUB_ASSIGN
+		| MULT_ASSIGN
+		| DIV_ASSIGN
+		| MOD_ASSIGN
+		| AND_ASSIGN
+		| OR_ASSIGN
+		| XOR_ASSIGN
+		| SHL_ASSIGN
+		| SHR_ASSIGN
+	) exp;
 
 call: IDENT L_PAREN funcRParams? R_PAREN;
-
-cond:
-	exp
-	| L_PAREN cond R_PAREN
-	| cond (LT | GT | LE | GE) cond
-	| cond (EQ | NEQ) cond
-	| cond AND cond
-	| cond OR cond;
 
 lVal: IDENT (L_BRACKT exp R_BRACKT)*;
 
