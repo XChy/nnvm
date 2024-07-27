@@ -156,7 +156,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (auto numCtx = ctx->number()) {
       if (auto intCtx = numCtx->INTEGER_CONST()) {
         string sText = intCtx->getText();
-        return std::stoi(sText, 0, getRadixOf(sText));
+        return std::stol(sText, 0, getRadixOf(sText));
       }
       if (auto floatCtx = numCtx->FLOAT_CONST()) {
         string sText = floatCtx->getText();
@@ -912,9 +912,7 @@ Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
   whileLoops.push({whileCond, whileExit});
   stmtCtx->accept(this);
   if (updateCtx) {
-    for (auto lValUpdate : updateCtx->exp()) {
-      lValUpdate->accept(this);
-    }
+    updateCtx->exp()->accept(this);
   }
   whileLoops.pop();
   if (!builder.getCurrentBB()->getTerminator())
@@ -1608,9 +1606,7 @@ Any IRGenerator::visitForInit(SysYParser::ForInitContext *ctx) {
       varDef(varDefCtx, ctx->btype());
     }
   } else {
-    for (auto lValUpdate : ctx->exp()) {
-      lValUpdate->accept(this);
-    }
+    ctx->exp()->accept(this);
   }
   return Symbol::none();
 }

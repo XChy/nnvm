@@ -42,9 +42,9 @@ blockItem: decl | stmt;
 
 returnStmt: RETURN exp? SEMICOLON;
 
-forInit: ( (btype varDef (COMMA varDef)*) | (exp (COMMA exp)*))?;
+forInit: ( (btype varDef (COMMA varDef)*) | exp)?;
 
-forUpdate: (exp (COMMA exp)*)?;
+forUpdate: exp?;
 
 stmt:
 	exp? SEMICOLON
@@ -86,7 +86,8 @@ exp:
 		| XOR_ASSIGN
 		| SHL_ASSIGN
 		| SHR_ASSIGN
-	) exp;
+	) exp
+	| exp (COMMA exp)+;
 
 call: IDENT L_PAREN funcRParams? R_PAREN;
 

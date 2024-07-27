@@ -290,7 +290,7 @@ def __init_random():
   global random_mode
   random_mode = True
   completed = subprocess.run(
-      [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64'], capture_output=True, text=True, encoding='UTF-8')
+      [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators'], capture_output=True, text=True, encoding='UTF-8')
   with open(CSMITH_HDR, 'r') as f:
     csmith_hdr = f.read()
   code = completed.stdout.replace(
