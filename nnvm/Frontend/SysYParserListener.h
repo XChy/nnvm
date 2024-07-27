@@ -49,6 +49,9 @@ public:
   virtual void enterFuncDef(SysYParser::FuncDefContext *ctx) = 0;
   virtual void exitFuncDef(SysYParser::FuncDefContext *ctx) = 0;
 
+  virtual void enterFuncDecl(SysYParser::FuncDeclContext *ctx) = 0;
+  virtual void exitFuncDecl(SysYParser::FuncDeclContext *ctx) = 0;
+
   virtual void enterFuncType(SysYParser::FuncTypeContext *ctx) = 0;
   virtual void exitFuncType(SysYParser::FuncTypeContext *ctx) = 0;
 

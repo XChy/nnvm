@@ -8,7 +8,7 @@ program: compUnit;
 
 compUnit: (funcDef | decl)+ EOF;
 
-decl: constDecl | varDecl;
+decl: constDecl | varDecl | funcDecl;
 
 constDecl: CONST btype constDef (COMMA constDef)* SEMICOLON;
 
@@ -29,12 +29,14 @@ initVal: exp | L_BRACE ( initVal (COMMA initVal)*)? R_BRACE;
 
 funcDef: funcType IDENT L_PAREN funcFParams? R_PAREN block;
 
-funcType: VOID | INT | FLOAT;
+funcDecl: funcType IDENT L_PAREN funcFParams? R_PAREN SEMICOLON;
+
+funcType: VOID | CONST? (INT | FLOAT);
 
 funcFParams: funcFParam (COMMA funcFParam)*;
 
 funcFParam:
-	btype IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?;
+	btype (IDENT (L_BRACKT R_BRACKT (L_BRACKT exp R_BRACKT)*)?)?;
 
 block: L_BRACE blockItem* R_BRACE;
 
@@ -86,8 +88,7 @@ exp:
 		| XOR_ASSIGN
 		| SHL_ASSIGN
 		| SHR_ASSIGN
-	) exp
-	| exp (COMMA exp)+;
+	) exp;
 
 call: IDENT L_PAREN funcRParams? R_PAREN;
 

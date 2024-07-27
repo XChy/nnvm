@@ -59,6 +59,7 @@ public:
   std::any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
   std::any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
   std::any visitFuncFParam(SysYParser::FuncFParamContext *ctx) override;
+  std::any visitFuncDecl(SysYParser::FuncDeclContext *ctx) override;
 
   std::any visitStmt(SysYParser::StmtContext *ctx) override;
 
@@ -144,5 +145,8 @@ private:
   SymbolType *
   getArrayType(SymbolType *containedTy,
                std::vector<nnvm::SysYParser::ConstExpContext *> dimCtxs);
+
+  SymbolType *getFuncType(SysYParser::FuncTypeContext *ctx,
+                          SysYParser::FuncFParamsContext *fparamsCtx);
 };
 } // namespace nnvm

@@ -61,6 +61,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitFuncDecl(SysYParser::FuncDeclContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitFuncType(SysYParser::FuncTypeContext *ctx) override {
     return visitChildren(ctx);
   }

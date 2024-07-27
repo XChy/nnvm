@@ -156,7 +156,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (auto numCtx = ctx->number()) {
       if (auto intCtx = numCtx->INTEGER_CONST()) {
         string sText = intCtx->getText();
-        return std::stol(sText, 0, getRadixOf(sText));
+        return (int)(std::stol(sText, 0, getRadixOf(sText)));
       }
       if (auto floatCtx = numCtx->FLOAT_CONST()) {
         string sText = floatCtx->getText();
@@ -682,26 +682,16 @@ Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
 }
 
 /**
- *  Visit the function define context, a top function
- *  @return None
+ * Helper function to get function type
  */
-Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
-  string funcName = ctx->IDENT()->getText();
-  if (symbolTable.lookupInCurrentScope(funcName)) {
-    // TODO: error
-    return Symbol::none();
-  }
-
-  // TODO: some checks
-  Function *func = new Function(ir, funcName);
-
-  ir->addFunction(func);
-  SymbolType *returnType = any_as<SymbolType *>(ctx->funcType()->accept(this));
-
+SymbolType *
+IRGenerator::getFuncType(SysYParser::FuncTypeContext *funcTypeCtx,
+                         SysYParser::FuncFParamsContext *funcFParamsCtx) {
+  SymbolType *returnType = any_as<SymbolType *>(funcTypeCtx->accept(this));
   vector<SymbolType *> argsType;
 
-  if (ctx->funcFParams()) {
-    for (auto paramCtx : ctx->funcFParams()->funcFParam()) {
+  if (funcFParamsCtx) {
+    for (auto paramCtx : funcFParamsCtx->funcFParam()) {
       SymbolType *symbolTy =
           any_as<SymbolType *>(paramCtx->btype()->accept(this));
       for (int i = paramCtx->L_BRACKT().size() - 1; i >= 0; i--) {
@@ -717,9 +707,46 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
       argsType.push_back(symbolTy);
     }
   }
+  return SymbolType::getFuncTy(returnType, argsType, symbolTable);
+}
 
-  currentFunc = symbolTable.create(
-      funcName, SymbolType::getFuncTy(returnType, argsType, symbolTable), func);
+Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
+  string funcName = ctx->IDENT()->getText();
+  SymbolType *lookedType;
+  if (symbolTable.lookup(funcName))
+    lookedType = symbolTable.lookup(funcName)->symbolType;
+  SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
+  if (lookedType && !lookedType->isIdentical(*funcTy)) {
+    // error report
+    nnvm_unimpl();
+  }
+  symbolTable.create(funcName, funcTy, nullptr);
+  return Symbol::none();
+}
+
+/**
+ *  Visit the function define context, a top function
+ *  @return None
+ */
+Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
+  string funcName = ctx->IDENT()->getText();
+  SymbolType *lookedType = nullptr;
+  if (symbolTable.lookup(funcName)) {
+    lookedType = symbolTable.lookup(funcName)->symbolType;
+  }
+  // TODO: some checks
+  Function *func = new Function(ir, funcName);
+
+  ir->addFunction(func);
+
+  SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
+
+  if (lookedType && !lookedType->isIdentical(*funcTy)) {
+    // error report
+    nnvm_unimpl();
+  }
+
+  currentFunc = symbolTable.create(funcName, funcTy, func);
 
   func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock(func, "entry");
@@ -784,8 +811,8 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   Type *irTy = getIRType(symbolTy, ctx->btype());
   Argument *arg = new Argument(irTy, paramName);
 
-  // As the C semantics, the array pointer is immutable. Thus, we don't create
-  // stack for the pointer to array. Instead, we use it directly.
+  // As the C semantics, the array pointer is immutable. Thus, we don't
+  // create stack for the pointer to array. Instead, we use it directly.
   ((Function *)currentFunc->entity)->addArgument(arg);
   if (symbolTy->isArray()) {
     symbolTable.create(paramName, symbolTy, arg);

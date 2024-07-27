@@ -42,6 +42,8 @@ public:
 
     virtual std::any visitFuncDef(SysYParser::FuncDefContext *context) = 0;
 
+    virtual std::any visitFuncDecl(SysYParser::FuncDeclContext *context) = 0;
+
     virtual std::any visitFuncType(SysYParser::FuncTypeContext *context) = 0;
 
     virtual std::any visitFuncFParams(SysYParser::FuncFParamsContext *context) = 0;

@@ -51,6 +51,9 @@ public:
   virtual void enterFuncDef(SysYParser::FuncDefContext * /*ctx*/) override { }
   virtual void exitFuncDef(SysYParser::FuncDefContext * /*ctx*/) override { }
 
+  virtual void enterFuncDecl(SysYParser::FuncDeclContext * /*ctx*/) override { }
+  virtual void exitFuncDecl(SysYParser::FuncDeclContext * /*ctx*/) override { }
+
   virtual void enterFuncType(SysYParser::FuncTypeContext * /*ctx*/) override { }
   virtual void exitFuncType(SysYParser::FuncTypeContext * /*ctx*/) override { }
 
