@@ -290,7 +290,7 @@ def __init_random():
   global random_mode
   random_mode = True
   completed = subprocess.run(
-      [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64'], capture_output=True, text=True, encoding='UTF-8')
+      [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators'], capture_output=True, text=True, encoding='UTF-8')
   with open(CSMITH_HDR, 'r') as f:
     csmith_hdr = f.read()
   code = completed.stdout.replace(
@@ -299,11 +299,11 @@ def __init_random():
       'static ', '').replace(
       '(void)', '()').replace(
       'int print_hash_value = 0', 'int print_hash_value = 1').replace(
-      'printf("index [%d]\\n", ', 'putdim(').replace(
-      'printf("index [%d][%d]\\n", ', 'putdim2(').replace(
-      'printf("index [%d][%d][%d]\\n", ', 'putdim3(')
-  code = re.sub(r'(?:u?int(8|16|32)_t|long)', 'int', code)
-  code = re.sub(r'(0x[\dA-Fa-f]+)[UuLl]+', r'\1', code)
+      'printf("index = [%d]\\n", ', 'putdim(').replace(
+      'printf("index = [%d][%d]\\n", ', 'putdim2(').replace(
+      'printf("index = [%d][%d][%d]\\n", ', 'putdim3(')
+  code = re.sub(r'(?:u?int(8|16|32|64)_t|long)', 'int', code)
+  code = re.sub(r'\b(0[Xx][\dA-Fa-f]+|0[0-7]+|\d+)[UuLl]+\b', r'\1', code)
   code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
   code = re.sub(
       r'(transparent_crc\([^, ]+, )[^, ]+, ([^, ]+\))', r'\1\2', code)

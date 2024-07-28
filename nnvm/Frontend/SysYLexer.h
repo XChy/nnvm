@@ -1,5 +1,5 @@
 
-// Generated from ./SysYLexer.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYLexer.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -14,13 +14,17 @@ class  SysYLexer : public antlr4::Lexer {
 public:
   enum {
     CONST = 1, INT = 2, FLOAT = 3, VOID = 4, IF = 5, ELSE = 6, WHILE = 7, 
-    BREAK = 8, CONTINUE = 9, RETURN = 10, PLUS = 11, MINUS = 12, MUL = 13, 
-    DIV = 14, MOD = 15, ASSIGN = 16, EQ = 17, NEQ = 18, LT = 19, GT = 20, 
-    LE = 21, GE = 22, NOT = 23, AND = 24, OR = 25, BITAND = 26, BITOR = 27, 
-    BITXOR = 28, BITNOT = 29, BITSHL = 30, BITSHR = 31, L_PAREN = 32, R_PAREN = 33, 
-    L_BRACE = 34, R_BRACE = 35, L_BRACKT = 36, R_BRACKT = 37, COMMA = 38, 
-    SEMICOLON = 39, IDENT = 40, INTEGER_CONST = 41, FLOAT_CONST = 42, DecimalFloatingConstant = 43, 
-    HexadecimalFloatingConstant = 44, WS = 45, LINE_COMMENT = 46, MULTILINE_COMMENT = 47
+    FOR = 8, BREAK = 9, CONTINUE = 10, RETURN = 11, PLUS = 12, MINUS = 13, 
+    MUL = 14, DIV = 15, MOD = 16, ASSIGN = 17, SELF_PLUS = 18, SELF_MINUS = 19, 
+    PLUS_ASSIGN = 20, SUB_ASSIGN = 21, MULT_ASSIGN = 22, DIV_ASSIGN = 23, 
+    MOD_ASSIGN = 24, AND_ASSIGN = 25, OR_ASSIGN = 26, XOR_ASSIGN = 27, SHL_ASSIGN = 28, 
+    SHR_ASSIGN = 29, EQ = 30, NEQ = 31, LT = 32, GT = 33, LE = 34, GE = 35, 
+    NOT = 36, AND = 37, OR = 38, BITAND = 39, BITOR = 40, BITXOR = 41, BITNOT = 42, 
+    BITSHL = 43, BITSHR = 44, L_PAREN = 45, R_PAREN = 46, L_BRACE = 47, 
+    R_BRACE = 48, L_BRACKT = 49, R_BRACKT = 50, COMMA = 51, SEMICOLON = 52, 
+    IDENT = 53, INTEGER_CONST = 54, FLOAT_CONST = 55, FLOAT_SUFFIX = 56, 
+    DecimalFloatingConstant = 57, HexadecimalFloatingConstant = 58, WS = 59, 
+    LINE_COMMENT = 60, MULTILINE_COMMENT = 61
   };
 
   explicit SysYLexer(antlr4::CharStream *input);

@@ -59,10 +59,9 @@ public:
   std::any visitFuncType(SysYParser::FuncTypeContext *ctx) override;
   std::any visitFuncDef(SysYParser::FuncDefContext *ctx) override;
   std::any visitFuncFParam(SysYParser::FuncFParamContext *ctx) override;
+  std::any visitFuncDecl(SysYParser::FuncDeclContext *ctx) override;
 
   std::any visitStmt(SysYParser::StmtContext *ctx) override;
-
-  std::any visitCond(SysYParser::CondContext *ctx) override;
 
   std::any visitCall(SysYParser::CallContext *ctx) override;
   Symbol visitSpecialCallWithLineNo(const std::string &name, uint64_t lineNo);
@@ -74,6 +73,8 @@ public:
   std::any visitConstInitVal(SysYParser::ConstInitValContext *ctx) override;
 
   std::any visitBlock(SysYParser::BlockContext *ctx) override;
+
+  std::any visitForInit(SysYParser::ForInitContext *ctx) override;
 
   Type *sym2IR(SymbolType *symbolTy);
 
@@ -103,6 +104,9 @@ private:
   Constant *constMinusOneInt;
 
   // helper function
+
+  std::any expCond(SysYParser::ExpContext *ctx);
+  std::any expLValUpdate(SysYParser::ExpContext *ctx);
   std::any expBinOp(SysYParser::ExpContext *);
   std::any expUnaryOp(SysYParser::ExpContext *);
   std::any solveConstExp(SysYParser::ExpContext *);
@@ -113,6 +117,9 @@ private:
                     SysYParser::BtypeContext *btypeCtx);
   std::any varDef(SysYParser::VarDefContext *ctx,
                   SysYParser::BtypeContext *btypeCtx);
+  std::any buildLoop(SysYParser::ExpContext *condCtx,
+                     SysYParser::StmtContext *stmts,
+                     SysYParser::ForUpdateContext *updateCtx);
 
   void arrInitRoll(uint &valueCount, uint &offset, Value *currentValue,
                    Value *irVal, Type *irEl);
@@ -138,5 +145,8 @@ private:
   SymbolType *
   getArrayType(SymbolType *containedTy,
                std::vector<nnvm::SysYParser::ConstExpContext *> dimCtxs);
+
+  SymbolType *getFuncType(SysYParser::FuncTypeContext *ctx,
+                          SysYParser::FuncFParamsContext *fparamsCtx);
 };
 } // namespace nnvm

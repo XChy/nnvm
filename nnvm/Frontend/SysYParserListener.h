@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -49,6 +49,9 @@ public:
   virtual void enterFuncDef(SysYParser::FuncDefContext *ctx) = 0;
   virtual void exitFuncDef(SysYParser::FuncDefContext *ctx) = 0;
 
+  virtual void enterFuncDecl(SysYParser::FuncDeclContext *ctx) = 0;
+  virtual void exitFuncDecl(SysYParser::FuncDeclContext *ctx) = 0;
+
   virtual void enterFuncType(SysYParser::FuncTypeContext *ctx) = 0;
   virtual void exitFuncType(SysYParser::FuncTypeContext *ctx) = 0;
 
@@ -67,6 +70,12 @@ public:
   virtual void enterReturnStmt(SysYParser::ReturnStmtContext *ctx) = 0;
   virtual void exitReturnStmt(SysYParser::ReturnStmtContext *ctx) = 0;
 
+  virtual void enterForInit(SysYParser::ForInitContext *ctx) = 0;
+  virtual void exitForInit(SysYParser::ForInitContext *ctx) = 0;
+
+  virtual void enterForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
+  virtual void exitForUpdate(SysYParser::ForUpdateContext *ctx) = 0;
+
   virtual void enterStmt(SysYParser::StmtContext *ctx) = 0;
   virtual void exitStmt(SysYParser::StmtContext *ctx) = 0;
 
@@ -75,9 +84,6 @@ public:
 
   virtual void enterCall(SysYParser::CallContext *ctx) = 0;
   virtual void exitCall(SysYParser::CallContext *ctx) = 0;
-
-  virtual void enterCond(SysYParser::CondContext *ctx) = 0;
-  virtual void exitCond(SysYParser::CondContext *ctx) = 0;
 
   virtual void enterLVal(SysYParser::LValContext *ctx) = 0;
   virtual void exitLVal(SysYParser::LValContext *ctx) = 0;

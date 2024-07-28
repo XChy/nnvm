@@ -1,5 +1,5 @@
 
-// Generated from ./SysYParser.g4 by ANTLR 4.12.0
+// Generated from ./nnvm/Frontend/SysYParser.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -61,6 +61,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitFuncDecl(SysYParser::FuncDeclContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitFuncType(SysYParser::FuncTypeContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -85,6 +89,14 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitForInit(SysYParser::ForInitContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitForUpdate(SysYParser::ForUpdateContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitStmt(SysYParser::StmtContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -94,10 +106,6 @@ public:
   }
 
   virtual std::any visitCall(SysYParser::CallContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitCond(SysYParser::CondContext *ctx) override {
     return visitChildren(ctx);
   }
 
