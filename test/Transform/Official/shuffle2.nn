@@ -109,6 +109,7 @@ while.cond160:  pred(while.body161.split)
   br i1 %165, bb %while.body161, bb %while.exit162
 while.body161_preheader:  pred(entry150)
   i.phi200391_ph_val = phi [bb %entry150, i32 0]
+  hashmod.load374 = load i32 from ptr @hashmod
   br bb %while.body161
 while.body161:  pred(while.cond160, while.body161_preheader)
   i.phi200391 = phi [bb %while.cond160, i32 %i.phi200, bb %while.body161_preheader, i32 %i.phi200391_ph_val]
@@ -117,7 +118,6 @@ while.body161:  pred(while.cond160, while.body161_preheader)
   169.load = load i32 from ptr %169
   173 = ptradd ptr @values, i32 %223
   173.load = load i32 from ptr %173
-  hashmod.load374 = load i32 from ptr @hashmod
   4375 = srem i32 %169.load, i32 %hashmod.load374
   204235 = shl i32 %4375, i32 2
   13236 = ptradd ptr @head, i32 %204235
@@ -136,6 +136,7 @@ while.cond178:  pred(while.body179.split)
   br i1 %183, bb %while.body179, bb %while.exit180
 while.body179_preheader:  pred(while.exit162)
   i.phi389_ph_val = phi [bb %while.exit162, i32 0]
+  hashmod.load380 = load i32 from ptr @hashmod
   br bb %while.body179
 while.body179:  pred(while.cond178, while.body179_preheader)
   i.phi389 = phi [bb %while.cond178, i32 %i.phi, bb %while.body179_preheader, i32 %i.phi389_ph_val]
@@ -143,7 +144,6 @@ while.body179:  pred(while.cond178, while.body179_preheader)
   187 = ptradd ptr @ans, i32 %225
   190 = ptradd ptr @requests, i32 %225
   190.load = load i32 from ptr %190
-  hashmod.load380 = load i32 from ptr @hashmod
   4381 = srem i32 %190.load, i32 %hashmod.load380
   227322 = shl i32 %4381, i32 2
   110323 = ptradd ptr @head, i32 %227322

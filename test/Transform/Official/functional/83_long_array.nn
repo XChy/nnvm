@@ -133,13 +133,13 @@ while.cond101:  pred(while.body102)
 while.body102_preheader:  pred(then95)
   j.phi392_ph_val = phi [bb %then95, i32 5000]
   ans.phi196393_ph_val = phi [bb %then95, i32 %ans.phi195403]
+  216 = shl i32 %i.phi404, i32 2
+  111 = ptradd ptr %a3, i32 %216
+  111.load = load i32 from ptr %111
   br bb %while.body102
 while.body102:  pred(while.cond101, while.body102_preheader)
   ans.phi196393 = phi [bb %while.cond101, i32 %ans.phi196, bb %while.body102_preheader, i32 %ans.phi196393_ph_val]
   j.phi392 = phi [bb %while.cond101, i32 %j.phi, bb %while.body102_preheader, i32 %j.phi392_ph_val]
-  216 = shl i32 %i.phi404, i32 2
-  111 = ptradd ptr %a3, i32 %216
-  111.load = load i32 from ptr %111
   113 = add i32 %ans.phi196393, i32 %111.load
   217 = shl i32 %j.phi392, i32 2
   116 = ptradd ptr %a1, i32 %217
@@ -351,13 +351,13 @@ long_array.while.cond101:  pred(long_array.while.body102)
 long_array.while.body102_preheader:  pred(long_array.then95)
   j.phi318414_ph_val = phi [bb %long_array.then95, i32 5000]
   ans.phi196319415_ph_val = phi [bb %long_array.then95, i32 %ans.phi195281425]
+  216323 = shl i32 %i.phi282426, i32 2
+  111324 = ptradd ptr %a3225, i32 %216323
+  111.load325 = load i32 from ptr %111324
   br bb %long_array.while.body102
 long_array.while.body102:  pred(long_array.while.cond101, long_array.while.body102_preheader)
   ans.phi196319415 = phi [bb %long_array.while.cond101, i32 %ans.phi196319, bb %long_array.while.body102_preheader, i32 %ans.phi196319415_ph_val]
   j.phi318414 = phi [bb %long_array.while.cond101, i32 %j.phi318, bb %long_array.while.body102_preheader, i32 %j.phi318414_ph_val]
-  216323 = shl i32 %i.phi282426, i32 2
-  111324 = ptradd ptr %a3225, i32 %216323
-  111.load325 = load i32 from ptr %111324
   113326 = add i32 %ans.phi196319415, i32 %111.load325
   217327 = shl i32 %j.phi318414, i32 2
   116328 = ptradd ptr %a1227, i32 %217327

@@ -4,24 +4,24 @@ global ptr a init with 10000000 x i32 zeros
 immutable global ptr max init with i32 1073741824
 i32 convn(i32 kernelid, ptr input, ptr output, i32 n, i32 m, i32 c) {
 entry201:  pred()
+  223 = sdiv i32 %c, i32 2
   br bb %while.cond211
 while.cond211:  pred(entry201, if.exit288)
   i206.phi347 = phi [bb %entry201, i32 0, bb %if.exit288, i32 %283]
+  224 = sub i32 %i206.phi347, i32 %223
   br bb %while.cond216
 while.cond216:  pred(if.exit281, while.cond211)
   j.phi349 = phi [bb %while.cond211, i32 0, bb %if.exit281, i32 %276]
-  223 = sdiv i32 %c, i32 2
-  224 = sub i32 %i206.phi347, i32 %223
+  233 = sub i32 %j.phi349, i32 %223
   br bb %while.cond225
 while.cond225:  pred(while.cond216, if.exit266)
   curr.phi369 = phi [bb %while.cond216, i32 0, bb %if.exit266, i32 %246]
   x.phi353 = phi [bb %while.cond216, i32 %224, bb %if.exit266, i32 %258]
-  233 = sub i32 %j.phi349, i32 %223
+  164470 = icmp slt i32 %x.phi353, i32 0
   br bb %while.cond234
 while.cond234:  pred(while.cond225, if.exit256)
   curr.phi367 = phi [bb %while.cond225, i32 %curr.phi369, bb %if.exit256, i32 %246]
   y.phi359 = phi [bb %while.cond225, i32 %233, bb %if.exit256, i32 %248]
-  164470 = icmp slt i32 %x.phi353, i32 0
   br i1 %164470, bb %getvalue.select.then165, bb %getvalue.select.else166
 while.cond234.split:  pred(getvalue.then191, getvalue.if.exit192)
   245.ret = phi [bb %getvalue.then191, i32 0, bb %getvalue.if.exit192, i32 %199.load503]
@@ -349,6 +349,7 @@ while.cond320:  pred(memmove.while.exit294)
   br i1 %325, bb %while.body321, bb %while.exit322
 while.body321_preheader:  pred(entry308)
   i319.phi604_ph_val = phi [bb %entry308, i32 0]
+  223416 = sdiv i32 %310, i32 2
   br bb %while.body321
 while.body321:  pred(while.cond320, while.body321_preheader)
   i319.phi604 = phi [bb %while.cond320, i32 %i319.phi, bb %while.body321_preheader, i32 %i319.phi604_ph_val]
@@ -363,21 +364,20 @@ while.exit322:  pred(while.cond320, entry308)
   ret i32 0
 convn.while.cond211:  pred(while.body321, convn.if.exit288)
   i206.phi347412 = phi [bb %while.body321, i32 0, bb %convn.if.exit288, i32 %283420]
+  224417 = sub i32 %i206.phi347412, i32 %223416
   br bb %convn.while.cond216
 convn.while.cond216:  pred(convn.while.cond211, convn.if.exit281)
   j.phi349415 = phi [bb %convn.while.cond211, i32 0, bb %convn.if.exit281, i32 %276434]
-  223416 = sdiv i32 %310, i32 2
-  224417 = sub i32 %i206.phi347412, i32 %223416
+  233426 = sub i32 %j.phi349415, i32 %223416
   br bb %convn.while.cond225
 convn.while.cond225:  pred(convn.while.cond216, convn.if.exit266)
   curr.phi369424 = phi [bb %convn.while.cond216, i32 0, bb %convn.if.exit266, i32 %246441]
   x.phi353425 = phi [bb %convn.while.cond216, i32 %224417, bb %convn.if.exit266, i32 %258447]
-  233426 = sub i32 %j.phi349415, i32 %223416
+  164508 = icmp slt i32 %x.phi353425, i32 0
   br bb %convn.while.cond234
 convn.while.cond234:  pred(convn.while.cond225, convn.if.exit256)
   curr.phi367438 = phi [bb %convn.while.cond225, i32 %curr.phi369424, bb %convn.if.exit256, i32 %246441]
   y.phi359439 = phi [bb %convn.while.cond225, i32 %233426, bb %convn.if.exit256, i32 %248442]
-  164508 = icmp slt i32 %x.phi353425, i32 0
   br i1 %164508, bb %getvalue.select.then165510, bb %getvalue.select.else166512
 convn.while.cond234.split:  pred(getvalue.then191534, getvalue.if.exit192536)
   245440.ret = phi [bb %getvalue.then191534, i32 0, bb %getvalue.if.exit192536, i32 %199.load541]

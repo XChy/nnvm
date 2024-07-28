@@ -97,6 +97,7 @@ while.body67_preheader:  pred(entry61)
   select234.phi270452_ph_val = phi [bb %entry61, i1 0]
   tmp.phi266453_ph_val = phi [bb %entry61, i32 0]
   t.phi454_ph_val = phi [bb %entry61, i32 1]
+  11403441 = icmp sle i32 1, i32 17
   br bb %while.body67
 while.body67:  pred(while.cond66, while.body67_preheader)
   t.phi454 = phi [bb %while.cond66, i32 %t.phi, bb %while.body67_preheader, i32 %t.phi454_ph_val]
@@ -112,7 +113,6 @@ while.body67:  pred(while.cond66, while.body67_preheader)
   loc.phi297444 = phi [bb %while.cond66, i32 %loc.phi297, bb %while.body67_preheader, i32 %loc.phi297444_ph_val]
   72 = sub i32 %t.phi454, i32 1
   store i32 4 to ptr @n
-  11403441 = icmp sle i32 1, i32 17
   br i1 %11403441, bb %init.while.body_preheader, bb %init.while.exit
 while.exit68:  pred(while.cond66, entry61)
   ret i32 0

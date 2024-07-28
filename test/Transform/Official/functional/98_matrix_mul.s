@@ -229,15 +229,15 @@ bb12:
   FCVT.W.S s8, fs0, rtz
   ADD a0, s8, zero
   CALL putint
-  ADDIW s3, s7, 1
+  ADDIW s0, s7, 1
   # implict jump to bb13
 bb13:
   LA s7, N
   LW s7, 0(s7)
-  BLT s3, s7, bb14
+  BLT s0, s7, bb14
   JAL zero, bb3
 bb14:
-  ADD s6, s3, zero
+  ADD s6, s0, zero
   JAL zero, bb12
 bb15:
   # implict jump to bb16
@@ -253,15 +253,15 @@ bb17:
   FCVT.W.S s7, fs0, rtz
   ADD a0, s7, zero
   CALL putint
-  ADDIW s1, s6, 1
+  ADDIW s3, s6, 1
   # implict jump to bb18
 bb18:
   LA s6, N
   LW s6, 0(s6)
-  BLT s1, s6, bb19
+  BLT s3, s6, bb19
   JAL zero, bb2
 bb19:
-  ADD s5, s1, zero
+  ADD s5, s3, zero
   JAL zero, bb17
 bb20:
   # implict jump to bb21
@@ -290,14 +290,14 @@ bb22:
   ADDI t5, sp, 264
   ADD s6, t5, s6
   FSW fs0, 0(s6)
-  ADDIW s0, s5, 1
+  ADDIW s1, s5, 1
   # implict jump to bb23
 bb23:
-  SLTI s5, s0, 3
+  SLTI s5, s1, 3
   BNE s5, zero, bb24
   JAL zero, bb1
 bb24:
-  ADD s4, s0, zero
+  ADD s4, s1, zero
   JAL zero, bb22
 mul:
   ADDI sp, sp, -48

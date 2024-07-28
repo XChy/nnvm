@@ -15,12 +15,12 @@ while.body383_preheader:  pred(entry377)
   lastnum.phi6541222_ph_val = phi [bb %entry377, i32 0]
   i380.phi6511223_ph_val = phi [bb %entry377, i32 0]
   sum379.phi6491224_ph_val = phi [bb %entry377, i32 0]
+  391 = sub i32 %stride, i32 1
   br bb %while.body383
 while.body383:  pred(while.cond382, while.body383_preheader)
   sum379.phi6491224 = phi [bb %while.cond382, i32 %sum379.phi649, bb %while.body383_preheader, i32 %sum379.phi6491224_ph_val]
   i380.phi6511223 = phi [bb %while.cond382, i32 %i380.phi651, bb %while.body383_preheader, i32 %i380.phi6511223_ph_val]
   lastnum.phi6541222 = phi [bb %while.cond382, i32 %lastnum.phi654, bb %while.body383_preheader, i32 %lastnum.phi6541222_ph_val]
-  391 = sub i32 %stride, i32 1
   392 = icmp slt i32 %i380.phi6511223, i32 %391
   br i1 %392, bb %then393, bb %else395
 while.exit384:  pred(while.cond382, entry377)
@@ -1000,11 +1000,11 @@ bubblesort.while.cond:  pred(bubblesort.while.exit13)
 bubblesort.while.body_preheader:  pred(while.exit532)
   tmp.phi71311261316_ph_val = phi [bb %while.exit532, i32 0]
   i.phi11271317_ph_val = phi [bb %while.exit532, i32 0]
+  n.load1511391246 = load i32 from ptr @n
   br bb %bubblesort.while.body
 bubblesort.while.body:  pred(bubblesort.while.cond, bubblesort.while.body_preheader)
   i.phi11271317 = phi [bb %bubblesort.while.cond, i32 %i.phi1127, bb %bubblesort.while.body_preheader, i32 %i.phi11271317_ph_val]
   tmp.phi71311261316 = phi [bb %bubblesort.while.cond, i32 %tmp.phi7131126, bb %bubblesort.while.body_preheader, i32 %tmp.phi71311261316_ph_val]
-  n.load1511391246 = load i32 from ptr @n
   1711401247 = sub i32 %n.load1511391246, i32 %i.phi11271317
   1811411248 = sub i32 %1711401247, i32 1
   1911421249 = icmp slt i32 0, i32 %1811411248
@@ -1135,6 +1135,7 @@ while.cond346:  pred(if.exit366)
 while.body347_preheader:  pred(entry342)
   i345.phi1327_ph_val = phi [bb %entry342, i32 0]
   sum.phi7061328_ph_val = phi [bb %entry342, i32 0]
+  363 = sub i32 %stride, i32 1
   br bb %while.body347
 while.body347:  pred(while.cond346, while.body347_preheader)
   sum.phi7061328 = phi [bb %while.cond346, i32 %sum.phi706, bb %while.body347_preheader, i32 %sum.phi7061328_ph_val]
@@ -1144,7 +1145,6 @@ while.body347:  pred(while.cond346, while.body347_preheader)
   356.load = load i32 from ptr %356
   358 = add i32 %sum.phi7061328, i32 %356.load
   361 = srem i32 %i345.phi1327, i32 %stride
-  363 = sub i32 %stride, i32 1
   364 = icmp ne i32 %361, i32 %363
   br i1 %364, bb %then365, bb %else367
 while.exit348:  pred(while.cond346, entry342)

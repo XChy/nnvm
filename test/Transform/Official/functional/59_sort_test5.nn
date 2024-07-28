@@ -11,10 +11,10 @@ while.cond84:  pred(while.body85.split)
   br i1 %89, bb %while.body85, bb %while.exit86
 while.body85_preheader:  pred(entry77)
   i.phi161521_ph_val = phi [bb %entry77, i32 %83]
+  92 = sub i32 %len, i32 1
   br bb %while.body85
 while.body85:  pred(while.cond84, while.body85_preheader)
   i.phi161521 = phi [bb %while.cond84, i32 %i.phi161, bb %while.body85_preheader, i32 %i.phi161521_ph_val]
-  92 = sub i32 %len, i32 1
   172214 = shl i32 %i.phi161521, i32 1
   27215 = add i32 %172214, i32 1
   34221512 = icmp slt i32 %27215, i32 %len
@@ -154,11 +154,11 @@ i32 heap_ajust(ptr arr, i32 start, i32 end) {
 entry19:  pred()
   172 = shl i32 %start, i32 1
   27 = add i32 %172, i32 1
+  33 = add i32 %end, i32 1
   br bb %while.cond
 while.cond:  pred(entry19, else)
   son.phi = phi [bb %entry19, i32 %27, bb %else, i32 %76]
   dad.phi = phi [bb %entry19, i32 %start, bb %else, i32 %son.phi167]
-  33 = add i32 %end, i32 1
   34 = icmp slt i32 %son.phi, i32 %33
   br i1 %34, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
@@ -268,10 +268,10 @@ heap_sort.while.cond84:  pred(heap_sort.while.body85.split)
   br i1 %89190, bb %heap_sort.while.body85, bb %heap_sort.while.exit86
 heap_sort.while.body85_preheader:  pred(entry117)
   i.phi161189534_ph_val = phi [bb %entry117, i32 %83186]
+  92193 = sub i32 10, i32 1
   br bb %heap_sort.while.body85
 heap_sort.while.body85:  pred(heap_sort.while.cond84, heap_sort.while.body85_preheader)
   i.phi161189534 = phi [bb %heap_sort.while.cond84, i32 %i.phi161189, bb %heap_sort.while.body85_preheader, i32 %i.phi161189534_ph_val]
-  92193 = sub i32 10, i32 1
   172318 = shl i32 %i.phi161189534, i32 1
   27319 = add i32 %172318, i32 1
   34325522 = icmp slt i32 %27319, i32 10

@@ -35,20 +35,20 @@ main:
   SD s3, 48(sp)
   SD s4, 56(sp)
   SD s5, 64(sp)
-  SD s6, 72(sp)
-  SD s7, 80(sp)
-  SD s8, 88(sp)
-  SD s9, 96(sp)
-  SD s10, 104(sp)
-  SD s11, 112(sp)
-  FSD fs0, 120(sp)
-  FSD fs1, 128(sp)
-  FSD fs2, 136(sp)
-  FSD fs3, 144(sp)
-  FSD fs4, 152(sp)
-  FSD fs5, 160(sp)
-  FSD fs6, 168(sp)
-  FSD fs7, 176(sp)
+  SD s7, 72(sp)
+  SD s8, 80(sp)
+  SD s9, 88(sp)
+  SD s10, 96(sp)
+  SD s11, 104(sp)
+  FSD fs0, 112(sp)
+  FSD fs1, 120(sp)
+  FSD fs2, 128(sp)
+  FSD fs3, 136(sp)
+  FSD fs4, 144(sp)
+  FSD fs5, 152(sp)
+  FSD fs6, 160(sp)
+  FSD fs7, 168(sp)
+  SD s6, 176(sp)
   FSD fs8, 184(sp)
   FSD fs9, 192(sp)
   FSD fs10, 200(sp)
@@ -102,20 +102,20 @@ bb5:
   LD s3, 48(sp)
   LD s4, 56(sp)
   LD s5, 64(sp)
-  LD s6, 72(sp)
-  LD s7, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
-  LD s10, 104(sp)
-  LD s11, 112(sp)
-  FLD fs0, 120(sp)
-  FLD fs1, 128(sp)
-  FLD fs2, 136(sp)
-  FLD fs3, 144(sp)
-  FLD fs4, 152(sp)
-  FLD fs5, 160(sp)
-  FLD fs6, 168(sp)
-  FLD fs7, 176(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
+  FLD fs0, 112(sp)
+  FLD fs1, 120(sp)
+  FLD fs2, 128(sp)
+  FLD fs3, 136(sp)
+  FLD fs4, 144(sp)
+  FLD fs5, 152(sp)
+  FLD fs6, 160(sp)
+  FLD fs7, 168(sp)
+  LD s6, 176(sp)
   FLD fs8, 184(sp)
   FLD fs9, 192(sp)
   FLD fs10, 200(sp)
@@ -135,20 +135,20 @@ bb6:
   LD s3, 48(sp)
   LD s4, 56(sp)
   LD s5, 64(sp)
-  LD s6, 72(sp)
-  LD s7, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
-  LD s10, 104(sp)
-  LD s11, 112(sp)
-  FLD fs0, 120(sp)
-  FLD fs1, 128(sp)
-  FLD fs2, 136(sp)
-  FLD fs3, 144(sp)
-  FLD fs4, 152(sp)
-  FLD fs5, 160(sp)
-  FLD fs6, 168(sp)
-  FLD fs7, 176(sp)
+  LD s7, 72(sp)
+  LD s8, 80(sp)
+  LD s9, 88(sp)
+  LD s10, 96(sp)
+  LD s11, 104(sp)
+  FLD fs0, 112(sp)
+  FLD fs1, 120(sp)
+  FLD fs2, 128(sp)
+  FLD fs3, 136(sp)
+  FLD fs4, 144(sp)
+  FLD fs5, 152(sp)
+  FLD fs6, 160(sp)
+  FLD fs7, 168(sp)
+  LD s6, 176(sp)
   FLD fs8, 184(sp)
   FLD fs9, 192(sp)
   FLD fs10, 200(sp)
@@ -212,31 +212,31 @@ bb13:
   ADD s9, s8, zero
   # implict jump to bb14
 bb14:
-  ADD s1, s9, zero
+  ADD s0, s9, zero
   BLT zero, s4, bb20
   # implict jump to bb15
 bb15:
   LA s7, .CONSTANT.7.3
-  FLW fs0, 0(s7)
+  FLW fs2, 0(s7)
   LA s7, .CONSTANT.7.3
   FLW fs8, 0(s7)
-  FSGNJ.S fs0, fs0, fs8
+  FSGNJ.S fs2, fs2, fs8
   # implict jump to bb16
 bb16:
-  FADD.S fs1, fs10, fs0
+  FADD.S fs1, fs10, fs2
   LW t4, 8(sp)
-  ADDIW s0, t4, 1
+  ADDIW s2, t4, 1
   # implict jump to bb17
 bb17:
   LA s9, COUNT
   LW s9, 0(s9)
-  BLT s0, s9, bb19
+  BLT s2, s9, bb19
   # implict jump to bb18
 bb18:
   FSGNJ.S fs4, fs1, fs1
   JAL zero, bb2
 bb19:
-  ADD s5, s1, zero
+  ADD s5, s0, zero
   FSGNJ.S fs7, fs1, fs1
   FLW ft4, 4(sp)
   FLW ft3, 4(sp)
@@ -244,7 +244,7 @@ bb19:
   FLW ft4, 0(sp)
   FLW ft3, 0(sp)
   FSGNJ.S fs5, ft4, ft3
-  ADD s6, s0, zero
+  ADD s6, s2, zero
   JAL zero, bb10
 bb20:
   LA s7, .CONSTANT.7.3
@@ -267,19 +267,19 @@ bb22:
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s10, t5, s10
-  FLW fs2, 0(s10)
-  FMUL.S fs2, fs11, fs2
-  FADD.S fs3, fs9, fs2
-  ADDIW s2, s9, 1
+  FLW fs0, 0(s10)
+  FMUL.S fs0, fs11, fs0
+  FADD.S fs3, fs9, fs0
+  ADDIW s1, s9, 1
   # implict jump to bb23
 bb23:
-  BLT s2, s4, bb25
+  BLT s1, s4, bb25
   # implict jump to bb24
 bb24:
-  FSGNJ.S fs0, fs3, fs3
+  FSGNJ.S fs2, fs3, fs3
   JAL zero, bb16
 bb25:
-  ADD s7, s2, zero
+  ADD s7, s1, zero
   FSGNJ.S fs8, fs3, fs3
   JAL zero, bb22
 bb26:
@@ -291,17 +291,17 @@ bb28:
   SLLIW s11, s10, 2
   ADDI t5, sp, 216
   ADD s7, t5, s11
-  FCVT.S.W fs0, s10
+  FCVT.S.W fs2, s10
   FLW ft4, 4(sp)
-  FADD.S fs8, ft4, fs0
+  FADD.S fs8, ft4, fs2
   FSW fs8, 0(s7)
   LUI t5, 2
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s7, t5, s11
   FLW ft4, 0(sp)
-  FADD.S fs0, ft4, fs0
-  FSW fs0, 0(s7)
+  FADD.S fs2, ft4, fs2
+  FSW fs2, 0(s7)
   ADDIW s3, s10, 1
   # implict jump to bb29
 bb29:
@@ -317,13 +317,13 @@ bb32:
   LA s9, .CONSTANT.7.2
   FLW fs11, 0(s9)
   LA s9, .CONSTANT.7.2
-  FLW fs0, 0(s9)
-  FSGNJ.S fs8, fs11, fs0
+  FLW fs2, 0(s9)
+  FSGNJ.S fs8, fs11, fs2
   LA s9, .CONSTANT.7.3
-  FLW fs0, 0(s9)
+  FLW fs2, 0(s9)
   LA s9, .CONSTANT.7.3
   FLW fs11, 0(s9)
-  FSGNJ.S fs9, fs0, fs11
+  FSGNJ.S fs9, fs2, fs11
   JAL zero, bb12
 loop:
   ADDI sp, sp, -96

@@ -4,32 +4,32 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -528
-  SD ra, 16(sp)
-  SD s0, 24(sp)
-  SD s1, 32(sp)
-  SD s3, 40(sp)
-  SD s4, 48(sp)
-  SD s2, 56(sp)
-  SD s6, 64(sp)
-  SD s7, 72(sp)
-  SD s10, 80(sp)
-  SD s8, 88(sp)
-  SD s9, 96(sp)
-  SD s11, 104(sp)
-  SD s5, 112(sp)
+  ADDI sp, sp, -1312
+  SD ra, 256(sp)
+  SD s0, 264(sp)
+  SD s1, 272(sp)
+  SD s2, 280(sp)
+  SD s3, 288(sp)
+  SD s4, 296(sp)
+  SD s5, 304(sp)
+  SD s6, 312(sp)
+  SD s7, 320(sp)
+  SD s8, 328(sp)
+  SD s9, 336(sp)
+  SD s10, 344(sp)
+  SD s11, 352(sp)
   ADDI a0, zero, 324
   CALL _sysy_starttime
   CALL getint
   ADD t4, a0, zero
-  SW t4, 0(sp)
-  ADDI s6, zero, 0
-  SLTI s6, s6, 100
-  BNE s6, zero, bb18
+  SW t4, 24(sp)
+  ADDI s7, zero, 0
+  SLTI s7, s7, 100
+  BNE s7, zero, bb18
   # implict jump to bb1
 bb1:
   ADDI s7, zero, 0
-  LW t4, 0(sp)
+  LW t4, 24(sp)
   BLT s7, t4, bb4
   # implict jump to bb2
 bb2:
@@ -43,821 +43,1212 @@ bb3:
   ADDI a0, zero, 328
   CALL _sysy_stoptime
   ADD a0, zero, zero
-  LD ra, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s3, 40(sp)
-  LD s4, 48(sp)
-  LD s2, 56(sp)
-  LD s6, 64(sp)
-  LD s7, 72(sp)
-  LD s10, 80(sp)
-  LD s8, 88(sp)
-  LD s9, 96(sp)
-  LD s11, 104(sp)
-  LD s5, 112(sp)
-  ADDI sp, sp, 528
+  LD ra, 256(sp)
+  LD s0, 264(sp)
+  LD s1, 272(sp)
+  LD s2, 280(sp)
+  LD s3, 288(sp)
+  LD s4, 296(sp)
+  LD s5, 304(sp)
+  LD s6, 312(sp)
+  LD s7, 320(sp)
+  LD s8, 328(sp)
+  LD s9, 336(sp)
+  LD s10, 344(sp)
+  LD s11, 352(sp)
+  ADDI sp, sp, 1312
   JALR zero, 0(ra)
 bb4:
   # implict jump to bb5
 bb5:
-  ADD s8, zero, zero
+  ADDI t4, sp, 684
+  SD t4, 1168(sp)
+  ADDI t4, sp, 688
+  SD t4, 432(sp)
+  ADDI t4, sp, 692
+  SD t4, 520(sp)
+  ADDI t4, sp, 696
+  SD t4, 88(sp)
+  ADDI t4, sp, 700
+  SD t4, 128(sp)
+  ADDI t4, sp, 704
+  SD t4, 472(sp)
+  ADDI t4, sp, 708
+  SD t4, 480(sp)
+  ADDI s10, sp, 712
+  ADDI t4, sp, 716
+  SD t4, 64(sp)
+  ADDI t4, sp, 720
+  SD t4, 32(sp)
+  ADDI s8, sp, 724
+  ADDI t4, sp, 728
+  SD t4, 1160(sp)
+  ADDI t4, sp, 732
+  SD t4, 632(sp)
+  ADDI t4, sp, 736
+  SD t4, 360(sp)
+  ADDI t4, sp, 740
+  SD t4, 648(sp)
+  ADDI t4, sp, 744
+  SD t4, 656(sp)
+  ADDI t4, sp, 748
+  SD t4, 1240(sp)
+  ADDI t4, sp, 752
+  SD t4, 120(sp)
+  ADDI t4, sp, 756
+  SD t4, 72(sp)
+  ADDI t4, sp, 760
+  SD t4, 448(sp)
+  ADDI t4, sp, 764
+  SD t4, 1280(sp)
+  ADDI t4, sp, 768
+  SD t4, 1296(sp)
+  ADDI t4, sp, 772
+  SD t4, 1184(sp)
+  ADDI t4, sp, 776
+  SD t4, 496(sp)
+  ADDI t4, sp, 780
+  SD t4, 1208(sp)
+  ADDI t4, sp, 784
+  SD t4, 1232(sp)
+  ADDI t4, sp, 788
+  SD t4, 560(sp)
+  ADDI t4, sp, 792
+  SD t4, 248(sp)
+  ADDI t4, sp, 796
+  SD t4, 376(sp)
+  ADDI t4, sp, 800
+  SD t4, 608(sp)
+  ADDI t4, sp, 804
+  SD t4, 544(sp)
+  ADDI t4, sp, 808
+  SD t4, 1264(sp)
+  ADDI t4, sp, 812
+  SD t4, 384(sp)
+  ADDI t4, sp, 816
+  SD t4, 392(sp)
+  ADDI t4, sp, 820
+  SD t4, 1144(sp)
+  ADDI t4, sp, 824
+  SD t4, 1136(sp)
+  ADDI t4, sp, 828
+  SD t4, 568(sp)
+  ADDI t4, sp, 832
+  SD t4, 576(sp)
+  ADDI t4, sp, 836
+  SD t4, 1176(sp)
+  ADDI t4, sp, 840
+  SD t4, 40(sp)
+  ADDI t4, sp, 844
+  SD t4, 584(sp)
+  ADDI t4, sp, 848
+  SD t4, 224(sp)
+  ADDI t4, sp, 852
+  SD t4, 136(sp)
+  ADDI t4, sp, 856
+  SD t4, 592(sp)
+  ADDI t4, sp, 860
+  SD t4, 1200(sp)
+  ADDI t4, sp, 864
+  SD t4, 600(sp)
+  ADDI t4, sp, 868
+  SD t4, 1304(sp)
+  ADDI t4, sp, 872
+  SD t4, 104(sp)
+  ADDI t4, sp, 876
+  SD t4, 112(sp)
+  ADDI t4, sp, 880
+  SD t4, 512(sp)
+  ADDI t4, sp, 884
+  SD t4, 456(sp)
+  ADDI t4, sp, 888
+  SD t4, 96(sp)
+  ADDI t4, sp, 892
+  SD t4, 440(sp)
+  ADDI t4, sp, 896
+  SD t4, 1288(sp)
+  ADDI t4, sp, 900
+  SD t4, 1272(sp)
+  ADDI t4, sp, 904
+  SD t4, 488(sp)
+  ADDI t4, sp, 908
+  SD t4, 1216(sp)
+  ADDI t4, sp, 912
+  SD t4, 1224(sp)
+  ADDI t4, sp, 916
+  SD t4, 552(sp)
+  ADDI t4, sp, 920
+  SD t4, 152(sp)
+  ADDI t4, sp, 924
+  SD t4, 400(sp)
+  ADDI t4, sp, 928
+  SD t4, 48(sp)
+  ADDI t4, sp, 932
+  SD t4, 536(sp)
+  ADDI t4, sp, 936
+  SD t4, 1256(sp)
+  ADDI t4, sp, 940
+  SD t4, 1152(sp)
+  ADDI t4, sp, 944
+  SD t4, 80(sp)
+  ADDI t4, sp, 948
+  SD t4, 1128(sp)
+  ADDI t4, sp, 952
+  SD t4, 1192(sp)
+  ADDI t4, sp, 956
+  SD t4, 1120(sp)
+  ADDI t4, sp, 960
+  SD t4, 1112(sp)
+  ADDI t4, sp, 964
+  SD t4, 1104(sp)
+  ADDI t4, sp, 968
+  SD t4, 1096(sp)
+  ADDI t4, sp, 972
+  SD t4, 1088(sp)
+  ADDI t4, sp, 976
+  SD t4, 464(sp)
+  ADDI t4, sp, 980
+  SD t4, 1080(sp)
+  ADDI t4, sp, 984
+  SD t4, 240(sp)
+  ADDI t4, sp, 988
+  SD t4, 232(sp)
+  ADDI t4, sp, 992
+  SD t4, 216(sp)
+  ADDI t4, sp, 996
+  SD t4, 160(sp)
+  ADDI t4, sp, 1000
+  SD t4, 208(sp)
+  ADDI t4, sp, 1004
+  SD t4, 200(sp)
+  ADDI t4, sp, 1008
+  SD t4, 192(sp)
+  ADDI t4, sp, 1012
+  SD t4, 504(sp)
+  ADDI t4, sp, 1016
+  SD t4, 184(sp)
+  ADDI t4, sp, 1020
+  SD t4, 176(sp)
+  ADDI t4, sp, 1024
+  SD t4, 168(sp)
+  ADDI t4, sp, 1028
+  SD t4, 616(sp)
+  ADDI t4, sp, 1032
+  SD t4, 408(sp)
+  ADDI t4, sp, 1036
+  SD t4, 624(sp)
+  ADDI t4, sp, 1040
+  SD t4, 416(sp)
+  ADDI t4, sp, 1044
+  SD t4, 528(sp)
+  ADDI t4, sp, 1048
+  SD t4, 424(sp)
+  ADDI t4, sp, 1052
+  SD t4, 640(sp)
+  ADDI t4, sp, 1056
+  SD t4, 144(sp)
+  ADDI t4, sp, 1060
+  SD t4, 56(sp)
+  ADDI t4, sp, 1064
+  SD t4, 664(sp)
+  ADDI t4, sp, 1068
+  SD t4, 1248(sp)
+  ADDI t4, sp, 1072
+  SD t4, 672(sp)
+  ADDI t4, sp, 1076
+  SD t4, 368(sp)
+  ADDI s9, zero, 0
+  SLTI t4, s9, 100
+  SB t4, 0(sp)
   ADD s9, zero, zero
+  ADD s11, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s10, s9, zero
-  ADD s11, s8, zero
-  ADDI s5, sp, 124
-  ADDI s6, zero, 1
-  SW s6, 0(s5)
-  ADDI s5, sp, 128
-  ADDI s6, zero, 2
-  SW s6, 0(s5)
-  ADDI s5, sp, 132
-  ADDI s6, zero, 3
-  SW s6, 0(s5)
-  ADDI s5, sp, 136
-  ADDI s6, zero, 4
-  SW s6, 0(s5)
-  ADDI s5, sp, 140
-  ADDI s6, zero, 5
-  SW s6, 0(s5)
-  ADDI s5, sp, 144
-  ADDI s6, zero, 6
-  SW s6, 0(s5)
-  ADDI s5, sp, 148
-  ADDI s6, zero, 7
-  SW s6, 0(s5)
-  ADDI s5, sp, 152
-  ADDI s6, zero, 8
-  SW s6, 0(s5)
-  ADDI s5, sp, 156
-  ADDI s6, zero, 9
-  SW s6, 0(s5)
-  ADDI s5, sp, 160
-  ADDI s6, zero, 10
-  SW s6, 0(s5)
-  ADDI s5, sp, 164
-  ADDI s6, zero, 11
-  SW s6, 0(s5)
-  ADDI s5, sp, 168
-  ADDI s6, zero, 12
-  SW s6, 0(s5)
-  ADDI s5, sp, 172
-  ADDI s6, zero, 13
-  SW s6, 0(s5)
-  ADDI s5, sp, 176
-  ADDI s6, zero, 14
-  SW s6, 0(s5)
-  ADDI s5, sp, 180
-  ADDI s6, zero, 15
-  SW s6, 0(s5)
-  ADDI s5, sp, 184
-  ADDI s6, zero, 16
-  SW s6, 0(s5)
-  ADDI s5, sp, 188
-  ADDI s6, zero, 17
-  SW s6, 0(s5)
-  ADDI s5, sp, 192
-  ADDI s6, zero, 18
-  SW s6, 0(s5)
-  ADDI s5, sp, 196
-  ADDI s6, zero, 19
-  SW s6, 0(s5)
-  ADDI s5, sp, 200
-  ADDI s6, zero, 20
-  SW s6, 0(s5)
-  ADDI s5, sp, 204
-  ADDI s6, zero, 21
-  SW s6, 0(s5)
-  ADDI s5, sp, 208
-  ADDI s6, zero, 22
-  SW s6, 0(s5)
-  ADDI s5, sp, 212
-  ADDI s6, zero, 23
-  SW s6, 0(s5)
-  ADDI s5, sp, 216
-  ADDI s6, zero, 24
-  SW s6, 0(s5)
-  ADDI s5, sp, 220
-  ADDI s6, zero, 25
-  SW s6, 0(s5)
-  ADDI s5, sp, 224
-  ADDI s6, zero, 26
-  SW s6, 0(s5)
-  ADDI s5, sp, 228
-  ADDI s6, zero, 27
-  SW s6, 0(s5)
-  ADDI s5, sp, 232
-  ADDI s6, zero, 28
-  SW s6, 0(s5)
-  ADDI s5, sp, 236
-  ADDI s6, zero, 29
-  SW s6, 0(s5)
-  ADDI s5, sp, 240
-  ADDI s6, zero, 30
-  SW s6, 0(s5)
-  ADDI s5, sp, 244
-  ADDI s6, zero, 31
-  SW s6, 0(s5)
-  ADDI s5, sp, 248
-  ADDI s6, zero, 32
-  SW s6, 0(s5)
-  ADDI s5, sp, 252
-  ADDI s6, zero, 33
-  SW s6, 0(s5)
-  ADDI s5, sp, 256
-  ADDI s6, zero, 34
-  SW s6, 0(s5)
-  ADDI s5, sp, 260
-  ADDI s6, zero, 35
-  SW s6, 0(s5)
-  ADDI s5, sp, 264
-  ADDI s6, zero, 36
-  SW s6, 0(s5)
-  ADDI s5, sp, 268
-  ADDI s6, zero, 37
-  SW s6, 0(s5)
-  ADDI s5, sp, 272
-  ADDI s6, zero, 38
-  SW s6, 0(s5)
-  ADDI s5, sp, 276
-  ADDI s6, zero, 39
-  SW s6, 0(s5)
-  ADDI s5, sp, 280
-  ADDI s6, zero, 40
-  SW s6, 0(s5)
-  ADDI s5, sp, 284
-  ADDI s6, zero, 41
-  SW s6, 0(s5)
-  ADDI s5, sp, 288
-  ADDI s6, zero, 42
-  SW s6, 0(s5)
-  ADDI s5, sp, 292
-  ADDI s6, zero, 43
-  SW s6, 0(s5)
-  ADDI s5, sp, 296
-  ADDI s6, zero, 44
-  SW s6, 0(s5)
-  ADDI s5, sp, 300
-  ADDI s6, zero, 45
-  SW s6, 0(s5)
-  ADDI s5, sp, 304
-  ADDI s6, zero, 46
-  SW s6, 0(s5)
-  ADDI s5, sp, 308
-  ADDI s6, zero, 47
-  SW s6, 0(s5)
-  ADDI s5, sp, 312
-  ADDI s6, zero, 48
-  SW s6, 0(s5)
-  ADDI s5, sp, 316
-  ADDI s6, zero, 49
-  SW s6, 0(s5)
-  ADDI s5, sp, 320
-  ADDI s6, zero, 50
-  SW s6, 0(s5)
-  ADDI s5, sp, 324
-  ADDI s6, zero, 51
-  SW s6, 0(s5)
-  ADDI s5, sp, 328
-  ADDI s6, zero, 52
-  SW s6, 0(s5)
-  ADDI s5, sp, 332
-  ADDI s6, zero, 53
-  SW s6, 0(s5)
-  ADDI s5, sp, 336
-  ADDI s6, zero, 54
-  SW s6, 0(s5)
-  ADDI s5, sp, 340
-  ADDI s6, zero, 55
-  SW s6, 0(s5)
-  ADDI s5, sp, 344
-  ADDI s6, zero, 56
-  SW s6, 0(s5)
-  ADDI s5, sp, 348
-  ADDI s6, zero, 57
-  SW s6, 0(s5)
-  ADDI s5, sp, 352
-  ADDI s6, zero, 58
-  SW s6, 0(s5)
-  ADDI s5, sp, 356
-  ADDI s6, zero, 59
-  SW s6, 0(s5)
-  ADDI s5, sp, 360
-  ADDI s6, zero, 60
-  SW s6, 0(s5)
-  ADDI s5, sp, 364
-  ADDI s6, zero, 61
-  SW s6, 0(s5)
-  ADDI s5, sp, 368
-  ADDI s6, zero, 62
-  SW s6, 0(s5)
-  ADDI s5, sp, 372
-  ADDI s6, zero, 63
-  SW s6, 0(s5)
-  ADDI s5, sp, 376
-  ADDI s6, zero, 64
-  SW s6, 0(s5)
-  ADDI s5, sp, 380
-  ADDI s6, zero, 65
-  SW s6, 0(s5)
-  ADDI s5, sp, 384
-  ADDI s6, zero, 66
-  SW s6, 0(s5)
-  ADDI s5, sp, 388
-  ADDI s6, zero, 67
-  SW s6, 0(s5)
-  ADDI s5, sp, 392
-  ADDI s6, zero, 68
-  SW s6, 0(s5)
-  ADDI s5, sp, 396
-  ADDI s6, zero, 69
-  SW s6, 0(s5)
-  ADDI s5, sp, 400
-  ADDI s6, zero, 70
-  SW s6, 0(s5)
-  ADDI s5, sp, 404
-  ADDI s6, zero, 71
-  SW s6, 0(s5)
-  ADDI s5, sp, 408
-  ADDI s6, zero, 72
-  SW s6, 0(s5)
-  ADDI s5, sp, 412
-  ADDI s6, zero, 73
-  SW s6, 0(s5)
-  ADDI s5, sp, 416
-  ADDI s6, zero, 74
-  SW s6, 0(s5)
-  ADDI s5, sp, 420
-  ADDI s6, zero, 75
-  SW s6, 0(s5)
-  ADDI s5, sp, 424
-  ADDI s6, zero, 76
-  SW s6, 0(s5)
-  ADDI s5, sp, 428
-  ADDI s6, zero, 77
-  SW s6, 0(s5)
-  ADDI s5, sp, 432
-  ADDI s6, zero, 78
-  SW s6, 0(s5)
-  ADDI s5, sp, 436
-  ADDI s6, zero, 79
-  SW s6, 0(s5)
-  ADDI s5, sp, 440
-  ADDI s6, zero, 80
-  SW s6, 0(s5)
-  ADDI s5, sp, 444
-  ADDI s6, zero, 81
-  SW s6, 0(s5)
-  ADDI s5, sp, 448
-  ADDI s6, zero, 82
-  SW s6, 0(s5)
-  ADDI s5, sp, 452
-  ADDI s6, zero, 83
-  SW s6, 0(s5)
-  ADDI s5, sp, 456
-  ADDI s6, zero, 84
-  SW s6, 0(s5)
-  ADDI s5, sp, 460
-  ADDI s6, zero, 85
-  SW s6, 0(s5)
-  ADDI s5, sp, 464
-  ADDI s6, zero, 86
-  SW s6, 0(s5)
-  ADDI s5, sp, 468
-  ADDI s6, zero, 87
-  SW s6, 0(s5)
-  ADDI s5, sp, 472
-  ADDI s6, zero, 88
-  SW s6, 0(s5)
-  ADDI s5, sp, 476
-  ADDI s6, zero, 89
-  SW s6, 0(s5)
-  ADDI s5, sp, 480
-  ADDI s6, zero, 90
-  SW s6, 0(s5)
-  ADDI s5, sp, 484
-  ADDI s6, zero, 91
-  SW s6, 0(s5)
-  ADDI s5, sp, 488
-  ADDI s6, zero, 92
-  SW s6, 0(s5)
-  ADDI s5, sp, 492
-  ADDI s6, zero, 93
-  SW s6, 0(s5)
-  ADDI s5, sp, 496
-  ADDI s6, zero, 94
-  SW s6, 0(s5)
-  ADDI s5, sp, 500
-  ADDI s6, zero, 95
-  SW s6, 0(s5)
-  ADDI s5, sp, 504
-  ADDI s6, zero, 96
-  SW s6, 0(s5)
-  ADDI s5, sp, 508
-  ADDI s6, zero, 97
-  SW s6, 0(s5)
-  ADDI s5, sp, 512
-  ADDI s6, zero, 98
-  SW s6, 0(s5)
-  ADDI s5, sp, 516
-  ADDI s6, zero, 99
-  SW s6, 0(s5)
-  ADDIW t4, s10, 1
-  SW t4, 12(sp)
-  ADDI s5, zero, 0
-  SLTI s5, s5, 100
-  BNE s5, zero, bb12
+  ADD s4, s11, zero
+  ADD s1, s9, zero
+  ADDI s2, zero, 1
+  LD t4, 1168(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 2
+  LD t4, 432(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 3
+  LD t4, 520(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 4
+  LD t4, 88(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 5
+  LD t4, 128(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 6
+  LD t4, 472(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 7
+  LD t4, 480(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 8
+  SW s2, 0(s10)
+  ADDI s2, zero, 9
+  LD t4, 64(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 10
+  LD t4, 32(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 11
+  SW s2, 0(s8)
+  ADDI s2, zero, 12
+  LD t4, 1160(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 13
+  LD t4, 632(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 14
+  LD t4, 360(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 15
+  LD t4, 648(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 16
+  LD t4, 656(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 17
+  LD t4, 1240(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 18
+  LD t4, 120(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 19
+  LD t4, 72(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 20
+  LD t4, 448(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 21
+  LD t4, 1280(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 22
+  LD t4, 1296(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 23
+  LD t4, 1184(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 24
+  LD t4, 496(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 25
+  LD t4, 1208(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 26
+  LD t4, 1232(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 27
+  LD t4, 560(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 28
+  LD t4, 248(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 29
+  LD t4, 376(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 30
+  LD t4, 608(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 31
+  LD t4, 544(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 32
+  LD t4, 1264(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 33
+  LD t4, 384(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 34
+  LD t4, 392(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 35
+  LD t4, 1144(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 36
+  LD t4, 1136(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 37
+  LD t4, 568(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 38
+  LD t4, 576(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 39
+  LD t4, 1176(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 40
+  LD t4, 40(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 41
+  LD t4, 584(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 42
+  LD t4, 224(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 43
+  LD t4, 136(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 44
+  LD t4, 592(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 45
+  LD t4, 1200(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 46
+  LD t4, 600(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 47
+  LD t4, 1304(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 48
+  LD t4, 104(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 49
+  LD t4, 112(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 50
+  LD t4, 512(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 51
+  LD t4, 456(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 52
+  LD t4, 96(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 53
+  LD t4, 440(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 54
+  LD t4, 1288(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 55
+  LD t4, 1272(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 56
+  LD t4, 488(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 57
+  LD t4, 1216(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 58
+  LD t4, 1224(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 59
+  LD t4, 552(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 60
+  LD t4, 152(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 61
+  LD t4, 400(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 62
+  LD t4, 48(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 63
+  LD t4, 536(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 64
+  LD t4, 1256(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 65
+  LD t4, 1152(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 66
+  LD t4, 80(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 67
+  LD t4, 1128(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 68
+  LD t4, 1192(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 69
+  LD t4, 1120(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 70
+  LD t4, 1112(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 71
+  LD t4, 1104(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 72
+  LD t4, 1096(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 73
+  LD t4, 1088(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 74
+  LD t4, 464(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 75
+  LD t4, 1080(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 76
+  LD t4, 240(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 77
+  LD t4, 232(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 78
+  LD t4, 216(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 79
+  LD t4, 160(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 80
+  LD t4, 208(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 81
+  LD t4, 200(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 82
+  LD t4, 192(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 83
+  LD t4, 504(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 84
+  LD t4, 184(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 85
+  LD t4, 176(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 86
+  LD t4, 168(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 87
+  LD t4, 616(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 88
+  LD t4, 408(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 89
+  LD t4, 624(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 90
+  LD t4, 416(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 91
+  LD t4, 528(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 92
+  LD t4, 424(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 93
+  LD t4, 640(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 94
+  LD t4, 144(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 95
+  LD t4, 56(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 96
+  LD t4, 664(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 97
+  LD t4, 1248(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 98
+  LD t4, 672(sp)
+  SW s2, 0(t4)
+  ADDI s2, zero, 99
+  LD t4, 368(sp)
+  SW s2, 0(t4)
+  ADDIW t4, s4, 1
+  SW t4, 4(sp)
+  LB t4, 0(sp)
+  BNE t4, zero, bb12
   # implict jump to bb7
 bb7:
-  ADD s5, s11, zero
+  ADD s2, s1, zero
   # implict jump to bb8
 bb8:
-  LUI s1, 16
-  ADDIW s1, s1, -1
-  REMW s2, s5, s1
+  LUI s3, 16
+  ADDIW s3, s3, -1
+  REMW t4, s2, s3
+  SW t4, 8(sp)
   # implict jump to bb9
 bb9:
-  LW t4, 12(sp)
-  LW t3, 0(sp)
+  LW t4, 4(sp)
+  LW t3, 24(sp)
   BLT t4, t3, bb11
   # implict jump to bb10
 bb10:
-  ADD s7, s2, zero
+  LW t4, 8(sp)
+  ADD s7, t4, zero
   JAL zero, bb3
 bb11:
-  ADD s8, s2, zero
-  LW t4, 12(sp)
+  LW t4, 8(sp)
   ADD s9, t4, zero
+  LW t4, 4(sp)
+  ADD s11, t4, zero
   JAL zero, bb6
 bb12:
   # implict jump to bb13
 bb13:
-  ADD s6, s11, zero
-  ADD s10, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb14
 bb14:
-  ADD s11, s10, zero
-  ADD s3, s6, zero
-  SLLIW s1, s11, 2
-  ADDI t5, sp, 120
-  ADD s1, t5, s1
-  LW s1, 0(s1)
-  ADDW s4, s3, s1
-  ADDIW s0, s11, 1
+  ADD s3, s4, zero
+  ADD s5, s1, zero
+  SLLIW s6, s3, 2
+  ADDI t4, sp, 680
+  ADD s6, t4, s6
+  LW s6, 0(s6)
+  ADDW t4, s5, s6
+  SW t4, 12(sp)
+  ADDIW s0, s3, 1
   # implict jump to bb15
 bb15:
-  SLTI s1, s0, 100
-  BNE s1, zero, bb17
+  SLTI s3, s0, 100
+  BNE s3, zero, bb17
   # implict jump to bb16
 bb16:
-  ADD s5, s4, zero
+  LW t4, 12(sp)
+  ADD s2, t4, zero
   JAL zero, bb8
 bb17:
-  ADD s6, s4, zero
-  ADD s10, s0, zero
+  LW t4, 12(sp)
+  ADD s1, t4, zero
+  ADD s4, s0, zero
   JAL zero, bb14
 bb18:
   # implict jump to bb19
 bb19:
   ADD t4, zero, zero
-  SW t4, 4(sp)
+  SW t4, 20(sp)
   # implict jump to bb20
 bb20:
-  LW t4, 4(sp)
+  LW t4, 20(sp)
   ADD s7, t4, zero
-  SLLIW s8, s7, 2
-  ADDI t5, sp, 120
-  ADD s8, t5, s8
-  ADDI s9, zero, 0
-  SW s9, 0(s8)
+  SLLIW s9, s7, 2
+  ADDI t5, sp, 680
+  ADD s9, t5, s9
+  ADDI s11, zero, 0
+  SW s11, 0(s9)
   ADDIW t4, s7, 1
-  SW t4, 8(sp)
+  SW t4, 16(sp)
   # implict jump to bb21
 bb21:
-  LW t4, 8(sp)
+  LW t4, 16(sp)
   SLTI s7, t4, 100
   BNE s7, zero, bb22
   JAL zero, bb1
 bb22:
-  LW t3, 8(sp)
+  LW t3, 16(sp)
   ADD t4, t3, zero
-  SW t4, 4(sp)
+  SW t4, 20(sp)
   JAL zero, bb20
 func:
-  ADDI sp, sp, -512
-  SD ra, 400(sp)
-  SD s0, 408(sp)
-  SD s1, 416(sp)
-  SD s2, 424(sp)
-  SD s3, 432(sp)
-  SD s4, 440(sp)
-  SD s5, 448(sp)
-  SD s6, 456(sp)
-  SD s7, 464(sp)
-  SD s8, 472(sp)
-  SD s9, 480(sp)
-  SD s10, 488(sp)
-  SD s11, 496(sp)
-  ADD s5, a0, zero
-  SLTI s6, zero, 100
-  BNE s6, zero, bb41
+  ADDI sp, sp, -1232
+  SD s9, 216(sp)
+  SD ra, 232(sp)
+  SD s0, 240(sp)
+  SD s1, 248(sp)
+  SD s2, 256(sp)
+  SD s3, 264(sp)
+  SD s4, 272(sp)
+  SD s5, 280(sp)
+  SD s6, 288(sp)
+  SD s7, 296(sp)
+  SD s8, 304(sp)
+  SD s11, 352(sp)
+  SD s10, 392(sp)
+  ADD t4, a0, zero
+  SW t4, 12(sp)
+  SLTI s5, zero, 100
+  BNE s5, zero, bb41
   # implict jump to bb24
 bb24:
-  BLT zero, s5, bb27
+  LW t4, 12(sp)
+  BLT zero, t4, bb27
   # implict jump to bb25
 bb25:
-  ADD s7, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb26
 bb26:
-  ADD a0, s7, zero
-  LD ra, 400(sp)
-  LD s0, 408(sp)
-  LD s1, 416(sp)
-  LD s2, 424(sp)
-  LD s3, 432(sp)
-  LD s4, 440(sp)
-  LD s5, 448(sp)
-  LD s6, 456(sp)
-  LD s7, 464(sp)
-  LD s8, 472(sp)
-  LD s9, 480(sp)
-  LD s10, 488(sp)
-  LD s11, 496(sp)
-  ADDI sp, sp, 512
+  ADD a0, s5, zero
+  LD s9, 216(sp)
+  LD ra, 232(sp)
+  LD s0, 240(sp)
+  LD s1, 248(sp)
+  LD s2, 256(sp)
+  LD s3, 264(sp)
+  LD s4, 272(sp)
+  LD s5, 280(sp)
+  LD s6, 288(sp)
+  LD s7, 296(sp)
+  LD s8, 304(sp)
+  LD s11, 352(sp)
+  LD s10, 392(sp)
+  ADDI sp, sp, 1232
   JALR zero, 0(ra)
 bb27:
   # implict jump to bb28
 bb28:
+  ADDI t4, sp, 636
+  SD t4, 464(sp)
+  ADDI t4, sp, 640
+  SD t4, 536(sp)
+  ADDI t4, sp, 644
+  SD t4, 1128(sp)
+  ADDI t4, sp, 648
+  SD t4, 1056(sp)
+  ADDI t4, sp, 652
+  SD t4, 208(sp)
+  ADDI t4, sp, 656
+  SD t4, 192(sp)
+  ADDI t4, sp, 660
+  SD t4, 1072(sp)
+  ADDI t4, sp, 664
+  SD t4, 1040(sp)
+  ADDI t4, sp, 668
+  SD t4, 200(sp)
+  ADDI t4, sp, 672
+  SD t4, 184(sp)
+  ADDI t4, sp, 676
+  SD t4, 168(sp)
+  ADDI t4, sp, 680
+  SD t4, 152(sp)
+  ADDI t4, sp, 684
+  SD t4, 1096(sp)
+  ADDI t4, sp, 688
+  SD t4, 1192(sp)
+  ADDI t4, sp, 692
+  SD t4, 136(sp)
+  ADDI t4, sp, 696
+  SD t4, 120(sp)
+  ADDI t4, sp, 700
+  SD t4, 104(sp)
+  ADDI t4, sp, 704
+  SD t4, 480(sp)
+  ADDI t4, sp, 708
+  SD t4, 496(sp)
+  ADDI t4, sp, 712
+  SD t4, 520(sp)
+  ADDI t4, sp, 716
+  SD t4, 424(sp)
+  ADDI t4, sp, 720
+  SD t4, 552(sp)
+  ADDI t4, sp, 724
+  SD t4, 1176(sp)
+  ADDI t4, sp, 728
+  SD t4, 1032(sp)
+  ADDI t4, sp, 732
+  SD t4, 448(sp)
+  ADDI t4, sp, 736
+  SD t4, 1216(sp)
+  ADDI t4, sp, 740
+  SD t4, 568(sp)
+  ADDI t4, sp, 744
+  SD t4, 584(sp)
+  ADDI t4, sp, 748
+  SD t4, 600(sp)
+  ADDI t4, sp, 752
+  SD t4, 616(sp)
+  ADDI t6, sp, 756
+  ADDI a6, sp, 760
+  ADDI a4, sp, 764
+  ADDI a2, sp, 768
+  ADDI t4, sp, 772
+  SD t4, 1160(sp)
+  ADDI t4, sp, 776
+  SD t4, 1136(sp)
+  ADDI t1, sp, 780
+  ADDI t4, sp, 784
+  SD t4, 1080(sp)
+  ADDI s10, sp, 788
+  ADDI s9, sp, 792
+  ADDI s7, sp, 796
+  ADDI t4, sp, 800
+  SD t4, 224(sp)
+  ADDI s4, sp, 804
+  ADDI s2, sp, 808
+  ADDI t4, sp, 812
+  SD t4, 504(sp)
+  ADDI t4, sp, 816
+  SD t4, 1144(sp)
+  ADDI t4, sp, 820
+  SD t4, 88(sp)
+  ADDI t4, sp, 824
+  SD t4, 80(sp)
+  ADDI t4, sp, 828
+  SD t4, 456(sp)
+  ADDI t4, sp, 832
+  SD t4, 1224(sp)
+  ADDI t4, sp, 836
+  SD t4, 1120(sp)
+  ADDI t4, sp, 840
+  SD t4, 432(sp)
+  ADDI t4, sp, 844
+  SD t4, 1200(sp)
+  ADDI t4, sp, 848
+  SD t4, 1048(sp)
+  ADDI t4, sp, 852
+  SD t4, 1064(sp)
+  ADDI t4, sp, 856
+  SD t4, 416(sp)
+  ADDI t4, sp, 860
+  SD t4, 112(sp)
+  ADDI t4, sp, 864
+  SD t4, 176(sp)
+  ADDI t4, sp, 868
+  SD t4, 160(sp)
+  ADDI t4, sp, 872
+  SD t4, 144(sp)
+  ADDI t4, sp, 876
+  SD t4, 1112(sp)
+  ADDI t4, sp, 880
+  SD t4, 1184(sp)
+  ADDI t4, sp, 884
+  SD t4, 128(sp)
+  ADDI t4, sp, 888
+  SD t4, 24(sp)
+  ADDI t4, sp, 892
+  SD t4, 96(sp)
+  ADDI t4, sp, 896
+  SD t4, 472(sp)
+  ADDI t4, sp, 900
+  SD t4, 488(sp)
+  ADDI t4, sp, 904
+  SD t4, 512(sp)
+  ADDI t4, sp, 908
+  SD t4, 528(sp)
+  ADDI t4, sp, 912
+  SD t4, 544(sp)
+  ADDI t4, sp, 916
+  SD t4, 1168(sp)
+  ADDI t4, sp, 920
+  SD t4, 400(sp)
+  ADDI t4, sp, 924
+  SD t4, 440(sp)
+  ADDI t4, sp, 928
+  SD t4, 1208(sp)
+  ADDI t4, sp, 932
+  SD t4, 560(sp)
+  ADDI t4, sp, 936
+  SD t4, 576(sp)
+  ADDI t4, sp, 940
+  SD t4, 592(sp)
+  ADDI t4, sp, 944
+  SD t4, 608(sp)
+  ADDI t4, sp, 948
+  SD t4, 624(sp)
+  ADDI a7, sp, 952
+  ADDI t4, sp, 956
+  SD t4, 312(sp)
+  ADDI t4, sp, 960
+  SD t4, 320(sp)
+  ADDI t4, sp, 964
+  SD t4, 1152(sp)
+  ADDI t4, sp, 968
+  SD t4, 328(sp)
+  ADDI t4, sp, 972
+  SD t4, 336(sp)
+  ADDI t4, sp, 976
+  SD t4, 344(sp)
+  ADDI t4, sp, 980
+  SD t4, 360(sp)
+  ADDI t4, sp, 984
+  SD t4, 1088(sp)
+  ADDI t4, sp, 988
+  SD t4, 368(sp)
+  ADDI t4, sp, 992
+  SD t4, 376(sp)
+  ADDI t4, sp, 996
+  SD t4, 384(sp)
+  ADDI t4, sp, 1000
+  SD t4, 1104(sp)
+  ADDI t4, sp, 1004
+  SD t4, 72(sp)
+  ADDI t4, sp, 1008
+  SD t4, 64(sp)
+  ADDI t4, sp, 1012
+  SD t4, 56(sp)
+  ADDI t4, sp, 1016
+  SD t4, 48(sp)
+  ADDI t4, sp, 1020
+  SD t4, 408(sp)
+  ADDI t4, sp, 1024
+  SD t4, 40(sp)
+  ADDI t4, sp, 1028
+  SD t4, 32(sp)
+  SLTI t4, zero, 100
+  SB t4, 0(sp)
+  ADD s6, zero, zero
   ADD s8, zero, zero
-  ADD s9, zero, zero
   # implict jump to bb29
 bb29:
-  ADD s10, s9, zero
   ADD s11, s8, zero
-  ADDI t0, sp, 4
-  ADDI t1, zero, 1
-  SW t1, 0(t0)
-  ADDI t0, sp, 8
-  ADDI t1, zero, 2
-  SW t1, 0(t0)
-  ADDI t0, sp, 12
-  ADDI t1, zero, 3
-  SW t1, 0(t0)
-  ADDI t0, sp, 16
-  ADDI t1, zero, 4
-  SW t1, 0(t0)
-  ADDI t0, sp, 20
-  ADDI t1, zero, 5
-  SW t1, 0(t0)
-  ADDI t0, sp, 24
-  ADDI t1, zero, 6
-  SW t1, 0(t0)
-  ADDI t0, sp, 28
-  ADDI t1, zero, 7
-  SW t1, 0(t0)
-  ADDI t0, sp, 32
-  ADDI t1, zero, 8
-  SW t1, 0(t0)
-  ADDI t0, sp, 36
-  ADDI t1, zero, 9
-  SW t1, 0(t0)
-  ADDI t0, sp, 40
-  ADDI t1, zero, 10
-  SW t1, 0(t0)
-  ADDI t0, sp, 44
-  ADDI t1, zero, 11
-  SW t1, 0(t0)
-  ADDI t0, sp, 48
-  ADDI t1, zero, 12
-  SW t1, 0(t0)
-  ADDI t0, sp, 52
-  ADDI t1, zero, 13
-  SW t1, 0(t0)
-  ADDI t0, sp, 56
-  ADDI t1, zero, 14
-  SW t1, 0(t0)
-  ADDI t0, sp, 60
-  ADDI t1, zero, 15
-  SW t1, 0(t0)
-  ADDI t0, sp, 64
-  ADDI t1, zero, 16
-  SW t1, 0(t0)
-  ADDI t0, sp, 68
-  ADDI t1, zero, 17
-  SW t1, 0(t0)
-  ADDI t0, sp, 72
-  ADDI t1, zero, 18
-  SW t1, 0(t0)
-  ADDI t0, sp, 76
-  ADDI t1, zero, 19
-  SW t1, 0(t0)
-  ADDI t0, sp, 80
-  ADDI t1, zero, 20
-  SW t1, 0(t0)
-  ADDI t0, sp, 84
-  ADDI t1, zero, 21
-  SW t1, 0(t0)
-  ADDI t0, sp, 88
-  ADDI t1, zero, 22
-  SW t1, 0(t0)
-  ADDI t0, sp, 92
-  ADDI t1, zero, 23
-  SW t1, 0(t0)
-  ADDI t0, sp, 96
-  ADDI t1, zero, 24
-  SW t1, 0(t0)
-  ADDI t0, sp, 100
-  ADDI t1, zero, 25
-  SW t1, 0(t0)
-  ADDI t0, sp, 104
-  ADDI t1, zero, 26
-  SW t1, 0(t0)
-  ADDI t0, sp, 108
-  ADDI t1, zero, 27
-  SW t1, 0(t0)
-  ADDI t0, sp, 112
-  ADDI t1, zero, 28
-  SW t1, 0(t0)
-  ADDI t0, sp, 116
-  ADDI t1, zero, 29
-  SW t1, 0(t0)
-  ADDI t0, sp, 120
-  ADDI t1, zero, 30
-  SW t1, 0(t0)
-  ADDI t0, sp, 124
-  ADDI t1, zero, 31
-  SW t1, 0(t0)
-  ADDI t0, sp, 128
-  ADDI t1, zero, 32
-  SW t1, 0(t0)
-  ADDI t0, sp, 132
-  ADDI t1, zero, 33
-  SW t1, 0(t0)
-  ADDI t0, sp, 136
-  ADDI t1, zero, 34
-  SW t1, 0(t0)
-  ADDI t0, sp, 140
-  ADDI t1, zero, 35
-  SW t1, 0(t0)
-  ADDI t0, sp, 144
-  ADDI t1, zero, 36
-  SW t1, 0(t0)
-  ADDI t0, sp, 148
-  ADDI t1, zero, 37
-  SW t1, 0(t0)
-  ADDI t0, sp, 152
-  ADDI t1, zero, 38
-  SW t1, 0(t0)
-  ADDI t0, sp, 156
-  ADDI t1, zero, 39
-  SW t1, 0(t0)
-  ADDI t0, sp, 160
-  ADDI t1, zero, 40
-  SW t1, 0(t0)
-  ADDI t0, sp, 164
-  ADDI t1, zero, 41
-  SW t1, 0(t0)
-  ADDI t0, sp, 168
-  ADDI t1, zero, 42
-  SW t1, 0(t0)
-  ADDI t0, sp, 172
-  ADDI t1, zero, 43
-  SW t1, 0(t0)
-  ADDI t0, sp, 176
-  ADDI t1, zero, 44
-  SW t1, 0(t0)
-  ADDI t0, sp, 180
-  ADDI t1, zero, 45
-  SW t1, 0(t0)
-  ADDI t0, sp, 184
-  ADDI t1, zero, 46
-  SW t1, 0(t0)
-  ADDI t0, sp, 188
-  ADDI t1, zero, 47
-  SW t1, 0(t0)
-  ADDI t0, sp, 192
-  ADDI t1, zero, 48
-  SW t1, 0(t0)
-  ADDI t0, sp, 196
-  ADDI t1, zero, 49
-  SW t1, 0(t0)
-  ADDI t0, sp, 200
-  ADDI t1, zero, 50
-  SW t1, 0(t0)
-  ADDI t0, sp, 204
-  ADDI t1, zero, 51
-  SW t1, 0(t0)
-  ADDI t0, sp, 208
-  ADDI t1, zero, 52
-  SW t1, 0(t0)
-  ADDI t0, sp, 212
-  ADDI t1, zero, 53
-  SW t1, 0(t0)
-  ADDI t0, sp, 216
-  ADDI t1, zero, 54
-  SW t1, 0(t0)
-  ADDI t0, sp, 220
-  ADDI t1, zero, 55
-  SW t1, 0(t0)
-  ADDI t0, sp, 224
-  ADDI t1, zero, 56
-  SW t1, 0(t0)
-  ADDI t0, sp, 228
-  ADDI t1, zero, 57
-  SW t1, 0(t0)
-  ADDI t0, sp, 232
-  ADDI t1, zero, 58
-  SW t1, 0(t0)
-  ADDI t0, sp, 236
-  ADDI t1, zero, 59
-  SW t1, 0(t0)
-  ADDI t0, sp, 240
-  ADDI t1, zero, 60
-  SW t1, 0(t0)
-  ADDI t0, sp, 244
-  ADDI t1, zero, 61
-  SW t1, 0(t0)
-  ADDI t0, sp, 248
-  ADDI t1, zero, 62
-  SW t1, 0(t0)
-  ADDI t0, sp, 252
-  ADDI t1, zero, 63
-  SW t1, 0(t0)
-  ADDI t0, sp, 256
-  ADDI t1, zero, 64
-  SW t1, 0(t0)
-  ADDI t0, sp, 260
-  ADDI t1, zero, 65
-  SW t1, 0(t0)
-  ADDI t0, sp, 264
-  ADDI t1, zero, 66
-  SW t1, 0(t0)
-  ADDI t0, sp, 268
-  ADDI t1, zero, 67
-  SW t1, 0(t0)
-  ADDI t0, sp, 272
-  ADDI t1, zero, 68
-  SW t1, 0(t0)
-  ADDI t0, sp, 276
-  ADDI t1, zero, 69
-  SW t1, 0(t0)
-  ADDI t0, sp, 280
-  ADDI t1, zero, 70
-  SW t1, 0(t0)
-  ADDI t0, sp, 284
-  ADDI t1, zero, 71
-  SW t1, 0(t0)
-  ADDI t0, sp, 288
-  ADDI t1, zero, 72
-  SW t1, 0(t0)
-  ADDI t0, sp, 292
-  ADDI t1, zero, 73
-  SW t1, 0(t0)
-  ADDI t0, sp, 296
-  ADDI t1, zero, 74
-  SW t1, 0(t0)
-  ADDI t0, sp, 300
-  ADDI t1, zero, 75
-  SW t1, 0(t0)
-  ADDI t0, sp, 304
-  ADDI t1, zero, 76
-  SW t1, 0(t0)
-  ADDI t0, sp, 308
-  ADDI t1, zero, 77
-  SW t1, 0(t0)
-  ADDI t0, sp, 312
-  ADDI t1, zero, 78
-  SW t1, 0(t0)
-  ADDI t0, sp, 316
-  ADDI t1, zero, 79
-  SW t1, 0(t0)
-  ADDI t0, sp, 320
-  ADDI t1, zero, 80
-  SW t1, 0(t0)
-  ADDI t0, sp, 324
-  ADDI t1, zero, 81
-  SW t1, 0(t0)
-  ADDI t0, sp, 328
-  ADDI t1, zero, 82
-  SW t1, 0(t0)
-  ADDI t0, sp, 332
-  ADDI t1, zero, 83
-  SW t1, 0(t0)
-  ADDI t0, sp, 336
-  ADDI t1, zero, 84
-  SW t1, 0(t0)
-  ADDI t0, sp, 340
-  ADDI t1, zero, 85
-  SW t1, 0(t0)
-  ADDI t0, sp, 344
-  ADDI t1, zero, 86
-  SW t1, 0(t0)
-  ADDI t0, sp, 348
-  ADDI t1, zero, 87
-  SW t1, 0(t0)
-  ADDI t0, sp, 352
-  ADDI t1, zero, 88
-  SW t1, 0(t0)
-  ADDI t0, sp, 356
-  ADDI t1, zero, 89
-  SW t1, 0(t0)
-  ADDI t0, sp, 360
-  ADDI t1, zero, 90
-  SW t1, 0(t0)
-  ADDI t0, sp, 364
-  ADDI t1, zero, 91
-  SW t1, 0(t0)
-  ADDI t0, sp, 368
-  ADDI t1, zero, 92
-  SW t1, 0(t0)
-  ADDI t0, sp, 372
-  ADDI t1, zero, 93
-  SW t1, 0(t0)
-  ADDI t0, sp, 376
-  ADDI t1, zero, 94
-  SW t1, 0(t0)
-  ADDI t0, sp, 380
-  ADDI t1, zero, 95
-  SW t1, 0(t0)
-  ADDI t0, sp, 384
-  ADDI t1, zero, 96
-  SW t1, 0(t0)
-  ADDI t0, sp, 388
-  ADDI t1, zero, 97
-  SW t1, 0(t0)
-  ADDI t0, sp, 392
-  ADDI t1, zero, 98
-  SW t1, 0(t0)
-  ADDI t0, sp, 396
-  ADDI t1, zero, 99
-  SW t1, 0(t0)
-  ADDIW s1, s10, 1
-  SLTI s10, zero, 100
-  BNE s10, zero, bb35
+  ADD t0, s6, zero
+  ADDI t2, zero, 1
+  LD t4, 464(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 2
+  LD t4, 536(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 3
+  LD t4, 1128(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 4
+  LD t4, 1056(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 5
+  LD t4, 208(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 6
+  LD t4, 192(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 7
+  LD t4, 1072(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 8
+  LD t4, 1040(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 9
+  LD t4, 200(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 10
+  LD t4, 184(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 11
+  LD t4, 168(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 12
+  LD t4, 152(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 13
+  LD t4, 1096(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 14
+  LD t4, 1192(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 15
+  LD t4, 136(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 16
+  LD t4, 120(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 17
+  LD t4, 104(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 18
+  LD t4, 480(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 19
+  LD t4, 496(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 20
+  LD t4, 520(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 21
+  LD t4, 424(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 22
+  LD t4, 552(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 23
+  LD t4, 1176(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 24
+  LD t4, 1032(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 25
+  LD t4, 448(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 26
+  LD t4, 1216(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 27
+  LD t4, 568(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 28
+  LD t4, 584(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 29
+  LD t4, 600(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 30
+  LD t4, 616(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 31
+  SW t2, 0(t6)
+  ADDI t2, zero, 32
+  SW t2, 0(a6)
+  ADDI t2, zero, 33
+  SW t2, 0(a4)
+  ADDI t2, zero, 34
+  SW t2, 0(a2)
+  ADDI t2, zero, 35
+  LD t4, 1160(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 36
+  LD t4, 1136(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 37
+  SW t2, 0(t1)
+  ADDI t2, zero, 38
+  LD t4, 1080(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 39
+  SW t2, 0(s10)
+  ADDI t2, zero, 40
+  SW t2, 0(s9)
+  ADDI t2, zero, 41
+  SW t2, 0(s7)
+  ADDI t2, zero, 42
+  LD t4, 224(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 43
+  SW t2, 0(s4)
+  ADDI t2, zero, 44
+  SW t2, 0(s2)
+  ADDI t2, zero, 45
+  LD t4, 504(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 46
+  LD t4, 1144(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 47
+  LD t4, 88(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 48
+  LD t4, 80(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 49
+  LD t4, 456(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 50
+  LD t4, 1224(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 51
+  LD t4, 1120(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 52
+  LD t4, 432(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 53
+  LD t4, 1200(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 54
+  LD t4, 1048(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 55
+  LD t4, 1064(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 56
+  LD t4, 416(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 57
+  LD t4, 112(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 58
+  LD t4, 176(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 59
+  LD t4, 160(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 60
+  LD t4, 144(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 61
+  LD t4, 1112(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 62
+  LD t4, 1184(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 63
+  LD t4, 128(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 64
+  LD t4, 24(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 65
+  LD t4, 96(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 66
+  LD t4, 472(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 67
+  LD t4, 488(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 68
+  LD t4, 512(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 69
+  LD t4, 528(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 70
+  LD t4, 544(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 71
+  LD t4, 1168(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 72
+  LD t4, 400(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 73
+  LD t4, 440(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 74
+  LD t4, 1208(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 75
+  LD t4, 560(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 76
+  LD t4, 576(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 77
+  LD t4, 592(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 78
+  LD t4, 608(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 79
+  LD t4, 624(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 80
+  SW t2, 0(a7)
+  ADDI t2, zero, 81
+  LD t4, 312(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 82
+  LD t4, 320(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 83
+  LD t4, 1152(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 84
+  LD t4, 328(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 85
+  LD t4, 336(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 86
+  LD t4, 344(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 87
+  LD t4, 360(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 88
+  LD t4, 1088(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 89
+  LD t4, 368(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 90
+  LD t4, 376(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 91
+  LD t4, 384(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 92
+  LD t4, 1104(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 93
+  LD t4, 72(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 94
+  LD t4, 64(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 95
+  LD t4, 56(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 96
+  LD t4, 48(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 97
+  LD t4, 408(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 98
+  LD t4, 40(sp)
+  SW t2, 0(t4)
+  ADDI t2, zero, 99
+  LD t4, 32(sp)
+  SW t2, 0(t4)
+  ADDIW t4, s11, 1
+  SW t4, 8(sp)
+  LB t4, 0(sp)
+  BNE t4, zero, bb35
   # implict jump to bb30
 bb30:
-  ADD s10, s11, zero
+  ADD s11, t0, zero
   # implict jump to bb31
 bb31:
-  LUI t1, 16
-  ADDIW t1, t1, -1
-  REMW s0, s10, t1
+  LUI a1, 16
+  ADDIW a1, a1, -1
+  REMW s3, s11, a1
   # implict jump to bb32
 bb32:
-  BLT s1, s5, bb34
+  LW t4, 8(sp)
+  LW t3, 12(sp)
+  BLT t4, t3, bb34
   # implict jump to bb33
 bb33:
-  ADD s7, s0, zero
+  ADD s5, s3, zero
   JAL zero, bb26
 bb34:
-  ADD s8, s0, zero
-  ADD s9, s1, zero
+  ADD s6, s3, zero
+  LW t4, 8(sp)
+  ADD s8, t4, zero
   JAL zero, bb29
 bb35:
   # implict jump to bb36
 bb36:
-  ADD t0, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb37
 bb37:
-  ADD t1, t0, zero
-  ADD t2, s11, zero
-  SLLIW a1, t1, 2
-  ADDI t5, sp, 0
-  ADD a1, t5, a1
-  LW a1, 0(a1)
-  ADDW s3, t2, a1
-  ADDIW s4, t1, 1
+  ADD a1, t2, zero
+  ADD a3, t0, zero
+  SLLIW a5, a1, 2
+  ADDI t5, sp, 632
+  ADD a5, t5, a5
+  LW a5, 0(a5)
+  ADDW s1, a3, a5
+  ADDIW s0, a1, 1
   # implict jump to bb38
 bb38:
-  SLTI t1, s4, 100
-  BNE t1, zero, bb40
+  SLTI a1, s0, 100
+  BNE a1, zero, bb40
   # implict jump to bb39
 bb39:
-  ADD s10, s3, zero
+  ADD s11, s1, zero
   JAL zero, bb31
 bb40:
-  ADD s11, s3, zero
-  ADD t0, s4, zero
+  ADD t0, s1, zero
+  ADD t2, s0, zero
   JAL zero, bb37
 bb41:
   # implict jump to bb42
 bb42:
-  ADD s6, zero, zero
+  ADD t4, zero, zero
+  SW t4, 16(sp)
   # implict jump to bb43
 bb43:
-  ADD s7, s6, zero
-  SLLIW s8, s7, 2
-  ADDI t5, sp, 0
-  ADD s8, t5, s8
-  SW zero, 0(s8)
-  ADDIW s2, s7, 1
+  LW t4, 16(sp)
+  ADD s5, t4, zero
+  SLLIW s6, s5, 2
+  ADDI t4, sp, 632
+  ADD s6, t4, s6
+  SW zero, 0(s6)
+  ADDIW t4, s5, 1
+  SW t4, 4(sp)
   # implict jump to bb44
 bb44:
-  SLTI s7, s2, 100
-  BNE s7, zero, bb45
+  LW t4, 4(sp)
+  SLTI s5, t4, 100
+  BNE s5, zero, bb45
   JAL zero, bb24
 bb45:
-  ADD s6, s2, zero
+  LW t3, 4(sp)
+  ADD t4, t3, zero
+  SW t4, 16(sp)
   JAL zero, bb43

@@ -500,10 +500,10 @@ while.cond270:  pred(while.body271.split)
   br i1 %275, bb %while.body271, bb %while.exit272
 while.body271_preheader:  pred(while.body263)
   x269.phi707_ph_val = phi [bb %while.body263, i32 0]
+  40474 = fcmp ogt float %rad, float 6.283185
   br bb %while.body271
 while.body271:  pred(while.cond270, while.body271_preheader)
   x269.phi707 = phi [bb %while.cond270, i32 %x269.phi, bb %while.body271_preheader, i32 %x269.phi707_ph_val]
-  40474 = fcmp ogt float %rad, float 6.283185
   br i1 %40474, bb %my_sin.select.then476, bb %my_sin.select.else478
 while.body271.split:  pred(rotate.then238, rotate.if.exit239)
   280.ret = phi [bb %rotate.then238, i32 0, bb %rotate.if.exit239, i32 %246.load378]

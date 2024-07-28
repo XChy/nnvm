@@ -10,14 +10,14 @@ main:
   ADDI sp, sp, -144
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s3, 16(sp)
-  SD s8, 24(sp)
-  SD s1, 32(sp)
-  SD s2, 40(sp)
-  SD s4, 48(sp)
-  SD s5, 56(sp)
-  SD s6, 64(sp)
-  SD s7, 72(sp)
+  SD s2, 16(sp)
+  SD s7, 24(sp)
+  SD s8, 32(sp)
+  SD s1, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
@@ -68,14 +68,14 @@ bb2:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s3, 16(sp)
-  LD s8, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  LD s4, 48(sp)
-  LD s5, 56(sp)
-  LD s6, 64(sp)
-  LD s7, 72(sp)
+  LD s2, 16(sp)
+  LD s7, 24(sp)
+  LD s8, 32(sp)
+  LD s1, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
   LD s9, 80(sp)
   LD s10, 88(sp)
   LD s11, 96(sp)
@@ -96,15 +96,15 @@ bb5:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s4, s11, 1
+  ADDIW s3, s11, 1
   # implict jump to bb6
 bb6:
   LA s11, n
   LW s11, 0(s11)
-  BLT s4, s11, bb7
+  BLT s3, s11, bb7
   JAL zero, bb2
 bb7:
-  ADD s9, s4, zero
+  ADD s9, s3, zero
   JAL zero, bb5
 bb8:
   # implict jump to bb9
@@ -125,18 +125,18 @@ bb11:
   ADD s9, s7, zero
   # implict jump to bb12
 bb12:
-  ADD s1, s9, zero
-  ADDIW s3, s8, 1
+  ADD s4, s9, zero
+  ADDIW s2, s8, 1
   # implict jump to bb13
 bb13:
   ADDI s9, zero, 10
   ADDI s11, zero, 1
   SUBW s9, s9, s11
-  BLT s3, s9, bb14
+  BLT s2, s9, bb14
   JAL zero, bb1
 bb14:
-  ADD s5, s3, zero
-  ADD s6, s1, zero
+  ADD s5, s2, zero
+  ADD s6, s4, zero
   JAL zero, bb10
 bb15:
   # implict jump to bb16
@@ -150,8 +150,8 @@ bb17:
   ADDI t2, sp, 104
   ADD t1, t2, t1
   LW t2, 0(t1)
-  ADDIW s2, t0, 1
-  SLLIW t0, s2, 2
+  ADDIW s1, t0, 1
+  SLLIW t0, s1, 2
   ADDI a0, sp, 104
   ADD t0, a0, t0
   LW a0, 0(t0)
@@ -167,13 +167,13 @@ bb20:
   SUBW s11, s11, s8
   ADDI t0, zero, 1
   SUBW s11, s11, t0
-  BLT s2, s11, bb22
+  BLT s1, s11, bb22
   # implict jump to bb21
 bb21:
   ADD s9, s0, zero
   JAL zero, bb12
 bb22:
-  ADD s10, s2, zero
+  ADD s10, s1, zero
   ADD s7, s0, zero
   JAL zero, bb17
 bb23:

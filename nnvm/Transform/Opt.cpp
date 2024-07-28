@@ -38,7 +38,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<RotatePass>();
   passManager.addFunctionPass<LoopCanonPass>();
-  // passManager.addFunctionPass<LICMPass>();
+  passManager.addFunctionPass<LICMPass>();
 
   // Before codegen
   // passManager.addFunctionPass<GlobalHoistPass>();

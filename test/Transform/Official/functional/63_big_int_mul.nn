@@ -168,6 +168,7 @@ while.body117_preheader:  pred(while.exit104)
   temp.phi220248_ph_val = phi [bb %while.exit104, i32 0]
   n.phi218249_ph_val = phi [bb %while.exit104, i32 39]
   i.phi210250_ph_val = phi [bb %while.exit104, i32 19]
+  134239 = icmp sgt i32 19, i32 -1
   br bb %while.body117
 while.body117:  pred(while.cond116, while.body117_preheader)
   i.phi210250 = phi [bb %while.cond116, i32 %i.phi210, bb %while.body117_preheader, i32 %i.phi210250_ph_val]
@@ -176,7 +177,6 @@ while.body117:  pred(while.cond116, while.body117_preheader)
   229 = shl i32 %i.phi210250, i32 2
   125 = ptradd ptr %c2, i32 %229
   125.load = load i32 from ptr %125
-  134239 = icmp sgt i32 19, i32 -1
   br i1 %134239, bb %while.body130_preheader, bb %while.exit131
 while.exit118:  pred(while.cond116, while.exit104)
   183.load = load i32 from ptr %result

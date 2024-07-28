@@ -21,12 +21,12 @@ while.cond:  pred(if.exit24)
 while.body_preheader:  pred(entry12)
   i.phi51_ph_val = phi [bb %entry12, i32 0]
   result.phi3752_ph_val = phi [bb %entry12, i32 0]
+  a.load41 = load i32 from ptr @a
+  642 = icmp eq i32 1, i32 %a.load41
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   result.phi3752 = phi [bb %while.cond, i32 %result.phi37, bb %while.body_preheader, i32 %result.phi3752_ph_val]
   i.phi51 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi51_ph_val]
-  a.load41 = load i32 from ptr @a
-  642 = icmp eq i32 1, i32 %a.load41
   br i1 %642, bb %func.then, bb %func.else
 while.body.split:  pred(func.then, func.else)
   21.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]

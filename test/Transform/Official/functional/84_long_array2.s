@@ -55,12 +55,12 @@ main:
   ADDIW t0, t0, -112
   ADD sp, sp, t0
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s4, 16(sp)
-  SD s11, 24(sp)
-  SD s0, 32(sp)
-  SD s1, 40(sp)
-  SD s2, 48(sp)
+  SD s4, 8(sp)
+  SD s11, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
   SD s5, 56(sp)
   SD s6, 64(sp)
   SD s7, 72(sp)
@@ -202,12 +202,12 @@ bb6:
   LW s10, 0(s10)
   ADD a0, s10, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s4, 16(sp)
-  LD s11, 24(sp)
-  LD s0, 32(sp)
-  LD s1, 40(sp)
-  LD s2, 48(sp)
+  LD s4, 8(sp)
+  LD s11, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
   LD s5, 56(sp)
   LD s6, 64(sp)
   LD s7, 72(sp)
@@ -251,8 +251,8 @@ bb13:
 bb14:
   ADD s9, s8, zero
   ADDI s10, zero, 1
-  SUBW s3, s9, s10
-  SLLIW s9, s3, 2
+  SUBW s0, s9, s10
+  SLLIW s9, s0, 2
   LUI s10, 3
   ADDIW s10, s10, 12
   ADDW s9, s9, s10
@@ -261,10 +261,10 @@ bb14:
   SW zero, 0(s9)
   # implict jump to bb15
 bb15:
-  BNE s3, zero, bb16
+  BNE s0, zero, bb16
   JAL zero, bb5
 bb16:
-  ADD s8, s3, zero
+  ADD s8, s0, zero
   JAL zero, bb14
 bb17:
   ADDI s7, zero, 1022
@@ -274,8 +274,8 @@ bb18:
 bb19:
   ADD s8, s7, zero
   ADDI s9, zero, 1
-  SUBW s0, s8, s9
-  SLLIW s8, s0, 2
+  SUBW s1, s8, s9
+  SLLIW s8, s1, 2
   LUI s9, 2
   ADDIW s9, s9, 8
   ADDW s8, s8, s9
@@ -284,10 +284,10 @@ bb19:
   SW zero, 0(s8)
   # implict jump to bb20
 bb20:
-  BNE s0, zero, bb21
+  BNE s1, zero, bb21
   JAL zero, bb4
 bb21:
-  ADD s7, s0, zero
+  ADD s7, s1, zero
   JAL zero, bb19
 bb22:
   ADDI s6, zero, 1023
@@ -297,8 +297,8 @@ bb23:
 bb24:
   ADD s7, s6, zero
   ADDI s8, zero, 1
-  SUBW s1, s7, s8
-  SLLIW s7, s1, 2
+  SUBW s2, s7, s8
+  SLLIW s7, s2, 2
   LUI s8, 1
   ADDIW s8, s8, 4
   ADDW s7, s7, s8
@@ -307,10 +307,10 @@ bb24:
   SW zero, 0(s7)
   # implict jump to bb25
 bb25:
-  BNE s1, zero, bb26
+  BNE s2, zero, bb26
   JAL zero, bb3
 bb26:
-  ADD s6, s1, zero
+  ADD s6, s2, zero
   JAL zero, bb24
 bb27:
   ADDI s5, zero, 1024
@@ -320,15 +320,15 @@ bb28:
 bb29:
   ADD s6, s5, zero
   ADDI s7, zero, 1
-  SUBW s2, s6, s7
-  SLLIW s6, s2, 2
+  SUBW s3, s6, s7
+  SLLIW s6, s3, 2
   ADDI t5, sp, 104
   ADD s6, t5, s6
   SW zero, 0(s6)
   # implict jump to bb30
 bb30:
-  BNE s2, zero, bb31
+  BNE s3, zero, bb31
   JAL zero, bb2
 bb31:
-  ADD s5, s2, zero
+  ADD s5, s3, zero
   JAL zero, bb29

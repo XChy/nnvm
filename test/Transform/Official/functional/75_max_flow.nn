@@ -6,10 +6,10 @@ global ptr size init with 10 x i32 zeros
 immutable global ptr INF init with i32 1879048192
 i32 max_flow(i32 s, i32 t) {
 entry246:  pred()
+  9409449 = icmp slt i32 0, i32 10
   br bb %while.cond250
 while.cond250:  pred(entry246, if.exit263)
   flow.phi = phi [bb %entry246, i32 0, bb %if.exit263, i32 %267]
-  9409449 = icmp slt i32 0, i32 10
   br i1 %9409449, bb %my_memset.while.body_preheader, bb %my_memset.while.exit
 then262:  pred(my_memset.while.exit)
   ret i32 %flow.phi
@@ -46,12 +46,12 @@ if.exit:  pred(entry102)
   307 = shl i32 %s, i32 2
   114 = ptradd ptr @used, i32 %307
   store i32 1 to ptr %114
+  122 = ptradd ptr @size, i32 %307
   br bb %while.cond116
 while.cond116:  pred(if.exit, then137, then149, if.exit188)
   d.phi = phi [bb %if.exit, i32 0, bb %if.exit188, i32 %184, bb %then149, i32 %d.phi, bb %then137, i32 %d.phi]
   min_f.phi300 = phi [bb %if.exit, i32 0, bb %if.exit188, i32 %min_f.phi, bb %then149, i32 %min_f.phi300, bb %then137, i32 %min_f.phi300]
   i115.phi = phi [bb %if.exit, i32 0, bb %if.exit188, i32 %245, bb %then149, i32 %152, bb %then137, i32 %140]
-  122 = ptradd ptr @size, i32 %307
   122.load = load i32 from ptr %122
   124 = icmp slt i32 %i115.phi, i32 %122.load
   br i1 %124, bb %while.body117, bb %while.exit118
@@ -216,10 +216,10 @@ while.body275:  pred(while.cond274, while.body275_preheader)
   291 = sub i32 %E.phi454, i32 1
   br bb %while.cond274
 while.exit276:  pred(while.cond274, my_memset.while.exit432)
+  9439451 = icmp slt i32 0, i32 10
   br bb %max_flow.while.cond250
 max_flow.while.cond250:  pred(while.exit276, max_flow.if.exit263)
   flow.phi346 = phi [bb %while.exit276, i32 0, bb %max_flow.if.exit263, i32 %267354]
-  9439451 = icmp slt i32 0, i32 10
   br i1 %9439451, bb %my_memset.while.body441_preheader, bb %my_memset.while.exit447
 max_flow.then262:  pred(my_memset.while.exit447)
   call void putint(i32 %flow.phi346)

@@ -70,10 +70,6 @@ while.cond:  pred(while.body)
 while.body_preheader:  pred(entry)
   result.phi4674_ph_val = phi [bb %entry, i32 0]
   i.phi4675_ph_val = phi [bb %entry, i32 0]
-  br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  i.phi4675 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi4675_ph_val]
-  result.phi4674 = phi [bb %while.cond, i32 %result.phi, bb %while.body_preheader, i32 %result.phi4674_ph_val]
   30 = add i32 %i1, i32 %i2
   32 = add i32 %30, i32 %i3
   34 = add i32 %32, i32 %i4
@@ -1574,6 +1570,10 @@ while.body:  pred(while.cond, while.body_preheader)
   3123 = add i32 %3121, i32 %i14
   3125 = add i32 %3123, i32 %i15
   3127 = sdiv i32 %3125, i32 100
+  br bb %while.body
+while.body:  pred(while.cond, while.body_preheader)
+  i.phi4675 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi4675_ph_val]
+  result.phi4674 = phi [bb %while.cond, i32 %result.phi, bb %while.body_preheader, i32 %result.phi4674_ph_val]
   3130 = add i32 %result.phi4674, i32 %3127
   3132 = srem i32 %3130, i32 1500000001
   3134 = add i32 %i.phi4675, i32 1

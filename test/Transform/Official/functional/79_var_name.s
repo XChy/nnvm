@@ -79,23 +79,23 @@ bb6:
   LW s11, 0(s11)
   ADDW s10, s10, s11
   SW s10, 0(s9)
-  ADDW s0, s7, s10
+  ADDW s1, s7, s10
   ADD a0, s10, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s2, s8, 1
+  ADDIW s0, s8, 1
   # implict jump to bb7
 bb7:
-  SLTI s7, s2, 20
+  SLTI s7, s0, 20
   BNE s7, zero, bb9
   # implict jump to bb8
 bb8:
-  ADD s4, s0, zero
+  ADD s4, s1, zero
   JAL zero, bb3
 bb9:
-  ADD s5, s2, zero
-  ADD s6, s0, zero
+  ADD s5, s0, zero
+  ADD s6, s1, zero
   JAL zero, bb6
 bb10:
   ADDI s3, zero, 18
@@ -105,16 +105,16 @@ bb11:
 bb12:
   ADD s4, s3, zero
   ADDI s5, zero, 1
-  SUBW s1, s4, s5
-  SLLIW s4, s1, 2
+  SUBW s2, s4, s5
+  SLLIW s4, s2, 2
   ADDIW s4, s4, 8
   ADDI t5, sp, 104
   ADD s4, t5, s4
   SW zero, 0(s4)
   # implict jump to bb13
 bb13:
-  BNE s1, zero, bb14
+  BNE s2, zero, bb14
   JAL zero, bb1
 bb14:
-  ADD s3, s1, zero
+  ADD s3, s2, zero
   JAL zero, bb12

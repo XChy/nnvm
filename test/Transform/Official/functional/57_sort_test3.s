@@ -100,8 +100,8 @@ bb13:
   # implict jump to bb14
 bb14:
   LW t4, 0(sp)
-  ADD s1, t4, zero
-  BLT s1, s11, bb25
+  ADD s0, t4, zero
+  BLT s0, s11, bb25
   # implict jump to bb15
 bb15:
   ADD t1, zero, zero
@@ -110,28 +110,28 @@ bb16:
   BNE t1, zero, bb24
   # implict jump to bb17
 bb17:
-  BLT s1, s11, bb23
+  BLT s0, s11, bb23
   # implict jump to bb18
 bb18:
   ADD t1, s11, zero
   # implict jump to bb19
 bb19:
-  ADD s0, t1, zero
+  ADD s1, t1, zero
   # implict jump to bb20
 bb20:
-  BLT s1, s0, bb22
+  BLT s0, s1, bb22
   # implict jump to bb21
 bb21:
-  ADD s6, s1, zero
+  ADD s6, s0, zero
   JAL zero, bb4
 bb22:
-  ADD s7, s1, zero
-  ADD s8, s0, zero
+  ADD s7, s0, zero
+  ADD s8, s1, zero
   JAL zero, bb7
 bb23:
   SLLIW t2, s11, 2
   ADD t2, s2, t2
-  SLLIW a3, s1, 2
+  SLLIW a3, s0, 2
   ADD a3, s2, a3
   LW a3, 0(a3)
   SW a3, 0(t2)
@@ -140,12 +140,12 @@ bb23:
   ADD t1, t2, zero
   JAL zero, bb19
 bb24:
-  ADDIW s0, s1, 1
+  ADDIW s0, s0, 1
   ADD t4, s0, zero
   SW t4, 0(sp)
   JAL zero, bb14
 bb25:
-  SLLIW t2, s1, 2
+  SLLIW t2, s0, 2
   ADD t2, s2, t2
   LW t2, 0(t2)
   SLT t2, t2, s5

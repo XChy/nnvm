@@ -731,13 +731,13 @@ while.body293_preheader:  pred(entry279)
   yy.phi3601177_ph_val = phi [bb %entry279, float 0.000000]
   xx307.phi3581178_ph_val = phi [bb %entry279, float 0.000000]
   y.phi1179_ph_val = phi [bb %entry279, i32 0]
+  3051167 = icmp slt i32 0, i32 192
   br bb %while.body293
 while.body293:  pred(while.cond292, while.body293_preheader)
   y.phi1179 = phi [bb %while.cond292, i32 %y.phi, bb %while.body293_preheader, i32 %y.phi1179_ph_val]
   xx307.phi3581178 = phi [bb %while.cond292, float %xx307.phi358, bb %while.body293_preheader, float %xx307.phi3581178_ph_val]
   yy.phi3601177 = phi [bb %while.cond292, float %yy.phi360, bb %while.body293_preheader, float %yy.phi3601177_ph_val]
   p.phi3631176 = phi [bb %while.cond292, i32 %p.phi363, bb %while.body293_preheader, i32 %p.phi3631176_ph_val]
-  3051167 = icmp slt i32 0, i32 192
   br i1 %3051167, bb %while.body301_preheader, bb %while.exit302
 while.exit294:  pred(while.cond292, entry279)
   ret 
@@ -753,6 +753,10 @@ while.body301_preheader:  pred(while.body293)
   yy.phi1172_ph_val = phi [bb %while.body293, float %yy.phi3601177]
   xx307.phi1173_ph_val = phi [bb %while.body293, float %xx307.phi3581178]
   x.phi1174_ph_val = phi [bb %while.body293, i32 0]
+  312 = si2f i32 %y.phi1179 to float
+  316 = si2f i32 192 to float
+  321 = fdiv float %312, float %316
+  2463701163 = icmp slt i32 0, i32 24
   br bb %while.body301
 while.body301:  pred(while.cond300, while.body301_preheader)
   x.phi1174 = phi [bb %while.cond300, i32 %x.phi, bb %while.body301_preheader, i32 %x.phi1174_ph_val]
@@ -760,11 +764,7 @@ while.body301:  pred(while.cond300, while.body301_preheader)
   yy.phi1172 = phi [bb %while.cond300, float %yy.phi, bb %while.body301_preheader, float %yy.phi1172_ph_val]
   p.phi3621171 = phi [bb %while.cond300, i32 %p.phi362, bb %while.body301_preheader, i32 %p.phi3621171_ph_val]
   309 = si2f i32 %x.phi1174 to float
-  312 = si2f i32 %y.phi1179 to float
-  316 = si2f i32 192 to float
   317 = fdiv float %309, float %316
-  321 = fdiv float %312, float %316
-  2463701163 = icmp slt i32 0, i32 24
   br i1 %2463701163, bb %sample.while.body242_preheader, bb %sample.while.exit243
 while.exit302:  pred(while.cond300, while.body293)
   xx307.phi3581170 = phi [bb %while.cond300, float %xx307.phi, bb %while.body293, float %xx307.phi3581178]

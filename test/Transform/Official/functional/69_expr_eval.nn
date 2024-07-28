@@ -854,10 +854,10 @@ while.cond299:  pred(while.body300.split)
   br i1 %303, bb %while.body300, bb %while.exit301
 while.body300_preheader:  pred(next_token.if.exit441512)
   count.phi2170_ph_val = phi [bb %next_token.if.exit441512, i32 %296]
+  1933452167 = icmp ne i32 256, i32 0
   br bb %while.body300
 while.body300:  pred(while.cond299, while.body300_preheader)
   count.phi2170 = phi [bb %while.cond299, i32 %count.phi, bb %while.body300_preheader, i32 %count.phi2170_ph_val]
-  1933452167 = icmp ne i32 256, i32 0
   br i1 %1933452167, bb %eval.init_preheader, bb %eval.init.exit
 while.body300.split:  pred(eval.then214, eval.then270, eval.while.exit279)
   304.ret = phi [bb %eval.then214, i32 -1, bb %eval.then270, i32 -1, bb %eval.while.exit279, i32 %141.load635]

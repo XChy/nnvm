@@ -949,9 +949,9 @@ while.cond684:  pred(while.body685)
   693 = icmp ne i32 %691.load, i32 32
   br i1 %693, bb %while.body685, bb %while.exit686
 while.body685_preheader:  pred(then676)
+  i.load695 = load i32 from ptr @i
   br bb %while.body685
 while.body685:  pred(while.cond684, while.body685_preheader)
-  i.load695 = load i32 from ptr @i
   ii.load696 = load i32 from ptr @ii
   697 = add i32 %i.load695, i32 %ii.load696
   906 = shl i32 %697, i32 2

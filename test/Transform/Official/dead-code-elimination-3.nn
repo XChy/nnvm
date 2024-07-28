@@ -27,11 +27,11 @@ while.cond:  pred(while.exit100019)
 while.body_preheader:  pred(entry100003)
   i.phi100060_ph_val = phi [bb %entry100003, i32 0]
   sum.phi100061_ph_val = phi [bb %entry100003, i32 0]
+  100021100053 = icmp slt i32 0, i32 60
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   sum.phi100061 = phi [bb %while.cond, i32 %sum.phi, bb %while.body_preheader, i32 %sum.phi100061_ph_val]
   i.phi100060 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi100060_ph_val]
-  100021100053 = icmp slt i32 0, i32 60
   br i1 %100021100053, bb %while.body100018_preheader, bb %while.exit100019
 while.exit:  pred(while.cond, entry100003)
   100059 = phi [bb %while.cond, i32 %sum.phi, bb %entry100003, i32 0]

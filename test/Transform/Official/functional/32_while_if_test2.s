@@ -15,17 +15,17 @@ main:
   SD s6, 56(sp)
   SD s7, 64(sp)
   ADDI s3, zero, 0
-  SLTI s3, s3, 5
-  BNE s3, zero, bb4
+  SLTI s4, s3, 5
+  BNE s4, zero, bb4
   # implict jump to bb1
 bb1:
   ADDI s1, zero, 3
   # implict jump to bb2
 bb2:
-  ADD s4, s1, zero
+  ADD s5, s1, zero
   # implict jump to bb3
 bb3:
-  ADD a0, s4, zero
+  ADD a0, s5, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -41,11 +41,11 @@ bb4:
   ADDI s3, zero, 3
   # implict jump to bb5
 bb5:
-  ADD s5, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb6
 bb6:
   ADD s6, s3, zero
-  ADD s7, s5, zero
+  ADD s7, s4, zero
   SLLIW s0, s6, 1
   ADDIW s2, s7, 1
   # implict jump to bb7
@@ -57,7 +57,7 @@ bb8:
   ADD s1, s0, zero
   JAL zero, bb2
 bb9:
-  ADD s5, s2, zero
+  ADD s4, s2, zero
   ADD s3, s0, zero
   JAL zero, bb6
 ifWhile:
@@ -75,13 +75,13 @@ ifWhile:
   BNE s3, zero, bb14
   # implict jump to bb11
 bb11:
-  ADDI s1, zero, 3
+  ADDI s2, zero, 3
   # implict jump to bb12
 bb12:
-  ADD s3, s1, zero
+  ADD s4, s2, zero
   # implict jump to bb13
 bb13:
-  ADD a0, s3, zero
+  ADD a0, s4, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -94,15 +94,15 @@ bb13:
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb14:
-  ADDI s4, zero, 3
+  ADDI s3, zero, 3
   # implict jump to bb15
 bb15:
   ADD s5, zero, zero
   # implict jump to bb16
 bb16:
-  ADD s6, s4, zero
+  ADD s6, s3, zero
   ADD s7, s5, zero
-  SLLIW s2, s6, 1
+  SLLIW s1, s6, 1
   ADDIW s0, s7, 1
   # implict jump to bb17
 bb17:
@@ -110,9 +110,9 @@ bb17:
   BNE s6, zero, bb19
   # implict jump to bb18
 bb18:
-  ADD s1, s2, zero
+  ADD s2, s1, zero
   JAL zero, bb12
 bb19:
   ADD s5, s0, zero
-  ADD s4, s2, zero
+  ADD s3, s1, zero
   JAL zero, bb16

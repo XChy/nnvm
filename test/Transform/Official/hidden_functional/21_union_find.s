@@ -41,17 +41,17 @@ bb2:
 main:
   ADDI sp, sp, -128
   SD ra, 16(sp)
-  SD s0, 24(sp)
-  SD s1, 32(sp)
-  SD s2, 40(sp)
-  SD s3, 48(sp)
-  SD s4, 56(sp)
-  SD s5, 64(sp)
+  SD s1, 24(sp)
+  SD s2, 32(sp)
+  SD s3, 40(sp)
+  SD s5, 48(sp)
+  SD s0, 56(sp)
+  SD s4, 64(sp)
   SD s6, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
-  SD s7, 96(sp)
-  SD s10, 104(sp)
+  SD s7, 80(sp)
+  SD s10, 88(sp)
+  SD s8, 96(sp)
+  SD s9, 104(sp)
   SD s11, 112(sp)
   CALL getint
   ADD t4, a0, zero
@@ -81,17 +81,17 @@ bb7:
   CALL putint
   ADD a0, zero, zero
   LD ra, 16(sp)
-  LD s0, 24(sp)
-  LD s1, 32(sp)
-  LD s2, 40(sp)
-  LD s3, 48(sp)
-  LD s4, 56(sp)
-  LD s5, 64(sp)
+  LD s1, 24(sp)
+  LD s2, 32(sp)
+  LD s3, 40(sp)
+  LD s5, 48(sp)
+  LD s0, 56(sp)
+  LD s4, 64(sp)
   LD s6, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
-  LD s7, 96(sp)
-  LD s10, 104(sp)
+  LD s7, 80(sp)
+  LD s10, 88(sp)
+  LD s8, 96(sp)
+  LD s9, 104(sp)
   LD s11, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
@@ -116,19 +116,19 @@ bb11:
   ADD s4, s11, zero
   # implict jump to bb12
 bb12:
-  ADD s3, s4, zero
-  ADDIW s2, s5, 1
+  ADD s0, s4, zero
+  ADDIW s1, s5, 1
   # implict jump to bb13
 bb13:
   LW t4, 4(sp)
-  BLT s2, t4, bb15
+  BLT s1, t4, bb15
   # implict jump to bb14
 bb14:
-  ADD s8, s3, zero
+  ADD s8, s0, zero
   JAL zero, bb7
 bb15:
-  ADD s9, s2, zero
-  ADD s10, s3, zero
+  ADD s9, s1, zero
+  ADD s10, s0, zero
   JAL zero, bb10
 bb16:
   ADDIW s6, s11, 1
@@ -154,14 +154,14 @@ bb19:
   BNE s9, s10, bb23
   # implict jump to bb20
 bb20:
-  ADDIW s0, s8, 1
+  ADDIW s3, s8, 1
   # implict jump to bb21
 bb21:
   LW t4, 0(sp)
-  BLT s0, t4, bb22
+  BLT s3, t4, bb22
   JAL zero, bb5
 bb22:
-  ADD s7, s0, zero
+  ADD s7, s3, zero
   JAL zero, bb19
 bb23:
   SLLIW s10, s10, 2
@@ -182,14 +182,14 @@ bb26:
   LA s9, parent
   ADD s8, s9, s8
   SW s7, 0(s8)
-  ADDIW s1, s7, 1
+  ADDIW s2, s7, 1
   # implict jump to bb27
 bb27:
   LW t4, 4(sp)
-  BLT s1, t4, bb28
+  BLT s2, t4, bb28
   JAL zero, bb4
 bb28:
-  ADD t4, s1, zero
+  ADD t4, s2, zero
   SW t4, 8(sp)
   JAL zero, bb26
 find:

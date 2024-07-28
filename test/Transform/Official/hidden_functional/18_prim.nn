@@ -100,12 +100,12 @@ prim.while.cond97:  pred(prim.if.exit114)
 prim.while.body98_preheader:  pred(prim.while.body88)
   t.phi253318694_ph_val = phi [bb %prim.while.body88, i32 %t.phi254307701]
   j.phi319695_ph_val = phi [bb %prim.while.body88, i32 %96313]
+  271324 = shl i32 %i.phi249308702, i32 2
+  106325 = ptradd ptr @c, i32 %271324
   br bb %prim.while.body98
 prim.while.body98:  pred(prim.while.cond97, prim.while.body98_preheader)
   j.phi319695 = phi [bb %prim.while.cond97, i32 %j.phi319, bb %prim.while.body98_preheader, i32 %j.phi319695_ph_val]
   t.phi253318694 = phi [bb %prim.while.cond97, i32 %t.phi253318, bb %prim.while.body98_preheader, i32 %t.phi253318694_ph_val]
-  271324 = shl i32 %i.phi249308702, i32 2
-  106325 = ptradd ptr @c, i32 %271324
   106.load326 = load i32 from ptr %106325
   272327 = shl i32 %j.phi319695, i32 2
   110328 = ptradd ptr @c, i32 %272327
@@ -509,12 +509,12 @@ while.cond97:  pred(if.exit114)
 while.body98_preheader:  pred(while.body88)
   t.phi253708_ph_val = phi [bb %while.body88, i32 %t.phi254715]
   j.phi709_ph_val = phi [bb %while.body88, i32 %96]
+  271 = shl i32 %i.phi249716, i32 2
+  106 = ptradd ptr @c, i32 %271
   br bb %while.body98
 while.body98:  pred(while.cond97, while.body98_preheader)
   j.phi709 = phi [bb %while.cond97, i32 %j.phi, bb %while.body98_preheader, i32 %j.phi709_ph_val]
   t.phi253708 = phi [bb %while.cond97, i32 %t.phi253, bb %while.body98_preheader, i32 %t.phi253708_ph_val]
-  271 = shl i32 %i.phi249716, i32 2
-  106 = ptradd ptr @c, i32 %271
   106.load = load i32 from ptr %106
   272 = shl i32 %j.phi709, i32 2
   110 = ptradd ptr @c, i32 %272

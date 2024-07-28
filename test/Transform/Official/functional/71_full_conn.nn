@@ -22,11 +22,11 @@ while.cond:  pred(if.exit1949)
 while.body_preheader:  pred(entry1911)
   j.phi19663230_ph_val = phi [bb %entry1911, i32 0]
   N.phi3231_ph_val = phi [bb %entry1911, i32 %1913]
+  19263225 = icmp slt i32 0, i32 5
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   N.phi3231 = phi [bb %while.cond, i32 %N.phi, bb %while.body_preheader, i32 %N.phi3231_ph_val]
   j.phi19663230 = phi [bb %while.cond, i32 %j.phi1966, bb %while.body_preheader, i32 %j.phi19663230_ph_val]
-  19263225 = icmp slt i32 0, i32 5
   br i1 %19263225, bb %while.body1923_preheader, bb %while.exit1924
 while.exit:  pred(while.cond, entry1911)
   ret i32 0
@@ -38,11 +38,11 @@ while.cond1922:  pred(while.exit1931)
 while.body1923_preheader:  pred(while.body)
   j.phi19653227_ph_val = phi [bb %while.body, i32 %j.phi19663230]
   i.phi3228_ph_val = phi [bb %while.body, i32 0]
+  19333222 = icmp slt i32 0, i32 5
   br bb %while.body1923
 while.body1923:  pred(while.cond1922, while.body1923_preheader)
   i.phi3228 = phi [bb %while.cond1922, i32 %i.phi, bb %while.body1923_preheader, i32 %i.phi3228_ph_val]
   j.phi19653227 = phi [bb %while.cond1922, i32 %j.phi1965, bb %while.body1923_preheader, i32 %j.phi19653227_ph_val]
-  19333222 = icmp slt i32 0, i32 5
   br i1 %19333222, bb %while.body1930_preheader, bb %while.exit1931
 while.exit1924:  pred(while.cond1922, while.body)
   j.phi19663226 = phi [bb %while.cond1922, i32 %j.phi1965, bb %while.body, i32 %j.phi19663230]
@@ -156,11 +156,11 @@ while.cond1929:  pred(while.body1930)
   br i1 %1933, bb %while.body1930, bb %while.exit1931
 while.body1930_preheader:  pred(while.body1923)
   j.phi3224_ph_val = phi [bb %while.body1923, i32 0]
+  1936 = mul i32 %i.phi3228, i32 20
+  1937 = ptradd ptr %a, i32 %1936
   br bb %while.body1930
 while.body1930:  pred(while.cond1929, while.body1930_preheader)
   j.phi3224 = phi [bb %while.cond1929, i32 %j.phi, bb %while.body1930_preheader, i32 %j.phi3224_ph_val]
-  1936 = mul i32 %i.phi3228, i32 20
-  1937 = ptradd ptr %a, i32 %1936
   1967 = shl i32 %j.phi3224, i32 2
   1940 = ptradd ptr %1937, i32 %1967
   1941 = call i32 getint()

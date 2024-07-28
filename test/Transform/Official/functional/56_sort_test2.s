@@ -90,15 +90,15 @@ bb5:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s1, s8, 1
+  ADDIW s0, s8, 1
   # implict jump to bb6
 bb6:
   LA s8, n
   LW s8, 0(s8)
-  BLT s1, s8, bb7
+  BLT s0, s8, bb7
   JAL zero, bb2
 bb7:
-  ADD s7, s1, zero
+  ADD s7, s0, zero
   JAL zero, bb5
 bb8:
   ADDI s2, zero, 1
@@ -131,14 +131,14 @@ bb14:
   ADDI t5, sp, 0
   ADD s7, t5, s7
   SW s4, 0(s7)
-  ADDIW s0, s3, 1
+  ADDIW s1, s3, 1
   # implict jump to bb15
 bb15:
-  SLTI s7, s0, 10
+  SLTI s7, s1, 10
   BNE s7, zero, bb16
   JAL zero, bb1
 bb16:
-  ADD s2, s0, zero
+  ADD s2, s1, zero
   JAL zero, bb10
 bb17:
   ADDIW s0, s6, 1

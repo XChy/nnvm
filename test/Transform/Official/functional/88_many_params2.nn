@@ -101,11 +101,11 @@ func.while.cond:  pred(func.while.body)
   br i1 %12214, bb %func.while.body, bb %func.while.exit
 func.while.body_preheader:  pred(init.exit66)
   index.phi213257_ph_val = phi [bb %init.exit66, i32 0]
+  15217 = mul i32 %115.load, i32 236
+  16218 = ptradd ptr %b, i32 %15217
   br bb %func.while.body
 func.while.body:  pred(func.while.cond, func.while.body_preheader)
   index.phi213257 = phi [bb %func.while.cond, i32 %index.phi213, bb %func.while.body_preheader, i32 %index.phi213257_ph_val]
-  15217 = mul i32 %115.load, i32 236
-  16218 = ptradd ptr %b, i32 %15217
   206219 = shl i32 %index.phi213257, i32 2
   19220 = ptradd ptr %16218, i32 %206219
   19.load221 = load i32 from ptr %19220
@@ -172,11 +172,11 @@ while.cond:  pred(while.body)
   br i1 %12, bb %while.body, bb %while.exit
 while.body_preheader:  pred(entry)
   index.phi266_ph_val = phi [bb %entry, i32 0]
+  15 = mul i32 %a, i32 236
+  16 = ptradd ptr %b, i32 %15
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   index.phi266 = phi [bb %while.cond, i32 %index.phi, bb %while.body_preheader, i32 %index.phi266_ph_val]
-  15 = mul i32 %a, i32 236
-  16 = ptradd ptr %b, i32 %15
   206 = shl i32 %index.phi266, i32 2
   19 = ptradd ptr %16, i32 %206
   19.load = load i32 from ptr %19

@@ -206,13 +206,13 @@ while.cond139:  pred(while.body140)
   br i1 %144, bb %while.body140, bb %while.exit141
 while.body140_preheader:  pred(while.exit104)
   i101.phi866_ph_val = phi [bb %while.exit104, i32 %137.load]
+  153 = add i32 %d, i32 1
   br bb %while.body140
 while.body140:  pred(while.cond139, while.body140_preheader)
   i101.phi866 = phi [bb %while.cond139, i32 %i101.phi, bb %while.body140_preheader, i32 %i101.phi866_ph_val]
   370 = shl i32 %i101.phi866, i32 2
   149 = ptradd ptr @to, i32 %370
   149.load = load i32 from ptr %149
-  153 = add i32 %d, i32 1
   call void tree(i32 %149.load, i32 %153)
   157 = ptradd ptr @next, i32 %370
   157.load = load i32 from ptr %157

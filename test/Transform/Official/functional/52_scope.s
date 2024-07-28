@@ -17,16 +17,17 @@ main:
   SD s5, 48(sp)
   SD s6, 56(sp)
   SD s7, 64(sp)
-  ADDI s2, zero, 0
-  SLTI s2, s2, 100
-  BNE s2, zero, bb6
+  SD s8, 72(sp)
+  ADDI s3, zero, 0
+  SLTI s3, s3, 100
+  BNE s3, zero, bb6
   # implict jump to bb1
 bb1:
-  ADD s2, zero, zero
+  ADD s3, zero, zero
   # implict jump to bb2
 bb2:
-  SLTI s2, s2, 100
-  BNE s2, zero, bb5
+  SLTI s3, s3, 100
+  BNE s3, zero, bb5
   # implict jump to bb3
 bb3:
   ADD a0, zero, zero
@@ -43,6 +44,7 @@ bb4:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
+  LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb5:
@@ -52,50 +54,50 @@ bb5:
 bb6:
   # implict jump to bb7
 bb7:
-  ADD s3, zero, zero
+  LA s4, a
+  LW s4, 0(s4)
+  XORI s4, s4, 1
+  SLTIU s2, s4, 1
   ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb8
 bb8:
-  ADD s5, s4, zero
-  ADD s6, s3, zero
-  LA s7, a
-  LW s7, 0(s7)
-  XORI s7, s7, 1
-  SLTIU s7, s7, 1
-  BNE s7, zero, bb17
+  ADD s6, s5, zero
+  ADD s7, s4, zero
+  BNE s2, zero, bb17
   # implict jump to bb9
 bb9:
-  ADD s7, zero, zero
+  ADD s8, zero, zero
   # implict jump to bb10
 bb10:
-  XORI s7, s7, 1
-  SLTIU s7, s7, 1
-  BNE s7, zero, bb16
+  XORI s8, s8, 1
+  SLTIU s8, s8, 1
+  BNE s8, zero, bb16
   # implict jump to bb11
 bb11:
-  ADD s7, s6, zero
+  ADD s8, s7, zero
   # implict jump to bb12
 bb12:
-  ADD s0, s7, zero
-  ADDIW s1, s5, 1
+  ADD s1, s8, zero
+  ADDIW s0, s6, 1
   # implict jump to bb13
 bb13:
-  SLTI s5, s1, 100
-  BNE s5, zero, bb15
+  SLTI s6, s0, 100
+  BNE s6, zero, bb15
   # implict jump to bb14
 bb14:
-  ADD s2, s0, zero
+  ADD s3, s1, zero
   JAL zero, bb2
 bb15:
-  ADD s3, s0, zero
   ADD s4, s1, zero
+  ADD s5, s0, zero
   JAL zero, bb8
 bb16:
-  ADDIW s6, s6, 1
-  ADD s7, s6, zero
+  ADDIW s7, s7, 1
+  ADD s8, s7, zero
   JAL zero, bb12
 bb17:
-  ADDI s7, zero, 1
+  ADDI s8, zero, 1
   JAL zero, bb10
 func:
   ADDI sp, sp, -16

@@ -136,19 +136,19 @@ bb21:
   ADD s8, s6, zero
   # implict jump to bb22
 bb22:
-  ADD s1, s8, zero
-  ADD s0, s7, zero
+  ADD s0, s8, zero
+  ADD s1, s7, zero
   # implict jump to bb23
 bb23:
-  SLTI s5, s1, 75
+  SLTI s5, s0, 75
   BNE s5, zero, bb25
   # implict jump to bb24
 bb24:
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb17
 bb25:
-  ADD s2, s1, zero
-  ADD s4, s0, zero
+  ADD s2, s0, zero
+  ADD s4, s1, zero
   JAL zero, bb20
 bb26:
   ADDIW s6, s6, 42

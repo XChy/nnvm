@@ -2803,7 +2803,7 @@ bb344:
   ADDIW s6, s6, 1
   LA s7, pos
   SW s6, 0(s7)
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb326
 bb345:
   LA s6, pos
@@ -2811,7 +2811,7 @@ bb345:
   ADDIW s6, s6, 1
   LA s7, pos
   SW s6, 0(s7)
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb326
 bb346:
   LA s6, pos
@@ -2819,7 +2819,7 @@ bb346:
   ADDIW s6, s6, 1
   LA s7, pos
   SW s6, 0(s7)
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb326
 bb347:
   LA s6, pos
@@ -2827,7 +2827,7 @@ bb347:
   ADDIW s6, s6, 1
   LA s7, pos
   SW s6, 0(s7)
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb326
 bb348:
   # implict jump to bb349
@@ -2841,20 +2841,20 @@ bb350:
   LA s8, buffer
   ADD s7, s8, s7
   SW s6, 0(s7)
-  ADDIW s1, s5, 1
+  ADDIW s0, s5, 1
   CALL getch
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   # implict jump to bb351
 bb351:
-  XORI s5, s0, 35
+  XORI s5, s1, 35
   BNE s5, zero, bb353
   # implict jump to bb352
 bb352:
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb325
 bb353:
-  ADD s2, s0, zero
-  ADD s4, s1, zero
+  ADD s2, s1, zero
+  ADD s4, s0, zero
   JAL zero, bb350
 skip_space:
   ADDI sp, sp, -32

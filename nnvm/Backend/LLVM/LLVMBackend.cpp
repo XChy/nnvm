@@ -155,6 +155,12 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
+if (auto ZI = mayCast<ZExtInst>(I)) {
+    out << "zext " << ZI->getOperand(0)->getType()->dump() << " "
+        << valueToName[ZI->getOperand(0)] << " to " << ZI->getType()->dump() ;
+    return;
+  }
+
   if (auto *ptrAdd = mayCast<PtrAddInst>(I)) {
     out << "getelementptr i8, ptr " << valueToName[ptrAdd->getOperand(0)]
         << ", " << ptrAdd->getOperand(1)->getType()->dump() << " "

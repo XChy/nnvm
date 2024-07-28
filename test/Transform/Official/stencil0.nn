@@ -44,6 +44,7 @@ while.body_preheader:  pred(entry12)
   ij.phi240353_ph_val = phi [bb %entry12, i32 0]
   ijm1.phi238354_ph_val = phi [bb %entry12, i32 0]
   j.phi236355_ph_val = phi [bb %entry12, i32 1]
+  32318 = icmp slt i32 1, i32 1023
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   j.phi236355 = phi [bb %while.cond, i32 %j.phi236, bb %while.body_preheader, i32 %j.phi236355_ph_val]
@@ -57,7 +58,6 @@ while.body:  pred(while.cond, while.body_preheader)
   im1jp1.phi255347 = phi [bb %while.cond, i32 %im1jp1.phi255, bb %while.body_preheader, i32 %im1jp1.phi255347_ph_val]
   ip1jp1.phi257346 = phi [bb %while.cond, i32 %ip1jp1.phi257, bb %while.body_preheader, i32 %ip1jp1.phi257346_ph_val]
   val.phi259345 = phi [bb %while.cond, i32 %val.phi259, bb %while.body_preheader, i32 %val.phi259345_ph_val]
-  32318 = icmp slt i32 1, i32 1023
   br i1 %32318, bb %while.body27_preheader, bb %while.exit28
 while.exit:  pred(while.cond, entry12)
   164342 = icmp slt i32 0, i32 1024

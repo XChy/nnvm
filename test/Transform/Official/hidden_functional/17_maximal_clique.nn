@@ -143,15 +143,15 @@ while.body46_preheader:  pred(entry40)
   tmp.phi162222_ph_val = phi [bb %entry40, i32 0]
   max_.phi159223_ph_val = phi [bb %entry40, i32 0]
   j44.phi224_ph_val = phi [bb %entry40, i32 1]
+  174 = shl i32 %k, i32 2
+  54 = ptradd ptr @store, i32 %174
+  57 = add i32 %k, i32 1
   br bb %while.body46
 while.body46:  pred(while.cond45, while.body46_preheader)
   j44.phi224 = phi [bb %while.cond45, i32 %j44.phi, bb %while.body46_preheader, i32 %j44.phi224_ph_val]
   max_.phi159223 = phi [bb %while.cond45, i32 %max_.phi159, bb %while.body46_preheader, i32 %max_.phi159223_ph_val]
   tmp.phi162222 = phi [bb %while.cond45, i32 %tmp.phi162, bb %while.body46_preheader, i32 %tmp.phi162222_ph_val]
-  174 = shl i32 %k, i32 2
-  54 = ptradd ptr @store, i32 %174
   store i32 %j44.phi224 to ptr %54
-  57 = add i32 %k, i32 1
   br bb %is_clique.while.cond
 while.body46.split:  pred(is_clique.while.exit, is_clique.then)
   58.ret = phi [bb %is_clique.while.exit, i32 1, bb %is_clique.then, i32 0]

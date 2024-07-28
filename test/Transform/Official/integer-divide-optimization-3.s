@@ -15,135 +15,133 @@ loopCount:
 main:
   ADDI sp, sp, -128
   SD ra, 16(sp)
-  SD s8, 24(sp)
-  SD s0, 32(sp)
-  SD s1, 40(sp)
-  SD s2, 48(sp)
-  SD s3, 56(sp)
-  SD s4, 64(sp)
-  SD s5, 72(sp)
-  SD s6, 80(sp)
-  SD s7, 88(sp)
-  SD s10, 96(sp)
-  SD s11, 104(sp)
-  SD s9, 112(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
+  SD s10, 104(sp)
+  SD s11, 112(sp)
   CALL getint
-  ADD s4, a0, zero
-  LA s5, loopCount
-  SW s4, 0(s5)
+  ADD s6, a0, zero
+  LA s7, loopCount
+  SW s6, 0(s7)
   ADDI a0, zero, 1016
   CALL _sysy_starttime
-  LA s4, loopCount
-  LW s4, 0(s4)
-  ADDI s5, zero, 0
-  BLT s5, s4, bb3
+  LA s6, loopCount
+  LW s6, 0(s6)
+  ADDI s7, zero, 0
+  BLT s7, s6, bb3
   # implict jump to bb1
 bb1:
-  ADD s4, zero, zero
+  ADD s6, zero, zero
   # implict jump to bb2
 bb2:
   ADDI a0, zero, 1031
   CALL _sysy_stoptime
-  ADD a0, s4, zero
+  ADD a0, s6, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 16(sp)
-  LD s8, 24(sp)
-  LD s0, 32(sp)
-  LD s1, 40(sp)
-  LD s2, 48(sp)
-  LD s3, 56(sp)
-  LD s4, 64(sp)
-  LD s5, 72(sp)
-  LD s6, 80(sp)
-  LD s7, 88(sp)
-  LD s10, 96(sp)
-  LD s11, 104(sp)
-  LD s9, 112(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  LD s10, 104(sp)
+  LD s11, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb3:
   # implict jump to bb4
 bb4:
-  ADD s5, zero, zero
-  ADD s6, zero, zero
+  ADDI s7, zero, 0
+  SLTI t4, s7, 300
+  SB t4, 0(sp)
+  ADD s7, zero, zero
+  ADD s8, zero, zero
   # implict jump to bb5
 bb5:
-  ADD t4, s6, zero
-  SW t4, 0(sp)
-  ADD t4, s5, zero
-  SW t4, 4(sp)
-  ADDI s9, zero, 0
-  SLTI s9, s9, 300
-  BNE s9, zero, bb11
+  ADD t4, s8, zero
+  SW t4, 8(sp)
+  ADD t4, s7, zero
+  SW t4, 12(sp)
+  LB t4, 0(sp)
+  BNE t4, zero, bb11
   # implict jump to bb6
 bb6:
-  ADD s9, zero, zero
+  ADD s11, zero, zero
   # implict jump to bb7
 bb7:
-  ADDI s2, zero, 300
-  DIVW s2, s9, s2
-  LW t4, 4(sp)
-  ADDW s2, t4, s2
-  LUI s7, 524264
-  ADDIW s7, s7, 3
-  REMW s1, s2, s7
-  LW t4, 0(sp)
-  ADDIW s3, t4, 1
+  ADDI s1, zero, 300
+  DIVW s1, s11, s1
+  LW t4, 12(sp)
+  ADDW s1, t4, s1
+  LUI s10, 524264
+  ADDIW s10, s10, 3
+  REMW s2, s1, s10
+  LW t4, 8(sp)
+  ADDIW s0, t4, 1
   # implict jump to bb8
 bb8:
-  LA s2, loopCount
-  LW s2, 0(s2)
-  BLT s3, s2, bb10
+  LA s1, loopCount
+  LW s1, 0(s1)
+  BLT s0, s1, bb10
   # implict jump to bb9
 bb9:
-  ADD s4, s1, zero
+  ADD s6, s2, zero
   JAL zero, bb2
 bb10:
-  ADD s5, s1, zero
-  ADD s6, s3, zero
+  ADD s7, s2, zero
+  ADD s8, s0, zero
   JAL zero, bb5
 bb11:
   # implict jump to bb12
 bb12:
-  ADD s10, zero, zero
-  ADD t4, zero, zero
-  SW t4, 8(sp)
+  LA s4, multi
+  LW s4, 0(s4)
+  LW t4, 8(sp)
+  MULW s4, t4, s4
+  ADDI s9, zero, 2
+  DIVW s4, s4, s9
+  ADDI s9, zero, 1000
+  MULW s4, s4, s9
+  LA s9, size
+  LW s9, 0(s9)
+  DIVW t4, s4, s9
+  SW t4, 4(sp)
+  ADD s4, zero, zero
+  ADD s9, zero, zero
   # implict jump to bb13
 bb13:
-  LW t4, 8(sp)
-  ADD s7, t4, zero
-  ADD s8, s10, zero
-  LA s11, multi
-  LW s11, 0(s11)
-  LW t4, 0(sp)
-  MULW s11, t4, s11
-  ADDI s2, zero, 2
-  DIVW s2, s11, s2
-  ADDI s11, zero, 1000
-  MULW s2, s2, s11
-  LA s11, size
-  LW s11, 0(s11)
-  DIVW s2, s2, s11
-  ADDW s0, s8, s2
-  ADDIW t4, s7, 1
-  SW t4, 12(sp)
+  ADD s10, s9, zero
+  ADD s1, s4, zero
+  LW t4, 4(sp)
+  ADDW s5, s1, t4
+  ADDIW s3, s10, 1
   # implict jump to bb14
 bb14:
-  LW t4, 12(sp)
-  SLTI s2, t4, 300
-  BNE s2, zero, bb16
+  SLTI s1, s3, 300
+  BNE s1, zero, bb16
   # implict jump to bb15
 bb15:
-  ADD s9, s0, zero
+  ADD s11, s5, zero
   JAL zero, bb7
 bb16:
-  ADD s10, s0, zero
-  LW t3, 12(sp)
-  ADD t4, t3, zero
-  SW t4, 8(sp)
+  ADD s4, s5, zero
+  ADD s9, s3, zero
   JAL zero, bb13
 func:
   LUI t0, 1048574

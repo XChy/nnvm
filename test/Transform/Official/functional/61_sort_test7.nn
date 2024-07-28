@@ -99,11 +99,11 @@ while.cond85:  pred(while.body86)
 while.body86_preheader:  pred(while.exit)
   k.phi168191_ph_val = phi [bb %while.exit, i32 %k.phi169]
   i.phi192_ph_val = phi [bb %while.exit, i32 %i.phi163]
+  93 = ptradd ptr @buf, i32 400
   br bb %while.body86
 while.body86:  pred(while.cond85, while.body86_preheader)
   i.phi192 = phi [bb %while.cond85, i32 %i.phi, bb %while.body86_preheader, i32 %i.phi192_ph_val]
   k.phi168191 = phi [bb %while.cond85, i32 %k.phi168, bb %while.body86_preheader, i32 %k.phi168191_ph_val]
-  93 = ptradd ptr @buf, i32 400
   178 = shl i32 %k.phi168191, i32 2
   96 = ptradd ptr %93, i32 %178
   179 = shl i32 %i.phi192, i32 2
@@ -125,11 +125,11 @@ while.cond107:  pred(while.body108)
 while.body108_preheader:  pred(while.exit87)
   k.phi187_ph_val = phi [bb %while.exit87, i32 %k.phi169190]
   j.phi188_ph_val = phi [bb %while.exit87, i32 %j.phi166]
+  115 = ptradd ptr @buf, i32 400
   br bb %while.body108
 while.body108:  pred(while.cond107, while.body108_preheader)
   j.phi188 = phi [bb %while.cond107, i32 %j.phi, bb %while.body108_preheader, i32 %j.phi188_ph_val]
   k.phi187 = phi [bb %while.cond107, i32 %k.phi, bb %while.body108_preheader, i32 %k.phi187_ph_val]
-  115 = ptradd ptr @buf, i32 400
   180 = shl i32 %k.phi187, i32 2
   118 = ptradd ptr %115, i32 %180
   181 = shl i32 %j.phi188, i32 2
@@ -148,12 +148,12 @@ while.cond129:  pred(while.body130)
   br i1 %134, bb %while.body130, bb %while.exit131
 while.body130_preheader:  pred(while.exit109)
   l.stack.phi185_ph_val = phi [bb %while.exit109, i32 %l]
+  142 = ptradd ptr @buf, i32 400
   br bb %while.body130
 while.body130:  pred(while.cond129, while.body130_preheader)
   l.stack.phi185 = phi [bb %while.cond129, i32 %l.stack.phi, bb %while.body130_preheader, i32 %l.stack.phi185_ph_val]
   182 = shl i32 %l.stack.phi185, i32 2
   140 = ptradd ptr @buf, i32 %182
-  142 = ptradd ptr @buf, i32 400
   145 = ptradd ptr %142, i32 %182
   145.load = load i32 from ptr %145
   store i32 %145.load to ptr %140

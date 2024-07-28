@@ -25,7 +25,7 @@ INF:
 .word 0x70000000
 .section .text
 max_flow:
-  ADDI sp, sp, -80
+  ADDI sp, sp, -96
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -36,32 +36,34 @@ max_flow:
   SD s6, 56(sp)
   SD s7, 64(sp)
   SD s8, 72(sp)
+  SD s9, 80(sp)
   ADD s1, a0, zero
   ADD s2, a1, zero
-  ADD s3, zero, zero
+  ADDI s3, zero, 0
+  SLTI s3, s3, 10
+  ADD s4, zero, zero
   # implict jump to bb1
 bb1:
-  ADD s4, s3, zero
-  SLTI s5, zero, 10
-  BNE s5, zero, bb5
+  ADD s5, s4, zero
+  BNE s3, zero, bb5
   # implict jump to bb2
 bb2:
   ADD a0, s1, zero
   ADD a1, s2, zero
-  LUI s6, 458752
-  ADDIW s6, s6, 0
-  ADD a2, zero, s6
+  LUI s7, 458752
+  ADDIW s7, s7, 0
+  ADD a2, zero, s7
   CALL dfs
-  ADD s6, a0, zero
-  SLTIU s7, s6, 1
-  BNE s7, zero, bb4
+  ADD s7, a0, zero
+  SLTIU s8, s7, 1
+  BNE s8, zero, bb4
   # implict jump to bb3
 bb3:
-  ADDW s6, s4, s6
-  ADD s3, s6, zero
+  ADDW s7, s5, s7
+  ADD s4, s7, zero
   JAL zero, bb1
 bb4:
-  ADD a0, s4, zero
+  ADD a0, s5, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -72,27 +74,28 @@ bb4:
   LD s6, 56(sp)
   LD s7, 64(sp)
   LD s8, 72(sp)
-  ADDI sp, sp, 80
+  LD s9, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb5:
   # implict jump to bb6
 bb6:
-  ADD s5, zero, zero
+  ADD s6, zero, zero
   # implict jump to bb7
 bb7:
-  ADD s6, s5, zero
-  SLLIW s7, s6, 2
-  LA s8, used
-  ADD s7, s8, s7
-  SW zero, 0(s7)
-  ADDIW s0, s6, 1
+  ADD s7, s6, zero
+  SLLIW s8, s7, 2
+  LA s9, used
+  ADD s8, s9, s8
+  SW zero, 0(s8)
+  ADDIW s0, s7, 1
   # implict jump to bb8
 bb8:
-  SLTI s6, s0, 10
-  BNE s6, zero, bb9
+  SLTI s7, s0, 10
+  BNE s7, zero, bb9
   JAL zero, bb2
 bb9:
-  ADD s5, s0, zero
+  ADD s6, s0, zero
   JAL zero, bb7
 dfs:
   ADDI sp, sp, -128
@@ -122,6 +125,8 @@ bb11:
   ADD s4, s4, s3
   ADDI s5, zero, 1
   SW s5, 0(s4)
+  LA s4, size
+  ADD s3, s4, s3
   ADD s4, zero, zero
   ADD s5, zero, zero
   ADD s6, zero, zero
@@ -130,9 +135,7 @@ bb12:
   ADD s7, s6, zero
   ADD s8, s5, zero
   ADD s9, s4, zero
-  LA s10, size
-  ADD s10, s10, s3
-  LW s10, 0(s10)
+  LW s10, 0(s3)
   BLT s7, s10, bb14
   # implict jump to bb13
 bb13:
@@ -363,31 +366,31 @@ bb27:
   BLT zero, t4, bb38
   # implict jump to bb28
 bb28:
-  ADD s1, zero, zero
+  SLTI s1, zero, 10
+  ADD s3, zero, zero
   # implict jump to bb29
 bb29:
-  ADD s3, s1, zero
-  SLTI s4, zero, 10
-  BNE s4, zero, bb33
+  ADD s4, s3, zero
+  BNE s1, zero, bb33
   # implict jump to bb30
 bb30:
   ADDI a0, zero, 1
   LW t4, 8(sp)
   ADD a1, t4, zero
-  LUI s5, 458752
-  ADDIW s5, s5, 0
-  ADD a2, zero, s5
+  LUI s7, 458752
+  ADDIW s7, s7, 0
+  ADD a2, zero, s7
   CALL dfs
-  ADD s5, a0, zero
-  SLTIU s7, s5, 1
-  BNE s7, zero, bb32
+  ADD s7, a0, zero
+  SLTIU s8, s7, 1
+  BNE s8, zero, bb32
   # implict jump to bb31
 bb31:
-  ADDW s5, s3, s5
-  ADD s1, s5, zero
+  ADDW s7, s4, s7
+  ADD s3, s7, zero
   JAL zero, bb29
 bb32:
-  ADD a0, s3, zero
+  ADD a0, s4, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -410,22 +413,22 @@ bb32:
 bb33:
   # implict jump to bb34
 bb34:
-  ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb35
 bb35:
-  ADD s5, s4, zero
-  SLLIW s7, s5, 2
-  LA s8, used
-  ADD s7, s8, s7
-  SW zero, 0(s7)
-  ADDIW s0, s5, 1
+  ADD s7, s5, zero
+  SLLIW s8, s7, 2
+  LA s9, used
+  ADD s8, s9, s8
+  SW zero, 0(s8)
+  ADDIW s0, s7, 1
   # implict jump to bb36
 bb36:
-  SLTI s5, s0, 10
-  BNE s5, zero, bb37
+  SLTI s7, s0, 10
+  BNE s7, zero, bb37
   JAL zero, bb30
 bb37:
-  ADD s4, s0, zero
+  ADD s5, s0, zero
   JAL zero, bb35
 bb38:
   # implict jump to bb39

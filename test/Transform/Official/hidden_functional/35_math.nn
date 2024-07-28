@@ -498,12 +498,12 @@ while.cond320:  pred(if.exit380)
   br i1 %324, bb %while.body321, bb %while.exit322
 while.body321_preheader:  pred(entry317)
   num.phi1506_ph_val = phi [bb %entry317, i32 %319]
+  31487 = si2f i32 0 to float
   br bb %while.body321
 while.body321:  pred(while.cond320, while.body321_preheader)
   num.phi1506 = phi [bb %while.cond320, i32 %num.phi, bb %while.body321_preheader, i32 %num.phi1506_ph_val]
   326 = call float getfloat()
   328 = call float getfloat()
-  31487 = si2f i32 0 to float
   41488 = fcmp ogt float %326, float %31487
   br i1 %41488, bb %my_fabs.then1490, bb %my_fabs.if.exit1492
 while.body321.split:  pred(my_fabs.then1490, my_fabs.if.exit1492)

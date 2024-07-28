@@ -18,6 +18,7 @@ while.body_preheader:  pred(entry)
   k.phi97146_ph_val = phi [bb %entry, i32 0]
   i.phi147_ph_val = phi [bb %entry, i32 0]
   sum.phi91148_ph_val = phi [bb %entry, i32 0]
+  14129 = icmp slt i32 0, i32 10
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   sum.phi91148 = phi [bb %while.cond, i32 %sum.phi91, bb %while.body_preheader, i32 %sum.phi91148_ph_val]
@@ -26,7 +27,6 @@ while.body:  pred(while.cond, while.body_preheader)
   m.phi101145 = phi [bb %while.cond, i32 %m.phi101, bb %while.body_preheader, i32 %m.phi101145_ph_val]
   select.phi107144 = phi [bb %while.cond, i1 %select.phi107, bb %while.body_preheader, i1 %select.phi107144_ph_val]
   n.phi114143 = phi [bb %while.cond, i32 %n.phi114, bb %while.body_preheader, i32 %n.phi114143_ph_val]
-  14129 = icmp slt i32 0, i32 10
   br i1 %14129, bb %while.body11_preheader, bb %while.exit12
 while.exit:  pred(while.cond, entry)
   142 = phi [bb %while.cond, i32 %sum.phi91, bb %entry, i32 0]
@@ -47,6 +47,7 @@ while.body11_preheader:  pred(while.body)
   k.phi96138_ph_val = phi [bb %while.body, i32 %k.phi97146]
   j.phi139_ph_val = phi [bb %while.body, i32 0]
   sum.phi90140_ph_val = phi [bb %while.body, i32 %sum.phi91148]
+  21118 = icmp slt i32 0, i32 5
   br bb %while.body11
 while.body11:  pred(while.cond10, while.body11_preheader)
   sum.phi90140 = phi [bb %while.cond10, i32 %sum.phi90, bb %while.body11_preheader, i32 %sum.phi90140_ph_val]
@@ -55,7 +56,6 @@ while.body11:  pred(while.cond10, while.body11_preheader)
   m.phi100137 = phi [bb %while.cond10, i32 %m.phi100, bb %while.body11_preheader, i32 %m.phi100137_ph_val]
   select.phi106136 = phi [bb %while.cond10, i1 %select.phi106, bb %while.body11_preheader, i1 %select.phi106136_ph_val]
   n.phi113135 = phi [bb %while.cond10, i32 %n.phi113, bb %while.body11_preheader, i32 %n.phi113135_ph_val]
-  21118 = icmp slt i32 0, i32 5
   br i1 %21118, bb %while.body18_preheader, bb %while.exit19
 while.exit12:  pred(while.cond10, while.body)
   sum.phi91134 = phi [bb %while.cond10, i32 %sum.phi90, bb %while.body, i32 %sum.phi91148]

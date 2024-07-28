@@ -211,6 +211,8 @@ while.cond:  pred(while.body)
 while.body_preheader:  pred(if.exit134)
   p.phi590_ph_val = phi [bb %if.exit134, i32 0]
   i.phi591_ph_val = phi [bb %if.exit134, i32 1]
+  188 = fneg float 10.000000
+  189 = fneg float %188
   br bb %while.body
 while.body:  pred(while.cond, while.body_preheader)
   i.phi591 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi591_ph_val]
@@ -237,8 +239,6 @@ while.body:  pred(while.cond, while.body_preheader)
   184 = f2si float %27380 to i32
   call void putint(i32 %184)
   call void putch(i32 10)
-  188 = fneg float 10.000000
-  189 = fneg float %188
   190 = si2f i32 %i.phi591 to float
   191 = fmul float %190, float %189
   192 = f2si float %191 to i32

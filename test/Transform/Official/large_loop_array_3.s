@@ -73,11 +73,11 @@ bb2:
   ADDI a0, zero, 39
   CALL _sysy_stoptime
   LA s9, .CONSTANT.7.0
-  FLW fs0, 0(s9)
-  FSUB.S fs0, fs4, fs0
+  FLW fs1, 0(s9)
+  FSUB.S fs1, fs4, fs1
   LA s9, .CONSTANT.7.1
   FLW fs2, 0(s9)
-  FLE.S s9, fs0, fs2
+  FLE.S s9, fs1, fs2
   BNE s9, zero, bb7
   # implict jump to bb3
 bb3:
@@ -86,7 +86,7 @@ bb3:
   LA s9, .CONSTANT.7.1
   FLW fs4, 0(s9)
   FSGNJN.S fs2, fs2, fs4
-  FLE.S s9, fs2, fs0
+  FLE.S s9, fs2, fs1
   # implict jump to bb4
 bb4:
   BNE s9, zero, bb6
@@ -217,13 +217,13 @@ bb14:
   # implict jump to bb15
 bb15:
   LA s7, .CONSTANT.7.3
-  FLW fs2, 0(s7)
+  FLW fs1, 0(s7)
   LA s7, .CONSTANT.7.3
   FLW fs8, 0(s7)
-  FSGNJ.S fs2, fs2, fs8
+  FSGNJ.S fs1, fs1, fs8
   # implict jump to bb16
 bb16:
-  FADD.S fs1, fs10, fs2
+  FADD.S fs0, fs10, fs1
   LW t4, 8(sp)
   ADDIW s1, t4, 1
   # implict jump to bb17
@@ -233,11 +233,11 @@ bb17:
   BLT s1, s9, bb19
   # implict jump to bb18
 bb18:
-  FSGNJ.S fs4, fs1, fs1
+  FSGNJ.S fs4, fs0, fs0
   JAL zero, bb2
 bb19:
   ADD s5, s0, zero
-  FSGNJ.S fs7, fs1, fs1
+  FSGNJ.S fs7, fs0, fs0
   FLW ft4, 4(sp)
   FLW ft3, 4(sp)
   FSGNJ.S fs6, ft4, ft3
@@ -267,16 +267,16 @@ bb22:
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s10, t5, s10
-  FLW fs0, 0(s10)
-  FMUL.S fs0, fs11, fs0
-  FADD.S fs3, fs9, fs0
+  FLW fs2, 0(s10)
+  FMUL.S fs2, fs11, fs2
+  FADD.S fs3, fs9, fs2
   ADDIW s3, s9, 1
   # implict jump to bb23
 bb23:
   BLT s3, s4, bb25
   # implict jump to bb24
 bb24:
-  FSGNJ.S fs2, fs3, fs3
+  FSGNJ.S fs1, fs3, fs3
   JAL zero, bb16
 bb25:
   ADD s7, s3, zero
@@ -291,17 +291,17 @@ bb28:
   SLLIW s11, s10, 2
   ADDI t5, sp, 216
   ADD s7, t5, s11
-  FCVT.S.W fs2, s10
+  FCVT.S.W fs1, s10
   FLW ft4, 4(sp)
-  FADD.S fs8, ft4, fs2
+  FADD.S fs8, ft4, fs1
   FSW fs8, 0(s7)
   LUI t5, 8
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s7, t5, s11
   FLW ft4, 0(sp)
-  FADD.S fs2, ft4, fs2
-  FSW fs2, 0(s7)
+  FADD.S fs1, ft4, fs1
+  FSW fs1, 0(s7)
   ADDIW s2, s10, 1
   # implict jump to bb29
 bb29:
@@ -317,13 +317,13 @@ bb32:
   LA s9, .CONSTANT.7.2
   FLW fs11, 0(s9)
   LA s9, .CONSTANT.7.2
-  FLW fs2, 0(s9)
-  FSGNJ.S fs8, fs11, fs2
+  FLW fs1, 0(s9)
+  FSGNJ.S fs8, fs11, fs1
   LA s9, .CONSTANT.7.3
-  FLW fs2, 0(s9)
+  FLW fs1, 0(s9)
   LA s9, .CONSTANT.7.3
   FLW fs11, 0(s9)
-  FSGNJ.S fs9, fs2, fs11
+  FSGNJ.S fs9, fs1, fs11
   JAL zero, bb12
 loop:
   ADDI sp, sp, -96

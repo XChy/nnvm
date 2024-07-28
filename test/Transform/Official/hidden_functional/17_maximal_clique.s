@@ -105,15 +105,15 @@ bb5:
   ADD s5, s5, s6
   ADDI s6, zero, 1
   SW s6, 0(s5)
-  ADDIW s1, s4, 1
+  ADDIW s0, s4, 1
   # implict jump to bb6
 bb6:
   LA s4, m
   LW s4, 0(s4)
-  BLT s1, s4, bb7
+  BLT s0, s4, bb7
   JAL zero, bb2
 bb7:
-  ADD s3, s1, zero
+  ADD s3, s0, zero
   JAL zero, bb5
 bb8:
   # implict jump to bb9
@@ -131,15 +131,15 @@ bb10:
   CALL getint
   ADD s5, a0, zero
   SW s5, 4(s4)
-  ADDIW s0, s3, 1
+  ADDIW s1, s3, 1
   # implict jump to bb11
 bb11:
   LA s3, m
   LW s3, 0(s3)
-  BLT s0, s3, bb12
+  BLT s1, s3, bb12
   JAL zero, bb1
 bb12:
-  ADD s2, s0, zero
+  ADD s2, s1, zero
   JAL zero, bb10
 is_clique:
   ADDI sp, sp, -80
@@ -221,158 +221,162 @@ bb21:
   JALR zero, 0(ra)
 maxCliques:
   ADDI sp, sp, -112
-  SD ra, 8(sp)
-  SD s0, 16(sp)
-  SD s1, 24(sp)
-  SD s2, 32(sp)
-  SD s3, 40(sp)
-  SD s4, 48(sp)
-  SD s5, 56(sp)
-  SD s6, 64(sp)
-  SD s7, 72(sp)
-  SD s8, 80(sp)
-  SD s9, 88(sp)
-  SD s10, 96(sp)
-  SD s11, 104(sp)
-  ADD s3, a1, zero
-  LA s4, n
-  LW s4, 0(s4)
-  SLTI s4, s4, 1
-  XORI s4, s4, 1
-  BNE s4, zero, bb25
+  SD s11, 8(sp)
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
+  SD s9, 96(sp)
+  SD s10, 104(sp)
+  ADD s5, a1, zero
+  LA s6, n
+  LW s6, 0(s6)
+  SLTI s6, s6, 1
+  XORI s6, s6, 1
+  BNE s6, zero, bb25
   # implict jump to bb23
 bb23:
-  ADD s4, zero, zero
+  ADD s6, zero, zero
   # implict jump to bb24
 bb24:
-  ADD a0, s4, zero
-  LD ra, 8(sp)
-  LD s0, 16(sp)
-  LD s1, 24(sp)
-  LD s2, 32(sp)
-  LD s3, 40(sp)
-  LD s4, 48(sp)
-  LD s5, 56(sp)
-  LD s6, 64(sp)
-  LD s7, 72(sp)
-  LD s8, 80(sp)
-  LD s9, 88(sp)
-  LD s10, 96(sp)
-  LD s11, 104(sp)
+  ADD a0, s6, zero
+  LD s11, 8(sp)
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s9, 96(sp)
+  LD s10, 104(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb25:
-  ADDI s5, zero, 1
+  ADDI s7, zero, 1
   # implict jump to bb26
 bb26:
-  ADD s6, zero, zero
-  ADD s7, zero, zero
+  SLLIW s8, s5, 2
+  LA s9, store
+  ADD s3, s9, s8
+  ADDIW s2, s5, 1
+  ADD s8, zero, zero
+  ADD s9, zero, zero
   # implict jump to bb27
 bb27:
-  ADD s8, s7, zero
-  ADD s9, s6, zero
-  ADD s10, s5, zero
-  SLLIW s11, s3, 2
-  LA t0, store
-  ADD s11, t0, s11
-  SW s10, 0(s11)
-  ADDIW s11, s3, 1
-  ADDI t0, zero, 1
+  ADD s10, s9, zero
+  ADD s11, s8, zero
+  ADD t4, s7, zero
+  SW t4, 4(sp)
+  LW t4, 4(sp)
+  SW t4, 0(s3)
+  ADDI t1, zero, 1
   # implict jump to bb28
 bb28:
-  ADD t1, t0, zero
-  BLT t1, s11, bb43
+  ADD t2, t1, zero
+  BLT t2, s2, bb43
   # implict jump to bb29
 bb29:
-  ADDI t2, zero, 1
+  ADDI a0, zero, 1
   # implict jump to bb30
 bb30:
-  BNE t2, zero, bb36
+  BNE a0, zero, bb36
   # implict jump to bb31
 bb31:
-  ADD t4, s9, zero
+  ADD t4, s11, zero
   SW t4, 0(sp)
   # implict jump to bb32
 bb32:
   LW t4, 0(sp)
-  ADD s0, t4, zero
-  ADD s1, s8, zero
-  ADDIW s2, s10, 1
+  ADD s4, t4, zero
+  ADD s1, s10, zero
+  LW t4, 4(sp)
+  ADDIW s0, t4, 1
   # implict jump to bb33
 bb33:
-  LA s8, n
-  LW s8, 0(s8)
-  SLT s8, s8, s2
-  XORI s8, s8, 1
-  BNE s8, zero, bb35
+  LA s10, n
+  LW s10, 0(s10)
+  SLT s10, s10, s0
+  XORI s10, s10, 1
+  BNE s10, zero, bb35
   # implict jump to bb34
 bb34:
-  ADD s4, s0, zero
+  ADD s6, s4, zero
   JAL zero, bb24
 bb35:
-  ADD s5, s2, zero
-  ADD s6, s0, zero
-  ADD s7, s1, zero
+  ADD s7, s0, zero
+  ADD s8, s4, zero
+  ADD s9, s1, zero
   JAL zero, bb27
 bb36:
-  BLT s9, s3, bb42
+  BLT s11, s5, bb42
   # implict jump to bb37
 bb37:
   # implict jump to bb38
 bb38:
-  ADD a0, s10, zero
-  ADD a1, s11, zero
+  LW t4, 4(sp)
+  ADD a0, t4, zero
+  ADD a1, s2, zero
   CALL maxCliques
-  ADD s11, a0, zero
-  BLT s9, s11, bb41
+  ADD t0, a0, zero
+  BLT s11, t0, bb41
   # implict jump to bb39
 bb39:
   # implict jump to bb40
 bb40:
-  ADD s8, s11, zero
-  ADD t4, s9, zero
+  ADD s10, t0, zero
+  ADD t4, s11, zero
   SW t4, 0(sp)
   JAL zero, bb32
 bb41:
-  ADD s9, s11, zero
+  ADD s11, t0, zero
   JAL zero, bb40
 bb42:
-  ADD s9, s3, zero
+  ADD s11, s5, zero
   JAL zero, bb38
 bb43:
-  ADDIW a0, t1, 1
-  ADD a2, a0, zero
+  ADDIW a2, t2, 1
+  ADD a3, a2, zero
   # implict jump to bb44
 bb44:
-  ADD a3, a2, zero
-  BLT a3, s11, bb46
+  ADD a4, a3, zero
+  BLT a4, s2, bb46
   # implict jump to bb45
 bb45:
-  ADD t0, a0, zero
+  ADD t1, a2, zero
   JAL zero, bb28
 bb46:
-  SLLIW t0, t1, 2
-  LA a4, store
-  ADD t0, a4, t0
-  LW t0, 0(t0)
-  ADDI a4, zero, 120
-  MULW t0, t0, a4
-  LA a4, graph
-  ADD t0, a4, t0
-  SLLIW a4, a3, 2
+  SLLIW t1, t2, 2
   LA a5, store
-  ADD a4, a5, a4
-  LW a4, 0(a4)
-  SLLIW a4, a4, 2
-  ADD t0, t0, a4
-  LW t0, 0(t0)
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb48
+  ADD t1, a5, t1
+  LW t1, 0(t1)
+  ADDI a5, zero, 120
+  MULW t1, t1, a5
+  LA a5, graph
+  ADD t1, a5, t1
+  SLLIW a5, a4, 2
+  LA a6, store
+  ADD a5, a6, a5
+  LW a5, 0(a5)
+  SLLIW a5, a5, 2
+  ADD t1, t1, a5
+  LW t1, 0(t1)
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb48
   # implict jump to bb47
 bb47:
-  ADDIW t0, a3, 1
-  ADD a2, t0, zero
+  ADDIW t1, a4, 1
+  ADD a3, t1, zero
   JAL zero, bb44
 bb48:
-  ADD t2, zero, zero
+  ADD a0, zero, zero
   JAL zero, bb30

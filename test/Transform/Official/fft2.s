@@ -33,8 +33,8 @@ fft:
   SD s2, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
-  SD s4, 72(sp)
-  SD s3, 80(sp)
+  SD s3, 72(sp)
+  SD s4, 80(sp)
   SD s5, 88(sp)
   SD s6, 96(sp)
   SD s7, 104(sp)
@@ -102,8 +102,8 @@ bb4:
   LD s2, 40(sp)
   LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s4, 72(sp)
-  LD s3, 80(sp)
+  LD s3, 72(sp)
+  LD s4, 80(sp)
   LD s5, 88(sp)
   LD s6, 96(sp)
   LD s7, 104(sp)
@@ -127,7 +127,7 @@ bb7:
   SLLIW s9, s5, 2
   LD t4, 64(sp)
   ADD s9, t4, s9
-  LW s3, 0(s9)
+  LW s1, 0(s9)
   LW t4, 0(sp)
   ADDW s5, s5, t4
   SLLIW s5, s5, 2
@@ -138,12 +138,12 @@ bb7:
   ADD a1, s10, zero
   CALL multiply
   ADD s10, a0, zero
-  ADDW s0, s3, s10
-  LUI s1, 243712
-  ADDIW s1, s1, 1
-  REMW s0, s0, s1
+  ADDW s0, s1, s10
+  LUI s4, 243712
+  ADDIW s4, s4, 1
+  REMW s0, s0, s4
   SW s0, 0(s9)
-  SUBW s0, s3, s10
+  SUBW s0, s1, s10
   LUI s1, 243712
   ADDIW s1, s1, 1
   ADDW s0, s0, s1
@@ -155,7 +155,7 @@ bb7:
   LW t4, 4(sp)
   ADD a1, t4, zero
   CALL multiply
-  ADD s4, a0, zero
+  ADD s3, a0, zero
   ADDIW s2, s6, 1
   # implict jump to bb8
 bb8:
@@ -164,7 +164,7 @@ bb8:
   JAL zero, bb4
 bb9:
   ADD s11, s2, zero
-  ADD s8, s4, zero
+  ADD s8, s3, zero
   JAL zero, bb7
 bb10:
   # implict jump to bb11
@@ -264,8 +264,8 @@ bb23:
   LD s2, 40(sp)
   LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s4, 72(sp)
-  LD s3, 80(sp)
+  LD s3, 72(sp)
+  LD s4, 80(sp)
   LD s5, 88(sp)
   LD s6, 96(sp)
   LD s7, 104(sp)
