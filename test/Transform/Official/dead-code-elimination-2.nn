@@ -47,11 +47,11 @@ while.cond100017:  pred(while.body100018)
 while.body100018_preheader:  pred(while.body)
   j.phi100055_ph_val = phi [bb %while.body, i32 0]
   tmp.phi100046100056_ph_val = phi [bb %while.body, i32 0]
+  store i32 %i.phi100060 to ptr @global
   br bb %while.body100018
 while.body100018:  pred(while.cond100017, while.body100018_preheader)
   tmp.phi100046100056 = phi [bb %while.cond100017, i32 %tmp.phi100046, bb %while.body100018_preheader, i32 %tmp.phi100046100056_ph_val]
   j.phi100055 = phi [bb %while.cond100017, i32 %j.phi, bb %while.body100018_preheader, i32 %j.phi100055_ph_val]
-  store i32 %i.phi100060 to ptr @global
   100027 = add i32 %tmp.phi100046100056, i32 %i.phi100060
   100029 = add i32 %j.phi100055, i32 1
   br bb %while.cond100017

@@ -27,5 +27,6 @@ public:
 private:
   LoopAnalysis *LA;
   MemAccAnalysis *memAcc;
+  DomTreeAnalysis *domTree;
 };
 } /* namespace nnvm */

@@ -65,11 +65,9 @@ entry:  pred()
   store i32 7 to ptr %arr.index35
   arr.index36 = ptradd ptr %d, i32 28
   store i32 8 to ptr %arr.index36
-  41.load = load i32 from ptr %arr.index34
-  46.load = load i32 from ptr %arr.index25
-  store i32 %41.load to ptr %e
+  store i32 0 to ptr %e
   arr.index49 = ptradd ptr %e, i32 4
-  store i32 %46.load to ptr %arr.index49
+  store i32 6 to ptr %arr.index49
   arr.index50 = ptradd ptr %e, i32 8
   store i32 3 to ptr %arr.index50
   arr.index51 = ptradd ptr %e, i32 12
@@ -82,12 +80,9 @@ entry:  pred()
   store i32 7 to ptr %arr.index54
   arr.index55 = ptradd ptr %e, i32 28
   store i32 8 to ptr %arr.index55
-  64.load = load i32 from ptr %e
-  87 = add i32 %64.load, i32 8
-  70.load = load i32 from ptr %arr.index49
-  72 = add i32 %87, i32 %70.load
-  76.load = load i32 from ptr %arr.index6
-  78 = add i32 %72, i32 %76.load
+  87 = add i32 0, i32 8
+  72 = add i32 %87, i32 6
+  78 = add i32 %72, i32 0
   ret i32 %78
 }
 

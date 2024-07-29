@@ -77,23 +77,23 @@ bb5:
 bb6:
   # implict jump to bb7
 bb7:
-  ADD s1, t0, zero
+  ADD s2, t0, zero
   ADD s0, s11, zero
-  ADD s2, s10, zero
-  ADD s3, s9, zero
+  ADD s3, s10, zero
+  ADD s1, s9, zero
   # implict jump to bb8
 bb8:
   ADDI s9, zero, 10
-  BLT s9, s1, bb10
+  BLT s9, s2, bb10
   # implict jump to bb9
 bb9:
-  ADD s4, s1, zero
+  ADD s4, s2, zero
   JAL zero, bb2
 bb10:
-  ADD s5, s1, zero
+  ADD s5, s2, zero
   ADD s6, s0, zero
-  ADD s7, s2, zero
-  ADD s8, s3, zero
+  ADD s7, s3, zero
+  ADD s8, s1, zero
   JAL zero, bb5
 bb11:
   ADDIW ra, ra, -76

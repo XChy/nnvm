@@ -64,10 +64,7 @@ init.exit66:  pred(init.cond64, init.exit)
   store i32 3 to ptr %190
   192 = ptradd ptr %b, i32 1452
   store i32 9 to ptr %192
-  115.load = load i32 from ptr %176
-  120.load = load i32 from ptr %178
   123 = ptradd ptr %a, i32 4556
-  127.load = load i32 from ptr %190
   200 = ptradd ptr %b, i32 1416
   132.load = load i32 from ptr %200
   202 = ptradd ptr %b, i32 8040
@@ -101,7 +98,7 @@ func.while.cond:  pred(func.while.body)
   br i1 %12214, bb %func.while.body, bb %func.while.exit
 func.while.body_preheader:  pred(init.exit66)
   index.phi213257_ph_val = phi [bb %init.exit66, i32 0]
-  15217 = mul i32 %115.load, i32 236
+  15217 = mul i32 6, i32 236
   16218 = ptradd ptr %b, i32 %15217
   br bb %func.while.body
 func.while.body:  pred(func.while.cond, func.while.body_preheader)
@@ -114,7 +111,7 @@ func.while.body:  pred(func.while.cond, func.while.body_preheader)
   br bb %func.while.cond
 func.while.exit:  pred(func.while.cond, init.exit66)
   call void putch(i32 10)
-  207227 = shl i32 %120.load, i32 2
+  207227 = shl i32 7, i32 2
   27228 = ptradd ptr %123, i32 %207227
   27.load229 = load i32 from ptr %27228
   call void putint(i32 %27.load229)
@@ -142,7 +139,7 @@ func.while.body32:  pred(func.while.cond31, func.while.body32_preheader)
   46245 = add i32 %h.stack.phi235255, i32 7
   br bb %func.while.cond31
 func.while.exit33:  pred(func.while.cond31, func.while.exit)
-  49248 = add i32 %127.load, i32 %132.load
+  49248 = add i32 3, i32 %132.load
   147 = mul i32 %49248, i32 3
   152251 = icmp sge i32 %147, i32 0
   br i1 %152251, bb %while.body149_preheader, bb %while.exit150

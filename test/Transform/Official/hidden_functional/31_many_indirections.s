@@ -14,11 +14,11 @@ N:
 main:
   ADDI sp, sp, -128
   SD ra, 8(sp)
-  SD s0, 16(sp)
-  SD s1, 24(sp)
-  SD s2, 32(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
   SD s4, 40(sp)
-  SD s3, 48(sp)
+  SD s0, 48(sp)
   SD s5, 56(sp)
   SD s6, 64(sp)
   SD s7, 72(sp)
@@ -91,71 +91,71 @@ bb1:
   ADD a7, t6, a7
   LUI t6, 2
   ADDIW t6, t6, -992
-  LA s3, array
-  ADD s3, s3, t6
+  LA s0, array
+  ADD s0, s0, t6
   LUI t6, 2
   ADDIW t6, t6, -500
   LA s5, array
   ADD s5, s5, t6
   LW s5, 0(s5)
   SLLIW s5, s5, 2
-  ADD s3, s3, s5
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a7, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a6, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a5, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a4, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a3, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a2, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a1, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, a0, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, t2, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, t1, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, t0, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, ra, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, s11, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, s10, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, s9, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, s8, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
-  ADD s3, s7, s3
-  LW s3, 0(s3)
-  SLLIW s3, s3, 2
+  ADD s0, s0, s5
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a7, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a6, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a5, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a4, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a3, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a2, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, a0, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, t2, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, t1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, t0, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, ra, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, s11, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, s10, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, s9, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, s8, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
+  ADD s0, s7, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 2
   LA s5, array
-  ADD s3, s5, s3
-  LW s3, 0(s3)
+  ADD s0, s5, s0
+  LW s0, 0(s0)
   LUI s5, 2
   ADDIW s5, s5, -520
   LA s7, array
@@ -256,16 +256,16 @@ bb1:
   LA s7, array
   ADD s5, s7, s5
   LW s5, 224(s5)
-  ADDW s3, s3, s5
-  ADD a0, s3, zero
+  ADDW s0, s0, s5
+  ADD a0, s0, zero
   CALL putint
   ADD a0, zero, zero
   LD ra, 8(sp)
-  LD s0, 16(sp)
-  LD s1, 24(sp)
-  LD s2, 32(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
   LD s4, 40(sp)
-  LD s3, 48(sp)
+  LD s0, 48(sp)
   LD s5, 56(sp)
   LD s6, 64(sp)
   LD s7, 72(sp)
@@ -279,24 +279,24 @@ bb2:
   # implict jump to bb3
 bb3:
   ADDI s4, zero, 0
-  SLTI s2, s4, 100
+  SLTI s1, s4, 100
   ADD s4, zero, zero
   # implict jump to bb4
 bb4:
   ADD t4, s4, zero
   SW t4, 0(sp)
-  BNE s2, zero, bb8
+  BNE s1, zero, bb8
   # implict jump to bb5
 bb5:
   LW t4, 0(sp)
-  ADDIW s1, t4, 1
+  ADDIW s2, t4, 1
   # implict jump to bb6
 bb6:
-  SLTI s7, s1, 20
+  SLTI s7, s2, 20
   BNE s7, zero, bb7
   JAL zero, bb1
 bb7:
-  ADD s4, s1, zero
+  ADD s4, s2, zero
   JAL zero, bb4
 bb8:
   # implict jump to bb9
@@ -315,12 +315,12 @@ bb10:
   LD t4, 88(sp)
   ADD s8, t4, s8
   SW s7, 0(s8)
-  ADDIW s0, s7, 1
+  ADDIW s3, s7, 1
   # implict jump to bb11
 bb11:
-  SLTI s7, s0, 100
+  SLTI s7, s3, 100
   BNE s7, zero, bb12
   JAL zero, bb5
 bb12:
-  ADD s6, s0, zero
+  ADD s6, s3, zero
   JAL zero, bb10

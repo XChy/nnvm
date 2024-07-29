@@ -40,34 +40,22 @@ main:
   BNE s4, zero, bb20
   # implict jump to bb1
 bb1:
-  ADDI s5, sp, 224
-  ADDI s6, sp, 132
-  FLW fs0, 0(s6)
-  FSW fs0, 0(s5)
-  ADDI s5, sp, 236
-  ADDI s6, sp, 120
-  FLW fs0, 0(s6)
-  FSW fs0, 0(s5)
-  ADDI s5, sp, 196
+  FLW fs0, 132(sp)
+  FSW fs0, 224(sp)
+  FLW fs0, 120(sp)
+  FSW fs0, 236(sp)
   FLW fs0, 112(sp)
-  FSW fs0, 0(s5)
-  ADDI s5, sp, 200
+  FSW fs0, 196(sp)
   FLW fs0, 128(sp)
-  FSW fs0, 0(s5)
-  ADDI s5, sp, 100
-  FLW fs0, 0(s5)
+  FSW fs0, 200(sp)
+  FLW fs0, 100(sp)
   FSW fs0, 216(sp)
-  ADDI s5, sp, 104
-  FLW fs0, 0(s5)
+  FLW fs0, 104(sp)
   FSW fs0, 232(sp)
-  ADDI s5, sp, 220
-  ADDI s6, sp, 116
-  FLW fs0, 0(s6)
-  FSW fs0, 0(s5)
-  ADDI s5, sp, 240
-  ADDI s6, sp, 136
-  FLW fs0, 0(s6)
-  FSW fs0, 0(s5)
+  FLW fs0, 116(sp)
+  FSW fs0, 220(sp)
+  FLW fs0, 136(sp)
+  FSW fs0, 240(sp)
   FLW fs0, 96(sp)
   FSW fs0, 192(sp)
   LA s5, N
@@ -123,15 +111,15 @@ bb7:
   FCVT.W.S s9, fs0, rtz
   ADD a0, s9, zero
   CALL putint
-  ADDIW s3, s8, 1
+  ADDIW s1, s8, 1
   # implict jump to bb8
 bb8:
   LA s8, N
   LW s8, 0(s8)
-  BLT s3, s8, bb9
+  BLT s1, s8, bb9
   JAL zero, bb4
 bb9:
-  ADD s7, s3, zero
+  ADD s7, s1, zero
   JAL zero, bb7
 bb10:
   # implict jump to bb11
@@ -147,15 +135,15 @@ bb12:
   FCVT.W.S s8, fs0, rtz
   ADD a0, s8, zero
   CALL putint
-  ADDIW s1, s7, 1
+  ADDIW s3, s7, 1
   # implict jump to bb13
 bb13:
   LA s7, N
   LW s7, 0(s7)
-  BLT s1, s7, bb14
+  BLT s3, s7, bb14
   JAL zero, bb3
 bb14:
-  ADD s6, s1, zero
+  ADD s6, s3, zero
   JAL zero, bb12
 bb15:
   # implict jump to bb16

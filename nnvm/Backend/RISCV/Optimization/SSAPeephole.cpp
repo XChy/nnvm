@@ -112,8 +112,9 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
   LIRImm *imm2;
   if (match(I, pLoadOrStore(pOperand(),
                             pSingleDef(pSpecificDUUInst(
-                                ADDI, pSSAReg(A), pSSAReg(B), pImm(imm1))),
-                            pImm(imm2)))) {
+                                ADDI, pSSAReg(A), pOperand(B), pImm(imm1))),
+                            pImm(imm2))) &&
+      (match(B, pSSAReg()) || B->isStackSlot())) {
     auto newImmValue = imm1->getSignedValue() + imm2->getSignedValue();
     if (canExpressInBits<12>(newImmValue)) {
       I->setUse(1, B);

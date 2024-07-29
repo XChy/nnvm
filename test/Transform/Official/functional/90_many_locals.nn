@@ -42,9 +42,8 @@ entry74:  pred()
   store i32 2 to ptr %arr.index16203
   arr.index17205 = ptradd ptr %arr175, i32 60
   store i32 3 to ptr %arr.index17205
-  71.load207 = load i32 from ptr %arr.index5181
-  212 = add i32 %71.load207, i32 101
-  214 = add i32 %71.load207, i32 112
+  212 = add i32 3, i32 101
+  214 = add i32 3, i32 112
   164 = add i32 %212, i32 %214
   166 = add i32 %164, i32 35
   call void putint(i32 %166)
@@ -90,8 +89,7 @@ entry:  pred()
   store i32 2 to ptr %arr.index16
   arr.index17 = ptradd ptr %arr, i32 60
   store i32 3 to ptr %arr.index17
-  71.load = load i32 from ptr %arr.index5
-  172 = add i32 %71.load, i32 71
+  172 = add i32 3, i32 71
   ret i32 %172
 }
 

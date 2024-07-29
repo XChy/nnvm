@@ -155,9 +155,9 @@ bb18:
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -176
-  SD s1, 32(sp)
+  SD s0, 32(sp)
   SD ra, 40(sp)
-  SD s0, 48(sp)
+  SD s1, 48(sp)
   SD s2, 56(sp)
   SD s3, 64(sp)
   SD s4, 72(sp)
@@ -219,13 +219,10 @@ bb26:
   ADD s6, a0, zero
   SUB s6, zero, s6
   LW s7, 136(sp)
-  ADDI s8, sp, 140
-  LW s8, 0(s8)
+  LW s8, 140(sp)
   SUB s9, zero, s8
-  ADDI s10, sp, 144
-  LW s10, 0(s10)
-  ADDI s11, sp, 148
-  LW t4, 0(s11)
+  LW s10, 144(sp)
+  LW t4, 148(sp)
   SW t4, 24(sp)
   LW t4, 24(sp)
   SLTU s4, zero, t4
@@ -248,10 +245,8 @@ bb31:
   ADD s3, zero, zero
   # implict jump to bb32
 bb32:
-  ADDI s4, sp, 152
-  LW s4, 0(s4)
-  ADDI s2, sp, 156
-  LW s2, 0(s2)
+  LW s4, 152(sp)
+  LW s2, 156(sp)
   SLTU s1, zero, s2
   XORI s1, s1, 1
   BNE s1, zero, bb50
@@ -269,22 +264,18 @@ bb34:
 bb35:
   # implict jump to bb36
 bb36:
-  ADDI s3, sp, 160
-  LW s3, 0(s3)
+  LW s3, 160(sp)
   ADD a0, s1, zero
   ADD a1, s3, zero
   CALL func3
   ADD s1, a0, zero
-  ADDI s9, sp, 164
-  LW s9, 0(s9)
+  LW s9, 164(sp)
   ADD a0, s1, zero
   ADD a1, s9, zero
   CALL func2
   ADD s1, a0, zero
-  ADDI s5, sp, 168
-  LW s5, 0(s5)
-  ADDI s0, sp, 172
-  LW s0, 0(s0)
+  LW s5, 168(sp)
+  LW s0, 172(sp)
   SLTU s11, zero, s0
   XORI s11, s11, 1
   BNE s11, zero, bb48
@@ -380,9 +371,9 @@ bb44:
   CALL func1
   ADD s0, a0, zero
   ADD a0, s0, zero
-  LD s1, 32(sp)
+  LD s0, 32(sp)
   LD ra, 40(sp)
-  LD s0, 48(sp)
+  LD s1, 48(sp)
   LD s2, 56(sp)
   LD s3, 64(sp)
   LD s4, 72(sp)

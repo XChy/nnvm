@@ -96,18 +96,12 @@ func:
   ADDI t5, sp, 112
   ADD s4, t5, zero
   LW s4, 0(s4)
-  ADDI s5, sp, 116
-  LW s5, 0(s5)
-  ADDI s6, sp, 120
-  LW s6, 0(s6)
-  ADDI s7, sp, 124
-  LW s7, 0(s7)
-  ADDI s8, sp, 128
-  LW s8, 0(s8)
-  ADDI s9, sp, 132
-  LW s9, 0(s9)
-  ADDI s10, sp, 136
-  LW s10, 0(s10)
+  LW s5, 116(sp)
+  LW s6, 120(sp)
+  LW s7, 124(sp)
+  LW s8, 128(sp)
+  LW s9, 132(sp)
+  LW s10, 136(sp)
   LA s11, loopCount
   LW s11, 0(s11)
   BLT zero, s11, bb12
@@ -1635,28 +1629,28 @@ bb13:
   ADDW s3, s3, s9
   ADDW s3, s3, s10
   ADDI s4, zero, 100
-  DIVW s2, s3, s4
+  DIVW s0, s3, s4
   ADD s3, zero, zero
   ADD s4, zero, zero
   # implict jump to bb14
 bb14:
   ADD s5, s4, zero
   ADD s6, s3, zero
-  ADDW s5, s5, s2
+  ADDW s5, s5, s0
   LUI s7, 366211
   ADDIW s7, s7, -255
-  REMW s1, s5, s7
-  ADDIW s0, s6, 1
+  REMW s2, s5, s7
+  ADDIW s1, s6, 1
   # implict jump to bb15
 bb15:
   LA s5, loopCount
   LW s5, 0(s5)
-  BLT s0, s5, bb17
+  BLT s1, s5, bb17
   # implict jump to bb16
 bb16:
-  ADD s11, s1, zero
+  ADD s11, s2, zero
   JAL zero, bb11
 bb17:
-  ADD s3, s0, zero
-  ADD s4, s1, zero
+  ADD s3, s1, zero
+  ADD s4, s2, zero
   JAL zero, bb14

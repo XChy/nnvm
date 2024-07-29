@@ -24,33 +24,24 @@ main:
   SW s3, 0(s2)
   ADDI s2, zero, 4
   SW s2, 0(sp)
-  ADDI s2, sp, 4
-  ADDI s3, zero, 3
-  SW s3, 0(s2)
-  ADDI s2, sp, 8
-  ADDI s3, zero, 9
-  SW s3, 0(s2)
-  ADDI s2, sp, 12
-  ADDI s3, zero, 2
-  SW s3, 0(s2)
-  ADDI s2, sp, 16
-  ADDI s3, zero, 0
-  SW s3, 0(s2)
-  ADDI s2, sp, 20
-  ADDI s3, zero, 1
-  SW s3, 0(s2)
-  ADDI s2, sp, 24
-  ADDI s3, zero, 6
-  SW s3, 0(s2)
-  ADDI s2, sp, 28
-  ADDI s3, zero, 5
-  SW s3, 0(s2)
-  ADDI s2, sp, 32
-  ADDI s3, zero, 7
-  SW s3, 0(s2)
-  ADDI s2, sp, 36
-  ADDI s3, zero, 8
-  SW s3, 0(s2)
+  ADDI s2, zero, 3
+  SW s2, 4(sp)
+  ADDI s2, zero, 9
+  SW s2, 8(sp)
+  ADDI s2, zero, 2
+  SW s2, 12(sp)
+  ADDI s2, zero, 0
+  SW s2, 16(sp)
+  ADDI s2, zero, 1
+  SW s2, 20(sp)
+  ADDI s2, zero, 6
+  SW s2, 24(sp)
+  ADDI s2, zero, 5
+  SW s2, 28(sp)
+  ADDI s2, zero, 7
+  SW s2, 32(sp)
+  ADDI s2, zero, 8
+  SW s2, 36(sp)
   ADDI s2, zero, 1
   SLTI s2, s2, 10
   BNE s2, zero, bb8

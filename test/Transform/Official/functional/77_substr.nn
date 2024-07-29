@@ -100,14 +100,12 @@ max_sum_nonadjacent.init:  pred(max_sum_nonadjacent.init.cond, max_sum_nonadjace
   store i32 0 to ptr %arr.index31296
   br bb %max_sum_nonadjacent.init.cond
 max_sum_nonadjacent.init.exit:  pred(max_sum_nonadjacent.init.cond, entry175)
-  35.load300 = load i32 from ptr %A
-  store i32 %35.load300 to ptr %temp287
+  store i32 8 to ptr %temp287
   38302 = ptradd ptr %temp287, i32 4
-  43.load305 = load i32 from ptr %arr.index178
-  5245342 = icmp eq i32 %35.load300, i32 %43.load305
+  5245342 = icmp eq i32 8, i32 7
   br i1 %5245342, bb %max_sum_nonadjacent.MAX.then, bb %max_sum_nonadjacent.MAX.else
 max_sum_nonadjacent.init.exit.split:  pred(max_sum_nonadjacent.MAX.then, max_sum_nonadjacent.MAX.then13, max_sum_nonadjacent.MAX.else15)
-  45.ret308 = phi [bb %max_sum_nonadjacent.MAX.then, i32 %35.load300, bb %max_sum_nonadjacent.MAX.then13, i32 %35.load300, bb %max_sum_nonadjacent.MAX.else15, i32 %43.load305]
+  45.ret308 = phi [bb %max_sum_nonadjacent.MAX.then, i32 8, bb %max_sum_nonadjacent.MAX.then13, i32 8, bb %max_sum_nonadjacent.MAX.else15, i32 7]
   store i32 %45.ret308 to ptr %38302
   52313465 = icmp slt i32 2, i32 15
   br i1 %52313465, bb %max_sum_nonadjacent.while.body_preheader, bb %max_sum_nonadjacent.while.exit
@@ -150,7 +148,7 @@ max_sum_nonadjacent.while.exit:  pred(max_sum_nonadjacent.while.cond, max_sum_no
 max_sum_nonadjacent.MAX.then:  pred(max_sum_nonadjacent.init.exit)
   br bb %max_sum_nonadjacent.init.exit.split
 max_sum_nonadjacent.MAX.else:  pred(max_sum_nonadjacent.init.exit)
-  12250347 = icmp sgt i32 %35.load300, i32 %43.load305
+  12250347 = icmp sgt i32 8, i32 7
   br i1 %12250347, bb %max_sum_nonadjacent.MAX.then13, bb %max_sum_nonadjacent.MAX.else15
 max_sum_nonadjacent.MAX.then13:  pred(max_sum_nonadjacent.MAX.else)
   br bb %max_sum_nonadjacent.init.exit.split

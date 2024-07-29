@@ -103,15 +103,15 @@ bb8:
   FCVT.W.S s11, fs0, rtz
   ADD a0, s11, zero
   CALL putint
-  ADDIW s0, s10, 1
+  ADDIW s3, s10, 1
   # implict jump to bb9
 bb9:
   LA s10, N
   LW s10, 0(s10)
-  BLT s0, s10, bb10
+  BLT s3, s10, bb10
   JAL zero, bb5
 bb10:
-  ADD s9, s0, zero
+  ADD s9, s3, zero
   JAL zero, bb8
 bb11:
   # implict jump to bb12
@@ -127,15 +127,15 @@ bb13:
   FCVT.W.S s10, fs0, rtz
   ADD a0, s10, zero
   CALL putint
-  ADDIW s1, s9, 1
+  ADDIW s0, s9, 1
   # implict jump to bb14
 bb14:
   LA s9, N
   LW s9, 0(s9)
-  BLT s1, s9, bb15
+  BLT s0, s9, bb15
   JAL zero, bb4
 bb15:
-  ADD s8, s1, zero
+  ADD s8, s0, zero
   JAL zero, bb13
 bb16:
   # implict jump to bb17
@@ -151,15 +151,15 @@ bb18:
   FCVT.W.S s9, fs0, rtz
   ADD a0, s9, zero
   CALL putint
-  ADDIW s2, s8, 1
+  ADDIW s4, s8, 1
   # implict jump to bb19
 bb19:
   LA s8, N
   LW s8, 0(s8)
-  BLT s2, s8, bb20
+  BLT s4, s8, bb20
   JAL zero, bb3
 bb20:
-  ADD s7, s2, zero
+  ADD s7, s4, zero
   JAL zero, bb18
 bb21:
   # implict jump to bb22
@@ -199,14 +199,14 @@ bb23:
   FLW fs1, 0(s8)
   FADD.S fs0, fs0, fs1
   FSW fs0, 0(s9)
-  ADDIW s3, s7, 1
+  ADDIW s1, s7, 1
   # implict jump to bb24
 bb24:
-  SLTI s7, s3, 3
+  SLTI s7, s1, 3
   BNE s7, zero, bb25
   JAL zero, bb2
 bb25:
-  ADD s6, s3, zero
+  ADD s6, s1, zero
   JAL zero, bb23
 bb26:
   # implict jump to bb27
@@ -235,14 +235,14 @@ bb28:
   ADDI t5, sp, 200
   ADD s7, t5, s7
   FSW fs0, 0(s7)
-  ADDIW s4, s6, 1
+  ADDIW s2, s6, 1
   # implict jump to bb29
 bb29:
-  SLTI s6, s4, 3
+  SLTI s6, s2, 3
   BNE s6, zero, bb30
   JAL zero, bb1
 bb30:
-  ADD s5, s4, zero
+  ADD s5, s2, zero
   JAL zero, bb28
 add:
   ADDI sp, sp, -96

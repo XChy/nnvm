@@ -171,38 +171,38 @@ bb16:
   FSUB.S fs1, fs1, fs4
   FCVT.S.W fs4, s6
   FADD.S fs1, fs1, fs4
-  FCVT.W.S s3, fs1, rtz
+  FCVT.W.S s1, fs1, rtz
   FMUL.S fs0, fs0, fs2
   FMUL.S fs1, fs3, fa0
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s7
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s1, fs0, rtz
-  BLT s3, zero, bb27
+  FCVT.W.S s3, fs0, rtz
+  BLT s1, zero, bb27
   # implict jump to bb17
 bb17:
-  SLT s4, s3, s2
+  SLT s4, s1, s2
   XORI s4, s4, 1
   # implict jump to bb18
 bb18:
   BNE s4, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s4, s1, zero
+  SLT s4, s3, zero
   # implict jump to bb20
 bb20:
   BNE s4, zero, bb25
   # implict jump to bb21
 bb21:
-  SLT s0, s1, s0
+  SLT s0, s3, s0
   XORI s0, s0, 1
   # implict jump to bb22
 bb22:
   BNE s0, zero, bb24
   # implict jump to bb23
 bb23:
-  MULW s0, s1, s2
-  ADDW s0, s0, s3
+  MULW s0, s3, s2
+  ADDW s0, s0, s1
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -1096,9 +1096,9 @@ bb150:
   CALL my_sin_impl
   FSGNJ.D fs1, fa0, fa0
   LA s11, width
-  LW s5, 0(s11)
+  LW s2, 0(s11)
   ADDI s11, zero, 2
-  DIVW s11, s5, s11
+  DIVW s11, s2, s11
   LA s0, height
   LW s6, 0(s0)
   ADDI s0, zero, 2
@@ -1113,38 +1113,38 @@ bb150:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s11
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s2, fs4, rtz
+  FCVT.W.S s3, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s0
   FADD.S fs1, fs1, fs2
-  FCVT.W.S s3, fs1, rtz
-  BLT s2, zero, bb164
+  FCVT.W.S s4, fs1, rtz
+  BLT s3, zero, bb164
   # implict jump to bb151
 bb151:
-  SLT s0, s2, s5
+  SLT s0, s3, s2
   XORI s0, s0, 1
   # implict jump to bb152
 bb152:
   BNE s0, zero, bb163
   # implict jump to bb153
 bb153:
-  SLT s0, s3, zero
+  SLT s0, s4, zero
   # implict jump to bb154
 bb154:
   BNE s0, zero, bb162
   # implict jump to bb155
 bb155:
-  SLT s0, s3, s6
+  SLT s0, s4, s6
   XORI s0, s0, 1
   # implict jump to bb156
 bb156:
   BNE s0, zero, bb161
   # implict jump to bb157
 bb157:
-  MULW s0, s3, s5
-  ADDW s0, s0, s2
+  MULW s0, s4, s2
+  ADDW s0, s0, s3
   SLLIW s0, s0, 2
   LA s2, image
   ADD s0, s2, s0
@@ -1155,15 +1155,15 @@ bb158:
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s4, s10, 1
+  ADDIW s5, s10, 1
   # implict jump to bb159
 bb159:
   LA s0, width
   LW s0, 0(s0)
-  BLT s4, s0, bb160
+  BLT s5, s0, bb160
   JAL zero, bb129
 bb160:
-  ADD t4, s4, zero
+  ADD t4, s5, zero
   SW t4, 8(sp)
   JAL zero, bb134
 bb161:

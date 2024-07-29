@@ -77,7 +77,7 @@ AccessInfo MemAccAnalysis::getMemDefForBlockIter(Instruction *I,
     if (AAResult == MayAlias)
       return {cur, MemClobber};
 
-    if (getAccessedObj(I) == getAccessedObj(cur))
+    if (getAccessedPtr(I) == getAccessedPtr(cur))
       return {cur, MemDef};
     else
       return {cur, MemClobber};
@@ -89,6 +89,24 @@ AccessInfo MemAccAnalysis::getMemDefForBlockIter(Instruction *I,
 bool MemAccAnalysis::hasWriteClobberInBlock(Instruction *I, BasicBlock *block) {
   for (auto *cur : *block) {
     if (!cur->mayWriteToMemory())
+      continue;
+    // Itself is not a clobber.
+    if (cur == I)
+      continue;
+
+    auto AAResult = AA->alias(I, cur);
+    if (AAResult == NotAlias)
+      continue;
+    else
+      return true;
+  }
+
+  return false;
+}
+
+bool MemAccAnalysis::hasReadClobberInBlock(Instruction *I, BasicBlock *block) {
+  for (auto *cur : *block) {
+    if (!cur->mayReadMemory())
       continue;
     // Itself is not a clobber.
     if (cur == I)
@@ -156,7 +174,7 @@ AccessInfo MemAccAnalysis::getMemUseForBlockIter(Instruction *I,
                                                  BasicBlock::Iterator begin,
                                                  BasicBlock::Iterator end) {
 
-  if (!getAccessedObj(I))
+  if (!getAccessedPtr(I))
     return {nullptr, MemNoop};
 
   for (auto it = end; it != begin; it--) {
@@ -171,9 +189,9 @@ AccessInfo MemAccAnalysis::getMemUseForBlockIter(Instruction *I,
     }
 
     if (cur->mayReadMemory()) {
-      if (!getAccessedObj(cur))
+      if (!getAccessedPtr(cur))
         continue;
-      if (getAccessedObj(I) == getAccessedObj(cur))
+      if (getAccessedPtr(I) == getAccessedPtr(cur))
         return {cur, MemUse};
     }
   }

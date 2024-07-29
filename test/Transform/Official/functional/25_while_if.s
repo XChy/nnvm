@@ -58,19 +58,19 @@ bb6:
   ADD s8, s6, zero
   # implict jump to bb7
 bb7:
-  ADD s0, s8, zero
-  ADD s1, s7, zero
+  ADD s1, s8, zero
+  ADD s0, s7, zero
   # implict jump to bb8
 bb8:
-  SLTI s5, s0, 75
+  SLTI s5, s1, 75
   BNE s5, zero, bb10
   # implict jump to bb9
 bb9:
-  ADD s2, s0, zero
+  ADD s2, s1, zero
   JAL zero, bb2
 bb10:
-  ADD s3, s0, zero
-  ADD s4, s1, zero
+  ADD s3, s1, zero
+  ADD s4, s0, zero
   JAL zero, bb5
 bb11:
   ADDIW s6, s6, 42

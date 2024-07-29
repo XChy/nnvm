@@ -17,10 +17,10 @@ maxN:
 findSmallest:
   ADDI sp, sp, -128
   SD ra, 16(sp)
-  SD s2, 24(sp)
+  SD s1, 24(sp)
   SD s3, 32(sp)
   SD s0, 40(sp)
-  SD s1, 48(sp)
+  SD s2, 48(sp)
   SD s11, 56(sp)
   SD s4, 64(sp)
   SD s5, 72(sp)
@@ -54,8 +54,8 @@ bb2:
   ADD s10, s4, zero
   # implict jump to bb3
 bb3:
-  ADD s2, s10, zero
-  SLLIW s10, s2, 2
+  ADD s1, s10, zero
+  SLLIW s10, s1, 2
   LA t1, array
   ADD s10, t1, s10
   LW t1, 0(s10)
@@ -63,16 +63,16 @@ bb3:
   SW t2, 0(s10)
   SW t1, 0(s8)
   LW t4, 8(sp)
-  XOR s10, t4, s2
+  XOR s10, t4, s1
   SLTIU s10, s10, 1
   BNE s10, zero, bb8
   # implict jump to bb4
 bb4:
   LW t4, 8(sp)
-  BLT t4, s2, bb7
+  BLT t4, s1, bb7
   # implict jump to bb5
 bb5:
-  ADDIW s10, s2, 1
+  ADDIW s10, s1, 1
   ADD a0, s10, zero
   LW t4, 12(sp)
   ADD a1, t4, zero
@@ -84,10 +84,10 @@ bb5:
   # implict jump to bb6
 bb6:
   LD ra, 16(sp)
-  LD s2, 24(sp)
+  LD s1, 24(sp)
   LD s3, 32(sp)
   LD s0, 40(sp)
-  LD s1, 48(sp)
+  LD s2, 48(sp)
   LD s11, 56(sp)
   LD s4, 64(sp)
   LD s5, 72(sp)
@@ -100,7 +100,7 @@ bb6:
   JALR zero, 0(ra)
 bb7:
   ADDI s10, zero, 1
-  SUBW s10, s2, s10
+  SUBW s10, s1, s10
   ADD a0, s4, zero
   ADD a1, s10, zero
   LW t4, 8(sp)
@@ -111,7 +111,7 @@ bb7:
   JAL zero, bb6
 bb8:
   ADDI s10, zero, 0
-  BLT s10, s2, bb9
+  BLT s10, s1, bb9
   JAL zero, bb6
 bb9:
   # implict jump to bb10
@@ -131,7 +131,7 @@ bb11:
   ADDIW s3, s7, 1
   # implict jump to bb12
 bb12:
-  BLT s3, s2, bb13
+  BLT s3, s1, bb13
   JAL zero, bb6
 bb13:
   ADD s10, s3, zero
@@ -160,18 +160,18 @@ bb17:
   # implict jump to bb18
 bb18:
   ADD s0, a5, zero
-  ADDIW s1, t1, 1
+  ADDIW s2, t1, 1
   # implict jump to bb19
 bb19:
   LW t4, 12(sp)
-  BLT s1, t4, bb21
+  BLT s2, t4, bb21
   # implict jump to bb20
 bb20:
   ADD s10, s0, zero
   JAL zero, bb3
 bb21:
   ADD s11, s0, zero
-  ADD t4, s1, zero
+  ADD t4, s2, zero
   SW t4, 0(sp)
   JAL zero, bb16
 bb22:
@@ -187,10 +187,10 @@ bb22:
   JAL zero, bb18
 bb23:
   LD ra, 16(sp)
-  LD s2, 24(sp)
+  LD s1, 24(sp)
   LD s3, 32(sp)
   LD s0, 40(sp)
-  LD s1, 48(sp)
+  LD s2, 48(sp)
   LD s11, 56(sp)
   LD s4, 64(sp)
   LD s5, 72(sp)
@@ -270,18 +270,18 @@ bb30:
   ADD s10, s8, zero
   # implict jump to bb31
 bb31:
-  ADD s0, s10, zero
-  ADDIW s1, s7, 1
+  ADD s1, s10, zero
+  ADDIW s0, s7, 1
   # implict jump to bb32
 bb32:
-  BLT s1, a1, bb34
+  BLT s0, a1, bb34
   # implict jump to bb33
 bb33:
-  ADD s5, s0, zero
+  ADD s5, s1, zero
   JAL zero, bb26
 bb34:
-  ADD s6, s0, zero
-  ADD s2, s1, zero
+  ADD s6, s1, zero
+  ADD s2, s0, zero
   JAL zero, bb29
 bb35:
   LW s11, 0(s9)

@@ -6,6 +6,9 @@ namespace nnvm::riscv {
 class Peephole {
 public:
   bool run(LIRFunc &func);
+
+private:
+  bool removeDeadInst(LIRBB *block);
 };
 
 } /* namespace nnvm::riscv */

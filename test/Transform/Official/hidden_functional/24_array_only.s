@@ -151,25 +151,23 @@ main:
   SD ra, 8(sp)
   SD s0, 16(sp)
   SD s1, 24(sp)
-  SD s2, 32(sp)
   ADDI s0, zero, -1
-  SW s0, 40(sp)
-  ADDI s0, sp, 44
-  SW zero, 0(s0)
+  SW s0, 32(sp)
+  SW zero, 36(sp)
   CALL getint
-  ADD s1, a0, zero
-  LA s2, k
-  SW s1, 0(s2)
+  ADD s0, a0, zero
+  LA s1, k
+  SW s0, 0(s1)
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 0(sp)
-  ADDI a0, sp, 40
+  ADD s0, a0, zero
+  SW s0, 0(sp)
+  ADDI a0, sp, 32
   ADD a0, a0, zero
   CALL getarray
   # implict jump to bb12
 bb12:
-  LW s1, 0(sp)
-  BNE s1, zero, bb14
+  LW s0, 0(sp)
+  BNE s0, zero, bb14
   # implict jump to bb13
 bb13:
   ADDI a0, zero, 10
@@ -178,83 +176,82 @@ bb13:
   LD ra, 8(sp)
   LD s0, 16(sp)
   LD s1, 24(sp)
-  LD s2, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb14:
-  LW s1, 40(sp)
-  SW s1, 4(sp)
-  LW s1, 4(sp)
-  SLTI s1, s1, 5
-  BNE s1, zero, bb16
+  LW s0, 32(sp)
+  SW s0, 4(sp)
+  LW s0, 4(sp)
+  SLTI s0, s0, 5
+  BNE s0, zero, bb16
   # implict jump to bb15
 bb15:
-  LA s1, k
-  LW s1, 0(s1)
-  LA s2, i
-  ADD a0, s2, zero
-  ADD a1, s1, zero
-  CALL inc_impl
-  LA s1, k
-  LW s1, 0(s1)
-  LA s2, i
-  ADD a0, s2, zero
-  ADDI a1, sp, 40
-  ADD a1, a1, zero
-  ADD a2, s1, zero
-  CALL add_impl
+  LA s0, k
+  LW s0, 0(s0)
   LA s1, i
-  LW s1, 0(s1)
-  LW s2, 0(s0)
-  XOR s1, s1, s2
-  SLTIU s1, s1, 1
-  BNE s1, zero, bb13
+  ADD a0, s1, zero
+  ADD a1, s0, zero
+  CALL inc_impl
+  LA s0, k
+  LW s0, 0(s0)
+  LA s1, i
+  ADD a0, s1, zero
+  ADDI a1, sp, 32
+  ADD a1, a1, zero
+  ADD a2, s0, zero
+  CALL add_impl
+  LA s0, i
+  LW s0, 0(s0)
+  LW s1, 36(sp)
+  XOR s0, s0, s1
+  SLTIU s0, s0, 1
+  BNE s0, zero, bb13
   JAL zero, bb12
 bb16:
   # implict jump to bb17
 bb17:
-  LA s1, i
-  LW s1, 0(s1)
-  ADD a0, s1, zero
+  LA s0, i
+  LW s0, 0(s0)
+  ADD a0, s0, zero
   CALL putint
-  LW s1, 4(sp)
-  ADD a0, s1, zero
+  LW s0, 4(sp)
+  ADD a0, s0, zero
   CALL putint
-  LW s1, 0(sp)
-  ADD a0, s1, zero
+  LW s0, 0(sp)
+  ADD a0, s0, zero
   CALL putint
-  LW s1, 40(sp)
-  ADD a0, s1, zero
+  LW s0, 32(sp)
+  ADD a0, s0, zero
   CALL putint
-  LA s1, k
-  LW s1, 0(s1)
-  ADDI a0, sp, 40
+  LA s0, k
+  LW s0, 0(s0)
+  ADDI a0, sp, 32
   ADD a0, a0, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL add_impl
-  LA s1, k
-  LW s1, 0(s1)
+  LA s0, k
+  LW s0, 0(s0)
   ADDI a0, sp, 4
   ADD a0, a0, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL add_impl
-  LA s1, k
-  LW s1, 0(s1)
-  ADDI a0, sp, 40
+  LA s0, k
+  LW s0, 0(s0)
+  ADDI a0, sp, 32
   ADD a0, a0, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL sub_impl
   # implict jump to bb18
 bb18:
-  LW s1, 4(sp)
-  SLTI s1, s1, 5
-  BNE s1, zero, bb17
+  LW s0, 4(sp)
+  SLTI s0, s0, 5
+  BNE s0, zero, bb17
   JAL zero, bb15
 inc_impl:
   ADDI sp, sp, -32

@@ -9,7 +9,7 @@ using namespace nnvm;
 bool LICMPass::run(Function &F) {
   LA = getAnalysis<LoopAnalysis>(F);
   memAcc = getAnalysis<MemAccAnalysis>(F);
-
+  domTree = getAnalysis<DomTreeAnalysis>(F);
 
   auto loops = LA->getLoops();
   for (Loop *loop : loops) {
@@ -72,16 +72,21 @@ bool LICMPass::isInvariantStore(StoreInst *SI, Loop *L) {
     return false;
   bool hasClobber = false;
 
-
   // TODO: check read clobber
   for (auto *BB : L->getBlocks()) {
     if (memAcc->hasWriteClobberInBlock(SI, BB)) {
       hasClobber = true;
       break;
     }
+
+    if (!domTree->rdom(SI->getBlock(), BB) &&
+        memAcc->hasReadClobberInBlock(SI, BB)) {
+      hasClobber = true;
+      break;
+    }
   }
 
-  return false;
+  return !hasClobber;
 }
 
 bool LICMPass::isInvariantLoad(LoadInst *LI, Loop *L) {

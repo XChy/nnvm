@@ -238,46 +238,31 @@ main:
   SD s2, 24(sp)
   SD s3, 32(sp)
   SW zero, 40(sp)
-  ADDI s1, sp, 44
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 48
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 52
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 56
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 60
-  SW zero, 0(s1)
-  ADDI s1, sp, 64
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 68
-  SW zero, 0(s1)
-  ADDI s1, sp, 72
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 76
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 80
-  SW zero, 0(s1)
-  ADDI s1, sp, 84
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 88
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 92
-  SW zero, 0(s1)
-  ADDI s1, sp, 96
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, sp, 100
-  SW zero, 0(s1)
+  ADDI s1, zero, 1
+  SW s1, 44(sp)
+  ADDI s1, zero, 1
+  SW s1, 48(sp)
+  ADDI s1, zero, 1
+  SW s1, 52(sp)
+  ADDI s1, zero, 1
+  SW s1, 56(sp)
+  SW zero, 60(sp)
+  ADDI s1, zero, 1
+  SW s1, 64(sp)
+  SW zero, 68(sp)
+  ADDI s1, zero, 1
+  SW s1, 72(sp)
+  ADDI s1, zero, 1
+  SW s1, 76(sp)
+  SW zero, 80(sp)
+  ADDI s1, zero, 1
+  SW s1, 84(sp)
+  ADDI s1, zero, 1
+  SW s1, 88(sp)
+  SW zero, 92(sp)
+  ADDI s1, zero, 1
+  SW s1, 96(sp)
+  SW zero, 100(sp)
   SLTI s1, zero, 4
   BNE s1, zero, bb32
   # implict jump to bb29

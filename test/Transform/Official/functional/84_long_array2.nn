@@ -156,8 +156,7 @@ init.exit83:  pred(init.cond81, init.exit65)
   13.load132 = load i32 from ptr %13131
   15133 = add i32 %13.load132, i32 9
   store i32 %15133 to ptr %11130
-  17.load135 = load i32 from ptr %2123
-  108136 = shl i32 %17.load135, i32 2
+  108136 = shl i32 4000, i32 2
   20137 = ptradd ptr @a, i32 %108136
   20.load138 = load i32 from ptr %20137
   call void putint(i32 %20.load138)

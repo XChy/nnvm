@@ -108,7 +108,7 @@ bb12:
   ADD s7, s6, zero
   # implict jump to bb13
 bb13:
-  ADD s0, s7, zero
+  ADD s1, s7, zero
   BNE s6, zero, bb18
   # implict jump to bb14
 bb14:
@@ -120,16 +120,16 @@ bb14:
   # implict jump to bb15
 bb15:
   ADDI s4, zero, 1
-  SUBW s1, s5, s4
+  SUBW s0, s5, s4
   # implict jump to bb16
 bb16:
-  SLT s4, s1, zero
+  SLT s4, s0, zero
   XORI s4, s4, 1
   BNE s4, zero, bb17
   JAL zero, bb1
 bb17:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
+  ADD s2, s0, zero
+  ADD s3, s1, zero
   JAL zero, bb4
 bb18:
   LA s4, a

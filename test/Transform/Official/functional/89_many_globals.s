@@ -144,60 +144,37 @@ testParam32:
   ADDI t5, sp, 144
   ADD s1, t5, zero
   LW s1, 0(s1)
-  ADDI s2, sp, 148
-  LW s2, 0(s2)
-  ADDI s3, sp, 152
-  LW s3, 0(s3)
-  ADDI s4, sp, 156
-  LW s4, 0(s4)
-  ADDI s5, sp, 160
-  LW s5, 0(s5)
-  ADDI s6, sp, 164
-  LW s6, 0(s6)
-  ADDI s7, sp, 168
-  LW s7, 0(s7)
-  ADDI s8, sp, 172
-  LW s8, 0(s8)
-  ADDI s9, sp, 176
-  LW s9, 0(s9)
-  ADDI s10, sp, 180
-  LW s10, 0(s10)
-  ADDI s11, sp, 184
-  LW s11, 0(s11)
-  ADDI ra, sp, 188
-  LW ra, 0(ra)
-  ADDI t0, sp, 192
-  LW t0, 0(t0)
-  ADDI t1, sp, 196
-  LW t1, 0(t1)
-  ADDI t2, sp, 200
-  LW t2, 0(t2)
-  ADDI t6, sp, 204
-  LW t4, 0(t6)
+  LW s2, 148(sp)
+  LW s3, 152(sp)
+  LW s4, 156(sp)
+  LW s5, 160(sp)
+  LW s6, 164(sp)
+  LW s7, 168(sp)
+  LW s8, 172(sp)
+  LW s9, 176(sp)
+  LW s10, 180(sp)
+  LW s11, 184(sp)
+  LW ra, 188(sp)
+  LW t0, 192(sp)
+  LW t1, 196(sp)
+  LW t2, 200(sp)
+  LW t6, 204(sp)
+  LW t4, 208(sp)
   SW t4, 0(sp)
-  ADDI t6, sp, 208
-  LW t4, 0(t6)
+  LW t4, 212(sp)
   SW t4, 4(sp)
-  ADDI t6, sp, 212
-  LW t4, 0(t6)
+  LW t4, 216(sp)
   SW t4, 8(sp)
-  ADDI t6, sp, 216
-  LW t4, 0(t6)
+  LW t4, 220(sp)
   SW t4, 12(sp)
-  ADDI t6, sp, 220
-  LW t4, 0(t6)
+  LW t4, 224(sp)
   SW t4, 16(sp)
-  ADDI t6, sp, 224
-  LW t4, 0(t6)
+  LW t4, 228(sp)
   SW t4, 20(sp)
-  ADDI t6, sp, 228
-  LW t4, 0(t6)
+  LW t4, 232(sp)
   SW t4, 24(sp)
-  ADDI t6, sp, 232
-  LW t4, 0(t6)
+  LW t4, 236(sp)
   SW t4, 28(sp)
-  ADDI t6, sp, 236
-  LW t6, 0(t6)
   ADDW s0, s0, a1
   ADDW s0, s0, a2
   ADDW s0, s0, a3
@@ -220,6 +197,7 @@ testParam32:
   SUBW s0, s0, t0
   SUBW s0, s0, t1
   SUBW s0, s0, t2
+  ADDW s0, s0, t6
   LW t4, 0(sp)
   ADDW s0, s0, t4
   LW t4, 4(sp)
@@ -236,7 +214,6 @@ testParam32:
   ADDW s0, s0, t4
   LW t4, 28(sp)
   ADDW s0, s0, t4
-  ADDW s0, s0, t6
   ADD a0, s0, zero
   LD ra, 32(sp)
   LD s3, 40(sp)
@@ -630,20 +607,13 @@ testParam16:
   ADDI t5, sp, 80
   ADD s1, t5, zero
   LW s1, 0(s1)
-  ADDI s2, sp, 84
-  LW s2, 0(s2)
-  ADDI s3, sp, 88
-  LW s3, 0(s3)
-  ADDI s4, sp, 92
-  LW s4, 0(s4)
-  ADDI s5, sp, 96
-  LW s5, 0(s5)
-  ADDI s6, sp, 100
-  LW s6, 0(s6)
-  ADDI s7, sp, 104
-  LW s7, 0(s7)
-  ADDI s8, sp, 108
-  LW s8, 0(s8)
+  LW s2, 84(sp)
+  LW s3, 88(sp)
+  LW s4, 92(sp)
+  LW s5, 96(sp)
+  LW s6, 100(sp)
+  LW s7, 104(sp)
+  LW s8, 108(sp)
   ADDW s0, s0, a1
   ADDW s0, s0, a2
   SUBW s0, s0, a3

@@ -26,33 +26,24 @@ main:
   SW s6, 0(s5)
   ADDI s5, zero, 4
   SW s5, 104(sp)
-  ADDI s5, sp, 108
-  ADDI s6, zero, 3
-  SW s6, 0(s5)
-  ADDI s5, sp, 112
-  ADDI s6, zero, 9
-  SW s6, 0(s5)
-  ADDI s5, sp, 116
-  ADDI s6, zero, 2
-  SW s6, 0(s5)
-  ADDI s5, sp, 120
-  ADDI s6, zero, 0
-  SW s6, 0(s5)
-  ADDI s5, sp, 124
-  ADDI s6, zero, 1
-  SW s6, 0(s5)
-  ADDI s5, sp, 128
-  ADDI s6, zero, 6
-  SW s6, 0(s5)
-  ADDI s5, sp, 132
-  ADDI s6, zero, 5
-  SW s6, 0(s5)
-  ADDI s5, sp, 136
-  ADDI s6, zero, 7
-  SW s6, 0(s5)
-  ADDI s5, sp, 140
-  ADDI s6, zero, 8
-  SW s6, 0(s5)
+  ADDI s5, zero, 3
+  SW s5, 108(sp)
+  ADDI s5, zero, 9
+  SW s5, 112(sp)
+  ADDI s5, zero, 2
+  SW s5, 116(sp)
+  ADDI s5, zero, 0
+  SW s5, 120(sp)
+  ADDI s5, zero, 1
+  SW s5, 124(sp)
+  ADDI s5, zero, 6
+  SW s5, 128(sp)
+  ADDI s5, zero, 5
+  SW s5, 132(sp)
+  ADDI s5, zero, 7
+  SW s5, 136(sp)
+  ADDI s5, zero, 8
+  SW s5, 140(sp)
   ADDI s5, zero, 10
   ADDI s6, zero, 1
   SUBW s5, s5, s6

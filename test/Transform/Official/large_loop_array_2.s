@@ -73,20 +73,20 @@ bb2:
   ADDI a0, zero, 39
   CALL _sysy_stoptime
   LA s9, .CONSTANT.7.0
-  FLW fs0, 0(s9)
-  FSUB.S fs0, fs4, fs0
-  LA s9, .CONSTANT.7.1
   FLW fs1, 0(s9)
-  FLE.S s9, fs0, fs1
+  FSUB.S fs1, fs4, fs1
+  LA s9, .CONSTANT.7.1
+  FLW fs3, 0(s9)
+  FLE.S s9, fs1, fs3
   BNE s9, zero, bb7
   # implict jump to bb3
 bb3:
   LA s9, .CONSTANT.7.1
-  FLW fs1, 0(s9)
+  FLW fs3, 0(s9)
   LA s9, .CONSTANT.7.1
   FLW fs4, 0(s9)
-  FSGNJN.S fs1, fs1, fs4
-  FLE.S s9, fs1, fs0
+  FSGNJN.S fs3, fs3, fs4
+  FLE.S s9, fs3, fs1
   # implict jump to bb4
 bb4:
   BNE s9, zero, bb6
@@ -183,13 +183,13 @@ bb9:
   # implict jump to bb10
 bb10:
   ADD t4, s6, zero
-  SW t4, 4(sp)
+  SW t4, 8(sp)
   FSGNJ.S fs8, fs5, fs5
   FSGNJ.S fs9, fs6, fs6
   FSGNJ.S fs10, fs7, fs7
   ADD s8, s5, zero
   ADDI s9, zero, 10
-  LW t4, 4(sp)
+  LW t4, 8(sp)
   REMW s9, t4, s9
   BNE s9, zero, bb32
   # implict jump to bb11
@@ -203,9 +203,9 @@ bb11:
   # implict jump to bb12
 bb12:
   FSGNJ.S ft4, fs9, fs9
-  FSW ft4, 0(sp)
+  FSW ft4, 4(sp)
   FSGNJ.S ft4, fs8, fs8
-  FSW ft4, 8(sp)
+  FSW ft4, 0(sp)
   BLT s8, s4, bb26
   # implict jump to bb13
 bb13:
@@ -217,14 +217,14 @@ bb14:
   # implict jump to bb15
 bb15:
   LA s7, .CONSTANT.7.3
-  FLW fs0, 0(s7)
+  FLW fs1, 0(s7)
   LA s7, .CONSTANT.7.3
   FLW fs8, 0(s7)
-  FSGNJ.S fs0, fs0, fs8
+  FSGNJ.S fs1, fs1, fs8
   # implict jump to bb16
 bb16:
-  FADD.S fs2, fs10, fs0
-  LW t4, 4(sp)
+  FADD.S fs2, fs10, fs1
+  LW t4, 8(sp)
   ADDIW s0, t4, 1
   # implict jump to bb17
 bb17:
@@ -238,11 +238,11 @@ bb18:
 bb19:
   ADD s5, s1, zero
   FSGNJ.S fs7, fs2, fs2
+  FLW ft4, 4(sp)
+  FLW ft3, 4(sp)
+  FSGNJ.S fs6, ft4, ft3
   FLW ft4, 0(sp)
   FLW ft3, 0(sp)
-  FSGNJ.S fs6, ft4, ft3
-  FLW ft4, 8(sp)
-  FLW ft3, 8(sp)
   FSGNJ.S fs5, ft4, ft3
   ADD s6, s0, zero
   JAL zero, bb10
@@ -267,20 +267,20 @@ bb22:
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s10, t5, s10
-  FLW fs1, 0(s10)
-  FMUL.S fs1, fs11, fs1
-  FADD.S fs3, fs9, fs1
-  ADDIW s2, s9, 1
+  FLW fs3, 0(s10)
+  FMUL.S fs3, fs11, fs3
+  FADD.S fs0, fs9, fs3
+  ADDIW s3, s9, 1
   # implict jump to bb23
 bb23:
-  BLT s2, s4, bb25
+  BLT s3, s4, bb25
   # implict jump to bb24
 bb24:
-  FSGNJ.S fs0, fs3, fs3
+  FSGNJ.S fs1, fs0, fs0
   JAL zero, bb16
 bb25:
-  ADD s7, s2, zero
-  FSGNJ.S fs8, fs3, fs3
+  ADD s7, s3, zero
+  FSGNJ.S fs8, fs0, fs0
   JAL zero, bb22
 bb26:
   # implict jump to bb27
@@ -291,39 +291,39 @@ bb28:
   SLLIW s11, s10, 2
   ADDI t5, sp, 216
   ADD s7, t5, s11
-  FCVT.S.W fs0, s10
-  FLW ft4, 0(sp)
-  FADD.S fs8, ft4, fs0
+  FCVT.S.W fs1, s10
+  FLW ft4, 4(sp)
+  FADD.S fs8, ft4, fs1
   FSW fs8, 0(s7)
   LUI t5, 4
   ADDIW t5, t5, 216
   ADD t5, t5, sp
   ADD s7, t5, s11
-  FLW ft4, 8(sp)
-  FADD.S fs0, ft4, fs0
-  FSW fs0, 0(s7)
-  ADDIW s3, s10, 1
+  FLW ft4, 0(sp)
+  FADD.S fs1, ft4, fs1
+  FSW fs1, 0(s7)
+  ADDIW s2, s10, 1
   # implict jump to bb29
 bb29:
-  BLT s3, s4, bb31
+  BLT s2, s4, bb31
   # implict jump to bb30
 bb30:
-  ADD s9, s3, zero
+  ADD s9, s2, zero
   JAL zero, bb14
 bb31:
-  ADD s8, s3, zero
+  ADD s8, s2, zero
   JAL zero, bb28
 bb32:
   LA s9, .CONSTANT.7.2
   FLW fs11, 0(s9)
   LA s9, .CONSTANT.7.2
-  FLW fs0, 0(s9)
-  FSGNJ.S fs8, fs11, fs0
+  FLW fs1, 0(s9)
+  FSGNJ.S fs8, fs11, fs1
   LA s9, .CONSTANT.7.3
-  FLW fs0, 0(s9)
+  FLW fs1, 0(s9)
   LA s9, .CONSTANT.7.3
   FLW fs11, 0(s9)
-  FSGNJ.S fs9, fs0, fs11
+  FSGNJ.S fs9, fs1, fs11
   JAL zero, bb12
 loop:
   ADDI sp, sp, -96

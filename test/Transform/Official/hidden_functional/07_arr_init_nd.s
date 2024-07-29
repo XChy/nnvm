@@ -18,187 +18,127 @@ main:
 bb1:
   ADDI s3, zero, 1
   SW s3, 288(sp)
-  ADDI s3, sp, 292
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
-  ADDI s3, sp, 296
-  ADDI s4, zero, 3
-  SW s4, 0(s3)
-  ADDI s3, sp, 300
-  ADDI s4, zero, 4
-  SW s4, 0(s3)
-  ADDI s3, sp, 304
-  ADDI s4, zero, 5
-  SW s4, 0(s3)
-  ADDI s3, sp, 308
-  ADDI s4, zero, 6
-  SW s4, 0(s3)
-  ADDI s3, sp, 312
-  ADDI s4, zero, 7
-  SW s4, 0(s3)
-  ADDI s3, sp, 316
-  ADDI s4, zero, 8
-  SW s4, 0(s3)
-  ADDI s3, sp, 320
-  ADDI s4, zero, 9
-  SW s4, 0(s3)
-  ADDI s3, sp, 324
-  ADDI s4, zero, 10
-  SW s4, 0(s3)
-  ADDI s3, sp, 328
-  ADDI s4, zero, 11
-  SW s4, 0(s3)
-  ADDI s3, sp, 332
-  ADDI s4, zero, 12
-  SW s4, 0(s3)
-  ADDI s3, sp, 336
-  ADDI s4, zero, 13
-  SW s4, 0(s3)
-  ADDI s3, sp, 340
-  ADDI s4, zero, 14
-  SW s4, 0(s3)
-  ADDI s3, sp, 344
-  ADDI s4, zero, 15
-  SW s4, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 292(sp)
+  ADDI s3, zero, 3
+  SW s3, 296(sp)
+  ADDI s3, zero, 4
+  SW s3, 300(sp)
+  ADDI s3, zero, 5
+  SW s3, 304(sp)
+  ADDI s3, zero, 6
+  SW s3, 308(sp)
+  ADDI s3, zero, 7
+  SW s3, 312(sp)
+  ADDI s3, zero, 8
+  SW s3, 316(sp)
+  ADDI s3, zero, 9
+  SW s3, 320(sp)
+  ADDI s3, zero, 10
+  SW s3, 324(sp)
+  ADDI s3, zero, 11
+  SW s3, 328(sp)
+  ADDI s3, zero, 12
+  SW s3, 332(sp)
+  ADDI s3, zero, 13
+  SW s3, 336(sp)
+  ADDI s3, zero, 14
+  SW s3, 340(sp)
+  ADDI s3, zero, 15
+  SW s3, 344(sp)
   ADDI s3, zero, 1
   SW s3, 224(sp)
-  ADDI s3, sp, 228
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
-  ADDI s3, sp, 232
-  ADDI s4, zero, 3
-  SW s4, 0(s3)
-  ADDI s3, sp, 236
-  ADDI s4, zero, 4
-  SW s4, 0(s3)
-  ADDI s3, sp, 240
-  ADDI s4, zero, 5
-  SW s4, 0(s3)
-  ADDI s3, sp, 244
-  ADDI s4, zero, 6
-  SW s4, 0(s3)
-  ADDI s3, sp, 248
-  ADDI s4, zero, 7
-  SW s4, 0(s3)
-  ADDI s3, sp, 252
-  ADDI s4, zero, 8
-  SW s4, 0(s3)
-  ADDI s3, sp, 256
-  ADDI s4, zero, 9
-  SW s4, 0(s3)
-  ADDI s3, sp, 260
-  ADDI s4, zero, 10
-  SW s4, 0(s3)
-  ADDI s3, sp, 264
-  ADDI s4, zero, 11
-  SW s4, 0(s3)
-  ADDI s3, sp, 268
-  ADDI s4, zero, 12
-  SW s4, 0(s3)
-  ADDI s3, sp, 272
-  ADDI s4, zero, 13
-  SW s4, 0(s3)
-  ADDI s3, sp, 276
-  ADDI s4, zero, 14
-  SW s4, 0(s3)
-  ADDI s3, sp, 280
-  ADDI s4, zero, 15
-  SW s4, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 228(sp)
+  ADDI s3, zero, 3
+  SW s3, 232(sp)
+  ADDI s3, zero, 4
+  SW s3, 236(sp)
+  ADDI s3, zero, 5
+  SW s3, 240(sp)
+  ADDI s3, zero, 6
+  SW s3, 244(sp)
+  ADDI s3, zero, 7
+  SW s3, 248(sp)
+  ADDI s3, zero, 8
+  SW s3, 252(sp)
+  ADDI s3, zero, 9
+  SW s3, 256(sp)
+  ADDI s3, zero, 10
+  SW s3, 260(sp)
+  ADDI s3, zero, 11
+  SW s3, 264(sp)
+  ADDI s3, zero, 12
+  SW s3, 268(sp)
+  ADDI s3, zero, 13
+  SW s3, 272(sp)
+  ADDI s3, zero, 14
+  SW s3, 276(sp)
+  ADDI s3, zero, 15
+  SW s3, 280(sp)
   ADDI s3, zero, 1
   SW s3, 160(sp)
-  ADDI s3, sp, 164
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
-  ADDI s3, sp, 168
-  ADDI s4, zero, 3
-  SW s4, 0(s3)
-  ADDI s3, sp, 172
-  ADDI s4, zero, 4
-  SW s4, 0(s3)
-  ADDI s3, sp, 176
-  ADDI s4, zero, 5
-  SW s4, 0(s3)
-  ADDI s3, sp, 180
-  ADDI s4, zero, 6
-  SW s4, 0(s3)
-  ADDI s3, sp, 184
-  ADDI s4, zero, 7
-  SW s4, 0(s3)
-  ADDI s3, sp, 188
-  ADDI s4, zero, 8
-  SW s4, 0(s3)
-  ADDI s3, sp, 192
-  ADDI s4, zero, 9
-  SW s4, 0(s3)
-  ADDI s3, sp, 196
-  ADDI s4, zero, 10
-  SW s4, 0(s3)
-  ADDI s3, sp, 200
-  ADDI s4, zero, 11
-  SW s4, 0(s3)
-  ADDI s3, sp, 204
-  ADDI s4, zero, 12
-  SW s4, 0(s3)
-  ADDI s3, sp, 208
-  ADDI s4, zero, 13
-  SW s4, 0(s3)
-  ADDI s3, sp, 212
-  ADDI s4, zero, 14
-  SW s4, 0(s3)
-  ADDI s3, sp, 216
-  ADDI s4, zero, 15
-  SW s4, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 164(sp)
+  ADDI s3, zero, 3
+  SW s3, 168(sp)
+  ADDI s3, zero, 4
+  SW s3, 172(sp)
+  ADDI s3, zero, 5
+  SW s3, 176(sp)
+  ADDI s3, zero, 6
+  SW s3, 180(sp)
+  ADDI s3, zero, 7
+  SW s3, 184(sp)
+  ADDI s3, zero, 8
+  SW s3, 188(sp)
+  ADDI s3, zero, 9
+  SW s3, 192(sp)
+  ADDI s3, zero, 10
+  SW s3, 196(sp)
+  ADDI s3, zero, 11
+  SW s3, 200(sp)
+  ADDI s3, zero, 12
+  SW s3, 204(sp)
+  ADDI s3, zero, 13
+  SW s3, 208(sp)
+  ADDI s3, zero, 14
+  SW s3, 212(sp)
+  ADDI s3, zero, 15
+  SW s3, 216(sp)
   ADDI s3, zero, 1
   SW s3, 96(sp)
-  ADDI s3, sp, 100
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
-  ADDI s3, sp, 104
-  ADDI s4, zero, 3
-  SW s4, 0(s3)
-  ADDI s3, sp, 108
-  ADDI s4, zero, 4
-  SW s4, 0(s3)
-  ADDI s3, sp, 112
-  SW zero, 0(s3)
-  ADDI s3, sp, 116
-  SW zero, 0(s3)
-  ADDI s3, sp, 120
-  ADDI s4, zero, 7
-  SW s4, 0(s3)
-  ADDI s3, sp, 124
-  SW zero, 0(s3)
-  ADDI s3, sp, 128
-  SW zero, 0(s3)
-  ADDI s3, sp, 132
-  ADDI s4, zero, 10
-  SW s4, 0(s3)
-  ADDI s3, sp, 136
-  ADDI s4, zero, 11
-  SW s4, 0(s3)
-  ADDI s3, sp, 140
-  ADDI s4, zero, 12
-  SW s4, 0(s3)
-  ADDI s3, sp, 144
-  SW zero, 0(s3)
-  ADDI s3, sp, 148
-  SW zero, 0(s3)
-  ADDI s3, sp, 152
-  SW zero, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 100(sp)
+  ADDI s3, zero, 3
+  SW s3, 104(sp)
+  ADDI s3, zero, 4
+  SW s3, 108(sp)
+  SW zero, 112(sp)
+  SW zero, 116(sp)
+  ADDI s3, zero, 7
+  SW s3, 120(sp)
+  SW zero, 124(sp)
+  SW zero, 128(sp)
+  ADDI s3, zero, 10
+  SW s3, 132(sp)
+  ADDI s3, zero, 11
+  SW s3, 136(sp)
+  ADDI s3, zero, 12
+  SW s3, 140(sp)
+  SW zero, 144(sp)
+  SW zero, 148(sp)
+  SW zero, 152(sp)
   ADDI s3, zero, 1
   SW s3, 0(sp)
-  ADDI s3, sp, 4
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
-  ADDI s3, sp, 8
-  ADDI s4, zero, 3
-  SW s4, 0(s3)
-  ADDI s3, sp, 12
-  ADDI s4, zero, 4
-  SW s4, 0(s3)
-  ADDI s3, sp, 16
-  ADDI s4, zero, 5
-  SW s4, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 4(sp)
+  ADDI s3, zero, 3
+  SW s3, 8(sp)
+  ADDI s3, zero, 4
+  SW s3, 12(sp)
+  ADDI s3, zero, 5
+  SW s3, 16(sp)
   XORI s3, zero, 19
   BNE s3, zero, bb3
   # implict jump to bb2

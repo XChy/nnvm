@@ -474,8 +474,7 @@ else557:  pred(then543)
   820 = shl i32 %pos.load842, i32 2
   560 = ptradd ptr %buf, i32 %820
   560.load = load i32 from ptr %560
-  563.load = load i32 from ptr %mTrue
-  565 = icmp ne i32 %560.load, i32 %563.load
+  565 = icmp ne i32 %560.load, i32 116
   br i1 %565, bb %then566, bb %else568
 then566:  pred(else557)
   ret i32 0
@@ -484,8 +483,7 @@ else568:  pred(else557)
   821 = shl i32 %570, i32 2
   572 = ptradd ptr %buf, i32 %821
   572.load = load i32 from ptr %572
-  575.load = load i32 from ptr %arr.index548
-  577 = icmp ne i32 %572.load, i32 %575.load
+  577 = icmp ne i32 %572.load, i32 114
   br i1 %577, bb %then578, bb %else580
 then578:  pred(else568)
   ret i32 0
@@ -494,8 +492,7 @@ else580:  pred(else568)
   822 = shl i32 %582, i32 2
   584 = ptradd ptr %buf, i32 %822
   584.load = load i32 from ptr %584
-  587.load = load i32 from ptr %arr.index549
-  589 = icmp ne i32 %584.load, i32 %587.load
+  589 = icmp ne i32 %584.load, i32 117
   br i1 %589, bb %then590, bb %else592
 then590:  pred(else580)
   ret i32 0
@@ -534,8 +531,7 @@ else623:  pred(then608)
   824 = shl i32 %pos.load842, i32 2
   626 = ptradd ptr %buf, i32 %824
   626.load = load i32 from ptr %626
-  629.load = load i32 from ptr %mFalse
-  631 = icmp ne i32 %626.load, i32 %629.load
+  631 = icmp ne i32 %626.load, i32 102
   br i1 %631, bb %then632, bb %else634
 then632:  pred(else623)
   ret i32 0
@@ -544,8 +540,7 @@ else634:  pred(else623)
   825 = shl i32 %636, i32 2
   638 = ptradd ptr %buf, i32 %825
   638.load = load i32 from ptr %638
-  641.load = load i32 from ptr %arr.index613
-  643 = icmp ne i32 %638.load, i32 %641.load
+  643 = icmp ne i32 %638.load, i32 97
   br i1 %643, bb %then644, bb %else646
 then644:  pred(else634)
   ret i32 0
@@ -554,8 +549,7 @@ else646:  pred(else634)
   826 = shl i32 %648, i32 2
   650 = ptradd ptr %buf, i32 %826
   650.load = load i32 from ptr %650
-  653.load = load i32 from ptr %arr.index614
-  655 = icmp ne i32 %650.load, i32 %653.load
+  655 = icmp ne i32 %650.load, i32 108
   br i1 %655, bb %then656, bb %else658
 then656:  pred(else646)
   ret i32 0
@@ -564,8 +558,7 @@ else658:  pred(else646)
   827 = shl i32 %660, i32 2
   662 = ptradd ptr %buf, i32 %827
   662.load = load i32 from ptr %662
-  665.load = load i32 from ptr %arr.index615
-  667 = icmp ne i32 %662.load, i32 %665.load
+  667 = icmp ne i32 %662.load, i32 115
   br i1 %667, bb %then668, bb %else670
 then668:  pred(else658)
   ret i32 0
@@ -601,8 +594,7 @@ else700:  pred(then686)
   829 = shl i32 %pos.load842, i32 2
   703 = ptradd ptr %buf, i32 %829
   703.load = load i32 from ptr %703
-  706.load = load i32 from ptr %mNull
-  708 = icmp ne i32 %703.load, i32 %706.load
+  708 = icmp ne i32 %703.load, i32 110
   br i1 %708, bb %then709, bb %else711
 then709:  pred(else700)
   ret i32 0
@@ -611,8 +603,7 @@ else711:  pred(else700)
   830 = shl i32 %713, i32 2
   715 = ptradd ptr %buf, i32 %830
   715.load = load i32 from ptr %715
-  718.load = load i32 from ptr %arr.index691
-  720 = icmp ne i32 %715.load, i32 %718.load
+  720 = icmp ne i32 %715.load, i32 117
   br i1 %720, bb %then721, bb %else723
 then721:  pred(else711)
   ret i32 0
@@ -621,8 +612,7 @@ else723:  pred(else711)
   831 = shl i32 %725, i32 2
   727 = ptradd ptr %buf, i32 %831
   727.load = load i32 from ptr %727
-  730.load = load i32 from ptr %arr.index692
-  732 = icmp ne i32 %727.load, i32 %730.load
+  732 = icmp ne i32 %727.load, i32 108
   br i1 %732, bb %then733, bb %else735
 then733:  pred(else723)
   ret i32 0

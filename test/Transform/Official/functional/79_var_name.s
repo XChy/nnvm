@@ -19,9 +19,8 @@ main:
   SD s10, 96(sp)
   ADDI s3, zero, 1
   SW s3, 104(sp)
-  ADDI s3, sp, 108
-  ADDI s4, zero, 2
-  SW s4, 0(s3)
+  ADDI s3, zero, 2
+  SW s3, 108(sp)
   ADDI s3, zero, 0
   XORI s3, s3, 18
   BNE s3, zero, bb10
@@ -79,23 +78,23 @@ bb6:
   LW s11, 0(s11)
   ADDW s10, s10, s11
   SW s10, 0(s9)
-  ADDW s1, s7, s10
+  ADDW s0, s7, s10
   ADD a0, s10, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s0, s8, 1
+  ADDIW s1, s8, 1
   # implict jump to bb7
 bb7:
-  SLTI s7, s0, 20
+  SLTI s7, s1, 20
   BNE s7, zero, bb9
   # implict jump to bb8
 bb8:
-  ADD s4, s1, zero
+  ADD s4, s0, zero
   JAL zero, bb3
 bb9:
-  ADD s5, s0, zero
-  ADD s6, s1, zero
+  ADD s5, s1, zero
+  ADD s6, s0, zero
   JAL zero, bb6
 bb10:
   ADDI s3, zero, 18

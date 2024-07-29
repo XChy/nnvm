@@ -33,8 +33,8 @@ fft:
   SD s2, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
+  SD s4, 72(sp)
+  SD s3, 80(sp)
   SD s5, 88(sp)
   SD s6, 96(sp)
   SD s7, 104(sp)
@@ -102,8 +102,8 @@ bb4:
   LD s2, 40(sp)
   LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
+  LD s4, 72(sp)
+  LD s3, 80(sp)
   LD s5, 88(sp)
   LD s6, 96(sp)
   LD s7, 104(sp)
@@ -127,7 +127,7 @@ bb7:
   SLLIW s9, s5, 2
   LD t4, 64(sp)
   ADD s9, t4, s9
-  LW s1, 0(s9)
+  LW s3, 0(s9)
   LW t4, 0(sp)
   ADDW s5, s5, t4
   SLLIW s5, s5, 2
@@ -138,24 +138,24 @@ bb7:
   ADD a1, s10, zero
   CALL multiply
   ADD s10, a0, zero
-  ADDW s0, s1, s10
+  ADDW s0, s3, s10
   LUI s4, 243712
   ADDIW s4, s4, 1
   REMW s0, s0, s4
   SW s0, 0(s9)
-  SUBW s0, s1, s10
-  LUI s1, 243712
-  ADDIW s1, s1, 1
-  ADDW s0, s0, s1
-  LUI s1, 243712
-  ADDIW s1, s1, 1
-  REMW s0, s0, s1
+  SUBW s0, s3, s10
+  LUI s3, 243712
+  ADDIW s3, s3, 1
+  ADDW s0, s0, s3
+  LUI s3, 243712
+  ADDIW s3, s3, 1
+  REMW s0, s0, s3
   SW s0, 0(s5)
   ADD a0, s7, zero
   LW t4, 4(sp)
   ADD a1, t4, zero
   CALL multiply
-  ADD s3, a0, zero
+  ADD s1, a0, zero
   ADDIW s2, s6, 1
   # implict jump to bb8
 bb8:
@@ -164,7 +164,7 @@ bb8:
   JAL zero, bb4
 bb9:
   ADD s11, s2, zero
-  ADD s8, s3, zero
+  ADD s8, s1, zero
   JAL zero, bb7
 bb10:
   # implict jump to bb11
@@ -264,8 +264,8 @@ bb23:
   LD s2, 40(sp)
   LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
+  LD s4, 72(sp)
+  LD s3, 80(sp)
   LD s5, 88(sp)
   LD s6, 96(sp)
   LD s7, 104(sp)
@@ -472,15 +472,15 @@ bb36:
   CALL multiply
   ADD s7, a0, zero
   SW s7, 0(s6)
-  ADDIW s0, s5, 1
+  ADDIW s1, s5, 1
   # implict jump to bb37
 bb37:
   LA s5, d
   LW s5, 0(s5)
-  BLT s0, s5, bb38
+  BLT s1, s5, bb38
   JAL zero, bb33
 bb38:
-  ADD s3, s0, zero
+  ADD s3, s1, zero
   JAL zero, bb36
 bb39:
   # implict jump to bb40
@@ -501,15 +501,15 @@ bb41:
   CALL multiply
   ADD s5, a0, zero
   SW s5, 0(s6)
-  ADDIW s1, s3, 1
+  ADDIW s0, s3, 1
   # implict jump to bb42
 bb42:
   LA s3, d
   LW s3, 0(s3)
-  BLT s1, s3, bb43
+  BLT s0, s3, bb43
   JAL zero, bb32
 bb43:
-  ADD s2, s1, zero
+  ADD s2, s0, zero
   JAL zero, bb41
 bb44:
   # implict jump to bb45

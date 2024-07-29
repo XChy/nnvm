@@ -497,40 +497,31 @@ bb49:
   LA s2, .CONSTANT.7.7
   FLW fs2, 0(s2)
   FSW fs2, 136(sp)
-  ADDI s2, sp, 140
-  FSW fs1, 0(s2)
-  ADDI s2, sp, 144
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 148
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 152
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 156
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 160
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 164
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 168
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
-  ADDI s2, sp, 172
-  LA s3, .CONSTANT.7.5
-  FLW fs2, 0(s3)
-  FSW fs2, 0(s2)
+  FSW fs1, 140(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 144(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 148(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 152(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 156(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 160(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 164(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 168(sp)
+  LA s2, .CONSTANT.7.5
+  FLW fs2, 0(s2)
+  FSW fs2, 172(sp)
   ADDI a0, sp, 136
   ADD a0, a0, zero
   CALL getfarray

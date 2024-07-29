@@ -39,6 +39,8 @@ public:
   bool hasWriteClobber(Instruction *I, BasicBlock *domer, BasicBlock *domee);
   bool hasWriteClobberInBlock(Instruction *I, BasicBlock *block);
 
+  bool hasReadClobberInBlock(Instruction *I, BasicBlock *block);
+
 private:
   AccessInfo getMemDefInBlock(Instruction *I, BasicBlock *block);
   AccessInfo getLocalDomMemDef(Instruction *I);
