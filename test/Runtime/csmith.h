@@ -11,7 +11,8 @@ static void crc32_gentab(void) {
     for (j = 8; j > 0; j--) {
       if (crc & 1) {
         crc = (crc >> 1) ^ poly;
-      } else {
+      }
+      else {
         crc >>= 1;
       }
     }
@@ -21,7 +22,7 @@ static void crc32_gentab(void) {
 
 static void crc32_byte(uint8_t b) {
   crc32_context = ((crc32_context >> 8) & 0x00FFFFFF) ^
-                  crc32_tab[(crc32_context ^ b) & 0xFF];
+    crc32_tab[(crc32_context ^ b) & 0xFF];
 }
 
 static void crc32_8bytes(uint64_t val) {
@@ -35,6 +36,7 @@ static void crc32_8bytes(uint64_t val) {
   crc32_byte((val >> 56) & 0xff);
 }
 
+int lut[16] = { 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70 };
 static void put_hex(uint64_t hash) {
   if (hash >= 16) {
     put_hex(hash / 16);
@@ -122,7 +124,7 @@ static int8_t safe_div_func_int8_t_s_s(int8_t si1, int8_t si2) {
 }
 static int8_t safe_lshift_func_int8_t_s_s(int8_t left, int right) {
   if (((left < 0) || ((right) < 0) || ((right) >= 32) ||
-       (left > ((127) >> (right))))) {
+    (left > ((127) >> (right))))) {
     return ((left));
   }
   return (left << (right));
@@ -172,7 +174,7 @@ static int16_t safe_div_func_int16_t_s_s(int16_t si1, int16_t si2) {
 }
 static int16_t safe_lshift_func_int16_t_s_s(int16_t left, int right) {
   if (((left < 0) || ((right) < 0) || ((right) >= 32) ||
-       (left > ((32767) >> (right))))) {
+    (left > ((32767) >> (right))))) {
     return ((left));
   }
   return (left << (right));
@@ -203,24 +205,24 @@ static int32_t safe_unary_minus_func_int32_t_s(int32_t si) {
 }
 static int32_t safe_add_func_int32_t_s_s(int32_t si1, int32_t si2) {
   if ((((si1 > 0) && (si2 > 0) && (si1 > ((2147483647) - si2))) ||
-       ((si1 < 0) && (si2 < 0) && (si1 < ((-2147483647 - 1) - si2))))) {
+    ((si1 < 0) && (si2 < 0) && (si1 < ((-2147483647 - 1) - si2))))) {
     return ((si1));
   }
   return (si1 + si2);
 }
 static int32_t safe_sub_func_int32_t_s_s(int32_t si1, int32_t si2) {
   if ((((si1 ^ si2) & (((si1 ^ ((si1 ^ si2) & (~(2147483647)))) - si2) ^ si2)) <
-       0)) {
+    0)) {
     return ((si1));
   }
   return (si1 - si2);
 }
 static int32_t safe_mul_func_int32_t_s_s(int32_t si1, int32_t si2) {
   if ((((si1 > 0) && (si2 > 0) && (si1 > ((2147483647) / si2))) ||
-       ((si1 > 0) && (si2 <= 0) && (si2 < ((-2147483647 - 1) / si1))) ||
-       ((si1 <= 0) && (si2 > 0) && (si1 < ((-2147483647 - 1) / si2))) ||
-       ((si1 <= 0) && (si2 <= 0) && (si1 != 0) &&
-        (si2 < ((2147483647) / si1))))) {
+    ((si1 > 0) && (si2 <= 0) && (si2 < ((-2147483647 - 1) / si1))) ||
+    ((si1 <= 0) && (si2 > 0) && (si1 < ((-2147483647 - 1) / si2))) ||
+    ((si1 <= 0) && (si2 <= 0) && (si1 != 0) &&
+      (si2 < ((2147483647) / si1))))) {
     return ((si1));
   }
   return si1 * si2;
@@ -239,7 +241,7 @@ static int32_t safe_div_func_int32_t_s_s(int32_t si1, int32_t si2) {
 }
 static int32_t safe_lshift_func_int32_t_s_s(int32_t left, int right) {
   if (((left < 0) || ((right) < 0) || ((right) >= 32) ||
-       (left > ((2147483647) >> (right))))) {
+    (left > ((2147483647) >> (right))))) {
     return ((left));
   }
   return (left << (right));
@@ -270,28 +272,28 @@ static int64_t safe_unary_minus_func_int64_t_s(int64_t si) {
 }
 static int64_t safe_add_func_int64_t_s_s(int64_t si1, int64_t si2) {
   if ((((si1 > 0) && (si2 > 0) && (si1 > ((9223372036854775807L) - si2))) ||
-       ((si1 < 0) && (si2 < 0) &&
-        (si1 < ((-9223372036854775807L - 1) - si2))))) {
+    ((si1 < 0) && (si2 < 0) &&
+      (si1 < ((-9223372036854775807L - 1) - si2))))) {
     return ((si1));
   }
   return (si1 + si2);
 }
 static int64_t safe_sub_func_int64_t_s_s(int64_t si1, int64_t si2) {
   if ((((si1 ^ si2) &
-        (((si1 ^ ((si1 ^ si2) & (~(9223372036854775807L)))) - si2) ^ si2)) <
-       0)) {
+    (((si1 ^ ((si1 ^ si2) & (~(9223372036854775807L)))) - si2) ^ si2)) <
+    0)) {
     return ((si1));
   }
   return (si1 - si2);
 }
 static int64_t safe_mul_func_int64_t_s_s(int64_t si1, int64_t si2) {
   if ((((si1 > 0) && (si2 > 0) && (si1 > ((9223372036854775807L) / si2))) ||
-       ((si1 > 0) && (si2 <= 0) &&
-        (si2 < ((-9223372036854775807L - 1) / si1))) ||
-       ((si1 <= 0) && (si2 > 0) &&
-        (si1 < ((-9223372036854775807L - 1) / si2))) ||
-       ((si1 <= 0) && (si2 <= 0) && (si1 != 0) &&
-        (si2 < ((9223372036854775807L) / si1))))) {
+    ((si1 > 0) && (si2 <= 0) &&
+      (si2 < ((-9223372036854775807L - 1) / si1))) ||
+    ((si1 <= 0) && (si2 > 0) &&
+      (si1 < ((-9223372036854775807L - 1) / si2))) ||
+    ((si1 <= 0) && (si2 <= 0) && (si1 != 0) &&
+      (si2 < ((9223372036854775807L) / si1))))) {
     return ((si1));
   }
   return si1 * si2;
@@ -310,14 +312,14 @@ static int64_t safe_div_func_int64_t_s_s(int64_t si1, int64_t si2) {
 }
 static int64_t safe_lshift_func_int64_t_s_s(int64_t left, int right) {
   if (((left < 0) || ((right) < 0) || ((right) >= 32) ||
-       (left > ((9223372036854775807L) >> (right))))) {
+    (left > ((9223372036854775807L) >> (right))))) {
     return ((left));
   }
   return (left << (right));
 }
 static int64_t safe_lshift_func_int64_t_s_u(int64_t left, uint32_t right) {
   if (((left < 0) || ((right) >= 32) ||
-       (left > ((9223372036854775807L) >> (right))))) {
+    (left > ((9223372036854775807L) >> (right))))) {
     return ((left));
   }
   return (left << (right));
@@ -459,7 +461,7 @@ static uint32_t safe_div_func_uint32_t_u_u(uint32_t ui1, uint32_t ui2) {
 }
 static uint32_t safe_lshift_func_uint32_t_u_s(uint32_t left, int right) {
   if ((((right) < 0) || ((right) >= 32) ||
-       (left > ((4294967295U) >> (right))))) {
+    (left > ((4294967295U) >> (right))))) {
     return ((left));
   }
   return (left << (right));
@@ -508,16 +510,16 @@ static uint64_t safe_div_func_uint64_t_u_u(uint64_t ui1, uint64_t ui2) {
   return (ui1 / ui2);
 }
 static uint64_t safe_lshift_func_uint64_t_u_s(uint64_t left, int right) {
-  if ((((right) < 0) || ((right) >= 32) ||
-       (left > ((18446744073709551615UL) >> (right))))) {
-    return ((left));
-  }
+  // if ((((right) < 0) || ((right) >= 32) ||
+  //   (left > ((18446744073709551615UL) >> (right))))) {
+  //   return ((left));
+  // }
   return (left << (right));
 }
 static uint64_t safe_lshift_func_uint64_t_u_u(uint64_t left, uint32_t right) {
-  if ((((right) >= 32) || (left > ((18446744073709551615UL) >> (right))))) {
-    return ((left));
-  }
+  // if ((((right) >= 32) || (left > ((18446744073709551615UL) >> (right))))) {
+  //   return ((left));
+  // }
   return (left << (right));
 }
 static uint64_t safe_rshift_func_uint64_t_u_s(uint64_t left, int right) {
@@ -534,32 +536,32 @@ static uint64_t safe_rshift_func_uint64_t_u_u(uint64_t left, uint32_t right) {
 }
 static float safe_add_func_float_f_f(float sf1, float sf2) {
   if ((fabsf((0.5f * sf1) + (0.5f * sf2)) >
-       (0.5f * 3.40282346638528859811704183484516925e+38F))) {
+    (0.5f * 3.40282346638528859811704183484516925e+38F))) {
     return (sf1);
   }
   return (sf1 + sf2);
 }
 static float safe_sub_func_float_f_f(float sf1, float sf2) {
   if ((fabsf((0.5f * sf1) - (0.5f * sf2)) >
-       (0.5f * 3.40282346638528859811704183484516925e+38F))) {
+    (0.5f * 3.40282346638528859811704183484516925e+38F))) {
     return (sf1);
   }
   return (sf1 - sf2);
 }
 static float safe_mul_func_float_f_f(float sf1, float sf2) {
   if ((fabsf((0x1.0p-100f * sf1) * (0x1.0p-28f * sf2)) >
-       (0x1.0p-100f *
-        (0x1.0p-28f * 3.40282346638528859811704183484516925e+38F)))) {
+    (0x1.0p-100f *
+      (0x1.0p-28f * 3.40282346638528859811704183484516925e+38F)))) {
     return (sf1);
   }
   return (sf1 * sf2);
 }
 static float safe_div_func_float_f_f(float sf1, float sf2) {
   if (((fabsf(sf2) < 1.0f) &&
-       (((sf2 == 0.0f) ||
-         (fabsf((0x1.0p-49f * sf1) / (0x1.0p100f * sf2))) >
-             (0x1.0p-100f *
-              (0x1.0p-49f * 3.40282346638528859811704183484516925e+38F)))))) {
+    (((sf2 == 0.0f) ||
+      (fabsf((0x1.0p-49f * sf1) / (0x1.0p100f * sf2))) >
+      (0x1.0p-100f *
+        (0x1.0p-49f * 3.40282346638528859811704183484516925e+38F)))))) {
     return (sf1);
   }
   return (sf1 / sf2);
