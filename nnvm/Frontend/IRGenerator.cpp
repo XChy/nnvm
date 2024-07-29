@@ -1568,9 +1568,10 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
     }
 
     if (auto *intConst = number->INTEGER_CONST()) {
-      return Symbol{createConstInt(std::stoi(intConst->getText(), 0,
-                                             getRadixOf(intConst->getText()))),
-                    SymbolType::getIntTy()};
+      return Symbol{
+          createConstInt((int)(std::stol(intConst->getText(), 0,
+                                         getRadixOf(intConst->getText())))),
+          SymbolType::getIntTy()};
     }
     errorReporter.errorRecord(ctx, "No such literal number");
     nnvm_unreachable("No such literal number")
