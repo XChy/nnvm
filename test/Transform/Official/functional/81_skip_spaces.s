@@ -3,7 +3,7 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -496
+  ADDI sp, sp, -480
   SD ra, 400(sp)
   SD s0, 408(sp)
   SD s1, 416(sp)
@@ -13,25 +13,23 @@ main:
   SD s5, 448(sp)
   SD s6, 456(sp)
   SD s7, 464(sp)
-  SD s8, 472(sp)
-  SD s9, 480(sp)
   CALL getint
-  ADD s3, a0, zero
-  BNE s3, zero, bb11
+  ADD s0, a0, zero
+  BNE s0, zero, bb9
   # implict jump to bb1
 bb1:
-  ADD s3, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  BNE s3, zero, bb5
+  BNE s0, zero, bb5
   # implict jump to bb3
 bb3:
-  ADD s5, zero, zero
+  ADD s3, zero, zero
   # implict jump to bb4
 bb4:
   ADDI s7, zero, 79
-  REMW s5, s5, s7
-  ADD a0, s5, zero
+  REMW s3, s3, s7
+  ADD a0, s3, zero
   LD ra, 400(sp)
   LD s0, 408(sp)
   LD s1, 416(sp)
@@ -41,59 +39,49 @@ bb4:
   LD s5, 448(sp)
   LD s6, 456(sp)
   LD s7, 464(sp)
-  LD s8, 472(sp)
-  LD s9, 480(sp)
-  ADDI sp, sp, 496
+  ADDI sp, sp, 480
   JALR zero, 0(ra)
 bb5:
+  ADD s4, zero, zero
   # implict jump to bb6
 bb6:
-  ADD s6, zero, zero
+  ADD s5, s4, zero
+  ADD s6, s0, zero
+  ADDI s7, zero, 1
+  SUBW s6, s6, s7
+  SLLIW s7, s6, 2
+  ADDI t5, sp, 0
+  ADD s7, t5, s7
+  LW s7, 0(s7)
+  ADDW s5, s5, s7
+  BNE s6, zero, bb8
   # implict jump to bb7
 bb7:
-  ADD s7, s6, zero
-  ADD s8, s3, zero
-  ADDI s9, zero, 1
-  SUBW s2, s8, s9
-  SLLIW s8, s2, 2
-  ADDI t5, sp, 0
-  ADD s8, t5, s8
-  LW s8, 0(s8)
-  ADDW s0, s7, s8
-  # implict jump to bb8
-bb8:
-  BNE s2, zero, bb10
-  # implict jump to bb9
-bb9:
-  ADD s5, s0, zero
+  ADD s3, s5, zero
   JAL zero, bb4
+bb8:
+  ADD s0, s6, zero
+  ADD s4, s5, zero
+  JAL zero, bb6
+bb9:
+  ADD s1, zero, zero
+  # implict jump to bb10
 bb10:
-  ADD s3, s2, zero
-  ADD s6, s0, zero
-  JAL zero, bb7
-bb11:
-  # implict jump to bb12
-bb12:
-  ADD s4, zero, zero
-  # implict jump to bb13
-bb13:
-  ADD s5, s4, zero
-  SLLIW s6, s5, 2
+  ADD s2, s1, zero
+  SLLIW s3, s2, 2
   ADDI t5, sp, 0
-  ADD s6, t5, s6
+  ADD s3, t5, s3
   CALL getint
-  ADD s7, a0, zero
-  SW s7, 0(s6)
-  ADDIW s1, s5, 1
-  # implict jump to bb14
-bb14:
+  ADD s4, a0, zero
+  SW s4, 0(s3)
+  ADDIW s2, s2, 1
   CALL getint
-  ADD s5, a0, zero
-  BNE s5, zero, bb16
-  # implict jump to bb15
-bb15:
-  ADD s3, s1, zero
+  ADD s3, a0, zero
+  BNE s3, zero, bb12
+  # implict jump to bb11
+bb11:
+  ADD s0, s2, zero
   JAL zero, bb2
-bb16:
-  ADD s4, s1, zero
-  JAL zero, bb13
+bb12:
+  ADD s1, s2, zero
+  JAL zero, bb10

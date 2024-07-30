@@ -365,17 +365,10 @@ main:
   LA s0, a39
   ADDI s1, zero, 1
   SW s1, 0(s0)
-  ADDI s0, zero, 1
-  ADDW s0, s0, zero
-  ADDIW s0, s0, 2
-  ADDIW s0, s0, 3
-  ADDIW s0, s0, 4
-  ADDIW s0, s0, 5
-  ADDIW s0, s0, 6
-  ADDIW s0, s0, 7
-  LA s1, a0
-  SW s0, 0(s1)
-  ADD a0, s0, zero
+  LA s0, a0
+  ADDI s1, zero, 28
+  SW s1, 0(s0)
+  ADDI a0, zero, 28
   CALL putint
   LA s0, a32
   LW s0, 0(s0)

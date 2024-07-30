@@ -3,24 +3,20 @@ external void putfarray(i32 , ptr )
 
 i32 go() {
 entry:  pred()
-  value.load13 = load i32 from ptr @value
-  714 = icmp slt i32 0, i32 %value.load13
-  br i1 %714, bb %while.body_preheader, bb %while.exit
-while.cond:  pred(while.body)
-  a.phi = phi [bb %while.body, i32 %10]
-  value.load = load i32 from ptr @value
-  7 = icmp slt i32 %a.phi, i32 %value.load
-  br i1 %7, bb %while.body, bb %while.exit
+  value.load14 = load i32 from ptr @value
+  715 = icmp slt i32 0, i32 %value.load14
+  br i1 %715, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
-  a.phi16_ph_val = phi [bb %entry, i32 0]
   br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  a.phi16 = phi [bb %while.cond, i32 %a.phi, bb %while.body_preheader, i32 %a.phi16_ph_val]
-  10 = add i32 %a.phi16, i32 1
-  br bb %while.cond
-while.exit:  pred(while.cond, entry)
-  15 = phi [bb %while.cond, i32 %a.phi, bb %entry, i32 0]
-  ret i32 %15
+while.body:  pred(while.body, while.body_preheader)
+  a.phi17 = phi [bb %while.body, i32 %11, bb %while.body_preheader, i32 0]
+  11 = add i32 %a.phi17, i32 1
+  value.load = load i32 from ptr @value
+  7 = icmp slt i32 %11, i32 %value.load
+  br i1 %7, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, entry)
+  16 = phi [bb %while.body, i32 %11, bb %entry, i32 0]
+  ret i32 %16
 }
 
 external void _sysy_starttime(i32 )

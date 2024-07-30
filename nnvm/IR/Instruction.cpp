@@ -90,8 +90,7 @@ bool Instruction::haveSideEffect() const {
 }
 
 bool Instruction::moveable() const {
-  return !(mayWriteToMemory() || mayReadMemory() || isa<TerminatorInst>() ||
-           isa<PhiInst>());
+  return !(mayWriteToMemory() || isa<TerminatorInst>() || isa<PhiInst>());
 }
 
 std::string Instruction::dump() {

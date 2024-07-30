@@ -2,20 +2,20 @@ global ptr b init with i32 0
 global ptr a init with i32 0
 i32 main() {
 entry:  pred()
-  1 = call i32 getint()
-  store i32 %1 to ptr @a
   2 = call i32 getint()
-  store i32 %2 to ptr @b
-  a.load = load i32 from ptr @a
-  6 = icmp eq i32 %a.load, i32 %2
-  br i1 %6, bb %select.then, bb %select.else
+  store i32 %2 to ptr @a
+  4 = call i32 getint()
+  store i32 %4 to ptr @b
+  a.load6 = load i32 from ptr @a
+  8 = icmp eq i32 %a.load6, i32 %4
+  br i1 %8, bb %select.then, bb %select.else
 select.then:  pred(entry)
-  12 = icmp ne i32 %a.load, i32 3
+  14 = icmp ne i32 %a.load6, i32 3
   br bb %select.exit
 select.else:  pred(entry)
   br bb %select.exit
 select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %12]
+  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %14]
   br i1 %select.phi, bb %then, bb %else
 then:  pred(select.exit)
   br bb %if.exit

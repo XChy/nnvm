@@ -76,6 +76,8 @@ public:
 
   std::vector<Loop *> getLoops() const { return loops; }
 
+  DomTreeAnalysis *getDomTree() { return domTree; }
+
   void print(std::ostream &out);
   ~LoopAnalysis();
 

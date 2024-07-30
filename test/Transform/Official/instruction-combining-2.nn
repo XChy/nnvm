@@ -10,56 +10,41 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry20007:  pred()
-  20010 = call i32 getint()
-  store i32 %20010 to ptr @loopCount
+entry30008:  pred()
+  30012 = call i32 getint()
+  store i32 %30012 to ptr @loopCount
   call void _sysy_starttime(i32 10015)
-  loopCount.load40062 = load i32 from ptr @loopCount
-  2001740063 = icmp slt i32 0, i32 %loopCount.load40062
-  br i1 %2001740063, bb %while.body_preheader, bb %while.exit
-while.cond:  pred(while.exit20023)
-  i.phi = phi [bb %while.exit20023, i32 %20041]
-  sum.phi = phi [bb %while.exit20023, i32 %20039]
-  loopCount.load = load i32 from ptr @loopCount
-  20017 = icmp slt i32 %i.phi, i32 %loopCount.load
-  br i1 %20017, bb %while.body, bb %while.exit
-while.body_preheader:  pred(entry20007)
-  i.phi40065_ph_val = phi [bb %entry20007, i32 0]
-  sum.phi40066_ph_val = phi [bb %entry20007, i32 0]
-  2002540058 = icmp slt i32 0, i32 60
+  loopCount.load3001850070 = load i32 from ptr @loopCount
+  3001950071 = icmp slt i32 0, i32 %loopCount.load3001850070
+  br i1 %3001950071, bb %while.body_preheader, bb %while.exit
+while.body_preheader:  pred(entry30008)
   br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  sum.phi40066 = phi [bb %while.cond, i32 %sum.phi, bb %while.body_preheader, i32 %sum.phi40066_ph_val]
-  i.phi40065 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi40065_ph_val]
-  br i1 %2002540058, bb %while.body20022_preheader, bb %while.exit20023
-while.exit:  pred(while.cond, entry20007)
-  40064 = phi [bb %while.cond, i32 %sum.phi, bb %entry20007, i32 0]
+while.body:  pred(while.exit30025, while.body_preheader)
+  sum.phi50074 = phi [bb %while.exit30025, i32 %30046, bb %while.body_preheader, i32 0]
+  i.phi50073 = phi [bb %while.exit30025, i32 %30049, bb %while.body_preheader, i32 0]
+  br bb %while.body30024
+while.exit:  pred(while.exit30025, entry30008)
+  50072 = phi [bb %while.exit30025, i32 %30046, bb %entry30008, i32 0]
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %40064)
+  call void putint(i32 %50072)
   call void putch(i32 10)
   ret i32 0
-while.cond20021:  pred(while.body20022)
-  j.phi = phi [bb %while.body20022, i32 %20032]
-  tmp.phi20049 = phi [bb %while.body20022, i32 %20030]
-  20025 = icmp slt i32 %j.phi, i32 60
-  br i1 %20025, bb %while.body20022, bb %while.exit20023
-while.body20022_preheader:  pred(while.body)
-  j.phi40060_ph_val = phi [bb %while.body, i32 0]
-  tmp.phi2004940061_ph_val = phi [bb %while.body, i32 0]
-  br bb %while.body20022
-while.body20022:  pred(while.cond20021, while.body20022_preheader)
-  tmp.phi2004940061 = phi [bb %while.cond20021, i32 %tmp.phi20049, bb %while.body20022_preheader, i32 %tmp.phi2004940061_ph_val]
-  j.phi40060 = phi [bb %while.cond20021, i32 %j.phi, bb %while.body20022_preheader, i32 %j.phi40060_ph_val]
-  20030 = add i32 %tmp.phi2004940061, i32 %i.phi40065
-  20032 = add i32 %j.phi40060, i32 1
-  br bb %while.cond20021
-while.exit20023:  pred(while.cond20021, while.body)
-  40059 = phi [bb %while.cond20021, i32 %tmp.phi20049, bb %while.body, i32 0]
-  20034 = sdiv i32 %40059, i32 60
-  20037 = add i32 %sum.phi40066, i32 %20034
-  20039 = srem i32 %20037, i32 536854529
-  20041 = add i32 %i.phi40065, i32 1
-  br bb %while.cond
+while.body30024:  pred(while.body30024, while.body)
+  tmp.phi3005750069 = phi [bb %while.body30024, i32 %30033, bb %while.body, i32 0]
+  j.phi50068 = phi [bb %while.body30024, i32 %30036, bb %while.body, i32 0]
+  30033 = add i32 %tmp.phi3005750069, i32 %i.phi50073
+  30036 = add i32 %j.phi50068, i32 1
+  30027 = icmp slt i32 %30036, i32 60
+  br i1 %30027, bb %while.body30024, bb %while.exit30025
+while.exit30025:  pred(while.body30024)
+  50067 = phi [bb %while.body30024, i32 %30033]
+  30039 = sdiv i32 %50067, i32 60
+  30043 = add i32 %sum.phi50074, i32 %30039
+  30046 = srem i32 %30043, i32 536854529
+  30049 = add i32 %i.phi50073, i32 1
+  loopCount.load30018 = load i32 from ptr @loopCount
+  30019 = icmp slt i32 %30049, i32 %loopCount.load30018
+  br i1 %30019, bb %while.body, bb %while.exit
 }
 
 external float getfloat()
@@ -78,9 +63,9 @@ external void putfarray(i32 , ptr )
 
 pure i32 func(i32 input, i32 size) {
 entry:  pred()
-  40049 = add i32 %input, i32 10000
-  20005 = sub i32 %40049, i32 %size
-  ret i32 %20005
+  50057 = add i32 %input, i32 10000
+  30006 = sub i32 %50057, i32 %size
+  ret i32 %30006
 }
 
 

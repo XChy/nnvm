@@ -86,11 +86,7 @@ main:
   SW s0, 24(sp)
   ADDI s0, zero, 8
   SW s0, 28(sp)
-  ADDI s0, zero, 8
-  ADDW s0, s0, zero
-  ADDIW s0, s0, 6
-  ADDW s0, s0, zero
-  ADD a0, s0, zero
+  ADDI a0, zero, 14
   LD ra, 160(sp)
   LD s0, 168(sp)
   ADDI sp, sp, 176

@@ -6,12 +6,12 @@ then20:  pred(entry15)
   22 = si2f i32 0 to float
   ret float %22
 if.exit21:  pred(entry15)
-  24 = sub i32 %num, i32 1
-  28 = call float func(float %data, i32 %24)
-  29 = fadd float %data, float %28
-  33 = call float func(float %29, i32 %24)
-  34 = fsub float %29, float %33
-  ret float %34
+  25 = sub i32 %num, i32 1
+  30 = call float func(float %data, i32 %25)
+  31 = fadd float %data, float %30
+  36 = call float func(float %31, i32 %25)
+  37 = fsub float %31, float %36
+  ret float %37
 }
 
 external i32 getint()
@@ -25,18 +25,18 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry36:  pred()
+entry39:  pred()
   call void _sysy_starttime(i32 21)
-  40 = call i32 getint()
-  45 = call float func(float 1.001000, i32 %40)
-  48 = fsub float %45, float 0.000000
-  49 = si2f i32 0 to float
-  50 = fcmp oeq float %48, float %49
-  br i1 %50, bb %then51, bb %if.exit52
-then51:  pred(entry36)
+  43 = call i32 getint()
+  49 = call float func(float 1.001000, i32 %43)
+  52 = fsub float %49, float 0.000000
+  53 = si2f i32 0 to float
+  54 = fcmp oeq float %52, float %53
+  br i1 %54, bb %then55, bb %if.exit56
+then55:  pred(entry39)
   call void putch(i32 112)
-  br bb %if.exit52
-if.exit52:  pred(entry36, then51)
+  br bb %if.exit56
+if.exit56:  pred(entry39, then55)
   call void _sysy_stoptime(i32 32)
   ret i32 0
 }

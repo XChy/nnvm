@@ -56,7 +56,7 @@ bb4:
 bb5:
   ADD s11, s9, zero
   ADD t4, s10, zero
-  SW t4, 4(sp)
+  SW t4, 0(sp)
   BLT s11, t2, bb26
   # implict jump to bb6
 bb6:
@@ -64,14 +64,14 @@ bb6:
   # implict jump to bb7
 bb7:
   ADD t4, t1, zero
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   XOR s9, t4, t2
   SLTIU s9, s9, 1
   BNE s9, zero, bb15
   # implict jump to bb8
 bb8:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   SLLIW s9, t4, 2
   ADD s9, s0, s9
   LW s10, 0(s9)
@@ -86,7 +86,7 @@ bb8:
 bb9:
   ADD s11, s10, zero
   ADD a4, s9, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   BLT s11, t4, bb14
   # implict jump to bb10
 bb10:
@@ -96,15 +96,15 @@ bb11:
   BNE a5, zero, bb13
   # implict jump to bb12
 bb12:
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s7, t4, zero
   ADD s6, t2, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s8, t4, zero
   JAL zero, bb1
 bb13:
   ADDIW s6, s11, 1
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADDW s7, a4, t4
   ADDW s7, s7, s6
   ADD s9, s7, zero
@@ -116,7 +116,7 @@ bb14:
   JAL zero, bb11
 bb15:
   SW s5, 0(s4)
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   SLLIW s6, t4, 2
   ADD s6, s0, s6
   LW s7, 0(s6)
@@ -137,15 +137,15 @@ bb18:
   BNE s8, zero, bb24
   # implict jump to bb19
 bb19:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   BLT s3, t4, bb23
   # implict jump to bb20
 bb20:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   BLT t4, s3, bb22
   # implict jump to bb21
 bb21:
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD a0, t4, zero
   LD ra, 8(sp)
   LD s0, 16(sp)
@@ -163,7 +163,7 @@ bb21:
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb22:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADDIW s8, t4, 1
   ADD a0, s0, zero
   ADD a1, s8, zero
@@ -190,7 +190,7 @@ bb22:
 bb23:
   ADD a0, s0, zero
   ADD a1, s1, zero
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD a2, t4, zero
   ADD a3, s3, zero
   CALL median
@@ -219,7 +219,7 @@ bb24:
   ADD s5, s6, zero
   JAL zero, bb16
 bb25:
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   SLT s9, s6, t4
   ADD s8, s9, zero
   JAL zero, bb18
@@ -234,7 +234,7 @@ bb26:
   # implict jump to bb27
 bb27:
   ADDI a4, zero, 1
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   SUBW a4, t4, a4
   ADD s10, a4, zero
   ADD s9, s11, zero

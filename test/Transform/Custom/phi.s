@@ -12,16 +12,16 @@ go:
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  LA s1, value
-  LW s1, 0(s1)
-  ADDI s2, zero, 0
-  BLT s2, s1, bb3
+  LA s0, value
+  LW s0, 0(s0)
+  ADDI s1, zero, 0
+  BLT s1, s0, bb3
   # implict jump to bb1
 bb1:
-  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -30,22 +30,18 @@ bb2:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
+  ADD s1, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s2, zero, zero
-  # implict jump to bb5
-bb5:
-  ADD s3, s2, zero
-  ADDIW s0, s3, 1
-  # implict jump to bb6
-bb6:
+  ADD s2, s1, zero
+  ADDIW s2, s2, 1
   LA s3, value
   LW s3, 0(s3)
-  BLT s0, s3, bb8
-  # implict jump to bb7
-bb7:
-  ADD s1, s0, zero
+  BLT s2, s3, bb6
+  # implict jump to bb5
+bb5:
+  ADD s0, s2, zero
   JAL zero, bb2
-bb8:
-  ADD s2, s0, zero
-  JAL zero, bb5
+bb6:
+  ADD s1, s2, zero
+  JAL zero, bb4

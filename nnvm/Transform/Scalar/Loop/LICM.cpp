@@ -9,7 +9,7 @@ using namespace nnvm;
 bool LICMPass::run(Function &F) {
   LA = getAnalysis<LoopAnalysis>(F);
   memAcc = getAnalysis<MemAccAnalysis>(F);
-  domTree = getAnalysis<DomTreeAnalysis>(F);
+  domTree = LA->getDomTree();
 
   auto loops = LA->getLoops();
   for (Loop *loop : loops) {

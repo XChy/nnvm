@@ -80,10 +80,7 @@ entry:  pred()
   store i32 7 to ptr %arr.index59
   arr.index60 = ptradd ptr %e, i32 28
   store i32 8 to ptr %arr.index60
-  104 = add i32 0, i32 8
-  83 = add i32 %104, i32 6
-  89 = add i32 %83, i32 7
-  ret i32 %89
+  ret i32 21
 }
 
 external void putfarray(i32 , ptr )

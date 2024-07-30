@@ -17,65 +17,60 @@ maxN:
 findSmallest:
   ADDI sp, sp, -128
   SD ra, 16(sp)
-  SD s1, 24(sp)
-  SD s3, 32(sp)
-  SD s0, 40(sp)
-  SD s2, 48(sp)
-  SD s11, 56(sp)
-  SD s4, 64(sp)
-  SD s5, 72(sp)
-  SD s6, 80(sp)
-  SD s7, 88(sp)
-  SD s8, 96(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
+  SD s2, 40(sp)
+  SD s3, 48(sp)
+  SD s4, 56(sp)
+  SD s5, 64(sp)
+  SD s6, 72(sp)
+  SD s7, 80(sp)
+  SD s8, 88(sp)
+  SD s11, 96(sp)
   SD s9, 104(sp)
   SD s10, 112(sp)
-  ADD s4, a0, zero
-  ADD t4, a1, zero
-  SW t4, 12(sp)
+  ADD s1, a0, zero
+  ADD s2, a1, zero
   ADD t4, a2, zero
   SW t4, 8(sp)
   ADD t4, a3, zero
   SW t4, 4(sp)
-  LW t4, 12(sp)
-  XOR s8, s4, t4
-  SLTIU s8, s8, 1
-  BNE s8, zero, bb23
+  XOR s5, s1, s2
+  SLTIU s5, s5, 1
+  BNE s5, zero, bb19
   # implict jump to bb1
 bb1:
-  LW t4, 12(sp)
-  SLLIW s8, t4, 2
-  LA s9, array
-  ADD s8, s9, s8
-  LW s9, 0(s8)
-  LW t4, 12(sp)
-  BLT s4, t4, bb14
+  SLLIW s5, s2, 2
+  LA s6, array
+  ADD s5, s6, s5
+  LW s6, 0(s5)
+  BLT s1, s2, bb12
   # implict jump to bb2
 bb2:
-  ADD s10, s4, zero
+  ADD s7, s1, zero
   # implict jump to bb3
 bb3:
-  ADD s1, s10, zero
-  SLLIW s10, s1, 2
-  LA t1, array
-  ADD s10, t1, s10
-  LW t1, 0(s10)
-  LW t2, 0(s8)
-  SW t2, 0(s10)
-  SW t1, 0(s8)
+  ADD s0, s7, zero
+  SLLIW s7, s0, 2
+  LA s11, array
+  ADD s7, s11, s7
+  LW s11, 0(s7)
+  LW t0, 0(s5)
+  SW t0, 0(s7)
+  SW s11, 0(s5)
   LW t4, 8(sp)
-  XOR s10, t4, s1
-  SLTIU s10, s10, 1
-  BNE s10, zero, bb8
+  XOR s7, t4, s0
+  SLTIU s7, s7, 1
+  BNE s7, zero, bb8
   # implict jump to bb4
 bb4:
   LW t4, 8(sp)
-  BLT t4, s1, bb7
+  BLT t4, s0, bb7
   # implict jump to bb5
 bb5:
-  ADDIW s10, s1, 1
-  ADD a0, s10, zero
-  LW t4, 12(sp)
-  ADD a1, t4, zero
+  ADDIW s7, s0, 1
+  ADD a0, s7, zero
+  ADD a1, s2, zero
   LW t4, 8(sp)
   ADD a2, t4, zero
   LW t4, 4(sp)
@@ -84,25 +79,25 @@ bb5:
   # implict jump to bb6
 bb6:
   LD ra, 16(sp)
-  LD s1, 24(sp)
-  LD s3, 32(sp)
-  LD s0, 40(sp)
-  LD s2, 48(sp)
-  LD s11, 56(sp)
-  LD s4, 64(sp)
-  LD s5, 72(sp)
-  LD s6, 80(sp)
-  LD s7, 88(sp)
-  LD s8, 96(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s11, 96(sp)
   LD s9, 104(sp)
   LD s10, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb7:
-  ADDI s10, zero, 1
-  SUBW s10, s1, s10
-  ADD a0, s4, zero
-  ADD a1, s10, zero
+  ADDI s7, zero, 1
+  SUBW s7, s0, s7
+  ADD a0, s1, zero
+  ADD a1, s7, zero
   LW t4, 8(sp)
   ADD a2, t4, zero
   LW t4, 4(sp)
@@ -110,93 +105,84 @@ bb7:
   CALL findSmallest
   JAL zero, bb6
 bb8:
-  ADDI s10, zero, 0
-  BLT s10, s1, bb9
+  ADDI s7, zero, 0
+  BLT s7, s0, bb9
   JAL zero, bb6
 bb9:
+  ADD s7, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s10, zero, zero
-  # implict jump to bb11
-bb11:
-  ADD s7, s10, zero
-  SLLIW s6, s7, 2
-  LA s5, array
-  ADD s5, s5, s6
-  LW s5, 0(s5)
-  ADD a0, s5, zero
+  ADD s11, s7, zero
+  SLLIW s4, s11, 2
+  LA s3, array
+  ADD s3, s3, s4
+  LW s3, 0(s3)
+  ADD a0, s3, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s3, s7, 1
-  # implict jump to bb12
-bb12:
-  BLT s3, s1, bb13
+  ADDIW s3, s11, 1
+  BLT s3, s0, bb11
   JAL zero, bb6
+bb11:
+  ADD s7, s3, zero
+  JAL zero, bb10
+bb12:
+  ADD s8, s1, zero
+  ADD s9, s1, zero
+  # implict jump to bb13
 bb13:
-  ADD s10, s3, zero
-  JAL zero, bb11
+  ADD s10, s9, zero
+  ADD s11, s8, zero
+  SLLIW t0, s10, 2
+  LA t1, array
+  ADD t0, t1, t0
+  LW t1, 0(t0)
+  SLT t1, s6, t1
+  XORI t1, t1, 1
+  BNE t1, zero, bb18
+  # implict jump to bb14
 bb14:
+  ADD t1, s11, zero
   # implict jump to bb15
 bb15:
-  ADD s11, s4, zero
-  ADD t4, s4, zero
+  ADD t4, t1, zero
   SW t4, 0(sp)
+  ADDIW s10, s10, 1
+  BLT s10, s2, bb17
   # implict jump to bb16
 bb16:
   LW t4, 0(sp)
-  ADD t1, t4, zero
-  ADD t2, s11, zero
-  SLLIW a4, t1, 2
+  ADD s7, t4, zero
+  JAL zero, bb3
+bb17:
+  LW t4, 0(sp)
+  ADD s8, t4, zero
+  ADD s9, s10, zero
+  JAL zero, bb13
+bb18:
+  LW t2, 0(t0)
+  SLLIW a4, s11, 2
   LA a5, array
   ADD a4, a5, a4
   LW a5, 0(a4)
-  SLT a5, s9, a5
-  XORI a5, a5, 1
-  BNE a5, zero, bb22
-  # implict jump to bb17
-bb17:
-  ADD a5, t2, zero
-  # implict jump to bb18
-bb18:
-  ADD s0, a5, zero
-  ADDIW s2, t1, 1
-  # implict jump to bb19
+  SW a5, 0(t0)
+  SW t2, 0(a4)
+  ADDIW s11, s11, 1
+  ADD t1, s11, zero
+  JAL zero, bb15
 bb19:
-  LW t4, 12(sp)
-  BLT s2, t4, bb21
-  # implict jump to bb20
-bb20:
-  ADD s10, s0, zero
-  JAL zero, bb3
-bb21:
-  ADD s11, s0, zero
-  ADD t4, s2, zero
-  SW t4, 0(sp)
-  JAL zero, bb16
-bb22:
-  LW a6, 0(a4)
-  SLLIW a7, t2, 2
-  LA t6, array
-  ADD a7, t6, a7
-  LW t6, 0(a7)
-  SW t6, 0(a4)
-  SW a6, 0(a7)
-  ADDIW t2, t2, 1
-  ADD a5, t2, zero
-  JAL zero, bb18
-bb23:
   LD ra, 16(sp)
-  LD s1, 24(sp)
-  LD s3, 32(sp)
-  LD s0, 40(sp)
-  LD s2, 48(sp)
-  LD s11, 56(sp)
-  LD s4, 64(sp)
-  LD s5, 72(sp)
-  LD s6, 80(sp)
-  LD s7, 88(sp)
-  LD s8, 96(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  LD s2, 40(sp)
+  LD s3, 48(sp)
+  LD s4, 56(sp)
+  LD s5, 64(sp)
+  LD s6, 72(sp)
+  LD s7, 80(sp)
+  LD s8, 88(sp)
+  LD s11, 96(sp)
   LD s9, 104(sp)
   LD s10, 112(sp)
   ADDI sp, sp, 128
@@ -216,25 +202,25 @@ findPivot:
   SD s9, 80(sp)
   SD s10, 88(sp)
   SD s11, 96(sp)
-  ADD s2, a0, zero
-  SLLIW s3, a1, 2
-  LA s4, array
-  ADD s3, s4, s3
-  LW s4, 0(s3)
-  BLT s2, a1, bb27
-  # implict jump to bb25
-bb25:
-  ADD s5, s2, zero
-  # implict jump to bb26
-bb26:
-  SLLIW s7, s5, 2
-  LA s8, array
-  ADD s7, s8, s7
-  LW s8, 0(s7)
-  LW s9, 0(s3)
-  SW s9, 0(s7)
-  SW s8, 0(s3)
-  ADD a0, s5, zero
+  ADD s0, a0, zero
+  SLLIW s1, a1, 2
+  LA s2, array
+  ADD s1, s2, s1
+  LW s2, 0(s1)
+  BLT s0, a1, bb23
+  # implict jump to bb21
+bb21:
+  ADD s3, s0, zero
+  # implict jump to bb22
+bb22:
+  SLLIW s6, s3, 2
+  LA s7, array
+  ADD s6, s7, s6
+  LW s7, 0(s6)
+  LW s9, 0(s1)
+  SW s9, 0(s6)
+  SW s7, 0(s1)
+  ADD a0, s3, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -250,50 +236,45 @@ bb26:
   LD s11, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb27:
-  # implict jump to bb28
-bb28:
-  ADD s6, s2, zero
-  # implict jump to bb29
-bb29:
-  ADD s7, s2, zero
+bb23:
+  ADD s4, s0, zero
+  # implict jump to bb24
+bb24:
+  ADD s5, s0, zero
+  ADD s6, s4, zero
+  SLLIW s7, s5, 2
+  LA s8, array
+  ADD s7, s8, s7
+  LW s8, 0(s7)
+  SLT s8, s2, s8
+  XORI s8, s8, 1
+  BNE s8, zero, bb29
+  # implict jump to bb25
+bb25:
   ADD s8, s6, zero
-  SLLIW s9, s7, 2
-  LA s10, array
-  ADD s9, s10, s9
-  LW s10, 0(s9)
-  SLT s10, s4, s10
-  XORI s10, s10, 1
-  BNE s10, zero, bb35
-  # implict jump to bb30
-bb30:
-  ADD s10, s8, zero
-  # implict jump to bb31
-bb31:
-  ADD s1, s10, zero
-  ADDIW s0, s7, 1
-  # implict jump to bb32
-bb32:
-  BLT s0, a1, bb34
-  # implict jump to bb33
-bb33:
-  ADD s5, s1, zero
+  # implict jump to bb26
+bb26:
+  ADDIW s5, s5, 1
+  BLT s5, a1, bb28
+  # implict jump to bb27
+bb27:
+  ADD s3, s8, zero
+  JAL zero, bb22
+bb28:
+  ADD s4, s8, zero
+  ADD s0, s5, zero
+  JAL zero, bb24
+bb29:
+  LW s9, 0(s7)
+  SLLIW s10, s6, 2
+  LA s11, array
+  ADD s10, s11, s10
+  LW s11, 0(s10)
+  SW s11, 0(s7)
+  SW s9, 0(s10)
+  ADDIW s6, s6, 1
+  ADD s8, s6, zero
   JAL zero, bb26
-bb34:
-  ADD s6, s1, zero
-  ADD s2, s0, zero
-  JAL zero, bb29
-bb35:
-  LW s11, 0(s9)
-  SLLIW t0, s8, 2
-  LA t1, array
-  ADD t0, t1, t0
-  LW t1, 0(t0)
-  SW t1, 0(s9)
-  SW s11, 0(t0)
-  ADDIW s8, s8, 1
-  ADD s10, s8, zero
-  JAL zero, bb31
 main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
@@ -303,20 +284,19 @@ main:
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
+  CALL getint
+  ADD s0, a0, zero
   CALL getint
   ADD s1, a0, zero
-  CALL getint
-  ADD s2, a0, zero
-  BLT zero, s1, bb38
-  # implict jump to bb37
-bb37:
+  BLT zero, s0, bb32
+  # implict jump to bb31
+bb31:
   ADDI s4, zero, 1
-  SUBW s4, s1, s4
+  SUBW s4, s0, s4
   ADD a0, zero, zero
   ADD a1, s4, zero
-  ADD a2, s2, zero
-  ADD a3, s1, zero
+  ADD a2, s1, zero
+  ADD a3, s0, zero
   CALL findSmallest
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -326,30 +306,25 @@ bb37:
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb38:
-  # implict jump to bb39
-bb39:
-  ADD s3, zero, zero
-  # implict jump to bb40
-bb40:
-  ADD s4, s3, zero
-  SLLIW s5, s4, 2
-  LA s6, array
-  ADD s5, s6, s5
+bb32:
+  ADD s2, zero, zero
+  # implict jump to bb33
+bb33:
+  ADD s3, s2, zero
+  SLLIW s4, s3, 2
+  LA s5, array
+  ADD s4, s5, s4
   CALL getint
-  ADD s6, a0, zero
-  SW s6, 0(s5)
-  ADDIW s0, s4, 1
-  # implict jump to bb41
-bb41:
-  BLT s0, s1, bb42
-  JAL zero, bb37
-bb42:
-  ADD s3, s0, zero
-  JAL zero, bb40
+  ADD s5, a0, zero
+  SW s5, 0(s4)
+  ADDIW s3, s3, 1
+  BLT s3, s0, bb34
+  JAL zero, bb31
+bb34:
+  ADD s2, s3, zero
+  JAL zero, bb33
 swap:
   ADDI sp, sp, -48
   SD ra, 0(sp)

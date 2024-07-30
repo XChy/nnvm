@@ -14,9 +14,8 @@ AAFlag AliasAnalysis::alias(MemObj a, MemObj b) {
 
     if (b.getOffset() >= a.getOffset() + a.getSize())
       return NotAlias;
-    else
-      return MustAlias;
   }
+
   return alias(a.getPointer(), b.getPointer());
 }
 

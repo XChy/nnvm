@@ -3,27 +3,23 @@ global ptr k init with i32 0
 i32 main() {
 entry:  pred()
   store i32 1 to ptr @k
-  823 = icmp sle i32 0, i32 9
-  br i1 %823, bb %while.body_preheader, bb %while.exit
-while.cond:  pred(while.body)
-  i.phi = phi [bb %while.body, i32 %11]
-  8 = icmp sle i32 %i.phi, i32 9
-  br i1 %8, bb %while.body, bb %while.exit
+  926 = icmp sle i32 0, i32 9
+  br i1 %926, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
-  i.phi24_ph_val = phi [bb %entry, i32 0]
   br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  i.phi24 = phi [bb %while.cond, i32 %i.phi, bb %while.body_preheader, i32 %i.phi24_ph_val]
-  11 = add i32 %i.phi24, i32 1
-  k.load = load i32 from ptr @k
-  22 = shl i32 %k.load, i32 1
-  store i32 %22 to ptr @k
-  br bb %while.cond
-while.exit:  pred(while.cond, entry)
+while.body:  pred(while.body, while.body_preheader)
+  i.phi27 = phi [bb %while.body, i32 %13, bb %while.body_preheader, i32 0]
+  13 = add i32 %i.phi27, i32 1
   k.load17 = load i32 from ptr @k
-  call void putint(i32 %k.load17)
-  k.load19 = load i32 from ptr @k
-  ret i32 %k.load19
+  25 = shl i32 %k.load17, i32 1
+  store i32 %25 to ptr @k
+  9 = icmp sle i32 %13, i32 9
+  br i1 %9, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, entry)
+  k.load20 = load i32 from ptr @k
+  call void putint(i32 %k.load20)
+  k.load22 = load i32 from ptr @k
+  ret i32 %k.load22
 }
 
 external void putfarray(i32 , ptr )

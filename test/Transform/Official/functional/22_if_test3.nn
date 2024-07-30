@@ -14,7 +14,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 pure i32 main() {
-entry15:  pred()
+entry19:  pred()
   ret i32 25
 }
 

@@ -110,24 +110,20 @@ static inline bool genericGetPowerOfTwo(GInt a, uint64_t bits, GInt &power) {
   return false;
 }
 
-static inline GInt genericEQ(GInt a, GInt b, uint64_t bits) {
-  return sextOf(a == b, 1);
-}
+static inline GInt genericEQ(GInt a, GInt b, uint64_t bits) { return a == b; }
 
-static inline GInt genericNE(GInt a, GInt b, uint64_t bits) {
-  return sextOf(a != b, 1);
-}
+static inline GInt genericNE(GInt a, GInt b, uint64_t bits) { return a != b; }
 
 static inline GInt genericSLT(GInt a, GInt b, uint64_t bits) {
   if (bits != 32)
     nnvm_unimpl();
-  return sextOf((int32_t)a < (int32_t)b, 1);
+  return (int32_t)a < (int32_t)b;
 }
 
 static inline GInt genericSGT(GInt a, GInt b, uint64_t bits) {
   if (bits != 32)
     nnvm_unimpl();
-  return sextOf((int32_t)a > (int32_t)b, 1);
+  return (int32_t)a > (int32_t)b;
 }
 
 } // namespace nnvm

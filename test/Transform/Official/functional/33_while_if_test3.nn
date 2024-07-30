@@ -9,39 +9,30 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 pure i32 main() {
-entry34:  pred()
-  115478 = icmp slt i32 4, i32 75
-  br i1 %115478, bb %deepWhileBr.while.body_preheader, bb %deepWhileBr.while.exit
-deepWhileBr.while.cond:  pred(deepWhileBr.if.exit)
-  e.phi4652 = phi [bb %deepWhileBr.if.exit, i32 %e.phi4566]
-  c.phi4253 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4167]
-  1154 = icmp slt i32 %c.phi4253, i32 75
-  br i1 %1154, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
-deepWhileBr.while.body_preheader:  pred(entry34)
-  e.phi465280_ph_val = phi [bb %entry34, i32 0]
-  c.phi425381_ph_val = phi [bb %entry34, i32 4]
+entry39:  pred()
   br bb %deepWhileBr.while.body
-deepWhileBr.while.body:  pred(deepWhileBr.while.cond, deepWhileBr.while.body_preheader)
-  c.phi425381 = phi [bb %deepWhileBr.while.cond, i32 %c.phi4253, bb %deepWhileBr.while.body_preheader, i32 %c.phi425381_ph_val]
-  e.phi465280 = phi [bb %deepWhileBr.while.cond, i32 %e.phi4652, bb %deepWhileBr.while.body_preheader, i32 %e.phi465280_ph_val]
-  1557 = icmp slt i32 %c.phi425381, i32 100
-  br i1 %1557, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
-deepWhileBr.while.exit:  pred(deepWhileBr.while.cond, entry34)
-  79 = phi [bb %deepWhileBr.while.cond, i32 %c.phi4253, bb %entry34, i32 4]
-  ret i32 %79
+deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry39)
+  c.phi485987 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773, bb %entry39, i32 4]
+  e.phi525886 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5172, bb %entry39, i32 0]
+  1763 = icmp slt i32 %c.phi485987, i32 100
+  br i1 %1763, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
+  85 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773]
+  ret i32 %85
 deepWhileBr.then:  pred(deepWhileBr.while.body)
-  2062 = add i32 %c.phi425381, i32 42
-  2263 = icmp sgt i32 %2062, i32 99
-  br i1 %2263, bb %deepWhileBr.then23, bb %deepWhileBr.if.exit24
-deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit24)
-  e.phi4566 = phi [bb %deepWhileBr.while.body, i32 %e.phi465280, bb %deepWhileBr.if.exit24, i32 %e.phi72]
-  c.phi4167 = phi [bb %deepWhileBr.while.body, i32 %c.phi425381, bb %deepWhileBr.if.exit24, i32 %c.phi4073]
-  br bb %deepWhileBr.while.cond
-deepWhileBr.then23:  pred(deepWhileBr.then)
-  br bb %deepWhileBr.if.exit24
-deepWhileBr.if.exit24:  pred(deepWhileBr.then, deepWhileBr.then23)
-  e.phi72 = phi [bb %deepWhileBr.then, i32 %e.phi465280, bb %deepWhileBr.then23, i32 84]
-  c.phi4073 = phi [bb %deepWhileBr.then, i32 %2062, bb %deepWhileBr.then23, i32 168]
+  2368 = add i32 %c.phi485987, i32 42
+  2569 = icmp sgt i32 %2368, i32 99
+  br i1 %2569, bb %deepWhileBr.then26, bb %deepWhileBr.if.exit27
+deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit27)
+  e.phi5172 = phi [bb %deepWhileBr.while.body, i32 %e.phi525886, bb %deepWhileBr.if.exit27, i32 %e.phi78]
+  c.phi4773 = phi [bb %deepWhileBr.while.body, i32 %c.phi485987, bb %deepWhileBr.if.exit27, i32 %c.phi4679]
+  1260 = icmp slt i32 %c.phi4773, i32 75
+  br i1 %1260, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+deepWhileBr.then26:  pred(deepWhileBr.then)
+  br bb %deepWhileBr.if.exit27
+deepWhileBr.if.exit27:  pred(deepWhileBr.then, deepWhileBr.then26)
+  e.phi78 = phi [bb %deepWhileBr.then, i32 %e.phi525886, bb %deepWhileBr.then26, i32 84]
+  c.phi4679 = phi [bb %deepWhileBr.then, i32 %2368, bb %deepWhileBr.then26, i32 168]
   br bb %deepWhileBr.if.exit
 }
 
@@ -61,39 +52,33 @@ external void putch(i32 )
 
 pure i32 deepWhileBr(i32 a, i32 b) {
 entry:  pred()
-  6 = add i32 %a, i32 %b
-  1182 = icmp slt i32 %6, i32 75
-  br i1 %1182, bb %while.body_preheader, bb %while.exit
-while.cond:  pred(if.exit)
-  e.phi46 = phi [bb %if.exit, i32 %e.phi45]
-  c.phi42 = phi [bb %if.exit, i32 %c.phi41]
-  11 = icmp slt i32 %c.phi42, i32 75
-  br i1 %11, bb %while.body, bb %while.exit
+  7 = add i32 %a, i32 %b
+  1288 = icmp slt i32 %7, i32 75
+  br i1 %1288, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
-  e.phi4684_ph_val = phi [bb %entry, i32 0]
-  c.phi4285_ph_val = phi [bb %entry, i32 %6]
   br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  c.phi4285 = phi [bb %while.cond, i32 %c.phi42, bb %while.body_preheader, i32 %c.phi4285_ph_val]
-  e.phi4684 = phi [bb %while.cond, i32 %e.phi46, bb %while.body_preheader, i32 %e.phi4684_ph_val]
-  15 = icmp slt i32 %c.phi4285, i32 100
-  br i1 %15, bb %then, bb %if.exit
-while.exit:  pred(while.cond, entry)
-  683 = phi [bb %while.cond, i32 %c.phi42, bb %entry, i32 %6]
-  ret i32 %683
+while.body:  pred(if.exit, while.body_preheader)
+  c.phi4891 = phi [bb %if.exit, i32 %c.phi47, bb %while.body_preheader, i32 %7]
+  e.phi5290 = phi [bb %if.exit, i32 %e.phi51, bb %while.body_preheader, i32 0]
+  17 = icmp slt i32 %c.phi4891, i32 100
+  br i1 %17, bb %then, bb %if.exit
+while.exit:  pred(if.exit, entry)
+  789 = phi [bb %if.exit, i32 %c.phi47, bb %entry, i32 %7]
+  ret i32 %789
 then:  pred(while.body)
-  20 = add i32 %c.phi4285, i32 42
-  22 = icmp sgt i32 %20, i32 99
-  br i1 %22, bb %then23, bb %if.exit24
-if.exit:  pred(while.body, if.exit24)
-  e.phi45 = phi [bb %while.body, i32 %e.phi4684, bb %if.exit24, i32 %e.phi]
-  c.phi41 = phi [bb %while.body, i32 %c.phi4285, bb %if.exit24, i32 %c.phi40]
-  br bb %while.cond
-then23:  pred(then)
-  br bb %if.exit24
-if.exit24:  pred(then, then23)
-  e.phi = phi [bb %then, i32 %e.phi4684, bb %then23, i32 84]
-  c.phi40 = phi [bb %then, i32 %20, bb %then23, i32 168]
+  23 = add i32 %c.phi4891, i32 42
+  25 = icmp sgt i32 %23, i32 99
+  br i1 %25, bb %then26, bb %if.exit27
+if.exit:  pred(while.body, if.exit27)
+  e.phi51 = phi [bb %while.body, i32 %e.phi5290, bb %if.exit27, i32 %e.phi]
+  c.phi47 = phi [bb %while.body, i32 %c.phi4891, bb %if.exit27, i32 %c.phi46]
+  12 = icmp slt i32 %c.phi47, i32 75
+  br i1 %12, bb %while.body, bb %while.exit
+then26:  pred(then)
+  br bb %if.exit27
+if.exit27:  pred(then, then26)
+  e.phi = phi [bb %then, i32 %e.phi5290, bb %then26, i32 84]
+  c.phi46 = phi [bb %then, i32 %23, bb %then26, i32 168]
   br bb %if.exit
 }
 

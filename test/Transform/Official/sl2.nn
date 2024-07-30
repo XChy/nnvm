@@ -2,172 +2,140 @@ global ptr y init with 216000000 x i32 zeros
 global ptr x init with 216000000 x i32 zeros
 i32 main() {
 entry:  pred()
-  6 = call i32 getint()
   7 = call i32 getint()
+  9 = call i32 getint()
   call void _sysy_starttime(i32 13)
-  14230 = icmp slt i32 0, i32 %6
-  br i1 %14230, bb %while.body_preheader, bb %while.exit
-while.cond:  pred(while.exit18)
-  i.phi204 = phi [bb %while.exit18, i32 %53]
-  14 = icmp slt i32 %i.phi204, i32 %6
-  br i1 %14, bb %while.body, bb %while.exit
+  19253 = icmp slt i32 0, i32 %7
+  br i1 %19253, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
-  i.phi204231_ph_val = phi [bb %entry, i32 0]
-  21216 = icmp slt i32 0, i32 %6
   br bb %while.body
-while.body:  pred(while.cond, while.body_preheader)
-  i.phi204231 = phi [bb %while.cond, i32 %i.phi204, bb %while.body_preheader, i32 %i.phi204231_ph_val]
-  br i1 %21216, bb %while.body17_preheader, bb %while.exit18
-while.exit:  pred(while.cond, entry)
-  59223 = sub i32 %6, i32 1
-  60224 = icmp slt i32 1, i32 %59223
-  br i1 %60224, bb %while.body55_preheader, bb %while.exit56
-while.cond16:  pred(while.exit25)
-  j.phi195 = phi [bb %while.exit25, i32 %51]
-  21 = icmp slt i32 %j.phi195, i32 %6
-  br i1 %21, bb %while.body17, bb %while.exit18
-while.body17_preheader:  pred(while.body)
-  j.phi195217_ph_val = phi [bb %while.body, i32 0]
-  28214 = icmp slt i32 0, i32 %6
-  br bb %while.body17
-while.body17:  pred(while.cond16, while.body17_preheader)
-  j.phi195217 = phi [bb %while.cond16, i32 %j.phi195, bb %while.body17_preheader, i32 %j.phi195217_ph_val]
-  br i1 %28214, bb %while.body24_preheader, bb %while.exit25
-while.exit18:  pred(while.cond16, while.body)
-  53 = add i32 %i.phi204231, i32 1
-  br bb %while.cond
-while.cond23:  pred(while.body24)
-  k.phi200 = phi [bb %while.body24, i32 %49]
-  28 = icmp slt i32 %k.phi200, i32 %6
-  br i1 %28, bb %while.body24, bb %while.exit25
-while.body24_preheader:  pred(while.body17)
-  k.phi200215_ph_val = phi [bb %while.body17, i32 0]
-  31 = mul i32 %i.phi204231, i32 1440000
-  32 = ptradd ptr @x, i32 %31
-  34 = mul i32 %j.phi195217, i32 2400
-  35 = ptradd ptr %32, i32 %34
-  41 = ptradd ptr @y, i32 %31
-  44 = ptradd ptr %41, i32 %34
+while.body:  pred(while.exit25, while.body_preheader)
+  i.phi217254 = phi [bb %while.exit25, i32 %66, bb %while.body_preheader, i32 0]
+  br i1 %19253, bb %while.body24_preheader, bb %while.exit25
+while.exit:  pred(while.exit25, entry)
+  75246 = sub i32 %7, i32 1
+  76247 = icmp slt i32 1, i32 %75246
+  br i1 %76247, bb %while.body71_preheader, bb %while.exit72
+while.body24_preheader:  pred(while.body)
   br bb %while.body24
-while.body24:  pred(while.cond23, while.body24_preheader)
-  k.phi200215 = phi [bb %while.cond23, i32 %k.phi200, bb %while.body24_preheader, i32 %k.phi200215_ph_val]
-  205 = shl i32 %k.phi200215, i32 2
-  38 = ptradd ptr %35, i32 %205
-  store i32 1 to ptr %38
-  47 = ptradd ptr %44, i32 %205
-  store i32 0 to ptr %47
-  49 = add i32 %k.phi200215, i32 1
-  br bb %while.cond23
-while.exit25:  pred(while.cond23, while.body17)
-  51 = add i32 %j.phi195217, i32 1
-  br bb %while.cond16
-while.cond54:  pred(while.exit64)
-  i.phi = phi [bb %while.exit64, i32 %165]
-  j.phi194 = phi [bb %while.exit64, i32 %221]
-  59 = sub i32 %6, i32 1
-  60 = icmp slt i32 %i.phi, i32 %59
-  br i1 %60, bb %while.body55, bb %while.exit56
-while.body55_preheader:  pred(while.exit)
-  i.phi227_ph_val = phi [bb %while.exit, i32 1]
-  j.phi194228_ph_val = phi [bb %while.exit, i32 1]
-  59223229_ph_val = phi [bb %while.exit, i32 %59223]
-  br bb %while.body55
-while.body55:  pred(while.cond54, while.body55_preheader)
-  59223229 = phi [bb %while.cond54, i32 %59, bb %while.body55_preheader, i32 %59223229_ph_val]
-  j.phi194228 = phi [bb %while.cond54, i32 %j.phi194, bb %while.body55_preheader, i32 %j.phi194228_ph_val]
-  i.phi227 = phi [bb %while.cond54, i32 %i.phi, bb %while.body55_preheader, i32 %i.phi227_ph_val]
-  68220 = icmp slt i32 1, i32 %59223229
-  br i1 %68220, bb %while.body63_preheader, bb %while.exit64
-while.exit56:  pred(while.cond54, while.exit)
-  226 = phi [bb %while.cond54, i32 %j.phi194, bb %while.exit, i32 1]
-  225 = phi [bb %while.cond54, i32 %i.phi, bb %while.exit, i32 1]
-  call void _sysy_stoptime(i32 53)
-  call void putarray(i32 %6, ptr @x)
-  175 = sdiv i32 %6, i32 2
-  176 = mul i32 %175, i32 1440000
-  177 = ptradd ptr @x, i32 %176
-  180 = mul i32 %175, i32 2400
-  181 = ptradd ptr %177, i32 %180
-  call void putarray(i32 %6, ptr %181)
-  185 = sub i32 %225, i32 1
-  186 = mul i32 %185, i32 1440000
-  187 = ptradd ptr @x, i32 %186
-  189 = sub i32 %226, i32 1
-  190 = mul i32 %189, i32 2400
-  191 = ptradd ptr %187, i32 %190
-  call void putarray(i32 %6, ptr %191)
-  ret i32 0
-while.cond62:  pred(while.exit72)
-  j.phi = phi [bb %while.exit72, i32 %163]
-  68 = icmp slt i32 %j.phi, i32 %59223229
-  br i1 %68, bb %while.body63, bb %while.exit64
-while.body63_preheader:  pred(while.body55)
-  j.phi222_ph_val = phi [bb %while.body55, i32 1]
-  76218 = icmp slt i32 1, i32 %59223229
-  br bb %while.body63
-while.body63:  pred(while.cond62, while.body63_preheader)
-  j.phi222 = phi [bb %while.cond62, i32 %j.phi, bb %while.body63_preheader, i32 %j.phi222_ph_val]
-  br i1 %76218, bb %while.body71_preheader, bb %while.exit72
-while.exit64:  pred(while.cond62, while.body55)
-  221 = phi [bb %while.cond62, i32 %j.phi, bb %while.body55, i32 1]
-  165 = add i32 %i.phi227, i32 1
-  br bb %while.cond54
-while.cond70:  pred(while.body71)
-  k.phi = phi [bb %while.body71, i32 %153]
-  76 = icmp slt i32 %k.phi, i32 %59223229
-  br i1 %76, bb %while.body71, bb %while.exit72
-while.body71_preheader:  pred(while.body63)
-  k.phi219_ph_val = phi [bb %while.body63, i32 1]
-  79 = mul i32 %i.phi227, i32 1440000
-  80 = ptradd ptr @x, i32 %79
-  82 = mul i32 %j.phi222, i32 2400
-  83 = ptradd ptr %80, i32 %82
-  88 = sub i32 %i.phi227, i32 1
-  89 = mul i32 %88, i32 1440000
-  90 = ptradd ptr @x, i32 %89
-  93 = ptradd ptr %90, i32 %82
-  99 = add i32 %i.phi227, i32 1
-  100 = mul i32 %99, i32 1440000
-  101 = ptradd ptr @x, i32 %100
-  104 = ptradd ptr %101, i32 %82
-  114 = sub i32 %j.phi222, i32 1
-  115 = mul i32 %114, i32 2400
-  116 = ptradd ptr %80, i32 %115
-  126 = add i32 %j.phi222, i32 1
-  127 = mul i32 %126, i32 2400
-  128 = ptradd ptr %80, i32 %127
+while.body24:  pred(while.exit33, while.body24_preheader)
+  j.phi226240 = phi [bb %while.exit33, i32 %63, bb %while.body24_preheader, i32 0]
+  br i1 %19253, bb %while.body32_preheader, bb %while.exit33
+while.exit25:  pred(while.exit33, while.body)
+  66 = add i32 %i.phi217254, i32 1
+  19 = icmp slt i32 %66, i32 %7
+  br i1 %19, bb %while.body, bb %while.exit
+while.body32_preheader:  pred(while.body24)
+  39 = mul i32 %i.phi217254, i32 1440000
+  40 = ptradd ptr @x, i32 %39
+  42 = mul i32 %j.phi226240, i32 2400
+  43 = ptradd ptr %40, i32 %42
+  50 = ptradd ptr @y, i32 %39
+  53 = ptradd ptr %50, i32 %42
+  br bb %while.body32
+while.body32:  pred(while.body32, while.body32_preheader)
+  k.phi221238 = phi [bb %while.body32, i32 %60, bb %while.body32_preheader, i32 0]
+  228 = shl i32 %k.phi221238, i32 2
+  46 = ptradd ptr %43, i32 %228
+  store i32 1 to ptr %46
+  56 = ptradd ptr %53, i32 %228
+  store i32 0 to ptr %56
+  60 = add i32 %k.phi221238, i32 1
+  36 = icmp slt i32 %60, i32 %7
+  br i1 %36, bb %while.body32, bb %while.exit33
+while.exit33:  pred(while.body32, while.body24)
+  63 = add i32 %j.phi226240, i32 1
+  28 = icmp slt i32 %63, i32 %7
+  br i1 %28, bb %while.body24, bb %while.exit25
+while.body71_preheader:  pred(while.exit)
   br bb %while.body71
-while.body71:  pred(while.cond70, while.body71_preheader)
-  k.phi219 = phi [bb %while.cond70, i32 %k.phi, bb %while.body71_preheader, i32 %k.phi219_ph_val]
-  207 = shl i32 %k.phi219, i32 2
-  86 = ptradd ptr %83, i32 %207
-  96 = ptradd ptr %93, i32 %207
-  96.load = load i32 from ptr %96
-  107 = ptradd ptr %104, i32 %207
-  107.load = load i32 from ptr %107
-  109 = add i32 %96.load, i32 %107.load
-  119 = ptradd ptr %116, i32 %207
-  119.load = load i32 from ptr %119
-  121 = add i32 %109, i32 %119.load
-  131 = ptradd ptr %128, i32 %207
-  131.load = load i32 from ptr %131
-  133 = add i32 %121, i32 %131.load
-  141 = sub i32 %k.phi219, i32 1
-  212 = shl i32 %141, i32 2
-  143 = ptradd ptr %83, i32 %212
-  143.load = load i32 from ptr %143
-  145 = add i32 %133, i32 %143.load
-  153 = add i32 %k.phi219, i32 1
-  213 = shl i32 %153, i32 2
-  155 = ptradd ptr %83, i32 %213
-  155.load = load i32 from ptr %155
-  157 = add i32 %145, i32 %155.load
-  159 = sdiv i32 %157, i32 %7
-  store i32 %159 to ptr %86
-  br bb %while.cond70
-while.exit72:  pred(while.cond70, while.body63)
-  163 = add i32 %j.phi222, i32 1
-  br bb %while.cond62
+while.body71:  pred(while.exit82, while.body71_preheader)
+  75246252 = phi [bb %while.exit82, i32 %75246, bb %while.body71_preheader, i32 %75246]
+  i.phi251 = phi [bb %while.exit82, i32 %188, bb %while.body71_preheader, i32 1]
+  86243 = icmp slt i32 1, i32 %75246252
+  br i1 %86243, bb %while.body81_preheader, bb %while.exit82
+while.exit72:  pred(while.exit82, while.exit)
+  249 = phi [bb %while.exit82, i32 %188, bb %while.exit, i32 1]
+  248 = phi [bb %while.exit82, i32 %244, bb %while.exit, i32 1]
+  call void _sysy_stoptime(i32 53)
+  call void putarray(i32 %7, ptr @x)
+  198 = sdiv i32 %7, i32 2
+  199 = mul i32 %198, i32 1440000
+  200 = ptradd ptr @x, i32 %199
+  203 = mul i32 %198, i32 2400
+  204 = ptradd ptr %200, i32 %203
+  call void putarray(i32 %7, ptr %204)
+  208 = sub i32 %249, i32 1
+  209 = mul i32 %208, i32 1440000
+  210 = ptradd ptr @x, i32 %209
+  212 = sub i32 %248, i32 1
+  213 = mul i32 %212, i32 2400
+  214 = ptradd ptr %210, i32 %213
+  call void putarray(i32 %7, ptr %214)
+  ret i32 0
+while.body81_preheader:  pred(while.body71)
+  br bb %while.body81
+while.body81:  pred(while.exit91, while.body81_preheader)
+  j.phi245 = phi [bb %while.exit91, i32 %185, bb %while.body81_preheader, i32 1]
+  br i1 %86243, bb %while.body90_preheader, bb %while.exit91
+while.exit82:  pred(while.exit91, while.body71)
+  244 = phi [bb %while.exit91, i32 %185, bb %while.body71, i32 1]
+  188 = add i32 %i.phi251, i32 1
+  76 = icmp slt i32 %188, i32 %75246
+  br i1 %76, bb %while.body71, bb %while.exit72
+while.body90_preheader:  pred(while.body81)
+  98 = mul i32 %i.phi251, i32 1440000
+  99 = ptradd ptr @x, i32 %98
+  101 = mul i32 %j.phi245, i32 2400
+  102 = ptradd ptr %99, i32 %101
+  108 = sub i32 %i.phi251, i32 1
+  109 = mul i32 %108, i32 1440000
+  110 = ptradd ptr @x, i32 %109
+  113 = ptradd ptr %110, i32 %101
+  119 = add i32 %i.phi251, i32 1
+  120 = mul i32 %119, i32 1440000
+  121 = ptradd ptr @x, i32 %120
+  124 = ptradd ptr %121, i32 %101
+  134 = sub i32 %j.phi245, i32 1
+  135 = mul i32 %134, i32 2400
+  136 = ptradd ptr %99, i32 %135
+  146 = add i32 %j.phi245, i32 1
+  147 = mul i32 %146, i32 2400
+  148 = ptradd ptr %99, i32 %147
+  br bb %while.body90
+while.body90:  pred(while.body90, while.body90_preheader)
+  k.phi242 = phi [bb %while.body90, i32 %173, bb %while.body90_preheader, i32 1]
+  230 = shl i32 %k.phi242, i32 2
+  105 = ptradd ptr %102, i32 %230
+  116 = ptradd ptr %113, i32 %230
+  116.load = load i32 from ptr %116
+  127 = ptradd ptr %124, i32 %230
+  127.load = load i32 from ptr %127
+  129 = add i32 %116.load, i32 %127.load
+  139 = ptradd ptr %136, i32 %230
+  139.load = load i32 from ptr %139
+  141 = add i32 %129, i32 %139.load
+  151 = ptradd ptr %148, i32 %230
+  151.load = load i32 from ptr %151
+  153 = add i32 %141, i32 %151.load
+  161 = sub i32 %k.phi242, i32 1
+  235 = shl i32 %161, i32 2
+  163 = ptradd ptr %102, i32 %235
+  163.load = load i32 from ptr %163
+  165 = add i32 %153, i32 %163.load
+  173 = add i32 %k.phi242, i32 1
+  236 = shl i32 %173, i32 2
+  175 = ptradd ptr %102, i32 %236
+  175.load = load i32 from ptr %175
+  177 = add i32 %165, i32 %175.load
+  179 = sdiv i32 %177, i32 %9
+  store i32 %179 to ptr %105
+  95 = icmp slt i32 %173, i32 %75246252
+  br i1 %95, bb %while.body90, bb %while.exit91
+while.exit91:  pred(while.body90, while.body81)
+  185 = add i32 %j.phi245, i32 1
+  86 = icmp slt i32 %185, i32 %75246252
+  br i1 %86, bb %while.body81, bb %while.exit82
 }
 
 external void putfarray(i32 , ptr )
