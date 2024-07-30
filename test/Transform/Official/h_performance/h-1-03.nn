@@ -1,0 +1,83 @@
+global ptr lim init with i32 0
+external i32 getint()
+
+external i32 getch()
+
+internal i32 fun(i32 n, i32 dep) {
+entry:  pred()
+  4 = icmp eq i32 %n, i32 1
+  br i1 %4, bb %then, bb %else
+then:  pred(entry)
+  ret i32 %dep
+else:  pred(entry)
+  10 = srem i32 %n, i32 2
+  11 = icmp eq i32 %10, i32 0
+  br i1 %11, bb %then12, bb %else14
+then12:  pred(else)
+  16 = sdiv i32 %n, i32 2
+  18 = add i32 %dep, i32 1
+  19 = call i32 fun(i32 %16, i32 %18)
+  ret i32 %19
+else14:  pred(else)
+  21 = mul i32 %n, i32 3
+  22 = add i32 %21, i32 1
+  lim.load = load i32 from ptr @lim
+  24 = icmp sle i32 %22, i32 %lim.load
+  br i1 %24, bb %then25, bb %else27
+then25:  pred(else14)
+  32 = add i32 %dep, i32 1
+  33 = call i32 fun(i32 %22, i32 %32)
+  ret i32 %33
+else27:  pred(else14)
+  ret i32 0
+}
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry34:  pred()
+  36 = call i32 getint()
+  store i32 %36 to ptr @lim
+  call void _sysy_starttime(i32 22)
+  lim.load4463 = load i32 from ptr @lim
+  4564 = icmp sle i32 1, i32 %lim.load4463
+  br i1 %4564, bb %while.body_preheader, bb %while.exit
+while.body_preheader:  pred(entry34)
+  br bb %while.body
+while.body:  pred(while.body, while.body_preheader)
+  ans.phi67 = phi [bb %while.body, i32 %53, bb %while.body_preheader, i32 0]
+  i.phi66 = phi [bb %while.body, i32 %56, bb %while.body_preheader, i32 1]
+  50 = call i32 fun(i32 %i.phi66, i32 0)
+  51 = add i32 %ans.phi67, i32 %50
+  53 = srem i32 %51, i32 1000000007
+  56 = add i32 %i.phi66, i32 1
+  lim.load44 = load i32 from ptr @lim
+  45 = icmp sle i32 %56, i32 %lim.load44
+  br i1 %45, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, entry34)
+  65 = phi [bb %while.body, i32 %53, bb %entry34, i32 0]
+  call void _sysy_stoptime(i32 27)
+  call void putint(i32 %65)
+  call void putch(i32 10)
+  unreachable
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

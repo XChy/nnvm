@@ -1,0 +1,103 @@
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry113:  pred()
+  115 = call i32 getint()
+  call void _sysy_starttime(i32 41)
+  19157230 = icmp slt i32 0, i32 %115
+  br i1 %19157230, bb %advance.while.body_preheader, bb %advance.while.exit
+advance.while.body_preheader:  pred(entry113)
+  br bb %advance.while.body
+advance.while.body:  pred(advance.while.exit43, advance.while.body_preheader)
+  x.stack.phi133156238 = phi [bb %advance.while.exit43, float %x.stack.phi133156217, bb %advance.while.body_preheader, float 4.800000]
+  y.stack.phi136155237 = phi [bb %advance.while.exit43, float %y.stack.phi136155216, bb %advance.while.body_preheader, float 1.100000]
+  j.phi141154236 = phi [bb %advance.while.exit43, i32 %j.phi141154215, bb %advance.while.body_preheader, i32 1]
+  z.stack.phi145153235 = phi [bb %advance.while.exit43, float %z.stack.phi145153214, bb %advance.while.body_preheader, float 1.000000]
+  i.phi152234 = phi [bb %advance.while.exit43, i32 %77189, bb %advance.while.body_preheader, i32 0]
+  24160 = fsub float %x.stack.phi133156238, float 1.600000
+  28161 = fsub float %y.stack.phi136155237, float 7.600000
+  32162 = fsub float %z.stack.phi145153235, float 6.900000
+  37163 = fmul float %24160, float %28161
+  39164 = fmul float %37163, float %32162
+  40165 = fdiv float 0.010000, float %39164
+  46174213 = icmp slt i32 %j.phi141154236, i32 %115
+  br i1 %46174213, bb %advance.while.body42_preheader, bb %advance.while.exit43
+advance.while.exit:  pred(advance.while.exit43, entry113)
+  233 = phi [bb %advance.while.exit43, float %x.stack.phi133156217, bb %entry113, float 4.800000]
+  232 = phi [bb %advance.while.exit43, float %y.stack.phi136155216, bb %entry113, float 1.100000]
+  231 = phi [bb %advance.while.exit43, float %z.stack.phi145153214, bb %entry113, float 1.000000]
+  br i1 %19157230, bb %advance.while.body79_preheader, bb %advance.while.exit80
+advance.while.body42_preheader:  pred(advance.while.body)
+  52177 = fmul float %24160, float 9.500000
+  54178 = fmul float %52177, float %40165
+  60180 = fmul float %28161, float 9.500000
+  62181 = fmul float %60180, float %40165
+  68183 = fmul float %32162, float 9.500000
+  70184 = fmul float %68183, float %40165
+  br bb %advance.while.body42
+advance.while.body42:  pred(advance.while.body42, advance.while.body42_preheader)
+  x.stack.phi132173221 = phi [bb %advance.while.body42, float %55179, bb %advance.while.body42_preheader, float %x.stack.phi133156238]
+  y.stack.phi135172220 = phi [bb %advance.while.body42, float %63182, bb %advance.while.body42_preheader, float %y.stack.phi136155237]
+  j.phi171219 = phi [bb %advance.while.body42, i32 %74186, bb %advance.while.body42_preheader, i32 %j.phi141154236]
+  z.stack.phi144170218 = phi [bb %advance.while.body42, float %71185, bb %advance.while.body42_preheader, float %z.stack.phi145153235]
+  55179 = fsub float %x.stack.phi132173221, float %54178
+  63182 = fsub float %y.stack.phi135172220, float %62181
+  71185 = fsub float %z.stack.phi144170218, float %70184
+  74186 = add i32 %j.phi171219, i32 1
+  46174 = icmp slt i32 %74186, i32 %115
+  br i1 %46174, bb %advance.while.body42, bb %advance.while.exit43
+advance.while.exit43:  pred(advance.while.body42, advance.while.body)
+  x.stack.phi133156217 = phi [bb %advance.while.body42, float %55179, bb %advance.while.body, float %x.stack.phi133156238]
+  y.stack.phi136155216 = phi [bb %advance.while.body42, float %63182, bb %advance.while.body, float %y.stack.phi136155237]
+  j.phi141154215 = phi [bb %advance.while.body42, i32 %74186, bb %advance.while.body, i32 %j.phi141154236]
+  z.stack.phi145153214 = phi [bb %advance.while.body42, float %71185, bb %advance.while.body, float %z.stack.phi145153235]
+  77189 = add i32 %i.phi152234, i32 1
+  19157 = icmp slt i32 %77189, i32 %115
+  br i1 %19157, bb %advance.while.body, bb %advance.while.exit
+advance.while.body79_preheader:  pred(advance.while.exit)
+  br bb %advance.while.body79
+advance.while.body79:  pred(advance.while.body79, advance.while.body79_preheader)
+  x.stack.phi195229 = phi [bb %advance.while.body79, float %90200, bb %advance.while.body79_preheader, float %233]
+  y.stack.phi194228 = phi [bb %advance.while.body79, float %96202, bb %advance.while.body79_preheader, float %232]
+  z.stack.phi193227 = phi [bb %advance.while.body79, float %102204, bb %advance.while.body79_preheader, float %231]
+  k.phi192226 = phi [bb %advance.while.body79, i32 %105205, bb %advance.while.body79_preheader, i32 0]
+  90200 = fadd float %x.stack.phi195229, float 0.016000
+  96202 = fadd float %y.stack.phi194228, float 0.076000
+  102204 = fadd float %z.stack.phi193227, float 0.069000
+  105205 = add i32 %k.phi192226, i32 1
+  83196 = icmp slt i32 %105205, i32 %115
+  br i1 %83196, bb %advance.while.body79, bb %advance.while.exit80
+advance.while.exit80:  pred(advance.while.body79, advance.while.exit)
+  x.stack.phi133156225 = phi [bb %advance.while.body79, float %90200, bb %advance.while.exit, float %233]
+  y.stack.phi136155224 = phi [bb %advance.while.body79, float %96202, bb %advance.while.exit, float %232]
+  z.stack.phi145153223 = phi [bb %advance.while.body79, float %102204, bb %advance.while.exit, float %231]
+  109208 = fadd float %x.stack.phi133156225, float %y.stack.phi136155224
+  111209 = fsub float %109208, float %z.stack.phi145153223
+  call void _sysy_stoptime(i32 43)
+  call void putfloat(float %111209)
+  ret i32 0
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

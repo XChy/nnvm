@@ -1,0 +1,218 @@
+internal global ptr x init with 1400 x i32 zeros
+internal global ptr b init with 1400 x i32 zeros
+internal global ptr y init with 1400 x i32 zeros
+internal global ptr A init with 1960000 x i32 zeros
+global ptr n init with i32 1400
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry243:  pred()
+  244 = call i32 getarray(ptr @A)
+  245 = call i32 getarray(ptr @b)
+  246 = call i32 getarray(ptr @x)
+  247 = call i32 getarray(ptr @y)
+  call void _sysy_starttime(i32 68)
+  n.load = load i32 from ptr @n
+  12303495 = icmp slt i32 0, i32 %n.load
+  br i1 %12303495, bb %kernel_ludcmp.while.body_preheader, bb %kernel_ludcmp.while.exit
+kernel_ludcmp.while.body_preheader:  pred(entry243)
+  br bb %kernel_ludcmp.while.body
+kernel_ludcmp.while.body:  pred(kernel_ludcmp.while.exit82, kernel_ludcmp.while.body_preheader)
+  i.phi256302498 = phi [bb %kernel_ludcmp.while.exit82, i32 %137364, bb %kernel_ludcmp.while.body_preheader, i32 0]
+  k.phi266301497 = phi [bb %kernel_ludcmp.while.exit82, i32 %k.phi268311473, bb %kernel_ludcmp.while.body_preheader, i32 0]
+  w.phi275300496 = phi [bb %kernel_ludcmp.while.exit82, i32 %w.phi277310472, bb %kernel_ludcmp.while.body_preheader, i32 0]
+  20313477 = icmp slt i32 0, i32 %i.phi256302498
+  br i1 %20313477, bb %kernel_ludcmp.while.body16_preheader, bb %kernel_ludcmp.while.exit17
+kernel_ludcmp.while.exit:  pred(kernel_ludcmp.while.exit82, entry243)
+  br i1 %12303495, bb %kernel_ludcmp.while.body140_preheader, bb %kernel_ludcmp.while.exit141
+kernel_ludcmp.while.body16_preheader:  pred(kernel_ludcmp.while.body)
+  24316 = mul i32 %i.phi256302498, i32 5600
+  25317 = ptradd ptr @A, i32 %24316
+  br bb %kernel_ludcmp.while.body16
+kernel_ludcmp.while.body16:  pred(kernel_ludcmp.while.exit33, kernel_ludcmp.while.body16_preheader)
+  j.phi263312482 = phi [bb %kernel_ludcmp.while.exit33, i32 %77348, bb %kernel_ludcmp.while.body16_preheader, i32 0]
+  278318 = shl i32 %j.phi263312482, i32 2
+  28319 = ptradd ptr %25317, i32 %278318
+  28.load320 = load i32 from ptr %28319
+  36327461 = icmp slt i32 0, i32 %j.phi263312482
+  br i1 %36327461, bb %kernel_ludcmp.while.body32_preheader, bb %kernel_ludcmp.while.exit33
+kernel_ludcmp.while.exit17:  pred(kernel_ludcmp.while.exit33, kernel_ludcmp.while.body)
+  k.phi266301479 = phi [bb %kernel_ludcmp.while.exit33, i32 %463, bb %kernel_ludcmp.while.body, i32 %k.phi266301497]
+  w.phi275300478 = phi [bb %kernel_ludcmp.while.exit33, i32 %28.load320462, bb %kernel_ludcmp.while.body, i32 %w.phi275300496]
+  85354471 = icmp slt i32 %i.phi256302498, i32 %n.load
+  br i1 %85354471, bb %kernel_ludcmp.while.body81_preheader, bb %kernel_ludcmp.while.exit82
+kernel_ludcmp.while.body32_preheader:  pred(kernel_ludcmp.while.body16)
+  br bb %kernel_ludcmp.while.body32
+kernel_ludcmp.while.body32:  pred(kernel_ludcmp.while.body32, kernel_ludcmp.while.body32_preheader)
+  k.phi267326465 = phi [bb %kernel_ludcmp.while.body32, i32 %58339, bb %kernel_ludcmp.while.body32_preheader, i32 0]
+  w.phi276325464 = phi [bb %kernel_ludcmp.while.body32, i32 %55338, bb %kernel_ludcmp.while.body32_preheader, i32 %28.load320]
+  279330 = shl i32 %k.phi267326465, i32 2
+  45331 = ptradd ptr %25317, i32 %279330
+  45.load332 = load i32 from ptr %45331
+  48333 = mul i32 %k.phi267326465, i32 5600
+  49334 = ptradd ptr @A, i32 %48333
+  52335 = ptradd ptr %49334, i32 %278318
+  52.load336 = load i32 from ptr %52335
+  54337 = mul i32 %45.load332, i32 %52.load336
+  55338 = sub i32 %w.phi276325464, i32 %54337
+  58339 = add i32 %k.phi267326465, i32 1
+  36327 = icmp slt i32 %58339, i32 %j.phi263312482
+  br i1 %36327, bb %kernel_ludcmp.while.body32, bb %kernel_ludcmp.while.exit33
+kernel_ludcmp.while.exit33:  pred(kernel_ludcmp.while.body32, kernel_ludcmp.while.body16)
+  463 = phi [bb %kernel_ludcmp.while.body32, i32 %58339, bb %kernel_ludcmp.while.body16, i32 0]
+  28.load320462 = phi [bb %kernel_ludcmp.while.body32, i32 %55338, bb %kernel_ludcmp.while.body16, i32 %28.load320]
+  68342 = mul i32 %j.phi263312482, i32 5600
+  69343 = ptradd ptr @A, i32 %68342
+  72344 = ptradd ptr %69343, i32 %278318
+  72.load345 = load i32 from ptr %72344
+  74346 = sdiv i32 %28.load320462, i32 %72.load345
+  store i32 %74346 to ptr %28319
+  77348 = add i32 %j.phi263312482, i32 1
+  20313 = icmp slt i32 %77348, i32 %i.phi256302498
+  br i1 %20313, bb %kernel_ludcmp.while.body16, bb %kernel_ludcmp.while.exit17
+kernel_ludcmp.while.body81_preheader:  pred(kernel_ludcmp.while.exit17)
+  89357 = mul i32 %i.phi256302498, i32 5600
+  90358 = ptradd ptr @A, i32 %89357
+  br bb %kernel_ludcmp.while.body81
+kernel_ludcmp.while.body81:  pred(kernel_ludcmp.while.exit98, kernel_ludcmp.while.body81_preheader)
+  j.phi261353476 = phi [bb %kernel_ludcmp.while.exit98, i32 %134385, bb %kernel_ludcmp.while.body81_preheader, i32 %i.phi256302498]
+  283359 = shl i32 %j.phi261353476, i32 2
+  93360 = ptradd ptr %90358, i32 %283359
+  93.load361 = load i32 from ptr %93360
+  br i1 %20313477, bb %kernel_ludcmp.while.body97_preheader, bb %kernel_ludcmp.while.exit98
+kernel_ludcmp.while.exit82:  pred(kernel_ludcmp.while.exit98, kernel_ludcmp.while.exit17)
+  k.phi268311473 = phi [bb %kernel_ludcmp.while.exit98, i32 %468, bb %kernel_ludcmp.while.exit17, i32 %k.phi266301479]
+  w.phi277310472 = phi [bb %kernel_ludcmp.while.exit98, i32 %93.load361467, bb %kernel_ludcmp.while.exit17, i32 %w.phi275300478]
+  137364 = add i32 %i.phi256302498, i32 1
+  12303 = icmp slt i32 %137364, i32 %n.load
+  br i1 %12303, bb %kernel_ludcmp.while.body, bb %kernel_ludcmp.while.exit
+kernel_ludcmp.while.body97_preheader:  pred(kernel_ludcmp.while.body81)
+  br bb %kernel_ludcmp.while.body97
+kernel_ludcmp.while.body97:  pred(kernel_ludcmp.while.body97, kernel_ludcmp.while.body97_preheader)
+  k.phi368470 = phi [bb %kernel_ludcmp.while.body97, i32 %123381, bb %kernel_ludcmp.while.body97_preheader, i32 0]
+  w.phi273367469 = phi [bb %kernel_ludcmp.while.body97, i32 %120380, bb %kernel_ludcmp.while.body97_preheader, i32 %93.load361]
+  284372 = shl i32 %k.phi368470, i32 2
+  110373 = ptradd ptr %90358, i32 %284372
+  110.load374 = load i32 from ptr %110373
+  113375 = mul i32 %k.phi368470, i32 5600
+  114376 = ptradd ptr @A, i32 %113375
+  117377 = ptradd ptr %114376, i32 %283359
+  117.load378 = load i32 from ptr %117377
+  119379 = mul i32 %110.load374, i32 %117.load378
+  120380 = sub i32 %w.phi273367469, i32 %119379
+  123381 = add i32 %k.phi368470, i32 1
+  101369 = icmp slt i32 %123381, i32 %i.phi256302498
+  br i1 %101369, bb %kernel_ludcmp.while.body97, bb %kernel_ludcmp.while.exit98
+kernel_ludcmp.while.exit98:  pred(kernel_ludcmp.while.body97, kernel_ludcmp.while.body81)
+  468 = phi [bb %kernel_ludcmp.while.body97, i32 %123381, bb %kernel_ludcmp.while.body81, i32 0]
+  93.load361467 = phi [bb %kernel_ludcmp.while.body97, i32 %120380, bb %kernel_ludcmp.while.body81, i32 %93.load361]
+  store i32 %93.load361467 to ptr %93360
+  134385 = add i32 %j.phi261353476, i32 1
+  85354 = icmp slt i32 %134385, i32 %n.load
+  br i1 %85354, bb %kernel_ludcmp.while.body81, bb %kernel_ludcmp.while.exit82
+kernel_ludcmp.while.body140_preheader:  pred(kernel_ludcmp.while.exit)
+  br bb %kernel_ludcmp.while.body140
+kernel_ludcmp.while.body140:  pred(kernel_ludcmp.while.exit154, kernel_ludcmp.while.body140_preheader)
+  i.phi255388494 = phi [bb %kernel_ludcmp.while.exit154, i32 %184419, bb %kernel_ludcmp.while.body140_preheader, i32 0]
+  287392 = shl i32 %i.phi255388494, i32 2
+  149393 = ptradd ptr @b, i32 %287392
+  149.load394 = load i32 from ptr %149393
+  157402483 = icmp slt i32 0, i32 %i.phi255388494
+  br i1 %157402483, bb %kernel_ludcmp.while.body153_preheader, bb %kernel_ludcmp.while.exit154
+kernel_ludcmp.while.exit141:  pred(kernel_ludcmp.while.exit154, kernel_ludcmp.while.exit)
+  187397 = sub i32 %n.load, i32 1
+  192423491 = icmp sge i32 %187397, i32 0
+  br i1 %192423491, bb %kernel_ludcmp.while.body189_preheader, bb %kernel_ludcmp.while.exit190
+kernel_ludcmp.while.body153_preheader:  pred(kernel_ludcmp.while.body140)
+  162405 = mul i32 %i.phi255388494, i32 5600
+  163406 = ptradd ptr @A, i32 %162405
+  br bb %kernel_ludcmp.while.body153
+kernel_ludcmp.while.body153:  pred(kernel_ludcmp.while.body153, kernel_ludcmp.while.body153_preheader)
+  j.phi259401486 = phi [bb %kernel_ludcmp.while.body153, i32 %176414, bb %kernel_ludcmp.while.body153_preheader, i32 0]
+  w.phi271400485 = phi [bb %kernel_ludcmp.while.body153, i32 %173413, bb %kernel_ludcmp.while.body153_preheader, i32 %149.load394]
+  288407 = shl i32 %j.phi259401486, i32 2
+  166408 = ptradd ptr %163406, i32 %288407
+  166.load409 = load i32 from ptr %166408
+  170410 = ptradd ptr @y, i32 %288407
+  170.load411 = load i32 from ptr %170410
+  172412 = mul i32 %166.load409, i32 %170.load411
+  173413 = sub i32 %w.phi271400485, i32 %172412
+  176414 = add i32 %j.phi259401486, i32 1
+  157402 = icmp slt i32 %176414, i32 %i.phi255388494
+  br i1 %157402, bb %kernel_ludcmp.while.body153, bb %kernel_ludcmp.while.exit154
+kernel_ludcmp.while.exit154:  pred(kernel_ludcmp.while.body153, kernel_ludcmp.while.body140)
+  149.load394484 = phi [bb %kernel_ludcmp.while.body153, i32 %173413, bb %kernel_ludcmp.while.body140, i32 %149.load394]
+  179417 = ptradd ptr @y, i32 %287392
+  store i32 %149.load394484 to ptr %179417
+  184419 = add i32 %i.phi255388494, i32 1
+  144389 = icmp slt i32 %184419, i32 %n.load
+  br i1 %144389, bb %kernel_ludcmp.while.body140, bb %kernel_ludcmp.while.exit141
+kernel_ludcmp.while.body189_preheader:  pred(kernel_ludcmp.while.exit141)
+  br bb %kernel_ludcmp.while.body189
+kernel_ludcmp.while.body189:  pred(kernel_ludcmp.while.exit204, kernel_ludcmp.while.body189_preheader)
+  i.phi422492 = phi [bb %kernel_ludcmp.while.exit204, i32 %242458, bb %kernel_ludcmp.while.body189_preheader, i32 %187397]
+  291426 = shl i32 %i.phi422492, i32 2
+  197427 = ptradd ptr @y, i32 %291426
+  197.load428 = load i32 from ptr %197427
+  201429 = add i32 %i.phi422492, i32 1
+  207436487 = icmp slt i32 %201429, i32 %n.load
+  br i1 %207436487, bb %kernel_ludcmp.while.body203_preheader, bb %kernel_ludcmp.while.exit204
+kernel_ludcmp.while.exit190:  pred(kernel_ludcmp.while.exit204, kernel_ludcmp.while.exit141)
+  call void _sysy_stoptime(i32 71)
+  n.load252 = load i32 from ptr @n
+  call void putarray(i32 %n.load252, ptr @x)
+  ret i32 0
+kernel_ludcmp.while.body203_preheader:  pred(kernel_ludcmp.while.body189)
+  212439 = mul i32 %i.phi422492, i32 5600
+  213440 = ptradd ptr @A, i32 %212439
+  br bb %kernel_ludcmp.while.body203
+kernel_ludcmp.while.body203:  pred(kernel_ludcmp.while.body203, kernel_ludcmp.while.body203_preheader)
+  j.phi435490 = phi [bb %kernel_ludcmp.while.body203, i32 %226448, bb %kernel_ludcmp.while.body203_preheader, i32 %201429]
+  w.phi434489 = phi [bb %kernel_ludcmp.while.body203, i32 %223447, bb %kernel_ludcmp.while.body203_preheader, i32 %197.load428]
+  292441 = shl i32 %j.phi435490, i32 2
+  216442 = ptradd ptr %213440, i32 %292441
+  216.load443 = load i32 from ptr %216442
+  220444 = ptradd ptr @x, i32 %292441
+  220.load445 = load i32 from ptr %220444
+  222446 = mul i32 %216.load443, i32 %220.load445
+  223447 = sub i32 %w.phi434489, i32 %222446
+  226448 = add i32 %j.phi435490, i32 1
+  207436 = icmp slt i32 %226448, i32 %n.load
+  br i1 %207436, bb %kernel_ludcmp.while.body203, bb %kernel_ludcmp.while.exit204
+kernel_ludcmp.while.exit204:  pred(kernel_ludcmp.while.body203, kernel_ludcmp.while.body189)
+  197.load428488 = phi [bb %kernel_ludcmp.while.body203, i32 %223447, bb %kernel_ludcmp.while.body189, i32 %197.load428]
+  229451 = ptradd ptr @x, i32 %291426
+  233452 = mul i32 %i.phi422492, i32 5600
+  234453 = ptradd ptr @A, i32 %233452
+  237454 = ptradd ptr %234453, i32 %291426
+  237.load455 = load i32 from ptr %237454
+  239456 = sdiv i32 %197.load428488, i32 %237.load455
+  store i32 %239456 to ptr %229451
+  242458 = sub i32 %i.phi422492, i32 1
+  192423 = icmp sge i32 %242458, i32 0
+  br i1 %192423, bb %kernel_ludcmp.while.body189, bb %kernel_ludcmp.while.exit190
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+external i32 getint()
+
+
