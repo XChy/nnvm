@@ -1,7 +1,7 @@
 internal global ptr dst init with 2097152 x i32 zeros
 internal global ptr w init with 2097152 x i32 zeros
 internal global ptr temp init with 2097152 x i32 zeros
-void mem_move(ptr src, ptr dst, i32 n) {
+internal void mem_move(ptr src, ptr dst, i32 n) {
 entry43:  pred()
   511151 = icmp slt i32 0, i32 %n
   br i1 %511151, bb %while.body_preheader, bb %while.exit
@@ -27,7 +27,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-void floyd(ptr w, ptr dst, i32 n) {
+internal void floyd(ptr w, ptr dst, i32 n) {
 entry64:  pred()
   721172 = icmp slt i32 0, i32 %n
   br i1 %721172, bb %while.body68_preheader, bb %while.exit69
@@ -994,7 +994,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 getvalue(ptr a, i32 n, i32 i, i32 j) {
+internal i32 getvalue(ptr a, i32 n, i32 i, i32 j) {
 entry:  pred()
   5 = icmp slt i32 %i, i32 0
   br i1 %5, bb %select.then, bb %select.else

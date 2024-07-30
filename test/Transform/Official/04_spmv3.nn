@@ -186,7 +186,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-void spmv(i32 n, ptr xptr, ptr yidx, ptr vals, ptr b, ptr x) {
+internal void spmv(i32 n, ptr xptr, ptr yidx, ptr vals, ptr b, ptr x) {
 entry:  pred()
   11352 = icmp slt i32 0, i32 %n
   br i1 %11352, bb %while.body_preheader, bb %while.exit

@@ -1,6 +1,6 @@
 internal global ptr arr2 init with 26880 x i32 zeros
 internal global ptr arr1 init with 14400 x i32 zeros
-i32 loop3(i32 h, i32 i, i32 j, i32 k, i32 l, i32 m, i32 n) {
+internal i32 loop3(i32 h, i32 i, i32 j, i32 k, i32 l, i32 m, i32 n) {
 entry235:  pred()
   br bb %while.cond252
 while.cond252:  pred(entry235, if.exit404)
@@ -193,7 +193,7 @@ external i32 getint()
 
 external i32 getch()
 
-void loop2() {
+internal void loop2() {
 entry128:  pred()
   br bb %while.body138
 while.body138:  pred(while.exit146, entry128)
@@ -302,7 +302,7 @@ while.exit181:  pred(while.body180)
 
 external void putint(i32 )
 
-void loop1(i32 x, i32 y) {
+internal void loop1(i32 x, i32 y) {
 entry:  pred()
   br bb %while.cond
 while.cond:  pred(entry, while.exit29)

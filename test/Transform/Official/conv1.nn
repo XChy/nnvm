@@ -1,7 +1,7 @@
 internal global ptr kernelid init with 10000 x i32 zeros
 internal global ptr b init with 10000000 x i32 zeros
 internal global ptr a init with 10000000 x i32 zeros
-i32 convn(i32 kernelid, ptr input, ptr output, i32 n, i32 m, i32 c) {
+internal i32 convn(i32 kernelid, ptr input, ptr output, i32 n, i32 m, i32 c) {
 entry212:  pred()
   237 = sdiv i32 %c, i32 2
   br bb %while.cond222
@@ -92,7 +92,7 @@ getvalue.if.exit203:  pred(getvalue.select.exit195)
   br bb %while.cond249.split
 }
 
-i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
+internal i32 getvalue(ptr array, i32 n, i32 m, i32 x, i32 y) {
 entry169:  pred()
   175 = icmp slt i32 %x, i32 0
   br i1 %175, bb %select.then176, bb %select.else177
@@ -131,7 +131,7 @@ if.exit203:  pred(select.exit195)
   ret i32 %210.load
 }
 
-pure i32 reduce(i32 kernelid, i32 x, i32 y) {
+pure internal i32 reduce(i32 kernelid, i32 x, i32 y) {
 entry24:  pred()
   29 = icmp eq i32 %kernelid, i32 0
   br i1 %29, bb %then, bb %if.exit
@@ -426,7 +426,7 @@ memmove.while.exit315:  pred(memmove.while.body314, convn.then308)
   br i1 %348, bb %while.body344, bb %while.exit345
 }
 
-void memmove(ptr dst, ptr src, i32 n) {
+internal void memmove(ptr dst, ptr src, i32 n) {
 entry310:  pred()
   318629 = icmp slt i32 0, i32 %n
   br i1 %318629, bb %while.body314_preheader, bb %while.exit315
@@ -450,7 +450,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure i32 checkrange(i32 num) {
+pure internal i32 checkrange(i32 num) {
 entry:  pred()
   7634 = icmp sgt i32 %num, i32 1073741824
   br i1 %7634, bb %while.body_preheader, bb %while.exit

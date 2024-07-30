@@ -207,7 +207,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 mul(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
+internal i32 mul(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
 entry:  pred()
   7.load = load float from ptr %a0
   10.load = load float from ptr %b0

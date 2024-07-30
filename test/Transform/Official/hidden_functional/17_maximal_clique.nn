@@ -74,7 +74,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 is_clique(i32 num) {
+internal i32 is_clique(i32 num) {
 entry:  pred()
   br bb %while.cond
 while.cond:  pred(entry, while.exit15)
@@ -117,7 +117,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-i32 maxCliques(i32 i, i32 k) {
+internal i32 maxCliques(i32 i, i32 k) {
 entry42:  pred()
   n.load235 = load i32 from ptr @n
   53236 = icmp sle i32 1, i32 %n.load235

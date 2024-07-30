@@ -119,7 +119,7 @@ external void putfloat(float )
 
 external i32 getarray(ptr )
 
-i32 inc_a() {
+internal i32 inc_a() {
 entry:  pred()
   a.load = load i32 from ptr @a
   5 = add i32 %a.load, i32 1

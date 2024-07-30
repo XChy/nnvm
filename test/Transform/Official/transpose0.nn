@@ -118,7 +118,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-i32 transpose(i32 n, ptr matrix, i32 rowsize) {
+internal i32 transpose(i32 n, ptr matrix, i32 rowsize) {
 entry:  pred()
   6 = sdiv i32 %n, i32 %rowsize
   14216 = icmp slt i32 0, i32 %6

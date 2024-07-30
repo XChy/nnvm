@@ -27,7 +27,7 @@ external void putfarray(i32 , ptr )
 
 external void putarray(i32 , ptr )
 
-pure i32 f(i32 f) {
+pure internal i32 f(i32 f) {
 entry:  pred()
   6 = shl i32 %f, i32 1
   ret i32 %6

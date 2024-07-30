@@ -2,7 +2,7 @@ external i32 getint()
 
 external i32 getch()
 
-i32 long_array(i32 k) {
+internal i32 long_array(i32 k) {
 entry:  pred()
   %a3 = stack 40000
   %a2 = stack 40000

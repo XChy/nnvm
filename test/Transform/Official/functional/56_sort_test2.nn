@@ -108,7 +108,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 insertsort(ptr a) {
+internal i32 insertsort(ptr a) {
 entry:  pred()
   n.load185 = load i32 from ptr @n
   8186 = icmp slt i32 1, i32 %n.load185

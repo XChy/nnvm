@@ -9,7 +9,7 @@ internal global ptr values init with 10000000 x i32 zeros
 internal global ptr key init with 10000000 x i32 zeros
 internal global ptr nextvalue init with 10000000 x i32 zeros
 internal global ptr requests init with 10000000 x i32 zeros
-i32 insert(i32 k, i32 v) {
+internal i32 insert(i32 k, i32 v) {
 entry5:  pred()
   hashmod.load387 = load i32 from ptr @hashmod
   4388 = srem i32 %k, i32 %hashmod.load387
@@ -251,7 +251,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-i32 reduce(i32 k) {
+internal i32 reduce(i32 k) {
 entry119:  pred()
   hashmod.load393 = load i32 from ptr @hashmod
   4394 = srem i32 %k, i32 %hashmod.load393
@@ -295,7 +295,7 @@ while.exit148:  pred(while.body147, then141)
   ret i32 %418
 }
 
-i32 hash(i32 k) {
+internal i32 hash(i32 k) {
 entry:  pred()
   hashmod.load = load i32 from ptr @hashmod
   4 = srem i32 %k, i32 %hashmod.load

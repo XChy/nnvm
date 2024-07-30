@@ -3,7 +3,7 @@ internal global ptr cap init with 100 x i32 zeros
 internal global ptr used init with 10 x i32 zeros
 internal global ptr to init with 100 x i32 zeros
 internal global ptr size init with 10 x i32 zeros
-i32 max_flow(i32 s, i32 t) {
+internal i32 max_flow(i32 s, i32 t) {
 entry264:  pred()
   br bb %while.cond268
 while.cond268:  pred(entry264, if.exit281)
@@ -28,7 +28,7 @@ my_memset.while.exit:  pred(my_memset.while.body)
   br i1 %279, bb %then280, bb %if.exit281
 }
 
-i32 dfs(i32 s, i32 t, i32 f) {
+internal i32 dfs(i32 s, i32 t, i32 f) {
 entry112:  pred()
   118 = icmp eq i32 %s, i32 %t
   br i1 %118, bb %then, bb %if.exit
@@ -106,7 +106,7 @@ if.exit203:  pred(if.exit177)
   br bb %while.cond127
 }
 
-void add_node(i32 u, i32 v, i32 c) {
+internal void add_node(i32 u, i32 v, i32 c) {
 entry19:  pred()
   24 = mul i32 %u, i32 40
   25 = ptradd ptr @to, i32 %24
@@ -243,7 +243,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-void my_memset(ptr arr, i32 val, i32 n) {
+internal void my_memset(ptr arr, i32 val, i32 n) {
 entry:  pred()
   9481 = icmp slt i32 0, i32 %n
   br i1 %9481, bb %while.body_preheader, bb %while.exit

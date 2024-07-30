@@ -1,6 +1,6 @@
 internal global ptr buffer init with 50000000 x i32 zeros
 global ptr pos init with i32 0
-i32 detect_item(i32 type, ptr buf, i32 len) {
+internal i32 detect_item(i32 type, ptr buf, i32 len) {
 entry67:  pred()
   %mNull = stack 16
   %mFalse = stack 20
@@ -1540,7 +1540,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-void skip_space(ptr buf, i32 len) {
+internal void skip_space(ptr buf, i32 len) {
 entry12:  pred()
   br bb %while.cond
 while.cond:  pred(entry12, then28, then39, then50, then61)
@@ -1589,7 +1589,7 @@ then61:  pred(else52)
   br bb %while.cond
 }
 
-pure i32 is_number(i32 ch) {
+pure internal i32 is_number(i32 ch) {
 entry:  pred()
   3 = icmp sge i32 %ch, i32 48
   br i1 %3, bb %then, bb %else

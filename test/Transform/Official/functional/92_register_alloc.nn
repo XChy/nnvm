@@ -232,7 +232,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 func(i32 a, i32 b) {
+internal i32 func(i32 a, i32 b) {
 entry:  pred()
   45 = call i32 getint()
   47 = call i32 getint()

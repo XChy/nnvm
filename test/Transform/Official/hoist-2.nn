@@ -50,7 +50,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 func(i32 i1, i32 i2, i32 i3, i32 i4, i32 i5, i32 i6, i32 i7, i32 i8, i32 i9, i32 i10, i32 i11, i32 i12, i32 i13, i32 i14, i32 i15) {
+internal i32 func(i32 i1, i32 i2, i32 i3, i32 i4, i32 i5, i32 i6, i32 i7, i32 i8, i32 i9, i32 i10, i32 i11, i32 i12, i32 i13, i32 i14, i32 i15) {
 entry:  pred()
   loopCount.load4776 = load i32 from ptr @loopCount
   234777 = icmp slt i32 0, i32 %loopCount.load4776

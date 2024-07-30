@@ -169,7 +169,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 cutout(i32 val) {
+pure internal i32 cutout(i32 val) {
 entry:  pred()
   3 = icmp slt i32 %val, i32 0
   br i1 %3, bb %then, bb %else

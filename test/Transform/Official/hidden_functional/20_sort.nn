@@ -3,7 +3,7 @@ internal global ptr b init with 100005 x i32 zeros
 internal global ptr a init with 100005 x i32 zeros
 internal global ptr cnt init with 400020 x i32 zeros
 global ptr n init with i32 0
-void sortB(ptr a) {
+internal void sortB(ptr a) {
 entry110:  pred()
   n.load118677 = load i32 from ptr @n
   119678 = icmp slt i32 0, i32 %n.load118677
@@ -71,7 +71,7 @@ external i32 getint()
 
 external i32 getch()
 
-void sortC(ptr a) {
+internal void sortC(ptr a) {
 entry185:  pred()
   n.load191686 = load i32 from ptr @n
   192687 = icmp slt i32 0, i32 %n.load191686
@@ -468,7 +468,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-void sortA(ptr a) {
+internal void sortA(ptr a) {
 entry55:  pred()
   n.load731 = load i32 from ptr @n
   63732 = icmp slt i32 0, i32 %n.load731
@@ -522,7 +522,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 quick_read() {
+internal i32 quick_read() {
 entry:  pred()
   2 = call i32 getch()
   br bb %while.cond

@@ -2,7 +2,7 @@ internal global ptr b init with 2097152 x i32 zeros
 internal global ptr temp init with 2097152 x i32 zeros
 internal global ptr a init with 2097152 x i32 zeros
 global ptr d init with i32 0
-i32 fft(ptr arr, i32 begin_pos, i32 n, i32 w) {
+internal i32 fft(ptr arr, i32 begin_pos, i32 n, i32 w) {
 entry88:  pred()
   93 = icmp eq i32 %n, i32 1
   br i1 %93, bb %then94, bb %if.exit95
@@ -97,7 +97,7 @@ memmove.while.exit:  pred(memmove.while.body, while.exit99)
   br i1 %166367, bb %while.body161_preheader, bb %while.exit162
 }
 
-pure i32 power(i32 a, i32 b) {
+pure internal i32 power(i32 a, i32 b) {
 entry37:  pred()
   41 = icmp eq i32 %b, i32 0
   br i1 %41, bb %then42, bb %if.exit43
@@ -203,7 +203,7 @@ while.exit294:  pred(while.body293, while.exit260)
   ret i32 0
 }
 
-i32 memmove(ptr dst, i32 dst_pos, ptr src, i32 len) {
+internal i32 memmove(ptr dst, i32 dst_pos, ptr src, i32 len) {
 entry63:  pred()
   72385 = icmp slt i32 0, i32 %len
   br i1 %72385, bb %while.body_preheader, bb %while.exit
@@ -238,7 +238,7 @@ external void _sysy_starttime(i32 )
 
 external void putch(i32 )
 
-pure i32 multiply(i32 a, i32 b) {
+pure internal i32 multiply(i32 a, i32 b) {
 entry:  pred()
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %if.exit

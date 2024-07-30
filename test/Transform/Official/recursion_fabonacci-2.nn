@@ -1,4 +1,4 @@
-pure float takFP(float x, float y, float z) {
+pure internal float takFP(float x, float y, float z) {
 entry13:  pred()
   19 = fcmp olt float %y, float %x
   br i1 %19, bb %then20, bb %if.exit21
@@ -66,7 +66,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-pure float fibFP(float n) {
+pure internal float fibFP(float n) {
 entry:  pred()
   3 = fcmp olt float %n, float 2.000000
   br i1 %3, bb %then, bb %if.exit

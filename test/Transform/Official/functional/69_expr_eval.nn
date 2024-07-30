@@ -2,7 +2,7 @@ global ptr cur_token init with i32 0
 global ptr other init with i32 0
 global ptr num init with i32 0
 global ptr last_char init with i32 32
-i32 eval() {
+internal i32 eval() {
 entry195:  pred()
   %ops = stack 1024
   %oprs = stack 1024
@@ -655,7 +655,7 @@ next_token.is_space.else1494:  pred(next_token.is_space.select.exit1489)
   br bb %next_token.while.cond.split1405
 }
 
-pure i32 eval_op(i32 op, i32 lhs, i32 rhs) {
+pure internal i32 eval_op(i32 op, i32 lhs, i32 rhs) {
 entry156:  pred()
   161 = icmp eq i32 %op, i32 43
   br i1 %161, bb %then162, bb %if.exit163
@@ -690,13 +690,13 @@ if.exit191:  pred(if.exit184)
   ret i32 0
 }
 
-i32 stack_size(ptr s) {
+internal i32 stack_size(ptr s) {
 entry152:  pred()
   154.load = load i32 from ptr %s
   ret i32 %154.load
 }
 
-i32 stack_peek(ptr s) {
+internal i32 stack_peek(ptr s) {
 entry145:  pred()
   147.load = load i32 from ptr %s
   345 = shl i32 %147.load, i32 2
@@ -705,7 +705,7 @@ entry145:  pred()
   ret i32 %150.load
 }
 
-i32 stack_pop(ptr s) {
+internal i32 stack_pop(ptr s) {
 entry129:  pred()
   132.load = load i32 from ptr %s
   346 = shl i32 %132.load, i32 2
@@ -716,7 +716,7 @@ entry129:  pred()
   ret i32 %135.load
 }
 
-pure i32 get_op_prec(i32 op) {
+pure internal i32 get_op_prec(i32 op) {
 entry79:  pred()
   82 = icmp eq i32 %op, i32 43
   br i1 %82, bb %select.then83, bb %select.else84
@@ -755,7 +755,7 @@ if.exit112:  pred(select.exit105)
   ret i32 0
 }
 
-void stack_push(ptr s, i32 v) {
+internal void stack_push(ptr s, i32 v) {
 entry113:  pred()
   119.load = load i32 from ptr %s
   121 = add i32 %119.load, i32 1
@@ -766,7 +766,7 @@ entry113:  pred()
   ret 
 }
 
-pure i32 is_num(i32 c) {
+pure internal i32 is_num(i32 c) {
 entry19:  pred()
   22 = icmp sge i32 %c, i32 48
   br i1 %22, bb %select.then23, bb %select.else24
@@ -784,7 +784,7 @@ else32:  pred(select.exit25)
   ret i32 0
 }
 
-pure i32 is_space(i32 c) {
+pure internal i32 is_space(i32 c) {
 entry4:  pred()
   7 = icmp eq i32 %c, i32 32
   br i1 %7, bb %select.then, bb %select.else
@@ -1569,7 +1569,7 @@ next_token.is_space.else1984:  pred(next_token.is_space.select.exit1979)
   br bb %next_token.while.cond.split1895
 }
 
-i32 panic() {
+internal i32 panic() {
 entry70:  pred()
   call void putch(i32 112)
   call void putch(i32 97)
@@ -1585,7 +1585,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 next_token() {
+internal i32 next_token() {
 entry33:  pred()
   br bb %while.cond
 while.cond:  pred(entry33, while.body)
@@ -1688,7 +1688,7 @@ external void putfarray(i32 , ptr )
 
 external void putarray(i32 , ptr )
 
-i32 next_char() {
+internal i32 next_char() {
 entry:  pred()
   2 = call i32 getch()
   store i32 %2 to ptr @last_char

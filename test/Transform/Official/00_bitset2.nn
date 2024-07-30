@@ -1,7 +1,7 @@
 global ptr staticvalue init with i32 0
 internal global ptr a init with 10000 x i32 zeros
 immutable internal global ptr seed init with 3 x i32 [19971231, 19981013, 1000000007]
-i32 rand() {
+internal i32 rand() {
 entry194:  pred()
   staticvalue.load196 = load i32 from ptr @staticvalue
   200 = mul i32 %staticvalue.load196, i32 19971231
@@ -23,7 +23,7 @@ if.exit214:  pred(entry194, then213)
 
 external i32 getint()
 
-i32 set(ptr a, i32 pos, i32 d) {
+internal i32 set(ptr a, i32 pos, i32 d) {
 entry:  pred()
   %x = stack 124
   br bb %init

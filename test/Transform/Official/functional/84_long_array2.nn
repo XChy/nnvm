@@ -1,7 +1,7 @@
 internal global ptr a init with 4096 x i32 zeros
 external i32 getint()
 
-i32 f1(ptr b) {
+internal i32 f1(ptr b) {
 entry:  pred()
   2 = ptradd ptr @a, i32 20
   store i32 4000 to ptr %2

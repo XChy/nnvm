@@ -5,7 +5,7 @@ internal global ptr input init with 65536 x i32 zeros
 internal global ptr tape init with 65536 x i32 zeros
 internal global ptr program init with 65536 x i32 zeros
 global ptr program_length init with i32 0
-void output_() {
+internal void output_() {
 entry307:  pred()
   output_length.load313800 = load i32 from ptr @output_length
   314801 = icmp slt i32 0, i32 %output_length.load313800
@@ -26,7 +26,7 @@ while.exit311:  pred(while.body310, entry307)
   ret 
 }
 
-void run_program() {
+internal void run_program() {
 entry112:  pred()
   %return_address = stack 2048
   br bb %init
@@ -268,7 +268,7 @@ external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
 
-void read_program() {
+internal void read_program() {
 entry68:  pred()
   2490 = call i32 getch()
   br bb %get_bf_char.while.cond
@@ -681,7 +681,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 get_bf_char() {
+internal i32 get_bf_char() {
 entry:  pred()
   2 = call i32 getch()
   br bb %while.cond

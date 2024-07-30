@@ -5,7 +5,7 @@ internal global ptr imgIn init with 138240 x float zeros
 immutable internal global ptr alpha init with float 0.250000
 global ptr h init with i32 270
 global ptr w init with i32 512
-void kernel_deriche(i32 w, i32 h, float alpha, ptr imgIn, ptr imgOut, ptr y1, ptr y2) {
+internal void kernel_deriche(i32 w, i32 h, float alpha, ptr imgIn, ptr imgOut, ptr y1, ptr y2) {
 entry68:  pred()
   99 = fneg float %alpha
   4622 = si2f i32 256 to float
@@ -280,7 +280,7 @@ while.exit507:  pred(while.body506, while.body498)
   br i1 %502, bb %while.body498, bb %while.exit499
 }
 
-pure float newPow(float num, i32 n) {
+pure internal float newPow(float num, i32 n) {
 entry40:  pred()
   44 = icmp slt i32 %n, i32 0
   br i1 %44, bb %then, bb %else
@@ -345,7 +345,7 @@ external void putfarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-pure float newExp(float x) {
+pure internal float newExp(float x) {
 entry:  pred()
   4 = si2f i32 256 to float
   5 = fdiv float %x, float %4

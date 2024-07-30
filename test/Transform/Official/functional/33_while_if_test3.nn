@@ -50,7 +50,7 @@ external void putfarray(i32 , ptr )
 
 external void putch(i32 )
 
-pure i32 deepWhileBr(i32 a, i32 b) {
+pure internal i32 deepWhileBr(i32 a, i32 b) {
 entry:  pred()
   7 = add i32 %a, i32 %b
   1288 = icmp slt i32 %7, i32 75

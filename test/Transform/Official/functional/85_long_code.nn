@@ -1,5 +1,5 @@
 global ptr n init with i32 0
-i32 avgPooling(ptr arr, i32 stride) {
+internal i32 avgPooling(ptr arr, i32 stride) {
 entry434:  pred()
   n.load4451358 = load i32 from ptr @n
   4461359 = icmp slt i32 0, i32 %n.load4451358
@@ -74,7 +74,7 @@ while.exit516:  pred(while.body515, while.exit443)
   ret i32 0
 }
 
-i32 arrCopy(ptr src, ptr target) {
+internal i32 arrCopy(ptr src, ptr target) {
 entry371:  pred()
   n.load3781364 = load i32 from ptr @n
   3791365 = icmp slt i32 0, i32 %n.load3781364
@@ -96,7 +96,7 @@ while.exit376:  pred(while.body375, entry371)
   ret i32 0
 }
 
-i32 getMost(ptr arr) {
+internal i32 getMost(ptr arr) {
 entry272:  pred()
   %count = stack 4000
   br bb %while.body277
@@ -142,7 +142,7 @@ if.exit322:  pred(while.body294, then321)
   br i1 %298, bb %while.body294, bb %while.exit295
 }
 
-i32 getMid(ptr arr) {
+internal i32 getMid(ptr arr) {
 entry243:  pred()
   n.load245 = load i32 from ptr @n
   246 = srem i32 %n.load245, i32 2
@@ -168,7 +168,7 @@ else:  pred(entry243)
   ret i32 %270.load
 }
 
-i32 insertsort(ptr a) {
+internal i32 insertsort(ptr a) {
 entry62:  pred()
   n.load691375 = load i32 from ptr @n
   701376 = icmp slt i32 1, i32 %n.load691375
@@ -220,7 +220,7 @@ select.exit:  pred(select.then, select.else)
   br i1 %select.phi, bb %while.body83, bb %while.exit84
 }
 
-i32 revert(ptr arr) {
+internal i32 revert(ptr arr) {
 entry334:  pred()
   br bb %while.exit342
 while.body341:  pred(while.body341)
@@ -248,7 +248,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-i32 QuickSort(ptr arr, i32 low, i32 high) {
+internal i32 QuickSort(ptr arr, i32 low, i32 high) {
 entry121:  pred()
   126 = icmp slt i32 %low, i32 %high
   br i1 %126, bb %then127, bb %if.exit128
@@ -919,7 +919,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 calSum(ptr arr, i32 stride) {
+internal i32 calSum(ptr arr, i32 stride) {
 entry392:  pred()
   n.load4021464 = load i32 from ptr @n
   4031465 = icmp slt i32 0, i32 %n.load4021464
@@ -953,7 +953,7 @@ else420:  pred(while.body399)
   br bb %if.exit419
 }
 
-i32 bubblesort(ptr arr) {
+internal i32 bubblesort(ptr arr) {
 entry:  pred()
   n.load1475 = load i32 from ptr @n
   91476 = sub i32 %n.load1475, i32 1

@@ -9,7 +9,7 @@ external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
 
-i32 counting_sort(ptr ini_arr, ptr sorted_arr, i32 n) {
+internal i32 counting_sort(ptr ini_arr, ptr sorted_arr, i32 n) {
 entry:  pred()
   %count_arr = stack 40
   br bb %while.body

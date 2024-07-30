@@ -1,7 +1,7 @@
 internal global ptr test_idct init with 64 x float zeros
 internal global ptr test_dct init with 64 x float zeros
 internal global ptr test_block init with 64 x float zeros
-void idct(ptr mat, ptr dct_mat, i32 n, i32 m) {
+internal void idct(ptr mat, ptr dct_mat, i32 n, i32 m) {
 entry242:  pred()
   2511289 = icmp slt i32 0, i32 %n
   br i1 %2511289, bb %while.body247_preheader, bb %while.exit248
@@ -204,7 +204,7 @@ my_cos.my_sin.if.exit791062:  pred(my_cos.my_sin.if.exit691054, my_cos.my_sin.th
   br i1 %362, bb %while.body358, bb %while.exit359
 }
 
-pure float my_sin_impl(float x) {
+pure internal float my_sin_impl(float x) {
 entry23:  pred()
   31261 = si2f i32 0 to float
   41262 = fcmp ogt float %x, float %31261
@@ -233,7 +233,7 @@ my_fabs.if.exit:  pred(entry23)
   br bb %entry23.split
 }
 
-pure float p(float x) {
+pure internal float p(float x) {
 entry10:  pred()
   13 = si2f i32 3 to float
   14 = fmul float %13, float %x
@@ -245,7 +245,7 @@ entry10:  pred()
   ret float %22
 }
 
-void dct(ptr dct_mat, ptr mat, i32 n, i32 m) {
+internal void dct(ptr dct_mat, ptr mat, i32 n, i32 m) {
 entry137:  pred()
   1461307 = icmp slt i32 0, i32 %n
   br i1 %1461307, bb %while.body142_preheader, bb %while.exit143
@@ -401,7 +401,7 @@ my_cos.my_sin.if.exit79966:  pred(my_cos.my_sin.if.exit69958, my_cos.my_sin.then
   br i1 %178, bb %while.body174, bb %while.exit175
 }
 
-pure float my_sin(float x) {
+pure internal float my_sin(float x) {
 entry36:  pred()
   40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
@@ -448,7 +448,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-void write_mat(ptr mat, i32 n, i32 m) {
+internal void write_mat(ptr mat, i32 n, i32 m) {
 entry94:  pred()
   1031313 = icmp slt i32 0, i32 %n
   br i1 %1031313, bb %while.body_preheader, bb %while.exit
@@ -486,7 +486,7 @@ while.exit115:  pred(while.body114, while.body)
 
 external i32 getarray(ptr )
 
-pure float my_cos(float x) {
+pure internal float my_cos(float x) {
 entry86:  pred()
   90 = si2f i32 2 to float
   91 = fdiv float 3.141593, float %90
@@ -986,7 +986,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure float my_fabs(float x) {
+pure internal float my_fabs(float x) {
 entry:  pred()
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3

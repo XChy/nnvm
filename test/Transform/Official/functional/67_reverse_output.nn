@@ -28,7 +28,7 @@ external void putfarray(i32 , ptr )
 
 external void putch(i32 )
 
-void reverse(i32 n) {
+internal void reverse(i32 n) {
 entry:  pred()
   4 = icmp sle i32 %n, i32 1
   br i1 %4, bb %then, bb %else

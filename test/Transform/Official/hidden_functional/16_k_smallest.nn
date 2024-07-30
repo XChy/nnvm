@@ -1,5 +1,5 @@
 internal global ptr array init with 1000 x i32 zeros
-void findSmallest(i32 low, i32 high, i32 k, i32 n) {
+internal void findSmallest(i32 low, i32 high, i32 k, i32 n) {
 entry61:  pred()
   68 = icmp eq i32 %low, i32 %high
   br i1 %68, bb %then69, bb %else
@@ -75,7 +75,7 @@ findPivot.if.exit:  pred(findPivot.while.body, findPivot.then)
   br i1 %38171, bb %findPivot.while.body, bb %findPivot.while.exit
 }
 
-i32 findPivot(i32 start, i32 end) {
+internal i32 findPivot(i32 start, i32 end) {
 entry21:  pred()
   155 = shl i32 %end, i32 2
   27 = ptradd ptr @array, i32 %155
@@ -164,7 +164,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-void swap(i32 i, i32 j) {
+internal void swap(i32 i, i32 j) {
 entry:  pred()
   158 = shl i32 %i, i32 2
   6 = ptradd ptr @array, i32 %158

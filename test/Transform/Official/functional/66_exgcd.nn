@@ -38,7 +38,7 @@ external void putfarray(i32 , ptr )
 
 external void putch(i32 )
 
-i32 exgcd(i32 a, i32 b, ptr x, ptr y) {
+internal i32 exgcd(i32 a, i32 b, ptr x, ptr y) {
 entry:  pred()
   4 = icmp eq i32 %b, i32 0
   br i1 %4, bb %then, bb %else

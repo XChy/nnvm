@@ -4,7 +4,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-pure i32 MAX(i32 a, i32 b) {
+pure internal i32 MAX(i32 a, i32 b) {
 entry:  pred()
   5 = icmp eq i32 %a, i32 %b
   br i1 %5, bb %then, bb %else
@@ -227,7 +227,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 max_sum_nonadjacent(ptr arr, i32 n) {
+internal i32 max_sum_nonadjacent(ptr arr, i32 n) {
 entry18:  pred()
   %temp = stack 64
   br bb %init
@@ -311,7 +311,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-i32 longest_common_subseq(ptr arr1, i32 len1, ptr arr2, i32 len2) {
+internal i32 longest_common_subseq(ptr arr1, i32 len1, ptr arr2, i32 len2) {
 entry84:  pred()
   %p = stack 1024
   br bb %init89

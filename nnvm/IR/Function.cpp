@@ -50,10 +50,7 @@ std::string Function::dump() {
   if (external)
     ret += "external ";
 
-  for (auto attr : attributes) {
-    if (attr == Attribute::Pure)
-      ret += "pure ";
-  }
+  ret += getDecoratorStr(attributes);
 
   ret += retType->dump() + " " + getName();
 

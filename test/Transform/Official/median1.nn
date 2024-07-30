@@ -1,6 +1,6 @@
 internal global ptr a init with 10000000 x i32 zeros
 global ptr n init with i32 0
-i32 median(ptr arr, i32 begin, i32 end, i32 pos) {
+internal i32 median(ptr arr, i32 begin, i32 end, i32 pos) {
 entry54:  pred()
   187 = shl i32 %begin, i32 2
   61 = ptradd ptr %arr, i32 %187
@@ -126,7 +126,7 @@ meanless_calculation.select.exit290:  pred(meanless_calculation.select.then285, 
   br i1 %select.phi291, bb %meanless_calculation.while.body278, bb %meanless_calculation.while.exit283
 }
 
-i32 swap(ptr arr, i32 l, i32 r) {
+internal i32 swap(ptr arr, i32 l, i32 r) {
 entry30:  pred()
   191 = shl i32 %l, i32 2
   36 = ptradd ptr %arr, i32 %191
@@ -198,7 +198,7 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-pure i32 meanless_calculation(i32 x, i32 y) {
+pure internal i32 meanless_calculation(i32 x, i32 y) {
 entry:  pred()
   br bb %while.cond
 while.cond:  pred(entry, while.body)

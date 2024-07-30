@@ -1,13 +1,13 @@
 internal global ptr k init with 1 x i32 zeros
 internal global ptr i init with 1 x i32 zeros
-void sub(ptr x, ptr y) {
+internal void sub(ptr x, ptr y) {
 entry88:  pred()
   90.load = load i32 from ptr @k
   call void sub_impl(ptr %x, ptr %y, i32 %90.load)
   ret 
 }
 
-void sub_impl(ptr x, ptr y, i32 rec) {
+internal void sub_impl(ptr x, ptr y, i32 rec) {
 entry61:  pred()
   64 = icmp eq i32 %rec, i32 0
   br i1 %64, bb %then65, bb %else67
@@ -28,7 +28,7 @@ else67:  pred(entry61)
   br bb %if.exit66
 }
 
-void inc(ptr x) {
+internal void inc(ptr x) {
 entry24:  pred()
   26.load = load i32 from ptr @k
   call void inc_impl(ptr %x, i32 %26.load)
@@ -41,7 +41,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-void add(ptr x, ptr y) {
+internal void add(ptr x, ptr y) {
 entry56:  pred()
   58.load = load i32 from ptr @k
   call void add_impl(ptr %x, ptr %y, i32 %58.load)
@@ -50,7 +50,7 @@ entry56:  pred()
 
 external i32 getarray(ptr )
 
-void add_impl(ptr x, ptr y, i32 rec) {
+internal void add_impl(ptr x, ptr y, i32 rec) {
 entry29:  pred()
   32 = icmp eq i32 %rec, i32 0
   br i1 %32, bb %then33, bb %else35
@@ -143,7 +143,7 @@ external void putfarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-void inc_impl(ptr x, i32 rec) {
+internal void inc_impl(ptr x, i32 rec) {
 entry:  pred()
   3 = icmp eq i32 %rec, i32 0
   br i1 %3, bb %then, bb %else

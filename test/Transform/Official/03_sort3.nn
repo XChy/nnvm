@@ -60,7 +60,7 @@ external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
-pure i32 getNumPos(i32 num, i32 pos) {
+pure internal i32 getNumPos(i32 num, i32 pos) {
 entry28:  pred()
   38470 = icmp slt i32 0, i32 %pos
   br i1 %38470, bb %while.body34_preheader, bb %while.exit35
@@ -81,7 +81,7 @@ while.exit35:  pred(while.body34, entry28)
 
 external void _sysy_starttime(i32 )
 
-void radixSort(i32 bitround, ptr a, i32 l, i32 r) {
+internal void radixSort(i32 bitround, ptr a, i32 l, i32 r) {
 entry50:  pred()
   %cnt78 = stack 64
   %tail = stack 64
@@ -291,7 +291,7 @@ getNumPos.while.exit35464:  pred(getNumPos.while.body34460, while.cond210)
   br i1 %217, bb %while.body211, bb %while.exit212
 }
 
-i32 getMaxNum(i32 n, ptr arr) {
+internal i32 getMaxNum(i32 n, ptr arr) {
 entry:  pred()
   9510 = icmp slt i32 0, i32 %n
   br i1 %9510, bb %while.body_preheader, bb %while.exit

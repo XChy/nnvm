@@ -41,7 +41,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure i32 deepWhileBr(i32 a, i32 b) {
+pure internal i32 deepWhileBr(i32 a, i32 b) {
 entry2:  pred()
   9 = add i32 %a, i32 %b
   14107 = icmp slt i32 %9, i32 75
@@ -81,7 +81,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-pure i32 get_one(i32 a) {
+pure internal i32 get_one(i32 a) {
 entry:  pred()
   ret i32 1
 }

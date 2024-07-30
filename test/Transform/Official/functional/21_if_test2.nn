@@ -1,6 +1,6 @@
 external i32 getint()
 
-pure i32 ifElseIf() {
+pure internal i32 ifElseIf() {
 entry:  pred()
   ret i32 -5
 }

@@ -27,7 +27,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 if_ifElse_() {
+pure internal i32 if_ifElse_() {
 entry:  pred()
   ret i32 25
 }

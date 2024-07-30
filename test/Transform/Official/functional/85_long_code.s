@@ -504,7 +504,7 @@ revert:
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  ADD s1, a0, zero
+  ADD s2, a0, zero
   # implict jump to bb50
 bb50:
   ADD a0, zero, zero
@@ -700,10 +700,10 @@ main:
   SD s10, 352(sp)
   SD s9, 616(sp)
   LA s4, n
-  ADDI s3, zero, 32
-  SW s3, 0(s4)
-  ADDI s6, zero, 7
-  SW s6, 360(sp)
+  ADDI s5, zero, 32
+  SW s5, 0(s4)
+  ADDI s5, zero, 7
+  SW s5, 360(sp)
   ADDI s7, zero, 23
   SW s7, 364(sp)
   ADDI s3, zero, 89

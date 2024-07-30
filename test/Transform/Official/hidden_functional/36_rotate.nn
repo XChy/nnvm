@@ -1,7 +1,7 @@
 global ptr height init with i32 0
 global ptr width init with i32 0
 internal global ptr image init with 1048576 x i32 zeros
-i32 rotate(i32 x, i32 y, float rad) {
+internal i32 rotate(i32 x, i32 y, float rad) {
 entry166:  pred()
   40444 = fcmp ogt float %rad, float 6.283185
   br i1 %40444, bb %my_sin.select.then446, bb %my_sin.select.else448
@@ -134,7 +134,7 @@ my_cos.my_sin.if.exit79:  pred(my_cos.my_sin.if.exit69, my_cos.my_sin.then78)
   br i1 %219, bb %select.then220, bb %select.else221
 }
 
-pure float my_sin_impl(float x) {
+pure internal float my_sin_impl(float x) {
 entry23:  pred()
   3694 = si2f i32 0 to float
   4695 = fcmp ogt float %x, float %3694
@@ -163,7 +163,7 @@ my_fabs.if.exit:  pred(entry23)
   br bb %entry23.split
 }
 
-pure float p(float x) {
+pure internal float p(float x) {
 entry10:  pred()
   13 = si2f i32 3 to float
   14 = fmul float %13, float %x
@@ -175,7 +175,7 @@ entry10:  pred()
   ret float %22
 }
 
-pure float my_sin(float x) {
+pure internal float my_sin(float x) {
 entry36:  pred()
   40 = fcmp ogt float %x, float 6.283185
   br i1 %40, bb %select.then, bb %select.else
@@ -224,7 +224,7 @@ external void putint(i32 )
 
 external i32 getarray(ptr )
 
-pure float my_cos(float x) {
+pure internal float my_cos(float x) {
 entry86:  pred()
   90 = si2f i32 2 to float
   91 = fdiv float 3.141593, float %90
@@ -359,7 +359,7 @@ read_image.while.exit146:  pred(read_image.while.body145, read_image.while.body)
   br i1 %141667, bb %read_image.while.body, bb %read_image.while.exit
 }
 
-i32 read_image() {
+internal i32 read_image() {
 entry94:  pred()
   95 = call i32 getch()
   96 = icmp ne i32 %95, i32 80
@@ -441,7 +441,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-void write_pgm(float rad) {
+internal void write_pgm(float rad) {
 entry256:  pred()
   call void putch(i32 80)
   call void putch(i32 50)
@@ -625,7 +625,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure float my_fabs(float x) {
+pure internal float my_fabs(float x) {
 entry:  pred()
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3

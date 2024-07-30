@@ -212,7 +212,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-void mv(i32 n, ptr A, ptr b, ptr res) {
+internal void mv(i32 n, ptr A, ptr b, ptr res) {
 entry:  pred()
   14366 = icmp slt i32 0, i32 %n
   br i1 %14366, bb %while.body_preheader, bb %while.exit

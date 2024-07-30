@@ -104,7 +104,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 bubblesort(ptr arr) {
+internal i32 bubblesort(ptr arr) {
 entry:  pred()
   n.load199 = load i32 from ptr @n
   9200 = sub i32 %n.load199, i32 1

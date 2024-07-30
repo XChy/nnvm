@@ -51,7 +51,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure i32 foo() {
+pure internal i32 foo() {
 entry:  pred()
   %arr = stack 64
   store i32 0 to ptr %arr

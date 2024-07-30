@@ -112,7 +112,7 @@ external void _sysy_stoptime(i32 )
 
 external i32 getarray(ptr )
 
-float loop(ptr x, ptr y, i32 length) {
+internal float loop(ptr x, ptr y, i32 length) {
 entry:  pred()
   9163 = icmp slt i32 0, i32 %length
   br i1 %9163, bb %while.body_preheader, bb %while.exit

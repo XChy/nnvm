@@ -1,5 +1,5 @@
 global ptr seed init with i32 0
-float sample(float x, float y) {
+internal float sample(float x, float y) {
 entry249:  pred()
   %ret413 = stack 8
   br bb %while.body255
@@ -210,7 +210,7 @@ my_cos.my_sin.if.exit126:  pred(my_cos.my_sin.if.exit116, my_cos.my_sin.then125)
   br i1 %87651, bb %my_sin.select.then653, bb %my_sin.select.else655
 }
 
-float trace(float ox, float oy, float dx, float dy) {
+internal float trace(float ox, float oy, float dx, float dy) {
 entry196:  pred()
   %ret = stack 8
   br bb %while.cond203
@@ -311,7 +311,7 @@ scene.circle_sdf.my_sqrt.while.exit595:  pred(scene.circle_sdf.my_sqrt.while.bod
   br i1 %178773, bb %scene.then179, bb %scene.else
 }
 
-pure float my_sin_impl(float x) {
+pure internal float my_sin_impl(float x) {
 entry70:  pred()
   17600 = si2f i32 0 to float
   18601 = fcmp ogt float %x, float %17600
@@ -340,7 +340,7 @@ my_fabs.if.exit20:  pred(entry70)
   br bb %entry70.split
 }
 
-pure float p(float x) {
+pure internal float p(float x) {
 entry57:  pred()
   60 = si2f i32 3 to float
   61 = fmul float %60, float %x
@@ -352,7 +352,7 @@ entry57:  pred()
   ret float %69
 }
 
-pure float my_sqrt(float x) {
+pure internal float my_sqrt(float x) {
 entry24:  pred()
   28 = si2f i32 8 to float
   29 = fdiv float %x, float %28
@@ -378,7 +378,7 @@ while.exit:  pred(while.body)
   ret float %381158
 }
 
-pure float circle_sdf(float x, float y, float cx, float cy, float r) {
+pure internal float circle_sdf(float x, float y, float cx, float cy, float r) {
 entry141:  pred()
   150 = fsub float %x, float %cx
   154 = fsub float %y, float %cy
@@ -410,7 +410,7 @@ my_sqrt.while.exit:  pred(my_sqrt.while.body)
   ret float %164
 }
 
-pure float my_fabs(float x) {
+pure internal float my_fabs(float x) {
 entry14:  pred()
   17 = si2f i32 0 to float
   18 = fcmp ogt float %x, float %17
@@ -422,7 +422,7 @@ if.exit20:  pred(entry14)
   ret float %23
 }
 
-pure float my_sin(float x) {
+pure internal float my_sin(float x) {
 entry83:  pred()
   87 = fcmp ogt float %x, float 6.283185
   br i1 %87, bb %select.then, bb %select.else
@@ -469,7 +469,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-i32 rand() {
+internal i32 rand() {
 entry:  pred()
   seed.load2 = load i32 from ptr @seed
   3 = mul i32 %seed.load2, i32 19980130
@@ -488,7 +488,7 @@ if.exit:  pred(entry, then)
   ret i32 %seed.load13
 }
 
-void scene(float x, float y, ptr ret) {
+internal void scene(float x, float y, ptr ret) {
 entry165:  pred()
   150526 = fsub float %x, float 0.400000
   154527 = fsub float %y, float 0.400000
@@ -559,7 +559,7 @@ circle_sdf.my_sqrt.while.exit595:  pred(circle_sdf.my_sqrt.while.body589)
 
 external i32 getarray(ptr )
 
-pure float my_cos(float x) {
+pure internal float my_cos(float x) {
 entry133:  pred()
   137 = si2f i32 2 to float
   138 = fdiv float 3.141593, float %137
@@ -615,7 +615,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-void write_pgm() {
+internal void write_pgm() {
 entry294:  pred()
   %ret451 = stack 8
   call void putch(i32 80)

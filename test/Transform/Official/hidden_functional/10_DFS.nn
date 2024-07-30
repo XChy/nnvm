@@ -5,7 +5,7 @@ internal global ptr to init with 5005 x i32 zeros
 global ptr cnt init with i32 0
 global ptr m init with i32 0
 global ptr n init with i32 0
-i32 same(i32 x, i32 tar) {
+internal i32 same(i32 x, i32 tar) {
 entry133:  pred()
   267 = shl i32 %x, i32 2
   138 = ptradd ptr @vis, i32 %267
@@ -53,7 +53,7 @@ if.exit180:  pred(select.exit172)
   br bb %while.cond150
 }
 
-void init() {
+internal void init() {
 entry100:  pred()
   br bb %while.body103
 while.body103:  pred(while.body103, entry100)
@@ -74,7 +74,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-void add_edge(i32 from, i32 To) {
+internal void add_edge(i32 from, i32 To) {
 entry55:  pred()
   cnt.load = load i32 from ptr @cnt
   273 = shl i32 %cnt.load, i32 2
@@ -554,7 +554,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-void clear() {
+internal void clear() {
 entry117:  pred()
   n.load696 = load i32 from ptr @n
   124697 = icmp sle i32 1, i32 %n.load696
@@ -574,7 +574,7 @@ while.exit121:  pred(while.body120, entry117)
   ret 
 }
 
-i32 quick_read() {
+internal i32 quick_read() {
 entry:  pred()
   2 = call i32 getch()
   br bb %while.cond

@@ -267,7 +267,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 func(i32 n) {
+pure internal i32 func(i32 n) {
 entry:  pred()
   %s = stack 400
   br bb %while.body

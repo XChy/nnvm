@@ -85,7 +85,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 func(i32 n) {
+internal i32 func(i32 n) {
 entry:  pred()
   g.load3 = load i32 from ptr @g
   5 = add i32 %g.load3, i32 %n

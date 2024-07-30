@@ -1,5 +1,5 @@
 internal global ptr parent init with 1005 x i32 zeros
-void merge(i32 p, i32 q) {
+internal void merge(i32 p, i32 q) {
 entry25:  pred()
   32 = call i32 find(i32 %p)
   35 = call i32 find(i32 %q)
@@ -92,7 +92,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 find(i32 root) {
+internal i32 find(i32 root) {
 entry:  pred()
   123 = shl i32 %root, i32 2
   4 = ptradd ptr @parent, i32 %123

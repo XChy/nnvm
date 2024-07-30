@@ -5,7 +5,7 @@ external i32 getch()
 
 external void putint(i32 )
 
-i32 QuickSort(ptr arr, i32 low, i32 high) {
+internal i32 QuickSort(ptr arr, i32 low, i32 high) {
 entry:  pred()
   5 = icmp slt i32 %low, i32 %high
   br i1 %5, bb %then, bb %if.exit

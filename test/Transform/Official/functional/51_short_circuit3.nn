@@ -1,13 +1,13 @@
 global ptr b init with i32 0
 global ptr d init with i32 0
 global ptr a init with i32 0
-i32 set_d(i32 val) {
+internal i32 set_d(i32 val) {
 entry10:  pred()
   store i32 %val to ptr @d
   ret i32 %val
 }
 
-i32 set_b(i32 val) {
+internal i32 set_b(i32 val) {
 entry5:  pred()
   store i32 %val to ptr @b
   ret i32 %val
@@ -175,7 +175,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 set_a(i32 val) {
+internal i32 set_a(i32 val) {
 entry:  pred()
   store i32 %val to ptr @a
   ret i32 %val

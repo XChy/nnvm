@@ -1,6 +1,6 @@
 global ptr n init with i32 0
 internal global ptr array init with 110 x i32 zeros
-void mmerge(i32 a, i32 b) {
+internal void mmerge(i32 a, i32 b) {
 entry46:  pred()
   51 = call i32 findfa(i32 %a)
   54 = call i32 findfa(i32 %b)
@@ -15,7 +15,7 @@ if.exit59:  pred(entry46, then58)
   ret 
 }
 
-i32 findfa(i32 a) {
+internal i32 findfa(i32 a) {
 entry21:  pred()
   321 = shl i32 %a, i32 2
   25 = ptradd ptr @array, i32 %321
@@ -35,7 +35,7 @@ external i32 getint()
 
 external i32 getch()
 
-void init(i32 n) {
+internal void init(i32 n) {
 entry:  pred()
   9428 = mul i32 %n, i32 %n
   10429 = add i32 %9428, i32 1

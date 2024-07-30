@@ -1,4 +1,4 @@
-void assert_not(i32 cond) {
+internal void assert_not(i32 cond) {
 entry68:  pred()
   71 = icmp ne i32 %cond, i32 0
   br i1 %71, bb %then72, bb %else74
@@ -19,7 +19,7 @@ else74:  pred(entry68)
   br bb %if.exit73
 }
 
-void ok() {
+internal void ok() {
 entry52:  pred()
   call void putch(i32 111)
   call void putch(i32 107)
@@ -27,7 +27,7 @@ entry52:  pred()
   ret 
 }
 
-void error() {
+internal void error() {
 entry45:  pred()
   call void putch(i32 101)
   call void putch(i32 114)
@@ -38,7 +38,7 @@ entry45:  pred()
   ret 
 }
 
-pure float circle_area(i32 radius) {
+pure internal float circle_area(i32 radius) {
 entry10:  pred()
   14 = si2f i32 %radius to float
   15 = fmul float 3.141593, float %14
@@ -56,7 +56,7 @@ external i32 getint()
 
 external i32 getch()
 
-pure i32 float_eq(float a, float b) {
+pure internal i32 float_eq(float a, float b) {
 entry28:  pred()
   33 = fsub float %a, float %b
   3528 = si2f i32 0 to float
@@ -421,7 +421,7 @@ external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
-void assert(i32 cond) {
+internal void assert(i32 cond) {
 entry56:  pred()
   59 = icmp ne i32 %cond, i32 0
   60 = xor i1 %59, i1 -1
@@ -449,7 +449,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure float float_abs(float x) {
+pure internal float float_abs(float x) {
 entry:  pred()
   3 = si2f i32 0 to float
   4 = fcmp olt float %x, float %3

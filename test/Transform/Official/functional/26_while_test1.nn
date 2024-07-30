@@ -1,6 +1,6 @@
 external i32 getint()
 
-pure i32 doubleWhile() {
+pure internal i32 doubleWhile() {
 entry:  pred()
   br bb %while.body
 while.body:  pred(while.exit16, entry)

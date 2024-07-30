@@ -48,7 +48,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-void interpret(ptr input) {
+internal void interpret(ptr input) {
 entry23:  pred()
   32.load234 = load i32 from ptr %input
   34235 = icmp ne i32 %32.load234, i32 0
@@ -208,7 +208,7 @@ if.exit144:  pred(else137, then143)
 
 external void putch(i32 )
 
-void read_program() {
+internal void read_program() {
 entry:  pred()
   3 = call i32 getint()
   9240 = icmp slt i32 0, i32 %3

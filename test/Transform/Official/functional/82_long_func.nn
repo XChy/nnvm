@@ -29,7 +29,7 @@ external void putfarray(i32 , ptr )
 
 external void putarray(i32 , ptr )
 
-i32 long_func() {
+internal i32 long_func() {
 entry:  pred()
   br bb %while.exit
 while.body:  pred(if.exit958)

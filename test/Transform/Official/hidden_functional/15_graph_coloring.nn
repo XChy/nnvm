@@ -6,7 +6,7 @@ external void putint(i32 )
 
 external i32 getarray(ptr )
 
-i32 graphColoring(ptr graph, i32 m, i32 i, ptr color) {
+internal i32 graphColoring(ptr graph, i32 m, i32 i, ptr color) {
 entry81:  pred()
   86 = icmp eq i32 %i, i32 4
   br i1 %86, bb %then87, bb %if.exit88
@@ -168,7 +168,7 @@ if.exit163:  pred(while.exit144, then162)
   ret i32 0
 }
 
-i32 isSafe(ptr graph, ptr color) {
+internal i32 isSafe(ptr graph, ptr color) {
 entry32:  pred()
   br bb %while.cond34
 while.cond34:  pred(entry32, while.exit46)
@@ -216,7 +216,7 @@ if.exit:  pred(select.exit)
   br bb %while.cond44
 }
 
-void printMessage() {
+internal void printMessage() {
 entry21:  pred()
   call void putch(i32 78)
   call void putch(i32 111)
@@ -242,7 +242,7 @@ external void _sysy_starttime(i32 )
 
 external void _sysy_stoptime(i32 )
 
-void printSolution(ptr color) {
+internal void printSolution(ptr color) {
 entry:  pred()
   br bb %while.body
 while.body:  pred(while.body, entry)

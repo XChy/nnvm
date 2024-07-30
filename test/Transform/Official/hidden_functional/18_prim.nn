@@ -4,7 +4,7 @@ internal global ptr fa init with 1005 x i32 zeros
 global ptr n init with i32 0
 internal global ptr u init with 1005 x i32 zeros
 global ptr m init with i32 0
-i32 same(i32 x, i32 y) {
+internal i32 same(i32 x, i32 y) {
 entry78:  pred()
   83 = call i32 find(i32 %x)
   86 = call i32 find(i32 %y)
@@ -427,7 +427,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 find(i32 x) {
+internal i32 find(i32 x) {
 entry55:  pred()
   296 = shl i32 %x, i32 2
   60 = ptradd ptr @fa, i32 %296
@@ -451,7 +451,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-i32 prim() {
+internal i32 prim() {
 entry92:  pred()
   m.load741 = load i32 from ptr @m
   99742 = icmp slt i32 0, i32 %m.load741
@@ -567,7 +567,7 @@ same.if.exit91:  pred(while.body201)
 
 external void putfarray(i32 , ptr )
 
-i32 quick_read() {
+internal i32 quick_read() {
 entry:  pred()
   2 = call i32 getch()
   br bb %while.cond

@@ -1,4 +1,4 @@
-pure float my_powf(float a, float x) {
+pure internal float my_powf(float a, float x) {
 entry315:  pred()
   304436 = si2f i32 1 to float
   112748 = fsub float %a, float %304436
@@ -21,7 +21,7 @@ entry315:  pred()
   ret float %322
 }
 
-pure float my_log(float a, float N) {
+pure internal float my_log(float a, float N) {
 entry307:  pred()
   304424 = si2f i32 1 to float
   112670 = fsub float %N, float %304424
@@ -54,7 +54,7 @@ entry307:  pred()
   ret float %314
 }
 
-pure float my_ln(float x) {
+pure internal float my_ln(float x) {
 entry302:  pred()
   304 = si2f i32 1 to float
   112631 = fsub float %x, float %304
@@ -75,7 +75,7 @@ entry302:  pred()
   ret float %233467
 }
 
-pure float my_exp(float x) {
+pure internal float my_exp(float x) {
 entry272:  pred()
   275 = si2f i32 0 to float
   276 = fcmp olt float %x, float %275
@@ -96,7 +96,7 @@ if.exit278:  pred(entry272)
   ret float %301
 }
 
-pure float eee(float x) {
+pure internal float eee(float x) {
 entry234:  pred()
   237 = fcmp ogt float %x, float 0.001000
   br i1 %237, bb %then238, bb %if.exit239
@@ -128,7 +128,7 @@ if.exit239:  pred(entry234)
   ret float %271
 }
 
-pure float asr4(float a, float b, float eps, i32 flag) {
+pure internal float asr4(float a, float b, float eps, i32 flag) {
 entry220:  pred()
   112592 = fsub float %b, float %a
   113593 = si2f i32 2 to float
@@ -183,7 +183,7 @@ simpson.if.exit139625:  pred(simpson.if.exit119610)
   br bb %entry220.split
 }
 
-pure float asr5(float a, float b, float eps, float A, i32 flag) {
+pure internal float asr5(float a, float b, float eps, float A, i32 flag) {
 entry157:  pred()
   167 = fsub float %b, float %a
   168 = si2f i32 2 to float
@@ -312,7 +312,7 @@ my_fabs.if.exit:  pred(entry157.split.split)
   br bb %entry157.split.split.split
 }
 
-pure float simpson(float a, float b, i32 flag) {
+pure internal float simpson(float a, float b, i32 flag) {
 entry104:  pred()
   112 = fsub float %b, float %a
   113 = si2f i32 2 to float
@@ -363,7 +363,7 @@ if.exit139:  pred(if.exit119)
   ret float %156
 }
 
-pure float F2(float x) {
+pure internal float F2(float x) {
 entry94:  pred()
   98 = fmul float %x, float %x
   99 = si2f i32 1 to float
@@ -373,7 +373,7 @@ entry94:  pred()
   ret float %103
 }
 
-pure float my_sqrt(float x) {
+pure internal float my_sqrt(float x) {
 entry46:  pred()
   49 = si2f i32 100 to float
   50 = fcmp ogt float %x, float %49
@@ -408,14 +408,14 @@ while.exit74:  pred(while.body73)
   ret float %701504
 }
 
-pure float F1(float x) {
+pure internal float F1(float x) {
 entry89:  pred()
   92 = si2f i32 1 to float
   93 = fdiv float %92, float %x
   ret float %93
 }
 
-pure float my_pow(float a, i32 n) {
+pure internal float my_pow(float a, i32 n) {
 entry10:  pred()
   14 = icmp slt i32 %n, i32 0
   br i1 %14, bb %then15, bb %if.exit16
@@ -611,7 +611,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure float my_fabs(float x) {
+pure internal float my_fabs(float x) {
 entry:  pred()
   3 = si2f i32 0 to float
   4 = fcmp ogt float %x, float %3

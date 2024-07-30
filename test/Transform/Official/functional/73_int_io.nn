@@ -2,7 +2,7 @@ external i32 getint()
 
 external i32 getch()
 
-void my_putint(i32 a) {
+internal void my_putint(i32 a) {
 entry52:  pred()
   %b = stack 64
   60246 = icmp sgt i32 %a, i32 0
@@ -42,7 +42,7 @@ while.exit78:  pred(while.body77, while.exit58)
 
 external void putint(i32 )
 
-i32 my_getint() {
+internal i32 my_getint() {
 entry:  pred()
   br bb %while.cond
 while.cond:  pred(entry, select.exit)

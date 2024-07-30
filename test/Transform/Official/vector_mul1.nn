@@ -1,5 +1,5 @@
 internal global ptr temp init with float 1.000000
-void mult_combin(ptr v, ptr out, i32 n, ptr tmp) {
+internal void mult_combin(ptr v, ptr out, i32 n, ptr tmp) {
 entry129:  pred()
   48273 = si2f i32 0 to float
   54279652 = icmp slt i32 0, i32 %n
@@ -84,7 +84,7 @@ mult2.while.exit101:  pred(mult2.while.body100, mult2.while.body93)
   br i1 %97461, bb %mult2.while.body93, bb %mult2.while.exit94
 }
 
-void mult1(ptr v, ptr out, i32 n) {
+internal void mult1(ptr v, ptr out, i32 n) {
 entry43:  pred()
   48 = si2f i32 0 to float
   54661 = icmp slt i32 0, i32 %n
@@ -130,7 +130,7 @@ while.exit58:  pred(while.body57, while.body50)
   br i1 %54, bb %while.body50, bb %while.exit51
 }
 
-float my_sqrt(float input) {
+internal float my_sqrt(float input) {
 entry135:  pred()
   br bb %while.cond137
 while.cond137:  pred(entry135, while.body138)
@@ -160,7 +160,7 @@ select.exit:  pred(select.then, select.else)
   br i1 %select.phi, bb %while.body138, bb %while.exit139
 }
 
-float Vectordot(ptr v, ptr u, i32 n) {
+internal float Vectordot(ptr v, ptr u, i32 n) {
 entry15:  pred()
   19 = si2f i32 0 to float
   25665 = icmp slt i32 0, i32 %n
@@ -189,7 +189,7 @@ external i32 getint()
 
 external i32 getch()
 
-void mult2(ptr v, ptr out, i32 n) {
+internal void mult2(ptr v, ptr out, i32 n) {
 entry86:  pred()
   91 = si2f i32 0 to float
   97674 = icmp slt i32 0, i32 %n
@@ -530,7 +530,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 func(i32 i, i32 j) {
+pure internal i32 func(i32 i, i32 j) {
 entry:  pred()
   5 = add i32 %i, i32 %j
   9 = add i32 %5, i32 1

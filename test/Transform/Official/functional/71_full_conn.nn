@@ -757,7 +757,7 @@ external void putfloat(float )
 
 external void putch(i32 )
 
-i32 model(ptr a) {
+internal i32 model(ptr a) {
 entry11:  pred()
   15.load = load i32 from ptr %a
   17 = mul i32 %15.load, i32 85
@@ -1455,7 +1455,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 relu_reg(i32 a) {
+pure internal i32 relu_reg(i32 a) {
 entry:  pred()
   3 = icmp sgt i32 %a, i32 127
   br i1 %3, bb %then, bb %if.exit

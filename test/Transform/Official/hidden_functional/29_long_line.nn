@@ -49,7 +49,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-pure i32 fib(i32 n) {
+pure internal i32 fib(i32 n) {
 entry:  pred()
   3 = icmp sle i32 %n, i32 2
   br i1 %3, bb %then, bb %if.exit

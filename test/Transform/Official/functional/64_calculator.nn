@@ -7,7 +7,7 @@ global ptr chat init with i32 0
 internal global ptr chas init with 10000 x i32 zeros
 global ptr intt init with i32 0
 internal global ptr ints init with 10000 x i32 zeros
-i32 chapop() {
+internal i32 chapop() {
 entry88:  pred()
   chat.load90 = load i32 from ptr @chat
   91 = sub i32 %chat.load90, i32 1
@@ -18,7 +18,7 @@ entry88:  pred()
   ret i32 %95.load
 }
 
-void chapush(i32 x) {
+internal void chapush(i32 x) {
 entry69:  pred()
   chat.load72 = load i32 from ptr @chat
   73 = add i32 %chat.load72, i32 1
@@ -29,7 +29,7 @@ entry69:  pred()
   ret 
 }
 
-void intpush(i32 x) {
+internal void intpush(i32 x) {
 entry59:  pred()
   intt.load62 = load i32 from ptr @intt
   63 = add i32 %intt.load62, i32 1
@@ -40,7 +40,7 @@ entry59:  pred()
   ret 
 }
 
-pure i32 power(i32 b, i32 a) {
+pure internal i32 power(i32 b, i32 a) {
 entry13:  pred()
   211347 = icmp ne i32 %a, i32 0
   br i1 %211347, bb %while.body_preheader, bb %while.exit
@@ -60,7 +60,7 @@ while.exit:  pred(while.body, entry13)
 
 external i32 getint()
 
-void intadd(i32 x) {
+internal void intadd(i32 x) {
 entry97:  pred()
   intt.load99 = load i32 from ptr @intt
   889 = shl i32 %intt.load99, i32 2
@@ -976,7 +976,7 @@ external float getfloat()
 
 external void putfloat(float )
 
-i32 find() {
+internal i32 find() {
 entry118:  pred()
   chat.load90959 = load i32 from ptr @chat
   91960 = sub i32 %chat.load90959, i32 1
@@ -1009,7 +1009,7 @@ external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
-i32 intpop() {
+internal i32 intpop() {
 entry79:  pred()
   intt.load81 = load i32 from ptr @intt
   82 = sub i32 %intt.load81, i32 1
@@ -1024,7 +1024,7 @@ external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 
-i32 getstr(ptr get) {
+internal i32 getstr(ptr get) {
 entry31:  pred()
   33 = call i32 getch()
   br bb %while.cond35
@@ -1052,7 +1052,7 @@ select.exit42:  pred(select.then40, select.else41)
   br i1 %select43.phi, bb %while.body36, bb %while.exit37
 }
 
-pure i32 isdigit(i32 x) {
+pure internal i32 isdigit(i32 x) {
 entry:  pred()
   3 = icmp sge i32 %x, i32 48
   br i1 %3, bb %select.then, bb %select.else

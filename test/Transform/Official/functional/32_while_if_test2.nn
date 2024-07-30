@@ -48,7 +48,7 @@ external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
 
-pure i32 ifWhile() {
+pure internal i32 ifWhile() {
 entry:  pred()
   br bb %while.body23
 if.exit:  pred(while.exit, while.exit24)

@@ -1,7 +1,7 @@
 global ptr value init with i32 0
 external void putfarray(i32 , ptr )
 
-i32 go() {
+internal i32 go() {
 entry:  pred()
   value.load14 = load i32 from ptr @value
   715 = icmp slt i32 0, i32 %value.load14
