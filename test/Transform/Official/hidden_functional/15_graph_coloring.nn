@@ -86,13 +86,13 @@ isSafe.if.exit:  pred(isSafe.select.exit)
   77226 = add i32 %j.phi197, i32 1
   br bb %isSafe.while.cond44
 printSolution.while.body:  pred(printSolution.while.body, then91)
-  i.phi245263 = phi [bb %printSolution.while.body, i32 %18254, bb %then91, i32 0]
-  181249 = shl i32 %i.phi245263, i32 2
+  i.phi245260 = phi [bb %printSolution.while.body, i32 %18254, bb %then91, i32 0]
+  181249 = shl i32 %i.phi245260, i32 2
   11250 = ptradd ptr %color, i32 %181249
   11.load251 = load i32 from ptr %11250
   call void putint(i32 %11.load251)
   call void putch(i32 32)
-  18254 = add i32 %i.phi245263, i32 1
+  18254 = add i32 %i.phi245260, i32 1
   7246 = icmp slt i32 %18254, i32 4
   br i1 %7246, bb %printSolution.while.body, bb %printSolution.while.exit
 printSolution.while.exit:  pred(printSolution.while.body)
@@ -139,11 +139,11 @@ entry121:  pred()
   store i32 0 to ptr %arr.index138
   br bb %while.body143
 while.body143:  pred(while.body143, entry121)
-  i141.phi265 = phi [bb %while.body143, i32 %155, bb %entry121, i32 0]
-  176 = shl i32 %i141.phi265, i32 2
+  i141.phi262 = phi [bb %while.body143, i32 %155, bb %entry121, i32 0]
+  176 = shl i32 %i141.phi262, i32 2
   151 = ptradd ptr %color, i32 %176
   store i32 0 to ptr %151
-  155 = add i32 %i141.phi265, i32 1
+  155 = add i32 %i141.phi262, i32 1
   147 = icmp slt i32 %155, i32 4
   br i1 %147, bb %while.body143, bb %while.exit144
 while.exit144:  pred(while.body143)

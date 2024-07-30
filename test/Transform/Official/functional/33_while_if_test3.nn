@@ -12,26 +12,26 @@ pure i32 main() {
 entry39:  pred()
   br bb %deepWhileBr.while.body
 deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry39)
-  c.phi485988 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773, bb %entry39, i32 4]
-  e.phi525887 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5172, bb %entry39, i32 0]
-  1763 = icmp slt i32 %c.phi485988, i32 100
+  c.phi485987 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773, bb %entry39, i32 4]
+  e.phi525886 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5172, bb %entry39, i32 0]
+  1763 = icmp slt i32 %c.phi485987, i32 100
   br i1 %1763, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
-  86 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773]
-  ret i32 %86
+  85 = phi [bb %deepWhileBr.if.exit, i32 %c.phi4773]
+  ret i32 %85
 deepWhileBr.then:  pred(deepWhileBr.while.body)
-  2368 = add i32 %c.phi485988, i32 42
+  2368 = add i32 %c.phi485987, i32 42
   2569 = icmp sgt i32 %2368, i32 99
   br i1 %2569, bb %deepWhileBr.then26, bb %deepWhileBr.if.exit27
 deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit27)
-  e.phi5172 = phi [bb %deepWhileBr.while.body, i32 %e.phi525887, bb %deepWhileBr.if.exit27, i32 %e.phi78]
-  c.phi4773 = phi [bb %deepWhileBr.while.body, i32 %c.phi485988, bb %deepWhileBr.if.exit27, i32 %c.phi4679]
+  e.phi5172 = phi [bb %deepWhileBr.while.body, i32 %e.phi525886, bb %deepWhileBr.if.exit27, i32 %e.phi78]
+  c.phi4773 = phi [bb %deepWhileBr.while.body, i32 %c.phi485987, bb %deepWhileBr.if.exit27, i32 %c.phi4679]
   1260 = icmp slt i32 %c.phi4773, i32 75
   br i1 %1260, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
 deepWhileBr.then26:  pred(deepWhileBr.then)
   br bb %deepWhileBr.if.exit27
 deepWhileBr.if.exit27:  pred(deepWhileBr.then, deepWhileBr.then26)
-  e.phi78 = phi [bb %deepWhileBr.then, i32 %e.phi525887, bb %deepWhileBr.then26, i32 84]
+  e.phi78 = phi [bb %deepWhileBr.then, i32 %e.phi525886, bb %deepWhileBr.then26, i32 84]
   c.phi4679 = phi [bb %deepWhileBr.then, i32 %2368, bb %deepWhileBr.then26, i32 168]
   br bb %deepWhileBr.if.exit
 }

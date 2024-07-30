@@ -196,8 +196,8 @@ main:
   SW s7, 364(sp)
   ADDI s3, zero, 89
   SW s3, 368(sp)
-  ADDI s4, zero, 26
-  SW s4, 372(sp)
+  ADDI s3, zero, 26
+  SW s3, 372(sp)
   ADDI s3, zero, 282
   SW s3, 376(sp)
   ADDI s0, zero, 254

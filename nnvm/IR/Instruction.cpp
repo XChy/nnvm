@@ -266,6 +266,10 @@ CallInst::CallInst(Function *callee)
   // TODO: maintain arguments?
 }
 
+Function *CallInst::getFuncCallee() const {
+  return cast<Function>(getCallee());
+}
+
 void CallInst::setArguments(const std::vector<Value *> &args) {
   std::vector<Value *> operands = {getCallee()};
   operands.reserve(args.size() + 1);

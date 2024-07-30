@@ -39,7 +39,7 @@ void Function::insertBefore(BasicBlock *BB, Iterator pos) {
 
 void Function::addArgument(Argument *arg) { arguments.push_back(arg); }
 
-std::vector<Argument *> Function::getArguments() { return arguments; }
+std::vector<Argument *> Function::getArguments() const { return arguments; }
 
 std::string Function::dumpAsOperand() {
   return getReturnType()->dump() + " " + getName();

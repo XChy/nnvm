@@ -1,120 +1,4 @@
 global ptr k init with i32 0
-internal float params_f40_i24(i32 i23, i32 i2, i32 i6, float x4, i32 i1, i32 i4, i32 i5, float x8, float x15, float x7, i32 i22, float x3, float x28, i32 i0, float x37, i32 i19, float x30, float x12, float x1, float x11, float x38, float x6, i32 i7, float x32, i32 i10, i32 i13, float x20, float x33, float x23, float x9, float x25, i32 i8, float x39, i32 i17, float x21, float x16, float x5, float x34, i32 i18, i32 i9, float x14, float x10, float x0, i32 i12, float x31, i32 i11, i32 i16, float x27, float x24, float x13, float x29, i32 i3, i32 i21, i32 i20, float x18, float x19, float x22, float x26, float x36, float x17, i32 i15, float x2, i32 i14, float x35) {
-entry178:  pred()
-  %arr2 = stack 32
-  %arr248 = stack 40
-  244 = icmp ne i32 %i23, i32 0
-  br i1 %244, bb %then245, bb %else247
-then245:  pred(entry178)
-  251 = fadd float %x0, float %x1
-  253 = fadd float %251, float %x2
-  255 = fadd float %253, float %x3
-  258 = fadd float %x4, float %x5
-  260 = fadd float %258, float %x6
-  262 = fadd float %260, float %x7
-  265 = fadd float %x8, float %x9
-  267 = fadd float %265, float %x10
-  269 = fadd float %267, float %x11
-  272 = fadd float %x12, float %x13
-  274 = fadd float %272, float %x14
-  276 = fadd float %274, float %x15
-  279 = fadd float %x16, float %x17
-  281 = fadd float %279, float %x18
-  283 = fadd float %281, float %x19
-  286 = fadd float %x20, float %x21
-  288 = fadd float %286, float %x22
-  290 = fadd float %288, float %x23
-  293 = fadd float %x24, float %x25
-  295 = fadd float %293, float %x26
-  297 = fadd float %295, float %x27
-  300 = fadd float %x28, float %x29
-  302 = fadd float %300, float %x30
-  304 = fadd float %302, float %x31
-  307 = fadd float %x32, float %x33
-  309 = fadd float %307, float %x34
-  311 = fadd float %309, float %x35
-  314 = fadd float %x36, float %x37
-  316 = fadd float %314, float %x38
-  318 = fadd float %316, float %x39
-  store float %255 to ptr %arr248
-  arr.index320 = ptradd ptr %arr248, i32 4
-  store float %262 to ptr %arr.index320
-  arr.index321 = ptradd ptr %arr248, i32 8
-  store float %269 to ptr %arr.index321
-  arr.index322 = ptradd ptr %arr248, i32 12
-  store float %276 to ptr %arr.index322
-  arr.index323 = ptradd ptr %arr248, i32 16
-  store float %283 to ptr %arr.index323
-  arr.index324 = ptradd ptr %arr248, i32 20
-  store float %290 to ptr %arr.index324
-  arr.index325 = ptradd ptr %arr248, i32 24
-  store float %297 to ptr %arr.index325
-  arr.index326 = ptradd ptr %arr248, i32 28
-  store float %304 to ptr %arr.index326
-  arr.index327 = ptradd ptr %arr248, i32 32
-  store float %311 to ptr %arr.index327
-  arr.index328 = ptradd ptr %arr248, i32 36
-  store float %318 to ptr %arr.index328
-  332 = add i32 %i0, i32 %i1
-  334 = add i32 %332, i32 %i2
-  337 = add i32 %i3, i32 %i4
-  339 = add i32 %337, i32 %i5
-  342 = add i32 %i6, i32 %i7
-  344 = add i32 %342, i32 %i8
-  347 = add i32 %i9, i32 %i10
-  349 = add i32 %347, i32 %i11
-  352 = add i32 %i12, i32 %i13
-  354 = add i32 %352, i32 %i14
-  357 = add i32 %i15, i32 %i16
-  359 = add i32 %357, i32 %i17
-  362 = add i32 %i18, i32 %i19
-  364 = add i32 %362, i32 %i20
-  367 = add i32 %i21, i32 %i22
-  369 = add i32 %367, i32 %i23
-  store i32 %334 to ptr %arr2
-  arr.index371 = ptradd ptr %arr2, i32 4
-  store i32 %339 to ptr %arr.index371
-  arr.index372 = ptradd ptr %arr2, i32 8
-  store i32 %344 to ptr %arr.index372
-  arr.index373 = ptradd ptr %arr2, i32 12
-  store i32 %349 to ptr %arr.index373
-  arr.index374 = ptradd ptr %arr2, i32 16
-  store i32 %354 to ptr %arr.index374
-  arr.index375 = ptradd ptr %arr2, i32 20
-  store i32 %359 to ptr %arr.index375
-  arr.index376 = ptradd ptr %arr2, i32 24
-  store i32 %364 to ptr %arr.index376
-  arr.index377 = ptradd ptr %arr2, i32 28
-  store i32 %369 to ptr %arr.index377
-  call void putfarray(i32 10, ptr %arr248)
-  call void putarray(i32 8, ptr %arr2)
-  br bb %while.body
-else247:  pred(entry178)
-  474 = call float params_f40_i24(i32 %i1, i32 %i2, i32 %i6, float %x4, i32 %i1, i32 %i4, i32 %i5, float %x8, float %x15, float %x7, i32 %i22, float %x3, float %x28, i32 %i0, float %x37, i32 %i19, float %x30, float %x12, float %x1, float %x11, float %x38, float %x6, i32 %i7, float %x32, i32 %i10, i32 %i13, float %x20, float %x33, float %x23, float %x9, float %x25, i32 %i8, float %x39, i32 %i17, float %x21, float %x16, float %x5, float %x34, i32 %i18, i32 %i9, float %x14, float %x10, float %x0, i32 %i12, float %x31, i32 %i11, i32 %i16, float %x27, float %x24, float %x13, float %x29, i32 %i3, i32 %i21, i32 %i20, float %x18, float %x19, float %x22, float %x26, float %x36, float %x17, i32 %i15, float %x2, i32 %i14, float %x35)
-  ret float %474
-while.body:  pred(while.body, then245)
-  i.phi2285 = phi [bb %while.body, i32 %404, bb %then245, i32 0]
-  2065 = shl i32 %i.phi2285, i32 2
-  389 = ptradd ptr %arr2, i32 %2065
-  393.load = load i32 from ptr %389
-  397 = ptradd ptr %arr248, i32 %2065
-  397.load = load float from ptr %397
-  399 = si2f i32 %393.load to float
-  400 = fsub float %399, float %397.load
-  401 = f2si float %400 to i32
-  store i32 %401 to ptr %389
-  404 = add i32 %i.phi2285, i32 1
-  385 = icmp slt i32 %404, i32 8
-  br i1 %385, bb %while.body, bb %while.exit
-while.exit:  pred(while.body)
-  k.load405 = load i32 from ptr @k
-  2068 = shl i32 %k.load405, i32 2
-  407 = ptradd ptr %arr2, i32 %2068
-  407.load = load i32 from ptr %407
-  409 = si2f i32 %407.load to float
-  ret float %409
-}
-
 external i32 getint()
 
 external i32 getch()
@@ -127,27 +11,33 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry1035:  pred()
+  %arr7362991 = stack 40
+  %arr28552990 = stack 40
+  %arr2881 = stack 40
+  %arr4762680 = stack 40
+  %arr2482499 = stack 40
+  %arr22498 = stack 32
   %arr21037 = stack 288
   %arr1036 = stack 480
   1040 = call i32 getint()
   store i32 %1040 to ptr @k
   br bb %while.body1043
 while.body1043:  pred(while.body1043, entry1035)
-  i1038.phi20632289 = phi [bb %while.body1043, i32 %1054, bb %entry1035, i32 0]
-  1049 = mul i32 %i1038.phi20632289, i32 12
+  i1038.phi20633847 = phi [bb %while.body1043, i32 %1054, bb %entry1035, i32 0]
+  1049 = mul i32 %i1038.phi20633847, i32 12
   1050 = ptradd ptr %arr1036, i32 %1049
   1051 = call i32 getfarray(ptr %1050)
-  1054 = add i32 %i1038.phi20632289, i32 1
+  1054 = add i32 %i1038.phi20633847, i32 1
   1046 = icmp slt i32 %1054, i32 40
   br i1 %1046, bb %while.body1043, bb %while.exit1044
 while.exit1044:  pred(while.body1043)
   br bb %while.body1057
 while.body1057:  pred(while.body1057, while.exit1044)
-  i1038.phi2287 = phi [bb %while.body1057, i32 %1068, bb %while.exit1044, i32 0]
-  1063 = mul i32 %i1038.phi2287, i32 12
+  i1038.phi3845 = phi [bb %while.body1057, i32 %1068, bb %while.exit1044, i32 0]
+  1063 = mul i32 %i1038.phi3845, i32 12
   1064 = ptradd ptr %arr21037, i32 %1063
   1065 = call i32 getarray(ptr %1064)
-  1068 = add i32 %i1038.phi2287, i32 1
+  1068 = add i32 %i1038.phi3845, i32 1
   1060 = icmp slt i32 %1068, i32 24
   br i1 %1060, bb %while.body1057, bb %while.exit1058
 while.exit1058:  pred(while.body1057)
@@ -272,240 +162,1424 @@ while.exit1058:  pred(while.body1057)
   1305 = ptradd ptr %arr1036, i32 468
   1308 = ptradd ptr %1305, i32 %2069
   1308.load = load float from ptr %1308
-  1310 = call float params_f40(float %1074.load, float %1080.load, float %1086.load, float %1092.load, float %1098.load, float %1104.load, float %1110.load, float %1116.load, float %1122.load, float %1128.load, float %1134.load, float %1140.load, float %1146.load, float %1152.load, float %1158.load, float %1164.load, float %1170.load, float %1176.load, float %1182.load, float %1188.load, float %1194.load, float %1200.load, float %1206.load, float %1212.load, float %1218.load, float %1224.load, float %1230.load, float %1236.load, float %1242.load, float %1248.load, float %1254.load, float %1260.load, float %1266.load, float %1272.load, float %1278.load, float %1284.load, float %1290.load, float %1296.load, float %1302.load, float %1308.load)
+  4229243761 = si2f i32 0 to float
+  4329253762 = fcmp one float %1308.load, float %4229243761
+  br i1 %4329253762, bb %params_f40.then, bb %params_f40.else_preheader
+params_f40_i24.loop_entry:  pred(params_f40_i24.else247)
+  x35.loop2502 = phi [bb %params_f40_i24.else247, float %x35.loop25023697]
+  i14.loop2503 = phi [bb %params_f40_i24.else247, i32 %i14.loop25033698]
+  x2.loop2504 = phi [bb %params_f40_i24.else247, float %x2.loop25043699]
+  i15.loop2505 = phi [bb %params_f40_i24.else247, i32 %i15.loop25053700]
+  x17.loop2506 = phi [bb %params_f40_i24.else247, float %x17.loop25063701]
+  x36.loop2507 = phi [bb %params_f40_i24.else247, float %x36.loop25073702]
+  x26.loop2508 = phi [bb %params_f40_i24.else247, float %x26.loop25083703]
+  x22.loop2509 = phi [bb %params_f40_i24.else247, float %x22.loop25093704]
+  x19.loop2510 = phi [bb %params_f40_i24.else247, float %x19.loop25103705]
+  x18.loop2511 = phi [bb %params_f40_i24.else247, float %x18.loop25113706]
+  i20.loop2512 = phi [bb %params_f40_i24.else247, i32 %i20.loop25123707]
+  i21.loop2513 = phi [bb %params_f40_i24.else247, i32 %i21.loop25133708]
+  i3.loop2514 = phi [bb %params_f40_i24.else247, i32 %i3.loop25143709]
+  x29.loop2515 = phi [bb %params_f40_i24.else247, float %x29.loop25153710]
+  x13.loop2516 = phi [bb %params_f40_i24.else247, float %x13.loop25163711]
+  x24.loop2517 = phi [bb %params_f40_i24.else247, float %x24.loop25173712]
+  x27.loop2518 = phi [bb %params_f40_i24.else247, float %x27.loop25183713]
+  i16.loop2519 = phi [bb %params_f40_i24.else247, i32 %i16.loop25193714]
+  i11.loop2520 = phi [bb %params_f40_i24.else247, i32 %i11.loop25203715]
+  x31.loop2521 = phi [bb %params_f40_i24.else247, float %x31.loop25213716]
+  i12.loop2522 = phi [bb %params_f40_i24.else247, i32 %i12.loop25223717]
+  x0.loop2523 = phi [bb %params_f40_i24.else247, float %x0.loop25233718]
+  x10.loop2524 = phi [bb %params_f40_i24.else247, float %x10.loop25243719]
+  x14.loop2525 = phi [bb %params_f40_i24.else247, float %x14.loop25253720]
+  i9.loop2526 = phi [bb %params_f40_i24.else247, i32 %i9.loop25263721]
+  i18.loop2527 = phi [bb %params_f40_i24.else247, i32 %i18.loop25273722]
+  x34.loop2528 = phi [bb %params_f40_i24.else247, float %x34.loop25283723]
+  x5.loop2529 = phi [bb %params_f40_i24.else247, float %x5.loop25293724]
+  x16.loop2530 = phi [bb %params_f40_i24.else247, float %x16.loop25303725]
+  x21.loop2531 = phi [bb %params_f40_i24.else247, float %x21.loop25313726]
+  i17.loop2532 = phi [bb %params_f40_i24.else247, i32 %i17.loop25323727]
+  x39.loop2533 = phi [bb %params_f40_i24.else247, float %x39.loop25333728]
+  i8.loop2534 = phi [bb %params_f40_i24.else247, i32 %i8.loop25343729]
+  x25.loop2535 = phi [bb %params_f40_i24.else247, float %x25.loop25353730]
+  x9.loop2536 = phi [bb %params_f40_i24.else247, float %x9.loop25363731]
+  x23.loop2537 = phi [bb %params_f40_i24.else247, float %x23.loop25373732]
+  x33.loop2538 = phi [bb %params_f40_i24.else247, float %x33.loop25383733]
+  x20.loop2539 = phi [bb %params_f40_i24.else247, float %x20.loop25393734]
+  i13.loop2540 = phi [bb %params_f40_i24.else247, i32 %i13.loop25403735]
+  i10.loop2541 = phi [bb %params_f40_i24.else247, i32 %i10.loop25413736]
+  x32.loop2542 = phi [bb %params_f40_i24.else247, float %x32.loop25423737]
+  i7.loop2543 = phi [bb %params_f40_i24.else247, i32 %i7.loop25433738]
+  x6.loop2544 = phi [bb %params_f40_i24.else247, float %x6.loop25443739]
+  x38.loop2545 = phi [bb %params_f40_i24.else247, float %x38.loop25453740]
+  x11.loop2546 = phi [bb %params_f40_i24.else247, float %x11.loop25463741]
+  x1.loop2547 = phi [bb %params_f40_i24.else247, float %x1.loop25473742]
+  x12.loop2548 = phi [bb %params_f40_i24.else247, float %x12.loop25483743]
+  x30.loop2549 = phi [bb %params_f40_i24.else247, float %x30.loop25493744]
+  i19.loop2550 = phi [bb %params_f40_i24.else247, i32 %i19.loop25503745]
+  x37.loop2551 = phi [bb %params_f40_i24.else247, float %x37.loop25513746]
+  i0.loop2552 = phi [bb %params_f40_i24.else247, i32 %i0.loop25523747]
+  x28.loop2553 = phi [bb %params_f40_i24.else247, float %x28.loop25533748]
+  x3.loop2554 = phi [bb %params_f40_i24.else247, float %x3.loop25543749]
+  i22.loop2555 = phi [bb %params_f40_i24.else247, i32 %i22.loop25553750]
+  x7.loop2556 = phi [bb %params_f40_i24.else247, float %x7.loop25563751]
+  x15.loop2557 = phi [bb %params_f40_i24.else247, float %x15.loop25573752]
+  x8.loop2558 = phi [bb %params_f40_i24.else247, float %x8.loop25583753]
+  i5.loop2559 = phi [bb %params_f40_i24.else247, i32 %i5.loop25593754]
+  i4.loop2560 = phi [bb %params_f40_i24.else247, i32 %i4.loop25603755]
+  i1.loop2561 = phi [bb %params_f40_i24.else247, i32 %i1.loop25613756]
+  x4.loop2562 = phi [bb %params_f40_i24.else247, float %x4.loop25623757]
+  i6.loop2563 = phi [bb %params_f40_i24.else247, i32 %i6.loop25633758]
+  i2.loop2564 = phi [bb %params_f40_i24.else247, i32 %i2.loop25643759]
+  2442566 = icmp ne i32 %i1.loop25613756, i32 0
+  br i1 %2442566, bb %params_f40_i24.then245, bb %params_f40_i24.else247
+params_f40_i24.then245:  pred(params_f40_i24.loop_entry, params_f40.then)
+  1316.load3696 = phi [bb %params_f40_i24.loop_entry, i32 %i1.loop25613756, bb %params_f40.then, i32 %1316.load]
+  1322.load3695 = phi [bb %params_f40_i24.loop_entry, i32 %i2.loop2564, bb %params_f40.then, i32 %1322.load]
+  1328.load3694 = phi [bb %params_f40_i24.loop_entry, i32 %i6.loop2563, bb %params_f40.then, i32 %1328.load]
+  1334.load3693 = phi [bb %params_f40_i24.loop_entry, float %x4.loop2562, bb %params_f40.then, float %1334.load]
+  1340.load3692 = phi [bb %params_f40_i24.loop_entry, i32 %i1.loop2561, bb %params_f40.then, i32 %1340.load]
+  1346.load3691 = phi [bb %params_f40_i24.loop_entry, i32 %i4.loop2560, bb %params_f40.then, i32 %1346.load]
+  1352.load3690 = phi [bb %params_f40_i24.loop_entry, i32 %i5.loop2559, bb %params_f40.then, i32 %1352.load]
+  1358.load3689 = phi [bb %params_f40_i24.loop_entry, float %x8.loop2558, bb %params_f40.then, float %1358.load]
+  1364.load3688 = phi [bb %params_f40_i24.loop_entry, float %x15.loop2557, bb %params_f40.then, float %1364.load]
+  1370.load3687 = phi [bb %params_f40_i24.loop_entry, float %x7.loop2556, bb %params_f40.then, float %1370.load]
+  1376.load3686 = phi [bb %params_f40_i24.loop_entry, i32 %i22.loop2555, bb %params_f40.then, i32 %1376.load]
+  1382.load3685 = phi [bb %params_f40_i24.loop_entry, float %x3.loop2554, bb %params_f40.then, float %1382.load]
+  1388.load3684 = phi [bb %params_f40_i24.loop_entry, float %x28.loop2553, bb %params_f40.then, float %1388.load]
+  1394.load3683 = phi [bb %params_f40_i24.loop_entry, i32 %i0.loop2552, bb %params_f40.then, i32 %1394.load]
+  1400.load3682 = phi [bb %params_f40_i24.loop_entry, float %x37.loop2551, bb %params_f40.then, float %1400.load]
+  1406.load3681 = phi [bb %params_f40_i24.loop_entry, i32 %i19.loop2550, bb %params_f40.then, i32 %1406.load]
+  1412.load3680 = phi [bb %params_f40_i24.loop_entry, float %x30.loop2549, bb %params_f40.then, float %1412.load]
+  1418.load3679 = phi [bb %params_f40_i24.loop_entry, float %x12.loop2548, bb %params_f40.then, float %1418.load]
+  1424.load3678 = phi [bb %params_f40_i24.loop_entry, float %x1.loop2547, bb %params_f40.then, float %1424.load]
+  1430.load3677 = phi [bb %params_f40_i24.loop_entry, float %x11.loop2546, bb %params_f40.then, float %1430.load]
+  1436.load3676 = phi [bb %params_f40_i24.loop_entry, float %x38.loop2545, bb %params_f40.then, float %1436.load]
+  1442.load3675 = phi [bb %params_f40_i24.loop_entry, float %x6.loop2544, bb %params_f40.then, float %1442.load]
+  1448.load3674 = phi [bb %params_f40_i24.loop_entry, i32 %i7.loop2543, bb %params_f40.then, i32 %1448.load]
+  1454.load3673 = phi [bb %params_f40_i24.loop_entry, float %x32.loop2542, bb %params_f40.then, float %1454.load]
+  1460.load3672 = phi [bb %params_f40_i24.loop_entry, i32 %i10.loop2541, bb %params_f40.then, i32 %1460.load]
+  1466.load3671 = phi [bb %params_f40_i24.loop_entry, i32 %i13.loop2540, bb %params_f40.then, i32 %1466.load]
+  1472.load3670 = phi [bb %params_f40_i24.loop_entry, float %x20.loop2539, bb %params_f40.then, float %1472.load]
+  1478.load3669 = phi [bb %params_f40_i24.loop_entry, float %x33.loop2538, bb %params_f40.then, float %1478.load]
+  1484.load3668 = phi [bb %params_f40_i24.loop_entry, float %x23.loop2537, bb %params_f40.then, float %1484.load]
+  1490.load3667 = phi [bb %params_f40_i24.loop_entry, float %x9.loop2536, bb %params_f40.then, float %1490.load]
+  1496.load3666 = phi [bb %params_f40_i24.loop_entry, float %x25.loop2535, bb %params_f40.then, float %1496.load]
+  1502.load3665 = phi [bb %params_f40_i24.loop_entry, i32 %i8.loop2534, bb %params_f40.then, i32 %1502.load]
+  1508.load3664 = phi [bb %params_f40_i24.loop_entry, float %x39.loop2533, bb %params_f40.then, float %1508.load]
+  1514.load3663 = phi [bb %params_f40_i24.loop_entry, i32 %i17.loop2532, bb %params_f40.then, i32 %1514.load]
+  1520.load3662 = phi [bb %params_f40_i24.loop_entry, float %x21.loop2531, bb %params_f40.then, float %1520.load]
+  1526.load3661 = phi [bb %params_f40_i24.loop_entry, float %x16.loop2530, bb %params_f40.then, float %1526.load]
+  1532.load3660 = phi [bb %params_f40_i24.loop_entry, float %x5.loop2529, bb %params_f40.then, float %1532.load]
+  1538.load3659 = phi [bb %params_f40_i24.loop_entry, float %x34.loop2528, bb %params_f40.then, float %1538.load]
+  1544.load3658 = phi [bb %params_f40_i24.loop_entry, i32 %i18.loop2527, bb %params_f40.then, i32 %1544.load]
+  1550.load3657 = phi [bb %params_f40_i24.loop_entry, i32 %i9.loop2526, bb %params_f40.then, i32 %1550.load]
+  1556.load3656 = phi [bb %params_f40_i24.loop_entry, float %x14.loop2525, bb %params_f40.then, float %1556.load]
+  1562.load3655 = phi [bb %params_f40_i24.loop_entry, float %x10.loop2524, bb %params_f40.then, float %1562.load]
+  1568.load3654 = phi [bb %params_f40_i24.loop_entry, float %x0.loop2523, bb %params_f40.then, float %1568.load]
+  1574.load3653 = phi [bb %params_f40_i24.loop_entry, i32 %i12.loop2522, bb %params_f40.then, i32 %1574.load]
+  1580.load3652 = phi [bb %params_f40_i24.loop_entry, float %x31.loop2521, bb %params_f40.then, float %1580.load]
+  1586.load3651 = phi [bb %params_f40_i24.loop_entry, i32 %i11.loop2520, bb %params_f40.then, i32 %1586.load]
+  1592.load3650 = phi [bb %params_f40_i24.loop_entry, i32 %i16.loop2519, bb %params_f40.then, i32 %1592.load]
+  1598.load3649 = phi [bb %params_f40_i24.loop_entry, float %x27.loop2518, bb %params_f40.then, float %1598.load]
+  1604.load3648 = phi [bb %params_f40_i24.loop_entry, float %x24.loop2517, bb %params_f40.then, float %1604.load]
+  1610.load3647 = phi [bb %params_f40_i24.loop_entry, float %x13.loop2516, bb %params_f40.then, float %1610.load]
+  1616.load3646 = phi [bb %params_f40_i24.loop_entry, float %x29.loop2515, bb %params_f40.then, float %1616.load]
+  1622.load3645 = phi [bb %params_f40_i24.loop_entry, i32 %i3.loop2514, bb %params_f40.then, i32 %1622.load]
+  1628.load3644 = phi [bb %params_f40_i24.loop_entry, i32 %i21.loop2513, bb %params_f40.then, i32 %1628.load]
+  1634.load3643 = phi [bb %params_f40_i24.loop_entry, i32 %i20.loop2512, bb %params_f40.then, i32 %1634.load]
+  1640.load3642 = phi [bb %params_f40_i24.loop_entry, float %x18.loop2511, bb %params_f40.then, float %1640.load]
+  1646.load3641 = phi [bb %params_f40_i24.loop_entry, float %x19.loop2510, bb %params_f40.then, float %1646.load]
+  1652.load3640 = phi [bb %params_f40_i24.loop_entry, float %x22.loop2509, bb %params_f40.then, float %1652.load]
+  1658.load3639 = phi [bb %params_f40_i24.loop_entry, float %x26.loop2508, bb %params_f40.then, float %1658.load]
+  1664.load3638 = phi [bb %params_f40_i24.loop_entry, float %x36.loop2507, bb %params_f40.then, float %1664.load]
+  1670.load3637 = phi [bb %params_f40_i24.loop_entry, float %x17.loop2506, bb %params_f40.then, float %1670.load]
+  1676.load3636 = phi [bb %params_f40_i24.loop_entry, i32 %i15.loop2505, bb %params_f40.then, i32 %1676.load]
+  1682.load3635 = phi [bb %params_f40_i24.loop_entry, float %x2.loop2504, bb %params_f40.then, float %1682.load]
+  1688.load3634 = phi [bb %params_f40_i24.loop_entry, i32 %i14.loop2503, bb %params_f40.then, i32 %1688.load]
+  1694.load3633 = phi [bb %params_f40_i24.loop_entry, float %x35.loop2502, bb %params_f40.then, float %1694.load]
+  2512569 = fadd float %1568.load3654, float %1424.load3678
+  2532570 = fadd float %2512569, float %1682.load3635
+  2552571 = fadd float %2532570, float %1382.load3685
+  2582572 = fadd float %1334.load3693, float %1532.load3660
+  2602573 = fadd float %2582572, float %1442.load3675
+  2622574 = fadd float %2602573, float %1370.load3687
+  2652575 = fadd float %1358.load3689, float %1490.load3667
+  2672576 = fadd float %2652575, float %1562.load3655
+  2692577 = fadd float %2672576, float %1430.load3677
+  2722578 = fadd float %1418.load3679, float %1610.load3647
+  2742579 = fadd float %2722578, float %1556.load3656
+  2762580 = fadd float %2742579, float %1364.load3688
+  2792581 = fadd float %1526.load3661, float %1670.load3637
+  2812582 = fadd float %2792581, float %1640.load3642
+  2832583 = fadd float %2812582, float %1646.load3641
+  2862584 = fadd float %1472.load3670, float %1520.load3662
+  2882585 = fadd float %2862584, float %1652.load3640
+  2902586 = fadd float %2882585, float %1484.load3668
+  2932587 = fadd float %1604.load3648, float %1496.load3666
+  2952588 = fadd float %2932587, float %1658.load3639
+  2972589 = fadd float %2952588, float %1598.load3649
+  3002590 = fadd float %1388.load3684, float %1616.load3646
+  3022591 = fadd float %3002590, float %1412.load3680
+  3042592 = fadd float %3022591, float %1580.load3652
+  3072593 = fadd float %1454.load3673, float %1478.load3669
+  3092594 = fadd float %3072593, float %1538.load3659
+  3112595 = fadd float %3092594, float %1694.load3633
+  3142596 = fadd float %1664.load3638, float %1400.load3682
+  3162597 = fadd float %3142596, float %1436.load3676
+  3182598 = fadd float %3162597, float %1508.load3664
+  store float %2552571 to ptr %arr2482499
+  arr.index3202600 = ptradd ptr %arr2482499, i32 4
+  store float %2622574 to ptr %arr.index3202600
+  arr.index3212602 = ptradd ptr %arr2482499, i32 8
+  store float %2692577 to ptr %arr.index3212602
+  arr.index3222604 = ptradd ptr %arr2482499, i32 12
+  store float %2762580 to ptr %arr.index3222604
+  arr.index3232606 = ptradd ptr %arr2482499, i32 16
+  store float %2832583 to ptr %arr.index3232606
+  arr.index3242608 = ptradd ptr %arr2482499, i32 20
+  store float %2902586 to ptr %arr.index3242608
+  arr.index3252610 = ptradd ptr %arr2482499, i32 24
+  store float %2972589 to ptr %arr.index3252610
+  arr.index3262612 = ptradd ptr %arr2482499, i32 28
+  store float %3042592 to ptr %arr.index3262612
+  arr.index3272614 = ptradd ptr %arr2482499, i32 32
+  store float %3112595 to ptr %arr.index3272614
+  arr.index3282616 = ptradd ptr %arr2482499, i32 36
+  store float %3182598 to ptr %arr.index3282616
+  3322618 = add i32 %1394.load3683, i32 %1340.load3692
+  3342619 = add i32 %3322618, i32 %1322.load3695
+  3372620 = add i32 %1622.load3645, i32 %1346.load3691
+  3392621 = add i32 %3372620, i32 %1352.load3690
+  3422622 = add i32 %1328.load3694, i32 %1448.load3674
+  3442623 = add i32 %3422622, i32 %1502.load3665
+  3472624 = add i32 %1550.load3657, i32 %1460.load3672
+  3492625 = add i32 %3472624, i32 %1586.load3651
+  3522626 = add i32 %1574.load3653, i32 %1466.load3671
+  3542627 = add i32 %3522626, i32 %1688.load3634
+  3572628 = add i32 %1676.load3636, i32 %1592.load3650
+  3592629 = add i32 %3572628, i32 %1514.load3663
+  3622630 = add i32 %1544.load3658, i32 %1406.load3681
+  3642631 = add i32 %3622630, i32 %1634.load3643
+  3672632 = add i32 %1628.load3644, i32 %1376.load3686
+  3692633 = add i32 %3672632, i32 %1316.load3696
+  store i32 %3342619 to ptr %arr22498
+  arr.index3712635 = ptradd ptr %arr22498, i32 4
+  store i32 %3392621 to ptr %arr.index3712635
+  arr.index3722637 = ptradd ptr %arr22498, i32 8
+  store i32 %3442623 to ptr %arr.index3722637
+  arr.index3732639 = ptradd ptr %arr22498, i32 12
+  store i32 %3492625 to ptr %arr.index3732639
+  arr.index3742641 = ptradd ptr %arr22498, i32 16
+  store i32 %3542627 to ptr %arr.index3742641
+  arr.index3752643 = ptradd ptr %arr22498, i32 20
+  store i32 %3592629 to ptr %arr.index3752643
+  arr.index3762645 = ptradd ptr %arr22498, i32 24
+  store i32 %3642631 to ptr %arr.index3762645
+  arr.index3772647 = ptradd ptr %arr22498, i32 28
+  store i32 %3692633 to ptr %arr.index3772647
+  call void putfarray(i32 10, ptr %arr2482499)
+  call void putarray(i32 8, ptr %arr22498)
+  br bb %params_f40_i24.while.body
+params_f40_i24.else247_preheader:  pred(params_f40.then)
+  br bb %params_f40_i24.else247
+params_f40_i24.else247:  pred(params_f40_i24.loop_entry, params_f40_i24.else247_preheader)
+  i2.loop25643759 = phi [bb %params_f40_i24.loop_entry, i32 %i2.loop2564, bb %params_f40_i24.else247_preheader, i32 %1322.load]
+  i6.loop25633758 = phi [bb %params_f40_i24.loop_entry, i32 %i6.loop2563, bb %params_f40_i24.else247_preheader, i32 %1328.load]
+  x4.loop25623757 = phi [bb %params_f40_i24.loop_entry, float %x4.loop2562, bb %params_f40_i24.else247_preheader, float %1334.load]
+  i1.loop25613756 = phi [bb %params_f40_i24.loop_entry, i32 %i1.loop2561, bb %params_f40_i24.else247_preheader, i32 %1340.load]
+  i4.loop25603755 = phi [bb %params_f40_i24.loop_entry, i32 %i4.loop2560, bb %params_f40_i24.else247_preheader, i32 %1346.load]
+  i5.loop25593754 = phi [bb %params_f40_i24.loop_entry, i32 %i5.loop2559, bb %params_f40_i24.else247_preheader, i32 %1352.load]
+  x8.loop25583753 = phi [bb %params_f40_i24.loop_entry, float %x8.loop2558, bb %params_f40_i24.else247_preheader, float %1358.load]
+  x15.loop25573752 = phi [bb %params_f40_i24.loop_entry, float %x15.loop2557, bb %params_f40_i24.else247_preheader, float %1364.load]
+  x7.loop25563751 = phi [bb %params_f40_i24.loop_entry, float %x7.loop2556, bb %params_f40_i24.else247_preheader, float %1370.load]
+  i22.loop25553750 = phi [bb %params_f40_i24.loop_entry, i32 %i22.loop2555, bb %params_f40_i24.else247_preheader, i32 %1376.load]
+  x3.loop25543749 = phi [bb %params_f40_i24.loop_entry, float %x3.loop2554, bb %params_f40_i24.else247_preheader, float %1382.load]
+  x28.loop25533748 = phi [bb %params_f40_i24.loop_entry, float %x28.loop2553, bb %params_f40_i24.else247_preheader, float %1388.load]
+  i0.loop25523747 = phi [bb %params_f40_i24.loop_entry, i32 %i0.loop2552, bb %params_f40_i24.else247_preheader, i32 %1394.load]
+  x37.loop25513746 = phi [bb %params_f40_i24.loop_entry, float %x37.loop2551, bb %params_f40_i24.else247_preheader, float %1400.load]
+  i19.loop25503745 = phi [bb %params_f40_i24.loop_entry, i32 %i19.loop2550, bb %params_f40_i24.else247_preheader, i32 %1406.load]
+  x30.loop25493744 = phi [bb %params_f40_i24.loop_entry, float %x30.loop2549, bb %params_f40_i24.else247_preheader, float %1412.load]
+  x12.loop25483743 = phi [bb %params_f40_i24.loop_entry, float %x12.loop2548, bb %params_f40_i24.else247_preheader, float %1418.load]
+  x1.loop25473742 = phi [bb %params_f40_i24.loop_entry, float %x1.loop2547, bb %params_f40_i24.else247_preheader, float %1424.load]
+  x11.loop25463741 = phi [bb %params_f40_i24.loop_entry, float %x11.loop2546, bb %params_f40_i24.else247_preheader, float %1430.load]
+  x38.loop25453740 = phi [bb %params_f40_i24.loop_entry, float %x38.loop2545, bb %params_f40_i24.else247_preheader, float %1436.load]
+  x6.loop25443739 = phi [bb %params_f40_i24.loop_entry, float %x6.loop2544, bb %params_f40_i24.else247_preheader, float %1442.load]
+  i7.loop25433738 = phi [bb %params_f40_i24.loop_entry, i32 %i7.loop2543, bb %params_f40_i24.else247_preheader, i32 %1448.load]
+  x32.loop25423737 = phi [bb %params_f40_i24.loop_entry, float %x32.loop2542, bb %params_f40_i24.else247_preheader, float %1454.load]
+  i10.loop25413736 = phi [bb %params_f40_i24.loop_entry, i32 %i10.loop2541, bb %params_f40_i24.else247_preheader, i32 %1460.load]
+  i13.loop25403735 = phi [bb %params_f40_i24.loop_entry, i32 %i13.loop2540, bb %params_f40_i24.else247_preheader, i32 %1466.load]
+  x20.loop25393734 = phi [bb %params_f40_i24.loop_entry, float %x20.loop2539, bb %params_f40_i24.else247_preheader, float %1472.load]
+  x33.loop25383733 = phi [bb %params_f40_i24.loop_entry, float %x33.loop2538, bb %params_f40_i24.else247_preheader, float %1478.load]
+  x23.loop25373732 = phi [bb %params_f40_i24.loop_entry, float %x23.loop2537, bb %params_f40_i24.else247_preheader, float %1484.load]
+  x9.loop25363731 = phi [bb %params_f40_i24.loop_entry, float %x9.loop2536, bb %params_f40_i24.else247_preheader, float %1490.load]
+  x25.loop25353730 = phi [bb %params_f40_i24.loop_entry, float %x25.loop2535, bb %params_f40_i24.else247_preheader, float %1496.load]
+  i8.loop25343729 = phi [bb %params_f40_i24.loop_entry, i32 %i8.loop2534, bb %params_f40_i24.else247_preheader, i32 %1502.load]
+  x39.loop25333728 = phi [bb %params_f40_i24.loop_entry, float %x39.loop2533, bb %params_f40_i24.else247_preheader, float %1508.load]
+  i17.loop25323727 = phi [bb %params_f40_i24.loop_entry, i32 %i17.loop2532, bb %params_f40_i24.else247_preheader, i32 %1514.load]
+  x21.loop25313726 = phi [bb %params_f40_i24.loop_entry, float %x21.loop2531, bb %params_f40_i24.else247_preheader, float %1520.load]
+  x16.loop25303725 = phi [bb %params_f40_i24.loop_entry, float %x16.loop2530, bb %params_f40_i24.else247_preheader, float %1526.load]
+  x5.loop25293724 = phi [bb %params_f40_i24.loop_entry, float %x5.loop2529, bb %params_f40_i24.else247_preheader, float %1532.load]
+  x34.loop25283723 = phi [bb %params_f40_i24.loop_entry, float %x34.loop2528, bb %params_f40_i24.else247_preheader, float %1538.load]
+  i18.loop25273722 = phi [bb %params_f40_i24.loop_entry, i32 %i18.loop2527, bb %params_f40_i24.else247_preheader, i32 %1544.load]
+  i9.loop25263721 = phi [bb %params_f40_i24.loop_entry, i32 %i9.loop2526, bb %params_f40_i24.else247_preheader, i32 %1550.load]
+  x14.loop25253720 = phi [bb %params_f40_i24.loop_entry, float %x14.loop2525, bb %params_f40_i24.else247_preheader, float %1556.load]
+  x10.loop25243719 = phi [bb %params_f40_i24.loop_entry, float %x10.loop2524, bb %params_f40_i24.else247_preheader, float %1562.load]
+  x0.loop25233718 = phi [bb %params_f40_i24.loop_entry, float %x0.loop2523, bb %params_f40_i24.else247_preheader, float %1568.load]
+  i12.loop25223717 = phi [bb %params_f40_i24.loop_entry, i32 %i12.loop2522, bb %params_f40_i24.else247_preheader, i32 %1574.load]
+  x31.loop25213716 = phi [bb %params_f40_i24.loop_entry, float %x31.loop2521, bb %params_f40_i24.else247_preheader, float %1580.load]
+  i11.loop25203715 = phi [bb %params_f40_i24.loop_entry, i32 %i11.loop2520, bb %params_f40_i24.else247_preheader, i32 %1586.load]
+  i16.loop25193714 = phi [bb %params_f40_i24.loop_entry, i32 %i16.loop2519, bb %params_f40_i24.else247_preheader, i32 %1592.load]
+  x27.loop25183713 = phi [bb %params_f40_i24.loop_entry, float %x27.loop2518, bb %params_f40_i24.else247_preheader, float %1598.load]
+  x24.loop25173712 = phi [bb %params_f40_i24.loop_entry, float %x24.loop2517, bb %params_f40_i24.else247_preheader, float %1604.load]
+  x13.loop25163711 = phi [bb %params_f40_i24.loop_entry, float %x13.loop2516, bb %params_f40_i24.else247_preheader, float %1610.load]
+  x29.loop25153710 = phi [bb %params_f40_i24.loop_entry, float %x29.loop2515, bb %params_f40_i24.else247_preheader, float %1616.load]
+  i3.loop25143709 = phi [bb %params_f40_i24.loop_entry, i32 %i3.loop2514, bb %params_f40_i24.else247_preheader, i32 %1622.load]
+  i21.loop25133708 = phi [bb %params_f40_i24.loop_entry, i32 %i21.loop2513, bb %params_f40_i24.else247_preheader, i32 %1628.load]
+  i20.loop25123707 = phi [bb %params_f40_i24.loop_entry, i32 %i20.loop2512, bb %params_f40_i24.else247_preheader, i32 %1634.load]
+  x18.loop25113706 = phi [bb %params_f40_i24.loop_entry, float %x18.loop2511, bb %params_f40_i24.else247_preheader, float %1640.load]
+  x19.loop25103705 = phi [bb %params_f40_i24.loop_entry, float %x19.loop2510, bb %params_f40_i24.else247_preheader, float %1646.load]
+  x22.loop25093704 = phi [bb %params_f40_i24.loop_entry, float %x22.loop2509, bb %params_f40_i24.else247_preheader, float %1652.load]
+  x26.loop25083703 = phi [bb %params_f40_i24.loop_entry, float %x26.loop2508, bb %params_f40_i24.else247_preheader, float %1658.load]
+  x36.loop25073702 = phi [bb %params_f40_i24.loop_entry, float %x36.loop2507, bb %params_f40_i24.else247_preheader, float %1664.load]
+  x17.loop25063701 = phi [bb %params_f40_i24.loop_entry, float %x17.loop2506, bb %params_f40_i24.else247_preheader, float %1670.load]
+  i15.loop25053700 = phi [bb %params_f40_i24.loop_entry, i32 %i15.loop2505, bb %params_f40_i24.else247_preheader, i32 %1676.load]
+  x2.loop25043699 = phi [bb %params_f40_i24.loop_entry, float %x2.loop2504, bb %params_f40_i24.else247_preheader, float %1682.load]
+  i14.loop25033698 = phi [bb %params_f40_i24.loop_entry, i32 %i14.loop2503, bb %params_f40_i24.else247_preheader, i32 %1688.load]
+  x35.loop25023697 = phi [bb %params_f40_i24.loop_entry, float %x35.loop2502, bb %params_f40_i24.else247_preheader, float %1694.load]
+  br bb %params_f40_i24.loop_entry
+params_f40_i24.while.body:  pred(params_f40_i24.while.body, params_f40_i24.then245)
+  i.phi26553631 = phi [bb %params_f40_i24.while.body, i32 %4042668, bb %params_f40_i24.then245, i32 0]
+  20652659 = shl i32 %i.phi26553631, i32 2
+  3892660 = ptradd ptr %arr22498, i32 %20652659
+  393.load2661 = load i32 from ptr %3892660
+  3972662 = ptradd ptr %arr2482499, i32 %20652659
+  397.load2663 = load float from ptr %3972662
+  3992664 = si2f i32 %393.load2661 to float
+  4002665 = fsub float %3992664, float %397.load2663
+  4012666 = f2si float %4002665 to i32
+  store i32 %4012666 to ptr %3892660
+  4042668 = add i32 %i.phi26553631, i32 1
+  3852656 = icmp slt i32 %4042668, i32 8
+  br i1 %3852656, bb %params_f40_i24.while.body, bb %params_f40_i24.while.exit
+params_f40_i24.while.exit:  pred(params_f40_i24.while.body)
+  k.load4052671 = load i32 from ptr @k
+  20682672 = shl i32 %k.load4052671, i32 2
+  4072673 = ptradd ptr %arr22498, i32 %20682672
+  407.load2674 = load i32 from ptr %4072673
+  4092675 = si2f i32 %407.load2674 to float
+  47927253451 = ptradd ptr %arr1036, i32 %20682672
+  479.load27263452 = load float from ptr %47927253451
+  48327273453 = ptradd ptr %1077, i32 %20682672
+  483.load27283454 = load float from ptr %48327273453
+  48527293455 = fadd float %479.load27263452, float %483.load27283454
+  48827303456 = ptradd ptr %1083, i32 %20682672
+  488.load27313457 = load float from ptr %48827303456
+  49027323458 = fadd float %48527293455, float %488.load27313457
+  49327333459 = ptradd ptr %1089, i32 %20682672
+  493.load27343460 = load float from ptr %49327333459
+  49527353461 = fadd float %49027323458, float %493.load27343460
+  49827363462 = ptradd ptr %1095, i32 %20682672
+  498.load27373463 = load float from ptr %49827363462
+  50227383464 = ptradd ptr %1101, i32 %20682672
+  502.load27393465 = load float from ptr %50227383464
+  50427403466 = fadd float %498.load27373463, float %502.load27393465
+  50727413467 = ptradd ptr %1107, i32 %20682672
+  507.load27423468 = load float from ptr %50727413467
+  50927433469 = fadd float %50427403466, float %507.load27423468
+  51227443470 = ptradd ptr %1113, i32 %20682672
+  512.load27453471 = load float from ptr %51227443470
+  51427463472 = fadd float %50927433469, float %512.load27453471
+  51727473473 = ptradd ptr %1119, i32 %20682672
+  517.load27483474 = load float from ptr %51727473473
+  52127493475 = ptradd ptr %1125, i32 %20682672
+  521.load27503476 = load float from ptr %52127493475
+  52327513477 = fadd float %517.load27483474, float %521.load27503476
+  52627523478 = ptradd ptr %1131, i32 %20682672
+  526.load27533479 = load float from ptr %52627523478
+  52827543480 = fadd float %52327513477, float %526.load27533479
+  53127553481 = ptradd ptr %1137, i32 %20682672
+  531.load27563482 = load float from ptr %53127553481
+  53327573483 = fadd float %52827543480, float %531.load27563482
+  53627583484 = ptradd ptr %1143, i32 %20682672
+  536.load27593485 = load float from ptr %53627583484
+  54027603486 = ptradd ptr %1149, i32 %20682672
+  540.load27613487 = load float from ptr %54027603486
+  54227623488 = fadd float %536.load27593485, float %540.load27613487
+  54527633489 = ptradd ptr %1155, i32 %20682672
+  545.load27643490 = load float from ptr %54527633489
+  54727653491 = fadd float %54227623488, float %545.load27643490
+  55027663492 = ptradd ptr %1161, i32 %20682672
+  550.load27673493 = load float from ptr %55027663492
+  55227683494 = fadd float %54727653491, float %550.load27673493
+  55527693495 = ptradd ptr %1167, i32 %20682672
+  555.load27703496 = load float from ptr %55527693495
+  55927713497 = ptradd ptr %1173, i32 %20682672
+  559.load27723498 = load float from ptr %55927713497
+  56127733499 = fadd float %555.load27703496, float %559.load27723498
+  56427743500 = ptradd ptr %1179, i32 %20682672
+  564.load27753501 = load float from ptr %56427743500
+  56627763502 = fadd float %56127733499, float %564.load27753501
+  56927773503 = ptradd ptr %1185, i32 %20682672
+  569.load27783504 = load float from ptr %56927773503
+  57127793505 = fadd float %56627763502, float %569.load27783504
+  57427803506 = ptradd ptr %1191, i32 %20682672
+  574.load27813507 = load float from ptr %57427803506
+  57827823508 = ptradd ptr %1197, i32 %20682672
+  578.load27833509 = load float from ptr %57827823508
+  58027843510 = fadd float %574.load27813507, float %578.load27833509
+  58327853511 = ptradd ptr %1203, i32 %20682672
+  583.load27863512 = load float from ptr %58327853511
+  58527873513 = fadd float %58027843510, float %583.load27863512
+  58827883514 = ptradd ptr %1209, i32 %20682672
+  588.load27893515 = load float from ptr %58827883514
+  59027903516 = fadd float %58527873513, float %588.load27893515
+  59327913517 = ptradd ptr %1215, i32 %20682672
+  593.load27923518 = load float from ptr %59327913517
+  59727933519 = ptradd ptr %1221, i32 %20682672
+  597.load27943520 = load float from ptr %59727933519
+  59927953521 = fadd float %593.load27923518, float %597.load27943520
+  60227963522 = ptradd ptr %1227, i32 %20682672
+  602.load27973523 = load float from ptr %60227963522
+  60427983524 = fadd float %59927953521, float %602.load27973523
+  60727993525 = ptradd ptr %1233, i32 %20682672
+  607.load28003526 = load float from ptr %60727993525
+  60928013527 = fadd float %60427983524, float %607.load28003526
+  61228023528 = ptradd ptr %1239, i32 %20682672
+  612.load28033529 = load float from ptr %61228023528
+  61628043530 = ptradd ptr %1245, i32 %20682672
+  616.load28053531 = load float from ptr %61628043530
+  61828063532 = fadd float %612.load28033529, float %616.load28053531
+  62128073533 = ptradd ptr %1251, i32 %20682672
+  621.load28083534 = load float from ptr %62128073533
+  62328093535 = fadd float %61828063532, float %621.load28083534
+  62628103536 = ptradd ptr %1257, i32 %20682672
+  626.load28113537 = load float from ptr %62628103536
+  62828123538 = fadd float %62328093535, float %626.load28113537
+  63128133539 = ptradd ptr %1263, i32 %20682672
+  631.load28143540 = load float from ptr %63128133539
+  63528153541 = ptradd ptr %1269, i32 %20682672
+  635.load28163542 = load float from ptr %63528153541
+  63728173543 = fadd float %631.load28143540, float %635.load28163542
+  64028183544 = ptradd ptr %1275, i32 %20682672
+  640.load28193545 = load float from ptr %64028183544
+  64228203546 = fadd float %63728173543, float %640.load28193545
+  64528213547 = ptradd ptr %1281, i32 %20682672
+  645.load28223548 = load float from ptr %64528213547
+  64728233549 = fadd float %64228203546, float %645.load28223548
+  65028243550 = ptradd ptr %1287, i32 %20682672
+  650.load28253551 = load float from ptr %65028243550
+  65428263552 = ptradd ptr %1293, i32 %20682672
+  654.load28273553 = load float from ptr %65428263552
+  65628283554 = fadd float %650.load28253551, float %654.load28273553
+  65928293555 = ptradd ptr %1299, i32 %20682672
+  659.load28303556 = load float from ptr %65928293555
+  66128313557 = fadd float %65628283554, float %659.load28303556
+  66428323558 = ptradd ptr %1305, i32 %20682672
+  664.load28333559 = load float from ptr %66428323558
+  66628343560 = fadd float %66128313557, float %664.load28333559
+  store float %49527353461 to ptr %arr4762680
+  arr.index66828363562 = ptradd ptr %arr4762680, i32 4
+  store float %51427463472 to ptr %arr.index66828363562
+  arr.index66928383564 = ptradd ptr %arr4762680, i32 8
+  store float %53327573483 to ptr %arr.index66928383564
+  arr.index67028403566 = ptradd ptr %arr4762680, i32 12
+  store float %55227683494 to ptr %arr.index67028403566
+  arr.index67128423568 = ptradd ptr %arr4762680, i32 16
+  store float %57127793505 to ptr %arr.index67128423568
+  arr.index67228443570 = ptradd ptr %arr4762680, i32 20
+  store float %59027903516 to ptr %arr.index67228443570
+  arr.index67328463572 = ptradd ptr %arr4762680, i32 24
+  store float %60928013527 to ptr %arr.index67328463572
+  arr.index67428483574 = ptradd ptr %arr4762680, i32 28
+  store float %62828123538 to ptr %arr.index67428483574
+  arr.index67528503576 = ptradd ptr %arr4762680, i32 32
+  store float %64728233549 to ptr %arr.index67528503576
+  arr.index67628523578 = ptradd ptr %arr4762680, i32 36
+  store float %66628343560 to ptr %arr.index67628523578
+  679.load28573580 = load float from ptr %66428323558
+  68228593581 = fcmp one float %679.load28573580, float %42292437613803
+  68328603582 = zext i1 %68228593581 to i32
+  68428613583 = icmp ne i32 %68328603582, i32 0
+  68528623584 = zext i1 %68428613583 to i32
+  68628633585 = si2f i32 %68528623584 to float
+  68728643586 = fcmp one float %68628633585, float 0.000000
+  68828653587 = zext i1 %68728643586 to i32
+  68928663588 = si2f i32 %68828653587 to float
+  69028673589 = fcmp one float %68928663588, float 0.000000
+  br i1 %69028673589, bb %params_fa40.then691, bb %params_fa40.else693_preheader
+params_fa40.then691:  pred(params_fa40.else693, params_f40_i24.while.exit)
+  call void putfarray(i32 10, ptr %arr4762680)
+  k.load6952871 = load i32 from ptr @k
+  22492872 = shl i32 %k.load6952871, i32 2
+  6972873 = ptradd ptr %arr4762680, i32 %22492872
+  697.load2874 = load float from ptr %6972873
+  1784 = ptradd ptr %arr1036, i32 %22492872
+  1784.load = load float from ptr %1784
+  1792 = ptradd ptr %1337, i32 %22492872
+  1792.load = load i32 from ptr %1792
+  1800 = ptradd ptr %1083, i32 %22492872
+  1800.load = load float from ptr %1800
+  1806 = ptradd ptr %1319, i32 %22492872
+  1806.load = load i32 from ptr %1806
+  1812 = ptradd ptr %1089, i32 %22492872
+  1812.load = load float from ptr %1812
+  1818 = ptradd ptr %1095, i32 %22492872
+  1818.load = load float from ptr %1818
+  1828 = ptradd ptr %1343, i32 %22492872
+  1828.load = load i32 from ptr %1828
+  1834 = ptradd ptr %1349, i32 %22492872
+  1834.load = load i32 from ptr %1834
+  1846 = ptradd ptr %1499, i32 %22492872
+  1846.load = load i32 from ptr %1846
+  1856 = ptradd ptr %1125, i32 %22492872
+  1856.load = load float from ptr %1856
+  1862 = ptradd ptr %1131, i32 %22492872
+  1862.load = load float from ptr %1862
+  1868 = ptradd ptr %1137, i32 %22492872
+  1868.load = load float from ptr %1868
+  1876 = ptradd ptr %1547, i32 %22492872
+  1876.load = load i32 from ptr %1876
+  1882 = ptradd ptr %1149, i32 %22492872
+  1882.load = load float from ptr %1882
+  1888 = ptradd ptr %1155, i32 %22492872
+  1888.load = load float from ptr %1888
+  1894 = ptradd ptr %1161, i32 %22492872
+  1894.load = load float from ptr %1894
+  1910 = ptradd ptr %1179, i32 %22492872
+  1910.load = load float from ptr %1910
+  1916 = ptradd ptr %1185, i32 %22492872
+  1916.load = load float from ptr %1916
+  1924 = ptradd ptr %1685, i32 %22492872
+  1924.load = load i32 from ptr %1924
+  1934 = ptradd ptr %1203, i32 %22492872
+  1934.load = load float from ptr %1934
+  1940 = ptradd ptr %1209, i32 %22492872
+  1940.load = load float from ptr %1940
+  1950 = ptradd ptr %1511, i32 %22492872
+  1950.load = load i32 from ptr %1950
+  1956 = ptradd ptr %1541, i32 %22492872
+  1956.load = load i32 from ptr %1956
+  1962 = ptradd ptr %1215, i32 %22492872
+  1962.load = load float from ptr %1962
+  1968 = ptradd ptr %1221, i32 %22492872
+  1968.load = load float from ptr %1968
+  1976 = ptradd ptr %1631, i32 %22492872
+  1976.load = load i32 from ptr %1976
+  1984 = ptradd ptr %1625, i32 %22492872
+  1984.load = load i32 from ptr %1984
+  1994 = ptradd ptr %1233, i32 %22492872
+  1994.load = load float from ptr %1994
+  2000 = ptradd ptr %1239, i32 %22492872
+  2000.load = load float from ptr %2000
+  2008 = ptradd ptr %arr21037, i32 %22492872
+  2008.load = load i32 from ptr %2008
+  2018 = ptradd ptr %1257, i32 %22492872
+  2018.load = load float from ptr %2018
+  2030 = ptradd ptr %1263, i32 %22492872
+  2030.load = load float from ptr %2030
+  2040 = ptradd ptr %1281, i32 %22492872
+  2040.load = load float from ptr %2040
+  2046 = ptradd ptr %1619, i32 %22492872
+  2046.load = load i32 from ptr %2046
+  74030603243 = ptradd ptr %1077, i32 %22492872
+  740.load30613244 = load float from ptr %74030603243
+  74230623245 = fadd float %1784.load, float %740.load30613244
+  74430633246 = fadd float %74230623245, float %1800.load
+  74630643247 = fadd float %74430633246, float %1812.load
+  75030653248 = ptradd ptr %1101, i32 %22492872
+  750.load30663249 = load float from ptr %75030653248
+  75230673250 = fadd float %1818.load, float %750.load30663249
+  75530683251 = ptradd ptr %1107, i32 %22492872
+  755.load30693252 = load float from ptr %75530683251
+  75730703253 = fadd float %75230673250, float %755.load30693252
+  76030713254 = ptradd ptr %1113, i32 %22492872
+  760.load30723255 = load float from ptr %76030713254
+  76230733256 = fadd float %75730703253, float %760.load30723255
+  76530743257 = ptradd ptr %1119, i32 %22492872
+  765.load30753258 = load float from ptr %76530743257
+  76830763259 = fadd float %765.load30753258, float %1856.load
+  77030773260 = fadd float %76830763259, float %1862.load
+  77230783261 = fadd float %77030773260, float %1868.load
+  77530793262 = ptradd ptr %1143, i32 %22492872
+  775.load30803263 = load float from ptr %77530793262
+  77830813264 = fadd float %775.load30803263, float %1882.load
+  78030823265 = fadd float %77830813264, float %1888.load
+  78230833266 = fadd float %78030823265, float %1894.load
+  78530843267 = ptradd ptr %1167, i32 %22492872
+  785.load30853268 = load float from ptr %78530843267
+  78930863269 = ptradd ptr %1173, i32 %22492872
+  789.load30873270 = load float from ptr %78930863269
+  79130883271 = fadd float %785.load30853268, float %789.load30873270
+  79330893272 = fadd float %79130883271, float %1910.load
+  79530903273 = fadd float %79330893272, float %1916.load
+  79830913274 = ptradd ptr %1191, i32 %22492872
+  798.load30923275 = load float from ptr %79830913274
+  80230933276 = ptradd ptr %1197, i32 %22492872
+  802.load30943277 = load float from ptr %80230933276
+  80430953278 = fadd float %798.load30923275, float %802.load30943277
+  80630963279 = fadd float %80430953278, float %1934.load
+  80830973280 = fadd float %80630963279, float %1940.load
+  81130983281 = fadd float %1962.load, float %1968.load
+  81430993282 = ptradd ptr %1227, i32 %22492872
+  814.load31003283 = load float from ptr %81430993282
+  81631013284 = fadd float %81130983281, float %814.load31003283
+  81831023285 = fadd float %81631013284, float %1994.load
+  82231033286 = ptradd ptr %1245, i32 %22492872
+  822.load31043287 = load float from ptr %82231033286
+  82431053288 = fadd float %2000.load, float %822.load31043287
+  82731063289 = ptradd ptr %1251, i32 %22492872
+  827.load31073290 = load float from ptr %82731063289
+  82931083291 = fadd float %82431053288, float %827.load31073290
+  83131093292 = fadd float %82931083291, float %2018.load
+  83531103293 = ptradd ptr %1269, i32 %22492872
+  835.load31113294 = load float from ptr %83531103293
+  83731123295 = fadd float %2030.load, float %835.load31113294
+  84031133296 = ptradd ptr %1275, i32 %22492872
+  840.load31143297 = load float from ptr %84031133296
+  84231153298 = fadd float %83731123295, float %840.load31143297
+  84431163299 = fadd float %84231153298, float %2040.load
+  store float %74630643247 to ptr %arr7362991
+  arr.index84631183301 = ptradd ptr %arr7362991, i32 4
+  store float %76230733256 to ptr %arr.index84631183301
+  arr.index84731203303 = ptradd ptr %arr7362991, i32 8
+  store float %77230783261 to ptr %arr.index84731203303
+  arr.index84831223305 = ptradd ptr %arr7362991, i32 12
+  store float %78230833266 to ptr %arr.index84831223305
+  arr.index84931243307 = ptradd ptr %arr7362991, i32 16
+  store float %79530903273 to ptr %arr.index84931243307
+  arr.index85031263309 = ptradd ptr %arr7362991, i32 20
+  store float %80830973280 to ptr %arr.index85031263309
+  arr.index85131283311 = ptradd ptr %arr7362991, i32 24
+  store float %81831023285 to ptr %arr.index85131283311
+  arr.index85231303313 = ptradd ptr %arr7362991, i32 28
+  store float %83131093292 to ptr %arr.index85231303313
+  arr.index85331323315 = ptradd ptr %arr7362991, i32 32
+  store float %84431163299 to ptr %arr.index85331323315
+  arr.index85431343317 = ptradd ptr %arr7362991, i32 36
+  store float 0.000000 to ptr %arr.index85431343317
+  858.load31393320 = load i32 from ptr %2008
+  86131403321 = add i32 %858.load31393320, i32 %1792.load
+  86331413322 = add i32 %86131403321, i32 %1806.load
+  866.load31433324 = load i32 from ptr %2046
+  86931443325 = add i32 %866.load31433324, i32 %1828.load
+  87131453326 = add i32 %86931443325, i32 %1834.load
+  87431463327 = ptradd ptr %1325, i32 %22492872
+  874.load31473328 = load i32 from ptr %87431463327
+  87831483329 = ptradd ptr %1445, i32 %22492872
+  878.load31493330 = load i32 from ptr %87831483329
+  88031503331 = add i32 %874.load31473328, i32 %878.load31493330
+  88231513332 = add i32 %88031503331, i32 %1846.load
+  88631523333 = ptradd ptr %1457, i32 %22492872
+  886.load31533334 = load i32 from ptr %88631523333
+  88831543335 = add i32 %1876.load, i32 %886.load31533334
+  89131553336 = ptradd ptr %1583, i32 %22492872
+  891.load31563337 = load i32 from ptr %89131553336
+  89331573338 = add i32 %88831543335, i32 %891.load31563337
+  89631583339 = ptradd ptr %1571, i32 %22492872
+  896.load31593340 = load i32 from ptr %89631583339
+  90031603341 = ptradd ptr %1463, i32 %22492872
+  900.load31613342 = load i32 from ptr %90031603341
+  90231623343 = add i32 %896.load31593340, i32 %900.load31613342
+  90431633344 = add i32 %90231623343, i32 %1924.load
+  90731643345 = ptradd ptr %1673, i32 %22492872
+  907.load31653346 = load i32 from ptr %90731643345
+  91131663347 = ptradd ptr %1589, i32 %22492872
+  911.load31673348 = load i32 from ptr %91131663347
+  91331683349 = add i32 %907.load31653346, i32 %911.load31673348
+  91531693350 = add i32 %91331683349, i32 %1950.load
+  91931703351 = ptradd ptr %1403, i32 %22492872
+  919.load31713352 = load i32 from ptr %91931703351
+  92131723353 = add i32 %1956.load, i32 %919.load31713352
+  92331733354 = add i32 %92131723353, i32 %1976.load
+  92731743355 = ptradd ptr %1373, i32 %22492872
+  927.load31753356 = load i32 from ptr %92731743355
+  92931763357 = add i32 %1984.load, i32 %927.load31753356
+  93231773358 = ptradd ptr %1313, i32 %22492872
+  932.load31783359 = load i32 from ptr %93231773358
+  93431793360 = add i32 %92931763357, i32 %932.load31783359
+  938.load31813362 = load i32 from ptr %1792
+  94031823363 = add i32 %2008.load, i32 %938.load31813362
+  94231833364 = add i32 %94031823363, i32 %1806.load
+  94431843365 = add i32 %94231833364, i32 %2046.load
+  store i32 %86331413322 to ptr %arr28552990
+  arr.index94631863367 = ptradd ptr %arr28552990, i32 4
+  store i32 %87131453326 to ptr %arr.index94631863367
+  arr.index94731883369 = ptradd ptr %arr28552990, i32 8
+  store i32 %88231513332 to ptr %arr.index94731883369
+  arr.index94831903371 = ptradd ptr %arr28552990, i32 12
+  store i32 %89331573338 to ptr %arr.index94831903371
+  arr.index94931923373 = ptradd ptr %arr28552990, i32 16
+  store i32 %90431633344 to ptr %arr.index94931923373
+  arr.index95031943375 = ptradd ptr %arr28552990, i32 20
+  store i32 %91531693350 to ptr %arr.index95031943375
+  arr.index95131963377 = ptradd ptr %arr28552990, i32 24
+  store i32 %92331733354 to ptr %arr.index95131963377
+  arr.index95231983379 = ptradd ptr %arr28552990, i32 28
+  store i32 %93431793360 to ptr %arr.index95231983379
+  arr.index95332003381 = ptradd ptr %arr28552990, i32 32
+  store i32 %94431843365 to ptr %arr.index95332003381
+  arr.index95432023383 = ptradd ptr %arr28552990, i32 36
+  store i32 0 to ptr %arr.index95432023383
+  95632043385 = icmp ne i32 %2046.load, i32 0
+  br i1 %95632043385, bb %params_mix.then957, bb %params_mix.else959_preheader
+params_fa40.else693_preheader:  pred(params_f40_i24.while.exit)
+  br bb %params_fa40.else693
+params_fa40.else693:  pred(params_fa40.else693, params_fa40.else693_preheader)
+  x1.loop235127213628 = phi [bb %params_fa40.else693, ptr %x2.loop235227203627, bb %params_fa40.else693_preheader, ptr %1077]
+  x2.loop235227203627 = phi [bb %params_fa40.else693, ptr %x3.loop235327193626, bb %params_fa40.else693_preheader, ptr %1083]
+  x3.loop235327193626 = phi [bb %params_fa40.else693, ptr %x4.loop235427183625, bb %params_fa40.else693_preheader, ptr %1089]
+  x4.loop235427183625 = phi [bb %params_fa40.else693, ptr %x5.loop235527173624, bb %params_fa40.else693_preheader, ptr %1095]
+  x5.loop235527173624 = phi [bb %params_fa40.else693, ptr %x6.loop235627163623, bb %params_fa40.else693_preheader, ptr %1101]
+  x6.loop235627163623 = phi [bb %params_fa40.else693, ptr %x7.loop235727153622, bb %params_fa40.else693_preheader, ptr %1107]
+  x7.loop235727153622 = phi [bb %params_fa40.else693, ptr %x8.loop235827143621, bb %params_fa40.else693_preheader, ptr %1113]
+  x8.loop235827143621 = phi [bb %params_fa40.else693, ptr %x9.loop235927133620, bb %params_fa40.else693_preheader, ptr %1119]
+  x9.loop235927133620 = phi [bb %params_fa40.else693, ptr %x10.loop236027123619, bb %params_fa40.else693_preheader, ptr %1125]
+  x10.loop236027123619 = phi [bb %params_fa40.else693, ptr %x11.loop236127113618, bb %params_fa40.else693_preheader, ptr %1131]
+  x11.loop236127113618 = phi [bb %params_fa40.else693, ptr %x12.loop236227103617, bb %params_fa40.else693_preheader, ptr %1137]
+  x12.loop236227103617 = phi [bb %params_fa40.else693, ptr %x13.loop236327093616, bb %params_fa40.else693_preheader, ptr %1143]
+  x13.loop236327093616 = phi [bb %params_fa40.else693, ptr %x14.loop236427083615, bb %params_fa40.else693_preheader, ptr %1149]
+  x14.loop236427083615 = phi [bb %params_fa40.else693, ptr %x15.loop236527073614, bb %params_fa40.else693_preheader, ptr %1155]
+  x15.loop236527073614 = phi [bb %params_fa40.else693, ptr %x16.loop236627063613, bb %params_fa40.else693_preheader, ptr %1161]
+  x16.loop236627063613 = phi [bb %params_fa40.else693, ptr %x17.loop236727053612, bb %params_fa40.else693_preheader, ptr %1167]
+  x17.loop236727053612 = phi [bb %params_fa40.else693, ptr %x18.loop236827043611, bb %params_fa40.else693_preheader, ptr %1173]
+  x18.loop236827043611 = phi [bb %params_fa40.else693, ptr %x19.loop236927033610, bb %params_fa40.else693_preheader, ptr %1179]
+  x19.loop236927033610 = phi [bb %params_fa40.else693, ptr %x20.loop237027023609, bb %params_fa40.else693_preheader, ptr %1185]
+  x20.loop237027023609 = phi [bb %params_fa40.else693, ptr %x21.loop237127013608, bb %params_fa40.else693_preheader, ptr %1191]
+  x21.loop237127013608 = phi [bb %params_fa40.else693, ptr %x22.loop237227003607, bb %params_fa40.else693_preheader, ptr %1197]
+  x22.loop237227003607 = phi [bb %params_fa40.else693, ptr %x23.loop237326993606, bb %params_fa40.else693_preheader, ptr %1203]
+  x23.loop237326993606 = phi [bb %params_fa40.else693, ptr %x24.loop237426983605, bb %params_fa40.else693_preheader, ptr %1209]
+  x24.loop237426983605 = phi [bb %params_fa40.else693, ptr %x25.loop237526973604, bb %params_fa40.else693_preheader, ptr %1215]
+  x25.loop237526973604 = phi [bb %params_fa40.else693, ptr %x26.loop237626963603, bb %params_fa40.else693_preheader, ptr %1221]
+  x26.loop237626963603 = phi [bb %params_fa40.else693, ptr %x27.loop237726953602, bb %params_fa40.else693_preheader, ptr %1227]
+  x27.loop237726953602 = phi [bb %params_fa40.else693, ptr %x28.loop237826943601, bb %params_fa40.else693_preheader, ptr %1233]
+  x28.loop237826943601 = phi [bb %params_fa40.else693, ptr %x29.loop237926933600, bb %params_fa40.else693_preheader, ptr %1239]
+  x29.loop237926933600 = phi [bb %params_fa40.else693, ptr %x30.loop238026923599, bb %params_fa40.else693_preheader, ptr %1245]
+  x30.loop238026923599 = phi [bb %params_fa40.else693, ptr %x31.loop238126913598, bb %params_fa40.else693_preheader, ptr %1251]
+  x31.loop238126913598 = phi [bb %params_fa40.else693, ptr %x32.loop238226903597, bb %params_fa40.else693_preheader, ptr %1257]
+  x32.loop238226903597 = phi [bb %params_fa40.else693, ptr %x33.loop238326893596, bb %params_fa40.else693_preheader, ptr %1263]
+  x33.loop238326893596 = phi [bb %params_fa40.else693, ptr %x34.loop238426883595, bb %params_fa40.else693_preheader, ptr %1269]
+  x34.loop238426883595 = phi [bb %params_fa40.else693, ptr %x35.loop238526873594, bb %params_fa40.else693_preheader, ptr %1275]
+  x35.loop238526873594 = phi [bb %params_fa40.else693, ptr %x36.loop238626863593, bb %params_fa40.else693_preheader, ptr %1281]
+  x36.loop238626863593 = phi [bb %params_fa40.else693, ptr %x37.loop238726853592, bb %params_fa40.else693_preheader, ptr %1287]
+  x37.loop238726853592 = phi [bb %params_fa40.else693, ptr %x38.loop238826843591, bb %params_fa40.else693_preheader, ptr %1293]
+  x38.loop238826843591 = phi [bb %params_fa40.else693, ptr %x39.loop238926833590, bb %params_fa40.else693_preheader, ptr %1299]
+  x39.loop238926833590 = phi [bb %params_fa40.else693, ptr %arr4762680, bb %params_fa40.else693_preheader, ptr %1305]
+  4792725 = ptradd ptr %x1.loop235127213628, i32 %20682672
+  479.load2726 = load float from ptr %4792725
+  4832727 = ptradd ptr %x2.loop235227203627, i32 %20682672
+  483.load2728 = load float from ptr %4832727
+  4852729 = fadd float %479.load2726, float %483.load2728
+  4882730 = ptradd ptr %x3.loop235327193626, i32 %20682672
+  488.load2731 = load float from ptr %4882730
+  4902732 = fadd float %4852729, float %488.load2731
+  4932733 = ptradd ptr %x4.loop235427183625, i32 %20682672
+  493.load2734 = load float from ptr %4932733
+  4952735 = fadd float %4902732, float %493.load2734
+  4982736 = ptradd ptr %x5.loop235527173624, i32 %20682672
+  498.load2737 = load float from ptr %4982736
+  5022738 = ptradd ptr %x6.loop235627163623, i32 %20682672
+  502.load2739 = load float from ptr %5022738
+  5042740 = fadd float %498.load2737, float %502.load2739
+  5072741 = ptradd ptr %x7.loop235727153622, i32 %20682672
+  507.load2742 = load float from ptr %5072741
+  5092743 = fadd float %5042740, float %507.load2742
+  5122744 = ptradd ptr %x8.loop235827143621, i32 %20682672
+  512.load2745 = load float from ptr %5122744
+  5142746 = fadd float %5092743, float %512.load2745
+  5172747 = ptradd ptr %x9.loop235927133620, i32 %20682672
+  517.load2748 = load float from ptr %5172747
+  5212749 = ptradd ptr %x10.loop236027123619, i32 %20682672
+  521.load2750 = load float from ptr %5212749
+  5232751 = fadd float %517.load2748, float %521.load2750
+  5262752 = ptradd ptr %x11.loop236127113618, i32 %20682672
+  526.load2753 = load float from ptr %5262752
+  5282754 = fadd float %5232751, float %526.load2753
+  5312755 = ptradd ptr %x12.loop236227103617, i32 %20682672
+  531.load2756 = load float from ptr %5312755
+  5332757 = fadd float %5282754, float %531.load2756
+  5362758 = ptradd ptr %x13.loop236327093616, i32 %20682672
+  536.load2759 = load float from ptr %5362758
+  5402760 = ptradd ptr %x14.loop236427083615, i32 %20682672
+  540.load2761 = load float from ptr %5402760
+  5422762 = fadd float %536.load2759, float %540.load2761
+  5452763 = ptradd ptr %x15.loop236527073614, i32 %20682672
+  545.load2764 = load float from ptr %5452763
+  5472765 = fadd float %5422762, float %545.load2764
+  5502766 = ptradd ptr %x16.loop236627063613, i32 %20682672
+  550.load2767 = load float from ptr %5502766
+  5522768 = fadd float %5472765, float %550.load2767
+  5552769 = ptradd ptr %x17.loop236727053612, i32 %20682672
+  555.load2770 = load float from ptr %5552769
+  5592771 = ptradd ptr %x18.loop236827043611, i32 %20682672
+  559.load2772 = load float from ptr %5592771
+  5612773 = fadd float %555.load2770, float %559.load2772
+  5642774 = ptradd ptr %x19.loop236927033610, i32 %20682672
+  564.load2775 = load float from ptr %5642774
+  5662776 = fadd float %5612773, float %564.load2775
+  5692777 = ptradd ptr %x20.loop237027023609, i32 %20682672
+  569.load2778 = load float from ptr %5692777
+  5712779 = fadd float %5662776, float %569.load2778
+  5742780 = ptradd ptr %x21.loop237127013608, i32 %20682672
+  574.load2781 = load float from ptr %5742780
+  5782782 = ptradd ptr %x22.loop237227003607, i32 %20682672
+  578.load2783 = load float from ptr %5782782
+  5802784 = fadd float %574.load2781, float %578.load2783
+  5832785 = ptradd ptr %x23.loop237326993606, i32 %20682672
+  583.load2786 = load float from ptr %5832785
+  5852787 = fadd float %5802784, float %583.load2786
+  5882788 = ptradd ptr %x24.loop237426983605, i32 %20682672
+  588.load2789 = load float from ptr %5882788
+  5902790 = fadd float %5852787, float %588.load2789
+  5932791 = ptradd ptr %x25.loop237526973604, i32 %20682672
+  593.load2792 = load float from ptr %5932791
+  5972793 = ptradd ptr %x26.loop237626963603, i32 %20682672
+  597.load2794 = load float from ptr %5972793
+  5992795 = fadd float %593.load2792, float %597.load2794
+  6022796 = ptradd ptr %x27.loop237726953602, i32 %20682672
+  602.load2797 = load float from ptr %6022796
+  6042798 = fadd float %5992795, float %602.load2797
+  6072799 = ptradd ptr %x28.loop237826943601, i32 %20682672
+  607.load2800 = load float from ptr %6072799
+  6092801 = fadd float %6042798, float %607.load2800
+  6122802 = ptradd ptr %x29.loop237926933600, i32 %20682672
+  612.load2803 = load float from ptr %6122802
+  6162804 = ptradd ptr %x30.loop238026923599, i32 %20682672
+  616.load2805 = load float from ptr %6162804
+  6182806 = fadd float %612.load2803, float %616.load2805
+  6212807 = ptradd ptr %x31.loop238126913598, i32 %20682672
+  621.load2808 = load float from ptr %6212807
+  6232809 = fadd float %6182806, float %621.load2808
+  6262810 = ptradd ptr %x32.loop238226903597, i32 %20682672
+  626.load2811 = load float from ptr %6262810
+  6282812 = fadd float %6232809, float %626.load2811
+  6312813 = ptradd ptr %x33.loop238326893596, i32 %20682672
+  631.load2814 = load float from ptr %6312813
+  6352815 = ptradd ptr %x34.loop238426883595, i32 %20682672
+  635.load2816 = load float from ptr %6352815
+  6372817 = fadd float %631.load2814, float %635.load2816
+  6402818 = ptradd ptr %x35.loop238526873594, i32 %20682672
+  640.load2819 = load float from ptr %6402818
+  6422820 = fadd float %6372817, float %640.load2819
+  6452821 = ptradd ptr %x36.loop238626863593, i32 %20682672
+  645.load2822 = load float from ptr %6452821
+  6472823 = fadd float %6422820, float %645.load2822
+  6502824 = ptradd ptr %x37.loop238726853592, i32 %20682672
+  650.load2825 = load float from ptr %6502824
+  6542826 = ptradd ptr %x38.loop238826843591, i32 %20682672
+  654.load2827 = load float from ptr %6542826
+  6562828 = fadd float %650.load2825, float %654.load2827
+  6592829 = ptradd ptr %x39.loop238926833590, i32 %20682672
+  659.load2830 = load float from ptr %6592829
+  6612831 = fadd float %6562828, float %659.load2830
+  6642832 = ptradd ptr %arr4762680, i32 %20682672
+  664.load2833 = load float from ptr %6642832
+  6662834 = fadd float %6612831, float %664.load2833
+  store float %4952735 to ptr %arr4762680
+  store float %5142746 to ptr %arr.index66828363562
+  store float %5332757 to ptr %arr.index66928383564
+  store float %5522768 to ptr %arr.index67028403566
+  store float %5712779 to ptr %arr.index67128423568
+  store float %5902790 to ptr %arr.index67228443570
+  store float %6092801 to ptr %arr.index67328463572
+  store float %6282812 to ptr %arr.index67428483574
+  store float %6472823 to ptr %arr.index67528503576
+  store float %6662834 to ptr %arr.index67628523578
+  679.load2857 = load float from ptr %6642832
+  6822859 = fcmp one float %679.load2857, float %42292437613803
+  6832860 = zext i1 %6822859 to i32
+  6842861 = icmp ne i32 %6832860, i32 0
+  6852862 = zext i1 %6842861 to i32
+  6862863 = si2f i32 %6852862 to float
+  6872864 = fcmp one float %6862863, float 0.000000
+  6882865 = zext i1 %6872864 to i32
+  6892866 = si2f i32 %6882865 to float
+  6902867 = fcmp one float %6892866, float 0.000000
+  br i1 %6902867, bb %params_fa40.then691, bb %params_fa40.else693
+params_f40.then:  pred(params_f40.else, while.exit1058)
+  42292437613803 = phi [bb %params_f40.else, float %4229243761, bb %while.exit1058, float %4229243761]
+  1074.load3802 = phi [bb %params_f40.else, float %x1.loop239229223842, bb %while.exit1058, float %1074.load]
+  1080.load3801 = phi [bb %params_f40.else, float %x2.loop239329213841, bb %while.exit1058, float %1080.load]
+  1086.load3800 = phi [bb %params_f40.else, float %x3.loop239429203840, bb %while.exit1058, float %1086.load]
+  1092.load3799 = phi [bb %params_f40.else, float %x4.loop239529193839, bb %while.exit1058, float %1092.load]
+  1098.load3798 = phi [bb %params_f40.else, float %x5.loop239629183838, bb %while.exit1058, float %1098.load]
+  1104.load3797 = phi [bb %params_f40.else, float %x6.loop239729173837, bb %while.exit1058, float %1104.load]
+  1110.load3796 = phi [bb %params_f40.else, float %x7.loop239829163836, bb %while.exit1058, float %1110.load]
+  1116.load3795 = phi [bb %params_f40.else, float %x8.loop239929153835, bb %while.exit1058, float %1116.load]
+  1122.load3794 = phi [bb %params_f40.else, float %x9.loop240029143834, bb %while.exit1058, float %1122.load]
+  1128.load3793 = phi [bb %params_f40.else, float %x10.loop240129133833, bb %while.exit1058, float %1128.load]
+  1134.load3792 = phi [bb %params_f40.else, float %x11.loop240229123832, bb %while.exit1058, float %1134.load]
+  1140.load3791 = phi [bb %params_f40.else, float %x12.loop240329113831, bb %while.exit1058, float %1140.load]
+  1146.load3790 = phi [bb %params_f40.else, float %x13.loop240429103830, bb %while.exit1058, float %1146.load]
+  1152.load3789 = phi [bb %params_f40.else, float %x14.loop240529093829, bb %while.exit1058, float %1152.load]
+  1158.load3788 = phi [bb %params_f40.else, float %x15.loop240629083828, bb %while.exit1058, float %1158.load]
+  1164.load3787 = phi [bb %params_f40.else, float %x16.loop240729073827, bb %while.exit1058, float %1164.load]
+  1170.load3786 = phi [bb %params_f40.else, float %x17.loop240829063826, bb %while.exit1058, float %1170.load]
+  1176.load3785 = phi [bb %params_f40.else, float %x18.loop240929053825, bb %while.exit1058, float %1176.load]
+  1182.load3784 = phi [bb %params_f40.else, float %x19.loop241029043824, bb %while.exit1058, float %1182.load]
+  1188.load3783 = phi [bb %params_f40.else, float %x20.loop241129033823, bb %while.exit1058, float %1188.load]
+  1194.load3782 = phi [bb %params_f40.else, float %x21.loop241229023822, bb %while.exit1058, float %1194.load]
+  1200.load3781 = phi [bb %params_f40.else, float %x22.loop241329013821, bb %while.exit1058, float %1200.load]
+  1206.load3780 = phi [bb %params_f40.else, float %x23.loop241429003820, bb %while.exit1058, float %1206.load]
+  1212.load3779 = phi [bb %params_f40.else, float %x24.loop241528993819, bb %while.exit1058, float %1212.load]
+  1218.load3778 = phi [bb %params_f40.else, float %x25.loop241628983818, bb %while.exit1058, float %1218.load]
+  1224.load3777 = phi [bb %params_f40.else, float %x26.loop241728973817, bb %while.exit1058, float %1224.load]
+  1230.load3776 = phi [bb %params_f40.else, float %x27.loop241828963816, bb %while.exit1058, float %1230.load]
+  1236.load3775 = phi [bb %params_f40.else, float %x28.loop241928953815, bb %while.exit1058, float %1236.load]
+  1242.load3774 = phi [bb %params_f40.else, float %x29.loop242028943814, bb %while.exit1058, float %1242.load]
+  1248.load3773 = phi [bb %params_f40.else, float %x30.loop242128933813, bb %while.exit1058, float %1248.load]
+  1254.load3772 = phi [bb %params_f40.else, float %x31.loop242228923812, bb %while.exit1058, float %1254.load]
+  1260.load3771 = phi [bb %params_f40.else, float %x32.loop242328913811, bb %while.exit1058, float %1260.load]
+  1266.load3770 = phi [bb %params_f40.else, float %x33.loop242428903810, bb %while.exit1058, float %1266.load]
+  1272.load3769 = phi [bb %params_f40.else, float %x34.loop242528893809, bb %while.exit1058, float %1272.load]
+  1278.load3768 = phi [bb %params_f40.else, float %x35.loop242628883808, bb %while.exit1058, float %1278.load]
+  1284.load3767 = phi [bb %params_f40.else, float %x36.loop242728873807, bb %while.exit1058, float %1284.load]
+  1290.load3766 = phi [bb %params_f40.else, float %x37.loop242828863806, bb %while.exit1058, float %1290.load]
+  1296.load3765 = phi [bb %params_f40.else, float %x38.loop242928853805, bb %while.exit1058, float %1296.load]
+  1302.load3764 = phi [bb %params_f40.else, float %x39.loop243028843804, bb %while.exit1058, float %1302.load]
+  1308.load3763 = phi [bb %params_f40.else, float %1762985, bb %while.exit1058, float %1308.load]
+  502928 = fadd float %1074.load3802, float %1080.load3801
+  522929 = fadd float %502928, float %1086.load3800
+  542930 = fadd float %522929, float %1092.load3799
+  572931 = fadd float %1098.load3798, float %1104.load3797
+  592932 = fadd float %572931, float %1110.load3796
+  612933 = fadd float %592932, float %1116.load3795
+  642934 = fadd float %1122.load3794, float %1128.load3793
+  662935 = fadd float %642934, float %1134.load3792
+  682936 = fadd float %662935, float %1140.load3791
+  712937 = fadd float %1146.load3790, float %1152.load3789
+  732938 = fadd float %712937, float %1158.load3788
+  752939 = fadd float %732938, float %1164.load3787
+  782940 = fadd float %1170.load3786, float %1176.load3785
+  802941 = fadd float %782940, float %1182.load3784
+  822942 = fadd float %802941, float %1188.load3783
+  852943 = fadd float %1194.load3782, float %1200.load3781
+  872944 = fadd float %852943, float %1206.load3780
+  892945 = fadd float %872944, float %1212.load3779
+  922946 = fadd float %1218.load3778, float %1224.load3777
+  942947 = fadd float %922946, float %1230.load3776
+  962948 = fadd float %942947, float %1236.load3775
+  992949 = fadd float %1242.load3774, float %1248.load3773
+  1012950 = fadd float %992949, float %1254.load3772
+  1032951 = fadd float %1012950, float %1260.load3771
+  1062952 = fadd float %1266.load3770, float %1272.load3769
+  1082953 = fadd float %1062952, float %1278.load3768
+  1102954 = fadd float %1082953, float %1284.load3767
+  1132955 = fadd float %1290.load3766, float %1296.load3765
+  1152956 = fadd float %1132955, float %1302.load3764
+  1172957 = fadd float %1152956, float %1308.load3763
+  store float %542930 to ptr %arr2881
+  arr.index1192959 = ptradd ptr %arr2881, i32 4
+  store float %612933 to ptr %arr.index1192959
+  arr.index1202961 = ptradd ptr %arr2881, i32 8
+  store float %682936 to ptr %arr.index1202961
+  arr.index1212963 = ptradd ptr %arr2881, i32 12
+  store float %752939 to ptr %arr.index1212963
+  arr.index1222965 = ptradd ptr %arr2881, i32 16
+  store float %822942 to ptr %arr.index1222965
+  arr.index1232967 = ptradd ptr %arr2881, i32 20
+  store float %892945 to ptr %arr.index1232967
+  arr.index1242969 = ptradd ptr %arr2881, i32 24
+  store float %962948 to ptr %arr.index1242969
+  arr.index1252971 = ptradd ptr %arr2881, i32 28
+  store float %1032951 to ptr %arr.index1252971
+  arr.index1262973 = ptradd ptr %arr2881, i32 32
+  store float %1102954 to ptr %arr.index1262973
+  arr.index1272975 = ptradd ptr %arr2881, i32 36
+  store float %1172957 to ptr %arr.index1272975
+  call void putfarray(i32 10, ptr %arr2881)
+  k.load2978 = load i32 from ptr @k
+  22502979 = shl i32 %k.load2978, i32 2
+  1312980 = ptradd ptr %arr2881, i32 %22502979
+  131.load2981 = load float from ptr %1312980
   1313 = ptradd ptr %arr21037, i32 276
-  k.load1314 = load i32 from ptr @k
-  2109 = shl i32 %k.load1314, i32 2
-  1316 = ptradd ptr %1313, i32 %2109
+  1316 = ptradd ptr %1313, i32 %22502979
   1316.load = load i32 from ptr %1316
   1319 = ptradd ptr %arr21037, i32 24
-  1322 = ptradd ptr %1319, i32 %2109
+  1322 = ptradd ptr %1319, i32 %22502979
   1322.load = load i32 from ptr %1322
   1325 = ptradd ptr %arr21037, i32 72
-  1328 = ptradd ptr %1325, i32 %2109
+  1328 = ptradd ptr %1325, i32 %22502979
   1328.load = load i32 from ptr %1328
-  1334 = ptradd ptr %1095, i32 %2109
+  1334 = ptradd ptr %1095, i32 %22502979
   1334.load = load float from ptr %1334
   1337 = ptradd ptr %arr21037, i32 12
-  1340 = ptradd ptr %1337, i32 %2109
+  1340 = ptradd ptr %1337, i32 %22502979
   1340.load = load i32 from ptr %1340
   1343 = ptradd ptr %arr21037, i32 48
-  1346 = ptradd ptr %1343, i32 %2109
+  1346 = ptradd ptr %1343, i32 %22502979
   1346.load = load i32 from ptr %1346
   1349 = ptradd ptr %arr21037, i32 60
-  1352 = ptradd ptr %1349, i32 %2109
+  1352 = ptradd ptr %1349, i32 %22502979
   1352.load = load i32 from ptr %1352
-  1358 = ptradd ptr %1119, i32 %2109
+  1358 = ptradd ptr %1119, i32 %22502979
   1358.load = load float from ptr %1358
-  1364 = ptradd ptr %1161, i32 %2109
+  1364 = ptradd ptr %1161, i32 %22502979
   1364.load = load float from ptr %1364
-  1370 = ptradd ptr %1113, i32 %2109
+  1370 = ptradd ptr %1113, i32 %22502979
   1370.load = load float from ptr %1370
   1373 = ptradd ptr %arr21037, i32 264
-  1376 = ptradd ptr %1373, i32 %2109
+  1376 = ptradd ptr %1373, i32 %22502979
   1376.load = load i32 from ptr %1376
-  1382 = ptradd ptr %1089, i32 %2109
+  1382 = ptradd ptr %1089, i32 %22502979
   1382.load = load float from ptr %1382
-  1388 = ptradd ptr %1239, i32 %2109
+  1388 = ptradd ptr %1239, i32 %22502979
   1388.load = load float from ptr %1388
-  1394 = ptradd ptr %arr21037, i32 %2109
+  1394 = ptradd ptr %arr21037, i32 %22502979
   1394.load = load i32 from ptr %1394
-  1400 = ptradd ptr %1293, i32 %2109
+  1400 = ptradd ptr %1293, i32 %22502979
   1400.load = load float from ptr %1400
   1403 = ptradd ptr %arr21037, i32 228
-  1406 = ptradd ptr %1403, i32 %2109
+  1406 = ptradd ptr %1403, i32 %22502979
   1406.load = load i32 from ptr %1406
-  1412 = ptradd ptr %1251, i32 %2109
+  1412 = ptradd ptr %1251, i32 %22502979
   1412.load = load float from ptr %1412
-  1418 = ptradd ptr %1143, i32 %2109
+  1418 = ptradd ptr %1143, i32 %22502979
   1418.load = load float from ptr %1418
-  1424 = ptradd ptr %1077, i32 %2109
+  1424 = ptradd ptr %1077, i32 %22502979
   1424.load = load float from ptr %1424
-  1430 = ptradd ptr %1137, i32 %2109
+  1430 = ptradd ptr %1137, i32 %22502979
   1430.load = load float from ptr %1430
-  1436 = ptradd ptr %1299, i32 %2109
+  1436 = ptradd ptr %1299, i32 %22502979
   1436.load = load float from ptr %1436
-  1442 = ptradd ptr %1107, i32 %2109
+  1442 = ptradd ptr %1107, i32 %22502979
   1442.load = load float from ptr %1442
   1445 = ptradd ptr %arr21037, i32 84
-  1448 = ptradd ptr %1445, i32 %2109
+  1448 = ptradd ptr %1445, i32 %22502979
   1448.load = load i32 from ptr %1448
-  1454 = ptradd ptr %1263, i32 %2109
+  1454 = ptradd ptr %1263, i32 %22502979
   1454.load = load float from ptr %1454
   1457 = ptradd ptr %arr21037, i32 120
-  1460 = ptradd ptr %1457, i32 %2109
+  1460 = ptradd ptr %1457, i32 %22502979
   1460.load = load i32 from ptr %1460
   1463 = ptradd ptr %arr21037, i32 156
-  1466 = ptradd ptr %1463, i32 %2109
+  1466 = ptradd ptr %1463, i32 %22502979
   1466.load = load i32 from ptr %1466
-  1472 = ptradd ptr %1191, i32 %2109
+  1472 = ptradd ptr %1191, i32 %22502979
   1472.load = load float from ptr %1472
-  1478 = ptradd ptr %1269, i32 %2109
+  1478 = ptradd ptr %1269, i32 %22502979
   1478.load = load float from ptr %1478
-  1484 = ptradd ptr %1209, i32 %2109
+  1484 = ptradd ptr %1209, i32 %22502979
   1484.load = load float from ptr %1484
-  1490 = ptradd ptr %1125, i32 %2109
+  1490 = ptradd ptr %1125, i32 %22502979
   1490.load = load float from ptr %1490
-  1496 = ptradd ptr %1221, i32 %2109
+  1496 = ptradd ptr %1221, i32 %22502979
   1496.load = load float from ptr %1496
   1499 = ptradd ptr %arr21037, i32 96
-  1502 = ptradd ptr %1499, i32 %2109
+  1502 = ptradd ptr %1499, i32 %22502979
   1502.load = load i32 from ptr %1502
-  1508 = ptradd ptr %1305, i32 %2109
+  1508 = ptradd ptr %1305, i32 %22502979
   1508.load = load float from ptr %1508
   1511 = ptradd ptr %arr21037, i32 204
-  1514 = ptradd ptr %1511, i32 %2109
+  1514 = ptradd ptr %1511, i32 %22502979
   1514.load = load i32 from ptr %1514
-  1520 = ptradd ptr %1197, i32 %2109
+  1520 = ptradd ptr %1197, i32 %22502979
   1520.load = load float from ptr %1520
-  1526 = ptradd ptr %1167, i32 %2109
+  1526 = ptradd ptr %1167, i32 %22502979
   1526.load = load float from ptr %1526
-  1532 = ptradd ptr %1101, i32 %2109
+  1532 = ptradd ptr %1101, i32 %22502979
   1532.load = load float from ptr %1532
-  1538 = ptradd ptr %1275, i32 %2109
+  1538 = ptradd ptr %1275, i32 %22502979
   1538.load = load float from ptr %1538
   1541 = ptradd ptr %arr21037, i32 216
-  1544 = ptradd ptr %1541, i32 %2109
+  1544 = ptradd ptr %1541, i32 %22502979
   1544.load = load i32 from ptr %1544
   1547 = ptradd ptr %arr21037, i32 108
-  1550 = ptradd ptr %1547, i32 %2109
+  1550 = ptradd ptr %1547, i32 %22502979
   1550.load = load i32 from ptr %1550
-  1556 = ptradd ptr %1155, i32 %2109
+  1556 = ptradd ptr %1155, i32 %22502979
   1556.load = load float from ptr %1556
-  1562 = ptradd ptr %1131, i32 %2109
+  1562 = ptradd ptr %1131, i32 %22502979
   1562.load = load float from ptr %1562
-  1568 = ptradd ptr %arr1036, i32 %2109
+  1568 = ptradd ptr %arr1036, i32 %22502979
   1568.load = load float from ptr %1568
   1571 = ptradd ptr %arr21037, i32 144
-  1574 = ptradd ptr %1571, i32 %2109
+  1574 = ptradd ptr %1571, i32 %22502979
   1574.load = load i32 from ptr %1574
-  1580 = ptradd ptr %1257, i32 %2109
+  1580 = ptradd ptr %1257, i32 %22502979
   1580.load = load float from ptr %1580
   1583 = ptradd ptr %arr21037, i32 132
-  1586 = ptradd ptr %1583, i32 %2109
+  1586 = ptradd ptr %1583, i32 %22502979
   1586.load = load i32 from ptr %1586
   1589 = ptradd ptr %arr21037, i32 192
-  1592 = ptradd ptr %1589, i32 %2109
+  1592 = ptradd ptr %1589, i32 %22502979
   1592.load = load i32 from ptr %1592
-  1598 = ptradd ptr %1233, i32 %2109
+  1598 = ptradd ptr %1233, i32 %22502979
   1598.load = load float from ptr %1598
-  1604 = ptradd ptr %1215, i32 %2109
+  1604 = ptradd ptr %1215, i32 %22502979
   1604.load = load float from ptr %1604
-  1610 = ptradd ptr %1149, i32 %2109
+  1610 = ptradd ptr %1149, i32 %22502979
   1610.load = load float from ptr %1610
-  1616 = ptradd ptr %1245, i32 %2109
+  1616 = ptradd ptr %1245, i32 %22502979
   1616.load = load float from ptr %1616
   1619 = ptradd ptr %arr21037, i32 36
-  1622 = ptradd ptr %1619, i32 %2109
+  1622 = ptradd ptr %1619, i32 %22502979
   1622.load = load i32 from ptr %1622
   1625 = ptradd ptr %arr21037, i32 252
-  1628 = ptradd ptr %1625, i32 %2109
+  1628 = ptradd ptr %1625, i32 %22502979
   1628.load = load i32 from ptr %1628
   1631 = ptradd ptr %arr21037, i32 240
-  1634 = ptradd ptr %1631, i32 %2109
+  1634 = ptradd ptr %1631, i32 %22502979
   1634.load = load i32 from ptr %1634
-  1640 = ptradd ptr %1179, i32 %2109
+  1640 = ptradd ptr %1179, i32 %22502979
   1640.load = load float from ptr %1640
-  1646 = ptradd ptr %1185, i32 %2109
+  1646 = ptradd ptr %1185, i32 %22502979
   1646.load = load float from ptr %1646
-  1652 = ptradd ptr %1203, i32 %2109
+  1652 = ptradd ptr %1203, i32 %22502979
   1652.load = load float from ptr %1652
-  1658 = ptradd ptr %1227, i32 %2109
+  1658 = ptradd ptr %1227, i32 %22502979
   1658.load = load float from ptr %1658
-  1664 = ptradd ptr %1287, i32 %2109
+  1664 = ptradd ptr %1287, i32 %22502979
   1664.load = load float from ptr %1664
-  1670 = ptradd ptr %1173, i32 %2109
+  1670 = ptradd ptr %1173, i32 %22502979
   1670.load = load float from ptr %1670
   1673 = ptradd ptr %arr21037, i32 180
-  1676 = ptradd ptr %1673, i32 %2109
+  1676 = ptradd ptr %1673, i32 %22502979
   1676.load = load i32 from ptr %1676
-  1682 = ptradd ptr %1083, i32 %2109
+  1682 = ptradd ptr %1083, i32 %22502979
   1682.load = load float from ptr %1682
   1685 = ptradd ptr %arr21037, i32 168
-  1688 = ptradd ptr %1685, i32 %2109
+  1688 = ptradd ptr %1685, i32 %22502979
   1688.load = load i32 from ptr %1688
-  1694 = ptradd ptr %1281, i32 %2109
+  1694 = ptradd ptr %1281, i32 %22502979
   1694.load = load float from ptr %1694
-  1696 = call float params_f40_i24(i32 %1316.load, i32 %1322.load, i32 %1328.load, float %1334.load, i32 %1340.load, i32 %1346.load, i32 %1352.load, float %1358.load, float %1364.load, float %1370.load, i32 %1376.load, float %1382.load, float %1388.load, i32 %1394.load, float %1400.load, i32 %1406.load, float %1412.load, float %1418.load, float %1424.load, float %1430.load, float %1436.load, float %1442.load, i32 %1448.load, float %1454.load, i32 %1460.load, i32 %1466.load, float %1472.load, float %1478.load, float %1484.load, float %1490.load, float %1496.load, i32 %1502.load, float %1508.load, i32 %1514.load, float %1520.load, float %1526.load, float %1532.load, float %1538.load, i32 %1544.load, i32 %1550.load, float %1556.load, float %1562.load, float %1568.load, i32 %1574.load, float %1580.load, i32 %1586.load, i32 %1592.load, float %1598.load, float %1604.load, float %1610.load, float %1616.load, i32 %1622.load, i32 %1628.load, i32 %1634.load, float %1640.load, float %1646.load, float %1652.load, float %1658.load, float %1664.load, float %1670.load, i32 %1676.load, float %1682.load, i32 %1688.load, float %1694.load)
-  1778 = call float params_fa40(ptr %arr1036, ptr %1077, ptr %1083, ptr %1089, ptr %1095, ptr %1101, ptr %1107, ptr %1113, ptr %1119, ptr %1125, ptr %1131, ptr %1137, ptr %1143, ptr %1149, ptr %1155, ptr %1161, ptr %1167, ptr %1173, ptr %1179, ptr %1185, ptr %1191, ptr %1197, ptr %1203, ptr %1209, ptr %1215, ptr %1221, ptr %1227, ptr %1233, ptr %1239, ptr %1245, ptr %1251, ptr %1257, ptr %1263, ptr %1269, ptr %1275, ptr %1281, ptr %1287, ptr %1293, ptr %1299, ptr %1305)
-  k.load1782 = load i32 from ptr @k
-  2173 = shl i32 %k.load1782, i32 2
-  1784 = ptradd ptr %arr1036, i32 %2173
-  1784.load = load float from ptr %1784
-  1792 = ptradd ptr %1337, i32 %2173
-  1792.load = load i32 from ptr %1792
-  1800 = ptradd ptr %1083, i32 %2173
-  1800.load = load float from ptr %1800
-  1806 = ptradd ptr %1319, i32 %2173
-  1806.load = load i32 from ptr %1806
-  1812 = ptradd ptr %1089, i32 %2173
-  1812.load = load float from ptr %1812
-  1818 = ptradd ptr %1095, i32 %2173
-  1818.load = load float from ptr %1818
-  1828 = ptradd ptr %1343, i32 %2173
-  1828.load = load i32 from ptr %1828
-  1834 = ptradd ptr %1349, i32 %2173
-  1834.load = load i32 from ptr %1834
-  1846 = ptradd ptr %1499, i32 %2173
-  1846.load = load i32 from ptr %1846
-  1856 = ptradd ptr %1125, i32 %2173
-  1856.load = load float from ptr %1856
-  1862 = ptradd ptr %1131, i32 %2173
-  1862.load = load float from ptr %1862
-  1868 = ptradd ptr %1137, i32 %2173
-  1868.load = load float from ptr %1868
-  1876 = ptradd ptr %1547, i32 %2173
-  1876.load = load i32 from ptr %1876
-  1882 = ptradd ptr %1149, i32 %2173
-  1882.load = load float from ptr %1882
-  1888 = ptradd ptr %1155, i32 %2173
-  1888.load = load float from ptr %1888
-  1894 = ptradd ptr %1161, i32 %2173
-  1894.load = load float from ptr %1894
-  1910 = ptradd ptr %1179, i32 %2173
-  1910.load = load float from ptr %1910
-  1916 = ptradd ptr %1185, i32 %2173
-  1916.load = load float from ptr %1916
-  1924 = ptradd ptr %1685, i32 %2173
-  1924.load = load i32 from ptr %1924
-  1934 = ptradd ptr %1203, i32 %2173
-  1934.load = load float from ptr %1934
-  1940 = ptradd ptr %1209, i32 %2173
-  1940.load = load float from ptr %1940
-  1950 = ptradd ptr %1511, i32 %2173
-  1950.load = load i32 from ptr %1950
-  1956 = ptradd ptr %1541, i32 %2173
-  1956.load = load i32 from ptr %1956
-  1962 = ptradd ptr %1215, i32 %2173
-  1962.load = load float from ptr %1962
-  1968 = ptradd ptr %1221, i32 %2173
-  1968.load = load float from ptr %1968
-  1976 = ptradd ptr %1631, i32 %2173
-  1976.load = load i32 from ptr %1976
-  1984 = ptradd ptr %1625, i32 %2173
-  1984.load = load i32 from ptr %1984
-  1994 = ptradd ptr %1233, i32 %2173
-  1994.load = load float from ptr %1994
-  2000 = ptradd ptr %1239, i32 %2173
-  2000.load = load float from ptr %2000
-  2008 = ptradd ptr %arr21037, i32 %2173
-  2008.load = load i32 from ptr %2008
-  2018 = ptradd ptr %1257, i32 %2173
-  2018.load = load float from ptr %2018
-  2030 = ptradd ptr %1263, i32 %2173
-  2030.load = load float from ptr %2030
-  2040 = ptradd ptr %1281, i32 %2173
-  2040.load = load float from ptr %2040
-  2046 = ptradd ptr %1619, i32 %2173
-  2046.load = load i32 from ptr %2046
-  2048 = call i32 params_mix(float %1784.load, ptr %arr21037, i32 %1792.load, ptr %1077, float %1800.load, i32 %1806.load, float %1812.load, float %1818.load, ptr %1101, ptr %1619, i32 %1828.load, i32 %1834.load, ptr %1107, ptr %1325, ptr %1445, i32 %1846.load, ptr %1113, ptr %1119, float %1856.load, float %1862.load, float %1868.load, ptr %1143, i32 %1876.load, float %1882.load, float %1888.load, float %1894.load, ptr %1457, ptr %1167, ptr %1583, ptr %1571, ptr %1173, float %1910.load, float %1916.load, ptr %1463, i32 %1924.load, ptr %1191, ptr %1197, float %1934.load, float %1940.load, ptr %1673, ptr %1589, i32 %1950.load, i32 %1956.load, float %1962.load, float %1968.load, ptr %1403, i32 %1976.load, ptr %1227, i32 %1984.load, ptr %1373, ptr %1313, float %1994.load, float %2000.load, ptr %1245, i32 %2008.load, ptr %1337, ptr %1251, float %2018.load, i32 %1806.load, float %2030.load, ptr %1269, ptr %1275, float %2040.load, i32 %2046.load)
-  call void putfloat(float %1310)
+  24425663632 = icmp ne i32 %1316.load, i32 0
+  br i1 %24425663632, bb %params_f40_i24.then245, bb %params_f40_i24.else247_preheader
+params_f40.else_preheader:  pred(while.exit1058)
+  br bb %params_f40.else
+params_f40.else:  pred(params_f40.else, params_f40.else_preheader)
+  x0.loop239129233843 = phi [bb %params_f40.else, float %x1.loop239229223842, bb %params_f40.else_preheader, float %1074.load]
+  x1.loop239229223842 = phi [bb %params_f40.else, float %x2.loop239329213841, bb %params_f40.else_preheader, float %1080.load]
+  x2.loop239329213841 = phi [bb %params_f40.else, float %x3.loop239429203840, bb %params_f40.else_preheader, float %1086.load]
+  x3.loop239429203840 = phi [bb %params_f40.else, float %x4.loop239529193839, bb %params_f40.else_preheader, float %1092.load]
+  x4.loop239529193839 = phi [bb %params_f40.else, float %x5.loop239629183838, bb %params_f40.else_preheader, float %1098.load]
+  x5.loop239629183838 = phi [bb %params_f40.else, float %x6.loop239729173837, bb %params_f40.else_preheader, float %1104.load]
+  x6.loop239729173837 = phi [bb %params_f40.else, float %x7.loop239829163836, bb %params_f40.else_preheader, float %1110.load]
+  x7.loop239829163836 = phi [bb %params_f40.else, float %x8.loop239929153835, bb %params_f40.else_preheader, float %1116.load]
+  x8.loop239929153835 = phi [bb %params_f40.else, float %x9.loop240029143834, bb %params_f40.else_preheader, float %1122.load]
+  x9.loop240029143834 = phi [bb %params_f40.else, float %x10.loop240129133833, bb %params_f40.else_preheader, float %1128.load]
+  x10.loop240129133833 = phi [bb %params_f40.else, float %x11.loop240229123832, bb %params_f40.else_preheader, float %1134.load]
+  x11.loop240229123832 = phi [bb %params_f40.else, float %x12.loop240329113831, bb %params_f40.else_preheader, float %1140.load]
+  x12.loop240329113831 = phi [bb %params_f40.else, float %x13.loop240429103830, bb %params_f40.else_preheader, float %1146.load]
+  x13.loop240429103830 = phi [bb %params_f40.else, float %x14.loop240529093829, bb %params_f40.else_preheader, float %1152.load]
+  x14.loop240529093829 = phi [bb %params_f40.else, float %x15.loop240629083828, bb %params_f40.else_preheader, float %1158.load]
+  x15.loop240629083828 = phi [bb %params_f40.else, float %x16.loop240729073827, bb %params_f40.else_preheader, float %1164.load]
+  x16.loop240729073827 = phi [bb %params_f40.else, float %x17.loop240829063826, bb %params_f40.else_preheader, float %1170.load]
+  x17.loop240829063826 = phi [bb %params_f40.else, float %x18.loop240929053825, bb %params_f40.else_preheader, float %1176.load]
+  x18.loop240929053825 = phi [bb %params_f40.else, float %x19.loop241029043824, bb %params_f40.else_preheader, float %1182.load]
+  x19.loop241029043824 = phi [bb %params_f40.else, float %x20.loop241129033823, bb %params_f40.else_preheader, float %1188.load]
+  x20.loop241129033823 = phi [bb %params_f40.else, float %x21.loop241229023822, bb %params_f40.else_preheader, float %1194.load]
+  x21.loop241229023822 = phi [bb %params_f40.else, float %x22.loop241329013821, bb %params_f40.else_preheader, float %1200.load]
+  x22.loop241329013821 = phi [bb %params_f40.else, float %x23.loop241429003820, bb %params_f40.else_preheader, float %1206.load]
+  x23.loop241429003820 = phi [bb %params_f40.else, float %x24.loop241528993819, bb %params_f40.else_preheader, float %1212.load]
+  x24.loop241528993819 = phi [bb %params_f40.else, float %x25.loop241628983818, bb %params_f40.else_preheader, float %1218.load]
+  x25.loop241628983818 = phi [bb %params_f40.else, float %x26.loop241728973817, bb %params_f40.else_preheader, float %1224.load]
+  x26.loop241728973817 = phi [bb %params_f40.else, float %x27.loop241828963816, bb %params_f40.else_preheader, float %1230.load]
+  x27.loop241828963816 = phi [bb %params_f40.else, float %x28.loop241928953815, bb %params_f40.else_preheader, float %1236.load]
+  x28.loop241928953815 = phi [bb %params_f40.else, float %x29.loop242028943814, bb %params_f40.else_preheader, float %1242.load]
+  x29.loop242028943814 = phi [bb %params_f40.else, float %x30.loop242128933813, bb %params_f40.else_preheader, float %1248.load]
+  x30.loop242128933813 = phi [bb %params_f40.else, float %x31.loop242228923812, bb %params_f40.else_preheader, float %1254.load]
+  x31.loop242228923812 = phi [bb %params_f40.else, float %x32.loop242328913811, bb %params_f40.else_preheader, float %1260.load]
+  x32.loop242328913811 = phi [bb %params_f40.else, float %x33.loop242428903810, bb %params_f40.else_preheader, float %1266.load]
+  x33.loop242428903810 = phi [bb %params_f40.else, float %x34.loop242528893809, bb %params_f40.else_preheader, float %1272.load]
+  x34.loop242528893809 = phi [bb %params_f40.else, float %x35.loop242628883808, bb %params_f40.else_preheader, float %1278.load]
+  x35.loop242628883808 = phi [bb %params_f40.else, float %x36.loop242728873807, bb %params_f40.else_preheader, float %1284.load]
+  x36.loop242728873807 = phi [bb %params_f40.else, float %x37.loop242828863806, bb %params_f40.else_preheader, float %1290.load]
+  x37.loop242828863806 = phi [bb %params_f40.else, float %x38.loop242928853805, bb %params_f40.else_preheader, float %1296.load]
+  x38.loop242928853805 = phi [bb %params_f40.else, float %x39.loop243028843804, bb %params_f40.else_preheader, float %1302.load]
+  x39.loop243028843804 = phi [bb %params_f40.else, float %1762985, bb %params_f40.else_preheader, float %1308.load]
+  1742984 = fadd float %x0.loop239129233843, float %x1.loop239229223842
+  1762985 = fadd float %1742984, float %x2.loop239329213841
+  432925 = fcmp one float %1762985, float %4229243761
+  br i1 %432925, bb %params_f40.then, bb %params_f40.else
+params_mix.loop_entry2431:  pred(params_mix.else959)
+  x61.loop2996 = phi [bb %params_mix.else959, ptr %x61.loop29963389]
+  x60.loop2997 = phi [bb %params_mix.else959, ptr %x60.loop29973390]
+  x59.loop2998 = phi [bb %params_mix.else959, float %x59.loop29983391]
+  i58.loop2999 = phi [bb %params_mix.else959, i32 %i58.loop29993392]
+  x57.loop3000 = phi [bb %params_mix.else959, float %x57.loop30003393]
+  x56.loop3001 = phi [bb %params_mix.else959, ptr %x56.loop30013394]
+  i55.loop3002 = phi [bb %params_mix.else959, ptr %i55.loop30023395]
+  i54.loop3003 = phi [bb %params_mix.else959, i32 %i54.loop30033396]
+  x53.loop3004 = phi [bb %params_mix.else959, ptr %x53.loop30043397]
+  x52.loop3005 = phi [bb %params_mix.else959, float %x52.loop30053398]
+  x51.loop3006 = phi [bb %params_mix.else959, float %x51.loop30063399]
+  i50.loop3007 = phi [bb %params_mix.else959, ptr %i50.loop30073400]
+  i49.loop3008 = phi [bb %params_mix.else959, ptr %i49.loop30083401]
+  i48.loop3009 = phi [bb %params_mix.else959, i32 %i48.loop30093402]
+  x47.loop3010 = phi [bb %params_mix.else959, ptr %x47.loop30103403]
+  i46.loop3011 = phi [bb %params_mix.else959, i32 %i46.loop30113404]
+  i45.loop3012 = phi [bb %params_mix.else959, ptr %i45.loop30123405]
+  x44.loop3013 = phi [bb %params_mix.else959, float %x44.loop30133406]
+  x43.loop3014 = phi [bb %params_mix.else959, float %x43.loop30143407]
+  i42.loop3015 = phi [bb %params_mix.else959, i32 %i42.loop30153408]
+  i41.loop3016 = phi [bb %params_mix.else959, i32 %i41.loop30163409]
+  i40.loop3017 = phi [bb %params_mix.else959, ptr %i40.loop30173410]
+  i39.loop3018 = phi [bb %params_mix.else959, ptr %i39.loop30183411]
+  x38.loop24703019 = phi [bb %params_mix.else959, float %x38.loop247030193412]
+  x37.loop24693020 = phi [bb %params_mix.else959, float %x37.loop246930203413]
+  x36.loop24683021 = phi [bb %params_mix.else959, ptr %x36.loop246830213414]
+  x35.loop24673022 = phi [bb %params_mix.else959, ptr %x35.loop246730223415]
+  i34.loop3023 = phi [bb %params_mix.else959, i32 %i34.loop30233416]
+  i33.loop3024 = phi [bb %params_mix.else959, ptr %i33.loop30243417]
+  x32.loop24643025 = phi [bb %params_mix.else959, float %x32.loop246430253418]
+  x31.loop24633026 = phi [bb %params_mix.else959, float %x31.loop246330263419]
+  x30.loop24623027 = phi [bb %params_mix.else959, ptr %x30.loop246230273420]
+  i29.loop3028 = phi [bb %params_mix.else959, ptr %i29.loop30283421]
+  i28.loop3029 = phi [bb %params_mix.else959, ptr %i28.loop30293422]
+  x27.loop24593030 = phi [bb %params_mix.else959, ptr %x27.loop245930303423]
+  i26.loop3031 = phi [bb %params_mix.else959, ptr %i26.loop30313424]
+  x25.loop24573032 = phi [bb %params_mix.else959, float %x25.loop245730323425]
+  x24.loop24563033 = phi [bb %params_mix.else959, float %x24.loop245630333426]
+  x23.loop24553034 = phi [bb %params_mix.else959, float %x23.loop245530343427]
+  i22.loop24543035 = phi [bb %params_mix.else959, i32 %i22.loop245430353428]
+  x21.loop24533036 = phi [bb %params_mix.else959, ptr %x21.loop245330363429]
+  x20.loop24523037 = phi [bb %params_mix.else959, float %x20.loop245230373430]
+  x19.loop24513038 = phi [bb %params_mix.else959, float %x19.loop245130383431]
+  x18.loop24503039 = phi [bb %params_mix.else959, float %x18.loop245030393432]
+  x17.loop24493040 = phi [bb %params_mix.else959, ptr %x17.loop244930403433]
+  x16.loop24483041 = phi [bb %params_mix.else959, ptr %x16.loop244830413434]
+  i15.loop24473042 = phi [bb %params_mix.else959, i32 %i15.loop244730423435]
+  i14.loop24463043 = phi [bb %params_mix.else959, ptr %i14.loop244630433436]
+  i13.loop24453044 = phi [bb %params_mix.else959, ptr %i13.loop244530443437]
+  x12.loop24443045 = phi [bb %params_mix.else959, ptr %x12.loop244430453438]
+  i11.loop24433046 = phi [bb %params_mix.else959, i32 %i11.loop244330463439]
+  i10.loop24423047 = phi [bb %params_mix.else959, i32 %i10.loop244230473440]
+  i9.loop24413048 = phi [bb %params_mix.else959, ptr %i9.loop244130483441]
+  x8.loop24403049 = phi [bb %params_mix.else959, ptr %x8.loop244030493442]
+  x7.loop24393050 = phi [bb %params_mix.else959, float %x7.loop243930503443]
+  x6.loop24383051 = phi [bb %params_mix.else959, float %x6.loop243830513444]
+  i5.loop24373052 = phi [bb %params_mix.else959, i32 %i5.loop243730523445]
+  x4.loop24363053 = phi [bb %params_mix.else959, float %x4.loop243630533446]
+  i2.loop24343055 = phi [bb %params_mix.else959, i32 %i2.loop243430553448]
+  x0.loop24323057 = phi [bb %params_mix.else959, float %x0.loop243230573450]
+  7403060 = ptradd ptr %arr7362991, i32 %22492872
+  740.load3061 = load float from ptr %7403060
+  7423062 = fadd float %x0.loop24323057, float %740.load3061
+  7443063 = fadd float %7423062, float %x4.loop24363053
+  7463064 = fadd float %7443063, float %x6.loop24383051
+  7503065 = ptradd ptr %x8.loop24403049, i32 %22492872
+  750.load3066 = load float from ptr %7503065
+  7523067 = fadd float %x7.loop24393050, float %750.load3066
+  7553068 = ptradd ptr %x12.loop24443045, i32 %22492872
+  755.load3069 = load float from ptr %7553068
+  7573070 = fadd float %7523067, float %755.load3069
+  7603071 = ptradd ptr %x16.loop24483041, i32 %22492872
+  760.load3072 = load float from ptr %7603071
+  7623073 = fadd float %7573070, float %760.load3072
+  7653074 = ptradd ptr %x17.loop24493040, i32 %22492872
+  765.load3075 = load float from ptr %7653074
+  7683076 = fadd float %765.load3075, float %x18.loop24503039
+  7703077 = fadd float %7683076, float %x19.loop24513038
+  7723078 = fadd float %7703077, float %x20.loop24523037
+  7753079 = ptradd ptr %x21.loop24533036, i32 %22492872
+  775.load3080 = load float from ptr %7753079
+  7783081 = fadd float %775.load3080, float %x23.loop24553034
+  7803082 = fadd float %7783081, float %x24.loop24563033
+  7823083 = fadd float %7803082, float %x25.loop24573032
+  7853084 = ptradd ptr %x27.loop24593030, i32 %22492872
+  785.load3085 = load float from ptr %7853084
+  7893086 = ptradd ptr %x30.loop24623027, i32 %22492872
+  789.load3087 = load float from ptr %7893086
+  7913088 = fadd float %785.load3085, float %789.load3087
+  7933089 = fadd float %7913088, float %x31.loop24633026
+  7953090 = fadd float %7933089, float %x32.loop24643025
+  7983091 = ptradd ptr %x35.loop24673022, i32 %22492872
+  798.load3092 = load float from ptr %7983091
+  8023093 = ptradd ptr %x36.loop24683021, i32 %22492872
+  802.load3094 = load float from ptr %8023093
+  8043095 = fadd float %798.load3092, float %802.load3094
+  8063096 = fadd float %8043095, float %x37.loop24693020
+  8083097 = fadd float %8063096, float %x38.loop24703019
+  8113098 = fadd float %x43.loop3014, float %x44.loop3013
+  8143099 = ptradd ptr %x47.loop3010, i32 %22492872
+  814.load3100 = load float from ptr %8143099
+  8163101 = fadd float %8113098, float %814.load3100
+  8183102 = fadd float %8163101, float %x51.loop3006
+  8223103 = ptradd ptr %x53.loop3004, i32 %22492872
+  822.load3104 = load float from ptr %8223103
+  8243105 = fadd float %x52.loop3005, float %822.load3104
+  8273106 = ptradd ptr %x56.loop3001, i32 %22492872
+  827.load3107 = load float from ptr %8273106
+  8293108 = fadd float %8243105, float %827.load3107
+  8313109 = fadd float %8293108, float %x57.loop3000
+  8353110 = ptradd ptr %x60.loop2997, i32 %22492872
+  835.load3111 = load float from ptr %8353110
+  8373112 = fadd float %x59.loop2998, float %835.load3111
+  8403113 = ptradd ptr %x61.loop2996, i32 %22492872
+  840.load3114 = load float from ptr %8403113
+  8423115 = fadd float %8373112, float %840.load3114
+  8443116 = fadd float %8423115, float %10313211
+  store float %7463064 to ptr %arr7362991
+  store float %7623073 to ptr %arr.index84631183301
+  store float %7723078 to ptr %arr.index84731203303
+  store float %7823083 to ptr %arr.index84831223305
+  store float %7953090 to ptr %arr.index84931243307
+  store float %8083097 to ptr %arr.index85031263309
+  store float %8183102 to ptr %arr.index85131283311
+  store float %8313109 to ptr %arr.index85231303313
+  store float %8443116 to ptr %arr.index85331323315
+  store float 0.000000 to ptr %arr.index85431343317
+  8583138 = ptradd ptr %arr28552990, i32 %22492872
+  858.load3139 = load i32 from ptr %8583138
+  8613140 = add i32 %858.load3139, i32 %i2.loop24343055
+  8633141 = add i32 %8613140, i32 %i5.loop24373052
+  8663142 = ptradd ptr %i9.loop24413048, i32 %22492872
+  866.load3143 = load i32 from ptr %8663142
+  8693144 = add i32 %866.load3143, i32 %i10.loop24423047
+  8713145 = add i32 %8693144, i32 %i11.loop24433046
+  8743146 = ptradd ptr %i13.loop24453044, i32 %22492872
+  874.load3147 = load i32 from ptr %8743146
+  8783148 = ptradd ptr %i14.loop24463043, i32 %22492872
+  878.load3149 = load i32 from ptr %8783148
+  8803150 = add i32 %874.load3147, i32 %878.load3149
+  8823151 = add i32 %8803150, i32 %i15.loop24473042
+  8863152 = ptradd ptr %i26.loop3031, i32 %22492872
+  886.load3153 = load i32 from ptr %8863152
+  8883154 = add i32 %i22.loop24543035, i32 %886.load3153
+  8913155 = ptradd ptr %i28.loop3029, i32 %22492872
+  891.load3156 = load i32 from ptr %8913155
+  8933157 = add i32 %8883154, i32 %891.load3156
+  8963158 = ptradd ptr %i29.loop3028, i32 %22492872
+  896.load3159 = load i32 from ptr %8963158
+  9003160 = ptradd ptr %i33.loop3024, i32 %22492872
+  900.load3161 = load i32 from ptr %9003160
+  9023162 = add i32 %896.load3159, i32 %900.load3161
+  9043163 = add i32 %9023162, i32 %i34.loop3023
+  9073164 = ptradd ptr %i39.loop3018, i32 %22492872
+  907.load3165 = load i32 from ptr %9073164
+  9113166 = ptradd ptr %i40.loop3017, i32 %22492872
+  911.load3167 = load i32 from ptr %9113166
+  9133168 = add i32 %907.load3165, i32 %911.load3167
+  9153169 = add i32 %9133168, i32 %i41.loop3016
+  9193170 = ptradd ptr %i45.loop3012, i32 %22492872
+  919.load3171 = load i32 from ptr %9193170
+  9213172 = add i32 %i42.loop3015, i32 %919.load3171
+  9233173 = add i32 %9213172, i32 %i46.loop3011
+  9273174 = ptradd ptr %i49.loop3008, i32 %22492872
+  927.load3175 = load i32 from ptr %9273174
+  9293176 = add i32 %i48.loop3009, i32 %927.load3175
+  9323177 = ptradd ptr %i50.loop3007, i32 %22492872
+  932.load3178 = load i32 from ptr %9323177
+  9343179 = add i32 %9293176, i32 %932.load3178
+  9383180 = ptradd ptr %i55.loop3002, i32 %22492872
+  938.load3181 = load i32 from ptr %9383180
+  9403182 = add i32 %i54.loop3003, i32 %938.load3181
+  9423183 = add i32 %9403182, i32 %i58.loop2999
+  9443184 = add i32 %9423183, i32 %10333212
+  store i32 %8633141 to ptr %arr28552990
+  store i32 %8713145 to ptr %arr.index94631863367
+  store i32 %8823151 to ptr %arr.index94731883369
+  store i32 %8933157 to ptr %arr.index94831903371
+  store i32 %9043163 to ptr %arr.index94931923373
+  store i32 %9153169 to ptr %arr.index95031943375
+  store i32 %9233173 to ptr %arr.index95131963377
+  store i32 %9343179 to ptr %arr.index95231983379
+  store i32 %9443184 to ptr %arr.index95332003381
+  store i32 0 to ptr %arr.index95432023383
+  9563204 = icmp ne i32 %10333212, i32 0
+  br i1 %9563204, bb %params_mix.then957, bb %params_mix.else959
+params_mix.then957:  pred(params_mix.loop_entry2431, params_fa40.then691)
+  arr.index853313233153386 = phi [bb %params_mix.loop_entry2431, ptr %arr.index85331323315, bb %params_fa40.then691, ptr %arr.index85331323315]
+  call void putfarray(i32 10, ptr %arr7362991)
+  call void putarray(i32 10, ptr %arr28552990)
+  br bb %params_mix.while.body964
+params_mix.else959_preheader:  pred(params_fa40.then691)
+  br bb %params_mix.else959
+params_mix.else959:  pred(params_mix.loop_entry2431, params_mix.else959_preheader)
+  x0.loop243230573450 = phi [bb %params_mix.loop_entry2431, float %x0.loop24323057, bb %params_mix.else959_preheader, float %1784.load]
+  i2.loop243430553448 = phi [bb %params_mix.loop_entry2431, i32 %i2.loop24343055, bb %params_mix.else959_preheader, i32 %1792.load]
+  x4.loop243630533446 = phi [bb %params_mix.loop_entry2431, float %x4.loop24363053, bb %params_mix.else959_preheader, float %1800.load]
+  i5.loop243730523445 = phi [bb %params_mix.loop_entry2431, i32 %i5.loop24373052, bb %params_mix.else959_preheader, i32 %1806.load]
+  x6.loop243830513444 = phi [bb %params_mix.loop_entry2431, float %x6.loop24383051, bb %params_mix.else959_preheader, float %1812.load]
+  x7.loop243930503443 = phi [bb %params_mix.loop_entry2431, float %x7.loop24393050, bb %params_mix.else959_preheader, float %1818.load]
+  x8.loop244030493442 = phi [bb %params_mix.loop_entry2431, ptr %x8.loop24403049, bb %params_mix.else959_preheader, ptr %1101]
+  i9.loop244130483441 = phi [bb %params_mix.loop_entry2431, ptr %i9.loop24413048, bb %params_mix.else959_preheader, ptr %1619]
+  i10.loop244230473440 = phi [bb %params_mix.loop_entry2431, i32 %i10.loop24423047, bb %params_mix.else959_preheader, i32 %1828.load]
+  i11.loop244330463439 = phi [bb %params_mix.loop_entry2431, i32 %i11.loop24433046, bb %params_mix.else959_preheader, i32 %1834.load]
+  x12.loop244430453438 = phi [bb %params_mix.loop_entry2431, ptr %x12.loop24443045, bb %params_mix.else959_preheader, ptr %1107]
+  i13.loop244530443437 = phi [bb %params_mix.loop_entry2431, ptr %i13.loop24453044, bb %params_mix.else959_preheader, ptr %1325]
+  i14.loop244630433436 = phi [bb %params_mix.loop_entry2431, ptr %i14.loop24463043, bb %params_mix.else959_preheader, ptr %1445]
+  i15.loop244730423435 = phi [bb %params_mix.loop_entry2431, i32 %i15.loop24473042, bb %params_mix.else959_preheader, i32 %1846.load]
+  x16.loop244830413434 = phi [bb %params_mix.loop_entry2431, ptr %x16.loop24483041, bb %params_mix.else959_preheader, ptr %1113]
+  x17.loop244930403433 = phi [bb %params_mix.loop_entry2431, ptr %x17.loop24493040, bb %params_mix.else959_preheader, ptr %1119]
+  x18.loop245030393432 = phi [bb %params_mix.loop_entry2431, float %x18.loop24503039, bb %params_mix.else959_preheader, float %1856.load]
+  x19.loop245130383431 = phi [bb %params_mix.loop_entry2431, float %x19.loop24513038, bb %params_mix.else959_preheader, float %1862.load]
+  x20.loop245230373430 = phi [bb %params_mix.loop_entry2431, float %x20.loop24523037, bb %params_mix.else959_preheader, float %1868.load]
+  x21.loop245330363429 = phi [bb %params_mix.loop_entry2431, ptr %x21.loop24533036, bb %params_mix.else959_preheader, ptr %1143]
+  i22.loop245430353428 = phi [bb %params_mix.loop_entry2431, i32 %i22.loop24543035, bb %params_mix.else959_preheader, i32 %1876.load]
+  x23.loop245530343427 = phi [bb %params_mix.loop_entry2431, float %x23.loop24553034, bb %params_mix.else959_preheader, float %1882.load]
+  x24.loop245630333426 = phi [bb %params_mix.loop_entry2431, float %x24.loop24563033, bb %params_mix.else959_preheader, float %1888.load]
+  x25.loop245730323425 = phi [bb %params_mix.loop_entry2431, float %x25.loop24573032, bb %params_mix.else959_preheader, float %1894.load]
+  i26.loop30313424 = phi [bb %params_mix.loop_entry2431, ptr %i26.loop3031, bb %params_mix.else959_preheader, ptr %1457]
+  x27.loop245930303423 = phi [bb %params_mix.loop_entry2431, ptr %x27.loop24593030, bb %params_mix.else959_preheader, ptr %1167]
+  i28.loop30293422 = phi [bb %params_mix.loop_entry2431, ptr %i28.loop3029, bb %params_mix.else959_preheader, ptr %1583]
+  i29.loop30283421 = phi [bb %params_mix.loop_entry2431, ptr %i29.loop3028, bb %params_mix.else959_preheader, ptr %1571]
+  x30.loop246230273420 = phi [bb %params_mix.loop_entry2431, ptr %x30.loop24623027, bb %params_mix.else959_preheader, ptr %1173]
+  x31.loop246330263419 = phi [bb %params_mix.loop_entry2431, float %x31.loop24633026, bb %params_mix.else959_preheader, float %1910.load]
+  x32.loop246430253418 = phi [bb %params_mix.loop_entry2431, float %x32.loop24643025, bb %params_mix.else959_preheader, float %1916.load]
+  i33.loop30243417 = phi [bb %params_mix.loop_entry2431, ptr %i33.loop3024, bb %params_mix.else959_preheader, ptr %1463]
+  i34.loop30233416 = phi [bb %params_mix.loop_entry2431, i32 %i34.loop3023, bb %params_mix.else959_preheader, i32 %1924.load]
+  x35.loop246730223415 = phi [bb %params_mix.loop_entry2431, ptr %x35.loop24673022, bb %params_mix.else959_preheader, ptr %1191]
+  x36.loop246830213414 = phi [bb %params_mix.loop_entry2431, ptr %x36.loop24683021, bb %params_mix.else959_preheader, ptr %1197]
+  x37.loop246930203413 = phi [bb %params_mix.loop_entry2431, float %x37.loop24693020, bb %params_mix.else959_preheader, float %1934.load]
+  x38.loop247030193412 = phi [bb %params_mix.loop_entry2431, float %x38.loop24703019, bb %params_mix.else959_preheader, float %1940.load]
+  i39.loop30183411 = phi [bb %params_mix.loop_entry2431, ptr %i39.loop3018, bb %params_mix.else959_preheader, ptr %1673]
+  i40.loop30173410 = phi [bb %params_mix.loop_entry2431, ptr %i40.loop3017, bb %params_mix.else959_preheader, ptr %1589]
+  i41.loop30163409 = phi [bb %params_mix.loop_entry2431, i32 %i41.loop3016, bb %params_mix.else959_preheader, i32 %1950.load]
+  i42.loop30153408 = phi [bb %params_mix.loop_entry2431, i32 %i42.loop3015, bb %params_mix.else959_preheader, i32 %1956.load]
+  x43.loop30143407 = phi [bb %params_mix.loop_entry2431, float %x43.loop3014, bb %params_mix.else959_preheader, float %1962.load]
+  x44.loop30133406 = phi [bb %params_mix.loop_entry2431, float %x44.loop3013, bb %params_mix.else959_preheader, float %1968.load]
+  i45.loop30123405 = phi [bb %params_mix.loop_entry2431, ptr %i45.loop3012, bb %params_mix.else959_preheader, ptr %1403]
+  i46.loop30113404 = phi [bb %params_mix.loop_entry2431, i32 %i46.loop3011, bb %params_mix.else959_preheader, i32 %1976.load]
+  x47.loop30103403 = phi [bb %params_mix.loop_entry2431, ptr %x47.loop3010, bb %params_mix.else959_preheader, ptr %1227]
+  i48.loop30093402 = phi [bb %params_mix.loop_entry2431, i32 %i48.loop3009, bb %params_mix.else959_preheader, i32 %1984.load]
+  i49.loop30083401 = phi [bb %params_mix.loop_entry2431, ptr %i49.loop3008, bb %params_mix.else959_preheader, ptr %1373]
+  i50.loop30073400 = phi [bb %params_mix.loop_entry2431, ptr %i50.loop3007, bb %params_mix.else959_preheader, ptr %1313]
+  x51.loop30063399 = phi [bb %params_mix.loop_entry2431, float %x51.loop3006, bb %params_mix.else959_preheader, float %1994.load]
+  x52.loop30053398 = phi [bb %params_mix.loop_entry2431, float %x52.loop3005, bb %params_mix.else959_preheader, float %2000.load]
+  x53.loop30043397 = phi [bb %params_mix.loop_entry2431, ptr %x53.loop3004, bb %params_mix.else959_preheader, ptr %1245]
+  i54.loop30033396 = phi [bb %params_mix.loop_entry2431, i32 %i54.loop3003, bb %params_mix.else959_preheader, i32 %2008.load]
+  i55.loop30023395 = phi [bb %params_mix.loop_entry2431, ptr %i55.loop3002, bb %params_mix.else959_preheader, ptr %1337]
+  x56.loop30013394 = phi [bb %params_mix.loop_entry2431, ptr %x56.loop3001, bb %params_mix.else959_preheader, ptr %1251]
+  x57.loop30003393 = phi [bb %params_mix.loop_entry2431, float %x57.loop3000, bb %params_mix.else959_preheader, float %2018.load]
+  i58.loop29993392 = phi [bb %params_mix.loop_entry2431, i32 %i58.loop2999, bb %params_mix.else959_preheader, i32 %1806.load]
+  x59.loop29983391 = phi [bb %params_mix.loop_entry2431, float %x59.loop2998, bb %params_mix.else959_preheader, float %2030.load]
+  x60.loop29973390 = phi [bb %params_mix.loop_entry2431, ptr %x60.loop2997, bb %params_mix.else959_preheader, ptr %1269]
+  x61.loop29963389 = phi [bb %params_mix.loop_entry2431, ptr %x61.loop2996, bb %params_mix.else959_preheader, ptr %1275]
+  x62.loop29953388 = phi [bb %params_mix.loop_entry2431, float %10313211, bb %params_mix.else959_preheader, float %2040.load]
+  i63.loop29943387 = phi [bb %params_mix.loop_entry2431, i32 %10333212, bb %params_mix.else959_preheader, i32 %2046.load]
+  10313211 = si2f i32 %i63.loop29943387 to float
+  10333212 = f2si float %x62.loop29953388 to i32
+  br bb %params_mix.loop_entry2431
+params_mix.while.body964:  pred(params_mix.while.body964, params_mix.then957)
+  i962.phi32153242 = phi [bb %params_mix.while.body964, i32 %9863228, bb %params_mix.then957, i32 0]
+  22803219 = shl i32 %i962.phi32153242, i32 2
+  9713220 = ptradd ptr %arr28552990, i32 %22803219
+  975.load3221 = load i32 from ptr %9713220
+  9793222 = ptradd ptr %arr7362991, i32 %22803219
+  979.load3223 = load float from ptr %9793222
+  9813224 = si2f i32 %975.load3221 to float
+  9823225 = fsub float %9813224, float %979.load3223
+  9833226 = f2si float %9823225 to i32
+  store i32 %9833226 to ptr %9713220
+  9863228 = add i32 %i962.phi32153242, i32 1
+  9673216 = icmp slt i32 %9863228, i32 10
+  br i1 %9673216, bb %params_mix.while.body964, bb %params_mix.while.exit965
+params_mix.while.exit965:  pred(params_mix.while.body964)
+  k.load9873231 = load i32 from ptr @k
+  22833232 = shl i32 %k.load9873231, i32 2
+  9893233 = ptradd ptr %arr28552990, i32 %22833232
+  989.load3234 = load i32 from ptr %9893233
+  992.load3235 = load float from ptr %arr.index853313233153386
+  9943236 = si2f i32 %989.load3234 to float
+  9953237 = fmul float %9943236, float %992.load3235
+  9963238 = f2si float %9953237 to i32
+  call void putfloat(float %131.load2981)
   call void putch(i32 10)
-  call void putfloat(float %1696)
+  call void putfloat(float %4092675)
   call void putch(i32 10)
-  call void putfloat(float %1778)
+  call void putfloat(float %697.load2874)
   call void putch(i32 10)
-  call void putint(i32 %2048)
+  call void putint(i32 %9963238)
   call void putch(i32 10)
   ret i32 0
 }
@@ -518,421 +1592,9 @@ external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-internal float params_fa40(ptr x0, ptr x1, ptr x2, ptr x3, ptr x4, ptr x5, ptr x6, ptr x7, ptr x8, ptr x9, ptr x10, ptr x11, ptr x12, ptr x13, ptr x14, ptr x15, ptr x16, ptr x17, ptr x18, ptr x19, ptr x20, ptr x21, ptr x22, ptr x23, ptr x24, ptr x25, ptr x26, ptr x27, ptr x28, ptr x29, ptr x30, ptr x31, ptr x32, ptr x33, ptr x34, ptr x35, ptr x36, ptr x37, ptr x38, ptr x39) {
-entry475:  pred()
-  %arr476 = stack 40
-  k.load477 = load i32 from ptr @k
-  2208 = shl i32 %k.load477, i32 2
-  479 = ptradd ptr %x0, i32 %2208
-  479.load = load float from ptr %479
-  483 = ptradd ptr %x1, i32 %2208
-  483.load = load float from ptr %483
-  485 = fadd float %479.load, float %483.load
-  488 = ptradd ptr %x2, i32 %2208
-  488.load = load float from ptr %488
-  490 = fadd float %485, float %488.load
-  493 = ptradd ptr %x3, i32 %2208
-  493.load = load float from ptr %493
-  495 = fadd float %490, float %493.load
-  498 = ptradd ptr %x4, i32 %2208
-  498.load = load float from ptr %498
-  502 = ptradd ptr %x5, i32 %2208
-  502.load = load float from ptr %502
-  504 = fadd float %498.load, float %502.load
-  507 = ptradd ptr %x6, i32 %2208
-  507.load = load float from ptr %507
-  509 = fadd float %504, float %507.load
-  512 = ptradd ptr %x7, i32 %2208
-  512.load = load float from ptr %512
-  514 = fadd float %509, float %512.load
-  517 = ptradd ptr %x8, i32 %2208
-  517.load = load float from ptr %517
-  521 = ptradd ptr %x9, i32 %2208
-  521.load = load float from ptr %521
-  523 = fadd float %517.load, float %521.load
-  526 = ptradd ptr %x10, i32 %2208
-  526.load = load float from ptr %526
-  528 = fadd float %523, float %526.load
-  531 = ptradd ptr %x11, i32 %2208
-  531.load = load float from ptr %531
-  533 = fadd float %528, float %531.load
-  536 = ptradd ptr %x12, i32 %2208
-  536.load = load float from ptr %536
-  540 = ptradd ptr %x13, i32 %2208
-  540.load = load float from ptr %540
-  542 = fadd float %536.load, float %540.load
-  545 = ptradd ptr %x14, i32 %2208
-  545.load = load float from ptr %545
-  547 = fadd float %542, float %545.load
-  550 = ptradd ptr %x15, i32 %2208
-  550.load = load float from ptr %550
-  552 = fadd float %547, float %550.load
-  555 = ptradd ptr %x16, i32 %2208
-  555.load = load float from ptr %555
-  559 = ptradd ptr %x17, i32 %2208
-  559.load = load float from ptr %559
-  561 = fadd float %555.load, float %559.load
-  564 = ptradd ptr %x18, i32 %2208
-  564.load = load float from ptr %564
-  566 = fadd float %561, float %564.load
-  569 = ptradd ptr %x19, i32 %2208
-  569.load = load float from ptr %569
-  571 = fadd float %566, float %569.load
-  574 = ptradd ptr %x20, i32 %2208
-  574.load = load float from ptr %574
-  578 = ptradd ptr %x21, i32 %2208
-  578.load = load float from ptr %578
-  580 = fadd float %574.load, float %578.load
-  583 = ptradd ptr %x22, i32 %2208
-  583.load = load float from ptr %583
-  585 = fadd float %580, float %583.load
-  588 = ptradd ptr %x23, i32 %2208
-  588.load = load float from ptr %588
-  590 = fadd float %585, float %588.load
-  593 = ptradd ptr %x24, i32 %2208
-  593.load = load float from ptr %593
-  597 = ptradd ptr %x25, i32 %2208
-  597.load = load float from ptr %597
-  599 = fadd float %593.load, float %597.load
-  602 = ptradd ptr %x26, i32 %2208
-  602.load = load float from ptr %602
-  604 = fadd float %599, float %602.load
-  607 = ptradd ptr %x27, i32 %2208
-  607.load = load float from ptr %607
-  609 = fadd float %604, float %607.load
-  612 = ptradd ptr %x28, i32 %2208
-  612.load = load float from ptr %612
-  616 = ptradd ptr %x29, i32 %2208
-  616.load = load float from ptr %616
-  618 = fadd float %612.load, float %616.load
-  621 = ptradd ptr %x30, i32 %2208
-  621.load = load float from ptr %621
-  623 = fadd float %618, float %621.load
-  626 = ptradd ptr %x31, i32 %2208
-  626.load = load float from ptr %626
-  628 = fadd float %623, float %626.load
-  631 = ptradd ptr %x32, i32 %2208
-  631.load = load float from ptr %631
-  635 = ptradd ptr %x33, i32 %2208
-  635.load = load float from ptr %635
-  637 = fadd float %631.load, float %635.load
-  640 = ptradd ptr %x34, i32 %2208
-  640.load = load float from ptr %640
-  642 = fadd float %637, float %640.load
-  645 = ptradd ptr %x35, i32 %2208
-  645.load = load float from ptr %645
-  647 = fadd float %642, float %645.load
-  650 = ptradd ptr %x36, i32 %2208
-  650.load = load float from ptr %650
-  654 = ptradd ptr %x37, i32 %2208
-  654.load = load float from ptr %654
-  656 = fadd float %650.load, float %654.load
-  659 = ptradd ptr %x38, i32 %2208
-  659.load = load float from ptr %659
-  661 = fadd float %656, float %659.load
-  664 = ptradd ptr %x39, i32 %2208
-  664.load = load float from ptr %664
-  666 = fadd float %661, float %664.load
-  store float %495 to ptr %arr476
-  arr.index668 = ptradd ptr %arr476, i32 4
-  store float %514 to ptr %arr.index668
-  arr.index669 = ptradd ptr %arr476, i32 8
-  store float %533 to ptr %arr.index669
-  arr.index670 = ptradd ptr %arr476, i32 12
-  store float %552 to ptr %arr.index670
-  arr.index671 = ptradd ptr %arr476, i32 16
-  store float %571 to ptr %arr.index671
-  arr.index672 = ptradd ptr %arr476, i32 20
-  store float %590 to ptr %arr.index672
-  arr.index673 = ptradd ptr %arr476, i32 24
-  store float %609 to ptr %arr.index673
-  arr.index674 = ptradd ptr %arr476, i32 28
-  store float %628 to ptr %arr.index674
-  arr.index675 = ptradd ptr %arr476, i32 32
-  store float %647 to ptr %arr.index675
-  arr.index676 = ptradd ptr %arr476, i32 36
-  store float %666 to ptr %arr.index676
-  679.load = load float from ptr %664
-  681 = si2f i32 0 to float
-  682 = fcmp one float %679.load, float %681
-  683 = zext i1 %682 to i32
-  684 = icmp ne i32 %683, i32 0
-  685 = zext i1 %684 to i32
-  686 = si2f i32 %685 to float
-  687 = fcmp one float %686, float 0.000000
-  688 = zext i1 %687 to i32
-  689 = si2f i32 %688 to float
-  690 = fcmp one float %689, float 0.000000
-  br i1 %690, bb %then691, bb %else693
-then691:  pred(entry475)
-  call void putfarray(i32 10, ptr %arr476)
-  k.load695 = load i32 from ptr @k
-  2249 = shl i32 %k.load695, i32 2
-  697 = ptradd ptr %arr476, i32 %2249
-  697.load = load float from ptr %697
-  ret float %697.load
-else693:  pred(entry475)
-  699 = call float params_fa40(ptr %x1, ptr %x2, ptr %x3, ptr %x4, ptr %x5, ptr %x6, ptr %x7, ptr %x8, ptr %x9, ptr %x10, ptr %x11, ptr %x12, ptr %x13, ptr %x14, ptr %x15, ptr %x16, ptr %x17, ptr %x18, ptr %x19, ptr %x20, ptr %x21, ptr %x22, ptr %x23, ptr %x24, ptr %x25, ptr %x26, ptr %x27, ptr %x28, ptr %x29, ptr %x30, ptr %x31, ptr %x32, ptr %x33, ptr %x34, ptr %x35, ptr %x36, ptr %x37, ptr %x38, ptr %x39, ptr %arr476)
-  ret float %699
-}
-
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-internal float params_f40(float x0, float x1, float x2, float x3, float x4, float x5, float x6, float x7, float x8, float x9, float x10, float x11, float x12, float x13, float x14, float x15, float x16, float x17, float x18, float x19, float x20, float x21, float x22, float x23, float x24, float x25, float x26, float x27, float x28, float x29, float x30, float x31, float x32, float x33, float x34, float x35, float x36, float x37, float x38, float x39) {
-entry:  pred()
-  %arr = stack 40
-  42 = si2f i32 0 to float
-  43 = fcmp one float %x39, float %42
-  br i1 %43, bb %then, bb %else
-then:  pred(entry)
-  50 = fadd float %x0, float %x1
-  52 = fadd float %50, float %x2
-  54 = fadd float %52, float %x3
-  57 = fadd float %x4, float %x5
-  59 = fadd float %57, float %x6
-  61 = fadd float %59, float %x7
-  64 = fadd float %x8, float %x9
-  66 = fadd float %64, float %x10
-  68 = fadd float %66, float %x11
-  71 = fadd float %x12, float %x13
-  73 = fadd float %71, float %x14
-  75 = fadd float %73, float %x15
-  78 = fadd float %x16, float %x17
-  80 = fadd float %78, float %x18
-  82 = fadd float %80, float %x19
-  85 = fadd float %x20, float %x21
-  87 = fadd float %85, float %x22
-  89 = fadd float %87, float %x23
-  92 = fadd float %x24, float %x25
-  94 = fadd float %92, float %x26
-  96 = fadd float %94, float %x27
-  99 = fadd float %x28, float %x29
-  101 = fadd float %99, float %x30
-  103 = fadd float %101, float %x31
-  106 = fadd float %x32, float %x33
-  108 = fadd float %106, float %x34
-  110 = fadd float %108, float %x35
-  113 = fadd float %x36, float %x37
-  115 = fadd float %113, float %x38
-  117 = fadd float %115, float %x39
-  store float %54 to ptr %arr
-  arr.index119 = ptradd ptr %arr, i32 4
-  store float %61 to ptr %arr.index119
-  arr.index120 = ptradd ptr %arr, i32 8
-  store float %68 to ptr %arr.index120
-  arr.index121 = ptradd ptr %arr, i32 12
-  store float %75 to ptr %arr.index121
-  arr.index122 = ptradd ptr %arr, i32 16
-  store float %82 to ptr %arr.index122
-  arr.index123 = ptradd ptr %arr, i32 20
-  store float %89 to ptr %arr.index123
-  arr.index124 = ptradd ptr %arr, i32 24
-  store float %96 to ptr %arr.index124
-  arr.index125 = ptradd ptr %arr, i32 28
-  store float %103 to ptr %arr.index125
-  arr.index126 = ptradd ptr %arr, i32 32
-  store float %110 to ptr %arr.index126
-  arr.index127 = ptradd ptr %arr, i32 36
-  store float %117 to ptr %arr.index127
-  call void putfarray(i32 10, ptr %arr)
-  k.load = load i32 from ptr @k
-  2250 = shl i32 %k.load, i32 2
-  131 = ptradd ptr %arr, i32 %2250
-  131.load = load float from ptr %131
-  ret float %131.load
-else:  pred(entry)
-  174 = fadd float %x0, float %x1
-  176 = fadd float %174, float %x2
-  177 = call float params_f40(float %x1, float %x2, float %x3, float %x4, float %x5, float %x6, float %x7, float %x8, float %x9, float %x10, float %x11, float %x12, float %x13, float %x14, float %x15, float %x16, float %x17, float %x18, float %x19, float %x20, float %x21, float %x22, float %x23, float %x24, float %x25, float %x26, float %x27, float %x28, float %x29, float %x30, float %x31, float %x32, float %x33, float %x34, float %x35, float %x36, float %x37, float %x38, float %x39, float %176)
-  ret float %177
-}
-
-internal i32 params_mix(float x0, ptr i1, i32 i2, ptr x3, float x4, i32 i5, float x6, float x7, ptr x8, ptr i9, i32 i10, i32 i11, ptr x12, ptr i13, ptr i14, i32 i15, ptr x16, ptr x17, float x18, float x19, float x20, ptr x21, i32 i22, float x23, float x24, float x25, ptr i26, ptr x27, ptr i28, ptr i29, ptr x30, float x31, float x32, ptr i33, i32 i34, ptr x35, ptr x36, float x37, float x38, ptr i39, ptr i40, i32 i41, i32 i42, float x43, float x44, ptr i45, i32 i46, ptr x47, i32 i48, ptr i49, ptr i50, float x51, float x52, ptr x53, i32 i54, ptr i55, ptr x56, float x57, i32 i58, float x59, ptr x60, ptr x61, float x62, i32 i63) {
-entry700:  pred()
-  %arr2855 = stack 40
-  %arr736 = stack 40
-  k.load738 = load i32 from ptr @k
-  2251 = shl i32 %k.load738, i32 2
-  740 = ptradd ptr %x3, i32 %2251
-  740.load = load float from ptr %740
-  742 = fadd float %x0, float %740.load
-  744 = fadd float %742, float %x4
-  746 = fadd float %744, float %x6
-  750 = ptradd ptr %x8, i32 %2251
-  750.load = load float from ptr %750
-  752 = fadd float %x7, float %750.load
-  755 = ptradd ptr %x12, i32 %2251
-  755.load = load float from ptr %755
-  757 = fadd float %752, float %755.load
-  760 = ptradd ptr %x16, i32 %2251
-  760.load = load float from ptr %760
-  762 = fadd float %757, float %760.load
-  765 = ptradd ptr %x17, i32 %2251
-  765.load = load float from ptr %765
-  768 = fadd float %765.load, float %x18
-  770 = fadd float %768, float %x19
-  772 = fadd float %770, float %x20
-  775 = ptradd ptr %x21, i32 %2251
-  775.load = load float from ptr %775
-  778 = fadd float %775.load, float %x23
-  780 = fadd float %778, float %x24
-  782 = fadd float %780, float %x25
-  785 = ptradd ptr %x27, i32 %2251
-  785.load = load float from ptr %785
-  789 = ptradd ptr %x30, i32 %2251
-  789.load = load float from ptr %789
-  791 = fadd float %785.load, float %789.load
-  793 = fadd float %791, float %x31
-  795 = fadd float %793, float %x32
-  798 = ptradd ptr %x35, i32 %2251
-  798.load = load float from ptr %798
-  802 = ptradd ptr %x36, i32 %2251
-  802.load = load float from ptr %802
-  804 = fadd float %798.load, float %802.load
-  806 = fadd float %804, float %x37
-  808 = fadd float %806, float %x38
-  811 = fadd float %x43, float %x44
-  814 = ptradd ptr %x47, i32 %2251
-  814.load = load float from ptr %814
-  816 = fadd float %811, float %814.load
-  818 = fadd float %816, float %x51
-  822 = ptradd ptr %x53, i32 %2251
-  822.load = load float from ptr %822
-  824 = fadd float %x52, float %822.load
-  827 = ptradd ptr %x56, i32 %2251
-  827.load = load float from ptr %827
-  829 = fadd float %824, float %827.load
-  831 = fadd float %829, float %x57
-  835 = ptradd ptr %x60, i32 %2251
-  835.load = load float from ptr %835
-  837 = fadd float %x59, float %835.load
-  840 = ptradd ptr %x61, i32 %2251
-  840.load = load float from ptr %840
-  842 = fadd float %837, float %840.load
-  844 = fadd float %842, float %x62
-  store float %746 to ptr %arr736
-  arr.index846 = ptradd ptr %arr736, i32 4
-  store float %762 to ptr %arr.index846
-  arr.index847 = ptradd ptr %arr736, i32 8
-  store float %772 to ptr %arr.index847
-  arr.index848 = ptradd ptr %arr736, i32 12
-  store float %782 to ptr %arr.index848
-  arr.index849 = ptradd ptr %arr736, i32 16
-  store float %795 to ptr %arr.index849
-  arr.index850 = ptradd ptr %arr736, i32 20
-  store float %808 to ptr %arr.index850
-  arr.index851 = ptradd ptr %arr736, i32 24
-  store float %818 to ptr %arr.index851
-  arr.index852 = ptradd ptr %arr736, i32 28
-  store float %831 to ptr %arr.index852
-  arr.index853 = ptradd ptr %arr736, i32 32
-  store float %844 to ptr %arr.index853
-  arr.index854 = ptradd ptr %arr736, i32 36
-  store float 0.000000 to ptr %arr.index854
-  858 = ptradd ptr %i1, i32 %2251
-  858.load = load i32 from ptr %858
-  861 = add i32 %858.load, i32 %i2
-  863 = add i32 %861, i32 %i5
-  866 = ptradd ptr %i9, i32 %2251
-  866.load = load i32 from ptr %866
-  869 = add i32 %866.load, i32 %i10
-  871 = add i32 %869, i32 %i11
-  874 = ptradd ptr %i13, i32 %2251
-  874.load = load i32 from ptr %874
-  878 = ptradd ptr %i14, i32 %2251
-  878.load = load i32 from ptr %878
-  880 = add i32 %874.load, i32 %878.load
-  882 = add i32 %880, i32 %i15
-  886 = ptradd ptr %i26, i32 %2251
-  886.load = load i32 from ptr %886
-  888 = add i32 %i22, i32 %886.load
-  891 = ptradd ptr %i28, i32 %2251
-  891.load = load i32 from ptr %891
-  893 = add i32 %888, i32 %891.load
-  896 = ptradd ptr %i29, i32 %2251
-  896.load = load i32 from ptr %896
-  900 = ptradd ptr %i33, i32 %2251
-  900.load = load i32 from ptr %900
-  902 = add i32 %896.load, i32 %900.load
-  904 = add i32 %902, i32 %i34
-  907 = ptradd ptr %i39, i32 %2251
-  907.load = load i32 from ptr %907
-  911 = ptradd ptr %i40, i32 %2251
-  911.load = load i32 from ptr %911
-  913 = add i32 %907.load, i32 %911.load
-  915 = add i32 %913, i32 %i41
-  919 = ptradd ptr %i45, i32 %2251
-  919.load = load i32 from ptr %919
-  921 = add i32 %i42, i32 %919.load
-  923 = add i32 %921, i32 %i46
-  927 = ptradd ptr %i49, i32 %2251
-  927.load = load i32 from ptr %927
-  929 = add i32 %i48, i32 %927.load
-  932 = ptradd ptr %i50, i32 %2251
-  932.load = load i32 from ptr %932
-  934 = add i32 %929, i32 %932.load
-  938 = ptradd ptr %i55, i32 %2251
-  938.load = load i32 from ptr %938
-  940 = add i32 %i54, i32 %938.load
-  942 = add i32 %940, i32 %i58
-  944 = add i32 %942, i32 %i63
-  store i32 %863 to ptr %arr2855
-  arr.index946 = ptradd ptr %arr2855, i32 4
-  store i32 %871 to ptr %arr.index946
-  arr.index947 = ptradd ptr %arr2855, i32 8
-  store i32 %882 to ptr %arr.index947
-  arr.index948 = ptradd ptr %arr2855, i32 12
-  store i32 %893 to ptr %arr.index948
-  arr.index949 = ptradd ptr %arr2855, i32 16
-  store i32 %904 to ptr %arr.index949
-  arr.index950 = ptradd ptr %arr2855, i32 20
-  store i32 %915 to ptr %arr.index950
-  arr.index951 = ptradd ptr %arr2855, i32 24
-  store i32 %923 to ptr %arr.index951
-  arr.index952 = ptradd ptr %arr2855, i32 28
-  store i32 %934 to ptr %arr.index952
-  arr.index953 = ptradd ptr %arr2855, i32 32
-  store i32 %944 to ptr %arr.index953
-  arr.index954 = ptradd ptr %arr2855, i32 36
-  store i32 0 to ptr %arr.index954
-  956 = icmp ne i32 %i63, i32 0
-  br i1 %956, bb %then957, bb %else959
-then957:  pred(entry700)
-  call void putfarray(i32 10, ptr %arr736)
-  call void putarray(i32 10, ptr %arr2855)
-  br bb %while.body964
-else959:  pred(entry700)
-  1031 = si2f i32 %i63 to float
-  1033 = f2si float %x62 to i32
-  1034 = call i32 params_mix(float %x0, ptr %arr2855, i32 %i2, ptr %arr736, float %x4, i32 %i5, float %x6, float %x7, ptr %x8, ptr %i9, i32 %i10, i32 %i11, ptr %x12, ptr %i13, ptr %i14, i32 %i15, ptr %x16, ptr %x17, float %x18, float %x19, float %x20, ptr %x21, i32 %i22, float %x23, float %x24, float %x25, ptr %i26, ptr %x27, ptr %i28, ptr %i29, ptr %x30, float %x31, float %x32, ptr %i33, i32 %i34, ptr %x35, ptr %x36, float %x37, float %x38, ptr %i39, ptr %i40, i32 %i41, i32 %i42, float %x43, float %x44, ptr %i45, i32 %i46, ptr %x47, i32 %i48, ptr %i49, ptr %i50, float %x51, float %x52, ptr %x53, i32 %i54, ptr %i55, ptr %x56, float %x57, i32 %i58, float %x59, ptr %x60, ptr %x61, float %1031, i32 %1033)
-  ret i32 %1034
-while.body964:  pred(while.body964, then957)
-  i962.phi2291 = phi [bb %while.body964, i32 %986, bb %then957, i32 0]
-  2280 = shl i32 %i962.phi2291, i32 2
-  971 = ptradd ptr %arr2855, i32 %2280
-  975.load = load i32 from ptr %971
-  979 = ptradd ptr %arr736, i32 %2280
-  979.load = load float from ptr %979
-  981 = si2f i32 %975.load to float
-  982 = fsub float %981, float %979.load
-  983 = f2si float %982 to i32
-  store i32 %983 to ptr %971
-  986 = add i32 %i962.phi2291, i32 1
-  967 = icmp slt i32 %986, i32 10
-  br i1 %967, bb %while.body964, bb %while.exit965
-while.exit965:  pred(while.body964)
-  k.load987 = load i32 from ptr @k
-  2283 = shl i32 %k.load987, i32 2
-  989 = ptradd ptr %arr2855, i32 %2283
-  989.load = load i32 from ptr %989
-  992.load = load float from ptr %arr.index853
-  994 = si2f i32 %989.load to float
-  995 = fmul float %994, float %992.load
-  996 = f2si float %995 to i32
-  ret i32 %996
-}
 
 external void putfarray(i32 , ptr )
 

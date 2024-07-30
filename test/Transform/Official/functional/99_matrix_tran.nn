@@ -25,10 +25,10 @@ entry57:  pred()
   store i32 3 to ptr @L
   br bb %while.body
 while.body:  pred(while.body, entry57)
-  i70.phi189247 = phi [bb %while.body, i32 %117, bb %entry57, i32 0]
-  193 = shl i32 %i70.phi189247, i32 2
+  i70.phi189246 = phi [bb %while.body, i32 %117, bb %entry57, i32 0]
+  193 = shl i32 %i70.phi189246, i32 2
   81 = ptradd ptr %a0, i32 %193
-  84 = si2f i32 %i70.phi189247 to float
+  84 = si2f i32 %i70.phi189246 to float
   store float %84 to ptr %81
   87 = ptradd ptr %a1, i32 %193
   store float %84 to ptr %87
@@ -40,7 +40,7 @@ while.body:  pred(while.body, entry57)
   store float %84 to ptr %105
   111 = ptradd ptr %b2, i32 %193
   store float %84 to ptr %111
-  117 = add i32 %i70.phi189247, i32 1
+  117 = add i32 %i70.phi189246, i32 1
   77 = icmp slt i32 %117, i32 3
   br i1 %77, bb %while.body, bb %while.exit
 while.exit:  pred(while.body)
@@ -74,55 +74,55 @@ while.exit:  pred(while.body)
   store float %49.load230 to ptr %46228
   55.load232 = load float from ptr %a0
   store float %55.load232 to ptr %c0
-  N.load125243 = load i32 from ptr @N
-  126244 = icmp slt i32 0, i32 %N.load125243
-  br i1 %126244, bb %while.body122_preheader, bb %while.exit123
+  N.load125242 = load i32 from ptr @N
+  126243 = icmp slt i32 0, i32 %N.load125242
+  br i1 %126243, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(while.exit)
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)
-  i70.phi188245 = phi [bb %while.body122, i32 %138, bb %while.body122_preheader, i32 0]
-  199 = shl i32 %i70.phi188245, i32 2
+  i70.phi188244 = phi [bb %while.body122, i32 %138, bb %while.body122_preheader, i32 0]
+  199 = shl i32 %i70.phi188244, i32 2
   131 = ptradd ptr %c0, i32 %199
   131.load = load float from ptr %131
   133 = f2si float %131.load to i32
   call void putint(i32 %133)
-  138 = add i32 %i70.phi188245, i32 1
+  138 = add i32 %i70.phi188244, i32 1
   N.load125 = load i32 from ptr @N
   126 = icmp slt i32 %138, i32 %N.load125
   br i1 %126, bb %while.body122, bb %while.exit123
 while.exit123:  pred(while.body122, while.exit)
   call void putch(i32 10)
-  N.load147240 = load i32 from ptr @N
-  148241 = icmp slt i32 0, i32 %N.load147240
-  br i1 %148241, bb %while.body144_preheader, bb %while.exit145
+  N.load147239 = load i32 from ptr @N
+  148240 = icmp slt i32 0, i32 %N.load147239
+  br i1 %148240, bb %while.body144_preheader, bb %while.exit145
 while.body144_preheader:  pred(while.exit123)
   br bb %while.body144
 while.body144:  pred(while.body144, while.body144_preheader)
-  i70.phi187242 = phi [bb %while.body144, i32 %160, bb %while.body144_preheader, i32 0]
-  200 = shl i32 %i70.phi187242, i32 2
+  i70.phi187241 = phi [bb %while.body144, i32 %160, bb %while.body144_preheader, i32 0]
+  200 = shl i32 %i70.phi187241, i32 2
   153 = ptradd ptr %c1, i32 %200
   153.load = load float from ptr %153
   155 = f2si float %153.load to i32
   call void putint(i32 %155)
-  160 = add i32 %i70.phi187242, i32 1
+  160 = add i32 %i70.phi187241, i32 1
   N.load147 = load i32 from ptr @N
   148 = icmp slt i32 %160, i32 %N.load147
   br i1 %148, bb %while.body144, bb %while.exit145
 while.exit145:  pred(while.body144, while.exit123)
   call void putch(i32 10)
-  N.load169237 = load i32 from ptr @N
-  170238 = icmp slt i32 0, i32 %N.load169237
-  br i1 %170238, bb %while.body166_preheader, bb %while.exit167
+  N.load169236 = load i32 from ptr @N
+  170237 = icmp slt i32 0, i32 %N.load169236
+  br i1 %170237, bb %while.body166_preheader, bb %while.exit167
 while.body166_preheader:  pred(while.exit145)
   br bb %while.body166
 while.body166:  pred(while.body166, while.body166_preheader)
-  i70.phi239 = phi [bb %while.body166, i32 %182, bb %while.body166_preheader, i32 0]
-  201 = shl i32 %i70.phi239, i32 2
+  i70.phi238 = phi [bb %while.body166, i32 %182, bb %while.body166_preheader, i32 0]
+  201 = shl i32 %i70.phi238, i32 2
   175 = ptradd ptr %c2, i32 %201
   175.load = load float from ptr %175
   177 = f2si float %175.load to i32
   call void putint(i32 %177)
-  182 = add i32 %i70.phi239, i32 1
+  182 = add i32 %i70.phi238, i32 1
   N.load169 = load i32 from ptr @N
   170 = icmp slt i32 %182, i32 %N.load169
   br i1 %170, bb %while.body166, bb %while.exit167

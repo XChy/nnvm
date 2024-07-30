@@ -73,9 +73,9 @@ while.cond:  pred(entry93, while.exit128)
 while.body:  pred(while.cond)
   124.load = load i32 from ptr %z
   store i32 %124.load to ptr %j
-  130.load206 = load i32 from ptr %j
-  132207 = icmp slt i32 %130.load206, i32 5
-  br i1 %132207, bb %while.body127, bb %while.exit128
+  130.load203 = load i32 from ptr %j
+  132204 = icmp slt i32 %130.load203, i32 5
+  br i1 %132204, bb %while.body127, bb %while.exit128
 while.exit:  pred(while.cond, while.exit128)
   call void putch(i32 10)
   ret i32 0

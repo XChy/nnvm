@@ -1,18 +1,24 @@
 pure internal float takFP(float x, float y, float z) {
 entry13:  pred()
-  19 = fcmp olt float %y, float %x
+  1978 = fcmp olt float %y, float %x
+  br i1 %1978, bb %then20_preheader, bb %if.exit21
+then20_preheader:  pred(entry13)
+  br bb %then20
+then20:  pred(then20, then20_preheader)
+  x.loop82 = phi [bb %then20, float %26, bb %then20_preheader, float %x]
+  y.loop81 = phi [bb %then20, float %31, bb %then20_preheader, float %y]
+  z.loop80 = phi [bb %then20, float %36, bb %then20_preheader, float %z]
+  23 = fsub float %x.loop82, float 1.000000
+  26 = call float takFP(float %23, float %y.loop81, float %z.loop80)
+  28 = fsub float %y.loop81, float 1.000000
+  31 = call float takFP(float %28, float %z.loop80, float %x.loop82)
+  33 = fsub float %z.loop80, float 1.000000
+  36 = call float takFP(float %33, float %x.loop82, float %y.loop81)
+  19 = fcmp olt float %31, float %26
   br i1 %19, bb %then20, bb %if.exit21
-then20:  pred(entry13)
-  23 = fsub float %x, float 1.000000
-  26 = call float takFP(float %23, float %y, float %z)
-  28 = fsub float %y, float 1.000000
-  31 = call float takFP(float %28, float %z, float %x)
-  33 = fsub float %z, float 1.000000
-  36 = call float takFP(float %33, float %x, float %y)
-  37 = call float takFP(float %26, float %31, float %36)
-  ret float %37
-if.exit21:  pred(entry13)
-  ret float %z
+if.exit21:  pred(then20, entry13)
+  z79 = phi [bb %then20, float %36, bb %entry13, float %z]
+  ret float %z79
 }
 
 external i32 getint()

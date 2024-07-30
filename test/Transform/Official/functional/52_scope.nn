@@ -15,23 +15,23 @@ entry13:  pred()
   645 = icmp eq i32 1, i32 %a.load44
   br bb %while.body
 while.body:  pred(if.exit25, entry13)
-  result.phi4056 = phi [bb %if.exit25, i32 %result.phi, bb %entry13, i32 0]
-  i.phi55 = phi [bb %if.exit25, i32 %31, bb %entry13, i32 0]
+  result.phi4055 = phi [bb %if.exit25, i32 %result.phi, bb %entry13, i32 0]
+  i.phi54 = phi [bb %if.exit25, i32 %31, bb %entry13, i32 0]
   br i1 %645, bb %func.then, bb %func.else
 while.body.split:  pred(func.then, func.else)
   22.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]
   23 = icmp eq i32 %22.ret, i32 1
   br i1 %23, bb %then24, bb %if.exit25
 while.exit:  pred(if.exit25)
-  54 = phi [bb %if.exit25, i32 %result.phi]
-  33 = icmp slt i32 %54, i32 100
+  53 = phi [bb %if.exit25, i32 %result.phi]
+  33 = icmp slt i32 %53, i32 100
   br i1 %33, bb %then34, bb %else36
 then24:  pred(while.body.split)
-  28 = add i32 %result.phi4056, i32 1
+  28 = add i32 %result.phi4055, i32 1
   br bb %if.exit25
 if.exit25:  pred(while.body.split, then24)
-  result.phi = phi [bb %while.body.split, i32 %result.phi4056, bb %then24, i32 %28]
-  31 = add i32 %i.phi55, i32 1
+  result.phi = phi [bb %while.body.split, i32 %result.phi4055, bb %then24, i32 %28]
+  31 = add i32 %i.phi54, i32 1
   20 = icmp slt i32 %31, i32 100
   br i1 %20, bb %while.body, bb %while.exit
 then34:  pred(while.exit)

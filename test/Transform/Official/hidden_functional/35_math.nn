@@ -202,17 +202,17 @@ if.exit52:  pred(entry46)
   70 = fadd float %62, float %69
   br bb %while.body73
 while.body73:  pred(while.body73, if.exit52)
-  t.phi1514 = phi [bb %while.body73, float %84, bb %if.exit52, float %70]
-  c.phi1513 = phi [bb %while.body73, i32 %87, bb %if.exit52, i32 10]
-  81 = fdiv float %x, float %t.phi1514
-  82 = fadd float %t.phi1514, float %81
+  t.phi1506 = phi [bb %while.body73, float %84, bb %if.exit52, float %70]
+  c.phi1505 = phi [bb %while.body73, i32 %87, bb %if.exit52, i32 10]
+  81 = fdiv float %x, float %t.phi1506
+  82 = fadd float %t.phi1506, float %81
   84 = fdiv float %82, float %64
-  87 = sub i32 %c.phi1513, i32 1
+  87 = sub i32 %c.phi1505, i32 1
   76 = icmp ne i32 %87, i32 0
   br i1 %76, bb %while.body73, bb %while.exit74
 while.exit74:  pred(while.body73)
-  701512 = phi [bb %while.body73, float %84]
-  ret float %701512
+  701504 = phi [bb %while.body73, float %84]
+  ret float %701504
 }
 
 pure internal float my_pow(float a, i32 n) {
@@ -226,27 +226,27 @@ then15:  pred(entry10)
   22 = fdiv float %21, float %20
   ret float %22
 if.exit16:  pred(entry10)
-  281515 = icmp ne i32 %n, i32 0
-  br i1 %281515, bb %while.body_preheader, bb %while.exit
+  281507 = icmp ne i32 %n, i32 0
+  br i1 %281507, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(if.exit16)
   br bb %while.body
 while.body:  pred(if.exit33, while.body_preheader)
-  a.stack.phi1519 = phi [bb %if.exit33, float %41, bb %while.body_preheader, float %a]
-  n.stack.phi1518 = phi [bb %if.exit33, i32 %44, bb %while.body_preheader, i32 %n]
-  res.phi4021517 = phi [bb %if.exit33, float %res.phi, bb %while.body_preheader, float 1.000000]
-  30 = srem i32 %n.stack.phi1518, i32 2
+  a.stack.phi1511 = phi [bb %if.exit33, float %41, bb %while.body_preheader, float %a]
+  n.stack.phi1510 = phi [bb %if.exit33, i32 %44, bb %while.body_preheader, i32 %n]
+  res.phi4021509 = phi [bb %if.exit33, float %res.phi, bb %while.body_preheader, float 1.000000]
+  30 = srem i32 %n.stack.phi1510, i32 2
   31 = icmp ne i32 %30, i32 0
   br i1 %31, bb %then32, bb %if.exit33
 while.exit:  pred(if.exit33, if.exit16)
-  1516 = phi [bb %if.exit33, float %res.phi, bb %if.exit16, float 1.000000]
-  ret float %1516
+  1508 = phi [bb %if.exit33, float %res.phi, bb %if.exit16, float 1.000000]
+  ret float %1508
 then32:  pred(while.body)
-  37 = fmul float %res.phi4021517, float %a.stack.phi1519
+  37 = fmul float %res.phi4021509, float %a.stack.phi1511
   br bb %if.exit33
 if.exit33:  pred(while.body, then32)
-  res.phi = phi [bb %while.body, float %res.phi4021517, bb %then32, float %37]
-  41 = fmul float %a.stack.phi1519, float %a.stack.phi1519
-  44 = sdiv i32 %n.stack.phi1518, i32 2
+  res.phi = phi [bb %while.body, float %res.phi4021509, bb %then32, float %37]
+  41 = fmul float %a.stack.phi1511, float %a.stack.phi1511
+  44 = sdiv i32 %n.stack.phi1510, i32 2
   28 = icmp ne i32 %44, i32 0
   br i1 %28, bb %while.body, bb %while.exit
 }
@@ -264,13 +264,13 @@ external i32 getfarray(ptr )
 i32 main() {
 entry323:  pred()
   325 = call i32 getint()
-  3301520 = icmp ne i32 %325, i32 0
-  br i1 %3301520, bb %while.body327_preheader, bb %while.exit328
+  3301512 = icmp ne i32 %325, i32 0
+  br i1 %3301512, bb %while.body327_preheader, bb %while.exit328
 while.body327_preheader:  pred(entry323)
   31494 = si2f i32 0 to float
   br bb %while.body327
 while.body327:  pred(if.exit386, while.body327_preheader)
-  num.phi1521 = phi [bb %if.exit386, i32 %396, bb %while.body327_preheader, i32 %325]
+  num.phi1513 = phi [bb %if.exit386, i32 %396, bb %while.body327_preheader, i32 %325]
   332 = call float getfloat()
   334 = call float getfloat()
   41495 = fcmp ogt float %332, float %31494
@@ -384,7 +384,7 @@ then385:  pred(if.exit374)
   br bb %if.exit386
 if.exit386:  pred(then385, else387)
   call void putch(i32 10)
-  396 = sub i32 %num.phi1521, i32 1
+  396 = sub i32 %num.phi1513, i32 1
   330 = icmp ne i32 %396, i32 0
   br i1 %330, bb %while.body327, bb %while.exit328
 else387:  pred(if.exit374)

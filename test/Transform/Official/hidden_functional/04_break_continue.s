@@ -66,9 +66,9 @@ bb5:
   ADD t1, t6, zero
   # implict jump to bb6
 bb6:
-  ADD s0, t1, zero
-  ADDIW s1, a3, 1
-  SLTI s8, s1, 5
+  ADD s1, t1, zero
+  ADDIW s0, a3, 1
+  SLTI s8, s0, 5
   BNE s8, zero, bb15
   # implict jump to bb7
 bb7:
@@ -109,22 +109,22 @@ bb12:
 bb13:
   ADD s2, a6, zero
   ADD s3, s11, zero
-  ADD s4, s0, zero
+  ADD s4, s1, zero
   LW t4, 16(sp)
   ADD s5, t4, zero
   JAL zero, bb1
 bb14:
   ADD s9, a6, zero
   ADD s10, s8, zero
-  ADD s7, s0, zero
+  ADD s7, s1, zero
   LW t4, 16(sp)
   ADD s6, t4, zero
   JAL zero, bb2
 bb15:
   ADD t2, a6, zero
-  ADD t4, s1, zero
-  SW t4, 20(sp)
   ADD t4, s0, zero
+  SW t4, 20(sp)
+  ADD t4, s1, zero
   SB t4, 0(sp)
   LW t3, 16(sp)
   ADD t4, t3, zero
@@ -161,7 +161,7 @@ bb22:
   ADD t0, a7, zero
   JAL zero, bb19
 bb23:
-  SLTU s1, zero, a7
+  SLTU s0, zero, a7
   BNE a7, zero, bb26
   # implict jump to bb24
 bb24:
@@ -173,14 +173,14 @@ bb26:
   BNE a7, zero, bb32
   # implict jump to bb27
 bb27:
-  XORI s1, s1, 1
-  SLTU s1, zero, s1
+  XORI s0, s0, 1
+  SLTU s0, zero, s0
   # implict jump to bb28
 bb28:
-  BNE s1, zero, bb30
+  BNE s0, zero, bb30
   # implict jump to bb29
 bb29:
-  ADD t6, s1, zero
+  ADD t6, s0, zero
   JAL zero, bb25
 bb30:
   ADDI t0, zero, -1
@@ -190,8 +190,8 @@ bb30:
   BNE t0, zero, bb31
   JAL zero, bb29
 bb31:
-  ADD t1, s1, zero
+  ADD t1, s0, zero
   JAL zero, bb6
 bb32:
-  ADDI s1, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb28

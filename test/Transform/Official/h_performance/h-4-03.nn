@@ -12,37 +12,37 @@ i32 main() {
 entry61:  pred()
   63 = call i32 getint()
   call void _sysy_starttime(i32 33)
-  69227 = icmp ne i32 %63, i32 0
-  br i1 %69227, bb %while.body66_preheader, bb %while.exit67
+  69224 = icmp ne i32 %63, i32 0
+  br i1 %69224, bb %while.body66_preheader, bb %while.exit67
 while.body66_preheader:  pred(entry61)
   br bb %while.body66
 while.body66:  pred(loop_test.while.exit, while.body66_preheader)
-  T.phi228 = phi [bb %loop_test.while.exit, i32 %84, bb %while.body66_preheader, i32 %63]
+  T.phi225 = phi [bb %loop_test.while.exit, i32 %84, bb %while.body66_preheader, i32 %63]
   71 = call i32 getint()
   73 = call i32 getint()
   75 = call i32 getint()
-  4798223 = icmp slt i32 %71, i32 %73
-  br i1 %4798223, bb %loop_test.while.body_preheader, bb %loop_test.while.exit
+  4798220 = icmp slt i32 %71, i32 %73
+  br i1 %4798220, bb %loop_test.while.body_preheader, bb %loop_test.while.exit
 while.exit67:  pred(loop_test.while.exit, entry61)
   call void _sysy_stoptime(i32 42)
   ret i32 0
 loop_test.while.body_preheader:  pred(while.body66)
   br bb %loop_test.while.body
 loop_test.while.body:  pred(f.entry11125.split.split.split, loop_test.while.body_preheader)
-  sum.phi97226 = phi [bb %f.entry11125.split.split.split, i32 %55103, bb %loop_test.while.body_preheader, i32 0]
-  x.phi96225 = phi [bb %f.entry11125.split.split.split, i32 %59104, bb %loop_test.while.body_preheader, i32 %71]
-  16126 = sub i32 2147483647, i32 %x.phi96225
-  5195 = icmp slt i32 %x.phi96225, i32 %16126
+  sum.phi97223 = phi [bb %f.entry11125.split.split.split, i32 %55103, bb %loop_test.while.body_preheader, i32 0]
+  x.phi96222 = phi [bb %f.entry11125.split.split.split, i32 %59104, bb %loop_test.while.body_preheader, i32 %71]
+  16126 = sub i32 2147483647, i32 %x.phi96222
+  5195 = icmp slt i32 %x.phi96222, i32 %16126
   br i1 %5195, bb %min.then197, bb %min.else199
 loop_test.while.exit:  pred(f.entry11125.split.split.split, while.body66)
-  224 = phi [bb %f.entry11125.split.split.split, i32 %55103, bb %while.body66, i32 0]
-  call void putint(i32 %224)
+  221 = phi [bb %f.entry11125.split.split.split, i32 %55103, bb %while.body66, i32 0]
+  call void putint(i32 %221)
   call void putch(i32 10)
-  84 = sub i32 %T.phi228, i32 1
+  84 = sub i32 %T.phi225, i32 1
   69 = icmp ne i32 %84, i32 0
   br i1 %69, bb %while.body66, bb %while.exit67
 f.entry11125.split:  pred(min.then197, min.else199)
-  17127.ret = phi [bb %min.then197, i32 %x.phi96225, bb %min.else199, i32 %16126]
+  17127.ret = phi [bb %min.then197, i32 %x.phi96222, bb %min.else199, i32 %16126]
   21128 = sub i32 1073741823, i32 %17127.ret
   5204 = icmp slt i32 %17127.ret, i32 %21128
   br i1 %5204, bb %min.then206, bb %min.else208
@@ -58,9 +58,9 @@ f.entry11125.split.split.split:  pred(min.then215, min.else217)
   32134 = mul i32 %31133, i32 1001
   33135 = add i32 %27131.ret, i32 %32134
   34136 = srem i32 %33135, i32 19491001
-  53102 = add i32 %sum.phi97226, i32 %34136
+  53102 = add i32 %sum.phi97223, i32 %34136
   55103 = srem i32 %53102, i32 998244853
-  59104 = add i32 %x.phi96225, i32 %75
+  59104 = add i32 %x.phi96222, i32 %75
   4798 = icmp slt i32 %59104, i32 %73
   br i1 %4798, bb %loop_test.while.body, bb %loop_test.while.exit
 min.then197:  pred(loop_test.while.body)

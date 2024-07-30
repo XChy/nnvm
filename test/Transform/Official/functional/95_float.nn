@@ -110,8 +110,8 @@ if.exit134:  pred(if.exit123, then133)
   191 = fneg float %190
   br bb %while.body
 while.body:  pred(while.body, if.exit134)
-  i.phi601 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
-  p.phi600 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
+  i.phi594 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
+  p.phi593 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
   160 = call float getfloat()
   164 = fmul float 3.141593, float %160
   166 = fmul float %164, float %160
@@ -124,7 +124,7 @@ while.body:  pred(while.body, if.exit134)
   24380 = fmul float %23379, float 3.141593
   25381 = fadd float %18377, float %24380
   27383 = fdiv float %25381, float %26356
-  207 = shl i32 %p.phi600, i32 2
+  207 = shl i32 %p.phi593, i32 2
   173 = ptradd ptr %arr, i32 %207
   177.load = load float from ptr %173
   180 = fadd float %177.load, float %160
@@ -134,10 +134,10 @@ while.body:  pred(while.body, if.exit134)
   185 = f2si float %27383 to i32
   call void putint(i32 %185)
   call void putch(i32 10)
-  192 = si2f i32 %i.phi601 to float
+  192 = si2f i32 %i.phi594 to float
   193 = fmul float %192, float %191
   194 = f2si float %193 to i32
-  197 = add i32 %p.phi600, i32 1
+  197 = add i32 %p.phi593, i32 1
   157 = icmp slt i32 %194, i32 1000000000
   br i1 %157, bb %while.body, bb %while.exit
 while.exit:  pred(while.body)

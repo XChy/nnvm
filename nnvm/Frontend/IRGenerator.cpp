@@ -787,11 +787,17 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   symbolTable.exitScope();
 
-  if (func->getReturnType()->isVoid() &&
-      !builder.getCurrentBB()->getTerminator())
-    builder.buildRet();
-  else if (!builder.getCurrentBB()->getTerminator()) {
-    builder.buildUnreachable();
+  // It's not a ub if the main function lacks return statement. We should return
+  // 0 by default.
+  if (funcName == "main" && !builder.getCurrentBB()->getTerminator()) {
+    builder.buildRet(constZeroInt);
+  } else {
+    if (func->getReturnType()->isVoid() &&
+        !builder.getCurrentBB()->getTerminator())
+      builder.buildRet();
+    else if (!builder.getCurrentBB()->getTerminator()) {
+      builder.buildUnreachable();
+    }
   }
 
   return Symbol::none();

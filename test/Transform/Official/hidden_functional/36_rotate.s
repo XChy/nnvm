@@ -429,9 +429,9 @@ bb54:
   ADDI s9, zero, 2
   DIVW s9, s2, s9
   LA s10, height
-  LW s0, 0(s10)
+  LW s1, 0(s10)
   ADDI s10, zero, 2
-  DIVW s10, s0, s10
+  DIVW s10, s1, s10
   SUBW s11, s8, s9
   SUBW s6, s5, s10
   FCVT.S.W fs3, s11
@@ -441,38 +441,38 @@ bb54:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s9
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s3, fs4, rtz
+  FCVT.W.S s0, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s10
   FADD.S fs1, fs1, fs2
-  FCVT.W.S s1, fs1, rtz
-  BLT s3, zero, bb67
+  FCVT.W.S s3, fs1, rtz
+  BLT s0, zero, bb67
   # implict jump to bb55
 bb55:
-  SLT s6, s3, s2
+  SLT s6, s0, s2
   XORI s6, s6, 1
   # implict jump to bb56
 bb56:
   BNE s6, zero, bb66
   # implict jump to bb57
 bb57:
-  SLT s6, s1, zero
+  SLT s6, s3, zero
   # implict jump to bb58
 bb58:
   BNE s6, zero, bb65
   # implict jump to bb59
 bb59:
-  SLT s0, s1, s0
-  XORI s0, s0, 1
+  SLT s1, s3, s1
+  XORI s1, s1, 1
   # implict jump to bb60
 bb60:
-  BNE s0, zero, bb64
+  BNE s1, zero, bb64
   # implict jump to bb61
 bb61:
-  MULW s0, s1, s2
-  ADDW s0, s0, s3
+  MULW s1, s3, s2
+  ADDW s0, s1, s0
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -495,7 +495,7 @@ bb64:
   ADD s0, zero, zero
   JAL zero, bb62
 bb65:
-  ADDI s0, zero, 1
+  ADDI s1, zero, 1
   JAL zero, bb60
 bb66:
   ADDI s6, zero, 1

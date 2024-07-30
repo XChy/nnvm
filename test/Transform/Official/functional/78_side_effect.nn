@@ -10,13 +10,13 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry9:  pred()
-  15149 = icmp sge i32 5, i32 0
-  br i1 %15149, bb %while.body_preheader, bb %while.exit
+  15148 = icmp sge i32 5, i32 0
+  br i1 %15148, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry9)
   br bb %while.body
 while.body:  pred(if.exit62, while.body_preheader)
-  k.phi151 = phi [bb %if.exit62, i32 %73, bb %while.body_preheader, i32 5]
-  select52.phi90150 = phi [bb %if.exit62, i1 %select52.phi89, bb %while.body_preheader, i1 0]
+  k.phi150 = phi [bb %if.exit62, i32 %73, bb %while.body_preheader, i32 5]
+  select52.phi90149 = phi [bb %if.exit62, i1 %select52.phi89, bb %while.body_preheader, i1 0]
   a.load94 = load i32 from ptr @a
   595 = add i32 %a.load94, i32 1
   store i32 %595 to ptr @a
@@ -76,16 +76,16 @@ select.else44:  pred(if.exit)
   48 = icmp ne i32 %5123, i32 0
   br i1 %48, bb %select.then49, bb %select.else50
 select.exit45:  pred(select.then43, select.exit51)
-  select52.phi89 = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 %select52.phi90150]
+  select52.phi89 = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 %select52.phi90149]
   select46.phi = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 -1]
   br i1 %select46.phi, bb %then61, bb %else
 select.then49:  pred(select.else44)
   a.load129 = load i32 from ptr @a
   5130 = add i32 %a.load129, i32 1
   store i32 %5130 to ptr @a
-  156 = add i32 %a.load129, i32 2
-  store i32 %156 to ptr @a
-  55 = sub i32 %5130, i32 %156
+  155 = add i32 %a.load129, i32 2
+  store i32 %155 to ptr @a
+  55 = sub i32 %5130, i32 %155
   56 = add i32 %55, i32 1
   57 = icmp ne i32 %56, i32 0
   br bb %select.exit51
@@ -103,7 +103,7 @@ then61:  pred(select.exit45)
   store i32 %91 to ptr @b
   br bb %if.exit62
 if.exit62:  pred(then61, else)
-  73 = sub i32 %k.phi151, i32 1
+  73 = sub i32 %k.phi150, i32 1
   15 = icmp sge i32 %73, i32 0
   br i1 %15, bb %while.body, bb %while.exit
 else:  pred(select.exit45)

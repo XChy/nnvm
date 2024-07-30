@@ -26,27 +26,27 @@ entry138:  pred()
 while.body144_preheader:  pred(getstr.while.exit37)
   br bb %while.body144
 while.body144:  pred(if.exit157, while.body144_preheader)
-  i.load13771398 = phi [bb %if.exit157, i32 %i.load, bb %while.body144_preheader, i32 %i.load1377]
-  select256.phi7651397 = phi [bb %if.exit157, i1 %select256.phi764, bb %while.body144_preheader, i1 0]
-  select278.phi7701396 = phi [bb %if.exit157, i1 %select278.phi769, bb %while.body144_preheader, i1 0]
-  select310.phi7751395 = phi [bb %if.exit157, i1 %select310.phi774, bb %while.body144_preheader, i1 0]
-  select332.phi7801394 = phi [bb %if.exit157, i1 %select332.phi779, bb %while.body144_preheader, i1 0]
-  select343.phi7851393 = phi [bb %if.exit157, i1 %select343.phi784, bb %while.body144_preheader, i1 0]
-  select234.phi7901392 = phi [bb %if.exit157, i1 %select234.phi789, bb %while.body144_preheader, i1 0]
-  select354.phi7951391 = phi [bb %if.exit157, i1 %select354.phi794, bb %while.body144_preheader, i1 0]
-  select397.phi8001390 = phi [bb %if.exit157, i1 %select397.phi799, bb %while.body144_preheader, i1 0]
-  select408.phi8051389 = phi [bb %if.exit157, i1 %select408.phi804, bb %while.body144_preheader, i1 0]
-  select440.phi8101388 = phi [bb %if.exit157, i1 %select440.phi809, bb %while.body144_preheader, i1 0]
-  select451.phi8151387 = phi [bb %if.exit157, i1 %select451.phi814, bb %while.body144_preheader, i1 0]
-  select245.phi8321386 = phi [bb %if.exit157, i1 %select245.phi831, bb %while.body144_preheader, i1 0]
-  select321.phi8371385 = phi [bb %if.exit157, i1 %select321.phi836, bb %while.body144_preheader, i1 0]
-  select386.phi8431384 = phi [bb %if.exit157, i1 %select386.phi842, bb %while.body144_preheader, i1 0]
-  select267.phi8501383 = phi [bb %if.exit157, i1 %select267.phi849, bb %while.body144_preheader, i1 0]
-  select516.phi8551382 = phi [bb %if.exit157, i1 %select516.phi854, bb %while.body144_preheader, i1 0]
-  select505.phi8621381 = phi [bb %if.exit157, i1 %select505.phi861, bb %while.body144_preheader, i1 0]
-  select494.phi8691380 = phi [bb %if.exit157, i1 %select494.phi868, bb %while.body144_preheader, i1 0]
-  select462.phi8781379 = phi [bb %if.exit157, i1 %select462.phi877, bb %while.body144_preheader, i1 0]
-  893 = shl i32 %i.load13771398, i32 2
+  i.load13681389 = phi [bb %if.exit157, i32 %i.load, bb %while.body144_preheader, i32 %i.load1368]
+  select256.phi7651388 = phi [bb %if.exit157, i1 %select256.phi764, bb %while.body144_preheader, i1 0]
+  select278.phi7701387 = phi [bb %if.exit157, i1 %select278.phi769, bb %while.body144_preheader, i1 0]
+  select310.phi7751386 = phi [bb %if.exit157, i1 %select310.phi774, bb %while.body144_preheader, i1 0]
+  select332.phi7801385 = phi [bb %if.exit157, i1 %select332.phi779, bb %while.body144_preheader, i1 0]
+  select343.phi7851384 = phi [bb %if.exit157, i1 %select343.phi784, bb %while.body144_preheader, i1 0]
+  select234.phi7901383 = phi [bb %if.exit157, i1 %select234.phi789, bb %while.body144_preheader, i1 0]
+  select354.phi7951382 = phi [bb %if.exit157, i1 %select354.phi794, bb %while.body144_preheader, i1 0]
+  select397.phi8001381 = phi [bb %if.exit157, i1 %select397.phi799, bb %while.body144_preheader, i1 0]
+  select408.phi8051380 = phi [bb %if.exit157, i1 %select408.phi804, bb %while.body144_preheader, i1 0]
+  select440.phi8101379 = phi [bb %if.exit157, i1 %select440.phi809, bb %while.body144_preheader, i1 0]
+  select451.phi8151378 = phi [bb %if.exit157, i1 %select451.phi814, bb %while.body144_preheader, i1 0]
+  select245.phi8321377 = phi [bb %if.exit157, i1 %select245.phi831, bb %while.body144_preheader, i1 0]
+  select321.phi8371376 = phi [bb %if.exit157, i1 %select321.phi836, bb %while.body144_preheader, i1 0]
+  select386.phi8431375 = phi [bb %if.exit157, i1 %select386.phi842, bb %while.body144_preheader, i1 0]
+  select267.phi8501374 = phi [bb %if.exit157, i1 %select267.phi849, bb %while.body144_preheader, i1 0]
+  select516.phi8551373 = phi [bb %if.exit157, i1 %select516.phi854, bb %while.body144_preheader, i1 0]
+  select505.phi8621372 = phi [bb %if.exit157, i1 %select505.phi861, bb %while.body144_preheader, i1 0]
+  select494.phi8691371 = phi [bb %if.exit157, i1 %select494.phi868, bb %while.body144_preheader, i1 0]
+  select462.phi8781370 = phi [bb %if.exit157, i1 %select462.phi877, bb %while.body144_preheader, i1 0]
+  893 = shl i32 %i.load13681389, i32 2
   152 = ptradd ptr @get, i32 %893
   152.load = load i32 from ptr %152
   31332 = icmp sge i32 %152.load, i32 48
@@ -65,25 +65,25 @@ then156:  pred(while.body144.split)
   store i32 %169 to ptr @ii
   br bb %if.exit157
 if.exit157:  pred(then156, if.exit482)
-  select462.phi877 = phi [bb %if.exit482, i1 %select462.phi875, bb %then156, i1 %select462.phi8781379]
-  select494.phi868 = phi [bb %if.exit482, i1 %select494.phi866, bb %then156, i1 %select494.phi8691380]
-  select505.phi861 = phi [bb %if.exit482, i1 %select505.phi859, bb %then156, i1 %select505.phi8621381]
-  select516.phi854 = phi [bb %if.exit482, i1 %select516.phi852, bb %then156, i1 %select516.phi8551382]
-  select267.phi849 = phi [bb %if.exit482, i1 %select267.phi847, bb %then156, i1 %select267.phi8501383]
-  select386.phi842 = phi [bb %if.exit482, i1 %select386.phi840, bb %then156, i1 %select386.phi8431384]
-  select321.phi836 = phi [bb %if.exit482, i1 %select321.phi834, bb %then156, i1 %select321.phi8371385]
-  select245.phi831 = phi [bb %if.exit482, i1 %select245.phi829, bb %then156, i1 %select245.phi8321386]
-  select451.phi814 = phi [bb %if.exit482, i1 %select451.phi812, bb %then156, i1 %select451.phi8151387]
-  select440.phi809 = phi [bb %if.exit482, i1 %select440.phi807, bb %then156, i1 %select440.phi8101388]
-  select408.phi804 = phi [bb %if.exit482, i1 %select408.phi802, bb %then156, i1 %select408.phi8051389]
-  select397.phi799 = phi [bb %if.exit482, i1 %select397.phi797, bb %then156, i1 %select397.phi8001390]
-  select354.phi794 = phi [bb %if.exit482, i1 %select354.phi792, bb %then156, i1 %select354.phi7951391]
-  select234.phi789 = phi [bb %if.exit482, i1 %select234.phi787, bb %then156, i1 %select234.phi7901392]
-  select343.phi784 = phi [bb %if.exit482, i1 %select343.phi782, bb %then156, i1 %select343.phi7851393]
-  select332.phi779 = phi [bb %if.exit482, i1 %select332.phi777, bb %then156, i1 %select332.phi7801394]
-  select310.phi774 = phi [bb %if.exit482, i1 %select310.phi772, bb %then156, i1 %select310.phi7751395]
-  select278.phi769 = phi [bb %if.exit482, i1 %select278.phi767, bb %then156, i1 %select278.phi7701396]
-  select256.phi764 = phi [bb %if.exit482, i1 %select256.phi762, bb %then156, i1 %select256.phi7651397]
+  select462.phi877 = phi [bb %if.exit482, i1 %select462.phi875, bb %then156, i1 %select462.phi8781370]
+  select494.phi868 = phi [bb %if.exit482, i1 %select494.phi866, bb %then156, i1 %select494.phi8691371]
+  select505.phi861 = phi [bb %if.exit482, i1 %select505.phi859, bb %then156, i1 %select505.phi8621372]
+  select516.phi854 = phi [bb %if.exit482, i1 %select516.phi852, bb %then156, i1 %select516.phi8551373]
+  select267.phi849 = phi [bb %if.exit482, i1 %select267.phi847, bb %then156, i1 %select267.phi8501374]
+  select386.phi842 = phi [bb %if.exit482, i1 %select386.phi840, bb %then156, i1 %select386.phi8431375]
+  select321.phi836 = phi [bb %if.exit482, i1 %select321.phi834, bb %then156, i1 %select321.phi8371376]
+  select245.phi831 = phi [bb %if.exit482, i1 %select245.phi829, bb %then156, i1 %select245.phi8321377]
+  select451.phi814 = phi [bb %if.exit482, i1 %select451.phi812, bb %then156, i1 %select451.phi8151378]
+  select440.phi809 = phi [bb %if.exit482, i1 %select440.phi807, bb %then156, i1 %select440.phi8101379]
+  select408.phi804 = phi [bb %if.exit482, i1 %select408.phi802, bb %then156, i1 %select408.phi8051380]
+  select397.phi799 = phi [bb %if.exit482, i1 %select397.phi797, bb %then156, i1 %select397.phi8001381]
+  select354.phi794 = phi [bb %if.exit482, i1 %select354.phi792, bb %then156, i1 %select354.phi7951382]
+  select234.phi789 = phi [bb %if.exit482, i1 %select234.phi787, bb %then156, i1 %select234.phi7901383]
+  select343.phi784 = phi [bb %if.exit482, i1 %select343.phi782, bb %then156, i1 %select343.phi7851384]
+  select332.phi779 = phi [bb %if.exit482, i1 %select332.phi777, bb %then156, i1 %select332.phi7801385]
+  select310.phi774 = phi [bb %if.exit482, i1 %select310.phi772, bb %then156, i1 %select310.phi7751386]
+  select278.phi769 = phi [bb %if.exit482, i1 %select278.phi767, bb %then156, i1 %select278.phi7701387]
+  select256.phi764 = phi [bb %if.exit482, i1 %select256.phi762, bb %then156, i1 %select256.phi7651388]
   i.load538 = load i32 from ptr @i
   539 = add i32 %i.load538, i32 1
   store i32 %539 to ptr @i
@@ -126,9 +126,9 @@ then191:  pred(if.exit184)
   95973 = ptradd ptr @chas, i32 %886972
   95.load974 = load i32 from ptr %95973
   store i32 %95.load974 to ptr @c
-  c.load1981356 = load i32 from ptr @c
-  1991357 = icmp ne i32 %c.load1981356, i32 40
-  br i1 %1991357, bb %while.body196, bb %if.exit192
+  c.load1981347 = load i32 from ptr @c
+  1991348 = icmp ne i32 %c.load1981347, i32 40
+  br i1 %1991348, bb %while.body196, bb %if.exit192
 if.exit192:  pred(if.exit184, while.body196, then191)
   218.load = load i32 from ptr %152
   220 = icmp eq i32 %218.load, i32 43
@@ -156,11 +156,11 @@ while.body196:  pred(while.body196, then191)
   199 = icmp ne i32 %c.load198, i32 40
   br i1 %199, bb %while.body196, bb %if.exit192
 if.exit222:  pred(if.exit192, while.exit225)
-  select267.phi847 = phi [bb %if.exit192, i1 %select267.phi8501383, bb %while.exit225, i1 %select267.phi]
-  select245.phi829 = phi [bb %if.exit192, i1 %select245.phi8321386, bb %while.exit225, i1 %select245.phi]
-  select234.phi787 = phi [bb %if.exit192, i1 %select234.phi7901392, bb %while.exit225, i1 %select234.phi]
-  select278.phi767 = phi [bb %if.exit192, i1 %select278.phi7701396, bb %while.exit225, i1 %select278.phi]
-  select256.phi762 = phi [bb %if.exit192, i1 %select256.phi7651397, bb %while.exit225, i1 %select256.phi]
+  select267.phi847 = phi [bb %if.exit192, i1 %select267.phi8501374, bb %while.exit225, i1 %select267.phi]
+  select245.phi829 = phi [bb %if.exit192, i1 %select245.phi8321377, bb %while.exit225, i1 %select245.phi]
+  select234.phi787 = phi [bb %if.exit192, i1 %select234.phi7901383, bb %while.exit225, i1 %select234.phi]
+  select278.phi767 = phi [bb %if.exit192, i1 %select278.phi7701387, bb %while.exit225, i1 %select278.phi]
+  select256.phi762 = phi [bb %if.exit192, i1 %select256.phi7651388, bb %while.exit225, i1 %select256.phi]
   294.load = load i32 from ptr %152
   296 = icmp eq i32 %294.load, i32 45
   br i1 %296, bb %while.cond299, bb %if.exit298
@@ -249,11 +249,11 @@ select.exit277:  pred(select.then275, select.else276)
   select278.phi = phi [bb %select.else276, i1 %283, bb %select.then275, i1 -1]
   br i1 %select278.phi, bb %while.body224, bb %while.exit225
 if.exit298:  pred(if.exit222, while.exit301)
-  select321.phi834 = phi [bb %if.exit222, i1 %select321.phi8371385, bb %while.exit301, i1 %select321.phi]
-  select354.phi792 = phi [bb %if.exit222, i1 %select354.phi7951391, bb %while.exit301, i1 %select354.phi]
-  select343.phi782 = phi [bb %if.exit222, i1 %select343.phi7851393, bb %while.exit301, i1 %select343.phi]
-  select332.phi777 = phi [bb %if.exit222, i1 %select332.phi7801394, bb %while.exit301, i1 %select332.phi]
-  select310.phi772 = phi [bb %if.exit222, i1 %select310.phi7751395, bb %while.exit301, i1 %select310.phi]
+  select321.phi834 = phi [bb %if.exit222, i1 %select321.phi8371376, bb %while.exit301, i1 %select321.phi]
+  select354.phi792 = phi [bb %if.exit222, i1 %select354.phi7951382, bb %while.exit301, i1 %select354.phi]
+  select343.phi782 = phi [bb %if.exit222, i1 %select343.phi7851384, bb %while.exit301, i1 %select343.phi]
+  select332.phi777 = phi [bb %if.exit222, i1 %select332.phi7801385, bb %while.exit301, i1 %select332.phi]
+  select310.phi772 = phi [bb %if.exit222, i1 %select310.phi7751386, bb %while.exit301, i1 %select310.phi]
   370.load = load i32 from ptr %152
   372 = icmp eq i32 %370.load, i32 42
   br i1 %372, bb %while.cond375, bb %if.exit374
@@ -342,9 +342,9 @@ select.exit353:  pred(select.then351, select.else352)
   select354.phi = phi [bb %select.else352, i1 %359, bb %select.then351, i1 -1]
   br i1 %select354.phi, bb %while.body300, bb %while.exit301
 if.exit374:  pred(if.exit298, while.exit377)
-  select386.phi840 = phi [bb %if.exit298, i1 %select386.phi8431384, bb %while.exit377, i1 %select386.phi]
-  select408.phi802 = phi [bb %if.exit298, i1 %select408.phi8051389, bb %while.exit377, i1 %select408.phi]
-  select397.phi797 = phi [bb %if.exit298, i1 %select397.phi8001390, bb %while.exit377, i1 %select397.phi]
+  select386.phi840 = phi [bb %if.exit298, i1 %select386.phi8431375, bb %while.exit377, i1 %select386.phi]
+  select408.phi802 = phi [bb %if.exit298, i1 %select408.phi8051380, bb %while.exit377, i1 %select408.phi]
+  select397.phi797 = phi [bb %if.exit298, i1 %select397.phi8001381, bb %while.exit377, i1 %select397.phi]
   424.load = load i32 from ptr %152
   426 = icmp eq i32 %424.load, i32 47
   br i1 %426, bb %while.cond429, bb %if.exit428
@@ -415,9 +415,9 @@ select.exit407:  pred(select.then405, select.else406)
   select408.phi = phi [bb %select.else406, i1 %413, bb %select.then405, i1 -1]
   br i1 %select408.phi, bb %while.body376, bb %while.exit377
 if.exit428:  pred(if.exit374, while.exit431)
-  select462.phi875 = phi [bb %if.exit374, i1 %select462.phi8781379, bb %while.exit431, i1 %select462.phi]
-  select451.phi812 = phi [bb %if.exit374, i1 %select451.phi8151387, bb %while.exit431, i1 %select451.phi]
-  select440.phi807 = phi [bb %if.exit374, i1 %select440.phi8101388, bb %while.exit431, i1 %select440.phi]
+  select462.phi875 = phi [bb %if.exit374, i1 %select462.phi8781370, bb %while.exit431, i1 %select462.phi]
+  select451.phi812 = phi [bb %if.exit374, i1 %select451.phi8151378, bb %while.exit431, i1 %select451.phi]
+  select440.phi807 = phi [bb %if.exit374, i1 %select440.phi8101379, bb %while.exit431, i1 %select440.phi]
   478.load = load i32 from ptr %152
   480 = icmp eq i32 %478.load, i32 37
   br i1 %480, bb %while.cond483, bb %if.exit482
@@ -488,9 +488,9 @@ select.exit461:  pred(select.then459, select.else460)
   select462.phi = phi [bb %select.else460, i1 %467, bb %select.then459, i1 -1]
   br i1 %select462.phi, bb %while.body430, bb %while.exit431
 if.exit482:  pred(if.exit428, while.exit485)
-  select494.phi866 = phi [bb %if.exit428, i1 %select494.phi8691380, bb %while.exit485, i1 %select494.phi]
-  select505.phi859 = phi [bb %if.exit428, i1 %select505.phi8621381, bb %while.exit485, i1 %select505.phi]
-  select516.phi852 = phi [bb %if.exit428, i1 %select516.phi8551382, bb %while.exit485, i1 %select516.phi]
+  select494.phi866 = phi [bb %if.exit428, i1 %select494.phi8691371, bb %while.exit485, i1 %select494.phi]
+  select505.phi859 = phi [bb %if.exit428, i1 %select505.phi8621372, bb %while.exit485, i1 %select505.phi]
+  select516.phi852 = phi [bb %if.exit428, i1 %select516.phi8551373, bb %while.exit485, i1 %select516.phi]
   ii.load530 = load i32 from ptr @ii
   926 = shl i32 %ii.load530, i32 2
   532 = ptradd ptr @get2, i32 %926
@@ -592,18 +592,18 @@ while.exit542:  pred(while.cond540)
   563 = ptradd ptr @get2, i32 %933
   store i32 64 to ptr %563
   store i32 1 to ptr @i
-  i.load5691369 = load i32 from ptr @i
-  9341370 = shl i32 %i.load5691369, i32 2
-  5711371 = ptradd ptr @get2, i32 %9341370
-  571.load1372 = load i32 from ptr %5711371
-  5731373 = icmp ne i32 %571.load1372, i32 64
-  br i1 %5731373, bb %while.body567_preheader, bb %while.exit568
+  i.load5691360 = load i32 from ptr @i
+  9341361 = shl i32 %i.load5691360, i32 2
+  5711362 = ptradd ptr @get2, i32 %9341361
+  571.load1363 = load i32 from ptr %5711362
+  5731364 = icmp ne i32 %571.load1363, i32 64
+  br i1 %5731364, bb %while.body567_preheader, bb %while.exit568
 while.body567_preheader:  pred(while.exit542)
   br bb %while.body567
 while.body567:  pred(if.exit636, while.body567_preheader)
-  c642.phi8181376 = phi [bb %if.exit636, i32 %c642.phi817, bb %while.body567_preheader, i32 0]
-  b.phi8251375 = phi [bb %if.exit636, i32 %b.phi, bb %while.body567_preheader, i32 0]
-  a.phi8731374 = phi [bb %if.exit636, i32 %a.phi, bb %while.body567_preheader, i32 0]
+  c642.phi8181367 = phi [bb %if.exit636, i32 %c642.phi817, bb %while.body567_preheader, i32 0]
+  b.phi8251366 = phi [bb %if.exit636, i32 %b.phi, bb %while.body567_preheader, i32 0]
+  a.phi8731365 = phi [bb %if.exit636, i32 %a.phi, bb %while.body567_preheader, i32 0]
   i.load575 = load i32 from ptr @i
   935 = shl i32 %i.load575, i32 2
   577 = ptradd ptr @get2, i32 %935
@@ -682,8 +682,8 @@ then635:  pred(select.exit626)
   9551288 = shl i32 %intt.load811285, i32 2
   861289 = ptradd ptr @ints, i32 %9551288
   86.load1290 = load i32 from ptr %861289
-  1436 = sub i32 %intt.load811285, i32 2
-  store i32 %1436 to ptr @intt
+  1427 = sub i32 %intt.load811285, i32 2
+  store i32 %1427 to ptr @intt
   9551298 = shl i32 %821286, i32 2
   861299 = ptradd ptr @ints, i32 %9551298
   86.load1300 = load i32 from ptr %861299
@@ -694,9 +694,9 @@ then635:  pred(select.exit626)
   647 = icmp eq i32 %645.load, i32 43
   br i1 %647, bb %then648, bb %if.exit649
 if.exit636:  pred(if.exit717, if.exit704)
-  a.phi = phi [bb %if.exit717, i32 %a.phi8731374, bb %if.exit704, i32 %86.load1290]
-  b.phi = phi [bb %if.exit717, i32 %b.phi8251375, bb %if.exit704, i32 %86.load1300]
-  c642.phi817 = phi [bb %if.exit717, i32 %c642.phi8181376, bb %if.exit704, i32 %c642.phi]
+  a.phi = phi [bb %if.exit717, i32 %a.phi8731365, bb %if.exit704, i32 %86.load1290]
+  b.phi = phi [bb %if.exit717, i32 %b.phi8251366, bb %if.exit704, i32 %86.load1300]
+  c642.phi817 = phi [bb %if.exit717, i32 %c642.phi8181367, bb %if.exit704, i32 %c642.phi]
   i.load753 = load i32 from ptr @i
   754 = add i32 %i.load753, i32 1
   store i32 %754 to ptr @i
@@ -717,7 +717,7 @@ then648:  pred(then635)
   653 = add i32 %86.load1290, i32 %86.load1300
   br bb %if.exit649
 if.exit649:  pred(then635, then648)
-  c642.phi823 = phi [bb %then635, i32 %c642.phi8181376, bb %then648, i32 %653]
+  c642.phi823 = phi [bb %then635, i32 %c642.phi8181367, bb %then648, i32 %653]
   i.load654 = load i32 from ptr @i
   943 = shl i32 %i.load654, i32 2
   656 = ptradd ptr @get2, i32 %943
@@ -769,10 +769,10 @@ if.exit693:  pred(if.exit682, then692)
   702 = icmp eq i32 %700.load, i32 94
   br i1 %702, bb %then703, bb %if.exit704
 then703:  pred(if.exit693)
-  2110841358 = icmp ne i32 %86.load1290, i32 0
-  br i1 %2110841358, bb %power.while.body_preheader, bb %power.while.exit
+  2110841349 = icmp ne i32 %86.load1290, i32 0
+  br i1 %2110841349, bb %power.while.body_preheader, bb %power.while.exit
 if.exit704:  pred(if.exit693, power.while.exit)
-  c642.phi = phi [bb %if.exit693, i32 %c642.phi819, bb %power.while.exit, i32 %1359]
+  c642.phi = phi [bb %if.exit693, i32 %c642.phi819, bb %power.while.exit, i32 %1350]
   intt.load621062 = load i32 from ptr @intt
   631063 = add i32 %intt.load621062, i32 1
   store i32 %631063 to ptr @intt
@@ -793,14 +793,14 @@ then716:  pred(else637)
   661075 = ptradd ptr @ints, i32 %8881074
   store i32 %722 to ptr %661075
   store i32 1 to ptr @ii
-  i.load7281362 = load i32 from ptr @i
-  ii.load7291363 = load i32 from ptr @ii
-  7301364 = add i32 %i.load7281362, i32 %ii.load7291363
-  9491365 = shl i32 %7301364, i32 2
-  7321366 = ptradd ptr @get2, i32 %9491365
-  732.load1367 = load i32 from ptr %7321366
-  7341368 = icmp ne i32 %732.load1367, i32 32
-  br i1 %7341368, bb %while.body726_preheader, bb %while.exit727
+  i.load7281353 = load i32 from ptr @i
+  ii.load7291354 = load i32 from ptr @ii
+  7301355 = add i32 %i.load7281353, i32 %ii.load7291354
+  9491356 = shl i32 %7301355, i32 2
+  7321357 = ptradd ptr @get2, i32 %9491356
+  732.load1358 = load i32 from ptr %7321357
+  7341359 = icmp ne i32 %732.load1358, i32 32
+  br i1 %7341359, bb %while.body726_preheader, bb %while.exit727
 if.exit717:  pred(else637, while.exit727)
   br bb %if.exit636
 while.body726_preheader:  pred(then716)
@@ -840,14 +840,14 @@ while.exit727:  pred(while.body726, then716)
 power.while.body_preheader:  pred(then703)
   br bb %power.while.body
 power.while.body:  pred(power.while.body, power.while.body_preheader)
-  a.stack.phi10831361 = phi [bb %power.while.body, i32 %291088, bb %power.while.body_preheader, i32 %86.load1290]
-  result.phi10821360 = phi [bb %power.while.body, i32 %261087, bb %power.while.body_preheader, i32 1]
-  261087 = mul i32 %result.phi10821360, i32 %86.load1300
-  291088 = sub i32 %a.stack.phi10831361, i32 1
+  a.stack.phi10831352 = phi [bb %power.while.body, i32 %291088, bb %power.while.body_preheader, i32 %86.load1290]
+  result.phi10821351 = phi [bb %power.while.body, i32 %261087, bb %power.while.body_preheader, i32 1]
+  261087 = mul i32 %result.phi10821351, i32 %86.load1300
+  291088 = sub i32 %a.stack.phi10831352, i32 1
   211084 = icmp ne i32 %291088, i32 0
   br i1 %211084, bb %power.while.body, bb %power.while.exit
 power.while.exit:  pred(power.while.body, then703)
-  1359 = phi [bb %power.while.body, i32 %261087, bb %then703, i32 1]
+  1350 = phi [bb %power.while.body, i32 %261087, bb %then703, i32 1]
   br bb %if.exit704
 find.then136:  pred(while.body224)
   br bb %while.body224.split
@@ -882,9 +882,9 @@ getstr.while.body36:  pred(getstr.select.exit42)
   571317 = call i32 getch()
   br bb %getstr.while.cond35
 getstr.while.exit37:  pred(getstr.select.exit42)
-  i.load1377 = load i32 from ptr @i
-  1481378 = icmp slt i32 %i.load1377, i32 %length.phi1308
-  br i1 %1481378, bb %while.body144_preheader, bb %while.cond540
+  i.load1368 = load i32 from ptr @i
+  1481369 = icmp slt i32 %i.load1368, i32 %length.phi1308
+  br i1 %1481369, bb %while.body144_preheader, bb %while.cond540
 getstr.select.then40:  pred(getstr.while.cond35)
   451322 = icmp ne i32 %x.phi1309, i32 10
   br bb %getstr.select.exit42

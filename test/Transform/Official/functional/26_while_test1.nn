@@ -12,24 +12,24 @@ pure i32 main() {
 entry27:  pred()
   br bb %doubleWhile.while.body
 doubleWhile.while.body:  pred(doubleWhile.while.exit16, entry27)
-  i.phi3763 = phi [bb %doubleWhile.while.exit16, i32 %1341, bb %entry27, i32 5]
-  j.phi3662 = phi [bb %doubleWhile.while.exit16, i32 %2553, bb %entry27, i32 7]
-  1341 = add i32 %i.phi3763, i32 30
-  184757 = icmp slt i32 %j.phi3662, i32 100
-  br i1 %184757, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
+  i.phi3762 = phi [bb %doubleWhile.while.exit16, i32 %1341, bb %entry27, i32 5]
+  j.phi3661 = phi [bb %doubleWhile.while.exit16, i32 %2553, bb %entry27, i32 7]
+  1341 = add i32 %i.phi3762, i32 30
+  184756 = icmp slt i32 %j.phi3661, i32 100
+  br i1 %184756, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
 doubleWhile.while.exit:  pred(doubleWhile.while.exit16)
-  61 = phi [bb %doubleWhile.while.exit16, i32 %2553]
-  ret i32 %61
+  60 = phi [bb %doubleWhile.while.exit16, i32 %2553]
+  ret i32 %60
 doubleWhile.while.body15_preheader:  pred(doubleWhile.while.body)
   br bb %doubleWhile.while.body15
 doubleWhile.while.body15:  pred(doubleWhile.while.body15, doubleWhile.while.body15_preheader)
-  j.phi314659 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body15_preheader, i32 %j.phi3662]
-  2250 = add i32 %j.phi314659, i32 6
+  j.phi314658 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body15_preheader, i32 %j.phi3661]
+  2250 = add i32 %j.phi314658, i32 6
   1847 = icmp slt i32 %2250, i32 100
   br i1 %1847, bb %doubleWhile.while.body15, bb %doubleWhile.while.exit16
 doubleWhile.while.exit16:  pred(doubleWhile.while.body15, doubleWhile.while.body)
-  j.phi3658 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body, i32 %j.phi3662]
-  2553 = sub i32 %j.phi3658, i32 100
+  j.phi3657 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body, i32 %j.phi3661]
+  2553 = sub i32 %j.phi3657, i32 100
   938 = icmp slt i32 %1341, i32 100
   br i1 %938, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
 }

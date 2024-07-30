@@ -36,60 +36,60 @@ entry136:  pred()
 while.body175_preheader:  pred(heap_sort.while.exit116)
   br bb %while.body175
 while.body175:  pred(while.body175, while.body175_preheader)
-  i169.phi554 = phi [bb %while.body175, i32 %194, bb %while.body175_preheader, i32 0]
-  213 = shl i32 %i169.phi554, i32 2
+  i169.phi551 = phi [bb %while.body175, i32 %194, bb %while.body175_preheader, i32 0]
+  213 = shl i32 %i169.phi551, i32 2
   185 = ptradd ptr %a, i32 %213
   185.load = load i32 from ptr %185
   call void putint(i32 %185.load)
   call void putch(i32 10)
-  194 = add i32 %i169.phi554, i32 1
+  194 = add i32 %i169.phi551, i32 1
   n.load178 = load i32 from ptr @n
   179 = icmp slt i32 %194, i32 %n.load178
   br i1 %179, bb %while.body175, bb %while.exit176
 while.exit176:  pred(while.body175, heap_sort.while.exit116)
   ret i32 0
 heap_sort.while.body95:  pred(heap_sort.while.body95.split, entry136)
-  i.phi196224558 = phi [bb %heap_sort.while.body95.split, i32 %110230, bb %entry136, i32 4]
-  207353 = shl i32 %i.phi196224558, i32 1
+  i.phi196224555 = phi [bb %heap_sort.while.body95.split, i32 %110230, bb %entry136, i32 4]
+  207353 = shl i32 %i.phi196224555, i32 1
   32354 = add i32 %207353, i32 1
-  39360546 = icmp slt i32 %32354, i32 10
-  br i1 %39360546, bb %heap_ajust.while.body362_preheader, bb %heap_sort.while.body95.split
+  39360543 = icmp slt i32 %32354, i32 10
+  br i1 %39360543, bb %heap_ajust.while.body362_preheader, bb %heap_sort.while.body95.split
 heap_sort.while.body95.split:  pred(heap_ajust.else397, heap_ajust.if.exit385, heap_sort.while.body95)
-  110230 = sub i32 %i.phi196224558, i32 1
+  110230 = sub i32 %i.phi196224555, i32 1
   99225 = icmp sgt i32 %110230, i32 -1
   br i1 %99225, bb %heap_sort.while.body95, bb %heap_sort.while.exit96
 heap_sort.while.exit96:  pred(heap_sort.while.body95.split)
   br bb %heap_sort.while.body115
 heap_sort.while.body115:  pred(heap_sort.while.body115.split, heap_sort.while.exit96)
-  i.phi236556 = phi [bb %heap_sort.while.body115.split, i32 %128241, bb %heap_sort.while.exit96, i32 9]
+  i.phi236553 = phi [bb %heap_sort.while.body115.split, i32 %128241, bb %heap_sort.while.exit96, i32 9]
   7.load483 = load i32 from ptr %a
-  216484 = shl i32 %i.phi236556, i32 2
+  216484 = shl i32 %i.phi236553, i32 2
   15485 = ptradd ptr %a, i32 %216484
   15.load486 = load i32 from ptr %15485
   store i32 %15.load486 to ptr %a
   store i32 %7.load483 to ptr %15485
-  128241 = sub i32 %i.phi236556, i32 1
-  39412549 = icmp slt i32 1, i32 %i.phi236556
-  br i1 %39412549, bb %heap_ajust.while.body414_preheader, bb %heap_sort.while.body115.split
+  128241 = sub i32 %i.phi236553, i32 1
+  39412546 = icmp slt i32 1, i32 %i.phi236553
+  br i1 %39412546, bb %heap_ajust.while.body414_preheader, bb %heap_sort.while.body115.split
 heap_sort.while.body115.split:  pred(heap_ajust.else449, heap_ajust.if.exit437, heap_sort.while.body115)
   118237 = icmp sgt i32 %128241, i32 0
   br i1 %118237, bb %heap_sort.while.body115, bb %heap_sort.while.exit116
 heap_sort.while.exit116:  pred(heap_sort.while.body115.split)
-  n.load178552 = load i32 from ptr @n
-  179553 = icmp slt i32 0, i32 %n.load178552
-  br i1 %179553, bb %while.body175_preheader, bb %while.exit176
+  n.load178549 = load i32 from ptr @n
+  179550 = icmp slt i32 0, i32 %n.load178549
+  br i1 %179550, bb %while.body175_preheader, bb %while.exit176
 heap_ajust.while.body362_preheader:  pred(heap_sort.while.body95)
   br bb %heap_ajust.while.body362
 heap_ajust.while.body362:  pred(heap_ajust.else397, heap_ajust.while.body362_preheader)
-  dad.phi358548 = phi [bb %heap_ajust.else397, i32 %son.phi202386, bb %heap_ajust.while.body362_preheader, i32 %i.phi196224558]
-  son.phi357547 = phi [bb %heap_ajust.else397, i32 %85400, bb %heap_ajust.while.body362_preheader, i32 %32354]
-  43363 = icmp slt i32 %son.phi357547, i32 9
+  dad.phi358545 = phi [bb %heap_ajust.else397, i32 %son.phi202386, bb %heap_ajust.while.body362_preheader, i32 %i.phi196224555]
+  son.phi357544 = phi [bb %heap_ajust.else397, i32 %85400, bb %heap_ajust.while.body362_preheader, i32 %32354]
+  43363 = icmp slt i32 %son.phi357544, i32 9
   br i1 %43363, bb %heap_ajust.select.then367, bb %heap_ajust.select.else377
 heap_ajust.select.then367:  pred(heap_ajust.while.body362)
-  208368 = shl i32 %son.phi357547, i32 2
+  208368 = shl i32 %son.phi357544, i32 2
   50369 = ptradd ptr %a, i32 %208368
   50.load370 = load i32 from ptr %50369
-  53371 = add i32 %son.phi357547, i32 1
+  53371 = add i32 %son.phi357544, i32 1
   209372 = shl i32 %53371, i32 2
   55373 = ptradd ptr %a, i32 %209372
   55.load374 = load i32 from ptr %55373
@@ -101,11 +101,11 @@ heap_ajust.select.exit379:  pred(heap_ajust.select.then367, heap_ajust.select.el
   select.phi380 = phi [bb %heap_ajust.select.else377, i1 0, bb %heap_ajust.select.then367, i1 %57375]
   br i1 %select.phi380, bb %heap_ajust.then382, bb %heap_ajust.if.exit385
 heap_ajust.then382:  pred(heap_ajust.select.exit379)
-  63383 = add i32 %son.phi357547, i32 1
+  63383 = add i32 %son.phi357544, i32 1
   br bb %heap_ajust.if.exit385
 heap_ajust.if.exit385:  pred(heap_ajust.select.exit379, heap_ajust.then382)
-  son.phi202386 = phi [bb %heap_ajust.select.exit379, i32 %son.phi357547, bb %heap_ajust.then382, i32 %63383]
-  210387 = shl i32 %dad.phi358548, i32 2
+  son.phi202386 = phi [bb %heap_ajust.select.exit379, i32 %son.phi357544, bb %heap_ajust.then382, i32 %63383]
+  210387 = shl i32 %dad.phi358545, i32 2
   66388 = ptradd ptr %a, i32 %210387
   66.load389 = load i32 from ptr %66388
   211390 = shl i32 %son.phi202386, i32 2
@@ -125,15 +125,15 @@ heap_ajust.else397:  pred(heap_ajust.if.exit385)
 heap_ajust.while.body414_preheader:  pred(heap_sort.while.body115)
   br bb %heap_ajust.while.body414
 heap_ajust.while.body414:  pred(heap_ajust.else449, heap_ajust.while.body414_preheader)
-  dad.phi410551 = phi [bb %heap_ajust.else449, i32 %son.phi202438, bb %heap_ajust.while.body414_preheader, i32 0]
-  son.phi409550 = phi [bb %heap_ajust.else449, i32 %85452, bb %heap_ajust.while.body414_preheader, i32 1]
-  43415 = icmp slt i32 %son.phi409550, i32 %128241
+  dad.phi410548 = phi [bb %heap_ajust.else449, i32 %son.phi202438, bb %heap_ajust.while.body414_preheader, i32 0]
+  son.phi409547 = phi [bb %heap_ajust.else449, i32 %85452, bb %heap_ajust.while.body414_preheader, i32 1]
+  43415 = icmp slt i32 %son.phi409547, i32 %128241
   br i1 %43415, bb %heap_ajust.select.then419, bb %heap_ajust.select.else429
 heap_ajust.select.then419:  pred(heap_ajust.while.body414)
-  208420 = shl i32 %son.phi409550, i32 2
+  208420 = shl i32 %son.phi409547, i32 2
   50421 = ptradd ptr %a, i32 %208420
   50.load422 = load i32 from ptr %50421
-  53423 = add i32 %son.phi409550, i32 1
+  53423 = add i32 %son.phi409547, i32 1
   209424 = shl i32 %53423, i32 2
   55425 = ptradd ptr %a, i32 %209424
   55.load426 = load i32 from ptr %55425
@@ -145,11 +145,11 @@ heap_ajust.select.exit431:  pred(heap_ajust.select.then419, heap_ajust.select.el
   select.phi432 = phi [bb %heap_ajust.select.else429, i1 0, bb %heap_ajust.select.then419, i1 %57427]
   br i1 %select.phi432, bb %heap_ajust.then434, bb %heap_ajust.if.exit437
 heap_ajust.then434:  pred(heap_ajust.select.exit431)
-  63435 = add i32 %son.phi409550, i32 1
+  63435 = add i32 %son.phi409547, i32 1
   br bb %heap_ajust.if.exit437
 heap_ajust.if.exit437:  pred(heap_ajust.select.exit431, heap_ajust.then434)
-  son.phi202438 = phi [bb %heap_ajust.select.exit431, i32 %son.phi409550, bb %heap_ajust.then434, i32 %63435]
-  210439 = shl i32 %dad.phi410551, i32 2
+  son.phi202438 = phi [bb %heap_ajust.select.exit431, i32 %son.phi409547, bb %heap_ajust.then434, i32 %63435]
+  210439 = shl i32 %dad.phi410548, i32 2
   66440 = ptradd ptr %a, i32 %210439
   66.load441 = load i32 from ptr %66440
   211442 = shl i32 %son.phi202438, i32 2
@@ -164,7 +164,7 @@ heap_ajust.else449:  pred(heap_ajust.if.exit437)
   store i32 %7.load531 to ptr %70443
   212451 = shl i32 %son.phi202438, i32 1
   85452 = add i32 %212451, i32 1
-  39412 = icmp slt i32 %85452, i32 %i.phi236556
+  39412 = icmp slt i32 %85452, i32 %i.phi236553
   br i1 %39412, bb %heap_ajust.while.body414, bb %heap_sort.while.body115.split
 }
 

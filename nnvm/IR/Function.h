@@ -34,7 +34,7 @@ public:
   Module *getModule() { return module; }
 
   void addArgument(Argument *arg);
-  std::vector<Argument *> getArguments();
+  std::vector<Argument *> getArguments() const;
 
   void setVariadic(bool variadic) { this->variadic = variadic; }
   bool isVariadic() { return variadic; }

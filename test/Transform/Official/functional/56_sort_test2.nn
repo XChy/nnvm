@@ -36,29 +36,29 @@ entry59:  pred()
 while.body96_preheader:  pred(insertsort.while.exit)
   br bb %while.body96
 while.body96:  pred(while.body96, while.body96_preheader)
-  i92.phi183 = phi [bb %while.body96, i32 %115, bb %while.body96_preheader, i32 0]
-  125 = shl i32 %i92.phi183, i32 2
+  i92.phi182 = phi [bb %while.body96, i32 %115, bb %while.body96_preheader, i32 0]
+  125 = shl i32 %i92.phi182, i32 2
   106 = ptradd ptr %a, i32 %125
   106.load = load i32 from ptr %106
   call void putint(i32 %106.load)
   call void putch(i32 10)
-  115 = add i32 %i92.phi183, i32 1
+  115 = add i32 %i92.phi182, i32 1
   n.load99 = load i32 from ptr @n
   100 = icmp slt i32 %115, i32 %n.load99
   br i1 %100, bb %while.body96, bb %while.exit97
 while.exit97:  pred(while.body96, insertsort.while.exit)
   ret i32 0
 insertsort.while.body:  pred(insertsort.while.exit22, entry59)
-  i.phi135185 = phi [bb %insertsort.while.exit22, i32 %58166, bb %entry59, i32 1]
-  126140 = shl i32 %i.phi135185, i32 2
+  i.phi135184 = phi [bb %insertsort.while.exit22, i32 %58166, bb %entry59, i32 1]
+  126140 = shl i32 %i.phi135184, i32 2
   14141 = ptradd ptr %a, i32 %126140
   14.load142 = load i32 from ptr %14141
-  19143 = sub i32 %i.phi135185, i32 1
+  19143 = sub i32 %i.phi135184, i32 1
   br bb %insertsort.while.cond20
 insertsort.while.exit:  pred(insertsort.while.exit22)
-  n.load99181 = load i32 from ptr @n
-  100182 = icmp slt i32 0, i32 %n.load99181
-  br i1 %100182, bb %while.body96_preheader, bb %while.exit97
+  n.load99180 = load i32 from ptr @n
+  100181 = icmp slt i32 0, i32 %n.load99180
+  br i1 %100181, bb %while.body96_preheader, bb %while.exit97
 insertsort.while.cond20:  pred(insertsort.while.body, insertsort.while.body21)
   j.phi148 = phi [bb %insertsort.while.body, i32 %19143, bb %insertsort.while.body21, i32 %49159]
   25149 = icmp sgt i32 %j.phi148, i32 -1
@@ -78,7 +78,7 @@ insertsort.while.exit22:  pred(insertsort.select.exit)
   129163 = shl i32 %51162, i32 2
   53164 = ptradd ptr %a, i32 %129163
   store i32 %14.load142 to ptr %53164
-  58166 = add i32 %i.phi135185, i32 1
+  58166 = add i32 %i.phi135184, i32 1
   8137 = icmp slt i32 %58166, i32 10
   br i1 %8137, bb %insertsort.while.body, bb %insertsort.while.exit
 insertsort.select.then:  pred(insertsort.while.cond20)

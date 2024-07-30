@@ -14,6 +14,7 @@
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
+#include "Transform/Scalar/TailElim.h"
 using namespace nnvm;
 
 void Optimizer::transform(Module *module) {
@@ -29,6 +30,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<SLPairElimPass>();
 
   // Inline, increasing codesize massively.
+  passManager.addFunctionPass<TailElimPass>();
   passManager.addModulePass<InlinerPass>();
   passManager.addModulePass<UselessFuncElimPass>();
 

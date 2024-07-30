@@ -166,13 +166,13 @@ bb8:
   ADDI t4, sp, 408
   ADD t0, t4, t0
   LW t4, 0(t0)
-  SW t4, 16(sp)
-  ADDI t4, zero, 19
   SW t4, 20(sp)
+  ADDI t4, zero, 19
+  SW t4, 8(sp)
   # implict jump to bb9
 bb9:
   ADD t2, s10, zero
-  LW t4, 20(sp)
+  LW t4, 8(sp)
   ADD a0, t4, zero
   SLLIW a1, t2, 2
   ADDI a2, sp, 512
@@ -182,7 +182,7 @@ bb9:
   ADDI t4, sp, 304
   ADD a3, t4, a3
   LW a3, 0(a3)
-  LW t4, 16(sp)
+  LW t4, 20(sp)
   MULW a3, t4, a3
   ADDW a2, a2, a3
   SLTI a3, a2, 10
@@ -198,7 +198,7 @@ bb11:
   SW t4, 4(sp)
   ADDI a1, zero, 1
   SUBW t4, t2, a1
-  SW t4, 12(sp)
+  SW t4, 16(sp)
   ADDI a1, zero, -1
   LW t4, 4(sp)
   BLT a1, t4, bb22
@@ -206,9 +206,9 @@ bb11:
 bb12:
   # implict jump to bb13
 bb13:
-  LW t3, 12(sp)
+  LW t3, 16(sp)
   ADDIW t4, t3, 19
-  SW t4, 8(sp)
+  SW t4, 12(sp)
   ADDI a2, zero, 1
   SUBW t4, s11, a2
   SW t4, 24(sp)
@@ -271,14 +271,14 @@ bb20:
 bb21:
   LW t4, 24(sp)
   ADD s8, t4, zero
-  LW t4, 8(sp)
+  LW t4, 12(sp)
   ADD s9, t4, zero
   JAL zero, bb8
 bb22:
   LW t3, 4(sp)
   ADD t4, t3, zero
-  SW t4, 20(sp)
-  LW t4, 12(sp)
+  SW t4, 8(sp)
+  LW t4, 16(sp)
   ADD s10, t4, zero
   JAL zero, bb9
 bb23:

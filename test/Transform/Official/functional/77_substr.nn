@@ -70,8 +70,8 @@ entry185:  pred()
   store i32 5 to ptr %arr.index215
   br bb %max_sum_nonadjacent.init
 max_sum_nonadjacent.init:  pred(max_sum_nonadjacent.init, entry185)
-  cnt_ptr.phi300481 = phi [bb %max_sum_nonadjacent.init, i32 %cnt.dec304, bb %entry185, i32 16]
-  cnt.dec304 = sub i32 %cnt_ptr.phi300481, i32 1
+  cnt_ptr.phi300478 = phi [bb %max_sum_nonadjacent.init, i32 %cnt.dec304, bb %entry185, i32 16]
+  cnt.dec304 = sub i32 %cnt_ptr.phi300478, i32 1
   230305 = shl i32 %cnt.dec304, i32 2
   arr.index31306 = ptradd ptr %temp297, i32 %230305
   store i32 0 to ptr %arr.index31306
@@ -86,17 +86,17 @@ max_sum_nonadjacent.init.exit.split:  pred(max_sum_nonadjacent.init.exit)
   store i32 %47.ret318 to ptr %39312
   br bb %max_sum_nonadjacent.while.body
 max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_sum_nonadjacent.init.exit.split)
-  i.phi322479 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit.split, i32 2]
-  232326 = shl i32 %i.phi322479, i32 2
+  i.phi322476 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit.split, i32 2]
+  232326 = shl i32 %i.phi322476, i32 2
   58327 = ptradd ptr %temp297, i32 %232326
-  61328 = sub i32 %i.phi322479, i32 2
+  61328 = sub i32 %i.phi322476, i32 2
   233329 = shl i32 %61328, i32 2
   63330 = ptradd ptr %temp297, i32 %233329
   63.load331 = load i32 from ptr %63330
   67332 = ptradd ptr %A, i32 %232326
   67.load333 = load i32 from ptr %67332
   69334 = add i32 %63.load331, i32 %67.load333
-  71335 = sub i32 %i.phi322479, i32 1
+  71335 = sub i32 %i.phi322476, i32 1
   235336 = shl i32 %71335, i32 2
   73337 = ptradd ptr %temp297, i32 %235336
   73.load338 = load i32 from ptr %73337
@@ -105,7 +105,7 @@ max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_
 max_sum_nonadjacent.while.body.split:  pred(max_sum_nonadjacent.MAX.then271, max_sum_nonadjacent.MAX.then13276, max_sum_nonadjacent.MAX.else15278)
   75.ret341 = phi [bb %max_sum_nonadjacent.MAX.then271, i32 %69334, bb %max_sum_nonadjacent.MAX.then13276, i32 %69334, bb %max_sum_nonadjacent.MAX.else15278, i32 %73.load338]
   store i32 %75.ret341 to ptr %58327
-  78343 = add i32 %i.phi322479, i32 1
+  78343 = add i32 %i.phi322476, i32 1
   54323 = icmp slt i32 %78343, i32 15
   br i1 %54323, bb %max_sum_nonadjacent.while.body, bb %max_sum_nonadjacent.while.exit
 max_sum_nonadjacent.while.exit:  pred(max_sum_nonadjacent.while.body.split)
@@ -124,50 +124,50 @@ max_sum_nonadjacent.MAX.then13276:  pred(max_sum_nonadjacent.MAX.else273)
 max_sum_nonadjacent.MAX.else15278:  pred(max_sum_nonadjacent.MAX.else273)
   br bb %max_sum_nonadjacent.while.body.split
 longest_common_subseq.init89:  pred(longest_common_subseq.init89, max_sum_nonadjacent.while.exit)
-  cnt_ptr91.phi381477 = phi [bb %longest_common_subseq.init89, i32 %cnt.dec95385, bb %max_sum_nonadjacent.while.exit, i32 256]
-  cnt.dec95385 = sub i32 %cnt_ptr91.phi381477, i32 1
+  cnt_ptr91.phi381474 = phi [bb %longest_common_subseq.init89, i32 %cnt.dec95385, bb %max_sum_nonadjacent.while.exit, i32 256]
+  cnt.dec95385 = sub i32 %cnt_ptr91.phi381474, i32 1
   237386 = shl i32 %cnt.dec95385, i32 2
   arr.index98387 = ptradd ptr %p378, i32 %237386
   store i32 0 to ptr %arr.index98387
   93382 = icmp ne i32 %cnt.dec95385, i32 0
   br i1 %93382, bb %longest_common_subseq.init89, bb %longest_common_subseq.init.exit90
 longest_common_subseq.init.exit90:  pred(longest_common_subseq.init89)
-  107394474 = icmp sle i32 1, i32 15
-  br i1 %107394474, bb %longest_common_subseq.while.body103_preheader, bb %longest_common_subseq.while.exit104
+  107394471 = icmp sle i32 1, i32 15
+  br i1 %107394471, bb %longest_common_subseq.while.body103_preheader, bb %longest_common_subseq.while.exit104
 longest_common_subseq.while.body103_preheader:  pred(longest_common_subseq.init.exit90)
-  115407472 = icmp sle i32 1, i32 13
+  115407469 = icmp sle i32 1, i32 13
   br bb %longest_common_subseq.while.body103
 longest_common_subseq.while.body103:  pred(longest_common_subseq.while.exit112, longest_common_subseq.while.body103_preheader)
-  i99.phi393475 = phi [bb %longest_common_subseq.while.exit112, i32 %177421, bb %longest_common_subseq.while.body103_preheader, i32 1]
-  br i1 %115407472, bb %longest_common_subseq.while.body111_preheader, bb %longest_common_subseq.while.exit112
+  i99.phi393472 = phi [bb %longest_common_subseq.while.exit112, i32 %177421, bb %longest_common_subseq.while.body103_preheader, i32 1]
+  br i1 %115407469, bb %longest_common_subseq.while.body111_preheader, bb %longest_common_subseq.while.exit112
 longest_common_subseq.while.exit104:  pred(longest_common_subseq.while.exit112, longest_common_subseq.init.exit90)
-  471 = ptradd ptr %p378, i32 1012
-  183.load403 = load i32 from ptr %471
+  468 = ptradd ptr %p378, i32 1012
+  183.load403 = load i32 from ptr %468
   call void putint(i32 %183.load403)
   call void putch(i32 10)
   ret i32 0
 longest_common_subseq.while.body111_preheader:  pred(longest_common_subseq.while.body103)
-  118410 = sub i32 %i99.phi393475, i32 1
+  118410 = sub i32 %i99.phi393472, i32 1
   241411 = shl i32 %118410, i32 2
   120412 = ptradd ptr %A, i32 %241411
   120.load413 = load i32 from ptr %120412
   br bb %longest_common_subseq.while.body111
 longest_common_subseq.while.body111:  pred(longest_common_subseq.if.exit129, longest_common_subseq.while.body111_preheader)
-  j.phi406473 = phi [bb %longest_common_subseq.if.exit129, i32 %174436, bb %longest_common_subseq.while.body111_preheader, i32 1]
-  123414 = sub i32 %j.phi406473, i32 1
+  j.phi406470 = phi [bb %longest_common_subseq.if.exit129, i32 %174436, bb %longest_common_subseq.while.body111_preheader, i32 1]
+  123414 = sub i32 %j.phi406470, i32 1
   242415 = shl i32 %123414, i32 2
   125416 = ptradd ptr %B, i32 %242415
   125.load417 = load i32 from ptr %125416
   127418 = icmp eq i32 %120.load413, i32 %125.load417
   br i1 %127418, bb %longest_common_subseq.then128, bb %longest_common_subseq.else130
 longest_common_subseq.while.exit112:  pred(longest_common_subseq.if.exit129, longest_common_subseq.while.body103)
-  177421 = add i32 %i99.phi393475, i32 1
+  177421 = add i32 %i99.phi393472, i32 1
   107394 = icmp sle i32 %177421, i32 15
   br i1 %107394, bb %longest_common_subseq.while.body103, bb %longest_common_subseq.while.exit104
 longest_common_subseq.then128:  pred(longest_common_subseq.while.body111)
-  243424 = shl i32 %i99.phi393475, i32 6
+  243424 = shl i32 %i99.phi393472, i32 6
   133425 = ptradd ptr %p378, i32 %243424
-  244426 = shl i32 %j.phi406473, i32 2
+  244426 = shl i32 %j.phi406470, i32 2
   136427 = ptradd ptr %133425, i32 %244426
   245428 = shl i32 %118410, i32 6
   141429 = ptradd ptr %p378, i32 %245428
@@ -177,13 +177,13 @@ longest_common_subseq.then128:  pred(longest_common_subseq.while.body111)
   store i32 %147432 to ptr %136427
   br bb %longest_common_subseq.if.exit129
 longest_common_subseq.if.exit129:  pred(longest_common_subseq.then128, longest_common_subseq.else130.split)
-  174436 = add i32 %j.phi406473, i32 1
+  174436 = add i32 %j.phi406470, i32 1
   115407 = icmp sle i32 %174436, i32 13
   br i1 %115407, bb %longest_common_subseq.while.body111, bb %longest_common_subseq.while.exit112
 longest_common_subseq.else130:  pred(longest_common_subseq.while.body111)
-  247439 = shl i32 %i99.phi393475, i32 6
+  247439 = shl i32 %i99.phi393472, i32 6
   150440 = ptradd ptr %p378, i32 %247439
-  248441 = shl i32 %j.phi406473, i32 2
+  248441 = shl i32 %j.phi406470, i32 2
   153442 = ptradd ptr %150440, i32 %248441
   249443 = shl i32 %118410, i32 6
   158444 = ptradd ptr %p378, i32 %249443

@@ -99,7 +99,7 @@ entry287:  pred()
 while.body296_preheader:  pred(my_memset.while.exit456)
   br bb %while.body296
 while.body296:  pred(while.body296, while.body296_preheader)
-  E.phi479 = phi [bb %while.body296, i32 %315, bb %while.body296_preheader, i32 %293]
+  E.phi476 = phi [bb %while.body296, i32 %315, bb %while.body296_preheader, i32 %293]
   304 = call i32 getint()
   306 = call i32 getint()
   308 = call i32 getint()
@@ -136,7 +136,7 @@ while.body296:  pred(while.body296, while.body296_preheader)
   109.load424 = load i32 from ptr %57401
   111425 = add i32 %109.load424, i32 1
   store i32 %111425 to ptr %57401
-  315 = sub i32 %E.phi479, i32 1
+  315 = sub i32 %E.phi476, i32 1
   299 = icmp sgt i32 %315, i32 0
   br i1 %299, bb %while.body296, bb %while.exit297
 while.exit297:  pred(while.body296, my_memset.while.exit456)
@@ -152,22 +152,22 @@ max_flow.if.exit281:  pred(my_memset.while.exit471)
   286378 = add i32 %flow.phi370, i32 %277372
   br bb %max_flow.while.cond268
 my_memset.while.body450:  pred(my_memset.while.body450, entry287)
-  i.phi447481 = phi [bb %my_memset.while.body450, i32 %18454, bb %entry287, i32 0]
-  365451 = shl i32 %i.phi447481, i32 2
+  i.phi447478 = phi [bb %my_memset.while.body450, i32 %18454, bb %entry287, i32 0]
+  365451 = shl i32 %i.phi447478, i32 2
   13452 = ptradd ptr @size, i32 %365451
   store i32 0 to ptr %13452
-  18454 = add i32 %i.phi447481, i32 1
+  18454 = add i32 %i.phi447478, i32 1
   9448 = icmp slt i32 %18454, i32 10
   br i1 %9448, bb %my_memset.while.body450, bb %my_memset.while.exit456
 my_memset.while.exit456:  pred(my_memset.while.body450)
-  299478 = icmp sgt i32 %293, i32 0
-  br i1 %299478, bb %while.body296_preheader, bb %while.exit297
+  299475 = icmp sgt i32 %293, i32 0
+  br i1 %299475, bb %while.body296_preheader, bb %while.exit297
 my_memset.while.body465:  pred(my_memset.while.body465, max_flow.while.cond268)
-  i.phi462477 = phi [bb %my_memset.while.body465, i32 %18469, bb %max_flow.while.cond268, i32 0]
-  365466 = shl i32 %i.phi462477, i32 2
+  i.phi462474 = phi [bb %my_memset.while.body465, i32 %18469, bb %max_flow.while.cond268, i32 0]
+  365466 = shl i32 %i.phi462474, i32 2
   13467 = ptradd ptr @used, i32 %365466
   store i32 0 to ptr %13467
-  18469 = add i32 %i.phi462477, i32 1
+  18469 = add i32 %i.phi462474, i32 1
   9463 = icmp slt i32 %18469, i32 10
   br i1 %9463, bb %my_memset.while.body465, bb %my_memset.while.exit471
 my_memset.while.exit471:  pred(my_memset.while.body465)

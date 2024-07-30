@@ -470,7 +470,8 @@ public:
   CallInst(Function *callee);
 
   void setCallee(Value *callee) { setOperand(0, callee); }
-  Value *getCallee() { return getOperand(0); }
+  Value *getCallee() const { return getOperand(0); }
+  Function *getFuncCallee() const;
   void setArguments(const std::vector<Value *> &args);
   Value *getArg(uint i) { return getOperand(i + 1); }
   uint getArgNum() { return getOperandNum() - 1; }

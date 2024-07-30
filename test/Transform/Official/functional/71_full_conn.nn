@@ -12,23 +12,23 @@ i32 main() {
 entry1911:  pred()
   %a = stack 100
   1913 = call i32 getint()
-  19193235 = icmp sgt i32 %1913, i32 0
-  br i1 %19193235, bb %while.body_preheader, bb %while.exit
+  19193233 = icmp sgt i32 %1913, i32 0
+  br i1 %19193233, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry1911)
   br bb %while.body
 while.body:  pred(if.exit1952, while.body_preheader)
-  N.phi3237 = phi [bb %if.exit1952, i32 %1964, bb %while.body_preheader, i32 %1913]
-  j.phi19703236 = phi [bb %if.exit1952, i32 %j.phi19703232, bb %while.body_preheader, i32 0]
+  N.phi3235 = phi [bb %if.exit1952, i32 %1964, bb %while.body_preheader, i32 %1913]
+  j.phi19703234 = phi [bb %if.exit1952, i32 %j.phi19703230, bb %while.body_preheader, i32 0]
   br bb %while.body1923
 while.exit:  pred(if.exit1952, entry1911)
   ret i32 0
 while.body1923:  pred(while.exit1931, while.body)
-  i.phi3234 = phi [bb %while.exit1931, i32 %1948, bb %while.body, i32 0]
-  1936 = mul i32 %i.phi3234, i32 20
+  i.phi3232 = phi [bb %while.exit1931, i32 %1948, bb %while.body, i32 0]
+  1936 = mul i32 %i.phi3232, i32 20
   1937 = ptradd ptr %a, i32 %1936
   br bb %while.body1930
 while.exit1924:  pred(while.exit1931)
-  j.phi19703232 = phi [bb %while.exit1931, i32 %3229]
+  j.phi19703230 = phi [bb %while.exit1931, i32 %3227]
   15.load2379 = load i32 from ptr %a
   172380 = mul i32 %15.load2379, i32 85
   212381 = ptradd ptr %a, i32 4
@@ -134,17 +134,17 @@ while.exit1924.split:  pred(model.then1909, model.if.exit1910)
   1950 = icmp ne i32 %1949.ret, i32 0
   br i1 %1950, bb %then1951, bb %else
 while.body1930:  pred(while.body1930, while.body1923)
-  j.phi3230 = phi [bb %while.body1930, i32 %1945, bb %while.body1923, i32 0]
-  1971 = shl i32 %j.phi3230, i32 2
+  j.phi3228 = phi [bb %while.body1930, i32 %1945, bb %while.body1923, i32 0]
+  1971 = shl i32 %j.phi3228, i32 2
   1940 = ptradd ptr %1937, i32 %1971
   1942 = call i32 getint()
   store i32 %1942 to ptr %1940
-  1945 = add i32 %j.phi3230, i32 1
+  1945 = add i32 %j.phi3228, i32 1
   1933 = icmp slt i32 %1945, i32 5
   br i1 %1933, bb %while.body1930, bb %while.exit1931
 while.exit1931:  pred(while.body1930)
-  3229 = phi [bb %while.body1930, i32 %1945]
-  1948 = add i32 %i.phi3234, i32 1
+  3227 = phi [bb %while.body1930, i32 %1945]
+  1948 = add i32 %i.phi3232, i32 1
   1926 = icmp slt i32 %1948, i32 5
   br i1 %1926, bb %while.body1923, bb %while.exit1924
 then1951:  pred(while.exit1924.split)
@@ -154,7 +154,7 @@ then1951:  pred(while.exit1924.split)
   call void putch(i32 10)
   br bb %if.exit1952
 if.exit1952:  pred(then1951, else)
-  1964 = sub i32 %N.phi3237, i32 1
+  1964 = sub i32 %N.phi3235, i32 1
   1919 = icmp sgt i32 %1964, i32 0
   br i1 %1919, bb %while.body, bb %while.exit
 else:  pred(while.exit1924.split)
