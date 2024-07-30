@@ -1,4 +1,4 @@
-global ptr a init with 100000 x i32 zeros
+internal global ptr a init with 100000 x i32 zeros
 i32 main() {
 entry:  pred()
   32008 = ptradd ptr @a, i32 399996

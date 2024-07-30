@@ -1,8 +1,8 @@
 global ptr ptr init with i32 0
-global ptr program init with 32768 x i32 zeros
-global ptr tape init with 65536 x i32 zeros
-immutable global ptr BUFFER_LEN init with i32 32768
-immutable global ptr TAPE_LEN init with i32 65536
+internal global ptr program init with 32768 x i32 zeros
+internal global ptr tape init with 65536 x i32 zeros
+immutable internal global ptr BUFFER_LEN init with i32 32768
+immutable internal global ptr TAPE_LEN init with i32 65536
 external i32 getint()
 
 external i32 getch()

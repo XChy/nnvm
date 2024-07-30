@@ -1,7 +1,7 @@
-global ptr image_out init with 1048576 x i32 zeros
-global ptr image_in init with 1048576 x i32 zeros
-immutable global ptr height init with i32 1024
-immutable global ptr width init with i32 1024
+internal global ptr image_out init with 1048576 x i32 zeros
+internal global ptr image_in init with 1048576 x i32 zeros
+immutable internal global ptr height init with i32 1024
+immutable internal global ptr width init with i32 1024
 external i32 getint()
 
 external i32 getch()

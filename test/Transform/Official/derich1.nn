@@ -1,8 +1,8 @@
-global ptr my_y2 init with 138240 x float zeros
-global ptr imgOut init with 138240 x float zeros
-global ptr my_y1 init with 138240 x float zeros
-global ptr imgIn init with 138240 x float zeros
-global ptr alpha init with float 0.250000
+internal global ptr my_y2 init with 138240 x float zeros
+internal global ptr imgOut init with 138240 x float zeros
+internal global ptr my_y1 init with 138240 x float zeros
+internal global ptr imgIn init with 138240 x float zeros
+internal global ptr alpha init with float 0.250000
 global ptr h init with i32 270
 global ptr w init with i32 512
 void kernel_deriche(i32 w, i32 h, float alpha, ptr imgIn, ptr imgOut, ptr y1, ptr y2) {

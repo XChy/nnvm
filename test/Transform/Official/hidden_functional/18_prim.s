@@ -956,18 +956,18 @@ bb125:
   ADD t4, zero, zero
   SW t4, 0(sp)
   ADD t4, zero, zero
-  SW t4, 16(sp)
+  SW t4, 28(sp)
   # implict jump to bb126
 bb126:
-  LW t3, 16(sp)
+  LW t3, 28(sp)
   ADD t4, t3, zero
-  SW t4, 12(sp)
+  SW t4, 32(sp)
   LW t3, 0(sp)
   ADD t4, t3, zero
   SW t4, 8(sp)
   LA a4, m
   LW a4, 0(a4)
-  LW t4, 12(sp)
+  LW t4, 32(sp)
   BLT t4, a4, bb128
   # implict jump to bb127
 bb127:
@@ -989,26 +989,26 @@ bb127:
   ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb128:
-  LW t3, 12(sp)
+  LW t3, 32(sp)
   SLLIW t4, t3, 2
-  SW t4, 4(sp)
+  SW t4, 24(sp)
   LA a5, u
-  LW t3, 4(sp)
+  LW t3, 24(sp)
   ADD t4, a5, t3
-  SD t4, 160(sp)
-  LD t4, 160(sp)
+  SD t4, 152(sp)
+  LD t4, 152(sp)
   LW a6, 0(t4)
   LA a7, v
-  LW t3, 4(sp)
+  LW t3, 24(sp)
   ADD t4, a7, t3
-  SD t4, 152(sp)
-  LD t3, 152(sp)
+  SD t4, 160(sp)
+  LD t3, 160(sp)
   LW t4, 0(t3)
-  SW t4, 20(sp)
+  SW t4, 4(sp)
   ADD a0, a6, zero
   CALL find
   ADD s8, a0, zero
-  LW t4, 20(sp)
+  LW t4, 4(sp)
   ADD a0, t4, zero
   CALL find
   ADD s4, a0, zero
@@ -1024,63 +1024,63 @@ bb130:
   # implict jump to bb131
 bb131:
   LA s4, c
-  LW t4, 4(sp)
+  LW t4, 24(sp)
   ADD s4, s4, t4
   LW s4, 0(s4)
   LW t4, 8(sp)
   ADDW s4, t4, s4
-  LD t4, 160(sp)
+  LD t4, 152(sp)
   LW s8, 0(t4)
   ADD a0, s8, zero
   CALL find
   SLLIW s8, a0, 2
   LA t0, fa
   ADD s8, t0, s8
-  LD t4, 152(sp)
+  LD t4, 160(sp)
   LW t0, 0(t4)
   SW t0, 0(s8)
-  LW t4, 12(sp)
+  LW t4, 32(sp)
   ADDIW s8, t4, 1
   ADD t4, s4, zero
   SW t4, 0(sp)
   ADD t4, s8, zero
-  SW t4, 16(sp)
+  SW t4, 28(sp)
   JAL zero, bb126
 bb132:
   LW t3, 8(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
-  LW t3, 12(sp)
+  LW t3, 32(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
+  SW t4, 28(sp)
   JAL zero, bb126
 bb133:
   ADDI s4, zero, 1
   JAL zero, bb130
 bb134:
   ADDI t4, zero, 1
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   # implict jump to bb135
 bb135:
-  LW t4, 24(sp)
+  LW t4, 16(sp)
   ADD t2, t4, zero
   SLLIW a0, t2, 2
   LA a1, fa
   ADD a0, a1, a0
   SW t2, 0(a0)
   ADDIW t4, t2, 1
-  SW t4, 28(sp)
+  SW t4, 12(sp)
   LA a0, n
   LW a0, 0(a0)
-  LW t4, 28(sp)
+  LW t4, 12(sp)
   SLT a0, a0, t4
   XORI a0, a0, 1
   BNE a0, zero, bb136
   JAL zero, bb125
 bb136:
-  LW t3, 28(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
+  SW t4, 16(sp)
   JAL zero, bb135
 bb137:
   ADD s1, zero, zero
@@ -1099,12 +1099,12 @@ bb139:
 bb140:
   LA t0, m
   LW t4, 0(t0)
-  SW t4, 32(sp)
-  LW t4, 32(sp)
+  SW t4, 20(sp)
+  LW t4, 20(sp)
   BLT s6, t4, bb141
   JAL zero, bb124
 bb141:
-  LW t4, 32(sp)
+  LW t4, 20(sp)
   ADD s0, t4, zero
   ADD s1, s6, zero
   ADD s2, s7, zero

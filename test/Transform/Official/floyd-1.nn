@@ -1,8 +1,8 @@
-global ptr c init with 2097152 x i32 zeros
-global ptr dst init with 2097152 x i32 zeros
-global ptr w init with 2097152 x i32 zeros
-global ptr temp init with 2097152 x i32 zeros
-immutable global ptr maxlen init with i32 2097152
+internal global ptr c init with 2097152 x i32 zeros
+internal global ptr dst init with 2097152 x i32 zeros
+internal global ptr w init with 2097152 x i32 zeros
+internal global ptr temp init with 2097152 x i32 zeros
+immutable internal global ptr maxlen init with i32 2097152
 void mem_move(ptr src, ptr dst, i32 n) {
 entry43:  pred()
   511151 = icmp slt i32 0, i32 %n

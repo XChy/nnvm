@@ -1,5 +1,5 @@
-global ptr k init with 1 x i32 zeros
-global ptr i init with 1 x i32 zeros
+internal global ptr k init with 1 x i32 zeros
+internal global ptr i init with 1 x i32 zeros
 void sub(ptr x, ptr y) {
 entry88:  pred()
   90.load = load i32 from ptr @k

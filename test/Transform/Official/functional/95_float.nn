@@ -1,18 +1,18 @@
-immutable global ptr FIVE init with i32 5
-immutable global ptr THREE init with i32 3
-immutable global ptr RADIUS init with float 5.500000
-immutable global ptr PI init with float 3.141593
-immutable global ptr EPS init with float 0.000001
-immutable global ptr EVAL3 init with float 34.557522
-immutable global ptr PI_HEX init with float 3.141593
-immutable global ptr HEX2 init with float 0.078125
-immutable global ptr EVAL2 init with float 34.557522
-immutable global ptr MAX init with i32 1000000000
-immutable global ptr EVAL1 init with float 95.033188
-immutable global ptr CONV1 init with float 233.000000
-immutable global ptr FACT init with float -33000.000000
-immutable global ptr CONV2 init with float 4095.000000
-immutable global ptr TWO init with i32 2
+immutable internal global ptr FIVE init with i32 5
+immutable internal global ptr THREE init with i32 3
+immutable internal global ptr RADIUS init with float 5.500000
+immutable internal global ptr PI init with float 3.141593
+immutable internal global ptr EPS init with float 0.000001
+immutable internal global ptr EVAL3 init with float 34.557522
+immutable internal global ptr PI_HEX init with float 3.141593
+immutable internal global ptr HEX2 init with float 0.078125
+immutable internal global ptr EVAL2 init with float 34.557522
+immutable internal global ptr MAX init with i32 1000000000
+immutable internal global ptr EVAL1 init with float 95.033188
+immutable internal global ptr CONV1 init with float 233.000000
+immutable internal global ptr FACT init with float -33000.000000
+immutable internal global ptr CONV2 init with float 4095.000000
+immutable internal global ptr TWO init with i32 2
 void assert_not(i32 cond) {
 entry68:  pred()
   71 = icmp ne i32 %cond, i32 0

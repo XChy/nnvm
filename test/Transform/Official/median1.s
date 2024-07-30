@@ -38,24 +38,24 @@ median:
   ADD s8, s1, zero
   # implict jump to bb1
 bb1:
-  ADD s9, s8, zero
-  ADD s10, s6, zero
+  ADD s9, s6, zero
+  ADD s10, s8, zero
   ADD s11, s7, zero
   # implict jump to bb2
 bb2:
-  ADD t0, s10, zero
+  ADD t0, s9, zero
   ADD t1, s11, zero
-  BLT s9, t0, bb29
+  BLT s10, t0, bb29
   # implict jump to bb3
 bb3:
   ADD t2, t0, zero
   # implict jump to bb4
 bb4:
-  ADD s10, t1, zero
+  ADD s9, t1, zero
   # implict jump to bb5
 bb5:
-  ADD s11, s9, zero
-  ADD t4, s10, zero
+  ADD s11, s10, zero
+  ADD t4, s9, zero
   SW t4, 0(sp)
   BLT s11, t2, bb26
   # implict jump to bb6
@@ -98,9 +98,9 @@ bb11:
 bb12:
   LW t4, 0(sp)
   ADD s7, t4, zero
-  ADD s6, t2, zero
   LW t4, 4(sp)
   ADD s8, t4, zero
+  ADD s6, t2, zero
   JAL zero, bb1
 bb13:
   ADDIW s6, s11, 1
@@ -236,8 +236,8 @@ bb27:
   ADDI a4, zero, 1
   LW t4, 0(sp)
   SUBW a4, t4, a4
-  ADD s10, a4, zero
-  ADD s9, s11, zero
+  ADD s9, a4, zero
+  ADD s10, s11, zero
   JAL zero, bb5
 bb28:
   ADD t1, s11, zero
@@ -253,7 +253,7 @@ bb29:
 bb30:
   ADDIW a4, t1, 1
   ADD s11, a4, zero
-  ADD s10, t0, zero
+  ADD s9, t0, zero
   JAL zero, bb2
 bb31:
   ADD t2, t0, zero

@@ -171,11 +171,11 @@ bb8:
   LW t4, 0(t0)
   SW t4, 16(sp)
   ADDI t4, zero, 19
-  SW t4, 8(sp)
+  SW t4, 20(sp)
   # implict jump to bb9
 bb9:
   ADD t2, s10, zero
-  LW t4, 8(sp)
+  LW t4, 20(sp)
   ADD a0, t4, zero
   SLLIW a1, t2, 2
   ADDI a2, sp, 512
@@ -201,7 +201,7 @@ bb11:
   SW t4, 4(sp)
   ADDI a1, zero, 1
   SUBW t4, t2, a1
-  SW t4, 20(sp)
+  SW t4, 8(sp)
   ADDI a1, zero, -1
   LW t4, 4(sp)
   BLT a1, t4, bb22
@@ -209,7 +209,7 @@ bb11:
 bb12:
   # implict jump to bb13
 bb13:
-  LW t3, 20(sp)
+  LW t3, 8(sp)
   ADDIW t4, t3, 19
   SW t4, 12(sp)
   ADDI a2, zero, 1
@@ -280,8 +280,8 @@ bb21:
 bb22:
   LW t3, 4(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
-  LW t4, 20(sp)
+  SW t4, 20(sp)
+  LW t4, 8(sp)
   ADD s10, t4, zero
   JAL zero, bb9
 bb23:

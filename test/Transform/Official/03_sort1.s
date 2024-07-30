@@ -276,10 +276,10 @@ bb26:
   ADD s2, zero, zero
   ADD s3, zero, zero
   ADD t4, zero, zero
-  SW t4, 52(sp)
+  SW t4, 44(sp)
   # implict jump to bb27
 bb27:
-  LW t4, 52(sp)
+  LW t4, 44(sp)
   ADD s0, t4, zero
   ADD s4, s3, zero
   ADD t4, s2, zero
@@ -304,8 +304,8 @@ bb28:
 bb29:
   LW t3, 56(sp)
   ADDIW t4, t3, 1
-  SW t4, 44(sp)
-  LW t4, 44(sp)
+  SW t4, 52(sp)
+  LW t4, 52(sp)
   SLTI s6, t4, 16
   BNE s6, zero, bb36
   # implict jump to bb30
@@ -380,11 +380,11 @@ bb35:
   SW s1, 0(a7)
   JAL zero, bb32
 bb36:
-  LW t4, 44(sp)
+  LW t4, 52(sp)
   ADD s2, t4, zero
   ADD s3, s4, zero
   ADD t4, s9, zero
-  SW t4, 52(sp)
+  SW t4, 44(sp)
   JAL zero, bb27
 bb37:
   LD t4, 208(sp)
@@ -400,15 +400,15 @@ bb38:
   ADD t0, t4, t0
   LW t0, 0(t0)
   ADD t4, t2, zero
-  SW t4, 120(sp)
-  ADD t4, t0, zero
   SW t4, 116(sp)
+  ADD t4, t0, zero
+  SW t4, 100(sp)
   # implict jump to bb39
 bb39:
-  LW t3, 116(sp)
+  LW t3, 100(sp)
   ADD t4, t3, zero
   SW t4, 0(sp)
-  LW t3, 120(sp)
+  LW t3, 116(sp)
   ADD t4, t3, zero
   SW t4, 40(sp)
   LW t4, 96(sp)
@@ -439,10 +439,10 @@ bb42:
   SW a4, 0(t4)
   LD t3, 208(sp)
   LW t4, 0(t3)
-  SW t4, 112(sp)
+  SW t4, 120(sp)
   LD t4, 448(sp)
   LW a5, 0(t4)
-  LW t4, 112(sp)
+  LW t4, 120(sp)
   BLT t4, a5, bb44
   # implict jump to bb43
 bb43:
@@ -452,7 +452,7 @@ bb43:
   ADD s9, t4, zero
   JAL zero, bb29
 bb44:
-  LW t4, 112(sp)
+  LW t4, 120(sp)
   ADD s8, t4, zero
   LD t4, 208(sp)
   ADD s11, t4, zero
@@ -475,21 +475,21 @@ bb45:
   SW s1, 0(s0)
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 120(sp)
-  ADD t4, s3, zero
   SW t4, 116(sp)
+  ADD t4, s3, zero
+  SW t4, 100(sp)
   JAL zero, bb39
 bb46:
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 100(sp)
+  SW t4, 112(sp)
   ADD t4, zero, zero
   SW t4, 60(sp)
   # implict jump to bb47
 bb47:
   LW t4, 60(sp)
   ADD s1, t4, zero
-  LW t4, 100(sp)
+  LW t4, 112(sp)
   ADD a5, t4, zero
   ADDI s10, zero, 16
   DIVW s10, a5, s10
@@ -504,7 +504,7 @@ bb48:
   JAL zero, bb41
 bb49:
   ADD t4, s10, zero
-  SW t4, 100(sp)
+  SW t4, 112(sp)
   LW t3, 64(sp)
   ADD t4, t3, zero
   SW t4, 60(sp)

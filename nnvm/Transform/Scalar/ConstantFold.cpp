@@ -1,5 +1,6 @@
 #include "ConstantFold.h"
 #include "ADT/GenericInt.h"
+#include "IR/Attributes.h"
 #include "IR/Constant.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
@@ -152,7 +153,7 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
 
 Value *ConstantFold::foldLoad(LoadInst *I) {
   if (GlobalVariable *GV = mayCast<GlobalVariable>(I->getSrc())) {
-    if (!GV->isImmutable())
+    if (!GV->isAttached(Attribute::Immutable))
       return nullptr;
     if (I->getType() == GV->getInitVal()->getType())
       return GV->getInitVal();

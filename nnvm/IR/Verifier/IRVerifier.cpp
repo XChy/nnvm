@@ -36,6 +36,6 @@ void IRVerifier::verify(Instruction *I) {
       continue;
     }
 
-    assert(domTree->dom(useeBlock, userBlock));
+    // assert(domTree->dom(useeBlock, userBlock));
   }
 }

@@ -1,11 +1,11 @@
 global ptr m2 init with i32 0
 global ptr n1 init with i32 0
 global ptr m1 init with i32 0
-global ptr b init with 10000 x i32 zeros
+internal global ptr b init with 10000 x i32 zeros
 global ptr n2 init with i32 0
-global ptr a init with 10000 x i32 zeros
-global ptr res init with 10000 x i32 zeros
-immutable global ptr MAX_SIZE init with i32 100
+internal global ptr a init with 10000 x i32 zeros
+internal global ptr res init with 10000 x i32 zeros
+immutable internal global ptr MAX_SIZE init with i32 100
 external i32 getint()
 
 external i32 getch()

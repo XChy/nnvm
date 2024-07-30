@@ -1,6 +1,6 @@
-immutable global ptr LF init with i32 10
-immutable global ptr space init with i32 32
-immutable global ptr V init with i32 4
+immutable internal global ptr LF init with i32 10
+immutable internal global ptr space init with i32 32
+immutable internal global ptr V init with i32 4
 external i32 getint()
 
 external i32 getch()

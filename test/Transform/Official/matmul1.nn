@@ -1,7 +1,7 @@
-immutable global ptr MAX init with i32 2147483647
-global ptr c init with 1000000 x i32 zeros
-global ptr b init with 1000000 x i32 zeros
-global ptr a init with 1000000 x i32 zeros
+immutable internal global ptr MAX init with i32 2147483647
+internal global ptr c init with 1000000 x i32 zeros
+internal global ptr b init with 1000000 x i32 zeros
+internal global ptr a init with 1000000 x i32 zeros
 i32 main() {
 entry:  pred()
   br bb %while.cond

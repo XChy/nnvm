@@ -1,4 +1,4 @@
-global ptr buf init with 200 x i32 zeros
+internal global ptr buf init with 200 x i32 zeros
 external i32 getint()
 
 external i32 getch()

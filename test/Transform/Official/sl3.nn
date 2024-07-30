@@ -1,5 +1,5 @@
-global ptr y init with 216000000 x i32 zeros
-global ptr x init with 216000000 x i32 zeros
+internal global ptr y init with 216000000 x i32 zeros
+internal global ptr x init with 216000000 x i32 zeros
 i32 main() {
 entry:  pred()
   7 = call i32 getint()

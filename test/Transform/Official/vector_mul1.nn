@@ -1,4 +1,4 @@
-global ptr temp init with float 1.000000
+internal global ptr temp init with float 1.000000
 void mult_combin(ptr v, ptr out, i32 n, ptr tmp) {
 entry129:  pred()
   48273 = si2f i32 0 to float

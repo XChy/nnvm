@@ -1,4 +1,4 @@
-immutable global ptr e init with float 2.718282
+immutable internal global ptr e init with float 2.718282
 pure float my_powf(float a, float x) {
 entry315:  pred()
   304436 = si2f i32 1 to float

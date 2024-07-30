@@ -1,5 +1,5 @@
 global ptr n init with i32 0
-global ptr array init with 110 x i32 zeros
+internal global ptr array init with 110 x i32 zeros
 void mmerge(i32 a, i32 b) {
 entry46:  pred()
   51 = call i32 findfa(i32 %a)

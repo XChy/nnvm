@@ -1,13 +1,13 @@
 global ptr seed init with i32 0
-immutable global ptr MAX_DISTANCE init with float 2.000000
-immutable global ptr MAX_STEP init with i32 10
-immutable global ptr EPSILON init with float 0.000001
-immutable global ptr PI init with float 3.141593
-immutable global ptr TWO_PI init with float 6.283185
-immutable global ptr N init with i32 24
-immutable global ptr RAND_MAX init with i32 100000006
-immutable global ptr H init with i32 192
-immutable global ptr W init with i32 192
+immutable internal global ptr MAX_DISTANCE init with float 2.000000
+immutable internal global ptr MAX_STEP init with i32 10
+immutable internal global ptr EPSILON init with float 0.000001
+immutable internal global ptr PI init with float 3.141593
+immutable internal global ptr TWO_PI init with float 6.283185
+immutable internal global ptr N init with i32 24
+immutable internal global ptr RAND_MAX init with i32 100000006
+immutable internal global ptr H init with i32 192
+immutable internal global ptr W init with i32 192
 float sample(float x, float y) {
 entry249:  pred()
   %ret413 = stack 8

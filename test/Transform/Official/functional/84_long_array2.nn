@@ -1,4 +1,4 @@
-global ptr a init with 4096 x i32 zeros
+internal global ptr a init with 4096 x i32 zeros
 external i32 getint()
 
 i32 f1(ptr b) {

@@ -1,4 +1,4 @@
-global ptr buffer init with 50000000 x i32 zeros
+internal global ptr buffer init with 50000000 x i32 zeros
 global ptr pos init with i32 0
 i32 detect_item(i32 type, ptr buf, i32 len) {
 entry67:  pred()

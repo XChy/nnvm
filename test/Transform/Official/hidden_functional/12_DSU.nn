@@ -1,5 +1,5 @@
 global ptr m init with i32 0
-global ptr fa init with 100005 x i32 zeros
+internal global ptr fa init with 100005 x i32 zeros
 global ptr n init with i32 0
 i32 same(i32 x, i32 y) {
 entry96:  pred()

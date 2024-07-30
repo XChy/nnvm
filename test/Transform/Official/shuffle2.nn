@@ -1,17 +1,17 @@
-global ptr ans init with 10000000 x i32 zeros
+internal global ptr ans init with 10000000 x i32 zeros
 global ptr hashmod init with i32 0
-immutable global ptr maxn init with i32 10000000
+immutable internal global ptr maxn init with i32 10000000
 global ptr cnt init with i32 0
-immutable global ptr maxm init with i32 10000000
-global ptr bucket init with 10000000 x i32 zeros
-global ptr head init with 10000000 x i32 zeros
-global ptr value init with 10000000 x i32 zeros
-global ptr next init with 10000000 x i32 zeros
-global ptr keys init with 10000000 x i32 zeros
-global ptr values init with 10000000 x i32 zeros
-global ptr key init with 10000000 x i32 zeros
-global ptr nextvalue init with 10000000 x i32 zeros
-global ptr requests init with 10000000 x i32 zeros
+immutable internal global ptr maxm init with i32 10000000
+internal global ptr bucket init with 10000000 x i32 zeros
+internal global ptr head init with 10000000 x i32 zeros
+internal global ptr value init with 10000000 x i32 zeros
+internal global ptr next init with 10000000 x i32 zeros
+internal global ptr keys init with 10000000 x i32 zeros
+internal global ptr values init with 10000000 x i32 zeros
+internal global ptr key init with 10000000 x i32 zeros
+internal global ptr nextvalue init with 10000000 x i32 zeros
+internal global ptr requests init with 10000000 x i32 zeros
 i32 insert(i32 k, i32 v) {
 entry5:  pred()
   hashmod.load387 = load i32 from ptr @hashmod

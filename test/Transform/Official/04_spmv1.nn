@@ -1,11 +1,11 @@
-global ptr b init with 100010 x i32 zeros
-global ptr a init with 100010 x i32 zeros
-global ptr y init with 3000000 x i32 zeros
-global ptr x init with 100010 x i32 zeros
-global ptr v init with 3000000 x i32 zeros
-immutable global ptr M init with i32 3000000
-global ptr c init with 100010 x i32 zeros
-immutable global ptr N init with i32 100010
+internal global ptr b init with 100010 x i32 zeros
+internal global ptr a init with 100010 x i32 zeros
+internal global ptr y init with 3000000 x i32 zeros
+internal global ptr x init with 100010 x i32 zeros
+internal global ptr v init with 3000000 x i32 zeros
+immutable internal global ptr M init with i32 3000000
+internal global ptr c init with 100010 x i32 zeros
+immutable internal global ptr N init with i32 100010
 external i32 getint()
 
 external i32 getch()

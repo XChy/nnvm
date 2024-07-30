@@ -1,9 +1,9 @@
-global ptr line2 init with 100 x i32 zeros
-global ptr line1 init with 50 x i32 zeros
-global ptr row init with 50 x i32 zeros
+internal global ptr line2 init with 100 x i32 zeros
+internal global ptr line1 init with 50 x i32 zeros
+internal global ptr row init with 50 x i32 zeros
 global ptr n init with i32 0
 global ptr sum init with i32 0
-global ptr ans init with 50 x i32 zeros
+internal global ptr ans init with 50 x i32 zeros
 external i32 getint()
 
 external i32 getch()

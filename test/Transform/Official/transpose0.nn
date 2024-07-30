@@ -1,5 +1,5 @@
-global ptr a init with 100000 x i32 zeros
-global ptr matrix init with 20000000 x i32 zeros
+internal global ptr a init with 100000 x i32 zeros
+internal global ptr matrix init with 20000000 x i32 zeros
 external i32 getint()
 
 external i32 getch()

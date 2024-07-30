@@ -1,12 +1,12 @@
-global ptr get2 init with 10000 x i32 zeros
-global ptr get init with 10000 x i32 zeros
+internal global ptr get2 init with 10000 x i32 zeros
+internal global ptr get init with 10000 x i32 zeros
 global ptr c init with i32 0
 global ptr i init with i32 0
 global ptr ii init with i32 1
 global ptr chat init with i32 0
-global ptr chas init with 10000 x i32 zeros
+internal global ptr chas init with 10000 x i32 zeros
 global ptr intt init with i32 0
-global ptr ints init with 10000 x i32 zeros
+internal global ptr ints init with 10000 x i32 zeros
 i32 chapop() {
 entry88:  pred()
   chat.load90 = load i32 from ptr @chat

@@ -1,12 +1,12 @@
-global ptr head init with 10005 x i32 zeros
-global ptr next init with 10005 x i32 zeros
-global ptr to init with 10005 x i32 zeros
-global ptr dep init with 10005 x i32 zeros
-global ptr f init with 200100 x i32 zeros
+internal global ptr head init with 10005 x i32 zeros
+internal global ptr next init with 10005 x i32 zeros
+internal global ptr to init with 10005 x i32 zeros
+internal global ptr dep init with 10005 x i32 zeros
+internal global ptr f init with 200100 x i32 zeros
 global ptr n init with i32 0
 global ptr cnt init with i32 0
 global ptr m init with i32 0
-immutable global ptr maxn init with i32 10005
+immutable internal global ptr maxn init with i32 10005
 i32 LCA(i32 x, i32 y) {
 entry176:  pred()
   379 = shl i32 %x, i32 2

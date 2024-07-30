@@ -133,7 +133,7 @@ bb3:
   ADD s8, s7, zero
   ADD s9, s6, zero
   ADD t4, s5, zero
-  SW t4, 48(sp)
+  SW t4, 44(sp)
   LW t4, 16(sp)
   LW t3, 20(sp)
   BLT t4, t3, bb7
@@ -141,7 +141,7 @@ bb3:
 bb4:
   # implict jump to bb5
 bb5:
-  LW t4, 48(sp)
+  LW t4, 44(sp)
   ADDIW s0, t4, 1
   LW t4, 24(sp)
   BLT s0, t4, bb6
@@ -152,7 +152,7 @@ bb6:
   ADD s7, s8, zero
   JAL zero, bb3
 bb7:
-  LW t4, 48(sp)
+  LW t4, 44(sp)
   SLLIW s11, t4, 5
   LD t3, 288(sp)
   ADD t4, t3, s11
@@ -165,10 +165,10 @@ bb7:
   ADDI t4, zero, 1
   SW t4, 12(sp)
   ADD t4, zero, zero
-  SW t4, 44(sp)
+  SW t4, 36(sp)
   # implict jump to bb8
 bb8:
-  LW t3, 44(sp)
+  LW t3, 36(sp)
   ADD t4, t3, zero
   SW t4, 40(sp)
   LW t4, 40(sp)
@@ -187,8 +187,8 @@ bb8:
   # implict jump to bb9
 bb9:
   ADDI t4, zero, 1
-  SW t4, 28(sp)
-  LW t4, 28(sp)
+  SW t4, 52(sp)
+  LW t4, 52(sp)
   LW t3, 20(sp)
   BLT t4, t3, bb50
   # implict jump to bb10
@@ -235,14 +235,14 @@ bb14:
   JAL zero, bb5
 bb15:
   ADD t4, t0, zero
-  SW t4, 44(sp)
+  SW t4, 36(sp)
   JAL zero, bb8
 bb16:
   ADDI s2, zero, 1
   # implict jump to bb17
 bb17:
   ADD s1, s2, zero
-  LW t4, 28(sp)
+  LW t4, 52(sp)
   LW t3, 20(sp)
   BLT t4, t3, bb22
   # implict jump to bb18
@@ -272,7 +272,7 @@ bb22:
   LA t2, .CONSTANT.7.2
   FLW fs5, 0(t2)
   FDIV.S fs4, fs5, fs4
-  LW t4, 48(sp)
+  LW t4, 44(sp)
   FCVT.S.W fs5, t4
   LA t2, .CONSTANT.7.3
   FLW fs6, 0(t2)
@@ -468,10 +468,10 @@ bb50:
   FLW fs3, 0(t0)
   FDIV.S fs3, fs0, fs3
   ADDI t4, zero, 1
-  SW t4, 36(sp)
+  SW t4, 28(sp)
   # implict jump to bb51
 bb51:
-  LW t4, 36(sp)
+  LW t4, 28(sp)
   ADD s4, t4, zero
   LD t4, 280(sp)
   FLW fs4, 0(t4)
@@ -496,7 +496,7 @@ bb52:
 bb53:
   LW t3, 8(sp)
   ADD t4, t3, zero
-  SW t4, 36(sp)
+  SW t4, 28(sp)
   JAL zero, bb51
 bb54:
   LA a5, .CONSTANT.7.1
@@ -504,10 +504,10 @@ bb54:
   FDIV.S ft4, fs0, fs2
   FSW ft4, 4(sp)
   ADDI t4, zero, 1
-  SW t4, 52(sp)
+  SW t4, 48(sp)
   # implict jump to bb55
 bb55:
-  LW t4, 52(sp)
+  LW t4, 48(sp)
   ADD a6, t4, zero
   LD t4, 280(sp)
   FLW fs3, 0(t4)
@@ -529,7 +529,7 @@ bb55:
 bb56:
   LW t3, 56(sp)
   ADD t4, t3, zero
-  SW t4, 52(sp)
+  SW t4, 48(sp)
   JAL zero, bb55
 my_sin_impl:
   ADDI sp, sp, -48
@@ -709,14 +709,14 @@ bb71:
   ADD s11, t4, s11
   FCVT.S.L fs0, zero
   ADD t4, zero, zero
-  SW t4, 28(sp)
+  SW t4, 24(sp)
   # implict jump to bb72
 bb72:
   ADD t1, s7, zero
-  LW t3, 28(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
-  SW t4, 36(sp)
-  LW t4, 36(sp)
+  SW t4, 20(sp)
+  LW t4, 20(sp)
   SLLIW a4, t4, 2
   ADD t4, s11, a4
   SD t4, 184(sp)
@@ -727,16 +727,16 @@ bb72:
   # implict jump to bb73
 bb73:
   ADD t4, zero, zero
-  SW t4, 16(sp)
-  ADD t4, t1, zero
   SW t4, 32(sp)
+  ADD t4, t1, zero
+  SW t4, 36(sp)
   # implict jump to bb74
 bb74:
-  LW t4, 32(sp)
-  ADD s2, t4, zero
-  LW t4, 16(sp)
-  ADD t1, t4, zero
   LW t4, 36(sp)
+  ADD s2, t4, zero
+  LW t4, 32(sp)
+  ADD t1, t4, zero
+  LW t4, 20(sp)
   ADDIW t2, t4, 1
   LW t4, 4(sp)
   BLT t2, t4, bb76
@@ -747,44 +747,44 @@ bb75:
   JAL zero, bb69
 bb76:
   ADD t4, t2, zero
-  SW t4, 28(sp)
+  SW t4, 24(sp)
   ADD s7, s2, zero
   JAL zero, bb72
 bb77:
   ADD t4, zero, zero
-  SW t4, 12(sp)
+  SW t4, 16(sp)
   # implict jump to bb78
 bb78:
-  LW t3, 12(sp)
+  LW t3, 16(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   LW t4, 4(sp)
   BLT zero, t4, bb83
   # implict jump to bb79
 bb79:
   ADD t4, zero, zero
-  SW t4, 20(sp)
+  SW t4, 28(sp)
   # implict jump to bb80
 bb80:
-  LW t4, 20(sp)
+  LW t4, 28(sp)
   ADD s2, t4, zero
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   ADDIW t0, t4, 1
   LW t4, 8(sp)
   BLT t0, t4, bb82
   # implict jump to bb81
 bb81:
   ADD t4, t0, zero
-  SW t4, 16(sp)
-  ADD t4, s2, zero
   SW t4, 32(sp)
+  ADD t4, s2, zero
+  SW t4, 36(sp)
   JAL zero, bb74
 bb82:
   ADD t4, t0, zero
-  SW t4, 12(sp)
+  SW t4, 16(sp)
   JAL zero, bb78
 bb83:
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   SLLIW s3, t4, 5
   LD t4, 232(sp)
   ADD s3, t4, s3
@@ -793,7 +793,7 @@ bb83:
   LA s2, .CONSTANT.7.2
   FLW fs2, 0(s2)
   FDIV.S fs1, fs2, fs1
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   FCVT.S.W fs2, t4
   LA s2, .CONSTANT.7.3
   FLW fs3, 0(s2)
@@ -873,7 +873,7 @@ bb92:
   FLW fs8, 0(s2)
   FADD.S fs7, fs7, fs8
   FMUL.S fs6, fs6, fs7
-  LW t4, 36(sp)
+  LW t4, 20(sp)
   FCVT.S.W fs7, t4
   FMUL.S fs6, fs6, fs7
   FADD.S fs6, fs6, fs2
@@ -925,7 +925,7 @@ bb100:
   # implict jump to bb101
 bb101:
   ADD t4, s0, zero
-  SW t4, 20(sp)
+  SW t4, 28(sp)
   JAL zero, bb80
 bb102:
   ADD s1, s0, zero

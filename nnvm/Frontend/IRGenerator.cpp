@@ -1,6 +1,7 @@
 #include "IRGenerator.h"
 #include "Frontend/Builtin.h"
 #include "Frontend/Symbol.h"
+#include "IR/Attributes.h"
 #include "IR/BasicBlock.h"
 #include "IR/Constant.h"
 #include "IR/GlobalVariable.h"
@@ -339,7 +340,8 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     if (symbolTable.isGlobal()) {
       GlobalVariable *global = new GlobalVariable(*ir, constVal);
       global->setName(ctx->IDENT()->getText());
-      global->setImmutable(true);
+      global->attach(Attribute::Immutable);
+      global->attach(Attribute::Internal);
       return symbolTable.create(symbolName, symbolType, global);
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());
@@ -363,7 +365,8 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   if (symbolTable.isGlobal()) {
     GlobalVariable *global = new GlobalVariable(*ir, constVal);
     global->setName(ctx->IDENT()->getText());
-    global->setImmutable(true);
+    global->attach(Attribute::Immutable);
+    global->attach(Attribute::Internal);
     return symbolTable.create(symbolName, symbolType, global);
   } else {
     return symbolTable.create(symbolName, symbolType, constVal);
@@ -592,6 +595,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       Constant *initVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
       GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
+      //globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -611,6 +615,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       GlobalVariable *globalVar =
           new GlobalVariable(*ir, createConstFloat(floatVal));
       globalVar->setName(symbolName);
+      globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -627,7 +632,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       initVal = fetchFlatElementsFrom(ctx->initVal(), symbolType);
       globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      globalVar->setImmutable(false);
+      globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());

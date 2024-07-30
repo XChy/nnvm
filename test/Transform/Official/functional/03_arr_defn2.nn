@@ -1,4 +1,4 @@
-global ptr a init with 100 x i32 zeros
+internal global ptr a init with 100 x i32 zeros
 pure i32 main() {
 entry:  pred()
   ret i32 0

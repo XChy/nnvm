@@ -1,4 +1,4 @@
-global ptr c init with 4 x i32 [6, 7, 8, 9]
+internal global ptr c init with 4 x i32 [6, 7, 8, 9]
 global ptr b init with i32 5
 i32 main() {
 entry:  pred()

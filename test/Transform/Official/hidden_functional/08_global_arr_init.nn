@@ -1,19 +1,19 @@
-global ptr i init with 24 x i32 [1, 2, 3, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-global ptr h init with 3 x i32 zeros
-global ptr g init with 15 x i32 [1, 2, 3, 4, 0, 0, 7, 0, 0, 10, 11, 12, 0, 0, 0]
-global ptr a0 init with 3 x i32 zeros
-global ptr b0 init with 4 x i32 [0, 1, 0, 0]
-global ptr a init with 15 x i32 zeros
-global ptr d init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-global ptr g0 init with 9 x i32 [85, 0, 1, 29, 0, 0, 0, 0, 0]
-global ptr c0 init with 7 x i32 [2, 8, 6, 3, 9, 1, 5]
-global ptr d0 init with 11 x i32 zeros
-global ptr e init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-global ptr e0 init with 2 x i32 [22, 33]
-global ptr b init with 15 x i32 zeros
-global ptr f0 init with 6 x i32 zeros
-global ptr c init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-global ptr f init with 5 x i32 zeros
+internal global ptr i init with 24 x i32 [1, 2, 3, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+internal global ptr h init with 3 x i32 zeros
+internal global ptr g init with 15 x i32 [1, 2, 3, 4, 0, 0, 7, 0, 0, 10, 11, 12, 0, 0, 0]
+internal global ptr a0 init with 3 x i32 zeros
+internal global ptr b0 init with 4 x i32 [0, 1, 0, 0]
+internal global ptr a init with 15 x i32 zeros
+internal global ptr d init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+internal global ptr g0 init with 9 x i32 [85, 0, 1, 29, 0, 0, 0, 0, 0]
+internal global ptr c0 init with 7 x i32 [2, 8, 6, 3, 9, 1, 5]
+internal global ptr d0 init with 11 x i32 zeros
+internal global ptr e init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+internal global ptr e0 init with 2 x i32 [22, 33]
+internal global ptr b init with 15 x i32 zeros
+internal global ptr f0 init with 6 x i32 zeros
+internal global ptr c init with 15 x i32 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+internal global ptr f init with 5 x i32 zeros
 pure i32 main() {
 entry:  pred()
   ret i32 5

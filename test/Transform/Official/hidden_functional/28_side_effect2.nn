@@ -1,4 +1,4 @@
-global ptr array init with 20 x i32 zeros
+internal global ptr array init with 20 x i32 zeros
 global ptr sum init with i32 0
 i32 h(i32 i) {
 entry72:  pred()

@@ -1,4 +1,4 @@
-global ptr a init with 1000000 x float zeros
+internal global ptr a init with 1000000 x float zeros
 pure float sqrt(float x) {
 entry11:  pred()
   14 = si2f i32 0 to float

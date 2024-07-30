@@ -1,5 +1,5 @@
-immutable global ptr b init with i32 5
-immutable global ptr a init with i32 10
+immutable internal global ptr b init with i32 5
+immutable internal global ptr a init with i32 10
 pure i32 main() {
 entry:  pred()
   ret i32 5

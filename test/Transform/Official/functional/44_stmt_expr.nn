@@ -1,4 +1,4 @@
-immutable global ptr n init with i32 10
+immutable internal global ptr n init with i32 10
 global ptr k init with i32 0
 i32 main() {
 entry:  pred()
