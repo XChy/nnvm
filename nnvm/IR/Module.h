@@ -19,6 +19,7 @@ public:
 
   Function *getFunction(const std::string &name);
   void addFunction(Function *func);
+  void removeFunction(const std::string &name);
   std::unordered_map<std::string, Function *> getFunctionMap() const {
     return functionMap;
   }
@@ -49,7 +50,6 @@ public:
   Constant *addConstant(const Constant &constant);
   ConstantPool getConstantPool() { return constantPool; };
 
-
   std::string allocValueName(const std::string &name);
   bool isConflictName(const std::string &name) { return names.count(name); }
 
@@ -57,7 +57,7 @@ private:
   std::unordered_map<std::string, Function *> functionMap;
   std::unordered_map<std::string, GlobalVariable *> globalVarMap;
   ConstantPool constantPool;
-  //std::unordered_map<Type *, UBValue *> UBValuePool;
+  // std::unordered_map<Type *, UBValue *> UBValuePool;
   std::unordered_set<std::string> names;
 
   NormalTypeMap typeMap;

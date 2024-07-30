@@ -1,18 +1,11 @@
 .global main
 .section .bss
-
 .section .data
-a:
-.byte 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0
 .section .text
 main:
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  LA s0, a
-  LW s0, 16(s0)
-  ADD a0, s0, zero
+  ADDI a0, zero, 4
   LD ra, 0(sp)
-  LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)

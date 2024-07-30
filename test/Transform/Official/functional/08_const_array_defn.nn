@@ -1,9 +1,6 @@
-immutable internal global ptr a init with 5 x i32 [0, 1, 2, 3, 4]
-i32 main() {
+pure i32 main() {
 entry:  pred()
-  2 = ptradd ptr @a, i32 16
-  2.load = load i32 from ptr %2
-  ret i32 %2.load
+  ret i32 4
 }
 
 external void putfarray(i32 , ptr )

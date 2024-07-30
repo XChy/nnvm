@@ -69,16 +69,16 @@ bb4:
   CALL QuickSort
   JAL zero, bb1
 bb5:
-  ADD s5, s2, zero
-  ADD s6, s1, zero
+  ADD s5, s1, zero
+  ADD s6, s2, zero
   # implict jump to bb6
 bb6:
   ADD s7, s6, zero
   ADD s8, s5, zero
   # implict jump to bb7
 bb7:
-  ADD s9, s8, zero
-  BLT s7, s9, bb26
+  ADD s9, s7, zero
+  BLT s8, s9, bb26
   # implict jump to bb8
 bb8:
   ADD s10, zero, zero
@@ -87,10 +87,10 @@ bb9:
   BNE s10, zero, bb25
   # implict jump to bb10
 bb10:
-  BLT s7, s9, bb24
+  BLT s8, s9, bb24
   # implict jump to bb11
 bb11:
-  ADD s10, s7, zero
+  ADD s10, s8, zero
   # implict jump to bb12
 bb12:
   # implict jump to bb13
@@ -120,9 +120,9 @@ bb19:
   ADD s4, s11, zero
   JAL zero, bb4
 bb20:
+  ADD s5, s11, zero
   LW t4, 0(sp)
-  ADD s5, t4, zero
-  ADD s6, s11, zero
+  ADD s6, t4, zero
   JAL zero, bb6
 bb21:
   SLLIW t1, s9, 2
@@ -147,19 +147,19 @@ bb23:
   ADD t0, t1, zero
   JAL zero, bb15
 bb24:
-  SLLIW s11, s7, 2
+  SLLIW s11, s8, 2
   ADD s11, s0, s11
   SLLIW t0, s9, 2
   ADD t0, s0, t0
   LW t0, 0(t0)
   SW t0, 0(s11)
-  ADDIW s11, s7, 1
+  ADDIW s11, s8, 1
   ADD s10, s11, zero
   JAL zero, bb12
 bb25:
   ADDI s4, zero, 1
   SUBW s4, s9, s4
-  ADD s8, s4, zero
+  ADD s7, s4, zero
   JAL zero, bb7
 bb26:
   SLLIW s11, s9, 2

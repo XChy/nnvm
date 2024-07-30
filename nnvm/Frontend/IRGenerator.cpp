@@ -595,7 +595,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       Constant *initVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
       GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      //globalVar->attach(Attribute::Internal);
+      // globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -743,6 +743,9 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   Function *func = new Function(ir, funcName);
 
   ir->addFunction(func);
+
+  if (funcName != "main")
+    func->attach(Attribute::Internal);
 
   SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
 

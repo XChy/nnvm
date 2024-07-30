@@ -26,6 +26,9 @@ public:
   void attach(Attribute attr) { attributes.insert(attr); }
   void removeAttr(Attribute attr) { attributes.erase(attr); }
 
+  Module &getModule() { return module; }
+  const Module &getModule() const { return module; }
+
 private:
   Constant *initVal;
   Type *innerType;

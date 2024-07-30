@@ -32,6 +32,10 @@ void Module::addFunction(Function *func) {
   functionMap.insert({func->getName(), func});
 }
 
+void Module::removeFunction(const std::string &name) {
+  functionMap.erase(name);
+}
+
 GlobalVariable *Module::getGlobalVar(const std::string &name) {
   return globalVarMap[name];
 }

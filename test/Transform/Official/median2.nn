@@ -9,23 +9,23 @@ entry54:  pred()
   br bb %while.cond69
 while.cond69:  pred(entry54, meanless_calculation.while.exit259)
   xx.phi181 = phi [bb %entry54, i32 0, bb %meanless_calculation.while.exit259, i32 %xx.phi]
-  l.phi178 = phi [bb %entry54, i32 %begin, bb %meanless_calculation.while.exit259, i32 %l.phi]
-  r.phi174 = phi [bb %entry54, i32 %67, bb %meanless_calculation.while.exit259, i32 %r.phi]
+  r.phi178 = phi [bb %entry54, i32 %67, bb %meanless_calculation.while.exit259, i32 %r.phi]
+  l.phi174 = phi [bb %entry54, i32 %begin, bb %meanless_calculation.while.exit259, i32 %l.phi]
   br bb %while.cond74
 while.cond74:  pred(if.exit, while.cond69)
   xx.phi182 = phi [bb %while.cond69, i32 %xx.phi181, bb %if.exit, i32 %94]
-  r.phi172 = phi [bb %while.cond69, i32 %r.phi174, bb %if.exit, i32 %83]
-  79 = icmp slt i32 %l.phi178, i32 %r.phi172
+  r.phi176 = phi [bb %while.cond69, i32 %r.phi178, bb %if.exit, i32 %83]
+  79 = icmp slt i32 %l.phi174, i32 %r.phi176
   br i1 %79, bb %while.body75, bb %while.exit76
 while.body75:  pred(while.cond74)
-  83 = sub i32 %r.phi172, i32 1
+  83 = sub i32 %r.phi176, i32 1
   189 = shl i32 %83, i32 2
   86 = ptradd ptr %arr, i32 %189
   86.load = load i32 from ptr %86
   89 = icmp slt i32 %86.load, i32 %61.load
   br i1 %89, bb %then, bb %if.exit
 while.exit76:  pred(while.cond74, then)
-  r.phi = phi [bb %while.cond74, i32 %r.phi172, bb %then, i32 %83]
+  r.phi = phi [bb %while.cond74, i32 %r.phi176, bb %then, i32 %83]
   br bb %while.cond95
 then:  pred(while.body75)
   br bb %while.exit76
@@ -34,18 +34,18 @@ if.exit:  pred(while.body75)
   br bb %while.cond74
 while.cond95:  pred(while.exit76, if.exit112)
   xx.phi = phi [bb %while.exit76, i32 %xx.phi182, bb %if.exit112, i32 %115]
-  l.phi176 = phi [bb %while.exit76, i32 %l.phi178, bb %if.exit112, i32 %104]
-  100 = icmp slt i32 %l.phi176, i32 %r.phi
+  l.phi172 = phi [bb %while.exit76, i32 %l.phi174, bb %if.exit112, i32 %104]
+  100 = icmp slt i32 %l.phi172, i32 %r.phi
   br i1 %100, bb %while.body96, bb %while.exit97
 while.body96:  pred(while.cond95)
-  104 = add i32 %l.phi176, i32 1
+  104 = add i32 %l.phi172, i32 1
   190 = shl i32 %104, i32 2
   107 = ptradd ptr %arr, i32 %190
   107.load = load i32 from ptr %107
   110 = icmp sge i32 %107.load, i32 %61.load
   br i1 %110, bb %then111, bb %if.exit112
 while.exit97:  pred(while.cond95, then111)
-  l.phi = phi [bb %while.cond95, i32 %l.phi176, bb %then111, i32 %104]
+  l.phi = phi [bb %while.cond95, i32 %l.phi172, bb %then111, i32 %104]
   118 = icmp eq i32 %l.phi, i32 %r.phi
   br i1 %118, bb %then119, bb %else
 then111:  pred(while.body96)

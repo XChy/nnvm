@@ -1,5 +1,5 @@
 /**
- * GlobalAttributor: Attach attributes like pure to functions/variables.
+ * GlobalVarOpt: Eliminate global variables.
  */
 
 #pragma once

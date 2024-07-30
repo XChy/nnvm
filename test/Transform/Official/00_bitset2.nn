@@ -4,22 +4,17 @@ immutable internal global ptr seed init with 3 x i32 [19971231, 19981013, 100000
 i32 rand() {
 entry194:  pred()
   staticvalue.load196 = load i32 from ptr @staticvalue
-  198.load = load i32 from ptr @seed
-  200 = mul i32 %staticvalue.load196, i32 %198.load
-  202 = ptradd ptr @seed, i32 4
-  202.load = load i32 from ptr %202
-  204 = add i32 %200, i32 %202.load
+  200 = mul i32 %staticvalue.load196, i32 19971231
+  204 = add i32 %200, i32 19981013
   store i32 %204 to ptr @staticvalue
-  208 = ptradd ptr @seed, i32 8
-  208.load = load i32 from ptr %208
-  210 = srem i32 %204, i32 %208.load
+  210 = srem i32 %204, i32 1000000007
   store i32 %210 to ptr @staticvalue
   212 = icmp slt i32 %210, i32 0
   br i1 %212, bb %then213, bb %if.exit214
 then213:  pred(entry194)
   staticvalue.load219 = load i32 from ptr @staticvalue
-  220 = add i32 %208.load, i32 %staticvalue.load219
-  store i32 %220 to ptr @staticvalue
+  480 = add i32 %staticvalue.load219, i32 1000000007
+  store i32 %480 to ptr @staticvalue
   br bb %if.exit214
 if.exit214:  pred(entry194, then213)
   staticvalue.load221 = load i32 from ptr @staticvalue
@@ -146,20 +141,15 @@ entry222:  pred()
   234468 = icmp sgt i32 %224, i32 0
   br i1 %234468, bb %while.body231_preheader, bb %while.exit232
 while.body231_preheader:  pred(entry222)
-  198.load290 = load i32 from ptr @seed
-  202292 = ptradd ptr @seed, i32 4
-  202.load293 = load i32 from ptr %202292
-  208296 = ptradd ptr @seed, i32 8
-  208.load297 = load i32 from ptr %208296
   br bb %while.body231
 while.body231:  pred(while.body231.split.split.split, while.body231_preheader)
   n.phi469 = phi [bb %while.body231.split.split.split, i32 %238, bb %while.body231_preheader, i32 %224]
   238 = sub i32 %n.phi469, i32 1
   staticvalue.load196289 = load i32 from ptr @staticvalue
-  200291 = mul i32 %staticvalue.load196289, i32 %198.load290
-  204294 = add i32 %200291, i32 %202.load293
+  200291 = mul i32 %staticvalue.load196289, i32 19971231
+  204294 = add i32 %200291, i32 19981013
   store i32 %204294 to ptr @staticvalue
-  210298 = srem i32 %204294, i32 %208.load297
+  210298 = srem i32 %204294, i32 1000000007
   store i32 %210298 to ptr @staticvalue
   212300 = icmp slt i32 %210298, i32 0
   br i1 %212300, bb %rand.then213, bb %rand.if.exit214
@@ -172,23 +162,23 @@ while.exit232:  pred(while.body231.split.split.split, entry222)
   ret i32 0
 rand.then213:  pred(while.body231)
   staticvalue.load219304 = load i32 from ptr @staticvalue
-  220305 = add i32 %208.load297, i32 %staticvalue.load219304
-  store i32 %220305 to ptr @staticvalue
+  481 = add i32 %staticvalue.load219304, i32 1000000007
+  store i32 %481 to ptr @staticvalue
   br bb %rand.if.exit214
 rand.if.exit214:  pred(while.body231, rand.then213)
   staticvalue.load221309 = load i32 from ptr @staticvalue
   241 = srem i32 %staticvalue.load221309, i32 300000
-  200316 = mul i32 %staticvalue.load221309, i32 %198.load290
-  204319 = add i32 %200316, i32 %202.load293
+  200316 = mul i32 %staticvalue.load221309, i32 19971231
+  204319 = add i32 %200316, i32 19981013
   store i32 %204319 to ptr @staticvalue
-  210323 = srem i32 %204319, i32 %208.load297
+  210323 = srem i32 %204319, i32 1000000007
   store i32 %210323 to ptr @staticvalue
   212325 = icmp slt i32 %210323, i32 0
   br i1 %212325, bb %rand.then213327, bb %rand.if.exit214333
 rand.then213327:  pred(rand.if.exit214)
   staticvalue.load219329 = load i32 from ptr @staticvalue
-  220330 = add i32 %208.load297, i32 %staticvalue.load219329
-  store i32 %220330 to ptr @staticvalue
+  482 = add i32 %staticvalue.load219329, i32 1000000007
+  store i32 %482 to ptr @staticvalue
   br bb %rand.if.exit214333
 rand.if.exit214333:  pred(rand.if.exit214, rand.then213327)
   staticvalue.load221334 = load i32 from ptr @staticvalue
