@@ -1,57 +1,10 @@
-.global func6
-.global func5
 .global func2
 .global func3
-.global func7
-.global func4
 .global main
 .global func1
 .section .bss
 .section .data
 .section .text
-func6:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  BNE s0, zero, bb5
-  # implict jump to bb1
-bb1:
-  ADD s0, zero, zero
-  # implict jump to bb2
-bb2:
-  BNE s0, zero, bb4
-  # implict jump to bb3
-bb3:
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb4:
-  ADDI a0, zero, 1
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb5:
-  SLTU s1, zero, a1
-  ADD s0, s1, zero
-  JAL zero, bb2
-func5:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  ADD s0, a0, zero
-  SUB s0, zero, s0
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
 func2:
   ADDI sp, sp, -32
   SD ra, 0(sp)
@@ -59,16 +12,16 @@ func2:
   SD s1, 16(sp)
   ADD s0, a0, zero
   ADD s1, a1, zero
-  BNE s1, zero, bb9
-  # implict jump to bb8
-bb8:
+  BNE s1, zero, bb2
+  # implict jump to bb1
+bb1:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb9:
+bb2:
   REMW s0, s0, s1
   ADD a0, s0, zero
   ADD a1, zero, zero
@@ -89,9 +42,9 @@ func3:
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb12
-  # implict jump to bb11
-bb11:
+  BNE s2, zero, bb5
+  # implict jump to bb4
+bb4:
   ADDW s1, s0, s1
   ADD a0, s1, zero
   ADD a1, zero, zero
@@ -104,7 +57,7 @@ bb11:
   LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb12:
+bb5:
   ADDIW s0, s0, 1
   ADD a0, s0, zero
   LD ra, 0(sp)
@@ -112,46 +65,6 @@ bb12:
   LD s1, 16(sp)
   LD s2, 24(sp)
   ADDI sp, sp, 32
-  JALR zero, 0(ra)
-func7:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  ADD s0, a0, zero
-  SLTU s0, zero, s0
-  XORI s0, s0, 1
-  BNE s0, zero, bb15
-  # implict jump to bb14
-bb14:
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
-bb15:
-  ADDI a0, zero, 1
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
-func4:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  ADD s0, a0, zero
-  BNE s0, zero, bb18
-  # implict jump to bb17
-bb17:
-  ADD a0, a2, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
-bb18:
-  ADD a0, a1, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -176
@@ -182,8 +95,8 @@ main:
   SW t4, 0(sp)
   ADD t4, zero, zero
   SW t4, 16(sp)
-  # implict jump to bb20
-bb20:
+  # implict jump to bb7
+bb7:
   LW t4, 16(sp)
   ADD s5, t4, zero
   SLLIW s6, s5, 2
@@ -196,32 +109,32 @@ bb20:
   SW t4, 20(sp)
   LW t4, 20(sp)
   SLTI s6, t4, 10
-  BNE s6, zero, bb58
-  # implict jump to bb21
-bb21:
+  BNE s6, zero, bb45
+  # implict jump to bb8
+bb8:
   LW t4, 12(sp)
   SLTU s6, zero, t4
   XORI s6, s6, 1
-  BNE s6, zero, bb57
-  # implict jump to bb22
-bb22:
+  BNE s6, zero, bb44
+  # implict jump to bb9
+bb9:
   ADD s6, zero, zero
-  # implict jump to bb23
-bb23:
+  # implict jump to bb10
+bb10:
   LW t4, 8(sp)
   SUB s7, zero, t4
-  BNE s6, zero, bb56
-  # implict jump to bb24
-bb24:
+  BNE s6, zero, bb43
+  # implict jump to bb11
+bb11:
   ADD s6, zero, zero
-  # implict jump to bb25
-bb25:
-  BNE s6, zero, bb55
-  # implict jump to bb26
-bb26:
+  # implict jump to bb12
+bb12:
+  BNE s6, zero, bb42
+  # implict jump to bb13
+bb13:
   ADD s6, zero, zero
-  # implict jump to bb27
-bb27:
+  # implict jump to bb14
+bb14:
   ADD a0, s6, zero
   LW t4, 4(sp)
   ADD a1, t4, zero
@@ -242,43 +155,43 @@ bb27:
   LW t4, 24(sp)
   SLTU s3, zero, t4
   XORI s3, s3, 1
-  BNE s3, zero, bb54
-  # implict jump to bb28
-bb28:
+  BNE s3, zero, bb41
+  # implict jump to bb15
+bb15:
   ADD s3, zero, zero
-  # implict jump to bb29
-bb29:
-  BNE s10, zero, bb53
-  # implict jump to bb30
-bb30:
+  # implict jump to bb16
+bb16:
+  BNE s10, zero, bb40
+  # implict jump to bb17
+bb17:
   ADD s2, zero, zero
-  # implict jump to bb31
-bb31:
-  BNE s2, zero, bb52
-  # implict jump to bb32
-bb32:
+  # implict jump to bb18
+bb18:
+  BNE s2, zero, bb39
+  # implict jump to bb19
+bb19:
   ADD s2, zero, zero
-  # implict jump to bb33
-bb33:
+  # implict jump to bb20
+bb20:
   LW s3, 152(sp)
   LW s1, 156(sp)
   SLTU s0, zero, s1
   XORI s0, s0, 1
-  BNE s0, zero, bb51
-  # implict jump to bb34
-bb34:
+  BNE s0, zero, bb38
+  # implict jump to bb21
+bb21:
   ADD s0, zero, zero
-  # implict jump to bb35
-bb35:
+  # implict jump to bb22
+bb22:
   ADD a0, s3, zero
   ADD a1, s0, zero
   CALL func2
   ADD s0, a0, zero
-  BNE s9, zero, bb50
-  # implict jump to bb36
-bb36:
-  # implict jump to bb37
-bb37:
+  BNE s9, zero, bb37
+  # implict jump to bb23
+bb23:
+  # implict jump to bb24
+bb24:
   LW s2, 160(sp)
   ADD a0, s0, zero
   ADD a1, s2, zero
@@ -293,12 +206,12 @@ bb37:
   LW s5, 172(sp)
   SLTU s11, zero, s5
   XORI s11, s11, 1
-  BNE s11, zero, bb49
-  # implict jump to bb38
-bb38:
+  BNE s11, zero, bb36
+  # implict jump to bb25
+bb25:
   ADD s11, zero, zero
-  # implict jump to bb39
-bb39:
+  # implict jump to bb26
+bb26:
   ADD a0, s4, zero
   ADD a1, s11, zero
   CALL func3
@@ -309,20 +222,20 @@ bb39:
   ADD a2, t4, zero
   CALL func1
   ADD s0, a0, zero
-  BNE s6, zero, bb48
-  # implict jump to bb40
-bb40:
-  # implict jump to bb41
-bb41:
+  BNE s6, zero, bb35
+  # implict jump to bb27
+bb27:
+  # implict jump to bb28
+bb28:
   LW t4, 4(sp)
   SLTU s6, zero, t4
   XORI s6, s6, 1
-  BNE s6, zero, bb47
-  # implict jump to bb42
-bb42:
+  BNE s6, zero, bb34
+  # implict jump to bb29
+bb29:
   ADD s6, zero, zero
-  # implict jump to bb43
-bb43:
+  # implict jump to bb30
+bb30:
   ADD a0, s6, zero
   LW t4, 0(sp)
   ADD a1, t4, zero
@@ -358,12 +271,12 @@ bb43:
   ADD s1, a0, zero
   SLTU s2, zero, s4
   XORI s2, s2, 1
-  BNE s2, zero, bb46
-  # implict jump to bb44
-bb44:
+  BNE s2, zero, bb33
+  # implict jump to bb31
+bb31:
   ADD s2, zero, zero
-  # implict jump to bb45
-bb45:
+  # implict jump to bb32
+bb32:
   ADD a0, s1, zero
   ADD a1, s9, zero
   ADD a2, s2, zero
@@ -401,49 +314,49 @@ bb45:
   LD s11, 128(sp)
   ADDI sp, sp, 176
   JALR zero, 0(ra)
-bb46:
+bb33:
   ADDI s2, zero, 1
-  JAL zero, bb45
-bb47:
+  JAL zero, bb32
+bb34:
   ADDI s6, zero, 1
-  JAL zero, bb43
-bb48:
+  JAL zero, bb30
+bb35:
   ADD s0, s7, zero
-  JAL zero, bb41
-bb49:
+  JAL zero, bb28
+bb36:
   ADDI s11, zero, 1
-  JAL zero, bb39
-bb50:
+  JAL zero, bb26
+bb37:
   ADD s0, s2, zero
-  JAL zero, bb37
-bb51:
+  JAL zero, bb24
+bb38:
   ADDI s0, zero, 1
-  JAL zero, bb35
-bb52:
+  JAL zero, bb22
+bb39:
   ADDI s2, zero, 1
-  JAL zero, bb33
-bb53:
+  JAL zero, bb20
+bb40:
   SLTU s3, zero, s3
   ADD s2, s3, zero
-  JAL zero, bb31
-bb54:
+  JAL zero, bb18
+bb41:
   ADDI s3, zero, 1
-  JAL zero, bb29
-bb55:
+  JAL zero, bb16
+bb42:
   ADDI s6, zero, 1
-  JAL zero, bb27
-bb56:
+  JAL zero, bb14
+bb43:
   SLTU s7, zero, s7
   ADD s6, s7, zero
-  JAL zero, bb25
-bb57:
+  JAL zero, bb12
+bb44:
   ADDI s6, zero, 1
-  JAL zero, bb23
-bb58:
+  JAL zero, bb10
+bb45:
   LW t3, 20(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
-  JAL zero, bb20
+  JAL zero, bb7
 func1:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -455,9 +368,9 @@ func1:
   ADD s1, a1, zero
   ADD s2, a2, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb61
-  # implict jump to bb60
-bb60:
+  BNE s3, zero, bb48
+  # implict jump to bb47
+bb47:
   SUBW s2, s1, s2
   ADD a0, s0, zero
   ADD a1, s2, zero
@@ -472,7 +385,7 @@ bb60:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb61:
+bb48:
   MULW s0, s0, s1
   ADD a0, s0, zero
   LD ra, 0(sp)

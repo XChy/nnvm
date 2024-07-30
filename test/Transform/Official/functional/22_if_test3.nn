@@ -2,11 +2,6 @@ external i32 getint()
 
 external i32 getch()
 
-pure internal i32 ififElse() {
-entry:  pred()
-  ret i32 25
-}
-
 external void putint(i32 )
 
 external i32 getarray(ptr )

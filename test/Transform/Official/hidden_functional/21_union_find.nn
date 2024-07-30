@@ -1,19 +1,4 @@
 internal global ptr parent init with 1005 x i32 zeros
-internal void merge(i32 p, i32 q) {
-entry25:  pred()
-  32 = call i32 find(i32 %p)
-  35 = call i32 find(i32 %q)
-  38 = icmp ne i32 %32, i32 %35
-  br i1 %38, bb %then39, bb %if.exit40
-then39:  pred(entry25)
-  120 = shl i32 %35, i32 2
-  43 = ptradd ptr @parent, i32 %120
-  store i32 %32 to ptr %43
-  br bb %if.exit40
-if.exit40:  pred(entry25, then39)
-  ret 
-}
-
 external i32 getint()
 
 external i32 getch()
@@ -28,25 +13,25 @@ i32 main() {
 entry46:  pred()
   48 = call i32 getint()
   50 = call i32 getint()
-  60146 = icmp slt i32 0, i32 %48
-  br i1 %60146, bb %while.body_preheader, bb %while.exit
+  60147 = icmp slt i32 0, i32 %48
+  br i1 %60147, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry46)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  i.phi115147 = phi [bb %while.body, i32 %69, bb %while.body_preheader, i32 0]
-  121 = shl i32 %i.phi115147, i32 2
+  i.phi115148 = phi [bb %while.body, i32 %69, bb %while.body_preheader, i32 0]
+  121 = shl i32 %i.phi115148, i32 2
   64 = ptradd ptr @parent, i32 %121
-  store i32 %i.phi115147 to ptr %64
-  69 = add i32 %i.phi115147, i32 1
+  store i32 %i.phi115148 to ptr %64
+  69 = add i32 %i.phi115148, i32 1
   60 = icmp slt i32 %69, i32 %48
   br i1 %60, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry46)
-  76144 = icmp slt i32 0, i32 %50
-  br i1 %76144, bb %while.body72_preheader, bb %while.exit73
+  76145 = icmp slt i32 0, i32 %50
+  br i1 %76145, bb %while.body72_preheader, bb %while.exit73
 while.body72_preheader:  pred(while.exit)
   br bb %while.body72
 while.body72:  pred(merge.if.exit40, while.body72_preheader)
-  i.phi114145 = phi [bb %merge.if.exit40, i32 %87, bb %while.body72_preheader, i32 0]
+  i.phi114146 = phi [bb %merge.if.exit40, i32 %87, bb %while.body72_preheader, i32 0]
   79 = call i32 getint()
   81 = call i32 getint()
   32129 = call i32 find(i32 %79)
@@ -54,27 +39,27 @@ while.body72:  pred(merge.if.exit40, while.body72_preheader)
   38131 = icmp ne i32 %32129, i32 %35130
   br i1 %38131, bb %merge.then39, bb %merge.if.exit40
 while.exit73:  pred(merge.if.exit40, while.exit)
-  br i1 %60146, bb %while.body91_preheader, bb %while.exit92
+  br i1 %60147, bb %while.body91_preheader, bb %while.exit92
 while.body91_preheader:  pred(while.exit73)
   br bb %while.body91
 while.body91:  pred(if.exit104, while.body91_preheader)
-  i.phi143 = phi [bb %if.exit104, i32 %110, bb %while.body91_preheader, i32 0]
-  clusters.phi119142 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.body91_preheader, i32 0]
-  122 = shl i32 %i.phi143, i32 2
+  i.phi144 = phi [bb %if.exit104, i32 %110, bb %while.body91_preheader, i32 0]
+  clusters.phi119143 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.body91_preheader, i32 0]
+  122 = shl i32 %i.phi144, i32 2
   99 = ptradd ptr @parent, i32 %122
   99.load = load i32 from ptr %99
-  102 = icmp eq i32 %99.load, i32 %i.phi143
+  102 = icmp eq i32 %99.load, i32 %i.phi144
   br i1 %102, bb %then103, bb %if.exit104
 while.exit92:  pred(if.exit104, while.exit73)
-  141 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.exit73, i32 0]
-  call void putint(i32 %141)
+  142 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.exit73, i32 0]
+  call void putint(i32 %142)
   ret i32 0
 then103:  pred(while.body91)
-  107 = add i32 %clusters.phi119142, i32 1
+  107 = add i32 %clusters.phi119143, i32 1
   br bb %if.exit104
 if.exit104:  pred(while.body91, then103)
-  clusters.phi = phi [bb %while.body91, i32 %clusters.phi119142, bb %then103, i32 %107]
-  110 = add i32 %i.phi143, i32 1
+  clusters.phi = phi [bb %while.body91, i32 %clusters.phi119143, bb %then103, i32 %107]
+  110 = add i32 %i.phi144, i32 1
   95 = icmp slt i32 %110, i32 %48
   br i1 %95, bb %while.body91, bb %while.exit92
 merge.then39:  pred(while.body72)
@@ -83,7 +68,7 @@ merge.then39:  pred(while.body72)
   store i32 %32129 to ptr %43135
   br bb %merge.if.exit40
 merge.if.exit40:  pred(while.body72, merge.then39)
-  87 = add i32 %i.phi114145, i32 1
+  87 = add i32 %i.phi114146, i32 1
   76 = icmp slt i32 %87, i32 %50
   br i1 %76, bb %while.body72, bb %while.exit73
 }

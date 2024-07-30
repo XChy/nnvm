@@ -4,21 +4,6 @@ external i32 getch()
 
 external void putint(i32 )
 
-pure internal i32 MAX(i32 a, i32 b) {
-entry:  pred()
-  5 = icmp eq i32 %a, i32 %b
-  br i1 %5, bb %then, bb %else
-then:  pred(entry)
-  ret i32 %a
-else:  pred(entry)
-  12 = icmp sgt i32 %a, i32 %b
-  br i1 %12, bb %then13, bb %else15
-then13:  pred(else)
-  ret i32 %a
-else15:  pred(else)
-  ret i32 %b
-}
-
 external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
@@ -85,8 +70,8 @@ entry185:  pred()
   store i32 5 to ptr %arr.index215
   br bb %max_sum_nonadjacent.init
 max_sum_nonadjacent.init:  pred(max_sum_nonadjacent.init, entry185)
-  cnt_ptr.phi300478 = phi [bb %max_sum_nonadjacent.init, i32 %cnt.dec304, bb %entry185, i32 16]
-  cnt.dec304 = sub i32 %cnt_ptr.phi300478, i32 1
+  cnt_ptr.phi300481 = phi [bb %max_sum_nonadjacent.init, i32 %cnt.dec304, bb %entry185, i32 16]
+  cnt.dec304 = sub i32 %cnt_ptr.phi300481, i32 1
   230305 = shl i32 %cnt.dec304, i32 2
   arr.index31306 = ptradd ptr %temp297, i32 %230305
   store i32 0 to ptr %arr.index31306
@@ -101,17 +86,17 @@ max_sum_nonadjacent.init.exit.split:  pred(max_sum_nonadjacent.init.exit)
   store i32 %47.ret318 to ptr %39312
   br bb %max_sum_nonadjacent.while.body
 max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_sum_nonadjacent.init.exit.split)
-  i.phi322476 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit.split, i32 2]
-  232326 = shl i32 %i.phi322476, i32 2
+  i.phi322479 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit.split, i32 2]
+  232326 = shl i32 %i.phi322479, i32 2
   58327 = ptradd ptr %temp297, i32 %232326
-  61328 = sub i32 %i.phi322476, i32 2
+  61328 = sub i32 %i.phi322479, i32 2
   233329 = shl i32 %61328, i32 2
   63330 = ptradd ptr %temp297, i32 %233329
   63.load331 = load i32 from ptr %63330
   67332 = ptradd ptr %A, i32 %232326
   67.load333 = load i32 from ptr %67332
   69334 = add i32 %63.load331, i32 %67.load333
-  71335 = sub i32 %i.phi322476, i32 1
+  71335 = sub i32 %i.phi322479, i32 1
   235336 = shl i32 %71335, i32 2
   73337 = ptradd ptr %temp297, i32 %235336
   73.load338 = load i32 from ptr %73337
@@ -120,7 +105,7 @@ max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_
 max_sum_nonadjacent.while.body.split:  pred(max_sum_nonadjacent.MAX.then271, max_sum_nonadjacent.MAX.then13276, max_sum_nonadjacent.MAX.else15278)
   75.ret341 = phi [bb %max_sum_nonadjacent.MAX.then271, i32 %69334, bb %max_sum_nonadjacent.MAX.then13276, i32 %69334, bb %max_sum_nonadjacent.MAX.else15278, i32 %73.load338]
   store i32 %75.ret341 to ptr %58327
-  78343 = add i32 %i.phi322476, i32 1
+  78343 = add i32 %i.phi322479, i32 1
   54323 = icmp slt i32 %78343, i32 15
   br i1 %54323, bb %max_sum_nonadjacent.while.body, bb %max_sum_nonadjacent.while.exit
 max_sum_nonadjacent.while.exit:  pred(max_sum_nonadjacent.while.body.split)
@@ -139,50 +124,50 @@ max_sum_nonadjacent.MAX.then13276:  pred(max_sum_nonadjacent.MAX.else273)
 max_sum_nonadjacent.MAX.else15278:  pred(max_sum_nonadjacent.MAX.else273)
   br bb %max_sum_nonadjacent.while.body.split
 longest_common_subseq.init89:  pred(longest_common_subseq.init89, max_sum_nonadjacent.while.exit)
-  cnt_ptr91.phi381474 = phi [bb %longest_common_subseq.init89, i32 %cnt.dec95385, bb %max_sum_nonadjacent.while.exit, i32 256]
-  cnt.dec95385 = sub i32 %cnt_ptr91.phi381474, i32 1
+  cnt_ptr91.phi381477 = phi [bb %longest_common_subseq.init89, i32 %cnt.dec95385, bb %max_sum_nonadjacent.while.exit, i32 256]
+  cnt.dec95385 = sub i32 %cnt_ptr91.phi381477, i32 1
   237386 = shl i32 %cnt.dec95385, i32 2
   arr.index98387 = ptradd ptr %p378, i32 %237386
   store i32 0 to ptr %arr.index98387
   93382 = icmp ne i32 %cnt.dec95385, i32 0
   br i1 %93382, bb %longest_common_subseq.init89, bb %longest_common_subseq.init.exit90
 longest_common_subseq.init.exit90:  pred(longest_common_subseq.init89)
-  107394471 = icmp sle i32 1, i32 15
-  br i1 %107394471, bb %longest_common_subseq.while.body103_preheader, bb %longest_common_subseq.while.exit104
+  107394474 = icmp sle i32 1, i32 15
+  br i1 %107394474, bb %longest_common_subseq.while.body103_preheader, bb %longest_common_subseq.while.exit104
 longest_common_subseq.while.body103_preheader:  pred(longest_common_subseq.init.exit90)
-  115407469 = icmp sle i32 1, i32 13
+  115407472 = icmp sle i32 1, i32 13
   br bb %longest_common_subseq.while.body103
 longest_common_subseq.while.body103:  pred(longest_common_subseq.while.exit112, longest_common_subseq.while.body103_preheader)
-  i99.phi393472 = phi [bb %longest_common_subseq.while.exit112, i32 %177421, bb %longest_common_subseq.while.body103_preheader, i32 1]
-  br i1 %115407469, bb %longest_common_subseq.while.body111_preheader, bb %longest_common_subseq.while.exit112
+  i99.phi393475 = phi [bb %longest_common_subseq.while.exit112, i32 %177421, bb %longest_common_subseq.while.body103_preheader, i32 1]
+  br i1 %115407472, bb %longest_common_subseq.while.body111_preheader, bb %longest_common_subseq.while.exit112
 longest_common_subseq.while.exit104:  pred(longest_common_subseq.while.exit112, longest_common_subseq.init.exit90)
-  468 = ptradd ptr %p378, i32 1012
-  183.load403 = load i32 from ptr %468
+  471 = ptradd ptr %p378, i32 1012
+  183.load403 = load i32 from ptr %471
   call void putint(i32 %183.load403)
   call void putch(i32 10)
   ret i32 0
 longest_common_subseq.while.body111_preheader:  pred(longest_common_subseq.while.body103)
-  118410 = sub i32 %i99.phi393472, i32 1
+  118410 = sub i32 %i99.phi393475, i32 1
   241411 = shl i32 %118410, i32 2
   120412 = ptradd ptr %A, i32 %241411
   120.load413 = load i32 from ptr %120412
   br bb %longest_common_subseq.while.body111
 longest_common_subseq.while.body111:  pred(longest_common_subseq.if.exit129, longest_common_subseq.while.body111_preheader)
-  j.phi406470 = phi [bb %longest_common_subseq.if.exit129, i32 %174436, bb %longest_common_subseq.while.body111_preheader, i32 1]
-  123414 = sub i32 %j.phi406470, i32 1
+  j.phi406473 = phi [bb %longest_common_subseq.if.exit129, i32 %174436, bb %longest_common_subseq.while.body111_preheader, i32 1]
+  123414 = sub i32 %j.phi406473, i32 1
   242415 = shl i32 %123414, i32 2
   125416 = ptradd ptr %B, i32 %242415
   125.load417 = load i32 from ptr %125416
   127418 = icmp eq i32 %120.load413, i32 %125.load417
   br i1 %127418, bb %longest_common_subseq.then128, bb %longest_common_subseq.else130
 longest_common_subseq.while.exit112:  pred(longest_common_subseq.if.exit129, longest_common_subseq.while.body103)
-  177421 = add i32 %i99.phi393472, i32 1
+  177421 = add i32 %i99.phi393475, i32 1
   107394 = icmp sle i32 %177421, i32 15
   br i1 %107394, bb %longest_common_subseq.while.body103, bb %longest_common_subseq.while.exit104
 longest_common_subseq.then128:  pred(longest_common_subseq.while.body111)
-  243424 = shl i32 %i99.phi393472, i32 6
+  243424 = shl i32 %i99.phi393475, i32 6
   133425 = ptradd ptr %p378, i32 %243424
-  244426 = shl i32 %j.phi406470, i32 2
+  244426 = shl i32 %j.phi406473, i32 2
   136427 = ptradd ptr %133425, i32 %244426
   245428 = shl i32 %118410, i32 6
   141429 = ptradd ptr %p378, i32 %245428
@@ -192,13 +177,13 @@ longest_common_subseq.then128:  pred(longest_common_subseq.while.body111)
   store i32 %147432 to ptr %136427
   br bb %longest_common_subseq.if.exit129
 longest_common_subseq.if.exit129:  pred(longest_common_subseq.then128, longest_common_subseq.else130.split)
-  174436 = add i32 %j.phi406470, i32 1
+  174436 = add i32 %j.phi406473, i32 1
   115407 = icmp sle i32 %174436, i32 13
   br i1 %115407, bb %longest_common_subseq.while.body111, bb %longest_common_subseq.while.exit112
 longest_common_subseq.else130:  pred(longest_common_subseq.while.body111)
-  247439 = shl i32 %i99.phi393472, i32 6
+  247439 = shl i32 %i99.phi393475, i32 6
   150440 = ptradd ptr %p378, i32 %247439
-  248441 = shl i32 %j.phi406470, i32 2
+  248441 = shl i32 %j.phi406473, i32 2
   153442 = ptradd ptr %150440, i32 %248441
   249443 = shl i32 %118410, i32 6
   158444 = ptradd ptr %p378, i32 %249443
@@ -227,82 +212,6 @@ external float getfloat()
 
 external void putfloat(float )
 
-internal i32 max_sum_nonadjacent(ptr arr, i32 n) {
-entry18:  pred()
-  %temp = stack 64
-  br bb %init
-init:  pred(init, entry18)
-  cnt_ptr.phi482 = phi [bb %init, i32 %cnt.dec, bb %entry18, i32 16]
-  cnt.dec = sub i32 %cnt_ptr.phi482, i32 1
-  230 = shl i32 %cnt.dec, i32 2
-  arr.index31 = ptradd ptr %temp, i32 %230
-  store i32 0 to ptr %arr.index31
-  26 = icmp ne i32 %cnt.dec, i32 0
-  br i1 %26, bb %init, bb %init.exit
-init.exit:  pred(init)
-  36.load = load i32 from ptr %arr
-  store i32 %36.load to ptr %temp
-  39 = ptradd ptr %temp, i32 4
-  45 = ptradd ptr %arr, i32 4
-  45.load = load i32 from ptr %45
-  5255 = icmp eq i32 %36.load, i32 %45.load
-  br i1 %5255, bb %MAX.then, bb %MAX.else
-init.exit.split:  pred(MAX.then, MAX.then13, MAX.else15)
-  47.ret = phi [bb %MAX.then, i32 %36.load, bb %MAX.then13, i32 %36.load, bb %MAX.else15, i32 %45.load]
-  store i32 %47.ret to ptr %39
-  54479 = icmp slt i32 2, i32 %n
-  br i1 %54479, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(init.exit.split)
-  br bb %while.body
-while.body:  pred(while.body.split, while.body_preheader)
-  i.phi480 = phi [bb %while.body.split, i32 %78, bb %while.body_preheader, i32 2]
-  232 = shl i32 %i.phi480, i32 2
-  58 = ptradd ptr %temp, i32 %232
-  61 = sub i32 %i.phi480, i32 2
-  233 = shl i32 %61, i32 2
-  63 = ptradd ptr %temp, i32 %233
-  63.load = load i32 from ptr %63
-  67 = ptradd ptr %arr, i32 %232
-  67.load = load i32 from ptr %67
-  69 = add i32 %63.load, i32 %67.load
-  71 = sub i32 %i.phi480, i32 1
-  235 = shl i32 %71, i32 2
-  73 = ptradd ptr %temp, i32 %235
-  73.load = load i32 from ptr %73
-  5269 = icmp eq i32 %69, i32 %73.load
-  br i1 %5269, bb %MAX.then271, bb %MAX.else273
-while.body.split:  pred(MAX.then271, MAX.then13276, MAX.else15278)
-  75.ret = phi [bb %MAX.then271, i32 %69, bb %MAX.then13276, i32 %69, bb %MAX.else15278, i32 %73.load]
-  store i32 %75.ret to ptr %58
-  78 = add i32 %i.phi480, i32 1
-  54 = icmp slt i32 %78, i32 %n
-  br i1 %54, bb %while.body, bb %while.exit
-while.exit:  pred(while.body.split, init.exit.split)
-  80 = sub i32 %n, i32 1
-  236 = shl i32 %80, i32 2
-  82 = ptradd ptr %temp, i32 %236
-  82.load = load i32 from ptr %82
-  ret i32 %82.load
-MAX.then:  pred(init.exit)
-  br bb %init.exit.split
-MAX.else:  pred(init.exit)
-  12260 = icmp sgt i32 %36.load, i32 %45.load
-  br i1 %12260, bb %MAX.then13, bb %MAX.else15
-MAX.then13:  pred(MAX.else)
-  br bb %init.exit.split
-MAX.else15:  pred(MAX.else)
-  br bb %init.exit.split
-MAX.then271:  pred(while.body)
-  br bb %while.body.split
-MAX.else273:  pred(while.body)
-  12274 = icmp sgt i32 %69, i32 %73.load
-  br i1 %12274, bb %MAX.then13276, bb %MAX.else15278
-MAX.then13276:  pred(MAX.else273)
-  br bb %while.body.split
-MAX.else15278:  pred(MAX.else273)
-  br bb %while.body.split
-}
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
@@ -310,96 +219,6 @@ external void _sysy_stoptime(i32 )
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-internal i32 longest_common_subseq(ptr arr1, i32 len1, ptr arr2, i32 len2) {
-entry84:  pred()
-  %p = stack 1024
-  br bb %init89
-init89:  pred(init89, entry84)
-  cnt_ptr91.phi488 = phi [bb %init89, i32 %cnt.dec95, bb %entry84, i32 256]
-  cnt.dec95 = sub i32 %cnt_ptr91.phi488, i32 1
-  237 = shl i32 %cnt.dec95, i32 2
-  arr.index98 = ptradd ptr %p, i32 %237
-  store i32 0 to ptr %arr.index98
-  93 = icmp ne i32 %cnt.dec95, i32 0
-  br i1 %93, bb %init89, bb %init.exit90
-init.exit90:  pred(init89)
-  107485 = icmp sle i32 1, i32 %len1
-  br i1 %107485, bb %while.body103_preheader, bb %while.exit104
-while.body103_preheader:  pred(init.exit90)
-  115483 = icmp sle i32 1, i32 %len2
-  br bb %while.body103
-while.body103:  pred(while.exit112, while.body103_preheader)
-  i99.phi486 = phi [bb %while.exit112, i32 %177, bb %while.body103_preheader, i32 1]
-  br i1 %115483, bb %while.body111_preheader, bb %while.exit112
-while.exit104:  pred(while.exit112, init.exit90)
-  239 = shl i32 %len1, i32 6
-  180 = ptradd ptr %p, i32 %239
-  240 = shl i32 %len2, i32 2
-  183 = ptradd ptr %180, i32 %240
-  183.load = load i32 from ptr %183
-  ret i32 %183.load
-while.body111_preheader:  pred(while.body103)
-  118 = sub i32 %i99.phi486, i32 1
-  241 = shl i32 %118, i32 2
-  120 = ptradd ptr %arr1, i32 %241
-  120.load = load i32 from ptr %120
-  br bb %while.body111
-while.body111:  pred(if.exit129, while.body111_preheader)
-  j.phi484 = phi [bb %if.exit129, i32 %174, bb %while.body111_preheader, i32 1]
-  123 = sub i32 %j.phi484, i32 1
-  242 = shl i32 %123, i32 2
-  125 = ptradd ptr %arr2, i32 %242
-  125.load = load i32 from ptr %125
-  127 = icmp eq i32 %120.load, i32 %125.load
-  br i1 %127, bb %then128, bb %else130
-while.exit112:  pred(if.exit129, while.body103)
-  177 = add i32 %i99.phi486, i32 1
-  107 = icmp sle i32 %177, i32 %len1
-  br i1 %107, bb %while.body103, bb %while.exit104
-then128:  pred(while.body111)
-  243 = shl i32 %i99.phi486, i32 6
-  133 = ptradd ptr %p, i32 %243
-  244 = shl i32 %j.phi484, i32 2
-  136 = ptradd ptr %133, i32 %244
-  245 = shl i32 %118, i32 6
-  141 = ptradd ptr %p, i32 %245
-  145 = ptradd ptr %141, i32 %242
-  145.load = load i32 from ptr %145
-  147 = add i32 %145.load, i32 1
-  store i32 %147 to ptr %136
-  br bb %if.exit129
-if.exit129:  pred(then128, else130.split)
-  174 = add i32 %j.phi484, i32 1
-  115 = icmp sle i32 %174, i32 %len2
-  br i1 %115, bb %while.body111, bb %while.exit112
-else130:  pred(while.body111)
-  247 = shl i32 %i99.phi486, i32 6
-  150 = ptradd ptr %p, i32 %247
-  248 = shl i32 %j.phi484, i32 2
-  153 = ptradd ptr %150, i32 %248
-  249 = shl i32 %118, i32 6
-  158 = ptradd ptr %p, i32 %249
-  161 = ptradd ptr %158, i32 %248
-  161.load = load i32 from ptr %161
-  169 = ptradd ptr %150, i32 %242
-  169.load = load i32 from ptr %169
-  5283 = icmp eq i32 %161.load, i32 %169.load
-  br i1 %5283, bb %MAX.then285, bb %MAX.else287
-else130.split:  pred(MAX.then285, MAX.then13290, MAX.else15292)
-  171.ret = phi [bb %MAX.then285, i32 %161.load, bb %MAX.then13290, i32 %161.load, bb %MAX.else15292, i32 %169.load]
-  store i32 %171.ret to ptr %153
-  br bb %if.exit129
-MAX.then285:  pred(else130)
-  br bb %else130.split
-MAX.else287:  pred(else130)
-  12288 = icmp sgt i32 %161.load, i32 %169.load
-  br i1 %12288, bb %MAX.then13290, bb %MAX.else15292
-MAX.then13290:  pred(MAX.else287)
-  br bb %else130.split
-MAX.else15292:  pred(MAX.else287)
-  br bb %else130.split
-}
 
 external void putfarray(i32 , ptr )
 

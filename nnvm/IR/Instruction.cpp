@@ -184,8 +184,9 @@ void Instruction::moveTo(BasicBlock *otherBB) {
 }
 
 Instruction::~Instruction() {
-  for (Use *use : useeList)
+  for (Use *use : useeList) {
     delete use;
+  }
 }
 
 StackInst::StackInst(Module &module)

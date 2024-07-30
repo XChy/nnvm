@@ -36,29 +36,29 @@ entry59:  pred()
 while.body96_preheader:  pred(insertsort.while.exit)
   br bb %while.body96
 while.body96:  pred(while.body96, while.body96_preheader)
-  i92.phi182 = phi [bb %while.body96, i32 %115, bb %while.body96_preheader, i32 0]
-  125 = shl i32 %i92.phi182, i32 2
+  i92.phi183 = phi [bb %while.body96, i32 %115, bb %while.body96_preheader, i32 0]
+  125 = shl i32 %i92.phi183, i32 2
   106 = ptradd ptr %a, i32 %125
   106.load = load i32 from ptr %106
   call void putint(i32 %106.load)
   call void putch(i32 10)
-  115 = add i32 %i92.phi182, i32 1
+  115 = add i32 %i92.phi183, i32 1
   n.load99 = load i32 from ptr @n
   100 = icmp slt i32 %115, i32 %n.load99
   br i1 %100, bb %while.body96, bb %while.exit97
 while.exit97:  pred(while.body96, insertsort.while.exit)
   ret i32 0
 insertsort.while.body:  pred(insertsort.while.exit22, entry59)
-  i.phi135184 = phi [bb %insertsort.while.exit22, i32 %58166, bb %entry59, i32 1]
-  126140 = shl i32 %i.phi135184, i32 2
+  i.phi135185 = phi [bb %insertsort.while.exit22, i32 %58166, bb %entry59, i32 1]
+  126140 = shl i32 %i.phi135185, i32 2
   14141 = ptradd ptr %a, i32 %126140
   14.load142 = load i32 from ptr %14141
-  19143 = sub i32 %i.phi135184, i32 1
+  19143 = sub i32 %i.phi135185, i32 1
   br bb %insertsort.while.cond20
 insertsort.while.exit:  pred(insertsort.while.exit22)
-  n.load99180 = load i32 from ptr @n
-  100181 = icmp slt i32 0, i32 %n.load99180
-  br i1 %100181, bb %while.body96_preheader, bb %while.exit97
+  n.load99181 = load i32 from ptr @n
+  100182 = icmp slt i32 0, i32 %n.load99181
+  br i1 %100182, bb %while.body96_preheader, bb %while.exit97
 insertsort.while.cond20:  pred(insertsort.while.body, insertsort.while.body21)
   j.phi148 = phi [bb %insertsort.while.body, i32 %19143, bb %insertsort.while.body21, i32 %49159]
   25149 = icmp sgt i32 %j.phi148, i32 -1
@@ -78,7 +78,7 @@ insertsort.while.exit22:  pred(insertsort.select.exit)
   129163 = shl i32 %51162, i32 2
   53164 = ptradd ptr %a, i32 %129163
   store i32 %14.load142 to ptr %53164
-  58166 = add i32 %i.phi135184, i32 1
+  58166 = add i32 %i.phi135185, i32 1
   8137 = icmp slt i32 %58166, i32 10
   br i1 %8137, bb %insertsort.while.body, bb %insertsort.while.exit
 insertsort.select.then:  pred(insertsort.while.cond20)
@@ -107,57 +107,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-internal i32 insertsort(ptr a) {
-entry:  pred()
-  n.load185 = load i32 from ptr @n
-  8186 = icmp slt i32 1, i32 %n.load185
-  br i1 %8186, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry)
-  br bb %while.body
-while.body:  pred(while.exit22, while.body_preheader)
-  i.phi187 = phi [bb %while.exit22, i32 %58, bb %while.body_preheader, i32 1]
-  126 = shl i32 %i.phi187, i32 2
-  14 = ptradd ptr %a, i32 %126
-  14.load = load i32 from ptr %14
-  19 = sub i32 %i.phi187, i32 1
-  br bb %while.cond20
-while.exit:  pred(while.exit22, entry)
-  ret i32 0
-while.cond20:  pred(while.body, while.body21)
-  j.phi = phi [bb %while.body, i32 %19, bb %while.body21, i32 %49]
-  25 = icmp sgt i32 %j.phi, i32 -1
-  br i1 %25, bb %select.then, bb %select.else
-while.body21:  pred(select.exit)
-  39 = add i32 %j.phi, i32 1
-  127 = shl i32 %39, i32 2
-  41 = ptradd ptr %a, i32 %127
-  128 = shl i32 %j.phi, i32 2
-  45 = ptradd ptr %a, i32 %128
-  45.load = load i32 from ptr %45
-  store i32 %45.load to ptr %41
-  49 = sub i32 %j.phi, i32 1
-  br bb %while.cond20
-while.exit22:  pred(select.exit)
-  51 = add i32 %j.phi, i32 1
-  129 = shl i32 %51, i32 2
-  53 = ptradd ptr %a, i32 %129
-  store i32 %14.load to ptr %53
-  58 = add i32 %i.phi187, i32 1
-  n.load = load i32 from ptr @n
-  8 = icmp slt i32 %58, i32 %n.load
-  br i1 %8, bb %while.body, bb %while.exit
-select.then:  pred(while.cond20)
-  130 = shl i32 %j.phi, i32 2
-  33 = ptradd ptr %a, i32 %130
-  33.load = load i32 from ptr %33
-  35 = icmp slt i32 %14.load, i32 %33.load
-  br bb %select.exit
-select.else:  pred(while.cond20)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %35]
-  br i1 %select.phi, bb %while.body21, bb %while.exit22
-}
 
 

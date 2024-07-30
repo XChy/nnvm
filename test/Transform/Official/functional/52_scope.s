@@ -1,5 +1,4 @@
 .global main
-.global func
 .section .bss
 
 .section .data
@@ -79,25 +78,3 @@ bb12:
 bb13:
   ADDI s5, zero, 1
   JAL zero, bb3
-func:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  LA s0, a
-  LW s0, 0(s0)
-  XORI s0, s0, 1
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb16
-  # implict jump to bb15
-bb15:
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
-bb16:
-  ADDI a0, zero, 1
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)

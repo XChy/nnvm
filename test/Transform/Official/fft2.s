@@ -1,7 +1,6 @@
 .global fft
 .global power
 .global main
-.global memmove
 .global multiply
 .section .bss
 b:
@@ -486,53 +485,6 @@ bb34:
 bb35:
   ADD s1, s0, zero
   JAL zero, bb25
-memmove:
-  ADDI sp, sp, -64
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  ADD s0, a0, zero
-  BLT zero, a3, bb39
-  # implict jump to bb37
-bb37:
-  ADD s1, zero, zero
-  # implict jump to bb38
-bb38:
-  ADD a0, s1, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb39:
-  ADD s2, zero, zero
-  # implict jump to bb40
-bb40:
-  ADD s3, s2, zero
-  ADDW s4, a1, s3
-  SLLIW s4, s4, 2
-  ADD s4, s0, s4
-  SLLIW s5, s3, 2
-  ADD s5, a2, s5
-  LW s5, 0(s5)
-  SW s5, 0(s4)
-  ADDIW s3, s3, 1
-  BLT s3, a3, bb42
-  # implict jump to bb41
-bb41:
-  ADD s1, s3, zero
-  JAL zero, bb38
-bb42:
-  ADD s2, s3, zero
-  JAL zero, bb40
 multiply:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -543,14 +495,14 @@ multiply:
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb49
-  # implict jump to bb44
-bb44:
+  BNE s2, zero, bb42
+  # implict jump to bb37
+bb37:
   XORI s2, s1, 1
   SLTIU s2, s2, 1
-  BNE s2, zero, bb48
-  # implict jump to bb45
-bb45:
+  BNE s2, zero, bb41
+  # implict jump to bb38
+bb38:
   ADDI s2, zero, 2
   DIVW s2, s1, s2
   ADD a0, s0, zero
@@ -565,9 +517,9 @@ bb45:
   REMW s1, s1, s3
   XORI s1, s1, 1
   SLTIU s1, s1, 1
-  BNE s1, zero, bb47
-  # implict jump to bb46
-bb46:
+  BNE s1, zero, bb40
+  # implict jump to bb39
+bb39:
   ADD a0, s2, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -576,7 +528,7 @@ bb46:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb47:
+bb40:
   ADDW s1, s2, s0
   LUI s2, 243712
   ADDIW s2, s2, 1
@@ -589,7 +541,7 @@ bb47:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb48:
+bb41:
   LUI s1, 243712
   ADDIW s1, s1, 1
   REMW s0, s0, s1
@@ -601,7 +553,7 @@ bb48:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb49:
+bb42:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

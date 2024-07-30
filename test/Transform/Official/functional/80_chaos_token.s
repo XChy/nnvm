@@ -1,5 +1,4 @@
 .global main
-.global putstr
 .section .bss
 
 
@@ -230,55 +229,3 @@ bb21:
   ADD t4, t3, zero
   SW t4, 16(sp)
   JAL zero, bb1
-putstr:
-  ADDI sp, sp, -64
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  ADD s0, a0, zero
-  LW s1, 0(s0)
-  BNE s1, zero, bb25
-  # implict jump to bb23
-bb23:
-  ADD s1, zero, zero
-  # implict jump to bb24
-bb24:
-  ADD a0, s1, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb25:
-  ADD s2, s0, zero
-  ADD s3, zero, zero
-  # implict jump to bb26
-bb26:
-  ADD s4, s3, zero
-  ADD s5, s2, zero
-  LW s5, 0(s5)
-  ADD a0, s5, zero
-  CALL putch
-  ADDIW s4, s4, 1
-  SLLIW s5, s4, 2
-  ADD s5, s0, s5
-  LW s6, 0(s5)
-  BNE s6, zero, bb28
-  # implict jump to bb27
-bb27:
-  ADD s1, s4, zero
-  JAL zero, bb24
-bb28:
-  ADD s2, s5, zero
-  ADD s3, s4, zero
-  JAL zero, bb26

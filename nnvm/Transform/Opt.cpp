@@ -3,6 +3,7 @@
 #include "Transform/IPO/GlobalAttributor.h"
 #include "Transform/IPO/GlobalVarOpt.h"
 #include "Transform/IPO/Inliner.h"
+#include "Transform/IPO/UselessFuncElim.h"
 #include "Transform/Infra/PassManager.h"
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
@@ -29,6 +30,7 @@ void Optimizer::transform(Module *module) {
 
   // Inline, increasing codesize massively.
   passManager.addModulePass<InlinerPass>();
+  passManager.addModulePass<UselessFuncElimPass>();
 
   // After inlining:
   passManager.addFunctionPass<CombinerPass>();

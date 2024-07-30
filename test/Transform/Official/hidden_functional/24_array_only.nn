@@ -1,12 +1,5 @@
 internal global ptr k init with 1 x i32 zeros
 internal global ptr i init with 1 x i32 zeros
-internal void sub(ptr x, ptr y) {
-entry88:  pred()
-  90.load = load i32 from ptr @k
-  call void sub_impl(ptr %x, ptr %y, i32 %90.load)
-  ret 
-}
-
 internal void sub_impl(ptr x, ptr y, i32 rec) {
 entry61:  pred()
   64 = icmp eq i32 %rec, i32 0
@@ -28,25 +21,11 @@ else67:  pred(entry61)
   br bb %if.exit66
 }
 
-internal void inc(ptr x) {
-entry24:  pred()
-  26.load = load i32 from ptr @k
-  call void inc_impl(ptr %x, i32 %26.load)
-  ret 
-}
-
 external i32 getint()
 
 external i32 getch()
 
 external void putint(i32 )
-
-internal void add(ptr x, ptr y) {
-entry56:  pred()
-  58.load = load i32 from ptr @k
-  call void add_impl(ptr %x, ptr %y, i32 %58.load)
-  ret 
-}
 
 external i32 getarray(ptr )
 
@@ -94,9 +73,9 @@ while.cond:  pred(entry93, while.exit128)
 while.body:  pred(while.cond)
   124.load = load i32 from ptr %z
   store i32 %124.load to ptr %j
-  130.load203 = load i32 from ptr %j
-  132204 = icmp slt i32 %130.load203, i32 5
-  br i1 %132204, bb %while.body127, bb %while.exit128
+  130.load206 = load i32 from ptr %j
+  132207 = icmp slt i32 %130.load206, i32 5
+  br i1 %132207, bb %while.body127, bb %while.exit128
 while.exit:  pred(while.cond, while.exit128)
   call void putch(i32 10)
   ret i32 0

@@ -1,7 +1,4 @@
-.global sub
 .global sub_impl
-.global inc
-.global add
 .global add_impl
 .global main
 .global inc_impl
@@ -14,26 +11,6 @@ i:
 
 
 .section .text
-sub:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  LA s2, k
-  LW s2, 0(s2)
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s2, zero
-  CALL sub_impl
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
 sub_impl:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -45,9 +22,9 @@ sub_impl:
   ADD s1, a1, zero
   ADD s2, a2, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb4
-  # implict jump to bb2
-bb2:
+  BNE s3, zero, bb3
+  # implict jump to bb1
+bb1:
   LW s3, 0(s0)
   SLLIW s3, s3, 1
   SW s3, 0(s0)
@@ -57,8 +34,8 @@ bb2:
   ADD a1, s1, zero
   ADD a2, s2, zero
   CALL sub_impl
-  # implict jump to bb3
-bb3:
+  # implict jump to bb2
+bb2:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -66,48 +43,12 @@ bb3:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb4:
+bb3:
   LW s2, 0(s0)
   LW s1, 0(s1)
   SUBW s1, s2, s1
   SW s1, 0(s0)
-  JAL zero, bb3
-inc:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  LA s1, k
-  LW s1, 0(s1)
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  CALL inc_impl
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-add:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  LA s2, k
-  LW s2, 0(s2)
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s2, zero
-  CALL add_impl
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
+  JAL zero, bb2
 add_impl:
   ADDI sp, sp, -48
   SD ra, 0(sp)
@@ -119,9 +60,9 @@ add_impl:
   ADD s1, a1, zero
   ADD s2, a2, zero
   SLTIU s3, s2, 1
-  BNE s3, zero, bb10
-  # implict jump to bb8
-bb8:
+  BNE s3, zero, bb7
+  # implict jump to bb5
+bb5:
   LW s3, 0(s0)
   SLLIW s3, s3, 1
   SW s3, 0(s0)
@@ -131,8 +72,8 @@ bb8:
   ADD a1, s1, zero
   ADD a2, s2, zero
   CALL add_impl
-  # implict jump to bb9
-bb9:
+  # implict jump to bb6
+bb6:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -140,12 +81,12 @@ bb9:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb10:
+bb7:
   LW s2, 0(s0)
   LW s1, 0(s1)
   ADDW s1, s2, s1
   SW s1, 0(s0)
-  JAL zero, bb9
+  JAL zero, bb6
 main:
   ADDI sp, sp, -48
   SD ra, 8(sp)
@@ -164,12 +105,12 @@ main:
   ADDI a0, sp, 32
   ADD a0, a0, zero
   CALL getarray
-  # implict jump to bb12
-bb12:
+  # implict jump to bb9
+bb9:
   LW s0, 0(sp)
-  BNE s0, zero, bb14
-  # implict jump to bb13
-bb13:
+  BNE s0, zero, bb11
+  # implict jump to bb10
+bb10:
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -178,14 +119,14 @@ bb13:
   LD s1, 24(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb14:
+bb11:
   LW s0, 32(sp)
   SW s0, 4(sp)
   LW s0, 4(sp)
   SLTI s0, s0, 5
-  BNE s0, zero, bb16
-  # implict jump to bb15
-bb15:
+  BNE s0, zero, bb13
+  # implict jump to bb12
+bb12:
   LA s0, k
   LW s0, 0(s0)
   LA s1, i
@@ -205,9 +146,9 @@ bb15:
   LW s1, 36(sp)
   XOR s0, s0, s1
   SLTIU s0, s0, 1
-  BNE s0, zero, bb13
-  JAL zero, bb12
-bb16:
+  BNE s0, zero, bb10
+  JAL zero, bb9
+bb13:
   LA s0, i
   LW s0, 0(s0)
   ADD a0, s0, zero
@@ -247,8 +188,8 @@ bb16:
   CALL sub_impl
   LW s0, 4(sp)
   SLTI s0, s0, 5
-  BNE s0, zero, bb16
-  JAL zero, bb15
+  BNE s0, zero, bb13
+  JAL zero, bb12
 inc_impl:
   ADDI sp, sp, -32
   SD ra, 0(sp)
@@ -258,9 +199,9 @@ inc_impl:
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLTIU s2, s1, 1
-  BNE s2, zero, bb20
-  # implict jump to bb18
-bb18:
+  BNE s2, zero, bb17
+  # implict jump to bb15
+bb15:
   LW s2, 0(s0)
   SLLIW s2, s2, 1
   SW s2, 0(s0)
@@ -269,16 +210,16 @@ bb18:
   ADD a0, s0, zero
   ADD a1, s1, zero
   CALL inc_impl
-  # implict jump to bb19
-bb19:
+  # implict jump to bb16
+bb16:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb20:
+bb17:
   LW s1, 0(s0)
   ADDIW s1, s1, 1
   SW s1, 0(s0)
-  JAL zero, bb19
+  JAL zero, bb16

@@ -1,86 +1,6 @@
-internal void assert_not(i32 cond) {
-entry68:  pred()
-  71 = icmp ne i32 %cond, i32 0
-  br i1 %71, bb %then72, bb %else74
-then72:  pred(entry68)
-  call void putch(i32 101)
-  call void putch(i32 114)
-  call void putch(i32 114)
-  call void putch(i32 111)
-  call void putch(i32 114)
-  call void putch(i32 10)
-  br bb %if.exit73
-if.exit73:  pred(then72, else74)
-  ret 
-else74:  pred(entry68)
-  call void putch(i32 111)
-  call void putch(i32 107)
-  call void putch(i32 10)
-  br bb %if.exit73
-}
-
-internal void ok() {
-entry52:  pred()
-  call void putch(i32 111)
-  call void putch(i32 107)
-  call void putch(i32 10)
-  ret 
-}
-
-internal void error() {
-entry45:  pred()
-  call void putch(i32 101)
-  call void putch(i32 114)
-  call void putch(i32 114)
-  call void putch(i32 111)
-  call void putch(i32 114)
-  call void putch(i32 10)
-  ret 
-}
-
-pure internal float circle_area(i32 radius) {
-entry10:  pred()
-  14 = si2f i32 %radius to float
-  15 = fmul float 3.141593, float %14
-  18 = fmul float %15, float %14
-  21 = mul i32 %radius, i32 %radius
-  23 = si2f i32 %21 to float
-  24 = fmul float %23, float 3.141593
-  25 = fadd float %18, float %24
-  26 = si2f i32 2 to float
-  27 = fdiv float %25, float %26
-  ret float %27
-}
-
 external i32 getint()
 
 external i32 getch()
-
-pure internal i32 float_eq(float a, float b) {
-entry28:  pred()
-  33 = fsub float %a, float %b
-  3528 = si2f i32 0 to float
-  4529 = fcmp olt float %33, float %3528
-  br i1 %4529, bb %float_abs.then, bb %float_abs.if.exit
-entry28.split:  pred(float_abs.then, float_abs.if.exit)
-  34.ret = phi [bb %float_abs.then, float %8532, bb %float_abs.if.exit, float %33]
-  36 = fcmp olt float %34.ret, float 0.000001
-  br i1 %36, bb %then37, bb %else
-then37:  pred(entry28.split)
-  40 = si2f i32 1 to float
-  41 = fmul float %40, float 2.000000
-  42 = si2f i32 2 to float
-  43 = fdiv float %41, float %42
-  44 = f2si float %43 to i32
-  ret i32 %44
-else:  pred(entry28.split)
-  ret i32 0
-float_abs.then:  pred(entry28)
-  8532 = fneg float %33
-  br bb %entry28.split
-float_abs.if.exit:  pred(entry28)
-  br bb %entry28.split
-}
 
 external void putint(i32 )
 
@@ -190,8 +110,8 @@ if.exit134:  pred(if.exit123, then133)
   191 = fneg float %190
   br bb %while.body
 while.body:  pred(while.body, if.exit134)
-  i.phi594 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
-  p.phi593 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
+  i.phi601 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
+  p.phi600 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
   160 = call float getfloat()
   164 = fmul float 3.141593, float %160
   166 = fmul float %164, float %160
@@ -204,7 +124,7 @@ while.body:  pred(while.body, if.exit134)
   24380 = fmul float %23379, float 3.141593
   25381 = fadd float %18377, float %24380
   27383 = fdiv float %25381, float %26356
-  207 = shl i32 %p.phi593, i32 2
+  207 = shl i32 %p.phi600, i32 2
   173 = ptradd ptr %arr, i32 %207
   177.load = load float from ptr %173
   180 = fadd float %177.load, float %160
@@ -214,10 +134,10 @@ while.body:  pred(while.body, if.exit134)
   185 = f2si float %27383 to i32
   call void putint(i32 %185)
   call void putch(i32 10)
-  192 = si2f i32 %i.phi594 to float
+  192 = si2f i32 %i.phi601 to float
   193 = fmul float %192, float %191
   194 = f2si float %193 to i32
-  197 = add i32 %p.phi593, i32 1
+  197 = add i32 %p.phi600, i32 1
   157 = icmp slt i32 %194, i32 1000000000
   br i1 %157, bb %while.body, bb %while.exit
 while.exit:  pred(while.body)
@@ -421,44 +341,8 @@ external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
-internal void assert(i32 cond) {
-entry56:  pred()
-  59 = icmp ne i32 %cond, i32 0
-  60 = xor i1 %59, i1 -1
-  61 = zext i1 %60 to i32
-  62 = icmp ne i32 %61, i32 0
-  br i1 %62, bb %then63, bb %else65
-then63:  pred(entry56)
-  call void putch(i32 101)
-  call void putch(i32 114)
-  call void putch(i32 114)
-  call void putch(i32 111)
-  call void putch(i32 114)
-  call void putch(i32 10)
-  br bb %if.exit64
-if.exit64:  pred(then63, else65)
-  ret 
-else65:  pred(entry56)
-  call void putch(i32 111)
-  call void putch(i32 107)
-  call void putch(i32 10)
-  br bb %if.exit64
-}
-
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-pure internal float float_abs(float x) {
-entry:  pred()
-  3 = si2f i32 0 to float
-  4 = fcmp olt float %x, float %3
-  br i1 %4, bb %then, bb %if.exit
-then:  pred(entry)
-  8 = fneg float %x
-  ret float %8
-if.exit:  pred(entry)
-  ret float %x
-}
 
 

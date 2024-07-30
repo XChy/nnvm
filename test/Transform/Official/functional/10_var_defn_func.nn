@@ -2,11 +2,6 @@ external i32 getint()
 
 external i32 getch()
 
-pure internal i32 defn() {
-entry:  pred()
-  ret i32 4
-}
-
 external void putint(i32 )
 
 external i32 getarray(ptr )

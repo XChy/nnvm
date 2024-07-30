@@ -1,10 +1,5 @@
 external i32 getint()
 
-pure internal i32 ifElseIf() {
-entry:  pred()
-  ret i32 -5
-}
-
 external i32 getch()
 
 external void putint(i32 )

@@ -1,9 +1,8 @@
-.global doubleWhile
 .global main
 .section .bss
 .section .data
 .section .text
-doubleWhile:
+main:
   ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -64,64 +63,3 @@ bb9:
 bb10:
   ADD s2, s5, zero
   JAL zero, bb8
-main:
-  ADDI sp, sp, -64
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  ADDI s0, zero, 5
-  ADDI s1, zero, 7
-  # implict jump to bb12
-bb12:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
-  ADDIW s3, s3, 30
-  SLTI s4, s2, 100
-  BNE s4, zero, bb18
-  # implict jump to bb13
-bb13:
-  ADD s4, s2, zero
-  # implict jump to bb14
-bb14:
-  ADDI s6, zero, 100
-  SUBW s4, s4, s6
-  SLTI s6, s3, 100
-  BNE s6, zero, bb17
-  # implict jump to bb15
-bb15:
-  # implict jump to bb16
-bb16:
-  ADD a0, s4, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb17:
-  ADD s0, s3, zero
-  ADD s1, s4, zero
-  JAL zero, bb12
-bb18:
-  # implict jump to bb19
-bb19:
-  ADD s5, s2, zero
-  ADDIW s5, s5, 6
-  SLTI s6, s5, 100
-  BNE s6, zero, bb21
-  # implict jump to bb20
-bb20:
-  ADD s4, s5, zero
-  JAL zero, bb14
-bb21:
-  ADD s2, s5, zero
-  JAL zero, bb19

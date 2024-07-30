@@ -12,27 +12,27 @@ i32 main() {
 entry42:  pred()
   br bb %deepWhileBr.while.body
 deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
-  c.phi5465106 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379, bb %entry42, i32 4]
-  e.phi5864105 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5778, bb %entry42, i32 0]
-  1969 = icmp slt i32 %c.phi5465106, i32 100
+  c.phi5465108 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379, bb %entry42, i32 4]
+  e.phi5864107 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5778, bb %entry42, i32 0]
+  1969 = icmp slt i32 %c.phi5465108, i32 100
   br i1 %1969, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
-  104 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379]
-  call void putint(i32 %104)
+  106 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379]
+  call void putint(i32 %106)
   ret i32 0
 deepWhileBr.then:  pred(deepWhileBr.while.body)
-  2574 = add i32 %c.phi5465106, i32 42
+  2574 = add i32 %c.phi5465108, i32 42
   2775 = icmp sgt i32 %2574, i32 99
   br i1 %2775, bb %deepWhileBr.then28, bb %deepWhileBr.if.exit29
 deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit29)
-  e.phi5778 = phi [bb %deepWhileBr.while.body, i32 %e.phi5864105, bb %deepWhileBr.if.exit29, i32 %e.phi86]
-  c.phi5379 = phi [bb %deepWhileBr.while.body, i32 %c.phi5465106, bb %deepWhileBr.if.exit29, i32 %c.phi5287]
+  e.phi5778 = phi [bb %deepWhileBr.while.body, i32 %e.phi5864107, bb %deepWhileBr.if.exit29, i32 %e.phi86]
+  c.phi5379 = phi [bb %deepWhileBr.while.body, i32 %c.phi5465108, bb %deepWhileBr.if.exit29, i32 %c.phi5287]
   1466 = icmp slt i32 %c.phi5379, i32 75
   br i1 %1466, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
 deepWhileBr.then28:  pred(deepWhileBr.then)
   br bb %deepWhileBr.if.exit29
 deepWhileBr.if.exit29:  pred(deepWhileBr.then, deepWhileBr.then28)
-  e.phi86 = phi [bb %deepWhileBr.then, i32 %e.phi5864105, bb %deepWhileBr.then28, i32 84]
+  e.phi86 = phi [bb %deepWhileBr.then, i32 %e.phi5864107, bb %deepWhileBr.then28, i32 84]
   c.phi5287 = phi [bb %deepWhileBr.then, i32 %2574, bb %deepWhileBr.then28, i32 168]
   br bb %deepWhileBr.if.exit
 }
@@ -41,38 +41,6 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure internal i32 deepWhileBr(i32 a, i32 b) {
-entry2:  pred()
-  9 = add i32 %a, i32 %b
-  14107 = icmp slt i32 %9, i32 75
-  br i1 %14107, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry2)
-  br bb %while.body
-while.body:  pred(if.exit, while.body_preheader)
-  c.phi54110 = phi [bb %if.exit, i32 %c.phi53, bb %while.body_preheader, i32 %9]
-  e.phi58109 = phi [bb %if.exit, i32 %e.phi57, bb %while.body_preheader, i32 0]
-  19 = icmp slt i32 %c.phi54110, i32 100
-  br i1 %19, bb %then, bb %if.exit
-while.exit:  pred(if.exit, entry2)
-  9108 = phi [bb %if.exit, i32 %c.phi53, bb %entry2, i32 %9]
-  ret i32 %9108
-then:  pred(while.body)
-  25 = add i32 %c.phi54110, i32 42
-  27 = icmp sgt i32 %25, i32 99
-  br i1 %27, bb %then28, bb %if.exit29
-if.exit:  pred(while.body, if.exit29)
-  e.phi57 = phi [bb %while.body, i32 %e.phi58109, bb %if.exit29, i32 %e.phi]
-  c.phi53 = phi [bb %while.body, i32 %c.phi54110, bb %if.exit29, i32 %c.phi52]
-  14 = icmp slt i32 %c.phi53, i32 75
-  br i1 %14, bb %while.body, bb %while.exit
-then28:  pred(then)
-  br bb %if.exit29
-if.exit29:  pred(then, then28)
-  e.phi = phi [bb %then, i32 %e.phi58109, bb %then28, i32 84]
-  c.phi52 = phi [bb %then, i32 %25, bb %then28, i32 168]
-  br bb %if.exit
-}
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
@@ -80,11 +48,6 @@ external void _sysy_stoptime(i32 )
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-pure internal i32 get_one(i32 a) {
-entry:  pred()
-  ret i32 1
-}
 
 external void putfarray(i32 , ptr )
 

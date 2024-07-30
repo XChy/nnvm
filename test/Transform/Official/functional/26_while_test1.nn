@@ -1,31 +1,5 @@
 external i32 getint()
 
-pure internal i32 doubleWhile() {
-entry:  pred()
-  br bb %while.body
-while.body:  pred(while.exit16, entry)
-  i.phi62 = phi [bb %while.exit16, i32 %13, bb %entry, i32 5]
-  j.phi61 = phi [bb %while.exit16, i32 %25, bb %entry, i32 7]
-  13 = add i32 %i.phi62, i32 30
-  1856 = icmp slt i32 %j.phi61, i32 100
-  br i1 %1856, bb %while.body15_preheader, bb %while.exit16
-while.exit:  pred(while.exit16)
-  60 = phi [bb %while.exit16, i32 %25]
-  ret i32 %60
-while.body15_preheader:  pred(while.body)
-  br bb %while.body15
-while.body15:  pred(while.body15, while.body15_preheader)
-  j.phi3158 = phi [bb %while.body15, i32 %22, bb %while.body15_preheader, i32 %j.phi61]
-  22 = add i32 %j.phi3158, i32 6
-  18 = icmp slt i32 %22, i32 100
-  br i1 %18, bb %while.body15, bb %while.exit16
-while.exit16:  pred(while.body15, while.body)
-  j.phi57 = phi [bb %while.body15, i32 %22, bb %while.body, i32 %j.phi61]
-  25 = sub i32 %j.phi57, i32 100
-  9 = icmp slt i32 %13, i32 100
-  br i1 %9, bb %while.body, bb %while.exit
-}
-
 external i32 getch()
 
 external void putint(i32 )
@@ -38,24 +12,24 @@ pure i32 main() {
 entry27:  pred()
   br bb %doubleWhile.while.body
 doubleWhile.while.body:  pred(doubleWhile.while.exit16, entry27)
-  i.phi3769 = phi [bb %doubleWhile.while.exit16, i32 %1341, bb %entry27, i32 5]
-  j.phi3668 = phi [bb %doubleWhile.while.exit16, i32 %2553, bb %entry27, i32 7]
-  1341 = add i32 %i.phi3769, i32 30
-  184763 = icmp slt i32 %j.phi3668, i32 100
-  br i1 %184763, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
+  i.phi3763 = phi [bb %doubleWhile.while.exit16, i32 %1341, bb %entry27, i32 5]
+  j.phi3662 = phi [bb %doubleWhile.while.exit16, i32 %2553, bb %entry27, i32 7]
+  1341 = add i32 %i.phi3763, i32 30
+  184757 = icmp slt i32 %j.phi3662, i32 100
+  br i1 %184757, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
 doubleWhile.while.exit:  pred(doubleWhile.while.exit16)
-  67 = phi [bb %doubleWhile.while.exit16, i32 %2553]
-  ret i32 %67
+  61 = phi [bb %doubleWhile.while.exit16, i32 %2553]
+  ret i32 %61
 doubleWhile.while.body15_preheader:  pred(doubleWhile.while.body)
   br bb %doubleWhile.while.body15
 doubleWhile.while.body15:  pred(doubleWhile.while.body15, doubleWhile.while.body15_preheader)
-  j.phi314665 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body15_preheader, i32 %j.phi3668]
-  2250 = add i32 %j.phi314665, i32 6
+  j.phi314659 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body15_preheader, i32 %j.phi3662]
+  2250 = add i32 %j.phi314659, i32 6
   1847 = icmp slt i32 %2250, i32 100
   br i1 %1847, bb %doubleWhile.while.body15, bb %doubleWhile.while.exit16
 doubleWhile.while.exit16:  pred(doubleWhile.while.body15, doubleWhile.while.body)
-  j.phi3664 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body, i32 %j.phi3668]
-  2553 = sub i32 %j.phi3664, i32 100
+  j.phi3658 = phi [bb %doubleWhile.while.body15, i32 %2250, bb %doubleWhile.while.body, i32 %j.phi3662]
+  2553 = sub i32 %j.phi3658, i32 100
   938 = icmp slt i32 %1341, i32 100
   br i1 %938, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
 }

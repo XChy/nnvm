@@ -1,6 +1,5 @@
 .global func
 .global main
-.global myabs
 .section .bss
 
 
@@ -93,36 +92,3 @@ bb5:
   ADDI a0, zero, 112
   CALL putch
   JAL zero, bb4
-myabs:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
-  FSGNJ.D fs0, fa0, fa0
-  FCVT.S.L fs1, zero
-  FLT.S s0, fs1, fs0
-  BNE s0, zero, bb10
-  # implict jump to bb7
-bb7:
-  FLT.S s0, fs0, fs1
-  BNE s0, zero, bb9
-  # implict jump to bb8
-bb8:
-bb9:
-  FSGNJN.S fs1, fs0, fs0
-  FSGNJ.S fa0, fs1, fs1
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb10:
-  FSGNJ.S fa0, fs0, fs0
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)

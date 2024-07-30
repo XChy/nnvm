@@ -198,7 +198,7 @@ bb11:
   SW t4, 4(sp)
   ADDI a1, zero, 1
   SUBW t4, t2, a1
-  SW t4, 24(sp)
+  SW t4, 12(sp)
   ADDI a1, zero, -1
   LW t4, 4(sp)
   BLT a1, t4, bb22
@@ -206,14 +206,14 @@ bb11:
 bb12:
   # implict jump to bb13
 bb13:
-  LW t3, 24(sp)
+  LW t3, 12(sp)
   ADDIW t4, t3, 19
   SW t4, 8(sp)
   ADDI a2, zero, 1
   SUBW t4, s11, a2
-  SW t4, 12(sp)
+  SW t4, 24(sp)
   ADDI a3, zero, -1
-  LW t4, 12(sp)
+  LW t4, 24(sp)
   BLT a3, t4, bb21
   # implict jump to bb14
 bb14:
@@ -269,7 +269,7 @@ bb20:
   CALL putint
   JAL zero, bb15
 bb21:
-  LW t4, 12(sp)
+  LW t4, 24(sp)
   ADD s8, t4, zero
   LW t4, 8(sp)
   ADD s9, t4, zero
@@ -278,7 +278,7 @@ bb22:
   LW t3, 4(sp)
   ADD t4, t3, zero
   SW t4, 20(sp)
-  LW t4, 24(sp)
+  LW t4, 12(sp)
   ADD s10, t4, zero
   JAL zero, bb9
 bb23:

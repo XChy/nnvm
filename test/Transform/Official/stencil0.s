@@ -1,5 +1,4 @@
 .global main
-.global cutout
 .section .bss
 image_out:
 .space 2097152
@@ -234,32 +233,3 @@ bb18:
 bb19:
   ADD s0, zero, zero
   JAL zero, bb6
-cutout:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  BLT s0, zero, bb26
-  # implict jump to bb21
-bb21:
-  ADDI s1, zero, 255
-  BLT s1, s0, bb25
-  # implict jump to bb22
-bb22:
-  # implict jump to bb23
-bb23:
-  # implict jump to bb24
-bb24:
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb25:
-  ADDI s0, zero, 255
-  JAL zero, bb23
-bb26:
-  ADD s0, zero, zero
-  JAL zero, bb24

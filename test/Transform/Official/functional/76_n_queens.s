@@ -1,6 +1,5 @@
 .global main
 .global f
-.global printans
 .section .bss
 line2:
 .space 400
@@ -233,62 +232,3 @@ bb23:
   SLTIU s7, s7, 1
   ADD s6, s7, zero
   JAL zero, bb10
-printans:
-  ADDI sp, sp, -48
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  LA s0, sum
-  LW s0, 0(s0)
-  ADDIW s0, s0, 1
-  LA s1, sum
-  SW s0, 0(s1)
-  ADDI s0, zero, 1
-  # implict jump to bb25
-bb25:
-  ADD s1, s0, zero
-  LA s2, n
-  LW s2, 0(s2)
-  SLT s2, s2, s1
-  XORI s2, s2, 1
-  BNE s2, zero, bb27
-  # implict jump to bb26
-bb26:
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
-  JALR zero, 0(ra)
-bb27:
-  SLLIW s2, s1, 2
-  LA s3, ans
-  ADD s2, s3, s2
-  LW s2, 0(s2)
-  ADD a0, s2, zero
-  CALL putint
-  LA s2, n
-  LW s2, 0(s2)
-  XOR s2, s1, s2
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb29
-  # implict jump to bb28
-bb28:
-  ADDI a0, zero, 32
-  CALL putch
-  ADDIW s1, s1, 1
-  ADD s0, s1, zero
-  JAL zero, bb25
-bb29:
-  ADDI a0, zero, 10
-  CALL putch
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
-  JALR zero, 0(ra)

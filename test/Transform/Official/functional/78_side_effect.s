@@ -1,5 +1,4 @@
 .global main
-.global inc_a
 .section .bss
 
 
@@ -185,19 +184,3 @@ bb21:
   SLTU s5, zero, s5
   ADD s4, s5, zero
   JAL zero, bb5
-inc_a:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  LA s0, a
-  LW s0, 0(s0)
-  ADDIW s0, s0, 1
-  LA s1, a
-  SW s0, 0(s1)
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)

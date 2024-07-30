@@ -1,5 +1,4 @@
 .global main
-.global transpose
 .section .bss
 a:
 .space 400000
@@ -236,79 +235,3 @@ bb26:
   ADD t4, t3, zero
   SW t4, 24(sp)
   JAL zero, bb25
-transpose:
-  ADDI sp, sp, -80
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  SD s7, 64(sp)
-  SD s8, 72(sp)
-  ADD s0, a0, zero
-  DIVW s0, s0, a2
-  BLT zero, s0, bb29
-  # implict jump to bb28
-bb28:
-  ADDI a0, zero, -1
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  LD s7, 64(sp)
-  LD s8, 72(sp)
-  ADDI sp, sp, 80
-  JALR zero, 0(ra)
-bb29:
-  ADD s1, zero, zero
-  ADD s2, zero, zero
-  # implict jump to bb30
-bb30:
-  ADD s3, s2, zero
-  ADD s4, s1, zero
-  ADD s5, zero, zero
-  # implict jump to bb31
-bb31:
-  ADD s6, s5, zero
-  ADD s7, s3, zero
-  BLT s6, a2, bb34
-  # implict jump to bb32
-bb32:
-  ADDIW s8, s4, 1
-  BLT s8, s0, bb33
-  JAL zero, bb28
-bb33:
-  ADD s1, s8, zero
-  ADD s2, s7, zero
-  JAL zero, bb30
-bb34:
-  BLT s4, s6, bb36
-  # implict jump to bb35
-bb35:
-  MULW s1, s4, a2
-  ADDW s1, s1, s6
-  SLLIW s1, s1, 2
-  ADD s1, a1, s1
-  LW s2, 0(s1)
-  MULW s8, s6, s0
-  ADDW s8, s8, s4
-  SLLIW s8, s8, 2
-  ADD s8, a1, s8
-  SW s2, 0(s8)
-  SW s2, 0(s1)
-  ADDIW s1, s6, 1
-  ADD s3, s2, zero
-  ADD s5, s1, zero
-  JAL zero, bb31
-bb36:
-  ADDIW s1, s6, 1
-  ADD s3, s7, zero
-  ADD s5, s1, zero
-  JAL zero, bb31

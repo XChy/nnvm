@@ -1,6 +1,5 @@
 .global main
 .global hanoi
-.global move
 .section .bss
 .section .data
 .section .text
@@ -105,25 +104,3 @@ bb8:
   ADDI a0, zero, 32
   CALL putch
   JAL zero, bb7
-move:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  ADD a0, s0, zero
-  CALL putint
-  ADDI a0, zero, 32
-  CALL putch
-  ADD a0, s1, zero
-  CALL putint
-  ADDI a0, zero, 44
-  CALL putch
-  ADDI a0, zero, 32
-  CALL putch
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)

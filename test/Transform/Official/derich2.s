@@ -1,7 +1,6 @@
 .global kernel_deriche
 .global newPow
 .global main
-.global newExp
 .section .bss
 my_y2:
 .space 552960
@@ -817,32 +816,4 @@ main:
   FLD fs0, 24(sp)
   FLD fs1, 32(sp)
   ADDI sp, sp, 48
-  JALR zero, 0(ra)
-newExp:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
-  FSGNJ.D fs0, fa0, fa0
-  ADDI s0, zero, 256
-  FCVT.S.W fs1, s0
-  FDIV.S fs0, fs0, fs1
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
-  FADD.S fs0, fs1, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FMUL.S fs0, fs0, fs0
-  FSGNJ.S fa0, fs0, fs0
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  ADDI sp, sp, 32
   JALR zero, 0(ra)

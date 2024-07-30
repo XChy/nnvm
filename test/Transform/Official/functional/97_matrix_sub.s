@@ -1,5 +1,4 @@
 .global main
-.global sub
 .section .bss
 
 
@@ -192,66 +191,3 @@ bb14:
 bb15:
   ADD s0, s1, zero
   JAL zero, bb1
-sub:
-  ADDI sp, sp, -80
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  FSD fs0, 64(sp)
-  FSD fs1, 72(sp)
-  ADD s0, a0, zero
-  ADDI t5, sp, 80
-  ADD s1, t5, zero
-  LD s1, 0(s1)
-  ADD s2, zero, zero
-  # implict jump to bb17
-bb17:
-  ADD s3, s2, zero
-  SLLIW s4, s3, 2
-  ADD s5, a6, s4
-  ADD s6, s0, s4
-  FLW fs0, 0(s6)
-  ADD s6, a3, s4
-  FLW fs1, 0(s6)
-  FSUB.S fs0, fs0, fs1
-  FSW fs0, 0(s5)
-  ADD s5, a7, s4
-  ADD s6, a1, s4
-  FLW fs0, 0(s6)
-  ADD s6, a4, s4
-  FLW fs1, 0(s6)
-  FSUB.S fs0, fs0, fs1
-  FSW fs0, 0(s5)
-  ADD s5, s1, s4
-  ADD s6, a2, s4
-  FLW fs0, 0(s6)
-  ADD s4, a5, s4
-  FLW fs1, 0(s4)
-  FSUB.S fs0, fs0, fs1
-  FSW fs0, 0(s5)
-  ADDIW s3, s3, 1
-  SLTI s4, s3, 3
-  BNE s4, zero, bb19
-  # implict jump to bb18
-bb18:
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  FLD fs0, 64(sp)
-  FLD fs1, 72(sp)
-  ADDI sp, sp, 80
-  JALR zero, 0(ra)
-bb19:
-  ADD s2, s3, zero
-  JAL zero, bb17

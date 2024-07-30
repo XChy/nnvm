@@ -1,5 +1,4 @@
 .global main
-.global loop
 .section .bss
 
 
@@ -449,66 +448,3 @@ bb26:
   FLW fs8, 0(s5)
   FSGNJ.S fs5, fs7, fs8
   JAL zero, bb11
-loop:
-  ADDI sp, sp, -80
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  FSD fs0, 40(sp)
-  FSD fs1, 48(sp)
-  FSD fs2, 56(sp)
-  FSD fs3, 64(sp)
-  FSD fs4, 72(sp)
-  BLT zero, a2, bb30
-  # implict jump to bb28
-bb28:
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
-  FSGNJ.S fs0, fs0, fs1
-  # implict jump to bb29
-bb29:
-  FSGNJ.S fa0, fs0, fs0
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  FLD fs0, 40(sp)
-  FLD fs1, 48(sp)
-  FLD fs2, 56(sp)
-  FLD fs3, 64(sp)
-  FLD fs4, 72(sp)
-  ADDI sp, sp, 80
-  JALR zero, 0(ra)
-bb30:
-  ADD s0, zero, zero
-  LA s1, .CONSTANT.7.0
-  FLW fs1, 0(s1)
-  LA s1, .CONSTANT.7.0
-  FLW fs2, 0(s1)
-  FSGNJ.S fs1, fs1, fs2
-  # implict jump to bb31
-bb31:
-  FSGNJ.S fs2, fs1, fs1
-  ADD s1, s0, zero
-  SLLIW s2, s1, 2
-  ADD s3, a0, s2
-  FLW fs3, 0(s3)
-  ADD s2, a1, s2
-  FLW fs4, 0(s2)
-  FMUL.S fs3, fs3, fs4
-  FADD.S fs2, fs2, fs3
-  ADDIW s1, s1, 1
-  BLT s1, a2, bb33
-  # implict jump to bb32
-bb32:
-  FSGNJ.S fs0, fs2, fs2
-  JAL zero, bb29
-bb33:
-  ADD s0, s1, zero
-  FSGNJ.S fs1, fs2, fs2
-  JAL zero, bb31

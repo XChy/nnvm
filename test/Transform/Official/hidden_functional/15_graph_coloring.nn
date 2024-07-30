@@ -86,13 +86,13 @@ isSafe.if.exit:  pred(isSafe.select.exit)
   77226 = add i32 %j.phi197, i32 1
   br bb %isSafe.while.cond44
 printSolution.while.body:  pred(printSolution.while.body, then91)
-  i.phi245260 = phi [bb %printSolution.while.body, i32 %18254, bb %then91, i32 0]
-  181249 = shl i32 %i.phi245260, i32 2
+  i.phi245263 = phi [bb %printSolution.while.body, i32 %18254, bb %then91, i32 0]
+  181249 = shl i32 %i.phi245263, i32 2
   11250 = ptradd ptr %color, i32 %181249
   11.load251 = load i32 from ptr %11250
   call void putint(i32 %11.load251)
   call void putch(i32 32)
-  18254 = add i32 %i.phi245260, i32 1
+  18254 = add i32 %i.phi245263, i32 1
   7246 = icmp slt i32 %18254, i32 4
   br i1 %7246, bb %printSolution.while.body, bb %printSolution.while.exit
 printSolution.while.exit:  pred(printSolution.while.body)
@@ -139,11 +139,11 @@ entry121:  pred()
   store i32 0 to ptr %arr.index138
   br bb %while.body143
 while.body143:  pred(while.body143, entry121)
-  i141.phi262 = phi [bb %while.body143, i32 %155, bb %entry121, i32 0]
-  176 = shl i32 %i141.phi262, i32 2
+  i141.phi265 = phi [bb %while.body143, i32 %155, bb %entry121, i32 0]
+  176 = shl i32 %i141.phi265, i32 2
   151 = ptradd ptr %color, i32 %176
   store i32 0 to ptr %151
-  155 = add i32 %i141.phi262, i32 1
+  155 = add i32 %i141.phi265, i32 1
   147 = icmp slt i32 %155, i32 4
   br i1 %147, bb %while.body143, bb %while.exit144
 while.exit144:  pred(while.body143)
@@ -168,68 +168,6 @@ if.exit163:  pred(while.exit144, then162)
   ret i32 0
 }
 
-internal i32 isSafe(ptr graph, ptr color) {
-entry32:  pred()
-  br bb %while.cond34
-while.cond34:  pred(entry32, while.exit46)
-  select.phi172 = phi [bb %entry32, i1 0, bb %while.exit46, i1 %select.phi171]
-  i33.phi = phi [bb %entry32, i32 0, bb %while.exit46, i32 %43]
-  39 = icmp slt i32 %i33.phi, i32 4
-  br i1 %39, bb %while.body35, bb %while.exit36
-while.body35:  pred(while.cond34)
-  43 = add i32 %i33.phi, i32 1
-  br bb %while.cond44
-while.exit36:  pred(while.cond34)
-  ret i32 1
-while.cond44:  pred(while.body35, if.exit)
-  select.phi171 = phi [bb %while.body35, i1 %select.phi172, bb %if.exit, i1 %select.phi]
-  j.phi = phi [bb %while.body35, i32 %43, bb %if.exit, i32 %77]
-  49 = icmp slt i32 %j.phi, i32 4
-  br i1 %49, bb %while.body45, bb %while.exit46
-while.body45:  pred(while.cond44)
-  177 = shl i32 %i33.phi, i32 4
-  53 = ptradd ptr %graph, i32 %177
-  178 = shl i32 %j.phi, i32 2
-  56 = ptradd ptr %53, i32 %178
-  56.load = load i32 from ptr %56
-  58 = icmp ne i32 %56.load, i32 0
-  br i1 %58, bb %select.then, bb %select.else
-while.exit46:  pred(while.cond44)
-  br bb %while.cond34
-select.then:  pred(while.body45)
-  65 = ptradd ptr %color, i32 %178
-  65.load = load i32 from ptr %65
-  180 = shl i32 %i33.phi, i32 2
-  69 = ptradd ptr %color, i32 %180
-  69.load = load i32 from ptr %69
-  71 = icmp eq i32 %65.load, i32 %69.load
-  br bb %select.exit
-select.else:  pred(while.body45)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %71]
-  br i1 %select.phi, bb %then, bb %if.exit
-then:  pred(select.exit)
-  ret i32 0
-if.exit:  pred(select.exit)
-  77 = add i32 %j.phi, i32 1
-  br bb %while.cond44
-}
-
-internal void printMessage() {
-entry21:  pred()
-  call void putch(i32 78)
-  call void putch(i32 111)
-  call void putch(i32 116)
-  call void putch(i32 32)
-  call void putch(i32 101)
-  call void putch(i32 120)
-  call void putch(i32 105)
-  call void putch(i32 115)
-  call void putch(i32 116)
-  ret 
-}
-
 external float getfloat()
 
 external void putfloat(float )
@@ -241,24 +179,6 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void _sysy_stoptime(i32 )
-
-internal void printSolution(ptr color) {
-entry:  pred()
-  br bb %while.body
-while.body:  pred(while.body, entry)
-  i.phi264 = phi [bb %while.body, i32 %18, bb %entry, i32 0]
-  181 = shl i32 %i.phi264, i32 2
-  11 = ptradd ptr %color, i32 %181
-  11.load = load i32 from ptr %11
-  call void putint(i32 %11.load)
-  call void putch(i32 32)
-  18 = add i32 %i.phi264, i32 1
-  7 = icmp slt i32 %18, i32 4
-  br i1 %7, bb %while.body, bb %while.exit
-while.exit:  pred(while.body)
-  call void putch(i32 10)
-  ret 
-}
 
 external void putfarray(i32 , ptr )
 

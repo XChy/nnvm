@@ -78,9 +78,9 @@ bool GlobalVarOptPass::processGlobalVar(GlobalVariable *global) {
     return false;
 
   if (loads.empty() && !stores.empty()) {
-    changed = true;
     for (auto *store : stores)
       recursivelyErase(store);
+    changed = true;
   }
 
   if (stores.empty() && !global->isAttached(Attribute::Immutable)) {
@@ -90,8 +90,8 @@ bool GlobalVarOptPass::processGlobalVar(GlobalVariable *global) {
 
   if (global->users().empty()) {
     globalToRemove.push_back(global);
-    return true;
+    changed = true;
   }
 
-  return false;
+  return changed;
 }

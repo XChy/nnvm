@@ -16,34 +16,34 @@ entry14:  pred()
   call void _sysy_starttime(i32 23)
   br bb %while.body
 while.body:  pred(while.exit32, entry14)
-  j.phi254370 = phi [bb %while.exit32, i32 %165, bb %entry14, i32 1]
-  ijm1.phi256369 = phi [bb %while.exit32, i32 %ijm1.phi256343, bb %entry14, i32 0]
-  ij.phi258368 = phi [bb %while.exit32, i32 %ij.phi258342, bb %entry14, i32 0]
-  im1jm1.phi260367 = phi [bb %while.exit32, i32 %im1jm1.phi260341, bb %entry14, i32 0]
-  im1j.phi262366 = phi [bb %while.exit32, i32 %im1j.phi262340, bb %entry14, i32 0]
-  im1jp1.phi264365 = phi [bb %while.exit32, i32 %im1jp1.phi264339, bb %entry14, i32 0]
-  ijp1.phi266364 = phi [bb %while.exit32, i32 %ijp1.phi266338, bb %entry14, i32 0]
-  ip1jm1.phi268363 = phi [bb %while.exit32, i32 %ip1jm1.phi268337, bb %entry14, i32 0]
-  ip1j.phi270362 = phi [bb %while.exit32, i32 %ip1j.phi270336, bb %entry14, i32 0]
-  ip1jp1.phi272361 = phi [bb %while.exit32, i32 %ip1jp1.phi272335, bb %entry14, i32 0]
-  val.phi274360 = phi [bb %while.exit32, i32 %val.phi274334, bb %entry14, i32 0]
+  j.phi254371 = phi [bb %while.exit32, i32 %165, bb %entry14, i32 1]
+  ijm1.phi256370 = phi [bb %while.exit32, i32 %ijm1.phi256344, bb %entry14, i32 0]
+  ij.phi258369 = phi [bb %while.exit32, i32 %ij.phi258343, bb %entry14, i32 0]
+  im1jm1.phi260368 = phi [bb %while.exit32, i32 %im1jm1.phi260342, bb %entry14, i32 0]
+  im1j.phi262367 = phi [bb %while.exit32, i32 %im1j.phi262341, bb %entry14, i32 0]
+  im1jp1.phi264366 = phi [bb %while.exit32, i32 %im1jp1.phi264340, bb %entry14, i32 0]
+  ijp1.phi266365 = phi [bb %while.exit32, i32 %ijp1.phi266339, bb %entry14, i32 0]
+  ip1jm1.phi268364 = phi [bb %while.exit32, i32 %ip1jm1.phi268338, bb %entry14, i32 0]
+  ip1j.phi270363 = phi [bb %while.exit32, i32 %ip1j.phi270337, bb %entry14, i32 0]
+  ip1jp1.phi272362 = phi [bb %while.exit32, i32 %ip1jp1.phi272336, bb %entry14, i32 0]
+  val.phi274361 = phi [bb %while.exit32, i32 %val.phi274335, bb %entry14, i32 0]
   br bb %while.body31
 while.exit:  pred(while.exit32)
   br bb %while.body168
 while.body31:  pred(cutout.if.exit, while.body)
-  i.phi251354 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
-  40 = sub i32 %i.phi251354, i32 1
+  i.phi251355 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
+  40 = sub i32 %i.phi251355, i32 1
   277 = shl i32 %40, i32 10
-  44 = add i32 %277, i32 %j.phi254370
+  44 = add i32 %277, i32 %j.phi254371
   45 = sub i32 %44, i32 1
   60 = add i32 %44, i32 1
-  280 = shl i32 %i.phi251354, i32 10
-  66 = add i32 %280, i32 %j.phi254370
+  280 = shl i32 %i.phi251355, i32 10
+  66 = add i32 %280, i32 %j.phi254371
   67 = sub i32 %66, i32 1
   80 = add i32 %66, i32 1
-  83 = add i32 %i.phi251354, i32 1
+  83 = add i32 %i.phi251355, i32 1
   283 = shl i32 %83, i32 10
-  87 = add i32 %283, i32 %j.phi254370
+  87 = add i32 %283, i32 %j.phi254371
   88 = sub i32 %87, i32 1
   103 = add i32 %87, i32 1
   286 = shl i32 %66, i32 2
@@ -86,22 +86,22 @@ while.body31:  pred(cutout.if.exit, while.body)
   3317 = icmp slt i32 %149, i32 0
   br i1 %3317, bb %cutout.then, bb %cutout.else
 while.exit32:  pred(cutout.if.exit)
-  ijm1.phi256343 = phi [bb %cutout.if.exit, i32 %67]
-  ij.phi258342 = phi [bb %cutout.if.exit, i32 %66]
-  im1jm1.phi260341 = phi [bb %cutout.if.exit, i32 %45]
-  im1j.phi262340 = phi [bb %cutout.if.exit, i32 %44]
-  im1jp1.phi264339 = phi [bb %cutout.if.exit, i32 %60]
-  ijp1.phi266338 = phi [bb %cutout.if.exit, i32 %80]
-  ip1jm1.phi268337 = phi [bb %cutout.if.exit, i32 %88]
-  ip1j.phi270336 = phi [bb %cutout.if.exit, i32 %87]
-  ip1jp1.phi272335 = phi [bb %cutout.if.exit, i32 %103]
-  val.phi274334 = phi [bb %cutout.if.exit, i32 %149]
-  165 = add i32 %j.phi254370, i32 1
+  ijm1.phi256344 = phi [bb %cutout.if.exit, i32 %67]
+  ij.phi258343 = phi [bb %cutout.if.exit, i32 %66]
+  im1jm1.phi260342 = phi [bb %cutout.if.exit, i32 %45]
+  im1j.phi262341 = phi [bb %cutout.if.exit, i32 %44]
+  im1jp1.phi264340 = phi [bb %cutout.if.exit, i32 %60]
+  ijp1.phi266339 = phi [bb %cutout.if.exit, i32 %80]
+  ip1jm1.phi268338 = phi [bb %cutout.if.exit, i32 %88]
+  ip1j.phi270337 = phi [bb %cutout.if.exit, i32 %87]
+  ip1jp1.phi272336 = phi [bb %cutout.if.exit, i32 %103]
+  val.phi274335 = phi [bb %cutout.if.exit, i32 %149]
+  165 = add i32 %j.phi254371, i32 1
   27 = icmp slt i32 %165, i32 1023
   br i1 %27, bb %while.body, bb %while.exit
 while.body168:  pred(while.body168, while.exit)
-  i.phi358 = phi [bb %while.body168, i32 %206, bb %while.exit, i32 0]
-  297 = shl i32 %i.phi358, i32 10
+  i.phi359 = phi [bb %while.body168, i32 %206, bb %while.exit, i32 0]
+  297 = shl i32 %i.phi359, i32 10
   298 = shl i32 %297, i32 2
   178 = ptradd ptr @image_out, i32 %298
   184 = ptradd ptr @image_in, i32 %298
@@ -113,25 +113,25 @@ while.body168:  pred(while.body168, while.exit)
   202 = ptradd ptr @image_in, i32 %304
   202.load = load i32 from ptr %202
   store i32 %202.load to ptr %193
-  206 = add i32 %i.phi358, i32 1
+  206 = add i32 %i.phi359, i32 1
   172 = icmp slt i32 %206, i32 1024
   br i1 %172, bb %while.body168, bb %while.exit169
 while.exit169:  pred(while.body168)
   br bb %while.body209
 while.body209:  pred(while.body209, while.exit169)
-  j.phi356 = phi [bb %while.body209, i32 %243, bb %while.exit169, i32 0]
-  309 = shl i32 %j.phi356, i32 2
+  j.phi357 = phi [bb %while.body209, i32 %243, bb %while.exit169, i32 0]
+  309 = shl i32 %j.phi357, i32 2
   217 = ptradd ptr @image_out, i32 %309
   221 = ptradd ptr @image_in, i32 %309
   221.load = load i32 from ptr %221
   store i32 %221.load to ptr %217
-  311 = add i32 %j.phi356, i32 1047552
+  311 = add i32 %j.phi357, i32 1047552
   312 = shl i32 %311, i32 2
   230 = ptradd ptr @image_out, i32 %312
   239 = ptradd ptr @image_in, i32 %312
   239.load = load i32 from ptr %239
   store i32 %239.load to ptr %230
-  243 = add i32 %j.phi356, i32 1
+  243 = add i32 %j.phi357, i32 1
   213 = icmp slt i32 %243, i32 1024
   br i1 %213, bb %while.body209, bb %while.exit210
 while.exit210:  pred(while.body209)
@@ -168,24 +168,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-pure internal i32 cutout(i32 val) {
-entry:  pred()
-  3 = icmp slt i32 %val, i32 0
-  br i1 %3, bb %then, bb %else
-then:  pred(entry)
-  br bb %if.exit
-if.exit:  pred(then, if.exit11)
-  val.stack.phi276 = phi [bb %if.exit11, i32 %val.stack.phi, bb %then, i32 0]
-  ret i32 %val.stack.phi276
-else:  pred(entry)
-  9 = icmp sgt i32 %val, i32 255
-  br i1 %9, bb %then10, bb %if.exit11
-then10:  pred(else)
-  br bb %if.exit11
-if.exit11:  pred(else, then10)
-  val.stack.phi = phi [bb %else, i32 %val, bb %then10, i32 255]
-  br bb %if.exit
-}
 
 

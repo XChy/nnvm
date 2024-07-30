@@ -1,5 +1,4 @@
 .global main
-.global func
 .section .bss
 
 
@@ -110,13 +109,3 @@ bb10:
   ADD s5, s8, zero
   ADD s6, s7, zero
   JAL zero, bb5
-func:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  LA s0, global
-  SW a0, 0(s0)
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)

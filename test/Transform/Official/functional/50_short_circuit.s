@@ -1,5 +1,4 @@
 .global main
-.global func
 .section .bss
 
 .section .data
@@ -104,24 +103,3 @@ bb10:
   ADD a0, s0, zero
   CALL putint
   JAL zero, bb1
-func:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  LA s1, g
-  LW s1, 0(s1)
-  ADDW s0, s1, s0
-  LA s1, g
-  SW s0, 0(s1)
-  ADD a0, s0, zero
-  CALL putint
-  LA s0, g
-  LW s0, 0(s0)
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)

@@ -45,23 +45,6 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure internal float myabs(float num) {
-entry:  pred()
-  3 = si2f i32 0 to float
-  4 = fcmp ogt float %num, float %3
-  br i1 %4, bb %then, bb %if.exit
-then:  pred(entry)
-  ret float %num
-if.exit:  pred(entry)
-  10 = fcmp olt float %num, float %3
-  br i1 %10, bb %then11, bb %if.exit12
-then11:  pred(if.exit)
-  14 = fneg float %num
-  ret float %14
-if.exit12:  pred(if.exit)
-  unreachable
-}
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )

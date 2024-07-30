@@ -51,43 +51,6 @@ external float getfloat()
 
 external void putfloat(float )
 
-pure internal i32 foo() {
-entry:  pred()
-  %arr = stack 64
-  store i32 0 to ptr %arr
-  arr.index3 = ptradd ptr %arr, i32 4
-  store i32 1 to ptr %arr.index3
-  arr.index4 = ptradd ptr %arr, i32 8
-  store i32 2 to ptr %arr.index4
-  arr.index5 = ptradd ptr %arr, i32 12
-  store i32 3 to ptr %arr.index5
-  arr.index6 = ptradd ptr %arr, i32 16
-  store i32 0 to ptr %arr.index6
-  arr.index7 = ptradd ptr %arr, i32 20
-  store i32 1 to ptr %arr.index7
-  arr.index8 = ptradd ptr %arr, i32 24
-  store i32 2 to ptr %arr.index8
-  arr.index9 = ptradd ptr %arr, i32 28
-  store i32 3 to ptr %arr.index9
-  arr.index10 = ptradd ptr %arr, i32 32
-  store i32 0 to ptr %arr.index10
-  arr.index11 = ptradd ptr %arr, i32 36
-  store i32 1 to ptr %arr.index11
-  arr.index12 = ptradd ptr %arr, i32 40
-  store i32 2 to ptr %arr.index12
-  arr.index13 = ptradd ptr %arr, i32 44
-  store i32 3 to ptr %arr.index13
-  arr.index14 = ptradd ptr %arr, i32 48
-  store i32 0 to ptr %arr.index14
-  arr.index15 = ptradd ptr %arr, i32 52
-  store i32 1 to ptr %arr.index15
-  arr.index16 = ptradd ptr %arr, i32 56
-  store i32 2 to ptr %arr.index16
-  arr.index17 = ptradd ptr %arr, i32 60
-  store i32 3 to ptr %arr.index17
-  ret i32 74
-}
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )

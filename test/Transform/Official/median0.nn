@@ -126,39 +126,6 @@ meanless_calculation.select.exit290:  pred(meanless_calculation.select.then285, 
   br i1 %select.phi291, bb %meanless_calculation.while.body278, bb %meanless_calculation.while.exit283
 }
 
-internal i32 swap(ptr arr, i32 l, i32 r) {
-entry30:  pred()
-  191 = shl i32 %l, i32 2
-  36 = ptradd ptr %arr, i32 %191
-  36.load = load i32 from ptr %36
-  193 = shl i32 %r, i32 2
-  44 = ptradd ptr %arr, i32 %193
-  44.load = load i32 from ptr %44
-  store i32 %44.load to ptr %36
-  store i32 %36.load to ptr %44
-  br bb %meanless_calculation.while.cond
-meanless_calculation.while.cond:  pred(entry30, meanless_calculation.while.body)
-  ret.phi226 = phi [bb %entry30, i32 0, bb %meanless_calculation.while.body, i32 %28233]
-  i.phi227 = phi [bb %entry30, i32 0, bb %meanless_calculation.while.body, i32 %22231]
-  10228 = icmp slt i32 %i.phi227, i32 %l
-  br i1 %10228, bb %meanless_calculation.select.then, bb %meanless_calculation.select.else
-meanless_calculation.while.body:  pred(meanless_calculation.select.exit)
-  22231 = add i32 %i.phi227, i32 1
-  26232 = add i32 %ret.phi226, i32 %l
-  28233 = add i32 %26232, i32 %22231
-  br bb %meanless_calculation.while.cond
-meanless_calculation.while.exit:  pred(meanless_calculation.select.exit)
-  ret i32 %ret.phi226
-meanless_calculation.select.then:  pred(meanless_calculation.while.cond)
-  17238 = icmp slt i32 %i.phi227, i32 %r
-  br bb %meanless_calculation.select.exit
-meanless_calculation.select.else:  pred(meanless_calculation.while.cond)
-  br bb %meanless_calculation.select.exit
-meanless_calculation.select.exit:  pred(meanless_calculation.select.then, meanless_calculation.select.else)
-  select.phi243 = phi [bb %meanless_calculation.select.else, i1 0, bb %meanless_calculation.select.then, i1 %17238]
-  br i1 %select.phi243, bb %meanless_calculation.while.body, bb %meanless_calculation.while.exit
-}
-
 external i32 getint()
 
 external i32 getch()
@@ -197,31 +164,6 @@ external void putfloat(float )
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
-
-pure internal i32 meanless_calculation(i32 x, i32 y) {
-entry:  pred()
-  br bb %while.cond
-while.cond:  pred(entry, while.body)
-  ret.phi = phi [bb %entry, i32 0, bb %while.body, i32 %28]
-  i.phi = phi [bb %entry, i32 0, bb %while.body, i32 %22]
-  10 = icmp slt i32 %i.phi, i32 %x
-  br i1 %10, bb %select.then, bb %select.else
-while.body:  pred(select.exit)
-  22 = add i32 %i.phi, i32 1
-  26 = add i32 %ret.phi, i32 %x
-  28 = add i32 %26, i32 %22
-  br bb %while.cond
-while.exit:  pred(select.exit)
-  ret i32 %ret.phi
-select.then:  pred(while.cond)
-  17 = icmp slt i32 %i.phi, i32 %y
-  br bb %select.exit
-select.else:  pred(while.cond)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %17]
-  br i1 %select.phi, bb %while.body, bb %while.exit
-}
 
 external void putarray(i32 , ptr )
 

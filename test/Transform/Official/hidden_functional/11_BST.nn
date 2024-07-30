@@ -40,21 +40,6 @@ else107:  pred(else96)
   br bb %if.exit106
 }
 
-internal i32 new_node(i32 x) {
-entry66:  pred()
-  now.load = load i32 from ptr @now
-  360 = shl i32 %now.load, i32 2
-  70 = ptradd ptr @value, i32 %360
-  store i32 %x to ptr %70
-  75 = ptradd ptr @left_child, i32 %360
-  store i32 -1 to ptr %75
-  80 = ptradd ptr @right_child, i32 %360
-  store i32 -1 to ptr %80
-  85 = add i32 %now.load, i32 1
-  store i32 %85 to ptr @now
-  ret i32 %now.load
-}
-
 internal i32 delete(i32 root, i32 x) {
 entry129:  pred()
   134 = icmp eq i32 %root, i32 -1
@@ -224,36 +209,36 @@ if.exit297:  pred(entry287)
   store i32 -1 to ptr %80424
   85427 = add i32 %now.load414, i32 1
   store i32 %85427 to ptr @now
-  307435 = icmp slt i32 1, i32 %290
-  br i1 %307435, bb %while.body_preheader, bb %while.exit
+  307436 = icmp slt i32 1, i32 %290
+  br i1 %307436, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(if.exit297)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  i.phi354436 = phi [bb %while.body, i32 %314, bb %while.body_preheader, i32 1]
+  i.phi354437 = phi [bb %while.body, i32 %314, bb %while.body_preheader, i32 1]
   310 = call i32 getint()
   311 = call i32 insert(i32 %now.load414, i32 %310)
-  314 = add i32 %i.phi354436, i32 1
+  314 = add i32 %i.phi354437, i32 1
   307 = icmp slt i32 %314, i32 %290
   br i1 %307, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, if.exit297)
   call void inorder(i32 %now.load414)
   call void putch(i32 10)
   320 = call i32 getint()
-  327431 = icmp slt i32 0, i32 %320
-  br i1 %327431, bb %while.body323_preheader, bb %while.exit324
+  327432 = icmp slt i32 0, i32 %320
+  br i1 %327432, bb %while.body323_preheader, bb %while.exit324
 while.body323_preheader:  pred(while.exit)
   br bb %while.body323
 while.body323:  pred(while.body323, while.body323_preheader)
-  root.phi434 = phi [bb %while.body323, i32 %332, bb %while.body323_preheader, i32 %now.load414]
-  i.phi433 = phi [bb %while.body323, i32 %335, bb %while.body323_preheader, i32 0]
+  root.phi435 = phi [bb %while.body323, i32 %332, bb %while.body323_preheader, i32 %now.load414]
+  i.phi434 = phi [bb %while.body323, i32 %335, bb %while.body323_preheader, i32 0]
   331 = call i32 getint()
-  332 = call i32 delete(i32 %root.phi434, i32 %331)
-  335 = add i32 %i.phi433, i32 1
+  332 = call i32 delete(i32 %root.phi435, i32 %331)
+  335 = add i32 %i.phi434, i32 1
   327 = icmp slt i32 %335, i32 %320
   br i1 %327, bb %while.body323, bb %while.exit324
 while.exit324:  pred(while.body323, while.exit)
-  now.load414432 = phi [bb %while.body323, i32 %332, bb %while.exit, i32 %now.load414]
-  call void inorder(i32 %now.load414432)
+  now.load414433 = phi [bb %while.body323, i32 %332, bb %while.exit, i32 %now.load414]
+  call void inorder(i32 %now.load414433)
   call void putch(i32 10)
   ret i32 0
 }

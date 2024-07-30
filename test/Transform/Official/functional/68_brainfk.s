@@ -1,6 +1,5 @@
 .global main
 .global interpret
-.global read_program
 .section .bss
 
 program:
@@ -326,52 +325,3 @@ bb45:
   ADD s8, s6, zero
   ADD s9, s7, zero
   JAL zero, bb26
-read_program:
-  ADDI sp, sp, -64
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  CALL getint
-  ADD s0, a0, zero
-  BLT zero, s0, bb49
-  # implict jump to bb47
-bb47:
-  ADD s1, zero, zero
-  # implict jump to bb48
-bb48:
-  SLLIW s1, s1, 2
-  LA s4, program
-  ADD s1, s4, s1
-  SW zero, 0(s1)
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
-  JALR zero, 0(ra)
-bb49:
-  ADD s2, zero, zero
-  # implict jump to bb50
-bb50:
-  ADD s3, s2, zero
-  SLLIW s4, s3, 2
-  LA s5, program
-  ADD s4, s5, s4
-  CALL getch
-  SW a0, 0(s4)
-  ADDIW s3, s3, 1
-  BLT s3, s0, bb52
-  # implict jump to bb51
-bb51:
-  ADD s1, s3, zero
-  JAL zero, bb48
-bb52:
-  ADD s2, s3, zero
-  JAL zero, bb50

@@ -1,5 +1,4 @@
 .global main
-.global tran
 .section .bss
 
 
@@ -179,38 +178,3 @@ bb14:
 bb15:
   ADD s0, s1, zero
   JAL zero, bb1
-tran:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  FSD fs0, 24(sp)
-  ADD s0, a0, zero
-  ADDI t5, sp, 32
-  ADD s1, t5, zero
-  LD s1, 0(s1)
-  FLW fs0, 4(a2)
-  FSW fs0, 8(a7)
-  FLW fs0, 8(a1)
-  FSW fs0, 4(s1)
-  FLW fs0, 0(a1)
-  FSW fs0, 4(a6)
-  FLW fs0, 0(a2)
-  FSW fs0, 8(a6)
-  FLW fs0, 4(s0)
-  FSW fs0, 0(a7)
-  FLW fs0, 8(s0)
-  FSW fs0, 0(s1)
-  FLW fs0, 4(a1)
-  FSW fs0, 4(a7)
-  FLW fs0, 8(a2)
-  FSW fs0, 8(s1)
-  FLW fs0, 0(s0)
-  FSW fs0, 0(a6)
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  FLD fs0, 24(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
