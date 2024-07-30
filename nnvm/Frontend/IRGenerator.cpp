@@ -153,6 +153,10 @@ static inline To castConstExp(Any value) {
  */
 Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   if (ctx->exp().size() < 2) {
+    if (ctx->L_PAREN()) {
+      return solveConstExp(ctx->exp()[0]);
+    }
+
     if (auto numCtx = ctx->number()) {
       if (auto intCtx = numCtx->INTEGER_CONST()) {
         string sText = intCtx->getText();
@@ -712,7 +716,7 @@ IRGenerator::getFuncType(SysYParser::FuncTypeContext *funcTypeCtx,
 
 Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
   string funcName = ctx->IDENT()->getText();
-  SymbolType *lookedType;
+  SymbolType *lookedType = nullptr;
   if (symbolTable.lookup(funcName))
     lookedType = symbolTable.lookup(funcName)->symbolType;
   SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
