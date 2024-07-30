@@ -1,6 +1,5 @@
 .global main
 .section .bss
-
 c:
 .space 4000000
 b:
@@ -8,8 +7,6 @@ b:
 a:
 .space 4000000
 .section .data
-MAX:
-.word 0x7fffffff
 
 
 

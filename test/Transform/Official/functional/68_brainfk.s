@@ -7,17 +7,11 @@ program:
 .space 131072
 tape:
 .space 262144
-
-
 .section .data
 ptr:
 .word 0x00000000
 
 
-BUFFER_LEN:
-.word 0x00008000
-TAPE_LEN:
-.word 0x00010000
 .section .text
 main:
   ADDI sp, sp, -64

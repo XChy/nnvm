@@ -5,14 +5,8 @@
 .section .bss
 array:
 .space 4000
-
-
 .section .data
 
-space:
-.word 0x00000020
-maxN:
-.word 0x000003e8
 .section .text
 findSmallest:
   ADDI sp, sp, -128

@@ -2,14 +2,8 @@
 .section .bss
 array:
 .space 8000
-
-
 .section .data
 
-M:
-.word 0x00000014
-N:
-.word 0x00000064
 .section .text
 main:
   ADDI sp, sp, -112

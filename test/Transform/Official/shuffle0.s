@@ -7,10 +7,6 @@ ans:
 .space 40000000
 
 
-
-
-bucket:
-.space 40000000
 head:
 .space 40000000
 value:
@@ -31,13 +27,8 @@ requests:
 
 hashmod:
 .word 0x00000000
-maxn:
-.word 0x00989680
 cnt:
 .word 0x00000000
-maxm:
-.word 0x00989680
-
 
 
 

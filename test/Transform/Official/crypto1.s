@@ -288,20 +288,20 @@ bb13:
   LW t4, 44(sp)
   ADD s6, t4, zero
   LW t4, 52(sp)
-  ADD s1, t4, zero
+  ADD s0, t4, zero
   LW t4, 60(sp)
   ADD s5, t4, zero
-  ADD s0, a1, zero
+  ADD s1, a1, zero
   ADD t6, s4, zero
-  SLTI s3, s0, 20
+  SLTI s3, s1, 20
   BNE s3, zero, bb30
   # implict jump to bb14
 bb14:
-  SLTI s3, s0, 40
+  SLTI s3, s1, 40
   BNE s3, zero, bb29
   # implict jump to bb15
 bb15:
-  SLTI s3, s0, 60
+  SLTI s3, s1, 60
   BNE s3, zero, bb28
   # implict jump to bb16
 bb16:
@@ -332,7 +332,7 @@ bb21:
   ADDW s2, s2, s5
   LW t4, 48(sp)
   ADDW s2, s2, t4
-  SLLIW s3, s0, 2
+  SLLIW s3, s1, 2
   ADDI t4, sp, 248
   ADD s3, t4, s3
   LW s3, 0(s3)
@@ -344,8 +344,8 @@ bb21:
   REMW s5, a0, s5
   ADDW t4, s3, s5
   SW t4, 68(sp)
-  ADDIW s0, s0, 1
-  SLTI s5, s0, 80
+  ADDIW s1, s1, 1
+  SLTI s5, s1, 80
   BNE s5, zero, bb26
   # implict jump to bb22
 bb22:
@@ -364,7 +364,7 @@ bb23:
   LW t3, 56(sp)
   ADDW t6, t4, t3
   LW t4, 104(sp)
-  ADDW s2, t4, s1
+  ADDW s2, t4, s0
   LW t4, 72(sp)
   ADDIW s3, t4, 64
   LW t4, 88(sp)
@@ -391,8 +391,8 @@ bb25:
   JAL zero, bb8
 bb26:
   ADD s4, s5, zero
-  ADD a1, s0, zero
-  ADD t4, s1, zero
+  ADD a1, s1, zero
+  ADD t4, s0, zero
   SW t4, 60(sp)
   LW t3, 56(sp)
   ADD t4, t3, zero
@@ -420,9 +420,9 @@ bb27:
   LW t4, 56(sp)
   ADDW t6, t6, t4
   SUBW s6, t6, s6
-  ADDW t6, s6, s1
+  ADDW t6, s6, s0
   SUBW s6, s6, t6
-  ADDW s6, s6, s1
+  ADDW s6, s6, s0
   SUBW s6, s6, t6
   ADD s2, s6, zero
   LUI s6, 828972
@@ -432,7 +432,7 @@ bb27:
 bb28:
   LW t4, 56(sp)
   ADDW s6, a0, t4
-  ADDW t6, a0, s1
+  ADDW t6, a0, s0
   ADDW a2, s6, t6
   SUBW s6, s6, a2
   ADDW s6, s6, t6
@@ -442,7 +442,7 @@ bb28:
   ADDW s6, s6, a2
   SUBW s6, s6, t6
   LW t4, 56(sp)
-  ADDW a2, t4, s1
+  ADDW a2, t4, s0
   ADDW t6, s6, a2
   SUBW s6, s6, t6
   ADDW s6, s6, a2
@@ -463,9 +463,9 @@ bb29:
   LW t4, 56(sp)
   ADDW a2, a2, t4
   SUBW s6, a2, s6
-  ADDW a2, s6, s1
+  ADDW a2, s6, s0
   SUBW s6, s6, a2
-  ADDW s6, s6, s1
+  ADDW s6, s6, s0
   SUBW s6, s6, a2
   ADD s2, s6, zero
   LUI s6, 454047
@@ -477,7 +477,7 @@ bb30:
   ADDW s6, a0, t4
   ADDI a2, zero, -1
   SUBW a2, a2, a0
-  ADDW a2, a2, s1
+  ADDW a2, a2, s0
   ADDW t6, s6, a2
   SUBW s6, s6, t6
   ADDW s6, s6, a2

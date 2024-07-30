@@ -5,7 +5,6 @@ internal global ptr b init with 10000 x i32 zeros
 global ptr n2 init with i32 0
 internal global ptr a init with 10000 x i32 zeros
 internal global ptr res init with 10000 x i32 zeros
-immutable internal global ptr MAX_SIZE init with i32 100
 external i32 getint()
 
 external i32 getch()

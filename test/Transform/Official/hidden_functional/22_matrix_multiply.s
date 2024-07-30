@@ -11,7 +11,6 @@ a:
 .space 40000
 res:
 .space 40000
-
 .section .data
 m2:
 .word 0x00000000
@@ -24,8 +23,6 @@ n2:
 .word 0x00000000
 
 
-MAX_SIZE:
-.word 0x00000064
 .section .text
 main:
   ADDI sp, sp, -208

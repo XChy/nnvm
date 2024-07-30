@@ -4,11 +4,8 @@
 .section .bss
 parent:
 .space 4020
-
 .section .data
 
-maxN:
-.word 0x000003ed
 .section .text
 merge:
   ADDI sp, sp, -32

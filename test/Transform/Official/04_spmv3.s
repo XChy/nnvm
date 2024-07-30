@@ -11,21 +11,12 @@ x:
 .space 400040
 v:
 .space 12000000
-
-c:
-.space 400040
-
 .section .data
 
 
 
 
 
-M:
-.word 0x002dc6c0
-
-N:
-.word 0x000186aa
 .section .text
 main:
   ADDI sp, sp, -208

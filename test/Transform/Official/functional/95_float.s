@@ -20,52 +20,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .section .data
-FIVE:
-.word 0x00000005
-THREE:
-.word 0x00000003
-RADIUS:
-.word 0x40b00000
-PI:
-.word 0x40490fdb
-EPS:
-.word 0x358637bd
-EVAL3:
-.word 0x420a3ae7
-PI_HEX:
-.word 0x40490fdb
-HEX2:
-.word 0x3da00000
-EVAL2:
-.word 0x420a3ae7
-MAX:
-.word 0x3b9aca00
-EVAL1:
-.word 0x42be10fe
-CONV1:
-.word 0x43690000
-FACT:
-.word 0xc700e800
-CONV2:
-.word 0x457ff000
-TWO:
-.word 0x00000002
 .CONSTANT.7.0:
 .word 0x40490fdb
 .CONSTANT.7.1:

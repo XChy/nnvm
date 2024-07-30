@@ -10,7 +10,6 @@
 
 a:
 .space 3600
-
 .section .data
 y_1:
 .word 0x00000000
@@ -27,8 +26,6 @@ w:
 step:
 .byte 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255
 
-INF:
-.word 0x40000000
 .section .text
 search:
   ADDI sp, sp, -144
@@ -83,9 +80,9 @@ bb2:
   ADD t4, s5, zero
   SW t4, 32(sp)
   ADD t4, s4, zero
-  SB t4, 4(sp)
-  ADD t4, s3, zero
   SB t4, 3(sp)
+  ADD t4, s3, zero
+  SB t4, 4(sp)
   LW t4, 28(sp)
   SLTI a5, t4, 4
   BNE a5, zero, bb6
@@ -278,9 +275,9 @@ bb27:
 bb28:
   LW t4, 28(sp)
   ADDIW s0, t4, 1
-  LB t4, 3(sp)
-  ADD s3, t4, zero
   LB t4, 4(sp)
+  ADD s3, t4, zero
+  LB t4, 3(sp)
   ADD s4, t4, zero
   LW t4, 32(sp)
   ADD s5, t4, zero

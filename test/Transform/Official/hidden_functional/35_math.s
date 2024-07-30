@@ -20,10 +20,7 @@
 
 
 
-
 .section .data
-e:
-.word 0x402df854
 .CONSTANT.7.0:
 .word 0x322bcc77
 .CONSTANT.7.1:

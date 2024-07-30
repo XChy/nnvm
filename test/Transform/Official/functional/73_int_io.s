@@ -2,10 +2,7 @@
 .global my_getint
 .global main
 .section .bss
-
 .section .data
-ascii_0:
-.word 0x00000030
 .section .text
 my_putint:
   ADDI sp, sp, -128

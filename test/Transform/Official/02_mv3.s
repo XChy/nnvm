@@ -8,13 +8,10 @@ C:
 A:
 .space 16160400
 
-
 .section .data
 
 
 
-N:
-.word 0x000007da
 x:
 .word 0x00000000
 .section .text

@@ -10,20 +10,14 @@ b:
 .space 400020
 a:
 .space 400020
-x:
-.space 400020
 cnt:
 .space 1600080
-
 
 .section .data
 
 
 
 
-
-maxn:
-.word 0x000186a5
 n:
 .word 0x00000000
 .section .text

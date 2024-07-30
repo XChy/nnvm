@@ -16,8 +16,6 @@
 
 
 
-
-
 .section .data
 cur_token:
 .word 0x00000000
@@ -27,10 +25,6 @@ num:
 .word 0x00000000
 last_char:
 .word 0x00000020
-TOKEN_OTHER:
-.word 0x00000001
-TOKEN_NUM:
-.word 0x00000000
 .section .text
 eval:
   LUI t0, 1048575

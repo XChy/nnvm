@@ -3,22 +3,16 @@
 .global main
 .global getvalue
 .section .bss
-c:
-.space 8388608
 dst:
 .space 8388608
 w:
 .space 8388608
 temp:
 .space 8388608
-
 .section .data
 
 
 
-
-maxlen:
-.word 0x00200000
 .section .text
 mem_move:
   ADDI sp, sp, -48

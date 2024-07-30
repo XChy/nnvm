@@ -5,15 +5,9 @@ image_out:
 .space 2097152
 image_in:
 .space 2097152
-
-
 .section .data
 
 
-height:
-.word 0x00000400
-width:
-.word 0x00000200
 .section .text
 main:
   ADDI sp, sp, -128

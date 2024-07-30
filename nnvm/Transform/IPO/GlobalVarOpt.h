@@ -17,6 +17,7 @@ class GlobalVarOptPass : public ModulePass {
 public:
   static constexpr const char *passName = "globalvar-opt";
   bool run(Module &M);
+
   bool processGlobalVar(GlobalVariable *global);
 
 private:

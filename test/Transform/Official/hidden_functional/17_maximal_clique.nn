@@ -1,9 +1,7 @@
 global ptr m init with i32 0
 global ptr n init with i32 0
 internal global ptr store init with 30 x i32 zeros
-immutable internal global ptr maxM init with i32 600
 internal global ptr graph init with 900 x i32 zeros
-immutable internal global ptr maxN init with i32 30
 external i32 getint()
 
 external i32 getch()

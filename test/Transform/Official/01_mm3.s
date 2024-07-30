@@ -7,13 +7,10 @@ C:
 .space 4194304
 A:
 .space 4194304
-
 .section .data
 
 
 
-N:
-.word 0x00000400
 .section .text
 main:
   ADDI sp, sp, -304

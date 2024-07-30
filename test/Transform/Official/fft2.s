@@ -4,28 +4,19 @@
 .global memmove
 .global multiply
 .section .bss
-c:
-.space 8388608
 b:
 .space 8388608
 temp:
 .space 8388608
-
 a:
 .space 8388608
-
 
 .section .data
 
 
 
-maxlen:
-.word 0x00200000
-
 d:
 .word 0x00000000
-mod:
-.word 0x3b800001
 .section .text
 fft:
   ADDI sp, sp, -144

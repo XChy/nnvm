@@ -30,16 +30,12 @@ while.body32_preheader:  pred(while.body24)
   40 = ptradd ptr @x, i32 %39
   42 = mul i32 %j.phi226240, i32 2400
   43 = ptradd ptr %40, i32 %42
-  50 = ptradd ptr @y, i32 %39
-  53 = ptradd ptr %50, i32 %42
   br bb %while.body32
 while.body32:  pred(while.body32, while.body32_preheader)
   k.phi221238 = phi [bb %while.body32, i32 %60, bb %while.body32_preheader, i32 0]
   228 = shl i32 %k.phi221238, i32 2
   46 = ptradd ptr %43, i32 %228
   store i32 1 to ptr %46
-  56 = ptradd ptr %53, i32 %228
-  store i32 0 to ptr %56
   60 = add i32 %k.phi221238, i32 1
   36 = icmp slt i32 %60, i32 %7
   br i1 %36, bb %while.body32, bb %while.exit33

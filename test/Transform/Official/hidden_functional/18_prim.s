@@ -14,8 +14,6 @@ fa:
 u:
 .space 4020
 
-
-
 .section .data
 
 
@@ -25,10 +23,6 @@ n:
 
 m:
 .word 0x00000000
-maxn:
-.word 0x00000069
-maxm:
-.word 0x000003ed
 .section .text
 same:
   ADDI sp, sp, -32
@@ -956,22 +950,22 @@ bb125:
   ADD t4, zero, zero
   SW t4, 0(sp)
   ADD t4, zero, zero
-  SW t4, 28(sp)
+  SW t4, 12(sp)
   # implict jump to bb126
 bb126:
-  LW t3, 28(sp)
+  LW t3, 12(sp)
   ADD t4, t3, zero
-  SW t4, 32(sp)
+  SW t4, 28(sp)
   LW t3, 0(sp)
   ADD t4, t3, zero
-  SW t4, 8(sp)
+  SW t4, 32(sp)
   LA a4, m
   LW a4, 0(a4)
-  LW t4, 32(sp)
+  LW t4, 28(sp)
   BLT t4, a4, bb128
   # implict jump to bb127
 bb127:
-  LW t4, 8(sp)
+  LW t4, 32(sp)
   ADD a0, t4, zero
   LD s1, 40(sp)
   LD s5, 48(sp)
@@ -989,17 +983,17 @@ bb127:
   ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb128:
-  LW t3, 32(sp)
+  LW t3, 28(sp)
   SLLIW t4, t3, 2
-  SW t4, 24(sp)
+  SW t4, 8(sp)
   LA a5, u
-  LW t3, 24(sp)
+  LW t3, 8(sp)
   ADD t4, a5, t3
   SD t4, 152(sp)
   LD t4, 152(sp)
   LW a6, 0(t4)
   LA a7, v
-  LW t3, 24(sp)
+  LW t3, 8(sp)
   ADD t4, a7, t3
   SD t4, 160(sp)
   LD t3, 160(sp)
@@ -1024,10 +1018,10 @@ bb130:
   # implict jump to bb131
 bb131:
   LA s4, c
-  LW t4, 24(sp)
+  LW t4, 8(sp)
   ADD s4, s4, t4
   LW s4, 0(s4)
-  LW t4, 8(sp)
+  LW t4, 32(sp)
   ADDW s4, t4, s4
   LD t4, 152(sp)
   LW s8, 0(t4)
@@ -1039,20 +1033,20 @@ bb131:
   LD t4, 160(sp)
   LW t0, 0(t4)
   SW t0, 0(s8)
-  LW t4, 32(sp)
+  LW t4, 28(sp)
   ADDIW s8, t4, 1
   ADD t4, s4, zero
   SW t4, 0(sp)
   ADD t4, s8, zero
-  SW t4, 28(sp)
+  SW t4, 12(sp)
   JAL zero, bb126
 bb132:
-  LW t3, 8(sp)
-  ADD t4, t3, zero
-  SW t4, 0(sp)
   LW t3, 32(sp)
   ADD t4, t3, zero
-  SW t4, 28(sp)
+  SW t4, 0(sp)
+  LW t3, 28(sp)
+  ADD t4, t3, zero
+  SW t4, 12(sp)
   JAL zero, bb126
 bb133:
   ADDI s4, zero, 1
@@ -1069,16 +1063,16 @@ bb135:
   ADD a0, a1, a0
   SW t2, 0(a0)
   ADDIW t4, t2, 1
-  SW t4, 12(sp)
+  SW t4, 24(sp)
   LA a0, n
   LW a0, 0(a0)
-  LW t4, 12(sp)
+  LW t4, 24(sp)
   SLT a0, a0, t4
   XORI a0, a0, 1
   BNE a0, zero, bb136
   JAL zero, bb125
 bb136:
-  LW t3, 12(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
   SW t4, 16(sp)
   JAL zero, bb135

@@ -1,10 +1,7 @@
 .global main
 .section .bss
 
-
 .section .data
-n:
-.word 0x0000000a
 k:
 .word 0x00000000
 .section .text

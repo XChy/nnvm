@@ -18,7 +18,6 @@ f:
 
 
 
-
 .section .data
 
 
@@ -31,8 +30,6 @@ cnt:
 .word 0x00000000
 m:
 .word 0x00000000
-maxn:
-.word 0x00002715
 .section .text
 LCA:
   ADDI sp, sp, -112

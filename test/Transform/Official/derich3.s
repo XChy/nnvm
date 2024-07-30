@@ -17,6 +17,7 @@ imgIn:
 
 
 
+
 .section .data
 
 
@@ -34,6 +35,8 @@ w:
 .word 0x40000000
 .CONSTANT.7.2:
 .word 0x00000000
+.CONSTANT.7.3:
+.word 0x3e800000
 .section .text
 kernel_deriche:
   ADDI sp, sp, -400
@@ -769,8 +772,8 @@ main:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
-  FSD fs0, 32(sp)
+  FSD fs0, 24(sp)
+  FSD fs1, 32(sp)
   LA s0, imgIn
   ADD a0, s0, zero
   CALL getfarray
@@ -780,11 +783,13 @@ main:
   LW s0, 0(s0)
   LA s1, h
   LW s1, 0(s1)
-  LA s2, alpha
-  FLW fs0, 0(s2)
   ADD a0, s0, zero
   ADD a1, s1, zero
-  FSGNJ.S fa0, fs0, fs0
+  LA s0, .CONSTANT.7.3
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.3
+  FLW fs1, 0(s0)
+  FSGNJ.S fa0, fs0, fs1
   LA s0, imgIn
   ADD a2, s0, zero
   LA s0, imgOut
@@ -809,8 +814,8 @@ main:
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
-  FLD fs0, 32(sp)
+  FLD fs0, 24(sp)
+  FLD fs1, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 newExp:

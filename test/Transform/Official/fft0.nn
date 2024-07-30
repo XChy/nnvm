@@ -1,10 +1,7 @@
-internal global ptr c init with 2097152 x i32 zeros
 internal global ptr b init with 2097152 x i32 zeros
 internal global ptr temp init with 2097152 x i32 zeros
-immutable internal global ptr maxlen init with i32 2097152
 internal global ptr a init with 2097152 x i32 zeros
 global ptr d init with i32 0
-immutable internal global ptr mod init with i32 998244353
 i32 fft(ptr arr, i32 begin_pos, i32 n, i32 w) {
 entry88:  pred()
   93 = icmp eq i32 %n, i32 1

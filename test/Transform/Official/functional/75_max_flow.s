@@ -14,15 +14,12 @@ to:
 .space 400
 size:
 .space 40
-
 .section .data
 
 
 
 
 
-INF:
-.word 0x70000000
 .section .text
 max_flow:
   ADDI sp, sp, -80
@@ -86,8 +83,8 @@ bb6:
   JAL zero, bb2
 dfs:
   ADDI sp, sp, -128
-  SD ra, 8(sp)
-  SD s4, 16(sp)
+  SD s4, 8(sp)
+  SD ra, 16(sp)
   SD s0, 24(sp)
   SD s1, 32(sp)
   SD s2, 40(sp)
@@ -127,8 +124,8 @@ bb9:
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -148,8 +145,8 @@ bb11:
   LA s11, to
   ADD s11, s11, s10
   SLLIW t4, s7, 2
-  SW t4, 0(sp)
-  LW t4, 0(sp)
+  SW t4, 4(sp)
+  LW t4, 4(sp)
   ADD s11, s11, t4
   LW t1, 0(s11)
   SLLIW t1, t1, 2
@@ -161,7 +158,7 @@ bb11:
 bb12:
   LA t1, cap
   ADD t1, t1, s10
-  LW t3, 0(sp)
+  LW t3, 4(sp)
   ADD t4, t1, t3
   SD t4, 112(sp)
   LD t4, 112(sp)
@@ -177,11 +174,11 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, t2, zero
-  SW t4, 4(sp)
+  SW t4, 0(sp)
   LW a3, 0(s11)
   ADD a0, a3, zero
   ADD a1, s1, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD a2, t4, zero
   CALL dfs
   ADD t0, a0, zero
@@ -190,7 +187,7 @@ bb15:
 bb16:
   ADDIW t1, s7, 1
   ADD s4, t0, zero
-  LW t4, 4(sp)
+  LW t4, 0(sp)
   ADD s5, t4, zero
   ADD s6, t1, zero
   JAL zero, bb9
@@ -207,7 +204,7 @@ bb17:
   ADD s11, t1, s11
   LA t1, rev
   ADD s10, t1, s10
-  LW t4, 0(sp)
+  LW t4, 4(sp)
   ADD s10, s10, t4
   LW s10, 0(s10)
   SLLIW s10, s10, 2
@@ -216,8 +213,8 @@ bb17:
   ADDW s11, s11, t0
   SW s11, 0(s10)
   ADD a0, t0, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)
@@ -248,8 +245,8 @@ bb20:
   JAL zero, bb9
 bb21:
   ADD a0, s2, zero
-  LD ra, 8(sp)
-  LD s4, 16(sp)
+  LD s4, 8(sp)
+  LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
   LD s2, 40(sp)

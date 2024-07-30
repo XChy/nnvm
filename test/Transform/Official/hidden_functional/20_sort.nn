@@ -1,9 +1,7 @@
 internal global ptr c init with 100005 x i32 zeros
 internal global ptr b init with 100005 x i32 zeros
 internal global ptr a init with 100005 x i32 zeros
-internal global ptr x init with 100005 x i32 zeros
 internal global ptr cnt init with 400020 x i32 zeros
-immutable internal global ptr maxn init with i32 100005
 global ptr n init with i32 0
 void sortB(ptr a) {
 entry110:  pred()

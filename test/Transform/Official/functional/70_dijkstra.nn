@@ -6,7 +6,6 @@ internal global ptr book init with 16 x i32 zeros
 global ptr n init with i32 0
 internal global ptr e init with 256 x i32 zeros
 internal global ptr dis init with 16 x i32 zeros
-immutable internal global ptr INF init with i32 65535
 external i32 getint()
 
 external i32 getch()

@@ -1,4 +1,3 @@
-immutable internal global ptr ascii_0 init with i32 48
 external i32 getint()
 
 external i32 getch()

@@ -13,21 +13,12 @@ value:
 .space 40000
 right_child:
 .space 40000
-
-
-
 .section .data
 now:
 .word 0x00000000
 
 
 
-LF:
-.word 0x0000000a
-maxNode:
-.word 0x00002710
-space:
-.word 0x00000020
 .section .text
 insert:
   ADDI sp, sp, -48

@@ -1,9 +1,6 @@
 .global main
 .section .bss
-
 .section .data
-a:
-.word 0x00000005
 .section .text
 main:
   ADDI sp, sp, -16

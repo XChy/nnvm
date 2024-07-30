@@ -1,11 +1,6 @@
-immutable internal global ptr TWO_PI init with float 6.283185
-immutable internal global ptr EPSILON init with float 0.000001
-immutable internal global ptr PI init with float 3.141593
 internal global ptr test_idct init with 64 x float zeros
 internal global ptr test_dct init with 64 x float zeros
 internal global ptr test_block init with 64 x float zeros
-immutable internal global ptr MAX_DIM_Y init with i32 8
-immutable internal global ptr MAX_DIM_X init with i32 8
 void idct(ptr mat, ptr dct_mat, i32 n, i32 m) {
 entry242:  pred()
   2511289 = icmp slt i32 0, i32 %n

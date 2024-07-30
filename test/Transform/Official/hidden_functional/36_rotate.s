@@ -10,33 +10,18 @@
 .section .bss
 
 
-
-
 image:
 .space 4194304
 
 
 
 
-
-
-
 .section .data
-EPSILON:
-.word 0x358637bd
-PI:
-.word 0x40490fdb
 height:
 .word 0x00000000
 width:
 .word 0x00000000
 
-MAX_HEIGHT:
-.word 0x00000400
-TWO_PI:
-.word 0x40c90fdb
-MAX_WIDTH:
-.word 0x00000400
 .CONSTANT.7.0:
 .word 0x40c90fdb
 .CONSTANT.7.1:
@@ -155,9 +140,9 @@ bb16:
   FSGNJ.S fa0, fs1, fs1
   CALL my_sin_impl
   LA s6, width
-  LW s2, 0(s6)
+  LW s0, 0(s6)
   ADDI s6, zero, 2
-  DIVW s6, s2, s6
+  DIVW s6, s0, s6
   LA s7, height
   LW s1, 0(s7)
   ADDI s7, zero, 2
@@ -177,31 +162,31 @@ bb16:
   FADD.S fs0, fs0, fs1
   FCVT.S.W fs1, s7
   FADD.S fs0, fs0, fs1
-  FCVT.W.S s0, fs0, rtz
+  FCVT.W.S s2, fs0, rtz
   BLT s3, zero, bb27
   # implict jump to bb17
 bb17:
-  SLT s4, s3, s2
+  SLT s4, s3, s0
   XORI s4, s4, 1
   # implict jump to bb18
 bb18:
   BNE s4, zero, bb26
   # implict jump to bb19
 bb19:
-  SLT s4, s0, zero
+  SLT s4, s2, zero
   # implict jump to bb20
 bb20:
   BNE s4, zero, bb25
   # implict jump to bb21
 bb21:
-  SLT s1, s0, s1
+  SLT s1, s2, s1
   XORI s1, s1, 1
   # implict jump to bb22
 bb22:
   BNE s1, zero, bb24
   # implict jump to bb23
 bb23:
-  MULW s0, s0, s2
+  MULW s0, s2, s0
   ADDW s0, s0, s3
   SLLIW s0, s0, 2
   LA s1, image
@@ -1056,13 +1041,13 @@ bb139:
   CALL my_sin_impl
   FSGNJ.D fs1, fa0, fa0
   LA s9, width
-  LW s2, 0(s9)
+  LW s1, 0(s9)
   ADDI s9, zero, 2
-  DIVW s9, s2, s9
+  DIVW s9, s1, s9
   LA s10, height
-  LW s1, 0(s10)
+  LW s0, 0(s10)
   ADDI s10, zero, 2
-  DIVW s10, s1, s10
+  DIVW s10, s0, s10
   SUBW s11, s8, s9
   SUBW s6, s5, s10
   FCVT.S.W fs3, s11
@@ -1072,17 +1057,17 @@ bb139:
   FSUB.S fs4, fs4, fs6
   FCVT.S.W fs6, s9
   FADD.S fs4, fs4, fs6
-  FCVT.W.S s0, fs4, rtz
+  FCVT.W.S s2, fs4, rtz
   FMUL.S fs2, fs3, fs2
   FMUL.S fs1, fs5, fs1
   FADD.S fs1, fs2, fs1
   FCVT.S.W fs2, s10
   FADD.S fs1, fs1, fs2
   FCVT.W.S s3, fs1, rtz
-  BLT s0, zero, bb152
+  BLT s2, zero, bb152
   # implict jump to bb140
 bb140:
-  SLT s6, s0, s2
+  SLT s6, s2, s1
   XORI s6, s6, 1
   # implict jump to bb141
 bb141:
@@ -1095,15 +1080,15 @@ bb143:
   BNE s6, zero, bb150
   # implict jump to bb144
 bb144:
-  SLT s1, s3, s1
-  XORI s1, s1, 1
+  SLT s0, s3, s0
+  XORI s0, s0, 1
   # implict jump to bb145
 bb145:
-  BNE s1, zero, bb149
+  BNE s0, zero, bb149
   # implict jump to bb146
 bb146:
-  MULW s1, s3, s2
-  ADDW s0, s1, s0
+  MULW s0, s3, s1
+  ADDW s0, s0, s2
   SLLIW s0, s0, 2
   LA s1, image
   ADD s0, s1, s0
@@ -1126,7 +1111,7 @@ bb149:
   ADD s0, zero, zero
   JAL zero, bb147
 bb150:
-  ADDI s1, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb145
 bb151:
   ADDI s6, zero, 1

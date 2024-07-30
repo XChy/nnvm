@@ -6,21 +6,15 @@
 
 store:
 .space 120
-
 graph:
 .space 3600
-
 .section .data
 m:
 .word 0x00000000
 n:
 .word 0x00000000
 
-maxM:
-.word 0x00000258
 
-maxN:
-.word 0x0000001e
 .section .text
 main:
   LUI t0, 1048575

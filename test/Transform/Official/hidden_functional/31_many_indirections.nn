@@ -1,6 +1,4 @@
 internal global ptr array init with 2000 x i32 zeros
-immutable internal global ptr M init with i32 20
-immutable internal global ptr N init with i32 100
 i32 main() {
 entry:  pred()
   br bb %while.body

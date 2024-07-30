@@ -1,6 +1,6 @@
 global ptr staticvalue init with i32 0
 internal global ptr a init with 10000 x i32 zeros
-internal global ptr seed init with 3 x i32 [19971231, 19981013, 1000000007]
+immutable internal global ptr seed init with 3 x i32 [19971231, 19981013, 1000000007]
 i32 rand() {
 entry194:  pred()
   staticvalue.load196 = load i32 from ptr @staticvalue

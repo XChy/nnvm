@@ -8,16 +8,10 @@ list:
 .space 800
 dp:
 .space 52907904
-
-
 .section .data
 
 
 
-mod:
-.word 0x3b9aca07
-maxn:
-.word 0x00000012
 .section .text
 dfs:
   ADDI sp, sp, -112
@@ -504,15 +498,11 @@ bb54:
   # implict jump to bb55
 bb55:
   ADD s6, s11, zero
-  SLLIW s9, s6, 2
-  LA s8, list
-  ADD s8, s8, s9
   CALL getint
   ADD s9, a0, zero
-  SW s9, 0(s8)
-  SLLIW s8, s9, 2
-  LA s9, cns
-  ADD s8, s9, s8
+  SLLIW s9, s9, 2
+  LA s8, cns
+  ADD s8, s8, s9
   LW s9, 0(s8)
   ADDIW s9, s9, 1
   SW s9, 0(s8)

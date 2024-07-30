@@ -16,19 +16,13 @@ to:
 
 
 
-
-
 .section .data
 
 
 
 
-maxm:
-.word 0x0000138d
 cnt:
 .word 0x00000000
-maxn:
-.word 0x000003ed
 m:
 .word 0x00000000
 n:

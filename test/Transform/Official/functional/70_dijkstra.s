@@ -12,7 +12,6 @@ e:
 .space 1024
 dis:
 .space 64
-
 .section .data
 w:
 .word 0x00000000
@@ -27,8 +26,6 @@ n:
 .word 0x00000000
 
 
-INF:
-.word 0x0000ffff
 .section .text
 main:
   ADDI sp, sp, -208

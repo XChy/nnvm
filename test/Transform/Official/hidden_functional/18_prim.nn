@@ -4,8 +4,6 @@ internal global ptr fa init with 1005 x i32 zeros
 global ptr n init with i32 0
 internal global ptr u init with 1005 x i32 zeros
 global ptr m init with i32 0
-immutable internal global ptr maxn init with i32 105
-immutable internal global ptr maxm init with i32 1005
 i32 same(i32 x, i32 y) {
 entry78:  pred()
   83 = call i32 find(i32 %x)

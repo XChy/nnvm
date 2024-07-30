@@ -1,5 +1,4 @@
-internal global ptr arr init with 6 x i32 [1, 2, 33, 4, 5, 6]
-immutable internal global ptr N init with i32 -1
+immutable internal global ptr arr init with 6 x i32 [1, 2, 33, 4, 5, 6]
 i32 main() {
 entry:  pred()
   br bb %while.body

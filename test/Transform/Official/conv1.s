@@ -11,13 +11,10 @@ b:
 .space 40000000
 a:
 .space 40000000
-
 .section .data
 
 
 
-max:
-.word 0x40000000
 .section .text
 convn:
   ADDI sp, sp, -144
@@ -54,39 +51,39 @@ bb2:
   ADD s10, s9, zero
   SUBW s11, s10, s5
   ADD t4, zero, zero
-  SW t4, 8(sp)
-  ADD t4, s8, zero
   SW t4, 12(sp)
+  ADD t4, s8, zero
+  SW t4, 16(sp)
   # implict jump to bb3
 bb3:
-  LW t3, 12(sp)
+  LW t3, 16(sp)
   ADD t4, t3, zero
-  SW t4, 16(sp)
-  LW t4, 8(sp)
+  SW t4, 20(sp)
+  LW t4, 12(sp)
   ADD t2, t4, zero
   ADD t4, t2, zero
-  SW t4, 20(sp)
+  SW t4, 8(sp)
   ADD t4, s11, zero
-  SW t4, 4(sp)
+  SW t4, 24(sp)
   # implict jump to bb4
 bb4:
-  LW t3, 4(sp)
+  LW t3, 24(sp)
   ADD t4, t3, zero
-  SW t4, 24(sp)
-  LW t4, 20(sp)
+  SW t4, 4(sp)
+  LW t4, 8(sp)
   ADD t6, t4, zero
-  LW t4, 16(sp)
+  LW t4, 20(sp)
   BLT t4, zero, bb24
   # implict jump to bb5
 bb5:
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   SLT s4, t4, zero
   # implict jump to bb6
 bb6:
   BNE s4, zero, bb23
   # implict jump to bb7
 bb7:
-  LW t4, 16(sp)
+  LW t4, 20(sp)
   SLT s4, t4, s3
   XORI s4, s4, 1
   # implict jump to bb8
@@ -94,7 +91,7 @@ bb8:
   BNE s4, zero, bb22
   # implict jump to bb9
 bb9:
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   LW t3, 0(sp)
   SLT s4, t4, t3
   XORI s4, s4, 1
@@ -103,10 +100,10 @@ bb10:
   BNE s4, zero, bb21
   # implict jump to bb11
 bb11:
-  LW t4, 16(sp)
+  LW t4, 20(sp)
   LW t3, 0(sp)
   MULW s4, t4, t3
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   ADDW s4, s4, t4
   SLLIW s4, s4, 2
   ADD s4, s1, s4
@@ -118,7 +115,7 @@ bb12:
   ADD a2, s4, zero
   CALL reduce
   ADD s4, a0, zero
-  LW t4, 24(sp)
+  LW t4, 4(sp)
   ADDIW t0, t4, 1
   ADDW t1, s10, s5
   SLT t1, t0, t1
@@ -127,12 +124,12 @@ bb12:
   # implict jump to bb13
 bb13:
   ADD t4, s4, zero
-  SW t4, 20(sp)
+  SW t4, 8(sp)
   ADD t4, t0, zero
-  SW t4, 4(sp)
+  SW t4, 24(sp)
   JAL zero, bb4
 bb14:
-  LW t4, 16(sp)
+  LW t4, 20(sp)
   ADDIW t0, t4, 1
   ADDW t1, s7, s5
   SLT t1, t0, t1
@@ -141,9 +138,9 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD t4, s4, zero
-  SW t4, 8(sp)
-  ADD t4, t0, zero
   SW t4, 12(sp)
+  ADD t4, t0, zero
+  SW t4, 16(sp)
   JAL zero, bb3
 bb16:
   LW t4, 0(sp)

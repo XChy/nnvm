@@ -1,4 +1,3 @@
-immutable internal global ptr len init with i32 20
 i32 main() {
 entry:  pred()
   %result = stack 160

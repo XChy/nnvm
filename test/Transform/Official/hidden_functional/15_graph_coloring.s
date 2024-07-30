@@ -4,16 +4,7 @@
 .global printMessage
 .global printSolution
 .section .bss
-
-
-
 .section .data
-LF:
-.word 0x0000000a
-space:
-.word 0x00000020
-V:
-.word 0x00000004
 .section .text
 graphColoring:
   ADDI sp, sp, -112
