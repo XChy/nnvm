@@ -1,0 +1,13 @@
+int f1();
+int main();
+
+int main() {
+    if (f1()) {
+        return 1;
+    }
+    return 0;
+}
+
+int f1() {
+    return 1;
+}

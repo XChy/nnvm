@@ -97,6 +97,7 @@ public:
 
   Value *entity;
   SymbolType *symbolType;
+  std::vector<Value *> callers;
 
   bool operator!() { return !entity; }
 
@@ -108,6 +109,12 @@ public:
     return Symbol(entity, SymbolType::getFloatTy());
   }
 
+  void addCaller(Value *caller) { this->callers.push_back(caller); }
+  void setCallee(Value *callee) {
+    for (Value *c : callers) {
+      cast<CallInst>(c)->setCallee(callee);
+    }
+  }
   static Symbol none();
 };
 
