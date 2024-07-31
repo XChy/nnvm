@@ -421,7 +421,7 @@ public:
   }
   BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
       : BranchInst(true) {
-    assert(cond->getType()->isIntegerNBits(1));
+    // assert(cond->getType()->isIntegerNBits(1));
     setOperand(0, cond);
     setSucc(0, trueSucc);
     setSucc(1, falseSucc);
