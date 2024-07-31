@@ -108,6 +108,7 @@ public:
            type <= LIRValueType::IntegerEnd;
   }
 
+  void replaceUseWith(LIRValue *newValue);
   void replaceWith(LIRValue *newValue);
   void emit(std::ostream &out, EmitInfo &info) const;
 

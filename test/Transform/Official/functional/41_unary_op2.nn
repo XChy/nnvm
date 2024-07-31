@@ -1,22 +1,22 @@
 i32 main() {
-entry:
-  11 = zext i1 0 to i32
-  12 = icmp ne i32 %11, i32 0
-  13 = xor i1 %12, i1 -1
-  14 = zext i1 %13 to i32
+entry:  pred()
+  14 = zext i1 0 to i32
   15 = icmp ne i32 %14, i32 0
   16 = xor i1 %15, i1 -1
   17 = zext i1 %16 to i32
-  18 = sub i32 0, i32 %17
-  19 = icmp ne i32 %18, i32 0
-  br i1 %19, bb %then, bb %else
-then:
+  18 = icmp ne i32 %17, i32 0
+  19 = xor i1 %18, i1 -1
+  20 = zext i1 %19 to i32
+  21 = sub i32 0, i32 %20
+  22 = icmp ne i32 %21, i32 0
+  br i1 %22, bb %then, bb %else
+then:  pred(entry)
   br bb %if.exit
-if.exit:
+if.exit:  pred(then, else)
   a.phi = phi [bb %else, i32 4, bb %then, i32 -1]
   call void putint(i32 %a.phi)
   ret i32 0
-else:
+else:  pred(entry)
   br bb %if.exit
 }
 

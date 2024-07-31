@@ -1,3 +1,7 @@
+// PhiResolution: Transform phis to copies.
+// Inspired by phi congruence class in "Translating Out of Static Single
+// Assignment Form".
+
 #include "PhiResolution.h"
 #include "ADT/Ranges.h"
 #include "Backend/RISCV/LowIR.h"

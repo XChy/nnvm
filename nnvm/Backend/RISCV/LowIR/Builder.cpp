@@ -20,7 +20,7 @@ Register *LIRBuilder::newVReg(LIRValueType valueType) {
 
 Register *LIRBuilder::newVRegForPtr() { return newVReg(LIRValueType::i64); }
 
-LIRBuilder &LIRBuilder::copy(LIRValue *from, Register *to) {
+LIRInst *LIRBuilder::copy(LIRValue *from, Register *to) {
   LIRInst *inst;
   if (from->getType() == LIRValueType::Float)
     inst = LIRInst::create(FSGNJ_S, to, from, from);
@@ -29,7 +29,7 @@ LIRBuilder &LIRBuilder::copy(LIRValue *from, Register *to) {
   else
     inst = LIRInst::create(ADD, to, from, module.getPhyReg(ZERO));
   addInst(inst);
-  return *this;
+  return inst;
 }
 
 LIRBuilder &LIRBuilder::jumpTo(LIRBB *dest) {

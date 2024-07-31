@@ -208,6 +208,9 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       return newInst;
     }
 
+    case InstID::Pin:
+      return builder.copy(I->getOp(1), I->getOp(0)->as<Register>());
+
     case InstID::ZExt: {
       I->getOp(1)->setType(I->getOp(0)->getType());
       auto *newInst =
@@ -235,35 +238,35 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
 
     case InstID::ICmp: {
       uint64_t predicate = I->getOp(3)->as<LIRImm>()->getValue();
+      LIRValue *dest = I->getOp(0);
+      LIRValue *lhs = I->getOp(1);
+      LIRValue *rhs = I->getOp(2);
       switch (predicate) {
 
       case ICmpInst::EQ: {
         // a == b  -->   (a ^ b) == 0 --> (a ^ b) u< 1
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
-        auto last =
-            LIRInst::create(SLTIU, I->getOp(0), middle, LIRImm::create(1));
+        auto middle = builder.newVReg(lhs->getType());
+        builder.addInst(LIRInst::create(XOR, middle, lhs, rhs));
+        auto last = LIRInst::create(SLTIU, dest, middle, LIRImm::create(1));
         builder.addInst(last);
         return last;
       }
 
         // a != b  -->  (a ^ b) == 0  -->  (a ^ b) u> 0  -->  0 u< (a ^ b)
       case ICmpInst::NE: {
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
-        auto last =
-            LIRInst::create(SLTU, I->getOp(0), builder.phyReg(ZERO), middle);
+        auto middle = builder.newVReg(lhs->getType());
+        builder.addInst(LIRInst::create(XOR, middle, lhs, rhs));
+        auto last = LIRInst::create(SLTU, dest, builder.phyReg(ZERO), middle);
         builder.addInst(last);
         return last;
       }
 
         // a > b  -->  b < a
       case ICmpInst::SGT:
-        I->swap(1, 2);
+        std::swap(lhs, rhs);
         // fallthrough
       case ICmpInst::SLT: {
-        auto newInst =
-            LIRInst::create(SLT, I->getOp(0), I->getOp(1), I->getOp(2));
+        auto newInst = LIRInst::create(SLT, dest, lhs, rhs);
         builder.addInst(newInst);
         return newInst;
       }
@@ -271,14 +274,13 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
         // a <= b  -->  not(a > b) --> not(b < a)
         // a >= b  -->  not(a < b)
       case ICmpInst::SLE:
-        I->swap(1, 2);
+        std::swap(lhs, rhs);
         // fallthrough
       case ICmpInst::SGE: {
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        auto slt = LIRInst::create(SLT, middle, I->getOp(1), I->getOp(2));
+        auto middle = builder.newVReg(dest->getType());
+        auto slt = LIRInst::create(SLT, middle, lhs, rhs);
+        auto newInst = LIRInst::create(XORI, dest, middle, LIRImm::create(1));
         builder.addInst(slt);
-        auto newInst =
-            LIRInst::create(XORI, I->getOp(0), middle, LIRImm::create(1));
         builder.addInst(newInst);
         return newInst;
       }

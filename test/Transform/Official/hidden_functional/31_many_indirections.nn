@@ -1,188 +1,182 @@
-global ptr array init with 2000 x i32 zeros
-immutable global ptr M init with i32 20
-immutable global ptr N init with i32 100
+internal global ptr array init with 2000 x i32 zeros
 i32 main() {
-entry:
-  br bb %while.cond
-while.cond:
-  i.phi = phi [bb %entry, i32 0, bb %while.exit13, i32 %28]
-  8 = icmp slt i32 %i.phi, i32 20
-  br i1 %8, bb %while.body, bb %while.exit
-while.body:
-  br bb %while.cond11
-while.exit:
-  32 = ptradd ptr @array, i32 400
-  34 = ptradd ptr @array, i32 800
-  36 = ptradd ptr @array, i32 1200
-  38 = ptradd ptr @array, i32 1600
-  40 = ptradd ptr @array, i32 2000
-  42 = ptradd ptr @array, i32 2400
-  44 = ptradd ptr @array, i32 2800
-  46 = ptradd ptr @array, i32 3200
-  48 = ptradd ptr @array, i32 3600
-  50 = ptradd ptr @array, i32 4000
-  52 = ptradd ptr @array, i32 4400
-  54 = ptradd ptr @array, i32 4800
-  56 = ptradd ptr @array, i32 5200
-  58 = ptradd ptr @array, i32 5600
-  60 = ptradd ptr @array, i32 6000
-  62 = ptradd ptr @array, i32 6400
-  64 = ptradd ptr @array, i32 6800
-  66 = ptradd ptr @array, i32 7200
-  236 = ptradd ptr @array, i32 7692
-  70.load = load i32 from ptr %236
-  237 = shl i32 %70.load, i32 2
-  73 = ptradd ptr %66, i32 %237
-  73.load = load i32 from ptr %73
-  238 = shl i32 %73.load, i32 2
-  76 = ptradd ptr %64, i32 %238
-  76.load = load i32 from ptr %76
-  239 = shl i32 %76.load, i32 2
-  79 = ptradd ptr %62, i32 %239
-  79.load = load i32 from ptr %79
-  240 = shl i32 %79.load, i32 2
-  82 = ptradd ptr %60, i32 %240
-  82.load = load i32 from ptr %82
-  241 = shl i32 %82.load, i32 2
-  85 = ptradd ptr %58, i32 %241
-  85.load = load i32 from ptr %85
-  242 = shl i32 %85.load, i32 2
-  88 = ptradd ptr %56, i32 %242
-  88.load = load i32 from ptr %88
-  243 = shl i32 %88.load, i32 2
-  91 = ptradd ptr %54, i32 %243
-  91.load = load i32 from ptr %91
-  244 = shl i32 %91.load, i32 2
-  94 = ptradd ptr %52, i32 %244
-  94.load = load i32 from ptr %94
-  245 = shl i32 %94.load, i32 2
-  97 = ptradd ptr %50, i32 %245
-  97.load = load i32 from ptr %97
-  246 = shl i32 %97.load, i32 2
-  100 = ptradd ptr %48, i32 %246
-  100.load = load i32 from ptr %100
-  247 = shl i32 %100.load, i32 2
-  103 = ptradd ptr %46, i32 %247
-  103.load = load i32 from ptr %103
-  248 = shl i32 %103.load, i32 2
-  106 = ptradd ptr %44, i32 %248
-  106.load = load i32 from ptr %106
-  249 = shl i32 %106.load, i32 2
-  109 = ptradd ptr %42, i32 %249
-  109.load = load i32 from ptr %109
-  250 = shl i32 %109.load, i32 2
-  112 = ptradd ptr %40, i32 %250
-  112.load = load i32 from ptr %112
-  251 = shl i32 %112.load, i32 2
-  115 = ptradd ptr %38, i32 %251
-  115.load = load i32 from ptr %115
-  252 = shl i32 %115.load, i32 2
-  118 = ptradd ptr %36, i32 %252
-  118.load = load i32 from ptr %118
-  253 = shl i32 %118.load, i32 2
-  121 = ptradd ptr %34, i32 %253
-  121.load = load i32 from ptr %121
-  254 = shl i32 %121.load, i32 2
-  124 = ptradd ptr %32, i32 %254
-  124.load = load i32 from ptr %124
-  255 = shl i32 %124.load, i32 2
-  127 = ptradd ptr @array, i32 %255
-  127.load = load i32 from ptr %127
-  257 = ptradd ptr @array, i32 7672
-  132.load = load i32 from ptr %257
-  134 = mul i32 %132.load, i32 400
-  135 = ptradd ptr @array, i32 %134
-  137 = ptradd ptr %135, i32 68
-  137.load = load i32 from ptr %137
-  139 = mul i32 %137.load, i32 400
-  140 = ptradd ptr @array, i32 %139
-  142 = ptradd ptr %140, i32 64
-  142.load = load i32 from ptr %142
-  144 = mul i32 %142.load, i32 400
-  145 = ptradd ptr @array, i32 %144
-  147 = ptradd ptr %145, i32 60
-  147.load = load i32 from ptr %147
-  149 = mul i32 %147.load, i32 400
-  150 = ptradd ptr @array, i32 %149
-  152 = ptradd ptr %150, i32 56
-  152.load = load i32 from ptr %152
-  154 = mul i32 %152.load, i32 400
-  155 = ptradd ptr @array, i32 %154
-  157 = ptradd ptr %155, i32 52
-  157.load = load i32 from ptr %157
-  159 = mul i32 %157.load, i32 400
-  160 = ptradd ptr @array, i32 %159
-  162 = ptradd ptr %160, i32 48
-  162.load = load i32 from ptr %162
-  164 = mul i32 %162.load, i32 400
-  165 = ptradd ptr @array, i32 %164
-  167 = ptradd ptr %165, i32 44
-  167.load = load i32 from ptr %167
-  169 = mul i32 %167.load, i32 400
-  170 = ptradd ptr @array, i32 %169
-  172 = ptradd ptr %170, i32 40
-  172.load = load i32 from ptr %172
-  174 = mul i32 %172.load, i32 400
-  175 = ptradd ptr @array, i32 %174
-  177 = ptradd ptr %175, i32 36
-  177.load = load i32 from ptr %177
-  179 = mul i32 %177.load, i32 400
-  180 = ptradd ptr @array, i32 %179
-  182 = ptradd ptr %180, i32 32
-  182.load = load i32 from ptr %182
-  184 = mul i32 %182.load, i32 400
-  185 = ptradd ptr @array, i32 %184
-  187 = ptradd ptr %185, i32 28
-  187.load = load i32 from ptr %187
-  189 = mul i32 %187.load, i32 400
-  190 = ptradd ptr @array, i32 %189
-  192 = ptradd ptr %190, i32 24
-  192.load = load i32 from ptr %192
-  194 = mul i32 %192.load, i32 400
-  195 = ptradd ptr @array, i32 %194
-  197 = ptradd ptr %195, i32 20
-  197.load = load i32 from ptr %197
-  199 = mul i32 %197.load, i32 400
-  200 = ptradd ptr @array, i32 %199
-  202 = ptradd ptr %200, i32 16
-  202.load = load i32 from ptr %202
-  204 = mul i32 %202.load, i32 400
-  205 = ptradd ptr @array, i32 %204
-  207 = ptradd ptr %205, i32 12
-  207.load = load i32 from ptr %207
-  209 = mul i32 %207.load, i32 400
-  210 = ptradd ptr @array, i32 %209
-  212 = ptradd ptr %210, i32 8
-  212.load = load i32 from ptr %212
-  214 = mul i32 %212.load, i32 400
-  215 = ptradd ptr @array, i32 %214
-  217 = ptradd ptr %215, i32 4
-  217.load = load i32 from ptr %217
-  219 = mul i32 %217.load, i32 400
-  220 = ptradd ptr @array, i32 %219
-  222.load = load i32 from ptr %220
-  224 = mul i32 %222.load, i32 400
-  225 = ptradd ptr @array, i32 %224
-  227 = ptradd ptr %225, i32 224
-  227.load = load i32 from ptr %227
-  229 = add i32 %127.load, i32 %227.load
-  call void putint(i32 %229)
-  ret i32 0
-while.cond11:
-  j.phi = phi [bb %while.body, i32 0, bb %while.body12, i32 %26]
-  16 = icmp slt i32 %j.phi, i32 100
-  br i1 %16, bb %while.body12, bb %while.exit13
-while.body12:
-  19 = mul i32 %i.phi, i32 400
+entry:  pred()
+  br bb %while.body
+while.body:  pred(while.exit13, entry)
+  i.phi266 = phi [bb %while.exit13, i32 %31, bb %entry, i32 0]
+  19 = mul i32 %i.phi266, i32 400
   20 = ptradd ptr @array, i32 %19
-  258 = shl i32 %j.phi, i32 2
-  23 = ptradd ptr %20, i32 %258
-  store i32 %j.phi to ptr %23
-  26 = add i32 %j.phi, i32 1
-  br bb %while.cond11
-while.exit13:
-  28 = add i32 %i.phi, i32 1
-  br bb %while.cond
+  br bb %while.body12
+while.exit:  pred(while.exit13)
+  36 = ptradd ptr @array, i32 400
+  38 = ptradd ptr @array, i32 800
+  40 = ptradd ptr @array, i32 1200
+  42 = ptradd ptr @array, i32 1600
+  44 = ptradd ptr @array, i32 2000
+  46 = ptradd ptr @array, i32 2400
+  48 = ptradd ptr @array, i32 2800
+  50 = ptradd ptr @array, i32 3200
+  52 = ptradd ptr @array, i32 3600
+  54 = ptradd ptr @array, i32 4000
+  56 = ptradd ptr @array, i32 4400
+  58 = ptradd ptr @array, i32 4800
+  60 = ptradd ptr @array, i32 5200
+  62 = ptradd ptr @array, i32 5600
+  64 = ptradd ptr @array, i32 6000
+  66 = ptradd ptr @array, i32 6400
+  68 = ptradd ptr @array, i32 6800
+  70 = ptradd ptr @array, i32 7200
+  240 = ptradd ptr @array, i32 7692
+  74.load = load i32 from ptr %240
+  241 = shl i32 %74.load, i32 2
+  77 = ptradd ptr %70, i32 %241
+  77.load = load i32 from ptr %77
+  242 = shl i32 %77.load, i32 2
+  80 = ptradd ptr %68, i32 %242
+  80.load = load i32 from ptr %80
+  243 = shl i32 %80.load, i32 2
+  83 = ptradd ptr %66, i32 %243
+  83.load = load i32 from ptr %83
+  244 = shl i32 %83.load, i32 2
+  86 = ptradd ptr %64, i32 %244
+  86.load = load i32 from ptr %86
+  245 = shl i32 %86.load, i32 2
+  89 = ptradd ptr %62, i32 %245
+  89.load = load i32 from ptr %89
+  246 = shl i32 %89.load, i32 2
+  92 = ptradd ptr %60, i32 %246
+  92.load = load i32 from ptr %92
+  247 = shl i32 %92.load, i32 2
+  95 = ptradd ptr %58, i32 %247
+  95.load = load i32 from ptr %95
+  248 = shl i32 %95.load, i32 2
+  98 = ptradd ptr %56, i32 %248
+  98.load = load i32 from ptr %98
+  249 = shl i32 %98.load, i32 2
+  101 = ptradd ptr %54, i32 %249
+  101.load = load i32 from ptr %101
+  250 = shl i32 %101.load, i32 2
+  104 = ptradd ptr %52, i32 %250
+  104.load = load i32 from ptr %104
+  251 = shl i32 %104.load, i32 2
+  107 = ptradd ptr %50, i32 %251
+  107.load = load i32 from ptr %107
+  252 = shl i32 %107.load, i32 2
+  110 = ptradd ptr %48, i32 %252
+  110.load = load i32 from ptr %110
+  253 = shl i32 %110.load, i32 2
+  113 = ptradd ptr %46, i32 %253
+  113.load = load i32 from ptr %113
+  254 = shl i32 %113.load, i32 2
+  116 = ptradd ptr %44, i32 %254
+  116.load = load i32 from ptr %116
+  255 = shl i32 %116.load, i32 2
+  119 = ptradd ptr %42, i32 %255
+  119.load = load i32 from ptr %119
+  256 = shl i32 %119.load, i32 2
+  122 = ptradd ptr %40, i32 %256
+  122.load = load i32 from ptr %122
+  257 = shl i32 %122.load, i32 2
+  125 = ptradd ptr %38, i32 %257
+  125.load = load i32 from ptr %125
+  258 = shl i32 %125.load, i32 2
+  128 = ptradd ptr %36, i32 %258
+  128.load = load i32 from ptr %128
+  259 = shl i32 %128.load, i32 2
+  131 = ptradd ptr @array, i32 %259
+  131.load = load i32 from ptr %131
+  261 = ptradd ptr @array, i32 7672
+  136.load = load i32 from ptr %261
+  138 = mul i32 %136.load, i32 400
+  139 = ptradd ptr @array, i32 %138
+  141 = ptradd ptr %139, i32 68
+  141.load = load i32 from ptr %141
+  143 = mul i32 %141.load, i32 400
+  144 = ptradd ptr @array, i32 %143
+  146 = ptradd ptr %144, i32 64
+  146.load = load i32 from ptr %146
+  148 = mul i32 %146.load, i32 400
+  149 = ptradd ptr @array, i32 %148
+  151 = ptradd ptr %149, i32 60
+  151.load = load i32 from ptr %151
+  153 = mul i32 %151.load, i32 400
+  154 = ptradd ptr @array, i32 %153
+  156 = ptradd ptr %154, i32 56
+  156.load = load i32 from ptr %156
+  158 = mul i32 %156.load, i32 400
+  159 = ptradd ptr @array, i32 %158
+  161 = ptradd ptr %159, i32 52
+  161.load = load i32 from ptr %161
+  163 = mul i32 %161.load, i32 400
+  164 = ptradd ptr @array, i32 %163
+  166 = ptradd ptr %164, i32 48
+  166.load = load i32 from ptr %166
+  168 = mul i32 %166.load, i32 400
+  169 = ptradd ptr @array, i32 %168
+  171 = ptradd ptr %169, i32 44
+  171.load = load i32 from ptr %171
+  173 = mul i32 %171.load, i32 400
+  174 = ptradd ptr @array, i32 %173
+  176 = ptradd ptr %174, i32 40
+  176.load = load i32 from ptr %176
+  178 = mul i32 %176.load, i32 400
+  179 = ptradd ptr @array, i32 %178
+  181 = ptradd ptr %179, i32 36
+  181.load = load i32 from ptr %181
+  183 = mul i32 %181.load, i32 400
+  184 = ptradd ptr @array, i32 %183
+  186 = ptradd ptr %184, i32 32
+  186.load = load i32 from ptr %186
+  188 = mul i32 %186.load, i32 400
+  189 = ptradd ptr @array, i32 %188
+  191 = ptradd ptr %189, i32 28
+  191.load = load i32 from ptr %191
+  193 = mul i32 %191.load, i32 400
+  194 = ptradd ptr @array, i32 %193
+  196 = ptradd ptr %194, i32 24
+  196.load = load i32 from ptr %196
+  198 = mul i32 %196.load, i32 400
+  199 = ptradd ptr @array, i32 %198
+  201 = ptradd ptr %199, i32 20
+  201.load = load i32 from ptr %201
+  203 = mul i32 %201.load, i32 400
+  204 = ptradd ptr @array, i32 %203
+  206 = ptradd ptr %204, i32 16
+  206.load = load i32 from ptr %206
+  208 = mul i32 %206.load, i32 400
+  209 = ptradd ptr @array, i32 %208
+  211 = ptradd ptr %209, i32 12
+  211.load = load i32 from ptr %211
+  213 = mul i32 %211.load, i32 400
+  214 = ptradd ptr @array, i32 %213
+  216 = ptradd ptr %214, i32 8
+  216.load = load i32 from ptr %216
+  218 = mul i32 %216.load, i32 400
+  219 = ptradd ptr @array, i32 %218
+  221 = ptradd ptr %219, i32 4
+  221.load = load i32 from ptr %221
+  223 = mul i32 %221.load, i32 400
+  224 = ptradd ptr @array, i32 %223
+  226.load = load i32 from ptr %224
+  228 = mul i32 %226.load, i32 400
+  229 = ptradd ptr @array, i32 %228
+  231 = ptradd ptr %229, i32 224
+  231.load = load i32 from ptr %231
+  233 = add i32 %131.load, i32 %231.load
+  call void putint(i32 %233)
+  ret i32 0
+while.body12:  pred(while.body12, while.body)
+  j.phi264 = phi [bb %while.body12, i32 %28, bb %while.body, i32 0]
+  262 = shl i32 %j.phi264, i32 2
+  23 = ptradd ptr %20, i32 %262
+  store i32 %j.phi264 to ptr %23
+  28 = add i32 %j.phi264, i32 1
+  16 = icmp slt i32 %28, i32 100
+  br i1 %16, bb %while.body12, bb %while.exit13
+while.exit13:  pred(while.body12)
+  31 = add i32 %i.phi266, i32 1
+  8 = icmp slt i32 %31, i32 20
+  br i1 %8, bb %while.body, bb %while.exit
 }
 
 external void putfarray(i32 , ptr )

@@ -1,20 +1,4 @@
-global ptr parent init with 1005 x i32 zeros
-immutable global ptr maxN init with i32 1005
-void merge(i32 p, i32 q) {
-entry24:
-  30 = call i32 find(i32 %p)
-  32 = call i32 find(i32 %q)
-  35 = icmp ne i32 %30, i32 %32
-  br i1 %35, bb %then36, bb %if.exit37
-then36:
-  106 = shl i32 %32, i32 2
-  40 = ptradd ptr @parent, i32 %106
-  store i32 %30 to ptr %40
-  br bb %if.exit37
-if.exit37:
-  ret 
-}
-
+internal global ptr parent init with 1005 x i32 zeros
 external i32 getint()
 
 external i32 getch()
@@ -26,84 +10,87 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry42:
-  44 = call i32 getint()
-  46 = call i32 getint()
-  br bb %while.cond
-while.cond:
-  i.phi101 = phi [bb %entry42, i32 0, bb %while.body, i32 %62]
-  55 = icmp slt i32 %i.phi101, i32 %44
-  br i1 %55, bb %while.body, bb %while.exit
-while.body:
-  107 = shl i32 %i.phi101, i32 2
-  59 = ptradd ptr @parent, i32 %107
-  store i32 %i.phi101 to ptr %59
-  62 = add i32 %i.phi101, i32 1
-  br bb %while.cond
-while.exit:
-  br bb %while.cond63
-while.cond63:
-  i.phi100 = phi [bb %while.exit, i32 0, bb %merge.if.exit37, i32 %76]
-  68 = icmp slt i32 %i.phi100, i32 %46
-  br i1 %68, bb %while.body64, bb %while.exit65
-while.body64:
-  70 = call i32 getint()
-  71 = call i32 getint()
-  30115 = call i32 find(i32 %70)
-  32116 = call i32 find(i32 %71)
-  35117 = icmp ne i32 %30115, i32 %32116
-  br i1 %35117, bb %merge.then36, bb %merge.if.exit37
-while.exit65:
-  br bb %while.cond78
-while.cond78:
-  clusters.phi105 = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %clusters.phi]
-  i.phi = phi [bb %while.exit65, i32 0, bb %if.exit92, i32 %96]
-  83 = icmp slt i32 %i.phi, i32 %44
-  br i1 %83, bb %while.body79, bb %while.exit80
-while.body79:
-  108 = shl i32 %i.phi, i32 2
-  87 = ptradd ptr @parent, i32 %108
-  87.load = load i32 from ptr %87
-  90 = icmp eq i32 %87.load, i32 %i.phi
-  br i1 %90, bb %then91, bb %if.exit92
-while.exit80:
-  call void putint(i32 %clusters.phi105)
+entry46:  pred()
+  48 = call i32 getint()
+  50 = call i32 getint()
+  60146 = icmp slt i32 0, i32 %48
+  br i1 %60146, bb %while.body_preheader, bb %while.exit
+while.body_preheader:  pred(entry46)
+  br bb %while.body
+while.body:  pred(while.body, while.body_preheader)
+  i.phi115147 = phi [bb %while.body, i32 %69, bb %while.body_preheader, i32 0]
+  121 = shl i32 %i.phi115147, i32 2
+  64 = ptradd ptr @parent, i32 %121
+  store i32 %i.phi115147 to ptr %64
+  69 = add i32 %i.phi115147, i32 1
+  60 = icmp slt i32 %69, i32 %48
+  br i1 %60, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, entry46)
+  76144 = icmp slt i32 0, i32 %50
+  br i1 %76144, bb %while.body72_preheader, bb %while.exit73
+while.body72_preheader:  pred(while.exit)
+  br bb %while.body72
+while.body72:  pred(merge.if.exit40, while.body72_preheader)
+  i.phi114145 = phi [bb %merge.if.exit40, i32 %87, bb %while.body72_preheader, i32 0]
+  79 = call i32 getint()
+  81 = call i32 getint()
+  32129 = call i32 find(i32 %79)
+  35130 = call i32 find(i32 %81)
+  38131 = icmp ne i32 %32129, i32 %35130
+  br i1 %38131, bb %merge.then39, bb %merge.if.exit40
+while.exit73:  pred(merge.if.exit40, while.exit)
+  br i1 %60146, bb %while.body91_preheader, bb %while.exit92
+while.body91_preheader:  pred(while.exit73)
+  br bb %while.body91
+while.body91:  pred(if.exit104, while.body91_preheader)
+  i.phi143 = phi [bb %if.exit104, i32 %110, bb %while.body91_preheader, i32 0]
+  clusters.phi119142 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.body91_preheader, i32 0]
+  122 = shl i32 %i.phi143, i32 2
+  99 = ptradd ptr @parent, i32 %122
+  99.load = load i32 from ptr %99
+  102 = icmp eq i32 %99.load, i32 %i.phi143
+  br i1 %102, bb %then103, bb %if.exit104
+while.exit92:  pred(if.exit104, while.exit73)
+  141 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.exit73, i32 0]
+  call void putint(i32 %141)
   ret i32 0
-then91:
-  94 = add i32 %clusters.phi105, i32 1
-  br bb %if.exit92
-if.exit92:
-  clusters.phi = phi [bb %while.body79, i32 %clusters.phi105, bb %then91, i32 %94]
-  96 = add i32 %i.phi, i32 1
-  br bb %while.cond78
-merge.then36:
-  106120 = shl i32 %32116, i32 2
-  40121 = ptradd ptr @parent, i32 %106120
-  store i32 %30115 to ptr %40121
-  br bb %merge.if.exit37
-merge.if.exit37:
-  76 = add i32 %i.phi100, i32 1
-  br bb %while.cond63
+then103:  pred(while.body91)
+  107 = add i32 %clusters.phi119142, i32 1
+  br bb %if.exit104
+if.exit104:  pred(while.body91, then103)
+  clusters.phi = phi [bb %while.body91, i32 %clusters.phi119142, bb %then103, i32 %107]
+  110 = add i32 %i.phi143, i32 1
+  95 = icmp slt i32 %110, i32 %48
+  br i1 %95, bb %while.body91, bb %while.exit92
+merge.then39:  pred(while.body72)
+  120134 = shl i32 %35130, i32 2
+  43135 = ptradd ptr @parent, i32 %120134
+  store i32 %32129 to ptr %43135
+  br bb %merge.if.exit40
+merge.if.exit40:  pred(while.body72, merge.then39)
+  87 = add i32 %i.phi114145, i32 1
+  76 = icmp slt i32 %87, i32 %50
+  br i1 %76, bb %while.body72, bb %while.exit73
 }
 
 external float getfloat()
 
 external void putfloat(float )
 
-i32 find(i32 root) {
-entry:
-  109 = shl i32 %root, i32 2
-  4 = ptradd ptr @parent, i32 %109
+internal i32 find(i32 root) {
+entry:  pred()
+  123 = shl i32 %root, i32 2
+  4 = ptradd ptr @parent, i32 %123
   4.load = load i32 from ptr %4
   7 = icmp eq i32 %4.load, i32 %root
   br i1 %7, bb %then, bb %else
-then:
+then:  pred(entry)
   ret i32 %root
-else:
-  17.load = load i32 from ptr %4
-  19 = call i32 find(i32 %17.load)
-  store i32 %19 to ptr %4
-  ret i32 %19
+else:  pred(entry)
+  18.load = load i32 from ptr %4
+  20 = call i32 find(i32 %18.load)
+  store i32 %20 to ptr %4
+  ret i32 %20
 }
 
 external void putch(i32 )

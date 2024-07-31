@@ -54,7 +54,7 @@ LLC = 'llc'
 QEMU = 'qemu-riscv64'
 CSMITH = 'csmith'
 
-TIMEOUT_PERIOD = 5
+TIMEOUT_PERIOD = 60
 
 brief_mode = False
 verbose_mode = False

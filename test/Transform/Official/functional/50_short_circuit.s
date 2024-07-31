@@ -1,5 +1,4 @@
 .global main
-.global func
 .section .bss
 
 .section .data
@@ -38,7 +37,6 @@ bb3:
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, g
   # implict jump to bb4
 bb4:
   CALL getint
@@ -56,7 +54,6 @@ bb5:
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, g
   # implict jump to bb6
 bb6:
   LA s0, g
@@ -87,7 +84,6 @@ bb8:
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, g
   JAL zero, bb7
 bb9:
   LA s1, g
@@ -97,7 +93,6 @@ bb9:
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, g
   JAL zero, bb2
 bb10:
   LA s1, g
@@ -107,26 +102,4 @@ bb10:
   SW s0, 0(s1)
   ADD a0, s0, zero
   CALL putint
-  LA s0, g
   JAL zero, bb1
-func:
-  ADDI sp, sp, -32
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  ADD s0, a0, zero
-  LA s1, g
-  LW s1, 0(s1)
-  ADDW s0, s1, s0
-  LA s1, g
-  SW s0, 0(s1)
-  ADD a0, s0, zero
-  CALL putint
-  LA s0, g
-  LW s0, 0(s0)
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)

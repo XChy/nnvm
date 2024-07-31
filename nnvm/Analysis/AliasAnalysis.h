@@ -14,12 +14,24 @@
 
 namespace nnvm {
 
-static inline Value *getAccessedObj(Instruction *a) {
+static inline Value *getAccessedPtr(Instruction *a) {
   if (auto *SI = mayCast<StoreInst>(a))
     return SI->getDest();
   if (auto *LI = mayCast<LoadInst>(a))
     return LI->getSrc();
   return nullptr;
+}
+
+static inline MemObj getAccessedObj(Instruction *a) {
+  MemObj ret;
+  if (auto *SI = mayCast<StoreInst>(a))
+    ret = {SI->getDest(), 0, SI->getStoredValue()->getType()->getStoredBytes()};
+  else if (auto *LI = mayCast<LoadInst>(a))
+    ret = {LI->getSrc(), 0, LI->getType()->getStoredBytes()};
+  else
+    return MemObj(nullptr);
+  ret.normalize();
+  return ret;
 }
 
 class AliasAnalysis : public FunctionPass {
@@ -28,6 +40,8 @@ public:
 
   AAFlag alias(Value *a, Value *b);
   bool mayAlias(Value *a, Value *b) { return alias(a, b) == MayAlias; }
+
+  AAFlag alias(MemObj a, MemObj b);
 
   AAFlag alias(Instruction *a, Instruction *b);
 

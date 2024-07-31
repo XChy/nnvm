@@ -32,8 +32,8 @@ void LivenessAnalysis::calcUsesAndDefs(LIRFunc &func) {
           BBDefs.insert(def);
     }
 
-    useOf[BB] = BBUses;
-    defOf[BB] = BBDefs;
+    useOf[BB] = std::move(BBUses);
+    defOf[BB] = std::move(BBDefs);
   }
 }
 
@@ -74,7 +74,7 @@ void LivenessAnalysis::calcLiveIns(LIRFunc &func) {
     liveIn[BB].insert(useOf[BB].begin(), useOf[BB].end());
 
     if (oldLiveIn != liveIn[BB])
-      for (int i = 0; i < BB->getPredNum(); i++) 
+      for (int i = 0; i < BB->getPredNum(); i++)
         worklist.push(BB->getPred(i));
   }
 }

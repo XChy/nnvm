@@ -12,7 +12,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry227:
+entry237:  pred()
   %c2 = stack 12
   %c1 = stack 12
   %c0 = stack 24
@@ -25,166 +25,170 @@ entry227:
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
-  br bb %while.cond
-while.cond:
-  i237.phi336 = phi [bb %entry227, i32 0, bb %while.body, i32 %276]
-  243 = icmp slt i32 %i237.phi336, i32 3
-  br i1 %243, bb %while.body, bb %while.exit
-while.body:
-  340 = shl i32 %i237.phi336, i32 2
-  247 = ptradd ptr %a0, i32 %340
-  249 = si2f i32 %i237.phi336 to float
-  store float %249 to ptr %247
-  252 = ptradd ptr %a1, i32 %340
-  store float %249 to ptr %252
-  257 = ptradd ptr %a2, i32 %340
-  store float %249 to ptr %257
-  262 = ptradd ptr %b0, i32 %340
-  store float %249 to ptr %262
-  267 = ptradd ptr %b1, i32 %340
-  store float %249 to ptr %267
-  272 = ptradd ptr %b2, i32 %340
-  store float %249 to ptr %272
-  276 = add i32 %i237.phi336, i32 1
-  br bb %while.cond
-while.exit:
-  5.load351 = load float from ptr %a0
-  8.load352 = load float from ptr %b0
-  10353 = fmul float %5.load351, float %8.load352
-  12354 = ptradd ptr %a0, i32 4
-  12.load355 = load float from ptr %12354
-  15.load356 = load float from ptr %b1
-  17357 = fmul float %12.load355, float %15.load356
-  18358 = fadd float %10353, float %17357
-  20359 = ptradd ptr %a0, i32 8
-  20.load360 = load float from ptr %20359
-  23.load361 = load float from ptr %b2
-  25362 = fmul float %20.load360, float %23.load361
-  26363 = fadd float %18358, float %25362
-  store float %26363 to ptr %c0
-  28365 = ptradd ptr %c0, i32 4
-  33367 = ptradd ptr %b0, i32 4
-  33.load368 = load float from ptr %33367
-  35369 = fmul float %5.load351, float %33.load368
-  40371 = ptradd ptr %b1, i32 4
-  40.load372 = load float from ptr %40371
-  42373 = fmul float %12.load355, float %40.load372
-  43374 = fadd float %35369, float %42373
-  48376 = ptradd ptr %b2, i32 4
-  48.load377 = load float from ptr %48376
-  50378 = fmul float %20.load360, float %48.load377
-  51379 = fadd float %43374, float %50378
-  store float %51379 to ptr %28365
-  53381 = ptradd ptr %c0, i32 8
-  58383 = ptradd ptr %b0, i32 8
-  58.load384 = load float from ptr %58383
-  60385 = fmul float %5.load351, float %58.load384
-  65387 = ptradd ptr %b1, i32 8
-  65.load388 = load float from ptr %65387
-  67389 = fmul float %12.load355, float %65.load388
-  68390 = fadd float %60385, float %67389
-  73392 = ptradd ptr %b2, i32 8
-  73.load393 = load float from ptr %73392
-  75394 = fmul float %20.load360, float %73.load393
-  76395 = fadd float %68390, float %75394
-  store float %76395 to ptr %53381
-  80.load397 = load float from ptr %a1
-  85399 = fmul float %80.load397, float %8.load352
-  87400 = ptradd ptr %a1, i32 4
-  87.load401 = load float from ptr %87400
-  92403 = fmul float %87.load401, float %15.load356
-  93404 = fadd float %85399, float %92403
-  95405 = ptradd ptr %a1, i32 8
-  95.load406 = load float from ptr %95405
-  100408 = fmul float %95.load406, float %23.load361
-  101409 = fadd float %93404, float %100408
-  store float %101409 to ptr %c1
-  103411 = ptradd ptr %c1, i32 4
-  110414 = fmul float %80.load397, float %33.load368
-  117417 = fmul float %87.load401, float %40.load372
-  118418 = fadd float %110414, float %117417
-  125421 = fmul float %95.load406, float %48.load377
-  126422 = fadd float %118418, float %125421
-  store float %126422 to ptr %103411
-  128424 = ptradd ptr %c1, i32 8
-  135427 = fmul float %80.load397, float %58.load384
-  142430 = fmul float %87.load401, float %65.load388
-  143431 = fadd float %135427, float %142430
-  150434 = fmul float %95.load406, float %73.load393
-  151435 = fadd float %143431, float %150434
-  store float %151435 to ptr %128424
-  155.load437 = load float from ptr %a2
-  160439 = fmul float %155.load437, float %8.load352
-  162440 = ptradd ptr %a2, i32 4
-  162.load441 = load float from ptr %162440
-  167443 = fmul float %162.load441, float %15.load356
-  168444 = fadd float %160439, float %167443
-  170445 = ptradd ptr %a2, i32 8
-  170.load446 = load float from ptr %170445
-  175448 = fmul float %170.load446, float %23.load361
-  176449 = fadd float %168444, float %175448
-  store float %176449 to ptr %c2
-  178451 = ptradd ptr %c2, i32 4
-  185454 = fmul float %155.load437, float %33.load368
-  192457 = fmul float %162.load441, float %40.load372
-  193458 = fadd float %185454, float %192457
-  200461 = fmul float %170.load446, float %48.load377
-  201462 = fadd float %193458, float %200461
-  store float %201462 to ptr %178451
-  203464 = ptradd ptr %c2, i32 8
-  210467 = fmul float %155.load437, float %58.load384
-  217470 = fmul float %162.load441, float %65.load388
-  218471 = fadd float %210467, float %217470
-  225474 = fmul float %170.load446, float %73.load393
-  226475 = fadd float %218471, float %225474
-  store float %226475 to ptr %203464
-  br bb %while.cond279
-while.cond279:
-  i237.phi335 = phi [bb %while.exit, i32 0, bb %while.body280, i32 %294]
-  N.load = load i32 from ptr @N
-  284 = icmp slt i32 %i237.phi335, i32 %N.load
-  br i1 %284, bb %while.body280, bb %while.exit281
-while.body280:
-  346 = shl i32 %i237.phi335, i32 2
-  288 = ptradd ptr %c0, i32 %346
-  288.load = load float from ptr %288
-  290 = f2si float %288.load to i32
-  call void putint(i32 %290)
-  294 = add i32 %i237.phi335, i32 1
-  br bb %while.cond279
-while.exit281:
+  br bb %while.body
+while.body:  pred(while.body, entry237)
+  i250.phi369522 = phi [bb %while.body, i32 %297, bb %entry237, i32 0]
+  373 = shl i32 %i250.phi369522, i32 2
+  261 = ptradd ptr %a0, i32 %373
+  264 = si2f i32 %i250.phi369522 to float
+  store float %264 to ptr %261
+  267 = ptradd ptr %a1, i32 %373
+  store float %264 to ptr %267
+  273 = ptradd ptr %a2, i32 %373
+  store float %264 to ptr %273
+  279 = ptradd ptr %b0, i32 %373
+  store float %264 to ptr %279
+  285 = ptradd ptr %b1, i32 %373
+  store float %264 to ptr %285
+  291 = ptradd ptr %b2, i32 %373
+  store float %264 to ptr %291
+  297 = add i32 %i250.phi369522, i32 1
+  257 = icmp slt i32 %297, i32 3
+  br i1 %257, bb %while.body, bb %while.exit
+while.exit:  pred(while.body)
+  7.load384 = load float from ptr %a0
+  10.load385 = load float from ptr %b0
+  12386 = fmul float %7.load384, float %10.load385
+  14387 = ptradd ptr %a0, i32 4
+  14.load388 = load float from ptr %14387
+  17.load389 = load float from ptr %b1
+  19390 = fmul float %14.load388, float %17.load389
+  20391 = fadd float %12386, float %19390
+  22392 = ptradd ptr %a0, i32 8
+  22.load393 = load float from ptr %22392
+  25.load394 = load float from ptr %b2
+  27395 = fmul float %22.load393, float %25.load394
+  28396 = fadd float %20391, float %27395
+  store float %28396 to ptr %c0
+  30398 = ptradd ptr %c0, i32 4
+  36400 = ptradd ptr %b0, i32 4
+  36.load401 = load float from ptr %36400
+  38402 = fmul float %7.load384, float %36.load401
+  43404 = ptradd ptr %b1, i32 4
+  43.load405 = load float from ptr %43404
+  45406 = fmul float %14.load388, float %43.load405
+  46407 = fadd float %38402, float %45406
+  51409 = ptradd ptr %b2, i32 4
+  51.load410 = load float from ptr %51409
+  53411 = fmul float %22.load393, float %51.load410
+  54412 = fadd float %46407, float %53411
+  store float %54412 to ptr %30398
+  56414 = ptradd ptr %c0, i32 8
+  62416 = ptradd ptr %b0, i32 8
+  62.load417 = load float from ptr %62416
+  64418 = fmul float %7.load384, float %62.load417
+  69420 = ptradd ptr %b1, i32 8
+  69.load421 = load float from ptr %69420
+  71422 = fmul float %14.load388, float %69.load421
+  72423 = fadd float %64418, float %71422
+  77425 = ptradd ptr %b2, i32 8
+  77.load426 = load float from ptr %77425
+  79427 = fmul float %22.load393, float %77.load426
+  80428 = fadd float %72423, float %79427
+  store float %80428 to ptr %56414
+  85.load430 = load float from ptr %a1
+  90432 = fmul float %85.load430, float %10.load385
+  92433 = ptradd ptr %a1, i32 4
+  92.load434 = load float from ptr %92433
+  97436 = fmul float %92.load434, float %17.load389
+  98437 = fadd float %90432, float %97436
+  100438 = ptradd ptr %a1, i32 8
+  100.load439 = load float from ptr %100438
+  105441 = fmul float %100.load439, float %25.load394
+  106442 = fadd float %98437, float %105441
+  store float %106442 to ptr %c1
+  108444 = ptradd ptr %c1, i32 4
+  116447 = fmul float %85.load430, float %36.load401
+  123450 = fmul float %92.load434, float %43.load405
+  124451 = fadd float %116447, float %123450
+  131454 = fmul float %100.load439, float %51.load410
+  132455 = fadd float %124451, float %131454
+  store float %132455 to ptr %108444
+  134457 = ptradd ptr %c1, i32 8
+  142460 = fmul float %85.load430, float %62.load417
+  149463 = fmul float %92.load434, float %69.load421
+  150464 = fadd float %142460, float %149463
+  157467 = fmul float %100.load439, float %77.load426
+  158468 = fadd float %150464, float %157467
+  store float %158468 to ptr %134457
+  163.load470 = load float from ptr %a2
+  168472 = fmul float %163.load470, float %10.load385
+  170473 = ptradd ptr %a2, i32 4
+  170.load474 = load float from ptr %170473
+  175476 = fmul float %170.load474, float %17.load389
+  176477 = fadd float %168472, float %175476
+  178478 = ptradd ptr %a2, i32 8
+  178.load479 = load float from ptr %178478
+  183481 = fmul float %178.load479, float %25.load394
+  184482 = fadd float %176477, float %183481
+  store float %184482 to ptr %c2
+  186484 = ptradd ptr %c2, i32 4
+  194487 = fmul float %163.load470, float %36.load401
+  201490 = fmul float %170.load474, float %43.load405
+  202491 = fadd float %194487, float %201490
+  209494 = fmul float %178.load479, float %51.load410
+  210495 = fadd float %202491, float %209494
+  store float %210495 to ptr %186484
+  212497 = ptradd ptr %c2, i32 8
+  220500 = fmul float %163.load470, float %62.load417
+  227503 = fmul float %170.load474, float %69.load421
+  228504 = fadd float %220500, float %227503
+  235507 = fmul float %178.load479, float %77.load426
+  236508 = fadd float %228504, float %235507
+  store float %236508 to ptr %212497
+  N.load305518 = load i32 from ptr @N
+  306519 = icmp slt i32 0, i32 %N.load305518
+  br i1 %306519, bb %while.body302_preheader, bb %while.exit303
+while.body302_preheader:  pred(while.exit)
+  br bb %while.body302
+while.body302:  pred(while.body302, while.body302_preheader)
+  i250.phi368520 = phi [bb %while.body302, i32 %318, bb %while.body302_preheader, i32 0]
+  379 = shl i32 %i250.phi368520, i32 2
+  311 = ptradd ptr %c0, i32 %379
+  311.load = load float from ptr %311
+  313 = f2si float %311.load to i32
+  call void putint(i32 %313)
+  318 = add i32 %i250.phi368520, i32 1
+  N.load305 = load i32 from ptr @N
+  306 = icmp slt i32 %318, i32 %N.load305
+  br i1 %306, bb %while.body302, bb %while.exit303
+while.exit303:  pred(while.body302, while.exit)
   call void putch(i32 10)
-  br bb %while.cond297
-while.cond297:
-  i237.phi334 = phi [bb %while.exit281, i32 0, bb %while.body298, i32 %312]
-  N.load301 = load i32 from ptr @N
-  302 = icmp slt i32 %i237.phi334, i32 %N.load301
-  br i1 %302, bb %while.body298, bb %while.exit299
-while.body298:
-  347 = shl i32 %i237.phi334, i32 2
-  306 = ptradd ptr %c1, i32 %347
-  306.load = load float from ptr %306
-  308 = f2si float %306.load to i32
-  call void putint(i32 %308)
-  312 = add i32 %i237.phi334, i32 1
-  br bb %while.cond297
-while.exit299:
+  N.load327515 = load i32 from ptr @N
+  328516 = icmp slt i32 0, i32 %N.load327515
+  br i1 %328516, bb %while.body324_preheader, bb %while.exit325
+while.body324_preheader:  pred(while.exit303)
+  br bb %while.body324
+while.body324:  pred(while.body324, while.body324_preheader)
+  i250.phi367517 = phi [bb %while.body324, i32 %340, bb %while.body324_preheader, i32 0]
+  380 = shl i32 %i250.phi367517, i32 2
+  333 = ptradd ptr %c1, i32 %380
+  333.load = load float from ptr %333
+  335 = f2si float %333.load to i32
+  call void putint(i32 %335)
+  340 = add i32 %i250.phi367517, i32 1
+  N.load327 = load i32 from ptr @N
+  328 = icmp slt i32 %340, i32 %N.load327
+  br i1 %328, bb %while.body324, bb %while.exit325
+while.exit325:  pred(while.body324, while.exit303)
   call void putch(i32 10)
-  br bb %while.cond315
-while.cond315:
-  i237.phi = phi [bb %while.exit299, i32 0, bb %while.body316, i32 %330]
-  N.load319 = load i32 from ptr @N
-  320 = icmp slt i32 %i237.phi, i32 %N.load319
-  br i1 %320, bb %while.body316, bb %while.exit317
-while.body316:
-  348 = shl i32 %i237.phi, i32 2
-  324 = ptradd ptr %c2, i32 %348
-  324.load = load float from ptr %324
-  326 = f2si float %324.load to i32
-  call void putint(i32 %326)
-  330 = add i32 %i237.phi, i32 1
-  br bb %while.cond315
-while.exit317:
+  N.load349512 = load i32 from ptr @N
+  350513 = icmp slt i32 0, i32 %N.load349512
+  br i1 %350513, bb %while.body346_preheader, bb %while.exit347
+while.body346_preheader:  pred(while.exit325)
+  br bb %while.body346
+while.body346:  pred(while.body346, while.body346_preheader)
+  i250.phi514 = phi [bb %while.body346, i32 %362, bb %while.body346_preheader, i32 0]
+  381 = shl i32 %i250.phi514, i32 2
+  355 = ptradd ptr %c2, i32 %381
+  355.load = load float from ptr %355
+  357 = f2si float %355.load to i32
+  call void putint(i32 %357)
+  362 = add i32 %i250.phi514, i32 1
+  N.load349 = load i32 from ptr @N
+  350 = icmp slt i32 %362, i32 %N.load349
+  br i1 %350, bb %while.body346, bb %while.exit347
+while.exit347:  pred(while.body346, while.exit325)
   call void putch(i32 10)
   ret i32 0
 }
@@ -202,136 +206,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-i32 mul(ptr a0, ptr a1, ptr a2, ptr b0, ptr b1, ptr b2, ptr c0, ptr c1, ptr c2) {
-entry:
-  5.load = load float from ptr %a0
-  8.load = load float from ptr %b0
-  10 = fmul float %5.load, float %8.load
-  12 = ptradd ptr %a0, i32 4
-  12.load = load float from ptr %12
-  15.load = load float from ptr %b1
-  17 = fmul float %12.load, float %15.load
-  18 = fadd float %10, float %17
-  20 = ptradd ptr %a0, i32 8
-  20.load = load float from ptr %20
-  23.load = load float from ptr %b2
-  25 = fmul float %20.load, float %23.load
-  26 = fadd float %18, float %25
-  store float %26 to ptr %c0
-  28 = ptradd ptr %c0, i32 4
-  30.load = load float from ptr %a0
-  33 = ptradd ptr %b0, i32 4
-  33.load = load float from ptr %33
-  35 = fmul float %30.load, float %33.load
-  37.load = load float from ptr %12
-  40 = ptradd ptr %b1, i32 4
-  40.load = load float from ptr %40
-  42 = fmul float %37.load, float %40.load
-  43 = fadd float %35, float %42
-  45.load = load float from ptr %20
-  48 = ptradd ptr %b2, i32 4
-  48.load = load float from ptr %48
-  50 = fmul float %45.load, float %48.load
-  51 = fadd float %43, float %50
-  store float %51 to ptr %28
-  53 = ptradd ptr %c0, i32 8
-  55.load = load float from ptr %a0
-  58 = ptradd ptr %b0, i32 8
-  58.load = load float from ptr %58
-  60 = fmul float %55.load, float %58.load
-  62.load = load float from ptr %12
-  65 = ptradd ptr %b1, i32 8
-  65.load = load float from ptr %65
-  67 = fmul float %62.load, float %65.load
-  68 = fadd float %60, float %67
-  70.load = load float from ptr %20
-  73 = ptradd ptr %b2, i32 8
-  73.load = load float from ptr %73
-  75 = fmul float %70.load, float %73.load
-  76 = fadd float %68, float %75
-  store float %76 to ptr %53
-  80.load = load float from ptr %a1
-  83.load = load float from ptr %b0
-  85 = fmul float %80.load, float %83.load
-  87 = ptradd ptr %a1, i32 4
-  87.load = load float from ptr %87
-  90.load = load float from ptr %b1
-  92 = fmul float %87.load, float %90.load
-  93 = fadd float %85, float %92
-  95 = ptradd ptr %a1, i32 8
-  95.load = load float from ptr %95
-  98.load = load float from ptr %b2
-  100 = fmul float %95.load, float %98.load
-  101 = fadd float %93, float %100
-  store float %101 to ptr %c1
-  103 = ptradd ptr %c1, i32 4
-  105.load = load float from ptr %a1
-  108.load = load float from ptr %33
-  110 = fmul float %105.load, float %108.load
-  112.load = load float from ptr %87
-  115.load = load float from ptr %40
-  117 = fmul float %112.load, float %115.load
-  118 = fadd float %110, float %117
-  120.load = load float from ptr %95
-  123.load = load float from ptr %48
-  125 = fmul float %120.load, float %123.load
-  126 = fadd float %118, float %125
-  store float %126 to ptr %103
-  128 = ptradd ptr %c1, i32 8
-  130.load = load float from ptr %a1
-  133.load = load float from ptr %58
-  135 = fmul float %130.load, float %133.load
-  137.load = load float from ptr %87
-  140.load = load float from ptr %65
-  142 = fmul float %137.load, float %140.load
-  143 = fadd float %135, float %142
-  145.load = load float from ptr %95
-  148.load = load float from ptr %73
-  150 = fmul float %145.load, float %148.load
-  151 = fadd float %143, float %150
-  store float %151 to ptr %128
-  155.load = load float from ptr %a2
-  158.load = load float from ptr %b0
-  160 = fmul float %155.load, float %158.load
-  162 = ptradd ptr %a2, i32 4
-  162.load = load float from ptr %162
-  165.load = load float from ptr %b1
-  167 = fmul float %162.load, float %165.load
-  168 = fadd float %160, float %167
-  170 = ptradd ptr %a2, i32 8
-  170.load = load float from ptr %170
-  173.load = load float from ptr %b2
-  175 = fmul float %170.load, float %173.load
-  176 = fadd float %168, float %175
-  store float %176 to ptr %c2
-  178 = ptradd ptr %c2, i32 4
-  180.load = load float from ptr %a2
-  183.load = load float from ptr %33
-  185 = fmul float %180.load, float %183.load
-  187.load = load float from ptr %162
-  190.load = load float from ptr %40
-  192 = fmul float %187.load, float %190.load
-  193 = fadd float %185, float %192
-  195.load = load float from ptr %170
-  198.load = load float from ptr %48
-  200 = fmul float %195.load, float %198.load
-  201 = fadd float %193, float %200
-  store float %201 to ptr %178
-  203 = ptradd ptr %c2, i32 8
-  205.load = load float from ptr %a2
-  208.load = load float from ptr %58
-  210 = fmul float %205.load, float %208.load
-  212.load = load float from ptr %162
-  215.load = load float from ptr %65
-  217 = fmul float %212.load, float %215.load
-  218 = fadd float %210, float %217
-  220.load = load float from ptr %170
-  223.load = load float from ptr %73
-  225 = fmul float %220.load, float %223.load
-  226 = fadd float %218, float %225
-  store float %226 to ptr %203
-  ret i32 0
-}
 
 

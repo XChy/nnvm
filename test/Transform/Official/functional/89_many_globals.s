@@ -1,7 +1,4 @@
-.global testParam32
 .global main
-.global testParam16
-.global testParam8
 .section .bss
 
 
@@ -125,134 +122,6 @@ a23:
 a28:
 .word 0x00000000
 .section .text
-testParam32:
-  ADDI sp, sp, -144
-  SD ra, 32(sp)
-  SD s3, 40(sp)
-  SD s0, 48(sp)
-  SD s1, 56(sp)
-  SD s2, 64(sp)
-  SD s4, 72(sp)
-  SD s5, 80(sp)
-  SD s6, 88(sp)
-  SD s7, 96(sp)
-  SD s8, 104(sp)
-  SD s9, 112(sp)
-  SD s10, 120(sp)
-  SD s11, 128(sp)
-  ADD s0, a0, zero
-  ADDI t5, sp, 144
-  ADD s1, t5, zero
-  LW s1, 0(s1)
-  ADDI s2, sp, 148
-  LW s2, 0(s2)
-  ADDI s3, sp, 152
-  LW s3, 0(s3)
-  ADDI s4, sp, 156
-  LW s4, 0(s4)
-  ADDI s5, sp, 160
-  LW s5, 0(s5)
-  ADDI s6, sp, 164
-  LW s6, 0(s6)
-  ADDI s7, sp, 168
-  LW s7, 0(s7)
-  ADDI s8, sp, 172
-  LW s8, 0(s8)
-  ADDI s9, sp, 176
-  LW s9, 0(s9)
-  ADDI s10, sp, 180
-  LW s10, 0(s10)
-  ADDI s11, sp, 184
-  LW s11, 0(s11)
-  ADDI ra, sp, 188
-  LW ra, 0(ra)
-  ADDI t0, sp, 192
-  LW t0, 0(t0)
-  ADDI t1, sp, 196
-  LW t1, 0(t1)
-  ADDI t2, sp, 200
-  LW t2, 0(t2)
-  ADDI t6, sp, 204
-  LW t4, 0(t6)
-  SW t4, 0(sp)
-  ADDI t6, sp, 208
-  LW t4, 0(t6)
-  SW t4, 4(sp)
-  ADDI t6, sp, 212
-  LW t4, 0(t6)
-  SW t4, 8(sp)
-  ADDI t6, sp, 216
-  LW t4, 0(t6)
-  SW t4, 12(sp)
-  ADDI t6, sp, 220
-  LW t4, 0(t6)
-  SW t4, 16(sp)
-  ADDI t6, sp, 224
-  LW t4, 0(t6)
-  SW t4, 20(sp)
-  ADDI t6, sp, 228
-  LW t4, 0(t6)
-  SW t4, 24(sp)
-  ADDI t6, sp, 232
-  LW t4, 0(t6)
-  SW t4, 28(sp)
-  ADDI t6, sp, 236
-  LW t6, 0(t6)
-  ADDW s0, s0, a1
-  ADDW s0, s0, a2
-  ADDW s0, s0, a3
-  ADDW s0, s0, a4
-  ADDW s0, s0, a5
-  ADDW s0, s0, a6
-  ADDW s0, s0, a7
-  ADDW s0, s0, s1
-  ADDW s0, s0, s2
-  ADDW s0, s0, s3
-  ADDW s0, s0, s4
-  ADDW s0, s0, s5
-  ADDW s0, s0, s6
-  ADDW s0, s0, s7
-  ADDW s0, s0, s8
-  ADDW s0, s0, s9
-  ADDW s0, s0, s10
-  SUBW s0, s0, s11
-  SUBW s0, s0, ra
-  SUBW s0, s0, t0
-  SUBW s0, s0, t1
-  SUBW s0, s0, t2
-  LW t4, 0(sp)
-  ADDW s0, s0, t4
-  LW t4, 4(sp)
-  ADDW s0, s0, t4
-  LW t4, 8(sp)
-  ADDW s0, s0, t4
-  LW t4, 12(sp)
-  ADDW s0, s0, t4
-  LW t4, 16(sp)
-  ADDW s0, s0, t4
-  LW t4, 20(sp)
-  ADDW s0, s0, t4
-  LW t4, 24(sp)
-  ADDW s0, s0, t4
-  LW t4, 28(sp)
-  ADDW s0, s0, t4
-  ADDW s0, s0, t6
-  ADD a0, s0, zero
-  LD ra, 32(sp)
-  LD s3, 40(sp)
-  LD s0, 48(sp)
-  LD s1, 56(sp)
-  LD s2, 64(sp)
-  LD s4, 72(sp)
-  LD s5, 80(sp)
-  LD s6, 88(sp)
-  LD s7, 96(sp)
-  LD s8, 104(sp)
-  LD s9, 112(sp)
-  LD s10, 120(sp)
-  LD s11, 128(sp)
-  ADDI sp, sp, 144
-  JALR zero, 0(ra)
 main:
   ADDI sp, sp, -208
   SD ra, 96(sp)
@@ -388,17 +257,10 @@ main:
   LA s0, a39
   ADDI s1, zero, 1
   SW s1, 0(s0)
-  ADDI s0, zero, 1
-  ADDW s0, s0, zero
-  ADDIW s0, s0, 2
-  ADDIW s0, s0, 3
-  ADDIW s0, s0, 4
-  ADDIW s0, s0, 5
-  ADDIW s0, s0, 6
-  ADDIW s0, s0, 7
-  LA s1, a0
-  SW s0, 0(s1)
-  ADD a0, s0, zero
+  LA s0, a0
+  ADDI s1, zero, 28
+  SW s1, 0(s0)
+  ADDI a0, zero, 28
   CALL putint
   LA s0, a32
   LW s0, 0(s0)
@@ -613,79 +475,4 @@ main:
   LD s10, 184(sp)
   LD s11, 192(sp)
   ADDI sp, sp, 208
-  JALR zero, 0(ra)
-testParam16:
-  ADDI sp, sp, -80
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  SD s7, 64(sp)
-  SD s8, 72(sp)
-  ADD s0, a0, zero
-  ADDI t5, sp, 80
-  ADD s1, t5, zero
-  LW s1, 0(s1)
-  ADDI s2, sp, 84
-  LW s2, 0(s2)
-  ADDI s3, sp, 88
-  LW s3, 0(s3)
-  ADDI s4, sp, 92
-  LW s4, 0(s4)
-  ADDI s5, sp, 96
-  LW s5, 0(s5)
-  ADDI s6, sp, 100
-  LW s6, 0(s6)
-  ADDI s7, sp, 104
-  LW s7, 0(s7)
-  ADDI s8, sp, 108
-  LW s8, 0(s8)
-  ADDW s0, s0, a1
-  ADDW s0, s0, a2
-  SUBW s0, s0, a3
-  SUBW s0, s0, a4
-  SUBW s0, s0, a5
-  SUBW s0, s0, a6
-  SUBW s0, s0, a7
-  ADDW s0, s0, s1
-  ADDW s0, s0, s2
-  ADDW s0, s0, s3
-  ADDW s0, s0, s4
-  ADDW s0, s0, s5
-  ADDW s0, s0, s6
-  ADDW s0, s0, s7
-  ADDW s0, s0, s8
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  LD s7, 64(sp)
-  LD s8, 72(sp)
-  ADDI sp, sp, 80
-  JALR zero, 0(ra)
-testParam8:
-  ADDI sp, sp, -16
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  ADD s0, a0, zero
-  ADDW s0, s0, a1
-  ADDW s0, s0, a2
-  ADDW s0, s0, a3
-  ADDW s0, s0, a4
-  ADDW s0, s0, a5
-  ADDW s0, s0, a6
-  ADDW s0, s0, a7
-  ADD a0, s0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  ADDI sp, sp, 16
   JALR zero, 0(ra)

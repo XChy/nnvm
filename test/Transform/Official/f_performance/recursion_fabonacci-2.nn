@@ -1,0 +1,96 @@
+pure internal float takFP(float x, float y, float z) {
+entry13:  pred()
+  1978 = fcmp olt float %y, float %x
+  br i1 %1978, bb %then20_preheader, bb %if.exit21
+then20_preheader:  pred(entry13)
+  br bb %then20
+then20:  pred(then20, then20_preheader)
+  x.loop82 = phi [bb %then20, float %26, bb %then20_preheader, float %x]
+  y.loop81 = phi [bb %then20, float %31, bb %then20_preheader, float %y]
+  z.loop80 = phi [bb %then20, float %36, bb %then20_preheader, float %z]
+  23 = fsub float %x.loop82, float 1.000000
+  26 = call float takFP(float %23, float %y.loop81, float %z.loop80)
+  28 = fsub float %y.loop81, float 1.000000
+  31 = call float takFP(float %28, float %z.loop80, float %x.loop82)
+  33 = fsub float %z.loop80, float 1.000000
+  36 = call float takFP(float %33, float %x.loop82, float %y.loop81)
+  19 = fcmp olt float %31, float %26
+  br i1 %19, bb %then20, bb %if.exit21
+if.exit21:  pred(then20, entry13)
+  z79 = phi [bb %then20, float %36, bb %entry13, float %z]
+  ret float %z79
+}
+
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry39:  pred()
+  call void _sysy_starttime(i32 20)
+  42 = call i32 getint()
+  44 = call float getfloat()
+  46 = call float getfloat()
+  48 = call float getfloat()
+  51 = si2f i32 %42 to float
+  52 = fadd float 28.000000, float %51
+  53 = call float fibFP(float %52)
+  58 = call float takFP(float %44, float %46, float %48)
+  60 = fcmp oeq float %53, float 39088168.000000
+  br i1 %60, bb %then61, bb %else
+then61:  pred(entry39)
+  call void putch(i32 112)
+  br bb %if.exit62
+if.exit62:  pred(then61, else)
+  67 = fcmp oeq float %58, float 1.000000
+  br i1 %67, bb %then68, bb %else70
+else:  pred(entry39)
+  call void putint(i32 1)
+  br bb %if.exit62
+then68:  pred(if.exit62)
+  call void putch(i32 112)
+  br bb %if.exit69
+if.exit69:  pred(then68, else70)
+  call void _sysy_stoptime(i32 41)
+  ret i32 0
+else70:  pred(if.exit62)
+  call void putint(i32 1)
+  br bb %if.exit69
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+pure internal float fibFP(float n) {
+entry:  pred()
+  3 = fcmp olt float %n, float 2.000000
+  br i1 %3, bb %then, bb %if.exit
+then:  pred(entry)
+  ret float 1.000000
+if.exit:  pred(entry)
+  7 = fsub float %n, float 2.000000
+  8 = call float fibFP(float %7)
+  10 = fsub float %n, float 1.000000
+  11 = call float fibFP(float %10)
+  12 = fadd float %8, float %11
+  ret float %12
+}
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

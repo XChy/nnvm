@@ -1,18 +1,6 @@
 global ptr b init with i32 0
 global ptr d init with i32 0
 global ptr a init with i32 0
-i32 set_d(i32 val) {
-entry8:
-  store i32 %val to ptr @d
-  ret i32 %val
-}
-
-i32 set_b(i32 val) {
-entry4:
-  store i32 %val to ptr @b
-  ret i32 %val
-}
-
 external i32 getint()
 
 external i32 getch()
@@ -24,139 +12,139 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry12:
+entry15:  pred()
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load27 = load i32 from ptr @b
-  call void putint(i32 %b.load27)
+  b.load32 = load i32 from ptr @b
+  call void putint(i32 %b.load32)
   call void putch(i32 32)
   store i32 2 to ptr @a
   store i32 3 to ptr @b
   store i32 0 to ptr @a
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load44 = load i32 from ptr @b
-  call void putint(i32 %b.load44)
+  b.load51 = load i32 from ptr @b
+  call void putint(i32 %b.load51)
   call void putch(i32 10)
   store i32 2 to ptr @d
-  47 = icmp sge i32 1, i32 1
-  br i1 %47, bb %select.then48, bb %select.exit50
-select.then48:
+  55 = icmp sge i32 1, i32 1
+  br i1 %55, bb %select.then56, bb %select.exit58
+select.then56:  pred(entry15)
   store i32 3 to ptr @d
-  br bb %select.exit50
-select.exit50:
-  d.load57 = load i32 from ptr @d
-  call void putint(i32 %d.load57)
+  br bb %select.exit58
+select.exit58:  pred(select.then56, entry15)
+  d.load65 = load i32 from ptr @d
+  call void putint(i32 %d.load65)
   call void putch(i32 32)
-  60 = icmp sle i32 1, i32 1
-  br i1 %60, bb %select.exit63, bb %select.else62
-select.else62:
+  68 = icmp sle i32 1, i32 1
+  br i1 %68, bb %select.exit71, bb %select.else70
+select.else70:  pred(select.exit58)
   store i32 4 to ptr @d
-  br bb %select.exit63
-select.exit63:
-  d.load71 = load i32 from ptr @d
-  call void putint(i32 %d.load71)
+  br bb %select.exit71
+select.exit71:  pred(select.exit58, select.else70)
+  d.load79 = load i32 from ptr @d
+  call void putint(i32 %d.load79)
   call void putch(i32 10)
-  76 = icmp sge i32 16, i32 0
-  br i1 %76, bb %then77, bb %if.exit78
-then77:
+  84 = icmp sge i32 16, i32 0
+  br i1 %84, bb %then85, bb %if.exit86
+then85:  pred(select.exit71)
   call void putch(i32 65)
-  br bb %if.exit78
-if.exit78:
-  89 = zext i1 -1 to i32
-  90 = icmp ne i32 %89, i32 1
-  br i1 %90, bb %then91, bb %if.exit92
-then91:
+  br bb %if.exit86
+if.exit86:  pred(select.exit71, then85)
+  97 = zext i1 -1 to i32
+  98 = icmp ne i32 %97, i32 1
+  br i1 %98, bb %then99, bb %if.exit100
+then99:  pred(if.exit86)
   call void putch(i32 67)
-  br bb %if.exit92
-if.exit92:
-  95 = zext i1 0 to i32
-  96 = icmp eq i32 %95, i32 0
-  br i1 %96, bb %then97, bb %if.exit98
-then97:
+  br bb %if.exit100
+if.exit100:  pred(if.exit86, then99)
+  103 = zext i1 0 to i32
+  104 = icmp eq i32 %103, i32 0
+  br i1 %104, bb %then105, bb %if.exit106
+then105:  pred(if.exit100)
   call void putch(i32 68)
-  br bb %if.exit98
-if.exit98:
-  100 = icmp sle i32 102, i32 63
-  101 = zext i1 %100 to i32
-  102 = icmp eq i32 1, i32 %101
-  br i1 %102, bb %then103, bb %if.exit104
-then103:
+  br bb %if.exit106
+if.exit106:  pred(if.exit100, then105)
+  108 = icmp sle i32 102, i32 63
+  109 = zext i1 %108 to i32
+  110 = icmp eq i32 1, i32 %109
+  br i1 %110, bb %then111, bb %if.exit112
+then111:  pred(if.exit106)
   call void putch(i32 69)
-  br bb %if.exit104
-if.exit104:
-  110 = sub i32 0, i32 %89
-  111 = icmp eq i32 -1, i32 %110
-  br i1 %111, bb %then112, bb %if.exit113
-then112:
+  br bb %if.exit112
+if.exit112:  pred(if.exit106, then111)
+  118 = sub i32 0, i32 %97
+  119 = icmp eq i32 -1, i32 %118
+  br i1 %119, bb %then120, bb %if.exit121
+then120:  pred(if.exit112)
   call void putch(i32 70)
-  br bb %if.exit113
-if.exit113:
+  br bb %if.exit121
+if.exit121:  pred(if.exit112, then120)
   call void putch(i32 10)
   call void putch(i32 67)
-  150 = icmp sge i32 0, i32 1
-  br i1 %150, bb %select.then151, bb %select.else152
-select.then151:
-  br bb %select.exit153
-select.else152:
-  157 = icmp sle i32 1, i32 0
-  br bb %select.exit153
-select.exit153:
-  select154.phi = phi [bb %select.else152, i1 %157, bb %select.then151, i1 -1]
-  br i1 %select154.phi, bb %then160, bb %if.exit161
-then160:
+  158 = icmp sge i32 0, i32 1
+  br i1 %158, bb %select.then159, bb %select.else160
+select.then159:  pred(if.exit121)
+  br bb %select.exit161
+select.else160:  pred(if.exit121)
+  165 = icmp sle i32 1, i32 0
+  br bb %select.exit161
+select.exit161:  pred(select.then159, select.else160)
+  select162.phi = phi [bb %select.else160, i1 %165, bb %select.then159, i1 -1]
+  br i1 %select162.phi, bb %then168, bb %if.exit169
+then168:  pred(select.exit161)
   call void putch(i32 72)
-  br bb %if.exit161
-if.exit161:
-  165 = icmp sge i32 2, i32 1
-  br i1 %165, bb %select.then166, bb %select.else167
-select.then166:
-  br bb %select.exit168
-select.else167:
-  br bb %select.exit168
-select.exit168:
-  select169.phi = phi [bb %select.else167, i1 0, bb %select.then166, i1 -1]
-  br i1 %select169.phi, bb %then174, bb %if.exit175
-then174:
+  br bb %if.exit169
+if.exit169:  pred(select.exit161, then168)
+  173 = icmp sge i32 2, i32 1
+  br i1 %173, bb %select.then174, bb %select.else175
+select.then174:  pred(if.exit169)
+  br bb %select.exit176
+select.else175:  pred(if.exit169)
+  br bb %select.exit176
+select.exit176:  pred(select.then174, select.else175)
+  select177.phi = phi [bb %select.else175, i1 0, bb %select.then174, i1 -1]
+  br i1 %select177.phi, bb %then182, bb %if.exit183
+then182:  pred(select.exit176)
   call void putch(i32 73)
-  br bb %if.exit175
-if.exit175:
-  182 = icmp eq i32 0, i32 %95
-  br i1 %182, bb %select.then183, bb %select.else184
-select.then183:
-  br bb %select.exit185
-select.else184:
-  br bb %select.exit185
-select.exit185:
-  select186.phi = phi [bb %select.else184, i1 0, bb %select.then183, i1 0]
-  br i1 %select186.phi, bb %select.then191, bb %select.else192
-select.then191:
+  br bb %if.exit183
+if.exit183:  pred(select.exit176, then182)
+  190 = icmp eq i32 0, i32 %103
+  br i1 %190, bb %select.then191, bb %select.else192
+select.then191:  pred(if.exit183)
   br bb %select.exit193
-select.else192:
-  197 = icmp sge i32 4, i32 4
+select.else192:  pred(if.exit183)
   br bb %select.exit193
-select.exit193:
-  select194.phi = phi [bb %select.else192, i1 %197, bb %select.then191, i1 -1]
-  br i1 %select194.phi, bb %then200, bb %if.exit201
-then200:
+select.exit193:  pred(select.then191, select.else192)
+  select194.phi = phi [bb %select.else192, i1 0, bb %select.then191, i1 0]
+  br i1 %select194.phi, bb %select.then199, bb %select.else200
+select.then199:  pred(select.exit193)
+  br bb %select.exit201
+select.else200:  pred(select.exit193)
+  205 = icmp sge i32 4, i32 4
+  br bb %select.exit201
+select.exit201:  pred(select.then199, select.else200)
+  select202.phi = phi [bb %select.else200, i1 %205, bb %select.then199, i1 -1]
+  br i1 %select202.phi, bb %then208, bb %if.exit209
+then208:  pred(select.exit201)
   call void putch(i32 74)
-  br bb %if.exit201
-if.exit201:
-  br i1 %182, bb %select.then209, bb %select.else210
-select.then209:
-  br bb %select.exit211
-select.else210:
-  br bb %select.exit211
-select.exit211:
-  select212.phi = phi [bb %select.else210, i1 0, bb %select.then209, i1 -1]
-  br i1 %select212.phi, bb %then226, bb %if.exit227
-then226:
+  br bb %if.exit209
+if.exit209:  pred(select.exit201, then208)
+  br i1 %190, bb %select.then217, bb %select.else218
+select.then217:  pred(if.exit209)
+  br bb %select.exit219
+select.else218:  pred(if.exit209)
+  br bb %select.exit219
+select.exit219:  pred(select.then217, select.else218)
+  select220.phi = phi [bb %select.else218, i1 0, bb %select.then217, i1 -1]
+  br i1 %select220.phi, bb %then234, bb %if.exit235
+then234:  pred(select.exit219)
   call void putch(i32 75)
-  br bb %if.exit227
-if.exit227:
+  br bb %if.exit235
+if.exit235:  pred(select.exit219, then234)
   call void putch(i32 10)
   ret i32 0
 }
@@ -174,11 +162,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-i32 set_a(i32 val) {
-entry:
-  store i32 %val to ptr @a
-  ret i32 %val
-}
 
 

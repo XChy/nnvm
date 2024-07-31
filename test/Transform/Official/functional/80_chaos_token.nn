@@ -1,7 +1,7 @@
-global ptr saY_HeI10_To init with 40 x i32 [32, 115, 97, 121, 115, 32, 104, 101, 108, 108, 111, 32, 116, 111, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-global ptr RET init with 5 x i32 [10, 0, 0, 0, 0]
-global ptr N4__mE___ init with 300 x i32 [83, 97, 97, 98, 97, 114, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 97, 98, 97, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 97, 115, 104, 105, 98, 105, 114, 111, 107, 111, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 114, 97, 105, 103, 117, 109, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 117, 110, 98, 111, 114, 117, 116, 111, 32, 80, 101, 110, 103, 105, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 84, 97, 105, 114, 105, 107, 117, 32, 79, 111, 107, 97, 109, 105, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-global ptr __HELLO init with 100 x i32 [87, 101, 108, 99, 111, 109, 101, 32, 116, 111, 32, 116, 104, 101, 32, 74, 97, 112, 97, 114, 105, 32, 80, 97, 114, 107, 33, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+immutable internal global ptr saY_HeI10_To init with 40 x i32 [32, 115, 97, 121, 115, 32, 104, 101, 108, 108, 111, 32, 116, 111, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+immutable internal global ptr RET init with 5 x i32 [10, 0, 0, 0, 0]
+immutable internal global ptr N4__mE___ init with 300 x i32 [83, 97, 97, 98, 97, 114, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 97, 98, 97, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 97, 115, 104, 105, 98, 105, 114, 111, 107, 111, 117, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 114, 97, 105, 103, 117, 109, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 117, 110, 98, 111, 114, 117, 116, 111, 32, 80, 101, 110, 103, 105, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 84, 97, 105, 114, 105, 107, 117, 32, 79, 111, 107, 97, 109, 105, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+immutable internal global ptr __HELLO init with 100 x i32 [87, 101, 108, 99, 111, 109, 101, 32, 116, 111, 32, 116, 104, 101, 32, 74, 97, 112, 97, 114, 105, 32, 80, 97, 114, 107, 33, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 external i32 getint()
 
 external i32 getch()
@@ -13,98 +13,101 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry18:
-  br bb %putstr.while.cond
-while.cond21:
-  i.phi55 = phi [bb %putstr.while.exit, i32 0, bb %if.exit53, i32 %49]
-  27 = sdiv i32 %i.phi55, i32 6
-  30 = srem i32 %i.phi55, i32 6
-  33 = icmp ne i32 %27, i32 %30
-  br i1 %33, bb %then, bb %if.exit
-then:
-  37 = mul i32 %27, i32 200
-  38 = ptradd ptr @N4__mE___, i32 %37
-  br bb %putstr.while.cond84
-if.exit:
-  47 = mul i32 %i.phi55, i32 17
-  48 = add i32 %47, i32 23
-  49 = srem i32 %48, i32 32
-  51 = icmp eq i32 %49, i32 0
-  br i1 %51, bb %then52, bb %if.exit53
-then52:
+entry20:  pred()
+  br bb %putstr.while.body
+while.cond23:  pred(if.exit56, putstr.while.exit)
+  i.phi58 = phi [bb %putstr.while.exit, i32 0, bb %if.exit56, i32 %52]
+  29 = sdiv i32 %i.phi58, i32 6
+  32 = srem i32 %i.phi58, i32 6
+  35 = icmp ne i32 %29, i32 %32
+  br i1 %35, bb %then, bb %if.exit
+then:  pred(while.cond23)
+  39 = mul i32 %29, i32 200
+  40 = ptradd ptr @N4__mE___, i32 %39
+  8.load91176 = load i32 from ptr %40
+  1092177 = icmp ne i32 %8.load91176, i32 0
+  br i1 %1092177, bb %putstr.while.body94_preheader, bb %putstr.while.exit99
+if.exit:  pred(while.cond23, putstr.while.body148)
+  50 = mul i32 %i.phi58, i32 17
+  51 = add i32 %50, i32 23
+  52 = srem i32 %51, i32 32
+  54 = icmp eq i32 %52, i32 0
+  br i1 %54, bb %then55, bb %if.exit56
+then55:  pred(if.exit)
   ret i32 0
-if.exit53:
-  br bb %while.cond21
-putstr.while.cond:
-  iNd__1X.phi67 = phi [bb %entry18, i32 0, bb %putstr.while.body, i32 %1676]
-  6168 = shl i32 %iNd__1X.phi67, i32 2
-  769 = ptradd ptr @__HELLO, i32 %6168
-  7.load70 = load i32 from ptr %769
-  971 = icmp ne i32 %7.load70, i32 0
-  br i1 %971, bb %putstr.while.body, bb %putstr.while.exit
-putstr.while.body:
-  12.load74 = load i32 from ptr %769
-  call void putch(i32 %12.load74)
-  1676 = add i32 %iNd__1X.phi67, i32 1
-  br bb %putstr.while.cond
-putstr.while.exit:
-  br bb %while.cond21
-putstr.while.cond84:
-  iNd__1X.phi85 = phi [bb %then, i32 0, bb %putstr.while.body91, i32 %1694]
-  6186 = shl i32 %iNd__1X.phi85, i32 2
-  787 = ptradd ptr %38, i32 %6186
-  7.load88 = load i32 from ptr %787
-  989 = icmp ne i32 %7.load88, i32 0
-  br i1 %989, bb %putstr.while.body91, bb %putstr.while.exit96
-putstr.while.body91:
-  12.load92 = load i32 from ptr %787
-  call void putch(i32 %12.load92)
-  1694 = add i32 %iNd__1X.phi85, i32 1
-  br bb %putstr.while.cond84
-putstr.while.exit96:
-  br bb %putstr.while.cond102
-putstr.while.cond102:
-  iNd__1X.phi103 = phi [bb %putstr.while.exit96, i32 0, bb %putstr.while.body109, i32 %16112]
-  61104 = shl i32 %iNd__1X.phi103, i32 2
-  7105 = ptradd ptr @saY_HeI10_To, i32 %61104
-  7.load106 = load i32 from ptr %7105
-  9107 = icmp ne i32 %7.load106, i32 0
-  br i1 %9107, bb %putstr.while.body109, bb %putstr.while.exit114
-putstr.while.body109:
-  12.load110 = load i32 from ptr %7105
-  call void putch(i32 %12.load110)
-  16112 = add i32 %iNd__1X.phi103, i32 1
-  br bb %putstr.while.cond102
-putstr.while.exit114:
-  42 = mul i32 %30, i32 200
-  43 = ptradd ptr @N4__mE___, i32 %42
-  br bb %putstr.while.cond120
-putstr.while.cond120:
-  iNd__1X.phi121 = phi [bb %putstr.while.exit114, i32 0, bb %putstr.while.body127, i32 %16130]
-  61122 = shl i32 %iNd__1X.phi121, i32 2
-  7123 = ptradd ptr %43, i32 %61122
-  7.load124 = load i32 from ptr %7123
-  9125 = icmp ne i32 %7.load124, i32 0
-  br i1 %9125, bb %putstr.while.body127, bb %putstr.while.exit132
-putstr.while.body127:
-  12.load128 = load i32 from ptr %7123
-  call void putch(i32 %12.load128)
-  16130 = add i32 %iNd__1X.phi121, i32 1
-  br bb %putstr.while.cond120
-putstr.while.exit132:
-  br bb %putstr.while.cond138
-putstr.while.cond138:
-  iNd__1X.phi139 = phi [bb %putstr.while.exit132, i32 0, bb %putstr.while.body145, i32 %16148]
-  61140 = shl i32 %iNd__1X.phi139, i32 2
-  7141 = ptradd ptr @RET, i32 %61140
-  7.load142 = load i32 from ptr %7141
-  9143 = icmp ne i32 %7.load142, i32 0
-  br i1 %9143, bb %putstr.while.body145, bb %if.exit
-putstr.while.body145:
-  12.load146 = load i32 from ptr %7141
-  call void putch(i32 %12.load146)
-  16148 = add i32 %iNd__1X.phi139, i32 1
-  br bb %putstr.while.cond138
+if.exit56:  pred(if.exit)
+  br bb %while.cond23
+putstr.while.body:  pred(putstr.while.body, entry20)
+  872181185 = phi [bb %putstr.while.body, ptr %872, bb %entry20, ptr @__HELLO]
+  iNd__1X.phi70184 = phi [bb %putstr.while.body, i32 %1879, bb %entry20, i32 0]
+  13.load77 = load i32 from ptr %872181185
+  call void putch(i32 %13.load77)
+  1879 = add i32 %iNd__1X.phi70184, i32 1
+  6471 = shl i32 %1879, i32 2
+  872 = ptradd ptr @__HELLO, i32 %6471
+  8.load73 = load i32 from ptr %872
+  1074 = icmp ne i32 %8.load73, i32 0
+  br i1 %1074, bb %putstr.while.body, bb %putstr.while.exit
+putstr.while.exit:  pred(putstr.while.body)
+  br bb %while.cond23
+putstr.while.body94_preheader:  pred(then)
+  br bb %putstr.while.body94
+putstr.while.body94:  pred(putstr.while.body94, putstr.while.body94_preheader)
+  890175179 = phi [bb %putstr.while.body94, ptr %890, bb %putstr.while.body94_preheader, ptr %40]
+  iNd__1X.phi88178 = phi [bb %putstr.while.body94, i32 %1897, bb %putstr.while.body94_preheader, i32 0]
+  13.load95 = load i32 from ptr %890175179
+  call void putch(i32 %13.load95)
+  1897 = add i32 %iNd__1X.phi88178, i32 1
+  6489 = shl i32 %1897, i32 2
+  890 = ptradd ptr %40, i32 %6489
+  8.load91 = load i32 from ptr %890
+  1092 = icmp ne i32 %8.load91, i32 0
+  br i1 %1092, bb %putstr.while.body94, bb %putstr.while.exit99
+putstr.while.exit99:  pred(putstr.while.body94, then)
+  br bb %putstr.while.body112
+putstr.while.body112:  pred(putstr.while.body112, putstr.while.exit99)
+  8108169173 = phi [bb %putstr.while.body112, ptr %8108, bb %putstr.while.exit99, ptr @saY_HeI10_To]
+  iNd__1X.phi106172 = phi [bb %putstr.while.body112, i32 %18115, bb %putstr.while.exit99, i32 0]
+  13.load113 = load i32 from ptr %8108169173
+  call void putch(i32 %13.load113)
+  18115 = add i32 %iNd__1X.phi106172, i32 1
+  64107 = shl i32 %18115, i32 2
+  8108 = ptradd ptr @saY_HeI10_To, i32 %64107
+  8.load109 = load i32 from ptr %8108
+  10110 = icmp ne i32 %8.load109, i32 0
+  br i1 %10110, bb %putstr.while.body112, bb %putstr.while.exit117
+putstr.while.exit117:  pred(putstr.while.body112)
+  44 = mul i32 %32, i32 200
+  45 = ptradd ptr @N4__mE___, i32 %44
+  8.load127164 = load i32 from ptr %45
+  10128165 = icmp ne i32 %8.load127164, i32 0
+  br i1 %10128165, bb %putstr.while.body130_preheader, bb %putstr.while.exit135
+putstr.while.body130_preheader:  pred(putstr.while.exit117)
+  br bb %putstr.while.body130
+putstr.while.body130:  pred(putstr.while.body130, putstr.while.body130_preheader)
+  8126163167 = phi [bb %putstr.while.body130, ptr %8126, bb %putstr.while.body130_preheader, ptr %45]
+  iNd__1X.phi124166 = phi [bb %putstr.while.body130, i32 %18133, bb %putstr.while.body130_preheader, i32 0]
+  13.load131 = load i32 from ptr %8126163167
+  call void putch(i32 %13.load131)
+  18133 = add i32 %iNd__1X.phi124166, i32 1
+  64125 = shl i32 %18133, i32 2
+  8126 = ptradd ptr %45, i32 %64125
+  8.load127 = load i32 from ptr %8126
+  10128 = icmp ne i32 %8.load127, i32 0
+  br i1 %10128, bb %putstr.while.body130, bb %putstr.while.exit135
+putstr.while.exit135:  pred(putstr.while.body130, putstr.while.exit117)
+  br bb %putstr.while.body148
+putstr.while.body148:  pred(putstr.while.body148, putstr.while.exit135)
+  8144157161 = phi [bb %putstr.while.body148, ptr %8144, bb %putstr.while.exit135, ptr @RET]
+  iNd__1X.phi142160 = phi [bb %putstr.while.body148, i32 %18151, bb %putstr.while.exit135, i32 0]
+  13.load149 = load i32 from ptr %8144157161
+  call void putch(i32 %13.load149)
+  18151 = add i32 %iNd__1X.phi142160, i32 1
+  64143 = shl i32 %18151, i32 2
+  8144 = ptradd ptr @RET, i32 %64143
+  8.load145 = load i32 from ptr %8144
+  10146 = icmp ne i32 %8.load145, i32 0
+  br i1 %10146, bb %putstr.while.body148, bb %if.exit
 }
 
 external float getfloat()
@@ -120,24 +123,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-i32 putstr(ptr str) {
-entry:
-  br bb %while.cond
-while.cond:
-  iNd__1X.phi = phi [bb %entry, i32 0, bb %while.body, i32 %16]
-  61 = shl i32 %iNd__1X.phi, i32 2
-  7 = ptradd ptr %str, i32 %61
-  7.load = load i32 from ptr %7
-  9 = icmp ne i32 %7.load, i32 0
-  br i1 %9, bb %while.body, bb %while.exit
-while.body:
-  12.load = load i32 from ptr %7
-  call void putch(i32 %12.load)
-  16 = add i32 %iNd__1X.phi, i32 1
-  br bb %while.cond
-while.exit:
-  ret i32 %iNd__1X.phi
-}
 
 

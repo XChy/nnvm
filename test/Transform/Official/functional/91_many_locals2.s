@@ -6,19 +6,20 @@ n:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
+  SD s3, 32(sp)
   CALL getint
   ADD s0, a0, zero
+  XORI s1, s0, 5
+  SLTIU s1, s1, 1
+  BNE s1, zero, bb3
   # implict jump to bb1
 bb1:
   ADD s1, s0, zero
-  XORI s2, s1, 5
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb3
   # implict jump to bb2
 bb2:
   ADD a0, zero, zero
@@ -92,9 +93,21 @@ bb2:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
-  ADDIW s1, s1, 1
-  ADD s0, s1, zero
-  JAL zero, bb1
+  # implict jump to bb4
+bb4:
+  ADD s2, s0, zero
+  ADDIW s2, s2, 1
+  XORI s3, s2, 5
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb6
+  # implict jump to bb5
+bb5:
+  ADD s1, s2, zero
+  JAL zero, bb2
+bb6:
+  ADD s0, s2, zero
+  JAL zero, bb4

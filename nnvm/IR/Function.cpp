@@ -30,9 +30,16 @@ void Function::insertBack(BasicBlock *BB, Iterator pos) {
   pos.insertBack(BB);
 }
 
+void Function::insertBefore(BasicBlock *BB, Iterator pos) {
+  if (BB->getParent())
+    BB->removeFromList();
+  BB->setParent(this);
+  pos.insertBefore(BB);
+}
+
 void Function::addArgument(Argument *arg) { arguments.push_back(arg); }
 
-std::vector<Argument *> Function::getArguments() { return arguments; }
+std::vector<Argument *> Function::getArguments() const { return arguments; }
 
 std::string Function::dumpAsOperand() {
   return getReturnType()->dump() + " " + getName();
@@ -43,10 +50,7 @@ std::string Function::dump() {
   if (external)
     ret += "external ";
 
-  for (auto attr : attributes) {
-    if (attr == Attribute::Pure)
-      ret += "pure ";
-  }
+  ret += getDecoratorStr(attributes);
 
   ret += retType->dump() + " " + getName();
 

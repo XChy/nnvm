@@ -48,6 +48,11 @@ void LowOperand::emit(std::ostream &out, EmitInfo &info) const {
   operand->emit(out, info);
 }
 
+void LIRValue::replaceUseWith(LIRValue *newValue) {
+  for (LowOperand *operand : incChange(uses))
+    operand->use(newValue);
+}
+
 void LIRValue::replaceWith(LIRValue *newValue) {
   for (LowOperand *operand : incChange(uses))
     operand->use(newValue);

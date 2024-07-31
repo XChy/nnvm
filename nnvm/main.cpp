@@ -7,6 +7,7 @@
 #include "Frontend/IRGenerator.h"
 #include "Frontend/SysYLexer.h"
 #include "Frontend/SysYParser.h"
+#include "IR/Verifier/IRVerifier.h"
 #include "Transform/Opt.h"
 #include "Utils/Debug.h"
 #include "atn/ATNSimulator.h"
@@ -123,6 +124,9 @@ int main(int argc, char **argv) {
     if (dumpIRAfterOpt)
       std::cout << ir.dump() << "\n";
   }
+
+  IRVerifier verifier;
+  verifier.run(ir);
 
   if (backendType == "riscv")
     backend = std::make_unique<riscv::RISCVBackend>();
