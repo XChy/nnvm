@@ -30,6 +30,8 @@ class GraphColoringRA : public RegisterAllocator {
   void selectSpill();
   void assignColors();
   void rewriteProgram(LIRFunc &func);
+  void removeRedundantMoves(LIRFunc &func);
+  void physicalize(LIRFunc &func);
 
   // helper for building
   void addEdge(Register *u, Register *v);

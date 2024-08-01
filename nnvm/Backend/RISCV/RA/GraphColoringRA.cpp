@@ -11,7 +11,7 @@
 
 using namespace nnvm::riscv;
 
-static int K = 32;
+static int K;
 
 static bool isSameClass(Register *a, Register *b) {
   return !(a->isFP() ^ b->isFP());
@@ -21,6 +21,7 @@ static bool isSameClass(Register *a, Register *b) {
  * Construct the interference graph, categorize each node as either move-related or non-move-related.
  */
 void GraphColoringRA::build(LIRFunc &func, LivenessAnalysis &la) {
+  int numPrecolored = 0;
   auto liveOutRegs = la.getLiveOut();
   for (auto *bb : func) {
     // get live out registers of bb
@@ -33,13 +34,18 @@ void GraphColoringRA::build(LIRFunc &func, LivenessAnalysis &la) {
       instructions.insert(instructions.begin(), inst);
     }
     for (auto inst : instructions) {
-      size_t numOp = inst->getNumOp();
-      for (size_t i = 0; i < numOp; i++) {
-        auto op = inst->getOp(i);
-        if (op->isVReg()) {
-          initial.insert(op->as<Register>());
-        } else if (op->isPReg()) {
-          precolored.insert(op->as<Register>());
+      for (auto &op : inst->operands) {
+        auto value = op.getOperand();
+        auto reg = value->as<Register>();
+        if (initial.count(reg) || precolored.count(reg)) {
+          continue;
+        }
+        if (value->isVReg()) {
+          initial.insert(reg);
+        } else if (value->isPReg()) {
+          precolored.insert(reg);
+          degree[reg] = INT32_MAX;
+          color[reg] = numPrecolored++;
         }
       }
 
@@ -110,7 +116,7 @@ void GraphColoringRA::makeWorkList() {
 std::set<Register *> GraphColoringRA::adjacent(Register *reg) {
   std::set<Register *> set;
   for (auto adj : adjList[reg]) {
-    if (!selectStack.count(reg) && !coalescedNodes.count(reg)) {
+    if (!selectStack.count(adj) && !coalescedNodes.count(adj)) {
       set.insert(adj);
     }
   }
@@ -156,6 +162,9 @@ void GraphColoringRA::simplify() {
  */
 void GraphColoringRA::decrementDegree(Register *reg) {
   int d = degree[reg];
+  if (d == INT32_MAX) {
+    return;
+  }
   degree[reg] = d - 1;
   if (d == K) {
     auto adjRegs = adjacent(reg);
@@ -205,12 +214,9 @@ void GraphColoringRA::addWorkList(Register *reg) {
  * Helper for coalescing. Offer the heuristic to coalesce a set of precolored register.
  */
 bool GraphColoringRA::ok(std::set<Register *> &regs, Register *target) {
-  for (auto reg : regs) {
-    if (degree[reg] >= K && precolored.count(reg) && adjSet.count(std::pair(reg, target))) {
-      return false;
-    }
-  }
-  return true;
+  return std::all_of(regs.begin(), regs.end(), [this, target](Register *reg) {
+    return degree[reg] < K || precolored.count(reg) || adjSet.count(std::pair(reg, target));
+  });
 }
 
 /**
@@ -367,10 +373,37 @@ void GraphColoringRA::assignColors() {
 }
 
 void GraphColoringRA::rewriteProgram(LIRFunc &func) {
-  // allocate memory locations for each v in spilledNodes
-  // create a new temporary v_i for each definition and each use, in instructions, insert a store after each definition of a v_i, a fetch before each use of a v_i
-  // put all the v_i into a set newTemps
   std::set<Register *> newTemp;
+  LIRBuilder builder{*func.getParent()};
+  builder.setInsertPoint(func.getEntry()->end());
+  for (auto bb : func) {
+    for (auto inst : bb->getInsts()) {
+      std::map<Register *, Register *> spilledRegs;
+      for (auto &op : inst->operands) {
+        auto value = op.getOperand();
+        auto reg = value->as<Register>();
+        if (!spilledNodes.count(reg)) {
+          continue;
+        }
+        if (!spilledRegs.count(reg)) {
+          auto slot = func.allocStackSlot(reg->bytes());
+          auto tempReg = builder.newVReg(reg->getType());
+          spilledRegs[reg] = tempReg;
+          newTemp.insert(tempReg);
+          op.set(tempReg);
+          if (op.isDef()) {
+            builder.setInsertPoint(bb, inst->getNext());
+            builder.storeValueTo(reg, slot, reg->getType());
+          } else {
+            builder.setInsertPoint(bb, inst);
+            builder.loadValueFrom(tempReg, slot, reg->getType());
+          }
+        } else {
+          op.set(spilledRegs[reg]);
+        }
+      }
+    }
+  }
   
   spilledNodes.clear();
   initial.clear();
@@ -381,7 +414,56 @@ void GraphColoringRA::rewriteProgram(LIRFunc &func) {
   coalescedNodes.clear();
 }
 
+void GraphColoringRA::removeRedundantMoves(nnvm::riscv::LIRFunc &func) {
+  LIRBuilder builder{*func.getParent()};
+  builder.setInsertPoint(func.getEntry()->end());
+  for (auto bb : func) {
+    for (auto inst : bb->getInsts()) {
+      if (!inst->isMoveInst()) {
+        continue;
+      }
+      auto x = inst->getOp(0)->as<Register>();
+      auto y = inst->getOp(1)->as<Register>();
+      if (getAlias(x) == getAlias(y)) {
+        inst->eraseFromList();
+      }
+    }
+  }
+}
+
+void GraphColoringRA::physicalize(LIRFunc &func) {
+  LIRBuilder builder{*func.getParent()};
+  builder.setInsertPoint(func.getEntry()->end());
+
+  auto freeRegs = unpreservedRegs(func.getParent());
+  auto freeFRegs = unpreservedFRegs(func.getParent());
+
+  for (auto *bb : func) {
+    for (auto *inst : bb->getInsts()) {
+      for (auto &op : inst->operands) {
+        auto value = op.getOperand();
+        auto reg = value->as<Register>();
+        if (!value->isReg() || value->isPReg()) {
+          continue;
+        }
+        Register *physicalReg = reg->isFP() ? freeFRegs.at(color[reg] - freeRegs.size()) : freeRegs.at(color[reg]);
+        op.set(physicalReg);
+      }
+    }
+  }
+
+  std::set<Register *> toPreserve = {func.getParent()->getPhyReg(RA)};
+  std::set<Register *> regs = coloredNodes;
+  regs.insert(precolored.begin(), precolored.end());
+  for (auto reg : regs) {
+    if (reg->isCalleeSaved() || toPreserve.count(reg)) {
+      func.allocCalleeSavedSlot(reg);
+    }
+  }
+}
+
 void GraphColoringRA::allocate(LIRFunc &func) {
+  K = static_cast<int>(unpreservedRegs(func.getParent()).size() + unpreservedFRegs(func.getParent()).size());
   while (true) {
     LivenessAnalysis la;
     la.runOn(func);
@@ -397,12 +479,14 @@ void GraphColoringRA::allocate(LIRFunc &func) {
       } else if (!spillWorklist.empty()) {
         selectSpill();
       }
-    } while (!simplifyWorklist.empty() && !worklistMoves.empty()
-        && !freezeWorklist.empty() && !spillWorklist.empty());
+    } while (!simplifyWorklist.empty() || !worklistMoves.empty()
+        || !freezeWorklist.empty() || !spillWorklist.empty());
     assignColors();
     if (spilledNodes.empty()) {
       break;
     }
     rewriteProgram(func);
   };
+  removeRedundantMoves(func);
+  physicalize(func);
 }
