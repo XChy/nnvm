@@ -157,6 +157,13 @@ std::set<Register *> riscv::getUsesOf(LIRInst *inst) {
       ret.insert(value->as<Register>());
   }
 
+  if (inst->getOpcode() == CALL) {
+    LIRModule *module = inst->getParent()->getParent()->getParent();
+    for (uint64_t regId : callerSavedRegIds()) {
+      Register *reg = module->getPhyReg(regId);
+      ret.insert(reg);
+    }
+  }
   return ret;
 }
 

@@ -5,22 +5,26 @@
 // Modern Compiler Implementation in Java (2nd edition).
 // =======================================================
 
+#include "Backend/RISCV/Analysis/LivenessAnalysis.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/RegisterAllocator.h"
-#include "Backend/RISCV/Analysis/LivenessAnalysis.h"
 #include <queue>
 #include <set>
+#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 
 namespace nnvm::riscv {
 
-class GraphColoringRA : public RegisterAllocator {
- public:
-  void allocate(LIRFunc &func) override;
+class GraphColoringRAImpl {
+public:
+  GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
+                      Register *classReg)
+      : freeRegs(freeRegs), classReg(classReg) {}
+  void allocate(LIRFunc &func);
 
- private:
+private:
   // essential procedures
   void build(LIRFunc &func, LivenessAnalysis &la);
   void makeWorkList();
@@ -44,20 +48,17 @@ class GraphColoringRA : public RegisterAllocator {
   // helpers for simplification
   void decrementDegree(Register *reg);
   void enableMove(Register *node);
-  void enableMoves(std::set<Register *> &nodes);
+  void enableMoves(const std::set<Register *> &nodes);
 
   // helpers for coalescing
   void addWorkList(Register *reg);
-  bool ok(std::set<Register *> &regs, Register *target);
-  bool conservative(std::set<Register *> &nodes);
+  bool ok(const std::set<Register *> &regs, Register *target);
+  bool conservative(const std::set<Register *> &nodes);
   void combine(Register *u, Register *v);
   Register *getAlias(Register *reg);
 
   // helper for freezing
   void freezeMoves(Register *reg);
-
-  // We assign numbers in DFS order of BBs.
-  std::unordered_map<LIRBB *, uint64_t> BBNumber;
 
   std::set<Register *> precolored;
   std::set<Register *> initial;
@@ -67,7 +68,9 @@ class GraphColoringRA : public RegisterAllocator {
   std::set<Register *> spilledNodes;
   std::set<Register *> coalescedNodes;
   std::set<Register *> coloredNodes;
-  std::set<Register *> selectStack;
+
+  std::set<Register *> selected;
+  std::stack<Register *> selectStack;
 
   std::set<LIRInst *> coalescedMoves;
   std::set<LIRInst *> constrainedMoves;
@@ -81,6 +84,15 @@ class GraphColoringRA : public RegisterAllocator {
   std::unordered_map<Register *, std::set<LIRInst *>> moveList;
   std::unordered_map<Register *, Register *> alias;
   std::unordered_map<Register *, int> color;
+  std::map<int, Register *> color2PhyReg;
+
+  std::vector<Register *> freeRegs;
+  Register *classReg;
+};
+
+class GraphColoringRA : public RegisterAllocator {
+public:
+  void allocate(LIRFunc &func) override;
 };
 
 } /* namespace nnvm::riscv */
