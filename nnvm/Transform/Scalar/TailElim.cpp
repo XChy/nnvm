@@ -51,10 +51,10 @@ bool TailElimPass::run(Function &F) {
   // Create loop entry and move instructions from entry to loop entry.
   BasicBlock *entry = F.getEntry();
   BasicBlock *loopEntry = new BasicBlock(&F, "loop_entry");
-  F.insertBack(loopEntry, F.getEntry());
+  F.insertBack(loopEntry, entry);
   entry->replaceSelf(loopEntry);
 
-  for (auto *I : incChange(*F.getEntry())) {
+  for (auto *I : incChange(*entry)) {
     if (I->isa<StackInst>())
       continue;
     I->moveTo(loopEntry);

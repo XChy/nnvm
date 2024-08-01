@@ -50,8 +50,10 @@ merge_sort:
   # implict jump to bb2
 bb2:
   ADDW s2, s0, s1
-  ADDI s3, zero, 2
-  DIVW s2, s2, s3
+  SRAIW s3, s2, 31
+  SRLIW s3, s3, 31
+  ADD s2, s2, s3
+  SRAIW s2, s2, 1
   ADD a0, s0, zero
   ADD a1, s2, zero
   CALL merge_sort

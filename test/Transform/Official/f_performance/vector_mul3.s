@@ -393,8 +393,10 @@ bb41:
   ADDW s0, s6, t4
   ADDIW s10, s0, 1
   MULW s0, s0, s10
-  ADDI s10, zero, 2
-  DIVW s0, s0, s10
+  SRAIW s10, s0, 31
+  SRLIW s10, s10, 31
+  ADD s0, s0, s10
+  SRAIW s0, s0, 1
   ADDW s0, s0, s6
   ADDIW s0, s0, 1
   FCVT.S.W fs7, s0
@@ -501,8 +503,10 @@ bb50:
   ADDW s0, t4, s3
   ADDIW s2, s0, 1
   MULW s0, s0, s2
-  ADDI s2, zero, 2
-  DIVW s0, s0, s2
+  SRAIW s2, s0, 31
+  SRLIW s2, s2, 31
+  ADD s0, s0, s2
+  SRAIW s0, s0, 1
   LW t4, 40(sp)
   ADDW s0, s0, t4
   ADDIW s0, s0, 1
@@ -610,8 +614,10 @@ bb59:
   ADDW s0, s8, t4
   ADDIW s7, s0, 1
   MULW s0, s0, s7
-  ADDI s7, zero, 2
-  DIVW s0, s0, s7
+  SRAIW s7, s0, 31
+  SRLIW s7, s7, 31
+  ADD s0, s0, s7
+  SRAIW s0, s0, 1
   ADDW s0, s0, s8
   ADDIW s0, s0, 1
   FCVT.S.W fs1, s0
@@ -718,8 +724,10 @@ bb68:
   ADDW s1, t4, s11
   ADDIW s0, s1, 1
   MULW s0, s1, s0
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   LW t4, 144(sp)
   ADDW s0, s0, t4
   ADDIW s0, s0, 1

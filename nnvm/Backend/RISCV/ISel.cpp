@@ -28,6 +28,14 @@ void ISel::isel(LIRFunc &func) {
     }
   }
 
+  for (auto *bb : func) {
+    for (auto cur : incChange(*bb)) {
+      builder.setInsertPoint(bb, cur);
+      if (auto *I = expand(builder, cur))
+        cur->eraseFromList();
+    }
+  }
+
   debug({
     std::cerr << "====After combining====:\n";
     EmitInfo info;
@@ -357,6 +365,48 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     }
   }
   return nullptr;
+}
+
+LIRInst *ISel::expand(LIRBuilder &builder, LIRInst *I) {
+  switch (I->getOpcode()) {
+  case DIVW:
+    return expandSDiv(builder, I);
+  default:
+    return nullptr;
+  }
+  return nullptr;
+}
+
+LIRInst *ISel::expandSDiv(LIRBuilder &builder, LIRInst *I) {
+  LIRValueType type = I->getOp(2)->getType();
+
+  if (!I->getOp(2)->isConstant() || type != LIRValueType::i32)
+    return nullptr;
+
+  LIRValue *res = I->getOp(0);
+  LIRValue *divided = I->getOp(1);
+  LIRConst *divisor = I->getOp(2)->as<LIRConst>();
+  GInt power;
+
+  if (!genericGetPowerOfTwo(divisor->getIValue(), 32, power))
+    return nullptr;
+
+  auto *lessThanZero = builder.newVReg(type);
+  auto *select = builder.newVReg(type);
+  auto *added = builder.newVReg(type);
+
+  auto *slt = LIRInst::create(SRAIW, lessThanZero, divided, LIRImm::create(31));
+  auto *comp =
+      LIRInst::create(SRLIW, select, lessThanZero, LIRImm::create(32 - power));
+  auto *add = LIRInst::create(ADD, added, divided, select);
+  auto *div = LIRInst::create(SRAIW, res, added, LIRImm::create(power));
+
+  builder.addInst(slt);
+  builder.addInst(comp);
+  builder.addInst(add);
+  builder.addInst(div);
+
+  return div;
 }
 
 LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {

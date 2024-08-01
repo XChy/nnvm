@@ -58,9 +58,12 @@ bb3:
   LA s5, x
   ADD a1, s5, zero
   CALL putarray
-  ADDI s5, zero, 2
   LW t4, 44(sp)
-  DIVW s5, t4, s5
+  SRAIW s5, t4, 31
+  SRLIW s5, s5, 31
+  LW t4, 44(sp)
+  ADD s5, t4, s5
+  SRAIW s5, s5, 1
   LUI s8, 352
   ADDIW s8, s8, -1792
   MULW s8, s5, s8

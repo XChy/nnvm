@@ -572,8 +572,10 @@ bb35:
   # implict jump to bb36
 bb36:
   FMUL.S fs4, fs5, fs5
-  ADDI s3, zero, 2
-  DIVW s2, s2, s3
+  SRAIW s3, s2, 31
+  SRLIW s3, s3, 31
+  ADD s2, s2, s3
+  SRAIW s2, s2, 1
   BNE s2, zero, bb38
   # implict jump to bb37
 bb37:

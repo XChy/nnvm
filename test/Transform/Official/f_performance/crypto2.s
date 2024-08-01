@@ -100,9 +100,10 @@ bb4:
   ADDW s7, s7, s8
   LA s8, state
   SW s7, 0(s8)
-  LUI s8, 32
-  ADDIW s8, s8, 0
-  DIVW s8, s7, s8
+  SRAIW s8, s7, 31
+  SRLIW s8, s8, 15
+  ADD s8, s7, s8
+  SRAIW s8, s8, 17
   ADDW s7, s7, s8
   LA s8, state
   SW s7, 0(s8)

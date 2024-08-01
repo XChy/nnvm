@@ -58,9 +58,12 @@ bb2:
   BLT t4, t3, bb8
   # implict jump to bb3
 bb3:
-  ADDI s10, zero, 2
   LW t4, 12(sp)
-  DIVW s0, t4, s10
+  SRAIW s10, t4, 31
+  SRLIW s10, s10, 31
+  LW t4, 12(sp)
+  ADD s10, t4, s10
+  SRAIW s0, s10, 1
   LW t4, 8(sp)
   ADD a0, t4, zero
   LW t4, 8(sp)
@@ -186,11 +189,16 @@ bb12:
   BNE s8, zero, bb16
   # implict jump to bb13
 bb13:
-  ADDI s8, zero, 2
   LW t4, 12(sp)
-  DIVW s8, t4, s8
-  ADDI s9, zero, 2
-  DIVW s9, s7, s9
+  SRAIW s8, t4, 31
+  SRLIW s8, s8, 31
+  LW t4, 12(sp)
+  ADD s8, t4, s8
+  SRAIW s8, s8, 1
+  SRAIW s9, s7, 31
+  SRLIW s9, s9, 31
+  ADD s9, s7, s9
+  SRAIW s9, s9, 1
   ADDW s8, s8, s9
   SLLIW s8, s8, 2
   LA s9, temp
@@ -216,8 +224,10 @@ bb15:
   SW t4, 24(sp)
   JAL zero, bb12
 bb16:
-  ADDI s8, zero, 2
-  DIVW s8, s7, s8
+  SRAIW s8, s7, 31
+  SRLIW s8, s8, 31
+  ADD s8, s7, s8
+  SRAIW s8, s8, 1
   SLLIW s8, s8, 2
   LA s9, temp
   ADD s8, s9, s8
@@ -259,8 +269,10 @@ power:
   BNE s2, zero, bb22
   # implict jump to bb19
 bb19:
-  ADDI s2, zero, 2
-  DIVW s2, s1, s2
+  SRAIW s2, s1, 31
+  SRLIW s2, s2, 31
+  ADD s2, s1, s2
+  SRAIW s2, s2, 1
   ADD a0, s0, zero
   ADD a1, s2, zero
   CALL power
@@ -503,8 +515,10 @@ bb37:
   BNE s2, zero, bb41
   # implict jump to bb38
 bb38:
-  ADDI s2, zero, 2
-  DIVW s2, s1, s2
+  SRAIW s2, s1, 31
+  SRLIW s2, s2, 31
+  ADD s2, s1, s2
+  SRAIW s2, s2, 1
   ADD a0, s0, zero
   ADD a1, s2, zero
   CALL multiply

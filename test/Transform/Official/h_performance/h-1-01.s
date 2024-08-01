@@ -125,8 +125,10 @@ bb12:
   ADD s8, s11, zero
   JAL zero, bb5
 bb13:
-  ADDI s2, zero, 2
-  DIVW s2, s9, s2
+  SRAIW s2, s9, 31
+  SRLIW s2, s2, 31
+  ADD s2, s9, s2
+  SRAIW s2, s2, 1
   ADDIW s9, s10, 1
   ADD s7, s9, zero
   ADD s8, s2, zero

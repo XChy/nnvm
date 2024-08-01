@@ -380,8 +380,10 @@ bb53:
   ADDI sp, sp, 144
   JALR zero, 0(ra)
 bb54:
-  ADDI s4, zero, 2
-  DIVW t4, s0, s4
+  SRAIW s4, s0, 31
+  SRLIW s4, s4, 31
+  ADD s0, s0, s4
+  SRAIW t4, s0, 1
   SW t4, 28(sp)
   ADD t4, zero, zero
   SW t4, 16(sp)

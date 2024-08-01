@@ -196,8 +196,8 @@ main:
   SW s7, 364(sp)
   ADDI s3, zero, 89
   SW s3, 368(sp)
-  ADDI s3, zero, 26
-  SW s3, 372(sp)
+  ADDI s4, zero, 26
+  SW s4, 372(sp)
   ADDI s3, zero, 282
   SW s3, 376(sp)
   ADDI s0, zero, 254
@@ -329,8 +329,10 @@ bb34:
 bb35:
   LA s8, n
   LW s8, 0(s8)
-  ADDI s9, zero, 2
-  DIVW s8, s8, s9
+  SRAIW s9, s8, 31
+  SRLIW s9, s9, 31
+  ADD s8, s8, s9
+  SRAIW s8, s8, 1
   SLLIW s8, s8, 2
   ADDI t5, sp, 488
   ADD s8, t5, s8
@@ -1077,8 +1079,10 @@ bb135:
 bb136:
   LA s9, n
   LW s9, 0(s9)
-  ADDI s0, zero, 2
-  DIVW s0, s9, s0
+  SRAIW s0, s9, 31
+  SRLIW s0, s0, 31
+  ADD s0, s9, s0
+  SRAIW s0, s0, 1
   SLLIW s9, s0, 2
   ADDI t5, sp, 488
   ADD s9, t5, s9
@@ -1090,8 +1094,10 @@ bb136:
   ADD s0, t5, s0
   LW s0, 0(s0)
   ADDW s0, s9, s0
-  ADDI s9, zero, 2
-  DIVW s0, s0, s9
+  SRAIW s9, s0, 31
+  SRLIW s9, s9, 31
+  ADD s0, s0, s9
+  SRAIW s0, s0, 1
   ADD s8, s0, zero
   JAL zero, bb36
 bb137:

@@ -1,3 +1,5 @@
+// CombinePatterns: Some common patterns for NNVM-IR. Refer to pattern matching
+// method in LLVM.
 
 #include "ADT/PatternMatch.h"
 #include "IR/Constant.h"

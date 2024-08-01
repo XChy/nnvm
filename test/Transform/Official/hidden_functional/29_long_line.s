@@ -234,8 +234,10 @@ bb39:
   ADD s4, s3, zero
   # implict jump to bb40
 bb40:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5194
@@ -244,8 +246,10 @@ bb41:
   ADD s5, s3, zero
   # implict jump to bb42
 bb42:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5193
@@ -254,8 +258,10 @@ bb43:
   ADD s6, s3, zero
   # implict jump to bb44
 bb44:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5192
@@ -264,8 +270,10 @@ bb45:
   ADD s7, s3, zero
   # implict jump to bb46
 bb46:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5191
@@ -274,8 +282,10 @@ bb47:
   ADD s8, s3, zero
   # implict jump to bb48
 bb48:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5190
@@ -284,8 +294,10 @@ bb49:
   ADD s9, s3, zero
   # implict jump to bb50
 bb50:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5189
@@ -294,8 +306,10 @@ bb51:
   ADD s10, s3, zero
   # implict jump to bb52
 bb52:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5188
@@ -304,8 +318,10 @@ bb53:
   ADD s11, s3, zero
   # implict jump to bb54
 bb54:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5187
@@ -314,8 +330,10 @@ bb55:
   ADD t0, s3, zero
   # implict jump to bb56
 bb56:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5186
@@ -324,8 +342,10 @@ bb57:
   ADD t1, s3, zero
   # implict jump to bb58
 bb58:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5185
@@ -334,8 +354,10 @@ bb59:
   ADD t2, s3, zero
   # implict jump to bb60
 bb60:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5184
@@ -344,8 +366,10 @@ bb61:
   ADD a1, s3, zero
   # implict jump to bb62
 bb62:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5183
@@ -354,8 +378,10 @@ bb63:
   ADD a2, s3, zero
   # implict jump to bb64
 bb64:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5182
@@ -364,8 +390,10 @@ bb65:
   ADD a3, s3, zero
   # implict jump to bb66
 bb66:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb5181
@@ -374,8 +402,10 @@ bb67:
   ADD a4, s3, zero
   # implict jump to bb68
 bb68:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s1, s1, s3
   BLT s1, zero, bb5180
@@ -2378,8 +2408,10 @@ bb701:
   ADD s4, t4, zero
   # implict jump to bb702
 bb702:
-  ADDI s5, zero, 2
-  DIVW s0, s0, s5
+  SRAIW s5, s0, 31
+  SRLIW s5, s5, 31
+  ADD s0, s0, s5
+  SRAIW s0, s0, 1
   ADDI s5, zero, 2
   REMW t4, s0, s5
   SW t4, 216(sp)
@@ -2391,8 +2423,10 @@ bb703:
   ADD s6, t4, zero
   # implict jump to bb704
 bb704:
-  ADDI s7, zero, 2
-  DIVW s0, s0, s7
+  SRAIW s7, s0, 31
+  SRLIW s7, s7, 31
+  ADD s0, s0, s7
+  SRAIW s0, s0, 1
   ADDI s7, zero, 2
   REMW t4, s0, s7
   SW t4, 220(sp)
@@ -2404,8 +2438,10 @@ bb705:
   ADD s8, t4, zero
   # implict jump to bb706
 bb706:
-  ADDI s9, zero, 2
-  DIVW s0, s0, s9
+  SRAIW s9, s0, 31
+  SRLIW s9, s9, 31
+  ADD s0, s0, s9
+  SRAIW s0, s0, 1
   ADDI s9, zero, 2
   REMW t4, s0, s9
   SW t4, 224(sp)
@@ -2417,8 +2453,10 @@ bb707:
   ADD s10, t4, zero
   # implict jump to bb708
 bb708:
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW t4, s0, s11
   SW t4, 232(sp)
@@ -2430,8 +2468,10 @@ bb709:
   ADD t0, t4, zero
   # implict jump to bb710
 bb710:
-  ADDI t1, zero, 2
-  DIVW s0, s0, t1
+  SRAIW t1, s0, 31
+  SRLIW t1, t1, 31
+  ADD s0, s0, t1
+  SRAIW s0, s0, 1
   ADDI t1, zero, 2
   REMW t4, s0, t1
   SW t4, 240(sp)
@@ -2443,8 +2483,10 @@ bb711:
   ADD t2, t4, zero
   # implict jump to bb712
 bb712:
-  ADDI a1, zero, 2
-  DIVW s0, s0, a1
+  SRAIW a1, s0, 31
+  SRLIW a1, a1, 31
+  ADD s0, s0, a1
+  SRAIW s0, s0, 1
   ADDI a1, zero, 2
   REMW t4, s0, a1
   SW t4, 248(sp)
@@ -2456,8 +2498,10 @@ bb713:
   ADD a2, t4, zero
   # implict jump to bb714
 bb714:
-  ADDI a3, zero, 2
-  DIVW s0, s0, a3
+  SRAIW a3, s0, 31
+  SRLIW a3, a3, 31
+  ADD s0, s0, a3
+  SRAIW s0, s0, 1
   ADDI a3, zero, 2
   REMW t4, s0, a3
   SW t4, 256(sp)
@@ -2469,8 +2513,10 @@ bb715:
   ADD a4, t4, zero
   # implict jump to bb716
 bb716:
-  ADDI a5, zero, 2
-  DIVW s0, s0, a5
+  SRAIW a5, s0, 31
+  SRLIW a5, a5, 31
+  ADD s0, s0, a5
+  SRAIW s0, s0, 1
   ADDI a5, zero, 2
   REMW t4, s0, a5
   SW t4, 264(sp)
@@ -2482,8 +2528,10 @@ bb717:
   ADD a6, t4, zero
   # implict jump to bb718
 bb718:
-  ADDI a7, zero, 2
-  DIVW s0, s0, a7
+  SRAIW a7, s0, 31
+  SRLIW a7, a7, 31
+  ADD s0, s0, a7
+  SRAIW s0, s0, 1
   ADDI a7, zero, 2
   REMW t4, s0, a7
   SW t4, 272(sp)
@@ -2495,8 +2543,10 @@ bb719:
   ADD t6, t4, zero
   # implict jump to bb720
 bb720:
-  ADDI a7, zero, 2
-  DIVW s0, s0, a7
+  SRAIW a7, s0, 31
+  SRLIW a7, a7, 31
+  ADD s0, s0, a7
+  SRAIW s0, s0, 1
   ADDI a7, zero, 2
   REMW t4, s0, a7
   SW t4, 268(sp)
@@ -2510,8 +2560,10 @@ bb721:
 bb722:
   ADD t4, a7, zero
   SW t4, 368(sp)
-  ADDI a5, zero, 2
-  DIVW s0, s0, a5
+  SRAIW a5, s0, 31
+  SRLIW a5, a5, 31
+  ADD s0, s0, a5
+  SRAIW s0, s0, 1
   ADDI a5, zero, 2
   REMW t4, s0, a5
   SW t4, 260(sp)
@@ -2525,8 +2577,10 @@ bb723:
 bb724:
   ADD t4, a5, zero
   SW t4, 236(sp)
-  ADDI a3, zero, 2
-  DIVW s0, s0, a3
+  SRAIW a3, s0, 31
+  SRLIW a3, a3, 31
+  ADD s0, s0, a3
+  SRAIW s0, s0, 1
   ADDI a3, zero, 2
   REMW t4, s0, a3
   SW t4, 252(sp)
@@ -2540,8 +2594,10 @@ bb725:
 bb726:
   ADD t4, a3, zero
   SW t4, 192(sp)
-  ADDI a1, zero, 2
-  DIVW s0, s0, a1
+  SRAIW a1, s0, 31
+  SRLIW a1, a1, 31
+  ADD s0, s0, a1
+  SRAIW s0, s0, 1
   ADDI a1, zero, 2
   REMW t4, s0, a1
   SW t4, 244(sp)
@@ -2555,8 +2611,10 @@ bb727:
 bb728:
   ADD t4, a1, zero
   SW t4, 196(sp)
-  ADDI t1, zero, 2
-  DIVW s0, s0, t1
+  SRAIW t1, s0, 31
+  SRLIW t1, t1, 31
+  ADD s0, s0, t1
+  SRAIW s0, s0, 1
   ADDI t1, zero, 2
   REMW t4, s0, t1
   SW t4, 188(sp)
@@ -2570,8 +2628,10 @@ bb729:
 bb730:
   ADD t4, t1, zero
   SW t4, 200(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW t4, s0, s11
   SW t4, 228(sp)
@@ -2593,8 +2653,10 @@ bb733:
   ADD s9, s0, zero
   # implict jump to bb734
 bb734:
-  ADDI s0, zero, 2
-  DIVW s0, s1, s0
+  SRAIW s0, s1, 31
+  SRLIW s0, s0, 31
+  ADD s0, s1, s0
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4847
@@ -2603,8 +2665,10 @@ bb735:
   ADD s7, s1, zero
   # implict jump to bb736
 bb736:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4846
@@ -2613,8 +2677,10 @@ bb737:
   ADD s5, s1, zero
   # implict jump to bb738
 bb738:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4845
@@ -2623,8 +2689,10 @@ bb739:
   ADD s3, s1, zero
   # implict jump to bb740
 bb740:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4844
@@ -2633,8 +2701,10 @@ bb741:
   ADD s2, s1, zero
   # implict jump to bb742
 bb742:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4843
@@ -2643,8 +2713,10 @@ bb743:
   ADD s11, s1, zero
   # implict jump to bb744
 bb744:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4842
@@ -2653,8 +2725,10 @@ bb745:
   ADD t1, s1, zero
   # implict jump to bb746
 bb746:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4841
@@ -2663,8 +2737,10 @@ bb747:
   ADD a1, s1, zero
   # implict jump to bb748
 bb748:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4840
@@ -2673,8 +2749,10 @@ bb749:
   ADD a3, s1, zero
   # implict jump to bb750
 bb750:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4839
@@ -2683,8 +2761,10 @@ bb751:
   ADD a5, s1, zero
   # implict jump to bb752
 bb752:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4838
@@ -2695,8 +2775,10 @@ bb753:
 bb754:
   ADD t4, a7, zero
   SW t4, 364(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4837
@@ -2707,8 +2789,10 @@ bb755:
 bb756:
   ADD t4, a7, zero
   SW t4, 360(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4836
@@ -2719,8 +2803,10 @@ bb757:
 bb758:
   ADD t4, a7, zero
   SW t4, 356(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4835
@@ -2731,8 +2817,10 @@ bb759:
 bb760:
   ADD t4, a7, zero
   SW t4, 352(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4834
@@ -2743,8 +2831,10 @@ bb761:
 bb762:
   ADD t4, a7, zero
   SW t4, 344(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s0, s0, s1
   BLT s0, zero, bb4833
@@ -4930,8 +5020,10 @@ bb1427:
   ADD s2, s1, zero
   # implict jump to bb1428
 bb1428:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4500
@@ -4940,8 +5032,10 @@ bb1429:
   ADD s3, s1, zero
   # implict jump to bb1430
 bb1430:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4499
@@ -4950,8 +5044,10 @@ bb1431:
   ADD s4, s1, zero
   # implict jump to bb1432
 bb1432:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4498
@@ -4960,8 +5056,10 @@ bb1433:
   ADD s5, s1, zero
   # implict jump to bb1434
 bb1434:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4497
@@ -4970,8 +5068,10 @@ bb1435:
   ADD s6, s1, zero
   # implict jump to bb1436
 bb1436:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4496
@@ -4980,8 +5080,10 @@ bb1437:
   ADD s7, s1, zero
   # implict jump to bb1438
 bb1438:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4495
@@ -4990,8 +5092,10 @@ bb1439:
   ADD s8, s1, zero
   # implict jump to bb1440
 bb1440:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4494
@@ -5000,8 +5104,10 @@ bb1441:
   ADD s9, s1, zero
   # implict jump to bb1442
 bb1442:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4493
@@ -5012,8 +5118,10 @@ bb1443:
 bb1444:
   ADD t4, s10, zero
   SW t4, 288(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4492
@@ -5024,8 +5132,10 @@ bb1445:
 bb1446:
   ADD t4, s11, zero
   SW t4, 320(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4491
@@ -5036,8 +5146,10 @@ bb1447:
 bb1448:
   ADD t4, s11, zero
   SW t4, 316(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4490
@@ -5048,8 +5160,10 @@ bb1449:
 bb1450:
   ADD t4, s11, zero
   SW t4, 312(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4489
@@ -5060,8 +5174,10 @@ bb1451:
 bb1452:
   ADD t4, s11, zero
   SW t4, 308(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4488
@@ -5072,8 +5188,10 @@ bb1453:
 bb1454:
   ADD t4, s11, zero
   SW t4, 304(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb4487
@@ -5084,8 +5202,10 @@ bb1455:
 bb1456:
   ADD t4, s11, zero
   SW t4, 296(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s0, s0, s1
   BLT s0, zero, bb4486
@@ -7282,8 +7402,10 @@ bb2121:
   ADD s10, s11, zero
   # implict jump to bb2122
 bb2122:
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4153
@@ -7292,8 +7414,10 @@ bb2123:
   ADD s9, s11, zero
   # implict jump to bb2124
 bb2124:
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4152
@@ -7302,8 +7426,10 @@ bb2125:
   ADD s8, s11, zero
   # implict jump to bb2126
 bb2126:
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4151
@@ -7312,8 +7438,10 @@ bb2127:
   ADD s7, s11, zero
   # implict jump to bb2128
 bb2128:
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4150
@@ -7324,8 +7452,10 @@ bb2129:
 bb2130:
   ADD t4, s6, zero
   SW t4, 28(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4149
@@ -7336,8 +7466,10 @@ bb2131:
 bb2132:
   ADD t4, s6, zero
   SW t4, 24(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4148
@@ -7348,8 +7480,10 @@ bb2133:
 bb2134:
   ADD t4, s6, zero
   SW t4, 20(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4147
@@ -7360,8 +7494,10 @@ bb2135:
 bb2136:
   ADD t4, s6, zero
   SW t4, 16(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4146
@@ -7372,8 +7508,10 @@ bb2137:
 bb2138:
   ADD t4, s6, zero
   SW t4, 12(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4145
@@ -7384,8 +7522,10 @@ bb2139:
 bb2140:
   ADD t4, s6, zero
   SW t4, 8(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4144
@@ -7396,8 +7536,10 @@ bb2141:
 bb2142:
   ADD t4, s6, zero
   SW t4, 4(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4143
@@ -7408,8 +7550,10 @@ bb2143:
 bb2144:
   ADD t4, s6, zero
   SW t4, 48(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4142
@@ -7420,8 +7564,10 @@ bb2145:
 bb2146:
   ADD t4, s6, zero
   SW t4, 184(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4141
@@ -7432,8 +7578,10 @@ bb2147:
 bb2148:
   ADD t4, s6, zero
   SW t4, 180(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s11, s0, s11
   BLT s11, zero, bb4140
@@ -7444,8 +7592,10 @@ bb2149:
 bb2150:
   ADD t4, s6, zero
   SW t4, 172(sp)
-  ADDI s11, zero, 2
-  DIVW s0, s0, s11
+  SRAIW s11, s0, 31
+  SRLIW s11, s11, 31
+  ADD s0, s0, s11
+  SRAIW s0, s0, 1
   ADDI s11, zero, 2
   REMW s0, s0, s11
   BLT s0, zero, bb4139
@@ -9517,9 +9667,12 @@ bb2783:
   ADD s2, s1, zero
   # implict jump to bb2784
 bb2784:
-  ADDI s1, zero, 2
   LW t4, 336(sp)
-  DIVW s1, t4, s1
+  SRAIW s1, t4, 31
+  SRLIW s1, s1, 31
+  LW t4, 336(sp)
+  ADD s1, t4, s1
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3822
@@ -9528,8 +9681,10 @@ bb2785:
   ADD s4, s3, zero
   # implict jump to bb2786
 bb2786:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3821
@@ -9538,8 +9693,10 @@ bb2787:
   ADD s5, s3, zero
   # implict jump to bb2788
 bb2788:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3820
@@ -9548,8 +9705,10 @@ bb2789:
   ADD s6, s3, zero
   # implict jump to bb2790
 bb2790:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3819
@@ -9558,8 +9717,10 @@ bb2791:
   ADD s7, s3, zero
   # implict jump to bb2792
 bb2792:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3818
@@ -9568,8 +9729,10 @@ bb2793:
   ADD s8, s3, zero
   # implict jump to bb2794
 bb2794:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3817
@@ -9578,8 +9741,10 @@ bb2795:
   ADD s9, s3, zero
   # implict jump to bb2796
 bb2796:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3816
@@ -9588,8 +9753,10 @@ bb2797:
   ADD s10, s3, zero
   # implict jump to bb2798
 bb2798:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3815
@@ -9598,8 +9765,10 @@ bb2799:
   ADD s11, s3, zero
   # implict jump to bb2800
 bb2800:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3814
@@ -9608,8 +9777,10 @@ bb2801:
   ADD t0, s3, zero
   # implict jump to bb2802
 bb2802:
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3813
@@ -9620,8 +9791,10 @@ bb2803:
 bb2804:
   ADD t4, t1, zero
   SW t4, 120(sp)
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3812
@@ -9632,8 +9805,10 @@ bb2805:
 bb2806:
   ADD t4, t2, zero
   SW t4, 124(sp)
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3811
@@ -9644,8 +9819,10 @@ bb2807:
 bb2808:
   ADD t4, a1, zero
   SW t4, 128(sp)
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3810
@@ -9656,8 +9833,10 @@ bb2809:
 bb2810:
   ADD t4, a2, zero
   SW t4, 132(sp)
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s3, s1, s3
   BLT s3, zero, bb3809
@@ -9668,8 +9847,10 @@ bb2811:
 bb2812:
   ADD t4, a3, zero
   SW t4, 136(sp)
-  ADDI s3, zero, 2
-  DIVW s1, s1, s3
+  SRAIW s3, s1, 31
+  SRLIW s3, s3, 31
+  ADD s1, s1, s3
+  SRAIW s1, s1, 1
   ADDI s3, zero, 2
   REMW s1, s1, s3
   BLT s1, zero, bb3808
@@ -9688,8 +9869,10 @@ bb2815:
   ADD a4, s1, zero
   # implict jump to bb2816
 bb2816:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3806
@@ -9698,8 +9881,10 @@ bb2817:
   ADD a5, s1, zero
   # implict jump to bb2818
 bb2818:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3805
@@ -9708,8 +9893,10 @@ bb2819:
   ADD a6, s1, zero
   # implict jump to bb2820
 bb2820:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3804
@@ -9718,8 +9905,10 @@ bb2821:
   ADD a7, s1, zero
   # implict jump to bb2822
 bb2822:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3803
@@ -9728,8 +9917,10 @@ bb2823:
   ADD t6, s1, zero
   # implict jump to bb2824
 bb2824:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3802
@@ -9738,8 +9929,10 @@ bb2825:
   ADD s3, s1, zero
   # implict jump to bb2826
 bb2826:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3801
@@ -9748,8 +9941,10 @@ bb2827:
   ADD a3, s1, zero
   # implict jump to bb2828
 bb2828:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3800
@@ -9758,8 +9953,10 @@ bb2829:
   ADD a2, s1, zero
   # implict jump to bb2830
 bb2830:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3799
@@ -9768,8 +9965,10 @@ bb2831:
   ADD a1, s1, zero
   # implict jump to bb2832
 bb2832:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3798
@@ -9778,8 +9977,10 @@ bb2833:
   ADD t2, s1, zero
   # implict jump to bb2834
 bb2834:
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3797
@@ -9790,8 +9991,10 @@ bb2835:
 bb2836:
   ADD t4, t1, zero
   SW t4, 116(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3796
@@ -9802,8 +10005,10 @@ bb2837:
 bb2838:
   ADD t4, t1, zero
   SW t4, 112(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3795
@@ -9814,8 +10019,10 @@ bb2839:
 bb2840:
   ADD t4, t1, zero
   SW t4, 108(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3794
@@ -9826,8 +10033,10 @@ bb2841:
 bb2842:
   ADD t4, t1, zero
   SW t4, 104(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s1, s0, s1
   BLT s1, zero, bb3793
@@ -9838,8 +10047,10 @@ bb2843:
 bb2844:
   ADD t4, t1, zero
   SW t4, 276(sp)
-  ADDI s1, zero, 2
-  DIVW s0, s0, s1
+  SRAIW s1, s0, 31
+  SRLIW s1, s1, 31
+  ADD s0, s0, s1
+  SRAIW s0, s0, 1
   ADDI s1, zero, 2
   REMW s0, s0, s1
   BLT s0, zero, bb3792

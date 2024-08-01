@@ -73,8 +73,10 @@ bb4:
   LA s5, multi
   LW s5, 0(s5)
   MULW s5, s3, s5
-  ADDI s6, zero, 2
-  DIVW s5, s5, s6
+  SRAIW s6, s5, 31
+  SRLIW s6, s6, 31
+  ADD s5, s5, s6
+  SRAIW s5, s5, 1
   ADDI s6, zero, 1000
   MULW s5, s5, s6
   LA s6, size

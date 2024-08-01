@@ -35,8 +35,10 @@ main:
   LW s0, 0(s0)
   ADDI s1, zero, 1
   SUBW s1, s0, s1
-  ADDI s2, zero, 2
-  DIVW s0, s0, s2
+  SRAIW s2, s0, 31
+  SRLIW s2, s2, 31
+  ADD s0, s0, s2
+  SRAIW s0, s0, 1
   ADD t4, s0, zero
   SW t4, 20(sp)
   ADD t4, s1, zero
@@ -197,8 +199,10 @@ bb22:
   CALL putarray
   LA s4, n
   LW s4, 0(s4)
-  ADDI s5, zero, 2
-  DIVW s4, s4, s5
+  SRAIW s5, s4, 31
+  SRLIW s5, s5, 31
+  ADD s4, s4, s5
+  SRAIW s4, s4, 1
   SLLIW s4, s4, 2
   LA s5, a
   ADD s4, s5, s4
