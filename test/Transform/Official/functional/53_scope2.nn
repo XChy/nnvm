@@ -13,8 +13,7 @@ while.body:  pred(if.exit22, entry)
   20 = icmp slt i32 %18, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
 while.exit:  pred(if.exit22)
-  59 = phi [bb %if.exit22, i32 %k.phi]
-  call void putint(i32 %59)
+  call void putint(i32 %k.phi)
   k.load39 = load i32 from ptr @k
   ret i32 %k.load39
 then21:  pred(while.body)

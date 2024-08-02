@@ -40,8 +40,7 @@ while.body:  pred(while.body, init.exit)
   21 = icmp slt i32 %58, i32 20
   br i1 %21, bb %while.body, bb %while.exit
 while.exit:  pred(while.body)
-  72 = phi [bb %while.body, i32 %49]
-  ret i32 %72
+  ret i32 %49
 }
 
 external void putfarray(i32 , ptr )

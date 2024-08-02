@@ -20,6 +20,7 @@ public:
 
   LIRInst *expand(LIRBuilder &builder, LIRInst *I);
   LIRInst *expandSDiv(LIRBuilder &builder, LIRInst *I);
+  LIRInst *expandSRem(LIRBuilder &builder, LIRInst *I);
 
   /**
    * Legalize constants, transform them to immediate or load them to registers.

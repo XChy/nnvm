@@ -37,8 +37,7 @@ while.body30024:  pred(while.body30024, while.body)
   30027 = icmp slt i32 %30036, i32 60
   br i1 %30027, bb %while.body30024, bb %while.exit30025
 while.exit30025:  pred(while.body30024)
-  50067 = phi [bb %while.body30024, i32 %30033]
-  30039 = sdiv i32 %50067, i32 60
+  30039 = sdiv i32 %30033, i32 60
   30043 = add i32 %sum.phi50074, i32 %30039
   30046 = srem i32 %30043, i32 536854529
   30049 = add i32 %i.phi50073, i32 1

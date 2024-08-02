@@ -28,15 +28,11 @@ EightWhile.while.body:  pred(EightWhile.while.exit20, entry117)
   22162264 = icmp slt i32 %b.phi139278, i32 10
   br i1 %22162264, bb %EightWhile.while.body19_preheader, bb %EightWhile.while.exit20
 EightWhile.while.exit:  pred(EightWhile.while.exit20)
-  275 = phi [bb %EightWhile.while.exit20, i32 %17144]
-  274 = phi [bb %EightWhile.while.exit20, i32 %101168]
-  273 = phi [bb %EightWhile.while.exit20, i32 %c.phi127138266]
-  272 = phi [bb %EightWhile.while.exit20, i32 %d.phi131137265]
-  105147 = add i32 %274, i32 %272
-  106148 = add i32 %275, i32 %105147
-  108149 = add i32 %106148, i32 %273
+  105147 = add i32 %101168, i32 %d.phi131137265
+  106148 = add i32 %17144, i32 %105147
+  108149 = add i32 %106148, i32 %c.phi127138266
   e.load109150 = load i32 from ptr @e
-  111151 = add i32 %e.load109150, i32 %272
+  111151 = add i32 %e.load109150, i32 %d.phi131137265
   g.load112152 = load i32 from ptr @g
   113153 = sub i32 %111151, i32 %g.load112152
   h.load114154 = load i32 from ptr @h

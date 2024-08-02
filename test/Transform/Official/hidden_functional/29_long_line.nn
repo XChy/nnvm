@@ -2839,15 +2839,6 @@ then3449:  pred(select.exit3444)
   br bb %if.exit3450
 if.exit3450:  pred(then3449, else3451)
   s15.phi = phi [bb %else3451, i32 0, bb %then3449, i32 1]
-  br i1 %3344, bb %select.then3457, bb %select.else3458
-else3451:  pred(select.exit3444)
-  br bb %if.exit3450
-select.then3457:  pred(if.exit3450)
-  br bb %select.exit3459
-select.else3458:  pred(if.exit3450)
-  br bb %select.exit3459
-select.exit3459:  pred(select.then3457, select.else3458)
-  select3460.phi = phi [bb %select.else3458, i1 0, bb %select.then3457, i1 0]
   18299 = shl i32 %s15.phi, i32 1
   3509 = add i32 %18299, i32 %s14.phi
   18300 = shl i32 %3509, i32 1
@@ -2881,11 +2872,13 @@ select.exit3459:  pred(select.then3457, select.else3458)
   3601 = srem i32 %n, i32 2
   3603 = icmp slt i32 %3601, i32 0
   br i1 %3603, bb %then3604, bb %if.exit3605
-then3604:  pred(select.exit3459)
+else3451:  pred(select.exit3444)
+  br bb %if.exit3450
+then3604:  pred(if.exit3450)
   3608 = sub i32 0, i32 %3601
   br bb %if.exit3605
-if.exit3605:  pred(select.exit3459, then3604)
-  a03581.phi = phi [bb %select.exit3459, i32 %3601, bb %then3604, i32 %3608]
+if.exit3605:  pred(if.exit3450, then3604)
+  a03581.phi = phi [bb %if.exit3450, i32 %3601, bb %then3604, i32 %3608]
   3611 = sdiv i32 %n, i32 2
   3614 = srem i32 %3611, i32 2
   3616 = icmp slt i32 %3614, i32 0
@@ -5705,16 +5698,6 @@ then6539:  pred(select.exit6534)
   br bb %if.exit6540
 if.exit6540:  pred(then6539, else6541)
   s154063.phi = phi [bb %else6541, i32 0, bb %then6539, i32 1]
-  br i1 %6434, bb %select.then6547, bb %select.else6548
-else6541:  pred(select.exit6534)
-  br bb %if.exit6540
-select.then6547:  pred(if.exit6540)
-  6552 = icmp ne i32 %b153822.phi, i32 0
-  br bb %select.exit6549
-select.else6548:  pred(if.exit6540)
-  br bb %select.exit6549
-select.exit6549:  pred(select.then6547, select.else6548)
-  select6550.phi = phi [bb %select.else6548, i1 0, bb %select.then6547, i1 %6552]
   18315 = shl i32 %s154063.phi, i32 1
   6599 = add i32 %18315, i32 %s144062.phi
   18316 = shl i32 %6599, i32 1
@@ -5747,12 +5730,14 @@ select.exit6549:  pred(select.then6547, select.else6548)
   6669 = add i32 %18329, i32 %s04048.phi
   6672 = call i32 fib(i32 %6669)
   br i1 %264, bb %then6922, bb %else6924
-then6922:  pred(select.exit6549)
+else6541:  pred(select.exit6534)
+  br bb %if.exit6540
+then6922:  pred(if.exit6540)
   br bb %if.exit6923
 if.exit6923:  pred(then6922, else6924)
   o06901.phi = phi [bb %else6924, i32 0, bb %then6922, i32 1]
   br i1 %254, bb %then6932, bb %else6934
-else6924:  pred(select.exit6549)
+else6924:  pred(if.exit6540)
   br bb %if.exit6923
 then6932:  pred(if.exit6923)
   br bb %if.exit6933
@@ -8525,15 +8510,6 @@ then10116:  pred(select.exit10111)
   br bb %if.exit10117
 if.exit10117:  pred(then10116, else10118)
   s157640.phi = phi [bb %else10118, i32 0, bb %then10116, i32 1]
-  br i1 %10011, bb %select.then10124, bb %select.else10125
-else10118:  pred(select.exit10111)
-  br bb %if.exit10117
-select.then10124:  pred(if.exit10117)
-  br bb %select.exit10126
-select.else10125:  pred(if.exit10117)
-  br bb %select.exit10126
-select.exit10126:  pred(select.then10124, select.else10125)
-  select10127.phi = phi [bb %select.else10125, i1 0, bb %select.then10124, i1 0]
   18347 = shl i32 %s157640.phi, i32 1
   10176 = add i32 %18347, i32 %s147639.phi
   18348 = shl i32 %10176, i32 1
@@ -8565,11 +8541,13 @@ select.exit10126:  pred(select.then10124, select.else10125)
   18361 = shl i32 %10241, i32 1
   10246 = add i32 %18361, i32 %s07625.phi
   br i1 %3603, bb %then10271, bb %if.exit10272
-then10271:  pred(select.exit10126)
+else10118:  pred(select.exit10111)
+  br bb %if.exit10117
+then10271:  pred(if.exit10117)
   10275 = sub i32 0, i32 %3601
   br bb %if.exit10272
-if.exit10272:  pred(select.exit10126, then10271)
-  a010248.phi = phi [bb %select.exit10126, i32 %3601, bb %then10271, i32 %10275]
+if.exit10272:  pred(if.exit10117, then10271)
+  a010248.phi = phi [bb %if.exit10117, i32 %3601, bb %then10271, i32 %10275]
   br i1 %3616, bb %then10284, bb %if.exit10285
 then10284:  pred(if.exit10272)
   10288 = sub i32 0, i32 %3614
@@ -11344,16 +11322,6 @@ then13206:  pred(select.exit13201)
   br bb %if.exit13207
 if.exit13207:  pred(then13206, else13208)
   s1510730.phi = phi [bb %else13208, i32 0, bb %then13206, i32 1]
-  br i1 %13101, bb %select.then13214, bb %select.else13215
-else13208:  pred(select.exit13201)
-  br bb %if.exit13207
-select.then13214:  pred(if.exit13207)
-  13219 = icmp ne i32 %b1510489.phi, i32 0
-  br bb %select.exit13216
-select.else13215:  pred(if.exit13207)
-  br bb %select.exit13216
-select.exit13216:  pred(select.then13214, select.else13215)
-  select13217.phi = phi [bb %select.else13215, i1 0, bb %select.then13214, i1 %13219]
   18363 = shl i32 %s1510730.phi, i32 1
   13266 = add i32 %18363, i32 %s1410729.phi
   18364 = shl i32 %13266, i32 1
@@ -11388,11 +11356,13 @@ select.exit13216:  pred(select.then13214, select.else13215)
   13362 = srem i32 %6672, i32 2
   13364 = icmp slt i32 %13362, i32 0
   br i1 %13364, bb %then13365, bb %if.exit13366
-then13365:  pred(select.exit13216)
+else13208:  pred(select.exit13201)
+  br bb %if.exit13207
+then13365:  pred(if.exit13207)
   13369 = sub i32 0, i32 %13362
   br bb %if.exit13366
-if.exit13366:  pred(select.exit13216, then13365)
-  a013342.phi = phi [bb %select.exit13216, i32 %13362, bb %then13365, i32 %13369]
+if.exit13366:  pred(if.exit13207, then13365)
+  a013342.phi = phi [bb %if.exit13207, i32 %13362, bb %then13365, i32 %13369]
   13372 = sdiv i32 %6672, i32 2
   13375 = srem i32 %13372, i32 2
   13377 = icmp slt i32 %13375, i32 0
@@ -14212,16 +14182,6 @@ then16300:  pred(select.exit16295)
   br bb %if.exit16301
 if.exit16301:  pred(then16300, else16302)
   s1513824.phi = phi [bb %else16302, i32 0, bb %then16300, i32 1]
-  br i1 %16195, bb %select.then16308, bb %select.else16309
-else16302:  pred(select.exit16295)
-  br bb %if.exit16301
-select.then16308:  pred(if.exit16301)
-  16313 = icmp ne i32 %b1513583.phi, i32 0
-  br bb %select.exit16310
-select.else16309:  pred(if.exit16301)
-  br bb %select.exit16310
-select.exit16310:  pred(select.then16308, select.else16309)
-  select16311.phi = phi [bb %select.else16309, i1 0, bb %select.then16308, i1 %16313]
   18379 = shl i32 %s1513824.phi, i32 1
   16360 = add i32 %18379, i32 %s1413823.phi
   18380 = shl i32 %16360, i32 1
@@ -14253,6 +14213,8 @@ select.exit16310:  pred(select.then16308, select.else16309)
   18393 = shl i32 %16425, i32 1
   16430 = add i32 %18393, i32 %s013809.phi
   ret i32 %16430
+else16302:  pred(select.exit16295)
+  br bb %if.exit16301
 }
 
 

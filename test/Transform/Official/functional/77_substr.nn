@@ -80,13 +80,10 @@ max_sum_nonadjacent.init:  pred(max_sum_nonadjacent.init, entry185)
 max_sum_nonadjacent.init.exit:  pred(max_sum_nonadjacent.init)
   store i32 8 to ptr %temp297
   39312 = ptradd ptr %temp297, i32 4
-  br bb %max_sum_nonadjacent.init.exit.split
-max_sum_nonadjacent.init.exit.split:  pred(max_sum_nonadjacent.init.exit)
-  47.ret318 = phi [bb %max_sum_nonadjacent.init.exit, i32 8]
-  store i32 %47.ret318 to ptr %39312
+  store i32 8 to ptr %39312
   br bb %max_sum_nonadjacent.while.body
-max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_sum_nonadjacent.init.exit.split)
-  i.phi322476 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit.split, i32 2]
+max_sum_nonadjacent.while.body:  pred(max_sum_nonadjacent.while.body.split, max_sum_nonadjacent.init.exit)
+  i.phi322476 = phi [bb %max_sum_nonadjacent.while.body.split, i32 %78343, bb %max_sum_nonadjacent.init.exit, i32 2]
   232326 = shl i32 %i.phi322476, i32 2
   58327 = ptradd ptr %temp297, i32 %232326
   61328 = sub i32 %i.phi322476, i32 2

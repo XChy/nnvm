@@ -21,25 +21,8 @@ init:  pred(init, entry418)
 init.exit:  pred(init)
   br bb %while.body
 while.body:  pred(while.exit442, init.exit)
-  count.phi10461994 = phi [bb %while.exit442, i32 %count.phi10461955, bb %init.exit, i32 0]
+  count.phi10461994 = phi [bb %while.exit442, i32 %626, bb %init.exit, i32 0]
   i0.phi1993 = phi [bb %while.exit442, i32 %683, bb %init.exit, i32 0]
-  i2.phi10501992 = phi [bb %while.exit442, i32 %i2.phi10501954, bb %init.exit, i32 0]
-  i4.phi10551991 = phi [bb %while.exit442, i32 %i4.phi10551953, bb %init.exit, i32 0]
-  i5.phi10611990 = phi [bb %while.exit442, i32 %i5.phi10611952, bb %init.exit, i32 0]
-  i18.phi10801989 = phi [bb %while.exit442, i32 %i18.phi10801951, bb %init.exit, i32 0]
-  i15.phi10951988 = phi [bb %while.exit442, i32 %i15.phi10951950, bb %init.exit, i32 0]
-  i14.phi11111987 = phi [bb %while.exit442, i32 %i14.phi11111949, bb %init.exit, i32 0]
-  i3.phi11151986 = phi [bb %while.exit442, i32 %i3.phi11151948, bb %init.exit, i32 0]
-  i13.phi11291985 = phi [bb %while.exit442, i32 %i13.phi11291947, bb %init.exit, i32 0]
-  i12.phi11421984 = phi [bb %while.exit442, i32 %i12.phi11421946, bb %init.exit, i32 0]
-  i11.phi11541983 = phi [bb %while.exit442, i32 %i11.phi11541945, bb %init.exit, i32 0]
-  i10.phi11651982 = phi [bb %while.exit442, i32 %i10.phi11651944, bb %init.exit, i32 0]
-  i9.phi11751981 = phi [bb %while.exit442, i32 %i9.phi11751943, bb %init.exit, i32 0]
-  i16.phi11921980 = phi [bb %while.exit442, i32 %i16.phi11921942, bb %init.exit, i32 0]
-  i8.phi12011979 = phi [bb %while.exit442, i32 %i8.phi12011941, bb %init.exit, i32 0]
-  i17.phi12201978 = phi [bb %while.exit442, i32 %i17.phi12201940, bb %init.exit, i32 0]
-  i7.phi12281977 = phi [bb %while.exit442, i32 %i7.phi12281939, bb %init.exit, i32 0]
-  i6.phi12371976 = phi [bb %while.exit442, i32 %i6.phi12371938, bb %init.exit, i32 0]
   br bb %while.body441
 while.exit:  pred(while.exit442)
   2.load1523 = load i32 from ptr %array
@@ -100,454 +83,135 @@ while.exit:  pred(while.exit442)
   call void putint(i32 %4171577)
   ret i32 0
 while.body441:  pred(while.exit449, while.body)
-  count.phi10451974 = phi [bb %while.exit449, i32 %count.phi10451918, bb %while.body, i32 %count.phi10461994]
-  i4.phi10541972 = phi [bb %while.exit449, i32 %i4.phi10541916, bb %while.body, i32 %i4.phi10551991]
-  i5.phi10601971 = phi [bb %while.exit449, i32 %i5.phi10601915, bb %while.body, i32 %i5.phi10611990]
-  i18.phi10791970 = phi [bb %while.exit449, i32 %i18.phi10791914, bb %while.body, i32 %i18.phi10801989]
-  i15.phi10941969 = phi [bb %while.exit449, i32 %i15.phi10941913, bb %while.body, i32 %i15.phi10951988]
-  i14.phi11101968 = phi [bb %while.exit449, i32 %i14.phi11101912, bb %while.body, i32 %i14.phi11111987]
-  i3.phi11141967 = phi [bb %while.exit449, i32 %i3.phi11141911, bb %while.body, i32 %i3.phi11151986]
-  i13.phi11281966 = phi [bb %while.exit449, i32 %i13.phi11281910, bb %while.body, i32 %i13.phi11291985]
-  i12.phi11411965 = phi [bb %while.exit449, i32 %i12.phi11411909, bb %while.body, i32 %i12.phi11421984]
-  i11.phi11531964 = phi [bb %while.exit449, i32 %i11.phi11531908, bb %while.body, i32 %i11.phi11541983]
-  i10.phi11641963 = phi [bb %while.exit449, i32 %i10.phi11641907, bb %while.body, i32 %i10.phi11651982]
-  i9.phi11741962 = phi [bb %while.exit449, i32 %i9.phi11741906, bb %while.body, i32 %i9.phi11751981]
-  i16.phi11911961 = phi [bb %while.exit449, i32 %i16.phi11911905, bb %while.body, i32 %i16.phi11921980]
-  i8.phi12001960 = phi [bb %while.exit449, i32 %i8.phi12001904, bb %while.body, i32 %i8.phi12011979]
-  i17.phi12191959 = phi [bb %while.exit449, i32 %i17.phi12191903, bb %while.body, i32 %i17.phi12201978]
-  i7.phi12271958 = phi [bb %while.exit449, i32 %i7.phi12271902, bb %while.body, i32 %i7.phi12281977]
+  count.phi10451974 = phi [bb %while.exit449, i32 %626, bb %while.body, i32 %count.phi10461994]
   i1.phi1957 = phi [bb %while.exit449, i32 %680, bb %while.body, i32 0]
-  i6.phi12361956 = phi [bb %while.exit449, i32 %i6.phi12361901, bb %while.body, i32 %i6.phi12371976]
   br bb %while.body448
 while.exit442:  pred(while.exit449)
-  count.phi10461955 = phi [bb %while.exit449, i32 %count.phi10451918]
-  i2.phi10501954 = phi [bb %while.exit449, i32 %1917]
-  i4.phi10551953 = phi [bb %while.exit449, i32 %i4.phi10541916]
-  i5.phi10611952 = phi [bb %while.exit449, i32 %i5.phi10601915]
-  i18.phi10801951 = phi [bb %while.exit449, i32 %i18.phi10791914]
-  i15.phi10951950 = phi [bb %while.exit449, i32 %i15.phi10941913]
-  i14.phi11111949 = phi [bb %while.exit449, i32 %i14.phi11101912]
-  i3.phi11151948 = phi [bb %while.exit449, i32 %i3.phi11141911]
-  i13.phi11291947 = phi [bb %while.exit449, i32 %i13.phi11281910]
-  i12.phi11421946 = phi [bb %while.exit449, i32 %i12.phi11411909]
-  i11.phi11541945 = phi [bb %while.exit449, i32 %i11.phi11531908]
-  i10.phi11651944 = phi [bb %while.exit449, i32 %i10.phi11641907]
-  i9.phi11751943 = phi [bb %while.exit449, i32 %i9.phi11741906]
-  i16.phi11921942 = phi [bb %while.exit449, i32 %i16.phi11911905]
-  i8.phi12011941 = phi [bb %while.exit449, i32 %i8.phi12001904]
-  i17.phi12201940 = phi [bb %while.exit449, i32 %i17.phi12191903]
-  i7.phi12281939 = phi [bb %while.exit449, i32 %i7.phi12271902]
-  i6.phi12371938 = phi [bb %while.exit449, i32 %i6.phi12361901]
   683 = add i32 %i0.phi1993, i32 1
   437 = icmp slt i32 %683, i32 2
   br i1 %437, bb %while.body, bb %while.exit
 while.body448:  pred(while.exit456, while.body441)
-  count.phi10441936 = phi [bb %while.exit456, i32 %count.phi10441882, bb %while.body441, i32 %count.phi10451974]
+  count.phi10441936 = phi [bb %while.exit456, i32 %626, bb %while.body441, i32 %count.phi10451974]
   i2.phi1935 = phi [bb %while.exit456, i32 %677, bb %while.body441, i32 0]
-  i4.phi10531934 = phi [bb %while.exit456, i32 %i4.phi10531881, bb %while.body441, i32 %i4.phi10541972]
-  i5.phi10591933 = phi [bb %while.exit456, i32 %i5.phi10591880, bb %while.body441, i32 %i5.phi10601971]
-  i18.phi10781932 = phi [bb %while.exit456, i32 %i18.phi10781879, bb %while.body441, i32 %i18.phi10791970]
-  i15.phi10931931 = phi [bb %while.exit456, i32 %i15.phi10931878, bb %while.body441, i32 %i15.phi10941969]
-  i14.phi11091930 = phi [bb %while.exit456, i32 %i14.phi11091877, bb %while.body441, i32 %i14.phi11101968]
-  i13.phi11271928 = phi [bb %while.exit456, i32 %i13.phi11271875, bb %while.body441, i32 %i13.phi11281966]
-  i12.phi11401927 = phi [bb %while.exit456, i32 %i12.phi11401874, bb %while.body441, i32 %i12.phi11411965]
-  i11.phi11521926 = phi [bb %while.exit456, i32 %i11.phi11521873, bb %while.body441, i32 %i11.phi11531964]
-  i10.phi11631925 = phi [bb %while.exit456, i32 %i10.phi11631872, bb %while.body441, i32 %i10.phi11641963]
-  i9.phi11731924 = phi [bb %while.exit456, i32 %i9.phi11731871, bb %while.body441, i32 %i9.phi11741962]
-  i16.phi11901923 = phi [bb %while.exit456, i32 %i16.phi11901870, bb %while.body441, i32 %i16.phi11911961]
-  i8.phi11991922 = phi [bb %while.exit456, i32 %i8.phi11991869, bb %while.body441, i32 %i8.phi12001960]
-  i17.phi12181921 = phi [bb %while.exit456, i32 %i17.phi12181868, bb %while.body441, i32 %i17.phi12191959]
-  i7.phi12261920 = phi [bb %while.exit456, i32 %i7.phi12261867, bb %while.body441, i32 %i7.phi12271958]
-  i6.phi12351919 = phi [bb %while.exit456, i32 %i6.phi12351866, bb %while.body441, i32 %i6.phi12361956]
   br bb %while.body455
 while.exit449:  pred(while.exit456)
-  count.phi10451918 = phi [bb %while.exit456, i32 %count.phi10441882]
-  1917 = phi [bb %while.exit456, i32 %677]
-  i4.phi10541916 = phi [bb %while.exit456, i32 %i4.phi10531881]
-  i5.phi10601915 = phi [bb %while.exit456, i32 %i5.phi10591880]
-  i18.phi10791914 = phi [bb %while.exit456, i32 %i18.phi10781879]
-  i15.phi10941913 = phi [bb %while.exit456, i32 %i15.phi10931878]
-  i14.phi11101912 = phi [bb %while.exit456, i32 %i14.phi11091877]
-  i3.phi11141911 = phi [bb %while.exit456, i32 %1876]
-  i13.phi11281910 = phi [bb %while.exit456, i32 %i13.phi11271875]
-  i12.phi11411909 = phi [bb %while.exit456, i32 %i12.phi11401874]
-  i11.phi11531908 = phi [bb %while.exit456, i32 %i11.phi11521873]
-  i10.phi11641907 = phi [bb %while.exit456, i32 %i10.phi11631872]
-  i9.phi11741906 = phi [bb %while.exit456, i32 %i9.phi11731871]
-  i16.phi11911905 = phi [bb %while.exit456, i32 %i16.phi11901870]
-  i8.phi12001904 = phi [bb %while.exit456, i32 %i8.phi11991869]
-  i17.phi12191903 = phi [bb %while.exit456, i32 %i17.phi12181868]
-  i7.phi12271902 = phi [bb %while.exit456, i32 %i7.phi12261867]
-  i6.phi12361901 = phi [bb %while.exit456, i32 %i6.phi12351866]
   680 = add i32 %i1.phi1957, i32 1
   444 = icmp slt i32 %680, i32 2
   br i1 %444, bb %while.body441, bb %while.exit442
 while.body455:  pred(while.exit463, while.body448)
-  count.phi10431899 = phi [bb %while.exit463, i32 %count.phi10431848, bb %while.body448, i32 %count.phi10441936]
-  i5.phi10581897 = phi [bb %while.exit463, i32 %i5.phi10581846, bb %while.body448, i32 %i5.phi10591933]
-  i18.phi10771896 = phi [bb %while.exit463, i32 %i18.phi10771845, bb %while.body448, i32 %i18.phi10781932]
-  i15.phi10921895 = phi [bb %while.exit463, i32 %i15.phi10921844, bb %while.body448, i32 %i15.phi10931931]
-  i14.phi11081894 = phi [bb %while.exit463, i32 %i14.phi11081843, bb %while.body448, i32 %i14.phi11091930]
+  count.phi10431899 = phi [bb %while.exit463, i32 %626, bb %while.body448, i32 %count.phi10441936]
   i3.phi1893 = phi [bb %while.exit463, i32 %674, bb %while.body448, i32 0]
-  i13.phi11261892 = phi [bb %while.exit463, i32 %i13.phi11261842, bb %while.body448, i32 %i13.phi11271928]
-  i12.phi11391891 = phi [bb %while.exit463, i32 %i12.phi11391841, bb %while.body448, i32 %i12.phi11401927]
-  i11.phi11511890 = phi [bb %while.exit463, i32 %i11.phi11511840, bb %while.body448, i32 %i11.phi11521926]
-  i10.phi11621889 = phi [bb %while.exit463, i32 %i10.phi11621839, bb %while.body448, i32 %i10.phi11631925]
-  i9.phi11721888 = phi [bb %while.exit463, i32 %i9.phi11721838, bb %while.body448, i32 %i9.phi11731924]
-  i16.phi11891887 = phi [bb %while.exit463, i32 %i16.phi11891837, bb %while.body448, i32 %i16.phi11901923]
-  i8.phi11981886 = phi [bb %while.exit463, i32 %i8.phi11981836, bb %while.body448, i32 %i8.phi11991922]
-  i17.phi12171885 = phi [bb %while.exit463, i32 %i17.phi12171835, bb %while.body448, i32 %i17.phi12181921]
-  i7.phi12251884 = phi [bb %while.exit463, i32 %i7.phi12251834, bb %while.body448, i32 %i7.phi12261920]
-  i6.phi12341883 = phi [bb %while.exit463, i32 %i6.phi12341833, bb %while.body448, i32 %i6.phi12351919]
   br bb %while.body462
 while.exit456:  pred(while.exit463)
-  count.phi10441882 = phi [bb %while.exit463, i32 %count.phi10431848]
-  i4.phi10531881 = phi [bb %while.exit463, i32 %1847]
-  i5.phi10591880 = phi [bb %while.exit463, i32 %i5.phi10581846]
-  i18.phi10781879 = phi [bb %while.exit463, i32 %i18.phi10771845]
-  i15.phi10931878 = phi [bb %while.exit463, i32 %i15.phi10921844]
-  i14.phi11091877 = phi [bb %while.exit463, i32 %i14.phi11081843]
-  1876 = phi [bb %while.exit463, i32 %674]
-  i13.phi11271875 = phi [bb %while.exit463, i32 %i13.phi11261842]
-  i12.phi11401874 = phi [bb %while.exit463, i32 %i12.phi11391841]
-  i11.phi11521873 = phi [bb %while.exit463, i32 %i11.phi11511840]
-  i10.phi11631872 = phi [bb %while.exit463, i32 %i10.phi11621839]
-  i9.phi11731871 = phi [bb %while.exit463, i32 %i9.phi11721838]
-  i16.phi11901870 = phi [bb %while.exit463, i32 %i16.phi11891837]
-  i8.phi11991869 = phi [bb %while.exit463, i32 %i8.phi11981836]
-  i17.phi12181868 = phi [bb %while.exit463, i32 %i17.phi12171835]
-  i7.phi12261867 = phi [bb %while.exit463, i32 %i7.phi12251834]
-  i6.phi12351866 = phi [bb %while.exit463, i32 %i6.phi12341833]
   677 = add i32 %i2.phi1935, i32 1
   451 = icmp slt i32 %677, i32 2
   br i1 %451, bb %while.body448, bb %while.exit449
 while.body462:  pred(while.exit470, while.body455)
-  count.phi10421864 = phi [bb %while.exit470, i32 %count.phi10421816, bb %while.body455, i32 %count.phi10431899]
+  count.phi10421864 = phi [bb %while.exit470, i32 %626, bb %while.body455, i32 %count.phi10431899]
   i4.phi1863 = phi [bb %while.exit470, i32 %671, bb %while.body455, i32 0]
-  i18.phi10761861 = phi [bb %while.exit470, i32 %i18.phi10761814, bb %while.body455, i32 %i18.phi10771896]
-  i15.phi10911860 = phi [bb %while.exit470, i32 %i15.phi10911813, bb %while.body455, i32 %i15.phi10921895]
-  i14.phi11071859 = phi [bb %while.exit470, i32 %i14.phi11071812, bb %while.body455, i32 %i14.phi11081894]
-  i13.phi11251858 = phi [bb %while.exit470, i32 %i13.phi11251811, bb %while.body455, i32 %i13.phi11261892]
-  i12.phi11381857 = phi [bb %while.exit470, i32 %i12.phi11381810, bb %while.body455, i32 %i12.phi11391891]
-  i11.phi11501856 = phi [bb %while.exit470, i32 %i11.phi11501809, bb %while.body455, i32 %i11.phi11511890]
-  i10.phi11611855 = phi [bb %while.exit470, i32 %i10.phi11611808, bb %while.body455, i32 %i10.phi11621889]
-  i9.phi11711854 = phi [bb %while.exit470, i32 %i9.phi11711807, bb %while.body455, i32 %i9.phi11721888]
-  i16.phi11881853 = phi [bb %while.exit470, i32 %i16.phi11881806, bb %while.body455, i32 %i16.phi11891887]
-  i8.phi11971852 = phi [bb %while.exit470, i32 %i8.phi11971805, bb %while.body455, i32 %i8.phi11981886]
-  i17.phi12161851 = phi [bb %while.exit470, i32 %i17.phi12161804, bb %while.body455, i32 %i17.phi12171885]
-  i7.phi12241850 = phi [bb %while.exit470, i32 %i7.phi12241803, bb %while.body455, i32 %i7.phi12251884]
-  i6.phi12331849 = phi [bb %while.exit470, i32 %i6.phi12331802, bb %while.body455, i32 %i6.phi12341883]
   br bb %while.body469
 while.exit463:  pred(while.exit470)
-  count.phi10431848 = phi [bb %while.exit470, i32 %count.phi10421816]
-  1847 = phi [bb %while.exit470, i32 %671]
-  i5.phi10581846 = phi [bb %while.exit470, i32 %1815]
-  i18.phi10771845 = phi [bb %while.exit470, i32 %i18.phi10761814]
-  i15.phi10921844 = phi [bb %while.exit470, i32 %i15.phi10911813]
-  i14.phi11081843 = phi [bb %while.exit470, i32 %i14.phi11071812]
-  i13.phi11261842 = phi [bb %while.exit470, i32 %i13.phi11251811]
-  i12.phi11391841 = phi [bb %while.exit470, i32 %i12.phi11381810]
-  i11.phi11511840 = phi [bb %while.exit470, i32 %i11.phi11501809]
-  i10.phi11621839 = phi [bb %while.exit470, i32 %i10.phi11611808]
-  i9.phi11721838 = phi [bb %while.exit470, i32 %i9.phi11711807]
-  i16.phi11891837 = phi [bb %while.exit470, i32 %i16.phi11881806]
-  i8.phi11981836 = phi [bb %while.exit470, i32 %i8.phi11971805]
-  i17.phi12171835 = phi [bb %while.exit470, i32 %i17.phi12161804]
-  i7.phi12251834 = phi [bb %while.exit470, i32 %i7.phi12241803]
-  i6.phi12341833 = phi [bb %while.exit470, i32 %i6.phi12331802]
   674 = add i32 %i3.phi1893, i32 1
   458 = icmp slt i32 %674, i32 2
   br i1 %458, bb %while.body455, bb %while.exit456
 while.body469:  pred(while.exit477, while.body462)
-  count.phi10411831 = phi [bb %while.exit477, i32 %count.phi10411786, bb %while.body462, i32 %count.phi10421864]
+  count.phi10411831 = phi [bb %while.exit477, i32 %626, bb %while.body462, i32 %count.phi10421864]
   i5.phi1830 = phi [bb %while.exit477, i32 %668, bb %while.body462, i32 0]
-  i18.phi10751829 = phi [bb %while.exit477, i32 %i18.phi10751785, bb %while.body462, i32 %i18.phi10761861]
-  i15.phi10901828 = phi [bb %while.exit477, i32 %i15.phi10901784, bb %while.body462, i32 %i15.phi10911860]
-  i14.phi11061827 = phi [bb %while.exit477, i32 %i14.phi11061783, bb %while.body462, i32 %i14.phi11071859]
-  i13.phi11241826 = phi [bb %while.exit477, i32 %i13.phi11241782, bb %while.body462, i32 %i13.phi11251858]
-  i12.phi11371825 = phi [bb %while.exit477, i32 %i12.phi11371781, bb %while.body462, i32 %i12.phi11381857]
-  i11.phi11491824 = phi [bb %while.exit477, i32 %i11.phi11491780, bb %while.body462, i32 %i11.phi11501856]
-  i10.phi11601823 = phi [bb %while.exit477, i32 %i10.phi11601779, bb %while.body462, i32 %i10.phi11611855]
-  i9.phi11701822 = phi [bb %while.exit477, i32 %i9.phi11701778, bb %while.body462, i32 %i9.phi11711854]
-  i16.phi11871821 = phi [bb %while.exit477, i32 %i16.phi11871777, bb %while.body462, i32 %i16.phi11881853]
-  i8.phi11961820 = phi [bb %while.exit477, i32 %i8.phi11961776, bb %while.body462, i32 %i8.phi11971852]
-  i17.phi12151819 = phi [bb %while.exit477, i32 %i17.phi12151775, bb %while.body462, i32 %i17.phi12161851]
-  i7.phi12231818 = phi [bb %while.exit477, i32 %i7.phi12231774, bb %while.body462, i32 %i7.phi12241850]
   br bb %while.body476
 while.exit470:  pred(while.exit477)
-  count.phi10421816 = phi [bb %while.exit477, i32 %count.phi10411786]
-  1815 = phi [bb %while.exit477, i32 %668]
-  i18.phi10761814 = phi [bb %while.exit477, i32 %i18.phi10751785]
-  i15.phi10911813 = phi [bb %while.exit477, i32 %i15.phi10901784]
-  i14.phi11071812 = phi [bb %while.exit477, i32 %i14.phi11061783]
-  i13.phi11251811 = phi [bb %while.exit477, i32 %i13.phi11241782]
-  i12.phi11381810 = phi [bb %while.exit477, i32 %i12.phi11371781]
-  i11.phi11501809 = phi [bb %while.exit477, i32 %i11.phi11491780]
-  i10.phi11611808 = phi [bb %while.exit477, i32 %i10.phi11601779]
-  i9.phi11711807 = phi [bb %while.exit477, i32 %i9.phi11701778]
-  i16.phi11881806 = phi [bb %while.exit477, i32 %i16.phi11871777]
-  i8.phi11971805 = phi [bb %while.exit477, i32 %i8.phi11961776]
-  i17.phi12161804 = phi [bb %while.exit477, i32 %i17.phi12151775]
-  i7.phi12241803 = phi [bb %while.exit477, i32 %i7.phi12231774]
-  i6.phi12331802 = phi [bb %while.exit477, i32 %1773]
   671 = add i32 %i4.phi1863, i32 1
   465 = icmp slt i32 %671, i32 2
   br i1 %465, bb %while.body462, bb %while.exit463
 while.body476:  pred(while.exit484, while.body469)
-  count.phi10401800 = phi [bb %while.exit484, i32 %count.phi10401758, bb %while.body469, i32 %count.phi10411831]
-  i18.phi10741799 = phi [bb %while.exit484, i32 %i18.phi10741757, bb %while.body469, i32 %i18.phi10751829]
-  i15.phi10891798 = phi [bb %while.exit484, i32 %i15.phi10891756, bb %while.body469, i32 %i15.phi10901828]
-  i14.phi11051797 = phi [bb %while.exit484, i32 %i14.phi11051755, bb %while.body469, i32 %i14.phi11061827]
-  i13.phi11231796 = phi [bb %while.exit484, i32 %i13.phi11231754, bb %while.body469, i32 %i13.phi11241826]
-  i12.phi11361795 = phi [bb %while.exit484, i32 %i12.phi11361753, bb %while.body469, i32 %i12.phi11371825]
-  i11.phi11481794 = phi [bb %while.exit484, i32 %i11.phi11481752, bb %while.body469, i32 %i11.phi11491824]
-  i10.phi11591793 = phi [bb %while.exit484, i32 %i10.phi11591751, bb %while.body469, i32 %i10.phi11601823]
-  i9.phi11691792 = phi [bb %while.exit484, i32 %i9.phi11691750, bb %while.body469, i32 %i9.phi11701822]
-  i16.phi11861791 = phi [bb %while.exit484, i32 %i16.phi11861749, bb %while.body469, i32 %i16.phi11871821]
-  i8.phi11951790 = phi [bb %while.exit484, i32 %i8.phi11951748, bb %while.body469, i32 %i8.phi11961820]
-  i17.phi12141789 = phi [bb %while.exit484, i32 %i17.phi12141747, bb %while.body469, i32 %i17.phi12151819]
+  count.phi10401800 = phi [bb %while.exit484, i32 %626, bb %while.body469, i32 %count.phi10411831]
   i6.phi1787 = phi [bb %while.exit484, i32 %665, bb %while.body469, i32 0]
   br bb %while.body483
 while.exit477:  pred(while.exit484)
-  count.phi10411786 = phi [bb %while.exit484, i32 %count.phi10401758]
-  i18.phi10751785 = phi [bb %while.exit484, i32 %i18.phi10741757]
-  i15.phi10901784 = phi [bb %while.exit484, i32 %i15.phi10891756]
-  i14.phi11061783 = phi [bb %while.exit484, i32 %i14.phi11051755]
-  i13.phi11241782 = phi [bb %while.exit484, i32 %i13.phi11231754]
-  i12.phi11371781 = phi [bb %while.exit484, i32 %i12.phi11361753]
-  i11.phi11491780 = phi [bb %while.exit484, i32 %i11.phi11481752]
-  i10.phi11601779 = phi [bb %while.exit484, i32 %i10.phi11591751]
-  i9.phi11701778 = phi [bb %while.exit484, i32 %i9.phi11691750]
-  i16.phi11871777 = phi [bb %while.exit484, i32 %i16.phi11861749]
-  i8.phi11961776 = phi [bb %while.exit484, i32 %i8.phi11951748]
-  i17.phi12151775 = phi [bb %while.exit484, i32 %i17.phi12141747]
-  i7.phi12231774 = phi [bb %while.exit484, i32 %1746]
-  1773 = phi [bb %while.exit484, i32 %665]
   668 = add i32 %i5.phi1830, i32 1
   472 = icmp slt i32 %668, i32 2
   br i1 %472, bb %while.body469, bb %while.exit470
 while.body483:  pred(while.exit491, while.body476)
-  count.phi10391771 = phi [bb %while.exit491, i32 %count.phi10391732, bb %while.body476, i32 %count.phi10401800]
-  i18.phi10731770 = phi [bb %while.exit491, i32 %i18.phi10731731, bb %while.body476, i32 %i18.phi10741799]
-  i15.phi10881769 = phi [bb %while.exit491, i32 %i15.phi10881730, bb %while.body476, i32 %i15.phi10891798]
-  i14.phi11041768 = phi [bb %while.exit491, i32 %i14.phi11041729, bb %while.body476, i32 %i14.phi11051797]
-  i13.phi11221767 = phi [bb %while.exit491, i32 %i13.phi11221728, bb %while.body476, i32 %i13.phi11231796]
-  i12.phi11351766 = phi [bb %while.exit491, i32 %i12.phi11351727, bb %while.body476, i32 %i12.phi11361795]
-  i11.phi11471765 = phi [bb %while.exit491, i32 %i11.phi11471726, bb %while.body476, i32 %i11.phi11481794]
-  i10.phi11581764 = phi [bb %while.exit491, i32 %i10.phi11581725, bb %while.body476, i32 %i10.phi11591793]
-  i9.phi11681763 = phi [bb %while.exit491, i32 %i9.phi11681724, bb %while.body476, i32 %i9.phi11691792]
-  i16.phi11851762 = phi [bb %while.exit491, i32 %i16.phi11851723, bb %while.body476, i32 %i16.phi11861791]
-  i17.phi12131760 = phi [bb %while.exit491, i32 %i17.phi12131721, bb %while.body476, i32 %i17.phi12141789]
+  count.phi10391771 = phi [bb %while.exit491, i32 %626, bb %while.body476, i32 %count.phi10401800]
   i7.phi1759 = phi [bb %while.exit491, i32 %662, bb %while.body476, i32 0]
   br bb %while.body490
 while.exit484:  pred(while.exit491)
-  count.phi10401758 = phi [bb %while.exit491, i32 %count.phi10391732]
-  i18.phi10741757 = phi [bb %while.exit491, i32 %i18.phi10731731]
-  i15.phi10891756 = phi [bb %while.exit491, i32 %i15.phi10881730]
-  i14.phi11051755 = phi [bb %while.exit491, i32 %i14.phi11041729]
-  i13.phi11231754 = phi [bb %while.exit491, i32 %i13.phi11221728]
-  i12.phi11361753 = phi [bb %while.exit491, i32 %i12.phi11351727]
-  i11.phi11481752 = phi [bb %while.exit491, i32 %i11.phi11471726]
-  i10.phi11591751 = phi [bb %while.exit491, i32 %i10.phi11581725]
-  i9.phi11691750 = phi [bb %while.exit491, i32 %i9.phi11681724]
-  i16.phi11861749 = phi [bb %while.exit491, i32 %i16.phi11851723]
-  i8.phi11951748 = phi [bb %while.exit491, i32 %1722]
-  i17.phi12141747 = phi [bb %while.exit491, i32 %i17.phi12131721]
-  1746 = phi [bb %while.exit491, i32 %662]
   665 = add i32 %i6.phi1787, i32 1
   479 = icmp slt i32 %665, i32 2
   br i1 %479, bb %while.body476, bb %while.exit477
 while.body490:  pred(while.exit498, while.body483)
-  count.phi10381744 = phi [bb %while.exit498, i32 %count.phi10381708, bb %while.body483, i32 %count.phi10391771]
-  i18.phi10721743 = phi [bb %while.exit498, i32 %i18.phi10721707, bb %while.body483, i32 %i18.phi10731770]
-  i15.phi10871742 = phi [bb %while.exit498, i32 %i15.phi10871706, bb %while.body483, i32 %i15.phi10881769]
-  i14.phi11031741 = phi [bb %while.exit498, i32 %i14.phi11031705, bb %while.body483, i32 %i14.phi11041768]
-  i13.phi11211740 = phi [bb %while.exit498, i32 %i13.phi11211704, bb %while.body483, i32 %i13.phi11221767]
-  i12.phi11341739 = phi [bb %while.exit498, i32 %i12.phi11341703, bb %while.body483, i32 %i12.phi11351766]
-  i11.phi11461738 = phi [bb %while.exit498, i32 %i11.phi11461702, bb %while.body483, i32 %i11.phi11471765]
-  i10.phi11571737 = phi [bb %while.exit498, i32 %i10.phi11571701, bb %while.body483, i32 %i10.phi11581764]
-  i16.phi11841735 = phi [bb %while.exit498, i32 %i16.phi11841699, bb %while.body483, i32 %i16.phi11851762]
+  count.phi10381744 = phi [bb %while.exit498, i32 %626, bb %while.body483, i32 %count.phi10391771]
   i8.phi1734 = phi [bb %while.exit498, i32 %659, bb %while.body483, i32 0]
-  i17.phi12121733 = phi [bb %while.exit498, i32 %i17.phi12121698, bb %while.body483, i32 %i17.phi12131760]
   br bb %while.body497
 while.exit491:  pred(while.exit498)
-  count.phi10391732 = phi [bb %while.exit498, i32 %count.phi10381708]
-  i18.phi10731731 = phi [bb %while.exit498, i32 %i18.phi10721707]
-  i15.phi10881730 = phi [bb %while.exit498, i32 %i15.phi10871706]
-  i14.phi11041729 = phi [bb %while.exit498, i32 %i14.phi11031705]
-  i13.phi11221728 = phi [bb %while.exit498, i32 %i13.phi11211704]
-  i12.phi11351727 = phi [bb %while.exit498, i32 %i12.phi11341703]
-  i11.phi11471726 = phi [bb %while.exit498, i32 %i11.phi11461702]
-  i10.phi11581725 = phi [bb %while.exit498, i32 %i10.phi11571701]
-  i9.phi11681724 = phi [bb %while.exit498, i32 %1700]
-  i16.phi11851723 = phi [bb %while.exit498, i32 %i16.phi11841699]
-  1722 = phi [bb %while.exit498, i32 %659]
-  i17.phi12131721 = phi [bb %while.exit498, i32 %i17.phi12121698]
   662 = add i32 %i7.phi1759, i32 1
   486 = icmp slt i32 %662, i32 2
   br i1 %486, bb %while.body483, bb %while.exit484
 while.body497:  pred(while.exit505, while.body490)
-  count.phi10371719 = phi [bb %while.exit505, i32 %count.phi10371686, bb %while.body490, i32 %count.phi10381744]
-  i18.phi10711718 = phi [bb %while.exit505, i32 %i18.phi10711685, bb %while.body490, i32 %i18.phi10721743]
-  i15.phi10861717 = phi [bb %while.exit505, i32 %i15.phi10861684, bb %while.body490, i32 %i15.phi10871742]
-  i14.phi11021716 = phi [bb %while.exit505, i32 %i14.phi11021683, bb %while.body490, i32 %i14.phi11031741]
-  i13.phi11201715 = phi [bb %while.exit505, i32 %i13.phi11201682, bb %while.body490, i32 %i13.phi11211740]
-  i12.phi11331714 = phi [bb %while.exit505, i32 %i12.phi11331681, bb %while.body490, i32 %i12.phi11341739]
-  i11.phi11451713 = phi [bb %while.exit505, i32 %i11.phi11451680, bb %while.body490, i32 %i11.phi11461738]
+  count.phi10371719 = phi [bb %while.exit505, i32 %626, bb %while.body490, i32 %count.phi10381744]
   i9.phi1711 = phi [bb %while.exit505, i32 %656, bb %while.body490, i32 0]
-  i16.phi11831710 = phi [bb %while.exit505, i32 %i16.phi11831678, bb %while.body490, i32 %i16.phi11841735]
-  i17.phi12111709 = phi [bb %while.exit505, i32 %i17.phi12111677, bb %while.body490, i32 %i17.phi12121733]
   br bb %while.body504
 while.exit498:  pred(while.exit505)
-  count.phi10381708 = phi [bb %while.exit505, i32 %count.phi10371686]
-  i18.phi10721707 = phi [bb %while.exit505, i32 %i18.phi10711685]
-  i15.phi10871706 = phi [bb %while.exit505, i32 %i15.phi10861684]
-  i14.phi11031705 = phi [bb %while.exit505, i32 %i14.phi11021683]
-  i13.phi11211704 = phi [bb %while.exit505, i32 %i13.phi11201682]
-  i12.phi11341703 = phi [bb %while.exit505, i32 %i12.phi11331681]
-  i11.phi11461702 = phi [bb %while.exit505, i32 %i11.phi11451680]
-  i10.phi11571701 = phi [bb %while.exit505, i32 %1679]
-  1700 = phi [bb %while.exit505, i32 %656]
-  i16.phi11841699 = phi [bb %while.exit505, i32 %i16.phi11831678]
-  i17.phi12121698 = phi [bb %while.exit505, i32 %i17.phi12111677]
   659 = add i32 %i8.phi1734, i32 1
   493 = icmp slt i32 %659, i32 2
   br i1 %493, bb %while.body490, bb %while.exit491
 while.body504:  pred(while.exit512, while.body497)
-  count.phi10361696 = phi [bb %while.exit512, i32 %count.phi10361666, bb %while.body497, i32 %count.phi10371719]
-  i18.phi10701695 = phi [bb %while.exit512, i32 %i18.phi10701665, bb %while.body497, i32 %i18.phi10711718]
-  i15.phi10851694 = phi [bb %while.exit512, i32 %i15.phi10851664, bb %while.body497, i32 %i15.phi10861717]
-  i14.phi11011693 = phi [bb %while.exit512, i32 %i14.phi11011663, bb %while.body497, i32 %i14.phi11021716]
-  i13.phi11191692 = phi [bb %while.exit512, i32 %i13.phi11191662, bb %while.body497, i32 %i13.phi11201715]
-  i12.phi11321691 = phi [bb %while.exit512, i32 %i12.phi11321661, bb %while.body497, i32 %i12.phi11331714]
+  count.phi10361696 = phi [bb %while.exit512, i32 %626, bb %while.body497, i32 %count.phi10371719]
   i10.phi1689 = phi [bb %while.exit512, i32 %653, bb %while.body497, i32 0]
-  i16.phi11821688 = phi [bb %while.exit512, i32 %i16.phi11821659, bb %while.body497, i32 %i16.phi11831710]
-  i17.phi12101687 = phi [bb %while.exit512, i32 %i17.phi12101658, bb %while.body497, i32 %i17.phi12111709]
   br bb %while.body511
 while.exit505:  pred(while.exit512)
-  count.phi10371686 = phi [bb %while.exit512, i32 %count.phi10361666]
-  i18.phi10711685 = phi [bb %while.exit512, i32 %i18.phi10701665]
-  i15.phi10861684 = phi [bb %while.exit512, i32 %i15.phi10851664]
-  i14.phi11021683 = phi [bb %while.exit512, i32 %i14.phi11011663]
-  i13.phi11201682 = phi [bb %while.exit512, i32 %i13.phi11191662]
-  i12.phi11331681 = phi [bb %while.exit512, i32 %i12.phi11321661]
-  i11.phi11451680 = phi [bb %while.exit512, i32 %1660]
-  1679 = phi [bb %while.exit512, i32 %653]
-  i16.phi11831678 = phi [bb %while.exit512, i32 %i16.phi11821659]
-  i17.phi12111677 = phi [bb %while.exit512, i32 %i17.phi12101658]
   656 = add i32 %i9.phi1711, i32 1
   500 = icmp slt i32 %656, i32 2
   br i1 %500, bb %while.body497, bb %while.exit498
 while.body511:  pred(while.exit519, while.body504)
-  count.phi10351675 = phi [bb %while.exit519, i32 %count.phi10351648, bb %while.body504, i32 %count.phi10361696]
-  i18.phi10691674 = phi [bb %while.exit519, i32 %i18.phi10691647, bb %while.body504, i32 %i18.phi10701695]
-  i15.phi10841673 = phi [bb %while.exit519, i32 %i15.phi10841646, bb %while.body504, i32 %i15.phi10851694]
-  i14.phi11001672 = phi [bb %while.exit519, i32 %i14.phi11001645, bb %while.body504, i32 %i14.phi11011693]
-  i13.phi11181671 = phi [bb %while.exit519, i32 %i13.phi11181644, bb %while.body504, i32 %i13.phi11191692]
+  count.phi10351675 = phi [bb %while.exit519, i32 %626, bb %while.body504, i32 %count.phi10361696]
   i11.phi1669 = phi [bb %while.exit519, i32 %650, bb %while.body504, i32 0]
-  i16.phi11811668 = phi [bb %while.exit519, i32 %i16.phi11811642, bb %while.body504, i32 %i16.phi11821688]
-  i17.phi12091667 = phi [bb %while.exit519, i32 %i17.phi12091641, bb %while.body504, i32 %i17.phi12101687]
   br bb %while.body518
 while.exit512:  pred(while.exit519)
-  count.phi10361666 = phi [bb %while.exit519, i32 %count.phi10351648]
-  i18.phi10701665 = phi [bb %while.exit519, i32 %i18.phi10691647]
-  i15.phi10851664 = phi [bb %while.exit519, i32 %i15.phi10841646]
-  i14.phi11011663 = phi [bb %while.exit519, i32 %i14.phi11001645]
-  i13.phi11191662 = phi [bb %while.exit519, i32 %i13.phi11181644]
-  i12.phi11321661 = phi [bb %while.exit519, i32 %1643]
-  1660 = phi [bb %while.exit519, i32 %650]
-  i16.phi11821659 = phi [bb %while.exit519, i32 %i16.phi11811642]
-  i17.phi12101658 = phi [bb %while.exit519, i32 %i17.phi12091641]
   653 = add i32 %i10.phi1689, i32 1
   507 = icmp slt i32 %653, i32 2
   br i1 %507, bb %while.body504, bb %while.exit505
 while.body518:  pred(while.exit526, while.body511)
-  count.phi10341656 = phi [bb %while.exit526, i32 %count.phi10341632, bb %while.body511, i32 %count.phi10351675]
-  i18.phi10681655 = phi [bb %while.exit526, i32 %i18.phi10681631, bb %while.body511, i32 %i18.phi10691674]
-  i15.phi10831654 = phi [bb %while.exit526, i32 %i15.phi10831630, bb %while.body511, i32 %i15.phi10841673]
-  i14.phi10991653 = phi [bb %while.exit526, i32 %i14.phi10991629, bb %while.body511, i32 %i14.phi11001672]
+  count.phi10341656 = phi [bb %while.exit526, i32 %626, bb %while.body511, i32 %count.phi10351675]
   i12.phi1651 = phi [bb %while.exit526, i32 %647, bb %while.body511, i32 0]
-  i16.phi11801650 = phi [bb %while.exit526, i32 %i16.phi11801627, bb %while.body511, i32 %i16.phi11811668]
-  i17.phi12081649 = phi [bb %while.exit526, i32 %i17.phi12081626, bb %while.body511, i32 %i17.phi12091667]
   br bb %while.body525
 while.exit519:  pred(while.exit526)
-  count.phi10351648 = phi [bb %while.exit526, i32 %count.phi10341632]
-  i18.phi10691647 = phi [bb %while.exit526, i32 %i18.phi10681631]
-  i15.phi10841646 = phi [bb %while.exit526, i32 %i15.phi10831630]
-  i14.phi11001645 = phi [bb %while.exit526, i32 %i14.phi10991629]
-  i13.phi11181644 = phi [bb %while.exit526, i32 %1628]
-  1643 = phi [bb %while.exit526, i32 %647]
-  i16.phi11811642 = phi [bb %while.exit526, i32 %i16.phi11801627]
-  i17.phi12091641 = phi [bb %while.exit526, i32 %i17.phi12081626]
   650 = add i32 %i11.phi1669, i32 1
   514 = icmp slt i32 %650, i32 2
   br i1 %514, bb %while.body511, bb %while.exit512
 while.body525:  pred(while.exit533, while.body518)
-  count.phi10331639 = phi [bb %while.exit533, i32 %count.phi10331618, bb %while.body518, i32 %count.phi10341656]
-  i18.phi10671638 = phi [bb %while.exit533, i32 %i18.phi10671617, bb %while.body518, i32 %i18.phi10681655]
-  i15.phi10821637 = phi [bb %while.exit533, i32 %i15.phi10821616, bb %while.body518, i32 %i15.phi10831654]
+  count.phi10331639 = phi [bb %while.exit533, i32 %626, bb %while.body518, i32 %count.phi10341656]
   i13.phi1635 = phi [bb %while.exit533, i32 %644, bb %while.body518, i32 0]
-  i16.phi11791634 = phi [bb %while.exit533, i32 %i16.phi11791614, bb %while.body518, i32 %i16.phi11801650]
-  i17.phi12071633 = phi [bb %while.exit533, i32 %i17.phi12071613, bb %while.body518, i32 %i17.phi12081649]
   br bb %while.body532
 while.exit526:  pred(while.exit533)
-  count.phi10341632 = phi [bb %while.exit533, i32 %count.phi10331618]
-  i18.phi10681631 = phi [bb %while.exit533, i32 %i18.phi10671617]
-  i15.phi10831630 = phi [bb %while.exit533, i32 %i15.phi10821616]
-  i14.phi10991629 = phi [bb %while.exit533, i32 %1615]
-  1628 = phi [bb %while.exit533, i32 %644]
-  i16.phi11801627 = phi [bb %while.exit533, i32 %i16.phi11791614]
-  i17.phi12081626 = phi [bb %while.exit533, i32 %i17.phi12071613]
   647 = add i32 %i12.phi1651, i32 1
   521 = icmp slt i32 %647, i32 2
   br i1 %521, bb %while.body518, bb %while.exit519
 while.body532:  pred(while.exit540, while.body525)
-  count.phi10321624 = phi [bb %while.exit540, i32 %count.phi10321606, bb %while.body525, i32 %count.phi10331639]
-  i18.phi10661623 = phi [bb %while.exit540, i32 %i18.phi10661605, bb %while.body525, i32 %i18.phi10671638]
+  count.phi10321624 = phi [bb %while.exit540, i32 %626, bb %while.body525, i32 %count.phi10331639]
   i14.phi1621 = phi [bb %while.exit540, i32 %641, bb %while.body525, i32 0]
-  i16.phi11781620 = phi [bb %while.exit540, i32 %i16.phi11781603, bb %while.body525, i32 %i16.phi11791634]
-  i17.phi12061619 = phi [bb %while.exit540, i32 %i17.phi12061602, bb %while.body525, i32 %i17.phi12071633]
   br bb %while.body539
 while.exit533:  pred(while.exit540)
-  count.phi10331618 = phi [bb %while.exit540, i32 %count.phi10321606]
-  i18.phi10671617 = phi [bb %while.exit540, i32 %i18.phi10661605]
-  i15.phi10821616 = phi [bb %while.exit540, i32 %1604]
-  1615 = phi [bb %while.exit540, i32 %641]
-  i16.phi11791614 = phi [bb %while.exit540, i32 %i16.phi11781603]
-  i17.phi12071613 = phi [bb %while.exit540, i32 %i17.phi12061602]
   644 = add i32 %i13.phi1635, i32 1
   528 = icmp slt i32 %644, i32 2
   br i1 %528, bb %while.body525, bb %while.exit526
 while.body539:  pred(while.exit547, while.body532)
-  count.phi10311611 = phi [bb %while.exit547, i32 %count.phi10311596, bb %while.body532, i32 %count.phi10321624]
-  i18.phi10651610 = phi [bb %while.exit547, i32 %i18.phi10651595, bb %while.body532, i32 %i18.phi10661623]
+  count.phi10311611 = phi [bb %while.exit547, i32 %626, bb %while.body532, i32 %count.phi10321624]
   i15.phi10961609 = phi [bb %while.exit547, i32 %638, bb %while.body532, i32 0]
-  i17.phi12051607 = phi [bb %while.exit547, i32 %i17.phi12051593, bb %while.body532, i32 %i17.phi12061619]
   br bb %while.body546
 while.exit540:  pred(while.exit547)
-  count.phi10321606 = phi [bb %while.exit547, i32 %count.phi10311596]
-  i18.phi10661605 = phi [bb %while.exit547, i32 %i18.phi10651595]
-  1604 = phi [bb %while.exit547, i32 %638]
-  i16.phi11781603 = phi [bb %while.exit547, i32 %1594]
-  i17.phi12061602 = phi [bb %while.exit547, i32 %i17.phi12051593]
   641 = add i32 %i14.phi1621, i32 1
   535 = icmp slt i32 %641, i32 2
   br i1 %535, bb %while.body532, bb %while.exit533
 while.body546:  pred(while.exit554, while.body539)
-  count.phi10301600 = phi [bb %while.exit554, i32 %count.phi10301588, bb %while.body539, i32 %count.phi10311611]
-  i18.phi10641599 = phi [bb %while.exit554, i32 %i18.phi10641587, bb %while.body539, i32 %i18.phi10651610]
+  count.phi10301600 = phi [bb %while.exit554, i32 %626, bb %while.body539, i32 %count.phi10311611]
   i16.phi1598 = phi [bb %while.exit554, i32 %635, bb %while.body539, i32 0]
   br bb %while.body553
 while.exit547:  pred(while.exit554)
-  count.phi10311596 = phi [bb %while.exit554, i32 %count.phi10301588]
-  i18.phi10651595 = phi [bb %while.exit554, i32 %i18.phi10641587]
-  1594 = phi [bb %while.exit554, i32 %635]
-  i17.phi12051593 = phi [bb %while.exit554, i32 %1586]
   638 = add i32 %i15.phi10961609, i32 1
   542 = icmp slt i32 %638, i32 2
   br i1 %542, bb %while.body539, bb %while.exit540
 while.body553:  pred(while.exit561, while.body546)
-  count.phi10291591 = phi [bb %while.exit561, i32 %count.phi10291582, bb %while.body546, i32 %count.phi10301600]
+  count.phi10291591 = phi [bb %while.exit561, i32 %626, bb %while.body546, i32 %count.phi10301600]
   i17.phi1589 = phi [bb %while.exit561, i32 %632, bb %while.body546, i32 0]
   1240 = shl i32 %i0.phi1993, i32 20
   567 = ptradd ptr %array, i32 %1240
@@ -587,9 +251,6 @@ while.body553:  pred(while.exit561, while.body546)
   618 = ptradd ptr %615, i32 %1257
   br bb %while.body560
 while.exit554:  pred(while.exit561)
-  count.phi10301588 = phi [bb %while.exit561, i32 %count.phi10291582]
-  i18.phi10641587 = phi [bb %while.exit561, i32 %1581]
-  1586 = phi [bb %while.exit561, i32 %632]
   635 = add i32 %i16.phi1598, i32 1
   549 = icmp slt i32 %635, i32 2
   br i1 %549, bb %while.body546, bb %while.exit547
@@ -604,8 +265,6 @@ while.body560:  pred(while.body560, while.body553)
   563 = icmp slt i32 %629, i32 2
   br i1 %563, bb %while.body560, bb %while.exit561
 while.exit561:  pred(while.body560)
-  count.phi10291582 = phi [bb %while.body560, i32 %626]
-  1581 = phi [bb %while.body560, i32 %629]
   632 = add i32 %i17.phi1589, i32 1
   556 = icmp slt i32 %632, i32 2
   br i1 %556, bb %while.body553, bb %while.exit554

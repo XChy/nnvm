@@ -16,53 +16,50 @@ main:
   ADDI a0, zero, 18
   # implict jump to bb1
 bb1:
-  ADD s0, a0, zero
-  ADDI a0, zero, 1
-  SUBW s1, s0, a0
-  SLLIW a0, s1, 2
-  ADDIW a0, a0, 8
+  ADDI s0, zero, 1
+  SUBW a0, a0, s0
+  SLLIW s0, a0, 2
+  ADDIW s0, s0, 8
   ADDI t5, sp, 0
-  ADD s0, t5, a0
-  ADDI a0, zero, 0
-  SW a0, 0(s0)
-  BNE s1, zero, bb7
+  ADD s0, t5, s0
+  ADDI s1, zero, 0
+  SW s1, 0(s0)
+  BNE a0, zero, bb6
   # implict jump to bb2
 bb2:
   ADDI s0, zero, 2
   ADD a0, zero, zero
   # implict jump to bb3
 bb3:
-  ADD s1, a0, zero
-  SLLIW a0, s0, 2
+  SLLIW s1, s0, 2
   ADDI t5, sp, 0
-  ADD s3, t5, a0
-  LW s2, 0(s3)
-  ADDI a0, zero, 1
-  SUBW a0, s0, a0
-  SLLIW a0, a0, 2
+  ADD s1, t5, s1
+  LW s2, 0(s1)
+  ADDI s3, zero, 1
+  SUBW s3, s0, s3
+  SLLIW s3, s3, 2
   ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW a0, 0(a0)
-  ADDW s2, s2, a0
-  ADDI a0, zero, 2
-  SUBW a0, s0, a0
-  SLLIW a0, a0, 2
+  ADD s3, t5, s3
+  LW s3, 0(s3)
+  ADDW s2, s2, s3
+  ADDI s3, zero, 2
+  SUBW s3, s0, s3
+  SLLIW s3, s3, 2
   ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW a0, 0(a0)
-  ADDW a0, s2, a0
-  SW a0, 0(s3)
-  ADDW s1, s1, a0
+  ADD s3, t5, s3
+  LW s3, 0(s3)
+  ADDW s2, s2, s3
+  SW s2, 0(s1)
+  ADDW s1, a0, s2
+  ADD a0, s2, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s0, s0, 1
-  SLTI a0, s0, 20
-  BNE a0, zero, bb6
+  ADDIW a0, s0, 1
+  SLTI s0, a0, 20
+  BNE s0, zero, bb5
   # implict jump to bb4
 bb4:
-  # implict jump to bb5
-bb5:
   ADD a0, s1, zero
   LD ra, 80(sp)
   LD s0, 88(sp)
@@ -71,9 +68,9 @@ bb5:
   LD s3, 112(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-bb6:
+bb5:
+  ADD s0, a0, zero
   ADD a0, s1, zero
   JAL zero, bb3
-bb7:
-  ADD a0, s1, zero
+bb6:
   JAL zero, bb1

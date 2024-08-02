@@ -20,7 +20,6 @@ int optimizationLevel;
 } // namespace nnvm
 
 void RISCVBackend::emit(Module &ir, std::ostream &out) {
-  // Add global symbols
   LIRModule lowModule;
   LowerHelper lowerHelper;
 

@@ -172,8 +172,8 @@ select.exit:  pred(select.then, select.else)
 then116:  pred(select.exit)
   br bb %while.body120
 if.exit117:  pred(select.exit, while.exit121)
-  i26.phi175 = phi [bb %select.exit, i32 %i26.phi182237, bb %while.exit121, i32 %i26.phi182228]
-  loop.phi166 = phi [bb %select.exit, i32 %loop.phi173238, bb %while.exit121, i32 %229]
+  i26.phi175 = phi [bb %select.exit, i32 %i26.phi182237, bb %while.exit121, i32 %127]
+  loop.phi166 = phi [bb %select.exit, i32 %loop.phi173238, bb %while.exit121, i32 %loop.phi164]
   br bb %if.exit97
 while.body120:  pred(if.exit136, then116)
   loop.phi165231 = phi [bb %if.exit136, i32 %loop.phi164, bb %then116, i32 1]
@@ -185,8 +185,6 @@ while.body120:  pred(if.exit136, then116)
   134 = icmp eq i32 %131.load, i32 91
   br i1 %134, bb %then135, bb %else137
 while.exit121:  pred(if.exit136)
-  229 = phi [bb %if.exit136, i32 %loop.phi164]
-  i26.phi182228 = phi [bb %if.exit136, i32 %127]
   br bb %if.exit117
 then135:  pred(while.body120)
   140 = sub i32 %loop.phi165231, i32 1

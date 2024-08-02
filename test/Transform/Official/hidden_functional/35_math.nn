@@ -211,8 +211,7 @@ while.body73:  pred(while.body73, if.exit52)
   76 = icmp ne i32 %87, i32 0
   br i1 %76, bb %while.body73, bb %while.exit74
 while.exit74:  pred(while.body73)
-  701504 = phi [bb %while.body73, float %84]
-  ret float %701504
+  ret float %84
 }
 
 pure internal float my_pow(float a, i32 n) {

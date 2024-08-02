@@ -83,7 +83,8 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
         }
       }
 
-      if (inst->isMoveInst(func) && isSameClass(inst->getOp(0)->as<Register>(), classReg)) {
+      if (inst->isMoveInst(func) &&
+          isSameClass(inst->getOp(0)->as<Register>(), classReg)) {
         for (auto use : uses) {
           liveRegs.erase(use);
           moveList[use].insert(inst);
@@ -259,10 +260,11 @@ void GraphColoringRAImpl::addWorkList(Register *reg) {
  */
 bool GraphColoringRAImpl::conformGeorges(std::set<Register *> const &neighbors,
                                          Register *target) {
-  return std::all_of(neighbors.begin(), neighbors.end(), [this, target](Register *reg) {
-    return degree[reg] < numRegs || precolored.count(reg) ||
-           adjSet.count(std::pair(reg, target));
-  });
+  return std::all_of(neighbors.begin(), neighbors.end(),
+                     [this, target](Register *reg) {
+                       return degree[reg] < numRegs || precolored.count(reg) ||
+                              adjSet.count(std::pair(reg, target));
+                     });
 }
 
 /**
@@ -270,9 +272,10 @@ bool GraphColoringRAImpl::conformGeorges(std::set<Register *> const &neighbors,
  *  if there are fewer than numRegs neighbors with significant degree.
  */
 bool GraphColoringRAImpl::conformBriggs(std::set<Register *> const &neighbors) {
-  return std::count_if(neighbors.begin(), neighbors.end(), [this](Register *reg) {
-    return degree[reg] >= numRegs;
-  }) < numRegs;
+  return std::count_if(neighbors.begin(), neighbors.end(),
+                       [this](Register *reg) {
+                         return degree[reg] >= numRegs;
+                       }) < numRegs;
 }
 
 /**
@@ -333,7 +336,8 @@ void GraphColoringRAImpl::combine(Register *dest, Register *src) {
     freezeWorklist.erase(dest);
     spillWorklist.insert(dest);
   }
-  debug(std::cerr << "Combination: " << getNameForRegister(src->getRegId()) << " -> " << getNameForRegister(dest->getRegId()) << "\n");
+  debug(std::cerr << "Combination: " << getNameForRegister(src->getRegId())
+                  << " -> " << getNameForRegister(dest->getRegId()) << "\n");
 }
 
 /**
@@ -396,15 +400,20 @@ void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
         if (!spillWorklist.count(reg)) {
           continue;
         }
-        priorities[reg] += isInLoop ? 10 : 1; // registers in loop are more likely to be frequently used
+        priorities[reg] +=
+            isInLoop
+                ? 10
+                : 1; // registers in loop are more likely to be frequently used
       }
     }
   }
   for (auto reg : spillWorklist) {
     priorities[reg] /= degree[reg];
   }
-  auto toSpill = std::min_element(priorities.begin(), priorities.end(),
-                                  [](auto a, auto b) { return a.second < b.second; })->first;
+  auto toSpill =
+      std::min_element(priorities.begin(), priorities.end(),
+                       [](auto a, auto b) { return a.second < b.second; })
+          ->first;
   spillWorklist.erase(toSpill);
   simplifyWorklist.insert(toSpill);
   freezeMoves(toSpill);
@@ -450,10 +459,6 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   LIRBuilder builder{*func.getParent()};
   std::unordered_map<Register *, StackSlot *> spilledSlot;
 
-  for (auto *reg : spilledNodes) {
-    spilledSlot[reg] = func.allocStackSlot(reg->bytes());
-  }
-
   for (auto bb : func) {
     for (auto inst : incChange(bb->getInsts())) {
       for (auto &op : inst->operands) {
@@ -466,19 +471,27 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
           }
           continue;
         }
-
-        auto slot = spilledSlot[reg];
-        auto tempReg = builder.newVReg(reg->getType());
-        newTemp.push_back(tempReg);
-        op.set(tempReg);
-        if (op.isDef()) {
-          builder.setInsertPoint(bb, inst->getNext());
-          builder.storeValueTo(tempReg, slot, reg->getType());
-        } else {
-          builder.setInsertPoint(bb, inst);
-          builder.loadValueFrom(tempReg, slot, reg->getType());
-        }
       }
+    }
+  }
+
+  for (auto *reg : spilledNodes) {
+    auto slot = func.allocStackSlot(reg->bytes());
+
+    for (auto *op : incChange(reg->getDefs())) {
+      auto tempReg = builder.newVReg(reg->getType());
+      newTemp.push_back(tempReg);
+      op->set(tempReg);
+      builder.setInsertPoint(op->getInst()->getParent(),
+                             op->getInst()->getNext());
+      builder.storeValueTo(tempReg, slot, reg->getType());
+    }
+    for (auto *op : incChange(reg->getUses())) {
+      auto tempReg = builder.newVReg(reg->getType());
+      newTemp.push_back(tempReg);
+      op->set(tempReg);
+      builder.setInsertPoint(op->getInst()->getParent(), op->getInst());
+      builder.loadValueFrom(tempReg, slot, reg->getType());
     }
   }
 
@@ -492,7 +505,8 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
 }
 
 /**
- * Remove redundant move instructions whose source and destination are the same.
+ * Remove redundant move instructions whose source and destination are the
+ * same.
  */
 void GraphColoringRAImpl::removeRedundantMoves(LIRFunc &func) {
   for (auto bb : func) {
@@ -545,7 +559,8 @@ void GraphColoringRAImpl::physicalize(LIRFunc &func) {
 }
 
 /**
- * Perform graph coloring register allocation, where GPRs and FPRs are separately handled.
+ * Perform graph coloring register allocation, where GPRs and FPRs are
+ * separately handled.
  */
 void GraphColoringRAImpl::allocate(LIRFunc &func) {
   uint iteration = 0;

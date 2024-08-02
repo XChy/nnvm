@@ -17,41 +17,41 @@ main:
   SD s0, 8(sp)
   SD s1, 16(sp)
   FSD fs0, 24(sp)
-  LA s0, N
-  ADDI a0, zero, 3
-  SW a0, 0(s0)
-  LA s0, M
-  ADDI a0, zero, 3
-  SW a0, 0(s0)
+  LA a0, N
+  ADDI s0, zero, 3
+  SW s0, 0(a0)
+  LA a0, M
+  ADDI s0, zero, 3
+  SW s0, 0(a0)
   LA a0, L
   ADDI s0, zero, 3
   SW s0, 0(a0)
   ADD a0, zero, zero
   # implict jump to bb1
 bb1:
-  SLLIW s1, a0, 2
+  SLLIW s0, a0, 2
   ADDI t5, sp, 32
-  ADD s0, t5, s1
+  ADD s1, t5, s0
   FCVT.S.W fs0, a0
-  FSW fs0, 0(s0)
+  FSW fs0, 0(s1)
   ADDI t5, sp, 48
-  ADD s0, t5, s1
-  FSW fs0, 0(s0)
+  ADD s1, t5, s0
+  FSW fs0, 0(s1)
   ADDI t5, sp, 64
-  ADD s0, t5, s1
-  FSW fs0, 0(s0)
+  ADD s1, t5, s0
+  FSW fs0, 0(s1)
   ADDI t5, sp, 80
-  ADD s0, t5, s1
-  FSW fs0, 0(s0)
+  ADD s1, t5, s0
+  FSW fs0, 0(s1)
   ADDI t5, sp, 96
-  ADD s0, t5, s1
-  FSW fs0, 0(s0)
+  ADD s1, t5, s0
+  FSW fs0, 0(s1)
   ADDI t5, sp, 112
-  ADD s0, t5, s1
+  ADD s0, t5, s0
   FSW fs0, 0(s0)
-  ADDIW s0, a0, 1
-  SLTI a0, s0, 3
-  BNE a0, zero, bb15
+  ADDIW a0, a0, 1
+  SLTI s0, a0, 3
+  BNE s0, zero, bb15
   # implict jump to bb2
 bb2:
   FLW fs0, 68(sp)
@@ -111,13 +111,12 @@ bb7:
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb8
+  ADDIW a0, s0, 1
+  LA s0, N
+  LW s0, 0(s0)
+  BLT a0, s0, bb8
   JAL zero, bb5
 bb8:
-  ADD a0, s0, zero
   JAL zero, bb7
 bb9:
   ADD a0, zero, zero
@@ -130,13 +129,12 @@ bb10:
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb11
+  ADDIW a0, s0, 1
+  LA s0, N
+  LW s0, 0(s0)
+  BLT a0, s0, bb11
   JAL zero, bb4
 bb11:
-  ADD a0, s0, zero
   JAL zero, bb10
 bb12:
   ADD a0, zero, zero
@@ -149,14 +147,12 @@ bb13:
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb14
+  ADDIW a0, s0, 1
+  LA s0, N
+  LW s0, 0(s0)
+  BLT a0, s0, bb14
   JAL zero, bb3
 bb14:
-  ADD a0, s0, zero
   JAL zero, bb13
 bb15:
-  ADD a0, s0, zero
   JAL zero, bb1

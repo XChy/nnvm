@@ -8,39 +8,35 @@ main:
   ADD t0, zero, zero
   # implict jump to bb1
 bb1:
-  ADD t1, t0, zero
-  XORI t0, t1, 5
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb10
+  XORI t1, t0, 5
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb9
   # implict jump to bb2
 bb2:
-  XORI t0, t1, 10
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb9
+  XORI t1, t0, 10
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb8
   # implict jump to bb3
 bb3:
-  SLLIW t0, t1, 1
+  SLLIW t1, t0, 1
   # implict jump to bb4
 bb4:
   # implict jump to bb5
 bb5:
-  ADDIW t1, t1, 1
-  SLTI t2, t1, 100
-  BNE t2, zero, bb8
+  ADDIW t0, t0, 1
+  SLTI t2, t0, 100
+  BNE t2, zero, bb7
   # implict jump to bb6
 bb6:
-  # implict jump to bb7
-bb7:
-  ADD a0, t0, zero
+  ADD a0, t1, zero
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb8:
-  ADD t0, t1, zero
+bb7:
   JAL zero, bb1
-bb9:
-  ADDI t0, zero, 42
+bb8:
+  ADDI t1, zero, 42
   JAL zero, bb4
-bb10:
-  ADDI t0, zero, 25
+bb9:
+  ADDI t1, zero, 25
   JAL zero, bb5

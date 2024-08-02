@@ -18,7 +18,6 @@ while.body_preheader:  pred(entry1911)
   br bb %while.body
 while.body:  pred(if.exit1952, while.body_preheader)
   N.phi3235 = phi [bb %if.exit1952, i32 %1964, bb %while.body_preheader, i32 %1913]
-  j.phi19703234 = phi [bb %if.exit1952, i32 %j.phi19703230, bb %while.body_preheader, i32 0]
   br bb %while.body1923
 while.exit:  pred(if.exit1952, entry1911)
   ret i32 0
@@ -28,7 +27,6 @@ while.body1923:  pred(while.exit1931, while.body)
   1937 = ptradd ptr %a, i32 %1936
   br bb %while.body1930
 while.exit1924:  pred(while.exit1931)
-  j.phi19703230 = phi [bb %while.exit1931, i32 %3227]
   15.load2379 = load i32 from ptr %a
   172380 = mul i32 %15.load2379, i32 85
   212381 = ptradd ptr %a, i32 4
@@ -143,7 +141,6 @@ while.body1930:  pred(while.body1930, while.body1923)
   1933 = icmp slt i32 %1945, i32 5
   br i1 %1933, bb %while.body1930, bb %while.exit1931
 while.exit1931:  pred(while.body1930)
-  3227 = phi [bb %while.body1930, i32 %1945]
   1948 = add i32 %i.phi3232, i32 1
   1926 = icmp slt i32 %1948, i32 5
   br i1 %1926, bb %while.body1923, bb %while.exit1924

@@ -132,8 +132,7 @@ while.body111:  pred(while.body111, while.body111_preheader)
 while.exit112:  pred(while.body111, while.exit88)
   br bb %while.body129
 while.body129:  pred(while.exit145, while.exit112)
-  n.phi236274 = phi [bb %while.exit145, i32 %257, bb %while.exit112, i32 39]
-  temp.phi238273 = phi [bb %while.exit145, i32 %temp.phi238264, bb %while.exit112, i32 0]
+  n.phi236274 = phi [bb %while.exit145, i32 %302, bb %while.exit112, i32 39]
   i.phi241272 = phi [bb %while.exit145, i32 %203, bb %while.exit112, i32 19]
   253 = shl i32 %i.phi241272, i32 2
   138 = ptradd ptr %c2, i32 %253
@@ -157,9 +156,7 @@ while.body144:  pred(if.exit, while.body129)
   163 = icmp sge i32 %161, i32 10
   br i1 %163, bb %then, bb %else
 while.exit145:  pred(if.exit)
-  n.phi236265 = phi [bb %if.exit, i32 %195]
-  temp.phi238264 = phi [bb %if.exit, i32 %161]
-  257 = add i32 %n.phi236265, i32 19
+  302 = add i32 %n.phi267, i32 18
   203 = sub i32 %i.phi241272, i32 1
   133 = icmp sgt i32 %203, i32 -1
   br i1 %133, bb %while.body129, bb %while.exit130

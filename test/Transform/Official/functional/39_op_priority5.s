@@ -27,32 +27,32 @@ main:
   SD s4, 40(sp)
   SD s5, 48(sp)
   LA a0, a
-  LW s1, 0(a0)
-  LA a0, b
-  LW s0, 0(a0)
-  MULW s3, s1, s0
-  LA a0, c
-  LW s2, 0(a0)
-  DIVW s3, s3, s2
-  LA a0, e
-  LW s5, 0(a0)
-  LA a0, d
-  LW s4, 0(a0)
-  ADDW a0, s5, s4
-  XOR a0, s3, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb9
+  LW a0, 0(a0)
+  LA s0, b
+  LW s0, 0(s0)
+  MULW s1, a0, s0
+  LA s2, c
+  LW s2, 0(s2)
+  DIVW s1, s1, s2
+  LA s3, e
+  LW s3, 0(s3)
+  LA s4, d
+  LW s4, 0(s4)
+  ADDW s5, s3, s4
+  XOR s1, s1, s5
+  SLTIU s1, s1, 1
+  BNE s1, zero, bb9
   # implict jump to bb1
 bb1:
-  ADD a0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb2
 bb2:
-  BNE a0, zero, bb8
+  BNE s1, zero, bb8
   # implict jump to bb3
 bb3:
-  MULW a0, s0, s2
-  SUBW s0, s1, a0
-  DIVW a0, s1, s2
+  MULW s0, s0, s2
+  SUBW s0, a0, s0
+  DIVW a0, a0, s2
   SUBW a0, s4, a0
   XOR a0, s0, a0
   SLTIU a0, a0, 1
@@ -84,10 +84,10 @@ bb8:
   ADDI a0, zero, 1
   JAL zero, bb4
 bb9:
-  ADDW a0, s1, s0
-  MULW a0, s1, a0
-  ADDW s3, a0, s2
-  ADDW a0, s4, s5
-  SLT a0, a0, s3
-  XORI a0, a0, 1
+  ADDW s1, a0, s0
+  MULW s1, a0, s1
+  ADDW s1, s1, s2
+  ADDW s3, s4, s3
+  SLT s1, s3, s1
+  XORI s1, s1, 1
   JAL zero, bb2

@@ -46,41 +46,34 @@ bb2:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
-  ADD s1, zero, zero
   ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s2, a0, zero
-  ADD a0, s1, zero
   ADD s1, zero, zero
-  ADD s0, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb5
 bb5:
-  ADDW s1, s1, s2
-  ADDIW s3, s0, 1
-  SLTI s0, s3, 60
-  BNE s0, zero, bb10
+  ADDW s1, s1, s0
+  ADDIW s2, s2, 1
+  SLTI s3, s2, 60
+  BNE s3, zero, bb9
   # implict jump to bb6
 bb6:
-  # implict jump to bb7
-bb7:
-  ADDI s0, zero, 60
-  DIVW s0, s1, s0
-  ADDW a0, a0, s0
-  LUI s0, 131068
+  ADDI s2, zero, 60
+  DIVW s1, s1, s2
+  ADDW a0, a0, s1
+  LUI s1, 131068
+  ADDIW s1, s1, 1
+  REMW a0, a0, s1
   ADDIW s0, s0, 1
-  REMW a0, a0, s0
-  ADDIW s0, s2, 1
   LA s1, loopCount
   LW s1, 0(s1)
-  BLT s0, s1, bb9
-  # implict jump to bb8
-bb8:
+  BLT s0, s1, bb8
+  # implict jump to bb7
+bb7:
   JAL zero, bb2
-bb9:
-  ADD s1, a0, zero
-  ADD a0, s0, zero
+bb8:
   JAL zero, bb4
-bb10:
-  ADD s0, s3, zero
+bb9:
   JAL zero, bb5

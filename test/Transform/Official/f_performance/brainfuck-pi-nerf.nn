@@ -132,9 +132,9 @@ then198:  pred(then188)
   208 = add i32 %return_address_top.phi352811, i32 1
   br bb %if.exit199
 if.exit199:  pred(then198, while.exit212)
-  loop.phi372 = phi [bb %while.exit212, i32 %801, bb %then198, i32 %loop.phi378808]
+  loop.phi372 = phi [bb %while.exit212, i32 %loop.phi, bb %then198, i32 %loop.phi378808]
   return_address_top.phi353 = phi [bb %while.exit212, i32 %return_address_top.phi352811, bb %then198, i32 %208]
-  ip.phi340 = phi [bb %while.exit212, i32 %ip.phi338802, bb %then198, i32 %ip.phi338813]
+  ip.phi340 = phi [bb %while.exit212, i32 %218, bb %then198, i32 %ip.phi338813]
   br bb %if.exit189
 else200:  pred(then188)
   br bb %while.body211
@@ -148,8 +148,6 @@ while.body211:  pred(if.exit235, else200)
   223 = icmp eq i32 %221.load, i32 93
   br i1 %223, bb %then224, bb %if.exit225
 while.exit212:  pred(if.exit235)
-  ip.phi338802 = phi [bb %if.exit235, i32 %218]
-  801 = phi [bb %if.exit235, i32 %loop.phi]
   br bb %if.exit199
 then224:  pred(while.body211)
   228 = sub i32 %loop.phi371803, i32 1

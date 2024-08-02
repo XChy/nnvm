@@ -17,286 +17,254 @@ main:
   CALL getint
   ADD s1, a0, zero
   CALL getint
-  ADD s5, a0, zero
-  CALL getint
   ADD s2, a0, zero
-  ADD s3, zero, zero
+  CALL getint
+  ADD s3, a0, zero
+  ADD s4, zero, zero
   # implict jump to bb1
 bb1:
-  ADD s4, s3, zero
-  SLLIW s3, s4, 2
+  SLLIW s5, s4, 2
   ADDI t5, sp, 0
-  ADD s3, t5, s3
+  ADD s5, t5, s5
   CALL getint
   ADD s6, a0, zero
-  SW s6, 0(s3)
-  ADDIW s3, s4, 1
-  SLTI s4, s3, 10
-  BNE s4, zero, bb115
+  SW s6, 0(s5)
+  ADDIW s4, s4, 1
+  SLTI s5, s4, 10
+  BNE s5, zero, bb93
   # implict jump to bb2
 bb2:
   SLTU t0, zero, s0
   XORI t0, t0, 1
-  BNE t0, zero, bb114
+  BNE t0, zero, bb92
   # implict jump to bb3
 bb3:
   ADD t0, zero, zero
   # implict jump to bb4
 bb4:
   SUBW t1, zero, s1
-  BNE t0, zero, bb113
+  BNE t0, zero, bb91
   # implict jump to bb5
 bb5:
   ADD t0, zero, zero
   # implict jump to bb6
 bb6:
-  BNE t0, zero, bb112
+  BNE t0, zero, bb90
   # implict jump to bb7
 bb7:
   ADD t0, zero, zero
   # implict jump to bb8
 bb8:
-  SLTU t4, zero, s5
-  BNE s5, zero, bb110
+  SLTU t1, zero, s2
+  BNE s2, zero, bb89
   # implict jump to bb9
 bb9:
   # implict jump to bb10
 bb10:
-  SLTIU t5, s2, 1
-  BNE t5, zero, bb109
+  SLTIU a3, s3, 1
+  BNE a3, zero, bb88
   # implict jump to bb11
 bb11:
+  ADDW t0, t0, s3
   # implict jump to bb12
 bb12:
-  ADDW t0, t0, s2
+  ADDIW t0, t0, 1
+  SUBW t3, zero, t0
+  LW a4, 0(sp)
+  LW a6, 4(sp)
+  SUBW a2, zero, a6
+  LW a7, 8(sp)
+  LW a5, 12(sp)
+  SLTU t0, zero, a5
+  XORI t0, t0, 1
+  BNE t0, zero, bb87
   # implict jump to bb13
 bb13:
-  ADDIW t0, t0, 1
-  SUBW t6, zero, t0
-  LW a5, 0(sp)
-  LW t1, 4(sp)
-  SUBW a0, zero, t1
-  LW a3, 8(sp)
-  LW t2, 12(sp)
-  SLTU t0, zero, t2
-  XORI t0, t0, 1
-  BNE t0, zero, bb108
+  ADD t0, zero, zero
   # implict jump to bb14
 bb14:
-  ADD t0, zero, zero
+  BNE a7, zero, bb86
   # implict jump to bb15
 bb15:
-  BNE a3, zero, bb107
+  ADD t0, zero, zero
   # implict jump to bb16
 bb16:
-  ADD t0, zero, zero
+  BNE t0, zero, bb85
   # implict jump to bb17
 bb17:
-  BNE t0, zero, bb106
+  ADD t0, zero, zero
   # implict jump to bb18
 bb18:
-  ADD t0, zero, zero
+  LW t2, 16(sp)
+  LW a0, 20(sp)
+  SLTU a1, zero, a0
+  XORI a1, a1, 1
+  BNE a1, zero, bb84
   # implict jump to bb19
 bb19:
-  ADD a1, t0, zero
-  LW a7, 16(sp)
-  LW a6, 20(sp)
-  SLTU t0, zero, a6
-  XORI t0, t0, 1
-  BNE t0, zero, bb105
+  ADD a1, zero, zero
   # implict jump to bb20
 bb20:
-  ADD t0, zero, zero
+  BNE a1, zero, bb83
   # implict jump to bb21
 bb21:
-  BNE t0, zero, bb103
+  ADD a1, t2, zero
   # implict jump to bb22
 bb22:
-  ADD t0, a7, zero
+  BNE a2, zero, bb82
   # implict jump to bb23
 bb23:
-  BNE a0, zero, bb102
+  ADD t0, a1, zero
   # implict jump to bb24
 bb24:
+  LW a1, 24(sp)
+  SLTIU a2, a1, 1
+  BNE a2, zero, bb81
   # implict jump to bb25
 bb25:
-  LW t3, 24(sp)
-  SLTIU a0, t3, 1
-  BNE a0, zero, bb101
+  ADDW t0, t0, a1
   # implict jump to bb26
 bb26:
+  ADDIW t0, t0, 1
+  LW s2, 28(sp)
+  BNE s2, zero, bb80
   # implict jump to bb27
 bb27:
-  ADDW t0, t0, t3
   # implict jump to bb28
 bb28:
-  ADDIW t0, t0, 1
-  LW a2, 28(sp)
-  BNE a2, zero, bb99
+  ADD t4, t0, zero
+  LW t5, 32(sp)
+  LW t6, 36(sp)
+  SLTU t0, zero, t6
+  XORI t0, t0, 1
+  BNE t0, zero, bb79
   # implict jump to bb29
 bb29:
+  ADD t0, zero, zero
   # implict jump to bb30
 bb30:
-  ADD s4, t0, zero
-  LW a1, 32(sp)
-  LW a0, 36(sp)
-  SLTU t0, zero, a0
-  XORI t0, t0, 1
-  BNE t0, zero, bb98
+  SLTIU a2, t0, 1
+  BNE a2, zero, bb78
   # implict jump to bb31
 bb31:
-  ADD t0, zero, zero
+  ADDW t0, t5, t0
   # implict jump to bb32
 bb32:
-  SLTIU a4, t0, 1
-  BNE a4, zero, bb97
+  ADDIW t0, t0, 1
+  SLTIU s4, s0, 1
+  BNE s4, zero, bb77
   # implict jump to bb33
 bb33:
+  SUBW t0, t0, s0
   # implict jump to bb34
 bb34:
-  ADDW t0, a1, t0
+  ADD a2, t0, zero
+  ADD t0, t4, zero
+  MULW t0, t0, a2
+  BNE t3, zero, bb76
   # implict jump to bb35
 bb35:
-  ADDIW s3, t0, 1
-  SLTIU a4, s0, 1
-  BNE a4, zero, bb96
   # implict jump to bb36
 bb36:
+  XORI t1, t1, 1
+  BNE t1, zero, bb75
   # implict jump to bb37
 bb37:
-  SUBW s3, s3, s0
+  ADD t1, zero, zero
   # implict jump to bb38
 bb38:
-  ADD t0, s4, zero
+  BNE a3, zero, bb74
   # implict jump to bb39
 bb39:
-  MULW t0, t0, s3
-  BNE t6, zero, bb95
+  ADDW t1, t1, s3
   # implict jump to bb40
 bb40:
+  ADDIW t1, t1, 1
+  BNE t1, zero, bb73
   # implict jump to bb41
 bb41:
-  ADD t6, t0, zero
-  XORI t0, t4, 1
-  BNE t0, zero, bb94
+  ADD t1, s1, zero
   # implict jump to bb42
 bb42:
-  ADD t0, zero, zero
+  SLTIU a2, t1, 1
+  BNE a2, zero, bb72
   # implict jump to bb43
 bb43:
-  BNE t5, zero, bb93
+  ADDW t0, t0, t1
   # implict jump to bb44
 bb44:
+  ADDIW t0, t0, 1
+  SLTIU t1, a6, 1
+  BNE t1, zero, bb71
   # implict jump to bb45
 bb45:
-  ADDW t0, t0, s2
+  SUBW t1, a4, a6
   # implict jump to bb46
 bb46:
-  ADDIW t0, t0, 1
-  BNE t0, zero, bb91
+  MULW t0, t0, t1
+  BNE a7, zero, bb70
   # implict jump to bb47
 bb47:
-  ADD t0, s1, zero
   # implict jump to bb48
 bb48:
-  ADD t4, t0, zero
-  SLTIU t0, t4, 1
-  BNE t0, zero, bb90
+  ADD a2, t0, zero
+  SUBW t0, zero, a0
+  SLTIU t1, t0, 1
+  BNE t1, zero, bb69
   # implict jump to bb49
 bb49:
+  ADDW t0, t2, t0
   # implict jump to bb50
 bb50:
-  ADDW t0, t6, t4
+  ADDIW t0, t0, 1
+  SUBW t1, zero, a1
+  BNE t1, zero, bb68
   # implict jump to bb51
 bb51:
-  ADDIW t4, t0, 1
-  SLTIU t0, t1, 1
-  BNE t0, zero, bb89
   # implict jump to bb52
 bb52:
+  ADD t2, t0, zero
+  SLTU t0, zero, t5
+  XORI t0, t0, 1
+  BNE t0, zero, bb67
   # implict jump to bb53
 bb53:
-  SUBW t1, a5, t1
+  ADD t0, zero, zero
   # implict jump to bb54
 bb54:
-  ADD t0, t4, zero
+  SLTIU t1, t0, 1
+  BNE t1, zero, bb66
   # implict jump to bb55
 bb55:
-  MULW t0, t0, t1
-  BNE a3, zero, bb87
+  SUBW t0, s2, t0
   # implict jump to bb56
 bb56:
+  ADD t1, t0, zero
+  ADD t0, t2, zero
+  MULW t0, t0, t1
+  SUBW t1, zero, t6
+  BNE t1, zero, bb65
   # implict jump to bb57
 bb57:
-  ADD a3, t0, zero
-  SUBW t0, zero, a6
-  SLTIU t1, t0, 1
-  BNE t1, zero, bb86
   # implict jump to bb58
 bb58:
+  BNE s4, zero, bb64
   # implict jump to bb59
 bb59:
-  ADDW t0, a7, t0
+  ADDW t0, t0, s0
   # implict jump to bb60
 bb60:
   ADDIW t0, t0, 1
-  SUBW t1, zero, t3
-  BNE t1, zero, bb84
+  SLTIU t1, t0, 1
+  BNE t1, zero, bb63
   # implict jump to bb61
 bb61:
+  SUBW t0, a5, t0
+  ADD t2, a2, zero
   # implict jump to bb62
 bb62:
-  ADD a5, t0, zero
-  SLTU t0, zero, a1
-  XORI t0, t0, 1
-  BNE t0, zero, bb83
-  # implict jump to bb63
-bb63:
-  ADD t0, zero, zero
-  # implict jump to bb64
-bb64:
   ADD t1, t0, zero
-  SLTIU t0, t1, 1
-  BNE t0, zero, bb82
-  # implict jump to bb65
-bb65:
-  # implict jump to bb66
-bb66:
-  SUBW t1, a2, t1
-  # implict jump to bb67
-bb67:
-  ADD t0, a5, zero
-  # implict jump to bb68
-bb68:
-  MULW t1, t0, t1
-  SUBW t0, zero, a0
-  BNE t0, zero, bb80
-  # implict jump to bb69
-bb69:
-  ADD t0, t1, zero
-  # implict jump to bb70
-bb70:
-  BNE a4, zero, bb79
-  # implict jump to bb71
-bb71:
-  # implict jump to bb72
-bb72:
-  ADDW t0, t0, s0
-  # implict jump to bb73
-bb73:
-  ADDIW t1, t0, 1
-  SLTIU t0, t1, 1
-  BNE t0, zero, bb78
-  # implict jump to bb74
-bb74:
-  # implict jump to bb75
-bb75:
-  SUBW t1, t2, t1
-  # implict jump to bb76
-bb76:
-  ADD t0, a3, zero
-  # implict jump to bb77
-bb77:
+  ADD t0, t2, zero
   MULW t0, t0, t1
   ADD a0, t0, zero
   LD ra, 40(sp)
@@ -309,108 +277,89 @@ bb77:
   LD s6, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb78:
-  ADD t0, a3, zero
-  ADD t1, t2, zero
-  JAL zero, bb77
-bb79:
-  JAL zero, bb73
-bb80:
-  # implict jump to bb81
-bb81:
-  REMW t0, t1, t0
-  JAL zero, bb70
-bb82:
+bb63:
+  ADD t2, a2, zero
   ADD t0, a5, zero
-  ADD t1, a2, zero
-  JAL zero, bb68
-bb83:
-  ADDI t0, zero, 1
-  JAL zero, bb64
-bb84:
-  # implict jump to bb85
-bb85:
-  REMW t0, t0, t1
   JAL zero, bb62
-bb86:
-  ADD t0, a7, zero
+bb64:
   JAL zero, bb60
-bb87:
-  # implict jump to bb88
-bb88:
-  REMW t0, t0, a3
-  JAL zero, bb57
-bb89:
-  ADD t0, t4, zero
-  ADD t1, a5, zero
-  JAL zero, bb55
-bb90:
-  ADD t0, t6, zero
-  JAL zero, bb51
-bb91:
-  # implict jump to bb92
-bb92:
-  REMW t0, s1, t0
+bb65:
+  REMW t0, t0, t1
+  JAL zero, bb58
+bb66:
+  ADD t0, s2, zero
+  JAL zero, bb56
+bb67:
+  ADDI t0, zero, 1
+  JAL zero, bb54
+bb68:
+  REMW t0, t0, t1
+  JAL zero, bb52
+bb69:
+  ADD t0, t2, zero
+  JAL zero, bb50
+bb70:
+  REMW t0, t0, a7
   JAL zero, bb48
-bb93:
+bb71:
+  ADD t1, a4, zero
   JAL zero, bb46
-bb94:
-  ADDI t0, zero, 1
-  JAL zero, bb43
-bb95:
-  ADD t0, a5, zero
-  JAL zero, bb41
-bb96:
-  ADD t0, s4, zero
-  JAL zero, bb39
-bb97:
-  ADD t0, a1, zero
-  JAL zero, bb35
-bb98:
-  ADDI t0, zero, 1
+bb72:
+  JAL zero, bb44
+bb73:
+  REMW t1, s1, t1
+  JAL zero, bb42
+bb74:
+  JAL zero, bb40
+bb75:
+  ADDI t1, zero, 1
+  JAL zero, bb38
+bb76:
+  ADD t0, a4, zero
+  JAL zero, bb36
+bb77:
+  JAL zero, bb34
+bb78:
+  ADD t0, t5, zero
   JAL zero, bb32
-bb99:
-  # implict jump to bb100
-bb100:
-  REMW t0, t0, a2
+bb79:
+  ADDI t0, zero, 1
   JAL zero, bb30
-bb101:
+bb80:
+  REMW t0, t0, s2
   JAL zero, bb28
-bb102:
-  ADD t0, a1, zero
-  JAL zero, bb25
-bb103:
-  # implict jump to bb104
-bb104:
-  REMW t0, a7, t0
-  JAL zero, bb23
-bb105:
+bb81:
+  JAL zero, bb26
+bb82:
+  JAL zero, bb24
+bb83:
+  REMW a1, t2, a1
+  JAL zero, bb22
+bb84:
+  ADDI a1, zero, 1
+  JAL zero, bb20
+bb85:
   ADDI t0, zero, 1
-  JAL zero, bb21
-bb106:
-  ADDI t0, zero, 1
-  JAL zero, bb19
-bb107:
+  JAL zero, bb18
+bb86:
   SLTU t0, zero, t0
-  JAL zero, bb17
-bb108:
+  JAL zero, bb16
+bb87:
   ADDI t0, zero, 1
-  JAL zero, bb15
-bb109:
-  JAL zero, bb13
-bb110:
-  # implict jump to bb111
-bb111:
-  REMW t0, t0, s5
+  JAL zero, bb14
+bb88:
+  JAL zero, bb12
+bb89:
+  REMW t0, t0, s2
   JAL zero, bb10
-bb112:
+bb90:
   ADDI t0, zero, 1
   JAL zero, bb8
-bb113:
+bb91:
   SLTU t0, zero, t1
   JAL zero, bb6
-bb114:
+bb92:
   ADDI t0, zero, 1
   JAL zero, bb4
-bb115:
+bb93:
   JAL zero, bb1

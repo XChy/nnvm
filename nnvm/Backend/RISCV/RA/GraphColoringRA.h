@@ -17,6 +17,14 @@
 
 namespace nnvm::riscv {
 
+struct CompareReg {
+  bool operator()(Register *A, Register *B) const {
+    // return A < B;
+    //  FIXME: bug
+    return A->getRegId() > B->getRegId();
+  }
+};
+
 class GraphColoringRAImpl {
 public:
   GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
@@ -64,9 +72,9 @@ private:
   std::set<Register *> simplifyWorklist;
   std::set<Register *> freezeWorklist;
   std::set<Register *> spillWorklist;
-  std::set<Register *> spilledNodes;
+  std::set<Register *, CompareReg> spilledNodes;
   std::set<Register *> coalescedNodes;
-  std::set<Register *> coloredNodes;
+  std::unordered_set<Register *> coloredNodes;
 
   std::stack<Register *> selectStack;
   std::unordered_set<Register *> selectedNodes;

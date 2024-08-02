@@ -11,6 +11,7 @@
 #include "Transform/Scalar/Loop/LICM.h"
 #include "Transform/Scalar/Loop/LoopCanon.h"
 #include "Transform/Scalar/Loop/Rotate.h"
+#include "Transform/Scalar/Loop/StaticUnroll.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
@@ -49,8 +50,13 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<LICMPass>();
 
   passManager.addFunctionPass<CombinerPass>();
-  passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
+
+  passManager.addFunctionPass<StaticUnrollPass>();
+
+  passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CFGCombinerPass>();
+  passManager.addFunctionPass<CSEPass>();
 
   // Before codegen
   // passManager.addFunctionPass<GlobalHoistPass>();

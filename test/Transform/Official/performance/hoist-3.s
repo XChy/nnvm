@@ -11,15 +11,14 @@ main:
   SD s0, 8(sp)
   SD s1, 16(sp)
   CALL getint
-  ADD s0, a0, zero
-  LA a0, loopCount
-  SW s0, 0(a0)
+  LA s0, loopCount
+  SW a0, 0(s0)
   ADDI a0, zero, 121
   CALL _sysy_starttime
   LA a0, loopCount
-  LW s0, 0(a0)
-  ADDI a0, zero, 0
-  BLT a0, s0, bb3
+  LW a0, 0(a0)
+  ADDI s0, zero, 0
+  BLT s0, a0, bb3
   # implict jump to bb1
 bb1:
   ADD a0, zero, zero
@@ -39,22 +38,21 @@ bb2:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:
-  ADD s0, zero, zero
   ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:
-  ADDIW a0, a0, 15
+  ADDIW s0, s0, 15
   LUI s1, 366211
   ADDIW s1, s1, -255
-  REMW s1, a0, s1
-  ADDIW s0, s0, 1
-  LA a0, loopCount
-  LW a0, 0(a0)
-  BLT s0, a0, bb6
+  REMW s0, s0, s1
+  ADDIW a0, a0, 1
+  LA s1, loopCount
+  LW s1, 0(s1)
+  BLT a0, s1, bb6
   # implict jump to bb5
 bb5:
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   JAL zero, bb2
 bb6:
-  ADD a0, s1, zero
   JAL zero, bb4

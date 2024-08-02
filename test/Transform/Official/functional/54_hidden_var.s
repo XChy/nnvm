@@ -26,9 +26,9 @@ main:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s0, c
+  LA s1, c
   ADDI a0, zero, 1
-  SW a0, 8(s0)
+  SW a0, 8(s1)
   ADDI a0, zero, 0
   SW a0, 32(sp)
   ADDI a0, zero, 9
@@ -90,16 +90,15 @@ main:
   ADDI a0, zero, 22
   # implict jump to bb1
 bb1:
-  ADD s1, a0, zero
-  ADDI a0, zero, 1
-  SUBW s1, s1, a0
-  SLLIW a0, s1, 2
-  ADDIW a0, a0, 52
+  ADDI s0, zero, 1
+  SUBW a0, a0, s0
+  SLLIW s0, a0, 2
+  ADDIW s0, s0, 52
   ADDI t5, sp, 96
-  ADD s2, t5, a0
-  ADDI a0, zero, 0
-  SW a0, 0(s2)
-  BNE s1, zero, bb3
+  ADD s0, t5, s0
+  ADDI s2, zero, 0
+  SW s2, 0(s0)
+  BNE a0, zero, bb3
   # implict jump to bb2
 bb2:
   LW a0, 136(sp)
@@ -121,7 +120,7 @@ bb2:
   LA a0, c
   LW a0, 4(a0)
   CALL putint
-  LW a0, 8(s0)
+  LW a0, 8(s1)
   CALL putint
   LA a0, c
   LW a0, 12(a0)
@@ -136,5 +135,4 @@ bb2:
   ADDI sp, sp, 240
   JALR zero, 0(ra)
 bb3:
-  ADD a0, s1, zero
   JAL zero, bb1

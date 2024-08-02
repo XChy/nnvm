@@ -65,8 +65,7 @@ long_array.while.body82:  pred(long_array.if.exit, long_array.while.exit52)
   89304 = icmp slt i32 %i.phi300422, i32 10
   br i1 %89304, bb %long_array.then, bb %long_array.else
 long_array.while.exit83:  pred(long_array.if.exit)
-  418 = phi [bb %long_array.if.exit, i32 %ans.phi212319]
-  ret i32 %418
+  ret i32 %ans.phi212319
 long_array.then:  pred(long_array.while.body82)
   233309 = shl i32 %i.phi300422, i32 2
   97310 = ptradd ptr %a3243, i32 %233309
@@ -92,8 +91,8 @@ long_array.then105:  pred(long_array.else)
   br bb %long_array.while.body112
 long_array.if.exit106:  pred(long_array.while.exit113, long_array.if.exit138)
   j140.phi222328 = phi [bb %long_array.if.exit138, i32 %j140.phi221357, bb %long_array.while.exit113, i32 %j140.phi224297419]
-  j.phi216329 = phi [bb %long_array.if.exit138, i32 %j.phi218298420, bb %long_array.while.exit113, i32 %408]
-  ans.phi211330 = phi [bb %long_array.if.exit138, i32 %ans.phi210358, bb %long_array.while.exit113, i32 %ans.phi213299409]
+  j.phi216329 = phi [bb %long_array.if.exit138, i32 %j.phi218298420, bb %long_array.while.exit113, i32 %132349]
+  ans.phi211330 = phi [bb %long_array.if.exit138, i32 %ans.phi210358, bb %long_array.while.exit113, i32 %129348]
   br bb %long_array.if.exit
 long_array.else107:  pred(long_array.else)
   136333 = icmp slt i32 %i.phi300422, i32 30
@@ -110,15 +109,13 @@ long_array.while.body112:  pred(long_array.while.body112, long_array.then105)
   116338 = icmp slt i32 %132349, i32 10000
   br i1 %116338, bb %long_array.while.body112, bb %long_array.while.exit113
 long_array.while.exit113:  pred(long_array.while.body112)
-  ans.phi213299409 = phi [bb %long_array.while.body112, i32 %129348]
-  408 = phi [bb %long_array.while.body112, i32 %132349]
-  call void putint(i32 %ans.phi213299409)
+  call void putint(i32 %129348)
   br bb %long_array.if.exit106
 long_array.then137:  pred(long_array.else107)
   br bb %long_array.while.body144
 long_array.if.exit138:  pred(long_array.else139, long_array.while.exit145)
-  j140.phi221357 = phi [bb %long_array.else139, i32 %j140.phi224297419, bb %long_array.while.exit145, i32 %413]
-  ans.phi210358 = phi [bb %long_array.else139, i32 %197366, bb %long_array.while.exit145, i32 %ans.phi213299414]
+  j140.phi221357 = phi [bb %long_array.else139, i32 %j140.phi224297419, bb %long_array.while.exit145, i32 %j140.phi391]
+  ans.phi210358 = phi [bb %long_array.else139, i32 %197366, bb %long_array.while.exit145, i32 %ans.phi392]
   br bb %long_array.if.exit106
 long_array.else139:  pred(long_array.else107)
   236361 = shl i32 %i.phi300422, i32 2
@@ -134,9 +131,7 @@ long_array.while.body144:  pred(long_array.if.exit153, long_array.then137)
   151374 = icmp sgt i32 %j140.phi220369415, i32 2233
   br i1 %151374, bb %long_array.then152, bb %long_array.else154
 long_array.while.exit145:  pred(long_array.if.exit153)
-  ans.phi213299414 = phi [bb %long_array.if.exit153, i32 %ans.phi392]
-  413 = phi [bb %long_array.if.exit153, i32 %j140.phi391]
-  call void putint(i32 %ans.phi213299414)
+  call void putint(i32 %ans.phi392)
   br bb %long_array.if.exit138
 long_array.then152:  pred(long_array.while.body144)
   237380 = shl i32 %i.phi300422, i32 2

@@ -247,8 +247,7 @@ func.while.body725:  pred(func.while.body725, func.while.body21)
   728988 = icmp slt i32 %739995, i32 100
   br i1 %728988, bb %func.while.body725, bb %func.while.exit726
 func.while.exit726:  pred(func.while.body725)
-  sum.phi7791002 = phi [bb %func.while.body725, i32 %736994]
-  742998 = srem i32 %sum.phi7791002, i32 65535
+  742998 = srem i32 %736994, i32 65535
   25780 = icmp slt i32 %722981, i32 %747
   br i1 %25780, bb %func.while.body21, bb %func.while.exit22
 }

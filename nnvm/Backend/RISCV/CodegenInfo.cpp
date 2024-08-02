@@ -108,6 +108,7 @@ LIRInstID riscv::getLoadInstType(LIRValueType type) {
   case LIRValueType::Double:
     return FLD;
   default:
+    std::cerr << (int)type << "\n";
     nnvm_unreachable("Not implemented");
   }
 }

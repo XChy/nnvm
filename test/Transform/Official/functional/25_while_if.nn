@@ -17,8 +17,7 @@ deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
   1969 = icmp slt i32 %c.phi5465106, i32 100
   br i1 %1969, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
-  104 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379]
-  call void putint(i32 %104)
+  call void putint(i32 %c.phi5379)
   ret i32 0
 deepWhileBr.then:  pred(deepWhileBr.while.body)
   2574 = add i32 %c.phi5465106, i32 42

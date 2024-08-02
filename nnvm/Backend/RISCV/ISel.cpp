@@ -371,6 +371,8 @@ LIRInst *ISel::expand(LIRBuilder &builder, LIRInst *I) {
   switch (I->getOpcode()) {
   case DIVW:
     return expandSDiv(builder, I);
+  case REMW:
+    return expandSRem(builder, I);
   default:
     return nullptr;
   }
@@ -407,6 +409,45 @@ LIRInst *ISel::expandSDiv(LIRBuilder &builder, LIRInst *I) {
   builder.addInst(div);
 
   return div;
+}
+
+LIRInst *ISel::expandSRem(LIRBuilder &builder, LIRInst *I) {
+  LIRValueType type = I->getOp(2)->getType();
+
+  if (!I->getOp(2)->isConstant() || type != LIRValueType::i32)
+    return nullptr;
+
+  LIRValue *res = I->getOp(0);
+  LIRValue *divided = I->getOp(1);
+  LIRConst *divisor = I->getOp(2)->as<LIRConst>();
+  GInt power;
+
+  if (!genericGetPowerOfTwo(divisor->getIValue(), 32, power))
+    return nullptr;
+
+  // a / (1 << bits)  -->  a - ( a + ((a << 1) >> (bitwidth - bits)) & -(1 <<
+  // bits))
+  auto *withoutSign = builder.newVReg(type);
+  auto *select = builder.newVReg(type);
+  auto *masked = builder.newVReg(type);
+  auto *added = builder.newVReg(type);
+
+  auto *removeSign =
+      LIRInst::create(SLLI, withoutSign, divided, LIRImm::create(1));
+  auto *comp =
+      LIRInst::create(SRLI, select, withoutSign, LIRImm::create(64 - power));
+  auto *add = LIRInst::create(ADD, added, divided, select);
+  auto *mask = LIRInst::create(
+      AND, masked, added, LIRConst::createInt(-divisor->getIValue(), type));
+  auto *sub = LIRInst::create(SUBW, res, divided, masked);
+
+  builder.addInst(removeSign);
+  builder.addInst(comp);
+  builder.addInst(add);
+  builder.addInst(mask);
+  builder.addInst(sub);
+
+  return sub;
 }
 
 LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {

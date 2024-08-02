@@ -42,7 +42,6 @@ while.body198:  pred(mult2.while.exit94535, while.exit183)
   br i1 %186684, bb %mult1.while.body50316_preheader, bb %mult1.while.exit51318
 while.exit199:  pred(mult2.while.exit94535)
   call void _sysy_stoptime(i32 76)
-  19411 = si2f i32 0 to float
   br i1 %186684, bb %Vectordot.while.body_preheader, bb %Vectordot.while.exit
 select.then221:  pred(my_sqrt.while.exit139)
   227 = fneg float 0.000001
@@ -171,7 +170,7 @@ Vectordot.while.body_preheader:  pred(while.exit199)
   br bb %Vectordot.while.body
 Vectordot.while.body:  pred(Vectordot.while.body, Vectordot.while.body_preheader)
   i.phi415681 = phi [bb %Vectordot.while.body, i32 %41426, bb %Vectordot.while.body_preheader, i32 0]
-  sum.phi414680 = phi [bb %Vectordot.while.body, float %38425, bb %Vectordot.while.body_preheader, float %19411]
+  sum.phi414680 = phi [bb %Vectordot.while.body, float %38425, bb %Vectordot.while.body_preheader, float %48308]
   256419 = shl i32 %i.phi415681, i32 2
   31420 = ptradd ptr %vectorA, i32 %256419
   31.load421 = load float from ptr %31420
@@ -183,13 +182,13 @@ Vectordot.while.body:  pred(Vectordot.while.body, Vectordot.while.body_preheader
   25416 = icmp slt i32 %41426, i32 %n.phi
   br i1 %25416, bb %Vectordot.while.body, bb %Vectordot.while.exit
 Vectordot.while.exit:  pred(Vectordot.while.body, while.exit199)
-  19411679 = phi [bb %Vectordot.while.body, float %38425, bb %while.exit199, float %19411]
+  19411679 = phi [bb %Vectordot.while.body, float %38425, bb %while.exit199, float %48308]
   br i1 %186684, bb %Vectordot.while.body440_preheader, bb %Vectordot.while.exit450
 Vectordot.while.body440_preheader:  pred(Vectordot.while.exit)
   br bb %Vectordot.while.body440
 Vectordot.while.body440:  pred(Vectordot.while.body440, Vectordot.while.body440_preheader)
   i.phi437677 = phi [bb %Vectordot.while.body440, i32 %41448, bb %Vectordot.while.body440_preheader, i32 0]
-  sum.phi436676 = phi [bb %Vectordot.while.body440, float %38447, bb %Vectordot.while.body440_preheader, float %19411]
+  sum.phi436676 = phi [bb %Vectordot.while.body440, float %38447, bb %Vectordot.while.body440_preheader, float %48308]
   256441 = shl i32 %i.phi437677, i32 2
   31442 = ptradd ptr %vectorB, i32 %256441
   31.load443 = load float from ptr %31442
@@ -199,7 +198,7 @@ Vectordot.while.body440:  pred(Vectordot.while.body440, Vectordot.while.body440_
   25438 = icmp slt i32 %41448, i32 %n.phi
   br i1 %25438, bb %Vectordot.while.body440, bb %Vectordot.while.exit450
 Vectordot.while.exit450:  pred(Vectordot.while.body440, Vectordot.while.exit)
-  19411675 = phi [bb %Vectordot.while.body440, float %38447, bb %Vectordot.while.exit, float %19411]
+  19411675 = phi [bb %Vectordot.while.body440, float %38447, bb %Vectordot.while.exit, float %48308]
   216 = fdiv float %19411679, float %19411675
   br bb %my_sqrt.while.cond137
 mult2.while.body93498_preheader:  pred(mult1.while.exit51318)
