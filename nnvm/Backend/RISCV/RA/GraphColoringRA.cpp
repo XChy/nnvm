@@ -526,6 +526,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
       } else if (!freezeWorklist.empty()) {
         freeze();
       } else if (!spillWorklist.empty()) {
+        // FIXME: handle the unstoppable spilling!!!
         selectSpill();
       }
 

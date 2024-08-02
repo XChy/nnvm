@@ -23,15 +23,17 @@
 using namespace nnvm;
 using std::string;
 
-static string sourceFile;
-static string outputFile;
+namespace nnvm {
+string sourceFile;
+string outputFile;
 
-static string backendType = "riscv";
+string backendType = "riscv";
 
-static bool dumpIR;
-static bool dumpIRAfterOpt;
-static bool dumpAssembly;
-static int optimizationLevel;
+bool dumpIR;
+bool dumpIRAfterOpt;
+bool dumpAssembly;
+extern int optimizationLevel;
+} // namespace nnvm
 
 void parseArgs(int argc, char **argv) {
   static struct option options[] = {

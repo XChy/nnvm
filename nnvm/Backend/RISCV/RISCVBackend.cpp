@@ -15,6 +15,10 @@
 
 using namespace nnvm::riscv;
 
+namespace nnvm {
+int optimizationLevel;
+} // namespace nnvm
+
 void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Add global symbols
   LIRModule lowModule;
@@ -43,8 +47,12 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
 
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
-    if (!lowFunc->isExternal)
-      GraphColoringRA().allocate(*lowFunc);
+    if (!lowFunc->isExternal) {
+      if (optimizationLevel == 0)
+        LinearScanRA().allocate(*lowFunc);
+      else
+        GraphColoringRA().allocate(*lowFunc);
+    }
 
   // Guarantee no virtual register.
   assert(std::all_of(lowModule.virRegisters.begin(),
