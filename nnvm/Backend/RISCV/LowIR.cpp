@@ -1,3 +1,4 @@
+#include "ADT/PatternMatch.h"
 #include "LowIR.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
@@ -103,6 +104,10 @@ void LIRInst::emit(std::ostream &out, EmitInfo &info) {
     out << ", ";
     op.emit(out, info);
   }
+}
+
+bool LIRInst::isMoveInst() const {
+  return match(this, pattern::pCopy(pattern::pReg(), pattern::pReg()));
 }
 
 void LIRBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) {
