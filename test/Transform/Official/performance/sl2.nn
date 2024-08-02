@@ -10,7 +10,7 @@ entry:  pred()
 while.body_preheader:  pred(entry)
   br bb %while.body
 while.body:  pred(while.exit25, while.body_preheader)
-  i.phi223254 = phi [bb %while.exit25, i32 %66, bb %while.body_preheader, i32 0]
+  i.phi217254 = phi [bb %while.exit25, i32 %66, bb %while.body_preheader, i32 0]
   br i1 %19253, bb %while.body24_preheader, bb %while.exit25
 while.exit:  pred(while.exit25, entry)
   75246 = sub i32 %7, i32 1
@@ -19,28 +19,28 @@ while.exit:  pred(while.exit25, entry)
 while.body24_preheader:  pred(while.body)
   br bb %while.body24
 while.body24:  pred(while.exit33, while.body24_preheader)
-  j.phi226240 = phi [bb %while.exit33, i32 %63, bb %while.body24_preheader, i32 0]
+  j.phi220240 = phi [bb %while.exit33, i32 %63, bb %while.body24_preheader, i32 0]
   br i1 %19253, bb %while.body32_preheader, bb %while.exit33
 while.exit25:  pred(while.exit33, while.body)
-  66 = add i32 %i.phi223254, i32 1
+  66 = add i32 %i.phi217254, i32 1
   19 = icmp slt i32 %66, i32 %7
   br i1 %19, bb %while.body, bb %while.exit
 while.body32_preheader:  pred(while.body24)
-  39 = mul i32 %i.phi223254, i32 1440000
+  39 = mul i32 %i.phi217254, i32 1440000
   40 = ptradd ptr @x, i32 %39
-  42 = mul i32 %j.phi226240, i32 2400
+  42 = mul i32 %j.phi220240, i32 2400
   43 = ptradd ptr %40, i32 %42
   br bb %while.body32
 while.body32:  pred(while.body32, while.body32_preheader)
-  k.phi219238 = phi [bb %while.body32, i32 %60, bb %while.body32_preheader, i32 0]
-  228 = shl i32 %k.phi219238, i32 2
+  k.phi225238 = phi [bb %while.body32, i32 %60, bb %while.body32_preheader, i32 0]
+  228 = shl i32 %k.phi225238, i32 2
   46 = ptradd ptr %43, i32 %228
   store i32 1 to ptr %46
-  60 = add i32 %k.phi219238, i32 1
+  60 = add i32 %k.phi225238, i32 1
   36 = icmp slt i32 %60, i32 %7
   br i1 %36, bb %while.body32, bb %while.exit33
 while.exit33:  pred(while.body32, while.body24)
-  63 = add i32 %j.phi226240, i32 1
+  63 = add i32 %j.phi220240, i32 1
   28 = icmp slt i32 %63, i32 %7
   br i1 %28, bb %while.body24, bb %while.exit25
 while.body71_preheader:  pred(while.exit)

@@ -12,7 +12,7 @@ a:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -112
+  ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -22,390 +22,384 @@ main:
   SD s5, 48(sp)
   SD s6, 56(sp)
   SD s7, 64(sp)
-  SD s8, 72(sp)
-  SD s9, 80(sp)
-  SD s10, 88(sp)
-  SD s11, 96(sp)
   LA s0, sum
-  ADDI s1, zero, 0
-  SW s1, 0(s0)
-  LA s0, count
-  LW s0, 0(s0)
-  ADDIW s1, s0, 1
-  LA s2, count
-  SW s1, 0(s2)
-  LA s2, a
-  SW s1, 0(s2)
-  LA s2, sum
-  SW s1, 0(s2)
-  ADDIW s2, s0, 2
-  LA s3, count
-  SW s2, 0(s3)
-  ADDW s3, s1, s2
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 3
-  LA s5, count
-  SW s4, 0(s5)
+  ADDI a0, zero, 0
+  SW a0, 0(s0)
+  LA a0, count
+  LW s2, 0(a0)
+  ADDIW s0, s2, 1
+  LA a0, count
+  SW s0, 0(a0)
+  LA a0, a
+  SW s0, 0(a0)
+  LA a0, sum
+  SW s0, 0(a0)
+  ADDIW s1, s2, 2
+  LA a0, count
+  SW s1, 0(a0)
+  ADDW s3, s0, s1
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 3
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s5, s3, s4
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s3, s2, 4
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s5, s3
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 4
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s3, s3, s4
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s4, s3, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 5
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 6
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s3
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 7
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s5, s4, s3
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s4, s2, 8
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s5, s3
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s3, s3, s1
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 9
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s3, s4
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 10
+  LA a0, count
+  SW s5, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 5
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 6
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s4, s3, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 11
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 12
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 7
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 13
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s5, s3, s4
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s3, s2, 14
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s5, s4
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 15
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s1
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 16
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 8
-  LA s6, count
-  SW s5, 0(s6)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s2
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 9
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 10
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 17
+  LA a0, count
+  SW s5, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 11
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 12
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 13
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 14
-  LA s6, count
-  SW s5, 0(s6)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 15
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s2
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 16
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 17
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s4, s3, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 18
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 19
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s3
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 20
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s3, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 21
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 22
+  LA a0, count
+  SW s3, 0(a0)
+  ADDIW s3, s2, 23
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s3
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 24
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s3, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 25
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s3
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 18
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 19
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 20
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 21
-  LA s6, count
-  SW s5, 0(s6)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 22
-  LA s5, count
-  SW s4, 0(s5)
-  ADDIW s4, s0, 23
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 24
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 25
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s3, s3, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 26
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s3, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 27
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 28
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 26
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 27
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 29
+  LA a0, count
+  SW s5, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 28
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 30
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 29
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 31
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s5, s3, s4
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s3, s2, 32
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s5, s3
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 30
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 31
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 32
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s4, s3, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 33
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 34
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s3
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 35
+  LA a0, count
+  SW s5, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 36
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s4, s3, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 37
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s3
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 38
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s4, s4, s3
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s5, s2, 39
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDW s4, s4, s3
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDW s3, s4, s3
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s3, s3, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 40
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s3, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 41
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 33
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 34
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 35
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 36
-  LA s6, count
-  SW s5, 0(s6)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 37
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 38
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 39
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s5, s2, 42
+  LA a0, count
+  SW s5, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 40
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 41
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 42
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 43
-  LA s6, count
-  SW s5, 0(s6)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDW s3, s3, s2
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 44
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s5, s0, 45
-  LA s6, count
-  SW s5, 0(s6)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 43
+  LA a0, count
+  SW s4, 0(a0)
   ADDW s3, s3, s5
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 46
-  LA s5, count
-  SW s4, 0(s5)
-  ADDW s3, s3, s1
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 47
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 44
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s5, s3, s4
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s3, s2, 45
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s5, s3
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s4, sum
-  SW s3, 0(s4)
-  ADDIW s4, s0, 48
-  LA s5, count
-  SW s4, 0(s5)
+  LA a0, sum
+  SW s3, 0(a0)
   ADDW s3, s3, s4
-  LA s5, sum
-  SW s3, 0(s5)
-  ADDIW s0, s0, 49
-  LA s5, count
-  SW s0, 0(s5)
-  ADDW s0, s3, s4
-  LA s3, sum
-  SW s0, 0(s3)
-  ADD s0, zero, zero
-  ADD s3, zero, zero
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDW s4, s3, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s2, 46
+  LA a0, count
+  SW s3, 0(a0)
+  ADDW s3, s4, s0
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 47
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s3, s4
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s4, s2, 48
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s3, s3, s4
+  LA a0, sum
+  SW s3, 0(a0)
+  ADDIW s2, s2, 49
+  LA a0, count
+  SW s2, 0(a0)
+  ADDW s2, s3, s4
+  LA a0, sum
+  SW s2, 0(a0)
+  ADD s2, zero, zero
+  ADD s3, s1, zero
+  ADD a0, zero, zero
   # implict jump to bb1
 bb1:
-  ADD s4, s2, zero
-  ADD s5, s3, zero
-  ADD s6, s0, zero
-  SLTI s7, s5, 3
-  BNE s7, zero, bb3
+  ADD s1, a0, zero
+  SLTI a0, s1, 3
+  BNE a0, zero, bb3
   # implict jump to bb2
 bb2:
-  LA s7, sum
-  LW s7, 0(s7)
-  ADD a0, s7, zero
+  LA a0, sum
+  LW a0, 0(a0)
   CALL putint
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -417,190 +411,180 @@ bb2:
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
-  LD s8, 72(sp)
-  LD s9, 80(sp)
-  LD s10, 88(sp)
-  LD s11, 96(sp)
-  ADDI sp, sp, 112
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:
   # implict jump to bb4
 bb4:
-  LA s7, sum
-  LW s7, 0(s7)
-  ADDW s7, s7, s4
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s8, count
-  LW s8, 0(s8)
-  ADDIW s9, s8, 1
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDIW s10, s8, 2
-  LA s11, count
-  SW s10, 0(s11)
-  ADDW s7, s7, s10
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDW s7, s7, s9
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDW s7, s7, s1
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 3
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s1
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 4
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 5
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDIW s8, s8, 6
-  LA s10, count
-  SW s8, 0(s10)
-  ADDW s7, s7, s9
-  LA s8, sum
-  SW s7, 0(s8)
-  XORI s7, s5, 1
-  SLTIU s7, s7, 1
-  BNE s7, zero, bb6
+  LA a0, sum
+  LW a0, 0(a0)
+  ADDW s5, a0, s3
+  LA a0, sum
+  SW s5, 0(a0)
+  LA a0, count
+  LW s4, 0(a0)
+  ADDIW s6, s4, 1
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s7, s5, s6
+  LA a0, sum
+  SW s7, 0(a0)
+  ADDIW s5, s4, 2
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s5, s7, s5
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDW s5, s5, s0
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 3
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s0
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 4
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 5
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s4, s4, 6
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s4, s5, s6
+  LA a0, sum
+  SW s4, 0(a0)
+  XORI a0, s1, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb6
   # implict jump to bb5
 bb5:
-  LA s7, sum
-  LW s7, 0(s7)
-  ADDW s7, s7, s4
-  LA s8, sum
-  SW s7, 0(s8)
-  LA s8, count
-  LW s8, 0(s8)
-  ADDIW s9, s8, 1
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDIW s10, s8, 2
-  LA s11, count
-  SW s10, 0(s11)
-  ADDW s7, s7, s10
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDW s7, s7, s9
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDW s7, s7, s1
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 3
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s1
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 4
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s9, s8, 5
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s7, s7, s9
-  LA s10, sum
-  SW s7, 0(s10)
-  ADDIW s10, s8, 6
-  LA s11, count
-  SW s10, 0(s11)
-  ADDW s7, s7, s9
-  LA s9, sum
-  SW s7, 0(s9)
-  ADDIW s7, s8, 7
-  LA s8, count
-  SW s7, 0(s8)
-  ADDIW s8, s5, 1
-  ADD s0, s6, zero
-  ADD s3, s8, zero
-  ADD s2, s7, zero
+  LA a0, sum
+  LW a0, 0(a0)
+  ADDW s4, a0, s3
+  LA a0, sum
+  SW s4, 0(a0)
+  LA a0, count
+  LW s3, 0(a0)
+  ADDIW s5, s3, 1
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s6, s3, 2
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s4, s4, s6
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDW s5, s4, s0
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s4, s3, 3
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s4, s5, s0
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s5, s3, 4
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s4, s5
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s6, s3, 5
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s4, s4, s6
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s5, s3, 6
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s4, s4, s6
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW s3, s3, 7
+  LA a0, count
+  SW s3, 0(a0)
+  ADDIW a0, s1, 1
   JAL zero, bb1
 bb6:
-  LA s6, count
-  LW s6, 0(s6)
-  ADDIW s7, s6, 1
-  LA s8, count
-  SW s7, 0(s8)
-  LA s8, sum
-  LW s8, 0(s8)
-  ADDW s8, s8, s7
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDIW s9, s6, 2
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s8, s8, s9
-  LA s10, sum
-  SW s8, 0(s10)
-  ADDIW s10, s6, 3
-  LA s11, count
-  SW s10, 0(s11)
-  ADDW s8, s8, s10
-  LA s10, sum
-  SW s8, 0(s10)
-  ADDW s8, s8, s9
-  LA s10, sum
-  SW s8, 0(s10)
-  ADDW s8, s8, s9
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDW s8, s8, s1
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDIW s9, s6, 4
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s8, s8, s1
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDIW s9, s6, 5
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s8, s8, s9
-  LA s9, sum
-  SW s8, 0(s9)
-  ADDIW s9, s6, 6
-  LA s10, count
-  SW s9, 0(s10)
-  ADDW s8, s8, s9
-  LA s10, sum
-  SW s8, 0(s10)
-  ADDIW s6, s6, 7
-  LA s10, count
-  SW s6, 0(s10)
-  ADDW s6, s8, s9
-  LA s8, sum
-  SW s6, 0(s8)
-  ADDIW s5, s5, 1
-  ADD s0, s7, zero
-  ADD s3, s5, zero
-  ADD s2, s4, zero
+  LA a0, count
+  LW s4, 0(a0)
+  ADDIW s2, s4, 1
+  LA a0, count
+  SW s2, 0(a0)
+  LA a0, sum
+  LW a0, 0(a0)
+  ADDW s6, a0, s2
+  LA a0, sum
+  SW s6, 0(a0)
+  ADDIW s5, s4, 2
+  LA a0, count
+  SW s5, 0(a0)
+  ADDW s6, s6, s5
+  LA a0, sum
+  SW s6, 0(a0)
+  ADDIW s7, s4, 3
+  LA a0, count
+  SW s7, 0(a0)
+  ADDW s6, s6, s7
+  LA a0, sum
+  SW s6, 0(a0)
+  ADDW s6, s6, s5
+  LA a0, sum
+  SW s6, 0(a0)
+  ADDW s5, s6, s5
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDW s5, s5, s0
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 4
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s0
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 5
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s6, s4, 6
+  LA a0, count
+  SW s6, 0(a0)
+  ADDW s5, s5, s6
+  LA a0, sum
+  SW s5, 0(a0)
+  ADDIW s4, s4, 7
+  LA a0, count
+  SW s4, 0(a0)
+  ADDW s4, s5, s6
+  LA a0, sum
+  SW s4, 0(a0)
+  ADDIW a0, s1, 1
   JAL zero, bb1

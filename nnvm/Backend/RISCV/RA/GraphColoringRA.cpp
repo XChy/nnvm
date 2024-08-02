@@ -12,8 +12,6 @@
 
 using namespace nnvm::riscv;
 
-static int K;
-
 static bool isSameClass(const Register *a, const Register *b) {
   return !(a->isFP() ^ b->isFP());
 }
@@ -27,13 +25,30 @@ void filter(std::set<Register *> &c, Register *classReg) {
   }
 }
 
+GraphColoringRAImpl::GraphColoringRAImpl(const std::vector<Register *> &regs,
+                                         Register *classReg)
+    : freeRegs(regs), classReg(classReg), K(regs.size()) {
+
+  std::sort(freeRegs.begin(), freeRegs.end(), [](Register *A, Register *B) {
+    if (A->isCalleeSaved() == B->isCalleeSaved())
+      return A->getRegId() < B->getRegId();
+    return A->isCalleeSaved() < B->isCalleeSaved();
+  });
+
+  uint colored = 0;
+  for (Register *reg : freeRegs) {
+    color[reg] = colored++;
+    color2PhyReg[color[reg]] = reg;
+  }
+}
+
 /**
  * Construct the interference graph, categorize each node as either move-related
  * or non-move-related.
  */
-void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis &la) {
-  int numPrecolored = 0;
+void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
   auto liveOutRegs = la.getLiveOut();
+
   for (auto *bb : func) {
     // get live out registers of bb
     std::set<Register *> liveRegs = liveOutRegs[bb];
@@ -44,12 +59,10 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis &la) {
       for (Register *liveRegB : liveRegs)
         addEdge(liveRegA, liveRegB);
 
-    std::vector<LIRInst *> instructions; // instructions in reverse order
-    for (auto inst : bb->getInsts()) {
-      instructions.insert(instructions.begin(), inst);
-    }
-
-    for (auto inst : instructions) {
+    // visit instructions in reverse order
+    for (auto it = bb->end(); it != bb->begin(); it--) {
+      auto prev = it;
+      LIRInst *inst = *(--prev);
       auto defs = getDefsOf(inst);
       auto uses = getUsesOf(inst);
       filter(defs, classReg);
@@ -58,9 +71,6 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis &la) {
       realOps.insert(uses.begin(), uses.end());
 
       for (auto reg : realOps) {
-        if (!isSameClass(reg, classReg))
-          continue;
-
         if (initial.count(reg) || precolored.count(reg))
           continue;
 
@@ -69,8 +79,6 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis &la) {
         } else if (reg->isPReg()) {
           precolored.insert(reg);
           degree[reg] = INT32_MAX;
-          color[reg] = numPrecolored++;
-          color2PhyReg[color[reg]] = reg;
         }
       }
 
@@ -82,15 +90,20 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis &la) {
         for (auto def : defs) {
           moveList[def].insert(inst);
         }
+        // FIXME: classify fpr and gpr copies
         worklistMoves.insert(inst);
       }
 
-      for (auto def : defs) {
+      // liveRegs = (liveRegs - defs) + uses
+      for (auto def : defs)
         liveRegs.erase(def);
-      }
       liveRegs.insert(uses.begin(), uses.end());
 
-      for (Register *liveRegA : liveRegs)
+      for (Register *liveRegA : uses)
+        for (Register *liveRegB : uses)
+          addEdge(liveRegA, liveRegB);
+
+      for (Register *liveRegA : uses)
         for (Register *liveRegB : liveRegs)
           addEdge(liveRegA, liveRegB);
     }
@@ -467,12 +480,6 @@ void GraphColoringRAImpl::removeRedundantMoves(nnvm::riscv::LIRFunc &func) {
 }
 
 void GraphColoringRAImpl::physicalize(LIRFunc &func) {
-  std::sort(freeRegs.begin(), freeRegs.end(), [](Register *A, Register *B) {
-    if (A->isCalleeSaved() == B->isCalleeSaved())
-      return A->getRegId() < B->getRegId();
-    return A->isCalleeSaved() < B->isCalleeSaved();
-  });
-
   std::set<Register *> allocatedRegs;
 
   for (auto *bb : func) {
@@ -489,7 +496,7 @@ void GraphColoringRAImpl::physicalize(LIRFunc &func) {
           continue;
         }
 
-        Register *physicalReg = freeRegs.at(color[reg]);
+        Register *physicalReg = color2PhyReg[color[reg]];
         allocatedRegs.insert(physicalReg);
         op.set(physicalReg);
       }
@@ -505,8 +512,6 @@ void GraphColoringRAImpl::physicalize(LIRFunc &func) {
 }
 
 void GraphColoringRAImpl::allocate(LIRFunc &func) {
-  K = freeRegs.size();
-
   uint iteration = 0;
   while (true) {
     LivenessAnalysis la;
@@ -524,24 +529,20 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
         selectSpill();
       }
 
-      iteration++;
-      debug(std::cerr << "Complete iteration " << iteration << "th\n")
-
     } while (!simplifyWorklist.empty() || !worklistMoves.empty() ||
              !freezeWorklist.empty() || !spillWorklist.empty());
-    std::cout << "OK\n";
     assignColors();
-    std::cout << "OK2\n";
+
+    iteration++;
+    debug(std::cerr << "Complete iteration " << iteration << "th\n");
+
     if (spilledNodes.empty()) {
       break;
     }
 
-    std::cout << "OK1\n";
     rewriteProgram(func);
-    std::cout << "OKW\n";
   }
 
-  std::cout << "OK3\n";
   removeRedundantMoves(func);
   physicalize(func);
 }
@@ -549,6 +550,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
 void GraphColoringRA::allocate(LIRFunc &func) {
   auto gprs = unpreservedRegs(func.getParent());
   GraphColoringRAImpl(gprs, gprs[0]).allocate(func);
+
   auto fprs = unpreservedFRegs(func.getParent());
   GraphColoringRAImpl(fprs, fprs[0]).allocate(func);
 }

@@ -108,16 +108,16 @@ get_next.while.body320_preheader:  pred(read_str.then128256)
   br bb %get_next.while.body320
 get_next.while.body320:  pred(get_next.if.exit344, get_next.while.body320_preheader)
   13.load317355359 = phi [bb %get_next.if.exit344, i32 %13.load317, bb %get_next.while.body320_preheader, i32 %13.load317355]
-  j.phi154314358 = phi [bb %get_next.if.exit344, i32 %j.phi346, bb %get_next.while.body320_preheader, i32 -1]
-  i.phi156313357 = phi [bb %get_next.if.exit344, i32 %i.phi345, bb %get_next.while.body320_preheader, i32 0]
-  18321 = icmp eq i32 %j.phi154314358, i32 -1
+  i.phi154314358 = phi [bb %get_next.if.exit344, i32 %i.phi346, bb %get_next.while.body320_preheader, i32 0]
+  j.phi156313357 = phi [bb %get_next.if.exit344, i32 %j.phi345, bb %get_next.while.body320_preheader, i32 -1]
+  18321 = icmp eq i32 %j.phi156313357, i32 -1
   br i1 %18321, bb %get_next.select.then325, bb %get_next.select.else327
 get_next.while.exit323:  pred(get_next.if.exit344, read_str.then128256)
   br bb %KMP.while.cond58
 get_next.select.then325:  pred(get_next.while.body320)
   br bb %get_next.select.exit334
 get_next.select.else327:  pred(get_next.while.body320)
-  169329 = shl i32 %j.phi154314358, i32 2
+  169329 = shl i32 %j.phi156313357, i32 2
   29330 = ptradd ptr %dst, i32 %169329
   29.load331 = load i32 from ptr %29330
   31332 = icmp eq i32 %13.load317355359, i32 %29.load331
@@ -126,22 +126,22 @@ get_next.select.exit334:  pred(get_next.select.then325, get_next.select.else327)
   select.phi335 = phi [bb %get_next.select.else327, i1 %31332, bb %get_next.select.then325, i1 -1]
   br i1 %select.phi335, bb %get_next.then337, bb %get_next.else348
 get_next.then337:  pred(get_next.select.exit334)
-  39338 = add i32 %j.phi154314358, i32 1
-  42339 = add i32 %i.phi156313357, i32 1
+  39338 = add i32 %j.phi156313357, i32 1
+  42339 = add i32 %i.phi154314358, i32 1
   170340 = shl i32 %42339, i32 2
   45341 = ptradd ptr %next174, i32 %170340
   store i32 %39338 to ptr %45341
   br bb %get_next.if.exit344
 get_next.if.exit344:  pred(get_next.then337, get_next.else348)
-  i.phi345 = phi [bb %get_next.else348, i32 %i.phi156313357, bb %get_next.then337, i32 %42339]
-  j.phi346 = phi [bb %get_next.else348, i32 %51.load351, bb %get_next.then337, i32 %39338]
-  167315 = shl i32 %i.phi345, i32 2
+  j.phi345 = phi [bb %get_next.else348, i32 %51.load351, bb %get_next.then337, i32 %39338]
+  i.phi346 = phi [bb %get_next.else348, i32 %i.phi154314358, bb %get_next.then337, i32 %42339]
+  167315 = shl i32 %i.phi346, i32 2
   13316 = ptradd ptr %dst, i32 %167315
   13.load317 = load i32 from ptr %13316
   15318 = icmp ne i32 %13.load317, i32 0
   br i1 %15318, bb %get_next.while.body320, bb %get_next.while.exit323
 get_next.else348:  pred(get_next.select.exit334)
-  171349 = shl i32 %j.phi154314358, i32 2
+  171349 = shl i32 %j.phi156313357, i32 2
   51350 = ptradd ptr %next174, i32 %171349
   51.load351 = load i32 from ptr %51350
   br bb %get_next.if.exit344

@@ -145,7 +145,7 @@ public:
     return inst;
   }
 
-  [[nodiscard]] bool isMoveInst() const {
+  bool isMoveInst() const {
     // TODO
     return false;
   }

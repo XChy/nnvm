@@ -74,9 +74,9 @@ eval.if.exit224:  pred(eval.init.exit211)
   store i32 %num.load226383 to ptr %126971
   br bb %next_token.while.cond1598
 eval.while.cond229:  pred(next_token.if.exit451620, next_token.if.exit451914)
-  rhs.phi332388 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %rhs.phi409]
-  lhs.phi326389 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %lhs.phi410]
-  cur_op.phi324390 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %cur_op.phi411]
+  lhs.phi331388 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %lhs.phi409]
+  rhs.phi328389 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %rhs.phi410]
+  cur_op.phi326390 = phi [bb %next_token.if.exit451620, i32 0, bb %next_token.if.exit451914, i32 %cur_op.phi411]
   cur_token.load232391 = load i32 from ptr @cur_token
   234392 = icmp eq i32 %cur_token.load232391, i32 1
   br i1 %234392, bb %eval.while.body230, bb %next_token.while.cond1696
@@ -92,9 +92,9 @@ eval.while.body230.split:  pred(get_op_prec.then91856, get_op_prec.then111877, g
   243400 = icmp ne i32 %242399, i32 0
   br i1 %243400, bb %next_token.while.cond1696, bb %next_token.while.cond1794
 eval.while.cond247:  pred(next_token.if.exit451816, eval.while.body248.split)
-  rhs.phi409 = phi [bb %next_token.if.exit451816, i32 %rhs.phi332388, bb %eval.while.body248.split, i32 %135.load723]
-  lhs.phi410 = phi [bb %next_token.if.exit451816, i32 %lhs.phi326389, bb %eval.while.body248.split, i32 %135.load733]
-  cur_op.phi411 = phi [bb %next_token.if.exit451816, i32 %cur_op.phi324390, bb %eval.while.body248.split, i32 %135.load713]
+  lhs.phi409 = phi [bb %next_token.if.exit451816, i32 %lhs.phi331388, bb %eval.while.body248.split, i32 %135.load733]
+  rhs.phi410 = phi [bb %next_token.if.exit451816, i32 %rhs.phi328389, bb %eval.while.body248.split, i32 %135.load723]
+  cur_op.phi411 = phi [bb %next_token.if.exit451816, i32 %cur_op.phi326390, bb %eval.while.body248.split, i32 %135.load713]
   154.load608 = load i32 from ptr %ops350
   251413 = icmp ne i32 %154.load608, i32 0
   br i1 %251413, bb %eval.select.then252, bb %eval.select.else253

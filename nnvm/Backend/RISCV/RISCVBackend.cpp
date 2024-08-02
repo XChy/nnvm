@@ -7,8 +7,9 @@
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/Optimization/Peephole.h"
 #include "Backend/RISCV/Optimization/SSAPeephole.h"
-#include "Backend/RISCV/RA/LinearScanRA.h"
 #include "Backend/RISCV/RA/GraphColoringRA.h"
+#include "Backend/RISCV/RA/LinearScanRA.h"
+#include "Backend/RISCV/Scheduler.h"
 #include "Backend/RISCV/StackAllocator.h"
 #include <algorithm>
 
@@ -35,6 +36,10 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
       SSAPeephole().run(*lowFunc);
+
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal)
+      Scheduler().schedule(*lowFunc);
 
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)

@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include "Analysis/AAInfo.h"
 #include "IR/Instruction.h"
 #include "IR/Value.h"
 

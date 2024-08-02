@@ -149,8 +149,8 @@ while.exit151:  pred(while.body150)
   br bb %while.body183
 while.body183:  pred(while.exit191, while.exit151)
   i105.phi495 = phi [bb %while.exit191, i32 %273, bb %while.exit151, i32 0]
-  v.phi388494 = phi [bb %while.exit191, i32 %v.phi388485, bb %while.exit151, i32 0]
-  t.phi391493 = phi [bb %while.exit191, i32 %t.phi391484, bb %while.exit151, i32 0]
+  t.phi388494 = phi [bb %while.exit191, i32 %t.phi388485, bb %while.exit151, i32 0]
+  v.phi391493 = phi [bb %while.exit191, i32 %v.phi391484, bb %while.exit151, i32 0]
   413478 = shl i32 %i105.phi495, i32 2
   194479 = ptradd ptr %head, i32 %413478
   194.load480 = load i32 from ptr %194479
@@ -168,20 +168,20 @@ while.body190_preheader:  pred(while.body183)
 while.body190:  pred(while.exit212, while.body190_preheader)
   194.load480489 = phi [bb %while.exit212, i32 %194.load, bb %while.body190_preheader, i32 %194.load480]
   194479488 = phi [bb %while.exit212, ptr %194479, bb %while.body190_preheader, ptr %194479]
-  t.phi390486 = phi [bb %while.exit212, i32 %t.phi, bb %while.body190_preheader, i32 %t.phi391493]
+  t.phi387487 = phi [bb %while.exit212, i32 %t.phi, bb %while.body190_preheader, i32 %t.phi388494]
   416 = shl i32 %194.load480489, i32 2
   208 = ptradd ptr %a, i32 %416
   208.load = load i32 from ptr %208
   br bb %while.cond210
 while.exit191:  pred(while.exit212, while.body183)
-  v.phi388485 = phi [bb %while.exit212, i32 %v.phi, bb %while.body183, i32 %v.phi388494]
-  t.phi391484 = phi [bb %while.exit212, i32 %t.phi, bb %while.body183, i32 %t.phi391493]
+  t.phi388485 = phi [bb %while.exit212, i32 %t.phi, bb %while.body183, i32 %t.phi388494]
+  v.phi391484 = phi [bb %while.exit212, i32 %v.phi, bb %while.body183, i32 %v.phi391493]
   273 = add i32 %i105.phi495, i32 1
   187 = icmp slt i32 %273, i32 16
   br i1 %187, bb %while.body183, bb %while.exit184
 while.cond210:  pred(while.body190, while.body211)
-  t.phi = phi [bb %while.body190, i32 %t.phi390486, bb %while.body211, i32 %v.phi]
   v.phi = phi [bb %while.body190, i32 %208.load, bb %while.body211, i32 %229.load]
+  t.phi = phi [bb %while.body190, i32 %t.phi387487, bb %while.body211, i32 %v.phi]
   br i1 %38458474, bb %getNumPos.while.body34460_preheader, bb %getNumPos.while.exit35464
 while.body211:  pred(getNumPos.while.exit35464)
   417 = shl i32 %49465, i32 2

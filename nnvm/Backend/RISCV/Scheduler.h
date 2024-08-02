@@ -19,7 +19,9 @@ public:
     WAR, // Write after read
   };
 
-  void addEdge(LIRInst *from, LIRInst *to);
+  void addEdge(LIRInst *from, LIRInst *to) {
+    // TODO:
+  }
 
 private:
   std::unordered_map<LIRInst *, std::map<LIRInst *, DepEdge>> edges;

@@ -27,9 +27,9 @@ while.body131_preheader:  pred(init.exit)
 while.body131:  pred(if.exit145, while.body131_preheader)
   ip.phi338813 = phi [bb %if.exit145, i32 %306, bb %while.body131_preheader, i32 0]
   read_head.phi343812 = phi [bb %if.exit145, i32 %read_head.phi342, bb %while.body131_preheader, i32 0]
-  input_head.phi353811 = phi [bb %if.exit145, i32 %input_head.phi352, bb %while.body131_preheader, i32 0]
-  val.phi360810 = phi [bb %if.exit145, i32 %val.phi359, bb %while.body131_preheader, i32 0]
-  return_address_top.phi368809 = phi [bb %if.exit145, i32 %return_address_top.phi367, bb %while.body131_preheader, i32 0]
+  return_address_top.phi352811 = phi [bb %if.exit145, i32 %return_address_top.phi351, bb %while.body131_preheader, i32 0]
+  input_head.phi363810 = phi [bb %if.exit145, i32 %input_head.phi362, bb %while.body131_preheader, i32 0]
+  val.phi369809 = phi [bb %if.exit145, i32 %val.phi368, bb %while.body131_preheader, i32 0]
   loop.phi378808 = phi [bb %if.exit145, i32 %loop.phi377, bb %while.body131_preheader, i32 0]
   val244.phi387807 = phi [bb %if.exit145, i32 %val244.phi386, bb %while.body131_preheader, i32 0]
   410 = shl i32 %ip.phi338813, i32 2
@@ -45,9 +45,9 @@ then144:  pred(while.body131)
 if.exit145:  pred(then144, if.exit153)
   val244.phi386 = phi [bb %if.exit153, i32 %val244.phi385, bb %then144, i32 %val244.phi387807]
   loop.phi377 = phi [bb %if.exit153, i32 %loop.phi376, bb %then144, i32 %loop.phi378808]
-  return_address_top.phi367 = phi [bb %if.exit153, i32 %return_address_top.phi366, bb %then144, i32 %return_address_top.phi368809]
-  val.phi359 = phi [bb %if.exit153, i32 %val.phi358, bb %then144, i32 %val.phi360810]
-  input_head.phi352 = phi [bb %if.exit153, i32 %input_head.phi351, bb %then144, i32 %input_head.phi353811]
+  val.phi368 = phi [bb %if.exit153, i32 %val.phi367, bb %then144, i32 %val.phi369809]
+  input_head.phi362 = phi [bb %if.exit153, i32 %input_head.phi361, bb %then144, i32 %input_head.phi363810]
+  return_address_top.phi351 = phi [bb %if.exit153, i32 %return_address_top.phi350, bb %then144, i32 %return_address_top.phi352811]
   read_head.phi342 = phi [bb %if.exit153, i32 %read_head.phi, bb %then144, i32 %149]
   ip.phi337 = phi [bb %if.exit153, i32 %ip.phi336, bb %then144, i32 %ip.phi338813]
   306 = add i32 %ip.phi337, i32 1
@@ -63,9 +63,9 @@ then152:  pred(else)
 if.exit153:  pred(then152, if.exit161)
   val244.phi385 = phi [bb %if.exit161, i32 %val244.phi384, bb %then152, i32 %val244.phi387807]
   loop.phi376 = phi [bb %if.exit161, i32 %loop.phi375, bb %then152, i32 %loop.phi378808]
-  return_address_top.phi366 = phi [bb %if.exit161, i32 %return_address_top.phi365, bb %then152, i32 %return_address_top.phi368809]
-  val.phi358 = phi [bb %if.exit161, i32 %val.phi357, bb %then152, i32 %val.phi360810]
-  input_head.phi351 = phi [bb %if.exit161, i32 %input_head.phi350, bb %then152, i32 %input_head.phi353811]
+  val.phi367 = phi [bb %if.exit161, i32 %val.phi366, bb %then152, i32 %val.phi369809]
+  input_head.phi361 = phi [bb %if.exit161, i32 %input_head.phi360, bb %then152, i32 %input_head.phi363810]
+  return_address_top.phi350 = phi [bb %if.exit161, i32 %return_address_top.phi349, bb %then152, i32 %return_address_top.phi352811]
   read_head.phi = phi [bb %if.exit161, i32 %read_head.phi343812, bb %then152, i32 %157]
   ip.phi336 = phi [bb %if.exit161, i32 %ip.phi335, bb %then152, i32 %ip.phi338813]
   br bb %if.exit145
@@ -82,9 +82,9 @@ then160:  pred(else154)
 if.exit161:  pred(then160, if.exit175)
   val244.phi384 = phi [bb %if.exit175, i32 %val244.phi383, bb %then160, i32 %val244.phi387807]
   loop.phi375 = phi [bb %if.exit175, i32 %loop.phi374, bb %then160, i32 %loop.phi378808]
-  return_address_top.phi365 = phi [bb %if.exit175, i32 %return_address_top.phi364, bb %then160, i32 %return_address_top.phi368809]
-  val.phi357 = phi [bb %if.exit175, i32 %val.phi356, bb %then160, i32 %val.phi360810]
-  input_head.phi350 = phi [bb %if.exit175, i32 %input_head.phi349, bb %then160, i32 %input_head.phi353811]
+  val.phi366 = phi [bb %if.exit175, i32 %val.phi365, bb %then160, i32 %val.phi369809]
+  input_head.phi360 = phi [bb %if.exit175, i32 %input_head.phi359, bb %then160, i32 %input_head.phi363810]
+  return_address_top.phi349 = phi [bb %if.exit175, i32 %return_address_top.phi348, bb %then160, i32 %return_address_top.phi352811]
   ip.phi335 = phi [bb %if.exit175, i32 %ip.phi334, bb %then160, i32 %ip.phi338813]
   br bb %if.exit153
 else162:  pred(else154)
@@ -100,9 +100,9 @@ then174:  pred(else162)
 if.exit175:  pred(then174, if.exit189)
   val244.phi383 = phi [bb %if.exit189, i32 %val244.phi382, bb %then174, i32 %val244.phi387807]
   loop.phi374 = phi [bb %if.exit189, i32 %loop.phi373, bb %then174, i32 %loop.phi378808]
-  return_address_top.phi364 = phi [bb %if.exit189, i32 %return_address_top.phi363, bb %then174, i32 %return_address_top.phi368809]
-  val.phi356 = phi [bb %if.exit189, i32 %val.phi, bb %then174, i32 %val.phi360810]
-  input_head.phi349 = phi [bb %if.exit189, i32 %input_head.phi348, bb %then174, i32 %input_head.phi353811]
+  val.phi365 = phi [bb %if.exit189, i32 %val.phi, bb %then174, i32 %val.phi369809]
+  input_head.phi359 = phi [bb %if.exit189, i32 %input_head.phi358, bb %then174, i32 %input_head.phi363810]
+  return_address_top.phi348 = phi [bb %if.exit189, i32 %return_address_top.phi347, bb %then174, i32 %return_address_top.phi352811]
   ip.phi334 = phi [bb %if.exit189, i32 %ip.phi333, bb %then174, i32 %ip.phi338813]
   br bb %if.exit161
 else176:  pred(else162)
@@ -117,23 +117,23 @@ then188:  pred(else176)
 if.exit189:  pred(if.exit199, if.exit242)
   val244.phi382 = phi [bb %if.exit242, i32 %val244.phi, bb %if.exit199, i32 %val244.phi387807]
   loop.phi373 = phi [bb %if.exit242, i32 %loop.phi378808, bb %if.exit199, i32 %loop.phi372]
-  return_address_top.phi363 = phi [bb %if.exit242, i32 %return_address_top.phi362, bb %if.exit199, i32 %return_address_top.phi369]
-  val.phi = phi [bb %if.exit242, i32 %val.phi360810, bb %if.exit199, i32 %194.load]
-  input_head.phi348 = phi [bb %if.exit242, i32 %input_head.phi347, bb %if.exit199, i32 %input_head.phi353811]
+  val.phi = phi [bb %if.exit242, i32 %val.phi369809, bb %if.exit199, i32 %194.load]
+  input_head.phi358 = phi [bb %if.exit242, i32 %input_head.phi357, bb %if.exit199, i32 %input_head.phi363810]
+  return_address_top.phi347 = phi [bb %if.exit242, i32 %return_address_top.phi346, bb %if.exit199, i32 %return_address_top.phi353]
   ip.phi333 = phi [bb %if.exit242, i32 %ip.phi332, bb %if.exit199, i32 %ip.phi340]
   br bb %if.exit175
 else190:  pred(else176)
   240 = icmp eq i32 %140.load, i32 93
   br i1 %240, bb %then241, bb %else243
 then198:  pred(then188)
-  416 = shl i32 %return_address_top.phi368809, i32 2
+  416 = shl i32 %return_address_top.phi352811, i32 2
   203 = ptradd ptr %return_address, i32 %416
   store i32 %ip.phi338813 to ptr %203
-  208 = add i32 %return_address_top.phi368809, i32 1
+  208 = add i32 %return_address_top.phi352811, i32 1
   br bb %if.exit199
 if.exit199:  pred(then198, while.exit212)
   loop.phi372 = phi [bb %while.exit212, i32 %801, bb %then198, i32 %loop.phi378808]
-  return_address_top.phi369 = phi [bb %while.exit212, i32 %return_address_top.phi368809, bb %then198, i32 %208]
+  return_address_top.phi353 = phi [bb %while.exit212, i32 %return_address_top.phi352811, bb %then198, i32 %208]
   ip.phi340 = phi [bb %while.exit212, i32 %ip.phi338802, bb %then198, i32 %ip.phi338813]
   br bb %if.exit189
 else200:  pred(then188)
@@ -173,22 +173,22 @@ then241:  pred(else190)
   br i1 %250, bb %then251, bb %else253
 if.exit242:  pred(if.exit252, if.exit266)
   val244.phi = phi [bb %if.exit266, i32 %val244.phi387807, bb %if.exit252, i32 %247.load]
-  return_address_top.phi362 = phi [bb %if.exit266, i32 %return_address_top.phi368809, bb %if.exit252, i32 %return_address_top.phi]
-  input_head.phi347 = phi [bb %if.exit266, i32 %input_head.phi346, bb %if.exit252, i32 %input_head.phi353811]
+  input_head.phi357 = phi [bb %if.exit266, i32 %input_head.phi356, bb %if.exit252, i32 %input_head.phi363810]
+  return_address_top.phi346 = phi [bb %if.exit266, i32 %return_address_top.phi352811, bb %if.exit252, i32 %return_address_top.phi]
   ip.phi332 = phi [bb %if.exit266, i32 %ip.phi338813, bb %if.exit252, i32 %ip.phi]
   br bb %if.exit189
 else243:  pred(else190)
   264 = icmp eq i32 %140.load, i32 46
   br i1 %264, bb %then265, bb %else267
 then251:  pred(then241)
-  256 = sub i32 %return_address_top.phi368809, i32 1
+  256 = sub i32 %return_address_top.phi352811, i32 1
   br bb %if.exit252
 if.exit252:  pred(then251, else253)
-  return_address_top.phi = phi [bb %else253, i32 %return_address_top.phi368809, bb %then251, i32 %256]
+  return_address_top.phi = phi [bb %else253, i32 %return_address_top.phi352811, bb %then251, i32 %256]
   ip.phi = phi [bb %else253, i32 %261.load, bb %then251, i32 %ip.phi338813]
   br bb %if.exit242
 else253:  pred(then241)
-  259 = sub i32 %return_address_top.phi368809, i32 1
+  259 = sub i32 %return_address_top.phi352811, i32 1
   420 = shl i32 %259, i32 2
   261 = ptradd ptr %return_address, i32 %420
   261.load = load i32 from ptr %261
@@ -206,17 +206,17 @@ then265:  pred(else243)
   store i32 %278 to ptr @output_length
   br bb %if.exit266
 if.exit266:  pred(then265, if.exit282)
-  input_head.phi346 = phi [bb %if.exit282, i32 %input_head.phi345, bb %then265, i32 %input_head.phi353811]
+  input_head.phi356 = phi [bb %if.exit282, i32 %input_head.phi355, bb %then265, i32 %input_head.phi363810]
   br bb %if.exit242
 else267:  pred(else243)
   280 = icmp eq i32 %140.load, i32 44
   br i1 %280, bb %then281, bb %if.exit282
 then281:  pred(else267)
   input_length.load284 = load i32 from ptr @input_length
-  285 = icmp sge i32 %input_head.phi353811, i32 %input_length.load284
+  285 = icmp sge i32 %input_head.phi363810, i32 %input_length.load284
   br i1 %285, bb %then286, bb %else288
 if.exit282:  pred(else267, if.exit287)
-  input_head.phi345 = phi [bb %else267, i32 %input_head.phi353811, bb %if.exit287, i32 %input_head.phi]
+  input_head.phi355 = phi [bb %else267, i32 %input_head.phi363810, bb %if.exit287, i32 %input_head.phi]
   br bb %if.exit266
 then286:  pred(then281)
   423 = shl i32 %read_head.phi343812, i32 2
@@ -224,16 +224,16 @@ then286:  pred(then281)
   store i32 0 to ptr %291
   br bb %if.exit287
 if.exit287:  pred(then286, else288)
-  input_head.phi = phi [bb %else288, i32 %303, bb %then286, i32 %input_head.phi353811]
+  input_head.phi = phi [bb %else288, i32 %303, bb %then286, i32 %input_head.phi363810]
   br bb %if.exit282
 else288:  pred(then281)
   424 = shl i32 %read_head.phi343812, i32 2
   295 = ptradd ptr @tape, i32 %424
-  425 = shl i32 %input_head.phi353811, i32 2
+  425 = shl i32 %input_head.phi363810, i32 2
   299 = ptradd ptr @input, i32 %425
   299.load = load i32 from ptr %299
   store i32 %299.load to ptr %295
-  303 = add i32 %input_head.phi353811, i32 1
+  303 = add i32 %input_head.phi363810, i32 1
   br bb %if.exit287
 }
 

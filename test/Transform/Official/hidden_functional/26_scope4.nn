@@ -262,16 +262,16 @@ while.exit:  pred(while.cond121)
   ret i32 0
 while.cond121:  pred(then142, else, entry64)
   a145.phi = phi [bb %entry64, i32 0, bb %else, i32 %a145.phi, bb %then142, i32 %3570]
+  a72.phi = phi [bb %entry64, i32 %1153, bb %else, i32 %1281, bb %then142, i32 %a72.phi172]
   i.phi = phi [bb %entry64, i32 0, bb %else, i32 %162, bb %then142, i32 %153]
-  a72.phi = phi [bb %entry64, i32 %1153, bb %else, i32 %1281, bb %then142, i32 %a72.phi169]
   125 = icmp slt i32 %i.phi, i32 3
   br i1 %125, bb %while.body122, bb %while.exit
 while.body122:  pred(while.cond121)
   br bb %while.cond127
 while.cond127:  pred(while.body122)
-  a72.phi169 = phi [bb %while.body122, i32 %a72.phi]
+  a72.phi172 = phi [bb %while.body122, i32 %a72.phi]
   sum.load8424 = load i32 from ptr @sum
-  10425 = add i32 %sum.load8424, i32 %a72.phi169
+  10425 = add i32 %sum.load8424, i32 %a72.phi172
   store i32 %10425 to ptr @sum
   count.load2751 = load i32 from ptr @count
   3752 = add i32 %count.load2751, i32 1
@@ -347,7 +347,7 @@ then142:  pred(while.cond127)
   br bb %while.cond121
 else:  pred(while.cond127)
   sum.load8460 = load i32 from ptr @sum
-  10461 = add i32 %sum.load8460, i32 %a72.phi169
+  10461 = add i32 %sum.load8460, i32 %a72.phi172
   store i32 %10461 to ptr @sum
   count.load2779 = load i32 from ptr @count
   3780 = add i32 %count.load2779, i32 1

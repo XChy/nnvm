@@ -19,25 +19,25 @@ then:  pred(entry)
 if.exit:  pred(entry)
   br bb %while.cond
 while.cond:  pred(if.exit, then84, then119, if.exit156)
-  select104.phi314 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select104.phi, bb %then119, i1 %select104.phi, bb %then84, i1 %select104.phi314]
-  select112.phi312 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select112.phi, bb %then119, i1 %select112.phi, bb %then84, i1 %select112.phi312]
-  searchResult.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %151, bb %then119, i32 %searchResult.phi, bb %then84, i32 %searchResult.phi]
+  num.phi314 = phi [bb %if.exit, i32 1073741824, bb %if.exit156, i32 %num.phi, bb %then119, i32 %num.phi314, bb %then84, i32 %num.phi314]
+  select.phi308 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select.phi306, bb %then119, i1 %select.phi306, bb %then84, i1 %select.phi306]
+  select94.phi302 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select94.phi, bb %then119, i1 %select94.phi, bb %then84, i1 %select94.phi302]
+  select104.phi300 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select104.phi, bb %then119, i1 %select104.phi, bb %then84, i1 %select104.phi300]
+  select112.phi298 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select112.phi, bb %then119, i1 %select112.phi, bb %then84, i1 %select112.phi298]
   i.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %168, bb %then119, i32 %123, bb %then84, i32 %88]
-  num.phi304 = phi [bb %if.exit, i32 1073741824, bb %if.exit156, i32 %num.phi, bb %then119, i32 %num.phi304, bb %then84, i32 %num.phi304]
-  select.phi300 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select.phi298, bb %then119, i1 %select.phi298, bb %then84, i1 %select.phi298]
-  select94.phi294 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select94.phi, bb %then119, i1 %select94.phi, bb %then84, i1 %select94.phi294]
+  searchResult.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %151, bb %then119, i32 %searchResult.phi, bb %then84, i32 %searchResult.phi]
   16 = icmp slt i32 %i.phi, i32 4
   br i1 %16, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
   br bb %while.cond23
 while.exit:  pred(while.cond)
-  170 = icmp sgt i32 %num.phi304, i32 10
+  170 = icmp sgt i32 %num.phi314, i32 10
   br i1 %170, bb %then171, bb %if.exit172
 while.cond23:  pred(while.body, if.exit47)
-  coun.phi = phi [bb %while.body, i32 0, bb %if.exit47, i32 %68]
   x2.phi = phi [bb %while.body, i32 %x, bb %if.exit47, i32 %56]
   y2.phi = phi [bb %while.body, i32 %y, bb %if.exit47, i32 %65]
-  select.phi299 = phi [bb %while.body, i1 %select.phi300, bb %if.exit47, i1 %select.phi]
+  select.phi307 = phi [bb %while.body, i1 %select.phi308, bb %if.exit47, i1 %select.phi]
+  coun.phi = phi [bb %while.body, i32 0, bb %if.exit47, i32 %68]
   27 = mul i32 %x2.phi, i32 120
   28 = ptradd ptr @a, i32 %27
   324 = shl i32 %y2.phi, i32 2
@@ -50,7 +50,7 @@ while.body24:  pred(while.cond23)
   37 = icmp eq i32 %x2.phi, i32 %x_1.load
   br i1 %37, bb %select.then, bb %select.else
 while.exit25:  pred(while.cond23, then46)
-  select.phi298 = phi [bb %while.cond23, i1 %select.phi299, bb %then46, i1 %select.phi]
+  select.phi306 = phi [bb %while.cond23, i1 %select.phi307, bb %then46, i1 %select.phi]
   x_1.load70 = load i32 from ptr @x_1
   71 = icmp eq i32 %x2.phi, i32 %x_1.load70
   br i1 %71, bb %select.then72, bb %select.else73
@@ -138,19 +138,19 @@ if.exit120:  pred(select.exit111)
   149 = add i32 %n, i32 1
   150 = call i32 search(i32 %139, i32 %147, i32 %149)
   151 = add i32 %150, i32 1
-  154 = icmp slt i32 %151, i32 %num.phi304
+  154 = icmp slt i32 %151, i32 %num.phi314
   br i1 %154, bb %then155, bb %if.exit156
 then155:  pred(if.exit120)
   br bb %if.exit156
 if.exit156:  pred(if.exit120, then155)
-  num.phi = phi [bb %if.exit120, i32 %num.phi304, bb %then155, i32 %151]
+  num.phi = phi [bb %if.exit120, i32 %num.phi314, bb %then155, i32 %151]
   store i32 1 to ptr %31
   168 = add i32 %i.phi, i32 1
   br bb %while.cond
 then171:  pred(while.exit)
   ret i32 1073741824
 if.exit172:  pred(while.exit)
-  ret i32 %num.phi304
+  ret i32 %num.phi314
 }
 
 external void putint(i32 )

@@ -20,13 +20,12 @@ namespace nnvm::riscv {
 class GraphColoringRAImpl {
 public:
   GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
-                      Register *classReg)
-      : freeRegs(freeRegs), classReg(classReg) {}
+                      Register *classReg);
   void allocate(LIRFunc &func);
 
 private:
   // essential procedures
-  void build(LIRFunc &func, LivenessAnalysis &la);
+  void build(LIRFunc &func, const LivenessAnalysis &la);
   void makeWorkList();
   void simplify();
   void coalesce();
@@ -61,7 +60,7 @@ private:
   void freezeMoves(Register *reg);
 
   std::set<Register *> precolored;
-  std::set<Register *> initial;
+  std::unordered_set<Register *> initial;
   std::set<Register *> simplifyWorklist;
   std::set<Register *> freezeWorklist;
   std::set<Register *> spillWorklist;
@@ -69,7 +68,7 @@ private:
   std::set<Register *> coalescedNodes;
   std::set<Register *> coloredNodes;
 
-  std::set<Register *> selected;
+  std::unordered_set<Register *> selected;
   std::stack<Register *> selectStack;
 
   std::set<LIRInst *> coalescedMoves;
@@ -88,6 +87,7 @@ private:
 
   std::vector<Register *> freeRegs;
   Register *classReg;
+  int K;
 };
 
 class GraphColoringRA : public RegisterAllocator {

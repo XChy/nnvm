@@ -145,9 +145,9 @@ entry217:  pred()
   br bb %while.body
 while.body:  pred(while.exit231, entry217)
   k.phi365471 = phi [bb %while.exit231, i32 %k.phi365458, bb %entry217, i32 0]
-  i.phi367470 = phi [bb %while.exit231, i32 %304, bb %entry217, i32 0]
-  l.phi371469 = phi [bb %while.exit231, i32 %l.phi371457, bb %entry217, i32 0]
-  m.phi376468 = phi [bb %while.exit231, i32 %m.phi376456, bb %entry217, i32 0]
+  l.phi369470 = phi [bb %while.exit231, i32 %l.phi369457, bb %entry217, i32 0]
+  m.phi374469 = phi [bb %while.exit231, i32 %m.phi374456, bb %entry217, i32 0]
+  i.phi376468 = phi [bb %while.exit231, i32 %304, bb %entry217, i32 0]
   h.phi382467 = phi [bb %while.exit231, i32 %h.phi382455, bb %entry217, i32 0]
   br bb %while.body230
 while.exit:  pred(while.exit231)
@@ -155,27 +155,27 @@ while.exit:  pred(while.exit231)
   br i1 %311464, bb %while.body307_preheader, bb %while.exit308
 while.body230:  pred(while.exit239, while.body)
   j.phi463 = phi [bb %while.exit239, i32 %301, bb %while.body, i32 0]
-  l.phi370461 = phi [bb %while.exit239, i32 %l.phi370448, bb %while.body, i32 %l.phi371469]
-  m.phi375460 = phi [bb %while.exit239, i32 %m.phi375447, bb %while.body, i32 %m.phi376468]
+  l.phi368461 = phi [bb %while.exit239, i32 %l.phi368448, bb %while.body, i32 %l.phi369470]
+  m.phi373460 = phi [bb %while.exit239, i32 %m.phi373447, bb %while.body, i32 %m.phi374469]
   h.phi381459 = phi [bb %while.exit239, i32 %h.phi381446, bb %while.body, i32 %h.phi382467]
   br bb %while.body238
 while.exit231:  pred(while.exit239)
   k.phi365458 = phi [bb %while.exit239, i32 %449]
-  l.phi371457 = phi [bb %while.exit239, i32 %l.phi370448]
-  m.phi376456 = phi [bb %while.exit239, i32 %m.phi375447]
+  l.phi369457 = phi [bb %while.exit239, i32 %l.phi368448]
+  m.phi374456 = phi [bb %while.exit239, i32 %m.phi373447]
   h.phi382455 = phi [bb %while.exit239, i32 %h.phi381446]
-  304 = add i32 %i.phi367470, i32 1
+  304 = add i32 %i.phi376468, i32 1
   226 = icmp slt i32 %304, i32 18
   br i1 %226, bb %while.body, bb %while.exit
 while.body238:  pred(while.exit247, while.body230)
   k.phi453 = phi [bb %while.exit247, i32 %298, bb %while.body230, i32 0]
-  m.phi374451 = phi [bb %while.exit247, i32 %m.phi374440, bb %while.body230, i32 %m.phi375460]
+  m.phi372451 = phi [bb %while.exit247, i32 %m.phi372440, bb %while.body230, i32 %m.phi373460]
   h.phi380450 = phi [bb %while.exit247, i32 %h.phi380439, bb %while.body230, i32 %h.phi381459]
   br bb %while.body246
 while.exit239:  pred(while.exit247)
   449 = phi [bb %while.exit247, i32 %298]
-  l.phi370448 = phi [bb %while.exit247, i32 %441]
-  m.phi375447 = phi [bb %while.exit247, i32 %m.phi374440]
+  l.phi368448 = phi [bb %while.exit247, i32 %441]
+  m.phi373447 = phi [bb %while.exit247, i32 %m.phi372440]
   h.phi381446 = phi [bb %while.exit247, i32 %h.phi380439]
   301 = add i32 %j.phi463, i32 1
   234 = icmp slt i32 %301, i32 18
@@ -186,14 +186,14 @@ while.body246:  pred(while.exit255, while.body238)
   br bb %while.body254
 while.exit247:  pred(while.exit255)
   441 = phi [bb %while.exit255, i32 %295]
-  m.phi374440 = phi [bb %while.exit255, i32 %435]
+  m.phi372440 = phi [bb %while.exit255, i32 %435]
   h.phi380439 = phi [bb %while.exit255, i32 %h.phi379434]
   298 = add i32 %k.phi453, i32 1
   242 = icmp slt i32 %298, i32 18
   br i1 %242, bb %while.body238, bb %while.exit239
 while.body254:  pred(while.exit263, while.body246)
   m.phi437 = phi [bb %while.exit263, i32 %292, bb %while.body246, i32 0]
-  268 = mul i32 %i.phi367470, i32 2939328
+  268 = mul i32 %i.phi376468, i32 2939328
   269 = ptradd ptr @dp, i32 %268
   271 = mul i32 %j.phi463, i32 163296
   272 = ptradd ptr %269, i32 %271

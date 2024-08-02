@@ -17,7 +17,7 @@
 .word 0x40000000
 .section .text
 takFP:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
@@ -25,22 +25,16 @@ takFP:
   FSD fs2, 32(sp)
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
-  FSD fs5, 56(sp)
-  FSD fs6, 64(sp)
-  FSD fs7, 72(sp)
-  FSD fs8, 80(sp)
-  FSD fs9, 88(sp)
   FSGNJ.D fs0, fa0, fa0
-  FSGNJ.D fs1, fa1, fa1
-  FSGNJ.D fs2, fa2, fa2
-  FLT.S s0, fs1, fs0
+  FSGNJ.D fa0, fa2, fa2
+  FLT.S s0, fa1, fs0
   BNE s0, zero, bb3
   # implict jump to bb1
 bb1:
-  FSGNJ.S fs3, fs2, fs2
+  FSGNJ.S ft0, fa0, fa0
   # implict jump to bb2
 bb2:
-  FSGNJ.S fa0, fs3, fs3
+  FSGNJ.S fa0, ft0, ft0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
@@ -48,53 +42,44 @@ bb2:
   FLD fs2, 32(sp)
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
-  FLD fs5, 56(sp)
-  FLD fs6, 64(sp)
-  FLD fs7, 72(sp)
-  FLD fs8, 80(sp)
-  FLD fs9, 88(sp)
-  ADDI sp, sp, 96
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:
+  FSGNJ.S fa2, fs0, fs0
   # implict jump to bb4
 bb4:
-  FSGNJ.S fs4, fs2, fs2
-  FSGNJ.S fs5, fs1, fs1
-  FSGNJ.S fs6, fs0, fs0
+  FSGNJ.S fs3, fa0, fa0
+  FSGNJ.S fs4, fa1, fa1
+  FSGNJ.S fs2, fa2, fa2
   LA s0, .CONSTANT.7.0
-  FLW fs7, 0(s0)
-  FSUB.S fs7, fs6, fs7
-  FSGNJ.S fa0, fs7, fs7
-  FSGNJ.S fa1, fs5, fs5
+  FLW fa0, 0(s0)
+  FSUB.S fa0, fs2, fa0
+  FSGNJ.S fa1, fs4, fs4
+  FSGNJ.S fa2, fs3, fs3
+  CALL takFP
+  FSGNJ.D fs0, fa0, fa0
+  LA s0, .CONSTANT.7.0
+  FLW fa0, 0(s0)
+  FSUB.S fa0, fs4, fa0
+  FSGNJ.S fa1, fs3, fs3
+  FSGNJ.S fa2, fs2, fs2
+  CALL takFP
+  FSGNJ.D fs1, fa0, fa0
+  LA s0, .CONSTANT.7.0
+  FLW fa0, 0(s0)
+  FSUB.S fa0, fs3, fa0
+  FSGNJ.S fa1, fs2, fs2
   FSGNJ.S fa2, fs4, fs4
   CALL takFP
-  FSGNJ.D fs7, fa0, fa0
-  LA s0, .CONSTANT.7.0
-  FLW fs8, 0(s0)
-  FSUB.S fs8, fs5, fs8
-  FSGNJ.S fa0, fs8, fs8
-  FSGNJ.S fa1, fs4, fs4
-  FSGNJ.S fa2, fs6, fs6
-  CALL takFP
-  FSGNJ.D fs8, fa0, fa0
-  LA s0, .CONSTANT.7.0
-  FLW fs9, 0(s0)
-  FSUB.S fs4, fs4, fs9
-  FSGNJ.S fa0, fs4, fs4
-  FSGNJ.S fa1, fs6, fs6
-  FSGNJ.S fa2, fs5, fs5
-  CALL takFP
-  FSGNJ.D fs4, fa0, fa0
-  FLT.S s0, fs8, fs7
+  FLT.S s0, fs1, fs0
   BNE s0, zero, bb6
   # implict jump to bb5
 bb5:
-  FSGNJ.S fs3, fs4, fs4
+  FSGNJ.S ft0, fa0, fa0
   JAL zero, bb2
 bb6:
-  FSGNJ.S fs0, fs7, fs7
-  FSGNJ.S fs1, fs8, fs8
-  FSGNJ.S fs2, fs4, fs4
+  FSGNJ.S fa2, fs0, fs0
+  FSGNJ.S fa1, fs1, fs1
   JAL zero, bb4
 main:
   ADDI sp, sp, -64
@@ -110,37 +95,36 @@ main:
   CALL getint
   ADD s0, a0, zero
   CALL getfloat
-  FSGNJ.D fs0, fa0, fa0
+  FSGNJ.D fs4, fa0, fa0
+  CALL getfloat
+  FSGNJ.D fs3, fa0, fa0
   CALL getfloat
   FSGNJ.D fs1, fa0, fa0
-  CALL getfloat
-  FSGNJ.D fs2, fa0, fa0
-  FCVT.S.W fs3, s0
+  FCVT.S.W fs0, s0
   LA s0, .CONSTANT.7.1
-  FLW fs4, 0(s0)
-  FADD.S fs3, fs4, fs3
-  FSGNJ.S fa0, fs3, fs3
+  FLW fa0, 0(s0)
+  FADD.S fa0, fa0, fs0
   CALL fibFP
-  FSGNJ.D fs3, fa0, fa0
-  FSGNJ.S fa0, fs0, fs0
-  FSGNJ.S fa1, fs1, fs1
-  FSGNJ.S fa2, fs2, fs2
+  FSGNJ.D fs2, fa0, fa0
+  FSGNJ.S fa0, fs4, fs4
+  FSGNJ.S fa1, fs3, fs3
+  FSGNJ.S fa2, fs1, fs1
   CALL takFP
-  FSGNJ.D fs0, fa0, fa0
-  LA s0, .CONSTANT.7.2
-  FLW fs1, 0(s0)
-  FEQ.S s0, fs3, fs1
-  BNE s0, zero, bb13
+  FSGNJ.D fs1, fa0, fa0
+  LA a0, .CONSTANT.7.2
+  FLW fs0, 0(a0)
+  FEQ.S a0, fs2, fs0
+  BNE a0, zero, bb13
   # implict jump to bb8
 bb8:
   ADDI a0, zero, 1
   CALL putint
   # implict jump to bb9
 bb9:
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
-  FEQ.S s0, fs0, fs1
-  BNE s0, zero, bb12
+  LA a0, .CONSTANT.7.0
+  FLW fs0, 0(a0)
+  FEQ.S a0, fs1, fs0
+  BNE a0, zero, bb12
   # implict jump to bb10
 bb10:
   ADDI a0, zero, 1
@@ -168,50 +152,45 @@ bb13:
   CALL putch
   JAL zero, bb9
 fibFP:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
   FSD fs1, 24(sp)
-  FSD fs2, 32(sp)
   FSGNJ.D fs0, fa0, fa0
   LA s0, .CONSTANT.7.3
-  FLW fs1, 0(s0)
-  FLT.S s0, fs0, fs1
+  FLW fa0, 0(s0)
+  FLT.S s0, fs0, fa0
   BNE s0, zero, bb16
   # implict jump to bb15
 bb15:
   LA s0, .CONSTANT.7.3
-  FLW fs1, 0(s0)
-  FSUB.S fs1, fs0, fs1
-  FSGNJ.S fa0, fs1, fs1
+  FLW fa0, 0(s0)
+  FSUB.S fa0, fs0, fa0
   CALL fibFP
   FSGNJ.D fs1, fa0, fa0
   LA s0, .CONSTANT.7.0
-  FLW fs2, 0(s0)
-  FSUB.S fs0, fs0, fs2
-  FSGNJ.S fa0, fs0, fs0
+  FLW fa0, 0(s0)
+  FSUB.S fa0, fs0, fa0
   CALL fibFP
-  FSGNJ.D fs0, fa0, fa0
-  FADD.S fs0, fs1, fs0
-  FSGNJ.S fa0, fs0, fs0
+  FSGNJ.D ft0, fa0, fa0
+  FADD.S ft0, fs1, ft0
+  FSGNJ.S fa0, ft0, ft0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
-  FLD fs2, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb16:
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
-  FSGNJ.S fa0, fs0, fs1
+  LA t0, .CONSTANT.7.0
+  FLW ft1, 0(t0)
+  LA t0, .CONSTANT.7.0
+  FLW ft0, 0(t0)
+  FSGNJ.S fa0, ft1, ft0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
-  FLD fs2, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)

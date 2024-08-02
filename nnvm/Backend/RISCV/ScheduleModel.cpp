@@ -17,10 +17,6 @@ bool U74ScheduleModel::areAllUsedRegFree(LIRInst *inst, uint latency) {
   return true;
 }
 
-bool U74ScheduleModel::canIssueDivRem(LIRInst *inst) {
-  return isFree(MulOrDiv) && areAllUsedRegFree(inst);
-}
-
 bool U74ScheduleModel::canIssue(LIRInst *inst) {
   if (numFreePipe == 0)
     return false;

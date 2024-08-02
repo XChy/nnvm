@@ -23,181 +23,173 @@ main:
   SD s9, 96(sp)
   SD s10, 104(sp)
   SD s11, 112(sp)
-  LA s0, image_in
-  ADD a0, s0, zero
+  LA a0, image_in
   CALL getarray
-  ADD t4, a0, zero
-  SW t4, 12(sp)
+  ADD s8, a0, zero
   ADDI a0, zero, 23
   CALL _sysy_starttime
-  ADDI s1, zero, 1
+  ADDI a0, zero, 1
   # implict jump to bb1
 bb1:
-  ADD t4, s1, zero
-  SW t4, 8(sp)
-  ADDI t4, zero, 1
-  SW t4, 4(sp)
+  ADD s1, a0, zero
+  ADDI a0, zero, 1
   # implict jump to bb2
 bb2:
-  LW t4, 4(sp)
-  ADD s4, t4, zero
-  ADDI s5, zero, 1
-  SUBW s5, s4, s5
-  SLLIW s5, s5, 9
-  LW t4, 8(sp)
-  ADDW s5, s5, t4
-  ADDI s6, zero, 1
-  SUBW s6, s5, s6
+  ADD s5, a0, zero
+  ADDI a0, zero, 1
+  SUBW a0, s5, a0
+  SLLIW a0, a0, 9
+  ADDW s2, a0, s1
+  ADDI a0, zero, 1
+  SUBW s3, s2, a0
+  ADDIW s4, s2, 1
+  SLLIW a0, s5, 9
+  ADDW s0, a0, s1
+  ADDI a0, zero, 1
+  SUBW s10, s0, a0
+  ADDIW s9, s0, 1
   ADDIW s7, s5, 1
-  SLLIW s8, s4, 9
-  LW t4, 8(sp)
-  ADDW s8, s8, t4
-  ADDI s9, zero, 1
-  SUBW s9, s8, s9
-  ADDIW s10, s8, 1
-  ADDIW t4, s4, 1
-  SW t4, 0(sp)
-  LW t4, 0(sp)
-  SLLIW s11, t4, 9
-  LW t4, 8(sp)
-  ADDW s11, s11, t4
-  ADDI s2, zero, 1
-  SUBW s2, s11, s2
-  ADDIW s0, s11, 1
-  SLLIW s8, s8, 2
-  LA s3, image_in
-  ADD s3, s3, s8
-  LW s3, 0(s3)
-  ADDI s4, zero, 8
-  MULW s3, s3, s4
-  SLLIW s4, s6, 2
-  LA s6, image_in
-  ADD s4, s6, s4
-  LW s4, 0(s4)
-  SUBW s3, s3, s4
-  SLLIW s4, s5, 2
-  LA s5, image_in
-  ADD s4, s5, s4
-  LW s4, 0(s4)
-  SUBW s3, s3, s4
-  SLLIW s4, s7, 2
-  LA s5, image_in
-  ADD s4, s5, s4
-  LW s4, 0(s4)
-  SUBW s3, s3, s4
-  SLLIW s4, s9, 2
-  LA s5, image_in
-  ADD s4, s5, s4
-  LW s4, 0(s4)
-  SUBW s3, s3, s4
-  SLLIW s4, s10, 2
-  LA s5, image_in
-  ADD s4, s5, s4
-  LW s4, 0(s4)
-  SUBW s3, s3, s4
+  SLLIW a0, s7, 9
+  ADDW s6, a0, s1
+  ADDI a0, zero, 1
+  SUBW s5, s6, a0
+  ADDIW a0, s6, 1
+  SW a0, 0(sp)
+  SLLIW a0, s0, 2
+  SW a0, 4(sp)
+  LA s0, image_in
+  LW a0, 4(sp)
+  ADD a0, s0, a0
+  LW s0, 0(a0)
+  ADDI a0, zero, 8
+  MULW s11, s0, a0
+  SLLIW s0, s3, 2
+  LA a0, image_in
+  ADD a0, a0, s0
+  LW a0, 0(a0)
+  SUBW s0, s11, a0
   SLLIW s2, s2, 2
-  LA s4, image_in
-  ADD s2, s4, s2
-  LW s2, 0(s2)
-  SUBW s2, s3, s2
-  SLLIW s3, s11, 2
-  LA s4, image_in
-  ADD s3, s4, s3
-  LW s3, 0(s3)
-  SUBW s2, s2, s3
-  SLLIW s0, s0, 2
-  LA s3, image_in
-  ADD s0, s3, s0
-  LW s0, 0(s0)
-  SUBW s0, s2, s0
-  LA s2, image_out
-  ADD s2, s2, s8
-  BLT s0, zero, bb19
+  LA a0, image_in
+  ADD a0, a0, s2
+  LW a0, 0(a0)
+  SUBW s2, s0, a0
+  SLLIW s0, s4, 2
+  LA a0, image_in
+  ADD a0, a0, s0
+  LW a0, 0(a0)
+  SUBW s2, s2, a0
+  SLLIW s0, s10, 2
+  LA a0, image_in
+  ADD a0, a0, s0
+  LW a0, 0(a0)
+  SUBW s2, s2, a0
+  SLLIW s0, s9, 2
+  LA a0, image_in
+  ADD a0, a0, s0
+  LW a0, 0(a0)
+  SUBW s0, s2, a0
+  SLLIW s2, s5, 2
+  LA a0, image_in
+  ADD a0, a0, s2
+  LW a0, 0(a0)
+  SUBW s0, s0, a0
+  SLLIW s2, s6, 2
+  LA a0, image_in
+  ADD a0, a0, s2
+  LW a0, 0(a0)
+  SUBW s0, s0, a0
+  LW a0, 0(sp)
+  SLLIW s2, a0, 2
+  LA a0, image_in
+  ADD a0, a0, s2
+  LW a0, 0(a0)
+  SUBW s2, s0, a0
+  LA s0, image_out
+  LW a0, 4(sp)
+  ADD s0, s0, a0
+  BLT s2, zero, bb19
   # implict jump to bb3
 bb3:
-  ADDI s3, zero, 255
-  BLT s3, s0, bb18
+  ADDI a0, zero, 255
+  BLT a0, s2, bb18
   # implict jump to bb4
 bb4:
+  ADD a0, s2, zero
   # implict jump to bb5
 bb5:
   # implict jump to bb6
 bb6:
-  SW s0, 0(s2)
-  LW t4, 0(sp)
-  SLTI s0, t4, 1023
-  BNE s0, zero, bb17
+  SW a0, 0(s0)
+  SLTI a0, s7, 1023
+  BNE a0, zero, bb17
   # implict jump to bb7
 bb7:
   # implict jump to bb8
 bb8:
-  LW t4, 8(sp)
-  ADDIW s0, t4, 1
-  SLTI s2, s0, 511
-  BNE s2, zero, bb16
+  ADDIW s0, s1, 1
+  SLTI a0, s0, 511
+  BNE a0, zero, bb16
   # implict jump to bb9
 bb9:
-  ADD s2, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s3, s2, zero
-  SLLIW s4, s3, 9
-  SLLIW s5, s4, 2
-  LA s6, image_out
-  ADD s6, s6, s5
-  LA s7, image_in
-  ADD s5, s7, s5
-  LW s5, 0(s5)
-  SW s5, 0(s6)
-  ADDIW s4, s4, 511
-  SLLIW s4, s4, 2
-  LA s5, image_out
-  ADD s5, s5, s4
-  LA s6, image_in
-  ADD s4, s6, s4
-  LW s4, 0(s4)
-  SW s4, 0(s5)
-  ADDIW s3, s3, 1
-  SLTI s4, s3, 1024
-  BNE s4, zero, bb15
+  ADD s2, a0, zero
+  SLLIW s1, s2, 9
+  SLLIW s0, s1, 2
+  LA a0, image_out
+  ADD s3, a0, s0
+  LA a0, image_in
+  ADD a0, a0, s0
+  LW a0, 0(a0)
+  SW a0, 0(s3)
+  ADDIW a0, s1, 511
+  SLLIW s1, a0, 2
+  LA a0, image_out
+  ADD s0, a0, s1
+  LA a0, image_in
+  ADD a0, a0, s1
+  LW a0, 0(a0)
+  SW a0, 0(s0)
+  ADDIW s0, s2, 1
+  SLTI a0, s0, 1024
+  BNE a0, zero, bb15
   # implict jump to bb11
 bb11:
-  ADD s4, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb12
 bb12:
-  ADD s5, s4, zero
-  SLLIW s6, s5, 2
-  LA s7, image_out
-  ADD s7, s7, s6
-  LA s8, image_in
-  ADD s6, s8, s6
-  LW s6, 0(s6)
-  SW s6, 0(s7)
-  LUI s6, 128
-  ADDIW s6, s6, -512
-  ADDW s6, s5, s6
-  SLLIW s6, s6, 2
-  LA s7, image_out
-  ADD s7, s7, s6
-  LA s8, image_in
-  ADD s6, s8, s6
-  LW s6, 0(s6)
-  SW s6, 0(s7)
-  ADDIW s5, s5, 1
-  SLTI s6, s5, 512
-  BNE s6, zero, bb14
+  ADD s2, a0, zero
+  SLLIW s1, s2, 2
+  LA a0, image_out
+  ADD s0, a0, s1
+  LA a0, image_in
+  ADD a0, a0, s1
+  LW a0, 0(a0)
+  SW a0, 0(s0)
+  LUI a0, 128
+  ADDIW a0, a0, -512
+  ADDW a0, s2, a0
+  SLLIW s1, a0, 2
+  LA a0, image_out
+  ADD s0, a0, s1
+  LA a0, image_in
+  ADD a0, a0, s1
+  LW a0, 0(a0)
+  SW a0, 0(s0)
+  ADDIW a0, s2, 1
+  SLTI s0, a0, 512
+  BNE s0, zero, bb14
   # implict jump to bb13
 bb13:
   ADDI a0, zero, 59
   CALL _sysy_stoptime
-  LUI s6, 128
-  ADDIW s6, s6, 0
-  ADD a0, zero, s6
-  LA s6, image_out
-  ADD a1, s6, zero
+  LUI a0, 128
+  ADDIW a0, a0, 0
+  ADD a0, zero, a0
+  LA a1, image_out
   CALL putarray
-  LW t4, 12(sp)
-  ADD a0, t4, zero
+  ADD a0, s8, zero
   LD ra, 16(sp)
   LD s0, 24(sp)
   LD s1, 32(sp)
@@ -214,22 +206,19 @@ bb13:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb14:
-  ADD s4, s5, zero
   JAL zero, bb12
 bb15:
-  ADD s2, s3, zero
+  ADD a0, s0, zero
   JAL zero, bb10
 bb16:
-  ADD s1, s0, zero
+  ADD a0, s0, zero
   JAL zero, bb1
 bb17:
-  LW t3, 0(sp)
-  ADD t4, t3, zero
-  SW t4, 4(sp)
+  ADD a0, s7, zero
   JAL zero, bb2
 bb18:
-  ADDI s0, zero, 255
+  ADDI a0, zero, 255
   JAL zero, bb5
 bb19:
-  ADD s0, zero, zero
+  ADD a0, zero, zero
   JAL zero, bb6

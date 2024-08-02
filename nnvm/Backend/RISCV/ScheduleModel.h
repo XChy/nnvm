@@ -23,8 +23,6 @@ public:
   enum IssueConstraint { Memory, FPU, MulOrDiv };
 
   bool canIssue(LIRInst *inst);
-  bool canIssueIntArith(LIRInst *inst);
-  bool canIssueDivRem(LIRInst *inst);
   void issue(LIRInst *inst);
 
   void step();

@@ -62,11 +62,11 @@ entry294:  pred()
   call void putch(i32 10)
   br bb %while.body308
 while.body308:  pred(while.exit317, entry294)
-  y.phi1161 = phi [bb %while.exit317, i32 %354, bb %entry294, i32 0]
-  xx322.phi3761160 = phi [bb %while.exit317, float %xx322.phi3761152, bb %entry294, float 0.000000]
+  xx322.phi3751161 = phi [bb %while.exit317, float %xx322.phi3751152, bb %entry294, float 0.000000]
+  y.phi1160 = phi [bb %while.exit317, i32 %354, bb %entry294, i32 0]
   yy.phi3781159 = phi [bb %while.exit317, float %yy.phi3781151, bb %entry294, float 0.000000]
   p.phi3811158 = phi [bb %while.exit317, i32 %p.phi3811150, bb %entry294, i32 0]
-  327 = si2f i32 %y.phi1161 to float
+  327 = si2f i32 %y.phi1160 to float
   331 = si2f i32 192 to float
   336 = fdiv float %327, float %331
   br bb %while.body316
@@ -78,11 +78,11 @@ while.body316:  pred(if.exit343, while.body308)
   332 = fdiv float %324, float %331
   br bb %sample.while.body255
 while.exit317:  pred(if.exit343)
-  xx322.phi3761152 = phi [bb %if.exit343, float %324]
+  xx322.phi3751152 = phi [bb %if.exit343, float %324]
   yy.phi3781151 = phi [bb %if.exit343, float %327]
   p.phi3811150 = phi [bb %if.exit343, i32 %p.phi]
   call void putch(i32 10)
-  354 = add i32 %y.phi1161, i32 1
+  354 = add i32 %y.phi1160, i32 1
   312 = icmp slt i32 %354, i32 192
   br i1 %312, bb %while.body308, bb %while.exit309
 then342:  pred(sample.while.exit256)

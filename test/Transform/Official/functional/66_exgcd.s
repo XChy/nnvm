@@ -7,11 +7,10 @@ main:
   ADDI sp, sp, -32
   SD ra, 8(sp)
   SD s0, 16(sp)
-  SD s1, 24(sp)
-  ADDI s0, zero, 1
-  SW s0, 4(sp)
-  ADDI s0, zero, 1
-  SW s0, 0(sp)
+  ADDI a0, zero, 1
+  SW a0, 4(sp)
+  ADDI a0, zero, 1
+  SW a0, 0(sp)
   ADDI a0, zero, 7
   ADDI a1, zero, 15
   ADDI a2, sp, 4
@@ -20,76 +19,64 @@ main:
   ADD a3, a3, zero
   CALL exgcd
   LW s0, 4(sp)
-  ADDI s1, zero, 15
-  REMW s0, s0, s1
-  ADDIW s0, s0, 15
-  ADDI s1, zero, 15
-  REMW s0, s0, s1
-  SW s0, 4(sp)
-  ADD a0, s0, zero
+  ADDI a0, zero, 15
+  REMW a0, s0, a0
+  ADDIW s0, a0, 15
+  ADDI a0, zero, 15
+  REMW a0, s0, a0
+  SW a0, 4(sp)
   CALL putint
   ADD a0, zero, zero
   LD ra, 8(sp)
   LD s0, 16(sp)
-  LD s1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 exgcd:
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  ADD s2, a2, zero
-  ADD s3, a3, zero
-  SLTIU s4, s1, 1
-  BNE s4, zero, bb3
+  ADD s1, a0, zero
+  ADD s0, a1, zero
+  ADD s3, a2, zero
+  ADD s2, a3, zero
+  SLTIU a0, s0, 1
+  BNE a0, zero, bb3
   # implict jump to bb2
 bb2:
-  REMW s4, s0, s1
-  ADD a0, s1, zero
-  ADD a1, s4, zero
-  ADD a2, s2, zero
-  ADD a3, s3, zero
+  REMW a1, s1, s0
+  ADD a0, s0, zero
+  ADD a2, s3, zero
+  ADD a3, s2, zero
   CALL exgcd
-  ADD s4, a0, zero
-  LW s5, 0(s2)
-  LW s6, 0(s3)
-  SW s6, 0(s2)
-  DIVW s1, s0, s1
-  LW s6, 0(s3)
-  MULW s1, s1, s6
-  SUBW s1, s5, s1
-  SW s1, 0(s3)
-  ADD a0, s4, zero
+  ADD t1, a0, zero
+  LW t2, 0(s3)
+  LW t0, 0(s2)
+  SW t0, 0(s3)
+  DIVW a0, s1, s0
+  LW t0, 0(s2)
+  MULW t0, a0, t0
+  SUBW t0, t2, t0
+  SW t0, 0(s2)
+  ADD a0, t1, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
   LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:
-  ADDI s1, zero, 1
-  SW s1, 0(s2)
-  SW zero, 0(s3)
-  ADD a0, s0, zero
+  ADDI t0, zero, 1
+  SW t0, 0(s3)
+  SW zero, 0(s2)
+  ADD a0, s1, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
   LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
