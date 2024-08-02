@@ -73,6 +73,8 @@ public:
 
   void emit(std::ostream &out, EmitInfo &info);
 
+  bool isMoveInst() const;
+
   LIRInst *setUse(uint index, LIRValue *usee) {
     operands[index].use(usee);
 
@@ -143,11 +145,6 @@ public:
     inst->setDef(0, def);
     inst->setUse(1, use1);
     return inst;
-  }
-
-  bool isMoveInst() const {
-    // TODO
-    return false;
   }
 
   uint64_t type;
