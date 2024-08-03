@@ -73,7 +73,7 @@ public:
 
   void emit(std::ostream &out, EmitInfo &info);
 
-  bool isMoveInst() const;
+  bool isMoveInst(LIRFunc const &func) const;
 
   LIRInst *setUse(uint index, LIRValue *usee) {
     operands[index].use(usee);
