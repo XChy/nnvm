@@ -16,12 +16,13 @@ static bool isSameClass(Register const *a, Register const *b) {
   return !(a->isFP() ^ b->isFP());
 }
 
-static void filter(std::set<Register *> &c, Register const *classReg) {
+static void filterRegClass(std::set<Register *> &c, Register const *classReg) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
-    if (!isSameClass(*first, classReg))
+    if (!isSameClass(*first, classReg)) {
       first = c.erase(first);
-    else
+    } else {
       ++first;
+    }
   }
 }
 
@@ -50,10 +51,8 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
   auto liveOutRegs = la.getLiveOut();
 
   for (auto *bb : func) {
-    // get live out registers of bb
     std::set<Register *> liveRegs = liveOutRegs[bb];
-
-    filter(liveRegs, classReg);
+    filterRegClass(liveRegs, classReg);
 
     for (Register *liveRegA : liveRegs) {
       for (Register *liveRegB : liveRegs) {
@@ -67,8 +66,8 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
       LIRInst *inst = *(--prev);
       auto defs = getDefsOf(inst);
       auto uses = getUsesOf(inst);
-      filter(defs, classReg);
-      filter(uses, classReg);
+      filterRegClass(defs, classReg);
+      filterRegClass(uses, classReg);
       std::set<Register *> realOps = defs;
       realOps.insert(uses.begin(), uses.end());
 
@@ -84,7 +83,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
         }
       }
 
-      if (inst->isMoveInst(func)) {
+      if (inst->isMoveInst(func) && isSameClass(inst->getOp(0)->as<Register>(), classReg)) {
         for (auto use : uses) {
           liveRegs.erase(use);
           moveList[use].insert(inst);
@@ -92,7 +91,6 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
         for (auto def : defs) {
           moveList[def].insert(inst);
         }
-        // FIXME: classify fpr and gpr copies
         worklistMoves.insert(inst);
       }
 
