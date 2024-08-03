@@ -22,8 +22,9 @@ bb3:
   ADD t0, zero, zero
   # implict jump to bb4
 bb4:
-  ADDI t1, zero, 79
-  REMW t0, t0, t1
+  ADD t1, t0, zero
+  ADDI t0, zero, 79
+  REMW t0, t1, t0
   ADD a0, t0, zero
   LD ra, 400(sp)
   LD s0, 408(sp)
@@ -32,20 +33,21 @@ bb4:
   ADDI sp, sp, 432
   JALR zero, 0(ra)
 bb5:
-  ADD t1, zero, zero
+  ADD t1, t0, zero
+  ADD t0, zero, zero
   # implict jump to bb6
 bb6:
-  ADDI t2, zero, 1
-  SUBW t0, t0, t2
-  SLLIW t2, t0, 2
+  ADD t2, t0, zero
+  ADDI t0, zero, 1
+  SUBW t1, t1, t0
+  SLLIW t0, t1, 2
   ADDI t5, sp, 0
-  ADD t2, t5, t2
-  LW t2, 0(t2)
-  ADDW t1, t1, t2
-  BNE t0, zero, bb8
+  ADD t0, t5, t0
+  LW t0, 0(t0)
+  ADDW t0, t2, t0
+  BNE t1, zero, bb8
   # implict jump to bb7
 bb7:
-  ADD t0, t1, zero
   JAL zero, bb4
 bb8:
   JAL zero, bb6
@@ -53,13 +55,14 @@ bb9:
   ADD s0, zero, zero
   # implict jump to bb10
 bb10:
-  SLLIW s1, s0, 2
+  ADD s1, s0, zero
+  SLLIW s0, s1, 2
   ADDI t5, sp, 0
-  ADD s1, t5, s1
+  ADD s0, t5, s0
   CALL getint
   ADD s2, a0, zero
-  SW s2, 0(s1)
-  ADDIW s0, s0, 1
+  SW s2, 0(s0)
+  ADDIW s0, s1, 1
   CALL getint
   ADD s1, a0, zero
   BNE s1, zero, bb12

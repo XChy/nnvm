@@ -532,13 +532,13 @@ void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
     builder.buildBr(condBB);
 
     // cond
-    builder.setInsertPoint(condBB->end());
+    builder.insertAt(condBB->end());
     Value *cnt = builder.buildLoad(cnt_ptr, ir->getIntType(), "cnt");
     Value *cond = builder.buildICmpNEZero(cnt, "cond");
     builder.buildBr(cond, initBB, exitBB);
 
     // init body (Init from the end of the array)
-    builder.setInsertPoint(initBB->end());
+    builder.insertAt(initBB->end());
     cnt = builder.buildLoad(cnt_ptr, ir->getIntType(), "cnt");
     cnt = builder.buildBinOp<SubInst>(cnt, createConstInt(1), ir->getIntType(),
                                       "cnt.dec");
@@ -555,7 +555,7 @@ void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
     builder.buildBr(condBB);
 
     // exit
-    builder.setInsertPoint(exitBB->end());
+    builder.insertAt(exitBB->end());
 
     offset += irElementType->getStoredBytes() * valueCount;
   } else {
@@ -766,7 +766,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   Function *func = cast<Function>(currentFunc->entity);
 
   BasicBlock *Entry = new BasicBlock(func, "entry");
-  builder.setInsertPoint(Entry->end());
+  builder.insertAt(Entry->end());
 
   currentBB = Entry;
 
@@ -949,7 +949,7 @@ Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
 
   builder.buildBr(whileCond);
   // While Conditon
-  builder.setInsertPoint(whileCond->end());
+  builder.insertAt(whileCond->end());
   Symbol cond = any_as<Symbol>(condCtx->accept(this));
   if (!cond)
     return Symbol::none();
@@ -957,7 +957,7 @@ Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
   builder.buildBr(cond.entity, whileBody, whileExit);
 
   // While Body
-  builder.setInsertPoint(whileBody->end());
+  builder.insertAt(whileBody->end());
   whileLoops.push({whileCond, whileExit});
   stmtCtx->accept(this);
   if (updateCtx) {
@@ -967,7 +967,7 @@ Any IRGenerator::buildLoop(SysYParser::ExpContext *condCtx,
   if (!builder.getCurrentBB()->getTerminator())
     builder.buildBr(whileCond);
 
-  builder.setInsertPoint(whileExit->end());
+  builder.insertAt(whileExit->end());
   return Symbol::none();
 }
 
@@ -997,19 +997,19 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       builder.buildBr(cond.entity, thenBB, exitBB);
     }
 
-    builder.setInsertPoint(thenBB->end());
+    builder.insertAt(thenBB->end());
     ctx->stmt(0)->accept(this);
     if (!builder.getCurrentBB()->getTerminator())
       builder.buildBr(exitBB);
 
     if (ctx->ELSE()) {
-      builder.setInsertPoint(elseBB->end());
+      builder.insertAt(elseBB->end());
       ctx->stmt(1)->accept(this);
       if (!builder.getCurrentBB()->getTerminator())
         builder.buildBr(exitBB);
     }
 
-    builder.setInsertPoint(exitBB->end());
+    builder.insertAt(exitBB->end());
     return Symbol::none();
   } else if (ctx->returnStmt()) { // return
     if (ctx->returnStmt()->exp()) {
@@ -1089,7 +1089,7 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.buildBr(lhs.entity, thenBB, elseBB);
 
     // then
-    builder.setInsertPoint(thenBB->end());
+    builder.insertAt(thenBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
@@ -1098,11 +1098,11 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.buildBr(exitBB);
 
     // else
-    builder.setInsertPoint(elseBB->end());
+    builder.insertAt(elseBB->end());
     builder.buildStore(builder.getZero(ir->getBoolType()), result);
     builder.buildBr(exitBB);
 
-    builder.setInsertPoint(exitBB->end());
+    builder.insertAt(exitBB->end());
     return Symbol{builder.buildLoad(result, ir->getBoolType()),
                   SymbolType::getBoolTy()};
   } else if (ctx->OR()) {
@@ -1125,12 +1125,12 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.buildBr(lhs.entity, thenBB, elseBB);
 
     // then
-    builder.setInsertPoint(thenBB->end());
+    builder.insertAt(thenBB->end());
     builder.buildStore(builder.getOne(ir->getBoolType()), result);
     builder.buildBr(exitBB);
 
     // else
-    builder.setInsertPoint(elseBB->end());
+    builder.insertAt(elseBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
     if (!rhs)
@@ -1139,7 +1139,7 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
 
-    builder.setInsertPoint(exitBB->end());
+    builder.insertAt(exitBB->end());
     return Symbol{builder.buildLoad(result, ir->getBoolType()),
                   SymbolType::getBoolTy()};
   } else {

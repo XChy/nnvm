@@ -245,8 +245,8 @@ loop2.while.exit167:  pred(loop2.while.exit174)
   225635 = add i32 %d132.phi618862, i32 1
   162619 = icmp slt i32 %225635, i32 2
   br i1 %162619, bb %loop2.while.body159, bb %loop2.while.exit160
-loop2.while.body173:  pred(loop2.while.exit181, loop2.while.body166)
-  f134.phi639846 = phi [bb %loop2.while.exit181, i32 %219673, bb %loop2.while.body166, i32 0]
+loop2.while.body173:  pred(loop2.while.body173, loop2.while.body166)
+  f134.phi639846 = phi [bb %loop2.while.body173, i32 %219673, bb %loop2.while.body166, i32 0]
   186652 = mul i32 %a129.phi580892, i32 10752
   187653 = ptradd ptr @arr2, i32 %186652
   189654 = mul i32 %b130.phi593885, i32 5376
@@ -261,24 +261,32 @@ loop2.while.body173:  pred(loop2.while.exit181, loop2.while.body166)
   202663 = ptradd ptr %199661, i32 %201662
   209666 = add i32 %a129.phi580892, i32 %b130.phi593885
   211667 = add i32 %209666, i32 %d132.phi618862
-  br bb %loop2.while.body180
-loop2.while.exit174:  pred(loop2.while.exit181)
-  222645 = add i32 %e133.phi629853, i32 1
-  169630 = icmp slt i32 %222645, i32 4
-  br i1 %169630, bb %loop2.while.body166, bb %loop2.while.exit167
-loop2.while.body180:  pred(loop2.while.body180, loop2.while.body173)
-  g135.phi648841 = phi [bb %loop2.while.body180, i32 %216670, bb %loop2.while.body173, i32 0]
-  568664 = shl i32 %g135.phi648841, i32 2
-  205665 = ptradd ptr %202663, i32 %568664
-  213668 = add i32 %211667, i32 %g135.phi648841
-  store i32 %213668 to ptr %205665
-  216670 = add i32 %g135.phi648841, i32 1
-  183649 = icmp slt i32 %216670, i32 7
-  br i1 %183649, bb %loop2.while.body180, bb %loop2.while.exit181
-loop2.while.exit181:  pred(loop2.while.body180)
+  store i32 %211667 to ptr %202663
+  205665968 = ptradd ptr %202663, i32 4
+  213668969 = add i32 %211667, i32 1
+  store i32 %213668969 to ptr %205665968
+  205665977 = ptradd ptr %202663, i32 8
+  213668978 = add i32 %211667, i32 2
+  store i32 %213668978 to ptr %205665977
+  205665986 = ptradd ptr %202663, i32 12
+  213668987 = add i32 %211667, i32 3
+  store i32 %213668987 to ptr %205665986
+  205665995 = ptradd ptr %202663, i32 16
+  213668996 = add i32 %211667, i32 4
+  store i32 %213668996 to ptr %205665995
+  2056651004 = ptradd ptr %202663, i32 20
+  2136681005 = add i32 %211667, i32 5
+  store i32 %2136681005 to ptr %2056651004
+  2056651013 = ptradd ptr %202663, i32 24
+  2136681014 = add i32 %211667, i32 6
+  store i32 %2136681014 to ptr %2056651013
   219673 = add i32 %f134.phi639846, i32 1
   176640 = icmp slt i32 %219673, i32 8
   br i1 %176640, bb %loop2.while.body173, bb %loop2.while.exit174
+loop2.while.exit174:  pred(loop2.while.body173)
+  222645 = add i32 %e133.phi629853, i32 1
+  169630 = icmp slt i32 %222645, i32 4
+  br i1 %169630, bb %loop2.while.body166, bb %loop2.while.exit167
 loop1.while.cond:  pred(entry406, loop1.while.exit29)
   a.phi684 = phi [bb %entry406, i32 0, bb %loop1.while.exit29, i32 %127711]
   16685 = icmp slt i32 %a.phi684, i32 %408
@@ -322,8 +330,8 @@ loop1.while.exit50:  pred(loop1.while.exit57)
   118747 = add i32 %d.phi730815, i32 1
   45731 = icmp slt i32 %118747, i32 4
   br i1 %45731, bb %loop1.while.body42, bb %loop1.while.exit43
-loop1.while.body56:  pred(loop1.while.exit64, loop1.while.body49)
-  f.phi751799 = phi [bb %loop1.while.exit64, i32 %112790, bb %loop1.while.body49, i32 0]
+loop1.while.body56:  pred(loop1.while.body56, loop1.while.body49)
+  f.phi751799 = phi [bb %loop1.while.body56, i32 %112790, bb %loop1.while.body49, i32 0]
   69764 = mul i32 %a.phi684, i32 5760
   70765 = ptradd ptr @arr1, i32 %69764
   72766 = mul i32 %b.phi705838, i32 2880
@@ -341,26 +349,21 @@ loop1.while.body56:  pred(loop1.while.exit64, loop1.while.body49)
   96780 = add i32 %94779, i32 %d.phi730815
   98781 = add i32 %96780, i32 %e.phi741806
   100782 = add i32 %98781, i32 %f.phi751799
-  br bb %loop1.while.body63
-loop1.while.exit57:  pred(loop1.while.exit64)
-  115757 = add i32 %e.phi741806, i32 1
-  52742 = icmp slt i32 %115757, i32 5
-  br i1 %52742, bb %loop1.while.body49, bb %loop1.while.exit50
-loop1.while.body63:  pred(loop1.while.body63, loop1.while.body56)
-  g.phi760794 = phi [bb %loop1.while.body63, i32 %109787, bb %loop1.while.body56, i32 0]
-  570776 = shl i32 %g.phi760794, i32 2
-  88777 = ptradd ptr %85775, i32 %570776
-  102783 = add i32 %100782, i32 %g.phi760794
-  104784 = add i32 %102783, i32 %408
+  104784 = add i32 %100782, i32 %408
   106785 = add i32 %104784, i32 %410
-  store i32 %106785 to ptr %88777
-  109787 = add i32 %g.phi760794, i32 1
-  66761 = icmp slt i32 %109787, i32 2
-  br i1 %66761, bb %loop1.while.body63, bb %loop1.while.exit64
-loop1.while.exit64:  pred(loop1.while.body63)
+  store i32 %106785 to ptr %85775
+  88777957 = ptradd ptr %85775, i32 4
+  102783958 = add i32 %100782, i32 1
+  104784959 = add i32 %102783958, i32 %408
+  106785960 = add i32 %104784959, i32 %410
+  store i32 %106785960 to ptr %88777957
   112790 = add i32 %f.phi751799, i32 1
   59752 = icmp slt i32 %112790, i32 6
   br i1 %59752, bb %loop1.while.body56, bb %loop1.while.exit57
+loop1.while.exit57:  pred(loop1.while.body56)
+  115757 = add i32 %e.phi741806, i32 1
+  52742 = icmp slt i32 %115757, i32 5
+  br i1 %52742, bb %loop1.while.body49, bb %loop1.while.exit50
 }
 
 external float getfloat()

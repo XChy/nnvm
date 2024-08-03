@@ -25,11 +25,8 @@ bool CombinerPass::run(Function &F) {
           continue;
         }
 
-        builder.setInsertPoint(BasicBlock::Iterator(I, BB));
+        builder.insertAt(BasicBlock::Iterator(I, BB));
         if (Value *replaced = simplifyInst(I)) {
-          for (Use *U : I->users())
-            worklist.push(U->getUser());
-
           I->replaceSelf(replaced);
           I->eraseFromBB();
 
@@ -57,6 +54,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
   if (SDivInst *SI = mayCast<SDivInst>(I))
     return simplifySDiv(SI);
+
+  if (auto *SI = mayCast<SRemInst>(I))
+    return simplifySRem(SI);
 
   if (auto *PAI = mayCast<PtrAddInst>(I))
     return simplifyPtrAdd(PAI);
@@ -155,24 +155,9 @@ Value *CombinerPass::simplifyMul(MulInst *I) {
   return nullptr;
 }
 
-Value *CombinerPass::simplifySDiv(SDivInst *I) {
-  Value *A, *B, *C;
-  Type *type = I->getType();
-  ConstantInt *C1;
-  GInt powerOfTwo;
+Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
 
-  // TODO: fold sdiv
-  // A / (1 << N) --> A s<< N  iff  A s> 0
-  //if (match(I, pSDiv(pValue(A), pConstantInt(C1))) &&
-      //C1->getSignedValue() > 0 &&
-      //genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
-                           //powerOfTwo)) {
-    //return builder.buildBinOp<AShrInst>(
-        //A, builder.getConstantInt(type, powerOfTwo), type);
-  //}
-
-  return nullptr;
-}
+Value *CombinerPass::simplifySRem(SRemInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
@@ -197,15 +182,59 @@ Value *CombinerPass::simplifyICmp(ICmpInst *I) {
   if (I->getPredicate() == ICmpInst::NE &&
       match(I, pICmp(pValue(A), pZero())) && A->getType()->isIntegerNBits(1))
     return A;
+
+  // A % 2 != 0 --> A & 1 != 0
+  // A % 2 == 0 --> A & 1 != 0
+  ConstantInt *C1;
+  ConstantInt *zero;
+  if ((I->getPredicate() == ICmpInst::EQ ||
+       I->getPredicate() == ICmpInst::NE) &&
+      match(I, pICmp(pSRem(pValue(A), pConstantInt(C1)), pZero(zero))) &&
+      C1->getSignedValue() == 2) {
+    Value *one = builder.getOne(C1->getType());
+    auto *andInst = builder.buildBinOp<AndInst>(A, one, A->getType());
+    return builder.buildICmp(I->getPredicate(), andInst, zero);
+  }
+
   return nullptr;
 }
 
+static inline bool isIdenticalPhi(PhiInst *phi) {
+  Value *identical = nullptr;
+
+  for (int i = 0; i < phi->getIncomingNum(); i++) {
+    if (!identical) {
+      identical = phi->getIncomingValue(i);
+      continue;
+    }
+
+    if (identical != phi->getIncomingValue(i))
+      return false;
+  }
+
+  return true;
+}
+
+static inline bool notCyclicReference(PhiInst *I) {
+  return std::none_of(I->users().begin(), I->users().end(), [I](Use *U) {
+    return I->getIncomingValue(0) == U->getUser();
+  });
+}
+
 Value *CombinerPass::simplifyPhi(PhiInst *I) {
-  if (I->getIncomingNum() == 1 &&
-      std::none_of(I->users().begin(), I->users().end(), [I](Use *U) {
-        return I->getIncomingValue(0) == U->getUser();
-      }))
+  // phi [a]  --> a
+  if (I->getIncomingNum() == 1 && notCyclicReference(I))
     return I->getIncomingValue(0);
+
+  // phi [a, a, a]  --> a
+  if (isIdenticalPhi(I) && notCyclicReference(I)) {
+    auto *identical = I->getIncomingValue(0);
+    if (identical == I)
+      return nullptr;
+    while (I->getIncomingNum() != 0)
+      I->removeIncoming(I->getIncomingBB(0));
+    return identical;
+  }
 
   return nullptr;
 }

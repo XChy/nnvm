@@ -25,96 +25,112 @@ entry51:  pred()
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
-  br bb %while.body67
-while.body67:  pred(while.body67, entry51)
-  i64.phi179246 = phi [bb %while.body67, i32 %110, bb %entry51, i32 0]
-  184 = shl i32 %i64.phi179246, i32 2
-  74 = ptradd ptr %a0, i32 %184
-  77 = si2f i32 %i64.phi179246 to float
-  store float %77 to ptr %74
-  80 = ptradd ptr %a1, i32 %184
-  store float %77 to ptr %80
-  86 = ptradd ptr %a2, i32 %184
-  store float %77 to ptr %86
-  92 = ptradd ptr %b0, i32 %184
-  store float %77 to ptr %92
-  98 = ptradd ptr %b1, i32 %184
-  store float %77 to ptr %98
-  104 = ptradd ptr %b2, i32 %184
-  store float %77 to ptr %104
-  110 = add i32 %i64.phi179246, i32 1
-  70 = icmp slt i32 %110, i32 3
-  br i1 %70, bb %while.body67, bb %while.exit68
-while.exit68:  pred(while.body67)
-  br bb %sub.while.body
-while.body115:  pred(while.body115, sub.while.exit)
-  i64.phi178242 = phi [bb %while.body115, i32 %130, bb %sub.while.exit, i32 0]
-  190 = shl i32 %i64.phi178242, i32 2
-  123 = ptradd ptr %c0, i32 %190
-  123.load = load float from ptr %123
+  77 = si2f i32 0 to float
+  store float %77 to ptr %a0
+  store float %77 to ptr %a1
+  store float %77 to ptr %a2
+  store float %77 to ptr %b0
+  store float %77 to ptr %b1
+  store float %77 to ptr %b2
+  74374 = ptradd ptr %a0, i32 4
+  77375 = si2f i32 1 to float
+  store float %77375 to ptr %74374
+  80377 = ptradd ptr %a1, i32 4
+  store float %77375 to ptr %80377
+  86379 = ptradd ptr %a2, i32 4
+  store float %77375 to ptr %86379
+  92381 = ptradd ptr %b0, i32 4
+  store float %77375 to ptr %92381
+  98383 = ptradd ptr %b1, i32 4
+  store float %77375 to ptr %98383
+  104385 = ptradd ptr %b2, i32 4
+  store float %77375 to ptr %104385
+  74393 = ptradd ptr %a0, i32 8
+  77394 = si2f i32 2 to float
+  store float %77394 to ptr %74393
+  80396 = ptradd ptr %a1, i32 8
+  store float %77394 to ptr %80396
+  86398 = ptradd ptr %a2, i32 8
+  store float %77394 to ptr %86398
+  92400 = ptradd ptr %b0, i32 8
+  store float %77394 to ptr %92400
+  98402 = ptradd ptr %b1, i32 8
+  store float %77394 to ptr %98402
+  104404 = ptradd ptr %b2, i32 8
+  store float %77394 to ptr %104404
+  15.load213 = load float from ptr %a0
+  19.load215 = load float from ptr %b0
+  21216 = fsub float %15.load213, float %19.load215
+  store float %21216 to ptr %c0
+  28.load220 = load float from ptr %a1
+  32.load222 = load float from ptr %b1
+  34223 = fsub float %28.load220, float %32.load222
+  store float %34223 to ptr %c1
+  41.load227 = load float from ptr %a2
+  45.load229 = load float from ptr %b2
+  47230 = fsub float %41.load227, float %45.load229
+  store float %47230 to ptr %c2
+  11211320 = ptradd ptr %c0, i32 4
+  15.load213322 = load float from ptr %74374
+  19.load215324 = load float from ptr %92381
+  21216325 = fsub float %15.load213322, float %19.load215324
+  store float %21216325 to ptr %11211320
+  24218327 = ptradd ptr %c1, i32 4
+  28.load220329 = load float from ptr %80377
+  32.load222331 = load float from ptr %98383
+  34223332 = fsub float %28.load220329, float %32.load222331
+  store float %34223332 to ptr %24218327
+  37225334 = ptradd ptr %c2, i32 4
+  41.load227336 = load float from ptr %86379
+  45.load229338 = load float from ptr %104385
+  47230339 = fsub float %41.load227336, float %45.load229338
+  store float %47230339 to ptr %37225334
+  11211347 = ptradd ptr %c0, i32 8
+  15.load213349 = load float from ptr %74393
+  19.load215351 = load float from ptr %92400
+  21216352 = fsub float %15.load213349, float %19.load215351
+  store float %21216352 to ptr %11211347
+  24218354 = ptradd ptr %c1, i32 8
+  28.load220356 = load float from ptr %80396
+  32.load222358 = load float from ptr %98402
+  34223359 = fsub float %28.load220356, float %32.load222358
+  store float %34223359 to ptr %24218354
+  37225361 = ptradd ptr %c2, i32 8
+  41.load227363 = load float from ptr %86398
+  45.load229365 = load float from ptr %104404
+  47230366 = fsub float %41.load227363, float %45.load229365
+  store float %47230366 to ptr %37225361
+  123.load = load float from ptr %c0
   125 = f2si float %123.load to i32
   call void putint(i32 %125)
-  130 = add i32 %i64.phi178242, i32 1
-  118 = icmp slt i32 %130, i32 3
-  br i1 %118, bb %while.body115, bb %while.exit116
-while.exit116:  pred(while.body115)
+  123.load301 = load float from ptr %11211320
+  125302 = f2si float %123.load301 to i32
+  call void putint(i32 %125302)
+  123.load311 = load float from ptr %11211347
+  125312 = f2si float %123.load311 to i32
+  call void putint(i32 %125312)
   call void putch(i32 10)
-  br bb %while.body136
-while.body136:  pred(while.body136, while.exit116)
-  i64.phi177240 = phi [bb %while.body136, i32 %151, bb %while.exit116, i32 0]
-  191 = shl i32 %i64.phi177240, i32 2
-  144 = ptradd ptr %c1, i32 %191
-  144.load = load float from ptr %144
+  144.load = load float from ptr %c1
   146 = f2si float %144.load to i32
   call void putint(i32 %146)
-  151 = add i32 %i64.phi177240, i32 1
-  139 = icmp slt i32 %151, i32 3
-  br i1 %139, bb %while.body136, bb %while.exit137
-while.exit137:  pred(while.body136)
+  144.load281 = load float from ptr %24218327
+  146282 = f2si float %144.load281 to i32
+  call void putint(i32 %146282)
+  144.load291 = load float from ptr %24218354
+  146292 = f2si float %144.load291 to i32
+  call void putint(i32 %146292)
   call void putch(i32 10)
-  br bb %while.body157
-while.body157:  pred(while.body157, while.exit137)
-  i64.phi238 = phi [bb %while.body157, i32 %172, bb %while.exit137, i32 0]
-  192 = shl i32 %i64.phi238, i32 2
-  165 = ptradd ptr %c2, i32 %192
-  165.load = load float from ptr %165
+  165.load = load float from ptr %c2
   167 = f2si float %165.load to i32
   call void putint(i32 %167)
-  172 = add i32 %i64.phi238, i32 1
-  160 = icmp slt i32 %172, i32 3
-  br i1 %160, bb %while.body157, bb %while.exit158
-while.exit158:  pred(while.body157)
+  165.load261 = load float from ptr %37225334
+  167262 = f2si float %165.load261 to i32
+  call void putint(i32 %167262)
+  165.load271 = load float from ptr %37225361
+  167272 = f2si float %165.load271 to i32
+  call void putint(i32 %167272)
   call void putch(i32 10)
   ret i32 0
-sub.while.body:  pred(sub.while.body, while.exit68)
-  i.phi206244 = phi [bb %sub.while.body, i32 %50232, bb %while.exit68, i32 0]
-  193210 = shl i32 %i.phi206244, i32 2
-  11211 = ptradd ptr %c0, i32 %193210
-  15212 = ptradd ptr %a0, i32 %193210
-  15.load213 = load float from ptr %15212
-  19214 = ptradd ptr %b0, i32 %193210
-  19.load215 = load float from ptr %19214
-  21216 = fsub float %15.load213, float %19.load215
-  store float %21216 to ptr %11211
-  24218 = ptradd ptr %c1, i32 %193210
-  28219 = ptradd ptr %a1, i32 %193210
-  28.load220 = load float from ptr %28219
-  32221 = ptradd ptr %b1, i32 %193210
-  32.load222 = load float from ptr %32221
-  34223 = fsub float %28.load220, float %32.load222
-  store float %34223 to ptr %24218
-  37225 = ptradd ptr %c2, i32 %193210
-  41226 = ptradd ptr %a2, i32 %193210
-  41.load227 = load float from ptr %41226
-  45228 = ptradd ptr %b2, i32 %193210
-  45.load229 = load float from ptr %45228
-  47230 = fsub float %41.load227, float %45.load229
-  store float %47230 to ptr %37225
-  50232 = add i32 %i.phi206244, i32 1
-  7207 = icmp slt i32 %50232, i32 3
-  br i1 %7207, bb %sub.while.body, bb %sub.while.exit
-sub.while.exit:  pred(sub.while.body)
-  br bb %while.body115
 }
 
 external float getfloat()

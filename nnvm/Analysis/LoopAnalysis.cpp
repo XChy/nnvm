@@ -51,6 +51,7 @@ bool LoopAnalysis::run(Function &F) {
     // Visit block in the post order of dominance tree.
     if (visited.count(cur)) {
       if (Loop *loop = tryToFindLoop(cur)) {
+
         loops.push_back(loop);
         headerToLoop[loop->getHeader()] = loop;
         analyzeLoop(loop);
@@ -139,7 +140,11 @@ void LoopAnalysis::analyzeLoop(Loop *loop) {
 
 void LoopAnalysis::print(std::ostream &out) {
   for (Loop *loop : loops) {
-    std::cout << loop->getHeader()->dump();
+    std::cout << loop->getHeader()->getName() << ": [";
+    for (Loop *child : loop->getChildren()) {
+      std::cout << child->getHeader()->getName() << ", ";
+    }
+    std::cout << "]\n";
   }
 }
 

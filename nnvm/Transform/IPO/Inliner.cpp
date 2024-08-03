@@ -94,12 +94,12 @@ void InlinerPass::inlineCall(CallInst *callsite) {
 
   // Connect inlined entry, and inlined exit
   IRBuilder builder;
-  builder.setInsertPoint(callsiteBlock->end());
+  builder.insertAt(callsiteBlock->end());
   builder.buildBr(inlinedEntry);
 
   PhiInst *inlinedRetVal = nullptr;
   if (!callsite->getType()->isVoid()) {
-    builder.setInsertPoint(inlinedExitMergePoint->begin());
+    builder.insertAt(inlinedExitMergePoint->begin());
     inlinedRetVal =
         builder.buildPhi(callsite->getType(), callsite->getName() + ".ret");
     callsite->replaceSelf(inlinedRetVal);
@@ -112,7 +112,7 @@ void InlinerPass::inlineCall(CallInst *callsite) {
       inlinedRetVal->addIncoming(inlinedExit, inlinedRet->getOperand(0));
 
     inlinedRet->eraseFromBB();
-    builder.setInsertPoint(inlinedExit->end());
+    builder.insertAt(inlinedExit->end());
     builder.buildBr(inlinedExitMergePoint);
   }
 

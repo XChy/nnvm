@@ -21,12 +21,28 @@ while.body:  pred(if.exit1952, while.body_preheader)
   br bb %while.body1923
 while.exit:  pred(if.exit1952, entry1911)
   ret i32 0
-while.body1923:  pred(while.exit1931, while.body)
-  i.phi3232 = phi [bb %while.exit1931, i32 %1948, bb %while.body, i32 0]
+while.body1923:  pred(while.body1923, while.body)
+  i.phi3232 = phi [bb %while.body1923, i32 %1948, bb %while.body, i32 0]
   1936 = mul i32 %i.phi3232, i32 20
   1937 = ptradd ptr %a, i32 %1936
-  br bb %while.body1930
-while.exit1924:  pred(while.exit1931)
+  1942 = call i32 getint()
+  store i32 %1942 to ptr %1937
+  19403247 = ptradd ptr %1937, i32 4
+  19423248 = call i32 getint()
+  store i32 %19423248 to ptr %19403247
+  19403256 = ptradd ptr %1937, i32 8
+  19423257 = call i32 getint()
+  store i32 %19423257 to ptr %19403256
+  19403265 = ptradd ptr %1937, i32 12
+  19423266 = call i32 getint()
+  store i32 %19423266 to ptr %19403265
+  19403274 = ptradd ptr %1937, i32 16
+  19423275 = call i32 getint()
+  store i32 %19423275 to ptr %19403274
+  1948 = add i32 %i.phi3232, i32 1
+  1926 = icmp slt i32 %1948, i32 5
+  br i1 %1926, bb %while.body1923, bb %while.exit1924
+while.exit1924:  pred(while.body1923)
   15.load2379 = load i32 from ptr %a
   172380 = mul i32 %15.load2379, i32 85
   212381 = ptradd ptr %a, i32 4
@@ -131,19 +147,6 @@ while.exit1924.split:  pred(model.then1909, model.if.exit1910)
   1949.ret = phi [bb %model.then1909, i32 1, bb %model.if.exit1910, i32 0]
   1950 = icmp ne i32 %1949.ret, i32 0
   br i1 %1950, bb %then1951, bb %else
-while.body1930:  pred(while.body1930, while.body1923)
-  j.phi3228 = phi [bb %while.body1930, i32 %1945, bb %while.body1923, i32 0]
-  1971 = shl i32 %j.phi3228, i32 2
-  1940 = ptradd ptr %1937, i32 %1971
-  1942 = call i32 getint()
-  store i32 %1942 to ptr %1940
-  1945 = add i32 %j.phi3228, i32 1
-  1933 = icmp slt i32 %1945, i32 5
-  br i1 %1933, bb %while.body1930, bb %while.exit1931
-while.exit1931:  pred(while.body1930)
-  1948 = add i32 %i.phi3232, i32 1
-  1926 = icmp slt i32 %1948, i32 5
-  br i1 %1926, bb %while.body1923, bb %while.exit1924
 then1951:  pred(while.exit1924.split)
   call void putch(i32 99)
   call void putch(i32 97)

@@ -15,7 +15,7 @@ public:
   IRBuilder(Module *module) : module(module) {}
   void setModule(Module *module) { this->module = module; }
 
-  void setInsertPoint(BasicBlock::Iterator insertPoint) {
+  void insertAt(BasicBlock::Iterator insertPoint) {
     this->insertPoint = insertPoint;
     this->module = insertPoint.getBB()->getParent()->getModule();
   }

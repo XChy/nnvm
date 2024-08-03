@@ -14,16 +14,16 @@ main:
   SD s0, 8(sp)
   SD s1, 16(sp)
   CALL getint
-  ADD s0, a0, zero
-  LA s1, a
-  SW s0, 0(s1)
+  ADD s1, a0, zero
+  LA s0, a
+  SW s1, 0(s0)
   CALL getint
-  ADD t0, a0, zero
-  LA t1, b
-  SW t0, 0(t1)
-  LA t1, a
-  LW t1, 0(t1)
-  XOR t0, t1, t0
+  ADD t1, a0, zero
+  LA t0, b
+  SW t1, 0(t0)
+  LA t0, a
+  LW t2, 0(t0)
+  XOR t0, t2, t1
   SLTIU t0, t0, 1
   BNE t0, zero, bb6
   # implict jump to bb1
@@ -47,6 +47,6 @@ bb5:
   ADDI t0, zero, 1
   JAL zero, bb4
 bb6:
-  XORI t0, t1, 3
+  XORI t0, t2, 3
   SLTU t0, zero, t0
   JAL zero, bb2

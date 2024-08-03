@@ -29,7 +29,7 @@ bool GlobalHoistPass::run(Function &F) {
       }
     }
 
-    builder.setInsertPoint(BasicBlock::Iterator(afterPhi, BB));
+    builder.insertAt(BasicBlock::Iterator(afterPhi, BB));
 
     for (auto [global, uses] : usesOfGlobal) {
       Value *hoisted = builder.buildPin(global);

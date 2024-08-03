@@ -1,5 +1,6 @@
 #include "LoopUtils.h"
 #include "IR/IRBuilder.h"
+#include "IR/Instruction.h"
 
 using namespace nnvm;
 
@@ -9,7 +10,7 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
   IRBuilder builder;
   if (!loop->getPreheader()) {
     auto *preheader = new BasicBlock(func, header->getName() + "_preheader");
-    builder.setInsertPoint(preheader->end());
+    builder.insertAt(preheader->end());
 
     auto latches = loop->getLatches();
     std::set<BasicBlock *> nonlatches;
@@ -42,4 +43,32 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
   }
 
   return false;
+}
+
+std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
+  // Only analyze single-exit loop.
+  if (loop->getExitEdges().size() != 1)
+    return {};
+
+  BasicBlock *exiting = loop->getExitEdges().front().from;
+  BasicBlock *exit = loop->getExitEdges().front().to;
+
+  BranchInst *exitBranch = cast<BranchInst>(exiting->getTerminator());
+  ICmpInst *cmp = mayCast<ICmpInst>(exitBranch->getCondition());
+
+  if (!cmp || !cmp->getOperand(1)->isConstant())
+    return {};
+
+  auto pred = cmp->getPredicate();
+  ScevValue *indSCEV = scev->analyze(cmp->getOperand(0), loop);
+
+  if (!indSCEV)
+    return {};
+
+  auto *bound = cast<ConstantInt>(cmp->getOperand(1));
+
+  LoopBoundInfo ret;
+  ret.indvar = indSCEV;
+  ret.tripCount = indSCEV->iterations(pred, bound);
+  return ret;
 }

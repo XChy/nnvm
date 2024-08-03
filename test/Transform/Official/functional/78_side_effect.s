@@ -48,10 +48,10 @@ bb3:
   ADD s0, a0, zero
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s2, a
-  SW a0, 0(s2)
-  BNE a0, zero, bb21
+  ADDIW s2, a0, 1
+  LA a0, a
+  SW s2, 0(a0)
+  BNE s2, zero, bb21
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -68,45 +68,48 @@ bb7:
 bb8:
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s2, a
-  SW a0, 0(s2)
-  SLTI a0, a0, 14
+  ADDIW s2, a0, 1
+  LA a0, a
+  SW s2, 0(a0)
+  SLTI a0, s2, 14
   BNE a0, zero, bb18
   # implict jump to bb9
 bb9:
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s1, a
-  SW a0, 0(s1)
-  BNE a0, zero, bb17
+  ADDIW s1, a0, 1
+  LA a0, a
+  SW s1, 0(a0)
+  BNE s1, zero, bb17
   # implict jump to bb10
 bb10:
   ADD a0, zero, zero
   # implict jump to bb11
 bb11:
   ADD s1, a0, zero
+  ADD a0, s1, zero
   # implict jump to bb12
 bb12:
-  BNE a0, zero, bb16
+  ADD s2, a0, zero
+  BNE s1, zero, bb16
   # implict jump to bb13
 bb13:
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s2, a
-  SW a0, 0(s2)
+  ADDIW s1, a0, 1
+  LA a0, a
+  SW s1, 0(a0)
   # implict jump to bb14
 bb14:
   ADDI a0, zero, 1
-  SUBW a0, s0, a0
-  SLT s0, a0, zero
-  XORI s0, s0, 1
-  BNE s0, zero, bb15
+  SUBW s0, s0, a0
+  SLT a0, s0, zero
+  XORI a0, a0, 1
+  BNE a0, zero, bb15
   JAL zero, bb1
 bb15:
-  ADD s0, s1, zero
+  ADD a0, s0, zero
+  ADD s0, s2, zero
   JAL zero, bb3
 bb16:
   LA a0, a
@@ -116,25 +119,26 @@ bb16:
   CALL putch
   LA a0, b
   LW a0, 0(a0)
-  SLLIW a0, a0, 1
-  LA s2, b
-  SW a0, 0(s2)
+  SLLIW s1, a0, 1
+  LA a0, b
+  SW s1, 0(a0)
   JAL zero, bb14
 bb17:
   LA a0, a
-  LW a0, 0(a0)
-  ADDIW s1, a0, 1
-  LA s2, a
-  SW s1, 0(s2)
-  ADDIW a0, a0, 2
-  LA s2, a
-  SW a0, 0(s2)
-  SUBW a0, s1, a0
+  LW s1, 0(a0)
+  ADDIW s2, s1, 1
+  LA a0, a
+  SW s2, 0(a0)
+  ADDIW s1, s1, 2
+  LA a0, a
+  SW s1, 0(a0)
+  SUBW a0, s2, s1
   ADDIW a0, a0, 1
   SLTU a0, zero, a0
   JAL zero, bb11
 bb18:
-  ADDI a0, zero, 1
+  ADD a0, s1, zero
+  ADDI s1, zero, 1
   JAL zero, bb12
 bb19:
   LA a0, a
@@ -151,16 +155,16 @@ bb19:
 bb20:
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s2, a
-  SW a0, 0(s2)
-  SLTU a0, zero, a0
+  ADDIW s2, a0, 1
+  LA a0, a
+  SW s2, 0(a0)
+  SLTU a0, zero, s2
   JAL zero, bb7
 bb21:
   LA a0, a
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s2, a
-  SW a0, 0(s2)
-  SLTU a0, zero, a0
+  ADDIW s2, a0, 1
+  LA a0, a
+  SW s2, 0(a0)
+  SLTU a0, zero, s2
   JAL zero, bb5

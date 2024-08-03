@@ -95,8 +95,28 @@ i32 main() {
 entry287:  pred()
   291 = call i32 getint()
   293 = call i32 getint()
-  br bb %my_memset.while.body450
-while.body296_preheader:  pred(my_memset.while.exit456)
+  store i32 0 to ptr @size
+  13452560 = ptradd ptr @size, i32 4
+  store i32 0 to ptr %13452560
+  13452568 = ptradd ptr @size, i32 8
+  store i32 0 to ptr %13452568
+  13452576 = ptradd ptr @size, i32 12
+  store i32 0 to ptr %13452576
+  13452584 = ptradd ptr @size, i32 16
+  store i32 0 to ptr %13452584
+  13452592 = ptradd ptr @size, i32 20
+  store i32 0 to ptr %13452592
+  13452600 = ptradd ptr @size, i32 24
+  store i32 0 to ptr %13452600
+  13452608 = ptradd ptr @size, i32 28
+  store i32 0 to ptr %13452608
+  13452616 = ptradd ptr @size, i32 32
+  store i32 0 to ptr %13452616
+  13452624 = ptradd ptr @size, i32 36
+  store i32 0 to ptr %13452624
+  299475 = icmp sgt i32 %293, i32 0
+  br i1 %299475, bb %while.body296_preheader, bb %while.exit297
+while.body296_preheader:  pred(entry287)
   br bb %while.body296
 while.body296:  pred(while.body296, while.body296_preheader)
   E.phi476 = phi [bb %while.body296, i32 %315, bb %while.body296_preheader, i32 %293]
@@ -139,41 +159,39 @@ while.body296:  pred(while.body296, while.body296_preheader)
   315 = sub i32 %E.phi476, i32 1
   299 = icmp sgt i32 %315, i32 0
   br i1 %299, bb %while.body296, bb %while.exit297
-while.exit297:  pred(while.body296, my_memset.while.exit456)
+while.exit297:  pred(while.body296, entry287)
   br bb %max_flow.while.cond268
 max_flow.while.cond268:  pred(while.exit297, max_flow.if.exit281)
   flow.phi370 = phi [bb %while.exit297, i32 0, bb %max_flow.if.exit281, i32 %286378]
-  br bb %my_memset.while.body465
-max_flow.then280:  pred(my_memset.while.exit471)
-  call void putint(i32 %flow.phi370)
-  call void putch(i32 10)
-  ret i32 0
-max_flow.if.exit281:  pred(my_memset.while.exit471)
-  286378 = add i32 %flow.phi370, i32 %277372
-  br bb %max_flow.while.cond268
-my_memset.while.body450:  pred(my_memset.while.body450, entry287)
-  i.phi447478 = phi [bb %my_memset.while.body450, i32 %18454, bb %entry287, i32 0]
-  365451 = shl i32 %i.phi447478, i32 2
-  13452 = ptradd ptr @size, i32 %365451
-  store i32 0 to ptr %13452
-  18454 = add i32 %i.phi447478, i32 1
-  9448 = icmp slt i32 %18454, i32 10
-  br i1 %9448, bb %my_memset.while.body450, bb %my_memset.while.exit456
-my_memset.while.exit456:  pred(my_memset.while.body450)
-  299475 = icmp sgt i32 %293, i32 0
-  br i1 %299475, bb %while.body296_preheader, bb %while.exit297
-my_memset.while.body465:  pred(my_memset.while.body465, max_flow.while.cond268)
-  i.phi462474 = phi [bb %my_memset.while.body465, i32 %18469, bb %max_flow.while.cond268, i32 0]
-  365466 = shl i32 %i.phi462474, i32 2
-  13467 = ptradd ptr @used, i32 %365466
-  store i32 0 to ptr %13467
-  18469 = add i32 %i.phi462474, i32 1
-  9463 = icmp slt i32 %18469, i32 10
-  br i1 %9463, bb %my_memset.while.body465, bb %my_memset.while.exit471
-my_memset.while.exit471:  pred(my_memset.while.body465)
+  store i32 0 to ptr @used
+  13467488 = ptradd ptr @used, i32 4
+  store i32 0 to ptr %13467488
+  13467496 = ptradd ptr @used, i32 8
+  store i32 0 to ptr %13467496
+  13467504 = ptradd ptr @used, i32 12
+  store i32 0 to ptr %13467504
+  13467512 = ptradd ptr @used, i32 16
+  store i32 0 to ptr %13467512
+  13467520 = ptradd ptr @used, i32 20
+  store i32 0 to ptr %13467520
+  13467528 = ptradd ptr @used, i32 24
+  store i32 0 to ptr %13467528
+  13467536 = ptradd ptr @used, i32 28
+  store i32 0 to ptr %13467536
+  13467544 = ptradd ptr @used, i32 32
+  store i32 0 to ptr %13467544
+  13467552 = ptradd ptr @used, i32 36
+  store i32 0 to ptr %13467552
   277372 = call i32 dfs(i32 1, i32 %291, i32 1879048192)
   279373 = icmp eq i32 %277372, i32 0
   br i1 %279373, bb %max_flow.then280, bb %max_flow.if.exit281
+max_flow.then280:  pred(max_flow.while.cond268)
+  call void putint(i32 %flow.phi370)
+  call void putch(i32 10)
+  ret i32 0
+max_flow.if.exit281:  pred(max_flow.while.cond268)
+  286378 = add i32 %flow.phi370, i32 %277372
+  br bb %max_flow.while.cond268
 }
 
 external float getfloat()

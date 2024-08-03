@@ -10,9 +10,9 @@ main:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  LA a0, k
-  ADDI s0, zero, 1
-  SW s0, 0(a0)
+  LA s0, k
+  ADDI a0, zero, 1
+  SW a0, 0(s0)
   ADDI a0, zero, 9
   SLT a0, a0, zero
   XORI a0, a0, 1
@@ -34,16 +34,17 @@ bb2:
   ADD a0, zero, zero
   # implict jump to bb3
 bb3:
-  ADDIW a0, a0, 1
-  LA s0, k
-  LW s0, 0(s0)
-  SLLIW s0, s0, 1
-  LA s1, k
-  SW s0, 0(s1)
-  ADDI s0, zero, 9
-  SLT s0, s0, a0
-  XORI s0, s0, 1
-  BNE s0, zero, bb4
+  ADDIW s1, a0, 1
+  LA a0, k
+  LW a0, 0(a0)
+  SLLIW s0, a0, 1
+  LA a0, k
+  SW s0, 0(a0)
+  ADDI a0, zero, 9
+  SLT a0, a0, s1
+  XORI a0, a0, 1
+  BNE a0, zero, bb4
   JAL zero, bb1
 bb4:
+  ADD a0, s1, zero
   JAL zero, bb3

@@ -108,7 +108,7 @@ bool RotatePass::rotate(Loop *loop) {
       }
     }
 
-    builder.setInsertPoint(exit->begin());
+    builder.insertAt(exit->begin());
     auto *outsidePhi =
         builder.buildPhi(preheaderVal->getType(), preheaderVal->getName());
     headerVal->replaceSelfIf(outsidePhi, [loop](Use *U) {
@@ -123,7 +123,7 @@ bool RotatePass::rotate(Loop *loop) {
   }
 
   // Move phis in oldHeader to newHeader
-  builder.setInsertPoint(newHeader->begin());
+  builder.insertAt(newHeader->begin());
   for (Instruction *I : incChange(*oldHeader)) {
     PhiInst *phi = mayCast<PhiInst>(I);
     if (!phi)
@@ -146,7 +146,7 @@ bool RotatePass::rotate(Loop *loop) {
   }
 
   // Rewrite inside uses
-  builder.setInsertPoint(newHeader->begin());
+  builder.insertAt(newHeader->begin());
   for (auto *I : *oldHeader) {
     if (I->isa<PhiInst>())
       continue;

@@ -18,12 +18,12 @@ main:
   ADDI a3, sp, 0
   ADD a3, a3, zero
   CALL exgcd
-  LW a0, 4(sp)
-  ADDI s0, zero, 15
-  REMW a0, a0, s0
-  ADDIW a0, a0, 15
-  ADDI s0, zero, 15
-  REMW a0, a0, s0
+  LW s0, 4(sp)
+  ADDI a0, zero, 15
+  REMW a0, s0, a0
+  ADDIW s0, a0, 15
+  ADDI a0, zero, 15
+  REMW a0, s0, a0
   SW a0, 4(sp)
   CALL putint
   ADD a0, zero, zero
@@ -39,28 +39,28 @@ exgcd:
   SD s2, 24(sp)
   SD s3, 32(sp)
   ADD s0, a0, zero
-  ADD s2, a1, zero
-  ADD s3, a2, zero
-  ADD s1, a3, zero
-  SLTIU a0, s2, 1
+  ADD s1, a1, zero
+  ADD s2, a2, zero
+  ADD s3, a3, zero
+  SLTIU a0, s1, 1
   BNE a0, zero, bb3
   # implict jump to bb2
 bb2:
-  REMW a1, s0, s2
-  ADD a0, s2, zero
-  ADD a2, s3, zero
-  ADD a3, s1, zero
+  REMW a1, s0, s1
+  ADD a0, s1, zero
+  ADD a2, s2, zero
+  ADD a3, s3, zero
   CALL exgcd
-  ADD t0, a0, zero
-  LW t1, 0(s3)
-  LW t2, 0(s1)
-  SW t2, 0(s3)
-  DIVW t2, s0, s2
-  LW a0, 0(s1)
-  MULW t2, t2, a0
-  SUBW t1, t1, t2
-  SW t1, 0(s1)
-  ADD a0, t0, zero
+  ADD t2, a0, zero
+  LW a0, 0(s2)
+  LW t0, 0(s3)
+  SW t0, 0(s2)
+  DIVW t1, s0, s1
+  LW t0, 0(s3)
+  MULW t0, t1, t0
+  SUBW t0, a0, t0
+  SW t0, 0(s3)
+  ADD a0, t2, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -70,8 +70,8 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   ADDI t0, zero, 1
-  SW t0, 0(s3)
-  SW zero, 0(s1)
+  SW t0, 0(s2)
+  SW zero, 0(s3)
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

@@ -170,8 +170,8 @@ while.exit247:  pred(while.exit255)
   298 = add i32 %k.phi453, i32 1
   242 = icmp slt i32 %298, i32 18
   br i1 %242, bb %while.body238, bb %while.exit239
-while.body254:  pred(while.exit263, while.body246)
-  m.phi437 = phi [bb %while.exit263, i32 %292, bb %while.body246, i32 0]
+while.body254:  pred(while.body254, while.body246)
+  m.phi437 = phi [bb %while.body254, i32 %292, bb %while.body246, i32 0]
   268 = mul i32 %i.phi376468, i32 2939328
   269 = ptradd ptr @dp, i32 %268
   271 = mul i32 %j.phi463, i32 163296
@@ -182,23 +182,26 @@ while.body254:  pred(while.exit263, while.body246)
   278 = ptradd ptr %275, i32 %277
   280 = mul i32 %m.phi437, i32 28
   281 = ptradd ptr %278, i32 %280
-  br bb %while.body262
-while.exit255:  pred(while.exit263)
-  295 = add i32 %l.phi444, i32 1
-  250 = icmp slt i32 %295, i32 18
-  br i1 %250, bb %while.body246, bb %while.exit247
-while.body262:  pred(while.body262, while.body254)
-  h.phi432 = phi [bb %while.body262, i32 %289, bb %while.body254, i32 0]
-  388 = shl i32 %h.phi432, i32 2
-  284 = ptradd ptr %281, i32 %388
-  store i32 -1 to ptr %284
-  289 = add i32 %h.phi432, i32 1
-  265 = icmp slt i32 %289, i32 7
-  br i1 %265, bb %while.body262, bb %while.exit263
-while.exit263:  pred(while.body262)
+  store i32 -1 to ptr %281
+  284503 = ptradd ptr %281, i32 4
+  store i32 -1 to ptr %284503
+  284511 = ptradd ptr %281, i32 8
+  store i32 -1 to ptr %284511
+  284519 = ptradd ptr %281, i32 12
+  store i32 -1 to ptr %284519
+  284527 = ptradd ptr %281, i32 16
+  store i32 -1 to ptr %284527
+  284535 = ptradd ptr %281, i32 20
+  store i32 -1 to ptr %284535
+  284543 = ptradd ptr %281, i32 24
+  store i32 -1 to ptr %284543
   292 = add i32 %m.phi437, i32 1
   258 = icmp slt i32 %292, i32 18
   br i1 %258, bb %while.body254, bb %while.exit255
+while.exit255:  pred(while.body254)
+  295 = add i32 %l.phi444, i32 1
+  250 = icmp slt i32 %295, i32 18
+  br i1 %250, bb %while.body246, bb %while.exit247
 while.body307_preheader:  pred(while.exit)
   br bb %while.body307
 while.body307:  pred(while.body307, while.body307_preheader)

@@ -14,52 +14,52 @@ entry34:  pred()
   36 = call i32 getint()
   store i32 %36 to ptr @lim
   call void _sysy_starttime(i32 22)
-  lim.load4496 = load i32 from ptr @lim
-  4597 = icmp sle i32 1, i32 %lim.load4496
-  br i1 %4597, bb %while.body_preheader, bb %while.exit
+  lim.load4498 = load i32 from ptr @lim
+  4599 = icmp sle i32 1, i32 %lim.load4498
+  br i1 %4599, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry34)
   br bb %while.body
 while.body:  pred(while.body.split, while.body_preheader)
-  lim.load4496101 = phi [bb %while.body.split, i32 %lim.load44, bb %while.body_preheader, i32 %lim.load4496]
-  ans.phi100 = phi [bb %while.body.split, i32 %53, bb %while.body_preheader, i32 0]
-  i.phi99 = phi [bb %while.body.split, i32 %56, bb %while.body_preheader, i32 1]
+  lim.load4498103 = phi [bb %while.body.split, i32 %lim.load44, bb %while.body_preheader, i32 %lim.load4498]
+  ans.phi102 = phi [bb %while.body.split, i32 %53, bb %while.body_preheader, i32 0]
+  i.phi101 = phi [bb %while.body.split, i32 %56, bb %while.body_preheader, i32 1]
   br bb %fun.loop_entry
 while.body.split:  pred(fun.then, fun.else27)
-  50.ret = phi [bb %fun.then, i32 %dep.loop70, bb %fun.else27, i32 0]
-  51 = add i32 %ans.phi100, i32 %50.ret
+  50.ret = phi [bb %fun.then, i32 %dep.loop72, bb %fun.else27, i32 0]
+  51 = add i32 %ans.phi102, i32 %50.ret
   53 = srem i32 %51, i32 1000000007
-  56 = add i32 %i.phi99, i32 1
+  56 = add i32 %i.phi101, i32 1
   lim.load44 = load i32 from ptr @lim
   45 = icmp sle i32 %56, i32 %lim.load44
   br i1 %45, bb %while.body, bb %while.exit
 while.exit:  pred(while.body.split, entry34)
-  98 = phi [bb %while.body.split, i32 %53, bb %entry34, i32 0]
+  100 = phi [bb %while.body.split, i32 %53, bb %entry34, i32 0]
   call void _sysy_stoptime(i32 27)
-  call void putint(i32 %98)
+  call void putint(i32 %100)
   call void putch(i32 10)
   ret i32 0
 fun.loop_entry:  pred(while.body, fun.then12, fun.then25)
-  dep.loop70 = phi [bb %while.body, i32 0, bb %fun.then12, i32 %1882, bb %fun.then25, i32 %3291]
-  n.loop71 = phi [bb %while.body, i32 %i.phi99, bb %fun.then12, i32 %1681, bb %fun.then25, i32 %2286]
-  472 = icmp eq i32 %n.loop71, i32 1
-  br i1 %472, bb %fun.then, bb %fun.else
+  dep.loop72 = phi [bb %while.body, i32 0, bb %fun.then12, i32 %1884, bb %fun.then25, i32 %3293]
+  n.loop73 = phi [bb %while.body, i32 %i.phi101, bb %fun.then12, i32 %1683, bb %fun.then25, i32 %2288]
+  474 = icmp eq i32 %n.loop73, i32 1
+  br i1 %474, bb %fun.then, bb %fun.else
 fun.then:  pred(fun.loop_entry)
   br bb %while.body.split
 fun.else:  pred(fun.loop_entry)
-  1077 = srem i32 %n.loop71, i32 2
-  1178 = icmp eq i32 %1077, i32 0
-  br i1 %1178, bb %fun.then12, bb %fun.else14
+  6379 = and i32 %n.loop73, i32 1
+  6480 = icmp eq i32 %6379, i32 0
+  br i1 %6480, bb %fun.then12, bb %fun.else14
 fun.then12:  pred(fun.else)
-  1681 = sdiv i32 %n.loop71, i32 2
-  1882 = add i32 %dep.loop70, i32 1
+  1683 = sdiv i32 %n.loop73, i32 2
+  1884 = add i32 %dep.loop72, i32 1
   br bb %fun.loop_entry
 fun.else14:  pred(fun.else)
-  2185 = mul i32 %n.loop71, i32 3
-  2286 = add i32 %2185, i32 1
-  2488 = icmp sle i32 %2286, i32 %lim.load4496101
-  br i1 %2488, bb %fun.then25, bb %fun.else27
+  2187 = mul i32 %n.loop73, i32 3
+  2288 = add i32 %2187, i32 1
+  2490 = icmp sle i32 %2288, i32 %lim.load4498103
+  br i1 %2490, bb %fun.then25, bb %fun.else27
 fun.then25:  pred(fun.else14)
-  3291 = add i32 %dep.loop70, i32 1
+  3293 = add i32 %dep.loop72, i32 1
   br bb %fun.loop_entry
 fun.else27:  pred(fun.else14)
   br bb %while.body.split

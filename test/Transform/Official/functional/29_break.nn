@@ -7,8 +7,7 @@ while.body:  pred(if.exit, entry)
   12 = icmp eq i32 %i.phi28, i32 50
   br i1 %12, bb %while.exit, bb %if.exit
 while.exit:  pred(if.exit, while.body)
-  26 = phi [bb %if.exit, i32 %18, bb %while.body, i32 %18]
-  ret i32 %26
+  ret i32 %18
 if.exit:  pred(while.body)
   18 = add i32 %sum.phi27, i32 %i.phi28
   21 = add i32 %i.phi28, i32 1

@@ -15,9 +15,9 @@ main:
   SD s4, 80(sp)
   SD s5, 88(sp)
   SD s6, 96(sp)
-  LA a0, n
-  ADDI s0, zero, 10
-  SW s0, 0(a0)
+  LA s0, n
+  ADDI a0, zero, 10
+  SW a0, 0(s0)
   ADDI a0, zero, 4
   SW a0, 0(sp)
   ADDI a0, zero, 3
@@ -42,18 +42,22 @@ main:
   ADD s0, zero, zero
   # implict jump to bb1
 bb1:
-  ADDI s1, zero, 10
-  SUBW s1, s1, a0
-  ADDI s2, zero, 1
-  SUBW s1, s1, s2
-  BLT zero, s1, bb10
+  ADD s1, s0, zero
+  ADD s2, a0, zero
+  ADDI a0, zero, 10
+  SUBW s0, a0, s2
+  ADDI a0, zero, 1
+  SUBW s4, s0, a0
+  BLT zero, s4, bb10
   # implict jump to bb2
 bb2:
+  ADD a0, s1, zero
   # implict jump to bb3
 bb3:
-  ADDIW a0, a0, 1
-  SLTI s1, a0, 9
-  BNE s1, zero, bb9
+  ADD s1, a0, zero
+  ADDIW s0, s2, 1
+  SLTI a0, s0, 9
+  BNE a0, zero, bb9
   # implict jump to bb4
 bb4:
   LA a0, n
@@ -84,47 +88,51 @@ bb7:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW a0, s0, 1
-  LA s0, n
-  LW s0, 0(s0)
-  BLT a0, s0, bb8
+  ADDIW s0, s0, 1
+  LA a0, n
+  LW a0, 0(a0)
+  BLT s0, a0, bb8
   JAL zero, bb5
 bb8:
+  ADD a0, s0, zero
   JAL zero, bb7
 bb9:
+  ADD a0, s0, zero
+  ADD s0, s1, zero
   JAL zero, bb1
 bb10:
-  ADD s3, zero, zero
+  ADD s0, zero, zero
+  ADD a0, s1, zero
   # implict jump to bb11
 bb11:
-  ADD s2, s0, zero
-  ADD s0, s3, zero
-  SLLIW s3, s0, 2
+  ADD s6, a0, zero
+  ADD s1, s0, zero
+  SLLIW a0, s1, 2
   ADDI t5, sp, 0
-  ADD s3, t5, s3
-  LW s4, 0(s3)
-  ADDIW s0, s0, 1
-  SLLIW s5, s0, 2
+  ADD s5, t5, a0
+  LW s0, 0(s5)
+  ADDIW s3, s1, 1
+  SLLIW a0, s3, 2
   ADDI t5, sp, 0
-  ADD s5, t5, s5
-  LW s6, 0(s5)
-  BLT s6, s4, bb16
+  ADD s1, t5, a0
+  LW a0, 0(s1)
+  BLT a0, s0, bb16
   # implict jump to bb12
 bb12:
+  ADD a0, s6, zero
   # implict jump to bb13
 bb13:
-  BLT s0, s1, bb15
+  BLT s3, s4, bb15
   # implict jump to bb14
 bb14:
-  ADD s0, s2, zero
   JAL zero, bb3
 bb15:
-  ADD s3, s0, zero
-  ADD s0, s2, zero
+  ADD s0, s3, zero
   JAL zero, bb11
 bb16:
-  LW s2, 0(s5)
-  LW s4, 0(s3)
-  SW s4, 0(s5)
-  SW s2, 0(s3)
+  LW s0, 0(s1)
+  LW a0, 0(s5)
+  SW a0, 0(s1)
+  SW s0, 0(s5)
+  ADD a0, s0, zero
   JAL zero, bb13

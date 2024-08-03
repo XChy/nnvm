@@ -66,7 +66,7 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
     succ->replaceSelf(BB);
     moveInstInBlock(succ, BB);
 
-    builder.setInsertPoint(succ->end());
+    builder.insertAt(succ->end());
     builder.buildUnreachable();
     return true;
   }
@@ -97,7 +97,7 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
   } else if ((BB != BB->getParent()->getEntry())) {
     BB->replaceSelf(succ);
     BI->eraseFromBB();
-    builder.setInsertPoint(BB->end());
+    builder.insertAt(BB->end());
     builder.buildUnreachable();
     return true;
   }
@@ -120,7 +120,7 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
       else
         break;
 
-    builder.setInsertPoint(BB->end());
+    builder.insertAt(BB->end());
     builder.buildBr(constCond->getValue() ? trueSucc : falseSucc);
     BI->eraseFromBB();
     return true;
@@ -128,7 +128,7 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
 
   // "br cond, dest, dest"  --> "br dest"
   if (trueSucc == falseSucc) {
-    builder.setInsertPoint(BB->end());
+    builder.insertAt(BB->end());
     builder.buildBr(trueSucc);
     BI->eraseFromBB();
     return true;
@@ -176,7 +176,7 @@ bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
   // Value *falseValue = phi->getIncomingValueOf(falseIncoming);
   // if (phi->getType()->isIntegerNBits(1)) {
   // Value *newCond = nullptr;
-  // builder.setInsertPoint(destBB->begin());
+  // builder.insertAt(destBB->begin());
   // if (match(trueValue, pattern::pOne())) {
   // newCond = builder.buildBinOp<OrInst>(BI->getCondition(), falseValue,
   // phi->getType());

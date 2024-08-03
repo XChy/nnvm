@@ -12,22 +12,25 @@ seed:
 .byte 159, 188, 48, 1, 213, 226, 48, 1, 7, 202, 154, 59
 .section .text
 main:
-  ADDI sp, sp, -176
+  ADDI sp, sp, -192
   SD ra, 128(sp)
   SD s0, 136(sp)
   SD s1, 144(sp)
   SD s2, 152(sp)
   SD s3, 160(sp)
   SD s4, 168(sp)
+  SD s5, 176(sp)
+  SD s6, 184(sp)
+  CALL getint
+  ADD s1, a0, zero
   CALL getint
   ADD s0, a0, zero
-  CALL getint
-  LA s1, staticvalue
-  SW a0, 0(s1)
+  LA a0, staticvalue
+  SW s0, 0(a0)
   ADDI a0, zero, 56
   CALL _sysy_starttime
   ADDI a0, zero, 0
-  BLT a0, s0, bb2
+  BLT a0, s1, bb2
   # implict jump to bb1
 bb1:
   ADDI a0, zero, 64
@@ -44,213 +47,263 @@ bb1:
   LD s2, 152(sp)
   LD s3, 160(sp)
   LD s4, 168(sp)
-  ADDI sp, sp, 176
+  LD s5, 176(sp)
+  LD s6, 184(sp)
+  ADDI sp, sp, 192
   JALR zero, 0(ra)
 bb2:
-  ADD a0, s0, zero
+  ADD a0, s1, zero
   # implict jump to bb3
 bb3:
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
-  LA s0, staticvalue
-  LW s0, 0(s0)
-  LUI s1, 4876
-  ADDIW s1, s1, -865
-  MULW s0, s0, s1
-  LUI s1, 4878
-  ADDIW s1, s1, 725
-  ADDW s0, s0, s1
-  LA s1, staticvalue
-  SW s0, 0(s1)
-  LUI s1, 244141
-  ADDIW s1, s1, -1529
-  REMW s0, s0, s1
-  LA s1, staticvalue
-  SW s0, 0(s1)
-  BLT s0, zero, bb31
+  ADD s0, a0, zero
+  ADDI a0, zero, 1
+  SUBW s2, s0, a0
+  LA a0, staticvalue
+  LW s0, 0(a0)
+  LUI a0, 4876
+  ADDIW a0, a0, -865
+  MULW s0, s0, a0
+  LUI a0, 4878
+  ADDIW a0, a0, 725
+  ADDW s0, s0, a0
+  LA a0, staticvalue
+  SW s0, 0(a0)
+  LUI a0, 244141
+  ADDIW a0, a0, -1529
+  REMW s0, s0, a0
+  LA a0, staticvalue
+  SW s0, 0(a0)
+  BLT s0, zero, bb28
   # implict jump to bb4
 bb4:
-  LA s0, staticvalue
-  LW s0, 0(s0)
-  LUI s1, 73
-  ADDIW s1, s1, 992
-  REMW s1, s0, s1
-  LUI s2, 4876
-  ADDIW s2, s2, -865
-  MULW s0, s0, s2
-  LUI s2, 4878
-  ADDIW s2, s2, 725
-  ADDW s0, s0, s2
-  LA s2, staticvalue
-  SW s0, 0(s2)
-  LUI s2, 244141
-  ADDIW s2, s2, -1529
-  REMW s0, s0, s2
-  LA s2, staticvalue
-  SW s0, 0(s2)
-  BLT s0, zero, bb30
+  LA a0, staticvalue
+  LW s1, 0(a0)
+  LUI a0, 73
+  ADDIW a0, a0, 992
+  REMW s0, s1, a0
+  LUI a0, 4876
+  ADDIW a0, a0, -865
+  MULW s1, s1, a0
+  LUI a0, 4878
+  ADDIW a0, a0, 725
+  ADDW s1, s1, a0
+  LA a0, staticvalue
+  SW s1, 0(a0)
+  LUI a0, 244141
+  ADDIW a0, a0, -1529
+  REMW s1, s1, a0
+  LA a0, staticvalue
+  SW s1, 0(a0)
+  BLT s1, zero, bb27
   # implict jump to bb5
 bb5:
-  LA s0, staticvalue
-  LW s0, 0(s0)
-  SLLI s2, s0, 1
-  SRLI s2, s2, 63
-  ADD s2, s0, s2
-  ANDI s2, s2, -2
-  SUBW s0, s0, s2
-  ADDI s2, zero, 31
+  LA a0, staticvalue
+  LW s1, 0(a0)
+  SLLI a0, s1, 1
+  SRLI a0, a0, 63
+  ADD a0, s1, a0
+  ANDI a0, a0, -2
+  SUBW s3, s1, a0
+  ADDI a0, zero, 31
   # implict jump to bb6
 bb6:
-  ADDI s3, zero, 1
-  SUBW s2, s2, s3
-  SLLIW s3, s2, 2
+  ADD s4, a0, zero
+  ADDI a0, zero, 1
+  SUBW s4, s4, a0
+  SLLIW a0, s4, 2
   ADDI t5, sp, 0
-  ADD s3, t5, s3
-  SW zero, 0(s3)
-  BNE s2, zero, bb29
+  ADD a0, t5, a0
+  SW zero, 0(a0)
+  BNE s4, zero, bb26
   # implict jump to bb7
 bb7:
-  ADDI s2, zero, 1
-  SW s2, 0(sp)
-  ADDI s2, zero, 2
-  SW s2, 4(sp)
-  ADDI s2, zero, 4
-  SW s2, 8(sp)
-  ADDI s2, zero, 8
-  SW s2, 12(sp)
-  ADDI s2, zero, 16
-  SW s2, 16(sp)
-  ADDI s2, zero, 32
-  SW s2, 20(sp)
-  ADDI s2, zero, 64
-  SW s2, 24(sp)
-  ADDI s2, zero, 128
-  SW s2, 28(sp)
-  ADDI s2, zero, 256
-  SW s2, 32(sp)
-  ADDI s2, zero, 512
-  SW s2, 36(sp)
-  ADDI s2, zero, 1024
-  SW s2, 40(sp)
-  ADDI s2, zero, 10
+  ADDI a0, zero, 1
+  SW a0, 0(sp)
+  ADDI a0, zero, 2
+  SW a0, 4(sp)
+  ADDI a0, zero, 4
+  SW a0, 8(sp)
+  ADDI a0, zero, 8
+  SW a0, 12(sp)
+  ADDI a0, zero, 16
+  SW a0, 16(sp)
+  ADDI a0, zero, 32
+  SW a0, 20(sp)
+  ADDI a0, zero, 64
+  SW a0, 24(sp)
+  ADDI a0, zero, 128
+  SW a0, 28(sp)
+  ADDI a0, zero, 256
+  SW a0, 32(sp)
+  ADDI a0, zero, 512
+  SW a0, 36(sp)
+  ADDI a0, zero, 1024
+  SW a0, 40(sp)
+  LW a0, 40(sp)
+  SLLIW a0, a0, 1
+  SW a0, 44(sp)
+  LW a0, 44(sp)
+  SLLIW a0, a0, 1
+  SW a0, 48(sp)
+  LW a0, 48(sp)
+  SLLIW a0, a0, 1
+  SW a0, 52(sp)
+  LW a0, 52(sp)
+  SLLIW a0, a0, 1
+  SW a0, 56(sp)
+  LW a0, 56(sp)
+  SLLIW a0, a0, 1
+  SW a0, 60(sp)
+  LW a0, 60(sp)
+  SLLIW a0, a0, 1
+  SW a0, 64(sp)
+  LW a0, 64(sp)
+  SLLIW a0, a0, 1
+  SW a0, 68(sp)
+  LW a0, 68(sp)
+  SLLIW a0, a0, 1
+  SW a0, 72(sp)
+  LW a0, 72(sp)
+  SLLIW a0, a0, 1
+  SW a0, 76(sp)
+  LW a0, 76(sp)
+  SLLIW a0, a0, 1
+  SW a0, 80(sp)
+  LW a0, 80(sp)
+  SLLIW a0, a0, 1
+  SW a0, 84(sp)
+  LW a0, 84(sp)
+  SLLIW a0, a0, 1
+  SW a0, 88(sp)
+  LW a0, 88(sp)
+  SLLIW a0, a0, 1
+  SW a0, 92(sp)
+  LW a0, 92(sp)
+  SLLIW a0, a0, 1
+  SW a0, 96(sp)
+  LW a0, 96(sp)
+  SLLIW a0, a0, 1
+  SW a0, 100(sp)
+  LW a0, 100(sp)
+  SLLIW a0, a0, 1
+  SW a0, 104(sp)
+  LW a0, 104(sp)
+  SLLIW a0, a0, 1
+  SW a0, 108(sp)
+  LW a0, 108(sp)
+  SLLIW a0, a0, 1
+  SW a0, 112(sp)
+  LW a0, 112(sp)
+  SLLIW a0, a0, 1
+  SW a0, 116(sp)
+  LW a0, 116(sp)
+  SLLIW a0, a0, 1
+  SW a0, 120(sp)
+  ADDI a0, zero, 30
+  DIVW s4, s0, a0
+  LUI a0, 2
+  ADDIW a0, a0, 1808
+  SLT a0, s4, a0
+  XORI a0, a0, 1
+  BNE a0, zero, bb11
   # implict jump to bb8
 bb8:
-  ADDIW s3, s2, 1
-  SLLIW s4, s3, 2
+  SLLIW s4, s4, 2
+  LA a0, a
+  ADD s4, a0, s4
+  LW s5, 0(s4)
+  ADDI a0, zero, 30
+  REMW a0, s0, a0
+  SLLIW a0, a0, 2
   ADDI t5, sp, 0
-  ADD s4, t5, s4
-  SLLIW s2, s2, 2
-  ADDI t5, sp, 0
-  ADD s2, t5, s2
-  LW s2, 0(s2)
-  SLLIW s2, s2, 1
-  SW s2, 0(s4)
-  SLTI s2, s3, 30
-  BNE s2, zero, bb28
+  ADD a0, t5, a0
+  LW s0, 0(a0)
+  DIVW s6, s5, s0
+  SLLI a0, s6, 1
+  SRLI a0, a0, 63
+  ADD a0, s6, a0
+  ANDI a0, a0, -2
+  SUBW s5, s6, a0
+  BNE s5, s3, bb13
   # implict jump to bb9
 bb9:
-  ADDI s2, zero, 30
-  DIVW s2, s1, s2
-  LUI s3, 2
-  ADDIW s3, s3, 1808
-  SLT s3, s2, s3
-  XORI s3, s3, 1
-  BNE s3, zero, bb13
+  ADD a0, zero, zero
   # implict jump to bb10
 bb10:
-  SLLIW s2, s2, 2
-  LA s3, a
-  ADD s2, s3, s2
-  LW s3, 0(s2)
-  ADDI s4, zero, 30
-  REMW s1, s1, s4
-  SLLIW s1, s1, 2
-  ADDI t5, sp, 0
-  ADD s1, t5, s1
-  LW s1, 0(s1)
-  DIVW s3, s3, s1
-  SLLI s4, s3, 1
-  SRLI s4, s4, 63
-  ADD s4, s3, s4
-  ANDI s4, s4, -2
-  SUBW s3, s3, s4
-  BNE s3, s0, bb15
+  ADD s0, a0, zero
+  LW a0, 0(s4)
+  ADDW a0, a0, s0
+  SW a0, 0(s4)
   # implict jump to bb11
 bb11:
-  ADD s0, zero, zero
-  # implict jump to bb12
-bb12:
-  LW s1, 0(s2)
-  ADDW s0, s1, s0
-  SW s0, 0(s2)
-  # implict jump to bb13
-bb13:
-  BLT zero, a0, bb14
+  BLT zero, s2, bb12
   JAL zero, bb1
-bb14:
+bb12:
+  ADD a0, s2, zero
   JAL zero, bb3
+bb13:
+  ANDI a0, s6, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb22
+  # implict jump to bb14
+bb14:
+  ADD a0, zero, zero
+  # implict jump to bb15
 bb15:
-  SLTIU s4, s3, 1
-  BNE s4, zero, bb24
+  ADD s3, a0, zero
+  XORI a0, s5, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb18
   # implict jump to bb16
 bb16:
-  ADD s4, zero, zero
+  ADD a0, s3, zero
   # implict jump to bb17
 bb17:
-  XORI s3, s3, 1
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb20
-  # implict jump to bb18
+  JAL zero, bb10
 bb18:
-  ADD s0, s4, zero
+  ANDI a0, s1, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb21
   # implict jump to bb19
 bb19:
-  JAL zero, bb12
+  ADD a0, s3, zero
+  # implict jump to bb20
 bb20:
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb23
-  # implict jump to bb21
-bb21:
-  ADD s0, s4, zero
-  # implict jump to bb22
-bb22:
-  JAL zero, bb19
-bb23:
-  SUBW s0, s4, s1
-  JAL zero, bb22
-bb24:
-  XORI s4, s0, 1
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb27
-  # implict jump to bb25
-bb25:
-  ADD s4, zero, zero
-  # implict jump to bb26
-bb26:
   JAL zero, bb17
-bb27:
-  ADD s4, s1, zero
-  JAL zero, bb26
-bb28:
-  ADD s2, s3, zero
-  JAL zero, bb8
-bb29:
+bb21:
+  SUBW a0, s3, s0
+  JAL zero, bb20
+bb22:
+  XORI a0, s3, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb25
+  # implict jump to bb23
+bb23:
+  ADD a0, zero, zero
+  # implict jump to bb24
+bb24:
+  JAL zero, bb15
+bb25:
+  ADD a0, s0, zero
+  JAL zero, bb24
+bb26:
+  ADD a0, s4, zero
   JAL zero, bb6
-bb30:
-  LA s0, staticvalue
-  LW s0, 0(s0)
-  LUI s2, 244141
-  ADDIW s2, s2, -1529
-  ADDW s0, s0, s2
-  LA s2, staticvalue
-  SW s0, 0(s2)
+bb27:
+  LA a0, staticvalue
+  LW s1, 0(a0)
+  LUI a0, 244141
+  ADDIW a0, a0, -1529
+  ADDW s1, s1, a0
+  LA a0, staticvalue
+  SW s1, 0(a0)
   JAL zero, bb5
-bb31:
-  LA s0, staticvalue
-  LW s0, 0(s0)
-  LUI s1, 244141
-  ADDIW s1, s1, -1529
-  ADDW s0, s0, s1
-  LA s1, staticvalue
-  SW s0, 0(s1)
+bb28:
+  LA a0, staticvalue
+  LW s0, 0(a0)
+  LUI a0, 244141
+  ADDIW a0, a0, -1529
+  ADDW s0, s0, a0
+  LA a0, staticvalue
+  SW s0, 0(a0)
   JAL zero, bb4

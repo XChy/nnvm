@@ -23,34 +23,44 @@ entry57:  pred()
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
-  br bb %while.body
-while.body:  pred(while.body, entry57)
-  i70.phi189246 = phi [bb %while.body, i32 %117, bb %entry57, i32 0]
-  193 = shl i32 %i70.phi189246, i32 2
-  81 = ptradd ptr %a0, i32 %193
-  84 = si2f i32 %i70.phi189246 to float
-  store float %84 to ptr %81
-  87 = ptradd ptr %a1, i32 %193
-  store float %84 to ptr %87
-  93 = ptradd ptr %a2, i32 %193
-  store float %84 to ptr %93
-  99 = ptradd ptr %b0, i32 %193
-  store float %84 to ptr %99
-  105 = ptradd ptr %b1, i32 %193
-  store float %84 to ptr %105
-  111 = ptradd ptr %b2, i32 %193
-  store float %84 to ptr %111
-  117 = add i32 %i70.phi189246, i32 1
-  77 = icmp slt i32 %117, i32 3
-  br i1 %77, bb %while.body, bb %while.exit
-while.exit:  pred(while.body)
+  84 = si2f i32 0 to float
+  store float %84 to ptr %a0
+  store float %84 to ptr %a1
+  store float %84 to ptr %a2
+  store float %84 to ptr %b0
+  store float %84 to ptr %b1
+  store float %84 to ptr %b2
+  81258 = ptradd ptr %a0, i32 4
+  84259 = si2f i32 1 to float
+  store float %84259 to ptr %81258
+  87261 = ptradd ptr %a1, i32 4
+  store float %84259 to ptr %87261
+  93263 = ptradd ptr %a2, i32 4
+  store float %84259 to ptr %93263
+  99265 = ptradd ptr %b0, i32 4
+  store float %84259 to ptr %99265
+  105267 = ptradd ptr %b1, i32 4
+  store float %84259 to ptr %105267
+  111269 = ptradd ptr %b2, i32 4
+  store float %84259 to ptr %111269
+  81277 = ptradd ptr %a0, i32 8
+  84278 = si2f i32 2 to float
+  store float %84278 to ptr %81277
+  87280 = ptradd ptr %a1, i32 8
+  store float %84278 to ptr %87280
+  93282 = ptradd ptr %a2, i32 8
+  store float %84278 to ptr %93282
+  99284 = ptradd ptr %b0, i32 8
+  store float %84278 to ptr %99284
+  105286 = ptradd ptr %b1, i32 8
+  store float %84278 to ptr %105286
+  111288 = ptradd ptr %b2, i32 8
+  store float %84278 to ptr %111288
   4204 = ptradd ptr %c1, i32 8
-  7205 = ptradd ptr %a2, i32 4
-  7.load206 = load float from ptr %7205
+  7.load206 = load float from ptr %93263
   store float %7.load206 to ptr %4204
   10208 = ptradd ptr %c2, i32 4
-  13209 = ptradd ptr %a1, i32 8
-  13.load210 = load float from ptr %13209
+  13.load210 = load float from ptr %87280
   store float %13.load210 to ptr %10208
   16212 = ptradd ptr %c0, i32 4
   19.load213 = load float from ptr %a1
@@ -58,26 +68,22 @@ while.exit:  pred(while.body)
   22215 = ptradd ptr %c0, i32 8
   25.load216 = load float from ptr %a2
   store float %25.load216 to ptr %22215
-  31218 = ptradd ptr %a0, i32 4
-  31.load219 = load float from ptr %31218
+  31.load219 = load float from ptr %81258
   store float %31.load219 to ptr %c1
-  37221 = ptradd ptr %a0, i32 8
-  37.load222 = load float from ptr %37221
+  37.load222 = load float from ptr %81277
   store float %37.load222 to ptr %c2
   40224 = ptradd ptr %c1, i32 4
-  43225 = ptradd ptr %a1, i32 4
-  43.load226 = load float from ptr %43225
+  43.load226 = load float from ptr %87261
   store float %43.load226 to ptr %40224
   46228 = ptradd ptr %c2, i32 8
-  49229 = ptradd ptr %a2, i32 8
-  49.load230 = load float from ptr %49229
+  49.load230 = load float from ptr %93282
   store float %49.load230 to ptr %46228
   55.load232 = load float from ptr %a0
   store float %55.load232 to ptr %c0
   N.load125242 = load i32 from ptr @N
   126243 = icmp slt i32 0, i32 %N.load125242
   br i1 %126243, bb %while.body122_preheader, bb %while.exit123
-while.body122_preheader:  pred(while.exit)
+while.body122_preheader:  pred(entry57)
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)
   i70.phi188244 = phi [bb %while.body122, i32 %138, bb %while.body122_preheader, i32 0]
@@ -90,7 +96,7 @@ while.body122:  pred(while.body122, while.body122_preheader)
   N.load125 = load i32 from ptr @N
   126 = icmp slt i32 %138, i32 %N.load125
   br i1 %126, bb %while.body122, bb %while.exit123
-while.exit123:  pred(while.body122, while.exit)
+while.exit123:  pred(while.body122, entry57)
   call void putch(i32 10)
   N.load147239 = load i32 from ptr @N
   148240 = icmp slt i32 0, i32 %N.load147239

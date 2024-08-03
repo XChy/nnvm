@@ -9,12 +9,11 @@ loopCount:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
   CALL getint
   LA s0, loopCount
   SW a0, 0(s0)
@@ -45,40 +44,33 @@ bb2:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:
-  ADD a0, zero, zero
   ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb4
 bb4:
-  LA s1, global
-  SW s0, 0(s1)
-  ADD s1, zero, zero
-  ADD s2, zero, zero
+  ADD s1, a0, zero
+  ADD s2, s0, zero
+  LA a0, global
+  SW s1, 0(a0)
+  ADDI a0, zero, 60
+  MULW s0, s1, a0
+  ADDI a0, zero, 60
+  DIVW a0, s0, a0
+  ADDW a0, s2, a0
+  LUI s0, 32766
+  ADDIW s0, s0, 1
+  REMW s0, a0, s0
+  ADDIW s1, s1, 1
+  LA a0, loopCount
+  LW a0, 0(a0)
+  BLT s1, a0, bb6
   # implict jump to bb5
 bb5:
-  ADDW s1, s1, s0
-  ADDIW s2, s2, 1
-  SLTI s3, s2, 60
-  BNE s3, zero, bb9
-  # implict jump to bb6
-bb6:
-  ADDI s2, zero, 60
-  DIVW s1, s1, s2
-  ADDW a0, a0, s1
-  LUI s1, 32766
-  ADDIW s1, s1, 1
-  REMW a0, a0, s1
-  ADDIW s0, s0, 1
-  LA s1, loopCount
-  LW s1, 0(s1)
-  BLT s0, s1, bb8
-  # implict jump to bb7
-bb7:
+  ADD a0, s0, zero
   JAL zero, bb2
-bb8:
+bb6:
+  ADD a0, s1, zero
   JAL zero, bb4
-bb9:
-  JAL zero, bb5

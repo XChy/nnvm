@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Analysis/LoopAnalysis.h"
+#include "Analysis/SCEV.h"
 #include "IR/BasicBlock.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
@@ -18,5 +19,6 @@ public:
 
 private:
   LoopAnalysis *LA;
+  SCEV *scev;
 };
 } /* namespace nnvm */

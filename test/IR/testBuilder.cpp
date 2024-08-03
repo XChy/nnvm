@@ -20,15 +20,15 @@ int main() {
 
   module.addFunction(FA);
 
-  builder.setInsertPoint(BB1->end());
+  builder.insertAt(BB1->end());
   builder.buildStack(module.getIntType(), 200);
   builder.buildBr(ConstantInt::create(module, module.getBoolType(), 1), BB2,
                   BB3);
 
-  builder.setInsertPoint(BB2->end());
+  builder.insertAt(BB2->end());
   builder.buildRet(ConstantInt::create(module, module.getIntType(), 32));
 
-  builder.setInsertPoint(BB3->end());
+  builder.insertAt(BB3->end());
   builder.buildRet(ConstantInt::create(module, module.getIntType(), -666));
 
   assert(BB1->getSucc(0) == BB2 && BB1->getSucc(1) == BB3);
