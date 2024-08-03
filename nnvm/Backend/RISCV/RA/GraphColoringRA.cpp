@@ -84,7 +84,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
         }
       }
 
-      if (inst->isMoveInst()) {
+      if (inst->isMoveInst(func)) {
         for (auto use : uses) {
           liveRegs.erase(use);
           moveList[use].insert(inst);
@@ -335,6 +335,7 @@ void GraphColoringRAImpl::combine(Register *dest, Register *src) {
     freezeWorklist.erase(dest);
     spillWorklist.insert(dest);
   }
+  debug(std::cerr << "Combination: " << getNameForRegister(src->getRegId()) << " -> " << getNameForRegister(dest->getRegId()) << "\n");
 }
 
 /**
@@ -467,7 +468,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
 void GraphColoringRAImpl::removeRedundantMoves(LIRFunc &func) {
   for (auto bb : func) {
     for (auto inst : incChange(*bb)) {
-      if (!inst->isMoveInst()) {
+      if (!inst->isMoveInst(func)) {
         continue;
       }
       auto x = inst->getOp(0)->as<Register>();

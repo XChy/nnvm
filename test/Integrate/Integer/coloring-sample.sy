@@ -9,7 +9,6 @@ int f(int a, int b) {
 }
 
 int main() {
-    f(1, 2);
-    return 0;
+    return f(2, 3);
 }
 
