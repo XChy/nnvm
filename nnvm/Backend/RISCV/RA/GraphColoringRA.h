@@ -19,13 +19,13 @@ namespace nnvm::riscv {
 
 class GraphColoringRAImpl {
 public:
-  GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
+  GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
                       Register *classReg);
   void allocate(LIRFunc &func);
 
 private:
   // essential procedures
-  void build(LIRFunc &func, const LivenessAnalysis &la);
+  void build(LIRFunc &func, LivenessAnalysis const &la);
   void makeWorkList();
   void simplify();
   void coalesce();
@@ -47,13 +47,13 @@ private:
   // helpers for simplification
   void decrementDegree(Register *reg);
   void enableMove(Register *node);
-  void enableMoves(const std::set<Register *> &nodes);
+  void enableMoves(std::set<Register *> const &nodes);
 
   // helpers for coalescing
   void addWorkList(Register *reg);
-  bool ok(const std::set<Register *> &regs, Register *target);
-  bool conservative(const std::set<Register *> &nodes);
-  void combine(Register *u, Register *v);
+  bool conformGeorges(std::set<Register *> const &neighbors, Register *target);
+  bool conformBriggs(std::set<Register *> const &neighbors);
+  void combine(Register *dest, Register *src);
   Register *getAlias(Register *reg);
 
   // helper for freezing
@@ -68,8 +68,8 @@ private:
   std::set<Register *> coalescedNodes;
   std::set<Register *> coloredNodes;
 
-  std::unordered_set<Register *> selected;
   std::stack<Register *> selectStack;
+  std::unordered_set<Register *> selectedNodes;
 
   std::set<LIRInst *> coalescedMoves;
   std::set<LIRInst *> constrainedMoves;
@@ -87,7 +87,7 @@ private:
 
   std::vector<Register *> freeRegs;
   Register *classReg;
-  int K;
+  int numRegs;
 };
 
 class GraphColoringRA : public RegisterAllocator {
