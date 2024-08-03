@@ -18,6 +18,9 @@ public:
    */
   LIRInst *combine(LIRBuilder &builder, LIRInst *I);
 
+  LIRInst *expand(LIRBuilder &builder, LIRInst *I);
+  LIRInst *expandSDiv(LIRBuilder &builder, LIRInst *I);
+
   /**
    * Legalize constants, transform them to immediate or load them to registers.
    * Legalize globals, load the addresses of the globals into a register.

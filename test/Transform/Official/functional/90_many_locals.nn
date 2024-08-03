@@ -9,78 +9,40 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry74:
-  %arr213 = stack 64
-  %arr175 = stack 64
-  store i32 0 to ptr %arr175
-  arr.index3177 = ptradd ptr %arr175, i32 4
-  store i32 1 to ptr %arr.index3177
-  arr.index4179 = ptradd ptr %arr175, i32 8
-  store i32 2 to ptr %arr.index4179
-  arr.index5181 = ptradd ptr %arr175, i32 12
-  store i32 3 to ptr %arr.index5181
-  arr.index6183 = ptradd ptr %arr175, i32 16
-  store i32 0 to ptr %arr.index6183
-  arr.index7185 = ptradd ptr %arr175, i32 20
-  store i32 1 to ptr %arr.index7185
-  arr.index8187 = ptradd ptr %arr175, i32 24
-  store i32 2 to ptr %arr.index8187
-  arr.index9189 = ptradd ptr %arr175, i32 28
-  store i32 3 to ptr %arr.index9189
-  arr.index10191 = ptradd ptr %arr175, i32 32
-  store i32 0 to ptr %arr.index10191
-  arr.index11193 = ptradd ptr %arr175, i32 36
-  store i32 1 to ptr %arr.index11193
-  arr.index12195 = ptradd ptr %arr175, i32 40
-  store i32 2 to ptr %arr.index12195
-  arr.index13197 = ptradd ptr %arr175, i32 44
-  store i32 3 to ptr %arr.index13197
-  arr.index14199 = ptradd ptr %arr175, i32 48
-  store i32 0 to ptr %arr.index14199
-  arr.index15201 = ptradd ptr %arr175, i32 52
-  store i32 1 to ptr %arr.index15201
-  arr.index16203 = ptradd ptr %arr175, i32 56
-  store i32 2 to ptr %arr.index16203
-  arr.index17205 = ptradd ptr %arr175, i32 60
-  store i32 3 to ptr %arr.index17205
-  71.load207 = load i32 from ptr %arr.index5181
-  250 = add i32 %71.load207, i32 101
-  store i32 0 to ptr %arr213
-  arr.index3215 = ptradd ptr %arr213, i32 4
-  store i32 1 to ptr %arr.index3215
-  arr.index4217 = ptradd ptr %arr213, i32 8
-  store i32 2 to ptr %arr.index4217
-  arr.index5219 = ptradd ptr %arr213, i32 12
-  store i32 3 to ptr %arr.index5219
-  arr.index6221 = ptradd ptr %arr213, i32 16
-  store i32 0 to ptr %arr.index6221
-  arr.index7223 = ptradd ptr %arr213, i32 20
-  store i32 1 to ptr %arr.index7223
-  arr.index8225 = ptradd ptr %arr213, i32 24
-  store i32 2 to ptr %arr.index8225
-  arr.index9227 = ptradd ptr %arr213, i32 28
-  store i32 3 to ptr %arr.index9227
-  arr.index10229 = ptradd ptr %arr213, i32 32
-  store i32 0 to ptr %arr.index10229
-  arr.index11231 = ptradd ptr %arr213, i32 36
-  store i32 1 to ptr %arr.index11231
-  arr.index12233 = ptradd ptr %arr213, i32 40
-  store i32 2 to ptr %arr.index12233
-  arr.index13235 = ptradd ptr %arr213, i32 44
-  store i32 3 to ptr %arr.index13235
-  arr.index14237 = ptradd ptr %arr213, i32 48
-  store i32 0 to ptr %arr.index14237
-  arr.index15239 = ptradd ptr %arr213, i32 52
-  store i32 1 to ptr %arr.index15239
-  arr.index16241 = ptradd ptr %arr213, i32 56
-  store i32 2 to ptr %arr.index16241
-  arr.index17243 = ptradd ptr %arr213, i32 60
-  store i32 3 to ptr %arr.index17243
-  71.load245 = load i32 from ptr %arr.index5219
-  252 = add i32 %71.load245, i32 112
-  164 = add i32 %250, i32 %252
-  166 = add i32 %164, i32 35
-  call void putint(i32 %166)
+entry74:  pred()
+  %arr185 = stack 64
+  store i32 0 to ptr %arr185
+  arr.index3187 = ptradd ptr %arr185, i32 4
+  store i32 1 to ptr %arr.index3187
+  arr.index4189 = ptradd ptr %arr185, i32 8
+  store i32 2 to ptr %arr.index4189
+  arr.index5191 = ptradd ptr %arr185, i32 12
+  store i32 3 to ptr %arr.index5191
+  arr.index6193 = ptradd ptr %arr185, i32 16
+  store i32 0 to ptr %arr.index6193
+  arr.index7195 = ptradd ptr %arr185, i32 20
+  store i32 1 to ptr %arr.index7195
+  arr.index8197 = ptradd ptr %arr185, i32 24
+  store i32 2 to ptr %arr.index8197
+  arr.index9199 = ptradd ptr %arr185, i32 28
+  store i32 3 to ptr %arr.index9199
+  arr.index10201 = ptradd ptr %arr185, i32 32
+  store i32 0 to ptr %arr.index10201
+  arr.index11203 = ptradd ptr %arr185, i32 36
+  store i32 1 to ptr %arr.index11203
+  arr.index12205 = ptradd ptr %arr185, i32 40
+  store i32 2 to ptr %arr.index12205
+  arr.index13207 = ptradd ptr %arr185, i32 44
+  store i32 3 to ptr %arr.index13207
+  arr.index14209 = ptradd ptr %arr185, i32 48
+  store i32 0 to ptr %arr.index14209
+  arr.index15211 = ptradd ptr %arr185, i32 52
+  store i32 1 to ptr %arr.index15211
+  arr.index16213 = ptradd ptr %arr185, i32 56
+  store i32 2 to ptr %arr.index16213
+  arr.index17215 = ptradd ptr %arr185, i32 60
+  store i32 3 to ptr %arr.index17215
+  call void putint(i32 254)
   call void putch(i32 10)
   ret i32 0
 }
@@ -88,45 +50,6 @@ entry74:
 external float getfloat()
 
 external void putfloat(float )
-
-i32 foo() {
-entry:
-  %arr = stack 64
-  store i32 0 to ptr %arr
-  arr.index3 = ptradd ptr %arr, i32 4
-  store i32 1 to ptr %arr.index3
-  arr.index4 = ptradd ptr %arr, i32 8
-  store i32 2 to ptr %arr.index4
-  arr.index5 = ptradd ptr %arr, i32 12
-  store i32 3 to ptr %arr.index5
-  arr.index6 = ptradd ptr %arr, i32 16
-  store i32 0 to ptr %arr.index6
-  arr.index7 = ptradd ptr %arr, i32 20
-  store i32 1 to ptr %arr.index7
-  arr.index8 = ptradd ptr %arr, i32 24
-  store i32 2 to ptr %arr.index8
-  arr.index9 = ptradd ptr %arr, i32 28
-  store i32 3 to ptr %arr.index9
-  arr.index10 = ptradd ptr %arr, i32 32
-  store i32 0 to ptr %arr.index10
-  arr.index11 = ptradd ptr %arr, i32 36
-  store i32 1 to ptr %arr.index11
-  arr.index12 = ptradd ptr %arr, i32 40
-  store i32 2 to ptr %arr.index12
-  arr.index13 = ptradd ptr %arr, i32 44
-  store i32 3 to ptr %arr.index13
-  arr.index14 = ptradd ptr %arr, i32 48
-  store i32 0 to ptr %arr.index14
-  arr.index15 = ptradd ptr %arr, i32 52
-  store i32 1 to ptr %arr.index15
-  arr.index16 = ptradd ptr %arr, i32 56
-  store i32 2 to ptr %arr.index16
-  arr.index17 = ptradd ptr %arr, i32 60
-  store i32 3 to ptr %arr.index17
-  71.load = load i32 from ptr %arr.index5
-  172 = add i32 %71.load, i32 71
-  ret i32 %172
-}
 
 external void putch(i32 )
 

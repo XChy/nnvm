@@ -17,11 +17,16 @@ static void emitConstant(nnvm::Constant *CV, std::ostream &out) {
   } else if (auto *C = mayCast<ConstantFloat>(CV)) {
     out << C->getValue();
   } else if (auto *CA = mayCast<ConstantArray>(CV)) {
+    out << "<";
+    int i = 0;
     for (Constant *element : CA->getValue()) {
-      emitConstant(element, out);
-      if (element != CA->getValue()[0])
+      if (i)
         out << ", ";
+      out << element->getType()->dump() << " ";
+      emitConstant(element, out);
+      i++;
     }
+    out << ">";
   }
 }
 } // namespace nnvm
@@ -112,6 +117,8 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     if (RI->getOperandNum() != 0)
       out << " " << RI->getOperand(0)->getType()->dump() << " "
           << valueToName[RI->getOperand(0)];
+    else
+      out << " void";
     return;
   }
 
@@ -139,6 +146,18 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     out << "load " << LI->getType()->dump() << ", "
         << LI->getOperand(0)->getType()->dump() << " "
         << valueToName[LI->getOperand(0)];
+    return;
+  }
+
+  if (auto FN = mayCast<FNegInst>(I)) {
+    out << "fneg " << FN->getOperand(0)->getType()->dump() << " "
+        << valueToName[FN->getOperand(0)];
+    return;
+  }
+
+if (auto ZI = mayCast<ZExtInst>(I)) {
+    out << "zext " << ZI->getOperand(0)->getType()->dump() << " "
+        << valueToName[ZI->getOperand(0)] << " to " << ZI->getType()->dump() ;
     return;
   }
 

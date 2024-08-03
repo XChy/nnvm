@@ -1,187 +1,154 @@
-.global merge
 .global main
 .global find
 .section .bss
 parent:
 .space 4020
-
 .section .data
 
-maxN:
-.word 0x000003ed
 .section .text
-merge:
-  ADDI sp, sp, -32
+main:
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  ADD a0, s0, zero
-  CALL find
-  ADD s0, a0, zero
-  ADD a0, s1, zero
-  CALL find
-  BNE s0, a0, bb2
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  CALL getint
+  ADD s2, a0, zero
+  CALL getint
+  ADD s4, a0, zero
+  ADDI s1, zero, 0
+  BLT s1, s2, bb17
   # implict jump to bb1
 bb1:
+  BLT zero, s4, bb12
+  # implict jump to bb2
+bb2:
+  BLT s1, s2, bb5
+  # implict jump to bb3
+bb3:
+  ADD a0, zero, zero
+  # implict jump to bb4
+bb4:
+  CALL putint
+  ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb2:
-  SLLIW s1, a0, 2
-  LA s2, parent
-  ADD s1, s2, s1
-  SW s0, 0(s1)
-  JAL zero, bb1
-main:
-  ADDI sp, sp, -112
-  SD ra, 0(sp)
-  SD s1, 8(sp)
-  SD s2, 16(sp)
-  SD s3, 24(sp)
-  SD s4, 32(sp)
-  SD s8, 40(sp)
-  SD s9, 48(sp)
-  SD s0, 56(sp)
-  SD s5, 64(sp)
-  SD s6, 72(sp)
-  SD s7, 80(sp)
-  SD s10, 88(sp)
-  SD s11, 96(sp)
+bb5:
+  ADD s0, zero, zero
+  ADD a0, zero, zero
+  # implict jump to bb6
+bb6:
+  ADD s1, a0, zero
+  SLLIW s3, s0, 2
+  LA a0, parent
+  ADD a0, a0, s3
+  LW a0, 0(a0)
+  XOR a0, a0, s0
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb11
+  # implict jump to bb7
+bb7:
+  ADD a0, s1, zero
+  # implict jump to bb8
+bb8:
+  ADD s1, a0, zero
+  ADDIW a0, s0, 1
+  BLT a0, s2, bb10
+  # implict jump to bb9
+bb9:
+  ADD a0, s1, zero
+  JAL zero, bb4
+bb10:
+  ADD s0, a0, zero
+  ADD a0, s1, zero
+  JAL zero, bb6
+bb11:
+  ADDIW a0, s1, 1
+  JAL zero, bb8
+bb12:
+  ADD s0, zero, zero
+  # implict jump to bb13
+bb13:
+  ADD s6, s0, zero
   CALL getint
   ADD s0, a0, zero
   CALL getint
-  ADD s1, a0, zero
-  ADD s2, zero, zero
-  # implict jump to bb4
-bb4:
-  ADD s3, s2, zero
-  BLT s3, s0, bb17
-  # implict jump to bb5
-bb5:
-  ADD s4, zero, zero
-  # implict jump to bb6
-bb6:
-  ADD s5, s4, zero
-  BLT s5, s1, bb14
-  # implict jump to bb7
-bb7:
-  ADD s6, zero, zero
-  ADD s7, zero, zero
-  # implict jump to bb8
-bb8:
-  ADD s8, s7, zero
-  ADD s9, s6, zero
-  BLT s8, s0, bb10
-  # implict jump to bb9
-bb9:
-  ADD a0, s9, zero
-  CALL putint
-  ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s1, 8(sp)
-  LD s2, 16(sp)
-  LD s3, 24(sp)
-  LD s4, 32(sp)
-  LD s8, 40(sp)
-  LD s9, 48(sp)
-  LD s0, 56(sp)
-  LD s5, 64(sp)
-  LD s6, 72(sp)
-  LD s7, 80(sp)
-  LD s10, 88(sp)
-  LD s11, 96(sp)
-  ADDI sp, sp, 112
-  JALR zero, 0(ra)
-bb10:
-  SLLIW s10, s8, 2
-  LA s11, parent
-  ADD s10, s11, s10
-  LW s10, 0(s10)
-  XOR s10, s10, s8
-  SLTIU s10, s10, 1
-  BNE s10, zero, bb13
-  # implict jump to bb11
-bb11:
-  ADD s10, s9, zero
-  # implict jump to bb12
-bb12:
-  ADDIW s8, s8, 1
-  ADD s6, s10, zero
-  ADD s7, s8, zero
-  JAL zero, bb8
-bb13:
-  ADDIW s9, s9, 1
-  ADD s10, s9, zero
-  JAL zero, bb12
+  ADD s3, a0, zero
+  ADD a0, s0, zero
+  CALL find
+  ADD s5, a0, zero
+  ADD a0, s3, zero
+  CALL find
+  ADD s0, a0, zero
+  BNE s5, s0, bb16
+  # implict jump to bb14
 bb14:
-  CALL getint
-  ADD s6, a0, zero
-  CALL getint
-  ADD s7, a0, zero
-  ADD a0, s6, zero
-  CALL find
-  ADD s6, a0, zero
-  ADD a0, s7, zero
-  CALL find
-  BNE s6, a0, bb16
-  # implict jump to bb15
+  ADDIW s0, s6, 1
+  BLT s0, s4, bb15
+  JAL zero, bb2
 bb15:
-  ADDIW s5, s5, 1
-  ADD s4, s5, zero
-  JAL zero, bb6
+  JAL zero, bb13
 bb16:
-  SLLIW s7, a0, 2
-  LA s8, parent
-  ADD s7, s8, s7
-  SW s6, 0(s7)
-  JAL zero, bb15
+  SLLIW s3, s0, 2
+  LA s0, parent
+  ADD s0, s0, s3
+  SW s5, 0(s0)
+  JAL zero, bb14
 bb17:
-  SLLIW s4, s3, 2
-  LA s5, parent
-  ADD s4, s5, s4
-  SW s3, 0(s4)
-  ADDIW s3, s3, 1
-  ADD s2, s3, zero
-  JAL zero, bb4
+  ADD s0, zero, zero
+  # implict jump to bb18
+bb18:
+  ADD s3, s0, zero
+  SLLIW s5, s3, 2
+  LA s0, parent
+  ADD s0, s0, s5
+  SW s3, 0(s0)
+  ADDIW s0, s3, 1
+  BLT s0, s2, bb19
+  JAL zero, bb1
+bb19:
+  JAL zero, bb18
 find:
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
   ADD s0, a0, zero
   SLLIW s1, s0, 2
-  LA s2, parent
-  ADD s1, s2, s1
-  LW s2, 0(s1)
-  XOR s2, s2, s0
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb20
-  # implict jump to bb19
-bb19:
-  LW s2, 0(s1)
-  ADD a0, s2, zero
+  LA a0, parent
+  ADD s1, a0, s1
+  LW a0, 0(s1)
+  XOR a0, a0, s0
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb22
+  # implict jump to bb21
+bb21:
+  LW a0, 0(s1)
   CALL find
-  ADD s2, a0, zero
-  SW s2, 0(s1)
-  ADD a0, s2, zero
+  ADD t0, a0, zero
+  SW t0, 0(s1)
+  ADD a0, t0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb20:
+bb22:
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)

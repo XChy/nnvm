@@ -6,6 +6,7 @@ namespace nnvm::riscv {
 class SSAPeephole {
 public:
   bool run(LIRFunc &func);
+  bool clearInstIn(LIRBB *BB);
   bool processInst(LIRInst *inst, LIRBuilder &builder);
 };
 

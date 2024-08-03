@@ -42,7 +42,7 @@ bool MemPropPass::tryReplaceWithDef(Instruction *I) {
   if (defInfo.flag != MemDef)
     return false;
 
-  if (memAcc->hasClobber(I, defInfo.accessInst->getBlock(), I->getBlock()))
+  if (memAcc->hasWriteClobber(I, defInfo.accessInst->getBlock(), I->getBlock()))
     return true;
 
   if (auto *defI = mayCast<StoreInst>(defInfo.accessInst)) {
@@ -60,7 +60,7 @@ bool MemPropPass::tryReplaceWithLoad(Instruction *I) {
   if (useInfo.flag != MemUse)
     return false;
 
-  if (memAcc->hasClobber(I, useInfo.accessInst->getBlock(), I->getBlock()))
+  if (memAcc->hasWriteClobber(I, useInfo.accessInst->getBlock(), I->getBlock()))
     return false;
 
   if (auto *useI = mayCast<LoadInst>(useInfo.accessInst)) {

@@ -11,7 +11,7 @@ public:
 
   LIRBuilder &addInst(LIRInst *inst);
 
-  LIRBuilder &copy(LIRValue *from, Register *to);
+  LIRInst *copy(LIRValue *from, Register *to);
   LIRBuilder &jumpTo(LIRBB *dest);
   LIRBuilder &implicitJumpTo(LIRBB *dest);
 

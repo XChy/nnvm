@@ -41,6 +41,9 @@ public:
   Iterator begin() { return {instList.begin(), this}; }
   Iterator end() { return {instList.end(), this}; }
 
+  // Return the iterator of terminator.
+  Iterator termEnd() { return {getTerminator(), this}; }
+
   TerminatorInst *getTerminator() const {
     if (instList.empty())
       return nullptr;
@@ -60,6 +63,12 @@ public:
 
   class PredIterator {
   public:
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = uint64_t;
+    using value_type = BasicBlock *;
+    using pointer = BasicBlock **;
+    using reference = BasicBlock *&;
+
     PredIterator(BasicBlock *BB) {
       cur = BB->users().begin();
       end = BB->users().end();

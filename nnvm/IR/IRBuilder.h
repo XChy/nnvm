@@ -58,6 +58,7 @@ public:
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
 
   PhiInst *buildPhi(Type *type, const std::string &name = "");
+  Value *buildPin(Value *orig, const std::string &name = "");
 
   Value *buildRet();
   Value *buildRet(Value *returned);

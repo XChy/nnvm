@@ -20,6 +20,7 @@ public:
 
   void insert(BasicBlock *BB);
   void insertBack(BasicBlock *BB, Iterator pos);
+  void insertBefore(BasicBlock *BB, Iterator pos);
 
   List<BasicBlock>::Iterator begin() { return BBList.begin(); }
   List<BasicBlock>::Iterator end() { return BBList.end(); };
@@ -33,7 +34,7 @@ public:
   Module *getModule() { return module; }
 
   void addArgument(Argument *arg);
-  std::vector<Argument *> getArguments();
+  std::vector<Argument *> getArguments() const;
 
   void setVariadic(bool variadic) { this->variadic = variadic; }
   bool isVariadic() { return variadic; }

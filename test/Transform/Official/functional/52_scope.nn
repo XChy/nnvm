@@ -10,42 +10,41 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry12:
-  br bb %while.cond
-while.cond:
-  i.phi = phi [bb %entry12, i32 0, bb %if.exit24, i32 %28]
-  result.phi37 = phi [bb %entry12, i32 0, bb %if.exit24, i32 %result.phi]
-  19 = icmp slt i32 %i.phi, i32 100
-  br i1 %19, bb %while.body, bb %while.exit
-while.body:
-  a.load41 = load i32 from ptr @a
-  642 = icmp eq i32 1, i32 %a.load41
-  br i1 %642, bb %func.then, bb %func.else
-while.body.split:
-  21.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]
-  22 = icmp eq i32 %21.ret, i32 1
-  br i1 %22, bb %then23, bb %if.exit24
-while.exit:
-  30 = icmp slt i32 %result.phi37, i32 100
-  br i1 %30, bb %then31, bb %else33
-then23:
-  26 = add i32 %result.phi37, i32 1
-  br bb %if.exit24
-if.exit24:
-  result.phi = phi [bb %while.body.split, i32 %result.phi37, bb %then23, i32 %26]
-  28 = add i32 %i.phi, i32 1
-  br bb %while.cond
-then31:
+entry13:  pred()
+  a.load44 = load i32 from ptr @a
+  645 = icmp eq i32 1, i32 %a.load44
+  br bb %while.body
+while.body:  pred(if.exit25, entry13)
+  result.phi4055 = phi [bb %if.exit25, i32 %result.phi, bb %entry13, i32 0]
+  i.phi54 = phi [bb %if.exit25, i32 %31, bb %entry13, i32 0]
+  br i1 %645, bb %func.then, bb %func.else
+while.body.split:  pred(func.then, func.else)
+  22.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]
+  23 = icmp eq i32 %22.ret, i32 1
+  br i1 %23, bb %then24, bb %if.exit25
+while.exit:  pred(if.exit25)
+  53 = phi [bb %if.exit25, i32 %result.phi]
+  33 = icmp slt i32 %53, i32 100
+  br i1 %33, bb %then34, bb %else36
+then24:  pred(while.body.split)
+  28 = add i32 %result.phi4055, i32 1
+  br bb %if.exit25
+if.exit25:  pred(while.body.split, then24)
+  result.phi = phi [bb %while.body.split, i32 %result.phi4055, bb %then24, i32 %28]
+  31 = add i32 %i.phi54, i32 1
+  20 = icmp slt i32 %31, i32 100
+  br i1 %20, bb %while.body, bb %while.exit
+then34:  pred(while.exit)
   call void putint(i32 1)
-  br bb %if.exit32
-if.exit32:
+  br bb %if.exit35
+if.exit35:  pred(then34, else36)
   ret i32 0
-else33:
+else36:  pred(while.exit)
   call void putint(i32 0)
-  br bb %if.exit32
-func.then:
+  br bb %if.exit35
+func.then:  pred(while.body)
   br bb %while.body.split
-func.else:
+func.else:  pred(while.body)
   br bb %while.body.split
 }
 
@@ -62,16 +61,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-pure i32 func() {
-entry:
-  a.load = load i32 from ptr @a
-  6 = icmp eq i32 1, i32 %a.load
-  br i1 %6, bb %then, bb %else
-then:
-  ret i32 1
-else:
-  ret i32 0
-}
 
 

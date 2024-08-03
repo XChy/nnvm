@@ -1,6 +1,7 @@
 #include "IRGenerator.h"
 #include "Frontend/Builtin.h"
 #include "Frontend/Symbol.h"
+#include "IR/Attributes.h"
 #include "IR/BasicBlock.h"
 #include "IR/Constant.h"
 #include "IR/GlobalVariable.h"
@@ -166,6 +167,10 @@ static inline To castConstExp(Any value) {
  */
 Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
   if (ctx->exp().size() < 2) {
+    if (ctx->L_PAREN()) {
+      return solveConstExp(ctx->exp()[0]);
+    }
+
     if (auto numCtx = ctx->number()) {
       if (auto intCtx = numCtx->INTEGER_CONST()) {
         string sText = intCtx->getText();
@@ -360,7 +365,8 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
     if (symbolTable.isGlobal()) {
       GlobalVariable *global = new GlobalVariable(*ir, constVal);
       global->setName(ctx->IDENT()->getText());
-      global->setImmutable(true);
+      global->attach(Attribute::Immutable);
+      global->attach(Attribute::Internal);
       return symbolTable.create(symbolName, symbolType, global);
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());
@@ -384,7 +390,8 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   if (symbolTable.isGlobal()) {
     GlobalVariable *global = new GlobalVariable(*ir, constVal);
     global->setName(ctx->IDENT()->getText());
-    global->setImmutable(true);
+    global->attach(Attribute::Immutable);
+    global->attach(Attribute::Internal);
     return symbolTable.create(symbolName, symbolType, global);
   } else {
     return symbolTable.create(symbolName, symbolType, constVal);
@@ -613,6 +620,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       Constant *initVal = ConstantInt::create(*ir, ir->getIntType(), intVal);
       GlobalVariable *globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
+      // globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -632,6 +640,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       GlobalVariable *globalVar =
           new GlobalVariable(*ir, createConstFloat(floatVal));
       globalVar->setName(symbolName);
+      globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       irVal = builder.buildStack(irType, symbolName);
@@ -648,7 +657,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
       initVal = fetchFlatElementsFrom(ctx->initVal(), symbolType);
       globalVar = new GlobalVariable(*ir, initVal);
       globalVar->setName(symbolName);
-      globalVar->setImmutable(false);
+      globalVar->attach(Attribute::Internal);
       irVal = globalVar;
     } else {
       Type *irElementType = sym2IR(symbolType->getInnerMost());
@@ -733,15 +742,19 @@ IRGenerator::getFuncType(SysYParser::FuncTypeContext *funcTypeCtx,
 
 Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
   string funcName = ctx->IDENT()->getText();
-  SymbolType *lookedType;
-  if (symbolTable.lookup(funcName))
-    lookedType = symbolTable.lookup(funcName)->symbolType;
   SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
-  if (lookedType && !lookedType->isIdentical(*funcTy)) {
-    // error report
-    nnvm_unimpl();
+  if (symbolTable.lookup(funcName)) {
+    SymbolType *lookedType = symbolTable.lookup(funcName)->symbolType;
+    if (!lookedType->isIdentical(*funcTy)) {
+      // error report
+      nnvm_unimpl();
+    }
+  } else {
+    Function *func = new Function(ir, funcName);
+    ir->addFunction(func);
+    symbolTable.create(funcName, funcTy, func);
+    func->setReturnType(getIRType(ctx->funcType()));
   }
-  symbolTable.create(funcName, funcTy, nullptr);
   return Symbol::none();
 }
 
@@ -751,25 +764,28 @@ Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
  */
 Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
   string funcName = ctx->IDENT()->getText();
-  SymbolType *lookedType = nullptr;
-  if (symbolTable.lookup(funcName)) {
-    lookedType = symbolTable.lookup(funcName)->symbolType;
-  }
-  // TODO: some checks
-  Function *func = new Function(ir, funcName);
-
-  ir->addFunction(func);
-
   SymbolType *funcTy = getFuncType(ctx->funcType(), ctx->funcFParams());
-
-  if (lookedType && !lookedType->isIdentical(*funcTy)) {
-    // error report
-    nnvm_unimpl();
+  Symbol *lookedFunc = symbolTable.lookup(funcName);
+  if (lookedFunc) {
+    SymbolType *lookedType = lookedFunc->symbolType;
+    if (!lookedType->isIdentical(*funcTy)) {
+      // error report
+      nnvm_unimpl();
+    }
+    currentFunc = lookedFunc;
+  } else {
+    Function *func = new Function(ir, funcName);
+    ir->addFunction(func);
+    currentFunc = symbolTable.create(funcName, funcTy, func);
+    cast<Function>(currentFunc->entity)
+        ->setReturnType(getIRType(ctx->funcType()));
+    if (funcName != "main") {
+      func->attach(Attribute::Internal);
+    }
   }
 
-  currentFunc = symbolTable.create(funcName, funcTy, func);
+  Function *func = cast<Function>(currentFunc->entity);
 
-  func->setReturnType(getIRType(ctx->funcType()));
   BasicBlock *Entry = new BasicBlock(func, "entry");
   builder.setInsertPoint(Entry->end());
 
@@ -800,11 +816,17 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
 
   symbolTable.exitScope();
 
-  if (func->getReturnType()->isVoid() &&
-      !builder.getCurrentBB()->getTerminator())
-    builder.buildRet();
-  else if (!builder.getCurrentBB()->getTerminator()) {
-    builder.buildUnreachable();
+  // It's not a ub if the main function lacks return statement. We should return
+  // 0 by default.
+  if (funcName == "main" && !builder.getCurrentBB()->getTerminator()) {
+    builder.buildRet(constZeroInt);
+  } else {
+    if (func->getReturnType()->isVoid() &&
+        !builder.getCurrentBB()->getTerminator())
+      builder.buildRet();
+    else if (!builder.getCurrentBB()->getTerminator()) {
+      builder.buildUnreachable();
+    }
   }
 
   return Symbol::none();
@@ -1234,11 +1256,11 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
                                       ctx->IDENT()->getSymbol()->getLine());
 
   Symbol *calleeSymbol = symbolTable.lookup(calleeName);
-  if (!calleeSymbol)
-    // TODO: report no matching function!!
-    return Symbol::none();
 
-  Function *callee = cast<Function>(calleeSymbol->entity);
+  Function *callee = nullptr;
+  if (calleeSymbol) {
+    callee = cast<Function>(calleeSymbol->entity);
+  }
   std::vector<Value *> args;
 
   if (ctx->funcRParams()) {
@@ -1254,8 +1276,9 @@ Any IRGenerator::visitCall(SysYParser::CallContext *ctx) {
     }
   }
 
-  return Symbol(builder.buildCall(callee, args),
-                calleeSymbol->symbolType->containedTy);
+  Value *caller = builder.buildCall(callee, args);
+  calleeSymbol->addCaller(caller);
+  return Symbol(caller, calleeSymbol->symbolType->containedTy);
 }
 
 /**
@@ -1426,7 +1449,8 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITAND()) {
-    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+    if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
+        (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
       errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
@@ -1435,7 +1459,8 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITOR()) {
-    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+    if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
+        (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
       errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
@@ -1444,7 +1469,8 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITXOR()) {
-    if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
+    if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
+        (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
       errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
@@ -1508,7 +1534,7 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
   }
 
   if (ctx->unaryOp()->BITNOT()) {
-    if (!operand.symbolType->isInt()) {
+    if (!operand.symbolType->isInt() && !operand.symbolType->isBool()) {
       // TODO: report error
       errorReporter.errorRecord(ctx, "Operand not int!");
       nnvm_unimpl();

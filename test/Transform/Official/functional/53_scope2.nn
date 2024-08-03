@@ -1,33 +1,32 @@
 global ptr k init with i32 0
 i32 main() {
-entry:
+entry:  pred()
   store i32 3389 to ptr @k
   store i32 3390 to ptr @k
-  br bb %while.cond
-while.cond:
-  g25.phi44 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g25.phi]
-  l.phi41 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %l.phi]
-  g.phi38 = phi [bb %entry, i32 ub, bb %if.exit19, i32 %g.phi]
-  k.phi35 = phi [bb %entry, i32 112, bb %if.exit19, i32 %k.phi]
-  12 = icmp sgt i32 %k.phi35, i32 10
-  br i1 %12, bb %while.body, bb %while.exit
-while.body:
-  15 = sub i32 %k.phi35, i32 88
-  17 = icmp slt i32 %15, i32 1000
-  br i1 %17, bb %then18, bb %if.exit19
-while.exit:
-  call void putint(i32 %k.phi35)
-  k.load33 = load i32 from ptr @k
-  ret i32 %k.load33
-then18:
-  51 = add i32 %k.phi35, i32 -76
-  br bb %if.exit19
-if.exit19:
-  g25.phi = phi [bb %while.body, i32 %g25.phi44, bb %then18, i32 11]
-  l.phi = phi [bb %while.body, i32 %l.phi41, bb %then18, i32 11]
-  g.phi = phi [bb %while.body, i32 %g.phi38, bb %then18, i32 10]
-  k.phi = phi [bb %while.body, i32 %15, bb %then18, i32 %51]
-  br bb %while.cond
+  br bb %while.body
+while.body:  pred(if.exit22, entry)
+  k.phi4163 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
+  g.phi4462 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
+  l.phi4761 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
+  g30.phi5060 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
+  18 = sub i32 %k.phi4163, i32 88
+  20 = icmp slt i32 %18, i32 1000
+  br i1 %20, bb %then21, bb %if.exit22
+while.exit:  pred(if.exit22)
+  59 = phi [bb %if.exit22, i32 %k.phi]
+  call void putint(i32 %59)
+  k.load39 = load i32 from ptr @k
+  ret i32 %k.load39
+then21:  pred(while.body)
+  57 = add i32 %k.phi4163, i32 -76
+  br bb %if.exit22
+if.exit22:  pred(while.body, then21)
+  g30.phi = phi [bb %while.body, i32 %g30.phi5060, bb %then21, i32 11]
+  l.phi = phi [bb %while.body, i32 %l.phi4761, bb %then21, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi4462, bb %then21, i32 10]
+  k.phi = phi [bb %while.body, i32 %18, bb %then21, i32 %57]
+  14 = icmp sgt i32 %k.phi, i32 10
+  br i1 %14, bb %while.body, bb %while.exit
 }
 
 external void putfarray(i32 , ptr )

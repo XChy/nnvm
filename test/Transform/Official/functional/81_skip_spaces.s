@@ -3,63 +3,72 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -464
+  ADDI sp, sp, -432
   SD ra, 400(sp)
   SD s0, 408(sp)
   SD s1, 416(sp)
   SD s2, 424(sp)
-  SD s3, 432(sp)
-  SD s4, 440(sp)
-  SD s5, 448(sp)
-  SD s6, 456(sp)
-  ADD s0, zero, zero
+  CALL getint
+  ADD s0, a0, zero
+  BNE s0, zero, bb9
   # implict jump to bb1
 bb1:
-  ADD s1, s0, zero
-  CALL getint
-  ADD s2, a0, zero
-  BNE s2, zero, bb6
+  ADD t0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s2, zero, zero
-  ADD s3, s1, zero
+  BNE t0, zero, bb5
   # implict jump to bb3
 bb3:
-  ADD s4, s3, zero
-  ADD s5, s2, zero
-  BNE s4, zero, bb5
+  ADD t0, zero, zero
   # implict jump to bb4
 bb4:
-  ADDI s6, zero, 79
-  REMW s6, s5, s6
-  ADD a0, s6, zero
+  ADD t1, t0, zero
+  ADDI t0, zero, 79
+  REMW t0, t1, t0
+  ADD a0, t0, zero
   LD ra, 400(sp)
   LD s0, 408(sp)
   LD s1, 416(sp)
   LD s2, 424(sp)
-  LD s3, 432(sp)
-  LD s4, 440(sp)
-  LD s5, 448(sp)
-  LD s6, 456(sp)
-  ADDI sp, sp, 464
+  ADDI sp, sp, 432
   JALR zero, 0(ra)
 bb5:
-  ADDI s6, zero, 1
-  SUBW s4, s4, s6
-  SLLIW s6, s4, 2
-  ADDI t5, sp, 0
-  ADD s6, t5, s6
-  LW s6, 0(s6)
-  ADDW s5, s5, s6
-  ADD s2, s5, zero
-  ADD s3, s4, zero
-  JAL zero, bb3
+  ADD t1, t0, zero
+  ADD t0, zero, zero
+  # implict jump to bb6
 bb6:
-  SLLIW s2, s1, 2
+  ADD t2, t0, zero
+  ADDI t0, zero, 1
+  SUBW t1, t1, t0
+  SLLIW t0, t1, 2
   ADDI t5, sp, 0
-  ADD s2, t5, s2
+  ADD t0, t5, t0
+  LW t0, 0(t0)
+  ADDW t0, t2, t0
+  BNE t1, zero, bb8
+  # implict jump to bb7
+bb7:
+  JAL zero, bb4
+bb8:
+  JAL zero, bb6
+bb9:
+  ADD s0, zero, zero
+  # implict jump to bb10
+bb10:
+  SLLIW s1, s0, 2
+  ADDI t5, sp, 0
+  ADD s1, t5, s1
   CALL getint
-  SW a0, 0(s2)
-  ADDIW s1, s1, 1
+  ADD s2, a0, zero
+  SW s2, 0(s1)
+  ADDIW s1, s0, 1
+  CALL getint
+  ADD s0, a0, zero
+  BNE s0, zero, bb12
+  # implict jump to bb11
+bb11:
+  ADD t0, s1, zero
+  JAL zero, bb2
+bb12:
   ADD s0, s1, zero
-  JAL zero, bb1
+  JAL zero, bb10

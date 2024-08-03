@@ -10,7 +10,7 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry5:
+entry6:  pred()
   store i32 10 to ptr @a
   ret i32 9
 }
@@ -28,11 +28,5 @@ external void putarray(i32 , ptr )
 external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
-
-pure i32 func(i32 p) {
-entry:
-  3 = sub i32 %p, i32 1
-  ret i32 %3
-}
 
 

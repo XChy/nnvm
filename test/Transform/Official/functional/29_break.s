@@ -3,40 +3,35 @@
 .section .data
 .section .text
 main:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  ADD s0, zero, zero
-  ADD s1, zero, zero
+  ADD t0, zero, zero
+  ADD t1, zero, zero
   # implict jump to bb1
 bb1:
-  ADD s2, s1, zero
-  ADD s3, s0, zero
-  SLTI s4, s2, 100
-  BNE s4, zero, bb3
+  ADD t2, t0, zero
+  XORI t0, t2, 50
+  SLTIU t0, t0, 1
+  BNE t0, zero, bb6
   # implict jump to bb2
 bb2:
-  ADD a0, s3, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  ADDI sp, sp, 48
-  JALR zero, 0(ra)
+  ADDW a0, t1, t2
+  ADDIW t1, t2, 1
+  SLTI t0, t1, 100
+  BNE t0, zero, bb5
+  # implict jump to bb3
 bb3:
-  XORI s4, s2, 50
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb2
+  ADD t0, a0, zero
   # implict jump to bb4
 bb4:
-  ADDW s4, s3, s2
-  ADDIW s2, s2, 1
-  ADD s0, s4, zero
-  ADD s1, s2, zero
+  ADD a0, t0, zero
+  LD ra, 0(sp)
+  ADDI sp, sp, 16
+  JALR zero, 0(ra)
+bb5:
+  ADD t0, t1, zero
+  ADD t1, a0, zero
   JAL zero, bb1
+bb6:
+  ADD t0, a0, zero
+  JAL zero, bb4

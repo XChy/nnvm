@@ -1,9 +1,6 @@
 .global main
 .section .bss
-a:
-.space 400
 .section .data
-
 .section .text
 main:
   ADDI sp, sp, -16

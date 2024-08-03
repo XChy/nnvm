@@ -1,0 +1,172 @@
+internal global ptr image_out init with 524288 x i32 zeros
+internal global ptr image_in init with 524288 x i32 zeros
+external i32 getint()
+
+external i32 getch()
+
+external void putint(i32 )
+
+external i32 getarray(ptr )
+
+external i32 getfarray(ptr )
+
+i32 main() {
+entry14:  pred()
+  18 = call i32 getarray(ptr @image_in)
+  call void _sysy_starttime(i32 23)
+  br bb %while.body
+while.body:  pred(while.exit32, entry14)
+  im1jm1.phi254370 = phi [bb %while.exit32, i32 %im1jm1.phi254343, bb %entry14, i32 0]
+  im1j.phi256369 = phi [bb %while.exit32, i32 %im1j.phi256342, bb %entry14, i32 0]
+  j.phi258368 = phi [bb %while.exit32, i32 %165, bb %entry14, i32 1]
+  ijp1.phi260367 = phi [bb %while.exit32, i32 %ijp1.phi260341, bb %entry14, i32 0]
+  ip1jm1.phi262366 = phi [bb %while.exit32, i32 %ip1jm1.phi262340, bb %entry14, i32 0]
+  im1jp1.phi264365 = phi [bb %while.exit32, i32 %im1jp1.phi264339, bb %entry14, i32 0]
+  ijm1.phi266364 = phi [bb %while.exit32, i32 %ijm1.phi266338, bb %entry14, i32 0]
+  ip1j.phi268363 = phi [bb %while.exit32, i32 %ip1j.phi268337, bb %entry14, i32 0]
+  ij.phi270362 = phi [bb %while.exit32, i32 %ij.phi270336, bb %entry14, i32 0]
+  ip1jp1.phi272361 = phi [bb %while.exit32, i32 %ip1jp1.phi272335, bb %entry14, i32 0]
+  val.phi274360 = phi [bb %while.exit32, i32 %val.phi274334, bb %entry14, i32 0]
+  br bb %while.body31
+while.exit:  pred(while.exit32)
+  br bb %while.body168
+while.body31:  pred(cutout.if.exit, while.body)
+  i.phi251354 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
+  40 = sub i32 %i.phi251354, i32 1
+  277 = shl i32 %40, i32 9
+  44 = add i32 %277, i32 %j.phi258368
+  45 = sub i32 %44, i32 1
+  60 = add i32 %44, i32 1
+  280 = shl i32 %i.phi251354, i32 9
+  66 = add i32 %280, i32 %j.phi258368
+  67 = sub i32 %66, i32 1
+  80 = add i32 %66, i32 1
+  83 = add i32 %i.phi251354, i32 1
+  283 = shl i32 %83, i32 9
+  87 = add i32 %283, i32 %j.phi258368
+  88 = sub i32 %87, i32 1
+  103 = add i32 %87, i32 1
+  286 = shl i32 %66, i32 2
+  107 = ptradd ptr @image_in, i32 %286
+  107.load = load i32 from ptr %107
+  109 = mul i32 8, i32 %107.load
+  287 = shl i32 %45, i32 2
+  112 = ptradd ptr @image_in, i32 %287
+  112.load = load i32 from ptr %112
+  114 = sub i32 %109, i32 %112.load
+  288 = shl i32 %44, i32 2
+  117 = ptradd ptr @image_in, i32 %288
+  117.load = load i32 from ptr %117
+  119 = sub i32 %114, i32 %117.load
+  289 = shl i32 %60, i32 2
+  122 = ptradd ptr @image_in, i32 %289
+  122.load = load i32 from ptr %122
+  124 = sub i32 %119, i32 %122.load
+  290 = shl i32 %67, i32 2
+  127 = ptradd ptr @image_in, i32 %290
+  127.load = load i32 from ptr %127
+  129 = sub i32 %124, i32 %127.load
+  291 = shl i32 %80, i32 2
+  132 = ptradd ptr @image_in, i32 %291
+  132.load = load i32 from ptr %132
+  134 = sub i32 %129, i32 %132.load
+  292 = shl i32 %88, i32 2
+  137 = ptradd ptr @image_in, i32 %292
+  137.load = load i32 from ptr %137
+  139 = sub i32 %134, i32 %137.load
+  293 = shl i32 %87, i32 2
+  142 = ptradd ptr @image_in, i32 %293
+  142.load = load i32 from ptr %142
+  144 = sub i32 %139, i32 %142.load
+  294 = shl i32 %103, i32 2
+  147 = ptradd ptr @image_in, i32 %294
+  147.load = load i32 from ptr %147
+  149 = sub i32 %144, i32 %147.load
+  156 = ptradd ptr @image_out, i32 %286
+  3317 = icmp slt i32 %149, i32 0
+  br i1 %3317, bb %cutout.then, bb %cutout.else
+while.exit32:  pred(cutout.if.exit)
+  im1jm1.phi254343 = phi [bb %cutout.if.exit, i32 %45]
+  im1j.phi256342 = phi [bb %cutout.if.exit, i32 %44]
+  ijp1.phi260341 = phi [bb %cutout.if.exit, i32 %80]
+  ip1jm1.phi262340 = phi [bb %cutout.if.exit, i32 %88]
+  im1jp1.phi264339 = phi [bb %cutout.if.exit, i32 %60]
+  ijm1.phi266338 = phi [bb %cutout.if.exit, i32 %67]
+  ip1j.phi268337 = phi [bb %cutout.if.exit, i32 %87]
+  ij.phi270336 = phi [bb %cutout.if.exit, i32 %66]
+  ip1jp1.phi272335 = phi [bb %cutout.if.exit, i32 %103]
+  val.phi274334 = phi [bb %cutout.if.exit, i32 %149]
+  165 = add i32 %j.phi258368, i32 1
+  27 = icmp slt i32 %165, i32 511
+  br i1 %27, bb %while.body, bb %while.exit
+while.body168:  pred(while.body168, while.exit)
+  i.phi358 = phi [bb %while.body168, i32 %206, bb %while.exit, i32 0]
+  297 = shl i32 %i.phi358, i32 9
+  298 = shl i32 %297, i32 2
+  178 = ptradd ptr @image_out, i32 %298
+  184 = ptradd ptr @image_in, i32 %298
+  184.load = load i32 from ptr %184
+  store i32 %184.load to ptr %178
+  303 = add i32 %297, i32 511
+  304 = shl i32 %303, i32 2
+  193 = ptradd ptr @image_out, i32 %304
+  202 = ptradd ptr @image_in, i32 %304
+  202.load = load i32 from ptr %202
+  store i32 %202.load to ptr %193
+  206 = add i32 %i.phi358, i32 1
+  172 = icmp slt i32 %206, i32 1024
+  br i1 %172, bb %while.body168, bb %while.exit169
+while.exit169:  pred(while.body168)
+  br bb %while.body209
+while.body209:  pred(while.body209, while.exit169)
+  j.phi356 = phi [bb %while.body209, i32 %243, bb %while.exit169, i32 0]
+  309 = shl i32 %j.phi356, i32 2
+  217 = ptradd ptr @image_out, i32 %309
+  221 = ptradd ptr @image_in, i32 %309
+  221.load = load i32 from ptr %221
+  store i32 %221.load to ptr %217
+  311 = add i32 %j.phi356, i32 523776
+  312 = shl i32 %311, i32 2
+  230 = ptradd ptr @image_out, i32 %312
+  239 = ptradd ptr @image_in, i32 %312
+  239.load = load i32 from ptr %239
+  store i32 %239.load to ptr %230
+  243 = add i32 %j.phi356, i32 1
+  213 = icmp slt i32 %243, i32 512
+  br i1 %213, bb %while.body209, bb %while.exit210
+while.exit210:  pred(while.body209)
+  call void _sysy_stoptime(i32 59)
+  call void putarray(i32 524288, ptr @image_out)
+  ret i32 %18
+cutout.then:  pred(while.body31)
+  br bb %cutout.if.exit
+cutout.if.exit:  pred(cutout.then, cutout.if.exit11)
+  val.stack.phi276322 = phi [bb %cutout.if.exit11, i32 %val.stack.phi330, bb %cutout.then, i32 0]
+  store i32 %val.stack.phi276322 to ptr %156
+  36 = icmp slt i32 %83, i32 1023
+  br i1 %36, bb %while.body31, bb %while.exit32
+cutout.else:  pred(while.body31)
+  9325 = icmp sgt i32 %149, i32 255
+  br i1 %9325, bb %cutout.then10, bb %cutout.if.exit11
+cutout.then10:  pred(cutout.else)
+  br bb %cutout.if.exit11
+cutout.if.exit11:  pred(cutout.else, cutout.then10)
+  val.stack.phi330 = phi [bb %cutout.else, i32 %149, bb %cutout.then10, i32 255]
+  br bb %cutout.if.exit
+}
+
+external float getfloat()
+
+external void putfloat(float )
+
+external void putch(i32 )
+
+external void _sysy_stoptime(i32 )
+
+external void putarray(i32 , ptr )
+
+external void _sysy_starttime(i32 )
+
+external void putfarray(i32 , ptr )
+
+

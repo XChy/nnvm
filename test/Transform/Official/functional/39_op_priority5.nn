@@ -4,7 +4,7 @@ global ptr b init with i32 0
 global ptr d init with i32 2
 global ptr a init with i32 1
 i32 main() {
-entry:
+entry:  pred()
   a.load = load i32 from ptr @a
   b.load = load i32 from ptr @b
   4 = mul i32 %a.load, i32 %b.load
@@ -15,33 +15,33 @@ entry:
   9 = add i32 %e.load, i32 %d.load
   10 = icmp eq i32 %6, i32 %9
   br i1 %10, bb %select.then, bb %select.else
-select.then:
+select.then:  pred(entry)
   18 = add i32 %a.load, i32 %b.load
   19 = mul i32 %a.load, i32 %18
   21 = add i32 %19, i32 %c.load
   24 = add i32 %d.load, i32 %e.load
   25 = icmp sle i32 %21, i32 %24
   br bb %select.exit
-select.else:
+select.else:  pred(entry)
   br bb %select.exit
-select.exit:
+select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %25]
   br i1 %select.phi, bb %select.then27, bb %select.else28
-select.then27:
+select.then27:  pred(select.exit)
   br bb %select.exit29
-select.else28:
+select.else28:  pred(select.exit)
   34 = mul i32 %b.load, i32 %c.load
   35 = sub i32 %a.load, i32 %34
   39 = sdiv i32 %a.load, i32 %c.load
   40 = sub i32 %d.load, i32 %39
   41 = icmp eq i32 %35, i32 %40
   br bb %select.exit29
-select.exit29:
+select.exit29:  pred(select.then27, select.else28)
   select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 -1]
   br i1 %select30.phi, bb %then, bb %if.exit
-then:
+then:  pred(select.exit29)
   br bb %if.exit
-if.exit:
+if.exit:  pred(select.exit29, then)
   flag.phi = phi [bb %select.exit29, i32 0, bb %then, i32 1]
   call void putint(i32 %flag.phi)
   ret i32 %flag.phi

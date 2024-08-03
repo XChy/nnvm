@@ -6,21 +6,18 @@ n:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
   CALL getint
-  ADD s0, a0, zero
+  XORI s0, a0, 5
+  SLTIU s0, s0, 1
+  BNE s0, zero, bb3
   # implict jump to bb1
 bb1:
-  ADD s1, s0, zero
-  XORI s2, s1, 5
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb3
   # implict jump to bb2
 bb2:
+  ADD s0, a0, zero
   ADD a0, zero, zero
   CALL putint
   ADDI a0, zero, 1
@@ -83,18 +80,26 @@ bb2:
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADDI a0, zero, 25
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:
-  ADDIW s1, s1, 1
-  ADD s0, s1, zero
-  JAL zero, bb1
+  # implict jump to bb4
+bb4:
+  ADDIW s0, a0, 1
+  XORI a0, s0, 5
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb6
+  # implict jump to bb5
+bb5:
+  ADD a0, s0, zero
+  JAL zero, bb2
+bb6:
+  ADD a0, s0, zero
+  JAL zero, bb4

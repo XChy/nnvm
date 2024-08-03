@@ -28,6 +28,14 @@ void ISel::isel(LIRFunc &func) {
     }
   }
 
+  for (auto *bb : func) {
+    for (auto cur : incChange(*bb)) {
+      builder.setInsertPoint(bb, cur);
+      if (auto *I = expand(builder, cur))
+        cur->eraseFromList();
+    }
+  }
+
   debug({
     std::cerr << "====After combining====:\n";
     EmitInfo info;
@@ -208,6 +216,9 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
       return newInst;
     }
 
+    case InstID::Pin:
+      return builder.copy(I->getOp(1), I->getOp(0)->as<Register>());
+
     case InstID::ZExt: {
       I->getOp(1)->setType(I->getOp(0)->getType());
       auto *newInst =
@@ -235,35 +246,35 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
 
     case InstID::ICmp: {
       uint64_t predicate = I->getOp(3)->as<LIRImm>()->getValue();
+      LIRValue *dest = I->getOp(0);
+      LIRValue *lhs = I->getOp(1);
+      LIRValue *rhs = I->getOp(2);
       switch (predicate) {
 
       case ICmpInst::EQ: {
         // a == b  -->   (a ^ b) == 0 --> (a ^ b) u< 1
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
-        auto last =
-            LIRInst::create(SLTIU, I->getOp(0), middle, LIRImm::create(1));
+        auto middle = builder.newVReg(lhs->getType());
+        builder.addInst(LIRInst::create(XOR, middle, lhs, rhs));
+        auto last = LIRInst::create(SLTIU, dest, middle, LIRImm::create(1));
         builder.addInst(last);
         return last;
       }
 
         // a != b  -->  (a ^ b) == 0  -->  (a ^ b) u> 0  -->  0 u< (a ^ b)
       case ICmpInst::NE: {
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        builder.addInst(LIRInst::create(XOR, middle, I->getOp(1), I->getOp(2)));
-        auto last =
-            LIRInst::create(SLTU, I->getOp(0), builder.phyReg(ZERO), middle);
+        auto middle = builder.newVReg(lhs->getType());
+        builder.addInst(LIRInst::create(XOR, middle, lhs, rhs));
+        auto last = LIRInst::create(SLTU, dest, builder.phyReg(ZERO), middle);
         builder.addInst(last);
         return last;
       }
 
         // a > b  -->  b < a
       case ICmpInst::SGT:
-        I->swap(1, 2);
+        std::swap(lhs, rhs);
         // fallthrough
       case ICmpInst::SLT: {
-        auto newInst =
-            LIRInst::create(SLT, I->getOp(0), I->getOp(1), I->getOp(2));
+        auto newInst = LIRInst::create(SLT, dest, lhs, rhs);
         builder.addInst(newInst);
         return newInst;
       }
@@ -271,14 +282,13 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
         // a <= b  -->  not(a > b) --> not(b < a)
         // a >= b  -->  not(a < b)
       case ICmpInst::SLE:
-        I->swap(1, 2);
+        std::swap(lhs, rhs);
         // fallthrough
       case ICmpInst::SGE: {
-        auto middle = builder.newVReg(I->getOp(0)->getType());
-        auto slt = LIRInst::create(SLT, middle, I->getOp(1), I->getOp(2));
+        auto middle = builder.newVReg(dest->getType());
+        auto slt = LIRInst::create(SLT, middle, lhs, rhs);
+        auto newInst = LIRInst::create(XORI, dest, middle, LIRImm::create(1));
         builder.addInst(slt);
-        auto newInst =
-            LIRInst::create(XORI, I->getOp(0), middle, LIRImm::create(1));
         builder.addInst(newInst);
         return newInst;
       }
@@ -355,6 +365,48 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     }
   }
   return nullptr;
+}
+
+LIRInst *ISel::expand(LIRBuilder &builder, LIRInst *I) {
+  switch (I->getOpcode()) {
+  case DIVW:
+    return expandSDiv(builder, I);
+  default:
+    return nullptr;
+  }
+  return nullptr;
+}
+
+LIRInst *ISel::expandSDiv(LIRBuilder &builder, LIRInst *I) {
+  LIRValueType type = I->getOp(2)->getType();
+
+  if (!I->getOp(2)->isConstant() || type != LIRValueType::i32)
+    return nullptr;
+
+  LIRValue *res = I->getOp(0);
+  LIRValue *divided = I->getOp(1);
+  LIRConst *divisor = I->getOp(2)->as<LIRConst>();
+  GInt power;
+
+  if (!genericGetPowerOfTwo(divisor->getIValue(), 32, power))
+    return nullptr;
+
+  auto *lessThanZero = builder.newVReg(type);
+  auto *select = builder.newVReg(type);
+  auto *added = builder.newVReg(type);
+
+  auto *slt = LIRInst::create(SRAIW, lessThanZero, divided, LIRImm::create(31));
+  auto *comp =
+      LIRInst::create(SRLIW, select, lessThanZero, LIRImm::create(32 - power));
+  auto *add = LIRInst::create(ADD, added, divided, select);
+  auto *div = LIRInst::create(SRAIW, res, added, LIRImm::create(power));
+
+  builder.addInst(slt);
+  builder.addInst(comp);
+  builder.addInst(add);
+  builder.addInst(div);
+
+  return div;
 }
 
 LIRInst *ISel::legalizeOperands(LIRBuilder &builder, LIRInst *I) {

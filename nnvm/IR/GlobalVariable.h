@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IR/Attributes.h"
 #include "IR/Constant.h"
 #include "IR/Value.h"
 
@@ -21,13 +22,17 @@ public:
   void setInnerType(Type *innerType) { this->innerType = innerType; }
   Type *getInnerType() { return innerType; }
 
-  void setImmutable(bool immutable) { this->immutable = immutable; }
-  bool isImmutable() const { return immutable; }
+  bool isAttached(Attribute attr) const { return attributes.count(attr); }
+  void attach(Attribute attr) { attributes.insert(attr); }
+  void removeAttr(Attribute attr) { attributes.erase(attr); }
+
+  Module &getModule() { return module; }
+  const Module &getModule() const { return module; }
 
 private:
   Constant *initVal;
   Type *innerType;
-  bool immutable;
+  AttributeSet attributes;
   Module &module;
 };
 

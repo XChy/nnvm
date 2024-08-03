@@ -9,15 +9,11 @@ b:
 .word 0x00000005
 .section .text
 main:
-  ADDI sp, sp, -272
+  ADDI sp, sp, -240
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
   ADDI a0, zero, 3
   CALL putint
   ADDI a0, zero, 3
@@ -31,85 +27,104 @@ main:
   ADDI a0, zero, 10
   CALL putch
   LA s0, c
-  ADDI s0, s0, 8
-  ADDI s1, zero, 1
-  SW s1, 0(s0)
-  ADDI s1, zero, 0
-  SW s1, 64(sp)
-  ADDI s1, sp, 68
-  ADDI s2, zero, 9
-  SW s2, 0(s1)
-  ADDI s1, sp, 72
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 76
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 80
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 84
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 88
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 92
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 96
-  ADDI s2, zero, 8
-  SW s2, 0(s1)
-  ADDI s1, sp, 100
-  ADDI s2, zero, 3
-  SW s2, 0(s1)
-  ADDI s1, sp, 104
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 108
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 112
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 116
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 120
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 124
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, zero, 0
-  XORI s1, s1, 1
-  BNE s1, zero, bb2
+  ADDI a0, zero, 1
+  SW a0, 8(s0)
+  ADDI a0, zero, 0
+  SW a0, 32(sp)
+  ADDI a0, zero, 9
+  SW a0, 36(sp)
+  ADDI a0, zero, 0
+  SW a0, 40(sp)
+  ADDI a0, zero, 0
+  SW a0, 44(sp)
+  ADDI a0, zero, 0
+  SW a0, 48(sp)
+  ADDI a0, zero, 0
+  SW a0, 52(sp)
+  ADDI a0, zero, 0
+  SW a0, 56(sp)
+  ADDI a0, zero, 0
+  SW a0, 60(sp)
+  ADDI a0, zero, 8
+  SW a0, 64(sp)
+  ADDI a0, zero, 3
+  SW a0, 68(sp)
+  ADDI a0, zero, 0
+  SW a0, 72(sp)
+  ADDI a0, zero, 0
+  SW a0, 76(sp)
+  ADDI a0, zero, 0
+  SW a0, 80(sp)
+  ADDI a0, zero, 0
+  SW a0, 84(sp)
+  ADDI a0, zero, 0
+  SW a0, 88(sp)
+  ADDI a0, zero, 0
+  SW a0, 92(sp)
+  ADDI a0, zero, 0
+  SW a0, 96(sp)
+  ADDI a0, zero, 0
+  SW a0, 100(sp)
+  ADDI a0, zero, 0
+  SW a0, 104(sp)
+  ADDI a0, zero, 0
+  SW a0, 108(sp)
+  ADDI a0, zero, 0
+  SW a0, 112(sp)
+  ADDI a0, zero, 0
+  SW a0, 116(sp)
+  ADDI a0, zero, 0
+  SW a0, 120(sp)
+  ADDI a0, zero, 0
+  SW a0, 124(sp)
+  ADDI a0, zero, 0
+  SW a0, 128(sp)
+  ADDI a0, zero, 0
+  SW a0, 132(sp)
+  ADDI a0, zero, 2
+  SW a0, 136(sp)
+  ADDI a0, zero, 1
+  SW a0, 140(sp)
+  ADDI a0, zero, 8
+  SW a0, 144(sp)
+  ADDI a0, zero, 22
   # implict jump to bb1
 bb1:
-  ADDI a0, zero, 10
-  CALL putch
-  LA s6, b
-  LW s6, 0(s6)
-  ADD a0, s6, zero
+  ADD s1, a0, zero
+  ADDI a0, zero, 1
+  SUBW s1, s1, a0
+  SLLIW a0, s1, 2
+  ADDIW a0, a0, 52
+  ADDI t5, sp, 96
+  ADD s2, t5, a0
+  ADDI a0, zero, 0
+  SW a0, 0(s2)
+  BNE s1, zero, bb3
+  # implict jump to bb2
+bb2:
+  LW a0, 136(sp)
+  CALL putint
+  LW a0, 140(sp)
+  CALL putint
+  LW a0, 144(sp)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA s6, c
-  LW s6, 0(s6)
-  ADD a0, s6, zero
+  LA a0, b
+  LW a0, 0(a0)
   CALL putint
-  LA s6, c
-  ADDI s6, s6, 4
-  LW s6, 0(s6)
-  ADD a0, s6, zero
+  ADDI a0, zero, 10
+  CALL putch
+  LA a0, c
+  LW a0, 0(a0)
   CALL putint
-  LW s6, 0(s0)
-  ADD a0, s6, zero
+  LA a0, c
+  LW a0, 4(a0)
   CALL putint
-  LA s6, c
-  ADDI s6, s6, 12
-  LW s6, 0(s6)
-  ADD a0, s6, zero
+  LW a0, 8(s0)
+  CALL putint
+  LA a0, c
+  LW a0, 12(a0)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -118,75 +133,8 @@ bb1:
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 272
+  ADDI sp, sp, 240
   JALR zero, 0(ra)
-bb2:
-  ADDI s1, zero, 0
-  SW s1, 128(sp)
-  ADDI s1, sp, 132
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 136
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 140
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 144
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 148
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 152
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 156
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 160
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 164
-  ADDI s2, zero, 0
-  SW s2, 0(s1)
-  ADDI s1, sp, 168
-  ADDI s2, zero, 2
-  SW s2, 0(s1)
-  ADDI s2, sp, 172
-  ADDI s3, zero, 1
-  SW s3, 0(s2)
-  ADDI s3, sp, 176
-  ADDI s4, zero, 8
-  SW s4, 0(s3)
-  ADDI s4, zero, 22
-  # implict jump to bb3
 bb3:
-  ADD s5, s4, zero
-  BNE s5, zero, bb5
-  # implict jump to bb4
-bb4:
-  LW s6, 0(s1)
-  ADD a0, s6, zero
-  CALL putint
-  LW s6, 0(s2)
-  ADD a0, s6, zero
-  CALL putint
-  LW s6, 0(s3)
-  ADD a0, s6, zero
-  CALL putint
+  ADD a0, s1, zero
   JAL zero, bb1
-bb5:
-  ADDI s6, zero, 1
-  SUBW s5, s5, s6
-  SLLIW s6, s5, 2
-  ADDIW s6, s6, 52
-  ADDI t5, sp, 128
-  ADD s6, t5, s6
-  SW zero, 0(s6)
-  ADD s4, s5, zero
-  JAL zero, bb3

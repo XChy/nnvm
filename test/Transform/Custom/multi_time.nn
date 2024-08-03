@@ -1,10 +1,10 @@
 i32 main() {
-entry:
+entry:  pred()
   call void _sysy_starttime(i32 2)
   call void _sysy_stoptime(i32 3)
   call void _sysy_starttime(i32 4)
   call void _sysy_stoptime(i32 5)
-  unreachable
+  ret i32 0
 }
 
 external void putfarray(i32 , ptr )

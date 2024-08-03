@@ -1,14 +1,20 @@
 #include "Opt.h"
+#include "Transform/BeforeCodegen/GlobalHoist.h"
 #include "Transform/IPO/GlobalAttributor.h"
+#include "Transform/IPO/GlobalVarOpt.h"
 #include "Transform/IPO/Inliner.h"
+#include "Transform/IPO/UselessFuncElim.h"
 #include "Transform/Infra/PassManager.h"
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
 #include "Transform/Scalar/Combiner.h"
-#include "Transform/Scalar/LICM.h"
+#include "Transform/Scalar/Loop/LICM.h"
+#include "Transform/Scalar/Loop/LoopCanon.h"
+#include "Transform/Scalar/Loop/Rotate.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
+#include "Transform/Scalar/TailElim.h"
 using namespace nnvm;
 
 void Optimizer::transform(Module *module) {
@@ -24,7 +30,9 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<SLPairElimPass>();
 
   // Inline, increasing codesize massively.
+  passManager.addFunctionPass<TailElimPass>();
   passManager.addModulePass<InlinerPass>();
+  passManager.addModulePass<UselessFuncElimPass>();
 
   // After inlining:
   passManager.addFunctionPass<CombinerPass>();
@@ -32,7 +40,20 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<MemPropPass>();
+
+  passManager.addModulePass<GlobalVarOptPass>();
+
   passManager.addFunctionPass<CSEPass>();
+  passManager.addFunctionPass<RotatePass>();
+  passManager.addFunctionPass<LoopCanonPass>();
   passManager.addFunctionPass<LICMPass>();
+
+  passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CSEPass>();
+  passManager.addFunctionPass<CFGCombinerPass>();
+
+  // Before codegen
+  // passManager.addFunctionPass<GlobalHoistPass>();
+
   passManager.run(*module);
 }

@@ -90,8 +90,7 @@ bool Instruction::haveSideEffect() const {
 }
 
 bool Instruction::moveable() const {
-  return !(mayWriteToMemory() || mayReadMemory() || isa<TerminatorInst>() ||
-           isa<PhiInst>());
+  return !(mayWriteToMemory() || isa<TerminatorInst>() || isa<PhiInst>());
 }
 
 std::string Instruction::dump() {
@@ -151,6 +150,10 @@ std::string Instruction::dump() {
       ret += "fneg ";
       ret += getOperand(0)->dumpAsOperand();
       break;
+    case InstID::Pin:
+      ret += "pin ";
+      ret += getOperand(0)->dumpAsOperand();
+      break;
     case InstID::Call:
       ret += "call ";
       ret += getOperand(0)->dumpAsOperand();
@@ -181,8 +184,9 @@ void Instruction::moveTo(BasicBlock *otherBB) {
 }
 
 Instruction::~Instruction() {
-  for (Use *use : useeList)
+  for (Use *use : useeList) {
     delete use;
+  }
 }
 
 StackInst::StackInst(Module &module)
@@ -262,6 +266,10 @@ CallInst::CallInst(Function *callee)
   // TODO: maintain arguments?
 }
 
+Function *CallInst::getFuncCallee() const {
+  return cast<Function>(getCallee());
+}
+
 void CallInst::setArguments(const std::vector<Value *> &args) {
   std::vector<Value *> operands = {getCallee()};
   operands.reserve(args.size() + 1);
@@ -316,4 +324,11 @@ Value *PhiInst::getIncomingValueOf(BasicBlock *incoming) const {
     if (getOperand(i) == incoming)
       return getOperand(i + 1);
   return nullptr;
+}
+
+std::vector<BasicBlock *> PhiInst::getAllIncomingBBs() const {
+  std::vector<BasicBlock *> ret;
+  for (uint64_t i = 0; i < getIncomingNum(); i++)
+    ret.push_back(getIncomingBB(i));
+  return ret;
 }

@@ -1,5 +1,6 @@
 #include "ConstantFold.h"
 #include "ADT/GenericInt.h"
+#include "IR/Attributes.h"
 #include "IR/Constant.h"
 #include "IR/Instruction.h"
 #include "Utils/Cast.h"
@@ -150,13 +151,57 @@ Value *ConstantFold::foldICmp(ICmpInst *I) {
   }
 }
 
-Value *ConstantFold::foldLoad(LoadInst *I) {
-  if (GlobalVariable *GV = mayCast<GlobalVariable>(I->getSrc())) {
-    if (!GV->isImmutable())
+static inline Value *foldLoadFromConstPtr(Type *loadedType, GlobalVariable *GV,
+                                          GInt offset) {
+  if (!GV->isAttached(Attribute::Immutable))
+    return nullptr;
+
+  auto loadedBytes = loadedType->getStoredBytes();
+  Constant *initVal = GV->getInitVal();
+
+  if (initVal->getType()->isArray()) {
+
+    if (initVal->getType()->getContainedTy() != loadedType)
       return nullptr;
-    if (I->getType() == GV->getInitVal()->getType())
-      return GV->getInitVal();
+
+    if (offset % loadedBytes != 0)
+      return nullptr;
+
+    if (auto *CA = mayCast<ConstantArray>(initVal))
+      return CA->getValue()[offset / loadedBytes];
+
+    if (auto *ZERO = mayCast<ConstantAllZeros>(initVal)) {
+      if (loadedType->isInteger())
+        return ConstantInt::create(GV->getModule(), loadedType, 0);
+      if (loadedType->isFloat())
+        return ConstantFloat::create(GV->getModule(), 0);
+    }
+
+  } else {
+    if (initVal->getType() != loadedType || offset != 0)
+      return nullptr;
+    return GV->getInitVal();
   }
+
+  return nullptr;
+}
+
+Value *ConstantFold::foldLoad(LoadInst *I) {
+  Type *loadedType = I->getType();
+
+  if (GlobalVariable *GV = mayCast<GlobalVariable>(I->getSrc()))
+    return foldLoadFromConstPtr(loadedType, GV, 0);
+
+  // fold arr[offset] .iff arr is immutable and the offset is constant.
+  if (auto *ptradd = mayCast<PtrAddInst>(I->getSrc())) {
+    GlobalVariable *GV = mayCast<GlobalVariable>(ptradd->getLHS());
+    ConstantInt *offset = mayCast<ConstantInt>(ptradd->getRHS());
+
+    if (!GV || !offset)
+      return nullptr;
+    return foldLoadFromConstPtr(loadedType, GV, offset->getValue());
+  }
+
   return nullptr;
 }
 

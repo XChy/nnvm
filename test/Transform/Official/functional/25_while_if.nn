@@ -9,72 +9,37 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry37:
-  br bb %deepWhileBr.while.cond
-deepWhileBr.while.cond:
-  e.phi5157 = phi [bb %entry37, i32 ub, bb %deepWhileBr.if.exit, i32 %e.phi5071]
-  c.phi4758 = phi [bb %entry37, i32 4, bb %deepWhileBr.if.exit, i32 %c.phi4672]
-  1359 = icmp slt i32 %c.phi4758, i32 75
-  br i1 %1359, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
-deepWhileBr.while.body:
-  1762 = icmp slt i32 %c.phi4758, i32 100
-  br i1 %1762, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
-deepWhileBr.while.exit:
-  call void putint(i32 %c.phi4758)
+entry42:  pred()
+  br bb %deepWhileBr.while.body
+deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
+  c.phi5465106 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379, bb %entry42, i32 4]
+  e.phi5864105 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5778, bb %entry42, i32 0]
+  1969 = icmp slt i32 %c.phi5465106, i32 100
+  br i1 %1969, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
+  104 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379]
+  call void putint(i32 %104)
   ret i32 0
-deepWhileBr.then:
-  2267 = add i32 %c.phi4758, i32 42
-  2468 = icmp sgt i32 %2267, i32 99
-  br i1 %2468, bb %deepWhileBr.then25, bb %deepWhileBr.if.exit26
-deepWhileBr.if.exit:
-  e.phi5071 = phi [bb %deepWhileBr.while.body, i32 %e.phi5157, bb %deepWhileBr.if.exit26, i32 %e.phi79]
-  c.phi4672 = phi [bb %deepWhileBr.while.body, i32 %c.phi4758, bb %deepWhileBr.if.exit26, i32 %c.phi4580]
-  br bb %deepWhileBr.while.cond
-deepWhileBr.then25:
-  br bb %deepWhileBr.if.exit33
-deepWhileBr.if.exit26:
-  e.phi79 = phi [bb %deepWhileBr.then, i32 %e.phi5157, bb %deepWhileBr.if.exit33, i32 84]
-  c.phi4580 = phi [bb %deepWhileBr.then, i32 %2267, bb %deepWhileBr.if.exit33, i32 168]
+deepWhileBr.then:  pred(deepWhileBr.while.body)
+  2574 = add i32 %c.phi5465106, i32 42
+  2775 = icmp sgt i32 %2574, i32 99
+  br i1 %2775, bb %deepWhileBr.then28, bb %deepWhileBr.if.exit29
+deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit29)
+  e.phi5778 = phi [bb %deepWhileBr.while.body, i32 %e.phi5864105, bb %deepWhileBr.if.exit29, i32 %e.phi86]
+  c.phi5379 = phi [bb %deepWhileBr.while.body, i32 %c.phi5465106, bb %deepWhileBr.if.exit29, i32 %c.phi5287]
+  1466 = icmp slt i32 %c.phi5379, i32 75
+  br i1 %1466, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+deepWhileBr.then28:  pred(deepWhileBr.then)
+  br bb %deepWhileBr.if.exit29
+deepWhileBr.if.exit29:  pred(deepWhileBr.then, deepWhileBr.then28)
+  e.phi86 = phi [bb %deepWhileBr.then, i32 %e.phi5864105, bb %deepWhileBr.then28, i32 84]
+  c.phi5287 = phi [bb %deepWhileBr.then, i32 %2574, bb %deepWhileBr.then28, i32 168]
   br bb %deepWhileBr.if.exit
-deepWhileBr.if.exit33:
-  br bb %deepWhileBr.if.exit26
 }
 
 external float getfloat()
 
 external void putfloat(float )
-
-pure i32 deepWhileBr(i32 a, i32 b) {
-entry2:
-  8 = add i32 %a, i32 %b
-  br bb %while.cond
-while.cond:
-  e.phi51 = phi [bb %entry2, i32 ub, bb %if.exit, i32 %e.phi50]
-  c.phi47 = phi [bb %entry2, i32 %8, bb %if.exit, i32 %c.phi46]
-  13 = icmp slt i32 %c.phi47, i32 75
-  br i1 %13, bb %while.body, bb %while.exit
-while.body:
-  17 = icmp slt i32 %c.phi47, i32 100
-  br i1 %17, bb %then, bb %if.exit
-while.exit:
-  ret i32 %c.phi47
-then:
-  22 = add i32 %c.phi47, i32 42
-  24 = icmp sgt i32 %22, i32 99
-  br i1 %24, bb %then25, bb %if.exit26
-if.exit:
-  e.phi50 = phi [bb %while.body, i32 %e.phi51, bb %if.exit26, i32 %e.phi]
-  c.phi46 = phi [bb %while.body, i32 %c.phi47, bb %if.exit26, i32 %c.phi45]
-  br bb %while.cond
-then25:
-  br bb %if.exit33
-if.exit26:
-  e.phi = phi [bb %then, i32 %e.phi51, bb %if.exit33, i32 84]
-  c.phi45 = phi [bb %then, i32 %22, bb %if.exit33, i32 168]
-  br bb %if.exit
-if.exit33:
-  br bb %if.exit26
-}
 
 external void putch(i32 )
 
@@ -83,11 +48,6 @@ external void _sysy_stoptime(i32 )
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-pure i32 get_one(i32 a) {
-entry:
-  ret i32 1
-}
 
 external void putfarray(i32 , ptr )
 

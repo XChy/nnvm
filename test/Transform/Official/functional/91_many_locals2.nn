@@ -1,16 +1,18 @@
 global ptr n init with i32 0
 i32 main() {
-entry:
-  32 = call i32 getint()
-  br bb %while.cond
-while.cond:
-  b.phi = phi [bb %entry, i32 %32, bb %while.body, i32 %40]
-  37 = icmp eq i32 %b.phi, i32 5
-  br i1 %37, bb %while.body, bb %while.exit
-while.body:
-  40 = add i32 %b.phi, i32 1
-  br bb %while.cond
-while.exit:
+entry:  pred()
+  33 = call i32 getint()
+  38202 = icmp eq i32 %33, i32 5
+  br i1 %38202, bb %while.body_preheader, bb %while.exit
+while.body_preheader:  pred(entry)
+  br bb %while.body
+while.body:  pred(while.body, while.body_preheader)
+  b.phi204 = phi [bb %while.body, i32 %42, bb %while.body_preheader, i32 %33]
+  42 = add i32 %b.phi204, i32 1
+  38 = icmp eq i32 %42, i32 5
+  br i1 %38, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, entry)
+  33203 = phi [bb %while.body, i32 %42, bb %entry, i32 %33]
   call void putint(i32 0)
   call void putint(i32 1)
   call void putint(i32 2)
@@ -42,7 +44,7 @@ while.exit:
   call void putint(i32 28)
   call void putint(i32 29)
   call void putch(i32 10)
-  call void putint(i32 %b.phi)
+  call void putint(i32 %33203)
   call void putch(i32 10)
   ret i32 25
 }

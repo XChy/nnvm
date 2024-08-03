@@ -5,25 +5,22 @@
 main:
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SLTU s0, zero, zero
-  XORI s0, s0, 1
-  SLTU s0, zero, s0
-  XORI s0, s0, 1
-  SUBW s0, zero, s0
-  BNE s0, zero, bb3
+  SLTU a0, zero, zero
+  XORI a0, a0, 1
+  SLTU a0, zero, a0
+  XORI a0, a0, 1
+  SUBW a0, zero, a0
+  BNE a0, zero, bb3
   # implict jump to bb1
 bb1:
-  ADDI s0, zero, 4
+  ADDI a0, zero, 4
   # implict jump to bb2
 bb2:
-  ADD a0, s0, zero
   CALL putint
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:
-  ADDI s0, zero, -1
+  ADDI a0, zero, -1
   JAL zero, bb2

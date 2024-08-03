@@ -1,25 +1,5 @@
-global ptr a init with 4096 x i32 zeros
+internal global ptr a init with 4096 x i32 zeros
 external i32 getint()
-
-i32 f1(ptr b) {
-entry:
-  2 = ptradd ptr @a, i32 20
-  store i32 4000 to ptr %2
-  4 = ptradd ptr @a, i32 16000
-  store i32 3 to ptr %4
-  6 = ptradd ptr @a, i32 16380
-  store i32 7 to ptr %6
-  11 = ptradd ptr %b, i32 28
-  13 = ptradd ptr @a, i32 8864
-  13.load = load i32 from ptr %13
-  15 = add i32 %13.load, i32 9
-  store i32 %15 to ptr %11
-  17.load = load i32 from ptr %2
-  108 = shl i32 %17.load, i32 2
-  20 = ptradd ptr @a, i32 %108
-  20.load = load i32 from ptr %20
-  ret i32 %20.load
-}
 
 external i32 getch()
 
@@ -30,116 +10,103 @@ external i32 getarray(ptr )
 external i32 getfarray(ptr )
 
 i32 main() {
-entry22:
+entry26:  pred()
   %c = stack 16384
   %b = stack 16384
-  br bb %init.cond
-init.cond:
-  cnt_ptr.phi = phi [bb %entry22, i32 1024, bb %init, i32 %cnt.dec]
-  29 = icmp ne i32 %cnt_ptr.phi, i32 0
-  br i1 %29, bb %init, bb %init.exit
-init:
-  cnt.dec = sub i32 %cnt_ptr.phi, i32 1
-  109 = shl i32 %cnt.dec, i32 2
-  arr.index34 = ptradd ptr %b, i32 %109
-  store i32 0 to ptr %arr.index34
-  br bb %init.cond
-init.exit:
-  arr.index35 = ptradd ptr %b, i32 4096
-  store i32 1 to ptr %arr.index35
-  br bb %init.cond36
-init.cond36:
-  cnt_ptr39.phi = phi [bb %init.exit, i32 1023, bb %init37, i32 %cnt.dec43]
-  41 = icmp ne i32 %cnt_ptr39.phi, i32 0
-  br i1 %41, bb %init37, bb %init.exit38
-init37:
-  cnt.dec43 = sub i32 %cnt_ptr39.phi, i32 1
-  111 = shl i32 %cnt.dec43, i32 2
-  112 = add i32 %111, i32 4100
-  arr.index46 = ptradd ptr %b, ptr %112
-  store i32 0 to ptr %arr.index46
-  br bb %init.cond36
-init.exit38:
-  arr.index47 = ptradd ptr %b, i32 8192
-  store i32 2 to ptr %arr.index47
-  arr.index48 = ptradd ptr %b, i32 8196
-  store i32 3 to ptr %arr.index48
-  br bb %init.cond49
-init.cond49:
-  cnt_ptr52.phi = phi [bb %init.exit38, i32 1022, bb %init50, i32 %cnt.dec56]
-  54 = icmp ne i32 %cnt_ptr52.phi, i32 0
-  br i1 %54, bb %init50, bb %init.exit51
-init50:
-  cnt.dec56 = sub i32 %cnt_ptr52.phi, i32 1
-  113 = shl i32 %cnt.dec56, i32 2
-  114 = add i32 %113, i32 8200
-  arr.index59 = ptradd ptr %b, ptr %114
-  store i32 0 to ptr %arr.index59
-  br bb %init.cond49
-init.exit51:
-  arr.index60 = ptradd ptr %b, i32 12288
-  store i32 4 to ptr %arr.index60
-  arr.index61 = ptradd ptr %b, i32 12292
-  store i32 5 to ptr %arr.index61
-  arr.index62 = ptradd ptr %b, i32 12296
-  store i32 6 to ptr %arr.index62
-  br bb %init.cond63
-init.cond63:
-  cnt_ptr66.phi = phi [bb %init.exit51, i32 1021, bb %init64, i32 %cnt.dec70]
-  68 = icmp ne i32 %cnt_ptr66.phi, i32 0
-  br i1 %68, bb %init64, bb %init.exit65
-init64:
-  cnt.dec70 = sub i32 %cnt_ptr66.phi, i32 1
-  115 = shl i32 %cnt.dec70, i32 2
-  116 = add i32 %115, i32 12300
-  arr.index73 = ptradd ptr %b, ptr %116
-  store i32 0 to ptr %arr.index73
-  br bb %init.cond63
-init.exit65:
-  store i32 1 to ptr %c
-  arr.index76 = ptradd ptr %c, i32 4
-  store i32 2 to ptr %arr.index76
-  arr.index77 = ptradd ptr %c, i32 8
+  br bb %init
+init:  pred(init, entry26)
+  cnt_ptr.phi154 = phi [bb %init, i32 %cnt.dec, bb %entry26, i32 1024]
+  cnt.dec = sub i32 %cnt_ptr.phi154, i32 1
+  113 = shl i32 %cnt.dec, i32 2
+  arr.index38 = ptradd ptr %b, i32 %113
+  store i32 0 to ptr %arr.index38
+  33 = icmp ne i32 %cnt.dec, i32 0
+  br i1 %33, bb %init, bb %init.exit
+init.exit:  pred(init)
+  arr.index39 = ptradd ptr %b, i32 4096
+  store i32 1 to ptr %arr.index39
+  br bb %init41
+init41:  pred(init41, init.exit)
+  cnt_ptr43.phi152 = phi [bb %init41, i32 %cnt.dec47, bb %init.exit, i32 1023]
+  cnt.dec47 = sub i32 %cnt_ptr43.phi152, i32 1
+  115 = shl i32 %cnt.dec47, i32 2
+  116 = add i32 %115, i32 4100
+  arr.index50 = ptradd ptr %b, ptr %116
+  store i32 0 to ptr %arr.index50
+  45 = icmp ne i32 %cnt.dec47, i32 0
+  br i1 %45, bb %init41, bb %init.exit42
+init.exit42:  pred(init41)
+  arr.index51 = ptradd ptr %b, i32 8192
+  store i32 2 to ptr %arr.index51
+  arr.index52 = ptradd ptr %b, i32 8196
+  store i32 3 to ptr %arr.index52
+  br bb %init54
+init54:  pred(init54, init.exit42)
+  cnt_ptr56.phi150 = phi [bb %init54, i32 %cnt.dec60, bb %init.exit42, i32 1022]
+  cnt.dec60 = sub i32 %cnt_ptr56.phi150, i32 1
+  117 = shl i32 %cnt.dec60, i32 2
+  118 = add i32 %117, i32 8200
+  arr.index63 = ptradd ptr %b, ptr %118
+  store i32 0 to ptr %arr.index63
+  58 = icmp ne i32 %cnt.dec60, i32 0
+  br i1 %58, bb %init54, bb %init.exit55
+init.exit55:  pred(init54)
+  arr.index64 = ptradd ptr %b, i32 12288
+  store i32 4 to ptr %arr.index64
+  arr.index65 = ptradd ptr %b, i32 12292
+  store i32 5 to ptr %arr.index65
+  arr.index66 = ptradd ptr %b, i32 12296
+  store i32 6 to ptr %arr.index66
+  br bb %init68
+init68:  pred(init68, init.exit55)
+  cnt_ptr70.phi148 = phi [bb %init68, i32 %cnt.dec74, bb %init.exit55, i32 1021]
+  cnt.dec74 = sub i32 %cnt_ptr70.phi148, i32 1
+  119 = shl i32 %cnt.dec74, i32 2
+  120 = add i32 %119, i32 12300
+  arr.index77 = ptradd ptr %b, ptr %120
   store i32 0 to ptr %arr.index77
-  arr.index78 = ptradd ptr %c, i32 12
-  store i32 0 to ptr %arr.index78
-  arr.index79 = ptradd ptr %c, i32 16
-  store i32 3 to ptr %arr.index79
-  arr.index80 = ptradd ptr %c, i32 20
-  store i32 4 to ptr %arr.index80
-  br bb %init.cond81
-init.cond81:
-  cnt_ptr84.phi = phi [bb %init.exit65, i32 4090, bb %init82, i32 %cnt.dec88]
-  86 = icmp ne i32 %cnt_ptr84.phi, i32 0
-  br i1 %86, bb %init82, bb %init.exit83
-init82:
-  cnt.dec88 = sub i32 %cnt_ptr84.phi, i32 1
-  117 = shl i32 %cnt.dec88, i32 2
-  118 = add i32 %117, i32 24
-  arr.index91 = ptradd ptr %c, ptr %118
-  store i32 0 to ptr %arr.index91
-  br bb %init.cond81
-init.exit83:
-  2123 = ptradd ptr @a, i32 20
-  store i32 4000 to ptr %2123
-  4125 = ptradd ptr @a, i32 16000
-  store i32 3 to ptr %4125
-  6127 = ptradd ptr @a, i32 16380
-  store i32 7 to ptr %6127
-  11130 = ptradd ptr %c, i32 28
-  13131 = ptradd ptr @a, i32 8864
-  13.load132 = load i32 from ptr %13131
-  15133 = add i32 %13.load132, i32 9
-  store i32 %15133 to ptr %11130
-  17.load135 = load i32 from ptr %2123
-  108136 = shl i32 %17.load135, i32 2
-  20137 = ptradd ptr @a, i32 %108136
-  20.load138 = load i32 from ptr %20137
-  call void putint(i32 %20.load138)
+  72 = icmp ne i32 %cnt.dec74, i32 0
+  br i1 %72, bb %init68, bb %init.exit69
+init.exit69:  pred(init68)
+  store i32 1 to ptr %c
+  arr.index80 = ptradd ptr %c, i32 4
+  store i32 2 to ptr %arr.index80
+  arr.index81 = ptradd ptr %c, i32 8
+  store i32 0 to ptr %arr.index81
+  arr.index82 = ptradd ptr %c, i32 12
+  store i32 0 to ptr %arr.index82
+  arr.index83 = ptradd ptr %c, i32 16
+  store i32 3 to ptr %arr.index83
+  arr.index84 = ptradd ptr %c, i32 20
+  store i32 4 to ptr %arr.index84
+  br bb %init86
+init86:  pred(init86, init.exit69)
+  cnt_ptr88.phi146 = phi [bb %init86, i32 %cnt.dec92, bb %init.exit69, i32 4090]
+  cnt.dec92 = sub i32 %cnt_ptr88.phi146, i32 1
+  121 = shl i32 %cnt.dec92, i32 2
+  122 = add i32 %121, i32 24
+  arr.index95 = ptradd ptr %c, ptr %122
+  store i32 0 to ptr %arr.index95
+  90 = icmp ne i32 %cnt.dec92, i32 0
+  br i1 %90, bb %init86, bb %init.exit87
+init.exit87:  pred(init86)
+  2127 = ptradd ptr @a, i32 20
+  store i32 4000 to ptr %2127
+  5129 = ptradd ptr @a, i32 16000
+  store i32 3 to ptr %5129
+  8131 = ptradd ptr @a, i32 16380
+  store i32 7 to ptr %8131
+  14134 = ptradd ptr %c, i32 28
+  17135 = ptradd ptr @a, i32 8864
+  17.load136 = load i32 from ptr %17135
+  19137 = add i32 %17.load136, i32 9
+  store i32 %19137 to ptr %14134
+  24.load142 = load i32 from ptr %5129
+  call void putint(i32 %24.load142)
   call void putch(i32 10)
-  120 = ptradd ptr %c, i32 32
-  100.load = load i32 from ptr %120
-  ret i32 %100.load
+  124 = ptradd ptr %c, i32 32
+  104.load = load i32 from ptr %124
+  ret i32 %104.load
 }
 
 external float getfloat()

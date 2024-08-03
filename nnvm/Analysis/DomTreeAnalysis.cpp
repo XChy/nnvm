@@ -1,3 +1,4 @@
+#include "Utils/Debug.h"
 #include <ADT/Graph.h>
 #include <Analysis/DomTreeAnalysis.h>
 #include <IR/Function.h>
@@ -10,11 +11,11 @@ bool DomTreeAnalysis::run(Function &F) {
   std::vector<int32_t> idom;
 
   GraphVisitor::dfsWithParent(graph, F.getEntry(),
-                             [&](BasicBlock *bb, BasicBlock *parent) {
-                               dfn[bb] = preorderBBs.size();
-                               parentDFN.push_back(parent ? dfn[parent] : -1);
-                               preorderBBs.push_back(bb);
-                             });
+                              [&](BasicBlock *bb, BasicBlock *parent) {
+                                dfn[bb] = preorderBBs.size();
+                                parentDFN.push_back(parent ? dfn[parent] : -1);
+                                preorderBBs.push_back(bb);
+                              });
   sdom.resize(preorderBBs.size());
 
   // Reversed preorder traversal, compute the sdom of each node.
@@ -61,6 +62,10 @@ bool DomTreeAnalysis::run(Function &F) {
   }
 
   return true;
+}
+
+BasicBlock *DomTreeAnalysis::getCommonDom(BasicBlock *left, BasicBlock *right) {
+  nnvm_unimpl();
 }
 
 void DomTreeAnalysis::print(std::ostream &out) {

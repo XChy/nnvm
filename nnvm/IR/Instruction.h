@@ -80,6 +80,7 @@ enum class InstID : uint64_t {
   // Other
   OTHER_BEGIN,
   FNeg,
+  Pin,
   Call,
   Phi,
   OTHER_END,
@@ -103,6 +104,14 @@ public:
   void addOperand(Value *operand);
   Value *getOperand(uint no) const;
   uint getOperandNum() const { return useeList.size(); }
+
+  template <typename Mapper> void replaceOps(Mapper mapper) {
+    for (Use *use : useeList) {
+      Value *mapped = mapper(use->getUsee());
+      if (mapped)
+        use->set(mapped);
+    }
+  }
 
   InstID getOpcode() const { return instID; }
   std::string getOpName() const;
@@ -131,6 +140,9 @@ public:
     useeList.clear();
     ListTrait<Instruction>::eraseFromList();
   }
+
+  std::vector<Use *> &getUseeList() { return useeList; }
+  const std::vector<Use *> &getUseeList() const { return useeList; }
 
   void moveTo(BasicBlock *otherBB);
 
@@ -421,7 +433,7 @@ public:
   }
   BranchInst(Value *cond, BasicBlock *trueSucc, BasicBlock *falseSucc)
       : BranchInst(true) {
-    assert(cond->getType()->isIntegerNBits(1));
+    // assert(cond->getType()->isIntegerNBits(1));
     setOperand(0, cond);
     setSucc(0, trueSucc);
     setSucc(1, falseSucc);
@@ -458,7 +470,8 @@ public:
   CallInst(Function *callee);
 
   void setCallee(Value *callee) { setOperand(0, callee); }
-  Value *getCallee() { return getOperand(0); }
+  Value *getCallee() const { return getOperand(0); }
+  Function *getFuncCallee() const;
   void setArguments(const std::vector<Value *> &args);
   Value *getArg(uint i) { return getOperand(i + 1); }
   uint getArgNum() { return getOperandNum() - 1; }
@@ -487,6 +500,17 @@ public:
   }
 };
 
+class PinInst : public Instruction {
+public:
+  PinInst(Value *operand)
+      : Instruction(InstID::Pin, {operand}, operand->getType()) {}
+
+  Instruction *copy() override {
+    auto *ret = new PinInst(getOperand(0));
+    return ret;
+  }
+};
+
 // operands: [incomingBB1, incomingValue1, ..., incomingBBn, incomingValuen]
 class PhiInst : public Instruction {
 public:
@@ -505,6 +529,8 @@ public:
   Value *getIncomingValue(uint64_t index) const {
     return getOperand(2 * index + 1);
   }
+
+  std::vector<BasicBlock *> getAllIncomingBBs() const;
 
   Value *getIncomingValueOf(BasicBlock *incoming) const;
 

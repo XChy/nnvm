@@ -1,6 +1,7 @@
 #include "BasicBlock.h"
 #include "IR/Function.h"
 #include "IR/Module.h"
+#include "Utils/Collection.h"
 #include <Utils/Debug.h>
 #include <cassert>
 
@@ -35,7 +36,14 @@ bool BasicBlock::isPredecessorOf(BasicBlock *other) {
 
 std::string BasicBlock::dump() {
   std::string ret;
-  ret += (getName() + ":\n");
+  std::vector<std::string> preds;
+
+  for (auto *pred : getPredRange()) {
+    preds.push_back(pred->getName());
+  }
+
+  ret += (getName() + ":  pred(" + join(preds.begin(), preds.end(), ", ") +
+          ")" + "\n");
   for (Instruction *I : instList)
     ret += "  " + I->dump();
   return ret;

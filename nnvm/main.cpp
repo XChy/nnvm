@@ -7,6 +7,7 @@
 #include "Frontend/IRGenerator.h"
 #include "Frontend/SysYLexer.h"
 #include "Frontend/SysYParser.h"
+#include "IR/Verifier/IRVerifier.h"
 #include "Transform/Opt.h"
 #include "Utils/Debug.h"
 #include "atn/ATNSimulator.h"
@@ -22,15 +23,17 @@
 using namespace nnvm;
 using std::string;
 
-static string sourceFile;
-static string outputFile;
+namespace nnvm {
+string sourceFile;
+string outputFile;
 
-static string backendType = "riscv";
+string backendType = "riscv";
 
-static bool dumpIR;
-static bool dumpIRAfterOpt;
-static bool dumpAssembly;
-static int optimizationLevel;
+bool dumpIR;
+bool dumpIRAfterOpt;
+bool dumpAssembly;
+extern int optimizationLevel;
+} // namespace nnvm
 
 void parseArgs(int argc, char **argv) {
   static struct option options[] = {
@@ -123,6 +126,9 @@ int main(int argc, char **argv) {
     if (dumpIRAfterOpt)
       std::cout << ir.dump() << "\n";
   }
+
+  IRVerifier verifier;
+  verifier.run(ir);
 
   if (backendType == "riscv")
     backend = std::make_unique<riscv::RISCVBackend>();

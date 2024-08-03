@@ -7,11 +7,17 @@
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/Optimization/Peephole.h"
 #include "Backend/RISCV/Optimization/SSAPeephole.h"
+#include "Backend/RISCV/RA/GraphColoringRA.h"
 #include "Backend/RISCV/RA/LinearScanRA.h"
+#include "Backend/RISCV/Scheduler.h"
 #include "Backend/RISCV/StackAllocator.h"
 #include <algorithm>
 
 using namespace nnvm::riscv;
+
+namespace nnvm {
+int optimizationLevel;
+} // namespace nnvm
 
 void RISCVBackend::emit(Module &ir, std::ostream &out) {
   // Add global symbols
@@ -35,10 +41,18 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
     if (!lowFunc->isExternal)
       SSAPeephole().run(*lowFunc);
 
-  // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)
     if (!lowFunc->isExternal)
-      LinearScanRA().allocate(*lowFunc);
+      Scheduler().schedule(*lowFunc);
+
+  // Replace virtual registers with physical ones or spill to stackslots.
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal) {
+      if (optimizationLevel == 0)
+        LinearScanRA().allocate(*lowFunc);
+      else
+        GraphColoringRA().allocate(*lowFunc);
+    }
 
   // Guarantee no virtual register.
   assert(std::all_of(lowModule.virRegisters.begin(),

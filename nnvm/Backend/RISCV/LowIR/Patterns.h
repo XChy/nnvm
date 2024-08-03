@@ -79,6 +79,8 @@ private:
 
 class pImm : public pOperand {
 public:
+  pImm() : pOperand() {}
+  pImm(LIRImm *&v) : pOperand((LIRValue *&)v) {}
   bool match(LIRValue *imm) {
     if (imm->isImm())
       return pOperand::match(imm);
@@ -157,6 +159,43 @@ public:
 
 private:
   LIRInstID type;
+};
+
+static inline bool isLoadOrStore(const LIRInst *inst) {
+  switch (inst->getOpcode()) {
+  case SB:
+  case SH:
+  case SW:
+  case SD:
+  case LB:
+  case LH:
+  case LW:
+  case LD:
+  case FLW:
+  case FSW:
+  case FLD:
+  case FSD:
+    return true;
+  default:
+    return false;
+  }
+}
+
+template <typename SubPattern1, typename SubPattern2, typename SubPattern3>
+class pLoadOrStore : public pInst {
+public:
+  pLoadOrStore(SubPattern1 sub1, SubPattern2 sub2, SubPattern3 sub3)
+      : sub1(sub1), sub2(sub2), sub3(sub3) {}
+  bool match(const LIRInst *inst) {
+    return isLoadOrStore(inst) && pInst::match(inst) &&
+           sub1.match(inst->getOp(0)) && sub2.match(inst->getOp(1)) &&
+           sub3.match(inst->getOp(2));
+  }
+
+private:
+  SubPattern1 sub1;
+  SubPattern2 sub2;
+  SubPattern3 sub3;
 };
 
 class pRet : public pInstWithType {
