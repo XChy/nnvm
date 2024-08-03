@@ -12,11 +12,11 @@
 
 using namespace nnvm::riscv;
 
-static bool isSameClass(const Register *a, const Register *b) {
+static bool isSameClass(Register const *a, Register const *b) {
   return !(a->isFP() ^ b->isFP());
 }
 
-void filter(std::set<Register *> &c, Register *classReg) {
+static void filter(std::set<Register *> &c, Register const *classReg) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
     if (!isSameClass(*first, classReg))
       first = c.erase(first);
@@ -25,9 +25,9 @@ void filter(std::set<Register *> &c, Register *classReg) {
   }
 }
 
-GraphColoringRAImpl::GraphColoringRAImpl(const std::vector<Register *> &regs,
+GraphColoringRAImpl::GraphColoringRAImpl(std::vector<Register *> const &regs,
                                          Register *classReg)
-    : freeRegs(regs), classReg(classReg), K(regs.size()) {
+    : freeRegs(regs), classReg(classReg), numRegs(regs.size()) {
 
   std::sort(freeRegs.begin(), freeRegs.end(), [](Register *A, Register *B) {
     if (A->isCalleeSaved() == B->isCalleeSaved())
@@ -46,7 +46,7 @@ GraphColoringRAImpl::GraphColoringRAImpl(const std::vector<Register *> &regs,
  * Construct the interference graph, categorize each node as either move-related
  * or non-move-related.
  */
-void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
+void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
   auto liveOutRegs = la.getLiveOut();
 
   for (auto *bb : func) {
@@ -55,9 +55,11 @@ void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
 
     filter(liveRegs, classReg);
 
-    for (Register *liveRegA : liveRegs)
-      for (Register *liveRegB : liveRegs)
+    for (Register *liveRegA : liveRegs) {
+      for (Register *liveRegB : liveRegs) {
         addEdge(liveRegA, liveRegB);
+      }
+    }
 
     // visit instructions in reverse order
     for (auto it = bb->end(); it != bb->begin(); it--) {
@@ -71,9 +73,9 @@ void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
       realOps.insert(uses.begin(), uses.end());
 
       for (auto reg : realOps) {
-        if (initial.count(reg) || precolored.count(reg))
+        if (initial.count(reg) || precolored.count(reg)) {
           continue;
-
+        }
         if (reg->isVReg()) {
           initial.insert(reg);
         } else if (reg->isPReg()) {
@@ -95,17 +97,19 @@ void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
       }
 
       // liveRegs = (liveRegs - defs) + uses
-      for (auto def : defs)
+      for (auto def : defs) {
         liveRegs.erase(def);
+      }
       liveRegs.insert(uses.begin(), uses.end());
 
-      for (Register *liveRegA : uses)
-        for (Register *liveRegB : uses)
+      for (Register *liveRegA : uses) {
+        for (Register *liveRegB : uses) {
           addEdge(liveRegA, liveRegB);
-
-      for (Register *liveRegA : uses)
-        for (Register *liveRegB : liveRegs)
+        }
+        for (Register *liveRegB : liveRegs) {
           addEdge(liveRegA, liveRegB);
+        }
+      }
     }
   }
 }
@@ -114,10 +118,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, const LivenessAnalysis &la) {
  * Helper for coalescing. Add edge to the interference graph.
  */
 void GraphColoringRAImpl::addEdge(Register *u, Register *v) {
-  if (u == v)
-    return;
-
-  if (adjSet.count(std::pair(u, v))) {
+  if (u == v || adjSet.count(std::pair(u, v))) {
     return;
   }
   adjSet.insert(std::pair(u, v));
@@ -137,7 +138,7 @@ void GraphColoringRAImpl::addEdge(Register *u, Register *v) {
  */
 void GraphColoringRAImpl::makeWorkList() {
   for (auto reg : initial) {
-    if (degree[reg] >= K) {
+    if (degree[reg] >= numRegs) {
       spillWorklist.insert(reg);
     } else if (moveRelated(reg)) {
       freezeWorklist.insert(reg);
@@ -155,7 +156,7 @@ void GraphColoringRAImpl::makeWorkList() {
 std::set<Register *> GraphColoringRAImpl::adjacent(Register *reg) {
   std::set<Register *> set;
   for (auto adj : adjList[reg]) {
-    if (!selected.count(adj) && !coalescedNodes.count(adj)) {
+    if (!selectedNodes.count(adj) && !coalescedNodes.count(adj)) {
       set.insert(adj);
     }
   }
@@ -192,7 +193,7 @@ void GraphColoringRAImpl::simplify() {
   auto reg = *simplifyWorklist.begin();
   simplifyWorklist.erase(reg);
   selectStack.push(reg);
-  selected.insert(reg);
+  selectedNodes.insert(reg);
   for (auto adj : adjacent(reg)) {
     decrementDegree(adj);
   }
@@ -207,7 +208,7 @@ void GraphColoringRAImpl::decrementDegree(Register *reg) {
     return;
   }
   degree[reg] = d - 1;
-  if (d == K) {
+  if (d == numRegs) {
     auto adjRegs = adjacent(reg);
     adjRegs.insert(reg);
     enableMoves(adjRegs);
@@ -237,7 +238,7 @@ void GraphColoringRAImpl::enableMove(Register *node) {
  * Helper for simplification. Enable move instructions related to the given set
  * of nodes.
  */
-void GraphColoringRAImpl::enableMoves(const std::set<Register *> &nodes) {
+void GraphColoringRAImpl::enableMoves(std::set<Register *> const &nodes) {
   for (auto reg : nodes) {
     enableMove(reg);
   }
@@ -247,69 +248,67 @@ void GraphColoringRAImpl::enableMoves(const std::set<Register *> &nodes) {
  * Helper for coalescing. Add a frozen node to the simplify work list.
  */
 void GraphColoringRAImpl::addWorkList(Register *reg) {
-  if (!precolored.count(reg) && !moveRelated(reg) && degree[reg] < K) {
+  if (!precolored.count(reg) && !moveRelated(reg) && degree[reg] < numRegs) {
     freezeWorklist.erase(reg);
     simplifyWorklist.insert(reg);
   }
 }
 
 /**
- * Helper for coalescing. Offer the heuristic to coalesce a set of precolored
- * register.
+ * Helper for coalescing. Heuristic by George to determine
+ *  if all neighbors of one node interfere with target node or
+ *  if the node has fewer than numRegs edges.
  */
-bool GraphColoringRAImpl::ok(const std::set<Register *> &regs,
-                             Register *target) {
-  return std::all_of(regs.begin(), regs.end(), [this, target](Register *reg) {
-    return degree[reg] < K || precolored.count(reg) ||
+bool GraphColoringRAImpl::conformGeorges(std::set<Register *> const &neighbors,
+                                         Register *target) {
+  return std::all_of(neighbors.begin(), neighbors.end(), [this, target](Register *reg) {
+    return degree[reg] < numRegs || precolored.count(reg) ||
            adjSet.count(std::pair(reg, target));
   });
 }
 
 /**
- * Helper for coalescing. Offer the conservative coalescing heuristic.
+ * Helper for coalescing. Heuristic by Briggs to determine
+ *  if there are fewer than numRegs neighbors with significant degree.
  */
-bool GraphColoringRAImpl::conservative(const std::set<Register *> &nodes) {
-  int k = 0;
-  for (auto reg : nodes) {
-    if (degree[reg] >= K) {
-      k++;
-    }
-  }
-  return k < K;
+bool GraphColoringRAImpl::conformBriggs(std::set<Register *> const &neighbors) {
+  return std::count_if(neighbors.begin(), neighbors.end(), [this](Register *reg) {
+    return degree[reg] >= numRegs;
+  }) < numRegs;
 }
 
 /**
- * Perform conservative coalescing on the reduced graph obtained in the
- * simplification phase.
+ * Perform heuristic coalescing on the reduced graph obtained in the
+ *  simplification phase.
  */
 void GraphColoringRAImpl::coalesce() {
   auto move = *worklistMoves.begin();
   worklistMoves.erase(move);
-  auto x = getAlias(move->getOp(0)->as<Register>());
-  auto y = getAlias(move->getOp(1)->as<Register>());
-  Register *u, *v;
-  if (precolored.count(y)) {
-    u = y;
-    v = x;
+  auto first = getAlias(move->getOp(0)->as<Register>());
+  auto second = getAlias(move->getOp(1)->as<Register>());
+  Register *dest, *src;
+  if (precolored.count(second)) {
+    dest = second;
+    src = first;
   } else {
-    u = x;
-    v = y;
+    dest = first;
+    src = second;
   }
-  std::set<Register *> adjRegs = adjacent(u);
-  auto adjRegsOfV = adjacent(v);
-  adjRegs.insert(adjRegsOfV.begin(), adjRegsOfV.end());
-  if (u == v) {
+  std::set<Register *> adjRegs = adjacent(dest);
+  auto adjRegsOfSrc = adjacent(src);
+  adjRegs.insert(adjRegsOfSrc.begin(), adjRegsOfSrc.end());
+  if (dest == src) {
     coalescedMoves.insert(move);
-    addWorkList(u);
-  } else if (precolored.count(v) || adjSet.count(std::pair(u, v))) {
+    addWorkList(dest);
+  } else if (precolored.count(src) || adjSet.count(std::pair(dest, src))) {
     constrainedMoves.insert(move);
-    addWorkList(u);
-    addWorkList(v);
-  } else if ((precolored.count(u) && ok(adjRegsOfV, u)) ||
-             (!precolored.count(u) && conservative(adjRegs))) {
+    addWorkList(dest);
+    addWorkList(src);
+  } else if (precolored.count(dest) && conformGeorges(adjRegsOfSrc, dest) ||
+             !precolored.count(dest) && conformBriggs(adjRegs)) {
     coalescedMoves.insert(move);
-    combine(u, v);
-    addWorkList(u);
+    combine(dest, src);
+    addWorkList(dest);
   } else {
     activeMoves.insert(move);
   }
@@ -318,23 +317,23 @@ void GraphColoringRAImpl::coalesce() {
 /**
  * Helper for coalescing. Combine two nodes.
  */
-void GraphColoringRAImpl::combine(Register *u, Register *v) {
-  if (freezeWorklist.count(v)) {
-    freezeWorklist.erase(v);
+void GraphColoringRAImpl::combine(Register *dest, Register *src) {
+  if (freezeWorklist.count(src)) {
+    freezeWorklist.erase(src);
   } else {
-    spillWorklist.erase(v);
+    spillWorklist.erase(src);
   }
-  coalescedNodes.insert(v);
-  alias[v] = u;
-  moveList[u].insert(moveList[v].begin(), moveList[v].end());
-  enableMove(v);
-  for (auto adj : adjacent(v)) {
-    addEdge(adj, u);
+  coalescedNodes.insert(src);
+  alias[src] = dest;
+  moveList[dest].insert(moveList[src].begin(), moveList[src].end());
+  enableMove(src);
+  for (auto adj : adjacent(src)) {
+    addEdge(adj, dest);
     decrementDegree(adj);
   }
-  if (degree[u] >= K && freezeWorklist.count(u)) {
-    freezeWorklist.erase(u);
-    spillWorklist.insert(u);
+  if (degree[dest] >= numRegs && freezeWorklist.count(dest)) {
+    freezeWorklist.erase(dest);
+    spillWorklist.insert(dest);
   }
 }
 
@@ -365,19 +364,19 @@ void GraphColoringRAImpl::freeze() {
  */
 void GraphColoringRAImpl::freezeMoves(Register *reg) {
   for (auto move : nodeMoves(reg)) {
-    auto x = move->getOp(0)->as<Register>();
-    auto y = move->getOp(1)->as<Register>();
-    Register *target;
-    if (getAlias(y) == getAlias(reg)) {
-      target = getAlias(x);
+    auto first = move->getOp(0)->as<Register>();
+    auto second = move->getOp(1)->as<Register>();
+    Register *dest;
+    if (getAlias(second) == getAlias(reg)) {
+      dest = getAlias(first);
     } else {
-      target = getAlias(y);
+      dest = getAlias(second);
     }
     activeMoves.erase(move);
     frozenMoves.insert(move);
-    if (freezeWorklist.count(target) && nodeMoves(target).empty()) {
-      freezeWorklist.erase(target);
-      simplifyWorklist.insert(target);
+    if (freezeWorklist.count(dest) && nodeMoves(dest).empty()) {
+      freezeWorklist.erase(dest);
+      simplifyWorklist.insert(dest);
     }
   }
 }
@@ -400,7 +399,7 @@ void GraphColoringRAImpl::assignColors() {
     auto reg = selectStack.top();
     selectStack.pop();
     std::set<int> okColors;
-    for (int i = 0; i < K; i++) {
+    for (int i = 0; i < numRegs; i++) {
       okColors.insert(i);
     }
     for (auto adj : adjList[reg]) {
@@ -416,7 +415,7 @@ void GraphColoringRAImpl::assignColors() {
       color[reg] = *okColors.begin();
     }
   }
-  selected.clear();
+  selectedNodes.clear();
 
   for (auto reg : coalescedNodes) {
     color[reg] = color[getAlias(reg)];
@@ -428,8 +427,9 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   LIRBuilder builder{*func.getParent()};
   std::unordered_map<Register *, StackSlot *> spilledSlot;
 
-  for (auto *reg : spilledNodes)
+  for (auto *reg : spilledNodes) {
     spilledSlot[reg] = func.allocStackSlot(reg->bytes());
+  }
 
   for (auto bb : func) {
     for (auto inst : incChange(bb->getInsts())) {
@@ -464,12 +464,12 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   coalescedNodes.clear();
 }
 
-void GraphColoringRAImpl::removeRedundantMoves(nnvm::riscv::LIRFunc &func) {
+void GraphColoringRAImpl::removeRedundantMoves(LIRFunc &func) {
   for (auto bb : func) {
     for (auto inst : incChange(*bb)) {
-      if (!inst->isMoveInst())
+      if (!inst->isMoveInst()) {
         continue;
-
+      }
       auto x = inst->getOp(0)->as<Register>();
       auto y = inst->getOp(1)->as<Register>();
       if (getAlias(x) == getAlias(y)) {
@@ -488,9 +488,9 @@ void GraphColoringRAImpl::physicalize(LIRFunc &func) {
         auto value = op.getOperand();
         auto reg = value->as<Register>();
 
-        if (!value->isReg() || !isSameClass(reg, classReg))
+        if (!value->isReg() || !isSameClass(reg, classReg)) {
           continue;
-
+        }
         if (value->isPReg()) {
           allocatedRegs.insert(reg);
           continue;
