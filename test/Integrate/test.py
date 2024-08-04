@@ -54,7 +54,8 @@ LLC = 'llc'
 QEMU = 'qemu-riscv64'
 CSMITH = 'csmith'
 
-TIMEOUT_PERIOD = 60
+COMPILING_TIME_LIMIT = 60
+RUNNING_TIME_LIMIT = 60
 
 brief_mode = False
 verbose_mode = False
@@ -86,9 +87,9 @@ class ExecutionException(Exception):
 def __run(subproc_arglist: list):
   if verbose_mode:
     return subprocess.run(
-        subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True)
+        subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
   return subprocess.run(
-      subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True)
+      subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
 
 
 def execute(subproc_arglists: list, input_text: str):
@@ -96,23 +97,29 @@ def execute(subproc_arglists: list, input_text: str):
     __run(subproc_arglists[0])  # source code -> assembly code
   except subprocess.CalledProcessError as err:
     raise ExecutionException('COMPLIATION FAILED', stderr=err.stderr)
+  except subprocess.TimeoutExpired as err:
+    raise ExecutionException('COMPILING TIME OUT', stderr=err.stderr)
 
   try:
     __run(subproc_arglists[1])  # assembly code -> objects
   except subprocess.CalledProcessError as err:
     raise ExecutionException('ASSEMBLING FAILED', stderr=err.stderr)
+  except subprocess.TimeoutExpired as err:
+    raise ExecutionException('ASSENBLING TIME OUT', stderr=err.stderr)
 
   try:
     __run(subproc_arglists[2])  # objects -> executable
   except subprocess.CalledProcessError as err:
     raise ExecutionException('LINKAGE FAILED', stderr=err.stderr)
+  except subprocess.TimeoutExpired as err:
+    raise ExecutionException('LINKAGE TIME OUT', stderr=err.stderr)
 
   try:
     # run the executable
     completed = subprocess.run(
         subproc_arglists[3],
         input=input_text, capture_output=True, text=True,
-        encoding='UTF-8', timeout=TIMEOUT_PERIOD)
+        encoding='UTF-8', timeout=RUNNING_TIME_LIMIT)
     if len(completed.stdout) == 0:
       return str(completed.returncode)
     else:
@@ -121,7 +128,7 @@ def execute(subproc_arglists: list, input_text: str):
         actual = actual[:-1]
       return f'{actual}\n{completed.returncode}'
   except subprocess.TimeoutExpired:
-    raise ExecutionException('TIME OUT')
+    raise ExecutionException('TIME OUT', stderr=err.stderr)
 
 
 # helper functions of test()
