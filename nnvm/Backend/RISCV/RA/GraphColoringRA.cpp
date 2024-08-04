@@ -442,7 +442,8 @@ void GraphColoringRAImpl::assignColors() {
 }
 
 /**
- * Rewrite the program to spill the nodes that are not colored.
+ * Rewrite the program to spill the nodes that are not colored
+ *  or substitute registers with aliases.
  */
 void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   std::vector<Register *> newTemp;
@@ -459,6 +460,10 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
         auto value = op.getOperand();
         auto reg = value->as<Register>();
         if (!spilledNodes.count(reg)) {
+          auto alias = getAlias(reg);
+          if (reg != alias) {
+            op.set(alias);
+          }
           continue;
         }
 
@@ -570,7 +575,6 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     if (spilledNodes.empty()) {
       break;
     }
-
     rewriteProgram(func);
   }
 
