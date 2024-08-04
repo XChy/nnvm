@@ -30,7 +30,7 @@ private:
   void simplify();
   void coalesce();
   void freeze();
-  void selectSpill();
+  void selectSpill(LIRFunc &func);
   void assignColors();
   void rewriteProgram(LIRFunc &func);
   void removeRedundantMoves(LIRFunc &func);
