@@ -383,11 +383,30 @@ void GraphColoringRAImpl::freezeMoves(Register *reg) {
 /**
  * Select a node to spill.
  */
-void GraphColoringRAImpl::selectSpill() {
-  auto m = *spillWorklist.begin(); // TODO: select using favorite heuristic
-  spillWorklist.erase(m);
-  simplifyWorklist.insert(m);
-  freezeMoves(m);
+void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
+  std::unordered_map<Register *, double> priorities;
+  for (auto reg : spillWorklist) {
+    priorities[reg] = 0;
+  }
+  for (auto *bb : func) {
+    for (auto inst : bb->getInsts()) {
+      for (auto &op : inst->operands) {
+        auto reg = op.getOperand()->as<Register>();
+        if (!spillWorklist.count(reg)) {
+          continue;
+        }
+        priorities[reg]++;
+      }
+    }
+  }
+  for (auto reg : spillWorklist) {
+    priorities[reg] /= degree[reg];
+  }
+  auto toSpill = std::min_element(priorities.begin(), priorities.end(),
+                                  [](auto a, auto b) { return a.second < b.second; })->first;
+  spillWorklist.erase(toSpill);
+  simplifyWorklist.insert(toSpill);
+  freezeMoves(toSpill);
 }
 
 /**
@@ -421,6 +440,9 @@ void GraphColoringRAImpl::assignColors() {
   }
 }
 
+/**
+ * Rewrite the program to spill the nodes that are not colored.
+ */
 void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   std::vector<Register *> newTemp;
   LIRBuilder builder{*func.getParent()};
@@ -463,6 +485,9 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   coalescedNodes.clear();
 }
 
+/**
+ * Remove redundant move instructions whose source and destination are the same.
+ */
 void GraphColoringRAImpl::removeRedundantMoves(LIRFunc &func) {
   for (auto bb : func) {
     for (auto inst : incChange(*bb)) {
@@ -478,6 +503,9 @@ void GraphColoringRAImpl::removeRedundantMoves(LIRFunc &func) {
   }
 }
 
+/**
+ * Substitute the virtual registers with physical registers.
+ */
 void GraphColoringRAImpl::physicalize(LIRFunc &func) {
   std::set<Register *> allocatedRegs;
 
@@ -510,6 +538,9 @@ void GraphColoringRAImpl::physicalize(LIRFunc &func) {
   }
 }
 
+/**
+ * Perform graph coloring register allocation, where GPRs and FPRs are separately handled.
+ */
 void GraphColoringRAImpl::allocate(LIRFunc &func) {
   uint iteration = 0;
   while (true) {
@@ -526,7 +557,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
         freeze();
       } else if (!spillWorklist.empty()) {
         // FIXME: handle the unstoppable spilling!!!
-        selectSpill();
+        selectSpill(func);
       }
     } while (!simplifyWorklist.empty() || !worklistMoves.empty() ||
              !freezeWorklist.empty() || !spillWorklist.empty());
