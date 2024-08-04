@@ -241,10 +241,10 @@ bb2:
   ADDI a0, s1, 1200
   SD a0, 264(sp)
   LA s2, array
-  ADDI a0, s2, 1600
-  SD a0, 256(sp)
+  ADDI s2, s2, 1600
   LA s3, array
-  ADDI s3, s3, 2000
+  ADDI a0, s3, 2000
+  SD a0, 256(sp)
   LUI s4, 1
   ADDIW s4, s4, -1696
   LA s5, array
@@ -266,7 +266,8 @@ bb2:
   LUI s8, 1
   ADDIW s8, s8, -96
   LA s9, array
-  ADD s8, s9, s8
+  ADD a0, s9, s8
+  SD a0, 232(sp)
   LUI s9, 1
   ADDIW s9, s9, 304
   LA s10, array
@@ -274,8 +275,7 @@ bb2:
   LUI s10, 1
   ADDIW s10, s10, 704
   LA s11, array
-  ADD a0, s11, s10
-  SD a0, 232(sp)
+  ADD s10, s11, s10
   LUI s11, 1
   ADDIW s11, s11, 1104
   LA a0, array
@@ -408,14 +408,14 @@ bb2:
   ADD s11, s11, a0
   LW s11, 0(s11)
   SLLIW s11, s11, 2
-  LD a0, 232(sp)
-  ADD s10, a0, s11
+  ADD s10, s10, s11
   LW s10, 0(s10)
   SLLIW s10, s10, 2
   ADD s9, s9, s10
   LW s9, 0(s9)
   SLLIW s9, s9, 2
-  ADD s8, s8, s9
+  LD a0, 232(sp)
+  ADD s8, a0, s9
   LW s8, 0(s8)
   SLLIW s8, s8, 2
   LD a0, 240(sp)
@@ -432,11 +432,11 @@ bb2:
   ADD s4, s4, s5
   LW s4, 0(s4)
   SLLIW s4, s4, 2
-  ADD s3, s3, s4
+  LD a0, 256(sp)
+  ADD s3, a0, s4
   LW s3, 0(s3)
   SLLIW s3, s3, 2
-  LD a0, 256(sp)
-  ADD s2, a0, s3
+  ADD s2, s2, s3
   LW s2, 0(s2)
   SLLIW s2, s2, 2
   LD a0, 264(sp)

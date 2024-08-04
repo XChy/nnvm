@@ -36,13 +36,11 @@ main:
   SRAIW s1, a0, 31
   SRLIW s1, s1, 31
   ADD a0, a0, s1
-  SRAIW s3, a0, 1
+  SRAIW a0, a0, 1
   ADD s1, zero, zero
-  LA a0, a
+  LA s2, a
   # implict jump to bb1
 bb1:
-  ADD s2, a0, zero
-  ADD a0, s3, zero
   SLLIW s3, s1, 2
   ADD s3, s2, s3
   LW s4, 0(s3)
@@ -165,13 +163,9 @@ bb22:
   JALR zero, 0(ra)
 bb23:
   ADDIW s1, s7, 1
-  ADD s3, a0, zero
-  ADD a0, s2, zero
   JAL zero, bb1
 bb24:
-  ADD s3, a0, zero
   ADD s0, s7, zero
-  ADD a0, s2, zero
   JAL zero, bb1
 bb25:
   ADDIW s4, s4, 1

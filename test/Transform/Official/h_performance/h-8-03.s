@@ -44,11 +44,12 @@ kernel_nussinov:
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADDI t0, zero, 1
-  SUBW a6, a0, t0
-  SLT t0, a6, zero
-  XORI t0, t0, 1
-  BNE t0, zero, bb11
+  ADD t0, a1, zero
+  ADDI t1, zero, 1
+  SUBW a6, a0, t1
+  SLT t1, a6, zero
+  XORI t1, t1, 1
+  BNE t1, zero, bb11
   # implict jump to bb2
 bb2:
   BLT zero, a0, bb4
@@ -93,38 +94,38 @@ bb9:
 bb10:
   JAL zero, bb9
 bb11:
-  ADD t0, zero, zero
+  ADD t1, zero, zero
   ADD a3, zero, zero
-  ADD t2, zero, zero
+  ADD a1, zero, zero
   # implict jump to bb12
 bb12:
-  ADDIW t1, a6, 1
-  SLT a4, t1, a0
-  BLT t1, a0, bb16
+  ADDIW t2, a6, 1
+  SLT a4, t2, a0
+  BLT t2, a0, bb16
   # implict jump to bb13
 bb13:
   # implict jump to bb14
 bb14:
-  ADDI t1, zero, 1
-  SUBW a6, a6, t1
-  SLT t1, a6, zero
-  XORI t1, t1, 1
-  BNE t1, zero, bb15
+  ADDI t2, zero, 1
+  SUBW a6, a6, t2
+  SLT t2, a6, zero
+  XORI t2, t2, 1
+  BNE t2, zero, bb15
   JAL zero, bb2
 bb15:
   JAL zero, bb12
 bb16:
-  ADD a5, t1, zero
+  ADD a5, t2, zero
   # implict jump to bb17
 bb17:
-  ADDI t0, zero, 1
-  SUBW t0, a5, t0
-  SLT a3, t0, zero
+  ADDI t1, zero, 1
+  SUBW t1, a5, t1
+  SLT a3, t1, zero
   XORI a3, a3, 1
   BNE a3, zero, bb48
   # implict jump to bb18
 bb18:
-  BLT t1, a0, bb46
+  BLT t2, a0, bb46
   # implict jump to bb19
 bb19:
   BNE a3, zero, bb45
@@ -138,10 +139,10 @@ bb21:
 bb22:
   # implict jump to bb23
 bb23:
-  BLT t1, a5, bb28
+  BLT t2, a5, bb28
   # implict jump to bb24
 bb24:
-  ADD t0, t1, zero
+  ADD t1, t2, zero
   # implict jump to bb25
 bb25:
   ADDIW a5, a5, 1
@@ -152,23 +153,23 @@ bb26:
 bb27:
   JAL zero, bb17
 bb28:
-  LUI t0, 1
-  ADDIW t0, t0, 1504
-  MULW t0, a6, t0
-  ADD a7, a2, t0
+  LUI t1, 1
+  ADDIW t1, t1, 1504
+  MULW t1, a6, t1
+  ADD a7, a2, t1
   SLLIW t3, a5, 2
   ADD t4, a7, t3
-  ADD t0, t1, zero
+  ADD t1, t2, zero
   # implict jump to bb29
 bb29:
   LW t5, 0(t4)
-  SLLIW s0, t0, 2
+  SLLIW s0, t1, 2
   ADD s0, a7, s0
   LW s1, 0(s0)
-  ADDIW t0, t0, 1
+  ADDIW t1, t1, 1
   LUI s2, 1
   ADDIW s2, s2, 1504
-  MULW s2, t0, s2
+  MULW s2, t1, s2
   ADD s2, a2, s2
   ADD s2, s2, t3
   LW s3, 0(s2)
@@ -176,7 +177,7 @@ bb29:
   BLT t5, s1, bb33
   # implict jump to bb30
 bb30:
-  BLT t0, a5, bb32
+  BLT t1, a5, bb32
   # implict jump to bb31
 bb31:
   JAL zero, bb25
@@ -189,7 +190,7 @@ bb33:
   SW t5, 0(t4)
   JAL zero, bb30
 bb34:
-  BLT a6, t0, bb39
+  BLT a6, t1, bb39
   # implict jump to bb35
 bb35:
   LUI a7, 1
@@ -201,11 +202,11 @@ bb35:
   LW t3, 0(a7)
   LUI t4, 1
   ADDIW t4, t4, 1504
-  MULW t4, t1, t4
+  MULW t4, t2, t4
   ADD t4, a2, t4
-  SLLIW t0, t0, 2
-  ADD t0, t4, t0
-  LW t4, 0(t0)
+  SLLIW t1, t1, 2
+  ADD t1, t4, t1
+  LW t4, 0(t1)
   BLT t3, t4, bb38
   # implict jump to bb36
 bb36:
@@ -213,23 +214,23 @@ bb36:
 bb37:
   JAL zero, bb23
 bb38:
-  LW t0, 0(t0)
-  SW t0, 0(a7)
+  LW t1, 0(t1)
+  SW t1, 0(a7)
   JAL zero, bb36
 bb39:
-  SLLIW t2, a6, 2
-  ADD t2, a1, t2
-  LW t2, 0(t2)
+  SLLIW a1, a6, 2
+  ADD a1, t0, a1
+  LW a1, 0(a1)
   SLLIW a7, a5, 2
-  ADD t3, a1, a7
+  ADD t3, t0, a7
   LW t3, 0(t3)
-  ADDW t2, t2, t3
-  XORI t2, t2, 3
-  SLTIU t2, t2, 1
-  BNE t2, zero, bb44
+  ADDW a1, a1, t3
+  XORI a1, a1, 3
+  SLTIU a1, a1, 1
+  BNE a1, zero, bb44
   # implict jump to bb40
 bb40:
-  ADD t2, zero, zero
+  ADD a1, zero, zero
   # implict jump to bb41
 bb41:
   LUI t3, 1
@@ -240,23 +241,23 @@ bb41:
   LW t3, 0(a7)
   LUI t4, 1
   ADDIW t4, t4, 1504
-  MULW t4, t1, t4
+  MULW t4, t2, t4
   ADD t4, a2, t4
-  SLLIW t0, t0, 2
-  ADD t0, t4, t0
-  LW t4, 0(t0)
-  ADDW t4, t4, t2
+  SLLIW t1, t1, 2
+  ADD t1, t4, t1
+  LW t4, 0(t1)
+  ADDW t4, t4, a1
   BLT t3, t4, bb43
   # implict jump to bb42
 bb42:
   JAL zero, bb37
 bb43:
-  LW t0, 0(t0)
-  ADDW t0, t0, t2
-  SW t0, 0(a7)
+  LW t1, 0(t1)
+  ADDW t1, t1, a1
+  SW t1, 0(a7)
   JAL zero, bb42
 bb44:
-  ADDI t2, zero, 1
+  ADDI a1, zero, 1
   JAL zero, bb41
 bb45:
   ADD a3, a4, zero
@@ -271,7 +272,7 @@ bb46:
   LW t4, 0(a7)
   LUI t5, 1
   ADDIW t5, t5, 1504
-  MULW t5, t1, t5
+  MULW t5, t2, t5
   ADD t5, a2, t5
   ADD t3, t5, t3
   LW t5, 0(t3)
@@ -289,7 +290,7 @@ bb48:
   SLLIW t3, a5, 2
   ADD t3, a7, t3
   LW t4, 0(t3)
-  SLLIW t5, t0, 2
+  SLLIW t5, t1, 2
   ADD a7, a7, t5
   LW t5, 0(a7)
   BLT t4, t5, bb49

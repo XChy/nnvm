@@ -79,8 +79,8 @@ private:
   std::set<Register *> precolored;
   std::unordered_set<Register *> initial;
   std::set<Register *, CompareReg> simplifyWorklist;
-  std::set<Register *> freezeWorklist;
-  std::set<Register *> spillWorklist;
+  std::set<Register *, CompareReg> freezeWorklist;
+  std::set<Register *, CompareReg> spillWorklist;
   std::set<Register *, CompareReg> spilledNodes;
   std::unordered_set<Register *> coalescedNodes;
   std::unordered_set<Register *> coloredNodes;

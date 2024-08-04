@@ -209,9 +209,11 @@ void GraphColoringRAImpl::decrementDegree(Register *reg) {
   }
   degree[reg] = d - 1;
   if (d == numRegs) {
-    auto adjRegs = adjacent(reg);
-    adjRegs.insert(reg);
-    enableMoves(adjRegs);
+    // FIXME: WTF?
+    // auto adjRegs = adjacent(reg);
+    // adjRegs.insert(reg);
+    // enableMoves(adjRegs);
+    enableMove(reg);
     spillWorklist.erase(reg);
     if (moveRelated(reg)) {
       freezeWorklist.insert(reg);
@@ -376,7 +378,8 @@ void GraphColoringRAImpl::freeze() {
  * Helper for freezing. Freeze move instructions related to the given node.
  */
 void GraphColoringRAImpl::freezeMoves(Register *reg) {
-  for (auto move : nodeMoves(reg)) {
+  auto moves = nodeMoves(reg);
+  for (auto move : moves) {
     auto first = move->getOp(0)->as<Register>();
     auto second = move->getOp(1)->as<Register>();
     Register *dest;
@@ -605,8 +608,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
         // std::cerr << getNameForRegister(reg->getRegId()) << ", ";
         // std::cerr << "\n";
         //  FIXME: handle the unstoppable spilling!!!
-        while (!spillWorklist.empty())
-          selectSpill(func);
+        selectSpill(func);
       }
     } while (!simplifyWorklist.empty() || !worklistMoves.empty() ||
              !freezeWorklist.empty() || !spillWorklist.empty());
@@ -636,13 +638,12 @@ static inline void filterScratchRegs(std::vector<Register *> &c,
 }
 
 void GraphColoringRA::allocate(LIRFunc &func) {
+  auto scratches = getScratchRegs(func.getParent());
   auto gprs = unpreservedRegs(func.getParent());
-  filterScratchRegs(gprs, getScratchRegs(func.getParent()));
+  auto fprs = unpreservedFRegs(func.getParent());
+  filterScratchRegs(gprs, scratches);
+  filterScratchRegs(fprs, scratches);
 
   GraphColoringRAImpl(gprs, gprs[0]).allocate(func);
-
-  auto fprs = unpreservedFRegs(func.getParent());
-  filterScratchRegs(fprs, getScratchRegs(func.getParent()));
-
   GraphColoringRAImpl(fprs, fprs[0]).allocate(func);
 }

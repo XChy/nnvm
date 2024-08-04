@@ -15,26 +15,27 @@ a:
 reduce:
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  SLTIU t0, a0, 1
-  BNE t0, zero, bb36
+  ADD t0, a0, zero
+  SLTIU t1, t0, 1
+  BNE t1, zero, bb36
   # implict jump to bb1
 bb1:
-  XORI t0, a0, 1
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb29
+  XORI t1, t0, 1
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb29
   # implict jump to bb2
 bb2:
-  XORI t0, a0, 2
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb26
+  XORI t1, t0, 2
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb26
   # implict jump to bb3
 bb3:
-  XORI t0, a0, 3
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb16
+  XORI t1, t0, 3
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb16
   # implict jump to bb4
 bb4:
-  XORI t0, a0, 4
+  XORI t0, t0, 4
   SLTIU t0, t0, 1
   BNE t0, zero, bb6
   # implict jump to bb5

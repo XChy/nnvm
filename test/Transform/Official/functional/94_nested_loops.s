@@ -18,15 +18,15 @@ loop3:
   SD s3, 32(sp)
   ADD t4, zero, zero
   ADD t3, zero, zero
-  ADD s0, zero, zero
+  ADD t5, zero, zero
   ADD t2, zero, zero
   ADD t1, zero, zero
   ADD a7, zero, zero
   ADD t0, zero, zero
   # implict jump to bb1
 bb1:
-  SLTI t5, t3, 10
-  BNE t5, zero, bb4
+  SLTI s0, t3, 10
+  BNE s0, zero, bb4
   # implict jump to bb2
 bb2:
   ADD a0, t0, zero
@@ -40,19 +40,19 @@ bb3:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:
-  ADD t5, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb5
 bb5:
-  SLTI s1, t5, 100
+  SLTI s1, s0, 100
   BNE s1, zero, bb10
   # implict jump to bb6
 bb6:
   # implict jump to bb7
 bb7:
   ADDIW t3, t3, 1
-  SLT t5, t3, a0
-  XORI t5, t5, 1
-  BNE t5, zero, bb9
+  SLT s0, t3, a0
+  XORI s0, s0, 1
+  BNE s0, zero, bb9
   # implict jump to bb8
 bb8:
   JAL zero, bb1
@@ -69,8 +69,8 @@ bb11:
 bb12:
   # implict jump to bb13
 bb13:
-  ADDIW t5, t5, 1
-  SLT s1, t5, a1
+  ADDIW s0, s0, 1
+  SLT s1, s0, a1
   XORI s1, s1, 1
   BNE s1, zero, bb15
   # implict jump to bb14
@@ -79,12 +79,12 @@ bb14:
 bb15:
   JAL zero, bb7
 bb16:
-  ADD s0, zero, zero
+  ADD t5, zero, zero
   # implict jump to bb17
 bb17:
   LUI s1, 2
   ADDIW s1, s1, 1808
-  SLT s1, s0, s1
+  SLT s1, t5, s1
   BNE s1, zero, bb22
   # implict jump to bb18
 bb18:
@@ -111,8 +111,8 @@ bb23:
 bb24:
   # implict jump to bb25
 bb25:
-  ADDIW s0, s0, 1
-  SLT s1, s0, a3
+  ADDIW t5, t5, 1
+  SLT s1, t5, a3
   XORI s1, s1, 1
   BNE s1, zero, bb27
   # implict jump to bb26
@@ -172,13 +172,13 @@ bb40:
   ADD s1, s2, s1
   LUI s2, 1
   ADDIW s2, s2, -1216
-  MULW s2, t5, s2
+  MULW s2, s0, s2
   ADD s1, s1, s2
   ADDI s2, zero, 960
   MULW s2, t4, s2
   ADD s1, s1, s2
   ADDI s2, zero, 240
-  MULW s2, s0, s2
+  MULW s2, t5, s2
   ADD s1, s1, s2
   ADDI s2, zero, 48
   MULW s2, a7, s2
@@ -196,13 +196,13 @@ bb40:
   ADD s1, s3, s1
   LUI s3, 1
   ADDIW s3, s3, 1280
-  MULW s3, t5, s3
+  MULW s3, s0, s3
   ADD s1, s1, s3
   ADDI s3, zero, 1792
   MULW s3, t4, s3
   ADD s1, s1, s3
   ADDI s3, zero, 896
-  MULW s3, s0, s3
+  MULW s3, t5, s3
   ADD s1, s1, s3
   ADDI s3, zero, 224
   MULW s3, a7, s3

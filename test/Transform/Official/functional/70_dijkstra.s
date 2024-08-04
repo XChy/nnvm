@@ -128,7 +128,7 @@ bb9:
   ADD s2, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s11, s3, zero
+  ADD s10, s3, zero
   BNE s1, zero, bb21
   # implict jump to bb11
 bb11:
@@ -143,7 +143,7 @@ bb12:
   BNE s1, zero, bb15
   # implict jump to bb13
 bb13:
-  ADDIW s3, s11, 1
+  ADDIW s3, s10, 1
   SLT s4, s0, s3
   XORI s4, s4, 1
   BNE s4, zero, bb14
@@ -176,12 +176,12 @@ bb18:
 bb19:
   LA s8, dis
   ADD s7, s8, s7
-  LW s10, 0(s7)
+  LW s11, 0(s7)
   LA s8, dis
   ADD s8, s8, s3
   LW s9, 0(s8)
   ADDW s9, s9, s6
-  BLT s9, s10, bb20
+  BLT s9, s11, bb20
   JAL zero, bb17
 bb20:
   LW s8, 0(s8)

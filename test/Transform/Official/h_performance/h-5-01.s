@@ -229,9 +229,10 @@ bb35:
   ADD s5, zero, zero
   # implict jump to bb36
 bb36:
-  SLLIW s7, s5, 2
-  ADD s7, s1, s7
-  LW s10, 0(s7)
+  ADD s10, s6, zero
+  SLLIW s6, s5, 2
+  ADD s6, s1, s6
+  LW s6, 0(s6)
   LUI s7, 1
   ADDIW s7, s7, 1504
   MULW s7, s5, s7
@@ -239,8 +240,8 @@ bb36:
   ADD s7, s9, s7
   ADD s7, s7, s3
   LW s7, 0(s7)
-  MULW s7, s10, s7
-  SUBW s6, s6, s7
+  MULW s6, s6, s7
+  SUBW s6, s10, s6
   ADDIW s5, s5, 1
   BLT s5, s0, bb38
   # implict jump to bb37
@@ -286,9 +287,10 @@ bb45:
   ADD s5, zero, zero
   # implict jump to bb46
 bb46:
-  SLLIW s7, s5, 2
-  ADD s7, s1, s7
-  LW s10, 0(s7)
+  ADD s10, s6, zero
+  SLLIW s6, s5, 2
+  ADD s6, s1, s6
+  LW s6, 0(s6)
   LUI s7, 1
   ADDIW s7, s7, 1504
   MULW s7, s5, s7
@@ -296,8 +298,8 @@ bb46:
   ADD s7, s9, s7
   ADD s7, s7, s3
   LW s7, 0(s7)
-  MULW s7, s10, s7
-  SUBW s6, s6, s7
+  MULW s6, s6, s7
+  SUBW s6, s10, s6
   ADDIW s5, s5, 1
   BLT s5, s2, bb48
   # implict jump to bb47

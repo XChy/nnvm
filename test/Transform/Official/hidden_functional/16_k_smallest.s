@@ -35,25 +35,25 @@ bb1:
   BLT a0, s6, bb12
   # implict jump to bb2
 bb2:
-  ADD s3, a0, zero
+  ADD s1, a0, zero
   # implict jump to bb3
 bb3:
-  SLLIW s1, s3, 2
-  LA s2, array
-  ADD s1, s2, s1
-  LW s2, 0(s1)
+  SLLIW s2, s1, 2
+  LA s3, array
+  ADD s2, s3, s2
+  LW s3, 0(s2)
   LW s4, 0(s0)
-  SW s4, 0(s1)
-  SW s2, 0(s0)
-  XOR s0, s7, s3
+  SW s4, 0(s2)
+  SW s3, 0(s0)
+  XOR s0, s7, s1
   SLTIU s0, s0, 1
   BNE s0, zero, bb8
   # implict jump to bb4
 bb4:
-  BLT s7, s3, bb7
+  BLT s7, s1, bb7
   # implict jump to bb5
 bb5:
-  ADDIW a0, s3, 1
+  ADDIW a0, s1, 1
   ADD a1, s6, zero
   ADD a2, s7, zero
   ADD a3, s8, zero
@@ -76,38 +76,36 @@ bb6:
   JALR zero, 0(ra)
 bb7:
   ADDI a1, zero, 1
-  SUBW a1, s3, a1
+  SUBW a1, s1, a1
   ADD a2, s7, zero
   ADD a3, s8, zero
   CALL findSmallest
   JAL zero, bb6
 bb8:
   ADDI a0, zero, 0
-  BLT a0, s3, bb9
+  BLT a0, s1, bb9
   JAL zero, bb6
 bb9:
   ADD s0, zero, zero
   # implict jump to bb10
 bb10:
   SLLIW a0, s0, 2
-  LA s1, array
-  ADD a0, s1, a0
+  LA s2, array
+  ADD a0, s2, a0
   LW a0, 0(a0)
   CALL putint
   ADDI a0, zero, 32
   CALL putch
   ADDIW s0, s0, 1
-  BLT s0, s3, bb11
+  BLT s0, s1, bb11
   JAL zero, bb6
 bb11:
   JAL zero, bb10
 bb12:
-  ADD s3, a0, zero
   ADD s1, a0, zero
+  ADD s2, a0, zero
   # implict jump to bb13
 bb13:
-  ADD s2, s1, zero
-  ADD s1, s3, zero
   SLLIW s3, s2, 2
   LA s4, array
   ADD s3, s4, s3
@@ -117,11 +115,10 @@ bb13:
   BNE s4, zero, bb18
   # implict jump to bb14
 bb14:
-  ADD s3, s1, zero
   # implict jump to bb15
 bb15:
-  ADDIW s1, s2, 1
-  BLT s1, s6, bb17
+  ADDIW s2, s2, 1
+  BLT s2, s6, bb17
   # implict jump to bb16
 bb16:
   JAL zero, bb3
@@ -135,7 +132,7 @@ bb18:
   LW s9, 0(s5)
   SW s9, 0(s3)
   SW s4, 0(s5)
-  ADDIW s3, s1, 1
+  ADDIW s1, s1, 1
   JAL zero, bb15
 bb19:
   LD ra, 0(sp)

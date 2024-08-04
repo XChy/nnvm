@@ -178,18 +178,18 @@ bb23:
   ADD s7, zero, zero
   # implict jump to bb24
 bb24:
-  LW s11, 0(s5)
+  LW s10, 0(s5)
   SLLIW s8, s7, 2
   ADD s8, s6, s8
-  LW s8, 0(s8)
-  ADDI s9, zero, 400
-  MULW s10, s7, s9
+  LW s11, 0(s8)
+  ADDI s8, zero, 400
+  MULW s8, s7, s8
   LA s9, b
-  ADD s9, s9, s10
-  ADD s9, s9, s4
-  LW s9, 0(s9)
-  MULW s8, s8, s9
-  ADDW s8, s11, s8
+  ADD s8, s9, s8
+  ADD s8, s8, s4
+  LW s8, 0(s8)
+  MULW s8, s11, s8
+  ADDW s8, s10, s8
   SW s8, 0(s5)
   ADDIW s7, s7, 1
   BLT s7, s2, bb26
