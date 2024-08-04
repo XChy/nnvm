@@ -381,7 +381,7 @@ void GraphColoringRAImpl::freezeMoves(Register *reg) {
 }
 
 /**
- * Select a node to spill.
+ * Select a node to spill by favorite heuristic.
  */
 void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
   std::unordered_map<Register *, double> priorities;
@@ -389,13 +389,14 @@ void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
     priorities[reg] = 0;
   }
   for (auto *bb : func) {
+    bool isInLoop = bb->getSuccNum() == 1;
     for (auto inst : bb->getInsts()) {
       for (auto &op : inst->operands) {
         auto reg = op.getOperand()->as<Register>();
         if (!spillWorklist.count(reg)) {
           continue;
         }
-        priorities[reg]++;
+        priorities[reg] += isInLoop ? 10 : 1; // registers in loop are more likely to be frequently used
       }
     }
   }

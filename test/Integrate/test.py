@@ -127,7 +127,7 @@ def execute(subproc_arglists: list, input_text: str):
       if actual.endswith('\n'):
         actual = actual[:-1]
       return f'{actual}\n{completed.returncode}'
-  except subprocess.TimeoutExpired:
+  except subprocess.TimeoutExpired as err:
     raise ExecutionException('TIME OUT', stderr=err.stderr)
 
 
