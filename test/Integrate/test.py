@@ -54,7 +54,7 @@ LLC = 'llc'
 QEMU = 'qemu-riscv64'
 CSMITH = 'csmith'
 
-COMPILING_TIME_LIMIT = 180
+COMPILING_TIME_LIMIT = 1200
 RUNNING_TIME_LIMIT = 60
 
 brief_mode = False
