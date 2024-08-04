@@ -19,8 +19,7 @@ entry89:  pred()
   store i32 %91 to ptr @n
   93 = call i32 getint()
   store i32 %93 to ptr @m
-  m.load100232 = load i32 from ptr @m
-  101233 = icmp slt i32 0, i32 %m.load100232
+  101233 = icmp slt i32 0, i32 %93
   br i1 %101233, bb %while.body97_preheader, bb %while.exit98
 while.body97_preheader:  pred(entry89)
   br bb %while.body97

@@ -95,85 +95,45 @@ set.init.exit:  pred(set.init)
   82382 = ptradd ptr %x341, i32 40
   store i32 1024 to ptr %82382
   100393 = ptradd ptr %x341, i32 44
-  105.load396 = load i32 from ptr %82382
-  276397 = shl i32 %105.load396, i32 1
-  store i32 %276397 to ptr %100393
+  store i32 2048 to ptr %100393
   100393482 = ptradd ptr %x341, i32 48
-  105.load396485 = load i32 from ptr %100393
-  276397486 = shl i32 %105.load396485, i32 1
-  store i32 %276397486 to ptr %100393482
+  store i32 4096 to ptr %100393482
   100393494 = ptradd ptr %x341, i32 52
-  105.load396497 = load i32 from ptr %100393482
-  276397498 = shl i32 %105.load396497, i32 1
-  store i32 %276397498 to ptr %100393494
+  store i32 8192 to ptr %100393494
   100393506 = ptradd ptr %x341, i32 56
-  105.load396509 = load i32 from ptr %100393494
-  276397510 = shl i32 %105.load396509, i32 1
-  store i32 %276397510 to ptr %100393506
+  store i32 16384 to ptr %100393506
   100393518 = ptradd ptr %x341, i32 60
-  105.load396521 = load i32 from ptr %100393506
-  276397522 = shl i32 %105.load396521, i32 1
-  store i32 %276397522 to ptr %100393518
+  store i32 32768 to ptr %100393518
   100393530 = ptradd ptr %x341, i32 64
-  105.load396533 = load i32 from ptr %100393518
-  276397534 = shl i32 %105.load396533, i32 1
-  store i32 %276397534 to ptr %100393530
+  store i32 65536 to ptr %100393530
   100393542 = ptradd ptr %x341, i32 68
-  105.load396545 = load i32 from ptr %100393530
-  276397546 = shl i32 %105.load396545, i32 1
-  store i32 %276397546 to ptr %100393542
+  store i32 131072 to ptr %100393542
   100393554 = ptradd ptr %x341, i32 72
-  105.load396557 = load i32 from ptr %100393542
-  276397558 = shl i32 %105.load396557, i32 1
-  store i32 %276397558 to ptr %100393554
+  store i32 262144 to ptr %100393554
   100393566 = ptradd ptr %x341, i32 76
-  105.load396569 = load i32 from ptr %100393554
-  276397570 = shl i32 %105.load396569, i32 1
-  store i32 %276397570 to ptr %100393566
+  store i32 524288 to ptr %100393566
   100393578 = ptradd ptr %x341, i32 80
-  105.load396581 = load i32 from ptr %100393566
-  276397582 = shl i32 %105.load396581, i32 1
-  store i32 %276397582 to ptr %100393578
+  store i32 1048576 to ptr %100393578
   100393590 = ptradd ptr %x341, i32 84
-  105.load396593 = load i32 from ptr %100393578
-  276397594 = shl i32 %105.load396593, i32 1
-  store i32 %276397594 to ptr %100393590
+  store i32 2097152 to ptr %100393590
   100393602 = ptradd ptr %x341, i32 88
-  105.load396605 = load i32 from ptr %100393590
-  276397606 = shl i32 %105.load396605, i32 1
-  store i32 %276397606 to ptr %100393602
+  store i32 4194304 to ptr %100393602
   100393614 = ptradd ptr %x341, i32 92
-  105.load396617 = load i32 from ptr %100393602
-  276397618 = shl i32 %105.load396617, i32 1
-  store i32 %276397618 to ptr %100393614
+  store i32 8388608 to ptr %100393614
   100393626 = ptradd ptr %x341, i32 96
-  105.load396629 = load i32 from ptr %100393614
-  276397630 = shl i32 %105.load396629, i32 1
-  store i32 %276397630 to ptr %100393626
+  store i32 16777216 to ptr %100393626
   100393638 = ptradd ptr %x341, i32 100
-  105.load396641 = load i32 from ptr %100393626
-  276397642 = shl i32 %105.load396641, i32 1
-  store i32 %276397642 to ptr %100393638
+  store i32 33554432 to ptr %100393638
   100393650 = ptradd ptr %x341, i32 104
-  105.load396653 = load i32 from ptr %100393638
-  276397654 = shl i32 %105.load396653, i32 1
-  store i32 %276397654 to ptr %100393650
+  store i32 67108864 to ptr %100393650
   100393662 = ptradd ptr %x341, i32 108
-  105.load396665 = load i32 from ptr %100393650
-  276397666 = shl i32 %105.load396665, i32 1
-  store i32 %276397666 to ptr %100393662
+  store i32 134217728 to ptr %100393662
   100393674 = ptradd ptr %x341, i32 112
-  105.load396677 = load i32 from ptr %100393662
-  276397678 = shl i32 %105.load396677, i32 1
-  store i32 %276397678 to ptr %100393674
+  store i32 268435456 to ptr %100393674
   100393686 = ptradd ptr %x341, i32 116
-  105.load396689 = load i32 from ptr %100393674
-  276397690 = shl i32 %105.load396689, i32 1
-  store i32 %276397690 to ptr %100393686
+  store i32 536870912 to ptr %100393686
   100393698 = ptradd ptr %x341, i32 120
-  105.load396701 = load i32 from ptr %100393686
-  276397702 = shl i32 %105.load396701, i32 1
-  store i32 %276397702 to ptr %100393698
+  store i32 1073741824 to ptr %100393698
   110401 = sdiv i32 %241, i32 30
   111402 = icmp sge i32 %110401, i32 10000
   br i1 %111402, bb %while.body231.split.split.split, bb %set.if.exit

@@ -58,6 +58,9 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CSEPass>();
 
+  passManager.addFunctionPass<MemPropPass>();
+  passManager.addFunctionPass<CombinerPass>();
+
   // Before codegen
   // passManager.addFunctionPass<GlobalHoistPass>();
 

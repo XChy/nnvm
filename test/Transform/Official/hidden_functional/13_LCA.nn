@@ -25,11 +25,10 @@ while.body116_preheader:  pred(entry106)
 while.body116:  pred(while.body116, while.body116_preheader)
   123880886 = phi [bb %while.body116, ptr %123, bb %while.body116_preheader, ptr %120878]
   394879885 = phi [bb %while.body116, i32 %395, bb %while.body116_preheader, i32 0]
-  120878884 = phi [bb %while.body116, ptr %120878, bb %while.body116_preheader, ptr %120878]
   i114.phi363883 = phi [bb %while.body116, i32 %130, bb %while.body116_preheader, i32 0]
   130 = add i32 %i114.phi363883, i32 1
   395 = shl i32 %130, i32 2
-  132 = ptradd ptr %120878884, i32 %395
+  132 = ptradd ptr %120878, i32 %395
   139.load = load i32 from ptr %123880886
   141 = mul i32 %139.load, i32 80
   142 = ptradd ptr @f, i32 %141
@@ -144,8 +143,7 @@ while.body332.split:  pred(LCA.then254, LCA.while.exit260)
   m.load346 = load i32 from ptr @m
   347 = sub i32 %m.load346, i32 1
   store i32 %347 to ptr @m
-  m.load334 = load i32 from ptr @m
-  335 = icmp ne i32 %m.load334, i32 0
+  335 = icmp ne i32 %347, i32 0
   br i1 %335, bb %while.body332, bb %while.exit333
 while.exit333:  pred(while.body332.split, while.exit315)
   ret i32 0
@@ -165,7 +163,6 @@ LCA.if.exit189:  pred(while.body332.split763.split, LCA.then188)
 LCA.while.body198_preheader:  pred(LCA.if.exit189)
   br bb %LCA.while.body198
 LCA.while.body198:  pred(LCA.if.exit239, LCA.while.body198_preheader)
-  206.load429897902 = phi [bb %LCA.if.exit239, i32 %206.load429, bb %LCA.while.body198_preheader, i32 %206.load429897]
   x.stack177.phi351423901 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350460, bb %LCA.while.body198_preheader, i32 %x.stack177.phi352419]
   i196.phi358422900 = phi [bb %LCA.if.exit239, i32 %250461, bb %LCA.while.body198_preheader, i32 19]
   211433 = mul i32 %x.stack177.phi351423901, i32 80
@@ -183,7 +180,7 @@ LCA.select.then218:  pred(LCA.while.body198)
   385445 = shl i32 %215.load437, i32 2
   230446 = ptradd ptr @dep, i32 %385445
   230.load447 = load i32 from ptr %230446
-  236449 = icmp sge i32 %230.load447, i32 %206.load429897902
+  236449 = icmp sge i32 %230.load447, i32 %206.load429897
   br bb %LCA.select.exit220
 LCA.select.else219:  pred(LCA.while.body198)
   br bb %LCA.select.exit220
@@ -198,8 +195,7 @@ LCA.if.exit239:  pred(LCA.select.exit220, LCA.then238)
   381424 = shl i32 %x.stack177.phi350460, i32 2
   202425 = ptradd ptr @dep, i32 %381424
   202.load426 = load i32 from ptr %202425
-  206.load429 = load i32 from ptr %206428896
-  208430 = icmp sgt i32 %202.load426, i32 %206.load429
+  208430 = icmp sgt i32 %202.load426, i32 %206.load429897
   br i1 %208430, bb %LCA.while.body198, bb %LCA.while.exit199
 LCA.then254:  pred(LCA.while.exit199)
   br bb %while.body332.split
@@ -245,12 +241,10 @@ init.while.body92:  pred(init.while.body92, init.while.body92_preheader)
   100511 = ptradd ptr @head, i32 %392510
   store i32 -1 to ptr %100511
   105513 = add i32 %i.phi505910, i32 1
-  n.load506 = load i32 from ptr @n
-  96507 = icmp sle i32 %105513, i32 %n.load506
+  96507 = icmp sle i32 %105513, i32 %n.load506908
   br i1 %96507, bb %init.while.body92, bb %init.while.exit93
 init.while.exit93:  pred(init.while.body92, entry306.split539.split)
-  n.load317905 = load i32 from ptr @n
-  318906 = icmp ne i32 1, i32 %n.load317905
+  318906 = icmp ne i32 1, i32 %n.load506908
   br i1 %318906, bb %while.body314_preheader, bb %while.exit315
 quick_read.while.cond:  pred(entry306, quick_read.if.exit)
   f.phi374544 = phi [bb %entry306, i32 0, bb %quick_read.if.exit, i32 %f.phi564]

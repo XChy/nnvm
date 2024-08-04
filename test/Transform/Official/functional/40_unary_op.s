@@ -13,13 +13,12 @@ main:
   BNE t0, zero, bb3
   # implict jump to bb1
 bb1:
-  ADD t0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD a0, t0, zero
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:
-  ADDI t0, zero, -1
+  ADDI a0, zero, -1
   JAL zero, bb2

@@ -56,51 +56,31 @@ entry52:  pred()
   store float %79343 to ptr %100351
   106353 = ptradd ptr %b2, i32 8
   store float %79343 to ptr %106353
-  16.load219 = load float from ptr %a0
-  20.load221 = load float from ptr %b0
-  22222 = fadd float %16.load219, float %20.load221
+  22222 = fadd float %79, float %79
   store float %22222 to ptr %c0
-  29.load226 = load float from ptr %a1
-  33.load228 = load float from ptr %b1
-  35229 = fadd float %29.load226, float %33.load228
+  35229 = fadd float %79, float %79
   store float %35229 to ptr %c1
-  42.load233 = load float from ptr %a2
-  46.load235 = load float from ptr %b2
-  48236 = fadd float %42.load233, float %46.load235
+  48236 = fadd float %79, float %79
   store float %48236 to ptr %c2
   12217269 = ptradd ptr %c0, i32 4
-  16.load219271 = load float from ptr %76323
-  20.load221273 = load float from ptr %94330
-  22222274 = fadd float %16.load219271, float %20.load221273
+  22222274 = fadd float %79324, float %79324
   store float %22222274 to ptr %12217269
   25224276 = ptradd ptr %c1, i32 4
-  29.load226278 = load float from ptr %82326
-  33.load228280 = load float from ptr %100332
-  35229281 = fadd float %29.load226278, float %33.load228280
+  35229281 = fadd float %79324, float %79324
   store float %35229281 to ptr %25224276
   38231283 = ptradd ptr %c2, i32 4
-  42.load233285 = load float from ptr %88328
-  46.load235287 = load float from ptr %106334
-  48236288 = fadd float %42.load233285, float %46.load235287
+  48236288 = fadd float %79324, float %79324
   store float %48236288 to ptr %38231283
   12217296 = ptradd ptr %c0, i32 8
-  16.load219298 = load float from ptr %76342
-  20.load221300 = load float from ptr %94349
-  22222301 = fadd float %16.load219298, float %20.load221300
+  22222301 = fadd float %79343, float %79343
   store float %22222301 to ptr %12217296
   25224303 = ptradd ptr %c1, i32 8
-  29.load226305 = load float from ptr %82345
-  33.load228307 = load float from ptr %100351
-  35229308 = fadd float %29.load226305, float %33.load228307
+  35229308 = fadd float %79343, float %79343
   store float %35229308 to ptr %25224303
   38231310 = ptradd ptr %c2, i32 8
-  42.load233312 = load float from ptr %88347
-  46.load235314 = load float from ptr %106353
-  48236315 = fadd float %42.load233312, float %46.load235314
+  48236315 = fadd float %79343, float %79343
   store float %48236315 to ptr %38231310
-  N.load120249 = load i32 from ptr @N
-  121250 = icmp slt i32 0, i32 %N.load120249
-  br i1 %121250, bb %while.body117_preheader, bb %while.exit118
+  br i1 -1, bb %while.body117_preheader, bb %while.exit118
 while.body117_preheader:  pred(entry52)
   br bb %while.body117
 while.body117:  pred(while.body117, while.body117_preheader)

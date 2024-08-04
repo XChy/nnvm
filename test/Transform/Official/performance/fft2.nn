@@ -133,20 +133,17 @@ entry223:  pred()
   227 = call i32 getarray(ptr @b)
   call void _sysy_starttime(i32 60)
   store i32 1 to ptr @d
-  d.load233382 = load i32 from ptr @d
   236383 = add i32 %225, i32 %227
   237384 = sub i32 %236383, i32 1
-  238385 = icmp slt i32 %d.load233382, i32 %237384
+  238385 = icmp slt i32 1, i32 %237384
   br i1 %238385, bb %while.body231, bb %while.exit232
 while.body231:  pred(while.body231, entry223)
   d.load241 = load i32 from ptr @d
   339 = shl i32 %d.load241, i32 1
   store i32 %339 to ptr @d
-  d.load233 = load i32 from ptr @d
-  238 = icmp slt i32 %d.load233, i32 %237384
+  238 = icmp slt i32 %339, i32 %237384
   br i1 %238, bb %while.body231, bb %while.exit232
 while.exit232:  pred(while.body231, entry223)
-  237384386 = phi [bb %while.body231, i32 %237384, bb %entry223, i32 %237384]
   d.load243 = load i32 from ptr @d
   247 = sdiv i32 998244352, i32 %d.load243
   248 = call i32 power(i32 3, i32 %247)
@@ -199,7 +196,7 @@ while.body293:  pred(while.body293, while.body293_preheader)
   br i1 %297, bb %while.body293, bb %while.exit294
 while.exit294:  pred(while.body293, while.exit260)
   call void _sysy_stoptime(i32 79)
-  call void putarray(i32 %237384386, ptr @a)
+  call void putarray(i32 %237384, ptr @a)
   ret i32 0
 }
 

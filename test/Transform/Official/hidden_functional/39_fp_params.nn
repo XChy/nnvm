@@ -627,8 +627,7 @@ params_f40_i24.then245:  pred(params_f40_i24.loop_entry, params_f40.then)
   store float %64728233549 to ptr %arr.index67528503576
   arr.index67628523578 = ptradd ptr %arr4762680, i32 36
   store float %66628343560 to ptr %arr.index67628523578
-  679.load28573580 = load float from ptr %66428323558
-  68228593581 = fcmp one float %679.load28573580, float %42292437613803
+  68228593581 = fcmp one float %664.load28333559, float %4229243761
   68328603582 = zext i1 %68228593581 to i32
   68428613583 = icmp ne i32 %68328603582, i32 0
   68528623584 = zext i1 %68428613583 to i32
@@ -855,11 +854,9 @@ params_fa40.then691:  pred(params_fa40.else693, params_f40_i24.then245)
   store float %84431163299 to ptr %arr.index85331323315
   arr.index85431343317 = ptradd ptr %arr7362991, i32 36
   store float 0.000000 to ptr %arr.index85431343317
-  858.load31393320 = load i32 from ptr %2008
-  86131403321 = add i32 %858.load31393320, i32 %1792.load
+  86131403321 = add i32 %2008.load, i32 %1792.load
   86331413322 = add i32 %86131403321, i32 %1806.load
-  866.load31433324 = load i32 from ptr %2046
-  86931443325 = add i32 %866.load31433324, i32 %1828.load
+  86931443325 = add i32 %2046.load, i32 %1828.load
   87131453326 = add i32 %86931443325, i32 %1834.load
   87431463327 = ptradd ptr %10644335, i32 %22492872
   874.load31473328 = load i32 from ptr %87431463327
@@ -895,8 +892,7 @@ params_fa40.then691:  pred(params_fa40.else693, params_f40_i24.then245)
   93231773358 = ptradd ptr %10644471, i32 %22492872
   932.load31783359 = load i32 from ptr %93231773358
   93431793360 = add i32 %92931763357, i32 %932.load31783359
-  938.load31813362 = load i32 from ptr %1792
-  94031823363 = add i32 %2008.load, i32 %938.load31813362
+  94031823363 = add i32 %2008.load, i32 %1792.load
   94231833364 = add i32 %94031823363, i32 %1806.load
   94431843365 = add i32 %94231833364, i32 %2046.load
   store i32 %86331413322 to ptr %arr28552990
@@ -1083,7 +1079,7 @@ params_fa40.else693:  pred(params_fa40.else693, params_fa40.else693_preheader)
   store float %6472823 to ptr %arr.index67528503576
   store float %6662834 to ptr %arr.index67628523578
   679.load2857 = load float from ptr %6642832
-  6822859 = fcmp one float %679.load2857, float %42292437613803
+  6822859 = fcmp one float %679.load2857, float %4229243761
   6832860 = zext i1 %6822859 to i32
   6842861 = icmp ne i32 %6832860, i32 0
   6852862 = zext i1 %6842861 to i32
@@ -1094,7 +1090,6 @@ params_fa40.else693:  pred(params_fa40.else693, params_fa40.else693_preheader)
   6902867 = fcmp one float %6892866, float 0.000000
   br i1 %6902867, bb %params_fa40.then691, bb %params_fa40.else693
 params_f40.then:  pred(params_f40.else, entry1035)
-  42292437613803 = phi [bb %params_f40.else, float %4229243761, bb %entry1035, float %4229243761]
   1074.load3802 = phi [bb %params_f40.else, float %x1.loop239229223842, bb %entry1035, float %1074.load]
   1080.load3801 = phi [bb %params_f40.else, float %x2.loop239329213841, bb %entry1035, float %1080.load]
   1086.load3800 = phi [bb %params_f40.else, float %x3.loop239429203840, bb %entry1035, float %1086.load]
@@ -1554,7 +1549,6 @@ params_mix.loop_entry2431:  pred(params_mix.else959)
   9563204 = icmp ne i32 %10333212, i32 0
   br i1 %9563204, bb %params_mix.then957, bb %params_mix.else959
 params_mix.then957:  pred(params_mix.loop_entry2431, params_fa40.then691)
-  arr.index853313233153386 = phi [bb %params_mix.loop_entry2431, ptr %arr.index85331323315, bb %params_fa40.then691, ptr %arr.index85331323315]
   call void putfarray(i32 10, ptr %arr7362991)
   call void putarray(i32 10, ptr %arr28552990)
   975.load3221 = load i32 from ptr %arr28552990
@@ -1621,7 +1615,7 @@ params_mix.then957:  pred(params_mix.loop_entry2431, params_fa40.then691)
   22833232 = shl i32 %k.load9873231, i32 2
   9893233 = ptradd ptr %arr28552990, i32 %22833232
   989.load3234 = load i32 from ptr %9893233
-  992.load3235 = load float from ptr %arr.index853313233153386
+  992.load3235 = load float from ptr %arr.index85331323315
   9943236 = si2f i32 %989.load3234 to float
   9953237 = fmul float %9943236, float %992.load3235
   9963238 = f2si float %9953237 to i32

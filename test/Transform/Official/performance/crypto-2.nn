@@ -529,38 +529,33 @@ pseudo_sha1.while.exit161:  pred(pseudo_sha1.while.exit268, pseudo_sha1.init.exi
   store i32 %1393 to ptr %arr.index408
   store i32 %1390 to ptr %arr.index409
   470.load = load i32 from ptr %output_buf
-  474.load = load i32 from ptr %output
-  431179 = add i32 %470.load, i32 %474.load
+  431179 = add i32 %470.load, i32 %1391
   56863 = sub i32 %470.load, i32 %431179
-  58864 = add i32 %56863, i32 %474.load
+  58864 = add i32 %56863, i32 %1391
   62865 = sub i32 %58864, i32 %431179
   store i32 %62865 to ptr %output_buf
   470.load1918 = load i32 from ptr %420
-  474.load1920 = load i32 from ptr %arr.index406
-  4311791921 = add i32 %470.load1918, i32 %474.load1920
+  4311791921 = add i32 %470.load1918, i32 %1392
   568631922 = sub i32 %470.load1918, i32 %4311791921
-  588641923 = add i32 %568631922, i32 %474.load1920
+  588641923 = add i32 %568631922, i32 %1392
   628651924 = sub i32 %588641923, i32 %4311791921
   store i32 %628651924 to ptr %420
   470.load1933 = load i32 from ptr %423
-  474.load1935 = load i32 from ptr %arr.index407
-  4311791936 = add i32 %470.load1933, i32 %474.load1935
+  4311791936 = add i32 %470.load1933, i32 %1394
   568631937 = sub i32 %470.load1933, i32 %4311791936
-  588641938 = add i32 %568631937, i32 %474.load1935
+  588641938 = add i32 %568631937, i32 %1394
   628651939 = sub i32 %588641938, i32 %4311791936
   store i32 %628651939 to ptr %423
   470.load1948 = load i32 from ptr %426
-  474.load1950 = load i32 from ptr %arr.index408
-  4311791951 = add i32 %470.load1948, i32 %474.load1950
+  4311791951 = add i32 %470.load1948, i32 %1393
   568631952 = sub i32 %470.load1948, i32 %4311791951
-  588641953 = add i32 %568631952, i32 %474.load1950
+  588641953 = add i32 %568631952, i32 %1393
   628651954 = sub i32 %588641953, i32 %4311791951
   store i32 %628651954 to ptr %426
   470.load1963 = load i32 from ptr %429
-  474.load1965 = load i32 from ptr %arr.index409
-  4311791966 = add i32 %470.load1963, i32 %474.load1965
+  4311791966 = add i32 %470.load1963, i32 %1390
   568631967 = sub i32 %470.load1963, i32 %4311791966
-  588641968 = add i32 %568631967, i32 %474.load1965
+  588641968 = add i32 %568631967, i32 %1390
   628651969 = sub i32 %588641968, i32 %4311791966
   store i32 %628651969 to ptr %429
   482 = sub i32 %rounds.phi1413, i32 1

@@ -75,9 +75,7 @@ heap_sort.while.body115.split:  pred(heap_ajust.else449, heap_ajust.if.exit437, 
   118237 = icmp sgt i32 %128241, i32 0
   br i1 %118237, bb %heap_sort.while.body115, bb %heap_sort.while.exit116
 heap_sort.while.exit116:  pred(heap_sort.while.body115.split)
-  n.load178549 = load i32 from ptr @n
-  179550 = icmp slt i32 0, i32 %n.load178549
-  br i1 %179550, bb %while.body175_preheader, bb %while.exit176
+  br i1 -1, bb %while.body175_preheader, bb %while.exit176
 heap_ajust.while.body362_preheader:  pred(heap_sort.while.body95)
   br bb %heap_ajust.while.body362
 heap_ajust.while.body362:  pred(heap_ajust.else397, heap_ajust.while.body362_preheader)

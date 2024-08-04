@@ -17,30 +17,33 @@ main:
   SD s3, 104(sp)
   SD s4, 112(sp)
   SD s5, 120(sp)
-  SD s6, 128(sp)
-  SD s7, 136(sp)
-  SD s8, 144(sp)
-  SD s9, 152(sp)
-  SD s10, 160(sp)
-  SD s11, 168(sp)
+  SD s7, 128(sp)
+  SD s8, 136(sp)
+  SD s9, 144(sp)
+  SD s10, 152(sp)
+  SD s11, 160(sp)
+  ADDI s0, zero, 0
+  SW s0, 168(sp)
+  ADDI s0, zero, 0
+  SW s0, 172(sp)
   ADDI s0, zero, 0
   SW s0, 176(sp)
   ADDI s0, zero, 0
   SW s0, 180(sp)
   ADDI s0, zero, 0
   SW s0, 184(sp)
-  ADDI s0, zero, 0
-  SW s0, 188(sp)
-  ADDI s0, zero, 0
-  SW s0, 192(sp)
   CALL getint
-  ADD s1, a0, zero
-  LA s0, state
-  SW s1, 0(s0)
+  ADD s0, a0, zero
+  LA s1, state
+  SW s0, 0(s1)
   CALL getint
   ADD s0, a0, zero
   ADDI a0, zero, 161
   CALL _sysy_starttime
+  ADDI a0, zero, 0
+  SW a0, 192(sp)
+  ADDI a0, zero, 0
+  SW a0, 196(sp)
   ADDI a0, zero, 0
   SW a0, 200(sp)
   ADDI a0, zero, 0
@@ -48,17 +51,13 @@ main:
   ADDI a0, zero, 0
   SW a0, 208(sp)
   ADDI a0, zero, 0
-  SW a0, 212(sp)
-  ADDI a0, zero, 0
-  SW a0, 216(sp)
-  ADDI a0, zero, 0
   BLT a0, s0, bb2
   # implict jump to bb1
 bb1:
   ADDI a0, zero, 184
   CALL _sysy_stoptime
   ADDI a0, zero, 5
-  ADDI a1, sp, 200
+  ADDI a1, sp, 192
   ADD a1, a1, zero
   CALL putarray
   ADD a0, zero, zero
@@ -69,1020 +68,1005 @@ bb1:
   LD s3, 104(sp)
   LD s4, 112(sp)
   LD s5, 120(sp)
-  LD s6, 128(sp)
-  LD s7, 136(sp)
-  LD s8, 144(sp)
-  LD s9, 152(sp)
-  LD s10, 160(sp)
-  LD s11, 168(sp)
+  LD s7, 128(sp)
+  LD s8, 136(sp)
+  LD s9, 144(sp)
+  LD s10, 152(sp)
+  LD s11, 160(sp)
   ADDI sp, sp, 544
   JALR zero, 0(ra)
 bb2:
-  ADD a0, s0, zero
   # implict jump to bb3
 bb3:
-  SW a0, 32(sp)
+  SW s0, 28(sp)
   ADD a0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s2, a0, zero
-  SLLIW s0, s2, 2
-  LA a0, buffer
-  ADD s1, a0, s0
-  LA a0, state
-  LW s0, 0(a0)
-  SLLIW a0, s0, 13
-  ADDW s0, s0, a0
-  LA a0, state
-  SW s0, 0(a0)
-  SRAIW a0, s0, 31
-  SRLIW a0, a0, 15
-  ADD a0, s0, a0
-  SRAIW a0, a0, 17
-  ADDW s0, s0, a0
-  LA a0, state
-  SW s0, 0(a0)
-  SLLIW a0, s0, 5
-  ADDW s0, s0, a0
-  LA a0, state
-  SW s0, 0(a0)
-  SLLI a0, s0, 1
-  SRLI a0, a0, 56
-  ADD a0, s0, a0
-  ANDI a0, a0, -256
-  SUBW a0, s0, a0
-  SW a0, 0(s1)
-  ADDIW s0, s2, 1
-  LUI a0, 8
-  ADDIW a0, a0, -768
-  SLT a0, s0, a0
-  BNE a0, zero, bb37
+  SLLIW s0, a0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LA s1, state
+  LW s1, 0(s1)
+  SLLIW s2, s1, 13
+  ADDW s1, s1, s2
+  LA s2, state
+  SW s1, 0(s2)
+  SRAIW s2, s1, 31
+  SRLIW s2, s2, 15
+  ADD s2, s1, s2
+  SRAIW s2, s2, 17
+  ADDW s1, s1, s2
+  LA s2, state
+  SW s1, 0(s2)
+  SLLIW s2, s1, 5
+  ADDW s1, s1, s2
+  LA s2, state
+  SW s1, 0(s2)
+  SLLI s2, s1, 1
+  SRLI s2, s2, 56
+  ADD s2, s1, s2
+  ANDI s2, s2, -256
+  SUBW s1, s1, s2
+  SW s1, 0(s0)
+  ADDIW a0, a0, 1
+  LUI s0, 8
+  ADDIW s0, s0, -768
+  SLT s0, a0, s0
+  BNE s0, zero, bb37
   # implict jump to bb5
 bb5:
-  LUI s0, 31
-  ADDIW s0, s0, 1024
-  LA a0, buffer
-  ADD s0, a0, s0
-  ADDI a0, zero, 128
-  SW a0, 0(s0)
+  LUI a0, 31
+  ADDIW a0, a0, 1024
+  LA s0, buffer
+  ADD a0, s0, a0
+  ADDI s0, zero, 128
+  SW s0, 0(a0)
   LUI a0, 8
   ADDIW a0, a0, -767
   ADD a0, zero, a0
   # implict jump to bb6
 bb6:
-  ADD s1, a0, zero
-  SLLIW s0, s1, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  SW zero, 0(a0)
-  ADDIW s0, s1, 1
-  SLLI a0, s0, 1
-  SRLI a0, a0, 58
-  ADD a0, s0, a0
-  ANDI a0, a0, -64
-  SUBW a0, s0, a0
-  XORI a0, a0, 60
-  BNE a0, zero, bb36
+  SLLIW s0, a0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  SW zero, 0(s0)
+  ADDIW s0, a0, 1
+  SLLI s1, s0, 1
+  SRLI s1, s1, 58
+  ADD s1, s0, s1
+  ANDI s1, s1, -64
+  SUBW s1, s0, s1
+  XORI s1, s1, 60
+  BNE s1, zero, bb36
   # implict jump to bb7
 bb7:
   SLLIW s0, s0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  SW zero, 0(a0)
-  ADDIW a0, s1, 2
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  SW zero, 0(a0)
-  ADDIW a0, s1, 3
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD s0, a0, s0
-  ADDI a0, zero, 125
-  SW a0, 0(s0)
-  ADDIW a0, s1, 4
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  SW zero, 0(a0)
-  ADDIW a0, s1, 5
-  SW a0, 36(sp)
+  LA s1, buffer
+  ADD s0, s1, s0
+  SW zero, 0(s0)
+  ADDIW s0, a0, 2
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  SW zero, 0(s0)
+  ADDIW s0, a0, 3
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  ADDI s1, zero, 125
+  SW s1, 0(s0)
+  ADDIW s0, a0, 4
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  SW zero, 0(s0)
+  ADDIW a0, a0, 5
+  SW a0, 32(sp)
   ADDI a0, zero, 80
   # implict jump to bb8
 bb8:
-  ADD s0, a0, zero
-  ADDI a0, zero, 1
-  SUBW s0, s0, a0
-  SLLIW a0, s0, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  SW zero, 0(a0)
-  BNE s0, zero, bb35
+  ADDI s0, zero, 1
+  SUBW a0, a0, s0
+  SLLIW s0, a0, 2
+  ADDI t6, sp, 216
+  ADD s0, t6, s0
+  SW zero, 0(s0)
+  BNE a0, zero, bb35
   # implict jump to bb9
 bb9:
-  LW a0, 36(sp)
+  LW a0, 32(sp)
   BLT zero, a0, bb13
   # implict jump to bb10
 bb10:
   LUI a0, 625582
   ADDIW a0, a0, -770
   ADD s0, zero, a0
-  LUI a0, 66341
-  ADDIW a0, a0, 1142
-  ADD s3, zero, a0
-  LUI a0, 982235
-  ADDIW a0, a0, -1143
-  ADD s2, zero, a0
-  LUI a0, 422994
-  ADDIW a0, a0, 769
-  ADD s1, zero, a0
-  LUI a0, 802094
-  ADDIW a0, a0, 496
-  ADD a0, zero, a0
+  LUI s1, 66341
+  ADDIW s1, s1, 1142
+  ADD s9, zero, s1
+  LUI s1, 982235
+  ADDIW s1, s1, -1143
+  ADD s11, zero, s1
+  LUI s2, 422994
+  ADDIW s2, s2, 769
+  ADD s10, zero, s2
+  LUI s2, 802094
+  ADDIW s2, s2, 496
+  ADD a0, zero, s2
+  SW a0, 60(sp)
   # implict jump to bb11
 bb11:
-  SW s1, 176(sp)
-  SW s2, 180(sp)
-  SW s0, 184(sp)
-  SW s3, 188(sp)
-  SW a0, 192(sp)
-  LW a0, 200(sp)
-  LW s1, 176(sp)
-  ADDW s0, a0, s1
-  SUBW a0, a0, s0
-  ADDW a0, a0, s1
-  SUBW a0, a0, s0
+  LW a0, 60(sp)
+  SW a0, 60(sp)
+  SW s10, 168(sp)
+  SW s11, 172(sp)
+  SW s0, 176(sp)
+  SW s9, 180(sp)
+  LW a0, 60(sp)
+  SW a0, 184(sp)
+  LW s3, 192(sp)
+  ADDW s5, s3, s10
+  SUBW s3, s3, s5
+  ADDW s3, s3, s10
+  SUBW s3, s3, s5
+  SW s3, 192(sp)
+  LW s3, 196(sp)
+  ADDW s4, s3, s11
+  SUBW s3, s3, s4
+  ADDW s1, s3, s11
+  SUBW s1, s1, s4
+  SW s1, 196(sp)
+  LW s1, 200(sp)
+  ADDW s3, s1, s0
+  SUBW s1, s1, s3
+  ADDW a0, s1, s0
+  SUBW a0, a0, s3
   SW a0, 200(sp)
   LW a0, 204(sp)
-  LW s1, 180(sp)
-  ADDW s0, a0, s1
+  ADDW s0, a0, s9
   SUBW a0, a0, s0
-  ADDW a0, a0, s1
+  ADDW a0, a0, s9
   SUBW a0, a0, s0
   SW a0, 204(sp)
   LW a0, 208(sp)
-  LW s1, 184(sp)
-  ADDW s0, a0, s1
+  LW s0, 60(sp)
+  ADDW s0, a0, s0
   SUBW a0, a0, s0
+  LW s1, 60(sp)
   ADDW a0, a0, s1
   SUBW a0, a0, s0
   SW a0, 208(sp)
-  LW a0, 212(sp)
-  LW s1, 188(sp)
-  ADDW s0, a0, s1
-  SUBW a0, a0, s0
-  ADDW a0, a0, s1
-  SUBW a0, a0, s0
-  SW a0, 212(sp)
-  LW a0, 216(sp)
-  LW s1, 192(sp)
-  ADDW s0, a0, s1
-  SUBW a0, a0, s0
-  ADDW a0, a0, s1
-  SUBW a0, a0, s0
-  SW a0, 216(sp)
-  ADDI s0, zero, 1
-  LW a0, 32(sp)
-  SUBW a0, a0, s0
-  BLT zero, a0, bb12
+  ADDI a0, zero, 1
+  LW s0, 28(sp)
+  SUBW s0, s0, a0
+  BLT zero, s0, bb12
   JAL zero, bb1
 bb12:
   JAL zero, bb3
 bb13:
   LUI a0, 625582
   ADDIW a0, a0, -770
-  ADD s1, zero, a0
-  LUI a0, 66341
-  ADDIW a0, a0, 1142
   ADD s0, zero, a0
-  LUI a0, 982235
-  ADDIW a0, a0, -1143
-  ADD s2, zero, a0
-  ADD s6, zero, zero
-  ADD s5, zero, zero
-  LUI a0, 422994
-  ADDIW a0, a0, 769
-  ADD s4, zero, a0
-  ADD s3, zero, zero
-  LUI a0, 802094
-  ADDIW a0, a0, 496
-  ADD a0, zero, a0
+  LUI s1, 66341
+  ADDIW s1, s1, 1142
+  ADD s9, zero, s1
+  LUI s1, 982235
+  ADDIW s1, s1, -1143
+  ADD s11, zero, s1
+  ADD a0, zero, zero
+  SW a0, 64(sp)
+  ADD s4, zero, zero
+  LUI s2, 422994
+  ADDIW s2, s2, 769
+  ADD s10, zero, s2
+  ADD s8, zero, zero
+  LUI s2, 802094
+  ADDIW s2, s2, 496
+  ADD a0, zero, s2
+  SW a0, 60(sp)
   # implict jump to bb14
 bb14:
-  SW a0, 16(sp)
-  ADD s8, s3, zero
-  ADD a0, s4, zero
-  SW a0, 12(sp)
-  ADD a0, s6, zero
-  SW a0, 48(sp)
-  ADD a0, s2, zero
-  SW a0, 44(sp)
-  ADD a0, s0, zero
-  SW a0, 0(sp)
-  ADD a0, s1, zero
-  SW a0, 40(sp)
-  LW a0, 48(sp)
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  LW a0, 60(sp)
+  SW a0, 60(sp)
+  LW a0, 64(sp)
+  SW a0, 64(sp)
+  SW s9, 36(sp)
+  SW s0, 12(sp)
+  LW a0, 64(sp)
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 1
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 2
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 3
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 224(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 1
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 2
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 3
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 216(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 4
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 5
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 6
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 7
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 228(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 5
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 6
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 7
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 220(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 8
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 9
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 10
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 11
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 232(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 9
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 10
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 11
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 224(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 12
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 13
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s0, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 14
-  SLLIW s1, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s1
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s0, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 15
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 236(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 13
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 14
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 15
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 228(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 16
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 17
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 18
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 19
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 240(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 17
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 18
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 19
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 232(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 20
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 21
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 22
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 23
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 244(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 21
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 22
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 23
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 236(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 24
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 25
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 26
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 27
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 248(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 25
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 26
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 27
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 240(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 28
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 29
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 30
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 31
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 252(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 29
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 30
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 31
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 244(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 32
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s0, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 33
-  SLLIW s1, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s1
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s0, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 34
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 35
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 256(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 33
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 34
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 35
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 248(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 36
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 37
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 38
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 39
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 260(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 37
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 38
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 39
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 252(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 40
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 41
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 42
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 43
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 264(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 41
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 42
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 43
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 256(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 44
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 45
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 46
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 47
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 268(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 45
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 46
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 47
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 260(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 48
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 49
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 50
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 51
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 272(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 49
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 50
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 51
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 264(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 52
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 53
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 54
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 55
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 276(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 53
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 54
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 55
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 268(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 56
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 57
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 58
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 59
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 280(sp)
-  LW a0, 48(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 57
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 58
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 59
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 272(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 60
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
+  SLLIW a0, a0, 2
+  LA s0, buffer
+  ADD a0, s0, a0
   LW a0, 0(a0)
-  SLLIW s1, a0, 24
-  LW a0, 48(sp)
-  ADDIW a0, a0, 61
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 16
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 62
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLIW a0, a0, 8
-  ADDW s1, s1, a0
-  LW a0, 48(sp)
-  ADDIW a0, a0, 63
-  SLLIW s0, a0, 2
-  LA a0, buffer
-  ADD a0, a0, s0
-  LW a0, 0(a0)
-  SLLW a0, a0, zero
-  ADDW a0, s1, a0
-  SW a0, 284(sp)
+  SLLIW a0, a0, 24
+  LW s0, 64(sp)
+  ADDIW s0, s0, 61
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 16
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 62
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLIW s0, s0, 8
+  ADDW a0, a0, s0
+  LW s0, 64(sp)
+  ADDIW s0, s0, 63
+  SLLIW s0, s0, 2
+  LA s1, buffer
+  ADD s0, s1, s0
+  LW s0, 0(s0)
+  SLLW s0, s0, zero
+  ADDW a0, a0, s0
+  SW a0, 276(sp)
   ADDI a0, zero, 16
   # implict jump to bb15
 bb15:
-  ADD s4, a0, zero
-  SLLIW a0, s4, 2
-  ADDI t5, sp, 224
-  ADD s3, t5, a0
-  ADDI a0, zero, 3
-  SUBW a0, s4, a0
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  LW s2, 0(a0)
-  ADDI a0, zero, 8
-  SUBW a0, s4, a0
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  LW s1, 0(a0)
-  ADDW s0, s2, s1
-  SUBW a0, s2, s0
-  ADDW a0, a0, s1
-  SUBW s2, a0, s0
-  ADDI a0, zero, 14
-  SUBW a0, s4, a0
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  LW s1, 0(a0)
-  ADDW s0, s2, s1
-  SUBW a0, s2, s0
-  ADDW a0, a0, s1
-  SUBW s2, a0, s0
-  ADDI a0, zero, 16
-  SUBW a0, s4, a0
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  LW s1, 0(a0)
-  ADDW s0, s2, s1
-  SUBW a0, s2, s0
-  ADDW a0, a0, s1
-  SUBW s1, a0, s0
-  SLLIW s0, s1, 1
-  SLLI a0, s1, 1
-  SRLI a0, a0, 63
-  ADD a0, s1, a0
-  ANDI a0, a0, -2
-  SUBW a0, s1, a0
-  ADDW a0, s0, a0
-  SW a0, 0(s3)
-  ADDIW s0, s4, 1
-  SLTI a0, s0, 80
-  BNE a0, zero, bb34
+  SLLIW s0, a0, 2
+  ADDI t6, sp, 216
+  ADD s0, t6, s0
+  ADDI s1, zero, 3
+  SUBW s1, a0, s1
+  SLLIW s1, s1, 2
+  ADDI t6, sp, 216
+  ADD s1, t6, s1
+  LW s1, 0(s1)
+  ADDI s2, zero, 8
+  SUBW s2, a0, s2
+  SLLIW s2, s2, 2
+  ADDI t6, sp, 216
+  ADD s2, t6, s2
+  LW s2, 0(s2)
+  ADDW s3, s1, s2
+  SUBW s1, s1, s3
+  ADDW s1, s1, s2
+  SUBW s1, s1, s3
+  ADDI s2, zero, 14
+  SUBW s2, a0, s2
+  SLLIW s2, s2, 2
+  ADDI t6, sp, 216
+  ADD s2, t6, s2
+  LW s2, 0(s2)
+  ADDW s3, s1, s2
+  SUBW s1, s1, s3
+  ADDW s1, s1, s2
+  SUBW s1, s1, s3
+  ADDI s2, zero, 16
+  SUBW s2, a0, s2
+  SLLIW s2, s2, 2
+  ADDI t6, sp, 216
+  ADD s2, t6, s2
+  LW s2, 0(s2)
+  ADDW s3, s1, s2
+  SUBW s1, s1, s3
+  ADDW s1, s1, s2
+  SUBW s1, s1, s3
+  SLLIW s2, s1, 1
+  SLLI s3, s1, 1
+  SRLI s3, s3, 63
+  ADD s3, s1, s3
+  ANDI s3, s3, -2
+  SUBW s1, s1, s3
+  ADDW s1, s2, s1
+  SW s1, 0(s0)
+  ADDIW a0, a0, 1
+  SLTI s0, a0, 80
+  BNE s0, zero, bb34
   # implict jump to bb16
 bb16:
-  ADDI s0, zero, 1
-  ADD s7, s5, zero
-  LW a0, 16(sp)
-  ADD s6, a0, zero
-  ADD s5, s8, zero
-  LW a0, 0(sp)
-  ADD s4, a0, zero
-  LW a0, 40(sp)
-  ADD s3, a0, zero
-  LW a0, 44(sp)
-  ADD s2, a0, zero
-  ADD s1, zero, zero
-  LW a0, 12(sp)
+  ADDI a0, zero, 1
+  SB a0, 1(sp)
+  LW s5, 60(sp)
+  LW a0, 36(sp)
+  SW a0, 56(sp)
+  LW a0, 56(sp)
+  SW a0, 56(sp)
+  LW s2, 12(sp)
+  ADD a0, s11, zero
+  SW a0, 68(sp)
+  ADD s0, zero, zero
+  ADD a0, s10, zero
   # implict jump to bb17
 bb17:
-  ADD s10, a0, zero
-  ADD s11, s1, zero
-  ADD a0, s2, zero
-  SW a0, 28(sp)
-  ADD a0, s3, zero
-  SW a0, 24(sp)
-  ADD a0, s4, zero
-  SW a0, 20(sp)
-  ADD s1, s5, zero
-  ADD s4, s6, zero
-  ADD s2, s7, zero
-  SLTI a0, s11, 20
-  BNE a0, zero, bb33
+  SW a0, 44(sp)
+  SW s0, 40(sp)
+  LW a0, 68(sp)
+  SW a0, 68(sp)
+  SW s2, 16(sp)
+  LW a0, 56(sp)
+  SW a0, 56(sp)
+  LB a0, 1(sp)
+  LW s2, 40(sp)
+  SLTI s2, s2, 20
+  BNE s2, zero, bb33
   # implict jump to bb18
 bb18:
-  SLTI a0, s11, 40
-  BNE a0, zero, bb32
+  LW s2, 40(sp)
+  SLTI s2, s2, 40
+  BNE s2, zero, bb32
   # implict jump to bb19
 bb19:
-  SLTI a0, s11, 60
-  BNE a0, zero, bb31
+  LW s2, 40(sp)
+  SLTI s2, s2, 60
+  BNE s2, zero, bb31
   # implict jump to bb20
 bb20:
-  BNE s0, zero, bb30
+  BNE a0, zero, bb30
   # implict jump to bb21
 bb21:
-  ADD a0, s1, zero
-  ADD s0, s2, zero
   # implict jump to bb22
 bb22:
-  ADD s1, s0, zero
-  ADD s0, a0, zero
-  ADD a0, s1, zero
   # implict jump to bb23
 bb23:
   # implict jump to bb24
 bb24:
   # implict jump to bb25
 bb25:
-  ADD s3, a0, zero
-  ADD s9, s0, zero
-  SLLIW s0, s10, 5
-  SLLI a0, s10, 1
-  SRLI a0, a0, 59
-  ADD a0, s10, a0
-  ANDI a0, a0, -32
-  SUBW a0, s10, a0
-  ADDW a0, s0, a0
-  ADDW a0, a0, s3
+  LW a0, 44(sp)
+  SLLIW a0, a0, 5
+  LW s0, 44(sp)
+  SLLI s0, s0, 1
+  SRLI s0, s0, 59
+  LW s1, 44(sp)
+  ADD s0, s1, s0
+  ANDI s0, s0, -32
+  LW s1, 44(sp)
+  SUBW s0, s1, s0
+  ADDW a0, a0, s0
   ADDW a0, a0, s4
-  ADDW s0, a0, s9
-  SLLIW a0, s11, 2
-  ADDI t5, sp, 224
-  ADD a0, t5, a0
-  LW a0, 0(a0)
-  ADDW s8, s0, a0
-  LW a0, 28(sp)
-  SLLIW s1, a0, 30
-  LW a0, 28(sp)
-  SLLI a0, a0, 1
-  SRLI s0, a0, 34
-  LW a0, 28(sp)
-  ADD s0, a0, s0
-  LUI a0, 786432
-  ADDIW a0, a0, 0
-  AND s0, s0, a0
-  LW a0, 28(sp)
-  SUBW a0, a0, s0
-  ADDW s2, s1, a0
-  ADDIW s1, s11, 1
-  SLTI a0, s1, 80
+  ADDW a0, a0, s5
+  ADDW a0, a0, s8
+  LW s0, 40(sp)
+  SLLIW s0, s0, 2
+  ADDI t6, sp, 216
+  ADD s0, t6, s0
+  LW s0, 0(s0)
+  ADDW a0, a0, s0
+  SW a0, 4(sp)
+  LW a0, 68(sp)
+  SLLIW a0, a0, 30
+  LW s0, 68(sp)
+  SLLI s0, s0, 1
+  SRLI s0, s0, 34
+  LW s1, 68(sp)
+  ADD s0, s1, s0
+  LUI s1, 786432
+  ADDIW s1, s1, 0
+  AND s0, s0, s1
+  LW s1, 68(sp)
+  SUBW s0, s1, s0
+  ADDW s2, a0, s0
+  LW a0, 40(sp)
+  ADDIW a0, a0, 1
+  SW a0, 48(sp)
+  LW a0, 48(sp)
+  SLTI a0, a0, 80
   BNE a0, zero, bb29
   # implict jump to bb26
 bb26:
-  LW a0, 12(sp)
-  ADDW s8, a0, s8
+  LW a0, 4(sp)
+  ADDW s10, s10, a0
   LW a0, 44(sp)
-  ADDW s5, a0, s10
-  LW a0, 40(sp)
-  ADDW s1, a0, s2
-  LW s0, 0(sp)
-  LW a0, 24(sp)
-  ADDW s2, s0, a0
-  LW s0, 20(sp)
-  LW a0, 16(sp)
-  ADDW s7, a0, s0
-  LW a0, 48(sp)
-  ADDIW s4, a0, 64
-  LW a0, 36(sp)
-  BLT s4, a0, bb28
+  ADDW s11, s11, a0
+  LW a0, 12(sp)
+  ADDW s0, a0, s2
+  LW s1, 36(sp)
+  LW s2, 16(sp)
+  ADDW s9, s1, s2
+  LW a0, 56(sp)
+  LW s1, 60(sp)
+  ADDW a0, s1, a0
+  SW a0, 60(sp)
+  LW a0, 64(sp)
+  ADDIW a0, a0, 64
+  SW a0, 64(sp)
+  LW s7, 32(sp)
+  LW a0, 64(sp)
+  BLT a0, s7, bb28
   # implict jump to bb27
 bb27:
-  ADD s0, s1, zero
-  ADD s3, s2, zero
-  ADD s2, s5, zero
-  ADD s1, s8, zero
-  ADD a0, s7, zero
+  LW a0, 60(sp)
+  SW a0, 60(sp)
   JAL zero, bb11
 bb28:
-  ADD s0, s2, zero
-  ADD s2, s5, zero
-  ADD s6, s4, zero
-  ADD s5, s3, zero
-  ADD s4, s8, zero
-  ADD s3, s9, zero
-  ADD a0, s7, zero
+  LW a0, 64(sp)
+  SW a0, 64(sp)
+  LW a0, 60(sp)
+  SW a0, 60(sp)
   JAL zero, bb14
 bb29:
-  ADD s0, a0, zero
-  ADD s7, s3, zero
-  LW a0, 20(sp)
-  ADD s6, a0, zero
-  ADD s5, s9, zero
-  LW a0, 24(sp)
-  ADD s4, a0, zero
-  ADD s3, s2, zero
-  ADD s2, s10, zero
-  ADD a0, s8, zero
+  SB a0, 1(sp)
+  LW s5, 56(sp)
+  LW a0, 16(sp)
+  SW a0, 56(sp)
+  LW a0, 56(sp)
+  SW a0, 56(sp)
+  LW a0, 44(sp)
+  SW a0, 68(sp)
+  LW a0, 68(sp)
+  SW a0, 68(sp)
+  LW s0, 48(sp)
+  LW a0, 4(sp)
   JAL zero, bb17
 bb30:
-  LW s0, 28(sp)
-  LW a0, 24(sp)
-  ADDW s1, s0, a0
-  LW a0, 28(sp)
-  SUBW s0, a0, s1
-  LW a0, 24(sp)
+  LW a0, 16(sp)
+  LW s0, 68(sp)
   ADDW a0, s0, a0
-  SUBW s0, a0, s1
-  LW a0, 20(sp)
-  ADDW s1, s0, a0
-  SUBW s0, s0, s1
-  LW a0, 20(sp)
-  ADDW a0, s0, a0
-  SUBW s0, a0, s1
+  LW s0, 68(sp)
+  SUBW s0, s0, a0
+  LW s1, 16(sp)
+  ADDW s0, s0, s1
+  SUBW a0, s0, a0
+  LW s0, 56(sp)
+  ADDW s0, a0, s0
+  SUBW a0, a0, s0
+  LW s1, 56(sp)
+  ADDW a0, a0, s1
+  SUBW s4, a0, s0
   LUI a0, 828972
   ADDIW a0, a0, 262
-  ADD a0, zero, a0
+  ADD s8, zero, a0
   JAL zero, bb22
 bb31:
-  LW s0, 28(sp)
-  LW a0, 24(sp)
-  ADDW s2, s0, a0
-  LW s0, 28(sp)
-  LW a0, 20(sp)
-  ADDW s0, s0, a0
-  ADDW s1, s2, s0
-  SUBW a0, s2, s1
+  LW a0, 16(sp)
+  LW s0, 68(sp)
+  ADDW a0, s0, a0
+  LW s0, 56(sp)
+  LW s1, 68(sp)
+  ADDW s0, s1, s0
+  ADDW s1, a0, s0
+  SUBW a0, a0, s1
   ADDW a0, a0, s0
   SUBW a0, a0, s1
   ADDW s0, a0, s1
   SUBW a0, a0, s0
   ADDW a0, a0, s1
-  SUBW s2, a0, s0
-  LW s0, 24(sp)
-  LW a0, 20(sp)
-  ADDW s0, s0, a0
-  ADDW s1, s2, s0
-  SUBW a0, s2, s1
+  SUBW a0, a0, s0
+  LW s0, 16(sp)
+  LW s1, 56(sp)
+  ADDW s0, s0, s1
+  ADDW s1, a0, s0
+  SUBW a0, a0, s1
   ADDW a0, a0, s0
   SUBW a0, a0, s1
   ADDW s0, a0, s1
   SUBW a0, a0, s0
   ADDW a0, a0, s1
-  SUBW s1, a0, s0
-  LUI a0, 586172
-  ADDIW a0, a0, -804
-  ADD s0, zero, a0
-  ADD a0, s1, zero
+  SUBW s4, a0, s0
+  LUI s0, 586172
+  ADDIW s0, s0, -804
+  ADD s8, zero, s0
   JAL zero, bb23
 bb32:
-  LW s0, 28(sp)
-  LW a0, 24(sp)
-  ADDW s1, s0, a0
-  LW a0, 28(sp)
-  SUBW s0, a0, s1
-  LW a0, 24(sp)
+  LW a0, 16(sp)
+  LW s0, 68(sp)
   ADDW a0, s0, a0
-  SUBW s0, a0, s1
-  LW a0, 20(sp)
-  ADDW s1, s0, a0
-  SUBW s0, s0, s1
-  LW a0, 20(sp)
-  ADDW a0, s0, a0
-  SUBW s1, a0, s1
-  LUI a0, 454047
-  ADDIW a0, a0, -1151
-  ADD s0, zero, a0
-  ADD a0, s1, zero
+  LW s0, 68(sp)
+  SUBW s0, s0, a0
+  LW s1, 16(sp)
+  ADDW s0, s0, s1
+  SUBW a0, s0, a0
+  LW s0, 56(sp)
+  ADDW s0, a0, s0
+  SUBW a0, a0, s0
+  LW s1, 56(sp)
+  ADDW a0, a0, s1
+  SUBW s4, a0, s0
+  LUI s0, 454047
+  ADDIW s0, s0, -1151
+  ADD s8, zero, s0
   JAL zero, bb24
 bb33:
-  LW s0, 28(sp)
-  LW a0, 24(sp)
-  ADDW s2, s0, a0
+  LW a0, 16(sp)
+  LW s0, 68(sp)
+  ADDW a0, s0, a0
   ADDI s0, zero, -1
-  LW a0, 28(sp)
-  SUBW s0, s0, a0
-  LW a0, 20(sp)
-  ADDW s0, s0, a0
-  ADDW s1, s2, s0
-  SUBW a0, s2, s1
+  LW s1, 68(sp)
+  SUBW s0, s0, s1
+  LW s1, 56(sp)
+  ADDW s0, s0, s1
+  ADDW s1, a0, s0
+  SUBW a0, a0, s1
   ADDW a0, a0, s0
   SUBW a0, a0, s1
   ADDW s0, a0, s1
   SUBW a0, a0, s0
   ADDW a0, a0, s1
-  SUBW s1, a0, s0
-  LUI a0, 370728
-  ADDIW a0, a0, -1639
-  ADD s0, zero, a0
-  ADD a0, s1, zero
+  SUBW s4, a0, s0
+  LUI s0, 370728
+  ADDIW s0, s0, -1639
+  ADD s8, zero, s0
   JAL zero, bb25
 bb34:
-  ADD a0, s0, zero
   JAL zero, bb15
 bb35:
-  ADD a0, s0, zero
   JAL zero, bb8
 bb36:
   ADD a0, s0, zero
   JAL zero, bb6
 bb37:
-  ADD a0, s0, zero
   JAL zero, bb4

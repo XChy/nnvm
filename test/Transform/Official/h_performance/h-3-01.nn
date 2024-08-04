@@ -146,10 +146,9 @@ kernel_correlation.while.body218:  pred(kernel_correlation.while.exit237, kernel
   240514557 = icmp slt i32 %234502, i32 %m.load
   br i1 %240514557, bb %kernel_correlation.while.body236_preheader, bb %kernel_correlation.while.exit237
 kernel_correlation.while.exit219:  pred(kernel_correlation.while.exit237, kernel_correlation.while.exit155)
-  222493561563 = phi [bb %kernel_correlation.while.exit237, i32 %222493561, bb %kernel_correlation.while.exit155, i32 %222493561]
-  312505 = mul i32 %222493561563, i32 3200
+  312505 = mul i32 %222493561, i32 3200
   313506 = ptradd ptr @corr, i32 %312505
-  372507 = shl i32 %222493561563, i32 2
+  372507 = shl i32 %222493561, i32 2
   317508 = ptradd ptr %313506, i32 %372507
   store i32 1 to ptr %317508
   call void _sysy_stoptime(i32 81)

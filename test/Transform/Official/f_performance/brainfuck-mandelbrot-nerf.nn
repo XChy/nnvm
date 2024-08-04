@@ -51,8 +51,7 @@ if.exit145:  pred(then144, if.exit153)
   read_head.phi342 = phi [bb %if.exit153, i32 %read_head.phi, bb %then144, i32 %149]
   ip.phi337 = phi [bb %if.exit153, i32 %ip.phi336, bb %then144, i32 %ip.phi338813]
   306 = add i32 %ip.phi337, i32 1
-  program_length.load134 = load i32 from ptr @program_length
-  135 = icmp slt i32 %306, i32 %program_length.load134
+  135 = icmp slt i32 %306, i32 %program_length.load134805
   br i1 %135, bb %while.body131, bb %while.exit132
 else:  pred(while.body131)
   151 = icmp eq i32 %140.load, i32 60

@@ -25,6 +25,15 @@ struct CompareReg {
   }
 };
 
+struct PairHash {
+  template <class T1, class T2>
+  size_t operator()(std::pair<T1, T2> const &pair) const {
+    size_t h1 = std::hash<T1>()(pair.first);
+    size_t h2 = std::hash<T2>()(pair.second);
+    return h1 ^ h2;
+  }
+};
+
 class GraphColoringRAImpl {
 public:
   GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
@@ -69,11 +78,11 @@ private:
 
   std::set<Register *> precolored;
   std::unordered_set<Register *> initial;
-  std::set<Register *> simplifyWorklist;
+  std::set<Register *, CompareReg> simplifyWorklist;
   std::set<Register *> freezeWorklist;
   std::set<Register *> spillWorklist;
   std::set<Register *, CompareReg> spilledNodes;
-  std::set<Register *> coalescedNodes;
+  std::unordered_set<Register *> coalescedNodes;
   std::unordered_set<Register *> coloredNodes;
 
   std::stack<Register *> selectStack;
@@ -83,9 +92,9 @@ private:
   std::set<LIRInst *> constrainedMoves;
   std::set<LIRInst *> frozenMoves;
   std::set<LIRInst *> worklistMoves;
-  std::set<LIRInst *> activeMoves;
+  std::unordered_set<LIRInst *> activeMoves;
 
-  std::set<std::pair<Register *, Register *>> adjSet;
+  std::unordered_set<std::pair<Register *, Register *>, PairHash> adjSet;
   std::unordered_map<Register *, std::set<Register *>> adjList;
   std::unordered_map<Register *, int> degree;
   std::unordered_map<Register *, std::set<LIRInst *>> moveList;

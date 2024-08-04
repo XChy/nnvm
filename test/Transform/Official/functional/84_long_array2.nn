@@ -101,8 +101,7 @@ init.exit87:  pred(init86)
   17.load136 = load i32 from ptr %17135
   19137 = add i32 %17.load136, i32 9
   store i32 %19137 to ptr %14134
-  24.load142 = load i32 from ptr %5129
-  call void putint(i32 %24.load142)
+  call void putint(i32 3)
   call void putch(i32 10)
   124 = ptradd ptr %c, i32 32
   104.load = load i32 from ptr %124

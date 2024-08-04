@@ -12,9 +12,9 @@ main:
   SD s1, 136(sp)
   SD s2, 144(sp)
   SD s3, 152(sp)
-  LA s0, n
-  ADDI a0, zero, 10
-  SW a0, 0(s0)
+  LA a0, n
+  ADDI s0, zero, 10
+  SW s0, 0(a0)
   ADDI a0, zero, 4
   SW a0, 80(sp)
   ADDI a0, zero, 3
@@ -55,140 +55,89 @@ main:
   SW a0, 32(sp)
   ADDI a0, zero, 0
   SW a0, 36(sp)
-  LW a0, 80(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
+  LW a0, 16(sp)
   ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 84(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW s0, 0(a0)
-  ADDIW s0, s0, 1
-  SW s0, 0(a0)
-  LW a0, 88(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
+  SW a0, 16(sp)
+  LW a0, 12(sp)
   ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 92(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW s0, 0(a0)
-  ADDIW s0, s0, 1
-  SW s0, 0(a0)
-  LW a0, 96(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW s0, 0(a0)
-  ADDIW s0, s0, 1
-  SW s0, 0(a0)
-  LW a0, 100(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
+  SW a0, 12(sp)
+  LW a0, 36(sp)
   ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 104(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
+  SW a0, 36(sp)
+  LW a0, 8(sp)
   ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 108(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
-  ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 112(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD s0, t5, a0
-  LW a0, 0(s0)
-  ADDIW a0, a0, 1
-  SW a0, 0(s0)
-  LW a0, 116(sp)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 0
-  ADD a0, t5, a0
-  LW s0, 0(a0)
-  ADDIW s0, s0, 1
-  SW s0, 0(a0)
-  LW s0, 4(sp)
+  SW a0, 8(sp)
   LW a0, 0(sp)
-  ADDW a0, s0, a0
+  ADDIW a0, a0, 1
+  SW a0, 0(sp)
+  LW a0, 4(sp)
+  ADDIW a0, a0, 1
+  SW a0, 4(sp)
+  LW a0, 24(sp)
+  ADDIW a0, a0, 1
+  SW a0, 24(sp)
+  LW a0, 20(sp)
+  ADDIW a0, a0, 1
+  SW a0, 20(sp)
+  LW a0, 28(sp)
+  ADDIW a0, a0, 1
+  SW a0, 28(sp)
+  LW a0, 32(sp)
+  ADDIW a0, a0, 1
+  SW a0, 32(sp)
+  LW a0, 4(sp)
+  LW s0, 0(sp)
+  ADDW a0, a0, s0
   SW a0, 4(sp)
   LW s0, 8(sp)
-  LW a0, 4(sp)
   ADDW a0, s0, a0
   SW a0, 8(sp)
-  LW a0, 12(sp)
-  LW s0, 8(sp)
-  ADDW a0, a0, s0
+  LW s0, 12(sp)
+  ADDW a0, s0, a0
   SW a0, 12(sp)
   LW s0, 16(sp)
-  LW a0, 12(sp)
   ADDW a0, s0, a0
   SW a0, 16(sp)
-  LW a0, 20(sp)
-  LW s0, 16(sp)
-  ADDW a0, a0, s0
+  LW s0, 20(sp)
+  ADDW a0, s0, a0
   SW a0, 20(sp)
   LW s0, 24(sp)
-  LW a0, 20(sp)
   ADDW a0, s0, a0
   SW a0, 24(sp)
-  LW a0, 28(sp)
-  LW s0, 24(sp)
-  ADDW a0, a0, s0
+  LW s0, 28(sp)
+  ADDW a0, s0, a0
   SW a0, 28(sp)
   LW s0, 32(sp)
-  LW a0, 28(sp)
   ADDW a0, s0, a0
   SW a0, 32(sp)
-  LW a0, 36(sp)
-  LW s0, 32(sp)
-  ADDW a0, a0, s0
+  LW s0, 36(sp)
+  ADDW a0, s0, a0
   SW a0, 36(sp)
   ADDI a0, zero, 10
   # implict jump to bb1
 bb1:
-  ADD s0, a0, zero
-  ADDI a0, zero, 1
-  SUBW s0, s0, a0
-  SLLIW a0, s0, 2
-  ADDI t5, sp, 80
-  ADD a0, t5, a0
-  LW s3, 0(a0)
-  SLLIW a0, s3, 2
-  ADDI t5, sp, 0
-  ADD s2, t5, a0
-  LW s1, 0(s2)
-  ADDI a0, zero, 1
-  SUBW a0, s1, a0
-  SW a0, 0(s2)
-  LW a0, 0(s2)
-  SLLIW a0, a0, 2
-  ADDI t5, sp, 40
-  ADD a0, t5, a0
-  SW s3, 0(a0)
-  BLT zero, s0, bb7
+  ADDI s0, zero, 1
+  SUBW a0, a0, s0
+  SLLIW s0, a0, 2
+  ADDI t6, sp, 80
+  ADD s0, t6, s0
+  LW s0, 0(s0)
+  SLLIW s1, s0, 2
+  ADDI t6, sp, 0
+  ADD s1, t6, s1
+  LW s2, 0(s1)
+  ADDI s3, zero, 1
+  SUBW s2, s2, s3
+  SW s2, 0(s1)
+  SLLIW s1, s2, 2
+  ADDI t6, sp, 40
+  ADD s1, t6, s1
+  SW s0, 0(s1)
+  BLT zero, a0, bb7
   # implict jump to bb2
 bb2:
-  LA a0, n
-  LW a0, 0(a0)
-  BLT zero, a0, bb4
+  ADDI a0, zero, 1
+  BNE a0, zero, bb4
   # implict jump to bb3
 bb3:
   ADD a0, zero, zero
@@ -200,13 +149,12 @@ bb3:
   ADDI sp, sp, 160
   JALR zero, 0(ra)
 bb4:
-  ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb5
 bb5:
-  ADD s0, a0, zero
   SLLIW a0, s0, 2
-  ADDI t5, sp, 40
-  ADD a0, t5, a0
+  ADDI t6, sp, 40
+  ADD a0, t6, a0
   LW a0, 0(a0)
   CALL putint
   ADDI a0, zero, 10
@@ -217,8 +165,6 @@ bb5:
   BLT s0, a0, bb6
   JAL zero, bb3
 bb6:
-  ADD a0, s0, zero
   JAL zero, bb5
 bb7:
-  ADD a0, s0, zero
   JAL zero, bb1

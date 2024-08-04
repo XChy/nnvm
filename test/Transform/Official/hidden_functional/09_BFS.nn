@@ -77,10 +77,7 @@ then251.split620.split:  pred(quick_read.then49726, quick_read.else729)
   store i32 1 to ptr @tail
   128439 = ptradd ptr @que, i32 4
   store i32 %255.ret to ptr %128439
-  h.load155330849 = load i32 from ptr @h
-  tail.load156331850 = load i32 from ptr @tail
-  157332851 = icmp slt i32 %h.load155330849, i32 %tail.load156331850
-  br i1 %157332851, bb %same.while.body153_preheader, bb %same.while.exit154
+  br i1 -1, bb %same.while.body153_preheader, bb %same.while.exit154
 if.exit252:  pred(same.while.exit205, else253.split732.split)
   y265.phi = phi [bb %else253.split732.split, i32 %266.ret, bb %same.while.exit205, i32 %y265.phi292856]
   x263.phi = phi [bb %else253.split732.split, i32 %264.ret, bb %same.while.exit205, i32 %x263.phi290857]
@@ -89,8 +86,7 @@ if.exit252:  pred(same.while.exit205, else253.split732.split)
   m.load271 = load i32 from ptr @m
   272 = sub i32 %m.load271, i32 1
   store i32 %272 to ptr @m
-  m.load230 = load i32 from ptr @m
-  231 = icmp ne i32 %m.load230, i32 0
+  231 = icmp ne i32 %272, i32 0
   br i1 %231, bb %while.body228, bb %while.exit229
 else253:  pred(while.exit236)
   2734 = call i32 getch()
@@ -167,9 +163,8 @@ same.while.body173:  pred(same.if.exit191, same.while.body173_preheader)
   189362 = icmp ne i32 %188361, i32 0
   br i1 %189362, bb %same.then190, bb %same.if.exit191
 same.while.exit174:  pred(same.if.exit191, same.if.exit165)
-  h.load155330 = load i32 from ptr @h
   tail.load156331 = load i32 from ptr @tail
-  157332 = icmp slt i32 %h.load155330, i32 %tail.load156331
+  157332 = icmp slt i32 %134501, i32 %tail.load156331
   br i1 %157332, bb %same.while.body153, bb %same.while.exit154
 same.then190:  pred(same.while.body173)
   store i32 1 to ptr %184357
@@ -212,8 +207,7 @@ init.while.body103:  pred(init.while.body103, entry221.split508.split)
   107396 = icmp slt i32 %116402, i32 1005
   br i1 %107396, bb %init.while.body103, bb %init.while.exit104
 init.while.exit104:  pred(init.while.body103)
-  m.load230854 = load i32 from ptr @m
-  231855 = icmp ne i32 %m.load230854, i32 0
+  231855 = icmp ne i32 %225.ret, i32 0
   br i1 %231855, bb %while.body228_preheader, bb %while.exit229
 quick_read.while.cond:  pred(entry221, quick_read.if.exit)
   f.phi297513 = phi [bb %entry221, i32 0, bb %quick_read.if.exit, i32 %f.phi533]

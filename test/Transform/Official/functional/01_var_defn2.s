@@ -13,8 +13,7 @@ main:
   SD ra, 0(sp)
   LA t0, b
   LW t0, 0(t0)
-  ADDIW t0, t0, 5
-  ADD a0, t0, zero
+  ADDIW a0, t0, 5
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)

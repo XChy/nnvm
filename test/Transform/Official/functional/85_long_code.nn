@@ -173,101 +173,69 @@ entry528:  pred()
   store i32 1 to ptr %623
   626 = ptradd ptr %arr, i32 124
   store i32 290 to ptr %626
-  387.load986 = load i32 from ptr %arr
-  store i32 %387.load986 to ptr %result
+  store i32 7 to ptr %result
   3839843457 = ptradd ptr %result, i32 4
-  387.load9863459 = load i32 from ptr %536
-  store i32 %387.load9863459 to ptr %3839843457
+  store i32 23 to ptr %3839843457
   3839843467 = ptradd ptr %result, i32 8
-  387.load9863469 = load i32 from ptr %539
-  store i32 %387.load9863469 to ptr %3839843467
+  store i32 89 to ptr %3839843467
   3839843477 = ptradd ptr %result, i32 12
-  387.load9863479 = load i32 from ptr %542
-  store i32 %387.load9863479 to ptr %3839843477
+  store i32 26 to ptr %3839843477
   3839843487 = ptradd ptr %result, i32 16
-  387.load9863489 = load i32 from ptr %545
-  store i32 %387.load9863489 to ptr %3839843487
+  store i32 282 to ptr %3839843487
   3839843497 = ptradd ptr %result, i32 20
-  387.load9863499 = load i32 from ptr %548
-  store i32 %387.load9863499 to ptr %3839843497
+  store i32 254 to ptr %3839843497
   3839843507 = ptradd ptr %result, i32 24
-  387.load9863509 = load i32 from ptr %551
-  store i32 %387.load9863509 to ptr %3839843507
+  store i32 27 to ptr %3839843507
   3839843517 = ptradd ptr %result, i32 28
-  387.load9863519 = load i32 from ptr %554
-  store i32 %387.load9863519 to ptr %3839843517
+  store i32 5 to ptr %3839843517
   3839843527 = ptradd ptr %result, i32 32
-  387.load9863529 = load i32 from ptr %557
-  store i32 %387.load9863529 to ptr %3839843527
+  store i32 83 to ptr %3839843527
   3839843537 = ptradd ptr %result, i32 36
-  387.load9863539 = load i32 from ptr %560
-  store i32 %387.load9863539 to ptr %3839843537
+  store i32 273 to ptr %3839843537
   3839843547 = ptradd ptr %result, i32 40
-  387.load9863549 = load i32 from ptr %563
-  store i32 %387.load9863549 to ptr %3839843547
+  store i32 574 to ptr %3839843547
   3839843557 = ptradd ptr %result, i32 44
-  387.load9863559 = load i32 from ptr %566
-  store i32 %387.load9863559 to ptr %3839843557
+  store i32 905 to ptr %3839843557
   3839843567 = ptradd ptr %result, i32 48
-  387.load9863569 = load i32 from ptr %569
-  store i32 %387.load9863569 to ptr %3839843567
+  store i32 354 to ptr %3839843567
   3839843577 = ptradd ptr %result, i32 52
-  387.load9863579 = load i32 from ptr %572
-  store i32 %387.load9863579 to ptr %3839843577
+  store i32 657 to ptr %3839843577
   3839843587 = ptradd ptr %result, i32 56
-  387.load9863589 = load i32 from ptr %575
-  store i32 %387.load9863589 to ptr %3839843587
+  store i32 935 to ptr %3839843587
   3839843597 = ptradd ptr %result, i32 60
-  387.load9863599 = load i32 from ptr %578
-  store i32 %387.load9863599 to ptr %3839843597
+  store i32 264 to ptr %3839843597
   3839843607 = ptradd ptr %result, i32 64
-  387.load9863609 = load i32 from ptr %581
-  store i32 %387.load9863609 to ptr %3839843607
+  store i32 639 to ptr %3839843607
   3839843617 = ptradd ptr %result, i32 68
-  387.load9863619 = load i32 from ptr %584
-  store i32 %387.load9863619 to ptr %3839843617
+  store i32 459 to ptr %3839843617
   3839843627 = ptradd ptr %result, i32 72
-  387.load9863629 = load i32 from ptr %587
-  store i32 %387.load9863629 to ptr %3839843627
+  store i32 29 to ptr %3839843627
   3839843637 = ptradd ptr %result, i32 76
-  387.load9863639 = load i32 from ptr %590
-  store i32 %387.load9863639 to ptr %3839843637
+  store i32 68 to ptr %3839843637
   3839843647 = ptradd ptr %result, i32 80
-  387.load9863649 = load i32 from ptr %593
-  store i32 %387.load9863649 to ptr %3839843647
+  store i32 929 to ptr %3839843647
   3839843657 = ptradd ptr %result, i32 84
-  387.load9863659 = load i32 from ptr %596
-  store i32 %387.load9863659 to ptr %3839843657
+  store i32 756 to ptr %3839843657
   3839843667 = ptradd ptr %result, i32 88
-  387.load9863669 = load i32 from ptr %599
-  store i32 %387.load9863669 to ptr %3839843667
+  store i32 452 to ptr %3839843667
   3839843677 = ptradd ptr %result, i32 92
-  387.load9863679 = load i32 from ptr %602
-  store i32 %387.load9863679 to ptr %3839843677
+  store i32 279 to ptr %3839843677
   3839843687 = ptradd ptr %result, i32 96
-  387.load9863689 = load i32 from ptr %605
-  store i32 %387.load9863689 to ptr %3839843687
+  store i32 58 to ptr %3839843687
   3839843697 = ptradd ptr %result, i32 100
-  387.load9863699 = load i32 from ptr %608
-  store i32 %387.load9863699 to ptr %3839843697
+  store i32 87 to ptr %3839843697
   3839843707 = ptradd ptr %result, i32 104
-  387.load9863709 = load i32 from ptr %611
-  store i32 %387.load9863709 to ptr %3839843707
+  store i32 96 to ptr %3839843707
   3839843717 = ptradd ptr %result, i32 108
-  387.load9863719 = load i32 from ptr %614
-  store i32 %387.load9863719 to ptr %3839843717
+  store i32 36 to ptr %3839843717
   3839843727 = ptradd ptr %result, i32 112
-  387.load9863729 = load i32 from ptr %617
-  store i32 %387.load9863729 to ptr %3839843727
+  store i32 39 to ptr %3839843727
   3839843737 = ptradd ptr %result, i32 116
-  387.load9863739 = load i32 from ptr %620
-  store i32 %387.load9863739 to ptr %3839843737
+  store i32 28 to ptr %3839843737
   3839843747 = ptradd ptr %result, i32 120
-  387.load9863749 = load i32 from ptr %623
-  store i32 %387.load9863749 to ptr %3839843747
+  store i32 1 to ptr %3839843747
   3839843757 = ptradd ptr %result, i32 124
-  387.load9863759 = load i32 from ptr %626
-  store i32 %387.load9863759 to ptr %3839843757
+  store i32 290 to ptr %3839843757
   br bb %revert.while.exit342
 while.exit656.split1133:  pred(getMid.then248, getMid.else)
   671.ret = phi [bb %getMid.then248, i32 %2641150, bb %getMid.else, i32 %270.load1157]
@@ -282,8 +250,8 @@ avgPooling.while.body442:  pred(avgPooling.if.exit453, avgPooling.while.body442_
   451916 = icmp slt i32 %i437.phi7909091380, i32 2
   br i1 %451916, bb %avgPooling.then452, bb %avgPooling.else454
 avgPooling.while.exit443:  pred(avgPooling.if.exit453, arrCopy.while.exit3761085)
-  1354 = add i32 %n.load378107413821384, i32 -2
-  5199631376 = icmp slt i32 %1354, i32 %n.load378107413821384
+  1354 = add i32 %n.load37810741382, i32 -2
+  5199631376 = icmp slt i32 %1354, i32 %n.load37810741382
   br i1 %5199631376, bb %avgPooling.while.body515_preheader, bb %avgPooling.while.exit516
 avgPooling.then452:  pred(avgPooling.while.body442)
   853924 = shl i32 %i437.phi7909091380, i32 2
@@ -295,7 +263,7 @@ avgPooling.if.exit453:  pred(avgPooling.then452, avgPooling.if.exit467)
   lastnum.phi792930 = phi [bb %avgPooling.if.exit467, i32 %lastnum.phi943, bb %avgPooling.then452, i32 %lastnum.phi7939081379]
   sum436.phi787931 = phi [bb %avgPooling.if.exit467, i32 %sum436.phi944, bb %avgPooling.then452, i32 %461927]
   508932 = add i32 %i437.phi7909091380, i32 1
-  446912 = icmp slt i32 %508932, i32 %n.load378107413821384
+  446912 = icmp slt i32 %508932, i32 %n.load37810741382
   br i1 %446912, bb %avgPooling.while.body442, bb %avgPooling.while.exit443
 avgPooling.else454:  pred(avgPooling.while.body442)
   465935 = icmp eq i32 %i437.phi7909091380, i32 2
@@ -330,7 +298,7 @@ avgPooling.while.body515:  pred(avgPooling.while.body515, avgPooling.while.body5
   523967 = ptradd ptr %result, i32 %857966
   store i32 0 to ptr %523967
   527969 = add i32 %i437.phi9611377, i32 1
-  519963 = icmp slt i32 %527969, i32 %n.load378107413821384
+  519963 = icmp slt i32 %527969, i32 %n.load37810741382
   br i1 %519963, bb %avgPooling.while.body515, bb %avgPooling.while.exit516
 avgPooling.while.exit516:  pred(avgPooling.while.body515, avgPooling.while.exit443)
   779.load = load i32 from ptr %result
@@ -408,12 +376,10 @@ arrCopy.while.body3751001:  pred(arrCopy.while.body3751001, arrCopy.while.body37
   387.load1005 = load i32 from ptr %3871004
   store i32 %387.load1005 to ptr %3831003
   3911007 = add i32 %i372.phi9971417, i32 1
-  n.load378998 = load i32 from ptr @n
-  379999 = icmp slt i32 %3911007, i32 %n.load378998
+  379999 = icmp slt i32 %3911007, i32 %n.load3789981414
   br i1 %379999, bb %arrCopy.while.body3751001, bb %arrCopy.while.exit3761009
 arrCopy.while.exit3761009:  pred(arrCopy.while.body3751001, getMost.while.exit295)
-  n.load37899814141416 = phi [bb %arrCopy.while.body3751001, i32 %n.load378998, bb %getMost.while.exit295, i32 %n.load3789981414]
-  913151410 = sub i32 %n.load37899814141416, i32 1
+  913151410 = sub i32 %n.load3789981414, i32 1
   1013161411 = icmp slt i32 0, i32 %913151410
   br i1 %1013161411, bb %bubblesort.while.body1318_preheader, bb %bubblesort.while.exit1320
 arrCopy.while.body3751020_preheader:  pred(bubblesort.while.exit1320)
@@ -426,12 +392,10 @@ arrCopy.while.body3751020:  pred(arrCopy.while.body3751020, arrCopy.while.body37
   387.load1024 = load i32 from ptr %3871023
   store i32 %387.load1024 to ptr %3831022
   3911026 = add i32 %i372.phi10161407, i32 1
-  n.load3781017 = load i32 from ptr @n
-  3791018 = icmp slt i32 %3911026, i32 %n.load3781017
+  3791018 = icmp slt i32 %3911026, i32 %n.load37810171404
   br i1 %3791018, bb %arrCopy.while.body3751020, bb %arrCopy.while.exit3761028
 arrCopy.while.exit3761028:  pred(arrCopy.while.body3751020, bubblesort.while.exit1320)
-  n.load378101714041406 = phi [bb %arrCopy.while.body3751020, i32 %n.load3781017, bb %bubblesort.while.exit1320, i32 %n.load37810171404]
-  7011661402 = icmp slt i32 1, i32 %n.load378101714041406
+  7011661402 = icmp slt i32 1, i32 %n.load37810171404
   br i1 %7011661402, bb %insertsort.while.body66_preheader, bb %insertsort.while.exit67
 arrCopy.while.body3751039_preheader:  pred(insertsort.while.exit67)
   br bb %arrCopy.while.body3751039
@@ -443,8 +407,7 @@ arrCopy.while.body3751039:  pred(arrCopy.while.body3751039, arrCopy.while.body37
   387.load1043 = load i32 from ptr %3871042
   store i32 %387.load1043 to ptr %3831041
   3911045 = add i32 %i372.phi10351399, i32 1
-  n.load3781036 = load i32 from ptr @n
-  3791037 = icmp slt i32 %3911045, i32 %n.load3781036
+  3791037 = icmp slt i32 %3911045, i32 %n.load37810361397
   br i1 %3791037, bb %arrCopy.while.body3751039, bb %arrCopy.while.exit3761047
 arrCopy.while.exit3761047:  pred(arrCopy.while.body3751039, insertsort.while.exit67)
   727 = call i32 QuickSort(ptr %result, i32 0, i32 31)
@@ -525,12 +488,10 @@ arrCopy.while.body3751058:  pred(arrCopy.while.body3751058, arrCopy.while.body37
   387.load1062 = load i32 from ptr %3871061
   store i32 %387.load1062 to ptr %3831060
   3911064 = add i32 %i372.phi10541394, i32 1
-  n.load3781055 = load i32 from ptr @n
-  3791056 = icmp slt i32 %3911064, i32 %n.load3781055
+  3791056 = icmp slt i32 %3911064, i32 %n.load37810551391
   br i1 %3791056, bb %arrCopy.while.body3751058, bb %arrCopy.while.exit3761066
 arrCopy.while.exit3761066:  pred(arrCopy.while.body3751058, arrCopy.while.exit3761047)
-  n.load378105513911393 = phi [bb %arrCopy.while.body3751058, i32 %n.load3781055, bb %arrCopy.while.exit3761047, i32 %n.load37810551391]
-  40312391388 = icmp slt i32 0, i32 %n.load378105513911393
+  40312391388 = icmp slt i32 0, i32 %n.load37810551391
   br i1 %40312391388, bb %calSum.while.body399_preheader, bb %calSum.while.exit400
 arrCopy.while.body3751077_preheader:  pred(calSum.while.exit400)
   br bb %arrCopy.while.body3751077
@@ -542,12 +503,10 @@ arrCopy.while.body3751077:  pred(arrCopy.while.body3751077, arrCopy.while.body37
   387.load1081 = load i32 from ptr %3871080
   store i32 %387.load1081 to ptr %3831079
   3911083 = add i32 %i372.phi10731385, i32 1
-  n.load3781074 = load i32 from ptr @n
-  3791075 = icmp slt i32 %3911083, i32 %n.load3781074
+  3791075 = icmp slt i32 %3911083, i32 %n.load37810741382
   br i1 %3791075, bb %arrCopy.while.body3751077, bb %arrCopy.while.exit3761085
 arrCopy.while.exit3761085:  pred(arrCopy.while.body3751077, calSum.while.exit400)
-  n.load378107413821384 = phi [bb %arrCopy.while.body3751077, i32 %n.load3781074, bb %calSum.while.exit400, i32 %n.load37810741382]
-  4469121378 = icmp slt i32 0, i32 %n.load378107413821384
+  4469121378 = icmp slt i32 0, i32 %n.load37810741382
   br i1 %4469121378, bb %avgPooling.while.body442_preheader, bb %avgPooling.while.exit443
 getMost.while.body277:  pred(getMost.while.body277, while.exit656.split1133)
   i274.phi79610931425 = phi [bb %getMost.while.body277, i32 %2881100, bb %while.exit656.split1133, i32 0]
@@ -589,12 +548,10 @@ getMost.if.exit322:  pred(getMost.while.body294, getMost.then321)
   number.phi1128 = phi [bb %getMost.while.body294, i32 %number.phi80011051421, bb %getMost.then321, i32 %304.load1114]
   max.phi1129 = phi [bb %getMost.while.body294, i32 %max.phi79811061422, bb %getMost.then321, i32 %3141118]
   3321130 = add i32 %i274.phi11071423, i32 1
-  n.load2971108 = load i32 from ptr @n
-  2981109 = icmp slt i32 %3321130, i32 %n.load2971108
+  2981109 = icmp slt i32 %3321130, i32 %n.load29711081418
   br i1 %2981109, bb %getMost.while.body294, bb %getMost.while.exit295
 getMid.then248:  pred(bubblesort.while.exit)
-  n.load2521140 = load i32 from ptr @n
-  2531141 = sdiv i32 %n.load2521140, i32 2
+  2531141 = sdiv i32 %n.load2451135, i32 2
   8681142 = shl i32 %2531141, i32 2
   2561143 = ptradd ptr %result, i32 %8681142
   256.load1144 = load i32 from ptr %2561143
@@ -606,8 +563,7 @@ getMid.then248:  pred(bubblesort.while.exit)
   2641150 = sdiv i32 %2631149, i32 2
   br bb %while.exit656.split1133
 getMid.else:  pred(bubblesort.while.exit)
-  n.load2661153 = load i32 from ptr @n
-  2671154 = sdiv i32 %n.load2661153, i32 2
+  2671154 = sdiv i32 %n.load2451135, i32 2
   8701155 = shl i32 %2671154, i32 2
   2701156 = ptradd ptr %result, i32 %8701155
   270.load1157 = load i32 from ptr %2701156
@@ -709,7 +665,7 @@ insertsort.while.exit84:  pred(insertsort.select.exit)
   1151193 = ptradd ptr %result, i32 %8741192
   store i32 %76.load1171 to ptr %1151193
   1201195 = add i32 %i63.phi11641403, i32 1
-  701166 = icmp slt i32 %1201195, i32 %n.load378101714041406
+  701166 = icmp slt i32 %1201195, i32 %n.load37810171404
   br i1 %701166, bb %insertsort.while.body66, bb %insertsort.while.exit67
 insertsort.select.then:  pred(insertsort.while.cond82)
   8751198 = shl i32 %j78.phi1177, i32 2
@@ -892,18 +848,17 @@ calSum.then418:  pred(calSum.while.body399)
 calSum.if.exit419:  pred(calSum.then418, calSum.else420)
   sum.phi1256 = phi [bb %calSum.else420, i32 0, bb %calSum.then418, i32 %4111245]
   4331257 = add i32 %i396.phi12361389, i32 1
-  4031239 = icmp slt i32 %4331257, i32 %n.load378105513911393
+  4031239 = icmp slt i32 %4331257, i32 %n.load37810551391
   br i1 %4031239, bb %calSum.while.body399, bb %calSum.while.exit400
 calSum.else420:  pred(calSum.while.body399)
   store i32 %4111245 to ptr %4091243
   br bb %calSum.if.exit419
 bubblesort.while.body_preheader:  pred(revert.while.exit342)
-  n.load1712801361 = load i32 from ptr @n
   br bb %bubblesort.while.body
 bubblesort.while.body:  pred(bubblesort.while.exit15, bubblesort.while.body_preheader)
   i.phi12681432 = phi [bb %bubblesort.while.exit15, i32 %611296, bb %bubblesort.while.body_preheader, i32 0]
   tmp.phi85212671431 = phi [bb %bubblesort.while.exit15, i32 %tmp.phi85212671365, bb %bubblesort.while.body_preheader, i32 0]
-  1912811362 = sub i32 %n.load1712801361, i32 %i.phi12681432
+  1912811362 = sub i32 %n.load12691428, i32 %i.phi12681432
   2012821363 = sub i32 %1912811362, i32 1
   2112831364 = icmp slt i32 0, i32 %2012821363
   br i1 %2112831364, bb %bubblesort.while.body14_preheader, bb %bubblesort.while.exit15
@@ -993,8 +948,7 @@ bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_prehe
 bubblesort.while.exit15:  pred(bubblesort.if.exit, bubblesort.while.body)
   tmp.phi85212671365 = phi [bb %bubblesort.if.exit, i32 %tmp.phi1305, bb %bubblesort.while.body, i32 %tmp.phi85212671431]
   611296 = add i32 %i.phi12681432, i32 1
-  n.load1269 = load i32 from ptr @n
-  91270 = sub i32 %n.load1269, i32 1
+  91270 = sub i32 %n.load12691428, i32 1
   101271 = icmp slt i32 %611296, i32 %91270
   br i1 %101271, bb %bubblesort.while.body, bb %bubblesort.while.exit
 bubblesort.then:  pred(bubblesort.while.body14)
@@ -1005,8 +959,7 @@ bubblesort.then:  pred(bubblesort.while.body14)
   br bb %bubblesort.if.exit
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
   tmp.phi1305 = phi [bb %bubblesort.while.body14, i32 %tmp.phi85112781366, bb %bubblesort.then, i32 %40.load1299]
-  n.load171280 = load i32 from ptr @n
-  191281 = sub i32 %n.load171280, i32 %i.phi12681432
+  191281 = sub i32 %n.load12691428, i32 %i.phi12681432
   201282 = sub i32 %191281, i32 1
   211283 = icmp slt i32 %281289, i32 %201282
   br i1 %211283, bb %bubblesort.while.body14, bb %bubblesort.while.exit15
@@ -1015,7 +968,7 @@ bubblesort.while.body1318_preheader:  pred(arrCopy.while.exit3761009)
 bubblesort.while.body1318:  pred(bubblesort.while.exit151340, bubblesort.while.body1318_preheader)
   i.phi13131413 = phi [bb %bubblesort.while.exit151340, i32 %611341, bb %bubblesort.while.body1318_preheader, i32 0]
   tmp.phi85213121412 = phi [bb %bubblesort.while.exit151340, i32 %tmp.phi85213121371, bb %bubblesort.while.body1318_preheader, i32 0]
-  1913261368 = sub i32 %n.load37899814141416, i32 %i.phi13131413
+  1913261368 = sub i32 %n.load3789981414, i32 %i.phi13131413
   2013271369 = sub i32 %1913261368, i32 1
   2113281370 = icmp slt i32 0, i32 %2013271369
   br i1 %2113281370, bb %bubblesort.while.body141330_preheader, bb %bubblesort.while.exit151340

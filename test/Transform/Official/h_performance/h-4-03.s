@@ -13,10 +13,10 @@ main:
   SD s5, 48(sp)
   SD s6, 56(sp)
   CALL getint
-  ADD s0, a0, zero
+  ADD s4, a0, zero
   ADDI a0, zero, 33
   CALL _sysy_starttime
-  BNE s0, zero, bb2
+  BNE s4, zero, bb2
   # implict jump to bb1
 bb1:
   ADDI a0, zero, 42
@@ -35,14 +35,12 @@ bb1:
 bb2:
   # implict jump to bb3
 bb3:
-  ADD s1, s0, zero
-  CALL getint
-  ADD s3, a0, zero
-  CALL getint
-  ADD s0, a0, zero
   CALL getint
   ADD s2, a0, zero
-  BLT s3, s0, bb7
+  CALL getint
+  ADD s5, a0, zero
+  CALL getint
+  BLT s2, s5, bb7
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -52,73 +50,67 @@ bb5:
   ADDI a0, zero, 10
   CALL putch
   ADDI s0, zero, 1
-  SUBW s0, s1, s0
-  BNE s0, zero, bb6
+  SUBW s4, s4, s0
+  BNE s4, zero, bb6
   JAL zero, bb1
 bb6:
   JAL zero, bb3
 bb7:
-  ADD s4, zero, zero
-  ADD a0, s3, zero
+  ADD s3, zero, zero
   # implict jump to bb8
 bb8:
-  ADD s3, a0, zero
-  LUI a0, 524288
-  ADDIW a0, a0, -1
-  SUBW a0, a0, s3
-  BLT s3, a0, bb19
+  LUI s0, 524288
+  ADDIW s0, s0, -1
+  SUBW s1, s0, s2
+  BLT s2, s1, bb19
   # implict jump to bb9
 bb9:
   # implict jump to bb10
 bb10:
-  ADD s5, a0, zero
-  LUI a0, 262144
-  ADDIW a0, a0, -1
-  SUBW a0, a0, s5
-  BLT s5, a0, bb18
+  LUI s0, 262144
+  ADDIW s0, s0, -1
+  SUBW s0, s0, s1
+  BLT s1, s0, bb18
   # implict jump to bb11
 bb11:
+  ADD s1, s0, zero
   # implict jump to bb12
 bb12:
-  ADD s5, a0, zero
-  LUI a0, 131072
-  ADDIW a0, a0, 0
-  SUBW a0, a0, s5
-  BLT s5, a0, bb17
+  LUI s0, 131072
+  ADDIW s0, s0, 0
+  SUBW s0, s0, s1
+  BLT s1, s0, bb17
   # implict jump to bb13
 bb13:
+  ADD s1, s0, zero
   # implict jump to bb14
 bb14:
-  ADD s6, a0, zero
-  ADDI a0, zero, 3
-  MULW s5, s6, a0
-  ADDI a0, zero, 1000
-  DIVW s5, s5, a0
-  ADDI a0, zero, 1001
-  MULW a0, s5, a0
-  ADDW s5, s6, a0
-  LUI a0, 4759
-  ADDIW a0, a0, -1863
-  REMW a0, s5, a0
-  ADDW s4, s4, a0
-  LUI a0, 243712
-  ADDIW a0, a0, 501
-  REMW a0, s4, a0
-  ADDW s3, s3, s2
-  BLT s3, s0, bb16
+  ADDI s0, zero, 3
+  MULW s0, s1, s0
+  ADDI s6, zero, 1000
+  DIVW s0, s0, s6
+  ADDI s6, zero, 1001
+  MULW s0, s0, s6
+  ADDW s0, s1, s0
+  LUI s1, 4759
+  ADDIW s1, s1, -1863
+  REMW s0, s0, s1
+  ADDW s0, s3, s0
+  LUI s1, 243712
+  ADDIW s1, s1, 501
+  REMW s3, s0, s1
+  ADDW s2, s2, a0
+  BLT s2, s5, bb16
   # implict jump to bb15
 bb15:
+  ADD a0, s3, zero
   JAL zero, bb5
 bb16:
-  ADD s4, a0, zero
-  ADD a0, s3, zero
   JAL zero, bb8
 bb17:
-  ADD a0, s5, zero
   JAL zero, bb14
 bb18:
-  ADD a0, s5, zero
   JAL zero, bb12
 bb19:
-  ADD a0, s3, zero
+  ADD s1, s2, zero
   JAL zero, bb10

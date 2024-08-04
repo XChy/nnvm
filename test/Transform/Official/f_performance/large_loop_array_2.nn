@@ -97,8 +97,7 @@ loop.while.exit:  pred(loop.while.body, while.exit61)
   149 = phi [bb %loop.while.body, float %22142, bb %while.exit61, float 0.000000]
   89 = fadd float %total.phi160, float %149
   92 = add i32 %i28.phi162, i32 1
-  COUNT.load = load i32 from ptr @COUNT
-  43 = icmp slt i32 %92, i32 %COUNT.load
+  43 = icmp slt i32 %92, i32 %COUNT.load155
   br i1 %43, bb %while.body39, bb %while.exit40
 }
 

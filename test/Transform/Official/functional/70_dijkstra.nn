@@ -28,13 +28,11 @@ entry143:  pred()
 while.body151_preheader:  pred(entry143)
   br bb %while.body151
 while.body151:  pred(while.exit160, while.body151_preheader)
-  n.load154410413 = phi [bb %while.exit160, i32 %n.load154, bb %while.body151_preheader, i32 %n.load154410]
   i144.phi236412 = phi [bb %while.exit160, i32 %191, bb %while.body151_preheader, i32 1]
-  163385 = icmp sle i32 1, i32 %n.load154410413
+  163385 = icmp sle i32 1, i32 %n.load154410
   br i1 %163385, bb %while.body159_preheader, bb %while.exit160
 while.exit152:  pred(while.exit160, entry143)
-  m.load197407 = load i32 from ptr @m
-  198408 = icmp sle i32 1, i32 %m.load197407
+  198408 = icmp sle i32 1, i32 %148
   br i1 %198408, bb %while.body194_preheader, bb %while.exit195
 while.body159_preheader:  pred(while.body151)
   br bb %while.body159
@@ -44,8 +42,7 @@ while.body159:  pred(if.exit169, while.body159_preheader)
   br i1 %167, bb %then168, bb %else
 while.exit160:  pred(if.exit169, while.body151)
   191 = add i32 %i144.phi236412, i32 1
-  n.load154 = load i32 from ptr @n
-  155 = icmp sle i32 %191, i32 %n.load154
+  155 = icmp sle i32 %191, i32 %n.load154410
   br i1 %155, bb %while.body151, bb %while.exit152
 then168:  pred(while.body159)
   256 = shl i32 %i144.phi236412, i32 6
@@ -56,7 +53,7 @@ then168:  pred(while.body159)
   br bb %if.exit169
 if.exit169:  pred(then168, else)
   188 = add i32 %j157.phi386, i32 1
-  163 = icmp sle i32 %188, i32 %n.load154410413
+  163 = icmp sle i32 %188, i32 %n.load154410
   br i1 %163, bb %while.body159, bb %while.exit160
 else:  pred(while.body159)
   258 = shl i32 %i144.phi236412, i32 6
@@ -114,26 +111,23 @@ Dijkstra.while.body:  pred(Dijkstra.while.body, Dijkstra.while.body_preheader)
   23295 = ptradd ptr @book, i32 %263289
   store i32 0 to ptr %23295
   27297 = add i32 %i.phi242284406, i32 1
-  n.load285 = load i32 from ptr @n
-  9286 = icmp sle i32 %27297, i32 %n.load285
+  9286 = icmp sle i32 %27297, i32 %n.load285403
   br i1 %9286, bb %Dijkstra.while.body, bb %Dijkstra.while.exit
 Dijkstra.while.exit:  pred(Dijkstra.while.body, while.exit195)
-  n.load285403405 = phi [bb %Dijkstra.while.body, i32 %n.load285, bb %while.exit195, i32 %n.load285403]
   29300 = ptradd ptr @book, i32 4
   store i32 1 to ptr %29300
-  37307399 = sub i32 %n.load285403405, i32 1
+  37307399 = sub i32 %n.load285403, i32 1
   38308400 = icmp sle i32 1, i32 %37307399
   br i1 %38308400, bb %Dijkstra.while.body33_preheader, bb %Dijkstra.while.exit34
 Dijkstra.while.body33_preheader:  pred(Dijkstra.while.exit)
-  49320389 = icmp sle i32 1, i32 %n.load285403405
+  49320389 = icmp sle i32 1, i32 %n.load285403
   br bb %Dijkstra.while.body33
 Dijkstra.while.body33:  pred(Dijkstra.while.exit86, Dijkstra.while.body33_preheader)
   i.phi305402 = phi [bb %Dijkstra.while.exit86, i32 %142365, bb %Dijkstra.while.body33_preheader, i32 1]
   select.phi253304401 = phi [bb %Dijkstra.while.exit86, i1 %select.phi253304390, bb %Dijkstra.while.body33_preheader, i1 0]
   br i1 %49320389, bb %Dijkstra.while.body45_preheader, bb %Dijkstra.while.exit46
 Dijkstra.while.exit34:  pred(Dijkstra.while.exit86, Dijkstra.while.exit)
-  n.load221396 = load i32 from ptr @n
-  222397 = icmp sle i32 1, i32 %n.load221396
+  222397 = icmp sle i32 1, i32 %n.load285403
   br i1 %222397, bb %while.body218_preheader, bb %while.exit219
 Dijkstra.while.body45_preheader:  pred(Dijkstra.while.body33)
   br bb %Dijkstra.while.body45
@@ -169,7 +163,7 @@ Dijkstra.if.exit:  pred(Dijkstra.select.exit, Dijkstra.then)
   min_index.phi347 = phi [bb %Dijkstra.select.exit, i32 %min_index.phi247317394, bb %Dijkstra.then, i32 %k.phi316393]
   min_num.phi348 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi244318395, bb %Dijkstra.then, i32 %54.load325]
   78349 = add i32 %k.phi316393, i32 1
-  49320 = icmp sle i32 %78349, i32 %n.load285403405
+  49320 = icmp sle i32 %78349, i32 %n.load285403
   br i1 %49320, bb %Dijkstra.while.body45, bb %Dijkstra.while.exit46
 Dijkstra.while.body85_preheader:  pred(Dijkstra.while.exit46)
   270357 = shl i32 %391, i32 6
@@ -196,7 +190,7 @@ Dijkstra.then100:  pred(Dijkstra.while.body85)
   br i1 %118374, bb %Dijkstra.then119, bb %Dijkstra.if.exit101
 Dijkstra.if.exit101:  pred(Dijkstra.while.body85, Dijkstra.then100, Dijkstra.then119)
   139377 = add i32 %j83.phi352388, i32 1
-  89354 = icmp sle i32 %139377, i32 %n.load285403405
+  89354 = icmp sle i32 %139377, i32 %n.load285403
   br i1 %89354, bb %Dijkstra.while.body85, bb %Dijkstra.while.exit86
 Dijkstra.then119:  pred(Dijkstra.then100)
   127.load380 = load i32 from ptr %108370

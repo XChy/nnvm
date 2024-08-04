@@ -27,8 +27,7 @@ while.body:  pred(while.body, while.body_preheader)
   30043 = add i32 %sum.phi50074, i32 %30039
   30046 = srem i32 %30043, i32 536854529
   30049 = add i32 %i.phi50073, i32 1
-  loopCount.load30018 = load i32 from ptr @loopCount
-  30019 = icmp slt i32 %30049, i32 %loopCount.load30018
+  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850070
   br i1 %30019, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry30008)
   50072 = phi [bb %while.body, i32 %30046, bb %entry30008, i32 0]

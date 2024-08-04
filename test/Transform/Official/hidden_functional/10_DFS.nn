@@ -125,8 +125,7 @@ if.exit217:  pred(clear.while.exit121, else218.split571.split)
   m.load237 = load i32 from ptr @m
   238 = sub i32 %m.load237, i32 1
   store i32 %238 to ptr @m
-  m.load195 = load i32 from ptr @m
-  196 = icmp ne i32 %m.load195, i32 0
+  196 = icmp ne i32 %238, i32 0
   br i1 %196, bb %while.body193, bb %while.exit194
 else218:  pred(while.exit201)
   2573 = call i32 getch()
@@ -170,8 +169,7 @@ init.while.body103:  pred(init.while.body103, entry186.split347.split)
   107287 = icmp slt i32 %116293, i32 1005
   br i1 %107287, bb %init.while.body103, bb %init.while.exit104
 init.while.exit104:  pred(init.while.body103)
-  m.load195686 = load i32 from ptr @m
-  196687 = icmp ne i32 %m.load195686, i32 0
+  196687 = icmp ne i32 %190.ret, i32 0
   br i1 %196687, bb %while.body193_preheader, bb %while.exit194
 clear.while.body120_preheader:  pred(then216.split459.split)
   br bb %clear.while.body120
@@ -181,8 +179,7 @@ clear.while.body120:  pred(clear.while.body120, clear.while.body120_preheader)
   128341 = ptradd ptr @vis, i32 %281340
   store i32 0 to ptr %128341
   132343 = add i32 %i118.phi335685, i32 1
-  n.load336 = load i32 from ptr @n
-  124337 = icmp sle i32 %132343, i32 %n.load336
+  124337 = icmp sle i32 %132343, i32 %n.load336683
   br i1 %124337, bb %clear.while.body120, bb %clear.while.exit121
 clear.while.exit121:  pred(clear.while.body120, then216.split459.split)
   226 = call i32 same(i32 %220.ret, i32 %222.ret)

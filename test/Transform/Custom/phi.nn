@@ -9,8 +9,7 @@ while.body_preheader:  pred(entry)
 while.body:  pred(while.body, while.body_preheader)
   a.phi17 = phi [bb %while.body, i32 %11, bb %while.body_preheader, i32 0]
   11 = add i32 %a.phi17, i32 1
-  value.load = load i32 from ptr @value
-  7 = icmp slt i32 %11, i32 %value.load
+  7 = icmp slt i32 %11, i32 %value.load14
   br i1 %7, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry)
   16 = phi [bb %while.body, i32 %11, bb %entry, i32 0]

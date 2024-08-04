@@ -94,8 +94,7 @@ loop.while.body:  pred(loop.while.body, while.exit60)
 loop.while.exit:  pred(loop.while.body)
   88 = fadd float %total.phi162, float %22144
   91 = add i32 %i28.phi163, i32 1
-  COUNT.load = load i32 from ptr @COUNT
-  42 = icmp slt i32 %91, i32 %COUNT.load
+  42 = icmp slt i32 %91, i32 %COUNT.load157
   br i1 %42, bb %while.body38, bb %while.exit39
 }
 

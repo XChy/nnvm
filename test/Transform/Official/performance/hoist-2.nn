@@ -25,8 +25,7 @@ func.while.body:  pred(func.while.body, func.while.body_preheader)
   32324764 = add i32 %result.phi32584774, i32 15
   32354765 = srem i32 %32324764, i32 1500000001
   32384766 = add i32 %i.phi32594775, i32 1
-  loopCount.load3260 = load i32 from ptr @loopCount
-  233261 = icmp slt i32 %32384766, i32 %loopCount.load3260
+  233261 = icmp slt i32 %32384766, i32 %loopCount.load32604771
   br i1 %233261, bb %func.while.body, bb %func.while.exit
 func.while.exit:  pred(func.while.body, entry3240)
   4773 = phi [bb %func.while.body, i32 %32354765, bb %entry3240, i32 0]

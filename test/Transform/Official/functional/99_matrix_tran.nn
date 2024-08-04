@@ -57,32 +57,21 @@ entry57:  pred()
   111288 = ptradd ptr %b2, i32 8
   store float %84278 to ptr %111288
   4204 = ptradd ptr %c1, i32 8
-  7.load206 = load float from ptr %93263
-  store float %7.load206 to ptr %4204
+  store float %84259 to ptr %4204
   10208 = ptradd ptr %c2, i32 4
-  13.load210 = load float from ptr %87280
-  store float %13.load210 to ptr %10208
+  store float %84278 to ptr %10208
   16212 = ptradd ptr %c0, i32 4
-  19.load213 = load float from ptr %a1
-  store float %19.load213 to ptr %16212
+  store float %84 to ptr %16212
   22215 = ptradd ptr %c0, i32 8
-  25.load216 = load float from ptr %a2
-  store float %25.load216 to ptr %22215
-  31.load219 = load float from ptr %81258
-  store float %31.load219 to ptr %c1
-  37.load222 = load float from ptr %81277
-  store float %37.load222 to ptr %c2
+  store float %84 to ptr %22215
+  store float %84259 to ptr %c1
+  store float %84278 to ptr %c2
   40224 = ptradd ptr %c1, i32 4
-  43.load226 = load float from ptr %87261
-  store float %43.load226 to ptr %40224
+  store float %84259 to ptr %40224
   46228 = ptradd ptr %c2, i32 8
-  49.load230 = load float from ptr %93282
-  store float %49.load230 to ptr %46228
-  55.load232 = load float from ptr %a0
-  store float %55.load232 to ptr %c0
-  N.load125242 = load i32 from ptr @N
-  126243 = icmp slt i32 0, i32 %N.load125242
-  br i1 %126243, bb %while.body122_preheader, bb %while.exit123
+  store float %84278 to ptr %46228
+  store float %84 to ptr %c0
+  br i1 -1, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(entry57)
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)

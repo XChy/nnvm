@@ -58,87 +58,67 @@ entry237:  pred()
   store float %264554 to ptr %285562
   291564 = ptradd ptr %b2, i32 8
   store float %264554 to ptr %291564
-  7.load384 = load float from ptr %a0
-  10.load385 = load float from ptr %b0
-  12386 = fmul float %7.load384, float %10.load385
-  14.load388 = load float from ptr %261534
-  17.load389 = load float from ptr %b1
-  19390 = fmul float %14.load388, float %17.load389
+  12386 = fmul float %264, float %264
+  19390 = fmul float %264535, float %264
   20391 = fadd float %12386, float %19390
-  22.load393 = load float from ptr %261553
-  25.load394 = load float from ptr %b2
-  27395 = fmul float %22.load393, float %25.load394
+  27395 = fmul float %264554, float %264
   28396 = fadd float %20391, float %27395
   store float %28396 to ptr %c0
   30398 = ptradd ptr %c0, i32 4
-  36.load401 = load float from ptr %279541
-  38402 = fmul float %7.load384, float %36.load401
-  43.load405 = load float from ptr %285543
-  45406 = fmul float %14.load388, float %43.load405
+  38402 = fmul float %264, float %264535
+  45406 = fmul float %264535, float %264535
   46407 = fadd float %38402, float %45406
-  51.load410 = load float from ptr %291545
-  53411 = fmul float %22.load393, float %51.load410
+  53411 = fmul float %264554, float %264535
   54412 = fadd float %46407, float %53411
   store float %54412 to ptr %30398
   56414 = ptradd ptr %c0, i32 8
-  62.load417 = load float from ptr %279560
-  64418 = fmul float %7.load384, float %62.load417
-  69.load421 = load float from ptr %285562
-  71422 = fmul float %14.load388, float %69.load421
+  64418 = fmul float %264, float %264554
+  71422 = fmul float %264535, float %264554
   72423 = fadd float %64418, float %71422
-  77.load426 = load float from ptr %291564
-  79427 = fmul float %22.load393, float %77.load426
+  79427 = fmul float %264554, float %264554
   80428 = fadd float %72423, float %79427
   store float %80428 to ptr %56414
-  85.load430 = load float from ptr %a1
-  90432 = fmul float %85.load430, float %10.load385
-  92.load434 = load float from ptr %267537
-  97436 = fmul float %92.load434, float %17.load389
+  90432 = fmul float %264, float %264
+  97436 = fmul float %264535, float %264
   98437 = fadd float %90432, float %97436
-  100.load439 = load float from ptr %267556
-  105441 = fmul float %100.load439, float %25.load394
+  105441 = fmul float %264554, float %264
   106442 = fadd float %98437, float %105441
   store float %106442 to ptr %c1
   108444 = ptradd ptr %c1, i32 4
-  116447 = fmul float %85.load430, float %36.load401
-  123450 = fmul float %92.load434, float %43.load405
+  116447 = fmul float %264, float %264535
+  123450 = fmul float %264535, float %264535
   124451 = fadd float %116447, float %123450
-  131454 = fmul float %100.load439, float %51.load410
+  131454 = fmul float %264554, float %264535
   132455 = fadd float %124451, float %131454
   store float %132455 to ptr %108444
   134457 = ptradd ptr %c1, i32 8
-  142460 = fmul float %85.load430, float %62.load417
-  149463 = fmul float %92.load434, float %69.load421
+  142460 = fmul float %264, float %264554
+  149463 = fmul float %264535, float %264554
   150464 = fadd float %142460, float %149463
-  157467 = fmul float %100.load439, float %77.load426
+  157467 = fmul float %264554, float %264554
   158468 = fadd float %150464, float %157467
   store float %158468 to ptr %134457
-  163.load470 = load float from ptr %a2
-  168472 = fmul float %163.load470, float %10.load385
-  170.load474 = load float from ptr %273539
-  175476 = fmul float %170.load474, float %17.load389
+  168472 = fmul float %264, float %264
+  175476 = fmul float %264535, float %264
   176477 = fadd float %168472, float %175476
-  178.load479 = load float from ptr %273558
-  183481 = fmul float %178.load479, float %25.load394
+  183481 = fmul float %264554, float %264
   184482 = fadd float %176477, float %183481
   store float %184482 to ptr %c2
   186484 = ptradd ptr %c2, i32 4
-  194487 = fmul float %163.load470, float %36.load401
-  201490 = fmul float %170.load474, float %43.load405
+  194487 = fmul float %264, float %264535
+  201490 = fmul float %264535, float %264535
   202491 = fadd float %194487, float %201490
-  209494 = fmul float %178.load479, float %51.load410
+  209494 = fmul float %264554, float %264535
   210495 = fadd float %202491, float %209494
   store float %210495 to ptr %186484
   212497 = ptradd ptr %c2, i32 8
-  220500 = fmul float %163.load470, float %62.load417
-  227503 = fmul float %170.load474, float %69.load421
+  220500 = fmul float %264, float %264554
+  227503 = fmul float %264535, float %264554
   228504 = fadd float %220500, float %227503
-  235507 = fmul float %178.load479, float %77.load426
+  235507 = fmul float %264554, float %264554
   236508 = fadd float %228504, float %235507
   store float %236508 to ptr %212497
-  N.load305518 = load i32 from ptr @N
-  306519 = icmp slt i32 0, i32 %N.load305518
-  br i1 %306519, bb %while.body302_preheader, bb %while.exit303
+  br i1 -1, bb %while.body302_preheader, bb %while.exit303
 while.body302_preheader:  pred(entry237)
   br bb %while.body302
 while.body302:  pred(while.body302, while.body302_preheader)

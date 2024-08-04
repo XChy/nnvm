@@ -35,22 +35,21 @@ run_program:
   ADDI t0, zero, 512
   # implict jump to bb1
 bb1:
-  ADD t1, t0, zero
-  ADDI t0, zero, 1
-  SUBW t2, t1, t0
-  SLLIW t0, t2, 2
-  ADDI t1, sp, 0
-  ADD t1, t1, t0
-  ADDI t0, zero, 0
-  SW t0, 0(t1)
-  BNE t2, zero, bb49
+  ADDI t1, zero, 1
+  SUBW t0, t0, t1
+  SLLIW t1, t0, 2
+  ADDI t2, sp, 0
+  ADD t1, t2, t1
+  ADDI t2, zero, 0
+  SW t2, 0(t1)
+  BNE t0, zero, bb49
   # implict jump to bb2
 bb2:
   LA t0, output_length
   SW zero, 0(t0)
   LA t0, program_length
-  LW t0, 0(t0)
-  BLT zero, t0, bb4
+  LW a4, 0(t0)
+  BLT zero, a4, bb4
   # implict jump to bb3
 bb3:
   LUI ra, 1
@@ -62,351 +61,222 @@ bb3:
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb4:
-  ADD a6, zero, zero
-  ADD a5, zero, zero
-  ADD a3, zero, zero
-  ADD a0, zero, zero
-  ADD t2, zero, zero
   ADD t1, zero, zero
+  ADD a3, zero, zero
+  ADD t2, zero, zero
   ADD t0, zero, zero
+  ADD a2, zero, zero
+  ADD a1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb5
 bb5:
-  ADD a1, t0, zero
-  ADD a2, t1, zero
-  ADD a4, t2, zero
-  ADD t1, a0, zero
-  ADD t2, a3, zero
-  ADD a0, a5, zero
-  ADD a3, a6, zero
-  SLLIW a5, a3, 2
-  LA t0, program
-  ADD t0, t0, a5
-  LW a5, 0(t0)
-  XORI t0, a5, 62
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb48
+  SLLIW a5, t1, 2
+  LA a6, program
+  ADD a5, a6, a5
+  LW a5, 0(a5)
+  XORI a6, a5, 62
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb48
   # implict jump to bb6
 bb6:
-  XORI t0, a5, 60
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb47
+  XORI a6, a5, 60
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb47
   # implict jump to bb7
 bb7:
-  XORI t0, a5, 43
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb46
+  XORI a6, a5, 43
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb46
   # implict jump to bb8
 bb8:
-  XORI t0, a5, 45
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb45
+  XORI a6, a5, 45
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb45
   # implict jump to bb9
 bb9:
-  XORI t0, a5, 91
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb32
+  XORI a6, a5, 91
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb32
   # implict jump to bb10
 bb10:
-  XORI t0, a5, 93
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb28
+  XORI a6, a5, 93
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb28
   # implict jump to bb11
 bb11:
-  XORI t0, a5, 46
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb27
+  XORI a6, a5, 46
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb27
   # implict jump to bb12
 bb12:
-  XORI t0, a5, 44
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb23
+  XORI a5, a5, 44
+  SLTIU a5, a5, 1
+  BNE a5, zero, bb23
   # implict jump to bb13
 bb13:
-  ADD t0, t1, zero
   # implict jump to bb14
 bb14:
   # implict jump to bb15
 bb15:
-  ADD a5, a1, zero
-  ADD a1, t0, zero
-  ADD t1, t2, zero
-  ADD t0, a3, zero
   # implict jump to bb16
 bb16:
-  ADD a6, t0, zero
-  ADD t2, a1, zero
-  ADD t0, a5, zero
-  ADD a3, t0, zero
-  ADD a1, a4, zero
-  ADD t0, a6, zero
   # implict jump to bb17
 bb17:
-  ADD a4, t0, zero
-  ADD t0, t1, zero
-  ADD t1, a1, zero
-  ADD a1, a2, zero
-  ADD a2, a3, zero
-  ADD a6, a2, zero
-  ADD a5, a1, zero
-  ADD a2, t1, zero
-  ADD a1, t2, zero
-  ADD t1, t0, zero
-  ADD t0, a4, zero
   # implict jump to bb18
 bb18:
-  ADD a3, t0, zero
-  ADD t0, t1, zero
-  ADD t1, a1, zero
-  ADD t2, a2, zero
-  ADD a1, a5, zero
-  ADD a2, a6, zero
-  ADD a6, a2, zero
-  ADD a5, a1, zero
-  ADD a2, t2, zero
-  ADD a1, t1, zero
-  ADD t1, t0, zero
-  ADD t0, a3, zero
   # implict jump to bb19
 bb19:
-  ADD a4, t0, zero
-  ADD a3, t1, zero
-  ADD t1, a1, zero
-  ADD a1, a2, zero
-  ADD t0, a5, zero
-  ADD t2, a6, zero
-  ADD a6, t2, zero
-  ADD a5, t0, zero
-  ADD a2, a1, zero
-  ADD a1, t1, zero
-  ADD t2, a3, zero
-  ADD t1, a0, zero
-  ADD t0, a4, zero
   # implict jump to bb20
 bb20:
-  ADD a7, t0, zero
-  ADD a3, t1, zero
-  ADD a4, t2, zero
-  ADD a0, a1, zero
-  ADD t1, a2, zero
-  ADD t2, a5, zero
-  ADD t0, a6, zero
-  ADD a5, t0, zero
-  ADD a2, t2, zero
-  ADD a1, t1, zero
-  ADD t2, a4, zero
-  ADD t1, a3, zero
-  ADD t0, a7, zero
   # implict jump to bb21
 bb21:
-  ADD a3, t2, zero
-  ADD a4, a2, zero
-  ADD a2, a5, zero
-  ADDIW t2, t0, 1
-  LA t0, program_length
-  LW t0, 0(t0)
-  BLT t2, t0, bb22
+  ADDIW t1, t1, 1
+  BLT t1, a4, bb22
   JAL zero, bb3
 bb22:
-  ADD a6, t2, zero
-  ADD a5, t1, zero
-  ADD t2, a1, zero
-  ADD t1, a4, zero
-  ADD t0, a2, zero
   JAL zero, bb5
 bb23:
-  LA t0, input_length
-  LW t0, 0(t0)
-  SLT t0, t1, t0
-  XORI t0, t0, 1
-  BNE t0, zero, bb26
+  LA a5, input_length
+  LW a5, 0(a5)
+  SLT a5, t0, a5
+  XORI a5, a5, 1
+  BNE a5, zero, bb26
   # implict jump to bb24
 bb24:
-  SLLIW a5, a0, 2
-  LA t0, tape
-  ADD a6, t0, a5
-  SLLIW a5, t1, 2
-  LA t0, input
-  ADD t0, t0, a5
-  LW t0, 0(t0)
-  SW t0, 0(a6)
-  ADDIW t0, t1, 1
+  SLLIW a5, a3, 2
+  LA a6, tape
+  ADD a5, a6, a5
+  SLLIW a6, t0, 2
+  LA a7, input
+  ADD a6, a7, a6
+  LW a6, 0(a6)
+  SW a6, 0(a5)
+  ADDIW t0, t0, 1
   # implict jump to bb25
 bb25:
   JAL zero, bb14
 bb26:
-  SLLIW a5, a0, 2
-  LA t0, tape
-  ADD t0, t0, a5
-  SW zero, 0(t0)
-  ADD t0, t1, zero
+  SLLIW a5, a3, 2
+  LA a6, tape
+  ADD a5, a6, a5
+  SW zero, 0(a5)
   JAL zero, bb25
 bb27:
-  LA t0, output_length
-  LW t0, 0(t0)
-  SLLIW a5, t0, 2
-  LA t0, output
-  ADD a6, t0, a5
-  SLLIW a5, a0, 2
-  LA t0, tape
-  ADD t0, t0, a5
-  LW t0, 0(t0)
-  SW t0, 0(a6)
-  LA t0, output_length
-  LW t0, 0(t0)
-  ADDIW a5, t0, 1
-  LA t0, output_length
-  SW a5, 0(t0)
-  ADD t0, t1, zero
+  LA a5, output_length
+  LW a5, 0(a5)
+  SLLIW a5, a5, 2
+  LA a6, output
+  ADD a5, a6, a5
+  SLLIW a6, a3, 2
+  LA a7, tape
+  ADD a6, a7, a6
+  LW a6, 0(a6)
+  SW a6, 0(a5)
+  LA a5, output_length
+  LW a5, 0(a5)
+  ADDIW a5, a5, 1
+  LA a6, output_length
+  SW a5, 0(a6)
   JAL zero, bb15
 bb28:
-  SLLIW a1, a0, 2
-  LA t0, tape
-  ADD t0, t0, a1
-  LW a1, 0(t0)
-  SLTIU t0, a1, 1
-  BNE t0, zero, bb31
+  SLLIW a0, a3, 2
+  LA a5, tape
+  ADD a0, a5, a0
+  LW a0, 0(a0)
+  SLTIU a5, a0, 1
+  BNE a5, zero, bb31
   # implict jump to bb29
 bb29:
-  ADDI t0, zero, 1
-  SUBW t0, t2, t0
-  SLLIW t0, t0, 2
-  ADDI t5, sp, 0
-  ADD t0, t5, t0
-  LW t0, 0(t0)
+  ADDI t1, zero, 1
+  SUBW t1, t2, t1
+  SLLIW t1, t1, 2
+  ADDI t6, sp, 0
+  ADD t1, t6, t1
+  LW t1, 0(t1)
   # implict jump to bb30
 bb30:
-  ADD a3, t0, zero
-  ADD t0, t2, zero
-  ADD a5, a1, zero
-  ADD a1, t1, zero
-  ADD t1, t0, zero
-  ADD t0, a3, zero
   JAL zero, bb16
 bb31:
-  ADDI t0, zero, 1
-  SUBW t0, t2, t0
-  ADD t2, t0, zero
-  ADD t0, a3, zero
+  ADDI a5, zero, 1
+  SUBW t2, t2, a5
   JAL zero, bb30
 bb32:
-  SLLIW a4, a0, 2
-  LA t0, tape
-  ADD t0, t0, a4
-  LW a4, 0(t0)
-  BNE a4, zero, bb44
+  SLLIW a2, a3, 2
+  LA a5, tape
+  ADD a2, a5, a2
+  LW a2, 0(a2)
+  BNE a2, zero, bb44
   # implict jump to bb33
 bb33:
-  ADD a2, a3, zero
-  ADDI t0, zero, 1
+  ADDI a1, zero, 1
   # implict jump to bb34
 bb34:
-  ADD a3, t0, zero
-  ADD t0, a2, zero
-  ADDIW a5, t0, 1
-  SLLIW a2, a5, 2
-  LA t0, program
-  ADD t0, t0, a2
-  LW a2, 0(t0)
-  XORI t0, a2, 93
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb43
+  ADDIW t1, t1, 1
+  SLLIW a5, t1, 2
+  LA a6, program
+  ADD a5, a6, a5
+  LW a5, 0(a5)
+  XORI a6, a5, 93
+  SLTIU a6, a6, 1
+  BNE a6, zero, bb43
   # implict jump to bb35
 bb35:
-  ADD t0, a3, zero
   # implict jump to bb36
 bb36:
-  ADD a3, t0, zero
-  XORI t0, a2, 91
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb42
+  XORI a5, a5, 91
+  SLTIU a5, a5, 1
+  BNE a5, zero, bb42
   # implict jump to bb37
 bb37:
-  ADD t0, a3, zero
   # implict jump to bb38
 bb38:
-  BLT zero, t0, bb41
+  BLT zero, a1, bb41
   # implict jump to bb39
 bb39:
-  ADD a2, t0, zero
-  ADD t0, a5, zero
   # implict jump to bb40
 bb40:
-  ADD a5, t2, zero
-  ADD t2, a2, zero
-  ADD a3, a1, zero
-  ADD a2, t2, zero
-  ADD a1, a4, zero
-  ADD t2, t1, zero
-  ADD t1, a5, zero
   JAL zero, bb17
 bb41:
-  ADD a2, a5, zero
   JAL zero, bb34
 bb42:
-  ADDIW t0, a3, 1
+  ADDIW a1, a1, 1
   JAL zero, bb38
 bb43:
-  ADDI t0, zero, 1
-  SUBW t0, a3, t0
+  ADDI a6, zero, 1
+  SUBW a1, a1, a6
   JAL zero, bb36
 bb44:
-  SLLIW t0, t2, 2
-  ADDI t5, sp, 0
-  ADD t0, t5, t0
-  SW a3, 0(t0)
-  ADDIW t0, t2, 1
-  ADD t2, t0, zero
-  ADD t0, a3, zero
+  SLLIW a5, t2, 2
+  ADDI t6, sp, 0
+  ADD a5, t6, a5
+  SW t1, 0(a5)
+  ADDIW t2, t2, 1
   JAL zero, bb40
 bb45:
-  SLLIW a5, a0, 2
-  LA t0, tape
-  ADD a5, t0, a5
+  SLLIW a5, a3, 2
+  LA a6, tape
+  ADD a5, a6, a5
   LW a6, 0(a5)
-  ADDI t0, zero, 1
-  SUBW t0, a6, t0
-  SW t0, 0(a5)
-  ADD a6, a1, zero
-  ADD a5, a2, zero
-  ADD a2, a4, zero
-  ADD a1, t1, zero
-  ADD t1, t2, zero
-  ADD t0, a3, zero
+  ADDI a7, zero, 1
+  SUBW a6, a6, a7
+  SW a6, 0(a5)
   JAL zero, bb18
 bb46:
-  SLLIW a5, a0, 2
-  LA t0, tape
-  ADD a5, t0, a5
-  LW t0, 0(a5)
-  ADDIW t0, t0, 1
-  SW t0, 0(a5)
-  ADD a6, a1, zero
-  ADD a5, a2, zero
-  ADD a2, a4, zero
-  ADD a1, t1, zero
-  ADD t1, t2, zero
-  ADD t0, a3, zero
+  SLLIW a5, a3, 2
+  LA a6, tape
+  ADD a5, a6, a5
+  LW a6, 0(a5)
+  ADDIW a6, a6, 1
+  SW a6, 0(a5)
   JAL zero, bb19
 bb47:
-  ADDI t0, zero, 1
-  SUBW t0, a0, t0
-  ADD a6, a1, zero
-  ADD a5, a2, zero
-  ADD a2, a4, zero
-  ADD a1, t1, zero
-  ADD t1, t0, zero
-  ADD t0, a3, zero
+  ADDI a5, zero, 1
+  SUBW a3, a3, a5
   JAL zero, bb20
 bb48:
-  ADDIW t0, a0, 1
-  ADD a5, a1, zero
-  ADD a1, a4, zero
-  ADD a0, t1, zero
-  ADD t1, t0, zero
-  ADD t0, a3, zero
+  ADDIW a3, a3, 1
   JAL zero, bb21
 bb49:
-  ADD t0, t2, zero
   JAL zero, bb1
 main:
   ADDI sp, sp, -32
@@ -415,10 +285,9 @@ main:
   SD s1, 16(sp)
   SD s2, 24(sp)
   CALL getch
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   # implict jump to bb51
 bb51:
-  ADD s1, s0, zero
   XORI s0, s1, 62
   BNE s0, zero, bb117
   # implict jump to bb52
@@ -482,9 +351,9 @@ bb69:
   # implict jump to bb70
 bb70:
   CALL getint
-  ADD s1, a0, zero
-  LA s0, input_length
-  SW s1, 0(s0)
+  ADD s0, a0, zero
+  LA s1, input_length
+  SW s0, 0(s1)
   CALL getch
   LA s0, input_length
   LW s0, 0(s0)
@@ -509,58 +378,51 @@ bb72:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb73:
-  ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb74
 bb74:
-  ADD s1, a0, zero
-  SLLIW s0, s1, 2
-  LA a0, output
-  ADD a0, a0, s0
+  SLLIW a0, s0, 2
+  LA s1, output
+  ADD a0, s1, a0
   LW a0, 0(a0)
   CALL putch
-  ADDIW s0, s1, 1
+  ADDIW s0, s0, 1
   LA a0, output_length
   LW a0, 0(a0)
   BLT s0, a0, bb75
   JAL zero, bb72
 bb75:
-  ADD a0, s0, zero
   JAL zero, bb74
 bb76:
   ADD s0, zero, zero
   # implict jump to bb77
 bb77:
-  ADD s2, s0, zero
-  SLLIW s1, s2, 2
-  LA s0, input
-  ADD s1, s0, s1
+  SLLIW s1, s0, 2
+  LA s2, input
+  ADD s2, s2, s1
   CALL getch
-  ADD s0, a0, zero
-  SW s0, 0(s1)
-  ADDIW s1, s2, 1
-  LA s0, input_length
-  LW s0, 0(s0)
-  BLT s1, s0, bb78
+  ADD s1, a0, zero
+  SW s1, 0(s2)
+  ADDIW s0, s0, 1
+  LA s1, input_length
+  LW s1, 0(s1)
+  BLT s0, s1, bb78
   JAL zero, bb71
 bb78:
-  ADD s0, s1, zero
   JAL zero, bb77
 bb79:
-  ADD s0, s1, zero
   # implict jump to bb80
 bb80:
-  ADD s2, s0, zero
   LA s0, program_length
   LW s0, 0(s0)
-  SLLIW s1, s0, 2
-  LA s0, program
-  ADD s0, s0, s1
-  SW s2, 0(s0)
+  SLLIW s0, s0, 2
+  LA s2, program
+  ADD s0, s2, s0
+  SW s1, 0(s0)
   CALL getch
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   # implict jump to bb81
 bb81:
-  ADD s1, s0, zero
   XORI s0, s1, 62
   BNE s0, zero, bb108
   # implict jump to bb82
@@ -615,18 +477,17 @@ bb97:
 bb98:
   LA s0, program_length
   LW s0, 0(s0)
-  ADDIW s2, s0, 1
-  LA s0, program_length
-  SW s2, 0(s0)
+  ADDIW s0, s0, 1
+  LA s2, program_length
+  SW s0, 0(s2)
   XORI s0, s1, 35
   BNE s0, zero, bb99
   JAL zero, bb69
 bb99:
-  ADD s0, s1, zero
   JAL zero, bb80
 bb100:
   CALL getch
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   JAL zero, bb81
 bb101:
   XORI s0, s1, 35
@@ -662,7 +523,7 @@ bb108:
   JAL zero, bb83
 bb109:
   CALL getch
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   JAL zero, bb51
 bb110:
   XORI s0, s1, 35

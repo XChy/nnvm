@@ -169,7 +169,7 @@ std::set<Register *> riscv::getUsesOf(LIRInst *inst) {
 }
 
 std::set<Register *> riscv::getScratchRegs(LIRModule *M) {
-  return {M->getPhyReg(T5)};
+  return {M->getPhyReg(T6)};
 }
 
 static std::unique_ptr<LIRGlobalName> roundingNames[RM_END] = {

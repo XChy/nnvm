@@ -190,10 +190,11 @@ bool GraphColoringRAImpl::moveRelated(Register *reg) {
  */
 void GraphColoringRAImpl::simplify() {
   auto reg = *simplifyWorklist.begin();
-  simplifyWorklist.erase(reg);
+  simplifyWorklist.erase(simplifyWorklist.begin());
   selectStack.push(reg);
   selectedNodes.insert(reg);
-  for (auto adj : adjacent(reg)) {
+  auto adjacents = adjacent(reg);
+  for (auto adj : adjacents) {
     decrementDegree(adj);
   }
 }
@@ -225,7 +226,8 @@ void GraphColoringRAImpl::decrementDegree(Register *reg) {
  * node.
  */
 void GraphColoringRAImpl::enableMove(Register *node) {
-  for (auto move : nodeMoves(node)) {
+  auto moves = nodeMoves(node);
+  for (auto move : moves) {
     if (activeMoves.count(move)) {
       activeMoves.erase(move);
       worklistMoves.insert(move);
@@ -247,7 +249,7 @@ void GraphColoringRAImpl::enableMoves(std::set<Register *> const &nodes) {
  * Helper for coalescing. Add a frozen node to the simplify work list.
  */
 void GraphColoringRAImpl::addWorkList(Register *reg) {
-  if (!precolored.count(reg) && !moveRelated(reg) && degree[reg] < numRegs) {
+  if (!precolored.count(reg) && degree[reg] < numRegs && !moveRelated(reg)) {
     freezeWorklist.erase(reg);
     simplifyWorklist.insert(reg);
   }
@@ -284,7 +286,7 @@ bool GraphColoringRAImpl::conformBriggs(std::set<Register *> const &neighbors) {
  */
 void GraphColoringRAImpl::coalesce() {
   auto move = *worklistMoves.begin();
-  worklistMoves.erase(move);
+  worklistMoves.erase(worklistMoves.begin());
   auto first = getAlias(move->getOp(0)->as<Register>());
   auto second = getAlias(move->getOp(1)->as<Register>());
   Register *dest, *src;
@@ -295,9 +297,7 @@ void GraphColoringRAImpl::coalesce() {
     dest = first;
     src = second;
   }
-  std::set<Register *> adjRegs = adjacent(dest);
-  auto adjRegsOfSrc = adjacent(src);
-  adjRegs.insert(adjRegsOfSrc.begin(), adjRegsOfSrc.end());
+
   if (dest == src) {
     coalescedMoves.insert(move);
     addWorkList(dest);
@@ -305,13 +305,19 @@ void GraphColoringRAImpl::coalesce() {
     constrainedMoves.insert(move);
     addWorkList(dest);
     addWorkList(src);
-  } else if (precolored.count(dest) && conformGeorges(adjRegsOfSrc, dest) ||
-             !precolored.count(dest) && conformBriggs(adjRegs)) {
-    coalescedMoves.insert(move);
-    combine(dest, src);
-    addWorkList(dest);
   } else {
-    activeMoves.insert(move);
+    std::set<Register *> adjRegs = adjacent(dest);
+    auto adjRegsOfSrc = adjacent(src);
+    adjRegs.insert(adjRegsOfSrc.begin(), adjRegsOfSrc.end());
+
+    if ((precolored.count(dest) && conformGeorges(adjRegsOfSrc, dest)) ||
+        (!precolored.count(dest) && conformBriggs(adjRegs))) {
+      coalescedMoves.insert(move);
+      combine(dest, src);
+      addWorkList(dest);
+    } else {
+      activeMoves.insert(move);
+    }
   }
 }
 
@@ -328,7 +334,8 @@ void GraphColoringRAImpl::combine(Register *dest, Register *src) {
   alias[src] = dest;
   moveList[dest].insert(moveList[src].begin(), moveList[src].end());
   enableMove(src);
-  for (auto adj : adjacent(src)) {
+  auto adjacents = adjacent(src);
+  for (auto adj : adjacents) {
     addEdge(adj, dest);
     decrementDegree(adj);
   }
@@ -345,10 +352,13 @@ void GraphColoringRAImpl::combine(Register *dest, Register *src) {
  * @returns the alias of the given node.
  */
 Register *GraphColoringRAImpl::getAlias(Register *reg) {
-  while (coalescedNodes.count(reg)) {
-    reg = alias[reg];
+  Register *cur = reg;
+  while (coalescedNodes.count(cur)) {
+    cur = alias[cur];
   }
-  return reg;
+  // Compress path
+  alias[reg] = cur;
+  return cur;
 }
 
 /**
@@ -391,25 +401,26 @@ void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
   std::unordered_map<Register *, double> priorities;
   for (auto reg : spillWorklist) {
     priorities[reg] = 0;
-  }
-  for (auto *bb : func) {
-    bool isInLoop = bb->getSuccNum() == 1;
-    for (auto inst : bb->getInsts()) {
-      for (auto &op : inst->operands) {
-        auto reg = op.getOperand()->as<Register>();
-        if (!spillWorklist.count(reg)) {
-          continue;
-        }
-        priorities[reg] +=
-            isInLoop
-                ? 10
-                : 1; // registers in loop are more likely to be frequently used
-      }
+
+    for (auto op : reg->getDefs()) {
+      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
+      priorities[reg] +=
+          isInLoop
+              ? 10
+              : 1; // registers in loop are more likely to be frequently used
     }
-  }
-  for (auto reg : spillWorklist) {
+
+    for (auto op : reg->getUses()) {
+      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
+      priorities[reg] +=
+          isInLoop
+              ? 10
+              : 1; // registers in loop are more likely to be frequently used
+    }
+
     priorities[reg] /= degree[reg];
   }
+
   auto toSpill =
       std::min_element(priorities.begin(), priorities.end(),
                        [](auto a, auto b) { return a.second < b.second; })
@@ -460,16 +471,16 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
   std::unordered_map<Register *, StackSlot *> spilledSlot;
 
   for (auto bb : func) {
-    for (auto inst : incChange(bb->getInsts())) {
+    for (auto inst : *bb) {
       for (auto &op : inst->operands) {
-        auto value = op.getOperand();
-        auto reg = value->as<Register>();
+        if (!op.getOperand()->isReg())
+          continue;
+        auto reg = op.getOperand()->as<Register>();
         if (!spilledNodes.count(reg)) {
           auto alias = getAlias(reg);
           if (reg != alias) {
             op.set(alias);
           }
-          continue;
         }
       }
     }
@@ -486,6 +497,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
                              op->getInst()->getNext());
       builder.storeValueTo(tempReg, slot, reg->getType());
     }
+
     for (auto *op : incChange(reg->getUses())) {
       auto tempReg = builder.newVReg(reg->getType());
       newTemp.push_back(tempReg);
@@ -569,16 +581,32 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     la.runOn(func);
     build(func, la);
     makeWorkList();
+    int a, b, c, d;
+    a = b = c = d = 0;
     do {
       if (!simplifyWorklist.empty()) {
+        std::cerr << "a " << a << "\n";
+        a++;
         simplify();
       } else if (!worklistMoves.empty()) {
+        std::cerr << "b " << b << "\n";
+        std::cerr << "moves " << worklistMoves.size() << "\n";
+        b++;
         coalesce();
       } else if (!freezeWorklist.empty()) {
+        std::cerr << "c " << c << "\n";
+        c++;
         freeze();
       } else if (!spillWorklist.empty()) {
-        // FIXME: handle the unstoppable spilling!!!
-        selectSpill(func);
+
+        std::cerr << "d " << d << "\n";
+        d++;
+        // for (auto *reg : spillWorklist)
+        // std::cerr << getNameForRegister(reg->getRegId()) << ", ";
+        // std::cerr << "\n";
+        //  FIXME: handle the unstoppable spilling!!!
+        while (!spillWorklist.empty())
+          selectSpill(func);
       }
     } while (!simplifyWorklist.empty() || !worklistMoves.empty() ||
              !freezeWorklist.empty() || !spillWorklist.empty());
@@ -597,10 +625,24 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
   physicalize(func);
 }
 
+static inline void filterScratchRegs(std::vector<Register *> &c,
+                                     const std::set<Register *> scratches) {
+  for (auto first = c.begin(), last = c.end(); first != last;) {
+    if (scratches.count(*first))
+      first = c.erase(first);
+    else
+      ++first;
+  }
+}
+
 void GraphColoringRA::allocate(LIRFunc &func) {
   auto gprs = unpreservedRegs(func.getParent());
+  filterScratchRegs(gprs, getScratchRegs(func.getParent()));
+
   GraphColoringRAImpl(gprs, gprs[0]).allocate(func);
 
   auto fprs = unpreservedFRegs(func.getParent());
+  filterScratchRegs(fprs, getScratchRegs(func.getParent()));
+
   GraphColoringRAImpl(fprs, fprs[0]).allocate(func);
 }
