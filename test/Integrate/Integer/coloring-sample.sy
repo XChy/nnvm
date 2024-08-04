@@ -2,6 +2,9 @@ int f(int a, int b) {
     int d = 0;
     int e = a;
     while (e > 0) {
+        while (d < 5) {
+            d++;
+        }
         d = d + b;
         e = e - 1;
     }
