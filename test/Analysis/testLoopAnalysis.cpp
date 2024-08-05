@@ -24,18 +24,18 @@ int main() {
 
   module.addFunction(FA);
 
-  builder.setInsertPoint(BB1->end());
+  builder.insertAt(BB1->end());
   builder.buildStack(module.getIntType(), 200);
   builder.buildBr(ConstantInt::create(module, module.getBoolType(), 1), BB2,
                   BB3);
 
-  builder.setInsertPoint(BB2->end());
+  builder.insertAt(BB2->end());
   builder.buildBr(BB1);
 
-  builder.setInsertPoint(BB3->end());
+  builder.insertAt(BB3->end());
   builder.buildBr(BB1);
 
-  builder.setInsertPoint(BBexit->end());
+  builder.insertAt(BBexit->end());
   builder.buildRet(ConstantInt::create(module, module.getBoolType(), 1));
 
   std::cout << module.dump();

@@ -46,9 +46,8 @@ while.exit33:  pred(while.body32, while.body24)
 while.body71_preheader:  pred(while.exit)
   br bb %while.body71
 while.body71:  pred(while.exit82, while.body71_preheader)
-  75246252 = phi [bb %while.exit82, i32 %75246, bb %while.body71_preheader, i32 %75246]
   i.phi251 = phi [bb %while.exit82, i32 %188, bb %while.body71_preheader, i32 1]
-  86243 = icmp slt i32 1, i32 %75246252
+  86243 = icmp slt i32 1, i32 %75246
   br i1 %86243, bb %while.body81_preheader, bb %while.exit82
 while.exit72:  pred(while.exit82, while.exit)
   249 = phi [bb %while.exit82, i32 %188, bb %while.exit, i32 1]
@@ -126,11 +125,11 @@ while.body90:  pred(while.body90, while.body90_preheader)
   177 = add i32 %165, i32 %175.load
   179 = sdiv i32 %177, i32 %9
   store i32 %179 to ptr %105
-  95 = icmp slt i32 %173, i32 %75246252
+  95 = icmp slt i32 %173, i32 %75246
   br i1 %95, bb %while.body90, bb %while.exit91
 while.exit91:  pred(while.body90, while.body81)
   185 = add i32 %j.phi245, i32 1
-  86 = icmp slt i32 %185, i32 %75246252
+  86 = icmp slt i32 %185, i32 %75246
   br i1 %86, bb %while.body81, bb %while.exit82
 }
 

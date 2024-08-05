@@ -10,14 +10,14 @@ main:
   SD ra, 0(sp)
   SD s0, 8(sp)
   CALL getint
-  XORI s0, a0, 5
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb3
+  ADD s0, a0, zero
+  XORI a0, s0, 5
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb3
   # implict jump to bb1
 bb1:
   # implict jump to bb2
 bb2:
-  ADD s0, a0, zero
   ADD a0, zero, zero
   CALL putint
   ADDI a0, zero, 1
@@ -92,14 +92,12 @@ bb2:
 bb3:
   # implict jump to bb4
 bb4:
-  ADDIW s0, a0, 1
+  ADDIW s0, s0, 1
   XORI a0, s0, 5
   SLTIU a0, a0, 1
   BNE a0, zero, bb6
   # implict jump to bb5
 bb5:
-  ADD a0, s0, zero
   JAL zero, bb2
 bb6:
-  ADD a0, s0, zero
   JAL zero, bb4

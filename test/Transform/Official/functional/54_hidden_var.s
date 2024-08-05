@@ -90,16 +90,15 @@ main:
   ADDI a0, zero, 22
   # implict jump to bb1
 bb1:
-  ADD s1, a0, zero
-  ADDI a0, zero, 1
-  SUBW s1, s1, a0
-  SLLIW a0, s1, 2
-  ADDIW a0, a0, 52
-  ADDI t5, sp, 96
-  ADD s2, t5, a0
-  ADDI a0, zero, 0
-  SW a0, 0(s2)
-  BNE s1, zero, bb3
+  ADDI s1, zero, 1
+  SUBW a0, a0, s1
+  SLLIW s1, a0, 2
+  ADDIW s1, s1, 52
+  ADDI t6, sp, 96
+  ADD s1, t6, s1
+  ADDI s2, zero, 0
+  SW s2, 0(s1)
+  BNE a0, zero, bb3
   # implict jump to bb2
 bb2:
   LW a0, 136(sp)
@@ -136,5 +135,4 @@ bb2:
   ADDI sp, sp, 240
   JALR zero, 0(ra)
 bb3:
-  ADD a0, s1, zero
   JAL zero, bb1

@@ -114,7 +114,7 @@ void Mem2RegPass::insertPHIsFor(StackInst *SI) {
     for (BasicBlock *frontier : DFMapResult[cur]) {
 
       IRBuilder builder;
-      builder.setInsertPoint(frontier->begin());
+      builder.insertAt(frontier->begin());
 
       if (visited.count(frontier))
         continue;

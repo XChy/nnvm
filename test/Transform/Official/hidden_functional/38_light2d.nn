@@ -62,10 +62,7 @@ entry294:  pred()
   call void putch(i32 10)
   br bb %while.body308
 while.body308:  pred(while.exit317, entry294)
-  xx322.phi3751161 = phi [bb %while.exit317, float %xx322.phi3751152, bb %entry294, float 0.000000]
   y.phi1160 = phi [bb %while.exit317, i32 %354, bb %entry294, i32 0]
-  yy.phi3781159 = phi [bb %while.exit317, float %yy.phi3781151, bb %entry294, float 0.000000]
-  p.phi3811158 = phi [bb %while.exit317, i32 %p.phi3811150, bb %entry294, i32 0]
   327 = si2f i32 %y.phi1160 to float
   331 = si2f i32 192 to float
   336 = fdiv float %327, float %331
@@ -78,9 +75,6 @@ while.body316:  pred(if.exit343, while.body308)
   332 = fdiv float %324, float %331
   br bb %sample.while.body255
 while.exit317:  pred(if.exit343)
-  xx322.phi3751152 = phi [bb %if.exit343, float %324]
-  yy.phi3781151 = phi [bb %if.exit343, float %327]
-  p.phi3811150 = phi [bb %if.exit343, i32 %p.phi]
   call void putch(i32 10)
   354 = add i32 %y.phi1160, i32 1
   312 = icmp slt i32 %354, i32 192
@@ -111,9 +105,7 @@ sample.while.body255.split:  pred(trace.while.exit205467, trace.then235477)
   259388 = icmp slt i32 %289404, i32 24
   br i1 %259388, bb %sample.while.body255, bb %sample.while.exit256
 sample.while.exit256:  pred(sample.while.body255.split)
-  1146 = phi [bb %sample.while.body255.split, float %286403]
-  292407 = si2f i32 24 to float
-  293408 = fdiv float %1146, float %292407
+  293408 = fdiv float %286403, float %275398
   338 = fmul float %293408, float 255.000000
   339 = f2si float %338 to i32
   341 = icmp sgt i32 %339, i32 255
@@ -238,8 +230,7 @@ scene.circle_sdf.my_sqrt.while.body998:  pred(scene.circle_sdf.my_sqrt.while.bod
   44513550996 = icmp ne i32 %555195561002, i32 0
   br i1 %44513550996, bb %scene.circle_sdf.my_sqrt.while.body998, bb %scene.circle_sdf.my_sqrt.while.exit1004
 scene.circle_sdf.my_sqrt.while.exit1004:  pred(scene.circle_sdf.my_sqrt.while.body998)
-  385085459911142 = phi [bb %scene.circle_sdf.my_sqrt.while.body998, float %525185551001]
-  164534980 = fsub float %385085459911142, float 0.100000
+  164534980 = fsub float %525185551001, float 0.100000
   1505631007 = fsub float %223460, float 0.600000
   1545641008 = fsub float %228462, float 0.600000
   1575651009 = fmul float %1505631007, float %1505631007
@@ -262,8 +253,7 @@ scene.circle_sdf.my_sqrt.while.body5891033:  pred(scene.circle_sdf.my_sqrt.while
   445135871031 = icmp ne i32 %555195931037, i32 0
   br i1 %445135871031, bb %scene.circle_sdf.my_sqrt.while.body5891033, bb %scene.circle_sdf.my_sqrt.while.exit5951039
 scene.circle_sdf.my_sqrt.while.exit5951039:  pred(scene.circle_sdf.my_sqrt.while.body5891033)
-  3850858210261138 = phi [bb %scene.circle_sdf.my_sqrt.while.body5891033, float %525185921036]
-  1645711015 = fsub float %3850858210261138, float 0.050000
+  1645711015 = fsub float %525185921036, float 0.050000
   178957 = fcmp olt float %164534980, float %1645711015
   br i1 %178957, bb %scene.then179959, bb %scene.else966
 my_cos.my_sin.select.then1101:  pred(rand.if.exit761)

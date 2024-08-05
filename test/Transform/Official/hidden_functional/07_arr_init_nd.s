@@ -8,15 +8,14 @@ main:
   ADDI t0, zero, 15
   # implict jump to bb1
 bb1:
-  ADD t1, t0, zero
-  ADDI t0, zero, 1
-  SUBW t2, t1, t0
-  SLLIW t0, t2, 2
-  ADDI t1, sp, 352
-  ADD t1, t1, t0
-  ADDI t0, zero, 0
-  SW t0, 0(t1)
-  BNE t2, zero, bb6
+  ADDI t1, zero, 1
+  SUBW t0, t0, t1
+  SLLIW t1, t0, 2
+  ADDI t2, sp, 352
+  ADD t1, t2, t1
+  ADDI t2, zero, 0
+  SW t2, 0(t1)
+  BNE t0, zero, bb6
   # implict jump to bb2
 bb2:
   ADDI t0, zero, 1
@@ -145,15 +144,14 @@ bb2:
   ADDI t0, zero, 19
   # implict jump to bb3
 bb3:
-  ADD t1, t0, zero
-  ADDI t0, zero, 1
-  SUBW t1, t1, t0
-  SLLIW t0, t1, 2
-  ADDIW t0, t0, 20
-  ADDI t5, sp, 0
-  ADD t0, t5, t0
-  SW zero, 0(t0)
-  BNE t1, zero, bb5
+  ADDI t1, zero, 1
+  SUBW t0, t0, t1
+  SLLIW t1, t0, 2
+  ADDIW t1, t1, 20
+  ADDI t6, sp, 0
+  ADD t1, t6, t1
+  SW zero, 0(t1)
+  BNE t0, zero, bb5
   # implict jump to bb4
 bb4:
   ADDI a0, zero, 4
@@ -161,8 +159,6 @@ bb4:
   ADDI sp, sp, 432
   JALR zero, 0(ra)
 bb5:
-  ADD t0, t1, zero
   JAL zero, bb3
 bb6:
-  ADD t0, t2, zero
   JAL zero, bb1

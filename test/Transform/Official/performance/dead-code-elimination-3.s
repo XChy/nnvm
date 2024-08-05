@@ -16,23 +16,21 @@ main:
   SD s2, 24(sp)
   SD s3, 32(sp)
   CALL getint
-  ADD s0, a0, zero
-  LA a0, loopCount
-  SW s0, 0(a0)
+  LA s0, loopCount
+  SW a0, 0(s0)
   LUI a0, 24
   ADDIW a0, a0, 1712
   ADD a0, zero, a0
   CALL _sysy_starttime
   LA a0, loopCount
-  LW s0, 0(a0)
+  LW s1, 0(a0)
   ADDI a0, zero, 0
-  BLT a0, s0, bb3
+  BLT a0, s1, bb3
   # implict jump to bb1
 bb1:
-  ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  ADD s0, a0, zero
   LUI a0, 24
   ADDIW a0, a0, 1728
   ADD a0, zero, a0
@@ -54,39 +52,20 @@ bb3:
   ADD a0, zero, zero
   # implict jump to bb4
 bb4:
-  ADD s2, a0, zero
-  ADD s3, s0, zero
-  LA a0, global
-  SW s2, 0(a0)
-  ADD s0, zero, zero
-  ADD a0, zero, zero
+  LA s2, global
+  SW a0, 0(s2)
+  ADDI s2, zero, 60
+  MULW s2, a0, s2
+  ADDI s3, zero, 60
+  DIVW s2, s2, s3
+  ADDW s0, s0, s2
+  LUI s2, 32766
+  ADDIW s2, s2, 1
+  REMW s0, s0, s2
+  ADDIW a0, a0, 1
+  BLT a0, s1, bb6
   # implict jump to bb5
 bb5:
-  ADDW s0, s0, s2
-  ADDIW s1, a0, 1
-  SLTI a0, s1, 60
-  BNE a0, zero, bb10
-  # implict jump to bb6
-bb6:
-  # implict jump to bb7
-bb7:
-  ADDI a0, zero, 60
-  DIVW a0, s0, a0
-  ADDW s0, s3, a0
-  LUI a0, 32766
-  ADDIW a0, a0, 1
-  REMW s0, s0, a0
-  ADDIW s1, s2, 1
-  LA a0, loopCount
-  LW a0, 0(a0)
-  BLT s1, a0, bb9
-  # implict jump to bb8
-bb8:
-  ADD a0, s0, zero
   JAL zero, bb2
-bb9:
-  ADD a0, s1, zero
+bb6:
   JAL zero, bb4
-bb10:
-  ADD a0, s1, zero
-  JAL zero, bb5

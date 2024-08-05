@@ -60,11 +60,11 @@ bool TailElimPass::run(Function &F) {
     I->moveTo(loopEntry);
   }
 
-  builder.setInsertPoint(entry->end());
+  builder.insertAt(entry->end());
   builder.buildBr(loopEntry);
 
   // Build phi for arguments
-  builder.setInsertPoint(loopEntry->begin());
+  builder.insertAt(loopEntry->begin());
   std::map<Argument *, PhiInst *> arg2Phi;
   for (Argument *arg : F.getArguments()) {
     PhiInst *phi = builder.buildPhi(arg->getType(), arg->getName() + ".loop");
@@ -78,7 +78,7 @@ bool TailElimPass::run(Function &F) {
     RetInst *ret = retsites[i];
     CallInst *callsite = callsites[i];
     auto *callsiteBB = callsite->getBlock();
-    builder.setInsertPoint(callsiteBB->end());
+    builder.insertAt(callsiteBB->end());
     builder.buildBr(loopEntry);
     ret->eraseFromBB();
 

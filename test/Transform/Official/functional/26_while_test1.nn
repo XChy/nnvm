@@ -18,8 +18,7 @@ doubleWhile.while.body:  pred(doubleWhile.while.exit16, entry27)
   184756 = icmp slt i32 %j.phi3661, i32 100
   br i1 %184756, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
 doubleWhile.while.exit:  pred(doubleWhile.while.exit16)
-  60 = phi [bb %doubleWhile.while.exit16, i32 %2553]
-  ret i32 %60
+  ret i32 %2553
 doubleWhile.while.body15_preheader:  pred(doubleWhile.while.body)
   br bb %doubleWhile.while.body15
 doubleWhile.while.body15:  pred(doubleWhile.while.body15, doubleWhile.while.body15_preheader)

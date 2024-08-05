@@ -106,8 +106,10 @@ void LIRInst::emit(std::ostream &out, EmitInfo &info) {
   }
 }
 
-bool LIRInst::isMoveInst() const {
-  return match(this, pattern::pCopy(pattern::pReg(), pattern::pReg()));
+bool LIRInst::isMoveInst(LIRFunc const &func) const {
+  auto zeroReg = func.getParent()->getPhyReg(ZERO);
+  return match(this, pattern::pCopy(pattern::pReg(), pattern::pReg())) &&
+         this->getOp(1) != zeroReg;
 }
 
 void LIRBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) {

@@ -56,9 +56,7 @@ insertsort.while.body:  pred(insertsort.while.exit22, entry59)
   19143 = sub i32 %i.phi135184, i32 1
   br bb %insertsort.while.cond20
 insertsort.while.exit:  pred(insertsort.while.exit22)
-  n.load99180 = load i32 from ptr @n
-  100181 = icmp slt i32 0, i32 %n.load99180
-  br i1 %100181, bb %while.body96_preheader, bb %while.exit97
+  br i1 -1, bb %while.body96_preheader, bb %while.exit97
 insertsort.while.cond20:  pred(insertsort.while.body, insertsort.while.body21)
   j.phi148 = phi [bb %insertsort.while.body, i32 %19143, bb %insertsort.while.body21, i32 %49159]
   25149 = icmp sgt i32 %j.phi148, i32 -1

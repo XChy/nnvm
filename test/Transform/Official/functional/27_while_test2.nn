@@ -20,13 +20,9 @@ FourWhile.while.body:  pred(FourWhile.while.exit20, entry61)
   2295133 = icmp slt i32 %b.phi79147, i32 10
   br i1 %2295133, bb %FourWhile.while.body19_preheader, bb %FourWhile.while.exit20
 FourWhile.while.exit:  pred(FourWhile.while.exit20)
-  144 = phi [bb %FourWhile.while.exit20, i32 %1784]
-  143 = phi [bb %FourWhile.while.exit20, i32 %53101]
-  142 = phi [bb %FourWhile.while.exit20, i32 %c.phi6778135]
-  141 = phi [bb %FourWhile.while.exit20, i32 %d.phi7177134]
-  5787 = add i32 %143, i32 %141
-  5888 = add i32 %144, i32 %5787
-  6089 = add i32 %5888, i32 %142
+  5787 = add i32 %53101, i32 %d.phi7177134
+  5888 = add i32 %1784, i32 %5787
+  6089 = add i32 %5888, i32 %c.phi6778135
   ret i32 %6089
 FourWhile.while.body19_preheader:  pred(FourWhile.while.body)
   br bb %FourWhile.while.body19

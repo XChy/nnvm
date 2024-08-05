@@ -211,6 +211,29 @@ protected:
 };
 
 template <typename LSubPattern, typename RSubPattern>
+class pSRem : public pSpecificInst<InstID::SRem> {
+public:
+  pSRem(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::SRem>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::SRem>::match(op))
+      return false;
+
+    SRemInst *I = cast<SRemInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
+template <typename LSubPattern, typename RSubPattern>
 class pICmp : public pSpecificInst<InstID::ICmp> {
 public:
   pICmp(LSubPattern LHS, RSubPattern RHS)

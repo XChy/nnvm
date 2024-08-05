@@ -81,8 +81,7 @@ if.exit137:  pred(then136.split, else138.split.split)
   m.load160 = load i32 from ptr @m
   161 = sub i32 %m.load160, i32 1
   store i32 %161 to ptr @m
-  m.load115 = load i32 from ptr @m
-  116 = icmp ne i32 %m.load115, i32 0
+  116 = icmp ne i32 %161, i32 0
   br i1 %116, bb %while.body113, bb %while.exit114
 else138:  pred(while.exit121)
   2443 = call i32 getch()
@@ -111,12 +110,10 @@ init.while.body58:  pred(init.while.body58, init.while.body58_preheader)
   66211 = ptradd ptr @fa, i32 %185210
   store i32 %i.phi205561 to ptr %66211
   71213 = add i32 %i.phi205561, i32 1
-  n.load206 = load i32 from ptr @n
-  62207 = icmp sle i32 %71213, i32 %n.load206
+  62207 = icmp sle i32 %71213, i32 %n.load206559
   br i1 %62207, bb %init.while.body58, bb %init.while.exit59
 init.while.exit59:  pred(init.while.body58, entry106.split217.split)
-  m.load115553 = load i32 from ptr @m
-  116554 = icmp ne i32 %m.load115553, i32 0
+  116554 = icmp ne i32 %110.ret, i32 0
   br i1 %116554, bb %while.body113_preheader, bb %while.exit114
 quick_read.while.cond:  pred(entry106, quick_read.if.exit)
   f.phi180222 = phi [bb %entry106, i32 0, bb %quick_read.if.exit, i32 %f.phi242]

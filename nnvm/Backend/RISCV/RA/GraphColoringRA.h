@@ -17,20 +17,37 @@
 
 namespace nnvm::riscv {
 
+struct CompareReg {
+  bool operator()(Register *A, Register *B) const {
+    // return A < B;
+    //  FIXME: bug
+    return A->getRegId() > B->getRegId();
+  }
+};
+
+struct PairHash {
+  template <class T1, class T2>
+  size_t operator()(std::pair<T1, T2> const &pair) const {
+    size_t h1 = std::hash<T1>()(pair.first);
+    size_t h2 = std::hash<T2>()(pair.second);
+    return h1 ^ h2;
+  }
+};
+
 class GraphColoringRAImpl {
 public:
-  GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
+  GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
                       Register *classReg);
   void allocate(LIRFunc &func);
 
 private:
   // essential procedures
-  void build(LIRFunc &func, const LivenessAnalysis &la);
+  void build(LIRFunc &func, LivenessAnalysis const &la);
   void makeWorkList();
   void simplify();
   void coalesce();
   void freeze();
-  void selectSpill();
+  void selectSpill(LIRFunc &func);
   void assignColors();
   void rewriteProgram(LIRFunc &func);
   void removeRedundantMoves(LIRFunc &func);
@@ -47,13 +64,13 @@ private:
   // helpers for simplification
   void decrementDegree(Register *reg);
   void enableMove(Register *node);
-  void enableMoves(const std::set<Register *> &nodes);
+  void enableMoves(std::set<Register *> const &nodes);
 
   // helpers for coalescing
   void addWorkList(Register *reg);
-  bool ok(const std::set<Register *> &regs, Register *target);
-  bool conservative(const std::set<Register *> &nodes);
-  void combine(Register *u, Register *v);
+  bool conformGeorges(std::set<Register *> const &neighbors, Register *target);
+  bool conformBriggs(std::set<Register *> const &neighbors);
+  void combine(Register *dest, Register *src);
   Register *getAlias(Register *reg);
 
   // helper for freezing
@@ -61,23 +78,23 @@ private:
 
   std::set<Register *> precolored;
   std::unordered_set<Register *> initial;
-  std::set<Register *> simplifyWorklist;
-  std::set<Register *> freezeWorklist;
-  std::set<Register *> spillWorklist;
-  std::set<Register *> spilledNodes;
-  std::set<Register *> coalescedNodes;
-  std::set<Register *> coloredNodes;
+  std::set<Register *, CompareReg> simplifyWorklist;
+  std::set<Register *, CompareReg> freezeWorklist;
+  std::set<Register *, CompareReg> spillWorklist;
+  std::set<Register *, CompareReg> spilledNodes;
+  std::unordered_set<Register *> coalescedNodes;
+  std::unordered_set<Register *> coloredNodes;
 
-  std::unordered_set<Register *> selected;
   std::stack<Register *> selectStack;
+  std::unordered_set<Register *> selectedNodes;
 
   std::set<LIRInst *> coalescedMoves;
   std::set<LIRInst *> constrainedMoves;
   std::set<LIRInst *> frozenMoves;
   std::set<LIRInst *> worklistMoves;
-  std::set<LIRInst *> activeMoves;
+  std::unordered_set<LIRInst *> activeMoves;
 
-  std::set<std::pair<Register *, Register *>> adjSet;
+  std::unordered_set<std::pair<Register *, Register *>, PairHash> adjSet;
   std::unordered_map<Register *, std::set<Register *>> adjList;
   std::unordered_map<Register *, int> degree;
   std::unordered_map<Register *, std::set<LIRInst *>> moveList;
@@ -87,7 +104,7 @@ private:
 
   std::vector<Register *> freeRegs;
   Register *classReg;
-  int K;
+  int numRegs;
 };
 
 class GraphColoringRA : public RegisterAllocator {

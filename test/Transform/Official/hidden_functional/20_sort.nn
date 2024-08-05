@@ -20,8 +20,7 @@ entry243:  pred()
 entry243.split:  pred(quick_read.then49, quick_read.else)
   245.ret = phi [bb %quick_read.then49, i32 %53609, bb %quick_read.else, i32 %x.phi587]
   store i32 %245.ret to ptr @n
-  n.load251703 = load i32 from ptr @n
-  252704 = icmp ne i32 0, i32 %n.load251703
+  252704 = icmp ne i32 0, i32 %245.ret
   br i1 %252704, bb %while.body248_preheader, bb %while.exit249
 while.body248_preheader:  pred(entry243.split)
   br bb %while.body248

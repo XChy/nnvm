@@ -27,8 +27,7 @@ while.body43:  pred(if.exit59, then38)
   57 = icmp eq i32 %52, i32 %56
   br i1 %57, bb %then58, bb %else
 while.exit44:  pred(if.exit59)
-  614 = phi [bb %if.exit59, i32 %ret.phi]
-  ret i32 %614
+  ret i32 %ret.phi
 then58:  pred(while.body43)
   420 = shl i32 %ret.phi402616, i32 1
   br bb %if.exit59
@@ -64,8 +63,7 @@ while.body91:  pred(if.exit114, then86)
   101 = icmp eq i32 %100, i32 1
   br i1 %101, bb %select.then, bb %select.else
 while.exit92:  pred(if.exit114)
-  618 = phi [bb %if.exit114, i32 %ret88.phi]
-  ret i32 %618
+  ret i32 %ret88.phi
 select.then:  pred(while.body91)
   br bb %select.exit
 select.else:  pred(while.body91)
@@ -100,8 +98,7 @@ while.body134:  pred(if.exit156, then129)
   144 = icmp eq i32 %143, i32 1
   br i1 %144, bb %select.then145, bb %select.else146
 while.exit135:  pred(if.exit156)
-  622 = phi [bb %if.exit156, i32 %ret131.phi]
-  ret i32 %622
+  ret i32 %ret131.phi
 select.then145:  pred(while.body134)
   151 = sdiv i32 %y, i32 %i132.phi623
   152 = srem i32 %151, i32 2

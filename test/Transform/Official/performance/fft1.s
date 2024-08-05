@@ -30,41 +30,41 @@ fft:
   SD s2, 64(sp)
   SD s3, 72(sp)
   SD s4, 80(sp)
-  ADD s0, a0, zero
-  ADD s1, a1, zero
-  ADD s3, a2, zero
-  ADD s2, a3, zero
-  XORI a0, s3, 1
+  ADD s2, a0, zero
+  ADD s3, a1, zero
+  ADD a1, a2, zero
+  ADD s4, a3, zero
+  XORI a0, a1, 1
   SLTIU a0, a0, 1
   BNE a0, zero, bb17
   # implict jump to bb1
 bb1:
-  ADDI a1, zero, 0
-  BLT a1, s3, bb11
+  ADDI s1, zero, 0
+  BLT s1, a1, bb11
   # implict jump to bb2
 bb2:
-  BLT a1, s3, bb8
+  BLT s1, a1, bb8
   # implict jump to bb3
 bb3:
-  SRAIW a0, s3, 31
+  SRAIW a0, a1, 31
   SRLIW a0, a0, 31
-  ADD a0, s3, a0
-  SRAIW s3, a0, 1
-  ADD a0, s2, zero
-  ADD a1, s2, zero
+  ADD a0, a1, a0
+  SRAIW s5, a0, 1
+  ADD a0, s4, zero
+  ADD a1, s4, zero
   CALL multiply
-  ADD s4, a0, zero
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s3, zero
-  ADD a3, s4, zero
+  ADD s0, a0, zero
+  ADD a0, s2, zero
+  ADD a1, s3, zero
+  ADD a2, s5, zero
+  ADD a3, s0, zero
   CALL fft
-  ADDW a1, s1, s3
-  ADD a0, s0, zero
-  ADD a2, s3, zero
-  ADD a3, s4, zero
+  ADDW a1, s3, s5
+  ADD a0, s2, zero
+  ADD a2, s5, zero
+  ADD a3, s0, zero
   CALL fft
-  BLT zero, s3, bb5
+  BLT zero, s5, bb5
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -82,62 +82,56 @@ bb4:
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb5:
-  ADD a1, zero, zero
-  ADDI a0, zero, 1
+  ADD s1, zero, zero
+  ADDI s0, zero, 1
   # implict jump to bb6
 bb6:
-  ADD s4, a0, zero
-  ADD s5, a1, zero
-  ADDW a1, s1, s5
-  SLLIW a0, a1, 2
-  ADD s8, s0, a0
-  LW s7, 0(s8)
-  ADDW a0, a1, s3
+  ADDW a0, s3, s1
+  SLLIW a1, a0, 2
+  ADD s6, s2, a1
+  LW s7, 0(s6)
+  ADDW a0, a0, s5
   SLLIW a0, a0, 2
-  ADD s6, s0, a0
-  LW a1, 0(s6)
-  ADD a0, s4, zero
+  ADD s8, s2, a0
+  LW a1, 0(s8)
+  ADD a0, s0, zero
   CALL multiply
-  ADD s9, a0, zero
-  ADDW a1, s7, s9
-  LUI a0, 243712
-  ADDIW a0, a0, 1
-  REMW a0, a1, a0
+  ADDW a1, s7, a0
+  LUI s9, 243712
+  ADDIW s9, s9, 1
+  REMW a1, a1, s9
+  SW a1, 0(s6)
+  SUBW a0, s7, a0
+  LUI a1, 243712
+  ADDIW a1, a1, 1
+  ADDW a0, a0, a1
+  LUI a1, 243712
+  ADDIW a1, a1, 1
+  REMW a0, a0, a1
   SW a0, 0(s8)
-  SUBW a1, s7, s9
-  LUI a0, 243712
-  ADDIW a0, a0, 1
-  ADDW a1, a1, a0
-  LUI a0, 243712
-  ADDIW a0, a0, 1
-  REMW a0, a1, a0
-  SW a0, 0(s6)
-  ADD a0, s4, zero
-  ADD a1, s2, zero
+  ADD a0, s0, zero
+  ADD a1, s4, zero
   CALL multiply
-  ADD s4, a0, zero
-  ADDIW a0, s5, 1
-  BLT a0, s3, bb7
+  ADDIW s1, s1, 1
+  BLT s1, s5, bb7
   JAL zero, bb4
 bb7:
-  ADD a1, a0, zero
-  ADD a0, s4, zero
+  ADD s0, a0, zero
   JAL zero, bb6
 bb8:
   ADD a0, zero, zero
   # implict jump to bb9
 bb9:
-  ADD s5, a0, zero
-  ADDW a0, s1, s5
-  SLLIW a0, a0, 2
-  ADD s4, s0, a0
-  SLLIW a1, s5, 2
-  LA a0, temp
-  ADD a0, a0, a1
-  LW a0, 0(a0)
-  SW a0, 0(s4)
-  ADDIW a0, s5, 1
-  BLT a0, s3, bb10
+  ADDW s0, s3, a0
+  SLLIW s0, s0, 2
+  ADD s0, s2, s0
+  SLLIW s1, a0, 2
+  LA s5, temp
+  ADD s1, s5, s1
+  LW s1, 0(s1)
+  SW s1, 0(s0)
+  ADDIW a0, a0, 1
+  BLT a0, a1, bb10
   JAL zero, bb3
 bb10:
   JAL zero, bb9
@@ -145,50 +139,48 @@ bb11:
   ADD a0, zero, zero
   # implict jump to bb12
 bb12:
-  ADD s4, a0, zero
-  ADDI a0, zero, 2
-  REMW a0, s4, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb16
+  ANDI s0, a0, 1
+  SLTIU s0, s0, 1
+  BNE s0, zero, bb16
   # implict jump to bb13
 bb13:
-  SRAIW a0, s3, 31
-  SRLIW a0, a0, 31
-  ADD a0, s3, a0
-  SRAIW s5, a0, 1
-  SRAIW a0, s4, 31
-  SRLIW a0, a0, 31
-  ADD a0, s4, a0
-  SRAIW a0, a0, 1
-  ADDW a0, s5, a0
-  SLLIW s5, a0, 2
-  LA a0, temp
-  ADD a0, a0, s5
-  ADDW s5, s4, s1
+  SRAIW s0, a1, 31
+  SRLIW s0, s0, 31
+  ADD s0, a1, s0
+  SRAIW s0, s0, 1
+  SRAIW s5, a0, 31
+  SRLIW s5, s5, 31
+  ADD s5, a0, s5
+  SRAIW s5, s5, 1
+  ADDW s0, s0, s5
+  SLLIW s0, s0, 2
+  LA s5, temp
+  ADD s0, s5, s0
+  ADDW s5, a0, s3
   SLLIW s5, s5, 2
-  ADD s5, s0, s5
+  ADD s5, s2, s5
   LW s5, 0(s5)
-  SW s5, 0(a0)
+  SW s5, 0(s0)
   # implict jump to bb14
 bb14:
-  ADDIW a0, s4, 1
-  BLT a0, s3, bb15
+  ADDIW a0, a0, 1
+  BLT a0, a1, bb15
   JAL zero, bb2
 bb15:
   JAL zero, bb12
 bb16:
-  SRAIW a0, s4, 31
-  SRLIW a0, a0, 31
-  ADD a0, s4, a0
-  SRAIW a0, a0, 1
-  SLLIW s5, a0, 2
-  LA a0, temp
-  ADD a0, a0, s5
-  ADDW s5, s4, s1
+  SRAIW s0, a0, 31
+  SRLIW s0, s0, 31
+  ADD s0, a0, s0
+  SRAIW s0, s0, 1
+  SLLIW s0, s0, 2
+  LA s5, temp
+  ADD s0, s5, s0
+  ADDW s5, a0, s3
   SLLIW s5, s5, 2
-  ADD s5, s0, s5
+  ADD s5, s2, s5
   LW s5, 0(s5)
-  SW s5, 0(a0)
+  SW s5, 0(s0)
   JAL zero, bb14
 bb17:
   ADDI a0, zero, 1
@@ -225,26 +217,24 @@ bb19:
   ADD a1, a0, zero
   ADD a0, a1, zero
   CALL multiply
-  ADD a1, a0, zero
-  ADDI a0, zero, 2
-  REMW a0, s1, a0
-  XORI a0, a0, 1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb21
+  SLLI a1, s1, 1
+  SRLI a1, a1, 63
+  ADD a1, s1, a1
+  ANDI a1, a1, -2
+  SUBW a1, s1, a1
+  XORI a1, a1, 1
+  SLTIU a1, a1, 1
+  BNE a1, zero, bb21
   # implict jump to bb20
 bb20:
-  ADD a0, a1, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb21:
-  ADD a0, a1, zero
   ADD a1, s0, zero
   CALL multiply
-  ADD t0, a0, zero
-  ADD a0, t0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -266,79 +256,74 @@ main:
   SD s3, 32(sp)
   LA a0, a
   CALL getarray
-  ADD s2, a0, zero
+  ADD s1, a0, zero
   LA a0, b
   CALL getarray
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   ADDI a0, zero, 60
   CALL _sysy_starttime
-  LA a1, d
-  ADDI a0, zero, 1
-  SW a0, 0(a1)
   LA a0, d
-  LW s0, 0(a0)
-  ADDW a1, s2, s1
+  ADDI a1, zero, 1
+  SW a1, 0(a0)
+  ADDW a0, s1, s0
+  ADDI a1, zero, 1
+  SUBW s1, a0, a1
   ADDI a0, zero, 1
-  SUBW a1, a1, a0
-  BLT s0, a1, bb34
+  BLT a0, s1, bb33
   # implict jump to bb24
 bb24:
-  ADD a0, a1, zero
-  # implict jump to bb25
-bb25:
-  ADD s0, a0, zero
   LA a0, d
-  LW s1, 0(a0)
+  LW s0, 0(a0)
   LUI a0, 243712
   ADDIW a0, a0, 0
-  DIVW a1, a0, s1
+  DIVW a1, a0, s0
   ADDI a0, zero, 3
   CALL power
   ADD a3, a0, zero
   LA a0, a
   ADD a1, zero, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL fft
   LA a0, d
-  LW s1, 0(a0)
+  LW s0, 0(a0)
   LUI a0, 243712
   ADDIW a0, a0, 0
-  DIVW a1, a0, s1
+  DIVW a1, a0, s0
   ADDI a0, zero, 3
   CALL power
   ADD a3, a0, zero
   LA a0, b
   ADD a1, zero, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL fft
   LA a0, d
   LW a0, 0(a0)
-  BLT zero, a0, bb31
-  # implict jump to bb26
-bb26:
+  BLT zero, a0, bb30
+  # implict jump to bb25
+bb25:
   LA a0, d
-  LW s1, 0(a0)
+  LW s0, 0(a0)
   LUI a0, 243712
   ADDIW a0, a0, 0
-  DIVW a1, a0, s1
-  LUI a0, 243712
-  ADDIW a0, a0, 0
-  SUBW a1, a0, a1
+  DIVW a0, a0, s0
+  LUI a1, 243712
+  ADDIW a1, a1, 0
+  SUBW a1, a1, a0
   ADDI a0, zero, 3
   CALL power
   ADD a3, a0, zero
   LA a0, a
   ADD a1, zero, zero
-  ADD a2, s1, zero
+  ADD a2, s0, zero
   CALL fft
   LA a0, d
   LW a0, 0(a0)
-  BLT zero, a0, bb28
-  # implict jump to bb27
-bb27:
+  BLT zero, a0, bb27
+  # implict jump to bb26
+bb26:
   ADDI a0, zero, 79
   CALL _sysy_stoptime
-  ADD a0, s0, zero
+  ADD a0, s1, zero
   LA a1, a
   CALL putarray
   ADD a0, zero, zero
@@ -349,14 +334,13 @@ bb27:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
+bb27:
+  ADD s0, zero, zero
+  # implict jump to bb28
 bb28:
-  ADD a0, zero, zero
-  # implict jump to bb29
-bb29:
-  ADD s1, a0, zero
-  SLLIW a1, s1, 2
-  LA a0, a
-  ADD s3, a0, a1
+  SLLIW a0, s0, 2
+  LA a1, a
+  ADD s3, a1, a0
   LW s2, 0(s3)
   LA a0, d
   LW a0, 0(a0)
@@ -368,112 +352,102 @@ bb29:
   ADD a0, s2, zero
   CALL multiply
   SW a0, 0(s3)
-  ADDIW s1, s1, 1
+  ADDIW s0, s0, 1
   LA a0, d
   LW a0, 0(a0)
-  BLT s1, a0, bb30
-  JAL zero, bb27
+  BLT s0, a0, bb29
+  JAL zero, bb26
+bb29:
+  JAL zero, bb28
 bb30:
-  ADD a0, s1, zero
-  JAL zero, bb29
+  ADD s0, zero, zero
+  # implict jump to bb31
 bb31:
-  ADD a0, zero, zero
-  # implict jump to bb32
-bb32:
-  ADD s1, a0, zero
-  SLLIW a1, s1, 2
+  SLLIW a1, s0, 2
   LA a0, a
   ADD s2, a0, a1
-  LW s3, 0(s2)
-  LA a0, b
-  ADD a0, a0, a1
-  LW a1, 0(a0)
-  ADD a0, s3, zero
+  LW a0, 0(s2)
+  LA s3, b
+  ADD a1, s3, a1
+  LW a1, 0(a1)
   CALL multiply
   SW a0, 0(s2)
-  ADDIW a1, s1, 1
+  ADDIW s0, s0, 1
   LA a0, d
   LW a0, 0(a0)
-  BLT a1, a0, bb33
-  JAL zero, bb26
-bb33:
-  ADD a0, a1, zero
-  JAL zero, bb32
-bb34:
-  LA a0, d
-  LW a0, 0(a0)
-  SLLIW s0, a0, 1
-  LA a0, d
-  SW s0, 0(a0)
-  LA a0, d
-  LW a0, 0(a0)
-  BLT a0, a1, bb34
-  # implict jump to bb35
-bb35:
-  ADD a0, a1, zero
+  BLT s0, a0, bb32
   JAL zero, bb25
+bb32:
+  JAL zero, bb31
+bb33:
+  LA a0, d
+  LW a0, 0(a0)
+  SLLIW a0, a0, 1
+  LA a1, d
+  SW a0, 0(a1)
+  BLT a0, s1, bb33
+  JAL zero, bb24
 multiply:
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  ADD s1, a0, zero
-  ADD s0, a1, zero
-  SLTIU a0, s0, 1
-  BNE a0, zero, bb42
-  # implict jump to bb37
-bb37:
-  XORI a0, s0, 1
+  ADD s0, a0, zero
+  ADD s1, a1, zero
+  SLTIU a0, s1, 1
+  BNE a0, zero, bb40
+  # implict jump to bb35
+bb35:
+  XORI a0, s1, 1
   SLTIU a0, a0, 1
-  BNE a0, zero, bb41
-  # implict jump to bb38
-bb38:
-  SRAIW a0, s0, 31
+  BNE a0, zero, bb39
+  # implict jump to bb36
+bb36:
+  SRAIW a0, s1, 31
   SRLIW a0, a0, 31
-  ADD a0, s0, a0
+  ADD a0, s1, a0
   SRAIW a1, a0, 1
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL multiply
-  ADD t0, a0, zero
-  SLLIW t1, t0, 1
-  LUI t0, 243712
-  ADDIW t0, t0, 1
-  REMW t1, t1, t0
-  ADDI t0, zero, 2
-  REMW t0, s0, t0
+  SLLIW t0, a0, 1
+  LUI t1, 243712
+  ADDIW t1, t1, 1
+  REMW a0, t0, t1
+  SLLI t0, s1, 1
+  SRLI t0, t0, 63
+  ADD t0, s1, t0
+  ANDI t0, t0, -2
+  SUBW t0, s1, t0
   XORI t0, t0, 1
   SLTIU t0, t0, 1
-  BNE t0, zero, bb40
-  # implict jump to bb39
+  BNE t0, zero, bb38
+  # implict jump to bb37
+bb37:
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  ADDI sp, sp, 32
+  JALR zero, 0(ra)
+bb38:
+  ADDW t0, a0, s0
+  LUI t1, 243712
+  ADDIW t1, t1, 1
+  REMW a0, t0, t1
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  ADDI sp, sp, 32
+  JALR zero, 0(ra)
 bb39:
-  ADD a0, t1, zero
+  LUI t0, 243712
+  ADDIW t0, t0, 1
+  REMW a0, s0, t0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb40:
-  ADDW t1, t1, s1
-  LUI t0, 243712
-  ADDIW t0, t0, 1
-  REMW t0, t1, t0
-  ADD a0, t0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb41:
-  LUI t0, 243712
-  ADDIW t0, t0, 1
-  REMW t0, s1, t0
-  ADD a0, t0, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
-  JALR zero, 0(ra)
-bb42:
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

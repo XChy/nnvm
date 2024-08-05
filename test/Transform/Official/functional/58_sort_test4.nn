@@ -55,9 +55,7 @@ select_sort.while.body:  pred(select_sort.if.exit46, entry69)
   24162196 = icmp slt i32 %18155, i32 10
   br i1 %24162196, bb %select_sort.while.body20_preheader, bb %select_sort.while.exit21
 select_sort.while.exit:  pred(select_sort.if.exit46)
-  n.load111200 = load i32 from ptr @n
-  112201 = icmp slt i32 0, i32 %n.load111200
-  br i1 %112201, bb %while.body108_preheader, bb %while.exit109
+  br i1 -1, bb %while.body108_preheader, bb %while.exit109
 select_sort.while.body20_preheader:  pred(select_sort.while.body)
   br bb %select_sort.while.body20
 select_sort.while.body20:  pred(select_sort.if.exit, select_sort.while.body20_preheader)

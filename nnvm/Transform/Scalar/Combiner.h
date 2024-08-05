@@ -24,13 +24,12 @@ private:
   Value *simplifySub(SubInst *I);
   Value *simplifyMul(MulInst *I);
   Value *simplifySDiv(SDivInst *I);
+  Value *simplifySRem(SRemInst *I);
 
   Value *simplifyPtrAdd(PtrAddInst *I);
 
   Value *simplifyICmp(ICmpInst *I);
   Value *simplifyPhi(PhiInst *I);
-
-  std::queue<Instruction *> worklist;
 
   ConstantFold folder;
   IRBuilder builder;

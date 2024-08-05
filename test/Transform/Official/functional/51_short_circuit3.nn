@@ -112,28 +112,14 @@ then182:  pred(select.exit176)
   call void putch(i32 73)
   br bb %if.exit183
 if.exit183:  pred(select.exit176, then182)
-  190 = icmp eq i32 0, i32 %103
-  br i1 %190, bb %select.then191, bb %select.else192
-select.then191:  pred(if.exit183)
-  br bb %select.exit193
-select.else192:  pred(if.exit183)
-  br bb %select.exit193
-select.exit193:  pred(select.then191, select.else192)
-  select194.phi = phi [bb %select.else192, i1 0, bb %select.then191, i1 0]
-  br i1 %select194.phi, bb %select.then199, bb %select.else200
-select.then199:  pred(select.exit193)
-  br bb %select.exit201
-select.else200:  pred(select.exit193)
   205 = icmp sge i32 4, i32 4
-  br bb %select.exit201
-select.exit201:  pred(select.then199, select.else200)
-  select202.phi = phi [bb %select.else200, i1 %205, bb %select.then199, i1 -1]
-  br i1 %select202.phi, bb %then208, bb %if.exit209
-then208:  pred(select.exit201)
+  br i1 %205, bb %then208, bb %if.exit209
+then208:  pred(if.exit183)
   call void putch(i32 74)
   br bb %if.exit209
-if.exit209:  pred(select.exit201, then208)
-  br i1 %190, bb %select.then217, bb %select.else218
+if.exit209:  pred(if.exit183, then208)
+  216 = icmp eq i32 0, i32 %103
+  br i1 %216, bb %select.then217, bb %select.else218
 select.then217:  pred(if.exit209)
   br bb %select.exit219
 select.else218:  pred(if.exit209)

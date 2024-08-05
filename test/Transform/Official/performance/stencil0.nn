@@ -16,17 +16,7 @@ entry14:  pred()
   call void _sysy_starttime(i32 23)
   br bb %while.body
 while.body:  pred(while.exit32, entry14)
-  im1jm1.phi254370 = phi [bb %while.exit32, i32 %im1jm1.phi254343, bb %entry14, i32 0]
-  im1j.phi256369 = phi [bb %while.exit32, i32 %im1j.phi256342, bb %entry14, i32 0]
   j.phi258368 = phi [bb %while.exit32, i32 %165, bb %entry14, i32 1]
-  ijp1.phi260367 = phi [bb %while.exit32, i32 %ijp1.phi260341, bb %entry14, i32 0]
-  ip1jm1.phi262366 = phi [bb %while.exit32, i32 %ip1jm1.phi262340, bb %entry14, i32 0]
-  im1jp1.phi264365 = phi [bb %while.exit32, i32 %im1jp1.phi264339, bb %entry14, i32 0]
-  ijm1.phi266364 = phi [bb %while.exit32, i32 %ijm1.phi266338, bb %entry14, i32 0]
-  ip1j.phi268363 = phi [bb %while.exit32, i32 %ip1j.phi268337, bb %entry14, i32 0]
-  ij.phi270362 = phi [bb %while.exit32, i32 %ij.phi270336, bb %entry14, i32 0]
-  ip1jp1.phi272361 = phi [bb %while.exit32, i32 %ip1jp1.phi272335, bb %entry14, i32 0]
-  val.phi274360 = phi [bb %while.exit32, i32 %val.phi274334, bb %entry14, i32 0]
   br bb %while.body31
 while.exit:  pred(while.exit32)
   br bb %while.body168
@@ -86,16 +76,6 @@ while.body31:  pred(cutout.if.exit, while.body)
   3317 = icmp slt i32 %149, i32 0
   br i1 %3317, bb %cutout.then, bb %cutout.else
 while.exit32:  pred(cutout.if.exit)
-  im1jm1.phi254343 = phi [bb %cutout.if.exit, i32 %45]
-  im1j.phi256342 = phi [bb %cutout.if.exit, i32 %44]
-  ijp1.phi260341 = phi [bb %cutout.if.exit, i32 %80]
-  ip1jm1.phi262340 = phi [bb %cutout.if.exit, i32 %88]
-  im1jp1.phi264339 = phi [bb %cutout.if.exit, i32 %60]
-  ijm1.phi266338 = phi [bb %cutout.if.exit, i32 %67]
-  ip1j.phi268337 = phi [bb %cutout.if.exit, i32 %87]
-  ij.phi270336 = phi [bb %cutout.if.exit, i32 %66]
-  ip1jp1.phi272335 = phi [bb %cutout.if.exit, i32 %103]
-  val.phi274334 = phi [bb %cutout.if.exit, i32 %149]
   165 = add i32 %j.phi258368, i32 1
   27 = icmp slt i32 %165, i32 511
   br i1 %27, bb %while.body, bb %while.exit

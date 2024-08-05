@@ -15,6 +15,7 @@ namespace nnvm {
 
 struct Loop {
 public:
+  Loop() : parent(nullptr), preheader(nullptr), header(nullptr) {}
   struct ExitEdge {
     BasicBlock *from;
     BasicBlock *to;

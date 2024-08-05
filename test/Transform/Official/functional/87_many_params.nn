@@ -70,215 +70,257 @@ init:  pred(init, param32_rec.then911058)
   593 = icmp ne i32 %cnt.dec, i32 0
   br i1 %593, bb %init, bb %init.exit
 init.exit:  pred(init)
-  br bb %while.body601
-while.body601:  pred(while.body601, init.exit)
-  i599.phi1213 = phi [bb %while.body601, i32 %636, bb %init.exit, i32 1]
-  714 = shl i32 %i599.phi1213, i32 3
-  608 = ptradd ptr %arr568, i32 %714
-  613 = sub i32 %i599.phi1213, i32 1
-  715 = shl i32 %613, i32 3
-  615 = ptradd ptr %arr568, i32 %715
-  617 = ptradd ptr %615, i32 4
-  617.load = load i32 from ptr %617
+  608 = ptradd ptr %arr568, i32 8
+  617.load = load i32 from ptr %arr.index587
   619 = sub i32 %617.load, i32 1
   store i32 %619 to ptr %608
-  624 = ptradd ptr %608, i32 4
-  631.load = load i32 from ptr %615
+  1837 = ptradd ptr %arr568, i32 12
+  631.load = load i32 from ptr %arr568
   633 = sub i32 %631.load, i32 2
-  store i32 %633 to ptr %624
-  636 = add i32 %i599.phi1213, i32 1
-  604 = icmp slt i32 %636, i32 32
-  br i1 %604, bb %while.body601, bb %while.exit602
-while.exit602:  pred(while.body601)
-  640 = ptradd ptr %arr568, i32 8
-  642 = ptradd ptr %arr568, i32 16
-  644 = ptradd ptr %arr568, i32 24
-  646 = ptradd ptr %arr568, i32 32
-  648 = ptradd ptr %arr568, i32 40
-  650 = ptradd ptr %arr568, i32 48
-  652 = ptradd ptr %arr568, i32 56
-  654 = ptradd ptr %arr568, i32 64
-  656 = ptradd ptr %arr568, i32 72
-  658 = ptradd ptr %arr568, i32 80
-  660 = ptradd ptr %arr568, i32 88
-  662 = ptradd ptr %arr568, i32 96
-  664 = ptradd ptr %arr568, i32 104
-  666 = ptradd ptr %arr568, i32 112
-  668 = ptradd ptr %arr568, i32 120
-  670 = ptradd ptr %arr568, i32 128
-  672 = ptradd ptr %arr568, i32 136
-  674 = ptradd ptr %arr568, i32 144
-  676 = ptradd ptr %arr568, i32 152
-  678 = ptradd ptr %arr568, i32 160
-  680 = ptradd ptr %arr568, i32 168
-  682 = ptradd ptr %arr568, i32 176
-  684 = ptradd ptr %arr568, i32 184
-  686 = ptradd ptr %arr568, i32 192
-  688 = ptradd ptr %arr568, i32 200
-  690 = ptradd ptr %arr568, i32 208
-  692 = ptradd ptr %arr568, i32 216
-  694 = ptradd ptr %arr568, i32 224
-  696 = ptradd ptr %arr568, i32 232
-  698 = ptradd ptr %arr568, i32 240
-  700 = ptradd ptr %arr568, i32 248
-  134.load813 = load i32 from ptr %arr568
-  137.load815 = load i32 from ptr %arr.index587
-  139816 = add i32 %134.load813, i32 %137.load815
-  143.load817 = load i32 from ptr %640
-  145818 = add i32 %139816, i32 %143.load817
-  1147 = ptradd ptr %arr568, i32 12
-  147.load820 = load i32 from ptr %1147
-  149821 = add i32 %145818, i32 %147.load820
-  153.load822 = load i32 from ptr %642
-  155823 = add i32 %149821, i32 %153.load822
-  1149 = ptradd ptr %arr568, i32 20
-  157.load825 = load i32 from ptr %1149
-  159826 = add i32 %155823, i32 %157.load825
-  163.load827 = load i32 from ptr %644
-  165828 = add i32 %159826, i32 %163.load827
-  1151 = ptradd ptr %arr568, i32 28
-  167.load830 = load i32 from ptr %1151
-  169831 = add i32 %165828, i32 %167.load830
-  173.load832 = load i32 from ptr %646
-  175833 = add i32 %169831, i32 %173.load832
-  1153 = ptradd ptr %arr568, i32 36
-  177.load835 = load i32 from ptr %1153
-  179836 = add i32 %175833, i32 %177.load835
-  183.load837 = load i32 from ptr %648
-  185838 = add i32 %179836, i32 %183.load837
-  1155 = ptradd ptr %arr568, i32 44
-  187.load840 = load i32 from ptr %1155
-  189841 = add i32 %185838, i32 %187.load840
-  193.load842 = load i32 from ptr %650
-  195843 = add i32 %189841, i32 %193.load842
-  1157 = ptradd ptr %arr568, i32 52
-  197.load845 = load i32 from ptr %1157
-  199846 = add i32 %195843, i32 %197.load845
-  203.load847 = load i32 from ptr %652
-  205848 = add i32 %199846, i32 %203.load847
-  1159 = ptradd ptr %arr568, i32 60
-  207.load850 = load i32 from ptr %1159
-  209851 = add i32 %205848, i32 %207.load850
-  213.load852 = load i32 from ptr %654
-  215853 = add i32 %209851, i32 %213.load852
-  1161 = ptradd ptr %arr568, i32 68
-  217.load855 = load i32 from ptr %1161
-  219856 = add i32 %215853, i32 %217.load855
-  223.load857 = load i32 from ptr %656
-  225858 = add i32 %219856, i32 %223.load857
-  1163 = ptradd ptr %arr568, i32 76
-  227.load860 = load i32 from ptr %1163
-  229861 = add i32 %225858, i32 %227.load860
-  233.load862 = load i32 from ptr %658
-  235863 = add i32 %229861, i32 %233.load862
-  1165 = ptradd ptr %arr568, i32 84
-  237.load865 = load i32 from ptr %1165
-  239866 = add i32 %235863, i32 %237.load865
-  243.load867 = load i32 from ptr %660
-  245868 = add i32 %239866, i32 %243.load867
-  1167 = ptradd ptr %arr568, i32 92
-  247.load870 = load i32 from ptr %1167
-  249871 = add i32 %245868, i32 %247.load870
-  253.load872 = load i32 from ptr %662
-  255873 = add i32 %249871, i32 %253.load872
-  1169 = ptradd ptr %arr568, i32 100
-  257.load875 = load i32 from ptr %1169
-  259876 = add i32 %255873, i32 %257.load875
-  263.load877 = load i32 from ptr %664
-  265878 = add i32 %259876, i32 %263.load877
-  1171 = ptradd ptr %arr568, i32 108
-  267.load880 = load i32 from ptr %1171
-  269881 = add i32 %265878, i32 %267.load880
-  273.load882 = load i32 from ptr %666
-  275883 = add i32 %269881, i32 %273.load882
-  1173 = ptradd ptr %arr568, i32 116
-  277.load885 = load i32 from ptr %1173
-  279886 = add i32 %275883, i32 %277.load885
-  283.load887 = load i32 from ptr %668
-  285888 = add i32 %279886, i32 %283.load887
-  1175 = ptradd ptr %arr568, i32 124
-  287.load890 = load i32 from ptr %1175
-  289891 = add i32 %285888, i32 %287.load890
-  293.load892 = load i32 from ptr %670
-  295893 = add i32 %289891, i32 %293.load892
-  1177 = ptradd ptr %arr568, i32 132
-  297.load895 = load i32 from ptr %1177
-  299896 = add i32 %295893, i32 %297.load895
-  303.load897 = load i32 from ptr %672
-  305898 = add i32 %299896, i32 %303.load897
-  1179 = ptradd ptr %arr568, i32 140
-  307.load900 = load i32 from ptr %1179
-  309901 = add i32 %305898, i32 %307.load900
-  313.load902 = load i32 from ptr %674
-  315903 = add i32 %309901, i32 %313.load902
-  1181 = ptradd ptr %arr568, i32 148
-  317.load905 = load i32 from ptr %1181
-  319906 = add i32 %315903, i32 %317.load905
-  323.load907 = load i32 from ptr %676
-  325908 = add i32 %319906, i32 %323.load907
-  1183 = ptradd ptr %arr568, i32 156
-  327.load910 = load i32 from ptr %1183
-  329911 = add i32 %325908, i32 %327.load910
-  333.load912 = load i32 from ptr %678
-  335913 = add i32 %329911, i32 %333.load912
-  1185 = ptradd ptr %arr568, i32 164
-  337.load915 = load i32 from ptr %1185
-  339916 = add i32 %335913, i32 %337.load915
-  343.load917 = load i32 from ptr %680
-  345918 = add i32 %339916, i32 %343.load917
-  1187 = ptradd ptr %arr568, i32 172
-  347.load920 = load i32 from ptr %1187
-  349921 = add i32 %345918, i32 %347.load920
-  353.load922 = load i32 from ptr %682
-  355923 = add i32 %349921, i32 %353.load922
-  1189 = ptradd ptr %arr568, i32 180
-  357.load925 = load i32 from ptr %1189
-  359926 = add i32 %355923, i32 %357.load925
-  363.load927 = load i32 from ptr %684
-  365928 = add i32 %359926, i32 %363.load927
-  1191 = ptradd ptr %arr568, i32 188
-  367.load930 = load i32 from ptr %1191
-  369931 = add i32 %365928, i32 %367.load930
-  373.load932 = load i32 from ptr %686
-  375933 = add i32 %369931, i32 %373.load932
-  1193 = ptradd ptr %arr568, i32 196
-  377.load935 = load i32 from ptr %1193
-  379936 = add i32 %375933, i32 %377.load935
-  383.load937 = load i32 from ptr %688
-  385938 = add i32 %379936, i32 %383.load937
-  1195 = ptradd ptr %arr568, i32 204
-  387.load940 = load i32 from ptr %1195
-  389941 = add i32 %385938, i32 %387.load940
-  393.load942 = load i32 from ptr %690
-  395943 = add i32 %389941, i32 %393.load942
-  1197 = ptradd ptr %arr568, i32 212
-  397.load945 = load i32 from ptr %1197
-  399946 = add i32 %395943, i32 %397.load945
-  403.load947 = load i32 from ptr %692
-  405948 = add i32 %399946, i32 %403.load947
-  1199 = ptradd ptr %arr568, i32 220
-  407.load950 = load i32 from ptr %1199
-  409951 = add i32 %405948, i32 %407.load950
-  413.load952 = load i32 from ptr %694
-  415953 = add i32 %409951, i32 %413.load952
-  1201 = ptradd ptr %arr568, i32 228
-  417.load955 = load i32 from ptr %1201
-  419956 = add i32 %415953, i32 %417.load955
-  423.load957 = load i32 from ptr %696
-  425958 = add i32 %419956, i32 %423.load957
-  1203 = ptradd ptr %arr568, i32 236
-  427.load960 = load i32 from ptr %1203
-  429961 = add i32 %425958, i32 %427.load960
-  433.load962 = load i32 from ptr %698
-  435963 = add i32 %429961, i32 %433.load962
-  1205 = ptradd ptr %arr568, i32 244
-  437.load965 = load i32 from ptr %1205
-  439966 = add i32 %435963, i32 %437.load965
-  443.load967 = load i32 from ptr %700
-  445968 = add i32 %439966, i32 %443.load967
-  1207 = ptradd ptr %arr568, i32 252
-  447.load970 = load i32 from ptr %1207
-  449971 = add i32 %445968, i32 %447.load970
+  store i32 %633 to ptr %1837
+  6081299 = ptradd ptr %arr568, i32 16
+  1959 = sub i32 %631.load, i32 3
+  store i32 %1959 to ptr %6081299
+  1841 = ptradd ptr %arr568, i32 20
+  1961 = sub i32 %617.load, i32 3
+  store i32 %1961 to ptr %1841
+  6081317 = ptradd ptr %arr568, i32 24
+  1963 = sub i32 %617.load, i32 4
+  store i32 %1963 to ptr %6081317
+  1845 = ptradd ptr %arr568, i32 28
+  1965 = sub i32 %631.load, i32 5
+  store i32 %1965 to ptr %1845
+  6081335 = ptradd ptr %arr568, i32 32
+  1967 = sub i32 %631.load, i32 6
+  store i32 %1967 to ptr %6081335
+  1849 = ptradd ptr %arr568, i32 36
+  1969 = sub i32 %617.load, i32 6
+  store i32 %1969 to ptr %1849
+  6081353 = ptradd ptr %arr568, i32 40
+  1971 = sub i32 %617.load, i32 7
+  store i32 %1971 to ptr %6081353
+  1853 = ptradd ptr %arr568, i32 44
+  1973 = sub i32 %631.load, i32 8
+  store i32 %1973 to ptr %1853
+  6081371 = ptradd ptr %arr568, i32 48
+  1975 = sub i32 %631.load, i32 9
+  store i32 %1975 to ptr %6081371
+  1857 = ptradd ptr %arr568, i32 52
+  1977 = sub i32 %617.load, i32 9
+  store i32 %1977 to ptr %1857
+  6081389 = ptradd ptr %arr568, i32 56
+  1979 = sub i32 %617.load, i32 10
+  store i32 %1979 to ptr %6081389
+  1861 = ptradd ptr %arr568, i32 60
+  1981 = sub i32 %631.load, i32 11
+  store i32 %1981 to ptr %1861
+  6081407 = ptradd ptr %arr568, i32 64
+  1983 = sub i32 %631.load, i32 12
+  store i32 %1983 to ptr %6081407
+  1865 = ptradd ptr %arr568, i32 68
+  1985 = sub i32 %617.load, i32 12
+  store i32 %1985 to ptr %1865
+  6081425 = ptradd ptr %arr568, i32 72
+  1987 = sub i32 %617.load, i32 13
+  store i32 %1987 to ptr %6081425
+  1869 = ptradd ptr %arr568, i32 76
+  1989 = sub i32 %631.load, i32 14
+  store i32 %1989 to ptr %1869
+  6081443 = ptradd ptr %arr568, i32 80
+  1991 = sub i32 %631.load, i32 15
+  store i32 %1991 to ptr %6081443
+  1873 = ptradd ptr %arr568, i32 84
+  1993 = sub i32 %617.load, i32 15
+  store i32 %1993 to ptr %1873
+  6081461 = ptradd ptr %arr568, i32 88
+  1995 = sub i32 %617.load, i32 16
+  store i32 %1995 to ptr %6081461
+  1877 = ptradd ptr %arr568, i32 92
+  1997 = sub i32 %631.load, i32 17
+  store i32 %1997 to ptr %1877
+  6081479 = ptradd ptr %arr568, i32 96
+  1999 = sub i32 %631.load, i32 18
+  store i32 %1999 to ptr %6081479
+  1881 = ptradd ptr %arr568, i32 100
+  2001 = sub i32 %617.load, i32 18
+  store i32 %2001 to ptr %1881
+  6081497 = ptradd ptr %arr568, i32 104
+  2003 = sub i32 %617.load, i32 19
+  store i32 %2003 to ptr %6081497
+  1885 = ptradd ptr %arr568, i32 108
+  2005 = sub i32 %631.load, i32 20
+  store i32 %2005 to ptr %1885
+  6081515 = ptradd ptr %arr568, i32 112
+  2007 = sub i32 %631.load, i32 21
+  store i32 %2007 to ptr %6081515
+  1889 = ptradd ptr %arr568, i32 116
+  2009 = sub i32 %617.load, i32 21
+  store i32 %2009 to ptr %1889
+  6081533 = ptradd ptr %arr568, i32 120
+  2011 = sub i32 %617.load, i32 22
+  store i32 %2011 to ptr %6081533
+  1893 = ptradd ptr %arr568, i32 124
+  2013 = sub i32 %631.load, i32 23
+  store i32 %2013 to ptr %1893
+  6081551 = ptradd ptr %arr568, i32 128
+  2015 = sub i32 %631.load, i32 24
+  store i32 %2015 to ptr %6081551
+  1897 = ptradd ptr %arr568, i32 132
+  2017 = sub i32 %617.load, i32 24
+  store i32 %2017 to ptr %1897
+  6081569 = ptradd ptr %arr568, i32 136
+  2019 = sub i32 %617.load, i32 25
+  store i32 %2019 to ptr %6081569
+  1901 = ptradd ptr %arr568, i32 140
+  2021 = sub i32 %631.load, i32 26
+  store i32 %2021 to ptr %1901
+  6081587 = ptradd ptr %arr568, i32 144
+  2023 = sub i32 %631.load, i32 27
+  store i32 %2023 to ptr %6081587
+  1905 = ptradd ptr %arr568, i32 148
+  2025 = sub i32 %617.load, i32 27
+  store i32 %2025 to ptr %1905
+  6081605 = ptradd ptr %arr568, i32 152
+  2027 = sub i32 %617.load, i32 28
+  store i32 %2027 to ptr %6081605
+  1909 = ptradd ptr %arr568, i32 156
+  2029 = sub i32 %631.load, i32 29
+  store i32 %2029 to ptr %1909
+  6081623 = ptradd ptr %arr568, i32 160
+  2031 = sub i32 %631.load, i32 30
+  store i32 %2031 to ptr %6081623
+  1913 = ptradd ptr %arr568, i32 164
+  2033 = sub i32 %617.load, i32 30
+  store i32 %2033 to ptr %1913
+  6081641 = ptradd ptr %arr568, i32 168
+  2035 = sub i32 %617.load, i32 31
+  store i32 %2035 to ptr %6081641
+  1917 = ptradd ptr %arr568, i32 172
+  2037 = sub i32 %631.load, i32 32
+  store i32 %2037 to ptr %1917
+  6081659 = ptradd ptr %arr568, i32 176
+  2039 = sub i32 %631.load, i32 33
+  store i32 %2039 to ptr %6081659
+  1921 = ptradd ptr %arr568, i32 180
+  2041 = sub i32 %617.load, i32 33
+  store i32 %2041 to ptr %1921
+  6081677 = ptradd ptr %arr568, i32 184
+  2043 = sub i32 %617.load, i32 34
+  store i32 %2043 to ptr %6081677
+  1925 = ptradd ptr %arr568, i32 188
+  2045 = sub i32 %631.load, i32 35
+  store i32 %2045 to ptr %1925
+  6081695 = ptradd ptr %arr568, i32 192
+  2047 = sub i32 %631.load, i32 36
+  store i32 %2047 to ptr %6081695
+  1929 = ptradd ptr %arr568, i32 196
+  2049 = sub i32 %617.load, i32 36
+  store i32 %2049 to ptr %1929
+  6081713 = ptradd ptr %arr568, i32 200
+  2051 = sub i32 %617.load, i32 37
+  store i32 %2051 to ptr %6081713
+  1933 = ptradd ptr %arr568, i32 204
+  2053 = sub i32 %631.load, i32 38
+  store i32 %2053 to ptr %1933
+  6081731 = ptradd ptr %arr568, i32 208
+  2055 = sub i32 %631.load, i32 39
+  store i32 %2055 to ptr %6081731
+  1937 = ptradd ptr %arr568, i32 212
+  2057 = sub i32 %617.load, i32 39
+  store i32 %2057 to ptr %1937
+  6081749 = ptradd ptr %arr568, i32 216
+  2059 = sub i32 %617.load, i32 40
+  store i32 %2059 to ptr %6081749
+  1941 = ptradd ptr %arr568, i32 220
+  2061 = sub i32 %631.load, i32 41
+  store i32 %2061 to ptr %1941
+  6081767 = ptradd ptr %arr568, i32 224
+  2063 = sub i32 %631.load, i32 42
+  store i32 %2063 to ptr %6081767
+  1945 = ptradd ptr %arr568, i32 228
+  2065 = sub i32 %617.load, i32 42
+  store i32 %2065 to ptr %1945
+  6081785 = ptradd ptr %arr568, i32 232
+  2067 = sub i32 %617.load, i32 43
+  store i32 %2067 to ptr %6081785
+  1949 = ptradd ptr %arr568, i32 236
+  2069 = sub i32 %631.load, i32 44
+  store i32 %2069 to ptr %1949
+  6081803 = ptradd ptr %arr568, i32 240
+  2071 = sub i32 %631.load, i32 45
+  store i32 %2071 to ptr %6081803
+  1953 = ptradd ptr %arr568, i32 244
+  2073 = sub i32 %617.load, i32 45
+  store i32 %2073 to ptr %1953
+  6081821 = ptradd ptr %arr568, i32 248
+  2075 = sub i32 %617.load, i32 46
+  store i32 %2075 to ptr %6081821
+  1957 = ptradd ptr %arr568, i32 252
+  2077 = sub i32 %631.load, i32 47
+  store i32 %2077 to ptr %1957
+  139816 = add i32 %631.load, i32 %617.load
+  145818 = add i32 %139816, i32 %619
+  149821 = add i32 %145818, i32 %633
+  155823 = add i32 %149821, i32 %1959
+  159826 = add i32 %155823, i32 %1961
+  165828 = add i32 %159826, i32 %1963
+  169831 = add i32 %165828, i32 %1965
+  175833 = add i32 %169831, i32 %1967
+  179836 = add i32 %175833, i32 %1969
+  185838 = add i32 %179836, i32 %1971
+  189841 = add i32 %185838, i32 %1973
+  195843 = add i32 %189841, i32 %1975
+  199846 = add i32 %195843, i32 %1977
+  205848 = add i32 %199846, i32 %1979
+  209851 = add i32 %205848, i32 %1981
+  215853 = add i32 %209851, i32 %1983
+  219856 = add i32 %215853, i32 %1985
+  225858 = add i32 %219856, i32 %1987
+  229861 = add i32 %225858, i32 %1989
+  235863 = add i32 %229861, i32 %1991
+  239866 = add i32 %235863, i32 %1993
+  245868 = add i32 %239866, i32 %1995
+  249871 = add i32 %245868, i32 %1997
+  255873 = add i32 %249871, i32 %1999
+  259876 = add i32 %255873, i32 %2001
+  265878 = add i32 %259876, i32 %2003
+  269881 = add i32 %265878, i32 %2005
+  275883 = add i32 %269881, i32 %2007
+  279886 = add i32 %275883, i32 %2009
+  285888 = add i32 %279886, i32 %2011
+  289891 = add i32 %285888, i32 %2013
+  295893 = add i32 %289891, i32 %2015
+  299896 = add i32 %295893, i32 %2017
+  305898 = add i32 %299896, i32 %2019
+  309901 = add i32 %305898, i32 %2021
+  315903 = add i32 %309901, i32 %2023
+  319906 = add i32 %315903, i32 %2025
+  325908 = add i32 %319906, i32 %2027
+  329911 = add i32 %325908, i32 %2029
+  335913 = add i32 %329911, i32 %2031
+  339916 = add i32 %335913, i32 %2033
+  345918 = add i32 %339916, i32 %2035
+  349921 = add i32 %345918, i32 %2037
+  355923 = add i32 %349921, i32 %2039
+  359926 = add i32 %355923, i32 %2041
+  365928 = add i32 %359926, i32 %2043
+  369931 = add i32 %365928, i32 %2045
+  375933 = add i32 %369931, i32 %2047
+  379936 = add i32 %375933, i32 %2049
+  385938 = add i32 %379936, i32 %2051
+  389941 = add i32 %385938, i32 %2053
+  395943 = add i32 %389941, i32 %2055
+  399946 = add i32 %395943, i32 %2057
+  405948 = add i32 %399946, i32 %2059
+  409951 = add i32 %405948, i32 %2061
+  415953 = add i32 %409951, i32 %2063
+  419956 = add i32 %415953, i32 %2065
+  425958 = add i32 %419956, i32 %2067
+  429961 = add i32 %425958, i32 %2069
+  435963 = add i32 %429961, i32 %2071
+  439966 = add i32 %435963, i32 %2073
+  445968 = add i32 %439966, i32 %2075
+  449971 = add i32 %445968, i32 %2077
   call void putint(i32 %449971)
   call void putch(i32 10)
   ret i32 0
