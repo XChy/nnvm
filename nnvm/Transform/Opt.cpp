@@ -15,6 +15,7 @@
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
 #include "Transform/Scalar/SLPairElim.h"
+#include "Transform/Scalar/StackElim.h"
 #include "Transform/Scalar/TailElim.h"
 using namespace nnvm;
 
@@ -59,6 +60,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CSEPass>();
 
   passManager.addFunctionPass<MemPropPass>();
+  passManager.addFunctionPass<StackElimPass>();
   passManager.addFunctionPass<CombinerPass>();
 
   // Before codegen

@@ -10,38 +10,6 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry74:  pred()
-  %arr185 = stack 64
-  store i32 0 to ptr %arr185
-  arr.index3187 = ptradd ptr %arr185, i32 4
-  store i32 1 to ptr %arr.index3187
-  arr.index4189 = ptradd ptr %arr185, i32 8
-  store i32 2 to ptr %arr.index4189
-  arr.index5191 = ptradd ptr %arr185, i32 12
-  store i32 3 to ptr %arr.index5191
-  arr.index6193 = ptradd ptr %arr185, i32 16
-  store i32 0 to ptr %arr.index6193
-  arr.index7195 = ptradd ptr %arr185, i32 20
-  store i32 1 to ptr %arr.index7195
-  arr.index8197 = ptradd ptr %arr185, i32 24
-  store i32 2 to ptr %arr.index8197
-  arr.index9199 = ptradd ptr %arr185, i32 28
-  store i32 3 to ptr %arr.index9199
-  arr.index10201 = ptradd ptr %arr185, i32 32
-  store i32 0 to ptr %arr.index10201
-  arr.index11203 = ptradd ptr %arr185, i32 36
-  store i32 1 to ptr %arr.index11203
-  arr.index12205 = ptradd ptr %arr185, i32 40
-  store i32 2 to ptr %arr.index12205
-  arr.index13207 = ptradd ptr %arr185, i32 44
-  store i32 3 to ptr %arr.index13207
-  arr.index14209 = ptradd ptr %arr185, i32 48
-  store i32 0 to ptr %arr.index14209
-  arr.index15211 = ptradd ptr %arr185, i32 52
-  store i32 1 to ptr %arr.index15211
-  arr.index16213 = ptradd ptr %arr185, i32 56
-  store i32 2 to ptr %arr.index16213
-  arr.index17215 = ptradd ptr %arr185, i32 60
-  store i32 3 to ptr %arr.index17215
   call void putint(i32 254)
   call void putch(i32 10)
   ret i32 0

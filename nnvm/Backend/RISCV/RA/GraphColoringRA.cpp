@@ -584,29 +584,14 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     la.runOn(func);
     build(func, la);
     makeWorkList();
-    int a, b, c, d;
-    a = b = c = d = 0;
     do {
       if (!simplifyWorklist.empty()) {
-        std::cerr << "a " << a << "\n";
-        a++;
         simplify();
       } else if (!worklistMoves.empty()) {
-        std::cerr << "b " << b << "\n";
-        std::cerr << "moves " << worklistMoves.size() << "\n";
-        b++;
         coalesce();
       } else if (!freezeWorklist.empty()) {
-        std::cerr << "c " << c << "\n";
-        c++;
         freeze();
       } else if (!spillWorklist.empty()) {
-
-        std::cerr << "d " << d << "\n";
-        d++;
-        // for (auto *reg : spillWorklist)
-        // std::cerr << getNameForRegister(reg->getRegId()) << ", ";
-        // std::cerr << "\n";
         //  FIXME: handle the unstoppable spilling!!!
         selectSpill(func);
       }

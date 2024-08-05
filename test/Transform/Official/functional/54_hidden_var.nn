@@ -3,7 +3,6 @@ global ptr b init with i32 5
 i32 main() {
 entry:  pred()
   %c57 = stack 140
-  %c = stack 64
   call void putint(i32 3)
   call void putint(i32 3)
   call void putint(i32 1)
@@ -12,37 +11,6 @@ entry:  pred()
   call void putch(i32 10)
   31 = ptradd ptr @c, i32 8
   store i32 1 to ptr %31
-  store i32 0 to ptr %c
-  arr.index35 = ptradd ptr %c, i32 4
-  store i32 9 to ptr %arr.index35
-  arr.index36 = ptradd ptr %c, i32 8
-  store i32 0 to ptr %arr.index36
-  arr.index37 = ptradd ptr %c, i32 12
-  store i32 0 to ptr %arr.index37
-  arr.index38 = ptradd ptr %c, i32 16
-  store i32 0 to ptr %arr.index38
-  arr.index39 = ptradd ptr %c, i32 20
-  store i32 0 to ptr %arr.index39
-  arr.index40 = ptradd ptr %c, i32 24
-  store i32 0 to ptr %arr.index40
-  arr.index41 = ptradd ptr %c, i32 28
-  store i32 0 to ptr %arr.index41
-  arr.index42 = ptradd ptr %c, i32 32
-  store i32 8 to ptr %arr.index42
-  arr.index43 = ptradd ptr %c, i32 36
-  store i32 3 to ptr %arr.index43
-  arr.index44 = ptradd ptr %c, i32 40
-  store i32 0 to ptr %arr.index44
-  arr.index45 = ptradd ptr %c, i32 44
-  store i32 0 to ptr %arr.index45
-  arr.index46 = ptradd ptr %c, i32 48
-  store i32 0 to ptr %arr.index46
-  arr.index47 = ptradd ptr %c, i32 52
-  store i32 0 to ptr %arr.index47
-  arr.index48 = ptradd ptr %c, i32 56
-  store i32 0 to ptr %arr.index48
-  arr.index49 = ptradd ptr %c, i32 60
-  store i32 0 to ptr %arr.index49
   store i32 0 to ptr %c57
   arr.index59 = ptradd ptr %c57, i32 4
   store i32 0 to ptr %arr.index59

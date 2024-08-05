@@ -59,6 +59,7 @@ std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
   if (!cmp || !cmp->getOperand(1)->isConstant())
     return {};
 
+  // TODO: Invert the predicate if needed.
   auto pred = cmp->getPredicate();
   ScevValue *indSCEV = scev->analyze(cmp->getOperand(0), loop);
 

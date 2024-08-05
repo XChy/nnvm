@@ -298,18 +298,18 @@ bb25:
   FLW ft0, 0(t1)
   LA t1, .CONSTANT.7.2
   FLW ft1, 0(t1)
-  FSGNJ.S ft0, ft0, ft1
+  FSGNJ.S ft2, ft0, ft1
   ADD t1, zero, zero
+  LA a1, .CONSTANT.7.2
+  FLW ft0, 0(a1)
+  LA a1, .CONSTANT.7.2
+  FLW ft1, 0(a1)
+  FSGNJ.S ft0, ft0, ft1
   LA a1, .CONSTANT.7.2
   FLW ft1, 0(a1)
   LA a1, .CONSTANT.7.2
-  FLW ft2, 0(a1)
-  FSGNJ.S ft1, ft1, ft2
-  LA a1, .CONSTANT.7.2
-  FLW ft2, 0(a1)
-  LA a1, .CONSTANT.7.2
   FLW ft3, 0(a1)
-  FSGNJ.S ft2, ft2, ft3
+  FSGNJ.S ft3, ft1, ft3
   # implict jump to bb26
 bb26:
   ADDI a1, zero, 1080
@@ -318,22 +318,22 @@ bb26:
   ADD a2, a2, t2
   ADD a1, s2, a1
   ADD a1, a1, t2
+  FLW ft1, 0(a1)
+  FMUL.S ft1, fs2, ft1
+  FMUL.S ft3, fs3, ft3
+  FADD.S ft1, ft1, ft3
+  FMUL.S ft3, fa0, ft0
+  FADD.S ft1, ft1, ft3
+  FMUL.S ft2, ft6, ft2
+  FADD.S ft1, ft1, ft2
+  FSW ft1, 0(a2)
   FLW ft3, 0(a1)
-  FMUL.S ft3, fs2, ft3
-  FMUL.S ft2, fs3, ft2
-  FADD.S ft2, ft3, ft2
-  FMUL.S ft3, fa0, ft1
-  FADD.S ft2, ft2, ft3
-  FMUL.S ft0, ft6, ft0
-  FADD.S ft3, ft2, ft0
-  FSW ft3, 0(a2)
-  FLW ft2, 0(a1)
   ADDIW t1, t1, 1
   BLT t1, s0, bb27
   JAL zero, bb23
 bb27:
+  FSGNJ.S ft2, ft0, ft0
   FSGNJ.S ft0, ft1, ft1
-  FSGNJ.S ft1, ft3, ft3
   JAL zero, bb26
 bb28:
   ADD t1, zero, zero
@@ -396,38 +396,38 @@ bb39:
   FLW ft0, 0(a4)
   LA a4, .CONSTANT.7.2
   FLW ft1, 0(a4)
-  FSGNJ.S ft2, ft0, ft1
-  LA a4, .CONSTANT.7.2
-  FLW ft0, 0(a4)
+  FSGNJ.S ft0, ft0, ft1
   LA a4, .CONSTANT.7.2
   FLW ft1, 0(a4)
-  FSGNJ.S ft1, ft0, ft1
   LA a4, .CONSTANT.7.2
-  FLW ft0, 0(a4)
+  FLW ft2, 0(a4)
+  FSGNJ.S ft5, ft1, ft2
   LA a4, .CONSTANT.7.2
-  FLW ft3, 0(a4)
-  FSGNJ.S ft5, ft0, ft3
+  FLW ft1, 0(a4)
   LA a4, .CONSTANT.7.2
-  FLW ft0, 0(a4)
+  FLW ft2, 0(a4)
+  FSGNJ.S ft3, ft1, ft2
   LA a4, .CONSTANT.7.2
-  FLW ft3, 0(a4)
-  FSGNJ.S ft4, ft0, ft3
+  FLW ft1, 0(a4)
+  LA a4, .CONSTANT.7.2
+  FLW ft2, 0(a4)
+  FSGNJ.S ft2, ft1, ft2
   # implict jump to bb40
 bb40:
-  FSGNJ.S ft3, ft5, ft5
-  FSGNJ.S ft0, ft2, ft2
+  FSGNJ.S ft1, ft3, ft3
+  FSGNJ.S ft4, ft0, ft0
   SLLIW a4, t1, 2
   ADD a5, a2, a4
-  FMUL.S ft2, fs0, ft0
-  FMUL.S ft1, fs1, ft1
-  FADD.S ft1, ft2, ft1
-  FMUL.S ft2, fa0, ft3
-  FADD.S ft1, ft1, ft2
-  FMUL.S ft2, ft6, ft4
-  FADD.S ft5, ft1, ft2
-  FSW ft5, 0(a5)
+  FMUL.S ft0, fs0, ft4
+  FMUL.S ft3, fs1, ft5
+  FADD.S ft0, ft0, ft3
+  FMUL.S ft3, fa0, ft1
+  FADD.S ft0, ft0, ft3
+  FMUL.S ft2, ft6, ft2
+  FADD.S ft3, ft0, ft2
+  FSW ft3, 0(a5)
   ADD a4, a3, a4
-  FLW ft2, 0(a4)
+  FLW ft0, 0(a4)
   ADDI a4, zero, 1
   SUBW t1, t1, a4
   SLT a4, t1, zero
@@ -435,8 +435,8 @@ bb40:
   BNE a4, zero, bb41
   JAL zero, bb37
 bb41:
-  FSGNJ.S ft1, ft0, ft0
-  FSGNJ.S ft4, ft3, ft3
+  FSGNJ.S ft5, ft4, ft4
+  FSGNJ.S ft2, ft1, ft1
   JAL zero, bb40
 bb42:
   ADDI a4, zero, 0

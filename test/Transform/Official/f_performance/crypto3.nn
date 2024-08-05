@@ -12,16 +12,6 @@ i32 main() {
 entry401:  pred()
   %words564 = stack 320
   %output_buf = stack 20
-  %output = stack 20
-  store i32 0 to ptr %output
-  arr.index406 = ptradd ptr %output, i32 4
-  store i32 0 to ptr %arr.index406
-  arr.index407 = ptradd ptr %output, i32 8
-  store i32 0 to ptr %arr.index407
-  arr.index408 = ptradd ptr %output, i32 12
-  store i32 0 to ptr %arr.index408
-  arr.index409 = ptradd ptr %output, i32 16
-  store i32 0 to ptr %arr.index409
   412 = call i32 getint()
   store i32 %412 to ptr @state
   414 = call i32 getint()
@@ -523,11 +513,6 @@ pseudo_sha1.while.exit161:  pred(pseudo_sha1.while.exit268, pseudo_sha1.init.exi
   1392 = phi [bb %pseudo_sha1.while.exit268, i32 %365727, bb %pseudo_sha1.init.exit, i32 -271733879]
   1391 = phi [bb %pseudo_sha1.while.exit268, i32 %361726, bb %pseudo_sha1.init.exit, i32 1732584193]
   1390 = phi [bb %pseudo_sha1.while.exit268, i32 %377730, bb %pseudo_sha1.init.exit, i32 -1009589776]
-  store i32 %1391 to ptr %output
-  store i32 %1392 to ptr %arr.index406
-  store i32 %1394 to ptr %arr.index407
-  store i32 %1393 to ptr %arr.index408
-  store i32 %1390 to ptr %arr.index409
   470.load = load i32 from ptr %output_buf
   431179 = add i32 %470.load, i32 %1391
   56863 = sub i32 %470.load, i32 %431179

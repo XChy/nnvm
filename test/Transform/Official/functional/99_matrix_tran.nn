@@ -14,48 +14,12 @@ entry57:  pred()
   %c2 = stack 12
   %c1 = stack 12
   %c0 = stack 24
-  %b2 = stack 12
-  %b1 = stack 12
-  %b0 = stack 12
-  %a2 = stack 12
-  %a1 = stack 12
-  %a0 = stack 12
   store i32 3 to ptr @N
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   84 = si2f i32 0 to float
-  store float %84 to ptr %a0
-  store float %84 to ptr %a1
-  store float %84 to ptr %a2
-  store float %84 to ptr %b0
-  store float %84 to ptr %b1
-  store float %84 to ptr %b2
-  81258 = ptradd ptr %a0, i32 4
   84259 = si2f i32 1 to float
-  store float %84259 to ptr %81258
-  87261 = ptradd ptr %a1, i32 4
-  store float %84259 to ptr %87261
-  93263 = ptradd ptr %a2, i32 4
-  store float %84259 to ptr %93263
-  99265 = ptradd ptr %b0, i32 4
-  store float %84259 to ptr %99265
-  105267 = ptradd ptr %b1, i32 4
-  store float %84259 to ptr %105267
-  111269 = ptradd ptr %b2, i32 4
-  store float %84259 to ptr %111269
-  81277 = ptradd ptr %a0, i32 8
   84278 = si2f i32 2 to float
-  store float %84278 to ptr %81277
-  87280 = ptradd ptr %a1, i32 8
-  store float %84278 to ptr %87280
-  93282 = ptradd ptr %a2, i32 8
-  store float %84278 to ptr %93282
-  99284 = ptradd ptr %b0, i32 8
-  store float %84278 to ptr %99284
-  105286 = ptradd ptr %b1, i32 8
-  store float %84278 to ptr %105286
-  111288 = ptradd ptr %b2, i32 8
-  store float %84278 to ptr %111288
   4204 = ptradd ptr %c1, i32 8
   store float %84259 to ptr %4204
   10208 = ptradd ptr %c2, i32 4

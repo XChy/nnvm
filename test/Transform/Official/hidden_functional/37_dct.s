@@ -565,8 +565,8 @@ bb85:
   JAL zero, bb82
 bb86:
   SLLIW s0, s6, 5
-  LA s2, test_dct
-  ADD s9, s2, s0
+  LA s1, test_dct
+  ADD s9, s1, s0
   FCVT.S.W fs0, zero
   ADD s5, zero, zero
   # implict jump to bb87

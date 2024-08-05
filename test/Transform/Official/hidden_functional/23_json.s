@@ -10,11 +10,11 @@ pos:
 .word 0x00000000
 .section .text
 detect_item:
-  ADDI sp, sp, -96
-  SD ra, 56(sp)
-  SD s0, 64(sp)
-  SD s1, 72(sp)
-  SD s2, 80(sp)
+  ADDI sp, sp, -32
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
   ADD s1, a2, zero
   ADD s0, a1, zero
   # implict jump to bb1
@@ -96,21 +96,13 @@ bb14:
   # implict jump to bb15
 bb15:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb16:
-  ADDI t0, zero, 110
-  SW t0, 0(sp)
-  ADDI t0, zero, 117
-  SW t0, 4(sp)
-  ADDI t0, zero, 108
-  SW t0, 8(sp)
-  ADDI t0, zero, 108
-  SW t0, 12(sp)
   ADDIW t0, a2, 3
   SLT t1, t0, s1
   XORI t1, t1, 1
@@ -155,63 +147,53 @@ bb21:
   # implict jump to bb22
 bb22:
   ADDI a0, zero, 1
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb23:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb24:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb25:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb26:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb27:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb28:
-  ADDI t0, zero, 102
-  SW t0, 16(sp)
-  ADDI t0, zero, 97
-  SW t0, 20(sp)
-  ADDI t0, zero, 108
-  SW t0, 24(sp)
-  ADDI t0, zero, 115
-  SW t0, 28(sp)
-  ADDI t0, zero, 101
-  SW t0, 32(sp)
   ADDIW t0, a2, 4
   SLT t1, t0, s1
   XORI t1, t1, 1
@@ -264,61 +246,53 @@ bb34:
   JAL zero, bb22
 bb35:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb36:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb37:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb38:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb39:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb40:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb41:
-  ADDI t0, zero, 116
-  SW t0, 40(sp)
-  ADDI t0, zero, 114
-  SW t0, 44(sp)
-  ADDI t0, zero, 117
-  SW t0, 48(sp)
-  ADDI t0, zero, 101
-  SW t0, 52(sp)
   ADDIW t0, a2, 3
   SLT t1, t0, s1
   XORI t1, t1, 1
@@ -363,43 +337,43 @@ bb46:
   JAL zero, bb22
 bb47:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb48:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb49:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb50:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb51:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb52:
   LA a0, pos
@@ -659,19 +633,19 @@ bb87:
   JAL zero, bb22
 bb88:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb89:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb90:
   LA t0, pos
@@ -925,11 +899,11 @@ bb123:
   JAL zero, bb115
 bb124:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb125:
   LA a0, pos
@@ -961,19 +935,19 @@ bb128:
   JAL zero, bb109
 bb129:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb130:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb131:
   LA a0, pos
@@ -1005,11 +979,11 @@ bb134:
   JAL zero, bb101
 bb135:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb136:
   LA a0, pos
@@ -1069,11 +1043,11 @@ bb143:
   JAL zero, bb74
 bb144:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb145:
   LA a0, pos
@@ -1105,19 +1079,19 @@ bb148:
   JAL zero, bb68
 bb149:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb150:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb151:
   LA a0, pos
@@ -1149,11 +1123,11 @@ bb154:
   JAL zero, bb60
 bb155:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb156:
   LA a0, pos
@@ -1172,11 +1146,11 @@ bb157:
   LA t1, pos
   SW t0, 0(t1)
   ADDI a0, zero, 1
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb158:
   LA a0, pos
@@ -1362,19 +1336,19 @@ bb183:
   JAL zero, bb22
 bb184:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb185:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb186:
   LA t0, pos
@@ -1526,11 +1500,11 @@ bb205:
   JAL zero, bb197
 bb206:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb207:
   LA a0, pos
@@ -1590,11 +1564,11 @@ bb214:
   JAL zero, bb170
 bb215:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb216:
   LA a0, pos
@@ -1613,11 +1587,11 @@ bb217:
   LA t1, pos
   SW t0, 0(t1)
   ADDI a0, zero, 1
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb218:
   LA a0, pos
@@ -1684,19 +1658,19 @@ bb226:
   JAL zero, bb22
 bb227:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb228:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb229:
   LA t0, pos
@@ -1963,11 +1937,11 @@ bb272:
   JAL zero, bb268
 bb273:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb274:
   ADDI t1, zero, 57
@@ -1983,11 +1957,11 @@ bb276:
   JAL zero, bb238
 bb277:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb278:
   LA t0, pos
@@ -2061,11 +2035,11 @@ bb290:
   # implict jump to bb291
 bb291:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb292:
   ADDI a0, zero, 7
@@ -2136,11 +2110,11 @@ bb307:
   JAL zero, bb2
 bb308:
   ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:
   ADDI sp, sp, -48

@@ -2,9 +2,6 @@ internal global ptr buffer init with 50000000 x i32 zeros
 global ptr pos init with i32 0
 internal i32 detect_item(i32 type, ptr buf, i32 len) {
 entry67:  pred()
-  %mNull = stack 16
-  %mFalse = stack 20
-  %mTrue = stack 16
   br bb %loop_entry
 loop_entry:  pred(entry67, then87, then97, then107, then118, then128, then138, then148, then158, then168)
   len.loop = phi [bb %entry67, i32 %len, bb %then87, i32 %len.loop, bb %then97, i32 %len.loop, bb %then107, i32 %len.loop, bb %then118, i32 %len.loop, bb %then128, i32 %len.loop, bb %then138, i32 %len.loop, bb %then148, i32 %len.loop, bb %then158, i32 %len.loop, bb %then168, i32 %len.loop]
@@ -428,13 +425,6 @@ if.exit564:  pred(else557)
   store i32 %567 to ptr @pos
   br bb %if.exit176
 then570:  pred(else453)
-  store i32 116 to ptr %mTrue
-  arr.index575 = ptradd ptr %mTrue, i32 4
-  store i32 114 to ptr %arr.index575
-  arr.index576 = ptradd ptr %mTrue, i32 8
-  store i32 117 to ptr %arr.index576
-  arr.index577 = ptradd ptr %mTrue, i32 12
-  store i32 101 to ptr %arr.index577
   579 = add i32 %pos.load879, i32 3
   581 = icmp sge i32 %579, i32 %len.loop
   br i1 %581, bb %then582, bb %else584
@@ -483,15 +473,6 @@ if.exit630:  pred(else619)
   store i32 %633 to ptr @pos
   br bb %if.exit176
 then636:  pred(else572)
-  store i32 102 to ptr %mFalse
-  arr.index641 = ptradd ptr %mFalse, i32 4
-  store i32 97 to ptr %arr.index641
-  arr.index642 = ptradd ptr %mFalse, i32 8
-  store i32 108 to ptr %arr.index642
-  arr.index643 = ptradd ptr %mFalse, i32 12
-  store i32 115 to ptr %arr.index643
-  arr.index644 = ptradd ptr %mFalse, i32 16
-  store i32 101 to ptr %arr.index644
   646 = add i32 %pos.load879, i32 4
   648 = icmp sge i32 %646, i32 %len.loop
   br i1 %648, bb %then649, bb %else651
@@ -549,13 +530,6 @@ if.exit709:  pred(else698)
   store i32 %712 to ptr @pos
   br bb %if.exit176
 then715:  pred(else638)
-  store i32 110 to ptr %mNull
-  arr.index720 = ptradd ptr %mNull, i32 4
-  store i32 117 to ptr %arr.index720
-  arr.index721 = ptradd ptr %mNull, i32 8
-  store i32 108 to ptr %arr.index721
-  arr.index722 = ptradd ptr %mNull, i32 12
-  store i32 108 to ptr %arr.index722
   724 = add i32 %pos.load879, i32 3
   726 = icmp sge i32 %724, i32 %len.loop
   br i1 %726, bb %then727, bb %else729

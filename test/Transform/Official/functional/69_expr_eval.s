@@ -1001,47 +1001,47 @@ bb196:
   # implict jump to bb197
 bb197:
   CALL getch
-  ADD s0, a0, zero
-  LA s2, last_char
-  SW s0, 0(s2)
-  SLTI s2, s0, 48
-  XORI s2, s2, 1
-  BNE s2, zero, bb205
+  ADD s2, a0, zero
+  LA s0, last_char
+  SW s2, 0(s0)
+  SLTI s0, s2, 48
+  XORI s0, s0, 1
+  BNE s0, zero, bb205
   # implict jump to bb198
 bb198:
-  ADD s2, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb199
 bb199:
-  BNE s2, zero, bb204
+  BNE s0, zero, bb204
   # implict jump to bb200
 bb200:
-  ADD s2, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb201
 bb201:
-  BNE s2, zero, bb203
+  BNE s0, zero, bb203
   # implict jump to bb202
 bb202:
   LA s0, cur_token
   SW zero, 0(s0)
   JAL zero, bb12
 bb203:
-  LA s2, num
-  LW s2, 0(s2)
+  LA s0, num
+  LW s0, 0(s0)
   ADDI s3, zero, 10
-  MULW s2, s2, s3
-  ADDW s0, s2, s0
+  MULW s0, s0, s3
+  ADDW s0, s0, s2
   ADDI s2, zero, 48
   SUBW s0, s0, s2
   LA s2, num
   SW s0, 0(s2)
   JAL zero, bb197
 bb204:
-  ADDI s2, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb201
 bb205:
-  ADDI s2, zero, 57
-  SLT s2, s2, s0
-  XORI s2, s2, 1
+  ADDI s0, zero, 57
+  SLT s0, s0, s2
+  XORI s0, s0, 1
   JAL zero, bb199
 bb206:
   ADDI s0, zero, 1

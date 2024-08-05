@@ -6,132 +6,46 @@ a:
 
 .section .text
 main:
-  LUI t0, 1048568
-  ADDIW t0, t0, -32
+  LUI t0, 1048572
+  ADDIW t0, t0, -16
   ADD sp, sp, t0
-  LUI t6, 8
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  SD ra, 0(t6)
-  LUI a0, 8
+  LUI a0, 4
+  ADDIW a0, a0, 0
+  ADD a0, a0, sp
+  SD ra, 0(a0)
+  LUI a0, 4
   ADDIW a0, a0, 8
   ADD a0, a0, sp
   SD s0, 0(a0)
-  LUI a0, 8
-  ADDIW a0, a0, 16
-  ADD a0, a0, sp
-  SD s1, 0(a0)
   ADDI a0, zero, 1024
   # implict jump to bb1
 bb1:
   ADDI s0, zero, 1
   SUBW a0, a0, s0
-  SLLIW s0, a0, 2
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD s0, t6, s0
-  ADDI s1, zero, 0
-  SW s1, 0(s0)
   BNE a0, zero, bb15
   # implict jump to bb2
 bb2:
-  LUI a0, 1
-  ADDIW a0, a0, 0
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 1
-  SW s0, 0(a0)
   ADDI a0, zero, 1023
   # implict jump to bb3
 bb3:
   ADDI s0, zero, 1
   SUBW a0, a0, s0
-  SLLIW s0, a0, 2
-  LUI s1, 1
-  ADDIW s1, s1, 4
-  ADDW s0, s0, s1
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD s0, t6, s0
-  SW zero, 0(s0)
   BNE a0, zero, bb14
   # implict jump to bb4
 bb4:
-  LUI a0, 2
-  ADDIW a0, a0, 0
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 2
-  SW s0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 4
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
   ADDI a0, zero, 1022
   # implict jump to bb5
 bb5:
   ADDI s0, zero, 1
   SUBW a0, a0, s0
-  SLLIW s0, a0, 2
-  LUI s1, 2
-  ADDIW s1, s1, 8
-  ADDW s0, s0, s1
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD s0, t6, s0
-  SW zero, 0(s0)
   BNE a0, zero, bb13
   # implict jump to bb6
 bb6:
-  LUI a0, 3
-  ADDIW a0, a0, 0
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 4
-  SW s0, 0(a0)
-  LUI a0, 3
-  ADDIW a0, a0, 4
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 5
-  SW s0, 0(a0)
-  LUI a0, 3
-  ADDIW a0, a0, 8
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  ADDI s0, zero, 6
-  SW s0, 0(a0)
   ADDI a0, zero, 1021
   # implict jump to bb7
 bb7:
   ADDI s0, zero, 1
   SUBW a0, a0, s0
-  SLLIW s0, a0, 2
-  LUI s1, 3
-  ADDIW s1, s1, 12
-  ADDW s0, s0, s1
-  LUI t6, 4
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD s0, t6, s0
-  SW zero, 0(s0)
   BNE a0, zero, bb12
   # implict jump to bb8
 bb8:
@@ -188,20 +102,16 @@ bb10:
   ADDI a0, zero, 10
   CALL putch
   LW a0, 32(sp)
-  LUI ra, 8
+  LUI ra, 4
   ADDIW ra, ra, 0
   ADD ra, ra, sp
   LD ra, 0(ra)
-  LUI t6, 8
+  LUI t6, 4
   ADDIW t6, t6, 8
   ADD t6, t6, sp
   LD s0, 0(t6)
-  LUI t6, 8
-  ADDIW t6, t6, 16
-  ADD t6, t6, sp
-  LD s1, 0(t6)
-  LUI t0, 8
-  ADDIW t0, t0, 32
+  LUI t0, 4
+  ADDIW t0, t0, 16
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb11:

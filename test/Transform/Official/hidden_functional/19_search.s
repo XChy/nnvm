@@ -115,11 +115,11 @@ bb6:
 bb7:
   ADD s8, s2, zero
   ADDI s2, zero, 120
-  MULW s2, a0, s2
-  LA s9, a
+  MULW s9, a0, s2
+  LA s2, a
+  ADD s9, s2, s9
+  SLLIW s2, s8, 2
   ADD s2, s9, s2
-  SLLIW s9, s8, 2
-  ADD s2, s2, s9
   LW s9, 0(s2)
   XORI s9, s9, 1
   BNE s9, zero, bb31

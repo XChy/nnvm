@@ -12,59 +12,31 @@ external i32 getfarray(ptr )
 i32 main() {
 entry26:  pred()
   %c = stack 16384
-  %b = stack 16384
   br bb %init
 init:  pred(init, entry26)
   cnt_ptr.phi154 = phi [bb %init, i32 %cnt.dec, bb %entry26, i32 1024]
   cnt.dec = sub i32 %cnt_ptr.phi154, i32 1
-  113 = shl i32 %cnt.dec, i32 2
-  arr.index38 = ptradd ptr %b, i32 %113
-  store i32 0 to ptr %arr.index38
   33 = icmp ne i32 %cnt.dec, i32 0
   br i1 %33, bb %init, bb %init.exit
 init.exit:  pred(init)
-  arr.index39 = ptradd ptr %b, i32 4096
-  store i32 1 to ptr %arr.index39
   br bb %init41
 init41:  pred(init41, init.exit)
   cnt_ptr43.phi152 = phi [bb %init41, i32 %cnt.dec47, bb %init.exit, i32 1023]
   cnt.dec47 = sub i32 %cnt_ptr43.phi152, i32 1
-  115 = shl i32 %cnt.dec47, i32 2
-  116 = add i32 %115, i32 4100
-  arr.index50 = ptradd ptr %b, ptr %116
-  store i32 0 to ptr %arr.index50
   45 = icmp ne i32 %cnt.dec47, i32 0
   br i1 %45, bb %init41, bb %init.exit42
 init.exit42:  pred(init41)
-  arr.index51 = ptradd ptr %b, i32 8192
-  store i32 2 to ptr %arr.index51
-  arr.index52 = ptradd ptr %b, i32 8196
-  store i32 3 to ptr %arr.index52
   br bb %init54
 init54:  pred(init54, init.exit42)
   cnt_ptr56.phi150 = phi [bb %init54, i32 %cnt.dec60, bb %init.exit42, i32 1022]
   cnt.dec60 = sub i32 %cnt_ptr56.phi150, i32 1
-  117 = shl i32 %cnt.dec60, i32 2
-  118 = add i32 %117, i32 8200
-  arr.index63 = ptradd ptr %b, ptr %118
-  store i32 0 to ptr %arr.index63
   58 = icmp ne i32 %cnt.dec60, i32 0
   br i1 %58, bb %init54, bb %init.exit55
 init.exit55:  pred(init54)
-  arr.index64 = ptradd ptr %b, i32 12288
-  store i32 4 to ptr %arr.index64
-  arr.index65 = ptradd ptr %b, i32 12292
-  store i32 5 to ptr %arr.index65
-  arr.index66 = ptradd ptr %b, i32 12296
-  store i32 6 to ptr %arr.index66
   br bb %init68
 init68:  pred(init68, init.exit55)
   cnt_ptr70.phi148 = phi [bb %init68, i32 %cnt.dec74, bb %init.exit55, i32 1021]
   cnt.dec74 = sub i32 %cnt_ptr70.phi148, i32 1
-  119 = shl i32 %cnt.dec74, i32 2
-  120 = add i32 %119, i32 12300
-  arr.index77 = ptradd ptr %b, ptr %120
-  store i32 0 to ptr %arr.index77
   72 = icmp ne i32 %cnt.dec74, i32 0
   br i1 %72, bb %init68, bb %init.exit69
 init.exit69:  pred(init68)
