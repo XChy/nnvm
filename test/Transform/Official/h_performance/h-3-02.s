@@ -149,9 +149,9 @@ bb17:
   LW s11, 0(s7)
   LUI s9, 1
   ADDIW s9, s9, -896
-  MULW s9, s8, s9
-  LA s10, data
-  ADD s9, s10, s9
+  MULW s10, s8, s9
+  LA s9, data
+  ADD s9, s9, s10
   ADD s10, s9, s3
   LW s10, 0(s10)
   ADD s9, s9, s6

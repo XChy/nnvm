@@ -126,10 +126,10 @@ bb22:
   ADD a0, zero, zero
   # implict jump to bb23
 bb23:
-  ADD s1, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb24
 bb24:
-  BLT s1, s0, bb27
+  BLT s2, s0, bb27
   # implict jump to bb25
 bb25:
   ADDIW a0, a0, 1
@@ -138,13 +138,14 @@ bb25:
 bb26:
   JAL zero, bb23
 bb27:
-  SLLIW s3, s1, 12
-  LA s2, A
-  ADD s2, s2, s3
+  SLLIW s3, s2, 12
+  LA s1, A
+  ADD s1, s1, s3
   SLLIW s4, a0, 2
-  ADD s2, s2, s4
-  LW s2, 0(s2)
-  SLTIU s4, s2, 1
+  ADD s1, s1, s4
+  LW s1, 0(s1)
+  SLTIU s4, s1, 1
+  ADDIW s2, s2, 1
   BNE s4, zero, bb35
   # implict jump to bb28
 bb28:
@@ -154,7 +155,6 @@ bb29:
   ADD s5, zero, zero
   # implict jump to bb30
 bb30:
-  ADDIW s1, s1, 1
   JAL zero, bb24
 bb31:
   LA s4, B
@@ -170,7 +170,7 @@ bb32:
   LW s9, 0(s7)
   ADD s6, s4, s6
   LW s6, 0(s6)
-  MULW s6, s2, s6
+  MULW s6, s1, s6
   ADDW s6, s9, s6
   SW s6, 0(s7)
   ADDIW s5, s5, 1
@@ -181,7 +181,6 @@ bb33:
 bb34:
   JAL zero, bb32
 bb35:
-  ADDIW s1, s1, 1
   JAL zero, bb24
 bb36:
   ADD s1, zero, zero
@@ -215,10 +214,10 @@ bb43:
   ADD a0, zero, zero
   # implict jump to bb44
 bb44:
-  ADD s1, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb45
 bb45:
-  BLT s1, s0, bb48
+  BLT s2, s0, bb48
   # implict jump to bb46
 bb46:
   ADDIW a0, a0, 1
@@ -227,13 +226,14 @@ bb46:
 bb47:
   JAL zero, bb44
 bb48:
-  SLLIW s3, s1, 12
-  LA s2, A
-  ADD s2, s2, s3
+  SLLIW s3, s2, 12
+  LA s1, A
+  ADD s1, s1, s3
   SLLIW s4, a0, 2
-  ADD s2, s2, s4
-  LW s2, 0(s2)
-  SLTIU s4, s2, 1
+  ADD s1, s1, s4
+  LW s1, 0(s1)
+  SLTIU s4, s1, 1
+  ADDIW s2, s2, 1
   BNE s4, zero, bb56
   # implict jump to bb49
 bb49:
@@ -243,7 +243,6 @@ bb50:
   ADD s5, zero, zero
   # implict jump to bb51
 bb51:
-  ADDIW s1, s1, 1
   JAL zero, bb45
 bb52:
   LA s4, C
@@ -259,7 +258,7 @@ bb53:
   LW s9, 0(s7)
   ADD s6, s4, s6
   LW s6, 0(s6)
-  MULW s6, s2, s6
+  MULW s6, s1, s6
   ADDW s6, s9, s6
   SW s6, 0(s7)
   ADDIW s5, s5, 1
@@ -270,7 +269,6 @@ bb54:
 bb55:
   JAL zero, bb53
 bb56:
-  ADDIW s1, s1, 1
   JAL zero, bb45
 bb57:
   ADD s1, zero, zero

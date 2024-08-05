@@ -294,37 +294,35 @@ bb39:
 bb40:
   JAL zero, bb38
 bb41:
+  SLLIW s4, s1, 6
   ADDI s0, zero, 1
   # implict jump to bb42
 bb42:
-  XOR s4, s1, s0
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb46
+  XOR s5, s1, s0
+  SLTIU s5, s5, 1
+  SLLIW s6, s0, 2
+  BNE s5, zero, bb46
   # implict jump to bb43
 bb43:
-  SLLIW s4, s1, 6
   LA s5, e
-  ADD s4, s5, s4
-  SLLIW s5, s0, 2
-  ADD s4, s4, s5
-  LUI s5, 16
-  ADDIW s5, s5, -1
-  SW s5, 0(s4)
+  ADD s5, s5, s4
+  ADD s5, s5, s6
+  LUI s6, 16
+  ADDIW s6, s6, -1
+  SW s6, 0(s5)
   # implict jump to bb44
 bb44:
   ADDIW s0, s0, 1
-  SLT s4, s3, s0
-  XORI s4, s4, 1
-  BNE s4, zero, bb45
+  SLT s5, s3, s0
+  XORI s5, s5, 1
+  BNE s5, zero, bb45
   JAL zero, bb39
 bb45:
   JAL zero, bb42
 bb46:
-  SLLIW s4, s1, 6
   LA s5, e
-  ADD s4, s5, s4
-  SLLIW s5, s0, 2
-  ADD s4, s4, s5
-  ADDI s5, zero, 0
-  SW s5, 0(s4)
+  ADD s5, s5, s4
+  ADD s5, s5, s6
+  ADDI s6, zero, 0
+  SW s6, 0(s5)
   JAL zero, bb44

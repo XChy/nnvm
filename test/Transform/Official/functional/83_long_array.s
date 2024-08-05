@@ -4,7 +4,7 @@
 .section .text
 main:
   LUI t0, 1048547
-  ADDIW t0, t0, -1264
+  ADDIW t0, t0, -1280
   ADD sp, sp, t0
   LUI t6, 29
   ADDIW t6, t6, 1216
@@ -22,14 +22,18 @@ main:
   ADDIW t6, t6, 1240
   ADD t6, t6, sp
   SD s2, 0(t6)
-  LUI a0, 29
-  ADDIW a0, a0, 1248
-  ADD a0, a0, sp
-  SD s3, 0(a0)
+  LUI t6, 29
+  ADDIW t6, t6, 1248
+  ADD t6, t6, sp
+  SD s3, 0(t6)
   LUI a0, 29
   ADDIW a0, a0, 1256
   ADD a0, a0, sp
   SD s4, 0(a0)
+  LUI a0, 29
+  ADDIW a0, a0, 1264
+  ADD a0, a0, sp
+  SD s5, 0(a0)
   ADD a0, zero, zero
   # implict jump to bb1
 bb1:
@@ -104,6 +108,7 @@ bb6:
   # implict jump to bb7
 bb7:
   SLTI s0, s2, 10
+  SLLIW s4, s2, 2
   BNE s0, zero, bb27
   # implict jump to bb8
 bb8:
@@ -115,11 +120,10 @@ bb9:
   BNE s0, zero, bb16
   # implict jump to bb10
 bb10:
-  SLLIW s0, s2, 2
   LUI t6, 20
   ADDIW t6, t6, -1920
   ADD t6, t6, sp
-  ADD s0, t6, s0
+  ADD s0, t6, s4
   LW s0, 0(s0)
   ADDI s4, zero, 9
   MULW s0, s0, s4
@@ -164,8 +168,12 @@ bb14:
   ADDIW t6, t6, 1256
   ADD t6, t6, sp
   LD s4, 0(t6)
+  LUI t6, 29
+  ADDIW t6, t6, 1264
+  ADD t6, t6, sp
+  LD s5, 0(t6)
   LUI t0, 29
-  ADDIW t0, t0, 1264
+  ADDIW t0, t0, 1280
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb15:
@@ -180,19 +188,18 @@ bb17:
   LUI a0, 1
   ADDIW a0, a0, -1863
   SLT a0, a0, s1
+  SLLIW s5, s1, 2
   BNE a0, zero, bb22
   # implict jump to bb18
 bb18:
-  SLLIW a0, s2, 2
-  ADDI t6, sp, 0
-  ADD a0, t6, a0
+  ADDI a0, sp, 0
+  ADD a0, a0, s4
   LW a0, 0(a0)
   ADDW a0, s0, a0
-  SLLIW s0, s1, 2
   LUI t6, 20
   ADDIW t6, t6, -1920
   ADD t6, t6, sp
-  ADD s0, t6, s0
+  ADD s0, t6, s5
   LW s0, 0(s0)
   ADDW a0, a0, s0
   LUI s0, 3
@@ -214,26 +221,23 @@ bb20:
 bb21:
   JAL zero, bb17
 bb22:
-  SLLIW a0, s2, 2
-  LUI t6, 10
-  ADDIW t6, t6, -960
-  ADD t6, t6, sp
-  ADD a0, t6, a0
+  LUI a0, 10
+  ADDIW a0, a0, -960
+  ADD a0, a0, sp
+  ADD a0, a0, s4
   LW a0, 0(a0)
   ADDW a0, s0, a0
-  SLLIW s0, s1, 2
   ADDI t6, sp, 0
-  ADD s0, t6, s0
+  ADD s0, t6, s5
   LW s0, 0(s0)
   SUBW s0, a0, s0
   ADDIW s1, s1, 1
   JAL zero, bb19
 bb23:
-  SLLIW s0, s2, 2
   LUI t6, 20
   ADDIW t6, t6, -1920
   ADD t6, t6, sp
-  ADD s0, t6, s0
+  ADD s0, t6, s4
   LW s4, 0(s0)
   ADD s0, a0, zero
   LUI a0, 1
@@ -261,11 +265,10 @@ bb25:
 bb26:
   JAL zero, bb24
 bb27:
-  SLLIW s0, s2, 2
   LUI t6, 20
   ADDIW t6, t6, -1920
   ADD t6, t6, sp
-  ADD s0, t6, s0
+  ADD s0, t6, s4
   LW s0, 0(s0)
   ADDW a0, a0, s0
   ADDI s0, zero, 1333

@@ -43,6 +43,8 @@ bb1:
 bb2:
   ADDI a0, zero, 42
   CALL _sysy_starttime
+  ADDI a0, zero, 1000
+  FCVT.S.W fs2, a0
   ADD s1, zero, zero
   FSGNJ.S fs5, fs1, fs1
   # implict jump to bb3
@@ -65,8 +67,8 @@ bb5:
   FLW fs0, 0(s2)
   SLLIW s4, a0, 2
   ADD s4, s3, s4
-  FLW fs2, 0(s4)
-  FADD.S fs0, fs0, fs2
+  FLW fs3, 0(s4)
+  FADD.S fs0, fs0, fs3
   FSW fs0, 0(s2)
   ADDIW a0, a0, 1
   SLTI s4, a0, 1000
@@ -74,8 +76,6 @@ bb5:
   # implict jump to bb6
 bb6:
   FLW fs0, 0(s2)
-  ADDI a0, zero, 1000
-  FCVT.S.W fs2, a0
   FDIV.S fs0, fs0, fs2
   FSW fs0, 0(s2)
   ADDIW s0, s0, 1
@@ -166,17 +166,17 @@ bb16:
   ADDIW t6, t6, 40
   ADD t6, t6, sp
   ADD a0, t6, a0
-  FLW fs2, 0(a0)
+  FLW fs3, 0(a0)
   ADD a0, zero, zero
   # implict jump to bb17
 bb17:
   SLLIW s3, a0, 2
   ADD s3, s2, s3
-  FLW fs3, 0(s3)
-  FSUB.S fs3, fs3, fs0
-  FDIV.S fs3, fs3, fs2
-  FSW fs3, 0(s3)
-  FADD.S fs5, fs5, fs3
+  FLW fs4, 0(s3)
+  FSUB.S fs4, fs4, fs0
+  FDIV.S fs4, fs4, fs3
+  FSW fs4, 0(s3)
+  FADD.S fs5, fs5, fs4
   ADDIW a0, a0, 1
   SLTI s3, a0, 1000
   BNE s3, zero, bb29

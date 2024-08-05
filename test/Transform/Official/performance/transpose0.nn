@@ -81,18 +81,18 @@ transpose.while.exit:  pred(transpose.while.exit19, while.body97)
   br i1 %101, bb %while.body97, bb %while.exit98
 transpose.while.cond17:  pred(transpose.while.body, transpose.then, transpose.if.exit)
   curr.phi177 = phi [bb %transpose.while.body, i32 %curr.phi155168206, bb %transpose.if.exit, i32 %39.load195, bb %transpose.then, i32 %curr.phi177]
-  j.phi178 = phi [bb %transpose.while.body, i32 0, bb %transpose.if.exit, i32 %68202, bb %transpose.then, i32 %31188]
+  j.phi178 = phi [bb %transpose.while.body, i32 0, bb %transpose.if.exit, i32 %31188, bb %transpose.then, i32 %31188]
   22179 = icmp slt i32 %j.phi178, i32 %106.load
   br i1 %22179, bb %transpose.while.body18, bb %transpose.while.exit19
 transpose.while.body18:  pred(transpose.while.cond17)
   26182 = icmp slt i32 %i.phi169207, i32 %j.phi178
+  31188 = add i32 %j.phi178, i32 1
   br i1 %26182, bb %transpose.then, bb %transpose.if.exit
 transpose.while.exit19:  pred(transpose.while.cond17)
   71185 = add i32 %i.phi169207, i32 1
   14170 = icmp slt i32 %71185, i32 %6165
   br i1 %14170, bb %transpose.while.body, bb %transpose.while.exit
 transpose.then:  pred(transpose.while.body18)
-  31188 = add i32 %j.phi178, i32 1
   br bb %transpose.while.cond17
 transpose.if.exit:  pred(transpose.while.body18)
   35191 = mul i32 %i.phi169207, i32 %106.load
@@ -106,7 +106,6 @@ transpose.if.exit:  pred(transpose.while.body18)
   47199 = ptradd ptr @matrix, i32 %160198
   store i32 %39.load195 to ptr %47199
   store i32 %39.load195 to ptr %39194
-  68202 = add i32 %j.phi178, i32 1
   br bb %transpose.while.cond17
 }
 

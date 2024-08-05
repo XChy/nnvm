@@ -6,12 +6,13 @@ n:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -80
+  ADDI sp, sp, -96
   SD ra, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
   SD s2, 64(sp)
   SD s3, 72(sp)
+  SD s4, 80(sp)
   LA a0, n
   ADDI s0, zero, 10
   SW s0, 0(a0)
@@ -47,17 +48,18 @@ bb1:
   # implict jump to bb2
 bb2:
   ADDI a0, zero, -1
+  SLLIW s3, s0, 2
   BLT a0, s0, bb13
   # implict jump to bb3
 bb3:
   ADD a0, zero, zero
   # implict jump to bb4
 bb4:
+  ADDIW s4, s0, 1
   BNE a0, zero, bb12
   # implict jump to bb5
 bb5:
-  ADDIW a0, s0, 1
-  SLLIW a0, a0, 2
+  SLLIW a0, s4, 2
   ADDI t6, sp, 0
   ADD a0, t6, a0
   SW s2, 0(a0)
@@ -76,7 +78,8 @@ bb7:
   LD s1, 56(sp)
   LD s2, 64(sp)
   LD s3, 72(sp)
-  ADDI sp, sp, 80
+  LD s4, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb8:
   ADD s0, zero, zero
@@ -99,11 +102,9 @@ bb10:
 bb11:
   JAL zero, bb1
 bb12:
-  ADDIW a0, s0, 1
-  SLLIW a0, a0, 2
+  SLLIW a0, s4, 2
   ADDI t6, sp, 0
   ADD a0, t6, a0
-  SLLIW s3, s0, 2
   ADDI t6, sp, 0
   ADD s3, t6, s3
   LW s3, 0(s3)
@@ -112,9 +113,8 @@ bb12:
   SUBW s0, s0, a0
   JAL zero, bb2
 bb13:
-  SLLIW a0, s0, 2
-  ADDI t6, sp, 0
-  ADD a0, t6, a0
+  ADDI a0, sp, 0
+  ADD a0, a0, s3
   LW a0, 0(a0)
   SLT a0, s2, a0
   JAL zero, bb4

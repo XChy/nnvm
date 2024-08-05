@@ -41,7 +41,7 @@ bool LICMPass::isOperandsInvariant(Instruction *I, Loop *L) {
 }
 
 bool LICMPass::isTriviallyInvariant(Instruction *I, Loop *L) {
-  if (I->isa<PhiInst>())
+  if (I->isa<PhiNode>())
     return false;
 
   if (I->isa<TerminatorInst>())

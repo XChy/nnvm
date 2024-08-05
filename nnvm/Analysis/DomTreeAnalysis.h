@@ -47,12 +47,15 @@ public:
   // Reachable from the entry block?
   bool isReachable(BasicBlock *BB) const { return domParent.count(BB); }
 
+  uint getDepth(BasicBlock *BB) { return domDepth[BB]; }
+
   // Print out the information of the dominator tree.
   void print(std::ostream &out);
 
 private:
   std::unordered_map<BasicBlock *, BasicBlock *> domParent;
   std::unordered_map<BasicBlock *, std::vector<BasicBlock *>> domChildren;
+  std::unordered_map<BasicBlock *, uint> domDepth;
 
   std::vector<BasicBlock *> preorderBBs;
   std::vector<int32_t> parentDFN;

@@ -105,39 +105,39 @@ bb16:
   SLLIW t0, t2, 3
   LA t1, t
   ADD a2, t1, t0
+  ADDI t0, zero, 140
+  MULW a3, t2, t0
   ADDI t0, zero, 1
   # implict jump to bb17
 bb17:
-  SLLIW a3, t0, 2
-  ADD a4, a1, a3
-  LW a5, 0(a4)
+  SLLIW a4, t0, 2
+  ADD a5, a1, a4
+  LW a6, 0(a5)
   ADDIW t1, t0, 1
-  SLLI a6, t1, 1
-  SRLI a6, a6, 63
-  ADD a6, t1, a6
-  ANDI a6, a6, -2
-  SUBW a6, t1, a6
-  SLLIW a6, a6, 2
-  ADD a6, a2, a6
-  LW a6, 0(a6)
-  ADDW a5, a5, a6
-  ADDI a7, zero, 1
-  SUBW t0, t0, a7
+  SLLI a7, t1, 1
+  SRLI a7, a7, 63
+  ADD a7, t1, a7
+  ANDI a7, a7, -2
+  SUBW a7, t1, a7
+  SLLIW a7, a7, 2
+  ADD a7, a2, a7
+  LW a7, 0(a7)
+  ADDW a6, a6, a7
+  ADDI t3, zero, 1
+  SUBW t0, t0, t3
   SLLIW t0, t0, 2
   ADD t0, a1, t0
-  LW a7, 0(t0)
-  ADDW a7, a7, a6
-  BLT a7, a5, bb21
+  LW t3, 0(t0)
+  ADDW t3, t3, a7
+  BLT t3, a6, bb21
   # implict jump to bb18
 bb18:
-  ADDI a4, zero, 140
-  MULW a4, t2, a4
   LA a5, dp
+  ADD a5, a5, a3
   ADD a4, a5, a4
-  ADD a3, a4, a3
   LW t0, 0(t0)
-  ADDW t0, t0, a6
-  SW t0, 0(a3)
+  ADDW t0, t0, a7
+  SW t0, 0(a4)
   # implict jump to bb19
 bb19:
   SLT t0, s0, t1
@@ -148,14 +148,12 @@ bb20:
   ADD t0, t1, zero
   JAL zero, bb17
 bb21:
-  ADDI t0, zero, 140
-  MULW t0, t2, t0
-  LA a5, dp
-  ADD t0, a5, t0
+  LA t0, dp
   ADD t0, t0, a3
-  LW a3, 0(a4)
-  ADDW a3, a3, a6
-  SW a3, 0(t0)
+  ADD t0, t0, a4
+  LW a4, 0(a5)
+  ADDW a4, a4, a7
+  SW a4, 0(t0)
   JAL zero, bb19
 bb22:
   ADDI s1, zero, 1

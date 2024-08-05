@@ -6,7 +6,7 @@ n:
 .word 0x00000000
 .section .text
 main:
-  ADDI sp, sp, -96
+  ADDI sp, sp, -112
   SD ra, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
@@ -14,6 +14,7 @@ main:
   SD s3, 72(sp)
   SD s4, 80(sp)
   SD s5, 88(sp)
+  SD s6, 96(sp)
   LA a0, n
   ADDI s0, zero, 10
   SW s0, 0(a0)
@@ -41,11 +42,13 @@ main:
   ADD a0, zero, zero
   # implict jump to bb1
 bb1:
-  ADDIW s3, s2, 1
-  SLTI s0, s3, 10
+  ADDIW s5, s2, 1
+  SLTI s0, s5, 10
+  SLLIW s3, s2, 2
   BNE s0, zero, bb13
   # implict jump to bb2
 bb2:
+  ADD s4, s3, zero
   ADD s1, s2, zero
   # implict jump to bb3
 bb3:
@@ -54,7 +57,7 @@ bb3:
 bb4:
   # implict jump to bb5
 bb5:
-  SLTI s0, s3, 9
+  SLTI s0, s5, 9
   BNE s0, zero, bb11
   # implict jump to bb6
 bb6:
@@ -70,7 +73,8 @@ bb7:
   LD s3, 72(sp)
   LD s4, 80(sp)
   LD s5, 88(sp)
-  ADDI sp, sp, 96
+  LD s6, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb8:
   ADD s0, zero, zero
@@ -91,41 +95,40 @@ bb9:
 bb10:
   JAL zero, bb9
 bb11:
-  ADD s2, s3, zero
+  ADD s2, s5, zero
   JAL zero, bb1
 bb12:
-  SLLIW a0, s1, 2
   ADDI t6, sp, 0
-  ADD s0, t6, a0
+  ADD s0, t6, s4
   LW a0, 0(s0)
-  SLLIW s1, s2, 2
   ADDI t6, sp, 0
-  ADD s1, t6, s1
+  ADD s1, t6, s3
   LW s2, 0(s1)
   SW s2, 0(s0)
   SW a0, 0(s1)
   JAL zero, bb5
 bb13:
-  ADD s0, s3, zero
+  ADD s4, s3, zero
+  ADD s0, s5, zero
   ADD s1, s2, zero
   # implict jump to bb14
 bb14:
-  SLLIW s4, s1, 2
   ADDI t6, sp, 0
   ADD s4, t6, s4
   LW s4, 0(s4)
-  SLLIW s5, s0, 2
+  SLLIW s6, s0, 2
   ADDI t6, sp, 0
-  ADD s5, t6, s5
-  LW s5, 0(s5)
-  BLT s5, s4, bb19
+  ADD s6, t6, s6
+  LW s6, 0(s6)
+  BLT s6, s4, bb19
   # implict jump to bb15
 bb15:
   # implict jump to bb16
 bb16:
   ADDIW s0, s0, 1
-  SLTI s4, s0, 10
-  BNE s4, zero, bb18
+  SLTI s6, s0, 10
+  SLLIW s4, s1, 2
+  BNE s6, zero, bb18
   # implict jump to bb17
 bb17:
   JAL zero, bb3

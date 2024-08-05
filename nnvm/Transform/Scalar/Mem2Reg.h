@@ -32,7 +32,7 @@ private:
   void rename(Function& F);
 
   std::unordered_map<StackInst *, StackInfo> candidates;
-  std::unordered_map<PhiInst *, StackInst *> phi2Stack;
+  std::unordered_map<PhiNode *, StackInst *> phi2Stack;
   DomTreeAnalysis *domTree;
   DFMap DFMapResult;
 };

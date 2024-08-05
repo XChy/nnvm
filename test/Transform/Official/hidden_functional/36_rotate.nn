@@ -160,6 +160,7 @@ while.exit272:  pred(while.exit280, entry256)
   ret 
 while.body279_preheader:  pred(while.body271)
   40484 = fcmp ogt float %rad, float 6.283185
+  47489 = fneg float 6.283185
   br bb %while.body279
 while.body279:  pred(while.body279.split, while.body279_preheader)
   x277.phi711 = phi [bb %while.body279.split, i32 %293, bb %while.body279_preheader, i32 0]
@@ -214,7 +215,6 @@ rotate.if.exit247:  pred(rotate.select.exit239)
 my_sin.select.then486:  pred(while.body279)
   br bb %my_sin.select.exit492
 my_sin.select.else488:  pred(while.body279)
-  47489 = fneg float 6.283185
   48490 = fcmp olt float %rad, float %47489
   br bb %my_sin.select.exit492
 my_sin.select.exit492:  pred(my_sin.select.then486, my_sin.select.else488)
@@ -253,8 +253,7 @@ my_sin.if.exit79517:  pred(my_sin.if.exit69509, my_sin.then78514)
 my_cos.my_sin.select.then582:  pred(my_sin.if.exit79517)
   br bb %my_cos.my_sin.select.exit588
 my_cos.my_sin.select.else584:  pred(my_sin.if.exit79517)
-  47409585 = fneg float 6.283185
-  48410586 = fcmp olt float %92574, float %47409585
+  48410586 = fcmp olt float %92574, float %47489
   br bb %my_cos.my_sin.select.exit588
 my_cos.my_sin.select.exit588:  pred(my_cos.my_sin.select.then582, my_cos.my_sin.select.else584)
   select.phi413589 = phi [bb %my_cos.my_sin.select.else584, i1 %48410586, bb %my_cos.my_sin.select.then582, i1 -1]

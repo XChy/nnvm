@@ -51,9 +51,9 @@ if.exit136:  pred(entry129)
   141 = ptradd ptr @value, i32 %365
   141.load = load i32 from ptr %141
   143 = icmp sgt i32 %x, i32 %141.load
+  149 = ptradd ptr @right_child, i32 %365
   br i1 %143, bb %then144, bb %else146
 then144:  pred(if.exit136)
-  149 = ptradd ptr @right_child, i32 %365
   153.load = load i32 from ptr %149
   156 = call i32 delete(i32 %153.load, i32 %x)
   store i32 %156 to ptr %149
@@ -62,21 +62,19 @@ if.exit145:  pred(then144, then163, else217.split)
   ret i32 %root
 else146:  pred(if.exit136)
   162 = icmp slt i32 %x, i32 %141.load
+  168 = ptradd ptr @left_child, i32 %365
   br i1 %162, bb %then163, bb %else165
 then163:  pred(else146)
-  168 = ptradd ptr @left_child, i32 %365
   172.load = load i32 from ptr %168
   175 = call i32 delete(i32 %172.load, i32 %x)
   store i32 %175 to ptr %168
   br bb %if.exit145
 else165:  pred(else146)
-  178 = ptradd ptr @left_child, i32 %365
-  178.load = load i32 from ptr %178
+  178.load = load i32 from ptr %168
   181 = icmp eq i32 %178.load, i32 -1
   br i1 %181, bb %select.then182, bb %select.else183
 select.then182:  pred(else165)
-  188 = ptradd ptr @right_child, i32 %365
-  188.load = load i32 from ptr %188
+  188.load = load i32 from ptr %149
   191 = icmp eq i32 %188.load, i32 -1
   br bb %select.exit184
 select.else183:  pred(else165)
@@ -91,8 +89,7 @@ else195:  pred(select.exit184)
 select.then203:  pred(else195)
   br bb %select.exit205
 select.else204:  pred(else195)
-  209 = ptradd ptr @right_child, i32 %365
-  209.load = load i32 from ptr %209
+  209.load = load i32 from ptr %149
   212 = icmp eq i32 %209.load, i32 -1
   br bb %select.exit205
 select.exit205:  pred(select.then203, select.else204)
@@ -101,8 +98,7 @@ select.exit205:  pred(select.then203, select.else204)
 then215:  pred(select.exit205)
   br i1 %181, bb %then224, bb %else226
 else217:  pred(select.exit205)
-  238 = ptradd ptr @right_child, i32 %365
-  238.load = load i32 from ptr %238
+  238.load = load i32 from ptr %149
   br bb %find_minimum.loop_entry
 else217.split:  pred(find_minimum.then48, find_minimum.if.exit59)
   240.ret = phi [bb %find_minimum.then48, i32 -1, bb %find_minimum.if.exit59, i32 %root.loop440]
@@ -110,14 +106,13 @@ else217.split:  pred(find_minimum.then48, find_minimum.if.exit59)
   247 = ptradd ptr @value, i32 %378
   247.load = load i32 from ptr %247
   store i32 %247.load to ptr %141
-  255.load = load i32 from ptr %238
+  255.load = load i32 from ptr %149
   259.load = load i32 from ptr %247
   261 = call i32 delete(i32 %255.load, i32 %259.load)
-  store i32 %261 to ptr %238
+  store i32 %261 to ptr %149
   br bb %if.exit145
 then224:  pred(then215)
-  229 = ptradd ptr @right_child, i32 %365
-  229.load = load i32 from ptr %229
+  229.load = load i32 from ptr %149
   ret i32 %229.load
 else226:  pred(then215)
   ret i32 %178.load

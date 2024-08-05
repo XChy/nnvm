@@ -118,7 +118,7 @@ while.exit130:  pred(while.exit145)
   br i1 %207, bb %then208, bb %if.exit209
 while.body144:  pred(if.exit, while.body129)
   j.phi268 = phi [bb %if.exit, i32 %192, bb %while.body129, i32 19]
-  n.phi267 = phi [bb %if.exit, i32 %195, bb %while.body129, i32 %n.phi236274]
+  n.phi267 = phi [bb %if.exit, i32 %173, bb %while.body129, i32 %n.phi236274]
   254 = shl i32 %n.phi267, i32 2
   153 = ptradd ptr %result, i32 %254
   153.load = load i32 from ptr %153
@@ -128,6 +128,7 @@ while.body144:  pred(if.exit, while.body129)
   160 = mul i32 %138.load, i32 %158.load
   161 = add i32 %153.load, i32 %160
   163 = icmp sge i32 %161, i32 10
+  173 = sub i32 %n.phi267, i32 1
   br i1 %163, bb %then, bb %else
 while.exit145:  pred(if.exit)
   682 = add i32 %n.phi267, i32 18
@@ -136,7 +137,6 @@ while.exit145:  pred(if.exit)
   br i1 %133, bb %while.body129, bb %while.exit130
 then:  pred(while.body144)
   store i32 %161 to ptr %153
-  173 = sub i32 %n.phi267, i32 1
   259 = shl i32 %173, i32 2
   175 = ptradd ptr %result, i32 %259
   180.load = load i32 from ptr %175
@@ -146,7 +146,6 @@ then:  pred(while.body144)
   br bb %if.exit
 if.exit:  pred(then, else)
   192 = sub i32 %j.phi268, i32 1
-  195 = sub i32 %n.phi267, i32 1
   148 = icmp sgt i32 %192, i32 -1
   br i1 %148, bb %while.body144, bb %while.exit145
 else:  pred(while.body144)

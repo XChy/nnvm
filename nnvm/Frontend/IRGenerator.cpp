@@ -517,7 +517,7 @@ Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
 void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
                               Value *currentValue, Value *irVal,
                               Type *irElementType) {
-  if (valueCount > 10) {
+  if (valueCount > ir->getPlatform()->getArrayRerollNum()) {
     // roll up the same values' init
     BasicBlock *condBB =
         new BasicBlock(cast<Function>(currentFunc->entity), "init.cond");

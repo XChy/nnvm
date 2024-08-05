@@ -56,11 +56,11 @@ while.body32:  pred(if.exit73, while.body32_preheader)
   40 = ptradd ptr @row, i32 %150
   40.load = load i32 from ptr %40
   42 = icmp ne i32 %40.load, i32 1
+  49 = add i32 %step, i32 %i30.phi193
   br i1 %42, bb %select.then, bb %select.else
 while.exit33:  pred(if.exit73, entry28)
   ret 
 select.then:  pred(while.body32)
-  49 = add i32 %step, i32 %i30.phi193
   151 = shl i32 %49, i32 2
   51 = ptradd ptr @line1, i32 %151
   51.load = load i32 from ptr %51
@@ -105,8 +105,7 @@ then82:  pred(then72)
   br bb %printans.while.cond
 if.exit83:  pred(then72, printans.then, printans.while.cond)
   store i32 1 to ptr %40
-  91 = add i32 %step, i32 %i30.phi193
-  155 = shl i32 %91, i32 2
+  155 = shl i32 %49, i32 2
   93 = ptradd ptr @line1, i32 %155
   store i32 1 to ptr %93
   n.load95 = load i32 from ptr @n

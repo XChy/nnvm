@@ -6,12 +6,12 @@ main:
   ADDI sp, sp, -16
   SD ra, 0(sp)
   ADD a0, zero, zero
-  ADD a4, zero, zero
+  ADD a3, zero, zero
   ADD t0, zero, zero
   ADD a1, zero, zero
   # implict jump to bb1
 bb1:
-  ADD a3, zero, zero
+  ADD a4, zero, zero
   # implict jump to bb2
 bb2:
   ADD a2, zero, zero
@@ -31,13 +31,13 @@ bb6:
   BNE t1, zero, bb12
   # implict jump to bb7
 bb7:
-  ADDIW a3, a3, 1
-  SLTI t1, a3, 10
+  ADDIW a4, a4, 1
+  SLTI t1, a4, 10
   BNE t1, zero, bb11
   # implict jump to bb8
 bb8:
-  ADDIW a4, a4, 1
-  SLTI t1, a4, 20
+  ADDIW a3, a3, 1
+  SLTI t1, a3, 20
   BNE t1, zero, bb10
   # implict jump to bb9
 bb9:

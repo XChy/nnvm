@@ -69,6 +69,7 @@ median.while.body96:  pred(median.while.cond95)
 median.while.exit97:  pred(median.while.cond95, median.then111)
   l.phi257 = phi [bb %median.while.cond95, i32 %l.phi172246, bb %median.then111, i32 %104250]
   118258 = icmp eq i32 %l.phi257, i32 %r.phi237
+  193312 = shl i32 %l.phi257, i32 2
   br i1 %118258, bb %median.then119, bb %median.else
 median.then111:  pred(median.while.body96)
   br bb %median.while.exit97
@@ -77,15 +78,13 @@ median.if.exit112:  pred(median.while.body96)
   br bb %median.while.cond95
 median.then119:  pred(median.while.exit97)
   store i32 %61.load211 to ptr %61210
-  193312 = shl i32 %l.phi257, i32 2
   44313 = ptradd ptr %arr.loop208, i32 %193312
   44.load314 = load i32 from ptr %44313
   store i32 %44.load314 to ptr %61210
   store i32 %61.load211 to ptr %44313
   br bb %meanless_calculation.while.cond408
 median.else:  pred(median.while.exit97)
-  191322 = shl i32 %l.phi257, i32 2
-  36323 = ptradd ptr %arr.loop208, i32 %191322
+  36323 = ptradd ptr %arr.loop208, i32 %193312
   36.load324 = load i32 from ptr %36323
   193325 = shl i32 %r.phi237, i32 2
   44326 = ptradd ptr %arr.loop208, i32 %193325

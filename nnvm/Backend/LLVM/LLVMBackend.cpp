@@ -131,7 +131,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-  if (auto phi = mayCast<PhiInst>(I)) {
+  if (auto phi = mayCast<PhiNode>(I)) {
     out << "phi " << phi->getType()->dump();
     std::vector<std::string> incomingDumps;
     for (int i = 0; i < phi->getIncomingNum(); i++) {
@@ -155,9 +155,9 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
-if (auto ZI = mayCast<ZExtInst>(I)) {
+  if (auto ZI = mayCast<ZExtInst>(I)) {
     out << "zext " << ZI->getOperand(0)->getType()->dump() << " "
-        << valueToName[ZI->getOperand(0)] << " to " << ZI->getType()->dump() ;
+        << valueToName[ZI->getOperand(0)] << " to " << ZI->getType()->dump();
     return;
   }
 

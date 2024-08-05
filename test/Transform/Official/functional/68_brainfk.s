@@ -28,9 +28,8 @@ bb1:
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:
-  SLLIW a0, s0, 2
-  LA s0, program
-  ADD a0, s0, a0
+  LA a0, program
+  ADD a0, a0, s0
   SW zero, 0(a0)
   LA a0, program
   CALL interpret
@@ -44,16 +43,17 @@ bb2:
   JALR zero, 0(ra)
 bb3:
   ADD s0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb4
 bb4:
-  SLLIW s1, s0, 2
   LA s3, program
-  ADD s3, s3, s1
+  ADD s3, s3, s0
   CALL getch
-  ADD s1, a0, zero
-  SW s1, 0(s3)
-  ADDIW s0, s0, 1
-  BLT s0, s2, bb6
+  ADD s0, a0, zero
+  SW s0, 0(s3)
+  ADDIW s1, s1, 1
+  SLLIW s0, s1, 2
+  BLT s1, s2, bb6
   # implict jump to bb5
 bb5:
   JAL zero, bb2

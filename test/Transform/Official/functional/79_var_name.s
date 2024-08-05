@@ -11,37 +11,55 @@ main:
   SW a0, 24(sp)
   ADDI a0, zero, 2
   SW a0, 28(sp)
-  ADDI a0, zero, 18
-  # implict jump to bb1
-bb1:
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
-  SLLIW s0, a0, 2
-  ADDIW s0, s0, 8
-  ADDI t6, sp, 24
-  ADD s0, t6, s0
-  ADDI s1, zero, 0
-  SW s1, 0(s0)
-  BNE a0, zero, bb3
-  # implict jump to bb2
-bb2:
-  LW a0, 32(sp)
-  LW s0, 28(sp)
-  ADDW a0, a0, s0
-  LW s0, 24(sp)
-  ADDW s0, a0, s0
-  SW s0, 32(sp)
-  ADD a0, s0, zero
+  ADDI a0, zero, 0
+  SW a0, 32(sp)
+  ADDI a0, zero, 0
+  SW a0, 36(sp)
+  ADDI a0, zero, 0
+  SW a0, 40(sp)
+  ADDI a0, zero, 0
+  SW a0, 44(sp)
+  ADDI a0, zero, 0
+  SW a0, 48(sp)
+  ADDI a0, zero, 0
+  SW a0, 52(sp)
+  ADDI a0, zero, 0
+  SW a0, 56(sp)
+  ADDI a0, zero, 0
+  SW a0, 60(sp)
+  ADDI a0, zero, 0
+  SW a0, 64(sp)
+  ADDI a0, zero, 0
+  SW a0, 68(sp)
+  ADDI a0, zero, 0
+  SW a0, 72(sp)
+  ADDI a0, zero, 0
+  SW a0, 76(sp)
+  ADDI a0, zero, 0
+  SW a0, 80(sp)
+  ADDI a0, zero, 0
+  SW a0, 84(sp)
+  ADDI a0, zero, 0
+  SW a0, 88(sp)
+  ADDI a0, zero, 0
+  SW a0, 92(sp)
+  ADDI a0, zero, 0
+  SW a0, 96(sp)
+  ADDI a0, zero, 0
+  SW a0, 100(sp)
+  ADDI a0, zero, 3
+  SW a0, 32(sp)
+  ADDI a0, zero, 3
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   LW a0, 36(sp)
-  LW s1, 32(sp)
-  ADDW a0, a0, s1
-  LW s1, 28(sp)
-  ADDW a0, a0, s1
+  LW s0, 32(sp)
+  ADDW a0, a0, s0
+  LW s0, 28(sp)
+  ADDW a0, a0, s0
   SW a0, 36(sp)
-  ADDW s0, s0, a0
+  ADDIW s0, a0, 3
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -211,5 +229,3 @@ bb2:
   LD s1, 16(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb3:
-  JAL zero, bb1

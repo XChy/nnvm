@@ -24,11 +24,12 @@ while.cond:  pred(if.exit, then84, then119, if.exit156)
   select94.phi302 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select94.phi, bb %then119, i1 %select94.phi, bb %then84, i1 %select94.phi302]
   select104.phi300 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select104.phi, bb %then119, i1 %select104.phi, bb %then84, i1 %select104.phi300]
   select112.phi298 = phi [bb %if.exit, i1 0, bb %if.exit156, i1 %select112.phi, bb %then119, i1 %select112.phi, bb %then84, i1 %select112.phi298]
-  i.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %168, bb %then119, i32 %123, bb %then84, i32 %88]
+  i.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %88, bb %then119, i32 %88, bb %then84, i32 %88]
   searchResult.phi = phi [bb %if.exit, i32 0, bb %if.exit156, i32 %151, bb %then119, i32 %searchResult.phi, bb %then84, i32 %searchResult.phi]
   16 = icmp slt i32 %i.phi, i32 4
   br i1 %16, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
+  325 = shl i32 %i.phi, i32 3
   br bb %while.cond23
 while.exit:  pred(while.cond)
   170 = icmp sgt i32 %num.phi314, i32 10
@@ -66,7 +67,6 @@ select.exit:  pred(select.then, select.else)
 then46:  pred(select.exit)
   br bb %while.exit25
 if.exit47:  pred(select.exit)
-  325 = shl i32 %i.phi, i32 3
   52 = ptradd ptr @step, i32 %325
   54.load = load i32 from ptr %52
   56 = add i32 %x2.phi, i32 %54.load
@@ -88,9 +88,9 @@ then80:  pred(select.exit74)
   ret i32 1
 if.exit81:  pred(select.exit74)
   83 = icmp sle i32 %coun.phi, i32 1
+  88 = add i32 %i.phi, i32 1
   br i1 %83, bb %then84, bb %if.exit85
 then84:  pred(if.exit81)
-  88 = add i32 %i.phi, i32 1
   br bb %while.cond
 if.exit85:  pred(if.exit81)
   90 = icmp eq i32 %x2.phi, i32 0
@@ -124,12 +124,10 @@ select.exit111:  pred(select.then109, select.else110)
   select112.phi = phi [bb %select.else110, i1 %116, bb %select.then109, i1 -1]
   br i1 %select112.phi, bb %then119, bb %if.exit120
 then119:  pred(select.exit111)
-  123 = add i32 %i.phi, i32 1
   br bb %while.cond
 if.exit120:  pred(select.exit111)
   store i32 0 to ptr %31
-  328 = shl i32 %i.phi, i32 3
-  135 = ptradd ptr @step, i32 %328
+  135 = ptradd ptr @step, i32 %325
   137.load = load i32 from ptr %135
   139 = sub i32 %x2.phi, i32 %137.load
   145 = ptradd ptr %135, i32 4
@@ -145,7 +143,6 @@ then155:  pred(if.exit120)
 if.exit156:  pred(if.exit120, then155)
   num.phi = phi [bb %if.exit120, i32 %num.phi314, bb %then155, i32 %151]
   store i32 1 to ptr %31
-  168 = add i32 %i.phi, i32 1
   br bb %while.cond
 then171:  pred(while.exit)
   ret i32 1073741824

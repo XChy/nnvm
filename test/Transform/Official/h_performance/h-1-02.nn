@@ -37,7 +37,7 @@ while.exit:  pred(while.body.split, entry34)
   call void putch(i32 10)
   ret i32 0
 fun.loop_entry:  pred(while.body, fun.then12, fun.then25)
-  dep.loop72 = phi [bb %while.body, i32 0, bb %fun.then12, i32 %1884, bb %fun.then25, i32 %3293]
+  dep.loop72 = phi [bb %while.body, i32 0, bb %fun.then12, i32 %1884, bb %fun.then25, i32 %1884]
   n.loop73 = phi [bb %while.body, i32 %i.phi101, bb %fun.then12, i32 %1683, bb %fun.then25, i32 %2288]
   474 = icmp eq i32 %n.loop73, i32 1
   br i1 %474, bb %fun.then, bb %fun.else
@@ -46,10 +46,10 @@ fun.then:  pred(fun.loop_entry)
 fun.else:  pred(fun.loop_entry)
   6379 = and i32 %n.loop73, i32 1
   6480 = icmp eq i32 %6379, i32 0
+  1884 = add i32 %dep.loop72, i32 1
   br i1 %6480, bb %fun.then12, bb %fun.else14
 fun.then12:  pred(fun.else)
   1683 = sdiv i32 %n.loop73, i32 2
-  1884 = add i32 %dep.loop72, i32 1
   br bb %fun.loop_entry
 fun.else14:  pred(fun.else)
   2187 = mul i32 %n.loop73, i32 3
@@ -57,7 +57,6 @@ fun.else14:  pred(fun.else)
   2490 = icmp sle i32 %2288, i32 %lim.load4498
   br i1 %2490, bb %fun.then25, bb %fun.else27
 fun.then25:  pred(fun.else14)
-  3293 = add i32 %dep.loop72, i32 1
   br bb %fun.loop_entry
 fun.else27:  pred(fun.else14)
   br bb %while.body.split

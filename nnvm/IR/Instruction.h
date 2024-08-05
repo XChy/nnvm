@@ -145,6 +145,7 @@ public:
   const std::vector<Use *> &getUseeList() const { return useeList; }
 
   void moveTo(BasicBlock *otherBB);
+  void moveBeforeTerm(BasicBlock *otherBB);
 
   std::string dump() override;
   virtual Instruction *copy() = 0;
@@ -512,9 +513,9 @@ public:
 };
 
 // operands: [incomingBB1, incomingValue1, ..., incomingBBn, incomingValuen]
-class PhiInst : public Instruction {
+class PhiNode : public Instruction {
 public:
-  PhiInst(Type *type) : Instruction(InstID::Phi, {}, type) {}
+  PhiNode(Type *type) : Instruction(InstID::Phi, {}, type) {}
 
   void addIncoming(BasicBlock *incomingBB, Value *incomingValue);
   void setIncomingValue(BasicBlock *incomingBB, Value *incomingValue);
@@ -535,7 +536,7 @@ public:
   Value *getIncomingValueOf(BasicBlock *incoming) const;
 
   Instruction *copy() override {
-    auto *ret = new PhiInst(getType());
+    auto *ret = new PhiNode(getType());
     for (uint64_t i = 0; i < getIncomingNum(); i++)
       ret->addIncoming(getIncomingBB(i), getIncomingValue(i));
     return ret;

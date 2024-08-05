@@ -35,19 +35,19 @@ while.exit152:  pred(while.exit160, entry143)
   198408 = icmp sle i32 1, i32 %148
   br i1 %198408, bb %while.body194_preheader, bb %while.exit195
 while.body159_preheader:  pred(while.body151)
+  256 = shl i32 %i144.phi236412, i32 6
   br bb %while.body159
 while.body159:  pred(if.exit169, while.body159_preheader)
   j157.phi386 = phi [bb %if.exit169, i32 %188, bb %while.body159_preheader, i32 1]
   167 = icmp eq i32 %i144.phi236412, i32 %j157.phi386
+  257 = shl i32 %j157.phi386, i32 2
   br i1 %167, bb %then168, bb %else
 while.exit160:  pred(if.exit169, while.body151)
   191 = add i32 %i144.phi236412, i32 1
   155 = icmp sle i32 %191, i32 %n.load154410
   br i1 %155, bb %while.body151, bb %while.exit152
 then168:  pred(while.body159)
-  256 = shl i32 %i144.phi236412, i32 6
   173 = ptradd ptr @e, i32 %256
-  257 = shl i32 %j157.phi386, i32 2
   176 = ptradd ptr %173, i32 %257
   store i32 0 to ptr %176
   br bb %if.exit169
@@ -56,10 +56,8 @@ if.exit169:  pred(then168, else)
   163 = icmp sle i32 %188, i32 %n.load154410
   br i1 %163, bb %while.body159, bb %while.exit160
 else:  pred(while.body159)
-  258 = shl i32 %i144.phi236412, i32 6
-  180 = ptradd ptr @e, i32 %258
-  259 = shl i32 %j157.phi386, i32 2
-  183 = ptradd ptr %180, i32 %259
+  180 = ptradd ptr @e, i32 %256
+  183 = ptradd ptr %180, i32 %257
   store i32 65535 to ptr %183
   br bb %if.exit169
 while.body194_preheader:  pred(while.exit152)

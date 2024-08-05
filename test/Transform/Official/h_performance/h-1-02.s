@@ -59,6 +59,7 @@ bb5:
 bb6:
   ANDI s4, a0, 1
   SLTIU s4, s4, 1
+  ADDIW s1, s1, 1
   BNE s4, zero, bb13
   # implict jump to bb7
 bb7:
@@ -87,14 +88,12 @@ bb10:
 bb11:
   JAL zero, bb4
 bb12:
-  ADDIW s1, s1, 1
   JAL zero, bb5
 bb13:
   SRAIW s4, a0, 31
   SRLIW s4, s4, 31
   ADD a0, a0, s4
   SRAIW a0, a0, 1
-  ADDIW s1, s1, 1
   JAL zero, bb5
 bb14:
   JAL zero, bb9

@@ -86,6 +86,7 @@ mv.while.exit27:  pred(mv.while.exit35, mv.while.exit)
 mv.while.body34_preheader:  pred(mv.while.body26)
   41220 = mul i32 %i.phi204345, i32 8040
   42221 = ptradd ptr @A, i32 %41220
+  182231 = shl i32 %i.phi204345, i32 2
   br bb %mv.while.body34
 mv.while.body34:  pred(mv.if.exit, mv.while.body34_preheader)
   x.phi169216331 = phi [bb %mv.if.exit, i32 %x.phi242, bb %mv.while.body34_preheader, i32 %x.phi170206347]
@@ -95,6 +96,7 @@ mv.while.body34:  pred(mv.if.exit, mv.while.body34_preheader)
   45223 = ptradd ptr %42221, i32 %181222
   45.load224 = load i32 from ptr %45223
   47225 = icmp eq i32 %45.load224, i32 0
+  60235 = ptradd ptr @B, i32 %181222
   br i1 %47225, bb %mv.then, bb %mv.else
 mv.while.exit35:  pred(mv.if.exit, mv.while.body26)
   x.phi170206328 = phi [bb %mv.if.exit, i32 %x.phi242, bb %mv.while.body26, i32 %x.phi170206347]
@@ -103,11 +105,9 @@ mv.while.exit35:  pred(mv.if.exit, mv.while.body26)
   30207 = icmp slt i32 %93228, i32 %96
   br i1 %30207, bb %mv.while.body26, bb %mv.while.exit27
 mv.then:  pred(mv.while.body34)
-  182231 = shl i32 %i.phi204345, i32 2
   55232 = ptradd ptr @B, i32 %182231
   55.load233 = load i32 from ptr %55232
   57234 = mul i32 %x.phi169216331, i32 %55.load233
-  60235 = ptradd ptr @B, i32 %181222
   60.load236 = load i32 from ptr %60235
   62237 = add i32 %57234, i32 %60.load236
   66238 = sub i32 %y.phi172215330, i32 %62237
@@ -119,11 +119,9 @@ mv.if.exit:  pred(mv.then, mv.else)
   38217 = icmp slt i32 %90243, i32 %96
   br i1 %38217, bb %mv.while.body34, bb %mv.while.exit35
 mv.else:  pred(mv.while.body34)
-  184246 = shl i32 %i.phi204345, i32 2
-  69247 = ptradd ptr @C, i32 %184246
+  69247 = ptradd ptr @C, i32 %182231
   73.load248 = load i32 from ptr %69247
-  84250 = ptradd ptr @B, i32 %181222
-  84.load251 = load i32 from ptr %84250
+  84.load251 = load i32 from ptr %60235
   86252 = mul i32 %45.load224, i32 %84.load251
   87253 = add i32 %73.load248, i32 %86252
   store i32 %87253 to ptr %69247
@@ -154,6 +152,7 @@ mv.while.exit27279:  pred(mv.while.exit35295, mv.while.exit269)
 mv.while.body34287_preheader:  pred(mv.while.body26277)
   41288 = mul i32 %i.phi272339, i32 8040
   42289 = ptradd ptr @A, i32 %41288
+  182299 = shl i32 %i.phi272339, i32 2
   br bb %mv.while.body34287
 mv.while.body34287:  pred(mv.if.exit308, mv.while.body34287_preheader)
   x.phi169284337 = phi [bb %mv.if.exit308, i32 %x.phi310, bb %mv.while.body34287_preheader, i32 %x.phi170274341]
@@ -163,6 +162,7 @@ mv.while.body34287:  pred(mv.if.exit308, mv.while.body34287_preheader)
   45291 = ptradd ptr %42289, i32 %181290
   45.load292 = load i32 from ptr %45291
   47293 = icmp eq i32 %45.load292, i32 0
+  60303 = ptradd ptr @C, i32 %181290
   br i1 %47293, bb %mv.then298, bb %mv.else313
 mv.while.exit35295:  pred(mv.if.exit308, mv.while.body26277)
   x.phi170274334 = phi [bb %mv.if.exit308, i32 %x.phi310, bb %mv.while.body26277, i32 %x.phi170274341]
@@ -171,11 +171,9 @@ mv.while.exit35295:  pred(mv.if.exit308, mv.while.body26277)
   30275 = icmp slt i32 %93296, i32 %96
   br i1 %30275, bb %mv.while.body26277, bb %mv.while.exit27279
 mv.then298:  pred(mv.while.body34287)
-  182299 = shl i32 %i.phi272339, i32 2
   55300 = ptradd ptr @C, i32 %182299
   55.load301 = load i32 from ptr %55300
   57302 = mul i32 %x.phi169284337, i32 %55.load301
-  60303 = ptradd ptr @C, i32 %181290
   60.load304 = load i32 from ptr %60303
   62305 = add i32 %57302, i32 %60.load304
   66306 = sub i32 %y.phi172283336, i32 %62305
@@ -187,11 +185,9 @@ mv.if.exit308:  pred(mv.then298, mv.else313)
   38285 = icmp slt i32 %90311, i32 %96
   br i1 %38285, bb %mv.while.body34287, bb %mv.while.exit35295
 mv.else313:  pred(mv.while.body34287)
-  184314 = shl i32 %i.phi272339, i32 2
-  69315 = ptradd ptr @B, i32 %184314
+  69315 = ptradd ptr @B, i32 %182299
   73.load316 = load i32 from ptr %69315
-  84318 = ptradd ptr @C, i32 %181290
-  84.load319 = load i32 from ptr %84318
+  84.load319 = load i32 from ptr %60303
   86320 = mul i32 %45.load292, i32 %84.load319
   87321 = add i32 %73.load316, i32 %86320
   store i32 %87321 to ptr %69315

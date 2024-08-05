@@ -20,11 +20,11 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
 
     // copy phis from header to preheader.
     for (auto *inst : *header) {
-      PhiInst *phi = mayCast<PhiInst>(inst);
+      PhiNode *phi = mayCast<PhiNode>(inst);
       if (!phi)
         break;
 
-      PhiInst *preheaderPhi =
+      PhiNode *preheaderPhi =
           builder.buildPhi(phi->getType(), phi->getName() + "_ph_val");
 
       for (auto *nonlatch : nonlatches) {

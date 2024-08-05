@@ -80,25 +80,25 @@ bb11:
 bb12:
   # implict jump to bb13
 bb13:
-  FDIV.S fs3, fs0, fs1
+  FDIV.S fs2, fs0, fs1
+  LA a0, .CONSTANT.7.0
+  FLW fs0, 0(a0)
+  LA a0, .CONSTANT.7.0
+  FLW fs1, 0(a0)
+  FSGNJN.S fs3, fs0, fs1
   # implict jump to bb14
 bb14:
   LA a0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs3, fs0
+  FDIV.S fs1, fs2, fs0
   FSUB.S fs1, fs0, fs1
   LA a0, .CONSTANT.7.0
-  FLW fs2, 0(a0)
-  FLT.S a0, fs2, fs1
+  FLW fs4, 0(a0)
+  FLT.S a0, fs4, fs1
   BNE a0, zero, bb25
   # implict jump to bb15
 bb15:
-  LA a0, .CONSTANT.7.0
-  FLW fs2, 0(a0)
-  LA a0, .CONSTANT.7.0
-  FLW fs4, 0(a0)
-  FSGNJN.S fs2, fs2, fs4
-  FLT.S a0, fs1, fs2
+  FLT.S a0, fs1, fs3
   # implict jump to bb16
 bb16:
   BNE a0, zero, bb24
@@ -106,10 +106,10 @@ bb16:
 bb17:
   LA a0, .CONSTANT.7.1
   FLW fs1, 0(a0)
-  FSUB.S fs1, fs0, fs1
+  FSUB.S fs0, fs0, fs1
   LA a0, .CONSTANT.7.0
-  FLW fs0, 0(a0)
-  FLE.S a0, fs1, fs0
+  FLW fs1, 0(a0)
+  FLE.S a0, fs0, fs1
   BNE a0, zero, bb23
   # implict jump to bb18
 bb18:
@@ -147,17 +147,12 @@ bb22:
   CALL putint
   JAL zero, bb21
 bb23:
-  LA a0, .CONSTANT.7.0
-  FLW fs0, 0(a0)
-  LA a0, .CONSTANT.7.0
-  FLW fs2, 0(a0)
-  FSGNJN.S fs0, fs0, fs2
-  FLE.S a0, fs0, fs1
+  FLE.S a0, fs3, fs0
   JAL zero, bb19
 bb24:
   LA a0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs3, fs0
+  FDIV.S fs1, fs2, fs0
   FADD.S fs0, fs0, fs1
   ADDI a0, zero, 2
   FCVT.S.W fs1, a0

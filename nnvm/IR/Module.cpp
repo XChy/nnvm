@@ -1,5 +1,6 @@
 #include "Module.h"
 #include "IR/Type.h"
+#include "Platform/BishengPlatform.h"
 #include <algorithm>
 
 using namespace nnvm;
@@ -22,7 +23,9 @@ static void initTypeMap(Module::NormalTypeMap &typeMap,
   };
 }
 
-Module::Module() { initTypeMap(typeMap, intTypeMap); }
+Module::Module() : platform(new BishengPlaform) {
+  initTypeMap(typeMap, intTypeMap);
+}
 
 Function *Module::getFunction(const std::string &name) {
   return functionMap[name];

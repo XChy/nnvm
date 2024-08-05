@@ -44,6 +44,7 @@ bb2:
   ADDW s5, s5, s1
   ADDI s6, zero, 1
   SUBW s6, s5, s6
+  SW s6, 0(sp)
   ADDIW s7, s5, 1
   ADDIW a0, a0, 1
   SLLIW s8, a0, 9
@@ -51,22 +52,21 @@ bb2:
   ADDI s9, zero, 1
   SUBW s9, s8, s9
   ADDIW s10, s8, 1
-  SW s10, 0(sp)
   SLLIW s5, s5, 2
   SW s5, 8(sp)
-  LA s10, image_in
-  LW s5, 8(sp)
-  ADD s5, s10, s5
+  LA s5, image_in
+  LW s6, 8(sp)
+  ADD s5, s5, s6
   LW s5, 0(s5)
-  ADDI s10, zero, 8
-  SW s10, 4(sp)
-  LW s10, 4(sp)
-  MULW s5, s5, s10
+  ADDI s6, zero, 8
+  SW s6, 4(sp)
+  LW s6, 4(sp)
+  MULW s5, s5, s6
   SLLIW s3, s3, 2
-  LA s10, image_in
-  SD s10, 112(sp)
-  LD s10, 112(sp)
-  ADD s3, s10, s3
+  LA s6, image_in
+  SD s6, 112(sp)
+  LD s6, 112(sp)
+  ADD s3, s6, s3
   LW s3, 0(s3)
   SUBW s3, s5, s3
   SLLIW s0, s0, 2
@@ -79,7 +79,8 @@ bb2:
   ADD s3, s4, s3
   LW s3, 0(s3)
   SUBW s0, s0, s3
-  SLLIW s3, s6, 2
+  LW s3, 0(sp)
+  SLLIW s3, s3, 2
   LA s4, image_in
   ADD s3, s4, s3
   LW s3, 0(s3)
@@ -99,8 +100,7 @@ bb2:
   ADD s3, s4, s3
   LW s3, 0(s3)
   SUBW s0, s0, s3
-  LW s3, 0(sp)
-  SLLIW s3, s3, 2
+  SLLIW s3, s10, 2
   LA s4, image_in
   ADD s3, s4, s3
   LW s3, 0(s3)

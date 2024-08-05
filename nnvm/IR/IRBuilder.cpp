@@ -39,8 +39,8 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   return LI;
 }
 
-PhiInst *IRBuilder::buildPhi(Type *type, const std::string &name) {
-  PhiInst *I = new PhiInst(type);
+PhiNode *IRBuilder::buildPhi(Type *type, const std::string &name) {
+  PhiNode *I = new PhiNode(type);
   I->setName(name, *module);
   BasicBlock *curBB = insertPoint.getBB();
   curBB->begin().insertBefore(I);

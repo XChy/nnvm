@@ -57,7 +57,7 @@ public:
   Value *buildStore(Value *value, Value *dest);
   Value *buildLoad(Value *src, Type *loadedTy, const std::string &name = "");
 
-  PhiInst *buildPhi(Type *type, const std::string &name = "");
+  PhiNode *buildPhi(Type *type, const std::string &name = "");
   Value *buildPin(Value *orig, const std::string &name = "");
 
   Value *buildRet();

@@ -22,7 +22,7 @@ bool CFGCombinerPass::run(Function &F) {
 
       if (BB->getPredNum() == 0) {
         for (Use *U : incChange(BB->users())) {
-          if (auto *phi = mayCast<PhiInst>(U->getUser()))
+          if (auto *phi = mayCast<PhiNode>(U->getUser()))
             phi->removeIncoming(BB);
           else
             nnvm_unimpl();
@@ -115,7 +115,7 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
 
     BasicBlock *unlinked = constCond->getValue() ? falseSucc : trueSucc;
     for (Instruction *I : *unlinked)
-      if (PhiInst *phi = mayCast<PhiInst>(I))
+      if (PhiNode *phi = mayCast<PhiNode>(I))
         phi->removeIncoming(BB);
       else
         break;
@@ -169,7 +169,7 @@ bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
     return false;
 
   // for (auto *I : incChange(*destBB)) {
-  // PhiInst *phi = mayCast<PhiInst>(I);
+  // PhiNode *phi = mayCast<PhiNode>(I);
   // if (!phi || phi->getIncomingNum() != 2)
   // break;
   // Value *trueValue = phi->getIncomingValueOf(trueIncoming);

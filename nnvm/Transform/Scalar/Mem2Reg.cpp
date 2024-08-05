@@ -165,7 +165,7 @@ void Mem2RegPass::rename(Function &F) {
         continue;
       }
 
-      if (auto *phi = mayCast<PhiInst>(I)) {
+      if (auto *phi = mayCast<PhiNode>(I)) {
         if (!phi2Stack.count(phi))
           continue;
         incomingValues[phi2Stack[phi]] = phi;
@@ -179,7 +179,7 @@ void Mem2RegPass::rename(Function &F) {
         incomingValuesMap[succ].insert(pair);
       for (Instruction *I : *succ) {
 
-        if (PhiInst *phi = mayCast<PhiInst>(I)) {
+        if (PhiNode *phi = mayCast<PhiNode>(I)) {
           if (!phi2Stack.count(phi))
             continue;
           phi->addIncoming(BB, incomingValues[phi2Stack[phi]]);

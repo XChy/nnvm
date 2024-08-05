@@ -8,6 +8,7 @@
 #include "Transform/Scalar/CFGCombiner.h"
 #include "Transform/Scalar/CSE.h"
 #include "Transform/Scalar/Combiner.h"
+#include "Transform/Scalar/GVN.h"
 #include "Transform/Scalar/Loop/LICM.h"
 #include "Transform/Scalar/Loop/LoopCanon.h"
 #include "Transform/Scalar/Loop/Rotate.h"
@@ -41,6 +42,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CFGCombinerPass>();
   passManager.addFunctionPass<CSEPass>();
   passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<GVNHoistPass>();
   passManager.addFunctionPass<MemPropPass>();
 
   passManager.addModulePass<GlobalVarOptPass>();
@@ -64,7 +66,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
 
   // Before codegen
-  // passManager.addFunctionPass<GlobalHoistPass>();
+  //passManager.addFunctionPass<GlobalHoistPass>();
 
   passManager.run(*module);
 }

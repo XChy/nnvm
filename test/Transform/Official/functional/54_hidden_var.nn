@@ -36,37 +36,69 @@ entry:  pred()
   store i32 1 to ptr %arr.index69
   arr.index70 = ptradd ptr %c57, i32 48
   store i32 8 to ptr %arr.index70
-  br bb %init
-init:  pred(init, entry)
-  cnt_ptr.phi149 = phi [bb %init, i32 %cnt.dec, bb %entry, i32 22]
-  cnt.dec = sub i32 %cnt_ptr.phi149, i32 1
-  134 = shl i32 %cnt.dec, i32 2
-  135 = add i32 %134, i32 52
-  arr.index81 = ptradd ptr %c57, ptr %135
+  arr.index71 = ptradd ptr %c57, i32 52
+  store i32 0 to ptr %arr.index71
+  arr.index72 = ptradd ptr %c57, i32 56
+  store i32 0 to ptr %arr.index72
+  arr.index73 = ptradd ptr %c57, i32 60
+  store i32 0 to ptr %arr.index73
+  arr.index74 = ptradd ptr %c57, i32 64
+  store i32 0 to ptr %arr.index74
+  arr.index75 = ptradd ptr %c57, i32 68
+  store i32 0 to ptr %arr.index75
+  arr.index76 = ptradd ptr %c57, i32 72
+  store i32 0 to ptr %arr.index76
+  arr.index77 = ptradd ptr %c57, i32 76
+  store i32 0 to ptr %arr.index77
+  arr.index78 = ptradd ptr %c57, i32 80
+  store i32 0 to ptr %arr.index78
+  arr.index79 = ptradd ptr %c57, i32 84
+  store i32 0 to ptr %arr.index79
+  arr.index80 = ptradd ptr %c57, i32 88
+  store i32 0 to ptr %arr.index80
+  arr.index81 = ptradd ptr %c57, i32 92
   store i32 0 to ptr %arr.index81
-  76 = icmp ne i32 %cnt.dec, i32 0
-  br i1 %76, bb %init, bb %init.exit
-init.exit:  pred(init)
-  88.load = load i32 from ptr %arr.index68
-  call void putint(i32 %88.load)
-  97.load = load i32 from ptr %arr.index69
-  call void putint(i32 %97.load)
-  106.load = load i32 from ptr %arr.index70
-  call void putint(i32 %106.load)
+  arr.index82 = ptradd ptr %c57, i32 96
+  store i32 0 to ptr %arr.index82
+  arr.index83 = ptradd ptr %c57, i32 100
+  store i32 0 to ptr %arr.index83
+  arr.index84 = ptradd ptr %c57, i32 104
+  store i32 0 to ptr %arr.index84
+  arr.index85 = ptradd ptr %c57, i32 108
+  store i32 0 to ptr %arr.index85
+  arr.index86 = ptradd ptr %c57, i32 112
+  store i32 0 to ptr %arr.index86
+  arr.index87 = ptradd ptr %c57, i32 116
+  store i32 0 to ptr %arr.index87
+  arr.index88 = ptradd ptr %c57, i32 120
+  store i32 0 to ptr %arr.index88
+  arr.index89 = ptradd ptr %c57, i32 124
+  store i32 0 to ptr %arr.index89
+  arr.index90 = ptradd ptr %c57, i32 128
+  store i32 0 to ptr %arr.index90
+  arr.index91 = ptradd ptr %c57, i32 132
+  store i32 0 to ptr %arr.index91
+  arr.index92 = ptradd ptr %c57, i32 136
+  store i32 0 to ptr %arr.index92
+  call void putint(i32 2)
+  108.load = load i32 from ptr %arr.index69
+  call void putint(i32 %108.load)
+  117.load = load i32 from ptr %arr.index70
+  call void putint(i32 %117.load)
   call void putch(i32 10)
-  b.load110 = load i32 from ptr @b
-  call void putint(i32 %b.load110)
+  b.load121 = load i32 from ptr @b
+  call void putint(i32 %b.load121)
   call void putch(i32 10)
-  114.load = load i32 from ptr @c
-  call void putint(i32 %114.load)
-  118 = ptradd ptr @c, i32 4
-  118.load = load i32 from ptr %118
-  call void putint(i32 %118.load)
-  122.load = load i32 from ptr %31
-  call void putint(i32 %122.load)
-  126 = ptradd ptr @c, i32 12
-  126.load = load i32 from ptr %126
-  call void putint(i32 %126.load)
+  125.load = load i32 from ptr @c
+  call void putint(i32 %125.load)
+  129 = ptradd ptr @c, i32 4
+  129.load = load i32 from ptr %129
+  call void putint(i32 %129.load)
+  133.load = load i32 from ptr %31
+  call void putint(i32 %133.load)
+  137 = ptradd ptr @c, i32 12
+  137.load = load i32 from ptr %137
+  call void putint(i32 %137.load)
   call void putch(i32 10)
   ret i32 0
 }

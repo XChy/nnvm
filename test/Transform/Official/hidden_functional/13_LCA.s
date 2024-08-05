@@ -331,14 +331,14 @@ bb57:
 bb58:
   ADDI a0, zero, 19
   SLT a0, a0, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb62
+  XORI s1, a0, 1
+  ADDI a0, zero, 80
+  MULW a0, s4, a0
+  BNE s1, zero, bb62
   # implict jump to bb59
 bb59:
   # implict jump to bb60
 bb60:
-  ADDI a0, zero, 80
-  MULW a0, s4, a0
   LA s0, f
   ADD a0, s0, a0
   LW a0, 0(a0)
@@ -359,8 +359,6 @@ bb62:
   ADDI s2, zero, 19
   # implict jump to bb63
 bb63:
-  ADDI a0, zero, 80
-  MULW a0, s4, a0
   LA s1, f
   ADD a0, s1, a0
   SLLIW s1, s2, 2
@@ -380,8 +378,10 @@ bb65:
   ADDI a0, zero, 1
   SUBW s2, s2, a0
   SLT a0, s2, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb67
+  XORI s1, a0, 1
+  ADDI a0, zero, 80
+  MULW a0, s4, a0
+  BNE s1, zero, bb67
   # implict jump to bb66
 bb66:
   JAL zero, bb60

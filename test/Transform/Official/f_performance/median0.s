@@ -65,11 +65,11 @@ bb7:
 bb8:
   XOR s8, s7, s5
   SLTIU s8, s8, 1
+  SLLIW s9, s7, 2
   BNE s8, zero, bb16
   # implict jump to bb9
 bb9:
-  SLLIW s8, s7, 2
-  ADD s8, s2, s8
+  ADD s8, s2, s9
   LW s11, 0(s8)
   SLLIW s9, s5, 2
   ADD s9, s2, s9
@@ -101,8 +101,7 @@ bb15:
   JAL zero, bb12
 bb16:
   SW s4, 0(s3)
-  SLLIW s5, s7, 2
-  ADD s5, s2, s5
+  ADD s5, s2, s9
   LW s6, 0(s5)
   SW s6, 0(s3)
   SW s4, 0(s5)

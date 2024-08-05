@@ -184,63 +184,62 @@ bb27:
   JAL zero, bb26
 bb28:
   LA t0, n
-  LW a1, 0(t0)
-  ADD t2, zero, zero
+  LW a2, 0(t0)
+  ADD t0, zero, zero
   # implict jump to bb29
 bb29:
-  ADDIW a0, t2, 1
-  BLT a0, a1, bb33
+  ADDIW a1, t0, 1
+  SLLIW t2, t0, 2
+  BLT a1, a2, bb33
   # implict jump to bb30
 bb30:
-  ADD t1, t2, zero
+  ADD a0, t2, zero
   # implict jump to bb31
 bb31:
-  SLLIW t0, t2, 2
+  LA t0, c
+  ADD t0, t0, t2
+  LW t1, 0(t0)
   LA t2, c
-  ADD t0, t2, t0
-  LW t2, 0(t0)
-  SLLIW t1, t1, 2
-  LA a2, c
-  ADD t1, a2, t1
-  LW a2, 0(t1)
-  SW a2, 0(t0)
-  SW t2, 0(t1)
+  ADD t2, t2, a0
+  LW a0, 0(t2)
+  SW a0, 0(t0)
+  SW t1, 0(t2)
   LA t0, n
   LW t0, 0(t0)
-  BLT a0, t0, bb32
+  BLT a1, t0, bb32
   JAL zero, bb16
 bb32:
-  ADD t2, a0, zero
+  ADD t0, a1, zero
   JAL zero, bb29
 bb33:
-  ADD t1, t2, zero
-  ADD t0, a0, zero
+  ADD a0, t2, zero
+  ADD t1, a1, zero
   # implict jump to bb34
 bb34:
-  SLLIW a2, t0, 2
-  LA a3, c
-  ADD a2, a3, a2
-  LW a2, 0(a2)
   SLLIW a3, t1, 2
   LA a4, c
   ADD a3, a4, a3
   LW a3, 0(a3)
-  BLT a2, a3, bb39
+  LA a4, c
+  ADD a0, a4, a0
+  LW a0, 0(a0)
+  BLT a3, a0, bb39
   # implict jump to bb35
 bb35:
   # implict jump to bb36
 bb36:
-  ADDIW t0, t0, 1
-  LA a2, n
-  LW a2, 0(a2)
-  BLT t0, a2, bb38
+  ADDIW t1, t1, 1
+  LA a0, n
+  LW a3, 0(a0)
+  SLLIW a0, t0, 2
+  BLT t1, a3, bb38
   # implict jump to bb37
 bb37:
   JAL zero, bb31
 bb38:
   JAL zero, bb34
 bb39:
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   JAL zero, bb36
 bb40:
   ADD t2, zero, zero

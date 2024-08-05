@@ -60,27 +60,24 @@ insertsort.while.exit:  pred(insertsort.while.exit22)
 insertsort.while.cond20:  pred(insertsort.while.body, insertsort.while.body21)
   j.phi148 = phi [bb %insertsort.while.body, i32 %19143, bb %insertsort.while.body21, i32 %49159]
   25149 = icmp sgt i32 %j.phi148, i32 -1
+  130169 = shl i32 %j.phi148, i32 2
   br i1 %25149, bb %insertsort.select.then, bb %insertsort.select.else
 insertsort.while.body21:  pred(insertsort.select.exit)
-  39152 = add i32 %j.phi148, i32 1
   127153 = shl i32 %39152, i32 2
   41154 = ptradd ptr %a, i32 %127153
-  128155 = shl i32 %j.phi148, i32 2
-  45156 = ptradd ptr %a, i32 %128155
+  45156 = ptradd ptr %a, i32 %130169
   45.load157 = load i32 from ptr %45156
   store i32 %45.load157 to ptr %41154
   49159 = sub i32 %j.phi148, i32 1
   br bb %insertsort.while.cond20
 insertsort.while.exit22:  pred(insertsort.select.exit)
-  51162 = add i32 %j.phi148, i32 1
-  129163 = shl i32 %51162, i32 2
+  129163 = shl i32 %39152, i32 2
   53164 = ptradd ptr %a, i32 %129163
   store i32 %14.load142 to ptr %53164
   58166 = add i32 %i.phi135184, i32 1
   8137 = icmp slt i32 %58166, i32 10
   br i1 %8137, bb %insertsort.while.body, bb %insertsort.while.exit
 insertsort.select.then:  pred(insertsort.while.cond20)
-  130169 = shl i32 %j.phi148, i32 2
   33170 = ptradd ptr %a, i32 %130169
   33.load171 = load i32 from ptr %33170
   35172 = icmp slt i32 %14.load142, i32 %33.load171
@@ -89,6 +86,7 @@ insertsort.select.else:  pred(insertsort.while.cond20)
   br bb %insertsort.select.exit
 insertsort.select.exit:  pred(insertsort.select.then, insertsort.select.else)
   select.phi177 = phi [bb %insertsort.select.else, i1 0, bb %insertsort.select.then, i1 %35172]
+  39152 = add i32 %j.phi148, i32 1
   br i1 %select.phi177, bb %insertsort.while.body21, bb %insertsort.while.exit22
 }
 

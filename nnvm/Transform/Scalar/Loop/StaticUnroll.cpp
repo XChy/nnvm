@@ -64,12 +64,12 @@ bool StaticUnrollPass::unroll(Loop *loop) {
   Function *F = header->getParent();
 
   std::unordered_map<Value *, Value *> replaceMap;
-  std::unordered_map<PhiInst *, Value *> nextValueOf;
-  std::unordered_map<PhiInst *, Value *> currentValueForPhi;
+  std::unordered_map<PhiNode *, Value *> nextValueOf;
+  std::unordered_map<PhiNode *, Value *> currentValueForPhi;
   std::unordered_set<BasicBlock *> duplicatedBlock;
 
   for (auto *I : *header) {
-    auto *phi = mayCast<PhiInst>(I);
+    auto *phi = mayCast<PhiNode>(I);
     if (!phi)
       break;
     currentValueForPhi[phi] = phi->getIncomingValueOf(latch);
@@ -112,10 +112,10 @@ bool StaticUnrollPass::unroll(Loop *loop) {
     builder.buildBr(newHeader);
 
     for (auto *I : *header) {
-      if (!I->isa<PhiInst>())
+      if (!I->isa<PhiNode>())
         break;
-      auto *originalPhi = cast<PhiInst>(I);
-      auto *phi = cast<PhiInst>(replaceMap[I]);
+      auto *originalPhi = cast<PhiNode>(I);
+      auto *phi = cast<PhiNode>(replaceMap[I]);
 
       phi->addIncoming(lastLatch, currentValueForPhi[originalPhi]);
       phi->removeIncoming(preheader);
@@ -139,7 +139,7 @@ bool StaticUnrollPass::unroll(Loop *loop) {
 
   // Fix phis at exit
   for (auto *I : *exit) {
-    auto *phi = mayCast<PhiInst>(I);
+    auto *phi = mayCast<PhiNode>(I);
     if (!phi)
       break;
     Value *oldValue = phi->getIncomingValueOf(latch);

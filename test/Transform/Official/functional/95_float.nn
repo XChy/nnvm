@@ -88,7 +88,7 @@ then133:  pred(if.exit123)
 if.exit134:  pred(if.exit123, then133)
   store float 1.000000 to ptr %arr
   arr.index141 = ptradd ptr %arr, i32 4
-  store float %26356 to ptr %arr.index141
+  store float %42395 to ptr %arr.index141
   arr.index142 = ptradd ptr %arr, i32 8
   store float 0.000000 to ptr %arr.index142
   arr.index143 = ptradd ptr %arr, i32 12
@@ -123,7 +123,7 @@ while.body:  pred(while.body, if.exit134)
   23379 = si2f i32 %21378 to float
   24380 = fmul float %23379, float 3.141593
   25381 = fadd float %18377, float %24380
-  27383 = fdiv float %25381, float %26356
+  27383 = fdiv float %25381, float %42395
   207 = shl i32 %p.phi593, i32 2
   173 = ptradd ptr %arr, i32 %207
   177.load = load float from ptr %173
@@ -194,11 +194,11 @@ assert_not.else74242:  pred(entry77.split.split.split347.split.split.split)
 float_eq.entry28.split:  pred(float_abs.then542, float_abs.if.exit545)
   34389.ret = phi [bb %float_abs.then542, float %8543, bb %float_abs.if.exit545, float 33000.078125]
   36390 = fcmp olt float %34389.ret, float 0.000001
+  40393 = si2f i32 1 to float
+  42395 = si2f i32 2 to float
   br i1 %36390, bb %float_eq.then37, bb %float_eq.else
 float_eq.then37:  pred(float_eq.entry28.split)
-  40393 = si2f i32 1 to float
   41394 = fmul float %40393, float 2.000000
-  42395 = si2f i32 2 to float
   43396 = fdiv float %41394, float %42395
   44397 = f2si float %43396 to i32
   br bb %entry77.split386
@@ -209,10 +209,8 @@ float_eq.entry28403.split:  pred(float_abs.then553, float_abs.if.exit556)
   36406 = fcmp olt float %34405.ret, float 0.000001
   br i1 %36406, bb %float_eq.then37408, bb %float_eq.else415
 float_eq.then37408:  pred(float_eq.entry28403.split)
-  40409 = si2f i32 1 to float
-  41410 = fmul float %40409, float 2.000000
-  42411 = si2f i32 2 to float
-  43412 = fdiv float %41410, float %42411
+  41410 = fmul float %40393, float 2.000000
+  43412 = fdiv float %41410, float %42395
   44413 = f2si float %43412 to i32
   br bb %entry77.split.split402
 float_eq.else415:  pred(float_eq.entry28403.split)
@@ -222,10 +220,8 @@ float_eq.entry28419.split:  pred(float_abs.then564, float_abs.if.exit567)
   36422 = fcmp olt float %34421.ret, float 0.000001
   br i1 %36422, bb %float_eq.then37424, bb %float_eq.else431
 float_eq.then37424:  pred(float_eq.entry28419.split)
-  40425 = si2f i32 1 to float
-  41426 = fmul float %40425, float 2.000000
-  42427 = si2f i32 2 to float
-  43428 = fdiv float %41426, float %42427
+  41426 = fmul float %40393, float 2.000000
+  43428 = fdiv float %41426, float %42395
   44429 = f2si float %43428 to i32
   br bb %entry77.split.split.split418
 float_eq.else431:  pred(float_eq.entry28419.split)
@@ -235,9 +231,8 @@ float_eq.entry28435.split:  pred(float_abs.then575, float_abs.if.exit578)
   36438 = fcmp olt float %34437.ret, float 0.000001
   br i1 %36438, bb %float_eq.then37440, bb %float_eq.else447
 float_eq.then37440:  pred(float_eq.entry28435.split)
-  40441 = si2f i32 1 to float
-  41442 = fmul float %40441, float 2.000000
-  43444 = fdiv float %41442, float %26356
+  41442 = fmul float %40393, float 2.000000
+  43444 = fdiv float %41442, float %42395
   44445 = f2si float %43444 to i32
   br bb %entry77.split.split.split347.split.split
 float_eq.else447:  pred(float_eq.entry28435.split)
@@ -247,9 +242,8 @@ float_eq.entry28451.split:  pred(float_abs.then586, float_abs.if.exit589)
   36454 = fcmp olt float %34453.ret, float 0.000001
   br i1 %36454, bb %float_eq.then37456, bb %float_eq.else463
 float_eq.then37456:  pred(float_eq.entry28451.split)
-  40457 = si2f i32 1 to float
-  41458 = fmul float %40457, float 2.000000
-  43460 = fdiv float %41458, float %26356
+  41458 = fmul float %40393, float 2.000000
+  43460 = fdiv float %41458, float %42395
   44461 = f2si float %43460 to i32
   br bb %entry77.split.split.split347.split.split.split
 float_eq.else463:  pred(float_eq.entry28451.split)
@@ -271,15 +265,14 @@ assert.if.exit64:  pred(assert.then63, assert.else65)
   23353 = si2f i32 %21352 to float
   24354 = fmul float %23353, float 3.141593
   25355 = fadd float %18351, float %24354
-  26356 = si2f i32 2 to float
-  27357 = fdiv float %25355, float %26356
+  27357 = fdiv float %25355, float %42395
   14362 = si2f i32 5 to float
   15363 = fmul float 3.141593, float %14362
   18364 = fmul float %15363, float %14362
   23366 = si2f i32 25 to float
   24367 = fmul float %23366, float 3.141593
   25368 = fadd float %18364, float %24367
-  27370 = fdiv float %25368, float %26356
+  27370 = fdiv float %25368, float %42395
   33436 = fsub float %27357, float %27370
   4573 = fcmp olt float %33436, float %3539
   br i1 %4573, bb %float_abs.then575, bb %float_abs.if.exit578

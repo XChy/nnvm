@@ -8,7 +8,7 @@
 
 using namespace nnvm;
 
-size_t GVNPass::HashInstImpl::operator()(Instruction *I) const {
+size_t GVNHoistPass::HashInstImpl::operator()(Instruction *I) const {
   size_t seed = 0;
   seed = combineHash(seed, I->getOpcode());
   for (uint i = 0; i < I->getOperandNum(); i++)
@@ -16,7 +16,8 @@ size_t GVNPass::HashInstImpl::operator()(Instruction *I) const {
   return seed;
 }
 
-bool GVNPass::EqInstImpl::operator()(Instruction *A, Instruction *B) const {
+bool GVNHoistPass::EqInstImpl::operator()(Instruction *A,
+                                          Instruction *B) const {
   if (A == B)
     return true;
   if (A->getOpcode() != B->getOpcode())
@@ -61,11 +62,78 @@ static inline bool isPure(Instruction *I) {
   return true;
 }
 
-bool GVNPass::run(Function &F) {
-  domTree = getAnalysis<DomTreeAnalysis>(F);
+void GVNHoistPass::assignNumbers(Function &F) {
   Graph<BasicBlock *> graph;
   GraphVisitor::reversePostorder(graph, F.getEntry(), [this](BasicBlock *BB) {
-    // TODO
+    for (Instruction *I : *BB) {
+
+      if (!isPure(I) || I->isa<PhiNode>())
+        continue;
+
+      if (!numberOf.count(I)) {
+        numberOf[I] = currentMaxNumber;
+        currentMaxNumber++;
+      }
+
+      instsOf[numberOf[I]].push_back(I);
+    }
   });
+}
+
+void GVNHoistPass::hoist() {
+  for (uint64_t number = 0; number < currentMaxNumber; number++) {
+
+    if (instsOf[number].size() == 1)
+      continue;
+
+    BasicBlock *domBlock = nullptr;
+    Instruction *domInst = nullptr;
+
+    for (auto *I : instsOf[number]) {
+      if (!domBlock) {
+        domBlock = I->getBlock();
+        domInst = I;
+      } else {
+        domBlock = domTree->getCommonDom(domBlock, I->getBlock());
+
+        if (domBlock == I->getBlock())
+          domInst = I;
+        else if (domInst && domBlock != domInst->getBlock())
+          domInst = nullptr;
+      }
+    }
+
+    if (!domInst) {
+      auto *first = instsOf[number].front();
+      // All operands dominates domBlock
+      if (!std::all_of(first->getUseeList().begin(), first->getUseeList().end(),
+                       [&](Use *U) {
+                         auto *usee = mayCast<Instruction>(U->getUsee());
+                         if (!usee)
+                           return true;
+                         return domTree->dom(usee->getBlock(), domBlock);
+                       }))
+        continue;
+
+      first->moveBeforeTerm(domBlock);
+      domInst = first;
+    }
+
+    for (auto *I : instsOf[number]) {
+      if (I != domInst) {
+        I->replaceSelf(domInst);
+        I->eraseFromBB();
+      }
+    }
+  }
+}
+
+bool GVNHoistPass::run(Function &F) {
+  currentMaxNumber = 0;
+  domTree = getAnalysis<DomTreeAnalysis>(F);
+
+  assignNumbers(F);
+  hoist();
+
   return true;
 }

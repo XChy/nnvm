@@ -47,6 +47,7 @@ while.body61_preheader:  pred(while.body53)
   70 = ptradd ptr @dp, i32 %69
   209 = shl i32 %i.phi231, i32 3
   77 = ptradd ptr @t, i32 %209
+  109 = mul i32 %i.phi231, i32 140
   br bb %while.body61
 while.body61:  pred(if.exit, while.body61_preheader)
   j.phi201225 = phi [bb %if.exit, i32 %79, bb %while.body61_preheader, i32 1]
@@ -71,7 +72,6 @@ while.exit62:  pred(if.exit, while.body53)
   57 = icmp sle i32 %164, i32 %7
   br i1 %57, bb %while.body53, bb %while.exit54
 then:  pred(while.body61)
-  109 = mul i32 %i.phi231, i32 140
   110 = ptradd ptr @dp, i32 %109
   113 = ptradd ptr %110, i32 %208
   121.load = load i32 from ptr %73
@@ -82,8 +82,7 @@ if.exit:  pred(then, else)
   65 = icmp sle i32 %79, i32 %9
   br i1 %65, bb %while.body61, bb %while.exit62
 else:  pred(while.body61)
-  134 = mul i32 %i.phi231, i32 140
-  135 = ptradd ptr @dp, i32 %134
+  135 = ptradd ptr @dp, i32 %109
   138 = ptradd ptr %135, i32 %208
   147.load = load i32 from ptr %92
   158 = add i32 %147.load, i32 %82.load

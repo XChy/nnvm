@@ -22,7 +22,7 @@ void nnvm::splitBlockAt(BasicBlock *tosplit, Instruction *pos,
   for (int i = 0; i < newSplitted->getSuccNum(); i++) {
     auto *succ = newSplitted->getSucc(i);
     for (Instruction *I : *succ) {
-      PhiInst *phi = mayCast<PhiInst>(I);
+      PhiNode *phi = mayCast<PhiNode>(I);
       if (!phi)
         break;
       phi->replaceIncoming(tosplit, newSplitted);

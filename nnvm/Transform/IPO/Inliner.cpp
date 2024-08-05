@@ -97,7 +97,7 @@ void InlinerPass::inlineCall(CallInst *callsite) {
   builder.insertAt(callsiteBlock->end());
   builder.buildBr(inlinedEntry);
 
-  PhiInst *inlinedRetVal = nullptr;
+  PhiNode *inlinedRetVal = nullptr;
   if (!callsite->getType()->isVoid()) {
     builder.insertAt(inlinedExitMergePoint->begin());
     inlinedRetVal =

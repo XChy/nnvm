@@ -7,16 +7,19 @@ n:
 .word 0x00000000
 .section .text
 QuickSort:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD s1, a0, zero
-  ADD s2, a2, zero
-  BLT a1, s2, bb2
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
+  ADD s2, a0, zero
+  ADD s3, a2, zero
+  BLT a1, s3, bb2
   # implict jump to bb1
 bb1:
   ADD a0, zero, zero
@@ -26,112 +29,112 @@ bb1:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb2:
-  SLLIW a0, a1, 2
-  ADD a0, s1, a0
-  LW s3, 0(a0)
-  BLT a1, s2, bb5
+  SLLIW s6, a1, 2
+  ADD a0, s2, s6
+  LW s4, 0(a0)
+  ADDIW s0, a1, 1
+  BLT a1, s3, bb5
   # implict jump to bb3
 bb3:
-  ADD s0, a1, zero
+  ADD s1, a1, zero
   # implict jump to bb4
 bb4:
-  SLLIW a0, s0, 2
-  ADD a0, s1, a0
-  SW s3, 0(a0)
+  ADD a0, s2, s6
+  SW s4, 0(a0)
   ADDI a0, zero, 1
-  SUBW a2, s0, a0
-  ADD a0, s1, zero
+  SUBW a2, s1, a0
+  ADD a0, s2, zero
   CALL QuickSort
-  ADDIW a1, s0, 1
-  ADD a0, s1, zero
-  ADD a2, s2, zero
+  ADD a0, s2, zero
+  ADD a1, s0, zero
+  ADD a2, s3, zero
   CALL QuickSort
   JAL zero, bb1
 bb5:
-  ADD a0, s2, zero
-  ADD s0, a1, zero
+  ADD a0, s3, zero
+  ADD s1, a1, zero
   # implict jump to bb6
 bb6:
   # implict jump to bb7
 bb7:
-  BLT s0, a0, bb26
+  SLLIW s5, a0, 2
+  BLT s1, a0, bb26
   # implict jump to bb8
 bb8:
-  ADD a2, zero, zero
+  ADD s7, zero, zero
   # implict jump to bb9
 bb9:
-  BNE a2, zero, bb25
+  ADDI a2, zero, 1
+  SUBW a2, a0, a2
+  BNE s7, zero, bb25
   # implict jump to bb10
 bb10:
-  BLT s0, a0, bb24
+  BLT s1, a0, bb24
   # implict jump to bb11
 bb11:
   # implict jump to bb12
 bb12:
   # implict jump to bb13
 bb13:
-  BLT s0, a0, bb23
+  SLLIW s6, s1, 2
+  BLT s1, a0, bb23
   # implict jump to bb14
 bb14:
-  ADD a2, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb15
 bb15:
-  BNE a2, zero, bb22
+  BNE s0, zero, bb22
   # implict jump to bb16
 bb16:
-  BLT s0, a0, bb21
+  BLT s1, a0, bb21
   # implict jump to bb17
 bb17:
   # implict jump to bb18
 bb18:
-  BLT s0, a0, bb20
+  ADDIW s0, s1, 1
+  BLT s1, a0, bb20
   # implict jump to bb19
 bb19:
   JAL zero, bb4
 bb20:
   JAL zero, bb6
 bb21:
-  SLLIW a2, a0, 2
-  ADD a2, s1, a2
-  SLLIW s4, s0, 2
-  ADD s4, s1, s4
-  LW s4, 0(s4)
-  SW s4, 0(a2)
-  ADDI a2, zero, 1
-  SUBW a0, a0, a2
+  ADD a0, s2, s5
+  ADD s0, s2, s6
+  LW s0, 0(s0)
+  SW s0, 0(a0)
+  ADD a0, a2, zero
   JAL zero, bb18
 bb22:
-  ADDIW s0, s0, 1
+  ADDIW s1, s1, 1
   JAL zero, bb13
 bb23:
-  SLLIW a2, s0, 2
-  ADD a2, s1, a2
-  LW a2, 0(a2)
-  SLT a2, a2, s3
+  ADD s0, s2, s6
+  LW s0, 0(s0)
+  SLT s0, s0, s4
   JAL zero, bb15
 bb24:
-  SLLIW a2, s0, 2
-  ADD a2, s1, a2
-  SLLIW s4, a0, 2
-  ADD s4, s1, s4
-  LW s4, 0(s4)
-  SW s4, 0(a2)
-  ADDIW s0, s0, 1
+  ADD s1, s2, s6
+  ADD s6, s2, s5
+  LW s6, 0(s6)
+  SW s6, 0(s1)
+  ADD s1, s0, zero
   JAL zero, bb12
 bb25:
-  ADDI a2, zero, 1
-  SUBW a0, a0, a2
+  ADD a0, a2, zero
   JAL zero, bb7
 bb26:
-  SLLIW a2, a0, 2
-  ADD a2, s1, a2
+  ADD a2, s2, s5
   LW a2, 0(a2)
-  ADDI s4, zero, 1
-  SUBW s4, s3, s4
-  SLT a2, s4, a2
+  ADDI s7, zero, 1
+  SUBW s7, s4, s7
+  SLT s7, s7, a2
   JAL zero, bb9
 main:
   ADDI sp, sp, -64

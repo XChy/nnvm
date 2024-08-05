@@ -55,14 +55,15 @@ bb3:
 bb4:
   JAL zero, bb3
 f:
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD s2, a0, zero
+  SD s5, 48(sp)
+  ADD s3, a0, zero
   LA a0, n
   LW s0, 0(a0)
   SLTI a0, s0, 1
@@ -76,17 +77,19 @@ bb6:
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:
   ADDI s1, zero, 1
   # implict jump to bb8
 bb8:
   SLLIW a0, s1, 2
-  LA s3, row
-  ADD s3, s3, a0
-  LW a0, 0(s3)
+  LA s2, row
+  ADD s2, s2, a0
+  LW a0, 0(s2)
   XORI a0, a0, 1
+  ADDW s4, s3, s1
   BNE a0, zero, bb23
   # implict jump to bb9
 bb9:
@@ -112,39 +115,38 @@ bb13:
 bb14:
   JAL zero, bb8
 bb15:
-  SLLIW a0, s2, 2
-  LA s4, ans
-  ADD a0, s4, a0
+  SLLIW a0, s3, 2
+  LA s5, ans
+  ADD a0, s5, a0
   SW s1, 0(a0)
-  XOR a0, s2, s0
+  XOR a0, s3, s0
   SLTIU a0, a0, 1
   BNE a0, zero, bb17
   # implict jump to bb16
 bb16:
   ADDI a0, zero, 1
-  SW a0, 0(s3)
-  ADDW a0, s2, s1
-  SLLIW a0, a0, 2
+  SW a0, 0(s2)
+  SLLIW a0, s4, 2
   LA s0, line1
   ADD s0, s0, a0
   ADDI a0, zero, 1
   SW a0, 0(s0)
   LA a0, n
   LW a0, 0(a0)
-  ADDW a0, a0, s2
+  ADDW a0, a0, s3
   SUBW a0, a0, s1
   SLLIW a0, a0, 2
   LA s4, line2
   ADD a0, s4, a0
   ADDI s4, zero, 1
   SW s4, 0(a0)
-  ADDIW a0, s2, 1
+  ADDIW a0, s3, 1
   CALL f
-  SW zero, 0(s3)
+  SW zero, 0(s2)
   SW zero, 0(s0)
   LA a0, n
   LW a0, 0(a0)
-  ADDW a0, a0, s2
+  ADDW a0, a0, s3
   SUBW a0, a0, s1
   SLLIW a0, a0, 2
   LA s0, line2
@@ -168,8 +170,8 @@ bb18:
   JAL zero, bb16
 bb19:
   SLLIW a0, s0, 2
-  LA s4, ans
-  ADD a0, s4, a0
+  LA s5, ans
+  ADD a0, s5, a0
   LW a0, 0(a0)
   CALL putint
   LA a0, n
@@ -188,21 +190,20 @@ bb21:
   CALL putch
   JAL zero, bb16
 bb22:
-  ADDW a0, s0, s2
+  ADDW a0, s0, s3
   SUBW a0, a0, s1
   SLLIW a0, a0, 2
-  LA s4, line2
-  ADD a0, s4, a0
+  LA s5, line2
+  ADD a0, s5, a0
   LW a0, 0(a0)
   SLTU a0, zero, a0
   XORI a0, a0, 1
   SLTU a0, zero, a0
   JAL zero, bb12
 bb23:
-  ADDW a0, s2, s1
-  SLLIW a0, a0, 2
-  LA s4, line1
-  ADD a0, s4, a0
+  SLLIW a0, s4, 2
+  LA s5, line1
+  ADD a0, s5, a0
   LW a0, 0(a0)
   SLTIU a0, a0, 1
   JAL zero, bb10

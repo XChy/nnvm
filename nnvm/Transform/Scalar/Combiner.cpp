@@ -19,7 +19,7 @@ bool CombinerPass::run(Function &F) {
     for (auto *BB : F) {
       for (auto *I : incChange(*BB)) {
 
-        if ((I->moveable() || I->isa<PhiInst>()) && I->users().empty()) {
+        if ((I->moveable() || I->isa<PhiNode>()) && I->users().empty()) {
           I->eraseFromBB();
           changed = true;
           continue;
@@ -64,7 +64,7 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (ICmpInst *ICI = mayCast<ICmpInst>(I))
     return simplifyICmp(ICI);
 
-  if (PhiInst *phi = mayCast<PhiInst>(I))
+  if (PhiNode *phi = mayCast<PhiNode>(I))
     return simplifyPhi(phi);
 
   return nullptr;
@@ -199,7 +199,7 @@ Value *CombinerPass::simplifyICmp(ICmpInst *I) {
   return nullptr;
 }
 
-static inline bool isIdenticalPhi(PhiInst *phi) {
+static inline bool isIdenticalPhi(PhiNode *phi) {
   Value *identical = nullptr;
 
   for (int i = 0; i < phi->getIncomingNum(); i++) {
@@ -215,13 +215,13 @@ static inline bool isIdenticalPhi(PhiInst *phi) {
   return true;
 }
 
-static inline bool notCyclicReference(PhiInst *I) {
+static inline bool notCyclicReference(PhiNode *I) {
   return std::none_of(I->users().begin(), I->users().end(), [I](Use *U) {
     return I->getIncomingValue(0) == U->getUser();
   });
 }
 
-Value *CombinerPass::simplifyPhi(PhiInst *I) {
+Value *CombinerPass::simplifyPhi(PhiNode *I) {
   // phi [a]  --> a
   if (I->getIncomingNum() == 1 && notCyclicReference(I))
     return I->getIncomingValue(0);
