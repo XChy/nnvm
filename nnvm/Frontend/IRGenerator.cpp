@@ -54,7 +54,6 @@ Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
   if (ctx->FLOAT())
     return ir->getFloatType();
   
-  errorReporter.errorRecord(ctx, "Not supported such basic type");
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -67,7 +66,6 @@ Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
   if (ctx->VOID())
     return ir->getVoidType();
   
-  errorReporter.errorRecord(ctx, "Not supported such function type");
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -82,7 +80,6 @@ Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
   if (ctx->FLOAT())
     return SymbolType::getFloatTy();
   
-  errorReporter.errorRecord(ctx, "Not supported such basic type");
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -100,7 +97,6 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
   if (ctx->VOID())
     return SymbolType::getVoidTy();
   
-  errorReporter.errorRecord(ctx, "Not supported such function type");
   nnvm_unreachable("Not supported such type");
 }
 
@@ -129,9 +125,11 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
-      errorReporter.errorRecord(ctx, "Invalid index error");
-      assert(any_is<int>(index));
       // TODO: Report invalid index error.
+      if(!any_is<int>(index)) {
+        errorReporter.errorRecord(ctx, "Invalid index error");
+      }
+      assert(any_is<int>(index));
       if (i < indexs.size() - 1) {
         constArray =
             cast<ConstantArray>(constArray->getValue()[any_as<int>(index)]);
@@ -147,7 +145,6 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     }
   }
 
-  errorReporter.errorRecord(ctx, "Wrong LVal");
   nnvm_unimpl();
 }
 
@@ -203,14 +200,14 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
           return ~any_as<int>(operand);
       }
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Invalid operand");
+      errorReporter.errorRecord(ctx, "Invalid expression");
       nnvm_unimpl();
     }
 
     if (auto lvalCtx = ctx->lVal()) {
       return solveConstLval(lvalCtx);
     }
-    errorReporter.errorRecord(ctx, "Wrong exp");
+
     nnvm_unreachable("Impossible to reach here");
   }
 
@@ -273,10 +270,10 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->BITXOR()) {
       return lhs ^ rhs;
     }
-    errorReporter.errorRecord(ctx, "Invalid operand");
+    
     nnvm_unreachable("Impossible to reach here");
   }
-  errorReporter.errorRecord(ctx, "Wrong exp");
+
   nnvm_unreachable("Impossible to reach here");
 }
 
@@ -308,7 +305,6 @@ Any IRGenerator::visitConstInitVal(SysYParser::ConstInitValContext *ctx) {
     } else if (any_is<float>(initVal)) {
       constant = ConstantFloat::create(*ir, any_as<float>(initVal));
     } else {
-      errorReporter.errorRecord(ctx, "Invalid const initVal");
       nnvm_unreachable("Should not reach here");
     }
     return constant;
@@ -747,6 +743,7 @@ Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
     SymbolType *lookedType = symbolTable.lookup(funcName)->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
+      errorReporter.errorRecord(ctx, "FuncDecl wrong");
       nnvm_unimpl();
     }
   } else {
@@ -770,6 +767,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     SymbolType *lookedType = lookedFunc->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
+      errorReporter.errorRecord(ctx, "FuncDef wrong");
       nnvm_unimpl();
     }
     currentFunc = lookedFunc;
@@ -1211,7 +1209,6 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
         return Symbol{builder.buildFCmp(FCmpInst::OGE, lhs, rhs),
                       SymbolType::getBoolTy()};
       else{
-        errorReporter.errorRecord(ctx, "Invalid cond");
         nnvm_unreachable("Impossible");
       }
        
@@ -1235,12 +1232,10 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
         return Symbol{builder.buildICmp(ICmpInst::SGE, lhs, rhs),
                       SymbolType::getBoolTy()};
       else{
-        errorReporter.errorRecord(ctx, "Invalid cond");
         nnvm_unreachable("Impossible");
       }
     }
   }
-  errorReporter.errorRecord(ctx, "Not implemented");
   nnvm_unreachable("Not implemented");
 }
 
@@ -1499,7 +1494,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     return Symbol{val, lhs.symbolType};
   }
 
-  errorReporter.errorRecord(ctx, "Wrong exp");
   nnvm_unreachable("Should not reach here!");
 }
 
@@ -1543,7 +1537,7 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
         operand.entity, constMinusOneInt, ir->getIntType());
     return operand;
   }
-  errorReporter.errorRecord(ctx, "UnaryOp Not implemented!");
+  
   nnvm_unreachable("UnaryOp Not implemented!");
 }
 
@@ -1599,7 +1593,7 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
                                          getRadixOf(intConst->getText())))),
           SymbolType::getIntTy()};
     }
-    errorReporter.errorRecord(ctx, "No such literal number");
+    
     nnvm_unreachable("No such literal number")
   }
   return visitChildren(ctx);

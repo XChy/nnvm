@@ -19,7 +19,6 @@ class ErrorReporter{
         void errorRecord(antlr4::ParserRuleContext * ctx, const std::string &msg);
 
         void report();
-
 };
 } 
 
