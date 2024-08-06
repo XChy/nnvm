@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!python3
 '''Usage: python3 test.py [OPTION]... [FILE]...
 Test all FILEs, or all the .sy files under current directory (recursively) if no FILE is specified.
 
