@@ -15,8 +15,7 @@ func:   # loop depth 0
   BLT a0, zero, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADDI s0, zero, 1
-  SUBW s0, a0, s0
+  ADDIW s0, a0, -1
   FSGNJ.S fa0, fs0, fs0
   ADD a0, s0, zero
   CALL func

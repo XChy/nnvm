@@ -94,6 +94,10 @@ void GVNHoistPass::hoist() {
         domBlock = I->getBlock();
         domInst = I;
       } else {
+        // As the instruction visit order, we keep the first instruction
+        if (domBlock == I->getBlock())
+          continue;
+
         domBlock = domTree->getCommonDom(domBlock, I->getBlock());
 
         if (domBlock == I->getBlock())

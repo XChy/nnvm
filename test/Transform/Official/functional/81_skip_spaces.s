@@ -34,8 +34,7 @@ bb5:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDI t1, zero, 1
-  SUBW s0, s0, t1
+  ADDIW s0, s0, -1
   SLLIW t1, s0, 2
   ADDI t6, sp, 0
   ADD t1, t6, t1

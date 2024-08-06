@@ -44,8 +44,7 @@ main:   # loop depth 0
 bb1:   # loop depth 1
   ADDI s0, zero, 10
   SUBW s0, s0, s1
-  ADDI s2, zero, 1
-  SUBW s2, s0, s2
+  ADDIW s2, s0, -1
   BLT zero, s2, bb10
   # implict jump to bb2
 bb2:   # loop depth 1

@@ -279,8 +279,7 @@ bb50:   # loop depth 1
 bb51:   # loop depth 1
   LA s0, m
   LW s0, 0(s0)
-  ADDI s1, zero, 1
-  SUBW s0, s0, s1
+  ADDIW s0, s0, -1
   LA s1, m
   SW s0, 0(s1)
   BNE s0, zero, bb52
@@ -294,8 +293,7 @@ bb54:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s2, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s2, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb45
@@ -328,8 +326,7 @@ bb62:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s4, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s4, s0, s1
+  ADDIW s4, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb35
@@ -562,8 +559,7 @@ bb110:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s5, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s5, s0, s1
+  ADDIW s5, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb84
@@ -596,8 +592,7 @@ bb118:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s6, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s6, s0, s1
+  ADDIW s6, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb74
@@ -640,8 +635,7 @@ bb129:   # loop depth 1
   ADDI s0, zero, 10
   MULW s0, s2, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s2, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb15
@@ -674,8 +668,7 @@ bb137:   # loop depth 1
   ADDI s0, zero, 10
   MULW s0, s2, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s2, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb5

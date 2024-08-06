@@ -53,17 +53,19 @@ bb2:   # loop depth 0
   BLT zero, s0, bb20
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADDI s1, zero, 1
-  SUBW s11, a0, s1
+  ADDIW s11, a0, -1
   BLT zero, s11, bb5
   # implict jump to bb4
 bb4:   # loop depth 0
-  LUI a0, 1
-  ADDIW a0, a0, -896
-  MULW a0, s11, a0
+  LUI s0, 1
+  ADDIW s0, s0, -896
+  MULW a0, a0, s0
   LA s0, corr
   ADD a0, s0, a0
   SLLIW s0, s11, 2
+  ADD a0, a0, s0
+  LUI s0, 1048575
+  ADDIW s0, s0, 896
   ADD a0, a0, s0
   ADDI s0, zero, 1
   SW s0, 0(a0)

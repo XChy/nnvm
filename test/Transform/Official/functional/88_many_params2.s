@@ -18,8 +18,7 @@ main:   # loop depth 0
   ADD a0, zero, a0
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   BNE a0, zero, bb14
   # implict jump to bb2
 bb2:   # loop depth 0
@@ -28,8 +27,7 @@ bb2:   # loop depth 0
   ADD a0, zero, a0
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   SLLIW s0, a0, 2
   ADDI t6, sp, 56
   ADD s0, t6, s0
@@ -118,8 +116,7 @@ bb8:   # loop depth 1
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDI a0, zero, 1
-  SUBW s0, s0, a0
+  ADDIW s0, s0, -1
   SLT a0, s0, zero
   XORI a0, a0, 1
   BNE a0, zero, bb9

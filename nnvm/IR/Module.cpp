@@ -83,6 +83,7 @@ Constant *Module::addConstant(const Constant &constant) {
   }
 
   auto cloned = constant.clone();
+  cloned->setModule(this);
   constantPool.insert({constant.hash(), cloned});
   return cloned;
 }

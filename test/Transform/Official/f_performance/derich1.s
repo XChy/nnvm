@@ -213,8 +213,7 @@ bb12:   # loop depth 2
 bb13:   # loop depth 2
   JAL zero, bb12
 bb14:   # loop depth 0
-  ADDI t0, zero, 1
-  SUBW t0, s0, t0
+  ADDIW t0, s0, -1
   SLT t1, t0, zero
   XORI a1, t1, 1
   ADD t2, zero, zero
@@ -270,8 +269,7 @@ bb19:   # loop depth 2
   ADD a3, s2, a3
   ADD a3, a3, a2
   FLW ft0, 0(a3)
-  ADDI a3, zero, 1
-  SUBW t1, t1, a3
+  ADDIW t1, t1, -1
   SLT a3, t1, zero
   XORI a3, a3, 1
   BNE a3, zero, bb20
@@ -371,8 +369,7 @@ bb33:   # loop depth 2
 bb34:   # loop depth 2
   JAL zero, bb33
 bb35:   # loop depth 0
-  ADDI t0, zero, 1
-  SUBW t0, s1, t0
+  ADDIW t0, s1, -1
   SLT t1, t0, zero
   XORI a1, t1, 1
   ADD t2, zero, zero
@@ -401,42 +398,41 @@ bb39:   # loop depth 1
   FLW ft1, 0(a4)
   LA a4, .CONSTANT.7.2
   FLW ft2, 0(a4)
+  FSGNJ.S ft4, ft1, ft2
+  LA a4, .CONSTANT.7.2
+  FLW ft1, 0(a4)
+  LA a4, .CONSTANT.7.2
+  FLW ft2, 0(a4)
   FSGNJ.S ft2, ft1, ft2
   LA a4, .CONSTANT.7.2
   FLW ft1, 0(a4)
   LA a4, .CONSTANT.7.2
   FLW ft3, 0(a4)
-  FSGNJ.S ft1, ft1, ft3
-  LA a4, .CONSTANT.7.2
-  FLW ft3, 0(a4)
-  LA a4, .CONSTANT.7.2
-  FLW ft4, 0(a4)
-  FSGNJ.S ft4, ft3, ft4
+  FSGNJ.S ft5, ft1, ft3
   # implict jump to bb40
 bb40:   # loop depth 2
-  FSGNJ.S ft3, ft1, ft1
   FSGNJ.S ft1, ft2, ft2
-  FSGNJ.S ft2, ft0, ft0
+  FSGNJ.S ft3, ft0, ft0
   SLLIW a4, t1, 2
   ADD a5, a2, a4
-  FMUL.S ft0, fs0, ft2
-  FMUL.S ft1, fs1, ft1
-  FADD.S ft0, ft0, ft1
-  FMUL.S ft1, fa0, ft3
-  FADD.S ft0, ft0, ft1
-  FMUL.S ft1, ft6, ft4
-  FADD.S ft1, ft0, ft1
-  FSW ft1, 0(a5)
+  FMUL.S ft0, fs0, ft3
+  FMUL.S ft2, fs1, ft4
+  FADD.S ft0, ft0, ft2
+  FMUL.S ft2, fa0, ft1
+  FADD.S ft0, ft0, ft2
+  FMUL.S ft2, ft6, ft5
+  FADD.S ft2, ft0, ft2
+  FSW ft2, 0(a5)
   ADD a4, a3, a4
   FLW ft0, 0(a4)
-  ADDI a4, zero, 1
-  SUBW t1, t1, a4
+  ADDIW t1, t1, -1
   SLT a4, t1, zero
   XORI a4, a4, 1
   BNE a4, zero, bb41
   JAL zero, bb37
 bb41:   # loop depth 2
   FSGNJ.S ft4, ft3, ft3
+  FSGNJ.S ft5, ft1, ft1
   JAL zero, bb40
 bb42:   # loop depth 0
   ADDI a4, zero, 0
@@ -511,8 +507,7 @@ bb51:   # loop depth 0
   # implict jump to bb52
 bb52:   # loop depth 0
 bb53:   # loop depth 0
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   FSGNJ.S fa0, fs0, fs0
   CALL newPow
   FMUL.S fa0, fs0, fa0

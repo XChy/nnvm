@@ -51,8 +51,7 @@ bb1:   # loop depth 0
 bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADDI a0, zero, 1
-  SUBW s1, s1, a0
+  ADDIW s1, s1, -1
   LA a0, staticvalue
   LW a0, 0(a0)
   LUI s0, 4876

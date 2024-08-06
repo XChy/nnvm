@@ -51,8 +51,7 @@ bb1:   # loop depth 0
   BLT s11, a0, bb13
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDI s0, zero, 1
-  SUBW s2, a0, s0
+  ADDIW s2, a0, -1
   SLT s0, s2, zero
   XORI s0, s0, 1
   BNE s0, zero, bb4
@@ -104,8 +103,7 @@ bb7:   # loop depth 1
   LW s3, 0(s3)
   DIVW s0, s0, s3
   SW s0, 0(s1)
-  ADDI s0, zero, 1
-  SUBW s2, s2, s0
+  ADDIW s2, s2, -1
   SLT s0, s2, zero
   XORI s0, s0, 1
   BNE s0, zero, bb8

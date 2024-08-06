@@ -9,7 +9,7 @@ image_in:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -128
+  ADDI sp, sp, -112
   SD s8, 8(sp)
   SD s9, 16(sp)
   SD s10, 24(sp)
@@ -34,37 +34,30 @@ bb1:   # loop depth 1
   ADDI a0, zero, 1
   # implict jump to bb2
 bb2:   # loop depth 2
-  ADDI s1, zero, 1
-  SUBW s1, a0, s1
+  ADDIW s1, a0, -1
   SLLIW s1, s1, 9
   ADDW s1, s1, s2
-  ADDI s3, zero, 1
-  SUBW s3, s1, s3
+  ADDIW s3, s1, -1
   ADDIW s4, s1, 1
   SLLIW s5, a0, 9
   ADDW s5, s5, s2
-  ADDI s6, zero, 1
-  SUBW s6, s5, s6
+  ADDIW s6, s5, -1
   ADDIW s7, s5, 1
   ADDIW a0, a0, 1
   SLLIW s8, a0, 9
-  ADDW s9, s8, s2
-  ADDI s8, zero, 1
-  SUBW s8, s9, s8
-  ADDIW s10, s9, 1
+  ADDW s8, s8, s2
+  ADDIW s9, s8, -1
+  ADDIW s10, s8, 1
   SLLIW s11, s5, 2
   LA s5, image_in
   ADD s5, s5, s11
   LW s5, 0(s5)
-  ADDI s0, zero, 8
+  SLLIW s5, s5, 3
+  SLLIW s0, s3, 2
   SW s0, 4(sp)
+  LA s3, image_in
   LW s0, 4(sp)
-  MULW s5, s5, s0
-  SLLIW s3, s3, 2
-  LA s0, image_in
-  SD s0, 112(sp)
-  LD s0, 112(sp)
-  ADD s3, s0, s3
+  ADD s3, s3, s0
   LW s3, 0(s3)
   SUBW s3, s5, s3
   SLLIW s5, s1, 2
@@ -87,12 +80,12 @@ bb2:   # loop depth 2
   ADD s3, s4, s3
   LW s3, 0(s3)
   SUBW s1, s1, s3
-  SLLIW s3, s8, 2
+  SLLIW s3, s9, 2
   LA s4, image_in
   ADD s3, s4, s3
   LW s3, 0(s3)
   SUBW s1, s1, s3
-  SLLIW s3, s9, 2
+  SLLIW s3, s8, 2
   LA s4, image_in
   ADD s3, s4, s3
   LW s3, 0(s3)
@@ -195,7 +188,7 @@ bb12:   # loop depth 0
   LD s5, 88(sp)
   LD s6, 96(sp)
   LD s7, 104(sp)
-  ADDI sp, sp, 128
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb13:   # loop depth 1
   JAL zero, bb11

@@ -12,48 +12,48 @@ external i32 getch()
 
 internal void tree(i32 x, i32 d) {
 entry106:  pred()
-  393 = shl i32 %x, i32 2
-  111 = ptradd ptr @dep, i32 %393
+  894 = shl i32 %x, i32 2
+  111 = ptradd ptr @dep, i32 %894
   store i32 %d to ptr %111
-  119877 = mul i32 %x, i32 80
-  120878 = ptradd ptr @f, i32 %119877
-  123.load881 = load i32 from ptr %120878
-  125882 = icmp ne i32 %123.load881, i32 0
-  br i1 %125882, bb %while.body116_preheader, bb %while.exit117
+  119911 = mul i32 %x, i32 80
+  120912 = ptradd ptr @f, i32 %119911
+  123.load915 = load i32 from ptr %120912
+  125916 = icmp ne i32 %123.load915, i32 0
+  br i1 %125916, bb %while.body116_preheader, bb %while.exit117
 while.body116_preheader:  pred(entry106)
   br bb %while.body116
 while.body116:  pred(while.body116, while.body116_preheader)
-  123880886 = phi [bb %while.body116, ptr %123, bb %while.body116_preheader, ptr %120878]
-  394879885 = phi [bb %while.body116, i32 %395, bb %while.body116_preheader, i32 0]
-  i114.phi363883 = phi [bb %while.body116, i32 %130, bb %while.body116_preheader, i32 0]
-  130 = add i32 %i114.phi363883, i32 1
-  395 = shl i32 %130, i32 2
-  132 = ptradd ptr %120878, i32 %395
-  139.load = load i32 from ptr %123880886
+  123914920 = phi [bb %while.body116, ptr %123, bb %while.body116_preheader, ptr %120912]
+  895913919 = phi [bb %while.body116, i32 %896, bb %while.body116_preheader, i32 0]
+  i114.phi363917 = phi [bb %while.body116, i32 %130, bb %while.body116_preheader, i32 0]
+  130 = add i32 %i114.phi363917, i32 1
+  896 = shl i32 %130, i32 2
+  132 = ptradd ptr %120912, i32 %896
+  139.load = load i32 from ptr %123914920
   141 = mul i32 %139.load, i32 80
   142 = ptradd ptr @f, i32 %141
-  145 = ptradd ptr %142, i32 %394879885
+  145 = ptradd ptr %142, i32 %895913919
   145.load = load i32 from ptr %145
   store i32 %145.load to ptr %132
-  123 = ptradd ptr %120878, i32 %395
+  123 = ptradd ptr %120912, i32 %896
   123.load = load i32 from ptr %123
   125 = icmp ne i32 %123.load, i32 0
   br i1 %125, bb %while.body116, bb %while.exit117
 while.exit117:  pred(while.body116, entry106)
-  153 = ptradd ptr @head, i32 %393
+  153 = ptradd ptr @head, i32 %894
   153.load = load i32 from ptr %153
-  160875 = icmp ne i32 %153.load, i32 -1
-  br i1 %160875, bb %while.body156_preheader, bb %while.exit157
+  160909 = icmp ne i32 %153.load, i32 -1
+  br i1 %160909, bb %while.body156_preheader, bb %while.exit157
 while.body156_preheader:  pred(while.exit117)
   169 = add i32 %d, i32 1
   br bb %while.body156
 while.body156:  pred(while.body156, while.body156_preheader)
-  i114.phi876 = phi [bb %while.body156, i32 %174.load, bb %while.body156_preheader, i32 %153.load]
-  399 = shl i32 %i114.phi876, i32 2
-  165 = ptradd ptr @to, i32 %399
+  i114.phi910 = phi [bb %while.body156, i32 %174.load, bb %while.body156_preheader, i32 %153.load]
+  897 = shl i32 %i114.phi910, i32 2
+  165 = ptradd ptr @to, i32 %897
   165.load = load i32 from ptr %165
   call void tree(i32 %165.load, i32 %169)
-  174 = ptradd ptr @next, i32 %399
+  174 = ptradd ptr @next, i32 %897
   174.load = load i32 from ptr %174
   160 = icmp ne i32 %174.load, i32 -1
   br i1 %160, bb %while.body156, bb %while.exit157
@@ -69,490 +69,490 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry306:  pred()
-  2541 = call i32 getch()
+  2545 = call i32 getch()
   br bb %quick_read.while.cond
-entry306.split539:  pred(quick_read.then49, quick_read.else)
-  308.ret = phi [bb %quick_read.then49, i32 %53590, bb %quick_read.else, i32 %x.phi568]
+entry306.split543:  pred(quick_read.then49, quick_read.else)
+  308.ret = phi [bb %quick_read.then49, i32 %53594, bb %quick_read.else, i32 %x.phi572]
   store i32 %308.ret to ptr @n
-  2597 = call i32 getch()
-  br bb %quick_read.while.cond599
-entry306.split539.split:  pred(quick_read.then49645, quick_read.else648)
-  310.ret = phi [bb %quick_read.then49645, i32 %53646, bb %quick_read.else648, i32 %x.phi624]
+  2601 = call i32 getch()
+  br bb %quick_read.while.cond603
+entry306.split543.split:  pred(quick_read.then49649, quick_read.else652)
+  310.ret = phi [bb %quick_read.then49649, i32 %53650, bb %quick_read.else652, i32 %x.phi628]
   store i32 %310.ret to ptr @m
   store i32 1061109567 to ptr @dep
-  n.load506910 = load i32 from ptr @n
-  96507911 = icmp sle i32 1, i32 %n.load506910
-  br i1 %96507911, bb %init.while.body92_preheader, bb %init.while.exit93
+  n.load510944 = load i32 from ptr @n
+  96511945 = icmp sle i32 1, i32 %n.load510944
+  br i1 %96511945, bb %init.while.body92_preheader, bb %init.while.exit93
 while.body314_preheader:  pred(init.while.exit93)
   br bb %while.body314
-while.body314:  pred(while.body314.split651.split, while.body314_preheader)
-  i312.phi909 = phi [bb %while.body314.split651.split, i32 %329, bb %while.body314_preheader, i32 1]
-  2653 = call i32 getch()
-  br bb %quick_read.while.cond655
-while.body314.split651:  pred(quick_read.then49701, quick_read.else704)
-  321.ret = phi [bb %quick_read.then49701, i32 %53702, bb %quick_read.else704, i32 %x.phi680]
-  2709 = call i32 getch()
-  br bb %quick_read.while.cond711
-while.body314.split651.split:  pred(quick_read.then49757, quick_read.else760)
-  323.ret = phi [bb %quick_read.then49757, i32 %53758, bb %quick_read.else760, i32 %x.phi736]
-  cnt.load519 = load i32 from ptr @cnt
-  401520 = shl i32 %cnt.load519, i32 2
-  60521 = ptradd ptr @to, i32 %401520
-  store i32 %323.ret to ptr %60521
-  65525 = ptradd ptr @next, i32 %401520
-  403526 = shl i32 %321.ret, i32 2
-  69527 = ptradd ptr @head, i32 %403526
-  69.load528 = load i32 from ptr %69527
-  store i32 %69.load528 to ptr %65525
-  store i32 %cnt.load519 to ptr %69527
-  78533 = add i32 %cnt.load519, i32 1
-  store i32 %78533 to ptr @cnt
-  80535 = mul i32 %323.ret, i32 80
-  81536 = ptradd ptr @f, i32 %80535
-  store i32 %321.ret to ptr %81536
-  329 = add i32 %i312.phi909, i32 1
+while.body314:  pred(while.body314.split655.split, while.body314_preheader)
+  i312.phi943 = phi [bb %while.body314.split655.split, i32 %329, bb %while.body314_preheader, i32 1]
+  2657 = call i32 getch()
+  br bb %quick_read.while.cond659
+while.body314.split655:  pred(quick_read.then49705, quick_read.else708)
+  321.ret = phi [bb %quick_read.then49705, i32 %53706, bb %quick_read.else708, i32 %x.phi684]
+  2713 = call i32 getch()
+  br bb %quick_read.while.cond715
+while.body314.split655.split:  pred(quick_read.then49761, quick_read.else764)
+  323.ret = phi [bb %quick_read.then49761, i32 %53762, bb %quick_read.else764, i32 %x.phi740]
+  cnt.load523 = load i32 from ptr @cnt
+  898 = shl i32 %cnt.load523, i32 2
+  60525 = ptradd ptr @to, i32 %898
+  store i32 %323.ret to ptr %60525
+  65529 = ptradd ptr @next, i32 %898
+  900 = shl i32 %321.ret, i32 2
+  69531 = ptradd ptr @head, i32 %900
+  69.load532 = load i32 from ptr %69531
+  store i32 %69.load532 to ptr %65529
+  store i32 %cnt.load523 to ptr %69531
+  78537 = add i32 %cnt.load523, i32 1
+  store i32 %78537 to ptr @cnt
+  80539 = mul i32 %323.ret, i32 80
+  81540 = ptradd ptr @f, i32 %80539
+  store i32 %321.ret to ptr %81540
+  329 = add i32 %i312.phi943, i32 1
   n.load317 = load i32 from ptr @n
   318 = icmp ne i32 %329, i32 %n.load317
   br i1 %318, bb %while.body314, bb %while.exit315
-while.exit315:  pred(while.body314.split651.split, init.while.exit93)
+while.exit315:  pred(while.body314.split655.split, init.while.exit93)
   call void tree(i32 1, i32 1)
-  m.load334905 = load i32 from ptr @m
-  335906 = icmp ne i32 %m.load334905, i32 0
-  br i1 %335906, bb %while.body332, bb %while.exit333
+  m.load334939 = load i32 from ptr @m
+  335940 = icmp ne i32 %m.load334939, i32 0
+  br i1 %335940, bb %while.body332, bb %while.exit333
 while.body332:  pred(while.body332.split, while.exit315)
-  2765 = call i32 getch()
-  br bb %quick_read.while.cond767
-while.body332.split763:  pred(quick_read.then49813, quick_read.else816)
-  337.ret = phi [bb %quick_read.then49813, i32 %53814, bb %quick_read.else816, i32 %x.phi792]
-  2821 = call i32 getch()
-  br bb %quick_read.while.cond823
-while.body332.split763.split:  pred(quick_read.then49869, quick_read.else872)
-  339.ret = phi [bb %quick_read.then49869, i32 %53870, bb %quick_read.else872, i32 %x.phi848]
-  379407 = shl i32 %337.ret, i32 2
-  181408 = ptradd ptr @dep, i32 %379407
-  181.load409 = load i32 from ptr %181408
-  380410 = shl i32 %339.ret, i32 2
-  185411 = ptradd ptr @dep, i32 %380410
-  185.load412 = load i32 from ptr %185411
-  187413 = icmp slt i32 %181.load409, i32 %185.load412
-  br i1 %187413, bb %LCA.then188, bb %LCA.if.exit189
+  2769 = call i32 getch()
+  br bb %quick_read.while.cond771
+while.body332.split767:  pred(quick_read.then49817, quick_read.else820)
+  337.ret = phi [bb %quick_read.then49817, i32 %53818, bb %quick_read.else820, i32 %x.phi796]
+  2825 = call i32 getch()
+  br bb %quick_read.while.cond827
+while.body332.split767.split:  pred(quick_read.then49873, quick_read.else876)
+  339.ret = phi [bb %quick_read.then49873, i32 %53874, bb %quick_read.else876, i32 %x.phi852]
+  901 = shl i32 %337.ret, i32 2
+  181412 = ptradd ptr @dep, i32 %901
+  181.load413 = load i32 from ptr %181412
+  902 = shl i32 %339.ret, i32 2
+  185415 = ptradd ptr @dep, i32 %902
+  185.load416 = load i32 from ptr %185415
+  187417 = icmp slt i32 %181.load413, i32 %185.load416
+  br i1 %187417, bb %LCA.then188, bb %LCA.if.exit189
 while.body332.split:  pred(LCA.then254, LCA.while.exit260)
-  342.ret = phi [bb %LCA.then254, i32 %x.stack177.phi352419901, bb %LCA.while.exit260, i32 %304.load488]
+  342.ret = phi [bb %LCA.then254, i32 %x.stack177.phi352423935, bb %LCA.while.exit260, i32 %304.load492]
   call void putint(i32 %342.ret)
   call void putch(i32 10)
   m.load346 = load i32 from ptr @m
-  347 = sub i32 %m.load346, i32 1
-  store i32 %347 to ptr @m
-  335 = icmp ne i32 %347, i32 0
+  407 = add i32 %m.load346, i32 -1
+  store i32 %407 to ptr @m
+  335 = icmp ne i32 %407, i32 0
   br i1 %335, bb %while.body332, bb %while.exit333
 while.exit333:  pred(while.body332.split, while.exit315)
   ret i32 0
-LCA.then188:  pred(while.body332.split763.split)
+LCA.then188:  pred(while.body332.split767.split)
   br bb %LCA.if.exit189
-LCA.if.exit189:  pred(while.body332.split763.split, LCA.then188)
-  y.stack.phi355418 = phi [bb %while.body332.split763.split, i32 %339.ret, bb %LCA.then188, i32 %337.ret]
-  x.stack177.phi352419 = phi [bb %while.body332.split763.split, i32 %337.ret, bb %LCA.then188, i32 %339.ret]
-  381424894 = shl i32 %x.stack177.phi352419, i32 2
-  202425895 = ptradd ptr @dep, i32 %381424894
-  202.load426896 = load i32 from ptr %202425895
-  382427897 = shl i32 %y.stack.phi355418, i32 2
-  206428898 = ptradd ptr @dep, i32 %382427897
-  206.load429899 = load i32 from ptr %206428898
-  208430900 = icmp sgt i32 %202.load426896, i32 %206.load429899
-  br i1 %208430900, bb %LCA.while.body198_preheader, bb %LCA.while.exit199
+LCA.if.exit189:  pred(while.body332.split767.split, LCA.then188)
+  y.stack.phi355422 = phi [bb %while.body332.split767.split, i32 %339.ret, bb %LCA.then188, i32 %337.ret]
+  x.stack177.phi352423 = phi [bb %while.body332.split767.split, i32 %337.ret, bb %LCA.then188, i32 %339.ret]
+  903928 = shl i32 %x.stack177.phi352423, i32 2
+  202429929 = ptradd ptr @dep, i32 %903928
+  202.load430930 = load i32 from ptr %202429929
+  904931 = shl i32 %y.stack.phi355422, i32 2
+  206432932 = ptradd ptr @dep, i32 %904931
+  206.load433933 = load i32 from ptr %206432932
+  208434934 = icmp sgt i32 %202.load430930, i32 %206.load433933
+  br i1 %208434934, bb %LCA.while.body198_preheader, bb %LCA.while.exit199
 LCA.while.body198_preheader:  pred(LCA.if.exit189)
   br bb %LCA.while.body198
 LCA.while.body198:  pred(LCA.if.exit239, LCA.while.body198_preheader)
-  x.stack177.phi351423903 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350460, bb %LCA.while.body198_preheader, i32 %x.stack177.phi352419]
-  i196.phi358422902 = phi [bb %LCA.if.exit239, i32 %250461, bb %LCA.while.body198_preheader, i32 19]
-  211433 = mul i32 %x.stack177.phi351423903, i32 80
-  212434 = ptradd ptr @f, i32 %211433
-  383435 = shl i32 %i196.phi358422902, i32 2
-  215436 = ptradd ptr %212434, i32 %383435
-  215.load437 = load i32 from ptr %215436
-  217438 = icmp ne i32 %215.load437, i32 0
-  br i1 %217438, bb %LCA.select.then218, bb %LCA.select.else219
+  x.stack177.phi351427937 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350464, bb %LCA.while.body198_preheader, i32 %x.stack177.phi352423]
+  i196.phi358426936 = phi [bb %LCA.if.exit239, i32 %388465, bb %LCA.while.body198_preheader, i32 19]
+  211437 = mul i32 %x.stack177.phi351427937, i32 80
+  212438 = ptradd ptr @f, i32 %211437
+  905 = shl i32 %i196.phi358426936, i32 2
+  215440 = ptradd ptr %212438, i32 %905
+  215.load441 = load i32 from ptr %215440
+  217442 = icmp ne i32 %215.load441, i32 0
+  br i1 %217442, bb %LCA.select.then218, bb %LCA.select.else219
 LCA.while.exit199:  pred(LCA.if.exit239, LCA.if.exit189)
-  x.stack177.phi352419901 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350460, bb %LCA.if.exit189, i32 %x.stack177.phi352419]
-  253441 = icmp eq i32 %x.stack177.phi352419901, i32 %y.stack.phi355418
-  br i1 %253441, bb %LCA.then254, bb %LCA.if.exit255
+  x.stack177.phi352423935 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350464, bb %LCA.if.exit189, i32 %x.stack177.phi352423]
+  253445 = icmp eq i32 %x.stack177.phi352423935, i32 %y.stack.phi355422
+  br i1 %253445, bb %LCA.then254, bb %LCA.if.exit255
 LCA.select.then218:  pred(LCA.while.body198)
-  385445 = shl i32 %215.load437, i32 2
-  230446 = ptradd ptr @dep, i32 %385445
-  230.load447 = load i32 from ptr %230446
-  236449 = icmp sge i32 %230.load447, i32 %206.load429899
+  906 = shl i32 %215.load441, i32 2
+  230450 = ptradd ptr @dep, i32 %906
+  230.load451 = load i32 from ptr %230450
+  236453 = icmp sge i32 %230.load451, i32 %206.load433933
   br bb %LCA.select.exit220
 LCA.select.else219:  pred(LCA.while.body198)
   br bb %LCA.select.exit220
 LCA.select.exit220:  pred(LCA.select.then218, LCA.select.else219)
-  select221.phi454 = phi [bb %LCA.select.else219, i1 0, bb %LCA.select.then218, i1 %236449]
-  br i1 %select221.phi454, bb %LCA.then238, bb %LCA.if.exit239
+  select221.phi458 = phi [bb %LCA.select.else219, i1 0, bb %LCA.select.then218, i1 %236453]
+  br i1 %select221.phi458, bb %LCA.then238, bb %LCA.if.exit239
 LCA.then238:  pred(LCA.select.exit220)
   br bb %LCA.if.exit239
 LCA.if.exit239:  pred(LCA.select.exit220, LCA.then238)
-  x.stack177.phi350460 = phi [bb %LCA.select.exit220, i32 %x.stack177.phi351423903, bb %LCA.then238, i32 %215.load437]
-  250461 = sub i32 %i196.phi358422902, i32 1
-  381424 = shl i32 %x.stack177.phi350460, i32 2
-  202425 = ptradd ptr @dep, i32 %381424
-  202.load426 = load i32 from ptr %202425
-  208430 = icmp sgt i32 %202.load426, i32 %206.load429899
-  br i1 %208430, bb %LCA.while.body198, bb %LCA.while.exit199
+  x.stack177.phi350464 = phi [bb %LCA.select.exit220, i32 %x.stack177.phi351427937, bb %LCA.then238, i32 %215.load441]
+  388465 = add i32 %i196.phi358426936, i32 -1
+  903 = shl i32 %x.stack177.phi350464, i32 2
+  202429 = ptradd ptr @dep, i32 %903
+  202.load430 = load i32 from ptr %202429
+  208434 = icmp sgt i32 %202.load430, i32 %206.load433933
+  br i1 %208434, bb %LCA.while.body198, bb %LCA.while.exit199
 LCA.then254:  pred(LCA.while.exit199)
   br bb %while.body332.split
 LCA.if.exit255:  pred(LCA.while.exit199)
-  262471887 = icmp sge i32 19, i32 0
-  265474888 = mul i32 %x.stack177.phi352419901, i32 80
-  br i1 %262471887, bb %LCA.while.body259_preheader, bb %LCA.while.exit260
+  262475921 = icmp sge i32 19, i32 0
+  265478922 = mul i32 %x.stack177.phi352423935, i32 80
+  br i1 %262475921, bb %LCA.while.body259_preheader, bb %LCA.while.exit260
 LCA.while.body259_preheader:  pred(LCA.if.exit255)
   br bb %LCA.while.body259
 LCA.while.body259:  pred(LCA.if.exit280, LCA.while.body259_preheader)
-  265474888893 = phi [bb %LCA.if.exit280, i32 %265474, bb %LCA.while.body259_preheader, i32 %265474888]
-  x.stack177.phi349470892 = phi [bb %LCA.if.exit280, i32 %x.stack177.phi496, bb %LCA.while.body259_preheader, i32 %x.stack177.phi352419901]
-  y.stack.phi354469891 = phi [bb %LCA.if.exit280, i32 %y.stack.phi495, bb %LCA.while.body259_preheader, i32 %y.stack.phi355418]
-  i196.phi468890 = phi [bb %LCA.if.exit280, i32 %299497, bb %LCA.while.body259_preheader, i32 19]
-  266475 = ptradd ptr @f, i32 %265474888893
-  388476 = shl i32 %i196.phi468890, i32 2
-  269477 = ptradd ptr %266475, i32 %388476
-  269.load478 = load i32 from ptr %269477
-  272479 = mul i32 %y.stack.phi354469891, i32 80
-  273480 = ptradd ptr @f, i32 %272479
-  276481 = ptradd ptr %273480, i32 %388476
-  276.load482 = load i32 from ptr %276481
-  278483 = icmp ne i32 %269.load478, i32 %276.load482
-  br i1 %278483, bb %LCA.then279, bb %LCA.if.exit280
+  265478922927 = phi [bb %LCA.if.exit280, i32 %265478, bb %LCA.while.body259_preheader, i32 %265478922]
+  x.stack177.phi349474926 = phi [bb %LCA.if.exit280, i32 %x.stack177.phi500, bb %LCA.while.body259_preheader, i32 %x.stack177.phi352423935]
+  y.stack.phi354473925 = phi [bb %LCA.if.exit280, i32 %y.stack.phi499, bb %LCA.while.body259_preheader, i32 %y.stack.phi355422]
+  i196.phi472924 = phi [bb %LCA.if.exit280, i32 %393501, bb %LCA.while.body259_preheader, i32 19]
+  266479 = ptradd ptr @f, i32 %265478922927
+  907 = shl i32 %i196.phi472924, i32 2
+  269481 = ptradd ptr %266479, i32 %907
+  269.load482 = load i32 from ptr %269481
+  272483 = mul i32 %y.stack.phi354473925, i32 80
+  273484 = ptradd ptr @f, i32 %272483
+  276485 = ptradd ptr %273484, i32 %907
+  276.load486 = load i32 from ptr %276485
+  278487 = icmp ne i32 %269.load482, i32 %276.load486
+  br i1 %278487, bb %LCA.then279, bb %LCA.if.exit280
 LCA.while.exit260:  pred(LCA.if.exit280, LCA.if.exit255)
-  265474888889 = phi [bb %LCA.if.exit280, i32 %265474, bb %LCA.if.exit255, i32 %265474888]
-  302487 = ptradd ptr @f, i32 %265474888889
-  304.load488 = load i32 from ptr %302487
+  265478922923 = phi [bb %LCA.if.exit280, i32 %265478, bb %LCA.if.exit255, i32 %265478922]
+  302491 = ptradd ptr @f, i32 %265478922923
+  304.load492 = load i32 from ptr %302491
   br bb %while.body332.split
 LCA.then279:  pred(LCA.while.body259)
   br bb %LCA.if.exit280
 LCA.if.exit280:  pred(LCA.while.body259, LCA.then279)
-  y.stack.phi495 = phi [bb %LCA.while.body259, i32 %y.stack.phi354469891, bb %LCA.then279, i32 %276.load482]
-  x.stack177.phi496 = phi [bb %LCA.while.body259, i32 %x.stack177.phi349470892, bb %LCA.then279, i32 %269.load478]
-  299497 = sub i32 %i196.phi468890, i32 1
-  262471 = icmp sge i32 %299497, i32 0
-  265474 = mul i32 %x.stack177.phi496, i32 80
-  br i1 %262471, bb %LCA.while.body259, bb %LCA.while.exit260
-init.while.body92_preheader:  pred(entry306.split539.split)
+  y.stack.phi499 = phi [bb %LCA.while.body259, i32 %y.stack.phi354473925, bb %LCA.then279, i32 %276.load486]
+  x.stack177.phi500 = phi [bb %LCA.while.body259, i32 %x.stack177.phi349474926, bb %LCA.then279, i32 %269.load482]
+  393501 = add i32 %i196.phi472924, i32 -1
+  262475 = icmp sge i32 %393501, i32 0
+  265478 = mul i32 %x.stack177.phi500, i32 80
+  br i1 %262475, bb %LCA.while.body259, bb %LCA.while.exit260
+init.while.body92_preheader:  pred(entry306.split543.split)
   br bb %init.while.body92
 init.while.body92:  pred(init.while.body92, init.while.body92_preheader)
-  i.phi505912 = phi [bb %init.while.body92, i32 %105513, bb %init.while.body92_preheader, i32 1]
-  392510 = shl i32 %i.phi505912, i32 2
-  100511 = ptradd ptr @head, i32 %392510
-  store i32 -1 to ptr %100511
-  105513 = add i32 %i.phi505912, i32 1
-  96507 = icmp sle i32 %105513, i32 %n.load506910
-  br i1 %96507, bb %init.while.body92, bb %init.while.exit93
-init.while.exit93:  pred(init.while.body92, entry306.split539.split)
-  318908 = icmp ne i32 1, i32 %n.load506910
-  br i1 %318908, bb %while.body314_preheader, bb %while.exit315
+  i.phi509946 = phi [bb %init.while.body92, i32 %105517, bb %init.while.body92_preheader, i32 1]
+  908 = shl i32 %i.phi509946, i32 2
+  100515 = ptradd ptr @head, i32 %908
+  store i32 -1 to ptr %100515
+  105517 = add i32 %i.phi509946, i32 1
+  96511 = icmp sle i32 %105517, i32 %n.load510944
+  br i1 %96511, bb %init.while.body92, bb %init.while.exit93
+init.while.exit93:  pred(init.while.body92, entry306.split543.split)
+  318942 = icmp ne i32 1, i32 %n.load510944
+  br i1 %318942, bb %while.body314_preheader, bb %while.exit315
 quick_read.while.cond:  pred(entry306, quick_read.if.exit)
-  f.phi374544 = phi [bb %entry306, i32 0, bb %quick_read.if.exit, i32 %f.phi564]
-  ch.phi371545 = phi [bb %entry306, i32 %2541, bb %quick_read.if.exit, i32 %25565]
-  9546 = icmp slt i32 %ch.phi371545, i32 48
-  br i1 %9546, bb %quick_read.select.then, bb %quick_read.select.else
+  f.phi374548 = phi [bb %entry306, i32 0, bb %quick_read.if.exit, i32 %f.phi568]
+  ch.phi371549 = phi [bb %entry306, i32 %2545, bb %quick_read.if.exit, i32 %25569]
+  9550 = icmp slt i32 %ch.phi371549, i32 48
+  br i1 %9550, bb %quick_read.select.then, bb %quick_read.select.else
 quick_read.while.body:  pred(quick_read.select.exit)
-  20549 = icmp eq i32 %ch.phi371545, i32 45
-  br i1 %20549, bb %quick_read.then, bb %quick_read.if.exit
+  20553 = icmp eq i32 %ch.phi371549, i32 45
+  br i1 %20553, bb %quick_read.then, bb %quick_read.if.exit
 quick_read.while.exit:  pred(quick_read.select.exit)
   br bb %quick_read.while.cond26
 quick_read.select.then:  pred(quick_read.while.cond)
   br bb %quick_read.select.exit
 quick_read.select.else:  pred(quick_read.while.cond)
-  15556 = icmp sgt i32 %ch.phi371545, i32 57
+  15560 = icmp sgt i32 %ch.phi371549, i32 57
   br bb %quick_read.select.exit
 quick_read.select.exit:  pred(quick_read.select.then, quick_read.select.else)
-  select.phi559 = phi [bb %quick_read.select.else, i1 %15556, bb %quick_read.select.then, i1 -1]
-  br i1 %select.phi559, bb %quick_read.while.body, bb %quick_read.while.exit
+  select.phi563 = phi [bb %quick_read.select.else, i1 %15560, bb %quick_read.select.then, i1 -1]
+  br i1 %select.phi563, bb %quick_read.while.body, bb %quick_read.while.exit
 quick_read.then:  pred(quick_read.while.body)
   br bb %quick_read.if.exit
 quick_read.if.exit:  pred(quick_read.while.body, quick_read.then)
-  f.phi564 = phi [bb %quick_read.while.body, i32 %f.phi374544, bb %quick_read.then, i32 1]
-  25565 = call i32 getch()
+  f.phi568 = phi [bb %quick_read.while.body, i32 %f.phi374548, bb %quick_read.then, i32 1]
+  25569 = call i32 getch()
   br bb %quick_read.while.cond
 quick_read.while.cond26:  pred(quick_read.while.exit, quick_read.while.body27)
-  x.phi568 = phi [bb %quick_read.while.exit, i32 0, bb %quick_read.while.body27, i32 %44575]
-  ch.phi569 = phi [bb %quick_read.while.exit, i32 %ch.phi371545, bb %quick_read.while.body27, i32 %46576]
-  30570 = icmp sge i32 %ch.phi569, i32 48
-  br i1 %30570, bb %quick_read.select.then31, bb %quick_read.select.else32
+  x.phi572 = phi [bb %quick_read.while.exit, i32 0, bb %quick_read.while.body27, i32 %408579]
+  ch.phi573 = phi [bb %quick_read.while.exit, i32 %ch.phi371549, bb %quick_read.while.body27, i32 %46580]
+  30574 = icmp sge i32 %ch.phi573, i32 48
+  br i1 %30574, bb %quick_read.select.then31, bb %quick_read.select.else32
 quick_read.while.body27:  pred(quick_read.select.exit33)
-  41573 = mul i32 %x.phi568, i32 10
-  43574 = add i32 %41573, i32 %ch.phi569
-  44575 = sub i32 %43574, i32 48
-  46576 = call i32 getch()
+  41577 = mul i32 %x.phi572, i32 10
+  43578 = add i32 %41577, i32 %ch.phi573
+  408579 = add i32 %43578, i32 -48
+  46580 = call i32 getch()
   br bb %quick_read.while.cond26
 quick_read.while.exit28:  pred(quick_read.select.exit33)
-  48579 = icmp ne i32 %f.phi374544, i32 0
-  br i1 %48579, bb %quick_read.then49, bb %quick_read.else
+  48583 = icmp ne i32 %f.phi374548, i32 0
+  br i1 %48583, bb %quick_read.then49, bb %quick_read.else
 quick_read.select.then31:  pred(quick_read.while.cond26)
-  36582 = icmp sle i32 %ch.phi569, i32 57
+  36586 = icmp sle i32 %ch.phi573, i32 57
   br bb %quick_read.select.exit33
 quick_read.select.else32:  pred(quick_read.while.cond26)
   br bb %quick_read.select.exit33
 quick_read.select.exit33:  pred(quick_read.select.then31, quick_read.select.else32)
-  select34.phi587 = phi [bb %quick_read.select.else32, i1 0, bb %quick_read.select.then31, i1 %36582]
-  br i1 %select34.phi587, bb %quick_read.while.body27, bb %quick_read.while.exit28
+  select34.phi591 = phi [bb %quick_read.select.else32, i1 0, bb %quick_read.select.then31, i1 %36586]
+  br i1 %select34.phi591, bb %quick_read.while.body27, bb %quick_read.while.exit28
 quick_read.then49:  pred(quick_read.while.exit28)
-  53590 = sub i32 0, i32 %x.phi568
-  br bb %entry306.split539
+  53594 = sub i32 0, i32 %x.phi572
+  br bb %entry306.split543
 quick_read.else:  pred(quick_read.while.exit28)
-  br bb %entry306.split539
-quick_read.while.cond599:  pred(entry306.split539, quick_read.if.exit619)
-  f.phi374600 = phi [bb %entry306.split539, i32 0, bb %quick_read.if.exit619, i32 %f.phi620]
-  ch.phi371601 = phi [bb %entry306.split539, i32 %2597, bb %quick_read.if.exit619, i32 %25621]
-  9602 = icmp slt i32 %ch.phi371601, i32 48
-  br i1 %9602, bb %quick_read.select.then609, bb %quick_read.select.else611
-quick_read.while.body604:  pred(quick_read.select.exit614)
-  20605 = icmp eq i32 %ch.phi371601, i32 45
-  br i1 %20605, bb %quick_read.then617, bb %quick_read.if.exit619
-quick_read.while.exit607:  pred(quick_read.select.exit614)
-  br bb %quick_read.while.cond26623
-quick_read.select.then609:  pred(quick_read.while.cond599)
-  br bb %quick_read.select.exit614
-quick_read.select.else611:  pred(quick_read.while.cond599)
-  15612 = icmp sgt i32 %ch.phi371601, i32 57
-  br bb %quick_read.select.exit614
-quick_read.select.exit614:  pred(quick_read.select.then609, quick_read.select.else611)
-  select.phi615 = phi [bb %quick_read.select.else611, i1 %15612, bb %quick_read.select.then609, i1 -1]
-  br i1 %select.phi615, bb %quick_read.while.body604, bb %quick_read.while.exit607
-quick_read.then617:  pred(quick_read.while.body604)
-  br bb %quick_read.if.exit619
-quick_read.if.exit619:  pred(quick_read.while.body604, quick_read.then617)
-  f.phi620 = phi [bb %quick_read.while.body604, i32 %f.phi374600, bb %quick_read.then617, i32 1]
-  25621 = call i32 getch()
-  br bb %quick_read.while.cond599
-quick_read.while.cond26623:  pred(quick_read.while.exit607, quick_read.while.body27628)
-  x.phi624 = phi [bb %quick_read.while.exit607, i32 0, bb %quick_read.while.body27628, i32 %44631]
-  ch.phi625 = phi [bb %quick_read.while.exit607, i32 %ch.phi371601, bb %quick_read.while.body27628, i32 %46632]
-  30626 = icmp sge i32 %ch.phi625, i32 48
-  br i1 %30626, bb %quick_read.select.then31637, bb %quick_read.select.else32640
-quick_read.while.body27628:  pred(quick_read.select.exit33642)
-  41629 = mul i32 %x.phi624, i32 10
-  43630 = add i32 %41629, i32 %ch.phi625
-  44631 = sub i32 %43630, i32 48
-  46632 = call i32 getch()
-  br bb %quick_read.while.cond26623
-quick_read.while.exit28634:  pred(quick_read.select.exit33642)
-  48635 = icmp ne i32 %f.phi374600, i32 0
-  br i1 %48635, bb %quick_read.then49645, bb %quick_read.else648
-quick_read.select.then31637:  pred(quick_read.while.cond26623)
-  36638 = icmp sle i32 %ch.phi625, i32 57
-  br bb %quick_read.select.exit33642
-quick_read.select.else32640:  pred(quick_read.while.cond26623)
-  br bb %quick_read.select.exit33642
-quick_read.select.exit33642:  pred(quick_read.select.then31637, quick_read.select.else32640)
-  select34.phi643 = phi [bb %quick_read.select.else32640, i1 0, bb %quick_read.select.then31637, i1 %36638]
-  br i1 %select34.phi643, bb %quick_read.while.body27628, bb %quick_read.while.exit28634
-quick_read.then49645:  pred(quick_read.while.exit28634)
-  53646 = sub i32 0, i32 %x.phi624
-  br bb %entry306.split539.split
-quick_read.else648:  pred(quick_read.while.exit28634)
-  br bb %entry306.split539.split
-quick_read.while.cond655:  pred(while.body314, quick_read.if.exit675)
-  f.phi374656 = phi [bb %while.body314, i32 0, bb %quick_read.if.exit675, i32 %f.phi676]
-  ch.phi371657 = phi [bb %while.body314, i32 %2653, bb %quick_read.if.exit675, i32 %25677]
-  9658 = icmp slt i32 %ch.phi371657, i32 48
-  br i1 %9658, bb %quick_read.select.then665, bb %quick_read.select.else667
-quick_read.while.body660:  pred(quick_read.select.exit670)
-  20661 = icmp eq i32 %ch.phi371657, i32 45
-  br i1 %20661, bb %quick_read.then673, bb %quick_read.if.exit675
-quick_read.while.exit663:  pred(quick_read.select.exit670)
-  br bb %quick_read.while.cond26679
-quick_read.select.then665:  pred(quick_read.while.cond655)
-  br bb %quick_read.select.exit670
-quick_read.select.else667:  pred(quick_read.while.cond655)
-  15668 = icmp sgt i32 %ch.phi371657, i32 57
-  br bb %quick_read.select.exit670
-quick_read.select.exit670:  pred(quick_read.select.then665, quick_read.select.else667)
-  select.phi671 = phi [bb %quick_read.select.else667, i1 %15668, bb %quick_read.select.then665, i1 -1]
-  br i1 %select.phi671, bb %quick_read.while.body660, bb %quick_read.while.exit663
-quick_read.then673:  pred(quick_read.while.body660)
-  br bb %quick_read.if.exit675
-quick_read.if.exit675:  pred(quick_read.while.body660, quick_read.then673)
-  f.phi676 = phi [bb %quick_read.while.body660, i32 %f.phi374656, bb %quick_read.then673, i32 1]
-  25677 = call i32 getch()
-  br bb %quick_read.while.cond655
-quick_read.while.cond26679:  pred(quick_read.while.exit663, quick_read.while.body27684)
-  x.phi680 = phi [bb %quick_read.while.exit663, i32 0, bb %quick_read.while.body27684, i32 %44687]
-  ch.phi681 = phi [bb %quick_read.while.exit663, i32 %ch.phi371657, bb %quick_read.while.body27684, i32 %46688]
-  30682 = icmp sge i32 %ch.phi681, i32 48
-  br i1 %30682, bb %quick_read.select.then31693, bb %quick_read.select.else32696
-quick_read.while.body27684:  pred(quick_read.select.exit33698)
-  41685 = mul i32 %x.phi680, i32 10
-  43686 = add i32 %41685, i32 %ch.phi681
-  44687 = sub i32 %43686, i32 48
-  46688 = call i32 getch()
-  br bb %quick_read.while.cond26679
-quick_read.while.exit28690:  pred(quick_read.select.exit33698)
-  48691 = icmp ne i32 %f.phi374656, i32 0
-  br i1 %48691, bb %quick_read.then49701, bb %quick_read.else704
-quick_read.select.then31693:  pred(quick_read.while.cond26679)
-  36694 = icmp sle i32 %ch.phi681, i32 57
-  br bb %quick_read.select.exit33698
-quick_read.select.else32696:  pred(quick_read.while.cond26679)
-  br bb %quick_read.select.exit33698
-quick_read.select.exit33698:  pred(quick_read.select.then31693, quick_read.select.else32696)
-  select34.phi699 = phi [bb %quick_read.select.else32696, i1 0, bb %quick_read.select.then31693, i1 %36694]
-  br i1 %select34.phi699, bb %quick_read.while.body27684, bb %quick_read.while.exit28690
-quick_read.then49701:  pred(quick_read.while.exit28690)
-  53702 = sub i32 0, i32 %x.phi680
-  br bb %while.body314.split651
-quick_read.else704:  pred(quick_read.while.exit28690)
-  br bb %while.body314.split651
-quick_read.while.cond711:  pred(while.body314.split651, quick_read.if.exit731)
-  f.phi374712 = phi [bb %while.body314.split651, i32 0, bb %quick_read.if.exit731, i32 %f.phi732]
-  ch.phi371713 = phi [bb %while.body314.split651, i32 %2709, bb %quick_read.if.exit731, i32 %25733]
-  9714 = icmp slt i32 %ch.phi371713, i32 48
-  br i1 %9714, bb %quick_read.select.then721, bb %quick_read.select.else723
-quick_read.while.body716:  pred(quick_read.select.exit726)
-  20717 = icmp eq i32 %ch.phi371713, i32 45
-  br i1 %20717, bb %quick_read.then729, bb %quick_read.if.exit731
-quick_read.while.exit719:  pred(quick_read.select.exit726)
-  br bb %quick_read.while.cond26735
-quick_read.select.then721:  pred(quick_read.while.cond711)
-  br bb %quick_read.select.exit726
-quick_read.select.else723:  pred(quick_read.while.cond711)
-  15724 = icmp sgt i32 %ch.phi371713, i32 57
-  br bb %quick_read.select.exit726
-quick_read.select.exit726:  pred(quick_read.select.then721, quick_read.select.else723)
-  select.phi727 = phi [bb %quick_read.select.else723, i1 %15724, bb %quick_read.select.then721, i1 -1]
-  br i1 %select.phi727, bb %quick_read.while.body716, bb %quick_read.while.exit719
-quick_read.then729:  pred(quick_read.while.body716)
-  br bb %quick_read.if.exit731
-quick_read.if.exit731:  pred(quick_read.while.body716, quick_read.then729)
-  f.phi732 = phi [bb %quick_read.while.body716, i32 %f.phi374712, bb %quick_read.then729, i32 1]
-  25733 = call i32 getch()
-  br bb %quick_read.while.cond711
-quick_read.while.cond26735:  pred(quick_read.while.exit719, quick_read.while.body27740)
-  x.phi736 = phi [bb %quick_read.while.exit719, i32 0, bb %quick_read.while.body27740, i32 %44743]
-  ch.phi737 = phi [bb %quick_read.while.exit719, i32 %ch.phi371713, bb %quick_read.while.body27740, i32 %46744]
-  30738 = icmp sge i32 %ch.phi737, i32 48
-  br i1 %30738, bb %quick_read.select.then31749, bb %quick_read.select.else32752
-quick_read.while.body27740:  pred(quick_read.select.exit33754)
-  41741 = mul i32 %x.phi736, i32 10
-  43742 = add i32 %41741, i32 %ch.phi737
-  44743 = sub i32 %43742, i32 48
-  46744 = call i32 getch()
-  br bb %quick_read.while.cond26735
-quick_read.while.exit28746:  pred(quick_read.select.exit33754)
-  48747 = icmp ne i32 %f.phi374712, i32 0
-  br i1 %48747, bb %quick_read.then49757, bb %quick_read.else760
-quick_read.select.then31749:  pred(quick_read.while.cond26735)
-  36750 = icmp sle i32 %ch.phi737, i32 57
-  br bb %quick_read.select.exit33754
-quick_read.select.else32752:  pred(quick_read.while.cond26735)
-  br bb %quick_read.select.exit33754
-quick_read.select.exit33754:  pred(quick_read.select.then31749, quick_read.select.else32752)
-  select34.phi755 = phi [bb %quick_read.select.else32752, i1 0, bb %quick_read.select.then31749, i1 %36750]
-  br i1 %select34.phi755, bb %quick_read.while.body27740, bb %quick_read.while.exit28746
-quick_read.then49757:  pred(quick_read.while.exit28746)
-  53758 = sub i32 0, i32 %x.phi736
-  br bb %while.body314.split651.split
-quick_read.else760:  pred(quick_read.while.exit28746)
-  br bb %while.body314.split651.split
-quick_read.while.cond767:  pred(while.body332, quick_read.if.exit787)
-  f.phi374768 = phi [bb %while.body332, i32 0, bb %quick_read.if.exit787, i32 %f.phi788]
-  ch.phi371769 = phi [bb %while.body332, i32 %2765, bb %quick_read.if.exit787, i32 %25789]
-  9770 = icmp slt i32 %ch.phi371769, i32 48
-  br i1 %9770, bb %quick_read.select.then777, bb %quick_read.select.else779
-quick_read.while.body772:  pred(quick_read.select.exit782)
-  20773 = icmp eq i32 %ch.phi371769, i32 45
-  br i1 %20773, bb %quick_read.then785, bb %quick_read.if.exit787
-quick_read.while.exit775:  pred(quick_read.select.exit782)
-  br bb %quick_read.while.cond26791
-quick_read.select.then777:  pred(quick_read.while.cond767)
-  br bb %quick_read.select.exit782
-quick_read.select.else779:  pred(quick_read.while.cond767)
-  15780 = icmp sgt i32 %ch.phi371769, i32 57
-  br bb %quick_read.select.exit782
-quick_read.select.exit782:  pred(quick_read.select.then777, quick_read.select.else779)
-  select.phi783 = phi [bb %quick_read.select.else779, i1 %15780, bb %quick_read.select.then777, i1 -1]
-  br i1 %select.phi783, bb %quick_read.while.body772, bb %quick_read.while.exit775
-quick_read.then785:  pred(quick_read.while.body772)
-  br bb %quick_read.if.exit787
-quick_read.if.exit787:  pred(quick_read.while.body772, quick_read.then785)
-  f.phi788 = phi [bb %quick_read.while.body772, i32 %f.phi374768, bb %quick_read.then785, i32 1]
-  25789 = call i32 getch()
-  br bb %quick_read.while.cond767
-quick_read.while.cond26791:  pred(quick_read.while.exit775, quick_read.while.body27796)
-  x.phi792 = phi [bb %quick_read.while.exit775, i32 0, bb %quick_read.while.body27796, i32 %44799]
-  ch.phi793 = phi [bb %quick_read.while.exit775, i32 %ch.phi371769, bb %quick_read.while.body27796, i32 %46800]
-  30794 = icmp sge i32 %ch.phi793, i32 48
-  br i1 %30794, bb %quick_read.select.then31805, bb %quick_read.select.else32808
-quick_read.while.body27796:  pred(quick_read.select.exit33810)
-  41797 = mul i32 %x.phi792, i32 10
-  43798 = add i32 %41797, i32 %ch.phi793
-  44799 = sub i32 %43798, i32 48
-  46800 = call i32 getch()
-  br bb %quick_read.while.cond26791
-quick_read.while.exit28802:  pred(quick_read.select.exit33810)
-  48803 = icmp ne i32 %f.phi374768, i32 0
-  br i1 %48803, bb %quick_read.then49813, bb %quick_read.else816
-quick_read.select.then31805:  pred(quick_read.while.cond26791)
-  36806 = icmp sle i32 %ch.phi793, i32 57
-  br bb %quick_read.select.exit33810
-quick_read.select.else32808:  pred(quick_read.while.cond26791)
-  br bb %quick_read.select.exit33810
-quick_read.select.exit33810:  pred(quick_read.select.then31805, quick_read.select.else32808)
-  select34.phi811 = phi [bb %quick_read.select.else32808, i1 0, bb %quick_read.select.then31805, i1 %36806]
-  br i1 %select34.phi811, bb %quick_read.while.body27796, bb %quick_read.while.exit28802
-quick_read.then49813:  pred(quick_read.while.exit28802)
-  53814 = sub i32 0, i32 %x.phi792
-  br bb %while.body332.split763
-quick_read.else816:  pred(quick_read.while.exit28802)
-  br bb %while.body332.split763
-quick_read.while.cond823:  pred(while.body332.split763, quick_read.if.exit843)
-  f.phi374824 = phi [bb %while.body332.split763, i32 0, bb %quick_read.if.exit843, i32 %f.phi844]
-  ch.phi371825 = phi [bb %while.body332.split763, i32 %2821, bb %quick_read.if.exit843, i32 %25845]
-  9826 = icmp slt i32 %ch.phi371825, i32 48
-  br i1 %9826, bb %quick_read.select.then833, bb %quick_read.select.else835
-quick_read.while.body828:  pred(quick_read.select.exit838)
-  20829 = icmp eq i32 %ch.phi371825, i32 45
-  br i1 %20829, bb %quick_read.then841, bb %quick_read.if.exit843
-quick_read.while.exit831:  pred(quick_read.select.exit838)
-  br bb %quick_read.while.cond26847
-quick_read.select.then833:  pred(quick_read.while.cond823)
-  br bb %quick_read.select.exit838
-quick_read.select.else835:  pred(quick_read.while.cond823)
-  15836 = icmp sgt i32 %ch.phi371825, i32 57
-  br bb %quick_read.select.exit838
-quick_read.select.exit838:  pred(quick_read.select.then833, quick_read.select.else835)
-  select.phi839 = phi [bb %quick_read.select.else835, i1 %15836, bb %quick_read.select.then833, i1 -1]
-  br i1 %select.phi839, bb %quick_read.while.body828, bb %quick_read.while.exit831
-quick_read.then841:  pred(quick_read.while.body828)
-  br bb %quick_read.if.exit843
-quick_read.if.exit843:  pred(quick_read.while.body828, quick_read.then841)
-  f.phi844 = phi [bb %quick_read.while.body828, i32 %f.phi374824, bb %quick_read.then841, i32 1]
-  25845 = call i32 getch()
-  br bb %quick_read.while.cond823
-quick_read.while.cond26847:  pred(quick_read.while.exit831, quick_read.while.body27852)
-  x.phi848 = phi [bb %quick_read.while.exit831, i32 0, bb %quick_read.while.body27852, i32 %44855]
-  ch.phi849 = phi [bb %quick_read.while.exit831, i32 %ch.phi371825, bb %quick_read.while.body27852, i32 %46856]
-  30850 = icmp sge i32 %ch.phi849, i32 48
-  br i1 %30850, bb %quick_read.select.then31861, bb %quick_read.select.else32864
-quick_read.while.body27852:  pred(quick_read.select.exit33866)
-  41853 = mul i32 %x.phi848, i32 10
-  43854 = add i32 %41853, i32 %ch.phi849
-  44855 = sub i32 %43854, i32 48
-  46856 = call i32 getch()
-  br bb %quick_read.while.cond26847
-quick_read.while.exit28858:  pred(quick_read.select.exit33866)
-  48859 = icmp ne i32 %f.phi374824, i32 0
-  br i1 %48859, bb %quick_read.then49869, bb %quick_read.else872
-quick_read.select.then31861:  pred(quick_read.while.cond26847)
-  36862 = icmp sle i32 %ch.phi849, i32 57
-  br bb %quick_read.select.exit33866
-quick_read.select.else32864:  pred(quick_read.while.cond26847)
-  br bb %quick_read.select.exit33866
-quick_read.select.exit33866:  pred(quick_read.select.then31861, quick_read.select.else32864)
-  select34.phi867 = phi [bb %quick_read.select.else32864, i1 0, bb %quick_read.select.then31861, i1 %36862]
-  br i1 %select34.phi867, bb %quick_read.while.body27852, bb %quick_read.while.exit28858
-quick_read.then49869:  pred(quick_read.while.exit28858)
-  53870 = sub i32 0, i32 %x.phi848
-  br bb %while.body332.split763.split
-quick_read.else872:  pred(quick_read.while.exit28858)
-  br bb %while.body332.split763.split
+  br bb %entry306.split543
+quick_read.while.cond603:  pred(entry306.split543, quick_read.if.exit623)
+  f.phi374604 = phi [bb %entry306.split543, i32 0, bb %quick_read.if.exit623, i32 %f.phi624]
+  ch.phi371605 = phi [bb %entry306.split543, i32 %2601, bb %quick_read.if.exit623, i32 %25625]
+  9606 = icmp slt i32 %ch.phi371605, i32 48
+  br i1 %9606, bb %quick_read.select.then613, bb %quick_read.select.else615
+quick_read.while.body608:  pred(quick_read.select.exit618)
+  20609 = icmp eq i32 %ch.phi371605, i32 45
+  br i1 %20609, bb %quick_read.then621, bb %quick_read.if.exit623
+quick_read.while.exit611:  pred(quick_read.select.exit618)
+  br bb %quick_read.while.cond26627
+quick_read.select.then613:  pred(quick_read.while.cond603)
+  br bb %quick_read.select.exit618
+quick_read.select.else615:  pred(quick_read.while.cond603)
+  15616 = icmp sgt i32 %ch.phi371605, i32 57
+  br bb %quick_read.select.exit618
+quick_read.select.exit618:  pred(quick_read.select.then613, quick_read.select.else615)
+  select.phi619 = phi [bb %quick_read.select.else615, i1 %15616, bb %quick_read.select.then613, i1 -1]
+  br i1 %select.phi619, bb %quick_read.while.body608, bb %quick_read.while.exit611
+quick_read.then621:  pred(quick_read.while.body608)
+  br bb %quick_read.if.exit623
+quick_read.if.exit623:  pred(quick_read.while.body608, quick_read.then621)
+  f.phi624 = phi [bb %quick_read.while.body608, i32 %f.phi374604, bb %quick_read.then621, i32 1]
+  25625 = call i32 getch()
+  br bb %quick_read.while.cond603
+quick_read.while.cond26627:  pred(quick_read.while.exit611, quick_read.while.body27632)
+  x.phi628 = phi [bb %quick_read.while.exit611, i32 0, bb %quick_read.while.body27632, i32 %408635]
+  ch.phi629 = phi [bb %quick_read.while.exit611, i32 %ch.phi371605, bb %quick_read.while.body27632, i32 %46636]
+  30630 = icmp sge i32 %ch.phi629, i32 48
+  br i1 %30630, bb %quick_read.select.then31641, bb %quick_read.select.else32644
+quick_read.while.body27632:  pred(quick_read.select.exit33646)
+  41633 = mul i32 %x.phi628, i32 10
+  43634 = add i32 %41633, i32 %ch.phi629
+  408635 = add i32 %43634, i32 -48
+  46636 = call i32 getch()
+  br bb %quick_read.while.cond26627
+quick_read.while.exit28638:  pred(quick_read.select.exit33646)
+  48639 = icmp ne i32 %f.phi374604, i32 0
+  br i1 %48639, bb %quick_read.then49649, bb %quick_read.else652
+quick_read.select.then31641:  pred(quick_read.while.cond26627)
+  36642 = icmp sle i32 %ch.phi629, i32 57
+  br bb %quick_read.select.exit33646
+quick_read.select.else32644:  pred(quick_read.while.cond26627)
+  br bb %quick_read.select.exit33646
+quick_read.select.exit33646:  pred(quick_read.select.then31641, quick_read.select.else32644)
+  select34.phi647 = phi [bb %quick_read.select.else32644, i1 0, bb %quick_read.select.then31641, i1 %36642]
+  br i1 %select34.phi647, bb %quick_read.while.body27632, bb %quick_read.while.exit28638
+quick_read.then49649:  pred(quick_read.while.exit28638)
+  53650 = sub i32 0, i32 %x.phi628
+  br bb %entry306.split543.split
+quick_read.else652:  pred(quick_read.while.exit28638)
+  br bb %entry306.split543.split
+quick_read.while.cond659:  pred(while.body314, quick_read.if.exit679)
+  f.phi374660 = phi [bb %while.body314, i32 0, bb %quick_read.if.exit679, i32 %f.phi680]
+  ch.phi371661 = phi [bb %while.body314, i32 %2657, bb %quick_read.if.exit679, i32 %25681]
+  9662 = icmp slt i32 %ch.phi371661, i32 48
+  br i1 %9662, bb %quick_read.select.then669, bb %quick_read.select.else671
+quick_read.while.body664:  pred(quick_read.select.exit674)
+  20665 = icmp eq i32 %ch.phi371661, i32 45
+  br i1 %20665, bb %quick_read.then677, bb %quick_read.if.exit679
+quick_read.while.exit667:  pred(quick_read.select.exit674)
+  br bb %quick_read.while.cond26683
+quick_read.select.then669:  pred(quick_read.while.cond659)
+  br bb %quick_read.select.exit674
+quick_read.select.else671:  pred(quick_read.while.cond659)
+  15672 = icmp sgt i32 %ch.phi371661, i32 57
+  br bb %quick_read.select.exit674
+quick_read.select.exit674:  pred(quick_read.select.then669, quick_read.select.else671)
+  select.phi675 = phi [bb %quick_read.select.else671, i1 %15672, bb %quick_read.select.then669, i1 -1]
+  br i1 %select.phi675, bb %quick_read.while.body664, bb %quick_read.while.exit667
+quick_read.then677:  pred(quick_read.while.body664)
+  br bb %quick_read.if.exit679
+quick_read.if.exit679:  pred(quick_read.while.body664, quick_read.then677)
+  f.phi680 = phi [bb %quick_read.while.body664, i32 %f.phi374660, bb %quick_read.then677, i32 1]
+  25681 = call i32 getch()
+  br bb %quick_read.while.cond659
+quick_read.while.cond26683:  pred(quick_read.while.exit667, quick_read.while.body27688)
+  x.phi684 = phi [bb %quick_read.while.exit667, i32 0, bb %quick_read.while.body27688, i32 %408691]
+  ch.phi685 = phi [bb %quick_read.while.exit667, i32 %ch.phi371661, bb %quick_read.while.body27688, i32 %46692]
+  30686 = icmp sge i32 %ch.phi685, i32 48
+  br i1 %30686, bb %quick_read.select.then31697, bb %quick_read.select.else32700
+quick_read.while.body27688:  pred(quick_read.select.exit33702)
+  41689 = mul i32 %x.phi684, i32 10
+  43690 = add i32 %41689, i32 %ch.phi685
+  408691 = add i32 %43690, i32 -48
+  46692 = call i32 getch()
+  br bb %quick_read.while.cond26683
+quick_read.while.exit28694:  pred(quick_read.select.exit33702)
+  48695 = icmp ne i32 %f.phi374660, i32 0
+  br i1 %48695, bb %quick_read.then49705, bb %quick_read.else708
+quick_read.select.then31697:  pred(quick_read.while.cond26683)
+  36698 = icmp sle i32 %ch.phi685, i32 57
+  br bb %quick_read.select.exit33702
+quick_read.select.else32700:  pred(quick_read.while.cond26683)
+  br bb %quick_read.select.exit33702
+quick_read.select.exit33702:  pred(quick_read.select.then31697, quick_read.select.else32700)
+  select34.phi703 = phi [bb %quick_read.select.else32700, i1 0, bb %quick_read.select.then31697, i1 %36698]
+  br i1 %select34.phi703, bb %quick_read.while.body27688, bb %quick_read.while.exit28694
+quick_read.then49705:  pred(quick_read.while.exit28694)
+  53706 = sub i32 0, i32 %x.phi684
+  br bb %while.body314.split655
+quick_read.else708:  pred(quick_read.while.exit28694)
+  br bb %while.body314.split655
+quick_read.while.cond715:  pred(while.body314.split655, quick_read.if.exit735)
+  f.phi374716 = phi [bb %while.body314.split655, i32 0, bb %quick_read.if.exit735, i32 %f.phi736]
+  ch.phi371717 = phi [bb %while.body314.split655, i32 %2713, bb %quick_read.if.exit735, i32 %25737]
+  9718 = icmp slt i32 %ch.phi371717, i32 48
+  br i1 %9718, bb %quick_read.select.then725, bb %quick_read.select.else727
+quick_read.while.body720:  pred(quick_read.select.exit730)
+  20721 = icmp eq i32 %ch.phi371717, i32 45
+  br i1 %20721, bb %quick_read.then733, bb %quick_read.if.exit735
+quick_read.while.exit723:  pred(quick_read.select.exit730)
+  br bb %quick_read.while.cond26739
+quick_read.select.then725:  pred(quick_read.while.cond715)
+  br bb %quick_read.select.exit730
+quick_read.select.else727:  pred(quick_read.while.cond715)
+  15728 = icmp sgt i32 %ch.phi371717, i32 57
+  br bb %quick_read.select.exit730
+quick_read.select.exit730:  pred(quick_read.select.then725, quick_read.select.else727)
+  select.phi731 = phi [bb %quick_read.select.else727, i1 %15728, bb %quick_read.select.then725, i1 -1]
+  br i1 %select.phi731, bb %quick_read.while.body720, bb %quick_read.while.exit723
+quick_read.then733:  pred(quick_read.while.body720)
+  br bb %quick_read.if.exit735
+quick_read.if.exit735:  pred(quick_read.while.body720, quick_read.then733)
+  f.phi736 = phi [bb %quick_read.while.body720, i32 %f.phi374716, bb %quick_read.then733, i32 1]
+  25737 = call i32 getch()
+  br bb %quick_read.while.cond715
+quick_read.while.cond26739:  pred(quick_read.while.exit723, quick_read.while.body27744)
+  x.phi740 = phi [bb %quick_read.while.exit723, i32 0, bb %quick_read.while.body27744, i32 %408747]
+  ch.phi741 = phi [bb %quick_read.while.exit723, i32 %ch.phi371717, bb %quick_read.while.body27744, i32 %46748]
+  30742 = icmp sge i32 %ch.phi741, i32 48
+  br i1 %30742, bb %quick_read.select.then31753, bb %quick_read.select.else32756
+quick_read.while.body27744:  pred(quick_read.select.exit33758)
+  41745 = mul i32 %x.phi740, i32 10
+  43746 = add i32 %41745, i32 %ch.phi741
+  408747 = add i32 %43746, i32 -48
+  46748 = call i32 getch()
+  br bb %quick_read.while.cond26739
+quick_read.while.exit28750:  pred(quick_read.select.exit33758)
+  48751 = icmp ne i32 %f.phi374716, i32 0
+  br i1 %48751, bb %quick_read.then49761, bb %quick_read.else764
+quick_read.select.then31753:  pred(quick_read.while.cond26739)
+  36754 = icmp sle i32 %ch.phi741, i32 57
+  br bb %quick_read.select.exit33758
+quick_read.select.else32756:  pred(quick_read.while.cond26739)
+  br bb %quick_read.select.exit33758
+quick_read.select.exit33758:  pred(quick_read.select.then31753, quick_read.select.else32756)
+  select34.phi759 = phi [bb %quick_read.select.else32756, i1 0, bb %quick_read.select.then31753, i1 %36754]
+  br i1 %select34.phi759, bb %quick_read.while.body27744, bb %quick_read.while.exit28750
+quick_read.then49761:  pred(quick_read.while.exit28750)
+  53762 = sub i32 0, i32 %x.phi740
+  br bb %while.body314.split655.split
+quick_read.else764:  pred(quick_read.while.exit28750)
+  br bb %while.body314.split655.split
+quick_read.while.cond771:  pred(while.body332, quick_read.if.exit791)
+  f.phi374772 = phi [bb %while.body332, i32 0, bb %quick_read.if.exit791, i32 %f.phi792]
+  ch.phi371773 = phi [bb %while.body332, i32 %2769, bb %quick_read.if.exit791, i32 %25793]
+  9774 = icmp slt i32 %ch.phi371773, i32 48
+  br i1 %9774, bb %quick_read.select.then781, bb %quick_read.select.else783
+quick_read.while.body776:  pred(quick_read.select.exit786)
+  20777 = icmp eq i32 %ch.phi371773, i32 45
+  br i1 %20777, bb %quick_read.then789, bb %quick_read.if.exit791
+quick_read.while.exit779:  pred(quick_read.select.exit786)
+  br bb %quick_read.while.cond26795
+quick_read.select.then781:  pred(quick_read.while.cond771)
+  br bb %quick_read.select.exit786
+quick_read.select.else783:  pred(quick_read.while.cond771)
+  15784 = icmp sgt i32 %ch.phi371773, i32 57
+  br bb %quick_read.select.exit786
+quick_read.select.exit786:  pred(quick_read.select.then781, quick_read.select.else783)
+  select.phi787 = phi [bb %quick_read.select.else783, i1 %15784, bb %quick_read.select.then781, i1 -1]
+  br i1 %select.phi787, bb %quick_read.while.body776, bb %quick_read.while.exit779
+quick_read.then789:  pred(quick_read.while.body776)
+  br bb %quick_read.if.exit791
+quick_read.if.exit791:  pred(quick_read.while.body776, quick_read.then789)
+  f.phi792 = phi [bb %quick_read.while.body776, i32 %f.phi374772, bb %quick_read.then789, i32 1]
+  25793 = call i32 getch()
+  br bb %quick_read.while.cond771
+quick_read.while.cond26795:  pred(quick_read.while.exit779, quick_read.while.body27800)
+  x.phi796 = phi [bb %quick_read.while.exit779, i32 0, bb %quick_read.while.body27800, i32 %408803]
+  ch.phi797 = phi [bb %quick_read.while.exit779, i32 %ch.phi371773, bb %quick_read.while.body27800, i32 %46804]
+  30798 = icmp sge i32 %ch.phi797, i32 48
+  br i1 %30798, bb %quick_read.select.then31809, bb %quick_read.select.else32812
+quick_read.while.body27800:  pred(quick_read.select.exit33814)
+  41801 = mul i32 %x.phi796, i32 10
+  43802 = add i32 %41801, i32 %ch.phi797
+  408803 = add i32 %43802, i32 -48
+  46804 = call i32 getch()
+  br bb %quick_read.while.cond26795
+quick_read.while.exit28806:  pred(quick_read.select.exit33814)
+  48807 = icmp ne i32 %f.phi374772, i32 0
+  br i1 %48807, bb %quick_read.then49817, bb %quick_read.else820
+quick_read.select.then31809:  pred(quick_read.while.cond26795)
+  36810 = icmp sle i32 %ch.phi797, i32 57
+  br bb %quick_read.select.exit33814
+quick_read.select.else32812:  pred(quick_read.while.cond26795)
+  br bb %quick_read.select.exit33814
+quick_read.select.exit33814:  pred(quick_read.select.then31809, quick_read.select.else32812)
+  select34.phi815 = phi [bb %quick_read.select.else32812, i1 0, bb %quick_read.select.then31809, i1 %36810]
+  br i1 %select34.phi815, bb %quick_read.while.body27800, bb %quick_read.while.exit28806
+quick_read.then49817:  pred(quick_read.while.exit28806)
+  53818 = sub i32 0, i32 %x.phi796
+  br bb %while.body332.split767
+quick_read.else820:  pred(quick_read.while.exit28806)
+  br bb %while.body332.split767
+quick_read.while.cond827:  pred(while.body332.split767, quick_read.if.exit847)
+  f.phi374828 = phi [bb %while.body332.split767, i32 0, bb %quick_read.if.exit847, i32 %f.phi848]
+  ch.phi371829 = phi [bb %while.body332.split767, i32 %2825, bb %quick_read.if.exit847, i32 %25849]
+  9830 = icmp slt i32 %ch.phi371829, i32 48
+  br i1 %9830, bb %quick_read.select.then837, bb %quick_read.select.else839
+quick_read.while.body832:  pred(quick_read.select.exit842)
+  20833 = icmp eq i32 %ch.phi371829, i32 45
+  br i1 %20833, bb %quick_read.then845, bb %quick_read.if.exit847
+quick_read.while.exit835:  pred(quick_read.select.exit842)
+  br bb %quick_read.while.cond26851
+quick_read.select.then837:  pred(quick_read.while.cond827)
+  br bb %quick_read.select.exit842
+quick_read.select.else839:  pred(quick_read.while.cond827)
+  15840 = icmp sgt i32 %ch.phi371829, i32 57
+  br bb %quick_read.select.exit842
+quick_read.select.exit842:  pred(quick_read.select.then837, quick_read.select.else839)
+  select.phi843 = phi [bb %quick_read.select.else839, i1 %15840, bb %quick_read.select.then837, i1 -1]
+  br i1 %select.phi843, bb %quick_read.while.body832, bb %quick_read.while.exit835
+quick_read.then845:  pred(quick_read.while.body832)
+  br bb %quick_read.if.exit847
+quick_read.if.exit847:  pred(quick_read.while.body832, quick_read.then845)
+  f.phi848 = phi [bb %quick_read.while.body832, i32 %f.phi374828, bb %quick_read.then845, i32 1]
+  25849 = call i32 getch()
+  br bb %quick_read.while.cond827
+quick_read.while.cond26851:  pred(quick_read.while.exit835, quick_read.while.body27856)
+  x.phi852 = phi [bb %quick_read.while.exit835, i32 0, bb %quick_read.while.body27856, i32 %408859]
+  ch.phi853 = phi [bb %quick_read.while.exit835, i32 %ch.phi371829, bb %quick_read.while.body27856, i32 %46860]
+  30854 = icmp sge i32 %ch.phi853, i32 48
+  br i1 %30854, bb %quick_read.select.then31865, bb %quick_read.select.else32868
+quick_read.while.body27856:  pred(quick_read.select.exit33870)
+  41857 = mul i32 %x.phi852, i32 10
+  43858 = add i32 %41857, i32 %ch.phi853
+  408859 = add i32 %43858, i32 -48
+  46860 = call i32 getch()
+  br bb %quick_read.while.cond26851
+quick_read.while.exit28862:  pred(quick_read.select.exit33870)
+  48863 = icmp ne i32 %f.phi374828, i32 0
+  br i1 %48863, bb %quick_read.then49873, bb %quick_read.else876
+quick_read.select.then31865:  pred(quick_read.while.cond26851)
+  36866 = icmp sle i32 %ch.phi853, i32 57
+  br bb %quick_read.select.exit33870
+quick_read.select.else32868:  pred(quick_read.while.cond26851)
+  br bb %quick_read.select.exit33870
+quick_read.select.exit33870:  pred(quick_read.select.then31865, quick_read.select.else32868)
+  select34.phi871 = phi [bb %quick_read.select.else32868, i1 0, bb %quick_read.select.then31865, i1 %36866]
+  br i1 %select34.phi871, bb %quick_read.while.body27856, bb %quick_read.while.exit28862
+quick_read.then49873:  pred(quick_read.while.exit28862)
+  53874 = sub i32 0, i32 %x.phi852
+  br bb %while.body332.split767.split
+quick_read.else876:  pred(quick_read.while.exit28862)
+  br bb %while.body332.split767.split
 }
 
 external float getfloat()

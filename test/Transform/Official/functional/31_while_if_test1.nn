@@ -12,8 +12,8 @@ pure i32 main() {
 entry30:  pred()
   br bb %whileIf.while.body
 whileIf.while.body:  pred(whileIf.if.exit, entry30)
-  a.phi4271 = phi [bb %whileIf.if.exit, i32 %2854, bb %entry30, i32 0]
-  1246 = icmp eq i32 %a.phi4271, i32 5
+  a.phi4273 = phi [bb %whileIf.if.exit, i32 %2854, bb %entry30, i32 0]
+  1246 = icmp eq i32 %a.phi4273, i32 5
   br i1 %1246, bb %whileIf.then, bb %whileIf.else
 whileIf.while.exit:  pred(whileIf.if.exit)
   ret i32 %b.phi3453
@@ -21,19 +21,19 @@ whileIf.then:  pred(whileIf.while.body)
   br bb %whileIf.if.exit
 whileIf.if.exit:  pred(whileIf.then, whileIf.if.exit20)
   b.phi3453 = phi [bb %whileIf.if.exit20, i32 %b.phi62, bb %whileIf.then, i32 25]
-  2854 = add i32 %a.phi4271, i32 1
+  2854 = add i32 %a.phi4273, i32 1
   943 = icmp slt i32 %2854, i32 100
   br i1 %943, bb %whileIf.while.body, bb %whileIf.while.exit
 whileIf.else:  pred(whileIf.while.body)
-  1857 = icmp eq i32 %a.phi4271, i32 10
+  1857 = icmp eq i32 %a.phi4273, i32 10
   br i1 %1857, bb %whileIf.then19, bb %whileIf.else21
 whileIf.then19:  pred(whileIf.else)
   br bb %whileIf.if.exit20
 whileIf.if.exit20:  pred(whileIf.then19, whileIf.else21)
-  b.phi62 = phi [bb %whileIf.else21, i32 %3665, bb %whileIf.then19, i32 42]
+  b.phi62 = phi [bb %whileIf.else21, i32 %69, bb %whileIf.then19, i32 42]
   br bb %whileIf.if.exit
 whileIf.else21:  pred(whileIf.else)
-  3665 = shl i32 %a.phi4271, i32 1
+  69 = shl i32 %a.phi4273, i32 1
   br bb %whileIf.if.exit20
 }
 

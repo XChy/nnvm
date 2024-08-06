@@ -79,27 +79,27 @@ bb8:   # loop depth 2
 bb9:   # loop depth 3
   LA s5, a
   ADD s5, s5, s3
-  SLLIW s6, s0, 2
+  SLLIW s6, a0, 2
   ADD s5, s5, s6
   LW s5, 0(s5)
   LUI s6, 1
   ADDIW s6, s6, -96
-  MULW s6, s0, s6
+  MULW s6, a0, s6
   LA s7, b
   ADD s6, s7, s6
   ADD s6, s6, s4
   LW s6, 0(s6)
   MULW s5, s5, s6
-  ADDW a0, a0, s5
-  ADDIW s0, s0, 1
-  SLTI s5, s0, 1000
+  ADDW s0, s0, s5
+  ADDIW a0, a0, 1
+  SLTI s5, a0, 1000
   BNE s5, zero, bb39
   # implict jump to bb10
 bb10:   # loop depth 2
-  LA s0, c
-  ADD s0, s0, s3
-  ADD s0, s0, s4
-  SW a0, 0(s0)
+  LA a0, c
+  ADD a0, a0, s3
+  ADD a0, a0, s4
+  SW s0, 0(a0)
   ADDIW s1, s1, 1
   SLTI a0, s1, 1000
   BNE a0, zero, bb38

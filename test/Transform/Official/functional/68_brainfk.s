@@ -68,7 +68,6 @@ interpret:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
   ADD s3, a0, zero
   LW s4, 0(s3)
   BNE s4, zero, bb9
@@ -81,7 +80,6 @@ bb8:   # loop depth 0
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb9:   # loop depth 0
@@ -157,8 +155,7 @@ bb28:   # loop depth 1
   ADDI s0, zero, 1
   # implict jump to bb29
 bb29:   # loop depth 2
-  ADDI s4, zero, 1
-  SUBW s1, s1, s4
+  ADDIW s1, s1, -1
   SLLIW s4, s1, 2
   ADD s4, s3, s4
   LW s4, 0(s4)
@@ -186,8 +183,7 @@ bb36:   # loop depth 2
   ADDIW s0, s0, 1
   JAL zero, bb32
 bb37:   # loop depth 2
-  ADDI s4, zero, 1
-  SUBW s0, s0, s4
+  ADDIW s0, s0, -1
   JAL zero, bb33
 bb38:   # loop depth 1
   LA s2, ptr
@@ -224,8 +220,7 @@ bb41:   # loop depth 1
   LA s5, tape
   ADD s4, s5, s4
   LW s5, 0(s4)
-  ADDI s6, zero, 1
-  SUBW s5, s5, s6
+  ADDIW s5, s5, -1
   SW s5, 0(s4)
   JAL zero, bb23
 bb42:   # loop depth 1
@@ -241,8 +236,7 @@ bb42:   # loop depth 1
 bb43:   # loop depth 1
   LA s4, ptr
   LW s4, 0(s4)
-  ADDI s5, zero, 1
-  SUBW s4, s4, s5
+  ADDIW s4, s4, -1
   LA s5, ptr
   SW s4, 0(s5)
   JAL zero, bb25

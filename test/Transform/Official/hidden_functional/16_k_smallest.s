@@ -76,8 +76,7 @@ bb6:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb7:   # loop depth 0
-  ADDI a1, zero, 1
-  SUBW a1, s1, a1
+  ADDIW a1, s1, -1
   ADD a2, s8, zero
   ADD a3, s10, zero
   CALL findSmallest
@@ -168,8 +167,7 @@ main:   # loop depth 0
   BLT zero, s1, bb22
   # implict jump to bb21
 bb21:   # loop depth 0
-  ADDI a0, zero, 1
-  SUBW a1, s1, a0
+  ADDIW a1, s1, -1
   ADD a0, zero, zero
   ADD a2, s2, zero
   ADD a3, s1, zero

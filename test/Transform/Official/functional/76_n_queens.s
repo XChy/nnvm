@@ -47,8 +47,7 @@ bb3:   # loop depth 1
   SW a0, 0(s1)
   ADDI a0, zero, 1
   CALL f
-  ADDI s1, zero, 1
-  SUBW s0, s0, s1
+  ADDIW s0, s0, -1
   ADDI s1, zero, 0
   BLT s1, s0, bb4
   JAL zero, bb1

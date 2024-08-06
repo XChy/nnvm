@@ -11,7 +11,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry115:  pred()
-  %count_arr200 = stack 40
+  %count_arr207 = stack 40
   %b = stack 40
   %a = stack 40
   store i32 10 to ptr @n
@@ -34,124 +34,124 @@ entry115:  pred()
   store i32 7 to ptr %143
   146 = ptradd ptr %a, i32 36
   store i32 8 to ptr %146
-  store i32 0 to ptr %count_arr200
-  17208527 = ptradd ptr %count_arr200, i32 4
-  store i32 0 to ptr %17208527
-  17208535 = ptradd ptr %count_arr200, i32 8
-  store i32 0 to ptr %17208535
-  17208543 = ptradd ptr %count_arr200, i32 12
-  store i32 0 to ptr %17208543
-  17208551 = ptradd ptr %count_arr200, i32 16
-  store i32 0 to ptr %17208551
-  17208559 = ptradd ptr %count_arr200, i32 20
-  store i32 0 to ptr %17208559
-  17208567 = ptradd ptr %count_arr200, i32 24
-  store i32 0 to ptr %17208567
-  17208575 = ptradd ptr %count_arr200, i32 28
-  store i32 0 to ptr %17208575
-  17208583 = ptradd ptr %count_arr200, i32 32
-  store i32 0 to ptr %17208583
-  17208591 = ptradd ptr %count_arr200, i32 36
-  store i32 0 to ptr %17208591
-  34223 = ptradd ptr %count_arr200, i32 16
-  41.load224 = load i32 from ptr %34223
-  43225 = add i32 %41.load224, i32 1
-  store i32 %43225 to ptr %34223
-  34223413 = ptradd ptr %count_arr200, i32 12
-  41.load224414 = load i32 from ptr %34223413
-  43225415 = add i32 %41.load224414, i32 1
-  store i32 %43225415 to ptr %34223413
-  34223426 = ptradd ptr %count_arr200, i32 36
-  41.load224427 = load i32 from ptr %34223426
-  43225428 = add i32 %41.load224427, i32 1
-  store i32 %43225428 to ptr %34223426
-  34223439 = ptradd ptr %count_arr200, i32 8
-  41.load224440 = load i32 from ptr %34223439
-  43225441 = add i32 %41.load224440, i32 1
-  store i32 %43225441 to ptr %34223439
-  41.load224453 = load i32 from ptr %count_arr200
-  43225454 = add i32 %41.load224453, i32 1
-  store i32 %43225454 to ptr %count_arr200
-  34223465 = ptradd ptr %count_arr200, i32 4
-  41.load224466 = load i32 from ptr %34223465
-  43225467 = add i32 %41.load224466, i32 1
-  store i32 %43225467 to ptr %34223465
-  34223478 = ptradd ptr %count_arr200, i32 24
-  41.load224479 = load i32 from ptr %34223478
-  43225480 = add i32 %41.load224479, i32 1
-  store i32 %43225480 to ptr %34223478
-  34223491 = ptradd ptr %count_arr200, i32 20
-  41.load224492 = load i32 from ptr %34223491
-  43225493 = add i32 %41.load224492, i32 1
-  store i32 %43225493 to ptr %34223491
-  34223504 = ptradd ptr %count_arr200, i32 28
-  41.load224505 = load i32 from ptr %34223504
-  43225506 = add i32 %41.load224505, i32 1
-  store i32 %43225506 to ptr %34223504
-  34223517 = ptradd ptr %count_arr200, i32 32
-  41.load224518 = load i32 from ptr %34223517
-  43225519 = add i32 %41.load224518, i32 1
-  store i32 %43225519 to ptr %34223517
-  60.load238 = load i32 from ptr %17208527
-  65.load242 = load i32 from ptr %count_arr200
-  67243 = add i32 %60.load238, i32 %65.load242
-  store i32 %67243 to ptr %17208527
-  60.load238299 = load i32 from ptr %17208535
-  67243304 = add i32 %60.load238299, i32 %67243
-  store i32 %67243304 to ptr %17208535
-  60.load238313 = load i32 from ptr %17208543
-  67243318 = add i32 %60.load238313, i32 %67243304
-  store i32 %67243318 to ptr %17208543
-  60.load238327 = load i32 from ptr %17208551
-  67243332 = add i32 %60.load238327, i32 %67243318
-  store i32 %67243332 to ptr %17208551
-  60.load238341 = load i32 from ptr %17208559
-  67243346 = add i32 %60.load238341, i32 %67243332
-  store i32 %67243346 to ptr %17208559
-  60.load238355 = load i32 from ptr %17208567
-  67243360 = add i32 %60.load238355, i32 %67243346
-  store i32 %67243360 to ptr %17208567
-  60.load238369 = load i32 from ptr %17208575
-  67243374 = add i32 %60.load238369, i32 %67243360
-  store i32 %67243374 to ptr %17208575
-  60.load238383 = load i32 from ptr %17208583
-  67243388 = add i32 %60.load238383, i32 %67243374
-  store i32 %67243388 to ptr %17208583
-  60.load238397 = load i32 from ptr %17208591
-  67243402 = add i32 %60.load238397, i32 %67243388
-  store i32 %67243402 to ptr %17208591
+  store i32 0 to ptr %count_arr207
+  17215554 = ptradd ptr %count_arr207, i32 4
+  store i32 0 to ptr %17215554
+  17215562 = ptradd ptr %count_arr207, i32 8
+  store i32 0 to ptr %17215562
+  17215570 = ptradd ptr %count_arr207, i32 12
+  store i32 0 to ptr %17215570
+  17215578 = ptradd ptr %count_arr207, i32 16
+  store i32 0 to ptr %17215578
+  17215586 = ptradd ptr %count_arr207, i32 20
+  store i32 0 to ptr %17215586
+  17215594 = ptradd ptr %count_arr207, i32 24
+  store i32 0 to ptr %17215594
+  17215602 = ptradd ptr %count_arr207, i32 28
+  store i32 0 to ptr %17215602
+  17215610 = ptradd ptr %count_arr207, i32 32
+  store i32 0 to ptr %17215610
+  17215618 = ptradd ptr %count_arr207, i32 36
+  store i32 0 to ptr %17215618
+  34230 = ptradd ptr %count_arr207, i32 16
+  41.load231 = load i32 from ptr %34230
+  43232 = add i32 %41.load231, i32 1
+  store i32 %43232 to ptr %34230
+  34230440 = ptradd ptr %count_arr207, i32 12
+  41.load231441 = load i32 from ptr %34230440
+  43232442 = add i32 %41.load231441, i32 1
+  store i32 %43232442 to ptr %34230440
+  34230453 = ptradd ptr %count_arr207, i32 36
+  41.load231454 = load i32 from ptr %34230453
+  43232455 = add i32 %41.load231454, i32 1
+  store i32 %43232455 to ptr %34230453
+  34230466 = ptradd ptr %count_arr207, i32 8
+  41.load231467 = load i32 from ptr %34230466
+  43232468 = add i32 %41.load231467, i32 1
+  store i32 %43232468 to ptr %34230466
+  41.load231480 = load i32 from ptr %count_arr207
+  43232481 = add i32 %41.load231480, i32 1
+  store i32 %43232481 to ptr %count_arr207
+  34230492 = ptradd ptr %count_arr207, i32 4
+  41.load231493 = load i32 from ptr %34230492
+  43232494 = add i32 %41.load231493, i32 1
+  store i32 %43232494 to ptr %34230492
+  34230505 = ptradd ptr %count_arr207, i32 24
+  41.load231506 = load i32 from ptr %34230505
+  43232507 = add i32 %41.load231506, i32 1
+  store i32 %43232507 to ptr %34230505
+  34230518 = ptradd ptr %count_arr207, i32 20
+  41.load231519 = load i32 from ptr %34230518
+  43232520 = add i32 %41.load231519, i32 1
+  store i32 %43232520 to ptr %34230518
+  34230531 = ptradd ptr %count_arr207, i32 28
+  41.load231532 = load i32 from ptr %34230531
+  43232533 = add i32 %41.load231532, i32 1
+  store i32 %43232533 to ptr %34230531
+  34230544 = ptradd ptr %count_arr207, i32 32
+  41.load231545 = load i32 from ptr %34230544
+  43232546 = add i32 %41.load231545, i32 1
+  store i32 %43232546 to ptr %34230544
+  60.load245 = load i32 from ptr %17215554
+  65.load249 = load i32 from ptr %count_arr207
+  67250 = add i32 %60.load245, i32 %65.load249
+  store i32 %67250 to ptr %17215554
+  60.load245326 = load i32 from ptr %17215562
+  67250331 = add i32 %60.load245326, i32 %67250
+  store i32 %67250331 to ptr %17215562
+  60.load245340 = load i32 from ptr %17215570
+  67250345 = add i32 %60.load245340, i32 %67250331
+  store i32 %67250345 to ptr %17215570
+  60.load245354 = load i32 from ptr %17215578
+  67250359 = add i32 %60.load245354, i32 %67250345
+  store i32 %67250359 to ptr %17215578
+  60.load245368 = load i32 from ptr %17215586
+  67250373 = add i32 %60.load245368, i32 %67250359
+  store i32 %67250373 to ptr %17215586
+  60.load245382 = load i32 from ptr %17215594
+  67250387 = add i32 %60.load245382, i32 %67250373
+  store i32 %67250387 to ptr %17215594
+  60.load245396 = load i32 from ptr %17215602
+  67250401 = add i32 %60.load245396, i32 %67250387
+  store i32 %67250401 to ptr %17215602
+  60.load245410 = load i32 from ptr %17215610
+  67250415 = add i32 %60.load245410, i32 %67250401
+  store i32 %67250415 to ptr %17215610
+  60.load245424 = load i32 from ptr %17215618
+  67250429 = add i32 %60.load245424, i32 %67250415
+  store i32 %67250429 to ptr %17215618
   br bb %counting_sort.while.body74
 while.body155_preheader:  pred(counting_sort.while.exit75)
   br bb %while.body155
 while.body155:  pred(while.body155, while.body155_preheader)
-  i148.phi276 = phi [bb %while.body155, i32 %174, bb %while.body155_preheader, i32 0]
-  197 = shl i32 %i148.phi276, i32 2
-  165 = ptradd ptr %b, i32 %197
+  i148.phi303 = phi [bb %while.body155, i32 %174, bb %while.body155_preheader, i32 0]
+  291 = shl i32 %i148.phi303, i32 2
+  165 = ptradd ptr %b, i32 %291
   165.load = load i32 from ptr %165
   call void putint(i32 %165.load)
   call void putch(i32 10)
-  174 = add i32 %i148.phi276, i32 1
+  174 = add i32 %i148.phi303, i32 1
   n.load158 = load i32 from ptr @n
   159 = icmp slt i32 %174, i32 %n.load158
   br i1 %159, bb %while.body155, bb %while.exit156
 while.exit156:  pred(while.body155, counting_sort.while.exit75)
   ret i32 0
 counting_sort.while.body74:  pred(counting_sort.while.body74, entry115)
-  j.phi250278 = phi [bb %counting_sort.while.body74, i32 %80254, bb %entry115, i32 10]
-  80254 = sub i32 %j.phi250278, i32 1
-  189255 = shl i32 %80254, i32 2
-  82256 = ptradd ptr %a, i32 %189255
-  82.load257 = load i32 from ptr %82256
-  190258 = shl i32 %82.load257, i32 2
-  85259 = ptradd ptr %count_arr200, i32 %190258
-  93.load260 = load i32 from ptr %85259
-  95261 = sub i32 %93.load260, i32 1
-  store i32 %95261 to ptr %85259
-  195267 = shl i32 %95261, i32 2
-  105268 = ptradd ptr %b, i32 %195267
-  store i32 %82.load257 to ptr %105268
-  77251 = icmp sgt i32 %80254, i32 0
-  br i1 %77251, bb %counting_sort.while.body74, bb %counting_sort.while.exit75
+  j.phi257305 = phi [bb %counting_sort.while.body74, i32 %190261, bb %entry115, i32 10]
+  190261 = add i32 %j.phi257305, i32 -1
+  297 = shl i32 %190261, i32 2
+  82263 = ptradd ptr %a, i32 %297
+  82.load264 = load i32 from ptr %82263
+  298 = shl i32 %82.load264, i32 2
+  85266 = ptradd ptr %count_arr207, i32 %298
+  93.load267 = load i32 from ptr %85266
+  196268 = add i32 %93.load267, i32 -1
+  store i32 %196268 to ptr %85266
+  300 = shl i32 %196268, i32 2
+  105275 = ptradd ptr %b, i32 %300
+  store i32 %82.load264 to ptr %105275
+  77258 = icmp sgt i32 %190261, i32 0
+  br i1 %77258, bb %counting_sort.while.body74, bb %counting_sort.while.exit75
 counting_sort.while.exit75:  pred(counting_sort.while.body74)
   br i1 -1, bb %while.body155_preheader, bb %while.exit156
 }

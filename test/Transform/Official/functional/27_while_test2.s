@@ -18,8 +18,7 @@ bb1:   # loop depth 1
 bb2:   # loop depth 1
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADDI a1, zero, 2
-  SUBW t2, t2, a1
+  ADDIW t2, t2, -2
   SLTI a1, a0, 20
   BNE a1, zero, bb5
   # implict jump to bb4
@@ -54,16 +53,14 @@ bb11:   # loop depth 2
 bb12:   # loop depth 2
   # implict jump to bb13
 bb13:   # loop depth 3
-  ADDI a1, zero, 1
-  SUBW t1, t1, a1
+  ADDIW t1, t1, -1
   SLTI a1, t0, 20
   BNE a1, zero, bb18
   # implict jump to bb14
 bb14:   # loop depth 3
   # implict jump to bb15
 bb15:   # loop depth 3
-  ADDI a1, zero, 1
-  SUBW t0, t0, a1
+  ADDIW t0, t0, -1
   XORI a1, t1, 7
   SLTIU a1, a1, 1
   BNE a1, zero, bb17

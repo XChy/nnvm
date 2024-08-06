@@ -307,8 +307,7 @@ bb21:   # loop depth 1
   LW s2, 0(s5)
   ADDIW s2, s2, 1
   SW s2, 0(s5)
-  ADDI s2, zero, 1
-  SUBW s0, s0, s2
+  ADDIW s0, s0, -1
   BLT zero, s0, bb22
   JAL zero, bb16
 bb22:   # loop depth 1

@@ -31,8 +31,7 @@ main:   # loop depth 0
   CALL _sysy_starttime
   LA a0, n
   LW a0, 0(a0)
-  ADDI s0, zero, 1
-  SUBW s2, a0, s0
+  ADDIW s2, a0, -1
   SRAIW s0, a0, 31
   SRLIW s0, s0, 31
   ADD a0, a0, s0
@@ -185,14 +184,12 @@ bb27:   # loop depth 3
   BNE s7, zero, bb29
   # implict jump to bb28
 bb28:   # loop depth 3
-  ADDI s7, zero, 1
-  SUBW s5, s5, s7
+  ADDIW s5, s5, -1
   JAL zero, bb6
 bb29:   # loop depth 2
   JAL zero, bb8
 bb30:   # loop depth 3
-  ADDI s7, zero, 1
-  SUBW s4, s4, s7
+  ADDIW s4, s4, -1
   SLLIW s7, s4, 2
   ADD s7, s1, s7
   LW s7, 0(s7)

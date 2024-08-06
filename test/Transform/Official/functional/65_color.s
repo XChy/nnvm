@@ -108,8 +108,7 @@ bb12:   # loop depth 0
   JALR zero, 0(ra)
 bb13:   # loop depth 0
   ADDIW a3, s5, 1
-  ADDI a0, zero, 1
-  SUBW a4, s6, a0
+  ADDIW a4, s6, -1
   ADD a0, s2, zero
   ADD a1, s3, zero
   ADD a2, s4, zero
@@ -132,8 +131,7 @@ bb15:   # loop depth 0
 bb16:   # loop depth 0
   SUBW s7, s5, a0
   ADDIW a2, s4, 1
-  ADDI a0, zero, 1
-  SUBW a3, s5, a0
+  ADDIW a3, s5, -1
   ADD a0, s2, zero
   ADD a1, s3, zero
   ADD a4, s6, zero
@@ -159,8 +157,7 @@ bb19:   # loop depth 0
 bb20:   # loop depth 0
   SUBW s8, s4, a0
   ADDIW a1, s3, 1
-  ADDI a0, zero, 1
-  SUBW a2, s4, a0
+  ADDIW a2, s4, -1
   ADD a0, s2, zero
   ADD a3, s5, zero
   ADD a4, s6, zero
@@ -186,8 +183,7 @@ bb23:   # loop depth 0
 bb24:   # loop depth 0
   SUBW s8, s3, a0
   ADDIW a0, s2, 1
-  ADDI a1, zero, 1
-  SUBW a1, s3, a1
+  ADDIW a1, s3, -1
   ADD a2, s4, zero
   ADD a3, s5, zero
   ADD a4, s6, zero
@@ -212,8 +208,7 @@ bb27:   # loop depth 0
   # implict jump to bb28
 bb28:   # loop depth 0
   SUBW s0, s2, a0
-  ADDI a0, zero, 1
-  SUBW a0, s2, a0
+  ADDIW a0, s2, -1
   ADD a1, s3, zero
   ADD a2, s4, zero
   ADD a3, s5, zero

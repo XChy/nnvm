@@ -20,32 +20,28 @@ main:   # loop depth 0
   ADDI a0, zero, 1024
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   BNE a0, zero, bb15
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 1023
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   BNE a0, zero, bb14
   # implict jump to bb4
 bb4:   # loop depth 0
   ADDI a0, zero, 1022
   # implict jump to bb5
 bb5:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   BNE a0, zero, bb13
   # implict jump to bb6
 bb6:   # loop depth 0
   ADDI a0, zero, 1021
   # implict jump to bb7
 bb7:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   BNE a0, zero, bb12
   # implict jump to bb8
 bb8:   # loop depth 0
@@ -64,8 +60,7 @@ bb8:   # loop depth 0
   ADD a0, zero, a0
   # implict jump to bb9
 bb9:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   SLLIW s0, a0, 2
   ADDIW s0, s0, 24
   ADDI t6, sp, 0

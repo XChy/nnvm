@@ -30,8 +30,7 @@ bb3:   # loop depth 1
   CALL hanoi
   ADDI a0, zero, 10
   CALL putch
-  ADDI s1, zero, 1
-  SUBW s0, s0, s1
+  ADDIW s0, s0, -1
   ADDI s1, zero, 0
   BLT s1, s0, bb4
   JAL zero, bb1
@@ -52,8 +51,7 @@ hanoi:   # loop depth 0
   BNE s3, zero, bb8
   # implict jump to bb6
 bb6:   # loop depth 0
-  ADDI a1, zero, 1
-  SUBW s3, a0, a1
+  ADDIW s3, a0, -1
   ADD a0, s3, zero
   ADD a1, s1, zero
   ADD a2, s0, zero

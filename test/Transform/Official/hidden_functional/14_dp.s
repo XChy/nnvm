@@ -96,48 +96,40 @@ bb14:   # loop depth 1
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  ADDI t0, zero, 1
-  SUBW t0, t2, t0
-  ADDI t1, zero, 140
-  MULW t0, t0, t1
+  ADDI t0, zero, 140
+  MULW t0, t2, t0
   LA t1, dp
   ADD a1, t1, t0
   SLLIW t0, t2, 3
   LA t1, t
   ADD a2, t1, t0
-  ADDI t0, zero, 140
-  MULW a3, t2, t0
   ADDI t0, zero, 1
   # implict jump to bb17
 bb17:   # loop depth 2
-  SLLIW a4, t0, 2
-  ADD a5, a1, a4
-  LW a6, 0(a5)
+  SLLIW t1, t0, 2
+  ADD a3, a1, t1
+  LW a4, -140(a3)
   ADDIW t1, t0, 1
-  SLLI a7, t1, 1
-  SRLI a7, a7, 63
-  ADD a7, t1, a7
-  ANDI a7, a7, -2
-  SUBW a7, t1, a7
-  SLLIW a7, a7, 2
-  ADD a7, a2, a7
-  LW a7, 0(a7)
-  ADDW a6, a6, a7
-  ADDI t3, zero, 1
-  SUBW t0, t0, t3
+  SLLI a5, t1, 1
+  SRLI a5, a5, 63
+  ADD a5, t1, a5
+  ANDI a5, a5, -2
+  SUBW a5, t1, a5
+  SLLIW a5, a5, 2
+  ADD a5, a2, a5
+  LW a5, 0(a5)
+  ADDW a4, a4, a5
+  ADDIW t0, t0, -1
   SLLIW t0, t0, 2
   ADD t0, a1, t0
-  LW t3, 0(t0)
-  ADDW t3, t3, a7
-  BLT t3, a6, bb21
+  LW a6, -140(t0)
+  ADDW a6, a6, a5
+  BLT a6, a4, bb21
   # implict jump to bb18
 bb18:   # loop depth 2
-  LA a5, dp
-  ADD a5, a5, a3
-  ADD a4, a5, a4
-  LW t0, 0(t0)
-  ADDW t0, t0, a7
-  SW t0, 0(a4)
+  LW t0, -140(t0)
+  ADDW t0, t0, a5
+  SW t0, 0(a3)
   # implict jump to bb19
 bb19:   # loop depth 2
   SLT t0, s0, t1
@@ -148,12 +140,9 @@ bb20:   # loop depth 2
   ADD t0, t1, zero
   JAL zero, bb17
 bb21:   # loop depth 2
-  LA t0, dp
-  ADD t0, t0, a3
-  ADD t0, t0, a4
-  LW a4, 0(a5)
-  ADDW a4, a4, a7
-  SW a4, 0(t0)
+  LW t0, -140(a3)
+  ADDW t0, t0, a5
+  SW t0, 0(a3)
   JAL zero, bb19
 bb22:   # loop depth 0
   ADDI s1, zero, 1
@@ -177,8 +166,7 @@ bb23:   # loop depth 1
   MULW s3, s1, s3
   LA s6, dp
   ADD s3, s6, s3
-  ADDI s6, zero, 1
-  SUBW s6, s1, s6
+  ADDIW s6, s1, -1
   ADDI s7, zero, 140
   MULW s6, s6, s7
   LA s7, dp

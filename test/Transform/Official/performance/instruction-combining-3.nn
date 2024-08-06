@@ -14,25 +14,25 @@ entry30008:  pred()
   30012 = call i32 getint()
   store i32 %30012 to ptr @loopCount
   call void _sysy_starttime(i32 10015)
-  loopCount.load3001850070 = load i32 from ptr @loopCount
-  3001950071 = icmp slt i32 0, i32 %loopCount.load3001850070
-  br i1 %3001950071, bb %while.body_preheader, bb %while.exit
+  loopCount.load3001850071 = load i32 from ptr @loopCount
+  3001950072 = icmp slt i32 0, i32 %loopCount.load3001850071
+  br i1 %3001950072, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry30008)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  sum.phi50074 = phi [bb %while.body, i32 %30046, bb %while.body_preheader, i32 0]
-  i.phi50073 = phi [bb %while.body, i32 %30049, bb %while.body_preheader, i32 0]
-  50611 = mul i32 %i.phi50073, i32 60
-  30039 = sdiv i32 %50611, i32 60
-  30043 = add i32 %sum.phi50074, i32 %30039
+  sum.phi50075 = phi [bb %while.body, i32 %30046, bb %while.body_preheader, i32 0]
+  i.phi50074 = phi [bb %while.body, i32 %30049, bb %while.body_preheader, i32 0]
+  50612 = mul i32 %i.phi50074, i32 60
+  30039 = sdiv i32 %50612, i32 60
+  30043 = add i32 %sum.phi50075, i32 %30039
   30046 = srem i32 %30043, i32 536854529
-  30049 = add i32 %i.phi50073, i32 1
-  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850070
+  30049 = add i32 %i.phi50074, i32 1
+  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850071
   br i1 %30019, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry30008)
-  50072 = phi [bb %while.body, i32 %30046, bb %entry30008, i32 0]
+  50073 = phi [bb %while.body, i32 %30046, bb %entry30008, i32 0]
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %50072)
+  call void putint(i32 %50073)
   call void putch(i32 10)
   ret i32 0
 }

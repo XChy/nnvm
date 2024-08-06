@@ -47,8 +47,7 @@ bb3:   # loop depth 0
 bb4:   # loop depth 0
   ADD a0, s2, s6
   SW s4, 0(a0)
-  ADDI a0, zero, 1
-  SUBW a2, s1, a0
+  ADDIW a2, s1, -1
   ADD a0, s2, zero
   CALL QuickSort
   ADD a0, s2, zero
@@ -70,8 +69,7 @@ bb8:   # loop depth 2
   ADD s7, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 2
-  ADDI a2, zero, 1
-  SUBW a2, a0, a2
+  ADDIW a2, a0, -1
   BNE s7, zero, bb25
   # implict jump to bb10
 bb10:   # loop depth 1
@@ -132,8 +130,7 @@ bb25:   # loop depth 2
 bb26:   # loop depth 2
   ADD a2, s2, s5
   LW a2, 0(a2)
-  ADDI s7, zero, 1
-  SUBW s7, s4, s7
+  ADDIW s7, s4, -1
   SLT s7, s7, a2
   JAL zero, bb9
 main:   # loop depth 0

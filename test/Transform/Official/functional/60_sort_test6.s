@@ -11,7 +11,6 @@ main:   # loop depth 0
   SD s0, 128(sp)
   SD s1, 136(sp)
   SD s2, 144(sp)
-  SD s3, 152(sp)
   LA a0, n
   ADDI s0, zero, 10
   SW s0, 0(a0)
@@ -116,8 +115,7 @@ main:   # loop depth 0
   ADDI a0, zero, 10
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDI s0, zero, 1
-  SUBW a0, a0, s0
+  ADDIW a0, a0, -1
   SLLIW s0, a0, 2
   ADDI t6, sp, 80
   ADD s0, t6, s0
@@ -126,8 +124,7 @@ bb1:   # loop depth 1
   ADDI t6, sp, 0
   ADD s1, t6, s1
   LW s2, 0(s1)
-  ADDI s3, zero, 1
-  SUBW s2, s2, s3
+  ADDIW s2, s2, -1
   SW s2, 0(s1)
   SLLIW s1, s2, 2
   ADDI t6, sp, 40
@@ -145,7 +142,6 @@ bb3:   # loop depth 0
   LD s0, 128(sp)
   LD s1, 136(sp)
   LD s2, 144(sp)
-  LD s3, 152(sp)
   ADDI sp, sp, 160
   JALR zero, 0(ra)
 bb4:   # loop depth 0

@@ -1490,8 +1490,7 @@ bb288:   # loop depth 1
   ADDIW s4, s4, 1
   JAL zero, bb163
 bb289:   # loop depth 1
-  ADDI a0, zero, 1
-  SUBW s5, s4, a0
+  ADDIW s5, s4, -1
   LA a0, sum
   LW a0, 0(a0)
   ADDIW a0, a0, 1
@@ -1518,8 +1517,7 @@ bb292:   # loop depth 1
   BNE a0, zero, bb295
   # implict jump to bb293
 bb293:   # loop depth 1
-  ADDI a0, zero, 2
-  SUBW a0, s4, a0
+  ADDIW a0, s4, -2
   SLLIW a0, a0, 2
   LA s5, array
   ADD a0, s5, a0

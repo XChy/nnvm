@@ -49,8 +49,7 @@ bb5:   # loop depth 1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDI s0, zero, 1
-  SUBW s4, s4, s0
+  ADDIW s4, s4, -1
   BNE s4, zero, bb6
   JAL zero, bb1
 bb6:   # loop depth 1

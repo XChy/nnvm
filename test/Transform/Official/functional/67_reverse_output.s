@@ -26,8 +26,7 @@ reverse:   # loop depth 0
 bb2:   # loop depth 0
   CALL getint
   ADD s0, a0, zero
-  ADDI a0, zero, 1
-  SUBW a0, s1, a0
+  ADDIW a0, s1, -1
   CALL reverse
   ADD a0, s0, zero
   CALL putint

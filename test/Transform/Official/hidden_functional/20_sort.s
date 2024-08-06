@@ -29,35 +29,35 @@ main:   # loop depth 0
   SD s6, 56(sp)
   CALL getch
   ADD s1, a0, zero
-  ADD s0, zero, zero
+  ADD s3, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
-  SLTI s2, s1, 48
-  BNE s2, zero, bb96
+  SLTI s0, s1, 48
+  BNE s0, zero, bb96
   # implict jump to bb2
 bb2:   # loop depth 1
-  ADDI s2, zero, 57
-  SLT s2, s2, s1
+  ADDI s0, zero, 57
+  SLT s0, s0, s1
   # implict jump to bb3
 bb3:   # loop depth 1
-  BNE s2, zero, bb92
+  BNE s0, zero, bb92
   # implict jump to bb4
 bb4:   # loop depth 0
   ADD s2, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  SLTI s3, s1, 48
-  XORI s3, s3, 1
-  BNE s3, zero, bb91
+  SLTI s0, s1, 48
+  XORI s0, s0, 1
+  BNE s0, zero, bb91
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADD s3, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb7
 bb7:   # loop depth 1
-  BNE s3, zero, bb90
+  BNE s0, zero, bb90
   # implict jump to bb8
 bb8:   # loop depth 0
-  BNE s0, zero, bb89
+  BNE s3, zero, bb89
   # implict jump to bb9
 bb9:   # loop depth 0
   # implict jump to bb10
@@ -268,8 +268,7 @@ bb46:   # loop depth 2
   ADD a1, a2, a1
   SW t2, 0(a1)
   ADDIW t0, t0, 1
-  ADDI a1, zero, 1
-  SUBW t1, t1, a1
+  ADDIW t1, t1, -1
   BNE t1, zero, bb48
   # implict jump to bb47
 bb47:   # loop depth 2
@@ -359,116 +358,114 @@ bb67:   # loop depth 2
   SW t0, 0(a4)
   JAL zero, bb64
 bb68:   # loop depth 0
-  ADD s1, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb69
 bb69:   # loop depth 1
-  SLLIW s4, s1, 2
+  SLLIW s5, s2, 2
   LA s0, a
-  ADD s5, s0, s4
+  ADD s6, s0, s5
   CALL getch
-  ADD s2, a0, zero
-  ADD s6, zero, zero
+  ADD s3, a0, zero
+  ADD s0, zero, zero
   # implict jump to bb70
 bb70:   # loop depth 2
-  SLTI s0, s2, 48
-  BNE s0, zero, bb88
+  SLTI s1, s3, 48
+  BNE s1, zero, bb88
   # implict jump to bb71
 bb71:   # loop depth 2
-  ADDI s0, zero, 57
-  SLT s0, s0, s2
+  ADDI s1, zero, 57
+  SLT s1, s1, s3
   # implict jump to bb72
 bb72:   # loop depth 2
-  BNE s0, zero, bb84
+  BNE s1, zero, bb84
   # implict jump to bb73
 bb73:   # loop depth 1
-  ADD s0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb74
 bb74:   # loop depth 2
-  SLTI s3, s2, 48
-  XORI s3, s3, 1
-  BNE s3, zero, bb83
+  SLTI s4, s3, 48
+  XORI s4, s4, 1
+  BNE s4, zero, bb83
   # implict jump to bb75
 bb75:   # loop depth 2
-  ADD s3, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb76
 bb76:   # loop depth 2
-  BNE s3, zero, bb82
+  BNE s4, zero, bb82
   # implict jump to bb77
 bb77:   # loop depth 1
-  BNE s6, zero, bb81
+  BNE s0, zero, bb81
   # implict jump to bb78
 bb78:   # loop depth 1
   # implict jump to bb79
 bb79:   # loop depth 1
-  SW s0, 0(s5)
-  LA s2, b
-  ADD s2, s2, s4
-  SW s0, 0(s2)
-  LA s2, c
-  ADD s2, s2, s4
-  SW s0, 0(s2)
-  ADDIW s1, s1, 1
+  SW s1, 0(s6)
+  LA s0, b
+  ADD s0, s0, s5
+  SW s1, 0(s0)
+  LA s0, c
+  ADD s0, s0, s5
+  SW s1, 0(s0)
+  ADDIW s2, s2, 1
   LA s0, n
   LW s0, 0(s0)
-  BNE s1, s0, bb80
+  BNE s2, s0, bb80
   JAL zero, bb11
 bb80:   # loop depth 1
   JAL zero, bb69
 bb81:   # loop depth 1
-  SUBW s0, zero, s0
+  SUBW s1, zero, s1
   JAL zero, bb79
 bb82:   # loop depth 2
-  ADDI s3, zero, 10
-  MULW s0, s0, s3
-  ADDW s0, s0, s2
-  ADDI s2, zero, 48
-  SUBW s0, s0, s2
+  ADDI s4, zero, 10
+  MULW s1, s1, s4
+  ADDW s1, s1, s3
+  ADDIW s1, s1, -48
   CALL getch
-  ADD s2, a0, zero
+  ADD s3, a0, zero
   JAL zero, bb74
 bb83:   # loop depth 2
-  ADDI s3, zero, 57
-  SLT s3, s3, s2
-  XORI s3, s3, 1
+  ADDI s4, zero, 57
+  SLT s4, s4, s3
+  XORI s4, s4, 1
   JAL zero, bb76
 bb84:   # loop depth 2
-  XORI s0, s2, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb87
+  XORI s1, s3, 45
+  SLTIU s1, s1, 1
+  BNE s1, zero, bb87
   # implict jump to bb85
 bb85:   # loop depth 2
   # implict jump to bb86
 bb86:   # loop depth 2
   CALL getch
-  ADD s2, a0, zero
+  ADD s3, a0, zero
   JAL zero, bb70
 bb87:   # loop depth 2
-  ADDI s6, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb86
 bb88:   # loop depth 2
-  ADDI s0, zero, 1
+  ADDI s1, zero, 1
   JAL zero, bb72
 bb89:   # loop depth 0
   SUBW s2, zero, s2
   JAL zero, bb10
 bb90:   # loop depth 1
-  ADDI s3, zero, 10
-  MULW s2, s2, s3
-  ADDW s1, s2, s1
-  ADDI s2, zero, 48
-  SUBW s2, s1, s2
+  ADDI s0, zero, 10
+  MULW s0, s2, s0
+  ADDW s0, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb5
 bb91:   # loop depth 1
-  ADDI s3, zero, 57
-  SLT s3, s3, s1
-  XORI s3, s3, 1
+  ADDI s0, zero, 57
+  SLT s0, s0, s1
+  XORI s0, s0, 1
   JAL zero, bb7
 bb92:   # loop depth 1
-  XORI s1, s1, 45
-  SLTIU s1, s1, 1
-  BNE s1, zero, bb95
+  XORI s0, s1, 45
+  SLTIU s0, s0, 1
+  BNE s0, zero, bb95
   # implict jump to bb93
 bb93:   # loop depth 1
   # implict jump to bb94
@@ -477,8 +474,8 @@ bb94:   # loop depth 1
   ADD s1, a0, zero
   JAL zero, bb1
 bb95:   # loop depth 1
-  ADDI s0, zero, 1
+  ADDI s3, zero, 1
   JAL zero, bb94
 bb96:   # loop depth 1
-  ADDI s2, zero, 1
+  ADDI s0, zero, 1
   JAL zero, bb3

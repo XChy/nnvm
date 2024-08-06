@@ -6,7 +6,7 @@
 #include "IR/UBValue.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
-#include <Transform/Scalar/Mem2Reg.h>
+#include "Mem2Reg.h"
 #include <set>
 #include <stack>
 #include <vector>

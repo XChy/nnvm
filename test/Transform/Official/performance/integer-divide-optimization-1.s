@@ -67,18 +67,18 @@ bb4:   # loop depth 1
   LA s0, size
   LW s0, 0(s0)
   DIVW s4, a0, s0
-  ADD a0, zero, zero
   ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 2
-  ADDW a0, a0, s4
-  ADDIW s0, s0, 1
-  SLTI s5, s0, 300
+  ADDW s0, s0, s4
+  ADDIW a0, a0, 1
+  SLTI s5, a0, 300
   BNE s5, zero, bb9
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDI s0, zero, 300
-  DIVW a0, a0, s0
+  ADDI a0, zero, 300
+  DIVW a0, s0, a0
   ADDW a0, s1, a0
   LUI s0, 524264
   ADDIW s0, s0, 3

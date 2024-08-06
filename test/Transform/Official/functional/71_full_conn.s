@@ -43,31 +43,31 @@ bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 1
   SW s0, 376(sp)
-  ADD s2, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 2
-  ADDI s1, zero, 20
-  MULW s1, s2, s1
+  ADDI s2, zero, 20
+  MULW s2, s1, s2
   ADDI t6, sp, 752
-  ADD s3, t6, s1
+  ADD s3, t6, s2
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 0(s3)
+  ADD s2, a0, zero
+  SW s2, 0(s3)
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 4(s3)
+  ADD s2, a0, zero
+  SW s2, 4(s3)
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 8(s3)
+  ADD s2, a0, zero
+  SW s2, 8(s3)
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 12(s3)
+  ADD s2, a0, zero
+  SW s2, 12(s3)
   CALL getint
-  ADD s1, a0, zero
-  SW s1, 16(s3)
-  ADDIW s2, s2, 1
-  SLTI s3, s2, 5
-  BNE s3, zero, bb63
+  ADD s2, a0, zero
+  SW s2, 16(s3)
+  ADDIW s1, s1, 1
+  SLTI s2, s1, 5
+  BNE s2, zero, bb63
   # implict jump to bb5
 bb5:   # loop depth 1
   LW a0, 752(sp)
@@ -1477,9 +1477,8 @@ bb38:   # loop depth 1
   CALL putch
   # implict jump to bb39
 bb39:   # loop depth 1
-  ADDI s1, zero, 1
   LW s0, 376(sp)
-  SUBW s0, s0, s1
+  ADDIW s0, s0, -1
   BLT zero, s0, bb40
   JAL zero, bb1
 bb40:   # loop depth 1

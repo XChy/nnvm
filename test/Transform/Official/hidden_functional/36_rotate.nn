@@ -95,35 +95,35 @@ read_image.select.exit126:  pred(read_image.select.then124, read_image.select.el
 read_image.then132:  pred(read_image.select.exit126)
   br bb %entry298.split
 read_image.if.exit133:  pred(read_image.select.exit126)
-  height.load140666706 = load i32 from ptr @height
-  141667707 = icmp slt i32 0, i32 %height.load140666706
-  br i1 %141667707, bb %read_image.while.body_preheader, bb %read_image.while.exit
+  height.load140666710 = load i32 from ptr @height
+  141667711 = icmp slt i32 0, i32 %height.load140666710
+  br i1 %141667711, bb %read_image.while.body_preheader, bb %read_image.while.exit
 read_image.while.body_preheader:  pred(read_image.if.exit133)
   br bb %read_image.while.body
 read_image.while.body:  pred(read_image.while.exit146, read_image.while.body_preheader)
-  y.phi665708 = phi [bb %read_image.while.exit146, i32 %165689, bb %read_image.while.body_preheader, i32 0]
-  width.load148675703 = load i32 from ptr @width
-  149676704 = icmp slt i32 0, i32 %width.load148675703
-  br i1 %149676704, bb %read_image.while.body145_preheader, bb %read_image.while.exit146
+  y.phi665712 = phi [bb %read_image.while.exit146, i32 %165689, bb %read_image.while.body_preheader, i32 0]
+  width.load148675707 = load i32 from ptr @width
+  149676708 = icmp slt i32 0, i32 %width.load148675707
+  br i1 %149676708, bb %read_image.while.body145_preheader, bb %read_image.while.exit146
 read_image.while.exit:  pred(read_image.while.exit146, read_image.if.exit133)
   br bb %entry298.split
 read_image.while.body145_preheader:  pred(read_image.while.body)
   br bb %read_image.while.body145
 read_image.while.body145:  pred(read_image.while.body145, read_image.while.body145_preheader)
-  x.phi674705 = phi [bb %read_image.while.body145, i32 %162686, bb %read_image.while.body145_preheader, i32 0]
+  x.phi674709 = phi [bb %read_image.while.body145, i32 %162686, bb %read_image.while.body145_preheader, i32 0]
   width.load152679 = load i32 from ptr @width
-  153680 = mul i32 %y.phi665708, i32 %width.load152679
-  155681 = add i32 %153680, i32 %x.phi674705
-  327682 = shl i32 %155681, i32 2
-  157683 = ptradd ptr @image, i32 %327682
+  153680 = mul i32 %y.phi665712, i32 %width.load152679
+  155681 = add i32 %153680, i32 %x.phi674709
+  705 = shl i32 %155681, i32 2
+  157683 = ptradd ptr @image, i32 %705
   159684 = call i32 getint()
   store i32 %159684 to ptr %157683
-  162686 = add i32 %x.phi674705, i32 1
+  162686 = add i32 %x.phi674709, i32 1
   width.load148675 = load i32 from ptr @width
   149676 = icmp slt i32 %162686, i32 %width.load148675
   br i1 %149676, bb %read_image.while.body145, bb %read_image.while.exit146
 read_image.while.exit146:  pred(read_image.while.body145, read_image.while.body)
-  165689 = add i32 %y.phi665708, i32 1
+  165689 = add i32 %y.phi665712, i32 1
   height.load140666 = load i32 from ptr @height
   141667 = icmp slt i32 %165689, i32 %height.load140666
   br i1 %141667, bb %read_image.while.body, bb %read_image.while.exit
@@ -146,16 +146,16 @@ entry256:  pred()
   call void putch(i32 32)
   call void putint(i32 255)
   call void putch(i32 10)
-  height.load274712 = load i32 from ptr @height
-  275713 = icmp slt i32 0, i32 %height.load274712
-  br i1 %275713, bb %while.body271_preheader, bb %while.exit272
+  height.load274716 = load i32 from ptr @height
+  275717 = icmp slt i32 0, i32 %height.load274716
+  br i1 %275717, bb %while.body271_preheader, bb %while.exit272
 while.body271_preheader:  pred(entry256)
   br bb %while.body271
 while.body271:  pred(while.exit280, while.body271_preheader)
-  y269.phi714 = phi [bb %while.exit280, i32 %297, bb %while.body271_preheader, i32 0]
-  width.load282709 = load i32 from ptr @width
-  283710 = icmp slt i32 0, i32 %width.load282709
-  br i1 %283710, bb %while.body279_preheader, bb %while.exit280
+  y269.phi718 = phi [bb %while.exit280, i32 %297, bb %while.body271_preheader, i32 0]
+  width.load282713 = load i32 from ptr @width
+  283714 = icmp slt i32 0, i32 %width.load282713
+  br i1 %283714, bb %while.body279_preheader, bb %while.exit280
 while.exit272:  pred(while.exit280, entry256)
   ret 
 while.body279_preheader:  pred(while.body271)
@@ -168,19 +168,19 @@ while.body279_preheader:  pred(while.body271)
   40404580 = fcmp ogt float %92574, float 6.283185
   br bb %while.body279
 while.body279:  pred(while.body279.split, while.body279_preheader)
-  x277.phi711 = phi [bb %while.body279.split, i32 %293, bb %while.body279_preheader, i32 0]
+  x277.phi715 = phi [bb %while.body279.split, i32 %293, bb %while.body279_preheader, i32 0]
   br i1 %40484, bb %my_sin.select.then486, bb %my_sin.select.else488
 while.body279.split:  pred(rotate.then246, rotate.if.exit247)
   288.ret = phi [bb %rotate.then246, i32 0, bb %rotate.if.exit247, i32 %254.load388]
   call void putint(i32 %288.ret)
   call void putch(i32 32)
-  293 = add i32 %x277.phi711, i32 1
+  293 = add i32 %x277.phi715, i32 1
   width.load282 = load i32 from ptr @width
   283 = icmp slt i32 %293, i32 %width.load282
   br i1 %283, bb %while.body279, bb %while.exit280
 while.exit280:  pred(while.body279.split, while.body271)
   call void putch(i32 10)
-  297 = add i32 %y269.phi714, i32 1
+  297 = add i32 %y269.phi718, i32 1
   height.load274 = load i32 from ptr @height
   275 = icmp slt i32 %297, i32 %height.load274
   br i1 %275, bb %while.body271, bb %while.exit272
@@ -213,8 +213,8 @@ rotate.then246:  pred(rotate.select.exit239)
 rotate.if.exit247:  pred(rotate.select.exit239)
   250384 = mul i32 %217351, i32 %width.load177332
   252385 = add i32 %250384, i32 %203345
-  326386 = shl i32 %252385, i32 2
-  254387 = ptradd ptr @image, i32 %326386
+  706 = shl i32 %252385, i32 2
+  254387 = ptradd ptr @image, i32 %706
   254.load388 = load i32 from ptr %254387
   br bb %while.body279.split
 my_sin.select.then486:  pred(while.body279)
@@ -286,8 +286,8 @@ my_cos.my_sin.if.exit79613:  pred(my_cos.my_sin.if.exit69605, my_cos.my_sin.then
   178333 = sdiv i32 %width.load177332, i32 2
   height.load180334 = load i32 from ptr @height
   181335 = sdiv i32 %height.load180334, i32 2
-  185336 = sub i32 %x277.phi711, i32 %178333
-  189337 = sub i32 %y269.phi714, i32 %181335
+  185336 = sub i32 %x277.phi715, i32 %178333
+  189337 = sub i32 %y269.phi718, i32 %181335
   193338 = si2f i32 %185336 to float
   194339 = fmul float %193338, float %85439615
   197340 = si2f i32 %189337 to float

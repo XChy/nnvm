@@ -71,8 +71,7 @@ bb3:   # loop depth 0
   LA s0, book
   ADDI s1, zero, 1
   SW s1, 4(s0)
-  ADDI s0, zero, 1
-  SUBW s11, a0, s0
+  ADDIW s11, a0, -1
   SLTI s0, s11, 1
   XORI s0, s0, 1
   BNE s0, zero, bb9

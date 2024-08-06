@@ -40,8 +40,8 @@ if.exit:  pred(then, else)
   ret 
 else:  pred(entry)
   13 = call i32 getint()
-  15 = sub i32 %n, i32 1
-  call void reverse(i32 %15)
+  24 = add i32 %n, i32 -1
+  call void reverse(i32 %24)
   call void putint(i32 %13)
   br bb %if.exit
 }

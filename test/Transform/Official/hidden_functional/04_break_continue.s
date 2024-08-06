@@ -64,7 +64,7 @@ bb15:   # loop depth 4
   ADD t1, t2, zero
   JAL zero, bb4
 bb16:   # loop depth 4
-  SLTU a5, zero, t1
+  SLTU a6, zero, t1
   BNE t1, zero, bb19
   # implict jump to bb17
 bb17:   # loop depth 4
@@ -75,7 +75,7 @@ bb19:   # loop depth 4
   BNE t1, zero, bb25
   # implict jump to bb20
 bb20:   # loop depth 4
-  XORI t0, a5, 1
+  XORI t0, a6, 1
   SLTU t0, zero, t0
   # implict jump to bb21
 bb21:   # loop depth 4
@@ -84,11 +84,7 @@ bb21:   # loop depth 4
 bb22:   # loop depth 4
   JAL zero, bb18
 bb23:   # loop depth 4
-  ADDI a5, zero, -1
-  SUBW t1, t1, a5
-  SLTI t1, t1, 3
-  XORI t1, t1, 1
-  BNE t1, zero, bb24
+  BNE a5, zero, bb24
   JAL zero, bb22
 bb24:   # loop depth 3
   JAL zero, bb6

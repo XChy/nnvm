@@ -96,8 +96,7 @@ bb13:   # loop depth 1
   SW a0, 0(s2)
   # implict jump to bb14
 bb14:   # loop depth 1
-  ADDI a0, zero, 1
-  SUBW s1, s1, a0
+  ADDIW s1, s1, -1
   SLT a0, s1, zero
   XORI a0, a0, 1
   BNE a0, zero, bb15

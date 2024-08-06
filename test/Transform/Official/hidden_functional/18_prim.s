@@ -194,30 +194,30 @@ bb31:   # loop depth 1
 bb32:   # loop depth 1
   JAL zero, bb31
 bb33:   # loop depth 0
-  ADD s0, zero, zero
+  ADD s1, zero, zero
   ADD a0, zero, zero
   # implict jump to bb34
 bb34:   # loop depth 1
-  ADDIW s1, s0, 1
-  BLT s1, s2, bb38
+  ADDIW s0, s1, 1
+  BLT s0, s2, bb38
   # implict jump to bb35
 bb35:   # loop depth 1
   # implict jump to bb36
 bb36:   # loop depth 1
-  BLT s1, s2, bb37
+  BLT s0, s2, bb37
   JAL zero, bb20
 bb37:   # loop depth 1
-  ADD s0, s1, zero
+  ADD s1, s0, zero
   JAL zero, bb34
 bb38:   # loop depth 1
-  SLLIW s3, s0, 2
-  LA s0, c
-  ADD s4, s0, s3
-  ADD s0, s1, zero
+  SLLIW s3, s1, 2
+  LA s1, c
+  ADD s4, s1, s3
+  ADD s1, s0, zero
   # implict jump to bb39
 bb39:   # loop depth 2
   LW s5, 0(s4)
-  SLLIW s6, s0, 2
+  SLLIW s6, s1, 2
   LA s7, c
   ADD s7, s7, s6
   LW s8, 0(s7)
@@ -226,8 +226,8 @@ bb39:   # loop depth 2
 bb40:   # loop depth 2
   # implict jump to bb41
 bb41:   # loop depth 2
-  ADDIW s0, s0, 1
-  BLT s0, s2, bb43
+  ADDIW s1, s1, 1
+  BLT s1, s2, bb43
   # implict jump to bb42
 bb42:   # loop depth 2
   JAL zero, bb36
@@ -386,8 +386,7 @@ bb79:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s2, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s2, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb71
@@ -420,8 +419,7 @@ bb87:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s6, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s6, s0, s1
+  ADDIW s6, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb61
@@ -454,8 +452,7 @@ bb95:   # loop depth 2
   ADDI s0, zero, 10
   MULW s0, s6, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s6, s0, s1
+  ADDIW s6, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb51
@@ -488,8 +485,7 @@ bb103:   # loop depth 1
   ADDI s0, zero, 10
   MULW s0, s5, s0
   ADDW s0, s0, s1
-  ADDI s1, zero, 48
-  SUBW s5, s0, s1
+  ADDIW s5, s0, -48
   CALL getch
   ADD s1, a0, zero
   JAL zero, bb13
@@ -519,8 +515,7 @@ bb110:   # loop depth 1
   ADDI s1, zero, 10
   MULW s1, s2, s1
   ADDW s0, s1, s0
-  ADDI s1, zero, 48
-  SUBW s2, s0, s1
+  ADDIW s2, s0, -48
   CALL getch
   ADD s0, a0, zero
   JAL zero, bb5

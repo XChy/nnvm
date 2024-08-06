@@ -29,7 +29,7 @@ while.cond:  pred(if.exit, then84, then119, if.exit156)
   16 = icmp slt i32 %i.phi, i32 4
   br i1 %16, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
-  325 = shl i32 %i.phi, i32 3
+  341 = shl i32 %i.phi, i32 3
   br bb %while.cond23
 while.exit:  pred(while.cond)
   170 = icmp sgt i32 %num.phi314, i32 10
@@ -41,8 +41,8 @@ while.cond23:  pred(while.body, if.exit47)
   coun.phi = phi [bb %while.body, i32 0, bb %if.exit47, i32 %68]
   27 = mul i32 %x2.phi, i32 120
   28 = ptradd ptr @a, i32 %27
-  324 = shl i32 %y2.phi, i32 2
-  31 = ptradd ptr %28, i32 %324
+  340 = shl i32 %y2.phi, i32 2
+  31 = ptradd ptr %28, i32 %340
   31.load = load i32 from ptr %31
   33 = icmp ne i32 %31.load, i32 1
   br i1 %33, bb %while.body24, bb %while.exit25
@@ -67,7 +67,7 @@ select.exit:  pred(select.then, select.else)
 then46:  pred(select.exit)
   br bb %while.exit25
 if.exit47:  pred(select.exit)
-  52 = ptradd ptr @step, i32 %325
+  52 = ptradd ptr @step, i32 %341
   54.load = load i32 from ptr %52
   56 = add i32 %x2.phi, i32 %54.load
   63 = ptradd ptr %52, i32 4
@@ -127,7 +127,7 @@ then119:  pred(select.exit111)
   br bb %while.cond
 if.exit120:  pred(select.exit111)
   store i32 0 to ptr %31
-  135 = ptradd ptr @step, i32 %325
+  135 = ptradd ptr @step, i32 %341
   137.load = load i32 from ptr %135
   139 = sub i32 %x2.phi, i32 %137.load
   145 = ptradd ptr %135, i32 4
@@ -162,90 +162,90 @@ entry175:  pred()
   store i32 %177 to ptr @w
   179 = call i32 getint()
   store i32 %179 to ptr @h
-  w.load183351 = load i32 from ptr @w
-  184352 = icmp ne i32 %w.load183351, i32 0
-  br i1 %184352, bb %while.body181, bb %while.exit182
+  w.load183361 = load i32 from ptr @w
+  184362 = icmp ne i32 %w.load183361, i32 0
+  br i1 %184362, bb %while.body181, bb %while.exit182
 while.body181:  pred(if.exit281, entry175)
   br bb %while.body190
 while.exit182:  pred(if.exit281, entry175)
   ret i32 0
 while.body190:  pred(while.body190, while.body181)
-  i186.phi317350 = phi [bb %while.body190, i32 %214, bb %while.body181, i32 0]
-  203 = mul i32 %i186.phi317350, i32 120
+  i186.phi317360 = phi [bb %while.body190, i32 %214, bb %while.body181, i32 0]
+  203 = mul i32 %i186.phi317360, i32 120
   204 = ptradd ptr @a, i32 %203
   store i32 1 to ptr %204
-  207369 = ptradd ptr %204, i32 4
-  store i32 1 to ptr %207369
-  207377 = ptradd ptr %204, i32 8
-  store i32 1 to ptr %207377
-  207385 = ptradd ptr %204, i32 12
-  store i32 1 to ptr %207385
-  207393 = ptradd ptr %204, i32 16
-  store i32 1 to ptr %207393
-  207401 = ptradd ptr %204, i32 20
-  store i32 1 to ptr %207401
-  207409 = ptradd ptr %204, i32 24
-  store i32 1 to ptr %207409
-  207417 = ptradd ptr %204, i32 28
-  store i32 1 to ptr %207417
-  207425 = ptradd ptr %204, i32 32
-  store i32 1 to ptr %207425
-  207433 = ptradd ptr %204, i32 36
-  store i32 1 to ptr %207433
-  207441 = ptradd ptr %204, i32 40
-  store i32 1 to ptr %207441
-  207449 = ptradd ptr %204, i32 44
-  store i32 1 to ptr %207449
-  207457 = ptradd ptr %204, i32 48
-  store i32 1 to ptr %207457
-  207465 = ptradd ptr %204, i32 52
-  store i32 1 to ptr %207465
-  207473 = ptradd ptr %204, i32 56
-  store i32 1 to ptr %207473
-  207481 = ptradd ptr %204, i32 60
-  store i32 1 to ptr %207481
-  207489 = ptradd ptr %204, i32 64
-  store i32 1 to ptr %207489
-  207497 = ptradd ptr %204, i32 68
-  store i32 1 to ptr %207497
-  207505 = ptradd ptr %204, i32 72
-  store i32 1 to ptr %207505
-  207513 = ptradd ptr %204, i32 76
-  store i32 1 to ptr %207513
-  207521 = ptradd ptr %204, i32 80
-  store i32 1 to ptr %207521
-  207529 = ptradd ptr %204, i32 84
-  store i32 1 to ptr %207529
-  207537 = ptradd ptr %204, i32 88
-  store i32 1 to ptr %207537
-  207545 = ptradd ptr %204, i32 92
-  store i32 1 to ptr %207545
-  207553 = ptradd ptr %204, i32 96
-  store i32 1 to ptr %207553
-  207561 = ptradd ptr %204, i32 100
-  store i32 1 to ptr %207561
-  207569 = ptradd ptr %204, i32 104
-  store i32 1 to ptr %207569
-  207577 = ptradd ptr %204, i32 108
-  store i32 1 to ptr %207577
-  207585 = ptradd ptr %204, i32 112
-  store i32 1 to ptr %207585
-  207593 = ptradd ptr %204, i32 116
-  store i32 1 to ptr %207593
-  214 = add i32 %i186.phi317350, i32 1
+  207379 = ptradd ptr %204, i32 4
+  store i32 1 to ptr %207379
+  207387 = ptradd ptr %204, i32 8
+  store i32 1 to ptr %207387
+  207395 = ptradd ptr %204, i32 12
+  store i32 1 to ptr %207395
+  207403 = ptradd ptr %204, i32 16
+  store i32 1 to ptr %207403
+  207411 = ptradd ptr %204, i32 20
+  store i32 1 to ptr %207411
+  207419 = ptradd ptr %204, i32 24
+  store i32 1 to ptr %207419
+  207427 = ptradd ptr %204, i32 28
+  store i32 1 to ptr %207427
+  207435 = ptradd ptr %204, i32 32
+  store i32 1 to ptr %207435
+  207443 = ptradd ptr %204, i32 36
+  store i32 1 to ptr %207443
+  207451 = ptradd ptr %204, i32 40
+  store i32 1 to ptr %207451
+  207459 = ptradd ptr %204, i32 44
+  store i32 1 to ptr %207459
+  207467 = ptradd ptr %204, i32 48
+  store i32 1 to ptr %207467
+  207475 = ptradd ptr %204, i32 52
+  store i32 1 to ptr %207475
+  207483 = ptradd ptr %204, i32 56
+  store i32 1 to ptr %207483
+  207491 = ptradd ptr %204, i32 60
+  store i32 1 to ptr %207491
+  207499 = ptradd ptr %204, i32 64
+  store i32 1 to ptr %207499
+  207507 = ptradd ptr %204, i32 68
+  store i32 1 to ptr %207507
+  207515 = ptradd ptr %204, i32 72
+  store i32 1 to ptr %207515
+  207523 = ptradd ptr %204, i32 76
+  store i32 1 to ptr %207523
+  207531 = ptradd ptr %204, i32 80
+  store i32 1 to ptr %207531
+  207539 = ptradd ptr %204, i32 84
+  store i32 1 to ptr %207539
+  207547 = ptradd ptr %204, i32 88
+  store i32 1 to ptr %207547
+  207555 = ptradd ptr %204, i32 92
+  store i32 1 to ptr %207555
+  207563 = ptradd ptr %204, i32 96
+  store i32 1 to ptr %207563
+  207571 = ptradd ptr %204, i32 100
+  store i32 1 to ptr %207571
+  207579 = ptradd ptr %204, i32 104
+  store i32 1 to ptr %207579
+  207587 = ptradd ptr %204, i32 108
+  store i32 1 to ptr %207587
+  207595 = ptradd ptr %204, i32 112
+  store i32 1 to ptr %207595
+  207603 = ptradd ptr %204, i32 116
+  store i32 1 to ptr %207603
+  214 = add i32 %i186.phi317360, i32 1
   193 = icmp slt i32 %214, i32 30
   br i1 %193, bb %while.body190, bb %while.exit191
 while.exit191:  pred(while.body190)
-  h.load220342 = load i32 from ptr @h
-  221343 = icmp sle i32 1, i32 %h.load220342
-  br i1 %221343, bb %while.body217_preheader, bb %while.exit218
+  h.load220352 = load i32 from ptr @h
+  221353 = icmp sle i32 1, i32 %h.load220352
+  br i1 %221353, bb %while.body217_preheader, bb %while.exit218
 while.body217_preheader:  pred(while.exit191)
   br bb %while.body217
 while.body217:  pred(while.exit226, while.body217_preheader)
-  i186.phi346 = phi [bb %while.exit226, i32 %273, bb %while.body217_preheader, i32 1]
-  w.load228338 = load i32 from ptr @w
-  229339 = icmp sle i32 1, i32 %w.load228338
-  br i1 %229339, bb %while.body225_preheader, bb %while.exit226
+  i186.phi356 = phi [bb %while.exit226, i32 %273, bb %while.body217_preheader, i32 1]
+  w.load228348 = load i32 from ptr @w
+  229349 = icmp sle i32 1, i32 %w.load228348
+  br i1 %229349, bb %while.body225_preheader, bb %while.exit226
 while.exit218:  pred(while.exit226, while.exit191)
   x_0.load275 = load i32 from ptr @x_0
   y_0.load276 = load i32 from ptr @y_0
@@ -253,28 +253,28 @@ while.exit218:  pred(while.exit226, while.exit191)
   279 = icmp sle i32 %277, i32 10
   br i1 %279, bb %then280, bb %else282
 while.body225_preheader:  pred(while.body217)
-  232 = mul i32 %i186.phi346, i32 120
+  232 = mul i32 %i186.phi356, i32 120
   233 = ptradd ptr @a, i32 %232
   br bb %while.body225
 while.body225:  pred(if.exit248, while.body225_preheader)
-  j.phi341 = phi [bb %if.exit248, i32 %270, bb %while.body225_preheader, i32 1]
-  332 = shl i32 %j.phi341, i32 2
-  236 = ptradd ptr %233, i32 %332
+  j.phi351 = phi [bb %if.exit248, i32 %270, bb %while.body225_preheader, i32 1]
+  344 = shl i32 %j.phi351, i32 2
+  236 = ptradd ptr %233, i32 %344
   238 = call i32 getint()
   store i32 %238 to ptr %236
   246 = icmp eq i32 %238, i32 2
   br i1 %246, bb %then247, bb %else
 while.exit226:  pred(if.exit248, while.body217)
-  273 = add i32 %i186.phi346, i32 1
+  273 = add i32 %i186.phi356, i32 1
   h.load220 = load i32 from ptr @h
   221 = icmp sle i32 %273, i32 %h.load220
   br i1 %221, bb %while.body217, bb %while.exit218
 then247:  pred(while.body225)
-  store i32 %i186.phi346 to ptr @x_0
-  store i32 %j.phi341 to ptr @y_0
+  store i32 %i186.phi356 to ptr @x_0
+  store i32 %j.phi351 to ptr @y_0
   br bb %if.exit248
 if.exit248:  pred(then247, else, then262)
-  270 = add i32 %j.phi341, i32 1
+  270 = add i32 %j.phi351, i32 1
   w.load228 = load i32 from ptr @w
   229 = icmp sle i32 %270, i32 %w.load228
   br i1 %229, bb %while.body225, bb %while.exit226
@@ -282,8 +282,8 @@ else:  pred(while.body225)
   261 = icmp eq i32 %238, i32 3
   br i1 %261, bb %then262, bb %if.exit248
 then262:  pred(else)
-  store i32 %i186.phi346 to ptr @x_1
-  store i32 %j.phi341 to ptr @y_1
+  store i32 %i186.phi356 to ptr @x_1
+  store i32 %j.phi351 to ptr @y_1
   br bb %if.exit248
 then280:  pred(while.exit218)
   call void putint(i32 %277)

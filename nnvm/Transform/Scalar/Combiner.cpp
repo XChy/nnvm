@@ -117,10 +117,17 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
 
 Value *CombinerPass::simplifySub(SubInst *I) {
   Value *A, *B, *C;
+  Type *type = I->getType();
+  ConstantInt *zero = cast<ConstantInt>(builder.getZero(type));
 
   // A - 0 --> A
   if (match(I, pSub(pValue(A), pZero())))
     return A;
+
+  // A - C1 --> A + (-C1)
+  ConstantInt *C1;
+  if (match(I, pSub(pValue(A), pConstantInt(C1))))
+    return builder.buildBinOp<AddInst>(A, zero->sub(C1), type);
 
   // (A - C1) - C2 --> A - (C1 + C2)
   if (match(I, pSub(pSub(pValue(A), pConstant(B)), pConstant(C)))) {
@@ -143,15 +150,20 @@ Value *CombinerPass::simplifyMul(MulInst *I) {
   Value *A, *B, *C;
   Type *type = I->getType();
   ConstantInt *C1;
+
   // A * (powerof2 ** 2) --> A << powerof2
   GInt powerOfTwo;
-
   if (match(I, pMul(pValue(A), pConstantInt(C1))) &&
       genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
                            powerOfTwo)) {
     return builder.buildBinOp<ShlInst>(
         A, builder.getConstantInt(type, powerOfTwo), type);
   }
+
+  // C1 * A -->  A * C1
+  if (match(I, pMul(pConstantInt(C1), pValue(A))))
+    return builder.buildBinOp<MulInst>(A, C1, type);
+
   return nullptr;
 }
 

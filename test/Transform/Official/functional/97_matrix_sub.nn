@@ -17,37 +17,37 @@ entry51:  pred()
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   77 = si2f i32 0 to float
-  77375 = si2f i32 1 to float
-  77394 = si2f i32 2 to float
+  77385 = si2f i32 1 to float
+  77404 = si2f i32 2 to float
   21216 = fsub float %77, float %77
   34223 = fsub float %77, float %77
   47230 = fsub float %77, float %77
-  21216325 = fsub float %77375, float %77375
-  34223332 = fsub float %77375, float %77375
-  47230339 = fsub float %77375, float %77375
-  21216352 = fsub float %77394, float %77394
-  34223359 = fsub float %77394, float %77394
-  47230366 = fsub float %77394, float %77394
+  21216335 = fsub float %77385, float %77385
+  34223342 = fsub float %77385, float %77385
+  47230349 = fsub float %77385, float %77385
+  21216362 = fsub float %77404, float %77404
+  34223369 = fsub float %77404, float %77404
+  47230376 = fsub float %77404, float %77404
   125 = f2si float %21216 to i32
   call void putint(i32 %125)
-  125302 = f2si float %21216325 to i32
-  call void putint(i32 %125302)
-  125312 = f2si float %21216352 to i32
+  125312 = f2si float %21216335 to i32
   call void putint(i32 %125312)
+  125322 = f2si float %21216362 to i32
+  call void putint(i32 %125322)
   call void putch(i32 10)
   146 = f2si float %34223 to i32
   call void putint(i32 %146)
-  146282 = f2si float %34223332 to i32
-  call void putint(i32 %146282)
-  146292 = f2si float %34223359 to i32
+  146292 = f2si float %34223342 to i32
   call void putint(i32 %146292)
+  146302 = f2si float %34223369 to i32
+  call void putint(i32 %146302)
   call void putch(i32 10)
   167 = f2si float %47230 to i32
   call void putint(i32 %167)
-  167262 = f2si float %47230339 to i32
-  call void putint(i32 %167262)
-  167272 = f2si float %47230366 to i32
+  167272 = f2si float %47230349 to i32
   call void putint(i32 %167272)
+  167282 = f2si float %47230376 to i32
+  call void putint(i32 %167282)
   call void putch(i32 10)
   ret i32 0
 }

@@ -33,8 +33,7 @@ main:   # loop depth 0
   SD s3, 88(sp)
   LA a0, x
   CALL getarray
-  ADDI s0, zero, 1
-  SUBW s0, a0, s0
+  ADDIW s0, a0, -1
   LA a0, y
   CALL getarray
   LA a0, v
@@ -114,8 +113,7 @@ bb13:   # loop depth 2
   LA s4, b
   ADD a0, s4, a0
   LW a0, 0(a0)
-  ADDI s4, zero, 1
-  SUBW s4, a0, s4
+  ADDIW s4, a0, -1
   ADD a0, s1, zero
   # implict jump to bb14
 bb14:   # loop depth 3
@@ -200,8 +198,7 @@ bb27:   # loop depth 2
   LA s4, a
   ADD a0, s4, a0
   LW a0, 0(a0)
-  ADDI s4, zero, 1
-  SUBW s4, a0, s4
+  ADDIW s4, a0, -1
   ADD a0, s1, zero
   # implict jump to bb28
 bb28:   # loop depth 3

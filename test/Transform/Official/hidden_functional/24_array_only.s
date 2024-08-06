@@ -22,8 +22,7 @@ bb1:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
-  ADDI s0, zero, 1
-  SUBW a2, a2, s0
+  ADDIW a2, a2, -1
   CALL sub_impl
   # implict jump to bb2
 bb2:   # loop depth 0
@@ -48,8 +47,7 @@ bb5:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
-  ADDI s0, zero, 1
-  SUBW a2, a2, s0
+  ADDIW a2, a2, -1
   CALL add_impl
   # implict jump to bb6
 bb6:   # loop depth 0
@@ -164,8 +162,7 @@ bb15:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
-  ADDI s0, zero, 1
-  SUBW a1, a1, s0
+  ADDIW a1, a1, -1
   CALL inc_impl
   # implict jump to bb16
 bb16:   # loop depth 0
