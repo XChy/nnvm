@@ -28,6 +28,7 @@ entry401:  pred()
   4351417 = icmp sgt i32 %414, i32 0
   br i1 %4351417, bb %while.body432_preheader, bb %while.exit433
 while.body432_preheader:  pred(entry401)
+  94566 = ptradd ptr @buffer, i32 128000
   br bb %while.body432
 while.body432:  pred(pseudo_sha1.while.exit161, while.body432_preheader)
   rounds.phi1418 = phi [bb %pseudo_sha1.while.exit161, i32 %482, bb %while.body432_preheader, i32 %414]
@@ -56,7 +57,6 @@ while.body440:  pred(while.body440, while.body432)
   444 = icmp slt i32 %454, i32 32000
   br i1 %444, bb %while.body440, bb %while.exit441
 while.exit441:  pred(while.body440)
-  94566 = ptradd ptr @buffer, i32 128000
   store i32 128 to ptr %94566
   br bb %pseudo_sha1.while.body
 pseudo_sha1.while.cond:  pred(pseudo_sha1.while.body)

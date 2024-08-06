@@ -188,10 +188,13 @@ while.exit345:  pred(memmove.while.exit315, entry331)
 convn.while.cond222:  pred(while.body344, convn.if.exit309)
   i217.phi371436 = phi [bb %while.body344, i32 0, bb %convn.if.exit309, i32 %304444]
   238441 = sub i32 %i217.phi371436, i32 %237440
+  281472 = add i32 %i217.phi371436, i32 %237440
+  287453 = mul i32 %i217.phi371436, i32 %337
   br bb %convn.while.cond228
 convn.while.cond228:  pred(convn.while.cond222, convn.if.exit301)
   j.phi373439 = phi [bb %convn.while.cond222, i32 0, bb %convn.if.exit301, i32 %296458]
   248450 = sub i32 %j.phi373439, i32 %237440
+  270467 = add i32 %j.phi373439, i32 %237440
   br bb %convn.while.cond239
 convn.while.cond239:  pred(convn.while.cond228, convn.if.exit284)
   curr.phi393448 = phi [bb %convn.while.cond228, i32 0, bb %convn.if.exit284, i32 %262465]
@@ -206,18 +209,15 @@ convn.while.cond249.split:  pred(getvalue.then202558, getvalue.if.exit203560)
   261464.ret = phi [bb %getvalue.then202558, i32 0, bb %getvalue.if.exit203560, i32 %210.load565]
   262465 = call i32 reduce(i32 %352.load, i32 %curr.phi391462, i32 %261464.ret)
   265466 = add i32 %y.phi383463, i32 1
-  270467 = add i32 %j.phi373439, i32 %237440
   271468 = icmp sge i32 %265466, i32 %270467
   br i1 %271468, bb %convn.then272, bb %convn.if.exit273
 convn.then272:  pred(convn.while.cond249.split)
   276471 = add i32 %x.phi377449, i32 1
-  281472 = add i32 %i217.phi371436, i32 %237440
   282473 = icmp sge i32 %276471, i32 %281472
   br i1 %282473, bb %convn.then283, bb %convn.if.exit284
 convn.if.exit273:  pred(convn.while.cond249.split)
   br bb %convn.while.cond249
 convn.then283:  pred(convn.then272)
-  287453 = mul i32 %i217.phi371436, i32 %337
   289454 = add i32 %287453, i32 %j.phi373439
   418455 = shl i32 %289454, i32 2
   291456 = ptradd ptr @b, i32 %418455

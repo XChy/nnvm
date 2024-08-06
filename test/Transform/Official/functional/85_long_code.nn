@@ -849,6 +849,7 @@ calSum.else420:  pred(calSum.while.body399)
   store i32 %4111245 to ptr %4091243
   br bb %calSum.if.exit419
 bubblesort.while.body_preheader:  pred(revert.while.exit342)
+  91270 = sub i32 %n.load12691434, i32 1
   br bb %bubblesort.while.body
 bubblesort.while.body:  pred(bubblesort.while.exit15, bubblesort.while.body_preheader)
   i.phi12681438 = phi [bb %bubblesort.while.exit15, i32 %611296, bb %bubblesort.while.body_preheader, i32 0]
@@ -927,6 +928,8 @@ bubblesort.while.exit:  pred(bubblesort.while.exit15, revert.while.exit342)
   8671137 = icmp eq i32 %8661136, i32 0
   br i1 %8671137, bb %getMid.then248, bb %getMid.else
 bubblesort.while.body14_preheader:  pred(bubblesort.while.body)
+  191281 = sub i32 %n.load12691434, i32 %i.phi12681438
+  201282 = sub i32 %191281, i32 1
   br bb %bubblesort.while.body14
 bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_preheader)
   j.phi12791373 = phi [bb %bubblesort.if.exit, i32 %281289, bb %bubblesort.while.body14_preheader, i32 0]
@@ -943,7 +946,6 @@ bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_prehe
 bubblesort.while.exit15:  pred(bubblesort.if.exit, bubblesort.while.body)
   tmp.phi85212671371 = phi [bb %bubblesort.if.exit, i32 %tmp.phi1305, bb %bubblesort.while.body, i32 %tmp.phi85212671437]
   611296 = add i32 %i.phi12681438, i32 1
-  91270 = sub i32 %n.load12691434, i32 1
   101271 = icmp slt i32 %611296, i32 %91270
   br i1 %101271, bb %bubblesort.while.body, bb %bubblesort.while.exit
 bubblesort.then:  pred(bubblesort.while.body14)
@@ -954,8 +956,6 @@ bubblesort.then:  pred(bubblesort.while.body14)
   br bb %bubblesort.if.exit
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
   tmp.phi1305 = phi [bb %bubblesort.while.body14, i32 %tmp.phi85112781372, bb %bubblesort.then, i32 %40.load1299]
-  191281 = sub i32 %n.load12691434, i32 %i.phi12681438
-  201282 = sub i32 %191281, i32 1
   211283 = icmp slt i32 %281289, i32 %201282
   br i1 %211283, bb %bubblesort.while.body14, bb %bubblesort.while.exit15
 bubblesort.while.body1318_preheader:  pred(arrCopy.while.exit3761009)

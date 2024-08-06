@@ -9,7 +9,7 @@ b:
 .word 0x00000005
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -160
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
   ADDI a0, zero, 3
@@ -27,81 +27,11 @@ main:   # loop depth 0
   LA s0, c
   ADDI a0, zero, 1
   SW a0, 8(s0)
-  ADDI a0, zero, 0
-  SW a0, 16(sp)
-  ADDI a0, zero, 0
-  SW a0, 20(sp)
-  ADDI a0, zero, 0
-  SW a0, 24(sp)
-  ADDI a0, zero, 0
-  SW a0, 28(sp)
-  ADDI a0, zero, 0
-  SW a0, 32(sp)
-  ADDI a0, zero, 0
-  SW a0, 36(sp)
-  ADDI a0, zero, 0
-  SW a0, 40(sp)
-  ADDI a0, zero, 0
-  SW a0, 44(sp)
-  ADDI a0, zero, 0
-  SW a0, 48(sp)
-  ADDI a0, zero, 0
-  SW a0, 52(sp)
   ADDI a0, zero, 2
-  SW a0, 56(sp)
+  CALL putint
   ADDI a0, zero, 1
-  SW a0, 60(sp)
+  CALL putint
   ADDI a0, zero, 8
-  SW a0, 64(sp)
-  ADDI a0, zero, 0
-  SW a0, 68(sp)
-  ADDI a0, zero, 0
-  SW a0, 72(sp)
-  ADDI a0, zero, 0
-  SW a0, 76(sp)
-  ADDI a0, zero, 0
-  SW a0, 80(sp)
-  ADDI a0, zero, 0
-  SW a0, 84(sp)
-  ADDI a0, zero, 0
-  SW a0, 88(sp)
-  ADDI a0, zero, 0
-  SW a0, 92(sp)
-  ADDI a0, zero, 0
-  SW a0, 96(sp)
-  ADDI a0, zero, 0
-  SW a0, 100(sp)
-  ADDI a0, zero, 0
-  SW a0, 104(sp)
-  ADDI a0, zero, 0
-  SW a0, 108(sp)
-  ADDI a0, zero, 0
-  SW a0, 112(sp)
-  ADDI a0, zero, 0
-  SW a0, 116(sp)
-  ADDI a0, zero, 0
-  SW a0, 120(sp)
-  ADDI a0, zero, 0
-  SW a0, 124(sp)
-  ADDI a0, zero, 0
-  SW a0, 128(sp)
-  ADDI a0, zero, 0
-  SW a0, 132(sp)
-  ADDI a0, zero, 0
-  SW a0, 136(sp)
-  ADDI a0, zero, 0
-  SW a0, 140(sp)
-  ADDI a0, zero, 0
-  SW a0, 144(sp)
-  ADDI a0, zero, 0
-  SW a0, 148(sp)
-  ADDI a0, zero, 0
-  SW a0, 152(sp)
-  ADDI a0, zero, 2
-  CALL putint
-  LW a0, 60(sp)
-  CALL putint
-  LW a0, 64(sp)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -126,5 +56,5 @@ main:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  ADDI sp, sp, 160
+  ADDI sp, sp, 16
   JALR zero, 0(ra)

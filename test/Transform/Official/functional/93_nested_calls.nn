@@ -10,40 +10,20 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry84:  pred()
-  %arr = stack 40
   86 = call i32 getint()
   88 = call i32 getint()
   90 = call i32 getint()
   92 = call i32 getint()
   105 = call i32 getint()
-  store i32 %105 to ptr %arr
-  103793 = ptradd ptr %arr, i32 4
   105794 = call i32 getint()
-  store i32 %105794 to ptr %103793
-  103802 = ptradd ptr %arr, i32 8
   105803 = call i32 getint()
-  store i32 %105803 to ptr %103802
-  103811 = ptradd ptr %arr, i32 12
   105812 = call i32 getint()
-  store i32 %105812 to ptr %103811
-  103820 = ptradd ptr %arr, i32 16
   105821 = call i32 getint()
-  store i32 %105821 to ptr %103820
-  103829 = ptradd ptr %arr, i32 20
   105830 = call i32 getint()
-  store i32 %105830 to ptr %103829
-  103838 = ptradd ptr %arr, i32 24
   105839 = call i32 getint()
-  store i32 %105839 to ptr %103838
-  103847 = ptradd ptr %arr, i32 28
   105848 = call i32 getint()
-  store i32 %105848 to ptr %103847
-  103856 = ptradd ptr %arr, i32 32
   105857 = call i32 getint()
-  store i32 %105857 to ptr %103856
-  103865 = ptradd ptr %arr, i32 36
   105866 = call i32 getint()
-  store i32 %105866 to ptr %103865
   77496 = icmp ne i32 %86, i32 0
   78497 = xor i1 %77496, i1 -1
   79498 = zext i1 %78497 to i32
@@ -60,13 +40,11 @@ while.exit.split:  pred(func6.then71, func6.else73)
   br i1 %21297724, bb %func2.then22_preheader, bb %func2.else24
 while.exit.split.split266.split.split:  pred(func7.then81513, func7.else83515)
   133.ret = phi [bb %func7.then81513, i32 1, bb %func7.else83515, i32 0]
-  63246 = icmp ne i32 %128.load, i32 0
+  63246 = icmp ne i32 %105803, i32 0
   br i1 %63246, bb %func6.select.then248, bb %func6.select.else251
 while.exit.split.split:  pred(func6.then71256, func6.else73258)
   134.ret = phi [bb %func6.then71256, i32 1, bb %func6.else73258, i32 0]
-  136.load = load i32 from ptr %103820
-  139.load = load i32 from ptr %103829
-  77520 = icmp ne i32 %139.load, i32 0
+  77520 = icmp ne i32 %105830, i32 0
   78521 = xor i1 %77520, i1 -1
   79522 = zext i1 %78521 to i32
   80523 = icmp ne i32 %79522, i32 0
@@ -77,15 +55,14 @@ while.exit.split.split.split518:  pred(func7.then81525, func7.else83527)
   br i1 %21311716, bb %func2.then22313_preheader, bb %func2.else24316
 while.exit.split.split.split305.split566:  pred(func4.then50, func4.else52)
   143.ret = phi [bb %func4.then50, i32 %134.ret, bb %func4.else52, i32 %136.load717]
-  145.load = load i32 from ptr %103838
-  34410712 = icmp eq i32 %145.load, i32 0
+  34410712 = icmp eq i32 %105839, i32 0
   br i1 %34410712, bb %func3.then35412, bb %func3.else37415_preheader
 while.exit.split.split.split305.split.split530:  pred(func7.then81537, func7.else83539)
   158.ret = phi [bb %func7.then81537, i32 1, bb %func7.else83539, i32 0]
   34425704 = icmp eq i32 %158.ret, i32 0
   br i1 %34425704, bb %func3.then35427, bb %func3.else37430_preheader
 while.exit.split.split.split305.split.split419.split575:  pred(func4.then50579, func4.else52581)
-  162.ret = phi [bb %func4.then50579, i32 %121.load, bb %func4.else52581, i32 %11594]
+  162.ret = phi [bb %func4.then50579, i32 %105, bb %func4.else52581, i32 %11594]
   78545 = xor i1 %21297724, i1 -1
   79546 = zext i1 %78545 to i32
   80547 = icmp ne i32 %79546, i32 0
@@ -129,18 +106,17 @@ func2.else24:  pred(while.exit.split, func2.then22_preheader)
   34395720 = icmp eq i32 %92, i32 0
   br i1 %34395720, bb %func3.then35, bb %func3.else37_preheader
 func2.then22313_preheader:  pred(while.exit.split.split.split518)
-  27314 = srem i32 %136.load, i32 %141.ret
+  27314 = srem i32 %105821, i32 %141.ret
   br bb %func2.else24316
 func2.else24316:  pred(while.exit.split.split.split518, func2.then22313_preheader)
-  136.load717 = phi [bb %func2.then22313_preheader, i32 %27314, bb %while.exit.split.split.split518, i32 %136.load]
+  136.load717 = phi [bb %func2.then22313_preheader, i32 %27314, bb %while.exit.split.split.split518, i32 %105821]
   49568 = icmp ne i32 %58273, i32 0
   br i1 %49568, bb %func4.then50, bb %func4.else52
 func2.then22327_preheader:  pred(func3.then35412)
-  27328 = srem i32 %39413, i32 %149.load
+  27328 = srem i32 %39413, i32 %105848
   br bb %func2.else24330
 func2.else24330:  pred(func3.then35412, func2.then22327_preheader)
   39413709 = phi [bb %func2.then22327_preheader, i32 %27328, bb %func3.then35412, i32 %39413]
-  153.load = load i32 from ptr %103856
   77532 = icmp ne i32 %105866, i32 0
   78533 = xor i1 %77532, i1 -1
   79534 = zext i1 %78533 to i32
@@ -154,11 +130,11 @@ func2.else24344:  pred(func3.then35442, func2.then22341_preheader)
   34455686 = icmp eq i32 %88691, i32 0
   br i1 %34455686, bb %func3.then35457, bb %func3.else37460_preheader
 func2.then22355_preheader:  pred(func1.then609)
-  27356 = srem i32 %11610, i32 %128.load
+  27356 = srem i32 %11610, i32 %105803
   br bb %func2.else24358
 func2.else24358:  pred(func1.then609, func2.then22355_preheader)
   11610677 = phi [bb %func2.then22355_preheader, i32 %27356, bb %func1.then609, i32 %11610]
-  58278 = sub i32 0, i32 %139.load
+  58278 = sub i32 0, i32 %105830
   34470672 = icmp eq i32 %58278, i32 0
   br i1 %34470672, bb %func3.then35472, bb %func3.else37475_preheader
 func2.then22369_preheader:  pred(func3.then35472)
@@ -166,7 +142,7 @@ func2.then22369_preheader:  pred(func3.then35472)
   br bb %func2.else24372
 func2.else24372:  pred(func3.then35472, func2.then22369_preheader)
   39473669 = phi [bb %func2.then22369_preheader, i32 %27370, bb %func3.then35472, i32 %39473]
-  77556 = icmp ne i32 %153.load, i32 0
+  77556 = icmp ne i32 %105857, i32 0
   78557 = xor i1 %77556, i1 -1
   79558 = zext i1 %78557 to i32
   80559 = icmp ne i32 %79558, i32 0
@@ -181,12 +157,8 @@ func3.then35:  pred(func2.else24, func3.else37_preheader)
   x.loop296721 = phi [bb %func3.else37_preheader, i32 %42401, bb %func2.else24, i32 %114.ret725]
   39398 = add i32 %x.loop296721, i32 1
   58268 = sub i32 0, i32 %39398
-  121.load = load i32 from ptr %arr
-  124.load = load i32 from ptr %103793
-  58273 = sub i32 0, i32 %124.load
-  128.load = load i32 from ptr %103802
-  131.load = load i32 from ptr %103811
-  77508 = icmp ne i32 %131.load, i32 0
+  58273 = sub i32 0, i32 %105794
+  77508 = icmp ne i32 %105812, i32 0
   78509 = xor i1 %77508, i1 -1
   79510 = zext i1 %78509 to i32
   80511 = icmp ne i32 %79510, i32 0
@@ -197,19 +169,18 @@ func3.else37_preheader:  pred(func2.else24)
 func3.then35412:  pred(while.exit.split.split.split305.split566, func3.else37415_preheader)
   143.ret713 = phi [bb %func3.else37415_preheader, i32 %42416, bb %while.exit.split.split.split305.split566, i32 %143.ret]
   39413 = add i32 %143.ret713, i32 1
-  149.load = load i32 from ptr %103847
-  21325708 = icmp ne i32 %149.load, i32 0
+  21325708 = icmp ne i32 %105848, i32 0
   br i1 %21325708, bb %func2.then22327_preheader, bb %func2.else24330
 func3.else37415_preheader:  pred(while.exit.split.split.split305.split566)
-  42416 = add i32 %143.ret, i32 %145.load
+  42416 = add i32 %143.ret, i32 %105839
   br bb %func3.then35412
 func3.then35427:  pred(while.exit.split.split.split305.split.split530, func3.else37430_preheader)
-  153.load705 = phi [bb %func3.else37430_preheader, i32 %42431, bb %while.exit.split.split.split305.split.split530, i32 %153.load]
+  153.load705 = phi [bb %func3.else37430_preheader, i32 %42431, bb %while.exit.split.split.split305.split.split530, i32 %105857]
   39428 = add i32 %153.load705, i32 1
   5591698 = icmp eq i32 %86, i32 0
   br i1 %5591698, bb %func1.then, bb %func1.else_preheader
 func3.else37430_preheader:  pred(while.exit.split.split.split305.split.split530)
-  42431 = add i32 %153.load, i32 %158.ret
+  42431 = add i32 %105857, i32 %158.ret
   br bb %func3.then35427
 func3.then35442:  pred(while.exit.split.split.split305.split.split419.split542, func3.else37445_preheader)
   165.ret695 = phi [bb %func3.else37445_preheader, i32 %42446, bb %while.exit.split.split.split305.split.split419.split542, i32 %165.ret]
@@ -222,19 +193,19 @@ func3.else37445_preheader:  pred(while.exit.split.split.split305.split.split419.
 func3.then35457:  pred(func2.else24344, func3.else37460_preheader)
   162.ret687 = phi [bb %func3.else37460_preheader, i32 %42461, bb %func2.else24344, i32 %162.ret]
   39458 = add i32 %162.ret687, i32 1
-  5607680 = icmp eq i32 %124.load, i32 0
+  5607680 = icmp eq i32 %105794, i32 0
   br i1 %5607680, bb %func1.then609, bb %func1.else612_preheader
 func3.else37460_preheader:  pred(func2.else24344)
   42461 = add i32 %162.ret, i32 %88691
   br bb %func3.then35457
 func3.then35472:  pred(func2.else24358, func3.else37475_preheader)
-  136.load673 = phi [bb %func3.else37475_preheader, i32 %42476, bb %func2.else24358, i32 %136.load]
+  136.load673 = phi [bb %func3.else37475_preheader, i32 %42476, bb %func2.else24358, i32 %105821]
   39473 = add i32 %136.load673, i32 1
-  58283 = sub i32 0, i32 %145.load
+  58283 = sub i32 0, i32 %105839
   21367668 = icmp ne i32 %58283, i32 0
   br i1 %21367668, bb %func2.then22369_preheader, bb %func2.else24372
 func3.else37475_preheader:  pred(func2.else24358)
-  42476 = add i32 %136.load, i32 %58278
+  42476 = add i32 %105821, i32 %58278
   br bb %func3.then35472
 func3.then35487:  pred(func2.else24386, func3.else37490_preheader)
   x.loop380655 = phi [bb %func3.else37490_preheader, i32 %42491, bb %func2.else24386, i32 %11626659]
@@ -285,27 +256,27 @@ func1.else_preheader:  pred(func3.then35427)
   15597 = sub i32 %39428, i32 %86
   br bb %func1.then
 func1.then609:  pred(func3.then35457, func1.else612_preheader)
-  121.load681 = phi [bb %func1.else612_preheader, i32 %15613, bb %func3.then35457, i32 %121.load]
+  121.load681 = phi [bb %func1.else612_preheader, i32 %15613, bb %func3.then35457, i32 %105]
   11610 = mul i32 %39458, i32 %121.load681
   br i1 %63246, bb %func2.then22355_preheader, bb %func2.else24358
 func1.else612_preheader:  pred(func3.then35457)
-  15613 = sub i32 %121.load, i32 %124.load
+  15613 = sub i32 %105, i32 %105794
   br bb %func1.then609
 func1.then625:  pred(while.exit.split.split.split.split.split361.split, func1.else628_preheader)
-  149.load663 = phi [bb %func1.else628_preheader, i32 %15629, bb %while.exit.split.split.split.split.split361.split, i32 %149.load]
+  149.load663 = phi [bb %func1.else628_preheader, i32 %15629, bb %while.exit.split.split.split.split.split361.split, i32 %105848]
   11626 = mul i32 %39473669, i32 %149.load663
   58288 = sub i32 0, i32 %105866
   21381658 = icmp ne i32 %58288, i32 0
   br i1 %21381658, bb %func2.then22383_preheader, bb %func2.else24386
 func1.else628_preheader:  pred(while.exit.split.split.split.split.split361.split)
-  15629 = sub i32 %149.load, i32 %203.ret
+  15629 = sub i32 %105848, i32 %203.ret
   br bb %func1.then625
 func1.then641:  pred(func3.then35487, func1.else644_preheader)
-  131.load649 = phi [bb %func1.else644_preheader, i32 %15645, bb %func3.then35487, i32 %131.load]
+  131.load649 = phi [bb %func1.else644_preheader, i32 %15645, bb %func3.then35487, i32 %105812]
   11642 = mul i32 %11610677, i32 %131.load649
   ret i32 %11642
 func1.else644_preheader:  pred(func3.then35487)
-  15645 = sub i32 %131.load, i32 %39488
+  15645 = sub i32 %105812, i32 %39488
   br bb %func1.then641
 }
 

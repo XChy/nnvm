@@ -176,7 +176,7 @@ bb14:   # loop depth 0
   ADDIW t0, t0, 1280
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb7
 bb16:   # loop depth 1
   ADD s0, a0, zero
@@ -218,7 +218,7 @@ bb20:   # loop depth 1
   CALL putint
   ADD a0, s0, zero
   JAL zero, bb11
-bb21:   # loop depth 1433456736
+bb21:   # loop depth 2
   JAL zero, bb17
 bb22:   # loop depth 2
   LUI a0, 10
@@ -262,7 +262,7 @@ bb25:   # loop depth 1
   CALL putint
   ADD a0, s0, zero
   JAL zero, bb12
-bb26:   # loop depth 1433562560
+bb26:   # loop depth 2
   JAL zero, bb24
 bb27:   # loop depth 1
   LUI t6, 20
@@ -277,9 +277,9 @@ bb27:   # loop depth 1
   CALL putint
   ADD a0, s0, zero
   JAL zero, bb13
-bb28:   # loop depth 0
+bb28:   # loop depth 1
   JAL zero, bb5
-bb29:   # loop depth 0
+bb29:   # loop depth 1
   JAL zero, bb3
-bb30:   # loop depth 0
+bb30:   # loop depth 1
   JAL zero, bb1

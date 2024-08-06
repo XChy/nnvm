@@ -115,7 +115,7 @@ bb6:   # loop depth 1
   ADDIW s1, s1, 1
   BLT s1, s2, bb7
   JAL zero, bb4
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   ADD s0, a0, zero
   JAL zero, bb6
 bb8:   # loop depth 0
@@ -133,7 +133,7 @@ bb9:   # loop depth 1
   ADDIW a0, a0, 1
   BLT a0, a1, bb10
   JAL zero, bb3
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb9
 bb11:   # loop depth 0
   ADD a0, zero, zero
@@ -162,7 +162,7 @@ bb14:   # loop depth 1
   ADDIW a0, a0, 1
   BLT a0, a1, bb15
   JAL zero, bb2
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb12
 bb16:   # loop depth 1
   SLLIW s0, s1, 2
@@ -348,7 +348,7 @@ bb28:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb29
   JAL zero, bb26
-bb29:   # loop depth 0
+bb29:   # loop depth 1
   JAL zero, bb28
 bb30:   # loop depth 0
   ADD s0, zero, zero
@@ -368,15 +368,17 @@ bb31:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb32
   JAL zero, bb25
-bb32:   # loop depth 1433806096
+bb32:   # loop depth 1
   JAL zero, bb31
-bb33:   # loop depth 1
+bb33:   # loop depth 0
+  # implict jump to bb34
+bb34:   # loop depth 1
   LA a0, d
   LW a0, 0(a0)
   SLLIW a0, a0, 1
   LA a1, d
   SW a0, 0(a1)
-  BLT a0, s1, bb33
+  BLT a0, s1, bb34
   JAL zero, bb24
 multiply:   # loop depth 0
   ADDI sp, sp, -32
@@ -386,14 +388,14 @@ multiply:   # loop depth 0
   ADD s0, a0, zero
   ADD s1, a1, zero
   SLTIU a0, s1, 1
-  BNE a0, zero, bb40
-  # implict jump to bb35
-bb35:   # loop depth 0
-  XORI a0, s1, 1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb39
+  BNE a0, zero, bb41
   # implict jump to bb36
 bb36:   # loop depth 0
+  XORI a0, s1, 1
+  SLTIU a0, a0, 1
+  BNE a0, zero, bb40
+  # implict jump to bb37
+bb37:   # loop depth 0
   SRAIW a0, s1, 31
   SRLIW a0, a0, 31
   ADD a0, s1, a0
@@ -411,15 +413,15 @@ bb36:   # loop depth 0
   SUBW t0, s1, t0
   XORI t0, t0, 1
   SLTIU t0, t0, 1
-  BNE t0, zero, bb38
-  # implict jump to bb37
-bb37:   # loop depth 0
+  BNE t0, zero, bb39
+  # implict jump to bb38
+bb38:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb38:   # loop depth 0
+bb39:   # loop depth 0
   ADDW t0, a0, s0
   LUI t1, 243712
   ADDIW t1, t1, 1
@@ -429,7 +431,7 @@ bb38:   # loop depth 0
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb39:   # loop depth 0
+bb40:   # loop depth 0
   LUI t0, 243712
   ADDIW t0, t0, 1
   REMW a0, s0, t0
@@ -438,7 +440,7 @@ bb39:   # loop depth 0
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb40:   # loop depth 0
+bb41:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)

@@ -11,14 +11,10 @@ external i32 getfarray(ptr )
 i32 main() {
 entry54:  pred()
   %b = stack 12508
-  %a = stack 16348
   br bb %init
 init:  pred(init, entry54)
   cnt_ptr.phi276 = phi [bb %init, i32 %cnt.dec, bb %entry54, i32 4087]
   cnt.dec = sub i32 %cnt_ptr.phi276, i32 1
-  186 = shl i32 %cnt.dec, i32 2
-  arr.index66 = ptradd ptr %a, i32 %186
-  store i32 0 to ptr %arr.index66
   61 = icmp ne i32 %cnt.dec, i32 0
   br i1 %61, bb %init, bb %init.exit
 init.exit:  pred(init)
@@ -32,16 +28,6 @@ init69:  pred(init69, init.exit)
   73 = icmp ne i32 %cnt.dec75, i32 0
   br i1 %73, bb %init69, bb %init.exit70
 init.exit70:  pred(init69)
-  191 = ptradd ptr %a, i32 4560
-  store i32 6 to ptr %191
-  193 = ptradd ptr %a, i32 4568
-  store i32 7 to ptr %193
-  195 = ptradd ptr %a, i32 4572
-  store i32 4 to ptr %195
-  197 = ptradd ptr %a, i32 4584
-  store i32 9 to ptr %197
-  199 = ptradd ptr %a, i32 4600
-  store i32 11 to ptr %199
   201 = ptradd ptr %b, i32 1420
   store i32 1 to ptr %201
   203 = ptradd ptr %b, i32 1424
@@ -57,12 +43,9 @@ init.exit70:  pred(init69)
   219 = ptradd ptr %b, i32 12108
   158.load = load i32 from ptr %219
   call void putint(i32 %146.load)
-  19.load236295 = load i32 from ptr %201
-  call void putint(i32 %19.load236295)
-  19.load236304 = load i32 from ptr %203
-  call void putint(i32 %19.load236304)
-  19.load236313 = load i32 from ptr %205
-  call void putint(i32 %19.load236313)
+  call void putint(i32 1)
+  call void putint(i32 2)
+  call void putint(i32 3)
   381 = ptradd ptr %b, i32 1432
   19.load236322 = load i32 from ptr %381
   call void putint(i32 %19.load236322)
@@ -78,11 +61,9 @@ init.exit70:  pred(init69)
   389 = ptradd ptr %b, i32 1448
   19.load236358 = load i32 from ptr %389
   call void putint(i32 %19.load236358)
-  19.load236367 = load i32 from ptr %207
-  call void putint(i32 %19.load236367)
+  call void putint(i32 9)
   call void putch(i32 10)
-  28.load244 = load i32 from ptr %197
-  call void putint(i32 %28.load244)
+  call void putint(i32 9)
   call void putch(i32 10)
   36251268 = icmp slt i32 %158.load, i32 10
   br i1 %36251268, bb %func.while.body33_preheader, bb %func.while.exit34

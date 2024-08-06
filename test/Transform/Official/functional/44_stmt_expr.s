@@ -44,5 +44,5 @@ bb3:   # loop depth 1
   XORI s0, s0, 1
   BNE s0, zero, bb4
   JAL zero, bb1
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   JAL zero, bb3

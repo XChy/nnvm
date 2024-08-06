@@ -21,7 +21,7 @@ main:   # loop depth 0
   ADDI a0, zero, 0
   BLT a0, s1, bb3
   # implict jump to bb1
-bb1:   # loop depth 1434995272
+bb1:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 0
@@ -50,7 +50,7 @@ bb4:   # loop depth 1
   ADDIW a0, a0, 1
   BLT a0, s1, bb6
   # implict jump to bb5
-bb5:   # loop depth 1435066152
+bb5:   # loop depth 1
   JAL zero, bb2
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   JAL zero, bb4

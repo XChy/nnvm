@@ -102,7 +102,7 @@ bb14:   # loop depth 1
   XORI a0, a0, 1
   BNE a0, zero, bb15
   JAL zero, bb1
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb3
 bb16:   # loop depth 1
   LA a0, a

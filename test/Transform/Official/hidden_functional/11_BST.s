@@ -310,10 +310,10 @@ bb38:   # loop depth 1
   ADDIW s1, s1, 1
   BLT s1, s2, bb40
   # implict jump to bb39
-bb39:   # loop depth 0
+bb39:   # loop depth 1
   ADD a0, s0, zero
   JAL zero, bb36
-bb40:   # loop depth 0
+bb40:   # loop depth 1
   JAL zero, bb38
 bb41:   # loop depth 0
   ADDI s1, zero, 1
@@ -326,7 +326,7 @@ bb42:   # loop depth 1
   ADDIW s1, s1, 1
   BLT s1, s2, bb43
   JAL zero, bb34
-bb43:   # loop depth 1433747520
+bb43:   # loop depth 1
   JAL zero, bb42
 bb44:   # loop depth 0
   ADD a0, zero, zero

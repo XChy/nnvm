@@ -133,8 +133,10 @@ entry223:  pred()
   236386 = add i32 %225, i32 %227
   237387 = sub i32 %236386, i32 1
   238388 = icmp slt i32 1, i32 %237387
-  br i1 %238388, bb %while.body231, bb %while.exit232
-while.body231:  pred(while.body231, entry223)
+  br i1 %238388, bb %while.body231_preheader, bb %while.exit232
+while.body231_preheader:  pred(entry223)
+  br bb %while.body231
+while.body231:  pred(while.body231, while.body231_preheader)
   d.load241 = load i32 from ptr @d
   339 = shl i32 %d.load241, i32 1
   store i32 %339 to ptr @d

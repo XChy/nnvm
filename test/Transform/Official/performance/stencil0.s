@@ -110,7 +110,7 @@ bb3:   # loop depth 2
   ADDI s4, zero, 255
   BLT s4, s1, bb17
   # implict jump to bb4
-bb4:   # loop depth 0
+bb4:   # loop depth 2
   # implict jump to bb5
 bb5:   # loop depth 2
   # implict jump to bb6
@@ -197,13 +197,13 @@ bb12:   # loop depth 0
   LD s7, 104(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-bb13:   # loop depth 0
+bb13:   # loop depth 1
   JAL zero, bb11
-bb14:   # loop depth 0
+bb14:   # loop depth 1
   JAL zero, bb9
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb1
-bb16:   # loop depth 0
+bb16:   # loop depth 2
   JAL zero, bb2
 bb17:   # loop depth 2
   ADDI s1, zero, 255

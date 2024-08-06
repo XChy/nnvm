@@ -253,6 +253,10 @@ entry323:  pred()
   br i1 %3301514, bb %while.body327_preheader, bb %while.exit328
 while.body327_preheader:  pred(entry323)
   31496 = si2f i32 0 to float
+  304444 = si2f i32 1 to float
+  113790 = si2f i32 2 to float
+  124798 = si2f i32 4 to float
+  134804 = si2f i32 6 to float
   br bb %while.body327
 while.body327:  pred(if.exit386, while.body327_preheader)
   num.phi1515 = phi [bb %if.exit386, i32 %396, bb %while.body327_preheader, i32 %325]
@@ -273,10 +277,6 @@ while.body327.split:  pred(my_fabs.then1499, my_fabs.if.exit1501)
   348 = call float my_exp(float %332)
   call void putfloat(float %348)
   call void putch(i32 32)
-  304444 = si2f i32 1 to float
-  113790 = si2f i32 2 to float
-  124798 = si2f i32 4 to float
-  134804 = si2f i32 6 to float
   br i1 %41497, bb %then354, bb %else
 while.exit328:  pred(if.exit386, entry323)
   ret i32 0

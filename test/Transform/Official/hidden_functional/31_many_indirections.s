@@ -566,5 +566,5 @@ bb2:   # loop depth 0
   LD s11, 216(sp)
   ADDI sp, sp, 384
   JALR zero, 0(ra)
-bb3:   # loop depth 0
+bb3:   # loop depth 1
   JAL zero, bb1

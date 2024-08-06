@@ -355,7 +355,7 @@ bb62:   # loop depth 1
   SW s0, 0(s1)
   BNE s0, zero, bb63
   JAL zero, bb34
-bb63:   # loop depth 0
+bb63:   # loop depth 1
   JAL zero, bb36
 bb64:   # loop depth 1
   SUB s2, zero, s2
@@ -379,7 +379,7 @@ bb67:   # loop depth 2
   SLTIU s0, s0, 1
   BNE s0, zero, bb70
   # implict jump to bb68
-bb68:   # loop depth 1433833504
+bb68:   # loop depth 2
   # implict jump to bb69
 bb69:   # loop depth 2
   CALL getch
@@ -413,7 +413,7 @@ bb75:   # loop depth 2
   SLTIU s0, s0, 1
   BNE s0, zero, bb78
   # implict jump to bb76
-bb76:   # loop depth 1433831616
+bb76:   # loop depth 2
   # implict jump to bb77
 bb77:   # loop depth 2
   CALL getch
@@ -523,7 +523,7 @@ bb103:   # loop depth 2
   XORI s0, s0, 1
   BNE s0, zero, bb104
   JAL zero, bb101
-bb104:   # loop depth 1433869680
+bb104:   # loop depth 2
   JAL zero, bb103
 bb105:   # loop depth 1
   SUB s5, zero, s5
@@ -547,7 +547,7 @@ bb108:   # loop depth 2
   SLTIU s0, s0, 1
   BNE s0, zero, bb111
   # implict jump to bb109
-bb109:   # loop depth 1433906944
+bb109:   # loop depth 2
   # implict jump to bb110
 bb110:   # loop depth 2
   CALL getch
@@ -581,7 +581,7 @@ bb116:   # loop depth 2
   SLTIU s0, s0, 1
   BNE s0, zero, bb119
   # implict jump to bb117
-bb117:   # loop depth 1433897776
+bb117:   # loop depth 2
   # implict jump to bb118
 bb118:   # loop depth 2
   CALL getch
@@ -601,7 +601,7 @@ bb122:   # loop depth 2
   XORI s0, s1, 85
   SLTU s0, zero, s0
   JAL zero, bb39
-bb123:   # loop depth 1433863200
+bb123:   # loop depth 1
   JAL zero, bb32
 bb124:   # loop depth 0
   SUB s2, zero, s2
@@ -625,7 +625,7 @@ bb127:   # loop depth 1
   SLTIU s0, s0, 1
   BNE s0, zero, bb130
   # implict jump to bb128
-bb128:   # loop depth 1433888464
+bb128:   # loop depth 1
   # implict jump to bb129
 bb129:   # loop depth 1
   CALL getch
@@ -659,7 +659,7 @@ bb135:   # loop depth 1
   SLTIU s0, s0, 1
   BNE s0, zero, bb138
   # implict jump to bb136
-bb136:   # loop depth 1433879056
+bb136:   # loop depth 1
   # implict jump to bb137
 bb137:   # loop depth 1
   CALL getch

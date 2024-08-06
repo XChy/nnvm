@@ -55,9 +55,9 @@ bb4:   # loop depth 1
   SLLIW s0, s1, 2
   BLT s1, s2, bb6
   # implict jump to bb5
-bb5:   # loop depth 0
+bb5:   # loop depth 1
   JAL zero, bb2
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   JAL zero, bb4
 interpret:   # loop depth 0
   ADDI sp, sp, -64
@@ -130,7 +130,7 @@ bb17:   # loop depth 1
 bb18:   # loop depth 1
   BNE s2, zero, bb28
   # implict jump to bb19
-bb19:   # loop depth 1433571104
+bb19:   # loop depth 1
   # implict jump to bb20
 bb20:   # loop depth 1
   # implict jump to bb21
@@ -151,7 +151,7 @@ bb26:   # loop depth 1
   LW s4, 0(s4)
   BNE s4, zero, bb27
   JAL zero, bb8
-bb27:   # loop depth 1433576304
+bb27:   # loop depth 1
   JAL zero, bb10
 bb28:   # loop depth 1
   ADDI s0, zero, 1
@@ -171,7 +171,7 @@ bb30:   # loop depth 2
   SLTIU s4, s4, 1
   BNE s4, zero, bb36
   # implict jump to bb31
-bb31:   # loop depth 1433575280
+bb31:   # loop depth 2
   # implict jump to bb32
 bb32:   # loop depth 2
   # implict jump to bb33
@@ -180,7 +180,7 @@ bb33:   # loop depth 2
   # implict jump to bb34
 bb34:   # loop depth 1
   JAL zero, bb20
-bb35:   # loop depth 1433572240
+bb35:   # loop depth 2
   JAL zero, bb29
 bb36:   # loop depth 2
   ADDIW s0, s0, 1

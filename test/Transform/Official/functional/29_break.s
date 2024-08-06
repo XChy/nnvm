@@ -23,6 +23,6 @@ bb3:   # loop depth 0
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   ADD t0, a0, zero
   JAL zero, bb1

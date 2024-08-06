@@ -21,6 +21,36 @@ entry242:  pred()
   254522 = icmp sgt i32 %244, i32 0
   br i1 %254522, bb %while.body251_preheader, bb %while.exit252
 while.body251_preheader:  pred(entry242)
+  arr.index5360 = ptradd ptr %x358, i32 4
+  arr.index6362 = ptradd ptr %x358, i32 8
+  arr.index7364 = ptradd ptr %x358, i32 12
+  arr.index8366 = ptradd ptr %x358, i32 16
+  arr.index9368 = ptradd ptr %x358, i32 20
+  arr.index10370 = ptradd ptr %x358, i32 24
+  arr.index11372 = ptradd ptr %x358, i32 28
+  arr.index12374 = ptradd ptr %x358, i32 32
+  arr.index13376 = ptradd ptr %x358, i32 36
+  arr.index14378 = ptradd ptr %x358, i32 40
+  arr.index15380 = ptradd ptr %x358, i32 44
+  arr.index16382 = ptradd ptr %x358, i32 48
+  arr.index17384 = ptradd ptr %x358, i32 52
+  arr.index18386 = ptradd ptr %x358, i32 56
+  arr.index19388 = ptradd ptr %x358, i32 60
+  arr.index20390 = ptradd ptr %x358, i32 64
+  arr.index21392 = ptradd ptr %x358, i32 68
+  arr.index22394 = ptradd ptr %x358, i32 72
+  arr.index23396 = ptradd ptr %x358, i32 76
+  arr.index24398 = ptradd ptr %x358, i32 80
+  arr.index25400 = ptradd ptr %x358, i32 84
+  arr.index26402 = ptradd ptr %x358, i32 88
+  arr.index27404 = ptradd ptr %x358, i32 92
+  arr.index28406 = ptradd ptr %x358, i32 96
+  arr.index29408 = ptradd ptr %x358, i32 100
+  arr.index30410 = ptradd ptr %x358, i32 104
+  arr.index31412 = ptradd ptr %x358, i32 108
+  arr.index32414 = ptradd ptr %x358, i32 112
+  arr.index33416 = ptradd ptr %x358, i32 116
+  arr.index34418 = ptradd ptr %x358, i32 120
   br bb %while.body251
 while.body251:  pred(while.body251.split.split.split, while.body251_preheader)
   n.phi523 = phi [bb %while.body251.split.split.split, i32 %258, bb %while.body251_preheader, i32 %244]
@@ -63,36 +93,6 @@ rand.then233346:  pred(rand.if.exit234)
 rand.if.exit234352:  pred(rand.if.exit234, rand.then233346)
   staticvalue.load241353 = load i32 from ptr @staticvalue
   264 = srem i32 %staticvalue.load241353, i32 2
-  arr.index5360 = ptradd ptr %x358, i32 4
-  arr.index6362 = ptradd ptr %x358, i32 8
-  arr.index7364 = ptradd ptr %x358, i32 12
-  arr.index8366 = ptradd ptr %x358, i32 16
-  arr.index9368 = ptradd ptr %x358, i32 20
-  arr.index10370 = ptradd ptr %x358, i32 24
-  arr.index11372 = ptradd ptr %x358, i32 28
-  arr.index12374 = ptradd ptr %x358, i32 32
-  arr.index13376 = ptradd ptr %x358, i32 36
-  arr.index14378 = ptradd ptr %x358, i32 40
-  arr.index15380 = ptradd ptr %x358, i32 44
-  arr.index16382 = ptradd ptr %x358, i32 48
-  arr.index17384 = ptradd ptr %x358, i32 52
-  arr.index18386 = ptradd ptr %x358, i32 56
-  arr.index19388 = ptradd ptr %x358, i32 60
-  arr.index20390 = ptradd ptr %x358, i32 64
-  arr.index21392 = ptradd ptr %x358, i32 68
-  arr.index22394 = ptradd ptr %x358, i32 72
-  arr.index23396 = ptradd ptr %x358, i32 76
-  arr.index24398 = ptradd ptr %x358, i32 80
-  arr.index25400 = ptradd ptr %x358, i32 84
-  arr.index26402 = ptradd ptr %x358, i32 88
-  arr.index27404 = ptradd ptr %x358, i32 92
-  arr.index28406 = ptradd ptr %x358, i32 96
-  arr.index29408 = ptradd ptr %x358, i32 100
-  arr.index30410 = ptradd ptr %x358, i32 104
-  arr.index31412 = ptradd ptr %x358, i32 108
-  arr.index32414 = ptradd ptr %x358, i32 112
-  arr.index33416 = ptradd ptr %x358, i32 116
-  arr.index34418 = ptradd ptr %x358, i32 120
   store i32 1 to ptr %x358
   store i32 2 to ptr %arr.index5360
   store i32 4 to ptr %arr.index6362

@@ -1,6 +1,7 @@
 #include "LICM.h"
 #include "ADT/Hash.h"
 #include "ADT/Ranges.h"
+#include "Analysis/PostDomTreeAnalysis.h"
 #include "IR/Attributes.h"
 #include "Utils/Cast.h"
 
@@ -9,6 +10,7 @@ using namespace nnvm;
 bool LICMPass::run(Function &F) {
   LA = getAnalysis<LoopAnalysis>(F);
   memAcc = getAnalysis<MemAccAnalysis>(F);
+  postDomTree = getAnalysis<PostDomTreeAnalysis>(F);
   domTree = LA->getDomTree();
 
   auto loops = LA->getLoops();
@@ -19,10 +21,13 @@ bool LICMPass::run(Function &F) {
     if (!preheader)
       continue;
 
-    for (Instruction *I : incChange(*loop->getHeader())) {
-      if (isInvariant(I, loop)) {
-        I->removeFromBB();
-        preheader->termEnd().insertBefore(I);
+    for (auto *block : loop->getBlocks()) {
+      for (Instruction *I : incChange(*block)) {
+        if (isInvariant(I, loop) &&
+            postDomTree->dom(block, loop->getHeader())) {
+          I->removeFromBB();
+          preheader->termEnd().insertBefore(I);
+        }
       }
     }
   }

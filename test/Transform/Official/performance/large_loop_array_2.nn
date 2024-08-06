@@ -17,6 +17,7 @@ entry27:  pred()
   43155 = icmp slt i32 0, i32 %COUNT.load154
   br i1 %43155, bb %while.body39_preheader, bb %while.exit40
 while.body39_preheader:  pred(entry27)
+  9132147 = icmp slt i32 0, i32 %31
   br bb %while.body39
 while.body39:  pred(loop.while.exit, while.body39_preheader)
   i28.phi161 = phi [bb %loop.while.exit, i32 %92, bb %while.body39_preheader, i32 0]
@@ -61,7 +62,6 @@ while.body60:  pred(while.body60, while.body60_preheader)
   br i1 %64, bb %while.body60, bb %while.exit61
 while.exit61:  pred(while.body60, if.exit)
   j.phi113152 = phi [bb %while.body60, i32 %84, bb %if.exit, i32 %j.phi113160]
-  9132147 = icmp slt i32 0, i32 %31
   br i1 %9132147, bb %loop.while.body_preheader, bb %loop.while.exit
 select.then:  pred(while.exit40)
   103 = fneg float 0.000001

@@ -42,7 +42,7 @@ bb3:   # loop depth 1
   CALL getint
   BLT s2, s5, bb7
   # implict jump to bb4
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
@@ -53,7 +53,7 @@ bb5:   # loop depth 1
   SUBW s4, s4, s0
   BNE s4, zero, bb6
   JAL zero, bb1
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   JAL zero, bb3
 bb7:   # loop depth 1
   ADD s3, zero, zero
@@ -102,10 +102,10 @@ bb14:   # loop depth 2
   ADDW s2, s2, a0
   BLT s2, s5, bb16
   # implict jump to bb15
-bb15:   # loop depth 0
+bb15:   # loop depth 2
   ADD a0, s3, zero
   JAL zero, bb5
-bb16:   # loop depth 0
+bb16:   # loop depth 2
   JAL zero, bb8
 bb17:   # loop depth 2
   JAL zero, bb14

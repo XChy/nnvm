@@ -7,8 +7,8 @@
 #include "Analysis/DomTreeAnalysis.h"
 #include "Analysis/LoopAnalysis.h"
 #include "Analysis/MemAccAnalysis.h"
+#include "Analysis/PostDomTreeAnalysis.h"
 #include "IR/BasicBlock.h"
-#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 
@@ -28,5 +28,6 @@ private:
   LoopAnalysis *LA;
   MemAccAnalysis *memAcc;
   DomTreeAnalysis *domTree;
+  PostDomTreeAnalysis *postDomTree;
 };
 } /* namespace nnvm */

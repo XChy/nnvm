@@ -83,6 +83,8 @@ bb6:   # loop depth 2
   BNE a0, zero, bb37
   # implict jump to bb7
 bb7:   # loop depth 1
+  ADDI a0, zero, 2
+  FCVT.S.W fs7, a0
   ADD s0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 2
@@ -121,21 +123,19 @@ bb10:   # loop depth 2
   FSW fs0, 0(s2)
   LA a0, .CONSTANT.7.0
   FLW fs1, 0(a0)
-  FADD.S fs7, fs0, fs1
-  FADD.S fs0, fs5, fs7
-  ADDI a0, zero, 2
-  FCVT.S.W fs8, a0
-  FDIV.S fs3, fs0, fs8
-  FSGNJ.S fs1, fs7, fs7
+  FADD.S fs8, fs0, fs1
+  FADD.S fs0, fs5, fs8
+  FDIV.S fs3, fs0, fs7
+  FSGNJ.S fs1, fs8, fs8
   FSGNJ.S fs0, fs5, fs5
   # implict jump to bb11
 bb11:   # loop depth 3
   FMUL.S fs9, fs3, fs3
-  FSUB.S fs2, fs9, fs7
+  FSUB.S fs2, fs9, fs8
   FLT.S a0, fs2, fs5
   BNE a0, zero, bb35
   # implict jump to bb12
-bb12:   # loop depth 0
+bb12:   # loop depth 3
   # implict jump to bb13
 bb13:   # loop depth 3
   LA a0, .CONSTANT.7.1
@@ -243,25 +243,25 @@ bb24:   # loop depth 0
   ADDIW t0, t0, -48
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb25:   # loop depth 1433668608
+bb25:   # loop depth 1
   JAL zero, bb21
-bb26:   # loop depth 1433672304
+bb26:   # loop depth 2
   JAL zero, bb22
-bb27:   # loop depth 0
+bb27:   # loop depth 1
   JAL zero, bb3
-bb28:   # loop depth 0
+bb28:   # loop depth 2
   JAL zero, bb16
-bb29:   # loop depth 1433661664
+bb29:   # loop depth 3
   JAL zero, bb17
-bb30:   # loop depth 0
+bb30:   # loop depth 2
   JAL zero, bb8
 bb31:   # loop depth 3
-  FLT.S a0, fs7, fs9
+  FLT.S a0, fs8, fs9
   BNE a0, zero, bb34
   # implict jump to bb32
 bb32:   # loop depth 3
   FADD.S fs0, fs3, fs1
-  FDIV.S fs2, fs0, fs8
+  FDIV.S fs2, fs0, fs7
   # implict jump to bb33
 bb33:   # loop depth 3
   FSGNJ.S fs0, fs3, fs3
@@ -269,18 +269,18 @@ bb33:   # loop depth 3
   JAL zero, bb11
 bb34:   # loop depth 3
   FADD.S fs1, fs3, fs0
-  FDIV.S fs2, fs1, fs8
+  FDIV.S fs2, fs1, fs7
   FSGNJ.S fs1, fs3, fs3
   FSGNJ.S fs3, fs0, fs0
   JAL zero, bb33
 bb35:   # loop depth 3
   FSGNJN.S fs2, fs2, fs2
   JAL zero, bb13
-bb36:   # loop depth 0
+bb36:   # loop depth 3
   JAL zero, bb9
-bb37:   # loop depth 0
+bb37:   # loop depth 2
   JAL zero, bb4
-bb38:   # loop depth 0
+bb38:   # loop depth 3
   JAL zero, bb5
 bb39:   # loop depth 1
   LUI a0, 1

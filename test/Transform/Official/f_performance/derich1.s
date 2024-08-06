@@ -187,7 +187,7 @@ bb9:   # loop depth 1
   ADDIW t1, t1, 1
   BLT t1, s0, bb10
   JAL zero, bb6
-bb10:   # loop depth 1434009840
+bb10:   # loop depth 1
   JAL zero, bb8
 bb11:   # loop depth 1
   ADDI t0, zero, 1080
@@ -210,7 +210,7 @@ bb12:   # loop depth 2
   ADDIW t0, t0, 1
   BLT t0, s1, bb13
   JAL zero, bb9
-bb13:   # loop depth 1434014880
+bb13:   # loop depth 2
   JAL zero, bb12
 bb14:   # loop depth 0
   ADDI t0, zero, 1
@@ -226,7 +226,7 @@ bb16:   # loop depth 1
   ADDIW t2, t2, 1
   BLT t2, s1, bb17
   JAL zero, bb5
-bb17:   # loop depth 1433994928
+bb17:   # loop depth 1
   JAL zero, bb15
 bb18:   # loop depth 1
   SLLIW a2, t2, 2
@@ -276,7 +276,7 @@ bb19:   # loop depth 2
   XORI a3, a3, 1
   BNE a3, zero, bb20
   JAL zero, bb16
-bb20:   # loop depth 1433960704
+bb20:   # loop depth 2
   FSGNJ.S ft5, ft1, ft1
   FSGNJ.S ft3, ft2, ft2
   JAL zero, bb19
@@ -290,7 +290,7 @@ bb23:   # loop depth 1
   ADDIW t0, t0, 1
   BLT t0, s1, bb24
   JAL zero, bb4
-bb24:   # loop depth 1433969088
+bb24:   # loop depth 1
   JAL zero, bb22
 bb25:   # loop depth 1
   SLLIW t2, t0, 2
@@ -331,7 +331,7 @@ bb26:   # loop depth 2
   ADDIW t1, t1, 1
   BLT t1, s0, bb27
   JAL zero, bb23
-bb27:   # loop depth 1433965296
+bb27:   # loop depth 2
   FSGNJ.S ft0, ft1, ft1
   FSGNJ.S ft1, ft3, ft3
   JAL zero, bb26
@@ -345,7 +345,7 @@ bb30:   # loop depth 1
   ADDIW t1, t1, 1
   BLT t1, s0, bb31
   JAL zero, bb3
-bb31:   # loop depth 1433724672
+bb31:   # loop depth 1
   JAL zero, bb29
 bb32:   # loop depth 1
   ADDI t0, zero, 1080
@@ -368,7 +368,7 @@ bb33:   # loop depth 2
   ADDIW t0, t0, 1
   BLT t0, s1, bb34
   JAL zero, bb30
-bb34:   # loop depth 1433765104
+bb34:   # loop depth 2
   JAL zero, bb33
 bb35:   # loop depth 0
   ADDI t0, zero, 1
@@ -384,7 +384,7 @@ bb37:   # loop depth 1
   ADDIW t2, t2, 1
   BLT t2, s0, bb38
   JAL zero, bb2
-bb38:   # loop depth 174597408
+bb38:   # loop depth 1
   JAL zero, bb36
 bb39:   # loop depth 1
   ADDI t1, zero, 1080
@@ -401,31 +401,32 @@ bb39:   # loop depth 1
   FLW ft1, 0(a4)
   LA a4, .CONSTANT.7.2
   FLW ft2, 0(a4)
-  FSGNJ.S ft5, ft1, ft2
-  LA a4, .CONSTANT.7.2
-  FLW ft1, 0(a4)
-  LA a4, .CONSTANT.7.2
-  FLW ft2, 0(a4)
-  FSGNJ.S ft3, ft1, ft2
-  LA a4, .CONSTANT.7.2
-  FLW ft1, 0(a4)
-  LA a4, .CONSTANT.7.2
-  FLW ft2, 0(a4)
   FSGNJ.S ft2, ft1, ft2
+  LA a4, .CONSTANT.7.2
+  FLW ft1, 0(a4)
+  LA a4, .CONSTANT.7.2
+  FLW ft3, 0(a4)
+  FSGNJ.S ft1, ft1, ft3
+  LA a4, .CONSTANT.7.2
+  FLW ft3, 0(a4)
+  LA a4, .CONSTANT.7.2
+  FLW ft4, 0(a4)
+  FSGNJ.S ft4, ft3, ft4
   # implict jump to bb40
 bb40:   # loop depth 2
-  FSGNJ.S ft1, ft3, ft3
-  FSGNJ.S ft4, ft0, ft0
+  FSGNJ.S ft3, ft1, ft1
+  FSGNJ.S ft1, ft2, ft2
+  FSGNJ.S ft2, ft0, ft0
   SLLIW a4, t1, 2
   ADD a5, a2, a4
-  FMUL.S ft0, fs0, ft4
-  FMUL.S ft3, fs1, ft5
-  FADD.S ft0, ft0, ft3
-  FMUL.S ft3, fa0, ft1
-  FADD.S ft0, ft0, ft3
-  FMUL.S ft2, ft6, ft2
-  FADD.S ft3, ft0, ft2
-  FSW ft3, 0(a5)
+  FMUL.S ft0, fs0, ft2
+  FMUL.S ft1, fs1, ft1
+  FADD.S ft0, ft0, ft1
+  FMUL.S ft1, fa0, ft3
+  FADD.S ft0, ft0, ft1
+  FMUL.S ft1, ft6, ft4
+  FADD.S ft1, ft0, ft1
+  FSW ft1, 0(a5)
   ADD a4, a3, a4
   FLW ft0, 0(a4)
   ADDI a4, zero, 1
@@ -434,9 +435,8 @@ bb40:   # loop depth 2
   XORI a4, a4, 1
   BNE a4, zero, bb41
   JAL zero, bb37
-bb41:   # loop depth 0
-  FSGNJ.S ft5, ft4, ft4
-  FSGNJ.S ft2, ft1, ft1
+bb41:   # loop depth 2
+  FSGNJ.S ft4, ft3, ft3
   JAL zero, bb40
 bb42:   # loop depth 0
   ADDI a4, zero, 0
@@ -449,7 +449,7 @@ bb44:   # loop depth 1
   ADDIW t1, t1, 1
   BLT t1, s0, bb45
   JAL zero, bb1
-bb45:   # loop depth 33
+bb45:   # loop depth 1
   JAL zero, bb43
 bb46:   # loop depth 1
   ADDI t0, zero, 1080
@@ -490,7 +490,7 @@ bb47:   # loop depth 2
   ADDIW t0, t0, 1
   BLT t0, s1, bb48
   JAL zero, bb44
-bb48:   # loop depth 33
+bb48:   # loop depth 2
   FSGNJ.S ft3, ft0, ft0
   FSGNJ.S ft0, ft1, ft1
   JAL zero, bb47

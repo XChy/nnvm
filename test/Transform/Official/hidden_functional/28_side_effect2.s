@@ -1234,7 +1234,7 @@ bb229:   # loop depth 0
 bb230:   # loop depth 0
   BNE a0, zero, bb233
   # implict jump to bb231
-bb231:   # loop depth 1434372368
+bb231:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb232
 bb232:   # loop depth 0
@@ -1538,7 +1538,7 @@ bb296:   # loop depth 1
 bb297:   # loop depth 1
   ADDI a0, zero, 1
   JAL zero, bb291
-bb298:   # loop depth 1434707888
+bb298:   # loop depth 1
   JAL zero, bb44
 bb299:   # loop depth 1
   ADDI a0, zero, 1
@@ -1711,7 +1711,7 @@ bb354:   # loop depth 1
 bb355:   # loop depth 1
   ADDI a0, zero, 1
   JAL zero, bb46
-bb356:   # loop depth 0
+bb356:   # loop depth 1
   JAL zero, bb1
 bb357:   # loop depth 1
   LA a0, sum

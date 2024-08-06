@@ -97,9 +97,9 @@ bb9:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb10
   JAL zero, bb7
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb9
-bb11:   # loop depth 0
+bb11:   # loop depth 1
   JAL zero, bb1
 bb12:   # loop depth 2
   SLLIW a0, s4, 2

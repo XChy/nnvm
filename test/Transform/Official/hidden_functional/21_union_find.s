@@ -58,15 +58,15 @@ bb6:   # loop depth 1
   SLTIU s2, s2, 1
   BNE s2, zero, bb11
   # implict jump to bb7
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s1, bb10
   # implict jump to bb9
-bb9:   # loop depth 0
+bb9:   # loop depth 1
   JAL zero, bb4
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb6
 bb11:   # loop depth 1
   ADDIW a0, a0, 1
@@ -91,7 +91,7 @@ bb14:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s3, bb15
   JAL zero, bb2
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
   SLLIW s2, s2, 2
@@ -110,7 +110,7 @@ bb18:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s1, bb19
   JAL zero, bb1
-bb19:   # loop depth 0
+bb19:   # loop depth 1
   JAL zero, bb18
 find:   # loop depth 0
   ADDI sp, sp, -32

@@ -31,7 +31,7 @@ bb6:   # loop depth 0
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb7:   # loop depth 1752639588
+bb7:   # loop depth 1
   JAL zero, bb1
 bb8:   # loop depth 1
   ADDI a0, zero, 42

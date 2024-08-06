@@ -17,7 +17,7 @@ n:
 .section .text
 main:   # loop depth 0
   LUI t0, 1048575
-  ADDIW t0, t0, -736
+  ADDIW t0, t0, -752
   ADD sp, sp, t0
   LUI t6, 1
   ADDIW t6, t6, 704
@@ -35,6 +35,10 @@ main:   # loop depth 0
   ADDIW t6, t6, 728
   ADD t6, t6, sp
   SD s2, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, 736
+  ADD t6, t6, sp
+  SD s3, 0(t6)
   CALL getint
   ADD s0, a0, zero
   LA s1, n
@@ -73,41 +77,45 @@ bb2:   # loop depth 0
   ADDIW t6, t6, 728
   ADD t6, t6, sp
   LD s2, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, 736
+  ADD t6, t6, sp
+  LD s3, 0(t6)
   LUI t0, 1
-  ADDIW t0, t0, 736
+  ADDIW t0, t0, 752
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb3:   # loop depth 0
+  LA a0, m
+  LW a1, 0(a0)
   ADD a0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
-  SLLIW a1, a0, 3
+  SLLIW s0, a0, 3
   ADDI t6, sp, 0
-  ADD a1, t6, a1
-  LW s0, 0(a1)
-  ADDI s1, zero, 120
-  MULW s1, s0, s1
+  ADD s0, t6, s0
+  LW s1, 0(s0)
+  ADDI s2, zero, 120
+  MULW s2, s1, s2
+  LA s3, graph
+  ADD s2, s3, s2
+  LW s0, 4(s0)
+  SLLIW s3, s0, 2
+  ADD s2, s2, s3
+  ADDI s3, zero, 1
+  SW s3, 0(s2)
+  ADDI s2, zero, 120
+  MULW s0, s0, s2
   LA s2, graph
-  ADD s1, s2, s1
-  LW a1, 4(a1)
-  SLLIW s2, a1, 2
-  ADD s1, s1, s2
-  ADDI s2, zero, 1
-  SW s2, 0(s1)
-  ADDI s1, zero, 120
-  MULW a1, a1, s1
-  LA s1, graph
-  ADD a1, s1, a1
-  SLLIW s0, s0, 2
-  ADD a1, a1, s0
-  ADDI s0, zero, 1
-  SW s0, 0(a1)
+  ADD s0, s2, s0
+  SLLIW s1, s1, 2
+  ADD s0, s0, s1
+  ADDI s1, zero, 1
+  SW s1, 0(s0)
   ADDIW a0, a0, 1
-  LA a1, m
-  LW a1, 0(a1)
   BLT a0, a1, bb5
   JAL zero, bb2
-bb5:   # loop depth 0
+bb5:   # loop depth 1
   JAL zero, bb4
 bb6:   # loop depth 0
   ADD s0, zero, zero
@@ -127,7 +135,7 @@ bb7:   # loop depth 1
   LW s1, 0(s1)
   BLT s0, s1, bb8
   JAL zero, bb1
-bb8:   # loop depth 0
+bb8:   # loop depth 1
   JAL zero, bb7
 maxCliques:   # loop depth 0
   ADDI sp, sp, -96
@@ -188,7 +196,7 @@ bb15:   # loop depth 1
 bb16:   # loop depth 1
   BNE a1, zero, bb21
   # implict jump to bb17
-bb17:   # loop depth 0
+bb17:   # loop depth 1
   # implict jump to bb18
 bb18:   # loop depth 1
   ADDIW s4, s4, 1
@@ -198,14 +206,14 @@ bb18:   # loop depth 1
   XORI a1, a1, 1
   BNE a1, zero, bb20
   # implict jump to bb19
-bb19:   # loop depth 0
+bb19:   # loop depth 1
   JAL zero, bb11
-bb20:   # loop depth 1433560080
+bb20:   # loop depth 1
   JAL zero, bb13
 bb21:   # loop depth 1
   BLT a0, s5, bb27
   # implict jump to bb22
-bb22:   # loop depth 1433554240
+bb22:   # loop depth 1
   ADD s0, a0, zero
   # implict jump to bb23
 bb23:   # loop depth 1
@@ -214,7 +222,7 @@ bb23:   # loop depth 1
   CALL maxCliques
   BLT s0, a0, bb26
   # implict jump to bb24
-bb24:   # loop depth 1433545648
+bb24:   # loop depth 1
   # implict jump to bb25
 bb25:   # loop depth 1
   ADD s6, a0, zero

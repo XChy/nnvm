@@ -47,6 +47,7 @@ while.body97:  pred(while.exit110, while.body89)
   124 = ptradd ptr @a, i32 %123
   br bb %while.body109
 while.exit98:  pred(while.exit110)
+  21372 = si2f i32 2 to float
   br bb %while.body149
 while.body109:  pred(while.body109, while.body97)
   j.phi335429 = phi [bb %while.body109, i32 %132, bb %while.body97, i32 0]
@@ -97,7 +98,6 @@ while.exit162:  pred(while.body161)
   store float %212 to ptr %157
   221 = fadd float %212, float 0.010000
   20371 = fadd float %65, float %221
-  21372 = si2f i32 2 to float
   22373 = fdiv float %20371, float %21372
   br bb %sqrt.while.cond
 while.body228:  pred(while.exit236, while.exit150)

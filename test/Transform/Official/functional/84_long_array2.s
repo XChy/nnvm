@@ -90,13 +90,6 @@ bb10:   # loop depth 0
   ADD a0, s0, a0
   ADDI s0, zero, 7
   SW s0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 672
-  LA s0, a
-  ADD a0, s0, a0
-  LW a0, 0(a0)
-  ADDIW a0, a0, 9
-  SW a0, 28(sp)
   ADDI a0, zero, 3
   CALL putint
   ADDI a0, zero, 10
@@ -114,13 +107,13 @@ bb10:   # loop depth 0
   ADDIW t0, t0, 16
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb11:   # loop depth 0
+bb11:   # loop depth 1
   JAL zero, bb9
-bb12:   # loop depth 0
+bb12:   # loop depth 1
   JAL zero, bb7
-bb13:   # loop depth 0
+bb13:   # loop depth 1
   JAL zero, bb5
-bb14:   # loop depth 0
+bb14:   # loop depth 1
   JAL zero, bb3
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb1

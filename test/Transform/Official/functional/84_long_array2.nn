@@ -68,11 +68,6 @@ init.exit87:  pred(init86)
   store i32 3 to ptr %5129
   8131 = ptradd ptr @a, i32 16380
   store i32 7 to ptr %8131
-  14134 = ptradd ptr %c, i32 28
-  17135 = ptradd ptr @a, i32 8864
-  17.load136 = load i32 from ptr %17135
-  19137 = add i32 %17.load136, i32 9
-  store i32 %19137 to ptr %14134
   call void putint(i32 3)
   call void putch(i32 10)
   124 = ptradd ptr %c, i32 32

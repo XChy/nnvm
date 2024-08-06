@@ -35,7 +35,7 @@ bb3:   # loop depth 1
   ADDI s1, zero, 0
   BLT s1, s0, bb4
   JAL zero, bb1
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   JAL zero, bb3
 hanoi:   # loop depth 0
   ADDI sp, sp, -48

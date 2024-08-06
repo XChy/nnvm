@@ -43,6 +43,7 @@ if.exit:  pred(entry)
   13 = sdiv i32 %12, i32 2
   call void merge_sort(i32 %l, i32 %13)
   call void merge_sort(i32 %13, i32 %r)
+  58 = ptradd ptr @buf, i32 400
   br bb %while.cond
 while.cond:  pred(if.exit, if.exit55)
   k.phi181 = phi [bb %if.exit, i32 %l, bb %if.exit55, i32 %89]
@@ -69,7 +70,6 @@ select.else:  pred(while.cond)
   br bb %select.exit
 select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %38]
-  58 = ptradd ptr @buf, i32 400
   br i1 %select.phi, bb %while.body, bb %while.exit
 then54:  pred(while.body)
   61 = ptradd ptr %58, i32 %187

@@ -311,5 +311,5 @@ bb21:   # loop depth 1
   SUBW s0, s0, s2
   BLT zero, s0, bb22
   JAL zero, bb16
-bb22:   # loop depth 1433752896
+bb22:   # loop depth 1
   JAL zero, bb21

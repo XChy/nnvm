@@ -92,9 +92,9 @@ bool DeadStoreElimPass::isLiveIn(StoreInst *store, BasicBlock *block) {
     return true;
   // Leak, TODO: escape analysis
 
-  for (auto *I : *block)
-    if (I->isa<CallInst>())
-      return true;
+  //for (auto *I : *block)
+    //if (I->isa<CallInst>())
+      //return true;
 
   return false;
 }

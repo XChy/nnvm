@@ -1482,7 +1482,7 @@ bb39:   # loop depth 1
   SUBW s0, s0, s1
   BLT zero, s0, bb40
   JAL zero, bb1
-bb40:   # loop depth 1435266320
+bb40:   # loop depth 1
   JAL zero, bb3
 bb41:   # loop depth 1
   ADDI a0, zero, 99
@@ -1557,5 +1557,5 @@ bb61:   # loop depth 1
 bb62:   # loop depth 1
   ADDI a0, zero, 127
   JAL zero, bb8
-bb63:   # loop depth 0
+bb63:   # loop depth 2
   JAL zero, bb4

@@ -113,7 +113,7 @@ bb12:   # loop depth 2
   LW s2, 0(a0)
   BNE s2, zero, bb13
   JAL zero, bb4
-bb13:   # loop depth 1433554320
+bb13:   # loop depth 2
   JAL zero, bb12
 bb14:   # loop depth 1
   ADD a0, s0, zero
@@ -128,9 +128,9 @@ bb15:   # loop depth 2
   LW s3, 0(a0)
   BNE s3, zero, bb16
   JAL zero, bb11
-bb16:   # loop depth 0
+bb16:   # loop depth 2
   JAL zero, bb15
-bb17:   # loop depth 0
+bb17:   # loop depth 2
   JAL zero, bb9
 bb18:   # loop depth 1
   ADD a0, s3, zero
@@ -145,7 +145,7 @@ bb19:   # loop depth 2
   LW s4, 0(a0)
   BNE s4, zero, bb20
   JAL zero, bb8
-bb20:   # loop depth 0
+bb20:   # loop depth 2
   JAL zero, bb19
-bb21:   # loop depth 0
+bb21:   # loop depth 1
   JAL zero, bb1

@@ -282,6 +282,13 @@ void CallInst::setArguments(const std::vector<Value *> &args) {
   setOperands(operands);
 }
 
+std::vector<Value *> CallInst::collectArgs() const {
+  std::vector<Value *> args;
+  for (uint i = 0; i < getArgNum(); i++)
+    args.push_back(getArg(i));
+  return args;
+}
+
 void PhiNode::addIncoming(BasicBlock *incomingBB, Value *incomingValue) {
   addOperand(incomingBB);
   addOperand(incomingValue);

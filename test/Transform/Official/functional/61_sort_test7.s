@@ -49,6 +49,8 @@ bb2:   # loop depth 0
   ADD a0, s2, zero
   ADD a1, s1, zero
   CALL merge_sort
+  LA t0, buf
+  ADDI a1, t0, 400
   ADD t0, s0, zero
   ADD t1, s2, zero
   ADD t2, s0, zero
@@ -60,8 +62,6 @@ bb4:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA a1, buf
-  ADDI a1, a1, 400
   BNE a0, zero, bb21
   # implict jump to bb6
 bb6:   # loop depth 0
@@ -94,7 +94,7 @@ bb12:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s1, bb13
   JAL zero, bb10
-bb13:   # loop depth 1433510592
+bb13:   # loop depth 1
   JAL zero, bb12
 bb14:   # loop depth 0
   # implict jump to bb15
@@ -110,7 +110,7 @@ bb15:   # loop depth 1
   ADDIW t0, t0, 1
   BLT t1, s1, bb16
   JAL zero, bb9
-bb16:   # loop depth 1433509200
+bb16:   # loop depth 1
   JAL zero, bb15
 bb17:   # loop depth 0
   # implict jump to bb18
@@ -126,9 +126,9 @@ bb18:   # loop depth 1
   ADDIW t0, t0, 1
   BLT t2, s2, bb20
   # implict jump to bb19
-bb19:   # loop depth 1433506640
+bb19:   # loop depth 1
   JAL zero, bb8
-bb20:   # loop depth 0
+bb20:   # loop depth 1
   JAL zero, bb18
 bb21:   # loop depth 1
   SLLIW a0, t2, 2
@@ -144,17 +144,17 @@ bb21:   # loop depth 1
   # implict jump to bb22
 bb22:   # loop depth 1
   ADD a0, a1, a5
-  LW a1, 0(a3)
-  SW a1, 0(a0)
+  LW a2, 0(a3)
+  SW a2, 0(a0)
   ADDIW t1, t1, 1
   # implict jump to bb23
 bb23:   # loop depth 1
   ADDIW t0, t0, 1
   JAL zero, bb3
 bb24:   # loop depth 1
-  ADD a1, a1, a5
+  ADD a2, a1, a5
   LW a0, 0(a0)
-  SW a0, 0(a1)
+  SW a0, 0(a2)
   ADDIW t2, t2, 1
   JAL zero, bb23
 bb25:   # loop depth 1

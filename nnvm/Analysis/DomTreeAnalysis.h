@@ -11,6 +11,7 @@
 #include <vector>
 
 namespace nnvm {
+
 class DomTreeAnalysis : public FunctionPass {
 public:
   bool run(Function &F);

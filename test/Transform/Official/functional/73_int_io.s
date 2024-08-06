@@ -90,7 +90,7 @@ bb17:   # loop depth 2
 bb18:   # loop depth 1
   BLT zero, s1, bb26
   # implict jump to bb19
-bb19:   # loop depth 0
+bb19:   # loop depth 1
   ADD s0, zero, zero
   # implict jump to bb20
 bb20:   # loop depth 1
@@ -103,7 +103,7 @@ bb21:   # loop depth 1
   SUBW s0, s2, s0
   BLT zero, s0, bb22
   JAL zero, bb9
-bb22:   # loop depth 0
+bb22:   # loop depth 1
   JAL zero, bb11
 bb23:   # loop depth 1
   # implict jump to bb24
@@ -117,7 +117,7 @@ bb24:   # loop depth 2
   CALL putch
   BLT zero, s0, bb25
   JAL zero, bb21
-bb25:   # loop depth 0
+bb25:   # loop depth 2
   JAL zero, bb24
 bb26:   # loop depth 1
   ADD s0, zero, zero
@@ -135,9 +135,9 @@ bb27:   # loop depth 2
   ADDIW s0, s0, 1
   BLT zero, s1, bb29
   # implict jump to bb28
-bb28:   # loop depth 0
+bb28:   # loop depth 2
   JAL zero, bb20
-bb29:   # loop depth 1433515952
+bb29:   # loop depth 2
   JAL zero, bb27
 bb30:   # loop depth 2
   ADDI s0, zero, 10

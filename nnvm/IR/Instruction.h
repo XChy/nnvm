@@ -472,10 +472,14 @@ public:
 
   void setCallee(Value *callee) { setOperand(0, callee); }
   Value *getCallee() const { return getOperand(0); }
+
   Function *getFuncCallee() const;
+
+  Value *getArg(uint i) const { return getOperand(i + 1); }
+  uint getArgNum() const { return getOperandNum() - 1; }
+
   void setArguments(const std::vector<Value *> &args);
-  Value *getArg(uint i) { return getOperand(i + 1); }
-  uint getArgNum() { return getOperandNum() - 1; }
+  std::vector<Value *> collectArgs() const;
 
   Instruction *copy() override {
     auto *ret = new CallInst(getCallee(), getType());

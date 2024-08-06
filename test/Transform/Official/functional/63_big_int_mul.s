@@ -191,15 +191,14 @@ bb13:   # loop depth 1
   XORI a0, a0, 1
   BNE a0, zero, bb14
   JAL zero, bb11
-bb14:   # loop depth 0
+bb14:   # loop depth 1
   JAL zero, bb13
 bb15:   # loop depth 0
-  LW a0, 0(sp)
   CALL putint
   JAL zero, bb10
-bb16:   # loop depth 0
+bb16:   # loop depth 1
   JAL zero, bb4
-bb17:   # loop depth 0
+bb17:   # loop depth 2
   JAL zero, bb5
 bb18:   # loop depth 2
   SW s5, 0(s4)
@@ -226,7 +225,7 @@ bb20:   # loop depth 1
   XORI s0, s0, 1
   BNE s0, zero, bb21
   JAL zero, bb3
-bb21:   # loop depth 0
+bb21:   # loop depth 1
   JAL zero, bb20
-bb22:   # loop depth 1433605968
+bb22:   # loop depth 1
   JAL zero, bb1

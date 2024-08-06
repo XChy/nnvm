@@ -71,6 +71,10 @@ floyd.while.exit111:  pred(floyd.while.exit119, floyd.while.body102)
 floyd.while.body118_preheader:  pred(floyd.while.body110)
   5811 = icmp slt i32 %i108.phi3121163, i32 0
   12816 = icmp sge i32 %i108.phi3121163, i32 %218
+  37878 = mul i32 %k.phi2991169, i32 %218
+  20824 = icmp slt i32 %k.phi2991169, i32 0
+  29832 = icmp sge i32 %k.phi2991169, i32 %218
+  37840 = mul i32 %i108.phi3121163, i32 %218
   br bb %floyd.while.body118
 floyd.while.body118:  pred(floyd.if.exit140, floyd.while.body118_preheader)
   j.phi3221157 = phi [bb %floyd.if.exit140, i32 %205346, bb %floyd.while.body118_preheader, i32 0]
@@ -80,7 +84,6 @@ floyd.while.body118.split:  pred(getvalue.then837, getvalue.if.exit839)
   128327 = icmp sge i32 %127326.ret, i32 0
   20862 = icmp slt i32 %j.phi3221157, i32 0
   29870 = icmp sge i32 %j.phi3221157, i32 %218
-  37878 = mul i32 %k.phi2991169, i32 %218
   br i1 %128327, bb %floyd.select.then129, bb %floyd.select.else130
 floyd.while.exit119:  pred(floyd.if.exit140, floyd.while.body110)
   1155 = phi [bb %floyd.if.exit140, i32 %205346, bb %floyd.while.body110, i32 0]
@@ -198,7 +201,6 @@ getvalue.select.else815:  pred(floyd.while.body118)
   br bb %getvalue.select.exit818
 getvalue.select.exit818:  pred(getvalue.select.then813, getvalue.select.else815)
   select.phi819 = phi [bb %getvalue.select.else815, i1 %12816, bb %getvalue.select.then813, i1 -1]
-  20824 = icmp slt i32 %k.phi2991169, i32 0
   br i1 %select.phi819, bb %getvalue.select.then15821, bb %getvalue.select.else16823
 getvalue.select.then15821:  pred(getvalue.select.exit818)
   br bb %getvalue.select.exit17826
@@ -206,7 +208,6 @@ getvalue.select.else16823:  pred(getvalue.select.exit818)
   br bb %getvalue.select.exit17826
 getvalue.select.exit17826:  pred(getvalue.select.then15821, getvalue.select.else16823)
   select18.phi827 = phi [bb %getvalue.select.else16823, i1 %20824, bb %getvalue.select.then15821, i1 -1]
-  29832 = icmp sge i32 %k.phi2991169, i32 %218
   br i1 %select18.phi827, bb %getvalue.select.then23829, bb %getvalue.select.else24831
 getvalue.select.then23829:  pred(getvalue.select.exit17826)
   br bb %getvalue.select.exit25834
@@ -214,7 +215,6 @@ getvalue.select.else24831:  pred(getvalue.select.exit17826)
   br bb %getvalue.select.exit25834
 getvalue.select.exit25834:  pred(getvalue.select.then23829, getvalue.select.else24831)
   select26.phi835 = phi [bb %getvalue.select.else24831, i1 %29832, bb %getvalue.select.then23829, i1 -1]
-  37840 = mul i32 %i108.phi3121163, i32 %218
   br i1 %select26.phi835, bb %getvalue.then837, bb %getvalue.if.exit839
 getvalue.then837:  pred(getvalue.select.exit25834)
   br bb %floyd.while.body118.split

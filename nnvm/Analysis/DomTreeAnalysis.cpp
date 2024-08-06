@@ -23,8 +23,7 @@ bool DomTreeAnalysis::run(Function &F) {
   for (int currentDFN = preorderBBs.size() - 1; currentDFN >= 0; currentDFN--) {
     BasicBlock *BB = preorderBBs[currentDFN];
     sdom[currentDFN] = currentDFN;
-    for (auto it = BB->getPredBegin(); it != BB->getPredEnd(); it++) {
-      BasicBlock *pred = *it;
+    for (BasicBlock *pred : BB->getPredRange()) {
       int32_t predDFN = dfn[pred];
 
       if (predDFN < currentDFN) {
@@ -62,7 +61,7 @@ bool DomTreeAnalysis::run(Function &F) {
     domChildren[domer].push_back(domee);
   }
 
-  // Calculate depth
+  // Calculate dominator tree depth
   std::queue<BasicBlock *> worklist;
   worklist.push(F.getEntry());
   domDepth[F.getEntry()] = 0;

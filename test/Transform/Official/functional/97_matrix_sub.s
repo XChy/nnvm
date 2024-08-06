@@ -12,7 +12,7 @@ N:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
@@ -20,6 +20,10 @@ main:   # loop depth 0
   FSD fs2, 32(sp)
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
+  FSD fs5, 56(sp)
+  FSD fs6, 64(sp)
+  FSD fs7, 72(sp)
+  FSD fs8, 80(sp)
   LA a0, N
   ADDI s0, zero, 3
   SW s0, 0(a0)
@@ -36,52 +40,35 @@ main:   # loop depth 0
   ADDI a0, zero, 2
   FCVT.S.W fs2, a0
   FSUB.S fs3, fs0, fs0
-  FSW fs3, 56(sp)
   FSUB.S fs4, fs0, fs0
-  FSW fs4, 80(sp)
   FSUB.S fs0, fs0, fs0
-  FSW fs0, 96(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 60(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 84(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 100(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 64(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 88(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 104(sp)
+  FSUB.S fs5, fs1, fs1
+  FSUB.S fs6, fs1, fs1
+  FSUB.S fs1, fs1, fs1
+  FSUB.S fs7, fs2, fs2
+  FSUB.S fs8, fs2, fs2
+  FSUB.S fs2, fs2, fs2
   FCVT.W.S a0, fs3, rtz
   CALL putint
-  FLW fs0, 60(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs5, rtz
   CALL putint
-  FLW fs0, 64(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs7, rtz
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  FLW fs0, 80(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs4, rtz
   CALL putint
-  FLW fs0, 84(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs6, rtz
   CALL putint
-  FLW fs0, 88(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs8, rtz
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  FLW fs0, 96(sp)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  FLW fs0, 100(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs1, rtz
   CALL putint
-  FLW fs0, 104(sp)
-  FCVT.W.S a0, fs0, rtz
+  FCVT.W.S a0, fs2, rtz
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -93,5 +80,9 @@ main:   # loop depth 0
   FLD fs2, 32(sp)
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
-  ADDI sp, sp, 112
+  FLD fs5, 56(sp)
+  FLD fs6, 64(sp)
+  FLD fs7, 72(sp)
+  FLD fs8, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)

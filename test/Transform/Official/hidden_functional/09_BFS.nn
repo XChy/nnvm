@@ -181,6 +181,7 @@ same.if.exit191:  pred(same.while.body173, same.then190)
   177350 = icmp ne i32 %200.load372, i32 -1
   br i1 %177350, bb %same.while.body173, bb %same.while.exit174
 same.while.body204_preheader:  pred(same.while.exit154)
+  tail.load207376 = load i32 from ptr @tail
   br bb %same.while.body204
 same.while.body204:  pred(same.while.body204, same.while.body204_preheader)
   i202.phi375848 = phi [bb %same.while.body204, i32 %219386, bb %same.while.body204_preheader, i32 0]
@@ -191,7 +192,6 @@ same.while.body204:  pred(same.while.body204, same.while.body204_preheader)
   215384 = ptradd ptr @inq, i32 %308383
   store i32 0 to ptr %215384
   219386 = add i32 %i202.phi375848, i32 1
-  tail.load207376 = load i32 from ptr @tail
   208377 = icmp sle i32 %219386, i32 %tail.load207376
   br i1 %208377, bb %same.while.body204, bb %same.while.exit205
 same.while.exit205:  pred(same.while.body204, same.while.exit154)

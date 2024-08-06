@@ -769,11 +769,11 @@ then716:  pred(else637)
 if.exit717:  pred(else637, while.exit727)
   br bb %if.exit636
 while.body726_preheader:  pred(then716)
-  i.load736 = load i32 from ptr @i
+  i.load728 = load i32 from ptr @i
   br bb %while.body726
 while.body726:  pred(while.body726, while.body726_preheader)
   ii.load737 = load i32 from ptr @ii
-  738 = add i32 %i.load736, i32 %ii.load737
+  738 = add i32 %i.load728, i32 %ii.load737
   950 = shl i32 %738, i32 2
   740 = ptradd ptr @get2, i32 %950
   740.load = load i32 from ptr %740
@@ -786,7 +786,6 @@ while.body726:  pred(while.body726, while.body726_preheader)
   ii.load745 = load i32 from ptr @ii
   746 = add i32 %ii.load745, i32 1
   store i32 %746 to ptr @ii
-  i.load728 = load i32 from ptr @i
   730 = add i32 %i.load728, i32 %746
   949 = shl i32 %730, i32 2
   732 = ptradd ptr @get2, i32 %949

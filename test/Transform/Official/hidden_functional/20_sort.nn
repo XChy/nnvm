@@ -46,6 +46,7 @@ while.exit249:  pred(while.body248.split, entry243.split)
   63524702 = icmp slt i32 0, i32 %n.load523701
   br i1 %63524702, bb %sortA.while.body59_preheader, bb %sortA.while.exit60
 while.body283_preheader:  pred(sortC.while.exit189)
+  n.load285 = load i32 from ptr @n
   br bb %while.body283
 while.body283:  pred(while.body283, while.body283_preheader)
   i246.phi365689 = phi [bb %while.body283, i32 %322, bb %while.body283_preheader, i32 0]
@@ -62,7 +63,6 @@ while.body283:  pred(while.body283, while.body283_preheader)
   319 = sub i32 %314, i32 %299.load
   store i32 %319 to ptr %304
   322 = add i32 %i246.phi365689, i32 1
-  n.load285 = load i32 from ptr @n
   287 = sub i32 %n.load285, i32 %322
   288 = icmp ne i32 %287, i32 0
   br i1 %288, bb %while.body283, bb %while.exit284
@@ -95,6 +95,7 @@ if.exit344:  pred(if.exit337)
   347 = add i32 %i246.phi, i32 1
   br bb %while.cond324
 sortB.while.body115_preheader:  pred(sortA.while.exit60)
+  n.load118422 = load i32 from ptr @n
   br bb %sortB.while.body115
 sortB.while.body115:  pred(sortB.if.exit143, sortB.while.body115_preheader)
   i111.phi350421700 = phi [bb %sortB.if.exit143, i32 %151444, bb %sortB.while.body115_preheader, i32 0]
@@ -118,7 +119,6 @@ sortB.then142:  pred(sortB.while.body115)
 sortB.if.exit143:  pred(sortB.while.body115, sortB.then142)
   mx.phi443 = phi [bb %sortB.while.body115, i32 %mx.phi352420699, bb %sortB.then142, i32 %123.load428]
   151444 = add i32 %i111.phi350421700, i32 1
-  n.load118422 = load i32 from ptr @n
   119423 = icmp slt i32 %151444, i32 %n.load118422
   br i1 %119423, bb %sortB.while.body115, bb %sortB.while.exit116
 sortB.while.body155_preheader:  pred(sortB.while.exit116)
@@ -153,12 +153,12 @@ sortB.while.exit168:  pred(sortB.while.body167, sortB.while.body155)
   159449 = icmp sle i32 %184471, i32 %698
   br i1 %159449, bb %sortB.while.body155, bb %sortB.while.exit156
 sortC.while.body188_preheader:  pred(sortB.while.exit156)
-  n.load203489679 = load i32 from ptr @n
+  n.load191478 = load i32 from ptr @n
   br bb %sortC.while.body188
 sortC.while.body188:  pred(sortC.while.exit201, sortC.while.body188_preheader)
   i186.phi477692 = phi [bb %sortC.while.exit201, i32 %198482, bb %sortC.while.body188_preheader, i32 0]
   198482 = add i32 %i186.phi477692, i32 1
-  204490680 = icmp slt i32 %198482, i32 %n.load203489679
+  204490680 = icmp slt i32 %198482, i32 %n.load191478
   391496681 = shl i32 %i186.phi477692, i32 2
   br i1 %204490680, bb %sortC.while.body200_preheader, bb %sortC.while.exit201
 sortC.while.exit189:  pred(sortC.while.exit201, sortB.while.exit156)
@@ -166,6 +166,7 @@ sortC.while.exit189:  pred(sortC.while.exit201, sortB.while.exit156)
   288688 = icmp ne i32 %n.load285686, i32 0
   br i1 %288688, bb %while.body283_preheader, bb %while.exit284
 sortC.while.body200_preheader:  pred(sortC.while.body188)
+  n.load203489 = load i32 from ptr @n
   br bb %sortC.while.body200
 sortC.while.body200:  pred(sortC.if.exit216, sortC.while.body200_preheader)
   391496681685 = phi [bb %sortC.if.exit216, i32 %391496, bb %sortC.while.body200_preheader, i32 %391496681]
@@ -186,32 +187,30 @@ sortC.while.exit201:  pred(sortC.if.exit216, sortC.while.body188)
   233.load507 = load i32 from ptr %233506
   store i32 %233.load507 to ptr %225503
   store i32 %225.load504 to ptr %233506
-  n.load191478 = load i32 from ptr @n
-  192479 = icmp slt i32 %198482, i32 %n.load191478
-  br i1 %192479, bb %sortC.while.body188, bb %sortC.while.exit189
+  br i1 %204490680, bb %sortC.while.body188, bb %sortC.while.exit189
 sortC.then215:  pred(sortC.while.body200)
   br bb %sortC.if.exit216
 sortC.if.exit216:  pred(sortC.while.body200, sortC.then215)
   id.phi514 = phi [bb %sortC.while.body200, i32 %id.phi359488684, bb %sortC.then215, i32 %j196.phi487683]
   221515 = add i32 %j196.phi487683, i32 1
-  n.load203489 = load i32 from ptr @n
   204490 = icmp slt i32 %221515, i32 %n.load203489
   391496 = shl i32 %id.phi514, i32 2
   br i1 %204490, bb %sortC.while.body200, bb %sortC.while.exit201
 sortA.while.body59_preheader:  pred(while.exit249)
-  n.load72534670 = load i32 from ptr @n
+  n.load523 = load i32 from ptr @n
   br bb %sortA.while.body59
 sortA.while.body59:  pred(sortA.while.exit70, sortA.while.body59_preheader)
   i.phi522704 = phi [bb %sortA.while.exit70, i32 %67527, bb %sortA.while.body59_preheader, i32 0]
   t.phi372521703 = phi [bb %sortA.while.exit70, i32 %t.phi372521672, bb %sortA.while.body59_preheader, i32 0]
   67527 = add i32 %i.phi522704, i32 1
-  73535671 = icmp slt i32 %67527, i32 %n.load72534670
+  73535671 = icmp slt i32 %67527, i32 %n.load523
   br i1 %73535671, bb %sortA.while.body69_preheader, bb %sortA.while.exit70
 sortA.while.exit60:  pred(sortA.while.exit70, while.exit249)
   n.load118422696 = load i32 from ptr @n
   119423697 = icmp slt i32 0, i32 %n.load118422696
   br i1 %119423697, bb %sortB.while.body115_preheader, bb %sortB.while.exit116
 sortA.while.body69_preheader:  pred(sortA.while.body59)
+  n.load72534 = load i32 from ptr @n
   410538 = shl i32 %i.phi522704, i32 2
   77539 = ptradd ptr @a, i32 %410538
   br bb %sortA.while.body69
@@ -226,9 +225,7 @@ sortA.while.body69:  pred(sortA.if.exit85, sortA.while.body69_preheader)
   br i1 %83544, bb %sortA.then84, bb %sortA.if.exit85
 sortA.while.exit70:  pred(sortA.if.exit85, sortA.while.body59)
   t.phi372521672 = phi [bb %sortA.if.exit85, i32 %t.phi555, bb %sortA.while.body59, i32 %t.phi372521703]
-  n.load523 = load i32 from ptr @n
-  63524 = icmp slt i32 %67527, i32 %n.load523
-  br i1 %63524, bb %sortA.while.body59, bb %sortA.while.exit60
+  br i1 %73535671, bb %sortA.while.body59, bb %sortA.while.exit60
 sortA.then84:  pred(sortA.while.body69)
   89.load549 = load i32 from ptr %77539
   97.load550 = load i32 from ptr %81542
@@ -238,7 +235,6 @@ sortA.then84:  pred(sortA.while.body69)
 sortA.if.exit85:  pred(sortA.while.body69, sortA.then84)
   t.phi555 = phi [bb %sortA.while.body69, i32 %t.phi371532673, bb %sortA.then84, i32 %89.load549]
   106556 = add i32 %j.phi533674, i32 1
-  n.load72534 = load i32 from ptr @n
   73535 = icmp slt i32 %106556, i32 %n.load72534
   br i1 %73535, bb %sortA.while.body69, bb %sortA.while.exit70
 quick_read.while.cond:  pred(entry243, quick_read.if.exit)

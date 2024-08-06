@@ -45,6 +45,7 @@ while.exit:  pred(while.exit19, entry)
   br i1 %284382, bb %while.body280_preheader, bb %while.exit281
 while.body18_preheader:  pred(while.body)
   30 = mul i32 %i.phi327388, i32 5600
+  77 = mul i32 %16, i32 5600
   br bb %while.body18
 while.body18:  pred(while.exit215, while.body18_preheader)
   j.phi333378 = phi [bb %while.exit215, i32 %274, bb %while.body18_preheader, i32 %16]
@@ -70,7 +71,6 @@ then:  pred(while.body18)
   44 = icmp slt i32 %34.load, i32 %42.load
   br i1 %44, bb %then45, bb %if.exit
 if.exit:  pred(while.body18, then, then45)
-  77 = mul i32 %16, i32 5600
   br i1 %22372, bb %then66, bb %if.exit67
 then45:  pred(then)
   60.load = load i32 from ptr %42

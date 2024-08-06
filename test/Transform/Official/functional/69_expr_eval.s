@@ -273,7 +273,7 @@ bb47:   # loop depth 1
   SUBW s1, s1, s0
   BNE s1, zero, bb48
   JAL zero, bb13
-bb48:   # loop depth 1433805808
+bb48:   # loop depth 1
   JAL zero, bb15
 bb49:   # loop depth 2
   LW a0, 1104(sp)
@@ -989,9 +989,9 @@ bb193:   # loop depth 1
   CALL putch
   ADDI a0, zero, -1
   JAL zero, bb47
-bb194:   # loop depth 1601399086
+bb194:   # loop depth 2
   JAL zero, bb18
-bb195:   # loop depth 1881173876
+bb195:   # loop depth 2
   JAL zero, bb16
 bb196:   # loop depth 0
   ADDI s0, zero, 48

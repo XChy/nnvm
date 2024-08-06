@@ -41,6 +41,7 @@ while.exit98:  pred(while.body97, entry89)
   126230 = icmp slt i32 0, i32 %m.load125229
   br i1 %126230, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(while.exit98)
+  m.load125 = load i32 from ptr @m
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)
   i95.phi231 = phi [bb %while.body122, i32 %164, bb %while.body122_preheader, i32 0]
@@ -60,7 +61,6 @@ while.body122:  pred(while.body122, while.body122_preheader)
   160 = ptradd ptr %152, i32 %186
   store i32 1 to ptr %160
   164 = add i32 %i95.phi231, i32 1
-  m.load125 = load i32 from ptr @m
   126 = icmp slt i32 %164, i32 %m.load125
   br i1 %126, bb %while.body122, bb %while.exit123
 while.exit123:  pred(while.body122, while.exit98)

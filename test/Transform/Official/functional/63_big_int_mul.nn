@@ -152,8 +152,7 @@ else:  pred(while.body144)
   store i32 %161 to ptr %153
   br bb %if.exit
 then208:  pred(while.exit130)
-  211.load = load i32 from ptr %result
-  call void putint(i32 %211.load)
+  call void putint(i32 %205.load)
   br bb %if.exit209
 if.exit209:  pred(while.exit130, then208)
   223269 = icmp sle i32 1, i32 39

@@ -164,7 +164,7 @@ bb5:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb6
   JAL zero, bb3
-bb6:   # loop depth 161
+bb6:   # loop depth 1
   JAL zero, bb5
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   JAL zero, bb1

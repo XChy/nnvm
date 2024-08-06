@@ -15,7 +15,7 @@ main:   # loop depth 0
   SLTIU a0, a0, 1
   BNE a0, zero, bb3
   # implict jump to bb1
-bb1:   # loop depth 1433449016
+bb1:   # loop depth 0
   # implict jump to bb2
 bb2:   # loop depth 0
   ADD a0, zero, zero
@@ -97,7 +97,7 @@ bb4:   # loop depth 1
   SLTIU a0, a0, 1
   BNE a0, zero, bb6
   # implict jump to bb5
-bb5:   # loop depth 1433448728
+bb5:   # loop depth 1
   JAL zero, bb2
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   JAL zero, bb4

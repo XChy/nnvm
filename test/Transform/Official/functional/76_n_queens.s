@@ -52,7 +52,7 @@ bb3:   # loop depth 1
   ADDI s1, zero, 0
   BLT s1, s0, bb4
   JAL zero, bb1
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   JAL zero, bb3
 f:   # loop depth 0
   ADDI sp, sp, -64
@@ -112,7 +112,7 @@ bb13:   # loop depth 1
   XORI a0, a0, 1
   BNE a0, zero, bb14
   JAL zero, bb6
-bb14:   # loop depth 1433513616
+bb14:   # loop depth 1
   JAL zero, bb8
 bb15:   # loop depth 1
   SLLIW a0, s3, 2

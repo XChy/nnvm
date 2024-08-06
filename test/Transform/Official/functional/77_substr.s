@@ -268,65 +268,65 @@ bb43:   # loop depth 0
   ADDI a0, zero, 13
   SLTI a0, a0, 1
   XORI s3, a0, 1
-  ADDI s0, zero, 1
+  ADDI s1, zero, 1
   # implict jump to bb44
 bb44:   # loop depth 1
   BNE s3, zero, bb47
   # implict jump to bb45
 bb45:   # loop depth 1
-  ADDIW s0, s0, 1
+  ADDIW s1, s1, 1
   ADDI a0, zero, 15
-  SLT a0, a0, s0
+  SLT a0, a0, s1
   XORI a0, a0, 1
   BNE a0, zero, bb46
   JAL zero, bb42
-bb46:   # loop depth 48
+bb46:   # loop depth 1
   JAL zero, bb44
 bb47:   # loop depth 1
   ADDI a0, zero, 1
-  SUBW a0, s0, a0
-  SLLIW s1, a0, 2
+  SUBW a0, s1, a0
+  SLLIW s0, a0, 2
   ADDI t6, sp, 88
-  ADD s1, t6, s1
-  LW s4, 0(s1)
-  SLLIW s5, s0, 6
+  ADD s0, t6, s0
+  LW s4, 0(s0)
+  SLLIW s5, s1, 6
   SLLIW s6, a0, 6
   ADDI s2, zero, 1
   # implict jump to bb48
 bb48:   # loop depth 2
   ADDI a0, zero, 1
   SUBW a0, s2, a0
-  SLLIW s1, a0, 2
-  ADDI a0, sp, 152
-  ADD a0, a0, s1
-  LW a0, 0(a0)
-  XOR a0, s4, a0
-  SLTIU a0, a0, 1
+  SLLIW a0, a0, 2
+  ADDI t6, sp, 152
+  ADD s0, t6, a0
+  LW s0, 0(s0)
+  XOR s0, s4, s0
+  SLTIU s0, s0, 1
   SLLIW s8, s2, 2
-  BNE a0, zero, bb57
+  BNE s0, zero, bb57
   # implict jump to bb49
 bb49:   # loop depth 2
   ADDI t6, sp, 208
   ADD s9, t6, s5
   ADD s7, s9, s8
-  ADDI a0, sp, 208
-  ADD a0, a0, s6
-  ADD a0, a0, s8
+  ADDI t6, sp, 208
+  ADD s0, t6, s6
+  ADD s0, s0, s8
+  LW s0, 0(s0)
+  ADD a0, s9, a0
   LW a0, 0(a0)
-  ADD s1, s9, s1
-  LW s1, 0(s1)
-  XOR s8, a0, s1
+  XOR s8, s0, a0
   SLTIU s8, s8, 1
   BNE s8, zero, bb56
   # implict jump to bb50
 bb50:   # loop depth 2
-  BLT s1, a0, bb55
+  BLT a0, s0, bb55
   # implict jump to bb51
 bb51:   # loop depth 2
-  ADD a0, s1, zero
+  ADD s0, a0, zero
   # implict jump to bb52
 bb52:   # loop depth 2
-  SW a0, 0(s7)
+  SW s0, 0(s7)
   # implict jump to bb53
 bb53:   # loop depth 2
   ADDIW s2, s2, 1
@@ -335,24 +335,24 @@ bb53:   # loop depth 2
   XORI a0, a0, 1
   BNE a0, zero, bb54
   JAL zero, bb45
-bb54:   # loop depth 48
+bb54:   # loop depth 2
   JAL zero, bb48
 bb55:   # loop depth 2
   JAL zero, bb52
 bb56:   # loop depth 2
   JAL zero, bb52
 bb57:   # loop depth 2
-  ADDI a0, sp, 208
-  ADD a0, a0, s5
-  ADD a0, a0, s8
+  ADDI t6, sp, 208
+  ADD s0, t6, s5
+  ADD s0, s0, s8
   ADDI t6, sp, 208
   ADD s7, t6, s6
-  ADD s1, s7, s1
-  LW s1, 0(s1)
-  ADDIW s1, s1, 1
-  SW s1, 0(a0)
+  ADD a0, s7, a0
+  LW a0, 0(a0)
+  ADDIW a0, a0, 1
+  SW a0, 0(s0)
   JAL zero, bb53
-bb58:   # loop depth 0
+bb58:   # loop depth 1
   JAL zero, bb40
 bb59:   # loop depth 0
   JAL zero, bb39

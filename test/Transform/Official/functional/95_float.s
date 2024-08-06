@@ -402,7 +402,7 @@ bb38:   # loop depth 0
   FLD fs5, 96(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
-bb39:   # loop depth 0
+bb39:   # loop depth 1
   JAL zero, bb37
 bb40:   # loop depth 0
   ADDI a0, zero, 111

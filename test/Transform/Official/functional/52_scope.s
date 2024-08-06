@@ -29,7 +29,7 @@ bb3:   # loop depth 1
   SLTIU s1, s1, 1
   BNE s1, zero, bb11
   # implict jump to bb4
-bb4:   # loop depth 0
+bb4:   # loop depth 1
   # implict jump to bb5
 bb5:   # loop depth 1
   ADDIW s0, s0, 1
@@ -56,7 +56,7 @@ bb9:   # loop depth 0
   ADDI a0, zero, 1
   CALL putint
   JAL zero, bb8
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb1
 bb11:   # loop depth 1
   ADDIW a0, a0, 1

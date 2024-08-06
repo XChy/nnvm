@@ -54,14 +54,14 @@ bb2:   # loop depth 2
 bb3:   # loop depth 3
   BLT s6, s4, bb30
   # implict jump to bb4
-bb4:   # loop depth 0
+bb4:   # loop depth 3
   # implict jump to bb5
 bb5:   # loop depth 2
   # implict jump to bb6
 bb6:   # loop depth 3
   BLT s6, s4, bb27
   # implict jump to bb7
-bb7:   # loop depth 1433557504
+bb7:   # loop depth 3
   # implict jump to bb8
 bb8:   # loop depth 2
   XOR s7, s6, s4

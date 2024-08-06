@@ -116,7 +116,7 @@ bb7:   # loop depth 1
   ADDIW s3, s3, 1
   BLT s3, s1, bb8
   JAL zero, bb2
-bb8:   # loop depth 0
+bb8:   # loop depth 1
   JAL zero, bb4
 bb9:   # loop depth 2
   SLLIW s5, s0, 2
@@ -135,7 +135,7 @@ bb10:   # loop depth 2
 bb11:   # loop depth 1
   BNE s0, zero, bb14
   # implict jump to bb12
-bb12:   # loop depth 0
+bb12:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
@@ -154,9 +154,9 @@ bb15:   # loop depth 2
   LW s0, 0(s0)
   BNE s0, zero, bb17
   # implict jump to bb16
-bb16:   # loop depth 0
+bb16:   # loop depth 2
   JAL zero, bb13
-bb17:   # loop depth 0
+bb17:   # loop depth 2
   JAL zero, bb15
 bb18:   # loop depth 0
   LA a0, hashmod
@@ -210,7 +210,7 @@ bb23:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s2, bb24
   JAL zero, bb1
-bb24:   # loop depth 1433639136
+bb24:   # loop depth 1
   JAL zero, bb19
 bb25:   # loop depth 2
   SLLIW a0, a0, 2

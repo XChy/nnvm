@@ -93,7 +93,7 @@ bb5:   # loop depth 1
   MULW s4, s2, s4
   BLT s1, a0, bb9
   # implict jump to bb6
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   # implict jump to bb7
 bb7:   # loop depth 1
   LA s1, x
@@ -110,7 +110,7 @@ bb7:   # loop depth 1
   XORI s0, s0, 1
   BNE s0, zero, bb8
   JAL zero, bb3
-bb8:   # loop depth 1433634256
+bb8:   # loop depth 1
   JAL zero, bb5
 bb9:   # loop depth 1
   # implict jump to bb10
@@ -128,9 +128,9 @@ bb10:   # loop depth 2
   ADDIW s1, s1, 1
   BLT s1, a0, bb12
   # implict jump to bb11
-bb11:   # loop depth 1433640320
+bb11:   # loop depth 2
   JAL zero, bb7
-bb12:   # loop depth 1433635984
+bb12:   # loop depth 2
   JAL zero, bb10
 bb13:   # loop depth 0
   ADD s2, zero, zero
@@ -142,7 +142,7 @@ bb14:   # loop depth 1
   LW s0, 0(s0)
   BLT zero, s2, bb18
   # implict jump to bb15
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   # implict jump to bb16
 bb16:   # loop depth 1
   LA s1, y
@@ -151,7 +151,7 @@ bb16:   # loop depth 1
   ADDIW s2, s2, 1
   BLT s2, a0, bb17
   JAL zero, bb2
-bb17:   # loop depth 1433626864
+bb17:   # loop depth 1
   JAL zero, bb14
 bb18:   # loop depth 1
   LUI s1, 1
@@ -173,9 +173,9 @@ bb19:   # loop depth 2
   ADDIW s1, s1, 1
   BLT s1, s2, bb21
   # implict jump to bb20
-bb20:   # loop depth 1433631728
+bb20:   # loop depth 2
   JAL zero, bb16
-bb21:   # loop depth 1433628384
+bb21:   # loop depth 2
   JAL zero, bb19
 bb22:   # loop depth 0
   ADD s0, zero, zero
@@ -188,18 +188,18 @@ bb23:   # loop depth 1
   MULW s10, s0, s1
   BLT zero, s0, bb39
   # implict jump to bb24
-bb24:   # loop depth 0
+bb24:   # loop depth 1
   # implict jump to bb25
 bb25:   # loop depth 1
   BLT s0, a0, bb29
   # implict jump to bb26
-bb26:   # loop depth 0
+bb26:   # loop depth 1
   # implict jump to bb27
 bb27:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, a0, bb28
   JAL zero, bb1
-bb28:   # loop depth 1433644768
+bb28:   # loop depth 1
   JAL zero, bb23
 bb29:   # loop depth 1
   LA s1, A
@@ -212,7 +212,7 @@ bb30:   # loop depth 2
   LW s6, 0(s4)
   BLT zero, s0, bb35
   # implict jump to bb31
-bb31:   # loop depth 0
+bb31:   # loop depth 2
   ADD s3, zero, zero
   # implict jump to bb32
 bb32:   # loop depth 2
@@ -220,9 +220,9 @@ bb32:   # loop depth 2
   ADDIW s2, s2, 1
   BLT s2, a0, bb34
   # implict jump to bb33
-bb33:   # loop depth 1433620656
+bb33:   # loop depth 2
   JAL zero, bb27
-bb34:   # loop depth 1433618000
+bb34:   # loop depth 2
   JAL zero, bb30
 bb35:   # loop depth 2
   ADD s5, zero, zero
@@ -243,10 +243,10 @@ bb36:   # loop depth 3
   ADDIW s5, s5, 1
   BLT s5, s0, bb38
   # implict jump to bb37
-bb37:   # loop depth 1433623632
+bb37:   # loop depth 3
   ADD s3, s5, zero
   JAL zero, bb32
-bb38:   # loop depth 1433622208
+bb38:   # loop depth 3
   JAL zero, bb36
 bb39:   # loop depth 1
   ADD s1, zero, zero
@@ -259,7 +259,7 @@ bb40:   # loop depth 2
   LW s6, 0(s4)
   BLT zero, s1, bb45
   # implict jump to bb41
-bb41:   # loop depth 0
+bb41:   # loop depth 2
   ADD s5, zero, zero
   # implict jump to bb42
 bb42:   # loop depth 2
@@ -275,10 +275,10 @@ bb42:   # loop depth 2
   ADDIW s1, s1, 1
   BLT s1, s0, bb44
   # implict jump to bb43
-bb43:   # loop depth 0
+bb43:   # loop depth 2
   ADD s3, s5, zero
   JAL zero, bb25
-bb44:   # loop depth 0
+bb44:   # loop depth 2
   JAL zero, bb40
 bb45:   # loop depth 2
   ADD s5, zero, zero
@@ -299,7 +299,7 @@ bb46:   # loop depth 3
   ADDIW s5, s5, 1
   BLT s5, s1, bb48
   # implict jump to bb47
-bb47:   # loop depth 1433614944
+bb47:   # loop depth 3
   JAL zero, bb42
-bb48:   # loop depth 0
+bb48:   # loop depth 3
   JAL zero, bb46

@@ -208,7 +208,7 @@ bb6:   # loop depth 1
   SUBW s5, s4, s5
   BNE s5, a0, bb11
   # implict jump to bb7
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 1
@@ -219,14 +219,14 @@ bb8:   # loop depth 1
 bb9:   # loop depth 1
   BLT zero, s1, bb10
   JAL zero, bb1
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
   ANDI s4, s4, 1
   SLTIU s4, s4, 1
   BNE s4, zero, bb20
   # implict jump to bb12
-bb12:   # loop depth 0
+bb12:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
@@ -234,7 +234,7 @@ bb13:   # loop depth 1
   SLTIU s4, s4, 1
   BNE s4, zero, bb16
   # implict jump to bb14
-bb14:   # loop depth 0
+bb14:   # loop depth 1
   # implict jump to bb15
 bb15:   # loop depth 1
   JAL zero, bb8
@@ -243,7 +243,7 @@ bb16:   # loop depth 1
   SLTIU s3, s3, 1
   BNE s3, zero, bb19
   # implict jump to bb17
-bb17:   # loop depth 0
+bb17:   # loop depth 1
   # implict jump to bb18
 bb18:   # loop depth 1
   JAL zero, bb15
@@ -255,7 +255,7 @@ bb20:   # loop depth 1
   SLTIU a0, a0, 1
   BNE a0, zero, bb23
   # implict jump to bb21
-bb21:   # loop depth 0
+bb21:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb22
 bb22:   # loop depth 1

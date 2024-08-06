@@ -401,6 +401,7 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
 void LowerHelper::assignDepth(Function &F) {
   if (F.isExternal())
     return;
+
   LoopAnalysis loopAnalysis;
   loopAnalysis.run(F);
 

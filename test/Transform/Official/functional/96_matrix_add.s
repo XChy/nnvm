@@ -96,7 +96,7 @@ bb5:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb6
   JAL zero, bb3
-bb6:   # loop depth 0
+bb6:   # loop depth 1
   JAL zero, bb5
 bb7:   # loop depth 0
   ADD s0, zero, zero
@@ -113,7 +113,7 @@ bb8:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb9
   JAL zero, bb2
-bb9:   # loop depth 0
+bb9:   # loop depth 1
   JAL zero, bb8
 bb10:   # loop depth 0
   ADD s0, zero, zero
@@ -130,5 +130,5 @@ bb11:   # loop depth 1
   LW a0, 0(a0)
   BLT s0, a0, bb12
   JAL zero, bb1
-bb12:   # loop depth 0
+bb12:   # loop depth 1
   JAL zero, bb11

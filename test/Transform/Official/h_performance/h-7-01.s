@@ -87,7 +87,7 @@ bb6:   # loop depth 1
   FLT.S s1, fs4, fs0
   BNE s1, zero, bb11
   # implict jump to bb7
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   # implict jump to bb9
@@ -96,7 +96,7 @@ bb9:   # loop depth 1
   ADDIW a0, a0, 1
   BLT a0, s0, bb10
   JAL zero, bb1
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
   FSGNJ.S fs0, fs2, fs2
@@ -119,9 +119,9 @@ bb14:   # loop depth 2
   FLT.S s1, fs4, fs0
   BNE s1, zero, bb16
   # implict jump to bb15
-bb15:   # loop depth 0
+bb15:   # loop depth 2
   JAL zero, bb8
-bb16:   # loop depth 0
+bb16:   # loop depth 2
   FSGNJ.S fs0, fs1, fs1
   JAL zero, bb12
 bb17:   # loop depth 2
