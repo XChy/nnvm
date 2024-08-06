@@ -8,6 +8,9 @@ namespace nnvm{
 using antlr4::RuleContext;    
 class ErrorReporter{
     public :
+
+        ErrorReporter();
+
         std::vector<std::string> errors;
 
         void errorRecord(antlr4::ParserRuleContext * ctx, const std::string &msg);
