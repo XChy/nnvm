@@ -113,7 +113,8 @@ bool LIRInst::isMoveInst(LIRFunc const &func) const {
 }
 
 void LIRBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) {
-  out << info.labelOf(this) << ":\n";
+  out << info.labelOf(this) << ":   "
+      << "# loop depth " << getLoopDepth() << "\n";
   for (const auto &I : insts) {
     out << "  ";
     I->emit(out, info);

@@ -11,7 +11,7 @@ staticvalue:
 seed:
 .byte 159, 188, 48, 1, 213, 226, 48, 1, 7, 202, 154, 59
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -192
   SD ra, 128(sp)
   SD s0, 136(sp)
@@ -30,7 +30,7 @@ main:
   ADDI a0, zero, 0
   BLT a0, s1, bb2
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADDI a0, zero, 64
   CALL _sysy_stoptime
   LUI a0, 2
@@ -48,9 +48,9 @@ bb1:
   LD s5, 176(sp)
   ADDI sp, sp, 192
   JALR zero, 0(ra)
-bb2:
+bb2:   # loop depth 0
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   ADDI a0, zero, 1
   SUBW s1, s1, a0
   LA a0, staticvalue
@@ -70,7 +70,7 @@ bb3:
   SW a0, 0(s0)
   BLT a0, zero, bb25
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   LA a0, staticvalue
   LW a0, 0(a0)
   LUI s0, 73
@@ -91,7 +91,7 @@ bb4:
   SW a0, 0(s2)
   BLT a0, zero, bb24
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 1
   LA a0, staticvalue
   LW s3, 0(a0)
   SLLI a0, s3, 1
@@ -189,7 +189,7 @@ bb5:
   XORI s4, s4, 1
   BNE s4, zero, bb9
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 1
   SLLIW s2, s2, 2
   LA s4, a
   ADD s2, s4, s2
@@ -208,62 +208,62 @@ bb6:
   SUBW s5, s4, s5
   BNE s5, a0, bb11
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 1
   LW s0, 0(s2)
   ADDW a0, s0, a0
   SW a0, 0(s2)
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 1
   BLT zero, s1, bb10
   JAL zero, bb1
-bb10:
+bb10:   # loop depth 0
   JAL zero, bb3
-bb11:
+bb11:   # loop depth 1
   ANDI s4, s4, 1
   SLTIU s4, s4, 1
   BNE s4, zero, bb20
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 1
   XORI s4, s5, 1
   SLTIU s4, s4, 1
   BNE s4, zero, bb16
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 0
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 1
   JAL zero, bb8
-bb16:
+bb16:   # loop depth 1
   ANDI s3, s3, 1
   SLTIU s3, s3, 1
   BNE s3, zero, bb19
   # implict jump to bb17
-bb17:
+bb17:   # loop depth 0
   # implict jump to bb18
-bb18:
+bb18:   # loop depth 1
   JAL zero, bb15
-bb19:
+bb19:   # loop depth 1
   SUBW a0, a0, s0
   JAL zero, bb18
-bb20:
+bb20:   # loop depth 1
   XORI a0, a0, 1
   SLTIU a0, a0, 1
   BNE a0, zero, bb23
   # implict jump to bb21
-bb21:
+bb21:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb22
-bb22:
+bb22:   # loop depth 1
   JAL zero, bb13
-bb23:
+bb23:   # loop depth 1
   ADD a0, s0, zero
   JAL zero, bb22
-bb24:
+bb24:   # loop depth 1
   LA a0, staticvalue
   LW a0, 0(a0)
   LUI s2, 244141
@@ -272,7 +272,7 @@ bb24:
   LA s2, staticvalue
   SW a0, 0(s2)
   JAL zero, bb5
-bb25:
+bb25:   # loop depth 1
   LA a0, staticvalue
   LW a0, 0(a0)
   LUI s0, 244141

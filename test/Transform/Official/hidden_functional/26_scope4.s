@@ -11,7 +11,7 @@ sum:
 a:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -391,11 +391,11 @@ main:
   ADD s1, zero, zero
   ADD a0, zero, zero
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 1
   SLTI s3, a0, 3
   BNE s3, zero, bb3
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LA a0, sum
   LW a0, 0(a0)
   CALL putint
@@ -411,9 +411,9 @@ bb2:
   LD s7, 64(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 1
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   LA s3, sum
   LW s3, 0(s3)
   ADDW s3, s3, s0
@@ -471,7 +471,7 @@ bb4:
   ADDIW a0, a0, 1
   BNE s3, zero, bb6
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 1
   LA s3, sum
   LW s3, 0(s3)
   ADDW s0, s3, s0
@@ -528,7 +528,7 @@ bb5:
   LA s3, count
   SW s0, 0(s3)
   JAL zero, bb1
-bb6:
+bb6:   # loop depth 1
   LA s1, count
   LW s3, 0(s1)
   ADDIW s1, s3, 1

@@ -5,7 +5,7 @@ a:
 .section .data
 
 .section .text
-main:
+main:   # loop depth 0
   LUI t0, 1048572
   ADDIW t0, t0, -16
   ADD sp, sp, t0
@@ -19,36 +19,36 @@ main:
   SD s0, 0(a0)
   ADDI a0, zero, 1024
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   BNE a0, zero, bb15
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADDI a0, zero, 1023
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   BNE a0, zero, bb14
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   ADDI a0, zero, 1022
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   BNE a0, zero, bb13
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   ADDI a0, zero, 1021
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   BNE a0, zero, bb12
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 0
   ADDI a0, zero, 1
   SW a0, 0(sp)
   ADDI a0, zero, 2
@@ -63,7 +63,7 @@ bb8:
   ADDIW a0, a0, -6
   ADD a0, zero, a0
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   SLLIW s0, a0, 2
@@ -73,7 +73,7 @@ bb9:
   SW zero, 0(s0)
   BNE a0, zero, bb11
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 0
   LA a0, a
   LUI s0, 1
   ADDIW s0, s0, -96
@@ -114,13 +114,13 @@ bb10:
   ADDIW t0, t0, 16
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb11:
+bb11:   # loop depth 0
   JAL zero, bb9
-bb12:
+bb12:   # loop depth 0
   JAL zero, bb7
-bb13:
+bb13:   # loop depth 0
   JAL zero, bb5
-bb14:
+bb14:   # loop depth 0
   JAL zero, bb3
-bb15:
+bb15:   # loop depth 0
   JAL zero, bb1

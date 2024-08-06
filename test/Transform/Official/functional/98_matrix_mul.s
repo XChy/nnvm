@@ -11,7 +11,7 @@ L:
 M:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -112
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -92,21 +92,21 @@ main:
   ADDI a0, zero, 1
   BNE a0, zero, bb10
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   LA a0, N
   LW a0, 0(a0)
   BLT zero, a0, bb7
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   LA a0, N
   LW a0, 0(a0)
   BLT zero, a0, bb4
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -119,10 +119,10 @@ bb3:
   FLD fs4, 48(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb4:
+bb4:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 1
   SLLIW a0, s0, 2
   ADDI t6, sp, 96
   ADD a0, t6, a0
@@ -134,12 +134,12 @@ bb5:
   LW a0, 0(a0)
   BLT s0, a0, bb6
   JAL zero, bb3
-bb6:
+bb6:   # loop depth 1433607224
   JAL zero, bb5
-bb7:
+bb7:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 1
   SLLIW a0, s0, 2
   ADDI t6, sp, 80
   ADD a0, t6, a0
@@ -151,12 +151,12 @@ bb8:
   LW a0, 0(a0)
   BLT s0, a0, bb9
   JAL zero, bb2
-bb9:
+bb9:   # loop depth 0
   JAL zero, bb8
-bb10:
+bb10:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 1
   SLLIW a0, s0, 2
   ADDI t6, sp, 56
   ADD a0, t6, a0
@@ -168,5 +168,5 @@ bb11:
   LW a0, 0(a0)
   BLT s0, a0, bb12
   JAL zero, bb1
-bb12:
+bb12:   # loop depth 1433566136
   JAL zero, bb11

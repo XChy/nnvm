@@ -6,7 +6,7 @@ array:
 .section .data
 
 .section .text
-findSmallest:
+findSmallest:   # loop depth 0
   ADDI sp, sp, -96
   SD ra, 0(sp)
   SD s7, 8(sp)
@@ -27,7 +27,7 @@ findSmallest:
   SLTIU s0, s0, 1
   BNE s0, zero, bb19
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   SLLIW s0, s7, 2
   LA s1, array
   ADD s0, s1, s0
@@ -36,10 +36,10 @@ bb1:
   ADDIW s2, a0, 1
   BLT a0, s7, bb12
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADD s1, a0, zero
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   LA s4, array
   ADD s3, s4, s3
   LW s4, 0(s3)
@@ -50,17 +50,17 @@ bb3:
   SLTIU s0, s0, 1
   BNE s0, zero, bb8
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   BLT s8, s1, bb7
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   ADD a0, s2, zero
   ADD a1, s7, zero
   ADD a2, s8, zero
   ADD a3, s10, zero
   CALL findSmallest
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   LD ra, 0(sp)
   LD s7, 8(sp)
   LD s8, 16(sp)
@@ -75,21 +75,21 @@ bb6:
   LD s6, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb7:
+bb7:   # loop depth 0
   ADDI a1, zero, 1
   SUBW a1, s1, a1
   ADD a2, s8, zero
   ADD a3, s10, zero
   CALL findSmallest
   JAL zero, bb6
-bb8:
+bb8:   # loop depth 0
   ADDI a0, zero, 0
   BLT a0, s1, bb9
   JAL zero, bb6
-bb9:
+bb9:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 1
   SLLIW a0, s0, 2
   LA s2, array
   ADD a0, s2, a0
@@ -100,13 +100,13 @@ bb10:
   ADDIW s0, s0, 1
   BLT s0, s1, bb11
   JAL zero, bb6
-bb11:
+bb11:   # loop depth 0
   JAL zero, bb10
-bb12:
+bb12:   # loop depth 0
   ADD s4, a0, zero
   ADD s5, a0, zero
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 1
   SLLIW s6, s5, 2
   LA s9, array
   ADD s6, s9, s6
@@ -115,22 +115,22 @@ bb13:
   XORI s9, s9, 1
   BNE s9, zero, bb18
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 1433514928
   ADD s2, s4, zero
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 1
   ADD s4, s2, zero
   ADDIW s5, s5, 1
   SLLIW s3, s4, 2
   ADDIW s2, s4, 1
   BLT s5, s7, bb17
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 0
   ADD s1, s4, zero
   JAL zero, bb3
-bb17:
+bb17:   # loop depth 0
   JAL zero, bb13
-bb18:
+bb18:   # loop depth 1
   LW s4, 0(s6)
   LA s9, array
   ADD s3, s9, s3
@@ -138,7 +138,7 @@ bb18:
   SW s9, 0(s6)
   SW s4, 0(s3)
   JAL zero, bb15
-bb19:
+bb19:   # loop depth 0
   LD ra, 0(sp)
   LD s7, 8(sp)
   LD s8, 16(sp)
@@ -153,7 +153,7 @@ bb19:
   LD s6, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -167,7 +167,7 @@ main:
   ADD s2, a0, zero
   BLT zero, s1, bb22
   # implict jump to bb21
-bb21:
+bb21:   # loop depth 0
   ADDI a0, zero, 1
   SUBW a1, s1, a0
   ADD a0, zero, zero
@@ -183,10 +183,10 @@ bb21:
   LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb22:
+bb22:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb23
-bb23:
+bb23:   # loop depth 1
   SLLIW s3, s0, 2
   LA s4, array
   ADD s4, s4, s3
@@ -196,5 +196,5 @@ bb23:
   ADDIW s0, s0, 1
   BLT s0, s1, bb24
   JAL zero, bb21
-bb24:
+bb24:   # loop depth 1433522752
   JAL zero, bb23

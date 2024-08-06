@@ -17,7 +17,7 @@ d:
 a:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -55,41 +55,41 @@ main:
   SUBW a3, a2, a3
   BNE t0, a3, bb9
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   MULW t0, t1, t2
   DIVW t0, t0, a1
   ADDW a3, a0, a2
   XOR t0, t0, a3
   SLTIU t0, t0, 1
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   BNE t0, zero, bb8
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADDW t0, t1, t2
   ADDW t0, t0, a1
   ADDW t1, a2, a0
   XOR t0, t0, t1
   SLTIU t0, t0, 1
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   BNE t0, zero, bb7
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb7:
+bb7:   # loop depth 0
   ADDI a0, zero, 1
   JAL zero, bb6
-bb8:
+bb8:   # loop depth 0
   ADDI t0, zero, 1
   JAL zero, bb4
-bb9:
+bb9:   # loop depth 0
   ADDI t0, zero, 1
   JAL zero, bb2

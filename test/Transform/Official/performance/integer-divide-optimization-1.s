@@ -11,7 +11,7 @@ multi:
 loopCount:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -30,10 +30,10 @@ main:
   ADDI a0, zero, 0
   BLT a0, s3, bb3
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADD s1, zero, zero
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADDI a0, zero, 1031
   CALL _sysy_stoptime
   ADD a0, s1, zero
@@ -50,11 +50,11 @@ bb2:
   LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 0
   ADD s1, zero, zero
   ADD s2, zero, zero
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   LA a0, multi
   LW a0, 0(a0)
   MULW a0, s2, a0
@@ -70,13 +70,13 @@ bb4:
   ADD s0, zero, zero
   ADD a0, zero, zero
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 2
   ADDW s0, s0, s4
   ADDIW a0, a0, 1
   SLTI s5, a0, 300
   BNE s5, zero, bb9
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 1
   ADDI a0, zero, 300
   DIVW a0, s0, a0
   ADDW a0, s1, a0
@@ -86,9 +86,9 @@ bb6:
   ADDIW s2, s2, 1
   BLT s2, s3, bb8
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   JAL zero, bb2
-bb8:
+bb8:   # loop depth 1441677216
   JAL zero, bb4
-bb9:
+bb9:   # loop depth 0
   JAL zero, bb5

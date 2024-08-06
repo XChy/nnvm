@@ -2,7 +2,7 @@
 .section .bss
 .section .data
 .section .text
-main:
+main:   # loop depth 0
   LUI t0, 1048569
   ADDIW t0, t0, -256
   ADD sp, sp, t0
@@ -17,7 +17,7 @@ main:
   ADDIW a0, a0, -9
   ADD a0, zero, a0
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   SLLIW s0, a0, 2
@@ -27,12 +27,12 @@ bb1:
   SW s1, 0(s0)
   BNE a0, zero, bb14
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LUI a0, 1
   ADDIW a0, a0, -969
   ADD a0, zero, a0
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   ADDI s0, zero, 1
   SUBW a0, a0, s0
   SLLIW s0, a0, 2
@@ -43,7 +43,7 @@ bb3:
   SW zero, 0(s0)
   BNE a0, zero, bb13
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   LUI a0, 1
   ADDIW a0, a0, 464
   ADDI t6, sp, 56
@@ -172,7 +172,7 @@ bb4:
   SLTI a0, s0, 10
   BNE a0, zero, bb10
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   ADDIW a0, s3, 3
   ADDI s0, zero, 3
   MULW s0, a0, s0
@@ -180,7 +180,7 @@ bb5:
   XORI a0, a0, 1
   BNE a0, zero, bb7
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -195,9 +195,9 @@ bb6:
   ADDIW t0, t0, 256
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb7:
+bb7:   # loop depth 0
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 1
   SLLIW a0, s0, 2
   ADD a0, s2, a0
   LW a0, 0(a0)
@@ -210,11 +210,11 @@ bb8:
   XORI a0, a0, 1
   BNE a0, zero, bb9
   JAL zero, bb6
-bb9:
+bb9:   # loop depth 0
   JAL zero, bb8
-bb10:
+bb10:   # loop depth 0
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 1
   SLLIW a0, s0, 2
   ADD a0, s2, a0
   LUI s4, 31
@@ -229,9 +229,9 @@ bb11:
   SLTI a0, s0, 10
   BNE a0, zero, bb12
   JAL zero, bb5
-bb12:
+bb12:   # loop depth 0
   JAL zero, bb11
-bb13:
+bb13:   # loop depth 1433463920
   JAL zero, bb3
-bb14:
+bb14:   # loop depth 0
   JAL zero, bb1

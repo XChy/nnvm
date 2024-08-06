@@ -401,28 +401,30 @@ void GraphColoringRAImpl::freezeMoves(Register *reg) {
  * Select a node to spill by favorite heuristic.
  */
 void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
-  std::unordered_map<Register *, double> priorities;
+  double minCost = 1e32;
+  Register *toSpill = nullptr;
   for (auto reg : spillWorklist) {
-    priorities[reg] = 0;
+    double currentCost = 0;
 
     for (auto op : reg->getDefs()) {
       // registers in loop are more likely to be frequently used
       uint depth = op->getInst()->getParent()->getLoopDepth();
-      priorities[reg] += 1 + 100 * depth;
+      currentCost += 1 + 100 * depth;
     }
 
     for (auto op : reg->getUses()) {
       uint depth = op->getInst()->getParent()->getLoopDepth();
-      priorities[reg] += 1 + 100 * depth;
+      currentCost += 1 + 100 * depth;
     }
 
-    priorities[reg] /= degree[reg];
+    currentCost /= degree[reg];
+
+    if (currentCost < minCost) {
+      minCost = currentCost;
+      toSpill = reg;
+    }
   }
 
-  auto toSpill =
-      std::min_element(priorities.begin(), priorities.end(),
-                       [](auto a, auto b) { return a.second < b.second; })
-          ->first;
   spillWorklist.erase(toSpill);
   simplifyWorklist.insert(toSpill);
   freezeMoves(toSpill);

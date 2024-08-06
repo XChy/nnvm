@@ -122,8 +122,8 @@ a23:
 a28:
 .word 0x00000000
 .section .text
-main:
-  ADDI sp, sp, -448
+main:   # loop depth 0
+  ADDI sp, sp, -384
   SD ra, 176(sp)
   SD s0, 184(sp)
   SD s1, 192(sp)
@@ -270,13 +270,10 @@ main:
   LW s1, 0(s1)
   LA s2, a35
   LW s2, 0(s2)
-  SW s2, 44(sp)
   LA s3, a36
-  LW s2, 0(s3)
-  SW s2, 8(sp)
+  LW s3, 0(s3)
   LA s4, a37
-  LW s2, 0(s4)
-  SW s2, 4(sp)
+  LW s4, 0(s4)
   LA s5, a38
   LW s5, 0(s5)
   LA s6, a39
@@ -287,40 +284,43 @@ main:
   LW s8, 0(s8)
   LA s9, a10
   LW s9, 0(s9)
+  SW s9, 44(sp)
   LA s10, a11
-  LW s10, 0(s10)
+  LW s9, 0(s10)
+  SW s9, 8(sp)
   LA s11, a12
-  LW s11, 0(s11)
-  LA s2, a13
-  SD s2, 360(sp)
-  LD s2, 360(sp)
-  LW s2, 0(s2)
-  SW s2, 28(sp)
-  LA s2, a14
-  SD s2, 440(sp)
-  LD s2, 440(sp)
-  LW s2, 0(s2)
-  SW s2, 32(sp)
-  LA s2, a15
-  SD s2, 432(sp)
-  LD s2, 432(sp)
-  LW s2, 0(s2)
-  SW s2, 36(sp)
+  LW s9, 0(s11)
+  SW s9, 4(sp)
+  LA s9, a13
+  SD s9, 288(sp)
+  LD s9, 288(sp)
+  LW s9, 0(s9)
+  SW s9, 28(sp)
+  LA s9, a14
+  SD s9, 232(sp)
+  LD s9, 232(sp)
+  LW s9, 0(s9)
+  SW s9, 32(sp)
+  LA s9, a15
+  SD s9, 296(sp)
+  LD s9, 296(sp)
+  LW s9, 0(s9)
+  SW s9, 36(sp)
   ADDW a0, a0, s0
   ADDW a0, a0, s1
-  LW s0, 44(sp)
-  SUBW a0, a0, s0
-  LW s0, 8(sp)
-  SUBW a0, a0, s0
-  LW s0, 4(sp)
-  SUBW a0, a0, s0
+  SUBW a0, a0, s2
+  SUBW a0, a0, s3
+  SUBW a0, a0, s4
   SUBW a0, a0, s5
   SUBW a0, a0, s6
   ADDW a0, a0, s7
   ADDW a0, a0, s8
-  ADDW a0, a0, s9
-  ADDW a0, a0, s10
-  ADDW a0, a0, s11
+  LW s0, 44(sp)
+  ADDW a0, a0, s0
+  LW s0, 8(sp)
+  ADDW a0, a0, s0
+  LW s0, 4(sp)
+  ADDW a0, a0, s0
   LW s0, 28(sp)
   ADDW a0, a0, s0
   LW s0, 32(sp)
@@ -342,7 +342,6 @@ main:
   LW s3, 0(s3)
   LA s4, a5
   LW s4, 0(s4)
-  SW s4, 148(sp)
   LA s5, a6
   LW s5, 0(s5)
   LA s6, a7
@@ -350,119 +349,104 @@ main:
   LA s7, a8
   LW s7, 0(s7)
   LA s8, a9
-  LW s4, 0(s8)
-  SW s4, 172(sp)
+  LW s8, 0(s8)
   LA s9, a10
-  LW s4, 0(s9)
-  SW s4, 168(sp)
+  LW s9, 0(s9)
+  SW s9, 148(sp)
   LA s9, a11
-  LW s4, 0(s9)
-  SW s4, 164(sp)
-  LA s10, a12
-  LW s4, 0(s10)
-  SW s4, 160(sp)
-  LA s11, a13
-  LW s4, 0(s11)
-  SW s4, 156(sp)
-  LA s4, a14
-  SD s4, 424(sp)
-  LD s4, 424(sp)
-  LW s4, 0(s4)
-  SW s4, 152(sp)
-  LA s4, a15
-  SD s4, 416(sp)
-  LD s4, 416(sp)
-  LW s4, 0(s4)
-  SW s4, 88(sp)
-  LA s4, a16
-  SD s4, 232(sp)
-  LD s4, 232(sp)
-  LW s4, 0(s4)
-  SW s4, 144(sp)
-  LA s4, a17
-  SD s4, 408(sp)
-  LD s4, 408(sp)
-  LW s4, 0(s4)
-  SW s4, 140(sp)
-  LA s4, a18
-  SD s4, 400(sp)
-  LD s4, 400(sp)
-  LW s4, 0(s4)
-  SW s4, 136(sp)
-  LA s4, a19
-  SD s4, 392(sp)
-  LD s4, 392(sp)
-  LW s4, 0(s4)
-  SW s4, 132(sp)
-  LA s4, a20
-  SD s4, 384(sp)
-  LD s4, 384(sp)
-  LW s4, 0(s4)
-  SW s4, 128(sp)
-  LA s4, a21
-  SD s4, 376(sp)
-  LD s4, 376(sp)
-  LW s4, 0(s4)
-  SW s4, 124(sp)
-  LA s4, a22
-  SD s4, 368(sp)
-  LD s4, 368(sp)
-  LW s4, 0(s4)
-  SW s4, 120(sp)
-  LA s4, a23
-  SD s4, 288(sp)
-  LD s4, 288(sp)
-  LW s4, 0(s4)
-  SW s4, 116(sp)
-  LA s4, a24
-  SD s4, 352(sp)
-  LD s4, 352(sp)
-  LW s4, 0(s4)
-  SW s4, 112(sp)
-  LA s4, a25
-  SD s4, 344(sp)
-  LD s4, 344(sp)
-  LW s4, 0(s4)
-  SW s4, 108(sp)
-  LA s4, a26
-  SD s4, 336(sp)
-  LD s4, 336(sp)
-  LW s4, 0(s4)
-  SW s4, 20(sp)
-  LA s4, a27
-  SD s4, 328(sp)
-  LD s4, 328(sp)
-  LW s4, 0(s4)
-  SW s4, 24(sp)
-  LA s4, a28
-  SD s4, 320(sp)
-  LD s4, 320(sp)
-  LW s4, 0(s4)
-  SW s4, 104(sp)
-  LA s4, a29
-  SD s4, 312(sp)
-  LD s4, 312(sp)
-  LW s4, 0(s4)
-  SW s4, 80(sp)
-  LA s4, a30
-  SD s4, 304(sp)
-  LD s4, 304(sp)
-  LW s4, 0(s4)
-  SW s4, 76(sp)
-  LA s4, a31
-  SD s4, 296(sp)
-  LD s4, 296(sp)
-  LW s4, 0(s4)
-  SW s4, 72(sp)
+  LW s9, 0(s9)
+  SW s9, 172(sp)
+  LA s9, a12
+  LW s9, 0(s9)
+  SW s9, 168(sp)
+  LA s9, a13
+  LW s9, 0(s9)
+  SW s9, 164(sp)
+  LA s9, a14
+  LW s9, 0(s9)
+  SW s9, 160(sp)
+  LA s9, a15
+  LW s9, 0(s9)
+  SW s9, 156(sp)
+  LA s9, a16
+  LW s9, 0(s9)
+  SW s9, 152(sp)
+  LA s9, a17
+  LW s9, 0(s9)
+  SW s9, 88(sp)
+  LA s9, a18
+  LW s9, 0(s9)
+  SW s9, 144(sp)
+  LA s9, a19
+  LW s9, 0(s9)
+  SW s9, 140(sp)
+  LA s10, a20
+  LW s9, 0(s10)
+  SW s9, 136(sp)
+  LA s11, a21
+  LW s9, 0(s11)
+  SW s9, 132(sp)
+  LA s9, a22
+  SD s9, 304(sp)
+  LD s9, 304(sp)
+  LW s9, 0(s9)
+  SW s9, 128(sp)
+  LA s9, a23
+  SD s9, 312(sp)
+  LD s9, 312(sp)
+  LW s9, 0(s9)
+  SW s9, 124(sp)
+  LA s9, a24
+  SD s9, 320(sp)
+  LD s9, 320(sp)
+  LW s9, 0(s9)
+  SW s9, 120(sp)
+  LA s9, a25
+  SD s9, 328(sp)
+  LD s9, 328(sp)
+  LW s9, 0(s9)
+  SW s9, 116(sp)
+  LA s9, a26
+  SD s9, 336(sp)
+  LD s9, 336(sp)
+  LW s9, 0(s9)
+  SW s9, 112(sp)
+  LA s9, a27
+  SD s9, 344(sp)
+  LD s9, 344(sp)
+  LW s9, 0(s9)
+  SW s9, 108(sp)
+  LA s9, a28
+  SD s9, 352(sp)
+  LD s9, 352(sp)
+  LW s9, 0(s9)
+  SW s9, 104(sp)
+  LA s9, a29
+  SD s9, 360(sp)
+  LD s9, 360(sp)
+  LW s9, 0(s9)
+  SW s9, 48(sp)
+  LA s9, a30
+  SD s9, 368(sp)
+  LD s9, 368(sp)
+  LW s9, 0(s9)
+  SW s9, 0(sp)
+  LA s9, a31
+  SD s9, 376(sp)
+  LD s9, 376(sp)
+  LW s9, 0(s9)
+  SW s9, 40(sp)
   ADDW a0, a0, s0
   ADDW a0, a0, s1
   ADDW a0, a0, s2
   ADDW a0, a0, s3
-  LW s0, 148(sp)
-  ADDW a0, a0, s0
+  ADDW a0, a0, s4
   ADDW a0, a0, s5
   ADDW a0, a0, s6
   ADDW a0, a0, s7
+  ADDW a0, a0, s8
+  LW s0, 148(sp)
+  ADDW a0, a0, s0
   LW s0, 172(sp)
   ADDW a0, a0, s0
   LW s0, 168(sp)
@@ -478,9 +462,9 @@ main:
   LW s0, 88(sp)
   ADDW a0, a0, s0
   LW s0, 144(sp)
-  ADDW a0, a0, s0
+  SUBW a0, a0, s0
   LW s0, 140(sp)
-  ADDW a0, a0, s0
+  SUBW a0, a0, s0
   LW s0, 136(sp)
   SUBW a0, a0, s0
   LW s0, 132(sp)
@@ -488,26 +472,22 @@ main:
   LW s0, 128(sp)
   SUBW a0, a0, s0
   LW s0, 124(sp)
-  SUBW a0, a0, s0
+  ADDW a0, a0, s0
   LW s0, 120(sp)
-  SUBW a0, a0, s0
+  ADDW a0, a0, s0
   LW s0, 116(sp)
   ADDW a0, a0, s0
   LW s0, 112(sp)
   ADDW a0, a0, s0
   LW s0, 108(sp)
   ADDW a0, a0, s0
-  LW s0, 20(sp)
-  ADDW a0, a0, s0
-  LW s0, 24(sp)
-  ADDW a0, a0, s0
   LW s0, 104(sp)
   ADDW a0, a0, s0
-  LW s0, 80(sp)
+  LW s0, 48(sp)
   ADDW a0, a0, s0
-  LW s0, 76(sp)
+  LW s0, 0(sp)
   ADDW a0, a0, s0
-  LW s0, 72(sp)
+  LW s0, 40(sp)
   ADDW a0, a0, s0
   LA s0, a0
   SW a0, 0(s0)
@@ -526,5 +506,5 @@ main:
   LD s9, 264(sp)
   LD s10, 272(sp)
   LD s11, 280(sp)
-  ADDI sp, sp, 448
+  ADDI sp, sp, 384
   JALR zero, 0(ra)

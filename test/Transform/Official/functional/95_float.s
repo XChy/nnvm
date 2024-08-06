@@ -41,7 +41,7 @@
 .CONSTANT.7.12:
 .word 0xc5716000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -144
   FSD fs6, 0(sp)
   SD ra, 8(sp)
@@ -63,14 +63,14 @@ main:
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb59
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   LA a0, .CONSTANT.7.0
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.0
   FLW fs1, 0(a0)
   FSGNJ.S fs0, fs0, fs1
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs1, 0(a0)
   FLT.S a0, fs0, fs1
@@ -80,13 +80,13 @@ bb2:
   FCVT.S.W fs2, s0
   BNE a0, zero, bb58
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   BNE a0, zero, bb57
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -94,32 +94,32 @@ bb5:
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   LA a0, .CONSTANT.7.7
   FLW fs0, 0(a0)
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb56
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   LA a0, .CONSTANT.7.7
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.7
   FLW fs4, 0(a0)
   FSGNJ.S fs0, fs0, fs4
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs4, 0(a0)
   FLT.S a0, fs0, fs4
   BNE a0, zero, bb55
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 0
   BNE a0, zero, bb54
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -127,34 +127,34 @@ bb11:
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 0
   LA a0, .CONSTANT.7.2
   FLW fs0, 0(a0)
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb53
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 0
   LA a0, .CONSTANT.7.2
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
   FLW fs4, 0(a0)
   FSGNJ.S fs0, fs0, fs4
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs4, 0(a0)
   FLT.S a0, fs0, fs4
   BNE a0, zero, bb52
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 0
   SLTU a0, zero, a0
   XORI a0, a0, 1
   BNE a0, zero, bb51
   # implict jump to bb17
-bb17:
+bb17:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -162,7 +162,7 @@ bb17:
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb18
-bb18:
+bb18:   # loop depth 0
   LA a0, .CONSTANT.7.11
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
@@ -195,23 +195,23 @@ bb18:
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb50
   # implict jump to bb19
-bb19:
+bb19:   # loop depth 0
   # implict jump to bb20
-bb20:
+bb20:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs4, 0(a0)
   FLT.S a0, fs0, fs4
   BNE a0, zero, bb49
   # implict jump to bb21
-bb21:
+bb21:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb22
-bb22:
+bb22:   # loop depth 0
   SLTU a0, zero, a0
   XORI a0, a0, 1
   BNE a0, zero, bb48
   # implict jump to bb23
-bb23:
+bb23:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -219,32 +219,32 @@ bb23:
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb24
-bb24:
+bb24:   # loop depth 0
   LA a0, .CONSTANT.7.12
   FLW fs0, 0(a0)
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb47
   # implict jump to bb25
-bb25:
+bb25:   # loop depth 0
   LA a0, .CONSTANT.7.12
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.12
   FLW fs3, 0(a0)
   FSGNJ.S fs0, fs0, fs3
   # implict jump to bb26
-bb26:
+bb26:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs3, 0(a0)
   FLT.S a0, fs0, fs3
   BNE a0, zero, bb46
   # implict jump to bb27
-bb27:
+bb27:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb28
-bb28:
+bb28:   # loop depth 0
   BNE a0, zero, bb45
   # implict jump to bb29
-bb29:
+bb29:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -252,7 +252,7 @@ bb29:
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb30
-bb30:
+bb30:   # loop depth 0
   LA a0, .CONSTANT.7.8
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
@@ -261,7 +261,7 @@ bb30:
   XORI a0, a0, 1
   BNE a0, zero, bb44
   # implict jump to bb31
-bb31:
+bb31:   # loop depth 0
   LA a0, .CONSTANT.7.1
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
@@ -273,7 +273,7 @@ bb31:
   XORI a0, a0, 1
   BNE a0, zero, bb43
   # implict jump to bb32
-bb32:
+bb32:   # loop depth 0
   LA a0, .CONSTANT.7.2
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
@@ -282,13 +282,13 @@ bb32:
   XORI a0, a0, 1
   BNE a0, zero, bb42
   # implict jump to bb33
-bb33:
+bb33:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb34
-bb34:
+bb34:   # loop depth 0
   BNE a0, zero, bb41
   # implict jump to bb35
-bb35:
+bb35:   # loop depth 0
   LA a0, .CONSTANT.7.3
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
@@ -297,7 +297,7 @@ bb35:
   XORI a0, a0, 1
   BNE a0, zero, bb40
   # implict jump to bb36
-bb36:
+bb36:   # loop depth 0
   LA a0, .CONSTANT.7.4
   FLW fs0, 0(a0)
   FSW fs0, 104(sp)
@@ -339,7 +339,7 @@ bb36:
   ADDI s1, zero, 1
   ADD s0, zero, zero
   # implict jump to bb37
-bb37:
+bb37:   # loop depth 1
   CALL getfloat
   LA s3, .CONSTANT.7.6
   FLW fs0, 0(s3)
@@ -381,7 +381,7 @@ bb37:
   SLT s3, s1, s3
   BNE s3, zero, bb39
   # implict jump to bb38
-bb38:
+bb38:   # loop depth 0
   ADD a0, s2, zero
   ADDI a1, sp, 104
   ADD a1, a1, zero
@@ -402,9 +402,9 @@ bb38:
   FLD fs5, 96(sp)
   ADDI sp, sp, 144
   JALR zero, 0(ra)
-bb39:
+bb39:   # loop depth 0
   JAL zero, bb37
-bb40:
+bb40:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -412,7 +412,7 @@ bb40:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb36
-bb41:
+bb41:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -426,10 +426,10 @@ bb41:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb35
-bb42:
+bb42:   # loop depth 0
   ADDI a0, zero, 1
   JAL zero, bb34
-bb43:
+bb43:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -437,7 +437,7 @@ bb43:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb32
-bb44:
+bb44:   # loop depth 0
   ADDI a0, zero, 111
   CALL putch
   ADDI a0, zero, 107
@@ -445,7 +445,7 @@ bb44:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb31
-bb45:
+bb45:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -459,21 +459,21 @@ bb45:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb30
-bb46:
+bb46:   # loop depth 0
   LA a0, .CONSTANT.7.10
   FLW fs0, 0(a0)
   FMUL.S fs0, fs1, fs0
   FDIV.S fs0, fs0, fs2
   FCVT.W.S a0, fs0, rtz
   JAL zero, bb28
-bb47:
+bb47:   # loop depth 0
   LA a0, .CONSTANT.7.12
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.12
   FLW fs3, 0(a0)
   FSGNJN.S fs0, fs0, fs3
   JAL zero, bb26
-bb48:
+bb48:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -487,17 +487,17 @@ bb48:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb24
-bb49:
+bb49:   # loop depth 0
   LA a0, .CONSTANT.7.10
   FLW fs0, 0(a0)
   FMUL.S fs0, fs1, fs0
   FDIV.S fs0, fs0, fs2
   FCVT.W.S a0, fs0, rtz
   JAL zero, bb22
-bb50:
+bb50:   # loop depth 0
   FSGNJN.S fs0, fs0, fs0
   JAL zero, bb20
-bb51:
+bb51:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -511,21 +511,21 @@ bb51:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb18
-bb52:
+bb52:   # loop depth 0
   LA a0, .CONSTANT.7.10
   FLW fs0, 0(a0)
   FMUL.S fs0, fs1, fs0
   FDIV.S fs0, fs0, fs2
   FCVT.W.S a0, fs0, rtz
   JAL zero, bb16
-bb53:
+bb53:   # loop depth 0
   LA a0, .CONSTANT.7.2
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.2
   FLW fs4, 0(a0)
   FSGNJN.S fs0, fs0, fs4
   JAL zero, bb14
-bb54:
+bb54:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -539,21 +539,21 @@ bb54:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb12
-bb55:
+bb55:   # loop depth 0
   LA a0, .CONSTANT.7.10
   FLW fs0, 0(a0)
   FMUL.S fs0, fs1, fs0
   FDIV.S fs0, fs0, fs2
   FCVT.W.S a0, fs0, rtz
   JAL zero, bb10
-bb56:
+bb56:   # loop depth 0
   LA a0, .CONSTANT.7.7
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.7
   FLW fs4, 0(a0)
   FSGNJN.S fs0, fs0, fs4
   JAL zero, bb8
-bb57:
+bb57:   # loop depth 0
   ADDI a0, zero, 101
   CALL putch
   ADDI a0, zero, 114
@@ -567,14 +567,14 @@ bb57:
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb6
-bb58:
+bb58:   # loop depth 0
   LA a0, .CONSTANT.7.10
   FLW fs0, 0(a0)
   FMUL.S fs0, fs1, fs0
   FDIV.S fs0, fs0, fs2
   FCVT.W.S a0, fs0, rtz
   JAL zero, bb4
-bb59:
+bb59:   # loop depth 0
   LA a0, .CONSTANT.7.0
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.0

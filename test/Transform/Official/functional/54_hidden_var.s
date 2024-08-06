@@ -8,7 +8,7 @@ c:
 b:
 .word 0x00000005
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -160
   SD ra, 0(sp)
   SD s0, 8(sp)

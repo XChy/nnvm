@@ -9,7 +9,7 @@
 .CONSTANT.7.1:
 .word 0x00000000
 .section .text
-func:
+func:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -17,7 +17,7 @@ func:
   FSGNJ.D fs0, fa0, fa0
   BLT a0, zero, bb2
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADDI s0, zero, 1
   SUBW s0, a0, s0
   FSGNJ.S fa0, fs0, fs0
@@ -33,14 +33,14 @@ bb1:
   FLD fs0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb2:
+bb2:   # loop depth 0
   FCVT.S.W fa0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-main:
+main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -63,7 +63,7 @@ main:
   FEQ.S a0, fs0, fs1
   BNE a0, zero, bb5
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   ADDI a0, zero, 32
   CALL _sysy_stoptime
   ADD a0, zero, zero
@@ -73,7 +73,7 @@ bb4:
   FLD fs1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   ADDI a0, zero, 112
   CALL putch
   JAL zero, bb4

@@ -8,7 +8,7 @@ global:
 loopCount:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -27,10 +27,10 @@ main:
   ADDI a0, zero, 0
   BLT a0, s1, bb3
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 4152470752
   ADD s0, zero, zero
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LUI a0, 24
   ADDIW a0, a0, 1728
   ADD a0, zero, a0
@@ -47,11 +47,11 @@ bb2:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 0
   ADD s0, zero, zero
   ADD a0, zero, zero
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   LA s2, global
   SW a0, 0(s2)
   ADDI s2, zero, 60
@@ -65,7 +65,7 @@ bb4:
   ADDIW a0, a0, 1
   BLT a0, s1, bb6
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 4152470752
   JAL zero, bb2
-bb6:
+bb6:   # loop depth 0
   JAL zero, bb4

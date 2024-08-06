@@ -35,7 +35,7 @@
 .CONSTANT.7.10:
 .word 0x3d8d4fdf
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -112
   SD ra, 0(sp)
   FSD fs4, 8(sp)
@@ -57,7 +57,7 @@ main:
   ADDI s2, zero, 0
   BLT s2, s1, bb9
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   LA a0, .CONSTANT.7.0
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.0
@@ -74,12 +74,12 @@ bb1:
   FLW fs3, 0(a0)
   FSGNJ.S fs0, fs0, fs3
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   BLT s2, s1, bb5
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   FADD.S fs0, fs0, fs2
   FSUB.S fs0, fs0, fs1
   ADDI a0, zero, 43
@@ -102,10 +102,10 @@ bb4:
   FLD fs3, 96(sp)
   ADDI sp, sp, 112
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 1
   LA s0, .CONSTANT.7.8
   FLW fs3, 0(s0)
   FADD.S fs0, fs0, fs3
@@ -118,11 +118,11 @@ bb6:
   ADDIW a0, a0, 1
   BLT a0, s1, bb8
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 1433445648
   JAL zero, bb4
-bb8:
+bb8:   # loop depth 1433443648
   JAL zero, bb6
-bb9:
+bb9:   # loop depth 0
   LA a0, .CONSTANT.7.0
   FLW fs0, 0(a0)
   LA a0, .CONSTANT.7.0
@@ -141,7 +141,7 @@ bb9:
   ADDI a0, zero, 1
   ADD s0, zero, zero
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 1
   LA s3, .CONSTANT.7.3
   FLW fs3, 0(s3)
   FSUB.S fs3, fs0, fs3
@@ -158,17 +158,17 @@ bb10:
   FDIV.S fs6, fs7, fs6
   BLT a0, s1, bb15
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 0
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s1, bb14
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 0
   JAL zero, bb2
-bb14:
+bb14:   # loop depth 0
   JAL zero, bb10
-bb15:
+bb15:   # loop depth 1
   LA s3, .CONSTANT.7.7
   FLW fs7, 0(s3)
   FMUL.S fs3, fs3, fs7
@@ -182,14 +182,14 @@ bb15:
   FMUL.S fs5, fs5, fs7
   FMUL.S fs5, fs5, fs6
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 2
   FSUB.S fs0, fs0, fs3
   FSUB.S fs2, fs2, fs4
   FSUB.S fs1, fs1, fs5
   ADDIW a0, a0, 1
   BLT a0, s1, bb18
   # implict jump to bb17
-bb17:
+bb17:   # loop depth 1433441200
   JAL zero, bb12
-bb18:
+bb18:   # loop depth 1433376720
   JAL zero, bb16

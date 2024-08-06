@@ -5,7 +5,7 @@
 k:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -26,20 +26,20 @@ main:
   ADD s2, zero, zero
   ADD s3, zero, zero
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 1
   ADDI s0, zero, 88
   SUBW s0, a0, s0
   SLTI s4, s0, 1000
   BNE s4, zero, bb6
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADD a0, s0, zero
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   ADDI s0, zero, 10
   BLT s0, a0, bb5
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   CALL putint
   LA t0, k
   LW a0, 0(t0)
@@ -51,9 +51,9 @@ bb4:
   LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   JAL zero, bb1
-bb6:
+bb6:   # loop depth 1
   ADDIW a0, a0, -76
   ADDI s3, zero, 11
   ADDI s2, zero, 11

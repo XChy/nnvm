@@ -3,7 +3,7 @@
 .section .bss
 .section .data
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 8(sp)
   SD s0, 16(sp)
@@ -31,7 +31,7 @@ main:
   LD s0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-exgcd:
+exgcd:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -45,7 +45,7 @@ exgcd:
   SLTIU a0, s2, 1
   BNE a0, zero, bb3
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   REMW a1, s3, s2
   ADD a0, s2, zero
   ADD a2, s0, zero
@@ -66,7 +66,7 @@ bb2:
   LD s3, 32(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 0
   ADDI t0, zero, 1
   SW t0, 0(s0)
   SW zero, 0(s1)

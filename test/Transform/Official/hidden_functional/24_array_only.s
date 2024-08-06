@@ -11,14 +11,14 @@ i:
 
 
 .section .text
-sub_impl:
+sub_impl:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
   SLTIU s0, a2, 1
   BNE s0, zero, bb3
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
@@ -26,25 +26,25 @@ bb1:
   SUBW a2, a2, s0
   CALL sub_impl
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 0
   LW t0, 0(a0)
   LW t1, 0(a1)
   SUBW t0, t0, t1
   SW t0, 0(a0)
   JAL zero, bb2
-add_impl:
+add_impl:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
   SLTIU s0, a2, 1
   BNE s0, zero, bb7
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
@@ -52,18 +52,18 @@ bb5:
   SUBW a2, a2, s0
   CALL add_impl
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb7:
+bb7:   # loop depth 0
   LW t0, 0(a0)
   LW t1, 0(a1)
   ADDW t0, t0, t1
   SW t0, 0(a0)
   JAL zero, bb6
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 8(sp)
   SD s0, 16(sp)
@@ -81,11 +81,11 @@ main:
   ADD a0, a0, zero
   CALL getarray
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 1
   LW a0, 0(sp)
   BNE a0, zero, bb11
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
@@ -94,13 +94,13 @@ bb10:
   LD s1, 24(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb11:
+bb11:   # loop depth 1
   LW a0, 32(sp)
   SW a0, 4(sp)
   SLTI a0, a0, 5
   BNE a0, zero, bb13
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 1
   LA a0, k
   LW a1, 0(a0)
   LA a0, i
@@ -118,7 +118,7 @@ bb12:
   SLTIU a0, a0, 1
   BNE a0, zero, bb10
   JAL zero, bb9
-bb13:
+bb13:   # loop depth 2
   LA a0, i
   LW a0, 0(a0)
   CALL putint
@@ -153,14 +153,14 @@ bb13:
   SLTI a0, a0, 5
   BNE a0, zero, bb13
   JAL zero, bb12
-inc_impl:
+inc_impl:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
   SLTIU s0, a1, 1
   BNE s0, zero, bb17
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 0
   LW s0, 0(a0)
   SLLIW s0, s0, 1
   SW s0, 0(a0)
@@ -168,12 +168,12 @@ bb15:
   SUBW a1, a1, s0
   CALL inc_impl
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb17:
+bb17:   # loop depth 0
   LW t0, 0(a0)
   ADDIW t0, t0, 1
   SW t0, 0(a0)

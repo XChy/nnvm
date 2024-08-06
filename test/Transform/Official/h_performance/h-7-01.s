@@ -14,7 +14,7 @@ i_buf:
 .CONSTANT.7.1:
 .word 0x2edbe6ff
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -34,7 +34,7 @@ main:
   ADDI a0, zero, 0
   BLT a0, s0, bb2
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADDI a0, zero, 41
   CALL _sysy_stoptime
   ADD a0, s0, zero
@@ -53,12 +53,12 @@ bb1:
   FLD fs4, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb2:
+bb2:   # loop depth 0
   ADDI a0, zero, 0
   FCVT.S.W fs3, a0
   ADD a0, zero, zero
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   SLLIW s1, a0, 2
   LA s2, o_buf
   ADD s2, s2, s1
@@ -68,7 +68,7 @@ bb3:
   FLE.S s1, fs2, fs3
   BNE s1, zero, bb19
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   ADDI s1, zero, 1
   FCVT.S.W fs0, s1
   FADD.S fs0, fs2, fs0
@@ -78,30 +78,30 @@ bb4:
   FLT.S s1, fs2, fs1
   BNE s1, zero, bb18
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 1
   FSUB.S fs0, fs2, fs1
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 1
   LA s1, .CONSTANT.7.1
   FLW fs4, 0(s1)
   FLT.S s1, fs4, fs0
   BNE s1, zero, bb11
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 1
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 1
   FSW fs1, 0(s2)
   ADDIW a0, a0, 1
   BLT a0, s0, bb10
   JAL zero, bb1
-bb10:
+bb10:   # loop depth 0
   JAL zero, bb3
-bb11:
+bb11:   # loop depth 1
   FSGNJ.S fs0, fs2, fs2
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 2
   FDIV.S fs1, fs2, fs0
   FADD.S fs1, fs0, fs1
   LA s1, .CONSTANT.7.0
@@ -110,26 +110,26 @@ bb12:
   FLT.S s1, fs0, fs1
   BNE s1, zero, bb17
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 2
   FSUB.S fs0, fs0, fs1
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 2
   LA s1, .CONSTANT.7.1
   FLW fs4, 0(s1)
   FLT.S s1, fs4, fs0
   BNE s1, zero, bb16
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 0
   JAL zero, bb8
-bb16:
+bb16:   # loop depth 0
   FSGNJ.S fs0, fs1, fs1
   JAL zero, bb12
-bb17:
+bb17:   # loop depth 2
   FSUB.S fs0, fs1, fs0
   JAL zero, bb14
-bb18:
+bb18:   # loop depth 1
   FSUB.S fs0, fs1, fs2
   JAL zero, bb6
-bb19:
+bb19:   # loop depth 1
   FSGNJ.S fs1, fs3, fs3
   JAL zero, bb9

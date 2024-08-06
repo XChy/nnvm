@@ -16,7 +16,7 @@
 .CONSTANT.7.3:
 .word 0x40000000
 .section .text
-takFP:
+takFP:   # loop depth 0
   ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -28,10 +28,10 @@ takFP:
   FLT.S s0, fa1, fa0
   BNE s0, zero, bb3
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   FSGNJ.S fa0, fa2, fa2
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
@@ -41,12 +41,12 @@ bb2:
   FLD fs4, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb3:
+bb3:   # loop depth 0
   FSGNJ.S fs3, fa0, fa0
   FSGNJ.S fs1, fa1, fa1
   FSGNJ.S fs0, fa2, fa2
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   LA s0, .CONSTANT.7.0
   FLW fa0, 0(s0)
   FSUB.S fa0, fs3, fa0
@@ -70,14 +70,14 @@ bb4:
   FLT.S s0, fs2, fs4
   BNE s0, zero, bb6
   # implict jump to bb5
-bb5:
+bb5:   # loop depth 0
   JAL zero, bb2
-bb6:
+bb6:   # loop depth 0
   FSGNJ.S fs3, fs4, fs4
   FSGNJ.S fs1, fs2, fs2
   FSGNJ.S fs0, fa0, fa0
   JAL zero, bb4
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -111,21 +111,21 @@ main:
   FEQ.S a0, fs3, fs1
   BNE a0, zero, bb13
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 0
   ADDI a0, zero, 1
   CALL putint
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 0
   LA a0, .CONSTANT.7.3
   FLW fs1, 0(a0)
   FEQ.S a0, fs0, fs1
   BNE a0, zero, bb12
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 0
   ADDI a0, zero, 1
   CALL putint
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 0
   ADDI a0, zero, 40
   CALL _sysy_stoptime
   ADD a0, zero, zero
@@ -137,15 +137,15 @@ bb11:
   FLD fs3, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb12:
+bb12:   # loop depth 0
   ADDI a0, zero, 112
   CALL putch
   JAL zero, bb11
-bb13:
+bb13:   # loop depth 0
   ADDI a0, zero, 112
   CALL putch
   JAL zero, bb9
-fibFP:
+fibFP:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -157,7 +157,7 @@ fibFP:
   FLT.S s0, fs1, fa0
   BNE s0, zero, bb16
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 0
   LA s0, .CONSTANT.7.3
   FLW fa0, 0(s0)
   FSUB.S fa0, fs1, fa0
@@ -174,7 +174,7 @@ bb15:
   FLD fs1, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb16:
+bb16:   # loop depth 0
   LA t0, .CONSTANT.7.0
   FLW ft0, 0(t0)
   LA t0, .CONSTANT.7.0

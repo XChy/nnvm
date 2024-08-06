@@ -27,7 +27,7 @@ step:
 .byte 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255
 
 .section .text
-search:
+search:   # loop depth 0
   ADDI sp, sp, -128
   SD s11, 8(sp)
   SD ra, 16(sp)
@@ -47,7 +47,7 @@ search:
   ADDI a0, zero, 10
   BLT a0, s11, bb37
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   LUI a0, 262144
   ADDIW a0, a0, 0
   ADD s6, zero, a0
@@ -58,15 +58,15 @@ bb1:
   ADD s9, zero, zero
   ADD s7, zero, zero
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 1
   SLTI a0, s9, 4
   BNE a0, zero, bb6
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADDI t0, zero, 10
   BLT t0, s6, bb5
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   ADD a0, s6, zero
   LD s11, 8(sp)
   LD ra, 16(sp)
@@ -82,7 +82,7 @@ bb4:
   LD s10, 96(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   LUI t0, 262144
   ADDIW t0, t0, 0
   ADD a0, zero, t0
@@ -100,14 +100,14 @@ bb5:
   LD s10, 96(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-bb6:
+bb6:   # loop depth 1
   SLLIW a0, s9, 3
   SW a0, 4(sp)
   ADD a1, s8, zero
   LW a2, 0(sp)
   ADD s3, zero, zero
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 2
   ADDI a0, zero, 120
   MULW a0, a1, a0
   LA s0, a
@@ -120,59 +120,59 @@ bb7:
   XORI a0, a0, 1
   BNE a0, zero, bb31
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 29
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 1
   LA a0, x_1
   LW a0, 0(a0)
   XOR a0, a1, a0
   SLTIU a0, a0, 1
   BNE a0, zero, bb30
   # implict jump to bb10
-bb10:
+bb10:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb11
-bb11:
+bb11:   # loop depth 1
   BNE a0, zero, bb29
   # implict jump to bb12
-bb12:
+bb12:   # loop depth 1
   ADDI a0, zero, 1
   SLT a0, a0, s3
   XORI a0, a0, 1
   ADDIW s9, s9, 1
   BNE a0, zero, bb28
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 1
   SLTIU a0, a1, 1
   BNE a0, zero, bb27
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 1
   LA a0, h
   LW a0, 0(a0)
   ADDIW a0, a0, 1
   XOR a0, a1, a0
   SLTIU s2, a0, 1
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 1
   BNE s2, zero, bb26
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 1
   SLTIU s10, a2, 1
   # implict jump to bb17
-bb17:
+bb17:   # loop depth 1
   BNE s10, zero, bb25
   # implict jump to bb18
-bb18:
+bb18:   # loop depth 1
   LA a0, w
   LW a0, 0(a0)
   ADDIW a0, a0, 1
   XOR a0, a2, a0
   SLTIU s4, a0, 1
   # implict jump to bb19
-bb19:
+bb19:   # loop depth 1
   BNE s4, zero, bb24
   # implict jump to bb20
-bb20:
+bb20:   # loop depth 1
   LD a0, 104(sp)
   SW zero, 0(a0)
   LA a0, step
@@ -187,30 +187,30 @@ bb20:
   ADDIW s7, a0, 1
   BLT s7, s6, bb23
   # implict jump to bb21
-bb21:
+bb21:   # loop depth 29
   # implict jump to bb22
-bb22:
+bb22:   # loop depth 1
   ADDI a2, zero, 1
   LD a0, 104(sp)
   SW a2, 0(a0)
   JAL zero, bb2
-bb23:
+bb23:   # loop depth 1
   ADD s6, s7, zero
   JAL zero, bb22
-bb24:
+bb24:   # loop depth 1
   JAL zero, bb2
-bb25:
+bb25:   # loop depth 1
   ADDI s4, zero, 1
   JAL zero, bb19
-bb26:
+bb26:   # loop depth 1
   ADDI s10, zero, 1
   JAL zero, bb17
-bb27:
+bb27:   # loop depth 1
   ADDI s2, zero, 1
   JAL zero, bb15
-bb28:
+bb28:   # loop depth 1
   JAL zero, bb2
-bb29:
+bb29:   # loop depth 0
   ADDI a0, zero, 1
   LD s11, 8(sp)
   LD ra, 16(sp)
@@ -226,26 +226,26 @@ bb29:
   LD s10, 96(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-bb30:
+bb30:   # loop depth 1
   LA a0, y_1
   LW a0, 0(a0)
   XOR a0, a2, a0
   SLTIU a0, a0, 1
   JAL zero, bb11
-bb31:
+bb31:   # loop depth 2
   LA a0, x_1
   LW a0, 0(a0)
   XOR a0, a1, a0
   SLTIU a0, a0, 1
   BNE a0, zero, bb36
   # implict jump to bb32
-bb32:
+bb32:   # loop depth 2
   ADD s1, zero, zero
   # implict jump to bb33
-bb33:
+bb33:   # loop depth 2
   BNE s1, zero, bb35
   # implict jump to bb34
-bb34:
+bb34:   # loop depth 2
   LA s0, step
   LW a0, 4(sp)
   ADD a0, s0, a0
@@ -258,15 +258,15 @@ bb34:
   ADDW a2, a2, s0
   ADDIW s3, s3, 1
   JAL zero, bb7
-bb35:
+bb35:   # loop depth 1
   JAL zero, bb9
-bb36:
+bb36:   # loop depth 2
   LA a0, y_1
   LW a0, 0(a0)
   XOR a0, a2, a0
   SLTIU s1, a0, 1
   JAL zero, bb33
-bb37:
+bb37:   # loop depth 0
   LUI t0, 262144
   ADDIW t0, t0, 0
   ADD a0, zero, t0
@@ -284,7 +284,7 @@ bb37:
   LD s10, 96(sp)
   ADDI sp, sp, 128
   JALR zero, 0(ra)
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -304,7 +304,7 @@ main:
   LW s0, 0(s0)
   BNE s0, zero, bb40
   # implict jump to bb39
-bb39:
+bb39:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
@@ -314,10 +314,10 @@ bb39:
   LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb40:
+bb40:   # loop depth 1
   ADD s0, zero, zero
   # implict jump to bb41
-bb41:
+bb41:   # loop depth 2
   ADDI s1, zero, 120
   MULW s1, s0, s1
   LA s2, a
@@ -386,14 +386,14 @@ bb41:
   SLTI s1, s0, 30
   BNE s1, zero, bb58
   # implict jump to bb42
-bb42:
+bb42:   # loop depth 1
   LA s0, h
   LW s0, 0(s0)
   SLTI s0, s0, 1
   XORI s0, s0, 1
   BNE s0, zero, bb47
   # implict jump to bb43
-bb43:
+bb43:   # loop depth 1
   LA a0, x_0
   LW a0, 0(a0)
   LA a1, y_0
@@ -405,13 +405,13 @@ bb43:
   XORI s0, s0, 1
   BNE s0, zero, bb46
   # implict jump to bb44
-bb44:
+bb44:   # loop depth 1
   ADDI a0, zero, -1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   # implict jump to bb45
-bb45:
+bb45:   # loop depth 1
   CALL getint
   ADD s0, a0, zero
   LA s1, w
@@ -424,22 +424,22 @@ bb45:
   LW s0, 0(s0)
   BNE s0, zero, bb40
   JAL zero, bb39
-bb46:
+bb46:   # loop depth 1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   JAL zero, bb45
-bb47:
+bb47:   # loop depth 1
   ADDI s1, zero, 1
   # implict jump to bb48
-bb48:
+bb48:   # loop depth 2
   LA s0, w
   LW s0, 0(s0)
   SLTI s0, s0, 1
   XORI s0, s0, 1
   BNE s0, zero, bb51
   # implict jump to bb49
-bb49:
+bb49:   # loop depth 2
   ADDIW s1, s1, 1
   LA s0, h
   LW s0, 0(s0)
@@ -447,16 +447,16 @@ bb49:
   XORI s0, s0, 1
   BNE s0, zero, bb50
   JAL zero, bb43
-bb50:
+bb50:   # loop depth 1433779072
   JAL zero, bb48
-bb51:
+bb51:   # loop depth 2
   ADDI s0, zero, 120
   MULW s0, s1, s0
   LA s2, a
   ADD s3, s2, s0
   ADDI s0, zero, 1
   # implict jump to bb52
-bb52:
+bb52:   # loop depth 3
   SLLIW s2, s0, 2
   ADD s4, s3, s2
   CALL getint
@@ -466,12 +466,12 @@ bb52:
   SLTIU s4, s4, 1
   BNE s4, zero, bb57
   # implict jump to bb53
-bb53:
+bb53:   # loop depth 3
   XORI s2, s2, 3
   SLTIU s2, s2, 1
   BNE s2, zero, bb56
   # implict jump to bb54
-bb54:
+bb54:   # loop depth 3
   ADDIW s0, s0, 1
   LA s2, w
   LW s2, 0(s2)
@@ -479,19 +479,19 @@ bb54:
   XORI s2, s2, 1
   BNE s2, zero, bb55
   JAL zero, bb49
-bb55:
+bb55:   # loop depth 1433793520
   JAL zero, bb52
-bb56:
+bb56:   # loop depth 3
   LA s2, x_1
   SW s1, 0(s2)
   LA s2, y_1
   SW s0, 0(s2)
   JAL zero, bb54
-bb57:
+bb57:   # loop depth 3
   LA s2, x_0
   SW s1, 0(s2)
   LA s2, y_0
   SW s0, 0(s2)
   JAL zero, bb54
-bb58:
+bb58:   # loop depth 1433804320
   JAL zero, bb41

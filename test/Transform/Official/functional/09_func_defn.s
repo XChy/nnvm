@@ -5,7 +5,7 @@
 a:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   LA t0, a

@@ -2,7 +2,7 @@
 .section .bss
 .section .data
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   LUI t0, 19

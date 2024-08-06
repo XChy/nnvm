@@ -5,7 +5,7 @@
 k:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -18,7 +18,7 @@ main:
   XORI a0, a0, 1
   BNE a0, zero, bb2
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   LA a0, k
   LW a0, 0(a0)
   CALL putint
@@ -29,10 +29,10 @@ bb1:
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb2:
+bb2:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 1
   ADDIW a0, a0, 1
   LA s0, k
   LW s0, 0(s0)
@@ -44,5 +44,5 @@ bb3:
   XORI s0, s0, 1
   BNE s0, zero, bb4
   JAL zero, bb1
-bb4:
+bb4:   # loop depth 0
   JAL zero, bb3

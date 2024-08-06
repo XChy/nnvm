@@ -6,7 +6,7 @@ parent:
 .section .data
 
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -23,16 +23,16 @@ main:
   ADDI s4, zero, 0
   BLT s4, s1, bb17
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   BLT zero, s3, bb12
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   BLT s4, s1, bb5
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   CALL putint
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -45,11 +45,11 @@ bb4:
   LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   ADD s0, zero, zero
   ADD a0, zero, zero
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 1
   SLLIW s2, s0, 2
   LA s3, parent
   ADD s2, s3, s2
@@ -58,23 +58,23 @@ bb6:
   SLTIU s2, s2, 1
   BNE s2, zero, bb11
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   # implict jump to bb8
-bb8:
+bb8:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s1, bb10
   # implict jump to bb9
-bb9:
+bb9:   # loop depth 0
   JAL zero, bb4
-bb10:
+bb10:   # loop depth 0
   JAL zero, bb6
-bb11:
+bb11:   # loop depth 1
   ADDIW a0, a0, 1
   JAL zero, bb8
-bb12:
+bb12:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb13
-bb13:
+bb13:   # loop depth 1
   CALL getint
   ADD s5, a0, zero
   CALL getint
@@ -87,22 +87,22 @@ bb13:
   ADD s2, a0, zero
   BNE s5, s2, bb16
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 1
   ADDIW s0, s0, 1
   BLT s0, s3, bb15
   JAL zero, bb2
-bb15:
+bb15:   # loop depth 0
   JAL zero, bb13
-bb16:
+bb16:   # loop depth 1
   SLLIW s2, s2, 2
   LA s6, parent
   ADD s2, s6, s2
   SW s5, 0(s2)
   JAL zero, bb14
-bb17:
+bb17:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb18
-bb18:
+bb18:   # loop depth 1
   SLLIW s2, s0, 2
   LA s5, parent
   ADD s2, s5, s2
@@ -110,9 +110,9 @@ bb18:
   ADDIW s0, s0, 1
   BLT s0, s1, bb19
   JAL zero, bb1
-bb19:
+bb19:   # loop depth 0
   JAL zero, bb18
-find:
+find:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -125,7 +125,7 @@ find:
   SLTIU s1, s1, 1
   BNE s1, zero, bb22
   # implict jump to bb21
-bb21:
+bb21:   # loop depth 0
   LW a0, 0(s0)
   CALL find
   SW a0, 0(s0)
@@ -134,7 +134,7 @@ bb21:
   LD s1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb22:
+bb22:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
