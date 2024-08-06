@@ -341,9 +341,10 @@ bb59:
 bb60:
   LA s0, f
   ADD a0, s0, a0
-  LW a0, 0(a0)
+  LW s4, 0(a0)
   # implict jump to bb61
 bb61:
+  ADD a0, s4, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -392,7 +393,6 @@ bb68:
   ADD s4, a0, zero
   JAL zero, bb65
 bb69:
-  ADD a0, s4, zero
   JAL zero, bb61
 bb70:
   ADDI s3, zero, 19

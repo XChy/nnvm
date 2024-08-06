@@ -109,17 +109,18 @@ bb2:
   BNE a0, zero, bb19
   # implict jump to bb3
 bb3:
-  ADDI a0, zero, 39
+  ADDI s0, zero, 39
   ADDI s1, zero, 19
   # implict jump to bb4
 bb4:
-  SLLIW s0, s1, 2
+  SLLIW a0, s1, 2
   ADDI t6, sp, 160
-  ADD s0, t6, s0
-  LW s3, 0(s0)
+  ADD a0, t6, a0
+  LW s3, 0(a0)
   ADDI s2, zero, 19
   # implict jump to bb5
 bb5:
+  ADD a0, s0, zero
   SLLIW s0, a0, 2
   ADDI t6, sp, 0
   ADD s4, t6, s0
@@ -146,11 +147,11 @@ bb7:
   BLT s4, s2, bb17
   # implict jump to bb8
 bb8:
-  ADDIW a0, a0, 18
-  ADDI s0, zero, 1
-  SUBW s1, s1, s0
-  ADDI s0, zero, -1
-  BLT s0, s1, bb16
+  ADDIW s0, a0, 18
+  ADDI a0, zero, 1
+  SUBW s1, s1, a0
+  ADDI a0, zero, -1
+  BLT a0, s1, bb16
   # implict jump to bb9
 bb9:
   LW a0, 0(sp)
@@ -199,7 +200,6 @@ bb15:
 bb16:
   JAL zero, bb4
 bb17:
-  ADD a0, s0, zero
   JAL zero, bb5
 bb18:
   SW s5, 0(s4)

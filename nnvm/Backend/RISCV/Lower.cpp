@@ -1,4 +1,5 @@
 #include "Lower.h"
+#include "Analysis/LoopAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/Builder.h"
@@ -384,12 +385,29 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
 
   LIRBuilder builder(lowered);
   for (auto &[func, lowFunc] : funcMap) {
+    assignDepth(*func);
     // Lower basic blocks.
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = BBMap[BB];
+      lowBB->setLoopDepth(loopDepth.count(BB) ? loopDepth[BB] : 0);
+
       builder.setInsertPoint(lowBB->end());
       for (Instruction *I : *BB)
         lowerInst(lowFunc, I, builder);
+    }
+  }
+}
+
+void LowerHelper::assignDepth(Function &F) {
+  if (F.isExternal())
+    return;
+  LoopAnalysis loopAnalysis;
+  loopAnalysis.run(F);
+
+  for (Loop *loop : loopAnalysis.getLoops()) {
+    for (BasicBlock *block : loop->getBlocks()) {
+      if (!loopDepth.count(block))
+        loopDepth[block] = loop->getDepth();
     }
   }
 }

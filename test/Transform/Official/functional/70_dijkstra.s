@@ -72,10 +72,10 @@ bb3:
   ADDI s1, zero, 1
   SW s1, 4(s0)
   ADDI s0, zero, 1
-  SUBW s0, a0, s0
-  SLTI s1, s0, 1
-  XORI s1, s1, 1
-  BNE s1, zero, bb9
+  SUBW s10, a0, s0
+  SLTI s0, s10, 1
+  XORI s0, s0, 1
+  BNE s0, zero, bb9
   # implict jump to bb4
 bb4:
   SLTI a0, a0, 1
@@ -122,71 +122,72 @@ bb7:
 bb8:
   JAL zero, bb7
 bb9:
-  SLTI s1, a0, 1
-  XORI s1, s1, 1
-  ADDI s3, zero, 1
+  SLTI s0, a0, 1
+  XORI s0, s0, 1
+  ADDI s1, zero, 1
   ADD s2, zero, zero
   # implict jump to bb10
 bb10:
-  ADD s10, s3, zero
-  BNE s1, zero, bb21
+  BNE s0, zero, bb21
   # implict jump to bb11
 bb11:
   ADD s6, zero, zero
   # implict jump to bb12
 bb12:
-  SLLIW s3, s6, 2
-  LA s4, book
-  ADD s4, s4, s3
-  ADDI s5, zero, 1
-  SW s5, 0(s4)
-  BNE s1, zero, bb15
+  ADD s11, s2, zero
+  SLLIW s2, s6, 2
+  LA s3, book
+  ADD s3, s3, s2
+  ADDI s4, zero, 1
+  SW s4, 0(s3)
+  BNE s0, zero, bb15
   # implict jump to bb13
 bb13:
-  ADDIW s3, s10, 1
-  SLT s4, s0, s3
-  XORI s4, s4, 1
-  BNE s4, zero, bb14
+  ADDIW s1, s1, 1
+  SLT s2, s10, s1
+  XORI s2, s2, 1
+  BNE s2, zero, bb14
   JAL zero, bb4
 bb14:
+  ADD s2, s11, zero
   JAL zero, bb10
 bb15:
-  SLLIW s4, s6, 6
-  LA s5, e
-  ADD s4, s5, s4
-  ADDI s5, zero, 1
+  SLLIW s3, s6, 6
+  LA s4, e
+  ADD s3, s4, s3
+  ADDI s4, zero, 1
   # implict jump to bb16
 bb16:
-  SLLIW s7, s5, 2
-  ADD s6, s4, s7
-  LW s6, 0(s6)
-  LUI s8, 16
-  ADDIW s8, s8, -1
-  SLT s8, s6, s8
-  BNE s8, zero, bb19
+  SLLIW s6, s4, 2
+  ADD s5, s3, s6
+  LW s5, 0(s5)
+  LUI s7, 16
+  ADDIW s7, s7, -1
+  SLT s7, s5, s7
+  BNE s7, zero, bb19
   # implict jump to bb17
 bb17:
-  ADDIW s5, s5, 1
-  SLT s6, a0, s5
-  XORI s6, s6, 1
-  BNE s6, zero, bb18
+  ADDIW s4, s4, 1
+  SLT s5, a0, s4
+  XORI s5, s5, 1
+  BNE s5, zero, bb18
   JAL zero, bb13
 bb18:
   JAL zero, bb16
 bb19:
+  LA s7, dis
+  ADD s6, s7, s6
+  LW s7, 0(s6)
   LA s8, dis
-  ADD s7, s8, s7
-  LW s11, 0(s7)
-  LA s8, dis
-  ADD s8, s8, s3
+  ADD s8, s8, s2
   LW s9, 0(s8)
-  ADDW s9, s9, s6
-  BLT s9, s11, bb20
+  ADDW s9, s9, s5
+  BLT s9, s7, bb20
   JAL zero, bb17
 bb20:
-  LW s8, 0(s8)
-  ADDW s6, s8, s6
-  SW s6, 0(s7)
+  LW s7, 0(s8)
+  ADDW s5, s7, s5
+  SW s5, 0(s6)
   JAL zero, bb17
 bb21:
   LUI s2, 16

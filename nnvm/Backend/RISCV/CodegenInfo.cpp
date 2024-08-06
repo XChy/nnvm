@@ -62,7 +62,7 @@ bool riscv::isBranch(uint64_t instType) {
   }
 }
 
-LIRBB *riscv::getBranchDest(LIRInst *inst) {
+LIRBB *riscv::getBranchDest(const LIRInst *inst) {
   switch (inst->getOpcode()) {
   case IMPLICIT_JUMP:
     return inst->getOp(0)->as<LIRBB>();

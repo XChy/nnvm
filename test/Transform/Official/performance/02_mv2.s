@@ -85,8 +85,8 @@ bb8:
 bb9:
   JAL zero, bb3
 bb10:
-  ADDI s3, zero, 11
-  ADD s4, zero, zero
+  ADDI s2, zero, 11
+  ADD s3, zero, zero
   ADD a0, zero, zero
   # implict jump to bb11
 bb11:
@@ -104,46 +104,45 @@ bb15:
   LUI s1, 2
   ADDIW s1, s1, -152
   MULW s1, a0, s1
-  LA s2, A
-  ADD s1, s2, s1
-  SLLIW s2, a0, 2
-  ADD s5, zero, zero
+  LA s4, A
+  ADD s10, s4, s1
+  SLLIW s1, a0, 2
+  ADD s4, zero, zero
   # implict jump to bb16
 bb16:
-  ADD s10, s5, zero
-  SLLIW s6, s10, 2
-  ADD s5, s1, s6
-  LW s5, 0(s5)
-  SLTIU s9, s5, 1
-  LA s7, C
-  ADD s6, s7, s6
-  BNE s9, zero, bb21
+  SLLIW s5, s4, 2
+  ADD s6, s10, s5
+  LW s6, 0(s6)
+  SLTIU s7, s6, 1
+  LA s9, C
+  ADD s5, s9, s5
+  BNE s7, zero, bb21
   # implict jump to bb17
 bb17:
   LA s7, B
-  ADD s7, s7, s2
+  ADD s7, s7, s1
   LW s9, 0(s7)
-  LW s6, 0(s6)
-  MULW s5, s5, s6
+  LW s5, 0(s5)
+  MULW s5, s6, s5
   ADDW s5, s9, s5
   SW s5, 0(s7)
   # implict jump to bb18
 bb18:
-  ADDIW s5, s10, 1
-  BLT s5, s0, bb20
+  ADDIW s4, s4, 1
+  BLT s4, s0, bb20
   # implict jump to bb19
 bb19:
   JAL zero, bb13
 bb20:
   JAL zero, bb16
 bb21:
-  LA s5, C
-  ADD s5, s5, s2
+  LA s6, C
+  ADD s6, s6, s1
+  LW s6, 0(s6)
+  MULW s2, s2, s6
   LW s5, 0(s5)
-  MULW s3, s3, s5
-  LW s5, 0(s6)
-  ADDW s3, s3, s5
-  SUBW s4, s4, s3
+  ADDW s2, s2, s5
+  SUBW s3, s3, s2
   JAL zero, bb18
 bb22:
   ADD a0, zero, zero
@@ -159,8 +158,8 @@ bb23:
 bb24:
   JAL zero, bb23
 bb25:
-  ADDI s3, zero, 11
-  ADD s4, zero, zero
+  ADDI s2, zero, 11
+  ADD s3, zero, zero
   ADD a0, zero, zero
   # implict jump to bb26
 bb26:
@@ -178,46 +177,45 @@ bb30:
   LUI s1, 2
   ADDIW s1, s1, -152
   MULW s1, a0, s1
-  LA s2, A
-  ADD s1, s2, s1
-  SLLIW s2, a0, 2
-  ADD s5, zero, zero
+  LA s4, A
+  ADD s10, s4, s1
+  SLLIW s1, a0, 2
+  ADD s4, zero, zero
   # implict jump to bb31
 bb31:
-  ADD s10, s5, zero
-  SLLIW s6, s10, 2
-  ADD s5, s1, s6
-  LW s5, 0(s5)
-  SLTIU s9, s5, 1
-  LA s7, B
-  ADD s6, s7, s6
-  BNE s9, zero, bb36
+  SLLIW s5, s4, 2
+  ADD s6, s10, s5
+  LW s6, 0(s6)
+  SLTIU s7, s6, 1
+  LA s9, B
+  ADD s5, s9, s5
+  BNE s7, zero, bb36
   # implict jump to bb32
 bb32:
   LA s7, C
-  ADD s7, s7, s2
+  ADD s7, s7, s1
   LW s9, 0(s7)
-  LW s6, 0(s6)
-  MULW s5, s5, s6
+  LW s5, 0(s5)
+  MULW s5, s6, s5
   ADDW s5, s9, s5
   SW s5, 0(s7)
   # implict jump to bb33
 bb33:
-  ADDIW s5, s10, 1
-  BLT s5, s0, bb35
+  ADDIW s4, s4, 1
+  BLT s4, s0, bb35
   # implict jump to bb34
 bb34:
   JAL zero, bb28
 bb35:
   JAL zero, bb31
 bb36:
-  LA s5, B
-  ADD s5, s5, s2
+  LA s6, B
+  ADD s6, s6, s1
+  LW s6, 0(s6)
+  MULW s2, s2, s6
   LW s5, 0(s5)
-  MULW s3, s3, s5
-  LW s5, 0(s6)
-  ADDW s3, s3, s5
-  SUBW s4, s4, s3
+  ADDW s2, s2, s5
+  SUBW s3, s3, s2
   JAL zero, bb33
 bb37:
   ADD a0, zero, zero

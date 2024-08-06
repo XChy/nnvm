@@ -15,6 +15,7 @@
 #include "Transform/Scalar/Loop/StaticUnroll.h"
 #include "Transform/Scalar/Mem2Reg.h"
 #include "Transform/Scalar/MemProp.h"
+#include "Transform/Scalar/Memory/DeadStoreElim.h"
 #include "Transform/Scalar/SLPairElim.h"
 #include "Transform/Scalar/StackElim.h"
 #include "Transform/Scalar/TailElim.h"
@@ -62,11 +63,12 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CSEPass>();
 
   passManager.addFunctionPass<MemPropPass>();
+  passManager.addFunctionPass<DeadStoreElimPass>();
   passManager.addFunctionPass<StackElimPass>();
   passManager.addFunctionPass<CombinerPass>();
 
   // Before codegen
-  //passManager.addFunctionPass<GlobalHoistPass>();
+  // passManager.addFunctionPass<GlobalHoistPass>();
 
   passManager.run(*module);
 }

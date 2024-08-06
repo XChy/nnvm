@@ -41,12 +41,11 @@ search:
   SD s8, 80(sp)
   SD s9, 88(sp)
   SD s10, 96(sp)
-  ADD s9, a0, zero
-  ADD s8, a1, zero
-  SW a2, 0(sp)
+  ADD s8, a0, zero
+  SW a1, 0(sp)
+  ADD s11, a2, zero
   ADDI a0, zero, 10
-  LW a1, 0(sp)
-  BLT a0, a1, bb37
+  BLT a0, s11, bb37
   # implict jump to bb1
 bb1:
   LUI a0, 262144
@@ -54,13 +53,13 @@ bb1:
   ADD s6, zero, a0
   ADD s1, zero, zero
   ADD s2, zero, zero
-  ADD s11, zero, zero
-  ADD s4, zero, zero
   ADD s10, zero, zero
+  ADD s4, zero, zero
+  ADD s9, zero, zero
   ADD s7, zero, zero
   # implict jump to bb2
 bb2:
-  SLTI a0, s10, 4
+  SLTI a0, s9, 4
   BNE a0, zero, bb6
   # implict jump to bb3
 bb3:
@@ -102,10 +101,10 @@ bb5:
   ADDI sp, sp, 128
   JALR zero, 0(ra)
 bb6:
-  SLLIW a0, s10, 3
+  SLLIW a0, s9, 3
   SW a0, 4(sp)
-  ADD a1, s9, zero
-  ADD a2, s8, zero
+  ADD a1, s8, zero
+  LW a2, 0(sp)
   ADD s3, zero, zero
   # implict jump to bb7
 bb7:
@@ -140,7 +139,7 @@ bb12:
   ADDI a0, zero, 1
   SLT a0, a0, s3
   XORI a0, a0, 1
-  ADDIW s10, s10, 1
+  ADDIW s9, s9, 1
   BNE a0, zero, bb28
   # implict jump to bb13
 bb13:
@@ -158,10 +157,10 @@ bb15:
   BNE s2, zero, bb26
   # implict jump to bb16
 bb16:
-  SLTIU s11, a2, 1
+  SLTIU s10, a2, 1
   # implict jump to bb17
 bb17:
-  BNE s11, zero, bb25
+  BNE s10, zero, bb25
   # implict jump to bb18
 bb18:
   LA a0, w
@@ -183,8 +182,7 @@ bb20:
   SUBW a0, a1, a0
   LW a1, 4(s7)
   SUBW a1, a2, a1
-  LW a2, 0(sp)
-  ADDIW a2, a2, 1
+  ADDIW a2, s11, 1
   CALL search
   ADDIW s7, a0, 1
   BLT s7, s6, bb23
@@ -205,7 +203,7 @@ bb25:
   ADDI s4, zero, 1
   JAL zero, bb19
 bb26:
-  ADDI s11, zero, 1
+  ADDI s10, zero, 1
   JAL zero, bb17
 bb27:
   ADDI s2, zero, 1

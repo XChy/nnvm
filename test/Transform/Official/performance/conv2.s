@@ -15,26 +15,27 @@ a:
 reduce:
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  SLTIU t0, a0, 1
-  BNE t0, zero, bb36
+  ADD t0, a0, zero
+  SLTIU t1, t0, 1
+  BNE t1, zero, bb36
   # implict jump to bb1
 bb1:
-  XORI t0, a0, 1
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb29
+  XORI t1, t0, 1
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb29
   # implict jump to bb2
 bb2:
-  XORI t0, a0, 2
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb26
+  XORI t1, t0, 2
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb26
   # implict jump to bb3
 bb3:
-  XORI t0, a0, 3
-  SLTIU t0, t0, 1
-  BNE t0, zero, bb16
+  XORI t1, t0, 3
+  SLTIU t1, t1, 1
+  BNE t1, zero, bb16
   # implict jump to bb4
 bb4:
-  XORI t0, a0, 4
+  XORI t0, t0, 4
   SLTIU t0, t0, 1
   BNE t0, zero, bb6
   # implict jump to bb5
@@ -262,17 +263,17 @@ main:
   ADD s0, a0, zero
   SW s0, 4(sp)
   CALL getint
-  ADD s11, a0, zero
+  ADD s10, a0, zero
   LA a0, a
   CALL getarray
   LA a0, kernelid
   CALL getarray
-  SW a0, 12(sp)
+  SW a0, 16(sp)
   ADDI a0, zero, 109
   CALL _sysy_starttime
   LW a0, 4(sp)
-  MULW s9, a0, s11
-  LW a0, 12(sp)
+  MULW s9, a0, s10
+  LW a0, 16(sp)
   BLT zero, a0, bb51
   # implict jump to bb50
 bb50:
@@ -303,57 +304,58 @@ bb51:
   ADD a0, s1, a0
   SRAIW a0, a0, 1
   SW a0, 8(sp)
-  ADD s5, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb52
 bb52:
-  SLLIW a0, s5, 2
+  SW a0, 20(sp)
+  LW a0, 20(sp)
+  SLLIW a0, a0, 2
   LA a1, kernelid
   ADD a0, a1, a0
   LW s6, 0(a0)
-  ADD s4, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb53
 bb53:
   LW a0, 8(sp)
-  SUBW s8, s4, a0
-  ADD s3, zero, zero
+  SUBW s8, s5, a0
+  ADD s4, zero, zero
   # implict jump to bb54
 bb54:
   LW a0, 8(sp)
-  SUBW s7, s3, a0
-  ADD a0, zero, zero
-  ADD s2, s8, zero
+  SUBW s7, s4, a0
+  ADD a1, zero, zero
+  ADD s3, s8, zero
   # implict jump to bb55
 bb55:
-  ADD s1, s7, zero
+  ADD s2, s7, zero
   # implict jump to bb56
 bb56:
-  SW a0, 16(sp)
-  BLT s2, zero, bb81
+  BLT s3, zero, bb81
   # implict jump to bb57
 bb57:
-  SLT a0, s1, zero
+  SLT a0, s2, zero
   # implict jump to bb58
 bb58:
   BNE a0, zero, bb80
   # implict jump to bb59
 bb59:
   LW a0, 4(sp)
-  SLT a0, s2, a0
+  SLT a0, s3, a0
   XORI a0, a0, 1
   # implict jump to bb60
 bb60:
   BNE a0, zero, bb79
   # implict jump to bb61
 bb61:
-  SLT a0, s1, s11
+  SLT a0, s2, s10
   XORI a0, a0, 1
   # implict jump to bb62
 bb62:
   BNE a0, zero, bb78
   # implict jump to bb63
 bb63:
-  MULW a0, s2, s11
-  ADDW a0, a0, s1
+  MULW a0, s3, s10
+  ADDW a0, a0, s2
   SLLIW a0, a0, 2
   LA a2, a
   ADD a0, a2, a0
@@ -361,14 +363,13 @@ bb63:
   # implict jump to bb64
 bb64:
   ADD a0, s6, zero
-  LW a1, 16(sp)
   CALL reduce
-  ADDIW s1, s1, 1
+  ADDIW s2, s2, 1
   LW s0, 8(sp)
-  ADDW s0, s3, s0
-  SW s0, 20(sp)
-  LW s0, 20(sp)
-  SLT s0, s1, s0
+  ADDW s0, s4, s0
+  SW s0, 12(sp)
+  LW s0, 12(sp)
+  SLT s0, s2, s0
   SB s0, 1(sp)
   LB s0, 1(sp)
   XORI s0, s0, 1
@@ -377,37 +378,39 @@ bb64:
   BNE s0, zero, bb66
   # implict jump to bb65
 bb65:
+  ADD a1, a0, zero
   JAL zero, bb56
 bb66:
-  ADDIW s2, s2, 1
+  ADDIW s3, s3, 1
   LW s0, 8(sp)
-  ADDW s10, s4, s0
-  SLT s10, s2, s10
-  XORI s10, s10, 1
-  BNE s10, zero, bb68
+  ADDW s11, s5, s0
+  SLT s11, s3, s11
+  XORI s11, s11, 1
+  BNE s11, zero, bb68
   # implict jump to bb67
 bb67:
+  ADD a1, a0, zero
   JAL zero, bb55
 bb68:
-  MULW s1, s4, s11
-  ADDW s1, s1, s3
-  SLLIW s1, s1, 2
-  LA s2, b
-  ADD s1, s2, s1
-  SW a0, 0(s1)
-  ADDIW s3, s3, 1
-  SLT s1, s3, s11
-  XORI s1, s1, 1
-  BNE s1, zero, bb70
+  MULW s2, s5, s10
+  ADDW s2, s2, s4
+  SLLIW s2, s2, 2
+  LA s3, b
+  ADD s2, s3, s2
+  SW a0, 0(s2)
+  ADDIW s4, s4, 1
+  SLT s2, s4, s10
+  XORI s2, s2, 1
+  BNE s2, zero, bb70
   # implict jump to bb69
 bb69:
   JAL zero, bb54
 bb70:
-  ADDIW s4, s4, 1
+  ADDIW s5, s5, 1
   LW a0, 4(sp)
-  SLT s1, s4, a0
-  XORI s1, s1, 1
-  BNE s1, zero, bb72
+  SLT s2, s5, a0
+  XORI s2, s2, 1
+  BNE s2, zero, bb72
   # implict jump to bb71
 bb71:
   JAL zero, bb53
@@ -415,9 +418,10 @@ bb72:
   BLT zero, s9, bb75
   # implict jump to bb73
 bb73:
-  ADDIW s5, s5, 1
-  LW s0, 12(sp)
-  BLT s5, s0, bb74
+  LW a0, 20(sp)
+  ADDIW a0, a0, 1
+  LW s0, 16(sp)
+  BLT a0, s0, bb74
   JAL zero, bb50
 bb74:
   JAL zero, bb52
@@ -425,13 +429,13 @@ bb75:
   ADD a0, zero, zero
   # implict jump to bb76
 bb76:
-  SLLIW s1, a0, 2
-  LA s2, a
-  ADD s2, s2, s1
-  LA s3, b
-  ADD s1, s3, s1
-  LW s1, 0(s1)
-  SW s1, 0(s2)
+  SLLIW s2, a0, 2
+  LA s3, a
+  ADD s3, s3, s2
+  LA s4, b
+  ADD s2, s4, s2
+  LW s2, 0(s2)
+  SW s2, 0(s3)
   ADDIW a0, a0, 1
   BLT a0, s9, bb77
   JAL zero, bb73

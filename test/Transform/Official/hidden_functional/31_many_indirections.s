@@ -240,37 +240,37 @@ bb2:
   LA s1, array
   ADDI s1, s1, 1200
   LA s2, array
-  ADDI s2, s2, 1600
-  LA s3, array
-  ADDI a0, s3, 2000
+  ADDI a0, s2, 1600
   SD a0, 264(sp)
+  LA s3, array
+  ADDI s3, s3, 2000
   LUI s4, 1
   ADDIW s4, s4, -1696
   LA s5, array
-  ADD s4, s5, s4
+  ADD a0, s5, s4
+  SD a0, 256(sp)
   LUI s5, 1
   ADDIW s5, s5, -1296
   LA s6, array
-  ADD a0, s6, s5
-  SD a0, 256(sp)
+  ADD s5, s6, s5
   LUI s6, 1
   ADDIW s6, s6, -896
   LA s7, array
-  ADD s6, s7, s6
+  ADD a0, s7, s6
+  SD a0, 248(sp)
   LUI s7, 1
   ADDIW s7, s7, -496
   LA s8, array
-  ADD a0, s8, s7
-  SD a0, 248(sp)
+  ADD s7, s8, s7
   LUI s8, 1
   ADDIW s8, s8, -96
   LA s9, array
-  ADD s8, s9, s8
+  ADD a0, s9, s8
+  SD a0, 240(sp)
   LUI s9, 1
   ADDIW s9, s9, 304
   LA s10, array
-  ADD a0, s10, s9
-  SD a0, 240(sp)
+  ADD s9, s10, s9
   LUI s10, 1
   ADDIW s10, s10, 704
   LA s11, array
@@ -280,8 +280,7 @@ bb2:
   LA a0, array
   SD a0, 336(sp)
   LD a0, 336(sp)
-  ADD a0, a0, s11
-  SD a0, 232(sp)
+  ADD s11, a0, s11
   LUI a0, 1
   SW a0, 12(sp)
   LW a0, 12(sp)
@@ -303,7 +302,7 @@ bb2:
   LD a0, 320(sp)
   LW s0, 16(sp)
   ADD a0, a0, s0
-  SD a0, 112(sp)
+  SD a0, 232(sp)
   LUI a0, 2
   SW a0, 24(sp)
   LW a0, 24(sp)
@@ -384,9 +383,9 @@ bb2:
   LW a0, 44(sp)
   SLLIW a0, a0, 2
   SW a0, 0(sp)
-  LW a0, 0(sp)
-  LD s0, 112(sp)
-  ADD a0, s0, a0
+  LD a0, 232(sp)
+  LW s0, 0(sp)
+  ADD a0, a0, s0
   SD a0, 352(sp)
   LD a0, 352(sp)
   LW a0, 0(a0)
@@ -404,40 +403,39 @@ bb2:
   LW a0, 8(sp)
   SLLIW a0, a0, 2
   SW a0, 4(sp)
-  LD a0, 232(sp)
-  LW s0, 4(sp)
-  ADD s11, a0, s0
+  LW a0, 4(sp)
+  ADD s11, s11, a0
   LW s11, 0(s11)
   SLLIW s11, s11, 2
   ADD s10, s10, s11
   LW s10, 0(s10)
   SLLIW s10, s10, 2
-  LD a0, 240(sp)
-  ADD s9, a0, s10
+  ADD s9, s9, s10
   LW s9, 0(s9)
   SLLIW s9, s9, 2
-  ADD s8, s8, s9
+  LD a0, 240(sp)
+  ADD s8, a0, s9
   LW s8, 0(s8)
   SLLIW s8, s8, 2
-  LD a0, 248(sp)
-  ADD s7, a0, s8
+  ADD s7, s7, s8
   LW s7, 0(s7)
   SLLIW s7, s7, 2
-  ADD s6, s6, s7
+  LD a0, 248(sp)
+  ADD s6, a0, s7
   LW s6, 0(s6)
   SLLIW s6, s6, 2
-  LD a0, 256(sp)
-  ADD s5, a0, s6
+  ADD s5, s5, s6
   LW s5, 0(s5)
   SLLIW s5, s5, 2
-  ADD s4, s4, s5
+  LD a0, 256(sp)
+  ADD s4, a0, s5
   LW s4, 0(s4)
   SLLIW s4, s4, 2
-  LD a0, 264(sp)
-  ADD s3, a0, s4
+  ADD s3, s3, s4
   LW s3, 0(s3)
   SLLIW s3, s3, 2
-  ADD s2, s2, s3
+  LD a0, 264(sp)
+  ADD s2, a0, s3
   LW s2, 0(s2)
   SLLIW s2, s2, 2
   ADD s1, s1, s2

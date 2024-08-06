@@ -11,10 +11,10 @@ main:
   ADD a1, zero, zero
   # implict jump to bb1
 bb1:
-  ADD a4, zero, zero
+  ADD a2, zero, zero
   # implict jump to bb2
 bb2:
-  ADD a2, zero, zero
+  ADD a4, zero, zero
   # implict jump to bb3
 bb3:
   ADD t1, zero, zero
@@ -26,13 +26,13 @@ bb4:
 bb5:
   # implict jump to bb6
 bb6:
-  ADDIW a2, a2, 1
-  SLTI t1, a2, 5
+  ADDIW a4, a4, 1
+  SLTI t1, a4, 5
   BNE t1, zero, bb12
   # implict jump to bb7
 bb7:
-  ADDIW a4, a4, 1
-  SLTI t1, a4, 10
+  ADDIW a2, a2, 1
+  SLTI t1, a2, 10
   BNE t1, zero, bb11
   # implict jump to bb8
 bb8:

@@ -406,19 +406,14 @@ void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
     priorities[reg] = 0;
 
     for (auto op : reg->getDefs()) {
-      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
-      priorities[reg] +=
-          isInLoop
-              ? 10
-              : 1; // registers in loop are more likely to be frequently used
+      // registers in loop are more likely to be frequently used
+      uint depth = op->getInst()->getParent()->getLoopDepth();
+      priorities[reg] += 1 + 100 * depth;
     }
 
     for (auto op : reg->getUses()) {
-      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
-      priorities[reg] +=
-          isInLoop
-              ? 10
-              : 1; // registers in loop are more likely to be frequently used
+      uint depth = op->getInst()->getParent()->getLoopDepth();
+      priorities[reg] += 1 + 100 * depth;
     }
 
     priorities[reg] /= degree[reg];

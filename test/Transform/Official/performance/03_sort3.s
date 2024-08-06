@@ -88,38 +88,6 @@ radixSort:
   SD s5, 48(sp)
   SD s6, 56(sp)
   ADD s1, a1, zero
-  SW zero, 64(sp)
-  SW zero, 68(sp)
-  SW zero, 72(sp)
-  SW zero, 76(sp)
-  SW zero, 80(sp)
-  SW zero, 84(sp)
-  SW zero, 88(sp)
-  SW zero, 92(sp)
-  SW zero, 96(sp)
-  SW zero, 100(sp)
-  SW zero, 104(sp)
-  SW zero, 108(sp)
-  SW zero, 112(sp)
-  SW zero, 116(sp)
-  SW zero, 120(sp)
-  SW zero, 124(sp)
-  SW zero, 128(sp)
-  SW zero, 132(sp)
-  SW zero, 136(sp)
-  SW zero, 140(sp)
-  SW zero, 144(sp)
-  SW zero, 148(sp)
-  SW zero, 152(sp)
-  SW zero, 156(sp)
-  SW zero, 160(sp)
-  SW zero, 164(sp)
-  SW zero, 168(sp)
-  SW zero, 172(sp)
-  SW zero, 176(sp)
-  SW zero, 180(sp)
-  SW zero, 184(sp)
-  SW zero, 188(sp)
   SW zero, 192(sp)
   SW zero, 196(sp)
   SW zero, 200(sp)
@@ -391,14 +359,14 @@ bb19:
   BLT zero, a0, bb26
   # implict jump to bb20
 bb20:
-  ADD s5, a1, zero
+  ADD s0, a1, zero
   # implict jump to bb21
 bb21:
-  SLLI s0, s5, 1
-  SRLI s0, s0, 60
-  ADD s0, s5, s0
-  ANDI s0, s0, -16
-  SUBW s0, s5, s0
+  SLLI s5, s0, 1
+  SRLI s5, s5, 60
+  ADD s5, s0, s5
+  ANDI s5, s5, -16
+  SUBW s0, s0, s5
   BNE s0, s2, bb25
   # implict jump to bb22
 bb22:
@@ -430,16 +398,16 @@ bb25:
   ADD a3, a1, zero
   JAL zero, bb19
 bb26:
-  ADD s5, a1, zero
-  ADD s0, zero, zero
+  ADD s0, a1, zero
+  ADD s5, zero, zero
   # implict jump to bb27
 bb27:
-  SRAIW s6, s5, 31
+  SRAIW s6, s0, 31
   SRLIW s6, s6, 28
-  ADD s5, s5, s6
-  SRAIW s5, s5, 4
-  ADDIW s0, s0, 1
-  BLT s0, a0, bb29
+  ADD s0, s0, s6
+  SRAIW s0, s0, 4
+  ADDIW s5, s5, 1
+  BLT s5, a0, bb29
   # implict jump to bb28
 bb28:
   JAL zero, bb21

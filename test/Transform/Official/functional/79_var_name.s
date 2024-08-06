@@ -12,8 +12,6 @@ main:
   ADDI a0, zero, 2
   SW a0, 28(sp)
   ADDI a0, zero, 0
-  SW a0, 32(sp)
-  ADDI a0, zero, 0
   SW a0, 36(sp)
   ADDI a0, zero, 0
   SW a0, 40(sp)

@@ -33,7 +33,7 @@ main:
   FSD fs9, 120(sp)
   FSD fs10, 128(sp)
   ADDI a0, zero, 0
-  FCVT.S.W fs1, a0
+  FCVT.S.W fs5, a0
   ADD s0, zero, zero
   # implict jump to bb1
 bb1:
@@ -44,9 +44,9 @@ bb2:
   ADDI a0, zero, 42
   CALL _sysy_starttime
   ADDI a0, zero, 1000
-  FCVT.S.W fs2, a0
+  FCVT.S.W fs6, a0
   ADD s1, zero, zero
-  FSGNJ.S fs5, fs1, fs1
+  FSGNJ.S fs4, fs5, fs5
   # implict jump to bb3
 bb3:
   ADD s0, zero, zero
@@ -55,7 +55,7 @@ bb4:
   SLLIW a0, s0, 2
   ADDI t6, sp, 136
   ADD s2, t6, a0
-  FSW fs1, 0(s2)
+  FSW fs5, 0(s2)
   LUI a0, 1
   ADDIW a0, a0, -96
   MULW a0, s0, a0
@@ -67,8 +67,8 @@ bb5:
   FLW fs0, 0(s2)
   SLLIW s4, a0, 2
   ADD s4, s3, s4
-  FLW fs3, 0(s4)
-  FADD.S fs0, fs0, fs3
+  FLW fs1, 0(s4)
+  FADD.S fs0, fs0, fs1
   FSW fs0, 0(s2)
   ADDIW a0, a0, 1
   SLTI s4, a0, 1000
@@ -76,7 +76,7 @@ bb5:
   # implict jump to bb6
 bb6:
   FLW fs0, 0(s2)
-  FDIV.S fs0, fs0, fs2
+  FDIV.S fs0, fs0, fs6
   FSW fs0, 0(s2)
   ADDIW s0, s0, 1
   SLTI a0, s0, 1000
@@ -91,7 +91,7 @@ bb8:
   ADDIW t6, t6, 40
   ADD t6, t6, sp
   ADD s2, t6, a0
-  FSW fs1, 0(s2)
+  FSW fs5, 0(s2)
   LUI s3, 1
   ADDIW s3, s3, -96
   MULW s3, s0, s3
@@ -103,36 +103,36 @@ bb8:
   ADD a0, zero, zero
   # implict jump to bb9
 bb9:
-  FLW fs3, 0(s2)
+  FLW fs1, 0(s2)
   SLLIW s4, a0, 2
   ADD s4, s3, s4
-  FLW fs4, 0(s4)
-  FSUB.S fs4, fs4, fs0
-  FMUL.S fs4, fs4, fs4
-  FADD.S fs3, fs3, fs4
-  FSW fs3, 0(s2)
+  FLW fs2, 0(s4)
+  FSUB.S fs2, fs2, fs0
+  FMUL.S fs2, fs2, fs2
+  FADD.S fs1, fs1, fs2
+  FSW fs1, 0(s2)
   ADDIW a0, a0, 1
   SLTI s4, a0, 1000
   BNE s4, zero, bb36
   # implict jump to bb10
 bb10:
   FLW fs0, 0(s2)
-  FDIV.S fs0, fs0, fs2
+  FDIV.S fs0, fs0, fs6
   FSW fs0, 0(s2)
   LA a0, .CONSTANT.7.0
-  FLW fs3, 0(a0)
-  FADD.S fs3, fs0, fs3
-  FADD.S fs0, fs1, fs3
+  FLW fs1, 0(a0)
+  FADD.S fs7, fs0, fs1
+  FADD.S fs0, fs5, fs7
   ADDI a0, zero, 2
-  FCVT.S.W fs4, a0
-  FDIV.S fs6, fs0, fs4
-  FSGNJ.S fs9, fs3, fs3
-  FSGNJ.S fs7, fs1, fs1
+  FCVT.S.W fs8, a0
+  FDIV.S fs3, fs0, fs8
+  FSGNJ.S fs1, fs7, fs7
+  FSGNJ.S fs0, fs5, fs5
   # implict jump to bb11
 bb11:
-  FMUL.S fs8, fs6, fs6
-  FSUB.S fs0, fs8, fs3
-  FLT.S a0, fs0, fs1
+  FMUL.S fs9, fs3, fs3
+  FSUB.S fs2, fs9, fs7
+  FLT.S a0, fs2, fs5
   BNE a0, zero, bb35
   # implict jump to bb12
 bb12:
@@ -140,11 +140,11 @@ bb12:
 bb13:
   LA a0, .CONSTANT.7.1
   FLW fs10, 0(a0)
-  FLT.S a0, fs10, fs0
+  FLT.S a0, fs10, fs2
   BNE a0, zero, bb31
   # implict jump to bb14
 bb14:
-  FSW fs6, 0(s2)
+  FSW fs3, 0(s2)
   ADDIW s0, s0, 1
   SLTI a0, s0, 1000
   BNE a0, zero, bb30
@@ -166,17 +166,17 @@ bb16:
   ADDIW t6, t6, 40
   ADD t6, t6, sp
   ADD a0, t6, a0
-  FLW fs3, 0(a0)
+  FLW fs1, 0(a0)
   ADD a0, zero, zero
   # implict jump to bb17
 bb17:
   SLLIW s3, a0, 2
   ADD s3, s2, s3
-  FLW fs4, 0(s3)
-  FSUB.S fs4, fs4, fs0
-  FDIV.S fs4, fs4, fs3
-  FSW fs4, 0(s3)
-  FADD.S fs5, fs5, fs4
+  FLW fs2, 0(s3)
+  FSUB.S fs2, fs2, fs0
+  FDIV.S fs2, fs2, fs1
+  FSW fs2, 0(s3)
+  FADD.S fs4, fs4, fs2
   ADDIW a0, a0, 1
   SLTI s3, a0, 1000
   BNE s3, zero, bb29
@@ -206,7 +206,7 @@ bb22:
   SLLIW s2, a0, 2
   ADD s2, s1, s2
   FLW fs0, 0(s2)
-  FADD.S fs5, fs5, fs0
+  FADD.S fs4, fs4, fs0
   ADDIW a0, a0, 1
   SLTI s2, a0, 1000
   BNE s2, zero, bb26
@@ -219,7 +219,7 @@ bb23:
 bb24:
   ADDI a0, zero, 95
   CALL _sysy_stoptime
-  FSGNJ.S fa0, fs5, fs5
+  FSGNJ.S fa0, fs4, fs4
   CALL putfloat
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -256,24 +256,25 @@ bb29:
 bb30:
   JAL zero, bb8
 bb31:
-  FLT.S a0, fs3, fs8
+  FLT.S a0, fs7, fs9
   BNE a0, zero, bb34
   # implict jump to bb32
 bb32:
-  FADD.S fs0, fs6, fs9
-  FDIV.S fs0, fs0, fs4
-  FSGNJ.S fs7, fs6, fs6
+  FADD.S fs0, fs3, fs1
+  FDIV.S fs2, fs0, fs8
   # implict jump to bb33
 bb33:
-  FSGNJ.S fs6, fs0, fs0
+  FSGNJ.S fs0, fs3, fs3
+  FSGNJ.S fs3, fs2, fs2
   JAL zero, bb11
 bb34:
-  FADD.S fs0, fs6, fs7
-  FDIV.S fs0, fs0, fs4
-  FSGNJ.S fs9, fs6, fs6
+  FADD.S fs1, fs3, fs0
+  FDIV.S fs2, fs1, fs8
+  FSGNJ.S fs1, fs3, fs3
+  FSGNJ.S fs3, fs0, fs0
   JAL zero, bb33
 bb35:
-  FSGNJN.S fs0, fs0, fs0
+  FSGNJN.S fs2, fs2, fs2
   JAL zero, bb13
 bb36:
   JAL zero, bb9

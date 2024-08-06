@@ -61,58 +61,58 @@ bb3:
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb4:
-  ADD a2, zero, zero
-  ADD a4, zero, zero
   ADD t1, zero, zero
-  ADD t0, zero, zero
   ADD a3, zero, zero
-  ADD a1, zero, zero
+  ADD t2, zero, zero
+  ADD t0, zero, zero
   ADD a0, zero, zero
+  ADD a1, zero, zero
+  ADD a2, zero, zero
   # implict jump to bb5
 bb5:
-  SLLIW t2, a2, 2
+  SLLIW a4, t1, 2
   LA a6, program
-  ADD t2, a6, t2
-  LW t2, 0(t2)
-  XORI a6, t2, 62
+  ADD a4, a6, a4
+  LW a4, 0(a4)
+  XORI a6, a4, 62
   SLTIU a6, a6, 1
   BNE a6, zero, bb48
   # implict jump to bb6
 bb6:
-  XORI a6, t2, 60
+  XORI a6, a4, 60
   SLTIU a6, a6, 1
   BNE a6, zero, bb47
   # implict jump to bb7
 bb7:
-  XORI a6, t2, 43
+  XORI a6, a4, 43
   SLTIU a6, a6, 1
-  SLLIW a7, a4, 2
+  SLLIW a7, a3, 2
   BNE a6, zero, bb46
   # implict jump to bb8
 bb8:
-  XORI a6, t2, 45
+  XORI a6, a4, 45
   SLTIU a6, a6, 1
   BNE a6, zero, bb45
   # implict jump to bb9
 bb9:
-  XORI a6, t2, 91
+  XORI a6, a4, 91
   SLTIU a6, a6, 1
   BNE a6, zero, bb32
   # implict jump to bb10
 bb10:
-  XORI a6, t2, 93
+  XORI a6, a4, 93
   SLTIU a6, a6, 1
   BNE a6, zero, bb28
   # implict jump to bb11
 bb11:
-  XORI a6, t2, 46
+  XORI a6, a4, 46
   SLTIU a6, a6, 1
   BNE a6, zero, bb27
   # implict jump to bb12
 bb12:
-  XORI t2, t2, 44
-  SLTIU t2, t2, 1
-  BNE t2, zero, bb23
+  XORI a4, a4, 44
+  SLTIU a4, a4, 1
+  BNE a4, zero, bb23
   # implict jump to bb13
 bb13:
   # implict jump to bb14
@@ -131,97 +131,96 @@ bb19:
 bb20:
   # implict jump to bb21
 bb21:
-  ADDIW a2, a2, 1
-  BLT a2, a5, bb22
+  ADDIW t1, t1, 1
+  BLT t1, a5, bb22
   JAL zero, bb3
 bb22:
   JAL zero, bb5
 bb23:
-  LA t2, input_length
-  LW t2, 0(t2)
-  SLT t2, t0, t2
-  XORI t2, t2, 1
-  BNE t2, zero, bb26
+  LA a4, input_length
+  LW a4, 0(a4)
+  SLT a4, t0, a4
+  XORI a4, a4, 1
+  BNE a4, zero, bb26
   # implict jump to bb24
 bb24:
-  LA t2, tape
-  ADD t2, t2, a7
+  LA a4, tape
+  ADD a4, a4, a7
   SLLIW a6, t0, 2
   LA a7, input
   ADD a6, a7, a6
   LW a6, 0(a6)
-  SW a6, 0(t2)
+  SW a6, 0(a4)
   ADDIW t0, t0, 1
   # implict jump to bb25
 bb25:
   JAL zero, bb14
 bb26:
-  LA t2, tape
-  ADD t2, t2, a7
-  SW zero, 0(t2)
+  LA a4, tape
+  ADD a4, a4, a7
+  SW zero, 0(a4)
   JAL zero, bb25
 bb27:
-  LA t2, output_length
-  LW t2, 0(t2)
-  SLLIW t2, t2, 2
+  LA a4, output_length
+  LW a4, 0(a4)
+  SLLIW a4, a4, 2
   LA a6, output
-  ADD t2, a6, t2
+  ADD a4, a6, a4
   LA a6, tape
   ADD a6, a6, a7
   LW a6, 0(a6)
-  SW a6, 0(t2)
-  LA t2, output_length
-  LW t2, 0(t2)
-  ADDIW t2, t2, 1
+  SW a6, 0(a4)
+  LA a4, output_length
+  LW a4, 0(a4)
+  ADDIW a4, a4, 1
   LA a6, output_length
-  SW t2, 0(a6)
+  SW a4, 0(a6)
   JAL zero, bb15
 bb28:
-  LA t2, tape
-  ADD t2, t2, a7
-  LW a0, 0(t2)
-  SLTIU a6, a0, 1
-  ADDI t2, zero, 1
-  SUBW t2, t1, t2
+  LA a2, tape
+  ADD a2, a2, a7
+  LW a2, 0(a2)
+  SLTIU a6, a2, 1
+  ADDI a4, zero, 1
+  SUBW a4, t2, a4
   BNE a6, zero, bb31
   # implict jump to bb29
 bb29:
-  SLLIW t2, t2, 2
-  ADDI a2, sp, 0
-  ADD t2, a2, t2
-  LW a2, 0(t2)
-  ADD t2, t1, zero
+  SLLIW t1, a4, 2
+  ADDI t6, sp, 0
+  ADD t1, t6, t1
+  LW t1, 0(t1)
   # implict jump to bb30
 bb30:
-  ADD t1, t2, zero
   JAL zero, bb16
 bb31:
+  ADD t2, a4, zero
   JAL zero, bb30
 bb32:
-  LA t2, tape
-  ADD t2, t2, a7
-  LW a3, 0(t2)
-  BNE a3, zero, bb44
+  LA a0, tape
+  ADD a0, a0, a7
+  LW a0, 0(a0)
+  BNE a0, zero, bb44
   # implict jump to bb33
 bb33:
   ADDI a1, zero, 1
   # implict jump to bb34
 bb34:
-  ADDIW a2, a2, 1
-  SLLIW t2, a2, 2
+  ADDIW t1, t1, 1
+  SLLIW a4, t1, 2
   LA a6, program
-  ADD t2, a6, t2
-  LW t2, 0(t2)
-  XORI a6, t2, 93
+  ADD a4, a6, a4
+  LW a4, 0(a4)
+  XORI a6, a4, 93
   SLTIU a6, a6, 1
   BNE a6, zero, bb43
   # implict jump to bb35
 bb35:
   # implict jump to bb36
 bb36:
-  XORI t2, t2, 91
-  SLTIU t2, t2, 1
-  BNE t2, zero, bb42
+  XORI a4, a4, 91
+  SLTIU a4, a4, 1
+  BNE a4, zero, bb42
   # implict jump to bb37
 bb37:
   # implict jump to bb38
@@ -242,33 +241,33 @@ bb43:
   SUBW a1, a1, a6
   JAL zero, bb36
 bb44:
-  SLLIW t2, t1, 2
+  SLLIW a4, t2, 2
   ADDI t6, sp, 0
-  ADD t2, t6, t2
-  SW a2, 0(t2)
-  ADDIW t1, t1, 1
+  ADD a4, t6, a4
+  SW t1, 0(a4)
+  ADDIW t2, t2, 1
   JAL zero, bb40
 bb45:
-  LA t2, tape
-  ADD t2, t2, a7
-  LW a6, 0(t2)
+  LA a4, tape
+  ADD a4, a4, a7
+  LW a6, 0(a4)
   ADDI a7, zero, 1
   SUBW a6, a6, a7
-  SW a6, 0(t2)
+  SW a6, 0(a4)
   JAL zero, bb18
 bb46:
-  LA t2, tape
-  ADD t2, t2, a7
-  LW a6, 0(t2)
+  LA a4, tape
+  ADD a4, a4, a7
+  LW a6, 0(a4)
   ADDIW a6, a6, 1
-  SW a6, 0(t2)
+  SW a6, 0(a4)
   JAL zero, bb19
 bb47:
-  ADDI t2, zero, 1
-  SUBW a4, a4, t2
+  ADDI a4, zero, 1
+  SUBW a3, a3, a4
   JAL zero, bb20
 bb48:
-  ADDIW a4, a4, 1
+  ADDIW a3, a3, 1
   JAL zero, bb21
 bb49:
   JAL zero, bb1

@@ -38,6 +38,16 @@ bool Loop::isExiting(BasicBlock *BB) const {
                      [BB](ExitEdge edge) { return edge.from == BB; });
 }
 
+uint Loop::getDepth() const {
+  uint depth = 1;
+  const Loop *cur = this;
+  while (cur->getParent()) {
+    depth++;
+    cur = cur->getParent();
+  }
+  return depth;
+}
+
 bool LoopAnalysis::run(Function &F) {
   domTree = getAnalysis<DomTreeAnalysis>(F);
   // post order

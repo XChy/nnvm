@@ -61,6 +61,8 @@ public:
   void addBlock(BasicBlock *Block) { blocks.insert(Block); }
   void removeBlock(BasicBlock *Block) { blocks.erase(Block); }
 
+  uint getDepth() const;
+
 private:
   Loop *parent;
   std::vector<Loop *> children;

@@ -125,20 +125,20 @@ bb23:
   # implict jump to bb24
 bb24:
   CALL getch
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   # implict jump to bb25
 bb25:
-  XORI s0, s1, 81
-  BNE s0, zero, bb109
+  XORI s1, s0, 81
+  BNE s1, zero, bb109
   # implict jump to bb26
 bb26:
-  ADD s0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb27
 bb27:
-  BNE s0, zero, bb108
+  BNE s1, zero, bb108
   # implict jump to bb28
 bb28:
-  XORI s0, s1, 81
+  XORI s0, s0, 81
   SLTIU s0, s0, 1
   BNE s0, zero, bb68
   # implict jump to bb29
@@ -176,9 +176,9 @@ bb37:
   BNE s5, zero, bb60
   # implict jump to bb38
 bb38:
-  ADD a0, s4, zero
   # implict jump to bb39
 bb39:
+  ADD a0, s4, zero
   CALL find
   ADD s4, a0, zero
   CALL getch
@@ -214,9 +214,9 @@ bb47:
   BNE s0, zero, bb52
   # implict jump to bb48
 bb48:
-  ADD a0, s5, zero
   # implict jump to bb49
 bb49:
+  ADD a0, s5, zero
   CALL find
   ADD s6, a0, zero
   SLLIW s0, s4, 2
@@ -236,7 +236,7 @@ bb50:
 bb51:
   JAL zero, bb24
 bb52:
-  SUBW a0, zero, s5
+  SUBW s5, zero, s5
   JAL zero, bb49
 bb53:
   ADDI s6, zero, 10
@@ -270,7 +270,7 @@ bb59:
   ADDI s5, zero, 1
   JAL zero, bb42
 bb60:
-  SUBW a0, zero, s4
+  SUBW s4, zero, s4
   JAL zero, bb39
 bb61:
   ADDI s0, zero, 10
@@ -464,11 +464,11 @@ bb107:
   JAL zero, bb71
 bb108:
   CALL getch
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   JAL zero, bb25
 bb109:
-  XORI s0, s1, 85
-  SLTU s0, zero, s0
+  XORI s1, s0, 85
+  SLTU s1, zero, s1
   JAL zero, bb27
 bb110:
   ADDI s0, zero, 1

@@ -45,12 +45,11 @@ kernel_nussinov:
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  ADD t0, a1, zero
-  ADDI t1, zero, 1
-  SUBW a5, a0, t1
-  SLT t1, a5, zero
-  XORI t1, t1, 1
-  BNE t1, zero, bb11
+  ADDI t0, zero, 1
+  SUBW a5, a0, t0
+  SLT t0, a5, zero
+  XORI t0, t0, 1
+  BNE t0, zero, bb11
   # implict jump to bb2
 bb2:
   BLT zero, a0, bb4
@@ -65,94 +64,94 @@ bb3:
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:
-  ADD t1, zero, zero
+  ADD t0, zero, zero
   # implict jump to bb5
 bb5:
   BLT zero, a0, bb8
   # implict jump to bb6
 bb6:
-  ADDIW t1, t1, 1
-  BLT t1, a0, bb7
+  ADDIW t0, t0, 1
+  BLT t0, a0, bb7
   JAL zero, bb3
 bb7:
   JAL zero, bb5
 bb8:
-  LUI t0, 1
-  ADDIW t0, t0, 1504
-  MULW t0, t1, t0
-  ADD t2, a2, t0
-  ADD t0, zero, zero
+  LUI t1, 1
+  ADDIW t1, t1, 1504
+  MULW t1, t0, t1
+  ADD t2, a2, t1
+  ADD t1, zero, zero
   # implict jump to bb9
 bb9:
-  SLLIW a1, t0, 2
+  SLLIW a1, t1, 2
   ADD a1, t2, a1
   LW a3, 0(a1)
   ADDI a4, zero, 10
   REMW a3, a3, a4
   SW a3, 0(a1)
-  ADDIW t0, t0, 1
-  BLT t0, a0, bb10
+  ADDIW t1, t1, 1
+  BLT t1, a0, bb10
   JAL zero, bb6
 bb10:
   JAL zero, bb9
 bb11:
   ADD t1, zero, zero
-  ADD a3, zero, zero
-  ADD a1, zero, zero
+  ADD t0, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb12
 bb12:
-  ADDIW t2, a5, 1
-  SLT a6, t2, a0
-  BLT t2, a0, bb16
+  ADDIW a3, a5, 1
+  SLT a6, a3, a0
+  BLT a3, a0, bb16
   # implict jump to bb13
 bb13:
   # implict jump to bb14
 bb14:
-  ADDI t2, zero, 1
-  SUBW a5, a5, t2
-  SLT t2, a5, zero
-  XORI t2, t2, 1
-  BNE t2, zero, bb15
+  ADDI a3, zero, 1
+  SUBW a5, a5, a3
+  SLT a3, a5, zero
+  XORI a3, a3, 1
+  BNE a3, zero, bb15
   JAL zero, bb2
 bb15:
   JAL zero, bb12
 bb16:
-  LUI t1, 1
-  ADDIW t1, t1, 1504
-  MULW a7, a5, t1
-  ADD a4, t2, zero
+  LUI t0, 1
+  ADDIW t0, t0, 1504
+  MULW a7, a5, t0
+  ADD a4, a3, zero
   # implict jump to bb17
 bb17:
-  ADDI t1, zero, 1
-  SUBW t1, a4, t1
-  SLT a3, t1, zero
-  XORI a3, a3, 1
+  ADDI t0, zero, 1
+  SUBW t1, a4, t0
+  SLT t0, t1, zero
+  XORI t0, t0, 1
   SLLIW t3, a4, 2
   SLLIW t4, t1, 2
-  BNE a3, zero, bb48
+  BNE t0, zero, bb48
   # implict jump to bb18
 bb18:
   LUI t5, 1
   ADDIW t5, t5, 1504
-  MULW t5, t2, t5
-  BLT t2, a0, bb46
+  MULW t5, a3, t5
+  BLT a3, a0, bb46
   # implict jump to bb19
 bb19:
-  BNE a3, zero, bb45
+  BNE t0, zero, bb45
   # implict jump to bb20
 bb20:
-  ADD a3, zero, zero
+  ADD t0, zero, zero
   # implict jump to bb21
 bb21:
-  BNE a3, zero, bb34
+  BNE t0, zero, bb34
   # implict jump to bb22
 bb22:
   # implict jump to bb23
 bb23:
-  BLT t2, a4, bb28
+  BLT a3, a4, bb28
   # implict jump to bb24
 bb24:
-  ADD t1, t2, zero
+  ADD t1, a3, zero
   # implict jump to bb25
 bb25:
   ADDIW a4, a4, 1
@@ -165,7 +164,7 @@ bb27:
 bb28:
   ADD t4, a2, a7
   ADD t5, t4, t3
-  ADD t1, t2, zero
+  ADD t1, a3, zero
   # implict jump to bb29
 bb29:
   LW s0, 0(t5)
@@ -217,17 +216,17 @@ bb38:
   JAL zero, bb36
 bb39:
   SLLIW t1, a5, 2
-  ADD t1, t0, t1
+  ADD t1, a1, t1
   LW t1, 0(t1)
-  ADD a1, t0, t3
-  LW a1, 0(a1)
-  ADDW t1, t1, a1
+  ADD t2, a1, t3
+  LW t2, 0(t2)
+  ADDW t1, t1, t2
   XORI t1, t1, 3
   SLTIU t1, t1, 1
   BNE t1, zero, bb44
   # implict jump to bb40
 bb40:
-  ADD a1, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb41
 bb41:
   ADD t1, a2, a7
@@ -236,21 +235,21 @@ bb41:
   ADD t5, a2, t5
   ADD t4, t5, t4
   LW t5, 0(t4)
-  ADDW t5, t5, a1
+  ADDW t5, t5, t2
   BLT s0, t5, bb43
   # implict jump to bb42
 bb42:
   JAL zero, bb37
 bb43:
   LW t4, 0(t4)
-  ADDW t4, t4, a1
+  ADDW t4, t4, t2
   SW t4, 0(t1)
   JAL zero, bb42
 bb44:
-  ADDI a1, zero, 1
+  ADDI t2, zero, 1
   JAL zero, bb41
 bb45:
-  ADD a3, a6, zero
+  ADD t0, a6, zero
   JAL zero, bb21
 bb46:
   ADD s0, a2, a7

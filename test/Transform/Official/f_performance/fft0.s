@@ -383,32 +383,32 @@ multiply:
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  ADD s1, a0, zero
-  ADD s0, a1, zero
-  SLTIU a0, s0, 1
+  ADD s0, a0, zero
+  ADD s1, a1, zero
+  SLTIU a0, s1, 1
   BNE a0, zero, bb40
   # implict jump to bb35
 bb35:
-  XORI a0, s0, 1
+  XORI a0, s1, 1
   SLTIU a0, a0, 1
   BNE a0, zero, bb39
   # implict jump to bb36
 bb36:
-  SRAIW a0, s0, 31
+  SRAIW a0, s1, 31
   SRLIW a0, a0, 31
-  ADD a0, s0, a0
+  ADD a0, s1, a0
   SRAIW a1, a0, 1
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL multiply
   SLLIW t0, a0, 1
   LUI t1, 243712
   ADDIW t1, t1, 1
   REMW a0, t0, t1
-  SLLI t0, s0, 1
+  SLLI t0, s1, 1
   SRLI t0, t0, 63
-  ADD t0, s0, t0
+  ADD t0, s1, t0
   ANDI t0, t0, -2
-  SUBW t0, s0, t0
+  SUBW t0, s1, t0
   XORI t0, t0, 1
   SLTIU t0, t0, 1
   BNE t0, zero, bb38
@@ -420,7 +420,7 @@ bb37:
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb38:
-  ADDW t0, a0, s1
+  ADDW t0, a0, s0
   LUI t1, 243712
   ADDIW t1, t1, 1
   REMW a0, t0, t1
@@ -432,7 +432,7 @@ bb38:
 bb39:
   LUI t0, 243712
   ADDIW t0, t0, 1
-  REMW a0, s1, t0
+  REMW a0, s0, t0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)

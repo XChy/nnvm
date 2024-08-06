@@ -66,11 +66,11 @@ bb1:
   # implict jump to bb2
 bb2:
   LA a0, m1
-  LW a0, 0(a0)
-  BLT zero, a0, bb12
+  LW s10, 0(a0)
+  BLT zero, s10, bb12
   # implict jump to bb3
 bb3:
-  BLT zero, a0, bb5
+  BLT zero, s10, bb5
   # implict jump to bb4
 bb4:
   ADD a0, zero, zero
@@ -129,70 +129,70 @@ bb10:
 bb11:
   JAL zero, bb10
 bb12:
-  LA s0, n2
-  LW s0, 0(s0)
-  ADD s1, zero, zero
-  ADD s7, zero, zero
+  LA a0, n2
+  LW s11, 0(a0)
+  ADD a0, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb13
 bb13:
-  BLT zero, s0, bb17
+  BLT zero, s11, bb17
   # implict jump to bb14
 bb14:
   # implict jump to bb15
 bb15:
-  ADDIW s1, s1, 1
-  BLT s1, a0, bb16
+  ADDIW a0, a0, 1
+  BLT a0, s10, bb16
   JAL zero, bb3
 bb16:
   JAL zero, bb13
 bb17:
-  LA s2, n1
-  LW s2, 0(s2)
-  ADD s3, zero, zero
+  LA s0, n1
+  LW s0, 0(s0)
+  ADD s1, zero, zero
   # implict jump to bb18
 bb18:
-  BLT zero, s2, bb23
+  BLT zero, s0, bb23
   # implict jump to bb19
 bb19:
-  ADD s7, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb20
 bb20:
-  ADDIW s3, s3, 1
-  LA s4, n2
-  LW s4, 0(s4)
-  BLT s3, s4, bb22
+  ADDIW s1, s1, 1
+  LA s2, n2
+  LW s2, 0(s2)
+  BLT s1, s2, bb22
   # implict jump to bb21
 bb21:
   JAL zero, bb15
 bb22:
   JAL zero, bb18
 bb23:
-  ADDI s4, zero, 400
-  MULW s6, s1, s4
-  LA s4, res
-  ADD s5, s4, s6
-  SLLIW s4, s3, 2
-  ADD s5, s5, s4
-  LA s7, a
-  ADD s6, s7, s6
-  ADD s7, zero, zero
+  ADDI s2, zero, 400
+  MULW s4, a0, s2
+  LA s2, res
+  ADD s3, s2, s4
+  SLLIW s2, s1, 2
+  ADD s3, s3, s2
+  LA s5, a
+  ADD s4, s5, s4
+  ADD s5, zero, zero
   # implict jump to bb24
 bb24:
-  LW s11, 0(s5)
-  SLLIW s8, s7, 2
-  ADD s8, s6, s8
-  LW s10, 0(s8)
+  LW s6, 0(s3)
+  SLLIW s7, s5, 2
+  ADD s7, s4, s7
+  LW s7, 0(s7)
   ADDI s8, zero, 400
-  MULW s8, s7, s8
+  MULW s8, s5, s8
   LA s9, b
   ADD s8, s9, s8
-  ADD s8, s8, s4
+  ADD s8, s8, s2
   LW s8, 0(s8)
-  MULW s8, s10, s8
-  ADDW s8, s11, s8
-  SW s8, 0(s5)
-  ADDIW s7, s7, 1
-  BLT s7, s2, bb26
+  MULW s7, s7, s8
+  ADDW s6, s6, s7
+  SW s6, 0(s3)
+  ADDIW s5, s5, 1
+  BLT s5, s0, bb26
   # implict jump to bb25
 bb25:
   JAL zero, bb20
