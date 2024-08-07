@@ -2316,7 +2316,7 @@ bb335:   # loop depth 1
   XORI s2, s0, 35
   BNE s2, zero, bb337
   # implict jump to bb336
-bb336:   # loop depth 1
+bb336:   # loop depth 0
   ADD s0, s1, zero
   JAL zero, bb311
 bb337:   # loop depth 1

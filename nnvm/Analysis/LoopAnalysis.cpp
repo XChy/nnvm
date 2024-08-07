@@ -25,6 +25,29 @@ std::set<BasicBlock *> Loop::getLatches() const {
   return ret;
 }
 
+BasicBlock *Loop::getSingleExit() const {
+  auto exits = getExits();
+  if (exits.size() != 1)
+    return nullptr;
+  return *exits.begin();
+}
+
+BasicBlock *Loop::getSingleEdgedExit() const {
+  auto edges = getExitEdges();
+  if (edges.size() != 1)
+    return nullptr;
+  return edges.begin()->to;
+}
+
+BasicBlock *Loop::getExclusiveExit() const {
+  auto exits = getExits();
+  if (exits.size() != 1)
+    return nullptr;
+  if ((*exits.begin())->getPredNum() != 1)
+    return nullptr;
+  return *exits.begin();
+}
+
 std::set<BasicBlock *> Loop::getExits() const {
   std::set<BasicBlock *> ret;
   for (auto [from, to] : exitEdges) {

@@ -43,7 +43,7 @@ while.body_preheader:  pred(entry1911)
 while.body:  pred(if.exit1952, while.body_preheader)
   N.phi3248 = phi [bb %if.exit1952, i32 %1972, bb %while.body_preheader, i32 %1913]
   br bb %while.body1923
-while.exit:  pred(if.exit1952, entry1911)
+while.exit:  pred(entry1911, if.exit1952)
   ret i32 0
 while.body1923:  pred(while.body1923, while.body)
   i.phi3245 = phi [bb %while.body1923, i32 %1948, bb %while.body, i32 0]
@@ -51,98 +51,21 @@ while.body1923:  pred(while.body1923, while.body)
   1937 = ptradd ptr %a, i32 %1936
   1942 = call i32 getint()
   store i32 %1942 to ptr %1937
-  19403260 = ptradd ptr %1937, i32 4
-  19423261 = call i32 getint()
-  store i32 %19423261 to ptr %19403260
-  19403269 = ptradd ptr %1937, i32 8
-  19423270 = call i32 getint()
-  store i32 %19423270 to ptr %19403269
-  19403278 = ptradd ptr %1937, i32 12
-  19423279 = call i32 getint()
-  store i32 %19423279 to ptr %19403278
-  19403287 = ptradd ptr %1937, i32 16
-  19423288 = call i32 getint()
-  store i32 %19423288 to ptr %19403287
+  19403263 = ptradd ptr %1937, i32 4
+  19423264 = call i32 getint()
+  store i32 %19423264 to ptr %19403263
+  19403272 = ptradd ptr %1937, i32 8
+  19423273 = call i32 getint()
+  store i32 %19423273 to ptr %19403272
+  19403281 = ptradd ptr %1937, i32 12
+  19423282 = call i32 getint()
+  store i32 %19423282 to ptr %19403281
+  19403290 = ptradd ptr %1937, i32 16
+  19423291 = call i32 getint()
+  store i32 %19423291 to ptr %19403290
   1948 = add i32 %i.phi3245, i32 1
   1926 = icmp slt i32 %1948, i32 5
-  br i1 %1926, bb %while.body1923, bb %while.exit1924
-while.exit1924:  pred(while.body1923)
-  15.load2380 = load i32 from ptr %a
-  172381 = mul i32 %15.load2380, i32 85
-  21.load2383 = load i32 from ptr %212382
-  232384 = mul i32 %21.load2383, i32 23
-  242385 = add i32 %172381, i32 %232384
-  28.load2387 = load i32 from ptr %282386
-  312388 = mul i32 %28.load2387, i32 -82
-  322389 = add i32 %242385, i32 %312388
-  36.load2391 = load i32 from ptr %362390
-  392392 = mul i32 %36.load2391, i32 -103
-  402393 = add i32 %322389, i32 %392392
-  44.load2395 = load i32 from ptr %442394
-  472396 = mul i32 %44.load2395, i32 -123
-  482397 = add i32 %402393, i32 %472396
-  52.load2399 = load i32 from ptr %19742398
-  3233 = shl i32 %52.load2399, i32 6
-  552401 = add i32 %482397, i32 %3233
-  59.load2403 = load i32 from ptr %19772402
-  622404 = mul i32 %59.load2403, i32 -120
-  632405 = add i32 %552401, i32 %622404
-  67.load2407 = load i32 from ptr %19792406
-  692408 = mul i32 %67.load2407, i32 50
-  702409 = add i32 %632405, i32 %692408
-  74.load2411 = load i32 from ptr %19812410
-  772412 = mul i32 %74.load2411, i32 -59
-  782413 = add i32 %702409, i32 %772412
-  82.load2415 = load i32 from ptr %19832414
-  842416 = mul i32 %82.load2415, i32 47
-  852417 = add i32 %782413, i32 %842416
-  89.load2419 = load i32 from ptr %19852418
-  922420 = mul i32 %89.load2419, i32 -111
-  932421 = add i32 %852417, i32 %922420
-  97.load2423 = load i32 from ptr %19872422
-  1002424 = mul i32 %97.load2423, i32 -67
-  1012425 = add i32 %932421, i32 %1002424
-  105.load2427 = load i32 from ptr %19892426
-  1082428 = mul i32 %105.load2427, i32 -106
-  1092429 = add i32 %1012425, i32 %1082428
-  113.load2431 = load i32 from ptr %19912430
-  1162432 = mul i32 %113.load2431, i32 -75
-  1172433 = add i32 %1092429, i32 %1162432
-  121.load2435 = load i32 from ptr %19932434
-  1242436 = mul i32 %121.load2435, i32 -102
-  1252437 = add i32 %1172433, i32 %1242436
-  129.load2439 = load i32 from ptr %19952438
-  1312440 = mul i32 %129.load2439, i32 34
-  1322441 = add i32 %1252437, i32 %1312440
-  136.load2443 = load i32 from ptr %19972442
-  1392444 = mul i32 %136.load2443, i32 -39
-  1402445 = add i32 %1322441, i32 %1392444
-  144.load2447 = load i32 from ptr %19992446
-  1462448 = mul i32 %144.load2447, i32 65
-  1472449 = add i32 %1402445, i32 %1462448
-  151.load2451 = load i32 from ptr %20012450
-  1532452 = mul i32 %151.load2451, i32 47
-  1542453 = add i32 %1472449, i32 %1532452
-  158.load2455 = load i32 from ptr %20032454
-  1602456 = mul i32 %158.load2455, i32 113
-  1612457 = add i32 %1542453, i32 %1602456
-  165.load2459 = load i32 from ptr %20052458
-  1672460 = mul i32 %165.load2459, i32 110
-  1682461 = add i32 %1612457, i32 %1672460
-  172.load2463 = load i32 from ptr %20072462
-  1742464 = mul i32 %172.load2463, i32 47
-  1752465 = add i32 %1682461, i32 %1742464
-  179.load2467 = load i32 from ptr %20092466
-  1822468 = mul i32 %179.load2467, i32 -4
-  1832469 = add i32 %1752465, i32 %1822468
-  187.load2471 = load i32 from ptr %20112470
-  1892472 = mul i32 %187.load2471, i32 80
-  1902473 = add i32 %1832469, i32 %1892472
-  194.load2475 = load i32 from ptr %20132474
-  1962476 = mul i32 %194.load2475, i32 46
-  1972477 = add i32 %1902473, i32 %1962476
-  33089 = icmp sgt i32 %1972477, i32 127
-  br i1 %33089, bb %relu_reg.then3091, bb %relu_reg.if.exit3093
+  br i1 %1926, bb %while.body1923, bb %while.body1923_exclu_exit
 while.exit1924.split:  pred(model.then1909, model.if.exit1910)
   1949.ret = phi [bb %model.then1909, i32 1, bb %model.if.exit1910, i32 0]
   1950 = icmp ne i32 %1949.ret, i32 0
@@ -659,9 +582,9 @@ model.then1909:  pred(model.entry11.split.split.split.split.split.split.split.sp
   br bb %while.exit1924.split
 model.if.exit1910:  pred(model.entry11.split.split.split.split.split.split.split.split.split.split)
   br bb %while.exit1924.split
-relu_reg.then3091:  pred(while.exit1924)
+relu_reg.then3091:  pred(while.body1923_exclu_exit)
   br bb %model.entry11.split
-relu_reg.if.exit3093:  pred(while.exit1924)
+relu_reg.if.exit3093:  pred(while.body1923_exclu_exit)
   73094 = icmp slt i32 %1972477, i32 0
   br i1 %73094, bb %relu_reg.then83096, bb %relu_reg.if.exit93098
 relu_reg.then83096:  pred(relu_reg.if.exit3093)
@@ -749,6 +672,83 @@ relu_reg.then83222:  pred(relu_reg.if.exit3219)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split.split
 relu_reg.if.exit93224:  pred(relu_reg.if.exit3219)
   br bb %model.entry11.split.split.split.split.split.split.split.split.split.split
+while.body1923_exclu_exit:  pred(while.body1923)
+  15.load2380 = load i32 from ptr %a
+  172381 = mul i32 %15.load2380, i32 85
+  21.load2383 = load i32 from ptr %212382
+  232384 = mul i32 %21.load2383, i32 23
+  242385 = add i32 %172381, i32 %232384
+  28.load2387 = load i32 from ptr %282386
+  312388 = mul i32 %28.load2387, i32 -82
+  322389 = add i32 %242385, i32 %312388
+  36.load2391 = load i32 from ptr %362390
+  392392 = mul i32 %36.load2391, i32 -103
+  402393 = add i32 %322389, i32 %392392
+  44.load2395 = load i32 from ptr %442394
+  472396 = mul i32 %44.load2395, i32 -123
+  482397 = add i32 %402393, i32 %472396
+  52.load2399 = load i32 from ptr %19742398
+  3233 = shl i32 %52.load2399, i32 6
+  552401 = add i32 %482397, i32 %3233
+  59.load2403 = load i32 from ptr %19772402
+  622404 = mul i32 %59.load2403, i32 -120
+  632405 = add i32 %552401, i32 %622404
+  67.load2407 = load i32 from ptr %19792406
+  692408 = mul i32 %67.load2407, i32 50
+  702409 = add i32 %632405, i32 %692408
+  74.load2411 = load i32 from ptr %19812410
+  772412 = mul i32 %74.load2411, i32 -59
+  782413 = add i32 %702409, i32 %772412
+  82.load2415 = load i32 from ptr %19832414
+  842416 = mul i32 %82.load2415, i32 47
+  852417 = add i32 %782413, i32 %842416
+  89.load2419 = load i32 from ptr %19852418
+  922420 = mul i32 %89.load2419, i32 -111
+  932421 = add i32 %852417, i32 %922420
+  97.load2423 = load i32 from ptr %19872422
+  1002424 = mul i32 %97.load2423, i32 -67
+  1012425 = add i32 %932421, i32 %1002424
+  105.load2427 = load i32 from ptr %19892426
+  1082428 = mul i32 %105.load2427, i32 -106
+  1092429 = add i32 %1012425, i32 %1082428
+  113.load2431 = load i32 from ptr %19912430
+  1162432 = mul i32 %113.load2431, i32 -75
+  1172433 = add i32 %1092429, i32 %1162432
+  121.load2435 = load i32 from ptr %19932434
+  1242436 = mul i32 %121.load2435, i32 -102
+  1252437 = add i32 %1172433, i32 %1242436
+  129.load2439 = load i32 from ptr %19952438
+  1312440 = mul i32 %129.load2439, i32 34
+  1322441 = add i32 %1252437, i32 %1312440
+  136.load2443 = load i32 from ptr %19972442
+  1392444 = mul i32 %136.load2443, i32 -39
+  1402445 = add i32 %1322441, i32 %1392444
+  144.load2447 = load i32 from ptr %19992446
+  1462448 = mul i32 %144.load2447, i32 65
+  1472449 = add i32 %1402445, i32 %1462448
+  151.load2451 = load i32 from ptr %20012450
+  1532452 = mul i32 %151.load2451, i32 47
+  1542453 = add i32 %1472449, i32 %1532452
+  158.load2455 = load i32 from ptr %20032454
+  1602456 = mul i32 %158.load2455, i32 113
+  1612457 = add i32 %1542453, i32 %1602456
+  165.load2459 = load i32 from ptr %20052458
+  1672460 = mul i32 %165.load2459, i32 110
+  1682461 = add i32 %1612457, i32 %1672460
+  172.load2463 = load i32 from ptr %20072462
+  1742464 = mul i32 %172.load2463, i32 47
+  1752465 = add i32 %1682461, i32 %1742464
+  179.load2467 = load i32 from ptr %20092466
+  1822468 = mul i32 %179.load2467, i32 -4
+  1832469 = add i32 %1752465, i32 %1822468
+  187.load2471 = load i32 from ptr %20112470
+  1892472 = mul i32 %187.load2471, i32 80
+  1902473 = add i32 %1832469, i32 %1892472
+  194.load2475 = load i32 from ptr %20132474
+  1962476 = mul i32 %194.load2475, i32 46
+  1972477 = add i32 %1902473, i32 %1962476
+  33089 = icmp sgt i32 %1972477, i32 127
+  br i1 %33089, bb %relu_reg.then3091, bb %relu_reg.if.exit3093
 }
 
 external float getfloat()

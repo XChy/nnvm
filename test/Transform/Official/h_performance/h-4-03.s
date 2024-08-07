@@ -101,7 +101,7 @@ bb14:   # loop depth 2
   ADDW s2, s2, a0
   BLT s2, s5, bb16
   # implict jump to bb15
-bb15:   # loop depth 2
+bb15:   # loop depth 1
   ADD a0, s3, zero
   JAL zero, bb5
 bb16:   # loop depth 2

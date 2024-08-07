@@ -96,7 +96,7 @@ while.body127:  pred(while.body127, while.body)
   130.load = load i32 from ptr %j
   132 = icmp slt i32 %130.load, i32 5
   br i1 %132, bb %while.body127, bb %while.exit128
-while.exit128:  pred(while.body127, while.body)
+while.exit128:  pred(while.body, while.body127)
   26.load188 = load i32 from ptr @k
   call void inc_impl(ptr @i, i32 %26.load188)
   58.load203 = load i32 from ptr @k

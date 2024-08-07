@@ -28,7 +28,7 @@ while.body277:  pred(if.exit285, read_map.while.exit)
   active.load = load i32 from ptr @active
   283 = icmp eq i32 %active.load, i32 1
   br i1 %283, bb %then284, bb %else286
-while.exit278:  pred(if.exit285, read_map.while.exit)
+while.exit278:  pred(read_map.while.exit, if.exit285)
   call void _sysy_stoptime(i32 106)
   active.load295 = load i32 from ptr @active
   296 = icmp eq i32 %active.load295, i32 2
@@ -51,7 +51,7 @@ then297:  pred(while.exit278)
   height.load98349810 = load i32 from ptr @height
   99350811 = icmp sle i32 1, i32 %height.load98349810
   br i1 %99350811, bb %swap12.while.body95_preheader, bb %if.exit298
-if.exit298:  pred(while.exit278, swap12.while.exit104, then297)
+if.exit298:  pred(while.exit278, then297, swap12.while.exit104)
   height.load60380816 = load i32 from ptr @height
   61381817 = icmp sle i32 1, i32 %height.load60380816
   br i1 %61381817, bb %put_map.while.body57_preheader, bb %put_map.while.exit58
@@ -77,7 +77,7 @@ swap12.while.body103:  pred(swap12.while.body103, swap12.while.body103_preheader
   125370 = add i32 %i92.phi357809, i32 1
   107359 = icmp sle i32 %125370, i32 %width.load106358807
   br i1 %107359, bb %swap12.while.body103, bb %swap12.while.exit104
-swap12.while.exit104:  pred(swap12.while.body103, swap12.while.body95)
+swap12.while.exit104:  pred(swap12.while.body95, swap12.while.body103)
   128373 = add i32 %j93.phi348812, i32 1
   99350 = icmp sle i32 %128373, i32 %height.load98349810
   br i1 %99350, bb %swap12.while.body95, bb %if.exit298
@@ -88,7 +88,7 @@ put_map.while.body57:  pred(put_map.while.exit66, put_map.while.body57_preheader
   width.load68389813 = load i32 from ptr @width
   69390814 = icmp sle i32 1, i32 %width.load68389813
   br i1 %69390814, bb %put_map.while.body65_preheader, bb %put_map.while.exit66
-put_map.while.exit58:  pred(put_map.while.exit66, if.exit298)
+put_map.while.exit58:  pred(if.exit298, put_map.while.exit66)
   ret i32 0
 put_map.while.body65_preheader:  pred(put_map.while.body57)
   72393 = mul i32 %j55.phi379818, i32 2000
@@ -101,7 +101,7 @@ put_map.while.body65:  pred(put_map.if.exit80, put_map.while.body65_preheader)
   76.load397 = load i32 from ptr %76396
   78398 = icmp eq i32 %76.load397, i32 1
   br i1 %78398, bb %put_map.then79, bb %put_map.else81
-put_map.while.exit66:  pred(put_map.if.exit80, put_map.while.body57)
+put_map.while.exit66:  pred(put_map.while.body57, put_map.if.exit80)
   call void putch(i32 10)
   90402 = add i32 %j55.phi379818, i32 1
   height.load60380 = load i32 from ptr @height
@@ -127,7 +127,7 @@ step.while.body133:  pred(step.while.exit142, step.while.body133_preheader)
   alive_count.phi311418793 = phi [bb %step.while.exit142, i32 %alive_count.phi311418786, bb %step.while.body133_preheader, i32 0]
   select.phi314417792 = phi [bb %step.while.exit142, i1 %select.phi314417785, bb %step.while.body133_preheader, i1 0]
   br i1 %145432784, bb %step.while.body141_preheader, bb %step.while.exit142
-step.while.exit134:  pred(step.while.exit142, then284)
+step.while.exit134:  pred(then284, step.while.exit142)
   store i32 2 to ptr @active
   br bb %if.exit285
 step.while.body141_preheader:  pred(step.while.body133)
@@ -168,9 +168,9 @@ step.while.body141:  pred(step.if.exit239, step.while.body141_preheader)
   228.load472 = load i32 from ptr %663
   230473 = icmp eq i32 %228.load472, i32 1
   br i1 %230473, bb %step.select.then, bb %step.select.else
-step.while.exit142:  pred(step.if.exit239, step.while.body133)
-  alive_count.phi311418786 = phi [bb %step.if.exit239, i32 %222470, bb %step.while.body133, i32 %alive_count.phi311418793]
-  select.phi314417785 = phi [bb %step.if.exit239, i1 %select.phi484, bb %step.while.body133, i1 %select.phi314417792]
+step.while.exit142:  pred(step.while.body133, step.while.body141_exclu_exit)
+  alive_count.phi311418786 = phi [bb %step.while.body141_exclu_exit, i32 %222470, bb %step.while.body133, i32 %alive_count.phi311418793]
+  select.phi314417785 = phi [bb %step.while.body141_exclu_exit, i1 %select.phi484, bb %step.while.body133, i1 %select.phi314417792]
   272476 = add i32 %j131.phi419794, i32 1
   137421 = icmp sle i32 %272476, i32 %height.load136420790
   br i1 %137421, bb %step.while.body133, bb %step.while.exit134
@@ -189,7 +189,7 @@ step.then238:  pred(step.select.exit)
   br bb %step.if.exit239
 step.if.exit239:  pred(step.then238, step.then250, step.else252)
   145432 = icmp sle i32 %171446, i32 %width.load144431783
-  br i1 %145432, bb %step.while.body141, bb %step.while.exit142
+  br i1 %145432, bb %step.while.body141, bb %step.while.body141_exclu_exit
 step.else240:  pred(step.select.exit)
   249494 = icmp eq i32 %222470, i32 3
   br i1 %249494, bb %step.then250, bb %step.else252
@@ -210,7 +210,7 @@ step.while.body133516:  pred(step.while.exit142568, step.while.body133516_prehea
   alive_count.phi311511805 = phi [bb %step.while.exit142568, i32 %alive_count.phi311511798, bb %step.while.body133516_preheader, i32 0]
   select.phi314510804 = phi [bb %step.while.exit142568, i1 %select.phi314510797, bb %step.while.body133516_preheader, i1 0]
   br i1 %145525796, bb %step.while.body141527_preheader, bb %step.while.exit142568
-step.while.exit134518:  pred(step.while.exit142568, else286)
+step.while.exit134518:  pred(else286, step.while.exit142568)
   store i32 1 to ptr @active
   br bb %if.exit285
 step.while.body141527_preheader:  pred(step.while.body133516)
@@ -252,9 +252,9 @@ step.while.body141527:  pred(step.if.exit239584, step.while.body141527_preheader
   228.load565 = load i32 from ptr %702
   230566 = icmp eq i32 %228.load565, i32 1
   br i1 %230566, bb %step.select.then571, bb %step.select.else574
-step.while.exit142568:  pred(step.if.exit239584, step.while.body133516)
-  alive_count.phi311511798 = phi [bb %step.if.exit239584, i32 %222563, bb %step.while.body133516, i32 %alive_count.phi311511805]
-  select.phi314510797 = phi [bb %step.if.exit239584, i1 %select.phi577, bb %step.while.body133516, i1 %select.phi314510804]
+step.while.exit142568:  pred(step.while.body133516, step.while.body141527_exclu_exit)
+  alive_count.phi311511798 = phi [bb %step.while.body141527_exclu_exit, i32 %222563, bb %step.while.body133516, i32 %alive_count.phi311511805]
+  select.phi314510797 = phi [bb %step.while.body141527_exclu_exit, i1 %select.phi577, bb %step.while.body133516, i1 %select.phi314510804]
   272569 = add i32 %j131.phi512806, i32 1
   137514 = icmp sle i32 %272569, i32 %height.load136513802
   br i1 %137514, bb %step.while.body133516, bb %step.while.exit134518
@@ -272,7 +272,7 @@ step.then238579:  pred(step.select.exit576)
   br bb %step.if.exit239584
 step.if.exit239584:  pred(step.then238579, step.then250589, step.else252594)
   145525 = icmp sle i32 %171539, i32 %width.load144524795
-  br i1 %145525, bb %step.while.body141527, bb %step.while.exit142568
+  br i1 %145525, bb %step.while.body141527, bb %step.while.body141527_exclu_exit
 step.else240586:  pred(step.select.exit576)
   249587 = icmp eq i32 %222563, i32 3
   br i1 %249587, bb %step.then250589, bb %step.else252594
@@ -292,7 +292,7 @@ read_map.while.body:  pred(read_map.while.exit20, read_map.while.body_preheader)
   width.load22622778 = load i32 from ptr @width
   23623779 = icmp sle i32 1, i32 %width.load22622778
   br i1 %23623779, bb %read_map.while.body19_preheader, bb %read_map.while.exit20
-read_map.while.exit:  pred(read_map.while.exit20, entry273)
+read_map.while.exit:  pred(entry273, read_map.while.exit20)
   call void _sysy_starttime(i32 95)
   steps.load279819 = load i32 from ptr @steps
   280820 = icmp sgt i32 %steps.load279819, i32 0
@@ -306,8 +306,8 @@ read_map.while.body19:  pred(read_map.if.exit, read_map.while.body19_preheader)
   28627 = icmp eq i32 %26626, i32 35
   764 = shl i32 %i.phi621782, i32 2
   br i1 %28627, bb %read_map.then, bb %read_map.else
-read_map.while.exit20:  pred(read_map.if.exit, read_map.while.body)
-  get.phi319610780 = phi [bb %read_map.if.exit, i32 %26626, bb %read_map.while.body, i32 %get.phi319610823]
+read_map.while.exit20:  pred(read_map.while.body, read_map.while.body19_exclu_exit)
+  get.phi319610780 = phi [bb %read_map.while.body19_exclu_exit, i32 %26626, bb %read_map.while.body, i32 %get.phi319610823]
   49630 = call i32 getch()
   52631 = add i32 %j.phi611824, i32 1
   height.load14612 = load i32 from ptr @height
@@ -322,12 +322,18 @@ read_map.if.exit:  pred(read_map.then, read_map.else)
   48641 = add i32 %i.phi621782, i32 1
   width.load22622 = load i32 from ptr @width
   23623 = icmp sle i32 %48641, i32 %width.load22622
-  br i1 %23623, bb %read_map.while.body19, bb %read_map.while.exit20
+  br i1 %23623, bb %read_map.while.body19, bb %read_map.while.body19_exclu_exit
 read_map.else:  pred(read_map.while.body19)
   41645 = ptradd ptr @sheet1, i32 %33634
   44647 = ptradd ptr %41645, i32 %764
   store i32 0 to ptr %44647
   br bb %read_map.if.exit
+read_map.while.body19_exclu_exit:  pred(read_map.if.exit)
+  br bb %read_map.while.exit20
+step.while.body141_exclu_exit:  pred(step.if.exit239)
+  br bb %step.while.exit142
+step.while.body141527_exclu_exit:  pred(step.if.exit239584)
+  br bb %step.while.exit142568
 }
 
 external float getfloat()

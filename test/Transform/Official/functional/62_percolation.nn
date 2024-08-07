@@ -43,8 +43,6 @@ while.body72:  pred(if.exit271, entry65)
   326 = add i32 %t.phi501, i32 -1
   store i32 4 to ptr @n
   br i1 %11422488, bb %init.while.body_preheader, bb %init.while.exit
-while.exit73:  pred(if.exit271)
-  ret i32 0
 while.body91:  pred(if.exit107, init.while.exit)
   102463487 = phi [bb %if.exit107, i1 %102, bb %init.while.exit, i1 0]
   select236.phi280486 = phi [bb %if.exit107, i1 %select236.phi279, bb %init.while.exit, i1 %select236.phi281500]
@@ -64,11 +62,6 @@ while.body91:  pred(if.exit107, init.while.exit)
   105 = icmp ne i32 %104, i32 0
   258 = add i32 %i81.phi478, i32 1
   br i1 %105, bb %then106, bb %if.exit107
-while.exit92:  pred(if.exit107)
-  267 = xor i1 %102, i1 -1
-  268 = zext i1 %267 to i32
-  269 = icmp ne i32 %268, i32 0
-  br i1 %269, bb %then270, bb %if.exit271
 then106:  pred(while.body91)
   n.load109 = load i32 from ptr @n
   327 = add i32 %98, i32 -1
@@ -91,7 +84,7 @@ if.exit107:  pred(while.body91, if.exit254)
   select236.phi279 = phi [bb %while.body91, i1 %select236.phi280486, bb %if.exit254, i1 %select236.phi]
   95 = icmp slt i32 %258, i32 10
   102 = icmp ne i32 %flag.phi291, i32 0
-  br i1 %95, bb %while.body91, bb %while.exit92
+  br i1 %95, bb %while.body91, bb %while.body91_exclu_exit
 then122:  pred(then106)
   store i32 0 to ptr @array
   51339 = call i32 findfa(i32 %114)
@@ -228,13 +221,13 @@ if.exit254:  pred(select.exit246, then253)
   tmp.phi = phi [bb %select.exit246, i32 %tmp.phi316476, bb %then253, i32 %258]
   flag.phi = phi [bb %select.exit246, i32 %flag.phi292483, bb %then253, i32 1]
   br bb %if.exit107
-then270:  pred(while.exit92)
+then270:  pred(while.body91_exclu_exit)
   call void putint(i32 -1)
   call void putch(i32 10)
   br bb %if.exit271
-if.exit271:  pred(while.exit92, then270)
+if.exit271:  pred(while.body91_exclu_exit, then270)
   75 = icmp ne i32 %326, i32 0
-  br i1 %75, bb %while.body72, bb %while.exit73
+  br i1 %75, bb %while.body72, bb %while.body72_exclu_exit
 mmerge.then58:  pred(then122)
   455 = shl i32 %51339, i32 2
   62345 = ptradd ptr @array, i32 %455
@@ -275,8 +268,15 @@ init.while.body:  pred(init.while.body, init.while.body_preheader)
   20428 = add i32 %i.phi419489, i32 1
   11422 = icmp sle i32 %20428, i32 17
   br i1 %11422, bb %init.while.body, bb %init.while.exit
-init.while.exit:  pred(init.while.body, while.body72)
+init.while.exit:  pred(while.body72, init.while.body)
   br bb %while.body91
+while.body91_exclu_exit:  pred(if.exit107)
+  267 = xor i1 %102, i1 -1
+  268 = zext i1 %267 to i32
+  269 = icmp ne i32 %268, i32 0
+  br i1 %269, bb %then270, bb %if.exit271
+while.body72_exclu_exit:  pred(if.exit271)
+  ret i32 0
 }
 
 external float getfloat()

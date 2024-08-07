@@ -152,11 +152,13 @@ bool StaticUnrollPass::unroll(Loop *loop) {
   }
 
   // Replace outer uses
-  for (auto *I : *header) {
-    I->replaceSelfIf(replaceMap[I], [&](Use *U) {
-      auto *defBlock = U->getUser()->getBlock();
-      return !loop->contains(defBlock) && !duplicatedBlock.count(defBlock);
-    });
+  for (auto *block : loop->getBlocks()) {
+    for (auto *I : *block) {
+      I->replaceSelfIf(replaceMap[I], [&](Use *U) {
+        auto *defBlock = U->getUser()->getBlock();
+        return !loop->contains(defBlock) && !duplicatedBlock.count(defBlock);
+      });
+    }
   }
 
   return true;

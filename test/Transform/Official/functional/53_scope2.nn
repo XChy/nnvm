@@ -12,10 +12,6 @@ while.body:  pred(if.exit22, entry)
   52 = add i32 %k.phi4165, i32 -88
   20 = icmp slt i32 %52, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
-while.exit:  pred(if.exit22)
-  call void putint(i32 %k.phi)
-  k.load39 = load i32 from ptr @k
-  ret i32 %k.load39
 then21:  pred(while.body)
   59 = add i32 %k.phi4165, i32 -76
   br bb %if.exit22
@@ -25,7 +21,11 @@ if.exit22:  pred(while.body, then21)
   g.phi = phi [bb %while.body, i32 %g.phi4464, bb %then21, i32 10]
   k.phi = phi [bb %while.body, i32 %52, bb %then21, i32 %59]
   14 = icmp sgt i32 %k.phi, i32 10
-  br i1 %14, bb %while.body, bb %while.exit
+  br i1 %14, bb %while.body, bb %while.body_exclu_exit
+while.body_exclu_exit:  pred(if.exit22)
+  call void putint(i32 %k.phi)
+  k.load39 = load i32 from ptr @k
+  ret i32 %k.load39
 }
 
 external void putfarray(i32 , ptr )

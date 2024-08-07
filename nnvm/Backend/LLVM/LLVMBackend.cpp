@@ -68,6 +68,10 @@ void LLVMBackend::emit(Module &ir, std::ostream &out) {
     }
   }
 
+  for (auto *ubvalue : UBValue::allUBValues()) {
+    valueToName[ubvalue] = "poison";
+  }
+
   // Transforming
   for (auto &[name, func] : ir.getFunctionMap()) {
 
@@ -161,6 +165,20 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
+  if (auto si2f = mayCast<SI2FInst>(I)) {
+    out << "sitofp " << si2f->getOperand(0)->getType()->dump() << " "
+        << valueToName[si2f->getOperand(0)] << " to "
+        << si2f->getType()->dump();
+    return;
+  }
+
+  if (auto f2si = mayCast<F2SIInst>(I)) {
+    out << "sitofp " << f2si->getOperand(0)->getType()->dump() << " "
+        << valueToName[f2si->getOperand(0)] << " to "
+        << f2si->getType()->dump();
+    return;
+  }
+
   if (auto *ptrAdd = mayCast<PtrAddInst>(I)) {
     out << "getelementptr i8, ptr " << valueToName[ptrAdd->getOperand(0)]
         << ", " << ptrAdd->getOperand(1)->getType()->dump() << " "
@@ -210,6 +228,16 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   if (auto *CI = mayCast<ICmpInst>(I)) {
     out << "icmp"
         << " " << ICmpInst::getPredName(CI->getPredicate()) << " "
+        << CI->getOperand(0)->getType()->dump() << " "
+        << valueToName[CI->getOperand(0)] << ", "
+        << valueToName[CI->getOperand(1)];
+
+    return;
+  }
+
+  if (auto *CI = mayCast<FCmpInst>(I)) {
+    out << "fcmp"
+        << " " << FCmpInst::getPredName(CI->getPredicate()) << " "
         << CI->getOperand(0)->getType()->dump() << " "
         << valueToName[CI->getOperand(0)] << ", "
         << valueToName[CI->getOperand(1)];

@@ -18,22 +18,22 @@ entry57:  pred()
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   84 = si2f i32 0 to float
-  84267 = si2f i32 1 to float
-  84286 = si2f i32 2 to float
+  84271 = si2f i32 1 to float
+  84290 = si2f i32 2 to float
   4204 = ptradd ptr %c1, i32 8
-  store float %84267 to ptr %4204
+  store float %84271 to ptr %4204
   10208 = ptradd ptr %c2, i32 4
-  store float %84286 to ptr %10208
+  store float %84290 to ptr %10208
   16212 = ptradd ptr %c0, i32 4
   store float %84 to ptr %16212
   22215 = ptradd ptr %c0, i32 8
   store float %84 to ptr %22215
-  store float %84267 to ptr %c1
-  store float %84286 to ptr %c2
+  store float %84271 to ptr %c1
+  store float %84290 to ptr %c2
   40224 = ptradd ptr %c1, i32 4
-  store float %84267 to ptr %40224
+  store float %84271 to ptr %40224
   46228 = ptradd ptr %c2, i32 8
-  store float %84286 to ptr %46228
+  store float %84290 to ptr %46228
   store float %84 to ptr %c0
   br i1 -1, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(entry57)
@@ -49,7 +49,7 @@ while.body122:  pred(while.body122, while.body122_preheader)
   N.load125 = load i32 from ptr @N
   126 = icmp slt i32 %138, i32 %N.load125
   br i1 %126, bb %while.body122, bb %while.exit123
-while.exit123:  pred(while.body122, entry57)
+while.exit123:  pred(entry57, while.body122)
   call void putch(i32 10)
   N.load147247 = load i32 from ptr @N
   148248 = icmp slt i32 0, i32 %N.load147247
@@ -67,7 +67,7 @@ while.body144:  pred(while.body144, while.body144_preheader)
   N.load147 = load i32 from ptr @N
   148 = icmp slt i32 %160, i32 %N.load147
   br i1 %148, bb %while.body144, bb %while.exit145
-while.exit145:  pred(while.body144, while.exit123)
+while.exit145:  pred(while.exit123, while.body144)
   call void putch(i32 10)
   N.load169244 = load i32 from ptr @N
   170245 = icmp slt i32 0, i32 %N.load169244
@@ -85,7 +85,7 @@ while.body166:  pred(while.body166, while.body166_preheader)
   N.load169 = load i32 from ptr @N
   170 = icmp slt i32 %182, i32 %N.load169
   br i1 %170, bb %while.body166, bb %while.exit167
-while.exit167:  pred(while.body166, while.exit145)
+while.exit167:  pred(while.exit145, while.body166)
   call void putch(i32 10)
   ret i32 0
 }

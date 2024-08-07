@@ -33,7 +33,7 @@ entry69:  pred()
   100 = ptradd ptr %a, i32 36
   store i32 8 to ptr %100
   br bb %select_sort.while.body
-while.body108_preheader:  pred(select_sort.while.exit)
+while.body108_preheader:  pred(select_sort.while.body_exclu_exit)
   br bb %while.body108
 while.body108:  pred(while.body108, while.body108_preheader)
   i102.phi216 = phi [bb %while.body108, i32 %127, bb %while.body108_preheader, i32 0]
@@ -46,7 +46,7 @@ while.body108:  pred(while.body108, while.body108_preheader)
   n.load111 = load i32 from ptr @n
   112 = icmp slt i32 %127, i32 %n.load111
   br i1 %112, bb %while.body108, bb %while.exit109
-while.exit109:  pred(while.body108, select_sort.while.exit)
+while.exit109:  pred(select_sort.while.body_exclu_exit, while.body108)
   ret i32 0
 select_sort.while.body:  pred(select_sort.if.exit46, entry69)
   i.phi151220 = phi [bb %select_sort.if.exit46, i32 %18156, bb %entry69, i32 0]
@@ -55,8 +55,6 @@ select_sort.while.body:  pred(select_sort.if.exit46, entry69)
   24163207 = icmp slt i32 %18156, i32 10
   203208 = shl i32 %i.phi151220, i32 2
   br i1 %24163207, bb %select_sort.while.body20_preheader, bb %select_sort.while.exit21
-select_sort.while.exit:  pred(select_sort.if.exit46)
-  br i1 -1, bb %while.body108_preheader, bb %while.exit109
 select_sort.while.body20_preheader:  pred(select_sort.while.body)
   br bb %select_sort.while.body20
 select_sort.while.body20:  pred(select_sort.if.exit, select_sort.while.body20_preheader)
@@ -70,9 +68,9 @@ select_sort.while.body20:  pred(select_sort.if.exit, select_sort.while.body20_pr
   32.load171 = load i32 from ptr %32170
   34172 = icmp sgt i32 %28.load168, i32 %32.load171
   br i1 %34172, bb %select_sort.then, bb %select_sort.if.exit
-select_sort.while.exit21:  pred(select_sort.if.exit, select_sort.while.body)
-  203208210 = phi [bb %select_sort.if.exit, i32 %203, bb %select_sort.while.body, i32 %203208]
-  i.phi151209 = phi [bb %select_sort.if.exit, i32 %min.phi180, bb %select_sort.while.body, i32 %i.phi151220]
+select_sort.while.exit21:  pred(select_sort.while.body, select_sort.while.body20_exclu_exit)
+  203208210 = phi [bb %select_sort.while.body20_exclu_exit, i32 %203, bb %select_sort.while.body, i32 %203208]
+  i.phi151209 = phi [bb %select_sort.while.body20_exclu_exit, i32 %min.phi180, bb %select_sort.while.body, i32 %i.phi151220]
   44175 = icmp ne i32 %i.phi151209, i32 %i.phi151220
   br i1 %44175, bb %select_sort.then45, bb %select_sort.if.exit46
 select_sort.then:  pred(select_sort.while.body20)
@@ -82,7 +80,7 @@ select_sort.if.exit:  pred(select_sort.while.body20, select_sort.then)
   41181 = add i32 %j.phi162212, i32 1
   24163 = icmp slt i32 %41181, i32 10
   203 = shl i32 %min.phi180, i32 2
-  br i1 %24163, bb %select_sort.while.body20, bb %select_sort.while.exit21
+  br i1 %24163, bb %select_sort.while.body20, bb %select_sort.while.body20_exclu_exit
 select_sort.then45:  pred(select_sort.while.exit21)
   51185 = ptradd ptr %a, i32 %203208210
   51.load186 = load i32 from ptr %51185
@@ -94,7 +92,11 @@ select_sort.then45:  pred(select_sort.while.exit21)
 select_sort.if.exit46:  pred(select_sort.while.exit21, select_sort.then45)
   tmp.phi194 = phi [bb %select_sort.while.exit21, i32 %tmp.phi135150219, bb %select_sort.then45, i32 %51.load186]
   12153 = icmp slt i32 %18156, i32 9
-  br i1 %12153, bb %select_sort.while.body, bb %select_sort.while.exit
+  br i1 %12153, bb %select_sort.while.body, bb %select_sort.while.body_exclu_exit
+select_sort.while.body20_exclu_exit:  pred(select_sort.if.exit)
+  br bb %select_sort.while.exit21
+select_sort.while.body_exclu_exit:  pred(select_sort.if.exit46)
+  br i1 -1, bb %while.body108_preheader, bb %while.exit109
 }
 
 external float getfloat()

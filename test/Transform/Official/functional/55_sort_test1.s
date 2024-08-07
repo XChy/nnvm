@@ -110,7 +110,7 @@ bb12:   # loop depth 2
 bb13:   # loop depth 2
   BLT s0, s2, bb15
   # implict jump to bb14
-bb14:   # loop depth 2
+bb14:   # loop depth 1
   JAL zero, bb3
 bb15:   # loop depth 2
   JAL zero, bb11

@@ -49,7 +49,7 @@ while.body182.split:  pred(insert.then, insert.while.exit, insert.then61)
   199 = add i32 %i.phi225450, i32 1
   186 = icmp slt i32 %199, i32 %174
   br i1 %186, bb %while.body182, bb %while.exit183
-while.exit183:  pred(while.body182.split, entry170)
+while.exit183:  pred(entry170, while.body182.split)
   206447 = icmp slt i32 0, i32 %178
   br i1 %206447, bb %while.body202_preheader, bb %while.exit203
 while.body202_preheader:  pred(while.exit183)
@@ -72,7 +72,7 @@ while.body202.split:  pred(reduce.while.exit131, reduce.while.exit148)
   219 = add i32 %i.phi448, i32 1
   206 = icmp slt i32 %219, i32 %178
   br i1 %206, bb %while.body202, bb %while.exit203
-while.exit203:  pred(while.body202.split, while.exit183)
+while.exit203:  pred(while.exit183, while.body202.split)
   call void _sysy_stoptime(i32 90)
   call void putarray(i32 %178, ptr @ans)
   ret i32 0
@@ -166,10 +166,12 @@ reduce.while.body147:  pred(reduce.while.body147, reduce.while.body147_preheader
   162379 = ptradd ptr @nextvalue, i32 %442
   162.load380 = load i32 from ptr %162379
   150372 = icmp ne i32 %162.load380, i32 0
-  br i1 %150372, bb %reduce.while.body147, bb %reduce.while.exit148
-reduce.while.exit148:  pred(reduce.while.body147, reduce.then141)
-  444 = phi [bb %reduce.while.body147, i32 %158378, bb %reduce.then141, i32 0]
+  br i1 %150372, bb %reduce.while.body147, bb %reduce.while.body147_exclu_exit
+reduce.while.exit148:  pred(reduce.then141, reduce.while.body147_exclu_exit)
+  444 = phi [bb %reduce.while.body147_exclu_exit, i32 %158378, bb %reduce.then141, i32 0]
   br bb %while.body202.split
+reduce.while.body147_exclu_exit:  pred(reduce.while.body147)
+  br bb %reduce.while.exit148
 }
 
 external float getfloat()

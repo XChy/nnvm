@@ -12,7 +12,7 @@ i32 main() {
 entry90:  pred()
   %b131 = stack 64
   br bb %my_getint.while.cond
-while.exit95:  pred(my_putint.while.exit78, my_getint.else45)
+while.exit95:  pred(my_getint.else45, my_putint.while.exit78)
   ret i32 0
 my_putint.while.body57_preheader:  pred(my_getint.else45245)
   br bb %my_putint.while.body57
@@ -27,9 +27,9 @@ my_putint.while.body57:  pred(my_putint.while.body57, my_putint.while.body57_pre
   72144 = sdiv i32 %a.stack.phi135257, i32 10
   75145 = add i32 %i.phi109134256, i32 1
   60136 = icmp sgt i32 %72144, i32 0
-  br i1 %60136, bb %my_putint.while.body57, bb %my_putint.while.exit58
-my_putint.while.exit58:  pred(my_putint.while.body57, my_getint.else45245)
-  255 = phi [bb %my_putint.while.body57, i32 %75145, bb %my_getint.else45245, i32 0]
+  br i1 %60136, bb %my_putint.while.body57, bb %my_putint.while.body57_exclu_exit
+my_putint.while.exit58:  pred(my_getint.else45245, my_putint.while.body57_exclu_exit)
+  255 = phi [bb %my_putint.while.body57_exclu_exit, i32 %75145, bb %my_getint.else45245, i32 0]
   80151252 = icmp sgt i32 %255, i32 0
   br i1 %80151252, bb %my_putint.while.body77_preheader, bb %my_putint.while.exit78
 my_putint.while.body77_preheader:  pred(my_putint.while.exit58)
@@ -43,7 +43,7 @@ my_putint.while.body77:  pred(my_putint.while.body77, my_putint.while.body77_pre
   call void putch(i32 %87.load157)
   80151 = icmp sgt i32 %124154, i32 0
   br i1 %80151, bb %my_putint.while.body77, bb %my_putint.while.exit78
-my_putint.while.exit78:  pred(my_putint.while.body77, my_putint.while.exit58)
+my_putint.while.exit78:  pred(my_putint.while.exit58, my_putint.while.body77)
   call void putch(i32 10)
   128 = add i32 %n.phi259, i32 -1
   97 = icmp sgt i32 %128, i32 0
@@ -123,6 +123,8 @@ my_getint.then43241:  pred(my_getint.select.exit38238)
 my_getint.else45245:  pred(my_getint.select.exit38238)
   60136254 = icmp sgt i32 %sum.phi228, i32 0
   br i1 %60136254, bb %my_putint.while.body57_preheader, bb %my_putint.while.exit58
+my_putint.while.body57_exclu_exit:  pred(my_putint.while.body57)
+  br bb %my_putint.while.exit58
 }
 
 external float getfloat()

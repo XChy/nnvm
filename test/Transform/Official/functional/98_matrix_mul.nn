@@ -20,66 +20,66 @@ entry237:  pred()
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   264 = si2f i32 0 to float
-  264543 = si2f i32 1 to float
-  264562 = si2f i32 2 to float
+  264547 = si2f i32 1 to float
+  264566 = si2f i32 2 to float
   12386 = fmul float %264, float %264
-  19390 = fmul float %264543, float %264
+  19390 = fmul float %264547, float %264
   20391 = fadd float %12386, float %19390
-  27395 = fmul float %264562, float %264
+  27395 = fmul float %264566, float %264
   28396 = fadd float %20391, float %27395
   store float %28396 to ptr %c0
   30398 = ptradd ptr %c0, i32 4
-  38402 = fmul float %264, float %264543
-  45406 = fmul float %264543, float %264543
+  38402 = fmul float %264, float %264547
+  45406 = fmul float %264547, float %264547
   46407 = fadd float %38402, float %45406
-  53411 = fmul float %264562, float %264543
+  53411 = fmul float %264566, float %264547
   54412 = fadd float %46407, float %53411
   store float %54412 to ptr %30398
   56414 = ptradd ptr %c0, i32 8
-  64418 = fmul float %264, float %264562
-  71422 = fmul float %264543, float %264562
+  64418 = fmul float %264, float %264566
+  71422 = fmul float %264547, float %264566
   72423 = fadd float %64418, float %71422
-  79427 = fmul float %264562, float %264562
+  79427 = fmul float %264566, float %264566
   80428 = fadd float %72423, float %79427
   store float %80428 to ptr %56414
   90432 = fmul float %264, float %264
-  97436 = fmul float %264543, float %264
+  97436 = fmul float %264547, float %264
   98437 = fadd float %90432, float %97436
-  105441 = fmul float %264562, float %264
+  105441 = fmul float %264566, float %264
   106442 = fadd float %98437, float %105441
   store float %106442 to ptr %c1
   108444 = ptradd ptr %c1, i32 4
-  116447 = fmul float %264, float %264543
-  123450 = fmul float %264543, float %264543
+  116447 = fmul float %264, float %264547
+  123450 = fmul float %264547, float %264547
   124451 = fadd float %116447, float %123450
-  131454 = fmul float %264562, float %264543
+  131454 = fmul float %264566, float %264547
   132455 = fadd float %124451, float %131454
   store float %132455 to ptr %108444
   134457 = ptradd ptr %c1, i32 8
-  142460 = fmul float %264, float %264562
-  149463 = fmul float %264543, float %264562
+  142460 = fmul float %264, float %264566
+  149463 = fmul float %264547, float %264566
   150464 = fadd float %142460, float %149463
-  157467 = fmul float %264562, float %264562
+  157467 = fmul float %264566, float %264566
   158468 = fadd float %150464, float %157467
   store float %158468 to ptr %134457
   168472 = fmul float %264, float %264
-  175476 = fmul float %264543, float %264
+  175476 = fmul float %264547, float %264
   176477 = fadd float %168472, float %175476
-  183481 = fmul float %264562, float %264
+  183481 = fmul float %264566, float %264
   184482 = fadd float %176477, float %183481
   store float %184482 to ptr %c2
   186484 = ptradd ptr %c2, i32 4
-  194487 = fmul float %264, float %264543
-  201490 = fmul float %264543, float %264543
+  194487 = fmul float %264, float %264547
+  201490 = fmul float %264547, float %264547
   202491 = fadd float %194487, float %201490
-  209494 = fmul float %264562, float %264543
+  209494 = fmul float %264566, float %264547
   210495 = fadd float %202491, float %209494
   store float %210495 to ptr %186484
   212497 = ptradd ptr %c2, i32 8
-  220500 = fmul float %264, float %264562
-  227503 = fmul float %264543, float %264562
+  220500 = fmul float %264, float %264566
+  227503 = fmul float %264547, float %264566
   228504 = fadd float %220500, float %227503
-  235507 = fmul float %264562, float %264562
+  235507 = fmul float %264566, float %264566
   236508 = fadd float %228504, float %235507
   store float %236508 to ptr %212497
   br i1 -1, bb %while.body302_preheader, bb %while.exit303
@@ -96,7 +96,7 @@ while.body302:  pred(while.body302, while.body302_preheader)
   N.load305 = load i32 from ptr @N
   306 = icmp slt i32 %318, i32 %N.load305
   br i1 %306, bb %while.body302, bb %while.exit303
-while.exit303:  pred(while.body302, entry237)
+while.exit303:  pred(entry237, while.body302)
   call void putch(i32 10)
   N.load327523 = load i32 from ptr @N
   328524 = icmp slt i32 0, i32 %N.load327523
@@ -114,7 +114,7 @@ while.body324:  pred(while.body324, while.body324_preheader)
   N.load327 = load i32 from ptr @N
   328 = icmp slt i32 %340, i32 %N.load327
   br i1 %328, bb %while.body324, bb %while.exit325
-while.exit325:  pred(while.body324, while.exit303)
+while.exit325:  pred(while.exit303, while.body324)
   call void putch(i32 10)
   N.load349520 = load i32 from ptr @N
   350521 = icmp slt i32 0, i32 %N.load349520
@@ -132,7 +132,7 @@ while.body346:  pred(while.body346, while.body346_preheader)
   N.load349 = load i32 from ptr @N
   350 = icmp slt i32 %362, i32 %N.load349
   br i1 %350, bb %while.body346, bb %while.exit347
-while.exit347:  pred(while.body346, while.exit325)
+while.exit347:  pred(while.exit325, while.body346)
   call void putch(i32 10)
   ret i32 0
 }

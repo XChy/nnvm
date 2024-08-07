@@ -8,6 +8,8 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
   auto *header = loop->getHeader();
   auto *func = header->getParent();
   IRBuilder builder;
+
+  // Create preheader.
   if (!loop->getPreheader()) {
     auto *preheader = new BasicBlock(func, header->getName() + "_preheader");
     builder.insertAt(preheader->end());
@@ -42,6 +44,29 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
     func->insertBefore(preheader, header);
   }
 
+  // Create exclusive exit.
+  if (loop->getSingleEdgedExit() && !loop->getExclusiveExit()) {
+    auto *oldExit = loop->getSingleEdgedExit();
+    auto *newExit = new BasicBlock(func, header->getName() + "_exclu_exit");
+
+    builder.insertAt(newExit->end());
+    builder.buildBr(oldExit);
+
+    for (auto [exiting, _] : loop->getExitEdges()) {
+      exiting->getTerminator()->replaceOps(
+          [&](Value *v) { return v == oldExit ? newExit : nullptr; });
+
+      for (auto *I : *oldExit) {
+        auto *phi = mayCast<PhiNode>(I);
+        if (!phi)
+          break;
+        BasicBlock *oldIncoming = exiting;
+        phi->replaceOps(
+            [&](Value *v) { return v == oldIncoming ? newExit : nullptr; });
+      }
+    }
+  }
+
   return false;
 }
 
@@ -59,7 +84,7 @@ std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
   if (!cmp || !cmp->getOperand(1)->isConstant())
     return {};
 
-  // TODO: Invert the predicate if needed.
+  // FIXME: Invert the predicate if needed.
   auto pred = cmp->getPredicate();
   ScevValue *indSCEV = scev->analyze(cmp->getOperand(0), loop);
 
@@ -72,4 +97,10 @@ std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
   ret.indvar = indSCEV;
   ret.tripCount = indSCEV->iterations(pred, bound);
   return ret;
+}
+
+bool nnvm::isDefinedOutside(Value *value, Loop *loop) {
+  if (value->isInstruction())
+    return loop->contains(cast<Instruction>(value)->getBlock());
+  return false;
 }

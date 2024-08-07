@@ -15,10 +15,12 @@ then20:  pred(then20, then20_preheader)
   33 = fsub float %z.loop80, float 1.000000
   36 = call float takFP(float %33, float %x.loop82, float %y.loop81)
   19 = fcmp olt float %31, float %26
-  br i1 %19, bb %then20, bb %if.exit21
-if.exit21:  pred(then20, entry13)
-  z79 = phi [bb %then20, float %36, bb %entry13, float %z]
+  br i1 %19, bb %then20, bb %then20_exclu_exit
+if.exit21:  pred(entry13, then20_exclu_exit)
+  z79 = phi [bb %then20_exclu_exit, float %36, bb %entry13, float %z]
   ret float %z79
+then20_exclu_exit:  pred(then20)
+  br bb %if.exit21
 }
 
 external i32 getint()

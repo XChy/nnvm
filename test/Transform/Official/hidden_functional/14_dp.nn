@@ -30,7 +30,7 @@ while.body:  pred(while.body, while.body_preheader)
   50 = add i32 %i.phi199271, i32 1
   16 = icmp sle i32 %50, i32 %7
   br i1 %16, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, entry)
+while.exit:  pred(entry, while.body)
   br i1 %16270, bb %while.body53_preheader, bb %while.exit54
 while.body53_preheader:  pred(while.exit)
   65262 = icmp sle i32 1, i32 %9
@@ -38,7 +38,7 @@ while.body53_preheader:  pred(while.exit)
 while.body53:  pred(while.exit62, while.body53_preheader)
   i.phi269 = phi [bb %while.exit62, i32 %164, bb %while.body53_preheader, i32 1]
   br i1 %65262, bb %while.body61_preheader, bb %while.exit62
-while.exit54:  pred(while.exit62, while.exit)
+while.exit54:  pred(while.exit, while.exit62)
   172264 = icmp sle i32 0, i32 %9
   br i1 %172264, bb %while.body168_preheader, bb %while.exit169
 while.body61_preheader:  pred(while.body53)
@@ -67,7 +67,7 @@ while.body61:  pred(if.exit, while.body61_preheader)
   103 = add i32 %92.load, i32 %82.load
   104 = icmp sgt i32 %84, i32 %103
   br i1 %104, bb %then, bb %else
-while.exit62:  pred(if.exit, while.body53)
+while.exit62:  pred(while.body53, if.exit)
   164 = add i32 %i.phi269, i32 1
   57 = icmp sle i32 %164, i32 %7
   br i1 %57, bb %while.body53, bb %while.exit54
@@ -96,8 +96,8 @@ while.body168:  pred(if.exit184, while.body168_preheader)
   180.load = load i32 from ptr %180
   182 = icmp slt i32 %res.phi204266, i32 %180.load
   br i1 %182, bb %then183, bb %if.exit184
-while.exit169:  pred(if.exit184, while.exit54)
-  265 = phi [bb %if.exit184, i32 %res.phi, bb %while.exit54, i32 0]
+while.exit169:  pred(while.exit54, while.body168_exclu_exit)
+  265 = phi [bb %while.body168_exclu_exit, i32 %res.phi, bb %while.exit54, i32 0]
   ret i32 %265
 then183:  pred(while.body168)
   br bb %if.exit184
@@ -105,7 +105,9 @@ if.exit184:  pred(while.body168, then183)
   res.phi = phi [bb %while.body168, i32 %res.phi204266, bb %then183, i32 %180.load]
   195 = add i32 %j.phi267, i32 1
   172 = icmp sle i32 %195, i32 %9
-  br i1 %172, bb %while.body168, bb %while.exit169
+  br i1 %172, bb %while.body168, bb %while.body168_exclu_exit
+while.body168_exclu_exit:  pred(if.exit184)
+  br bb %while.exit169
 }
 
 external void putfarray(i32 , ptr )

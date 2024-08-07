@@ -167,86 +167,82 @@ entry175:  pred()
   br i1 %184362, bb %while.body181, bb %while.exit182
 while.body181:  pred(if.exit281, entry175)
   br bb %while.body190
-while.exit182:  pred(if.exit281, entry175)
+while.exit182:  pred(entry175, if.exit281)
   ret i32 0
 while.body190:  pred(while.body190, while.body181)
   i186.phi317360 = phi [bb %while.body190, i32 %214, bb %while.body181, i32 0]
   203 = mul i32 %i186.phi317360, i32 120
   204 = ptradd ptr @a, i32 %203
   store i32 1 to ptr %204
-  207379 = ptradd ptr %204, i32 4
-  store i32 1 to ptr %207379
-  207387 = ptradd ptr %204, i32 8
-  store i32 1 to ptr %207387
-  207395 = ptradd ptr %204, i32 12
-  store i32 1 to ptr %207395
-  207403 = ptradd ptr %204, i32 16
-  store i32 1 to ptr %207403
-  207411 = ptradd ptr %204, i32 20
-  store i32 1 to ptr %207411
-  207419 = ptradd ptr %204, i32 24
-  store i32 1 to ptr %207419
-  207427 = ptradd ptr %204, i32 28
-  store i32 1 to ptr %207427
-  207435 = ptradd ptr %204, i32 32
-  store i32 1 to ptr %207435
-  207443 = ptradd ptr %204, i32 36
-  store i32 1 to ptr %207443
-  207451 = ptradd ptr %204, i32 40
-  store i32 1 to ptr %207451
-  207459 = ptradd ptr %204, i32 44
-  store i32 1 to ptr %207459
-  207467 = ptradd ptr %204, i32 48
-  store i32 1 to ptr %207467
-  207475 = ptradd ptr %204, i32 52
-  store i32 1 to ptr %207475
-  207483 = ptradd ptr %204, i32 56
-  store i32 1 to ptr %207483
-  207491 = ptradd ptr %204, i32 60
-  store i32 1 to ptr %207491
-  207499 = ptradd ptr %204, i32 64
-  store i32 1 to ptr %207499
-  207507 = ptradd ptr %204, i32 68
-  store i32 1 to ptr %207507
-  207515 = ptradd ptr %204, i32 72
-  store i32 1 to ptr %207515
-  207523 = ptradd ptr %204, i32 76
-  store i32 1 to ptr %207523
-  207531 = ptradd ptr %204, i32 80
-  store i32 1 to ptr %207531
-  207539 = ptradd ptr %204, i32 84
-  store i32 1 to ptr %207539
-  207547 = ptradd ptr %204, i32 88
-  store i32 1 to ptr %207547
-  207555 = ptradd ptr %204, i32 92
-  store i32 1 to ptr %207555
-  207563 = ptradd ptr %204, i32 96
-  store i32 1 to ptr %207563
-  207571 = ptradd ptr %204, i32 100
-  store i32 1 to ptr %207571
-  207579 = ptradd ptr %204, i32 104
-  store i32 1 to ptr %207579
-  207587 = ptradd ptr %204, i32 108
-  store i32 1 to ptr %207587
-  207595 = ptradd ptr %204, i32 112
-  store i32 1 to ptr %207595
-  207603 = ptradd ptr %204, i32 116
-  store i32 1 to ptr %207603
+  207384 = ptradd ptr %204, i32 4
+  store i32 1 to ptr %207384
+  207392 = ptradd ptr %204, i32 8
+  store i32 1 to ptr %207392
+  207400 = ptradd ptr %204, i32 12
+  store i32 1 to ptr %207400
+  207408 = ptradd ptr %204, i32 16
+  store i32 1 to ptr %207408
+  207416 = ptradd ptr %204, i32 20
+  store i32 1 to ptr %207416
+  207424 = ptradd ptr %204, i32 24
+  store i32 1 to ptr %207424
+  207432 = ptradd ptr %204, i32 28
+  store i32 1 to ptr %207432
+  207440 = ptradd ptr %204, i32 32
+  store i32 1 to ptr %207440
+  207448 = ptradd ptr %204, i32 36
+  store i32 1 to ptr %207448
+  207456 = ptradd ptr %204, i32 40
+  store i32 1 to ptr %207456
+  207464 = ptradd ptr %204, i32 44
+  store i32 1 to ptr %207464
+  207472 = ptradd ptr %204, i32 48
+  store i32 1 to ptr %207472
+  207480 = ptradd ptr %204, i32 52
+  store i32 1 to ptr %207480
+  207488 = ptradd ptr %204, i32 56
+  store i32 1 to ptr %207488
+  207496 = ptradd ptr %204, i32 60
+  store i32 1 to ptr %207496
+  207504 = ptradd ptr %204, i32 64
+  store i32 1 to ptr %207504
+  207512 = ptradd ptr %204, i32 68
+  store i32 1 to ptr %207512
+  207520 = ptradd ptr %204, i32 72
+  store i32 1 to ptr %207520
+  207528 = ptradd ptr %204, i32 76
+  store i32 1 to ptr %207528
+  207536 = ptradd ptr %204, i32 80
+  store i32 1 to ptr %207536
+  207544 = ptradd ptr %204, i32 84
+  store i32 1 to ptr %207544
+  207552 = ptradd ptr %204, i32 88
+  store i32 1 to ptr %207552
+  207560 = ptradd ptr %204, i32 92
+  store i32 1 to ptr %207560
+  207568 = ptradd ptr %204, i32 96
+  store i32 1 to ptr %207568
+  207576 = ptradd ptr %204, i32 100
+  store i32 1 to ptr %207576
+  207584 = ptradd ptr %204, i32 104
+  store i32 1 to ptr %207584
+  207592 = ptradd ptr %204, i32 108
+  store i32 1 to ptr %207592
+  207600 = ptradd ptr %204, i32 112
+  store i32 1 to ptr %207600
+  207608 = ptradd ptr %204, i32 116
+  store i32 1 to ptr %207608
   214 = add i32 %i186.phi317360, i32 1
   193 = icmp slt i32 %214, i32 30
-  br i1 %193, bb %while.body190, bb %while.exit191
-while.exit191:  pred(while.body190)
-  h.load220352 = load i32 from ptr @h
-  221353 = icmp sle i32 1, i32 %h.load220352
-  br i1 %221353, bb %while.body217_preheader, bb %while.exit218
-while.body217_preheader:  pred(while.exit191)
+  br i1 %193, bb %while.body190, bb %while.body190_exclu_exit
+while.body217_preheader:  pred(while.body190_exclu_exit)
   br bb %while.body217
 while.body217:  pred(while.exit226, while.body217_preheader)
   i186.phi356 = phi [bb %while.exit226, i32 %273, bb %while.body217_preheader, i32 1]
   w.load228348 = load i32 from ptr @w
   229349 = icmp sle i32 1, i32 %w.load228348
   br i1 %229349, bb %while.body225_preheader, bb %while.exit226
-while.exit218:  pred(while.exit226, while.exit191)
+while.exit218:  pred(while.body190_exclu_exit, while.exit226)
   x_0.load275 = load i32 from ptr @x_0
   y_0.load276 = load i32 from ptr @y_0
   277 = call i32 search(i32 %x_0.load275, i32 %y_0.load276, i32 1)
@@ -264,7 +260,7 @@ while.body225:  pred(if.exit248, while.body225_preheader)
   store i32 %238 to ptr %236
   246 = icmp eq i32 %238, i32 2
   br i1 %246, bb %then247, bb %else
-while.exit226:  pred(if.exit248, while.body217)
+while.exit226:  pred(while.body217, if.exit248)
   273 = add i32 %i186.phi356, i32 1
   h.load220 = load i32 from ptr @h
   221 = icmp sle i32 %273, i32 %h.load220
@@ -301,6 +297,10 @@ else282:  pred(while.exit218)
   call void putint(i32 -1)
   call void putch(i32 10)
   br bb %if.exit281
+while.body190_exclu_exit:  pred(while.body190)
+  h.load220352 = load i32 from ptr @h
+  221353 = icmp sle i32 1, i32 %h.load220352
+  br i1 %221353, bb %while.body217_preheader, bb %while.exit218
 }
 
 external float getfloat()

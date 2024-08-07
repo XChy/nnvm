@@ -30,19 +30,20 @@ bb1:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb2:   # loop depth 0
+  ADDI s0, zero, 1
   ADD a0, zero, zero
   # implict jump to bb3
 bb3:   # loop depth 1
   ADDIW a0, a0, 1
-  LA s0, k
-  LW s0, 0(s0)
   SLLIW s0, s0, 1
-  LA s1, k
-  SW s0, 0(s1)
-  ADDI s0, zero, 9
-  SLT s0, s0, a0
-  XORI s0, s0, 1
-  BNE s0, zero, bb4
+  ADDI s1, zero, 9
+  SLT s1, s1, a0
+  XORI s1, s1, 1
+  BNE s1, zero, bb5
+  # implict jump to bb4
+bb4:   # loop depth 0
+  LA a0, k
+  SW s0, 0(a0)
   JAL zero, bb1
-bb4:   # loop depth 1
+bb5:   # loop depth 1
   JAL zero, bb3

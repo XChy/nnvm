@@ -152,16 +152,17 @@ bb25:   # loop depth 2
   ADDIW a5, a5, 1
   BLT a5, a0, bb27
   # implict jump to bb26
-bb26:   # loop depth 2
+bb26:   # loop depth 1
   JAL zero, bb14
 bb27:   # loop depth 2
   JAL zero, bb17
 bb28:   # loop depth 2
   ADD t5, a2, t3
   ADD s0, t5, t4
-  ADD a7, a4, zero
+  ADD a3, a4, zero
   # implict jump to bb29
 bb29:   # loop depth 3
+  ADD a7, a3, zero
   LW s1, 0(s0)
   SLLIW a3, a7, 2
   ADD s2, t5, a3
@@ -182,10 +183,9 @@ bb29:   # loop depth 3
 bb30:   # loop depth 3
   BLT a3, a5, bb32
   # implict jump to bb31
-bb31:   # loop depth 3
+bb31:   # loop depth 2
   JAL zero, bb25
 bb32:   # loop depth 3
-  ADD a7, a3, zero
   JAL zero, bb29
 bb33:   # loop depth 3
   LW s1, 0(s2)

@@ -84,7 +84,7 @@ bb9:   # loop depth 1
   ADDIW a0, a0, 1
   BLT a0, s4, bb11
   # implict jump to bb10
-bb10:   # loop depth 1
+bb10:   # loop depth 0
   JAL zero, bb4
 bb11:   # loop depth 1
   JAL zero, bb9

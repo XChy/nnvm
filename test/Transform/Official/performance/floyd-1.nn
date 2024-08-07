@@ -23,7 +23,7 @@ floyd.while.body68_preheader:  pred(entry216)
 floyd.while.body68:  pred(floyd.while.exit77, floyd.while.body68_preheader)
   k.phi2302731197 = phi [bb %floyd.while.exit77, i32 %99294, bb %floyd.while.body68_preheader, i32 0]
   br i1 %722741196, bb %floyd.while.body76_preheader, bb %floyd.while.exit77
-floyd.while.exit69:  pred(floyd.while.exit77, entry216)
+floyd.while.exit69:  pred(entry216, floyd.while.exit77)
   br i1 %722741196, bb %floyd.while.body102_preheader, bb %floyd.while.exit103
 floyd.while.body76_preheader:  pred(floyd.while.body68)
   br bb %floyd.while.body76
@@ -41,7 +41,7 @@ floyd.while.body76.split:  pred(getvalue.then799, getvalue.if.exit801)
   96291 = add i32 %i74.phi2811178, i32 1
   80282 = icmp slt i32 %96291, i32 %218
   br i1 %80282, bb %floyd.while.body76, bb %floyd.while.exit77
-floyd.while.exit77:  pred(floyd.while.body76.split, floyd.while.body68)
+floyd.while.exit77:  pred(floyd.while.body68, floyd.while.body76.split)
   99294 = add i32 %k.phi2302731197, i32 1
   72274 = icmp slt i32 %99294, i32 %218
   br i1 %72274, bb %floyd.while.body68, bb %floyd.while.exit69
@@ -52,7 +52,7 @@ floyd.while.body102:  pred(floyd.while.exit111, floyd.while.body102_preheader)
   j.phi2372981194 = phi [bb %floyd.while.exit111, i32 %j.phi2372981186, bb %floyd.while.body102_preheader, i32 0]
   select132.phi2412971193 = phi [bb %floyd.while.exit111, i1 %select132.phi2412971185, bb %floyd.while.body102_preheader, i1 0]
   br i1 %722741196, bb %floyd.while.body110_preheader, bb %floyd.while.exit111
-floyd.while.exit103:  pred(floyd.while.exit111, floyd.while.exit69)
+floyd.while.exit103:  pred(floyd.while.exit69, floyd.while.exit111)
   214305 = mul i32 %218, i32 %218
   512573791190 = icmp slt i32 0, i32 %214305
   br i1 %512573791190, bb %floyd.mem_move.while.body_preheader, bb %floyd.mem_move.while.exit
@@ -62,9 +62,9 @@ floyd.while.body110:  pred(floyd.while.exit119, floyd.while.body110_preheader)
   i108.phi3121189 = phi [bb %floyd.while.exit119, i32 %208330, bb %floyd.while.body110_preheader, i32 0]
   select132.phi2403101187 = phi [bb %floyd.while.exit119, i1 %select132.phi2403101180, bb %floyd.while.body110_preheader, i1 %select132.phi2412971193]
   br i1 %722741196, bb %floyd.while.body118_preheader, bb %floyd.while.exit119
-floyd.while.exit111:  pred(floyd.while.exit119, floyd.while.body102)
-  j.phi2372981186 = phi [bb %floyd.while.exit119, i32 %1181, bb %floyd.while.body102, i32 %j.phi2372981194]
-  select132.phi2412971185 = phi [bb %floyd.while.exit119, i1 %select132.phi2403101180, bb %floyd.while.body102, i1 %select132.phi2412971193]
+floyd.while.exit111:  pred(floyd.while.body102, floyd.while.body110_exclu_exit)
+  j.phi2372981186 = phi [bb %floyd.while.body110_exclu_exit, i32 %1181, bb %floyd.while.body102, i32 %j.phi2372981194]
+  select132.phi2412971185 = phi [bb %floyd.while.body110_exclu_exit, i1 %select132.phi2403101180, bb %floyd.while.body102, i1 %select132.phi2412971193]
   211318 = add i32 %k.phi2991195, i32 1
   106300 = icmp slt i32 %211318, i32 %218
   br i1 %106300, bb %floyd.while.body102, bb %floyd.while.exit103
@@ -85,12 +85,12 @@ floyd.while.body118.split:  pred(getvalue.then837, getvalue.if.exit839)
   20862 = icmp slt i32 %j.phi3221183, i32 0
   29870 = icmp sge i32 %j.phi3221183, i32 %218
   br i1 %128327, bb %floyd.select.then129, bb %floyd.select.else130
-floyd.while.exit119:  pred(floyd.if.exit140, floyd.while.body110)
-  1181 = phi [bb %floyd.if.exit140, i32 %205346, bb %floyd.while.body110, i32 0]
-  select132.phi2403101180 = phi [bb %floyd.if.exit140, i1 %select132.phi339, bb %floyd.while.body110, i1 %select132.phi2403101187]
+floyd.while.exit119:  pred(floyd.while.body110, floyd.while.body118_exclu_exit)
+  1181 = phi [bb %floyd.while.body118_exclu_exit, i32 %205346, bb %floyd.while.body110, i32 0]
+  select132.phi2403101180 = phi [bb %floyd.while.body118_exclu_exit, i1 %select132.phi339, bb %floyd.while.body110, i1 %select132.phi2403101187]
   208330 = add i32 %i108.phi3121189, i32 1
   114313 = icmp slt i32 %208330, i32 %218
-  br i1 %114313, bb %floyd.while.body110, bb %floyd.while.exit111
+  br i1 %114313, bb %floyd.while.body110, bb %floyd.while.body110_exclu_exit
 floyd.select.then129:  pred(floyd.while.body118.split)
   br i1 %20824, bb %getvalue.select.then851, bb %getvalue.select.else853
 floyd.select.then129.split:  pred(getvalue.then875, getvalue.if.exit877)
@@ -111,7 +111,7 @@ floyd.then139.split:  pred(getvalue.then913, getvalue.if.exit915)
 floyd.if.exit140:  pred(floyd.select.exit131, floyd.then146.split.split, floyd.else.split.split, floyd.then184.split.split)
   205346 = add i32 %j.phi3221183, i32 1
   122323 = icmp slt i32 %205346, i32 %218
-  br i1 %122323, bb %floyd.while.body118, bb %floyd.while.exit119
+  br i1 %122323, bb %floyd.while.body118, bb %floyd.while.body118_exclu_exit
 floyd.then146:  pred(floyd.then139.split)
   153350 = add i32 %37840, i32 %j.phi3221183
   1165 = shl i32 %153350, i32 2
@@ -161,7 +161,7 @@ floyd.mem_move.while.body:  pred(floyd.mem_move.while.body, floyd.mem_move.while
   63265387 = add i32 %i.phi2563781191, i32 1
   51257379 = icmp slt i32 %63265387, i32 %214305
   br i1 %51257379, bb %floyd.mem_move.while.body, bb %floyd.mem_move.while.exit
-floyd.mem_move.while.exit:  pred(floyd.mem_move.while.body, floyd.while.exit103)
+floyd.mem_move.while.exit:  pred(floyd.while.exit103, floyd.mem_move.while.body)
   call void _sysy_stoptime(i32 64)
   call void putarray(i32 %214305, ptr @dst)
   ret i32 0
@@ -455,6 +455,10 @@ getvalue.if.exit1143:  pred(getvalue.select.exit251138)
   411147 = ptradd ptr @temp, i32 %1176
   41.load1148 = load i32 from ptr %411147
   br bb %floyd.then184.split.split
+floyd.while.body118_exclu_exit:  pred(floyd.if.exit140)
+  br bb %floyd.while.exit119
+floyd.while.body110_exclu_exit:  pred(floyd.while.exit119)
+  br bb %floyd.while.exit111
 }
 
 external float getfloat()

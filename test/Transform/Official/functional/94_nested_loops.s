@@ -18,20 +18,20 @@ loop3:   # loop depth 0
   SD s3, 32(sp)
   ADD t4, zero, zero
   ADD t3, zero, zero
-  ADD s0, zero, zero
+  ADD t5, zero, zero
   ADD t2, zero, zero
   ADD t1, zero, zero
   ADD a7, zero, zero
   ADD t0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
-  SLTI t5, t3, 10
-  BNE t5, zero, bb4
+  SLTI s0, t3, 10
+  BNE s0, zero, bb4
   # implict jump to bb2
 bb2:   # loop depth 1
+  ADD a0, t0, zero
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD a0, t0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -40,23 +40,24 @@ bb3:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:   # loop depth 1
-  ADD t5, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 2
-  SLTI s1, t5, 100
+  SLTI s1, s0, 100
   BNE s1, zero, bb10
   # implict jump to bb6
 bb6:   # loop depth 2
   # implict jump to bb7
 bb7:   # loop depth 1
   ADDIW t3, t3, 1
-  SLT t5, t3, a0
-  XORI t5, t5, 1
-  BNE t5, zero, bb9
+  SLT s0, t3, a0
+  XORI s0, s0, 1
+  BNE s0, zero, bb9
   # implict jump to bb8
 bb8:   # loop depth 1
   JAL zero, bb1
 bb9:   # loop depth 0
+  ADD a0, t0, zero
   JAL zero, bb3
 bb10:   # loop depth 2
   ADD t4, zero, zero
@@ -68,8 +69,8 @@ bb11:   # loop depth 3
 bb12:   # loop depth 3
   # implict jump to bb13
 bb13:   # loop depth 2
-  ADDIW t5, t5, 1
-  SLT s1, t5, a1
+  ADDIW s0, s0, 1
+  SLT s1, s0, a1
   XORI s1, s1, 1
   BNE s1, zero, bb15
   # implict jump to bb14
@@ -78,12 +79,12 @@ bb14:   # loop depth 2
 bb15:   # loop depth 1
   JAL zero, bb7
 bb16:   # loop depth 3
-  ADD s0, zero, zero
+  ADD t5, zero, zero
   # implict jump to bb17
 bb17:   # loop depth 4
   LUI s1, 2
   ADDIW s1, s1, 1808
-  SLT s1, s0, s1
+  SLT s1, t5, s1
   BNE s1, zero, bb22
   # implict jump to bb18
 bb18:   # loop depth 4
@@ -110,8 +111,8 @@ bb23:   # loop depth 5
 bb24:   # loop depth 5
   # implict jump to bb25
 bb25:   # loop depth 4
-  ADDIW s0, s0, 1
-  SLT s1, s0, a3
+  ADDIW t5, t5, 1
+  SLT s1, t5, a3
   XORI s1, s1, 1
   BNE s1, zero, bb27
   # implict jump to bb26
@@ -171,13 +172,13 @@ bb40:   # loop depth 7
   ADD s1, s2, s1
   LUI s2, 1
   ADDIW s2, s2, -1216
-  MULW s2, t5, s2
+  MULW s2, s0, s2
   ADD s1, s1, s2
   ADDI s2, zero, 960
   MULW s2, t4, s2
   ADD s1, s1, s2
   ADDI s2, zero, 240
-  MULW s2, s0, s2
+  MULW s2, t5, s2
   ADD s1, s1, s2
   ADDI s2, zero, 48
   MULW s2, a7, s2
@@ -195,13 +196,13 @@ bb40:   # loop depth 7
   ADD s1, s3, s1
   LUI s3, 1
   ADDIW s3, s3, 1280
-  MULW s3, t5, s3
+  MULW s3, s0, s3
   ADD s1, s1, s3
   ADDI s3, zero, 1792
   MULW s3, t4, s3
   ADD s1, s1, s3
   ADDI s3, zero, 896
-  MULW s3, s0, s3
+  MULW s3, t5, s3
   ADD s1, s1, s3
   ADDI s3, zero, 224
   MULW s3, a7, s3

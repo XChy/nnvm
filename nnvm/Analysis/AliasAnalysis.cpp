@@ -20,7 +20,7 @@ AAFlag AliasAnalysis::alias(MemObj a, MemObj b) {
   return alias(a.getPointer(), b.getPointer());
 }
 
-AAFlag AliasAnalysis::alias(Instruction *a, Instruction *b) {
+AAFlag AliasAnalysis::alias(const Instruction *a, const Instruction *b) {
   if (b->isa<CallInst>())
     std::swap(a, b);
 
@@ -29,7 +29,7 @@ AAFlag AliasAnalysis::alias(Instruction *a, Instruction *b) {
     if (!rootObj->isa<StackInst>())
       return MayAlias;
 
-    for (Value *arg : cast<CallInst>(a)->collectArgs()) {
+    for (Value *arg : mayCast<CallInst>(a)->collectArgs()) {
       if (!arg->getType()->isPointer())
         continue;
       if (alias(rootObj, arg) != NotAlias)

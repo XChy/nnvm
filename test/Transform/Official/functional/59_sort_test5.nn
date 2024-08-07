@@ -33,7 +33,7 @@ entry136:  pred()
   167 = ptradd ptr %a, i32 36
   store i32 8 to ptr %167
   br bb %heap_sort.while.body95
-while.body175_preheader:  pred(heap_sort.while.exit116)
+while.body175_preheader:  pred(heap_sort.while.body115_exclu_exit)
   br bb %while.body175
 while.body175:  pred(while.body175, while.body175_preheader)
   i169.phi583 = phi [bb %while.body175, i32 %194, bb %while.body175_preheader, i32 0]
@@ -46,7 +46,7 @@ while.body175:  pred(while.body175, while.body175_preheader)
   n.load178 = load i32 from ptr @n
   179 = icmp slt i32 %194, i32 %n.load178
   br i1 %179, bb %while.body175, bb %while.exit176
-while.exit176:  pred(while.body175, heap_sort.while.exit116)
+while.exit176:  pred(heap_sort.while.body115_exclu_exit, while.body175)
   ret i32 0
 heap_sort.while.body95:  pred(heap_sort.while.body95.split, entry136)
   i.phi196230589 = phi [bb %heap_sort.while.body95.split, i32 %209236, bb %entry136, i32 4]
@@ -57,11 +57,9 @@ heap_sort.while.body95:  pred(heap_sort.while.body95.split, entry136)
 heap_sort.while.body95.split:  pred(heap_ajust.else403, heap_ajust.if.exit391, heap_sort.while.body95)
   209236 = add i32 %i.phi196230589, i32 -1
   99231 = icmp sgt i32 %209236, i32 -1
-  br i1 %99231, bb %heap_sort.while.body95, bb %heap_sort.while.exit96
-heap_sort.while.exit96:  pred(heap_sort.while.body95.split)
-  br bb %heap_sort.while.body115
-heap_sort.while.body115:  pred(heap_sort.while.body115.split, heap_sort.while.exit96)
-  i.phi242585 = phi [bb %heap_sort.while.body115.split, i32 %211247, bb %heap_sort.while.exit96, i32 9]
+  br i1 %99231, bb %heap_sort.while.body95, bb %heap_sort.while.body95_exclu_exit
+heap_sort.while.body115:  pred(heap_sort.while.body115.split, heap_sort.while.body95_exclu_exit)
+  i.phi242585 = phi [bb %heap_sort.while.body115.split, i32 %211247, bb %heap_sort.while.body95_exclu_exit, i32 9]
   7.load489 = load i32 from ptr %a
   564 = shl i32 %i.phi242585, i32 2
   15491 = ptradd ptr %a, i32 %564
@@ -73,9 +71,7 @@ heap_sort.while.body115:  pred(heap_sort.while.body115.split, heap_sort.while.ex
   br i1 %39418578, bb %heap_ajust.while.body420_preheader, bb %heap_sort.while.body115.split
 heap_sort.while.body115.split:  pred(heap_ajust.else455, heap_ajust.if.exit443, heap_sort.while.body115)
   118243 = icmp sgt i32 %211247, i32 0
-  br i1 %118243, bb %heap_sort.while.body115, bb %heap_sort.while.exit116
-heap_sort.while.exit116:  pred(heap_sort.while.body115.split)
-  br i1 -1, bb %while.body175_preheader, bb %while.exit176
+  br i1 %118243, bb %heap_sort.while.body115, bb %heap_sort.while.body115_exclu_exit
 heap_ajust.while.body368_preheader:  pred(heap_sort.while.body95)
   br bb %heap_ajust.while.body368
 heap_ajust.while.body368:  pred(heap_ajust.else403, heap_ajust.while.body368_preheader)
@@ -162,6 +158,10 @@ heap_ajust.else455:  pred(heap_ajust.if.exit443)
   85458 = add i32 %574, i32 1
   39418 = icmp slt i32 %85458, i32 %i.phi242585
   br i1 %39418, bb %heap_ajust.while.body420, bb %heap_sort.while.body115.split
+heap_sort.while.body95_exclu_exit:  pred(heap_sort.while.body95.split)
+  br bb %heap_sort.while.body115
+heap_sort.while.body115_exclu_exit:  pred(heap_sort.while.body115.split)
+  br i1 -1, bb %while.body175_preheader, bb %while.exit176
 }
 
 external float getfloat()

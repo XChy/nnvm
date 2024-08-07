@@ -72,7 +72,7 @@ bb8:   # loop depth 1
   XORI t0, t0, 1
   BNE t0, zero, bb10
   # implict jump to bb9
-bb9:   # loop depth 1
+bb9:   # loop depth 0
   JAL zero, bb4
 bb10:   # loop depth 1
   JAL zero, bb6

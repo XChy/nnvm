@@ -108,7 +108,7 @@ while.body:  pred(if.exit, while.body_preheader)
   16 = call i32 getint()
   18 = icmp sgt i32 %16, i32 0
   br i1 %18, bb %select.then, bb %select.else
-while.exit:  pred(if.exit, entry)
+while.exit:  pred(entry, if.exit)
   ret i32 0
 select.then:  pred(while.body)
   24 = icmp slt i32 %16, i32 100

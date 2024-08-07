@@ -154,7 +154,7 @@ bb15:   # loop depth 2
   LW s0, 0(s0)
   BNE s0, zero, bb17
   # implict jump to bb16
-bb16:   # loop depth 2
+bb16:   # loop depth 1
   JAL zero, bb13
 bb17:   # loop depth 2
   JAL zero, bb15

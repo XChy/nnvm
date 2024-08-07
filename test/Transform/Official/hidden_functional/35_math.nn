@@ -195,8 +195,8 @@ while.body73:  pred(while.body73, if.exit52)
   84 = fdiv float %82, float %64
   408 = add i32 %c.phi1509, i32 -1
   76 = icmp ne i32 %408, i32 0
-  br i1 %76, bb %while.body73, bb %while.exit74
-while.exit74:  pred(while.body73)
+  br i1 %76, bb %while.body73, bb %while.body73_exclu_exit
+while.body73_exclu_exit:  pred(while.body73)
   ret float %84
 }
 
@@ -222,8 +222,8 @@ while.body:  pred(if.exit33, while.body_preheader)
   409 = and i32 %n.stack.phi1514, i32 1
   410 = icmp ne i32 %409, i32 0
   br i1 %410, bb %then32, bb %if.exit33
-while.exit:  pred(if.exit33, if.exit16)
-  1512 = phi [bb %if.exit33, float %res.phi, bb %if.exit16, float 1.000000]
+while.exit:  pred(if.exit16, while.body_exclu_exit)
+  1512 = phi [bb %while.body_exclu_exit, float %res.phi, bb %if.exit16, float 1.000000]
   ret float %1512
 then32:  pred(while.body)
   37 = fmul float %res.phi4021513, float %a.stack.phi1515
@@ -233,7 +233,9 @@ if.exit33:  pred(while.body, then32)
   41 = fmul float %a.stack.phi1515, float %a.stack.phi1515
   44 = sdiv i32 %n.stack.phi1514, i32 2
   28 = icmp ne i32 %44, i32 0
-  br i1 %28, bb %while.body, bb %while.exit
+  br i1 %28, bb %while.body, bb %while.body_exclu_exit
+while.body_exclu_exit:  pred(if.exit33)
+  br bb %while.exit
 }
 
 external i32 getint()
@@ -278,7 +280,7 @@ while.body327.split:  pred(my_fabs.then1501, my_fabs.if.exit1503)
   call void putfloat(float %348)
   call void putch(i32 32)
   br i1 %41499, bb %then354, bb %else
-while.exit328:  pred(if.exit386, entry323)
+while.exit328:  pred(entry323, if.exit386)
   ret i32 0
 then354:  pred(while.body327.split)
   112791 = fsub float %332, float %304446

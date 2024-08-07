@@ -55,7 +55,7 @@ bb4:   # loop depth 1
   SLLIW s0, s1, 2
   BLT s1, s2, bb6
   # implict jump to bb5
-bb5:   # loop depth 1
+bb5:   # loop depth 0
   JAL zero, bb2
 bb6:   # loop depth 1
   JAL zero, bb4

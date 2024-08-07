@@ -31,7 +31,7 @@ while.body:  pred(while.body, while.body_preheader)
   16456 = add i32 %i.phi18605, i32 1
   16438 = icmp sle i32 %16456, i32 20
   br i1 %16438, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, entry16432)
+while.exit:  pred(entry16432, while.body)
   ret i32 0
 }
 

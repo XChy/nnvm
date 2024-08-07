@@ -67,7 +67,7 @@ while.body_preheader:  pred(entry68)
 while.body:  pred(while.exit184, while.body_preheader)
   i.phi582719 = phi [bb %while.exit184, i32 %240, bb %while.body_preheader, i32 0]
   br i1 %187682, bb %while.body183_preheader, bb %while.exit184
-while.exit:  pred(while.exit184, entry68)
+while.exit:  pred(entry68, while.exit184)
   br i1 %176718, bb %while.body243_preheader, bb %while.exit244
 while.body183_preheader:  pred(while.body)
   190 = mul i32 %i.phi582719, i32 1080
@@ -95,7 +95,7 @@ while.body183:  pred(while.body183, while.body183_preheader)
   237 = add i32 %j.phi562686, i32 1
   187 = icmp slt i32 %237, i32 %h
   br i1 %187, bb %while.body183, bb %while.exit184
-while.exit184:  pred(while.body183, while.body)
+while.exit184:  pred(while.body, while.body183)
   240 = add i32 %i.phi582719, i32 1
   176 = icmp slt i32 %240, i32 %w
   br i1 %176, bb %while.body, bb %while.exit
@@ -106,7 +106,7 @@ while.body243_preheader:  pred(while.exit)
 while.body243:  pred(while.exit258, while.body243_preheader)
   i.phi583717 = phi [bb %while.exit258, i32 %309, bb %while.body243_preheader, i32 0]
   br i1 %260687, bb %while.body257_preheader, bb %while.exit258
-while.exit244:  pred(while.exit258, while.exit)
+while.exit244:  pred(while.exit, while.exit258)
   br i1 %176718, bb %while.body312_preheader, bb %while.exit313
 while.body257_preheader:  pred(while.body243)
   263 = mul i32 %i.phi583717, i32 1080
@@ -134,7 +134,7 @@ while.body257:  pred(while.body257, while.body257_preheader)
   608 = add i32 %j.phi560692, i32 -1
   260 = icmp sge i32 %608, i32 0
   br i1 %260, bb %while.body257, bb %while.exit258
-while.exit258:  pred(while.body257, while.body243)
+while.exit258:  pred(while.body243, while.body257)
   309 = add i32 %i.phi583717, i32 1
   247 = icmp slt i32 %309, i32 %w
   br i1 %247, bb %while.body243, bb %while.exit244
@@ -144,7 +144,7 @@ while.body312_preheader:  pred(while.exit244)
 while.body312:  pred(while.exit321, while.body312_preheader)
   i.phi581715 = phi [bb %while.exit321, i32 %355, bb %while.body312_preheader, i32 0]
   br i1 %324693, bb %while.body320_preheader, bb %while.exit321
-while.exit313:  pred(while.exit321, while.exit244)
+while.exit313:  pred(while.exit244, while.exit321)
   362712 = icmp slt i32 0, i32 %h
   br i1 %362712, bb %while.body358_preheader, bb %while.exit359
 while.body320_preheader:  pred(while.body312)
@@ -167,7 +167,7 @@ while.body320:  pred(while.body320, while.body320_preheader)
   352 = add i32 %j.phi558694, i32 1
   324 = icmp slt i32 %352, i32 %h
   br i1 %324, bb %while.body320, bb %while.exit321
-while.exit321:  pred(while.body320, while.body312)
+while.exit321:  pred(while.body312, while.body320)
   355 = add i32 %i.phi581715, i32 1
   316 = icmp slt i32 %355, i32 %w
   br i1 %316, bb %while.body312, bb %while.exit313
@@ -176,7 +176,7 @@ while.body358_preheader:  pred(while.exit313)
 while.body358:  pred(while.exit370, while.body358_preheader)
   j.phi557713 = phi [bb %while.exit370, i32 %426, bb %while.body358_preheader, i32 0]
   br i1 %176718, bb %while.body369_preheader, bb %while.exit370
-while.exit359:  pred(while.exit370, while.exit313)
+while.exit359:  pred(while.exit313, while.exit370)
   br i1 %362712, bb %while.body429_preheader, bb %while.exit430
 while.body369_preheader:  pred(while.body358)
   679 = shl i32 %j.phi557713, i32 2
@@ -204,7 +204,7 @@ while.body369:  pred(while.body369, while.body369_preheader)
   423 = add i32 %i.phi579698, i32 1
   373 = icmp slt i32 %423, i32 %w
   br i1 %373, bb %while.body369, bb %while.exit370
-while.exit370:  pred(while.body369, while.body358)
+while.exit370:  pred(while.body358, while.body369)
   426 = add i32 %j.phi557713, i32 1
   362 = icmp slt i32 %426, i32 %h
   br i1 %362, bb %while.body358, bb %while.exit359
@@ -215,7 +215,7 @@ while.body429_preheader:  pred(while.exit359)
 while.body429:  pred(while.exit444, while.body429_preheader)
   j.phi556711 = phi [bb %while.exit444, i32 %495, bb %while.body429_preheader, i32 0]
   br i1 %446700, bb %while.body443_preheader, bb %while.exit444
-while.exit430:  pred(while.exit444, while.exit359)
+while.exit430:  pred(while.exit359, while.exit444)
   br i1 %176718, bb %while.body498_preheader, bb %while.exit499
 while.body443_preheader:  pred(while.body429)
   680 = shl i32 %j.phi556711, i32 2
@@ -243,7 +243,7 @@ while.body443:  pred(while.body443, while.body443_preheader)
   620 = add i32 %i.phi577704, i32 -1
   446 = icmp sge i32 %620, i32 0
   br i1 %446, bb %while.body443, bb %while.exit444
-while.exit444:  pred(while.body443, while.body429)
+while.exit444:  pred(while.body429, while.body443)
   495 = add i32 %j.phi556711, i32 1
   433 = icmp slt i32 %495, i32 %h
   br i1 %433, bb %while.body429, bb %while.exit430
@@ -252,7 +252,7 @@ while.body498_preheader:  pred(while.exit430)
 while.body498:  pred(while.exit507, while.body498_preheader)
   i.phi709 = phi [bb %while.exit507, i32 %541, bb %while.body498_preheader, i32 0]
   br i1 %362712, bb %while.body506_preheader, bb %while.exit507
-while.exit499:  pred(while.exit507, while.exit430)
+while.exit499:  pred(while.exit430, while.exit507)
   ret 
 while.body506_preheader:  pred(while.body498)
   513 = mul i32 %i.phi709, i32 1080
@@ -274,7 +274,7 @@ while.body506:  pred(while.body506, while.body506_preheader)
   538 = add i32 %j.phi707, i32 1
   510 = icmp slt i32 %538, i32 %h
   br i1 %510, bb %while.body506, bb %while.exit507
-while.exit507:  pred(while.body506, while.body498)
+while.exit507:  pred(while.body498, while.body506)
   541 = add i32 %i.phi709, i32 1
   502 = icmp slt i32 %541, i32 %w
   br i1 %502, bb %while.body498, bb %while.exit499

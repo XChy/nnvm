@@ -40,7 +40,7 @@ while.body:  pred(while.exit19, while.body_preheader)
   16 = add i32 %i.phi327455, i32 1
   22439 = icmp slt i32 %16, i32 %n
   br i1 %22439, bb %while.body18_preheader, bb %while.exit19
-while.exit:  pred(while.exit19, entry)
+while.exit:  pred(entry, while.exit19)
   284449 = icmp slt i32 0, i32 %n
   br i1 %284449, bb %while.body280_preheader, bb %while.exit281
 while.body18_preheader:  pred(while.body)
@@ -54,10 +54,10 @@ while.body18:  pred(while.exit215, while.body18_preheader)
   415 = shl i32 %j.phi333445, i32 2
   416 = shl i32 %344, i32 2
   br i1 %26, bb %then, bb %if.exit
-while.exit19:  pred(while.exit215, while.body)
-  k.phi330442 = phi [bb %while.exit215, i32 %16437, bb %while.body, i32 %k.phi330454]
-  select.phi337441 = phi [bb %while.exit215, i1 %select.phi, bb %while.body, i1 %select.phi337453]
-  temp.phi342440 = phi [bb %while.exit215, i32 %temp.phi340, bb %while.body, i32 %temp.phi342452]
+while.exit19:  pred(while.body, while.body18_exclu_exit)
+  k.phi330442 = phi [bb %while.body18_exclu_exit, i32 %16437, bb %while.body, i32 %k.phi330454]
+  select.phi337441 = phi [bb %while.body18_exclu_exit, i1 %select.phi, bb %while.body, i1 %select.phi337453]
+  temp.phi342440 = phi [bb %while.body18_exclu_exit, i32 %temp.phi340, bb %while.body, i32 %temp.phi342452]
   345 = add i32 %i.phi327455, i32 -1
   12 = icmp sge i32 %345, i32 0
   br i1 %12, bb %while.body, bb %while.exit
@@ -168,11 +168,11 @@ while.body214:  pred(if.exit245, while.body214_preheader)
   242 = add i32 %232.load, i32 %240.load
   243 = icmp slt i32 %225.load, i32 %242
   br i1 %243, bb %then244, bb %if.exit245
-while.exit215:  pred(if.exit245, if.exit114)
-  16437 = phi [bb %if.exit245, i32 %235, bb %if.exit114, i32 %16]
+while.exit215:  pred(if.exit114, while.body214_exclu_exit)
+  16437 = phi [bb %while.body214_exclu_exit, i32 %235, bb %if.exit114, i32 %16]
   274 = add i32 %j.phi333445, i32 1
   22 = icmp slt i32 %274, i32 %n
-  br i1 %22, bb %while.body18, bb %while.exit19
+  br i1 %22, bb %while.body18, bb %while.body18_exclu_exit
 then244:  pred(while.body214)
   258.load = load i32 from ptr %232
   266.load = load i32 from ptr %413
@@ -181,13 +181,13 @@ then244:  pred(while.body214)
   br bb %if.exit245
 if.exit245:  pred(while.body214, then244)
   218 = icmp slt i32 %235, i32 %j.phi333445
-  br i1 %218, bb %while.body214, bb %while.exit215
+  br i1 %218, bb %while.body214, bb %while.body214_exclu_exit
 while.body280_preheader:  pred(while.exit)
   br bb %while.body280
 while.body280:  pred(while.exit289, while.body280_preheader)
   i.phi450 = phi [bb %while.exit289, i32 %314, bb %while.body280_preheader, i32 0]
   br i1 %284449, bb %while.body288_preheader, bb %while.exit289
-while.exit281:  pred(while.exit289, while.exit)
+while.exit281:  pred(while.exit, while.exit289)
   ret 
 while.body288_preheader:  pred(while.body280)
   295 = mul i32 %i.phi450, i32 5600
@@ -203,10 +203,14 @@ while.body288:  pred(while.body288, while.body288_preheader)
   311 = add i32 %j.phi448, i32 1
   292 = icmp slt i32 %311, i32 %n
   br i1 %292, bb %while.body288, bb %while.exit289
-while.exit289:  pred(while.body288, while.body280)
+while.exit289:  pred(while.body280, while.body288)
   314 = add i32 %i.phi450, i32 1
   284 = icmp slt i32 %314, i32 %n
   br i1 %284, bb %while.body280, bb %while.exit281
+while.body214_exclu_exit:  pred(if.exit245)
+  br bb %while.exit215
+while.body18_exclu_exit:  pred(while.exit215)
+  br bb %while.exit19
 }
 
 external float getfloat()

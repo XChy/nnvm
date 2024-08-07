@@ -105,7 +105,7 @@ read_image.while.body:  pred(read_image.while.exit146, read_image.while.body_pre
   width.load148675707 = load i32 from ptr @width
   149676708 = icmp slt i32 0, i32 %width.load148675707
   br i1 %149676708, bb %read_image.while.body145_preheader, bb %read_image.while.exit146
-read_image.while.exit:  pred(read_image.while.exit146, read_image.if.exit133)
+read_image.while.exit:  pred(read_image.if.exit133, read_image.while.exit146)
   br bb %entry298.split
 read_image.while.body145_preheader:  pred(read_image.while.body)
   br bb %read_image.while.body145
@@ -122,7 +122,7 @@ read_image.while.body145:  pred(read_image.while.body145, read_image.while.body1
   width.load148675 = load i32 from ptr @width
   149676 = icmp slt i32 %162686, i32 %width.load148675
   br i1 %149676, bb %read_image.while.body145, bb %read_image.while.exit146
-read_image.while.exit146:  pred(read_image.while.body145, read_image.while.body)
+read_image.while.exit146:  pred(read_image.while.body, read_image.while.body145)
   165689 = add i32 %y.phi665712, i32 1
   height.load140666 = load i32 from ptr @height
   141667 = icmp slt i32 %165689, i32 %height.load140666
@@ -156,7 +156,7 @@ while.body271:  pred(while.exit280, while.body271_preheader)
   width.load282713 = load i32 from ptr @width
   283714 = icmp slt i32 0, i32 %width.load282713
   br i1 %283714, bb %while.body279_preheader, bb %while.exit280
-while.exit272:  pred(while.exit280, entry256)
+while.exit272:  pred(entry256, while.exit280)
   ret 
 while.body279_preheader:  pred(while.body271)
   40484 = fcmp ogt float %rad, float 6.283185
@@ -178,7 +178,7 @@ while.body279.split:  pred(rotate.then246, rotate.if.exit247)
   width.load282 = load i32 from ptr @width
   283 = icmp slt i32 %293, i32 %width.load282
   br i1 %283, bb %while.body279, bb %while.exit280
-while.exit280:  pred(while.body279.split, while.body271)
+while.exit280:  pred(while.body271, while.body279.split)
   call void putch(i32 10)
   297 = add i32 %y269.phi718, i32 1
   height.load274 = load i32 from ptr @height

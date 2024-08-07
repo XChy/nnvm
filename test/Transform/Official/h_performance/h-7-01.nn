@@ -33,7 +33,7 @@ while.body66.split:  pred(newtons_sqrt.then, newtons_sqrt.while.exit)
   83 = add i32 %i.phi149, i32 1
   70 = icmp slt i32 %83, i32 %62
   br i1 %70, bb %while.body66, bb %while.exit67
-while.exit67:  pred(while.body66.split, entry60)
+while.exit67:  pred(entry60, while.body66.split)
   call void _sysy_stoptime(i32 41)
   call void putfarray(i32 %62, ptr @o_buf)
   ret i32 0
@@ -64,8 +64,8 @@ newtons_sqrt.while.body:  pred(newtons_sqrt.if.exit47, newtons_sqrt.while.body_p
   42126 = fmul float %41125, float 0.500000
   45127 = fcmp olt float %x.phi120147, float %42126
   br i1 %45127, bb %newtons_sqrt.then46, bb %newtons_sqrt.else48
-newtons_sqrt.while.exit:  pred(newtons_sqrt.if.exit47, newtons_sqrt.if.exit20)
-  14105144 = phi [bb %newtons_sqrt.if.exit47, float %42126, bb %newtons_sqrt.if.exit20, float %14105]
+newtons_sqrt.while.exit:  pred(newtons_sqrt.if.exit20, newtons_sqrt.while.body_exclu_exit)
+  14105144 = phi [bb %newtons_sqrt.while.body_exclu_exit, float %42126, bb %newtons_sqrt.if.exit20, float %14105]
   br bb %while.body66.split
 newtons_sqrt.then46:  pred(newtons_sqrt.while.body)
   52132 = fsub float %42126, float %x.phi120147
@@ -73,10 +73,12 @@ newtons_sqrt.then46:  pred(newtons_sqrt.while.body)
 newtons_sqrt.if.exit47:  pred(newtons_sqrt.then46, newtons_sqrt.else48)
   d.phi135 = phi [bb %newtons_sqrt.else48, float %56138, bb %newtons_sqrt.then46, float %52132]
   34121 = fcmp ogt float %d.phi135, float 0.000000
-  br i1 %34121, bb %newtons_sqrt.while.body, bb %newtons_sqrt.while.exit
+  br i1 %34121, bb %newtons_sqrt.while.body, bb %newtons_sqrt.while.body_exclu_exit
 newtons_sqrt.else48:  pred(newtons_sqrt.while.body)
   56138 = fsub float %x.phi120147, float %42126
   br bb %newtons_sqrt.if.exit47
+newtons_sqrt.while.body_exclu_exit:  pred(newtons_sqrt.if.exit47)
+  br bb %newtons_sqrt.while.exit
 }
 
 external float getfloat()

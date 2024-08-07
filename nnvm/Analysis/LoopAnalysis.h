@@ -45,6 +45,9 @@ public:
   BasicBlock *getSingleLatch() const;
   std::set<BasicBlock *> getLatches() const;
 
+  BasicBlock *getSingleExit() const;
+  BasicBlock *getSingleEdgedExit() const;
+  BasicBlock *getExclusiveExit() const;
   const std::vector<ExitEdge> &getExitEdges() const { return exitEdges; }
   std::set<BasicBlock *> getExits() const;
 

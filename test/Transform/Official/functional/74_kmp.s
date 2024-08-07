@@ -55,7 +55,7 @@ bb2:   # loop depth 1
   # implict jump to bb3
 bb3:   # loop depth 1
   JAL zero, bb2
-bb4:   # loop depth 1
+bb4:   # loop depth 0
   # implict jump to bb5
 bb5:   # loop depth 0
   SW zero, 0(s1)
@@ -88,7 +88,7 @@ bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   JAL zero, bb7
-bb9:   # loop depth 1
+bb9:   # loop depth 0
   # implict jump to bb10
 bb10:   # loop depth 0
   SW zero, 0(s1)

@@ -36,7 +36,7 @@ while.body97:  pred(while.body97, while.body97_preheader)
   m.load100 = load i32 from ptr @m
   101 = icmp slt i32 %119, i32 %m.load100
   br i1 %101, bb %while.body97, bb %while.exit98
-while.exit98:  pred(while.body97, entry89)
+while.exit98:  pred(entry89, while.body97)
   m.load125245 = load i32 from ptr @m
   126246 = icmp slt i32 0, i32 %m.load125245
   br i1 %126246, bb %while.body122_preheader, bb %while.exit123
@@ -63,7 +63,7 @@ while.body122:  pred(while.body122, while.body122_preheader)
   164 = add i32 %i95.phi247, i32 1
   126 = icmp slt i32 %164, i32 %m.load125
   br i1 %126, bb %while.body122, bb %while.exit123
-while.exit123:  pred(while.body122, while.exit98)
+while.exit123:  pred(while.exit98, while.body122)
   165 = call i32 maxCliques(i32 0, i32 1)
   call void putint(i32 %165)
   ret i32 0
@@ -97,8 +97,8 @@ while.body49.split:  pred(is_clique.while.exit, is_clique.then)
   62.ret = phi [bb %is_clique.while.exit, i32 1, bb %is_clique.then, i32 0]
   63 = icmp ne i32 %62.ret, i32 0
   br i1 %63, bb %then64, bb %if.exit65
-while.exit50:  pred(if.exit65, entry42)
-  253 = phi [bb %if.exit65, i32 %max_.phi173, bb %entry42, i32 0]
+while.exit50:  pred(entry42, while.body49_exclu_exit)
+  253 = phi [bb %while.body49_exclu_exit, i32 %max_.phi173, bb %entry42, i32 0]
   ret i32 %253
 then64:  pred(while.body49.split)
   68 = icmp sgt i32 %k, i32 %max_.phi174256
@@ -109,7 +109,7 @@ if.exit65:  pred(while.body49.split, if.exit82)
   87 = add i32 %j46.phi255, i32 1
   n.load = load i32 from ptr @n
   53 = icmp sle i32 %87, i32 %n.load
-  br i1 %53, bb %while.body49, bb %while.exit50
+  br i1 %53, bb %while.body49, bb %while.body49_exclu_exit
 then69:  pred(then64)
   br bb %if.exit70
 if.exit70:  pred(then64, then69)
@@ -156,6 +156,8 @@ is_clique.then:  pred(is_clique.while.body14)
 is_clique.if.exit:  pred(is_clique.while.body14)
   38226 = add i32 %j.phi204, i32 1
   br bb %is_clique.while.cond13
+while.body49_exclu_exit:  pred(if.exit65)
+  br bb %while.exit50
 }
 
 external void putarray(i32 , ptr )

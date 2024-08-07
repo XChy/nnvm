@@ -39,7 +39,7 @@ while.body116:  pred(while.body116, while.body116_preheader)
   123.load = load i32 from ptr %123
   125 = icmp ne i32 %123.load, i32 0
   br i1 %125, bb %while.body116, bb %while.exit117
-while.exit117:  pred(while.body116, entry106)
+while.exit117:  pred(entry106, while.body116)
   153 = ptradd ptr @head, i32 %894
   153.load = load i32 from ptr %153
   160909 = icmp ne i32 %153.load, i32 -1
@@ -57,7 +57,7 @@ while.body156:  pred(while.body156, while.body156_preheader)
   174.load = load i32 from ptr %174
   160 = icmp ne i32 %174.load, i32 -1
   br i1 %160, bb %while.body156, bb %while.exit157
-while.exit157:  pred(while.body156, while.exit117)
+while.exit157:  pred(while.exit117, while.body156)
   ret 
 }
 
@@ -114,7 +114,7 @@ while.body314.split655.split:  pred(quick_read.then49761, quick_read.else764)
   n.load317 = load i32 from ptr @n
   318 = icmp ne i32 %329, i32 %n.load317
   br i1 %318, bb %while.body314, bb %while.exit315
-while.exit315:  pred(while.body314.split655.split, init.while.exit93)
+while.exit315:  pred(init.while.exit93, while.body314.split655.split)
   call void tree(i32 1, i32 1)
   m.load334939 = load i32 from ptr @m
   335940 = icmp ne i32 %m.load334939, i32 0
@@ -145,7 +145,7 @@ while.body332.split:  pred(LCA.then254, LCA.while.exit260)
   store i32 %407 to ptr @m
   335 = icmp ne i32 %407, i32 0
   br i1 %335, bb %while.body332, bb %while.exit333
-while.exit333:  pred(while.body332.split, while.exit315)
+while.exit333:  pred(while.exit315, while.body332.split)
   ret i32 0
 LCA.then188:  pred(while.body332.split767.split)
   br bb %LCA.if.exit189
@@ -172,8 +172,8 @@ LCA.while.body198:  pred(LCA.if.exit239, LCA.while.body198_preheader)
   215.load441 = load i32 from ptr %215440
   217442 = icmp ne i32 %215.load441, i32 0
   br i1 %217442, bb %LCA.select.then218, bb %LCA.select.else219
-LCA.while.exit199:  pred(LCA.if.exit239, LCA.if.exit189)
-  x.stack177.phi352423935 = phi [bb %LCA.if.exit239, i32 %x.stack177.phi350464, bb %LCA.if.exit189, i32 %x.stack177.phi352423]
+LCA.while.exit199:  pred(LCA.if.exit189, LCA.while.body198_exclu_exit)
+  x.stack177.phi352423935 = phi [bb %LCA.while.body198_exclu_exit, i32 %x.stack177.phi350464, bb %LCA.if.exit189, i32 %x.stack177.phi352423]
   253445 = icmp eq i32 %x.stack177.phi352423935, i32 %y.stack.phi355422
   br i1 %253445, bb %LCA.then254, bb %LCA.if.exit255
 LCA.select.then218:  pred(LCA.while.body198)
@@ -196,7 +196,7 @@ LCA.if.exit239:  pred(LCA.select.exit220, LCA.then238)
   202429 = ptradd ptr @dep, i32 %903
   202.load430 = load i32 from ptr %202429
   208434 = icmp sgt i32 %202.load430, i32 %206.load433933
-  br i1 %208434, bb %LCA.while.body198, bb %LCA.while.exit199
+  br i1 %208434, bb %LCA.while.body198, bb %LCA.while.body198_exclu_exit
 LCA.then254:  pred(LCA.while.exit199)
   br bb %while.body332.split
 LCA.if.exit255:  pred(LCA.while.exit199)
@@ -220,8 +220,8 @@ LCA.while.body259:  pred(LCA.if.exit280, LCA.while.body259_preheader)
   276.load486 = load i32 from ptr %276485
   278487 = icmp ne i32 %269.load482, i32 %276.load486
   br i1 %278487, bb %LCA.then279, bb %LCA.if.exit280
-LCA.while.exit260:  pred(LCA.if.exit280, LCA.if.exit255)
-  265478922923 = phi [bb %LCA.if.exit280, i32 %265478, bb %LCA.if.exit255, i32 %265478922]
+LCA.while.exit260:  pred(LCA.if.exit255, LCA.while.body259_exclu_exit)
+  265478922923 = phi [bb %LCA.while.body259_exclu_exit, i32 %265478, bb %LCA.if.exit255, i32 %265478922]
   302491 = ptradd ptr @f, i32 %265478922923
   304.load492 = load i32 from ptr %302491
   br bb %while.body332.split
@@ -233,7 +233,7 @@ LCA.if.exit280:  pred(LCA.while.body259, LCA.then279)
   393501 = add i32 %i196.phi472924, i32 -1
   262475 = icmp sge i32 %393501, i32 0
   265478 = mul i32 %x.stack177.phi500, i32 80
-  br i1 %262475, bb %LCA.while.body259, bb %LCA.while.exit260
+  br i1 %262475, bb %LCA.while.body259, bb %LCA.while.body259_exclu_exit
 init.while.body92_preheader:  pred(entry306.split543.split)
   br bb %init.while.body92
 init.while.body92:  pred(init.while.body92, init.while.body92_preheader)
@@ -244,7 +244,7 @@ init.while.body92:  pred(init.while.body92, init.while.body92_preheader)
   105517 = add i32 %i.phi509946, i32 1
   96511 = icmp sle i32 %105517, i32 %n.load510944
   br i1 %96511, bb %init.while.body92, bb %init.while.exit93
-init.while.exit93:  pred(init.while.body92, entry306.split543.split)
+init.while.exit93:  pred(entry306.split543.split, init.while.body92)
   318942 = icmp ne i32 1, i32 %n.load510944
   br i1 %318942, bb %while.body314_preheader, bb %while.exit315
 quick_read.while.cond:  pred(entry306, quick_read.if.exit)
@@ -553,6 +553,10 @@ quick_read.then49873:  pred(quick_read.while.exit28862)
   br bb %while.body332.split767.split
 quick_read.else876:  pred(quick_read.while.exit28862)
   br bb %while.body332.split767.split
+LCA.while.body198_exclu_exit:  pred(LCA.if.exit239)
+  br bb %LCA.while.exit199
+LCA.while.body259_exclu_exit:  pred(LCA.if.exit280)
+  br bb %LCA.while.exit260
 }
 
 external float getfloat()

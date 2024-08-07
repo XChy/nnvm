@@ -34,15 +34,12 @@ while.body182:  pred(while.body182, while.body182_preheader)
   195 = add i32 %i180.phi252710, i32 1
   186 = icmp slt i32 %195, i32 %n.phi
   br i1 %186, bb %while.body182, bb %while.exit183
-while.exit183:  pred(while.body182, if.exit)
+while.exit183:  pred(if.exit, while.body182)
   48308705 = si2f i32 0 to float
   br bb %while.body198
 while.body198:  pred(mult2.while.exit94535, while.exit183)
   i180.phi707 = phi [bb %mult2.while.exit94535, i32 %209, bb %while.exit183, i32 0]
   br i1 %186709, bb %mult1.while.body50316_preheader, bb %mult1.while.exit51318
-while.exit199:  pred(mult2.while.exit94535)
-  call void _sysy_stoptime(i32 76)
-  br i1 %186709, bb %Vectordot.while.body_preheader, bb %Vectordot.while.exit
 select.then221:  pred(my_sqrt.while.exit139)
   228 = fcmp oge float %219, float %155402
   br bb %select.exit223
@@ -68,7 +65,7 @@ mult1.while.body50316:  pred(mult1.while.exit58335, mult1.while.body50316_prehea
   sum47.phi240311693 = phi [bb %mult1.while.exit58335, float %sum47.phi240311661, bb %mult1.while.body50316_preheader, float %48308705]
   61323660 = icmp slt i32 %j.phi238312694, i32 %n.phi
   br i1 %61323660, bb %mult1.while.body57325_preheader, bb %mult1.while.exit58335
-mult1.while.exit51318:  pred(mult1.while.exit58335, while.body198)
+mult1.while.exit51318:  pred(while.body198, mult1.while.exit58335)
   br i1 %186709, bb %mult2.while.body93498_preheader, bb %mult2.while.exit94500
 mult1.while.body57325_preheader:  pred(mult1.while.body50316)
   br bb %mult1.while.body57325
@@ -89,10 +86,10 @@ mult1.while.body57325:  pred(mult1.while.body57325, mult1.while.body57325_prehea
   74332 = fadd float %sum47.phi321663, float %73331
   77333 = add i32 %j.phi322664, i32 1
   61323 = icmp slt i32 %77333, i32 %n.phi
-  br i1 %61323, bb %mult1.while.body57325, bb %mult1.while.exit58335
-mult1.while.exit58335:  pred(mult1.while.body57325, mult1.while.body50316)
-  j.phi238312662 = phi [bb %mult1.while.body57325, i32 %77333, bb %mult1.while.body50316, i32 %j.phi238312694]
-  sum47.phi240311661 = phi [bb %mult1.while.body57325, float %74332, bb %mult1.while.body50316, float %sum47.phi240311693]
+  br i1 %61323, bb %mult1.while.body57325, bb %mult1.while.body57325_exclu_exit
+mult1.while.exit58335:  pred(mult1.while.body50316, mult1.while.body57325_exclu_exit)
+  j.phi238312662 = phi [bb %mult1.while.body57325_exclu_exit, i32 %77333, bb %mult1.while.body50316, i32 %j.phi238312694]
+  sum47.phi240311661 = phi [bb %mult1.while.body57325_exclu_exit, float %74332, bb %mult1.while.body50316, float %sum47.phi240311693]
   651 = shl i32 %i45.phi313695, i32 2
   80337 = ptradd ptr %Vectortmp, i32 %651
   store float %sum47.phi240311661 to ptr %80337
@@ -107,7 +104,7 @@ mult1.while.body50351:  pred(mult1.while.exit58370, mult1.while.body50351_prehea
   sum47.phi240346685 = phi [bb %mult1.while.exit58370, float %sum47.phi240346671, bb %mult1.while.body50351_preheader, float %48308705]
   61358670 = icmp slt i32 %j.phi238347686, i32 %n.phi
   br i1 %61358670, bb %mult1.while.body57360_preheader, bb %mult1.while.exit58370
-mult1.while.exit51353:  pred(mult1.while.exit58370, mult2.while.exit94500)
+mult1.while.exit51353:  pred(mult2.while.exit94500, mult1.while.exit58370)
   br i1 %186709, bb %mult2.while.body93533_preheader, bb %mult2.while.exit94535
 mult1.while.body57360_preheader:  pred(mult1.while.body50351)
   br bb %mult1.while.body57360
@@ -128,10 +125,10 @@ mult1.while.body57360:  pred(mult1.while.body57360, mult1.while.body57360_prehea
   74367 = fadd float %sum47.phi356673, float %73366
   77368 = add i32 %j.phi357674, i32 1
   61358 = icmp slt i32 %77368, i32 %n.phi
-  br i1 %61358, bb %mult1.while.body57360, bb %mult1.while.exit58370
-mult1.while.exit58370:  pred(mult1.while.body57360, mult1.while.body50351)
-  j.phi238347672 = phi [bb %mult1.while.body57360, i32 %77368, bb %mult1.while.body50351, i32 %j.phi238347686]
-  sum47.phi240346671 = phi [bb %mult1.while.body57360, float %74367, bb %mult1.while.body50351, float %sum47.phi240346685]
+  br i1 %61358, bb %mult1.while.body57360, bb %mult1.while.body57360_exclu_exit
+mult1.while.exit58370:  pred(mult1.while.body50351, mult1.while.body57360_exclu_exit)
+  j.phi238347672 = phi [bb %mult1.while.body57360_exclu_exit, i32 %77368, bb %mult1.while.body50351, i32 %j.phi238347686]
+  sum47.phi240346671 = phi [bb %mult1.while.body57360_exclu_exit, float %74367, bb %mult1.while.body50351, float %sum47.phi240346685]
   653 = shl i32 %i45.phi348687, i32 2
   80372 = ptradd ptr %Vectortmp, i32 %653
   store float %sum47.phi240346671 to ptr %80372
@@ -164,7 +161,7 @@ my_sqrt.select.else:  pred(my_sqrt.while.cond137)
 my_sqrt.select.exit:  pred(my_sqrt.select.then, my_sqrt.select.else)
   select.phi406 = phi [bb %my_sqrt.select.else, i1 %156403, bb %my_sqrt.select.then, i1 -1]
   br i1 %select.phi406, bb %my_sqrt.while.body138, bb %my_sqrt.while.exit139
-Vectordot.while.body_preheader:  pred(while.exit199)
+Vectordot.while.body_preheader:  pred(while.body198_exclu_exit)
   br bb %Vectordot.while.body
 Vectordot.while.body:  pred(Vectordot.while.body, Vectordot.while.body_preheader)
   i.phi415703 = phi [bb %Vectordot.while.body, i32 %41426, bb %Vectordot.while.body_preheader, i32 0]
@@ -178,9 +175,9 @@ Vectordot.while.body:  pred(Vectordot.while.body, Vectordot.while.body_preheader
   38425 = fadd float %sum.phi414702, float %37424
   41426 = add i32 %i.phi415703, i32 1
   25416 = icmp slt i32 %41426, i32 %n.phi
-  br i1 %25416, bb %Vectordot.while.body, bb %Vectordot.while.exit
-Vectordot.while.exit:  pred(Vectordot.while.body, while.exit199)
-  48308701 = phi [bb %Vectordot.while.body, float %38425, bb %while.exit199, float %48308705]
+  br i1 %25416, bb %Vectordot.while.body, bb %Vectordot.while.body_exclu_exit
+Vectordot.while.exit:  pred(while.body198_exclu_exit, Vectordot.while.body_exclu_exit)
+  48308701 = phi [bb %Vectordot.while.body_exclu_exit, float %38425, bb %while.body198_exclu_exit, float %48308705]
   br i1 %186709, bb %Vectordot.while.body440_preheader, bb %Vectordot.while.exit450
 Vectordot.while.body440_preheader:  pred(Vectordot.while.exit)
   br bb %Vectordot.while.body440
@@ -194,9 +191,9 @@ Vectordot.while.body440:  pred(Vectordot.while.body440, Vectordot.while.body440_
   38447 = fadd float %sum.phi436698, float %37446
   41448 = add i32 %i.phi437699, i32 1
   25438 = icmp slt i32 %41448, i32 %n.phi
-  br i1 %25438, bb %Vectordot.while.body440, bb %Vectordot.while.exit450
-Vectordot.while.exit450:  pred(Vectordot.while.body440, Vectordot.while.exit)
-  48308697 = phi [bb %Vectordot.while.body440, float %38447, bb %Vectordot.while.exit, float %48308705]
+  br i1 %25438, bb %Vectordot.while.body440, bb %Vectordot.while.body440_exclu_exit
+Vectordot.while.exit450:  pred(Vectordot.while.exit, Vectordot.while.body440_exclu_exit)
+  48308697 = phi [bb %Vectordot.while.body440_exclu_exit, float %38447, bb %Vectordot.while.exit, float %48308705]
   216 = fdiv float %48308701, float %48308697
   155402 = fneg float 0.000001
   br bb %my_sqrt.while.cond137
@@ -208,7 +205,7 @@ mult2.while.body93498:  pred(mult2.while.exit101517, mult2.while.body93498_prehe
   sum90.phi249493689 = phi [bb %mult2.while.exit101517, float %sum90.phi249493666, bb %mult2.while.body93498_preheader, float %48308705]
   104505665 = icmp slt i32 %j89.phi247494690, i32 %n.phi
   br i1 %104505665, bb %mult2.while.body100507_preheader, bb %mult2.while.exit101517
-mult2.while.exit94500:  pred(mult2.while.exit101517, mult1.while.exit51318)
+mult2.while.exit94500:  pred(mult1.while.exit51318, mult2.while.exit101517)
   br i1 %186709, bb %mult1.while.body50351_preheader, bb %mult1.while.exit51353
 mult2.while.body100507_preheader:  pred(mult2.while.body93498)
   br bb %mult2.while.body100507
@@ -229,10 +226,10 @@ mult2.while.body100507:  pred(mult2.while.body100507, mult2.while.body100507_pre
   117514 = fadd float %sum90.phi503668, float %116513
   120515 = add i32 %j89.phi504669, i32 1
   104505 = icmp slt i32 %120515, i32 %n.phi
-  br i1 %104505, bb %mult2.while.body100507, bb %mult2.while.exit101517
-mult2.while.exit101517:  pred(mult2.while.body100507, mult2.while.body93498)
-  j89.phi247494667 = phi [bb %mult2.while.body100507, i32 %120515, bb %mult2.while.body93498, i32 %j89.phi247494690]
-  sum90.phi249493666 = phi [bb %mult2.while.body100507, float %117514, bb %mult2.while.body93498, float %sum90.phi249493689]
+  br i1 %104505, bb %mult2.while.body100507, bb %mult2.while.body100507_exclu_exit
+mult2.while.exit101517:  pred(mult2.while.body93498, mult2.while.body100507_exclu_exit)
+  j89.phi247494667 = phi [bb %mult2.while.body100507_exclu_exit, i32 %120515, bb %mult2.while.body93498, i32 %j89.phi247494690]
+  sum90.phi249493666 = phi [bb %mult2.while.body100507_exclu_exit, float %117514, bb %mult2.while.body93498, float %sum90.phi249493689]
   657 = shl i32 %i88.phi495691, i32 2
   123519 = ptradd ptr %vectorB, i32 %657
   store float %sum90.phi249493666 to ptr %123519
@@ -247,10 +244,10 @@ mult2.while.body93533:  pred(mult2.while.exit101552, mult2.while.body93533_prehe
   sum90.phi249528681 = phi [bb %mult2.while.exit101552, float %sum90.phi249528676, bb %mult2.while.body93533_preheader, float %48308705]
   104540675 = icmp slt i32 %j89.phi247529682, i32 %n.phi
   br i1 %104540675, bb %mult2.while.body100542_preheader, bb %mult2.while.exit101552
-mult2.while.exit94535:  pred(mult2.while.exit101552, mult1.while.exit51353)
+mult2.while.exit94535:  pred(mult1.while.exit51353, mult2.while.exit101552)
   209 = add i32 %i180.phi707, i32 1
   201 = icmp slt i32 %209, i32 1000
-  br i1 %201, bb %while.body198, bb %while.exit199
+  br i1 %201, bb %while.body198, bb %while.body198_exclu_exit
 mult2.while.body100542_preheader:  pred(mult2.while.body93533)
   br bb %mult2.while.body100542
 mult2.while.body100542:  pred(mult2.while.body100542, mult2.while.body100542_preheader)
@@ -270,16 +267,31 @@ mult2.while.body100542:  pred(mult2.while.body100542, mult2.while.body100542_pre
   117549 = fadd float %sum90.phi538678, float %116548
   120550 = add i32 %j89.phi539679, i32 1
   104540 = icmp slt i32 %120550, i32 %n.phi
-  br i1 %104540, bb %mult2.while.body100542, bb %mult2.while.exit101552
-mult2.while.exit101552:  pred(mult2.while.body100542, mult2.while.body93533)
-  j89.phi247529677 = phi [bb %mult2.while.body100542, i32 %120550, bb %mult2.while.body93533, i32 %j89.phi247529682]
-  sum90.phi249528676 = phi [bb %mult2.while.body100542, float %117549, bb %mult2.while.body93533, float %sum90.phi249528681]
+  br i1 %104540, bb %mult2.while.body100542, bb %mult2.while.body100542_exclu_exit
+mult2.while.exit101552:  pred(mult2.while.body93533, mult2.while.body100542_exclu_exit)
+  j89.phi247529677 = phi [bb %mult2.while.body100542_exclu_exit, i32 %120550, bb %mult2.while.body93533, i32 %j89.phi247529682]
+  sum90.phi249528676 = phi [bb %mult2.while.body100542_exclu_exit, float %117549, bb %mult2.while.body93533, float %sum90.phi249528681]
   659 = shl i32 %i88.phi530683, i32 2
   123554 = ptradd ptr %vectorA, i32 %659
   store float %sum90.phi249528676 to ptr %123554
   128556 = add i32 %i88.phi530683, i32 1
   97531 = icmp slt i32 %128556, i32 %n.phi
   br i1 %97531, bb %mult2.while.body93533, bb %mult2.while.exit94535
+mult1.while.body57325_exclu_exit:  pred(mult1.while.body57325)
+  br bb %mult1.while.exit58335
+mult2.while.body100507_exclu_exit:  pred(mult2.while.body100507)
+  br bb %mult2.while.exit101517
+mult1.while.body57360_exclu_exit:  pred(mult1.while.body57360)
+  br bb %mult1.while.exit58370
+mult2.while.body100542_exclu_exit:  pred(mult2.while.body100542)
+  br bb %mult2.while.exit101552
+while.body198_exclu_exit:  pred(mult2.while.exit94535)
+  call void _sysy_stoptime(i32 76)
+  br i1 %186709, bb %Vectordot.while.body_preheader, bb %Vectordot.while.exit
+Vectordot.while.body_exclu_exit:  pred(Vectordot.while.body)
+  br bb %Vectordot.while.exit
+Vectordot.while.body440_exclu_exit:  pred(Vectordot.while.body440)
+  br bb %Vectordot.while.exit450
 }
 
 external float getfloat()

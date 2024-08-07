@@ -178,7 +178,7 @@ while.body:  pred(while.body, while.body_preheader)
   314 = add i32 %i.phi354485, i32 1
   307 = icmp slt i32 %314, i32 %290
   br i1 %307, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, if.exit297)
+while.exit:  pred(if.exit297, while.body)
   call void inorder(i32 %now.load420)
   call void putch(i32 10)
   320 = call i32 getint()
@@ -193,12 +193,14 @@ while.body323:  pred(while.body323, while.body323_preheader)
   332 = call i32 delete(i32 %root.phi483, i32 %331)
   335 = add i32 %i.phi482, i32 1
   327 = icmp slt i32 %335, i32 %320
-  br i1 %327, bb %while.body323, bb %while.exit324
-while.exit324:  pred(while.body323, while.exit)
-  now.load420481 = phi [bb %while.body323, i32 %332, bb %while.exit, i32 %now.load420]
+  br i1 %327, bb %while.body323, bb %while.body323_exclu_exit
+while.exit324:  pred(while.exit, while.body323_exclu_exit)
+  now.load420481 = phi [bb %while.body323_exclu_exit, i32 %332, bb %while.exit, i32 %now.load420]
   call void inorder(i32 %now.load420481)
   call void putch(i32 10)
   ret i32 0
+while.body323_exclu_exit:  pred(while.body323)
+  br bb %while.exit324
 }
 
 external float getfloat()

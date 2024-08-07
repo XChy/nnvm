@@ -15,11 +15,9 @@ entry14:  pred()
   18 = call i32 getarray(ptr @image_in)
   call void _sysy_starttime(i32 23)
   br bb %while.body
-while.body:  pred(while.exit32, entry14)
-  j.phi258414 = phi [bb %while.exit32, i32 %165, bb %entry14, i32 1]
+while.body:  pred(while.body31_exclu_exit, entry14)
+  j.phi258414 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
   br bb %while.body31
-while.exit:  pred(while.exit32)
-  br bb %while.body168
 while.body31:  pred(cutout.if.exit, while.body)
   i.phi251400 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
   277 = add i32 %i.phi251400, i32 -1
@@ -75,12 +73,8 @@ while.body31:  pred(cutout.if.exit, while.body)
   156 = ptradd ptr @image_out, i32 %364
   3327 = icmp slt i32 %149, i32 0
   br i1 %3327, bb %cutout.then, bb %cutout.else
-while.exit32:  pred(cutout.if.exit)
-  165 = add i32 %j.phi258414, i32 1
-  27 = icmp slt i32 %165, i32 1023
-  br i1 %27, bb %while.body, bb %while.exit
-while.body168:  pred(while.body168, while.exit)
-  i.phi404 = phi [bb %while.body168, i32 %206, bb %while.exit, i32 0]
+while.body168:  pred(while.body168, while.body_exclu_exit)
+  i.phi404 = phi [bb %while.body168, i32 %206, bb %while.body_exclu_exit, i32 0]
   374 = shl i32 %i.phi404, i32 10
   375 = shl i32 %374, i32 2
   178 = ptradd ptr @image_out, i32 %375
@@ -95,11 +89,9 @@ while.body168:  pred(while.body168, while.exit)
   store i32 %202.load to ptr %193
   206 = add i32 %i.phi404, i32 1
   172 = icmp slt i32 %206, i32 1024
-  br i1 %172, bb %while.body168, bb %while.exit169
-while.exit169:  pred(while.body168)
-  br bb %while.body209
-while.body209:  pred(while.body209, while.exit169)
-  j.phi402 = phi [bb %while.body209, i32 %243, bb %while.exit169, i32 0]
+  br i1 %172, bb %while.body168, bb %while.body168_exclu_exit
+while.body209:  pred(while.body209, while.body168_exclu_exit)
+  j.phi402 = phi [bb %while.body209, i32 %243, bb %while.body168_exclu_exit, i32 0]
   377 = shl i32 %j.phi402, i32 2
   217 = ptradd ptr @image_out, i32 %377
   221 = ptradd ptr @image_in, i32 %377
@@ -113,18 +105,14 @@ while.body209:  pred(while.body209, while.exit169)
   store i32 %239.load to ptr %230
   243 = add i32 %j.phi402, i32 1
   213 = icmp slt i32 %243, i32 1024
-  br i1 %213, bb %while.body209, bb %while.exit210
-while.exit210:  pred(while.body209)
-  call void _sysy_stoptime(i32 59)
-  call void putarray(i32 1048576, ptr @image_out)
-  ret i32 %18
+  br i1 %213, bb %while.body209, bb %while.body209_exclu_exit
 cutout.then:  pred(while.body31)
   br bb %cutout.if.exit
 cutout.if.exit:  pred(cutout.then, cutout.if.exit11)
   val.stack.phi276332 = phi [bb %cutout.if.exit11, i32 %val.stack.phi340, bb %cutout.then, i32 0]
   store i32 %val.stack.phi276332 to ptr %156
   36 = icmp slt i32 %83, i32 1023
-  br i1 %36, bb %while.body31, bb %while.exit32
+  br i1 %36, bb %while.body31, bb %while.body31_exclu_exit
 cutout.else:  pred(while.body31)
   9335 = icmp sgt i32 %149, i32 255
   br i1 %9335, bb %cutout.then10, bb %cutout.if.exit11
@@ -133,6 +121,18 @@ cutout.then10:  pred(cutout.else)
 cutout.if.exit11:  pred(cutout.else, cutout.then10)
   val.stack.phi340 = phi [bb %cutout.else, i32 %149, bb %cutout.then10, i32 255]
   br bb %cutout.if.exit
+while.body31_exclu_exit:  pred(cutout.if.exit)
+  165 = add i32 %j.phi258414, i32 1
+  27 = icmp slt i32 %165, i32 1023
+  br i1 %27, bb %while.body, bb %while.body_exclu_exit
+while.body_exclu_exit:  pred(while.body31_exclu_exit)
+  br bb %while.body168
+while.body168_exclu_exit:  pred(while.body168)
+  br bb %while.body209
+while.body209_exclu_exit:  pred(while.body209)
+  call void _sysy_stoptime(i32 59)
+  call void putarray(i32 1048576, ptr @image_out)
+  ret i32 %18
 }
 
 external float getfloat()

@@ -206,7 +206,7 @@ bb18:   # loop depth 1
   XORI a1, a1, 1
   BNE a1, zero, bb20
   # implict jump to bb19
-bb19:   # loop depth 1
+bb19:   # loop depth 0
   JAL zero, bb11
 bb20:   # loop depth 1
   JAL zero, bb13

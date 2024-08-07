@@ -3,6 +3,11 @@
 
 using namespace nnvm;
 
+void nnvm::moveInstBefore(Instruction *from, BasicBlock::Iterator to) {
+  from->removeFromBB();
+  to.insertBefore(from);
+}
+
 void nnvm::moveInstInBlock(BasicBlock *from, BasicBlock *to) {
   for (Instruction *I : incChange(*from))
     I->moveTo(to);

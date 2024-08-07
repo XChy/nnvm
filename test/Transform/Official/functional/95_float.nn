@@ -139,10 +139,7 @@ while.body:  pred(while.body, if.exit134)
   194 = f2si float %193 to i32
   197 = add i32 %p.phi595, i32 1
   157 = icmp slt i32 %194, i32 1000000000
-  br i1 %157, bb %while.body, bb %while.exit
-while.exit:  pred(while.body)
-  call void putfarray(i32 %151, ptr %arr)
-  ret i32 0
+  br i1 %157, bb %while.body, bb %while.body_exclu_exit
 assert_not.then72:  pred(entry77.split386)
   call void putch(i32 101)
   call void putch(i32 114)
@@ -322,6 +319,9 @@ float_abs.then586:  pred(assert.if.exit64507)
   br bb %float_eq.entry28451.split
 float_abs.if.exit589:  pred(assert.if.exit64507)
   br bb %float_eq.entry28451.split
+while.body_exclu_exit:  pred(while.body)
+  call void putfarray(i32 %151, ptr %arr)
+  ret i32 0
 }
 
 external float getfloat()

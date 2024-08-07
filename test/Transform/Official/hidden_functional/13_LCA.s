@@ -382,7 +382,7 @@ bb65:   # loop depth 2
   MULW a0, s4, a0
   BNE s1, zero, bb67
   # implict jump to bb66
-bb66:   # loop depth 2
+bb66:   # loop depth 1
   JAL zero, bb60
 bb67:   # loop depth 2
   JAL zero, bb63
@@ -421,7 +421,7 @@ bb75:   # loop depth 2
   LW a0, 0(a0)
   BLT s2, a0, bb77
   # implict jump to bb76
-bb76:   # loop depth 2
+bb76:   # loop depth 1
   JAL zero, bb57
 bb77:   # loop depth 2
   JAL zero, bb71

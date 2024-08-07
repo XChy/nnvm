@@ -33,7 +33,7 @@ entry62:  pred()
   93 = ptradd ptr %a, i32 36
   store i32 8 to ptr %93
   br bb %bubblesort.while.body
-while.body99_preheader:  pred(bubblesort.while.exit)
+while.body99_preheader:  pred(bubblesort.while.body_exclu_exit)
   br bb %while.body99
 while.body99:  pred(while.body99, while.body99_preheader)
   i95.phi195 = phi [bb %while.body99, i32 %118, bb %while.body99_preheader, i32 0]
@@ -46,7 +46,7 @@ while.body99:  pred(while.body99, while.body99_preheader)
   n.load102 = load i32 from ptr @n
   103 = icmp slt i32 %118, i32 %n.load102
   br i1 %103, bb %while.body99, bb %while.exit100
-while.exit100:  pred(while.body99, bubblesort.while.exit)
+while.exit100:  pred(bubblesort.while.body_exclu_exit, while.body99)
   ret i32 0
 bubblesort.while.body:  pred(bubblesort.while.exit15, entry62)
   i.phi141199 = phi [bb %bubblesort.while.exit15, i32 %61169, bb %entry62, i32 0]
@@ -55,8 +55,6 @@ bubblesort.while.body:  pred(bubblesort.while.exit15, entry62)
   129155188 = add i32 %19154187, i32 -1
   21156189 = icmp slt i32 0, i32 %129155188
   br i1 %21156189, bb %bubblesort.while.body14_preheader, bb %bubblesort.while.exit15
-bubblesort.while.exit:  pred(bubblesort.while.exit15)
-  br i1 -1, bb %while.body99_preheader, bb %while.exit100
 bubblesort.while.body14_preheader:  pred(bubblesort.while.body)
   br bb %bubblesort.while.body14
 bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_preheader)
@@ -71,11 +69,11 @@ bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_prehe
   30.load165 = load i32 from ptr %30164
   32166 = icmp sgt i32 %25.load161, i32 %30.load165
   br i1 %32166, bb %bubblesort.then, bb %bubblesort.if.exit
-bubblesort.while.exit15:  pred(bubblesort.if.exit, bubblesort.while.body)
-  tmp.phi126140190 = phi [bb %bubblesort.if.exit, i32 %tmp.phi178, bb %bubblesort.while.body, i32 %tmp.phi126140198]
+bubblesort.while.exit15:  pred(bubblesort.while.body, bubblesort.while.body14_exclu_exit)
+  tmp.phi126140190 = phi [bb %bubblesort.while.body14_exclu_exit, i32 %tmp.phi178, bb %bubblesort.while.body, i32 %tmp.phi126140198]
   61169 = add i32 %i.phi141199, i32 1
   10144 = icmp slt i32 %61169, i32 9
-  br i1 %10144, bb %bubblesort.while.body, bb %bubblesort.while.exit
+  br i1 %10144, bb %bubblesort.while.body, bb %bubblesort.while.body_exclu_exit
 bubblesort.then:  pred(bubblesort.while.body14)
   40.load172 = load i32 from ptr %30164
   49.load173 = load i32 from ptr %25160
@@ -85,7 +83,11 @@ bubblesort.then:  pred(bubblesort.while.body14)
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
   tmp.phi178 = phi [bb %bubblesort.while.body14, i32 %tmp.phi125151191, bb %bubblesort.then, i32 %40.load172]
   21156 = icmp slt i32 %28162, i32 %129155188
-  br i1 %21156, bb %bubblesort.while.body14, bb %bubblesort.while.exit15
+  br i1 %21156, bb %bubblesort.while.body14, bb %bubblesort.while.body14_exclu_exit
+bubblesort.while.body14_exclu_exit:  pred(bubblesort.if.exit)
+  br bb %bubblesort.while.exit15
+bubblesort.while.body_exclu_exit:  pred(bubblesort.while.exit15)
+  br i1 -1, bb %while.body99_preheader, bb %while.exit100
 }
 
 external float getfloat()

@@ -28,8 +28,8 @@ while.body39:  pred(loop.while.exit, while.body39_preheader)
   46 = srem i32 %i28.phi165, i32 10
   47 = icmp ne i32 %46, i32 0
   br i1 %47, bb %then, bb %else
-while.exit40:  pred(loop.while.exit, entry27)
-  160 = phi [bb %loop.while.exit, float %89, bb %entry27, float 0.000000]
+while.exit40:  pred(entry27, while.body39_exclu_exit)
+  160 = phi [bb %while.body39_exclu_exit, float %89, bb %entry27, float 0.000000]
   call void _sysy_stoptime(i32 39)
   95 = fsub float %160, float 18338022147751936.000000
   96 = fcmp ole float %95, float 0.000001
@@ -59,9 +59,9 @@ while.body60:  pred(while.body60, while.body60_preheader)
   store float %81 to ptr %76
   84 = add i32 %j.phi157, i32 1
   64 = icmp slt i32 %84, i32 %31
-  br i1 %64, bb %while.body60, bb %while.exit61
-while.exit61:  pred(while.body60, if.exit)
-  j.phi113156 = phi [bb %while.body60, i32 %84, bb %if.exit, i32 %j.phi113164]
+  br i1 %64, bb %while.body60, bb %while.body60_exclu_exit
+while.exit61:  pred(if.exit, while.body60_exclu_exit)
+  j.phi113156 = phi [bb %while.body60_exclu_exit, i32 %84, bb %if.exit, i32 %j.phi113164]
   br i1 %9132151, bb %loop.while.body_preheader, bb %loop.while.exit
 select.then:  pred(while.exit40)
   103 = fneg float 0.000001
@@ -92,13 +92,19 @@ loop.while.body:  pred(loop.while.body, loop.while.body_preheader)
   22141 = fadd float %accumulator.phi130153, float %21140
   25142 = add i32 %i.phi131154, i32 1
   9132 = icmp slt i32 %25142, i32 %31
-  br i1 %9132, bb %loop.while.body, bb %loop.while.exit
-loop.while.exit:  pred(loop.while.body, while.exit61)
-  152 = phi [bb %loop.while.body, float %22141, bb %while.exit61, float 0.000000]
+  br i1 %9132, bb %loop.while.body, bb %loop.while.body_exclu_exit
+loop.while.exit:  pred(while.exit61, loop.while.body_exclu_exit)
+  152 = phi [bb %loop.while.body_exclu_exit, float %22141, bb %while.exit61, float 0.000000]
   89 = fadd float %total.phi163, float %152
   92 = add i32 %i28.phi165, i32 1
   43 = icmp slt i32 %92, i32 %COUNT.load158
-  br i1 %43, bb %while.body39, bb %while.exit40
+  br i1 %43, bb %while.body39, bb %while.body39_exclu_exit
+while.body60_exclu_exit:  pred(while.body60)
+  br bb %while.exit61
+loop.while.body_exclu_exit:  pred(loop.while.body)
+  br bb %loop.while.exit
+while.body39_exclu_exit:  pred(loop.while.exit)
+  br bb %while.exit40
 }
 
 external float getfloat()

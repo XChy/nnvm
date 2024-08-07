@@ -35,7 +35,7 @@ while.body113:  pred(if.exit137, while.body113_preheader)
   y151.phi175563 = phi [bb %if.exit137, i32 %y151.phi, bb %while.body113_preheader, i32 0]
   118 = call i32 getch()
   br bb %while.cond119
-while.exit114:  pred(if.exit137, init.while.exit59)
+while.exit114:  pred(init.while.exit59, if.exit137)
   ret i32 0
 while.cond119:  pred(while.body113, while.body120)
   ch117.phi = phi [bb %while.body113, i32 %118, bb %while.body120, i32 %133]
@@ -112,7 +112,7 @@ init.while.body58:  pred(init.while.body58, init.while.body58_preheader)
   71215 = add i32 %i.phi207569, i32 1
   62209 = icmp sle i32 %71215, i32 %n.load208567
   br i1 %62209, bb %init.while.body58, bb %init.while.exit59
-init.while.exit59:  pred(init.while.body58, entry106.split219.split)
+init.while.exit59:  pred(entry106.split219.split, init.while.body58)
   116562 = icmp ne i32 %110.ret, i32 0
   br i1 %116562, bb %while.body113_preheader, bb %while.exit114
 quick_read.while.cond:  pred(entry106, quick_read.if.exit)

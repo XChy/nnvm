@@ -102,9 +102,9 @@ while.body91:  pred(while.body91, while.body91_preheader)
   111 = add i32 %i.phi223, i32 1
   114 = add i32 %k.phi180222, i32 1
   95 = icmp slt i32 %111, i32 %13
-  br i1 %95, bb %while.body91, bb %while.exit92
-while.exit92:  pred(while.body91, while.exit)
-  k.phi181221 = phi [bb %while.body91, i32 %114, bb %while.exit, i32 %k.phi181]
+  br i1 %95, bb %while.body91, bb %while.body91_exclu_exit
+while.exit92:  pred(while.exit, while.body91_exclu_exit)
+  k.phi181221 = phi [bb %while.body91_exclu_exit, i32 %114, bb %while.exit, i32 %k.phi181]
   120217 = icmp slt i32 %j.phi178, i32 %r
   br i1 %120217, bb %while.body116_preheader, bb %while.exit117
 while.body116_preheader:  pred(while.exit92)
@@ -122,7 +122,7 @@ while.body116:  pred(while.body116, while.body116_preheader)
   139 = add i32 %k.phi218, i32 1
   120 = icmp slt i32 %136, i32 %r
   br i1 %120, bb %while.body116, bb %while.exit117
-while.exit117:  pred(while.body116, while.exit92)
+while.exit117:  pred(while.exit92, while.body116)
   145215 = icmp slt i32 %l, i32 %r
   br i1 %145215, bb %while.body141_preheader, bb %while.exit142
 while.body141_preheader:  pred(while.exit117)
@@ -137,8 +137,10 @@ while.body141:  pred(while.body141, while.body141_preheader)
   161 = add i32 %l.stack.phi216, i32 1
   145 = icmp slt i32 %161, i32 %r
   br i1 %145, bb %while.body141, bb %while.exit142
-while.exit142:  pred(while.body141, while.exit117)
+while.exit142:  pred(while.exit117, while.body141)
   ret 
+while.body91_exclu_exit:  pred(while.body91)
+  br bb %while.exit92
 }
 
 

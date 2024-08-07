@@ -118,7 +118,7 @@ bb15:   # loop depth 2
   LW a0, 4(sp)
   BLT s6, a0, bb17
   # implict jump to bb16
-bb16:   # loop depth 2
+bb16:   # loop depth 1
   JAL zero, bb10
 bb17:   # loop depth 2
   JAL zero, bb13
@@ -192,7 +192,7 @@ bb30:   # loop depth 3
   LW a0, 4(sp)
   BLT s5, a0, bb32
   # implict jump to bb31
-bb31:   # loop depth 3
+bb31:   # loop depth 2
   LB s0, 1(sp)
   JAL zero, bb15
 bb32:   # loop depth 3

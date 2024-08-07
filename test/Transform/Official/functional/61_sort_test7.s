@@ -126,7 +126,7 @@ bb18:   # loop depth 1
   ADDIW t0, t0, 1
   BLT t2, s2, bb20
   # implict jump to bb19
-bb19:   # loop depth 1
+bb19:   # loop depth 0
   JAL zero, bb8
 bb20:   # loop depth 1
   JAL zero, bb18

@@ -48,7 +48,7 @@ while.body249.split.split.split:  pred(quick_read.then49715, quick_read.else718)
   272 = add i32 %i247.phi748, i32 1
   253 = icmp slt i32 %272, i32 %246.ret
   br i1 %253, bb %while.body249, bb %while.exit250
-while.exit250:  pred(while.body249.split.split.split, entry242.split.split)
+while.exit250:  pred(entry242.split.split, while.body249.split.split.split)
   m.load338742 = load i32 from ptr @m
   99339743 = icmp slt i32 0, i32 %m.load338742
   br i1 %99339743, bb %prim.while.body95_preheader, bb %prim.while.exit96
@@ -60,7 +60,7 @@ prim.while.body95:  pred(prim.while.exit106, prim.while.body95_preheader)
   103342 = add i32 %i.phi277337745, i32 1
   109350735 = icmp slt i32 %103342, i32 %m.load338742
   br i1 %109350735, bb %prim.while.body105_preheader, bb %prim.while.exit106
-prim.while.exit96:  pred(prim.while.exit106, while.exit250)
+prim.while.exit96:  pred(while.exit250, prim.while.exit106)
   n.load387739 = load i32 from ptr @n
   188388740 = icmp sle i32 1, i32 %n.load387739
   br i1 %188388740, bb %prim.while.body184_preheader, bb %prim.while.exit185
@@ -77,8 +77,8 @@ prim.while.body105:  pred(prim.if.exit121, prim.while.body105_preheader)
   117.load358 = load i32 from ptr %117357
   119359 = icmp sgt i32 %113.load355, i32 %117.load358
   br i1 %119359, bb %prim.then120, bb %prim.if.exit121
-prim.while.exit106:  pred(prim.if.exit121, prim.while.body95)
-  t.phi282336736 = phi [bb %prim.if.exit121, i32 %t.phi382, bb %prim.while.body95, i32 %t.phi282336744]
+prim.while.exit106:  pred(prim.while.body95, prim.while.body105_exclu_exit)
+  t.phi282336736 = phi [bb %prim.while.body105_exclu_exit, i32 %t.phi382, bb %prim.while.body95, i32 %t.phi282336744]
   99339 = icmp slt i32 %103342, i32 %m.load338742
   br i1 %99339, bb %prim.while.body95, bb %prim.while.exit96
 prim.then120:  pred(prim.while.body105)
@@ -103,7 +103,7 @@ prim.if.exit121:  pred(prim.while.body105, prim.then120)
   t.phi382 = phi [bb %prim.while.body105, i32 %t.phi281347737, bb %prim.then120, i32 %161.load376]
   178383 = add i32 %j.phi348738, i32 1
   109350 = icmp slt i32 %178383, i32 %m.load338742
-  br i1 %109350, bb %prim.while.body105, bb %prim.while.exit106
+  br i1 %109350, bb %prim.while.body105, bb %prim.while.body105_exclu_exit
 prim.while.body184_preheader:  pred(prim.while.exit96)
   br bb %prim.while.body184
 prim.while.body184:  pred(prim.while.body184, prim.while.body184_preheader)
@@ -114,7 +114,7 @@ prim.while.body184:  pred(prim.while.body184, prim.while.body184_preheader)
   197394 = add i32 %i.phi276386741, i32 1
   188388 = icmp sle i32 %197394, i32 %n.load387739
   br i1 %188388, bb %prim.while.body184, bb %prim.while.exit185
-prim.while.exit185:  pred(prim.while.body184, prim.while.exit96)
+prim.while.exit185:  pred(prim.while.exit96, prim.while.body184)
   br bb %prim.while.cond200
 prim.while.cond200:  pred(prim.while.exit185, prim.then217, prim.if.exit218)
   res.phi399 = phi [bb %prim.while.exit185, i32 0, bb %prim.if.exit218, i32 %225422, bb %prim.then217, i32 %res.phi399]
@@ -406,6 +406,8 @@ quick_read.then49715:  pred(quick_read.while.exit28704)
   br bb %while.body249.split.split.split
 quick_read.else718:  pred(quick_read.while.exit28704)
   br bb %while.body249.split.split.split
+prim.while.body105_exclu_exit:  pred(prim.if.exit121)
+  br bb %prim.while.exit106
 }
 
 external float getfloat()

@@ -129,7 +129,7 @@ bb27:   # loop depth 2
   ADDIW s0, s0, 1
   BLT zero, s1, bb29
   # implict jump to bb28
-bb28:   # loop depth 2
+bb28:   # loop depth 1
   JAL zero, bb20
 bb29:   # loop depth 2
   JAL zero, bb27

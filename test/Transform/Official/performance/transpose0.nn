@@ -27,7 +27,7 @@ while.body81:  pred(while.body81, while.body81_preheader)
   94 = add i32 %i79.phi148225, i32 1
   85 = icmp slt i32 %94, i32 %75
   br i1 %85, bb %while.body81, bb %while.exit82
-while.exit82:  pred(while.body81, entry73)
+while.exit82:  pred(entry73, while.body81)
   101222 = icmp slt i32 0, i32 %77
   br i1 %101222, bb %while.body97_preheader, bb %while.exit98
 while.body97_preheader:  pred(while.exit82)
@@ -40,7 +40,7 @@ while.body97:  pred(transpose.while.exit, while.body97_preheader)
   6165 = sdiv i32 %75, i32 %106.load
   14170215 = icmp slt i32 0, i32 %6165
   br i1 %14170215, bb %transpose.while.body_preheader, bb %transpose.while.exit
-while.exit98:  pred(transpose.while.exit, while.exit82)
+while.exit98:  pred(while.exit82, transpose.while.exit)
   br i1 %101222, bb %while.body115_preheader, bb %while.exit116
 while.body115_preheader:  pred(while.exit98)
   br bb %while.body115
@@ -55,9 +55,9 @@ while.body115:  pred(while.body115, while.body115_preheader)
   131 = add i32 %ans.phi150220, i32 %130
   134 = add i32 %i79.phi221, i32 1
   119 = icmp slt i32 %134, i32 %77
-  br i1 %119, bb %while.body115, bb %while.exit116
-while.exit116:  pred(while.body115, while.exit98)
-  219 = phi [bb %while.body115, i32 %131, bb %while.exit98, i32 0]
+  br i1 %119, bb %while.body115, bb %while.body115_exclu_exit
+while.exit116:  pred(while.exit98, while.body115_exclu_exit)
+  219 = phi [bb %while.body115_exclu_exit, i32 %131, bb %while.exit98, i32 0]
   136 = icmp slt i32 %219, i32 0
   br i1 %136, bb %then137, bb %if.exit138
 then137:  pred(while.exit116)
@@ -75,7 +75,7 @@ transpose.while.body:  pred(transpose.while.exit19, transpose.while.body_prehead
   i.phi169217 = phi [bb %transpose.while.exit19, i32 %71185, bb %transpose.while.body_preheader, i32 0]
   curr.phi155168216 = phi [bb %transpose.while.exit19, i32 %curr.phi177, bb %transpose.while.body_preheader, i32 0]
   br bb %transpose.while.cond17
-transpose.while.exit:  pred(transpose.while.exit19, while.body97)
+transpose.while.exit:  pred(while.body97, transpose.while.exit19)
   111 = add i32 %i79.phi147223, i32 1
   101 = icmp slt i32 %111, i32 %77
   br i1 %101, bb %while.body97, bb %while.exit98
@@ -107,6 +107,8 @@ transpose.if.exit:  pred(transpose.while.body18)
   store i32 %39.load195 to ptr %47199
   store i32 %39.load195 to ptr %39194
   br bb %transpose.while.cond17
+while.body115_exclu_exit:  pred(while.body115)
+  br bb %while.exit116
 }
 
 external float getfloat()

@@ -15,8 +15,8 @@ external i32 getfarray(ptr )
 i32 main() {
 entry20:  pred()
   br bb %putstr.while.body
-while.cond23:  pred(if.exit56, putstr.while.exit)
-  i.phi58 = phi [bb %putstr.while.exit, i32 0, bb %if.exit56, i32 %52]
+while.cond23:  pred(if.exit56, putstr.while.body_exclu_exit)
+  i.phi58 = phi [bb %putstr.while.body_exclu_exit, i32 0, bb %if.exit56, i32 %52]
   29 = sdiv i32 %i.phi58, i32 6
   32 = srem i32 %i.phi58, i32 6
   35 = icmp ne i32 %29, i32 %32
@@ -47,9 +47,7 @@ putstr.while.body:  pred(putstr.while.body, entry20)
   872 = ptradd ptr @__HELLO, i32 %161
   8.load73 = load i32 from ptr %872
   1074 = icmp ne i32 %8.load73, i32 0
-  br i1 %1074, bb %putstr.while.body, bb %putstr.while.exit
-putstr.while.exit:  pred(putstr.while.body)
-  br bb %while.cond23
+  br i1 %1074, bb %putstr.while.body, bb %putstr.while.body_exclu_exit
 putstr.while.body94_preheader:  pred(then)
   br bb %putstr.while.body94
 putstr.while.body94:  pred(putstr.while.body94, putstr.while.body94_preheader)
@@ -63,7 +61,7 @@ putstr.while.body94:  pred(putstr.while.body94, putstr.while.body94_preheader)
   8.load91 = load i32 from ptr %890
   1092 = icmp ne i32 %8.load91, i32 0
   br i1 %1092, bb %putstr.while.body94, bb %putstr.while.exit99
-putstr.while.exit99:  pred(putstr.while.body94, then)
+putstr.while.exit99:  pred(then, putstr.while.body94)
   br bb %putstr.while.body112
 putstr.while.body112:  pred(putstr.while.body112, putstr.while.exit99)
   8108179183 = phi [bb %putstr.while.body112, ptr %8108, bb %putstr.while.exit99, ptr @saY_HeI10_To]
@@ -75,14 +73,8 @@ putstr.while.body112:  pred(putstr.while.body112, putstr.while.exit99)
   8108 = ptradd ptr @saY_HeI10_To, i32 %163
   8.load109 = load i32 from ptr %8108
   10110 = icmp ne i32 %8.load109, i32 0
-  br i1 %10110, bb %putstr.while.body112, bb %putstr.while.exit117
-putstr.while.exit117:  pred(putstr.while.body112)
-  44 = mul i32 %32, i32 200
-  45 = ptradd ptr @N4__mE___, i32 %44
-  8.load127174 = load i32 from ptr %45
-  10128175 = icmp ne i32 %8.load127174, i32 0
-  br i1 %10128175, bb %putstr.while.body130_preheader, bb %putstr.while.exit135
-putstr.while.body130_preheader:  pred(putstr.while.exit117)
+  br i1 %10110, bb %putstr.while.body112, bb %putstr.while.body112_exclu_exit
+putstr.while.body130_preheader:  pred(putstr.while.body112_exclu_exit)
   br bb %putstr.while.body130
 putstr.while.body130:  pred(putstr.while.body130, putstr.while.body130_preheader)
   8126173177 = phi [bb %putstr.while.body130, ptr %8126, bb %putstr.while.body130_preheader, ptr %45]
@@ -95,7 +87,7 @@ putstr.while.body130:  pred(putstr.while.body130, putstr.while.body130_preheader
   8.load127 = load i32 from ptr %8126
   10128 = icmp ne i32 %8.load127, i32 0
   br i1 %10128, bb %putstr.while.body130, bb %putstr.while.exit135
-putstr.while.exit135:  pred(putstr.while.body130, putstr.while.exit117)
+putstr.while.exit135:  pred(putstr.while.body112_exclu_exit, putstr.while.body130)
   br bb %putstr.while.body148
 putstr.while.body148:  pred(putstr.while.body148, putstr.while.exit135)
   8144167171 = phi [bb %putstr.while.body148, ptr %8144, bb %putstr.while.exit135, ptr @RET]
@@ -108,6 +100,14 @@ putstr.while.body148:  pred(putstr.while.body148, putstr.while.exit135)
   8.load145 = load i32 from ptr %8144
   10146 = icmp ne i32 %8.load145, i32 0
   br i1 %10146, bb %putstr.while.body148, bb %if.exit
+putstr.while.body_exclu_exit:  pred(putstr.while.body)
+  br bb %while.cond23
+putstr.while.body112_exclu_exit:  pred(putstr.while.body112)
+  44 = mul i32 %32, i32 200
+  45 = ptradd ptr @N4__mE___, i32 %44
+  8.load127174 = load i32 from ptr %45
+  10128175 = icmp ne i32 %8.load127174, i32 0
+  br i1 %10128175, bb %putstr.while.body130_preheader, bb %putstr.while.exit135
 }
 
 external float getfloat()

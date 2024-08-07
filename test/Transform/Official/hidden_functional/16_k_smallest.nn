@@ -16,7 +16,7 @@ else:  pred(entry61)
 then79:  pred(findPivot.while.exit)
   88249 = icmp slt i32 0, i32 %low254
   br i1 %88249, bb %while.body84_preheader, bb %if.exit80
-if.exit80:  pred(while.body84, then103, else105, then79)
+if.exit80:  pred(then103, else105, then79, while.body84)
   ret 
 else81:  pred(findPivot.while.exit)
   102 = icmp slt i32 %k, i32 %low254
@@ -52,10 +52,10 @@ findPivot.while.body:  pred(findPivot.if.exit, findPivot.while.body_preheader)
   42.load178 = load i32 from ptr %42177
   45179 = icmp sle i32 %42.load178, i32 %27.load168
   br i1 %45179, bb %findPivot.then, bb %findPivot.if.exit
-findPivot.while.exit:  pred(findPivot.if.exit, else)
-  53186253256 = phi [bb %findPivot.if.exit, i32 %53186, bb %else, i32 %53186253]
-  247252255 = phi [bb %findPivot.if.exit, i32 %247, bb %else, i32 %247252]
-  low254 = phi [bb %findPivot.if.exit, i32 %pIndex.phi189, bb %else, i32 %low]
+findPivot.while.exit:  pred(else, findPivot.while.body_exclu_exit)
+  53186253256 = phi [bb %findPivot.while.body_exclu_exit, i32 %53186, bb %else, i32 %53186253]
+  247252255 = phi [bb %findPivot.while.body_exclu_exit, i32 %247, bb %else, i32 %247252]
+  low254 = phi [bb %findPivot.while.body_exclu_exit, i32 %pIndex.phi189, bb %else, i32 %low]
   6218 = ptradd ptr @array, i32 %247252255
   6.load219 = load i32 from ptr %6218
   14.load222 = load i32 from ptr %27167
@@ -76,7 +76,9 @@ findPivot.if.exit:  pred(findPivot.while.body, findPivot.then)
   38173 = icmp slt i32 %56190, i32 %high
   247 = shl i32 %pIndex.phi189, i32 2
   53186 = add i32 %pIndex.phi189, i32 1
-  br i1 %38173, bb %findPivot.while.body, bb %findPivot.while.exit
+  br i1 %38173, bb %findPivot.while.body, bb %findPivot.while.body_exclu_exit
+findPivot.while.body_exclu_exit:  pred(findPivot.if.exit)
+  br bb %findPivot.while.exit
 }
 
 external i32 getint()
@@ -106,7 +108,7 @@ while.body125:  pred(while.body125, while.body125_preheader)
   138 = add i32 %i123.phi262, i32 1
   129 = icmp slt i32 %138, i32 %120
   br i1 %129, bb %while.body125, bb %while.exit126
-while.exit126:  pred(while.body125, entry118)
+while.exit126:  pred(entry118, while.body125)
   159 = add i32 %120, i32 -1
   call void findSmallest(i32 0, i32 %159, i32 %122, i32 %120)
   ret i32 0

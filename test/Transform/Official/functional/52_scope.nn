@@ -22,9 +22,6 @@ while.body.split:  pred(func.then, func.else)
   22.ret = phi [bb %func.then, i32 1, bb %func.else, i32 0]
   23 = icmp eq i32 %22.ret, i32 1
   br i1 %23, bb %then24, bb %if.exit25
-while.exit:  pred(if.exit25)
-  33 = icmp slt i32 %result.phi, i32 100
-  br i1 %33, bb %then34, bb %else36
 then24:  pred(while.body.split)
   28 = add i32 %result.phi4055, i32 1
   br bb %if.exit25
@@ -32,19 +29,22 @@ if.exit25:  pred(while.body.split, then24)
   result.phi = phi [bb %while.body.split, i32 %result.phi4055, bb %then24, i32 %28]
   31 = add i32 %i.phi54, i32 1
   20 = icmp slt i32 %31, i32 100
-  br i1 %20, bb %while.body, bb %while.exit
-then34:  pred(while.exit)
+  br i1 %20, bb %while.body, bb %while.body_exclu_exit
+then34:  pred(while.body_exclu_exit)
   call void putint(i32 1)
   br bb %if.exit35
 if.exit35:  pred(then34, else36)
   ret i32 0
-else36:  pred(while.exit)
+else36:  pred(while.body_exclu_exit)
   call void putint(i32 0)
   br bb %if.exit35
 func.then:  pred(while.body)
   br bb %while.body.split
 func.else:  pred(while.body)
   br bb %while.body.split
+while.body_exclu_exit:  pred(if.exit25)
+  33 = icmp slt i32 %result.phi, i32 100
+  br i1 %33, bb %then34, bb %else36
 }
 
 external float getfloat()

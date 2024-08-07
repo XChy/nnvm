@@ -138,16 +138,16 @@ bb16:   # loop depth 2
   # implict jump to bb17
 bb17:   # loop depth 1
   LA a0, c
-  ADD s1, a0, s3
+  ADD s3, a0, s3
   ADD a0, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 2
-  SLLIW s3, a0, 2
-  ADD s3, s1, s3
-  SW s0, 0(s3)
+  SLLIW s1, a0, 2
+  ADD s1, s3, s1
+  SW s0, 0(s1)
   ADDIW a0, a0, 1
-  SLTI s3, a0, 1000
-  BNE s3, zero, bb34
+  SLTI s1, a0, 1000
+  BNE s1, zero, bb34
   # implict jump to bb19
 bb19:   # loop depth 1
   ADDIW s2, s2, 1

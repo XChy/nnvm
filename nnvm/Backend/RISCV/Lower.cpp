@@ -96,8 +96,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
           builder.copy(argVReg->as<Register>(), argReg);
           lowered->setUse(i, argReg);
         } else {
-          uint64_t align = argVReg->bytes();
-          outgoingArgSize = (outgoingArgSize + align - 1) / align * align;
+          outgoingArgSize = alignWith(outgoingArgSize, argVReg->bytes());
           Register *pointerReg = builder.newVRegForPtr();
           builder.addInst(LIRInst::create(
               ADD, pointerReg, outgoingArgFrame,
@@ -109,8 +108,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
         }
       }
 
-      outgoingArgSize = (outgoingArgSize + getFrameAlign() - 1) /
-                        getFrameAlign() * getFrameAlign();
+      outgoingArgSize = alignWith(outgoingArgSize, getFrameAlign());
       outgoingArgFrame->setSize(outgoingArgSize);
 
       emit(lowered);

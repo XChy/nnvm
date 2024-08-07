@@ -22,7 +22,7 @@ while.body:  pred(if.exit62, while.body_preheader)
   store i32 %596 to ptr @a
   18 = icmp ne i32 %596, i32 0
   br i1 %18, bb %select.then, bb %select.else
-while.exit:  pred(if.exit62, entry9)
+while.exit:  pred(entry9, if.exit62)
   a.load74 = load i32 from ptr @a
   call void putint(i32 %a.load74)
   call void putch(i32 32)
@@ -83,9 +83,9 @@ select.then49:  pred(select.else44)
   a.load130 = load i32 from ptr @a
   5131 = add i32 %a.load130, i32 1
   store i32 %5131 to ptr @a
-  158 = add i32 %a.load130, i32 2
-  store i32 %158 to ptr @a
-  55 = sub i32 %5131, i32 %158
+  159 = add i32 %a.load130, i32 2
+  store i32 %159 to ptr @a
+  55 = sub i32 %5131, i32 %159
   56 = add i32 %55, i32 1
   57 = icmp ne i32 %56, i32 0
   br bb %select.exit51

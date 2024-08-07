@@ -165,7 +165,7 @@ bb8:   # loop depth 1
   SW zero, 0(s0)
   LW a0, 68(sp)
   ADDIW a0, a0, 4
-  SW a0, 144(sp)
+  SW a0, 124(sp)
   ADDI s0, zero, 80
   # implict jump to bb9
 bb9:   # loop depth 2
@@ -177,7 +177,7 @@ bb9:   # loop depth 2
   BNE s0, zero, bb36
   # implict jump to bb10
 bb10:   # loop depth 1
-  LW a0, 144(sp)
+  LW a0, 124(sp)
   BLT zero, a0, bb14
   # implict jump to bb11
 bb11:   # loop depth 1
@@ -245,7 +245,7 @@ bb14:   # loop depth 1
   ADDIW s2, s2, -1143
   ADD s2, zero, s2
   ADD a0, zero, zero
-  SW a0, 60(sp)
+  SW a0, 64(sp)
   ADD s3, zero, zero
   LUI s4, 422994
   ADDIW s4, s4, 769
@@ -256,20 +256,20 @@ bb14:   # loop depth 1
   ADD s4, zero, s6
   # implict jump to bb15
 bb15:   # loop depth 2
-  SW s4, 124(sp)
-  SW s8, 128(sp)
-  LW a0, 60(sp)
-  SW a0, 60(sp)
-  SW s2, 132(sp)
-  SW s1, 136(sp)
-  SW s0, 140(sp)
-  LW a0, 60(sp)
+  SW s4, 128(sp)
+  SW s8, 132(sp)
+  LW a0, 64(sp)
+  SW a0, 64(sp)
+  SW s2, 136(sp)
+  SW s1, 140(sp)
+  SW s0, 144(sp)
+  LW a0, 64(sp)
   SLLIW s7, a0, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 1
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -277,7 +277,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 2
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -285,7 +285,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 3
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -294,14 +294,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 344(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 4
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 5
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -309,7 +309,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 6
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -317,7 +317,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 7
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -326,14 +326,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 348(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 8
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 9
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -341,7 +341,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 10
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -349,7 +349,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 11
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -358,14 +358,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 352(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 12
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 13
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -373,7 +373,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 14
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -381,7 +381,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 15
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -390,14 +390,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 356(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 16
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 17
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -405,7 +405,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 18
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -413,7 +413,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 19
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -422,14 +422,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 360(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 20
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 21
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -437,7 +437,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 22
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -445,7 +445,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 23
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -454,14 +454,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 364(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 24
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 25
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -469,7 +469,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 26
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -477,7 +477,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 27
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -486,14 +486,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 368(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 28
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 29
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -501,7 +501,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 30
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -509,7 +509,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 31
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -518,14 +518,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 372(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 32
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 33
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -533,7 +533,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 34
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -541,7 +541,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 35
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -550,14 +550,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 376(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 36
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 37
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -565,7 +565,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 38
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -573,7 +573,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 39
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -582,14 +582,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 380(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 40
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 41
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -597,7 +597,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 42
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -605,7 +605,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 43
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -614,14 +614,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 384(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 44
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 45
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -629,7 +629,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 46
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -637,7 +637,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 47
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -646,14 +646,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 388(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 48
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 49
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -661,7 +661,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 50
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -669,7 +669,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 51
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -678,14 +678,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 392(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 52
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 53
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -693,7 +693,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 54
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -701,7 +701,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 55
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -710,14 +710,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 396(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 56
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 57
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -725,7 +725,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 58
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -733,7 +733,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 59
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -742,14 +742,14 @@ bb15:   # loop depth 2
   SLLW s8, s8, zero
   ADDW s7, s7, s8
   SW s7, 400(sp)
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s7, a0, 60
   SLLIW s7, s7, 2
   LA s8, buffer
   ADD s7, s8, s7
   LW s7, 0(s7)
   SLLIW s7, s7, 24
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 61
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -757,7 +757,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 16
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 62
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -765,7 +765,7 @@ bb15:   # loop depth 2
   LW s8, 0(s8)
   SLLIW s8, s8, 8
   ADDW s7, s7, s8
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW s8, a0, 63
   SLLIW s8, s8, 2
   LA s9, buffer
@@ -831,13 +831,13 @@ bb16:   # loop depth 3
   LW a0, 152(sp)
   SUBW s9, s9, a0
   SLLIW a0, s9, 1
-  SW a0, 16(sp)
+  SW a0, 20(sp)
   SLLI s10, s9, 1
   SRLI s10, s10, 63
   ADD s10, s9, s10
   ANDI s10, s10, -2
   SUBW s9, s9, s10
-  LW a0, 16(sp)
+  LW a0, 20(sp)
   ADDW s9, a0, s9
   SW s9, 0(s8)
   ADDIW s7, s7, 1
@@ -847,22 +847,22 @@ bb16:   # loop depth 3
 bb17:   # loop depth 2
   ADDI a0, zero, 1
   SB a0, 0(sp)
-  LW a0, 124(sp)
-  SW a0, 4(sp)
-  LW a0, 4(sp)
-  SW a0, 4(sp)
-  LW s7, 136(sp)
-  LW a0, 140(sp)
+  LW a0, 128(sp)
+  SW a0, 60(sp)
+  LW a0, 60(sp)
+  SW a0, 60(sp)
+  LW s7, 140(sp)
+  LW a0, 144(sp)
   SW a0, 72(sp)
   LW a0, 72(sp)
   SW a0, 72(sp)
-  LW a0, 132(sp)
+  LW a0, 136(sp)
   SW a0, 96(sp)
   LW a0, 96(sp)
   SW a0, 96(sp)
   ADD a0, zero, zero
-  SW a0, 52(sp)
-  LW a0, 128(sp)
+  SW a0, 4(sp)
+  LW a0, 132(sp)
   SW a0, 92(sp)
   LW a0, 92(sp)
   SW a0, 92(sp)
@@ -870,31 +870,31 @@ bb17:   # loop depth 2
 bb18:   # loop depth 3
   LW a0, 92(sp)
   SW a0, 92(sp)
-  LW a0, 52(sp)
-  SW a0, 52(sp)
+  LW a0, 4(sp)
+  SW a0, 4(sp)
   LW a0, 96(sp)
   SW a0, 96(sp)
   LW a0, 72(sp)
   SW a0, 72(sp)
-  LW a0, 4(sp)
-  SW a0, 4(sp)
+  LW a0, 60(sp)
+  SW a0, 60(sp)
   LB a0, 0(sp)
   SB a0, 0(sp)
-  LW a0, 52(sp)
+  LW a0, 4(sp)
   SLTI s5, a0, 20
   LW a0, 96(sp)
   LW s0, 72(sp)
   ADDW a0, a0, s0
-  SW a0, 48(sp)
+  SW a0, 52(sp)
   BNE s5, zero, bb34
   # implict jump to bb19
 bb19:   # loop depth 3
-  LW a0, 52(sp)
+  LW a0, 4(sp)
   SLTI s5, a0, 40
   BNE s5, zero, bb33
   # implict jump to bb20
 bb20:   # loop depth 3
-  LW a0, 52(sp)
+  LW a0, 4(sp)
   SLTI s5, a0, 60
   BNE s5, zero, bb32
   # implict jump to bb21
@@ -913,7 +913,7 @@ bb25:   # loop depth 3
 bb26:   # loop depth 3
   LW a0, 92(sp)
   SLLIW a0, a0, 5
-  SW a0, 44(sp)
+  SW a0, 48(sp)
   LW a0, 92(sp)
   SLLI a0, a0, 1
   SW a0, 100(sp)
@@ -930,38 +930,38 @@ bb26:   # loop depth 3
   LW a0, 180(sp)
   LW s0, 92(sp)
   SUBW a0, s0, a0
+  SW a0, 44(sp)
+  LW a0, 44(sp)
+  LW s0, 48(sp)
+  ADDW a0, s0, a0
   SW a0, 40(sp)
   LW a0, 40(sp)
-  LW s0, 44(sp)
-  ADDW a0, s0, a0
+  ADDW a0, a0, s3
   SW a0, 36(sp)
   LW a0, 36(sp)
-  ADDW a0, a0, s3
+  LW s0, 60(sp)
+  ADDW a0, a0, s0
   SW a0, 32(sp)
   LW a0, 32(sp)
-  LW s0, 4(sp)
-  ADDW a0, a0, s0
-  SW a0, 28(sp)
-  LW a0, 28(sp)
   ADDW a0, a0, s11
-  SW a0, 24(sp)
-  LW a0, 52(sp)
+  SW a0, 28(sp)
+  LW a0, 4(sp)
   SLLIW a0, a0, 2
-  SW a0, 20(sp)
-  LW a0, 20(sp)
+  SW a0, 24(sp)
+  LW a0, 24(sp)
   ADDI t6, sp, 344
   ADD a0, t6, a0
   SD a0, 304(sp)
   LD a0, 304(sp)
   LW a0, 0(a0)
-  SW a0, 12(sp)
-  LW a0, 12(sp)
-  LW s0, 24(sp)
+  SW a0, 16(sp)
+  LW a0, 16(sp)
+  LW s0, 28(sp)
   ADDW a0, s0, a0
-  SW a0, 8(sp)
+  SW a0, 12(sp)
   LW a0, 96(sp)
   SLLIW a0, a0, 30
-  SW a0, 56(sp)
+  SW a0, 8(sp)
   LW a0, 96(sp)
   SLLI a0, a0, 1
   SW a0, 172(sp)
@@ -984,67 +984,67 @@ bb26:   # loop depth 3
   LW a0, 164(sp)
   LW s0, 96(sp)
   SUBW s8, s0, a0
-  LW a0, 56(sp)
+  LW a0, 8(sp)
   ADDW a0, a0, s8
   SW a0, 88(sp)
-  LW a0, 52(sp)
+  LW a0, 4(sp)
   ADDIW a0, a0, 1
-  SW a0, 52(sp)
-  LW a0, 52(sp)
+  SW a0, 4(sp)
+  LW a0, 4(sp)
   SLTI a0, a0, 80
   SB a0, 0(sp)
   LB a0, 0(sp)
   BNE a0, zero, bb30
   # implict jump to bb27
 bb27:   # loop depth 2
-  LW a0, 128(sp)
-  LW s0, 8(sp)
-  ADDW s8, a0, s0
   LW a0, 132(sp)
+  LW s0, 12(sp)
+  ADDW s8, a0, s0
+  LW a0, 136(sp)
   LW s0, 92(sp)
   ADDW s2, a0, s0
-  LW a0, 140(sp)
+  LW a0, 144(sp)
   LW s0, 88(sp)
   ADDW s0, a0, s0
-  LW a0, 136(sp)
+  LW a0, 140(sp)
   LW s1, 72(sp)
   ADDW s1, a0, s1
-  LW a0, 124(sp)
+  LW a0, 128(sp)
   ADDW s4, a0, s7
-  LW a0, 60(sp)
+  LW a0, 64(sp)
   ADDIW a0, a0, 64
-  SW a0, 60(sp)
-  LW a0, 144(sp)
-  LW s5, 60(sp)
+  SW a0, 64(sp)
+  LW a0, 124(sp)
+  LW s5, 64(sp)
   BLT s5, a0, bb29
   # implict jump to bb28
-bb28:   # loop depth 2
+bb28:   # loop depth 1
   JAL zero, bb12
 bb29:   # loop depth 2
-  LW a0, 60(sp)
-  SW a0, 60(sp)
+  LW a0, 64(sp)
+  SW a0, 64(sp)
   JAL zero, bb15
 bb30:   # loop depth 3
   LB a0, 0(sp)
   SB a0, 0(sp)
-  SW s7, 4(sp)
+  SW s7, 60(sp)
   LW s7, 72(sp)
   LW a0, 88(sp)
   SW a0, 72(sp)
   LW a0, 92(sp)
   SW a0, 96(sp)
-  LW a0, 52(sp)
-  SW a0, 52(sp)
-  LW a0, 8(sp)
+  LW a0, 4(sp)
+  SW a0, 4(sp)
+  LW a0, 12(sp)
   SW a0, 92(sp)
   JAL zero, bb18
 bb31:   # loop depth 3
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   LW s0, 96(sp)
   SUBW s3, s0, a0
   LW a0, 72(sp)
   ADDW s3, s3, a0
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   SUBW s3, s3, a0
   ADDW s5, s3, s7
   SUBW s3, s3, s5
@@ -1057,9 +1057,9 @@ bb31:   # loop depth 3
 bb32:   # loop depth 3
   LW a0, 96(sp)
   ADDW s3, a0, s7
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   ADDW s8, a0, s3
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   SUBW s5, a0, s8
   ADDW s3, s5, s3
   SUBW s3, s3, s8
@@ -1082,12 +1082,12 @@ bb32:   # loop depth 3
   ADD s11, zero, s5
   JAL zero, bb24
 bb33:   # loop depth 3
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   LW s0, 96(sp)
   SUBW s3, s0, a0
   LW a0, 72(sp)
   ADDW s3, s3, a0
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   SUBW s3, s3, a0
   ADDW s5, s3, s7
   SUBW s3, s3, s5
@@ -1102,9 +1102,9 @@ bb34:   # loop depth 3
   LW a0, 96(sp)
   SUBW s3, s3, a0
   ADDW s3, s3, s7
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   ADDW s8, a0, s3
-  LW a0, 48(sp)
+  LW a0, 52(sp)
   SUBW s5, a0, s8
   ADDW s3, s5, s3
   SUBW s3, s3, s8

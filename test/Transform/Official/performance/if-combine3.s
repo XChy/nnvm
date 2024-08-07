@@ -15,9 +15,10 @@ main:   # loop depth 0
   BLT s0, a0, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 0
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -44,8 +45,7 @@ bb4:   # loop depth 1
   REMW s0, s0, s2
   BLT s1, a0, bb6
   # implict jump to bb5
-bb5:   # loop depth 1
-  ADD a0, s0, zero
+bb5:   # loop depth 0
   JAL zero, bb2
 bb6:   # loop depth 1
   JAL zero, bb4

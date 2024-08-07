@@ -25,10 +25,10 @@ while.body:  pred(if.exit90, while.body_preheader)
   j.phi185242 = phi [bb %if.exit90, i32 %j.phi, bb %while.body_preheader, i32 %high]
   i.phi194241 = phi [bb %if.exit90, i32 %i.phi, bb %while.body_preheader, i32 %low]
   br bb %while.cond27
-while.exit:  pred(if.exit90, then)
-  64237240 = phi [bb %if.exit90, i32 %64, bb %then, i32 %64237]
-  229236239 = phi [bb %if.exit90, i32 %231, bb %then, i32 %226]
-  low = phi [bb %if.exit90, i32 %i.phi, bb %then, i32 %low]
+while.exit:  pred(then, while.body_exclu_exit)
+  64237240 = phi [bb %while.body_exclu_exit, i32 %64, bb %then, i32 %64237]
+  229236239 = phi [bb %while.body_exclu_exit, i32 %231, bb %then, i32 %226]
+  low = phi [bb %while.body_exclu_exit, i32 %i.phi, bb %then, i32 %low]
   104 = ptradd ptr %arr, i32 %229236239
   store i32 %18.load to ptr %104
   206 = add i32 %low, i32 -1
@@ -95,7 +95,9 @@ if.exit90:  pred(while.exit67, then89)
   j.phi = phi [bb %while.exit67, i32 %j.phi187, bb %then89, i32 %207]
   25 = icmp slt i32 %i.phi, i32 %j.phi
   64 = add i32 %i.phi, i32 1
-  br i1 %25, bb %while.body, bb %while.exit
+  br i1 %25, bb %while.body, bb %while.body_exclu_exit
+while.body_exclu_exit:  pred(if.exit90)
+  br bb %while.exit
 }
 
 external i32 getarray(ptr )
@@ -142,7 +144,7 @@ while.body164:  pred(while.body164, while.body164_preheader)
   n.load167 = load i32 from ptr @n
   168 = icmp slt i32 %183, i32 %n.load167
   br i1 %168, bb %while.body164, bb %while.exit165
-while.exit165:  pred(while.body164, entry122)
+while.exit165:  pred(entry122, while.body164)
   ret i32 0
 }
 

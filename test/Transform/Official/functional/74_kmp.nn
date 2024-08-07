@@ -67,8 +67,8 @@ KMP.if.exit104:  pred(KMP.else77, KMP.then103)
   j57.phi223 = phi [bb %KMP.else77, i32 %j57.phi151178, bb %KMP.then103, i32 %83196]
   i56.phi224 = phi [bb %KMP.else77, i32 %98.load211, bb %KMP.then103, i32 %107219]
   br bb %KMP.if.exit76
-read_str.then128:  pred(read_str.if.exit129, entry138)
-  120233386390 = phi [bb %read_str.if.exit129, ptr %120233, bb %entry138, ptr %dst]
+read_str.then128:  pred(entry138, read_str.if.exit129_exclu_exit)
+  120233386390 = phi [bb %read_str.if.exit129_exclu_exit, ptr %120233, bb %entry138, ptr %dst]
   store i32 0 to ptr %120233386390
   122252380 = call i32 getch()
   store i32 %122252380 to ptr %src
@@ -84,9 +84,9 @@ read_str.if.exit129:  pred(read_str.if.exit129, read_str.if.exit129_preheader)
   122234 = call i32 getch()
   store i32 %122234 to ptr %120233
   127236 = icmp eq i32 %122234, i32 10
-  br i1 %127236, bb %read_str.then128, bb %read_str.if.exit129
-read_str.then128256:  pred(read_str.if.exit129259, read_str.then128)
-  120251379383 = phi [bb %read_str.if.exit129259, ptr %120251, bb %read_str.then128, ptr %src]
+  br i1 %127236, bb %read_str.if.exit129_exclu_exit, bb %read_str.if.exit129
+read_str.then128256:  pred(read_str.then128, read_str.if.exit129259_exclu_exit)
+  120251379383 = phi [bb %read_str.if.exit129259_exclu_exit, ptr %120251, bb %read_str.then128, ptr %src]
   store i32 0 to ptr %120251379383
   store i32 -1 to ptr %next174
   13.load317373 = load i32 from ptr %dst
@@ -102,7 +102,7 @@ read_str.if.exit129259:  pred(read_str.if.exit129259, read_str.if.exit129259_pre
   122252 = call i32 getch()
   store i32 %122252 to ptr %120251
   127254 = icmp eq i32 %122252, i32 10
-  br i1 %127254, bb %read_str.then128256, bb %read_str.if.exit129259
+  br i1 %127254, bb %read_str.if.exit129259_exclu_exit, bb %read_str.if.exit129259
 get_next.while.body320_preheader:  pred(read_str.then128256)
   br bb %get_next.while.body320
 get_next.while.body320:  pred(get_next.if.exit344, get_next.while.body320_preheader)
@@ -112,7 +112,7 @@ get_next.while.body320:  pred(get_next.if.exit344, get_next.while.body320_prehea
   18321 = icmp eq i32 %j.phi156313375, i32 -1
   368 = shl i32 %j.phi156313375, i32 2
   br i1 %18321, bb %get_next.select.then325, bb %get_next.select.else327
-get_next.while.exit323:  pred(get_next.if.exit344, read_str.then128256)
+get_next.while.exit323:  pred(read_str.then128256, get_next.if.exit344)
   br bb %KMP.while.cond58
 get_next.select.then325:  pred(get_next.while.body320)
   br bb %get_next.select.exit334
@@ -143,6 +143,10 @@ get_next.else348:  pred(get_next.select.exit334)
   51350 = ptradd ptr %next174, i32 %368
   51.load351 = load i32 from ptr %51350
   br bb %get_next.if.exit344
+read_str.if.exit129259_exclu_exit:  pred(read_str.if.exit129259)
+  br bb %read_str.then128256
+read_str.if.exit129_exclu_exit:  pred(read_str.if.exit129)
+  br bb %read_str.then128
 }
 
 external float getfloat()

@@ -305,7 +305,7 @@ bb38:   # loop depth 3
   XORI s4, s4, 1
   BNE s4, zero, bb40
   # implict jump to bb39
-bb39:   # loop depth 3
+bb39:   # loop depth 2
   JAL zero, bb30
 bb40:   # loop depth 3
   ADD s3, s7, zero
@@ -417,7 +417,7 @@ bb57:   # loop depth 3
   XORI s4, s4, 1
   BNE s4, zero, bb59
   # implict jump to bb58
-bb58:   # loop depth 3
+bb58:   # loop depth 2
   ADD s1, s3, zero
   ADD s2, s5, zero
   JAL zero, bb49
@@ -489,7 +489,7 @@ bb71:   # loop depth 2
   XORI s4, s4, 1
   BNE s4, zero, bb73
   # implict jump to bb72
-bb72:   # loop depth 2
+bb72:   # loop depth 1
   JAL zero, bb66
 bb73:   # loop depth 2
   JAL zero, bb69

@@ -25,10 +25,10 @@ while.body142:  pred(if.exit211, while.body142_preheader)
   i129.phi8131465 = phi [bb %if.exit211, i32 %i129.phi, bb %while.body142_preheader, i32 %low]
   j132.phi8171464 = phi [bb %if.exit211, i32 %j132.phi, bb %while.body142_preheader, i32 %high]
   br bb %while.cond148
-while.exit143:  pred(if.exit211, then127)
-  18514601463 = phi [bb %if.exit211, i32 %185, bb %then127, i32 %1851460]
-  141814591462 = phi [bb %if.exit211, i32 %1420, bb %then127, i32 %1415]
-  low = phi [bb %if.exit211, i32 %i129.phi, bb %then127, i32 %low]
+while.exit143:  pred(then127, while.body142_exclu_exit)
+  18514601463 = phi [bb %while.body142_exclu_exit, i32 %185, bb %then127, i32 %1851460]
+  141814591462 = phi [bb %while.body142_exclu_exit, i32 %1420, bb %then127, i32 %1415]
+  low = phi [bb %while.body142_exclu_exit, i32 %i129.phi, bb %then127, i32 %low]
   225 = ptradd ptr %arr, i32 %141814591462
   store i32 %139.load to ptr %225
   888 = add i32 %low, i32 -1
@@ -95,7 +95,9 @@ if.exit211:  pred(while.exit188, then210)
   j132.phi = phi [bb %while.exit188, i32 %j132.phi819, bb %then210, i32 %889]
   146 = icmp slt i32 %i129.phi, i32 %j132.phi
   185 = add i32 %i129.phi, i32 1
-  br i1 %146, bb %while.body142, bb %while.exit143
+  br i1 %146, bb %while.body142, bb %while.body142_exclu_exit
+while.body142_exclu_exit:  pred(if.exit211)
+  br bb %while.exit143
 }
 
 external i32 getarray(ptr )
@@ -172,68 +174,68 @@ entry528:  pred()
   626 = ptradd ptr %arr, i32 124
   store i32 290 to ptr %626
   store i32 7 to ptr %result
-  3839973566 = ptradd ptr %result, i32 4
-  store i32 23 to ptr %3839973566
-  3839973576 = ptradd ptr %result, i32 8
-  store i32 89 to ptr %3839973576
-  3839973586 = ptradd ptr %result, i32 12
-  store i32 26 to ptr %3839973586
-  3839973596 = ptradd ptr %result, i32 16
-  store i32 282 to ptr %3839973596
-  3839973606 = ptradd ptr %result, i32 20
-  store i32 254 to ptr %3839973606
-  3839973616 = ptradd ptr %result, i32 24
-  store i32 27 to ptr %3839973616
-  3839973626 = ptradd ptr %result, i32 28
-  store i32 5 to ptr %3839973626
-  3839973636 = ptradd ptr %result, i32 32
-  store i32 83 to ptr %3839973636
-  3839973646 = ptradd ptr %result, i32 36
-  store i32 273 to ptr %3839973646
-  3839973656 = ptradd ptr %result, i32 40
-  store i32 574 to ptr %3839973656
-  3839973666 = ptradd ptr %result, i32 44
-  store i32 905 to ptr %3839973666
-  3839973676 = ptradd ptr %result, i32 48
-  store i32 354 to ptr %3839973676
-  3839973686 = ptradd ptr %result, i32 52
-  store i32 657 to ptr %3839973686
-  3839973696 = ptradd ptr %result, i32 56
-  store i32 935 to ptr %3839973696
-  3839973706 = ptradd ptr %result, i32 60
-  store i32 264 to ptr %3839973706
-  3839973716 = ptradd ptr %result, i32 64
-  store i32 639 to ptr %3839973716
-  3839973726 = ptradd ptr %result, i32 68
-  store i32 459 to ptr %3839973726
-  3839973736 = ptradd ptr %result, i32 72
-  store i32 29 to ptr %3839973736
-  3839973746 = ptradd ptr %result, i32 76
-  store i32 68 to ptr %3839973746
-  3839973756 = ptradd ptr %result, i32 80
-  store i32 929 to ptr %3839973756
-  3839973766 = ptradd ptr %result, i32 84
-  store i32 756 to ptr %3839973766
-  3839973776 = ptradd ptr %result, i32 88
-  store i32 452 to ptr %3839973776
-  3839973786 = ptradd ptr %result, i32 92
-  store i32 279 to ptr %3839973786
-  3839973796 = ptradd ptr %result, i32 96
-  store i32 58 to ptr %3839973796
-  3839973806 = ptradd ptr %result, i32 100
-  store i32 87 to ptr %3839973806
-  3839973816 = ptradd ptr %result, i32 104
-  store i32 96 to ptr %3839973816
-  3839973826 = ptradd ptr %result, i32 108
-  store i32 36 to ptr %3839973826
-  3839973836 = ptradd ptr %result, i32 112
-  store i32 39 to ptr %3839973836
-  3839973846 = ptradd ptr %result, i32 116
-  store i32 28 to ptr %3839973846
-  3839973856 = ptradd ptr %result, i32 120
-  store i32 1 to ptr %3839973856
-  3839973866 = ptradd ptr %result, i32 124
-  store i32 290 to ptr %3839973866
+  3839973591 = ptradd ptr %result, i32 4
+  store i32 23 to ptr %3839973591
+  3839973601 = ptradd ptr %result, i32 8
+  store i32 89 to ptr %3839973601
+  3839973611 = ptradd ptr %result, i32 12
+  store i32 26 to ptr %3839973611
+  3839973621 = ptradd ptr %result, i32 16
+  store i32 282 to ptr %3839973621
+  3839973631 = ptradd ptr %result, i32 20
+  store i32 254 to ptr %3839973631
+  3839973641 = ptradd ptr %result, i32 24
+  store i32 27 to ptr %3839973641
+  3839973651 = ptradd ptr %result, i32 28
+  store i32 5 to ptr %3839973651
+  3839973661 = ptradd ptr %result, i32 32
+  store i32 83 to ptr %3839973661
+  3839973671 = ptradd ptr %result, i32 36
+  store i32 273 to ptr %3839973671
+  3839973681 = ptradd ptr %result, i32 40
+  store i32 574 to ptr %3839973681
+  3839973691 = ptradd ptr %result, i32 44
+  store i32 905 to ptr %3839973691
+  3839973701 = ptradd ptr %result, i32 48
+  store i32 354 to ptr %3839973701
+  3839973711 = ptradd ptr %result, i32 52
+  store i32 657 to ptr %3839973711
+  3839973721 = ptradd ptr %result, i32 56
+  store i32 935 to ptr %3839973721
+  3839973731 = ptradd ptr %result, i32 60
+  store i32 264 to ptr %3839973731
+  3839973741 = ptradd ptr %result, i32 64
+  store i32 639 to ptr %3839973741
+  3839973751 = ptradd ptr %result, i32 68
+  store i32 459 to ptr %3839973751
+  3839973761 = ptradd ptr %result, i32 72
+  store i32 29 to ptr %3839973761
+  3839973771 = ptradd ptr %result, i32 76
+  store i32 68 to ptr %3839973771
+  3839973781 = ptradd ptr %result, i32 80
+  store i32 929 to ptr %3839973781
+  3839973791 = ptradd ptr %result, i32 84
+  store i32 756 to ptr %3839973791
+  3839973801 = ptradd ptr %result, i32 88
+  store i32 452 to ptr %3839973801
+  3839973811 = ptradd ptr %result, i32 92
+  store i32 279 to ptr %3839973811
+  3839973821 = ptradd ptr %result, i32 96
+  store i32 58 to ptr %3839973821
+  3839973831 = ptradd ptr %result, i32 100
+  store i32 87 to ptr %3839973831
+  3839973841 = ptradd ptr %result, i32 104
+  store i32 96 to ptr %3839973841
+  3839973851 = ptradd ptr %result, i32 108
+  store i32 36 to ptr %3839973851
+  3839973861 = ptradd ptr %result, i32 112
+  store i32 39 to ptr %3839973861
+  3839973871 = ptradd ptr %result, i32 116
+  store i32 28 to ptr %3839973871
+  3839973881 = ptradd ptr %result, i32 120
+  store i32 1 to ptr %3839973881
+  3839973891 = ptradd ptr %result, i32 124
+  store i32 290 to ptr %3839973891
   br bb %revert.while.exit342
 while.exit656.split1146:  pred(getMid.then248, getMid.else)
   671.ret = phi [bb %getMid.then248, i32 %2641163, bb %getMid.else, i32 %270.load1170]
@@ -248,7 +250,7 @@ avgPooling.while.body442:  pred(avgPooling.if.exit453, avgPooling.while.body442_
   451929 = icmp slt i32 %i437.phi7909221487, i32 2
   1430 = shl i32 %i437.phi7909221487, i32 2
   br i1 %451929, bb %avgPooling.then452, bb %avgPooling.else454
-avgPooling.while.exit443:  pred(avgPooling.if.exit453, arrCopy.while.exit3761098)
+avgPooling.while.exit443:  pred(arrCopy.while.exit3761098, avgPooling.if.exit453)
   1368 = add i32 %n.load37810871489, i32 -2
   5199761483 = icmp slt i32 %1368, i32 %n.load37810871489
   br i1 %5199761483, bb %avgPooling.while.body515_preheader, bb %avgPooling.while.exit516
@@ -297,71 +299,71 @@ avgPooling.while.body515:  pred(avgPooling.while.body515, avgPooling.while.body5
   527982 = add i32 %i437.phi9741484, i32 1
   519976 = icmp slt i32 %527982, i32 %n.load37810871489
   br i1 %519976, bb %avgPooling.while.body515, bb %avgPooling.while.exit516
-avgPooling.while.exit516:  pred(avgPooling.while.body515, avgPooling.while.exit443)
+avgPooling.while.exit516:  pred(avgPooling.while.exit443, avgPooling.while.body515)
   779.load = load i32 from ptr %result
   call void putint(i32 %779.load)
-  779.load1614 = load i32 from ptr %3839973566
-  call void putint(i32 %779.load1614)
-  779.load1623 = load i32 from ptr %3839973576
-  call void putint(i32 %779.load1623)
-  779.load1632 = load i32 from ptr %3839973586
-  call void putint(i32 %779.load1632)
-  779.load1641 = load i32 from ptr %3839973596
-  call void putint(i32 %779.load1641)
-  779.load1650 = load i32 from ptr %3839973606
-  call void putint(i32 %779.load1650)
-  779.load1659 = load i32 from ptr %3839973616
-  call void putint(i32 %779.load1659)
-  779.load1668 = load i32 from ptr %3839973626
-  call void putint(i32 %779.load1668)
-  779.load1677 = load i32 from ptr %3839973636
-  call void putint(i32 %779.load1677)
-  779.load1686 = load i32 from ptr %3839973646
-  call void putint(i32 %779.load1686)
-  779.load1695 = load i32 from ptr %3839973656
-  call void putint(i32 %779.load1695)
-  779.load1704 = load i32 from ptr %3839973666
-  call void putint(i32 %779.load1704)
-  779.load1713 = load i32 from ptr %3839973676
-  call void putint(i32 %779.load1713)
-  779.load1722 = load i32 from ptr %3839973686
-  call void putint(i32 %779.load1722)
-  779.load1731 = load i32 from ptr %3839973696
-  call void putint(i32 %779.load1731)
-  779.load1740 = load i32 from ptr %3839973706
-  call void putint(i32 %779.load1740)
-  779.load1749 = load i32 from ptr %3839973716
-  call void putint(i32 %779.load1749)
-  779.load1758 = load i32 from ptr %3839973726
-  call void putint(i32 %779.load1758)
-  779.load1767 = load i32 from ptr %3839973736
-  call void putint(i32 %779.load1767)
-  779.load1776 = load i32 from ptr %3839973746
-  call void putint(i32 %779.load1776)
-  779.load1785 = load i32 from ptr %3839973756
-  call void putint(i32 %779.load1785)
-  779.load1794 = load i32 from ptr %3839973766
-  call void putint(i32 %779.load1794)
-  779.load1803 = load i32 from ptr %3839973776
-  call void putint(i32 %779.load1803)
-  779.load1812 = load i32 from ptr %3839973786
-  call void putint(i32 %779.load1812)
-  779.load1821 = load i32 from ptr %3839973796
-  call void putint(i32 %779.load1821)
-  779.load1830 = load i32 from ptr %3839973806
-  call void putint(i32 %779.load1830)
-  779.load1839 = load i32 from ptr %3839973816
-  call void putint(i32 %779.load1839)
-  779.load1848 = load i32 from ptr %3839973826
-  call void putint(i32 %779.load1848)
-  779.load1857 = load i32 from ptr %3839973836
-  call void putint(i32 %779.load1857)
-  779.load1866 = load i32 from ptr %3839973846
-  call void putint(i32 %779.load1866)
-  779.load1875 = load i32 from ptr %3839973856
-  call void putint(i32 %779.load1875)
-  779.load1884 = load i32 from ptr %3839973866
-  call void putint(i32 %779.load1884)
+  779.load1639 = load i32 from ptr %3839973591
+  call void putint(i32 %779.load1639)
+  779.load1648 = load i32 from ptr %3839973601
+  call void putint(i32 %779.load1648)
+  779.load1657 = load i32 from ptr %3839973611
+  call void putint(i32 %779.load1657)
+  779.load1666 = load i32 from ptr %3839973621
+  call void putint(i32 %779.load1666)
+  779.load1675 = load i32 from ptr %3839973631
+  call void putint(i32 %779.load1675)
+  779.load1684 = load i32 from ptr %3839973641
+  call void putint(i32 %779.load1684)
+  779.load1693 = load i32 from ptr %3839973651
+  call void putint(i32 %779.load1693)
+  779.load1702 = load i32 from ptr %3839973661
+  call void putint(i32 %779.load1702)
+  779.load1711 = load i32 from ptr %3839973671
+  call void putint(i32 %779.load1711)
+  779.load1720 = load i32 from ptr %3839973681
+  call void putint(i32 %779.load1720)
+  779.load1729 = load i32 from ptr %3839973691
+  call void putint(i32 %779.load1729)
+  779.load1738 = load i32 from ptr %3839973701
+  call void putint(i32 %779.load1738)
+  779.load1747 = load i32 from ptr %3839973711
+  call void putint(i32 %779.load1747)
+  779.load1756 = load i32 from ptr %3839973721
+  call void putint(i32 %779.load1756)
+  779.load1765 = load i32 from ptr %3839973731
+  call void putint(i32 %779.load1765)
+  779.load1774 = load i32 from ptr %3839973741
+  call void putint(i32 %779.load1774)
+  779.load1783 = load i32 from ptr %3839973751
+  call void putint(i32 %779.load1783)
+  779.load1792 = load i32 from ptr %3839973761
+  call void putint(i32 %779.load1792)
+  779.load1801 = load i32 from ptr %3839973771
+  call void putint(i32 %779.load1801)
+  779.load1810 = load i32 from ptr %3839973781
+  call void putint(i32 %779.load1810)
+  779.load1819 = load i32 from ptr %3839973791
+  call void putint(i32 %779.load1819)
+  779.load1828 = load i32 from ptr %3839973801
+  call void putint(i32 %779.load1828)
+  779.load1837 = load i32 from ptr %3839973811
+  call void putint(i32 %779.load1837)
+  779.load1846 = load i32 from ptr %3839973821
+  call void putint(i32 %779.load1846)
+  779.load1855 = load i32 from ptr %3839973831
+  call void putint(i32 %779.load1855)
+  779.load1864 = load i32 from ptr %3839973841
+  call void putint(i32 %779.load1864)
+  779.load1873 = load i32 from ptr %3839973851
+  call void putint(i32 %779.load1873)
+  779.load1882 = load i32 from ptr %3839973861
+  call void putint(i32 %779.load1882)
+  779.load1891 = load i32 from ptr %3839973871
+  call void putint(i32 %779.load1891)
+  779.load1900 = load i32 from ptr %3839973881
+  call void putint(i32 %779.load1900)
+  779.load1909 = load i32 from ptr %3839973891
+  call void putint(i32 %779.load1909)
   ret i32 0
 arrCopy.while.body3751014_preheader:  pred(getMost.while.exit295)
   br bb %arrCopy.while.body3751014
@@ -374,8 +376,8 @@ arrCopy.while.body3751014:  pred(arrCopy.while.body3751014, arrCopy.while.body37
   store i32 %387.load1018 to ptr %3831016
   3911020 = add i32 %i372.phi10101524, i32 1
   3791012 = icmp slt i32 %3911020, i32 %n.load37810111521
-  br i1 %3791012, bb %arrCopy.while.body3751014, bb %arrCopy.while.exit3761022
-arrCopy.while.exit3761022:  pred(arrCopy.while.body3751014, getMost.while.exit295)
+  br i1 %3791012, bb %arrCopy.while.body3751014, bb %arrCopy.while.body3751014_exclu_exit
+arrCopy.while.exit3761022:  pred(getMost.while.exit295, arrCopy.while.body3751014_exclu_exit)
   90913281517 = add i32 %n.load37810111521, i32 -1
   1013291518 = icmp slt i32 0, i32 %90913281517
   br i1 %1013291518, bb %bubblesort.while.body1331_preheader, bb %bubblesort.while.exit1333
@@ -390,8 +392,8 @@ arrCopy.while.body3751033:  pred(arrCopy.while.body3751033, arrCopy.while.body37
   store i32 %387.load1037 to ptr %3831035
   3911039 = add i32 %i372.phi10291514, i32 1
   3791031 = icmp slt i32 %3911039, i32 %n.load37810301511
-  br i1 %3791031, bb %arrCopy.while.body3751033, bb %arrCopy.while.exit3761041
-arrCopy.while.exit3761041:  pred(arrCopy.while.body3751033, bubblesort.while.exit1333)
+  br i1 %3791031, bb %arrCopy.while.body3751033, bb %arrCopy.while.body3751033_exclu_exit
+arrCopy.while.exit3761041:  pred(bubblesort.while.exit1333, arrCopy.while.body3751033_exclu_exit)
   7011791509 = icmp slt i32 1, i32 %n.load37810301511
   br i1 %7011791509, bb %insertsort.while.body66_preheader, bb %insertsort.while.exit67
 arrCopy.while.body3751052_preheader:  pred(insertsort.while.exit67)
@@ -406,72 +408,72 @@ arrCopy.while.body3751052:  pred(arrCopy.while.body3751052, arrCopy.while.body37
   3911058 = add i32 %i372.phi10481506, i32 1
   3791050 = icmp slt i32 %3911058, i32 %n.load37810491504
   br i1 %3791050, bb %arrCopy.while.body3751052, bb %arrCopy.while.exit3761060
-arrCopy.while.exit3761060:  pred(arrCopy.while.body3751052, insertsort.while.exit67)
+arrCopy.while.exit3761060:  pred(insertsort.while.exit67, arrCopy.while.body3751052)
   727 = call i32 QuickSort(ptr %result, i32 0, i32 31)
   737.load = load i32 from ptr %result
   call void putint(i32 %737.load)
-  737.load2172 = load i32 from ptr %3839973566
-  call void putint(i32 %737.load2172)
-  737.load2181 = load i32 from ptr %3839973576
-  call void putint(i32 %737.load2181)
-  737.load2190 = load i32 from ptr %3839973586
-  call void putint(i32 %737.load2190)
-  737.load2199 = load i32 from ptr %3839973596
-  call void putint(i32 %737.load2199)
-  737.load2208 = load i32 from ptr %3839973606
-  call void putint(i32 %737.load2208)
-  737.load2217 = load i32 from ptr %3839973616
-  call void putint(i32 %737.load2217)
-  737.load2226 = load i32 from ptr %3839973626
-  call void putint(i32 %737.load2226)
-  737.load2235 = load i32 from ptr %3839973636
-  call void putint(i32 %737.load2235)
-  737.load2244 = load i32 from ptr %3839973646
-  call void putint(i32 %737.load2244)
-  737.load2253 = load i32 from ptr %3839973656
-  call void putint(i32 %737.load2253)
-  737.load2262 = load i32 from ptr %3839973666
-  call void putint(i32 %737.load2262)
-  737.load2271 = load i32 from ptr %3839973676
-  call void putint(i32 %737.load2271)
-  737.load2280 = load i32 from ptr %3839973686
-  call void putint(i32 %737.load2280)
-  737.load2289 = load i32 from ptr %3839973696
-  call void putint(i32 %737.load2289)
-  737.load2298 = load i32 from ptr %3839973706
-  call void putint(i32 %737.load2298)
-  737.load2307 = load i32 from ptr %3839973716
-  call void putint(i32 %737.load2307)
-  737.load2316 = load i32 from ptr %3839973726
-  call void putint(i32 %737.load2316)
-  737.load2325 = load i32 from ptr %3839973736
-  call void putint(i32 %737.load2325)
-  737.load2334 = load i32 from ptr %3839973746
-  call void putint(i32 %737.load2334)
-  737.load2343 = load i32 from ptr %3839973756
-  call void putint(i32 %737.load2343)
-  737.load2352 = load i32 from ptr %3839973766
-  call void putint(i32 %737.load2352)
-  737.load2361 = load i32 from ptr %3839973776
-  call void putint(i32 %737.load2361)
-  737.load2370 = load i32 from ptr %3839973786
-  call void putint(i32 %737.load2370)
-  737.load2379 = load i32 from ptr %3839973796
-  call void putint(i32 %737.load2379)
-  737.load2388 = load i32 from ptr %3839973806
-  call void putint(i32 %737.load2388)
-  737.load2397 = load i32 from ptr %3839973816
-  call void putint(i32 %737.load2397)
-  737.load2406 = load i32 from ptr %3839973826
-  call void putint(i32 %737.load2406)
-  737.load2415 = load i32 from ptr %3839973836
-  call void putint(i32 %737.load2415)
-  737.load2424 = load i32 from ptr %3839973846
-  call void putint(i32 %737.load2424)
-  737.load2433 = load i32 from ptr %3839973856
-  call void putint(i32 %737.load2433)
-  737.load2442 = load i32 from ptr %3839973866
-  call void putint(i32 %737.load2442)
+  737.load2197 = load i32 from ptr %3839973591
+  call void putint(i32 %737.load2197)
+  737.load2206 = load i32 from ptr %3839973601
+  call void putint(i32 %737.load2206)
+  737.load2215 = load i32 from ptr %3839973611
+  call void putint(i32 %737.load2215)
+  737.load2224 = load i32 from ptr %3839973621
+  call void putint(i32 %737.load2224)
+  737.load2233 = load i32 from ptr %3839973631
+  call void putint(i32 %737.load2233)
+  737.load2242 = load i32 from ptr %3839973641
+  call void putint(i32 %737.load2242)
+  737.load2251 = load i32 from ptr %3839973651
+  call void putint(i32 %737.load2251)
+  737.load2260 = load i32 from ptr %3839973661
+  call void putint(i32 %737.load2260)
+  737.load2269 = load i32 from ptr %3839973671
+  call void putint(i32 %737.load2269)
+  737.load2278 = load i32 from ptr %3839973681
+  call void putint(i32 %737.load2278)
+  737.load2287 = load i32 from ptr %3839973691
+  call void putint(i32 %737.load2287)
+  737.load2296 = load i32 from ptr %3839973701
+  call void putint(i32 %737.load2296)
+  737.load2305 = load i32 from ptr %3839973711
+  call void putint(i32 %737.load2305)
+  737.load2314 = load i32 from ptr %3839973721
+  call void putint(i32 %737.load2314)
+  737.load2323 = load i32 from ptr %3839973731
+  call void putint(i32 %737.load2323)
+  737.load2332 = load i32 from ptr %3839973741
+  call void putint(i32 %737.load2332)
+  737.load2341 = load i32 from ptr %3839973751
+  call void putint(i32 %737.load2341)
+  737.load2350 = load i32 from ptr %3839973761
+  call void putint(i32 %737.load2350)
+  737.load2359 = load i32 from ptr %3839973771
+  call void putint(i32 %737.load2359)
+  737.load2368 = load i32 from ptr %3839973781
+  call void putint(i32 %737.load2368)
+  737.load2377 = load i32 from ptr %3839973791
+  call void putint(i32 %737.load2377)
+  737.load2386 = load i32 from ptr %3839973801
+  call void putint(i32 %737.load2386)
+  737.load2395 = load i32 from ptr %3839973811
+  call void putint(i32 %737.load2395)
+  737.load2404 = load i32 from ptr %3839973821
+  call void putint(i32 %737.load2404)
+  737.load2413 = load i32 from ptr %3839973831
+  call void putint(i32 %737.load2413)
+  737.load2422 = load i32 from ptr %3839973841
+  call void putint(i32 %737.load2422)
+  737.load2431 = load i32 from ptr %3839973851
+  call void putint(i32 %737.load2431)
+  737.load2440 = load i32 from ptr %3839973861
+  call void putint(i32 %737.load2440)
+  737.load2449 = load i32 from ptr %3839973871
+  call void putint(i32 %737.load2449)
+  737.load2458 = load i32 from ptr %3839973881
+  call void putint(i32 %737.load2458)
+  737.load2467 = load i32 from ptr %3839973891
+  call void putint(i32 %737.load2467)
   n.load37810681498 = load i32 from ptr @n
   37910691499 = icmp slt i32 0, i32 %n.load37810681498
   br i1 %37910691499, bb %arrCopy.while.body3751071_preheader, bb %arrCopy.while.exit3761079
@@ -486,8 +488,8 @@ arrCopy.while.body3751071:  pred(arrCopy.while.body3751071, arrCopy.while.body37
   store i32 %387.load1075 to ptr %3831073
   3911077 = add i32 %i372.phi10671501, i32 1
   3791069 = icmp slt i32 %3911077, i32 %n.load37810681498
-  br i1 %3791069, bb %arrCopy.while.body3751071, bb %arrCopy.while.exit3761079
-arrCopy.while.exit3761079:  pred(arrCopy.while.body3751071, arrCopy.while.exit3761060)
+  br i1 %3791069, bb %arrCopy.while.body3751071, bb %arrCopy.while.body3751071_exclu_exit
+arrCopy.while.exit3761079:  pred(arrCopy.while.exit3761060, arrCopy.while.body3751071_exclu_exit)
   40312521495 = icmp slt i32 0, i32 %n.load37810681498
   br i1 %40312521495, bb %calSum.while.body399_preheader, bb %calSum.while.exit400
 arrCopy.while.body3751090_preheader:  pred(calSum.while.exit400)
@@ -501,8 +503,8 @@ arrCopy.while.body3751090:  pred(arrCopy.while.body3751090, arrCopy.while.body37
   store i32 %387.load1094 to ptr %3831092
   3911096 = add i32 %i372.phi10861492, i32 1
   3791088 = icmp slt i32 %3911096, i32 %n.load37810871489
-  br i1 %3791088, bb %arrCopy.while.body3751090, bb %arrCopy.while.exit3761098
-arrCopy.while.exit3761098:  pred(arrCopy.while.body3751090, calSum.while.exit400)
+  br i1 %3791088, bb %arrCopy.while.body3751090, bb %arrCopy.while.body3751090_exclu_exit
+arrCopy.while.exit3761098:  pred(calSum.while.exit400, arrCopy.while.body3751090_exclu_exit)
   4469251485 = icmp slt i32 0, i32 %n.load37810871489
   br i1 %4469251485, bb %avgPooling.while.body442_preheader, bb %avgPooling.while.exit443
 getMost.while.body277:  pred(getMost.while.body277, while.exit656.split1146)
@@ -512,12 +514,8 @@ getMost.while.body277:  pred(getMost.while.body277, while.exit656.split1146)
   store i32 0 to ptr %2841111
   2881113 = add i32 %i274.phi79611061532, i32 1
   2801107 = icmp slt i32 %2881113, i32 1000
-  br i1 %2801107, bb %getMost.while.body277, bb %getMost.while.exit278
-getMost.while.exit278:  pred(getMost.while.body277)
-  n.load29711211525 = load i32 from ptr @n
-  29811221526 = icmp slt i32 0, i32 %n.load29711211525
-  br i1 %29811221526, bb %getMost.while.body294_preheader, bb %getMost.while.exit295
-getMost.while.body294_preheader:  pred(getMost.while.exit278)
+  br i1 %2801107, bb %getMost.while.body277, bb %getMost.while.body277_exclu_exit
+getMost.while.body294_preheader:  pred(getMost.while.body277_exclu_exit)
   br bb %getMost.while.body294
 getMost.while.body294:  pred(getMost.if.exit322, getMost.while.body294_preheader)
   i274.phi11201530 = phi [bb %getMost.if.exit322, i32 %3321143, bb %getMost.while.body294_preheader, i32 0]
@@ -533,8 +531,8 @@ getMost.while.body294:  pred(getMost.if.exit322, getMost.while.body294_preheader
   store i32 %3141131 to ptr %3081129
   3201133 = icmp sgt i32 %3141131, i32 %max.phi79811191529
   br i1 %3201133, bb %getMost.then321, bb %getMost.if.exit322
-getMost.while.exit295:  pred(getMost.if.exit322, getMost.while.exit278)
-  1527 = phi [bb %getMost.if.exit322, i32 %number.phi1141, bb %getMost.while.exit278, i32 0]
+getMost.while.exit295:  pred(getMost.while.body277_exclu_exit, getMost.while.body294_exclu_exit)
+  1527 = phi [bb %getMost.while.body294_exclu_exit, i32 %number.phi1141, bb %getMost.while.body277_exclu_exit, i32 0]
   call void putint(i32 %1527)
   n.load37810111521 = load i32 from ptr @n
   37910121522 = icmp slt i32 0, i32 %n.load37810111521
@@ -546,7 +544,7 @@ getMost.if.exit322:  pred(getMost.while.body294, getMost.then321)
   max.phi1142 = phi [bb %getMost.while.body294, i32 %max.phi79811191529, bb %getMost.then321, i32 %3141131]
   3321143 = add i32 %i274.phi11201530, i32 1
   2981122 = icmp slt i32 %3321143, i32 %n.load29711211525
-  br i1 %2981122, bb %getMost.while.body294, bb %getMost.while.exit295
+  br i1 %2981122, bb %getMost.while.body294, bb %getMost.while.body294_exclu_exit
 getMid.then248:  pred(bubblesort.while.exit)
   2531154 = sdiv i32 %n.load2451148, i32 2
   1443 = shl i32 %2531154, i32 2
@@ -574,71 +572,71 @@ insertsort.while.body66:  pred(insertsort.while.exit84, insertsort.while.body66_
   76.load1184 = load i32 from ptr %761183
   8751185 = add i32 %i63.phi11771510, i32 -1
   br bb %insertsort.while.cond82
-insertsort.while.exit67:  pred(insertsort.while.exit84, arrCopy.while.exit3761041)
+insertsort.while.exit67:  pred(arrCopy.while.exit3761041, insertsort.while.exit84)
   713.load = load i32 from ptr %result
   call void putint(i32 %713.load)
-  713.load2451 = load i32 from ptr %3839973566
-  call void putint(i32 %713.load2451)
-  713.load2460 = load i32 from ptr %3839973576
-  call void putint(i32 %713.load2460)
-  713.load2469 = load i32 from ptr %3839973586
-  call void putint(i32 %713.load2469)
-  713.load2478 = load i32 from ptr %3839973596
-  call void putint(i32 %713.load2478)
-  713.load2487 = load i32 from ptr %3839973606
-  call void putint(i32 %713.load2487)
-  713.load2496 = load i32 from ptr %3839973616
-  call void putint(i32 %713.load2496)
-  713.load2505 = load i32 from ptr %3839973626
-  call void putint(i32 %713.load2505)
-  713.load2514 = load i32 from ptr %3839973636
-  call void putint(i32 %713.load2514)
-  713.load2523 = load i32 from ptr %3839973646
-  call void putint(i32 %713.load2523)
-  713.load2532 = load i32 from ptr %3839973656
-  call void putint(i32 %713.load2532)
-  713.load2541 = load i32 from ptr %3839973666
-  call void putint(i32 %713.load2541)
-  713.load2550 = load i32 from ptr %3839973676
-  call void putint(i32 %713.load2550)
-  713.load2559 = load i32 from ptr %3839973686
-  call void putint(i32 %713.load2559)
-  713.load2568 = load i32 from ptr %3839973696
-  call void putint(i32 %713.load2568)
-  713.load2577 = load i32 from ptr %3839973706
-  call void putint(i32 %713.load2577)
-  713.load2586 = load i32 from ptr %3839973716
-  call void putint(i32 %713.load2586)
-  713.load2595 = load i32 from ptr %3839973726
-  call void putint(i32 %713.load2595)
-  713.load2604 = load i32 from ptr %3839973736
-  call void putint(i32 %713.load2604)
-  713.load2613 = load i32 from ptr %3839973746
-  call void putint(i32 %713.load2613)
-  713.load2622 = load i32 from ptr %3839973756
-  call void putint(i32 %713.load2622)
-  713.load2631 = load i32 from ptr %3839973766
-  call void putint(i32 %713.load2631)
-  713.load2640 = load i32 from ptr %3839973776
-  call void putint(i32 %713.load2640)
-  713.load2649 = load i32 from ptr %3839973786
-  call void putint(i32 %713.load2649)
-  713.load2658 = load i32 from ptr %3839973796
-  call void putint(i32 %713.load2658)
-  713.load2667 = load i32 from ptr %3839973806
-  call void putint(i32 %713.load2667)
-  713.load2676 = load i32 from ptr %3839973816
-  call void putint(i32 %713.load2676)
-  713.load2685 = load i32 from ptr %3839973826
-  call void putint(i32 %713.load2685)
-  713.load2694 = load i32 from ptr %3839973836
-  call void putint(i32 %713.load2694)
-  713.load2703 = load i32 from ptr %3839973846
-  call void putint(i32 %713.load2703)
-  713.load2712 = load i32 from ptr %3839973856
-  call void putint(i32 %713.load2712)
-  713.load2721 = load i32 from ptr %3839973866
-  call void putint(i32 %713.load2721)
+  713.load2476 = load i32 from ptr %3839973591
+  call void putint(i32 %713.load2476)
+  713.load2485 = load i32 from ptr %3839973601
+  call void putint(i32 %713.load2485)
+  713.load2494 = load i32 from ptr %3839973611
+  call void putint(i32 %713.load2494)
+  713.load2503 = load i32 from ptr %3839973621
+  call void putint(i32 %713.load2503)
+  713.load2512 = load i32 from ptr %3839973631
+  call void putint(i32 %713.load2512)
+  713.load2521 = load i32 from ptr %3839973641
+  call void putint(i32 %713.load2521)
+  713.load2530 = load i32 from ptr %3839973651
+  call void putint(i32 %713.load2530)
+  713.load2539 = load i32 from ptr %3839973661
+  call void putint(i32 %713.load2539)
+  713.load2548 = load i32 from ptr %3839973671
+  call void putint(i32 %713.load2548)
+  713.load2557 = load i32 from ptr %3839973681
+  call void putint(i32 %713.load2557)
+  713.load2566 = load i32 from ptr %3839973691
+  call void putint(i32 %713.load2566)
+  713.load2575 = load i32 from ptr %3839973701
+  call void putint(i32 %713.load2575)
+  713.load2584 = load i32 from ptr %3839973711
+  call void putint(i32 %713.load2584)
+  713.load2593 = load i32 from ptr %3839973721
+  call void putint(i32 %713.load2593)
+  713.load2602 = load i32 from ptr %3839973731
+  call void putint(i32 %713.load2602)
+  713.load2611 = load i32 from ptr %3839973741
+  call void putint(i32 %713.load2611)
+  713.load2620 = load i32 from ptr %3839973751
+  call void putint(i32 %713.load2620)
+  713.load2629 = load i32 from ptr %3839973761
+  call void putint(i32 %713.load2629)
+  713.load2638 = load i32 from ptr %3839973771
+  call void putint(i32 %713.load2638)
+  713.load2647 = load i32 from ptr %3839973781
+  call void putint(i32 %713.load2647)
+  713.load2656 = load i32 from ptr %3839973791
+  call void putint(i32 %713.load2656)
+  713.load2665 = load i32 from ptr %3839973801
+  call void putint(i32 %713.load2665)
+  713.load2674 = load i32 from ptr %3839973811
+  call void putint(i32 %713.load2674)
+  713.load2683 = load i32 from ptr %3839973821
+  call void putint(i32 %713.load2683)
+  713.load2692 = load i32 from ptr %3839973831
+  call void putint(i32 %713.load2692)
+  713.load2701 = load i32 from ptr %3839973841
+  call void putint(i32 %713.load2701)
+  713.load2710 = load i32 from ptr %3839973851
+  call void putint(i32 %713.load2710)
+  713.load2719 = load i32 from ptr %3839973861
+  call void putint(i32 %713.load2719)
+  713.load2728 = load i32 from ptr %3839973871
+  call void putint(i32 %713.load2728)
+  713.load2737 = load i32 from ptr %3839973881
+  call void putint(i32 %713.load2737)
+  713.load2746 = load i32 from ptr %3839973891
+  call void putint(i32 %713.load2746)
   n.load37810491504 = load i32 from ptr @n
   37910501505 = icmp slt i32 0, i32 %n.load37810491504
   br i1 %37910501505, bb %arrCopy.while.body3751052_preheader, bb %arrCopy.while.exit3761060
@@ -691,68 +689,68 @@ revert.while.body341:  pred(revert.while.body341)
 revert.while.exit342:  pred(revert.while.body341, entry528)
   644.load = load i32 from ptr %result
   call void putint(i32 %644.load)
-  644.load3288 = load i32 from ptr %3839973566
-  call void putint(i32 %644.load3288)
-  644.load3297 = load i32 from ptr %3839973576
-  call void putint(i32 %644.load3297)
-  644.load3306 = load i32 from ptr %3839973586
-  call void putint(i32 %644.load3306)
-  644.load3315 = load i32 from ptr %3839973596
-  call void putint(i32 %644.load3315)
-  644.load3324 = load i32 from ptr %3839973606
-  call void putint(i32 %644.load3324)
-  644.load3333 = load i32 from ptr %3839973616
-  call void putint(i32 %644.load3333)
-  644.load3342 = load i32 from ptr %3839973626
-  call void putint(i32 %644.load3342)
-  644.load3351 = load i32 from ptr %3839973636
-  call void putint(i32 %644.load3351)
-  644.load3360 = load i32 from ptr %3839973646
-  call void putint(i32 %644.load3360)
-  644.load3369 = load i32 from ptr %3839973656
-  call void putint(i32 %644.load3369)
-  644.load3378 = load i32 from ptr %3839973666
-  call void putint(i32 %644.load3378)
-  644.load3387 = load i32 from ptr %3839973676
-  call void putint(i32 %644.load3387)
-  644.load3396 = load i32 from ptr %3839973686
-  call void putint(i32 %644.load3396)
-  644.load3405 = load i32 from ptr %3839973696
-  call void putint(i32 %644.load3405)
-  644.load3414 = load i32 from ptr %3839973706
-  call void putint(i32 %644.load3414)
-  644.load3423 = load i32 from ptr %3839973716
-  call void putint(i32 %644.load3423)
-  644.load3432 = load i32 from ptr %3839973726
-  call void putint(i32 %644.load3432)
-  644.load3441 = load i32 from ptr %3839973736
-  call void putint(i32 %644.load3441)
-  644.load3450 = load i32 from ptr %3839973746
-  call void putint(i32 %644.load3450)
-  644.load3459 = load i32 from ptr %3839973756
-  call void putint(i32 %644.load3459)
-  644.load3468 = load i32 from ptr %3839973766
-  call void putint(i32 %644.load3468)
-  644.load3477 = load i32 from ptr %3839973776
-  call void putint(i32 %644.load3477)
-  644.load3486 = load i32 from ptr %3839973786
-  call void putint(i32 %644.load3486)
-  644.load3495 = load i32 from ptr %3839973796
-  call void putint(i32 %644.load3495)
-  644.load3504 = load i32 from ptr %3839973806
-  call void putint(i32 %644.load3504)
-  644.load3513 = load i32 from ptr %3839973816
-  call void putint(i32 %644.load3513)
-  644.load3522 = load i32 from ptr %3839973826
-  call void putint(i32 %644.load3522)
-  644.load3531 = load i32 from ptr %3839973836
-  call void putint(i32 %644.load3531)
-  644.load3540 = load i32 from ptr %3839973846
-  call void putint(i32 %644.load3540)
-  644.load3549 = load i32 from ptr %3839973856
-  call void putint(i32 %644.load3549)
-  644.load3558 = load i32 from ptr %3839973866
-  call void putint(i32 %644.load3558)
+  644.load3313 = load i32 from ptr %3839973591
+  call void putint(i32 %644.load3313)
+  644.load3322 = load i32 from ptr %3839973601
+  call void putint(i32 %644.load3322)
+  644.load3331 = load i32 from ptr %3839973611
+  call void putint(i32 %644.load3331)
+  644.load3340 = load i32 from ptr %3839973621
+  call void putint(i32 %644.load3340)
+  644.load3349 = load i32 from ptr %3839973631
+  call void putint(i32 %644.load3349)
+  644.load3358 = load i32 from ptr %3839973641
+  call void putint(i32 %644.load3358)
+  644.load3367 = load i32 from ptr %3839973651
+  call void putint(i32 %644.load3367)
+  644.load3376 = load i32 from ptr %3839973661
+  call void putint(i32 %644.load3376)
+  644.load3385 = load i32 from ptr %3839973671
+  call void putint(i32 %644.load3385)
+  644.load3394 = load i32 from ptr %3839973681
+  call void putint(i32 %644.load3394)
+  644.load3403 = load i32 from ptr %3839973691
+  call void putint(i32 %644.load3403)
+  644.load3412 = load i32 from ptr %3839973701
+  call void putint(i32 %644.load3412)
+  644.load3421 = load i32 from ptr %3839973711
+  call void putint(i32 %644.load3421)
+  644.load3430 = load i32 from ptr %3839973721
+  call void putint(i32 %644.load3430)
+  644.load3439 = load i32 from ptr %3839973731
+  call void putint(i32 %644.load3439)
+  644.load3448 = load i32 from ptr %3839973741
+  call void putint(i32 %644.load3448)
+  644.load3457 = load i32 from ptr %3839973751
+  call void putint(i32 %644.load3457)
+  644.load3466 = load i32 from ptr %3839973761
+  call void putint(i32 %644.load3466)
+  644.load3475 = load i32 from ptr %3839973771
+  call void putint(i32 %644.load3475)
+  644.load3484 = load i32 from ptr %3839973781
+  call void putint(i32 %644.load3484)
+  644.load3493 = load i32 from ptr %3839973791
+  call void putint(i32 %644.load3493)
+  644.load3502 = load i32 from ptr %3839973801
+  call void putint(i32 %644.load3502)
+  644.load3511 = load i32 from ptr %3839973811
+  call void putint(i32 %644.load3511)
+  644.load3520 = load i32 from ptr %3839973821
+  call void putint(i32 %644.load3520)
+  644.load3529 = load i32 from ptr %3839973831
+  call void putint(i32 %644.load3529)
+  644.load3538 = load i32 from ptr %3839973841
+  call void putint(i32 %644.load3538)
+  644.load3547 = load i32 from ptr %3839973851
+  call void putint(i32 %644.load3547)
+  644.load3556 = load i32 from ptr %3839973861
+  call void putint(i32 %644.load3556)
+  644.load3565 = load i32 from ptr %3839973871
+  call void putint(i32 %644.load3565)
+  644.load3574 = load i32 from ptr %3839973881
+  call void putint(i32 %644.load3574)
+  644.load3583 = load i32 from ptr %3839973891
+  call void putint(i32 %644.load3583)
   n.load12821535 = load i32 from ptr @n
   90912831536 = add i32 %n.load12821535, i32 -1
   1012841537 = icmp slt i32 0, i32 %90912831536
@@ -769,71 +767,71 @@ calSum.while.body399:  pred(calSum.if.exit419, calSum.while.body399_preheader)
   4141259 = srem i32 %i396.phi12491496, i32 4
   4171261 = icmp ne i32 %4141259, i32 3
   br i1 %4171261, bb %calSum.then418, bb %calSum.else420
-calSum.while.exit400:  pred(calSum.if.exit419, arrCopy.while.exit3761079)
+calSum.while.exit400:  pred(arrCopy.while.exit3761079, calSum.if.exit419)
   758.load = load i32 from ptr %result
   call void putint(i32 %758.load)
-  758.load1893 = load i32 from ptr %3839973566
-  call void putint(i32 %758.load1893)
-  758.load1902 = load i32 from ptr %3839973576
-  call void putint(i32 %758.load1902)
-  758.load1911 = load i32 from ptr %3839973586
-  call void putint(i32 %758.load1911)
-  758.load1920 = load i32 from ptr %3839973596
-  call void putint(i32 %758.load1920)
-  758.load1929 = load i32 from ptr %3839973606
-  call void putint(i32 %758.load1929)
-  758.load1938 = load i32 from ptr %3839973616
-  call void putint(i32 %758.load1938)
-  758.load1947 = load i32 from ptr %3839973626
-  call void putint(i32 %758.load1947)
-  758.load1956 = load i32 from ptr %3839973636
-  call void putint(i32 %758.load1956)
-  758.load1965 = load i32 from ptr %3839973646
-  call void putint(i32 %758.load1965)
-  758.load1974 = load i32 from ptr %3839973656
-  call void putint(i32 %758.load1974)
-  758.load1983 = load i32 from ptr %3839973666
-  call void putint(i32 %758.load1983)
-  758.load1992 = load i32 from ptr %3839973676
-  call void putint(i32 %758.load1992)
-  758.load2001 = load i32 from ptr %3839973686
-  call void putint(i32 %758.load2001)
-  758.load2010 = load i32 from ptr %3839973696
-  call void putint(i32 %758.load2010)
-  758.load2019 = load i32 from ptr %3839973706
-  call void putint(i32 %758.load2019)
-  758.load2028 = load i32 from ptr %3839973716
-  call void putint(i32 %758.load2028)
-  758.load2037 = load i32 from ptr %3839973726
-  call void putint(i32 %758.load2037)
-  758.load2046 = load i32 from ptr %3839973736
-  call void putint(i32 %758.load2046)
-  758.load2055 = load i32 from ptr %3839973746
-  call void putint(i32 %758.load2055)
-  758.load2064 = load i32 from ptr %3839973756
-  call void putint(i32 %758.load2064)
-  758.load2073 = load i32 from ptr %3839973766
-  call void putint(i32 %758.load2073)
-  758.load2082 = load i32 from ptr %3839973776
-  call void putint(i32 %758.load2082)
-  758.load2091 = load i32 from ptr %3839973786
-  call void putint(i32 %758.load2091)
-  758.load2100 = load i32 from ptr %3839973796
-  call void putint(i32 %758.load2100)
-  758.load2109 = load i32 from ptr %3839973806
-  call void putint(i32 %758.load2109)
-  758.load2118 = load i32 from ptr %3839973816
-  call void putint(i32 %758.load2118)
-  758.load2127 = load i32 from ptr %3839973826
-  call void putint(i32 %758.load2127)
-  758.load2136 = load i32 from ptr %3839973836
-  call void putint(i32 %758.load2136)
-  758.load2145 = load i32 from ptr %3839973846
-  call void putint(i32 %758.load2145)
-  758.load2154 = load i32 from ptr %3839973856
-  call void putint(i32 %758.load2154)
-  758.load2163 = load i32 from ptr %3839973866
-  call void putint(i32 %758.load2163)
+  758.load1918 = load i32 from ptr %3839973591
+  call void putint(i32 %758.load1918)
+  758.load1927 = load i32 from ptr %3839973601
+  call void putint(i32 %758.load1927)
+  758.load1936 = load i32 from ptr %3839973611
+  call void putint(i32 %758.load1936)
+  758.load1945 = load i32 from ptr %3839973621
+  call void putint(i32 %758.load1945)
+  758.load1954 = load i32 from ptr %3839973631
+  call void putint(i32 %758.load1954)
+  758.load1963 = load i32 from ptr %3839973641
+  call void putint(i32 %758.load1963)
+  758.load1972 = load i32 from ptr %3839973651
+  call void putint(i32 %758.load1972)
+  758.load1981 = load i32 from ptr %3839973661
+  call void putint(i32 %758.load1981)
+  758.load1990 = load i32 from ptr %3839973671
+  call void putint(i32 %758.load1990)
+  758.load1999 = load i32 from ptr %3839973681
+  call void putint(i32 %758.load1999)
+  758.load2008 = load i32 from ptr %3839973691
+  call void putint(i32 %758.load2008)
+  758.load2017 = load i32 from ptr %3839973701
+  call void putint(i32 %758.load2017)
+  758.load2026 = load i32 from ptr %3839973711
+  call void putint(i32 %758.load2026)
+  758.load2035 = load i32 from ptr %3839973721
+  call void putint(i32 %758.load2035)
+  758.load2044 = load i32 from ptr %3839973731
+  call void putint(i32 %758.load2044)
+  758.load2053 = load i32 from ptr %3839973741
+  call void putint(i32 %758.load2053)
+  758.load2062 = load i32 from ptr %3839973751
+  call void putint(i32 %758.load2062)
+  758.load2071 = load i32 from ptr %3839973761
+  call void putint(i32 %758.load2071)
+  758.load2080 = load i32 from ptr %3839973771
+  call void putint(i32 %758.load2080)
+  758.load2089 = load i32 from ptr %3839973781
+  call void putint(i32 %758.load2089)
+  758.load2098 = load i32 from ptr %3839973791
+  call void putint(i32 %758.load2098)
+  758.load2107 = load i32 from ptr %3839973801
+  call void putint(i32 %758.load2107)
+  758.load2116 = load i32 from ptr %3839973811
+  call void putint(i32 %758.load2116)
+  758.load2125 = load i32 from ptr %3839973821
+  call void putint(i32 %758.load2125)
+  758.load2134 = load i32 from ptr %3839973831
+  call void putint(i32 %758.load2134)
+  758.load2143 = load i32 from ptr %3839973841
+  call void putint(i32 %758.load2143)
+  758.load2152 = load i32 from ptr %3839973851
+  call void putint(i32 %758.load2152)
+  758.load2161 = load i32 from ptr %3839973861
+  call void putint(i32 %758.load2161)
+  758.load2170 = load i32 from ptr %3839973871
+  call void putint(i32 %758.load2170)
+  758.load2179 = load i32 from ptr %3839973881
+  call void putint(i32 %758.load2179)
+  758.load2188 = load i32 from ptr %3839973891
+  call void putint(i32 %758.load2188)
   n.load37810871489 = load i32 from ptr @n
   37910881490 = icmp slt i32 0, i32 %n.load37810871489
   br i1 %37910881490, bb %arrCopy.while.body3751090_preheader, bb %arrCopy.while.exit3761098
@@ -858,71 +856,71 @@ bubblesort.while.body:  pred(bubblesort.while.exit15, bubblesort.while.body_preh
   91012951470 = add i32 %1912941469, i32 -1
   2112961471 = icmp slt i32 0, i32 %91012951470
   br i1 %2112961471, bb %bubblesort.while.body14_preheader, bb %bubblesort.while.exit15
-bubblesort.while.exit:  pred(bubblesort.while.exit15, revert.while.exit342)
+bubblesort.while.exit:  pred(revert.while.exit342, bubblesort.while.exit15)
   663.load = load i32 from ptr %result
   call void putint(i32 %663.load)
-  663.load3009 = load i32 from ptr %3839973566
-  call void putint(i32 %663.load3009)
-  663.load3018 = load i32 from ptr %3839973576
-  call void putint(i32 %663.load3018)
-  663.load3027 = load i32 from ptr %3839973586
-  call void putint(i32 %663.load3027)
-  663.load3036 = load i32 from ptr %3839973596
-  call void putint(i32 %663.load3036)
-  663.load3045 = load i32 from ptr %3839973606
-  call void putint(i32 %663.load3045)
-  663.load3054 = load i32 from ptr %3839973616
-  call void putint(i32 %663.load3054)
-  663.load3063 = load i32 from ptr %3839973626
-  call void putint(i32 %663.load3063)
-  663.load3072 = load i32 from ptr %3839973636
-  call void putint(i32 %663.load3072)
-  663.load3081 = load i32 from ptr %3839973646
-  call void putint(i32 %663.load3081)
-  663.load3090 = load i32 from ptr %3839973656
-  call void putint(i32 %663.load3090)
-  663.load3099 = load i32 from ptr %3839973666
-  call void putint(i32 %663.load3099)
-  663.load3108 = load i32 from ptr %3839973676
-  call void putint(i32 %663.load3108)
-  663.load3117 = load i32 from ptr %3839973686
-  call void putint(i32 %663.load3117)
-  663.load3126 = load i32 from ptr %3839973696
-  call void putint(i32 %663.load3126)
-  663.load3135 = load i32 from ptr %3839973706
-  call void putint(i32 %663.load3135)
-  663.load3144 = load i32 from ptr %3839973716
-  call void putint(i32 %663.load3144)
-  663.load3153 = load i32 from ptr %3839973726
-  call void putint(i32 %663.load3153)
-  663.load3162 = load i32 from ptr %3839973736
-  call void putint(i32 %663.load3162)
-  663.load3171 = load i32 from ptr %3839973746
-  call void putint(i32 %663.load3171)
-  663.load3180 = load i32 from ptr %3839973756
-  call void putint(i32 %663.load3180)
-  663.load3189 = load i32 from ptr %3839973766
-  call void putint(i32 %663.load3189)
-  663.load3198 = load i32 from ptr %3839973776
-  call void putint(i32 %663.load3198)
-  663.load3207 = load i32 from ptr %3839973786
-  call void putint(i32 %663.load3207)
-  663.load3216 = load i32 from ptr %3839973796
-  call void putint(i32 %663.load3216)
-  663.load3225 = load i32 from ptr %3839973806
-  call void putint(i32 %663.load3225)
-  663.load3234 = load i32 from ptr %3839973816
-  call void putint(i32 %663.load3234)
-  663.load3243 = load i32 from ptr %3839973826
-  call void putint(i32 %663.load3243)
-  663.load3252 = load i32 from ptr %3839973836
-  call void putint(i32 %663.load3252)
-  663.load3261 = load i32 from ptr %3839973846
-  call void putint(i32 %663.load3261)
-  663.load3270 = load i32 from ptr %3839973856
-  call void putint(i32 %663.load3270)
-  663.load3279 = load i32 from ptr %3839973866
-  call void putint(i32 %663.load3279)
+  663.load3034 = load i32 from ptr %3839973591
+  call void putint(i32 %663.load3034)
+  663.load3043 = load i32 from ptr %3839973601
+  call void putint(i32 %663.load3043)
+  663.load3052 = load i32 from ptr %3839973611
+  call void putint(i32 %663.load3052)
+  663.load3061 = load i32 from ptr %3839973621
+  call void putint(i32 %663.load3061)
+  663.load3070 = load i32 from ptr %3839973631
+  call void putint(i32 %663.load3070)
+  663.load3079 = load i32 from ptr %3839973641
+  call void putint(i32 %663.load3079)
+  663.load3088 = load i32 from ptr %3839973651
+  call void putint(i32 %663.load3088)
+  663.load3097 = load i32 from ptr %3839973661
+  call void putint(i32 %663.load3097)
+  663.load3106 = load i32 from ptr %3839973671
+  call void putint(i32 %663.load3106)
+  663.load3115 = load i32 from ptr %3839973681
+  call void putint(i32 %663.load3115)
+  663.load3124 = load i32 from ptr %3839973691
+  call void putint(i32 %663.load3124)
+  663.load3133 = load i32 from ptr %3839973701
+  call void putint(i32 %663.load3133)
+  663.load3142 = load i32 from ptr %3839973711
+  call void putint(i32 %663.load3142)
+  663.load3151 = load i32 from ptr %3839973721
+  call void putint(i32 %663.load3151)
+  663.load3160 = load i32 from ptr %3839973731
+  call void putint(i32 %663.load3160)
+  663.load3169 = load i32 from ptr %3839973741
+  call void putint(i32 %663.load3169)
+  663.load3178 = load i32 from ptr %3839973751
+  call void putint(i32 %663.load3178)
+  663.load3187 = load i32 from ptr %3839973761
+  call void putint(i32 %663.load3187)
+  663.load3196 = load i32 from ptr %3839973771
+  call void putint(i32 %663.load3196)
+  663.load3205 = load i32 from ptr %3839973781
+  call void putint(i32 %663.load3205)
+  663.load3214 = load i32 from ptr %3839973791
+  call void putint(i32 %663.load3214)
+  663.load3223 = load i32 from ptr %3839973801
+  call void putint(i32 %663.load3223)
+  663.load3232 = load i32 from ptr %3839973811
+  call void putint(i32 %663.load3232)
+  663.load3241 = load i32 from ptr %3839973821
+  call void putint(i32 %663.load3241)
+  663.load3250 = load i32 from ptr %3839973831
+  call void putint(i32 %663.load3250)
+  663.load3259 = load i32 from ptr %3839973841
+  call void putint(i32 %663.load3259)
+  663.load3268 = load i32 from ptr %3839973851
+  call void putint(i32 %663.load3268)
+  663.load3277 = load i32 from ptr %3839973861
+  call void putint(i32 %663.load3277)
+  663.load3286 = load i32 from ptr %3839973871
+  call void putint(i32 %663.load3286)
+  663.load3295 = load i32 from ptr %3839973881
+  call void putint(i32 %663.load3295)
+  663.load3304 = load i32 from ptr %3839973891
+  call void putint(i32 %663.load3304)
   n.load2451148 = load i32 from ptr @n
   8681149 = and i32 %n.load2451148, i32 1
   8691150 = icmp eq i32 %8681149, i32 0
@@ -943,8 +941,8 @@ bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_prehe
   30.load1305 = load i32 from ptr %301304
   321306 = icmp sgt i32 %25.load1301, i32 %30.load1305
   br i1 %321306, bb %bubblesort.then, bb %bubblesort.if.exit
-bubblesort.while.exit15:  pred(bubblesort.if.exit, bubblesort.while.body)
-  tmp.phi85212801472 = phi [bb %bubblesort.if.exit, i32 %tmp.phi1318, bb %bubblesort.while.body, i32 %tmp.phi85212801538]
+bubblesort.while.exit15:  pred(bubblesort.while.body, bubblesort.while.body14_exclu_exit)
+  tmp.phi85212801472 = phi [bb %bubblesort.while.body14_exclu_exit, i32 %tmp.phi1318, bb %bubblesort.while.body, i32 %tmp.phi85212801538]
   611309 = add i32 %i.phi12811539, i32 1
   101284 = icmp slt i32 %611309, i32 %9091283
   br i1 %101284, bb %bubblesort.while.body, bb %bubblesort.while.exit
@@ -957,7 +955,7 @@ bubblesort.then:  pred(bubblesort.while.body14)
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
   tmp.phi1318 = phi [bb %bubblesort.while.body14, i32 %tmp.phi85112911473, bb %bubblesort.then, i32 %40.load1312]
   211296 = icmp slt i32 %281302, i32 %9101295
-  br i1 %211296, bb %bubblesort.while.body14, bb %bubblesort.while.exit15
+  br i1 %211296, bb %bubblesort.while.body14, bb %bubblesort.while.body14_exclu_exit
 bubblesort.while.body1331_preheader:  pred(arrCopy.while.exit3761022)
   br bb %bubblesort.while.body1331
 bubblesort.while.body1331:  pred(bubblesort.while.exit151353, bubblesort.while.body1331_preheader)
@@ -967,71 +965,71 @@ bubblesort.while.body1331:  pred(bubblesort.while.exit151353, bubblesort.while.b
   91013401476 = add i32 %1913391475, i32 -1
   2113411477 = icmp slt i32 0, i32 %91013401476
   br i1 %2113411477, bb %bubblesort.while.body141343_preheader, bb %bubblesort.while.exit151353
-bubblesort.while.exit1333:  pred(bubblesort.while.exit151353, arrCopy.while.exit3761022)
+bubblesort.while.exit1333:  pred(arrCopy.while.exit3761022, bubblesort.while.exit151353)
   692.load = load i32 from ptr %result
   call void putint(i32 %692.load)
-  692.load2730 = load i32 from ptr %3839973566
-  call void putint(i32 %692.load2730)
-  692.load2739 = load i32 from ptr %3839973576
-  call void putint(i32 %692.load2739)
-  692.load2748 = load i32 from ptr %3839973586
-  call void putint(i32 %692.load2748)
-  692.load2757 = load i32 from ptr %3839973596
-  call void putint(i32 %692.load2757)
-  692.load2766 = load i32 from ptr %3839973606
-  call void putint(i32 %692.load2766)
-  692.load2775 = load i32 from ptr %3839973616
-  call void putint(i32 %692.load2775)
-  692.load2784 = load i32 from ptr %3839973626
-  call void putint(i32 %692.load2784)
-  692.load2793 = load i32 from ptr %3839973636
-  call void putint(i32 %692.load2793)
-  692.load2802 = load i32 from ptr %3839973646
-  call void putint(i32 %692.load2802)
-  692.load2811 = load i32 from ptr %3839973656
-  call void putint(i32 %692.load2811)
-  692.load2820 = load i32 from ptr %3839973666
-  call void putint(i32 %692.load2820)
-  692.load2829 = load i32 from ptr %3839973676
-  call void putint(i32 %692.load2829)
-  692.load2838 = load i32 from ptr %3839973686
-  call void putint(i32 %692.load2838)
-  692.load2847 = load i32 from ptr %3839973696
-  call void putint(i32 %692.load2847)
-  692.load2856 = load i32 from ptr %3839973706
-  call void putint(i32 %692.load2856)
-  692.load2865 = load i32 from ptr %3839973716
-  call void putint(i32 %692.load2865)
-  692.load2874 = load i32 from ptr %3839973726
-  call void putint(i32 %692.load2874)
-  692.load2883 = load i32 from ptr %3839973736
-  call void putint(i32 %692.load2883)
-  692.load2892 = load i32 from ptr %3839973746
-  call void putint(i32 %692.load2892)
-  692.load2901 = load i32 from ptr %3839973756
-  call void putint(i32 %692.load2901)
-  692.load2910 = load i32 from ptr %3839973766
-  call void putint(i32 %692.load2910)
-  692.load2919 = load i32 from ptr %3839973776
-  call void putint(i32 %692.load2919)
-  692.load2928 = load i32 from ptr %3839973786
-  call void putint(i32 %692.load2928)
-  692.load2937 = load i32 from ptr %3839973796
-  call void putint(i32 %692.load2937)
-  692.load2946 = load i32 from ptr %3839973806
-  call void putint(i32 %692.load2946)
-  692.load2955 = load i32 from ptr %3839973816
-  call void putint(i32 %692.load2955)
-  692.load2964 = load i32 from ptr %3839973826
-  call void putint(i32 %692.load2964)
-  692.load2973 = load i32 from ptr %3839973836
-  call void putint(i32 %692.load2973)
-  692.load2982 = load i32 from ptr %3839973846
-  call void putint(i32 %692.load2982)
-  692.load2991 = load i32 from ptr %3839973856
-  call void putint(i32 %692.load2991)
-  692.load3000 = load i32 from ptr %3839973866
-  call void putint(i32 %692.load3000)
+  692.load2755 = load i32 from ptr %3839973591
+  call void putint(i32 %692.load2755)
+  692.load2764 = load i32 from ptr %3839973601
+  call void putint(i32 %692.load2764)
+  692.load2773 = load i32 from ptr %3839973611
+  call void putint(i32 %692.load2773)
+  692.load2782 = load i32 from ptr %3839973621
+  call void putint(i32 %692.load2782)
+  692.load2791 = load i32 from ptr %3839973631
+  call void putint(i32 %692.load2791)
+  692.load2800 = load i32 from ptr %3839973641
+  call void putint(i32 %692.load2800)
+  692.load2809 = load i32 from ptr %3839973651
+  call void putint(i32 %692.load2809)
+  692.load2818 = load i32 from ptr %3839973661
+  call void putint(i32 %692.load2818)
+  692.load2827 = load i32 from ptr %3839973671
+  call void putint(i32 %692.load2827)
+  692.load2836 = load i32 from ptr %3839973681
+  call void putint(i32 %692.load2836)
+  692.load2845 = load i32 from ptr %3839973691
+  call void putint(i32 %692.load2845)
+  692.load2854 = load i32 from ptr %3839973701
+  call void putint(i32 %692.load2854)
+  692.load2863 = load i32 from ptr %3839973711
+  call void putint(i32 %692.load2863)
+  692.load2872 = load i32 from ptr %3839973721
+  call void putint(i32 %692.load2872)
+  692.load2881 = load i32 from ptr %3839973731
+  call void putint(i32 %692.load2881)
+  692.load2890 = load i32 from ptr %3839973741
+  call void putint(i32 %692.load2890)
+  692.load2899 = load i32 from ptr %3839973751
+  call void putint(i32 %692.load2899)
+  692.load2908 = load i32 from ptr %3839973761
+  call void putint(i32 %692.load2908)
+  692.load2917 = load i32 from ptr %3839973771
+  call void putint(i32 %692.load2917)
+  692.load2926 = load i32 from ptr %3839973781
+  call void putint(i32 %692.load2926)
+  692.load2935 = load i32 from ptr %3839973791
+  call void putint(i32 %692.load2935)
+  692.load2944 = load i32 from ptr %3839973801
+  call void putint(i32 %692.load2944)
+  692.load2953 = load i32 from ptr %3839973811
+  call void putint(i32 %692.load2953)
+  692.load2962 = load i32 from ptr %3839973821
+  call void putint(i32 %692.load2962)
+  692.load2971 = load i32 from ptr %3839973831
+  call void putint(i32 %692.load2971)
+  692.load2980 = load i32 from ptr %3839973841
+  call void putint(i32 %692.load2980)
+  692.load2989 = load i32 from ptr %3839973851
+  call void putint(i32 %692.load2989)
+  692.load2998 = load i32 from ptr %3839973861
+  call void putint(i32 %692.load2998)
+  692.load3007 = load i32 from ptr %3839973871
+  call void putint(i32 %692.load3007)
+  692.load3016 = load i32 from ptr %3839973881
+  call void putint(i32 %692.load3016)
+  692.load3025 = load i32 from ptr %3839973891
+  call void putint(i32 %692.load3025)
   n.load37810301511 = load i32 from ptr @n
   37910311512 = icmp slt i32 0, i32 %n.load37810301511
   br i1 %37910311512, bb %arrCopy.while.body3751033_preheader, bb %arrCopy.while.exit3761041
@@ -1049,8 +1047,8 @@ bubblesort.while.body141343:  pred(bubblesort.if.exit1362, bubblesort.while.body
   30.load1350 = load i32 from ptr %301349
   321351 = icmp sgt i32 %25.load1346, i32 %30.load1350
   br i1 %321351, bb %bubblesort.then1356, bb %bubblesort.if.exit1362
-bubblesort.while.exit151353:  pred(bubblesort.if.exit1362, bubblesort.while.body1331)
-  tmp.phi85213251478 = phi [bb %bubblesort.if.exit1362, i32 %tmp.phi1363, bb %bubblesort.while.body1331, i32 %tmp.phi85213251519]
+bubblesort.while.exit151353:  pred(bubblesort.while.body1331, bubblesort.while.body141343_exclu_exit)
+  tmp.phi85213251478 = phi [bb %bubblesort.while.body141343_exclu_exit, i32 %tmp.phi1363, bb %bubblesort.while.body1331, i32 %tmp.phi85213251519]
   611354 = add i32 %i.phi13261520, i32 1
   101329 = icmp slt i32 %611354, i32 %90913281517
   br i1 %101329, bb %bubblesort.while.body1331, bb %bubblesort.while.exit1333
@@ -1063,7 +1061,25 @@ bubblesort.then1356:  pred(bubblesort.while.body141343)
 bubblesort.if.exit1362:  pred(bubblesort.while.body141343, bubblesort.then1356)
   tmp.phi1363 = phi [bb %bubblesort.while.body141343, i32 %tmp.phi85113361479, bb %bubblesort.then1356, i32 %40.load1357]
   211341 = icmp slt i32 %281347, i32 %91013401476
-  br i1 %211341, bb %bubblesort.while.body141343, bb %bubblesort.while.exit151353
+  br i1 %211341, bb %bubblesort.while.body141343, bb %bubblesort.while.body141343_exclu_exit
+bubblesort.while.body14_exclu_exit:  pred(bubblesort.if.exit)
+  br bb %bubblesort.while.exit15
+getMost.while.body277_exclu_exit:  pred(getMost.while.body277)
+  n.load29711211525 = load i32 from ptr @n
+  29811221526 = icmp slt i32 0, i32 %n.load29711211525
+  br i1 %29811221526, bb %getMost.while.body294_preheader, bb %getMost.while.exit295
+getMost.while.body294_exclu_exit:  pred(getMost.if.exit322)
+  br bb %getMost.while.exit295
+arrCopy.while.body3751014_exclu_exit:  pred(arrCopy.while.body3751014)
+  br bb %arrCopy.while.exit3761022
+bubblesort.while.body141343_exclu_exit:  pred(bubblesort.if.exit1362)
+  br bb %bubblesort.while.exit151353
+arrCopy.while.body3751033_exclu_exit:  pred(arrCopy.while.body3751033)
+  br bb %arrCopy.while.exit3761041
+arrCopy.while.body3751071_exclu_exit:  pred(arrCopy.while.body3751071)
+  br bb %arrCopy.while.exit3761079
+arrCopy.while.body3751090_exclu_exit:  pred(arrCopy.while.body3751090)
+  br bb %arrCopy.while.exit3761098
 }
 
 external float getfloat()

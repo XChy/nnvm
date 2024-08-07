@@ -29,9 +29,9 @@ while.body.split:  pred(fun.then, fun.else27)
   53 = srem i32 %51, i32 1000000007
   56 = add i32 %i.phi101, i32 1
   45 = icmp sle i32 %56, i32 %lim.load4498
-  br i1 %45, bb %while.body, bb %while.exit
-while.exit:  pred(while.body.split, entry34)
-  100 = phi [bb %while.body.split, i32 %53, bb %entry34, i32 0]
+  br i1 %45, bb %while.body, bb %while.body_exclu_exit
+while.exit:  pred(entry34, while.body_exclu_exit)
+  100 = phi [bb %while.body_exclu_exit, i32 %53, bb %entry34, i32 0]
   call void _sysy_stoptime(i32 27)
   call void putint(i32 %100)
   call void putch(i32 10)
@@ -60,6 +60,8 @@ fun.then25:  pred(fun.else14)
   br bb %fun.loop_entry
 fun.else27:  pred(fun.else14)
   br bb %while.body.split
+while.body_exclu_exit:  pred(while.body.split)
+  br bb %while.exit
 }
 
 external float getfloat()

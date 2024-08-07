@@ -29,7 +29,7 @@ while.body131:  pred(while.body131, while.body131_preheader)
   150 = add i32 %N.phi207, i32 -1
   134 = icmp sgt i32 %150, i32 0
   br i1 %134, bb %while.body131, bb %while.exit132
-while.exit132:  pred(while.body131, entry127)
+while.exit132:  pred(entry127, while.body131)
   sum.load142 = load i32 from ptr @sum
   ret i32 %sum.load142
 }
@@ -58,7 +58,7 @@ while.body32:  pred(if.exit73, while.body32_preheader)
   42 = icmp ne i32 %40.load, i32 1
   49 = add i32 %step, i32 %i30.phi210
   br i1 %42, bb %select.then, bb %select.else
-while.exit33:  pred(if.exit73, entry28)
+while.exit33:  pred(entry28, if.exit73)
   ret 
 select.then:  pred(while.body32)
   199 = shl i32 %49, i32 2

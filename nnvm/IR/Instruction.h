@@ -184,10 +184,10 @@ public:
   StoreInst() : Instruction(InstID::Store, 2, nullptr) {}
 
   void setStoredValue(Value *stored) { setOperand(0, stored); }
-  Value *getStoredValue() { return getOperand(0); }
+  Value *getStoredValue() const { return getOperand(0); }
 
   void setDest(Value *dest) { setOperand(1, dest); }
-  Value *getDest() { return getOperand(1); }
+  Value *getDest() const { return getOperand(1); }
 
   std::string dump() override;
 
@@ -205,7 +205,7 @@ class LoadInst : public Instruction {
 public:
   LoadInst(Type *type) : Instruction(InstID::Load, 1, type) {}
 
-  Value *getSrc() { return getOperand(0); }
+  Value *getSrc() const { return getOperand(0); }
 
   Instruction *copy() override {
     auto *ret = new LoadInst(getType());

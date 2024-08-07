@@ -63,8 +63,6 @@ while.body.split:  pred(f.then, f.if.exit)
   102.ret = phi [bb %f.then, i32 0, bb %f.if.exit, i32 1]
   103 = icmp ne i32 %102.ret, i32 0
   br i1 %103, bb %select.then104, bb %select.else105
-while.exit:  pred(select.exit250)
-  br bb %while.body263
 select.then104:  pred(while.body.split)
   sum.load42056 = load i32 from ptr @sum
   52057 = add i32 %sum.load42056, i32 1
@@ -344,9 +342,9 @@ select.then248:  pred(select.exit242)
 select.exit250:  pred(select.exit242, f.select.exit2660, f.if.exit2665)
   260 = add i32 %i.phi6932801, i32 1
   99 = icmp slt i32 %260, i32 20
-  br i1 %99, bb %while.body, bb %while.exit
-while.body263:  pred(select.exit435, while.exit)
-  i.phi6922721 = phi [bb %select.exit435, i32 %446, bb %while.exit, i32 0]
+  br i1 %99, bb %while.body, bb %while.body_exclu_exit
+while.body263:  pred(select.exit435, while.body_exclu_exit)
+  i.phi6922721 = phi [bb %select.exit435, i32 %446, bb %while.body_exclu_exit, i32 0]
   sum.load401363 = load i32 from ptr @sum
   411364 = add i32 %sum.load401363, i32 2
   store i32 %411364 to ptr @sum
@@ -356,8 +354,6 @@ while.body263.split:  pred(g.then53, g.if.exit54)
   269.ret = phi [bb %g.then53, i32 1, bb %g.if.exit54, i32 0]
   270 = icmp ne i32 %269.ret, i32 0
   br i1 %270, bb %select.then271, bb %select.else272
-while.exit264:  pred(select.exit435)
-  br bb %while.cond448
 select.then271:  pred(while.body263.split)
   br bb %select.exit273
 select.else272:  pred(while.body263.split)
@@ -637,9 +633,9 @@ select.else434:  pred(select.exit426)
 select.exit435:  pred(select.exit426, g.select.exit472000, g.if.exit542005)
   446 = add i32 %i.phi6922721, i32 1
   266 = icmp slt i32 %446, i32 20
-  br i1 %266, bb %while.body263, bb %while.exit264
-while.cond448:  pred(while.exit264, while.body449)
-  i.phi = phi [bb %while.exit264, i32 1, bb %while.body449, i32 %466]
+  br i1 %266, bb %while.body263, bb %while.body263_exclu_exit
+while.cond448:  pred(while.body449, while.body263_exclu_exit)
+  i.phi = phi [bb %while.body263_exclu_exit, i32 1, bb %while.body449, i32 %466]
   452 = icmp slt i32 %i.phi, i32 20
   br i1 %452, bb %select.then453, bb %select.else454
 while.body449:  pred(select.exit455)
@@ -1625,6 +1621,10 @@ f.else2707:  pred(f.if.exit2698)
   342710 = ptradd ptr @array, i32 %2719
   34.load2711 = load i32 from ptr %342710
   br bb %select.then453.split
+while.body_exclu_exit:  pred(select.exit250)
+  br bb %while.body263
+while.body263_exclu_exit:  pred(select.exit435)
+  br bb %while.cond448
 }
 
 external float getfloat()

@@ -25,7 +25,7 @@ while.body:  pred(while.body, while.body_preheader)
   69 = add i32 %i.phi115155, i32 1
   60 = icmp slt i32 %69, i32 %48
   br i1 %60, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, entry46)
+while.exit:  pred(entry46, while.body)
   76152 = icmp slt i32 0, i32 %50
   br i1 %76152, bb %while.body72_preheader, bb %while.exit73
 while.body72_preheader:  pred(while.exit)
@@ -38,7 +38,7 @@ while.body72:  pred(merge.if.exit40, while.body72_preheader)
   35130 = call i32 find(i32 %81)
   38131 = icmp ne i32 %32129, i32 %35130
   br i1 %38131, bb %merge.then39, bb %merge.if.exit40
-while.exit73:  pred(merge.if.exit40, while.exit)
+while.exit73:  pred(while.exit, merge.if.exit40)
   br i1 %60154, bb %while.body91_preheader, bb %while.exit92
 while.body91_preheader:  pred(while.exit73)
   br bb %while.body91
@@ -50,8 +50,8 @@ while.body91:  pred(if.exit104, while.body91_preheader)
   99.load = load i32 from ptr %99
   102 = icmp eq i32 %99.load, i32 %i.phi151
   br i1 %102, bb %then103, bb %if.exit104
-while.exit92:  pred(if.exit104, while.exit73)
-  149 = phi [bb %if.exit104, i32 %clusters.phi, bb %while.exit73, i32 0]
+while.exit92:  pred(while.exit73, while.body91_exclu_exit)
+  149 = phi [bb %while.body91_exclu_exit, i32 %clusters.phi, bb %while.exit73, i32 0]
   call void putint(i32 %149)
   ret i32 0
 then103:  pred(while.body91)
@@ -61,7 +61,7 @@ if.exit104:  pred(while.body91, then103)
   clusters.phi = phi [bb %while.body91, i32 %clusters.phi119150, bb %then103, i32 %107]
   110 = add i32 %i.phi151, i32 1
   95 = icmp slt i32 %110, i32 %48
-  br i1 %95, bb %while.body91, bb %while.exit92
+  br i1 %95, bb %while.body91, bb %while.body91_exclu_exit
 merge.then39:  pred(while.body72)
   146 = shl i32 %35130, i32 2
   43135 = ptradd ptr @parent, i32 %146
@@ -71,6 +71,8 @@ merge.if.exit40:  pred(while.body72, merge.then39)
   87 = add i32 %i.phi114153, i32 1
   76 = icmp slt i32 %87, i32 %50
   br i1 %76, bb %while.body72, bb %while.exit73
+while.body91_exclu_exit:  pred(if.exit104)
+  br bb %while.exit92
 }
 
 external float getfloat()

@@ -1347,7 +1347,7 @@ while.body784:  pred(while.body784, while.body784_preheader)
   796 = add i32 %i.phi2142, i32 1
   798 = call i32 getch()
   787 = icmp ne i32 %798, i32 35
-  br i1 %787, bb %while.body784, bb %skip_space.while.cond1733_preheader
+  br i1 %787, bb %while.body784, bb %while.body784_exclu_exit
 then808:  pred(skip_space.while.exit1794)
   call void putch(i32 111)
   call void putch(i32 107)
@@ -1362,8 +1362,8 @@ else810:  pred(skip_space.while.exit1794)
   call void putch(i32 107)
   call void putch(i32 10)
   ret i32 1
-skip_space.while.cond1733_preheader:  pred(while.body784, entry779)
-  2141_ph_val = phi [bb %entry779, i32 0, bb %while.body784, i32 %796]
+skip_space.while.cond1733_preheader:  pred(entry779, while.body784_exclu_exit)
+  2141_ph_val = phi [bb %while.body784_exclu_exit, i32 %796, bb %entry779, i32 0]
   br bb %skip_space.while.cond1733
 skip_space.while.cond1733:  pred(skip_space.then281746, skip_space.then391758, skip_space.then501770, skip_space.then611782, skip_space.while.cond1733_preheader)
   2141 = phi [bb %skip_space.then281746, i32 %796, bb %skip_space.then391758, i32 %796, bb %skip_space.then501770, i32 %796, bb %skip_space.then611782, i32 %796, bb %skip_space.while.cond1733_preheader, i32 %2141_ph_val]
@@ -1450,6 +1450,8 @@ skip_space.then611839:  pred(skip_space.else521832)
   661841 = add i32 %pos.load651840, i32 1
   store i32 %661841 to ptr @pos
   br bb %skip_space.while.cond1790
+while.body784_exclu_exit:  pred(while.body784)
+  br bb %skip_space.while.cond1733_preheader
 }
 
 external float getfloat()

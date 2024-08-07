@@ -22,17 +22,17 @@ then91:  pred(then87.split)
   11.load251 = load i32 from ptr %color
   call void putint(i32 %11.load251)
   call void putch(i32 32)
-  11250282 = ptradd ptr %color, i32 4
-  11.load251283 = load i32 from ptr %11250282
-  call void putint(i32 %11.load251283)
+  11250284 = ptradd ptr %color, i32 4
+  11.load251285 = load i32 from ptr %11250284
+  call void putint(i32 %11.load251285)
   call void putch(i32 32)
-  11250292 = ptradd ptr %color, i32 8
-  11.load251293 = load i32 from ptr %11250292
-  call void putint(i32 %11.load251293)
+  11250294 = ptradd ptr %color, i32 8
+  11.load251295 = load i32 from ptr %11250294
+  call void putint(i32 %11.load251295)
   call void putch(i32 32)
-  11250302 = ptradd ptr %color, i32 12
-  11.load251303 = load i32 from ptr %11250302
-  call void putint(i32 %11.load251303)
+  11250304 = ptradd ptr %color, i32 12
+  11.load251305 = load i32 from ptr %11250304
+  call void putint(i32 %11.load251305)
   call void putch(i32 32)
   call void putch(i32 10)
   ret i32 1
@@ -141,12 +141,12 @@ entry121:  pred()
   arr.index138 = ptradd ptr %graph, i32 60
   store i32 0 to ptr %arr.index138
   store i32 0 to ptr %color
-  151312 = ptradd ptr %color, i32 4
-  store i32 0 to ptr %151312
-  151320 = ptradd ptr %color, i32 8
-  store i32 0 to ptr %151320
-  151328 = ptradd ptr %color, i32 12
-  store i32 0 to ptr %151328
+  151314 = ptradd ptr %color, i32 4
+  store i32 0 to ptr %151314
+  151322 = ptradd ptr %color, i32 8
+  store i32 0 to ptr %151322
+  151330 = ptradd ptr %color, i32 12
+  store i32 0 to ptr %151330
   157 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
   158 = icmp ne i32 %157, i32 0
   159 = xor i1 %158, i1 -1

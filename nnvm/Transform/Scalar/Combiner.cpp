@@ -234,7 +234,7 @@ static inline bool notCyclicReference(PhiNode *I) {
 }
 
 Value *CombinerPass::simplifyPhi(PhiNode *I) {
-  // phi [a]  --> a
+    // phi [a]  --> a
   if (I->getIncomingNum() == 1 && notCyclicReference(I))
     return I->getIncomingValue(0);
 

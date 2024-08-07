@@ -20,16 +20,18 @@ func.while.body21:  pred(func.while.body21, func.while.body21_preheader)
   sum.phi7791012 = phi [bb %func.while.body21, i32 %742998, bb %func.while.body21_preheader, i32 0]
   j.phi7781011 = phi [bb %func.while.body21, i32 %722981, bb %func.while.body21_preheader, i32 0]
   722981 = add i32 %j.phi7781011, i32 1
-  3000 = add i32 %sum.phi7791012, i32 4950
-  742998 = srem i32 %3000, i32 65535
+  3003 = add i32 %sum.phi7791012, i32 4950
+  742998 = srem i32 %3003, i32 65535
   25780 = icmp slt i32 %722981, i32 %747
-  br i1 %25780, bb %func.while.body21, bb %func.while.exit22
-func.while.exit22:  pred(func.while.body21, entry744)
-  1010 = phi [bb %func.while.body21, i32 %742998, bb %entry744, i32 0]
+  br i1 %25780, bb %func.while.body21, bb %func.while.body21_exclu_exit
+func.while.exit22:  pred(entry744, func.while.body21_exclu_exit)
+  1010 = phi [bb %func.while.body21_exclu_exit, i32 %742998, bb %entry744, i32 0]
   call void putint(i32 %1010)
   call void putch(i32 10)
   call void _sysy_stoptime(i32 328)
   ret i32 0
+func.while.body21_exclu_exit:  pred(func.while.body21)
+  br bb %func.while.exit22
 }
 
 external float getfloat()

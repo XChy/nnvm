@@ -12,6 +12,7 @@
 #include "Transform/Scalar/LinearizePtrAdd.h"
 #include "Transform/Scalar/Loop/LICM.h"
 #include "Transform/Scalar/Loop/LoopCanon.h"
+#include "Transform/Scalar/Loop/LoopLoadStorePair.h"
 #include "Transform/Scalar/Loop/Rotate.h"
 #include "Transform/Scalar/Loop/StaticUnroll.h"
 #include "Transform/Scalar/Memory/DeadStoreElim.h"
@@ -59,6 +60,8 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CFGCombinerPass>();
 
   passManager.addFunctionPass<StaticUnrollPass>();
+  passManager.addFunctionPass<LoopCanonPass>();
+  passManager.addFunctionPass<LoopLoadStorePairPass>();
 
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();
