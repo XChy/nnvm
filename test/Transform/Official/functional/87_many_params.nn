@@ -65,7 +65,7 @@ init:  pred(init, param32_rec.then911065)
   713 = add i32 %cnt_ptr.phi1232, i32 -1
   1220 = shl i32 %713, i32 2
   715 = add i32 %1220, i32 8
-  arr.index598 = ptradd ptr %arr568, ptr %715
+  arr.index598 = ptradd ptr %arr568, i32 %715
   store i32 0 to ptr %arr.index598
   593 = icmp ne i32 %713, i32 0
   br i1 %593, bb %init, bb %init_exclu_exit

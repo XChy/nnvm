@@ -548,7 +548,7 @@ void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
         cnt, createConstInt(irElementType->getStoredBytes()), ir->getIntType(),
         "offset");
     Value *offsetValue = builder.buildBinOp<AddInst>(
-        currentBase, currentOff, ir->getPtrType(), "arr.index");
+        currentBase, currentOff, ir->getIntType(), "arr.index");
     auto *pointer = builder.buildBinOp<PtrAddInst>(
         irVal, offsetValue, ir->getPtrType(), "arr.index");
     builder.buildStore(currentValue, pointer);

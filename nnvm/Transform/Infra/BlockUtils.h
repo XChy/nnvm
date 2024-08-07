@@ -2,8 +2,19 @@
 
 #include "IR/Function.h"
 #include "IR/Module.h"
-#include <memory>
+
 namespace nnvm {
+
+class SingleMapper {
+public:
+  SingleMapper(Value *from, Value *to) : from(from), to(to) {}
+
+  Value *operator()(Value *a) { return a == from ? to : nullptr; }
+
+private:
+  Value *from;
+  Value *to;
+};
 
 void moveInstBefore(Instruction *from, BasicBlock::Iterator to);
 

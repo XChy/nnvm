@@ -38,7 +38,7 @@ init86:  pred(init86, init68_exclu_exit)
   125 = add i32 %cnt_ptr88.phi163, i32 -1
   160 = shl i32 %125, i32 2
   127 = add i32 %160, i32 24
-  arr.index95 = ptradd ptr %c, ptr %127
+  arr.index95 = ptradd ptr %c, i32 %127
   store i32 0 to ptr %arr.index95
   90 = icmp ne i32 %125, i32 0
   br i1 %90, bb %init86, bb %init86_exclu_exit

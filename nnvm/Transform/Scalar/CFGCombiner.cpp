@@ -83,13 +83,12 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
     if (BB->getPredNum() != 1)
       return false;
     BasicBlock *pred = *BB->getPredBegin();
+    // if (pred->isPredecessorOf(succ))
     if (pred->getSuccNum() != 1)
       return false;
     // Those jump from pred to BB, now jump from pred to succ directly.
     TerminatorInst *TI = pred->getTerminator();
-    for (int i = 0; i < TI->getSuccNum(); i++)
-      if (TI->getSucc(i) == BB)
-        TI->setSucc(i, succ);
+    TI->replaceOps(SingleMapper(BB, succ));
 
     // Replace BB in phis with pred.
     BB->replaceSelf(pred);
