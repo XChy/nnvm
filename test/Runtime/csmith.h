@@ -1,3 +1,9 @@
+/*
+ * Reference: https://github.com/dtcxzyw/cmmc/blob/main/tests/csmith/csmith_header.h
+ * Provide safe calculations for the random test cases generated my csmith.
+ * All the ternary operators in original version were substituted with if-else statements for the compatibility of SysY grammar.
+ */
+
 static uint32_t crc32_tab[256];
 static uint32_t crc32_context = 0xFFFFFFFFUL;
 
