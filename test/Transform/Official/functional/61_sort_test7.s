@@ -49,8 +49,6 @@ bb2:   # loop depth 0
   ADD a0, s2, zero
   ADD a1, s1, zero
   CALL merge_sort
-  LA t0, buf
-  ADDI a1, t0, 400
   ADD t0, s0, zero
   ADD t1, s2, zero
   ADD t2, s0, zero
@@ -87,10 +85,9 @@ bb11:   # loop depth 0
 bb12:   # loop depth 1
   SLLIW t0, s0, 2
   LA t1, buf
-  ADD t1, t1, t0
-  ADD t0, a1, t0
-  LW t0, 0(t0)
-  SW t0, 0(t1)
+  ADD t0, t1, t0
+  LW t1, 400(t0)
+  SW t1, 0(t0)
   ADDIW s0, s0, 1
   BLT s0, s1, bb13
   JAL zero, bb10
@@ -100,12 +97,13 @@ bb14:   # loop depth 0
   # implict jump to bb15
 bb15:   # loop depth 1
   SLLIW t2, t0, 2
-  ADD t2, a1, t2
+  LA a0, buf
+  ADD t2, a0, t2
   SLLIW a0, t1, 2
-  LA a2, buf
-  ADD a0, a2, a0
+  LA a1, buf
+  ADD a0, a1, a0
   LW a0, 0(a0)
-  SW a0, 0(t2)
+  SW a0, 400(t2)
   ADDIW t1, t1, 1
   ADDIW t0, t0, 1
   BLT t1, s1, bb16
@@ -116,12 +114,13 @@ bb17:   # loop depth 0
   # implict jump to bb18
 bb18:   # loop depth 1
   SLLIW a0, t0, 2
+  LA a1, buf
   ADD a0, a1, a0
-  SLLIW a2, t2, 2
-  LA a3, buf
-  ADD a2, a3, a2
-  LW a2, 0(a2)
-  SW a2, 0(a0)
+  SLLIW a1, t2, 2
+  LA a2, buf
+  ADD a1, a2, a1
+  LW a1, 0(a1)
+  SW a1, 400(a0)
   ADDIW t2, t2, 1
   ADDIW t0, t0, 1
   BLT t2, s2, bb20
@@ -132,29 +131,31 @@ bb20:   # loop depth 1
   JAL zero, bb18
 bb21:   # loop depth 1
   SLLIW a0, t2, 2
-  LA a2, buf
-  ADD a0, a2, a0
-  LW a2, 0(a0)
-  SLLIW a3, t1, 2
-  LA a4, buf
-  ADD a3, a4, a3
-  LW a4, 0(a3)
-  SLLIW a5, t0, 2
-  BLT a2, a4, bb24
+  LA a1, buf
+  ADD a0, a1, a0
+  LW a1, 0(a0)
+  SLLIW a2, t1, 2
+  LA a3, buf
+  ADD a2, a3, a2
+  LW a3, 0(a2)
+  SLLIW a4, t0, 2
+  BLT a1, a3, bb24
   # implict jump to bb22
 bb22:   # loop depth 1
-  ADD a0, a1, a5
-  LW a2, 0(a3)
-  SW a2, 0(a0)
+  LA a0, buf
+  ADD a0, a0, a4
+  LW a1, 0(a2)
+  SW a1, 400(a0)
   ADDIW t1, t1, 1
   # implict jump to bb23
 bb23:   # loop depth 1
   ADDIW t0, t0, 1
   JAL zero, bb3
 bb24:   # loop depth 1
-  ADD a2, a1, a5
+  LA a1, buf
+  ADD a1, a1, a4
   LW a0, 0(a0)
-  SW a0, 0(a2)
+  SW a0, 400(a1)
   ADDIW t2, t2, 1
   JAL zero, bb23
 bb25:   # loop depth 1

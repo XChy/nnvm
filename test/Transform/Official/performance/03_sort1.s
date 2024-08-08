@@ -18,15 +18,15 @@ main:   # loop depth 0
   SD s3, 32(sp)
   LA a0, a
   CALL getarray
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   ADDI a0, zero, 90
   CALL _sysy_starttime
   ADDI a0, zero, 8
   LA a1, a
   ADD a2, zero, zero
-  ADD a3, s0, zero
+  ADD a3, s1, zero
   CALL radixSort
-  BLT zero, s0, bb4
+  BLT zero, s1, bb4
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, ans
@@ -58,24 +58,24 @@ bb3:   # loop depth 0
   JAL zero, bb2
 bb4:   # loop depth 0
   LA a0, ans
-  LW a0, 0(a0)
-  ADD s1, zero, zero
+  LW s0, 0(a0)
+  ADD a0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  SLLIW s2, s1, 2
+  SLLIW s2, a0, 2
   LA s3, a
   ADD s2, s3, s2
   LW s2, 0(s2)
-  ADDIW s3, s1, 2
+  ADDIW s3, a0, 2
   REMW s2, s2, s3
-  MULW s2, s1, s2
-  ADDW a0, a0, s2
-  ADDIW s1, s1, 1
-  BLT s1, s0, bb7
+  MULW s2, a0, s2
+  ADDW s0, s0, s2
+  ADDIW a0, a0, 1
+  BLT a0, s1, bb7
   # implict jump to bb6
 bb6:   # loop depth 0
-  LA s0, ans
-  SW a0, 0(s0)
+  LA a0, ans
+  SW s0, 0(a0)
   JAL zero, bb1
 bb7:   # loop depth 1
   JAL zero, bb5
@@ -186,25 +186,25 @@ bb12:   # loop depth 0
   LW a3, 252(sp)
   ADDW a1, a1, a3
   SW a1, 188(sp)
+  ADD s3, zero, zero
   ADD s2, zero, zero
-  ADD s5, zero, zero
   ADD a1, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  SLLIW s0, s2, 2
+  SLLIW s0, s3, 2
   ADDI t6, sp, 64
-  ADD s3, t6, s0
-  LW a3, 0(s3)
-  ADDI t6, sp, 128
   ADD s4, t6, s0
-  LW s0, 0(s4)
+  LW a3, 0(s4)
+  ADDI t6, sp, 128
+  ADD s5, t6, s0
+  LW s0, 0(s5)
   BLT a3, s0, bb18
   # implict jump to bb14
 bb14:   # loop depth 1
   # implict jump to bb15
 bb15:   # loop depth 1
-  ADDIW s2, s2, 1
-  SLTI a3, s2, 16
+  ADDIW s3, s3, 1
+  SLTI a3, s3, 16
   BNE a3, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 0
@@ -223,52 +223,52 @@ bb16:   # loop depth 0
   ADD a3, s3, zero
   CALL radixSort
   LW a0, 200(sp)
-  ADDW s2, s3, a0
+  ADDW s4, s3, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
-  ADD a3, s2, zero
+  ADD a3, s4, zero
   CALL radixSort
   LW a0, 204(sp)
-  ADDW s3, s2, a0
+  ADDW s2, s4, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
-  ADD a3, s3, zero
+  ADD a2, s4, zero
+  ADD a3, s2, zero
   CALL radixSort
   LW a0, 208(sp)
-  ADDW s2, s3, a0
+  ADDW s3, s2, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
-  ADD a2, s3, zero
-  ADD a3, s2, zero
+  ADD a2, s2, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 212(sp)
-  ADDW s3, s2, a0
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s2, zero
-  ADD a3, s3, zero
-  CALL radixSort
-  LW a0, 216(sp)
   ADDW s2, s3, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
   ADD a3, s2, zero
   CALL radixSort
-  LW a0, 220(sp)
+  LW a0, 216(sp)
   ADDW s3, s2, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s2, zero
   ADD a3, s3, zero
   CALL radixSort
-  LW a0, 224(sp)
-  ADDW s2, s3, a0
+  LW a0, 220(sp)
+  ADDW s4, s3, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
+  ADD a3, s4, zero
+  CALL radixSort
+  LW a0, 224(sp)
+  ADDW s2, s4, a0
+  ADD a0, s0, zero
+  ADD a1, s1, zero
+  ADD a2, s4, zero
   ADD a3, s2, zero
   CALL radixSort
   LW a0, 228(sp)
@@ -279,38 +279,38 @@ bb16:   # loop depth 0
   ADD a3, s3, zero
   CALL radixSort
   LW a0, 232(sp)
-  ADDW s2, s3, a0
+  ADDW s4, s3, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
-  ADD a3, s2, zero
+  ADD a3, s4, zero
   CALL radixSort
   LW a0, 236(sp)
-  ADDW s3, s2, a0
+  ADDW s2, s4, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
-  ADD a3, s3, zero
-  CALL radixSort
-  LW a0, 240(sp)
-  ADDW s2, s3, a0
-  ADD a0, s0, zero
-  ADD a1, s1, zero
-  ADD a2, s3, zero
+  ADD a2, s4, zero
   ADD a3, s2, zero
   CALL radixSort
-  LW a0, 244(sp)
+  LW a0, 240(sp)
   ADDW s3, s2, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s2, zero
   ADD a3, s3, zero
   CALL radixSort
-  LW a0, 248(sp)
-  ADDW s2, s3, a0
+  LW a0, 244(sp)
+  ADDW s4, s3, a0
   ADD a0, s0, zero
   ADD a1, s1, zero
   ADD a2, s3, zero
+  ADD a3, s4, zero
+  CALL radixSort
+  LW a0, 248(sp)
+  ADDW s2, s4, a0
+  ADD a0, s0, zero
+  ADD a1, s1, zero
+  ADD a2, s4, zero
   ADD a3, s2, zero
   CALL radixSort
   LW a0, 252(sp)
@@ -332,15 +332,13 @@ bb16:   # loop depth 0
 bb17:   # loop depth 1
   JAL zero, bb13
 bb18:   # loop depth 1
-  ADD a1, s5, zero
   # implict jump to bb19
 bb19:   # loop depth 2
-  SLLIW a3, a3, 2
-  ADD a3, s1, a3
-  LW a3, 0(a3)
+  SLLIW a1, a3, 2
+  ADD a1, s1, a1
+  LW a3, 0(a1)
   # implict jump to bb20
 bb20:   # loop depth 3
-  ADD s5, a1, zero
   ADD a1, a3, zero
   BLT zero, a0, bb27
   # implict jump to bb21
@@ -353,35 +351,35 @@ bb22:   # loop depth 3
   ADD s0, a3, s0
   ANDI s0, s0, -16
   SUBW a3, a3, s0
-  BNE a3, s2, bb26
+  BNE a3, s3, bb26
   # implict jump to bb23
 bb23:   # loop depth 2
-  LW a3, 0(s3)
+  LW a3, 0(s4)
   SLLIW s0, a3, 2
   ADD s0, s1, s0
   SW a1, 0(s0)
   ADDIW a3, a3, 1
-  SW a3, 0(s3)
-  LW a3, 0(s3)
-  LW s0, 0(s4)
+  SW a3, 0(s4)
+  LW a3, 0(s4)
+  LW s0, 0(s5)
   BLT a3, s0, bb25
   # implict jump to bb24
 bb24:   # loop depth 1
   JAL zero, bb15
 bb25:   # loop depth 2
-  ADD a1, s5, zero
   JAL zero, bb19
 bb26:   # loop depth 3
   SLLIW a3, a3, 2
   ADDI t6, sp, 64
   ADD s0, t6, a3
-  LW s5, 0(s0)
-  SLLIW a3, s5, 2
+  LW s2, 0(s0)
+  SLLIW a3, s2, 2
   ADD s6, s1, a3
   LW a3, 0(s6)
   SW a1, 0(s6)
-  ADDIW s5, s5, 1
-  SW s5, 0(s0)
+  ADDIW s2, s2, 1
+  SW s2, 0(s0)
+  ADD s2, a1, zero
   JAL zero, bb20
 bb27:   # loop depth 3
   ADD a3, a1, zero

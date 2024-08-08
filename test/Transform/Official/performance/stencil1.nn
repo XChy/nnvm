@@ -16,94 +16,78 @@ entry14:  pred()
   call void _sysy_starttime(i32 23)
   br bb %while.body
 while.body:  pred(while.body31_exclu_exit, entry14)
-  j.phi258414 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
+  j.phi258466 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
   br bb %while.body31
 while.body31:  pred(cutout.if.exit, while.body)
-  i.phi251400 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
-  277 = add i32 %i.phi251400, i32 -1
-  361 = shl i32 %277, i32 10
-  44 = add i32 %361, i32 %j.phi258414
-  279 = add i32 %44, i32 -1
-  60 = add i32 %44, i32 1
-  362 = shl i32 %i.phi251400, i32 10
-  66 = add i32 %362, i32 %j.phi258414
-  285 = add i32 %66, i32 -1
-  80 = add i32 %66, i32 1
-  83 = add i32 %i.phi251400, i32 1
-  363 = shl i32 %83, i32 10
-  87 = add i32 %363, i32 %j.phi258414
-  289 = add i32 %87, i32 -1
-  103 = add i32 %87, i32 1
-  364 = shl i32 %66, i32 2
-  107 = ptradd ptr @image_in, i32 %364
+  i.phi251452 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
+  277 = add i32 %i.phi251452, i32 -1
+  401 = shl i32 %277, i32 10
+  44 = add i32 %401, i32 %j.phi258466
+  402 = shl i32 %i.phi251452, i32 10
+  66 = add i32 %402, i32 %j.phi258466
+  83 = add i32 %i.phi251452, i32 1
+  403 = shl i32 %83, i32 10
+  87 = add i32 %403, i32 %j.phi258466
+  404 = shl i32 %66, i32 2
+  107 = ptradd ptr @image_in, i32 %404
   107.load = load i32 from ptr %107
-  365 = shl i32 %107.load, i32 3
-  366 = shl i32 %279, i32 2
-  112 = ptradd ptr @image_in, i32 %366
-  112.load = load i32 from ptr %112
-  114 = sub i32 %365, i32 %112.load
-  367 = shl i32 %44, i32 2
-  117 = ptradd ptr @image_in, i32 %367
-  117.load = load i32 from ptr %117
+  405 = shl i32 %107.load, i32 3
+  421 = shl i32 %44, i32 2
+  350 = ptradd ptr @image_in, i32 %421
+  352 = ptradd ptr %350, i32 -4
+  112.load = load i32 from ptr %352
+  114 = sub i32 %405, i32 %112.load
+  117.load = load i32 from ptr %350
   119 = sub i32 %114, i32 %117.load
-  368 = shl i32 %60, i32 2
-  122 = ptradd ptr @image_in, i32 %368
-  122.load = load i32 from ptr %122
+  358 = ptradd ptr %350, i32 4
+  122.load = load i32 from ptr %358
   124 = sub i32 %119, i32 %122.load
-  369 = shl i32 %285, i32 2
-  127 = ptradd ptr @image_in, i32 %369
-  127.load = load i32 from ptr %127
+  363 = ptradd ptr %107, i32 -4
+  127.load = load i32 from ptr %363
   129 = sub i32 %124, i32 %127.load
-  370 = shl i32 %80, i32 2
-  132 = ptradd ptr @image_in, i32 %370
-  132.load = load i32 from ptr %132
+  368 = ptradd ptr %107, i32 4
+  132.load = load i32 from ptr %368
   134 = sub i32 %129, i32 %132.load
-  371 = shl i32 %289, i32 2
-  137 = ptradd ptr @image_in, i32 %371
-  137.load = load i32 from ptr %137
+  425 = shl i32 %87, i32 2
+  371 = ptradd ptr @image_in, i32 %425
+  373 = ptradd ptr %371, i32 -4
+  137.load = load i32 from ptr %373
   139 = sub i32 %134, i32 %137.load
-  372 = shl i32 %87, i32 2
-  142 = ptradd ptr @image_in, i32 %372
-  142.load = load i32 from ptr %142
+  142.load = load i32 from ptr %371
   144 = sub i32 %139, i32 %142.load
-  373 = shl i32 %103, i32 2
-  147 = ptradd ptr @image_in, i32 %373
-  147.load = load i32 from ptr %147
+  379 = ptradd ptr %371, i32 4
+  147.load = load i32 from ptr %379
   149 = sub i32 %144, i32 %147.load
-  156 = ptradd ptr @image_out, i32 %364
+  156 = ptradd ptr @image_out, i32 %404
   3327 = icmp slt i32 %149, i32 0
   br i1 %3327, bb %cutout.then, bb %cutout.else
 while.body168:  pred(while.body168, while.body_exclu_exit)
-  i.phi404 = phi [bb %while.body168, i32 %206, bb %while.body_exclu_exit, i32 0]
-  374 = shl i32 %i.phi404, i32 10
-  375 = shl i32 %374, i32 2
-  178 = ptradd ptr @image_out, i32 %375
-  184 = ptradd ptr @image_in, i32 %375
+  i.phi456 = phi [bb %while.body168, i32 %206, bb %while.body_exclu_exit, i32 0]
+  414 = shl i32 %i.phi456, i32 10
+  415 = shl i32 %414, i32 2
+  178 = ptradd ptr @image_out, i32 %415
+  184 = ptradd ptr @image_in, i32 %415
   184.load = load i32 from ptr %184
   store i32 %184.load to ptr %178
-  322 = add i32 %374, i32 1023
-  376 = shl i32 %322, i32 2
-  193 = ptradd ptr @image_out, i32 %376
-  202 = ptradd ptr @image_in, i32 %376
-  202.load = load i32 from ptr %202
-  store i32 %202.load to ptr %193
-  206 = add i32 %i.phi404, i32 1
+  386 = ptradd ptr %178, i32 4092
+  390 = ptradd ptr %184, i32 4092
+  202.load = load i32 from ptr %390
+  store i32 %202.load to ptr %386
+  206 = add i32 %i.phi456, i32 1
   172 = icmp slt i32 %206, i32 1024
   br i1 %172, bb %while.body168, bb %while.body168_exclu_exit
 while.body209:  pred(while.body209, while.body168_exclu_exit)
-  j.phi402 = phi [bb %while.body209, i32 %243, bb %while.body168_exclu_exit, i32 0]
-  377 = shl i32 %j.phi402, i32 2
-  217 = ptradd ptr @image_out, i32 %377
-  221 = ptradd ptr @image_in, i32 %377
+  j.phi454 = phi [bb %while.body209, i32 %243, bb %while.body168_exclu_exit, i32 0]
+  418 = shl i32 %j.phi454, i32 2
+  217 = ptradd ptr @image_out, i32 %418
+  221 = ptradd ptr @image_in, i32 %418
   221.load = load i32 from ptr %221
   store i32 %221.load to ptr %217
-  316 = add i32 %j.phi402, i32 1047552
-  378 = shl i32 %316, i32 2
-  230 = ptradd ptr @image_out, i32 %378
-  239 = ptradd ptr @image_in, i32 %378
-  239.load = load i32 from ptr %239
-  store i32 %239.load to ptr %230
-  243 = add i32 %j.phi402, i32 1
+  396 = ptradd ptr %217, i32 4190208
+  400 = ptradd ptr %221, i32 4190208
+  239.load = load i32 from ptr %400
+  store i32 %239.load to ptr %396
+  243 = add i32 %j.phi454, i32 1
   213 = icmp slt i32 %243, i32 1024
   br i1 %213, bb %while.body209, bb %while.body209_exclu_exit
 cutout.then:  pred(while.body31)
@@ -122,7 +106,7 @@ cutout.if.exit11:  pred(cutout.else, cutout.then10)
   val.stack.phi340 = phi [bb %cutout.else, i32 %149, bb %cutout.then10, i32 255]
   br bb %cutout.if.exit
 while.body31_exclu_exit:  pred(cutout.if.exit)
-  165 = add i32 %j.phi258414, i32 1
+  165 = add i32 %j.phi258466, i32 1
   27 = icmp slt i32 %165, i32 1023
   br i1 %27, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(while.body31_exclu_exit)

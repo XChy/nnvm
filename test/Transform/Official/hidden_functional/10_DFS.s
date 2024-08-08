@@ -319,21 +319,19 @@ bb61:   # loop depth 1
   LA s3, to
   ADD s3, s3, s1
   SW s2, 0(s3)
-  LA s3, next
-  ADD s1, s3, s1
-  SLLIW s3, s4, 2
-  LA s7, head
-  ADD s3, s7, s3
-  LW s7, 0(s3)
-  SW s7, 0(s1)
-  SW s0, 0(s3)
+  LA s7, next
+  ADD s1, s7, s1
+  SLLIW s7, s4, 2
+  LA s8, head
+  ADD s7, s8, s7
+  LW s8, 0(s7)
+  SW s8, 0(s1)
+  SW s0, 0(s7)
   ADDIW s1, s0, 1
-  LA s3, cnt
-  SW s1, 0(s3)
+  LA s7, cnt
+  SW s1, 0(s7)
+  SW s4, 4(s3)
   SLLIW s3, s1, 2
-  LA s7, to
-  ADD s7, s7, s3
-  SW s4, 0(s7)
   LA s7, next
   ADD s3, s7, s3
   SLLIW s7, s2, 2

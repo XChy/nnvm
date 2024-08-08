@@ -33,17 +33,18 @@ n:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -80
+  ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s1, 8(sp)
+  SD s2, 8(sp)
   SD s0, 16(sp)
-  SD s2, 24(sp)
+  SD s1, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
   SD s7, 64(sp)
   SD s8, 72(sp)
+  SD s9, 80(sp)
   CALL getch
   ADD s1, a0, zero
   ADD s3, zero, zero
@@ -136,16 +137,17 @@ bb22:   # loop depth 0
 bb23:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s1, 8(sp)
+  LD s2, 8(sp)
   LD s0, 16(sp)
-  LD s2, 24(sp)
+  LD s1, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
   LD s7, 64(sp)
   LD s8, 72(sp)
-  ADDI sp, sp, 80
+  LD s9, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb24:   # loop depth 0
   ADD s4, zero, zero
@@ -249,21 +251,19 @@ bb50:   # loop depth 1
   LA s3, to
   ADD s3, s3, s1
   SW s2, 0(s3)
-  LA s3, next
-  ADD s1, s3, s1
-  SLLIW s3, s6, 2
-  LA s7, head
-  ADD s3, s7, s3
-  LW s7, 0(s3)
-  SW s7, 0(s1)
-  SW s0, 0(s3)
+  LA s7, next
+  ADD s1, s7, s1
+  SLLIW s7, s6, 2
+  LA s8, head
+  ADD s7, s8, s7
+  LW s8, 0(s7)
+  SW s8, 0(s1)
+  SW s0, 0(s7)
   ADDIW s1, s0, 1
-  LA s3, cnt
-  SW s1, 0(s3)
+  LA s7, cnt
+  SW s1, 0(s7)
+  SW s6, 4(s3)
   SLLIW s3, s1, 2
-  LA s7, to
-  ADD s7, s7, s3
-  SW s6, 0(s7)
   LA s7, next
   ADD s3, s7, s3
   SLLIW s7, s2, 2
@@ -483,12 +483,12 @@ bb97:   # loop depth 2
   LA s0, h
   LW s0, 0(s0)
   ADDIW s1, s0, 1
-  LA s0, h
-  SW s1, 0(s0)
-  SLLIW s0, s1, 2
+  LA s3, h
+  SW s1, 0(s3)
+  SLLIW s0, s0, 2
   LA s3, que
   ADD s0, s3, s0
-  LW s0, 0(s0)
+  LW s0, 4(s0)
   XOR s3, s0, s5
   SLTIU s3, s3, 1
   BNE s3, zero, bb108
@@ -541,13 +541,13 @@ bb107:   # loop depth 3
   SW s8, 0(s7)
   LA s7, tail
   LW s7, 0(s7)
-  ADDIW s7, s7, 1
-  LA s8, tail
-  SW s7, 0(s8)
+  ADDIW s8, s7, 1
+  LA s9, tail
+  SW s8, 0(s9)
   SLLIW s7, s7, 2
   LA s8, que
   ADD s7, s8, s7
-  SW s3, 0(s7)
+  SW s3, 4(s7)
   JAL zero, bb105
 bb108:   # loop depth 2
   ADDI a0, zero, 1

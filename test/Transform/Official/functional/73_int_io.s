@@ -87,10 +87,10 @@ bb18:   # loop depth 1
   BLT zero, s1, bb26
   # implict jump to bb19
 bb19:   # loop depth 1
-  ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb20
 bb20:   # loop depth 1
-  BLT zero, s0, bb23
+  BLT zero, a0, bb23
   # implict jump to bb21
 bb21:   # loop depth 1
   ADDI a0, zero, 10
@@ -103,30 +103,31 @@ bb22:   # loop depth 1
 bb23:   # loop depth 1
   # implict jump to bb24
 bb24:   # loop depth 2
-  ADDIW s0, s0, -1
-  SLLIW a0, s0, 2
+  ADDIW s0, a0, -1
+  SLLIW a0, a0, 2
   ADDI t6, sp, 0
   ADD a0, t6, a0
-  LW a0, 0(a0)
+  LW a0, -4(a0)
   CALL putch
   BLT zero, s0, bb25
   JAL zero, bb21
 bb25:   # loop depth 2
+  ADD a0, s0, zero
   JAL zero, bb24
 bb26:   # loop depth 1
-  ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb27
 bb27:   # loop depth 2
-  SLLIW a0, s0, 2
+  SLLIW s0, a0, 2
   ADDI t6, sp, 0
-  ADD a0, t6, a0
+  ADD s0, t6, s0
   ADDI s3, zero, 10
   REMW s3, s1, s3
   ADDIW s3, s3, 48
-  SW s3, 0(a0)
-  ADDI a0, zero, 10
-  DIVW s1, s1, a0
-  ADDIW s0, s0, 1
+  SW s3, 0(s0)
+  ADDI s0, zero, 10
+  DIVW s1, s1, s0
+  ADDIW a0, a0, 1
   BLT zero, s1, bb29
   # implict jump to bb28
 bb28:   # loop depth 1

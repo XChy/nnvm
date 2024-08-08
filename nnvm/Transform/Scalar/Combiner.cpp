@@ -173,12 +173,18 @@ Value *CombinerPass::simplifySRem(SRemInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
-  Value *A, *B, *C;
+  Value *A, *B, *C, *C1;
   // (A + C1) + C2 --> A + (C1 + C2)
   if (match(I, pPtrAdd(pPtrAdd(pValue(A), pConstant(B)), pConstant(C)))) {
     Value *addc = builder.buildBinOp<AddInst>(B, C, B->getType());
     addc = folder.fold(cast<Instruction>(addc));
     return builder.buildBinOp<PtrAddInst>(A, addc, I->getType());
+  }
+
+  // (A + C1) + B --> (A + B) + C1
+  if (match(I, pPtrAdd(pPtrAdd(pValue(A), pConstant(C1)), pValue(B)))) {
+    Value *add = builder.buildBinOp<PtrAddInst>(A, B, A->getType());
+    return builder.buildBinOp<PtrAddInst>(add, C1, A->getType());
   }
 
   // A + 0 --> A
@@ -234,7 +240,7 @@ static inline bool notCyclicReference(PhiNode *I) {
 }
 
 Value *CombinerPass::simplifyPhi(PhiNode *I) {
-    // phi [a]  --> a
+  // phi [a]  --> a
   if (I->getIncomingNum() == 1 && notCyclicReference(I))
     return I->getIncomingValue(0);
 

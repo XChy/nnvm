@@ -112,15 +112,16 @@ main:   # loop depth 0
   LW s0, 36(sp)
   ADDW a0, s0, a0
   SW a0, 36(sp)
-  ADDI a0, zero, 10
+  ADDI s0, zero, 10
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDIW a0, a0, -1
-  SLLIW s0, a0, 2
+  ADD a0, s0, zero
+  ADDIW s0, a0, -1
+  SLLIW a0, a0, 2
   ADDI t6, sp, 80
-  ADD s0, t6, s0
-  LW s0, 0(s0)
-  SLLIW s1, s0, 2
+  ADD a0, t6, a0
+  LW a0, -4(a0)
+  SLLIW s1, a0, 2
   ADDI t6, sp, 0
   ADD s1, t6, s1
   LW s2, 0(s1)
@@ -129,8 +130,8 @@ bb1:   # loop depth 1
   SLLIW s1, s2, 2
   ADDI t6, sp, 40
   ADD s1, t6, s1
-  SW s0, 0(s1)
-  BLT zero, a0, bb7
+  SW a0, 0(s1)
+  BLT zero, s0, bb7
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 1

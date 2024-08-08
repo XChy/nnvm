@@ -231,24 +231,23 @@ bb30:   # loop depth 2
   SLTIU s2, s2, 1
   JAL zero, bb24
 bb31:   # loop depth 0
-  LA s0, e
-  ADDI s1, s0, 64
   ADDI s0, zero, 1
   # implict jump to bb32
 bb32:   # loop depth 1
-  SLLIW s2, s0, 2
-  LA s3, dis
-  ADD s3, s3, s2
-  ADD s4, s1, s2
-  LW s4, 0(s4)
-  SW s4, 0(s3)
-  LA s3, book
-  ADD s2, s3, s2
-  SW zero, 0(s2)
+  SLLIW s1, s0, 2
+  LA s2, dis
+  ADD s2, s2, s1
+  LA s3, e
+  ADD s3, s3, s1
+  LW s3, 64(s3)
+  SW s3, 0(s2)
+  LA s2, book
+  ADD s1, s2, s1
+  SW zero, 0(s1)
   ADDIW s0, s0, 1
-  SLT s2, a0, s0
-  XORI s2, s2, 1
-  BNE s2, zero, bb34
+  SLT s1, a0, s0
+  XORI s1, s1, 1
+  BNE s1, zero, bb34
   # implict jump to bb33
 bb33:   # loop depth 0
   JAL zero, bb3

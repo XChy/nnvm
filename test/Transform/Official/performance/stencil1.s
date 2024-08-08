@@ -9,132 +9,102 @@ image_in:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -112
-  SD s8, 8(sp)
-  SD s9, 16(sp)
-  SD s10, 24(sp)
-  SD s11, 32(sp)
-  SD ra, 40(sp)
-  SD s0, 48(sp)
-  SD s1, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
-  SD s5, 88(sp)
-  SD s6, 96(sp)
-  SD s7, 104(sp)
+  ADDI sp, sp, -80
+  SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
+  SD s6, 56(sp)
+  SD s7, 64(sp)
   LA a0, image_in
   CALL getarray
-  SW a0, 0(sp)
+  ADD s0, a0, zero
   ADDI a0, zero, 23
   CALL _sysy_starttime
   ADDI s2, zero, 1
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDI a0, zero, 1
+  ADDI s1, zero, 1
   # implict jump to bb2
 bb2:   # loop depth 2
-  ADDIW s1, a0, -1
-  SLLIW s1, s1, 10
-  ADDW s1, s1, s2
-  ADDIW s3, s1, -1
-  ADDIW s4, s1, 1
-  SLLIW s5, a0, 10
-  ADDW s5, s5, s2
-  ADDIW s6, s5, -1
-  ADDIW s7, s5, 1
-  ADDIW a0, a0, 1
-  SLLIW s8, a0, 10
-  ADDW s8, s8, s2
-  ADDIW s9, s8, -1
-  ADDIW s10, s8, 1
-  SLLIW s11, s5, 2
+  ADDIW a0, s1, -1
+  SLLIW a0, a0, 10
+  ADDW a0, a0, s2
+  SLLIW s3, s1, 10
+  ADDW s3, s3, s2
+  ADDIW s1, s1, 1
+  SLLIW s4, s1, 10
+  ADDW s4, s4, s2
+  SLLIW s3, s3, 2
   LA s5, image_in
-  ADD s5, s5, s11
-  LW s5, 0(s5)
-  SLLIW s5, s5, 3
-  SLLIW s0, s3, 2
-  SW s0, 4(sp)
-  LA s3, image_in
-  LW s0, 4(sp)
-  ADD s3, s3, s0
-  LW s3, 0(s3)
-  SUBW s3, s5, s3
-  SLLIW s5, s1, 2
-  LA s1, image_in
-  ADD s1, s1, s5
-  LW s1, 0(s1)
-  SUBW s3, s3, s1
+  ADD s5, s5, s3
+  LW s6, 0(s5)
+  SLLIW s6, s6, 3
+  SLLIW a0, a0, 2
+  LA s7, image_in
+  ADD a0, s7, a0
+  LW s7, -4(a0)
+  SUBW s6, s6, s7
+  LW s7, 0(a0)
+  SUBW s6, s6, s7
+  LW a0, 4(a0)
+  SUBW a0, s6, a0
+  LW s6, -4(s5)
+  SUBW a0, a0, s6
+  LW s5, 4(s5)
+  SUBW a0, a0, s5
   SLLIW s4, s4, 2
-  LA s1, image_in
-  ADD s1, s1, s4
-  LW s1, 0(s1)
-  SUBW s1, s3, s1
-  SLLIW s4, s6, 2
-  LA s3, image_in
-  ADD s3, s3, s4
-  LW s3, 0(s3)
-  SUBW s1, s1, s3
-  SLLIW s3, s7, 2
-  LA s4, image_in
+  LA s5, image_in
+  ADD s4, s5, s4
+  LW s5, -4(s4)
+  SUBW a0, a0, s5
+  LW s5, 0(s4)
+  SUBW a0, a0, s5
+  LW s4, 4(s4)
+  SUBW a0, a0, s4
+  LA s4, image_out
   ADD s3, s4, s3
-  LW s3, 0(s3)
-  SUBW s1, s1, s3
-  SLLIW s3, s9, 2
-  LA s4, image_in
-  ADD s3, s4, s3
-  LW s3, 0(s3)
-  SUBW s1, s1, s3
-  SLLIW s3, s8, 2
-  LA s4, image_in
-  ADD s3, s4, s3
-  LW s3, 0(s3)
-  SUBW s1, s1, s3
-  SLLIW s3, s10, 2
-  LA s4, image_in
-  ADD s3, s4, s3
-  LW s3, 0(s3)
-  SUBW s1, s1, s3
-  LA s3, image_out
-  ADD s3, s3, s11
-  BLT s1, zero, bb18
+  BLT a0, zero, bb18
   # implict jump to bb3
 bb3:   # loop depth 2
   ADDI s4, zero, 255
-  BLT s4, s1, bb17
+  BLT s4, a0, bb17
   # implict jump to bb4
 bb4:   # loop depth 2
   # implict jump to bb5
 bb5:   # loop depth 2
   # implict jump to bb6
 bb6:   # loop depth 2
-  SW s1, 0(s3)
-  SLTI s1, a0, 1023
-  BNE s1, zero, bb16
+  SW a0, 0(s3)
+  SLTI a0, s1, 1023
+  BNE a0, zero, bb16
   # implict jump to bb7
 bb7:   # loop depth 1
   ADDIW s2, s2, 1
-  SLTI s1, s2, 1023
-  BNE s1, zero, bb15
+  SLTI a0, s2, 1023
+  BNE a0, zero, bb15
   # implict jump to bb8
 bb8:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
   SLLIW s1, a0, 10
-  SLLIW s2, s1, 2
-  LA s3, image_out
-  ADD s3, s3, s2
-  LA s4, image_in
-  ADD s2, s4, s2
-  LW s2, 0(s2)
-  SW s2, 0(s3)
-  ADDIW s1, s1, 1023
   SLLIW s1, s1, 2
   LA s2, image_out
   ADD s2, s2, s1
   LA s3, image_in
   ADD s1, s3, s1
+  LW s3, 0(s1)
+  SW s3, 0(s2)
+  LUI s3, 1
+  ADDIW s3, s3, -4
+  ADD s2, s2, s3
+  LUI s3, 1
+  ADDIW s3, s3, -4
+  ADD s1, s1, s3
   LW s1, 0(s1)
   SW s1, 0(s2)
   ADDIW a0, a0, 1
@@ -150,16 +120,14 @@ bb11:   # loop depth 1
   ADD s2, s2, s1
   LA s3, image_in
   ADD s1, s3, s1
-  LW s1, 0(s1)
-  SW s1, 0(s2)
-  LUI s1, 256
-  ADDIW s1, s1, -1024
-  ADDW s1, a0, s1
-  SLLIW s1, s1, 2
-  LA s2, image_out
-  ADD s2, s2, s1
-  LA s3, image_in
-  ADD s1, s3, s1
+  LW s3, 0(s1)
+  SW s3, 0(s2)
+  LUI s3, 1023
+  ADDIW s3, s3, 0
+  ADD s2, s2, s3
+  LUI s3, 1023
+  ADDIW s3, s3, 0
+  ADD s1, s1, s3
   LW s1, 0(s1)
   SW s1, 0(s2)
   ADDIW a0, a0, 1
@@ -174,21 +142,17 @@ bb12:   # loop depth 0
   ADD a0, zero, a0
   LA a1, image_out
   CALL putarray
-  LW a0, 0(sp)
-  LD s8, 8(sp)
-  LD s9, 16(sp)
-  LD s10, 24(sp)
-  LD s11, 32(sp)
-  LD ra, 40(sp)
-  LD s0, 48(sp)
-  LD s1, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
-  LD s5, 88(sp)
-  LD s6, 96(sp)
-  LD s7, 104(sp)
-  ADDI sp, sp, 112
+  ADD a0, s0, zero
+  LD ra, 0(sp)
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  LD s6, 56(sp)
+  LD s7, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb13:   # loop depth 1
   JAL zero, bb11
@@ -199,8 +163,8 @@ bb15:   # loop depth 1
 bb16:   # loop depth 2
   JAL zero, bb2
 bb17:   # loop depth 2
-  ADDI s1, zero, 255
+  ADDI a0, zero, 255
   JAL zero, bb5
 bb18:   # loop depth 2
-  ADD s1, zero, zero
+  ADD a0, zero, zero
   JAL zero, bb6

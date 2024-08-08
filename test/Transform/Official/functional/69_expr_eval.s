@@ -107,23 +107,23 @@ bb15:   # loop depth 1
   ADDI s0, zero, 256
   # implict jump to bb16
 bb16:   # loop depth 2
-  ADDIW s0, s0, -1
-  SLLIW s2, s0, 2
+  ADDIW s2, s0, -1
+  SLLIW s0, s0, 2
   ADDI t6, sp, 80
-  ADD s2, t6, s2
-  SW zero, 0(s2)
-  BNE s0, zero, bb195
+  ADD s0, t6, s0
+  SW zero, -4(s0)
+  BNE s2, zero, bb195
   # implict jump to bb17
 bb17:   # loop depth 1
   ADDI s0, zero, 256
   # implict jump to bb18
 bb18:   # loop depth 2
-  ADDIW s0, s0, -1
-  SLLIW s2, s0, 2
+  ADDIW s2, s0, -1
+  SLLIW s0, s0, 2
   ADDI t6, sp, 1104
-  ADD s2, t6, s2
-  SW zero, 0(s2)
-  BNE s0, zero, bb194
+  ADD s0, t6, s0
+  SW zero, -4(s0)
+  BNE s2, zero, bb194
   # implict jump to bb19
 bb19:   # loop depth 1
   LA s0, cur_token
@@ -134,12 +134,12 @@ bb20:   # loop depth 1
   LA s0, num
   LW s0, 0(s0)
   LW s2, 80(sp)
-  ADDIW s2, s2, 1
-  SW s2, 80(sp)
+  ADDIW s3, s2, 1
+  SW s3, 80(sp)
   SLLIW s2, s2, 2
   ADDI t6, sp, 80
   ADD s2, t6, s2
-  SW s0, 0(s2)
+  SW s0, 4(s2)
   # implict jump to bb21
 bb21:   # loop depth 2
   LA s0, last_char
@@ -322,12 +322,12 @@ bb54:   # loop depth 2
   # implict jump to bb55
 bb55:   # loop depth 2
   LW s0, 80(sp)
-  ADDIW s0, s0, 1
-  SW s0, 80(sp)
+  ADDIW s2, s0, 1
+  SW s2, 80(sp)
   SLLIW s0, s0, 2
   ADDI t6, sp, 80
   ADD s0, t6, s0
-  SW a0, 0(s0)
+  SW a0, 4(s0)
   JAL zero, bb45
 bb56:   # loop depth 2
   REMW a0, s3, s2
@@ -517,12 +517,12 @@ bb100:   # loop depth 3
   # implict jump to bb101
 bb101:   # loop depth 2
   LW s0, 1104(sp)
-  ADDIW s0, s0, 1
-  SW s0, 1104(sp)
+  ADDIW s6, s0, 1
+  SW s6, 1104(sp)
   SLLIW s0, s0, 2
   ADDI t6, sp, 1104
   ADD s0, t6, s0
-  SW s5, 0(s0)
+  SW s5, 4(s0)
   LA s0, cur_token
   LW s0, 0(s0)
   BNE s0, zero, bb130
@@ -531,12 +531,12 @@ bb102:   # loop depth 2
   LA s0, num
   LW s0, 0(s0)
   LW s5, 80(sp)
-  ADDIW s5, s5, 1
-  SW s5, 80(sp)
+  ADDIW s6, s5, 1
+  SW s6, 80(sp)
   SLLIW s5, s5, 2
   ADDI t6, sp, 80
   ADD s5, t6, s5
-  SW s0, 0(s5)
+  SW s0, 4(s5)
   # implict jump to bb103
 bb103:   # loop depth 3
   LA s0, last_char
@@ -725,12 +725,12 @@ bb136:   # loop depth 3
   # implict jump to bb137
 bb137:   # loop depth 3
   LW s7, 80(sp)
-  ADDIW s7, s7, 1
-  SW s7, 80(sp)
+  ADDIW s8, s7, 1
+  SW s8, 80(sp)
   SLLIW s7, s7, 2
   ADDI t6, sp, 80
   ADD s7, t6, s7
-  SW s0, 0(s7)
+  SW s0, 4(s7)
   JAL zero, bb98
 bb138:   # loop depth 3
   REMW s0, s2, s3
@@ -973,8 +973,10 @@ bb193:   # loop depth 1
   ADDI a0, zero, -1
   JAL zero, bb47
 bb194:   # loop depth 2
+  ADD s0, s2, zero
   JAL zero, bb18
 bb195:   # loop depth 2
+  ADD s0, s2, zero
   JAL zero, bb16
 bb196:   # loop depth 0
   ADDIW s0, s2, -48

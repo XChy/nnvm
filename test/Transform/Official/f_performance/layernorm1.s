@@ -118,12 +118,12 @@ bb10:   # loop depth 2
   FLW fs3, 0(s0)
   FADD.S fs8, fs1, fs3
   FADD.S fs1, fs2, fs8
-  FDIV.S fs3, fs1, fs7
-  FSGNJ.S fs5, fs8, fs8
+  FDIV.S fs5, fs1, fs7
+  FSGNJ.S fs3, fs8, fs8
   FSGNJ.S fs1, fs2, fs2
   # implict jump to bb11
 bb11:   # loop depth 3
-  FMUL.S fs9, fs3, fs3
+  FMUL.S fs9, fs5, fs5
   FSUB.S fs6, fs9, fs8
   FLT.S s0, fs6, fs2
   BNE s0, zero, bb35
@@ -137,7 +137,7 @@ bb13:   # loop depth 3
   BNE s0, zero, bb31
   # implict jump to bb14
 bb14:   # loop depth 2
-  FSW fs3, 0(s2)
+  FSW fs5, 0(s2)
   ADDIW a0, a0, 1
   SLTI s0, a0, 1000
   BNE s0, zero, bb30
@@ -253,18 +253,17 @@ bb31:   # loop depth 3
   BNE s0, zero, bb34
   # implict jump to bb32
 bb32:   # loop depth 3
-  FADD.S fs1, fs3, fs5
+  FADD.S fs1, fs5, fs3
   FDIV.S fs6, fs1, fs7
+  FSGNJ.S fs1, fs5, fs5
   # implict jump to bb33
 bb33:   # loop depth 3
-  FSGNJ.S fs1, fs3, fs3
-  FSGNJ.S fs3, fs6, fs6
+  FSGNJ.S fs5, fs6, fs6
   JAL zero, bb11
 bb34:   # loop depth 3
-  FADD.S fs5, fs3, fs1
-  FDIV.S fs6, fs5, fs7
-  FSGNJ.S fs5, fs3, fs3
-  FSGNJ.S fs3, fs1, fs1
+  FADD.S fs3, fs5, fs1
+  FDIV.S fs6, fs3, fs7
+  FSGNJ.S fs3, fs5, fs5
   JAL zero, bb33
 bb35:   # loop depth 3
   FSGNJN.S fs6, fs6, fs6

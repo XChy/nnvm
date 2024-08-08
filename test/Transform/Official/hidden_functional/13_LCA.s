@@ -36,21 +36,20 @@ tree:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
-  SLLIW s4, a0, 2
+  SLLIW s3, a0, 2
   LA s0, dep
-  ADD s0, s0, s4
+  ADD s0, s0, s3
   SW a1, 0(s0)
   ADDI s0, zero, 80
   MULW a0, a0, s0
   LA s0, f
-  ADD s2, s0, a0
-  LW a0, 0(s2)
+  ADD s1, s0, a0
+  LW a0, 0(s1)
   BNE a0, zero, bb6
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, head
-  ADD a0, a0, s4
+  ADD a0, a0, s3
   LW a0, 0(a0)
   XORI s0, a0, -1
   BNE s0, zero, bb3
@@ -63,7 +62,6 @@ bb2:   # loop depth 0
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:   # loop depth 0
@@ -85,28 +83,26 @@ bb4:   # loop depth 1
 bb5:   # loop depth 1
   JAL zero, bb4
 bb6:   # loop depth 0
-  ADD s3, s2, zero
+  ADD s2, s1, zero
   ADD s0, zero, zero
   ADD a0, zero, zero
   # implict jump to bb7
 bb7:   # loop depth 1
   ADDIW a0, a0, 1
-  SLLIW s1, a0, 2
-  ADD s5, s2, s1
-  LW s3, 0(s3)
-  ADDI s6, zero, 80
-  MULW s3, s3, s6
-  LA s6, f
-  ADD s3, s6, s3
-  ADD s0, s3, s0
+  LW s4, 0(s2)
+  ADDI s5, zero, 80
+  MULW s4, s4, s5
+  LA s5, f
+  ADD s4, s5, s4
+  ADD s0, s4, s0
   LW s0, 0(s0)
-  SW s0, 0(s5)
-  ADD s3, s2, s1
-  LW s0, 0(s3)
-  BNE s0, zero, bb8
+  SW s0, 4(s2)
+  SLLIW s0, a0, 2
+  ADD s2, s1, s0
+  LW s4, 0(s2)
+  BNE s4, zero, bb8
   JAL zero, bb1
 bb8:   # loop depth 1
-  ADD s0, s1, zero
   JAL zero, bb7
 main:   # loop depth 0
   ADDI sp, sp, -64

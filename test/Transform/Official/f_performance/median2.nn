@@ -24,8 +24,8 @@ median.loop_entry:  pred(entry153, median.then136, median.then145)
   end.loop209 = phi [bb %entry153, i32 %197, bb %median.then136, i32 %l.phi260, bb %median.then145, i32 %end.loop209]
   begin.loop210 = phi [bb %entry153, i32 0, bb %median.then136, i32 %begin.loop210, bb %median.then145, i32 %148279]
   arr.loop211 = phi [bb %entry153, ptr @a, bb %median.then136, ptr %arr.loop211, bb %median.then145, ptr %arr.loop211]
-  463 = shl i32 %begin.loop210, i32 2
-  61213 = ptradd ptr %arr.loop211, i32 %463
+  471 = shl i32 %begin.loop210, i32 2
+  61213 = ptradd ptr %arr.loop211, i32 %471
   61.load214 = load i32 from ptr %61213
   67215 = add i32 %end.loop209, i32 1
   br bb %median.while.cond69
@@ -41,9 +41,10 @@ median.while.cond74:  pred(median.while.cond69, median.if.exit)
   br i1 %79230, bb %median.while.body75, bb %median.while.exit76
 median.while.body75:  pred(median.while.cond74)
   189233 = add i32 %r.phi176229, i32 -1
-  464 = shl i32 %189233, i32 2
-  86235 = ptradd ptr %arr.loop211, i32 %464
-  86.load236 = load i32 from ptr %86235
+  478 = shl i32 %r.phi176229, i32 2
+  459 = ptradd ptr %arr.loop211, i32 %478
+  461 = ptradd ptr %459, i32 -4
+  86.load236 = load i32 from ptr %461
   89237 = icmp slt i32 %86.load236, i32 %61.load214
   br i1 %89237, bb %median.then, bb %median.if.exit
 median.while.exit76:  pred(median.while.cond74, median.then)
@@ -61,15 +62,16 @@ median.while.cond95:  pred(median.while.exit76, median.if.exit112)
   br i1 %100250, bb %median.while.body96, bb %median.while.exit97
 median.while.body96:  pred(median.while.cond95)
   104253 = add i32 %l.phi172249, i32 1
-  465 = shl i32 %104253, i32 2
-  107255 = ptradd ptr %arr.loop211, i32 %465
-  107.load256 = load i32 from ptr %107255
+  479 = shl i32 %l.phi172249, i32 2
+  464 = ptradd ptr %arr.loop211, i32 %479
+  466 = ptradd ptr %464, i32 4
+  107.load256 = load i32 from ptr %466
   110257 = icmp sge i32 %107.load256, i32 %61.load214
   br i1 %110257, bb %median.then111, bb %median.if.exit112
 median.while.exit97:  pred(median.while.cond95, median.then111)
   l.phi260 = phi [bb %median.while.cond95, i32 %l.phi172249, bb %median.then111, i32 %104253]
   118261 = icmp eq i32 %l.phi260, i32 %r.phi240
-  466 = shl i32 %l.phi260, i32 2
+  474 = shl i32 %l.phi260, i32 2
   br i1 %118261, bb %median.then119, bb %median.else
 median.then111:  pred(median.while.body96)
   br bb %median.while.exit97
@@ -78,16 +80,16 @@ median.if.exit112:  pred(median.while.body96)
   br bb %median.while.cond95
 median.then119:  pred(median.while.exit97)
   store i32 %61.load214 to ptr %61213
-  44316 = ptradd ptr %arr.loop211, i32 %466
+  44316 = ptradd ptr %arr.loop211, i32 %474
   44.load317 = load i32 from ptr %44316
   store i32 %44.load317 to ptr %61213
   store i32 %61.load214 to ptr %44316
   br bb %meanless_calculation.while.cond411
 median.else:  pred(median.while.exit97)
-  36326 = ptradd ptr %arr.loop211, i32 %466
+  36326 = ptradd ptr %arr.loop211, i32 %474
   36.load327 = load i32 from ptr %36326
-  468 = shl i32 %r.phi240, i32 2
-  44329 = ptradd ptr %arr.loop211, i32 %468
+  476 = shl i32 %r.phi240, i32 2
+  44329 = ptradd ptr %arr.loop211, i32 %476
   44.load330 = load i32 from ptr %44329
   store i32 %44.load330 to ptr %36326
   store i32 %36.load327 to ptr %44329
@@ -106,8 +108,8 @@ median.if.exit146:  pred(median.if.exit137)
   call void putarray(i32 %n.load163, ptr @a)
   n.load165 = load i32 from ptr @n
   166 = sdiv i32 %n.load165, i32 2
-  469 = shl i32 %166, i32 2
-  168 = ptradd ptr @a, i32 %469
+  477 = shl i32 %166, i32 2
+  168 = ptradd ptr @a, i32 %477
   168.load = load i32 from ptr %168
   170 = srem i32 %168.load, i32 256
   ret i32 %170

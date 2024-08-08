@@ -1508,20 +1508,16 @@ bb291:   # loop depth 1
   BNE a0, zero, bb296
   # implict jump to bb292
 bb292:   # loop depth 1
-  SLLIW a0, s5, 2
+  SLLIW a0, s4, 2
   LA s6, array
   ADD a0, s6, a0
   ADDI s6, zero, 1
-  SW s6, 0(a0)
-  SLTIU a0, s5, 1
-  BNE a0, zero, bb295
+  SW s6, -4(a0)
+  SLTIU s5, s5, 1
+  BNE s5, zero, bb295
   # implict jump to bb293
 bb293:   # loop depth 1
-  ADDIW a0, s4, -2
-  SLLIW a0, a0, 2
-  LA s5, array
-  ADD a0, s5, a0
-  LW a0, 0(a0)
+  LW a0, -8(a0)
   # implict jump to bb294
 bb294:   # loop depth 1
   SLTU a0, zero, a0

@@ -6,7 +6,7 @@ n:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD ra, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
@@ -14,7 +14,6 @@ main:   # loop depth 0
   SD s3, 72(sp)
   SD s4, 80(sp)
   SD s5, 88(sp)
-  SD s6, 96(sp)
   LA a0, n
   ADDI s0, zero, 10
   SW s0, 0(a0)
@@ -67,8 +66,7 @@ bb5:   # loop depth 0
   LD s3, 72(sp)
   LD s4, 80(sp)
   LD s5, 88(sp)
-  LD s6, 96(sp)
-  ADDI sp, sp, 112
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb6:   # loop depth 0
   ADD s0, zero, zero
@@ -99,11 +97,8 @@ bb11:   # loop depth 2
   ADD s3, t6, s3
   LW s4, 0(s3)
   ADDIW s0, s0, 1
-  SLLIW s5, s0, 2
-  ADDI t6, sp, 0
-  ADD s5, t6, s5
-  LW s6, 0(s5)
-  BLT s6, s4, bb16
+  LW s5, 4(s3)
+  BLT s5, s4, bb16
   # implict jump to bb12
 bb12:   # loop depth 2
   # implict jump to bb13
@@ -115,8 +110,8 @@ bb14:   # loop depth 1
 bb15:   # loop depth 2
   JAL zero, bb11
 bb16:   # loop depth 2
-  LW a0, 0(s5)
+  LW a0, 4(s3)
   LW s4, 0(s3)
-  SW s4, 0(s5)
+  SW s4, 4(s3)
   SW a0, 0(s3)
   JAL zero, bb13

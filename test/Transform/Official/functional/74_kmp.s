@@ -26,6 +26,10 @@ main:   # loop depth 0
   ADDIW t6, t6, 32
   ADD t6, t6, sp
   SD s3, 0(t6)
+  LUI t6, 12
+  ADDIW t6, t6, 40
+  ADD t6, t6, sp
+  SD s4, 0(t6)
   CALL getch
   ADD s0, a0, zero
   LUI t6, 8
@@ -141,6 +145,10 @@ bb14:   # loop depth 0
   ADDIW t6, t6, 32
   ADD t6, t6, sp
   LD s3, 0(t6)
+  LUI t6, 12
+  ADDIW t6, t6, 40
+  ADD t6, t6, sp
+  LD s4, 0(t6)
   LUI t0, 12
   ADDIW t0, t0, 48
   ADD sp, sp, t0
@@ -151,11 +159,11 @@ bb15:   # loop depth 1
   ADDIW t6, t6, 0
   ADD t6, t6, sp
   ADD s3, t6, s2
-  LW s3, 0(s3)
-  XOR a0, s3, a0
-  SLTIU s3, a0, 1
+  LW s4, 0(s3)
+  XOR a0, s4, a0
+  SLTIU s4, a0, 1
   ADDIW a0, s1, 1
-  BNE s3, zero, bb21
+  BNE s4, zero, bb21
   # implict jump to bb16
 bb16:   # loop depth 1
   ADDI t6, sp, 0
@@ -177,12 +185,7 @@ bb20:   # loop depth 1
   JAL zero, bb18
 bb21:   # loop depth 1
   ADDIW s0, s0, 1
-  SLLIW s1, s0, 2
-  LUI t6, 8
-  ADDIW t6, t6, 0
-  ADD t6, t6, sp
-  ADD s1, t6, s1
-  LW s1, 0(s1)
+  LW s1, 4(s3)
   SLTU s1, zero, s1
   XORI s1, s1, 1
   BNE s1, zero, bb23
@@ -193,22 +196,23 @@ bb22:   # loop depth 1
 bb23:   # loop depth 0
   JAL zero, bb14
 bb24:   # loop depth 0
+  ADD s2, zero, zero
   ADD a0, zero, zero
   ADDI s0, zero, -1
   # implict jump to bb25
 bb25:   # loop depth 1
-  XORI s2, s0, -1
-  SLTIU s2, s2, 1
-  SLLIW s3, s0, 2
-  BNE s2, zero, bb32
+  XORI s3, s0, -1
+  SLTIU s3, s3, 1
+  SLLIW s4, s0, 2
+  BNE s3, zero, bb32
   # implict jump to bb26
 bb26:   # loop depth 1
   LUI t6, 8
   ADDIW t6, t6, 0
   ADD t6, t6, sp
-  ADD s2, t6, s3
-  LW s2, 0(s2)
-  XOR s1, s1, s2
+  ADD s3, t6, s4
+  LW s3, 0(s3)
+  XOR s1, s1, s3
   SLTIU s1, s1, 1
   # implict jump to bb27
 bb27:   # loop depth 1
@@ -216,15 +220,15 @@ bb27:   # loop depth 1
   # implict jump to bb28
 bb28:   # loop depth 1
   ADDI t6, sp, 0
-  ADD s0, t6, s3
+  ADD s0, t6, s4
   LW s0, 0(s0)
   # implict jump to bb29
 bb29:   # loop depth 1
-  SLLIW s1, a0, 2
+  SLLIW s2, a0, 2
   LUI t6, 8
   ADDIW t6, t6, 0
   ADD t6, t6, sp
-  ADD s1, t6, s1
+  ADD s1, t6, s2
   LW s1, 0(s1)
   BNE s1, zero, bb30
   JAL zero, bb11
@@ -233,10 +237,9 @@ bb30:   # loop depth 1
 bb31:   # loop depth 1
   ADDIW s0, s0, 1
   ADDIW a0, a0, 1
-  SLLIW s1, a0, 2
   ADDI t6, sp, 0
-  ADD s1, t6, s1
-  SW s0, 0(s1)
+  ADD s1, t6, s2
+  SW s0, 4(s1)
   JAL zero, bb29
 bb32:   # loop depth 1
   ADDI s1, zero, 1

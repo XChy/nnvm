@@ -36,18 +36,17 @@ cnt:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -96
+  ADDI sp, sp, -80
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s4, 16(sp)
-  SD s5, 24(sp)
-  SD s6, 32(sp)
-  SD s7, 40(sp)
-  SD s8, 48(sp)
-  SD s9, 56(sp)
+  SD s2, 8(sp)
+  SD s3, 16(sp)
+  SD s4, 24(sp)
+  SD s5, 32(sp)
+  SD s6, 40(sp)
+  SD s7, 48(sp)
+  SD s8, 56(sp)
   SD s0, 64(sp)
   SD s1, 72(sp)
-  SD s2, 80(sp)
   CALL getint
   LA s0, hashmod
   SW a0, 0(s0)
@@ -75,17 +74,16 @@ bb2:   # loop depth 0
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s4, 16(sp)
-  LD s5, 24(sp)
-  LD s6, 32(sp)
-  LD s7, 40(sp)
-  LD s8, 48(sp)
-  LD s9, 56(sp)
+  LD s2, 8(sp)
+  LD s3, 16(sp)
+  LD s4, 24(sp)
+  LD s5, 32(sp)
+  LD s6, 40(sp)
+  LD s7, 48(sp)
+  LD s8, 56(sp)
   LD s0, 64(sp)
   LD s1, 72(sp)
-  LD s2, 80(sp)
-  ADDI sp, sp, 96
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:   # loop depth 0
   LA a0, hashmod
@@ -187,23 +185,24 @@ bb21:   # loop depth 2
 bb22:   # loop depth 1
   LA a0, cnt
   LW a0, 0(a0)
-  ADDIW a0, a0, 1
-  LA s7, cnt
-  SW a0, 0(s7)
-  SLLIW s7, a0, 2
+  ADDIW s7, a0, 1
+  LA s8, cnt
+  SW s7, 0(s8)
+  SLLIW a0, a0, 2
   LA s8, next
-  ADD s8, s8, s7
-  LW s9, 0(s6)
-  SW s9, 0(s8)
-  SW a0, 0(s6)
-  LA a0, key
-  ADD a0, a0, s7
-  SW s4, 0(a0)
-  LA a0, value
-  ADD a0, a0, s7
-  SW s5, 0(a0)
-  LA a0, nextvalue
-  ADD a0, a0, s7
+  ADD a0, s8, a0
+  LW s8, 0(s6)
+  SW s8, 4(a0)
+  SW s7, 0(s6)
+  SLLIW a0, s7, 2
+  LA s6, key
+  ADD s6, s6, a0
+  SW s4, 0(s6)
+  LA s4, value
+  ADD s4, s4, a0
+  SW s5, 0(s4)
+  LA s4, nextvalue
+  ADD a0, s4, a0
   SW zero, 0(a0)
   # implict jump to bb23
 bb23:   # loop depth 1
@@ -229,19 +228,20 @@ bb26:   # loop depth 2
 bb27:   # loop depth 1
   LA s4, cnt
   LW s4, 0(s4)
-  ADDIW s4, s4, 1
-  LA s6, cnt
-  SW s4, 0(s6)
-  SLLIW s6, s4, 2
+  ADDIW s6, s4, 1
+  LA s7, cnt
+  SW s6, 0(s7)
+  SLLIW s4, s4, 2
   LA s7, nextvalue
-  ADD s7, s7, s6
-  LA s8, nextvalue
-  ADD a0, s8, a0
-  LW s8, 0(a0)
-  SW s8, 0(s7)
-  SW s4, 0(a0)
-  LA a0, value
-  ADD a0, a0, s6
+  ADD s4, s7, s4
+  LA s7, nextvalue
+  ADD a0, s7, a0
+  LW s7, 0(a0)
+  SW s7, 4(s4)
+  SW s6, 0(a0)
+  SLLIW a0, s6, 2
+  LA s4, value
+  ADD a0, s4, a0
   SW s5, 0(a0)
   JAL zero, bb23
 bb28:   # loop depth 1

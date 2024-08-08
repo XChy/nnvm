@@ -175,28 +175,32 @@ bb26:   # loop depth 2
   SLT s2, s3, s6
   JAL zero, bb19
 bb27:   # loop depth 3
-  ADDIW s6, s6, 1
-  SLLIW s7, s6, 2
-  ADD s7, s1, s7
-  LW s7, 0(s7)
-  SLT s7, s7, s3
-  XORI s7, s7, 1
-  BNE s7, zero, bb29
+  ADDIW s7, s6, 1
+  SLLIW s6, s6, 2
+  ADD s6, s1, s6
+  LW s6, 4(s6)
+  SLT s6, s6, s3
+  XORI s6, s6, 1
+  BNE s6, zero, bb29
   # implict jump to bb28
 bb28:   # loop depth 3
   ADDIW s5, s5, -1
+  ADD s6, s7, zero
   JAL zero, bb6
 bb29:   # loop depth 2
+  ADD s6, s7, zero
   JAL zero, bb8
 bb30:   # loop depth 3
-  ADDIW s4, s4, -1
-  SLLIW s7, s4, 2
-  ADD s7, s1, s7
-  LW s7, 0(s7)
-  BLT s7, s3, bb32
+  ADDIW s7, s4, -1
+  SLLIW s4, s4, 2
+  ADD s4, s1, s4
+  LW s4, -4(s4)
+  BLT s4, s3, bb32
   # implict jump to bb31
 bb31:   # loop depth 3
   ADDIW s5, s5, 1
+  ADD s4, s7, zero
   JAL zero, bb3
 bb32:   # loop depth 2
+  ADD s4, s7, zero
   JAL zero, bb5

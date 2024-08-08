@@ -17,12 +17,12 @@ main:   # loop depth 0
   SD s11, 96(sp)
   CALL getint
   ADD s0, a0, zero
-  SW s0, 0(sp)
+  SW s0, 8(sp)
   CALL getint
   ADD s8, a0, zero
   CALL getint
   ADD s0, a0, zero
-  SW s0, 8(sp)
+  SW s0, 0(sp)
   CALL getint
   ADD s11, a0, zero
   CALL getint
@@ -46,7 +46,7 @@ main:   # loop depth 0
   CALL getint
   ADD s7, a0, zero
   CALL getint
-  LW t0, 0(sp)
+  LW t0, 8(sp)
   SLTU t1, zero, t0
   XORI t1, t1, 1
   BNE t1, zero, bb90
@@ -68,9 +68,9 @@ bb5:   # loop depth 0
   ADD t1, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 0
-  LW t0, 8(sp)
+  LW t0, 0(sp)
   SLTU a1, zero, t0
-  LW t0, 8(sp)
+  LW t0, 0(sp)
   BNE t0, zero, bb87
   # implict jump to bb7
 bb7:   # loop depth 0
@@ -158,12 +158,12 @@ bb29:   # loop depth 0
   # implict jump to bb30
 bb30:   # loop depth 0
   ADDIW t1, t1, 1
-  LW t0, 0(sp)
+  LW t0, 8(sp)
   SLTIU a5, t0, 1
   BNE a5, zero, bb75
   # implict jump to bb31
 bb31:   # loop depth 0
-  LW t0, 0(sp)
+  LW t0, 8(sp)
   SUBW t1, t1, t0
   # implict jump to bb32
 bb32:   # loop depth 0
@@ -255,7 +255,7 @@ bb56:   # loop depth 0
   BNE a5, zero, bb62
   # implict jump to bb57
 bb57:   # loop depth 0
-  LW t0, 0(sp)
+  LW t0, 8(sp)
   ADDW t1, t1, t0
   # implict jump to bb58
 bb58:   # loop depth 0
@@ -349,7 +349,7 @@ bb85:   # loop depth 0
 bb86:   # loop depth 0
   JAL zero, bb10
 bb87:   # loop depth 0
-  LW t0, 8(sp)
+  LW t0, 0(sp)
   REMW t1, t1, t0
   JAL zero, bb8
 bb88:   # loop depth 0

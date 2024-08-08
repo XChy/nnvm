@@ -34,17 +34,18 @@ bb5:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDIW s0, s0, -1
-  SLLIW t1, s0, 2
+  ADDIW t1, s0, -1
+  SLLIW t2, s0, 2
   ADDI t6, sp, 0
-  ADD t1, t6, t1
-  LW t1, 0(t1)
-  ADDW t0, t0, t1
-  BNE s0, zero, bb8
+  ADD t2, t6, t2
+  LW t2, -4(t2)
+  ADDW t0, t0, t2
+  BNE t1, zero, bb8
   # implict jump to bb7
 bb7:   # loop depth 0
   JAL zero, bb4
 bb8:   # loop depth 1
+  ADD s0, t1, zero
   JAL zero, bb6
 bb9:   # loop depth 0
   ADD s0, zero, zero

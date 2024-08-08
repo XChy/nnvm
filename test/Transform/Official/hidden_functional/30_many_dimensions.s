@@ -24,12 +24,13 @@ main:   # loop depth 0
   ADD a0, zero, a0
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDIW a0, a0, -1
-  SLLIW s0, a0, 2
+  ADD s0, a0, zero
+  ADDIW a0, s0, -1
+  SLLIW s0, s0, 2
   ADDI t6, sp, 272
   ADD s0, t6, s0
   ADDI s1, zero, 0
-  SW s1, 0(s0)
+  SW s1, -4(s0)
   BNE a0, zero, bb57
   # implict jump to bb2
 bb2:   # loop depth 0

@@ -18,8 +18,8 @@ entry242:  pred()
   246 = call i32 getint()
   store i32 %246 to ptr @staticvalue
   call void _sysy_starttime(i32 56)
-  254534 = icmp sgt i32 %244, i32 0
-  br i1 %254534, bb %while.body251_preheader, bb %while.exit252
+  254539 = icmp sgt i32 %244, i32 0
+  br i1 %254539, bb %while.body251_preheader, bb %while.exit252
 while.body251_preheader:  pred(entry242)
   arr.index5362 = ptradd ptr %x360, i32 4
   arr.index6364 = ptradd ptr %x360, i32 8
@@ -53,8 +53,8 @@ while.body251_preheader:  pred(entry242)
   arr.index34420 = ptradd ptr %x360, i32 120
   br bb %while.body251
 while.body251:  pred(while.body251.split.split.split, while.body251_preheader)
-  n.phi535 = phi [bb %while.body251.split.split.split, i32 %307, bb %while.body251_preheader, i32 %244]
-  307 = add i32 %n.phi535, i32 -1
+  n.phi540 = phi [bb %while.body251.split.split.split, i32 %307, bb %while.body251_preheader, i32 %244]
+  307 = add i32 %n.phi540, i32 -1
   staticvalue.load216310 = load i32 from ptr @staticvalue
   220312 = mul i32 %staticvalue.load216310, i32 19971231
   224315 = add i32 %220312, i32 19981013
@@ -72,8 +72,8 @@ while.exit252:  pred(entry242, while.body251.split.split.split)
   ret i32 0
 rand.then233:  pred(while.body251)
   staticvalue.load239325 = load i32 from ptr @staticvalue
-  542 = add i32 %staticvalue.load239325, i32 1000000007
-  store i32 %542 to ptr @staticvalue
+  547 = add i32 %staticvalue.load239325, i32 1000000007
+  store i32 %547 to ptr @staticvalue
   br bb %rand.if.exit234
 rand.if.exit234:  pred(while.body251, rand.then233)
   staticvalue.load241330 = load i32 from ptr @staticvalue
@@ -87,8 +87,8 @@ rand.if.exit234:  pred(while.body251, rand.then233)
   br i1 %232346, bb %rand.then233348, bb %rand.if.exit234354
 rand.then233348:  pred(rand.if.exit234)
   staticvalue.load239350 = load i32 from ptr @staticvalue
-  543 = add i32 %staticvalue.load239350, i32 1000000007
-  store i32 %543 to ptr @staticvalue
+  548 = add i32 %staticvalue.load239350, i32 1000000007
+  store i32 %548 to ptr @staticvalue
   br bb %rand.if.exit234354
 rand.if.exit234354:  pred(rand.if.exit234, rand.then233348)
   staticvalue.load241355 = load i32 from ptr @staticvalue
@@ -128,12 +128,12 @@ rand.if.exit234354:  pred(rand.if.exit234, rand.then233348)
   131460 = icmp sge i32 %130459, i32 10000
   br i1 %131460, bb %while.body251.split.split.split, bb %set.if.exit
 set.if.exit:  pred(rand.if.exit234354)
-  530 = shl i32 %130459, i32 2
-  137466 = ptradd ptr @a, i32 %530
+  534 = shl i32 %130459, i32 2
+  137466 = ptradd ptr @a, i32 %534
   137.load467 = load i32 from ptr %137466
   140468 = srem i32 %261, i32 30
-  531 = shl i32 %140468, i32 2
-  142470 = ptradd ptr %x360, i32 %531
+  535 = shl i32 %140468, i32 2
+  142470 = ptradd ptr %x360, i32 %535
   142.load471 = load i32 from ptr %142470
   144472 = sdiv i32 %137.load467, i32 %142.load471
   145473 = srem i32 %144472, i32 2

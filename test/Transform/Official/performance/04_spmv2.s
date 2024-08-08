@@ -92,13 +92,10 @@ bb8:   # loop depth 1
 bb9:   # loop depth 2
   SLLIW a0, s2, 2
   LA s1, x
-  ADD s1, s1, a0
-  LW s1, 0(s1)
+  ADD s3, s1, a0
+  LW s1, 0(s3)
   ADDIW s2, s2, 1
-  SLLIW s3, s2, 2
-  LA s4, x
-  ADD s3, s4, s3
-  LW s3, 0(s3)
+  LW s3, 4(s3)
   BLT s1, s3, bb16
   # implict jump to bb10
 bb10:   # loop depth 2
@@ -179,13 +176,10 @@ bb23:   # loop depth 1
 bb24:   # loop depth 2
   SLLIW a0, s2, 2
   LA s1, x
-  ADD s1, s1, a0
-  LW s1, 0(s1)
+  ADD s3, s1, a0
+  LW s1, 0(s3)
   ADDIW s2, s2, 1
-  SLLIW s3, s2, 2
-  LA s4, x
-  ADD s3, s4, s3
-  LW s3, 0(s3)
+  LW s3, 4(s3)
   BLT s1, s3, bb31
   # implict jump to bb25
 bb25:   # loop depth 2
