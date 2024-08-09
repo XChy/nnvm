@@ -3,17 +3,18 @@
 .section .data
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
+  SD s3, 32(sp)
   ADDI a0, zero, 324
+  ADDI s1, zero, 0
   CALL _sysy_starttime
   CALL getint
   ADD s0, a0, zero
-  ADDI a0, zero, 0
-  BLT a0, s0, bb3
+  BLT s1, s0, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD a0, zero, zero
@@ -29,20 +30,21 @@ bb2:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:   # loop depth 0
   ADD a0, zero, zero
   ADD s1, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
-  ADDIW s1, s1, 1
   LUI s2, 1
+  LUI s3, 16
   ADDIW s2, s2, 854
   ADDW a0, a0, s2
-  LUI s2, 16
-  ADDIW s2, s2, -1
-  REMW a0, a0, s2
+  ADDIW s3, s3, -1
+  REMW a0, a0, s3
+  ADDIW s1, s1, 1
   BLT s1, s0, bb6
   # implict jump to bb5
 bb5:   # loop depth 0

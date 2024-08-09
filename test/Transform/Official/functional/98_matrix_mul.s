@@ -12,69 +12,75 @@ M:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -128
+  ADDI sp, sp, -176
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
-  FSD fs2, 32(sp)
-  FSD fs3, 40(sp)
-  FSD fs4, 48(sp)
-  FSD fs5, 56(sp)
-  LA a0, N
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  LA a0, M
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  LA a0, L
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
+  FSD fs0, 8(sp)
+  FSD fs1, 16(sp)
+  FSD fs2, 24(sp)
+  FSD fs3, 32(sp)
+  FSD fs4, 40(sp)
+  FSD fs5, 48(sp)
+  FSD fs6, 56(sp)
+  FSD fs7, 64(sp)
+  FSD fs8, 72(sp)
+  SD s0, 80(sp)
+  SD s1, 88(sp)
+  SD s2, 96(sp)
+  SD s3, 104(sp)
   ADDI a0, zero, 0
+  ADDI s0, zero, 1
+  FCVT.S.W fs1, s0
+  ADDI s0, zero, 2
   FCVT.S.W fs0, a0
-  ADDI a0, zero, 1
-  FCVT.S.W fs1, a0
-  ADDI a0, zero, 2
-  FCVT.S.W fs2, a0
+  LA a0, N
+  FCVT.S.W fs2, s0
+  ADDI s0, zero, 3
   FMUL.S fs3, fs0, fs0
+  LA s1, M
   FMUL.S fs4, fs1, fs0
-  FADD.S fs3, fs3, fs4
-  FMUL.S fs4, fs2, fs0
-  FADD.S fs3, fs3, fs4
-  FSW fs3, 64(sp)
-  FMUL.S fs4, fs0, fs1
-  FMUL.S fs5, fs1, fs1
-  FADD.S fs4, fs4, fs5
-  FMUL.S fs5, fs2, fs1
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 68(sp)
-  FMUL.S fs0, fs0, fs2
-  FMUL.S fs1, fs1, fs2
-  FADD.S fs0, fs0, fs1
-  FMUL.S fs1, fs2, fs2
-  FADD.S fs0, fs0, fs1
-  FSW fs0, 72(sp)
-  FSW fs3, 88(sp)
-  FSW fs4, 92(sp)
-  FSW fs0, 96(sp)
-  FSW fs3, 104(sp)
-  FSW fs4, 108(sp)
-  FSW fs0, 112(sp)
+  ADDI s2, zero, 3
+  FMUL.S fs7, fs1, fs1
+  LA s3, L
+  FMUL.S fs6, fs0, fs1
+  SW s0, 0(a0)
+  FMUL.S fs5, fs2, fs0
+  ADDI a0, zero, 3
+  FMUL.S fs8, fs0, fs2
+  SW s2, 0(s1)
+  FADD.S fs0, fs3, fs4
+  SW a0, 0(s3)
+  FMUL.S fs4, fs1, fs2
   ADDI a0, zero, 1
+  FMUL.S fs3, fs2, fs1
+  FADD.S fs1, fs6, fs7
+  FMUL.S fs6, fs2, fs2
+  FADD.S fs0, fs0, fs5
+  FADD.S fs2, fs8, fs4
+  FADD.S fs1, fs1, fs3
+  FSW fs0, 112(sp)
+  FADD.S fs2, fs2, fs6
+  FSW fs1, 116(sp)
+  FSW fs2, 120(sp)
+  FSW fs0, 136(sp)
+  FSW fs1, 140(sp)
+  FSW fs2, 144(sp)
+  FSW fs0, 152(sp)
+  FSW fs1, 156(sp)
+  FSW fs2, 160(sp)
   BNE a0, zero, bb10
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI a0, zero, 10
+  LA s0, N
   CALL putch
-  LA a0, N
-  LW a0, 0(a0)
+  LW a0, 0(s0)
   BLT zero, a0, bb7
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 10
+  LA s0, N
   CALL putch
-  LA a0, N
-  LW a0, 0(a0)
+  LW a0, 0(s0)
   BLT zero, a0, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -82,28 +88,34 @@ bb3:   # loop depth 0
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  FLD fs2, 32(sp)
-  FLD fs3, 40(sp)
-  FLD fs4, 48(sp)
-  FLD fs5, 56(sp)
-  ADDI sp, sp, 128
+  FLD fs0, 8(sp)
+  FLD fs1, 16(sp)
+  FLD fs2, 24(sp)
+  FLD fs3, 32(sp)
+  FLD fs4, 40(sp)
+  FLD fs5, 48(sp)
+  FLD fs6, 56(sp)
+  FLD fs7, 64(sp)
+  FLD fs8, 72(sp)
+  LD s0, 80(sp)
+  LD s1, 88(sp)
+  LD s2, 96(sp)
+  LD s3, 104(sp)
+  ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb4:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
+  LA s1, N
   SLLIW a0, s0, 2
-  ADDI t6, sp, 104
+  ADDIW s0, s0, 1
+  ADDI t6, sp, 152
   ADD a0, t6, a0
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
+  LW a0, 0(s1)
   BLT s0, a0, bb6
   JAL zero, bb3
 bb6:   # loop depth 1
@@ -112,15 +124,15 @@ bb7:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 1
+  LA s1, N
   SLLIW a0, s0, 2
-  ADDI t6, sp, 88
+  ADDIW s0, s0, 1
+  ADDI t6, sp, 136
   ADD a0, t6, a0
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
+  LW a0, 0(s1)
   BLT s0, a0, bb9
   JAL zero, bb2
 bb9:   # loop depth 1
@@ -129,15 +141,15 @@ bb10:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb11
 bb11:   # loop depth 1
+  LA s1, N
   SLLIW a0, s0, 2
-  ADDI t6, sp, 64
+  ADDIW s0, s0, 1
+  ADDI t6, sp, 112
   ADD a0, t6, a0
   FLW fs0, 0(a0)
   FCVT.W.S a0, fs0, rtz
   CALL putint
-  ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
+  LW a0, 0(s1)
   BLT s0, a0, bb12
   JAL zero, bb1
 bb12:   # loop depth 1

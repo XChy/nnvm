@@ -26,35 +26,36 @@ bb2:   # loop depth 0
   ADD a0, zero, a0
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADDIW s0, a0, -1
-  SLLIW a0, a0, 2
+  SLLIW s0, a0, 2
+  ADDIW a0, a0, -1
   ADDI t6, sp, 48
-  ADD a0, t6, a0
-  SW zero, -4(a0)
-  BNE s0, zero, bb13
+  ADD s0, t6, s0
+  SW zero, -4(s0)
+  BNE a0, zero, bb13
   # implict jump to bb4
 bb4:   # loop depth 0
   ADDI a0, zero, 1
+  ADDI s0, zero, 2
   SW a0, 1468(sp)
-  ADDI a0, zero, 2
-  SW a0, 1472(sp)
   ADDI a0, zero, 3
+  SW s0, 1472(sp)
+  ADDI s0, zero, 9
   SW a0, 1476(sp)
-  ADDI a0, zero, 9
-  SW a0, 1500(sp)
-  LW s2, 1464(sp)
   LUI a0, 2
+  SW s0, 1500(sp)
   ADDIW a0, a0, -152
+  LW s2, 1464(sp)
   ADDI t6, sp, 48
   ADD a0, t6, a0
+  LUI s0, 3
+  ADDIW s0, s0, -180
   LW s1, 0(a0)
-  LUI a0, 3
-  ADDIW a0, a0, -180
-  ADDI t6, sp, 48
-  ADD a0, t6, a0
-  LW s0, 0(a0)
+  ADDI a0, sp, 48
+  ADD s0, a0, s0
   ADD a0, s2, zero
+  LW s0, 0(s0)
   CALL putint
+  SLTI s3, s0, 10
   ADDI a0, zero, 1
   CALL putint
   ADDI a0, zero, 2
@@ -79,8 +80,7 @@ bb4:   # loop depth 0
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  SLTI a0, s0, 10
-  BNE a0, zero, bb10
+  BNE s3, zero, bb10
   # implict jump to bb5
 bb5:   # loop depth 0
   ADDIW a0, s2, 3
@@ -108,41 +108,40 @@ bb7:   # loop depth 0
   # implict jump to bb8
 bb8:   # loop depth 1
   SLLIW a0, s0, 2
+  ADDIW s0, s0, -1
   ADDI t6, sp, 48
   ADD a0, t6, a0
+  SLT s1, s0, zero
   LW a0, 1416(a0)
+  XORI s1, s1, 1
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s0, s0, -1
-  SLT a0, s0, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb9
+  BNE s1, zero, bb9
   JAL zero, bb6
 bb9:   # loop depth 1
   JAL zero, bb8
 bb10:   # loop depth 0
   # implict jump to bb11
 bb11:   # loop depth 1
+  LUI a0, 31
+  ADDIW a0, a0, 1899
+  LUI s4, 1
+  MULW s3, s1, a0
+  ADDIW s4, s4, -372
+  ADDIW s1, s1, 7
   SLLIW a0, s0, 2
+  ADDIW s0, s0, 1
+  REMW s3, s3, s4
   ADDI t6, sp, 48
   ADD a0, t6, a0
-  LUI s3, 31
-  ADDIW s3, s3, 1899
-  MULW s3, s1, s3
-  LUI s4, 1
-  ADDIW s4, s4, -372
-  REMW s3, s3, s4
+  SLTI s4, s0, 10
   SW s3, 1416(a0)
-  ADDIW s0, s0, 1
-  ADDIW s1, s1, 7
-  SLTI a0, s0, 10
-  BNE a0, zero, bb12
+  BNE s4, zero, bb12
   JAL zero, bb5
 bb12:   # loop depth 1
   JAL zero, bb11
 bb13:   # loop depth 1
-  ADD a0, s0, zero
   JAL zero, bb3
 bb14:   # loop depth 1
   JAL zero, bb1

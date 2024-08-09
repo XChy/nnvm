@@ -11,12 +11,12 @@ main:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  LA a0, a
-  LW a0, 0(a0)
-  XORI a0, a0, 1
-  SLTIU s2, a0, 1
+  LA s1, a
   ADD a0, zero, zero
   ADD s0, zero, zero
+  LW s1, 0(s1)
+  XORI s1, s1, 1
+  SLTIU s2, s1, 1
   # implict jump to bb1
 bb1:   # loop depth 1
   BNE s2, zero, bb12

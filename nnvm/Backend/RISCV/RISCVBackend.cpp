@@ -40,9 +40,9 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
     if (!lowFunc->isExternal)
       SSAPeephole().run(*lowFunc);
 
-  //for (auto *lowFunc : lowModule.funcs)
-    //if (!lowFunc->isExternal)
-      //Scheduler().schedule(*lowFunc);
+  for (auto *lowFunc : lowModule.funcs)
+    if (!lowFunc->isExternal)
+      Scheduler().schedule(*lowFunc);
 
   // Replace virtual registers with physical ones or spill to stackslots.
   for (auto *lowFunc : lowModule.funcs)

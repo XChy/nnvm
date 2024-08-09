@@ -21,19 +21,19 @@ findSmallest:   # loop depth 0
   SD s5, 80(sp)
   SD s6, 88(sp)
   ADD s7, a1, zero
+  XOR s0, a0, s7
   ADD s8, a2, zero
   ADD s10, a3, zero
-  XOR s0, a0, s7
   SLTIU s0, s0, 1
   BNE s0, zero, bb19
   # implict jump to bb1
 bb1:   # loop depth 0
-  SLLIW s0, s7, 2
   LA s1, array
-  ADD s0, s1, s0
-  LW s1, 0(s0)
+  SLLIW s0, s7, 2
   SLLIW s3, a0, 2
   ADDIW s2, a0, 1
+  ADD s0, s1, s0
+  LW s1, 0(s0)
   BLT a0, s7, bb12
   # implict jump to bb2
 bb2:   # loop depth 0
@@ -42,13 +42,13 @@ bb2:   # loop depth 0
 bb3:   # loop depth 0
   LA s4, array
   ADD s3, s4, s3
+  XOR s5, s8, s1
   LW s4, 0(s3)
+  SLTIU s6, s5, 1
   LW s5, 0(s0)
   SW s5, 0(s3)
   SW s4, 0(s0)
-  XOR s0, s8, s1
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb8
+  BNE s6, zero, bb8
   # implict jump to bb4
 bb4:   # loop depth 0
   BLT s8, s1, bb7
@@ -89,14 +89,14 @@ bb9:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb10
 bb10:   # loop depth 1
-  SLLIW a0, s0, 2
   LA s2, array
+  SLLIW a0, s0, 2
+  ADDIW s0, s0, 1
   ADD a0, s2, a0
   LW a0, 0(a0)
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s0, s0, 1
   BLT s0, s1, bb11
   JAL zero, bb6
 bb11:   # loop depth 1
@@ -106,8 +106,8 @@ bb12:   # loop depth 0
   ADD s5, a0, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  SLLIW s6, s5, 2
   LA s9, array
+  SLLIW s6, s5, 2
   ADD s6, s9, s6
   LW s9, 0(s6)
   SLT s9, s1, s9
@@ -153,13 +153,14 @@ bb19:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 main:   # loop depth 0
-  ADDI sp, sp, -48
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
+  SD s5, 48(sp)
   CALL getint
   ADD s1, a0, zero
   CALL getint
@@ -179,19 +180,20 @@ bb21:   # loop depth 0
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb22:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb23
 bb23:   # loop depth 1
-  SLLIW s3, s0, 2
-  LA s4, array
-  ADD s4, s4, s3
+  LA s5, array
   CALL getint
+  SLLIW s4, s0, 2
   ADD s3, a0, zero
-  SW s3, 0(s4)
+  ADD s4, s5, s4
   ADDIW s0, s0, 1
+  SW s3, 0(s4)
   BLT s0, s1, bb24
   JAL zero, bb21
 bb24:   # loop depth 1

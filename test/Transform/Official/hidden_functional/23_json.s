@@ -15,8 +15,8 @@ detect_item:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD s0, a2, zero
   ADD s1, a1, zero
+  ADD s0, a2, zero
   # implict jump to bb1
 bb1:   # loop depth 1
   LA a1, pos
@@ -132,9 +132,9 @@ bb20:   # loop depth 0
   # implict jump to bb21
 bb21:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 4
-  LA t1, pos
   SW t0, 0(t1)
   # implict jump to bb22
 bb22:   # loop depth 0
@@ -220,9 +220,9 @@ bb33:   # loop depth 0
   # implict jump to bb34
 bb34:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 5
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb22
 bb35:   # loop depth 0
@@ -303,9 +303,9 @@ bb45:   # loop depth 0
   # implict jump to bb46
 bb46:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 4
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb22
 bb47:   # loop depth 0
@@ -350,9 +350,9 @@ bb51:   # loop depth 0
   JALR zero, 0(ra)
 bb52:   # loop depth 0
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb53
 bb53:   # loop depth 1
@@ -457,9 +457,9 @@ bb66:   # loop depth 0
   # implict jump to bb67
 bb67:   # loop depth 0
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb68
 bb68:   # loop depth 1
@@ -599,9 +599,9 @@ bb86:   # loop depth 0
   # implict jump to bb87
 bb87:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb22
 bb88:   # loop depth 0
@@ -622,37 +622,37 @@ bb89:   # loop depth 0
   JALR zero, 0(ra)
 bb90:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb80
 bb91:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb80
 bb92:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb80
 bb93:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb80
 bb94:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb95
 bb95:   # loop depth 2
@@ -752,9 +752,9 @@ bb107:   # loop depth 1
   # implict jump to bb108
 bb108:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb109
 bb109:   # loop depth 2
@@ -844,30 +844,30 @@ bb119:   # loop depth 2
   JAL zero, bb79
 bb120:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb115
 bb121:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb115
 bb122:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb115
 bb123:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb115
 bb124:   # loop depth 0
@@ -880,30 +880,30 @@ bb124:   # loop depth 0
   JALR zero, 0(ra)
 bb125:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb109
 bb126:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb109
 bb127:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb109
 bb128:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb109
 bb129:   # loop depth 0
@@ -924,30 +924,30 @@ bb130:   # loop depth 0
   JALR zero, 0(ra)
 bb131:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb101
 bb132:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb101
 bb133:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb101
 bb134:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb101
 bb135:   # loop depth 0
@@ -960,58 +960,58 @@ bb135:   # loop depth 0
   JALR zero, 0(ra)
 bb136:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb95
 bb137:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb95
 bb138:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb95
 bb139:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb95
 bb140:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb74
 bb141:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb74
 bb142:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb74
 bb143:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb74
 bb144:   # loop depth 0
@@ -1024,30 +1024,30 @@ bb144:   # loop depth 0
   JALR zero, 0(ra)
 bb145:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb68
 bb146:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb68
 bb147:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb68
 bb148:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb68
 bb149:   # loop depth 0
@@ -1068,30 +1068,30 @@ bb150:   # loop depth 0
   JALR zero, 0(ra)
 bb151:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb60
 bb152:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb60
 bb153:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb60
 bb154:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb60
 bb155:   # loop depth 0
@@ -1114,11 +1114,11 @@ bb156:   # loop depth 0
   JAL zero, bb59
 bb157:   # loop depth 0
   LA t0, pos
+  LA t1, pos
+  ADDI a0, zero, 1
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
-  ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -1127,37 +1127,37 @@ bb157:   # loop depth 0
   JALR zero, 0(ra)
 bb158:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb53
 bb159:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb53
 bb160:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb53
 bb161:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb53
 bb162:   # loop depth 0
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb163
 bb163:   # loop depth 1
@@ -1302,9 +1302,9 @@ bb182:   # loop depth 0
   # implict jump to bb183
 bb183:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb22
 bb184:   # loop depth 0
@@ -1325,37 +1325,37 @@ bb185:   # loop depth 0
   JALR zero, 0(ra)
 bb186:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb176
 bb187:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb176
 bb188:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb176
 bb189:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb176
 bb190:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   # implict jump to bb191
 bb191:   # loop depth 2
@@ -1445,30 +1445,30 @@ bb201:   # loop depth 2
   JAL zero, bb175
 bb202:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb197
 bb203:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb197
 bb204:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb197
 bb205:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb197
 bb206:   # loop depth 0
@@ -1481,58 +1481,58 @@ bb206:   # loop depth 0
   JALR zero, 0(ra)
 bb207:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb191
 bb208:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb191
 bb209:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb191
 bb210:   # loop depth 2
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb191
 bb211:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb170
 bb212:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb170
 bb213:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb170
 bb214:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb170
 bb215:   # loop depth 0
@@ -1555,11 +1555,11 @@ bb216:   # loop depth 0
   JAL zero, bb169
 bb217:   # loop depth 0
   LA t0, pos
+  LA t1, pos
+  ADDI a0, zero, 1
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
-  ADDI a0, zero, 1
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -1568,37 +1568,37 @@ bb217:   # loop depth 0
   JALR zero, 0(ra)
 bb218:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb163
 bb219:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb163
 bb220:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb163
 bb221:   # loop depth 1
   LA a0, pos
+  LA a1, pos
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
   JAL zero, bb163
 bb222:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   # implict jump to bb223
 bb223:   # loop depth 1
@@ -1624,9 +1624,9 @@ bb225:   # loop depth 0
   # implict jump to bb226
 bb226:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb22
 bb227:   # loop depth 0
@@ -1667,16 +1667,16 @@ bb230:   # loop depth 1
   # implict jump to bb231
 bb231:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb223
 bb232:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 2
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb223
 bb233:   # loop depth 0
@@ -1737,9 +1737,9 @@ bb242:   # loop depth 0
   JAL zero, bb22
 bb243:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   BLT t0, s0, bb255
   # implict jump to bb244
@@ -1772,9 +1772,9 @@ bb248:   # loop depth 1
   # implict jump to bb249
 bb249:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb245
 bb250:   # loop depth 1
@@ -1801,9 +1801,9 @@ bb253:   # loop depth 0
   JAL zero, bb245
 bb254:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb245
 bb255:   # loop depth 0
@@ -1816,9 +1816,9 @@ bb255:   # loop depth 0
   JAL zero, bb244
 bb256:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb244
 bb257:   # loop depth 0
@@ -1831,9 +1831,9 @@ bb257:   # loop depth 0
   JAL zero, bb241
 bb258:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   BLT t0, s0, bb259
   JAL zero, bb241
@@ -1856,9 +1856,9 @@ bb261:   # loop depth 1
   # implict jump to bb262
 bb262:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   BLT t0, s0, bb259
   JAL zero, bb241
@@ -1891,9 +1891,9 @@ bb268:   # loop depth 1
   # implict jump to bb269
 bb269:   # loop depth 1
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb239
 bb270:   # loop depth 1
@@ -1938,16 +1938,16 @@ bb277:   # loop depth 0
   JALR zero, 0(ra)
 bb278:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb235
 bb279:   # loop depth 0
   LA t0, pos
+  LA t1, pos
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  LA t1, pos
   SW t0, 0(t1)
   JAL zero, bb235
 bb280:   # loop depth 1
@@ -2055,30 +2055,30 @@ bb303:   # loop depth 1
   JAL zero, bb1
 bb304:   # loop depth 2
   LA a1, pos
+  LA a2, pos
   LW a1, 0(a1)
   ADDIW a1, a1, 1
-  LA a2, pos
   SW a1, 0(a2)
   JAL zero, bb2
 bb305:   # loop depth 2
   LA a1, pos
+  LA a2, pos
   LW a1, 0(a1)
   ADDIW a1, a1, 1
-  LA a2, pos
   SW a1, 0(a2)
   JAL zero, bb2
 bb306:   # loop depth 2
   LA a1, pos
+  LA a2, pos
   LW a1, 0(a1)
   ADDIW a1, a1, 1
-  LA a2, pos
   SW a1, 0(a2)
   JAL zero, bb2
 bb307:   # loop depth 2
   LA a1, pos
+  LA a2, pos
   LW a1, 0(a1)
   ADDIW a1, a1, 1
-  LA a2, pos
   SW a1, 0(a2)
   JAL zero, bb2
 bb308:   # loop depth 0
@@ -2114,8 +2114,8 @@ bb312:   # loop depth 1
   BNE a1, zero, bb317
   # implict jump to bb313
 bb313:   # loop depth 1
-  SLLIW a0, a0, 2
   LA a1, buffer
+  SLLIW a0, a0, 2
   ADD a0, a1, a0
   LW a0, 0(a0)
   XORI a1, a0, 32
@@ -2138,8 +2138,8 @@ bb316:   # loop depth 1
   BNE a0, zero, bb330
   # implict jump to bb317
 bb317:   # loop depth 0
-  ADD a0, zero, zero
   LA a1, buffer
+  ADD a0, zero, zero
   ADD a2, s0, zero
   CALL detect_item
   # implict jump to bb318
@@ -2151,8 +2151,8 @@ bb318:   # loop depth 1
   BNE s2, zero, bb323
   # implict jump to bb319
 bb319:   # loop depth 1
-  SLLIW s1, s1, 2
   LA s2, buffer
+  SLLIW s1, s1, 2
   ADD s1, s2, s1
   LW s1, 0(s1)
   XORI s2, s1, 32
@@ -2217,73 +2217,73 @@ bb325:   # loop depth 0
   JALR zero, 0(ra)
 bb326:   # loop depth 1
   LA s1, pos
+  LA s2, pos
   LW s1, 0(s1)
   ADDIW s1, s1, 1
-  LA s2, pos
   SW s1, 0(s2)
   JAL zero, bb318
 bb327:   # loop depth 1
   LA s1, pos
+  LA s2, pos
   LW s1, 0(s1)
   ADDIW s1, s1, 1
-  LA s2, pos
   SW s1, 0(s2)
   JAL zero, bb318
 bb328:   # loop depth 1
   LA s1, pos
+  LA s2, pos
   LW s1, 0(s1)
   ADDIW s1, s1, 1
-  LA s2, pos
   SW s1, 0(s2)
   JAL zero, bb318
 bb329:   # loop depth 1
   LA s1, pos
+  LA s2, pos
   LW s1, 0(s1)
   ADDIW s1, s1, 1
-  LA s2, pos
   SW s1, 0(s2)
   JAL zero, bb318
 bb330:   # loop depth 1
   LA a0, pos
+  LA a1, pos
+  ADD s0, s1, zero
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
-  ADD s0, s1, zero
   JAL zero, bb312
 bb331:   # loop depth 1
   LA a0, pos
+  LA a1, pos
+  ADD s0, s1, zero
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
-  ADD s0, s1, zero
   JAL zero, bb312
 bb332:   # loop depth 1
   LA a0, pos
+  LA a1, pos
+  ADD s0, s1, zero
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
-  ADD s0, s1, zero
   JAL zero, bb312
 bb333:   # loop depth 1
   LA a0, pos
+  LA a1, pos
+  ADD s0, s1, zero
   LW a0, 0(a0)
   ADDIW a0, a0, 1
-  LA a1, pos
   SW a0, 0(a1)
-  ADD s0, s1, zero
   JAL zero, bb312
 bb334:   # loop depth 0
   ADD s1, zero, zero
   # implict jump to bb335
 bb335:   # loop depth 1
-  SLLIW s2, s1, 2
   LA s3, buffer
+  SLLIW s2, s1, 2
   ADD s2, s3, s2
-  SW s0, 0(s2)
   ADDIW s1, s1, 1
+  SW s0, 0(s2)
   CALL getch
   ADD s0, a0, zero
   XORI s2, s0, 35

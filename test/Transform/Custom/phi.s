@@ -9,8 +9,8 @@ main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   LA t0, value
-  LW t0, 0(t0)
   ADDI t1, zero, 0
+  LW t0, 0(t0)
   BLT t1, t0, bb3
   # implict jump to bb1
 bb1:   # loop depth 0

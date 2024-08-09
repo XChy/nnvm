@@ -9,8 +9,8 @@ main:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   CALL getint
-  ADD s0, a0, zero
   ADDI s1, zero, 0
+  ADD s0, a0, zero
   BLT s1, s0, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
@@ -27,11 +27,11 @@ bb3:   # loop depth 1
   ADDI a1, zero, 1
   ADDI a2, zero, 2
   ADDI a3, zero, 3
+  ADDI s1, zero, 0
+  ADDIW s0, s0, -1
   CALL hanoi
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s0, s0, -1
-  ADDI s1, zero, 0
   BLT s1, s0, bb4
   JAL zero, bb1
 bb4:   # loop depth 1
@@ -44,18 +44,18 @@ hanoi:   # loop depth 0
   SD s2, 24(sp)
   SD s3, 32(sp)
   ADD s1, a1, zero
+  XORI s3, a0, 1
   ADD s2, a2, zero
   ADD s0, a3, zero
-  XORI s3, a0, 1
   SLTIU s3, s3, 1
   BNE s3, zero, bb8
   # implict jump to bb6
 bb6:   # loop depth 0
   ADDIW s3, a0, -1
-  ADD a0, s3, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
   ADD a3, s2, zero
+  ADD a0, s3, zero
   CALL hanoi
   ADD a0, s1, zero
   CALL putint

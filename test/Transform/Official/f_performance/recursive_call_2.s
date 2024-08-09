@@ -22,9 +22,9 @@ bb1:   # loop depth 0
   FSGNJ.S fa0, fs0, fs0
   ADD a0, s0, zero
   CALL func
+  ADD a0, s0, zero
   FADD.S fs0, fs0, fa0
   FSGNJ.S fa0, fs0, fs0
-  ADD a0, s0, zero
   CALL func
   FSUB.S fa0, fs0, fa0
   LD ra, 0(sp)
@@ -40,25 +40,28 @@ bb2:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  FSD fs0, 32(sp)
+  FSD fs1, 40(sp)
+  FSD fs2, 48(sp)
   ADDI a0, zero, 21
+  LA s0, .CONSTANT.7.0
+  LA s1, .CONSTANT.7.0
+  LA s2, .CONSTANT.7.1
+  FCVT.S.L fs1, zero
   CALL _sysy_starttime
   CALL getint
-  LA s0, .CONSTANT.7.0
   FLW fa0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
+  FLW fs0, 0(s1)
   FSGNJ.S fa0, fa0, fs0
   CALL func
+  FLW fs2, 0(s2)
   FSGNJ.D fs0, fa0, fa0
-  LA a0, .CONSTANT.7.1
-  FLW fs1, 0(a0)
-  FSUB.S fs0, fs0, fs1
-  FCVT.S.L fs1, zero
+  FSUB.S fs0, fs0, fs2
   FEQ.S a0, fs0, fs1
   BNE a0, zero, bb5
   # implict jump to bb4
@@ -68,9 +71,12 @@ bb4:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  ADDI sp, sp, 32
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  FLD fs0, 32(sp)
+  FLD fs1, 40(sp)
+  FLD fs2, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb5:   # loop depth 0
   ADDI a0, zero, 112

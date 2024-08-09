@@ -17,9 +17,9 @@ bb2:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:   # loop depth 1
-  XORI t1, t0, 50
-  SLTIU t2, t1, 1
+  XORI t2, t0, 50
   ADDIW t1, t0, 1
+  SLTIU t2, t2, 1
   BNE t2, zero, bb5
   # implict jump to bb4
 bb4:   # loop depth 1

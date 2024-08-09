@@ -3,15 +3,18 @@
 .section .data
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
+  SD s2, 8(sp)
+  SD s3, 16(sp)
+  SD s4, 24(sp)
+  SD s5, 32(sp)
+  SD s6, 40(sp)
+  SD s7, 48(sp)
+  SD s8, 56(sp)
+  SD s9, 64(sp)
+  SD s0, 72(sp)
+  SD s1, 80(sp)
   CALL getint
   ADD s4, a0, zero
   ADDI a0, zero, 33
@@ -23,14 +26,17 @@ bb1:   # loop depth 0
   CALL _sysy_stoptime
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  ADDI sp, sp, 64
+  LD s2, 8(sp)
+  LD s3, 16(sp)
+  LD s4, 24(sp)
+  LD s5, 32(sp)
+  LD s6, 40(sp)
+  LD s7, 48(sp)
+  LD s8, 56(sp)
+  LD s9, 64(sp)
+  LD s0, 72(sp)
+  LD s1, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   # implict jump to bb3
@@ -46,10 +52,10 @@ bb4:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
+  ADDIW s4, s4, -1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s4, s4, -1
   BNE s4, zero, bb6
   JAL zero, bb1
 bb6:   # loop depth 1
@@ -86,19 +92,19 @@ bb13:   # loop depth 2
 bb14:   # loop depth 2
   ADDI s0, zero, 3
   MULW s0, s1, s0
-  ADDI s6, zero, 1000
-  DIVW s0, s0, s6
+  ADDI s9, zero, 1000
   ADDI s6, zero, 1001
+  LUI s7, 4759
+  ADDIW s7, s7, -1863
+  LUI s8, 243712
+  DIVW s0, s0, s9
+  ADDIW s8, s8, 501
+  ADDW s2, s2, a0
   MULW s0, s0, s6
   ADDW s0, s1, s0
-  LUI s1, 4759
-  ADDIW s1, s1, -1863
-  REMW s0, s0, s1
+  REMW s0, s0, s7
   ADDW s0, s3, s0
-  LUI s1, 243712
-  ADDIW s1, s1, 501
-  REMW s3, s0, s1
-  ADDW s2, s2, a0
+  REMW s3, s0, s8
   BLT s2, s5, bb16
   # implict jump to bb15
 bb15:   # loop depth 1

@@ -9,25 +9,34 @@ b:
 .word 0x00000005
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -16
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  SD s5, 48(sp)
   ADDI a0, zero, 3
-  CALL putint
-  ADDI a0, zero, 3
-  CALL putint
-  ADDI a0, zero, 1
-  CALL putint
-  ADDI a0, zero, 10
-  CALL putch
-  ADDI a0, zero, 1
-  CALL putint
-  ADDI a0, zero, 10
-  CALL putch
   LA s0, c
+  ADDI s1, zero, 1
+  LA s2, b
+  LA s3, c
+  LA s4, c
+  LA s5, c
+  CALL putint
+  ADDI a0, zero, 3
+  CALL putint
   ADDI a0, zero, 1
-  SW a0, 8(s0)
+  CALL putint
+  ADDI a0, zero, 10
+  CALL putch
+  ADDI a0, zero, 1
+  CALL putint
+  ADDI a0, zero, 10
+  CALL putch
   ADDI a0, zero, 2
+  SW s1, 8(s0)
   CALL putint
   ADDI a0, zero, 1
   CALL putint
@@ -35,26 +44,27 @@ main:   # loop depth 0
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA a0, b
-  LW a0, 0(a0)
+  LW a0, 0(s2)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LA a0, c
-  LW a0, 0(a0)
+  LW a0, 0(s3)
   CALL putint
-  LA a0, c
-  LW a0, 4(a0)
+  LW a0, 4(s4)
   CALL putint
   LW a0, 8(s0)
   CALL putint
-  LA a0, c
-  LW a0, 12(a0)
+  LW a0, 12(s5)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  ADDI sp, sp, 16
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  LD s5, 48(sp)
+  ADDI sp, sp, 64
   JALR zero, 0(ra)

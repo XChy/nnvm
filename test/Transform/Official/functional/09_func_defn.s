@@ -10,8 +10,8 @@ main:   # loop depth 0
   SD ra, 0(sp)
   LA t0, a
   ADDI t1, zero, 10
-  SW t1, 0(t0)
   ADDI a0, zero, 9
+  SW t1, 0(t0)
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)

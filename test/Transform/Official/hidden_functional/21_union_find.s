@@ -17,10 +17,10 @@ main:   # loop depth 0
   SD s5, 48(sp)
   SD s6, 56(sp)
   CALL getint
+  ADDI s4, zero, 0
   ADD s1, a0, zero
   CALL getint
   ADD s3, a0, zero
-  ADDI s4, zero, 0
   BLT s4, s1, bb17
   # implict jump to bb1
 bb1:   # loop depth 0
@@ -50,8 +50,8 @@ bb5:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
-  SLLIW s2, s0, 2
   LA s3, parent
+  SLLIW s2, s0, 2
   ADD s2, s3, s2
   LW s2, 0(s2)
   XOR s2, s2, s0
@@ -94,8 +94,8 @@ bb14:   # loop depth 1
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  SLLIW s2, s2, 2
   LA s6, parent
+  SLLIW s2, s2, 2
   ADD s2, s6, s2
   SW s5, 0(s2)
   JAL zero, bb14
@@ -103,22 +103,23 @@ bb17:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 1
-  SLLIW s2, s0, 2
-  LA s5, parent
-  ADD s2, s5, s2
-  SW s0, 0(s2)
-  ADDIW s0, s0, 1
-  BLT s0, s1, bb19
+  LA s6, parent
+  SLLIW s5, s0, 2
+  ADDIW s2, s0, 1
+  ADD s5, s6, s5
+  SW s0, 0(s5)
+  BLT s2, s1, bb19
   JAL zero, bb1
 bb19:   # loop depth 1
+  ADD s0, s2, zero
   JAL zero, bb18
 find:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SLLIW s0, a0, 2
   LA s1, parent
+  SLLIW s0, a0, 2
   ADD s0, s1, s0
   LW s1, 0(s0)
   XOR s1, s1, a0

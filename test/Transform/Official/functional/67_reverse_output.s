@@ -17,16 +17,17 @@ reverse:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  ADD s1, a0, zero
-  ADDI s0, zero, 1
-  SLT s0, s0, s1
-  XORI s0, s0, 1
-  BNE s0, zero, bb4
+  ADD s0, a0, zero
+  ADDI s1, zero, 1
+  SLT s1, s1, s0
+  XORI s1, s1, 1
+  BNE s1, zero, bb4
   # implict jump to bb2
 bb2:   # loop depth 0
   CALL getint
+  ADDIW s1, s0, -1
   ADD s0, a0, zero
-  ADDIW a0, s1, -1
+  ADD a0, s1, zero
   CALL reverse
   ADD a0, s0, zero
   CALL putint

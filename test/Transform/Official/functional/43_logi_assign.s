@@ -13,15 +13,16 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  SD s2, 24(sp)
   CALL getint
-  ADD s0, a0, zero
   LA s1, a
+  ADD s0, a0, zero
+  LA s2, b
   SW s0, 0(s1)
+  LA s0, a
   CALL getint
-  LA t0, b
-  SW a0, 0(t0)
-  LA t0, a
-  LW t0, 0(t0)
+  SW a0, 0(s2)
+  LW t0, 0(s0)
   XOR t1, t0, a0
   SLTIU t1, t1, 1
   BNE t1, zero, bb6
@@ -39,6 +40,7 @@ bb4:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:   # loop depth 0

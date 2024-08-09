@@ -12,17 +12,18 @@ main:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
+  SD s4, 40(sp)
   CALL getint
   LA s0, loopCount
+  LUI s1, 2
+  ADDIW s1, s1, 1823
+  LA s2, loopCount
   SW a0, 0(s0)
-  LUI a0, 2
-  ADDIW a0, a0, 1823
-  ADD a0, zero, a0
+  ADD a0, zero, s1
+  ADDI s0, zero, 0
   CALL _sysy_starttime
-  LA a0, loopCount
-  LW s1, 0(a0)
-  ADDI a0, zero, 0
-  BLT a0, s1, bb3
+  LW s1, 0(s2)
+  BLT s0, s1, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD s0, zero, zero
@@ -42,6 +43,7 @@ bb2:   # loop depth 0
   LD s1, 16(sp)
   LD s2, 24(sp)
   LD s3, 32(sp)
+  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:   # loop depth 0
@@ -52,12 +54,12 @@ bb4:   # loop depth 1
   ADDI s2, zero, 60
   MULW s2, a0, s2
   ADDI s3, zero, 60
+  LUI s4, 131068
+  ADDIW s4, s4, 1
+  ADDIW a0, a0, 1
   DIVW s2, s2, s3
   ADDW s0, s0, s2
-  LUI s2, 131068
-  ADDIW s2, s2, 1
-  REMW s0, s0, s2
-  ADDIW a0, a0, 1
+  REMW s0, s0, s4
   BLT a0, s1, bb6
   # implict jump to bb5
 bb5:   # loop depth 0

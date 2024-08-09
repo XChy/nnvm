@@ -3,13 +3,28 @@
 .section .data
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -16
+  ADDI sp, sp, -48
   SD ra, 0(sp)
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
   ADDI a0, zero, 3
+  LUI s0, 1
+  ADDIW s0, s0, -1512
+  LUI s1, 1
   CALL putint
+  ADDIW s1, s1, 85
   ADDI a0, zero, 10
+  LUI s2, 2
+  ADDIW s2, s2, -1427
+  LUI s3, 3
+  LUI s4, 7
   CALL putch
   ADDI a0, zero, 5
+  ADDIW s3, s3, -1342
+  ADDIW s4, s4, -20
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -61,33 +76,28 @@ main:   # loop depth 0
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LUI a0, 1
-  ADDIW a0, a0, -1512
-  ADD a0, zero, a0
+  ADD a0, zero, s0
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LUI a0, 1
-  ADDIW a0, a0, 85
-  ADD a0, zero, a0
+  ADD a0, zero, s1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LUI a0, 2
-  ADDIW a0, a0, -1427
-  ADD a0, zero, a0
+  ADD a0, zero, s2
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LUI a0, 3
-  ADDIW a0, a0, -1342
-  ADD a0, zero, a0
+  ADD a0, zero, s3
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  LUI t0, 7
-  ADDIW t0, t0, -20
-  ADD a0, zero, t0
+  ADD a0, zero, s4
   LD ra, 0(sp)
-  ADDI sp, sp, 16
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)

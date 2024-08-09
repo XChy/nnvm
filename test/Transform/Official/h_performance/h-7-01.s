@@ -28,18 +28,19 @@ main:   # loop depth 0
   FSD fs4, 72(sp)
   FSD fs5, 80(sp)
   LA a0, i_buf
+  ADDI s0, zero, 0
   CALL getfarray
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   ADDI a0, zero, 33
   CALL _sysy_starttime
-  ADDI a0, zero, 0
-  BLT a0, s0, bb2
+  BLT s0, s1, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
+  LA s0, o_buf
   ADDI a0, zero, 41
   CALL _sysy_stoptime
-  ADD a0, s0, zero
-  LA a1, o_buf
+  ADD a0, s1, zero
+  ADD a1, s0, zero
   CALL putfarray
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -57,52 +58,52 @@ bb1:   # loop depth 0
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   LA a0, .CONSTANT.7.0
+  LA s0, .CONSTANT.7.0
+  LA s2, .CONSTANT.7.1
+  LA s3, .CONSTANT.7.1
   FLW fs0, 0(a0)
-  LA a0, .CONSTANT.7.0
-  FLW fs1, 0(a0)
-  FSGNJ.S fs3, fs0, fs1
-  LA a0, .CONSTANT.7.1
-  FLW fs0, 0(a0)
-  LA a0, .CONSTANT.7.1
-  FLW fs1, 0(a0)
-  FSGNJ.S fs4, fs0, fs1
   ADDI a0, zero, 0
   FCVT.S.W fs5, a0
   ADD a0, zero, zero
+  FLW fs1, 0(s0)
+  FLW fs2, 0(s2)
+  FSGNJ.S fs3, fs0, fs1
+  FLW fs0, 0(s3)
+  FSGNJ.S fs4, fs2, fs0
   # implict jump to bb3
 bb3:   # loop depth 1
-  SLLIW s1, a0, 2
-  LA s2, o_buf
-  ADD s2, s2, s1
-  LA s3, i_buf
-  ADD s1, s3, s1
-  FLW fs2, 0(s1)
-  FLE.S s1, fs2, fs5
-  BNE s1, zero, bb19
+  LA s2, i_buf
+  SLLIW s0, a0, 2
+  LA s3, o_buf
+  ADD s2, s2, s0
+  FLW fs2, 0(s2)
+  ADD s0, s3, s0
+  FLE.S s2, fs2, fs5
+  BNE s2, zero, bb19
   # implict jump to bb4
 bb4:   # loop depth 1
-  ADDI s1, zero, 1
-  FCVT.S.W fs0, s1
+  ADDI s2, zero, 1
+  FCVT.S.W fs0, s2
   FADD.S fs0, fs2, fs0
   FMUL.S fs1, fs0, fs4
-  FLT.S s1, fs2, fs1
-  BNE s1, zero, bb18
+  FLT.S s2, fs2, fs1
+  BNE s2, zero, bb18
   # implict jump to bb5
 bb5:   # loop depth 1
   FSUB.S fs0, fs2, fs1
   # implict jump to bb6
 bb6:   # loop depth 1
-  FLT.S s1, fs3, fs0
-  BNE s1, zero, bb11
+  FLT.S s2, fs3, fs0
+  BNE s2, zero, bb11
   # implict jump to bb7
 bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   # implict jump to bb9
 bb9:   # loop depth 1
-  FSW fs1, 0(s2)
   ADDIW a0, a0, 1
-  BLT a0, s0, bb10
+  FSW fs1, 0(s0)
+  BLT a0, s1, bb10
   JAL zero, bb1
 bb10:   # loop depth 1
   JAL zero, bb3
@@ -113,15 +114,15 @@ bb12:   # loop depth 2
   FDIV.S fs1, fs2, fs0
   FADD.S fs1, fs0, fs1
   FMUL.S fs1, fs1, fs4
-  FLT.S s1, fs0, fs1
-  BNE s1, zero, bb17
+  FLT.S s2, fs0, fs1
+  BNE s2, zero, bb17
   # implict jump to bb13
 bb13:   # loop depth 2
   FSUB.S fs0, fs0, fs1
   # implict jump to bb14
 bb14:   # loop depth 2
-  FLT.S s1, fs3, fs0
-  BNE s1, zero, bb16
+  FLT.S s2, fs3, fs0
+  BNE s2, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 1
   JAL zero, bb8

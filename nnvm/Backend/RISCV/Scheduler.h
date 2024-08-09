@@ -25,9 +25,6 @@ public:
   void addEdge(LIRInst *from, LIRInst *to, DepType type = RAW) {
     toEdges[from][to] = {type};
     fromEdges[to][from] = {type};
-    from->print(std::cout);
-    std::cout << "depend on \n";
-    to->print(std::cout);
   }
 
   std::map<LIRInst *, DepEdge> getToEdges(LIRInst *I) { return toEdges[I]; }
