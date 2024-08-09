@@ -160,8 +160,8 @@ bb28:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb29:   # loop depth 0
-  ADD t0, zero, zero
   ADDI t1, zero, 1
+  ADD t0, zero, zero
   # implict jump to bb30
 bb30:   # loop depth 1
   DIVW t2, a0, t1

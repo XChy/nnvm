@@ -18,20 +18,20 @@ if.exit39:  pred(if.exit)
   73 = icmp eq i32 %kernelid, i32 2
   br i1 %73, bb %then74, bb %if.exit75
 while.body43:  pred(if.exit59, then38)
-  ret.phi402643 = phi [bb %if.exit59, i32 %ret.phi, bb %then38, i32 0]
-  i.phi642 = phi [bb %if.exit59, i32 %622, bb %then38, i32 1]
-  51 = sdiv i32 %x, i32 %i.phi642
+  i.phi643 = phi [bb %if.exit59, i32 %622, bb %then38, i32 1]
+  ret.phi403642 = phi [bb %if.exit59, i32 %ret.phi, bb %then38, i32 0]
+  51 = sdiv i32 %x, i32 %i.phi643
   52 = srem i32 %51, i32 2
-  55 = sdiv i32 %y, i32 %i.phi642
+  55 = sdiv i32 %y, i32 %i.phi643
   56 = srem i32 %55, i32 2
   57 = icmp eq i32 %52, i32 %56
-  621 = shl i32 %ret.phi402643, i32 1
+  621 = shl i32 %ret.phi403642, i32 1
   br i1 %57, bb %then58, bb %else
 then58:  pred(while.body43)
   br bb %if.exit59
 if.exit59:  pred(then58, else)
   ret.phi = phi [bb %else, i32 %67, bb %then58, i32 %621]
-  622 = shl i32 %i.phi642, i32 1
+  622 = shl i32 %i.phi643, i32 1
   47 = icmp slt i32 %622, i32 1073741824
   br i1 %47, bb %while.body43, bb %while.body43_exclu_exit
 else:  pred(while.body43)

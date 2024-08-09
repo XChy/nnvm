@@ -364,6 +364,7 @@ params_f40_i24.then245:  pred(params_f40.then, params_f40_i24.else247_exclu_exit
   1682.load3925 = phi [bb %params_f40_i24.else247_exclu_exit, float %x2.loop2772, bb %params_f40.then, float %1682.load]
   1688.load3924 = phi [bb %params_f40_i24.else247_exclu_exit, i32 %i14.loop2771, bb %params_f40.then, i32 %1688.load]
   1694.load3923 = phi [bb %params_f40_i24.else247_exclu_exit, float %x35.loop2770, bb %params_f40.then, float %1694.load]
+  .pinned = pin float 0.000000
   2512837 = fadd float %1568.load3944, float %1424.load3968
   2532838 = fadd float %2512837, float %1682.load3925
   2552839 = fadd float %2532838, float %1382.load3975
@@ -633,10 +634,10 @@ params_f40_i24.then245:  pred(params_f40.then, params_f40_i24.else247_exclu_exit
   68431293873 = icmp ne i32 %68331283872, i32 0
   68531303874 = zext i1 %68431293873 to i32
   68631313875 = si2f i32 %68531303874 to float
-  68731323876 = fcmp one float %68631313875, float 0.000000
+  68731323876 = fcmp one float %68631313875, float %.pinned
   68831333877 = zext i1 %68731323876 to i32
   68931343878 = si2f i32 %68831333877 to float
-  69031353879 = fcmp one float %68931343878, float 0.000000
+  69031353879 = fcmp one float %68931343878, float %.pinned
   br i1 %69031353879, bb %params_fa40.then691, bb %params_fa40.else693_preheader
 params_f40_i24.else247_preheader:  pred(params_f40.then)
   br bb %params_f40_i24.else247
@@ -854,7 +855,7 @@ params_fa40.then691:  pred(params_f40_i24.then245, params_fa40.else693)
   arr.index85334003605 = ptradd ptr %arr7363259, i32 32
   store float %84433843589 to ptr %arr.index85334003605
   arr.index85434023607 = ptradd ptr %arr7363259, i32 36
-  store float 0.000000 to ptr %arr.index85434023607
+  store float %.pinned to ptr %arr.index85434023607
   86134083611 = add i32 %2008.load, i32 %1792.load
   86334093612 = add i32 %86134083611, i32 %1806.load
   86934123615 = add i32 %2046.load, i32 %1828.load
@@ -893,9 +894,7 @@ params_fa40.then691:  pred(params_f40_i24.then245, params_fa40.else693)
   4499 = ptradd ptr %2377, i32 276
   932.load34463649 = load i32 from ptr %4499
   93434473650 = add i32 %92934443647, i32 %932.load34463649
-  94034503653 = add i32 %2008.load, i32 %1792.load
-  94234513654 = add i32 %94034503653, i32 %1806.load
-  94434523655 = add i32 %94234513654, i32 %2046.load
+  94434523655 = add i32 %86334093612, i32 %2046.load
   store i32 %86334093612 to ptr %arr28553258
   arr.index94634543657 = ptradd ptr %arr28553258, i32 4
   store i32 %87134133616 to ptr %arr.index94634543657
@@ -1085,10 +1084,10 @@ params_fa40.else693:  pred(params_fa40.else693, params_fa40.else693_preheader)
   6843129 = icmp ne i32 %6833128, i32 0
   6853130 = zext i1 %6843129 to i32
   6863131 = si2f i32 %6853130 to float
-  6873132 = fcmp one float %6863131, float 0.000000
+  6873132 = fcmp one float %6863131, float %.pinned
   6883133 = zext i1 %6873132 to i32
   6893134 = si2f i32 %6883133 to float
-  6903135 = fcmp one float %6893134, float 0.000000
+  6903135 = fcmp one float %6893134, float %.pinned
   br i1 %6903135, bb %params_fa40.then691, bb %params_fa40.else693
 params_f40.then:  pred(entry1035, params_f40.else_exclu_exit)
   50319640534093 = phi [bb %params_f40.else_exclu_exit, float %503196, bb %entry1035, float %5031964053]
@@ -1487,7 +1486,7 @@ params_mix.loop_entry2699:  pred(params_mix.else959)
   store float %8183370 to ptr %arr.index85133963601
   store float %8313377 to ptr %arr.index85233983603
   store float %8443384 to ptr %arr.index85334003605
-  store float 0.000000 to ptr %arr.index85434023607
+  store float %.pinned to ptr %arr.index85434023607
   8583406 = ptradd ptr %arr28553258, i32 %3525
   858.load3407 = load i32 from ptr %8583406
   8613408 = add i32 %858.load3407, i32 %i2.loop27023323

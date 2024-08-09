@@ -26,10 +26,11 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry39:  pred()
+  .pinned = pin float 1.001000
   call void _sysy_starttime(i32 21)
   43 = call i32 getint()
-  49 = call float func(float 1.001000, i32 %43)
-  52 = fsub float %49, float 1.001000
+  49 = call float func(float %.pinned, i32 %43)
+  52 = fsub float %49, float %.pinned
   53 = si2f i32 0 to float
   54 = fcmp oeq float %52, float %53
   br i1 %54, bb %then55, bb %if.exit56

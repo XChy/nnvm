@@ -70,8 +70,7 @@ spmv.while.body34:  pred(spmv.while.body34, spmv.while.body34_preheader)
   42195 = icmp slt i32 %65208, i32 %40.load194353
   br i1 %42195, bb %spmv.while.body34, bb %spmv.while.body34_exclu_exit
 spmv.while.exit35:  pred(spmv.while.body22, spmv.while.body34_exclu_exit)
-  80216349 = icmp slt i32 %31.load185, i32 %40.load194353
-  br i1 %80216349, bb %spmv.while.body72_preheader, bb %spmv.while.exit73
+  br i1 %42195354, bb %spmv.while.body72_preheader, bb %spmv.while.exit73
 spmv.while.body72_preheader:  pred(spmv.while.exit35)
   102227 = ptradd ptr @a, i32 %334
   102.load228 = load i32 from ptr %102227
@@ -142,8 +141,7 @@ spmv.while.body34271:  pred(spmv.while.body34271, spmv.while.body34271_preheader
   42269 = icmp slt i32 %65282, i32 %40.load268362
   br i1 %42269, bb %spmv.while.body34271, bb %spmv.while.body34271_exclu_exit
 spmv.while.exit35284:  pred(spmv.while.body22256, spmv.while.body34271_exclu_exit)
-  80290358 = icmp slt i32 %31.load259, i32 %40.load268362
-  br i1 %80290358, bb %spmv.while.body72292_preheader, bb %spmv.while.exit73309
+  br i1 %42269363, bb %spmv.while.body72292_preheader, bb %spmv.while.exit73309
 spmv.while.body72292_preheader:  pred(spmv.while.exit35284)
   102301 = ptradd ptr @b, i32 %341
   102.load302 = load i32 from ptr %102301

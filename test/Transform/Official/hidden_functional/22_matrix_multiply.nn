@@ -127,8 +127,7 @@ matrix_multiply.while.body:  pred(matrix_multiply.while.exit12, matrix_multiply.
   k.phi182194274 = phi [bb %matrix_multiply.while.exit12, i32 %k.phi182194263, bb %matrix_multiply.while.body_preheader, i32 0]
   br i1 %15207262, bb %matrix_multiply.while.body11_preheader, bb %matrix_multiply.while.exit12
 matrix_multiply.while.exit:  pred(while.exit108, matrix_multiply.while.exit12)
-  142270 = icmp slt i32 0, i32 %m1.load196272
-  br i1 %142270, bb %while.body138_preheader, bb %while.exit139
+  br i1 %7197273, bb %while.body138_preheader, bb %while.exit139
 matrix_multiply.while.body11_preheader:  pred(matrix_multiply.while.body)
   n1.load216257 = load i32 from ptr @n1
   23217258 = icmp slt i32 0, i32 %n1.load216257

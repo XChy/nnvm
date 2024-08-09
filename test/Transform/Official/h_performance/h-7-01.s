@@ -10,12 +10,12 @@ i_buf:
 
 
 .CONSTANT.7.0:
-.word 0x3f000000
-.CONSTANT.7.1:
 .word 0x2edbe6ff
+.CONSTANT.7.1:
+.word 0x3f000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -80
+  ADDI sp, sp, -96
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -26,6 +26,7 @@ main:   # loop depth 0
   FSD fs2, 56(sp)
   FSD fs3, 64(sp)
   FSD fs4, 72(sp)
+  FSD fs5, 80(sp)
   LA a0, i_buf
   CALL getfarray
   ADD s0, a0, zero
@@ -51,11 +52,22 @@ bb1:   # loop depth 0
   FLD fs2, 56(sp)
   FLD fs3, 64(sp)
   FLD fs4, 72(sp)
-  ADDI sp, sp, 80
+  FLD fs5, 80(sp)
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb2:   # loop depth 0
+  LA a0, .CONSTANT.7.0
+  FLW fs0, 0(a0)
+  LA a0, .CONSTANT.7.0
+  FLW fs1, 0(a0)
+  FSGNJ.S fs3, fs0, fs1
+  LA a0, .CONSTANT.7.1
+  FLW fs0, 0(a0)
+  LA a0, .CONSTANT.7.1
+  FLW fs1, 0(a0)
+  FSGNJ.S fs4, fs0, fs1
   ADDI a0, zero, 0
-  FCVT.S.W fs3, a0
+  FCVT.S.W fs5, a0
   ADD a0, zero, zero
   # implict jump to bb3
 bb3:   # loop depth 1
@@ -65,16 +77,14 @@ bb3:   # loop depth 1
   LA s3, i_buf
   ADD s1, s3, s1
   FLW fs2, 0(s1)
-  FLE.S s1, fs2, fs3
+  FLE.S s1, fs2, fs5
   BNE s1, zero, bb19
   # implict jump to bb4
 bb4:   # loop depth 1
   ADDI s1, zero, 1
   FCVT.S.W fs0, s1
   FADD.S fs0, fs2, fs0
-  LA s1, .CONSTANT.7.0
-  FLW fs1, 0(s1)
-  FMUL.S fs1, fs0, fs1
+  FMUL.S fs1, fs0, fs4
   FLT.S s1, fs2, fs1
   BNE s1, zero, bb18
   # implict jump to bb5
@@ -82,9 +92,7 @@ bb5:   # loop depth 1
   FSUB.S fs0, fs2, fs1
   # implict jump to bb6
 bb6:   # loop depth 1
-  LA s1, .CONSTANT.7.1
-  FLW fs4, 0(s1)
-  FLT.S s1, fs4, fs0
+  FLT.S s1, fs3, fs0
   BNE s1, zero, bb11
   # implict jump to bb7
 bb7:   # loop depth 1
@@ -104,8 +112,6 @@ bb11:   # loop depth 1
 bb12:   # loop depth 2
   FDIV.S fs1, fs2, fs0
   FADD.S fs1, fs0, fs1
-  LA s1, .CONSTANT.7.0
-  FLW fs4, 0(s1)
   FMUL.S fs1, fs1, fs4
   FLT.S s1, fs0, fs1
   BNE s1, zero, bb17
@@ -114,9 +120,7 @@ bb13:   # loop depth 2
   FSUB.S fs0, fs0, fs1
   # implict jump to bb14
 bb14:   # loop depth 2
-  LA s1, .CONSTANT.7.1
-  FLW fs4, 0(s1)
-  FLT.S s1, fs4, fs0
+  FLT.S s1, fs3, fs0
   BNE s1, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 1
@@ -131,5 +135,5 @@ bb18:   # loop depth 1
   FSUB.S fs0, fs1, fs2
   JAL zero, bb6
 bb19:   # loop depth 1
-  FSGNJ.S fs1, fs3, fs3
+  FSGNJ.S fs1, fs5, fs5
   JAL zero, bb9

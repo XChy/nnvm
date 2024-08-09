@@ -1,5 +1,6 @@
 #include "GlobalHoist.h"
 #include "ADT/GenericInt.h"
+#include "Analysis/LoopAnalysis.h"
 #include "IR/Constant.h"
 #include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
@@ -22,9 +23,9 @@ void GlobalHoistPass::gatherUses(Function &F) {
           if (platform->isExpensiveToLoadConstant(constant))
             constantUses[usee].push_back(use);
 
-        if (auto *global = mayCast<GlobalVariable>(usee))
-          if (platform->isExpensiveToLoadGlobalAddress(global))
-            constantUses[usee].push_back(use);
+        // if (auto *global = mayCast<GlobalVariable>(usee))
+        // if (platform->isExpensiveToLoadGlobalAddress(global))
+        // constantUses[usee].push_back(use);
       }
     }
   }
@@ -63,6 +64,10 @@ void GlobalHoistPass::hoistToCommonDom(Value *usee,
     commonDom = domTree->getCommonDom(commonDom, userBlock);
   }
 
+  if (Loop *loop = LA->findLoopFor(commonDom))
+    if (loop->getPreheader())
+      commonDom = loop->getPreheader();
+
   IRBuilder builder;
   builder.insertAt(commonDom->normalBegin());
   auto *pinned = builder.buildPin(usee, usee->getName() + ".pinned");
@@ -79,15 +84,13 @@ bool GlobalHoistPass::hoistUsees(Function &F) {
   if (constantUses.size() == 0)
     return false;
 
-  if (constantUses.size() <= maxHoistToEntry)
-    return hoistUseesToEntry(F);
-
   for (auto &[usee, uses] : constantUses) {
     if (uses.size() <= 1)
       continue;
 
-    // TODO: LICM
-    if (uses.size() > 1) {
+    if ((uses.size() == 1 &&
+         LA->findLoopFor(uses.front()->getUser()->getBlock())) ||
+        uses.size() > 1) {
       hoistToCommonDom(usee, uses);
       changed = true;
     }
@@ -98,6 +101,8 @@ bool GlobalHoistPass::hoistUsees(Function &F) {
 
 bool GlobalHoistPass::run(Function &F) {
   domTree = getAnalysis<DomTreeAnalysis>(F);
+  LA = getAnalysis<LoopAnalysis>(F);
+
   gatherUses(F);
   return hoistUsees(F);
 }

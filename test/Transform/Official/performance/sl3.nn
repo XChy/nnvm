@@ -48,8 +48,7 @@ while.body71_preheader:  pred(while.exit)
 while.body71:  pred(while.exit82, while.body71_preheader)
   98320326 = phi [bb %while.exit82, i32 %98, bb %while.body71_preheader, i32 1440000]
   i.phi324 = phi [bb %while.exit82, i32 %188, bb %while.body71_preheader, i32 1]
-  86315 = icmp slt i32 1, i32 %230318
-  br i1 %86315, bb %while.body81_preheader, bb %while.exit82
+  br i1 %76319, bb %while.body81_preheader, bb %while.exit82
 while.exit72:  pred(while.exit, while.body71_exclu_exit)
   98320322 = phi [bb %while.body71_exclu_exit, i32 %98, bb %while.exit, i32 1440000]
   321 = phi [bb %while.body71_exclu_exit, i32 %316, bb %while.exit, i32 1]
@@ -71,7 +70,7 @@ while.body81_preheader:  pred(while.body71)
   br bb %while.body81
 while.body81:  pred(while.exit91, while.body81_preheader)
   j.phi317 = phi [bb %while.exit91, i32 %185, bb %while.body81_preheader, i32 1]
-  br i1 %86315, bb %while.body90_preheader, bb %while.exit91
+  br i1 %76319, bb %while.body90_preheader, bb %while.exit91
 while.exit82:  pred(while.body71, while.body81_exclu_exit)
   316 = phi [bb %while.body81_exclu_exit, i32 %185, bb %while.body71, i32 1]
   188 = add i32 %i.phi324, i32 1

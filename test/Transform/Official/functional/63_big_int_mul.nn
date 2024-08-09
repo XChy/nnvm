@@ -16,26 +16,26 @@ init:  pred(init, entry)
 while.body111_preheader:  pred(init_exclu_exit)
   br bb %while.body111
 while.body111:  pred(while.body111, while.body111_preheader)
-  i.phi242311 = phi [bb %while.body111, i32 %123, bb %while.body111_preheader, i32 0]
-  290 = shl i32 %i.phi242311, i32 2
+  i.phi235311 = phi [bb %while.body111, i32 %123, bb %while.body111_preheader, i32 0]
+  290 = shl i32 %i.phi235311, i32 2
   119 = ptradd ptr %result, i32 %290
   store i32 0 to ptr %119
-  123 = add i32 %i.phi242311, i32 1
+  123 = add i32 %i.phi235311, i32 1
   115 = icmp sle i32 %123, i32 39
   br i1 %115, bb %while.body111, bb %while.exit112
 while.exit112:  pred(init_exclu_exit, while.body111)
   br bb %while.body129
 while.body129:  pred(while.body144_exclu_exit, while.exit112)
-  n.phi236309 = phi [bb %while.body144_exclu_exit, i32 %726, bb %while.exit112, i32 39]
-  i.phi241307 = phi [bb %while.body144_exclu_exit, i32 %258, bb %while.exit112, i32 19]
-  291 = shl i32 %i.phi241307, i32 2
+  i.phi234309 = phi [bb %while.body144_exclu_exit, i32 %258, bb %while.exit112, i32 19]
+  n.phi244307 = phi [bb %while.body144_exclu_exit, i32 %726, bb %while.exit112, i32 39]
+  291 = shl i32 %i.phi234309, i32 2
   138 = ptradd ptr %c2, i32 %291
   138.load = load i32 from ptr %138
   br bb %while.body144
 while.body144:  pred(if.exit, while.body129)
   j.phi303 = phi [bb %if.exit, i32 %264, bb %while.body129, i32 19]
-  n.phi302 = phi [bb %if.exit, i32 %265, bb %while.body129, i32 %n.phi236309]
-  292 = shl i32 %n.phi302, i32 2
+  n.phi301 = phi [bb %if.exit, i32 %265, bb %while.body129, i32 %n.phi244307]
+  292 = shl i32 %n.phi301, i32 2
   153 = ptradd ptr %result, i32 %292
   153.load = load i32 from ptr %153
   293 = shl i32 %j.phi303, i32 2
@@ -55,7 +55,7 @@ then:  pred(while.body144)
   br bb %if.exit
 if.exit:  pred(then, else)
   264 = add i32 %j.phi303, i32 -1
-  265 = add i32 %n.phi302, i32 -1
+  265 = add i32 %n.phi301, i32 -1
   148 = icmp sgt i32 %264, i32 -1
   br i1 %148, bb %while.body144, bb %while.body144_exclu_exit
 else:  pred(while.body144)
@@ -162,8 +162,8 @@ init_exclu_exit:  pred(init)
   115310 = icmp sle i32 0, i32 39
   br i1 %115310, bb %while.body111_preheader, bb %while.exit112
 while.body144_exclu_exit:  pred(if.exit)
-  726 = add i32 %n.phi302, i32 18
-  258 = add i32 %i.phi241307, i32 -1
+  726 = add i32 %n.phi301, i32 18
+  258 = add i32 %i.phi234309, i32 -1
   133 = icmp sgt i32 %258, i32 -1
   br i1 %133, bb %while.body129, bb %while.body129_exclu_exit
 while.body129_exclu_exit:  pred(while.body144_exclu_exit)

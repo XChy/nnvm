@@ -29,8 +29,7 @@ while.body151_preheader:  pred(entry143)
   br bb %while.body151
 while.body151:  pred(while.exit160, while.body151_preheader)
   i144.phi236439 = phi [bb %while.exit160, i32 %191, bb %while.body151_preheader, i32 1]
-  163412 = icmp sle i32 1, i32 %n.load154437
-  br i1 %163412, bb %while.body159_preheader, bb %while.exit160
+  br i1 %155438, bb %while.body159_preheader, bb %while.exit160
 while.exit152:  pred(entry143, while.exit160)
   198435 = icmp sle i32 1, i32 %148
   br i1 %198435, bb %while.body194_preheader, bb %while.exit195
@@ -118,15 +117,13 @@ Dijkstra.while.exit:  pred(while.exit195, Dijkstra.while.body_exclu_exit)
   38311427 = icmp sle i32 1, i32 %268310426
   br i1 %38311427, bb %Dijkstra.while.body33_preheader, bb %Dijkstra.while.exit34
 Dijkstra.while.body33_preheader:  pred(Dijkstra.while.exit)
-  89357414 = icmp sle i32 1, i32 %n.load288430
   br bb %Dijkstra.while.body33
 Dijkstra.while.body33:  pred(Dijkstra.while.exit86, Dijkstra.while.body33_preheader)
   i.phi308429 = phi [bb %Dijkstra.while.exit86, i32 %142368, bb %Dijkstra.while.body33_preheader, i32 1]
   select.phi253307428 = phi [bb %Dijkstra.while.exit86, i1 %select.phi253307417, bb %Dijkstra.while.body33_preheader, i1 0]
-  br i1 %89357414, bb %Dijkstra.while.body45_preheader, bb %Dijkstra.while.exit46
+  br i1 %9289431, bb %Dijkstra.while.body45_preheader, bb %Dijkstra.while.exit46
 Dijkstra.while.exit34:  pred(Dijkstra.while.exit, Dijkstra.while.exit86)
-  222424 = icmp sle i32 1, i32 %n.load288430
-  br i1 %222424, bb %while.body218_preheader, bb %while.exit219
+  br i1 %9289431, bb %while.body218_preheader, bb %while.exit219
 Dijkstra.while.body45_preheader:  pred(Dijkstra.while.body33)
   br bb %Dijkstra.while.body45
 Dijkstra.while.body45:  pred(Dijkstra.if.exit, Dijkstra.while.body45_preheader)
@@ -144,7 +141,7 @@ Dijkstra.while.exit46:  pred(Dijkstra.while.body33, Dijkstra.while.body45_exclu_
   409 = shl i32 %418, i32 2
   81333 = ptradd ptr @book, i32 %409
   store i32 1 to ptr %81333
-  br i1 %89357414, bb %Dijkstra.while.body85_preheader, bb %Dijkstra.while.exit86
+  br i1 %9289431, bb %Dijkstra.while.body85_preheader, bb %Dijkstra.while.exit86
 Dijkstra.select.then:  pred(Dijkstra.while.body45)
   63337 = ptradd ptr @book, i32 %408
   63.load338 = load i32 from ptr %63337

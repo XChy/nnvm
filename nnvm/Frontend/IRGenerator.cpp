@@ -685,6 +685,8 @@ Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
   symbolTable.enterScope();
   for (auto stmtCtx : ctx->blockItem()) {
     stmtCtx->accept(this);
+    if (builder.getCurrentBB()->getTerminator())
+      break;
   }
   symbolTable.exitScope();
   return Symbol::none();
@@ -790,8 +792,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     builder.buildStore(arg, stack);
   }
 
-  for (auto stmtCtx : ctx->block()->blockItem())
-    stmtCtx->accept(this);
+  ctx->block()->accept(this);
 
   symbolTable.exitScope();
 

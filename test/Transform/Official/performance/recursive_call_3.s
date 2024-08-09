@@ -39,21 +39,19 @@ bb2:   # loop depth 0
 main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
+  FSD fs0, 8(sp)
+  FSD fs1, 16(sp)
+  LA a0, .CONSTANT.7.0
+  FLW fs0, 0(a0)
+  LA a0, .CONSTANT.7.0
+  FLW fs1, 0(a0)
+  FSGNJ.S fs1, fs0, fs1
   ADDI a0, zero, 21
   CALL _sysy_starttime
   CALL getint
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  FSGNJ.S fa0, fa0, fs0
+  FSGNJ.S fa0, fs1, fs1
   CALL func
   FSGNJ.D fs0, fa0, fa0
-  LA a0, .CONSTANT.7.0
-  FLW fs1, 0(a0)
   FSUB.S fs0, fs0, fs1
   FCVT.S.L fs1, zero
   FEQ.S a0, fs0, fs1
@@ -64,9 +62,8 @@ bb4:   # loop depth 0
   CALL _sysy_stoptime
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
+  FLD fs0, 8(sp)
+  FLD fs1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:   # loop depth 0

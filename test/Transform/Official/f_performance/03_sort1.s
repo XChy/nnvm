@@ -210,112 +210,112 @@ bb15:   # loop depth 1
 bb16:   # loop depth 0
   LW a1, 192(sp)
   ADDW s0, a2, a1
-  ADDIW s3, a0, -1
-  ADD a0, s3, zero
+  ADDIW s2, a0, -1
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a3, s0, zero
   CALL radixSort
   LW a0, 196(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
-  ADD a3, s2, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 200(sp)
-  ADDW s0, s2, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
+  ADD a2, s3, zero
   ADD a3, s0, zero
   CALL radixSort
   LW a0, 204(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
-  ADD a3, s2, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 208(sp)
-  ADDW s0, s2, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
+  ADD a2, s3, zero
   ADD a3, s0, zero
   CALL radixSort
   LW a0, 212(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
-  ADD a3, s2, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 216(sp)
-  ADDW s0, s2, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
+  ADD a2, s3, zero
   ADD a3, s0, zero
   CALL radixSort
   LW a0, 220(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
-  ADD a3, s2, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 224(sp)
-  ADDW s4, s2, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
-  ADD a3, s4, zero
+  ADD a2, s3, zero
+  ADD a3, s0, zero
   CALL radixSort
   LW a0, 228(sp)
-  ADDW s0, s4, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s4, zero
-  ADD a3, s0, zero
+  ADD a2, s0, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 232(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s0, zero
-  ADD a3, s2, zero
-  CALL radixSort
-  LW a0, 236(sp)
-  ADDW s0, s2, a0
-  ADD a0, s3, zero
-  ADD a1, s1, zero
-  ADD a2, s2, zero
+  ADD a2, s3, zero
   ADD a3, s0, zero
   CALL radixSort
-  LW a0, 240(sp)
-  ADDW s2, s0, a0
-  ADD a0, s3, zero
+  LW a0, 236(sp)
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
-  ADD a3, s2, zero
+  ADD a3, s3, zero
+  CALL radixSort
+  LW a0, 240(sp)
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
+  ADD a1, s1, zero
+  ADD a2, s3, zero
+  ADD a3, s0, zero
   CALL radixSort
   LW a0, 244(sp)
-  ADDW s4, s2, a0
-  ADD a0, s3, zero
+  ADDW s3, s0, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s2, zero
-  ADD a3, s4, zero
+  ADD a2, s0, zero
+  ADD a3, s3, zero
   CALL radixSort
   LW a0, 248(sp)
-  ADDW s0, s4, a0
-  ADD a0, s3, zero
+  ADDW s0, s3, a0
+  ADD a0, s2, zero
   ADD a1, s1, zero
-  ADD a2, s4, zero
+  ADD a2, s3, zero
   ADD a3, s0, zero
   CALL radixSort
   LW a0, 252(sp)
   ADDW a3, s0, a0
-  ADD a0, s3, zero
+  ADD a0, s2, zero
   ADD a1, s1, zero
   ADD a2, s0, zero
   CALL radixSort

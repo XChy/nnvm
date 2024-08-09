@@ -72,6 +72,11 @@ public:
   }
 
   void emit(std::ostream &out, EmitInfo &info);
+  void print(std::ostream &out) {
+    EmitInfo info;
+    emit(out, info);
+    out << "\n";
+  }
 
   bool isMoveInst(LIRFunc const &func) const;
 

@@ -81,6 +81,7 @@ public:
   bool run(Function &F);
 
   std::vector<Loop *> getLoops() const { return loops; }
+  Loop *findLoopFor(BasicBlock *block);
 
   DomTreeAnalysis *getDomTree() { return domTree; }
 

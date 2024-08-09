@@ -22,28 +22,22 @@ entry52:  pred()
   79358 = si2f i32 2 to float
   22222 = fadd float %79, float %79
   store float %22222 to ptr %c0
-  35229 = fadd float %79, float %79
-  store float %35229 to ptr %c1
-  48236 = fadd float %79, float %79
-  store float %48236 to ptr %c2
+  store float %22222 to ptr %c1
+  store float %22222 to ptr %c2
   12217284 = ptradd ptr %c0, i32 4
   22222289 = fadd float %79339, float %79339
   store float %22222289 to ptr %12217284
   25224291 = ptradd ptr %c1, i32 4
-  35229296 = fadd float %79339, float %79339
-  store float %35229296 to ptr %25224291
+  store float %22222289 to ptr %25224291
   38231298 = ptradd ptr %c2, i32 4
-  48236303 = fadd float %79339, float %79339
-  store float %48236303 to ptr %38231298
+  store float %22222289 to ptr %38231298
   12217311 = ptradd ptr %c0, i32 8
   22222316 = fadd float %79358, float %79358
   store float %22222316 to ptr %12217311
   25224318 = ptradd ptr %c1, i32 8
-  35229323 = fadd float %79358, float %79358
-  store float %35229323 to ptr %25224318
+  store float %22222316 to ptr %25224318
   38231325 = ptradd ptr %c2, i32 8
-  48236330 = fadd float %79358, float %79358
-  store float %48236330 to ptr %38231325
+  store float %22222316 to ptr %38231325
   br i1 -1, bb %while.body117_preheader, bb %while.exit118
 while.body117_preheader:  pred(entry52)
   br bb %while.body117

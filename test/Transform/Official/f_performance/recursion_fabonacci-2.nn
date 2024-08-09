@@ -3,16 +3,17 @@ entry13:  pred()
   1978 = fcmp olt float %y, float %x
   br i1 %1978, bb %then20_preheader, bb %if.exit21
 then20_preheader:  pred(entry13)
+  .pinned = pin float 1.000000
   br bb %then20
 then20:  pred(then20, then20_preheader)
   x.loop82 = phi [bb %then20, float %26, bb %then20_preheader, float %x]
   y.loop81 = phi [bb %then20, float %31, bb %then20_preheader, float %y]
   z.loop80 = phi [bb %then20, float %36, bb %then20_preheader, float %z]
-  23 = fsub float %x.loop82, float 1.000000
+  23 = fsub float %x.loop82, float %.pinned
   26 = call float takFP(float %23, float %y.loop81, float %z.loop80)
-  28 = fsub float %y.loop81, float 1.000000
+  28 = fsub float %y.loop81, float %.pinned
   31 = call float takFP(float %28, float %z.loop80, float %x.loop82)
-  33 = fsub float %z.loop80, float 1.000000
+  33 = fsub float %z.loop80, float %.pinned
   36 = call float takFP(float %33, float %x.loop82, float %y.loop81)
   19 = fcmp olt float %31, float %26
   br i1 %19, bb %then20, bb %then20_exclu_exit
@@ -76,14 +77,16 @@ external void _sysy_stoptime(i32 )
 
 pure internal float fibFP(float n) {
 entry:  pred()
-  3 = fcmp olt float %n, float 2.000000
+  .pinned90 = pin float 2.000000
+  .pinned89 = pin float 1.000000
+  3 = fcmp olt float %n, float %.pinned90
   br i1 %3, bb %then, bb %if.exit
 then:  pred(entry)
-  ret float 1.000000
+  ret float %.pinned89
 if.exit:  pred(entry)
-  7 = fsub float %n, float 2.000000
+  7 = fsub float %n, float %.pinned90
   8 = call float fibFP(float %7)
-  10 = fsub float %n, float 1.000000
+  10 = fsub float %n, float %.pinned89
   11 = call float fibFP(float %10)
   12 = fadd float %8, float %11
   ret float %12

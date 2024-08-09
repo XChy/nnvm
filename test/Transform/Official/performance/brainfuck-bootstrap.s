@@ -61,9 +61,9 @@ bb3:   # loop depth 0
   JALR zero, 0(ra)
 bb4:   # loop depth 0
   ADD a0, zero, zero
+  ADD t0, zero, zero
   ADD a3, zero, zero
   ADD a2, zero, zero
-  ADD t0, zero, zero
   ADD a4, zero, zero
   ADD t2, zero, zero
   ADD t1, zero, zero

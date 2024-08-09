@@ -12,13 +12,12 @@ M:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -112
+  ADDI sp, sp, -96
   SD ra, 56(sp)
   SD s0, 64(sp)
   FSD fs0, 72(sp)
   FSD fs1, 80(sp)
   FSD fs2, 88(sp)
-  FSD fs3, 96(sp)
   LA a0, N
   ADDI s0, zero, 3
   SW s0, 0(a0)
@@ -34,23 +33,17 @@ main:   # loop depth 0
   FCVT.S.W fs1, a0
   ADDI a0, zero, 2
   FCVT.S.W fs2, a0
-  FADD.S fs3, fs0, fs0
-  FSW fs3, 32(sp)
-  FADD.S fs3, fs0, fs0
-  FSW fs3, 16(sp)
   FADD.S fs0, fs0, fs0
+  FSW fs0, 32(sp)
+  FSW fs0, 16(sp)
   FSW fs0, 0(sp)
   FADD.S fs0, fs1, fs1
   FSW fs0, 36(sp)
-  FADD.S fs0, fs1, fs1
   FSW fs0, 20(sp)
-  FADD.S fs0, fs1, fs1
   FSW fs0, 4(sp)
   FADD.S fs0, fs2, fs2
   FSW fs0, 40(sp)
-  FADD.S fs0, fs2, fs2
   FSW fs0, 24(sp)
-  FADD.S fs0, fs2, fs2
   FSW fs0, 8(sp)
   ADDI a0, zero, 1
   BNE a0, zero, bb10
@@ -78,8 +71,7 @@ bb3:   # loop depth 0
   FLD fs0, 72(sp)
   FLD fs1, 80(sp)
   FLD fs2, 88(sp)
-  FLD fs3, 96(sp)
-  ADDI sp, sp, 112
+  ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb4:   # loop depth 0
   ADD s0, zero, zero

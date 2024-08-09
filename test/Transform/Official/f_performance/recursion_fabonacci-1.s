@@ -25,6 +25,7 @@ takFP:   # loop depth 0
   FSD fs2, 32(sp)
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
+  FSD fs5, 56(sp)
   FLT.S s0, fa1, fa0
   BNE s0, zero, bb3
   # implict jump to bb1
@@ -39,31 +40,31 @@ bb2:   # loop depth 0
   FLD fs2, 32(sp)
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
+  FLD fs5, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:   # loop depth 0
+  LA s0, .CONSTANT.7.0
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.0
+  FLW fs1, 0(s0)
+  FSGNJ.S fs5, fs0, fs1
   FSGNJ.S fs3, fa0, fa0
   FSGNJ.S fs1, fa1, fa1
   FSGNJ.S fs0, fa2, fa2
   # implict jump to bb4
 bb4:   # loop depth 1
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  FSUB.S fa0, fs3, fa0
+  FSUB.S fa0, fs3, fs5
   FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs0, fs0
   CALL takFP
   FSGNJ.D fs4, fa0, fa0
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  FSUB.S fa0, fs1, fa0
+  FSUB.S fa0, fs1, fs5
   FSGNJ.S fa1, fs0, fs0
   FSGNJ.S fa2, fs3, fs3
   CALL takFP
   FSGNJ.D fs2, fa0, fa0
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  FSUB.S fa0, fs0, fa0
+  FSUB.S fa0, fs0, fs5
   FSGNJ.S fa1, fs3, fs3
   FSGNJ.S fa2, fs1, fs1
   CALL takFP
@@ -146,43 +147,46 @@ bb13:   # loop depth 0
   CALL putch
   JAL zero, bb9
 fibFP:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
   FSD fs1, 24(sp)
-  FSGNJ.D fs1, fa0, fa0
+  FSD fs2, 32(sp)
+  FSGNJ.D fs2, fa0, fa0
   LA s0, .CONSTANT.7.3
   FLW fa0, 0(s0)
-  FLT.S s0, fs1, fa0
+  LA s0, .CONSTANT.7.3
+  FLW fs0, 0(s0)
+  FSGNJ.S fa0, fa0, fs0
+  LA s0, .CONSTANT.7.0
+  FLW fs0, 0(s0)
+  LA s0, .CONSTANT.7.0
+  FLW fs1, 0(s0)
+  FSGNJ.S fs1, fs0, fs1
+  FLT.S s0, fs2, fa0
   BNE s0, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 0
-  LA s0, .CONSTANT.7.3
-  FLW fa0, 0(s0)
-  FSUB.S fa0, fs1, fa0
+  FSUB.S fa0, fs2, fa0
   CALL fibFP
   FSGNJ.D fs0, fa0, fa0
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  FSUB.S fa0, fs1, fa0
+  FSUB.S fa0, fs2, fs1
   CALL fibFP
   FADD.S fa0, fs0, fa0
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
-  ADDI sp, sp, 32
+  FLD fs2, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb16:   # loop depth 0
-  LA t0, .CONSTANT.7.0
-  FLW ft0, 0(t0)
-  LA t0, .CONSTANT.7.0
-  FLW ft1, 0(t0)
-  FSGNJ.S fa0, ft0, ft1
+  FSGNJ.S fa0, fs1, fs1
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   FLD fs1, 24(sp)
-  ADDI sp, sp, 32
+  FLD fs2, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)

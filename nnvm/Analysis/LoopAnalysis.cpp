@@ -171,6 +171,14 @@ void LoopAnalysis::analyzeLoop(Loop *loop) {
   }
 }
 
+Loop *LoopAnalysis::findLoopFor(BasicBlock *block) {
+  for (Loop *loop : loops) {
+    if (loop->contains(block))
+      return loop;
+  }
+  return nullptr;
+}
+
 void LoopAnalysis::print(std::ostream &out) {
   for (Loop *loop : loops) {
     std::cout << loop->getHeader()->getName() << ": [";

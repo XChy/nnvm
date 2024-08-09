@@ -7,11 +7,11 @@ while.body:  pred(while.body11_exclu_exit, entry)
   br bb %while.body11
 while.body11:  pred(while.body18_exclu_exit, while.body)
   a.phi170542 = phi [bb %while.body18_exclu_exit, i32 %110728, bb %while.body, i32 %a.phi171559]
-  j.phi532 = phi [bb %while.body18_exclu_exit, i32 %152, bb %while.body, i32 0]
+  j.phi531 = phi [bb %while.body18_exclu_exit, i32 %152, bb %while.body, i32 0]
   br bb %while.body18
 while.body18:  pred(while.body25_exclu_exit, while.body11)
   a.phi169512 = phi [bb %while.body25_exclu_exit, i32 %110728, bb %while.body11, i32 %a.phi170542]
-  k.phi499 = phi [bb %while.body25_exclu_exit, i32 %149, bb %while.body11, i32 0]
+  k.phi503 = phi [bb %while.body25_exclu_exit, i32 %149, bb %while.body11, i32 0]
   br bb %while.body25
 while.body25:  pred(while.body32_exclu_exit, while.body18)
   a.phi168483 = phi [bb %while.body32_exclu_exit, i32 %110728, bb %while.body18, i32 %a.phi169512]
@@ -27,7 +27,7 @@ while.body39:  pred(while.body46_exclu_exit, while.body32)
   br bb %while.body46
 while.body46:  pred(while.body53_exclu_exit, while.body39)
   a.phi165408 = phi [bb %while.body53_exclu_exit, i32 %110728, bb %while.body39, i32 %a.phi166431]
-  iii.phi401 = phi [bb %while.body53_exclu_exit, i32 %137, bb %while.body39, i32 0]
+  iii.phi399 = phi [bb %while.body53_exclu_exit, i32 %137, bb %while.body39, i32 0]
   br bb %while.body53
 while.body53:  pred(while.body60_exclu_exit, while.body46)
   a.phi164387 = phi [bb %while.body60_exclu_exit, i32 %110728, bb %while.body46, i32 %a.phi165408]
@@ -88,7 +88,7 @@ while.body60_exclu_exit:  pred(while.body67_exclu_exit)
   56 = icmp slt i32 %134, i32 5
   br i1 %56, bb %while.body53, bb %while.body53_exclu_exit
 while.body53_exclu_exit:  pred(while.body60_exclu_exit)
-  137 = add i32 %iii.phi401, i32 1
+  137 = add i32 %iii.phi399, i32 1
   49 = icmp slt i32 %137, i32 6
   br i1 %49, bb %while.body46, bb %while.body46_exclu_exit
 while.body46_exclu_exit:  pred(while.body53_exclu_exit)
@@ -104,11 +104,11 @@ while.body32_exclu_exit:  pred(while.body39_exclu_exit)
   28 = icmp slt i32 %146, i32 3
   br i1 %28, bb %while.body25, bb %while.body25_exclu_exit
 while.body25_exclu_exit:  pred(while.body32_exclu_exit)
-  149 = add i32 %k.phi499, i32 1
+  149 = add i32 %k.phi503, i32 1
   21 = icmp slt i32 %149, i32 5
   br i1 %21, bb %while.body18, bb %while.body18_exclu_exit
 while.body18_exclu_exit:  pred(while.body25_exclu_exit)
-  152 = add i32 %j.phi532, i32 1
+  152 = add i32 %j.phi531, i32 1
   14 = icmp slt i32 %152, i32 4
   br i1 %14, bb %while.body11, bb %while.body11_exclu_exit
 while.body11_exclu_exit:  pred(while.body18_exclu_exit)

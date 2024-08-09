@@ -16,7 +16,7 @@ static bool isSameClass(Register const *a, Register const *b) {
   return !(a->isFP() ^ b->isFP());
 }
 
-static void filterRegClass(std::set<Register *> &c, Register const *classReg) {
+static void filterRegClass(RegSet &c, Register const *classReg) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
     if (!isSameClass(*first, classReg)) {
       first = c.erase(first);
@@ -51,7 +51,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
   auto liveOutRegs = la.getLiveOut();
 
   for (auto *bb : func) {
-    std::set<Register *> liveRegs = liveOutRegs[bb];
+    RegSet liveRegs = liveOutRegs[bb];
     filterRegClass(liveRegs, classReg);
 
     for (Register *liveRegA : liveRegs) {
@@ -68,7 +68,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
       auto uses = getUsesOf(inst);
       filterRegClass(defs, classReg);
       filterRegClass(uses, classReg);
-      std::set<Register *> realOps = defs;
+      RegSet realOps = defs;
       realOps.insert(uses.begin(), uses.end());
 
       for (auto reg : realOps) {

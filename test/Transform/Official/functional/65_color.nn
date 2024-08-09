@@ -144,7 +144,7 @@ entry217:  pred()
   219 = call i32 getint()
   br bb %while.body
 while.body:  pred(while.body230_exclu_exit, entry217)
-  i.phi362484 = phi [bb %while.body230_exclu_exit, i32 %304, bb %entry217, i32 0]
+  i.phi376481 = phi [bb %while.body230_exclu_exit, i32 %304, bb %entry217, i32 0]
   br bb %while.body230
 while.body230:  pred(while.body238_exclu_exit, while.body)
   j.phi476 = phi [bb %while.body238_exclu_exit, i32 %301, bb %while.body, i32 0]
@@ -157,7 +157,7 @@ while.body246:  pred(while.body254_exclu_exit, while.body238)
   br bb %while.body254
 while.body254:  pred(while.body254, while.body246)
   m.phi450 = phi [bb %while.body254, i32 %292, bb %while.body246, i32 0]
-  268 = mul i32 %i.phi362484, i32 2939328
+  268 = mul i32 %i.phi376481, i32 2939328
   269 = ptradd ptr @dp, i32 %268
   271 = mul i32 %j.phi476, i32 163296
   272 = ptradd ptr %269, i32 %271
@@ -223,7 +223,7 @@ while.body238_exclu_exit:  pred(while.body246_exclu_exit)
   234 = icmp slt i32 %301, i32 18
   br i1 %234, bb %while.body230, bb %while.body230_exclu_exit
 while.body230_exclu_exit:  pred(while.body238_exclu_exit)
-  304 = add i32 %i.phi362484, i32 1
+  304 = add i32 %i.phi376481, i32 1
   226 = icmp slt i32 %304, i32 18
   br i1 %226, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(while.body230_exclu_exit)

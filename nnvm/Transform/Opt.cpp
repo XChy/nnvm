@@ -73,7 +73,8 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<CombinerPass>();
 
   // Before codegen
-  // passManager.addFunctionPass<GlobalHoistPass>();
+  passManager.addFunctionPass<GlobalHoistPass>();
+  passManager.addFunctionPass<CSEPass>();
 
   passManager.run(*module);
 }

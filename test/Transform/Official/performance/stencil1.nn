@@ -16,18 +16,18 @@ entry14:  pred()
   call void _sysy_starttime(i32 23)
   br bb %while.body
 while.body:  pred(while.body31_exclu_exit, entry14)
-  j.phi258466 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
+  j.phi260465 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
   br bb %while.body31
 while.body31:  pred(cutout.if.exit, while.body)
   i.phi251452 = phi [bb %cutout.if.exit, i32 %83, bb %while.body, i32 1]
   277 = add i32 %i.phi251452, i32 -1
   401 = shl i32 %277, i32 10
-  44 = add i32 %401, i32 %j.phi258466
+  44 = add i32 %401, i32 %j.phi260465
   402 = shl i32 %i.phi251452, i32 10
-  66 = add i32 %402, i32 %j.phi258466
+  66 = add i32 %402, i32 %j.phi260465
   83 = add i32 %i.phi251452, i32 1
   403 = shl i32 %83, i32 10
-  87 = add i32 %403, i32 %j.phi258466
+  87 = add i32 %403, i32 %j.phi260465
   404 = shl i32 %66, i32 2
   107 = ptradd ptr @image_in, i32 %404
   107.load = load i32 from ptr %107
@@ -106,7 +106,7 @@ cutout.if.exit11:  pred(cutout.else, cutout.then10)
   val.stack.phi340 = phi [bb %cutout.else, i32 %149, bb %cutout.then10, i32 255]
   br bb %cutout.if.exit
 while.body31_exclu_exit:  pred(cutout.if.exit)
-  165 = add i32 %j.phi258466, i32 1
+  165 = add i32 %j.phi260465, i32 1
   27 = icmp slt i32 %165, i32 1023
   br i1 %27, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(while.body31_exclu_exit)

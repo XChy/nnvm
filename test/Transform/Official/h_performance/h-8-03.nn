@@ -133,8 +133,7 @@ if.exit134:  pred(then119, then133)
   154 = icmp slt i32 %141.load, i32 %153
   br i1 %154, bb %then155, bb %if.exit156
 then155:  pred(if.exit134)
-  174 = add i32 %150.load, i32 %temp.phi
-  store i32 %174 to ptr %141
+  store i32 %153 to ptr %141
   br bb %if.exit156
 if.exit156:  pred(if.exit134, then155)
   br bb %if.exit120

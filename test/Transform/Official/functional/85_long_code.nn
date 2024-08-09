@@ -488,8 +488,7 @@ arrCopy.while.body3751071:  pred(arrCopy.while.body3751071, arrCopy.while.body37
   3791069 = icmp slt i32 %3911077, i32 %n.load37810681528
   br i1 %3791069, bb %arrCopy.while.body3751071, bb %arrCopy.while.body3751071_exclu_exit
 arrCopy.while.exit3761079:  pred(arrCopy.while.exit3761060, arrCopy.while.body3751071_exclu_exit)
-  40312521525 = icmp slt i32 0, i32 %n.load37810681528
-  br i1 %40312521525, bb %calSum.while.body399_preheader, bb %calSum.while.exit400
+  br i1 %37910691529, bb %calSum.while.body399_preheader, bb %calSum.while.exit400
 arrCopy.while.body3751090_preheader:  pred(calSum.while.exit400)
   br bb %arrCopy.while.body3751090
 arrCopy.while.body3751090:  pred(arrCopy.while.body3751090, arrCopy.while.body3751090_preheader)
@@ -503,8 +502,7 @@ arrCopy.while.body3751090:  pred(arrCopy.while.body3751090, arrCopy.while.body37
   3791088 = icmp slt i32 %3911096, i32 %n.load37810871519
   br i1 %3791088, bb %arrCopy.while.body3751090, bb %arrCopy.while.body3751090_exclu_exit
 arrCopy.while.exit3761098:  pred(calSum.while.exit400, arrCopy.while.body3751090_exclu_exit)
-  4469251515 = icmp slt i32 0, i32 %n.load37810871519
-  br i1 %4469251515, bb %avgPooling.while.body442_preheader, bb %avgPooling.while.exit443
+  br i1 %37910881520, bb %avgPooling.while.body442_preheader, bb %avgPooling.while.exit443
 getMost.while.body277:  pred(getMost.while.body277, while.exit656.split1146)
   i274.phi79611061562 = phi [bb %getMost.while.body277, i32 %2881113, bb %while.exit656.split1146, i32 0]
   1464 = shl i32 %i274.phi79611061562, i32 2
@@ -841,7 +839,6 @@ calSum.else420:  pred(calSum.while.body399)
   store i32 %4111258 to ptr %4091256
   br bb %calSum.if.exit419
 bubblesort.while.body_preheader:  pred(revert.while.exit342)
-  9091283 = add i32 %n.load12821565, i32 -1
   br bb %bubblesort.while.body
 bubblesort.while.body:  pred(bubblesort.while.exit15, bubblesort.while.body_preheader)
   i.phi12811569 = phi [bb %bubblesort.while.exit15, i32 %611309, bb %bubblesort.while.body_preheader, i32 0]
@@ -920,8 +917,6 @@ bubblesort.while.exit:  pred(revert.while.exit342, bubblesort.while.exit15)
   8691150 = icmp eq i32 %8681149, i32 0
   br i1 %8691150, bb %getMid.then248, bb %getMid.else
 bubblesort.while.body14_preheader:  pred(bubblesort.while.body)
-  191294 = sub i32 %n.load12821565, i32 %i.phi12811569
-  9101295 = add i32 %191294, i32 -1
   br bb %bubblesort.while.body14
 bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_preheader)
   j.phi12921504 = phi [bb %bubblesort.if.exit, i32 %281302, bb %bubblesort.while.body14_preheader, i32 0]
@@ -937,7 +932,7 @@ bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_prehe
 bubblesort.while.exit15:  pred(bubblesort.while.body, bubblesort.while.body14_exclu_exit)
   tmp.phi85212801502 = phi [bb %bubblesort.while.body14_exclu_exit, i32 %tmp.phi1318, bb %bubblesort.while.body, i32 %tmp.phi85212801568]
   611309 = add i32 %i.phi12811569, i32 1
-  101284 = icmp slt i32 %611309, i32 %9091283
+  101284 = icmp slt i32 %611309, i32 %90912831566
   br i1 %101284, bb %bubblesort.while.body, bb %bubblesort.while.exit
 bubblesort.then:  pred(bubblesort.while.body14)
   40.load1312 = load i32 from ptr %1432
@@ -947,7 +942,7 @@ bubblesort.then:  pred(bubblesort.while.body14)
   br bb %bubblesort.if.exit
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
   tmp.phi1318 = phi [bb %bubblesort.while.body14, i32 %tmp.phi85112911503, bb %bubblesort.then, i32 %40.load1312]
-  211296 = icmp slt i32 %281302, i32 %9101295
+  211296 = icmp slt i32 %281302, i32 %91012951500
   br i1 %211296, bb %bubblesort.while.body14, bb %bubblesort.while.body14_exclu_exit
 bubblesort.while.body1331_preheader:  pred(arrCopy.while.exit3761022)
   br bb %bubblesort.while.body1331

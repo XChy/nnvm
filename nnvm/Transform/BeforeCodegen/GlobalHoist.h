@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "Analysis/LoopAnalysis.h"
 #include "Analysis/MemAccAnalysis.h"
 #include "IR/BasicBlock.h"
 #include "IR/IRBuilder.h"
@@ -24,5 +25,6 @@ public:
 private:
   std::map<Value *, std::vector<Use *>> constantUses;
   DomTreeAnalysis *domTree;
+  LoopAnalysis *LA;
 };
 } /* namespace nnvm */

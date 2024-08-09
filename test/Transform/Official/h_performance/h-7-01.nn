@@ -17,6 +17,8 @@ entry60:  pred()
   70148 = icmp slt i32 0, i32 %62
   br i1 %70148, bb %while.body66_preheader, bb %while.exit67
 while.body66_preheader:  pred(entry60)
+  .pinned160 = pin float 0.000000
+  .pinned = pin float 0.500000
   397 = si2f i32 0 to float
   br bb %while.body66
 while.body66:  pred(while.body66.split, while.body66_preheader)
@@ -42,7 +44,7 @@ newtons_sqrt.then:  pred(while.body66)
 newtons_sqrt.if.exit:  pred(while.body66)
   12103 = si2f i32 1 to float
   13104 = fadd float %78.load, float %12103
-  14105 = fmul float %13104, float 0.500000
+  14105 = fmul float %13104, float %.pinned
   18106 = fcmp olt float %78.load, float %14105
   br i1 %18106, bb %newtons_sqrt.then19, bb %newtons_sqrt.else
 newtons_sqrt.then19:  pred(newtons_sqrt.if.exit)
@@ -50,7 +52,7 @@ newtons_sqrt.then19:  pred(newtons_sqrt.if.exit)
   br bb %newtons_sqrt.if.exit20
 newtons_sqrt.if.exit20:  pred(newtons_sqrt.then19, newtons_sqrt.else)
   d.phi92112 = phi [bb %newtons_sqrt.else, float %29115, bb %newtons_sqrt.then19, float %25109]
-  34121143 = fcmp ogt float %d.phi92112, float 0.000000
+  34121143 = fcmp ogt float %d.phi92112, float %.pinned160
   br i1 %34121143, bb %newtons_sqrt.while.body_preheader, bb %newtons_sqrt.while.exit
 newtons_sqrt.else:  pred(newtons_sqrt.if.exit)
   29115 = fsub float %78.load, float %14105
@@ -61,7 +63,7 @@ newtons_sqrt.while.body:  pred(newtons_sqrt.if.exit47, newtons_sqrt.while.body_p
   x.phi120147 = phi [bb %newtons_sqrt.if.exit47, float %42126, bb %newtons_sqrt.while.body_preheader, float %78.load]
   40124 = fdiv float %78.load, float %x.phi120147
   41125 = fadd float %x.phi120147, float %40124
-  42126 = fmul float %41125, float 0.500000
+  42126 = fmul float %41125, float %.pinned
   45127 = fcmp olt float %x.phi120147, float %42126
   br i1 %45127, bb %newtons_sqrt.then46, bb %newtons_sqrt.else48
 newtons_sqrt.while.exit:  pred(newtons_sqrt.if.exit20, newtons_sqrt.while.body_exclu_exit)
@@ -72,7 +74,7 @@ newtons_sqrt.then46:  pred(newtons_sqrt.while.body)
   br bb %newtons_sqrt.if.exit47
 newtons_sqrt.if.exit47:  pred(newtons_sqrt.then46, newtons_sqrt.else48)
   d.phi135 = phi [bb %newtons_sqrt.else48, float %56138, bb %newtons_sqrt.then46, float %52132]
-  34121 = fcmp ogt float %d.phi135, float 0.000000
+  34121 = fcmp ogt float %d.phi135, float %.pinned160
   br i1 %34121, bb %newtons_sqrt.while.body, bb %newtons_sqrt.while.body_exclu_exit
 newtons_sqrt.else48:  pred(newtons_sqrt.while.body)
   56138 = fsub float %x.phi120147, float %42126

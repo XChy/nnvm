@@ -72,7 +72,9 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
     // TODO: variadic?
     if (Function *F = mayCast<Function>(CI->getCallee())) {
-      LIRInst *lowered = LIRInst::create(CALL, F->getArguments().size() + 1);
+      bool hasRet = !F->getReturnType()->isVoid();
+      uint argNum = F->getArguments().size();
+      LIRInst *lowered = LIRInst::create(CALL, 1 + argNum + hasRet);
       lowered->setUse(0, funcMap[F]);
 
       StackSlot *outgoingArgFrame = lowFunc->allocStackSlot();
@@ -80,7 +82,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
       uint outgoingArgSize = 0;
 
-      for (int i = 1; i < CI->getOperandNum(); i++) {
+      for (uint i = 1; i < 1 + argNum; i++) {
         auto argVReg = defMap[CI->getOperand(i)];
 
         if (argVReg->isFP() && !availableArgFPR.empty()) {
@@ -113,10 +115,13 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
       emit(lowered);
 
-      if (!F->getReturnType()->isVoid()) {
-        builder.copy(builder.phyReg(F->getReturnType()->isFloat() ? FA0 : A0),
-                     defMap[I]->as<Register>());
+      if (hasRet) {
+        Register *retReg;
+        retReg = builder.phyReg(F->getReturnType()->isFloat() ? FA0 : A0);
+        lowered->setDef(1 + argNum, retReg);
+        builder.copy(retReg, defMap[I]->as<Register>());
       }
+
       return;
     }
     nnvm_unreachable("Not implemented");

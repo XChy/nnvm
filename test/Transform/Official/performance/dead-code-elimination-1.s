@@ -48,8 +48,8 @@ bb2:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD s0, zero, zero
   ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   LA s2, global

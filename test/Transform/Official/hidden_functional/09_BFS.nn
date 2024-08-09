@@ -34,9 +34,9 @@ entry221.split510.split:  pred(quick_read.then49616, quick_read.else619)
 while.body228_preheader:  pred(init.while.body103_exclu_exit)
   br bb %while.body228
 while.body228:  pred(if.exit252, while.body228_preheader)
-  x254.phi286915 = phi [bb %if.exit252, i32 %x254.phi, bb %while.body228_preheader, i32 0]
-  y.phi288914 = phi [bb %if.exit252, i32 %y.phi, bb %while.body228_preheader, i32 0]
-  x263.phi290913 = phi [bb %if.exit252, i32 %x263.phi, bb %while.body228_preheader, i32 0]
+  x254.phi281915 = phi [bb %if.exit252, i32 %x254.phi, bb %while.body228_preheader, i32 0]
+  y.phi283914 = phi [bb %if.exit252, i32 %y.phi, bb %while.body228_preheader, i32 0]
+  x263.phi287913 = phi [bb %if.exit252, i32 %x263.phi, bb %while.body228_preheader, i32 0]
   y265.phi292912 = phi [bb %if.exit252, i32 %y265.phi, bb %while.body228_preheader, i32 0]
   233 = call i32 getch()
   br bb %while.cond234
@@ -80,9 +80,9 @@ then251.split622.split:  pred(quick_read.then49728, quick_read.else731)
   br i1 -1, bb %same.while.body153_preheader, bb %same.while.exit154
 if.exit252:  pred(same.while.exit205, else253.split734.split)
   y265.phi = phi [bb %else253.split734.split, i32 %266.ret, bb %same.while.exit205, i32 %y265.phi292912]
-  x263.phi = phi [bb %else253.split734.split, i32 %264.ret, bb %same.while.exit205, i32 %x263.phi290913]
-  y.phi = phi [bb %else253.split734.split, i32 %y.phi288914, bb %same.while.exit205, i32 %257.ret]
-  x254.phi = phi [bb %else253.split734.split, i32 %x254.phi286915, bb %same.while.exit205, i32 %255.ret]
+  x263.phi = phi [bb %else253.split734.split, i32 %264.ret, bb %same.while.exit205, i32 %x263.phi287913]
+  y.phi = phi [bb %else253.split734.split, i32 %y.phi283914, bb %same.while.exit205, i32 %257.ret]
+  x254.phi = phi [bb %else253.split734.split, i32 %x254.phi281915, bb %same.while.exit205, i32 %255.ret]
   m.load271 = load i32 from ptr @m
   320 = add i32 %m.load271, i32 -1
   store i32 %320 to ptr @m

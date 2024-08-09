@@ -33,8 +33,8 @@ main:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDIW a0, s0, -1
-  ADDI s2, zero, 1
-  BLT s2, a0, bb4
+  ADDI s9, zero, 1
+  BLT s9, a0, bb4
   # implict jump to bb2
 bb2:   # loop depth 0
   LUI a0, 352
@@ -97,7 +97,6 @@ bb4:   # loop depth 0
   # implict jump to bb5
 bb5:   # loop depth 1
   ADD s10, s4, zero
-  ADDI s9, zero, 1
   BLT s9, a0, bb10
   # implict jump to bb6
 bb6:   # loop depth 1

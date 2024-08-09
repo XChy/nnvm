@@ -16,12 +16,12 @@ loop3:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD t4, zero, zero
-  ADD t3, zero, zero
-  ADD t5, zero, zero
   ADD t2, zero, zero
-  ADD t1, zero, zero
+  ADD t3, zero, zero
   ADD a7, zero, zero
+  ADD t4, zero, zero
+  ADD t5, zero, zero
+  ADD t1, zero, zero
   ADD t0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1

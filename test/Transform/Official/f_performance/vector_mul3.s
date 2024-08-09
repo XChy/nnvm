@@ -7,9 +7,9 @@
 temp:
 .word 0x3f800000
 .CONSTANT.7.0:
-.word 0x358637bd
-.CONSTANT.7.1:
 .word 0x3f800000
+.CONSTANT.7.1:
+.word 0x358637bd
 .section .text
 main:   # loop depth 0
   LUI t0, 1048283
@@ -80,36 +80,33 @@ bb11:   # loop depth 0
 bb12:   # loop depth 0
   # implict jump to bb13
 bb13:   # loop depth 0
-  FDIV.S fs2, fs0, fs1
-  LA a0, .CONSTANT.7.0
-  FLW fs0, 0(a0)
-  LA a0, .CONSTANT.7.0
-  FLW fs1, 0(a0)
-  FSGNJN.S fs3, fs0, fs1
+  LA a0, .CONSTANT.7.1
+  FLW fs2, 0(a0)
+  LA a0, .CONSTANT.7.1
+  FLW fs3, 0(a0)
+  FSGNJ.S fs2, fs2, fs3
+  FDIV.S fs3, fs0, fs1
+  FSGNJN.S fs4, fs2, fs2
   # implict jump to bb14
 bb14:   # loop depth 1
   LA a0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs2, fs0
+  FDIV.S fs1, fs3, fs0
   FSUB.S fs1, fs0, fs1
-  LA a0, .CONSTANT.7.0
-  FLW fs4, 0(a0)
-  FLT.S a0, fs4, fs1
+  FLT.S a0, fs2, fs1
   BNE a0, zero, bb25
   # implict jump to bb15
 bb15:   # loop depth 1
-  FLT.S a0, fs1, fs3
+  FLT.S a0, fs1, fs4
   # implict jump to bb16
 bb16:   # loop depth 1
   BNE a0, zero, bb24
   # implict jump to bb17
 bb17:   # loop depth 0
-  LA a0, .CONSTANT.7.1
-  FLW fs1, 0(a0)
-  FSUB.S fs0, fs0, fs1
   LA a0, .CONSTANT.7.0
   FLW fs1, 0(a0)
-  FLE.S a0, fs0, fs1
+  FSUB.S fs0, fs0, fs1
+  FLE.S a0, fs0, fs2
   BNE a0, zero, bb23
   # implict jump to bb18
 bb18:   # loop depth 0
@@ -147,12 +144,12 @@ bb22:   # loop depth 0
   CALL putint
   JAL zero, bb21
 bb23:   # loop depth 0
-  FLE.S a0, fs3, fs0
+  FLE.S a0, fs4, fs0
   JAL zero, bb19
 bb24:   # loop depth 1
   LA a0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs2, fs0
+  FDIV.S fs1, fs3, fs0
   FADD.S fs0, fs0, fs1
   ADDI a0, zero, 2
   FCVT.S.W fs1, a0

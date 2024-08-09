@@ -13,7 +13,6 @@
 using namespace nnvm::riscv;
 
 void PhiResolution::resolve(LIRFunc &func) {
-
   for (LIRBB *BB : func)
     processBB(BB);
 }

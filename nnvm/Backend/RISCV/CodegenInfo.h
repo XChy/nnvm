@@ -8,6 +8,13 @@
 
 namespace nnvm::riscv {
 
+struct CompareReg {
+  bool operator()(Register *A, Register *B) const {
+    return A->getRegId() > B->getRegId();
+  }
+};
+typedef std::set<Register *, CompareReg> RegSet;
+
 static inline uint64_t getFrameAlign() { return 16; }
 static inline uint64_t getMaxMemAlign() { return 8; }
 // Integer registers for argument
@@ -27,8 +34,8 @@ LIRInstID getLoadInstType(LIRValueType type);
 LIRInstID getStoreInstType(LIRValueType type);
 
 // Include implicit uses/defs
-std::set<Register *> getDefsOf(LIRInst *inst);
-std::set<Register *> getUsesOf(LIRInst *inst);
+RegSet getDefsOf(LIRInst *inst);
+RegSet getUsesOf(LIRInst *inst);
 
 // We pre-define some scratch register for convenience.
 std::set<Register *> getScratchRegs(LIRModule *M);

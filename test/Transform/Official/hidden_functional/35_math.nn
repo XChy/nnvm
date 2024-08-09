@@ -211,6 +211,7 @@ then15:  pred(entry10)
   22 = fdiv float %21, float %20
   ret float %22
 if.exit16:  pred(entry10)
+  .pinned = pin float 1.000000
   281511 = icmp ne i32 %n, i32 0
   br i1 %281511, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(if.exit16)
@@ -218,12 +219,12 @@ while.body_preheader:  pred(if.exit16)
 while.body:  pred(if.exit33, while.body_preheader)
   a.stack.phi1515 = phi [bb %if.exit33, float %41, bb %while.body_preheader, float %a]
   n.stack.phi1514 = phi [bb %if.exit33, i32 %44, bb %while.body_preheader, i32 %n]
-  res.phi4021513 = phi [bb %if.exit33, float %res.phi, bb %while.body_preheader, float 1.000000]
+  res.phi4021513 = phi [bb %if.exit33, float %res.phi, bb %while.body_preheader, float %.pinned]
   409 = and i32 %n.stack.phi1514, i32 1
   410 = icmp ne i32 %409, i32 0
   br i1 %410, bb %then32, bb %if.exit33
 while.exit:  pred(if.exit16, while.body_exclu_exit)
-  1512 = phi [bb %while.body_exclu_exit, float %res.phi, bb %if.exit16, float 1.000000]
+  1512 = phi [bb %while.body_exclu_exit, float %res.phi, bb %if.exit16, float %.pinned]
   ret float %1512
 then32:  pred(while.body)
   37 = fmul float %res.phi4021513, float %a.stack.phi1515
@@ -254,6 +255,7 @@ entry323:  pred()
   3301516 = icmp ne i32 %325, i32 0
   br i1 %3301516, bb %while.body327_preheader, bb %while.exit328
 while.body327_preheader:  pred(entry323)
+  .pinned1532 = pin float 0.000000
   31498 = si2f i32 0 to float
   304446 = si2f i32 1 to float
   113792 = si2f i32 2 to float
@@ -294,7 +296,7 @@ then354:  pred(while.body327.split)
   129804 = fadd float %126802, float %931428
   133805 = fmul float %129804, float %112791
   135807 = fdiv float %133805, float %134806
-  233495 = call float asr5(float %304446, float %332, float 0.000000, float %135807, i32 1)
+  233495 = call float asr5(float %304446, float %332, float %.pinned1532, float %135807, i32 1)
   call void putfloat(float %233495)
   br bb %if.exit355
 if.exit355:  pred(then354, else)
@@ -323,7 +325,7 @@ then373:  pred(select.exit)
   129882 = fadd float %126880, float %931464
   133883 = fmul float %129882, float %112869
   135885 = fdiv float %133883, float %134806
-  233507 = call float asr5(float %304446, float %334, float 0.000000, float %135885, i32 1)
+  233507 = call float asr5(float %304446, float %334, float %.pinned1532, float %135885, i32 1)
   112908 = fsub float %332, float %304446
   114910 = fdiv float %112908, float %113792
   115911 = fadd float %304446, float %114910
@@ -334,7 +336,7 @@ then373:  pred(select.exit)
   129921 = fadd float %126919, float %931482
   133922 = fmul float %129921, float %112908
   135924 = fdiv float %133922, float %134806
-  233513 = call float asr5(float %304446, float %332, float 0.000000, float %135924, i32 1)
+  233513 = call float asr5(float %304446, float %332, float %.pinned1532, float %135924, i32 1)
   314423 = fdiv float %233507, float %233513
   call void putfloat(float %314423)
   br bb %if.exit374
@@ -356,7 +358,7 @@ then385:  pred(if.exit374)
   129843 = fadd float %126841, float %931446
   133844 = fmul float %129843, float %112830
   135846 = fdiv float %133844, float %134806
-  233501 = call float asr5(float %304446, float %332, float 0.000000, float %135846, i32 1)
+  233501 = call float asr5(float %304446, float %332, float %.pinned1532, float %135846, i32 1)
   321415 = fmul float %334, float %233501
   322416 = call float my_exp(float %321415)
   call void putfloat(float %322416)

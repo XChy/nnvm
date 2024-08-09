@@ -139,7 +139,7 @@ my_sqrt.while.cond137:  pred(Vectordot.while.exit450, my_sqrt.while.body138)
   temp.load380 = load float from ptr @temp
   143381 = fdiv float %216, float %temp.load380
   144382 = fsub float %temp.load380, float %143381
-  145383 = fcmp ogt float %144382, float 0.000001
+  145383 = fcmp ogt float %144382, float %.pinned
   br i1 %145383, bb %my_sqrt.select.then, bb %my_sqrt.select.else
 my_sqrt.while.body138:  pred(my_sqrt.select.exit)
   temp.load161386 = load float from ptr @temp
@@ -151,7 +151,7 @@ my_sqrt.while.body138:  pred(my_sqrt.select.exit)
   br bb %my_sqrt.while.cond137
 my_sqrt.while.exit139:  pred(my_sqrt.select.exit)
   219 = fsub float %temp.load380, float 1.000000
-  220 = fcmp ole float %219, float 0.000001
+  220 = fcmp ole float %219, float %.pinned
   br i1 %220, bb %select.then221, bb %select.else222
 my_sqrt.select.then:  pred(my_sqrt.while.cond137)
   br bb %my_sqrt.select.exit
@@ -194,8 +194,9 @@ Vectordot.while.body440:  pred(Vectordot.while.body440, Vectordot.while.body440_
   br i1 %25438, bb %Vectordot.while.body440, bb %Vectordot.while.body440_exclu_exit
 Vectordot.while.exit450:  pred(Vectordot.while.exit, Vectordot.while.body440_exclu_exit)
   48308697 = phi [bb %Vectordot.while.body440_exclu_exit, float %38447, bb %Vectordot.while.exit, float %48308705]
+  .pinned = pin float 0.000001
   216 = fdiv float %48308701, float %48308697
-  155402 = fneg float 0.000001
+  155402 = fneg float %.pinned
   br bb %my_sqrt.while.cond137
 mult2.while.body93498_preheader:  pred(mult1.while.exit51318)
   br bb %mult2.while.body93498
