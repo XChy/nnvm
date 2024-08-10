@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global reduce
 .global main
 .section .bss
@@ -314,12 +315,11 @@ bb51:   # loop depth 0
   SW a1, 12(sp)
   # implict jump to bb52
 bb52:   # loop depth 1
-  LA a2, kernelid
+  LA a1, kernelid
   SW a0, 32(sp)
-  LW a0, 32(sp)
-  SLLIW a1, a0, 2
   ADD s7, zero, zero
-  ADD a1, a2, a1
+  LW a2, 32(sp)
+  SH2ADD a1, a2, a1
   LW s8, 0(a1)
   # implict jump to bb53
 bb53:   # loop depth 2
@@ -374,9 +374,8 @@ bb63:   # loop depth 5
   LA a0, a
   SD a0, 152(sp)
   ADDW a2, a2, s4
-  SLLIW a2, a2, 2
   LD a0, 152(sp)
-  ADD a2, a0, a2
+  SH2ADD a2, a2, a0
   LW a2, 0(a2)
   # implict jump to bb64
 bb64:   # loop depth 5
@@ -406,18 +405,18 @@ bb67:   # loop depth 4
   ADD a1, a0, zero
   JAL zero, bb55
 bb68:   # loop depth 3
-  LA s11, b
+  LA s9, b
+  ADDIW s4, s6, 1
   LW s0, 24(sp)
   ADDW s5, s0, s6
-  ADDIW s6, s6, 1
-  SLLIW s5, s5, 2
-  SLT s9, s6, s10
-  ADD s5, s11, s5
-  XORI s9, s9, 1
+  SLT s6, s4, s10
+  SH2ADD s5, s5, s9
+  XORI s6, s6, 1
   SW a0, 0(s5)
-  BNE s9, zero, bb70
+  BNE s6, zero, bb70
   # implict jump to bb69
 bb69:   # loop depth 3
+  ADD s6, s4, zero
   JAL zero, bb54
 bb70:   # loop depth 2
   ADDIW s7, s7, 1
@@ -447,17 +446,17 @@ bb76:   # loop depth 1
   # implict jump to bb77
 bb77:   # loop depth 2
   LA s4, b
-  SLLIW s3, a0, 2
   LA s5, a
-  ADD s4, s4, s3
-  ADDIW a0, a0, 1
+  ADDIW s3, a0, 1
+  SH2ADD s4, a0, s4
   LW s4, 0(s4)
-  ADD s3, s5, s3
-  SW s4, 0(s3)
-  LW s0, 36(sp)
-  BLT a0, s0, bb78
+  SH2ADD a0, a0, s5
+  SW s4, 0(a0)
+  LW a0, 36(sp)
+  BLT s3, a0, bb78
   JAL zero, bb73
 bb78:   # loop depth 2
+  ADD a0, s3, zero
   JAL zero, bb77
 bb79:   # loop depth 5
   ADD a2, zero, zero

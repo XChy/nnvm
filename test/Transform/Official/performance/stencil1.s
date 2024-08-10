@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 image_out:
@@ -36,26 +37,23 @@ bb2:   # loop depth 2
   SLLIW s3, s1, 10
   ADDIW a0, s1, -1
   ADDW s3, s3, s2
-  SLLIW a0, a0, 10
-  SLLIW s3, s3, 2
   LA s6, image_in
-  ADD s4, s4, s3
-  ADDW a0, a0, s2
+  SH2ADD s4, s3, s4
+  SLLIW a0, a0, 10
   LW s5, 0(s4)
-  SLLIW a0, a0, 2
-  ADD s6, s6, a0
+  ADDW a0, a0, s2
+  SH2ADD s6, a0, s6
   ADDIW s1, s1, 1
-  SLLIW a0, s1, 10
   LA s8, image_in
+  SLLIW a0, s1, 10
   LW s7, -4(s6)
   ADDW a0, a0, s2
-  SLLIW s9, a0, 2
+  SH2ADD s8, a0, s8
   SLLIW a0, s5, 3
-  ADD s8, s8, s9
   LA s9, image_out
   LW s5, 0(s6)
   SUBW a0, a0, s7
-  ADD s3, s9, s3
+  SH2ADD s3, s3, s9
   LW s6, 4(s6)
   SUBW a0, a0, s5
   LW s5, -4(s4)
@@ -96,19 +94,18 @@ bb9:   # loop depth 1
   LA s2, image_in
   SLLIW s1, a0, 10
   LA s4, image_out
-  SLLIW s1, s1, 2
+  SH2ADD s2, s1, s2
   LUI s5, 1
-  ADD s2, s2, s1
-  ADDIW s5, s5, -4
   LW s3, 0(s2)
-  ADD s1, s4, s1
+  ADDIW s5, s5, -4
+  SH2ADD s1, s1, s4
   ADD s2, s2, s5
   LUI s4, 1
-  ADDIW s4, s4, -4
   ADDIW a0, a0, 1
   SW s3, 0(s1)
-  ADD s1, s1, s4
+  ADDIW s4, s4, -4
   LW s2, 0(s2)
+  ADD s1, s1, s4
   SLTI s3, a0, 1024
   SW s2, 0(s1)
   BNE s3, zero, bb14
@@ -118,20 +115,19 @@ bb10:   # loop depth 0
   # implict jump to bb11
 bb11:   # loop depth 1
   LA s2, image_in
-  SLLIW s1, a0, 2
-  LA s4, image_out
-  ADD s2, s2, s1
-  LUI s5, 1023
-  LW s3, 0(s2)
-  ADDIW s5, s5, 0
-  ADD s1, s4, s1
-  ADD s2, s2, s5
+  LA s1, image_out
   LUI s4, 1023
+  SH2ADD s2, a0, s2
+  ADDIW s4, s4, 0
+  LW s3, 0(s2)
+  SH2ADD s1, a0, s1
+  ADD s2, s2, s4
+  LUI s4, 1023
+  ADDIW s4, s4, 0
   ADDIW a0, a0, 1
   SW s3, 0(s1)
-  ADDIW s4, s4, 0
-  LW s2, 0(s2)
   ADD s1, s1, s4
+  LW s2, 0(s2)
   SLTI s3, a0, 1024
   SW s2, 0(s1)
   BNE s3, zero, bb13

@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global my_sin_impl
 .global main
 .global write_pgm
@@ -199,18 +200,17 @@ bb23:   # loop depth 1
   # implict jump to bb24
 bb24:   # loop depth 2
   LA s1, width
-  LA s6, image
-  LA s5, width
+  LA s5, image
+  LA s6, width
   LW s3, 0(s1)
   ADDIW s1, s0, 1
   MULW s4, s2, s3
   CALL getint
   ADD s3, a0, zero
   ADDW s0, s4, s0
-  SLLIW s0, s0, 2
-  ADD s0, s6, s0
+  SH2ADD s0, s0, s5
   SW s3, 0(s0)
-  LW s0, 0(s5)
+  LW s0, 0(s6)
   BLT s1, s0, bb25
   JAL zero, bb21
 bb25:   # loop depth 2
@@ -449,8 +449,7 @@ bb61:   # loop depth 2
   MULW a0, s6, s2
   LA s2, image
   ADDW a0, a0, s5
-  SLLIW a0, a0, 2
-  ADD a0, s2, a0
+  SH2ADD a0, a0, s2
   LW a0, 0(a0)
   # implict jump to bb62
 bb62:   # loop depth 2

@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 b:
@@ -92,13 +93,12 @@ bb6:   # loop depth 0
 bb7:   # loop depth 1
   JAL zero, bb1
 bb8:   # loop depth 1
-  ADD s1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 2
-  LA s3, x
-  SLLIW a0, s1, 2
-  ADDIW s2, s1, 1
-  ADD s3, s3, a0
+  LA s1, x
+  ADDIW s2, a0, 1
+  SH2ADD s3, a0, s1
   LW s1, 0(s3)
   LW s3, 4(s3)
   BLT s1, s3, bb16
@@ -110,79 +110,76 @@ bb11:   # loop depth 2
   BLT s2, s0, bb12
   JAL zero, bb5
 bb12:   # loop depth 2
-  ADD s1, s2, zero
+  ADD a0, s2, zero
   JAL zero, bb9
 bb13:   # loop depth 2
   LA s4, b
-  ADD a0, s4, a0
+  SH2ADD a0, a0, s4
   LW a0, 0(a0)
-  ADDIW a0, a0, -1
+  ADDIW s4, a0, -1
   # implict jump to bb14
 bb14:   # loop depth 3
-  LA s5, y
-  SLLIW s4, s1, 2
+  LA a0, y
   LA s6, a
-  ADD s5, s5, s4
   LA s8, v
+  SH2ADD s5, s1, a0
+  ADDIW a0, s1, 1
   LW s5, 0(s5)
-  ADDIW s1, s1, 1
-  ADD s8, s8, s4
-  SLLIW s4, s5, 2
-  ADD s4, s6, s4
-  LW s5, 0(s4)
+  SH2ADD s8, s1, s8
+  SH2ADD s1, s5, s6
+  LW s5, 0(s1)
   LW s6, 0(s8)
-  MULW s6, s6, a0
+  MULW s6, s6, s4
   ADDW s5, s5, s6
-  SW s5, 0(s4)
-  BLT s1, s3, bb15
+  SW s5, 0(s1)
+  BLT a0, s3, bb15
   JAL zero, bb11
 bb15:   # loop depth 3
+  ADD s1, a0, zero
   JAL zero, bb14
 bb16:   # loop depth 2
   ADD s4, s1, zero
   # implict jump to bb17
 bb17:   # loop depth 3
-  LA s6, y
-  SLLIW s5, s4, 2
+  LA s5, y
   LA s8, a
-  ADD s6, s6, s5
   LA s9, v
-  LW s6, 0(s6)
-  ADDIW s4, s4, 1
-  ADD s5, s9, s5
-  SLLIW s6, s6, 2
-  ADD s6, s8, s6
-  LW s8, 0(s6)
+  SH2ADD s5, s4, s5
+  ADDIW s6, s4, 1
   LW s5, 0(s5)
-  ADDW s5, s8, s5
-  SW s5, 0(s6)
-  BLT s4, s3, bb19
+  SH2ADD s4, s4, s9
+  SH2ADD s5, s5, s8
+  LW s8, 0(s5)
+  LW s4, 0(s4)
+  ADDW s4, s8, s4
+  SW s4, 0(s5)
+  BLT s6, s3, bb19
   # implict jump to bb18
 bb18:   # loop depth 2
   JAL zero, bb10
 bb19:   # loop depth 3
+  ADD s4, s6, zero
   JAL zero, bb17
 bb20:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb21
 bb21:   # loop depth 2
   LA s2, a
-  SLLIW s1, a0, 2
-  ADDIW a0, a0, 1
-  ADD s1, s2, s1
-  SW zero, 0(s1)
-  BLT a0, s0, bb22
+  ADDIW s1, a0, 1
+  SH2ADD a0, a0, s2
+  SW zero, 0(a0)
+  BLT s1, s0, bb22
   JAL zero, bb4
 bb22:   # loop depth 2
+  ADD a0, s1, zero
   JAL zero, bb21
 bb23:   # loop depth 1
-  ADD s1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb24
 bb24:   # loop depth 2
-  LA s3, x
-  SLLIW a0, s1, 2
-  ADDIW s2, s1, 1
-  ADD s3, s3, a0
+  LA s1, x
+  ADDIW s2, a0, 1
+  SH2ADD s3, a0, s1
   LW s1, 0(s3)
   LW s3, 4(s3)
   BLT s1, s3, bb31
@@ -194,68 +191,66 @@ bb26:   # loop depth 2
   BLT s2, s0, bb27
   JAL zero, bb3
 bb27:   # loop depth 2
-  ADD s1, s2, zero
+  ADD a0, s2, zero
   JAL zero, bb24
 bb28:   # loop depth 2
   LA s4, a
-  ADD a0, s4, a0
+  SH2ADD a0, a0, s4
   LW a0, 0(a0)
-  ADDIW a0, a0, -1
+  ADDIW s4, a0, -1
   # implict jump to bb29
 bb29:   # loop depth 3
-  LA s5, y
-  SLLIW s4, s1, 2
+  LA a0, y
   LA s6, b
-  ADD s5, s5, s4
   LA s8, v
+  SH2ADD s5, s1, a0
+  ADDIW a0, s1, 1
   LW s5, 0(s5)
-  ADDIW s1, s1, 1
-  ADD s8, s8, s4
-  SLLIW s4, s5, 2
-  ADD s4, s6, s4
-  LW s5, 0(s4)
+  SH2ADD s8, s1, s8
+  SH2ADD s1, s5, s6
+  LW s5, 0(s1)
   LW s6, 0(s8)
-  MULW s6, s6, a0
+  MULW s6, s6, s4
   ADDW s5, s5, s6
-  SW s5, 0(s4)
-  BLT s1, s3, bb30
+  SW s5, 0(s1)
+  BLT a0, s3, bb30
   JAL zero, bb26
 bb30:   # loop depth 3
+  ADD s1, a0, zero
   JAL zero, bb29
 bb31:   # loop depth 2
   ADD s4, s1, zero
   # implict jump to bb32
 bb32:   # loop depth 3
-  LA s6, y
-  SLLIW s5, s4, 2
+  LA s5, y
   LA s8, b
-  ADD s6, s6, s5
   LA s9, v
-  LW s6, 0(s6)
-  ADDIW s4, s4, 1
-  ADD s5, s9, s5
-  SLLIW s6, s6, 2
-  ADD s6, s8, s6
-  LW s8, 0(s6)
+  SH2ADD s5, s4, s5
+  ADDIW s6, s4, 1
   LW s5, 0(s5)
-  ADDW s5, s8, s5
-  SW s5, 0(s6)
-  BLT s4, s3, bb34
+  SH2ADD s4, s4, s9
+  SH2ADD s5, s5, s8
+  LW s8, 0(s5)
+  LW s4, 0(s4)
+  ADDW s4, s8, s4
+  SW s4, 0(s5)
+  BLT s6, s3, bb34
   # implict jump to bb33
 bb33:   # loop depth 2
   JAL zero, bb25
 bb34:   # loop depth 3
+  ADD s4, s6, zero
   JAL zero, bb32
 bb35:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb36
 bb36:   # loop depth 2
   LA s2, b
-  SLLIW s1, a0, 2
-  ADDIW a0, a0, 1
-  ADD s1, s2, s1
-  SW zero, 0(s1)
-  BLT a0, s0, bb37
+  ADDIW s1, a0, 1
+  SH2ADD a0, a0, s2
+  SW zero, 0(a0)
+  BLT s1, s0, bb37
   JAL zero, bb2
 bb37:   # loop depth 2
+  ADD a0, s1, zero
   JAL zero, bb36

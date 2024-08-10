@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .global radixSort
 .section .bss
@@ -65,12 +66,11 @@ bb4:   # loop depth 0
   LW s1, 0(s0)
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA s3, a
-  SLLIW s0, a0, 2
+  LA s0, a
   ADDIW s4, a0, 2
-  ADD s0, s3, s0
-  LW s3, 0(s0)
+  SH2ADD s3, a0, s0
   ADDIW s0, a0, 1
+  LW s3, 0(s3)
   REMW s3, s3, s4
   MULW a0, a0, s3
   ADDW s1, s1, a0
@@ -342,8 +342,7 @@ bb17:   # loop depth 1
 bb18:   # loop depth 1
   # implict jump to bb19
 bb19:   # loop depth 2
-  SLLIW a1, a2, 2
-  ADD a1, s0, a1
+  SH2ADD a1, a2, s0
   LW a1, 0(a1)
   # implict jump to bb20
 bb20:   # loop depth 3
@@ -362,11 +361,10 @@ bb22:   # loop depth 3
   # implict jump to bb23
 bb23:   # loop depth 2
   LW a2, 0(s3)
-  SLLIW a3, a2, 2
-  ADDIW s6, a2, 1
-  ADD a2, s0, a3
-  SW a1, 0(a2)
-  SW s6, 0(s3)
+  SH2ADD a3, a2, s0
+  ADDIW a2, a2, 1
+  SW a1, 0(a3)
+  SW a2, 0(s3)
   LW a2, 0(s3)
   LW a3, 0(s4)
   BLT a2, a3, bb25
@@ -381,9 +379,8 @@ bb26:   # loop depth 3
   ADDI a3, sp, 72
   ADD a3, a3, a2
   LW a2, 0(a3)
-  SLLIW s6, a2, 2
+  SH2ADD s6, a2, s0
   ADDIW s7, a2, 1
-  ADD s6, s0, s6
   LW a2, 0(s6)
   SW a1, 0(s6)
   ADD a1, a2, zero
@@ -409,8 +406,7 @@ bb31:   # loop depth 0
   ADD a2, s1, zero
   # implict jump to bb32
 bb32:   # loop depth 1
-  SLLIW a1, a2, 2
-  ADD a1, s0, a1
+  SH2ADD a1, a2, s0
   LW a1, 0(a1)
   BLT zero, a0, bb36
   # implict jump to bb33

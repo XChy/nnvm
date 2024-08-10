@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -26,11 +27,10 @@ main:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
-  LW a0, 0(s1)
   LA s2, __HELLO
+  LW a0, 0(s1)
   ADDIW s0, s0, 1
-  SLLIW s1, s0, 2
-  ADD s1, s2, s1
+  SH2ADD s1, s0, s2
   CALL putch
   LW a0, 0(s1)
   BNE a0, zero, bb21
@@ -82,11 +82,10 @@ bb8:   # loop depth 1
   ADD s0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 2
-  LW a0, 0(s1)
   LA s4, saY_HeI10_To
+  LW a0, 0(s1)
   ADDIW s0, s0, 1
-  SLLIW s1, s0, 2
-  ADD s1, s4, s1
+  SH2ADD s1, s0, s4
   CALL putch
   LW a0, 0(s1)
   BNE a0, zero, bb17
@@ -104,11 +103,10 @@ bb11:   # loop depth 1
   ADD s1, zero, zero
   # implict jump to bb12
 bb12:   # loop depth 2
-  LW a0, 0(s0)
   LA s3, RET
+  LW a0, 0(s0)
   ADDIW s1, s1, 1
-  SLLIW s0, s1, 2
-  ADD s0, s3, s0
+  SH2ADD s0, s1, s3
   CALL putch
   LW a0, 0(s0)
   BNE a0, zero, bb13
@@ -122,8 +120,7 @@ bb14:   # loop depth 1
 bb15:   # loop depth 2
   LW a0, 0(s0)
   ADDIW s3, s3, 1
-  SLLIW s0, s3, 2
-  ADD s0, s1, s0
+  SH2ADD s0, s3, s1
   CALL putch
   LW a0, 0(s0)
   BNE a0, zero, bb16
@@ -139,8 +136,7 @@ bb18:   # loop depth 1
 bb19:   # loop depth 2
   LW a0, 0(s4)
   ADDIW s0, s0, 1
-  SLLIW s4, s0, 2
-  ADD s4, s1, s4
+  SH2ADD s4, s0, s1
   CALL putch
   LW a0, 0(s4)
   BNE a0, zero, bb20

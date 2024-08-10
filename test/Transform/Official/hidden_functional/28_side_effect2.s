@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 array:
@@ -1717,12 +1718,11 @@ bb291:   # loop depth 1
   BNE s7, zero, bb296
   # implict jump to bb292
 bb292:   # loop depth 1
-  LA s10, array
-  SLLIW s7, s8, 2
-  ADDI s11, zero, 1
+  LA s7, array
+  ADDI s10, zero, 1
   SLTIU s9, s9, 1
-  ADD s7, s10, s7
-  SW s11, -4(s7)
+  SH2ADD s7, s8, s7
+  SW s10, -4(s7)
   BNE s9, zero, bb295
   # implict jump to bb293
 bb293:   # loop depth 1

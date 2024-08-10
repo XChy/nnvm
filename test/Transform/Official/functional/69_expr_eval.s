@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -266,11 +267,11 @@ bb46:   # loop depth 1
   SLLIW a0, a0, 2
   ADDI t6, sp, 96
   ADD a0, t6, a0
-  LW s0, 0(a0)
+  LW s1, 0(a0)
   # implict jump to bb47
 bb47:   # loop depth 1
-  ADD a0, s0, zero
   ADDIW s0, s10, -1
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -666,7 +667,7 @@ bb129:   # loop depth 3
   JAL zero, bb105
 bb130:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s0, zero, -1
+  ADDI s1, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch
@@ -963,7 +964,7 @@ bb192:   # loop depth 2
   JAL zero, bb23
 bb193:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s0, zero, -1
+  ADDI s1, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch

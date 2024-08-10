@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .global f
 .section .bss
@@ -94,10 +95,9 @@ bb7:   # loop depth 0
   ADDI s1, zero, 1
   # implict jump to bb8
 bb8:   # loop depth 1
-  LA s2, row
-  SLLIW a0, s1, 2
+  LA a0, row
   ADDW s4, s3, s1
-  ADD s2, s2, a0
+  SH2ADD s2, s1, a0
   LW a0, 0(s2)
   XORI a0, a0, 1
   BNE a0, zero, bb23
@@ -126,32 +126,29 @@ bb14:   # loop depth 1
   JAL zero, bb8
 bb15:   # loop depth 1
   LA s5, ans
-  SLLIW a0, s3, 2
-  XOR s0, s3, s0
-  ADD a0, s5, a0
-  SLTIU s0, s0, 1
+  XOR a0, s3, s0
+  SLTIU s0, a0, 1
+  SH2ADD a0, s3, s5
   SW s1, 0(a0)
   BNE s0, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
   LA s0, line1
-  SLLIW a0, s4, 2
-  ADDI s4, zero, 1
-  LA s7, n
-  ADDI s6, zero, 1
-  ADD s0, s0, a0
-  SW s4, 0(s2)
+  ADDI a0, zero, 1
+  LA s6, n
+  ADDI s5, zero, 1
+  SH2ADD s0, s4, s0
+  SW a0, 0(s2)
+  SW s5, 0(s0)
   LA s5, line2
-  SW s6, 0(s0)
+  LW s4, 0(s6)
   ADDIW a0, s3, 1
-  LW s4, 0(s7)
   ADDI s6, zero, 1
   LA s7, n
   LA s8, line2
   ADDW s4, s4, s3
   SUBW s4, s4, s1
-  SLLIW s4, s4, 2
-  ADD s4, s5, s4
+  SH2ADD s4, s4, s5
   SW s6, 0(s4)
   CALL f
   SW zero, 0(s2)
@@ -159,8 +156,7 @@ bb16:   # loop depth 1
   LW a0, 0(s7)
   ADDW a0, a0, s3
   SUBW a0, a0, s1
-  SLLIW a0, a0, 2
-  ADD a0, s8, a0
+  SH2ADD a0, a0, s8
   SW zero, 0(a0)
   JAL zero, bb13
 bb17:   # loop depth 1
@@ -179,13 +175,12 @@ bb18:   # loop depth 2
   BNE a0, zero, bb19
   JAL zero, bb16
 bb19:   # loop depth 2
-  LA s5, ans
-  SLLIW a0, s0, 2
-  LA s6, n
-  ADD a0, s5, a0
+  LA a0, ans
+  LA s5, n
+  SH2ADD a0, s0, a0
   LW a0, 0(a0)
   CALL putint
-  LW a0, 0(s6)
+  LW a0, 0(s5)
   XOR a0, s0, a0
   SLTIU a0, a0, 1
   BNE a0, zero, bb21
@@ -200,20 +195,18 @@ bb21:   # loop depth 1
   CALL putch
   JAL zero, bb16
 bb22:   # loop depth 1
-  ADDW a0, s0, s3
   LA s5, line2
+  ADDW a0, s0, s3
   SUBW a0, a0, s1
-  SLLIW a0, a0, 2
-  ADD a0, s5, a0
+  SH2ADD a0, a0, s5
   LW a0, 0(a0)
   SLTU a0, zero, a0
   XORI a0, a0, 1
   SLTU a0, zero, a0
   JAL zero, bb12
 bb23:   # loop depth 1
-  LA s5, line1
-  SLLIW a0, s4, 2
-  ADD a0, s5, a0
+  LA a0, line1
+  SH2ADD a0, s4, a0
   LW a0, 0(a0)
   SLTIU a0, a0, 1
   JAL zero, bb10

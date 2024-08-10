@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global QuickSort
 .global main
 .section .bss
@@ -7,7 +8,7 @@ n:
 .word 0x00000000
 .section .text
 QuickSort:   # loop depth 0
-  ADDI sp, sp, -80
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -16,7 +17,6 @@ QuickSort:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  SD s7, 64(sp)
   ADD s4, a2, zero
   ADD s3, a0, zero
   BLT a1, s4, bb2
@@ -31,14 +31,13 @@ bb1:   # loop depth 0
   LD s4, 40(sp)
   LD s5, 48(sp)
   LD s6, 56(sp)
-  LD s7, 64(sp)
-  ADDI sp, sp, 80
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb2:   # loop depth 0
-  SLLIW s5, a1, 2
+  SH2ADD a0, a1, s3
   ADDIW s0, a1, 1
-  ADD a0, s3, s5
   LW s2, 0(a0)
+  SLLIW s5, a1, 2
   BLT a1, s4, bb5
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -62,15 +61,14 @@ bb5:   # loop depth 0
 bb6:   # loop depth 1
   # implict jump to bb7
 bb7:   # loop depth 2
-  SLLIW s6, a0, 2
   BLT s1, a0, bb26
   # implict jump to bb8
 bb8:   # loop depth 2
-  ADD s7, zero, zero
+  ADD s6, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 2
   ADDIW a2, a0, -1
-  BNE s7, zero, bb25
+  BNE s6, zero, bb25
   # implict jump to bb10
 bb10:   # loop depth 1
   BLT s1, a0, bb24
@@ -103,9 +101,9 @@ bb19:   # loop depth 0
 bb20:   # loop depth 1
   JAL zero, bb6
 bb21:   # loop depth 1
-  ADD a0, s3, s5
-  ADD s0, s3, s6
-  LW s6, 0(a0)
+  SH2ADD s6, s1, s3
+  SH2ADD s0, a0, s3
+  LW s6, 0(s6)
   ADD a0, a2, zero
   SW s6, 0(s0)
   JAL zero, bb18
@@ -113,25 +111,25 @@ bb22:   # loop depth 2
   ADDIW s1, s1, 1
   JAL zero, bb13
 bb23:   # loop depth 2
-  ADD s0, s3, s5
+  SH2ADD s0, s1, s3
   LW s0, 0(s0)
   SLT s0, s0, s2
   JAL zero, bb15
 bb24:   # loop depth 1
-  ADD s1, s3, s6
+  SH2ADD s1, a0, s3
   ADD s5, s3, s5
-  LW s7, 0(s1)
+  LW s6, 0(s1)
   ADD s1, s0, zero
-  SW s7, 0(s5)
+  SW s6, 0(s5)
   JAL zero, bb12
 bb25:   # loop depth 2
   ADD a0, a2, zero
   JAL zero, bb7
 bb26:   # loop depth 2
-  ADD a2, s3, s6
-  ADDIW s7, s2, -1
+  SH2ADD a2, a0, s3
+  ADDIW s6, s2, -1
   LW a2, 0(a2)
-  SLT s7, s7, a2
+  SLT s6, s6, a2
   JAL zero, bb9
 main:   # loop depth 0
   ADDI sp, sp, -80

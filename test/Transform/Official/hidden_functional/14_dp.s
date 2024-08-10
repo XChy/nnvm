@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -63,8 +64,7 @@ bb5:   # loop depth 0
   ADD t2, t2, t0
   # implict jump to bb6
 bb6:   # loop depth 1
-  SLLIW t0, t1, 2
-  ADD t0, t2, t0
+  SH2ADD t0, t1, t2
   LW t0, 0(t0)
   BLT a0, t0, bb11
   # implict jump to bb7
@@ -103,24 +103,21 @@ bb16:   # loop depth 1
   ADDI t0, zero, 140
   LA a2, t
   MULW t1, t2, t0
-  LA a3, dp
-  SLLIW a1, t2, 3
+  LA a1, dp
   ADDI t0, zero, 1
-  ADD a2, a2, a1
-  ADD a1, a3, t1
+  SH3ADD a2, t2, a2
+  ADD a1, a1, t1
   # implict jump to bb17
 bb17:   # loop depth 2
   ADDIW t1, t0, 1
-  SLLIW t0, t0, 2
-  SLLI a3, t1, 1
-  ADD t0, a1, t0
-  SRLI a4, a3, 63
+  SH2ADD t0, t0, a1
+  SLLI a4, t1, 1
   LW a3, -140(t0)
+  SRLI a4, a4, 63
   ADD a4, t1, a4
   ANDI a4, a4, -2
   SUBW a4, t1, a4
-  SLLIW a4, a4, 2
-  ADD a4, a2, a4
+  SH2ADD a4, a4, a2
   LW a4, 0(a4)
   LW a5, -144(t0)
   ADDW a3, a3, a4
@@ -150,23 +147,21 @@ bb22:   # loop depth 0
   # implict jump to bb23
 bb23:   # loop depth 1
   ADDI s5, zero, 140
-  LA s8, t
+  LA s7, t
   CALL getint
   ADD s3, a0, zero
   MULW s6, s1, s5
-  SLLI s7, s3, 1
-  SLLIW s5, s1, 3
-  SRLI s7, s7, 63
+  SLLI s5, s3, 1
   LA s9, dp
-  ADD s7, s3, s7
-  ADD s5, s8, s5
-  ANDI s8, s7, -2
+  SRLI s8, s5, 63
+  SH3ADD s5, s1, s7
+  ADD s8, s3, s8
   ADDI s7, zero, 1
-  SUBW s3, s3, s8
+  ANDI s8, s8, -2
   ADD s6, s9, s6
-  SLLIW s3, s3, 2
+  SUBW s3, s3, s8
   ADDIW s1, s1, 1
-  ADD s3, s5, s3
+  SH2ADD s3, s3, s5
   SLT s8, s2, s1
   SW s7, 0(s3)
   XORI s7, s8, 1

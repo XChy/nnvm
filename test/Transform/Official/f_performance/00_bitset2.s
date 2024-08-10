@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -202,8 +203,7 @@ bb6:   # loop depth 1
   ADDI s5, zero, 30
   LA s2, a
   REMW s5, a0, s5
-  SLLIW a0, s0, 2
-  ADD s2, s2, a0
+  SH2ADD s2, s0, s2
   LW a0, 0(s2)
   SLLIW s0, s5, 2
   ADDI t6, sp, 88

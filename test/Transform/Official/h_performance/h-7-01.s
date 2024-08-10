@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 o_buf:
@@ -72,12 +73,11 @@ bb2:   # loop depth 0
   FSGNJ.S fs4, fs2, fs0
   # implict jump to bb3
 bb3:   # loop depth 1
-  LA s2, i_buf
-  SLLIW s0, a0, 2
-  LA s3, o_buf
-  ADD s2, s2, s0
-  FLW fs2, 0(s2)
-  ADD s0, s3, s0
+  LA s0, i_buf
+  LA s2, o_buf
+  SH2ADD s0, a0, s0
+  FLW fs2, 0(s0)
+  SH2ADD s0, a0, s2
   FLE.S s2, fs2, fs5
   BNE s2, zero, bb19
   # implict jump to bb4

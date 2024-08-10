@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 a:
@@ -77,12 +78,11 @@ bb8:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
-  LA s4, matrix
-  SLLIW s3, a0, 2
+  LA s3, matrix
   MULW s2, a0, a0
-  ADD s3, s4, s3
-  LW s3, 0(s3)
+  SH2ADD s3, a0, s3
   ADDIW a0, a0, 1
+  LW s3, 0(s3)
   MULW s2, s2, s3
   ADDW s1, s1, s2
   BLT a0, s0, bb11
@@ -97,8 +97,7 @@ bb12:   # loop depth 0
 bb13:   # loop depth 1
   LA s2, a
   ADD s1, a0, zero
-  SLLIW a0, s1, 2
-  ADD a0, s2, a0
+  SH2ADD a0, s1, s2
   LW s2, 0(a0)
   DIVW s3, s10, s2
   BLT zero, s3, bb16
@@ -132,16 +131,14 @@ bb21:   # loop depth 3
   # implict jump to bb22
 bb22:   # loop depth 3
   MULW s6, s4, s2
-  MULW s7, s5, s3
   LA s8, matrix
+  MULW s7, s5, s3
   LA s9, matrix
   ADDW s5, s6, s5
+  SH2ADD s5, s5, s8
   ADDW s6, s7, s4
-  SLLIW s5, s5, 2
-  SLLIW s6, s6, 2
-  ADD s5, s8, s5
-  ADD s6, s9, s6
   LW s7, 0(s5)
+  SH2ADD s6, s6, s9
   SW s7, 0(s6)
   ADD s6, s7, zero
   SW s7, 0(s5)
@@ -152,10 +149,9 @@ bb24:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb25
 bb25:   # loop depth 1
-  LA s3, matrix
-  SLLIW s2, a0, 2
+  LA s2, matrix
   ADDIW s1, a0, 1
-  ADD s2, s3, s2
+  SH2ADD s2, a0, s2
   SW a0, 0(s2)
   BLT s1, s10, bb26
   JAL zero, bb1

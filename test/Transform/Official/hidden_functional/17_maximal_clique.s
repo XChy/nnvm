@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .global maxCliques
 .section .bss
@@ -84,14 +85,12 @@ bb4:   # loop depth 1
   ADDIW a0, a0, 1
   LW s8, 4(s0)
   MULW s0, s1, s2
-  SLLIW s2, s1, 2
-  MULW s4, s8, s4
-  SLLIW s1, s8, 2
+  MULW s2, s8, s4
   ADD s0, s7, s0
-  ADD s0, s0, s1
-  ADD s1, s5, s4
+  SH2ADD s0, s8, s0
   SW s3, 0(s0)
-  ADD s0, s1, s2
+  ADD s0, s5, s2
+  SH2ADD s0, s1, s0
   SW s6, 0(s0)
   BLT a0, a1, bb5
   JAL zero, bb2
@@ -132,7 +131,7 @@ maxCliques:   # loop depth 0
   SD s9, 80(sp)
   SD s10, 88(sp)
   LA a0, n
-  ADD s6, a1, zero
+  ADD s7, a1, zero
   LW a0, 0(a0)
   SLTI a0, a0, 1
   XORI a0, a0, 1
@@ -157,13 +156,12 @@ bb11:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb12:   # loop depth 0
-  LA s3, store
-  SLLIW s1, s6, 2
+  LA s1, store
   ADD a1, zero, zero
   ADDI a0, zero, 1
   ADD s2, zero, zero
-  ADDIW s0, s6, 1
-  ADD s10, s3, s1
+  ADDIW s0, s7, 1
+  SH2ADD s10, s7, s1
   # implict jump to bb13
 bb13:   # loop depth 1
   ADD s1, a0, zero
@@ -198,7 +196,7 @@ bb19:   # loop depth 0
 bb20:   # loop depth 1
   JAL zero, bb13
 bb21:   # loop depth 1
-  BLT a0, s6, bb27
+  BLT a0, s7, bb27
   # implict jump to bb22
 bb22:   # loop depth 1
   ADD s2, a0, zero
@@ -218,7 +216,7 @@ bb26:   # loop depth 1
   ADD s2, a0, zero
   JAL zero, bb25
 bb27:   # loop depth 1
-  ADD s2, s6, zero
+  ADD s2, s7, zero
   JAL zero, bb23
 bb28:   # loop depth 2
   ADDIW s3, s2, 1
@@ -230,20 +228,17 @@ bb29:   # loop depth 3
 bb30:   # loop depth 2
   JAL zero, bb14
 bb31:   # loop depth 3
-  LA s9, store
-  SLLIW s5, s2, 2
-  LA s8, store
-  SLLIW s7, s4, 2
-  ADD s5, s9, s5
-  ADDI s9, zero, 120
+  LA s5, store
+  LA s6, store
+  ADDI s8, zero, 120
+  LA s9, graph
+  SH2ADD s5, s2, s5
+  SH2ADD s6, s4, s6
   LW s5, 0(s5)
-  ADD s7, s8, s7
-  LA s8, graph
-  LW s7, 0(s7)
-  MULW s5, s5, s9
-  SLLIW s7, s7, 2
-  ADD s5, s8, s5
-  ADD s5, s5, s7
+  MULW s5, s5, s8
+  LW s6, 0(s6)
+  ADD s5, s9, s5
+  SH2ADD s5, s6, s5
   LW s5, 0(s5)
   SLTIU s5, s5, 1
   BNE s5, zero, bb33

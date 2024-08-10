@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 .section .data
@@ -16,22 +17,23 @@ main:   # loop depth 0
   SD s10, 96(sp)
   SD s11, 104(sp)
   CALL getint
-  ADD s10, a0, zero
+  ADD s0, a0, zero
+  SW s0, 12(sp)
   CALL getint
-  SLTU s1, zero, s10
+  LW s0, 12(sp)
+  SLTU s1, zero, s0
   ADD s8, a0, zero
   XORI s1, s1, 1
   SW s1, 4(sp)
   CALL getint
-  ADD s0, a0, zero
-  SW s0, 16(sp)
+  ADD s11, a0, zero
   CALL getint
-  ADD s0, a0, zero
-  SW s0, 12(sp)
+  ADD s10, a0, zero
   CALL getint
   ADD s6, a0, zero
   CALL getint
-  ADD s11, a0, zero
+  ADD s0, a0, zero
+  SW s0, 16(sp)
   CALL getint
   ADD s0, a0, zero
   SW s0, 8(sp)
@@ -69,27 +71,24 @@ bb5:   # loop depth 0
   ADD t1, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 0
-  LW t0, 16(sp)
-  SLTU a1, zero, t0
-  LW t0, 16(sp)
-  BNE t0, zero, bb87
+  SLTU a1, zero, s11
+  BNE s11, zero, bb87
   # implict jump to bb7
 bb7:   # loop depth 0
   # implict jump to bb8
 bb8:   # loop depth 0
-  LW t0, 12(sp)
-  SLTIU a3, t0, 1
+  SLTIU a3, s10, 1
   BNE a3, zero, bb86
   # implict jump to bb9
 bb9:   # loop depth 0
-  LW t0, 12(sp)
-  ADDW t1, t1, t0
+  ADDW t1, t1, s10
   # implict jump to bb10
 bb10:   # loop depth 0
   SLTU t2, zero, s0
   ADDIW t1, t1, 1
   XORI t2, t2, 1
-  SUBW a2, zero, s11
+  LW t0, 16(sp)
+  SUBW a2, zero, t0
   SUBW a4, zero, t1
   BNE t2, zero, bb85
   # implict jump to bb11
@@ -159,12 +158,14 @@ bb29:   # loop depth 0
   ADDW t1, s7, t1
   # implict jump to bb30
 bb30:   # loop depth 0
-  SLTIU a5, s10, 1
+  LW t0, 12(sp)
+  SLTIU a5, t0, 1
   ADDIW t1, t1, 1
   BNE a5, zero, bb75
   # implict jump to bb31
 bb31:   # loop depth 0
-  SUBW t1, t1, s10
+  LW t0, 12(sp)
+  SUBW t1, t1, t0
   # implict jump to bb32
 bb32:   # loop depth 0
   MULW t1, t2, t1
@@ -183,8 +184,7 @@ bb36:   # loop depth 0
   BNE a3, zero, bb72
   # implict jump to bb37
 bb37:   # loop depth 0
-  LW t0, 12(sp)
-  ADDW t2, t2, t0
+  ADDW t2, t2, s10
   # implict jump to bb38
 bb38:   # loop depth 0
   ADDIW t2, t2, 1
@@ -200,12 +200,14 @@ bb41:   # loop depth 0
   ADDW t1, t1, s8
   # implict jump to bb42
 bb42:   # loop depth 0
-  SLTIU a1, s11, 1
+  LW t0, 16(sp)
+  SLTIU a1, t0, 1
   ADDIW t2, t1, 1
   BNE a1, zero, bb69
   # implict jump to bb43
 bb43:   # loop depth 0
-  SUBW s6, s6, s11
+  LW t0, 16(sp)
+  SUBW s6, s6, t0
   # implict jump to bb44
 bb44:   # loop depth 0
   MULW a1, t2, s6
@@ -256,7 +258,8 @@ bb56:   # loop depth 0
   BNE a5, zero, bb62
   # implict jump to bb57
 bb57:   # loop depth 0
-  ADDW t0, t0, s10
+  LW t1, 12(sp)
+  ADDW t0, t0, t1
   # implict jump to bb58
 bb58:   # loop depth 0
   ADDIW t0, t0, 1
@@ -350,8 +353,7 @@ bb85:   # loop depth 0
 bb86:   # loop depth 0
   JAL zero, bb10
 bb87:   # loop depth 0
-  LW t0, 16(sp)
-  REMW t1, t1, t0
+  REMW t1, t1, s11
   JAL zero, bb8
 bb88:   # loop depth 0
   ADDI t1, zero, 1

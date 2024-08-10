@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global dfs
 .global main
 .section .bss
@@ -49,9 +50,8 @@ dfs:   # loop depth 0
   ADD a0, a0, a2
   ADD a0, a0, a3
   ADD s7, a5, zero
-  SLLIW a2, s7, 2
   ADD a0, a0, a1
-  ADD s1, a0, a2
+  SH2ADD s1, s7, a0
   LW a0, 0(s1)
   XORI a1, a0, -1
   BNE a1, zero, bb31
@@ -387,12 +387,11 @@ bb44:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb45
 bb45:   # loop depth 1
-  CALL getint
   LA s2, cns
-  ADD s1, a0, zero
-  SLLIW s1, s1, 2
+  CALL getint
   ADDIW s0, s0, 1
-  ADD s1, s2, s1
+  ADD s1, a0, zero
+  SH2ADD s1, s1, s2
   LW s2, 0(s1)
   ADDIW s2, s2, 1
   SW s2, 0(s1)

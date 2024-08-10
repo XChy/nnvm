@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global graphColoring
 .global main
 .section .bss
@@ -40,9 +41,8 @@ bb3:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:   # loop depth 1
-  SLLIW a0, s2, 2
   ADDIW a2, s2, 1
-  ADD s5, s4, a0
+  SH2ADD s5, s2, s4
   ADD a3, s4, zero
   ADD a1, s1, zero
   ADD a0, s3, zero
@@ -132,9 +132,8 @@ bb15:   # loop depth 1
   JAL zero, bb8
 bb16:   # loop depth 2
   SLLIW a0, s2, 4
-  SLLIW s5, s0, 2
   ADD a0, s3, a0
-  ADD a0, a0, s5
+  SH2ADD a0, s0, a0
   LW a0, 0(a0)
   BNE a0, zero, bb21
   # implict jump to bb17
@@ -151,10 +150,9 @@ bb20:   # loop depth 0
   ADD a0, zero, zero
   JAL zero, bb10
 bb21:   # loop depth 2
-  ADD a0, s4, s5
-  SLLIW s5, s2, 2
+  SH2ADD a0, s0, s4
+  SH2ADD s5, s2, s4
   LW a0, 0(a0)
-  ADD s5, s4, s5
   LW s5, 0(s5)
   XOR a0, a0, s5
   SLTIU a0, a0, 1

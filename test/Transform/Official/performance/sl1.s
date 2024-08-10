@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 y:
@@ -148,22 +149,21 @@ bb15:   # loop depth 2
   # implict jump to bb16
 bb16:   # loop depth 3
   LUI s8, 1048224
-  SLLIW s7, s0, 2
   ADDIW s8, s8, 1792
-  ADD s7, s3, s7
-  LUI s9, 352
+  SH2ADD s7, s0, s3
   ADD s8, s7, s8
-  ADDIW s9, s9, -1792
+  LUI s9, 352
   LW s8, 0(s8)
+  ADDIW s9, s9, -1792
   ADD s9, s7, s9
   LUI s10, 1048575
-  LUI s11, 1
   ADDIW s10, s10, 1696
-  ADDIW s11, s11, -1696
+  LUI s11, 1
   LW s9, 0(s9)
   ADD s10, s7, s10
-  ADD s11, s7, s11
+  ADDIW s11, s11, -1696
   ADDIW s0, s0, 1
+  ADD s11, s7, s11
   LW s10, 0(s10)
   ADDW s8, s8, s9
   LW s9, 0(s11)
@@ -217,9 +217,8 @@ bb26:   # loop depth 2
   # implict jump to bb27
 bb27:   # loop depth 3
   ADDI s7, zero, 1
-  SLLIW s3, a0, 2
+  SH2ADD s3, a0, s2
   ADDIW a0, a0, 1
-  ADD s3, s2, s3
   SW s7, 0(s3)
   BLT a0, s4, bb28
   JAL zero, bb24

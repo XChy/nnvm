@@ -124,5 +124,28 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
     return false;
   }
 
+  // add A, B, (shl C, D, 1) --> SH1ADD A, D, B
+  if (match(I, pSpecificDUUInst(
+                   ADD, pSSAReg(A), pSSAReg(B),
+                   pSingleDef(pSpecificDUUInst(SLLIW, pSSAReg(C), pSSAReg(D),
+                                               pImm(imm1)))))) {
+    uint64_t opcode;
+    switch (imm1->getValue()) {
+    case 1:
+      opcode = SH1ADD;
+      break;
+    case 2:
+      opcode = SH2ADD;
+      break;
+    case 3:
+      opcode = SH3ADD;
+      break;
+    default:
+      return false;
+    }
+    builder.addInst(LIRInst::create(opcode, A, D, B));
+    I->eraseFromList();
+  }
+
   return false;
 }

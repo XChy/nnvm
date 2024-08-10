@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global my_sin_impl
 .global main
 .global write_pgm
@@ -158,18 +159,18 @@ bb8:   # loop depth 1
   FLW fs1, 44(sp)
   FDIV.S fa0, fa0, fs1
   FSW fa0, 48(sp)
-  LA s3, .CONSTANT.7.3
+  LA s4, .CONSTANT.7.3
   FLW fa0, 0(s2)
-  LA s4, .CONSTANT.7.4
+  LA s2, .CONSTANT.7.4
   LA s5, .CONSTANT.7.4
-  ADDI s2, zero, 24
+  ADDI s3, zero, 24
   FLW fs1, 0(s0)
-  FCVT.S.W fs2, s2
+  FCVT.S.W fs2, s3
   FSW fs2, 52(sp)
   FSGNJ.S fs4, fs0, fa0
-  ADD s2, zero, zero
-  FLW fa0, 0(s3)
-  FLW fs0, 0(s4)
+  ADD s3, zero, zero
+  FLW fa0, 0(s4)
+  FLW fs0, 0(s2)
   FSGNJ.S fs6, fs1, fa0
   FLW fa0, 0(s5)
   FSGNJ.S fs7, fs0, fa0
@@ -179,7 +180,7 @@ bb9:   # loop depth 2
   FCVT.S.W fa0, s0
   FSW fa0, 152(sp)
   LUI s0, 24414
-  FCVT.S.W fa0, s2
+  FCVT.S.W fa0, s3
   ADDIW s0, s0, 262
   FLW fs0, 152(sp)
   FDIV.S fs0, fs6, fs0
@@ -192,9 +193,9 @@ bb9:   # loop depth 2
   FSGNJN.S fa0, fs6, fs6
   FSW fa0, 60(sp)
   FSGNJ.S fs0, fs4, fs4
-  ADD s3, zero, zero
-  FCVT.S.W fs1, s0
-  FSW fs1, 64(sp)
+  ADD s2, zero, zero
+  FCVT.S.W fa0, s0
+  FSW fa0, 64(sp)
   # implict jump to bb10
 bb10:   # loop depth 3
   LA s0, seed
@@ -215,7 +216,7 @@ bb10:   # loop depth 3
   # implict jump to bb11
 bb11:   # loop depth 3
   LA s0, seed
-  FCVT.S.W fs1, s3
+  FCVT.S.W fs1, s2
   LW s0, 0(s0)
   FCVT.S.W fa0, s0
   FLW fs0, 64(sp)
@@ -304,10 +305,10 @@ bb27:   # loop depth 3
   FSGNJ.S fs0, fs0, fs2
   FSW fs0, 192(sp)
   FLW fs2, 0(s8)
+  CALL my_sin_impl
   FLW fs0, 168(sp)
   FSGNJ.S fs0, fs0, fs2
   FSW fs0, 188(sp)
-  CALL my_sin_impl
   FSGNJ.D fs0, fa0, fa0
   FSW fs0, 184(sp)
   # implict jump to bb28
@@ -325,8 +326,8 @@ bb31:   # loop depth 3
   FSGNJ.S fs1, fs4, fs4
   # implict jump to bb32
 bb32:   # loop depth 3
-  ADDIW s3, s3, 1
-  SLTI s0, s3, 24
+  ADDIW s2, s2, 1
+  SLTI s0, s2, 24
   FLW fs0, 140(sp)
   FADD.S fs0, fs0, fs1
   BNE s0, zero, bb41
@@ -344,8 +345,8 @@ bb33:   # loop depth 2
 bb34:   # loop depth 2
   # implict jump to bb35
 bb35:   # loop depth 2
-  ADDIW s2, s2, 1
-  SLTI s0, s2, 192
+  ADDIW s3, s3, 1
+  SLTI s0, s3, 192
   CALL putint
   ADDI a0, zero, 32
   CALL putch
