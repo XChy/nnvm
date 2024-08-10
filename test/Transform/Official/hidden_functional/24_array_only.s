@@ -16,9 +16,9 @@ sub_impl:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  SLTIU s1, a2, 1
   ADD s0, a0, zero
-  SLTIU a0, a2, 1
-  BNE a0, zero, bb3
+  BNE s1, zero, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   LW s1, 0(s0)
@@ -45,9 +45,9 @@ add_impl:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  SLTIU s1, a2, 1
   ADD s0, a0, zero
-  SLTIU a0, a2, 1
-  BNE a0, zero, bb7
+  BNE s1, zero, bb7
   # implict jump to bb5
 bb5:   # loop depth 0
   LW s1, 0(s0)
@@ -83,9 +83,10 @@ main:   # loop depth 0
   ADD s0, a0, zero
   SW s0, 0(s1)
   CALL getint
-  SW a0, 0(sp)
+  ADD s0, a0, zero
   ADDI a0, sp, 40
   ADD a0, a0, zero
+  SW s0, 0(sp)
   CALL getarray
   # implict jump to bb9
 bb9:   # loop depth 1
@@ -117,9 +118,9 @@ bb12:   # loop depth 1
   LA s2, i
   CALL inc_impl
   LW a2, 0(s1)
-  ADD a0, s0, zero
   ADDI a1, sp, 40
   ADD a1, a1, zero
+  ADD a0, s0, zero
   CALL add_impl
   LW a0, 0(s2)
   LW s0, 44(sp)
@@ -141,22 +142,22 @@ bb13:   # loop depth 2
   LW a0, 40(sp)
   CALL putint
   LW a2, 0(s0)
-  ADDI a0, sp, 40
-  ADD a0, a0, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
+  ADDI a0, sp, 40
+  ADD a0, a0, zero
   CALL add_impl
   LW a2, 0(s1)
+  ADDI a1, sp, 0
+  ADD a1, a1, zero
   ADDI a0, sp, 4
   ADD a0, a0, zero
-  ADDI a1, sp, 0
-  ADD a1, a1, zero
   CALL add_impl
   LW a2, 0(s2)
-  ADDI a0, sp, 40
-  ADD a0, a0, zero
   ADDI a1, sp, 0
   ADD a1, a1, zero
+  ADDI a0, sp, 40
+  ADD a0, a0, zero
   CALL sub_impl
   LW a0, 4(sp)
   SLTI a0, a0, 5

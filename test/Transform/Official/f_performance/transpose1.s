@@ -73,8 +73,8 @@ bb7:   # loop depth 0
   SUBW s1, zero, s1
   JAL zero, bb6
 bb8:   # loop depth 0
-  ADD a0, zero, zero
   ADD s1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
   LA s4, matrix
@@ -95,8 +95,8 @@ bb12:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  ADD s1, a0, zero
   LA s2, a
+  ADD s1, a0, zero
   SLLIW a0, s1, 2
   ADD a0, s2, a0
   LW s2, 0(a0)
@@ -110,11 +110,10 @@ bb14:   # loop depth 1
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  ADD a0, zero, zero
   ADD s6, zero, zero
+  ADD s4, zero, zero
   # implict jump to bb17
 bb17:   # loop depth 2
-  ADD s4, a0, zero
   ADD a0, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 3
@@ -122,8 +121,8 @@ bb18:   # loop depth 3
   BLT s5, s2, bb21
   # implict jump to bb19
 bb19:   # loop depth 2
-  ADDIW a0, s4, 1
-  BLT a0, s3, bb20
+  ADDIW s4, s4, 1
+  BLT s4, s3, bb20
   JAL zero, bb14
 bb20:   # loop depth 2
   JAL zero, bb17
@@ -133,16 +132,16 @@ bb21:   # loop depth 3
   # implict jump to bb22
 bb22:   # loop depth 3
   MULW s6, s4, s2
-  LA s8, matrix
   MULW s7, s5, s3
+  LA s8, matrix
   LA s9, matrix
   ADDW s5, s6, s5
-  SLLIW s5, s5, 2
   ADDW s6, s7, s4
-  ADD s5, s8, s5
+  SLLIW s5, s5, 2
   SLLIW s6, s6, 2
-  LW s7, 0(s5)
+  ADD s5, s8, s5
   ADD s6, s9, s6
+  LW s7, 0(s5)
   SW s7, 0(s6)
   ADD s6, s7, zero
   SW s7, 0(s5)

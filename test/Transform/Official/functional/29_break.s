@@ -5,8 +5,8 @@
 main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  ADD t1, zero, zero
   ADD t0, zero, zero
+  ADD t1, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
   XORI t2, t1, 50
@@ -24,6 +24,6 @@ bb3:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb4:   # loop depth 1
-  ADD t1, t2, zero
   ADD t0, a0, zero
+  ADD t1, t2, zero
   JAL zero, bb1

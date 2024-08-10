@@ -5,14 +5,14 @@
 main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  ADDI a0, zero, 5
-  ADDI t2, zero, 6
-  ADDI t1, zero, 7
   ADDI t0, zero, 10
+  ADDI t1, zero, 7
+  ADDI t2, zero, 6
+  ADDI a0, zero, 5
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADDIW a0, a0, 3
   SLTI a1, t2, 10
+  ADDIW a0, a0, 3
   BNE a1, zero, bb6
   # implict jump to bb2
 bb2:   # loop depth 1
@@ -53,8 +53,8 @@ bb11:   # loop depth 2
 bb12:   # loop depth 2
   # implict jump to bb13
 bb13:   # loop depth 3
-  ADDIW t1, t1, -1
   SLTI a1, t0, 20
+  ADDIW t1, t1, -1
   BNE a1, zero, bb18
   # implict jump to bb14
 bb14:   # loop depth 3

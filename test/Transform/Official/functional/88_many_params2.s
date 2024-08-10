@@ -83,8 +83,8 @@ bb4:   # loop depth 0
   BNE s3, zero, bb10
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADDIW a0, s2, 3
   ADDI s0, zero, 3
+  ADDIW a0, s2, 3
   MULW s0, a0, s0
   SLT a0, s0, zero
   XORI a0, a0, 1

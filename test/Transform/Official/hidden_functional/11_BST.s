@@ -62,8 +62,8 @@ bb5:   # loop depth 0
   LA a4, right_child
   LW a0, 0(t0)
   ADDI a3, zero, -1
-  ADDI a5, zero, -1
   LA a6, now
+  ADDI a5, zero, -1
   SLLIW t0, a0, 2
   ADDIW a2, a0, 1
   ADD t1, t1, t0
@@ -265,8 +265,8 @@ bb33:   # loop depth 0
   LA s8, right_child
   ADD s1, a0, zero
   ADDI s7, zero, -1
-  ADDI s9, zero, -1
   LA s10, now
+  ADDI s9, zero, -1
   SLLIW s3, s2, 2
   ADDIW s6, s2, 1
   ADD s4, s4, s3
@@ -311,8 +311,8 @@ bb36:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb37:   # loop depth 0
-  ADD s0, s2, zero
   ADD s1, zero, zero
+  ADD s0, s2, zero
   # implict jump to bb38
 bb38:   # loop depth 1
   CALL getint
@@ -333,8 +333,8 @@ bb41:   # loop depth 0
   # implict jump to bb42
 bb42:   # loop depth 1
   CALL getint
-  ADD a1, a0, zero
   ADDIW s1, s1, 1
+  ADD a1, a0, zero
   ADD a0, s2, zero
   CALL insert
   BLT s1, s0, bb43

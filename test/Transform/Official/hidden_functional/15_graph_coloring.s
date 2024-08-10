@@ -13,12 +13,12 @@ graphColoring:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   ADD s2, a2, zero
-  ADD s3, a0, zero
-  XORI a0, s2, 4
-  ADD s1, a1, zero
   ADD s4, a3, zero
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb7
+  XORI s0, s2, 4
+  ADD s1, a1, zero
+  SLTIU s0, s0, 1
+  ADD s3, a0, zero
+  BNE s0, zero, bb7
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI s0, zero, 1
@@ -43,9 +43,9 @@ bb4:   # loop depth 1
   SLLIW a0, s2, 2
   ADDIW a2, s2, 1
   ADD s5, s4, a0
-  ADD a0, s3, zero
-  ADD a1, s1, zero
   ADD a3, s4, zero
+  ADD a1, s1, zero
+  ADD a0, s3, zero
   SW s0, 0(s5)
   CALL graphColoring
   BNE a0, zero, bb6
@@ -66,8 +66,8 @@ bb6:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:   # loop depth 0
-  ADD a0, zero, zero
   ADD s2, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 1
   SLTI s0, s2, 4
@@ -163,8 +163,8 @@ main:   # loop depth 0
   ADDI sp, sp, -96
   SD ra, 80(sp)
   SD s0, 88(sp)
-  SW zero, 16(sp)
   ADDI a0, zero, 1
+  SW zero, 16(sp)
   ADDI a1, zero, 1
   SW a0, 20(sp)
   ADDI a0, zero, 1
@@ -180,19 +180,19 @@ main:   # loop depth 0
   SW zero, 44(sp)
   ADDI a2, zero, 1
   SW a1, 48(sp)
-  ADDI a3, zero, 1
+  ADDI a1, zero, 1
   SW a0, 52(sp)
   ADDI s0, zero, 1
   SW zero, 56(sp)
-  ADDI a0, sp, 16
-  ADD a0, a0, zero
-  SW a2, 60(sp)
-  ADDI a1, zero, 3
-  SW a3, 64(sp)
-  ADD a2, zero, zero
-  SW zero, 68(sp)
   ADDI a3, sp, 0
   ADD a3, a3, zero
+  SW a2, 60(sp)
+  ADD a2, zero, zero
+  SW a1, 64(sp)
+  ADDI a1, zero, 3
+  SW zero, 68(sp)
+  ADDI a0, sp, 16
+  ADD a0, a0, zero
   SW s0, 72(sp)
   SW zero, 76(sp)
   SW zero, 0(sp)

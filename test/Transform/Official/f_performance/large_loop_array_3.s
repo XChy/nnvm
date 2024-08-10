@@ -63,8 +63,8 @@ bb1:   # loop depth 0
 bb2:   # loop depth 0
   LA s0, .CONSTANT.7.2
   LA s1, .CONSTANT.7.2
-  ADDI a0, zero, 39
   LA s2, .CONSTANT.7.3
+  ADDI a0, zero, 39
   FLW fs0, 0(s0)
   FLW fs1, 0(s1)
   FSGNJ.S fs0, fs0, fs1
@@ -133,14 +133,14 @@ bb7:   # loop depth 0
   ADDI a0, zero, 1
   JAL zero, bb4
 bb8:   # loop depth 0
-  LA a0, .CONSTANT.7.1
+  LA s0, .CONSTANT.7.1
   LA s4, .CONSTANT.7.1
-  FSGNJ.S fs4, fs0, fs0
-  ADDI s3, zero, 0
-  FLW fs2, 0(a0)
   FSGNJ.S fs1, fs0, fs0
-  ADD s0, zero, zero
   ADD a0, zero, zero
+  FLW fs2, 0(s0)
+  FSGNJ.S fs4, fs0, fs0
+  ADD s0, zero, zero
+  ADDI s3, zero, 0
   FLW fs3, 0(s4)
   FSGNJ.S fs2, fs2, fs3
   FSGNJ.S fs3, fs2, fs2
@@ -224,6 +224,6 @@ bb24:   # loop depth 1
 bb25:   # loop depth 2
   JAL zero, bb23
 bb26:   # loop depth 1
-  FSGNJ.S fs3, fs2, fs2
   FSGNJ.S fs1, fs0, fs0
+  FSGNJ.S fs3, fs2, fs2
   JAL zero, bb11

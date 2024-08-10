@@ -22,11 +22,12 @@ sum:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
+  SD s3, 32(sp)
   CALL getint
   ADDI s1, zero, 0
   ADD s0, a0, zero
@@ -39,19 +40,21 @@ bb1:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 1
-  LA s1, n
+  LA s2, n
   CALL getint
-  ADDI s2, zero, 0
+  ADDI s3, zero, 0
+  ADD s1, a0, zero
   ADDIW s0, s0, -1
-  SW a0, 0(s1)
   ADDI a0, zero, 1
+  SW s1, 0(s2)
   CALL f
-  BLT s2, s0, bb4
+  BLT s3, s0, bb4
   JAL zero, bb1
 bb4:   # loop depth 1
   JAL zero, bb3
@@ -93,8 +96,8 @@ bb7:   # loop depth 0
 bb8:   # loop depth 1
   LA s2, row
   SLLIW a0, s1, 2
-  ADD s2, s2, a0
   ADDW s4, s3, s1
+  ADD s2, s2, a0
   LW a0, 0(s2)
   XORI a0, a0, 1
   BNE a0, zero, bb23
@@ -131,18 +134,18 @@ bb15:   # loop depth 1
   BNE s0, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
-  LA s5, line1
-  ADDI s0, zero, 1
+  LA s0, line1
   SLLIW a0, s4, 2
   ADDI s4, zero, 1
   LA s7, n
-  SW s0, 0(s2)
-  ADD s0, s5, a0
-  LA s5, line2
-  SW s4, 0(s0)
   ADDI s6, zero, 1
-  LW s4, 0(s7)
+  ADD s0, s0, a0
+  SW s4, 0(s2)
+  LA s5, line2
+  SW s6, 0(s0)
   ADDIW a0, s3, 1
+  LW s4, 0(s7)
+  ADDI s6, zero, 1
   LA s7, n
   LA s8, line2
   ADDW s4, s4, s3
@@ -188,8 +191,8 @@ bb19:   # loop depth 2
   BNE a0, zero, bb21
   # implict jump to bb20
 bb20:   # loop depth 2
-  ADDI a0, zero, 32
   ADDIW s0, s0, 1
+  ADDI a0, zero, 32
   CALL putch
   JAL zero, bb18
 bb21:   # loop depth 1

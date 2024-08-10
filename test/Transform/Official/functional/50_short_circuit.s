@@ -34,8 +34,9 @@ bb3:   # loop depth 0
   LA a0, g
   LA s1, g
   LW a0, 0(a0)
-  ADDW a0, a0, s0
-  SW a0, 0(s1)
+  ADDW s0, a0, s0
+  ADD a0, s0, zero
+  SW s0, 0(s1)
   CALL putint
   # implict jump to bb4
 bb4:   # loop depth 0
@@ -78,10 +79,11 @@ bb7:   # loop depth 0
   JALR zero, 0(ra)
 bb8:   # loop depth 0
   LA a0, g
-  LA s0, g
+  LA s1, g
   LW a0, 0(a0)
-  ADDIW a0, a0, 100
-  SW a0, 0(s0)
+  ADDIW s0, a0, 100
+  ADD a0, s0, zero
+  SW s0, 0(s1)
   CALL putint
   JAL zero, bb7
 bb9:   # loop depth 0
@@ -97,7 +99,8 @@ bb10:   # loop depth 0
   LA a0, g
   LA s1, g
   LW a0, 0(a0)
-  ADDW a0, a0, s0
-  SW a0, 0(s1)
+  ADDW s0, a0, s0
+  ADD a0, s0, zero
+  SW s0, 0(s1)
   CALL putint
   JAL zero, bb1

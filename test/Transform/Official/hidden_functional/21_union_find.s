@@ -46,8 +46,8 @@ bb4:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb5:   # loop depth 0
-  ADD s0, zero, zero
   ADD a0, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
   LA s3, parent
@@ -129,7 +129,9 @@ find:   # loop depth 0
 bb21:   # loop depth 0
   LW a0, 0(s0)
   CALL find
-  SW a0, 0(s0)
+  ADD t0, a0, zero
+  ADD a0, t0, zero
+  SW t0, 0(s0)
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)

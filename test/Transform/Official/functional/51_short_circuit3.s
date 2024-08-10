@@ -25,10 +25,10 @@ main:   # loop depth 0
   SD s8, 72(sp)
   SD s9, 80(sp)
   LA a0, a
-  ADDI s0, zero, 2
   LA s1, b
-  ADDI s2, zero, 3
+  ADDI s0, zero, 2
   LA s3, a
+  ADDI s2, zero, 3
   SW s0, 0(a0)
   ADDI s0, zero, 0
   SW s2, 0(s1)
@@ -36,13 +36,13 @@ main:   # loop depth 0
   SW s0, 0(s3)
   LA s9, b
   LA s1, a
-  ADDI s2, zero, 2
   LA s3, b
-  ADDI s4, zero, 3
+  ADDI s2, zero, 2
   LA s5, a
+  ADDI s4, zero, 3
   LA s8, b
-  LA s6, d
   ADDI s0, zero, 1
+  LA s6, d
   ADDI s7, zero, 2
   CALL putint
   SLTI s0, s0, 1

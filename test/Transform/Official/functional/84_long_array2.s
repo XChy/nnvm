@@ -68,13 +68,13 @@ bb8:   # loop depth 0
   ADDI a0, zero, 1
   ADDI s0, zero, 2
   SW a0, 0(sp)
-  ADDI a0, zero, 3
-  SW s0, 4(sp)
   LUI s1, 1
+  SW s0, 4(sp)
+  ADDI a0, zero, 3
   SW zero, 8(sp)
-  ADDI s0, zero, 4
-  SW zero, 12(sp)
   ADDIW s1, s1, -6
+  SW zero, 12(sp)
+  ADDI s0, zero, 4
   SW a0, 16(sp)
   ADD a0, zero, s1
   SW s0, 20(sp)
@@ -89,18 +89,18 @@ bb9:   # loop depth 1
   BNE a0, zero, bb11
   # implict jump to bb10
 bb10:   # loop depth 0
-  LA a0, a
-  LUI s0, 1
-  LUI s1, 4
   LA s2, a
-  LUI s4, 4
+  LUI a0, 4
+  LUI s1, 1
+  LA s0, a
   LA s5, a
-  ADDIW s0, s0, -96
-  ADDIW s1, s1, -384
-  ADDI s3, zero, 3
+  LUI s4, 4
+  ADDIW a0, a0, -384
+  ADDIW s1, s1, -96
   ADDIW s4, s4, -4
-  SW s0, 20(a0)
-  ADD a0, s2, s1
+  ADDI s3, zero, 3
+  ADD a0, s2, a0
+  SW s1, 20(s0)
   ADDI s1, zero, 7
   ADD s0, s5, s4
   SW s3, 0(a0)

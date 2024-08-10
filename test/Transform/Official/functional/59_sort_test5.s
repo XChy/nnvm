@@ -47,8 +47,8 @@ bb1:   # loop depth 1
   BNE s0, zero, bb23
   # implict jump to bb2
 bb2:   # loop depth 1
-  ADDIW s2, s2, -1
   ADDI a0, zero, -1
+  ADDIW s2, s2, -1
   BLT a0, s2, bb22
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -107,8 +107,8 @@ bb11:   # loop depth 1
   ADD s2, s3, zero
   JAL zero, bb4
 bb12:   # loop depth 1
-  ADD s0, zero, zero
   ADDI a0, zero, 1
+  ADD s0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 2
   BLT a0, s3, bb21

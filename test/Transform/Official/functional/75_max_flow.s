@@ -31,8 +31,8 @@ dfs:   # loop depth 0
   SD s7, 64(sp)
   SD s8, 72(sp)
   SD s9, 80(sp)
-  ADD s7, a0, zero
   ADD s8, a1, zero
+  ADD s7, a0, zero
   XOR a0, s7, s8
   ADD s9, a2, zero
   SLTIU a0, a0, 1
@@ -40,15 +40,15 @@ dfs:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, used
+  LA s0, size
   SLLIW a2, s7, 2
-  LA s3, size
-  ADDI s2, zero, 1
-  ADD s0, a0, a2
-  ADD a1, zero, zero
-  ADD s1, zero, zero
+  ADDI s3, zero, 1
+  ADD s2, a0, a2
   ADD a0, zero, zero
-  SW s2, 0(s0)
-  ADD s0, s3, a2
+  ADD s1, zero, zero
+  ADD a1, zero, zero
+  ADD s0, s0, a2
+  SW s3, 0(s2)
   # implict jump to bb2
 bb2:   # loop depth 1
   LW a2, 0(s0)
@@ -101,8 +101,8 @@ bb7:   # loop depth 1
 bb8:   # loop depth 1
   LW a0, 0(s4)
   ADD s1, a2, zero
-  ADD a1, s8, zero
   ADD a2, s1, zero
+  ADD a1, s8, zero
   CALL dfs
   ADD a1, a0, zero
   BLT zero, a1, bb10
@@ -123,8 +123,8 @@ bb10:   # loop depth 0
   LW t0, 0(s4)
   LW t1, 0(t1)
   MULW t0, t0, t2
-  ADD t0, a2, t0
   SLLIW t1, t1, 2
+  ADD t0, a2, t0
   ADD t0, t0, t1
   LW t1, 0(t0)
   ADDW t1, t1, a1
@@ -181,8 +181,8 @@ main:   # loop depth 0
   SD s9, 120(sp)
   SD s10, 128(sp)
   SD s11, 136(sp)
-  CALL getint
   LA s1, size
+  CALL getint
   LA s3, size
   ADD s0, a0, zero
   SW s0, 16(sp)
@@ -227,15 +227,15 @@ bb17:   # loop depth 1
   SW zero, 16(a0)
   LA a0, used
   SW zero, 20(a1)
-  LA s3, used
+  LUI a1, 458752
   SW zero, 24(a2)
-  LUI a2, 458752
+  LA s3, used
   SW zero, 28(s2)
-  ADDIW a2, a2, 0
+  ADDIW a1, a1, 0
   SW zero, 32(a0)
-  ADDI a0, zero, 1
+  ADD a2, zero, a1
   LW a1, 16(sp)
-  ADD a2, zero, a2
+  ADDI a0, zero, 1
   SW zero, 36(s3)
   CALL dfs
   SLTIU s2, a0, 1
@@ -321,16 +321,16 @@ bb21:   # loop depth 1
   LW s1, 8(sp)
   ADD s6, s0, s1
   SW s3, 0(s5)
-  LD s0, 32(sp)
-  LW s1, 8(sp)
-  ADD s3, s0, s1
-  LW s0, 20(sp)
-  SW s0, 0(s6)
   LD s0, 184(sp)
   LW s1, 4(sp)
   ADD s5, s0, s1
+  LW s0, 20(sp)
+  SW s0, 0(s6)
+  LD s0, 32(sp)
+  LW s1, 8(sp)
+  ADD s1, s0, s1
   LD s0, 144(sp)
-  LW s1, 0(s0)
+  LW s3, 0(s0)
   LD s0, 192(sp)
   LW s6, 4(sp)
   ADD s9, s0, s6
@@ -338,8 +338,8 @@ bb21:   # loop depth 1
   LW s6, 4(sp)
   ADD s10, s0, s6
   ADDIW s11, s8, 1
-  SLLIW s6, s1, 2
-  SW s1, 0(s3)
+  SLLIW s6, s3, 2
+  SW s3, 0(s1)
   ADD s1, s5, s6
   ADD s3, s9, s6
   SW s4, 0(s1)

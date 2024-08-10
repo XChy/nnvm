@@ -44,8 +44,8 @@ main:   # loop depth 0
   FSD fs1, 112(sp)
   LA s0, .CONSTANT.7.0
   LA s1, .CONSTANT.7.0
-  ADDI a0, zero, 22
   LA s2, COUNT
+  ADDI a0, zero, 22
   FLW fs0, 0(s0)
   ADDI s0, zero, 0
   FLW fs1, 0(s1)
@@ -60,8 +60,8 @@ bb1:   # loop depth 0
 bb2:   # loop depth 0
   LA s0, .CONSTANT.7.2
   LA s1, .CONSTANT.7.2
-  ADDI a0, zero, 39
   LA s2, .CONSTANT.7.3
+  ADDI a0, zero, 39
   FLW fs0, 0(s0)
   FLW fs1, 0(s1)
   FSGNJ.S fs0, fs0, fs1
@@ -132,11 +132,11 @@ bb7:   # loop depth 0
 bb8:   # loop depth 0
   LA a0, .CONSTANT.7.1
   LA s3, .CONSTANT.7.1
-  FSGNJ.S fs4, fs0, fs0
-  ADD s0, zero, zero
-  FLW fs2, 0(a0)
   FSGNJ.S fs1, fs0, fs0
   ADD s1, zero, zero
+  FLW fs2, 0(a0)
+  FSGNJ.S fs4, fs0, fs0
+  ADD s0, zero, zero
   FLW fs3, 0(s3)
   FSGNJ.S fs2, fs2, fs3
   FSGNJ.S fs3, fs2, fs2
@@ -176,8 +176,8 @@ bb14:   # loop depth 2
   ADD t6, t6, sp
   ADD s3, t6, s3
   FLW fs6, 0(s4)
-  ADDIW a0, a0, 1
   ADDIW s5, s5, 804
+  ADDIW a0, a0, 1
   FLW fs7, 0(s3)
   SLT s3, a0, s5
   FMUL.S fs6, fs6, fs7
@@ -221,6 +221,6 @@ bb21:   # loop depth 1
 bb22:   # loop depth 2
   JAL zero, bb20
 bb23:   # loop depth 1
-  FSGNJ.S fs3, fs2, fs2
   FSGNJ.S fs1, fs0, fs0
+  FSGNJ.S fs3, fs2, fs2
   JAL zero, bb11

@@ -39,8 +39,8 @@ bb1:   # loop depth 0
   LA s0, o_buf
   ADDI a0, zero, 41
   CALL _sysy_stoptime
-  ADD a0, s1, zero
   ADD a1, s0, zero
+  ADD a0, s1, zero
   CALL putfarray
   ADD a0, zero, zero
   LD ra, 0(sp)

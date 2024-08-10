@@ -14,17 +14,17 @@ main:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  LA a0, k
   LUI s0, 1
-  LA s4, k
+  LA a0, k
   LUI s5, 1
+  LA s4, k
   ADDIW s0, s0, -707
   ADDIW s5, s5, -706
   SW s0, 0(a0)
-  ADDI a0, zero, 112
-  ADD s1, zero, zero
-  ADD s2, zero, zero
   ADD s3, zero, zero
+  ADD s2, zero, zero
+  ADD s1, zero, zero
+  ADDI a0, zero, 112
   SW s5, 0(s4)
   # implict jump to bb1
 bb1:   # loop depth 1
@@ -56,7 +56,7 @@ bb5:   # loop depth 1
   JAL zero, bb1
 bb6:   # loop depth 1
   ADDIW a0, a0, -76
-  ADDI s3, zero, 11
-  ADDI s2, zero, 11
   ADDI s1, zero, 10
+  ADDI s2, zero, 11
+  ADDI s3, zero, 11
   JAL zero, bb3

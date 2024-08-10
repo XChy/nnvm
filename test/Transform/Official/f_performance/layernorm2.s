@@ -42,11 +42,11 @@ bb1:   # loop depth 1
   BNE a0, zero, bb39
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDI s0, zero, 1000
-  ADDI a0, zero, 42
+  ADDI a0, zero, 1000
   FSGNJ.S fs3, fs1, fs1
+  FCVT.S.W fs2, a0
+  ADDI a0, zero, 42
   ADD s1, zero, zero
-  FCVT.S.W fs2, s0
   CALL _sysy_starttime
   # implict jump to bb3
 bb3:   # loop depth 1
@@ -90,17 +90,17 @@ bb8:   # loop depth 2
   ADDIW s0, s0, -96
   SLLIW s2, a0, 2
   MULW s3, a0, s0
-  LA s4, a
   ADDI t6, sp, 144
   ADD s0, t6, s2
+  LA s4, a
   FSGNJ.S fs0, fs1, fs1
   FLW fs4, 0(s0)
   ADD s0, zero, zero
+  ADD s3, s4, s3
   LUI t6, 1
   ADDIW t6, t6, 48
   ADD t6, t6, sp
   ADD s2, t6, s2
-  ADD s3, s4, s3
   # implict jump to bb9
 bb9:   # loop depth 3
   SLLIW s4, s0, 2
@@ -154,11 +154,11 @@ bb16:   # loop depth 2
   ADD s3, t6, a0
   MULW s2, s0, s2
   FLW fs0, 0(s3)
-  LA s3, a
   LUI t6, 1
   ADDIW t6, t6, 48
   ADD t6, t6, sp
   ADD a0, t6, a0
+  LA s3, a
   FLW fs4, 0(a0)
   ADD a0, zero, zero
   ADD s2, s3, s2

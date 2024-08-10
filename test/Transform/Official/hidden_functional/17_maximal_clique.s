@@ -29,8 +29,8 @@ main:   # loop depth 0
   SD s8, 56(sp)
   SD s0, 64(sp)
   SD s1, 72(sp)
-  CALL getint
   LA s1, n
+  CALL getint
   ADD s0, a0, zero
   LA s2, m
   SW s0, 0(s1)
@@ -46,8 +46,8 @@ bb1:   # loop depth 0
   BLT zero, a0, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADD a0, zero, zero
   ADDI a1, zero, 1
+  ADD a0, zero, zero
   CALL maxCliques
   CALL putint
   ADD a0, zero, zero
@@ -86,8 +86,8 @@ bb4:   # loop depth 1
   MULW s0, s1, s2
   SLLIW s2, s1, 2
   MULW s4, s8, s4
-  ADD s0, s7, s0
   SLLIW s1, s8, 2
+  ADD s0, s7, s0
   ADD s0, s0, s1
   ADD s1, s5, s4
   SW s3, 0(s0)
@@ -159,19 +159,20 @@ bb11:   # loop depth 0
 bb12:   # loop depth 0
   LA s3, store
   SLLIW s1, s6, 2
-  ADDIW s0, s6, 1
-  ADD s2, zero, zero
-  ADDI a0, zero, 1
   ADD a1, zero, zero
+  ADDI a0, zero, 1
+  ADD s2, zero, zero
+  ADDIW s0, s6, 1
   ADD s10, s3, s1
   # implict jump to bb13
 bb13:   # loop depth 1
   ADD s1, a0, zero
-  ADD a0, s2, zero
-  ADDI s2, zero, 1
+  ADDI s3, zero, 1
   SW s1, 0(s10)
+  ADD a0, s2, zero
   # implict jump to bb14
 bb14:   # loop depth 2
+  ADD s2, s3, zero
   BLT s2, s0, bb28
   # implict jump to bb15
 bb15:   # loop depth 1
@@ -203,8 +204,8 @@ bb22:   # loop depth 1
   ADD s2, a0, zero
   # implict jump to bb23
 bb23:   # loop depth 1
-  ADD a0, s1, zero
   ADD a1, s0, zero
+  ADD a0, s1, zero
   CALL maxCliques
   BLT s2, a0, bb26
   # implict jump to bb24
@@ -227,7 +228,6 @@ bb29:   # loop depth 3
   BLT s4, s0, bb31
   # implict jump to bb30
 bb30:   # loop depth 2
-  ADD s2, s3, zero
   JAL zero, bb14
 bb31:   # loop depth 3
   LA s9, store
@@ -241,8 +241,8 @@ bb31:   # loop depth 3
   LA s8, graph
   LW s7, 0(s7)
   MULW s5, s5, s9
-  ADD s5, s8, s5
   SLLIW s7, s7, 2
+  ADD s5, s8, s5
   ADD s5, s5, s7
   LW s5, 0(s5)
   SLTIU s5, s5, 1

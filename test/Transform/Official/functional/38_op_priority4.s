@@ -29,8 +29,8 @@ main:   # loop depth 0
   SD s6, 56(sp)
   SD s7, 64(sp)
   SD s8, 72(sp)
-  CALL getint
   LA s1, a
+  CALL getint
   ADD s0, a0, zero
   LA s2, b
   SW s0, 0(s1)

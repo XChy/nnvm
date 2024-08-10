@@ -31,13 +31,13 @@ main:   # loop depth 0
   SW s1, 16(sp)
   ADDI s1, zero, 5
   SW a0, 20(sp)
-  ADDI a0, zero, 7
+  ADDI s2, zero, 7
   SW s0, 24(sp)
   ADDI s0, zero, 8
   SW s1, 28(sp)
-  ADD s2, zero, zero
-  SW a0, 32(sp)
   ADD a0, zero, zero
+  SW s2, 32(sp)
+  ADD s2, zero, zero
   SW s0, 36(sp)
   # implict jump to bb1
 bb1:   # loop depth 1

@@ -108,16 +108,16 @@ bb13:   # loop depth 0
 bb14:   # loop depth 0
   # implict jump to bb15
 bb15:   # loop depth 1
+  ADDI s1, zero, 256
   ADD s10, s0, zero
-  ADDI s0, zero, 256
   # implict jump to bb16
 bb16:   # loop depth 2
-  SLLIW s1, s0, 2
-  ADDIW s0, s0, -1
+  SLLIW s0, s1, 2
+  ADDIW s1, s1, -1
   ADDI t6, sp, 96
-  ADD s1, t6, s1
-  SW zero, -4(s1)
-  BNE s0, zero, bb195
+  ADD s0, t6, s0
+  SW zero, -4(s0)
+  BNE s1, zero, bb195
   # implict jump to bb17
 bb17:   # loop depth 1
   ADDI s0, zero, 256
@@ -141,10 +141,10 @@ bb20:   # loop depth 1
   LW s1, 96(sp)
   SLLIW s2, s1, 2
   ADDIW s1, s1, 1
-  SW s1, 96(sp)
   ADDI t6, sp, 96
-  ADD s1, t6, s2
-  SW s0, 4(s1)
+  ADD s2, t6, s2
+  SW s1, 96(sp)
+  SW s0, 4(s2)
   # implict jump to bb21
 bb21:   # loop depth 2
   LA s0, last_char
@@ -197,9 +197,9 @@ bb31:   # loop depth 1
   SW s4, 0(s3)
   # implict jump to bb32
 bb32:   # loop depth 1
-  ADD s0, zero, zero
-  ADD s1, zero, zero
   ADD s2, zero, zero
+  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb33
 bb33:   # loop depth 2
   LA s3, cur_token
@@ -266,11 +266,11 @@ bb46:   # loop depth 1
   SLLIW a0, a0, 2
   ADDI t6, sp, 96
   ADD a0, t6, a0
-  LW s1, 0(a0)
+  LW s0, 0(a0)
   # implict jump to bb47
 bb47:   # loop depth 1
+  ADD a0, s0, zero
   ADDIW s0, s10, -1
-  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -330,10 +330,10 @@ bb55:   # loop depth 2
   LW s0, 96(sp)
   SLLIW s1, s0, 2
   ADDIW s0, s0, 1
-  SW s0, 96(sp)
   ADDI t6, sp, 96
-  ADD s0, t6, s1
-  SW a0, 4(s0)
+  ADD s1, t6, s1
+  SW s0, 96(sp)
+  SW a0, 4(s1)
   JAL zero, bb45
 bb56:   # loop depth 2
   REMW a0, s0, s1
@@ -407,8 +407,8 @@ bb72:   # loop depth 1
   XORI s0, s0, 1
   JAL zero, bb41
 bb73:   # loop depth 2
-  CALL getch
   LA s1, last_char
+  CALL getch
   ADD s0, a0, zero
   SW s0, 0(s1)
   JAL zero, bb34
@@ -526,10 +526,10 @@ bb101:   # loop depth 2
   LA s6, cur_token
   SLLIW s5, s4, 2
   ADDIW s4, s4, 1
-  SW s4, 1120(sp)
   ADDI t6, sp, 1120
-  ADD s4, t6, s5
-  SW s3, 4(s4)
+  ADD s5, t6, s5
+  SW s4, 1120(sp)
+  SW s3, 4(s5)
   LW s3, 0(s6)
   BNE s3, zero, bb130
   # implict jump to bb102
@@ -539,10 +539,10 @@ bb102:   # loop depth 2
   LW s4, 96(sp)
   SLLIW s5, s4, 2
   ADDIW s4, s4, 1
-  SW s4, 96(sp)
   ADDI t6, sp, 96
-  ADD s4, t6, s5
-  SW s3, 4(s4)
+  ADD s5, t6, s5
+  SW s4, 96(sp)
+  SW s3, 4(s5)
   # implict jump to bb103
 bb103:   # loop depth 3
   LA s3, last_char
@@ -653,8 +653,8 @@ bb126:   # loop depth 2
   XORI s3, s3, 1
   JAL zero, bb110
 bb127:   # loop depth 3
-  CALL getch
   LA s4, last_char
+  CALL getch
   ADD s3, a0, zero
   SW s3, 0(s4)
   JAL zero, bb103
@@ -666,7 +666,7 @@ bb129:   # loop depth 3
   JAL zero, bb105
 bb130:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s1, zero, -1
+  ADDI s0, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch
@@ -731,12 +731,12 @@ bb136:   # loop depth 3
   # implict jump to bb137
 bb137:   # loop depth 3
   LW s6, 96(sp)
-  ADDIW s7, s6, 1
-  SLLIW s6, s6, 2
+  SLLIW s7, s6, 2
+  ADDIW s6, s6, 1
   ADDI t6, sp, 96
-  ADD s6, t6, s6
-  SW s7, 96(sp)
-  SW s5, 4(s6)
+  ADD s7, t6, s7
+  SW s6, 96(sp)
+  SW s5, 4(s7)
   JAL zero, bb98
 bb138:   # loop depth 3
   REMW s5, s0, s1
@@ -867,8 +867,8 @@ bb169:   # loop depth 2
   XORI s5, s5, 1
   JAL zero, bb93
 bb170:   # loop depth 3
-  CALL getch
   LA s6, last_char
+  CALL getch
   ADD s5, a0, zero
   SW s5, 0(s6)
   JAL zero, bb86
@@ -950,8 +950,8 @@ bb189:   # loop depth 1
   XORI s0, s0, 1
   JAL zero, bb28
 bb190:   # loop depth 2
-  CALL getch
   LA s1, last_char
+  CALL getch
   ADD s0, a0, zero
   SW s0, 0(s1)
   JAL zero, bb21
@@ -963,7 +963,7 @@ bb192:   # loop depth 2
   JAL zero, bb23
 bb193:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s1, zero, -1
+  ADDI s0, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch
@@ -1039,8 +1039,8 @@ bb207:   # loop depth 0
   XORI s1, s1, 1
   JAL zero, bb8
 bb208:   # loop depth 1
-  CALL getch
   LA s2, last_char
+  CALL getch
   ADD s1, a0, zero
   SW s1, 0(s2)
   JAL zero, bb1

@@ -26,7 +26,6 @@ void DepGraph::computePriority() {
 
       priorities[node] = std::max(getLatency(node) + op, antiop);
     }
-
   }
 }
 
@@ -43,6 +42,7 @@ bool Scheduler::scheduleBlock(LIRBB *BB) {
   U74ScheduleModel model;
 
   std::vector<LIRInst *> ready;
+  std::unordered_map<LIRInst *, int> indexOfInst;
   std::unordered_map<LIRInst *, int> infight;
   std::unordered_set<LIRInst *> retired;
 
@@ -53,6 +53,7 @@ bool Scheduler::scheduleBlock(LIRBB *BB) {
       break;
     }
 
+    indexOfInst.insert({inst, indexOfInst.size()});
     inst->removeFromList();
 
     if (graph.isRoot(inst))
@@ -63,7 +64,7 @@ bool Scheduler::scheduleBlock(LIRBB *BB) {
     if (A->getOpcode() == CALL)
       return false;
     if (graph.getPriority(A) == graph.getPriority(B))
-      return false;
+      return indexOfInst[A] > indexOfInst[B];
     return graph.getPriority(A) > graph.getPriority(B);
   };
 

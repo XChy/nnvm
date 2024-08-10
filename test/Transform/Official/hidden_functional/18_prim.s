@@ -117,8 +117,8 @@ bb20:   # loop depth 0
   BNE a0, zero, bb30
   # implict jump to bb21
 bb21:   # loop depth 0
-  ADD s0, zero, zero
   ADD s5, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb22
 bb22:   # loop depth 1
   LA a0, m
@@ -187,20 +187,20 @@ bb30:   # loop depth 0
   # implict jump to bb31
 bb31:   # loop depth 1
   LA s4, fa
-  SLLIW s2, a0, 2
   ADDIW s0, a0, 1
+  SLLIW s2, a0, 2
   SLT s3, s1, s0
   ADD s2, s4, s2
+  XORI s3, s3, 1
   SW a0, 0(s2)
-  XORI a0, s3, 1
-  BNE a0, zero, bb32
+  BNE s3, zero, bb32
   JAL zero, bb21
 bb32:   # loop depth 1
   ADD a0, s0, zero
   JAL zero, bb31
 bb33:   # loop depth 0
-  ADD s1, zero, zero
   ADD s6, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb34
 bb34:   # loop depth 1
   ADDIW s0, s1, 1
@@ -221,8 +221,8 @@ bb38:   # loop depth 1
   ADD s2, s2, s1
   # implict jump to bb39
 bb39:   # loop depth 2
-  LW s7, 0(s2)
   LA s5, c
+  LW s7, 0(s2)
   SLLIW s4, s3, 2
   ADD s5, s5, s4
   LW s8, 0(s5)

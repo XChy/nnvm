@@ -83,8 +83,8 @@ bb10:   # loop depth 0
   BNE s1, zero, bb24
   # implict jump to bb11
 bb11:   # loop depth 0
-  ADD s1, zero, zero
   ADD s0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb12
 bb12:   # loop depth 1
   SLLIW a0, s1, 2
@@ -157,9 +157,9 @@ bb22:   # loop depth 1
 bb23:   # loop depth 0
   JAL zero, bb14
 bb24:   # loop depth 0
-  ADD s2, zero, zero
-  ADD a0, zero, zero
   ADDI s0, zero, -1
+  ADD a0, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb25
 bb25:   # loop depth 1
   XORI s3, s0, -1
@@ -194,12 +194,12 @@ bb29:   # loop depth 1
 bb30:   # loop depth 1
   JAL zero, bb25
 bb31:   # loop depth 1
-  ADDIW s1, s0, 1
-  ADDIW a0, a0, 1
   LUI t6, 8
   ADDIW t6, t6, 56
   ADD t6, t6, sp
   ADD s2, t6, s2
+  ADDIW a0, a0, 1
+  ADDIW s1, s0, 1
   ADD s0, s1, zero
   SW s1, 4(s2)
   JAL zero, bb29

@@ -11,8 +11,8 @@ main:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  CALL getint
   LA s1, loopCount
+  CALL getint
   ADD s0, a0, zero
   LA s2, loopCount
   ADDI a0, zero, 121
@@ -40,8 +40,8 @@ bb2:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD a0, zero, zero
   ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   LUI s2, 366211

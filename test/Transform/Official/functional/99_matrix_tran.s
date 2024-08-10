@@ -23,14 +23,14 @@ main:   # loop depth 0
   FSD fs1, 56(sp)
   FSD fs2, 64(sp)
   LA a0, N
-  ADDI s0, zero, 3
   LA s1, M
-  ADDI s2, zero, 3
-  LA s3, L
+  ADDI s0, zero, 3
   ADDI s4, zero, 1
+  LA s3, L
+  ADDI s2, zero, 3
   SW s0, 0(a0)
-  ADDI a0, zero, 3
   FCVT.S.W fs1, s4
+  ADDI a0, zero, 3
   SW s2, 0(s1)
   SW a0, 0(s3)
   ADDI a0, zero, 2
@@ -50,15 +50,15 @@ main:   # loop depth 0
   BNE s0, zero, bb10
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADDI a0, zero, 10
   LA s0, N
+  ADDI a0, zero, 10
   CALL putch
   LW a0, 0(s0)
   BLT zero, a0, bb7
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDI a0, zero, 10
   LA s0, N
+  ADDI a0, zero, 10
   CALL putch
   LW a0, 0(s0)
   BLT zero, a0, bb4

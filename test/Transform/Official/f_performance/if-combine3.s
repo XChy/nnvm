@@ -34,15 +34,15 @@ bb2:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD a0, zero, zero
   ADD s1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   LUI s2, 1
   LUI s3, 16
   ADDIW s2, s2, 854
-  ADDW a0, a0, s2
   ADDIW s3, s3, -1
+  ADDW a0, a0, s2
   REMW a0, a0, s3
   ADDIW s1, s1, 1
   BLT s1, s0, bb6

@@ -35,8 +35,8 @@ main:   # loop depth 0
   LA s0, y
   LA s3, v
   LA s2, a
-  ADDI s7, zero, 0
   ADD s1, zero, zero
+  ADDI s7, zero, 0
   CALL getarray
   ADD s4, a0, zero
   ADD a0, s0, zero
@@ -71,8 +71,8 @@ bb6:   # loop depth 0
   LA s1, b
   ADDI a0, zero, 47
   CALL _sysy_stoptime
-  ADD a0, s0, zero
   ADD a1, s1, zero
+  ADD a0, s0, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)

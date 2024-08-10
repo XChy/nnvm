@@ -7,8 +7,8 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  ADDI a0, zero, 4
   ADD s0, zero, zero
+  ADDI a0, zero, 4
   # implict jump to bb1
 bb1:   # loop depth 1
   SLTI s1, a0, 100
@@ -31,8 +31,8 @@ bb4:   # loop depth 0
 bb5:   # loop depth 1
   JAL zero, bb1
 bb6:   # loop depth 1
-  ADDIW a0, a0, 42
   ADDI s1, zero, 99
+  ADDIW a0, a0, 42
   BLT s1, a0, bb9
   # implict jump to bb7
 bb7:   # loop depth 1
@@ -40,6 +40,6 @@ bb7:   # loop depth 1
 bb8:   # loop depth 1
   JAL zero, bb3
 bb9:   # loop depth 1
-  ADDI s0, zero, 84
   ADDI a0, zero, 168
+  ADDI s0, zero, 84
   JAL zero, bb8

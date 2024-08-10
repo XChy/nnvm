@@ -408,9 +408,9 @@ bb58:   # loop depth 0
   BLT a0, s0, bb156
   # implict jump to bb59
 bb59:   # loop depth 0
-  ADDI a0, zero, 2
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADDI a0, zero, 2
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb155
@@ -510,9 +510,9 @@ bb72:   # loop depth 1
   BNE a0, zero, bb145
   # implict jump to bb73
 bb73:   # loop depth 0
-  ADD a0, zero, zero
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADD a0, zero, zero
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb144
@@ -703,9 +703,9 @@ bb99:   # loop depth 2
   BNE a0, zero, bb136
   # implict jump to bb100
 bb100:   # loop depth 1
-  ADDI a0, zero, 2
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADDI a0, zero, 2
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb135
@@ -805,9 +805,9 @@ bb113:   # loop depth 2
   BNE a0, zero, bb125
   # implict jump to bb114
 bb114:   # loop depth 1
-  ADD a0, zero, zero
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADD a0, zero, zero
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb124
@@ -1213,9 +1213,9 @@ bb168:   # loop depth 0
   BLT a0, s0, bb216
   # implict jump to bb169
 bb169:   # loop depth 0
-  ADD a0, zero, zero
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADD a0, zero, zero
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb215
@@ -1406,9 +1406,9 @@ bb195:   # loop depth 2
   BNE a0, zero, bb207
   # implict jump to bb196
 bb196:   # loop depth 1
-  ADD a0, zero, zero
-  ADD a1, s1, zero
   ADD a2, s0, zero
+  ADD a1, s1, zero
+  ADD a0, zero, zero
   CALL detect_item
   SLTIU a0, a0, 1
   BNE a0, zero, bb206
@@ -2139,8 +2139,8 @@ bb316:   # loop depth 1
   # implict jump to bb317
 bb317:   # loop depth 0
   LA a1, buffer
-  ADD a0, zero, zero
   ADD a2, s0, zero
+  ADD a0, zero, zero
   CALL detect_item
   # implict jump to bb318
 bb318:   # loop depth 1

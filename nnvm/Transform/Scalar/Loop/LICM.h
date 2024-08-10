@@ -18,6 +18,8 @@ public:
   static constexpr const char *passName = "licm";
   bool run(Function &F);
 
+  bool tryHoistInvariant(Instruction *I, Loop *L);
+  bool tryHoistReassoc(Instruction *I, Loop *L);
   bool isInvariant(Instruction *I, Loop *L);
   bool isTriviallyInvariant(Instruction *I, Loop *L);
   bool isInvariantStore(StoreInst *I, Loop *L);

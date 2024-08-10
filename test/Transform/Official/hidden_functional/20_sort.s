@@ -189,8 +189,8 @@ bb28:   # loop depth 0
   LW a2, 0(t1)
   # implict jump to bb29
 bb29:   # loop depth 1
-  ADDIW a1, t0, 1
   SLLIW t2, t0, 2
+  ADDIW a1, t0, 1
   BLT a1, a2, bb33
   # implict jump to bb30
 bb30:   # loop depth 1
@@ -212,8 +212,8 @@ bb32:   # loop depth 1
   JAL zero, bb29
 bb33:   # loop depth 1
   LA a3, n
-  ADD a0, t2, zero
   ADD t1, a1, zero
+  ADD a0, t2, zero
   LW a3, 0(a3)
   # implict jump to bb34
 bb34:   # loop depth 2
@@ -241,8 +241,8 @@ bb39:   # loop depth 2
   ADD t0, t1, zero
   JAL zero, bb36
 bb40:   # loop depth 0
-  ADD t2, zero, zero
   ADD t0, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb41
 bb41:   # loop depth 1
   LA a1, cnt
@@ -267,8 +267,8 @@ bb46:   # loop depth 2
   LA a2, b
   SLLIW a1, t0, 2
   ADD a1, a2, a1
-  ADDIW t0, t0, 1
   ADDIW t1, t1, -1
+  ADDIW t0, t0, 1
   SW t2, 0(a1)
   BNE t1, zero, bb48
   # implict jump to bb47
@@ -278,8 +278,8 @@ bb48:   # loop depth 2
   JAL zero, bb46
 bb49:   # loop depth 0
   LA t0, n
-  ADD t1, zero, zero
   ADDI a0, zero, -100
+  ADD t1, zero, zero
   LW t2, 0(t0)
   # implict jump to bb50
 bb50:   # loop depth 1
@@ -310,8 +310,8 @@ bb55:   # loop depth 1
   JAL zero, bb52
 bb56:   # loop depth 0
   LA t2, n
-  ADD t1, zero, zero
   ADD t0, zero, zero
+  ADD t1, zero, zero
   LW a1, 0(t2)
   # implict jump to bb57
 bb57:   # loop depth 1
@@ -327,16 +327,16 @@ bb60:   # loop depth 1
   ADD t1, t2, zero
   JAL zero, bb57
 bb61:   # loop depth 1
-  LA a2, n
+  LA a0, n
   LA a3, a
   SLLIW t1, t1, 2
+  LW a2, 0(a0)
   ADD a0, t2, zero
-  LW a2, 0(a2)
   ADD a3, a3, t1
   # implict jump to bb62
 bb62:   # loop depth 2
-  LW t1, 0(a3)
   LA a5, a
+  LW t1, 0(a3)
   SLLIW a4, a0, 2
   ADD a4, a5, a4
   LW a5, 0(a4)
@@ -404,14 +404,14 @@ bb78:   # loop depth 1
 bb79:   # loop depth 1
   LA s0, b
   LA s2, c
-  SW s1, 0(s5)
+  LA s6, n
   ADD s0, s0, s4
-  LA s5, n
+  SW s1, 0(s5)
+  ADD s2, s2, s4
   SW s1, 0(s0)
-  ADD s0, s2, s4
-  SW s1, 0(s0)
+  SW s1, 0(s2)
   ADDIW s3, s3, 1
-  LW s0, 0(s5)
+  LW s0, 0(s6)
   BNE s3, s0, bb80
   JAL zero, bb11
 bb80:   # loop depth 1

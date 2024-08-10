@@ -3,9 +3,13 @@
 #include "ADT/Ranges.h"
 #include "Analysis/PostDomTreeAnalysis.h"
 #include "IR/Attributes.h"
+#include "IR/IRBuilder.h"
+#include "LoopUtils.h"
+#include "Transform/Scalar/CombinePatterns.h"
 #include "Utils/Cast.h"
 
 using namespace nnvm;
+using namespace nnvm::pattern;
 
 bool LICMPass::run(Function &F) {
   LA = getAnalysis<LoopAnalysis>(F);
@@ -23,16 +27,44 @@ bool LICMPass::run(Function &F) {
 
     for (auto *block : loop->getBlocks()) {
       for (Instruction *I : incChange(*block)) {
-        if (isInvariant(I, loop) &&
-            postDomTree->dom(block, loop->getHeader())) {
-          I->removeFromBB();
-          preheader->termEnd().insertBefore(I);
-        }
+        if (postDomTree->dom(block, loop->getHeader()))
+          tryHoistInvariant(I, loop);
       }
     }
   }
 
   return true;
+}
+
+bool LICMPass::tryHoistInvariant(Instruction *I, Loop *loop) {
+  if (isInvariant(I, loop)) {
+    I->removeFromBB();
+    loop->getPreheader()->termEnd().insertBefore(I);
+    return true;
+  }
+
+  if (tryHoistReassoc(I, loop))
+    return true;
+  return false;
+}
+
+bool LICMPass::tryHoistReassoc(Instruction *I, Loop *loop) {
+  Value *A, *B, *C;
+  IRBuilder builder;
+  if (match(I, pPtrAdd(pPtrAdd(pValue(A), pValue(B)), pValue(C))) &&
+      isDefinedOutside(A, loop) && !isDefinedOutside(B, loop) &&
+      isDefinedOutside(C, loop)) {
+    builder.insertAt(loop->getPreheader()->termEnd());
+    auto *immut = builder.buildBinOp<PtrAddInst>(A, C, A->getType());
+    builder.insertAt(I);
+    auto *reassoc = builder.buildBinOp<PtrAddInst>(immut, B, immut->getType());
+
+    I->replaceSelf(reassoc);
+    I->eraseFromBB();
+
+    return true;
+  }
+  return false;
 }
 
 bool LICMPass::isOperandsInvariant(Instruction *I, Loop *L) {

@@ -110,8 +110,8 @@ bb8:   # loop depth 0
   BNE s0, zero, bb29
   # implict jump to bb9
 bb9:   # loop depth 0
-  CALL getint
   LA s1, width
+  CALL getint
   ADD s0, a0, zero
   LA s2, height
   SW s0, 0(s1)
@@ -322,8 +322,8 @@ bb34:   # loop depth 1
   BLT zero, s0, bb37
   # implict jump to bb35
 bb35:   # loop depth 1
-  ADDI a0, zero, 10
   LA s0, height
+  ADDI a0, zero, 10
   ADDIW s1, s1, 1
   CALL putch
   LW s0, 0(s0)
@@ -335,8 +335,8 @@ bb37:   # loop depth 1
   ADDI s0, zero, 2
   FLT.S s3, fs0, fs6
   FCVT.S.W fa0, s0
-  FSGNJN.S fs2, fs0, fs0
   FSGNJN.S fs3, fs1, fs1
+  FSGNJN.S fs2, fs0, fs0
   ADD s0, zero, zero
   FDIV.S fa0, fs1, fa0
   FADD.S fs4, fs6, fa0
@@ -409,20 +409,20 @@ bb54:   # loop depth 2
   ADD s6, s7, s6
   FCVT.S.W fs8, s5
   SRAIW s5, s6, 1
-  FCVT.S.W fs11, a0
-  SUBW a0, s1, s5
-  FMUL.S fs9, fs8, fs7
   FCVT.S.W fs10, a0
-  FMUL.S fs8, fs8, fs5
-  FMUL.S fs5, fs10, fs5
-  FMUL.S fs7, fs10, fs7
-  FCVT.S.W fs10, s5
-  FSUB.S fs5, fs9, fs5
-  FADD.S fs7, fs8, fs7
-  FADD.S fs5, fs5, fs11
-  FADD.S fs7, fs7, fs10
-  FCVT.W.S s5, fs5, rtz
+  SUBW a0, s1, s5
+  FMUL.S fs11, fs8, fs5
+  FCVT.S.W fs9, a0
+  FMUL.S fs8, fs8, fs7
+  FMUL.S fs7, fs9, fs7
+  FMUL.S fs5, fs9, fs5
+  FCVT.S.W fs9, s5
+  FADD.S fs7, fs11, fs7
+  FSUB.S fs5, fs8, fs5
+  FADD.S fs7, fs7, fs9
+  FADD.S fs5, fs5, fs10
   FCVT.W.S s6, fs7, rtz
+  FCVT.W.S s5, fs5, rtz
   BLT s5, zero, bb67
   # implict jump to bb55
 bb55:   # loop depth 2

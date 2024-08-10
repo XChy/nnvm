@@ -80,11 +80,11 @@ bb2:   # loop depth 0
   LA s1, .CONSTANT.7.9
   LA s2, .CONSTANT.7.9
   FLW fs1, 0(a0)
-  ADDI a0, zero, 1
   ADDI s3, zero, 2
+  ADDI a0, zero, 1
   FLW fs2, 0(s0)
-  FCVT.S.W fs4, a0
   FCVT.S.W fs5, s3
+  FCVT.S.W fs4, a0
   FLW fs3, 0(s1)
   FSGNJ.S fs2, fs1, fs2
   FLW fs1, 0(s2)
@@ -285,13 +285,13 @@ bb35:   # loop depth 0
   # implict jump to bb36
 bb36:   # loop depth 0
   LA s0, .CONSTANT.7.3
+  LA s2, .CONSTANT.7.4
   ADDI a0, sp, 152
   ADD a0, a0, zero
-  LA s2, .CONSTANT.7.4
   LA s3, .CONSTANT.7.4
   FLW fs0, 0(s0)
-  ADDI s1, zero, 1
   ADD s0, zero, zero
+  ADDI s1, zero, 1
   FSW fs0, 152(sp)
   FSW fs5, 156(sp)
   FSW fs1, 160(sp)
@@ -345,9 +345,9 @@ bb37:   # loop depth 1
   BNE s3, zero, bb39
   # implict jump to bb38
 bb38:   # loop depth 0
-  ADD a0, s2, zero
   ADDI a1, sp, 152
   ADD a1, a1, zero
+  ADD a0, s2, zero
   CALL putfarray
   ADD a0, zero, zero
   LD ra, 0(sp)

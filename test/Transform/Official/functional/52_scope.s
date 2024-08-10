@@ -12,8 +12,8 @@ main:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   LA s1, a
-  ADD a0, zero, zero
   ADD s0, zero, zero
+  ADD a0, zero, zero
   LW s1, 0(s1)
   XORI s1, s1, 1
   SLTIU s2, s1, 1

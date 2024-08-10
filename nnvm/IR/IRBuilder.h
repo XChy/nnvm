@@ -20,6 +20,12 @@ public:
     this->module = insertPoint.getBB()->getParent()->getModule();
   }
 
+  void insertAt(Instruction *insertPoint) {
+    this->insertPoint =
+        BasicBlock::Iterator(insertPoint, insertPoint->getBlock());
+    this->module = insertPoint->getBlock()->getParent()->getModule();
+  }
+
   BasicBlock::Iterator getInsertPoint() const { return insertPoint; }
   BasicBlock *getCurrentBB() { return getInsertPoint().getBB(); }
   Function *getCurrentFunc() { return getCurrentBB()->getParent(); }

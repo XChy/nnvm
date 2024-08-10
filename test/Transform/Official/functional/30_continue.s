@@ -5,8 +5,8 @@
 main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  ADD a0, zero, zero
   ADD t0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
   SLTI t1, t0, 100

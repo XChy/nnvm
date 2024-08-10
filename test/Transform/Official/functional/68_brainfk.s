@@ -44,8 +44,8 @@ bb2:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD s0, zero, zero
   ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   LA s4, program
@@ -87,9 +87,9 @@ bb8:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb9:   # loop depth 0
-  ADD s0, zero, zero
-  ADD s1, zero, zero
   ADD s2, zero, zero
+  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb10
 bb10:   # loop depth 1
   XORI s5, s4, 62

@@ -12,17 +12,18 @@ seed:
 .byte 159, 188, 48, 1, 213, 226, 48, 1, 7, 202, 154, 59
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -208
+  ADDI sp, sp, -224
   SD ra, 0(sp)
-  SD s3, 8(sp)
-  SD s4, 16(sp)
-  SD s5, 24(sp)
-  SD s6, 32(sp)
-  SD s7, 40(sp)
-  SD s8, 48(sp)
+  SD s4, 8(sp)
+  SD s5, 16(sp)
+  SD s6, 24(sp)
+  SD s7, 32(sp)
+  SD s8, 40(sp)
+  SD s9, 48(sp)
   SD s0, 56(sp)
   SD s1, 64(sp)
   SD s2, 72(sp)
+  SD s3, 80(sp)
   CALL getint
   LA s2, staticvalue
   ADD s1, a0, zero
@@ -35,26 +36,27 @@ main:   # loop depth 0
   BLT s3, s1, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  LUI s1, 2
   LA s0, a
-  ADDI a0, zero, 64
+  LUI s1, 2
   ADDIW s1, s1, 1808
+  ADDI a0, zero, 64
   CALL _sysy_stoptime
-  ADD a0, zero, s1
   ADD a1, s0, zero
+  ADD a0, zero, s1
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s3, 8(sp)
-  LD s4, 16(sp)
-  LD s5, 24(sp)
-  LD s6, 32(sp)
-  LD s7, 40(sp)
-  LD s8, 48(sp)
+  LD s4, 8(sp)
+  LD s5, 16(sp)
+  LD s6, 24(sp)
+  LD s7, 32(sp)
+  LD s8, 40(sp)
+  LD s9, 48(sp)
   LD s0, 56(sp)
   LD s1, 64(sp)
   LD s2, 72(sp)
-  ADDI sp, sp, 208
+  LD s3, 80(sp)
+  ADDI sp, sp, 224
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   # implict jump to bb3
@@ -85,12 +87,12 @@ bb4:   # loop depth 1
   LW a0, 0(a0)
   LUI s5, 244141
   ADDIW s3, s3, 725
-  LUI s2, 73
   ADDIW s5, s5, -1529
-  ADDIW s2, s2, 992
-  MULW s0, a0, s0
-  REMW a0, a0, s2
+  LUI s2, 73
   LA s4, staticvalue
+  MULW s0, a0, s0
+  ADDIW s2, s2, 992
+  REMW a0, a0, s2
   LA s6, staticvalue
   ADDW s0, s0, s3
   REMW s2, s0, s5
@@ -109,91 +111,91 @@ bb5:   # loop depth 1
   ADDI s6, zero, 8
   ADDI s7, zero, 16
   ADDI s8, zero, 32
-  SW s4, 80(sp)
+  SW s4, 88(sp)
   ADDI s4, zero, 64
-  SW s2, 84(sp)
+  SW s2, 92(sp)
   ADDI s2, zero, 128
-  SW s5, 88(sp)
+  SW s5, 96(sp)
   ADDI s5, zero, 256
-  SW s6, 92(sp)
+  SW s6, 100(sp)
   ADDI s6, zero, 512
-  SW s7, 96(sp)
+  SW s7, 104(sp)
+  LUI s9, 1
+  SW s8, 108(sp)
   ADDI s7, zero, 1024
-  SW s8, 100(sp)
-  LUI s8, 1
-  SW s4, 104(sp)
+  SW s4, 112(sp)
   LUI s4, 1
-  SW s2, 108(sp)
-  ADDIW s8, s8, -2048
-  SW s5, 112(sp)
+  SW s2, 116(sp)
+  ADDIW s9, s9, -2048
+  SW s5, 120(sp)
   LUI s2, 2
-  SW s6, 116(sp)
+  SW s6, 124(sp)
   ADDIW s4, s4, 0
-  SW s7, 120(sp)
+  SW s7, 128(sp)
   LUI s5, 4
-  SW s8, 124(sp)
+  SW s9, 132(sp)
   ADDIW s2, s2, 0
-  SW s4, 128(sp)
+  SW s4, 136(sp)
   LUI s4, 8
   ADDIW s5, s5, 0
-  SW s2, 132(sp)
+  SW s2, 140(sp)
   LUI s2, 16
   ADDIW s4, s4, 0
-  SW s5, 136(sp)
+  SW s5, 144(sp)
   LUI s5, 32
   ADDIW s2, s2, 0
-  SW s4, 140(sp)
+  SW s4, 148(sp)
   LUI s4, 64
   ADDIW s5, s5, 0
-  SW s2, 144(sp)
+  SW s2, 152(sp)
   LUI s2, 128
   ADDIW s4, s4, 0
-  SW s5, 148(sp)
+  SW s5, 156(sp)
   LUI s5, 256
   ADDIW s2, s2, 0
-  SW s4, 152(sp)
+  SW s4, 160(sp)
   LUI s4, 512
   ADDIW s5, s5, 0
-  SW s2, 156(sp)
+  SW s2, 164(sp)
   LUI s2, 1024
   ADDIW s4, s4, 0
-  SW s5, 160(sp)
+  SW s5, 168(sp)
   LUI s5, 2048
   ADDIW s2, s2, 0
-  SW s4, 164(sp)
+  SW s4, 172(sp)
   LUI s4, 4096
   ADDIW s5, s5, 0
-  SW s2, 168(sp)
+  SW s2, 176(sp)
   LUI s2, 8192
   ADDIW s4, s4, 0
-  SW s5, 172(sp)
+  SW s5, 180(sp)
   LUI s5, 16384
   ADDIW s2, s2, 0
-  SW s4, 176(sp)
-  LUI s4, 32768
+  SW s4, 184(sp)
+  LUI s8, 32768
   ADDIW s5, s5, 0
-  SW s2, 180(sp)
-  LUI s6, 65536
+  SW s2, 188(sp)
+  LUI s4, 65536
+  ADDIW s8, s8, 0
+  SW s5, 192(sp)
   SLLI s2, s3, 1
+  LUI s7, 2
+  LUI s6, 131072
   ADDIW s4, s4, 0
-  SW s5, 184(sp)
-  LUI s7, 131072
-  LUI s8, 2
+  SW s8, 196(sp)
   SRLI s2, s2, 63
-  ADDIW s6, s6, 0
-  SW s4, 188(sp)
+  ADDIW s7, s7, 1808
   LUI s5, 262144
-  ADDIW s8, s8, 1808
-  ADDIW s7, s7, 0
+  ADDIW s6, s6, 0
+  SW s4, 200(sp)
   ADD s4, s3, s2
-  SW s6, 192(sp)
+  SLT s2, s0, s7
   ADDIW s5, s5, 0
-  SLT s2, s0, s8
-  SW s7, 196(sp)
+  SW s6, 204(sp)
   ANDI s4, s4, -2
   XORI s2, s2, 1
+  SW s5, 208(sp)
   SUBW s4, s3, s4
-  SW s5, 200(sp)
   BNE s2, zero, bb9
   # implict jump to bb6
 bb6:   # loop depth 1
@@ -204,7 +206,7 @@ bb6:   # loop depth 1
   ADD s2, s2, a0
   LW a0, 0(s2)
   SLLIW s0, s5, 2
-  ADDI t6, sp, 80
+  ADDI t6, sp, 88
   ADD s0, t6, s0
   LW s0, 0(s0)
   DIVW a0, a0, s0

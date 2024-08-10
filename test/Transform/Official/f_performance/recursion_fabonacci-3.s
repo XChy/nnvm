@@ -50,39 +50,39 @@ bb2:   # loop depth 0
 bb3:   # loop depth 0
   LA s0, .CONSTANT.7.0
   LA s1, .CONSTANT.7.0
-  FSGNJ.S fs2, fa0, fa0
-  FLW fa0, 0(s0)
-  FSGNJ.S fs1, fa1, fa1
   FSGNJ.S fs0, fa2, fa2
-  FLW fa1, 0(s1)
-  FSGNJ.S fs6, fa0, fa1
+  FLW fa2, 0(s0)
+  FSGNJ.S fs1, fa1, fa1
+  FSGNJ.S fs3, fa0, fa0
+  FLW fa0, 0(s1)
+  FSGNJ.S fs6, fa2, fa0
   # implict jump to bb4
 bb4:   # loop depth 1
-  FSUB.S fa0, fs2, fs6
-  FSUB.S fs5, fs1, fs6
+  FSUB.S fa0, fs3, fs6
+  FSUB.S fs2, fs1, fs6
   FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs0, fs0
-  FSUB.S fs4, fs0, fs6
+  FSUB.S fs5, fs0, fs6
   CALL takFP
-  FSGNJ.D fs3, fa0, fa0
+  FSGNJ.S fa2, fs3, fs3
   FSGNJ.S fa1, fs0, fs0
-  FSGNJ.S fa2, fs2, fs2
-  FSGNJ.S fa0, fs5, fs5
+  FSGNJ.D fs4, fa0, fa0
+  FSGNJ.S fa0, fs2, fs2
   CALL takFP
-  FSGNJ.D fs0, fa0, fa0
-  FSGNJ.S fa1, fs2, fs2
-  FLT.S s0, fs0, fs3
+  FSGNJ.D fs2, fa0, fa0
+  FLT.S s0, fs2, fs4
   FSGNJ.S fa2, fs1, fs1
-  FSGNJ.S fa0, fs4, fs4
+  FSGNJ.S fa1, fs3, fs3
+  FSGNJ.S fa0, fs5, fs5
   CALL takFP
   BNE s0, zero, bb6
   # implict jump to bb5
 bb5:   # loop depth 0
   JAL zero, bb2
 bb6:   # loop depth 1
-  FSGNJ.S fs2, fs3, fs3
-  FSGNJ.S fs1, fs0, fs0
   FSGNJ.S fs0, fa0, fa0
+  FSGNJ.S fs1, fs2, fs2
+  FSGNJ.S fs3, fs4, fs4
   JAL zero, bb4
 main:   # loop depth 0
   ADDI sp, sp, -80
@@ -111,14 +111,14 @@ main:   # loop depth 0
   FSGNJ.D fs0, fa0, fa0
   FADD.S fa0, fs4, fs3
   CALL fibFP
-  FSGNJ.D fs3, fa0, fa0
-  FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs0, fs0
+  FSGNJ.S fa1, fs1, fs1
+  FSGNJ.D fs1, fa0, fa0
   FSGNJ.S fa0, fs2, fs2
   CALL takFP
-  FLW fs1, 0(s2)
+  FLW fs2, 0(s2)
   FSGNJ.D fs0, fa0, fa0
-  FEQ.S a0, fs3, fs1
+  FEQ.S a0, fs1, fs2
   BNE a0, zero, bb13
   # implict jump to bb8
 bb8:   # loop depth 0
@@ -174,11 +174,11 @@ fibFP:   # loop depth 0
   LA s3, .CONSTANT.7.0
   FLW fs0, 0(s0)
   FLW fs1, 0(s1)
+  FLW fs2, 0(s2)
   FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 0(s2)
-  FLW fs2, 0(s3)
   FLT.S s0, fa0, fs1
-  FSGNJ.S fs0, fs0, fs2
+  FLW fs0, 0(s3)
+  FSGNJ.S fs0, fs2, fs0
   BNE s0, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 0

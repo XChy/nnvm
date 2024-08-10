@@ -56,9 +56,9 @@ bb4:   # loop depth 2
   BNE a0, zero, bb12
   # implict jump to bb5
 bb5:   # loop depth 1
+  ADDIW s1, s1, 1
   ADDI a0, sp, 0
   ADD a0, a0, s3
-  ADDIW s1, s1, 1
   SLTI s0, s1, 10
   SW s2, 4(a0)
   BNE s0, zero, bb11

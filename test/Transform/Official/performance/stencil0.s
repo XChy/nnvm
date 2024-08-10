@@ -131,13 +131,13 @@ bb11:   # loop depth 1
   BNE s3, zero, bb13
   # implict jump to bb12
 bb12:   # loop depth 0
-  LUI s2, 128
   LA s1, image_out
-  ADDI a0, zero, 59
+  LUI s2, 128
   ADDIW s2, s2, 0
+  ADDI a0, zero, 59
   CALL _sysy_stoptime
-  ADD a0, zero, s2
   ADD a1, s1, zero
+  ADD a0, zero, s2
   CALL putarray
   ADD a0, s0, zero
   LD ra, 0(sp)

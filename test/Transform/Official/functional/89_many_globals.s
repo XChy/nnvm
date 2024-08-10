@@ -138,129 +138,129 @@ main:   # loop depth 0
   SD s9, 288(sp)
   SD s10, 296(sp)
   LA a0, a0
-  ADDI s0, zero, 0
   LA s1, a1
-  ADDI s2, zero, 1
+  ADDI s0, zero, 0
   LA s3, a2
+  ADDI s2, zero, 1
   SW s0, 0(a0)
-  ADDI a0, zero, 2
   LA s0, a3
+  ADDI a0, zero, 2
   SW s2, 0(s1)
-  ADDI s1, zero, 3
   LA s2, a4
+  ADDI s1, zero, 3
   SW a0, 0(s3)
-  ADDI a0, zero, 4
   LA s3, a5
+  ADDI a0, zero, 4
   SW s1, 0(s0)
-  ADDI s0, zero, 5
   LA s1, a6
+  ADDI s0, zero, 5
   SW a0, 0(s2)
-  ADDI a0, zero, 6
   LA s2, a7
+  ADDI a0, zero, 6
   SW s0, 0(s3)
-  ADDI s0, zero, 7
   LA s3, a8
+  ADDI s0, zero, 7
   SW a0, 0(s1)
-  ADDI a0, zero, 8
   LA s1, a9
+  ADDI a0, zero, 8
   SW s0, 0(s2)
-  ADDI s0, zero, 9
   LA s2, a10
+  ADDI s0, zero, 9
   SW a0, 0(s3)
-  ADDI a0, zero, 0
   LA s3, a11
+  ADDI a0, zero, 0
   SW s0, 0(s1)
-  ADDI s0, zero, 1
   LA s1, a12
+  ADDI s0, zero, 1
   SW a0, 0(s2)
-  ADDI a0, zero, 2
   LA s2, a13
-  SW s0, 0(s3)
-  ADDI s0, zero, 3
-  LA s3, a14
-  SW a0, 0(s1)
-  ADDI a0, zero, 4
-  LA s1, a15
-  SW s0, 0(s2)
-  ADDI s0, zero, 5
-  LA s2, a16
-  SW a0, 0(s3)
-  ADDI a0, zero, 6
-  LA s3, a17
-  SW s0, 0(s1)
-  ADDI s0, zero, 7
-  LA s1, a18
-  SW a0, 0(s2)
-  ADDI a0, zero, 8
-  LA s2, a19
-  SW s0, 0(s3)
-  ADDI s0, zero, 9
-  LA s3, a20
-  SW a0, 0(s1)
-  ADDI a0, zero, 0
-  LA s1, a21
-  SW s0, 0(s2)
-  ADDI s0, zero, 1
-  LA s2, a22
-  SW a0, 0(s3)
   ADDI a0, zero, 2
-  LA s3, a23
-  SW s0, 0(s1)
+  SW s0, 0(s3)
+  LA s3, a14
   ADDI s0, zero, 3
+  SW a0, 0(s1)
+  LA s1, a15
+  ADDI a0, zero, 4
+  SW s0, 0(s2)
+  LA s2, a16
+  ADDI s0, zero, 5
+  SW a0, 0(s3)
+  LA s3, a17
+  ADDI a0, zero, 6
+  SW s0, 0(s1)
+  LA s1, a18
+  ADDI s0, zero, 7
+  SW a0, 0(s2)
+  LA s2, a19
+  ADDI a0, zero, 8
+  SW s0, 0(s3)
+  LA s3, a20
+  ADDI s0, zero, 9
+  SW a0, 0(s1)
+  LA s1, a21
+  ADDI a0, zero, 0
+  SW s0, 0(s2)
+  LA s2, a22
+  ADDI s0, zero, 1
+  SW a0, 0(s3)
+  LA s3, a23
+  ADDI a0, zero, 2
+  SW s0, 0(s1)
   LA s1, a24
+  ADDI s0, zero, 3
   SW a0, 0(s2)
-  ADDI a0, zero, 4
   LA s2, a25
-  SW s0, 0(s3)
-  ADDI s0, zero, 5
-  LA s3, a26
-  SW a0, 0(s1)
-  ADDI a0, zero, 6
-  LA s1, a27
-  SW s0, 0(s2)
-  ADDI s0, zero, 7
-  LA s2, a28
-  SW a0, 0(s3)
-  ADDI a0, zero, 8
-  LA s3, a29
-  SW s0, 0(s1)
-  ADDI s0, zero, 9
-  LA s1, a30
-  SW a0, 0(s2)
-  ADDI a0, zero, 0
-  LA s2, a31
-  SW s0, 0(s3)
-  ADDI s0, zero, 1
-  LA s3, a32
-  SW a0, 0(s1)
   ADDI a0, zero, 4
-  LA s1, a33
-  SW s0, 0(s2)
-  ADDI s0, zero, 5
-  LA s2, a34
-  SW a0, 0(s3)
-  ADDI a0, zero, 6
-  LA s3, a35
-  SW s0, 0(s1)
-  ADDI s0, zero, 7
-  LA s1, a36
-  SW a0, 0(s2)
-  ADDI a0, zero, 8
-  LA s2, a37
   SW s0, 0(s3)
-  ADDI s0, zero, 9
-  LA s3, a38
+  LA s3, a26
+  ADDI s0, zero, 5
   SW a0, 0(s1)
-  ADDI a0, zero, 0
-  LA s1, a39
+  LA s1, a27
+  ADDI a0, zero, 6
   SW s0, 0(s2)
+  LA s2, a28
+  ADDI s0, zero, 7
+  SW a0, 0(s3)
+  LA s3, a29
+  ADDI a0, zero, 8
+  SW s0, 0(s1)
+  LA s1, a30
+  ADDI s0, zero, 9
+  SW a0, 0(s2)
+  LA s2, a31
+  ADDI a0, zero, 0
+  SW s0, 0(s3)
+  LA s3, a32
   ADDI s0, zero, 1
+  SW a0, 0(s1)
+  LA s1, a33
+  ADDI a0, zero, 4
+  SW s0, 0(s2)
+  LA s2, a34
+  ADDI s0, zero, 5
+  SW a0, 0(s3)
+  LA s3, a35
+  ADDI a0, zero, 6
+  SW s0, 0(s1)
+  LA s1, a36
+  ADDI s0, zero, 7
+  SW a0, 0(s2)
+  LA s2, a37
+  ADDI a0, zero, 8
+  SW s0, 0(s3)
+  LA s3, a38
+  ADDI s0, zero, 9
+  SW a0, 0(s1)
+  LA s1, a39
+  ADDI a0, zero, 0
+  SW s0, 0(s2)
   LA s2, a0
+  ADDI s0, zero, 1
   SW a0, 0(s3)
   ADDI s3, zero, 28
   SW s0, 0(s1)
-  ADDI a0, zero, 28
   LA s0, a32
+  ADDI a0, zero, 28
   SW s3, 0(s2)
   LA s1, a33
   LA s2, a34
@@ -485,9 +485,10 @@ main:   # loop depth 0
   LD a0, 520(sp)
   LW a0, 0(a0)
   ADDW s0, s1, s0
-  ADDW a0, s0, a0
-  LD s0, 528(sp)
-  SW a0, 0(s0)
+  ADDW s0, s0, a0
+  ADD a0, s0, zero
+  LD s1, 528(sp)
+  SW s0, 0(s1)
   CALL putint
   ADD a0, zero, zero
   LD s11, 192(sp)

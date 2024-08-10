@@ -216,9 +216,9 @@ bb1:   # loop depth 1
   SW s3, 368(s0)
   ADDI s3, zero, 98
   SW s4, 372(s0)
-  ADDI s4, zero, 99
-  SW s5, 376(s0)
   ADDIW a0, a0, 1
+  SW s5, 376(s0)
+  ADDI s4, zero, 99
   SW s1, 380(s0)
   SLTI s1, a0, 20
   SW s6, 384(s0)
@@ -228,8 +228,8 @@ bb1:   # loop depth 1
   BNE s1, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  LUI a0, 2
   LA s0, array
+  LUI a0, 2
   ADDIW a0, a0, -500
   LA s1, array
   ADD a0, s0, a0
@@ -331,9 +331,9 @@ bb2:   # loop depth 0
   SD s0, 432(sp)
   LA s0, array
   SD s0, 440(sp)
+  LA s0, array
+  SD s0, 216(sp)
   LUI s0, 2
-  LA s1, array
-  SD s1, 216(sp)
   SLLIW a0, a0, 2
   ADDIW s0, s0, -520
   ADD a0, s8, a0
