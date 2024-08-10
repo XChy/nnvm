@@ -18,7 +18,8 @@ def update(src: str, tmp_files: dict):
     output_name = path.splitext(path.basename(src))[0] + ".out"
     HOST_ARGLISTS_NORMAL = [
         [NNVM, src, '-O1', '--backend', 'riscv', '-o', tmp_files['asm'].name],
-        [GCC_RV, '-c', tmp_files['asm'].name, '-o', tmp_files['obj'].name],
+        [GCC_RV, '-march=rv64gc', '-c', tmp_files['asm'].name,
+            '-o', tmp_files['obj'].name],
         [GCC_RV, tmp_files['obj'].name,
          SYLIB_RV, '-o', path.join(OUTPUT_DIR, output_name)],
     ]
