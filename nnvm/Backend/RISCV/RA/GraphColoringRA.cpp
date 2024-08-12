@@ -26,7 +26,7 @@ static void filterRegClass(RegSet &c, Register const *classReg) {
   }
 }
 
-GraphColoringRAImpl::GraphColoringRAImpl(std::vector<Register *> const &regs,
+GraphColoringRAImpl::GraphColoringRAImpl(const std::vector<Register *> &regs,
                                          Register *classReg)
     : freeRegs(regs), classReg(classReg), numRegs(regs.size()) {
 
@@ -419,7 +419,7 @@ void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
 
     currentCost /= degree[reg];
 
-    if (currentCost < minCost) {
+    if (!toSpill || currentCost < minCost) {
       minCost = currentCost;
       toSpill = reg;
     }
@@ -610,7 +610,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
 }
 
 static inline void filterScratchRegs(std::vector<Register *> &c,
-                                     const std::set<Register *> scratches) {
+                                     const std::set<Register *> &scratches) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
     if (scratches.count(*first))
       first = c.erase(first);

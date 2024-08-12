@@ -1,9 +1,11 @@
 #!/bin/bash
 
+Branch=$1
+
 set -e
 
 cd nnvm_submit
-git checkout master
+git checkout $Branch
 cd ..
 rm -rf nnvm_submit/src
 
@@ -18,4 +20,4 @@ date > nnvm_submit/timestamp
 cd nnvm_submit
 git add .
 git commit -m "sync $(date)"
-git push -u origin master
+git push -u origin $Branch

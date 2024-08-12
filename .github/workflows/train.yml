@@ -1,4 +1,4 @@
-name: release
+name: train
 
 on: workflow_dispatch
 
@@ -20,4 +20,4 @@ jobs:
           git config --global user.name "NNVM Authors"
           git config --global user.email "xxs_chy@outlook.com"
           git clone $URL nnvm_submit
-          ./educg/sync_repo.sh master
+          ./educg/sync_repo.sh train

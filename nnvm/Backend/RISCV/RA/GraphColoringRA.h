@@ -29,7 +29,7 @@ struct PairHash {
 
 class GraphColoringRAImpl {
 public:
-  GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
+  GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
                       Register *classReg);
   void allocate(LIRFunc &func);
 

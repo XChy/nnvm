@@ -60,6 +60,10 @@ def main():
         update(src, tmp_files)
         total_cnt += 1
 
+    with open(path.join(ROOT_DIR, "nnvm_perf", "exec", "hash"), "w+") as f:
+        f.write(subprocess.check_output(
+            ['git', 'rev-parse', 'HEAD']).decode('utf-8').strip())
+
 
 if __name__ == '__main__':
     main()
