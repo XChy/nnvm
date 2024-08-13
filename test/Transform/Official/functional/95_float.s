@@ -160,8 +160,7 @@ bb15:   # loop depth 0
   # implict jump to bb16
 bb16:   # loop depth 0
   SLTU a0, zero, a0
-  XORI a0, a0, 1
-  BNE a0, zero, bb48
+  BEQ a0, zero, bb48
   # implict jump to bb17
 bb17:   # loop depth 0
   ADDI a0, zero, 111
@@ -214,8 +213,7 @@ bb21:   # loop depth 0
   # implict jump to bb22
 bb22:   # loop depth 0
   SLTU a0, zero, a0
-  XORI a0, a0, 1
-  BNE a0, zero, bb45
+  BEQ a0, zero, bb45
   # implict jump to bb23
 bb23:   # loop depth 0
   ADDI a0, zero, 111
@@ -260,8 +258,7 @@ bb30:   # loop depth 0
   LA a0, .CONSTANT.7.9
   FLW fs0, 0(a0)
   FEQ.S a0, fs0, fs2
-  XORI a0, a0, 1
-  BNE a0, zero, bb41
+  BEQ a0, zero, bb41
   # implict jump to bb31
 bb31:   # loop depth 0
   LA a0, .CONSTANT.7.3
@@ -270,20 +267,17 @@ bb31:   # loop depth 0
   XORI a0, a0, 1
   XORI a0, a0, 1
   SLTU a0, zero, a0
-  XORI a0, a0, 1
-  BNE a0, zero, bb40
+  BEQ a0, zero, bb40
   # implict jump to bb32
 bb32:   # loop depth 0
   FEQ.S a0, fs2, fs2
-  XORI a0, a0, 1
-  BNE a0, zero, bb39
+  BEQ a0, zero, bb39
   # implict jump to bb33
 bb33:   # loop depth 0
   LA a0, .CONSTANT.7.4
   FLW fs0, 0(a0)
   FEQ.S a0, fs0, fs2
-  XORI a0, a0, 1
-  BNE a0, zero, bb38
+  BEQ a0, zero, bb38
   # implict jump to bb34
 bb34:   # loop depth 0
   LA s0, .CONSTANT.7.5

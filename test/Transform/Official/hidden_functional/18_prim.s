@@ -90,15 +90,14 @@ bb9:   # loop depth 0
   # implict jump to bb10
 bb10:   # loop depth 0
   LA a0, m
-  LW s3, 0(a0)
-  BLT zero, s3, bb22
+  LW s2, 0(a0)
+  BLT zero, s2, bb22
   # implict jump to bb11
 bb11:   # loop depth 0
   LA a0, n
   LW s1, 0(a0)
   SLTI a0, s1, 1
-  XORI a0, a0, 1
-  BNE a0, zero, bb19
+  BEQ a0, zero, bb19
   # implict jump to bb12
 bb12:   # loop depth 0
   ADD s1, zero, zero
@@ -135,9 +134,7 @@ bb15:   # loop depth 1
   ADD s4, a0, zero
   ADD a0, s2, zero
   CALL find
-  XOR a0, s4, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb18
+  BEQ s4, a0, bb18
   # implict jump to bb16
 bb16:   # loop depth 1
   LA s4, c
@@ -163,11 +160,9 @@ bb19:   # loop depth 0
 bb20:   # loop depth 1
   LA s2, fa
   ADDIW s0, a0, 1
-  SLT s3, s1, s0
   SH2ADD s2, a0, s2
-  XORI s3, s3, 1
   SW a0, 0(s2)
-  BNE s3, zero, bb21
+  BGE s1, s0, bb21
   JAL zero, bb12
 bb21:   # loop depth 1
   ADD a0, s0, zero
@@ -177,22 +172,22 @@ bb22:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb23
 bb23:   # loop depth 1
-  ADDIW s2, s0, 1
-  BLT s2, s3, bb27
+  ADDIW s1, s0, 1
+  BLT s1, s2, bb27
   # implict jump to bb24
 bb24:   # loop depth 1
   # implict jump to bb25
 bb25:   # loop depth 1
-  BLT s2, s3, bb26
+  BLT s1, s2, bb26
   JAL zero, bb11
 bb26:   # loop depth 1
-  ADD s0, s2, zero
+  ADD s0, s1, zero
   JAL zero, bb23
 bb27:   # loop depth 1
   LA s5, v
   LA s4, u
   LA s6, c
-  ADD s1, s2, zero
+  ADD s3, s1, zero
   SH2ADD s5, s0, s5
   SH2ADD s4, s0, s4
   SH2ADD s6, s0, s6
@@ -200,15 +195,15 @@ bb27:   # loop depth 1
 bb28:   # loop depth 2
   LA s7, c
   LW s0, 0(s6)
-  SH2ADD s7, s1, s7
+  SH2ADD s7, s3, s7
   LW s8, 0(s7)
   BLT s8, s0, bb33
   # implict jump to bb29
 bb29:   # loop depth 2
   # implict jump to bb30
 bb30:   # loop depth 2
-  ADDIW s1, s1, 1
-  BLT s1, s3, bb32
+  ADDIW s3, s3, 1
+  BLT s3, s2, bb32
   # implict jump to bb31
 bb31:   # loop depth 1
   JAL zero, bb25
@@ -218,9 +213,9 @@ bb33:   # loop depth 2
   LA s0, u
   LW a0, 0(s4)
   LA s9, v
-  SH2ADD s0, s1, s0
+  SH2ADD s0, s3, s0
   LW s8, 0(s0)
-  SH2ADD s9, s1, s9
+  SH2ADD s9, s3, s9
   SW s8, 0(s4)
   SW a0, 0(s0)
   LW a0, 0(s5)
@@ -374,8 +369,7 @@ bb60:   # loop depth 1
   # implict jump to bb61
 bb61:   # loop depth 2
   XORI s0, s1, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb66
+  BEQ s0, zero, bb66
   # implict jump to bb62
 bb62:   # loop depth 2
   # implict jump to bb63
@@ -425,8 +419,7 @@ bb72:   # loop depth 1
   # implict jump to bb73
 bb73:   # loop depth 2
   XORI s0, s1, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb78
+  BEQ s0, zero, bb78
   # implict jump to bb74
 bb74:   # loop depth 2
   # implict jump to bb75
@@ -476,8 +469,7 @@ bb84:   # loop depth 1
   # implict jump to bb85
 bb85:   # loop depth 2
   XORI s0, s1, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb90
+  BEQ s0, zero, bb90
   # implict jump to bb86
 bb86:   # loop depth 2
   # implict jump to bb87
@@ -527,8 +519,7 @@ bb96:   # loop depth 0
   # implict jump to bb97
 bb97:   # loop depth 1
   XORI s0, s1, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb102
+  BEQ s0, zero, bb102
   # implict jump to bb98
 bb98:   # loop depth 1
   # implict jump to bb99
@@ -574,8 +565,7 @@ bb106:   # loop depth 0
   # implict jump to bb107
 bb107:   # loop depth 1
   XORI s0, s0, 45
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb112
+  BEQ s0, zero, bb112
   # implict jump to bb108
 bb108:   # loop depth 1
   # implict jump to bb109
@@ -603,9 +593,7 @@ find:   # loop depth 0
   LA s0, fa
   SH2ADD s0, a0, s0
   LW s1, 0(s0)
-  XOR s1, a0, s1
-  SLTIU s1, s1, 1
-  BNE s1, zero, bb115
+  BEQ a0, s1, bb115
   # implict jump to bb114
 bb114:   # loop depth 0
   LW a0, 0(s0)

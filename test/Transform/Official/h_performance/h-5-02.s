@@ -55,9 +55,7 @@ bb1:   # loop depth 0
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDIW s3, s0, -1
-  SLT a0, s3, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb4
+  BGE s3, zero, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
   LA s1, n
@@ -98,17 +96,15 @@ bb6:   # loop depth 1
   # implict jump to bb7
 bb7:   # loop depth 1
   LA s2, A
-  LA s6, x
+  LA s5, x
   ADDIW s1, s3, -1
   ADD s2, s2, s4
-  SLT s5, s1, zero
   SH2ADD s4, s3, s2
-  SH2ADD s2, s3, s6
+  SH2ADD s2, s3, s5
   LW s3, 0(s4)
-  XORI s4, s5, 1
   DIVW a0, a0, s3
   SW a0, 0(s2)
-  BNE s4, zero, bb8
+  BGE s1, zero, bb8
   JAL zero, bb3
 bb8:   # loop depth 1
   ADD s3, s1, zero

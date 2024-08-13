@@ -61,8 +61,7 @@ bb1:   # loop depth 0
   ADDW a0, a0, s4
   ADDW a0, a0, s5
   ADDW a0, a0, s6
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb18
+  BEQ a0, zero, bb18
   # implict jump to bb2
 bb2:   # loop depth 0
   BNE s2, zero, bb17

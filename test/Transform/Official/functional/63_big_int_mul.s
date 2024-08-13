@@ -93,18 +93,16 @@ bb2:   # loop depth 0
   SW s2, 208(sp)
   ADDI s2, zero, 1
   SW s3, 212(sp)
-  ADDI s3, zero, 39
+  ADDI s3, zero, 2
   SW s0, 216(sp)
   ADDI s0, zero, 2
   SW a0, 220(sp)
-  SLT a0, s3, zero
+  ADDI a0, zero, 39
   SW s1, 224(sp)
-  ADDI s1, zero, 2
   SW s2, 228(sp)
-  XORI a0, a0, 1
-  SW s0, 232(sp)
-  SW s1, 236(sp)
-  BNE a0, zero, bb19
+  SW s3, 232(sp)
+  SW s0, 236(sp)
+  BGE a0, zero, bb19
   # implict jump to bb3
 bb3:   # loop depth 0
   ADDI s0, zero, 39
@@ -129,8 +127,7 @@ bb5:   # loop depth 2
   MULW s5, s3, s5
   ADDW s4, s4, s5
   SLTI s5, s4, 10
-  XORI s5, s5, 1
-  BNE s5, zero, bb18
+  BEQ s5, zero, bb18
   # implict jump to bb6
 bb6:   # loop depth 2
   SW s4, 0(s2)
@@ -154,8 +151,7 @@ bb9:   # loop depth 0
 bb10:   # loop depth 0
   ADDI a0, zero, 39
   SLTI a0, a0, 1
-  XORI a0, a0, 1
-  BNE a0, zero, bb12
+  BEQ a0, zero, bb12
   # implict jump to bb11
 bb11:   # loop depth 0
   ADD a0, zero, zero
@@ -177,11 +173,9 @@ bb13:   # loop depth 1
   ADDIW s0, s0, 1
   ADDI t6, sp, 0
   ADD a0, t6, a0
-  SLT s1, s1, s0
   LW a0, 0(a0)
-  XORI s1, s1, 1
   CALL putint
-  BNE s1, zero, bb14
+  BGE s1, s0, bb14
   JAL zero, bb11
 bb14:   # loop depth 1
   JAL zero, bb13
@@ -206,17 +200,14 @@ bb19:   # loop depth 0
   # implict jump to bb20
 bb20:   # loop depth 1
   ADDI s1, zero, 39
-  ADDIW s0, a0, 1
-  SLLIW a0, a0, 2
-  SLT s1, s1, s0
+  SLLIW s0, a0, 2
+  ADDIW a0, a0, 1
   ADDI t6, sp, 0
-  ADD a0, t6, a0
-  XORI s1, s1, 1
-  SW zero, 0(a0)
-  BNE s1, zero, bb21
+  ADD s0, t6, s0
+  SW zero, 0(s0)
+  BGE s1, a0, bb21
   JAL zero, bb3
 bb21:   # loop depth 1
-  ADD a0, s0, zero
   JAL zero, bb20
 bb22:   # loop depth 1
   JAL zero, bb1

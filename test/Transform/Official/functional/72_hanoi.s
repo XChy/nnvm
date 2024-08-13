@@ -45,11 +45,10 @@ hanoi:   # loop depth 0
   SD s2, 24(sp)
   SD s3, 32(sp)
   ADD s0, a3, zero
-  XORI s1, a0, 1
+  XORI s3, a0, 1
   ADD s2, a2, zero
-  SLTIU s3, s1, 1
   ADD s1, a1, zero
-  BNE s3, zero, bb8
+  BEQ s3, zero, bb8
   # implict jump to bb6
 bb6:   # loop depth 0
   ADDIW s3, a0, -1

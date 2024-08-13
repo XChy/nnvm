@@ -389,16 +389,16 @@ main:   # loop depth 0
   LA s6, sum
   ADDIW s0, s0, 49
   SW s2, 0(s7)
-  ADDW s2, s2, s1
+  ADDW s1, s2, s1
   SW s0, 0(s4)
-  ADD s1, zero, zero
+  ADD s4, zero, zero
   ADD a0, zero, zero
-  SW s2, 0(s6)
+  SW s1, 0(s6)
   # implict jump to bb1
 bb1:   # loop depth 1
   SW a0, 0(sp)
-  SLTI s2, s1, 3
-  BNE s2, zero, bb3
+  SLTI s1, s4, 3
+  BNE s1, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
   LA a0, sum
@@ -420,12 +420,12 @@ bb2:   # loop depth 0
   ADDI sp, sp, 448
   JALR zero, 0(ra)
 bb3:   # loop depth 1
+  LA s1, sum
   LA s2, sum
-  LA s4, sum
   LA s6, count
   LA a0, count
   SD a0, 112(sp)
-  LW s2, 0(s2)
+  LW s1, 0(s1)
   LA a0, sum
   SD a0, 104(sp)
   LA a0, count
@@ -436,13 +436,13 @@ bb3:   # loop depth 1
   SD a0, 80(sp)
   LA a0, sum
   SD a0, 376(sp)
-  ADDW s2, s2, s3
+  ADDW s1, s1, s3
   LA a0, sum
   SD a0, 368(sp)
-  SW s2, 0(s4)
+  SW s1, 0(s2)
   LA a0, count
   SD a0, 360(sp)
-  LW s4, 0(s6)
+  LW s2, 0(s6)
   LA a0, sum
   SD a0, 72(sp)
   LA a0, count
@@ -453,56 +453,55 @@ bb3:   # loop depth 1
   SD a0, 232(sp)
   LA a0, sum
   SD a0, 328(sp)
-  ADDIW s6, s4, 1
-  ADDIW s7, s4, 2
-  ADDW s2, s2, s6
+  ADDIW s6, s2, 1
+  ADDIW s7, s2, 2
+  ADDW s1, s1, s6
   LD a0, 112(sp)
   SW s6, 0(a0)
   LD a0, 104(sp)
-  SW s2, 0(a0)
-  ADDW s2, s2, s7
+  SW s1, 0(a0)
+  ADDW s1, s1, s7
   LD a0, 96(sp)
   SW s7, 0(a0)
-  ADDW s7, s2, s6
+  ADDW s7, s1, s6
   LD a0, 88(sp)
-  SW s2, 0(a0)
-  ADDW s2, s7, s6
+  SW s1, 0(a0)
+  ADDW s1, s7, s6
   LD a0, 80(sp)
   SW s7, 0(a0)
-  ADDW s6, s2, s5
+  ADDW s6, s1, s5
   LD a0, 376(sp)
-  SW s2, 0(a0)
-  ADDIW s2, s4, 3
+  SW s1, 0(a0)
+  ADDIW s1, s2, 3
   LD a0, 368(sp)
   SW s6, 0(a0)
   ADDW s6, s6, s5
   LD a0, 360(sp)
-  SW s2, 0(a0)
-  ADDIW s2, s4, 4
+  SW s1, 0(a0)
+  ADDIW s1, s2, 4
   LD a0, 72(sp)
   SW s6, 0(a0)
-  ADDW s6, s6, s2
+  ADDW s6, s6, s1
   LD a0, 352(sp)
-  SW s2, 0(a0)
-  ADDIW s2, s4, 5
+  SW s1, 0(a0)
+  ADDIW s1, s2, 5
   LD a0, 344(sp)
   SW s6, 0(a0)
-  LA s8, count
-  ADDW s6, s6, s2
+  LA s7, count
+  ADDW s6, s6, s1
   LD a0, 232(sp)
-  SW s2, 0(a0)
-  LA s9, sum
-  ADDIW s4, s4, 6
+  SW s1, 0(a0)
+  LA s8, sum
+  ADDIW s2, s2, 6
   LD a0, 328(sp)
   SW s6, 0(a0)
-  XORI s7, s1, 1
-  ADDW s2, s6, s2
-  SW s4, 0(s8)
-  ADDIW a0, s1, 1
+  ADDW s6, s6, s1
+  SW s2, 0(s7)
+  ADDIW a0, s4, 1
   SW a0, 4(sp)
-  SLTIU s4, s7, 1
-  SW s2, 0(s9)
-  BNE s4, zero, bb6
+  XORI s2, s4, 1
+  SW s6, 0(s8)
+  BEQ s2, zero, bb6
   # implict jump to bb4
 bb4:   # loop depth 1
   LA s2, sum
@@ -586,7 +585,7 @@ bb4:   # loop depth 1
   SW s4, 0(s8)
   # implict jump to bb5
 bb5:   # loop depth 1
-  LW s1, 4(sp)
+  LW s4, 4(sp)
   JAL zero, bb1
 bb6:   # loop depth 1
   LA a0, count

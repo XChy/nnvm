@@ -35,12 +35,12 @@ main:   # loop depth 0
   BLT s0, s3, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 1031
   CALL _sysy_stoptime
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -57,17 +57,17 @@ bb2:   # loop depth 0
   ADDI sp, sp, 80
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD s2, zero, zero
   ADD s1, zero, zero
+  ADD s0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   LA a0, multi
   LA s5, size
   ADDI s6, zero, 1000
   LW s4, 0(a0)
+  ADD s2, zero, zero
   ADD a0, zero, zero
-  ADD s0, zero, zero
-  MULW s4, s2, s4
+  MULW s4, s1, s4
   LW s5, 0(s5)
   SRAIW s7, s4, 31
   SRLIW s7, s7, 31
@@ -77,20 +77,20 @@ bb4:   # loop depth 1
   DIVW s4, s4, s5
   # implict jump to bb5
 bb5:   # loop depth 2
-  ADDIW a0, a0, 1
-  ADDW s0, s0, s4
-  SLTI s5, a0, 300
+  ADDIW s2, s2, 1
+  ADDW a0, a0, s4
+  SLTI s5, s2, 300
   BNE s5, zero, bb9
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDI a0, zero, 300
+  ADDI s2, zero, 300
   LUI s4, 524264
-  DIVW a0, s0, a0
+  DIVW a0, a0, s2
   ADDIW s4, s4, 3
-  ADDIW s2, s2, 1
-  ADDW a0, s1, a0
-  REMW s1, a0, s4
-  BLT s2, s3, bb8
+  ADDIW s1, s1, 1
+  ADDW a0, s0, a0
+  REMW s0, a0, s4
+  BLT s1, s3, bb8
   # implict jump to bb7
 bb7:   # loop depth 0
   JAL zero, bb2

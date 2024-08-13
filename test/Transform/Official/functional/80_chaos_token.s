@@ -54,8 +54,7 @@ bb4:   # loop depth 1
   ADD s0, a0, s0
   ANDI s0, s0, -32
   SUBW s2, a0, s0
-  SLTIU a0, s2, 1
-  BNE a0, zero, bb6
+  BEQ s2, zero, bb6
   # implict jump to bb5
 bb5:   # loop depth 1
   JAL zero, bb3

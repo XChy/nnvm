@@ -20,9 +20,7 @@ reverse:   # loop depth 0
   SD s1, 16(sp)
   ADDI s1, zero, 1
   ADD s0, a0, zero
-  SLT s1, s1, s0
-  XORI s1, s1, 1
-  BNE s1, zero, bb4
+  BGE s1, s0, bb4
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDIW s1, s0, -1

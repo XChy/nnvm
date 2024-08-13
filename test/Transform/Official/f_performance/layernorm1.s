@@ -187,28 +187,28 @@ bb19:   # loop depth 1
   BNE a0, zero, bb27
   # implict jump to bb20
 bb20:   # loop depth 0
-  ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb21
 bb21:   # loop depth 1
-  LUI a0, 1
-  ADDIW a0, a0, -96
-  MULW s1, s0, a0
+  LUI s0, 1
+  ADDIW s0, s0, -96
+  MULW s1, a0, s0
   LA s2, a
-  ADD a0, zero, zero
+  ADD s0, zero, zero
   ADD s1, s2, s1
   # implict jump to bb22
 bb22:   # loop depth 2
-  SH2ADD s2, a0, s1
-  ADDIW a0, a0, 1
+  SH2ADD s2, s0, s1
+  ADDIW s0, s0, 1
   FLW fs0, 0(s2)
-  SLTI s2, a0, 1000
+  SLTI s2, s0, 1000
   FADD.S fs2, fs2, fs0
   BNE s2, zero, bb26
   # implict jump to bb23
 bb23:   # loop depth 1
-  ADDIW s0, s0, 1
-  SLTI a0, s0, 1000
-  BNE a0, zero, bb25
+  ADDIW a0, a0, 1
+  SLTI s0, a0, 1000
+  BNE s0, zero, bb25
   # implict jump to bb24
 bb24:   # loop depth 0
   ADDI a0, zero, 95

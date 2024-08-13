@@ -40,9 +40,7 @@ main:   # loop depth 0
   LW s3, 0(s3)
   LW s4, 0(s4)
   ADDW s5, s3, s4
-  XOR a0, a0, s5
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb6
+  BEQ a0, s5, bb6
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD a0, zero, zero

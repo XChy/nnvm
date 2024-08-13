@@ -18,9 +18,7 @@ main:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   ADDI a0, zero, 5
-  SLT a0, a0, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb2
+  BGE a0, zero, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, a
@@ -102,9 +100,7 @@ bb13:   # loop depth 1
   # implict jump to bb14
 bb14:   # loop depth 1
   ADDIW s1, s1, -1
-  SLT a0, s1, zero
-  XORI a0, a0, 1
-  BNE a0, zero, bb15
+  BGE s1, zero, bb15
   JAL zero, bb1
 bb15:   # loop depth 1
   JAL zero, bb3

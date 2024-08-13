@@ -221,10 +221,8 @@ bb29:   # loop depth 1
   DIVW s1, s1, a0
   MULW s2, s1, s1
   SW s1, 0(s4)
-  SLT s1, s5, s2
   SW s2, 0(s4)
-  XORI s1, s1, 1
-  BNE s1, zero, bb32
+  BGE s5, s2, bb32
   # implict jump to bb30
 bb30:   # loop depth 1
   ADDIW s3, s3, 1

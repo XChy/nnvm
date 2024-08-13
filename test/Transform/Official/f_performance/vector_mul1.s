@@ -34,8 +34,7 @@ main:   # loop depth 0
   ADDI a0, zero, 0
   ADDIW s0, s0, 1696
   SLT a0, a0, s0
-  XORI a0, a0, 1
-  BNE a0, zero, bb68
+  BEQ a0, zero, bb68
   # implict jump to bb1
 bb1:   # loop depth 0
   LUI a0, 24

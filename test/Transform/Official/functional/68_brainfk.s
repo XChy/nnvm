@@ -92,38 +92,31 @@ bb9:   # loop depth 0
   # implict jump to bb10
 bb10:   # loop depth 1
   XORI s5, s1, 62
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb44
+  BEQ s5, zero, bb44
   # implict jump to bb11
 bb11:   # loop depth 1
   XORI s5, s1, 60
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb43
+  BEQ s5, zero, bb43
   # implict jump to bb12
 bb12:   # loop depth 1
   XORI s5, s1, 43
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb42
+  BEQ s5, zero, bb42
   # implict jump to bb13
 bb13:   # loop depth 1
   XORI s5, s1, 45
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb41
+  BEQ s5, zero, bb41
   # implict jump to bb14
 bb14:   # loop depth 1
   XORI s5, s1, 46
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb40
+  BEQ s5, zero, bb40
   # implict jump to bb15
 bb15:   # loop depth 1
   XORI s5, s1, 44
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb39
+  BEQ s5, zero, bb39
   # implict jump to bb16
 bb16:   # loop depth 1
   XORI s1, s1, 93
-  SLTIU s1, s1, 1
-  BNE s1, zero, bb38
+  BEQ s1, zero, bb38
   # implict jump to bb17
 bb17:   # loop depth 1
   ADD s3, zero, zero
@@ -159,16 +152,14 @@ bb28:   # loop depth 1
 bb29:   # loop depth 2
   SH2ADD s1, s2, s4
   ADDIW s2, s2, -1
-  LW s1, -4(s1)
-  XORI s5, s1, 91
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb37
+  LW s5, -4(s1)
+  XORI s1, s5, 91
+  BEQ s1, zero, bb37
   # implict jump to bb30
 bb30:   # loop depth 2
-  XORI s5, s1, 93
   ADDIW s1, s0, 1
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb36
+  XORI s5, s5, 93
+  BEQ s5, zero, bb36
   # implict jump to bb31
 bb31:   # loop depth 2
   # implict jump to bb32

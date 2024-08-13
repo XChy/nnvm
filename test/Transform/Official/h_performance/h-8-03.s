@@ -23,25 +23,25 @@ main:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   LA a0, seq
-  LA s0, table
-  LA s4, n
   LA s3, table
-  LA s2, seq
+  LA s4, n
+  LA s2, table
+  LA s1, seq
   LA s5, n
-  LA s1, table
+  LA s0, table
   CALL getarray
-  ADD a0, s0, zero
+  ADD a0, s3, zero
   CALL getarray
   ADDI a0, zero, 79
   CALL _sysy_starttime
   LW a0, 0(s4)
-  ADD a2, s3, zero
-  ADD a1, s2, zero
+  ADD a2, s2, zero
+  ADD a1, s1, zero
   CALL kernel_nussinov
   ADDI a0, zero, 81
   CALL _sysy_stoptime
   LW a0, 0(s5)
-  ADD a1, s1, zero
+  ADD a1, s0, zero
   MULW a0, a0, a0
   CALL putarray
   ADD a0, zero, zero
@@ -62,9 +62,7 @@ kernel_nussinov:   # loop depth 0
   SD s2, 24(sp)
   SD s3, 32(sp)
   ADDIW a5, a0, -1
-  SLT t0, a5, zero
-  XORI t0, t0, 1
-  BNE t0, zero, bb11
+  BGE a5, zero, bb11
   # implict jump to bb2
 bb2:   # loop depth 0
   BLT zero, a0, bb4
@@ -121,9 +119,7 @@ bb13:   # loop depth 1
   # implict jump to bb14
 bb14:   # loop depth 1
   ADDIW a5, a5, -1
-  SLT t1, a5, zero
-  XORI t1, t1, 1
-  BNE t1, zero, bb15
+  BGE a5, zero, bb15
   JAL zero, bb2
 bb15:   # loop depth 1
   JAL zero, bb12
@@ -139,7 +135,7 @@ bb17:   # loop depth 2
   ADDIW t0, a4, -1
   SLT a3, t0, zero
   XORI a3, a3, 1
-  BNE a3, zero, bb42
+  BGE t0, zero, bb42
   # implict jump to bb18
 bb18:   # loop depth 2
   BLT t1, a0, bb40

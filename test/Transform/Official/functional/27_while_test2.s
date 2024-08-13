@@ -37,8 +37,7 @@ bb6:   # loop depth 1
 bb7:   # loop depth 2
   XORI a1, t1, 7
   ADDIW t2, t2, 1
-  SLTIU a1, a1, 1
-  BNE a1, zero, bb12
+  BEQ a1, zero, bb12
   # implict jump to bb8
 bb8:   # loop depth 2
   # implict jump to bb9
@@ -62,9 +61,8 @@ bb14:   # loop depth 3
   # implict jump to bb15
 bb15:   # loop depth 3
   XORI a1, t1, 7
-  SLTIU a1, a1, 1
   ADDIW t0, t0, -1
-  BNE a1, zero, bb17
+  BEQ a1, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 2
   JAL zero, bb9

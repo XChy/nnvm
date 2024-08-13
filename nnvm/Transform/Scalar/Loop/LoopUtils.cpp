@@ -126,19 +126,32 @@ std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
   BasicBlock *exit = loop->getExitEdges().front().to;
 
   BranchInst *exitBranch = cast<BranchInst>(exiting->getTerminator());
+
+  if (exitBranch->getSuccNum() != 2)
+    return {};
+
   ICmpInst *cmp = mayCast<ICmpInst>(exitBranch->getCondition());
 
-  if (!cmp || !cmp->getOperand(1)->isConstant())
+  if (!cmp)
+    return {};
+
+  auto pred = cmp->getPredicate();
+  Value *lhs = cmp->getOperand(0);
+  Value *rhs = cmp->getOperand(1);
+
+  if (exitBranch->getSucc(0) == exit)
+    pred = ICmpInst::invertPred(pred);
+
+  if (!rhs->isConstant())
     return {};
 
   // FIXME: Invert the predicate if needed.
-  auto pred = cmp->getPredicate();
-  ScevValue *indSCEV = scev->analyze(cmp->getOperand(0), loop);
+  ScevValue *indSCEV = scev->analyze(lhs, loop);
 
   if (!indSCEV)
     return {};
 
-  auto *bound = cast<ConstantInt>(cmp->getOperand(1));
+  auto *bound = cast<ConstantInt>(rhs);
 
   LoopBoundInfo ret;
   ret.indvar = indSCEV;

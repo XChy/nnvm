@@ -42,11 +42,10 @@ exgcd:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD s1, a1, zero
   ADD s0, a3, zero
-  SLTIU a1, s1, 1
   ADD s2, a2, zero
-  BNE a1, zero, bb3
+  ADD s1, a1, zero
+  BEQ s1, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
   REMW a1, a0, s1

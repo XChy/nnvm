@@ -1133,8 +1133,7 @@ bb135:   # loop depth 0
   # implict jump to bb136
 bb136:   # loop depth 0
   SLTU a0, zero, a0
-  XORI a0, a0, 1
-  BNE a0, zero, bb234
+  BEQ a0, zero, bb234
   # implict jump to bb137
 bb137:   # loop depth 0
   LA a0, sum
@@ -1651,15 +1650,14 @@ bb244:   # loop depth 1
   BNE s8, zero, bb249
   # implict jump to bb245
 bb245:   # loop depth 1
-  LA s8, array
-  ADDI s9, zero, 1
-  SLTIU s7, a0, 1
-  SH2ADD a0, s0, s8
-  SW s9, -4(a0)
-  BNE s7, zero, bb248
+  LA s7, array
+  ADDI s8, zero, 1
+  SH2ADD s7, s0, s7
+  SW s8, -4(s7)
+  BEQ a0, zero, bb248
   # implict jump to bb246
 bb246:   # loop depth 1
-  LW a0, -8(a0)
+  LW a0, -8(s7)
   # implict jump to bb247
 bb247:   # loop depth 1
   SLTU a0, zero, a0

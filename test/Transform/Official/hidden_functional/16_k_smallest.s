@@ -21,12 +21,10 @@ findSmallest:   # loop depth 0
   SD s4, 72(sp)
   SD s5, 80(sp)
   SD s6, 88(sp)
-  ADD s7, a1, zero
-  XOR s0, a0, s7
   ADD s10, a3, zero
-  SLTIU s0, s0, 1
   ADD s8, a2, zero
-  BNE s0, zero, bb19
+  ADD s7, a1, zero
+  BEQ a0, s7, bb19
   # implict jump to bb1
 bb1:   # loop depth 0
   LA s0, array
@@ -43,13 +41,11 @@ bb2:   # loop depth 0
 bb3:   # loop depth 0
   LA s1, array
   ADD s0, s1, s0
-  XOR s4, s8, s3
   LW s1, 0(s0)
-  SLTIU s5, s4, 1
   LW s4, 0(s2)
   SW s4, 0(s0)
   SW s1, 0(s2)
-  BNE s5, zero, bb8
+  BEQ s8, s3, bb8
   # implict jump to bb4
 bb4:   # loop depth 0
   BLT s8, s3, bb7
@@ -112,9 +108,7 @@ bb13:   # loop depth 1
   LA s6, array
   SH2ADD s6, s5, s6
   LW s9, 0(s6)
-  SLT s9, s3, s9
-  XORI s9, s9, 1
-  BNE s9, zero, bb18
+  BGE s3, s9, bb18
   # implict jump to bb14
 bb14:   # loop depth 1
   ADD s1, s0, zero

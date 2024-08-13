@@ -42,13 +42,12 @@ main:   # loop depth 0
   LA s5, a
   ADDI s4, zero, 3
   LA s8, b
-  ADDI s0, zero, 1
   LA s6, d
+  ADDI s0, zero, 1
   ADDI s7, zero, 2
   CALL putint
   SLTI s0, s0, 1
   ADDI a0, zero, 32
-  XORI s0, s0, 1
   CALL putch
   LW a0, 0(s9)
   CALL putint
@@ -66,18 +65,17 @@ main:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   SW s7, 0(s6)
-  BNE s0, zero, bb22
+  BEQ s0, zero, bb22
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, d
   ADDI s0, zero, 1
   SLTI s0, s0, 1
   LW a0, 0(a0)
-  XORI s0, s0, 1
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  BNE s0, zero, bb3
+  BEQ s0, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
   LA a0, d
@@ -87,13 +85,11 @@ bb2:   # loop depth 0
 bb3:   # loop depth 0
   LA a0, d
   ADDI s0, zero, 16
-  SLT s0, s0, zero
   LW a0, 0(a0)
-  XORI s0, s0, 1
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  BNE s0, zero, bb21
+  BGE s0, zero, bb21
   # implict jump to bb4
 bb4:   # loop depth 0
   ADDI s0, zero, 1
@@ -101,22 +97,19 @@ bb4:   # loop depth 0
   BNE a0, zero, bb20
   # implict jump to bb5
 bb5:   # loop depth 0
-  SLTIU a0, zero, 1
-  BNE a0, zero, bb19
+  BEQ zero, zero, bb19
   # implict jump to bb6
 bb6:   # loop depth 0
   ADDI a0, zero, 63
   SLTI a0, a0, 102
   XORI a0, a0, 1
   XORI a0, a0, 1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb18
+  BEQ a0, zero, bb18
   # implict jump to bb7
 bb7:   # loop depth 0
   SUBW a0, zero, s0
   XORI a0, a0, -1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb17
+  BEQ a0, zero, bb17
   # implict jump to bb8
 bb8:   # loop depth 0
   SLTI s1, zero, 1
@@ -133,18 +126,15 @@ bb8:   # loop depth 0
 bb9:   # loop depth 0
   ADDI a0, zero, 2
   SLTI a0, a0, 1
-  XORI a0, a0, 1
-  BNE a0, zero, bb15
+  BEQ a0, zero, bb15
   # implict jump to bb10
 bb10:   # loop depth 0
   ADDI a0, zero, 4
   SLTI a0, a0, 4
-  XORI a0, a0, 1
-  BNE a0, zero, bb14
+  BEQ a0, zero, bb14
   # implict jump to bb11
 bb11:   # loop depth 0
-  SLTIU a0, zero, 1
-  BNE a0, zero, bb13
+  BEQ zero, zero, bb13
   # implict jump to bb12
 bb12:   # loop depth 0
   ADDI a0, zero, 10

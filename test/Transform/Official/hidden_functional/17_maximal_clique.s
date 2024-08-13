@@ -134,8 +134,7 @@ maxCliques:   # loop depth 0
   ADD s7, a1, zero
   LW a0, 0(a0)
   SLTI a0, a0, 1
-  XORI a0, a0, 1
-  BNE a0, zero, bb12
+  BEQ a0, zero, bb12
   # implict jump to bb10
 bb10:   # loop depth 0
   ADD a0, zero, zero
@@ -185,9 +184,7 @@ bb18:   # loop depth 1
   LA s3, n
   ADDIW s1, s2, 1
   LW s2, 0(s3)
-  SLT s2, s2, s1
-  XORI s2, s2, 1
-  BNE s2, zero, bb20
+  BGE s2, s1, bb20
   # implict jump to bb19
 bb19:   # loop depth 0
   ADD a0, a1, zero
@@ -224,8 +221,7 @@ bb25:   # loop depth 3
   ADD s5, s9, s5
   SH2ADD s5, s6, s5
   LW s5, 0(s5)
-  SLTIU s5, s5, 1
-  BNE s5, zero, bb27
+  BEQ s5, zero, bb27
   # implict jump to bb26
 bb26:   # loop depth 3
   ADDIW s4, s4, 1

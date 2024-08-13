@@ -125,8 +125,7 @@ bb16:   # loop depth 3
   LW s4, 0(s4)
   SH2ADD s5, s3, s5
   ADD s7, s6, zero
-  SLTIU s6, s4, 1
-  BNE s6, zero, bb21
+  BEQ s4, zero, bb21
   # implict jump to bb17
 bb17:   # loop depth 3
   LW s6, 0(s2)
@@ -210,8 +209,7 @@ bb31:   # loop depth 3
   LW s4, 0(s4)
   SH2ADD s5, s3, s5
   ADD s7, s6, zero
-  SLTIU s6, s4, 1
-  BNE s6, zero, bb36
+  BEQ s4, zero, bb36
   # implict jump to bb32
 bb32:   # loop depth 3
   LW s6, 0(s2)

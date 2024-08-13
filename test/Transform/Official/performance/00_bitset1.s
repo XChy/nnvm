@@ -173,31 +173,30 @@ bb5:   # loop depth 1
   LUI s5, 16384
   ADDIW s2, s2, 0
   SW s4, 184(sp)
-  LUI s8, 32768
+  LUI s4, 32768
   ADDIW s5, s5, 0
   SW s2, 188(sp)
-  LUI s4, 65536
-  ADDIW s8, s8, 0
+  LUI s6, 65536
+  ADDIW s4, s4, 0
   SW s5, 192(sp)
   SLLI s2, s3, 1
-  LUI s7, 2
-  LUI s6, 131072
-  ADDIW s4, s4, 0
-  SW s8, 196(sp)
-  SRLI s2, s2, 63
-  ADDIW s7, s7, 1808
-  LUI s5, 262144
+  LUI s5, 131072
   ADDIW s6, s6, 0
-  SW s4, 200(sp)
-  ADD s4, s3, s2
-  SLT s2, s0, s7
+  SW s4, 196(sp)
+  SRLI s2, s2, 63
+  LUI s8, 2
+  LUI s7, 262144
   ADDIW s5, s5, 0
-  SW s6, 204(sp)
-  ANDI s4, s4, -2
-  XORI s2, s2, 1
-  SW s5, 208(sp)
+  SW s6, 200(sp)
+  ADD s2, s3, s2
+  ADDIW s8, s8, 1808
+  ADDIW s7, s7, 0
+  SW s5, 204(sp)
+  ANDI s4, s2, -2
+  SLT s2, s0, s8
+  SW s7, 208(sp)
   SUBW s4, s3, s4
-  BNE s2, zero, bb9
+  BEQ s2, zero, bb9
   # implict jump to bb6
 bb6:   # loop depth 1
   ADDI s5, zero, 30
@@ -231,35 +230,31 @@ bb9:   # loop depth 1
 bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
-  XORI s4, s4, 1
-  ANDI a0, a0, 1
-  SLTIU s6, s4, 1
-  SLTIU s4, a0, 1
-  BNE s6, zero, bb23
+  XORI s6, s4, 1
+  ANDI s4, a0, 1
+  BEQ s6, zero, bb23
   # implict jump to bb12
 bb12:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  BNE s4, zero, bb22
+  BEQ s4, zero, bb22
   # implict jump to bb14
 bb14:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb15
 bb15:   # loop depth 1
   XORI s4, s5, 1
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb18
+  BEQ s4, zero, bb18
   # implict jump to bb16
 bb16:   # loop depth 1
   # implict jump to bb17
 bb17:   # loop depth 1
   JAL zero, bb8
 bb18:   # loop depth 1
-  ANDI s3, s3, 1
   SUBW s0, a0, s0
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb21
+  ANDI s3, s3, 1
+  BEQ s3, zero, bb21
   # implict jump to bb19
 bb19:   # loop depth 1
   ADD s0, a0, zero

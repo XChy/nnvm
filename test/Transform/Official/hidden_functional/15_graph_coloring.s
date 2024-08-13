@@ -18,9 +18,8 @@ graphColoring:   # loop depth 0
   ADD s4, a3, zero
   XORI s0, s5, 4
   ADD s2, a1, zero
-  SLTIU s0, s0, 1
   ADD s3, a0, zero
-  BNE s0, zero, bb7
+  BEQ s0, zero, bb7
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI s0, zero, 1
@@ -28,9 +27,7 @@ bb1:   # loop depth 0
   SH2ADD s5, s5, s4
   # implict jump to bb2
 bb2:   # loop depth 1
-  SLT a0, s2, s0
-  XORI a0, a0, 1
-  BNE a0, zero, bb4
+  BGE s2, s0, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD a0, zero, zero
@@ -205,8 +202,7 @@ main:   # loop depth 0
   SW zero, 12(sp)
   CALL graphColoring
   SLTU a0, zero, a0
-  XORI a0, a0, 1
-  BNE a0, zero, bb24
+  BEQ a0, zero, bb24
   # implict jump to bb23
 bb23:   # loop depth 0
   ADD a0, zero, zero

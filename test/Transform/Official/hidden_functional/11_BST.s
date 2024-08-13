@@ -25,8 +25,7 @@ insert:   # loop depth 0
   SD s1, 16(sp)
   ADD s0, a0, zero
   XORI a0, s0, -1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb5
+  BEQ a0, zero, bb5
   # implict jump to bb1
 bb1:   # loop depth 0
   LA a0, value
@@ -86,8 +85,7 @@ delete:   # loop depth 0
   SD s3, 32(sp)
   ADD s1, a0, zero
   XORI a0, s1, -1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb31
+  BEQ a0, zero, bb31
   # implict jump to bb7
 bb7:   # loop depth 0
   LA a0, value
@@ -104,9 +102,8 @@ bb8:   # loop depth 0
   # implict jump to bb9
 bb9:   # loop depth 0
   LW a0, 0(s3)
-  XORI a1, a0, -1
-  SLTIU s3, a1, 1
-  BNE s3, zero, bb28
+  XORI s3, a0, -1
+  BEQ s3, zero, bb28
   # implict jump to bb10
 bb10:   # loop depth 0
   ADD a1, zero, zero
@@ -115,7 +112,7 @@ bb11:   # loop depth 0
   BNE a1, zero, bb27
   # implict jump to bb12
 bb12:   # loop depth 0
-  BNE s3, zero, bb26
+  BEQ s3, zero, bb26
   # implict jump to bb13
 bb13:   # loop depth 0
   LW a1, 0(s0)
@@ -130,8 +127,7 @@ bb15:   # loop depth 0
   # implict jump to bb16
 bb16:   # loop depth 1
   XORI a1, a0, -1
-  SLTIU a1, a1, 1
-  BNE a1, zero, bb22
+  BEQ a1, zero, bb22
   # implict jump to bb17
 bb17:   # loop depth 1
   LA a1, left_child
@@ -168,7 +164,7 @@ bb22:   # loop depth 0
   ADDI a0, zero, -1
   JAL zero, bb19
 bb23:   # loop depth 0
-  BNE s3, zero, bb25
+  BEQ s3, zero, bb25
   # implict jump to bb24
 bb24:   # loop depth 0
   LD ra, 0(sp)
@@ -241,8 +237,7 @@ main:   # loop depth 0
   CALL getint
   ADD s2, a0, zero
   SLTU s0, zero, s2
-  XORI s0, s0, 1
-  BNE s0, zero, bb44
+  BEQ s0, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 0
   LA s0, now

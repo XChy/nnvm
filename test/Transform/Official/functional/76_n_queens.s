@@ -77,8 +77,7 @@ f:   # loop depth 0
   ADD s5, a0, zero
   LW s3, 0(s0)
   SLTI a0, s3, 1
-  XORI a0, a0, 1
-  BNE a0, zero, bb7
+  BEQ a0, zero, bb7
   # implict jump to bb6
 bb6:   # loop depth 0
   LD ra, 0(sp)
@@ -126,17 +125,13 @@ bb13:   # loop depth 1
   LA s2, n
   ADDIW a0, s1, 1
   LW s3, 0(s2)
-  SLT s1, s3, a0
-  XORI s1, s1, 1
-  BNE s1, zero, bb14
+  BGE s3, a0, bb14
   JAL zero, bb6
 bb14:   # loop depth 1
   JAL zero, bb8
 bb15:   # loop depth 1
-  XOR a0, s5, s3
   SW s1, 0(s0)
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb17
+  BEQ s5, s3, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
   LA s3, line1
@@ -176,9 +171,7 @@ bb17:   # loop depth 1
 bb18:   # loop depth 2
   LA a0, n
   LW a0, 0(a0)
-  SLT a0, a0, s3
-  XORI a0, a0, 1
-  BNE a0, zero, bb19
+  BGE a0, s3, bb19
   JAL zero, bb16
 bb19:   # loop depth 2
   LA a0, ans
@@ -187,9 +180,7 @@ bb19:   # loop depth 2
   LW a0, 0(a0)
   CALL putint
   LW a0, 0(s6)
-  XOR a0, s3, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb21
+  BEQ s3, a0, bb21
   # implict jump to bb20
 bb20:   # loop depth 2
   ADDIW s3, s3, 1

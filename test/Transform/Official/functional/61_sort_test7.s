@@ -39,9 +39,7 @@ merge_sort:   # loop depth 0
   ADD s0, a0, zero
   ADD s1, a1, zero
   ADDIW a0, s0, 1
-  SLT a0, a0, s1
-  XORI a0, a0, 1
-  BNE a0, zero, bb26
+  BGE a0, s1, bb26
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDW a1, s0, s1

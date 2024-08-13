@@ -139,9 +139,7 @@ bb8:   # loop depth 2
 bb9:   # loop depth 1
   LA s1, x_1
   LW a0, 0(s1)
-  XOR a0, s11, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb25
+  BEQ s11, a0, bb25
   # implict jump to bb10
 bb10:   # loop depth 1
   ADD a0, zero, zero
@@ -150,17 +148,14 @@ bb11:   # loop depth 1
   BNE a0, zero, bb24
   # implict jump to bb12
 bb12:   # loop depth 1
+  LW a0, 16(sp)
+  ADDIW a0, a0, 1
+  SW a0, 16(sp)
   ADDI a0, zero, 1
-  LW a1, 16(sp)
-  ADDIW a1, a1, 1
-  SW a1, 16(sp)
-  SLT a0, a0, a2
-  XORI a0, a0, 1
-  BNE a0, zero, bb23
+  BGE a0, a2, bb23
   # implict jump to bb13
 bb13:   # loop depth 1
-  SLTIU a0, s11, 1
-  BNE a0, zero, bb22
+  BEQ s11, zero, bb22
   # implict jump to bb14
 bb14:   # loop depth 1
   LA a0, h
@@ -245,9 +240,7 @@ bb25:   # loop depth 1
 bb26:   # loop depth 2
   LA a0, x_1
   LW a0, 0(a0)
-  XOR a0, s11, a0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb31
+  BEQ s11, a0, bb31
   # implict jump to bb27
 bb27:   # loop depth 2
   ADD s7, zero, zero
@@ -406,8 +399,7 @@ bb37:   # loop depth 1
   LA s0, h
   LW s0, 0(s0)
   SLTI s0, s0, 1
-  XORI s0, s0, 1
-  BNE s0, zero, bb42
+  BEQ s0, zero, bb42
   # implict jump to bb38
 bb38:   # loop depth 1
   LA a0, x_0
@@ -417,9 +409,7 @@ bb38:   # loop depth 1
   LW a0, 0(a0)
   LW a1, 0(a1)
   CALL search
-  SLT s0, s0, a0
-  XORI s0, s0, 1
-  BNE s0, zero, bb41
+  BGE s0, a0, bb41
   # implict jump to bb39
 bb39:   # loop depth 1
   ADDI a0, zero, -1
@@ -452,16 +442,13 @@ bb43:   # loop depth 2
   LA s0, w
   LW s0, 0(s0)
   SLTI s0, s0, 1
-  XORI s0, s0, 1
-  BNE s0, zero, bb46
+  BEQ s0, zero, bb46
   # implict jump to bb44
 bb44:   # loop depth 2
   LA s0, h
   ADDIW s1, s1, 1
   LW s0, 0(s0)
-  SLT s0, s0, s1
-  XORI s0, s0, 1
-  BNE s0, zero, bb45
+  BGE s0, s1, bb45
   JAL zero, bb38
 bb45:   # loop depth 2
   JAL zero, bb43
@@ -478,21 +465,17 @@ bb47:   # loop depth 3
   SH2ADD s4, s0, s3
   XORI s5, s2, 2
   SW s2, 0(s4)
-  SLTIU s4, s5, 1
-  BNE s4, zero, bb52
+  BEQ s5, zero, bb52
   # implict jump to bb48
 bb48:   # loop depth 3
   XORI s2, s2, 3
-  SLTIU s2, s2, 1
-  BNE s2, zero, bb51
+  BEQ s2, zero, bb51
   # implict jump to bb49
 bb49:   # loop depth 3
   LA s2, w
   ADDIW s0, s0, 1
   LW s2, 0(s2)
-  SLT s2, s2, s0
-  XORI s2, s2, 1
-  BNE s2, zero, bb50
+  BGE s2, s0, bb50
   JAL zero, bb44
 bb50:   # loop depth 3
   JAL zero, bb47

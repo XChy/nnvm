@@ -55,9 +55,7 @@ bb6:   # loop depth 1
   SH2ADD s3, s1, s0
   ADDIW s0, a0, 1
   LW s3, 0(s3)
-  XOR s3, s3, s1
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb11
+  BEQ s3, s1, bb11
   # implict jump to bb7
 bb7:   # loop depth 1
   # implict jump to bb8
@@ -120,9 +118,7 @@ find:   # loop depth 0
   LA s0, parent
   SH2ADD s0, a0, s0
   LW s1, 0(s0)
-  XOR s1, s1, a0
-  SLTIU s1, s1, 1
-  BNE s1, zero, bb22
+  BEQ s1, a0, bb22
   # implict jump to bb21
 bb21:   # loop depth 0
   LW a0, 0(s0)

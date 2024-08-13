@@ -54,15 +54,15 @@ main:   # loop depth 0
   LA s0, keys
   LA s4, hashmod
   CALL getint
-  LA s1, values
-  ADD s2, a0, zero
+  LA s2, values
+  ADD s1, a0, zero
   LA s3, requests
   ADD a0, s0, zero
-  SW s2, 0(s4)
-  ADDI s2, zero, 0
+  SW s1, 0(s4)
+  ADDI s1, zero, 0
   CALL getarray
   SW a0, 0(sp)
-  ADD a0, s1, zero
+  ADD a0, s2, zero
   CALL getarray
   ADD a0, s3, zero
   CALL getarray
@@ -70,7 +70,7 @@ main:   # loop depth 0
   ADDI a0, zero, 78
   CALL _sysy_starttime
   LW a0, 0(sp)
-  BLT s2, a0, bb18
+  BLT s1, a0, bb18
   # implict jump to bb1
 bb1:   # loop depth 0
   BLT zero, s3, bb3
@@ -131,9 +131,7 @@ bb9:   # loop depth 2
   LA s6, key
   SH2ADD s6, s1, s6
   LW s6, 0(s6)
-  XOR s6, s6, s0
-  SLTIU s6, s6, 1
-  BNE s6, zero, bb11
+  BEQ s6, s0, bb11
   # implict jump to bb10
 bb10:   # loop depth 2
   LA s6, next
@@ -181,8 +179,7 @@ bb19:   # loop depth 1
   LW s5, 0(a0)
   SH2ADD s6, s6, s7
   LW a0, 0(s6)
-  SLTIU s7, a0, 1
-  BNE s7, zero, bb28
+  BEQ a0, zero, bb28
   # implict jump to bb20
 bb20:   # loop depth 1
   # implict jump to bb21
@@ -223,9 +220,7 @@ bb25:   # loop depth 2
   LA s7, key
   SH2ADD s7, a0, s7
   LW s7, 0(s7)
-  XOR s7, s7, s4
-  SLTIU s7, s7, 1
-  BNE s7, zero, bb27
+  BEQ s7, s4, bb27
   # implict jump to bb26
 bb26:   # loop depth 2
   LA s7, next

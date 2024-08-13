@@ -17,9 +17,8 @@ sub_impl:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SLTIU s1, a2, 1
   ADD s0, a0, zero
-  BNE s1, zero, bb3
+  BEQ a2, zero, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   LW s1, 0(s0)
@@ -46,9 +45,8 @@ add_impl:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SLTIU s1, a2, 1
   ADD s0, a0, zero
-  BNE s1, zero, bb7
+  BEQ a2, zero, bb7
   # implict jump to bb5
 bb5:   # loop depth 0
   LW s1, 0(s0)
@@ -125,9 +123,7 @@ bb12:   # loop depth 1
   CALL add_impl
   LW a0, 0(s2)
   LW s0, 44(sp)
-  XOR a0, a0, s0
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb10
+  BEQ a0, s0, bb10
   JAL zero, bb9
 bb13:   # loop depth 2
   LA a0, i
@@ -170,8 +166,7 @@ inc_impl:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   ADD s0, a0, zero
-  SLTIU a0, a1, 1
-  BNE a0, zero, bb17
+  BEQ a1, zero, bb17
   # implict jump to bb15
 bb15:   # loop depth 0
   LW s1, 0(s0)

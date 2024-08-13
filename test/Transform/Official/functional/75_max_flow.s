@@ -33,11 +33,9 @@ dfs:   # loop depth 0
   SD s8, 72(sp)
   SD s9, 80(sp)
   SD s10, 88(sp)
-  ADD s8, a1, zero
-  XOR a1, a0, s8
   ADD s9, a2, zero
-  SLTIU a1, a1, 1
-  BNE a1, zero, bb12
+  ADD s8, a1, zero
+  BEQ a0, s8, bb12
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI a2, zero, 40
@@ -89,9 +87,7 @@ bb4:   # loop depth 1
 bb5:   # loop depth 1
   SH2ADD s6, s3, s2
   LW a2, 0(s6)
-  SLT s7, zero, a2
-  XORI s7, s7, 1
-  BNE s7, zero, bb10
+  BGE zero, a2, bb10
   # implict jump to bb6
 bb6:   # loop depth 1
   LW a0, 0(s4)
@@ -235,8 +231,7 @@ bb15:   # loop depth 1
   ADDI a0, zero, 1
   SW zero, 36(s3)
   CALL dfs
-  SLTIU s2, a0, 1
-  BNE s2, zero, bb17
+  BEQ a0, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
   ADDW s1, s1, a0
