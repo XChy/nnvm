@@ -17,6 +17,8 @@ while.exit:  pred(entry, while.exit25)
   76319 = icmp slt i32 1, i32 %230318
   br i1 %76319, bb %while.body71_preheader, bb %while.exit72
 while.body24_preheader:  pred(while.body)
+  39 = mul i32 %i.phi217328, i32 1440000
+  40 = ptradd ptr @x, i32 %39
   br bb %while.body24
 while.body24:  pred(while.exit33, while.body24_preheader)
   j.phi220312 = phi [bb %while.exit33, i32 %63, bb %while.body24_preheader, i32 0]
@@ -26,8 +28,6 @@ while.exit25:  pred(while.body, while.exit33)
   19 = icmp slt i32 %66, i32 %7
   br i1 %19, bb %while.body, bb %while.exit
 while.body32_preheader:  pred(while.body24)
-  39 = mul i32 %i.phi217328, i32 1440000
-  40 = ptradd ptr @x, i32 %39
   42 = mul i32 %j.phi220312, i32 2400
   43 = ptradd ptr %40, i32 %42
   br bb %while.body32
@@ -67,6 +67,7 @@ while.exit72:  pred(while.exit, while.body71_exclu_exit)
   call void putarray(i32 %7, ptr %287)
   ret i32 0
 while.body81_preheader:  pred(while.body71)
+  99 = ptradd ptr @x, i32 %98320326
   br bb %while.body81
 while.body81:  pred(while.exit91, while.body81_preheader)
   j.phi317 = phi [bb %while.exit91, i32 %185, bb %while.body81_preheader, i32 1]
@@ -78,7 +79,6 @@ while.exit82:  pred(while.body71, while.body81_exclu_exit)
   98 = mul i32 %188, i32 1440000
   br i1 %76, bb %while.body71, bb %while.body71_exclu_exit
 while.body90_preheader:  pred(while.body81)
-  99 = ptradd ptr @x, i32 %98320326
   101 = mul i32 %j.phi317, i32 2400
   102 = ptradd ptr %99, i32 %101
   br bb %while.body90

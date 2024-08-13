@@ -49,6 +49,8 @@ external void putfloat(float )
 internal void write_pgm() {
 entry294:  pred()
   %ret453 = stack 8
+  .pinned1118 = pin float 3.141593
+  .pinned = pin float 6.283185
   call void putch(i32 80)
   call void putch(i32 50)
   call void putch(i32 10)
@@ -58,26 +60,27 @@ entry294:  pred()
   call void putch(i32 32)
   call void putint(i32 255)
   call void putch(i32 10)
-  br bb %while.body308
-while.body308:  pred(while.body316_exclu_exit, entry294)
-  y.phi1091 = phi [bb %while.body316_exclu_exit, i32 %354, bb %entry294, i32 0]
-  .pinned1119 = pin float 0.000000
-  .pinned1118 = pin float 3.141593
-  .pinned = pin float 6.283185
-  327 = si2f i32 %y.phi1091 to float
-  331 = si2f i32 192 to float
-  336 = fdiv float %327, float %331
-  2754061073 = si2f i32 24 to float
-  br bb %while.body316
-while.body316:  pred(sample.while.body255_exclu_exit.split, while.body308)
-  x.phi1086 = phi [bb %sample.while.body255_exclu_exit.split, i32 %350, bb %while.body308, i32 0]
-  324 = si2f i32 %x.phi1086 to float
-  332 = fdiv float %324, float %331
+  275406 = si2f i32 24 to float
+  28496533937 = si2f i32 8 to float
+  35501538942 = si2f i32 4 to float
+  187915 = ptradd ptr %ret453, i32 4
   269401 = si2f i32 100000006 to float
   1371031 = si2f i32 2 to float
   1381032 = fdiv float %.pinned1118, float %1371031
   946081040 = fneg float %.pinned
   1236241056 = fneg float %.pinned1118
+  331 = si2f i32 192 to float
+  br bb %while.body308
+while.body308:  pred(while.body316_exclu_exit, entry294)
+  y.phi1091 = phi [bb %while.body316_exclu_exit, i32 %354, bb %entry294, i32 0]
+  .pinned1119 = pin float 0.000000
+  327 = si2f i32 %y.phi1091 to float
+  336 = fdiv float %327, float %331
+  br bb %while.body316
+while.body316:  pred(sample.while.body255_exclu_exit.split, while.body308)
+  x.phi1086 = phi [bb %sample.while.body255_exclu_exit.split, i32 %350, bb %while.body308, i32 0]
+  324 = si2f i32 %x.phi1086 to float
+  332 = fdiv float %324, float %331
   br bb %sample.while.body255
 sample.while.body255:  pred(sample.while.body255.split, while.body316)
   sum.phi3951077 = phi [bb %sample.while.body255.split, float %286411, bb %while.body316, float %.pinned1119]
@@ -112,11 +115,9 @@ trace.while.body204462:  pred(trace.while.cond203455)
   157524928 = fmul float %150522926, float %150522926
   160525929 = fmul float %154523927, float %154523927
   161526930 = fadd float %157524928, float %160525929
-  28496533937 = si2f i32 8 to float
   29497534938 = fdiv float %161526930, float %28496533937
   30498535939 = fadd float %29497534938, float %.pinned1120
   33500537941 = fmul float %1371031, float %161526930
-  35501538942 = si2f i32 4 to float
   36502539943 = fadd float %35501538942, float %161526930
   37503540944 = fdiv float %33500537941, float %36502539943
   38504541945 = fadd float %30498535939, float %37503540944
@@ -166,7 +167,7 @@ rand.if.exit715:  pred(sample.while.body255, rand.then710)
   271403 = si2f i32 %i253.phi3941076 to float
   272404 = fadd float %271403, float %270402
   273405 = fmul float %.pinned, float %272404
-  276407 = fdiv float %273405, float %2754061073
+  276407 = fdiv float %273405, float %275406
   1391033 = fadd float %276407, float %1381032
   876071039 = fcmp ogt float %1391033, float %.pinned
   956091041 = fcmp olt float %1391033, float %946081040
@@ -243,10 +244,9 @@ scene.circle_sdf.my_sqrt.while.body952_exclu_exit:  pred(scene.circle_sdf.my_sqr
 scene.circle_sdf.my_sqrt.while.body585987_exclu_exit:  pred(scene.circle_sdf.my_sqrt.while.body585987)
   164567969 = fsub float %52514588990, float 0.050000
   178911 = fcmp olt float %164530934, float %164567969
-  187915 = ptradd ptr %ret453, i32 4
   br i1 %178911, bb %scene.then179913, bb %scene.else920
 sample.while.body255_exclu_exit:  pred(sample.while.body255.split)
-  293416 = fdiv float %286411, float %2754061073
+  293416 = fdiv float %286411, float %275406
   338 = fmul float %293416, float 255.000000
   339 = f2si float %338 to i32
   341 = icmp sgt i32 %339, i32 255

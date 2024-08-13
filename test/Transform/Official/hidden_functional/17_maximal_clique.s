@@ -156,96 +156,80 @@ bb11:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb12:   # loop depth 0
-  LA s1, store
+  LA s2, store
+  ADD a0, zero, zero
+  ADDI s1, zero, 1
   ADD a1, zero, zero
-  ADDI a0, zero, 1
-  ADD s2, zero, zero
   ADDIW s0, s7, 1
-  SH2ADD s10, s7, s1
+  SH2ADD s10, s7, s2
   # implict jump to bb13
 bb13:   # loop depth 1
-  ADD s1, a0, zero
+  ADD s2, s1, zero
   ADDI s3, zero, 1
-  SW s1, 0(s10)
-  ADD a0, s2, zero
+  SW s2, 0(s10)
+  ADD s1, a1, zero
   # implict jump to bb14
 bb14:   # loop depth 2
-  ADD s2, s3, zero
-  BLT s2, s0, bb28
+  BLT s3, s0, bb22
   # implict jump to bb15
 bb15:   # loop depth 1
-  ADDI s2, zero, 1
+  ADDI a1, zero, 1
   # implict jump to bb16
 bb16:   # loop depth 1
-  BNE s2, zero, bb21
+  BNE a1, zero, bb21
   # implict jump to bb17
 bb17:   # loop depth 1
-  ADD s2, a0, zero
+  ADD a1, s1, zero
   # implict jump to bb18
 bb18:   # loop depth 1
   LA s3, n
-  ADDIW a0, s1, 1
-  LW s1, 0(s3)
-  SLT s1, s1, a0
-  XORI s1, s1, 1
-  BNE s1, zero, bb20
+  ADDIW s1, s2, 1
+  LW s2, 0(s3)
+  SLT s2, s2, s1
+  XORI s2, s2, 1
+  BNE s2, zero, bb20
   # implict jump to bb19
 bb19:   # loop depth 0
-  ADD a0, s2, zero
+  ADD a0, a1, zero
   JAL zero, bb11
 bb20:   # loop depth 1
   JAL zero, bb13
 bb21:   # loop depth 1
-  BLT a0, s7, bb27
-  # implict jump to bb22
-bb22:   # loop depth 1
-  ADD s2, a0, zero
-  # implict jump to bb23
-bb23:   # loop depth 1
   ADD a1, s0, zero
-  ADD a0, s1, zero
+  ADD a0, s2, zero
+  MAX s1, s7, s1
   CALL maxCliques
-  BLT s2, a0, bb26
-  # implict jump to bb24
-bb24:   # loop depth 1
-  # implict jump to bb25
-bb25:   # loop depth 1
-  ADD a1, a0, zero
+  MAX a1, a0, s1
   JAL zero, bb18
-bb26:   # loop depth 1
-  ADD s2, a0, zero
-  JAL zero, bb25
-bb27:   # loop depth 1
-  ADD s2, s7, zero
-  JAL zero, bb23
-bb28:   # loop depth 2
-  ADDIW s3, s2, 1
-  ADD s4, s3, zero
-  # implict jump to bb29
-bb29:   # loop depth 3
-  BLT s4, s0, bb31
-  # implict jump to bb30
-bb30:   # loop depth 2
-  JAL zero, bb14
-bb31:   # loop depth 3
+bb22:   # loop depth 2
   LA s5, store
+  ADDIW a1, s3, 1
+  ADD s4, a1, zero
+  SH2ADD s3, s3, s5
+  # implict jump to bb23
+bb23:   # loop depth 3
+  BLT s4, s0, bb25
+  # implict jump to bb24
+bb24:   # loop depth 2
+  ADD s3, a1, zero
+  JAL zero, bb14
+bb25:   # loop depth 3
+  LW s5, 0(s3)
   LA s6, store
   ADDI s8, zero, 120
   LA s9, graph
-  SH2ADD s5, s2, s5
   SH2ADD s6, s4, s6
-  LW s5, 0(s5)
   MULW s5, s5, s8
   LW s6, 0(s6)
   ADD s5, s9, s5
   SH2ADD s5, s6, s5
   LW s5, 0(s5)
   SLTIU s5, s5, 1
-  BNE s5, zero, bb33
-  # implict jump to bb32
-bb32:   # loop depth 3
+  BNE s5, zero, bb27
+  # implict jump to bb26
+bb26:   # loop depth 3
   ADDIW s4, s4, 1
-  JAL zero, bb29
-bb33:   # loop depth 1
-  ADD s2, zero, zero
+  JAL zero, bb23
+bb27:   # loop depth 1
+  ADD a1, zero, zero
   JAL zero, bb16

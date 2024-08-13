@@ -19,6 +19,7 @@ entry60:  pred()
 while.body66_preheader:  pred(entry60)
   .pinned150 = pin float 0.000000
   .pinned = pin float 0.500000
+  12105 = si2f i32 1 to float
   399 = si2f i32 0 to float
   br bb %while.body66
 while.body66:  pred(while.body66.split, while.body66_preheader)
@@ -42,7 +43,6 @@ while.exit67:  pred(entry60, while.body66.split)
 newtons_sqrt.then:  pred(while.body66)
   br bb %while.body66.split
 newtons_sqrt.if.exit:  pred(while.body66)
-  12105 = si2f i32 1 to float
   13106 = fadd float %78.load, float %12105
   14107 = fmul float %13106, float %.pinned
   18108 = fcmp olt float %78.load, float %14107

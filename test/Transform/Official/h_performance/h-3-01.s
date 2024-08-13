@@ -167,29 +167,29 @@ bb18:   # loop depth 2
 bb19:   # loop depth 3
   JAL zero, bb17
 bb20:   # loop depth 0
-  ADD s1, zero, zero
+  MULW s1, a0, a0
+  ADD s2, zero, zero
   # implict jump to bb21
 bb21:   # loop depth 1
   BLT s8, s0, bb24
   # implict jump to bb22
 bb22:   # loop depth 1
-  ADDIW s1, s1, 1
-  BLT s1, a0, bb23
+  ADDIW s2, s2, 1
+  BLT s2, a0, bb23
   JAL zero, bb3
 bb23:   # loop depth 1
   JAL zero, bb21
 bb24:   # loop depth 1
-  LUI s2, 1
-  MULW s3, a0, a0
-  ADDIW s2, s2, -896
+  LUI s3, 1
   LA s5, data
-  MULW s2, s1, s2
+  ADDIW s3, s3, -896
   ADD s4, zero, zero
-  ADD s2, s5, s2
+  MULW s3, s2, s3
+  ADD s3, s5, s3
   # implict jump to bb25
 bb25:   # loop depth 2
   LA s7, mean
-  SH2ADD s5, s4, s2
+  SH2ADD s5, s4, s3
   LA s9, stddev
   LW s6, 0(s5)
   SH2ADD s7, s4, s7
@@ -199,7 +199,7 @@ bb25:   # loop depth 2
   SUBW s6, s6, s7
   SW s6, 0(s5)
   LW s7, 0(s9)
-  MULW s7, s3, s7
+  MULW s7, s1, s7
   DIVW s6, s6, s7
   SW s6, 0(s5)
   BLT s4, s0, bb26

@@ -100,6 +100,8 @@ long_array.while.body112:  pred(long_array.while.body112, long_array.then105)
   116338 = icmp slt i32 %132349, i32 10000
   br i1 %116338, bb %long_array.while.body112, bb %long_array.while.body112_exclu_exit
 long_array.then137:  pred(long_array.else107)
+  159381 = ptradd ptr %a2244, i32 %421
+  174396 = ptradd ptr %a1245, i32 %421
   br bb %long_array.while.body144
 long_array.if.exit138:  pred(long_array.else139, long_array.while.body144_exclu_exit)
   j140.phi221357 = phi [bb %long_array.else139, i32 %j140.phi224297441, bb %long_array.while.body144_exclu_exit, i32 %j140.phi391]
@@ -119,7 +121,6 @@ long_array.while.body144:  pred(long_array.if.exit153, long_array.then137)
   426 = shl i32 %j140.phi220369437, i32 2
   br i1 %151374, bb %long_array.then152, bb %long_array.else154
 long_array.then152:  pred(long_array.while.body144)
-  159381 = ptradd ptr %a2244, i32 %421
   159.load382 = load i32 from ptr %159381
   161383 = add i32 %ans.phi209370438, i32 %159.load382
   164385 = ptradd ptr %a1245, i32 %426
@@ -133,7 +134,6 @@ long_array.if.exit153:  pred(long_array.then152, long_array.else154)
   148371 = icmp slt i32 %j140.phi391, i32 10000
   br i1 %148371, bb %long_array.while.body144, bb %long_array.while.body144_exclu_exit
 long_array.else154:  pred(long_array.while.body144)
-  174396 = ptradd ptr %a1245, i32 %421
   174.load397 = load i32 from ptr %174396
   176398 = add i32 %ans.phi209370438, i32 %174.load397
   179400 = ptradd ptr %a3243, i32 %426

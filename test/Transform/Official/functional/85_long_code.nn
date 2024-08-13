@@ -18,6 +18,7 @@ then127:  pred(entry121)
 if.exit128:  pred(entry121, while.exit143)
   ret i32 0
 while.body142_preheader:  pred(then127)
+  891 = add i32 %139.load, i32 -1
   br bb %while.body142
 while.body142:  pred(if.exit211, while.body142_preheader)
   18514901497 = phi [bb %if.exit211, i32 %185, bb %while.body142_preheader, i32 %1851490]
@@ -47,7 +48,6 @@ while.exit150:  pred(select.exit156)
 select.then154:  pred(while.cond148)
   160 = ptradd ptr %arr, i32 %1441
   160.load = load i32 from ptr %160
-  891 = add i32 %139.load, i32 -1
   164 = icmp sgt i32 %160.load, i32 %891
   br bb %select.exit156
 select.else155:  pred(while.cond148)
@@ -513,10 +513,10 @@ getMost.while.body277:  pred(getMost.while.body277, while.exit656.split1146)
   br i1 %2801107, bb %getMost.while.body277, bb %getMost.while.body277_exclu_exit
 getMost.while.body294_preheader:  pred(getMost.while.body277_exclu_exit)
   br bb %getMost.while.body294
-getMost.while.body294:  pred(getMost.while.body294.split.split, getMost.while.body294_preheader)
-  i274.phi11201560 = phi [bb %getMost.while.body294.split.split, i32 %3321143, bb %getMost.while.body294_preheader, i32 0]
-  max.phi79811191559 = phi [bb %getMost.while.body294.split.split, i32 %3942, bb %getMost.while.body294_preheader, i32 0]
-  number.phi80011181558 = phi [bb %getMost.while.body294.split.split, i32 %3939, bb %getMost.while.body294_preheader, i32 0]
+getMost.while.body294:  pred(getMost.while.body294.split, getMost.while.body294_preheader)
+  i274.phi11201560 = phi [bb %getMost.while.body294.split, i32 %3321143, bb %getMost.while.body294_preheader, i32 0]
+  max.phi79811191559 = phi [bb %getMost.while.body294.split, i32 %3937, bb %getMost.while.body294_preheader, i32 0]
+  number.phi80011181558 = phi [bb %getMost.while.body294.split, i32 %3940, bb %getMost.while.body294_preheader, i32 0]
   1465 = shl i32 %i274.phi11201560, i32 2
   3041126 = ptradd ptr %result, i32 %1465
   304.load1127 = load i32 from ptr %3041126
@@ -528,15 +528,13 @@ getMost.while.body294:  pred(getMost.while.body294.split.split, getMost.while.bo
   3201133 = icmp sgt i32 %3141131, i32 %max.phi79811191559
   br i1 %3201133, bb %number.phi1141.which.true, bb %getMost.while.body294.split
 getMost.while.body294.split:  pred(getMost.while.body294, number.phi1141.which.true)
-  3939 = phi [bb %number.phi1141.which.true, i32 %304.load1127, bb %getMost.while.body294, i32 %number.phi80011181558]
-  br i1 %3201133, bb %max.phi1142.which.true, bb %getMost.while.body294.split.split
-getMost.while.body294.split.split:  pred(getMost.while.body294.split, max.phi1142.which.true)
-  3942 = phi [bb %max.phi1142.which.true, i32 %3141131, bb %getMost.while.body294.split, i32 %max.phi79811191559]
+  3940 = phi [bb %number.phi1141.which.true, i32 %304.load1127, bb %getMost.while.body294, i32 %number.phi80011181558]
+  3937 = signed max i32 %3141131, i32 %max.phi79811191559
   3321143 = add i32 %i274.phi11201560, i32 1
   2981122 = icmp slt i32 %3321143, i32 %n.load29711211555
   br i1 %2981122, bb %getMost.while.body294, bb %getMost.while.body294_exclu_exit
 getMost.while.exit295:  pred(getMost.while.body277_exclu_exit, getMost.while.body294_exclu_exit)
-  1557 = phi [bb %getMost.while.body294_exclu_exit, i32 %3939, bb %getMost.while.body277_exclu_exit, i32 0]
+  1557 = phi [bb %getMost.while.body294_exclu_exit, i32 %3940, bb %getMost.while.body277_exclu_exit, i32 0]
   call void putint(i32 %1557)
   n.load37810111551 = load i32 from ptr @n
   37910121552 = icmp slt i32 0, i32 %n.load37810111551
@@ -1055,7 +1053,7 @@ getMost.while.body277_exclu_exit:  pred(getMost.while.body277)
   n.load29711211555 = load i32 from ptr @n
   29811221556 = icmp slt i32 0, i32 %n.load29711211555
   br i1 %29811221556, bb %getMost.while.body294_preheader, bb %getMost.while.exit295
-getMost.while.body294_exclu_exit:  pred(getMost.while.body294.split.split)
+getMost.while.body294_exclu_exit:  pred(getMost.while.body294.split)
   br bb %getMost.while.exit295
 arrCopy.while.body3751014_exclu_exit:  pred(arrCopy.while.body3751014)
   br bb %arrCopy.while.exit3761022
@@ -1069,8 +1067,6 @@ arrCopy.while.body3751090_exclu_exit:  pred(arrCopy.while.body3751090)
   br bb %arrCopy.while.exit3761098
 number.phi1141.which.true:  pred(getMost.while.body294)
   br bb %getMost.while.body294.split
-max.phi1142.which.true:  pred(getMost.while.body294.split)
-  br bb %getMost.while.body294.split.split
 }
 
 external float getfloat()

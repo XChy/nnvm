@@ -121,26 +121,26 @@ entry217:  pred()
   br bb %while.body
 while.body:  pred(while.body230_exclu_exit, entry217)
   i.phi376489 = phi [bb %while.body230_exclu_exit, i32 %304, bb %entry217, i32 0]
+  268 = mul i32 %i.phi376489, i32 2939328
+  269 = ptradd ptr @dp, i32 %268
   br bb %while.body230
 while.body230:  pred(while.body238_exclu_exit, while.body)
   j.phi484 = phi [bb %while.body238_exclu_exit, i32 %301, bb %while.body, i32 0]
+  271 = mul i32 %j.phi484, i32 163296
+  272 = ptradd ptr %269, i32 %271
   br bb %while.body238
 while.body238:  pred(while.body246_exclu_exit, while.body230)
   k.phi474 = phi [bb %while.body246_exclu_exit, i32 %298, bb %while.body230, i32 0]
+  274 = mul i32 %k.phi474, i32 9072
+  275 = ptradd ptr %272, i32 %274
   br bb %while.body246
 while.body246:  pred(while.body254_exclu_exit, while.body238)
   l.phi465 = phi [bb %while.body254_exclu_exit, i32 %295, bb %while.body238, i32 0]
+  277 = mul i32 %l.phi465, i32 504
+  278 = ptradd ptr %275, i32 %277
   br bb %while.body254
 while.body254:  pred(while.body254, while.body246)
   m.phi458 = phi [bb %while.body254, i32 %292, bb %while.body246, i32 0]
-  268 = mul i32 %i.phi376489, i32 2939328
-  269 = ptradd ptr @dp, i32 %268
-  271 = mul i32 %j.phi484, i32 163296
-  272 = ptradd ptr %269, i32 %271
-  274 = mul i32 %k.phi474, i32 9072
-  275 = ptradd ptr %272, i32 %274
-  277 = mul i32 %l.phi465, i32 504
-  278 = ptradd ptr %275, i32 %277
   280 = mul i32 %m.phi458, i32 28
   281 = ptradd ptr %278, i32 %280
   store i32 -1 to ptr %281

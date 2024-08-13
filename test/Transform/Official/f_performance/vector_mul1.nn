@@ -137,7 +137,6 @@ my_sqrt.while.body138:  pred(my_sqrt.while.cond137)
   temp.load161389 = load float from ptr @temp
   164390 = fdiv float %216, float %temp.load161389
   165391 = fadd float %temp.load161389, float %164390
-  166392 = si2f i32 2 to float
   167393 = fdiv float %165391, float %166392
   store float %167393 to ptr @temp
   br bb %my_sqrt.while.cond137
@@ -183,6 +182,7 @@ Vectordot.while.exit453:  pred(Vectordot.while.exit, Vectordot.while.body443_exc
   .pinned = pin float 0.000001
   216 = fdiv float %48311704, float %48311700
   155405 = fneg float %.pinned
+  166392 = si2f i32 2 to float
   br bb %my_sqrt.while.cond137
 mult2.while.body93501_preheader:  pred(mult1.while.exit51321)
   br bb %mult2.while.body93501

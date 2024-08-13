@@ -125,6 +125,8 @@ public:
     ListTrait<BasicBlock>::eraseFromList();
   }
 
+  std::vector<PhiNode *> getPhis();
+
   bool containsPhi() { return mayCast<PhiNode>(*begin()); }
   bool isPredecessorOf(BasicBlock *other);
 

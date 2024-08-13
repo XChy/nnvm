@@ -215,6 +215,7 @@ while.exit124:  pred(if.exit119, getNumPos.while.exit35)
   190.load1157 = load i32 from ptr %arr.index104
   1921158 = add i32 %1921143, i32 %190.load1157
   store i32 %1921158 to ptr %arr.index87
+  38469521 = icmp slt i32 0, i32 %bitround
   br bb %while.body198
 while.body198:  pred(while.exit206, while.exit124)
   i120.phi542 = phi [bb %while.exit206, i32 %288, bb %while.exit124, i32 0]
@@ -228,7 +229,6 @@ while.body198:  pred(while.exit206, while.exit124)
   215530 = icmp slt i32 %209.load527, i32 %213.load529
   br i1 %215530, bb %while.body205_preheader, bb %while.exit206
 while.body205_preheader:  pred(while.body198)
-  38469521 = icmp slt i32 0, i32 %bitround
   br bb %while.body205
 while.body205:  pred(while.exit227, while.body205_preheader)
   209.load527536 = phi [bb %while.exit227, i32 %209.load, bb %while.body205_preheader, i32 %209.load527]

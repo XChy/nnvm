@@ -202,10 +202,9 @@ bb18:   # loop depth 2
   SW s4, -4(s2)
   JAL zero, bb7
 bb19:   # loop depth 0
-  ADD s0, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb20
 bb20:   # loop depth 1
-  ADD a0, s0, zero
   ADDI s1, zero, 39
   ADDIW s0, a0, 1
   SLLIW a0, a0, 2
@@ -217,6 +216,7 @@ bb20:   # loop depth 1
   BNE s1, zero, bb21
   JAL zero, bb3
 bb21:   # loop depth 1
+  ADD a0, s0, zero
   JAL zero, bb20
 bb22:   # loop depth 1
   JAL zero, bb1

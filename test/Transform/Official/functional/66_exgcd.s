@@ -42,22 +42,22 @@ exgcd:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD s2, a1, zero
+  ADD s1, a1, zero
   ADD s0, a3, zero
-  SLTIU a1, s2, 1
-  ADD s1, a2, zero
+  SLTIU a1, s1, 1
+  ADD s2, a2, zero
   BNE a1, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  REMW a1, a0, s2
+  REMW a1, a0, s1
   ADD a3, s0, zero
-  DIVW s3, a0, s2
-  ADD a2, s1, zero
-  ADD a0, s2, zero
+  DIVW s3, a0, s1
+  ADD a2, s2, zero
+  ADD a0, s1, zero
   CALL exgcd
-  LW t0, 0(s1)
+  LW t0, 0(s2)
   LW t1, 0(s0)
-  SW t1, 0(s1)
+  SW t1, 0(s2)
   LW t1, 0(s0)
   MULW t1, s3, t1
   SUBW t0, t0, t1
@@ -71,7 +71,7 @@ bb2:   # loop depth 0
   JALR zero, 0(ra)
 bb3:   # loop depth 0
   ADDI t0, zero, 1
-  SW t0, 0(s1)
+  SW t0, 0(s2)
   SW zero, 0(s0)
   LD ra, 0(sp)
   LD s0, 8(sp)

@@ -83,6 +83,8 @@ mv.while.body34_preheader:  pred(mv.while.body26)
   41220 = mul i32 %i.phi204365, i32 8040
   42221 = ptradd ptr @A, i32 %41220
   338 = shl i32 %i.phi204365, i32 2
+  55232 = ptradd ptr @B, i32 %338
+  69247 = ptradd ptr @C, i32 %338
   br bb %mv.while.body34
 mv.while.body34:  pred(mv.if.exit, mv.while.body34_preheader)
   x.phi169216351 = phi [bb %mv.if.exit, i32 %x.phi242, bb %mv.while.body34_preheader, i32 %x.phi170206367]
@@ -101,7 +103,6 @@ mv.while.exit35:  pred(mv.while.body26, mv.while.body34_exclu_exit)
   30207 = icmp slt i32 %93228, i32 %96
   br i1 %30207, bb %mv.while.body26, bb %mv.while.exit27
 mv.then:  pred(mv.while.body34)
-  55232 = ptradd ptr @B, i32 %338
   55.load233 = load i32 from ptr %55232
   57234 = mul i32 %x.phi169216351, i32 %55.load233
   60.load236 = load i32 from ptr %60235
@@ -115,7 +116,6 @@ mv.if.exit:  pred(mv.then, mv.else)
   38217 = icmp slt i32 %90243, i32 %96
   br i1 %38217, bb %mv.while.body34, bb %mv.while.body34_exclu_exit
 mv.else:  pred(mv.while.body34)
-  69247 = ptradd ptr @C, i32 %338
   73.load248 = load i32 from ptr %69247
   84.load251 = load i32 from ptr %60235
   86252 = mul i32 %45.load224, i32 %84.load251
@@ -149,6 +149,8 @@ mv.while.body34287_preheader:  pred(mv.while.body26277)
   41288 = mul i32 %i.phi272359, i32 8040
   42289 = ptradd ptr @A, i32 %41288
   342 = shl i32 %i.phi272359, i32 2
+  55300 = ptradd ptr @C, i32 %342
+  69315 = ptradd ptr @B, i32 %342
   br bb %mv.while.body34287
 mv.while.body34287:  pred(mv.if.exit308, mv.while.body34287_preheader)
   x.phi169284357 = phi [bb %mv.if.exit308, i32 %x.phi310, bb %mv.while.body34287_preheader, i32 %x.phi170274361]
@@ -167,7 +169,6 @@ mv.while.exit35295:  pred(mv.while.body26277, mv.while.body34287_exclu_exit)
   30275 = icmp slt i32 %93296, i32 %96
   br i1 %30275, bb %mv.while.body26277, bb %mv.while.exit27279
 mv.then298:  pred(mv.while.body34287)
-  55300 = ptradd ptr @C, i32 %342
   55.load301 = load i32 from ptr %55300
   57302 = mul i32 %x.phi169284357, i32 %55.load301
   60.load304 = load i32 from ptr %60303
@@ -181,7 +182,6 @@ mv.if.exit308:  pred(mv.then298, mv.else313)
   38285 = icmp slt i32 %90311, i32 %96
   br i1 %38285, bb %mv.while.body34287, bb %mv.while.body34287_exclu_exit
 mv.else313:  pred(mv.while.body34287)
-  69315 = ptradd ptr @B, i32 %342
   73.load316 = load i32 from ptr %69315
   84.load319 = load i32 from ptr %60303
   86320 = mul i32 %45.load292, i32 %84.load319

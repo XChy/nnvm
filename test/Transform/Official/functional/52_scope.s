@@ -18,53 +18,52 @@ main:   # loop depth 0
   SLTIU a0, a0, 1
   XORI a0, a0, 1
   SLTIU s1, a0, 1
-  ADDIW s0, s1, 1
+  ADDIW a0, s1, 1
   BNE s1, zero, bb300
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD s0, s1, zero
+  ADD a0, s1, zero
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb299
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s0, a0, zero
   # implict jump to bb4
 bb4:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb298
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADD s0, a0, zero
+  ADD a0, s0, zero
   # implict jump to bb6
 bb6:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb297
   # implict jump to bb7
 bb7:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s0, a0, zero
   # implict jump to bb8
 bb8:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb296
   # implict jump to bb9
 bb9:   # loop depth 0
-  ADD s0, a0, zero
+  ADD a0, s0, zero
   # implict jump to bb10
 bb10:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb295
   # implict jump to bb11
 bb11:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s0, a0, zero
   # implict jump to bb12
 bb12:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb294
   # implict jump to bb13
 bb13:   # loop depth 0
-  ADD s0, a0, zero
   # implict jump to bb14
 bb14:   # loop depth 0
   ADDIW a0, s0, 1
@@ -95,25 +94,25 @@ bb21:   # loop depth 0
   ADD s0, a0, zero
   # implict jump to bb22
 bb22:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s2, s0, 1
   BNE s1, zero, bb289
   # implict jump to bb23
 bb23:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s2, s0, zero
   # implict jump to bb24
 bb24:   # loop depth 0
-  ADDIW s2, a0, 1
+  ADDIW a0, s2, 1
   BNE s1, zero, bb288
   # implict jump to bb25
 bb25:   # loop depth 0
-  ADD s2, a0, zero
+  ADD a0, s2, zero
   # implict jump to bb26
 bb26:   # loop depth 0
-  ADDIW s0, s2, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb287
   # implict jump to bb27
 bb27:   # loop depth 0
-  ADD s0, s2, zero
+  ADD s0, a0, zero
   # implict jump to bb28
 bb28:   # loop depth 0
   ADDIW a0, s0, 1
@@ -200,53 +199,52 @@ bb51:   # loop depth 0
   ADD s0, a0, zero
   # implict jump to bb52
 bb52:   # loop depth 0
-  ADDIW s2, s0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb274
   # implict jump to bb53
 bb53:   # loop depth 0
-  ADD s2, s0, zero
+  ADD a0, s0, zero
   # implict jump to bb54
 bb54:   # loop depth 0
-  ADDIW a0, s2, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb273
   # implict jump to bb55
 bb55:   # loop depth 0
-  ADD a0, s2, zero
+  ADD s0, a0, zero
   # implict jump to bb56
 bb56:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb272
   # implict jump to bb57
 bb57:   # loop depth 0
-  ADD s0, a0, zero
+  ADD a0, s0, zero
   # implict jump to bb58
 bb58:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb271
   # implict jump to bb59
 bb59:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s0, a0, zero
   # implict jump to bb60
 bb60:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb270
   # implict jump to bb61
 bb61:   # loop depth 0
-  ADD s0, a0, zero
+  ADD a0, s0, zero
   # implict jump to bb62
 bb62:   # loop depth 0
-  ADDIW a0, s0, 1
+  ADDIW s0, a0, 1
   BNE s1, zero, bb269
   # implict jump to bb63
 bb63:   # loop depth 0
-  ADD a0, s0, zero
+  ADD s0, a0, zero
   # implict jump to bb64
 bb64:   # loop depth 0
-  ADDIW s0, a0, 1
+  ADDIW a0, s0, 1
   BNE s1, zero, bb268
   # implict jump to bb65
 bb65:   # loop depth 0
-  ADD s0, a0, zero
   # implict jump to bb66
 bb66:   # loop depth 0
   ADDIW s2, s0, 1
@@ -863,6 +861,7 @@ bb266:   # loop depth 0
 bb267:   # loop depth 0
   JAL zero, bb68
 bb268:   # loop depth 0
+  ADD s0, a0, zero
   JAL zero, bb66
 bb269:   # loop depth 0
   JAL zero, bb64
@@ -915,6 +914,7 @@ bb292:   # loop depth 0
 bb293:   # loop depth 0
   JAL zero, bb16
 bb294:   # loop depth 0
+  ADD s0, a0, zero
   JAL zero, bb14
 bb295:   # loop depth 0
   JAL zero, bb12

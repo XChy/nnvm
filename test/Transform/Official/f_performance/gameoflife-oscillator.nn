@@ -281,6 +281,7 @@ read_map.while.exit:  pred(entry273, read_map.while.exit20)
   br i1 %280830, bb %while.body277, bb %while.exit278
 read_map.while.body19_preheader:  pred(read_map.while.body)
   33624 = mul i32 %j.phi601834, i32 2000
+  34625 = ptradd ptr @sheet1, i32 %33624
   br bb %read_map.while.body19
 read_map.while.body19:  pred(read_map.if.exit, read_map.while.body19_preheader)
   i.phi611792 = phi [bb %read_map.if.exit, i32 %48631, bb %read_map.while.body19_preheader, i32 1]
@@ -296,7 +297,6 @@ read_map.while.exit20:  pred(read_map.while.body, read_map.while.body19_exclu_ex
   15603 = icmp sle i32 %52621, i32 %height.load14602
   br i1 %15603, bb %read_map.while.body, bb %read_map.while.exit
 read_map.then:  pred(read_map.while.body19)
-  34625 = ptradd ptr @sheet1, i32 %33624
   37627 = ptradd ptr %34625, i32 %774
   store i32 1 to ptr %37627
   br bb %read_map.if.exit
@@ -306,8 +306,7 @@ read_map.if.exit:  pred(read_map.then, read_map.else)
   23613 = icmp sle i32 %48631, i32 %width.load22612
   br i1 %23613, bb %read_map.while.body19, bb %read_map.while.body19_exclu_exit
 read_map.else:  pred(read_map.while.body19)
-  41635 = ptradd ptr @sheet1, i32 %33624
-  44637 = ptradd ptr %41635, i32 %774
+  44637 = ptradd ptr %34625, i32 %774
   store i32 0 to ptr %44637
   br bb %read_map.if.exit
 read_map.while.body19_exclu_exit:  pred(read_map.if.exit)

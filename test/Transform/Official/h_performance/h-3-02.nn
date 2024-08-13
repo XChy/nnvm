@@ -96,6 +96,7 @@ kernel_correlation.if.exit:  pred(kernel_correlation.while.exit73, kernel_correl
   64419 = icmp slt i32 %151458, i32 %m.load
   br i1 %64419, bb %kernel_correlation.while.body60, bb %kernel_correlation.while.exit61
 kernel_correlation.while.body154_preheader:  pred(kernel_correlation.while.exit61)
+  203482 = mul i32 %n.load, i32 %n.load
   br bb %kernel_correlation.while.body154
 kernel_correlation.while.body154:  pred(kernel_correlation.while.exit163, kernel_correlation.while.body154_preheader)
   i.phi331461595 = phi [bb %kernel_correlation.while.exit163, i32 %215491, bb %kernel_correlation.while.body154_preheader, i32 0]
@@ -107,7 +108,6 @@ kernel_correlation.while.exit155:  pred(kernel_correlation.while.exit61, kernel_
 kernel_correlation.while.body162_preheader:  pred(kernel_correlation.while.body154)
   169473 = mul i32 %i.phi331461595, i32 3200
   170474 = ptradd ptr @data, i32 %169473
-  203482 = mul i32 %n.load, i32 %n.load
   br bb %kernel_correlation.while.body162
 kernel_correlation.while.body162:  pred(kernel_correlation.while.body162, kernel_correlation.while.body162_preheader)
   j.phi338469582 = phi [bb %kernel_correlation.while.body162, i32 %212488, bb %kernel_correlation.while.body162_preheader, i32 0]

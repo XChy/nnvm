@@ -132,6 +132,9 @@ matrix_multiply.while.body11_preheader:  pred(matrix_multiply.while.body)
   n1.load216257 = load i32 from ptr @n1
   23217258 = icmp slt i32 0, i32 %n1.load216257
   n2.load206 = load i32 from ptr @n2
+  26220 = mul i32 %i.phi195275, i32 400
+  27221 = ptradd ptr @res, i32 %26220
+  41225 = ptradd ptr @a, i32 %26220
   br bb %matrix_multiply.while.body11
 matrix_multiply.while.body11:  pred(matrix_multiply.while.exit20, matrix_multiply.while.body11_preheader)
   j.phi205265 = phi [bb %matrix_multiply.while.exit20, i32 %60239, bb %matrix_multiply.while.body11_preheader, i32 0]
@@ -142,11 +145,8 @@ matrix_multiply.while.exit12:  pred(matrix_multiply.while.body, matrix_multiply.
   7197 = icmp slt i32 %63212, i32 %m1.load196272
   br i1 %7197, bb %matrix_multiply.while.body, bb %matrix_multiply.while.exit
 matrix_multiply.while.body19_preheader:  pred(matrix_multiply.while.body11)
-  26220 = mul i32 %i.phi195275, i32 400
-  27221 = ptradd ptr @res, i32 %26220
   249 = shl i32 %j.phi205265, i32 2
   30223 = ptradd ptr %27221, i32 %249
-  41225 = ptradd ptr @a, i32 %26220
   37.load224_ahead = load i32 from ptr %30223
   br bb %matrix_multiply.while.body19
 matrix_multiply.while.body19:  pred(matrix_multiply.while.body19, matrix_multiply.while.body19_preheader)

@@ -107,6 +107,7 @@ longest_common_subseq.while.body116_preheader:  pred(longest_common_subseq.while
   519 = ptradd ptr %517, i32 -4
   125.load443 = load i32 from ptr %519
   553 = shl i32 %i104.phi423579, i32 6
+  138455 = ptradd ptr %p408, i32 %553
   br bb %longest_common_subseq.while.body116
 longest_common_subseq.while.body116:  pred(longest_common_subseq.if.exit134, longest_common_subseq.while.body116_preheader)
   j.phi436577 = phi [bb %longest_common_subseq.if.exit134, i32 %179466, bb %longest_common_subseq.while.body116_preheader, i32 1]
@@ -121,7 +122,6 @@ longest_common_subseq.while.exit117:  pred(longest_common_subseq.while.body108, 
   112424 = icmp sle i32 %182451, i32 15
   br i1 %112424, bb %longest_common_subseq.while.body108, bb %longest_common_subseq.while.exit109
 longest_common_subseq.then133:  pred(longest_common_subseq.while.body116)
-  138455 = ptradd ptr %p408, i32 %553
   141457 = ptradd ptr %138455, i32 %571
   560 = ptradd ptr %141457, i32 -68
   150.load461 = load i32 from ptr %560
@@ -133,8 +133,7 @@ longest_common_subseq.if.exit134:  pred(longest_common_subseq.then133, longest_c
   120437 = icmp sle i32 %179466, i32 13
   br i1 %120437, bb %longest_common_subseq.while.body116, bb %longest_common_subseq.while.exit117
 longest_common_subseq.else135:  pred(longest_common_subseq.while.body116)
-  155470 = ptradd ptr %p408, i32 %553
-  158472 = ptradd ptr %155470, i32 %571
+  158472 = ptradd ptr %138455, i32 %571
   565 = ptradd ptr %158472, i32 -64
   166.load476 = load i32 from ptr %565
   546 = ptradd ptr %158472, i32 -4

@@ -32,7 +32,7 @@ main:   # loop depth 0
   ADD s0, a0, zero
   ADDI a0, zero, 28
   CALL _sysy_starttime
-  BLT s1, s10, bb24
+  BLT s1, s10, bb25
   # implict jump to bb1
 bb1:   # loop depth 0
   BLT zero, s0, bb12
@@ -96,66 +96,67 @@ bb12:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  LA s2, a
-  ADD s1, a0, zero
-  SH2ADD a0, s1, s2
-  LW s2, 0(a0)
-  DIVW s3, s10, s2
-  BLT zero, s3, bb16
+  LA s1, a
+  SH2ADD s1, a0, s1
+  LW s1, 0(s1)
+  DIVW s2, s10, s1
+  BLT zero, s2, bb16
   # implict jump to bb14
 bb14:   # loop depth 1
-  ADDIW a0, s1, 1
+  ADDIW a0, a0, 1
   BLT a0, s0, bb15
   JAL zero, bb2
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  ADD s6, zero, zero
-  ADD s4, zero, zero
+  ADD s7, zero, zero
+  ADD s3, zero, zero
   # implict jump to bb17
 bb17:   # loop depth 2
-  ADD a0, zero, zero
+  MULW s4, s3, s1
+  ADD s5, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 3
-  ADD s5, a0, zero
-  BLT s5, s2, bb21
+  ADD s6, s5, zero
+  BLT s6, s1, bb21
   # implict jump to bb19
 bb19:   # loop depth 2
-  ADDIW s4, s4, 1
-  BLT s4, s3, bb20
+  ADDIW s3, s3, 1
+  BLT s3, s2, bb20
   JAL zero, bb14
 bb20:   # loop depth 2
   JAL zero, bb17
 bb21:   # loop depth 3
-  ADDIW a0, s5, 1
-  BLT s4, s5, bb23
+  ADDIW s5, s6, 1
+  BLT s3, s6, bb24
   # implict jump to bb22
 bb22:   # loop depth 3
-  MULW s6, s4, s2
-  LA s8, matrix
-  MULW s7, s5, s3
   LA s9, matrix
-  ADDW s5, s6, s5
-  SH2ADD s5, s5, s8
-  ADDW s6, s7, s4
-  LW s7, 0(s5)
+  MULW s7, s6, s2
+  ADDW s6, s4, s6
+  LA s8, matrix
   SH2ADD s6, s6, s9
-  SW s7, 0(s6)
-  ADD s6, s7, zero
-  SW s7, 0(s5)
-  JAL zero, bb18
+  LW s9, 0(s6)
+  ADDW s7, s7, s3
+  SH2ADD s7, s7, s8
+  SW s9, 0(s7)
+  ADD s7, s9, zero
+  SW s9, 0(s6)
+  # implict jump to bb23
 bb23:   # loop depth 3
   JAL zero, bb18
-bb24:   # loop depth 0
+bb24:   # loop depth 3
+  JAL zero, bb23
+bb25:   # loop depth 0
   ADD a0, zero, zero
-  # implict jump to bb25
-bb25:   # loop depth 1
+  # implict jump to bb26
+bb26:   # loop depth 1
   LA s2, matrix
   ADDIW s1, a0, 1
   SH2ADD s2, a0, s2
   SW a0, 0(s2)
-  BLT s1, s10, bb26
+  BLT s1, s10, bb27
   JAL zero, bb1
-bb26:   # loop depth 1
+bb27:   # loop depth 1
   ADD a0, s1, zero
-  JAL zero, bb25
+  JAL zero, bb26

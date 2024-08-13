@@ -216,11 +216,11 @@ bb22:   # loop depth 1
   SLLIW a0, a0, 2
   ADDI t6, sp, 104
   ADD a0, t6, a0
-  LW s0, 0(a0)
+  LW s1, 0(a0)
   # implict jump to bb23
 bb23:   # loop depth 1
-  ADD a0, s0, zero
   ADDIW s0, s11, -1
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -543,7 +543,7 @@ bb66:   # loop depth 2
   JAL zero, bb57
 bb67:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s0, zero, -1
+  ADDI s1, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch
@@ -784,7 +784,7 @@ bb100:   # loop depth 1
   JAL zero, bb14
 bb101:   # loop depth 1
   ADDI a0, zero, 112
-  ADDI s0, zero, -1
+  ADDI s1, zero, -1
   CALL putch
   ADDI a0, zero, 97
   CALL putch

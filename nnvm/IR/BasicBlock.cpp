@@ -35,6 +35,17 @@ BasicBlock::Iterator BasicBlock::normalBegin() {
   return it;
 }
 
+std::vector<PhiNode *> BasicBlock::getPhis() {
+  std::vector<PhiNode *> ret;
+  for (auto *I : getInsts()) {
+    PhiNode *phi = mayCast<PhiNode>(I);
+    if (!phi)
+      break;
+    ret.push_back(phi);
+  }
+  return ret;
+}
+
 bool BasicBlock::isPredecessorOf(BasicBlock *other) {
   for (int i = 0; i < getSuccNum(); i++)
     if (getSucc(i) == other)

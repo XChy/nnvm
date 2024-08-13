@@ -25,7 +25,8 @@ while.body68:  pred(while.cond67)
   br i1 %79, bb %then80, bb %if.exit81
 while.exit69:  pred(while.cond67)
   call void _sysy_starttime(i32 42)
-  141467 = si2f i32 1000 to float
+  141 = si2f i32 1000 to float
+  21373 = si2f i32 2 to float
   br bb %while.body89
 then80:  pred(while.body68)
   ret i32 %77
@@ -151,17 +152,16 @@ sqrt.else:  pred(sqrt.while.body)
   57401 = fdiv float %55400, float %21373
   br bb %sqrt.if.exit40
 while.body109_exclu_exit:  pred(while.body109)
-  142 = fdiv float %129, float %141467
+  142 = fdiv float %129, float %141
   store float %142 to ptr %105
   145 = add i32 %i.phi327471, i32 1
   100 = icmp slt i32 %145, i32 1000
   br i1 %100, bb %while.body97, bb %while.body97_exclu_exit
 while.body97_exclu_exit:  pred(while.body109_exclu_exit)
   .pinned = pin float 0.001000
-  21373 = si2f i32 2 to float
   br bb %while.body149
 while.body161_exclu_exit:  pred(while.body161)
-  212 = fdiv float %199, float %141467
+  212 = fdiv float %199, float %141
   221 = fadd float %212, float 0.010000
   20372 = fadd float %65, float %221
   22374 = fdiv float %20372, float %21373

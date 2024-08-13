@@ -85,19 +85,21 @@ bb12:   # loop depth 0
 bb13:   # loop depth 0
   LA a0, .CONSTANT.7.1
   LA s0, .CONSTANT.7.1
-  FDIV.S fs4, fs0, fs1
+  ADDI s1, zero, 2
+  FDIV.S fs3, fs0, fs1
   FLW fs0, 0(a0)
+  FCVT.S.W fs5, s1
   FLW fs1, 0(s0)
-  FSGNJ.S fs3, fs0, fs1
-  FSGNJN.S fs5, fs3, fs3
+  FSGNJ.S fs2, fs0, fs1
+  FSGNJN.S fs4, fs2, fs2
   # implict jump to bb14
 bb14:   # loop depth 1
   LA a0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs4, fs0
+  FDIV.S fs1, fs3, fs0
   FSUB.S fs1, fs0, fs1
-  FLT.S s0, fs1, fs5
-  FLT.S a0, fs3, fs1
+  FLT.S s0, fs1, fs4
+  FLT.S a0, fs2, fs1
   OR a0, a0, s0
   BNE a0, zero, bb19
   # implict jump to bb15
@@ -105,8 +107,8 @@ bb15:   # loop depth 0
   LA a0, .CONSTANT.7.0
   FLW fs1, 0(a0)
   FSUB.S fs0, fs0, fs1
-  FLE.S s0, fs5, fs0
-  FLE.S a0, fs0, fs3
+  FLE.S s0, fs4, fs0
+  FLE.S a0, fs0, fs2
   AND a0, a0, s0
   BNE a0, zero, bb18
   # implict jump to bb16
@@ -142,13 +144,11 @@ bb18:   # loop depth 0
   JAL zero, bb17
 bb19:   # loop depth 1
   LA a0, temp
-  ADDI s0, zero, 2
-  FCVT.S.W fs2, s0
   LA s0, temp
   FLW fs0, 0(a0)
-  FDIV.S fs1, fs4, fs0
+  FDIV.S fs1, fs3, fs0
   FADD.S fs0, fs0, fs1
-  FDIV.S fs0, fs0, fs2
+  FDIV.S fs0, fs0, fs5
   FSW fs0, 0(s0)
   JAL zero, bb14
 bb20:   # loop depth 0

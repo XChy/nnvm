@@ -26,6 +26,7 @@ entry221:  pred()
   330523910 = or i1 %9521908, i1 %15522909
   br i1 %330523910, bb %quick_read.while.body_preheader, bb %quick_read.while.exit
 while.body228_preheader:  pred(init.while.body103_exclu_exit)
+  782 = ptradd ptr @que, i32 4
   br bb %while.body228
 while.body228:  pred(if.exit252, while.body228_preheader)
   x254.phi281886 = phi [bb %if.exit252, i32 %x254.phi, bb %while.body228_preheader, i32 0]
@@ -339,7 +340,6 @@ quick_read.while.exit28665.split:  pred(quick_read.while.exit28665, 257.ret.whic
   121439 = ptradd ptr @inq, i32 %802
   store i32 1 to ptr %121439
   store i32 1 to ptr @tail
-  782 = ptradd ptr @que, i32 4
   store i32 %1010 to ptr %782
   br i1 1, bb %same.while.body153_preheader, bb %same.while.exit154
 quick_read.while.body685_preheader:  pred(else253)

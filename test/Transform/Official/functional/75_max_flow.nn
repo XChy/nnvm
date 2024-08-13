@@ -14,17 +14,18 @@ if.exit:  pred(entry112)
   124 = ptradd ptr @used, i32 %488
   store i32 1 to ptr %124
   133 = ptradd ptr @size, i32 %488
+  138 = mul i32 %s, i32 40
+  139 = ptradd ptr @to, i32 %138
+  155 = ptradd ptr @cap, i32 %138
   br bb %while.cond127
-while.cond127:  pred(if.exit, then148, then161, if.exit203)
-  d.phi = phi [bb %if.exit, i32 0, bb %if.exit203, i32 %199, bb %then161, i32 %d.phi, bb %then148, i32 %d.phi]
-  min_f.phi324 = phi [bb %if.exit, i32 0, bb %if.exit203, i32 %663, bb %then161, i32 %min_f.phi324, bb %then148, i32 %min_f.phi324]
-  i126.phi = phi [bb %if.exit, i32 0, bb %if.exit203, i32 %152, bb %then161, i32 %152, bb %then148, i32 %152]
+while.cond127:  pred(if.exit, while.cond127_unified_latch)
+  d.phi = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %509]
+  min_f.phi324 = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %510]
+  i126.phi = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %152]
   133.load = load i32 from ptr %133
   135 = icmp slt i32 %i126.phi, i32 %133.load
   br i1 %135, bb %while.body128, bb %while.exit129
 while.body128:  pred(while.cond127)
-  138 = mul i32 %s, i32 40
-  139 = ptradd ptr @to, i32 %138
   489 = shl i32 %i126.phi, i32 2
   142 = ptradd ptr %139, i32 %489
   142.load = load i32 from ptr %142
@@ -37,19 +38,18 @@ while.body128:  pred(while.cond127)
 while.exit129:  pred(while.cond127)
   ret i32 0
 then148:  pred(while.body128)
-  br bb %while.cond127
+  br bb %while.cond127_unified_latch
 if.exit149:  pred(while.body128)
-  155 = ptradd ptr @cap, i32 %138
   158 = ptradd ptr %155, i32 %489
   158.load = load i32 from ptr %158
   160 = icmp sle i32 %158.load, i32 0
   br i1 %160, bb %then161, bb %if.exit162
 then161:  pred(if.exit149)
-  br bb %while.cond127
+  br bb %while.cond127_unified_latch
 if.exit162:  pred(if.exit149)
-  663 = signed min i32 %f, i32 %158.load
+  667 = signed min i32 %f, i32 %158.load
   195.load = load i32 from ptr %142
-  199 = call i32 dfs(i32 %195.load, i32 %t, i32 %663)
+  199 = call i32 dfs(i32 %195.load, i32 %t, i32 %667)
   201 = icmp sgt i32 %199, i32 0
   br i1 %201, bb %then202, bb %if.exit203
 then202:  pred(if.exit162)
@@ -69,6 +69,10 @@ then202:  pred(if.exit162)
   store i32 %259 to ptr %237
   ret i32 %199
 if.exit203:  pred(if.exit162)
+  br bb %while.cond127_unified_latch
+while.cond127_unified_latch:  pred(then148, then161, if.exit203)
+  510 = phi [bb %then148, i32 %min_f.phi324, bb %then161, i32 %min_f.phi324, bb %if.exit203, i32 %667]
+  509 = phi [bb %then148, i32 %d.phi, bb %then161, i32 %d.phi, bb %if.exit203, i32 %199]
   br bb %while.cond127
 }
 
@@ -87,24 +91,24 @@ entry287:  pred()
   291 = call i32 getint()
   293 = call i32 getint()
   store i32 0 to ptr @size
-  13453593 = ptradd ptr @size, i32 4
-  store i32 0 to ptr %13453593
-  13453601 = ptradd ptr @size, i32 8
-  store i32 0 to ptr %13453601
-  13453609 = ptradd ptr @size, i32 12
-  store i32 0 to ptr %13453609
-  13453617 = ptradd ptr @size, i32 16
-  store i32 0 to ptr %13453617
-  13453625 = ptradd ptr @size, i32 20
-  store i32 0 to ptr %13453625
-  13453633 = ptradd ptr @size, i32 24
-  store i32 0 to ptr %13453633
-  13453641 = ptradd ptr @size, i32 28
-  store i32 0 to ptr %13453641
-  13453649 = ptradd ptr @size, i32 32
-  store i32 0 to ptr %13453649
-  13453657 = ptradd ptr @size, i32 36
-  store i32 0 to ptr %13453657
+  13453597 = ptradd ptr @size, i32 4
+  store i32 0 to ptr %13453597
+  13453605 = ptradd ptr @size, i32 8
+  store i32 0 to ptr %13453605
+  13453613 = ptradd ptr @size, i32 12
+  store i32 0 to ptr %13453613
+  13453621 = ptradd ptr @size, i32 16
+  store i32 0 to ptr %13453621
+  13453629 = ptradd ptr @size, i32 20
+  store i32 0 to ptr %13453629
+  13453637 = ptradd ptr @size, i32 24
+  store i32 0 to ptr %13453637
+  13453645 = ptradd ptr @size, i32 28
+  store i32 0 to ptr %13453645
+  13453653 = ptradd ptr @size, i32 32
+  store i32 0 to ptr %13453653
+  13453661 = ptradd ptr @size, i32 36
+  store i32 0 to ptr %13453661
   299504 = icmp sgt i32 %293, i32 0
   br i1 %299504, bb %while.body296_preheader, bb %while.exit297
 while.body296_preheader:  pred(entry287)
@@ -155,24 +159,24 @@ while.exit297:  pred(entry287, while.body296)
 max_flow.while.cond268:  pred(while.exit297, max_flow.if.exit281)
   flow.phi371 = phi [bb %while.exit297, i32 0, bb %max_flow.if.exit281, i32 %286379]
   store i32 0 to ptr @used
-  13468521 = ptradd ptr @used, i32 4
-  store i32 0 to ptr %13468521
-  13468529 = ptradd ptr @used, i32 8
-  store i32 0 to ptr %13468529
-  13468537 = ptradd ptr @used, i32 12
-  store i32 0 to ptr %13468537
-  13468545 = ptradd ptr @used, i32 16
-  store i32 0 to ptr %13468545
-  13468553 = ptradd ptr @used, i32 20
-  store i32 0 to ptr %13468553
-  13468561 = ptradd ptr @used, i32 24
-  store i32 0 to ptr %13468561
-  13468569 = ptradd ptr @used, i32 28
-  store i32 0 to ptr %13468569
-  13468577 = ptradd ptr @used, i32 32
-  store i32 0 to ptr %13468577
-  13468585 = ptradd ptr @used, i32 36
-  store i32 0 to ptr %13468585
+  13468525 = ptradd ptr @used, i32 4
+  store i32 0 to ptr %13468525
+  13468533 = ptradd ptr @used, i32 8
+  store i32 0 to ptr %13468533
+  13468541 = ptradd ptr @used, i32 12
+  store i32 0 to ptr %13468541
+  13468549 = ptradd ptr @used, i32 16
+  store i32 0 to ptr %13468549
+  13468557 = ptradd ptr @used, i32 20
+  store i32 0 to ptr %13468557
+  13468565 = ptradd ptr @used, i32 24
+  store i32 0 to ptr %13468565
+  13468573 = ptradd ptr @used, i32 28
+  store i32 0 to ptr %13468573
+  13468581 = ptradd ptr @used, i32 32
+  store i32 0 to ptr %13468581
+  13468589 = ptradd ptr @used, i32 36
+  store i32 0 to ptr %13468589
   277373 = call i32 dfs(i32 1, i32 %291, i32 1879048192)
   279374 = icmp eq i32 %277373, i32 0
   br i1 %279374, bb %max_flow.then280, bb %max_flow.if.exit281

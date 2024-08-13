@@ -259,6 +259,7 @@ while.body327_preheader:  pred(entry323)
   113795 = si2f i32 2 to float
   124803 = si2f i32 4 to float
   134809 = si2f i32 6 to float
+  931419 = fdiv float %304449, float %304449
   br bb %while.body327
 while.body327:  pred(if.exit386, while.body327_preheader)
   num.phi1522 = phi [bb %if.exit386, i32 %411, bb %while.body327_preheader, i32 %325]
@@ -287,7 +288,6 @@ then354:  pred(while.body327.split1544)
   112794 = fsub float %332, float %304449
   114796 = fdiv float %112794, float %113795
   115797 = fadd float %304449, float %114796
-  931419 = fdiv float %304449, float %304449
   931425 = fdiv float %304449, float %115797
   125804 = fmul float %124803, float %931425
   126805 = fadd float %931419, float %125804
@@ -310,10 +310,9 @@ then373:  pred(if.exit355)
   112872 = fsub float %334, float %304449
   114874 = fdiv float %112872, float %113795
   115875 = fadd float %304449, float %114874
-  931455 = fdiv float %304449, float %304449
   931461 = fdiv float %304449, float %115875
   125882 = fmul float %124803, float %931461
-  126883 = fadd float %931455, float %125882
+  126883 = fadd float %931419, float %125882
   931467 = fdiv float %304449, float %334
   129885 = fadd float %126883, float %931467
   133886 = fmul float %129885, float %112872
@@ -324,7 +323,7 @@ then373:  pred(if.exit355)
   115914 = fadd float %304449, float %114913
   931479 = fdiv float %304449, float %115914
   125921 = fmul float %124803, float %931479
-  126922 = fadd float %931455, float %125921
+  126922 = fadd float %931419, float %125921
   931485 = fdiv float %304449, float %332
   129924 = fadd float %126922, float %931485
   133925 = fmul float %129924, float %112911
@@ -343,10 +342,9 @@ then385:  pred(if.exit374)
   112833 = fsub float %332, float %304449
   114835 = fdiv float %112833, float %113795
   115836 = fadd float %304449, float %114835
-  931437 = fdiv float %304449, float %304449
   931443 = fdiv float %304449, float %115836
   125843 = fmul float %124803, float %931443
-  126844 = fadd float %931437, float %125843
+  126844 = fadd float %931419, float %125843
   931449 = fdiv float %304449, float %332
   129846 = fadd float %126844, float %931449
   133847 = fmul float %129846, float %112833

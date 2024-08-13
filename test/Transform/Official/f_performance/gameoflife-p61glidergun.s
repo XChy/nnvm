@@ -432,8 +432,10 @@ bb61:   # loop depth 1
   JAL zero, bb58
 bb62:   # loop depth 1
   ADDI s0, zero, 2000
+  LA s3, sheet1
+  MULW s0, s2, s0
   ADDI s1, zero, 1
-  MULW s3, s2, s0
+  ADD s3, s3, s0
   # implict jump to bb63
 bb63:   # loop depth 2
   CALL getch
@@ -443,9 +445,7 @@ bb63:   # loop depth 2
   BNE s4, zero, bb68
   # implict jump to bb64
 bb64:   # loop depth 2
-  LA s4, sheet1
-  ADD s4, s4, s3
-  SH2ADD s4, s1, s4
+  SH2ADD s4, s1, s3
   SW zero, 0(s4)
   # implict jump to bb65
 bb65:   # loop depth 2
@@ -461,9 +461,7 @@ bb66:   # loop depth 1
 bb67:   # loop depth 2
   JAL zero, bb63
 bb68:   # loop depth 2
-  LA s4, sheet1
   ADDI s5, zero, 1
-  ADD s4, s4, s3
-  SH2ADD s4, s1, s4
+  SH2ADD s4, s1, s3
   SW s5, 0(s4)
   JAL zero, bb65

@@ -48,6 +48,9 @@ entry28:  pred()
   36209 = icmp sle i32 1, i32 %n.load35208
   br i1 %36209, bb %while.body32_preheader, bb %while.exit33
 while.body32_preheader:  pred(entry28)
+  201 = shl i32 %step, i32 2
+  76 = ptradd ptr @ans, i32 %201
+  104 = add i32 %step, i32 1
   br bb %while.body32
 while.body32:  pred(if.exit73, while.body32_preheader)
   n.load35208211 = phi [bb %if.exit73, i32 %n.load35, bb %while.body32_preheader, i32 %n.load35208]
@@ -88,8 +91,6 @@ select.exit57:  pred(select.then55, select.else56)
   select58.phi = phi [bb %select.else56, i1 0, bb %select.then55, i1 %70]
   br i1 %select58.phi, bb %then72, bb %if.exit73
 then72:  pred(select.exit57)
-  201 = shl i32 %step, i32 2
-  76 = ptradd ptr @ans, i32 %201
   store i32 %i30.phi210 to ptr %76
   81 = icmp eq i32 %step, i32 %n.load35208211
   br i1 %81, bb %then82, bb %if.exit83
@@ -114,7 +115,6 @@ if.exit83:  pred(then72, printans.then, printans.while.cond)
   203 = shl i32 %99, i32 2
   101 = ptradd ptr @line2, i32 %203
   store i32 1 to ptr %101
-  104 = add i32 %step, i32 1
   call void f(i32 %104)
   store i32 0 to ptr %40
   store i32 0 to ptr %93
