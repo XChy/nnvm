@@ -51,14 +51,14 @@ main:   # loop depth 0
   SD s2, 88(sp)
   SD s3, 96(sp)
   SD s4, 104(sp)
-  LA s0, keys
+  LA s1, keys
   LA s4, hashmod
   CALL getint
   LA s3, values
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   LA s2, requests
-  ADD a0, s0, zero
-  SW s1, 0(s4)
+  ADD a0, s1, zero
+  SW s0, 0(s4)
   ADDI s1, zero, 0
   CALL getarray
   SW a0, 0(sp)

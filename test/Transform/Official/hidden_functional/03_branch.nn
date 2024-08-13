@@ -4,19 +4,13 @@ entry:  pred()
   br i1 %52, bb %then53, bb %else55
 then53:  pred(entry)
   57 = icmp sge i32 -1, i32 0
-  br i1 %57, bb %select.then58, bb %select.else59
+  91 = zext i1 %57 to i1
+  br i1 %91, bb %then65, bb %else67
 else55:  pred(entry)
   ret i32 5
-select.then58:  pred(then53)
-  br bb %select.exit60
-select.else59:  pred(then53)
-  br bb %select.exit60
-select.exit60:  pred(select.then58, select.else59)
-  select61.phi = phi [bb %select.else59, i1 0, bb %select.then58, i1 -1]
-  br i1 %select61.phi, bb %then65, bb %else67
-then65:  pred(select.exit60)
+then65:  pred(then53)
   ret i32 6
-else67:  pred(select.exit60)
+else67:  pred(then53)
   80 = zext i1 0 to i32
   81 = icmp ne i32 %80, i32 0
   br i1 %81, bb %then82, bb %else84

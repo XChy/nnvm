@@ -149,7 +149,7 @@ entry121:  pred()
   store i32 0 to ptr %151330
   157 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
   158 = icmp ne i32 %157, i32 0
-  159 = xor i1 %158, i1 -1
+  159 = xor i1 %158, i1 1
   160 = zext i1 %159 to i32
   161 = icmp ne i32 %160, i32 0
   br i1 %161, bb %then162, bb %if.exit163

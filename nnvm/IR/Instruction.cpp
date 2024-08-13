@@ -45,14 +45,30 @@ Value *Instruction::getOperand(uint no) const {
 
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
-    {InstID::Add, "add"},       {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
-    {InstID::And, "and"},       {InstID::Or, "or"},     {InstID::Xor, "xor"},
-    {InstID::Shl, "shl"},       {InstID::AShr, "ashr"}, {InstID::LShr, "lshr"},
-    {InstID::UDiv, "udiv"},     {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
-    {InstID::SRem, "srem"},     {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
-    {InstID::FMul, "fmul"},     {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
+    {InstID::Add, "add"},
+    {InstID::Sub, "sub"},
+    {InstID::Mul, "mul"},
+    {InstID::And, "and"},
+    {InstID::Or, "or"},
+    {InstID::Xor, "xor"},
+    {InstID::Shl, "shl"},
+    {InstID::AShr, "ashr"},
+    {InstID::LShr, "lshr"},
+    {InstID::UDiv, "udiv"},
+    {InstID::SDiv, "sdiv"},
+    {InstID::URem, "urem"},
+    {InstID::SRem, "srem"},
+    {InstID::FAdd, "fadd"},
+    {InstID::FSub, "fsub"},
+    {InstID::FMul, "fmul"},
+    {InstID::FDiv, "fdiv"},
+    {InstID::SMin, "signed min"},
+    {InstID::SMax, "signed max"},
+    {InstID::UMin, "unsigned min"},
+    {InstID::UMax, "unsigned max"},
     {InstID::PtrAdd, "ptradd"},
 };
+
 static std::unordered_map<InstID, std::string> unaryOpTable = {
     {InstID::ZExt, "zext"}, {InstID::SExt, "sext"}, {InstID::F2SI, "f2si"},
     {InstID::F2UI, "f2ui"}, {InstID::SI2F, "si2f"}, {InstID::UI2F, "ui2f"},
@@ -145,6 +161,14 @@ std::string Instruction::dump() {
     case InstID::Br:
       ret += "br ";
       ret += join(operandDump.begin(), operandDump.end(), ", ");
+      break;
+    case InstID::WhichOf:
+      ret += "which ";
+      ret += getOperand(0)->dumpAsOperand();
+      ret += " of ";
+      ret += getOperand(1)->dumpAsOperand();
+      ret += ", ";
+      ret += getOperand(2)->dumpAsOperand();
       break;
     case InstID::FNeg:
       ret += "fneg ";

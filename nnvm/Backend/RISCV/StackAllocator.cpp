@@ -172,7 +172,6 @@ void StackAllocator::orderSlots(LIRFunc &func) {
 }
 
 void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
-  // TODO: handle big frame larger than 2 ^ 12 bytes
   auto bodyBegin = func.getEntry()->begin();
   builder.setInsertPoint(bodyBegin);
   builder.loadRegPlusConstantToReg(
@@ -183,9 +182,6 @@ void StackAllocator::emitPrologue(LIRBuilder &builder, LIRFunc &func) {
     if (slot->getType() == StackSlot::CalleeSaved) {
       builder.setInsertPoint(bodyBegin);
       builder.storeValueTo(slot->getReg(), slot, slot->getReg()->getType());
-    } else {
-      // TODO: spill?
-      // nnvm_unimpl();
     }
   }
 }

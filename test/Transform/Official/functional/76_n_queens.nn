@@ -78,7 +78,7 @@ select.then55:  pred(select.exit)
   65 = ptradd ptr @line2, i32 %200
   65.load = load i32 from ptr %65
   67 = icmp ne i32 %65.load, i32 0
-  68 = xor i1 %67, i1 -1
+  68 = xor i1 %67, i1 1
   69 = zext i1 %68 to i32
   70 = icmp ne i32 %69, i32 0
   br bb %select.exit57

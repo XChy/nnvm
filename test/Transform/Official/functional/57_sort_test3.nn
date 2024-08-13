@@ -23,7 +23,7 @@ while.body:  pred(if.exit90, while.body_preheader)
   64237244 = phi [bb %if.exit90, i32 %64, bb %while.body_preheader, i32 %64237]
   229236243 = phi [bb %if.exit90, i32 %231, bb %while.body_preheader, i32 %226]
   j.phi185242 = phi [bb %if.exit90, i32 %j.phi, bb %while.body_preheader, i32 %high]
-  i.phi194241 = phi [bb %if.exit90, i32 %i.phi, bb %while.body_preheader, i32 %low]
+  i.phi198241 = phi [bb %if.exit90, i32 %i.phi, bb %while.body_preheader, i32 %low]
   br bb %while.cond27
 while.exit:  pred(then, while.body_exclu_exit)
   64237240 = phi [bb %while.body_exclu_exit, i32 %64, bb %then, i32 %64237]
@@ -37,7 +37,7 @@ while.exit:  pred(then, while.body_exclu_exit)
   br bb %if.exit
 while.cond27:  pred(while.body, while.body28)
   j.phi187 = phi [bb %while.body, i32 %j.phi185242, bb %while.body28, i32 %207]
-  32 = icmp slt i32 %i.phi194241, i32 %j.phi187
+  32 = icmp slt i32 %i.phi198241, i32 %j.phi187
   228 = shl i32 %j.phi187, i32 2
   br i1 %32, bb %select.then, bb %select.else
 while.body28:  pred(select.exit)
@@ -63,10 +63,10 @@ then52:  pred(while.exit29)
   store i32 %60.load to ptr %56
   br bb %if.exit53
 if.exit53:  pred(while.exit29, then52)
-  i.phi196 = phi [bb %while.exit29, i32 %i.phi194241, bb %then52, i32 %64237244]
+  i.phi200 = phi [bb %while.exit29, i32 %i.phi198241, bb %then52, i32 %64237244]
   br bb %while.cond65
 while.cond65:  pred(if.exit53, while.body66)
-  i.phi = phi [bb %if.exit53, i32 %i.phi196, bb %while.body66, i32 %85]
+  i.phi = phi [bb %if.exit53, i32 %i.phi200, bb %while.body66, i32 %85]
   70 = icmp slt i32 %i.phi, i32 %j.phi187
   231 = shl i32 %i.phi, i32 2
   br i1 %70, bb %select.then71, bb %select.else72

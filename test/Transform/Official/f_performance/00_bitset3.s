@@ -231,47 +231,49 @@ bb9:   # loop depth 1
 bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
+  XORI s4, s4, 1
   ANDI a0, a0, 1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb20
+  SLTIU s6, s4, 1
+  SLTIU s4, a0, 1
+  BNE s6, zero, bb23
   # implict jump to bb12
 bb12:   # loop depth 1
   ADD a0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  XORI s4, s5, 1
-  SLTIU s4, s4, 1
-  BNE s4, zero, bb16
+  BNE s4, zero, bb22
   # implict jump to bb14
 bb14:   # loop depth 1
+  ADD a0, zero, zero
   # implict jump to bb15
 bb15:   # loop depth 1
-  JAL zero, bb8
+  XORI s4, s5, 1
+  SLTIU s4, s4, 1
+  BNE s4, zero, bb18
+  # implict jump to bb16
 bb16:   # loop depth 1
-  ANDI s3, s3, 1
-  SLTIU s3, s3, 1
-  BNE s3, zero, bb19
   # implict jump to bb17
 bb17:   # loop depth 1
-  # implict jump to bb18
+  JAL zero, bb8
 bb18:   # loop depth 1
-  JAL zero, bb15
+  ANDI s3, s3, 1
+  SUBW s0, a0, s0
+  SLTIU s3, s3, 1
+  BNE s3, zero, bb21
+  # implict jump to bb19
 bb19:   # loop depth 1
-  SUBW a0, a0, s0
-  JAL zero, bb18
+  ADD s0, a0, zero
+  # implict jump to bb20
 bb20:   # loop depth 1
-  XORI a0, s4, 1
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb23
-  # implict jump to bb21
+  ADD a0, s0, zero
+  JAL zero, bb17
 bb21:   # loop depth 1
-  ADD a0, zero, zero
-  # implict jump to bb22
+  JAL zero, bb20
 bb22:   # loop depth 1
-  JAL zero, bb13
+  JAL zero, bb15
 bb23:   # loop depth 1
   ADD a0, s0, zero
-  JAL zero, bb22
+  JAL zero, bb13
 bb24:   # loop depth 1
   LA s0, staticvalue
   LUI s2, 244141

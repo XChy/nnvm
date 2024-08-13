@@ -145,7 +145,7 @@ counting_sort.while.body74:  pred(counting_sort.while.body74, entry115)
   77258 = icmp sgt i32 %190261, i32 0
   br i1 %77258, bb %counting_sort.while.body74, bb %counting_sort.while.body74_exclu_exit
 counting_sort.while.body74_exclu_exit:  pred(counting_sort.while.body74)
-  br i1 -1, bb %while.body155_preheader, bb %while.exit156
+  br i1 1, bb %while.body155_preheader, bb %while.exit156
 }
 
 external float getfloat()

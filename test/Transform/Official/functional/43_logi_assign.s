@@ -24,30 +24,14 @@ main:   # loop depth 0
   CALL getint
   SW a0, 0(s2)
   LW t0, 0(s0)
-  XOR t1, t0, a0
-  SLTIU t1, t1, 1
-  BNE t1, zero, bb6
-  # implict jump to bb1
-bb1:   # loop depth 0
-  ADD t0, zero, zero
-  # implict jump to bb2
-bb2:   # loop depth 0
-  BNE t0, zero, bb5
-  # implict jump to bb3
-bb3:   # loop depth 0
-  ADD a0, zero, zero
-  # implict jump to bb4
-bb4:   # loop depth 0
+  XORI t1, t0, 3
+  XOR t0, t0, a0
+  SLTU t1, zero, t1
+  SLTIU t0, t0, 1
+  AND a0, t0, t1
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb5:   # loop depth 0
-  ADDI a0, zero, 1
-  JAL zero, bb4
-bb6:   # loop depth 0
-  XORI t0, t0, 3
-  SLTU t0, zero, t0
-  JAL zero, bb2

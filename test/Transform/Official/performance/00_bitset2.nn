@@ -142,38 +142,38 @@ set.if.exit:  pred(rand.if.exit234354)
 set.then148:  pred(set.if.exit)
   297480 = and i32 %144472, i32 1
   298481 = icmp eq i32 %297480, i32 0
-  br i1 %298481, bb %set.then163, bb %set.if.exit164
+  166490 = icmp eq i32 %264, i32 1
+  br i1 %166490, bb %v.phi274504.which.true, bb %set.then148.split
+set.then148.split:  pred(set.then148, v.phi274504.which.true)
+  804 = phi [bb %v.phi274504.which.true, i32 %142.load471, bb %set.then148, i32 0]
+  br i1 %298481, bb %v.phi275493.which.true, bb %set.then148.split.split
+set.then148.split.split:  pred(set.then148.split, v.phi275493.which.true)
+  807 = phi [bb %v.phi275493.which.true, i32 %804, bb %set.then148.split, i32 0]
+  187498 = icmp eq i32 %145473, i32 1
+  br i1 %187498, bb %set.then188, bb %set.if.exit189
 set.if.exit149:  pred(set.if.exit, set.if.exit189)
   v.phi273484 = phi [bb %set.if.exit, i32 0, bb %set.if.exit189, i32 %v.phi272510]
   210.load485 = load i32 from ptr %137466
   213486 = add i32 %210.load485, i32 %v.phi273484
   store i32 %213486 to ptr %137466
   br bb %while.body251.split.split.split
-set.then163:  pred(set.then148)
-  166490 = icmp eq i32 %264, i32 1
-  br i1 %166490, bb %set.then167, bb %set.if.exit168
-set.if.exit164:  pred(set.then148, set.if.exit168)
-  v.phi275493 = phi [bb %set.then148, i32 0, bb %set.if.exit168, i32 %v.phi274504]
-  187498 = icmp eq i32 %145473, i32 1
-  br i1 %187498, bb %set.then188, bb %set.if.exit189
-set.then167:  pred(set.then163)
-  br bb %set.if.exit168
-set.if.exit168:  pred(set.then163, set.then167)
-  v.phi274504 = phi [bb %set.then163, i32 0, bb %set.then167, i32 %142.load471]
-  br bb %set.if.exit164
-set.then188:  pred(set.if.exit164)
+set.then188:  pred(set.then148.split.split)
   520 = and i32 %staticvalue.load241355, i32 1
   521 = icmp eq i32 %520, i32 0
-  br i1 %521, bb %set.then192, bb %set.if.exit193
-set.if.exit189:  pred(set.if.exit164, set.if.exit193)
-  v.phi272510 = phi [bb %set.if.exit164, i32 %v.phi275493, bb %set.if.exit193, i32 %v.phi517]
-  br bb %set.if.exit149
-set.then192:  pred(set.then188)
-  201514 = sub i32 %v.phi275493, i32 %142.load471
-  br bb %set.if.exit193
-set.if.exit193:  pred(set.then188, set.then192)
-  v.phi517 = phi [bb %set.then188, i32 %v.phi275493, bb %set.then192, i32 %201514]
+  201514 = sub i32 %807, i32 %142.load471
+  br i1 %521, bb %v.phi517.which.true, bb %set.then188.split
+set.then188.split:  pred(set.then188, v.phi517.which.true)
+  810 = phi [bb %v.phi517.which.true, i32 %201514, bb %set.then188, i32 %807]
   br bb %set.if.exit189
+set.if.exit189:  pred(set.then148.split.split, set.then188.split)
+  v.phi272510 = phi [bb %set.then148.split.split, i32 %807, bb %set.then188.split, i32 %810]
+  br bb %set.if.exit149
+v.phi274504.which.true:  pred(set.then148)
+  br bb %set.then148.split
+v.phi275493.which.true:  pred(set.then148.split)
+  br bb %set.then148.split.split
+v.phi517.which.true:  pred(set.then188)
+  br bb %set.then188.split
 }
 
 external float getfloat()

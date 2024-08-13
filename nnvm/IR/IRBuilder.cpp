@@ -39,6 +39,14 @@ Value *IRBuilder::buildLoad(Value *src, Type *loadedTy,
   return LI;
 }
 
+WhichOfInst *IRBuilder::buildWhichOf(Value *cond, Value *trueVal,
+                                     Value *falseVal, const std::string &name) {
+  WhichOfInst *which = new WhichOfInst(cond, trueVal, falseVal);
+  which->setName(name, *module);
+  insertPoint.insertBefore(which);
+  return which;
+}
+
 PhiNode *IRBuilder::buildPhi(Type *type, const std::string &name) {
   PhiNode *I = new PhiNode(type);
   I->setName(name, *module);

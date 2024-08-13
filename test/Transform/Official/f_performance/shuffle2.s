@@ -51,26 +51,26 @@ main:   # loop depth 0
   SD s2, 88(sp)
   SD s3, 96(sp)
   SD s4, 104(sp)
-  LA s3, keys
+  LA s0, keys
   LA s4, hashmod
   CALL getint
-  LA s2, values
-  ADD s0, a0, zero
-  LA s1, requests
-  ADD a0, s3, zero
-  SW s0, 0(s4)
-  ADDI s4, zero, 0
+  LA s1, values
+  ADD s2, a0, zero
+  LA s3, requests
+  ADD a0, s0, zero
+  SW s2, 0(s4)
+  ADDI s2, zero, 0
   CALL getarray
   SW a0, 0(sp)
-  ADD a0, s2, zero
-  CALL getarray
   ADD a0, s1, zero
+  CALL getarray
+  ADD a0, s3, zero
   CALL getarray
   ADD s3, a0, zero
   ADDI a0, zero, 78
   CALL _sysy_starttime
   LW a0, 0(sp)
-  BLT s4, a0, bb18
+  BLT s2, a0, bb18
   # implict jump to bb1
 bb1:   # loop depth 0
   BLT zero, s3, bb3

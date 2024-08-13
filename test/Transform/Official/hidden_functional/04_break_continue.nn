@@ -2,28 +2,28 @@ pure i32 main() {
 entry:  pred()
   br bb %while.body
 while.body:  pred(while.body11_exclu_exit, entry)
-  sum.phi97155 = phi [bb %while.body11_exclu_exit, i32 %sum.phi, bb %entry, i32 0]
-  i.phi154 = phi [bb %while.body11_exclu_exit, i32 %92, bb %entry, i32 0]
-  select.phi113151 = phi [bb %while.body11_exclu_exit, i1 %select.phi110, bb %entry, i1 0]
-  n.phi120150 = phi [bb %while.body11_exclu_exit, i32 %n.phi117, bb %entry, i32 0]
+  sum.phi97157 = phi [bb %while.body11_exclu_exit, i32 %sum.phi, bb %entry, i32 0]
+  i.phi156 = phi [bb %while.body11_exclu_exit, i32 %92, bb %entry, i32 0]
+  select.phi113153 = phi [bb %while.body11_exclu_exit, i1 %select.phi110, bb %entry, i1 0]
+  n.phi120152 = phi [bb %while.body11_exclu_exit, i32 %n.phi117, bb %entry, i32 0]
   br bb %while.body11
 while.body11:  pred(while.body18_exclu_exit, while.body)
-  sum.phi96147 = phi [bb %while.body18_exclu_exit, i32 %sum.phi, bb %while.body, i32 %sum.phi97155]
-  j.phi146 = phi [bb %while.body18_exclu_exit, i32 %89, bb %while.body, i32 0]
-  select.phi112143 = phi [bb %while.body18_exclu_exit, i1 %select.phi110, bb %while.body, i1 %select.phi113151]
-  n.phi119142 = phi [bb %while.body18_exclu_exit, i32 %n.phi117, bb %while.body, i32 %n.phi120150]
+  sum.phi96149 = phi [bb %while.body18_exclu_exit, i32 %sum.phi, bb %while.body, i32 %sum.phi97157]
+  j.phi148 = phi [bb %while.body18_exclu_exit, i32 %89, bb %while.body, i32 0]
+  select.phi112145 = phi [bb %while.body18_exclu_exit, i1 %select.phi110, bb %while.body, i1 %select.phi113153]
+  n.phi119144 = phi [bb %while.body18_exclu_exit, i32 %n.phi117, bb %while.body, i32 %n.phi120152]
   br bb %while.body18
 while.body18:  pred(while.exit26, while.body11)
-  sum.phi95135 = phi [bb %while.exit26, i32 %sum.phi, bb %while.body11, i32 %sum.phi96147]
-  k.phi134 = phi [bb %while.exit26, i32 %86, bb %while.body11, i32 0]
-  select.phi111132 = phi [bb %while.exit26, i1 %select.phi110, bb %while.body11, i1 %select.phi112143]
-  n.phi118131 = phi [bb %while.exit26, i32 %n.phi117, bb %while.body11, i32 %n.phi119142]
+  sum.phi95137 = phi [bb %while.exit26, i32 %sum.phi, bb %while.body11, i32 %sum.phi96149]
+  k.phi136 = phi [bb %while.exit26, i32 %86, bb %while.body11, i32 0]
+  select.phi111134 = phi [bb %while.exit26, i1 %select.phi110, bb %while.body11, i1 %select.phi112145]
+  n.phi118133 = phi [bb %while.exit26, i32 %n.phi117, bb %while.body11, i32 %n.phi119144]
   br bb %while.cond24
 while.cond24:  pred(while.body18, if.exit)
-  n.phi117 = phi [bb %while.body18, i32 %n.phi118131, bb %if.exit, i32 2]
-  select.phi115 = phi [bb %while.body18, i1 %select.phi111132, bb %if.exit, i1 %select.phi114]
+  n.phi117 = phi [bb %while.body18, i32 %n.phi118133, bb %if.exit, i32 2]
+  select.phi115 = phi [bb %while.body18, i1 %select.phi111134, bb %if.exit, i1 %select.phi114]
   m.phi = phi [bb %while.body18, i32 0, bb %if.exit, i32 %31]
-  sum.phi = phi [bb %while.body18, i32 %sum.phi95135, bb %if.exit, i32 %75]
+  sum.phi = phi [bb %while.body18, i32 %sum.phi95137, bb %if.exit, i32 %75]
   28 = icmp slt i32 %m.phi, i32 3
   br i1 %28, bb %while.body25, bb %while.exit26
 while.body25:  pred(while.cond24)
@@ -31,8 +31,8 @@ while.body25:  pred(while.cond24)
   32 = icmp sge i32 %31, i32 3
   br i1 %32, bb %then, bb %if.exit
 while.exit26:  pred(while.cond24, then58)
-  select.phi110 = phi [bb %while.cond24, i1 %select.phi115, bb %then58, i1 %select.phi]
-  86 = add i32 %k.phi134, i32 1
+  select.phi110 = phi [bb %while.cond24, i1 %select.phi115, bb %then58, i1 %123]
+  86 = add i32 %k.phi136, i32 1
   21 = icmp slt i32 %86, i32 5
   br i1 %21, bb %while.body18, bb %while.body18_exclu_exit
 then:  pred(while.body25)
@@ -43,32 +43,26 @@ if.exit:  pred(while.body25, if.exit38)
   75 = add i32 %sum.phi, i32 1
   br bb %while.cond24
 then37:  pred(then)
-  br i1 %36, bb %select.then, bb %select.else
-if.exit38:  pred(then, if.exit53)
-  select.phi109 = phi [bb %then, i1 %select.phi115, bb %if.exit53, i1 %select.phi]
-  br bb %if.exit
-select.then:  pred(then37)
-  br bb %select.exit
-select.else:  pred(then37)
-  47 = xor i1 %36, i1 -1
+  47 = xor i1 %36, i1 1
   48 = zext i1 %47 to i32
   49 = icmp ne i32 %48, i32 0
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 %49, bb %select.then, i1 -1]
-  br i1 %select.phi, bb %then52, bb %if.exit53
-then52:  pred(select.exit)
+  123 = or i1 %36, i1 %49
+  br i1 %123, bb %then52, bb %if.exit53
+if.exit38:  pred(then, if.exit53)
+  select.phi109 = phi [bb %then, i1 %select.phi115, bb %if.exit53, i1 %123]
+  br bb %if.exit
+then52:  pred(then37)
   br i1 %32, bb %then58, bb %if.exit53
-if.exit53:  pred(select.exit, then52)
+if.exit53:  pred(then37, then52)
   br bb %if.exit38
 then58:  pred(then52)
   br bb %while.exit26
 while.body18_exclu_exit:  pred(while.exit26)
-  89 = add i32 %j.phi146, i32 1
+  89 = add i32 %j.phi148, i32 1
   14 = icmp slt i32 %89, i32 10
   br i1 %14, bb %while.body11, bb %while.body11_exclu_exit
 while.body11_exclu_exit:  pred(while.body18_exclu_exit)
-  92 = add i32 %i.phi154, i32 1
+  92 = add i32 %i.phi156, i32 1
   7 = icmp slt i32 %92, i32 20
   br i1 %7, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(while.body11_exclu_exit)

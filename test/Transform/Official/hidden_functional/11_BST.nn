@@ -93,7 +93,7 @@ select.else204:  pred(else195)
   212 = icmp eq i32 %209.load, i32 -1
   br bb %select.exit205
 select.exit205:  pred(select.then203, select.else204)
-  select206.phi = phi [bb %select.else204, i1 %212, bb %select.then203, i1 -1]
+  select206.phi = phi [bb %select.else204, i1 %212, bb %select.then203, i1 1]
   br i1 %select206.phi, bb %then215, bb %else217
 then215:  pred(select.exit205)
   br i1 %181, bb %then224, bb %else226
@@ -149,7 +149,7 @@ entry287:  pred()
   store i32 0 to ptr @now
   290 = call i32 getint()
   292 = icmp ne i32 %290, i32 0
-  293 = xor i1 %292, i1 -1
+  293 = xor i1 %292, i1 1
   294 = zext i1 %293 to i32
   295 = icmp ne i32 %294, i32 0
   br i1 %295, bb %then296, bb %if.exit297

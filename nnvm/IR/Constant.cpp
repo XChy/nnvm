@@ -9,7 +9,11 @@ ConstantInt *ConstantInt::create(Module &module, Type *type, GInt value) {
 }
 
 ConstantInt::ConstantInt(Type *type, GInt value)
-    : Constant(type), value(sextOf(value, type->getBits())) {}
+    : Constant(type), value(sextOf(value, type->getBits())) {
+  // Zero-extended i1
+  if (type->isIntegerNBits(1))
+    this->value &= 1;
+}
 
 ConstantInt *ConstantInt::add(ConstantInt *rhs) const {
   ConstantInt *ret =

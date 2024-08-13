@@ -56,114 +56,112 @@ entry157:  pred()
   168 = si2f i32 2 to float
   169 = fdiv float %167, float %168
   170 = fadd float %a, float %169
-  112518 = fsub float %170, float %a
-  114520 = fdiv float %112518, float %168
-  115521 = fadd float %a, float %114520
-  117522 = icmp eq i32 %flag, i32 1
-  921289 = si2f i32 1 to float
-  124527 = si2f i32 4 to float
-  134533 = si2f i32 6 to float
-  137537 = icmp eq i32 %flag, i32 2
-  98992 = fmul float %170, float %170
-  156552 = si2f i32 0 to float
-  br i1 %117522, bb %simpson.then118, bb %simpson.if.exit119
+  112521 = fsub float %170, float %a
+  114523 = fdiv float %112521, float %168
+  115524 = fadd float %a, float %114523
+  117525 = icmp eq i32 %flag, i32 1
+  921292 = si2f i32 1 to float
+  124530 = si2f i32 4 to float
+  134536 = si2f i32 6 to float
+  137540 = icmp eq i32 %flag, i32 2
+  98995 = fmul float %170, float %170
+  156555 = si2f i32 0 to float
+  br i1 %117525, bb %simpson.then118, bb %simpson.if.exit119
 entry157.split:  pred(simpson.then118, simpson.then138, simpson.if.exit139)
-  175.ret = phi [bb %simpson.then118, float %135534, bb %simpson.then138, float %155549, bb %simpson.if.exit139, float %156552]
-  112557 = fsub float %b, float %170
-  114559 = fdiv float %112557, float %168
-  115560 = fadd float %170, float %114559
-  br i1 %117522, bb %simpson.then118563, bb %simpson.if.exit119575
-entry157.split.split:  pred(simpson.then118563, simpson.then138578, simpson.if.exit139590)
-  180.ret = phi [bb %simpson.then118563, float %135573, bb %simpson.then138578, float %155588, bb %simpson.if.exit139590, float %156552]
+  175.ret = phi [bb %simpson.then118, float %135537, bb %simpson.then138, float %155552, bb %simpson.if.exit139, float %156555]
+  112560 = fsub float %b, float %170
+  114562 = fdiv float %112560, float %168
+  115563 = fadd float %170, float %114562
+  br i1 %117525, bb %simpson.then118566, bb %simpson.if.exit119578
+entry157.split.split:  pred(simpson.then118566, simpson.then138581, simpson.if.exit139593)
+  180.ret = phi [bb %simpson.then118566, float %135576, bb %simpson.then138581, float %155591, bb %simpson.if.exit139593, float %156555]
   183 = fadd float %175.ret, float %180.ret
   185 = fsub float %183, float %A
-  41488 = fcmp ogt float %185, float %156552
-  br i1 %41488, bb %my_fabs.then, bb %my_fabs.if.exit
-entry157.split.split.split:  pred(my_fabs.then, my_fabs.if.exit)
-  186.ret = phi [bb %my_fabs.then, float %185, bb %my_fabs.if.exit, float %91493]
+  41491 = fcmp ogt float %185, float %156555
+  91496 = fneg float %185
+  br i1 %41491, bb %186.ret.which.true, bb %entry157.split.split.split1538
+entry157.split.split.split1538:  pred(entry157.split.split, 186.ret.which.true)
+  1540 = phi [bb %186.ret.which.true, float %185, bb %entry157.split.split, float %91496]
   188 = si2f i32 15 to float
   189 = fmul float %188, float %eps
-  190 = fcmp ole float %186.ret, float %189
+  190 = fcmp ole float %1540, float %189
   br i1 %190, bb %then191, bb %if.exit192
-then191:  pred(entry157.split.split.split)
+then191:  pred(entry157.split.split.split1538)
   201 = fdiv float %185, float 15.000000
   202 = fadd float %183, float %201
   ret float %202
-if.exit192:  pred(entry157.split.split.split)
+if.exit192:  pred(entry157.split.split.split1538)
   207 = fdiv float %eps, float %168
   210 = call float asr5(float %a, float %170, float %207, float %175.ret, i32 %flag)
   218 = call float asr5(float %170, float %b, float %207, float %180.ret, i32 %flag)
   219 = fadd float %210, float %218
   ret float %219
 simpson.then118:  pred(entry157)
-  931290 = fdiv float %921289, float %a
-  931296 = fdiv float %921289, float %115521
-  125528 = fmul float %124527, float %931296
-  126529 = fadd float %931290, float %125528
-  931302 = fdiv float %921289, float %170
-  129531 = fadd float %126529, float %931302
-  133532 = fmul float %129531, float %112518
-  135534 = fdiv float %133532, float %134533
+  931293 = fdiv float %921292, float %a
+  931299 = fdiv float %921292, float %115524
+  125531 = fmul float %124530, float %931299
+  126532 = fadd float %931293, float %125531
+  931305 = fdiv float %921292, float %170
+  129534 = fadd float %126532, float %931305
+  133535 = fmul float %129534, float %112521
+  135537 = fdiv float %133535, float %134536
   br bb %entry157.split
 simpson.if.exit119:  pred(entry157)
-  br i1 %137537, bb %simpson.then138, bb %simpson.if.exit139
+  br i1 %137540, bb %simpson.then138, bb %simpson.if.exit139
 simpson.then138:  pred(simpson.if.exit119)
-  98974 = fmul float %a, float %a
-  100976 = fsub float %921289, float %98974
-  101977 = call float my_sqrt(float %100976)
-  103978 = fdiv float %921289, float %101977
-  98983 = fmul float %115521, float %115521
-  100985 = fsub float %921289, float %98983
-  101986 = call float my_sqrt(float %100985)
-  103987 = fdiv float %921289, float %101986
-  145543 = fmul float %124527, float %103987
-  146544 = fadd float %103978, float %145543
-  100994 = fsub float %921289, float %98992
-  101995 = call float my_sqrt(float %100994)
-  103996 = fdiv float %921289, float %101995
-  149546 = fadd float %146544, float %103996
-  153547 = fmul float %149546, float %112518
-  155549 = fdiv float %153547, float %134533
+  98977 = fmul float %a, float %a
+  100979 = fsub float %921292, float %98977
+  101980 = call float my_sqrt(float %100979)
+  103981 = fdiv float %921292, float %101980
+  98986 = fmul float %115524, float %115524
+  100988 = fsub float %921292, float %98986
+  101989 = call float my_sqrt(float %100988)
+  103990 = fdiv float %921292, float %101989
+  145546 = fmul float %124530, float %103990
+  146547 = fadd float %103981, float %145546
+  100997 = fsub float %921292, float %98995
+  101998 = call float my_sqrt(float %100997)
+  103999 = fdiv float %921292, float %101998
+  149549 = fadd float %146547, float %103999
+  153550 = fmul float %149549, float %112521
+  155552 = fdiv float %153550, float %134536
   br bb %entry157.split
 simpson.if.exit139:  pred(simpson.if.exit119)
   br bb %entry157.split
-simpson.then118563:  pred(entry157.split)
-  931308 = fdiv float %921289, float %170
-  931314 = fdiv float %921289, float %115560
-  125567 = fmul float %124527, float %931314
-  126568 = fadd float %931308, float %125567
-  931320 = fdiv float %921289, float %b
-  129570 = fadd float %126568, float %931320
-  133571 = fmul float %129570, float %112557
-  135573 = fdiv float %133571, float %134533
+simpson.then118566:  pred(entry157.split)
+  931311 = fdiv float %921292, float %170
+  931317 = fdiv float %921292, float %115563
+  125570 = fmul float %124530, float %931317
+  126571 = fadd float %931311, float %125570
+  931323 = fdiv float %921292, float %b
+  129573 = fadd float %126571, float %931323
+  133574 = fmul float %129573, float %112560
+  135576 = fdiv float %133574, float %134536
   br bb %entry157.split.split
-simpson.if.exit119575:  pred(entry157.split)
-  br i1 %137537, bb %simpson.then138578, bb %simpson.if.exit139590
-simpson.then138578:  pred(simpson.if.exit119575)
-  1001003 = fsub float %921289, float %98992
-  1011004 = call float my_sqrt(float %1001003)
-  1031005 = fdiv float %921289, float %1011004
-  981010 = fmul float %115560, float %115560
-  1001012 = fsub float %921289, float %981010
-  1011013 = call float my_sqrt(float %1001012)
-  1031014 = fdiv float %921289, float %1011013
-  145582 = fmul float %124527, float %1031014
-  146583 = fadd float %1031005, float %145582
-  981019 = fmul float %b, float %b
-  1001021 = fsub float %921289, float %981019
-  1011022 = call float my_sqrt(float %1001021)
-  1031023 = fdiv float %921289, float %1011022
-  149585 = fadd float %146583, float %1031023
-  153586 = fmul float %149585, float %112557
-  155588 = fdiv float %153586, float %134533
+simpson.if.exit119578:  pred(entry157.split)
+  br i1 %137540, bb %simpson.then138581, bb %simpson.if.exit139593
+simpson.then138581:  pred(simpson.if.exit119578)
+  1001006 = fsub float %921292, float %98995
+  1011007 = call float my_sqrt(float %1001006)
+  1031008 = fdiv float %921292, float %1011007
+  981013 = fmul float %115563, float %115563
+  1001015 = fsub float %921292, float %981013
+  1011016 = call float my_sqrt(float %1001015)
+  1031017 = fdiv float %921292, float %1011016
+  145585 = fmul float %124530, float %1031017
+  146586 = fadd float %1031008, float %145585
+  981022 = fmul float %b, float %b
+  1001024 = fsub float %921292, float %981022
+  1011025 = call float my_sqrt(float %1001024)
+  1031026 = fdiv float %921292, float %1011025
+  149588 = fadd float %146586, float %1031026
+  153589 = fmul float %149588, float %112560
+  155591 = fdiv float %153589, float %134536
   br bb %entry157.split.split
-simpson.if.exit139590:  pred(simpson.if.exit119575)
+simpson.if.exit139593:  pred(simpson.if.exit119578)
   br bb %entry157.split.split
-my_fabs.then:  pred(entry157.split.split)
-  br bb %entry157.split.split.split
-my_fabs.if.exit:  pred(entry157.split.split)
-  91493 = fneg float %185
-  br bb %entry157.split.split.split
+186.ret.which.true:  pred(entry157.split.split)
+  br bb %entry157.split.split.split1538
 }
 
 pure internal float my_sqrt(float x) {
@@ -188,12 +186,12 @@ if.exit52:  pred(entry46)
   70 = fadd float %62, float %69
   br bb %while.body73
 while.body73:  pred(while.body73, if.exit52)
-  t.phi1510 = phi [bb %while.body73, float %84, bb %if.exit52, float %70]
-  c.phi1509 = phi [bb %while.body73, i32 %408, bb %if.exit52, i32 10]
-  81 = fdiv float %x, float %t.phi1510
-  82 = fadd float %t.phi1510, float %81
+  t.phi1515 = phi [bb %while.body73, float %84, bb %if.exit52, float %70]
+  c.phi1514 = phi [bb %while.body73, i32 %408, bb %if.exit52, i32 10]
+  81 = fdiv float %x, float %t.phi1515
+  82 = fadd float %t.phi1515, float %81
   84 = fdiv float %82, float %64
-  408 = add i32 %c.phi1509, i32 -1
+  408 = add i32 %c.phi1514, i32 -1
   76 = icmp ne i32 %408, i32 0
   br i1 %76, bb %while.body73, bb %while.body73_exclu_exit
 while.body73_exclu_exit:  pred(while.body73)
@@ -212,31 +210,31 @@ then15:  pred(entry10)
   ret float %22
 if.exit16:  pred(entry10)
   .pinned = pin float 1.000000
-  281511 = icmp ne i32 %n, i32 0
-  br i1 %281511, bb %while.body_preheader, bb %while.exit
+  281516 = icmp ne i32 %n, i32 0
+  br i1 %281516, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(if.exit16)
   br bb %while.body
-while.body:  pred(if.exit33, while.body_preheader)
-  a.stack.phi1515 = phi [bb %if.exit33, float %41, bb %while.body_preheader, float %a]
-  n.stack.phi1514 = phi [bb %if.exit33, i32 %44, bb %while.body_preheader, i32 %n]
-  res.phi4021513 = phi [bb %if.exit33, float %res.phi, bb %while.body_preheader, float %.pinned]
-  409 = and i32 %n.stack.phi1514, i32 1
+while.body:  pred(while.body.split, while.body_preheader)
+  a.stack.phi1520 = phi [bb %while.body.split, float %41, bb %while.body_preheader, float %a]
+  n.stack.phi1519 = phi [bb %while.body.split, i32 %44, bb %while.body_preheader, i32 %n]
+  res.phi4021518 = phi [bb %while.body.split, float %1543, bb %while.body_preheader, float %.pinned]
+  409 = and i32 %n.stack.phi1519, i32 1
   410 = icmp ne i32 %409, i32 0
-  br i1 %410, bb %then32, bb %if.exit33
-while.exit:  pred(if.exit16, while.body_exclu_exit)
-  1512 = phi [bb %while.body_exclu_exit, float %res.phi, bb %if.exit16, float %.pinned]
-  ret float %1512
-then32:  pred(while.body)
-  37 = fmul float %res.phi4021513, float %a.stack.phi1515
-  br bb %if.exit33
-if.exit33:  pred(while.body, then32)
-  res.phi = phi [bb %while.body, float %res.phi4021513, bb %then32, float %37]
-  41 = fmul float %a.stack.phi1515, float %a.stack.phi1515
-  44 = sdiv i32 %n.stack.phi1514, i32 2
+  37 = fmul float %res.phi4021518, float %a.stack.phi1520
+  br i1 %410, bb %res.phi.which.true, bb %while.body.split
+while.body.split:  pred(while.body, res.phi.which.true)
+  1543 = phi [bb %res.phi.which.true, float %37, bb %while.body, float %res.phi4021518]
+  41 = fmul float %a.stack.phi1520, float %a.stack.phi1520
+  44 = sdiv i32 %n.stack.phi1519, i32 2
   28 = icmp ne i32 %44, i32 0
   br i1 %28, bb %while.body, bb %while.body_exclu_exit
-while.body_exclu_exit:  pred(if.exit33)
+while.exit:  pred(if.exit16, while.body_exclu_exit)
+  1517 = phi [bb %while.body_exclu_exit, float %1543, bb %if.exit16, float %.pinned]
+  ret float %1517
+while.body_exclu_exit:  pred(while.body.split)
   br bb %while.exit
+res.phi.which.true:  pred(while.body)
+  br bb %while.body.split
 }
 
 external i32 getint()
@@ -252,25 +250,26 @@ external i32 getfarray(ptr )
 i32 main() {
 entry323:  pred()
   325 = call i32 getint()
-  3301516 = icmp ne i32 %325, i32 0
-  br i1 %3301516, bb %while.body327_preheader, bb %while.exit328
+  3301521 = icmp ne i32 %325, i32 0
+  br i1 %3301521, bb %while.body327_preheader, bb %while.exit328
 while.body327_preheader:  pred(entry323)
-  .pinned1532 = pin float 0.000000
-  31498 = si2f i32 0 to float
-  304446 = si2f i32 1 to float
-  113792 = si2f i32 2 to float
-  124800 = si2f i32 4 to float
-  134806 = si2f i32 6 to float
+  .pinned1537 = pin float 0.000000
+  31501 = si2f i32 0 to float
+  304449 = si2f i32 1 to float
+  113795 = si2f i32 2 to float
+  124803 = si2f i32 4 to float
+  134809 = si2f i32 6 to float
   br bb %while.body327
 while.body327:  pred(if.exit386, while.body327_preheader)
-  num.phi1517 = phi [bb %if.exit386, i32 %411, bb %while.body327_preheader, i32 %325]
+  num.phi1522 = phi [bb %if.exit386, i32 %411, bb %while.body327_preheader, i32 %325]
   332 = call float getfloat()
   334 = call float getfloat()
-  41499 = fcmp ogt float %332, float %31498
-  br i1 %41499, bb %my_fabs.then1501, bb %my_fabs.if.exit1503
-while.body327.split:  pred(my_fabs.then1501, my_fabs.if.exit1503)
-  336.ret = phi [bb %my_fabs.then1501, float %332, bb %my_fabs.if.exit1503, float %91504]
-  call void putfloat(float %336.ret)
+  41502 = fcmp ogt float %332, float %31501
+  91507 = fneg float %332
+  br i1 %41502, bb %336.ret.which.true, bb %while.body327.split1544
+while.body327.split1544:  pred(while.body327, 336.ret.which.true)
+  1546 = phi [bb %336.ret.which.true, float %332, bb %while.body327, float %91507]
+  call void putfloat(float %1546)
   call void putch(i32 32)
   340 = call float my_pow(float %332, i32 2)
   call void putfloat(float %340)
@@ -281,101 +280,92 @@ while.body327.split:  pred(my_fabs.then1501, my_fabs.if.exit1503)
   348 = call float my_exp(float %332)
   call void putfloat(float %348)
   call void putch(i32 32)
-  br i1 %41499, bb %then354, bb %else
+  br i1 %41502, bb %then354, bb %else
 while.exit328:  pred(entry323, if.exit386)
   ret i32 0
-then354:  pred(while.body327.split)
-  112791 = fsub float %332, float %304446
-  114793 = fdiv float %112791, float %113792
-  115794 = fadd float %304446, float %114793
-  931416 = fdiv float %304446, float %304446
-  931422 = fdiv float %304446, float %115794
-  125801 = fmul float %124800, float %931422
-  126802 = fadd float %931416, float %125801
-  931428 = fdiv float %304446, float %332
-  129804 = fadd float %126802, float %931428
-  133805 = fmul float %129804, float %112791
-  135807 = fdiv float %133805, float %134806
-  233495 = call float asr5(float %304446, float %332, float %.pinned1532, float %135807, i32 1)
-  call void putfloat(float %233495)
+then354:  pred(while.body327.split1544)
+  112794 = fsub float %332, float %304449
+  114796 = fdiv float %112794, float %113795
+  115797 = fadd float %304449, float %114796
+  931419 = fdiv float %304449, float %304449
+  931425 = fdiv float %304449, float %115797
+  125804 = fmul float %124803, float %931425
+  126805 = fadd float %931419, float %125804
+  931431 = fdiv float %304449, float %332
+  129807 = fadd float %126805, float %931431
+  133808 = fmul float %129807, float %112794
+  135810 = fdiv float %133808, float %134809
+  233498 = call float asr5(float %304449, float %332, float %.pinned1537, float %135810, i32 1)
+  call void putfloat(float %233498)
   br bb %if.exit355
 if.exit355:  pred(then354, else)
   call void putch(i32 32)
-  br i1 %41499, bb %select.then, bb %select.else
-else:  pred(while.body327.split)
+  371 = fcmp ogt float %334, float %31501
+  414 = and i1 %41502, i1 %371
+  br i1 %414, bb %then373, bb %else375
+else:  pred(while.body327.split1544)
   call void putch(i32 45)
   br bb %if.exit355
-select.then:  pred(if.exit355)
-  371 = fcmp ogt float %334, float %31498
-  br bb %select.exit
-select.else:  pred(if.exit355)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %371]
-  br i1 %select.phi, bb %then373, bb %else375
-then373:  pred(select.exit)
-  112869 = fsub float %334, float %304446
-  114871 = fdiv float %112869, float %113792
-  115872 = fadd float %304446, float %114871
-  931452 = fdiv float %304446, float %304446
-  931458 = fdiv float %304446, float %115872
-  125879 = fmul float %124800, float %931458
-  126880 = fadd float %931452, float %125879
-  931464 = fdiv float %304446, float %334
-  129882 = fadd float %126880, float %931464
-  133883 = fmul float %129882, float %112869
-  135885 = fdiv float %133883, float %134806
-  233507 = call float asr5(float %304446, float %334, float %.pinned1532, float %135885, i32 1)
-  112908 = fsub float %332, float %304446
-  114910 = fdiv float %112908, float %113792
-  115911 = fadd float %304446, float %114910
-  931476 = fdiv float %304446, float %115911
-  125918 = fmul float %124800, float %931476
-  126919 = fadd float %931452, float %125918
-  931482 = fdiv float %304446, float %332
-  129921 = fadd float %126919, float %931482
-  133922 = fmul float %129921, float %112908
-  135924 = fdiv float %133922, float %134806
-  233513 = call float asr5(float %304446, float %332, float %.pinned1532, float %135924, i32 1)
-  314423 = fdiv float %233507, float %233513
-  call void putfloat(float %314423)
+then373:  pred(if.exit355)
+  112872 = fsub float %334, float %304449
+  114874 = fdiv float %112872, float %113795
+  115875 = fadd float %304449, float %114874
+  931455 = fdiv float %304449, float %304449
+  931461 = fdiv float %304449, float %115875
+  125882 = fmul float %124803, float %931461
+  126883 = fadd float %931455, float %125882
+  931467 = fdiv float %304449, float %334
+  129885 = fadd float %126883, float %931467
+  133886 = fmul float %129885, float %112872
+  135888 = fdiv float %133886, float %134809
+  233510 = call float asr5(float %304449, float %334, float %.pinned1537, float %135888, i32 1)
+  112911 = fsub float %332, float %304449
+  114913 = fdiv float %112911, float %113795
+  115914 = fadd float %304449, float %114913
+  931479 = fdiv float %304449, float %115914
+  125921 = fmul float %124803, float %931479
+  126922 = fadd float %931455, float %125921
+  931485 = fdiv float %304449, float %332
+  129924 = fadd float %126922, float %931485
+  133925 = fmul float %129924, float %112911
+  135927 = fdiv float %133925, float %134809
+  233516 = call float asr5(float %304449, float %332, float %.pinned1537, float %135927, i32 1)
+  314426 = fdiv float %233510, float %233516
+  call void putfloat(float %314426)
   br bb %if.exit374
 if.exit374:  pred(then373, else375)
   call void putch(i32 32)
-  br i1 %41499, bb %then385, bb %else387
-else375:  pred(select.exit)
+  br i1 %41502, bb %then385, bb %else387
+else375:  pred(if.exit355)
   call void putch(i32 45)
   br bb %if.exit374
 then385:  pred(if.exit374)
-  112830 = fsub float %332, float %304446
-  114832 = fdiv float %112830, float %113792
-  115833 = fadd float %304446, float %114832
-  931434 = fdiv float %304446, float %304446
-  931440 = fdiv float %304446, float %115833
-  125840 = fmul float %124800, float %931440
-  126841 = fadd float %931434, float %125840
-  931446 = fdiv float %304446, float %332
-  129843 = fadd float %126841, float %931446
-  133844 = fmul float %129843, float %112830
-  135846 = fdiv float %133844, float %134806
-  233501 = call float asr5(float %304446, float %332, float %.pinned1532, float %135846, i32 1)
-  321415 = fmul float %334, float %233501
-  322416 = call float my_exp(float %321415)
-  call void putfloat(float %322416)
+  112833 = fsub float %332, float %304449
+  114835 = fdiv float %112833, float %113795
+  115836 = fadd float %304449, float %114835
+  931437 = fdiv float %304449, float %304449
+  931443 = fdiv float %304449, float %115836
+  125843 = fmul float %124803, float %931443
+  126844 = fadd float %931437, float %125843
+  931449 = fdiv float %304449, float %332
+  129846 = fadd float %126844, float %931449
+  133847 = fmul float %129846, float %112833
+  135849 = fdiv float %133847, float %134809
+  233504 = call float asr5(float %304449, float %332, float %.pinned1537, float %135849, i32 1)
+  321418 = fmul float %334, float %233504
+  322419 = call float my_exp(float %321418)
+  call void putfloat(float %322419)
   br bb %if.exit386
 if.exit386:  pred(then385, else387)
   call void putch(i32 10)
-  411 = add i32 %num.phi1517, i32 -1
+  411 = add i32 %num.phi1522, i32 -1
   330 = icmp ne i32 %411, i32 0
   br i1 %330, bb %while.body327, bb %while.exit328
 else387:  pred(if.exit374)
   call void putch(i32 45)
   br bb %if.exit386
-my_fabs.then1501:  pred(while.body327)
-  br bb %while.body327.split
-my_fabs.if.exit1503:  pred(while.body327)
-  91504 = fneg float %332
-  br bb %while.body327.split
+336.ret.which.true:  pred(while.body327)
+  br bb %while.body327.split1544
 }
 
 external float getfloat()

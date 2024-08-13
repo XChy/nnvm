@@ -86,7 +86,7 @@ bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
 bubblesort.while.body14_exclu_exit:  pred(bubblesort.if.exit)
   br bb %bubblesort.while.exit15
 bubblesort.while.body_exclu_exit:  pred(bubblesort.while.exit15)
-  br i1 -1, bb %while.body99_preheader, bb %while.exit100
+  br i1 1, bb %while.body99_preheader, bb %while.exit100
 }
 
 external float getfloat()

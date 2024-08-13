@@ -35,7 +35,7 @@ entry57:  pred()
   46228 = ptradd ptr %c2, i32 8
   store float %84290 to ptr %46228
   store float %84 to ptr %c0
-  br i1 -1, bb %while.body122_preheader, bb %while.exit123
+  br i1 1, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(entry57)
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)

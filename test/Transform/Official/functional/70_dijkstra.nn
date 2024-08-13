@@ -126,17 +126,17 @@ Dijkstra.while.exit34:  pred(Dijkstra.while.exit, Dijkstra.while.exit86)
   br i1 %9289431, bb %while.body218_preheader, bb %while.exit219
 Dijkstra.while.body45_preheader:  pred(Dijkstra.while.body33)
   br bb %Dijkstra.while.body45
-Dijkstra.while.body45:  pred(Dijkstra.if.exit, Dijkstra.while.body45_preheader)
-  min_num.phi244321422 = phi [bb %Dijkstra.if.exit, i32 %min_num.phi351, bb %Dijkstra.while.body45_preheader, i32 65535]
-  min_index.phi247320421 = phi [bb %Dijkstra.if.exit, i32 %min_index.phi350, bb %Dijkstra.while.body45_preheader, i32 0]
-  k.phi319420 = phi [bb %Dijkstra.if.exit, i32 %78352, bb %Dijkstra.while.body45_preheader, i32 1]
+Dijkstra.while.body45:  pred(Dijkstra.select.exit.split.split, Dijkstra.while.body45_preheader)
+  min_num.phi244321422 = phi [bb %Dijkstra.select.exit.split.split, i32 %483, bb %Dijkstra.while.body45_preheader, i32 65535]
+  min_index.phi247320421 = phi [bb %Dijkstra.select.exit.split.split, i32 %480, bb %Dijkstra.while.body45_preheader, i32 0]
+  k.phi319420 = phi [bb %Dijkstra.select.exit.split.split, i32 %78352, bb %Dijkstra.while.body45_preheader, i32 1]
   408 = shl i32 %k.phi319420, i32 2
   54327 = ptradd ptr @dis, i32 %408
   54.load328 = load i32 from ptr %54327
   56329 = icmp sgt i32 %min_num.phi244321422, i32 %54.load328
   br i1 %56329, bb %Dijkstra.select.then, bb %Dijkstra.select.else
 Dijkstra.while.exit46:  pred(Dijkstra.while.body33, Dijkstra.while.body45_exclu_exit)
-  418 = phi [bb %Dijkstra.while.body45_exclu_exit, i32 %min_index.phi350, bb %Dijkstra.while.body33, i32 0]
+  418 = phi [bb %Dijkstra.while.body45_exclu_exit, i32 %480, bb %Dijkstra.while.body33, i32 0]
   select.phi253307417 = phi [bb %Dijkstra.while.body45_exclu_exit, i1 %select.phi344, bb %Dijkstra.while.body33, i1 %select.phi253307428]
   409 = shl i32 %418, i32 2
   81333 = ptradd ptr @book, i32 %409
@@ -151,12 +151,12 @@ Dijkstra.select.else:  pred(Dijkstra.while.body45)
   br bb %Dijkstra.select.exit
 Dijkstra.select.exit:  pred(Dijkstra.select.then, Dijkstra.select.else)
   select.phi344 = phi [bb %Dijkstra.select.else, i1 0, bb %Dijkstra.select.then, i1 %65339]
-  br i1 %select.phi344, bb %Dijkstra.then, bb %Dijkstra.if.exit
-Dijkstra.then:  pred(Dijkstra.select.exit)
-  br bb %Dijkstra.if.exit
-Dijkstra.if.exit:  pred(Dijkstra.select.exit, Dijkstra.then)
-  min_index.phi350 = phi [bb %Dijkstra.select.exit, i32 %min_index.phi247320421, bb %Dijkstra.then, i32 %k.phi319420]
-  min_num.phi351 = phi [bb %Dijkstra.select.exit, i32 %min_num.phi244321422, bb %Dijkstra.then, i32 %54.load328]
+  br i1 %select.phi344, bb %min_index.phi350.which.true, bb %Dijkstra.select.exit.split
+Dijkstra.select.exit.split:  pred(Dijkstra.select.exit, min_index.phi350.which.true)
+  480 = phi [bb %min_index.phi350.which.true, i32 %k.phi319420, bb %Dijkstra.select.exit, i32 %min_index.phi247320421]
+  br i1 %select.phi344, bb %min_num.phi351.which.true, bb %Dijkstra.select.exit.split.split
+Dijkstra.select.exit.split.split:  pred(Dijkstra.select.exit.split, min_num.phi351.which.true)
+  483 = phi [bb %min_num.phi351.which.true, i32 %54.load328, bb %Dijkstra.select.exit.split, i32 %min_num.phi244321422]
   78352 = add i32 %k.phi319420, i32 1
   49323 = icmp sle i32 %78352, i32 %n.load288430
   br i1 %49323, bb %Dijkstra.while.body45, bb %Dijkstra.while.body45_exclu_exit
@@ -194,8 +194,12 @@ Dijkstra.then119:  pred(Dijkstra.then100)
   br bb %Dijkstra.if.exit101
 Dijkstra.while.body_exclu_exit:  pred(Dijkstra.while.body)
   br bb %Dijkstra.while.exit
-Dijkstra.while.body45_exclu_exit:  pred(Dijkstra.if.exit)
+Dijkstra.while.body45_exclu_exit:  pred(Dijkstra.select.exit.split.split)
   br bb %Dijkstra.while.exit46
+min_index.phi350.which.true:  pred(Dijkstra.select.exit)
+  br bb %Dijkstra.select.exit.split
+min_num.phi351.which.true:  pred(Dijkstra.select.exit.split)
+  br bb %Dijkstra.select.exit.split.split
 }
 
 external float getfloat()

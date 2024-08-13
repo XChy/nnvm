@@ -11,47 +11,36 @@ external i32 getfarray(ptr )
 i32 main() {
 entry77:  pred()
   %arr = stack 40
-  .pinned607 = pin float 33000.078125
-  3539 = si2f i32 0 to float
-  4540 = fcmp olt float %.pinned607, float %3539
-  br i1 %4540, bb %float_abs.then542, bb %float_abs.if.exit545
-entry77.split386:  pred(float_eq.then37, float_eq.else)
-  80.ret = phi [bb %float_eq.then37, i32 %44397, bb %float_eq.else, i32 0]
-  71211 = icmp ne i32 %80.ret, i32 0
-  br i1 %71211, bb %assert_not.then72, bb %assert_not.else74
-entry77.split.split402:  pred(float_eq.then37408, float_eq.else415)
-  84.ret = phi [bb %float_eq.then37408, i32 %44413, bb %float_eq.else415, i32 0]
-  71223 = icmp ne i32 %84.ret, i32 0
-  br i1 %71223, bb %assert_not.then72225, bb %assert_not.else74230
-entry77.split.split.split418:  pred(float_eq.then37424, float_eq.else431)
-  88.ret = phi [bb %float_eq.then37424, i32 %44429, bb %float_eq.else431, i32 0]
-  59468 = icmp ne i32 %88.ret, i32 0
-  60469 = xor i1 %59468, i1 -1
-  61470 = zext i1 %60469 to i32
-  62471 = icmp ne i32 %61470, i32 0
-  br i1 %62471, bb %assert.then63, bb %assert.else65
-entry77.split.split.split347.split.split:  pred(float_eq.then37440, float_eq.else447)
-  95.ret = phi [bb %float_eq.then37440, i32 %44445, bb %float_eq.else447, i32 0]
-  59498 = icmp ne i32 %95.ret, i32 0
-  60499 = xor i1 %59498, i1 -1
-  61500 = zext i1 %60499 to i32
-  62501 = icmp ne i32 %61500, i32 0
-  br i1 %62501, bb %assert.then63503, bb %assert.else65509
-entry77.split.split.split347.split.split.split:  pred(float_eq.then37456, float_eq.else463)
-  99.ret = phi [bb %float_eq.then37456, i32 %44461, bb %float_eq.else463, i32 0]
-  71235 = icmp ne i32 %99.ret, i32 0
-  br i1 %71235, bb %assert_not.then72237, bb %assert_not.else74242
-then102:  pred(assert_not.if.exit73240)
+  .pinned616 = pin float 33000.078125
+  .pinned = pin float 0.000001
+  3541 = si2f i32 0 to float
+  4542 = fcmp olt float %.pinned616, float %3541
+  8545 = fneg float %.pinned616
+  br i1 %4542, bb %34391.ret.which.true, bb %entry77.split619
+entry77.split619:  pred(entry77, 34391.ret.which.true)
+  621 = phi [bb %34391.ret.which.true, float %8545, bb %entry77, float %.pinned616]
+  36392 = fcmp olt float %621, float %.pinned
+  40395 = si2f i32 1 to float
+  42397 = si2f i32 2 to float
+  41396 = fmul float %40395, float 2.000000
+  43398 = fdiv float %41396, float %42397
+  44399 = f2si float %43398 to i32
+  br i1 %36392, bb %80.ret.which.true, bb %entry77.split619.split
+entry77.split619.split:  pred(entry77.split619, 80.ret.which.true)
+  624 = phi [bb %80.ret.which.true, i32 %44399, bb %entry77.split619, i32 0]
+  71213 = icmp ne i32 %624, i32 0
+  br i1 %71213, bb %assert_not.then72, bb %assert_not.else74
+then102:  pred(assert_not.if.exit73242)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
   br bb %if.exit103
-if.exit103:  pred(assert_not.if.exit73240, then102)
-  105 = fcmp one float 3.300000, float %.pinned602
-  106 = xor i1 %105, i1 -1
+if.exit103:  pred(assert_not.if.exit73242, then102)
+  105 = fcmp one float 3.300000, float %.pinned614
+  106 = xor i1 %105, i1 1
   107 = zext i1 %106 to i32
   108 = icmp ne i32 %107, i32 0
-  109 = xor i1 %108, i1 -1
+  109 = xor i1 %108, i1 1
   110 = zext i1 %109 to i32
   111 = icmp ne i32 %110, i32 0
   br i1 %111, bb %then112, bb %if.exit113
@@ -61,16 +50,10 @@ then112:  pred(if.exit103)
   call void putch(i32 10)
   br bb %if.exit113
 if.exit113:  pred(if.exit103, then112)
-  115 = fcmp one float %.pinned602, float %.pinned602
-  br i1 %115, bb %select.then, bb %select.else
-select.then:  pred(if.exit113)
-  br bb %select.exit
-select.else:  pred(if.exit113)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 -1]
-  br i1 %select.phi, bb %then122, bb %if.exit123
-then122:  pred(select.exit)
+  115 = fcmp one float %.pinned614, float %.pinned614
+  210 = zext i1 %115 to i1
+  br i1 %210, bb %then122, bb %if.exit123
+then122:  pred(if.exit113)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
@@ -78,8 +61,8 @@ then122:  pred(select.exit)
   call void putch(i32 114)
   call void putch(i32 10)
   br bb %if.exit123
-if.exit123:  pred(select.exit, then122)
-  130 = fcmp one float 0.300000, float %.pinned602
+if.exit123:  pred(if.exit113, then122)
+  130 = fcmp one float 0.300000, float %.pinned614
   br i1 %130, bb %then133, bb %if.exit134
 then133:  pred(if.exit123)
   call void putch(i32 111)
@@ -89,59 +72,59 @@ then133:  pred(if.exit123)
 if.exit134:  pred(if.exit123, then133)
   store float 1.000000 to ptr %arr
   arr.index141 = ptradd ptr %arr, i32 4
-  store float %42395 to ptr %arr.index141
+  store float %42397 to ptr %arr.index141
   arr.index142 = ptradd ptr %arr, i32 8
-  store float %.pinned602 to ptr %arr.index142
+  store float %.pinned614 to ptr %arr.index142
   arr.index143 = ptradd ptr %arr, i32 12
-  store float %.pinned602 to ptr %arr.index143
+  store float %.pinned614 to ptr %arr.index143
   arr.index144 = ptradd ptr %arr, i32 16
-  store float %.pinned602 to ptr %arr.index144
+  store float %.pinned614 to ptr %arr.index144
   arr.index145 = ptradd ptr %arr, i32 20
-  store float %.pinned602 to ptr %arr.index145
+  store float %.pinned614 to ptr %arr.index145
   arr.index146 = ptradd ptr %arr, i32 24
-  store float %.pinned602 to ptr %arr.index146
+  store float %.pinned614 to ptr %arr.index146
   arr.index147 = ptradd ptr %arr, i32 28
-  store float %.pinned602 to ptr %arr.index147
+  store float %.pinned614 to ptr %arr.index147
   arr.index148 = ptradd ptr %arr, i32 32
-  store float %.pinned602 to ptr %arr.index148
+  store float %.pinned614 to ptr %arr.index148
   arr.index149 = ptradd ptr %arr, i32 36
-  store float %.pinned602 to ptr %arr.index149
+  store float %.pinned614 to ptr %arr.index149
   151 = call i32 getfarray(ptr %arr)
   190 = fneg float 10.000000
   191 = fneg float %190
   br bb %while.body
 while.body:  pred(while.body, if.exit134)
-  i.phi596 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
-  p.phi595 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
+  i.phi603 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
+  p.phi602 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
   160 = call float getfloat()
-  164 = fmul float %.pinned603, float %160
+  164 = fmul float %.pinned615, float %160
   166 = fmul float %164, float %160
   169 = f2si float %160 to i32
-  14375 = si2f i32 %169 to float
-  15376 = fmul float %.pinned603, float %14375
-  18377 = fmul float %15376, float %14375
-  21378 = mul i32 %169, i32 %169
-  23379 = si2f i32 %21378 to float
-  24380 = fmul float %23379, float %.pinned603
-  25381 = fadd float %18377, float %24380
-  27383 = fdiv float %25381, float %42395
-  593 = shl i32 %p.phi595, i32 2
-  173 = ptradd ptr %arr, i32 %593
+  14377 = si2f i32 %169 to float
+  15378 = fmul float %.pinned615, float %14377
+  18379 = fmul float %15378, float %14377
+  21380 = mul i32 %169, i32 %169
+  23381 = si2f i32 %21380 to float
+  24382 = fmul float %23381, float %.pinned615
+  25383 = fadd float %18379, float %24382
+  27385 = fdiv float %25383, float %42397
+  600 = shl i32 %p.phi602, i32 2
+  173 = ptradd ptr %arr, i32 %600
   177.load = load float from ptr %173
   180 = fadd float %177.load, float %160
   store float %180 to ptr %173
   call void putfloat(float %166)
   call void putch(i32 32)
-  185 = f2si float %27383 to i32
+  185 = f2si float %27385 to i32
   call void putint(i32 %185)
   call void putch(i32 10)
-  192 = si2f i32 %i.phi596 to float
+  192 = si2f i32 %i.phi603 to float
   193 = fmul float %192, float %191
   194 = f2si float %193 to i32
-  197 = add i32 %p.phi595, i32 1
+  197 = add i32 %p.phi602, i32 1
   157 = icmp slt i32 %194, i32 1000000000
   br i1 %157, bb %while.body, bb %while.body_exclu_exit
-assert_not.then72:  pred(entry77.split386)
+assert_not.then72:  pred(entry77.split619.split)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
@@ -150,107 +133,69 @@ assert_not.then72:  pred(entry77.split386)
   call void putch(i32 10)
   br bb %assert_not.if.exit73
 assert_not.if.exit73:  pred(assert_not.then72, assert_not.else74)
-  .pinned606 = pin float 60.475666
-  4551 = fcmp olt float %.pinned606, float %3539
-  br i1 %4551, bb %float_abs.then553, bb %float_abs.if.exit556
-assert_not.else74:  pred(entry77.split386)
+  .pinned618 = pin float 60.475666
+  4553 = fcmp olt float %.pinned618, float %3541
+  8556 = fneg float %.pinned618
+  br i1 %4553, bb %34407.ret.which.true, bb %assert_not.if.exit73.split
+assert_not.if.exit73.split:  pred(assert_not.if.exit73, 34407.ret.which.true)
+  627 = phi [bb %34407.ret.which.true, float %8556, bb %assert_not.if.exit73, float %.pinned618]
+  36408 = fcmp olt float %627, float %.pinned
+  br i1 %36408, bb %84.ret.which.true, bb %assert_not.if.exit73.split.split
+assert_not.if.exit73.split.split:  pred(assert_not.if.exit73.split, 84.ret.which.true)
+  630 = phi [bb %84.ret.which.true, i32 %44399, bb %assert_not.if.exit73.split, i32 0]
+  71225 = icmp ne i32 %630, i32 0
+  br i1 %71225, bb %assert_not.then72227, bb %assert_not.else74232
+assert_not.else74:  pred(entry77.split619.split)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
   br bb %assert_not.if.exit73
-assert_not.then72225:  pred(entry77.split.split402)
+assert_not.then72227:  pred(assert_not.if.exit73.split.split)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
   call void putch(i32 111)
   call void putch(i32 114)
   call void putch(i32 10)
-  br bb %assert_not.if.exit73228
-assert_not.if.exit73228:  pred(assert_not.then72225, assert_not.else74230)
-  .pinned602 = pin float 0.000000
-  4562 = fcmp olt float %.pinned602, float %3539
-  br i1 %4562, bb %float_abs.then564, bb %float_abs.if.exit567
-assert_not.else74230:  pred(entry77.split.split402)
+  br bb %assert_not.if.exit73230
+assert_not.if.exit73230:  pred(assert_not.then72227, assert_not.else74232)
+  .pinned614 = pin float 0.000000
+  4564 = fcmp olt float %.pinned614, float %3541
+  8567 = fneg float %.pinned614
+  br i1 %4564, bb %34423.ret.which.true, bb %assert_not.if.exit73230.split
+assert_not.if.exit73230.split:  pred(assert_not.if.exit73230, 34423.ret.which.true)
+  633 = phi [bb %34423.ret.which.true, float %8567, bb %assert_not.if.exit73230, float %.pinned614]
+  36424 = fcmp olt float %633, float %.pinned
+  br i1 %36424, bb %88.ret.which.true, bb %assert_not.if.exit73230.split.split
+assert_not.if.exit73230.split.split:  pred(assert_not.if.exit73230.split, 88.ret.which.true)
+  636 = phi [bb %88.ret.which.true, i32 %44399, bb %assert_not.if.exit73230.split, i32 0]
+  59470 = icmp ne i32 %636, i32 0
+  60471 = xor i1 %59470, i1 1
+  61472 = zext i1 %60471 to i32
+  62473 = icmp ne i32 %61472, i32 0
+  br i1 %62473, bb %assert.then63, bb %assert.else65
+assert_not.else74232:  pred(assert_not.if.exit73.split.split)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert_not.if.exit73228
-assert_not.then72237:  pred(entry77.split.split.split347.split.split.split)
+  br bb %assert_not.if.exit73230
+assert_not.then72239:  pred(assert.if.exit64509.split.split)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
   call void putch(i32 111)
   call void putch(i32 114)
   call void putch(i32 10)
-  br bb %assert_not.if.exit73240
-assert_not.if.exit73240:  pred(assert_not.then72237, assert_not.else74242)
-  101 = fcmp one float 1.500000, float %.pinned602
+  br bb %assert_not.if.exit73242
+assert_not.if.exit73242:  pred(assert_not.then72239, assert_not.else74244)
+  101 = fcmp one float 1.500000, float %.pinned614
   br i1 %101, bb %then102, bb %if.exit103
-assert_not.else74242:  pred(entry77.split.split.split347.split.split.split)
+assert_not.else74244:  pred(assert.if.exit64509.split.split)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert_not.if.exit73240
-float_eq.entry28.split:  pred(float_abs.then542, float_abs.if.exit545)
-  34389.ret = phi [bb %float_abs.then542, float %8543, bb %float_abs.if.exit545, float %.pinned607]
-  .pinned604 = pin float 2.000000
-  .pinned = pin float 0.000001
-  36390 = fcmp olt float %34389.ret, float %.pinned
-  40393 = si2f i32 1 to float
-  42395 = si2f i32 2 to float
-  br i1 %36390, bb %float_eq.then37, bb %float_eq.else
-float_eq.then37:  pred(float_eq.entry28.split)
-  41394 = fmul float %40393, float %.pinned604
-  43396 = fdiv float %41394, float %42395
-  44397 = f2si float %43396 to i32
-  br bb %entry77.split386
-float_eq.else:  pred(float_eq.entry28.split)
-  br bb %entry77.split386
-float_eq.entry28403.split:  pred(float_abs.then553, float_abs.if.exit556)
-  34405.ret = phi [bb %float_abs.then553, float %8554, bb %float_abs.if.exit556, float %.pinned606]
-  36406 = fcmp olt float %34405.ret, float %.pinned
-  br i1 %36406, bb %float_eq.then37408, bb %float_eq.else415
-float_eq.then37408:  pred(float_eq.entry28403.split)
-  41410 = fmul float %40393, float %.pinned604
-  43412 = fdiv float %41410, float %42395
-  44413 = f2si float %43412 to i32
-  br bb %entry77.split.split402
-float_eq.else415:  pred(float_eq.entry28403.split)
-  br bb %entry77.split.split402
-float_eq.entry28419.split:  pred(float_abs.then564, float_abs.if.exit567)
-  34421.ret = phi [bb %float_abs.then564, float %8565, bb %float_abs.if.exit567, float %.pinned602]
-  36422 = fcmp olt float %34421.ret, float %.pinned
-  br i1 %36422, bb %float_eq.then37424, bb %float_eq.else431
-float_eq.then37424:  pred(float_eq.entry28419.split)
-  41426 = fmul float %40393, float %.pinned604
-  43428 = fdiv float %41426, float %42395
-  44429 = f2si float %43428 to i32
-  br bb %entry77.split.split.split418
-float_eq.else431:  pred(float_eq.entry28419.split)
-  br bb %entry77.split.split.split418
-float_eq.entry28435.split:  pred(float_abs.then575, float_abs.if.exit578)
-  34437.ret = phi [bb %float_abs.then575, float %8576, bb %float_abs.if.exit578, float %33436]
-  36438 = fcmp olt float %34437.ret, float %.pinned
-  br i1 %36438, bb %float_eq.then37440, bb %float_eq.else447
-float_eq.then37440:  pred(float_eq.entry28435.split)
-  41442 = fmul float %40393, float %.pinned604
-  43444 = fdiv float %41442, float %42395
-  44445 = f2si float %43444 to i32
-  br bb %entry77.split.split.split347.split.split
-float_eq.else447:  pred(float_eq.entry28435.split)
-  br bb %entry77.split.split.split347.split.split
-float_eq.entry28451.split:  pred(float_abs.then586, float_abs.if.exit589)
-  34453.ret = phi [bb %float_abs.then586, float %8587, bb %float_abs.if.exit589, float %.pinned605]
-  36454 = fcmp olt float %34453.ret, float %.pinned
-  br i1 %36454, bb %float_eq.then37456, bb %float_eq.else463
-float_eq.then37456:  pred(float_eq.entry28451.split)
-  41458 = fmul float %40393, float %.pinned604
-  43460 = fdiv float %41458, float %42395
-  44461 = f2si float %43460 to i32
-  br bb %entry77.split.split.split347.split.split.split
-float_eq.else463:  pred(float_eq.entry28451.split)
-  br bb %entry77.split.split.split347.split.split.split
-assert.then63:  pred(entry77.split.split.split418)
+  br bb %assert_not.if.exit73242
+assert.then63:  pred(assert_not.if.exit73230.split.split)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
@@ -259,76 +204,92 @@ assert.then63:  pred(entry77.split.split.split418)
   call void putch(i32 10)
   br bb %assert.if.exit64
 assert.if.exit64:  pred(assert.then63, assert.else65)
-  .pinned603 = pin float 3.141593
+  .pinned615 = pin float 3.141593
   91 = f2si float 5.500000 to i32
-  14349 = si2f i32 %91 to float
-  15350 = fmul float %.pinned603, float %14349
-  18351 = fmul float %15350, float %14349
-  21352 = mul i32 %91, i32 %91
-  23353 = si2f i32 %21352 to float
-  24354 = fmul float %23353, float %.pinned603
-  25355 = fadd float %18351, float %24354
-  27357 = fdiv float %25355, float %42395
-  14362 = si2f i32 5 to float
-  15363 = fmul float %.pinned603, float %14362
-  18364 = fmul float %15363, float %14362
-  23366 = si2f i32 25 to float
-  24367 = fmul float %23366, float %.pinned603
-  25368 = fadd float %18364, float %24367
-  27370 = fdiv float %25368, float %42395
-  33436 = fsub float %27357, float %27370
-  4573 = fcmp olt float %33436, float %3539
-  br i1 %4573, bb %float_abs.then575, bb %float_abs.if.exit578
-assert.else65:  pred(entry77.split.split.split418)
+  14351 = si2f i32 %91 to float
+  15352 = fmul float %.pinned615, float %14351
+  18353 = fmul float %15352, float %14351
+  21354 = mul i32 %91, i32 %91
+  23355 = si2f i32 %21354 to float
+  24356 = fmul float %23355, float %.pinned615
+  25357 = fadd float %18353, float %24356
+  27359 = fdiv float %25357, float %42397
+  14364 = si2f i32 5 to float
+  15365 = fmul float %.pinned615, float %14364
+  18366 = fmul float %15365, float %14364
+  23368 = si2f i32 25 to float
+  24369 = fmul float %23368, float %.pinned615
+  25370 = fadd float %18366, float %24369
+  27372 = fdiv float %25370, float %42397
+  33438 = fsub float %27359, float %27372
+  4575 = fcmp olt float %33438, float %3541
+  8578 = fneg float %33438
+  br i1 %4575, bb %34439.ret.which.true, bb %assert.if.exit64.split
+assert.if.exit64.split:  pred(assert.if.exit64, 34439.ret.which.true)
+  639 = phi [bb %34439.ret.which.true, float %8578, bb %assert.if.exit64, float %33438]
+  36440 = fcmp olt float %639, float %.pinned
+  br i1 %36440, bb %95.ret.which.true, bb %assert.if.exit64.split.split
+assert.if.exit64.split.split:  pred(assert.if.exit64.split, 95.ret.which.true)
+  642 = phi [bb %95.ret.which.true, i32 %44399, bb %assert.if.exit64.split, i32 0]
+  59500 = icmp ne i32 %642, i32 0
+  60501 = xor i1 %59500, i1 1
+  61502 = zext i1 %60501 to i32
+  62503 = icmp ne i32 %61502, i32 0
+  br i1 %62503, bb %assert.then63505, bb %assert.else65511
+assert.else65:  pred(assert_not.if.exit73230.split.split)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
   br bb %assert.if.exit64
-assert.then63503:  pred(entry77.split.split.split347.split.split)
+assert.then63505:  pred(assert.if.exit64.split.split)
   call void putch(i32 101)
   call void putch(i32 114)
   call void putch(i32 114)
   call void putch(i32 111)
   call void putch(i32 114)
   call void putch(i32 10)
-  br bb %assert.if.exit64507
-assert.if.exit64507:  pred(assert.then63503, assert.else65509)
-  .pinned605 = pin float -3862.000000
-  4584 = fcmp olt float %.pinned605, float %3539
-  br i1 %4584, bb %float_abs.then586, bb %float_abs.if.exit589
-assert.else65509:  pred(entry77.split.split.split347.split.split)
+  br bb %assert.if.exit64509
+assert.if.exit64509:  pred(assert.then63505, assert.else65511)
+  .pinned617 = pin float -3862.000000
+  4586 = fcmp olt float %.pinned617, float %3541
+  8589 = fneg float %.pinned617
+  br i1 %4586, bb %34455.ret.which.true, bb %assert.if.exit64509.split
+assert.if.exit64509.split:  pred(assert.if.exit64509, 34455.ret.which.true)
+  645 = phi [bb %34455.ret.which.true, float %8589, bb %assert.if.exit64509, float %.pinned617]
+  36456 = fcmp olt float %645, float %.pinned
+  br i1 %36456, bb %99.ret.which.true, bb %assert.if.exit64509.split.split
+assert.if.exit64509.split.split:  pred(assert.if.exit64509.split, 99.ret.which.true)
+  648 = phi [bb %99.ret.which.true, i32 %44399, bb %assert.if.exit64509.split, i32 0]
+  71237 = icmp ne i32 %648, i32 0
+  br i1 %71237, bb %assert_not.then72239, bb %assert_not.else74244
+assert.else65511:  pred(assert.if.exit64.split.split)
   call void putch(i32 111)
   call void putch(i32 107)
   call void putch(i32 10)
-  br bb %assert.if.exit64507
-float_abs.then542:  pred(entry77)
-  8543 = fneg float %.pinned607
-  br bb %float_eq.entry28.split
-float_abs.if.exit545:  pred(entry77)
-  br bb %float_eq.entry28.split
-float_abs.then553:  pred(assert_not.if.exit73)
-  8554 = fneg float %.pinned606
-  br bb %float_eq.entry28403.split
-float_abs.if.exit556:  pred(assert_not.if.exit73)
-  br bb %float_eq.entry28403.split
-float_abs.then564:  pred(assert_not.if.exit73228)
-  8565 = fneg float %.pinned602
-  br bb %float_eq.entry28419.split
-float_abs.if.exit567:  pred(assert_not.if.exit73228)
-  br bb %float_eq.entry28419.split
-float_abs.then575:  pred(assert.if.exit64)
-  8576 = fneg float %33436
-  br bb %float_eq.entry28435.split
-float_abs.if.exit578:  pred(assert.if.exit64)
-  br bb %float_eq.entry28435.split
-float_abs.then586:  pred(assert.if.exit64507)
-  8587 = fneg float %.pinned605
-  br bb %float_eq.entry28451.split
-float_abs.if.exit589:  pred(assert.if.exit64507)
-  br bb %float_eq.entry28451.split
+  br bb %assert.if.exit64509
 while.body_exclu_exit:  pred(while.body)
   call void putfarray(i32 %151, ptr %arr)
   ret i32 0
+34391.ret.which.true:  pred(entry77)
+  br bb %entry77.split619
+80.ret.which.true:  pred(entry77.split619)
+  br bb %entry77.split619.split
+34407.ret.which.true:  pred(assert_not.if.exit73)
+  br bb %assert_not.if.exit73.split
+84.ret.which.true:  pred(assert_not.if.exit73.split)
+  br bb %assert_not.if.exit73.split.split
+34423.ret.which.true:  pred(assert_not.if.exit73230)
+  br bb %assert_not.if.exit73230.split
+88.ret.which.true:  pred(assert_not.if.exit73230.split)
+  br bb %assert_not.if.exit73230.split.split
+34439.ret.which.true:  pred(assert.if.exit64)
+  br bb %assert.if.exit64.split
+95.ret.which.true:  pred(assert.if.exit64.split)
+  br bb %assert.if.exit64.split.split
+34455.ret.which.true:  pred(assert.if.exit64509)
+  br bb %assert.if.exit64509.split
+99.ret.which.true:  pred(assert.if.exit64509.split)
+  br bb %assert.if.exit64509.split.split
 }
 
 external float getfloat()

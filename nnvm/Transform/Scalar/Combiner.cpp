@@ -67,6 +67,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (PhiNode *phi = mayCast<PhiNode>(I))
     return simplifyPhi(phi);
 
+  if (WhichOfInst *which = mayCast<WhichOfInst>(I))
+    return simplifyWhichOf(which);
+
   return nullptr;
 }
 
@@ -254,5 +257,40 @@ Value *CombinerPass::simplifyPhi(PhiNode *I) {
     return identical;
   }
 
+  return nullptr;
+}
+
+Value *CombinerPass::simplifyWhichOf(WhichOfInst *I) {
+
+  Value *cond, *A, *B;
+  if (match(I, pWhichOf(pValue(cond), pOne(), pZero()))) {
+    return builder.buildZExt(cond, I->getType());
+  }
+
+  if (I->getType()->isIntegerNBits(1)) {
+    // cond ? A : false --> cond & A
+    if (match(I, pWhichOf(pValue(cond), pValue(A), pZero())))
+      return builder.buildBinOp<AndInst>(cond, A, I->getType());
+
+    // cond ? true : B --> cond | B
+    if (match(I, pWhichOf(pValue(cond), pOne(), pValue(B))))
+      return builder.buildBinOp<OrInst>(cond, B, I->getType());
+  }
+
+  if (I->getType()->isInteger()) {
+
+    if (match(I->getCond(),
+              pICmp(pMustBe(I->getTrueVal()), pMustBe(I->getFalseVal())))) {
+      auto pred = cast<ICmpInst>(I->getCond())->getPredicate();
+      // A < B ? A : B  --> smin A, B
+      if (pred == ICmpInst::SLT)
+        return builder.buildBinOp<SMinInst>(I->getTrueVal(), I->getFalseVal(),
+                                            I->getType());
+      // A > B ? A : B  --> smax A, B
+      if (pred == ICmpInst::SGT)
+        return builder.buildBinOp<SMaxInst>(I->getTrueVal(), I->getFalseVal(),
+                                            I->getType());
+    }
+  }
   return nullptr;
 }

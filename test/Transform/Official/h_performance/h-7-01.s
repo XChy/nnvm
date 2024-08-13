@@ -18,16 +18,17 @@ i_buf:
 main:   # loop depth 0
   ADDI sp, sp, -96
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  FSD fs0, 40(sp)
-  FSD fs1, 48(sp)
-  FSD fs2, 56(sp)
-  FSD fs3, 64(sp)
-  FSD fs4, 72(sp)
-  FSD fs5, 80(sp)
+  FSD fs3, 8(sp)
+  FSD fs4, 16(sp)
+  FSD fs5, 24(sp)
+  FSD fs6, 32(sp)
+  SD s0, 40(sp)
+  SD s1, 48(sp)
+  SD s2, 56(sp)
+  SD s3, 64(sp)
+  FSD fs0, 72(sp)
+  FSD fs1, 80(sp)
+  FSD fs2, 88(sp)
   LA a0, i_buf
   ADDI s0, zero, 0
   CALL getfarray
@@ -45,16 +46,17 @@ bb1:   # loop depth 0
   CALL putfarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  FLD fs0, 40(sp)
-  FLD fs1, 48(sp)
-  FLD fs2, 56(sp)
-  FLD fs3, 64(sp)
-  FLD fs4, 72(sp)
-  FLD fs5, 80(sp)
+  FLD fs3, 8(sp)
+  FLD fs4, 16(sp)
+  FLD fs5, 24(sp)
+  FLD fs6, 32(sp)
+  LD s0, 40(sp)
+  LD s1, 48(sp)
+  LD s2, 56(sp)
+  LD s3, 64(sp)
+  FLD fs0, 72(sp)
+  FLD fs1, 80(sp)
+  FLD fs2, 88(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb2:   # loop depth 0
@@ -76,24 +78,26 @@ bb3:   # loop depth 1
   LA s0, i_buf
   LA s2, o_buf
   SH2ADD s0, a0, s0
-  FLW fs2, 0(s0)
+  FLW fs6, 0(s0)
   SH2ADD s0, a0, s2
-  FLE.S s2, fs2, fs5
+  FLE.S s2, fs6, fs5
   BNE s2, zero, bb19
   # implict jump to bb4
 bb4:   # loop depth 1
   ADDI s2, zero, 1
   FCVT.S.W fs0, s2
-  FADD.S fs0, fs2, fs0
-  FMUL.S fs1, fs0, fs4
-  FLT.S s2, fs2, fs1
+  FADD.S fs0, fs6, fs0
+  FMUL.S fs0, fs0, fs4
+  FSUB.S fs1, fs6, fs0
+  FLT.S s2, fs6, fs0
+  FSUB.S fs2, fs0, fs6
   BNE s2, zero, bb18
   # implict jump to bb5
 bb5:   # loop depth 1
-  FSUB.S fs0, fs2, fs1
+  FSGNJ.S fs2, fs1, fs1
   # implict jump to bb6
 bb6:   # loop depth 1
-  FLT.S s2, fs3, fs0
+  FLT.S s2, fs3, fs2
   BNE s2, zero, bb11
   # implict jump to bb7
 bb7:   # loop depth 1
@@ -102,39 +106,39 @@ bb8:   # loop depth 1
   # implict jump to bb9
 bb9:   # loop depth 1
   ADDIW a0, a0, 1
-  FSW fs1, 0(s0)
+  FSW fs0, 0(s0)
   BLT a0, s1, bb10
   JAL zero, bb1
 bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
-  FSGNJ.S fs0, fs2, fs2
+  FSGNJ.S fs2, fs6, fs6
   # implict jump to bb12
 bb12:   # loop depth 2
-  FDIV.S fs1, fs2, fs0
-  FADD.S fs1, fs0, fs1
-  FMUL.S fs1, fs1, fs4
-  FLT.S s2, fs0, fs1
+  FDIV.S fs0, fs6, fs2
+  FADD.S fs0, fs2, fs0
+  FMUL.S fs0, fs0, fs4
+  FSUB.S fs1, fs2, fs0
+  FLT.S s2, fs2, fs0
+  FSUB.S fs2, fs0, fs2
   BNE s2, zero, bb17
   # implict jump to bb13
 bb13:   # loop depth 2
-  FSUB.S fs0, fs0, fs1
+  FSGNJ.S fs2, fs1, fs1
   # implict jump to bb14
 bb14:   # loop depth 2
-  FLT.S s2, fs3, fs0
+  FLT.S s2, fs3, fs2
   BNE s2, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 1
   JAL zero, bb8
 bb16:   # loop depth 2
-  FSGNJ.S fs0, fs1, fs1
+  FSGNJ.S fs2, fs0, fs0
   JAL zero, bb12
 bb17:   # loop depth 2
-  FSUB.S fs0, fs1, fs0
   JAL zero, bb14
 bb18:   # loop depth 1
-  FSUB.S fs0, fs1, fs2
   JAL zero, bb6
 bb19:   # loop depth 1
-  FSGNJ.S fs1, fs5, fs5
+  FSGNJ.S fs0, fs5, fs5
   JAL zero, bb9

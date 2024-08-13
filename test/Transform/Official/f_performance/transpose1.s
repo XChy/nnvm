@@ -41,17 +41,19 @@ bb2:   # loop depth 0
   BLT zero, s0, bb8
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD s1, zero, zero
+  ADD a0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 0
-  BLT s1, zero, bb7
+  SUBW s0, zero, a0
+  BLT a0, zero, bb7
   # implict jump to bb5
 bb5:   # loop depth 0
+  ADD s0, a0, zero
   # implict jump to bb6
 bb6:   # loop depth 0
   ADDI a0, zero, 47
   CALL _sysy_stoptime
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -71,21 +73,20 @@ bb6:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb7:   # loop depth 0
-  SUBW s1, zero, s1
   JAL zero, bb6
 bb8:   # loop depth 0
-  ADD s1, zero, zero
   ADD a0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
   LA s3, matrix
-  MULW s2, a0, a0
-  SH2ADD s3, a0, s3
-  ADDIW a0, a0, 1
+  MULW s2, s1, s1
+  SH2ADD s3, s1, s3
+  ADDIW s1, s1, 1
   LW s3, 0(s3)
   MULW s2, s2, s3
-  ADDW s1, s1, s2
-  BLT a0, s0, bb11
+  ADDW a0, a0, s2
+  BLT s1, s0, bb11
   # implict jump to bb10
 bb10:   # loop depth 0
   JAL zero, bb4

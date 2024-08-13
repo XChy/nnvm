@@ -77,7 +77,7 @@ select.else44:  pred(if.exit)
   br i1 %48, bb %select.then49, bb %select.else50
 select.exit45:  pred(select.then43, select.exit51)
   select52.phi89 = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 %select52.phi90152]
-  select46.phi = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 -1]
+  select46.phi = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 1]
   br i1 %select46.phi, bb %then61, bb %else
 select.then49:  pred(select.else44)
   a.load130 = load i32 from ptr @a

@@ -12,10 +12,10 @@ main:   # loop depth 0
   ADD a0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
-  ADD a4, zero, zero
+  ADD a3, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 2
-  ADD a3, zero, zero
+  ADD a4, zero, zero
   # implict jump to bb3
 bb3:   # loop depth 3
   ADD t1, zero, zero
@@ -27,13 +27,13 @@ bb4:   # loop depth 4
 bb5:   # loop depth 4
   # implict jump to bb6
 bb6:   # loop depth 3
-  ADDIW a3, a3, 1
-  SLTI t1, a3, 5
+  ADDIW a4, a4, 1
+  SLTI t1, a4, 5
   BNE t1, zero, bb12
   # implict jump to bb7
 bb7:   # loop depth 2
-  ADDIW a4, a4, 1
-  SLTI t1, a4, 10
+  ADDIW a3, a3, 1
+  SLTI t1, a3, 10
   BNE t1, zero, bb11
   # implict jump to bb8
 bb8:   # loop depth 1
@@ -73,22 +73,15 @@ bb17:   # loop depth 4
 bb18:   # loop depth 4
   JAL zero, bb15
 bb19:   # loop depth 4
-  BNE t1, zero, bb25
-  # implict jump to bb20
-bb20:   # loop depth 4
   XORI t0, a6, 1
   SLTU t0, zero, t0
-  # implict jump to bb21
-bb21:   # loop depth 4
-  BNE t0, zero, bb23
-  # implict jump to bb22
-bb22:   # loop depth 4
+  OR t0, a6, t0
+  BNE t0, zero, bb21
+  # implict jump to bb20
+bb20:   # loop depth 4
   JAL zero, bb18
-bb23:   # loop depth 4
-  BNE a5, zero, bb24
-  JAL zero, bb22
-bb24:   # loop depth 3
+bb21:   # loop depth 4
+  BNE a5, zero, bb22
+  JAL zero, bb20
+bb22:   # loop depth 3
   JAL zero, bb6
-bb25:   # loop depth 4
-  ADDI t0, zero, 1
-  JAL zero, bb21

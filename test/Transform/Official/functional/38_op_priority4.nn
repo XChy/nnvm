@@ -34,7 +34,7 @@ select.else:  pred(entry)
   35 = icmp eq i32 %31, i32 %34
   br bb %select.exit
 select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 %35, bb %select.then, i1 -1]
+  select.phi = phi [bb %select.else, i1 %35, bb %select.then, i1 1]
   br i1 %select.phi, bb %select.then38, bb %select.else39
 select.then38:  pred(select.exit)
   br bb %select.exit40
@@ -45,13 +45,9 @@ select.else39:  pred(select.exit)
   50 = icmp eq i32 %46, i32 %49
   br bb %select.exit40
 select.exit40:  pred(select.then38, select.else39)
-  select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 -1]
-  br i1 %select41.phi, bb %then, bb %if.exit
-then:  pred(select.exit40)
-  br bb %if.exit
-if.exit:  pred(select.exit40, then)
-  flag.phi = phi [bb %select.exit40, i32 0, bb %then, i32 1]
-  ret i32 %flag.phi
+  select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 1]
+  61 = zext i1 %select41.phi to i32
+  ret i32 %61
 }
 
 external void putfarray(i32 , ptr )

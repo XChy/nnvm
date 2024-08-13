@@ -1,5 +1,6 @@
 #include "Opt.h"
 #include "Transform/BeforeCodegen/GlobalHoist.h"
+#include "Transform/BeforeCodegen/WhichExpand.h"
 #include "Transform/IPO/GlobalAttributor.h"
 #include "Transform/IPO/GlobalVarOpt.h"
 #include "Transform/IPO/Inliner.h"
@@ -75,6 +76,7 @@ void Optimizer::transform(Module *module) {
   // Before codegen
   passManager.addFunctionPass<GlobalHoistPass>();
   passManager.addFunctionPass<CSEPass>();
+  passManager.addFunctionPass<WhichExpandPass>();
 
   passManager.run(*module);
 }

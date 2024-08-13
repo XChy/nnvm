@@ -61,7 +61,7 @@ main:   # loop depth 0
   MULW t0, t2, a1
   SUBW t0, t1, t0
   SUBW a3, a2, a3
-  BNE t0, a3, bb9
+  BNE t0, a3, bb6
   # implict jump to bb1
 bb1:   # loop depth 0
   MULW t0, t1, t2
@@ -71,22 +71,16 @@ bb1:   # loop depth 0
   SLTIU t0, t0, 1
   # implict jump to bb2
 bb2:   # loop depth 0
-  BNE t0, zero, bb8
+  BNE t0, zero, bb5
   # implict jump to bb3
 bb3:   # loop depth 0
   ADDW t0, t1, t2
   ADDW t1, a2, a0
   ADDW t0, t0, a1
   XOR t0, t0, t1
-  SLTIU t0, t0, 1
+  SLTIU a0, t0, 1
   # implict jump to bb4
 bb4:   # loop depth 0
-  BNE t0, zero, bb7
-  # implict jump to bb5
-bb5:   # loop depth 0
-  ADD a0, zero, zero
-  # implict jump to bb6
-bb6:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -99,12 +93,9 @@ bb6:   # loop depth 0
   LD s8, 72(sp)
   ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb7:   # loop depth 0
+bb5:   # loop depth 0
   ADDI a0, zero, 1
-  JAL zero, bb6
-bb8:   # loop depth 0
-  ADDI t0, zero, 1
   JAL zero, bb4
-bb9:   # loop depth 0
+bb6:   # loop depth 0
   ADDI t0, zero, 1
   JAL zero, bb2

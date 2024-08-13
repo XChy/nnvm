@@ -57,7 +57,7 @@ while.body91:  pred(if.exit107, init.while.exit)
   i81.phi496 = phi [bb %if.exit107, i32 %258, bb %init.while.exit, i32 0]
   98 = call i32 getint()
   100 = call i32 getint()
-  103 = xor i1 %102483507, i1 -1
+  103 = xor i1 %102483507, i1 1
   104 = zext i1 %103 to i32
   105 = icmp ne i32 %104, i32 0
   258 = add i32 %i81.phi496, i32 1
@@ -269,7 +269,7 @@ init.while.body:  pred(init.while.body, init.while.body_preheader)
 init.while.exit:  pred(while.body72, init.while.body)
   br bb %while.body91
 while.body91_exclu_exit:  pred(if.exit107)
-  267 = xor i1 %102, i1 -1
+  267 = xor i1 %102, i1 1
   268 = zext i1 %267 to i32
   269 = icmp ne i32 %268, i32 0
   br i1 %269, bb %then270, bb %if.exit271

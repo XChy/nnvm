@@ -460,7 +460,7 @@ pseudo_sha1.while.body229:  pred(pseudo_sha1.while.body229, pseudo_sha1.while.bo
   232686 = icmp slt i32 %264712, i32 80
   br i1 %232686, bb %pseudo_sha1.while.body229, bb %pseudo_sha1.while.body229_exclu_exit2014
 pseudo_sha1.while.body267:  pred(pseudo_sha1.if.exit, pseudo_sha1.while.body229_exclu_exit2014)
-  27072614801498 = phi [bb %pseudo_sha1.if.exit, i1 %270726, bb %pseudo_sha1.while.body229_exclu_exit2014, i1 -1]
+  27072614801498 = phi [bb %pseudo_sha1.if.exit, i1 %270726, bb %pseudo_sha1.while.body229_exclu_exit2014, i1 1]
   f.phi4977241496 = phi [bb %pseudo_sha1.if.exit, i32 %f.phi496747, bb %pseudo_sha1.while.body229_exclu_exit2014, i32 %f.phi4986281515]
   i.phi7231495 = phi [bb %pseudo_sha1.if.exit, i32 %357757, bb %pseudo_sha1.while.body229_exclu_exit2014, i32 0]
   k.phi5077221494 = phi [bb %pseudo_sha1.if.exit, i32 %k.phi506746, bb %pseudo_sha1.while.body229_exclu_exit2014, i32 %k.phi5086271514]

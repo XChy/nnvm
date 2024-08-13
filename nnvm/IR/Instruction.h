@@ -46,6 +46,11 @@ enum class InstID : uint64_t {
   Shl,
   LShr,
   AShr,
+  // MinMaX
+  SMin,
+  SMax,
+  UMin,
+  UMax,
   // PtrAdd: Addressing addtion/subtraction of pointer.
   // Semantics: guarantee the provenance.
   // Example: %new_p = ptradd %p, 16
@@ -80,6 +85,7 @@ enum class InstID : uint64_t {
   // Other
   OTHER_BEGIN,
   FNeg,
+  WhichOf,
   Pin,
   Call,
   Phi,
@@ -247,6 +253,10 @@ NNVM_DECLARE_BINOP(InstID::Xor, XorInst)
 NNVM_DECLARE_BINOP(InstID::Shl, ShlInst)
 NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
+NNVM_DECLARE_BINOP(InstID::SMin, SMinInst)
+NNVM_DECLARE_BINOP(InstID::SMax, SMaxInst)
+NNVM_DECLARE_BINOP(InstID::UMin, UMinInst)
+NNVM_DECLARE_BINOP(InstID::UMax, UMaxInst)
 NNVM_DECLARE_BINOP(InstID::PtrAdd, PtrAddInst)
 
 // ===========================
@@ -501,6 +511,30 @@ public:
 
   Instruction *copy() override {
     auto *ret = new FNegInst(getOperand(0));
+    return ret;
+  }
+};
+
+class WhichOfInst : public Instruction {
+public:
+  WhichOfInst(Value *cond, Value *trueVal, Value *falseVal)
+      : Instruction(InstID::WhichOf, {cond, trueVal, falseVal},
+                    trueVal->getType()) {
+    assert(cond->getType()->isIntegerNBits(1));
+    assert(trueVal->getType() == falseVal->getType());
+  }
+
+  void setCond(Value *cond) { setOperand(0, cond); }
+  Value *getCond() const { return getOperand(0); }
+
+  void setTrueVal(Value *val) { setOperand(1, val); }
+  Value *getTrueVal() const { return getOperand(1); }
+
+  void setFalseVal(Value *val) { setOperand(2, val); }
+  Value *getFalseVal() const { return getOperand(2); }
+
+  Instruction *copy() override {
+    auto *ret = new WhichOfInst(getCond(), getTrueVal(), getFalseVal());
     return ret;
   }
 };

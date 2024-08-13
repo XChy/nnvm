@@ -37,14 +37,10 @@ select.else28:  pred(select.exit)
   41 = icmp eq i32 %35, i32 %40
   br bb %select.exit29
 select.exit29:  pred(select.then27, select.else28)
-  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 -1]
-  br i1 %select30.phi, bb %then, bb %if.exit
-then:  pred(select.exit29)
-  br bb %if.exit
-if.exit:  pred(select.exit29, then)
-  flag.phi = phi [bb %select.exit29, i32 0, bb %then, i32 1]
-  call void putint(i32 %flag.phi)
-  ret i32 %flag.phi
+  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 1]
+  54 = zext i1 %select30.phi to i32
+  call void putint(i32 %54)
+  ret i32 %54
 }
 
 external void putfarray(i32 , ptr )

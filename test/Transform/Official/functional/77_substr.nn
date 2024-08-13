@@ -75,7 +75,7 @@ max_sum_nonadjacent.while.body.split:  pred(max_sum_nonadjacent.MAX.then283, max
 max_sum_nonadjacent.MAX.then283:  pred(entry190)
   br bb %max_sum_nonadjacent.while.body.split
 max_sum_nonadjacent.MAX.else285:  pred(entry190)
-  br i1 -1, bb %max_sum_nonadjacent.MAX.then13288, bb %max_sum_nonadjacent.MAX.else15290
+  br i1 1, bb %max_sum_nonadjacent.MAX.then13288, bb %max_sum_nonadjacent.MAX.else15290
 max_sum_nonadjacent.MAX.then13288:  pred(max_sum_nonadjacent.MAX.else285)
   br bb %max_sum_nonadjacent.while.body.split
 max_sum_nonadjacent.MAX.else15290:  pred(max_sum_nonadjacent.MAX.else285)

@@ -493,8 +493,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
       auto tempReg = builder.newVReg(reg->getType());
       newTemp.push_back(tempReg);
       op->set(tempReg);
-      builder.setInsertPoint(op->getInst()->getParent(),
-                             op->getInst()->getNext());
+      builder.setInsertPoint(op->getInst()->getNext());
       builder.storeValueTo(tempReg, slot, reg->getType());
     }
 
@@ -502,7 +501,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
       auto tempReg = builder.newVReg(reg->getType());
       newTemp.push_back(tempReg);
       op->set(tempReg);
-      builder.setInsertPoint(op->getInst()->getParent(), op->getInst());
+      builder.setInsertPoint(op->getInst());
       builder.loadValueFrom(tempReg, slot, reg->getType());
     }
   }
@@ -602,6 +601,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     if (spilledNodes.empty()) {
       break;
     }
+
     rewriteProgram(func);
   }
 

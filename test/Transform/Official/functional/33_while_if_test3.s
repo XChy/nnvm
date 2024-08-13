@@ -28,13 +28,20 @@ bb5:   # loop depth 1
 bb6:   # loop depth 1
   ADDI t1, zero, 99
   ADDIW a0, a0, 42
-  BLT t1, a0, bb9
+  BLT t1, a0, bb12
   # implict jump to bb7
 bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
-  JAL zero, bb3
+  BLT t1, a0, bb11
+  # implict jump to bb9
 bb9:   # loop depth 1
+  # implict jump to bb10
+bb10:   # loop depth 1
+  JAL zero, bb3
+bb11:   # loop depth 1
   ADDI a0, zero, 168
+  JAL zero, bb10
+bb12:   # loop depth 1
   ADDI t0, zero, 84
   JAL zero, bb8

@@ -30,6 +30,7 @@ private:
 
   Value *simplifyICmp(ICmpInst *I);
   Value *simplifyPhi(PhiNode *I);
+  Value *simplifyWhichOf(WhichOfInst *I);
 
   ConstantFold folder;
   IRBuilder builder;

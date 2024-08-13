@@ -83,26 +83,26 @@ while.body168_preheader:  pred(while.exit54)
   176 = mul i32 %7, i32 140
   177 = ptradd ptr @dp, i32 %176
   br bb %while.body168
-while.body168:  pred(if.exit184, while.body168_preheader)
-  j.phi271 = phi [bb %if.exit184, i32 %195, bb %while.body168_preheader, i32 0]
-  res.phi204270 = phi [bb %if.exit184, i32 %res.phi, bb %while.body168_preheader, i32 0]
+while.body168:  pred(while.body168.split, while.body168_preheader)
+  j.phi271 = phi [bb %while.body168.split, i32 %195, bb %while.body168_preheader, i32 0]
+  res.phi204270 = phi [bb %while.body168.split, i32 %295, bb %while.body168_preheader, i32 0]
   264 = shl i32 %j.phi271, i32 2
   180 = ptradd ptr %177, i32 %264
   180.load = load i32 from ptr %180
   182 = icmp slt i32 %res.phi204270, i32 %180.load
-  br i1 %182, bb %then183, bb %if.exit184
-while.exit169:  pred(while.exit54, while.body168_exclu_exit)
-  269 = phi [bb %while.body168_exclu_exit, i32 %res.phi, bb %while.exit54, i32 0]
-  ret i32 %269
-then183:  pred(while.body168)
-  br bb %if.exit184
-if.exit184:  pred(while.body168, then183)
-  res.phi = phi [bb %while.body168, i32 %res.phi204270, bb %then183, i32 %180.load]
+  br i1 %182, bb %res.phi.which.true, bb %while.body168.split
+while.body168.split:  pred(while.body168, res.phi.which.true)
+  295 = phi [bb %res.phi.which.true, i32 %180.load, bb %while.body168, i32 %res.phi204270]
   195 = add i32 %j.phi271, i32 1
   172 = icmp sle i32 %195, i32 %9
   br i1 %172, bb %while.body168, bb %while.body168_exclu_exit
-while.body168_exclu_exit:  pred(if.exit184)
+while.exit169:  pred(while.exit54, while.body168_exclu_exit)
+  269 = phi [bb %while.body168_exclu_exit, i32 %295, bb %while.exit54, i32 0]
+  ret i32 %269
+while.body168_exclu_exit:  pred(while.body168.split)
   br bb %while.exit169
+res.phi.which.true:  pred(while.body168)
+  br bb %while.body168.split
 }
 
 external void putfarray(i32 , ptr )

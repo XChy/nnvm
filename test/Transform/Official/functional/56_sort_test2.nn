@@ -85,7 +85,7 @@ insertsort.select.exit:  pred(insertsort.select.then, insertsort.select.else)
   select.phi179 = phi [bb %insertsort.select.else, i1 0, bb %insertsort.select.then, i1 %35174]
   br i1 %select.phi179, bb %insertsort.while.body21, bb %insertsort.while.exit22
 insertsort.while.body_exclu_exit:  pred(insertsort.while.exit22)
-  br i1 -1, bb %while.body96_preheader, bb %while.exit97
+  br i1 1, bb %while.body96_preheader, bb %while.exit97
 }
 
 external float getfloat()
