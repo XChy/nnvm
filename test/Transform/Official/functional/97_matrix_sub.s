@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -11,105 +12,71 @@ M:
 N:
 .word 0x00000000
 .section .text
-main:
-  ADDI sp, sp, -208
+main:   # loop depth 0
+  ADDI sp, sp, -80
   SD ra, 0(sp)
   SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
-  FSD fs2, 32(sp)
-  FSD fs3, 40(sp)
-  FSD fs4, 48(sp)
-  LA a0, N
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  LA a0, M
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  LA a0, L
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  FSD fs0, 48(sp)
+  FSD fs1, 56(sp)
+  FSD fs2, 64(sp)
   ADDI a0, zero, 0
+  ADDI s0, zero, 1
   FCVT.S.W fs0, a0
-  FSW fs0, 56(sp)
-  FSW fs0, 72(sp)
-  FSW fs0, 88(sp)
-  FSW fs0, 104(sp)
-  FSW fs0, 120(sp)
-  FSW fs0, 136(sp)
-  ADDI a0, zero, 1
-  FCVT.S.W fs1, a0
-  FSW fs1, 60(sp)
-  FSW fs1, 76(sp)
-  FSW fs1, 92(sp)
-  FSW fs1, 108(sp)
-  FSW fs1, 124(sp)
-  FSW fs1, 140(sp)
-  ADDI a0, zero, 2
-  FCVT.S.W fs2, a0
-  FSW fs2, 64(sp)
-  FSW fs2, 80(sp)
-  FSW fs2, 96(sp)
-  FSW fs2, 112(sp)
-  FSW fs2, 128(sp)
-  FSW fs2, 144(sp)
-  FSUB.S fs3, fs0, fs0
-  FSW fs3, 152(sp)
-  FSUB.S fs4, fs0, fs0
-  FSW fs4, 176(sp)
+  ADDI s2, zero, 2
+  FCVT.S.W fs1, s0
+  LA a0, N
+  FSUB.S fs2, fs0, fs0
+  LA s1, M
+  FCVT.S.W fs0, s2
+  ADDI s0, zero, 3
+  FSUB.S fs1, fs1, fs1
+  LA s4, L
   FSUB.S fs0, fs0, fs0
-  FSW fs0, 192(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 156(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 180(sp)
-  FSUB.S fs0, fs1, fs1
-  FSW fs0, 196(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 160(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 184(sp)
-  FSUB.S fs0, fs2, fs2
-  FSW fs0, 200(sp)
-  FCVT.W.S a0, fs3, rtz
+  ADDI s3, zero, 3
+  SW s0, 0(a0)
+  ADDI a0, zero, 3
+  FCVT.W.S s2, fs2, rtz
+  SW s3, 0(s1)
+  SW a0, 0(s4)
+  FCVT.W.S s0, fs1, rtz
+  FCVT.W.S s1, fs0, rtz
+  ADD a0, s2, zero
   CALL putint
-  FLW fs0, 156(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s0, zero
   CALL putint
-  FLW fs0, 160(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  FLW fs0, 176(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s2, zero
   CALL putint
-  FLW fs0, 180(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s0, zero
   CALL putint
-  FLW fs0, 184(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  FLW fs0, 192(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s2, zero
   CALL putint
-  FLW fs0, 196(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s0, zero
   CALL putint
-  FLW fs0, 200(sp)
-  FCVT.W.S a0, fs0, rtz
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  FLD fs2, 32(sp)
-  FLD fs3, 40(sp)
-  FLD fs4, 48(sp)
-  ADDI sp, sp, 208
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  FLD fs0, 48(sp)
+  FLD fs1, 56(sp)
+  FLD fs2, 64(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)

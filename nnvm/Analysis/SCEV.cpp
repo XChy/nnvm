@@ -82,7 +82,7 @@ ScevValue *SCEV::analyze(Value *value, Loop *loop) {
   if (!preheader || !latch)
     return nullptr;
 
-  if (PhiInst *phi = mayCast<PhiInst>(value)) {
+  if (PhiNode *phi = mayCast<PhiNode>(value)) {
     if (phi->getIncomingNum() != 2 || phi->getBlock() != loop->getHeader())
       return nullptr;
 
@@ -111,7 +111,7 @@ ScevValue *SCEV::analyze(Value *value, Loop *loop) {
 
   // Simplify (C1 rec (xxx)) + C2  to ((C1 + C2) rec (xxx))
   if (AddInst *add = mayCast<AddInst>(value)) {
-    if (add->getLHS()->isa<PhiInst>() && add->getRHS()->isa<ConstantInt>()) {
+    if (add->getLHS()->isa<PhiNode>() && add->getRHS()->isa<ConstantInt>()) {
       ScevValue *phiScev = analyze(add->getLHS(), loop);
       if (phiScev->isSingle())
         return nullptr;

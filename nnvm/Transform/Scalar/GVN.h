@@ -11,10 +11,12 @@
 #include "Transform/Infra/Pass.h"
 
 namespace nnvm {
-class GVNPass : public FunctionPass {
+class GVNHoistPass : public FunctionPass {
 public:
-  static constexpr const char *passName = "gvn";
+  static constexpr const char *passName = "gvn-hoist";
   bool run(Function &F);
+  void assignNumbers(Function &F);
+  void hoist();
 
 private:
   struct HashInstImpl {
@@ -26,5 +28,12 @@ private:
   };
 
   DomTreeAnalysis *domTree;
+
+  std::unordered_map<Instruction *, uint64_t, HashInstImpl, EqInstImpl>
+      numberOf;
+
+  std::unordered_map<uint64_t, std::vector<Instruction *>> instsOf;
+
+  uint64_t currentMaxNumber;
 };
 } /* namespace nnvm */

@@ -36,6 +36,9 @@ bool SLPairElimPass::run(Function &F) {
         continue;
       }
 
+      if (auto *call = mayCast<CallInst>(I)) {
+      }
+
       // TODO: alias analysis
       if (I->mayWriteToMemory())
         ptr2Store.clear();

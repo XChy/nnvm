@@ -256,4 +256,30 @@ protected:
   RSubPattern RHS;
 };
 
+template <typename CondPattern, typename LSubPattern, typename RSubPattern>
+class pWhichOf : public pSpecificInst<InstID::WhichOf> {
+public:
+  pWhichOf(CondPattern cond, LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::WhichOf>(), cond(cond), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::WhichOf>::match(op))
+      return false;
+
+    WhichOfInst *I = cast<WhichOfInst>(op);
+    if (!cond.match(I->getCond()))
+      return false;
+    if (!LHS.match(I->getTrueVal()))
+      return false;
+    if (!RHS.match(I->getFalseVal()))
+      return false;
+    return true;
+  }
+
+protected:
+  CondPattern cond;
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
 } // namespace nnvm::pattern

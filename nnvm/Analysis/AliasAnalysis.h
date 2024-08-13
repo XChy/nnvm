@@ -14,7 +14,7 @@
 
 namespace nnvm {
 
-static inline Value *getAccessedPtr(Instruction *a) {
+static inline Value *getAccessedPtr(const Instruction *a) {
   if (auto *SI = mayCast<StoreInst>(a))
     return SI->getDest();
   if (auto *LI = mayCast<LoadInst>(a))
@@ -22,7 +22,7 @@ static inline Value *getAccessedPtr(Instruction *a) {
   return nullptr;
 }
 
-static inline MemObj getAccessedObj(Instruction *a) {
+static inline MemObj getAccessedObj(const Instruction *a) {
   MemObj ret;
   if (auto *SI = mayCast<StoreInst>(a))
     ret = {SI->getDest(), 0, SI->getStoredValue()->getType()->getStoredBytes()};
@@ -43,7 +43,7 @@ public:
 
   AAFlag alias(MemObj a, MemObj b);
 
-  AAFlag alias(Instruction *a, Instruction *b);
+  AAFlag alias(const Instruction *a, const Instruction *b);
 
 private:
   BasicAA BAA;

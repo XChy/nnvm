@@ -80,6 +80,14 @@ materializeArithmeticInstType(uint64_t instID, LIRValueType operandType) {
       return OR;
     case InstID::Xor:
       return XOR;
+    case InstID::SMin:
+      return MIN;
+    case InstID::SMax:
+      return MAX;
+    case InstID::UMax:
+      return MAXU;
+    case InstID::UMin:
+      return MINU;
     default:
       break;
     }
@@ -179,6 +187,10 @@ LIRInst *ISel::combine(LIRBuilder &builder, LIRInst *I) {
     case InstID::FSub:
     case InstID::FMul:
     case InstID::FDiv:
+    case InstID::SMin:
+    case InstID::SMax:
+    case InstID::UMin:
+    case InstID::UMax:
       // TODO: the type of operator is not that accurate, we should lower them
       // before doing such thing.
       {

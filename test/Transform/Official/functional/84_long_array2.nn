@@ -12,62 +12,43 @@ external i32 getfarray(ptr )
 i32 main() {
 entry26:  pred()
   %c = stack 16384
-  %b = stack 16384
   br bb %init
 init:  pred(init, entry26)
-  cnt_ptr.phi154 = phi [bb %init, i32 %cnt.dec, bb %entry26, i32 1024]
-  cnt.dec = sub i32 %cnt_ptr.phi154, i32 1
-  113 = shl i32 %cnt.dec, i32 2
-  arr.index38 = ptradd ptr %b, i32 %113
-  store i32 0 to ptr %arr.index38
-  33 = icmp ne i32 %cnt.dec, i32 0
-  br i1 %33, bb %init, bb %init.exit
-init.exit:  pred(init)
-  arr.index39 = ptradd ptr %b, i32 4096
-  store i32 1 to ptr %arr.index39
+  cnt_ptr.phi176 = phi [bb %init, i32 %113, bb %entry26, i32 1024]
+  113 = add i32 %cnt_ptr.phi176, i32 -1
+  33 = icmp ne i32 %113, i32 0
+  br i1 %33, bb %init, bb %init_exclu_exit
+init41:  pred(init41, init_exclu_exit)
+  cnt_ptr43.phi174 = phi [bb %init41, i32 %116, bb %init_exclu_exit, i32 1023]
+  116 = add i32 %cnt_ptr43.phi174, i32 -1
+  45 = icmp ne i32 %116, i32 0
+  br i1 %45, bb %init41, bb %init41_exclu_exit
+init54:  pred(init54, init41_exclu_exit)
+  cnt_ptr56.phi172 = phi [bb %init54, i32 %119, bb %init41_exclu_exit, i32 1022]
+  119 = add i32 %cnt_ptr56.phi172, i32 -1
+  58 = icmp ne i32 %119, i32 0
+  br i1 %58, bb %init54, bb %init54_exclu_exit
+init68:  pred(init68, init54_exclu_exit)
+  cnt_ptr70.phi170 = phi [bb %init68, i32 %122, bb %init54_exclu_exit, i32 1021]
+  122 = add i32 %cnt_ptr70.phi170, i32 -1
+  72 = icmp ne i32 %122, i32 0
+  br i1 %72, bb %init68, bb %init68_exclu_exit
+init86:  pred(init86, init68_exclu_exit)
+  cnt_ptr88.phi168 = phi [bb %init86, i32 %125, bb %init68_exclu_exit, i32 4090]
+  125 = add i32 %cnt_ptr88.phi168, i32 -1
+  164 = shl i32 %125, i32 2
+  127 = add i32 %164, i32 24
+  arr.index95 = ptradd ptr %c, i32 %127
+  store i32 0 to ptr %arr.index95
+  90 = icmp ne i32 %125, i32 0
+  br i1 %90, bb %init86, bb %init86_exclu_exit
+init_exclu_exit:  pred(init)
   br bb %init41
-init41:  pred(init41, init.exit)
-  cnt_ptr43.phi152 = phi [bb %init41, i32 %cnt.dec47, bb %init.exit, i32 1023]
-  cnt.dec47 = sub i32 %cnt_ptr43.phi152, i32 1
-  115 = shl i32 %cnt.dec47, i32 2
-  116 = add i32 %115, i32 4100
-  arr.index50 = ptradd ptr %b, ptr %116
-  store i32 0 to ptr %arr.index50
-  45 = icmp ne i32 %cnt.dec47, i32 0
-  br i1 %45, bb %init41, bb %init.exit42
-init.exit42:  pred(init41)
-  arr.index51 = ptradd ptr %b, i32 8192
-  store i32 2 to ptr %arr.index51
-  arr.index52 = ptradd ptr %b, i32 8196
-  store i32 3 to ptr %arr.index52
+init41_exclu_exit:  pred(init41)
   br bb %init54
-init54:  pred(init54, init.exit42)
-  cnt_ptr56.phi150 = phi [bb %init54, i32 %cnt.dec60, bb %init.exit42, i32 1022]
-  cnt.dec60 = sub i32 %cnt_ptr56.phi150, i32 1
-  117 = shl i32 %cnt.dec60, i32 2
-  118 = add i32 %117, i32 8200
-  arr.index63 = ptradd ptr %b, ptr %118
-  store i32 0 to ptr %arr.index63
-  58 = icmp ne i32 %cnt.dec60, i32 0
-  br i1 %58, bb %init54, bb %init.exit55
-init.exit55:  pred(init54)
-  arr.index64 = ptradd ptr %b, i32 12288
-  store i32 4 to ptr %arr.index64
-  arr.index65 = ptradd ptr %b, i32 12292
-  store i32 5 to ptr %arr.index65
-  arr.index66 = ptradd ptr %b, i32 12296
-  store i32 6 to ptr %arr.index66
+init54_exclu_exit:  pred(init54)
   br bb %init68
-init68:  pred(init68, init.exit55)
-  cnt_ptr70.phi148 = phi [bb %init68, i32 %cnt.dec74, bb %init.exit55, i32 1021]
-  cnt.dec74 = sub i32 %cnt_ptr70.phi148, i32 1
-  119 = shl i32 %cnt.dec74, i32 2
-  120 = add i32 %119, i32 12300
-  arr.index77 = ptradd ptr %b, ptr %120
-  store i32 0 to ptr %arr.index77
-  72 = icmp ne i32 %cnt.dec74, i32 0
-  br i1 %72, bb %init68, bb %init.exit69
-init.exit69:  pred(init68)
+init68_exclu_exit:  pred(init68)
   store i32 1 to ptr %c
   arr.index80 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index80
@@ -80,31 +61,17 @@ init.exit69:  pred(init68)
   arr.index84 = ptradd ptr %c, i32 20
   store i32 4 to ptr %arr.index84
   br bb %init86
-init86:  pred(init86, init.exit69)
-  cnt_ptr88.phi146 = phi [bb %init86, i32 %cnt.dec92, bb %init.exit69, i32 4090]
-  cnt.dec92 = sub i32 %cnt_ptr88.phi146, i32 1
-  121 = shl i32 %cnt.dec92, i32 2
-  122 = add i32 %121, i32 24
-  arr.index95 = ptradd ptr %c, ptr %122
-  store i32 0 to ptr %arr.index95
-  90 = icmp ne i32 %cnt.dec92, i32 0
-  br i1 %90, bb %init86, bb %init.exit87
-init.exit87:  pred(init86)
-  2127 = ptradd ptr @a, i32 20
-  store i32 4000 to ptr %2127
-  5129 = ptradd ptr @a, i32 16000
-  store i32 3 to ptr %5129
-  8131 = ptradd ptr @a, i32 16380
-  store i32 7 to ptr %8131
-  14134 = ptradd ptr %c, i32 28
-  17135 = ptradd ptr @a, i32 8864
-  17.load136 = load i32 from ptr %17135
-  19137 = add i32 %17.load136, i32 9
-  store i32 %19137 to ptr %14134
+init86_exclu_exit:  pred(init86)
+  2132 = ptradd ptr @a, i32 20
+  store i32 4000 to ptr %2132
+  5134 = ptradd ptr @a, i32 16000
+  store i32 3 to ptr %5134
+  8136 = ptradd ptr @a, i32 16380
+  store i32 7 to ptr %8136
   call void putint(i32 3)
   call void putch(i32 10)
-  124 = ptradd ptr %c, i32 32
-  104.load = load i32 from ptr %124
+  129 = ptradd ptr %c, i32 32
+  104.load = load i32 from ptr %129
   ret i32 %104.load
 }
 

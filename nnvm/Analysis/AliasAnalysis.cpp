@@ -1,4 +1,5 @@
 #include "AliasAnalysis.h"
+#include "Analysis/AAInfo.h"
 
 using namespace nnvm;
 
@@ -19,8 +20,27 @@ AAFlag AliasAnalysis::alias(MemObj a, MemObj b) {
   return alias(a.getPointer(), b.getPointer());
 }
 
-AAFlag AliasAnalysis::alias(Instruction *a, Instruction *b) {
+AAFlag AliasAnalysis::alias(const Instruction *a, const Instruction *b) {
+  if (b->isa<CallInst>())
+    std::swap(a, b);
+
+  if (a->isa<CallInst>() && getAccessedPtr(b)) {
+    Value *rootObj = getRootObj(getAccessedPtr(b));
+    if (!rootObj->isa<StackInst>())
+      return MayAlias;
+
+    for (Value *arg : mayCast<CallInst>(a)->collectArgs()) {
+      if (!arg->getType()->isPointer())
+        continue;
+      if (alias(rootObj, arg) != NotAlias)
+        return MayAlias;
+    }
+
+    return NotAlias;
+  }
+
   if (!getAccessedPtr(a) || !getAccessedPtr(b))
     return MayAlias;
+
   return alias(getAccessedObj(a), getAccessedObj(b));
 }

@@ -24,19 +24,21 @@ while.body:  pred(while.body, while.body_preheader)
   sum.phi100069 = phi [bb %while.body, i32 %100043, bb %while.body_preheader, i32 0]
   i.phi100068 = phi [bb %while.body, i32 %100046, bb %while.body_preheader, i32 0]
   store i32 %i.phi100068 to ptr @global
-  100606 = mul i32 %i.phi100068, i32 60
-  100036 = sdiv i32 %100606, i32 60
+  100608 = mul i32 %i.phi100068, i32 60
+  100036 = sdiv i32 %100608, i32 60
   100040 = add i32 %sum.phi100069, i32 %100036
   100043 = srem i32 %100040, i32 134209537
   100046 = add i32 %i.phi100068, i32 1
   100015 = icmp slt i32 %100046, i32 %loopCount.load100014100065
-  br i1 %100015, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, entry100004)
-  100067 = phi [bb %while.body, i32 %100043, bb %entry100004, i32 0]
+  br i1 %100015, bb %while.body, bb %while.body_exclu_exit
+while.exit:  pred(entry100004, while.body_exclu_exit)
+  100067 = phi [bb %while.body_exclu_exit, i32 %100043, bb %entry100004, i32 0]
   call void _sysy_stoptime(i32 100032)
   call void putint(i32 %100067)
   call void putch(i32 10)
   ret i32 0
+while.body_exclu_exit:  pred(while.body)
+  br bb %while.exit
 }
 
 external float getfloat()

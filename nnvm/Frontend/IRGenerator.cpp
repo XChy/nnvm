@@ -8,7 +8,6 @@
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Debug.h"
-#include "ErrorReporter.h"
 #include <string>
 #include <string_view>
 
@@ -17,7 +16,6 @@ using std::is_same_v;
 static int getRadixOf(std::string_view text);
 
 IRGenerator::IRGenerator() {}
-ErrorReporter errorReporter;
 
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
@@ -40,7 +38,6 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   visitChildren(ctx);
   // Global symbol table ends here.
   symbolTable.exitScope();
-  errorReporter.report();
   return Any();
 }
 
@@ -53,7 +50,6 @@ Type *IRGenerator::getIRType(SysYParser::BtypeContext *ctx) {
     return ir->getIntType();
   if (ctx->FLOAT())
     return ir->getFloatType();
-  
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -65,7 +61,6 @@ Type *IRGenerator::getIRType(SysYParser::FuncTypeContext *ctx) {
     return ir->getFloatType();
   if (ctx->VOID())
     return ir->getVoidType();
-  
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -79,7 +74,6 @@ Any IRGenerator::visitBtype(SysYParser::BtypeContext *ctx) {
     return SymbolType::getIntTy();
   if (ctx->FLOAT())
     return SymbolType::getFloatTy();
-  
   static_assert("Not supported such type");
   return nullptr;
 }
@@ -96,7 +90,6 @@ Any IRGenerator::visitFuncType(SysYParser::FuncTypeContext *ctx) {
     return SymbolType::getFloatTy();
   if (ctx->VOID())
     return SymbolType::getVoidTy();
-  
   nnvm_unreachable("Not supported such type");
 }
 
@@ -125,11 +118,8 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
-      // TODO: Report invalid index error.
-      if(!any_is<int>(index)) {
-        errorReporter.errorRecord(ctx, "Invalid index error");
-      }
       assert(any_is<int>(index));
+      // TODO: Report invalid index error.
       if (i < indexs.size() - 1) {
         constArray =
             cast<ConstantArray>(constArray->getValue()[any_as<int>(index)]);
@@ -200,14 +190,12 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
           return ~any_as<int>(operand);
       }
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Invalid expression");
       nnvm_unimpl();
     }
 
     if (auto lvalCtx = ctx->lVal()) {
       return solveConstLval(lvalCtx);
     }
-
     nnvm_unreachable("Impossible to reach here");
   }
 
@@ -229,13 +217,11 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->DIV()) {
       if (rhs == 0) {
         // TODO: error.
-        errorReporter.errorRecord(ctx, "Divisor cannot be zero");
         nnvm_unimpl();
       }
       return lhs / rhs;
     }
     // TODO: report error
-    errorReporter.errorRecord(ctx, "Invalid operand");
     nnvm_unimpl();
   } else if (any_is<int>(lhsAny) && any_is<int>(rhsAny)) {
     int lhs = any_as<int>(lhsAny);
@@ -270,10 +256,8 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->BITXOR()) {
       return lhs ^ rhs;
     }
-    
     nnvm_unreachable("Impossible to reach here");
   }
-
   nnvm_unreachable("Impossible to reach here");
 }
 
@@ -339,7 +323,6 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   string symbolName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(symbolName)) {
     // TODO: report duplicate define error
-    errorReporter.errorRecord(ctx, "Duplicate define");
     return Symbol::none();
   }
 
@@ -534,7 +517,7 @@ Constant *IRGenerator::fetchFlatElementsFrom(SysYParser::InitValContext *ctx,
 void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
                               Value *currentValue, Value *irVal,
                               Type *irElementType) {
-  if (valueCount > 10) {
+  if (valueCount > ir->getPlatform()->getArrayRerollNum()) {
     // roll up the same values' init
     BasicBlock *condBB =
         new BasicBlock(cast<Function>(currentFunc->entity), "init.cond");
@@ -565,7 +548,7 @@ void IRGenerator::arrInitRoll(uint &valueCount, uint &offset,
         cnt, createConstInt(irElementType->getStoredBytes()), ir->getIntType(),
         "offset");
     Value *offsetValue = builder.buildBinOp<AddInst>(
-        currentBase, currentOff, ir->getPtrType(), "arr.index");
+        currentBase, currentOff, ir->getIntType(), "arr.index");
     auto *pointer = builder.buildBinOp<PtrAddInst>(
         irVal, offsetValue, ir->getPtrType(), "arr.index");
     builder.buildStore(currentValue, pointer);
@@ -597,7 +580,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
   string symbolName = ctx->IDENT()->getText();
 
   if (symbolTable.lookupInCurrentScope(symbolName)) {
-    errorReporter.errorRecord(ctx, "Var already exsisted");
+    // TODO: error
     return Symbol::none();
   }
 
@@ -702,6 +685,8 @@ Any IRGenerator::visitBlock(SysYParser::BlockContext *ctx) {
   symbolTable.enterScope();
   for (auto stmtCtx : ctx->blockItem()) {
     stmtCtx->accept(this);
+    if (builder.getCurrentBB()->getTerminator())
+      break;
   }
   symbolTable.exitScope();
   return Symbol::none();
@@ -743,7 +728,6 @@ Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
     SymbolType *lookedType = symbolTable.lookup(funcName)->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
-      errorReporter.errorRecord(ctx, "FuncDecl wrong");
       nnvm_unimpl();
     }
   } else {
@@ -767,7 +751,6 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     SymbolType *lookedType = lookedFunc->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
-      errorReporter.errorRecord(ctx, "FuncDef wrong");
       nnvm_unimpl();
     }
     currentFunc = lookedFunc;
@@ -809,8 +792,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     builder.buildStore(arg, stack);
   }
 
-  for (auto stmtCtx : ctx->block()->blockItem())
-    stmtCtx->accept(this);
+  ctx->block()->accept(this);
 
   symbolTable.exitScope();
 
@@ -834,7 +816,6 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   string paramName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
-    errorReporter.errorRecord(ctx, "Invalid function Param");
     return Symbol::none();
   }
 
@@ -1046,7 +1027,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
       if (!currentFunc->symbolType->containedTy->isVoid()) {
-        errorReporter.errorRecord(ctx, "Function return value should exsist");
+        // TODO:  error
         return Symbol::none();
       }
 
@@ -1094,11 +1075,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     // lhs && rhs  -->  if lhs then rhs else false;
     Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
-    if (!lhs) {
-      errorReporter.errorRecord(ctx, "Left side of the cond should exsist");
+    if (!lhs)
       return Symbol::none();
-    }
-      
 
     BasicBlock *thenBB =
         new BasicBlock(builder.getCurrentFunc(), "select.then");
@@ -1115,11 +1093,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.insertAt(thenBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
-    if (!rhs) {
-      errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
+    if (!rhs)
       return Symbol::none();
-    }
-     
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
 
@@ -1136,11 +1111,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     // lhs || rhs  -->  if lhs then true else rhs;
     Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
-    if (!lhs) {
-      errorReporter.errorRecord(ctx, "Left side of the operator should exsist");
+    if (!lhs)
       return Symbol::none();
-    }
-      
 
     BasicBlock *thenBB =
         new BasicBlock(builder.getCurrentFunc(), "select.then");
@@ -1162,10 +1134,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.insertAt(elseBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
-    if (!rhs) {
-      errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
+    if (!rhs)
       return Symbol::none();
-    }      
     rhs.entity = builder.buildICmpNEZero(rhs.entity);
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
@@ -1177,13 +1147,11 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     Symbol exp1 = any_as<Symbol>(ctx->exp(0)->accept(this));
     if (!exp1)
       return Symbol::none();
-    
-      
 
     Symbol exp2 = any_as<Symbol>(ctx->exp(1)->accept(this));
     if (!exp2)
       return Symbol::none();
-    
+
     widen(exp1, exp2);
 
     Value *lhs = exp1.entity;
@@ -1208,10 +1176,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
       else if (ctx->GE())
         return Symbol{builder.buildFCmp(FCmpInst::OGE, lhs, rhs),
                       SymbolType::getBoolTy()};
-      else{
+      else
         nnvm_unreachable("Impossible");
-      }
-       
     } else {
       if (ctx->EQ())
         return Symbol{builder.buildICmp(ICmpInst::EQ, lhs, rhs),
@@ -1231,9 +1197,8 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
       else if (ctx->GE())
         return Symbol{builder.buildICmp(ICmpInst::SGE, lhs, rhs),
                       SymbolType::getBoolTy()};
-      else{
+      else
         nnvm_unreachable("Impossible");
-      }
     }
   }
   nnvm_unreachable("Not implemented");
@@ -1310,12 +1275,10 @@ static inline uint getByteSizeOf(SymbolType *type) {
 Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
   Symbol address = *symbolTable.lookup(ctx->IDENT()->getText());
 
-  if (!address) {
-     // TODO: report error
-    errorReporter.errorRecord(ctx, "Invalid LVal");
+  if (!address)
+    // TODO: report error
     return Symbol::none();
-  }
-   
+
   for (auto *expCtx : ctx->exp()) {
     Symbol index = any_as<Symbol>(expCtx->accept(this));
     if (!index)
@@ -1332,7 +1295,6 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
 
   if (!address) {
     // TODO: error
-    errorReporter.errorRecord(ctx, "Invalid LVal");
     return Symbol::none();
   }
 
@@ -1381,15 +1343,12 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   // TODO: how to infer type?
   Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
   // TODO: error
-  if (!lhs) {
-    errorReporter.errorRecord(ctx, "Left side of the operator should exsist");
+  if (!lhs)
     return nullptr;
-  }   
   Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
-  if (!rhs) {
-    errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
+  if (!rhs)
     return nullptr;
-  }
+
   widen(lhs, rhs);
   // TODO: error
   Value *val = nullptr;
@@ -1447,7 +1406,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<AndInst>(lhs.entity, rhs.entity, ir->getIntType());
@@ -1457,7 +1415,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<OrInst>(lhs.entity, rhs.entity, ir->getIntType());
@@ -1467,7 +1424,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<XorInst>(lhs.entity, rhs.entity, ir->getIntType());
@@ -1476,7 +1432,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   if (ctx->BITSHL()) {
     if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity, ir->getIntType());
@@ -1485,7 +1440,6 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   if (ctx->BITSHR()) {
     if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     // signed Integer : Arithmetic shift right
@@ -1530,14 +1484,12 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
   if (ctx->unaryOp()->BITNOT()) {
     if (!operand.symbolType->isInt() && !operand.symbolType->isBool()) {
       // TODO: report error
-      errorReporter.errorRecord(ctx, "Operand not int!");
       nnvm_unimpl();
     }
     operand.entity = builder.buildBinOp<XorInst>(
         operand.entity, constMinusOneInt, ir->getIntType());
     return operand;
   }
-  
   nnvm_unreachable("UnaryOp Not implemented!");
 }
 
@@ -1593,7 +1545,7 @@ Any IRGenerator::visitExp(SysYParser::ExpContext *ctx) {
                                          getRadixOf(intConst->getText())))),
           SymbolType::getIntTy()};
     }
-    
+
     nnvm_unreachable("No such literal number")
   }
   return visitChildren(ctx);

@@ -42,6 +42,10 @@ public:
     this->insertPoint = LIRBB::Iterator(inst, bb);
   }
 
+  void setInsertPoint(LIRInst *inst) {
+    this->insertPoint = LIRBB::Iterator(inst, inst->getParent());
+  }
+
 private:
   LIRBB *BB;
   LIRBB::Iterator insertPoint;

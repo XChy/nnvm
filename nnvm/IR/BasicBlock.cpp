@@ -1,5 +1,6 @@
 #include "BasicBlock.h"
 #include "IR/Function.h"
+#include "IR/Instruction.h"
 #include "IR/Module.h"
 #include "Utils/Collection.h"
 #include <Utils/Debug.h>
@@ -25,6 +26,24 @@ void BasicBlock::insert(Iterator insertPoint, Instruction *inserted) {
       "The inserted instruction has been inserted into another basic block.");
 
   insertPoint.insertBack(inserted);
+}
+
+BasicBlock::Iterator BasicBlock::normalBegin() {
+  auto it = begin();
+  while ((*it)->isa<StackInst>() || (*it)->isa<PhiNode>())
+    it++;
+  return it;
+}
+
+std::vector<PhiNode *> BasicBlock::getPhis() {
+  std::vector<PhiNode *> ret;
+  for (auto *I : getInsts()) {
+    PhiNode *phi = mayCast<PhiNode>(I);
+    if (!phi)
+      break;
+    ret.push_back(phi);
+  }
+  return ret;
 }
 
 bool BasicBlock::isPredecessorOf(BasicBlock *other) {

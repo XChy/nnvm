@@ -13,7 +13,6 @@
 using namespace nnvm::riscv;
 
 void PhiResolution::resolve(LIRFunc &func) {
-
   for (LIRBB *BB : func)
     processBB(BB);
 }
@@ -44,6 +43,8 @@ void PhiResolution::processBB(LIRBB *BB) {
 
       LIRBB *splittedBB = new LIRBB;
       incomingBB->setSucc(succIndex, splittedBB);
+      splittedBB->setLoopDepth(incomingBB->getLoopDepth());
+
       BB->getParent()->insert(splittedBB);
       builder.setInsertPoint(splittedBB->end());
       builder.jumpTo(BB);

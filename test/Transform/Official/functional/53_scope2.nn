@@ -5,27 +5,27 @@ entry:  pred()
   store i32 3390 to ptr @k
   br bb %while.body
 while.body:  pred(if.exit22, entry)
-  k.phi4163 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
-  g.phi4462 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
-  l.phi4761 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
-  g30.phi5060 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
-  18 = sub i32 %k.phi4163, i32 88
-  20 = icmp slt i32 %18, i32 1000
+  k.phi4165 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
+  g.phi4464 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
+  l.phi4763 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
+  g30.phi5062 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
+  52 = add i32 %k.phi4165, i32 -88
+  20 = icmp slt i32 %52, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
-while.exit:  pred(if.exit22)
+then21:  pred(while.body)
+  59 = add i32 %k.phi4165, i32 -76
+  br bb %if.exit22
+if.exit22:  pred(while.body, then21)
+  g30.phi = phi [bb %while.body, i32 %g30.phi5062, bb %then21, i32 11]
+  l.phi = phi [bb %while.body, i32 %l.phi4763, bb %then21, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi4464, bb %then21, i32 10]
+  k.phi = phi [bb %while.body, i32 %52, bb %then21, i32 %59]
+  14 = icmp sgt i32 %k.phi, i32 10
+  br i1 %14, bb %while.body, bb %while.body_exclu_exit
+while.body_exclu_exit:  pred(if.exit22)
   call void putint(i32 %k.phi)
   k.load39 = load i32 from ptr @k
   ret i32 %k.load39
-then21:  pred(while.body)
-  57 = add i32 %k.phi4163, i32 -76
-  br bb %if.exit22
-if.exit22:  pred(while.body, then21)
-  g30.phi = phi [bb %while.body, i32 %g30.phi5060, bb %then21, i32 11]
-  l.phi = phi [bb %while.body, i32 %l.phi4761, bb %then21, i32 11]
-  g.phi = phi [bb %while.body, i32 %g.phi4462, bb %then21, i32 10]
-  k.phi = phi [bb %while.body, i32 %18, bb %then21, i32 %57]
-  14 = icmp sgt i32 %k.phi, i32 10
-  br i1 %14, bb %while.body, bb %while.exit
 }
 
 external void putfarray(i32 , ptr )

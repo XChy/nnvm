@@ -19,7 +19,7 @@ bool CombinerPass::run(Function &F) {
     for (auto *BB : F) {
       for (auto *I : incChange(*BB)) {
 
-        if ((I->moveable() || I->isa<PhiInst>()) && I->users().empty()) {
+        if ((I->moveable() || I->isa<PhiNode>()) && I->users().empty()) {
           I->eraseFromBB();
           changed = true;
           continue;
@@ -64,8 +64,11 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (ICmpInst *ICI = mayCast<ICmpInst>(I))
     return simplifyICmp(ICI);
 
-  if (PhiInst *phi = mayCast<PhiInst>(I))
+  if (PhiNode *phi = mayCast<PhiNode>(I))
     return simplifyPhi(phi);
+
+  if (WhichOfInst *which = mayCast<WhichOfInst>(I))
+    return simplifyWhichOf(which);
 
   return nullptr;
 }
@@ -117,10 +120,17 @@ Value *CombinerPass::simplifyAdd(AddInst *I) {
 
 Value *CombinerPass::simplifySub(SubInst *I) {
   Value *A, *B, *C;
+  Type *type = I->getType();
+  ConstantInt *zero = cast<ConstantInt>(builder.getZero(type));
 
   // A - 0 --> A
   if (match(I, pSub(pValue(A), pZero())))
     return A;
+
+  // A - C1 --> A + (-C1)
+  ConstantInt *C1;
+  if (match(I, pSub(pValue(A), pConstantInt(C1))))
+    return builder.buildBinOp<AddInst>(A, zero->sub(C1), type);
 
   // (A - C1) - C2 --> A - (C1 + C2)
   if (match(I, pSub(pSub(pValue(A), pConstant(B)), pConstant(C)))) {
@@ -143,15 +153,20 @@ Value *CombinerPass::simplifyMul(MulInst *I) {
   Value *A, *B, *C;
   Type *type = I->getType();
   ConstantInt *C1;
+
   // A * (powerof2 ** 2) --> A << powerof2
   GInt powerOfTwo;
-
   if (match(I, pMul(pValue(A), pConstantInt(C1))) &&
       genericGetPowerOfTwo(C1->getValue(), C1->getType()->getBits(),
                            powerOfTwo)) {
     return builder.buildBinOp<ShlInst>(
         A, builder.getConstantInt(type, powerOfTwo), type);
   }
+
+  // C1 * A -->  A * C1
+  if (match(I, pMul(pConstantInt(C1), pValue(A))))
+    return builder.buildBinOp<MulInst>(A, C1, type);
+
   return nullptr;
 }
 
@@ -161,12 +176,18 @@ Value *CombinerPass::simplifySRem(SRemInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
-  Value *A, *B, *C;
+  Value *A, *B, *C, *C1;
   // (A + C1) + C2 --> A + (C1 + C2)
   if (match(I, pPtrAdd(pPtrAdd(pValue(A), pConstant(B)), pConstant(C)))) {
     Value *addc = builder.buildBinOp<AddInst>(B, C, B->getType());
     addc = folder.fold(cast<Instruction>(addc));
     return builder.buildBinOp<PtrAddInst>(A, addc, I->getType());
+  }
+
+  // (A + C1) + B --> (A + B) + C1
+  if (match(I, pPtrAdd(pPtrAdd(pValue(A), pConstant(C1)), pValue(B)))) {
+    Value *add = builder.buildBinOp<PtrAddInst>(A, B, A->getType());
+    return builder.buildBinOp<PtrAddInst>(add, C1, A->getType());
   }
 
   // A + 0 --> A
@@ -199,7 +220,7 @@ Value *CombinerPass::simplifyICmp(ICmpInst *I) {
   return nullptr;
 }
 
-static inline bool isIdenticalPhi(PhiInst *phi) {
+static inline bool isIdenticalPhi(PhiNode *phi) {
   Value *identical = nullptr;
 
   for (int i = 0; i < phi->getIncomingNum(); i++) {
@@ -215,13 +236,13 @@ static inline bool isIdenticalPhi(PhiInst *phi) {
   return true;
 }
 
-static inline bool notCyclicReference(PhiInst *I) {
+static inline bool notCyclicReference(PhiNode *I) {
   return std::none_of(I->users().begin(), I->users().end(), [I](Use *U) {
     return I->getIncomingValue(0) == U->getUser();
   });
 }
 
-Value *CombinerPass::simplifyPhi(PhiInst *I) {
+Value *CombinerPass::simplifyPhi(PhiNode *I) {
   // phi [a]  --> a
   if (I->getIncomingNum() == 1 && notCyclicReference(I))
     return I->getIncomingValue(0);
@@ -236,5 +257,40 @@ Value *CombinerPass::simplifyPhi(PhiInst *I) {
     return identical;
   }
 
+  return nullptr;
+}
+
+Value *CombinerPass::simplifyWhichOf(WhichOfInst *I) {
+
+  Value *cond, *A, *B;
+  if (match(I, pWhichOf(pValue(cond), pOne(), pZero()))) {
+    return builder.buildZExt(cond, I->getType());
+  }
+
+  if (I->getType()->isIntegerNBits(1)) {
+    // cond ? A : false --> cond & A
+    if (match(I, pWhichOf(pValue(cond), pValue(A), pZero())))
+      return builder.buildBinOp<AndInst>(cond, A, I->getType());
+
+    // cond ? true : B --> cond | B
+    if (match(I, pWhichOf(pValue(cond), pOne(), pValue(B))))
+      return builder.buildBinOp<OrInst>(cond, B, I->getType());
+  }
+
+  if (I->getType()->isInteger()) {
+
+    if (match(I->getCond(),
+              pICmp(pMustBe(I->getTrueVal()), pMustBe(I->getFalseVal())))) {
+      auto pred = cast<ICmpInst>(I->getCond())->getPredicate();
+      // A < B ? A : B  --> smin A, B
+      if (pred == ICmpInst::SLT)
+        return builder.buildBinOp<SMinInst>(I->getTrueVal(), I->getFalseVal(),
+                                            I->getType());
+      // A > B ? A : B  --> smax A, B
+      if (pred == ICmpInst::SGT)
+        return builder.buildBinOp<SMaxInst>(I->getTrueVal(), I->getFalseVal(),
+                                            I->getType());
+    }
+  }
   return nullptr;
 }

@@ -16,8 +16,8 @@ bool LivenessAnalysis::runOn(LIRFunc &func) {
 
 void LivenessAnalysis::calcUsesAndDefs(LIRFunc &func) {
   for (LIRBB *BB : func) {
-    std::set<Register *> BBUses;
-    std::set<Register *> BBDefs;
+    RegSet BBUses;
+    RegSet BBDefs;
 
     for (LIRInst *I : *BB) {
       auto uses = getUsesOf(I);
@@ -61,7 +61,7 @@ void LivenessAnalysis::calcLiveIns(LIRFunc &func) {
     LIRBB *BB = worklist.front();
     worklist.pop();
 
-    std::set<Register *> oldLiveIn = liveIn[BB];
+    RegSet oldLiveIn = liveIn[BB];
 
     liveIn[BB].clear();
     for (int i = 0; i < BB->getSuccNum(); i++) {

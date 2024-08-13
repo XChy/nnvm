@@ -62,7 +62,7 @@ bool riscv::isBranch(uint64_t instType) {
   }
 }
 
-LIRBB *riscv::getBranchDest(LIRInst *inst) {
+LIRBB *riscv::getBranchDest(const LIRInst *inst) {
   switch (inst->getOpcode()) {
   case IMPLICIT_JUMP:
     return inst->getOp(0)->as<LIRBB>();
@@ -132,8 +132,9 @@ LIRInstID riscv::getStoreInstType(LIRValueType type) {
     nnvm_unimpl();
   }
 }
-std::set<Register *> riscv::getDefsOf(LIRInst *inst) {
-  std::set<Register *> ret;
+
+RegSet riscv::getDefsOf(LIRInst *inst) {
+  RegSet ret;
   for (const LowOperand &operand : inst->operands) {
     LIRValue *value = operand.getOperand();
     if (operand.isDef() && value->isReg())
@@ -150,8 +151,8 @@ std::set<Register *> riscv::getDefsOf(LIRInst *inst) {
   return ret;
 }
 
-std::set<Register *> riscv::getUsesOf(LIRInst *inst) {
-  std::set<Register *> ret;
+RegSet riscv::getUsesOf(LIRInst *inst) {
+  RegSet ret;
   for (const LowOperand &operand : inst->operands) {
     LIRValue *value = operand.getOperand();
     if (operand.isUse() && value->isReg())

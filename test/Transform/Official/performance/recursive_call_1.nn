@@ -6,10 +6,10 @@ then20:  pred(entry15)
   22 = si2f i32 0 to float
   ret float %22
 if.exit21:  pred(entry15)
-  25 = sub i32 %num, i32 1
-  30 = call float func(float %data, i32 %25)
+  59 = add i32 %num, i32 -1
+  30 = call float func(float %data, i32 %59)
   31 = fadd float %data, float %30
-  36 = call float func(float %31, i32 %25)
+  36 = call float func(float %31, i32 %59)
   37 = fsub float %31, float %36
   ret float %37
 }

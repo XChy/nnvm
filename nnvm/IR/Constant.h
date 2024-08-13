@@ -17,9 +17,14 @@ public:
   virtual uint64_t hash() const = 0;
   virtual bool eq(const Constant *other) const = 0;
   virtual Constant *clone() const = 0;
+
   virtual ~Constant() {}
 
+  void setModule(Module *m) { module = m; }
+  Module *getModule() const { return module; }
+
 private:
+  Module *module;
 };
 
 struct ConstantEqual {
@@ -28,7 +33,7 @@ struct ConstantEqual {
 
 class ConstantInt : public Constant {
 public:
-  static Constant *create(Module &module, Type *type, GInt value);
+  static ConstantInt *create(Module &module, Type *type, GInt value);
 
   // NOTE:  User should not use this constructor.
   ConstantInt(Type *type, GInt value);
@@ -48,7 +53,13 @@ public:
     // Show in signed way.
     return std::to_string((int64_t)value);
   }
+
   std::string dumpAsOperand() { return type->dump() + " " + dump(); }
+
+  // Arithmetic operations
+  ConstantInt *add(ConstantInt *rhs) const;
+  ConstantInt *sub(ConstantInt *rhs) const;
+  ConstantInt *shl(ConstantInt *shlNum) const;
 
 private:
   GInt value;

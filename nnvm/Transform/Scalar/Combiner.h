@@ -29,7 +29,8 @@ private:
   Value *simplifyPtrAdd(PtrAddInst *I);
 
   Value *simplifyICmp(ICmpInst *I);
-  Value *simplifyPhi(PhiInst *I);
+  Value *simplifyPhi(PhiNode *I);
+  Value *simplifyWhichOf(WhichOfInst *I);
 
   ConstantFold folder;
   IRBuilder builder;

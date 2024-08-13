@@ -70,6 +70,28 @@ public:
   }
 
   template <typename NodeTy, typename Visit>
+  static inline void dfsWithEarlyExit(Graph<NodeTy> graph, NodeTy entry,
+                                      Visit visitor) {
+    std::unordered_set<NodeTy> visited;
+    std::stack<NodeTy> toVisit;
+    toVisit.push(entry);
+
+    while (!toVisit.empty()) {
+      NodeTy current = toVisit.top();
+      toVisit.pop();
+      if (visited.count(current))
+        continue;
+      visited.insert(current);
+
+      if (visitor(current))
+        return;
+
+      for (int i = 0; i < graph.getSuccNum(current); i++)
+        toVisit.push(graph.getSucc(current, i));
+    }
+  }
+
+  template <typename NodeTy, typename Visit>
   static inline void postorder(Graph<NodeTy> graph, NodeTy entry,
                                Visit visitor) {
     // Use flag to imply whether the children of the node is visited.

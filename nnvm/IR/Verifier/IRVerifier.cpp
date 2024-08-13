@@ -26,7 +26,7 @@ void IRVerifier::verify(Instruction *I) {
 
     BasicBlock *useeBlock = usee->getBlock();
 
-    if (PhiInst *phi = mayCast<PhiInst>(I)) {
+    if (PhiNode *phi = mayCast<PhiNode>(I)) {
       auto incomings = phi->getAllIncomingBBs();
       for (BasicBlock *pred : userBlock->getPredRange()) {
         assert("Phi must have predecessor as its incoming block!" &&

@@ -57,7 +57,7 @@ select.exit69:  pred(select.exit51, select.else68)
   call void putint(i32 %5147)
   g.load8150 = load i32 from ptr @g
   82 = icmp ne i32 %g.load8150, i32 0
-  83 = xor i1 %82, i1 -1
+  83 = xor i1 %82, i1 1
   84 = zext i1 %83 to i32
   85 = icmp ne i32 %84, i32 0
   br i1 %85, bb %select.then86, bb %select.exit88

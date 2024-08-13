@@ -45,6 +45,9 @@ public:
   BasicBlock *getSingleLatch() const;
   std::set<BasicBlock *> getLatches() const;
 
+  BasicBlock *getSingleExit() const;
+  BasicBlock *getSingleEdgedExit() const;
+  BasicBlock *getExclusiveExit() const;
   const std::vector<ExitEdge> &getExitEdges() const { return exitEdges; }
   std::set<BasicBlock *> getExits() const;
 
@@ -61,6 +64,8 @@ public:
   void addBlock(BasicBlock *Block) { blocks.insert(Block); }
   void removeBlock(BasicBlock *Block) { blocks.erase(Block); }
 
+  uint getDepth() const;
+
 private:
   Loop *parent;
   std::vector<Loop *> children;
@@ -76,6 +81,7 @@ public:
   bool run(Function &F);
 
   std::vector<Loop *> getLoops() const { return loops; }
+  Loop *findLoopFor(BasicBlock *block);
 
   DomTreeAnalysis *getDomTree() { return domTree; }
 
