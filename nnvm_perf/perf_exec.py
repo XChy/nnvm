@@ -42,10 +42,11 @@ def main():
 
     for root, _, files in os.walk(EXEC_DIR):
         for src in files:
-            print(f'[{total_cnt}] Executing {path.basename(src)}')
-            time_map[src] = run(path.join(root, src))
-            print(f'Run for {time_map[src]}s')
-            total_cnt += 1
+            if src.endswith(".out"):
+                print(f'[{total_cnt}] Executing {path.basename(src)}')
+                time_map[src] = run(path.join(root, src))
+                print(f'Run for {time_map[src]}s')
+                total_cnt += 1
 
     output_name = time_map["__datetime__"][0:10] + "_" + \
         time_map["__commit_hash__"][0:9] + ".json"
