@@ -15,8 +15,10 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  LA a0, a
+  SD s2, 24(sp)
   LA s1, a
+  LA s2, ans
+  ADD a0, s1, zero
   CALL getarray
   ADD s0, a0, zero
   ADDI a0, zero, 90
@@ -29,15 +31,13 @@ main:   # loop depth 0
   BLT zero, s0, bb4
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA t0, ans
-  LW t0, 0(t0)
+  LW t0, 0(s2)
   BLT t0, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA s0, ans
   ADDI a0, zero, 102
   CALL _sysy_stoptime
-  LW a0, 0(s0)
+  LW a0, 0(s2)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -45,34 +45,30 @@ bb2:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  LA t0, ans
-  LA t1, ans
-  LW t0, 0(t0)
+  LW t0, 0(s2)
   SUBW t0, zero, t0
-  SW t0, 0(t1)
+  SW t0, 0(s2)
   JAL zero, bb2
 bb4:   # loop depth 0
-  LA t1, ans
+  LW t2, 0(s2)
   ADD t0, zero, zero
-  LW t2, 0(t1)
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA t1, a
+  SH2ADD t1, t0, s1
   ADDIW a1, t0, 2
-  SH2ADD a0, t0, t1
+  LW a0, 0(t1)
   ADDIW t1, t0, 1
-  LW a0, 0(a0)
   REMW a0, a0, a1
   MULW t0, t0, a0
   ADDW t2, t2, t0
   BLT t1, s0, bb7
   # implict jump to bb6
 bb6:   # loop depth 0
-  LA t0, ans
-  SW t2, 0(t0)
+  SW t2, 0(s2)
   JAL zero, bb1
 bb7:   # loop depth 1
   ADD t0, t1, zero

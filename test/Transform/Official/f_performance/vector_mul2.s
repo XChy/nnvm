@@ -90,13 +90,13 @@ bb13:   # loop depth 0
   FDIV.S ft3, ft0, fs0
   FLW ft0, 0(t0)
   FCVT.S.W ft5, t2
+  LA t2, temp
   FLW ft1, 0(t1)
   FSGNJ.S ft2, ft0, ft1
   FSGNJN.S ft4, ft2, ft2
   # implict jump to bb14
 bb14:   # loop depth 1
-  LA t0, temp
-  FLW ft0, 0(t0)
+  FLW ft0, 0(t2)
   FDIV.S ft1, ft3, ft0
   FSUB.S ft1, ft0, ft1
   FLT.S t1, ft1, ft4
@@ -146,13 +146,11 @@ bb18:   # loop depth 0
   CALL putint
   JAL zero, bb17
 bb19:   # loop depth 1
-  LA t0, temp
-  LA t1, temp
-  FLW ft0, 0(t0)
+  FLW ft0, 0(t2)
   FDIV.S ft1, ft3, ft0
   FADD.S ft0, ft0, ft1
   FDIV.S ft0, ft0, ft5
-  FSW ft0, 0(t1)
+  FSW ft0, 0(t2)
   JAL zero, bb14
 bb20:   # loop depth 0
   ADD t0, zero, zero

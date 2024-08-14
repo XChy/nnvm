@@ -31,26 +31,31 @@ main:   # loop depth 0
   LUI t6, 2
   ADDIW t6, t6, -168
   ADD t6, t6, sp
-  FSD fs0, 0(t6)
+  SD s2, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -160
   ADD t6, t6, sp
+  FSD fs0, 0(t6)
+  LUI t6, 2
+  ADDIW t6, t6, -152
+  ADD t6, t6, sp
   FSD fs1, 0(t6)
-  LUI t0, 2
-  ADDIW t0, t0, -152
-  ADD t0, t0, sp
-  FSD fs2, 0(t0)
   LUI t0, 2
   ADDIW t0, t0, -144
   ADD t0, t0, sp
+  FSD fs2, 0(t0)
+  LUI t0, 2
+  ADDIW t0, t0, -136
+  ADD t0, t0, sp
   FSD fs3, 0(t0)
   ADDI t0, zero, 0
-  ADD s1, zero, zero
+  LA s0, a
   FCVT.S.W fs0, t0
-  ADD s0, zero, zero
+  ADD s2, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
-  SLTI t0, s1, 1000
+  SLTI t0, s2, 1000
   BNE t0, zero, bb45
   # implict jump to bb2
 bb2:   # loop depth 0
@@ -59,42 +64,41 @@ bb2:   # loop depth 0
   FSGNJ.S fs3, fs0, fs0
   ADDI a0, zero, 42
   FCVT.S.W fs1, t1
-  ADD s0, zero, zero
+  ADD s1, zero, zero
   FCVT.S.W fs2, t0
   CALL _sysy_starttime
   # implict jump to bb3
 bb3:   # loop depth 1
+  ADD t2, zero, zero
   ADD t0, zero, zero
-  ADD t1, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 2
-  LA a1, a
   FSGNJ.S ft0, fs0, fs0
-  SLLIW a0, t0, 2
-  ADD t2, zero, zero
-  ADD a1, a1, t1
+  SLLIW a0, t2, 2
+  ADD t1, zero, zero
+  ADD a1, s0, t0
   LUI t6, 1
   ADDIW t6, t6, -96
   ADD t6, t6, sp
   ADD a0, t6, a0
   # implict jump to bb5
 bb5:   # loop depth 3
-  SH2ADD a2, t2, a1
-  ADDIW t2, t2, 1
+  SH2ADD a2, t1, a1
+  ADDIW t1, t1, 1
   FLW ft1, 0(a2)
-  SLTI a2, t2, 1000
+  SLTI a2, t1, 1000
   FADD.S ft0, ft0, ft1
   BNE a2, zero, bb44
   # implict jump to bb6
 bb6:   # loop depth 2
   FDIV.S ft0, ft0, fs2
-  LUI t2, 1
-  ADDIW t2, t2, -96
-  ADDIW t0, t0, 1
-  ADDW t1, t1, t2
-  SLTI t2, t0, 1000
+  LUI t1, 1
+  ADDIW t1, t1, -96
+  ADDIW t2, t2, 1
+  ADDW t0, t0, t1
+  SLTI t1, t2, 1000
   FSW ft0, 0(a0)
-  BNE t2, zero, bb43
+  BNE t1, zero, bb43
   # implict jump to bb7
 bb7:   # loop depth 1
   LA t0, .CONSTANT.7.0
@@ -106,16 +110,15 @@ bb7:   # loop depth 1
   FSGNJ.S ft7, ft0, ft1
   # implict jump to bb8
 bb8:   # loop depth 2
-  LA a1, a
-  SLLIW a0, t1, 2
   FSGNJ.S ft0, fs0, fs0
-  LUI t0, 1
-  ADDIW t0, t0, -96
-  ADD t0, t0, sp
-  ADD t0, t0, a0
-  FLW ft1, 0(t0)
+  SLLIW a0, t1, 2
+  LUI a1, 1
+  ADDIW a1, a1, -96
+  ADD a1, a1, sp
+  ADD a1, a1, a0
   ADD t0, zero, zero
-  ADD a1, a1, t2
+  FLW ft1, 0(a1)
+  ADD a1, s0, t2
   ADDI t6, sp, 0
   ADD a0, t6, a0
   # implict jump to bb9
@@ -166,7 +169,6 @@ bb15:   # loop depth 1
   # implict jump to bb16
 bb16:   # loop depth 2
   SLLIW t0, t2, 2
-  LA a2, a
   LUI a0, 1
   ADDIW a0, a0, -96
   ADD a0, a0, sp
@@ -175,8 +177,8 @@ bb16:   # loop depth 2
   ADD a1, a1, t0
   FLW ft0, 0(a0)
   ADD t0, zero, zero
+  ADD a0, s0, t1
   FLW ft1, 0(a1)
-  ADD a0, a2, t1
   # implict jump to bb17
 bb17:   # loop depth 3
   SH2ADD a1, t0, a0
@@ -198,8 +200,8 @@ bb18:   # loop depth 2
   BNE t0, zero, bb28
   # implict jump to bb19
 bb19:   # loop depth 1
-  ADDIW s0, s0, 1
-  SLTI t0, s0, 100
+  ADDIW s1, s1, 1
+  SLTI t0, s1, 100
   BNE t0, zero, bb27
   # implict jump to bb20
 bb20:   # loop depth 0
@@ -207,9 +209,8 @@ bb20:   # loop depth 0
   ADD t1, zero, zero
   # implict jump to bb21
 bb21:   # loop depth 1
-  LA a0, a
   ADD t0, zero, zero
-  ADD a0, a0, t1
+  ADD a0, s0, t1
   # implict jump to bb22
 bb22:   # loop depth 2
   SH2ADD a1, t0, a0
@@ -248,17 +249,21 @@ bb24:   # loop depth 0
   LUI t6, 2
   ADDIW t6, t6, -168
   ADD t6, t6, sp
-  FLD fs0, 0(t6)
+  LD s2, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -160
   ADD t6, t6, sp
-  FLD fs1, 0(t6)
+  FLD fs0, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -152
   ADD t6, t6, sp
-  FLD fs2, 0(t6)
+  FLD fs1, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -144
+  ADD t6, t6, sp
+  FLD fs2, 0(t6)
+  LUI t6, 2
+  ADDIW t6, t6, -136
   ADD t6, t6, sp
   FLD fs3, 0(t6)
   LUI t0, 2
@@ -324,17 +329,16 @@ bb43:   # loop depth 2
 bb44:   # loop depth 3
   JAL zero, bb5
 bb45:   # loop depth 1
-  LA t0, a
-  ADD a0, t0, s0
+  ADD a0, s0, s1
   CALL getfarray
   XORI t0, a0, 1000
   BNE t0, zero, bb47
   # implict jump to bb46
 bb46:   # loop depth 1
   LUI t0, 1
-  ADDIW s1, s1, 1
+  ADDIW s2, s2, 1
   ADDIW t0, t0, -96
-  ADDW s0, s0, t0
+  ADDW s1, s1, t0
   JAL zero, bb1
 bb47:   # loop depth 0
   LUI ra, 2
@@ -352,17 +356,21 @@ bb47:   # loop depth 0
   LUI t6, 2
   ADDIW t6, t6, -168
   ADD t6, t6, sp
-  FLD fs0, 0(t6)
+  LD s2, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -160
   ADD t6, t6, sp
-  FLD fs1, 0(t6)
+  FLD fs0, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -152
   ADD t6, t6, sp
-  FLD fs2, 0(t6)
+  FLD fs1, 0(t6)
   LUI t6, 2
   ADDIW t6, t6, -144
+  ADD t6, t6, sp
+  FLD fs2, 0(t6)
+  LUI t6, 2
+  ADDIW t6, t6, -136
   ADD t6, t6, sp
   FLD fs3, 0(t6)
   LUI t0, 2

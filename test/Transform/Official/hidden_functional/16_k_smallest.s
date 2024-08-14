@@ -12,72 +12,70 @@ findSmallest:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  SD s2, 24(sp)
   BEQ a0, a1, bb19
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA t2, array
-  ADDIW t1, a0, 1
-  SLLIW t0, a0, 2
-  SH2ADD a4, a1, t2
+  LA s0, array
+  ADDIW t0, a0, 1
+  SLLIW t1, a0, 2
+  SH2ADD a4, a1, s0
   LW a5, 0(a4)
   BLT a0, a1, bb12
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADD s1, a0, zero
+  ADD s2, a0, zero
   # implict jump to bb3
 bb3:   # loop depth 0
-  LA t2, array
-  ADD t0, t2, t0
-  LW t2, 0(t0)
+  ADD t1, s0, t1
+  LW t2, 0(t1)
   LW a5, 0(a4)
-  SW a5, 0(t0)
+  SW a5, 0(t1)
   SW t2, 0(a4)
-  BEQ a2, s1, bb8
+  BEQ a2, s2, bb8
   # implict jump to bb4
 bb4:   # loop depth 0
-  BLT a2, s1, bb7
+  BLT a2, s2, bb7
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADD a0, t1, zero
+  ADD a0, t0, zero
   CALL findSmallest
   # implict jump to bb6
 bb6:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb7:   # loop depth 0
-  ADDIW a1, s1, -1
+  ADDIW a1, s2, -1
   CALL findSmallest
   JAL zero, bb6
 bb8:   # loop depth 0
   ADDI t0, zero, 0
-  BLT t0, s1, bb9
+  BLT t0, s2, bb9
   JAL zero, bb6
 bb9:   # loop depth 0
-  ADD t0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb10
 bb10:   # loop depth 1
-  LA t1, array
-  ADDIW s0, t0, 1
-  SH2ADD t0, t0, t1
+  SH2ADD t0, s1, s0
+  ADDIW s1, s1, 1
   LW a0, 0(t0)
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  BLT s0, s1, bb11
+  BLT s1, s2, bb11
   JAL zero, bb6
 bb11:   # loop depth 1
-  ADD t0, s0, zero
   JAL zero, bb10
 bb12:   # loop depth 0
   ADD t2, a0, zero
-  ADD s1, a0, zero
+  ADD s2, a0, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  LA a6, array
-  SH2ADD a6, t2, a6
+  SH2ADD a6, t2, s0
   LW a7, 0(a6)
   BGE a5, a7, bb18
   # implict jump to bb14
@@ -85,8 +83,8 @@ bb14:   # loop depth 1
   # implict jump to bb15
 bb15:   # loop depth 1
   ADDIW t2, t2, 1
-  ADDIW t1, s1, 1
-  SLLIW t0, s1, 2
+  ADDIW t0, s2, 1
+  SLLIW t1, s2, 2
   BLT t2, a1, bb17
   # implict jump to bb16
 bb16:   # loop depth 0
@@ -94,18 +92,18 @@ bb16:   # loop depth 0
 bb17:   # loop depth 1
   JAL zero, bb13
 bb18:   # loop depth 1
-  LA t3, array
   LW a7, 0(a6)
-  ADD s1, t1, zero
-  ADD t0, t3, t0
-  LW t1, 0(t0)
-  SW t1, 0(a6)
-  SW a7, 0(t0)
+  ADD t1, s0, t1
+  ADD s2, t0, zero
+  LW t0, 0(t1)
+  SW t0, 0(a6)
+  SW a7, 0(t1)
   JAL zero, bb15
 bb19:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 main:   # loop depth 0

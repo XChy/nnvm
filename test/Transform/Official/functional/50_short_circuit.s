@@ -10,6 +10,7 @@ main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
+  LA s0, g
   CALL getint
   ADDI t0, zero, 10
   BLT t0, a0, bb10
@@ -25,12 +26,10 @@ bb2:   # loop depth 0
   BGE t0, a0, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDW t0, t0, a0
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   # implict jump to bb4
 bb4:   # loop depth 0
@@ -39,22 +38,17 @@ bb4:   # loop depth 0
   BGE t0, a0, bb6
   # implict jump to bb5
 bb5:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDW t0, t0, a0
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   # implict jump to bb6
 bb6:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LA s0, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDIW t0, t0, 99
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   LW t0, 0(s0)
   SLTU t0, zero, t0
@@ -67,29 +61,23 @@ bb7:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb8:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDIW t0, t0, 100
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   JAL zero, bb7
 bb9:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDW t0, t0, a0
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   JAL zero, bb2
 bb10:   # loop depth 0
-  LA t0, g
-  LA t1, g
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   ADDW t0, t0, a0
   ADD a0, t0, zero
-  SW t0, 0(t1)
+  SW t0, 0(s0)
   CALL putint
   JAL zero, bb1

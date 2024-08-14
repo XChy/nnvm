@@ -166,7 +166,7 @@ while.body307:  pred(while.body307, while.body307_preheader)
   i.phi486 = phi [bb %while.body307, i32 %335, bb %while.body307_preheader, i32 0]
   317 = call i32 getint()
   450 = shl i32 %317, i32 2
-  323 = ptradd ptr @cns, i32 %450
+  323 = ptradd ptr %cns.pinned, i32 %450
   330.load = load i32 from ptr %323
   332 = add i32 %330.load, i32 1
   store i32 %332 to ptr %323
@@ -174,15 +174,15 @@ while.body307:  pred(while.body307, while.body307_preheader)
   311 = icmp slt i32 %335, i32 %219
   br i1 %311, bb %while.body307, bb %while.exit308
 while.exit308:  pred(while.body_exclu_exit, while.body307)
-  338 = ptradd ptr @cns, i32 4
+  338 = ptradd ptr %cns.pinned, i32 4
   338.load = load i32 from ptr %338
-  341 = ptradd ptr @cns, i32 8
+  341 = ptradd ptr %cns.pinned, i32 8
   341.load = load i32 from ptr %341
-  344 = ptradd ptr @cns, i32 12
+  344 = ptradd ptr %cns.pinned, i32 12
   344.load = load i32 from ptr %344
-  347 = ptradd ptr @cns, i32 16
+  347 = ptradd ptr %cns.pinned, i32 16
   347.load = load i32 from ptr %347
-  350 = ptradd ptr @cns, i32 20
+  350 = ptradd ptr %cns.pinned, i32 20
   350.load = load i32 from ptr %350
   352 = call i32 dfs(i32 %338.load, i32 %341.load, i32 %344.load, i32 %347.load, i32 %350.load, i32 0)
   call void putint(i32 %352)
@@ -208,6 +208,7 @@ while.body230_exclu_exit:  pred(while.body238_exclu_exit)
   268.rec = add i32 %536, i32 2939328
   br i1 %226, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(while.body230_exclu_exit)
+  cns.pinned = pin ptr @cns
   311485 = icmp slt i32 0, i32 %219
   br i1 %311485, bb %while.body307_preheader, bb %while.exit308
 }

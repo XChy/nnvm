@@ -18,7 +18,6 @@ main:   # loop depth 0
   CALL getint
   LA s1, b
   SW a0, 0(s0)
-  LA s0, a
   CALL getint
   SW a0, 0(s1)
   LW t0, 0(s0)

@@ -13,29 +13,30 @@ seed:
 .byte 159, 188, 48, 1, 213, 226, 48, 1, 7, 202, 154, 59
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -160
+  ADDI sp, sp, -176
   SD ra, 128(sp)
   SD s0, 136(sp)
   SD s1, 144(sp)
   SD s2, 152(sp)
+  SD s3, 160(sp)
+  LA s0, staticvalue
+  LA s2, a
   CALL getint
-  LA s1, staticvalue
-  ADD s0, a0, zero
-  ADDI s2, zero, 0
+  ADDI s3, zero, 0
+  ADD s1, a0, zero
   CALL getint
   ADD t0, a0, zero
   ADDI a0, zero, 56
-  SW t0, 0(s1)
+  SW t0, 0(s0)
   CALL _sysy_starttime
-  BLT s2, s0, bb2
+  BLT s3, s1, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA s1, a
   LUI s0, 2
-  ADDIW s0, s0, 1808
   ADDI a0, zero, 64
+  ADDIW s0, s0, 1808
   CALL _sysy_stoptime
-  ADD a1, s1, zero
+  ADD a1, s2, zero
   ADD a0, zero, s0
   CALL putarray
   ADD a0, zero, zero
@@ -43,84 +44,78 @@ bb1:   # loop depth 0
   LD s0, 136(sp)
   LD s1, 144(sp)
   LD s2, 152(sp)
-  ADDI sp, sp, 160
+  LD s3, 160(sp)
+  ADDI sp, sp, 176
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 1
-  LA t0, staticvalue
+  LW t0, 0(s0)
   LUI t1, 4876
   ADDIW t1, t1, -865
   LUI t2, 4878
-  LW t0, 0(t0)
-  LUI a1, 244141
+  LUI a0, 244141
   ADDIW t2, t2, 725
-  ADDIW a1, a1, -1529
-  LA a0, staticvalue
-  LA a2, staticvalue
   MULW t0, t0, t1
-  ADDIW s0, s0, -1
+  ADDIW a0, a0, -1529
+  ADDIW s1, s1, -1
   ADDW t0, t0, t2
-  REMW t1, t0, a1
-  SW t0, 0(a0)
-  SW t1, 0(a2)
+  REMW t1, t0, a0
+  SW t0, 0(s0)
+  SW t1, 0(s0)
   BLT t1, zero, bb25
   # implict jump to bb4
 bb4:   # loop depth 1
-  LA t0, staticvalue
+  LW t0, 0(s0)
   LUI t1, 4876
   ADDIW t1, t1, -865
   LUI a0, 4878
-  LW t0, 0(t0)
-  LUI a2, 244141
+  LUI a1, 244141
   ADDIW a0, a0, 725
-  ADDIW a2, a2, -1529
-  LUI t2, 73
-  LA a1, staticvalue
   MULW t1, t0, t1
+  ADDIW a1, a1, -1529
+  LUI t2, 73
   ADDIW t2, t2, 992
-  REMW t0, t0, t2
-  LA a3, staticvalue
   ADDW t1, t1, a0
-  REMW t2, t1, a2
-  SW t1, 0(a1)
-  SW t2, 0(a3)
+  REMW t0, t0, t2
+  REMW t2, t1, a1
+  SW t1, 0(s0)
+  SW t2, 0(s0)
   BLT t2, zero, bb24
   # implict jump to bb5
 bb5:   # loop depth 1
   ADDI t1, zero, 30
-  LA t2, staticvalue
+  LW t2, 0(s0)
   DIVW t1, t0, t1
   ADDI a0, zero, 1
-  LW t2, 0(t2)
   ADDI a1, zero, 2
   ADDI a2, zero, 4
-  ADDI a3, zero, 8
-  ADDI a4, zero, 16
-  ADDI a5, zero, 32
   SW a0, 0(sp)
-  ADDI a0, zero, 64
+  ADDI a0, zero, 8
   SW a1, 4(sp)
-  ADDI a1, zero, 128
+  ADDI a1, zero, 16
   SW a2, 8(sp)
+  ADDI a2, zero, 32
+  SW a0, 12(sp)
+  ADDI a0, zero, 64
+  SW a1, 16(sp)
+  ADDI a1, zero, 128
+  SW a2, 20(sp)
   ADDI a2, zero, 256
-  SW a3, 12(sp)
-  ADDI a3, zero, 512
-  SW a4, 16(sp)
-  LUI a6, 1
-  SW a5, 20(sp)
-  ADDI a4, zero, 1024
   SW a0, 24(sp)
-  LUI a0, 1
+  ADDI a0, zero, 512
   SW a1, 28(sp)
-  ADDIW a6, a6, -2048
+  LUI a3, 1
   SW a2, 32(sp)
+  ADDI a1, zero, 1024
+  SW a0, 36(sp)
+  LUI a0, 1
+  ADDIW a3, a3, -2048
+  SW a1, 40(sp)
   LUI a1, 2
-  SW a3, 36(sp)
   ADDIW a0, a0, 0
-  SW a4, 40(sp)
+  SW a3, 44(sp)
   LUI a2, 4
-  SW a6, 44(sp)
   ADDIW a1, a1, 0
   SW a0, 48(sp)
   LUI a0, 8
@@ -186,11 +181,10 @@ bb5:   # loop depth 1
   # implict jump to bb6
 bb6:   # loop depth 1
   ADDI a2, zero, 30
-  LA a1, a
-  REMW a2, t0, a2
-  SH2ADD a1, t1, a1
+  SH2ADD a1, t1, s2
+  REMW t1, t0, a2
   LW t0, 0(a1)
-  SLLIW t1, a2, 2
+  SLLIW t1, t1, 2
   ADDI a2, sp, 0
   ADD t1, a2, t1
   LW t1, 0(t1)
@@ -211,7 +205,7 @@ bb8:   # loop depth 1
   SW t0, 0(a1)
   # implict jump to bb9
 bb9:   # loop depth 1
-  BLT zero, s0, bb10
+  BLT zero, s1, bb10
   JAL zero, bb1
 bb10:   # loop depth 1
   JAL zero, bb3
@@ -256,20 +250,16 @@ bb23:   # loop depth 1
   ADD t0, t1, zero
   JAL zero, bb13
 bb24:   # loop depth 1
-  LA t1, staticvalue
+  LW t1, 0(s0)
   LUI t2, 244141
-  LA a0, staticvalue
   ADDIW t2, t2, -1529
-  LW t1, 0(t1)
   ADDW t1, t1, t2
-  SW t1, 0(a0)
+  SW t1, 0(s0)
   JAL zero, bb5
 bb25:   # loop depth 1
-  LA t0, staticvalue
+  LW t0, 0(s0)
   LUI t1, 244141
-  LA t2, staticvalue
   ADDIW t1, t1, -1529
-  LW t0, 0(t0)
   ADDW t0, t0, t1
-  SW t0, 0(t2)
+  SW t0, 0(s0)
   JAL zero, bb4

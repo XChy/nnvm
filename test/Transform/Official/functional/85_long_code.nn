@@ -109,7 +109,8 @@ entry528:  pred()
   %count1103 = stack 4000
   %result = stack 128
   %arr = stack 128
-  store i32 32 to ptr @n
+  n.pinned = pin ptr @n
+  store i32 32 to ptr %n.pinned
   store i32 7 to ptr %arr
   536 = ptradd ptr %arr, i32 4
   store i32 23 to ptr %536
@@ -472,7 +473,7 @@ arrCopy.while.exit3761060:  pred(insertsort.while.exit67, arrCopy.while.body3751
   call void putint(i32 %737.load2490)
   737.load2499 = load i32 from ptr %3839973923
   call void putint(i32 %737.load2499)
-  n.load37810681528 = load i32 from ptr @n
+  n.load37810681528 = load i32 from ptr %n.pinned
   37910691529 = icmp slt i32 0, i32 %n.load37810681528
   br i1 %37910691529, bb %arrCopy.while.body3751071_preheader, bb %arrCopy.while.exit3761079
 arrCopy.while.body3751071_preheader:  pred(arrCopy.while.exit3761060)
@@ -516,7 +517,7 @@ getMost.while.body294_preheader:  pred(getMost.while.body277_exclu_exit)
 getMost.while.body294:  pred(getMost.while.body294.split, getMost.while.body294_preheader)
   i274.phi11201560 = phi [bb %getMost.while.body294.split, i32 %3321143, bb %getMost.while.body294_preheader, i32 0]
   max.phi79811191559 = phi [bb %getMost.while.body294.split, i32 %3937, bb %getMost.while.body294_preheader, i32 0]
-  number.phi80011181558 = phi [bb %getMost.while.body294.split, i32 %3940, bb %getMost.while.body294_preheader, i32 0]
+  number.phi80011181558 = phi [bb %getMost.while.body294.split, i32 %3941, bb %getMost.while.body294_preheader, i32 0]
   1465 = shl i32 %i274.phi11201560, i32 2
   3041126 = ptradd ptr %result, i32 %1465
   304.load1127 = load i32 from ptr %3041126
@@ -528,15 +529,15 @@ getMost.while.body294:  pred(getMost.while.body294.split, getMost.while.body294_
   3201133 = icmp sgt i32 %3141131, i32 %max.phi79811191559
   br i1 %3201133, bb %number.phi1141.which.true, bb %getMost.while.body294.split
 getMost.while.body294.split:  pred(getMost.while.body294, number.phi1141.which.true)
-  3940 = phi [bb %number.phi1141.which.true, i32 %304.load1127, bb %getMost.while.body294, i32 %number.phi80011181558]
+  3941 = phi [bb %number.phi1141.which.true, i32 %304.load1127, bb %getMost.while.body294, i32 %number.phi80011181558]
   3937 = signed max i32 %3141131, i32 %max.phi79811191559
   3321143 = add i32 %i274.phi11201560, i32 1
   2981122 = icmp slt i32 %3321143, i32 %n.load29711211555
   br i1 %2981122, bb %getMost.while.body294, bb %getMost.while.body294_exclu_exit
 getMost.while.exit295:  pred(getMost.while.body277_exclu_exit, getMost.while.body294_exclu_exit)
-  1557 = phi [bb %getMost.while.body294_exclu_exit, i32 %3940, bb %getMost.while.body277_exclu_exit, i32 0]
+  1557 = phi [bb %getMost.while.body294_exclu_exit, i32 %3941, bb %getMost.while.body277_exclu_exit, i32 0]
   call void putint(i32 %1557)
-  n.load37810111551 = load i32 from ptr @n
+  n.load37810111551 = load i32 from ptr %n.pinned
   37910121552 = icmp slt i32 0, i32 %n.load37810111551
   br i1 %37910121552, bb %arrCopy.while.body3751014_preheader, bb %arrCopy.while.exit3761022
 getMid.then248:  pred(bubblesort.while.exit)
@@ -629,7 +630,7 @@ insertsort.while.exit67:  pred(arrCopy.while.exit3761041, insertsort.while.exit8
   call void putint(i32 %713.load2769)
   713.load2778 = load i32 from ptr %3839973923
   call void putint(i32 %713.load2778)
-  n.load37810491534 = load i32 from ptr @n
+  n.load37810491534 = load i32 from ptr %n.pinned
   37910501535 = icmp slt i32 0, i32 %n.load37810491534
   br i1 %37910501535, bb %arrCopy.while.body3751052_preheader, bb %arrCopy.while.exit3761060
 insertsort.while.cond82:  pred(insertsort.while.body66, insertsort.while.body83)
@@ -741,7 +742,7 @@ revert.while.exit342:  pred(revert.while.body341, entry528)
   call void putint(i32 %644.load3606)
   644.load3615 = load i32 from ptr %3839973923
   call void putint(i32 %644.load3615)
-  n.load12821565 = load i32 from ptr @n
+  n.load12821565 = load i32 from ptr %n.pinned
   90912831566 = add i32 %n.load12821565, i32 -1
   1012841567 = icmp slt i32 0, i32 %90912831566
   br i1 %1012841567, bb %bubblesort.while.body_preheader, bb %bubblesort.while.exit
@@ -822,7 +823,7 @@ calSum.while.exit400:  pred(arrCopy.while.exit3761079, calSum.if.exit419)
   call void putint(i32 %758.load2211)
   758.load2220 = load i32 from ptr %3839973923
   call void putint(i32 %758.load2220)
-  n.load37810871519 = load i32 from ptr @n
+  n.load37810871519 = load i32 from ptr %n.pinned
   37910881520 = icmp slt i32 0, i32 %n.load37810871519
   br i1 %37910881520, bb %arrCopy.while.body3751090_preheader, bb %arrCopy.while.exit3761098
 calSum.then418:  pred(calSum.while.body399)
@@ -910,7 +911,7 @@ bubblesort.while.exit:  pred(revert.while.exit342, bubblesort.while.exit15)
   call void putint(i32 %663.load3327)
   663.load3336 = load i32 from ptr %3839973923
   call void putint(i32 %663.load3336)
-  n.load2451148 = load i32 from ptr @n
+  n.load2451148 = load i32 from ptr %n.pinned
   8681149 = and i32 %n.load2451148, i32 1
   8691150 = icmp eq i32 %8681149, i32 0
   br i1 %8691150, bb %getMid.then248, bb %getMid.else
@@ -1016,7 +1017,7 @@ bubblesort.while.exit1333:  pred(arrCopy.while.exit3761022, bubblesort.while.exi
   call void putint(i32 %692.load3048)
   692.load3057 = load i32 from ptr %3839973923
   call void putint(i32 %692.load3057)
-  n.load37810301541 = load i32 from ptr @n
+  n.load37810301541 = load i32 from ptr %n.pinned
   37910311542 = icmp slt i32 0, i32 %n.load37810301541
   br i1 %37910311542, bb %arrCopy.while.body3751033_preheader, bb %arrCopy.while.exit3761041
 bubblesort.while.body141343_preheader:  pred(bubblesort.while.body1331)
@@ -1050,7 +1051,7 @@ bubblesort.if.exit1362:  pred(bubblesort.while.body141343, bubblesort.then1356)
 bubblesort.while.body14_exclu_exit:  pred(bubblesort.if.exit)
   br bb %bubblesort.while.exit15
 getMost.while.body277_exclu_exit:  pred(getMost.while.body277)
-  n.load29711211555 = load i32 from ptr @n
+  n.load29711211555 = load i32 from ptr %n.pinned
   29811221556 = icmp slt i32 0, i32 %n.load29711211555
   br i1 %29811221556, bb %getMost.while.body294_preheader, bb %getMost.while.exit295
 getMost.while.body294_exclu_exit:  pred(getMost.while.body294.split)

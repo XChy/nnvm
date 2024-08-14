@@ -306,20 +306,16 @@ bb29:   # loop depth 1
   BNE t0, zero, bb35
   # implict jump to bb30
 bb30:   # loop depth 0
+  LA s1, cns
   BLT zero, s2, bb32
   # implict jump to bb31
 bb31:   # loop depth 0
-  LA t0, cns
-  LA t1, cns
-  LA t2, cns
-  LA a3, cns
-  LW a0, 4(t0)
-  LA t0, cns
+  LW a0, 4(s1)
   ADD a5, zero, zero
-  LW a1, 8(t1)
-  LW a2, 12(t2)
-  LW a3, 16(a3)
-  LW a4, 20(t0)
+  LW a1, 8(s1)
+  LW a2, 12(s1)
+  LW a3, 16(s1)
+  LW a4, 20(s1)
   CALL dfs
   ADD s0, a0, zero
   ADD a0, s0, zero
@@ -337,7 +333,6 @@ bb32:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb33
 bb33:   # loop depth 1
-  LA s1, cns
   CALL getint
   ADDIW s0, s0, 1
   SH2ADD t0, a0, s1

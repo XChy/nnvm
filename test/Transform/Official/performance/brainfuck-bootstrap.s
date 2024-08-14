@@ -45,10 +45,10 @@ bb1:   # loop depth 1
   BNE t0, zero, bb49
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA t0, output_length
-  LA t1, program_length
-  SW zero, 0(t0)
-  LW a6, 0(t1)
+  LA t4, output_length
+  LA t0, program_length
+  SW zero, 0(t4)
+  LW a6, 0(t0)
   BLT zero, a6, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -61,6 +61,8 @@ bb3:   # loop depth 0
   ADD sp, sp, t0
   JALR zero, 0(ra)
 bb4:   # loop depth 0
+  LA t3, program
+  LA a7, tape
   ADD a1, zero, zero
   ADD a2, zero, zero
   ADD a4, zero, zero
@@ -70,8 +72,7 @@ bb4:   # loop depth 0
   ADD t2, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA t1, program
-  SH2ADD t1, t2, t1
+  SH2ADD t1, t2, t3
   LW t1, 0(t1)
   XORI a3, t1, 62
   BEQ a3, zero, bb48
@@ -90,12 +91,12 @@ bb8:   # loop depth 1
   # implict jump to bb9
 bb9:   # loop depth 1
   SLLIW a3, a0, 2
-  XORI a7, t1, 91
-  BEQ a7, zero, bb32
+  XORI t5, t1, 91
+  BEQ t5, zero, bb32
   # implict jump to bb10
 bb10:   # loop depth 1
-  XORI a7, t1, 93
-  BEQ a7, zero, bb28
+  XORI t5, t1, 93
+  BEQ t5, zero, bb28
   # implict jump to bb11
 bb11:   # loop depth 1
   XORI a3, t1, 46
@@ -133,41 +134,34 @@ bb23:   # loop depth 1
   BGE t0, t1, bb26
   # implict jump to bb24
 bb24:   # loop depth 1
-  LA a3, input
-  LA a7, tape
+  LA t5, input
   ADDIW t1, t0, 1
-  SH2ADD a3, t0, a3
-  SH2ADD t0, a5, a7
-  LW a3, 0(a3)
-  SW a3, 0(t0)
+  SH2ADD a3, a5, a7
+  SH2ADD t0, t0, t5
+  LW t0, 0(t0)
+  SW t0, 0(a3)
   # implict jump to bb25
 bb25:   # loop depth 1
   ADD t0, t1, zero
   JAL zero, bb14
 bb26:   # loop depth 1
-  LA a3, tape
+  SH2ADD a3, a5, a7
   ADD t1, t0, zero
-  SH2ADD t0, a5, a3
-  SW zero, 0(t0)
+  SW zero, 0(a3)
   JAL zero, bb25
 bb27:   # loop depth 1
-  LA t1, output_length
-  LA a3, tape
-  LA a7, output
-  LA t3, output_length
-  LW t1, 0(t1)
-  SH2ADD a3, a5, a3
-  LA t4, output_length
+  LW t1, 0(t4)
+  SH2ADD a3, a5, a7
+  LA t5, output
   LW a3, 0(a3)
-  SH2ADD t1, t1, a7
+  SH2ADD t1, t1, t5
   SW a3, 0(t1)
-  LW t1, 0(t3)
+  LW t1, 0(t4)
   ADDIW t1, t1, 1
   SW t1, 0(t4)
   JAL zero, bb15
 bb28:   # loop depth 1
-  LA t1, tape
-  SH2ADD t1, a5, t1
+  SH2ADD t1, a5, a7
   LW a1, 0(t1)
   BEQ a1, zero, bb31
   # implict jump to bb29
@@ -182,22 +176,21 @@ bb31:   # loop depth 1
   ADDIW a0, a0, -1
   JAL zero, bb30
 bb32:   # loop depth 1
-  LA t1, tape
-  SH2ADD t1, a5, t1
+  SH2ADD t1, a5, a7
   LW a4, 0(t1)
   BNE a4, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 1
   ADDI a2, zero, 1
+  ADD a3, t2, zero
   # implict jump to bb34
 bb34:   # loop depth 2
-  LA t1, program
-  ADDIW a3, t2, 1
-  SH2ADD t2, t2, t1
+  SH2ADD t2, a3, t3
   ADDIW t1, a2, -1
   LW t2, 4(t2)
-  XORI a7, t2, 93
-  BEQ a7, zero, bb43
+  ADDIW a3, a3, 1
+  XORI t5, t2, 93
+  BEQ t5, zero, bb43
   # implict jump to bb35
 bb35:   # loop depth 2
   ADD t1, a2, zero
@@ -219,7 +212,6 @@ bb40:   # loop depth 1
   ADD t2, a3, zero
   JAL zero, bb17
 bb41:   # loop depth 2
-  ADD t2, a3, zero
   JAL zero, bb34
 bb42:   # loop depth 2
   JAL zero, bb38
@@ -233,15 +225,13 @@ bb44:   # loop depth 1
   SW t2, 0(t1)
   JAL zero, bb40
 bb45:   # loop depth 1
-  LA t1, tape
-  SH2ADD t1, a5, t1
+  SH2ADD t1, a5, a7
   LW a3, 0(t1)
   ADDIW a3, a3, -1
   SW a3, 0(t1)
   JAL zero, bb18
 bb46:   # loop depth 1
-  LA t1, tape
-  SH2ADD t1, a5, t1
+  SH2ADD t1, a5, a7
   LW a3, 0(t1)
   ADDIW a3, a3, 1
   SW a3, 0(t1)
@@ -259,6 +249,7 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  SD s2, 24(sp)
   CALL getch
   XORI t1, a0, 60
   XORI t0, a0, 62
@@ -300,22 +291,21 @@ bb53:   # loop depth 0
   BNE t0, zero, bb55
   # implict jump to bb54
 bb54:   # loop depth 0
-  LA s0, input_length
+  LA s2, input_length
   CALL getint
-  LA s1, input_length
-  SW a0, 0(s0)
+  SW a0, 0(s2)
   CALL getch
-  LW t0, 0(s1)
+  LW t0, 0(s2)
   BLT zero, t0, bb60
   # implict jump to bb55
 bb55:   # loop depth 0
   ADDI a0, zero, 116
-  LA s0, output_length
+  LA s1, output_length
   CALL _sysy_starttime
   CALL run_program
   ADDI a0, zero, 118
   CALL _sysy_stoptime
-  LW t0, 0(s0)
+  LW t0, 0(s1)
   BLT zero, t0, bb57
   # implict jump to bb56
 bb56:   # loop depth 0
@@ -323,6 +313,7 @@ bb56:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb57:   # loop depth 0
@@ -330,7 +321,6 @@ bb57:   # loop depth 0
   # implict jump to bb58
 bb58:   # loop depth 1
   LA t1, output
-  LA s1, output_length
   ADDIW s0, t0, 1
   SH2ADD t0, t0, t1
   LW a0, 0(t0)
@@ -347,21 +337,21 @@ bb60:   # loop depth 0
 bb61:   # loop depth 1
   LA s1, input
   CALL getch
-  LA t1, input_length
-  SH2ADD t0, s0, s1
-  SW a0, 0(t0)
-  ADDIW s0, s0, 1
-  LW t0, 0(t1)
-  BLT s0, t0, bb62
+  ADDIW t0, s0, 1
+  SH2ADD t1, s0, s1
+  SW a0, 0(t1)
+  LW t1, 0(s2)
+  BLT t0, t1, bb62
   JAL zero, bb55
 bb62:   # loop depth 1
+  ADD s0, t0, zero
   JAL zero, bb61
 bb63:   # loop depth 0
+  LA s0, program_length
   # implict jump to bb64
 bb64:   # loop depth 1
-  LA t0, program_length
+  LW t0, 0(s0)
   LA t1, program
-  LW t0, 0(t0)
   SH2ADD t0, t0, t1
   SW a0, 0(t0)
   CALL getch
@@ -396,12 +386,10 @@ bb64:   # loop depth 1
 bb65:   # loop depth 1
   # implict jump to bb66
 bb66:   # loop depth 1
-  LA t0, program_length
-  LA t2, program_length
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   XORI t1, a0, 35
   ADDIW t0, t0, 1
-  SW t0, 0(t2)
+  SW t0, 0(s0)
   BNE t1, zero, bb67
   JAL zero, bb53
 bb67:   # loop depth 1

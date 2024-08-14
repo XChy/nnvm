@@ -17,9 +17,10 @@ main:   # loop depth 0
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
+  LA s3, x
   CALL getint
-  ADDI s1, zero, 0
   ADD s0, a0, zero
+  ADDI s1, zero, 0
   CALL getint
   ADD s2, a0, zero
   ADDI a0, zero, 13
@@ -27,9 +28,9 @@ main:   # loop depth 0
   BLT s1, s0, bb18
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADDI a6, zero, 1
+  ADDI a5, zero, 1
   ADDIW a2, s0, -1
-  BLT a6, a2, bb4
+  BLT a5, a2, bb4
   # implict jump to bb2
 bb2:   # loop depth 0
   LUI t0, 352
@@ -50,21 +51,18 @@ bb3:   # loop depth 0
   ADDIW a1, a1, -1696
   MULW t2, t0, t2
   MULW a2, t1, a2
-  LA a3, x
   MULW t1, t0, a1
-  LA t0, x
-  LA s3, x
   LUI s1, 1048224
-  ADD a1, a3, a0
-  ADD t0, t0, t2
+  ADD a1, s3, a0
+  ADD t0, s3, t2
   ADDI a0, zero, 53
   ADDIW s1, s1, -608
   ADD s2, a1, a2
   ADD s4, t0, t1
   CALL _sysy_stoptime
+  ADD s1, s2, s1
   ADD a1, s3, zero
   ADD a0, s0, zero
-  ADD s1, s2, s1
   CALL putarray
   ADD a1, s4, zero
   ADD a0, s0, zero
@@ -91,7 +89,7 @@ bb4:   # loop depth 0
   ADD a0, zero, t1
   # implict jump to bb5
 bb5:   # loop depth 1
-  BLT a6, a2, bb10
+  BLT a5, a2, bb10
   # implict jump to bb6
 bb6:   # loop depth 1
   ADDI t1, zero, 1
@@ -111,14 +109,13 @@ bb9:   # loop depth 1
   JAL zero, bb5
 bb10:   # loop depth 1
   LUI t2, 1
-  LA a3, x
-  ADDIW t2, t2, -1696
   ADDI t1, zero, 1
+  ADDIW t2, t2, -1696
+  ADD a3, s3, t0
   ADD t2, zero, t2
-  ADD a3, a3, t0
   # implict jump to bb11
 bb11:   # loop depth 2
-  BLT a6, a2, bb15
+  BLT a5, a2, bb15
   # implict jump to bb12
 bb12:   # loop depth 2
   LUI t0, 1
@@ -138,31 +135,31 @@ bb15:   # loop depth 2
 bb16:   # loop depth 3
   LUI a7, 1048224
   ADDIW a7, a7, 1792
-  SH2ADD a5, t0, a4
-  ADD a7, a5, a7
+  SH2ADD a6, t0, a4
+  ADD a7, a6, a7
   LUI t3, 352
   LW a7, 0(a7)
   ADDIW t3, t3, -1792
-  ADD t3, a5, t3
+  ADD t3, a6, t3
   LUI t4, 1048575
   ADDIW t4, t4, 1696
   LUI t5, 1
   LW t3, 0(t3)
-  ADD t4, a5, t4
+  ADD t4, a6, t4
   ADDIW t5, t5, -1696
   ADDIW t0, t0, 1
-  ADD t5, a5, t5
+  ADD t5, a6, t5
   LW t4, 0(t4)
   ADDW a7, a7, t3
   LW t3, 0(t5)
   ADDW a7, a7, t4
-  LW t4, -4(a5)
+  LW t4, -4(a6)
   ADDW a7, a7, t3
-  LW t3, 4(a5)
+  LW t3, 4(a6)
   ADDW a7, a7, t4
   ADDW a7, a7, t3
   DIVW a7, a7, s2
-  SW a7, 0(a5)
+  SW a7, 0(a6)
   BLT t0, a2, bb17
   JAL zero, bb12
 bb17:   # loop depth 3
@@ -184,10 +181,9 @@ bb20:   # loop depth 1
 bb21:   # loop depth 1
   JAL zero, bb19
 bb22:   # loop depth 1
-  LA t0, x
   ADD t1, zero, zero
   ADD t2, zero, zero
-  ADD a2, t0, a1
+  ADD a2, s3, a1
   # implict jump to bb23
 bb23:   # loop depth 2
   BLT s1, s0, bb26

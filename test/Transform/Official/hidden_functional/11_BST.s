@@ -23,19 +23,20 @@ insert:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
+  LA a2, value
+  LA t1, left_child
+  LA t2, right_child
   ADD s0, a0, zero
   XORI t0, s0, -1
   BEQ t0, zero, bb5
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA t0, value
-  SH2ADD t0, s0, t0
+  SH2ADD t0, s0, a2
   LW t0, 0(t0)
   BLT t0, a1, bb4
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA t0, left_child
-  SH2ADD s1, s0, t0
+  SH2ADD s1, s0, t1
   LW a0, 0(s1)
   CALL insert
   SW a0, 0(s1)
@@ -48,29 +49,24 @@ bb3:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb4:   # loop depth 0
-  LA t0, right_child
-  SH2ADD s1, s0, t0
+  SH2ADD s1, s0, t2
   LW a0, 0(s1)
   CALL insert
   SW a0, 0(s1)
   JAL zero, bb3
 bb5:   # loop depth 0
-  LA t0, now
-  LA t1, value
-  LA t2, left_child
-  LA a3, right_child
-  LW a0, 0(t0)
-  ADDI a2, zero, -1
-  LA a5, now
+  LA a3, now
   ADDI a4, zero, -1
-  SH2ADD t0, a0, t1
-  SH2ADD t1, a0, t2
+  ADDI a5, zero, -1
+  LW a0, 0(a3)
+  SH2ADD t0, a0, a2
+  SH2ADD t1, a0, t1
   SW a1, 0(t0)
-  SH2ADD t0, a0, a3
-  SW a2, 0(t1)
+  SH2ADD t0, a0, t2
+  SW a4, 0(t1)
   ADDIW t1, a0, 1
-  SW a4, 0(t0)
-  SW t1, 0(a5)
+  SW a5, 0(t0)
+  SW t1, 0(a3)
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -87,16 +83,16 @@ delete:   # loop depth 0
   BEQ t0, zero, bb31
   # implict jump to bb7
 bb7:   # loop depth 0
-  LA t0, value
-  LA t1, right_child
-  SH2ADD t2, s1, t0
-  SH2ADD s0, s1, t1
+  LA a2, value
+  LA t0, right_child
+  SH2ADD t2, s1, a2
+  SH2ADD s0, s1, t0
   LW t0, 0(t2)
   BLT t0, a1, bb30
   # implict jump to bb8
 bb8:   # loop depth 0
-  LA t1, left_child
-  SH2ADD s2, s1, t1
+  LA a3, left_child
+  SH2ADD s2, s1, a3
   BLT a1, t0, bb29
   # implict jump to bb9
 bb9:   # loop depth 0
@@ -129,8 +125,7 @@ bb16:   # loop depth 1
   BEQ t1, zero, bb22
   # implict jump to bb17
 bb17:   # loop depth 1
-  LA t1, left_child
-  SH2ADD t1, t0, t1
+  SH2ADD t1, t0, a3
   LW t1, 0(t1)
   XORI a0, t1, -1
   BNE a0, zero, bb21
@@ -138,8 +133,7 @@ bb17:   # loop depth 1
 bb18:   # loop depth 0
   # implict jump to bb19
 bb19:   # loop depth 0
-  LA t1, value
-  SH2ADD t0, t0, t1
+  SH2ADD t0, t0, a2
   LW t1, 0(t0)
   SW t1, 0(t2)
   LW a0, 0(s0)
@@ -219,23 +213,21 @@ main:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  LA t0, now
-  ADDI t1, zero, 0
-  SW t1, 0(t0)
+  LA s0, now
+  ADDI t0, zero, 0
+  SW t0, 0(s0)
   CALL getint
   ADD s2, a0, zero
   SLTU t0, zero, s2
   BEQ t0, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 0
-  LA s0, now
   CALL getint
   LA t0, value
-  LA t1, left_child
   LW s1, 0(s0)
+  LA t1, left_child
   LA a1, right_child
   ADDI t2, zero, -1
-  LA a3, now
   ADDI a2, zero, -1
   SH2ADD t0, s1, t0
   SH2ADD t1, s1, t1
@@ -245,7 +237,7 @@ bb33:   # loop depth 0
   ADDIW t1, s1, 1
   SW a2, 0(t0)
   ADDI t0, zero, 1
-  SW t1, 0(a3)
+  SW t1, 0(s0)
   BLT t0, s2, bb41
   # implict jump to bb34
 bb34:   # loop depth 0

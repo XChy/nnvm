@@ -19,8 +19,9 @@ entry1035:  pred()
   %arr22766 = stack 32
   %arr21037 = stack 288
   %arr1036 = stack 480
+  k.pinned = pin ptr @k
   1040 = call i32 getint()
-  store i32 %1040 to ptr @k
+  store i32 %1040 to ptr %k.pinned
   1051 = call i32 getfarray(ptr %arr1036)
   10504940 = ptradd ptr %arr1036, i32 12
   10514941 = call i32 getfarray(ptr %10504940)
@@ -147,7 +148,7 @@ entry1035:  pred()
   10654923 = call i32 getarray(ptr %10644922)
   10644931 = ptradd ptr %arr21037, i32 276
   10654932 = call i32 getarray(ptr %10644931)
-  k.load1072 = load i32 from ptr @k
+  k.load1072 = load i32 from ptr %k.pinned
   3520 = shl i32 %k.load1072, i32 2
   1074 = ptradd ptr %arr1036, i32 %3520
   1074.load = load float from ptr %1074
@@ -495,7 +496,7 @@ params_f40_i24.then245:  pred(params_f40.then, params_f40_i24.else247_exclu_exit
   40029334724 = fsub float %39929324723, float %397.load29314722
   40129344725 = f2si float %40029334724 to i32
   store i32 %40129344725 to ptr %arr.index3772915
-  k.load4052939 = load i32 from ptr @k
+  k.load4052939 = load i32 from ptr %k.pinned
   3522 = shl i32 %k.load4052939, i32 2
   4072941 = ptradd ptr %arr22766, i32 %3522
   407.load2942 = load i32 from ptr %4072941
@@ -708,7 +709,7 @@ params_f40_i24.else247:  pred(params_f40_i24.loop_entry, params_f40_i24.else247_
   br bb %params_f40_i24.loop_entry
 params_fa40.then691:  pred(params_f40_i24.then245, params_fa40.else693)
   call void putfarray(i32 10, ptr %arr4762948)
-  k.load6953139 = load i32 from ptr @k
+  k.load6953139 = load i32 from ptr %k.pinned
   3525 = shl i32 %k.load6953139, i32 2
   6973141 = ptradd ptr %arr4762948, i32 %3525
   697.load3142 = load float from ptr %6973141
@@ -1178,7 +1179,7 @@ params_f40.then:  pred(entry1035, params_f40.else_exclu_exit)
   arr.index1273243 = ptradd ptr %arr3149, i32 36
   store float %1173225 to ptr %arr.index1273243
   call void putfarray(i32 10, ptr %arr3149)
-  k.load3246 = load i32 from ptr @k
+  k.load3246 = load i32 from ptr %k.pinned
   3526 = shl i32 %k.load3246, i32 2
   1313248 = ptradd ptr %arr3149, i32 %3526
   131.load3249 = load float from ptr %1313248
@@ -1609,7 +1610,7 @@ params_mix.then957:  pred(params_fa40.then691, params_mix.loop_entry2699)
   98234934626 = fsub float %98134924625, float %979.load34914624
   98334944627 = f2si float %98234934626 to i32
   store i32 %98334944627 to ptr %arr.index95434703673
-  k.load9873499 = load i32 from ptr @k
+  k.load9873499 = load i32 from ptr %k.pinned
   3530 = shl i32 %k.load9873499, i32 2
   9893501 = ptradd ptr %arr28553258, i32 %3530
   989.load3502 = load i32 from ptr %9893501

@@ -16,7 +16,8 @@ entry237:  pred()
   %c2 = stack 12
   %c1 = stack 12
   %c0 = stack 24
-  store i32 3 to ptr @N
+  N.pinned = pin ptr @N
+  store i32 3 to ptr %N.pinned
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   264 = si2f i32 0 to float
@@ -63,12 +64,12 @@ while.body302:  pred(while.body302, while.body302_preheader)
   313 = f2si float %311.load to i32
   call void putint(i32 %313)
   318 = add i32 %i250.phi368528, i32 1
-  N.load305 = load i32 from ptr @N
+  N.load305 = load i32 from ptr %N.pinned
   306 = icmp slt i32 %318, i32 %N.load305
   br i1 %306, bb %while.body302, bb %while.exit303
 while.exit303:  pred(entry237, while.body302)
   call void putch(i32 10)
-  N.load327523 = load i32 from ptr @N
+  N.load327523 = load i32 from ptr %N.pinned
   328524 = icmp slt i32 0, i32 %N.load327523
   br i1 %328524, bb %while.body324_preheader, bb %while.exit325
 while.body324_preheader:  pred(while.exit303)
@@ -81,12 +82,12 @@ while.body324:  pred(while.body324, while.body324_preheader)
   335 = f2si float %333.load to i32
   call void putint(i32 %335)
   340 = add i32 %i250.phi367525, i32 1
-  N.load327 = load i32 from ptr @N
+  N.load327 = load i32 from ptr %N.pinned
   328 = icmp slt i32 %340, i32 %N.load327
   br i1 %328, bb %while.body324, bb %while.exit325
 while.exit325:  pred(while.exit303, while.body324)
   call void putch(i32 10)
-  N.load349520 = load i32 from ptr @N
+  N.load349520 = load i32 from ptr %N.pinned
   350521 = icmp slt i32 0, i32 %N.load349520
   br i1 %350521, bb %while.body346_preheader, bb %while.exit347
 while.body346_preheader:  pred(while.exit325)
@@ -99,7 +100,7 @@ while.body346:  pred(while.body346, while.body346_preheader)
   357 = f2si float %355.load to i32
   call void putint(i32 %357)
   362 = add i32 %i250.phi522, i32 1
-  N.load349 = load i32 from ptr @N
+  N.load349 = load i32 from ptr %N.pinned
   350 = icmp slt i32 %362, i32 %N.load349
   br i1 %350, bb %while.body346, bb %while.exit347
 while.exit347:  pred(while.exit325, while.body346)

@@ -327,16 +327,20 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry542:  pred()
-  543 = call i32 getfarray(ptr @imgIn)
+  imgOut.pinned = pin ptr @imgOut
+  imgIn.pinned = pin ptr @imgIn
+  h.pinned = pin ptr @h
+  w.pinned = pin ptr @w
+  543 = call i32 getfarray(ptr %imgIn.pinned)
   call void _sysy_starttime(i32 156)
-  w.load = load i32 from ptr @w
-  h.load = load i32 from ptr @h
-  call void kernel_deriche(i32 %w.load, i32 %h.load, float 0.250000, ptr @imgIn, ptr @imgOut, ptr @my_y1, ptr @my_y2)
+  w.load = load i32 from ptr %w.pinned
+  h.load = load i32 from ptr %h.pinned
+  call void kernel_deriche(i32 %w.load, i32 %h.load, float 0.250000, ptr %imgIn.pinned, ptr %imgOut.pinned, ptr @my_y1, ptr @my_y2)
   call void _sysy_stoptime(i32 158)
-  w.load550 = load i32 from ptr @w
-  h.load551 = load i32 from ptr @h
+  w.load550 = load i32 from ptr %w.pinned
+  h.load551 = load i32 from ptr %h.pinned
   552 = mul i32 %w.load550, i32 %h.load551
-  call void putfarray(i32 %552, ptr @imgOut)
+  call void putfarray(i32 %552, ptr %imgOut.pinned)
   ret i32 0
 }
 

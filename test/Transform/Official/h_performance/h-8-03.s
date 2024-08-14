@@ -14,34 +14,28 @@ n:
 .word 0x00000578
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  LA a0, seq
+  LA s1, seq
   LA s0, table
-  LA s1, n
-  LA s3, table
-  LA s2, seq
-  LA s4, n
-  LA s5, table
+  LA s2, n
+  ADD a0, s1, zero
   CALL getarray
   ADD a0, s0, zero
   CALL getarray
   ADDI a0, zero, 79
   CALL _sysy_starttime
-  LW a0, 0(s1)
-  ADD a2, s3, zero
-  ADD a1, s2, zero
+  LW a0, 0(s2)
+  ADD a2, s0, zero
+  ADD a1, s1, zero
   CALL kernel_nussinov
   ADDI a0, zero, 81
   CALL _sysy_stoptime
-  LW t0, 0(s4)
-  ADD a1, s5, zero
+  LW t0, 0(s2)
+  ADD a1, s0, zero
   MULW a0, t0, t0
   CALL putarray
   ADD a0, zero, zero
@@ -49,10 +43,7 @@ main:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 kernel_nussinov:   # loop depth 0
   ADDI sp, sp, -48

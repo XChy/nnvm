@@ -16,15 +16,15 @@ main:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  LA a0, a
-  LA s2, n
+  LA s2, a
   LA s3, n
-  LA s0, a
   ADD s1, zero, zero
+  ADD a0, s2, zero
+  ADD s0, s2, zero
   CALL getarray
   ADD t0, a0, zero
   ADDI a0, zero, 59
-  SW t0, 0(s2)
+  SW t0, 0(s3)
   CALL _sysy_starttime
   LW t0, 0(s3)
   SRAIW t2, t0, 31
@@ -104,21 +104,17 @@ bb16:   # loop depth 1
   BLT t2, t0, bb18
   # implict jump to bb17
 bb17:   # loop depth 0
-  LA s0, n
   ADDI a0, zero, 61
-  LA s1, a
-  LA s2, n
-  LA s3, a
   CALL _sysy_stoptime
-  LW a0, 0(s0)
-  ADD a1, s1, zero
+  LW a0, 0(s3)
+  ADD a1, s2, zero
   CALL putarray
-  LW t0, 0(s2)
+  LW t0, 0(s3)
   SRAIW t1, t0, 31
   SRLIW t1, t1, 31
   ADD t0, t0, t1
   SRAIW t0, t0, 1
-  SH2ADD t0, t0, s3
+  SH2ADD t0, t0, s2
   LW t0, 0(t0)
   SLLI t1, t0, 1
   SRLI t1, t1, 56

@@ -17,19 +17,19 @@ main:   # loop depth 0
   SD ra, 56(sp)
   SD s0, 64(sp)
   SD s1, 72(sp)
-  ADDI t1, zero, 0
-  LA t0, N
-  FCVT.S.W ft0, t1
-  LA t2, M
-  ADDI t1, zero, 3
-  LA a1, L
-  FADD.S ft1, ft0, ft0
-  ADDI a0, zero, 3
-  SW t1, 0(t0)
+  ADDI t0, zero, 0
+  LA s1, N
+  FCVT.S.W ft0, t0
+  LA t1, M
   ADDI t0, zero, 3
-  SW a0, 0(t2)
+  LA a0, L
+  FADD.S ft1, ft0, ft0
+  ADDI t2, zero, 3
+  SW t0, 0(s1)
+  ADDI t0, zero, 3
+  SW t2, 0(t1)
   ADDI t1, zero, 1
-  SW t0, 0(a1)
+  SW t0, 0(a0)
   FCVT.S.W ft0, t1
   ADDI t0, zero, 2
   ADDI t1, zero, 1
@@ -48,17 +48,15 @@ main:   # loop depth 0
   BNE t1, zero, bb10
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA s0, N
   ADDI a0, zero, 10
   CALL putch
-  LW t0, 0(s0)
+  LW t0, 0(s1)
   BLT zero, t0, bb7
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA s0, N
   ADDI a0, zero, 10
   CALL putch
-  LW t0, 0(s0)
+  LW t0, 0(s1)
   BLT zero, t0, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -74,7 +72,6 @@ bb4:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA s1, N
   SLLIW t0, s0, 2
   ADDIW s0, s0, 1
   ADDI t6, sp, 0
@@ -91,7 +88,6 @@ bb7:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 1
-  LA s1, N
   SLLIW t0, s0, 2
   ADDIW s0, s0, 1
   ADDI t6, sp, 16
@@ -108,7 +104,6 @@ bb10:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb11
 bb11:   # loop depth 1
-  LA s1, N
   SLLIW t0, s0, 2
   ADDIW s0, s0, 1
   ADDI t6, sp, 32

@@ -14,7 +14,8 @@ entry115:  pred()
   %count_arr207 = stack 40
   %b = stack 40
   %a = stack 40
-  store i32 10 to ptr @n
+  n.pinned = pin ptr @n
+  store i32 10 to ptr %n.pinned
   store i32 4 to ptr %a
   122 = ptradd ptr %a, i32 4
   store i32 3 to ptr %122
@@ -122,7 +123,7 @@ while.body155:  pred(while.body155, while.body155_preheader)
   call void putint(i32 %165.load)
   call void putch(i32 10)
   174 = add i32 %i148.phi313, i32 1
-  n.load158 = load i32 from ptr @n
+  n.load158 = load i32 from ptr %n.pinned
   159 = icmp slt i32 %174, i32 %n.load158
   br i1 %159, bb %while.body155, bb %while.exit156
 while.exit156:  pred(counting_sort.while.body74_exclu_exit, while.body155)

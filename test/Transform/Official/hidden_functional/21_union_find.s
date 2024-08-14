@@ -16,18 +16,20 @@ main:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
+  SD s6, 56(sp)
+  LA s0, parent
   CALL getint
-  ADDI s5, zero, 0
-  ADD s1, a0, zero
+  ADD s2, a0, zero
+  ADDI s6, zero, 0
   CALL getint
-  ADD s4, a0, zero
-  BLT s5, s1, bb17
+  ADD s5, a0, zero
+  BLT s6, s2, bb17
   # implict jump to bb1
 bb1:   # loop depth 0
-  BLT zero, s4, bb12
+  BLT zero, s5, bb12
   # implict jump to bb2
 bb2:   # loop depth 0
-  BLT s5, s1, bb5
+  BLT s6, s2, bb5
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD a0, zero, zero
@@ -42,6 +44,7 @@ bb4:   # loop depth 0
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb5:   # loop depth 0
@@ -49,8 +52,7 @@ bb5:   # loop depth 0
   ADD t1, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
-  LA t0, parent
-  SH2ADD t2, t1, t0
+  SH2ADD t2, t1, s0
   ADDIW t0, a0, 1
   LW t2, 0(t2)
   BEQ t2, t1, bb11
@@ -59,7 +61,7 @@ bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   ADDIW t1, t1, 1
-  BLT t1, s1, bb10
+  BLT t1, s2, bb10
   # implict jump to bb9
 bb9:   # loop depth 0
   JAL zero, bb4
@@ -69,40 +71,38 @@ bb11:   # loop depth 1
   ADD a0, t0, zero
   JAL zero, bb8
 bb12:   # loop depth 0
-  ADD s2, zero, zero
+  ADD s3, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
   CALL getint
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   CALL getint
-  ADD s3, a0, zero
-  ADD a0, s0, zero
+  ADD s4, a0, zero
+  ADD a0, s1, zero
   CALL find
-  ADD s0, a0, zero
-  ADD a0, s3, zero
+  ADD s1, a0, zero
+  ADD a0, s4, zero
   CALL find
-  BNE s0, a0, bb16
+  BNE s1, a0, bb16
   # implict jump to bb14
 bb14:   # loop depth 1
-  ADDIW s2, s2, 1
-  BLT s2, s4, bb15
+  ADDIW s3, s3, 1
+  BLT s3, s5, bb15
   JAL zero, bb2
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  LA t0, parent
-  SH2ADD t0, a0, t0
-  SW s0, 0(t0)
+  SH2ADD t0, a0, s0
+  SW s1, 0(t0)
   JAL zero, bb14
 bb17:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 1
-  LA t2, parent
+  SH2ADD t2, t0, s0
   ADDIW t1, t0, 1
-  SH2ADD t2, t0, t2
   SW t0, 0(t2)
-  BLT t1, s1, bb19
+  BLT t1, s2, bb19
   JAL zero, bb1
 bb19:   # loop depth 1
   ADD t0, t1, zero

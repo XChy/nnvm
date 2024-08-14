@@ -12,8 +12,9 @@ i32 main() {
 entry401:  pred()
   %words570 = stack 320
   %output_buf = stack 20
+  state.pinned = pin ptr @state
   412 = call i32 getint()
-  store i32 %412 to ptr @state
+  store i32 %412 to ptr %state.pinned
   414 = call i32 getint()
   call void _sysy_starttime(i32 161)
   store i32 0 to ptr %output_buf
@@ -28,7 +29,8 @@ entry401:  pred()
   4351532 = icmp sgt i32 %414, i32 0
   br i1 %4351532, bb %while.body432_preheader, bb %while.exit433
 while.body432_preheader:  pred(entry401)
-  94572 = ptradd ptr @buffer, i32 128000
+  buffer.pinned = pin ptr @buffer
+  94572 = ptradd ptr %buffer.pinned, i32 128000
   br bb %while.body432
 while.body432:  pred(pseudo_sha1.while.exit161, while.body432_preheader)
   rounds.phi1533 = phi [bb %pseudo_sha1.while.exit161, i32 %564, bb %while.body432_preheader, i32 %414]
@@ -40,17 +42,17 @@ while.exit433:  pred(entry401, pseudo_sha1.while.exit161)
 while.body440:  pred(while.body440, while.body432)
   i438.phi5251531 = phi [bb %while.body440, i32 %454, bb %while.body432, i32 0]
   1441 = shl i32 %i438.phi5251531, i32 2
-  448 = ptradd ptr @buffer, i32 %1441
-  state.load21357 = load i32 from ptr @state
+  448 = ptradd ptr %buffer.pinned, i32 %1441
+  state.load21357 = load i32 from ptr %state.pinned
   1442 = shl i32 %state.load21357, i32 13
   51359 = add i32 %state.load21357, i32 %1442
-  store i32 %51359 to ptr @state
+  store i32 %51359 to ptr %state.pinned
   91361 = sdiv i32 %51359, i32 131072
   101362 = add i32 %51359, i32 %91361
-  store i32 %101362 to ptr @state
+  store i32 %101362 to ptr %state.pinned
   1443 = shl i32 %101362, i32 5
   151365 = add i32 %101362, i32 %1443
-  store i32 %151365 to ptr @state
+  store i32 %151365 to ptr %state.pinned
   451 = srem i32 %151365, i32 256
   store i32 %451 to ptr %448
   454 = add i32 %i438.phi5251531, i32 1
@@ -59,7 +61,7 @@ while.body440:  pred(while.body440, while.body432)
 pseudo_sha1.while.body:  pred(pseudo_sha1.while.body, while.body440_exclu_exit)
   144515251529 = phi [bb %pseudo_sha1.while.body, i32 %1445, bb %while.body440_exclu_exit, i32 128004]
   input_len.stack.phi5771528 = phi [bb %pseudo_sha1.while.body, i32 %112585, bb %while.body440_exclu_exit, i32 32001]
-  108583 = ptradd ptr @buffer, i32 %144515251529
+  108583 = ptradd ptr %buffer.pinned, i32 %144515251529
   store i32 0 to ptr %108583
   112585 = add i32 %input_len.stack.phi5771528, i32 1
   103578 = srem i32 %112585, i32 64
@@ -87,7 +89,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   chunk_start.phi6261513 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %380737, bb %pseudo_sha1.while.body160_preheader, i32 0]
   h4.phi6251512 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %377736, bb %pseudo_sha1.while.body160_preheader, i32 -1009589776]
   1452 = shl i32 %chunk_start.phi6261513, i32 2
-  192658 = ptradd ptr @buffer, i32 %1452
+  192658 = ptradd ptr %buffer.pinned, i32 %1452
   192.load659 = load i32 from ptr %192658
   1453 = shl i32 %192.load659, i32 24
   1402 = ptradd ptr %192658, i32 4
@@ -106,7 +108,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551582 = ptradd ptr %words570, i32 4
   1906561583 = add i32 %chunk_start.phi6261513, i32 4
   14521584 = shl i32 %1906561583, i32 2
-  1926581585 = ptradd ptr @buffer, i32 %14521584
+  1926581585 = ptradd ptr %buffer.pinned, i32 %14521584
   192.load6591586 = load i32 from ptr %1926581585
   14531587 = shl i32 %192.load6591586, i32 24
   14021588 = ptradd ptr %1926581585, i32 4
@@ -125,7 +127,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551607 = ptradd ptr %words570, i32 8
   1906561608 = add i32 %chunk_start.phi6261513, i32 8
   14521609 = shl i32 %1906561608, i32 2
-  1926581610 = ptradd ptr @buffer, i32 %14521609
+  1926581610 = ptradd ptr %buffer.pinned, i32 %14521609
   192.load6591611 = load i32 from ptr %1926581610
   14531612 = shl i32 %192.load6591611, i32 24
   14021613 = ptradd ptr %1926581610, i32 4
@@ -144,7 +146,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551632 = ptradd ptr %words570, i32 12
   1906561633 = add i32 %chunk_start.phi6261513, i32 12
   14521634 = shl i32 %1906561633, i32 2
-  1926581635 = ptradd ptr @buffer, i32 %14521634
+  1926581635 = ptradd ptr %buffer.pinned, i32 %14521634
   192.load6591636 = load i32 from ptr %1926581635
   14531637 = shl i32 %192.load6591636, i32 24
   14021638 = ptradd ptr %1926581635, i32 4
@@ -163,7 +165,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551657 = ptradd ptr %words570, i32 16
   1906561658 = add i32 %chunk_start.phi6261513, i32 16
   14521659 = shl i32 %1906561658, i32 2
-  1926581660 = ptradd ptr @buffer, i32 %14521659
+  1926581660 = ptradd ptr %buffer.pinned, i32 %14521659
   192.load6591661 = load i32 from ptr %1926581660
   14531662 = shl i32 %192.load6591661, i32 24
   14021663 = ptradd ptr %1926581660, i32 4
@@ -182,7 +184,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551682 = ptradd ptr %words570, i32 20
   1906561683 = add i32 %chunk_start.phi6261513, i32 20
   14521684 = shl i32 %1906561683, i32 2
-  1926581685 = ptradd ptr @buffer, i32 %14521684
+  1926581685 = ptradd ptr %buffer.pinned, i32 %14521684
   192.load6591686 = load i32 from ptr %1926581685
   14531687 = shl i32 %192.load6591686, i32 24
   14021688 = ptradd ptr %1926581685, i32 4
@@ -201,7 +203,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551707 = ptradd ptr %words570, i32 24
   1906561708 = add i32 %chunk_start.phi6261513, i32 24
   14521709 = shl i32 %1906561708, i32 2
-  1926581710 = ptradd ptr @buffer, i32 %14521709
+  1926581710 = ptradd ptr %buffer.pinned, i32 %14521709
   192.load6591711 = load i32 from ptr %1926581710
   14531712 = shl i32 %192.load6591711, i32 24
   14021713 = ptradd ptr %1926581710, i32 4
@@ -220,7 +222,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551732 = ptradd ptr %words570, i32 28
   1906561733 = add i32 %chunk_start.phi6261513, i32 28
   14521734 = shl i32 %1906561733, i32 2
-  1926581735 = ptradd ptr @buffer, i32 %14521734
+  1926581735 = ptradd ptr %buffer.pinned, i32 %14521734
   192.load6591736 = load i32 from ptr %1926581735
   14531737 = shl i32 %192.load6591736, i32 24
   14021738 = ptradd ptr %1926581735, i32 4
@@ -239,7 +241,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551757 = ptradd ptr %words570, i32 32
   1906561758 = add i32 %chunk_start.phi6261513, i32 32
   14521759 = shl i32 %1906561758, i32 2
-  1926581760 = ptradd ptr @buffer, i32 %14521759
+  1926581760 = ptradd ptr %buffer.pinned, i32 %14521759
   192.load6591761 = load i32 from ptr %1926581760
   14531762 = shl i32 %192.load6591761, i32 24
   14021763 = ptradd ptr %1926581760, i32 4
@@ -258,7 +260,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551782 = ptradd ptr %words570, i32 36
   1906561783 = add i32 %chunk_start.phi6261513, i32 36
   14521784 = shl i32 %1906561783, i32 2
-  1926581785 = ptradd ptr @buffer, i32 %14521784
+  1926581785 = ptradd ptr %buffer.pinned, i32 %14521784
   192.load6591786 = load i32 from ptr %1926581785
   14531787 = shl i32 %192.load6591786, i32 24
   14021788 = ptradd ptr %1926581785, i32 4
@@ -277,7 +279,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551807 = ptradd ptr %words570, i32 40
   1906561808 = add i32 %chunk_start.phi6261513, i32 40
   14521809 = shl i32 %1906561808, i32 2
-  1926581810 = ptradd ptr @buffer, i32 %14521809
+  1926581810 = ptradd ptr %buffer.pinned, i32 %14521809
   192.load6591811 = load i32 from ptr %1926581810
   14531812 = shl i32 %192.load6591811, i32 24
   14021813 = ptradd ptr %1926581810, i32 4
@@ -296,7 +298,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551832 = ptradd ptr %words570, i32 44
   1906561833 = add i32 %chunk_start.phi6261513, i32 44
   14521834 = shl i32 %1906561833, i32 2
-  1926581835 = ptradd ptr @buffer, i32 %14521834
+  1926581835 = ptradd ptr %buffer.pinned, i32 %14521834
   192.load6591836 = load i32 from ptr %1926581835
   14531837 = shl i32 %192.load6591836, i32 24
   14021838 = ptradd ptr %1926581835, i32 4
@@ -315,7 +317,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551857 = ptradd ptr %words570, i32 48
   1906561858 = add i32 %chunk_start.phi6261513, i32 48
   14521859 = shl i32 %1906561858, i32 2
-  1926581860 = ptradd ptr @buffer, i32 %14521859
+  1926581860 = ptradd ptr %buffer.pinned, i32 %14521859
   192.load6591861 = load i32 from ptr %1926581860
   14531862 = shl i32 %192.load6591861, i32 24
   14021863 = ptradd ptr %1926581860, i32 4
@@ -334,7 +336,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551882 = ptradd ptr %words570, i32 52
   1906561883 = add i32 %chunk_start.phi6261513, i32 52
   14521884 = shl i32 %1906561883, i32 2
-  1926581885 = ptradd ptr @buffer, i32 %14521884
+  1926581885 = ptradd ptr %buffer.pinned, i32 %14521884
   192.load6591886 = load i32 from ptr %1926581885
   14531887 = shl i32 %192.load6591886, i32 24
   14021888 = ptradd ptr %1926581885, i32 4
@@ -353,7 +355,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551907 = ptradd ptr %words570, i32 56
   1906561908 = add i32 %chunk_start.phi6261513, i32 56
   14521909 = shl i32 %1906561908, i32 2
-  1926581910 = ptradd ptr @buffer, i32 %14521909
+  1926581910 = ptradd ptr %buffer.pinned, i32 %14521909
   192.load6591911 = load i32 from ptr %1926581910
   14531912 = shl i32 %192.load6591911, i32 24
   14021913 = ptradd ptr %1926581910, i32 4
@@ -372,7 +374,7 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   1856551932 = ptradd ptr %words570, i32 60
   1906561933 = add i32 %chunk_start.phi6261513, i32 60
   14521934 = shl i32 %1906561933, i32 2
-  1926581935 = ptradd ptr @buffer, i32 %14521934
+  1926581935 = ptradd ptr %buffer.pinned, i32 %14521934
   192.load6591936 = load i32 from ptr %1926581935
   14531937 = shl i32 %192.load6591936, i32 24
   14021938 = ptradd ptr %1926581935, i32 4
@@ -565,7 +567,7 @@ while.body440_exclu_exit:  pred(while.body440)
   store i32 128 to ptr %94572
   br bb %pseudo_sha1.while.body
 pseudo_sha1.while.body_exclu_exit:  pred(pseudo_sha1.while.body)
-  115589 = ptradd ptr @buffer, i32 %1445
+  115589 = ptradd ptr %buffer.pinned, i32 %1445
   store i32 0 to ptr %115589
   1379 = ptradd ptr %115589, i32 4
   store i32 0 to ptr %1379

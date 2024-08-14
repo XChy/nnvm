@@ -66,21 +66,19 @@ bb9:   # loop depth 1
   BNE t0, zero, bb11
   # implict jump to bb10
 bb10:   # loop depth 0
-  LA a0, a
   LUI t0, 4
   LUI t2, 1
   LA t1, a
-  LA a3, a
-  LUI a2, 4
+  LUI a1, 4
   ADDIW t0, t0, -384
   ADDIW t2, t2, -96
-  ADDIW a2, a2, -4
-  ADDI a1, zero, 3
-  ADD t0, a0, t0
+  ADDIW a1, a1, -4
+  ADDI a0, zero, 3
+  ADD t0, t1, t0
   SW t2, 20(t1)
   ADDI t2, zero, 7
-  ADD t1, a3, a2
-  SW a1, 0(t0)
+  ADD t1, t1, a1
+  SW a0, 0(t0)
   ADDI a0, zero, 3
   SW t2, 0(t1)
   CALL putint

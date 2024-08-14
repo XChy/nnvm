@@ -23,9 +23,9 @@ void GlobalHoistPass::gatherUses(Function &F) {
           if (platform->isExpensiveToLoadConstant(constant))
             constantUses[usee].push_back(use);
 
-        // if (auto *global = mayCast<GlobalVariable>(usee))
-        // if (platform->isExpensiveToLoadGlobalAddress(global))
-        // constantUses[usee].push_back(use);
+        if (auto *global = mayCast<GlobalVariable>(usee))
+          if (platform->isExpensiveToLoadGlobalAddress(global))
+            constantUses[usee].push_back(use);
       }
     }
   }

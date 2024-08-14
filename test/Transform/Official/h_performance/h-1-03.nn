@@ -11,10 +11,11 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry34:  pred()
+  lim.pinned = pin ptr @lim
   36 = call i32 getint()
-  store i32 %36 to ptr @lim
+  store i32 %36 to ptr %lim.pinned
   call void _sysy_starttime(i32 22)
-  lim.load4498 = load i32 from ptr @lim
+  lim.load4498 = load i32 from ptr %lim.pinned
   4599 = icmp sle i32 1, i32 %lim.load4498
   br i1 %4599, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry34)

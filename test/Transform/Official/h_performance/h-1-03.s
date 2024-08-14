@@ -7,18 +7,16 @@ lim:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s1, 16(sp)
   LA s0, lim
   CALL getint
   ADD t0, a0, zero
-  LA s1, lim
   ADDI a0, zero, 22
   SW t0, 0(s0)
   CALL _sysy_starttime
-  LW a0, 0(s1)
+  LW a0, 0(s0)
   SLTI t0, a0, 1
   BEQ t0, zero, bb3
   # implict jump to bb1
@@ -35,8 +33,7 @@ bb2:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s1, 16(sp)
-  ADDI sp, sp, 32
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:   # loop depth 0
   ADDI t1, zero, 1

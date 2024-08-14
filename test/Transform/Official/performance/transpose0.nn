@@ -12,8 +12,10 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry73:  pred()
+  a.pinned = pin ptr @a
+  matrix.pinned = pin ptr @matrix
   75 = call i32 getint()
-  77 = call i32 getarray(ptr @a)
+  77 = call i32 getarray(ptr %a.pinned)
   call void _sysy_starttime(i32 28)
   85225 = icmp slt i32 0, i32 %75
   br i1 %85225, bb %while.body81_preheader, bb %while.exit82
@@ -22,7 +24,7 @@ while.body81_preheader:  pred(entry73)
 while.body81:  pred(while.body81, while.body81_preheader)
   i79.phi148226 = phi [bb %while.body81, i32 %94, bb %while.body81_preheader, i32 0]
   211 = shl i32 %i79.phi148226, i32 2
-  89 = ptradd ptr @matrix, i32 %211
+  89 = ptradd ptr %matrix.pinned, i32 %211
   store i32 %i79.phi148226 to ptr %89
   94 = add i32 %i79.phi148226, i32 1
   85 = icmp slt i32 %94, i32 %75
@@ -35,7 +37,7 @@ while.body97_preheader:  pred(while.exit82)
 while.body97:  pred(transpose.while.exit, while.body97_preheader)
   i79.phi147224 = phi [bb %transpose.while.exit, i32 %111, bb %while.body97_preheader, i32 0]
   212 = shl i32 %i79.phi147224, i32 2
-  106 = ptradd ptr @a, i32 %212
+  106 = ptradd ptr %a.pinned, i32 %212
   106.load = load i32 from ptr %106
   6166 = sdiv i32 %75, i32 %106.load
   14171216 = icmp slt i32 0, i32 %6166
@@ -49,7 +51,7 @@ while.body115:  pred(while.body115, while.body115_preheader)
   ans.phi150221 = phi [bb %while.body115, i32 %131, bb %while.body115_preheader, i32 0]
   125 = mul i32 %i79.phi222, i32 %i79.phi222
   213 = shl i32 %i79.phi222, i32 2
-  128 = ptradd ptr @matrix, i32 %213
+  128 = ptradd ptr %matrix.pinned, i32 %213
   128.load = load i32 from ptr %128
   130 = mul i32 %125, i32 %128.load
   131 = add i32 %ans.phi150221, i32 %130
@@ -62,9 +64,9 @@ while.exit116:  pred(while.exit98, while.body115_exclu_exit)
   141 = sub i32 0, i32 %220
   br i1 %136, bb %ans.phi.which.true, bb %while.exit116.split
 while.exit116.split:  pred(while.exit116, ans.phi.which.true)
-  249 = phi [bb %ans.phi.which.true, i32 %141, bb %while.exit116, i32 %220]
+  251 = phi [bb %ans.phi.which.true, i32 %141, bb %while.exit116, i32 %220]
   call void _sysy_stoptime(i32 47)
-  call void putint(i32 %249)
+  call void putint(i32 %251)
   call void putch(i32 10)
   ret i32 0
 transpose.while.body_preheader:  pred(while.body97)
@@ -96,12 +98,12 @@ transpose.then:  pred(transpose.while.body18)
 transpose.if.exit:  pred(transpose.while.body18)
   37193 = add i32 %35192, i32 %j.phi179
   214 = shl i32 %37193, i32 2
-  39195 = ptradd ptr @matrix, i32 %214
+  39195 = ptradd ptr %matrix.pinned, i32 %214
   39.load196 = load i32 from ptr %39195
   43197 = mul i32 %j.phi179, i32 %6166
   45198 = add i32 %43197, i32 %i.phi170218
   215 = shl i32 %45198, i32 2
-  47200 = ptradd ptr @matrix, i32 %215
+  47200 = ptradd ptr %matrix.pinned, i32 %215
   store i32 %39.load196 to ptr %47200
   store i32 %39.load196 to ptr %39195
   br bb %transpose.while.cond17_unified_latch

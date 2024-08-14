@@ -13,15 +13,18 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry315:  pred()
-  316 = call i32 getarray(ptr @seq)
-  317 = call i32 getarray(ptr @table)
+  table.pinned = pin ptr @table
+  seq.pinned = pin ptr @seq
+  n.pinned = pin ptr @n
+  316 = call i32 getarray(ptr %seq.pinned)
+  317 = call i32 getarray(ptr %table.pinned)
   call void _sysy_starttime(i32 79)
-  n.load = load i32 from ptr @n
-  call void kernel_nussinov(i32 %n.load, ptr @seq, ptr @table)
+  n.load = load i32 from ptr %n.pinned
+  call void kernel_nussinov(i32 %n.load, ptr %seq.pinned, ptr %table.pinned)
   call void _sysy_stoptime(i32 81)
-  n.load322 = load i32 from ptr @n
+  n.load322 = load i32 from ptr %n.pinned
   324 = mul i32 %n.load322, i32 %n.load322
-  call void putarray(i32 %324, ptr @table)
+  call void putarray(i32 %324, ptr %table.pinned)
   ret i32 0
 }
 

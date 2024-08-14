@@ -14,13 +14,12 @@ main:   # loop depth 0
   LA s0, loopCount
   CALL getint
   ADD t0, a0, zero
-  LA s1, loopCount
+  ADDI s1, zero, 0
   ADDI a0, zero, 121
   SW t0, 0(s0)
-  ADDI s0, zero, 0
   CALL _sysy_starttime
-  LW t1, 0(s1)
-  BLT s0, t1, bb3
+  LW t1, 0(s0)
+  BLT s1, t1, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD s0, zero, zero

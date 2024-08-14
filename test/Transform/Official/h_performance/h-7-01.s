@@ -16,20 +16,23 @@ i_buf:
 .word 0x3f000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  LA a0, i_buf
-  ADDI s1, zero, 0
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  LA s2, i_buf
+  LA s1, o_buf
+  ADDI s3, zero, 0
+  ADD a0, s2, zero
   CALL getfarray
   ADD s0, a0, zero
   ADDI a0, zero, 33
   CALL _sysy_starttime
-  BLT s1, s0, bb2
+  BLT s3, s0, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA s1, o_buf
   ADDI a0, zero, 41
   CALL _sysy_stoptime
   ADD a1, s1, zero
@@ -39,7 +42,9 @@ bb1:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  ADDI sp, sp, 32
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   LA t0, .CONSTANT.7.0
@@ -59,11 +64,9 @@ bb2:   # loop depth 0
   FSGNJ.S ft6, ft2, ft0
   # implict jump to bb3
 bb3:   # loop depth 1
-  LA t1, i_buf
-  LA t2, o_buf
-  SH2ADD t1, t0, t1
-  FLW ft3, 0(t1)
-  SH2ADD t1, t0, t2
+  SH2ADD t2, t0, s2
+  SH2ADD t1, t0, s1
+  FLW ft3, 0(t2)
   FLE.S t2, ft3, ft4
   BNE t2, zero, bb19
   # implict jump to bb4

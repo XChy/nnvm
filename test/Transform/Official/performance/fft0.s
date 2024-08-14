@@ -41,14 +41,15 @@ fft:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 0
   SRAIW t0, a2, 31
-  ADDI a1, zero, 0
+  LA a1, temp
   SRLIW t0, t0, 31
+  ADDI a3, zero, 0
   ADD t0, a2, t0
   SRAIW s4, t0, 1
-  BLT a1, a2, bb11
+  BLT a3, a2, bb11
   # implict jump to bb2
 bb2:   # loop depth 0
-  BLT a1, a2, bb8
+  BLT a3, a2, bb8
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD a1, s11, zero
@@ -125,17 +126,15 @@ bb8:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
-  LA a0, temp
-  ADDW t2, s5, t0
-  ADDIW t1, t0, 1
-  SH2ADD a0, t0, a0
-  SH2ADD t0, t2, s0
-  LW t2, 0(a0)
-  SW t2, 0(t0)
-  BLT t1, a2, bb10
+  SH2ADD t2, t0, a1
+  ADDW t1, s5, t0
+  LW t2, 0(t2)
+  SH2ADD t1, t1, s0
+  ADDIW t0, t0, 1
+  SW t2, 0(t1)
+  BLT t0, a2, bb10
   JAL zero, bb3
 bb10:   # loop depth 1
-  ADD t0, t1, zero
   JAL zero, bb9
 bb11:   # loop depth 0
   ADD t0, zero, zero
@@ -150,12 +149,11 @@ bb12:   # loop depth 1
   BEQ t1, zero, bb16
   # implict jump to bb13
 bb13:   # loop depth 1
-  SH2ADD t1, a0, s0
-  LA a3, temp
-  LW a0, 0(t1)
+  SH2ADD a0, a0, s0
   ADDW t1, s4, t2
-  SH2ADD t1, t1, a3
-  SW a0, 0(t1)
+  LW t2, 0(a0)
+  SH2ADD t1, t1, a1
+  SW t2, 0(t1)
   # implict jump to bb14
 bb14:   # loop depth 1
   ADDIW t0, t0, 1
@@ -164,11 +162,10 @@ bb14:   # loop depth 1
 bb15:   # loop depth 1
   JAL zero, bb12
 bb16:   # loop depth 1
-  SH2ADD t1, a0, s0
-  LA a3, temp
-  LW a0, 0(t1)
-  SH2ADD t1, t2, a3
-  SW a0, 0(t1)
+  SH2ADD a0, a0, s0
+  SH2ADD t1, t2, a1
+  LW t2, 0(a0)
+  SW t2, 0(t1)
   JAL zero, bb14
 bb17:   # loop depth 0
   ADDI a0, zero, 1
@@ -244,81 +241,73 @@ main:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  LA a0, a
-  LA s4, b
-  LA s1, d
+  LA s4, a
+  LA s3, b
+  LA s0, d
   ADDI s2, zero, 1
-  ADDI s3, zero, 1
-  CALL getarray
-  ADD s0, a0, zero
   ADD a0, s4, zero
+  ADDI s6, zero, 1
+  CALL getarray
+  ADD s1, a0, zero
+  ADD a0, s3, zero
   CALL getarray
   ADD t0, a0, zero
   ADDI a0, zero, 60
-  ADDW t0, s0, t0
-  ADDIW s0, t0, -1
+  ADDW t0, s1, t0
+  ADDIW s5, t0, -1
   CALL _sysy_starttime
-  SW s2, 0(s1)
-  BLT s3, s0, bb33
+  SW s2, 0(s0)
+  BLT s6, s5, bb33
   # implict jump to bb24
 bb24:   # loop depth 0
-  LA t0, d
-  LUI t1, 243712
-  ADDIW t1, t1, 0
+  LW s2, 0(s0)
+  LUI t0, 243712
+  ADDIW t0, t0, 0
   ADDI a0, zero, 3
-  LW s1, 0(t0)
-  LA s2, a
-  LA s3, d
-  LUI s4, 243712
-  ADDIW s4, s4, 0
-  LA s5, b
-  DIVW a1, t1, s1
-  LA s6, d
+  LUI s1, 243712
+  DIVW a1, t0, s2
+  ADDIW s1, s1, 0
   CALL power
-  ADD a2, s1, zero
+  ADD a2, s2, zero
   ADD a3, a0, zero
   ADD a1, zero, zero
-  ADD a0, s2, zero
+  ADD a0, s4, zero
   CALL fft
-  LW s1, 0(s3)
+  LW s2, 0(s0)
   ADDI a0, zero, 3
-  DIVW a1, s4, s1
+  DIVW a1, s1, s2
   CALL power
-  ADD a2, s1, zero
+  ADD a2, s2, zero
   ADD a3, a0, zero
   ADD a1, zero, zero
-  ADD a0, s5, zero
+  ADD a0, s3, zero
   CALL fft
-  LW t0, 0(s6)
+  LW t0, 0(s0)
   BLT zero, t0, bb30
   # implict jump to bb25
 bb25:   # loop depth 0
-  LA t0, d
+  LW s1, 0(s0)
+  LUI t0, 243712
+  ADDIW t0, t0, 0
   LUI t1, 243712
   ADDIW t1, t1, 0
-  LUI t2, 243712
-  LW s1, 0(t0)
-  ADDIW t2, t2, 0
   ADDI a0, zero, 3
-  LA s2, a
-  LA s3, d
-  DIVW t0, t1, s1
-  SUBW a1, t2, t0
+  DIVW t0, t0, s1
+  SUBW a1, t1, t0
   CALL power
   ADD a2, s1, zero
   ADD a3, a0, zero
   ADD a1, zero, zero
-  ADD a0, s2, zero
+  ADD a0, s4, zero
   CALL fft
-  LW t0, 0(s3)
+  LW t0, 0(s0)
   BLT zero, t0, bb27
   # implict jump to bb26
 bb26:   # loop depth 0
-  LA s1, a
   ADDI a0, zero, 79
   CALL _sysy_stoptime
-  ADD a1, s1, zero
-  ADD a0, s0, zero
+  ADD a1, s4, zero
+  ADD a0, s5, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -332,57 +321,47 @@ bb26:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb27:   # loop depth 0
-  ADD t0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb28
 bb28:   # loop depth 1
-  LA t1, a
-  LA t2, d
-  LUI a0, 243712
-  SH2ADD s1, t0, t1
-  ADDIW a0, a0, -1
-  LW s2, 0(s1)
-  ADD a1, zero, a0
-  LA s4, d
-  ADDIW s3, t0, 1
-  LW a0, 0(t2)
+  LUI t0, 243712
+  SH2ADD s2, s1, s4
+  ADDIW t0, t0, -1
+  LW s3, 0(s2)
+  ADD a1, zero, t0
+  ADDIW s1, s1, 1
+  LW a0, 0(s0)
   CALL power
   ADD a1, a0, zero
-  ADD a0, s2, zero
+  ADD a0, s3, zero
   CALL multiply
-  SW a0, 0(s1)
-  LW t0, 0(s4)
-  BLT s3, t0, bb29
+  SW a0, 0(s2)
+  LW t0, 0(s0)
+  BLT s1, t0, bb29
   JAL zero, bb26
 bb29:   # loop depth 1
-  ADD t0, s3, zero
   JAL zero, bb28
 bb30:   # loop depth 0
-  ADD t0, zero, zero
+  ADD s1, zero, zero
   # implict jump to bb31
 bb31:   # loop depth 1
-  LA t1, a
-  LA t2, b
-  LA s3, d
-  SH2ADD s1, t0, t1
-  ADDIW s2, t0, 1
-  LW a0, 0(s1)
-  SH2ADD t0, t0, t2
+  SH2ADD s2, s1, s4
+  SH2ADD t0, s1, s3
+  LW a0, 0(s2)
+  ADDIW s1, s1, 1
   LW a1, 0(t0)
   CALL multiply
-  SW a0, 0(s1)
-  LW t0, 0(s3)
-  BLT s2, t0, bb32
+  SW a0, 0(s2)
+  LW t0, 0(s0)
+  BLT s1, t0, bb32
   JAL zero, bb25
 bb32:   # loop depth 1
-  ADD t0, s2, zero
   JAL zero, bb31
 bb33:   # loop depth 1
-  LA t0, d
-  LA t1, d
-  LW t0, 0(t0)
+  LW t0, 0(s0)
   SLLIW t0, t0, 1
-  SW t0, 0(t1)
-  BLT t0, s0, bb33
+  SW t0, 0(s0)
+  BLT t0, s5, bb33
   JAL zero, bb24
 multiply:   # loop depth 0
   ADDI sp, sp, -48

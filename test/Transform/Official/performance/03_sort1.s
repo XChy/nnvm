@@ -15,8 +15,10 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  LA a0, a
+  SD s2, 24(sp)
   LA s1, a
+  LA s2, ans
+  ADD a0, s1, zero
   CALL getarray
   ADD s0, a0, zero
   ADDI a0, zero, 90
@@ -29,15 +31,13 @@ main:   # loop depth 0
   BLT zero, s0, bb4
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA t0, ans
-  LW t0, 0(t0)
+  LW t0, 0(s2)
   BLT t0, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA s0, ans
   ADDI a0, zero, 102
   CALL _sysy_stoptime
-  LW a0, 0(s0)
+  LW a0, 0(s2)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
@@ -45,34 +45,30 @@ bb2:   # loop depth 0
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
+  LD s2, 24(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  LA t0, ans
-  LA t1, ans
-  LW t0, 0(t0)
+  LW t0, 0(s2)
   SUBW t0, zero, t0
-  SW t0, 0(t1)
+  SW t0, 0(s2)
   JAL zero, bb2
 bb4:   # loop depth 0
-  LA t1, ans
+  LW t2, 0(s2)
   ADD t0, zero, zero
-  LW t2, 0(t1)
   # implict jump to bb5
 bb5:   # loop depth 1
-  LA t1, a
+  SH2ADD t1, t0, s1
   ADDIW a1, t0, 2
-  SH2ADD a0, t0, t1
+  LW a0, 0(t1)
   ADDIW t1, t0, 1
-  LW a0, 0(a0)
   REMW a0, a0, a1
   MULW t0, t0, a0
   ADDW t2, t2, t0
   BLT t1, s0, bb7
   # implict jump to bb6
 bb6:   # loop depth 0
-  LA t0, ans
-  SW t2, 0(t0)
+  SW t2, 0(s2)
   JAL zero, bb1
 bb7:   # loop depth 1
   ADD t0, t1, zero
@@ -382,42 +378,42 @@ bb27:   # loop depth 3
 bb28:   # loop depth 4
   JAL zero, bb26
 bb29:   # loop depth 0
-  ADD t2, a4, zero
+  ADD a1, a4, zero
   # implict jump to bb30
 bb30:   # loop depth 1
-  SH2ADD t1, t2, s0
+  SH2ADD t1, a1, s0
   LW t1, 0(t1)
   BLT zero, a0, bb34
   # implict jump to bb31
 bb31:   # loop depth 1
   # implict jump to bb32
 bb32:   # loop depth 1
-  ADDIW t2, t2, 1
-  SLLI a1, t1, 1
-  SRLI a1, a1, 60
-  ADD a1, t1, a1
-  ANDI a1, a1, -16
-  SUBW t1, t1, a1
-  SLLIW t1, t1, 2
-  ADDI a1, sp, 160
-  ADD t1, a1, t1
-  LW a1, 0(t1)
   ADDIW a1, a1, 1
-  SW a1, 0(t1)
-  BLT t2, t0, bb33
+  SLLI t2, t1, 1
+  SRLI t2, t2, 60
+  ADD t2, t1, t2
+  ANDI t2, t2, -16
+  SUBW t1, t1, t2
+  SLLIW t1, t1, 2
+  ADDI t2, sp, 160
+  ADD t1, t2, t1
+  LW t2, 0(t1)
+  ADDIW t2, t2, 1
+  SW t2, 0(t1)
+  BLT a1, t0, bb33
   JAL zero, bb10
 bb33:   # loop depth 1
   JAL zero, bb30
 bb34:   # loop depth 1
-  ADD a1, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb35
 bb35:   # loop depth 2
   SRAIW a2, t1, 31
-  ADDIW a1, a1, 1
+  ADDIW t2, t2, 1
   SRLIW a2, a2, 28
   ADD t1, t1, a2
   SRAIW t1, t1, 4
-  BLT a1, a0, bb37
+  BLT t2, a0, bb37
   # implict jump to bb36
 bb36:   # loop depth 1
   JAL zero, bb32

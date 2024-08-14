@@ -172,7 +172,7 @@ asr5:   # loop depth 0
   ADDI t1, zero, 4
   ADDI t0, zero, 1
   ADD s0, a0, zero
-  FCVT.S.W fs5, a1
+  FCVT.S.W fs6, a1
   XORI s2, s0, 2
   FCVT.S.W ft1, t2
   FSW ft1, 8(sp)
@@ -184,9 +184,9 @@ asr5:   # loop depth 0
   FCVT.S.W fs10, t0
   FSW fa3, 24(sp)
   FSW fa2, 28(sp)
-  FADD.S fs6, fs3, ft1
-  FSUB.S fs7, fs6, fs3
-  FMUL.S ft0, fs6, fs6
+  FADD.S fs4, fs3, ft1
+  FSUB.S fs7, fs4, fs3
+  FMUL.S ft0, fs4, fs4
   FSW ft0, 12(sp)
   FDIV.S ft0, fs7, fs9
   FADD.S ft0, fs3, ft0
@@ -196,27 +196,27 @@ bb7:   # loop depth 0
   BEQ s2, zero, bb20
   # implict jump to bb8
 bb8:   # loop depth 0
-  FSGNJ.S fs4, fs5, fs5
+  FSGNJ.S fs5, fs6, fs6
   # implict jump to bb9
 bb9:   # loop depth 0
-  FSUB.S ft0, fs8, fs6
+  FSUB.S ft0, fs8, fs4
   FSW ft0, 16(sp)
   FLW ft0, 16(sp)
   FDIV.S ft0, ft0, fs9
-  FADD.S ft0, fs6, ft0
+  FADD.S ft0, fs4, ft0
   BEQ s1, zero, bb19
   # implict jump to bb10
 bb10:   # loop depth 0
   BEQ s2, zero, bb18
   # implict jump to bb11
 bb11:   # loop depth 0
-  FSGNJ.S fs2, fs5, fs5
+  FSGNJ.S fs2, fs6, fs6
   # implict jump to bb12
 bb12:   # loop depth 0
-  FADD.S ft2, fs4, fs2
+  FADD.S ft2, fs5, fs2
   FLW ft0, 24(sp)
   FSUB.S ft1, ft2, ft0
-  FLT.S t0, fs5, ft1
+  FLT.S t0, fs6, ft1
   FSGNJN.S ft0, ft1, ft1
   BNE t0, zero, bb17
   # implict jump to bb13
@@ -234,8 +234,8 @@ bb15:   # loop depth 0
   FLW ft0, 28(sp)
   FDIV.S fs0, ft0, fs9
   ADD a0, s0, zero
-  FSGNJ.S fa3, fs4, fs4
-  FSGNJ.S fa1, fs6, fs6
+  FSGNJ.S fa3, fs5, fs5
+  FSGNJ.S fa1, fs4, fs4
   FSGNJ.S fa0, fs3, fs3
   FSGNJ.S fa2, fs0, fs0
   CALL asr5
@@ -244,7 +244,7 @@ bb15:   # loop depth 0
   FSGNJ.S fa2, fs0, fs0
   FSGNJ.S fa1, fs8, fs8
   FSGNJ.D fs0, fa0, fa0
-  FSGNJ.S fa0, fs6, fs6
+  FSGNJ.S fa0, fs4, fs4
   CALL asr5
   FADD.S fa0, fs0, fa0
   LD ra, 40(sp)
@@ -294,17 +294,17 @@ bb18:   # loop depth 0
   FLW ft0, 12(sp)
   FSUB.S fa0, fs10, ft0
   FMUL.S ft2, fs8, fs8
-  FSUB.S fs2, fs10, ft1
-  FSUB.S fs7, fs10, ft2
+  FSUB.S fs7, fs10, ft1
+  FSUB.S fs2, fs10, ft2
   CALL my_sqrt
   FSGNJ.D ft0, fa0, fa0
-  FSGNJ.S fa0, fs2, fs2
+  FSGNJ.S fa0, fs7, fs7
   FDIV.S ft0, fs10, ft0
   FSW ft0, 4(sp)
   CALL my_sqrt
   FDIV.S ft0, fs10, fa0
   FSW ft0, 32(sp)
-  FSGNJ.S fa0, fs7, fs7
+  FSGNJ.S fa0, fs2, fs2
   CALL my_sqrt
   FDIV.S ft1, fs10, fa0
   FLW ft0, 32(sp)
@@ -319,7 +319,7 @@ bb18:   # loop depth 0
   JAL zero, bb12
 bb19:   # loop depth 0
   FDIV.S ft1, fs10, ft0
-  FDIV.S ft0, fs10, fs6
+  FDIV.S ft0, fs10, fs4
   FDIV.S ft2, fs10, fs8
   FMUL.S ft1, fs11, ft1
   FADD.S ft0, ft0, ft1
@@ -335,10 +335,10 @@ bb20:   # loop depth 0
   FLW ft0, 12(sp)
   FSUB.S fs2, fs10, ft0
   FSUB.S fa0, fs10, ft1
-  FSUB.S fs4, fs10, ft2
+  FSUB.S fs5, fs10, ft2
   CALL my_sqrt
   FSGNJ.D ft0, fa0, fa0
-  FSGNJ.S fa0, fs4, fs4
+  FSGNJ.S fa0, fs5, fs5
   FDIV.S ft0, fs10, ft0
   FSW ft0, 0(sp)
   CALL my_sqrt
@@ -354,18 +354,18 @@ bb20:   # loop depth 0
   FADD.S ft0, ft0, ft1
   FMUL.S ft0, ft0, fs7
   FLW ft1, 8(sp)
-  FDIV.S fs4, ft0, ft1
+  FDIV.S fs5, ft0, ft1
   JAL zero, bb9
 bb21:   # loop depth 0
   FDIV.S ft1, fs10, ft0
   FDIV.S ft0, fs10, fs3
-  FDIV.S ft2, fs10, fs6
+  FDIV.S ft2, fs10, fs4
   FMUL.S ft1, fs11, ft1
   FADD.S ft0, ft0, ft1
   FADD.S ft0, ft0, ft2
   FMUL.S ft0, ft0, fs7
   FLW ft1, 8(sp)
-  FDIV.S fs4, ft0, ft1
+  FDIV.S fs5, ft0, ft1
   JAL zero, bb9
 my_sqrt:   # loop depth 0
   ADDI sp, sp, -16

@@ -13,12 +13,17 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry243:  pred()
-  244 = call i32 getarray(ptr @A)
-  245 = call i32 getarray(ptr @b)
-  246 = call i32 getarray(ptr @x)
-  247 = call i32 getarray(ptr @y)
+  y.pinned = pin ptr @y
+  x.pinned = pin ptr @x
+  b.pinned = pin ptr @b
+  A.pinned = pin ptr @A
+  n.pinned = pin ptr @n
+  244 = call i32 getarray(ptr %A.pinned)
+  245 = call i32 getarray(ptr %b.pinned)
+  246 = call i32 getarray(ptr %x.pinned)
+  247 = call i32 getarray(ptr %y.pinned)
   call void _sysy_starttime(i32 68)
-  n.load = load i32 from ptr @n
+  n.load = load i32 from ptr %n.pinned
   12305518 = icmp slt i32 0, i32 %n.load
   br i1 %12305518, bb %kernel_ludcmp.while.body_preheader, bb %kernel_ludcmp.while.exit
 kernel_ludcmp.while.body_preheader:  pred(entry243)
@@ -37,7 +42,7 @@ kernel_ludcmp.while.body16_preheader:  pred(kernel_ludcmp.while.body)
 kernel_ludcmp.while.body16:  pred(kernel_ludcmp.while.exit33, kernel_ludcmp.while.body16_preheader)
   563 = phi [bb %kernel_ludcmp.while.body16_preheader, i32 0, bb %kernel_ludcmp.while.exit33, i32 %68344.rec]
   j.phi260314501 = phi [bb %kernel_ludcmp.while.exit33, i32 %77350, bb %kernel_ludcmp.while.body16_preheader, i32 0]
-  25319 = ptradd ptr @A, i32 %567
+  25319 = ptradd ptr %A.pinned, i32 %567
   470 = shl i32 %j.phi260314501, i32 2
   28321 = ptradd ptr %25319, i32 %470
   28.load322 = load i32 from ptr %28321
@@ -57,7 +62,7 @@ kernel_ludcmp.while.body32:  pred(kernel_ludcmp.while.body32, kernel_ludcmp.whil
   471 = shl i32 %k.phi267328482, i32 2
   45333 = ptradd ptr %25319, i32 %471
   45.load334 = load i32 from ptr %45333
-  49336 = ptradd ptr @A, i32 %561
+  49336 = ptradd ptr %A.pinned, i32 %561
   52337 = ptradd ptr %49336, i32 %470
   52.load338 = load i32 from ptr %52337
   54339 = mul i32 %45.load334, i32 %52.load338
@@ -69,7 +74,7 @@ kernel_ludcmp.while.body32:  pred(kernel_ludcmp.while.body32, kernel_ludcmp.whil
 kernel_ludcmp.while.exit33:  pred(kernel_ludcmp.while.body16, kernel_ludcmp.while.body32_exclu_exit)
   480 = phi [bb %kernel_ludcmp.while.body32_exclu_exit, i32 %58341, bb %kernel_ludcmp.while.body16, i32 0]
   28.load322479 = phi [bb %kernel_ludcmp.while.body32_exclu_exit, i32 %55340, bb %kernel_ludcmp.while.body16, i32 %28.load322]
-  69345 = ptradd ptr @A, i32 %563
+  69345 = ptradd ptr %A.pinned, i32 %563
   72346 = ptradd ptr %69345, i32 %470
   72.load347 = load i32 from ptr %72346
   74348 = sdiv i32 %28.load322479, i32 %72.load347
@@ -79,7 +84,7 @@ kernel_ludcmp.while.exit33:  pred(kernel_ludcmp.while.body16, kernel_ludcmp.whil
   68344.rec = add i32 %563, i32 5600
   br i1 %20315, bb %kernel_ludcmp.while.body16, bb %kernel_ludcmp.while.body16_exclu_exit
 kernel_ludcmp.while.body81_preheader:  pred(kernel_ludcmp.while.exit17)
-  90360 = ptradd ptr @A, i32 %567
+  90360 = ptradd ptr %A.pinned, i32 %567
   br bb %kernel_ludcmp.while.body81
 kernel_ludcmp.while.body81:  pred(kernel_ludcmp.while.exit98, kernel_ludcmp.while.body81_preheader)
   j.phi258355493 = phi [bb %kernel_ludcmp.while.exit98, i32 %134387, bb %kernel_ludcmp.while.body81_preheader, i32 %i.phi263304521]
@@ -103,7 +108,7 @@ kernel_ludcmp.while.body97:  pred(kernel_ludcmp.while.body97, kernel_ludcmp.whil
   473 = shl i32 %k.phi370487, i32 2
   110375 = ptradd ptr %90360, i32 %473
   110.load376 = load i32 from ptr %110375
-  114378 = ptradd ptr @A, i32 %565
+  114378 = ptradd ptr %A.pinned, i32 %565
   117379 = ptradd ptr %114378, i32 %472
   117.load380 = load i32 from ptr %117379
   119381 = mul i32 %110.load376, i32 %117.load380
@@ -125,7 +130,7 @@ kernel_ludcmp.while.body140:  pred(kernel_ludcmp.while.exit154, kernel_ludcmp.wh
   569 = phi [bb %kernel_ludcmp.while.body140_preheader, i32 0, bb %kernel_ludcmp.while.exit154, i32 %162407.rec]
   i.phi262390517 = phi [bb %kernel_ludcmp.while.exit154, i32 %184421, bb %kernel_ludcmp.while.body140_preheader, i32 0]
   474 = shl i32 %i.phi262390517, i32 2
-  149395 = ptradd ptr @b, i32 %474
+  149395 = ptradd ptr %b.pinned, i32 %474
   149.load396 = load i32 from ptr %149395
   157404503 = icmp slt i32 0, i32 %i.phi262390517
   br i1 %157404503, bb %kernel_ludcmp.while.body153_preheader, bb %kernel_ludcmp.while.exit154
@@ -134,7 +139,7 @@ kernel_ludcmp.while.exit141:  pred(kernel_ludcmp.while.exit, kernel_ludcmp.while
   192425514 = icmp sge i32 %288399, i32 0
   br i1 %192425514, bb %kernel_ludcmp.while.body189_preheader, bb %kernel_ludcmp.while.exit190
 kernel_ludcmp.while.body153_preheader:  pred(kernel_ludcmp.while.body140)
-  163408 = ptradd ptr @A, i32 %569
+  163408 = ptradd ptr %A.pinned, i32 %569
   br bb %kernel_ludcmp.while.body153
 kernel_ludcmp.while.body153:  pred(kernel_ludcmp.while.body153, kernel_ludcmp.while.body153_preheader)
   j.phi256403506 = phi [bb %kernel_ludcmp.while.body153, i32 %176416, bb %kernel_ludcmp.while.body153_preheader, i32 0]
@@ -142,7 +147,7 @@ kernel_ludcmp.while.body153:  pred(kernel_ludcmp.while.body153, kernel_ludcmp.wh
   475 = shl i32 %j.phi256403506, i32 2
   166410 = ptradd ptr %163408, i32 %475
   166.load411 = load i32 from ptr %166410
-  170412 = ptradd ptr @y, i32 %475
+  170412 = ptradd ptr %y.pinned, i32 %475
   170.load413 = load i32 from ptr %170412
   172414 = mul i32 %166.load411, i32 %170.load413
   173415 = sub i32 %w.phi271402505, i32 %172414
@@ -151,7 +156,7 @@ kernel_ludcmp.while.body153:  pred(kernel_ludcmp.while.body153, kernel_ludcmp.wh
   br i1 %157404, bb %kernel_ludcmp.while.body153, bb %kernel_ludcmp.while.body153_exclu_exit
 kernel_ludcmp.while.exit154:  pred(kernel_ludcmp.while.body140, kernel_ludcmp.while.body153_exclu_exit)
   149.load396504 = phi [bb %kernel_ludcmp.while.body153_exclu_exit, i32 %173415, bb %kernel_ludcmp.while.body140, i32 %149.load396]
-  179419 = ptradd ptr @y, i32 %474
+  179419 = ptradd ptr %y.pinned, i32 %474
   store i32 %149.load396504 to ptr %179419
   184421 = add i32 %i.phi262390517, i32 1
   144391 = icmp slt i32 %184421, i32 %n.load
@@ -162,7 +167,7 @@ kernel_ludcmp.while.body189_preheader:  pred(kernel_ludcmp.while.exit141)
 kernel_ludcmp.while.body189:  pred(kernel_ludcmp.while.exit204, kernel_ludcmp.while.body189_preheader)
   i.phi424515 = phi [bb %kernel_ludcmp.while.exit204, i32 %297460, bb %kernel_ludcmp.while.body189_preheader, i32 %288399]
   476 = shl i32 %i.phi424515, i32 2
-  197429 = ptradd ptr @y, i32 %476
+  197429 = ptradd ptr %y.pinned, i32 %476
   197.load430 = load i32 from ptr %197429
   201431 = add i32 %i.phi424515, i32 1
   207438507 = icmp slt i32 %201431, i32 %n.load
@@ -170,19 +175,19 @@ kernel_ludcmp.while.body189:  pred(kernel_ludcmp.while.exit204, kernel_ludcmp.wh
   br i1 %207438507, bb %kernel_ludcmp.while.body203_preheader, bb %kernel_ludcmp.while.exit204
 kernel_ludcmp.while.exit190:  pred(kernel_ludcmp.while.exit141, kernel_ludcmp.while.exit204)
   call void _sysy_stoptime(i32 71)
-  n.load252 = load i32 from ptr @n
-  call void putarray(i32 %n.load252, ptr @x)
+  n.load252 = load i32 from ptr %n.pinned
+  call void putarray(i32 %n.load252, ptr %x.pinned)
   ret i32 0
 kernel_ludcmp.while.body203_preheader:  pred(kernel_ludcmp.while.body189)
   br bb %kernel_ludcmp.while.body203
 kernel_ludcmp.while.body203:  pred(kernel_ludcmp.while.body203, kernel_ludcmp.while.body203_preheader)
   j.phi437512 = phi [bb %kernel_ludcmp.while.body203, i32 %226450, bb %kernel_ludcmp.while.body203_preheader, i32 %201431]
   w.phi436511 = phi [bb %kernel_ludcmp.while.body203, i32 %223449, bb %kernel_ludcmp.while.body203_preheader, i32 %197.load430]
-  213442 = ptradd ptr @A, i32 %212441508
+  213442 = ptradd ptr %A.pinned, i32 %212441508
   477 = shl i32 %j.phi437512, i32 2
   216444 = ptradd ptr %213442, i32 %477
   216.load445 = load i32 from ptr %216444
-  220446 = ptradd ptr @x, i32 %477
+  220446 = ptradd ptr %x.pinned, i32 %477
   220.load447 = load i32 from ptr %220446
   222448 = mul i32 %216.load445, i32 %220.load447
   223449 = sub i32 %w.phi436511, i32 %222448
@@ -191,8 +196,8 @@ kernel_ludcmp.while.body203:  pred(kernel_ludcmp.while.body203, kernel_ludcmp.wh
   br i1 %207438, bb %kernel_ludcmp.while.body203, bb %kernel_ludcmp.while.body203_exclu_exit
 kernel_ludcmp.while.exit204:  pred(kernel_ludcmp.while.body189, kernel_ludcmp.while.body203_exclu_exit)
   197.load430509 = phi [bb %kernel_ludcmp.while.body203_exclu_exit, i32 %223449, bb %kernel_ludcmp.while.body189, i32 %197.load430]
-  229453 = ptradd ptr @x, i32 %476
-  234455 = ptradd ptr @A, i32 %212441508
+  229453 = ptradd ptr %x.pinned, i32 %476
+  234455 = ptradd ptr %A.pinned, i32 %212441508
   237456 = ptradd ptr %234455, i32 %476
   237.load457 = load i32 from ptr %237456
   239458 = sdiv i32 %197.load430509, i32 %237.load457

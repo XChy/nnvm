@@ -19,40 +19,33 @@ a:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -80
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
   SD s4, 40(sp)
-  SD s5, 48(sp)
-  SD s6, 56(sp)
-  SD s7, 64(sp)
-  LA s0, a
-  CALL getint
-  LA s7, b
-  SW a0, 0(s0)
-  LA s0, c
-  LA s1, d
-  LA s2, e
   LA s3, a
-  LA s4, b
-  LA s5, c
-  LA s6, d
+  LA s2, b
+  LA s1, c
+  LA s0, d
   CALL getint
-  SW a0, 0(s7)
+  LA s4, e
+  SW a0, 0(s3)
   CALL getint
-  SW a0, 0(s0)
+  SW a0, 0(s2)
   CALL getint
   SW a0, 0(s1)
   CALL getint
-  SW a0, 0(s2)
+  SW a0, 0(s0)
+  CALL getint
+  SW a0, 0(s4)
   LW t1, 0(s3)
-  LW t2, 0(s4)
-  LW a1, 0(s5)
+  LW t2, 0(s2)
+  LW a1, 0(s1)
   DIVW a3, t1, a1
-  LW a2, 0(s6)
+  LW a2, 0(s0)
   MULW t0, t2, a1
   SUBW t0, t1, t0
   SUBW a3, a2, a3
@@ -82,10 +75,7 @@ bb4:   # loop depth 0
   LD s2, 24(sp)
   LD s3, 32(sp)
   LD s4, 40(sp)
-  LD s5, 48(sp)
-  LD s6, 56(sp)
-  LD s7, 64(sp)
-  ADDI sp, sp, 80
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb5:   # loop depth 0
   ADDI a0, zero, 1

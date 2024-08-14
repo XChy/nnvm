@@ -37,66 +37,81 @@ cnt:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -48
+  ADDI sp, sp, -112
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  LA s1, keys
-  LA s0, hashmod
+  SD s5, 8(sp)
+  SD s6, 16(sp)
+  SD s7, 24(sp)
+  SD s8, 32(sp)
+  SD s9, 40(sp)
+  SD s10, 48(sp)
+  SD s11, 56(sp)
+  SD s0, 64(sp)
+  SD s1, 72(sp)
+  SD s2, 80(sp)
+  SD s3, 88(sp)
+  SD s4, 96(sp)
+  LA s10, hashmod
+  LA s7, keys
+  LA s6, values
+  LA s9, requests
+  LA s4, head
+  LA s2, next
+  LA s0, nextvalue
+  LA s1, key
+  LA s3, value
   CALL getint
-  LA s3, values
   ADD t0, a0, zero
-  LA s4, requests
-  ADD a0, s1, zero
-  SW t0, 0(s0)
-  ADDI s2, zero, 0
+  ADDI s11, zero, 0
+  ADD a0, s7, zero
+  SW t0, 0(s10)
   CALL getarray
-  ADD s1, a0, zero
-  ADD a0, s3, zero
+  ADD s5, a0, zero
+  ADD a0, s6, zero
   CALL getarray
-  ADD a0, s4, zero
+  ADD a0, s9, zero
   CALL getarray
-  ADD s0, a0, zero
+  ADD s8, a0, zero
   ADDI a0, zero, 78
   CALL _sysy_starttime
-  BLT s2, s1, bb18
+  BLT s11, s5, bb18
   # implict jump to bb1
 bb1:   # loop depth 0
-  BLT zero, s0, bb3
+  LA s5, ans
+  BLT zero, s8, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA s1, ans
   ADDI a0, zero, 90
   CALL _sysy_stoptime
-  ADD a1, s1, zero
-  ADD a0, s0, zero
+  ADD a1, s5, zero
+  ADD a0, s8, zero
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  ADDI sp, sp, 48
+  LD s5, 8(sp)
+  LD s6, 16(sp)
+  LD s7, 24(sp)
+  LD s8, 32(sp)
+  LD s9, 40(sp)
+  LD s10, 48(sp)
+  LD s11, 56(sp)
+  LD s0, 64(sp)
+  LD s1, 72(sp)
+  LD s2, 80(sp)
+  LD s3, 88(sp)
+  LD s4, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  LA t0, hashmod
+  LW a0, 0(s10)
   ADD t2, zero, zero
-  LW a0, 0(t0)
   # implict jump to bb4
 bb4:   # loop depth 1
-  LA t0, requests
-  LA a2, head
-  LA t1, ans
-  SH2ADD t0, t2, t0
+  SH2ADD t0, t2, s9
+  SH2ADD a1, t2, s5
   LW t0, 0(t0)
-  SH2ADD a1, t2, t1
   REMW t1, t0, a0
-  SH2ADD t1, t1, a2
+  SH2ADD t1, t1, s4
   LW t1, 0(t1)
   # implict jump to bb5
 bb5:   # loop depth 2
@@ -108,19 +123,17 @@ bb6:   # loop depth 1
 bb7:   # loop depth 1
   ADDIW t2, t2, 1
   SW t0, 0(a1)
-  BLT t2, s0, bb8
+  BLT t2, s8, bb8
   JAL zero, bb2
 bb8:   # loop depth 1
   JAL zero, bb4
 bb9:   # loop depth 2
-  LA a2, key
-  SH2ADD a2, t1, a2
+  SH2ADD a2, t1, s1
   LW a2, 0(a2)
   BEQ a2, t0, bb11
   # implict jump to bb10
 bb10:   # loop depth 2
-  LA a2, next
-  SH2ADD t1, t1, a2
+  SH2ADD t1, t1, s2
   LW t1, 0(t1)
   JAL zero, bb5
 bb11:   # loop depth 1
@@ -135,11 +148,9 @@ bb14:   # loop depth 1
   ADD t0, zero, zero
   # implict jump to bb15
 bb15:   # loop depth 2
-  LA a2, value
-  LA a3, nextvalue
-  SH2ADD a2, t1, a2
+  SH2ADD a2, t1, s3
+  SH2ADD t1, t1, s0
   LW a2, 0(a2)
-  SH2ADD t1, t1, a3
   LW t1, 0(t1)
   ADDW t0, t0, a2
   BNE t1, zero, bb17
@@ -149,20 +160,17 @@ bb16:   # loop depth 1
 bb17:   # loop depth 2
   JAL zero, bb15
 bb18:   # loop depth 0
-  LA t0, hashmod
+  LW t2, 0(s10)
+  LA a3, cnt
   ADD t1, zero, zero
-  LW t2, 0(t0)
   # implict jump to bb19
 bb19:   # loop depth 1
-  LA t0, keys
-  LA a1, values
-  LA a3, head
-  SH2ADD t0, t1, t0
+  SH2ADD t0, t1, s7
+  SH2ADD a1, t1, s6
   LW a0, 0(t0)
-  SH2ADD t0, t1, a1
-  REMW a2, a0, t2
-  LW a1, 0(t0)
-  SH2ADD a2, a2, a3
+  REMW t0, a0, t2
+  LW a1, 0(a1)
+  SH2ADD a2, t0, s4
   LW t0, 0(a2)
   BEQ t0, zero, bb28
   # implict jump to bb20
@@ -172,77 +180,58 @@ bb21:   # loop depth 2
   BNE t0, zero, bb25
   # implict jump to bb22
 bb22:   # loop depth 1
-  LA t0, cnt
-  LA a4, cnt
-  LA a5, next
-  LA a6, key
-  LW t0, 0(t0)
-  LA a7, value
-  LA t3, nextvalue
-  ADDIW a3, t0, 1
-  SH2ADD t0, t0, a5
-  SW a3, 0(a4)
-  SH2ADD a5, a3, a6
-  LW a4, 0(a2)
-  SH2ADD a6, a3, a7
-  SH2ADD a7, a3, t3
-  SW a4, 4(t0)
-  SW a3, 0(a2)
-  SW a0, 0(a5)
-  SW a1, 0(a6)
-  SW zero, 0(a7)
+  LW t0, 0(a3)
+  ADDIW a4, t0, 1
+  SH2ADD t0, t0, s2
+  SW a4, 0(a3)
+  SH2ADD a6, a4, s1
+  LW a5, 0(a2)
+  SH2ADD a7, a4, s3
+  SH2ADD t3, a4, s0
+  SW a5, 4(t0)
+  SW a4, 0(a2)
+  SW a0, 0(a6)
+  SW a1, 0(a7)
+  SW zero, 0(t3)
   # implict jump to bb23
 bb23:   # loop depth 1
   ADDIW t1, t1, 1
-  BLT t1, s1, bb24
+  BLT t1, s5, bb24
   JAL zero, bb1
 bb24:   # loop depth 1
   JAL zero, bb19
 bb25:   # loop depth 2
-  LA a3, key
-  SH2ADD a3, t0, a3
-  LW a3, 0(a3)
-  BEQ a3, a0, bb27
+  SH2ADD a4, t0, s1
+  LW a4, 0(a4)
+  BEQ a4, a0, bb27
   # implict jump to bb26
 bb26:   # loop depth 2
-  LA a3, next
-  SH2ADD t0, t0, a3
+  SH2ADD t0, t0, s2
   LW t0, 0(t0)
   JAL zero, bb21
 bb27:   # loop depth 1
-  LA a0, cnt
-  LA a2, nextvalue
-  LA a3, cnt
-  LA a4, nextvalue
-  LW a0, 0(a0)
-  SH2ADD a2, t0, a2
-  LA a5, value
+  LW a0, 0(a3)
+  SH2ADD a2, t0, s0
   ADDIW t0, a0, 1
-  SH2ADD a0, a0, a4
+  SH2ADD a0, a0, s0
   SW t0, 0(a3)
-  SH2ADD a4, t0, a5
-  LW a3, 0(a2)
-  SW a3, 4(a0)
+  SH2ADD a5, t0, s3
+  LW a4, 0(a2)
+  SW a4, 4(a0)
   SW t0, 0(a2)
-  SW a1, 0(a4)
+  SW a1, 0(a5)
   JAL zero, bb23
 bb28:   # loop depth 1
-  LA t0, cnt
-  LA a3, cnt
-  LA a4, key
-  LA a5, value
-  LW t0, 0(t0)
-  LA a6, next
-  LA a7, nextvalue
+  LW t0, 0(a3)
   ADDIW t0, t0, 1
   SW t0, 0(a3)
-  SH2ADD a3, t0, a4
+  SH2ADD a4, t0, s1
   SW t0, 0(a2)
-  SH2ADD a2, t0, a5
-  SW a0, 0(a3)
-  SH2ADD a0, t0, a6
+  SH2ADD a2, t0, s3
+  SW a0, 0(a4)
+  SH2ADD a0, t0, s2
   SW a1, 0(a2)
-  SH2ADD t0, t0, a7
+  SH2ADD t0, t0, s0
   SW zero, 0(a0)
   SW zero, 0(t0)
   JAL zero, bb23

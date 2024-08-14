@@ -10,27 +10,30 @@ matrix:
 
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  LA s0, a
+  SD s3, 32(sp)
+  SD s4, 40(sp)
+  LA s3, a
+  LA s0, matrix
   CALL getint
-  ADD s1, a0, zero
-  ADDI s2, zero, 0
-  ADD a0, s0, zero
+  ADDI s4, zero, 0
+  ADD s2, a0, zero
+  ADD a0, s3, zero
   CALL getarray
-  ADD s0, a0, zero
+  ADD s1, a0, zero
   ADDI a0, zero, 28
   CALL _sysy_starttime
-  BLT s2, s1, bb25
+  BLT s4, s2, bb25
   # implict jump to bb1
 bb1:   # loop depth 0
-  BLT zero, s0, bb12
+  BLT zero, s1, bb12
   # implict jump to bb2
 bb2:   # loop depth 0
-  BLT zero, s0, bb8
+  BLT zero, s1, bb8
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD t0, zero, zero
@@ -54,7 +57,9 @@ bb6:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  LD s4, 40(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb7:   # loop depth 0
   JAL zero, bb6
@@ -63,14 +68,13 @@ bb8:   # loop depth 0
   ADD t1, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
-  LA a0, matrix
+  SH2ADD a0, t1, s0
   MULW t2, t1, t1
-  SH2ADD a0, t1, a0
-  ADDIW t1, t1, 1
   LW a0, 0(a0)
+  ADDIW t1, t1, 1
   MULW t2, t2, a0
   ADDW t0, t0, t2
-  BLT t1, s0, bb11
+  BLT t1, s1, bb11
   # implict jump to bb10
 bb10:   # loop depth 0
   JAL zero, bb4
@@ -80,15 +84,14 @@ bb12:   # loop depth 0
   ADD a1, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  LA t0, a
-  SH2ADD t0, a1, t0
+  SH2ADD t0, a1, s3
   LW a2, 0(t0)
-  DIVW a3, s1, a2
+  DIVW a3, s2, a2
   BLT zero, a3, bb16
   # implict jump to bb14
 bb14:   # loop depth 1
   ADDIW a1, a1, 1
-  BLT a1, s0, bb15
+  BLT a1, s1, bb15
   JAL zero, bb2
 bb15:   # loop depth 1
   JAL zero, bb13
@@ -114,14 +117,12 @@ bb21:   # loop depth 3
   BLT a0, t1, bb24
   # implict jump to bb22
 bb22:   # loop depth 3
-  LA a5, matrix
   MULW a6, t1, a3
   ADDW t0, a4, t1
-  LA a7, matrix
-  SH2ADD a5, t0, a5
+  SH2ADD a5, t0, s0
   LW t1, 0(a5)
   ADDW t0, a6, a0
-  SH2ADD t0, t0, a7
+  SH2ADD t0, t0, s0
   SW t1, 0(t0)
   ADD t0, t1, zero
   SW t1, 0(a5)
@@ -135,11 +136,10 @@ bb25:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb26
 bb26:   # loop depth 1
-  LA t2, matrix
+  SH2ADD t2, t0, s0
   ADDIW t1, t0, 1
-  SH2ADD t2, t0, t2
   SW t0, 0(t2)
-  BLT t1, s1, bb27
+  BLT t1, s2, bb27
   JAL zero, bb1
 bb27:   # loop depth 1
   ADD t0, t1, zero

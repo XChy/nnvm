@@ -3970,9 +3970,9 @@ bb178:   # loop depth 0
   SRLI t1, t1, 63
   ADD t1, a1, t1
   ANDI t1, t1, -2
-  SUBW t3, a1, t1
-  SUB t2, zero, t3
-  BLT t3, zero, bb256
+  SUBW t4, a1, t1
+  SUB t2, zero, t4
+  BLT t4, zero, bb256
   # implict jump to bb179
 bb179:   # loop depth 0
   # implict jump to bb180
@@ -4133,11 +4133,11 @@ bb198:   # loop depth 0
   ADD a4, a0, a4
   ANDI a4, a4, -2
   SUBW a5, a0, a4
-  SUB a7, zero, a5
+  SUB t3, zero, a5
   BLT a5, zero, bb246
   # implict jump to bb199
 bb199:   # loop depth 0
-  ADD a7, a5, zero
+  ADD t3, a5, zero
   # implict jump to bb200
 bb200:   # loop depth 0
   SRAIW a4, a0, 31
@@ -4149,11 +4149,11 @@ bb200:   # loop depth 0
   ADD t0, a4, t0
   ANDI t0, t0, -2
   SUBW a0, a4, t0
-  SUB t4, zero, a0
+  SUB t5, zero, a0
   BLT a0, zero, bb245
   # implict jump to bb201
 bb201:   # loop depth 0
-  ADD t4, a0, zero
+  ADD t5, a0, zero
   # implict jump to bb202
 bb202:   # loop depth 0
   SRAIW a0, a4, 31
@@ -4229,11 +4229,11 @@ bb210:   # loop depth 0
   ADD t0, a4, t0
   ANDI t0, t0, -2
   SUBW a0, a4, t0
-  SUB s5, zero, a0
+  SUB s6, zero, a0
   BLT a0, zero, bb240
   # implict jump to bb211
 bb211:   # loop depth 0
-  ADD s5, a0, zero
+  ADD s6, a0, zero
   # implict jump to bb212
 bb212:   # loop depth 0
   SRAIW a0, a4, 31
@@ -4244,12 +4244,11 @@ bb212:   # loop depth 0
   SRLI t0, t0, 63
   ADD t0, a4, t0
   ANDI t0, t0, -2
-  SUBW a0, a4, t0
-  SUB s6, zero, a0
-  BLT a0, zero, bb239
+  SUBW s5, a4, t0
+  SUB a0, zero, s5
+  BLT s5, zero, bb239
   # implict jump to bb213
 bb213:   # loop depth 0
-  ADD s6, a0, zero
   # implict jump to bb214
 bb214:   # loop depth 0
   SRAIW a0, a4, 31
@@ -4276,9 +4275,9 @@ bb216:   # loop depth 0
   SRLI t0, t0, 63
   ADD t0, a4, t0
   ANDI t0, t0, -2
-  SUBW t5, a4, t0
-  SUB a0, zero, t5
-  BLT t5, zero, bb237
+  SUBW a7, a4, t0
+  SUB a0, zero, a7
+  BLT a7, zero, bb237
   # implict jump to bb217
 bb217:   # loop depth 0
   # implict jump to bb218
@@ -4381,10 +4380,10 @@ bb228:   # loop depth 0
 bb229:   # loop depth 0
   # implict jump to bb230
 bb230:   # loop depth 0
-  SLTU s10, zero, t4
+  SLTU s10, zero, t5
   LW t0, 1584(sp)
-  SLTU t4, zero, t0
-  AND t0, t4, s10
+  SLTU t5, zero, t0
+  AND t0, t5, s10
   SW t0, 1068(sp)
   SLTU t0, zero, s0
   SB t0, 30(sp)
@@ -4397,10 +4396,10 @@ bb230:   # loop depth 0
   LB t0, 25(sp)
   XORI t0, t0, 1
   SW t0, 1072(sp)
-  OR s0, t4, s10
+  OR s0, t5, s10
   LW t0, 1072(sp)
   SLTU s10, zero, t0
-  SLTU t0, zero, a7
+  SLTU t0, zero, t3
   SB t0, 321(sp)
   LW t0, 1756(sp)
   SLTU t0, zero, t0
@@ -4571,19 +4570,19 @@ bb230:   # loop depth 0
   LW t0, 1144(sp)
   SLTU t0, zero, t0
   SB t0, 333(sp)
-  SLTU t0, zero, s5
+  SLTU t0, zero, s6
   SB t0, 67(sp)
-  SLTU t0, zero, t3
+  SLTU t0, zero, t4
   SB t0, 66(sp)
   LW t0, 1152(sp)
   SLTU t0, zero, t0
   SW t0, 1156(sp)
   LB t0, 121(sp)
   LB t1, 120(sp)
-  OR s5, t1, t0
+  OR s6, t1, t0
   LB t0, 334(sp)
   LB t1, 333(sp)
-  AND t3, t1, t0
+  AND t4, t1, t0
   LB t0, 67(sp)
   LB t1, 66(sp)
   AND t0, t1, t0
@@ -4591,27 +4590,27 @@ bb230:   # loop depth 0
   LW t0, 1156(sp)
   SLTU t0, zero, t0
   SB t0, 63(sp)
-  SLTU s5, zero, s5
-  SLTU t0, zero, t3
+  SLTU s6, zero, s6
+  SLTU t0, zero, t4
   SB t0, 335(sp)
   LW t0, 1164(sp)
   SLTU t0, zero, t0
   SB t0, 69(sp)
   LB t0, 63(sp)
-  AND t0, s5, t0
+  AND t0, s6, t0
   SW t0, 1160(sp)
   LB t0, 335(sp)
   LB t1, 114(sp)
-  OR s5, t1, t0
+  OR s6, t1, t0
   LB t0, 69(sp)
   XORI t0, t0, 1
   SW t0, 988(sp)
-  SLTU t0, zero, s5
+  SLTU t0, zero, s6
   SB t0, 337(sp)
   LW t0, 1160(sp)
   SLTU t0, zero, t0
   SB t0, 336(sp)
-  SLTU t0, zero, s6
+  SLTU t0, zero, s5
   SB t0, 74(sp)
   SLTU t0, zero, s8
   SB t0, 73(sp)
@@ -4623,7 +4622,7 @@ bb230:   # loop depth 0
   OR s8, t1, t0
   LB t0, 337(sp)
   LB t1, 336(sp)
-  AND s6, t1, t0
+  AND s5, t1, t0
   LB t0, 74(sp)
   LB t1, 73(sp)
   AND t0, t1, t0
@@ -4632,7 +4631,7 @@ bb230:   # loop depth 0
   SLTU t0, zero, t0
   SB t0, 71(sp)
   SLTU s8, zero, s8
-  SLTU t0, zero, s6
+  SLTU t0, zero, s5
   SB t0, 338(sp)
   LW t0, 940(sp)
   SLTU t0, zero, t0
@@ -4688,7 +4687,7 @@ bb230:   # loop depth 0
   SB t0, 80(sp)
   LW t0, 952(sp)
   SLTU s7, zero, t0
-  SLTU t0, zero, t5
+  SLTU t0, zero, a7
   SB t0, 87(sp)
   SLTU t0, zero, s11
   SB t0, 86(sp)
@@ -4699,7 +4698,7 @@ bb230:   # loop depth 0
   LB t1, 81(sp)
   OR s11, t1, t0
   LB t0, 80(sp)
-  AND t5, s7, t0
+  AND a7, s7, t0
   LB t0, 87(sp)
   LB t1, 86(sp)
   AND t0, t1, t0
@@ -4708,7 +4707,7 @@ bb230:   # loop depth 0
   SLTU t0, zero, t0
   SB t0, 84(sp)
   SLTU s11, zero, s11
-  SLTU t5, zero, t5
+  SLTU a7, zero, a7
   LW t0, 980(sp)
   SLTU t0, zero, t0
   SB t0, 88(sp)
@@ -4716,7 +4715,7 @@ bb230:   # loop depth 0
   AND t0, s11, t0
   SW t0, 968(sp)
   LB t0, 76(sp)
-  OR s11, t0, t5
+  OR s11, t0, a7
   LB t0, 88(sp)
   XORI t0, t0, 1
   SW t0, 984(sp)
@@ -5099,7 +5098,7 @@ bb230:   # loop depth 0
   ADDW a0, a0, t2
   SLTU t2, zero, t1
   SLTU t1, zero, t0
-  XORI t0, t5, 1
+  XORI t0, a7, 1
   SLLIW a0, a0, 1
   AND t2, t1, t2
   SLTU t1, zero, t0
@@ -5221,11 +5220,12 @@ bb235:   # loop depth 0
 bb236:   # loop depth 0
   JAL zero, bb220
 bb237:   # loop depth 0
-  ADD t5, a0, zero
+  ADD a7, a0, zero
   JAL zero, bb218
 bb238:   # loop depth 0
   JAL zero, bb216
 bb239:   # loop depth 0
+  ADD s5, a0, zero
   JAL zero, bb214
 bb240:   # loop depth 0
   JAL zero, bb212
@@ -5265,7 +5265,7 @@ bb255:   # loop depth 0
   ADD s8, t2, zero
   JAL zero, bb182
 bb256:   # loop depth 0
-  ADD t3, t2, zero
+  ADD t4, t2, zero
   JAL zero, bb180
 bb257:   # loop depth 0
   SW t2, 1060(sp)

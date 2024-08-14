@@ -2,6 +2,7 @@ immutable internal global ptr y init with 216000000 x i32 zeros
 internal global ptr x init with 216000000 x i32 zeros
 i32 main() {
 entry:  pred()
+  x.pinned = pin ptr @x
   7 = call i32 getint()
   9 = call i32 getint()
   call void _sysy_starttime(i32 13)
@@ -18,7 +19,7 @@ while.exit:  pred(entry, while.exit25)
   76319 = icmp slt i32 1, i32 %230318
   br i1 %76319, bb %while.body71_preheader, bb %while.exit72
 while.body24_preheader:  pred(while.body)
-  40 = ptradd ptr @x, i32 %352
+  40 = ptradd ptr %x.pinned, i32 %352
   br bb %while.body24
 while.body24:  pred(while.exit33, while.body24_preheader)
   350 = phi [bb %while.body24_preheader, i32 0, bb %while.exit33, i32 %42.rec]
@@ -56,21 +57,21 @@ while.exit72:  pred(while.exit, while.body71_exclu_exit)
   98320322 = phi [bb %while.body71_exclu_exit, i32 %356, bb %while.exit, i32 1440000]
   321 = phi [bb %while.body71_exclu_exit, i32 %316, bb %while.exit, i32 1]
   call void _sysy_stoptime(i32 53)
-  call void putarray(i32 %7, ptr @x)
+  call void putarray(i32 %7, ptr %x.pinned)
   198 = sdiv i32 %7, i32 2
   199 = mul i32 %198, i32 1440000
-  200 = ptradd ptr @x, i32 %199
+  200 = ptradd ptr %x.pinned, i32 %199
   203 = mul i32 %198, i32 2400
   204 = ptradd ptr %200, i32 %203
   call void putarray(i32 %7, ptr %204)
-  247 = ptradd ptr @x, i32 %98320322
+  247 = ptradd ptr %x.pinned, i32 %98320322
   283 = mul i32 %321, i32 2400
   284 = ptradd ptr %247, i32 %283
   287 = ptradd ptr %284, i32 -1442400
   call void putarray(i32 %7, ptr %287)
   ret i32 0
 while.body81_preheader:  pred(while.body71)
-  99 = ptradd ptr @x, i32 %98320326
+  99 = ptradd ptr %x.pinned, i32 %98320326
   br bb %while.body81
 while.body81:  pred(while.exit91, while.body81_preheader)
   354 = phi [bb %while.body81_preheader, i32 2400, bb %while.exit91, i32 %101.rec]

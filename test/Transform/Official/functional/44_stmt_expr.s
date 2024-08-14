@@ -10,16 +10,14 @@ main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  LA t0, k
-  ADDI t1, zero, 1
-  ADDI t2, zero, 9
-  SW t1, 0(t0)
-  BGE t2, zero, bb2
+  LA s0, k
+  ADDI t0, zero, 1
+  ADDI t1, zero, 9
+  SW t0, 0(s0)
+  BGE t1, zero, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA t0, k
-  LA s0, k
-  LW a0, 0(t0)
+  LW a0, 0(s0)
   CALL putint
   LW a0, 0(s0)
   LD ra, 0(sp)
@@ -37,8 +35,7 @@ bb3:   # loop depth 1
   BGE t2, t0, bb5
   # implict jump to bb4
 bb4:   # loop depth 0
-  LA t0, k
-  SW t1, 0(t0)
+  SW t1, 0(s0)
   JAL zero, bb1
 bb5:   # loop depth 1
   JAL zero, bb3
