@@ -12,6 +12,7 @@
 #include "Transform/Scalar/GVN.h"
 #include "Transform/Scalar/LinearizePtrAdd.h"
 #include "Transform/Scalar/Loop/LICM.h"
+#include "Transform/Scalar/Loop/LSR.h"
 #include "Transform/Scalar/Loop/LoopCanon.h"
 #include "Transform/Scalar/Loop/LoopLoadStorePair.h"
 #include "Transform/Scalar/Loop/Rotate.h"
@@ -56,6 +57,9 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<RotatePass>();
   passManager.addFunctionPass<LoopCanonPass>();
   passManager.addFunctionPass<LICMPass>();
+  passManager.addFunctionPass<CombinerPass>();
+  passManager.addFunctionPass<CSEPass>();
+  //passManager.addFunctionPass<LSRPass>();
 
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();

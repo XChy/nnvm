@@ -19,42 +19,37 @@ a:
 .word 0x00000001
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
-  LA a0, a
-  LA s1, b
-  LA s2, c
-  LA s3, e
-  LW s0, 0(a0)
-  LA s4, d
-  LW s1, 0(s1)
-  LW s2, 0(s2)
-  MULW a0, s0, s1
-  DIVW a0, a0, s2
-  LW s3, 0(s3)
-  LW s4, 0(s4)
-  ADDW s5, s3, s4
-  BEQ a0, s5, bb6
+  LA t0, a
+  LA t2, b
+  LA a0, c
+  LA a1, e
+  LW t1, 0(t0)
+  LA a2, d
+  LW t2, 0(t2)
+  LW a0, 0(a0)
+  MULW t0, t1, t2
+  DIVW t0, t0, a0
+  LW a1, 0(a1)
+  LW a2, 0(a2)
+  ADDW a3, a1, a2
+  BEQ t0, a3, bb6
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD a0, zero, zero
+  ADD t0, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 0
-  BNE a0, zero, bb5
+  BNE t0, zero, bb5
   # implict jump to bb3
 bb3:   # loop depth 0
-  DIVW s3, s0, s2
-  MULW a0, s1, s2
-  SUBW a0, s0, a0
-  SUBW s0, s4, s3
-  XOR a0, a0, s0
-  SLTIU s0, a0, 1
+  DIVW a1, t1, a0
+  MULW t0, t2, a0
+  SUBW t0, t1, t0
+  SUBW t1, a2, a1
+  XOR t0, t0, t1
+  SLTIU s0, t0, 1
   # implict jump to bb4
 bb4:   # loop depth 0
   ADD a0, s0, zero
@@ -62,21 +57,16 @@ bb4:   # loop depth 0
   ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb5:   # loop depth 0
   ADDI s0, zero, 1
   JAL zero, bb4
 bb6:   # loop depth 0
-  ADDW a0, s0, s1
-  ADDW s3, s4, s3
-  MULW a0, s0, a0
-  ADDW a0, a0, s2
-  SLT a0, s3, a0
-  XORI a0, a0, 1
+  ADDW t0, t1, t2
+  ADDW a1, a2, a1
+  MULW t0, t1, t0
+  ADDW t0, t0, a0
+  SLT t0, a1, t0
+  XORI t0, t0, 1
   JAL zero, bb2

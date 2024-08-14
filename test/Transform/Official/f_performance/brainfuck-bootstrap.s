@@ -255,65 +255,58 @@ bb48:   # loop depth 1
 bb49:   # loop depth 1
   JAL zero, bb1
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  SD s5, 48(sp)
   CALL getch
-  ADD s0, a0, zero
-  XORI s2, s0, 60
-  XORI s1, s0, 62
-  XORI s3, s0, 43
-  SLTU s2, zero, s2
-  SLTU s1, zero, s1
-  XORI s4, s0, 45
-  SLTU s3, zero, s3
-  AND s1, s1, s2
-  XORI s5, s0, 91
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 93
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 46
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 44
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 35
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  AND s1, s1, s3
-  BNE s1, zero, bb70
+  XORI t1, a0, 60
+  XORI t0, a0, 62
+  XORI t2, a0, 43
+  SLTU t1, zero, t1
+  SLTU t0, zero, t0
+  XORI a1, a0, 45
+  SLTU t2, zero, t2
+  AND t0, t0, t1
+  XORI a2, a0, 91
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 93
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 46
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 44
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 35
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  AND t0, t0, t2
+  BNE t0, zero, bb70
   # implict jump to bb51
 bb51:   # loop depth 0
   # implict jump to bb52
 bb52:   # loop depth 0
-  XORI s1, s0, 35
-  BNE s1, zero, bb63
+  XORI t0, a0, 35
+  BNE t0, zero, bb63
   # implict jump to bb53
 bb53:   # loop depth 0
   CALL getch
-  ADD s0, a0, zero
-  XORI s0, s0, 105
-  BNE s0, zero, bb55
+  XORI t0, a0, 105
+  BNE t0, zero, bb55
   # implict jump to bb54
 bb54:   # loop depth 0
-  LA s1, input_length
+  LA s0, input_length
   CALL getint
-  ADD s0, a0, zero
-  LA s2, input_length
-  SW s0, 0(s1)
+  LA s1, input_length
+  SW a0, 0(s0)
   CALL getch
-  LW s0, 0(s2)
-  BLT zero, s0, bb60
+  LW t0, 0(s1)
+  BLT zero, t0, bb60
   # implict jump to bb55
 bb55:   # loop depth 0
   ADDI a0, zero, 116
@@ -322,166 +315,158 @@ bb55:   # loop depth 0
   CALL run_program
   ADDI a0, zero, 118
   CALL _sysy_stoptime
-  LW a0, 0(s0)
-  BLT zero, a0, bb57
+  LW t0, 0(s0)
+  BLT zero, t0, bb57
   # implict jump to bb56
 bb56:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  LD s5, 48(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb57:   # loop depth 0
-  ADD a0, zero, zero
+  ADD t0, zero, zero
   # implict jump to bb58
 bb58:   # loop depth 1
-  LA s1, output
-  LA s2, output_length
-  ADDIW s0, a0, 1
-  SH2ADD a0, a0, s1
-  LW a0, 0(a0)
+  LA t1, output
+  LA s1, output_length
+  ADDIW s0, t0, 1
+  SH2ADD t0, t0, t1
+  LW a0, 0(t0)
   CALL putch
-  LW a0, 0(s2)
-  BLT s0, a0, bb59
+  LW t0, 0(s1)
+  BLT s0, t0, bb59
   JAL zero, bb56
 bb59:   # loop depth 1
-  ADD a0, s0, zero
+  ADD t0, s0, zero
   JAL zero, bb58
 bb60:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb61
 bb61:   # loop depth 1
-  LA s2, input
+  LA s1, input
   CALL getch
-  LA s3, input_length
-  ADD s1, a0, zero
-  SH2ADD s2, s0, s2
-  SW s1, 0(s2)
+  LA t1, input_length
+  SH2ADD t0, s0, s1
+  SW a0, 0(t0)
   ADDIW s0, s0, 1
-  LW s1, 0(s3)
-  BLT s0, s1, bb62
+  LW t0, 0(t1)
+  BLT s0, t0, bb62
   JAL zero, bb55
 bb62:   # loop depth 1
   JAL zero, bb61
 bb63:   # loop depth 0
   # implict jump to bb64
 bb64:   # loop depth 1
-  LA s1, program_length
-  LA s2, program
-  LW s1, 0(s1)
-  SH2ADD s1, s1, s2
-  SW s0, 0(s1)
+  LA t0, program_length
+  LA t1, program
+  LW t0, 0(t0)
+  SH2ADD t0, t0, t1
+  SW a0, 0(t0)
   CALL getch
-  ADD s0, a0, zero
-  XORI s2, s0, 60
-  XORI s1, s0, 62
-  XORI s3, s0, 43
-  SLTU s2, zero, s2
-  SLTU s1, zero, s1
-  XORI s4, s0, 45
-  SLTU s3, zero, s3
-  AND s1, s1, s2
-  XORI s5, s0, 91
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 93
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 46
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 44
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 35
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  AND s1, s1, s3
-  BNE s1, zero, bb68
+  XORI t1, a0, 60
+  XORI t0, a0, 62
+  XORI t2, a0, 43
+  SLTU t1, zero, t1
+  SLTU t0, zero, t0
+  XORI a1, a0, 45
+  SLTU t2, zero, t2
+  AND t0, t0, t1
+  XORI a2, a0, 91
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 93
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 46
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 44
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 35
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  AND t0, t0, t2
+  BNE t0, zero, bb68
   # implict jump to bb65
 bb65:   # loop depth 1
   # implict jump to bb66
 bb66:   # loop depth 1
-  LA s1, program_length
-  LA s3, program_length
-  LW s1, 0(s1)
-  XORI s2, s0, 35
-  ADDIW s1, s1, 1
-  SW s1, 0(s3)
-  BNE s2, zero, bb67
+  LA t0, program_length
+  LA t2, program_length
+  LW t0, 0(t0)
+  XORI t1, a0, 35
+  ADDIW t0, t0, 1
+  SW t0, 0(t2)
+  BNE t1, zero, bb67
   JAL zero, bb53
 bb67:   # loop depth 1
   JAL zero, bb64
 bb68:   # loop depth 2
   CALL getch
-  ADD s0, a0, zero
-  XORI s2, s0, 60
-  XORI s1, s0, 62
-  XORI s3, s0, 43
-  SLTU s2, zero, s2
-  SLTU s1, zero, s1
-  XORI s4, s0, 45
-  SLTU s3, zero, s3
-  AND s1, s1, s2
-  XORI s5, s0, 91
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 93
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 46
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 44
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 35
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  AND s1, s1, s3
-  BNE s1, zero, bb68
+  XORI t1, a0, 60
+  XORI t0, a0, 62
+  XORI t2, a0, 43
+  SLTU t1, zero, t1
+  SLTU t0, zero, t0
+  XORI a1, a0, 45
+  SLTU t2, zero, t2
+  AND t0, t0, t1
+  XORI a2, a0, 91
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 93
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 46
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 44
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 35
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  AND t0, t0, t2
+  BNE t0, zero, bb68
   # implict jump to bb69
 bb69:   # loop depth 1
   JAL zero, bb66
 bb70:   # loop depth 1
   CALL getch
-  ADD s0, a0, zero
-  XORI s2, s0, 60
-  XORI s1, s0, 62
-  XORI s3, s0, 43
-  SLTU s2, zero, s2
-  SLTU s1, zero, s1
-  XORI s4, s0, 45
-  SLTU s3, zero, s3
-  AND s1, s1, s2
-  XORI s5, s0, 91
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 93
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 46
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  XORI s4, s0, 44
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  XORI s5, s0, 35
-  SLTU s2, zero, s4
-  AND s1, s1, s3
-  SLTU s3, zero, s5
-  AND s1, s1, s2
-  AND s1, s1, s3
-  BNE s1, zero, bb70
+  XORI t1, a0, 60
+  XORI t0, a0, 62
+  XORI t2, a0, 43
+  SLTU t1, zero, t1
+  SLTU t0, zero, t0
+  XORI a1, a0, 45
+  SLTU t2, zero, t2
+  AND t0, t0, t1
+  XORI a2, a0, 91
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 93
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 46
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  XORI a1, a0, 44
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  XORI a2, a0, 35
+  SLTU t1, zero, a1
+  AND t0, t0, t2
+  SLTU t2, zero, a2
+  AND t0, t0, t1
+  AND t0, t0, t2
+  BNE t0, zero, bb70
   # implict jump to bb71
 bb71:   # loop depth 0
   JAL zero, bb52

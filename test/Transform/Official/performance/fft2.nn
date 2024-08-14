@@ -21,7 +21,7 @@ while.body98:  pred(if.exit108, while.body98_preheader)
   111 = sdiv i32 %i96.phi322403, i32 2
   117 = add i32 %i96.phi322403, i32 %begin_pos
   br i1 %330, bb %then107, bb %else109
-while.exit99:  pred(if.exit95, while.body98_exclu_exit)
+while.exit99:  pred(if.exit95, if.exit108)
   br i1 %102400, bb %memmove.while.body_preheader, bb %memmove.while.exit
 then107:  pred(while.body98)
   383 = shl i32 %111, i32 2
@@ -34,7 +34,7 @@ then107:  pred(while.body98)
 if.exit108:  pred(then107, else109)
   137 = add i32 %i96.phi322403, i32 1
   102 = icmp slt i32 %137, i32 %n
-  br i1 %102, bb %while.body98, bb %while.body98_exclu_exit
+  br i1 %102, bb %while.body98, bb %while.exit99
 else109:  pred(while.body98)
   125 = add i32 %122401, i32 %111
   385 = shl i32 %125, i32 2
@@ -92,8 +92,6 @@ memmove.while.exit:  pred(while.exit99, memmove.while.body)
   157 = call i32 fft(ptr %arr, i32 %151, i32 %122401, i32 %146)
   166395 = icmp slt i32 0, i32 %122401
   br i1 %166395, bb %while.body161_preheader, bb %while.exit162
-while.body98_exclu_exit:  pred(if.exit108)
-  br bb %while.exit99
 }
 
 pure internal i32 power(i32 a, i32 b) {
@@ -135,16 +133,14 @@ entry223:  pred()
   236412 = add i32 %225, i32 %227
   339413 = add i32 %236412, i32 -1
   238414 = icmp slt i32 1, i32 %339413
-  br i1 %238414, bb %while.body231_preheader, bb %while.exit232
-while.body231_preheader:  pred(entry223)
-  br bb %while.body231
-while.body231:  pred(while.body231, while.body231_preheader)
+  br i1 %238414, bb %while.body231, bb %while.exit232
+while.body231:  pred(while.body231, entry223)
   d.load241 = load i32 from ptr @d
   391 = shl i32 %d.load241, i32 1
   store i32 %391 to ptr @d
   238 = icmp slt i32 %391, i32 %339413
-  br i1 %238, bb %while.body231, bb %while.body231_exclu_exit
-while.exit232:  pred(entry223, while.body231_exclu_exit)
+  br i1 %238, bb %while.body231, bb %while.exit232
+while.exit232:  pred(entry223, while.body231)
   d.load243 = load i32 from ptr @d
   247 = sdiv i32 998244352, i32 %d.load243
   248 = call i32 power(i32 3, i32 %247)
@@ -199,8 +195,6 @@ while.exit294:  pred(while.exit260, while.body293)
   call void _sysy_stoptime(i32 79)
   call void putarray(i32 %339413, ptr @a)
   ret i32 0
-while.body231_exclu_exit:  pred(while.body231)
-  br bb %while.exit232
 }
 
 external float getfloat()

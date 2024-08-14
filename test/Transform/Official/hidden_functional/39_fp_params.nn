@@ -1545,8 +1545,8 @@ params_mix.loop_entry2699:  pred(params_mix.else959)
   store i32 %9443452 to ptr %arr.index95334683671
   store i32 0 to ptr %arr.index95434703673
   9563472 = icmp ne i32 %10333480, i32 0
-  br i1 %9563472, bb %params_mix.else959_exclu_exit, bb %params_mix.else959
-params_mix.then957:  pred(params_fa40.then691, params_mix.else959_exclu_exit)
+  br i1 %9563472, bb %params_mix.then957, bb %params_mix.else959
+params_mix.then957:  pred(params_fa40.then691, params_mix.loop_entry2699)
   call void putfarray(i32 10, ptr %arr7363259)
   call void putarray(i32 10, ptr %arr28553258)
   975.load3489 = load i32 from ptr %arr28553258
@@ -1613,9 +1613,8 @@ params_mix.then957:  pred(params_fa40.then691, params_mix.else959_exclu_exit)
   3530 = shl i32 %k.load9873499, i32 2
   9893501 = ptradd ptr %arr28553258, i32 %3530
   989.load3502 = load i32 from ptr %9893501
-  992.load3503 = load float from ptr %arr.index85334003605
   9943504 = si2f i32 %989.load3502 to float
-  9953505 = fmul float %9943504, float %992.load3503
+  9953505 = fmul float %9943504, float %979.load34914606
   9963506 = f2si float %9953505 to i32
   call void putfloat(float %131.load3249)
   call void putch(i32 10)
@@ -1694,8 +1693,6 @@ params_mix.else959:  pred(params_mix.loop_entry2699, params_mix.else959_preheade
   10313479 = si2f i32 %i63.loop32623677 to float
   10333480 = f2si float %x62.loop32633678 to i32
   br bb %params_mix.loop_entry2699
-params_mix.else959_exclu_exit:  pred(params_mix.loop_entry2699)
-  br bb %params_mix.then957
 params_f40_i24.else247_exclu_exit:  pred(params_f40_i24.loop_entry)
   br bb %params_f40_i24.then245
 params_f40.else_exclu_exit:  pred(params_f40.else)

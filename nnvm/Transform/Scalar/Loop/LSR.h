@@ -8,6 +8,7 @@
 #include "Analysis/LoopAnalysis.h"
 #include "Analysis/SCEV.h"
 #include "IR/BasicBlock.h"
+#include "IR/IRBuilder.h"
 #include "IR/Instruction.h"
 #include "Transform/Infra/Pass.h"
 
@@ -19,6 +20,7 @@ public:
   bool processInst(Instruction *I, Loop *loop);
 
 private:
+  IRBuilder builder;
   LoopAnalysis *LA;
   SCEV *scev;
 };

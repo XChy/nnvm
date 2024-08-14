@@ -10,9550 +10,6099 @@ k:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  LUI t0, 1048574
-  ADDIW t0, t0, -608
+  LUI t0, 1048575
+  ADDIW t0, t0, -1456
   ADD sp, sp, t0
+  SD ra, 1808(sp)
+  SD s0, 1816(sp)
+  SD s1, 1824(sp)
+  SD s2, 1832(sp)
+  SD s3, 1840(sp)
+  SD s4, 1848(sp)
+  SD s5, 1856(sp)
+  SD s6, 1864(sp)
+  SD s7, 1872(sp)
+  SD s8, 1960(sp)
+  SD s9, 1968(sp)
+  SD s10, 1976(sp)
+  SD s11, 1984(sp)
+  FSD fs0, 2000(sp)
+  FSD fs1, 2008(sp)
+  FSD fs2, 2016(sp)
+  FSD fs3, 2024(sp)
+  FSD fs4, 2032(sp)
+  FSD fs5, 2040(sp)
   LUI t6, 1
-  ADDIW t6, t6, 136
-  ADD t6, t6, sp
-  FSD fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 144
+  ADDIW t6, t6, -2048
   ADD t6, t6, sp
   FSD fs6, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 152
+  ADDIW t6, t6, -2040
   ADD t6, t6, sp
   FSD fs7, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 160
+  ADDIW t6, t6, -2032
   ADD t6, t6, sp
   FSD fs8, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 168
+  ADDIW t6, t6, -2024
   ADD t6, t6, sp
   FSD fs9, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 176
+  ADDIW t6, t6, -2016
   ADD t6, t6, sp
   FSD fs10, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 184
-  ADD t6, t6, sp
-  SD ra, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 192
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 200
-  ADD t6, t6, sp
-  SD s1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 208
-  ADD t6, t6, sp
-  SD s2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 216
-  ADD t6, t6, sp
-  SD s3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 224
-  ADD t6, t6, sp
-  SD s5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 232
-  ADD t6, t6, sp
-  SD s6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 240
-  ADD t6, t6, sp
-  SD s7, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 248
-  ADD t6, t6, sp
-  SD s8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 256
-  ADD t6, t6, sp
-  SD s9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 264
-  ADD t6, t6, sp
-  SD s10, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 272
-  ADD t6, t6, sp
-  SD s11, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 280
-  ADD t6, t6, sp
-  FSD fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 288
-  ADD t6, t6, sp
-  FSD fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 296
-  ADD t6, t6, sp
-  FSD fs3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 304
-  ADD t6, t6, sp
-  FSD fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 312
-  ADD t6, t6, sp
-  FSD fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 320
+  ADDIW t6, t6, -2008
   ADD t6, t6, sp
   FSD fs11, 0(t6)
-  LA s1, k
+  LA s0, k
   CALL getint
-  ADD s0, a0, zero
+  ADD t0, a0, zero
+  LUI t1, 1
+  ADDIW t1, t1, -528
+  ADD t1, t1, sp
+  ADDI t1, t1, 12
   LUI a0, 1
-  ADDIW a0, a0, 1864
+  ADDIW a0, a0, 824
   ADD a0, a0, sp
-  ADDI a0, a0, 12
-  LUI t6, 2
-  ADDIW t6, t6, -56
-  ADD t6, t6, sp
-  SD a0, 0(t6)
+  SD t1, 0(a0)
   LUI a0, 1
-  ADDIW a0, a0, 1864
-  ADD a0, a0, sp
-  ADD a0, a0, zero
-  SW s0, 0(s1)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 24
-  LUI t6, 2
-  ADDIW t6, t6, -64
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 36
-  LUI t6, 2
-  ADDIW t6, t6, -72
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 48
-  LUI t6, 2
-  ADDIW t6, t6, -80
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 60
-  LUI t6, 2
-  ADDIW t6, t6, -88
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 72
-  LUI t6, 2
-  ADDIW t6, t6, -96
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 84
-  LUI t6, 2
-  ADDIW t6, t6, -104
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 96
-  LUI t6, 2
-  ADDIW t6, t6, -112
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 108
-  LUI t6, 2
-  ADDIW t6, t6, -120
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 120
-  LUI t6, 2
-  ADDIW t6, t6, -128
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 132
-  LUI t6, 2
-  ADDIW t6, t6, -136
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 144
-  LUI t6, 2
-  ADDIW t6, t6, -144
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 156
-  LUI t6, 2
-  ADDIW t6, t6, -152
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 168
-  LUI t6, 2
-  ADDIW t6, t6, -1496
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 180
-  LUI t6, 1
-  ADDIW t6, t6, 1088
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 192
-  LUI t6, 1
-  ADDIW t6, t6, 1080
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 204
-  LUI t6, 1
-  ADDIW t6, t6, 1072
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 216
-  LUI t6, 1
-  ADDIW t6, t6, 1064
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 228
-  LUI t6, 1
-  ADDIW t6, t6, 1056
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 240
-  LUI t6, 1
-  ADDIW t6, t6, 1048
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 252
-  LUI t6, 1
-  ADDIW t6, t6, 1040
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 264
-  LUI t6, 1
-  ADDIW t6, t6, 1032
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 276
-  LUI t6, 1
-  ADDIW t6, t6, 1024
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 288
-  LUI t6, 1
-  ADDIW t6, t6, 1016
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 300
-  LUI t6, 1
-  ADDIW t6, t6, 1008
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 312
-  LUI t6, 1
-  ADDIW t6, t6, 1000
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 324
-  LUI t6, 1
-  ADDIW t6, t6, 992
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 336
-  LUI t6, 1
-  ADDIW t6, t6, 984
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 348
-  LUI t6, 1
-  ADDIW t6, t6, 976
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 360
-  LUI t6, 1
-  ADDIW t6, t6, 840
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 372
-  LUI t6, 1
-  ADDIW t6, t6, 960
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 384
-  LUI t6, 1
-  ADDIW t6, t6, 952
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 396
-  LUI t6, 1
-  ADDIW t6, t6, 944
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 408
-  LUI t6, 1
-  ADDIW t6, t6, 936
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 420
-  LUI t6, 1
-  ADDIW t6, t6, 928
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 432
-  LUI t6, 1
-  ADDIW t6, t6, 920
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 444
-  LUI t6, 1
-  ADDIW t6, t6, 912
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 456
-  LUI t6, 1
-  ADDIW t6, t6, 904
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADDI s0, t6, 468
-  LUI t6, 1
-  ADDIW t6, t6, 896
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 12
-  LUI t6, 1
-  ADDIW t6, t6, 888
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 24
-  LUI t6, 2
-  ADDIW t6, t6, -648
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 36
-  LUI t6, 1
-  ADDIW t6, t6, 880
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 48
-  LUI t6, 2
-  ADDIW t6, t6, -656
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 60
-  LUI t6, 2
-  ADDIW t6, t6, -1048
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 72
-  LUI t6, 1
-  ADDIW t6, t6, 872
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 84
-  LUI t6, 1
-  ADDIW t6, t6, 864
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 96
-  LUI t6, 2
-  ADDIW t6, t6, -1184
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s10, t6, 108
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 120
-  LUI t6, 1
-  ADDIW t6, t6, 856
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 132
-  LUI t6, 1
-  ADDIW t6, t6, 848
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 144
-  LUI t6, 1
-  ADDIW t6, t6, 968
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 156
-  LUI t6, 1
-  ADDIW t6, t6, 1336
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s9, t6, 168
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 180
-  LUI t6, 1
-  ADDIW t6, t6, 1328
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 192
-  LUI t6, 1
-  ADDIW t6, t6, 1320
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s8, t6, 204
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s7, t6, 216
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 228
-  LUI t6, 1
-  ADDIW t6, t6, 1312
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s6, t6, 240
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s5, t6, 252
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 264
-  LUI t6, 1
-  ADDIW t6, t6, 1304
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADDI s0, t6, 276
-  LUI t6, 1
-  ADDIW t6, t6, 1296
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LA s11, k
-  ADDI s0, zero, 0
-  LUI t6, 1
-  ADDIW t6, t6, 48
-  ADD t6, t6, sp
-  SW s0, 0(t6)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -56
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 48
-  ADD t6, t6, sp
-  LW s0, 0(t6)
-  FCVT.S.W fs0, s0
-  FSW fs0, 196(sp)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -64
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -72
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -80
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -88
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -96
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -120
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -128
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -136
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -152
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 2
-  ADDIW a0, a0, -1496
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1088
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1080
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1072
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1064
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1056
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1048
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1040
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1032
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1024
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1016
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1008
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1000
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 992
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 984
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 976
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 840
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 960
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 952
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 944
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 936
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 928
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 920
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 912
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 904
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 896
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getfarray
-  LUI a0, 1
-  ADDIW a0, a0, 1576
+  ADDIW a0, a0, -528
   ADD a0, a0, sp
   ADD a0, a0, zero
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 888
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 2
-  ADDIW a0, a0, -648
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 880
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 2
-  ADDIW a0, a0, -656
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 2
-  ADDIW a0, a0, -1048
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 872
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 864
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 2
-  ADDIW a0, a0, -1184
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  ADD a0, s10, zero
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 856
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 848
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 968
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1336
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  ADD a0, s9, zero
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1328
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1320
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  ADD a0, s8, zero
-  CALL getarray
-  ADD a0, s7, zero
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1312
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  ADD a0, s6, zero
-  CALL getarray
-  ADD a0, s5, zero
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1304
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LUI a0, 1
-  ADDIW a0, a0, 1296
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  CALL getarray
-  LW a0, 0(s11)
-  SLLIW a0, a0, 2
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  FLW fs0, 0(a0)
-  FLW fs1, 12(a0)
-  FSW fs1, 172(sp)
-  FLW fs1, 24(a0)
-  FSW fs1, 168(sp)
-  FLW fs1, 172(sp)
-  FADD.S fs0, fs0, fs1
-  FSW fs0, 52(sp)
-  FLW fs0, 36(a0)
-  FSW fs0, 128(sp)
-  FLW fs0, 48(a0)
-  FSW fs0, 160(sp)
-  FLW fs0, 60(a0)
-  FSW fs0, 156(sp)
-  FLW fs0, 72(a0)
-  FSW fs0, 152(sp)
-  FLW fs0, 84(a0)
-  FSW fs0, 148(sp)
-  FLW fs0, 96(a0)
-  FSW fs0, 144(sp)
-  FLW fs0, 108(a0)
-  FSW fs0, 140(sp)
-  FLW fs0, 120(a0)
-  FSW fs0, 136(sp)
-  FLW fs0, 132(a0)
-  FSW fs0, 132(sp)
-  FLW fs0, 144(a0)
-  FSW fs0, 164(sp)
-  FLW fs0, 156(a0)
-  FSW fs0, 200(sp)
-  FLW fs0, 168(a0)
-  FSW fs0, 204(sp)
-  FLW fs0, 180(a0)
-  FSW fs0, 208(sp)
-  FLW fs0, 192(a0)
-  FSW fs0, 212(sp)
-  FLW fs0, 204(a0)
-  FSW fs0, 216(sp)
-  FLW fs0, 216(a0)
-  FSW fs0, 220(sp)
-  FLW fs0, 228(a0)
-  FSW fs0, 224(sp)
-  FLW fs0, 240(a0)
-  FSW fs0, 228(sp)
-  FLW fs0, 252(a0)
-  FSW fs0, 232(sp)
-  FLW fs0, 264(a0)
-  FSW fs0, 236(sp)
-  FLW fs0, 276(a0)
-  FSW fs0, 240(sp)
-  FLW fs0, 288(a0)
-  FSW fs0, 244(sp)
-  FLW fs0, 300(a0)
-  FSW fs0, 248(sp)
-  FLW fs0, 312(a0)
-  FSW fs0, 92(sp)
-  FLW fs0, 324(a0)
-  FSW fs0, 256(sp)
-  FLW fs0, 336(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1300
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 348(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1304
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 360(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1308
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 372(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1348
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 384(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1316
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 396(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1320
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 408(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1324
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 420(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1328
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs1, 432(a0)
-  FLW fs0, 444(a0)
-  FLW fs2, 456(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1332
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 468(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 196(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FEQ.S a0, fs3, fs2
-  BEQ a0, zero, bb23
-  # implict jump to bb1
-bb1:   # loop depth 0
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 268(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1332
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1332
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 264(sp)
-  FSW fs0, 296(sp)
-  FSW fs1, 396(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1328
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1328
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 392(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1324
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1324
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 388(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1320
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1320
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 384(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1316
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1316
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 380(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1348
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1348
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 376(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1308
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1308
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 372(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1304
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1304
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 332(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1300
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1300
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 364(sp)
-  FLW fs0, 256(sp)
-  FLW fs1, 256(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 360(sp)
-  FLW fs0, 92(sp)
-  FLW fs1, 92(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 356(sp)
-  FLW fs0, 248(sp)
-  FLW fs1, 248(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 352(sp)
-  FLW fs0, 244(sp)
-  FLW fs1, 244(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 348(sp)
-  FLW fs0, 240(sp)
-  FLW fs1, 240(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 344(sp)
-  FLW fs0, 236(sp)
-  FLW fs1, 236(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 340(sp)
-  FLW fs0, 232(sp)
-  FLW fs1, 232(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 336(sp)
-  FLW fs0, 228(sp)
-  FLW fs1, 228(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2016
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 224(sp)
-  FLW fs1, 224(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 876(sp)
-  FLW fs0, 220(sp)
-  FLW fs1, 220(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1804(sp)
-  FLW fs0, 216(sp)
-  FLW fs1, 216(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1800(sp)
-  FLW fs0, 212(sp)
-  FLW fs1, 212(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1796(sp)
-  FLW fs0, 208(sp)
-  FLW fs1, 208(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1792(sp)
-  FLW fs0, 204(sp)
-  FLW fs1, 204(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1788(sp)
-  FLW fs0, 200(sp)
-  FLW fs1, 200(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1784(sp)
-  FLW fs0, 164(sp)
-  FLW fs1, 164(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1744(sp)
-  FLW fs0, 132(sp)
-  FLW fs1, 132(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 136(sp)
-  FLW fs2, 136(sp)
-  FSGNJ.S fs0, fs0, fs2
-  FSW fs0, 664(sp)
-  FLW fs0, 140(sp)
-  FLW fs2, 140(sp)
-  FSGNJ.S fs2, fs0, fs2
-  FLW fs0, 144(sp)
-  FLW fs3, 144(sp)
-  FSGNJ.S fs3, fs0, fs3
-  FLW fs0, 148(sp)
-  FLW fs6, 148(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 668(sp)
-  FLW fs0, 152(sp)
-  FLW fs6, 152(sp)
-  FSGNJ.S fs7, fs0, fs6
-  FLW fs0, 156(sp)
-  FLW fs6, 156(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 572(sp)
-  FLW fs0, 160(sp)
-  FLW fs6, 160(sp)
-  FSGNJ.S fs8, fs0, fs6
-  FLW fs0, 128(sp)
-  FLW fs6, 128(sp)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 168(sp)
-  FLW fs6, 168(sp)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 172(sp)
-  FLW fs6, 172(sp)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 52(sp)
-  FLW fs6, 52(sp)
-  FSGNJ.S fs0, fs0, fs6
-  # implict jump to bb2
-bb2:   # loop depth 1
-  FSW fs0, 1120(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FSGNJ.S fs0, fs0, fs4
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -280
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FSGNJ.S fs0, fs0, fs4
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1120(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -280
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FADD.S fs0, fs0, fs6
-  FSW fs0, 1232(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -280
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FADD.S fs0, fs4, fs0
-  FSW fs0, 1236(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FSGNJ.S fs0, fs0, fs4
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FSW fs0, 1124(sp)
-  FSW fs8, 1128(sp)
-  FLW fs0, 572(sp)
-  FLW fs6, 572(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 1132(sp)
-  FLW fs0, 1232(sp)
-  FLW fs6, 196(sp)
-  FEQ.S a0, fs0, fs6
-  FSW fs7, 1136(sp)
-  FLW fs0, 668(sp)
-  FLW fs6, 668(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 1176(sp)
-  FSW fs3, 1336(sp)
-  FSW fs2, 1332(sp)
-  FLW fs0, 664(sp)
-  FLW fs2, 664(sp)
-  FSGNJ.S fs0, fs0, fs2
-  FSW fs0, 1328(sp)
-  FSW fs1, 1324(sp)
-  FLW fs0, 1744(sp)
-  FLW fs1, 1744(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1320(sp)
-  FLW fs0, 1784(sp)
-  FLW fs1, 1784(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1316(sp)
-  FLW fs0, 1788(sp)
-  FLW fs1, 1788(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1312(sp)
-  FLW fs0, 1792(sp)
-  FLW fs1, 1792(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1308(sp)
-  FLW fs0, 1796(sp)
-  FLW fs1, 1796(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1304(sp)
-  FLW fs0, 1800(sp)
-  FLW fs1, 1800(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1300(sp)
-  FLW fs0, 1804(sp)
-  FLW fs1, 1804(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1296(sp)
-  FLW fs0, 876(sp)
-  FLW fs1, 876(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1292(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -2016
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2016
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs2, fs0, fs1
-  FLW fs0, 336(sp)
-  FLW fs1, 336(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 340(sp)
-  FLW fs1, 340(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 344(sp)
-  FLW fs3, 344(sp)
-  FSGNJ.S fs0, fs0, fs3
-  FLW fs3, 348(sp)
-  FLW fs4, 348(sp)
-  FSGNJ.S fs3, fs3, fs4
-  FLW fs4, 352(sp)
-  FLW fs5, 352(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FLW fs5, 356(sp)
-  FLW fs6, 356(sp)
-  FSGNJ.S fs5, fs5, fs6
-  FLW fs6, 360(sp)
-  FLW fs7, 360(sp)
-  FSGNJ.S fs6, fs6, fs7
-  FLW fs7, 364(sp)
-  FLW fs8, 364(sp)
-  FSGNJ.S fs7, fs7, fs8
-  FLW fs8, 332(sp)
-  FLW fs9, 332(sp)
-  FSGNJ.S fs8, fs8, fs9
-  FLW fs9, 372(sp)
-  FLW fs10, 372(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FLW fs10, 376(sp)
-  FLW fs11, 376(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1288(sp)
-  FLW fs10, 380(sp)
-  FLW fs11, 380(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1284(sp)
-  FLW fs10, 384(sp)
-  FLW fs11, 384(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1280(sp)
-  FLW fs10, 388(sp)
-  FLW fs11, 388(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1244(sp)
-  FLW fs10, 392(sp)
-  FLW fs11, 392(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1212(sp)
-  FLW fs10, 396(sp)
-  FLW fs11, 396(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1216(sp)
-  FLW fs10, 296(sp)
-  FLW fs11, 296(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1220(sp)
-  FLW fs10, 264(sp)
-  FLW fs11, 264(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1224(sp)
-  FLW fs10, 268(sp)
-  FLW fs11, 268(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1228(sp)
-  BEQ a0, zero, bb4
-  # implict jump to bb3
-bb3:   # loop depth 1
-  FLW fs10, 1232(sp)
-  FLW fs11, 1232(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 268(sp)
-  FLW fs10, 1228(sp)
-  FLW fs11, 1228(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 264(sp)
-  FLW fs10, 1224(sp)
-  FLW fs11, 1224(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 296(sp)
-  FLW fs10, 1220(sp)
-  FLW fs11, 1220(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 396(sp)
-  FLW fs10, 1216(sp)
-  FLW fs11, 1216(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 392(sp)
-  FLW fs10, 1212(sp)
-  FLW fs11, 1212(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 388(sp)
-  FLW fs10, 1244(sp)
-  FLW fs11, 1244(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 384(sp)
-  FLW fs10, 1280(sp)
-  FLW fs11, 1280(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 380(sp)
-  FLW fs10, 1284(sp)
-  FLW fs11, 1284(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 376(sp)
-  FLW fs10, 1288(sp)
-  FLW fs11, 1288(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 372(sp)
-  FSW fs9, 332(sp)
-  FSW fs8, 364(sp)
-  FSW fs7, 360(sp)
-  FSW fs6, 356(sp)
-  FSW fs5, 352(sp)
-  FSW fs4, 348(sp)
-  FSW fs3, 344(sp)
-  FSW fs0, 340(sp)
-  FSW fs1, 336(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2016
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FSW fs2, 876(sp)
-  FLW fs0, 1292(sp)
-  FLW fs1, 1292(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1804(sp)
-  FLW fs0, 1296(sp)
-  FLW fs1, 1296(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1800(sp)
-  FLW fs0, 1300(sp)
-  FLW fs1, 1300(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1796(sp)
-  FLW fs0, 1304(sp)
-  FLW fs1, 1304(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1792(sp)
-  FLW fs0, 1308(sp)
-  FLW fs1, 1308(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1788(sp)
-  FLW fs0, 1312(sp)
-  FLW fs1, 1312(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1784(sp)
-  FLW fs0, 1316(sp)
-  FLW fs1, 1316(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1744(sp)
-  FLW fs0, 1320(sp)
-  FLW fs1, 1320(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 1324(sp)
-  FLW fs2, 1324(sp)
-  FSGNJ.S fs0, fs0, fs2
-  FSW fs0, 664(sp)
-  FLW fs0, 1328(sp)
-  FLW fs2, 1328(sp)
-  FSGNJ.S fs2, fs0, fs2
-  FLW fs0, 1332(sp)
-  FLW fs3, 1332(sp)
-  FSGNJ.S fs3, fs0, fs3
-  FLW fs0, 1336(sp)
-  FLW fs6, 1336(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 668(sp)
-  FLW fs0, 1176(sp)
-  FLW fs6, 1176(sp)
-  FSGNJ.S fs7, fs0, fs6
-  FLW fs0, 1136(sp)
-  FLW fs6, 1136(sp)
-  FSGNJ.S fs0, fs0, fs6
-  FSW fs0, 572(sp)
-  FLW fs0, 1132(sp)
-  FLW fs6, 1132(sp)
-  FSGNJ.S fs8, fs0, fs6
-  FLW fs0, 1128(sp)
-  FLW fs6, 1128(sp)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1236
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1124(sp)
-  FLW fs6, 1124(sp)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1240
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -280
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -280
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FSGNJ.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1220
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1236(sp)
-  FLW fs6, 1236(sp)
-  FSGNJ.S fs0, fs0, fs6
-  JAL zero, bb2
-bb4:   # loop depth 0
-  FLW fs10, 1232(sp)
-  FLW fs11, 1232(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1776(sp)
-  FLW fs10, 1228(sp)
-  FLW fs11, 1228(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1772(sp)
-  FLW fs10, 1224(sp)
-  FLW fs11, 1224(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1768(sp)
-  FLW fs10, 1220(sp)
-  FLW fs11, 1220(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1764(sp)
-  FLW fs10, 1216(sp)
-  FLW fs11, 1216(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1760(sp)
-  FLW fs10, 1212(sp)
-  FLW fs11, 1212(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1756(sp)
-  FLW fs10, 1244(sp)
-  FLW fs11, 1244(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1752(sp)
-  FLW fs10, 1280(sp)
-  FLW fs11, 1280(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1748(sp)
-  FLW fs10, 1284(sp)
-  FLW fs11, 1284(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1780(sp)
-  FLW fs10, 1288(sp)
-  FLW fs11, 1288(sp)
-  FSGNJ.S fs10, fs10, fs11
-  FSW fs10, 1816(sp)
-  FSW fs9, 1820(sp)
-  FSW fs8, 1824(sp)
-  FSW fs7, 1828(sp)
-  FSW fs6, 1832(sp)
-  FSW fs5, 1836(sp)
-  FSW fs4, 1840(sp)
-  FSW fs3, 1844(sp)
-  FSW fs0, 1848(sp)
-  FSW fs1, 1852(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 72
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1856(sp)
-  FSW fs2, 1860(sp)
-  FLW fs0, 1292(sp)
-  FLW fs1, 1292(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1864(sp)
-  FLW fs0, 1296(sp)
-  FLW fs1, 1296(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1868(sp)
-  FLW fs0, 1300(sp)
-  FLW fs1, 1300(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1872(sp)
-  FLW fs0, 1304(sp)
-  FLW fs1, 1304(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1712(sp)
-  FLW fs0, 1308(sp)
-  FLW fs1, 1308(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1672(sp)
-  FLW fs0, 1312(sp)
-  FLW fs1, 1312(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1668(sp)
-  FLW fs0, 1316(sp)
-  FLW fs1, 1316(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 1320(sp)
-  FLW fs2, 1320(sp)
-  FSGNJ.S fs5, fs0, fs2
-  FLW fs0, 1324(sp)
-  FLW fs2, 1324(sp)
-  FSGNJ.S fs8, fs0, fs2
-  FLW fs0, 1328(sp)
-  FLW fs2, 1328(sp)
-  FSGNJ.S fs4, fs0, fs2
-  FLW fs0, 1332(sp)
-  FLW fs2, 1332(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1336(sp)
-  FLW fs2, 1336(sp)
-  FSGNJ.S fs3, fs0, fs2
-  FLW fs0, 1176(sp)
-  FLW fs2, 1176(sp)
-  FSGNJ.S fs2, fs0, fs2
-  FLW fs0, 1136(sp)
-  FLW fs9, 1136(sp)
-  FSGNJ.S fs0, fs0, fs9
-  FSW fs0, 768(sp)
-  FLW fs0, 1132(sp)
-  FLW fs9, 1132(sp)
-  FSGNJ.S fs0, fs0, fs9
-  FSW fs0, 764(sp)
-  FLW fs0, 1128(sp)
-  FLW fs9, 1128(sp)
-  FSGNJ.S fs9, fs0, fs9
-  FLW fs0, 1124(sp)
-  FLW fs10, 1124(sp)
-  FSGNJ.S fs0, fs0, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1236(sp)
-  FLW fs10, 1236(sp)
-  FSGNJ.S fs0, fs0, fs10
-  # implict jump to bb5
-bb5:   # loop depth 0
-  FLW fs7, 764(sp)
-  FLW fs10, 764(sp)
-  FSGNJ.S fs10, fs7, fs10
-  FSW fs10, 1536(sp)
-  LA s5, k
-  FLW fs7, 768(sp)
-  FLW fs10, 768(sp)
-  FSGNJ.S fs10, fs7, fs10
-  FSW fs10, 1540(sp)
-  LUI a1, 1
-  ADDIW a1, a1, 1424
-  ADD a1, a1, sp
-  ADD a1, a1, zero
-  ADDI a0, zero, 10
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs6, fs6, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  FLW fs10, 1540(sp)
-  FLW fs11, 1536(sp)
-  FADD.S fs7, fs11, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -1600
-  ADD t6, t6, sp
-  FSW fs7, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FADD.S fs0, fs0, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs6, fs6, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FADD.S fs11, fs6, fs4
-  LUI t6, 1
-  ADDIW t6, t6, -1600
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FADD.S fs4, fs4, fs2
-  FADD.S fs2, fs0, fs9
-  FLW fs0, 1668(sp)
-  FLW fs7, 1668(sp)
-  FSGNJ.S fs0, fs0, fs7
-  FADD.S fs9, fs1, fs0
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FADD.S fs7, fs11, fs8
-  FADD.S fs3, fs4, fs3
-  FLW fs0, 1872(sp)
-  FLW fs1, 1872(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 1868(sp)
-  FLW fs2, 1868(sp)
-  FSGNJ.S fs2, fs0, fs2
-  FLW fs0, 1672(sp)
-  FLW fs4, 1672(sp)
-  FSGNJ.S fs0, fs0, fs4
-  FADD.S fs8, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 4(t6)
-  FADD.S fs4, fs9, fs0
-  FADD.S fs3, fs7, fs5
-  FLW fs0, 1856(sp)
-  FLW fs1, 1856(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1852(sp)
-  FLW fs2, 1852(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 1864(sp)
-  FLW fs5, 1864(sp)
-  FSGNJ.S fs1, fs1, fs5
-  FADD.S fs6, fs0, fs2
-  FLW fs0, 1712(sp)
-  FLW fs2, 1712(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 8(t6)
-  FADD.S fs5, fs8, fs1
-  FADD.S fs3, fs4, fs0
-  FLW fs0, 1840(sp)
-  FLW fs1, 1840(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1836(sp)
-  FLW fs2, 1836(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 1848(sp)
-  FLW fs4, 1848(sp)
-  FSGNJ.S fs1, fs1, fs4
-  FADD.S fs7, fs0, fs2
-  FLW fs0, 1860(sp)
-  FLW fs2, 1860(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 12(t6)
-  FADD.S fs4, fs6, fs1
-  FADD.S fs3, fs5, fs0
-  FLW fs0, 1824(sp)
-  FLW fs1, 1824(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1820(sp)
-  FLW fs2, 1820(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 1832(sp)
-  FLW fs5, 1832(sp)
-  FSGNJ.S fs1, fs1, fs5
-  FADD.S fs6, fs0, fs2
-  FLW fs0, 1844(sp)
-  FLW fs2, 1844(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 16(t6)
-  FADD.S fs5, fs7, fs1
-  FADD.S fs3, fs4, fs0
-  FLW fs0, 1748(sp)
-  FLW fs1, 1748(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1752(sp)
-  FLW fs2, 1752(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 1816(sp)
-  FLW fs4, 1816(sp)
-  FSGNJ.S fs1, fs1, fs4
-  FADD.S fs7, fs0, fs2
-  FLW fs0, 1828(sp)
-  FLW fs2, 1828(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 20(t6)
-  FADD.S fs4, fs6, fs1
-  FADD.S fs3, fs5, fs0
-  FLW fs0, 1764(sp)
-  FLW fs1, 1764(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1768(sp)
-  FLW fs2, 1768(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 1756(sp)
-  FLW fs5, 1756(sp)
-  FSGNJ.S fs1, fs1, fs5
-  FADD.S fs5, fs0, fs2
-  FLW fs0, 1780(sp)
-  FLW fs2, 1780(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs3, 24(t6)
-  FADD.S fs3, fs7, fs1
-  FADD.S fs2, fs4, fs0
-  FLW fs0, 1772(sp)
-  FLW fs1, 1772(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 1760(sp)
-  FLW fs4, 1760(sp)
-  FSGNJ.S fs0, fs0, fs4
-  FADD.S fs4, fs5, fs1
-  FADD.S fs1, fs3, fs0
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs2, 28(t6)
-  FLW fs0, 1776(sp)
-  FLW fs2, 1776(sp)
-  FSGNJ.S fs0, fs0, fs2
-  FADD.S fs0, fs4, fs0
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs1, 32(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1424
-  ADD t6, t6, sp
-  FSW fs0, 36(t6)
-  CALL putfarray
-  LW a0, 0(s5)
-  SLLIW a0, a0, 2
-  LUI a1, 1
-  ADDIW a1, a1, 1424
-  ADD a1, a1, sp
-  ADD a1, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADD s0, t6, a0
-  LUI t6, 2
-  ADDIW t6, t6, 480
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  FLW fs0, 0(a1)
-  FSW fs0, 1276(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  LUI t6, 2
-  ADDIW t6, t6, -672
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW s5, 276(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 24(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1524
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 72(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1520
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 48(a0)
-  FSW fs0, 1144(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 12(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1516
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 48(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1548
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 60(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1508
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 96(a0)
-  FSW fs0, 1148(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 180(a0)
-  FSW fs0, 1152(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 84(a0)
-  FSW fs0, 1156(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 264(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1504
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 36(a0)
-  FSW fs0, 1160(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 336(a0)
-  FSW fs0, 1164(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1500
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 444(a0)
-  FSW fs0, 1168(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 228(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1496
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 360(a0)
-  FSW fs0, 1172(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 144(a0)
-  FSW fs0, 1140(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 12(a0)
-  FSW fs0, 1180(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 132(a0)
-  FSW fs0, 1184(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 456(a0)
-  FSW fs0, 1188(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 72(a0)
-  FSW fs0, 1192(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 84(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1492
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 384(a0)
-  FSW fs0, 1196(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 120(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1488
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 156(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1484
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 240(a0)
-  FSW fs0, 1200(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 396(a0)
-  FSW fs0, 1204(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 276(a0)
-  FSW fs0, 1108(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 108(a0)
-  FSW fs0, 1076(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 300(a0)
-  FSW fs0, 1080(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 96(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1748
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 468(a0)
-  FSW fs0, 1084(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW s8, 204(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 252(a0)
-  FSW fs0, 1088(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 192(a0)
-  FSW fs0, 1092(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 60(a0)
-  FSW fs0, 1096(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 408(a0)
-  FSW fs0, 1100(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW s9, 216(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 108(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -496
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 168(a0)
-  FSW fs0, 1104(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 120(a0)
-  FSW fs0, 1072(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  FSW fs0, 1112(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 144(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -500
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 372(a0)
-  FSW fs0, 1116(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 132(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -504
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 192(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -508
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs2, 324(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 288(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -316
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 156(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -312
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 348(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -308
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 36(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -512
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 252(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -516
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 240(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -520
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 216(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -304
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 228(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -300
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 264(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -296
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 312(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -292
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 432(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -352
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 204(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -284
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 180(a0)
-  LUI a1, 2
-  ADDIW a1, a1, -672
-  ADD a1, a1, sp
-  LD a1, 0(a1)
-  FLW fs0, 24(a1)
-  LUI a1, 2
-  ADDIW a1, a1, 480
-  ADD a1, a1, sp
-  LD a1, 0(a1)
-  LW a1, 168(a1)
-  LUI t6, 2
-  ADDIW t6, t6, -672
-  ADD t6, t6, sp
-  LD s0, 0(t6)
-  FLW fs1, 420(s0)
-  BNE s5, zero, bb22
-  # implict jump to bb6
-bb6:   # loop depth 0
-  FSW fs1, 1664(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1028
-  ADD t6, t6, sp
-  SW a1, 0(t6)
-  FSW fs0, 1660(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1024
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -284
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -284
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1656(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -520
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1020
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -352
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -352
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1652(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -516
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1480
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -292
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -292
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1648(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -512
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1752
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -296
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -296
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1608(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -508
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1756
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -300
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -300
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1640(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -504
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1760
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -304
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -304
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1636(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -500
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1764
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -308
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -308
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1632(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -496
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1768
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -312
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -312
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1628(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -316
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -316
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1624(sp)
-  FSW fs2, 1620(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1748
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 328(sp)
-  LW a0, 328(sp)
-  SW a0, 328(sp)
-  FLW fs0, 1116(sp)
-  FLW fs1, 1116(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1616(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1484
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 368(sp)
-  LW a0, 368(sp)
-  SW a0, 368(sp)
-  FLW fs0, 1112(sp)
-  FLW fs1, 1112(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1612(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1488
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -676
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1072(sp)
-  FLW fs1, 1072(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1644(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1492
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -672
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1104(sp)
-  FLW fs1, 1104(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1740(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1496
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -668
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1100(sp)
-  FLW fs1, 1100(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1736(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1500
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -664
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1096(sp)
-  FLW fs1, 1096(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1732(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1504
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -660
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1092(sp)
-  FLW fs1, 1092(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1728(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1508
-  ADD t6, t6, sp
-  LW s10, 0(t6)
-  FLW fs0, 1088(sp)
-  FLW fs1, 1088(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1724(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1548
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -656
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1084(sp)
-  FLW fs1, 1084(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1720(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1516
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 508(sp)
-  LW a0, 508(sp)
-  SW a0, 508(sp)
-  FLW fs0, 1080(sp)
-  FLW fs1, 1080(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1716(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1520
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FLW fs0, 1076(sp)
-  FLW fs1, 1076(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1676(sp)
-  LUI a1, 1
-  ADDIW a1, a1, -1524
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  FLW fs0, 1108(sp)
-  FLW fs1, 1108(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1708(sp)
-  FLW fs0, 1204(sp)
-  FLW fs1, 1204(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1704(sp)
-  FLW fs0, 1200(sp)
-  FLW fs1, 1200(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1700(sp)
-  FLW fs0, 1196(sp)
-  FLW fs1, 1196(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1696(sp)
-  FLW fs0, 1192(sp)
-  FLW fs1, 1192(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1692(sp)
-  FLW fs0, 1188(sp)
-  FLW fs1, 1188(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -608
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1184(sp)
-  FLW fs1, 1184(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -604
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1180(sp)
-  FLW fs1, 1180(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1140(sp)
-  FLW fs2, 1140(sp)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -600
-  ADD t6, t6, sp
-  FSW fs1, 0(t6)
-  FLW fs1, 1172(sp)
-  FLW fs2, 1172(sp)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -596
-  ADD t6, t6, sp
-  FSW fs1, 0(t6)
-  FLW fs1, 1168(sp)
-  FLW fs2, 1168(sp)
-  FSGNJ.S fs1, fs1, fs2
-  FLW fs2, 1164(sp)
-  FLW fs3, 1164(sp)
-  FSGNJ.S fs2, fs2, fs3
-  FLW fs6, 1160(sp)
-  FLW fs7, 1160(sp)
-  FSGNJ.S fs7, fs6, fs7
-  FLW fs6, 1156(sp)
-  FLW fs8, 1156(sp)
-  FSGNJ.S fs10, fs6, fs8
-  FLW fs6, 1152(sp)
-  FLW fs8, 1152(sp)
-  FSGNJ.S fs6, fs6, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -592
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  FLW fs6, 1148(sp)
-  FLW fs8, 1148(sp)
-  FSGNJ.S fs6, fs6, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -576
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  FLW fs6, 1144(sp)
-  FLW fs8, 1144(sp)
-  FSGNJ.S fs11, fs6, fs8
-  # implict jump to bb7
-bb7:   # loop depth 1
-  FSW fs11, 12(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -164
-  ADD t6, t6, sp
-  SW a1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -576
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -576
-  ADD t6, t6, sp
-  FLW fs8, 0(t6)
-  FSGNJ.S fs6, fs6, fs8
-  FSW fs6, 124(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -228
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -592
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -592
-  ADD t6, t6, sp
-  FLW fs8, 0(t6)
-  FSGNJ.S fs6, fs6, fs8
-  FSW fs6, 120(sp)
-  LW a0, 508(sp)
-  SW a0, 508(sp)
-  FSW fs10, 116(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -656
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -172
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs7, 108(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -176
-  ADD a0, a0, sp
-  SW s10, 0(a0)
-  FSW fs2, 104(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -660
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -180
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs1, 96(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -664
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -184
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -596
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -596
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FSGNJ.S fs1, fs1, fs2
-  FSW fs1, 56(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -668
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -188
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -600
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -600
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FSGNJ.S fs1, fs1, fs2
-  FSW fs1, 88(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -672
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -192
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs0, 80(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -676
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -196
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -604
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -604
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 72(sp)
-  LW a0, 368(sp)
-  SW a0, 368(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -608
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -608
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 60(sp)
-  LW a0, 328(sp)
-  SW a0, 328(sp)
-  FLW fs0, 1692(sp)
-  FLW fs1, 1692(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 252(sp)
-  FLW fs0, 1696(sp)
-  FLW fs1, 1696(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 464(sp)
-  FLW fs0, 1700(sp)
-  FLW fs1, 1700(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 460(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1768
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 820(sp)
-  FLW fs0, 1704(sp)
-  FLW fs1, 1704(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 452(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1764
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 824(sp)
-  FLW fs0, 1708(sp)
-  FLW fs1, 1708(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 448(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1760
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 828(sp)
-  FLW fs0, 1676(sp)
-  FLW fs1, 1676(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 444(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1756
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 832(sp)
-  FLW fs0, 1716(sp)
-  FLW fs1, 1716(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 408(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1752
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 836(sp)
-  FLW fs0, 1720(sp)
-  FLW fs1, 1720(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -1040
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1480
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 804(sp)
-  FLW fs0, 1724(sp)
-  FLW fs1, 1724(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -1020
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FLW fs1, 1728(sp)
-  FLW fs2, 1728(sp)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1024
-  ADD t6, t6, sp
-  LW s10, 0(t6)
-  FLW fs2, 1732(sp)
-  FLW fs3, 1732(sp)
-  FSGNJ.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, -1028
-  ADD t6, t6, sp
-  LW s11, 0(t6)
-  FLW fs3, 1736(sp)
-  FLW fs4, 1736(sp)
-  FSGNJ.S fs3, fs3, fs4
-  FLW fs4, 1740(sp)
-  FLW fs5, 1740(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FLW fs5, 1644(sp)
-  FLW fs6, 1644(sp)
-  FSGNJ.S fs5, fs5, fs6
-  FLW fs6, 1612(sp)
-  FLW fs7, 1612(sp)
-  FSGNJ.S fs6, fs6, fs7
-  FLW fs7, 1616(sp)
-  FLW fs8, 1616(sp)
-  FSGNJ.S fs7, fs7, fs8
-  FLW fs8, 1620(sp)
-  FLW fs9, 1620(sp)
-  FSGNJ.S fs8, fs8, fs9
-  FLW fs9, 1624(sp)
-  FLW fs10, 1624(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -1252
-  ADD t6, t6, sp
-  FSW fs9, 0(t6)
-  FLW fs9, 1628(sp)
-  FLW fs10, 1628(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -1036
-  ADD t6, t6, sp
-  FSW fs9, 0(t6)
-  FLW fs9, 1632(sp)
-  FLW fs10, 1632(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 404(sp)
-  FLW fs9, 1636(sp)
-  FLW fs10, 1636(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 436(sp)
-  FLW fs9, 1640(sp)
-  FLW fs10, 1640(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 496(sp)
-  FLW fs9, 1608(sp)
-  FLW fs10, 1608(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 320(sp)
-  FLW fs9, 1648(sp)
-  FLW fs10, 1648(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 316(sp)
-  FLW fs9, 1652(sp)
-  FLW fs10, 1652(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1412(sp)
-  FLW fs9, 1656(sp)
-  FLW fs10, 1656(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1416(sp)
-  FLW fs9, 1660(sp)
-  FLW fs10, 1660(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1420(sp)
-  FLW fs9, 1664(sp)
-  FLW fs10, 1664(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1424(sp)
-  # implict jump to bb8
-bb8:   # loop depth 1
-  LW a1, 508(sp)
-  BNE a1, zero, bb10
-  # implict jump to bb9
-bb9:   # loop depth 1
-  FLW fs9, 1424(sp)
-  FLW fs10, 1424(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1664(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1028
-  ADD t6, t6, sp
-  SW s11, 0(t6)
-  FLW fs9, 1420(sp)
-  FLW fs10, 1420(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1660(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1024
-  ADD t6, t6, sp
-  SW s10, 0(t6)
-  FLW fs9, 1416(sp)
-  FLW fs10, 1416(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1656(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1020
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 1412(sp)
-  FLW fs10, 1412(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1652(sp)
-  LW a0, 804(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1480
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 316(sp)
-  FLW fs10, 316(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1648(sp)
-  LW a0, 836(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1752
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 320(sp)
-  FLW fs10, 320(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1608(sp)
-  LW a0, 832(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1756
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 496(sp)
-  FLW fs10, 496(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1640(sp)
-  LW a0, 828(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1760
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 436(sp)
-  FLW fs10, 436(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1636(sp)
-  LW a0, 824(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1764
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 404(sp)
-  FLW fs10, 404(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1632(sp)
-  LW a0, 820(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1768
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1036
-  ADD t6, t6, sp
-  FLW fs9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1036
-  ADD t6, t6, sp
-  FLW fs10, 0(t6)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1628(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1252
-  ADD t6, t6, sp
-  FLW fs9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1252
-  ADD t6, t6, sp
-  FLW fs10, 0(t6)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1624(sp)
-  FSW fs8, 1620(sp)
-  LW a0, 328(sp)
-  SW a0, 328(sp)
-  FSW fs7, 1616(sp)
-  LW a0, 368(sp)
-  SW a0, 368(sp)
-  FSW fs6, 1612(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -196
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -676
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs5, 1644(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -192
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -672
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs4, 1740(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -188
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -668
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs3, 1736(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -184
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -664
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs2, 1732(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -180
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -660
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs1, 1728(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -176
-  ADD t6, t6, sp
-  LW s10, 0(t6)
-  FSW fs0, 1724(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -172
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -656
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1040
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1040
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1720(sp)
-  LW a0, 508(sp)
-  SW a0, 508(sp)
-  FLW fs0, 408(sp)
-  FLW fs1, 408(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1716(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -228
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FLW fs0, 444(sp)
-  FLW fs1, 444(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1676(sp)
-  LUI a1, 1
-  ADDIW a1, a1, -164
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  FLW fs0, 448(sp)
-  FLW fs1, 448(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1708(sp)
-  FLW fs0, 452(sp)
-  FLW fs1, 452(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1704(sp)
-  FLW fs0, 460(sp)
-  FLW fs1, 460(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1700(sp)
-  FLW fs0, 464(sp)
-  FLW fs1, 464(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1696(sp)
-  FLW fs0, 252(sp)
-  FLW fs1, 252(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1692(sp)
-  FLW fs0, 60(sp)
-  FLW fs1, 60(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -608
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 72(sp)
-  FLW fs1, 72(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -604
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 80(sp)
-  FLW fs1, 80(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 88(sp)
-  FLW fs2, 88(sp)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -600
-  ADD t6, t6, sp
-  FSW fs1, 0(t6)
-  FLW fs1, 56(sp)
-  FLW fs2, 56(sp)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -596
-  ADD t6, t6, sp
-  FSW fs1, 0(t6)
-  FLW fs1, 96(sp)
-  FLW fs2, 96(sp)
-  FSGNJ.S fs1, fs1, fs2
-  FLW fs2, 104(sp)
-  FLW fs3, 104(sp)
-  FSGNJ.S fs2, fs2, fs3
-  FLW fs6, 108(sp)
-  FLW fs7, 108(sp)
-  FSGNJ.S fs7, fs6, fs7
-  FLW fs6, 116(sp)
-  FLW fs8, 116(sp)
-  FSGNJ.S fs10, fs6, fs8
-  FLW fs6, 120(sp)
-  FLW fs8, 120(sp)
-  FSGNJ.S fs6, fs6, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -592
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  FLW fs6, 124(sp)
-  FLW fs8, 124(sp)
-  FSGNJ.S fs6, fs6, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -576
-  ADD t6, t6, sp
-  FSW fs6, 0(t6)
-  FLW fs6, 12(sp)
-  FLW fs8, 12(sp)
-  FSGNJ.S fs11, fs6, fs8
-  JAL zero, bb7
-bb10:   # loop depth 0
-  FLW fs9, 1424(sp)
-  FLW fs10, 1424(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1688(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1772
-  ADD t6, t6, sp
-  SW s11, 0(t6)
-  FLW fs9, 1420(sp)
-  FLW fs10, 1420(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1684(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1776
-  ADD t6, t6, sp
-  SW s10, 0(t6)
-  FLW fs9, 1416(sp)
-  FLW fs10, 1416(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1680(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1816
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 1412(sp)
-  FLW fs10, 1412(sp)
-  FSGNJ.S fs9, fs9, fs10
-  FSW fs9, 1812(sp)
-  LW a0, 804(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1784
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 316(sp)
-  FLW fs10, 316(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2020
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LW a0, 836(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1788
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 320(sp)
-  FLW fs10, 320(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2024
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LW a0, 832(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1792
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 496(sp)
-  FLW fs10, 496(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2028
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LW a0, 828(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1796
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 436(sp)
-  FLW fs10, 436(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2032
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LW a0, 824(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1800
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs9, 404(sp)
-  FLW fs10, 404(sp)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2036
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LW a0, 820(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1804
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1036
-  ADD t6, t6, sp
-  FLW fs9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1036
-  ADD t6, t6, sp
-  FLW fs10, 0(t6)
-  FSGNJ.S fs9, fs9, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  FSW fs9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1808
-  ADD t6, t6, sp
-  SW s9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1252
-  ADD t6, t6, sp
-  FLW fs9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1252
-  ADD t6, t6, sp
-  FLW fs10, 0(t6)
-  FSGNJ.S fs9, fs9, fs10
-  LUI a0, 1
-  ADDIW a0, a0, -2044
-  ADD a0, a0, sp
-  FSW fs9, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1812
-  ADD a0, a0, sp
-  SW s8, 0(a0)
-  FSW fs8, 2012(sp)
-  LW a0, 328(sp)
-  SW a0, 328(sp)
-  LW a0, 328(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1780
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs7, 2044(sp)
-  LW a0, 368(sp)
-  SW a0, 368(sp)
-  LW a0, 368(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -828
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs6, 2040(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -196
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -832
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs5, 2036(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -192
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -836
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FSW fs4, 2032(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -188
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 476(sp)
-  LW a0, 476(sp)
-  SW a0, 476(sp)
-  FSW fs3, 2028(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -184
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 468(sp)
-  LW a0, 468(sp)
-  SW a0, 468(sp)
-  FSW fs2, 2024(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -180
-  ADD t6, t6, sp
-  LW s9, 0(t6)
-  FSW fs1, 2020(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -176
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 500(sp)
-  LW a0, 500(sp)
-  SW a0, 500(sp)
-  FSW fs0, 2016(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -172
-  ADD t6, t6, sp
-  LW s8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1040
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1040
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2048
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LW a0, 508(sp)
-  SW a0, 472(sp)
-  LW a0, 472(sp)
-  SW a0, 472(sp)
-  FLW fs0, 408(sp)
-  FLW fs1, 408(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2012
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -228
-  ADD t6, t6, sp
-  LW s7, 0(t6)
-  FLW fs0, 444(sp)
-  FLW fs1, 444(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a1, 1
-  ADDIW a1, a1, -2008
-  ADD a1, a1, sp
-  FSW fs0, 0(a1)
-  LUI a1, 1
-  ADDIW a1, a1, -164
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  FLW fs0, 448(sp)
-  FLW fs1, 448(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LW s5, 508(sp)
-  FLW fs0, 452(sp)
-  FLW fs1, 452(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 460(sp)
-  FLW fs1, 460(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1996
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 464(sp)
-  FLW fs1, 464(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 252(sp)
-  FLW fs1, 252(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1988
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 60(sp)
-  FLW fs1, 60(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -752
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 72(sp)
-  FLW fs1, 72(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -848
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 80(sp)
-  FLW fs1, 80(sp)
-  FSGNJ.S fs5, fs0, fs1
-  FLW fs0, 88(sp)
-  FLW fs1, 88(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -880
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 56(sp)
-  FLW fs1, 56(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -876
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 96(sp)
-  FLW fs1, 96(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 104(sp)
-  FLW fs2, 104(sp)
-  FSGNJ.S fs1, fs1, fs2
-  FLW fs2, 108(sp)
-  FLW fs6, 108(sp)
-  FSGNJ.S fs2, fs2, fs6
-  FLW fs6, 116(sp)
-  FLW fs7, 116(sp)
-  FSGNJ.S fs6, fs6, fs7
-  FLW fs7, 120(sp)
-  FLW fs8, 120(sp)
-  FSGNJ.S fs9, fs7, fs8
-  FLW fs7, 124(sp)
-  FLW fs8, 124(sp)
-  FSGNJ.S fs7, fs7, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -864
-  ADD t6, t6, sp
-  FSW fs7, 0(t6)
-  FLW fs7, 12(sp)
-  FLW fs8, 12(sp)
-  FSGNJ.S fs7, fs7, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -856
-  ADD t6, t6, sp
-  FSW fs7, 0(t6)
-  # implict jump to bb11
-bb11:   # loop depth 0
-  LA s0, .CONSTANT.7.0
-  LUI t6, 2
-  ADDIW t6, t6, -40
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  FLW fs7, 2040(sp)
-  FLW fs8, 2040(sp)
-  FSGNJ.S fs7, fs7, fs8
-  FSW fs7, 40(sp)
-  LA s0, .CONSTANT.7.0
-  LUI t6, 2
-  ADDIW t6, t6, -48
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -856
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -856
-  ADD t6, t6, sp
-  FLW fs8, 0(t6)
-  FSGNJ.S fs7, fs7, fs8
-  FSW fs7, 48(sp)
-  LUI t6, 2
-  ADDIW t6, t6, -40
-  ADD t6, t6, sp
-  LD s0, 0(t6)
-  FLW fs7, 0(s0)
-  FSW fs7, 308(sp)
-  FLW fs7, 40(sp)
-  FADD.S fs5, fs7, fs5
-  FSW fs5, 32(sp)
-  LW a0, 472(sp)
-  SW a0, 472(sp)
-  FLW fs5, 2024(sp)
-  FLW fs7, 2024(sp)
-  FSGNJ.S fs5, fs5, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -964
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  LUI t6, 2
-  ADDIW t6, t6, -48
-  ADD t6, t6, sp
-  LD s0, 0(t6)
-  FLW fs5, 0(s0)
-  FSW fs5, 312(sp)
-  FLW fs5, 1684(sp)
-  FLW fs7, 1684(sp)
-  FSGNJ.S fs5, fs5, fs7
-  LUI a0, 1
-  ADDIW a0, a0, -992
-  ADD a0, a0, sp
-  FSW fs5, 0(a0)
-  LW a0, 468(sp)
-  SW a0, 468(sp)
-  FLW fs5, 48(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -964
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FADD.S fs5, fs5, fs7
-  FSW fs5, 28(sp)
-  LW a0, 468(sp)
-  LW s0, 472(sp)
-  ADDW s6, a0, s0
-  LUI t6, 1
-  ADDIW t6, t6, -864
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -864
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs5, fs5, fs7
-  FSW fs5, 44(sp)
-  FLW fs5, 32(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -992
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FADD.S fs5, fs5, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -1012
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2008
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2008
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs5, fs5, fs7
-  LUI a0, 1
-  ADDIW a0, a0, -960
-  ADD a0, a0, sp
-  FSW fs5, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1788
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1988
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1988
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs5, fs5, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -956
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  ADDW a0, a0, s8
-  SW a0, 888(sp)
-  FLW fs5, 44(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -960
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FADD.S fs5, fs5, fs7
-  FSW fs5, 20(sp)
-  ADDW s8, s6, a1
-  FLW fs5, 28(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -956
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FADD.S fs5, fs5, fs7
-  FSW fs5, 24(sp)
-  LW a0, 500(sp)
-  SW a0, 500(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1012
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs2, fs5, fs2
-  LUI a0, 1
-  ADDIW a0, a0, -980
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -836
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -880
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -880
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs2, fs2, fs5
-  ADDW s10, s7, a0
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs5, fs5, fs7
-  LUI a0, 1
-  ADDIW a0, a0, -976
-  ADD a0, a0, sp
-  FSW fs5, 0(a0)
-  LW a0, 888(sp)
-  LW a1, 500(sp)
-  ADDW s7, a0, a1
-  FLW fs5, 2036(sp)
-  FLW fs7, 2036(sp)
-  FSGNJ.S fs5, fs5, fs7
-  LUI t6, 1
-  ADDIW t6, t6, -968
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -832
-  ADD t6, t6, sp
-  LW s6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -976
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs2, fs2, fs5
-  LUI a1, 1
-  ADDIW a1, a1, -904
-  ADD a1, a1, sp
-  FSW fs2, 0(a1)
-  LUI a1, 1
-  ADDIW a1, a1, -1780
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -980
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 20(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -968
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs2, fs2, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -912
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1804
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FLW fs2, 24(sp)
-  FADD.S fs2, fs2, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -928
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  ADDW a0, a0, s6
-  SW a0, 896(sp)
-  FLW fs2, 2020(sp)
-  FLW fs5, 2020(sp)
-  FSGNJ.S fs2, fs2, fs5
-  ADDW a0, s10, a1
-  SW a0, 892(sp)
-  FLW fs5, 1680(sp)
-  FLW fs6, 1680(sp)
-  FSGNJ.S fs5, fs5, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -988
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -828
-  ADD t6, t6, sp
-  LW s6, 0(t6)
-  FLW fs5, 2032(sp)
-  FLW fs6, 2032(sp)
-  FSGNJ.S fs5, fs5, fs6
-  LUI a1, 1
-  ADDIW a1, a1, -1800
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -988
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FADD.S fs2, fs2, fs6
-  LUI a0, 1
-  ADDIW a0, a0, -888
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1796
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -848
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -848
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FSGNJ.S fs2, fs2, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -928
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs6, 4(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -904
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FADD.S fs5, fs6, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -896
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  ADDW s10, a1, s6
-  LUI t6, 1
-  ADDIW t6, t6, -912
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs2, fs5, fs2
-  LUI a1, 1
-  ADDIW a1, a1, -908
-  ADD a1, a1, sp
-  FSW fs2, 0(a1)
-  LW a1, 896(sp)
-  ADDW a0, a1, a0
-  SW a0, 900(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1996
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1996
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs2, fs2, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1792
-  ADD t6, t6, sp
-  LW s6, 0(t6)
-  FLW fs5, 2016(sp)
-  FLW fs6, 2016(sp)
-  FSGNJ.S fs5, fs5, fs6
-  LUI a1, 1
-  ADDIW a1, a1, -1776
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -2032
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2032
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs6, fs6, fs7
-  LUI a0, 1
-  ADDIW a0, a0, -1016
-  ADD a0, a0, sp
-  FSW fs6, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1772
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FADD.S fs2, fs2, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1084
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  ADDW a1, a1, s6
-  SW a1, 904(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -908
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs2, 8(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -888
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1016
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs2, fs2, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1080
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  ADDW s6, s10, a0
-  LUI t6, 1
-  ADDIW t6, t6, -896
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FADD.S fs2, fs2, fs9
-  LUI a0, 1
-  ADDIW a0, a0, -892
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LW a0, 476(sp)
-  SW a0, 476(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -2012
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2012
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs2, fs2, fs5
-  LUI a1, 1
-  ADDIW a1, a1, -1812
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -2044
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2044
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FSGNJ.S fs5, fs5, fs6
-  LUI a0, 1
-  ADDIW a0, a0, -1808
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -2024
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2024
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs6, fs6, fs7
-  LW s0, 476(sp)
-  ADDW s10, a0, s0
-  FADD.S fs2, fs5, fs2
-  LUI a0, 1
-  ADDIW a0, a0, -1088
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LW a0, 904(sp)
-  ADDW a0, a0, a1
-  SW a0, 872(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -2028
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2028
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs2, fs2, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -892
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs5, 12(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1084
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs6, fs5, fs6
-  LUI t6, 1
-  ADDIW t6, t6, -1080
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs5, fs5, fs2
-  LUI a1, 1
-  ADDIW a1, a1, -1784
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, -1816
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -2036
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2036
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  ADDW a1, a1, s9
-  LUI t6, 1
-  ADDIW t6, t6, -2020
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2020
-  ADD t6, t6, sp
-  FLW fs7, 0(t6)
-  FSGNJ.S fs3, fs3, fs7
-  ADDW s9, s10, a0
-  FADD.S fs10, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FSGNJ.S fs1, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs5, 16(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1088
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FADD.S fs9, fs2, fs3
-  ADDW s5, a1, s5
-  FADD.S fs5, fs6, fs1
-  LUI a1, 1
-  ADDIW a1, a1, 1504
-  ADD a1, a1, sp
-  ADD a1, a1, zero
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FSGNJ.S fs2, fs1, fs2
-  ADDI a0, zero, 10
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs3, fs1, fs3
-  LA s10, k
-  LUI t6, 1
-  ADDIW t6, t6, -876
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -876
-  ADD t6, t6, sp
-  FLW fs6, 0(t6)
-  FSGNJ.S fs1, fs1, fs6
-  FADD.S fs6, fs2, fs3
-  FLW fs2, 2012(sp)
-  FLW fs3, 2012(sp)
-  FSGNJ.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs5, 20(t6)
-  FADD.S fs5, fs10, fs1
-  FADD.S fs3, fs9, fs2
-  FLW fs1, 1812(sp)
-  FLW fs2, 1812(sp)
-  FSGNJ.S fs2, fs1, fs2
-  FLW fs1, 2028(sp)
-  FLW fs4, 2028(sp)
-  FSGNJ.S fs1, fs1, fs4
-  FADD.S fs4, fs2, fs0
-  FLW fs0, 2044(sp)
-  FLW fs2, 2044(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs3, 24(t6)
-  FADD.S fs3, fs6, fs1
-  FADD.S fs2, fs5, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -752
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -752
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1688(sp)
-  FLW fs5, 1688(sp)
-  FSGNJ.S fs1, fs1, fs5
-  FADD.S fs4, fs4, fs0
-  FADD.S fs1, fs3, fs1
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs2, 28(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2048
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -2048
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  FSGNJ.S fs0, fs0, fs2
-  FLW fs2, 312(sp)
-  FLW fs3, 308(sp)
-  FSGNJ.S fs2, fs3, fs2
-  FSW fs2, 36(sp)
-  FADD.S fs0, fs4, fs0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs1, 32(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FSW fs0, 36(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s7, 4(t6)
-  LW s0, 892(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s0, 8(t6)
-  LW s0, 900(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s0, 12(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s6, 16(t6)
-  LW s0, 872(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s0, 20(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s9, 24(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW s5, 28(t6)
-  CALL putfarray
-  LUI a1, 1
-  ADDIW a1, a1, 1544
-  ADD a1, a1, sp
-  ADD a1, a1, zero
-  ADDI a0, zero, 8
-  CALL putarray
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 4(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 4(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 4(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 8(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 8(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 8(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 12(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 12(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 12(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 16(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 16(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 16(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 20(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 20(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 20(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 24(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 24(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 24(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1544
-  ADD a0, a0, sp
-  LW a0, 28(a0)
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 1504
-  ADD t6, t6, sp
-  FLW fs0, 28(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S a0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1544
-  ADD t6, t6, sp
-  SW a0, 28(t6)
-  LW a0, 0(s10)
-  SW a0, 912(sp)
-  LW a0, 912(sp)
-  SLLIW a0, a0, 2
-  LUI t6, 1
-  ADDIW t6, t6, -160
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -160
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, 1544
-  ADD a1, a1, sp
-  ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, -160
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADD a1, t6, a1
-  LW a0, 0(a0)
-  FLW fs0, 0(a1)
-  FCVT.S.W fs1, a0
-  FSW fs1, 16(sp)
-  FLW fs1, 12(a1)
-  FLW fs2, 24(a1)
-  FADD.S fs0, fs0, fs1
-  FLW fs1, 36(a1)
-  FLW fs3, 48(a1)
-  FADD.S fs0, fs0, fs2
-  FLW fs2, 60(a1)
-  FLW fs4, 72(a1)
-  FADD.S fs2, fs3, fs2
-  FLW fs3, 84(a1)
-  FADD.S fs0, fs0, fs1
-  FLW fs5, 96(a1)
-  FADD.S fs1, fs2, fs4
-  FLW fs2, 108(a1)
-  FLW fs4, 120(a1)
-  FADD.S fs2, fs5, fs2
-  FLW fs5, 132(a1)
-  FADD.S fs1, fs1, fs3
-  FLW fs3, 144(a1)
-  FADD.S fs2, fs2, fs4
-  FLW fs4, 156(a1)
-  FLW fs6, 168(a1)
-  FADD.S fs3, fs3, fs4
-  FLW fs4, 180(a1)
-  FADD.S fs2, fs2, fs5
-  FLW fs5, 192(a1)
-  FADD.S fs3, fs3, fs6
-  FLW fs6, 204(a1)
-  FLW fs7, 216(a1)
-  FADD.S fs5, fs5, fs6
-  FLW fs6, 228(a1)
-  FADD.S fs3, fs3, fs4
-  FLW fs9, 240(a1)
-  FADD.S fs4, fs5, fs7
-  FLW fs5, 252(a1)
-  FLW fs7, 264(a1)
-  FADD.S fs5, fs9, fs5
-  FLW fs9, 276(a1)
-  FADD.S fs4, fs4, fs6
-  FLW fs6, 288(a1)
-  FADD.S fs5, fs5, fs7
-  FLW fs7, 300(a1)
-  FLW fs10, 312(a1)
-  FADD.S fs6, fs6, fs7
-  FLW fs7, 324(a1)
-  FADD.S fs5, fs5, fs9
-  FSW fs5, 8(sp)
-  FLW fs9, 336(a1)
-  FADD.S fs6, fs6, fs10
-  FLW fs10, 348(a1)
-  FLW fs11, 360(a1)
-  FADD.S fs9, fs9, fs10
-  FLW fs10, 372(a1)
-  FADD.S fs6, fs6, fs7
-  FLW fs5, 384(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1096
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  FADD.S fs7, fs9, fs11
-  FLW fs9, 396(a1)
-  FLW fs11, 408(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1096
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs9, fs5, fs9
-  FLW fs5, 420(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1100
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  FADD.S fs7, fs7, fs10
-  FLW fs10, 432(a1)
-  FADD.S fs9, fs9, fs11
-  FLW fs5, 444(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1104
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  FLW fs11, 456(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1104
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs10, fs10, fs5
-  FLW fs5, 468(a1)
-  LUI t6, 1
-  ADDIW t6, t6, -1108
-  ADD t6, t6, sp
-  FSW fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1100
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs9, fs9, fs5
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 196(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1108
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FEQ.S a0, fs5, fs0
-  FADD.S fs0, fs10, fs11
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs1, 4(t6)
-  XORI a0, a0, 1
-  SLTU a0, zero, a0
-  FCVT.S.W fs1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1108
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs0, fs0, fs5
-  LUI a0, 1
-  ADDIW a0, a0, 1464
-  ADD a0, a0, sp
-  FSW fs2, 8(a0)
-  FLW fs2, 36(sp)
-  FEQ.S a0, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs3, 12(t6)
-  XORI a0, a0, 1
-  FCVT.S.W fs1, a0
-  FLW fs2, 36(sp)
-  FEQ.S a0, fs1, fs2
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs4, 16(t6)
-  FLW fs1, 8(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs1, 20(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs6, 24(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs7, 28(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs9, 32(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs0, 36(t6)
-  BEQ a0, zero, bb15
-  # implict jump to bb12
-bb12:   # loop depth 0
-  LUI a0, 1
-  ADDIW a0, a0, 896
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1656
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 904
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1648
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 912
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1640
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 920
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1632
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 928
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1752
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 936
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1616
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 944
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1608
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 952
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1600
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 960
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1592
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 840
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1584
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 976
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1576
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 984
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1568
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 992
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1560
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1000
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1552
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1008
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1544
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1016
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1536
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1024
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1528
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1032
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1520
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1040
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1512
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1048
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1504
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1056
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1224
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1064
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 592
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1072
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 600
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1080
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 608
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1088
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 616
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1496
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 624
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -152
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -224
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -216
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -136
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -208
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -128
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -200
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -120
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -192
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -184
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -176
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -96
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -168
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -88
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -32
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -80
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 360
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -72
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 368
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -64
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 376
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -56
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1248
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  # implict jump to bb13
-bb13:   # loop depth 1
-  LUI a0, 2
-  ADDIW a0, a0, -1248
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1248
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 376
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, 1288
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, -1248
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, -976
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1288
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -984
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -976
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, 368
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, 1280
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1280
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -992
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 360
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1272
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -984
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs1, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1272
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1000
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -32
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1264
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -168
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1256
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -992
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1264
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, -1008
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1256
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1016
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -176
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1248
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1000
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs3, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1248
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1024
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -184
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1240
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -192
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1232
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1008
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1240
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, -1032
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1232
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1040
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -200
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1096
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1016
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs5, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1096
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1176
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -208
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1216
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -216
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1208
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1024
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs6, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1216
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, -1056
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1208
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1064
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -224
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1200
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1032
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs7, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1200
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1072
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 624
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1352
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 616
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1360
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1040
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1628
-  ADD a0, a0, sp
-  FSW fs8, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1352
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, -1080
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, -1360
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1088
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 608
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1368
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1176
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1632
-  ADD a0, a0, sp
-  FSW fs8, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1368
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, -1096
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 600
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1376
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 592
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1384
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1056
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1636
-  ADD a0, a0, sp
-  FSW fs8, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1376
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 576
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, -1384
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 568
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1224
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1392
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1064
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1640
-  ADD a0, a0, sp
-  FSW fs8, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 560
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1504
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1400
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1512
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1408
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1072
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1484(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -1400
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 552
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, -1408
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 544
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1520
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1416
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1080
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1488(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -1416
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 536
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1528
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1424
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1536
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1192
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1088
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1492(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -1424
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 528
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1192
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 520
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1544
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -928
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1096
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1496(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -928
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 512
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1552
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -936
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1560
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -944
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 576
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1500(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -936
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 504
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, -944
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 496
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1568
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1184
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 568
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1504(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1184
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 488
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1576
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1176
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1584
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1168
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 560
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1508(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1176
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 480
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1168
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 472
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1592
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1160
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 552
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1476(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1160
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 464
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1600
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1152
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1608
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1144
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 544
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1516(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1152
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 328
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 448
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1616
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1136
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 536
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs8, 0(a0)
-  FSW fs8, 1520(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1136
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 440
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FADD.S fs0, fs0, fs1
-  LUI a0, 2
-  ADDIW a0, a0, -1752
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1128
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 528
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs1, 0(a0)
-  FSW fs1, 1524(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1128
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 432
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1632
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1120
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FADD.S fs1, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, 520
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1528(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1120
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 424
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1640
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1112
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1648
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1104
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 512
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1676
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  FADD.S fs0, fs0, fs2
-  LUI a0, 1
-  ADDIW a0, a0, 1112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 416
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 1104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 408
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 504
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs2, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1680
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1632
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1628
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FADD.S fs2, fs4, fs2
-  FADD.S fs1, fs1, fs6
-  LUI a0, 2
-  ADDIW a0, a0, -1656
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 712
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 496
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1552
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 712
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 912(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 400
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FADD.S fs0, fs0, fs3
-  FSW fs0, 1512(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -160
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  ADD a0, t6, a0
-  LUI t6, 1
-  ADDIW t6, t6, 392
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 488
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  FSW fs0, 1532(sp)
-  FLW fs0, 1488(sp)
-  FLW fs3, 1484(sp)
-  FADD.S fs3, fs3, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -1636
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs2, fs2, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 480
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1556
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FADD.S fs0, fs1, fs7
-  FSW fs0, 1480(sp)
-  FLW fs0, 1504(sp)
-  FLW fs1, 1500(sp)
-  FADD.S fs4, fs1, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 472
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1560
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1520(sp)
-  FLW fs1, 1516(sp)
-  FADD.S fs5, fs1, fs0
-  FLW fs0, 1492(sp)
-  FADD.S fs3, fs3, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 464
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1564
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1640
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs2, fs2, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -1680
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1676
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FADD.S fs0, fs1, fs0
-  LUI a0, 1
-  ADDIW a0, a0, -1648
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 328
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1568
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1508(sp)
-  FADD.S fs4, fs4, fs0
-  FLW fs0, 1524(sp)
-  FADD.S fs5, fs5, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 448
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1572
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1496(sp)
-  FADD.S fs3, fs3, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -1560
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1556
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FADD.S fs7, fs1, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 440
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1576
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1552
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1648
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FADD.S fs6, fs1, fs0
-  FLW fs0, 1476(sp)
-  FADD.S fs4, fs4, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 432
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1616
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1528(sp)
-  FADD.S fs5, fs5, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -1576
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1572
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FADD.S fs9, fs1, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 424
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1584
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1564
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs7, fs7, fs0
-  FLW fs0, 1532(sp)
-  FADD.S fs6, fs6, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 416
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs10, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 408
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs11, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1616
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs9, fs9, fs0
-  LUI t6, 1
-  ADDIW t6, t6, -1568
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs7, fs7, fs0
-  LUI a0, 1
-  ADDIW a0, a0, 400
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1588
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  FADD.S fs10, fs10, fs11
-  LUI a0, 1
-  ADDIW a0, a0, 392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs11, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1584
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs9, fs9, fs0
-  FLW fs0, 1512(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1588
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FADD.S fs0, fs10, fs0
-  FLW fs1, 1480(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs1, 4(t6)
-  FADD.S fs0, fs0, fs11
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs2, 8(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs3, 12(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs4, 16(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs5, 20(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs6, 24(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs7, 28(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1464
-  ADD t6, t6, sp
-  FSW fs9, 32(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1464
-  ADD a0, a0, sp
-  FSW fs0, 36(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs0, 0(a0)
-  FLW fs1, 196(sp)
-  FEQ.S a0, fs0, fs1
-  SB a0, 3(sp)
-  LB a0, 3(sp)
-  XORI a0, a0, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1536
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1536
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SLTU a0, zero, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1532
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1532
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FCVT.S.W fs0, a0
-  FLW fs1, 36(sp)
-  FEQ.S a0, fs0, fs1
-  SB a0, 4(sp)
-  LB a0, 4(sp)
-  XORI a0, a0, 1
-  LUI t6, 1
-  ADDIW t6, t6, -1528
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1528
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FCVT.S.W fs0, a0
-  FLW fs1, 36(sp)
-  FEQ.S a0, fs0, fs1
-  SB a0, 5(sp)
-  LB a0, 5(sp)
-  BEQ a0, zero, bb15
-  # implict jump to bb14
-bb14:   # loop depth 1
-  LUI a0, 1
-  ADDIW a0, a0, 1464
-  ADD a0, a0, sp
-  ADD a0, a0, zero
-  LUI t6, 2
-  ADDIW t6, t6, -1656
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 712
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1648
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1640
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1632
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1120
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1752
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1128
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1616
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1136
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1608
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1600
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1152
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1592
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1160
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1584
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1168
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1576
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1176
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1568
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1184
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1560
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -944
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1552
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -936
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1544
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -928
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1536
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1192
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1528
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1424
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1520
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1416
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1512
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1408
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1504
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1400
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1224
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 592
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1384
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 600
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1376
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 608
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1368
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 616
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1360
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 624
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1352
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -224
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1200
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -216
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1208
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -208
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1216
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -200
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1096
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -192
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1232
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -184
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1240
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -176
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1248
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -168
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1256
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -32
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1264
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 360
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1272
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 368
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1280
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 376
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1288
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1248
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  JAL zero, bb13
-bb15:   # loop depth 0
-  LA s5, k
-  LUI a1, 1
-  ADDIW a1, a1, 1464
-  ADD a1, a1, sp
-  ADD a1, a1, zero
-  ADDI a0, zero, 10
-  CALL putfarray
-  LW a0, 0(s5)
-  SW a0, 844(sp)
-  LW a0, 844(sp)
-  SLLIW a0, a0, 2
-  LUI t6, 1
-  ADDIW t6, t6, -200
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -200
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, 1464
-  ADD a1, a1, sp
-  ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, -200
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  LUI t6, 1
-  ADDIW t6, t6, 1864
-  ADD t6, t6, sp
-  ADD s7, t6, a1
-  FLW fs0, 0(a0)
-  FSW fs0, 1428(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -200
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1576
-  ADD t6, t6, sp
-  ADD s8, t6, a0
-  FLW fs0, 0(s7)
-  FSW fs0, 1432(sp)
-  LW a0, 12(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -204
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 24(s7)
-  FSW fs0, 1436(sp)
-  LW a0, 24(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -208
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 36(s7)
-  FSW fs0, 1440(sp)
-  FLW fs0, 48(s7)
-  FSW fs0, 1408(sp)
-  LW a0, 48(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -212
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LW a0, 60(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -216
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LW a0, 96(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -220
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 108(s7)
-  FSW fs0, 1448(sp)
-  FLW fs0, 120(s7)
-  FSW fs0, 1452(sp)
-  FLW fs0, 132(s7)
-  FSW fs0, 1456(sp)
-  LW a0, 108(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -416
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 156(s7)
-  FSW fs0, 1460(sp)
-  FLW fs0, 168(s7)
-  FSW fs0, 1464(sp)
-  FLW fs0, 180(s7)
-  FSW fs0, 1468(sp)
-  FLW fs0, 216(s7)
-  FLW fs1, 228(s7)
-  LW a0, 168(s8)
-  LUI t6, 1
-  ADDIW t6, t6, -224
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs2, 264(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1892
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  FLW fs2, 276(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1896
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LW a0, 204(s8)
-  SW a0, 1068(sp)
-  LW a0, 216(s8)
-  SW a0, 1064(sp)
-  FLW fs2, 288(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1900
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  FLW fs2, 300(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1904
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LW a0, 240(s8)
-  SW a0, 1060(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1904
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1900
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1592(sp)
-  LW a1, 252(s8)
-  FLW fs2, 324(s7)
-  LUI t6, 1
-  ADDIW t6, t6, -1908
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 336(s7)
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  LW s5, 0(s8)
-  FLW fs2, 372(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1920
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -204
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW s6, s5, a0
-  LUI a0, 1
-  ADDIW a0, a0, -208
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW s9, s6, a0
-  FLW fs2, 384(s7)
-  LUI t6, 1
-  ADDIW t6, t6, -1924
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 420(s7)
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  LW s6, 36(s8)
-  FLW fs2, 12(s7)
-  LUI a0, 1
-  ADDIW a0, a0, -1936
-  ADD a0, a0, sp
-  FSW fs2, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -212
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW s10, s6, a0
-  LUI a0, 1
-  ADDIW a0, a0, -216
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW a0, s10, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1612
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  ADDW a0, s9, s6
-  LUI t6, 1
-  ADDIW t6, t6, -1604
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs2, 60(s7)
-  FSW fs2, 1344(sp)
-  FLW fs2, 1432(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1936
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, -1940
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 72(s7)
-  FSW fs2, 1352(sp)
-  FLW fs2, 1344(sp)
-  FLW fs3, 1408(sp)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1348(sp)
-  FLW fs2, 84(s7)
-  FSW fs2, 1356(sp)
-  FLW fs2, 1436(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1940
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1472(sp)
-  FLW fs2, 96(s7)
-  FSW fs2, 1364(sp)
-  FLW fs2, 1352(sp)
-  FLW fs3, 1348(sp)
-  FADD.S fs2, fs3, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 144(s7)
-  FSW fs2, 1340(sp)
-  FLW fs2, 1364(sp)
-  FLW fs3, 1448(sp)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1368(sp)
-  FLW fs2, 192(s7)
-  FSW fs2, 1392(sp)
-  FLW fs2, 1472(sp)
-  FLW fs3, 1440(sp)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1376(sp)
-  FLW fs2, 1340(sp)
-  FLW fs3, 1460(sp)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1380(sp)
-  FLW fs2, 204(s7)
-  FSW fs2, 1396(sp)
-  FLW fs2, 1356(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1824
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1360(sp)
-  FLW fs2, 1368(sp)
-  FLW fs3, 1452(sp)
-  FADD.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, -1852
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 240(s7)
-  FSW fs2, 1604(sp)
-  FLW fs2, 1396(sp)
-  FLW fs3, 1392(sp)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1400(sp)
-  FLW fs2, 252(s7)
-  FSW fs2, 1600(sp)
-  FLW fs2, 1380(sp)
-  FLW fs3, 1464(sp)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1384(sp)
-  FLW fs2, 312(s7)
-  FSW fs2, 1588(sp)
-  FLW fs2, 1456(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1852
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1372(sp)
-  FLW fs2, 1600(sp)
-  FLW fs3, 1604(sp)
-  FADD.S fs2, fs3, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1464
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 348(s7)
-  FSW fs2, 1576(sp)
-  FLW fs2, 1400(sp)
-  FADD.S fs2, fs2, fs0
-  FSW fs2, 1404(sp)
-  FLW fs2, 1384(sp)
-  FLW fs3, 1468(sp)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1388(sp)
-  FLW fs2, 360(s7)
-  FSW fs2, 1568(sp)
-  FLW fs2, 1576(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1572(sp)
-  FLW fs2, 1588(sp)
-  FLW fs3, 1592(sp)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1584(sp)
-  FLW fs2, 396(s7)
-  FSW fs2, 1556(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1464
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1892
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, -1460
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 1404(sp)
-  FADD.S fs2, fs2, fs1
-  FSW fs2, 1444(sp)
-  FLW fs2, 408(s7)
-  FSW fs2, 1548(sp)
-  FLW fs2, 1556(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1924
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1552(sp)
-  FLW fs2, 1568(sp)
-  FLW fs3, 1572(sp)
-  FADD.S fs2, fs3, fs2
-  FSW fs2, 1564(sp)
-  FLW fs2, 1376(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 1584(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1908
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1580(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1460
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1596(sp)
-  FLW fs2, 1548(sp)
-  FLW fs3, 1552(sp)
-  FADD.S fs2, fs3, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1620
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 1360(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 4(t6)
-  FLW fs2, 1564(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1920
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  FSW fs2, 1560(sp)
-  FLW fs2, 1372(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 8(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1620
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FADD.S fs2, fs2, fs3
-  LUI t6, 1
-  ADDIW t6, t6, -1624
-  ADD t6, t6, sp
-  FSW fs2, 0(t6)
-  FLW fs2, 1388(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 12(t6)
-  FLW fs2, 1444(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 16(t6)
-  FLW fs2, 1596(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 20(t6)
-  FLW fs2, 1580(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 24(t6)
-  FLW fs2, 1560(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 28(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1624
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 32(t6)
-  FLW fs2, 36(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs2, 36(t6)
-  LW s7, 72(s8)
-  LW a0, 84(s8)
-  SW a0, 1056(sp)
-  LW a0, 120(s8)
-  SW a0, 1052(sp)
-  LW a0, 1056(sp)
-  ADDW s7, s7, a0
-  LUI a0, 1
-  ADDIW a0, a0, -220
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW a0, s7, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1608
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LW a0, 132(s8)
-  SW a0, 1044(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -416
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LW s0, 1052(sp)
-  ADDW a0, a0, s0
-  SW a0, 1048(sp)
-  LW a0, 144(s8)
-  SW a0, 1036(sp)
-  LW a0, 1044(sp)
-  LW s0, 1048(sp)
-  ADDW a0, s0, a0
-  SW a0, 1040(sp)
-  LW a0, 156(s8)
-  SW a0, 1032(sp)
-  LW a0, 180(s8)
-  SW a0, 1020(sp)
-  LW a0, 1032(sp)
-  LW s0, 1036(sp)
-  ADDW a0, s0, a0
-  SW a0, 1028(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -224
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LW s0, 1028(sp)
-  ADDW a0, s0, a0
-  SW a0, 1024(sp)
-  LW a0, 192(s8)
-  SW a0, 1016(sp)
-  LW a0, 228(s8)
-  SW a0, 944(sp)
-  LW a0, 1016(sp)
-  LW s0, 1020(sp)
-  ADDW a0, s0, a0
-  SW a0, 1012(sp)
-  LW a0, 1012(sp)
-  LW s0, 1068(sp)
-  ADDW a0, a0, s0
-  SW a0, 976(sp)
-  LW a0, 264(s8)
-  SW a0, 956(sp)
-  LW a0, 944(sp)
-  LW s0, 1064(sp)
-  ADDW a0, s0, a0
-  SW a0, 948(sp)
-  LW a0, 948(sp)
-  LW s0, 1060(sp)
-  ADDW a0, a0, s0
-  SW a0, 952(sp)
-  LW a0, 276(s8)
-  SW a0, 960(sp)
-  LW a0, 956(sp)
-  ADDW s8, a1, a0
-  LUI a0, 1
-  ADDIW a0, a0, 1384
-  ADD a0, a0, sp
-  SW s9, 0(a0)
-  LW a0, 960(sp)
-  ADDW s8, s8, a0
-  LUI a0, 1
-  ADDIW a0, a0, -1612
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 4(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1608
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 8(t6)
-  LW a0, 1040(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 12(t6)
-  LW a0, 1024(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 16(t6)
-  LW a0, 976(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 20(t6)
-  LW a0, 952(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 24(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1384
-  ADD a0, a0, sp
-  SW s8, 28(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1604
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 32(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW zero, 36(t6)
-  BNE s6, zero, bb21
-  # implict jump to bb16
-bb16:   # loop depth 0
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1928
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 304(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -984
-  ADD t6, t6, sp
-  SW s6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1924
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1924
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 300(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 936
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1488
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1920
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1920
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 260(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 944
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1480
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1912
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 292(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -208
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -996
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1908
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1908
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 288(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 840
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1472
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1904
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1904
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 284(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 888
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1464
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1900
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1900
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 280(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1008
-  ADD t6, t6, sp
-  SW s5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1896
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 276(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 976
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1456
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1892
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1892
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 272(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1296
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1448
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FSW fs1, 884(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1304
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1440
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FSW fs0, 964(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -940
-  ADD t6, t6, sp
-  SW a1, 0(t6)
-  FLW fs0, 1468(sp)
-  FLW fs1, 1468(sp)
-  FSGNJ.S fs1, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, 1000
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1624
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1464(sp)
-  FLW fs2, 1464(sp)
-  FSGNJ.S fs2, fs0, fs2
-  LW a0, 1060(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -932
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1460(sp)
-  FLW fs3, 1460(sp)
-  FSGNJ.S fs3, fs0, fs3
-  LUI a0, 1
-  ADDIW a0, a0, 1312
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1744
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1456(sp)
-  FLW fs6, 1456(sp)
-  FSGNJ.S fs6, fs0, fs6
-  LW a0, 1064(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -924
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1452(sp)
-  FLW fs7, 1452(sp)
-  FSGNJ.S fs7, fs0, fs7
-  LW a0, 1068(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -920
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1448(sp)
-  FLW fs8, 1448(sp)
-  FSGNJ.S fs0, fs0, fs8
-  LUI a0, 1
-  ADDIW a0, a0, -1276
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1320
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1736
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1408(sp)
-  FLW fs8, 1408(sp)
-  FSGNJ.S fs0, fs0, fs8
-  LUI a0, 1
-  ADDIW a0, a0, -1272
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1328
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1728
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1440(sp)
-  FLW fs8, 1440(sp)
-  FSGNJ.S fs0, fs0, fs8
-  LUI a0, 1
-  ADDIW a0, a0, -1268
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1040
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1720
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1436(sp)
-  FLW fs8, 1436(sp)
-  FSGNJ.S fs0, fs0, fs8
-  LUI a0, 1
-  ADDIW a0, a0, -1264
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 1048
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1712
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs0, 1432(sp)
-  FLW fs8, 1432(sp)
-  FSGNJ.S fs0, fs0, fs8
-  LUI a0, 1
-  ADDIW a0, a0, -224
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -900
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1336
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1704
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1072
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1696
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 968
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1688
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 848
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1680
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1080
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1672
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 856
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1664
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -416
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1092
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -408
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -400
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -392
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -220
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -88
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 864
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -384
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 872
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -376
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -96
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -368
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -216
-  ADD t6, t6, sp
-  LW s3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -212
-  ADD t6, t6, sp
-  LW s2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 880
-  ADD t6, t6, sp
-  LD s1, 0(t6)
-  LUI t6, 2
-  ADDIW t6, t6, -88
-  ADD t6, t6, sp
-  LD s0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -208
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -76
-  ADD a1, a1, sp
-  SW a0, 0(a1)
-  LUI a1, 1
-  ADDIW a1, a1, -204
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  # implict jump to bb17
-bb17:   # loop depth 1
-  FLW fs8, 304(sp)
-  FLW fs4, 304(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1232
-  ADD t6, t6, sp
-  FSW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1232
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FSGNJ.S fs8, fs8, fs4
-  LUI a0, 1
-  ADDIW a0, a0, -1980
-  ADD a0, a0, sp
-  FSW fs8, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -984
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1740
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1740
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  FCVT.S.W fs8, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1984
-  ADD t6, t6, sp
-  FSW fs8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1832
-  ADD t6, t6, sp
-  SW a1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1980
-  ADD t6, t6, sp
-  FLW fs8, 0(t6)
-  FCVT.W.S a0, fs8, rtz
-  LUI t6, 1
-  ADDIW t6, t6, -1744
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1264
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1264
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1264
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -76
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1828
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1268
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1268
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1268
-  ADD t6, t6, sp
-  FSW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 816
-  ADD t6, t6, sp
-  SD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1272
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1272
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1272
-  ADD t6, t6, sp
-  FSW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 808
-  ADD t6, t6, sp
-  SD s1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1276
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1276
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI t6, 1
-  ADDIW t6, t6, -1276
-  ADD t6, t6, sp
-  FSW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1916
-  ADD t6, t6, sp
-  SW s2, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1948
-  ADD a0, a0, sp
-  SW s3, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -368
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 800
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -376
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 792
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -384
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 784
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -88
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1932
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs4, 964(sp)
-  FLW fs5, 964(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, 4
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 776
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 884(sp)
-  FLW fs5, 884(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -684
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -400
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 768
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 272(sp)
-  FLW fs5, 272(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 1940(sp)
-  LUI a0, 2
-  ADDIW a0, a0, -408
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 760
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 276(sp)
-  FLW fs5, 276(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 1980(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1092
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1952
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs4, 280(sp)
-  FLW fs5, 280(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1956
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1664
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 752
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 284(sp)
-  FLW fs5, 284(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1960
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 744
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 288(sp)
-  FLW fs5, 288(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1964
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1680
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 736
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 292(sp)
-  FLW fs5, 292(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1968
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1688
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 728
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 260(sp)
-  FLW fs5, 260(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1972
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1696
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SW t0, 0(s0)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 24
   LUI t6, 1
   ADDIW t6, t6, 720
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 300(sp)
-  FLW fs5, 300(sp)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1976
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 2
-  ADDIW a0, a0, -1704
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 36
   LUI t6, 1
-  ADDIW t6, t6, 584
+  ADDIW t6, t6, 808
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -900
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 48
   LUI t6, 1
-  ADDIW t6, t6, -1888
+  ADDIW t6, t6, 800
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1712
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 60
   LUI t6, 1
-  ADDIW t6, t6, 704
+  ADDIW t6, t6, 792
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1720
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 72
   LUI t6, 1
-  ADDIW t6, t6, 696
+  ADDIW t6, t6, 784
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1728
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 84
   LUI t6, 1
-  ADDIW t6, t6, 688
+  ADDIW t6, t6, 776
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1736
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 96
   LUI t6, 1
-  ADDIW t6, t6, 680
+  ADDIW t6, t6, 768
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -920
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 108
   LUI t6, 1
-  ADDIW t6, t6, -1700
+  ADDIW t6, t6, 760
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -924
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 120
   LUI t6, 1
-  ADDIW t6, t6, -1704
+  ADDIW t6, t6, 752
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1744
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 132
   LUI t6, 1
-  ADDIW t6, t6, 672
+  ADDIW t6, t6, 744
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -932
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 144
   LUI t6, 1
-  ADDIW t6, t6, -1712
+  ADDIW t6, t6, 736
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1624
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 156
   LUI t6, 1
-  ADDIW t6, t6, 664
+  ADDIW t6, t6, 728
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -940
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 168
   LUI t6, 1
-  ADDIW t6, t6, -1720
+  ADDIW t6, t6, 816
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1440
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 180
   LUI t6, 1
-  ADDIW t6, t6, 656
+  ADDIW t6, t6, 1080
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1448
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 192
   LUI t6, 1
-  ADDIW t6, t6, 648
+  ADDIW t6, t6, 1072
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1456
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 204
   LUI t6, 1
-  ADDIW t6, t6, 640
+  ADDIW t6, t6, 1064
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1008
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 216
   LUI t6, 1
-  ADDIW t6, t6, -884
+  ADDIW t6, t6, 1056
   ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1464
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, 392
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 2
-  ADDIW t6, t6, -1472
-  ADD t6, t6, sp
-  LD s7, 0(t6)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 228
   LUI t6, 1
-  ADDIW t6, t6, -996
+  ADDIW t6, t6, 1048
   ADD t6, t6, sp
-  LW s8, 0(t6)
-  LUI t6, 2
-  ADDIW t6, t6, -1480
-  ADD t6, t6, sp
-  LD s9, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, -1488
-  ADD a0, a0, sp
-  LD a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 240
   LUI t6, 1
-  ADDIW t6, t6, 632
+  ADDIW t6, t6, 1040
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  # implict jump to bb18
-bb18:   # loop depth 1
-  LUI a0, 1
-  ADDIW a0, a0, -200
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 252
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, 1032
   ADD t6, t6, sp
-  ADD s11, t6, a0
-  LUI a0, 1
-  ADDIW a0, a0, 816
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 232
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 0(s11)
-  FSW fs4, 1240(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 800
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD s11, a1, a0
-  LUI a0, 1
-  ADDIW a0, a0, 776
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, 96
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 768
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 216
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 232
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1256(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 760
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, 208
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 744
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 2
-  ADDIW a1, a1, 200
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 720
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 192
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 0(s11)
-  FSW fs4, 1264(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 704
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 184
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 1240(sp)
-  FADD.S fs4, fs0, fs4
-  FSW fs4, 1208(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 696
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 176
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 96
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1272(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 664
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 168
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 1256(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 264
   LUI t6, 1
-  ADDIW t6, t6, -1272
+  ADDIW t6, t6, 1024
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1260(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 640
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 276
   LUI t6, 1
-  ADDIW t6, t6, 384
+  ADDIW t6, t6, 1016
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 216
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1948(sp)
-  LW a0, 844(sp)
-  SH2ADD a0, a0, s7
-  LUI t6, 2
-  ADDIW t6, t6, 152
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LW a0, 844(sp)
-  SH2ADD a0, a0, s9
-  LUI a1, 2
-  ADDIW a1, a1, 144
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 632
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 288
   LUI t6, 1
-  ADDIW t6, t6, 376
+  ADDIW t6, t6, 1008
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 208
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1964(sp)
-  FLW fs4, 1208(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 300
+  LUI t6, 1
+  ADDIW t6, t6, 904
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 312
+  LUI t6, 1
+  ADDIW t6, t6, 992
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 324
+  LUI t6, 1
+  ADDIW t6, t6, 984
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 336
+  LUI t6, 1
+  ADDIW t6, t6, 976
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 348
+  LUI t6, 1
+  ADDIW t6, t6, 968
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 360
+  LUI t6, 1
+  ADDIW t6, t6, 960
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 372
+  LUI t6, 1
+  ADDIW t6, t6, 952
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 384
+  LUI t6, 1
+  ADDIW t6, t6, 944
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 396
+  LUI t6, 1
+  ADDIW t6, t6, 936
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 408
+  LUI t6, 1
+  ADDIW t6, t6, 928
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 420
+  LUI t6, 1
+  ADDIW t6, t6, 920
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 432
+  LUI t6, 1
+  ADDIW t6, t6, 912
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 444
+  LUI t6, 1
+  ADDIW t6, t6, -16
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 456
+  LUI t6, 1
+  ADDIW t6, t6, -1240
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -528
+  ADD t0, t0, sp
+  ADDI t0, t0, 468
+  LUI t6, 1
+  ADDIW t6, t6, -1248
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 12
+  LUI t6, 1
+  ADDIW t6, t6, -1256
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 24
+  SD t0, 1688(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 36
   LUI t6, 1
   ADDIW t6, t6, -1264
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1248(sp)
-  FLW fs4, 1948(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 48
+  SD t0, 1680(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 60
+  SD t0, 1672(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 72
   LUI t6, 1
-  ADDIW t6, t6, -1276
+  ADDIW t6, t6, -1272
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1952(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -200
-  ADD a0, a0, sp
-  LW a0, 0(a0)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 84
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1280
   ADD t6, t6, sp
-  ADD a0, t6, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 96
+  SD t0, 1664(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 108
+  SD t0, 1656(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 120
   LUI t6, 1
-  ADDIW t6, t6, 368
+  ADDIW t6, t6, -1288
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 200
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1944(sp)
-  FLW fs4, 1264(sp)
-  FLW fs5, 1260(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1268(sp)
-  FLW fs4, 1964(sp)
-  FADD.S fs4, fs4, fs3
-  FSW fs4, 1968(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 808
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 128
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 192
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1984(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 132
   LUI t6, 1
-  ADDIW t6, t6, -1960
+  ADDIW t6, t6, -1296
   ADD t6, t6, sp
-  FLW fs4, 0(t6)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 144
   LUI t6, 1
-  ADDIW t6, t6, -1956
+  ADDIW t6, t6, -1304
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1884(sp)
-  FLW fs4, 1248(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 156
   LUI t6, 1
-  ADDIW t6, t6, -1268
+  ADDIW t6, t6, -1312
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1252(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 792
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 168
+  SD t0, 1768(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 180
   LUI t6, 1
-  ADDIW t6, t6, 360
+  ADDIW t6, t6, -1416
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 184
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 2000(sp)
-  FLW fs4, 1952(sp)
-  FADD.S fs4, fs4, fs7
-  FSW fs4, 1956(sp)
-  FLW fs4, 1272(sp)
-  FLW fs5, 1268(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1544(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 784
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 112
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 176
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 2004(sp)
-  FLW fs4, 1984(sp)
-  FLW fs5, 1944(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1988(sp)
-  FLW fs4, 1968(sp)
-  FADD.S fs4, fs4, fs2
-  FSW fs4, 1972(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 752
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 104
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 168
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1888(sp)
-  FLW fs4, 2004(sp)
-  FLW fs5, 2000(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 2008(sp)
-  FLW fs4, 1956(sp)
-  FADD.S fs4, fs4, fs6
-  FSW fs4, 1960(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 736
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 192
   LUI t6, 1
-  ADDIW t6, t6, 352
+  ADDIW t6, t6, -1328
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 384
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1900(sp)
-  FLW fs4, 1888(sp)
-  FLW fs5, 1884(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1892(sp)
-  FLW fs4, 1988(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 204
+  SD t0, 1776(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 216
+  SD t0, 1784(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 228
   LUI t6, 1
-  ADDIW t6, t6, 4
+  ADDIW t6, t6, -1336
   ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1992(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 728
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 592
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 152
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1908(sp)
-  FLW fs4, 1972(sp)
-  FADD.S fs4, fs4, fs1
-  FSW fs4, 1976(sp)
-  FLW fs4, 1940(sp)
-  FLW fs5, 2008(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1912(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 584
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 240
+  SD t0, 1792(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 252
+  SD t0, 1800(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 264
   LUI t6, 1
-  ADDIW t6, t6, 344
+  ADDIW t6, t6, -1344
   ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 144
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1920(sp)
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -816
+  ADD t0, t0, sp
+  ADDI t0, t0, 276
   LUI t6, 1
-  ADDIW t6, t6, -1968
+  ADDIW t6, t6, -1352
   ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FLW fs5, 1900(sp)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1904(sp)
+  SD t0, 0(t6)
+  LA t0, k
   LUI t6, 1
-  ADDIW t6, t6, -1964
+  ADDIW t6, t6, 856
   ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FLW fs5, 1892(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1896(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 688
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 576
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 376
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  FLW fs4, 0(a0)
-  FSW fs4, 1928(sp)
-  FLW fs4, 1992(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -684
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1996(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1976
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FLW fs5, 1920(sp)
-  FADD.S fs4, fs4, fs5
-  FSW fs4, 1924(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 680
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 2
-  ADDIW t6, t6, 568
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 1252(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 0(t6)
-  FLW fs4, 1980(sp)
-  FLW fs5, 1912(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1880(sp)
-  FLW fs4, 1908(sp)
-  FLW fs5, 1904(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1876(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 336
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 656
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 456
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 1
-  ADDIW a0, a0, 648
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI a1, 1
-  ADDIW a1, a1, 832
-  ADD a1, a1, sp
-  SD a0, 0(a1)
-  LUI a0, 2
-  ADDIW a0, a0, 392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a1, 844(sp)
-  SH2ADD a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, 824
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 1544(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 4(t6)
-  FLW fs4, 1928(sp)
-  FLW fs5, 1924(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1932(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1972
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FLW fs5, 1876(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1916(sp)
-  FLW fs4, 1960(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 8(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1984
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  FLW fs5, 1932(sp)
-  FADD.S fs4, fs5, fs4
-  FSW fs4, 1936(sp)
-  FLW fs4, 1976(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 12(t6)
-  FLW fs4, 1996(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 16(t6)
-  FLW fs4, 1880(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 20(t6)
-  FLW fs4, 1896(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 24(t6)
-  FLW fs4, 1916(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 28(t6)
-  FLW fs4, 1936(sp)
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FSW fs4, 32(t6)
-  FLW fs4, 36(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 1344
-  ADD a0, a0, sp
-  FSW fs4, 36(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 368
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -588
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 128
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -572
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1832
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -588
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -584
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1828
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -584
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1868
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 360
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -556
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1916
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -572
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -568
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1948
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -568
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -1864
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 112
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -548
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 104
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -368
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -548
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -556
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -356
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1932
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -356
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -360
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 352
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -380
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1952
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -368
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a0, a1
-  LUI t6, 1
-  ADDIW t6, t6, -372
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 592
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -392
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -380
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -372
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -384
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 344
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -400
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 576
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -448
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -400
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -392
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -404
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1888
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -404
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -408
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 2
-  ADDIW a0, a0, 568
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -476
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 336
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -460
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -476
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -448
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -472
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1700
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -472
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -468
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 456
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -444
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1704
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -460
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a0, a1
-  LUI t6, 1
-  ADDIW t6, t6, -456
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1712
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -456
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -452
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 832
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -432
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1720
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -444
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a0, a1
-  LUI t6, 1
-  ADDIW t6, t6, -440
-  ADD t6, t6, sp
-  SW a0, 0(t6)
+  SD t0, 0(t6)
+  ADDI t0, zero, 0
+  SW t0, 396(sp)
+  CALL getfarray
   LUI a0, 1
   ADDIW a0, a0, 824
   ADD a0, a0, sp
   LD a0, 0(a0)
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -428
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -432
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -440
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW s11, a1, a0
-  LUI a0, 1
-  ADDIW a0, a0, -1868
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -884
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -428
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a0, a1
-  LUI t6, 1
-  ADDIW t6, t6, -424
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1864
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 4(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -424
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  ADDW a0, a0, s8
-  LUI t6, 1
-  ADDIW t6, t6, -420
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -360
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 8(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1744
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI a1, 1
-  ADDIW a1, a1, -420
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  ADDW a0, a1, a0
-  LUI t6, 1
-  ADDIW t6, t6, -680
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -384
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 12(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -408
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 16(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -468
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 20(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -452
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 24(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1384
-  ADD a0, a0, sp
-  SW s11, 28(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -680
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW a0, 32(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 1384
-  ADD a0, a0, sp
-  SW zero, 36(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1744
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  BNE a0, zero, bb20
-  # implict jump to bb19
-bb19:   # loop depth 1
-  LUI t6, 1
-  ADDIW t6, t6, -1984
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1984
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 304(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1744
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -984
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1976
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1976
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 300(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 632
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1488
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1972
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1972
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 260(sp)
-  LUI t6, 2
-  ADDIW t6, t6, -1480
-  ADD t6, t6, sp
-  SD s9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1968
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1968
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 292(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -996
-  ADD t6, t6, sp
-  SW s8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1964
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1964
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 288(sp)
-  LUI t6, 2
-  ADDIW t6, t6, -1472
-  ADD t6, t6, sp
-  SD s7, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1960
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1960
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 284(sp)
-  LUI a0, 2
-  ADDIW a0, a0, 392
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1464
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1956
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1956
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 280(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -884
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1008
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs4, 1980(sp)
-  FLW fs5, 1980(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 276(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 640
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1456
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  FLW fs4, 1940(sp)
-  FLW fs5, 1940(sp)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 272(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 648
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1448
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -684
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -684
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 884(sp)
-  LUI a0, 1
-  ADDIW a0, a0, 656
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1440
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 4
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 4
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  FSW fs4, 964(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1720
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -940
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 664
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1624
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1712
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -932
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 672
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1744
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1704
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -924
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1700
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -920
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1276
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1276
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1276
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 680
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1736
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1272
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1272
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1272
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 688
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1728
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1268
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1268
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1268
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 696
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1720
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1264
-  ADD t6, t6, sp
-  FLW fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1264
-  ADD t6, t6, sp
-  FLW fs5, 0(t6)
-  FSGNJ.S fs4, fs4, fs5
-  LUI a0, 1
-  ADDIW a0, a0, -1264
-  ADD a0, a0, sp
-  FSW fs4, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, 704
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1712
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1888
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -900
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 584
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1704
-  ADD t6, t6, sp
-  SD a0, 0(t6)
+  LW t0, 396(sp)
+  FCVT.S.W ft0, t0
+  FSW ft0, 264(sp)
+  CALL getfarray
   LUI a0, 1
   ADDIW a0, a0, 720
   ADD a0, a0, sp
   LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1696
-  ADD t6, t6, sp
-  SD a0, 0(t6)
+  CALL getfarray
   LUI a0, 1
-  ADDIW a0, a0, 728
+  ADDIW a0, a0, 808
   ADD a0, a0, sp
   LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1688
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 736
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1680
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 744
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1672
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 752
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -1664
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1952
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1092
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 760
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -408
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 768
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -400
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 776
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -392
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1932
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -88
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 784
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -384
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, 792
-  ADD a0, a0, sp
-  LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -376
-  ADD t6, t6, sp
-  SD a0, 0(t6)
+  CALL getfarray
   LUI a0, 1
   ADDIW a0, a0, 800
   ADD a0, a0, sp
   LD a0, 0(a0)
-  LUI t6, 2
-  ADDIW t6, t6, -368
-  ADD t6, t6, sp
-  SD a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1948
-  ADD t6, t6, sp
-  LW s3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1916
-  ADD t6, t6, sp
-  LW s2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 808
-  ADD t6, t6, sp
-  LD s1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 816
-  ADD t6, t6, sp
-  LD s0, 0(t6)
+  CALL getfarray
   LUI a0, 1
-  ADDIW a0, a0, -1828
+  ADDIW a0, a0, 792
   ADD a0, a0, sp
-  LW a0, 0(a0)
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 784
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 776
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 768
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 760
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 752
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 744
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 736
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 728
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 816
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1080
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1072
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1064
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1056
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1048
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1040
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1032
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1024
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1016
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 1008
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 904
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 992
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 984
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 976
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 968
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 960
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 952
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 944
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 936
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 928
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 920
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, 912
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, -16
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, -1240
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, -1248
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getfarray
+  LUI a0, 1
+  ADDIW a0, a0, -816
+  ADD a0, a0, sp
+  ADD a0, a0, zero
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1256
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1688(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1264
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1680(sp)
+  CALL getarray
+  LD a0, 1672(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1272
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1280
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1664(sp)
+  CALL getarray
+  LD a0, 1656(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1288
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1296
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1304
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1312
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1768(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1416
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1328
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1776(sp)
+  CALL getarray
+  LD a0, 1784(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1336
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LD a0, 1792(sp)
+  CALL getarray
+  LD a0, 1800(sp)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1344
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI a0, 1
+  ADDIW a0, a0, -1352
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  CALL getarray
+  LUI t0, 1
+  ADDIW t0, t0, 856
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SLLIW t0, t0, 2
+  LUI t6, 1
+  ADDIW t6, t6, -528
+  ADD t6, t6, sp
+  ADD t0, t6, t0
+  FLW ft0, 0(t0)
+  FLW ft1, 12(t0)
+  FSW ft1, 236(sp)
+  FLW ft1, 24(t0)
+  FSW ft1, 232(sp)
+  FLW ft1, 236(sp)
+  FADD.S ft0, ft0, ft1
+  FSW ft0, 420(sp)
+  FLW ft0, 36(t0)
+  FSW ft0, 228(sp)
+  FLW ft0, 48(t0)
+  FSW ft0, 224(sp)
+  FLW ft0, 60(t0)
+  FSW ft0, 220(sp)
+  FLW ft0, 72(t0)
+  FSW ft0, 216(sp)
+  FLW ft0, 84(t0)
+  FSW ft0, 212(sp)
+  FLW ft0, 96(t0)
+  FSW ft0, 1248(sp)
+  FLW fs1, 108(t0)
+  FLW ft0, 120(t0)
+  FSW ft0, 1100(sp)
+  FLW ft0, 132(t0)
+  FSW ft0, 1088(sp)
+  FLW ft0, 144(t0)
+  FSW ft0, 1084(sp)
+  FLW ft0, 156(t0)
+  FSW ft0, 1080(sp)
+  FLW fs2, 168(t0)
+  FLW fs9, 180(t0)
+  FLW fs8, 192(t0)
+  FLW fs7, 204(t0)
+  FLW fs6, 216(t0)
+  FLW fs5, 228(t0)
+  FLW fs4, 240(t0)
+  FLW ft0, 252(t0)
+  FSW ft0, 1224(sp)
+  FLW fa0, 264(t0)
+  FSW fa0, 1052(sp)
+  FLW fa0, 276(t0)
+  FLW fa1, 288(t0)
+  FLW fa2, 300(t0)
+  FLW fa3, 312(t0)
+  FSW fa3, 1504(sp)
+  FLW fa3, 324(t0)
+  FSW fa3, 1500(sp)
+  FLW fa3, 336(t0)
+  FLW fa4, 348(t0)
+  FLW ft1, 360(t0)
+  FLW fa6, 372(t0)
+  FLW fa7, 384(t0)
+  FSW fa7, 1496(sp)
+  FLW fa7, 396(t0)
+  FSW fa7, 1488(sp)
+  FLW fa7, 408(t0)
+  FLW ft8, 420(t0)
+  FLW ft9, 432(t0)
+  FSW ft9, 1484(sp)
+  FLW ft9, 444(t0)
+  FLW ft10, 456(t0)
+  FLW ft11, 468(t0)
+  FLW ft0, 264(sp)
+  FSW ft0, 1160(sp)
+  FLW ft0, 1160(sp)
+  FEQ.S t0, ft11, ft0
+  BEQ t0, zero, bb22
+  # implict jump to bb1
+bb1:   # loop depth 0
+  FSW ft11, 664(sp)
+  FSW ft10, 668(sp)
+  FSW ft9, 676(sp)
+  FLW ft9, 1484(sp)
+  FLW ft10, 1484(sp)
+  FSGNJ.S ft9, ft9, ft10
+  FSW ft9, 680(sp)
+  FSW ft8, 684(sp)
+  FSW fa7, 688(sp)
+  FLW fa7, 1488(sp)
+  FLW ft8, 1488(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 692(sp)
+  FLW fa7, 1496(sp)
+  FLW ft8, 1496(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 640(sp)
+  FSW fa6, 704(sp)
+  FSW ft1, 260(sp)
+  FSW fa4, 208(sp)
+  FSW fa3, 268(sp)
+  FLW fa3, 1500(sp)
+  FLW fa4, 1500(sp)
+  FSGNJ.S fa3, fa3, fa4
+  FSW fa3, 272(sp)
+  FLW fa3, 1504(sp)
+  FLW fa4, 1504(sp)
+  FSGNJ.S fa3, fa3, fa4
+  FSW fa3, 276(sp)
+  FSW fa2, 280(sp)
+  FSW fa1, 284(sp)
+  FSW fa0, 288(sp)
+  FLW fa0, 1052(sp)
+  FLW fa1, 1052(sp)
+  FSGNJ.S fa3, fa0, fa1
+  FLW ft0, 1224(sp)
+  FLW ft1, 1224(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1224(sp)
+  FLW ft0, 1080(sp)
+  FLW ft1, 1080(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1080(sp)
+  FLW ft0, 1084(sp)
+  FLW ft1, 1084(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1084(sp)
+  FLW ft0, 1088(sp)
+  FLW ft1, 1088(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1088(sp)
+  FLW ft0, 1100(sp)
+  FLW ft1, 1100(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1100(sp)
+  FLW ft0, 1248(sp)
+  FLW ft1, 1248(sp)
+  FSGNJ.S ft7, ft0, ft1
+  FLW ft0, 212(sp)
+  FLW ft1, 212(sp)
+  FSGNJ.S fa1, ft0, ft1
+  FLW ft0, 216(sp)
+  FLW ft1, 216(sp)
+  FSGNJ.S ft3, ft0, ft1
+  FLW ft0, 220(sp)
+  FLW ft1, 220(sp)
+  FSGNJ.S ft4, ft0, ft1
+  FLW ft0, 224(sp)
+  FLW ft1, 224(sp)
+  FSGNJ.S fa2, ft0, ft1
+  FLW ft0, 228(sp)
+  FLW ft1, 228(sp)
+  FSGNJ.S fa4, ft0, ft1
+  FLW ft0, 232(sp)
+  FLW ft1, 232(sp)
+  FSGNJ.S ft2, ft0, ft1
+  FLW ft0, 236(sp)
+  FLW ft1, 236(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 420(sp)
+  FLW fa5, 420(sp)
+  FSGNJ.S ft0, ft0, fa5
+  # implict jump to bb2
+bb2:   # loop depth 1
+  FSW ft2, 1272(sp)
+  FLW ft2, 1272(sp)
+  FADD.S fs0, ft0, ft2
+  FLW ft0, 1272(sp)
+  FADD.S ft0, ft1, ft0
+  FSW ft0, 88(sp)
+  FSW fa4, 324(sp)
+  FSW fa2, 320(sp)
+  FSW ft4, 204(sp)
+  FLW ft0, 264(sp)
+  FEQ.S t0, fs0, ft0
+  FSW ft3, 104(sp)
+  FSW fa1, 1256(sp)
+  FSW ft7, 1252(sp)
+  FSW fs1, 1248(sp)
+  FLW ft0, 1100(sp)
+  FLW ft1, 1100(sp)
+  FSGNJ.S fs1, ft0, ft1
+  FLW ft0, 1088(sp)
+  FLW ft1, 1088(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1100(sp)
+  FLW ft0, 1084(sp)
+  FLW ft1, 1084(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1088(sp)
+  FLW ft0, 1080(sp)
+  FLW ft1, 1080(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1084(sp)
+  FSW fs2, 1080(sp)
+  FSGNJ.S fs2, fs9, fs9
+  FSGNJ.S fs9, fs8, fs8
+  FSGNJ.S fs8, fs7, fs7
+  FSGNJ.S fs7, fs6, fs6
+  FSGNJ.S fs6, fs5, fs5
+  FSGNJ.S fs5, fs4, fs4
+  FLW ft0, 1224(sp)
+  FLW ft1, 1224(sp)
+  FSGNJ.S fs4, ft0, ft1
+  FSW fa3, 1224(sp)
+  FLW ft1, 288(sp)
+  FLW ft2, 288(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 996(sp)
+  FLW ft1, 284(sp)
+  FLW ft2, 284(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 992(sp)
+  FLW ft1, 280(sp)
+  FLW ft2, 280(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 988(sp)
+  FLW ft1, 276(sp)
+  FLW ft2, 276(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 984(sp)
+  FLW ft1, 272(sp)
+  FLW ft2, 272(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 1460(sp)
+  FLW ft1, 268(sp)
+  FLW ft2, 268(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 1440(sp)
+  FLW ft1, 208(sp)
+  FLW ft2, 208(sp)
+  FSGNJ.S fa3, ft1, ft2
+  FLW ft1, 260(sp)
+  FLW ft2, 260(sp)
+  FSGNJ.S fa4, ft1, ft2
+  FLW fa5, 704(sp)
+  FLW fa6, 704(sp)
+  FSGNJ.S ft1, fa5, fa6
+  FLW fa6, 640(sp)
+  FLW ft9, 640(sp)
+  FSGNJ.S fa6, fa6, ft9
+  FLW ft9, 692(sp)
+  FLW ft10, 692(sp)
+  FSGNJ.S ft0, ft9, ft10
+  FSW ft0, 1216(sp)
+  FLW ft9, 688(sp)
+  FLW ft10, 688(sp)
+  FSGNJ.S ft9, ft9, ft10
+  FLW ft10, 684(sp)
+  FLW ft11, 684(sp)
+  FSGNJ.S ft10, ft10, ft11
+  FLW ft11, 680(sp)
+  FLW ft0, 680(sp)
+  FSW ft0, 1108(sp)
+  FLW ft0, 1108(sp)
+  FSGNJ.S ft11, ft11, ft0
+  FLW ft2, 676(sp)
+  FSW ft2, 1468(sp)
+  FLW ft0, 676(sp)
+  FSW ft0, 1104(sp)
+  FLW ft2, 1468(sp)
+  FLW ft0, 1104(sp)
+  FSGNJ.S ft0, ft2, ft0
+  FSW ft0, 1136(sp)
+  FLW ft0, 1136(sp)
+  FSW ft0, 100(sp)
+  FLW ft2, 668(sp)
+  FSW ft2, 1528(sp)
+  FLW ft0, 668(sp)
+  FSW ft0, 1096(sp)
+  FLW ft2, 1528(sp)
+  FLW ft0, 1096(sp)
+  FSGNJ.S ft0, ft2, ft0
+  FSW ft0, 1124(sp)
+  FLW ft0, 1124(sp)
+  FSW ft0, 96(sp)
+  FLW ft2, 664(sp)
+  FSW ft2, 1532(sp)
+  FLW ft0, 664(sp)
+  FSW ft0, 1092(sp)
+  FLW ft2, 1532(sp)
+  FLW ft0, 1092(sp)
+  FSGNJ.S ft0, ft2, ft0
+  FSW ft0, 1060(sp)
+  FLW ft0, 1060(sp)
+  FSW ft0, 92(sp)
+  BEQ t0, zero, bb4
+  # implict jump to bb3
+bb3:   # loop depth 1
+  FSW fs0, 664(sp)
+  FLW fs0, 92(sp)
+  FLW ft0, 92(sp)
+  FSW ft0, 1120(sp)
+  FLW ft0, 1120(sp)
+  FSGNJ.S fs0, fs0, ft0
+  FSW fs0, 668(sp)
+  FLW fs0, 96(sp)
+  FLW ft0, 96(sp)
+  FSW ft0, 1132(sp)
+  FLW ft0, 1132(sp)
+  FSGNJ.S fs0, fs0, ft0
+  FSW fs0, 676(sp)
+  FLW ft0, 100(sp)
+  FSW ft0, 1144(sp)
+  FLW fs0, 100(sp)
+  FLW ft0, 1144(sp)
+  FSGNJ.S fs0, ft0, fs0
+  FSW fs0, 680(sp)
+  FSW ft11, 684(sp)
+  FSW ft10, 688(sp)
+  FSW ft9, 692(sp)
+  FLW ft0, 1216(sp)
+  FLW ft2, 1216(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1216(sp)
+  FLW ft0, 1216(sp)
+  FSW ft0, 640(sp)
+  FSW fa6, 704(sp)
+  FSW ft1, 260(sp)
+  FSW fa4, 208(sp)
+  FSW fa3, 268(sp)
+  FLW ft1, 1440(sp)
+  FLW ft2, 1440(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 272(sp)
+  FLW ft1, 1460(sp)
+  FLW ft2, 1460(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 276(sp)
+  FLW ft1, 984(sp)
+  FLW ft2, 984(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 280(sp)
+  FLW ft1, 988(sp)
+  FLW ft2, 988(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 284(sp)
+  FLW ft1, 992(sp)
+  FLW ft2, 992(sp)
+  FSGNJ.S ft1, ft1, ft2
+  FSW ft1, 288(sp)
+  FLW ft1, 996(sp)
+  FLW ft2, 996(sp)
+  FSGNJ.S fa3, ft1, ft2
+  FLW ft0, 1224(sp)
+  FLW ft1, 1224(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1224(sp)
+  FLW ft0, 1080(sp)
+  FLW ft1, 1080(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1080(sp)
+  FLW ft0, 1084(sp)
+  FLW ft1, 1084(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1084(sp)
+  FLW ft0, 1088(sp)
+  FLW ft1, 1088(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1088(sp)
+  FLW ft0, 1100(sp)
+  FLW ft1, 1100(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1100(sp)
+  FLW ft0, 1248(sp)
+  FLW ft1, 1248(sp)
+  FSGNJ.S ft7, ft0, ft1
+  FLW ft0, 1252(sp)
+  FLW ft1, 1252(sp)
+  FSGNJ.S fa1, ft0, ft1
+  FLW ft0, 1256(sp)
+  FLW ft1, 1256(sp)
+  FSGNJ.S ft3, ft0, ft1
+  FLW ft0, 104(sp)
+  FLW ft1, 104(sp)
+  FSGNJ.S ft4, ft0, ft1
+  FLW ft0, 204(sp)
+  FLW ft1, 204(sp)
+  FSGNJ.S fa2, ft0, ft1
+  FLW ft0, 320(sp)
+  FLW ft1, 320(sp)
+  FSGNJ.S fa4, ft0, ft1
+  FLW ft0, 324(sp)
+  FLW ft1, 324(sp)
+  FSGNJ.S ft2, ft0, ft1
+  FLW ft0, 1272(sp)
+  FLW ft1, 1272(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 88(sp)
+  FLW fa5, 88(sp)
+  FSGNJ.S ft0, ft0, fa5
+  JAL zero, bb2
+bb4:   # loop depth 0
+  FSW fs0, 708(sp)
+  FLW fs0, 92(sp)
+  FLW ft0, 92(sp)
+  FSW ft0, 1116(sp)
+  FLW ft0, 1116(sp)
+  FSGNJ.S fs0, fs0, ft0
+  FSW fs0, 712(sp)
+  FLW fs0, 96(sp)
+  FLW ft0, 96(sp)
+  FSW ft0, 1128(sp)
+  FLW ft0, 1128(sp)
+  FSGNJ.S fs0, fs0, ft0
+  FSW fs0, 724(sp)
+  FLW ft0, 100(sp)
+  FSW ft0, 1140(sp)
+  FLW fs0, 100(sp)
+  FLW ft0, 1140(sp)
+  FSGNJ.S fs0, ft0, fs0
+  FSW fs0, 196(sp)
+  FSW ft11, 200(sp)
+  FSW ft10, 64(sp)
+  FSW ft9, 160(sp)
+  FLW ft0, 1216(sp)
+  FLW ft2, 1216(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1216(sp)
+  FLW ft0, 1216(sp)
+  FSW ft0, 8(sp)
+  FLW ft2, 1440(sp)
+  FLW ft3, 1440(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 300(sp)
+  FLW ft2, 1460(sp)
+  FLW ft3, 1460(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 304(sp)
+  FLW ft2, 984(sp)
+  FLW ft3, 984(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 308(sp)
+  FLW ft2, 988(sp)
+  FLW ft3, 988(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1572(sp)
+  FLW ft2, 992(sp)
+  FLW ft3, 992(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1416(sp)
+  FLW ft2, 996(sp)
+  FLW ft3, 996(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1576(sp)
+  FLW ft0, 1224(sp)
+  FLW ft2, 1224(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1224(sp)
+  FLW ft0, 1080(sp)
+  FLW ft2, 1080(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1080(sp)
+  FLW ft0, 1084(sp)
+  FLW ft2, 1084(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1084(sp)
+  FLW ft0, 1088(sp)
+  FLW ft2, 1088(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1088(sp)
+  FLW ft0, 1100(sp)
+  FLW ft2, 1100(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1100(sp)
+  FLW ft0, 1248(sp)
+  FLW ft2, 1248(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1248(sp)
+  FLW ft0, 1252(sp)
+  FLW ft2, 1252(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1252(sp)
+  FLW ft0, 1256(sp)
+  FLW ft2, 1256(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1256(sp)
+  FLW ft2, 104(sp)
+  FLW ft3, 104(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1332(sp)
+  FLW ft2, 204(sp)
+  FLW ft3, 204(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1336(sp)
+  FLW ft2, 320(sp)
+  FLW fa0, 320(sp)
+  FSGNJ.S ft2, ft2, fa0
+  FLW fa0, 324(sp)
+  FLW fs0, 324(sp)
+  FSGNJ.S ft3, fa0, fs0
+  FSW ft3, 1340(sp)
+  FLW fs0, 88(sp)
+  FLW fs10, 88(sp)
+  FSGNJ.S ft3, fs0, fs10
+  # implict jump to bb5
+bb5:   # loop depth 0
+  FLW fa0, 1336(sp)
+  FLW fa1, 1336(sp)
+  FSGNJ.S fa0, fa0, fa1
+  FSW fa0, 1336(sp)
+  LA t0, k
+  LUI t6, 1
+  ADDIW t6, t6, 832
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fa0, 1332(sp)
+  FLW fa1, 1332(sp)
+  FSGNJ.S fa0, fa0, fa1
+  FSW fa0, 1332(sp)
   LUI a1, 1
-  ADDIW a1, a1, -76
-  ADD a1, a1, sp
-  SW a0, 0(a1)
-  LUI a1, 1
-  ADDIW a1, a1, -1832
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  JAL zero, bb17
-bb20:   # loop depth 0
-  # implict jump to bb21
-bb21:   # loop depth 0
-  LUI a1, 1
-  ADDIW a1, a1, 1344
+  ADDIW a1, a1, -968
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADDI a0, zero, 10
-  LA s1, k
+  FLW fa0, 1340(sp)
+  FLW fa1, 1340(sp)
+  FSGNJ.S fa0, fa0, fa1
+  FSW fa0, 1340(sp)
+  FLW fa0, 1332(sp)
+  FLW fa1, 1336(sp)
+  FADD.S fa0, fa1, fa0
+  FLW fa1, 1340(sp)
+  FADD.S ft3, ft3, fa1
+  FLW ft0, 1248(sp)
+  FLW ft4, 1248(sp)
+  FSGNJ.S ft0, ft0, ft4
+  FSW ft0, 1248(sp)
+  FLW ft0, 1256(sp)
+  FLW ft4, 1256(sp)
+  FSGNJ.S ft0, ft0, ft4
+  FSW ft0, 1256(sp)
+  FLW ft0, 1248(sp)
+  FADD.S ft0, ft0, fs1
+  FSW ft0, 1328(sp)
+  FLW ft0, 1256(sp)
+  FADD.S fa0, fa0, ft0
+  FADD.S ft0, ft3, ft2
+  FLW ft2, 1084(sp)
+  FLW ft3, 1084(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1084(sp)
+  FLW ft2, 1080(sp)
+  FLW ft3, 1080(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1080(sp)
+  FLW ft2, 1100(sp)
+  FLW ft3, 1100(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1100(sp)
+  FLW ft2, 1080(sp)
+  FLW ft3, 1084(sp)
+  FADD.S ft3, ft3, ft2
+  FLW ft2, 1252(sp)
+  FLW ft4, 1252(sp)
+  FSGNJ.S ft2, ft2, ft4
+  FSW ft2, 1252(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft0, 0(t6)
+  FLW ft0, 1328(sp)
+  FLW ft2, 1100(sp)
+  FADD.S ft2, ft0, ft2
+  FLW ft0, 1252(sp)
+  FADD.S ft0, fa0, ft0
+  FADD.S ft4, fs8, fs7
+  FLW ft5, 1088(sp)
+  FLW ft6, 1088(sp)
+  FSGNJ.S ft5, ft5, ft6
+  FSW ft5, 1088(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft0, 4(t6)
+  FADD.S ft3, ft3, fs2
+  FLW ft0, 1088(sp)
+  FADD.S ft0, ft2, ft0
+  FLW ft2, 1224(sp)
+  FLW ft5, 1224(sp)
+  FSGNJ.S ft2, ft2, ft5
+  FSW ft2, 1224(sp)
+  FLW ft2, 1224(sp)
+  FADD.S ft7, fs4, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft0, 8(t6)
+  FADD.S ft5, ft4, fs6
+  FADD.S ft4, ft3, fs9
+  FLW ft0, 1572(sp)
+  FLW ft2, 1572(sp)
+  FSGNJ.S ft2, ft0, ft2
+  FLW ft0, 308(sp)
+  FLW ft3, 308(sp)
+  FSGNJ.S ft3, ft0, ft3
+  FLW ft0, 1576(sp)
+  FLW ft6, 1576(sp)
+  FSGNJ.S ft0, ft0, ft6
+  FADD.S fa0, ft2, ft3
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft4, 12(t6)
+  FADD.S ft4, ft7, ft0
+  FADD.S ft3, ft5, fs5
+  FLW ft0, 304(sp)
+  FLW ft2, 304(sp)
+  FSGNJ.S ft2, ft0, ft2
+  FADD.S ft6, fa3, fa4
+  FLW ft0, 1416(sp)
+  FLW ft5, 1416(sp)
+  FSGNJ.S ft0, ft0, ft5
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft3, 16(t6)
+  FADD.S ft5, fa0, ft2
+  FADD.S ft3, ft4, ft0
+  FLW ft0, 8(sp)
+  FLW ft2, 8(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FLW ft2, 160(sp)
+  FLW ft4, 160(sp)
+  FSGNJ.S ft2, ft2, ft4
+  FADD.S ft7, ft0, ft2
+  FLW ft0, 300(sp)
+  FLW ft2, 300(sp)
+  FSGNJ.S ft0, ft0, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft3, 20(t6)
+  FADD.S ft4, ft6, ft1
+  FADD.S ft3, ft5, ft0
+  FLW ft0, 196(sp)
+  FLW ft1, 196(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 724(sp)
+  FLW ft2, 724(sp)
+  FSGNJ.S ft2, ft0, ft2
+  FLW ft0, 64(sp)
+  FLW ft5, 64(sp)
+  FSGNJ.S ft0, ft0, ft5
+  FADD.S ft5, ft1, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft3, 24(t6)
+  FADD.S ft3, ft7, ft0
+  FADD.S ft2, ft4, fa6
+  FLW ft0, 712(sp)
+  FLW ft1, 712(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 200(sp)
+  FLW ft4, 200(sp)
+  FSGNJ.S ft0, ft0, ft4
+  FADD.S ft4, ft5, ft1
+  FADD.S ft1, ft3, ft0
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft2, 28(t6)
+  FLW ft0, 708(sp)
+  FLW ft2, 708(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FADD.S ft0, ft4, ft0
+  LUI t6, 1
+  ADDIW t6, t6, -968
+  ADD t6, t6, sp
+  FSW ft1, 32(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -968
+  ADD t0, t0, sp
+  FSW ft0, 36(t0)
+  CALL putfarray
+  LUI t0, 1
+  ADDIW t0, t0, 832
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SLLIW t0, t0, 2
+  LUI t1, 1
+  ADDIW t1, t1, -968
+  ADD t1, t1, sp
+  ADD t1, t1, t0
+  LUI t2, 1
+  ADDIW t2, t2, -816
+  ADD t2, t2, sp
+  ADD t2, t2, t0
+  LUI t6, 1
+  ADDIW t6, t6, 32
+  ADD t6, t6, sp
+  SD t2, 0(t6)
+  FLW ft0, 0(t1)
+  FSW ft0, 360(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -528
+  ADD t6, t6, sp
+  ADD t0, t6, t0
+  LUI t1, 1
+  ADDIW t1, t1, 24
+  ADD t1, t1, sp
+  SD t0, 0(t1)
+  LUI t0, 1
+  ADDIW t0, t0, 32
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 276(t0)
+  LUI t2, 1
+  ADDIW t2, t2, 32
+  ADD t2, t2, sp
+  LD t2, 0(t2)
+  LW a6, 24(t2)
+  LUI t2, 1
+  ADDIW t2, t2, 32
+  ADD t2, t2, sp
+  LD t2, 0(t2)
+  LW t2, 72(t2)
+  LUI a0, 1
+  ADDIW a0, a0, 24
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  FLW ft0, 48(a0)
+  FSW ft0, 356(sp)
+  LUI a0, 1
+  ADDIW a0, a0, 32
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  LW t0, 12(a0)
+  SW t0, 488(sp)
+  LUI a1, 1
+  ADDIW a1, a1, 32
+  ADD a1, a1, sp
+  LD a1, 0(a1)
+  LW a7, 48(a1)
+  LUI a2, 1
+  ADDIW a2, a2, 32
+  ADD a2, a2, sp
+  LD a2, 0(a2)
+  LW a2, 60(a2)
+  LUI a3, 1
+  ADDIW a3, a3, 24
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  FLW ft0, 96(a3)
+  FSW ft0, 352(sp)
+  LUI a3, 1
+  ADDIW a3, a3, 24
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  FLW ft0, 180(a3)
+  FSW ft0, 348(sp)
+  LUI a3, 1
+  ADDIW a3, a3, 24
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  FLW ft0, 84(a3)
+  FSW ft0, 344(sp)
+  LUI a3, 1
+  ADDIW a3, a3, 32
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  LW t0, 264(a3)
+  SW t0, 780(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 36(a4)
+  FSW ft0, 340(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 336(a4)
+  FSW ft0, 336(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 32
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  LW t0, 0(a4)
+  SW t0, 768(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 444(a4)
+  FSW ft0, 332(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 32
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  LW t0, 228(a4)
+  SW t0, 764(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 360(a4)
+  FSW ft0, 328(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 144(a4)
+  FSW ft0, 1152(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW ft0, 12(a4)
+  FSW ft0, 888(sp)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW fs10, 132(a4)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW fs9, 456(a4)
+  LUI a4, 1
+  ADDIW a4, a4, 24
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  FLW fs2, 72(a4)
+  LUI a4, 1
+  ADDIW a4, a4, 32
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  LW t0, 84(a4)
+  SW t0, 760(sp)
+  LUI a5, 1
+  ADDIW a5, a5, 24
+  ADD a5, a5, sp
+  LD a5, 0(a5)
+  FLW fs8, 384(a5)
+  LUI a5, 1
+  ADDIW a5, a5, 32
+  ADD a5, a5, sp
+  LD a5, 0(a5)
+  LW t0, 120(a5)
+  SW t0, 776(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 156(t3)
+  SW t3, 452(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs7, 240(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft6, 396(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft7, 276(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs6, 108(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs5, 300(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 96(t3)
+  SW t3, 496(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa2, 468(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 204(t3)
+  SW t3, 500(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs4, 252(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs3, 192(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft0, 60(t3)
+  FSW ft0, 1196(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs1, 408(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 216(t3)
+  SW t3, 504(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 108(t3)
+  SW t3, 508(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fs0, 168(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft0, 120(t3)
+  FSW ft0, 1040(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft0, 0(t3)
+  FSW ft0, 1032(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 144(t3)
+  SW t3, 512(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa6, 372(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 132(t3)
+  SW t3, 516(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 192(t3)
+  SW t3, 520(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 324(t3)
+  FSW fa7, 1300(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 288(t3)
+  FSW fa7, 1296(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 156(t3)
+  FSW fa7, 1292(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 348(t3)
+  FSW fa7, 1288(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 36(t3)
+  SW t3, 524(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 252(t3)
+  SW t3, 528(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 240(t3)
+  SW t3, 588(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 216(t3)
+  FSW fa7, 1280(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 228(t3)
+  FSW fa7, 1276(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW fa7, 264(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft8, 312(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft9, 432(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft10, 204(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 180(t3)
+  SW t3, 752(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft11, 24(t3)
+  LUI t3, 1
+  ADDIW t3, t3, 32
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t3, 168(t3)
+  SW t3, 756(sp)
+  LUI t3, 1
+  ADDIW t3, t3, 24
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  FLW ft0, 420(t3)
+  FSW ft0, 892(sp)
+  BNE t1, zero, bb21
+  # implict jump to bb6
+bb6:   # loop depth 0
+  FLW ft0, 892(sp)
+  FLW ft1, 892(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 892(sp)
+  FLW ft0, 892(sp)
+  FSW ft0, 12(sp)
+  LW t0, 756(sp)
+  SW t0, 192(sp)
+  FSW ft11, 16(sp)
+  LW t0, 752(sp)
+  SW t0, 188(sp)
+  FSW ft10, 20(sp)
+  LW t0, 588(sp)
+  SW t0, 184(sp)
+  FSW ft9, 24(sp)
+  LW t0, 528(sp)
+  SW t0, 180(sp)
+  FSW ft8, 28(sp)
+  LW t0, 524(sp)
+  SW t0, 176(sp)
+  FSW fa7, 32(sp)
+  LW t0, 520(sp)
+  SW t0, 172(sp)
+  FLW fa7, 1276(sp)
+  FLW ft8, 1276(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 36(sp)
+  LW t0, 516(sp)
+  SW t0, 168(sp)
+  FLW fa7, 1280(sp)
+  FLW ft8, 1280(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 40(sp)
+  LW t0, 512(sp)
+  SW t0, 164(sp)
+  FLW fa7, 1288(sp)
+  FLW ft8, 1288(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 312(sp)
+  LW t0, 508(sp)
+  SW t0, 548(sp)
+  FLW fa7, 1292(sp)
+  FLW ft8, 1292(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 920(sp)
+  LW t0, 504(sp)
+  SW t0, 544(sp)
+  FLW fa7, 1296(sp)
+  FLW ft8, 1296(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 1212(sp)
+  LW t0, 500(sp)
+  SW t0, 540(sp)
+  FLW fa7, 1300(sp)
+  FLW ft8, 1300(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 1368(sp)
+  LW t0, 496(sp)
+  SW t0, 536(sp)
+  FSW fa6, 1372(sp)
+  LW t0, 452(sp)
+  SW t0, 452(sp)
+  FLW ft0, 1032(sp)
+  FLW ft1, 1032(sp)
+  FSGNJ.S fa6, ft0, ft1
+  FSW fa6, 1376(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  FLW ft0, 1040(sp)
+  FLW ft1, 1040(sp)
+  FSGNJ.S fa6, ft0, ft1
+  FSW fa6, 1380(sp)
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft0, 1196(sp)
+  FLW ft1, 1196(sp)
+  FSGNJ.S fa5, ft0, ft1
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  LW t0, 488(sp)
+  SW t0, 488(sp)
+  FLW ft0, 888(sp)
+  FLW ft1, 888(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 888(sp)
+  FLW ft0, 1152(sp)
+  FLW ft1, 1152(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1152(sp)
+  FLW ft0, 328(sp)
+  FLW ft1, 328(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1148(sp)
+  FLW ft0, 332(sp)
+  FLW ft1, 332(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 336(sp)
+  FLW ft2, 336(sp)
+  FSGNJ.S ft2, ft0, ft2
+  FLW ft0, 340(sp)
+  FLW ft3, 340(sp)
+  FSGNJ.S ft3, ft0, ft3
+  FLW ft0, 344(sp)
+  FLW fa0, 344(sp)
+  FSGNJ.S ft0, ft0, fa0
+  FLW fa0, 348(sp)
+  FLW ft8, 348(sp)
+  FSGNJ.S fa0, fa0, ft8
+  FLW ft8, 352(sp)
+  FLW ft10, 352(sp)
+  FSGNJ.S ft8, ft8, ft10
+  FLW ft10, 356(sp)
+  FLW ft11, 356(sp)
+  FSGNJ.S ft10, ft10, ft11
+  FSW ft10, 1384(sp)
+  # implict jump to bb7
+bb7:   # loop depth 1
+  FLW ft10, 1384(sp)
+  FLW ft11, 1384(sp)
+  FSGNJ.S ft10, ft10, ft11
+  FSW ft10, 408(sp)
+  FSW ft8, 404(sp)
+  FSW fa0, 400(sp)
+  LW t0, 488(sp)
+  SW t0, 488(sp)
+  FSW ft0, 804(sp)
+  FSW ft3, 392(sp)
+  FSW ft2, 384(sp)
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  FSW ft1, 380(sp)
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft0, 1148(sp)
+  FLW ft1, 1148(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1148(sp)
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  FLW ft0, 1152(sp)
+  FLW ft1, 1152(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1152(sp)
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  FLW ft0, 888(sp)
+  FLW ft1, 888(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 888(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  LW t3, 452(sp)
+  SW t3, 452(sp)
+  LW t3, 536(sp)
+  SW t3, 536(sp)
+  LW t3, 540(sp)
+  SW t3, 540(sp)
+  LW t3, 544(sp)
+  SW t3, 544(sp)
+  LW t3, 548(sp)
+  SW t3, 548(sp)
+  LW t0, 164(sp)
+  SW t0, 772(sp)
+  LW t0, 772(sp)
+  SW t0, 772(sp)
+  LW t5, 168(sp)
+  LW t3, 172(sp)
+  SW t3, 552(sp)
+  LW t3, 176(sp)
+  SW t3, 556(sp)
+  LW t3, 180(sp)
+  SW t3, 560(sp)
+  LW t3, 184(sp)
+  SW t3, 564(sp)
+  LW t3, 188(sp)
+  FSW fa5, 1196(sp)
+  LW t4, 192(sp)
+  FLW ft0, 1380(sp)
+  FLW fa5, 1380(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1040(sp)
+  FLW ft0, 1376(sp)
+  FLW fa5, 1376(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1032(sp)
+  FLW ft0, 1372(sp)
+  FLW fa5, 1372(sp)
+  FSGNJ.S ft8, ft0, fa5
+  FLW ft0, 1368(sp)
+  FLW fa5, 1368(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1028(sp)
+  FLW ft0, 1212(sp)
+  FLW fa5, 1212(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1596(sp)
+  FLW ft0, 920(sp)
+  FLW fa5, 920(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1592(sp)
+  FLW ft0, 312(sp)
+  FLW fa5, 312(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1588(sp)
+  FLW ft0, 40(sp)
+  FLW ft9, 40(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1584(sp)
+  FLW ft0, 36(sp)
+  FLW ft9, 36(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1524(sp)
+  FLW ft0, 32(sp)
+  FLW ft9, 32(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1180(sp)
+  FLW ft0, 28(sp)
+  FLW ft9, 28(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1176(sp)
+  FLW ft0, 24(sp)
+  FLW ft9, 24(sp)
+  FSGNJ.S ft9, ft0, ft9
+  FLW ft0, 20(sp)
+  FLW ft10, 20(sp)
+  FSGNJ.S ft0, ft0, ft10
+  FSW ft0, 884(sp)
+  FLW ft0, 16(sp)
+  FLW ft10, 16(sp)
+  FSGNJ.S ft10, ft0, ft10
+  FLW ft0, 12(sp)
+  FLW ft1, 12(sp)
+  FSW ft1, 1068(sp)
+  FLW ft1, 1068(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 316(sp)
+  # implict jump to bb8
+bb8:   # loop depth 1
+  LW t0, 488(sp)
+  BNE t0, zero, bb10
+  # implict jump to bb9
+bb9:   # loop depth 1
+  FLW ft0, 316(sp)
+  FLW ft1, 316(sp)
+  FSW ft1, 1112(sp)
+  FLW ft1, 1112(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 12(sp)
+  SW t4, 192(sp)
+  FSW ft10, 16(sp)
+  SW t3, 188(sp)
+  FLW ft0, 884(sp)
+  FLW ft1, 884(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 884(sp)
+  FLW ft0, 884(sp)
+  FSW ft0, 20(sp)
+  LW t3, 564(sp)
+  SW t3, 184(sp)
+  FSW ft9, 24(sp)
+  LW t3, 560(sp)
+  SW t3, 180(sp)
+  FLW ft0, 1176(sp)
+  FLW ft1, 1176(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 28(sp)
+  LW t3, 556(sp)
+  SW t3, 176(sp)
+  FLW ft0, 1180(sp)
+  FLW ft1, 1180(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 32(sp)
+  LW t3, 552(sp)
+  SW t3, 172(sp)
+  FLW ft0, 1524(sp)
+  FLW fa5, 1524(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 36(sp)
+  SW t5, 168(sp)
+  FLW ft0, 1584(sp)
+  FLW fa5, 1584(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 40(sp)
+  LW t0, 772(sp)
+  SW t0, 772(sp)
+  LW t0, 772(sp)
+  SW t0, 164(sp)
+  FLW ft0, 1588(sp)
+  FLW fa5, 1588(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 312(sp)
+  LW t3, 548(sp)
+  SW t3, 548(sp)
+  FLW ft0, 1592(sp)
+  FLW fa5, 1592(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 920(sp)
+  LW t3, 544(sp)
+  SW t3, 544(sp)
+  FLW ft0, 1596(sp)
+  FLW fa5, 1596(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 1212(sp)
+  LW t3, 540(sp)
+  SW t3, 540(sp)
+  FLW ft0, 1028(sp)
+  FLW ft1, 1028(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1368(sp)
+  LW t3, 536(sp)
+  SW t3, 536(sp)
+  FSW ft8, 1372(sp)
+  LW t3, 452(sp)
+  SW t3, 452(sp)
+  FLW ft0, 1032(sp)
+  FLW ft1, 1032(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1376(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  FLW ft0, 1040(sp)
+  FLW ft1, 1040(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1380(sp)
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft0, 1196(sp)
+  FLW ft1, 1196(sp)
+  FSGNJ.S fa5, ft0, ft1
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  LW t0, 488(sp)
+  SW t0, 488(sp)
+  FLW ft0, 888(sp)
+  FLW ft1, 888(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 888(sp)
+  FLW ft0, 1152(sp)
+  FLW ft1, 1152(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1152(sp)
+  FLW ft0, 1148(sp)
+  FLW ft1, 1148(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1148(sp)
+  FLW ft0, 380(sp)
+  FLW ft1, 380(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 384(sp)
+  FLW ft2, 384(sp)
+  FSGNJ.S ft2, ft0, ft2
+  FLW ft0, 392(sp)
+  FLW ft3, 392(sp)
+  FSGNJ.S ft3, ft0, ft3
+  FLW ft0, 804(sp)
+  FLW fa0, 804(sp)
+  FSGNJ.S ft0, ft0, fa0
+  FLW fa0, 400(sp)
+  FLW ft8, 400(sp)
+  FSGNJ.S fa0, fa0, ft8
+  FLW ft8, 404(sp)
+  FLW ft10, 404(sp)
+  FSGNJ.S ft8, ft8, ft10
+  FLW ft10, 408(sp)
+  FLW ft11, 408(sp)
+  FSGNJ.S ft10, ft10, ft11
+  FSW ft10, 1384(sp)
+  JAL zero, bb7
+bb10:   # loop depth 0
+  FLW ft0, 316(sp)
+  FLW ft1, 316(sp)
+  FSW ft1, 1064(sp)
+  FLW ft1, 1064(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 44(sp)
+  SW t4, 140(sp)
+  FSW ft10, 48(sp)
+  SW t3, 136(sp)
+  FLW ft0, 884(sp)
+  FLW ft1, 884(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 884(sp)
+  FLW ft0, 884(sp)
+  FSW ft0, 52(sp)
+  LW t3, 564(sp)
+  SW t3, 132(sp)
+  FSW ft9, 56(sp)
+  LW t3, 560(sp)
+  SW t3, 128(sp)
+  FLW ft0, 1176(sp)
+  FLW ft1, 1176(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 60(sp)
+  LW t3, 556(sp)
+  SW t3, 124(sp)
+  FLW ft0, 1180(sp)
+  FLW ft1, 1180(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 4(sp)
+  LW t3, 552(sp)
+  SW t3, 120(sp)
+  FLW ft0, 1524(sp)
+  FLW fa5, 1524(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 68(sp)
+  SW t5, 116(sp)
+  FLW ft0, 1584(sp)
+  FLW fa5, 1584(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 72(sp)
+  LW t0, 772(sp)
+  SW t0, 772(sp)
+  LW t0, 772(sp)
+  SW t0, 112(sp)
+  FLW ft0, 1588(sp)
+  FLW fa5, 1588(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 76(sp)
+  LW t3, 548(sp)
+  SW t3, 372(sp)
+  FLW ft0, 1592(sp)
+  FLW fa5, 1592(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 80(sp)
+  LW t3, 544(sp)
+  SW t3, 744(sp)
+  FLW ft0, 1596(sp)
+  FLW fa5, 1596(sp)
+  FSGNJ.S ft0, ft0, fa5
+  FSW ft0, 84(sp)
+  LW t3, 540(sp)
+  SW t3, 740(sp)
+  FLW ft0, 1028(sp)
+  FLW ft1, 1028(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1396(sp)
+  LW t3, 536(sp)
+  SW t3, 736(sp)
+  FSW ft8, 1400(sp)
+  LW t3, 452(sp)
+  SW t3, 732(sp)
+  FLW ft0, 1032(sp)
+  FLW ft1, 1032(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1032(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  FLW ft0, 1040(sp)
+  FLW ft1, 1040(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1040(sp)
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  FSW fs0, 1404(sp)
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  FSW fs1, 1408(sp)
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft0, 1196(sp)
+  FLW ft1, 1196(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1196(sp)
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  LW a0, 488(sp)
+  LW t1, 488(sp)
+  FLW ft0, 888(sp)
+  FLW ft1, 888(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 888(sp)
+  FLW ft0, 1152(sp)
+  FLW ft1, 1152(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1152(sp)
+  FLW ft0, 1148(sp)
+  FLW ft1, 1148(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1148(sp)
+  FLW ft0, 380(sp)
+  FLW ft1, 380(sp)
+  FSGNJ.S ft2, ft0, ft1
+  FLW ft0, 384(sp)
+  FLW ft1, 384(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 392(sp)
+  FLW ft9, 392(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1580(sp)
+  FLW ft0, 804(sp)
+  FLW ft9, 804(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1200(sp)
+  FLW ft0, 400(sp)
+  FLW ft9, 400(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1204(sp)
+  FLW ft0, 404(sp)
+  FLW ft9, 404(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1604(sp)
+  FLW ft0, 408(sp)
+  FLW ft9, 408(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1208(sp)
+  # implict jump to bb11
+bb11:   # loop depth 0
+  FLW ft0, 888(sp)
+  FLW ft3, 888(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 888(sp)
+  LA t0, .CONSTANT.7.0
+  SD t0, 1944(sp)
+  FLW ft0, 1032(sp)
+  FLW ft3, 1032(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 1032(sp)
+  LA t5, .CONSTANT.7.0
+  FLW ft0, 1208(sp)
+  FLW ft3, 1208(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 1208(sp)
+  LD t0, 1944(sp)
+  FLW ft0, 0(t0)
+  FSW ft0, 244(sp)
+  FLW ft0, 1032(sp)
+  FLW ft3, 888(sp)
+  FADD.S fa7, ft0, ft3
+  FLW ft0, 1196(sp)
+  FLW ft3, 1196(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 1196(sp)
+  FLW ft0, 0(t5)
+  FSW ft0, 240(sp)
+  FLW ft0, 48(sp)
+  FLW ft8, 48(sp)
+  FSGNJ.S ft0, ft0, ft8
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft3, 1196(sp)
+  FLW ft4, 1208(sp)
+  FADD.S ft8, ft4, ft3
+  LW t0, 768(sp)
+  ADDW a4, t0, a0
+  FLW ft9, 1604(sp)
+  FLW ft10, 1604(sp)
+  FSGNJ.S ft9, ft9, ft10
+  FSW ft9, 1604(sp)
+  FADD.S ft0, fa7, ft0
+  LW a0, 124(sp)
+  ADDW a0, a0, a7
+  FLW ft5, 1604(sp)
+  FADD.S ft10, ft5, fs6
+  ADDW a4, a4, a6
+  FLW ft5, 1580(sp)
+  FLW fa7, 1580(sp)
+  FSGNJ.S ft5, ft5, fa7
+  FSW ft5, 1580(sp)
+  FADD.S fa7, ft8, fs2
+  FLW ft5, 1580(sp)
+  FADD.S ft5, ft0, ft5
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  FLW ft0, 1152(sp)
+  FLW ft3, 1152(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 1152(sp)
+  LW t0, 760(sp)
+  ADDW a1, t2, t0
+  FLW ft0, 80(sp)
+  FLW ft8, 80(sp)
+  FSGNJ.S ft0, ft0, ft8
+  ADDW a2, a0, a2
+  FLW ft3, 1040(sp)
+  FLW ft4, 1040(sp)
+  FSGNJ.S ft3, ft3, ft4
+  FSW ft3, 1040(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  FLW ft3, 1152(sp)
+  FADD.S ft11, ft3, ft0
+  LW a0, 736(sp)
+  FLW ft0, 1200(sp)
+  FLW ft3, 1200(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FSW ft0, 1200(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft5, 0(t6)
+  FLW ft0, 1040(sp)
+  FADD.S ft8, ft10, ft0
+  LW t2, 372(sp)
+  FLW ft0, 1200(sp)
+  FADD.S fa7, fa7, ft0
+  LW t0, 776(sp)
+  ADDW a7, t2, t0
+  ADDW a6, a1, a0
+  FLW ft0, 52(sp)
+  FLW ft5, 52(sp)
+  FSGNJ.S ft5, ft0, ft5
+  LW a1, 732(sp)
+  FLW ft0, 1404(sp)
+  FLW fa6, 1404(sp)
+  FSGNJ.S ft0, ft0, fa6
+  LW a0, 112(sp)
+  FADD.S fa6, fs3, ft5
+  LW t2, 116(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW fa7, 4(t6)
+  FADD.S ft5, ft11, ft0
+  ADDW t3, a0, a1
+  FADD.S ft3, ft8, fs10
+  ADDW a7, a7, t2
+  LW a1, 120(sp)
+  LW a0, 136(sp)
+  FLW ft0, 72(sp)
+  FLW fa5, 72(sp)
+  FSGNJ.S ft0, ft0, fa5
+  LW t2, 140(sp)
+  FADD.S fa7, fs7, fs4
+  ADDW a1, a0, a1
+  FLW ft4, 1204(sp)
+  FLW fa0, 1204(sp)
+  FSGNJ.S ft4, ft4, fa0
+  FSW ft4, 1204(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft3, 8(t6)
+  FADD.S fa5, fa6, ft0
+  ADDW t3, t3, t2
+  FLW ft0, 1204(sp)
+  FADD.S ft5, ft5, ft0
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  LW a0, 740(sp)
+  FLW ft0, 84(sp)
+  FLW ft3, 84(sp)
+  FSGNJ.S ft0, ft0, ft3
+  LW t2, 744(sp)
+  FLW ft3, 4(sp)
+  FLW fa3, 4(sp)
+  FSGNJ.S ft3, ft3, fa3
+  LW t0, 764(sp)
+  ADDW t4, t2, t0
+  FADD.S fa6, ft0, fs5
+  ADDW a5, a1, a0
+  FLW ft0, 68(sp)
+  FLW fa3, 68(sp)
+  FSGNJ.S ft0, ft0, fa3
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft5, 12(t6)
+  FADD.S fa3, fa7, ft3
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  FADD.S ft5, fa5, ft0
+  LW a0, 128(sp)
+  LW t2, 132(sp)
+  FLW ft0, 76(sp)
+  FLW ft3, 76(sp)
+  FSGNJ.S ft0, ft0, ft3
+  LW t0, 780(sp)
+  ADDW a0, a0, t0
+  FLW ft3, 60(sp)
+  FLW fa5, 60(sp)
+  FSGNJ.S ft3, ft3, fa5
+  ADDW t2, t4, t2
+  FADD.S fa5, ft1, ft0
+  LUI t0, 1
+  ADDIW t0, t0, -888
+  ADD t0, t0, sp
+  FSW ft5, 16(t0)
+  FADD.S ft3, fa6, ft3
+  ADDW t0, a0, t1
+  FADD.S ft1, fa3, ft7
+  LUI a1, 1
+  ADDIW a1, a1, -888
+  ADD a1, a1, sp
+  ADD a1, a1, zero
+  ADDI a0, zero, 10
+  LA t1, k
+  LUI t6, 1
+  ADDIW t6, t6, 848
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  FLW ft0, 1148(sp)
+  FLW ft4, 1148(sp)
+  FSGNJ.S ft0, ft0, ft4
+  FSW ft0, 1148(sp)
+  FADD.S ft6, fs8, ft6
+  FLW ft0, 1396(sp)
+  FLW ft5, 1396(sp)
+  FSGNJ.S ft0, ft0, ft5
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft1, 20(t6)
+  FLW ft1, 1148(sp)
+  FADD.S ft5, fa5, ft1
+  FADD.S ft3, ft3, ft0
+  FLW ft0, 56(sp)
+  FLW ft1, 56(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 1408(sp)
+  FLW ft7, 1408(sp)
+  FSGNJ.S ft0, ft0, ft7
+  FADD.S ft7, ft1, ft2
+  FLW ft1, 1400(sp)
+  FLW ft2, 1400(sp)
+  FSGNJ.S ft1, ft1, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft3, 24(t6)
+  FADD.S ft2, ft6, ft0
+  FADD.S ft1, ft5, ft1
+  FLW ft0, 44(sp)
+  FLW ft3, 44(sp)
+  FSGNJ.S ft0, ft0, ft3
+  FADD.S ft3, ft7, fs9
+  FADD.S ft0, ft2, ft0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft1, 28(t6)
+  FLW ft1, 240(sp)
+  FLW ft2, 244(sp)
+  FSGNJ.S ft1, ft2, ft1
+  FSW ft1, 416(sp)
+  FADD.S ft1, ft3, fa2
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft0, 32(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FSW ft1, 36(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW a4, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW a2, 4(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW a6, 8(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW a7, 12(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t3, 16(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW a5, 20(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t2, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 28(t6)
   CALL putfarray
   LUI a1, 1
-  ADDIW a1, a1, 1384
+  ADDIW a1, a1, -848
+  ADD a1, a1, sp
+  ADD a1, a1, zero
+  ADDI a0, zero, 8
+  CALL putarray
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 0(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 0(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 4(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 4(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 4(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 8(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 8(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 8(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 12(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 12(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 12(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 16(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 16(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 16(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 20(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 20(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 20(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 24(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 24(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 24(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -848
+  ADD t0, t0, sp
+  LW t0, 28(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -888
+  ADD t6, t6, sp
+  FLW ft0, 28(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -848
+  ADD t6, t6, sp
+  SW t0, 28(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 848
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 456(sp)
+  LW t0, 456(sp)
+  SLLIW t0, t0, 2
+  SW t0, 1444(sp)
+  LW t0, 1444(sp)
+  LUI t1, 1
+  ADDIW t1, t1, -848
+  ADD t1, t1, sp
+  ADD t0, t1, t0
+  LW t1, 1444(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -528
+  ADD t6, t6, sp
+  ADD t1, t6, t1
+  LW t0, 0(t0)
+  FLW ft0, 0(t1)
+  FCVT.S.W ft1, t0
+  FSW ft1, 412(sp)
+  FLW ft1, 12(t1)
+  FLW ft2, 24(t1)
+  FADD.S ft0, ft0, ft1
+  FLW ft1, 36(t1)
+  FLW ft3, 48(t1)
+  FADD.S ft0, ft0, ft2
+  FLW ft2, 60(t1)
+  FLW ft4, 72(t1)
+  FADD.S ft2, ft3, ft2
+  FLW ft3, 84(t1)
+  FADD.S ft0, ft0, ft1
+  FLW ft5, 96(t1)
+  FADD.S ft1, ft2, ft4
+  FLW ft2, 108(t1)
+  FLW ft4, 120(t1)
+  FADD.S ft2, ft5, ft2
+  FLW ft5, 132(t1)
+  FADD.S ft1, ft1, ft3
+  FLW ft3, 144(t1)
+  FADD.S ft2, ft2, ft4
+  FLW ft4, 156(t1)
+  FLW ft6, 168(t1)
+  FADD.S ft3, ft3, ft4
+  FLW ft4, 180(t1)
+  FADD.S ft2, ft2, ft5
+  FLW ft5, 192(t1)
+  FADD.S ft3, ft3, ft6
+  FLW ft6, 204(t1)
+  FLW ft7, 216(t1)
+  FADD.S ft5, ft5, ft6
+  FLW ft6, 228(t1)
+  FADD.S ft3, ft3, ft4
+  FLW fa0, 240(t1)
+  FADD.S ft4, ft5, ft7
+  FLW ft5, 252(t1)
+  FLW ft7, 264(t1)
+  FADD.S ft5, fa0, ft5
+  FLW fa0, 276(t1)
+  FADD.S ft4, ft4, ft6
+  FLW ft6, 288(t1)
+  FADD.S ft5, ft5, ft7
+  FLW ft7, 300(t1)
+  FLW fa1, 312(t1)
+  FADD.S ft6, ft6, ft7
+  FLW ft7, 324(t1)
+  FADD.S ft5, ft5, fa0
+  FLW fa0, 336(t1)
+  FADD.S ft6, ft6, fa1
+  FLW fa1, 348(t1)
+  FLW fa2, 360(t1)
+  FADD.S fa0, fa0, fa1
+  FLW fa1, 372(t1)
+  FADD.S ft6, ft6, ft7
+  FLW fa3, 384(t1)
+  FADD.S ft7, fa0, fa2
+  FLW fa0, 396(t1)
+  FLW fa2, 408(t1)
+  FADD.S fa0, fa3, fa0
+  FLW fa3, 420(t1)
+  FADD.S ft7, ft7, fa1
+  FLW fa1, 432(t1)
+  FADD.S fa0, fa0, fa2
+  FLW fa2, 444(t1)
+  FLW fa4, 456(t1)
+  FADD.S fa1, fa1, fa2
+  FLW fa2, 468(t1)
+  FADD.S fa0, fa0, fa3
+  LUI t0, 1
+  ADDIW t0, t0, -928
+  ADD t0, t0, sp
+  FSW ft0, 0(t0)
+  FLW ft0, 264(sp)
+  FEQ.S t0, fa2, ft0
+  FADD.S ft0, fa1, fa4
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft1, 4(t6)
+  XORI t0, t0, 1
+  SLTU t0, zero, t0
+  FCVT.S.W ft1, t0
+  FADD.S ft0, ft0, fa2
+  LUI t0, 1
+  ADDIW t0, t0, -928
+  ADD t0, t0, sp
+  FSW ft2, 8(t0)
+  FLW ft2, 416(sp)
+  FEQ.S t0, ft1, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft3, 12(t6)
+  XORI t0, t0, 1
+  FCVT.S.W ft1, t0
+  FLW ft2, 416(sp)
+  FEQ.S t0, ft1, ft2
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft4, 16(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft5, 20(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft6, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft7, 28(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW fa0, 32(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft0, 36(t6)
+  BEQ t0, zero, bb15
+  # implict jump to bb12
+bb12:   # loop depth 0
+  LUI t0, 1
+  ADDIW t0, t0, -1248
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1560
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1240
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1552
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -16
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1544
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 912
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1536
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 920
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1528
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 928
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1520
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 936
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1512
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 944
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1600
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 952
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1496
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 960
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1488
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 968
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1480
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 976
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1472
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 984
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1464
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 992
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1456
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 904
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1448
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1008
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1432
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1016
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1440
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1024
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1448
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1032
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1184
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1040
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1096
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1048
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1104
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1056
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1112
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1064
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1120
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1072
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1128
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1080
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1136
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 816
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1144
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 728
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1152
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 736
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1160
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 744
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1168
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 752
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1176
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 760
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1088
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 768
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1192
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 776
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1200
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 784
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI a0, 1
+  ADDIW a0, a0, 1208
+  ADD a0, a0, sp
+  SD t0, 0(a0)
+  LUI a0, 1
+  ADDIW a0, a0, 792
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  LUI t2, 1
+  ADDIW t2, t2, 800
+  ADD t2, t2, sp
+  LD t2, 0(t2)
+  LUI t0, 1
+  ADDIW t0, t0, 808
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t4, 1
+  ADDIW t4, t4, 1216
+  ADD t4, t4, sp
+  SD t0, 0(t4)
+  LUI t4, 1
+  ADDIW t4, t4, 720
+  ADD t4, t4, sp
+  LD t4, 0(t4)
+  LUI t0, 1
+  ADDIW t0, t0, 824
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  # implict jump to bb13
+bb13:   # loop depth 1
+  ADD t5, t4, zero
+  LW t1, 456(sp)
+  SH2ADD t0, t1, t0
+  LW t1, 456(sp)
+  SH2ADD t1, t1, t5
+  LUI t6, 1
+  ADDIW t6, t6, 696
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  FLW ft0, 0(t0)
+  LUI t4, 1
+  ADDIW t4, t4, 1216
+  ADD t4, t4, sp
+  LD t4, 0(t4)
+  LW t1, 456(sp)
+  SH2ADD t1, t1, t4
+  LUI t6, 1
+  ADDIW t6, t6, 688
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1360
+  ADD t1, t1, sp
+  SD t2, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 696
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft1, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1360
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW t2, 456(sp)
+  SH2ADD t1, t2, t1
+  LUI t2, 1
+  ADDIW t2, t2, 680
+  ADD t2, t2, sp
+  SD t1, 0(t2)
+  ADD t2, a0, zero
+  LUI a0, 1
+  ADDIW a0, a0, 1208
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  LUI t1, 1
+  ADDIW t1, t1, 688
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft2, 0(t1)
+  LW t1, 456(sp)
+  SH2ADD t1, t1, t2
+  LUI t6, 1
+  ADDIW t6, t6, 672
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LW t1, 456(sp)
+  SH2ADD t1, t1, a0
+  LUI t6, 1
+  ADDIW t6, t6, 664
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1200
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1368
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 680
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft3, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1368
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  SD t1, 1880(sp)
+  LUI t1, 1
+  ADDIW t1, t1, 1192
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 536
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1088
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 528
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 672
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft4, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 536
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, 656
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 528
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 648
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1176
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1376
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 664
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft5, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1376
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 544
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1168
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 512
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1160
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 504
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LD t1, 1880(sp)
+  FLW ft6, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 512
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, 632
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 504
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 624
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1152
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1384
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 656
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft7, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1384
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 616
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1144
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 488
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1136
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 480
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 648
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa0, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 488
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, 608
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 480
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 600
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1128
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1392
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 544
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa1, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1392
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 592
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1120
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 464
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1112
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 360
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 632
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa2, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 464
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, 584
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 360
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 576
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1104
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1400
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 624
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa3, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1400
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, 568
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1096
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 440
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1184
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 432
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 616
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa4, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 440
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, 560
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 432
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1096
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1448
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 424
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 608
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa5, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 424
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1104
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1440
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 416
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 1432
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 408
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 600
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa6, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 416
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, -1112
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 408
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1120
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1448
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 400
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 592
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa7, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 400
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1128
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1456
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 392
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1464
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 384
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 584
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft8, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 392
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, -1232
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 384
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1144
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1472
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 376
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 576
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft9, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 376
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1152
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1480
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 368
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1488
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 456
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 568
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft10, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 368
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, -1160
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, 456
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1168
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1496
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 712
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 560
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft11, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 712
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1176
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1600
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 704
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1512
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1408
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1096
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs0, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, 704
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, -1184
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, -1408
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1192
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1520
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1320
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1104
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs1, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1320
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1200
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  FADD.S ft0, ft0, ft1
+  LUI t1, 1
+  ADDIW t1, t1, -1528
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1056
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1112
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs3, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1056
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1208
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1536
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1064
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  FADD.S ft1, ft4, ft5
+  LUI t1, 1
+  ADDIW t1, t1, -1120
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs4, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1064
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1216
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1544
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1072
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1552
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1080
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1128
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs5, 0(t1)
+  FADD.S ft0, ft0, ft2
+  LUI t1, 1
+  ADDIW t1, t1, -1072
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI a1, 1
+  ADDIW a1, a1, -1224
+  ADD a1, a1, sp
+  SD t1, 0(a1)
+  LUI t1, 1
+  ADDIW t1, t1, -1080
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1504
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1232
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fs6, 0(t1)
+  FADD.S ft2, fa0, fa1
+  FADD.S ft1, ft1, ft6
+  LUI t1, 1
+  ADDIW t1, t1, -1560
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1088
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1144
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa0, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1088
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LW a1, 456(sp)
+  SH2ADD t1, a1, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1608
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  FADD.S ft0, ft0, ft3
+  LW t1, 1444(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  ADD t1, t6, t1
+  LUI t6, 1
+  ADDIW t6, t6, -1616
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1152
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa1, 0(t1)
+  FADD.S ft3, fa4, fa5
+  FADD.S ft2, ft2, fa2
+  LUI t1, 1
+  ADDIW t1, t1, -1160
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa2, 0(t1)
+  FADD.S ft1, ft1, ft7
+  FADD.S ft4, ft8, ft9
+  LUI t1, 1
+  ADDIW t1, t1, -1168
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft7, 0(t1)
+  FADD.S ft5, fs0, fs1
+  FADD.S ft3, ft3, fa6
+  LUI t1, 1
+  ADDIW t1, t1, -1176
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa4, 0(t1)
+  FADD.S ft2, ft2, fa3
+  FADD.S ft6, fs5, fs6
+  LUI t1, 1
+  ADDIW t1, t1, -1184
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa3, 0(t1)
+  FADD.S ft4, ft4, ft10
+  FADD.S ft5, ft5, fs3
+  LUI t1, 1
+  ADDIW t1, t1, -1192
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa5, 0(t1)
+  FADD.S ft3, ft3, fa7
+  FADD.S ft7, fa2, ft7
+  LUI t1, 1
+  ADDIW t1, t1, -1200
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa2, 0(t1)
+  FADD.S ft6, ft6, fa0
+  FADD.S ft4, ft4, ft11
+  LUI t1, 1
+  ADDIW t1, t1, -1208
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa6, 0(t1)
+  FADD.S ft5, ft5, fs4
+  FADD.S fa0, fa5, fa2
+  LUI t1, 1
+  ADDIW t1, t1, -1216
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa2, 0(t1)
+  FADD.S ft7, ft7, fa4
+  FADD.S ft6, ft6, fa1
+  LUI t1, 1
+  ADDIW t1, t1, -1224
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa1, 0(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1504
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa4, 0(t1)
+  FADD.S fa0, fa0, fa6
+  FADD.S ft7, ft7, fa3
+  LUI t1, 1
+  ADDIW t1, t1, -1608
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa3, 0(t1)
+  FADD.S fa1, fa1, fa4
+  LUI t1, 1
+  ADDIW t1, t1, -1616
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW fa4, 0(t1)
+  FADD.S fa0, fa0, fa2
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft0, 0(t6)
+  FADD.S ft0, fa1, fa3
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft1, 4(t6)
+  FADD.S ft0, ft0, fa4
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft2, 8(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft3, 12(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft4, 16(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft5, 20(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft6, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW ft7, 28(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -928
+  ADD t6, t6, sp
+  FSW fa0, 32(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -928
+  ADD t1, t1, sp
+  FSW ft0, 36(t1)
+  LUI t1, 1
+  ADDIW t1, t1, -1616
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  FLW ft0, 0(t1)
+  FLW ft1, 264(sp)
+  FEQ.S t1, ft0, ft1
+  SB t1, 2(sp)
+  LB t1, 2(sp)
+  XORI t1, t1, 1
+  SW t1, 1608(sp)
+  LW t1, 1608(sp)
+  SLTU t1, zero, t1
+  SW t1, 1612(sp)
+  LW t1, 1612(sp)
+  FCVT.S.W ft0, t1
+  FLW ft1, 416(sp)
+  FEQ.S t1, ft0, ft1
+  SB t1, 1(sp)
+  LB t1, 1(sp)
+  XORI t1, t1, 1
+  SW t1, 1616(sp)
+  LW t1, 1616(sp)
+  FCVT.S.W ft0, t1
+  FLW ft1, 416(sp)
+  FEQ.S t1, ft0, ft1
+  SB t1, 0(sp)
+  LB t1, 0(sp)
+  BEQ t1, zero, bb15
+  # implict jump to bb14
+bb14:   # loop depth 1
+  LUI t1, 1
+  ADDIW t1, t1, -928
+  ADD t1, t1, sp
+  ADD t1, t1, zero
+  LUI t6, 1
+  ADDIW t6, t6, -1560
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1088
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1552
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1080
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1544
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1072
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1536
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1064
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1528
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1056
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1520
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1320
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1512
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1408
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1600
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 704
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1496
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 712
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1488
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 456
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1480
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 368
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1472
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 376
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1464
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 384
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1456
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 392
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, -1448
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 400
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1432
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 408
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1440
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 416
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1448
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 424
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1184
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 432
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1096
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 440
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1104
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1400
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1112
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 360
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1120
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 464
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1128
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1392
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1136
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 480
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1144
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 488
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1152
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1384
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1160
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 504
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1168
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 512
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1176
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1376
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1088
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 528
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1192
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, 536
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1200
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1368
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t6, 1
+  ADDIW t6, t6, 1208
+  ADD t6, t6, sp
+  SD t1, 0(t6)
+  LUI t1, 1
+  ADDIW t1, t1, -1360
+  ADD t1, t1, sp
+  LD t1, 0(t1)
+  LUI t0, 1
+  ADDIW t0, t0, 1216
+  ADD t0, t0, sp
+  SD t1, 0(t0)
+  ADD t0, t5, zero
+  JAL zero, bb13
+bb15:   # loop depth 0
+  LA t0, k
+  LUI a1, 1
+  ADDIW a1, a1, 840
+  ADD a1, a1, sp
+  SD t0, 0(a1)
+  LUI a1, 1
+  ADDIW a1, a1, -928
+  ADD a1, a1, sp
+  ADD a1, a1, zero
+  ADDI a0, zero, 10
+  CALL putfarray
+  LUI t0, 1
+  ADDIW t0, t0, 840
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 568(sp)
+  LW t0, 568(sp)
+  SLLIW t0, t0, 2
+  SW t0, 1448(sp)
+  LW t0, 1448(sp)
+  LUI t1, 1
+  ADDIW t1, t1, -928
+  ADD t1, t1, sp
+  ADD t0, t1, t0
+  LW t1, 1448(sp)
+  LUI t3, 1
+  ADDIW t3, t3, -528
+  ADD t3, t3, sp
+  ADD t3, t3, t1
+  FLW ft0, 0(t0)
+  FSW ft0, 368(sp)
+  LW t0, 1448(sp)
+  LUI t4, 1
+  ADDIW t4, t4, -816
+  ADD t4, t4, sp
+  ADD t4, t4, t0
+  FLW ft0, 0(t3)
+  LW t0, 12(t4)
+  SW t0, 1452(sp)
+  FLW ft1, 24(t3)
+  LW t1, 24(t4)
+  FLW ft2, 36(t3)
+  FLW ft3, 48(t3)
+  LW t0, 48(t4)
+  SW t0, 1456(sp)
+  LW t0, 60(t4)
+  SW t0, 784(sp)
+  LW t0, 96(t4)
+  SW t0, 464(sp)
+  FLW ft4, 108(t3)
+  FLW ft5, 120(t3)
+  FLW ft6, 132(t3)
+  LW t0, 108(t4)
+  SW t0, 468(sp)
+  FLW ft7, 156(t3)
+  FLW fa0, 168(t3)
+  FLW fa1, 180(t3)
+  FLW fa2, 216(t3)
+  FLW fa3, 228(t3)
+  LW t0, 168(t4)
+  SW t0, 472(sp)
+  FLW fa4, 264(t3)
+  FLW fa5, 276(t3)
+  LW t0, 204(t4)
+  SW t0, 576(sp)
+  LW t0, 216(t4)
+  SW t0, 580(sp)
+  FLW fa6, 288(t3)
+  FLW fa7, 300(t3)
+  LW a4, 240(t4)
+  FADD.S fs10, fa6, fa7
+  LW a5, 252(t4)
+  FLW ft8, 324(t3)
+  FLW ft9, 336(t3)
+  LW a6, 0(t4)
+  FLW ft10, 372(t3)
+  LW t0, 1452(sp)
+  ADDW a7, a6, t0
+  ADDW t5, a7, t1
+  FLW ft11, 384(t3)
+  FLW fs0, 420(t3)
+  LW a7, 36(t4)
+  FLW fs1, 12(t3)
+  LW t0, 1456(sp)
+  ADDW t0, a7, t0
+  SW t0, 584(sp)
+  LW t0, 584(sp)
+  LW t2, 784(sp)
+  ADDW t0, t0, t2
+  SW t0, 532(sp)
+  ADDW t0, t5, a7
+  SW t0, 448(sp)
+  FLW fs4, 60(t3)
+  FADD.S fs1, ft0, fs1
+  FLW fs5, 72(t3)
+  FADD.S fs4, ft3, fs4
+  FLW fs6, 84(t3)
+  FADD.S fs1, fs1, ft1
+  FLW fs7, 96(t3)
+  FADD.S fs4, fs4, fs5
+  FLW fs8, 144(t3)
+  FADD.S fs5, fs7, ft4
+  FLW fs9, 192(t3)
+  FADD.S fs1, fs1, ft2
+  FSW fs1, 1360(sp)
+  FADD.S fs7, fs8, ft7
+  FLW fs8, 204(t3)
+  FADD.S fs1, fs4, fs6
+  FSW fs1, 1356(sp)
+  FADD.S fs1, fs5, ft5
+  FLW fs6, 240(t3)
+  FADD.S fs5, fs9, fs8
+  FLW fs8, 252(t3)
+  FADD.S fs4, fs7, fa0
+  FLW fs7, 312(t3)
+  FADD.S fs1, fs1, ft6
+  FSW fs1, 1352(sp)
+  FADD.S fs6, fs6, fs8
+  FLW fs8, 348(t3)
+  FADD.S fs1, fs5, fa2
+  FADD.S fs2, fs4, fa1
+  FSW fs2, 1348(sp)
+  FLW fs9, 360(t3)
+  FADD.S fs8, ft9, fs8
+  FADD.S fs5, fs10, fs7
+  FLW fs7, 396(t3)
+  FADD.S fs4, fs6, fa4
+  FADD.S fs1, fs1, fa3
+  FSW fs1, 1344(sp)
+  FLW fs10, 408(t3)
+  FADD.S fs7, ft11, fs7
+  FADD.S fs6, fs8, fs9
+  FLW fs1, 1360(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs1, 0(t6)
+  FADD.S fs5, fs5, ft8
+  FADD.S fs1, fs4, fa5
+  FADD.S fs7, fs7, fs10
+  FLW fs2, 1356(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs2, 4(t6)
+  FADD.S fs4, fs6, ft10
+  FLW fs2, 1352(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs2, 8(t6)
+  FADD.S fs6, fs7, fs0
+  FLW fs2, 1348(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs2, 12(t6)
+  FLW fs2, 1344(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs2, 16(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs1, 20(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs5, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs4, 28(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs6, 32(t6)
+  FLW fs1, 416(sp)
+  LUI t3, 1
+  ADDIW t3, t3, -1048
+  ADD t3, t3, sp
+  FSW fs1, 36(t3)
+  LW t3, 72(t4)
+  LW t0, 84(t4)
+  SW t0, 592(sp)
+  LW t0, 120(t4)
+  SW t0, 596(sp)
+  LW t0, 592(sp)
+  ADDW t3, t3, t0
+  LW t0, 464(sp)
+  ADDW t0, t3, t0
+  SW t0, 484(sp)
+  LW t0, 132(t4)
+  SW t0, 604(sp)
+  LW t0, 596(sp)
+  LW t2, 468(sp)
+  ADDW t0, t2, t0
+  SW t0, 600(sp)
+  LW t0, 144(t4)
+  SW t0, 612(sp)
+  LW t0, 604(sp)
+  LW t2, 600(sp)
+  ADDW t0, t2, t0
+  SW t0, 608(sp)
+  LW t0, 156(t4)
+  SW t0, 616(sp)
+  LW t0, 180(t4)
+  SW t0, 628(sp)
+  LW t0, 616(sp)
+  LW t2, 612(sp)
+  ADDW t0, t2, t0
+  SW t0, 620(sp)
+  LW t0, 620(sp)
+  LW t2, 472(sp)
+  ADDW t0, t0, t2
+  SW t0, 624(sp)
+  LW t0, 192(t4)
+  SW t0, 632(sp)
+  LW t0, 228(t4)
+  SW t0, 428(sp)
+  LW t0, 632(sp)
+  LW t2, 628(sp)
+  ADDW t0, t2, t0
+  SW t0, 636(sp)
+  LW t0, 636(sp)
+  LW t2, 576(sp)
+  ADDW t0, t0, t2
+  SW t0, 480(sp)
+  LW t0, 264(t4)
+  SW t0, 440(sp)
+  LW t0, 428(sp)
+  LW t2, 580(sp)
+  ADDW t0, t2, t0
+  SW t0, 432(sp)
+  LW t0, 432(sp)
+  ADDW t0, t0, a4
+  SW t0, 436(sp)
+  LW t0, 276(t4)
+  SW t0, 444(sp)
+  LW t0, 440(sp)
+  ADDW t3, a5, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  SW t5, 0(t0)
+  LW t0, 444(sp)
+  ADDW t3, t3, t0
+  LW t0, 532(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 4(t6)
+  LW t0, 484(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 8(t6)
+  LW t0, 608(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 12(t6)
+  LW t0, 624(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 16(t6)
+  LW t0, 480(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 20(t6)
+  LW t0, 436(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 24(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  SW t3, 28(t0)
+  LW t0, 448(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 32(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW zero, 36(t6)
+  BNE a7, zero, bb20
+  # implict jump to bb16
+bb16:   # loop depth 0
+  SW a7, 908(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 928
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -48
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 936
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -40
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  ADD t0, t1, zero
+  SW t0, 1048(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 960
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -32
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1256
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -24
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  SW a6, 1036(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 968
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1136
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1352
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1592
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1344
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1584
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  SW a5, 1020(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 992
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1576
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  SW a4, 960(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1336
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1568
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 580(sp)
+  SW t0, 1004(sp)
+  LW t0, 576(sp)
+  SW t0, 1000(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1328
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1000
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1416
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1280
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1032
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1288
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1040
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1296
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 472(sp)
+  SW t0, 472(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1312
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1304
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1064
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1312
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1304
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1320
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1296
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1328
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1072
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1336
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1288
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1344
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 468(sp)
+  SW t0, 468(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 736
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1352
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 768
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1360
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 776
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI a5, 1
+  ADDIW a5, a5, 1272
+  ADD a5, a5, sp
+  SD t0, 0(a5)
+  LW t0, 464(sp)
+  SW t0, 464(sp)
+  LUI a5, 1
+  ADDIW a5, a5, -1280
+  ADD a5, a5, sp
+  LD a5, 0(a5)
+  LUI a4, 1
+  ADDIW a4, a4, -1272
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  LUI a3, 1
+  ADDIW a3, a3, 784
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  LW t0, 784(sp)
+  SW t0, 784(sp)
+  LW a1, 1456(sp)
+  LUI a0, 1
+  ADDIW a0, a0, -1264
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  LUI t2, 1
+  ADDIW t2, t2, 792
+  ADD t2, t2, sp
+  LD t2, 0(t2)
+  LW s0, 1452(sp)
+  # implict jump to bb17
+bb17:   # loop depth 1
+  LW t0, 908(sp)
+  SW t0, 1556(sp)
+  LW t0, 1556(sp)
+  FCVT.S.W fs1, t0
+  SW s0, 1644(sp)
+  FCVT.W.S s8, fs0, rtz
+  SW t1, 1652(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1672
+  ADD t0, t0, sp
+  SD t2, 0(t0)
+  LUI t0, 1
+  ADDIW t0, t0, -1680
+  ADD t0, t0, sp
+  SD a0, 0(t0)
+  SW a1, 1472(sp)
+  LW t0, 784(sp)
+  SW t0, 784(sp)
+  LW t0, 784(sp)
+  SW t0, 1476(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1784
+  ADD t6, t6, sp
+  SD a3, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1696
+  ADD t0, t0, sp
+  SD a4, 0(t0)
+  LUI t0, 1
+  ADDIW t0, t0, -1704
+  ADD t0, t0, sp
+  SD a5, 0(t0)
+  LW t0, 464(sp)
+  SW t0, 464(sp)
+  LW t0, 464(sp)
+  SW t0, 1492(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 1272
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1712
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1360
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1720
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1352
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1728
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 468(sp)
+  SW t0, 468(sp)
+  LW t0, 468(sp)
+  SW t0, 1508(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 1344
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1736
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1336
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1744
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1328
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1752
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1320
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1760
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1312
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1768
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1304
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1776
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 472(sp)
+  SW t0, 472(sp)
+  LW t0, 472(sp)
+  SW t0, 1536(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 1296
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1688
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1288
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1424
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1280
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1432
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 1000
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1440
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 1000(sp)
+  SW t0, 716(sp)
+  LW t0, 1004(sp)
+  SW t0, 720(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1568
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t3, 1
+  ADDIW t3, t3, 1224
+  ADD t3, t3, sp
+  SD t0, 0(t3)
+  LW t0, 960(sp)
+  SW t0, 728(sp)
+  LUI t3, 1
+  ADDIW t3, t3, -1576
+  ADD t3, t3, sp
+  LD t3, 0(t3)
+  LW t4, 1020(sp)
+  LUI t5, 1
+  ADDIW t5, t5, -1584
+  ADD t5, t5, sp
+  LD t5, 0(t5)
+  LUI t6, 1
+  ADDIW t6, t6, -1592
+  ADD t6, t6, sp
+  LD s0, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1136
+  ADD t6, t6, sp
+  LD s1, 0(t6)
+  LW s2, 1036(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -24
+  ADD t6, t6, sp
+  LD s3, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -32
+  ADD t6, t6, sp
+  LD s4, 0(t6)
+  LW s5, 1048(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -40
+  ADD t6, t6, sp
+  LD s6, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -48
+  ADD t6, t6, sp
+  LD s7, 0(t6)
+  # implict jump to bb18
+bb18:   # loop depth 1
+  LW t0, 1448(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  ADD s9, t6, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1672
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD s10, t1, t0
+  FLW fs0, 0(s9)
+  LUI t0, 1
+  ADDIW t0, t0, -1784
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD s9, t1, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1712
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD s11, t1, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1720
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 16
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs4, 0(s10)
+  LUI t0, 1
+  ADDIW t0, t0, -1728
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD s10, t1, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1744
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t1, 1
+  ADDIW t1, t1, 8
+  ADD t1, t1, sp
+  SD t0, 0(t1)
+  LUI t0, 1
+  ADDIW t0, t0, -1768
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 0
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs5, 0(s9)
+  LUI t0, 1
+  ADDIW t0, t0, -1688
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD s9, t1, t0
+  FADD.S fs0, ft0, fs0
+  LUI t0, 1
+  ADDIW t0, t0, -1424
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 88
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs6, 0(s11)
+  LW t0, 568(sp)
+  SH2ADD s11, t0, t3
+  FADD.S fs4, ft3, fs4
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s1
+  LUI t6, 1
+  ADDIW t6, t6, 352
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 16
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs7, 0(t0)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s4
+  LUI t6, 1
+  ADDIW t6, t6, 344
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s6
+  LUI t6, 1
+  ADDIW t6, t6, 336
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s7
+  LUI t6, 1
+  ADDIW t6, t6, -1624
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs8, 0(s10)
+  FADD.S fs0, fs0, ft1
+  FADD.S fs7, fs7, ft4
+  LW t0, 1448(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  ADD s10, t6, t0
+  LUI t0, 1
+  ADDIW t0, t0, 8
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs9, 0(t0)
+  FADD.S fs4, fs4, fs5
+  FADD.S fs8, fs8, ft7
+  LUI t0, 1
+  ADDIW t0, t0, -1680
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 320
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 0
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs10, 0(t0)
+  FADD.S fs2, fa6, fa7
+  FSW fs2, 1424(sp)
+  FADD.S fs0, fs0, ft2
+  LUI t0, 1
+  ADDIW t0, t0, -1696
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -1632
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs11, 0(s9)
+  FADD.S fs5, fs7, ft5
+  FADD.S fs4, fs4, fs6
+  LUI t0, 1
+  ADDIW t0, t0, -1704
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 304
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 88
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs2, 0(t0)
+  FSW fs2, 1428(sp)
+  FADD.S fs7, fs9, fs10
+  FADD.S fs6, fs8, fa0
+  LUI t0, 1
+  ADDIW t0, t0, -1736
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 296
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  FLW fs9, 0(s11)
+  FLW fs2, 1428(sp)
+  FADD.S fs8, fs11, fs2
+  FADD.S fs5, fs5, ft6
+  LUI t0, 1
+  ADDIW t0, t0, -1752
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -1640
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 352
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs10, 0(t0)
+  FLW fs2, 1424(sp)
+  FADD.S fs9, fs2, fs9
+  FADD.S fs7, fs7, fa2
+  LUI t0, 1
+  ADDIW t0, t0, -1760
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 280
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 344
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs11, 0(t0)
+  FADD.S fs6, fs6, fa1
+  FADD.S fs8, fs8, fa4
+  LUI t0, 1
+  ADDIW t0, t0, -1776
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -1648
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, 336
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs2, 0(t0)
+  FSW fs2, 1420(sp)
+  FADD.S fs10, ft9, fs10
+  FADD.S fs9, fs9, ft8
+  LUI t0, 1
+  ADDIW t0, t0, -1432
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 264
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1624
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  FLW fs2, 0(t0)
+  FSW fs2, 1412(sp)
+  FADD.S fs7, fs7, fa3
+  FLW fs2, 1420(sp)
+  FADD.S fs2, ft11, fs2
+  FSW fs2, 1364(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1440
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 256
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1048
+  ADD t0, t0, sp
+  FSW fs0, 0(t0)
+  FADD.S fs0, fs8, fa5
+  FADD.S fs8, fs10, fs11
+  LUI t0, 1
+  ADDIW t0, t0, 1224
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t1, 568(sp)
+  SH2ADD t0, t1, t0
+  LUI t6, 1
+  ADDIW t6, t6, 248
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, t5
+  LUI t6, 1
+  ADDIW t6, t6, 240
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s0
+  LUI t6, 1
+  ADDIW t6, t6, -1656
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 568(sp)
+  SH2ADD t0, t0, s3
+  LUI t6, 1
+  ADDIW t6, t6, -1664
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs4, 4(t6)
+  FLW fs2, 1412(sp)
+  FLW fs3, 1364(sp)
+  FADD.S fs10, fs3, fs2
+  FADD.S fs4, fs8, ft10
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs5, 8(t6)
+  FADD.S fs5, fs10, fs1
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs6, 12(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs7, 16(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs0, 20(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs9, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs4, 28(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs5, 32(t6)
+  FLW fs0, 416(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FSW fs0, 36(t6)
+  LW s9, 0(s10)
+  LUI t0, 1
+  ADDIW t0, t0, 320
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW s10, 0(t0)
+  LW t0, 1644(sp)
+  ADDW s9, s9, t0
+  LW t0, 1652(sp)
+  ADDW t0, s9, t0
+  SW t0, 1620(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1632
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 788(sp)
+  LW t0, 1472(sp)
+  ADDW s10, s10, t0
+  LW t0, 1476(sp)
+  ADDW s10, s10, t0
+  LUI t0, 1
+  ADDIW t0, t0, 304
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 792(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 296
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 748(sp)
+  LW t0, 792(sp)
+  LW t1, 788(sp)
+  ADDW t0, t1, t0
+  SW t0, 796(sp)
+  LW t0, 1492(sp)
+  LW t1, 796(sp)
+  ADDW t0, t1, t0
+  SW t0, 800(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1640
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 812(sp)
+  LW t0, 1508(sp)
+  LW t1, 748(sp)
+  ADDW t0, t0, t1
+  SW t0, 808(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 280
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 820(sp)
+  LW t0, 812(sp)
+  LW t1, 808(sp)
+  ADDW t0, t1, t0
+  SW t0, 816(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1648
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 824(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 264
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 836(sp)
+  LW t0, 824(sp)
+  LW t1, 820(sp)
+  ADDW t0, t1, t0
+  SW t0, 828(sp)
+  LW t0, 1536(sp)
+  LW t1, 828(sp)
+  ADDW t0, t1, t0
+  SW t0, 832(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 256
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 840(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 248
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 852(sp)
+  LW t0, 840(sp)
+  LW t1, 836(sp)
+  ADDW t0, t1, t0
+  SW t0, 844(sp)
+  LW t0, 716(sp)
+  LW t1, 844(sp)
+  ADDW t0, t1, t0
+  SW t0, 848(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 240
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 648(sp)
+  LW t0, 720(sp)
+  LW t1, 852(sp)
+  ADDW t0, t0, t1
+  SW t0, 696(sp)
+  LW t0, 728(sp)
+  LW t1, 696(sp)
+  ADDW t0, t1, t0
+  SW t0, 644(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1656
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 656(sp)
+  LW t0, 648(sp)
+  ADDW t0, t4, t0
+  SW t0, 652(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1664
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LW t0, 0(t0)
+  SW t0, 660(sp)
+  LW t0, 656(sp)
+  LW t1, 652(sp)
+  ADDW s11, t1, t0
+  LW t0, 1620(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 0(t6)
+  LW t0, 660(sp)
+  ADDW s9, s2, t0
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  SW s10, 4(t0)
+  ADDW s9, s9, s5
+  LW t0, 800(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 8(t6)
+  ADDW s9, s9, s8
+  LW t0, 816(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 12(t6)
+  LW t0, 832(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 16(t6)
+  LW t0, 848(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 20(t6)
+  LW t0, 644(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 24(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW s11, 28(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW s9, 32(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW zero, 36(t6)
+  BNE s8, zero, bb20
+  # implict jump to bb19
+bb19:   # loop depth 1
+  FSGNJ.S fs0, fs1, fs1
+  SW s8, 908(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -48
+  ADD t6, t6, sp
+  SD s7, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -40
+  ADD t6, t6, sp
+  SD s6, 0(t6)
+  SW s5, 1048(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -32
+  ADD t6, t6, sp
+  SD s4, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -24
+  ADD t6, t6, sp
+  SD s3, 0(t6)
+  SW s2, 1036(sp)
+  LUI t6, 1
+  ADDIW t6, t6, -1136
+  ADD t6, t6, sp
+  SD s1, 0(t6)
+  LUI t6, 1
+  ADDIW t6, t6, -1592
+  ADD t6, t6, sp
+  SD s0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1584
+  ADD t0, t0, sp
+  SD t5, 0(t0)
+  SW t4, 1020(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1576
+  ADD t0, t0, sp
+  SD t3, 0(t0)
+  LW t0, 728(sp)
+  SW t0, 960(sp)
+  LUI t0, 1
+  ADDIW t0, t0, 1224
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, -1568
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 720(sp)
+  SW t0, 1004(sp)
+  LW t0, 716(sp)
+  SW t0, 1000(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1440
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1000
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1432
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1280
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1424
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1288
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1688
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1296
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 1536(sp)
+  SW t0, 472(sp)
+  LW t0, 472(sp)
+  SW t0, 472(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1776
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1304
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1768
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1312
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1760
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1320
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1752
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1328
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1744
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1336
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1736
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1344
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 1508(sp)
+  SW t0, 468(sp)
+  LW t0, 468(sp)
+  SW t0, 468(sp)
+  LUI t0, 1
+  ADDIW t0, t0, -1728
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1352
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1720
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1360
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1712
+  ADD t0, t0, sp
+  LD t0, 0(t0)
+  LUI t6, 1
+  ADDIW t6, t6, 1272
+  ADD t6, t6, sp
+  SD t0, 0(t6)
+  LW t0, 1492(sp)
+  SW t0, 464(sp)
+  LW t0, 464(sp)
+  SW t0, 464(sp)
+  LUI a5, 1
+  ADDIW a5, a5, -1704
+  ADD a5, a5, sp
+  LD a5, 0(a5)
+  LUI a4, 1
+  ADDIW a4, a4, -1696
+  ADD a4, a4, sp
+  LD a4, 0(a4)
+  LUI a3, 1
+  ADDIW a3, a3, -1784
+  ADD a3, a3, sp
+  LD a3, 0(a3)
+  LW t0, 1476(sp)
+  SW t0, 784(sp)
+  LW t0, 784(sp)
+  SW t0, 784(sp)
+  LW a1, 1472(sp)
+  LUI a0, 1
+  ADDIW a0, a0, -1680
+  ADD a0, a0, sp
+  LD a0, 0(a0)
+  LUI t2, 1
+  ADDIW t2, t2, -1672
+  ADD t2, t2, sp
+  LD t2, 0(t2)
+  LW t1, 1652(sp)
+  LW s0, 1644(sp)
+  JAL zero, bb17
+bb20:   # loop depth 0
+  LUI a1, 1
+  ADDIW a1, a1, -1048
+  ADD a1, a1, sp
+  ADD a1, a1, zero
+  ADDI a0, zero, 10
+  LA s0, k
+  CALL putfarray
+  LUI a1, 1
+  ADDIW a1, a1, -1008
   ADD a1, a1, sp
   ADD a1, a1, zero
   ADDI a0, zero, 10
   CALL putarray
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 0(t0)
+  FLW ft0, 360(sp)
+  FLW ft1, 360(sp)
+  FSGNJ.S fa0, ft0, ft1
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  LW s0, 0(t6)
-  FLW fa0, 1276(sp)
-  FLW fs0, 1276(sp)
-  FSGNJ.S fa0, fa0, fs0
-  FCVT.S.W fs1, s0
+  FLW ft0, 0(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
+  SW t0, 0(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 4(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  SW s0, 0(t6)
+  FLW ft0, 4(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  LW s0, 4(t6)
-  FCVT.S.W fs1, s0
+  SW t0, 4(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 8(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  FLW fs0, 4(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
+  FLW ft0, 8(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  SW s0, 4(t6)
+  SW t0, 8(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 12(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  LW s0, 8(t6)
-  FCVT.S.W fs1, s0
+  FLW ft0, 12(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  FLW fs0, 8(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
+  SW t0, 12(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 16(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  SW s0, 8(t6)
+  FLW ft0, 16(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  LW s0, 12(t6)
-  FCVT.S.W fs1, s0
+  SW t0, 16(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 20(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  FLW fs0, 12(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
+  FLW ft0, 20(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  SW s0, 12(t6)
+  SW t0, 20(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 24(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  LW s0, 16(t6)
-  FCVT.S.W fs1, s0
+  FLW ft0, 24(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  FLW fs0, 16(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
+  SW t0, 24(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 28(t0)
+  FCVT.S.W ft1, t0
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
-  SW s0, 16(t6)
+  FLW ft0, 28(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
   LUI t6, 1
-  ADDIW t6, t6, 1384
+  ADDIW t6, t6, -1008
   ADD t6, t6, sp
-  LW s0, 20(t6)
-  FCVT.S.W fs1, s0
+  SW t0, 28(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 32(t0)
+  FCVT.S.W ft0, t0
   LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FLW fs0, 20(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW s0, 20(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  LW s0, 24(t6)
-  FCVT.S.W fs1, s0
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FLW fs0, 24(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW s0, 24(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  LW s0, 28(t6)
-  FCVT.S.W fs1, s0
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FLW fs0, 28(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW s0, 28(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  LW s0, 32(t6)
-  FCVT.S.W fs1, s0
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FLW fs0, 32(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW s0, 32(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  LW s0, 36(t6)
-  FCVT.S.W fs1, s0
-  LUI t6, 1
-  ADDIW t6, t6, 1344
-  ADD t6, t6, sp
-  FLW fs0, 36(t6)
-  FSUB.S fs0, fs1, fs0
-  FCVT.W.S s0, fs0, rtz
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  SW s0, 36(t6)
-  LW s0, 0(s1)
-  SLLIW s0, s0, 2
-  LUI t6, 1
-  ADDIW t6, t6, 1384
-  ADD t6, t6, sp
-  ADD s0, t6, s0
-  LW s0, 0(s0)
-  FCVT.S.W fs1, s0
-  LUI t6, 1
-  ADDIW t6, t6, 1344
+  ADDIW t6, t6, -1048
   ADD t6, t6, sp
   FLW fs0, 32(t6)
+  FSUB.S ft0, ft0, fs0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 32(t6)
+  LUI t0, 1
+  ADDIW t0, t0, -1008
+  ADD t0, t0, sp
+  LW t0, 36(t0)
+  FCVT.S.W ft1, t0
+  LUI t6, 1
+  ADDIW t6, t6, -1048
+  ADD t6, t6, sp
+  FLW ft0, 36(t6)
+  FSUB.S ft0, ft1, ft0
+  FCVT.W.S t0, ft0, rtz
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  SW t0, 36(t6)
+  LW t0, 0(s0)
+  SLLIW t0, t0, 2
+  LUI t6, 1
+  ADDIW t6, t6, -1008
+  ADD t6, t6, sp
+  ADD t0, t6, t0
+  LW t0, 0(t0)
+  FCVT.S.W fs1, t0
+  CALL putfloat
+  ADDI a0, zero, 10
   FMUL.S fs0, fs1, fs0
+  CALL putch
+  FLW ft0, 412(sp)
+  FLW ft1, 412(sp)
+  FSGNJ.S fa0, ft0, ft1
   CALL putfloat
   ADDI a0, zero, 10
-  CALL putch
-  FLW fa0, 16(sp)
-  FLW fs1, 16(sp)
-  FSGNJ.S fa0, fa0, fs1
-  CALL putfloat
   FCVT.W.S s0, fs0, rtz
-  ADDI a0, zero, 10
   CALL putch
-  FLW fa0, 1428(sp)
-  FLW fs0, 1428(sp)
-  FSGNJ.S fa0, fa0, fs0
+  FLW ft0, 368(sp)
+  FLW ft1, 368(sp)
+  FSGNJ.S fa0, ft0, ft1
   CALL putfloat
   ADDI a0, zero, 10
   CALL putch
@@ -9562,725 +6111,261 @@ bb21:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
+  LD ra, 1808(sp)
+  LD s0, 1816(sp)
+  LD s1, 1824(sp)
+  LD s2, 1832(sp)
+  LD s3, 1840(sp)
+  LD s4, 1848(sp)
+  LD s5, 1856(sp)
+  LD s6, 1864(sp)
+  LD s7, 1872(sp)
+  LD s8, 1960(sp)
+  LD s9, 1968(sp)
+  LD s10, 1976(sp)
+  LD s11, 1984(sp)
+  FLD fs0, 2000(sp)
+  FLD fs1, 2008(sp)
+  FLD fs2, 2016(sp)
+  FLD fs3, 2024(sp)
+  FLD fs4, 2032(sp)
+  FLD fs5, 2040(sp)
   LUI t6, 1
-  ADDIW t6, t6, 136
-  ADD t6, t6, sp
-  FLD fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 144
+  ADDIW t6, t6, -2048
   ADD t6, t6, sp
   FLD fs6, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 152
+  ADDIW t6, t6, -2040
   ADD t6, t6, sp
   FLD fs7, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 160
+  ADDIW t6, t6, -2032
   ADD t6, t6, sp
   FLD fs8, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 168
+  ADDIW t6, t6, -2024
   ADD t6, t6, sp
   FLD fs9, 0(t6)
   LUI t6, 1
-  ADDIW t6, t6, 176
+  ADDIW t6, t6, -2016
   ADD t6, t6, sp
   FLD fs10, 0(t6)
-  LUI ra, 1
-  ADDIW ra, ra, 184
-  ADD ra, ra, sp
-  LD ra, 0(ra)
   LUI t6, 1
-  ADDIW t6, t6, 192
-  ADD t6, t6, sp
-  LD s0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 200
-  ADD t6, t6, sp
-  LD s1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 208
-  ADD t6, t6, sp
-  LD s2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 216
-  ADD t6, t6, sp
-  LD s3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 224
-  ADD t6, t6, sp
-  LD s5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 232
-  ADD t6, t6, sp
-  LD s6, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 240
-  ADD t6, t6, sp
-  LD s7, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 248
-  ADD t6, t6, sp
-  LD s8, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 256
-  ADD t6, t6, sp
-  LD s9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 264
-  ADD t6, t6, sp
-  LD s10, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 272
-  ADD t6, t6, sp
-  LD s11, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 280
-  ADD t6, t6, sp
-  FLD fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 288
-  ADD t6, t6, sp
-  FLD fs1, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 296
-  ADD t6, t6, sp
-  FLD fs3, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 304
-  ADD t6, t6, sp
-  FLD fs4, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 312
-  ADD t6, t6, sp
-  FLD fs5, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, 320
+  ADDIW t6, t6, -2008
   ADD t6, t6, sp
   FLD fs11, 0(t6)
-  LUI t0, 2
-  ADDIW t0, t0, 608
+  LUI t0, 1
+  ADDIW t0, t0, 1456
   ADD sp, sp, t0
   JALR zero, 0(ra)
-bb22:   # loop depth 0
-  FSW fs1, 1688(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1772
-  ADD t6, t6, sp
-  SW a1, 0(t6)
-  FSW fs0, 1684(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1776
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -284
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -284
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1680(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -520
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1816
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -352
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -352
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1812(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -516
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1784
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -292
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -292
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2020
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -512
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1788
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -296
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -296
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2024
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -508
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1792
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -300
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -300
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2028
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -504
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1796
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -304
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -304
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2032
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -500
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1800
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -308
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -308
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2036
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -496
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1804
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -312
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -312
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2040
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1808
-  ADD t6, t6, sp
-  SW s9, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -316
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -316
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2044
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI a0, 1
-  ADDIW a0, a0, -1812
-  ADD a0, a0, sp
-  SW s8, 0(a0)
-  FSW fs2, 2012(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1748
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -1780
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1116(sp)
-  FLW fs1, 1116(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2044(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1484
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -828
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1112(sp)
-  FLW fs1, 1112(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2040(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1488
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -832
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1072(sp)
-  FLW fs1, 1072(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2036(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1492
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  LUI t6, 1
-  ADDIW t6, t6, -836
-  ADD t6, t6, sp
-  SW a0, 0(t6)
-  FLW fs0, 1104(sp)
-  FLW fs1, 1104(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2032(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1496
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 476(sp)
-  LW a0, 476(sp)
-  SW a0, 476(sp)
-  FLW fs0, 1100(sp)
-  FLW fs1, 1100(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2028(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1500
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 468(sp)
-  LW a0, 468(sp)
-  SW a0, 468(sp)
-  FLW fs0, 1096(sp)
-  FLW fs1, 1096(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2024(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1504
-  ADD t6, t6, sp
-  LW s9, 0(t6)
-  FLW fs0, 1092(sp)
-  FLW fs1, 1092(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2020(sp)
-  LUI a0, 1
-  ADDIW a0, a0, -1508
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 500(sp)
-  LW a0, 500(sp)
-  SW a0, 500(sp)
-  FLW fs0, 1088(sp)
-  FLW fs1, 1088(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 2016(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1548
-  ADD t6, t6, sp
-  LW s8, 0(t6)
-  FLW fs0, 1084(sp)
-  FLW fs1, 1084(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a0, 1
-  ADDIW a0, a0, -2048
-  ADD a0, a0, sp
-  FSW fs0, 0(a0)
-  LUI a0, 1
-  ADDIW a0, a0, -1516
-  ADD a0, a0, sp
-  LW a0, 0(a0)
-  SW a0, 472(sp)
-  LW a0, 472(sp)
-  SW a0, 472(sp)
-  FLW fs0, 1080(sp)
-  FLW fs1, 1080(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2012
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1520
-  ADD t6, t6, sp
-  LW s7, 0(t6)
-  FLW fs0, 1076(sp)
-  FLW fs1, 1076(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI a1, 1
-  ADDIW a1, a1, -2008
-  ADD a1, a1, sp
-  FSW fs0, 0(a1)
-  LUI a1, 1
-  ADDIW a1, a1, -1524
-  ADD a1, a1, sp
-  LW a1, 0(a1)
-  FLW fs0, 1108(sp)
-  FLW fs1, 1108(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2004
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1204(sp)
-  FLW fs1, 1204(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -2000
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1200(sp)
-  FLW fs1, 1200(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1996
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1196(sp)
-  FLW fs1, 1196(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1992
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1192(sp)
-  FLW fs1, 1192(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -1988
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1188(sp)
-  FLW fs1, 1188(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -752
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1184(sp)
-  FLW fs1, 1184(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -848
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1180(sp)
-  FLW fs1, 1180(sp)
-  FSGNJ.S fs5, fs0, fs1
-  FLW fs0, 1140(sp)
-  FLW fs1, 1140(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -880
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1172(sp)
-  FLW fs1, 1172(sp)
-  FSGNJ.S fs0, fs0, fs1
-  LUI t6, 1
-  ADDIW t6, t6, -876
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 1168(sp)
-  FLW fs1, 1168(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FLW fs1, 1164(sp)
-  FLW fs2, 1164(sp)
-  FSGNJ.S fs1, fs1, fs2
-  FLW fs2, 1160(sp)
-  FLW fs6, 1160(sp)
-  FSGNJ.S fs2, fs2, fs6
-  FLW fs6, 1156(sp)
-  FLW fs7, 1156(sp)
-  FSGNJ.S fs6, fs6, fs7
-  FLW fs7, 1152(sp)
-  FLW fs8, 1152(sp)
-  FSGNJ.S fs9, fs7, fs8
-  FLW fs7, 1148(sp)
-  FLW fs8, 1148(sp)
-  FSGNJ.S fs7, fs7, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -864
-  ADD t6, t6, sp
-  FSW fs7, 0(t6)
-  FLW fs7, 1144(sp)
-  FLW fs8, 1144(sp)
-  FSGNJ.S fs7, fs7, fs8
-  LUI t6, 1
-  ADDIW t6, t6, -856
-  ADD t6, t6, sp
-  FSW fs7, 0(t6)
+bb21:   # loop depth 0
+  FLW ft0, 892(sp)
+  FLW ft1, 892(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 892(sp)
+  FLW ft0, 892(sp)
+  FSW ft0, 44(sp)
+  LW t3, 756(sp)
+  SW t3, 140(sp)
+  FSW ft11, 48(sp)
+  LW t3, 752(sp)
+  SW t3, 136(sp)
+  FSW ft10, 52(sp)
+  LW t3, 588(sp)
+  SW t3, 132(sp)
+  FSW ft9, 56(sp)
+  LW t3, 528(sp)
+  SW t3, 128(sp)
+  FSW ft8, 60(sp)
+  LW t3, 524(sp)
+  SW t3, 124(sp)
+  FSW fa7, 4(sp)
+  LW t3, 520(sp)
+  SW t3, 120(sp)
+  FLW fa7, 1276(sp)
+  FLW ft8, 1276(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 68(sp)
+  LW t3, 516(sp)
+  SW t3, 116(sp)
+  FLW fa7, 1280(sp)
+  FLW ft8, 1280(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 72(sp)
+  LW t3, 512(sp)
+  SW t3, 112(sp)
+  FLW fa7, 1288(sp)
+  FLW ft8, 1288(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 76(sp)
+  LW t3, 508(sp)
+  SW t3, 372(sp)
+  FLW fa7, 1292(sp)
+  FLW ft8, 1292(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 80(sp)
+  LW t3, 504(sp)
+  SW t3, 744(sp)
+  FLW fa7, 1296(sp)
+  FLW ft8, 1296(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 84(sp)
+  LW t3, 500(sp)
+  SW t3, 740(sp)
+  FLW fa7, 1300(sp)
+  FLW ft8, 1300(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 1396(sp)
+  LW t3, 496(sp)
+  SW t3, 736(sp)
+  FSW fa6, 1400(sp)
+  LW t3, 452(sp)
+  SW t3, 732(sp)
+  FLW ft0, 1032(sp)
+  FLW ft1, 1032(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1032(sp)
+  LW t0, 776(sp)
+  SW t0, 776(sp)
+  FLW ft0, 1040(sp)
+  FLW ft1, 1040(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1040(sp)
+  LW t0, 760(sp)
+  SW t0, 760(sp)
+  FSW fs0, 1404(sp)
+  LW t0, 764(sp)
+  SW t0, 764(sp)
+  FSW fs1, 1408(sp)
+  LW t0, 768(sp)
+  SW t0, 768(sp)
+  FLW ft0, 1196(sp)
+  FLW ft1, 1196(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1196(sp)
+  LW t0, 780(sp)
+  SW t0, 780(sp)
+  LW a0, 488(sp)
+  FLW ft0, 888(sp)
+  FLW ft1, 888(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 888(sp)
+  FLW ft0, 1152(sp)
+  FLW ft1, 1152(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1152(sp)
+  FLW ft0, 328(sp)
+  FLW ft1, 328(sp)
+  FSGNJ.S ft0, ft0, ft1
+  FSW ft0, 1148(sp)
+  FLW ft0, 332(sp)
+  FLW ft1, 332(sp)
+  FSGNJ.S ft2, ft0, ft1
+  FLW ft0, 336(sp)
+  FLW ft1, 336(sp)
+  FSGNJ.S ft1, ft0, ft1
+  FLW ft0, 340(sp)
+  FLW ft9, 340(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1580(sp)
+  FLW ft0, 344(sp)
+  FLW ft9, 344(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1200(sp)
+  FLW ft0, 348(sp)
+  FLW ft9, 348(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1204(sp)
+  FLW ft0, 352(sp)
+  FLW ft9, 352(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1604(sp)
+  FLW ft0, 356(sp)
+  FLW ft9, 356(sp)
+  FSGNJ.S ft0, ft0, ft9
+  FSW ft0, 1208(sp)
   JAL zero, bb11
-bb23:   # loop depth 0
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1336
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 1776(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1332
-  ADD t6, t6, sp
-  FLW fs2, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1332
-  ADD t6, t6, sp
-  FLW fs3, 0(t6)
-  FSGNJ.S fs2, fs2, fs3
-  FSW fs2, 1772(sp)
-  FSW fs0, 1768(sp)
-  FSW fs1, 1764(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1328
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1328
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1760(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1324
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1324
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1756(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1320
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1320
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1752(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1316
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1316
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1748(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1348
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1348
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1780(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1308
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1308
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1816(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1304
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1304
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1820(sp)
-  LUI t6, 1
-  ADDIW t6, t6, -1300
-  ADD t6, t6, sp
-  FLW fs0, 0(t6)
-  LUI t6, 1
-  ADDIW t6, t6, -1300
-  ADD t6, t6, sp
-  FLW fs1, 0(t6)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1824(sp)
-  FLW fs0, 256(sp)
-  FLW fs1, 256(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1828(sp)
-  FLW fs0, 92(sp)
-  FLW fs1, 92(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1832(sp)
-  FLW fs0, 248(sp)
-  FLW fs1, 248(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1836(sp)
-  FLW fs0, 244(sp)
-  FLW fs1, 244(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1840(sp)
-  FLW fs0, 240(sp)
-  FLW fs1, 240(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1844(sp)
-  FLW fs0, 236(sp)
-  FLW fs1, 236(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1848(sp)
+bb22:   # loop depth 0
+  FSW ft11, 708(sp)
+  FSW ft10, 712(sp)
+  FSW ft9, 724(sp)
+  FLW ft9, 1484(sp)
+  FLW ft10, 1484(sp)
+  FSGNJ.S ft9, ft9, ft10
+  FSW ft9, 196(sp)
+  FSW ft8, 200(sp)
+  FSW fa7, 64(sp)
+  FLW fa7, 1488(sp)
+  FLW ft8, 1488(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 160(sp)
+  FLW fa7, 1496(sp)
+  FLW ft8, 1496(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 8(sp)
+  FLW fa7, 1500(sp)
+  FLW ft8, 1500(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 300(sp)
+  FLW fa7, 1504(sp)
+  FLW ft8, 1504(sp)
+  FSGNJ.S fa7, fa7, ft8
+  FSW fa7, 304(sp)
+  FSW fa2, 308(sp)
+  FSW fa1, 1572(sp)
+  FSW fa0, 1416(sp)
+  FLW fa0, 1052(sp)
+  FLW fa1, 1052(sp)
+  FSGNJ.S fa0, fa0, fa1
+  FSW fa0, 1576(sp)
+  FLW ft0, 1224(sp)
+  FLW ft2, 1224(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1224(sp)
+  FLW ft0, 1080(sp)
+  FLW ft2, 1080(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1080(sp)
+  FLW ft0, 1084(sp)
+  FLW ft2, 1084(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1084(sp)
+  FLW ft0, 1088(sp)
+  FLW ft2, 1088(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1088(sp)
+  FLW ft0, 1100(sp)
+  FLW ft2, 1100(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1100(sp)
+  FLW ft0, 1248(sp)
+  FLW ft2, 1248(sp)
+  FSGNJ.S ft0, ft0, ft2
+  FSW ft0, 1248(sp)
+  FLW ft2, 212(sp)
+  FLW ft3, 212(sp)
+  FSGNJ.S ft0, ft2, ft3
+  FSW ft0, 1252(sp)
+  FLW ft2, 216(sp)
+  FLW ft3, 216(sp)
+  FSGNJ.S ft0, ft2, ft3
+  FSW ft0, 1256(sp)
+  FLW ft2, 220(sp)
+  FLW ft3, 220(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1332(sp)
+  FLW ft2, 224(sp)
+  FLW ft3, 224(sp)
+  FSGNJ.S ft2, ft2, ft3
+  FSW ft2, 1336(sp)
+  FLW ft2, 228(sp)
+  FLW fa0, 228(sp)
+  FSGNJ.S ft2, ft2, fa0
+  FLW fa0, 232(sp)
   FLW fs0, 232(sp)
-  FLW fs1, 232(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1852(sp)
-  FLW fs0, 228(sp)
-  FLW fs1, 228(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1856(sp)
-  FLW fs0, 224(sp)
-  FLW fs1, 224(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1860(sp)
-  FLW fs0, 220(sp)
-  FLW fs1, 220(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1864(sp)
-  FLW fs0, 216(sp)
-  FLW fs1, 216(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1868(sp)
-  FLW fs0, 212(sp)
-  FLW fs1, 212(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1872(sp)
-  FLW fs0, 208(sp)
-  FLW fs1, 208(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1712(sp)
-  FLW fs0, 204(sp)
-  FLW fs1, 204(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1672(sp)
-  FLW fs0, 200(sp)
-  FLW fs1, 200(sp)
-  FSGNJ.S fs0, fs0, fs1
-  FSW fs0, 1668(sp)
-  FLW fs0, 164(sp)
-  FLW fs1, 164(sp)
-  FSGNJ.S fs1, fs0, fs1
-  FLW fs0, 132(sp)
-  FLW fs2, 132(sp)
-  FSGNJ.S fs5, fs0, fs2
-  FLW fs0, 136(sp)
-  FLW fs2, 136(sp)
-  FSGNJ.S fs8, fs0, fs2
-  FLW fs0, 140(sp)
-  FLW fs2, 140(sp)
-  FSGNJ.S fs4, fs0, fs2
-  FLW fs0, 144(sp)
-  FLW fs2, 144(sp)
-  FSGNJ.S fs0, fs0, fs2
-  LUI t6, 1
-  ADDIW t6, t6, -1168
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 148(sp)
-  FLW fs2, 148(sp)
-  FSGNJ.S fs3, fs0, fs2
-  FLW fs0, 152(sp)
-  FLW fs2, 152(sp)
-  FSGNJ.S fs2, fs0, fs2
-  FLW fs0, 156(sp)
-  FLW fs9, 156(sp)
-  FSGNJ.S fs0, fs0, fs9
-  FSW fs0, 768(sp)
-  FLW fs0, 160(sp)
-  FLW fs9, 160(sp)
-  FSGNJ.S fs0, fs0, fs9
-  FSW fs0, 764(sp)
-  FLW fs0, 128(sp)
-  FLW fs9, 128(sp)
-  FSGNJ.S fs9, fs0, fs9
-  FLW fs0, 168(sp)
-  FLW fs10, 168(sp)
-  FSGNJ.S fs0, fs0, fs10
-  LUI t6, 1
-  ADDIW t6, t6, -1172
-  ADD t6, t6, sp
-  FSW fs0, 0(t6)
-  FLW fs0, 52(sp)
-  FLW fs10, 52(sp)
-  FSGNJ.S fs0, fs0, fs10
+  FSGNJ.S ft3, fa0, fs0
+  FSW ft3, 1340(sp)
+  FLW fs0, 420(sp)
+  FLW fs10, 420(sp)
+  FSGNJ.S ft3, fs0, fs10
   JAL zero, bb5

@@ -13,36 +13,32 @@ N:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  SD s3, 32(sp)
-  FSD fs0, 40(sp)
-  FSD fs1, 48(sp)
-  FSD fs2, 56(sp)
-  ADDI a0, zero, 0
-  ADDI s0, zero, 1
-  FCVT.S.W fs0, a0
-  ADDI s2, zero, 2
-  FCVT.S.W fs1, s0
-  LA a0, N
-  FSUB.S fs2, fs0, fs0
-  LA s1, M
-  FCVT.S.W fs0, s2
-  ADDI s0, zero, 3
-  FSUB.S fs1, fs1, fs1
-  LA s3, L
-  FSUB.S fs0, fs0, fs0
-  ADDI s2, zero, 3
-  SW s0, 0(a0)
+  ADDI t0, zero, 0
+  ADDI t1, zero, 1
+  FCVT.S.W ft0, t0
+  ADDI a0, zero, 2
+  FCVT.S.W ft1, t1
+  LA t0, N
+  FSUB.S ft2, ft0, ft0
+  LA t2, M
+  FCVT.S.W ft0, a0
+  ADDI t1, zero, 3
+  FSUB.S ft1, ft1, ft1
+  LA a1, L
+  FSUB.S ft0, ft0, ft0
   ADDI a0, zero, 3
-  FCVT.W.S s0, fs2, rtz
-  SW s2, 0(s1)
-  SW a0, 0(s3)
-  FCVT.W.S s1, fs1, rtz
-  FCVT.W.S s2, fs0, rtz
+  SW t1, 0(t0)
+  ADDI t0, zero, 3
+  FCVT.W.S s0, ft2, rtz
+  SW a0, 0(t2)
+  SW t0, 0(a1)
+  FCVT.W.S s1, ft1, rtz
+  FCVT.W.S s2, ft0, rtz
   ADD a0, s0, zero
   CALL putint
   ADD a0, s1, zero
@@ -72,9 +68,5 @@ main:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  LD s3, 32(sp)
-  FLD fs0, 40(sp)
-  FLD fs1, 48(sp)
-  FLD fs2, 56(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 32
   JALR zero, 0(ra)

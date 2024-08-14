@@ -59,6 +59,8 @@ public:
   // Arithmetic operations
   ConstantInt *add(ConstantInt *rhs) const;
   ConstantInt *sub(ConstantInt *rhs) const;
+  ConstantInt *mul(ConstantInt *rhs) const;
+  ConstantInt *sdiv(ConstantInt *rhs) const;
   ConstantInt *shl(ConstantInt *shlNum) const;
 
 private:

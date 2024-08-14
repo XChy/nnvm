@@ -23,26 +23,26 @@ main:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   LA a0, seq
-  LA s3, table
-  LA s4, n
-  LA s2, table
-  LA s1, seq
-  LA s5, n
   LA s0, table
+  LA s1, n
+  LA s3, table
+  LA s2, seq
+  LA s4, n
+  LA s5, table
   CALL getarray
-  ADD a0, s3, zero
+  ADD a0, s0, zero
   CALL getarray
   ADDI a0, zero, 79
   CALL _sysy_starttime
-  LW a0, 0(s4)
-  ADD a2, s2, zero
-  ADD a1, s1, zero
+  LW a0, 0(s1)
+  ADD a2, s3, zero
+  ADD a1, s2, zero
   CALL kernel_nussinov
   ADDI a0, zero, 81
   CALL _sysy_stoptime
-  LW a0, 0(s5)
-  ADD a1, s0, zero
-  MULW a0, a0, a0
+  LW t0, 0(s4)
+  ADD a1, s5, zero
+  MULW a0, t0, t0
   CALL putarray
   ADD a0, zero, zero
   LD ra, 0(sp)

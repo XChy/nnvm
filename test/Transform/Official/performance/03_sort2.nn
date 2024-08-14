@@ -231,7 +231,7 @@ while.body198:  pred(while.exit206, while.exit124)
 while.body205_preheader:  pred(while.body198)
   br bb %while.body205
 while.body205:  pred(while.exit227, while.body205_preheader)
-  209.load527536 = phi [bb %while.exit227, i32 %209.load, bb %while.body205_preheader, i32 %209.load527]
+  209.load527536 = phi [bb %while.exit227, i32 %285, bb %while.body205_preheader, i32 %209.load527]
   t.phi399534 = phi [bb %while.exit227, i32 %t.phi, bb %while.body205_preheader, i32 %t.phi400541]
   505 = shl i32 %209.load527536, i32 2
   223 = ptradd ptr %a, i32 %505
@@ -265,9 +265,7 @@ while.exit227:  pred(getNumPos.while.exit35475)
   store i32 %v.phi to ptr %274
   285 = add i32 %271.load, i32 1
   store i32 %285 to ptr %209526
-  209.load = load i32 from ptr %209526
-  213.load = load i32 from ptr %213528
-  215 = icmp slt i32 %209.load, i32 %213.load
+  215 = icmp slt i32 %285, i32 %213.load529
   br i1 %215, bb %while.body205, bb %while.body205_exclu_exit
 getNumPos.while.body34_preheader:  pred(while.body123)
   br bb %getNumPos.while.body34

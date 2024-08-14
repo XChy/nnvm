@@ -4,14 +4,11 @@
 .section .data
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -432
+  ADDI sp, sp, -416
   SD ra, 400(sp)
   SD s0, 408(sp)
-  SD s1, 416(sp)
-  SD s2, 424(sp)
   CALL getint
-  ADD s0, a0, zero
-  BNE s0, zero, bb9
+  BNE a0, zero, bb9
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD s0, zero, zero
@@ -27,9 +24,7 @@ bb4:   # loop depth 0
   REMW a0, t0, t1
   LD ra, 400(sp)
   LD s0, 408(sp)
-  LD s1, 416(sp)
-  LD s2, 424(sp)
-  ADDI sp, sp, 432
+  ADDI sp, sp, 416
   JALR zero, 0(ra)
 bb5:   # loop depth 0
   ADD t0, zero, zero
@@ -52,15 +47,13 @@ bb9:   # loop depth 0
   # implict jump to bb10
 bb10:   # loop depth 1
   CALL getint
-  SLLIW s2, s0, 2
-  ADD s1, a0, zero
+  SLLIW t0, s0, 2
   ADDI t6, sp, 0
-  ADD s2, t6, s2
+  ADD t0, t6, t0
   ADDIW s0, s0, 1
-  SW s1, 0(s2)
+  SW a0, 0(t0)
   CALL getint
-  ADD s1, a0, zero
-  BNE s1, zero, bb12
+  BNE a0, zero, bb12
   # implict jump to bb11
 bb11:   # loop depth 0
   JAL zero, bb2

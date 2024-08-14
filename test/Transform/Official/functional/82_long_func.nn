@@ -62,7 +62,6 @@ while.body:  pred(if.exit958)
   pres.phi52967451 = phi [bb %if.exit958, i32 %pres.phi]
   br bb %while.body21
 while.exit:  pred(while.body_exclu_exit, entry)
-  45374457450 = phi [bb %while.body_exclu_exit, i1 ub, bb %entry, i1 %4537445]
   7446 = phi [bb %while.body_exclu_exit, i32 %pres.phi, bb %entry, i32 1]
   call void putint(i32 %7446)
   call void putch(i32 10)
@@ -297,7 +296,7 @@ while.exit289:  pred(if.exit114, while.body288_exclu_exit)
   ml.phi6366 = phi [bb %while.body288_exclu_exit, i32 %ans.phi5141, bb %if.exit114, i32 %ml.phi6412]
   sum286.phi52436365 = phi [bb %while.body288_exclu_exit, i32 %ans.phi5141, bb %if.exit114, i32 %sum286.phi52436406]
   select365.phi52496364 = phi [bb %while.body288_exclu_exit, i1 %5926, bb %if.exit114, i1 %select365.phi52496405]
-  br i1 ub, bb %then454, bb %else456
+  br i1 %4537445, bb %then454, bb %else456
 while.body299:  pred(if.exit308, while.body288)
   i.phi41606362 = phi [bb %if.exit308, i32 %344, bb %while.body288, i32 0]
   y.phi42786361 = phi [bb %if.exit308, i32 %341, bb %while.body288, i32 %c284.phi6374]
@@ -435,7 +434,7 @@ while.exit513:  pred(if.exit59, while.body512_exclu_exit)
   sum565.phi52186500 = phi [bb %while.body512_exclu_exit, i32 %sum565.phi5216, bb %if.exit59, i32 %sum565.phi52187460]
   al561.phi52256499 = phi [bb %while.body512_exclu_exit, i32 %al561.phi5223, bb %if.exit59, i32 %al561.phi52257459]
   6498 = phi [bb %while.body512_exclu_exit, i32 %mres510.phi, bb %if.exit59, i32 0]
-  br i1 ub, bb %then957, bb %else959
+  br i1 %4537445, bb %then957, bb %else959
 while.body522:  pred(if.exit539, while.body512)
   i.phi41536496 = phi [bb %if.exit539, i32 %556, bb %while.body512, i32 0]
   y.phi42716495 = phi [bb %if.exit539, i32 %553, bb %while.body512, i32 1]
@@ -589,7 +588,7 @@ while.exit735:  pred(if.exit560, while.body734_exclu_exit)
   select811.phi51846478 = phi [bb %while.body734_exclu_exit, i1 %5931, bb %if.exit560, i1 %select811.phi51846517]
   sum732.phi51876477 = phi [bb %while.body734_exclu_exit, i32 %ans.phi5112, bb %if.exit560, i32 %sum732.phi51876516]
   ml506.phi6476 = phi [bb %while.body734_exclu_exit, i32 %ans.phi5112, bb %if.exit560, i32 %ml506.phi6519]
-  br i1 ub, bb %then900, bb %else902
+  br i1 %4537445, bb %then900, bb %else902
 while.body745:  pred(if.exit754, while.body734)
   i.phi41466474 = phi [bb %if.exit754, i32 %790, bb %while.body734, i32 0]
   y.phi42646473 = phi [bb %if.exit754, i32 %787, bb %while.body734, i32 %c730.phi6486]
@@ -1112,7 +1111,7 @@ while.exit1293:  pred(if.exit1118, while.body1292_exclu_exit)
   sum1290.phi47706597 = phi [bb %while.body1292_exclu_exit, i32 %ans.phi507511033, bb %if.exit1118, i32 %sum1290.phi47706639]
   ml1064.phi6596 = phi [bb %while.body1292_exclu_exit, i32 %29896, bb %if.exit1118, i32 %ml1064.phi6643]
   ml1064.phi6595 = phi [bb %while.body1292_exclu_exit, i32 %ans.phi507511033, bb %if.exit1118, i32 %ml1064.phi6643]
-  br i1 %45374457450, bb %then1458, bb %else1460
+  br i1 %4537445, bb %then1458, bb %else1460
 then1311:  pred(while.body1292)
   5448 = icmp eq i32 %5447, i32 0
   29001 = zext i1 %5448 to i32
@@ -1299,7 +1298,7 @@ while.exit1517:  pred(if.exit1063, while.body1516_exclu_exit)
   6731 = phi [bb %while.body1516_exclu_exit, i32 %mres1514.phi, bb %if.exit1063, i32 0]
   select1867.phi48106730 = phi [bb %while.body1516_exclu_exit, i1 %select1867.phi48096707, bb %if.exit1063, i1 %select1867.phi48107422]
   select1648.phi52046729 = phi [bb %while.body1516_exclu_exit, i1 %select1648.phi5202, bb %if.exit1063, i1 %select1648.phi52047413]
-  br i1 %45374457450, bb %then1961, bb %else1963
+  br i1 %4537445, bb %then1961, bb %else1963
 then1563:  pred(while.body1516.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
   15746670 = icmp ne i32 %ml1510.phi6743, i32 0
   br i1 %15746670, bb %while.body1571_preheader, bb %while.exit1572
@@ -1359,7 +1358,7 @@ while.exit1739:  pred(if.exit1564, while.body1738_exclu_exit)
   select1815.phi46826709 = phi [bb %while.body1738_exclu_exit, i1 %594213534, bb %if.exit1564, i1 %select1815.phi46826747]
   sum1736.phi47306708 = phi [bb %while.body1738_exclu_exit, i32 %ans.phi504614138, bb %if.exit1564, i32 %sum1736.phi47306746]
   select1867.phi48096707 = phi [bb %while.body1738_exclu_exit, i1 %594313159, bb %if.exit1564, i1 %select1867.phi48096744]
-  br i1 %45374457450, bb %then1904, bb %else1906
+  br i1 %4537445, bb %then1904, bb %else1906
 then1757:  pred(while.body1738)
   5501 = icmp eq i32 %5500, i32 0
   29006 = zext i1 %5501 to i32
@@ -1882,7 +1881,7 @@ while.exit2305:  pred(if.exit2130, while.body2304_exclu_exit)
   select2433.phi47026828 = phi [bb %while.body2304_exclu_exit, i1 %594916264, bb %if.exit2130, i1 %select2433.phi47026868]
   sum2302.phi52636827 = phi [bb %while.body2304_exclu_exit, i32 %ans.phi501117243, bb %if.exit2130, i32 %sum2302.phi52636865]
   select2381.phi52776826 = phi [bb %while.body2304_exclu_exit, i1 %594816639, bb %if.exit2130, i1 %select2381.phi52776864]
-  br i1 %45374457450, bb %then2470, bb %else2472
+  br i1 %4537445, bb %then2470, bb %else2472
 then2323:  pred(while.body2304)
   5561 = icmp eq i32 %5560, i32 0
   29012 = zext i1 %5561 to i32
@@ -2071,7 +2070,7 @@ while.exit2529:  pred(if.exit2075, while.body2528_exclu_exit)
   c2579.phi48296962 = phi [bb %while.body2528_exclu_exit, i32 %c2579.phi4827, bb %if.exit2075, i32 %c2579.phi48297043]
   select2879.phi48946961 = phi [bb %while.body2528_exclu_exit, i1 %select2879.phi48936938, bb %if.exit2075, i1 %select2879.phi48947039]
   select2549.phi52936960 = phi [bb %while.body2528_exclu_exit, i1 %595020734, bb %if.exit2075, i1 %select2549.phi52937033]
-  br i1 %45374457450, bb %then2973, bb %else2975
+  br i1 %4537445, bb %then2973, bb %else2975
 then2575:  pred(while.body2528.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
   25866901 = icmp ne i32 %ml2522.phi6988, i32 0
   br i1 %25866901, bb %while.body2583_preheader, bb %while.exit2584
@@ -2131,7 +2130,7 @@ while.exit2751:  pred(if.exit2576, while.body2750_exclu_exit)
   select2827.phi46666940 = phi [bb %while.body2750_exclu_exit, i1 %595319744, bb %if.exit2576, i1 %select2827.phi46666979]
   sum2748.phi47266939 = phi [bb %while.body2750_exclu_exit, i32 %ans.phi498420348, bb %if.exit2576, i32 %sum2748.phi47266978]
   select2879.phi48936938 = phi [bb %while.body2750_exclu_exit, i1 %595419369, bb %if.exit2576, i1 %select2879.phi48936976]
-  br i1 %45374457450, bb %then2916, bb %else2918
+  br i1 %4537445, bb %then2916, bb %else2918
 then2769:  pred(while.body2750)
   5614 = icmp eq i32 %5613, i32 0
   29017 = zext i1 %5614 to i32
@@ -2659,7 +2658,7 @@ while.exit3320:  pred(if.exit3145, while.body3319_exclu_exit)
   sum3317.phi47657130 = phi [bb %while.body3319_exclu_exit, i32 %ans.phi494823828, bb %if.exit3145, i32 %sum3317.phi47657173]
   ml3091.phi7129 = phi [bb %while.body3319_exclu_exit, i32 %31336, bb %if.exit3145, i32 %ml3091.phi7167]
   select3396.phi48747128 = phi [bb %while.body3319_exclu_exit, i1 %595923224, bb %if.exit3145, i1 %select3396.phi48747166]
-  br i1 %45374457450, bb %then3485, bb %else3487
+  br i1 %4537445, bb %then3485, bb %else3487
 then3338:  pred(while.body3319)
   5675 = icmp eq i32 %5674, i32 0
   29023 = zext i1 %5675 to i32
@@ -2848,7 +2847,7 @@ while.exit3544:  pred(if.exit3090, while.body3543_exclu_exit)
   sum3763.phi47237264 = phi [bb %while.body3543_exclu_exit, i32 %sum3763.phi47227242, bb %if.exit3090, i32 %sum3763.phi47237348]
   select3894.phi48247263 = phi [bb %while.body3543_exclu_exit, i1 %select3894.phi48237241, bb %if.exit3090, i1 %select3894.phi48247339]
   al3759.phi48567262 = phi [bb %while.body3543_exclu_exit, i32 %ml3537.phi7240, bb %if.exit3090, i32 %al3759.phi48567337]
-  br i1 %45374457450, bb %then3988, bb %else3990
+  br i1 %4537445, bb %then3988, bb %else3990
 then3590:  pred(while.body3543.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
   36017203 = icmp ne i32 %ml3537.phi7289, i32 0
   br i1 %36017203, bb %while.body3598_preheader, bb %while.exit3599
@@ -2908,7 +2907,7 @@ while.exit3766:  pred(if.exit3591, while.body3765_exclu_exit)
   sum3763.phi47227242 = phi [bb %while.body3765_exclu_exit, i32 %ans.phi491926933, bb %if.exit3591, i32 %sum3763.phi47227279]
   select3894.phi48237241 = phi [bb %while.body3765_exclu_exit, i1 %596525954, bb %if.exit3591, i1 %select3894.phi48237278]
   ml3537.phi7240 = phi [bb %while.body3765_exclu_exit, i32 %ans.phi491926933, bb %if.exit3591, i32 %ml3537.phi7289]
-  br i1 %45374457450, bb %then3931, bb %else3933
+  br i1 %4537445, bb %then3931, bb %else3933
 then3784:  pred(while.body3765)
   5728 = icmp eq i32 %5727, i32 0
   29028 = zext i1 %5728 to i32
