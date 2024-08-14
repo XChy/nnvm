@@ -629,7 +629,7 @@ bb123:   # loop depth 1
   # implict jump to bb124
 bb124:   # loop depth 0
   LW t0, 0(t2)
-  OR a7, zero, a7
+  OR a7, a7, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a7, zero, bb242
@@ -648,7 +648,7 @@ bb128:   # loop depth 0
   # implict jump to bb129
 bb129:   # loop depth 0
   LW t0, 0(t2)
-  OR s3, zero, a6
+  OR s3, a6, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s3, zero, bb236
@@ -671,7 +671,7 @@ bb133:   # loop depth 0
   # implict jump to bb134
 bb134:   # loop depth 0
   LW t0, 0(t2)
-  OR a4, zero, a4
+  OR a4, a4, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a4, zero, bb235
@@ -685,7 +685,7 @@ bb136:   # loop depth 0
   # implict jump to bb137
 bb137:   # loop depth 0
   LW t0, 0(t2)
-  OR s3, zero, a3
+  OR s3, a3, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s3, zero, bb233
@@ -717,7 +717,7 @@ bb145:   # loop depth 0
   # implict jump to bb146
 bb146:   # loop depth 0
   LW t0, 0(t2)
-  OR s2, zero, s2
+  OR s2, s2, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s2, zero, bb224
@@ -736,7 +736,7 @@ bb150:   # loop depth 0
   # implict jump to bb151
 bb151:   # loop depth 0
   LW t0, 0(t2)
-  OR s0, zero, s0
+  OR s0, s0, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s0, zero, bb218
@@ -754,7 +754,7 @@ bb154:   # loop depth 0
   # implict jump to bb155
 bb155:   # loop depth 0
   LW t0, 0(t2)
-  OR t5, zero, t5
+  OR t5, t5, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE t5, zero, bb216
@@ -772,7 +772,7 @@ bb158:   # loop depth 0
   # implict jump to bb159
 bb159:   # loop depth 0
   LW t0, 0(t2)
-  OR t4, zero, t4
+  OR t4, t4, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE t4, zero, bb214
@@ -790,7 +790,7 @@ bb162:   # loop depth 0
   # implict jump to bb163
 bb163:   # loop depth 0
   LW t0, 0(t2)
-  OR t3, zero, t3
+  OR t3, t3, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE t3, zero, bb213
@@ -833,7 +833,7 @@ bb174:   # loop depth 0
   # implict jump to bb175
 bb175:   # loop depth 0
   LW t0, 0(t2)
-  OR a3, zero, a3
+  OR a3, a3, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a3, zero, bb197
@@ -849,7 +849,7 @@ bb178:   # loop depth 0
   # implict jump to bb179
 bb179:   # loop depth 0
   LW t0, 0(t2)
-  OR a2, zero, a2
+  OR a2, a2, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a2, zero, bb195
@@ -870,7 +870,7 @@ bb184:   # loop depth 0
   # implict jump to bb185
 bb185:   # loop depth 0
   LW t0, 0(t2)
-  OR t1, zero, t1
+  OR t1, t1, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE t1, zero, bb189
@@ -908,7 +908,7 @@ bb190:   # loop depth 0
   JAL zero, bb188
 bb191:   # loop depth 0
   LW t0, 0(t2)
-  OR a1, zero, a1
+  OR a1, a1, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a1, zero, bb194
@@ -955,7 +955,7 @@ bb202:   # loop depth 0
   JAL zero, bb201
 bb203:   # loop depth 0
   LW t0, 0(t2)
-  OR a5, zero, a5
+  OR a5, a5, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a5, zero, bb206
@@ -973,7 +973,7 @@ bb206:   # loop depth 0
   JAL zero, bb205
 bb207:   # loop depth 0
   LW t0, 0(t2)
-  OR a6, zero, a6
+  OR a6, a6, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE a6, zero, bb210
@@ -1018,7 +1018,7 @@ bb219:   # loop depth 0
   JAL zero, bb154
 bb220:   # loop depth 0
   LW t0, 0(t2)
-  OR s1, zero, s1
+  OR s1, s1, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s1, zero, bb223
@@ -1039,7 +1039,7 @@ bb224:   # loop depth 0
   JAL zero, bb148
 bb225:   # loop depth 0
   LW t0, 0(t2)
-  OR s3, zero, a1
+  OR s3, a1, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s3, zero, bb228
@@ -1055,7 +1055,7 @@ bb228:   # loop depth 0
   JAL zero, bb227
 bb229:   # loop depth 0
   LW t0, 0(t2)
-  OR s3, zero, a2
+  OR s3, a2, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s3, zero, bb232
@@ -1088,7 +1088,7 @@ bb237:   # loop depth 0
   JAL zero, bb132
 bb238:   # loop depth 0
   LW t0, 0(t2)
-  OR s3, zero, s3
+  OR s3, s3, zero
   ADDIW t0, t0, 3
   SW t0, 0(t2)
   BNE s3, zero, bb241

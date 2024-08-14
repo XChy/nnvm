@@ -22,10 +22,10 @@ entry153:  pred()
   160 = sdiv i32 %n.load157, i32 2
   br bb %median.loop_entry
 median.loop_entry:  pred(entry153, median.loop_entry_unified_latch)
-  pos.loop210 = phi [bb %entry153, i32 %160, bb %median.loop_entry_unified_latch, i32 %471]
-  end.loop211 = phi [bb %entry153, i32 %197, bb %median.loop_entry_unified_latch, i32 %472]
-  begin.loop212 = phi [bb %entry153, i32 0, bb %median.loop_entry_unified_latch, i32 %473]
-  arr.loop213 = phi [bb %entry153, ptr %a.pinned, bb %median.loop_entry_unified_latch, ptr %474]
+  pos.loop210 = phi [bb %entry153, i32 %160, bb %median.loop_entry_unified_latch, i32 %469]
+  end.loop211 = phi [bb %entry153, i32 %197, bb %median.loop_entry_unified_latch, i32 %470]
+  begin.loop212 = phi [bb %entry153, i32 0, bb %median.loop_entry_unified_latch, i32 %471]
+  arr.loop213 = phi [bb %entry153, ptr %a.pinned, bb %median.loop_entry_unified_latch, ptr %472]
   443 = shl i32 %begin.loop212, i32 2
   61215 = ptradd ptr %arr.loop213, i32 %443
   61.load216 = load i32 from ptr %61215
@@ -43,8 +43,8 @@ median.while.cond74:  pred(median.while.cond69, median.if.exit)
   br i1 %79232, bb %median.while.body75, bb %median.while.exit76
 median.while.body75:  pred(median.while.cond74)
   189235 = add i32 %r.phi176231, i32 -1
-  450 = shl i32 %r.phi176231, i32 2
-  431 = ptradd ptr %arr.loop213, i32 %450
+  448 = shl i32 %r.phi176231, i32 2
+  431 = ptradd ptr %arr.loop213, i32 %448
   433 = ptradd ptr %431, i32 -4
   86.load238 = load i32 from ptr %433
   89239 = icmp slt i32 %86.load238, i32 %61.load216
@@ -64,8 +64,8 @@ median.while.cond95:  pred(median.while.exit76, median.if.exit112)
   br i1 %100252, bb %median.while.body96, bb %median.while.exit97
 median.while.body96:  pred(median.while.cond95)
   104255 = add i32 %l.phi172251, i32 1
-  451 = shl i32 %l.phi172251, i32 2
-  436 = ptradd ptr %arr.loop213, i32 %451
+  449 = shl i32 %l.phi172251, i32 2
+  436 = ptradd ptr %arr.loop213, i32 %449
   438 = ptradd ptr %436, i32 4
   107.load258 = load i32 from ptr %438
   110259 = icmp sge i32 %107.load258, i32 %61.load216
@@ -73,7 +73,7 @@ median.while.body96:  pred(median.while.cond95)
 median.while.exit97:  pred(median.while.cond95, median.then111)
   l.phi262 = phi [bb %median.while.cond95, i32 %l.phi172251, bb %median.then111, i32 %104255]
   118263 = icmp eq i32 %l.phi262, i32 %r.phi242
-  446 = shl i32 %l.phi262, i32 2
+  444 = shl i32 %l.phi262, i32 2
   br i1 %118263, bb %median.then119, bb %median.else
 median.then111:  pred(median.while.body96)
   br bb %median.while.exit97
@@ -82,26 +82,26 @@ median.if.exit112:  pred(median.while.body96)
   br bb %median.while.cond95
 median.then119:  pred(median.while.exit97)
   store i32 %61.load216 to ptr %61215
-  44318 = ptradd ptr %arr.loop213, i32 %446
+  44318 = ptradd ptr %arr.loop213, i32 %444
   44.load319 = load i32 from ptr %44318
   store i32 %44.load319 to ptr %61215
   store i32 %61.load216 to ptr %44318
-  10398452 = icmp slt i32 0, i32 %begin.loop212
-  17399453 = icmp slt i32 0, i32 %l.phi262
-  200400454 = and i1 %10398452, i1 %17399453
-  br i1 %200400454, bb %meanless_calculation.while.body402_preheader, bb %meanless_calculation.while.exit407
+  10398450 = icmp slt i32 0, i32 %begin.loop212
+  17399451 = icmp slt i32 0, i32 %l.phi262
+  200400452 = and i1 %10398450, i1 %17399451
+  br i1 %200400452, bb %meanless_calculation.while.body402_preheader, bb %meanless_calculation.while.exit407
 median.else:  pred(median.while.exit97)
-  36328 = ptradd ptr %arr.loop213, i32 %446
+  36328 = ptradd ptr %arr.loop213, i32 %444
   36.load329 = load i32 from ptr %36328
-  448 = shl i32 %r.phi242, i32 2
-  44331 = ptradd ptr %arr.loop213, i32 %448
+  446 = shl i32 %r.phi242, i32 2
+  44331 = ptradd ptr %arr.loop213, i32 %446
   44.load332 = load i32 from ptr %44331
   store i32 %44.load332 to ptr %36328
   store i32 %36.load329 to ptr %44331
-  10416457 = icmp slt i32 0, i32 %l.phi262
-  17417458 = icmp slt i32 0, i32 %r.phi242
-  200418459 = and i1 %10416457, i1 %17417458
-  br i1 %200418459, bb %meanless_calculation.while.body420_preheader, bb %meanless_calculation.while.exit425
+  10416455 = icmp slt i32 0, i32 %l.phi262
+  17417456 = icmp slt i32 0, i32 %r.phi242
+  200418457 = and i1 %10416455, i1 %17417456
+  br i1 %200418457, bb %meanless_calculation.while.body420_preheader, bb %meanless_calculation.while.exit425
 median.then136:  pred(meanless_calculation.while.exit407)
   br bb %median.loop_entry_unified_latch
 median.if.exit137:  pred(meanless_calculation.while.exit407)
@@ -116,18 +116,18 @@ median.if.exit146:  pred(median.if.exit137)
   call void putarray(i32 %n.load163, ptr %a.pinned)
   n.load165 = load i32 from ptr %n.pinned
   166 = sdiv i32 %n.load165, i32 2
-  449 = shl i32 %166, i32 2
-  168 = ptradd ptr %a.pinned, i32 %449
+  447 = shl i32 %166, i32 2
+  168 = ptradd ptr %a.pinned, i32 %447
   168.load = load i32 from ptr %168
   170 = srem i32 %168.load, i32 256
   ret i32 %170
 meanless_calculation.while.body402_preheader:  pred(median.then119)
   br bb %meanless_calculation.while.body402
 meanless_calculation.while.body402:  pred(meanless_calculation.while.body402, meanless_calculation.while.body402_preheader)
-  i.phi397456 = phi [bb %meanless_calculation.while.body402, i32 %22403, bb %meanless_calculation.while.body402_preheader, i32 0]
-  ret.phi396455 = phi [bb %meanless_calculation.while.body402, i32 %28405, bb %meanless_calculation.while.body402_preheader, i32 0]
-  22403 = add i32 %i.phi397456, i32 1
-  26404 = add i32 %ret.phi396455, i32 %begin.loop212
+  i.phi397454 = phi [bb %meanless_calculation.while.body402, i32 %22403, bb %meanless_calculation.while.body402_preheader, i32 0]
+  ret.phi396453 = phi [bb %meanless_calculation.while.body402, i32 %28405, bb %meanless_calculation.while.body402_preheader, i32 0]
+  22403 = add i32 %i.phi397454, i32 1
+  26404 = add i32 %ret.phi396453, i32 %begin.loop212
   28405 = add i32 %26404, i32 %22403
   10398 = icmp slt i32 %22403, i32 %begin.loop212
   17399 = icmp slt i32 %22403, i32 %l.phi262
@@ -139,10 +139,10 @@ meanless_calculation.while.exit407:  pred(median.then119, meanless_calculation.w
 meanless_calculation.while.body420_preheader:  pred(median.else)
   br bb %meanless_calculation.while.body420
 meanless_calculation.while.body420:  pred(meanless_calculation.while.body420, meanless_calculation.while.body420_preheader)
-  i.phi415461 = phi [bb %meanless_calculation.while.body420, i32 %22421, bb %meanless_calculation.while.body420_preheader, i32 0]
-  ret.phi414460 = phi [bb %meanless_calculation.while.body420, i32 %28423, bb %meanless_calculation.while.body420_preheader, i32 0]
-  22421 = add i32 %i.phi415461, i32 1
-  26422 = add i32 %ret.phi414460, i32 %l.phi262
+  i.phi415459 = phi [bb %meanless_calculation.while.body420, i32 %22421, bb %meanless_calculation.while.body420_preheader, i32 0]
+  ret.phi414458 = phi [bb %meanless_calculation.while.body420, i32 %28423, bb %meanless_calculation.while.body420_preheader, i32 0]
+  22421 = add i32 %i.phi415459, i32 1
+  26422 = add i32 %ret.phi414458, i32 %l.phi262
   28423 = add i32 %26422, i32 %22421
   10416 = icmp slt i32 %22421, i32 %l.phi262
   17417 = icmp slt i32 %22421, i32 %r.phi242
@@ -151,10 +151,10 @@ meanless_calculation.while.body420:  pred(meanless_calculation.while.body420, me
 meanless_calculation.while.exit425:  pred(median.else, meanless_calculation.while.body420)
   br bb %median.while.cond69
 median.loop_entry_unified_latch:  pred(median.then145, median.then136)
-  474 = phi [bb %median.then145, ptr %arr.loop213, bb %median.then136, ptr %arr.loop213]
-  473 = phi [bb %median.then145, i32 %148281, bb %median.then136, i32 %begin.loop212]
-  472 = phi [bb %median.then145, i32 %end.loop211, bb %median.then136, i32 %l.phi262]
-  471 = phi [bb %median.then145, i32 %pos.loop210, bb %median.then136, i32 %pos.loop210]
+  472 = phi [bb %median.then145, ptr %arr.loop213, bb %median.then136, ptr %arr.loop213]
+  471 = phi [bb %median.then145, i32 %148281, bb %median.then136, i32 %begin.loop212]
+  470 = phi [bb %median.then145, i32 %end.loop211, bb %median.then136, i32 %l.phi262]
+  469 = phi [bb %median.then145, i32 %pos.loop210, bb %median.then136, i32 %pos.loop210]
   br bb %median.loop_entry
 }
 

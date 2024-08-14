@@ -13,7 +13,7 @@ entry68:  pred()
   99 = fneg float %alpha
   4627 = si2f i32 256 to float
   5628 = fdiv float %99, float %4627
-  6629 = fadd float %.pinned793, float %5628
+  6629 = fadd float %5628, float %.pinned793
   10630 = fmul float %6629, float %6629
   14631 = fmul float %10630, float %10630
   18632 = fmul float %14631, float %14631
@@ -24,11 +24,11 @@ entry68:  pred()
   38637 = fmul float %34636, float %34636
   101 = fsub float %.pinned793, float %38637
   106 = fmul float %101, float %101
-  108 = fmul float %.pinned794, float %alpha
+  108 = fmul float %alpha, float %.pinned794
   112 = fmul float %108, float %38637
-  113 = fadd float %.pinned793, float %112
+  113 = fadd float %112, float %.pinned793
   5643 = fdiv float %108, float %4627
-  6644 = fadd float %.pinned793, float %5643
+  6644 = fadd float %5643, float %.pinned793
   10645 = fmul float %6644, float %6644
   14646 = fmul float %10645, float %10645
   18647 = fmul float %14646, float %14646
@@ -48,7 +48,7 @@ entry68:  pred()
   148 = fneg float %.pinned794
   150 = fmul float %148, float %alpha
   5658 = fdiv float %150, float %4627
-  6659 = fadd float %.pinned793, float %5658
+  6659 = fadd float %5658, float %.pinned793
   10660 = fmul float %6659, float %6659
   14661 = fmul float %10660, float %10660
   18662 = fmul float %14661, float %14661

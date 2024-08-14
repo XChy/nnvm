@@ -97,11 +97,11 @@ while.body:  pred(while.body, if.exit134)
   i.phi603 = phi [bb %while.body, i32 %194, bb %if.exit134, i32 1]
   p.phi602 = phi [bb %while.body, i32 %197, bb %if.exit134, i32 0]
   160 = call float getfloat()
-  164 = fmul float %.pinned615, float %160
+  164 = fmul float %160, float %.pinned615
   166 = fmul float %164, float %160
   169 = f2si float %160 to i32
   14377 = si2f i32 %169 to float
-  15378 = fmul float %.pinned615, float %14377
+  15378 = fmul float %14377, float %.pinned615
   18379 = fmul float %15378, float %14377
   21380 = mul i32 %169, i32 %169
   23381 = si2f i32 %21380 to float
@@ -207,7 +207,7 @@ assert.if.exit64:  pred(assert.then63, assert.else65)
   .pinned615 = pin float 3.141593
   91 = f2si float 5.500000 to i32
   14351 = si2f i32 %91 to float
-  15352 = fmul float %.pinned615, float %14351
+  15352 = fmul float %14351, float %.pinned615
   18353 = fmul float %15352, float %14351
   21354 = mul i32 %91, i32 %91
   23355 = si2f i32 %21354 to float
@@ -215,7 +215,7 @@ assert.if.exit64:  pred(assert.then63, assert.else65)
   25357 = fadd float %18353, float %24356
   27359 = fdiv float %25357, float %42397
   14364 = si2f i32 5 to float
-  15365 = fmul float %.pinned615, float %14364
+  15365 = fmul float %14364, float %.pinned615
   18366 = fmul float %15365, float %14364
   23368 = si2f i32 25 to float
   24369 = fmul float %23368, float %.pinned615

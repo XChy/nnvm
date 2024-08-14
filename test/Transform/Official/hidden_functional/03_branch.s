@@ -17,22 +17,14 @@ bb1:   # loop depth 0
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   ADDI t0, zero, -1
-  BGE t0, zero, bb6
+  BGE t0, zero, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
-  BNE zero, zero, bb5
-  # implict jump to bb4
-bb4:   # loop depth 0
   ADDI a0, zero, 10
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb5:   # loop depth 0
-  ADDI a0, zero, 9
-  LD ra, 0(sp)
-  ADDI sp, sp, 16
-  JALR zero, 0(ra)
-bb6:   # loop depth 0
+bb4:   # loop depth 0
   ADDI a0, zero, 6
   LD ra, 0(sp)
   ADDI sp, sp, 16

@@ -23,8 +23,8 @@ while.body_preheader:  pred(entry30008)
 while.body:  pred(while.body, while.body_preheader)
   sum.phi50075 = phi [bb %while.body, i32 %30046, bb %while.body_preheader, i32 0]
   i.phi50074 = phi [bb %while.body, i32 %30049, bb %while.body_preheader, i32 0]
-  50614 = mul i32 %i.phi50074, i32 60
-  30039 = sdiv i32 %50614, i32 60
+  50613 = mul i32 %i.phi50074, i32 60
+  30039 = sdiv i32 %50613, i32 60
   30043 = add i32 %sum.phi50075, i32 %30039
   30046 = srem i32 %30043, i32 536854529
   30049 = add i32 %i.phi50074, i32 1

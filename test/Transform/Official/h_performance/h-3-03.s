@@ -55,8 +55,8 @@ bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 0
   LA s2, corr
-  ADDIW a6, a1, -1
-  BLT zero, a6, bb5
+  ADDIW a5, a1, -1
+  BLT zero, a5, bb5
   # implict jump to bb4
 bb4:   # loop depth 0
   MULW t0, a1, s0
@@ -86,30 +86,30 @@ bb4:   # loop depth 0
 bb5:   # loop depth 0
   ADD t0, zero, zero
   ADD a0, zero, zero
-  ADD a3, zero, zero
+  ADD a4, zero, zero
   # implict jump to bb6
 bb6:   # loop depth 1
   ADD t2, a0, zero
-  ADD a7, s2, a3
-  ADDI a4, zero, 1
+  ADD a7, s2, a4
+  ADDI a3, zero, 1
   SH2ADD t1, t2, a7
   ADDIW a0, t2, 1
-  SW a4, 0(t1)
+  SW a3, 0(t1)
   BLT a0, a1, bb10
   # implict jump to bb7
 bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
-  ADDW a3, a3, s0
-  BLT a0, a6, bb9
+  ADDW a4, a4, s0
+  BLT a0, a5, bb9
   JAL zero, bb4
 bb9:   # loop depth 1
   JAL zero, bb6
 bb10:   # loop depth 1
-  ADD a4, a0, zero
+  ADD a6, a0, zero
   # implict jump to bb11
 bb11:   # loop depth 2
-  SH2ADD t3, a4, a7
+  SH2ADD t3, a6, a7
   SW zero, 0(t3)
   BLT zero, a2, bb16
   # implict jump to bb12
@@ -117,13 +117,13 @@ bb12:   # loop depth 2
   ADD t0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 2
-  MULW t1, a4, s0
-  LW a5, 0(t3)
-  ADDIW a4, a4, 1
+  MULW t1, a6, s0
+  LW a3, 0(t3)
+  ADDIW a6, a6, 1
   ADD t1, s2, t1
   SH2ADD t1, t2, t1
-  SW a5, 0(t1)
-  BLT a4, a1, bb15
+  SW a3, 0(t1)
+  BLT a6, a1, bb15
   # implict jump to bb14
 bb14:   # loop depth 1
   JAL zero, bb8
@@ -132,22 +132,22 @@ bb15:   # loop depth 2
 bb16:   # loop depth 2
   ADD t0, zero, zero
   ADD t1, zero, zero
-  ADD a5, zero, zero
+  ADD a3, zero, zero
   # implict jump to bb17
 bb17:   # loop depth 3
   ADD t4, s1, t1
   SH2ADD t5, t2, t4
-  SH2ADD s3, a4, t4
+  SH2ADD s3, a6, t4
   LW t4, 0(t5)
   ADDW t1, t1, s0
   ADDIW t0, t0, 1
   LW t5, 0(s3)
   MULW t4, t4, t5
-  ADDW a5, a5, t4
+  ADDW a3, a3, t4
   BLT t0, a2, bb19
   # implict jump to bb18
 bb18:   # loop depth 2
-  SW a5, 0(t3)
+  SW a3, 0(t3)
   JAL zero, bb13
 bb19:   # loop depth 3
   JAL zero, bb17

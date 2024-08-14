@@ -42,7 +42,7 @@ entry39:  pred()
   46 = call float getfloat()
   48 = call float getfloat()
   51 = si2f i32 %42 to float
-  52 = fadd float 28.000000, float %51
+  52 = fadd float %51, float 28.000000
   53 = call float fibFP(float %52)
   58 = call float takFP(float %44, float %46, float %48)
   60 = fcmp oeq float %53, float 165580128.000000

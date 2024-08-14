@@ -15,6 +15,11 @@ ConstantInt::ConstantInt(Type *type, GInt value)
     this->value &= 1;
 }
 
+bool ConstantInt::isZero() const { return getValue() == 0; }
+bool ConstantInt::isAllOne() const {
+  return sextOf(getValue(), getType()->getBits()) == GInt(-1);
+}
+
 ConstantInt *ConstantInt::add(ConstantInt *rhs) const {
   ConstantInt *ret =
       create(*getModule(), getType(),
@@ -42,10 +47,25 @@ ConstantInt *ConstantInt::sdiv(ConstantInt *rhs) const {
   return ret;
 }
 
+ConstantInt *ConstantInt::srem(ConstantInt *rhs) const {
+  ConstantInt *ret =
+      create(*getModule(), getType(),
+             genericSRem(getValue(), rhs->getValue(), getType()->getBits()));
+  return ret;
+}
+
 ConstantInt *ConstantInt::shl(ConstantInt *shlNum) const {
   ConstantInt *ret =
       create(*getModule(), getType(),
              genericShl(getValue(), shlNum->getValue(), getType()->getBits()));
+  return ret;
+}
+
+ConstantInt *ConstantInt::zextTo(Type *type) const {
+  assert(type->isInteger());
+  uint mybits = this->type->getBits();
+  GInt zext = getValue() << (64 - mybits) >> (64 - mybits);
+  ConstantInt *ret = create(*getModule(), type, zext);
   return ret;
 }
 

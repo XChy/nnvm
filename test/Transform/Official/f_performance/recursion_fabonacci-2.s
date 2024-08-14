@@ -107,7 +107,7 @@ main:   # loop depth 0
   CALL getfloat
   FLW ft0, 0(s1)
   FSGNJ.D fs2, fa0, fa0
-  FADD.S fa0, ft0, fs3
+  FADD.S fa0, fs3, ft0
   CALL fibFP
   FSGNJ.S fa2, fs2, fs2
   FSGNJ.S fa1, fs1, fs1

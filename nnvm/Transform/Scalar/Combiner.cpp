@@ -27,11 +27,13 @@ bool CombinerPass::run(Function &F) {
 
         builder.insertAt(BasicBlock::Iterator(I, BB));
         if (Value *replaced = simplifyInst(I)) {
-          I->replaceSelf(replaced);
-          I->eraseFromBB();
+          if (replaced != I) {
+            I->replaceSelf(replaced);
+            I->eraseFromBB();
 
-          changed = true;
-          continue;
+            changed = true;
+            continue;
+          }
         }
       }
     }
@@ -42,6 +44,11 @@ bool CombinerPass::run(Function &F) {
 Value *CombinerPass::simplifyInst(Instruction *I) {
   if (Value *ret = folder.fold(I))
     return ret;
+
+  if (I->commutative() && I->getOperand(0)->isConstant()) {
+    I->swapOperand(0, 1);
+    return I;
+  }
 
   if (AddInst *AI = mayCast<AddInst>(I))
     return simplifyAdd(AI);
@@ -57,6 +64,15 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
 
   if (auto *SI = mayCast<SRemInst>(I))
     return simplifySRem(SI);
+
+  if (AndInst *AI = mayCast<AndInst>(I))
+    return simplifyAnd(AI);
+
+  if (OrInst *OI = mayCast<OrInst>(I))
+    return simplifyOr(OI);
+
+  if (XorInst *XI = mayCast<XorInst>(I))
+    return simplifyXor(XI);
 
   if (auto *PAI = mayCast<PtrAddInst>(I))
     return simplifyPtrAdd(PAI);
@@ -174,6 +190,23 @@ Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifySRem(SRemInst *I) { return nullptr; }
 
+Value *CombinerPass::simplifyAnd(AndInst *I) {
+  Value *A, *B, *C;
+  Type *type = I->getType();
+
+  // A & 0 = 0
+  if (match(I, pAnd(pValue(A), pAllOne())))
+    return A;
+
+  // A & -1 = A
+  if (match(I, pAnd(pValue(A), pAllOne())))
+    return A;
+  return nullptr;
+}
+
+Value *CombinerPass::simplifyOr(OrInst *I) { return nullptr; }
+Value *CombinerPass::simplifyXor(XorInst *I) { return nullptr; }
+
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
   Value *A, *B, *C, *C1;
@@ -283,11 +316,11 @@ Value *CombinerPass::simplifyWhichOf(WhichOfInst *I) {
               pICmp(pMustBe(I->getTrueVal()), pMustBe(I->getFalseVal())))) {
       auto pred = cast<ICmpInst>(I->getCond())->getPredicate();
       // A < B ? A : B  --> smin A, B
-      if (pred == ICmpInst::SLT)
+      if (pred == ICmpInst::SLT || pred == ICmpInst::SLE)
         return builder.buildBinOp<SMinInst>(I->getTrueVal(), I->getFalseVal(),
                                             I->getType());
       // A > B ? A : B  --> smax A, B
-      if (pred == ICmpInst::SGT)
+      if (pred == ICmpInst::SGT || pred == ICmpInst::SGE)
         return builder.buildBinOp<SMaxInst>(I->getTrueVal(), I->getFalseVal(),
                                             I->getType());
     }

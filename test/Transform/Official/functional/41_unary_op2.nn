@@ -1,21 +1,7 @@
 i32 main() {
 entry:  pred()
-  14 = zext i1 0 to i32
-  15 = icmp ne i32 %14, i32 0
-  16 = xor i1 %15, i1 1
-  17 = zext i1 %16 to i32
-  18 = icmp ne i32 %17, i32 0
-  19 = xor i1 %18, i1 1
-  20 = zext i1 %19 to i32
-  21 = sub i32 0, i32 %20
-  22 = icmp ne i32 %21, i32 0
-  br i1 %22, bb %a.phi.which.true, bb %entry.split
-entry.split:  pred(entry, a.phi.which.true)
-  39 = phi [bb %a.phi.which.true, i32 -1, bb %entry, i32 4]
-  call void putint(i32 %39)
+  call void putint(i32 4)
   ret i32 0
-a.phi.which.true:  pred(entry)
-  br bb %entry.split
 }
 
 external void putfarray(i32 , ptr )

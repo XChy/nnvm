@@ -10,7 +10,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry567:  pred()
-  %arr766 = stack 64
+  %arr765 = stack 64
   %arr568 = stack 256
   569 = call i32 getint()
   570 = call i32 getint()
@@ -28,281 +28,281 @@ entry567:  pred()
   582 = call i32 getint()
   583 = call i32 getint()
   584 = call i32 getint()
-  store i32 %569 to ptr %arr766
-  arr.index486768 = ptradd ptr %arr766, i32 4
-  store i32 %570 to ptr %arr.index486768
-  arr.index487770 = ptradd ptr %arr766, i32 8
-  store i32 %571 to ptr %arr.index487770
-  arr.index488772 = ptradd ptr %arr766, i32 12
-  store i32 %572 to ptr %arr.index488772
-  arr.index489774 = ptradd ptr %arr766, i32 16
-  store i32 %573 to ptr %arr.index489774
-  arr.index490776 = ptradd ptr %arr766, i32 20
-  store i32 %574 to ptr %arr.index490776
-  arr.index491778 = ptradd ptr %arr766, i32 24
-  store i32 %575 to ptr %arr.index491778
-  arr.index492780 = ptradd ptr %arr766, i32 28
-  store i32 %576 to ptr %arr.index492780
-  arr.index493782 = ptradd ptr %arr766, i32 32
-  store i32 %577 to ptr %arr.index493782
-  arr.index494784 = ptradd ptr %arr766, i32 36
-  store i32 %578 to ptr %arr.index494784
-  arr.index495786 = ptradd ptr %arr766, i32 40
-  store i32 %579 to ptr %arr.index495786
-  arr.index496788 = ptradd ptr %arr766, i32 44
-  store i32 %580 to ptr %arr.index496788
-  arr.index497790 = ptradd ptr %arr766, i32 48
-  store i32 %581 to ptr %arr.index497790
-  arr.index498792 = ptradd ptr %arr766, i32 52
-  store i32 %582 to ptr %arr.index498792
-  arr.index499794 = ptradd ptr %arr766, i32 56
-  store i32 %583 to ptr %arr.index499794
-  arr.index500796 = ptradd ptr %arr766, i32 60
-  store i32 %584 to ptr %arr.index500796
-  br bb %sort.while.body1122
-init:  pred(init, param32_rec.then911065)
-  cnt_ptr.phi1239 = phi [bb %init, i32 %713, bb %param32_rec.then911065, i32 62]
-  713 = add i32 %cnt_ptr.phi1239, i32 -1
-  1224 = shl i32 %713, i32 2
-  715 = add i32 %1224, i32 8
-  arr.index598 = ptradd ptr %arr568, i32 %715
+  store i32 %569 to ptr %arr765
+  arr.index486767 = ptradd ptr %arr765, i32 4
+  store i32 %570 to ptr %arr.index486767
+  arr.index487769 = ptradd ptr %arr765, i32 8
+  store i32 %571 to ptr %arr.index487769
+  arr.index488771 = ptradd ptr %arr765, i32 12
+  store i32 %572 to ptr %arr.index488771
+  arr.index489773 = ptradd ptr %arr765, i32 16
+  store i32 %573 to ptr %arr.index489773
+  arr.index490775 = ptradd ptr %arr765, i32 20
+  store i32 %574 to ptr %arr.index490775
+  arr.index491777 = ptradd ptr %arr765, i32 24
+  store i32 %575 to ptr %arr.index491777
+  arr.index492779 = ptradd ptr %arr765, i32 28
+  store i32 %576 to ptr %arr.index492779
+  arr.index493781 = ptradd ptr %arr765, i32 32
+  store i32 %577 to ptr %arr.index493781
+  arr.index494783 = ptradd ptr %arr765, i32 36
+  store i32 %578 to ptr %arr.index494783
+  arr.index495785 = ptradd ptr %arr765, i32 40
+  store i32 %579 to ptr %arr.index495785
+  arr.index496787 = ptradd ptr %arr765, i32 44
+  store i32 %580 to ptr %arr.index496787
+  arr.index497789 = ptradd ptr %arr765, i32 48
+  store i32 %581 to ptr %arr.index497789
+  arr.index498791 = ptradd ptr %arr765, i32 52
+  store i32 %582 to ptr %arr.index498791
+  arr.index499793 = ptradd ptr %arr765, i32 56
+  store i32 %583 to ptr %arr.index499793
+  arr.index500795 = ptradd ptr %arr765, i32 60
+  store i32 %584 to ptr %arr.index500795
+  br bb %sort.while.body1121
+init:  pred(init, param32_rec.then911064)
+  cnt_ptr.phi1237 = phi [bb %init, i32 %713, bb %param32_rec.then911064, i32 62]
+  713 = add i32 %cnt_ptr.phi1237, i32 -1
+  1223 = shl i32 %713, i32 2
+  arr.index597 = add i32 %1223, i32 8
+  arr.index598 = ptradd ptr %arr568, i32 %arr.index597
   store i32 0 to ptr %arr.index598
   593 = icmp ne i32 %713, i32 0
   br i1 %593, bb %init, bb %init_exclu_exit
-param32_rec.then911065:  pred(sort.while.body1122_exclu_exit, param32_rec.else1067_exclu_exit)
-  506.load8001241 = phi [bb %param32_rec.else1067_exclu_exit, i32 %1001070, bb %sort.while.body1122_exclu_exit, i32 %506.load800]
-  store i32 %506.load8001241 to ptr %arr568
+param32_rec.then911064:  pred(sort.while.body1121_exclu_exit, param32_rec.else1066_exclu_exit)
+  506.load7991239 = phi [bb %param32_rec.else1066_exclu_exit, i32 %1001069, bb %sort.while.body1121_exclu_exit, i32 %506.load799]
+  store i32 %506.load7991239 to ptr %arr568
   arr.index587 = ptradd ptr %arr568, i32 4
   store i32 8848 to ptr %arr.index587
   br bb %init
-param32_rec.else1067_preheader:  pred(sort.while.body1122_exclu_exit)
-  br bb %param32_rec.else1067
-param32_rec.else1067:  pred(param32_rec.else1067, param32_rec.else1067_preheader)
-  a1.loop10621273 = phi [bb %param32_rec.else1067, i32 %7121068, bb %param32_rec.else1067_preheader, i32 %503.load799]
-  a2.loop10611272 = phi [bb %param32_rec.else1067, i32 %1001070, bb %param32_rec.else1067_preheader, i32 %506.load800]
-  a3.loop10601271 = phi [bb %param32_rec.else1067, i32 %a4.loop10591270, bb %param32_rec.else1067_preheader, i32 %509.load801]
-  a4.loop10591270 = phi [bb %param32_rec.else1067, i32 %a5.loop10581269, bb %param32_rec.else1067_preheader, i32 %512.load802]
-  a5.loop10581269 = phi [bb %param32_rec.else1067, i32 %a6.loop10571268, bb %param32_rec.else1067_preheader, i32 %515.load803]
-  a6.loop10571268 = phi [bb %param32_rec.else1067, i32 %a7.loop10561267, bb %param32_rec.else1067_preheader, i32 %518.load804]
-  a7.loop10561267 = phi [bb %param32_rec.else1067, i32 %a8.loop10551266, bb %param32_rec.else1067_preheader, i32 %521.load805]
-  a8.loop10551266 = phi [bb %param32_rec.else1067, i32 %a9.loop10541265, bb %param32_rec.else1067_preheader, i32 %524.load806]
-  a9.loop10541265 = phi [bb %param32_rec.else1067, i32 %a10.loop10531264, bb %param32_rec.else1067_preheader, i32 %527.load807]
-  a10.loop10531264 = phi [bb %param32_rec.else1067, i32 %a11.loop10521263, bb %param32_rec.else1067_preheader, i32 %530.load808]
-  a11.loop10521263 = phi [bb %param32_rec.else1067, i32 %a12.loop10511262, bb %param32_rec.else1067_preheader, i32 %533.load809]
-  a12.loop10511262 = phi [bb %param32_rec.else1067, i32 %a13.loop10501261, bb %param32_rec.else1067_preheader, i32 %536.load810]
-  a13.loop10501261 = phi [bb %param32_rec.else1067, i32 %a14.loop10491260, bb %param32_rec.else1067_preheader, i32 %539.load811]
-  a14.loop10491260 = phi [bb %param32_rec.else1067, i32 %a15.loop10481259, bb %param32_rec.else1067_preheader, i32 %542.load812]
-  a15.loop10481259 = phi [bb %param32_rec.else1067, i32 %a16.loop10471258, bb %param32_rec.else1067_preheader, i32 %545.load813]
-  a16.loop10471258 = phi [bb %param32_rec.else1067, i32 %a17.loop10461257, bb %param32_rec.else1067_preheader, i32 %548.load814]
-  a17.loop10461257 = phi [bb %param32_rec.else1067, i32 %a18.loop10451256, bb %param32_rec.else1067_preheader, i32 %569]
-  a18.loop10451256 = phi [bb %param32_rec.else1067, i32 %a19.loop10441255, bb %param32_rec.else1067_preheader, i32 %570]
-  a19.loop10441255 = phi [bb %param32_rec.else1067, i32 %a20.loop10431254, bb %param32_rec.else1067_preheader, i32 %571]
-  a20.loop10431254 = phi [bb %param32_rec.else1067, i32 %a21.loop10421253, bb %param32_rec.else1067_preheader, i32 %572]
-  a21.loop10421253 = phi [bb %param32_rec.else1067, i32 %a22.loop10411252, bb %param32_rec.else1067_preheader, i32 %573]
-  a22.loop10411252 = phi [bb %param32_rec.else1067, i32 %a23.loop10401251, bb %param32_rec.else1067_preheader, i32 %574]
-  a23.loop10401251 = phi [bb %param32_rec.else1067, i32 %a24.loop10391250, bb %param32_rec.else1067_preheader, i32 %575]
-  a24.loop10391250 = phi [bb %param32_rec.else1067, i32 %a25.loop10381249, bb %param32_rec.else1067_preheader, i32 %576]
-  a25.loop10381249 = phi [bb %param32_rec.else1067, i32 %a26.loop10371248, bb %param32_rec.else1067_preheader, i32 %577]
-  a26.loop10371248 = phi [bb %param32_rec.else1067, i32 %a27.loop10361247, bb %param32_rec.else1067_preheader, i32 %578]
-  a27.loop10361247 = phi [bb %param32_rec.else1067, i32 %a28.loop10351246, bb %param32_rec.else1067_preheader, i32 %579]
-  a28.loop10351246 = phi [bb %param32_rec.else1067, i32 %a29.loop10341245, bb %param32_rec.else1067_preheader, i32 %580]
-  a29.loop10341245 = phi [bb %param32_rec.else1067, i32 %a30.loop10331244, bb %param32_rec.else1067_preheader, i32 %581]
-  a30.loop10331244 = phi [bb %param32_rec.else1067, i32 %a31.loop10321243, bb %param32_rec.else1067_preheader, i32 %582]
-  a31.loop10321243 = phi [bb %param32_rec.else1067, i32 %a32.loop10311242, bb %param32_rec.else1067_preheader, i32 %583]
-  a32.loop10311242 = phi [bb %param32_rec.else1067, i32 0, bb %param32_rec.else1067_preheader, i32 %584]
-  7121068 = add i32 %a1.loop10621273, i32 -1
-  991069 = add i32 %a2.loop10611272, i32 %a3.loop10601271
-  1001070 = srem i32 %991069, i32 998244353
-  901063 = icmp eq i32 %7121068, i32 0
-  br i1 %901063, bb %param32_rec.else1067_exclu_exit, bb %param32_rec.else1067
-sort.while.body1122:  pred(sort.while.exit161141, entry567)
-  i.phi11181276 = phi [bb %sort.while.exit161141, i32 %131123, bb %entry567, i32 0]
-  temp.phi71111171275 = phi [bb %sort.while.exit161141, i32 %temp.phi71111171233, bb %entry567, i32 0]
-  131123 = add i32 %i.phi11181276, i32 1
-  1911301232 = icmp slt i32 %131123, i32 16
-  br i1 %1911301232, bb %sort.while.body151132_preheader, bb %sort.while.exit161141
-sort.while.body151132_preheader:  pred(sort.while.body1122)
-  1229 = shl i32 %i.phi11181276, i32 2
-  231134 = ptradd ptr %arr766, i32 %1229
-  br bb %sort.while.body151132
-sort.while.body151132:  pred(sort.if.exit1149, sort.while.body151132_preheader)
-  j.phi11291235 = phi [bb %sort.if.exit1149, i32 %521151, bb %sort.while.body151132_preheader, i32 %131123]
-  temp.phi71011281234 = phi [bb %sort.if.exit1149, i32 %temp.phi1150, bb %sort.while.body151132_preheader, i32 %temp.phi71111171275]
-  23.load1135 = load i32 from ptr %231134
-  1230 = shl i32 %j.phi11291235, i32 2
-  271137 = ptradd ptr %arr766, i32 %1230
-  27.load1138 = load i32 from ptr %271137
-  291139 = icmp slt i32 %23.load1135, i32 %27.load1138
-  br i1 %291139, bb %sort.then1143, bb %sort.if.exit1149
-sort.while.exit161141:  pred(sort.while.body1122, sort.while.body151132_exclu_exit)
-  temp.phi71111171233 = phi [bb %sort.while.body151132_exclu_exit, i32 %temp.phi1150, bb %sort.while.body1122, i32 %temp.phi71111171275]
-  91120 = icmp slt i32 %131123, i32 15
-  br i1 %91120, bb %sort.while.body1122, bb %sort.while.body1122_exclu_exit
-sort.then1143:  pred(sort.while.body151132)
-  35.load1144 = load i32 from ptr %231134
-  43.load1145 = load i32 from ptr %271137
-  store i32 %43.load1145 to ptr %231134
-  store i32 %35.load1144 to ptr %271137
-  br bb %sort.if.exit1149
-sort.if.exit1149:  pred(sort.while.body151132, sort.then1143)
-  temp.phi1150 = phi [bb %sort.while.body151132, i32 %temp.phi71011281234, bb %sort.then1143, i32 %35.load1144]
-  521151 = add i32 %j.phi11291235, i32 1
-  191130 = icmp slt i32 %521151, i32 16
-  br i1 %191130, bb %sort.while.body151132, bb %sort.while.body151132_exclu_exit
-sort.while.body151132_exclu_exit:  pred(sort.if.exit1149)
-  br bb %sort.while.exit161141
-sort.while.body1122_exclu_exit:  pred(sort.while.exit161141)
-  503.load799 = load i32 from ptr %arr766
-  506.load800 = load i32 from ptr %arr.index486768
-  509.load801 = load i32 from ptr %arr.index487770
-  512.load802 = load i32 from ptr %arr.index488772
-  515.load803 = load i32 from ptr %arr.index489774
-  518.load804 = load i32 from ptr %arr.index490776
-  521.load805 = load i32 from ptr %arr.index491778
-  524.load806 = load i32 from ptr %arr.index492780
-  527.load807 = load i32 from ptr %arr.index493782
-  530.load808 = load i32 from ptr %arr.index494784
-  533.load809 = load i32 from ptr %arr.index495786
-  536.load810 = load i32 from ptr %arr.index496788
-  539.load811 = load i32 from ptr %arr.index497790
-  542.load812 = load i32 from ptr %arr.index498792
-  545.load813 = load i32 from ptr %arr.index499794
-  548.load814 = load i32 from ptr %arr.index500796
-  9010631240 = icmp eq i32 %503.load799, i32 0
-  br i1 %9010631240, bb %param32_rec.then911065, bb %param32_rec.else1067_preheader
+param32_rec.else1066_preheader:  pred(sort.while.body1121_exclu_exit)
+  br bb %param32_rec.else1066
+param32_rec.else1066:  pred(param32_rec.else1066, param32_rec.else1066_preheader)
+  a1.loop10611271 = phi [bb %param32_rec.else1066, i32 %7121067, bb %param32_rec.else1066_preheader, i32 %503.load798]
+  a2.loop10601270 = phi [bb %param32_rec.else1066, i32 %1001069, bb %param32_rec.else1066_preheader, i32 %506.load799]
+  a3.loop10591269 = phi [bb %param32_rec.else1066, i32 %a4.loop10581268, bb %param32_rec.else1066_preheader, i32 %509.load800]
+  a4.loop10581268 = phi [bb %param32_rec.else1066, i32 %a5.loop10571267, bb %param32_rec.else1066_preheader, i32 %512.load801]
+  a5.loop10571267 = phi [bb %param32_rec.else1066, i32 %a6.loop10561266, bb %param32_rec.else1066_preheader, i32 %515.load802]
+  a6.loop10561266 = phi [bb %param32_rec.else1066, i32 %a7.loop10551265, bb %param32_rec.else1066_preheader, i32 %518.load803]
+  a7.loop10551265 = phi [bb %param32_rec.else1066, i32 %a8.loop10541264, bb %param32_rec.else1066_preheader, i32 %521.load804]
+  a8.loop10541264 = phi [bb %param32_rec.else1066, i32 %a9.loop10531263, bb %param32_rec.else1066_preheader, i32 %524.load805]
+  a9.loop10531263 = phi [bb %param32_rec.else1066, i32 %a10.loop10521262, bb %param32_rec.else1066_preheader, i32 %527.load806]
+  a10.loop10521262 = phi [bb %param32_rec.else1066, i32 %a11.loop10511261, bb %param32_rec.else1066_preheader, i32 %530.load807]
+  a11.loop10511261 = phi [bb %param32_rec.else1066, i32 %a12.loop10501260, bb %param32_rec.else1066_preheader, i32 %533.load808]
+  a12.loop10501260 = phi [bb %param32_rec.else1066, i32 %a13.loop10491259, bb %param32_rec.else1066_preheader, i32 %536.load809]
+  a13.loop10491259 = phi [bb %param32_rec.else1066, i32 %a14.loop10481258, bb %param32_rec.else1066_preheader, i32 %539.load810]
+  a14.loop10481258 = phi [bb %param32_rec.else1066, i32 %a15.loop10471257, bb %param32_rec.else1066_preheader, i32 %542.load811]
+  a15.loop10471257 = phi [bb %param32_rec.else1066, i32 %a16.loop10461256, bb %param32_rec.else1066_preheader, i32 %545.load812]
+  a16.loop10461256 = phi [bb %param32_rec.else1066, i32 %a17.loop10451255, bb %param32_rec.else1066_preheader, i32 %548.load813]
+  a17.loop10451255 = phi [bb %param32_rec.else1066, i32 %a18.loop10441254, bb %param32_rec.else1066_preheader, i32 %569]
+  a18.loop10441254 = phi [bb %param32_rec.else1066, i32 %a19.loop10431253, bb %param32_rec.else1066_preheader, i32 %570]
+  a19.loop10431253 = phi [bb %param32_rec.else1066, i32 %a20.loop10421252, bb %param32_rec.else1066_preheader, i32 %571]
+  a20.loop10421252 = phi [bb %param32_rec.else1066, i32 %a21.loop10411251, bb %param32_rec.else1066_preheader, i32 %572]
+  a21.loop10411251 = phi [bb %param32_rec.else1066, i32 %a22.loop10401250, bb %param32_rec.else1066_preheader, i32 %573]
+  a22.loop10401250 = phi [bb %param32_rec.else1066, i32 %a23.loop10391249, bb %param32_rec.else1066_preheader, i32 %574]
+  a23.loop10391249 = phi [bb %param32_rec.else1066, i32 %a24.loop10381248, bb %param32_rec.else1066_preheader, i32 %575]
+  a24.loop10381248 = phi [bb %param32_rec.else1066, i32 %a25.loop10371247, bb %param32_rec.else1066_preheader, i32 %576]
+  a25.loop10371247 = phi [bb %param32_rec.else1066, i32 %a26.loop10361246, bb %param32_rec.else1066_preheader, i32 %577]
+  a26.loop10361246 = phi [bb %param32_rec.else1066, i32 %a27.loop10351245, bb %param32_rec.else1066_preheader, i32 %578]
+  a27.loop10351245 = phi [bb %param32_rec.else1066, i32 %a28.loop10341244, bb %param32_rec.else1066_preheader, i32 %579]
+  a28.loop10341244 = phi [bb %param32_rec.else1066, i32 %a29.loop10331243, bb %param32_rec.else1066_preheader, i32 %580]
+  a29.loop10331243 = phi [bb %param32_rec.else1066, i32 %a30.loop10321242, bb %param32_rec.else1066_preheader, i32 %581]
+  a30.loop10321242 = phi [bb %param32_rec.else1066, i32 %a31.loop10311241, bb %param32_rec.else1066_preheader, i32 %582]
+  a31.loop10311241 = phi [bb %param32_rec.else1066, i32 %a32.loop10301240, bb %param32_rec.else1066_preheader, i32 %583]
+  a32.loop10301240 = phi [bb %param32_rec.else1066, i32 0, bb %param32_rec.else1066_preheader, i32 %584]
+  7121067 = add i32 %a1.loop10611271, i32 -1
+  991068 = add i32 %a2.loop10601270, i32 %a3.loop10591269
+  1001069 = srem i32 %991068, i32 998244353
+  901062 = icmp eq i32 %7121067, i32 0
+  br i1 %901062, bb %param32_rec.else1066_exclu_exit, bb %param32_rec.else1066
+sort.while.body1121:  pred(sort.while.exit161140, entry567)
+  i.phi11171274 = phi [bb %sort.while.exit161140, i32 %131122, bb %entry567, i32 0]
+  temp.phi71111161273 = phi [bb %sort.while.exit161140, i32 %temp.phi71111161231, bb %entry567, i32 0]
+  131122 = add i32 %i.phi11171274, i32 1
+  1911291230 = icmp slt i32 %131122, i32 16
+  br i1 %1911291230, bb %sort.while.body151131_preheader, bb %sort.while.exit161140
+sort.while.body151131_preheader:  pred(sort.while.body1121)
+  1227 = shl i32 %i.phi11171274, i32 2
+  231133 = ptradd ptr %arr765, i32 %1227
+  br bb %sort.while.body151131
+sort.while.body151131:  pred(sort.if.exit1148, sort.while.body151131_preheader)
+  j.phi11281233 = phi [bb %sort.if.exit1148, i32 %521150, bb %sort.while.body151131_preheader, i32 %131122]
+  temp.phi71011271232 = phi [bb %sort.if.exit1148, i32 %temp.phi1149, bb %sort.while.body151131_preheader, i32 %temp.phi71111161273]
+  23.load1134 = load i32 from ptr %231133
+  1228 = shl i32 %j.phi11281233, i32 2
+  271136 = ptradd ptr %arr765, i32 %1228
+  27.load1137 = load i32 from ptr %271136
+  291138 = icmp slt i32 %23.load1134, i32 %27.load1137
+  br i1 %291138, bb %sort.then1142, bb %sort.if.exit1148
+sort.while.exit161140:  pred(sort.while.body1121, sort.while.body151131_exclu_exit)
+  temp.phi71111161231 = phi [bb %sort.while.body151131_exclu_exit, i32 %temp.phi1149, bb %sort.while.body1121, i32 %temp.phi71111161273]
+  91119 = icmp slt i32 %131122, i32 15
+  br i1 %91119, bb %sort.while.body1121, bb %sort.while.body1121_exclu_exit
+sort.then1142:  pred(sort.while.body151131)
+  35.load1143 = load i32 from ptr %231133
+  43.load1144 = load i32 from ptr %271136
+  store i32 %43.load1144 to ptr %231133
+  store i32 %35.load1143 to ptr %271136
+  br bb %sort.if.exit1148
+sort.if.exit1148:  pred(sort.while.body151131, sort.then1142)
+  temp.phi1149 = phi [bb %sort.while.body151131, i32 %temp.phi71011271232, bb %sort.then1142, i32 %35.load1143]
+  521150 = add i32 %j.phi11281233, i32 1
+  191129 = icmp slt i32 %521150, i32 16
+  br i1 %191129, bb %sort.while.body151131, bb %sort.while.body151131_exclu_exit
+sort.while.body151131_exclu_exit:  pred(sort.if.exit1148)
+  br bb %sort.while.exit161140
+sort.while.body1121_exclu_exit:  pred(sort.while.exit161140)
+  503.load798 = load i32 from ptr %arr765
+  506.load799 = load i32 from ptr %arr.index486767
+  509.load800 = load i32 from ptr %arr.index487769
+  512.load801 = load i32 from ptr %arr.index488771
+  515.load802 = load i32 from ptr %arr.index489773
+  518.load803 = load i32 from ptr %arr.index490775
+  521.load804 = load i32 from ptr %arr.index491777
+  524.load805 = load i32 from ptr %arr.index492779
+  527.load806 = load i32 from ptr %arr.index493781
+  530.load807 = load i32 from ptr %arr.index494783
+  533.load808 = load i32 from ptr %arr.index495785
+  536.load809 = load i32 from ptr %arr.index496787
+  539.load810 = load i32 from ptr %arr.index497789
+  542.load811 = load i32 from ptr %arr.index498791
+  545.load812 = load i32 from ptr %arr.index499793
+  548.load813 = load i32 from ptr %arr.index500795
+  9010621238 = icmp eq i32 %503.load798, i32 0
+  br i1 %9010621238, bb %param32_rec.then911064, bb %param32_rec.else1066_preheader
 init_exclu_exit:  pred(init)
   617.load = load i32 from ptr %arr.index587
-  719 = add i32 %617.load, i32 -1
+  718 = add i32 %617.load, i32 -1
   631.load = load i32 from ptr %arr568
-  723 = add i32 %631.load, i32 -2
-  1992 = add i32 %631.load, i32 -3
-  1994 = add i32 %617.load, i32 -3
-  1996 = add i32 %617.load, i32 -4
-  1998 = add i32 %631.load, i32 -5
-  2000 = add i32 %631.load, i32 -6
-  2002 = add i32 %617.load, i32 -6
-  2004 = add i32 %617.load, i32 -7
-  2006 = add i32 %631.load, i32 -8
-  2008 = add i32 %631.load, i32 -9
-  2010 = add i32 %617.load, i32 -9
-  2012 = add i32 %617.load, i32 -10
-  2014 = add i32 %631.load, i32 -11
-  2016 = add i32 %631.load, i32 -12
-  2018 = add i32 %617.load, i32 -12
-  2020 = add i32 %617.load, i32 -13
-  2022 = add i32 %631.load, i32 -14
-  2024 = add i32 %631.load, i32 -15
-  2026 = add i32 %617.load, i32 -15
-  2028 = add i32 %617.load, i32 -16
-  2030 = add i32 %631.load, i32 -17
-  2032 = add i32 %631.load, i32 -18
-  2034 = add i32 %617.load, i32 -18
-  2036 = add i32 %617.load, i32 -19
-  2038 = add i32 %631.load, i32 -20
-  2040 = add i32 %631.load, i32 -21
-  2042 = add i32 %617.load, i32 -21
-  2044 = add i32 %617.load, i32 -22
-  2046 = add i32 %631.load, i32 -23
-  2048 = add i32 %631.load, i32 -24
-  2050 = add i32 %617.load, i32 -24
-  2052 = add i32 %617.load, i32 -25
-  2054 = add i32 %631.load, i32 -26
-  2056 = add i32 %631.load, i32 -27
-  2058 = add i32 %617.load, i32 -27
-  2060 = add i32 %617.load, i32 -28
-  2062 = add i32 %631.load, i32 -29
-  2064 = add i32 %631.load, i32 -30
-  2066 = add i32 %617.load, i32 -30
-  2068 = add i32 %617.load, i32 -31
-  2070 = add i32 %631.load, i32 -32
-  2072 = add i32 %631.load, i32 -33
-  2074 = add i32 %617.load, i32 -33
-  2076 = add i32 %617.load, i32 -34
-  2078 = add i32 %631.load, i32 -35
-  2080 = add i32 %631.load, i32 -36
-  2082 = add i32 %617.load, i32 -36
-  2084 = add i32 %617.load, i32 -37
-  2086 = add i32 %631.load, i32 -38
-  2088 = add i32 %631.load, i32 -39
-  2090 = add i32 %617.load, i32 -39
-  2092 = add i32 %617.load, i32 -40
-  2094 = add i32 %631.load, i32 -41
-  2096 = add i32 %631.load, i32 -42
-  2098 = add i32 %617.load, i32 -42
-  2100 = add i32 %617.load, i32 -43
-  2102 = add i32 %631.load, i32 -44
-  2104 = add i32 %631.load, i32 -45
-  2106 = add i32 %617.load, i32 -45
-  2108 = add i32 %617.load, i32 -46
-  2110 = add i32 %631.load, i32 -47
-  139823 = add i32 %631.load, i32 %617.load
-  145825 = add i32 %139823, i32 %719
-  149828 = add i32 %145825, i32 %723
-  155830 = add i32 %149828, i32 %1992
-  159833 = add i32 %155830, i32 %1994
-  165835 = add i32 %159833, i32 %1996
-  169838 = add i32 %165835, i32 %1998
-  175840 = add i32 %169838, i32 %2000
-  179843 = add i32 %175840, i32 %2002
-  185845 = add i32 %179843, i32 %2004
-  189848 = add i32 %185845, i32 %2006
-  195850 = add i32 %189848, i32 %2008
-  199853 = add i32 %195850, i32 %2010
-  205855 = add i32 %199853, i32 %2012
-  209858 = add i32 %205855, i32 %2014
-  215860 = add i32 %209858, i32 %2016
-  219863 = add i32 %215860, i32 %2018
-  225865 = add i32 %219863, i32 %2020
-  229868 = add i32 %225865, i32 %2022
-  235870 = add i32 %229868, i32 %2024
-  239873 = add i32 %235870, i32 %2026
-  245875 = add i32 %239873, i32 %2028
-  249878 = add i32 %245875, i32 %2030
-  255880 = add i32 %249878, i32 %2032
-  259883 = add i32 %255880, i32 %2034
-  265885 = add i32 %259883, i32 %2036
-  269888 = add i32 %265885, i32 %2038
-  275890 = add i32 %269888, i32 %2040
-  279893 = add i32 %275890, i32 %2042
-  285895 = add i32 %279893, i32 %2044
-  289898 = add i32 %285895, i32 %2046
-  295900 = add i32 %289898, i32 %2048
-  299903 = add i32 %295900, i32 %2050
-  305905 = add i32 %299903, i32 %2052
-  309908 = add i32 %305905, i32 %2054
-  315910 = add i32 %309908, i32 %2056
-  319913 = add i32 %315910, i32 %2058
-  325915 = add i32 %319913, i32 %2060
-  329918 = add i32 %325915, i32 %2062
-  335920 = add i32 %329918, i32 %2064
-  339923 = add i32 %335920, i32 %2066
-  345925 = add i32 %339923, i32 %2068
-  349928 = add i32 %345925, i32 %2070
-  355930 = add i32 %349928, i32 %2072
-  359933 = add i32 %355930, i32 %2074
-  365935 = add i32 %359933, i32 %2076
-  369938 = add i32 %365935, i32 %2078
-  375940 = add i32 %369938, i32 %2080
-  379943 = add i32 %375940, i32 %2082
-  385945 = add i32 %379943, i32 %2084
-  389948 = add i32 %385945, i32 %2086
-  395950 = add i32 %389948, i32 %2088
-  399953 = add i32 %395950, i32 %2090
-  405955 = add i32 %399953, i32 %2092
-  409958 = add i32 %405955, i32 %2094
-  415960 = add i32 %409958, i32 %2096
-  419963 = add i32 %415960, i32 %2098
-  425965 = add i32 %419963, i32 %2100
-  429968 = add i32 %425965, i32 %2102
-  435970 = add i32 %429968, i32 %2104
-  439973 = add i32 %435970, i32 %2106
-  445975 = add i32 %439973, i32 %2108
-  449978 = add i32 %445975, i32 %2110
-  call void putint(i32 %449978)
+  722 = add i32 %631.load, i32 -2
+  1990 = add i32 %631.load, i32 -3
+  1992 = add i32 %617.load, i32 -3
+  1994 = add i32 %617.load, i32 -4
+  1996 = add i32 %631.load, i32 -5
+  1998 = add i32 %631.load, i32 -6
+  2000 = add i32 %617.load, i32 -6
+  2002 = add i32 %617.load, i32 -7
+  2004 = add i32 %631.load, i32 -8
+  2006 = add i32 %631.load, i32 -9
+  2008 = add i32 %617.load, i32 -9
+  2010 = add i32 %617.load, i32 -10
+  2012 = add i32 %631.load, i32 -11
+  2014 = add i32 %631.load, i32 -12
+  2016 = add i32 %617.load, i32 -12
+  2018 = add i32 %617.load, i32 -13
+  2020 = add i32 %631.load, i32 -14
+  2022 = add i32 %631.load, i32 -15
+  2024 = add i32 %617.load, i32 -15
+  2026 = add i32 %617.load, i32 -16
+  2028 = add i32 %631.load, i32 -17
+  2030 = add i32 %631.load, i32 -18
+  2032 = add i32 %617.load, i32 -18
+  2034 = add i32 %617.load, i32 -19
+  2036 = add i32 %631.load, i32 -20
+  2038 = add i32 %631.load, i32 -21
+  2040 = add i32 %617.load, i32 -21
+  2042 = add i32 %617.load, i32 -22
+  2044 = add i32 %631.load, i32 -23
+  2046 = add i32 %631.load, i32 -24
+  2048 = add i32 %617.load, i32 -24
+  2050 = add i32 %617.load, i32 -25
+  2052 = add i32 %631.load, i32 -26
+  2054 = add i32 %631.load, i32 -27
+  2056 = add i32 %617.load, i32 -27
+  2058 = add i32 %617.load, i32 -28
+  2060 = add i32 %631.load, i32 -29
+  2062 = add i32 %631.load, i32 -30
+  2064 = add i32 %617.load, i32 -30
+  2066 = add i32 %617.load, i32 -31
+  2068 = add i32 %631.load, i32 -32
+  2070 = add i32 %631.load, i32 -33
+  2072 = add i32 %617.load, i32 -33
+  2074 = add i32 %617.load, i32 -34
+  2076 = add i32 %631.load, i32 -35
+  2078 = add i32 %631.load, i32 -36
+  2080 = add i32 %617.load, i32 -36
+  2082 = add i32 %617.load, i32 -37
+  2084 = add i32 %631.load, i32 -38
+  2086 = add i32 %631.load, i32 -39
+  2088 = add i32 %617.load, i32 -39
+  2090 = add i32 %617.load, i32 -40
+  2092 = add i32 %631.load, i32 -41
+  2094 = add i32 %631.load, i32 -42
+  2096 = add i32 %617.load, i32 -42
+  2098 = add i32 %617.load, i32 -43
+  2100 = add i32 %631.load, i32 -44
+  2102 = add i32 %631.load, i32 -45
+  2104 = add i32 %617.load, i32 -45
+  2106 = add i32 %617.load, i32 -46
+  2108 = add i32 %631.load, i32 -47
+  139822 = add i32 %631.load, i32 %617.load
+  145824 = add i32 %139822, i32 %718
+  149827 = add i32 %145824, i32 %722
+  155829 = add i32 %149827, i32 %1990
+  159832 = add i32 %155829, i32 %1992
+  165834 = add i32 %159832, i32 %1994
+  169837 = add i32 %165834, i32 %1996
+  175839 = add i32 %169837, i32 %1998
+  179842 = add i32 %175839, i32 %2000
+  185844 = add i32 %179842, i32 %2002
+  189847 = add i32 %185844, i32 %2004
+  195849 = add i32 %189847, i32 %2006
+  199852 = add i32 %195849, i32 %2008
+  205854 = add i32 %199852, i32 %2010
+  209857 = add i32 %205854, i32 %2012
+  215859 = add i32 %209857, i32 %2014
+  219862 = add i32 %215859, i32 %2016
+  225864 = add i32 %219862, i32 %2018
+  229867 = add i32 %225864, i32 %2020
+  235869 = add i32 %229867, i32 %2022
+  239872 = add i32 %235869, i32 %2024
+  245874 = add i32 %239872, i32 %2026
+  249877 = add i32 %245874, i32 %2028
+  255879 = add i32 %249877, i32 %2030
+  259882 = add i32 %255879, i32 %2032
+  265884 = add i32 %259882, i32 %2034
+  269887 = add i32 %265884, i32 %2036
+  275889 = add i32 %269887, i32 %2038
+  279892 = add i32 %275889, i32 %2040
+  285894 = add i32 %279892, i32 %2042
+  289897 = add i32 %285894, i32 %2044
+  295899 = add i32 %289897, i32 %2046
+  299902 = add i32 %295899, i32 %2048
+  305904 = add i32 %299902, i32 %2050
+  309907 = add i32 %305904, i32 %2052
+  315909 = add i32 %309907, i32 %2054
+  319912 = add i32 %315909, i32 %2056
+  325914 = add i32 %319912, i32 %2058
+  329917 = add i32 %325914, i32 %2060
+  335919 = add i32 %329917, i32 %2062
+  339922 = add i32 %335919, i32 %2064
+  345924 = add i32 %339922, i32 %2066
+  349927 = add i32 %345924, i32 %2068
+  355929 = add i32 %349927, i32 %2070
+  359932 = add i32 %355929, i32 %2072
+  365934 = add i32 %359932, i32 %2074
+  369937 = add i32 %365934, i32 %2076
+  375939 = add i32 %369937, i32 %2078
+  379942 = add i32 %375939, i32 %2080
+  385944 = add i32 %379942, i32 %2082
+  389947 = add i32 %385944, i32 %2084
+  395949 = add i32 %389947, i32 %2086
+  399952 = add i32 %395949, i32 %2088
+  405954 = add i32 %399952, i32 %2090
+  409957 = add i32 %405954, i32 %2092
+  415959 = add i32 %409957, i32 %2094
+  419962 = add i32 %415959, i32 %2096
+  425964 = add i32 %419962, i32 %2098
+  429967 = add i32 %425964, i32 %2100
+  435969 = add i32 %429967, i32 %2102
+  439972 = add i32 %435969, i32 %2104
+  445974 = add i32 %439972, i32 %2106
+  449977 = add i32 %445974, i32 %2108
+  call void putint(i32 %449977)
   call void putch(i32 10)
   ret i32 0
-param32_rec.else1067_exclu_exit:  pred(param32_rec.else1067)
-  br bb %param32_rec.then911065
+param32_rec.else1066_exclu_exit:  pred(param32_rec.else1066)
+  br bb %param32_rec.then911064
 }
 
 external float getfloat()

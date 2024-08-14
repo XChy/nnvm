@@ -172,7 +172,7 @@ entry46:  pred()
 then51:  pred(entry46)
   55 = fdiv float %x, float %49
   56 = call float my_sqrt(float %55)
-  57 = fmul float 10.000000, float %56
+  57 = fmul float %56, float 10.000000
   ret float %57
 if.exit52:  pred(entry46)
   60 = si2f i32 8 to float

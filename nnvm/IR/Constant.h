@@ -56,12 +56,18 @@ public:
 
   std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 
+  bool isZero() const;
+  bool isAllOne() const;
+
   // Arithmetic operations
   ConstantInt *add(ConstantInt *rhs) const;
   ConstantInt *sub(ConstantInt *rhs) const;
   ConstantInt *mul(ConstantInt *rhs) const;
   ConstantInt *sdiv(ConstantInt *rhs) const;
+  ConstantInt *srem(ConstantInt *rhs) const;
   ConstantInt *shl(ConstantInt *shlNum) const;
+
+  ConstantInt *zextTo(Type *type) const;
 
 private:
   GInt value;

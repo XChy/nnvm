@@ -178,12 +178,12 @@ bb18:   # loop depth 0
   FLW ft4, 0(t2)
   FSGNJ.S fs0, ft2, ft3
   FCVT.W.S t0, ft4, rtz
-  FMUL.S ft2, fs0, ft1
+  FMUL.S ft2, ft1, fs0
   FMUL.S ft4, ft0, fs0
   FCVT.S.W ft0, t0
   MULW t0, t0, t0
   FMUL.S ft3, ft2, ft1
-  FMUL.S ft1, fs0, ft0
+  FMUL.S ft1, ft0, fs0
   FCVT.S.W ft2, t0
   FMUL.S ft2, ft2, fs0
   FADD.S ft3, ft3, ft4
@@ -306,7 +306,7 @@ bb35:   # loop depth 1
   ADDI t1, sp, 96
   ADD t1, t1, t0
   FCVT.W.S t0, fa0, rtz
-  FMUL.S ft0, fs0, fa0
+  FMUL.S ft0, fa0, fs0
   FLW ft1, 0(t1)
   FCVT.S.W ft4, s2
   LUI s0, 244141
@@ -316,7 +316,7 @@ bb35:   # loop depth 1
   FCVT.S.W ft1, t0
   MULW t0, t0, t0
   FMUL.S fa0, ft0, fa0
-  FMUL.S ft0, fs0, ft1
+  FMUL.S ft0, ft1, fs0
   FCVT.S.W ft2, t0
   FMUL.S fs3, ft4, fs5
   FSW ft3, 0(t1)

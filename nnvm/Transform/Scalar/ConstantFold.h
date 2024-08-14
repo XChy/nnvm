@@ -27,12 +27,20 @@ public:
   Value *foldFSub(FSubInst *I);
   Value *foldFMul(FMulInst *I);
   Value *foldFDiv(FDivInst *I);
+
+  Value *foldAnd(AndInst *I);
+  Value *foldOr(OrInst *I);
   Value *foldXor(XorInst *I);
+
   Value *foldShl(ShlInst *I);
   Value *foldSRem(SRemInst *I);
   Value *foldFRem(FRemInst *I);
+
   Value *foldICmp(ICmpInst *I);
+
   Value *foldLoad(LoadInst *I);
+
+  Value *foldZExt(ZExtInst *I);
 
   void setModule(Module *module) { this->module = module; }
 

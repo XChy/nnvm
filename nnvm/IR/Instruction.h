@@ -111,6 +111,8 @@ public:
   Value *getOperand(uint no) const;
   uint getOperandNum() const { return useeList.size(); }
 
+  void swapOperand(uint a, uint b);
+
   template <typename Mapper> void replaceOps(Mapper mapper) {
     for (Use *use : useeList) {
       Value *mapped = mapper(use->getUsee());
@@ -130,6 +132,7 @@ public:
   bool mayReadMemory() const;
   bool haveSideEffect() const;
   bool moveable() const;
+  bool commutative() const;
 
   void setParent(BasicBlock *parent) { this->parent = parent; }
   const BasicBlock *getParent() const { return parent; }

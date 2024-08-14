@@ -15,23 +15,23 @@ entry3240:  pred()
   3242 = call i32 getint()
   store i32 %3242 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 121)
-  loopCount.load32604771 = load i32 from ptr %loopCount.pinned
-  2332614772 = icmp slt i32 0, i32 %loopCount.load32604771
-  br i1 %2332614772, bb %func.while.body_preheader, bb %func.while.exit
+  loopCount.load32594770 = load i32 from ptr %loopCount.pinned
+  2332604771 = icmp slt i32 0, i32 %loopCount.load32594770
+  br i1 %2332604771, bb %func.while.body_preheader, bb %func.while.exit
 func.while.body_preheader:  pred(entry3240)
   br bb %func.while.body
 func.while.body:  pred(func.while.body, func.while.body_preheader)
-  i.phi32594775 = phi [bb %func.while.body, i32 %32384766, bb %func.while.body_preheader, i32 0]
-  result.phi32584774 = phi [bb %func.while.body, i32 %32354765, bb %func.while.body_preheader, i32 0]
-  32324764 = add i32 %result.phi32584774, i32 15
-  32354765 = srem i32 %32324764, i32 1500000001
-  32384766 = add i32 %i.phi32594775, i32 1
-  233261 = icmp slt i32 %32384766, i32 %loopCount.load32604771
-  br i1 %233261, bb %func.while.body, bb %func.while.body_exclu_exit
+  i.phi32584774 = phi [bb %func.while.body, i32 %32384765, bb %func.while.body_preheader, i32 0]
+  result.phi32574773 = phi [bb %func.while.body, i32 %32354764, bb %func.while.body_preheader, i32 0]
+  32324763 = add i32 %result.phi32574773, i32 15
+  32354764 = srem i32 %32324763, i32 1500000001
+  32384765 = add i32 %i.phi32584774, i32 1
+  233260 = icmp slt i32 %32384765, i32 %loopCount.load32594770
+  br i1 %233260, bb %func.while.body, bb %func.while.body_exclu_exit
 func.while.exit:  pred(entry3240, func.while.body_exclu_exit)
-  4773 = phi [bb %func.while.body_exclu_exit, i32 %32354765, bb %entry3240, i32 0]
+  4772 = phi [bb %func.while.body_exclu_exit, i32 %32354764, bb %entry3240, i32 0]
   call void _sysy_stoptime(i32 123)
-  call void putint(i32 %4773)
+  call void putint(i32 %4772)
   call void putch(i32 10)
   ret i32 0
 func.while.body_exclu_exit:  pred(func.while.body)

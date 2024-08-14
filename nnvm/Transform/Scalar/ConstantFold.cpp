@@ -28,6 +28,10 @@ Value *ConstantFold::fold(Instruction *I) {
       return nullptr;
     case InstID::SDiv:
       return foldSDiv(cast<SDivInst>(I));
+    case InstID::And:
+      return foldAnd(cast<AndInst>(I));
+    case InstID::Or:
+      return foldOr(cast<OrInst>(I));
     case InstID::Xor:
       return foldXor(cast<XorInst>(I));
     case InstID::URem:
@@ -59,6 +63,9 @@ Value *ConstantFold::fold(Instruction *I) {
   if (LoadInst *LI = mayCast<LoadInst>(I))
     return foldLoad(LI);
 
+  if (ZExtInst *ZI = mayCast<ZExtInst>(I))
+    return foldZExt(ZI);
+
   // TODO: Handle other operator on constant operands, such as "a[0]", where "a"
   // is a constant array.
 
@@ -68,40 +75,48 @@ Value *ConstantFold::fold(Instruction *I) {
 Value *ConstantFold::foldAdd(AddInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-  GInt result =
-      genericAdd(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
-  return ConstantInt::create(*module, lhs->getType(), result);
+  return lhs->add(rhs);
 }
 
 Value *ConstantFold::foldSub(SubInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-  GInt result =
-      genericSub(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
-  return ConstantInt::create(*module, lhs->getType(), result);
+  return lhs->sub(rhs);
 }
 
 Value *ConstantFold::foldMul(MulInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-  GInt result =
-      genericMul(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
-  return ConstantInt::create(*module, lhs->getType(), result);
+  return lhs->mul(rhs);
 }
 
 Value *ConstantFold::foldSDiv(SDivInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
-  GInt result =
-      genericSDiv(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
-  return ConstantInt::create(*module, lhs->getType(), result);
+  return lhs->sdiv(rhs);
 }
 
 Value *ConstantFold::foldSRem(SRemInst *I) {
   ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
   ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+  return lhs->srem(rhs);
+}
+
+Value *ConstantFold::foldAnd(AndInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
   GInt result =
-      genericSRem(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
+      genericAnd(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
+  return ConstantInt::create(*module, lhs->getType(), result);
+}
+
+Value *ConstantFold::foldOr(OrInst *I) {
+  ConstantInt *lhs = cast<ConstantInt>(I->getLHS());
+  ConstantInt *rhs = cast<ConstantInt>(I->getRHS());
+
+  GInt result =
+      genericOr(lhs->getValue(), rhs->getValue(), lhs->getType()->getBits());
   return ConstantInt::create(*module, lhs->getType(), result);
 }
 
@@ -244,4 +259,12 @@ Value *ConstantFold::foldFRem(FRemInst *I) {
     return ConstantFloat::create(*module, 0.0f);
   float result = std::fmod(lhs->getValue(), rhs->getValue());
   return ConstantFloat::create(*module, result);
+}
+
+Value *ConstantFold::foldZExt(ZExtInst *I) {
+  ConstantInt *op = mayCast<ConstantInt>(I->getOperand(0));
+  if (!op)
+    return nullptr;
+
+  return op->zextTo(I->getType());
 }

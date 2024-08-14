@@ -5,9 +5,9 @@ entry67:  pred()
   pos.pinned = pin ptr @pos
   br bb %loop_entry
 loop_entry:  pred(entry67, loop_entry_unified_latch)
-  len.loop = phi [bb %entry67, i32 %len, bb %loop_entry_unified_latch, i32 %2227]
-  buf.loop = phi [bb %entry67, ptr %buf, bb %loop_entry_unified_latch, ptr %2228]
-  type.loop = phi [bb %entry67, i32 %type, bb %loop_entry_unified_latch, i32 %2229]
+  len.loop = phi [bb %entry67, i32 %len, bb %loop_entry_unified_latch, i32 %2217]
+  buf.loop = phi [bb %entry67, ptr %buf, bb %loop_entry_unified_latch, ptr %2218]
+  type.loop = phi [bb %entry67, i32 %type, bb %loop_entry_unified_latch, i32 %2219]
   pos.load70 = load i32 from ptr %pos.pinned
   72 = icmp sge i32 %pos.load70, i32 %len.loop
   br i1 %72, bb %then73, bb %skip_space.while.cond_preheader_preheader
@@ -147,8 +147,8 @@ then241:  pred(then234)
   pos.load244 = load i32 from ptr %pos.pinned
   245 = add i32 %pos.load244, i32 1
   store i32 %245 to ptr %pos.pinned
-  2512189 = icmp slt i32 %245, i32 %len.loop
-  br i1 %2512189, bb %while.body247, bb %if.exit235
+  2512179 = icmp slt i32 %245, i32 %len.loop
+  br i1 %2512179, bb %while.body247, bb %if.exit235
 while.body247:  pred(if.exit260, then241)
   pos.load253 = load i32 from ptr %pos.pinned
   2080 = shl i32 %pos.load253, i32 2
@@ -478,8 +478,8 @@ else638:  pred(else572)
 then649:  pred(then636)
   ret i32 0
 else651:  pred(then636)
-  2100 = shl i32 %pos.load879, i32 2
-  654 = ptradd ptr %buf.loop, i32 %2100
+  2097 = shl i32 %pos.load879, i32 2
+  654 = ptradd ptr %buf.loop, i32 %2097
   654.load = load i32 from ptr %654
   659 = icmp ne i32 %654.load, i32 102
   br i1 %659, bb %then660, bb %else662
@@ -527,8 +527,8 @@ else717:  pred(else638)
 then727:  pred(then715)
   ret i32 0
 else729:  pred(then715)
-  2105 = shl i32 %pos.load879, i32 2
-  732 = ptradd ptr %buf.loop, i32 %2105
+  2098 = shl i32 %pos.load879, i32 2
+  732 = ptradd ptr %buf.loop, i32 %2098
   732.load = load i32 from ptr %732
   737 = icmp ne i32 %732.load, i32 110
   br i1 %737, bb %then738, bb %else740
@@ -568,8 +568,8 @@ skip_space.while.exit:  pred(skip_space.while.cond_preheader_preheader, skip_spa
   78 = icmp eq i32 %type.loop, i32 0
   br i1 %78, bb %then79, bb %else81
 skip_space.if.exit22:  pred(skip_space.while.cond_preheader_preheader)
-  2109 = shl i32 %pos.load879, i32 2
-  25887 = ptradd ptr %buf.loop, i32 %2109
+  2099 = shl i32 %pos.load879, i32 2
+  25887 = ptradd ptr %buf.loop, i32 %2099
   25.load888 = load i32 from ptr %25887
   27889 = icmp eq i32 %25.load888, i32 32
   br i1 %27889, bb %skip_space.then28, bb %skip_space.else30
@@ -612,8 +612,8 @@ skip_space.while.exit939:  pred(skip_space.while.cond935, skip_space.else52977)
   br i1 %391, bb %then392, bb %if.exit393
 skip_space.if.exit22941:  pred(skip_space.while.cond935)
   pos.load23942 = load i32 from ptr %pos.pinned
-  2113 = shl i32 %pos.load23942, i32 2
-  25944 = ptradd ptr %buf.loop, i32 %2113
+  2103 = shl i32 %pos.load23942, i32 2
+  25944 = ptradd ptr %buf.loop, i32 %2103
   25.load945 = load i32 from ptr %25944
   27946 = icmp eq i32 %25.load945, i32 32
   br i1 %27946, bb %skip_space.then28948, bb %skip_space.else30953
@@ -624,8 +624,8 @@ skip_space.then28948:  pred(skip_space.if.exit22941)
   br bb %skip_space.while.cond935
 skip_space.else30953:  pred(skip_space.if.exit22941)
   pos.load34954 = load i32 from ptr %pos.pinned
-  2114 = shl i32 %pos.load34954, i32 2
-  36956 = ptradd ptr %buf.loop, i32 %2114
+  2104 = shl i32 %pos.load34954, i32 2
+  36956 = ptradd ptr %buf.loop, i32 %2104
   36.load957 = load i32 from ptr %36956
   38958 = icmp eq i32 %36.load957, i32 9
   br i1 %38958, bb %skip_space.then39960, bb %skip_space.else41965
@@ -636,8 +636,8 @@ skip_space.then39960:  pred(skip_space.else30953)
   br bb %skip_space.while.cond935
 skip_space.else41965:  pred(skip_space.else30953)
   pos.load45966 = load i32 from ptr %pos.pinned
-  2115 = shl i32 %pos.load45966, i32 2
-  47968 = ptradd ptr %buf.loop, i32 %2115
+  2105 = shl i32 %pos.load45966, i32 2
+  47968 = ptradd ptr %buf.loop, i32 %2105
   47.load969 = load i32 from ptr %47968
   49970 = icmp eq i32 %47.load969, i32 10
   br i1 %49970, bb %skip_space.then50972, bb %skip_space.else52977
@@ -648,8 +648,8 @@ skip_space.then50972:  pred(skip_space.else41965)
   br bb %skip_space.while.cond935
 skip_space.else52977:  pred(skip_space.else41965)
   pos.load56978 = load i32 from ptr %pos.pinned
-  2116 = shl i32 %pos.load56978, i32 2
-  58980 = ptradd ptr %buf.loop, i32 %2116
+  2106 = shl i32 %pos.load56978, i32 2
+  58980 = ptradd ptr %buf.loop, i32 %2106
   58.load981 = load i32 from ptr %58980
   60982 = icmp eq i32 %58.load981, i32 13
   br i1 %60982, bb %skip_space.then61984, bb %skip_space.while.exit939
@@ -663,8 +663,8 @@ skip_space.while.cond992_preheader_preheader:  pred(if.exit393, skip_space.then3
   20994 = icmp sge i32 %pos.load993, i32 %len.loop
   br i1 %20994, bb %while.cond411, bb %skip_space.if.exit22998
 skip_space.if.exit22998:  pred(skip_space.while.cond992_preheader_preheader)
-  2117 = shl i32 %pos.load993, i32 2
-  251001 = ptradd ptr %buf.loop, i32 %2117
+  2107 = shl i32 %pos.load993, i32 2
+  251001 = ptradd ptr %buf.loop, i32 %2107
   25.load1002 = load i32 from ptr %251001
   271003 = icmp eq i32 %25.load1002, i32 32
   br i1 %271003, bb %skip_space.then281005, bb %skip_space.else301010
@@ -707,8 +707,8 @@ skip_space.while.exit1053:  pred(skip_space.while.cond1049, skip_space.else52109
   br i1 %427, bb %then428, bb %skip_space.while.cond1106_preheader_preheader
 skip_space.if.exit221055:  pred(skip_space.while.cond1049)
   pos.load231056 = load i32 from ptr %pos.pinned
-  2121 = shl i32 %pos.load231056, i32 2
-  251058 = ptradd ptr %buf.loop, i32 %2121
+  2111 = shl i32 %pos.load231056, i32 2
+  251058 = ptradd ptr %buf.loop, i32 %2111
   25.load1059 = load i32 from ptr %251058
   271060 = icmp eq i32 %25.load1059, i32 32
   br i1 %271060, bb %skip_space.then281062, bb %skip_space.else301067
@@ -719,8 +719,8 @@ skip_space.then281062:  pred(skip_space.if.exit221055)
   br bb %skip_space.while.cond1049
 skip_space.else301067:  pred(skip_space.if.exit221055)
   pos.load341068 = load i32 from ptr %pos.pinned
-  2122 = shl i32 %pos.load341068, i32 2
-  361070 = ptradd ptr %buf.loop, i32 %2122
+  2112 = shl i32 %pos.load341068, i32 2
+  361070 = ptradd ptr %buf.loop, i32 %2112
   36.load1071 = load i32 from ptr %361070
   381072 = icmp eq i32 %36.load1071, i32 9
   br i1 %381072, bb %skip_space.then391074, bb %skip_space.else411079
@@ -731,8 +731,8 @@ skip_space.then391074:  pred(skip_space.else301067)
   br bb %skip_space.while.cond1049
 skip_space.else411079:  pred(skip_space.else301067)
   pos.load451080 = load i32 from ptr %pos.pinned
-  2123 = shl i32 %pos.load451080, i32 2
-  471082 = ptradd ptr %buf.loop, i32 %2123
+  2113 = shl i32 %pos.load451080, i32 2
+  471082 = ptradd ptr %buf.loop, i32 %2113
   47.load1083 = load i32 from ptr %471082
   491084 = icmp eq i32 %47.load1083, i32 10
   br i1 %491084, bb %skip_space.then501086, bb %skip_space.else521091
@@ -743,8 +743,8 @@ skip_space.then501086:  pred(skip_space.else411079)
   br bb %skip_space.while.cond1049
 skip_space.else521091:  pred(skip_space.else411079)
   pos.load561092 = load i32 from ptr %pos.pinned
-  2124 = shl i32 %pos.load561092, i32 2
-  581094 = ptradd ptr %buf.loop, i32 %2124
+  2114 = shl i32 %pos.load561092, i32 2
+  581094 = ptradd ptr %buf.loop, i32 %2114
   58.load1095 = load i32 from ptr %581094
   601096 = icmp eq i32 %58.load1095, i32 13
   br i1 %601096, bb %skip_space.then611098, bb %skip_space.while.exit1053
@@ -758,8 +758,8 @@ skip_space.while.cond1106_preheader_preheader:  pred(skip_space.while.exit1053, 
   201108 = icmp sge i32 %pos.load1107, i32 %len.loop
   br i1 %201108, bb %while.cond411, bb %skip_space.if.exit221112
 skip_space.if.exit221112:  pred(skip_space.while.cond1106_preheader_preheader)
-  2125 = shl i32 %pos.load1107, i32 2
-  251115 = ptradd ptr %buf.loop, i32 %2125
+  2115 = shl i32 %pos.load1107, i32 2
+  251115 = ptradd ptr %buf.loop, i32 %2115
   25.load1116 = load i32 from ptr %251115
   271117 = icmp eq i32 %25.load1116, i32 32
   br i1 %271117, bb %skip_space.then281119, bb %skip_space.else301124
@@ -799,8 +799,8 @@ skip_space.while.cond1163_preheader_preheader:  pred(while.cond411, skip_space.t
 skip_space.while.exit1167:  pred(skip_space.while.cond1163_preheader_preheader, skip_space.else521205)
   br i1 %201165, bb %then437, bb %if.exit438
 skip_space.if.exit221169:  pred(skip_space.while.cond1163_preheader_preheader)
-  2129 = shl i32 %pos.load1164, i32 2
-  251172 = ptradd ptr %buf.loop, i32 %2129
+  2119 = shl i32 %pos.load1164, i32 2
+  251172 = ptradd ptr %buf.loop, i32 %2119
   25.load1173 = load i32 from ptr %251172
   271174 = icmp eq i32 %25.load1173, i32 32
   br i1 %271174, bb %skip_space.then281176, bb %skip_space.else301181
@@ -843,8 +843,8 @@ skip_space.while.exit1224:  pred(skip_space.while.cond1220, skip_space.else52126
   br i1 %461, bb %then462, bb %if.exit463
 skip_space.if.exit221226:  pred(skip_space.while.cond1220)
   pos.load231227 = load i32 from ptr %pos.pinned
-  2133 = shl i32 %pos.load231227, i32 2
-  251229 = ptradd ptr %buf.loop, i32 %2133
+  2123 = shl i32 %pos.load231227, i32 2
+  251229 = ptradd ptr %buf.loop, i32 %2123
   25.load1230 = load i32 from ptr %251229
   271231 = icmp eq i32 %25.load1230, i32 32
   br i1 %271231, bb %skip_space.then281233, bb %skip_space.else301238
@@ -855,8 +855,8 @@ skip_space.then281233:  pred(skip_space.if.exit221226)
   br bb %skip_space.while.cond1220
 skip_space.else301238:  pred(skip_space.if.exit221226)
   pos.load341239 = load i32 from ptr %pos.pinned
-  2134 = shl i32 %pos.load341239, i32 2
-  361241 = ptradd ptr %buf.loop, i32 %2134
+  2124 = shl i32 %pos.load341239, i32 2
+  361241 = ptradd ptr %buf.loop, i32 %2124
   36.load1242 = load i32 from ptr %361241
   381243 = icmp eq i32 %36.load1242, i32 9
   br i1 %381243, bb %skip_space.then391245, bb %skip_space.else411250
@@ -867,8 +867,8 @@ skip_space.then391245:  pred(skip_space.else301238)
   br bb %skip_space.while.cond1220
 skip_space.else411250:  pred(skip_space.else301238)
   pos.load451251 = load i32 from ptr %pos.pinned
-  2135 = shl i32 %pos.load451251, i32 2
-  471253 = ptradd ptr %buf.loop, i32 %2135
+  2125 = shl i32 %pos.load451251, i32 2
+  471253 = ptradd ptr %buf.loop, i32 %2125
   47.load1254 = load i32 from ptr %471253
   491255 = icmp eq i32 %47.load1254, i32 10
   br i1 %491255, bb %skip_space.then501257, bb %skip_space.else521262
@@ -879,8 +879,8 @@ skip_space.then501257:  pred(skip_space.else411250)
   br bb %skip_space.while.cond1220
 skip_space.else521262:  pred(skip_space.else411250)
   pos.load561263 = load i32 from ptr %pos.pinned
-  2136 = shl i32 %pos.load561263, i32 2
-  581265 = ptradd ptr %buf.loop, i32 %2136
+  2126 = shl i32 %pos.load561263, i32 2
+  581265 = ptradd ptr %buf.loop, i32 %2126
   58.load1266 = load i32 from ptr %581265
   601267 = icmp eq i32 %58.load1266, i32 13
   br i1 %601267, bb %skip_space.then611269, bb %skip_space.while.exit1224
@@ -896,8 +896,8 @@ skip_space.while.cond1277_preheader_preheader:  pred(if.exit463, skip_space.then
 skip_space.while.exit1281:  pred(skip_space.while.cond1277_preheader_preheader, skip_space.else521319)
   br i1 %201279, bb %then484, bb %if.exit485
 skip_space.if.exit221283:  pred(skip_space.while.cond1277_preheader_preheader)
-  2137 = shl i32 %pos.load1278, i32 2
-  251286 = ptradd ptr %buf.loop, i32 %2137
+  2127 = shl i32 %pos.load1278, i32 2
+  251286 = ptradd ptr %buf.loop, i32 %2127
   25.load1287 = load i32 from ptr %251286
   271288 = icmp eq i32 %25.load1287, i32 32
   br i1 %271288, bb %skip_space.then281290, bb %skip_space.else301295
@@ -940,8 +940,8 @@ skip_space.while.exit1338:  pred(skip_space.while.cond1334, skip_space.else52137
   br i1 %500, bb %then501, bb %skip_space.while.cond1391_preheader_preheader
 skip_space.if.exit221340:  pred(skip_space.while.cond1334)
   pos.load231341 = load i32 from ptr %pos.pinned
-  2141 = shl i32 %pos.load231341, i32 2
-  251343 = ptradd ptr %buf.loop, i32 %2141
+  2131 = shl i32 %pos.load231341, i32 2
+  251343 = ptradd ptr %buf.loop, i32 %2131
   25.load1344 = load i32 from ptr %251343
   271345 = icmp eq i32 %25.load1344, i32 32
   br i1 %271345, bb %skip_space.then281347, bb %skip_space.else301352
@@ -952,8 +952,8 @@ skip_space.then281347:  pred(skip_space.if.exit221340)
   br bb %skip_space.while.cond1334
 skip_space.else301352:  pred(skip_space.if.exit221340)
   pos.load341353 = load i32 from ptr %pos.pinned
-  2142 = shl i32 %pos.load341353, i32 2
-  361355 = ptradd ptr %buf.loop, i32 %2142
+  2132 = shl i32 %pos.load341353, i32 2
+  361355 = ptradd ptr %buf.loop, i32 %2132
   36.load1356 = load i32 from ptr %361355
   381357 = icmp eq i32 %36.load1356, i32 9
   br i1 %381357, bb %skip_space.then391359, bb %skip_space.else411364
@@ -964,8 +964,8 @@ skip_space.then391359:  pred(skip_space.else301352)
   br bb %skip_space.while.cond1334
 skip_space.else411364:  pred(skip_space.else301352)
   pos.load451365 = load i32 from ptr %pos.pinned
-  2143 = shl i32 %pos.load451365, i32 2
-  471367 = ptradd ptr %buf.loop, i32 %2143
+  2133 = shl i32 %pos.load451365, i32 2
+  471367 = ptradd ptr %buf.loop, i32 %2133
   47.load1368 = load i32 from ptr %471367
   491369 = icmp eq i32 %47.load1368, i32 10
   br i1 %491369, bb %skip_space.then501371, bb %skip_space.else521376
@@ -976,8 +976,8 @@ skip_space.then501371:  pred(skip_space.else411364)
   br bb %skip_space.while.cond1334
 skip_space.else521376:  pred(skip_space.else411364)
   pos.load561377 = load i32 from ptr %pos.pinned
-  2144 = shl i32 %pos.load561377, i32 2
-  581379 = ptradd ptr %buf.loop, i32 %2144
+  2134 = shl i32 %pos.load561377, i32 2
+  581379 = ptradd ptr %buf.loop, i32 %2134
   58.load1380 = load i32 from ptr %581379
   601381 = icmp eq i32 %58.load1380, i32 13
   br i1 %601381, bb %skip_space.then611383, bb %skip_space.while.exit1338
@@ -991,8 +991,8 @@ skip_space.while.cond1391_preheader_preheader:  pred(skip_space.while.exit1338, 
   201393 = icmp sge i32 %pos.load1392, i32 %len.loop
   br i1 %201393, bb %while.cond505, bb %skip_space.if.exit221397
 skip_space.if.exit221397:  pred(skip_space.while.cond1391_preheader_preheader)
-  2145 = shl i32 %pos.load1392, i32 2
-  251400 = ptradd ptr %buf.loop, i32 %2145
+  2135 = shl i32 %pos.load1392, i32 2
+  251400 = ptradd ptr %buf.loop, i32 %2135
   25.load1401 = load i32 from ptr %251400
   271402 = icmp eq i32 %25.load1401, i32 32
   br i1 %271402, bb %skip_space.then281404, bb %skip_space.else301409
@@ -1035,8 +1035,8 @@ skip_space.while.exit1452:  pred(skip_space.while.cond1448, skip_space.else52149
   br i1 %521, bb %then522, bb %skip_space.while.cond1505_preheader_preheader
 skip_space.if.exit221454:  pred(skip_space.while.cond1448)
   pos.load231455 = load i32 from ptr %pos.pinned
-  2149 = shl i32 %pos.load231455, i32 2
-  251457 = ptradd ptr %buf.loop, i32 %2149
+  2139 = shl i32 %pos.load231455, i32 2
+  251457 = ptradd ptr %buf.loop, i32 %2139
   25.load1458 = load i32 from ptr %251457
   271459 = icmp eq i32 %25.load1458, i32 32
   br i1 %271459, bb %skip_space.then281461, bb %skip_space.else301466
@@ -1047,8 +1047,8 @@ skip_space.then281461:  pred(skip_space.if.exit221454)
   br bb %skip_space.while.cond1448
 skip_space.else301466:  pred(skip_space.if.exit221454)
   pos.load341467 = load i32 from ptr %pos.pinned
-  2150 = shl i32 %pos.load341467, i32 2
-  361469 = ptradd ptr %buf.loop, i32 %2150
+  2140 = shl i32 %pos.load341467, i32 2
+  361469 = ptradd ptr %buf.loop, i32 %2140
   36.load1470 = load i32 from ptr %361469
   381471 = icmp eq i32 %36.load1470, i32 9
   br i1 %381471, bb %skip_space.then391473, bb %skip_space.else411478
@@ -1059,8 +1059,8 @@ skip_space.then391473:  pred(skip_space.else301466)
   br bb %skip_space.while.cond1448
 skip_space.else411478:  pred(skip_space.else301466)
   pos.load451479 = load i32 from ptr %pos.pinned
-  2151 = shl i32 %pos.load451479, i32 2
-  471481 = ptradd ptr %buf.loop, i32 %2151
+  2141 = shl i32 %pos.load451479, i32 2
+  471481 = ptradd ptr %buf.loop, i32 %2141
   47.load1482 = load i32 from ptr %471481
   491483 = icmp eq i32 %47.load1482, i32 10
   br i1 %491483, bb %skip_space.then501485, bb %skip_space.else521490
@@ -1071,8 +1071,8 @@ skip_space.then501485:  pred(skip_space.else411478)
   br bb %skip_space.while.cond1448
 skip_space.else521490:  pred(skip_space.else411478)
   pos.load561491 = load i32 from ptr %pos.pinned
-  2152 = shl i32 %pos.load561491, i32 2
-  581493 = ptradd ptr %buf.loop, i32 %2152
+  2142 = shl i32 %pos.load561491, i32 2
+  581493 = ptradd ptr %buf.loop, i32 %2142
   58.load1494 = load i32 from ptr %581493
   601495 = icmp eq i32 %58.load1494, i32 13
   br i1 %601495, bb %skip_space.then611497, bb %skip_space.while.exit1452
@@ -1088,8 +1088,8 @@ skip_space.while.cond1505_preheader_preheader:  pred(skip_space.while.exit1452, 
 skip_space.while.exit1509:  pred(skip_space.while.cond1505_preheader_preheader, skip_space.else521547)
   br i1 %201507, bb %then529, bb %if.exit530
 skip_space.if.exit221511:  pred(skip_space.while.cond1505_preheader_preheader)
-  2153 = shl i32 %pos.load1506, i32 2
-  251514 = ptradd ptr %buf.loop, i32 %2153
+  2143 = shl i32 %pos.load1506, i32 2
+  251514 = ptradd ptr %buf.loop, i32 %2143
   25.load1515 = load i32 from ptr %251514
   271516 = icmp eq i32 %25.load1515, i32 32
   br i1 %271516, bb %skip_space.then281518, bb %skip_space.else301523
@@ -1132,8 +1132,8 @@ skip_space.while.exit1566:  pred(skip_space.while.cond1562, skip_space.else52160
   br i1 %545, bb %then546, bb %skip_space.while.cond1619_preheader_preheader
 skip_space.if.exit221568:  pred(skip_space.while.cond1562)
   pos.load231569 = load i32 from ptr %pos.pinned
-  2157 = shl i32 %pos.load231569, i32 2
-  251571 = ptradd ptr %buf.loop, i32 %2157
+  2147 = shl i32 %pos.load231569, i32 2
+  251571 = ptradd ptr %buf.loop, i32 %2147
   25.load1572 = load i32 from ptr %251571
   271573 = icmp eq i32 %25.load1572, i32 32
   br i1 %271573, bb %skip_space.then281575, bb %skip_space.else301580
@@ -1144,8 +1144,8 @@ skip_space.then281575:  pred(skip_space.if.exit221568)
   br bb %skip_space.while.cond1562
 skip_space.else301580:  pred(skip_space.if.exit221568)
   pos.load341581 = load i32 from ptr %pos.pinned
-  2158 = shl i32 %pos.load341581, i32 2
-  361583 = ptradd ptr %buf.loop, i32 %2158
+  2148 = shl i32 %pos.load341581, i32 2
+  361583 = ptradd ptr %buf.loop, i32 %2148
   36.load1584 = load i32 from ptr %361583
   381585 = icmp eq i32 %36.load1584, i32 9
   br i1 %381585, bb %skip_space.then391587, bb %skip_space.else411592
@@ -1156,8 +1156,8 @@ skip_space.then391587:  pred(skip_space.else301580)
   br bb %skip_space.while.cond1562
 skip_space.else411592:  pred(skip_space.else301580)
   pos.load451593 = load i32 from ptr %pos.pinned
-  2159 = shl i32 %pos.load451593, i32 2
-  471595 = ptradd ptr %buf.loop, i32 %2159
+  2149 = shl i32 %pos.load451593, i32 2
+  471595 = ptradd ptr %buf.loop, i32 %2149
   47.load1596 = load i32 from ptr %471595
   491597 = icmp eq i32 %47.load1596, i32 10
   br i1 %491597, bb %skip_space.then501599, bb %skip_space.else521604
@@ -1168,8 +1168,8 @@ skip_space.then501599:  pred(skip_space.else411592)
   br bb %skip_space.while.cond1562
 skip_space.else521604:  pred(skip_space.else411592)
   pos.load561605 = load i32 from ptr %pos.pinned
-  2160 = shl i32 %pos.load561605, i32 2
-  581607 = ptradd ptr %buf.loop, i32 %2160
+  2150 = shl i32 %pos.load561605, i32 2
+  581607 = ptradd ptr %buf.loop, i32 %2150
   58.load1608 = load i32 from ptr %581607
   601609 = icmp eq i32 %58.load1608, i32 13
   br i1 %601609, bb %skip_space.then611611, bb %skip_space.while.exit1566
@@ -1183,8 +1183,8 @@ skip_space.while.cond1619_preheader_preheader:  pred(skip_space.while.exit1566, 
   201621 = icmp sge i32 %pos.load1620, i32 %len.loop
   br i1 %201621, bb %while.cond505, bb %skip_space.if.exit221625
 skip_space.if.exit221625:  pred(skip_space.while.cond1619_preheader_preheader)
-  2161 = shl i32 %pos.load1620, i32 2
-  251628 = ptradd ptr %buf.loop, i32 %2161
+  2151 = shl i32 %pos.load1620, i32 2
+  251628 = ptradd ptr %buf.loop, i32 %2151
   25.load1629 = load i32 from ptr %251628
   271630 = icmp eq i32 %25.load1629, i32 32
   br i1 %271630, bb %skip_space.then281632, bb %skip_space.else301637
@@ -1224,8 +1224,8 @@ skip_space.while.cond1676_preheader_preheader:  pred(while.cond505, skip_space.t
 skip_space.while.exit1680:  pred(skip_space.while.cond1676_preheader_preheader, skip_space.else521718)
   br i1 %201678, bb %then555, bb %else557
 skip_space.if.exit221682:  pred(skip_space.while.cond1676_preheader_preheader)
-  2165 = shl i32 %pos.load1677, i32 2
-  251685 = ptradd ptr %buf.loop, i32 %2165
+  2155 = shl i32 %pos.load1677, i32 2
+  251685 = ptradd ptr %buf.loop, i32 %2155
   25.load1686 = load i32 from ptr %251685
   271687 = icmp eq i32 %25.load1686, i32 32
   br i1 %271687, bb %skip_space.then281689, bb %skip_space.else301694
@@ -1304,9 +1304,9 @@ is_number.then91909:  pred(is_number.then1904)
 is_number.else111911:  pred(is_number.then1904)
   br bb %while.body310.split
 loop_entry_unified_latch:  pred(then87, then97, then107, then118, then128, then138, then148, then158, then168)
-  2229 = phi [bb %then87, i32 4, bb %then97, i32 3, bb %then107, i32 2, bb %then118, i32 1, bb %then128, i32 1, bb %then138, i32 1, bb %then148, i32 5, bb %then158, i32 6, bb %then168, i32 7]
-  2228 = phi [bb %then87, ptr %buf.loop, bb %then97, ptr %buf.loop, bb %then107, ptr %buf.loop, bb %then118, ptr %buf.loop, bb %then128, ptr %buf.loop, bb %then138, ptr %buf.loop, bb %then148, ptr %buf.loop, bb %then158, ptr %buf.loop, bb %then168, ptr %buf.loop]
-  2227 = phi [bb %then87, i32 %len.loop, bb %then97, i32 %len.loop, bb %then107, i32 %len.loop, bb %then118, i32 %len.loop, bb %then128, i32 %len.loop, bb %then138, i32 %len.loop, bb %then148, i32 %len.loop, bb %then158, i32 %len.loop, bb %then168, i32 %len.loop]
+  2219 = phi [bb %then87, i32 4, bb %then97, i32 3, bb %then107, i32 2, bb %then118, i32 1, bb %then128, i32 1, bb %then138, i32 1, bb %then148, i32 5, bb %then158, i32 6, bb %then168, i32 7]
+  2218 = phi [bb %then87, ptr %buf.loop, bb %then97, ptr %buf.loop, bb %then107, ptr %buf.loop, bb %then118, ptr %buf.loop, bb %then128, ptr %buf.loop, bb %then138, ptr %buf.loop, bb %then148, ptr %buf.loop, bb %then158, ptr %buf.loop, bb %then168, ptr %buf.loop]
+  2217 = phi [bb %then87, i32 %len.loop, bb %then97, i32 %len.loop, bb %then107, i32 %len.loop, bb %then118, i32 %len.loop, bb %then128, i32 %len.loop, bb %then138, i32 %len.loop, bb %then148, i32 %len.loop, bb %then158, i32 %len.loop, bb %then168, i32 %len.loop]
   br bb %loop_entry
 }
 
@@ -1324,17 +1324,17 @@ i32 main() {
 entry779:  pred()
   buffer.pinned = pin ptr @buffer
   781 = call i32 getch()
-  7872190 = icmp ne i32 %781, i32 35
-  br i1 %7872190, bb %while.body784_preheader, bb %skip_space.while.cond1733_preheader_preheader
+  7872180 = icmp ne i32 %781, i32 35
+  br i1 %7872180, bb %while.body784_preheader, bb %skip_space.while.cond1733_preheader_preheader
 while.body784_preheader:  pred(entry779)
   br bb %while.body784
 while.body784:  pred(while.body784, while.body784_preheader)
-  get.phi2193 = phi [bb %while.body784, i32 %798, bb %while.body784_preheader, i32 %781]
-  i.phi2192 = phi [bb %while.body784, i32 %796, bb %while.body784_preheader, i32 0]
-  2179 = shl i32 %i.phi2192, i32 2
-  791 = ptradd ptr %buffer.pinned, i32 %2179
-  store i32 %get.phi2193 to ptr %791
-  796 = add i32 %i.phi2192, i32 1
+  get.phi2183 = phi [bb %while.body784, i32 %798, bb %while.body784_preheader, i32 %781]
+  i.phi2182 = phi [bb %while.body784, i32 %796, bb %while.body784_preheader, i32 0]
+  2169 = shl i32 %i.phi2182, i32 2
+  791 = ptradd ptr %buffer.pinned, i32 %2169
+  store i32 %get.phi2183 to ptr %791
+  796 = add i32 %i.phi2182, i32 1
   798 = call i32 getch()
   787 = icmp ne i32 %798, i32 35
   br i1 %787, bb %while.body784, bb %while.body784_exclu_exit
@@ -1353,93 +1353,93 @@ else810:  pred(skip_space.while.exit1794)
   call void putch(i32 10)
   ret i32 1
 skip_space.while.cond1733_preheader_preheader:  pred(entry779, while.body784_exclu_exit)
-  2191_ph_val_ph_val = phi [bb %entry779, i32 0, bb %while.body784_exclu_exit, i32 %796]
-  pos.pinned2275 = pin ptr @pos
+  2181_ph_val_ph_val = phi [bb %while.body784_exclu_exit, i32 %796, bb %entry779, i32 0]
+  pos.pinned2265 = pin ptr @pos
   br bb %skip_space.while.cond1733_preheader
 skip_space.while.cond1733_preheader:  pred(skip_space.while.cond1733_unified_latch, skip_space.while.cond1733_preheader_preheader)
-  2191_ph_val = phi [bb %skip_space.while.cond1733_unified_latch, i32 %796, bb %skip_space.while.cond1733_preheader_preheader, i32 %2191_ph_val_ph_val]
-  pos.load1734 = load i32 from ptr %pos.pinned2275
-  201735 = icmp sge i32 %pos.load1734, i32 %2191_ph_val
+  2181_ph_val = phi [bb %skip_space.while.cond1733_unified_latch, i32 %796, bb %skip_space.while.cond1733_preheader_preheader, i32 %2181_ph_val_ph_val]
+  pos.load1734 = load i32 from ptr %pos.pinned2265
+  201735 = icmp sge i32 %pos.load1734, i32 %2181_ph_val
   br i1 %201735, bb %skip_space.while.exit1737, bb %skip_space.if.exit221739
 skip_space.while.exit1737:  pred(skip_space.while.cond1733_preheader, skip_space.else521775)
-  803 = call i32 detect_item(i32 0, ptr %buffer.pinned, i32 %2191_ph_val)
+  803 = call i32 detect_item(i32 0, ptr %buffer.pinned, i32 %2181_ph_val)
   br bb %skip_space.while.cond1790
 skip_space.if.exit221739:  pred(skip_space.while.cond1733_preheader)
-  2180 = shl i32 %pos.load1734, i32 2
-  251742 = ptradd ptr %buffer.pinned, i32 %2180
+  2170 = shl i32 %pos.load1734, i32 2
+  251742 = ptradd ptr %buffer.pinned, i32 %2170
   25.load1743 = load i32 from ptr %251742
   271744 = icmp eq i32 %25.load1743, i32 32
   br i1 %271744, bb %skip_space.then281746, bb %skip_space.else301751
 skip_space.then281746:  pred(skip_space.if.exit221739)
-  pos.load321747 = load i32 from ptr %pos.pinned2275
+  pos.load321747 = load i32 from ptr %pos.pinned2265
   331748 = add i32 %pos.load321747, i32 1
-  store i32 %331748 to ptr %pos.pinned2275
+  store i32 %331748 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1733_unified_latch
 skip_space.else301751:  pred(skip_space.if.exit221739)
   381756 = icmp eq i32 %25.load1743, i32 9
   br i1 %381756, bb %skip_space.then391758, bb %skip_space.else411763
 skip_space.then391758:  pred(skip_space.else301751)
-  pos.load431759 = load i32 from ptr %pos.pinned2275
+  pos.load431759 = load i32 from ptr %pos.pinned2265
   441760 = add i32 %pos.load431759, i32 1
-  store i32 %441760 to ptr %pos.pinned2275
+  store i32 %441760 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1733_unified_latch
 skip_space.else411763:  pred(skip_space.else301751)
   491768 = icmp eq i32 %25.load1743, i32 10
   br i1 %491768, bb %skip_space.then501770, bb %skip_space.else521775
 skip_space.then501770:  pred(skip_space.else411763)
-  pos.load541771 = load i32 from ptr %pos.pinned2275
+  pos.load541771 = load i32 from ptr %pos.pinned2265
   551772 = add i32 %pos.load541771, i32 1
-  store i32 %551772 to ptr %pos.pinned2275
+  store i32 %551772 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1733_unified_latch
 skip_space.else521775:  pred(skip_space.else411763)
   601780 = icmp eq i32 %25.load1743, i32 13
   br i1 %601780, bb %skip_space.then611782, bb %skip_space.while.exit1737
 skip_space.then611782:  pred(skip_space.else521775)
-  pos.load651783 = load i32 from ptr %pos.pinned2275
+  pos.load651783 = load i32 from ptr %pos.pinned2265
   661784 = add i32 %pos.load651783, i32 1
-  store i32 %661784 to ptr %pos.pinned2275
+  store i32 %661784 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1733_unified_latch
 skip_space.while.cond1790:  pred(skip_space.while.exit1737, skip_space.then281803, skip_space.then391815, skip_space.then501827, skip_space.then611839)
-  pos.load1791 = load i32 from ptr %pos.pinned2275
-  201792 = icmp sge i32 %pos.load1791, i32 %2191_ph_val
+  pos.load1791 = load i32 from ptr %pos.pinned2265
+  201792 = icmp sge i32 %pos.load1791, i32 %2181_ph_val
   br i1 %201792, bb %skip_space.while.exit1794, bb %skip_space.if.exit221796
 skip_space.while.exit1794:  pred(skip_space.while.cond1790, skip_space.else521832)
   807 = icmp ne i32 %803, i32 0
   br i1 %807, bb %then808, bb %else810
 skip_space.if.exit221796:  pred(skip_space.while.cond1790)
-  2184 = shl i32 %pos.load1791, i32 2
-  251799 = ptradd ptr %buffer.pinned, i32 %2184
+  2174 = shl i32 %pos.load1791, i32 2
+  251799 = ptradd ptr %buffer.pinned, i32 %2174
   25.load1800 = load i32 from ptr %251799
   271801 = icmp eq i32 %25.load1800, i32 32
   br i1 %271801, bb %skip_space.then281803, bb %skip_space.else301808
 skip_space.then281803:  pred(skip_space.if.exit221796)
-  pos.load321804 = load i32 from ptr %pos.pinned2275
+  pos.load321804 = load i32 from ptr %pos.pinned2265
   331805 = add i32 %pos.load321804, i32 1
-  store i32 %331805 to ptr %pos.pinned2275
+  store i32 %331805 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1790
 skip_space.else301808:  pred(skip_space.if.exit221796)
   381813 = icmp eq i32 %25.load1800, i32 9
   br i1 %381813, bb %skip_space.then391815, bb %skip_space.else411820
 skip_space.then391815:  pred(skip_space.else301808)
-  pos.load431816 = load i32 from ptr %pos.pinned2275
+  pos.load431816 = load i32 from ptr %pos.pinned2265
   441817 = add i32 %pos.load431816, i32 1
-  store i32 %441817 to ptr %pos.pinned2275
+  store i32 %441817 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1790
 skip_space.else411820:  pred(skip_space.else301808)
   491825 = icmp eq i32 %25.load1800, i32 10
   br i1 %491825, bb %skip_space.then501827, bb %skip_space.else521832
 skip_space.then501827:  pred(skip_space.else411820)
-  pos.load541828 = load i32 from ptr %pos.pinned2275
+  pos.load541828 = load i32 from ptr %pos.pinned2265
   551829 = add i32 %pos.load541828, i32 1
-  store i32 %551829 to ptr %pos.pinned2275
+  store i32 %551829 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1790
 skip_space.else521832:  pred(skip_space.else411820)
   601837 = icmp eq i32 %25.load1800, i32 13
   br i1 %601837, bb %skip_space.then611839, bb %skip_space.while.exit1794
 skip_space.then611839:  pred(skip_space.else521832)
-  pos.load651840 = load i32 from ptr %pos.pinned2275
+  pos.load651840 = load i32 from ptr %pos.pinned2265
   661841 = add i32 %pos.load651840, i32 1
-  store i32 %661841 to ptr %pos.pinned2275
+  store i32 %661841 to ptr %pos.pinned2265
   br bb %skip_space.while.cond1790
 while.body784_exclu_exit:  pred(while.body784)
   br bb %skip_space.while.cond1733_preheader_preheader

@@ -26,6 +26,10 @@ private:
   Value *simplifySDiv(SDivInst *I);
   Value *simplifySRem(SRemInst *I);
 
+  Value *simplifyAnd(AndInst *I);
+  Value *simplifyOr(OrInst *I);
+  Value *simplifyXor(XorInst *I);
+
   Value *simplifyPtrAdd(PtrAddInst *I);
 
   Value *simplifyICmp(ICmpInst *I);

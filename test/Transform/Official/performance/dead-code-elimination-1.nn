@@ -25,8 +25,8 @@ while.body:  pred(while.body, while.body_preheader)
   sum.phi100069 = phi [bb %while.body, i32 %100043, bb %while.body_preheader, i32 0]
   i.phi100068 = phi [bb %while.body, i32 %100046, bb %while.body_preheader, i32 0]
   store i32 %i.phi100068 to ptr @global
-  100608 = mul i32 %i.phi100068, i32 60
-  100036 = sdiv i32 %100608, i32 60
+  100607 = mul i32 %i.phi100068, i32 60
+  100036 = sdiv i32 %100607, i32 60
   100040 = add i32 %sum.phi100069, i32 %100036
   100043 = srem i32 %100040, i32 134209537
   100046 = add i32 %i.phi100068, i32 1

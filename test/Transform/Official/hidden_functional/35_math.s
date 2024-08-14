@@ -413,7 +413,7 @@ bb27:   # loop depth 0
   LA s0, .CONSTANT.7.3
   CALL my_sqrt
   FLW ft0, 0(s0)
-  FMUL.S fa0, ft0, fa0
+  FMUL.S fa0, fa0, ft0
   LD ra, 0(sp)
   LD s0, 8(sp)
   ADDI sp, sp, 16

@@ -103,6 +103,25 @@ protected:
   ConstantInt **receiver;
 };
 
+class pAllOne {
+public:
+  pAllOne() : receiver(nullptr) {}
+  pAllOne(ConstantInt *&receiver) : receiver(&receiver) {}
+  bool match(Value *op) {
+    ConstantInt *opcasted = mayCast<ConstantInt>(op);
+    if (!opcasted)
+      return false;
+    if (!opcasted->isAllOne())
+      return false;
+    if (receiver)
+      *receiver = opcasted;
+    return true;
+  }
+
+protected:
+  ConstantInt **receiver;
+};
+
 class pInst {
 public:
   pInst() : receiver(nullptr) {}
@@ -221,6 +240,75 @@ public:
       return false;
 
     SRemInst *I = cast<SRemInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
+template <typename LSubPattern, typename RSubPattern>
+class pAnd : public pSpecificInst<InstID::And> {
+public:
+  pAnd(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::And>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::And>::match(op))
+      return false;
+
+    AndInst *I = cast<AndInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
+template <typename LSubPattern, typename RSubPattern>
+class pOr : public pSpecificInst<InstID::Or> {
+public:
+  pOr(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::Or>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::Or>::match(op))
+      return false;
+
+    OrInst *I = cast<OrInst>(op);
+    if (!LHS.match(I->getOperand(0)))
+      return false;
+    if (!RHS.match(I->getOperand(1)))
+      return false;
+    return true;
+  }
+
+protected:
+  LSubPattern LHS;
+  RSubPattern RHS;
+};
+
+template <typename LSubPattern, typename RSubPattern>
+class pXor : public pSpecificInst<InstID::Xor> {
+public:
+  pXor(LSubPattern LHS, RSubPattern RHS)
+      : pSpecificInst<InstID::Xor>(), LHS(LHS), RHS(RHS) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::Xor>::match(op))
+      return false;
+
+    XorInst *I = cast<XorInst>(op);
     if (!LHS.match(I->getOperand(0)))
       return false;
     if (!RHS.match(I->getOperand(1)))

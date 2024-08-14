@@ -43,6 +43,12 @@ Value *Instruction::getOperand(uint no) const {
   return useeList[no]->getUsee();
 }
 
+void Instruction::swapOperand(uint a, uint b) {
+  Value *tmp = getOperand(a);
+  setOperand(a, getOperand(b));
+  setOperand(b, tmp);
+}
+
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
     {InstID::Add, "add"},
@@ -107,6 +113,21 @@ bool Instruction::haveSideEffect() const {
 
 bool Instruction::moveable() const {
   return !(mayWriteToMemory() || isa<TerminatorInst>() || isa<PhiNode>());
+}
+
+bool Instruction::commutative() const {
+  switch (getOpcode()) {
+  case InstID::Add:
+  case InstID::FAdd:
+  case InstID::Mul:
+  case InstID::FMul:
+  case InstID::And:
+  case InstID::Or:
+  case InstID::Xor:
+    return true;
+  default:
+    return false;
+  }
 }
 
 std::string Instruction::dump() {

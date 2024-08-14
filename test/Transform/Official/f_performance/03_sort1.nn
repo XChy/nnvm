@@ -17,25 +17,25 @@ entry351:  pred()
   353 = call i32 getarray(ptr %a.pinned)
   call void _sysy_starttime(i32 90)
   call void radixSort(i32 8, ptr %a.pinned, i32 0, i32 %353)
-  363515 = icmp slt i32 0, i32 %353
-  br i1 %363515, bb %while.body359_preheader, bb %while.exit360
+  363512 = icmp slt i32 0, i32 %353
+  br i1 %363512, bb %while.body359_preheader, bb %while.exit360
 while.body359_preheader:  pred(entry351)
   ans.load366_ahead = load i32 from ptr %ans.pinned
   br bb %while.body359
 while.body359:  pred(while.body359, while.body359_preheader)
   ans.load366_phi_loop = phi [bb %while.body359_preheader, i32 %ans.load366_ahead, bb %while.body359, i32 %376]
-  i357.phi516 = phi [bb %while.body359, i32 %379, bb %while.body359_preheader, i32 0]
-  500 = shl i32 %i357.phi516, i32 2
-  370 = ptradd ptr %a.pinned, i32 %500
+  i357.phi513 = phi [bb %while.body359, i32 %379, bb %while.body359_preheader, i32 0]
+  499 = shl i32 %i357.phi513, i32 2
+  370 = ptradd ptr %a.pinned, i32 %499
   370.load = load i32 from ptr %370
-  409 = add i32 %i357.phi516, i32 2
-  374 = srem i32 %370.load, i32 %409
-  375 = mul i32 %i357.phi516, i32 %374
+  373 = add i32 %i357.phi513, i32 2
+  374 = srem i32 %370.load, i32 %373
+  375 = mul i32 %i357.phi513, i32 %374
   376 = add i32 %ans.load366_phi_loop, i32 %375
-  379 = add i32 %i357.phi516, i32 1
+  379 = add i32 %i357.phi513, i32 1
   363 = icmp slt i32 %379, i32 %353
-  br i1 %363, bb %while.body359, bb %while.body359_exclu_exit1163
-while.exit360:  pred(entry351, while.body359_exclu_exit1163)
+  br i1 %363, bb %while.body359, bb %while.body359_exclu_exit1160
+while.exit360:  pred(entry351, while.body359_exclu_exit1160)
   ans.load380 = load i32 from ptr %ans.pinned
   381 = icmp slt i32 %ans.load380, i32 0
   br i1 %381, bb %then382, bb %if.exit383
@@ -50,7 +50,7 @@ if.exit383:  pred(while.exit360, then382)
   call void putint(i32 %ans.load388)
   call void putch(i32 10)
   ret i32 0
-while.body359_exclu_exit1163:  pred(while.body359)
+while.body359_exclu_exit1160:  pred(while.body359)
   store i32 %376 to ptr %ans.pinned
   br bb %while.exit360
 }
@@ -136,22 +136,22 @@ entry50:  pred()
   107 = icmp eq i32 %bitround, i32 -1
   113 = add i32 %l, i32 1
   115 = icmp sge i32 %113, i32 %r
-  446 = or i1 %107, i1 %115
-  br i1 %446, bb %then118, bb %if.exit119
+  445 = or i1 %107, i1 %115
+  br i1 %445, bb %then118, bb %if.exit119
 then118:  pred(entry50)
   ret 
 if.exit119:  pred(entry50)
-  127545 = icmp slt i32 %l, i32 %r
-  br i1 %127545, bb %while.body123_preheader, bb %while.exit124
+  127542 = icmp slt i32 %l, i32 %r
+  br i1 %127542, bb %while.body123_preheader, bb %while.exit124
 while.body123_preheader:  pred(if.exit119)
-  38453517 = icmp slt i32 0, i32 %bitround
+  38452514 = icmp slt i32 0, i32 %bitround
   br bb %while.body123
 while.body123:  pred(getNumPos.while.exit35, while.body123_preheader)
-  i120.phi397546 = phi [bb %getNumPos.while.exit35, i32 %150, bb %while.body123_preheader, i32 %l]
-  501 = shl i32 %i120.phi397546, i32 2
-  131 = ptradd ptr %a, i32 %501
+  i120.phi397543 = phi [bb %getNumPos.while.exit35, i32 %150, bb %while.body123_preheader, i32 %l]
+  500 = shl i32 %i120.phi397543, i32 2
+  131 = ptradd ptr %a, i32 %500
   131.load = load i32 from ptr %131
-  br i1 %38453517, bb %getNumPos.while.body34_preheader, bb %getNumPos.while.exit35
+  br i1 %38452514, bb %getNumPos.while.body34_preheader, bb %getNumPos.while.exit35
 while.exit124:  pred(if.exit119, getNumPos.while.exit35)
   store i32 %l to ptr %head
   160.load = load i32 from ptr %cnt
@@ -162,203 +162,203 @@ while.exit124:  pred(if.exit119, getNumPos.while.exit35)
   192 = add i32 %162, i32 %190.load
   store i32 %192 to ptr %arr.index73
   store i32 %192 to ptr %arr.index57
-  190.load962 = load i32 from ptr %arr.index91
-  192963 = add i32 %192, i32 %190.load962
-  store i32 %192963 to ptr %arr.index74
-  store i32 %192963 to ptr %arr.index58
-  190.load977 = load i32 from ptr %arr.index92
-  192978 = add i32 %192963, i32 %190.load977
-  store i32 %192978 to ptr %arr.index75
-  store i32 %192978 to ptr %arr.index59
-  190.load992 = load i32 from ptr %arr.index93
-  192993 = add i32 %192978, i32 %190.load992
-  store i32 %192993 to ptr %arr.index76
-  store i32 %192993 to ptr %arr.index60
-  190.load1007 = load i32 from ptr %arr.index94
-  1921008 = add i32 %192993, i32 %190.load1007
-  store i32 %1921008 to ptr %arr.index77
-  store i32 %1921008 to ptr %arr.index61
-  190.load1022 = load i32 from ptr %arr.index95
-  1921023 = add i32 %1921008, i32 %190.load1022
-  store i32 %1921023 to ptr %arr.index78
-  store i32 %1921023 to ptr %arr.index62
-  190.load1037 = load i32 from ptr %arr.index96
-  1921038 = add i32 %1921023, i32 %190.load1037
-  store i32 %1921038 to ptr %arr.index79
-  store i32 %1921038 to ptr %arr.index63
-  190.load1052 = load i32 from ptr %arr.index97
-  1921053 = add i32 %1921038, i32 %190.load1052
-  store i32 %1921053 to ptr %arr.index80
-  store i32 %1921053 to ptr %arr.index64
-  190.load1067 = load i32 from ptr %arr.index98
-  1921068 = add i32 %1921053, i32 %190.load1067
-  store i32 %1921068 to ptr %arr.index81
-  store i32 %1921068 to ptr %arr.index65
-  190.load1082 = load i32 from ptr %arr.index99
-  1921083 = add i32 %1921068, i32 %190.load1082
-  store i32 %1921083 to ptr %arr.index82
-  store i32 %1921083 to ptr %arr.index66
-  190.load1097 = load i32 from ptr %arr.index100
-  1921098 = add i32 %1921083, i32 %190.load1097
-  store i32 %1921098 to ptr %arr.index83
-  store i32 %1921098 to ptr %arr.index67
-  190.load1112 = load i32 from ptr %arr.index101
-  1921113 = add i32 %1921098, i32 %190.load1112
-  store i32 %1921113 to ptr %arr.index84
-  store i32 %1921113 to ptr %arr.index68
-  190.load1127 = load i32 from ptr %arr.index102
-  1921128 = add i32 %1921113, i32 %190.load1127
-  store i32 %1921128 to ptr %arr.index85
-  store i32 %1921128 to ptr %arr.index69
-  190.load1142 = load i32 from ptr %arr.index103
-  1921143 = add i32 %1921128, i32 %190.load1142
-  store i32 %1921143 to ptr %arr.index86
-  store i32 %1921143 to ptr %arr.index70
-  190.load1157 = load i32 from ptr %arr.index104
-  1921158 = add i32 %1921143, i32 %190.load1157
-  store i32 %1921158 to ptr %arr.index87
-  38469521 = icmp slt i32 0, i32 %bitround
+  190.load959 = load i32 from ptr %arr.index91
+  192960 = add i32 %192, i32 %190.load959
+  store i32 %192960 to ptr %arr.index74
+  store i32 %192960 to ptr %arr.index58
+  190.load974 = load i32 from ptr %arr.index92
+  192975 = add i32 %192960, i32 %190.load974
+  store i32 %192975 to ptr %arr.index75
+  store i32 %192975 to ptr %arr.index59
+  190.load989 = load i32 from ptr %arr.index93
+  192990 = add i32 %192975, i32 %190.load989
+  store i32 %192990 to ptr %arr.index76
+  store i32 %192990 to ptr %arr.index60
+  190.load1004 = load i32 from ptr %arr.index94
+  1921005 = add i32 %192990, i32 %190.load1004
+  store i32 %1921005 to ptr %arr.index77
+  store i32 %1921005 to ptr %arr.index61
+  190.load1019 = load i32 from ptr %arr.index95
+  1921020 = add i32 %1921005, i32 %190.load1019
+  store i32 %1921020 to ptr %arr.index78
+  store i32 %1921020 to ptr %arr.index62
+  190.load1034 = load i32 from ptr %arr.index96
+  1921035 = add i32 %1921020, i32 %190.load1034
+  store i32 %1921035 to ptr %arr.index79
+  store i32 %1921035 to ptr %arr.index63
+  190.load1049 = load i32 from ptr %arr.index97
+  1921050 = add i32 %1921035, i32 %190.load1049
+  store i32 %1921050 to ptr %arr.index80
+  store i32 %1921050 to ptr %arr.index64
+  190.load1064 = load i32 from ptr %arr.index98
+  1921065 = add i32 %1921050, i32 %190.load1064
+  store i32 %1921065 to ptr %arr.index81
+  store i32 %1921065 to ptr %arr.index65
+  190.load1079 = load i32 from ptr %arr.index99
+  1921080 = add i32 %1921065, i32 %190.load1079
+  store i32 %1921080 to ptr %arr.index82
+  store i32 %1921080 to ptr %arr.index66
+  190.load1094 = load i32 from ptr %arr.index100
+  1921095 = add i32 %1921080, i32 %190.load1094
+  store i32 %1921095 to ptr %arr.index83
+  store i32 %1921095 to ptr %arr.index67
+  190.load1109 = load i32 from ptr %arr.index101
+  1921110 = add i32 %1921095, i32 %190.load1109
+  store i32 %1921110 to ptr %arr.index84
+  store i32 %1921110 to ptr %arr.index68
+  190.load1124 = load i32 from ptr %arr.index102
+  1921125 = add i32 %1921110, i32 %190.load1124
+  store i32 %1921125 to ptr %arr.index85
+  store i32 %1921125 to ptr %arr.index69
+  190.load1139 = load i32 from ptr %arr.index103
+  1921140 = add i32 %1921125, i32 %190.load1139
+  store i32 %1921140 to ptr %arr.index86
+  store i32 %1921140 to ptr %arr.index70
+  190.load1154 = load i32 from ptr %arr.index104
+  1921155 = add i32 %1921140, i32 %190.load1154
+  store i32 %1921155 to ptr %arr.index87
+  38468518 = icmp slt i32 0, i32 %bitround
   br bb %while.body198
 while.body198:  pred(while.exit206, while.exit124)
-  i120.phi542 = phi [bb %while.exit206, i32 %288, bb %while.exit124, i32 0]
-  t.phi400541 = phi [bb %while.exit206, i32 %t.phi400532, bb %while.exit124, i32 0]
-  v.phi403540 = phi [bb %while.exit206, i32 %v.phi403531, bb %while.exit124, i32 0]
-  504525 = shl i32 %i120.phi542, i32 2
-  209526 = ptradd ptr %head, i32 %504525
-  209.load527 = load i32 from ptr %209526
-  213528 = ptradd ptr %tail, i32 %504525
-  213.load529 = load i32 from ptr %213528
-  215530 = icmp slt i32 %209.load527, i32 %213.load529
-  br i1 %215530, bb %while.body205_preheader, bb %while.exit206
+  i120.phi539 = phi [bb %while.exit206, i32 %288, bb %while.exit124, i32 0]
+  t.phi400538 = phi [bb %while.exit206, i32 %t.phi400529, bb %while.exit124, i32 0]
+  v.phi403537 = phi [bb %while.exit206, i32 %v.phi403528, bb %while.exit124, i32 0]
+  502522 = shl i32 %i120.phi539, i32 2
+  209523 = ptradd ptr %head, i32 %502522
+  209.load524 = load i32 from ptr %209523
+  213525 = ptradd ptr %tail, i32 %502522
+  213.load526 = load i32 from ptr %213525
+  215527 = icmp slt i32 %209.load524, i32 %213.load526
+  br i1 %215527, bb %while.body205_preheader, bb %while.exit206
 while.body205_preheader:  pred(while.body198)
   br bb %while.body205
 while.body205:  pred(while.exit227, while.body205_preheader)
-  209.load527536 = phi [bb %while.exit227, i32 %285, bb %while.body205_preheader, i32 %209.load527]
-  t.phi399534 = phi [bb %while.exit227, i32 %t.phi, bb %while.body205_preheader, i32 %t.phi400541]
-  505 = shl i32 %209.load527536, i32 2
-  223 = ptradd ptr %a, i32 %505
+  209.load524533 = phi [bb %while.exit227, i32 %285, bb %while.body205_preheader, i32 %209.load524]
+  t.phi399531 = phi [bb %while.exit227, i32 %t.phi, bb %while.body205_preheader, i32 %t.phi400538]
+  503 = shl i32 %209.load524533, i32 2
+  223 = ptradd ptr %a, i32 %503
   223.load = load i32 from ptr %223
   br bb %while.cond225
 while.exit206:  pred(while.body198, while.body205_exclu_exit)
-  t.phi400532 = phi [bb %while.body205_exclu_exit, i32 %t.phi, bb %while.body198, i32 %t.phi400541]
-  v.phi403531 = phi [bb %while.body205_exclu_exit, i32 %v.phi, bb %while.body198, i32 %v.phi403540]
-  288 = add i32 %i120.phi542, i32 1
+  t.phi400529 = phi [bb %while.body205_exclu_exit, i32 %t.phi, bb %while.body198, i32 %t.phi400538]
+  v.phi403528 = phi [bb %while.body205_exclu_exit, i32 %v.phi, bb %while.body198, i32 %v.phi403537]
+  288 = add i32 %i120.phi539, i32 1
   202 = icmp slt i32 %288, i32 16
   br i1 %202, bb %while.body198, bb %while.body198_exclu_exit
 while.cond225:  pred(while.body205, while.body226)
   v.phi = phi [bb %while.body205, i32 %223.load, bb %while.body226, i32 %244.load]
-  t.phi = phi [bb %while.body205, i32 %t.phi399534, bb %while.body226, i32 %v.phi]
-  br i1 %38469521, bb %getNumPos.while.body34471_preheader, bb %getNumPos.while.exit35475
-while.body226:  pred(getNumPos.while.exit35475)
-  506 = shl i32 %49476, i32 2
-  241 = ptradd ptr %head, i32 %506
+  t.phi = phi [bb %while.body205, i32 %t.phi399531, bb %while.body226, i32 %v.phi]
+  br i1 %38468518, bb %getNumPos.while.body34470_preheader, bb %getNumPos.while.exit35474
+while.body226:  pred(getNumPos.while.exit35474)
+  504 = shl i32 %49475, i32 2
+  241 = ptradd ptr %head, i32 %504
   241.load = load i32 from ptr %241
-  507 = shl i32 %241.load, i32 2
-  244 = ptradd ptr %a, i32 %507
+  505 = shl i32 %241.load, i32 2
+  244 = ptradd ptr %a, i32 %505
   244.load = load i32 from ptr %244
   store i32 %v.phi to ptr %244
   268 = add i32 %241.load, i32 1
   store i32 %268 to ptr %241
   br bb %while.cond225
-while.exit227:  pred(getNumPos.while.exit35475)
-  271.load = load i32 from ptr %209526
-  508 = shl i32 %271.load, i32 2
-  274 = ptradd ptr %a, i32 %508
+while.exit227:  pred(getNumPos.while.exit35474)
+  271.load = load i32 from ptr %209523
+  506 = shl i32 %271.load, i32 2
+  274 = ptradd ptr %a, i32 %506
   store i32 %v.phi to ptr %274
   285 = add i32 %271.load, i32 1
-  store i32 %285 to ptr %209526
-  215 = icmp slt i32 %285, i32 %213.load529
+  store i32 %285 to ptr %209523
+  215 = icmp slt i32 %285, i32 %213.load526
   br i1 %215, bb %while.body205, bb %while.body205_exclu_exit
 getNumPos.while.body34_preheader:  pred(while.body123)
   br bb %getNumPos.while.body34
 getNumPos.while.body34:  pred(getNumPos.while.body34, getNumPos.while.body34_preheader)
-  num.stack.phi452520 = phi [bb %getNumPos.while.body34, i32 %43456, bb %getNumPos.while.body34_preheader, i32 %131.load]
-  i32.phi451519 = phi [bb %getNumPos.while.body34, i32 %46457, bb %getNumPos.while.body34_preheader, i32 0]
-  43456 = sdiv i32 %num.stack.phi452520, i32 16
-  46457 = add i32 %i32.phi451519, i32 1
-  38453 = icmp slt i32 %46457, i32 %bitround
-  br i1 %38453, bb %getNumPos.while.body34, bb %getNumPos.while.body34_exclu_exit
+  num.stack.phi451517 = phi [bb %getNumPos.while.body34, i32 %43455, bb %getNumPos.while.body34_preheader, i32 %131.load]
+  i32.phi450516 = phi [bb %getNumPos.while.body34, i32 %46456, bb %getNumPos.while.body34_preheader, i32 0]
+  43455 = sdiv i32 %num.stack.phi451517, i32 16
+  46456 = add i32 %i32.phi450516, i32 1
+  38452 = icmp slt i32 %46456, i32 %bitround
+  br i1 %38452, bb %getNumPos.while.body34, bb %getNumPos.while.body34_exclu_exit
 getNumPos.while.exit35:  pred(while.body123, getNumPos.while.body34_exclu_exit)
-  131.load518 = phi [bb %getNumPos.while.body34_exclu_exit, i32 %43456, bb %while.body123, i32 %131.load]
-  49460 = srem i32 %131.load518, i32 16
-  512 = shl i32 %49460, i32 2
-  136 = ptradd ptr %cnt, i32 %512
+  131.load515 = phi [bb %getNumPos.while.body34_exclu_exit, i32 %43455, bb %while.body123, i32 %131.load]
+  49459 = srem i32 %131.load515, i32 16
+  509 = shl i32 %49459, i32 2
+  136 = ptradd ptr %cnt, i32 %509
   145.load = load i32 from ptr %136
   147 = add i32 %145.load, i32 1
   store i32 %147 to ptr %136
-  150 = add i32 %i120.phi397546, i32 1
+  150 = add i32 %i120.phi397543, i32 1
   127 = icmp slt i32 %150, i32 %r
   br i1 %127, bb %while.body123, bb %while.exit124
-getNumPos.while.body34471_preheader:  pred(while.cond225)
-  br bb %getNumPos.while.body34471
-getNumPos.while.body34471:  pred(getNumPos.while.body34471, getNumPos.while.body34471_preheader)
-  num.stack.phi468524 = phi [bb %getNumPos.while.body34471, i32 %43472, bb %getNumPos.while.body34471_preheader, i32 %v.phi]
-  i32.phi467523 = phi [bb %getNumPos.while.body34471, i32 %46473, bb %getNumPos.while.body34471_preheader, i32 0]
-  43472 = sdiv i32 %num.stack.phi468524, i32 16
-  46473 = add i32 %i32.phi467523, i32 1
-  38469 = icmp slt i32 %46473, i32 %bitround
-  br i1 %38469, bb %getNumPos.while.body34471, bb %getNumPos.while.body34471_exclu_exit
-getNumPos.while.exit35475:  pred(while.cond225, getNumPos.while.body34471_exclu_exit)
-  v.phi522 = phi [bb %getNumPos.while.body34471_exclu_exit, i32 %43472, bb %while.cond225, i32 %v.phi]
-  49476 = srem i32 %v.phi522, i32 16
-  232 = icmp ne i32 %49476, i32 %i120.phi542
+getNumPos.while.body34470_preheader:  pred(while.cond225)
+  br bb %getNumPos.while.body34470
+getNumPos.while.body34470:  pred(getNumPos.while.body34470, getNumPos.while.body34470_preheader)
+  num.stack.phi467521 = phi [bb %getNumPos.while.body34470, i32 %43471, bb %getNumPos.while.body34470_preheader, i32 %v.phi]
+  i32.phi466520 = phi [bb %getNumPos.while.body34470, i32 %46472, bb %getNumPos.while.body34470_preheader, i32 0]
+  43471 = sdiv i32 %num.stack.phi467521, i32 16
+  46472 = add i32 %i32.phi466520, i32 1
+  38468 = icmp slt i32 %46472, i32 %bitround
+  br i1 %38468, bb %getNumPos.while.body34470, bb %getNumPos.while.body34470_exclu_exit
+getNumPos.while.exit35474:  pred(while.cond225, getNumPos.while.body34470_exclu_exit)
+  v.phi519 = phi [bb %getNumPos.while.body34470_exclu_exit, i32 %43471, bb %while.cond225, i32 %v.phi]
+  49475 = srem i32 %v.phi519, i32 16
+  232 = icmp ne i32 %49475, i32 %i120.phi539
   br i1 %232, bb %while.body226, bb %while.exit227
 getNumPos.while.body34_exclu_exit:  pred(getNumPos.while.body34)
   br bb %getNumPos.while.exit35
-getNumPos.while.body34471_exclu_exit:  pred(getNumPos.while.body34471)
-  br bb %getNumPos.while.exit35475
+getNumPos.while.body34470_exclu_exit:  pred(getNumPos.while.body34470)
+  br bb %getNumPos.while.exit35474
 while.body205_exclu_exit:  pred(while.exit227)
   br bb %while.exit206
 while.body198_exclu_exit:  pred(while.exit206)
   300.load = load i32 from ptr %cnt
   302 = add i32 %l, i32 %300.load
-  440 = add i32 %bitround, i32 -1
-  call void radixSort(i32 %440, ptr %a, i32 %l, i32 %302)
-  334.load590 = load i32 from ptr %arr.index90
-  336591 = add i32 %302, i32 %334.load590
-  call void radixSort(i32 %440, ptr %a, i32 %302, i32 %336591)
-  334.load615 = load i32 from ptr %arr.index91
-  336616 = add i32 %336591, i32 %334.load615
-  call void radixSort(i32 %440, ptr %a, i32 %336591, i32 %336616)
-  334.load640 = load i32 from ptr %arr.index92
-  336641 = add i32 %336616, i32 %334.load640
-  call void radixSort(i32 %440, ptr %a, i32 %336616, i32 %336641)
-  334.load665 = load i32 from ptr %arr.index93
-  336666 = add i32 %336641, i32 %334.load665
-  call void radixSort(i32 %440, ptr %a, i32 %336641, i32 %336666)
-  334.load690 = load i32 from ptr %arr.index94
-  336691 = add i32 %336666, i32 %334.load690
-  call void radixSort(i32 %440, ptr %a, i32 %336666, i32 %336691)
-  334.load715 = load i32 from ptr %arr.index95
-  336716 = add i32 %336691, i32 %334.load715
-  call void radixSort(i32 %440, ptr %a, i32 %336691, i32 %336716)
-  334.load740 = load i32 from ptr %arr.index96
-  336741 = add i32 %336716, i32 %334.load740
-  call void radixSort(i32 %440, ptr %a, i32 %336716, i32 %336741)
-  334.load765 = load i32 from ptr %arr.index97
-  336766 = add i32 %336741, i32 %334.load765
-  call void radixSort(i32 %440, ptr %a, i32 %336741, i32 %336766)
-  334.load790 = load i32 from ptr %arr.index98
-  336791 = add i32 %336766, i32 %334.load790
-  call void radixSort(i32 %440, ptr %a, i32 %336766, i32 %336791)
-  334.load815 = load i32 from ptr %arr.index99
-  336816 = add i32 %336791, i32 %334.load815
-  call void radixSort(i32 %440, ptr %a, i32 %336791, i32 %336816)
-  334.load840 = load i32 from ptr %arr.index100
-  336841 = add i32 %336816, i32 %334.load840
-  call void radixSort(i32 %440, ptr %a, i32 %336816, i32 %336841)
-  334.load865 = load i32 from ptr %arr.index101
-  336866 = add i32 %336841, i32 %334.load865
-  call void radixSort(i32 %440, ptr %a, i32 %336841, i32 %336866)
-  334.load890 = load i32 from ptr %arr.index102
-  336891 = add i32 %336866, i32 %334.load890
-  call void radixSort(i32 %440, ptr %a, i32 %336866, i32 %336891)
-  334.load915 = load i32 from ptr %arr.index103
-  336916 = add i32 %336891, i32 %334.load915
-  call void radixSort(i32 %440, ptr %a, i32 %336891, i32 %336916)
-  334.load940 = load i32 from ptr %arr.index104
-  336941 = add i32 %336916, i32 %334.load940
-  call void radixSort(i32 %440, ptr %a, i32 %336916, i32 %336941)
+  439 = add i32 %bitround, i32 -1
+  call void radixSort(i32 %439, ptr %a, i32 %l, i32 %302)
+  334.load587 = load i32 from ptr %arr.index90
+  336588 = add i32 %302, i32 %334.load587
+  call void radixSort(i32 %439, ptr %a, i32 %302, i32 %336588)
+  334.load612 = load i32 from ptr %arr.index91
+  336613 = add i32 %336588, i32 %334.load612
+  call void radixSort(i32 %439, ptr %a, i32 %336588, i32 %336613)
+  334.load637 = load i32 from ptr %arr.index92
+  336638 = add i32 %336613, i32 %334.load637
+  call void radixSort(i32 %439, ptr %a, i32 %336613, i32 %336638)
+  334.load662 = load i32 from ptr %arr.index93
+  336663 = add i32 %336638, i32 %334.load662
+  call void radixSort(i32 %439, ptr %a, i32 %336638, i32 %336663)
+  334.load687 = load i32 from ptr %arr.index94
+  336688 = add i32 %336663, i32 %334.load687
+  call void radixSort(i32 %439, ptr %a, i32 %336663, i32 %336688)
+  334.load712 = load i32 from ptr %arr.index95
+  336713 = add i32 %336688, i32 %334.load712
+  call void radixSort(i32 %439, ptr %a, i32 %336688, i32 %336713)
+  334.load737 = load i32 from ptr %arr.index96
+  336738 = add i32 %336713, i32 %334.load737
+  call void radixSort(i32 %439, ptr %a, i32 %336713, i32 %336738)
+  334.load762 = load i32 from ptr %arr.index97
+  336763 = add i32 %336738, i32 %334.load762
+  call void radixSort(i32 %439, ptr %a, i32 %336738, i32 %336763)
+  334.load787 = load i32 from ptr %arr.index98
+  336788 = add i32 %336763, i32 %334.load787
+  call void radixSort(i32 %439, ptr %a, i32 %336763, i32 %336788)
+  334.load812 = load i32 from ptr %arr.index99
+  336813 = add i32 %336788, i32 %334.load812
+  call void radixSort(i32 %439, ptr %a, i32 %336788, i32 %336813)
+  334.load837 = load i32 from ptr %arr.index100
+  336838 = add i32 %336813, i32 %334.load837
+  call void radixSort(i32 %439, ptr %a, i32 %336813, i32 %336838)
+  334.load862 = load i32 from ptr %arr.index101
+  336863 = add i32 %336838, i32 %334.load862
+  call void radixSort(i32 %439, ptr %a, i32 %336838, i32 %336863)
+  334.load887 = load i32 from ptr %arr.index102
+  336888 = add i32 %336863, i32 %334.load887
+  call void radixSort(i32 %439, ptr %a, i32 %336863, i32 %336888)
+  334.load912 = load i32 from ptr %arr.index103
+  336913 = add i32 %336888, i32 %334.load912
+  call void radixSort(i32 %439, ptr %a, i32 %336888, i32 %336913)
+  334.load937 = load i32 from ptr %arr.index104
+  336938 = add i32 %336913, i32 %334.load937
+  call void radixSort(i32 %439, ptr %a, i32 %336913, i32 %336938)
   ret 
 }
 
