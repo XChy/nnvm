@@ -59,7 +59,7 @@ void Optimizer::transform(Module *module) {
   passManager.addFunctionPass<LICMPass>();
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CSEPass>();
-  //passManager.addFunctionPass<LSRPass>();
+  passManager.addFunctionPass<LSRPass>();
 
   passManager.addFunctionPass<CombinerPass>();
   passManager.addFunctionPass<CFGCombinerPass>();

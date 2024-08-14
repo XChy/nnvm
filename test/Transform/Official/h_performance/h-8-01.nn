@@ -164,13 +164,13 @@ if.exit245:  pred(while.body214, then244)
 while.body280_preheader:  pred(while.exit)
   br bb %while.body280
 while.body280:  pred(while.exit289, while.body280_preheader)
+  494 = phi [bb %while.body280_preheader, i32 0, bb %while.exit289, i32 %295.rec]
   i.phi467 = phi [bb %while.exit289, i32 %314, bb %while.body280_preheader, i32 0]
   br i1 %284466, bb %while.body288_preheader, bb %while.exit289
 while.exit281:  pred(while.exit, while.exit289)
   ret 
 while.body288_preheader:  pred(while.body280)
-  295 = mul i32 %i.phi467, i32 5600
-  296 = ptradd ptr %table, i32 %295
+  296 = ptradd ptr %table, i32 %494
   br bb %while.body288
 while.body288:  pred(while.body288, while.body288_preheader)
   j.phi465 = phi [bb %while.body288, i32 %311, bb %while.body288_preheader, i32 0]
@@ -185,6 +185,7 @@ while.body288:  pred(while.body288, while.body288_preheader)
 while.exit289:  pred(while.body280, while.body288)
   314 = add i32 %i.phi467, i32 1
   284 = icmp slt i32 %314, i32 %n
+  295.rec = add i32 %494, i32 5600
   br i1 %284, bb %while.body280, bb %while.exit281
 while.body214_exclu_exit:  pred(if.exit245)
   br bb %while.exit215

@@ -47,8 +47,6 @@ main:   # loop depth 0
   SD s9, 104(sp)
   SD s10, 112(sp)
   SD s11, 120(sp)
-  LA t0, array
-  SD t0, 32(sp)
   ADDI t4, zero, 17
   ADD s2, zero, zero
   ADD s9, zero, zero
@@ -75,6 +73,8 @@ bb4:   # loop depth 1
   BEQ t1, zero, bb55
   # implict jump to bb5
 bb5:   # loop depth 1
+  LA t1, array
+  SD t1, 32(sp)
   ADD s3, zero, zero
   ADD s11, zero, zero
   LB t0, 2(sp)

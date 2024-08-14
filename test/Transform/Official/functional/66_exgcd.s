@@ -43,15 +43,15 @@ exgcd:   # loop depth 0
   SD s2, 24(sp)
   ADD s0, a3, zero
   ADD s1, a2, zero
-  ADD t0, a1, zero
-  BEQ t0, zero, bb3
+  BEQ a1, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 0
-  REMW a1, a0, t0
+  REMW t0, a0, a1
   ADD a3, s0, zero
-  DIVW s2, a0, t0
+  DIVW s2, a0, a1
   ADD a2, s1, zero
-  ADD a0, t0, zero
+  ADD a0, a1, zero
+  ADD a1, t0, zero
   CALL exgcd
   LW t0, 0(s1)
   LW t1, 0(s0)

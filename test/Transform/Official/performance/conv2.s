@@ -27,16 +27,16 @@ main:   # loop depth 0
   SD s11, 224(sp)
   CALL getint
   LA s0, a
-  ADD s3, a0, zero
+  ADD s5, a0, zero
   LA s4, kernelid
   ADDI s6, zero, 0
   CALL getint
   SW a0, 128(sp)
   CALL getint
-  ADD s5, a0, zero
+  ADD s3, a0, zero
   ADD a0, s0, zero
   LW t0, 128(sp)
-  MULW t0, t0, s5
+  MULW t0, t0, s3
   SW t0, 120(sp)
   CALL getarray
   ADD a0, s4, zero
@@ -69,53 +69,53 @@ bb1:   # loop depth 0
   ADDI sp, sp, 240
   JALR zero, 0(ra)
 bb2:   # loop depth 0
-  SRAIW t1, s3, 31
+  SRAIW t1, s5, 31
   ADD t0, zero, zero
   SRLIW t1, t1, 31
-  ADD t1, s3, t1
+  ADD t1, s5, t1
   SRAIW t5, t1, 1
   # implict jump to bb3
 bb3:   # loop depth 1
   LA t2, kernelid
   SW t0, 116(sp)
-  ADD t3, zero, zero
+  ADD a7, zero, zero
   LW t0, 116(sp)
   SH2ADD t2, t0, t2
-  LW s3, 0(t2)
-  XORI t0, s3, 3
+  LW s4, 0(t2)
+  XORI t0, s4, 3
   SW t0, 104(sp)
-  XORI t0, s3, 1
+  XORI t0, s4, 1
   SW t0, 100(sp)
-  XORI t0, s3, 4
+  XORI t0, s4, 4
   SW t0, 96(sp)
-  XORI t0, s3, 2
+  XORI t0, s4, 2
   SW t0, 92(sp)
   # implict jump to bb4
 bb4:   # loop depth 2
   ADD t4, zero, zero
-  MULW t0, t3, s5
+  MULW t0, a7, s3
   SW t0, 108(sp)
-  ADDW s4, t3, t5
-  SUBW t0, t3, t5
+  ADDW s5, a7, t5
+  SUBW t0, a7, t5
   SW t0, 112(sp)
   # implict jump to bb5
 bb5:   # loop depth 3
-  LW a5, 112(sp)
+  LW t3, 112(sp)
   ADD a2, zero, zero
   ADDW s7, t4, t5
   SUBW a6, t4, t5
   # implict jump to bb6
 bb6:   # loop depth 4
-  MULW s8, a5, s5
+  MULW s8, t3, s3
   LW t0, 128(sp)
-  SLT a3, a5, t0
-  ADD a7, a6, zero
-  XORI s10, a3, 1
-  SLT s9, a5, zero
+  SLT a1, t3, t0
+  ADD a5, a6, zero
+  XORI s10, a1, 1
+  SLT s9, t3, zero
   # implict jump to bb7
 bb7:   # loop depth 5
-  SLT t2, a7, zero
-  SLT a0, a7, s5
+  SLT t2, a5, zero
+  SLT a0, a5, s3
   OR t2, s9, t2
   XORI a0, a0, 1
   OR t2, t2, s10
@@ -124,12 +124,12 @@ bb7:   # loop depth 5
   # implict jump to bb8
 bb8:   # loop depth 5
   LA a0, a
-  ADDW t2, s8, a7
+  ADDW t2, s8, a5
   SH2ADD t2, t2, a0
   LW a4, 0(t2)
   # implict jump to bb9
 bb9:   # loop depth 5
-  BEQ s3, zero, bb53
+  BEQ s4, zero, bb53
   # implict jump to bb10
 bb10:   # loop depth 5
   LW t0, 100(sp)
@@ -151,32 +151,32 @@ bb14:   # loop depth 5
   ADD a2, zero, zero
   # implict jump to bb15
 bb15:   # loop depth 5
-  ADDIW a7, a7, 1
-  BGE a7, s7, bb17
+  ADDIW a5, a5, 1
+  BGE a5, s7, bb17
   # implict jump to bb16
 bb16:   # loop depth 5
   JAL zero, bb7
 bb17:   # loop depth 4
-  ADDIW a5, a5, 1
-  BGE a5, s4, bb19
+  ADDIW t3, t3, 1
+  BGE t3, s5, bb19
   # implict jump to bb18
 bb18:   # loop depth 4
   JAL zero, bb6
 bb19:   # loop depth 3
-  LA a4, b
+  LA a3, b
   LW t0, 108(sp)
-  ADDW a3, t0, t4
+  ADDW a1, t0, t4
   ADDIW t4, t4, 1
-  SH2ADD a3, a3, a4
-  SW a2, 0(a3)
-  BGE t4, s5, bb21
+  SH2ADD a1, a1, a3
+  SW a2, 0(a1)
+  BGE t4, s3, bb21
   # implict jump to bb20
 bb20:   # loop depth 3
   JAL zero, bb5
 bb21:   # loop depth 2
-  ADDIW t3, t3, 1
+  ADDIW a7, a7, 1
   LW t0, 128(sp)
-  BGE t3, t0, bb23
+  BGE a7, t0, bb23
   # implict jump to bb22
 bb22:   # loop depth 2
   JAL zero, bb4
@@ -427,11 +427,11 @@ bb62:   # loop depth 5
   # implict jump to bb63
 bb63:   # loop depth 6
   LUI a0, 786432
-  LUI a3, 262144
+  LUI a1, 262144
   ADDIW a0, a0, 0
-  ADDIW a3, a3, 0
+  ADDIW a1, a1, 0
   ADDW a2, a2, a0
-  SLT a0, a3, a2
+  SLT a0, a1, a2
   BNE a0, zero, bb65
   # implict jump to bb64
 bb64:   # loop depth 5

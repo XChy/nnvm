@@ -29,7 +29,6 @@ external i32 getfarray(ptr )
 i32 main() {
 entry65:  pred()
   11422508 = icmp sle i32 1, i32 17
-  554 = ptradd ptr @array, i32 68
   br bb %while.body72
 while.body72:  pred(if.exit271, entry65)
   tmp.phi280521 = phi [bb %if.exit271, i32 %tmp.phi278, bb %entry65, i32 0]
@@ -266,6 +265,7 @@ init.while.body:  pred(init.while.body, init.while.body_preheader)
   11422 = icmp sle i32 %20428, i32 17
   br i1 %11422, bb %init.while.body, bb %init.while.exit
 init.while.exit:  pred(while.body72, init.while.body)
+  554 = ptradd ptr @array, i32 68
   br bb %while.body91
 while.body91_exclu_exit:  pred(if.exit107)
   267 = xor i1 %102, i1 1

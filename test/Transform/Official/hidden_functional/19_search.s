@@ -271,11 +271,12 @@ bb32:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 main:   # loop depth 0
-  ADDI sp, sp, -32
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
+  SD s3, 32(sp)
   LA s0, w
   CALL getint
   LA s1, h
@@ -292,79 +293,80 @@ bb34:   # loop depth 0
   LD s0, 8(sp)
   LD s1, 16(sp)
   LD s2, 24(sp)
-  ADDI sp, sp, 32
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb35:   # loop depth 1
+  ADD t1, zero, zero
   ADD t0, zero, zero
   # implict jump to bb36
 bb36:   # loop depth 2
-  ADDI t1, zero, 120
-  MULW t1, t0, t1
   LA t2, a
   ADDI a0, zero, 1
   ADDI a1, zero, 1
+  ADD t2, t2, t0
   ADDI a2, zero, 1
-  ADDI a3, zero, 1
-  ADD t1, t2, t1
-  ADDI t2, zero, 1
-  SW a0, 0(t1)
+  SW a0, 0(t2)
   ADDI a0, zero, 1
-  SW a1, 4(t1)
+  SW a1, 4(t2)
   ADDI a1, zero, 1
-  SW a2, 8(t1)
+  SW a2, 8(t2)
   ADDI a2, zero, 1
-  SW a3, 12(t1)
-  ADDI a3, zero, 1
-  SW t2, 16(t1)
-  ADDI t2, zero, 1
-  SW a0, 20(t1)
+  SW a0, 12(t2)
   ADDI a0, zero, 1
-  SW a1, 24(t1)
+  SW a1, 16(t2)
   ADDI a1, zero, 1
-  SW a2, 28(t1)
+  SW a2, 20(t2)
   ADDI a2, zero, 1
-  SW a3, 32(t1)
-  ADDI a3, zero, 1
-  SW t2, 36(t1)
-  ADDI t2, zero, 1
-  SW a0, 40(t1)
+  SW a0, 24(t2)
   ADDI a0, zero, 1
-  SW a1, 44(t1)
+  SW a1, 28(t2)
   ADDI a1, zero, 1
-  SW a2, 48(t1)
+  SW a2, 32(t2)
   ADDI a2, zero, 1
-  SW a3, 52(t1)
-  ADDI a3, zero, 1
-  SW t2, 56(t1)
-  ADDI t2, zero, 1
-  SW a0, 60(t1)
+  SW a0, 36(t2)
   ADDI a0, zero, 1
-  SW a1, 64(t1)
+  SW a1, 40(t2)
   ADDI a1, zero, 1
-  SW a2, 68(t1)
+  SW a2, 44(t2)
   ADDI a2, zero, 1
-  SW a3, 72(t1)
-  ADDI a3, zero, 1
-  SW t2, 76(t1)
-  ADDI t2, zero, 1
-  SW a0, 80(t1)
+  SW a0, 48(t2)
   ADDI a0, zero, 1
-  SW a1, 84(t1)
+  SW a1, 52(t2)
   ADDI a1, zero, 1
-  SW a2, 88(t1)
+  SW a2, 56(t2)
   ADDI a2, zero, 1
-  SW a3, 92(t1)
-  ADDI a3, zero, 1
-  SW t2, 96(t1)
-  ADDIW t0, t0, 1
-  SW a0, 100(t1)
+  SW a0, 60(t2)
   ADDI a0, zero, 1
-  SW a1, 104(t1)
-  SLTI t2, t0, 30
-  SW a2, 108(t1)
-  SW a3, 112(t1)
-  SW a0, 116(t1)
-  BNE t2, zero, bb53
+  SW a1, 64(t2)
+  ADDI a1, zero, 1
+  SW a2, 68(t2)
+  ADDI a2, zero, 1
+  SW a0, 72(t2)
+  ADDI a0, zero, 1
+  SW a1, 76(t2)
+  ADDI a1, zero, 1
+  SW a2, 80(t2)
+  ADDI a2, zero, 1
+  SW a0, 84(t2)
+  ADDI a0, zero, 1
+  SW a1, 88(t2)
+  ADDI a1, zero, 1
+  SW a2, 92(t2)
+  ADDI a2, zero, 1
+  SW a0, 96(t2)
+  ADDI a0, zero, 1
+  SW a1, 100(t2)
+  ADDI a1, zero, 1
+  SW a2, 104(t2)
+  SW a0, 108(t2)
+  ADDIW t1, t1, 1
+  ADDI a2, zero, 1
+  SW a1, 112(t2)
+  ADDIW t0, t0, 120
+  SLTI a0, t1, 30
+  SW a2, 116(t2)
+  BNE a0, zero, bb53
   # implict jump to bb37
 bb37:   # loop depth 1
   LA t0, h
@@ -406,6 +408,7 @@ bb41:   # loop depth 1
   JAL zero, bb40
 bb42:   # loop depth 1
   ADDI s1, zero, 1
+  ADDI s2, zero, 120
   # implict jump to bb43
 bb43:   # loop depth 2
   LA t0, w
@@ -415,6 +418,7 @@ bb43:   # loop depth 2
   # implict jump to bb44
 bb44:   # loop depth 2
   LA t0, h
+  ADDIW s2, s2, 120
   ADDIW s1, s1, 1
   LW t0, 0(t0)
   BGE t0, s1, bb45
@@ -422,15 +426,13 @@ bb44:   # loop depth 2
 bb45:   # loop depth 2
   JAL zero, bb43
 bb46:   # loop depth 2
-  ADDI t0, zero, 120
-  LA t1, a
-  MULW t0, s1, t0
+  LA t0, a
   ADDI s0, zero, 1
-  ADD s2, t1, t0
+  ADD s3, t0, s2
   # implict jump to bb47
 bb47:   # loop depth 3
   CALL getint
-  SH2ADD t0, s0, s2
+  SH2ADD t0, s0, s3
   XORI t1, a0, 2
   SW a0, 0(t0)
   BEQ t1, zero, bb52

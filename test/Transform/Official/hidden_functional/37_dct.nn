@@ -229,12 +229,12 @@ dct.while.body142:  pred(dct.while.exit151, dct.while.body142_preheader)
 dct.while.exit143:  pred(while.exit456, dct.while.exit151)
   br i1 %4591250, bb %write_mat.while.body_preheader, bb %write_mat.while.exit
 dct.while.body150_preheader:  pred(dct.while.body142)
+  1173 = shl i32 %u.phi7051244, i32 5
+  158720 = ptradd ptr @test_dct, i32 %1173
   204751 = fdiv float %.pinned, float %2037501232
   211755 = si2f i32 %u.phi7051244 to float
   911072 = fdiv float %.pinned, float %9010711233
   218760 = fdiv float %.pinned, float %2177591236
-  1173 = shl i32 %u.phi7051244, i32 5
-  158720 = ptradd ptr @test_dct, i32 %1173
   br bb %dct.while.body150
 dct.while.body150:  pred(dct.while.exit167, dct.while.body150_preheader)
   v.phi7151196 = phi [bb %dct.while.exit167, i32 %238737, bb %dct.while.body150_preheader, i32 0]

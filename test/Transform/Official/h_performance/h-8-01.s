@@ -76,31 +76,32 @@ bb3:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb4:   # loop depth 0
+  ADD t2, zero, zero
   ADD t1, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
   BLT zero, a0, bb8
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDIW t1, t1, 1
-  BLT t1, a0, bb7
+  LUI t0, 1
+  ADDIW t2, t2, 1
+  ADDIW t0, t0, 1504
+  ADDW t1, t1, t0
+  BLT t2, a0, bb7
   JAL zero, bb3
 bb7:   # loop depth 1
   JAL zero, bb5
 bb8:   # loop depth 1
-  LUI t2, 1
   ADD t0, zero, zero
-  ADDIW t2, t2, 1504
-  MULW t2, t1, t2
-  ADD t2, a2, t2
+  ADD a1, a2, t1
   # implict jump to bb9
 bb9:   # loop depth 2
-  ADDI a4, zero, 10
-  SH2ADD a1, t0, t2
+  ADDI a5, zero, 10
+  SH2ADD a3, t0, a1
   ADDIW t0, t0, 1
-  LW a3, 0(a1)
-  REMW a3, a3, a4
-  SW a3, 0(a1)
+  LW a4, 0(a3)
+  REMW a4, a4, a5
+  SW a4, 0(a3)
   BLT t0, a0, bb10
   JAL zero, bb6
 bb10:   # loop depth 2

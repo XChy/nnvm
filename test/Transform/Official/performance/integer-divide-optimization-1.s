@@ -53,8 +53,8 @@ bb4:   # loop depth 1
   LA a2, size
   ADDI a4, zero, 1000
   LW a1, 0(t0)
-  ADD t0, zero, zero
   ADD t1, zero, zero
+  ADD t0, zero, zero
   MULW a1, t2, a1
   LW a2, 0(a2)
   SRAIW a3, a1, 31
@@ -65,15 +65,15 @@ bb4:   # loop depth 1
   DIVW a1, a1, a2
   # implict jump to bb5
 bb5:   # loop depth 2
-  ADDIW t0, t0, 1
-  ADDW t1, t1, a1
-  SLTI a2, t0, 300
+  ADDIW t1, t1, 1
+  ADDW t0, t0, a1
+  SLTI a2, t1, 300
   BNE a2, zero, bb9
   # implict jump to bb6
 bb6:   # loop depth 1
-  ADDI t0, zero, 300
+  ADDI t1, zero, 300
   LUI a1, 524264
-  DIVW t0, t1, t0
+  DIVW t0, t0, t1
   ADDIW a1, a1, 3
   ADDIW t2, t2, 1
   ADDW t0, s0, t0
