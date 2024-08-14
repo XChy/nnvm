@@ -30,6 +30,11 @@ entry401:  pred()
   br i1 %4351532, bb %while.body432_preheader, bb %while.exit433
 while.body432_preheader:  pred(entry401)
   buffer.pinned = pin ptr @buffer
+  .pinned2023 = pin i32 -271733879
+  .pinned2022 = pin i32 -1009589776
+  .pinned2021 = pin i32 -1732584194
+  .pinned2020 = pin i32 271733878
+  .pinned = pin i32 1732584193
   94572 = ptradd ptr %buffer.pinned, i32 128000
   br bb %while.body432
 while.body432:  pred(pseudo_sha1.while.exit161, while.body432_preheader)
@@ -80,14 +85,14 @@ pseudo_sha1.init:  pred(pseudo_sha1.init, pseudo_sha1.while.body_exclu_exit)
 pseudo_sha1.while.body160_preheader:  pred(pseudo_sha1.init_exclu_exit)
   br bb %pseudo_sha1.while.body160
 pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sha1.while.body160_preheader)
-  h0.phi6331520 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %361732, bb %pseudo_sha1.while.body160_preheader, i32 1732584193]
-  h1.phi6321519 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %365733, bb %pseudo_sha1.while.body160_preheader, i32 -271733879]
-  h2.phi6311518 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %369734, bb %pseudo_sha1.while.body160_preheader, i32 -1732584194]
-  h3.phi6301517 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %373735, bb %pseudo_sha1.while.body160_preheader, i32 271733878]
+  h0.phi6331520 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %361732, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned]
+  h1.phi6321519 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %365733, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2023]
+  h2.phi6311518 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %369734, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2021]
+  h3.phi6301517 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %373735, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2020]
   f.phi4986281515 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %f.phi496747, bb %pseudo_sha1.while.body160_preheader, i32 0]
   k.phi5086271514 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %k.phi506746, bb %pseudo_sha1.while.body160_preheader, i32 0]
   chunk_start.phi6261513 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %380737, bb %pseudo_sha1.while.body160_preheader, i32 0]
-  h4.phi6251512 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %377736, bb %pseudo_sha1.while.body160_preheader, i32 -1009589776]
+  h4.phi6251512 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %377736, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2022]
   1452 = shl i32 %chunk_start.phi6261513, i32 2
   192658 = ptradd ptr %buffer.pinned, i32 %1452
   192.load659 = load i32 from ptr %192658
@@ -392,11 +397,11 @@ pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sh
   store i32 %2246781949 to ptr %1856551932
   br bb %pseudo_sha1.while.body229
 pseudo_sha1.while.exit161:  pred(pseudo_sha1.init_exclu_exit, pseudo_sha1.while.body160_exclu_exit)
-  1511 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %361732, bb %pseudo_sha1.init_exclu_exit, i32 1732584193]
-  1510 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %365733, bb %pseudo_sha1.init_exclu_exit, i32 -271733879]
-  1509 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %369734, bb %pseudo_sha1.init_exclu_exit, i32 -1732584194]
-  1508 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %373735, bb %pseudo_sha1.init_exclu_exit, i32 271733878]
-  1507 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %377736, bb %pseudo_sha1.init_exclu_exit, i32 -1009589776]
+  1511 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %361732, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned]
+  1510 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %365733, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2023]
+  1509 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %369734, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2021]
+  1508 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %373735, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2020]
+  1507 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %377736, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2022]
   470.load = load i32 from ptr %output_buf
   431185 = add i32 %470.load, i32 %1511
   56869 = sub i32 %470.load, i32 %431185

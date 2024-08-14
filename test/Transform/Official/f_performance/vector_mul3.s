@@ -24,24 +24,21 @@ main:   # loop depth 0
   ADDIW t6, t6, -120
   ADD t6, t6, sp
   SD s0, 0(t6)
-  LUI t1, 293
-  ADDIW t1, t1, -112
-  ADD t1, t1, sp
-  SD s1, 0(t1)
-  LUI t1, 293
-  ADDIW t1, t1, -104
-  ADD t1, t1, sp
-  FSD fs0, 0(t1)
-  LUI t1, 24
-  ADDI t0, zero, 0
-  ADDIW t1, t1, 1696
-  SLT t0, t0, t1
-  BEQ t0, zero, bb68
-  # implict jump to bb1
-bb1:   # loop depth 0
+  LUI t0, 293
+  ADDIW t0, t0, -112
+  ADD t0, t0, sp
+  SD s1, 0(t0)
+  LUI t0, 293
+  ADDIW t0, t0, -104
+  ADD t0, t0, sp
+  FSD fs0, 0(t0)
   LUI t0, 24
+  ADDI t1, zero, 0
   ADDIW t0, t0, 1696
   ADD s0, zero, t0
+  BGE t1, s0, bb68
+  # implict jump to bb1
+bb1:   # loop depth 0
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 62

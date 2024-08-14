@@ -11,6 +11,7 @@ i32 main() {
 entry59:  pred()
   %var = stack 4000
   %mean = stack 4000
+  .pinned545 = pin i32 4000
   a.pinned = pin ptr @a
   65 = si2f i32 0 to float
   br bb %while.cond67
@@ -33,7 +34,7 @@ then80:  pred(while.body68)
   ret i32 %77
 if.exit81:  pred(while.body68)
   85 = add i32 %i.phi328, i32 1
-  75.rec = add i32 %537, i32 4000
+  75.rec = add i32 %537, i32 %.pinned545
   br bb %while.cond67
 while.body89:  pred(while.body228_exclu_exit, while.exit69)
   k.phi484 = phi [bb %while.body228_exclu_exit, i32 %282, bb %while.exit69, i32 0]
@@ -131,7 +132,7 @@ sqrt.while.exit:  pred(while.body161_exclu_exit.split, sqrt.while.body_exclu_exi
   store float %22374443 to ptr %157
   225 = add i32 %i.phi326465, i32 1
   152 = icmp slt i32 %225, i32 1000
-  175.rec = add i32 %531, i32 4000
+  175.rec = add i32 %531, i32 %.pinned545
   br i1 %152, bb %while.body149, bb %while.body149_exclu_exit
 sqrt.then39:  pred(sqrt.while.body)
   47391 = fadd float %mid.phi321377444, float %start.phi317379446
@@ -147,8 +148,8 @@ sqrt.if.exit40:  pred(sqrt.then39, sqrt.else)
   9416 = fneg float %30381
   br i1 %4415, bb %x.stack.phi.which417.true, bb %sqrt.if.exit40.split
 sqrt.if.exit40.split:  pred(sqrt.if.exit40, x.stack.phi.which417.true)
-  547 = phi [bb %x.stack.phi.which417.true, float %9416, bb %sqrt.if.exit40, float %30381]
-  32383 = fcmp ogt float %547, float %.pinned
+  548 = phi [bb %x.stack.phi.which417.true, float %9416, bb %sqrt.if.exit40, float %30381]
+  32383 = fcmp ogt float %548, float %.pinned
   br i1 %32383, bb %sqrt.while.body, bb %sqrt.while.body_exclu_exit
 sqrt.else:  pred(sqrt.while.body)
   55400 = fadd float %mid.phi321377444, float %end.phi319378445
@@ -159,7 +160,7 @@ while.body109_exclu_exit:  pred(while.body109)
   store float %142 to ptr %105
   145 = add i32 %i.phi327471, i32 1
   100 = icmp slt i32 %145, i32 1000
-  123.rec = add i32 %529, i32 4000
+  123.rec = add i32 %529, i32 %.pinned545
   br i1 %100, bb %while.body97, bb %while.body97_exclu_exit
 while.body97_exclu_exit:  pred(while.body109_exclu_exit)
   .pinned = pin float 0.001000
@@ -175,8 +176,8 @@ while.body161_exclu_exit:  pred(while.body161)
   9416440 = fneg float %30381438
   br i1 %4415439, bb %x.stack.phi.which417441.true, bb %while.body161_exclu_exit.split
 while.body161_exclu_exit.split:  pred(while.body161_exclu_exit, x.stack.phi.which417441.true)
-  550 = phi [bb %x.stack.phi.which417441.true, float %9416440, bb %while.body161_exclu_exit, float %30381438]
-  32383442 = fcmp ogt float %550, float %.pinned
+  551 = phi [bb %x.stack.phi.which417441.true, float %9416440, bb %while.body161_exclu_exit, float %30381438]
+  32383442 = fcmp ogt float %551, float %.pinned
   br i1 %32383442, bb %sqrt.while.body_preheader, bb %sqrt.while.exit
 sqrt.while.body_exclu_exit:  pred(sqrt.if.exit40.split)
   br bb %sqrt.while.exit
@@ -185,7 +186,7 @@ while.body149_exclu_exit:  pred(sqrt.while.exit)
 while.body235_exclu_exit:  pred(while.body235)
   279 = add i32 %i.phi324461, i32 1
   231 = icmp slt i32 %279, i32 1000
-  241.rec = add i32 %533, i32 4000
+  241.rec = add i32 %533, i32 %.pinned545
   br i1 %231, bb %while.body228, bb %while.body228_exclu_exit
 while.body228_exclu_exit:  pred(while.body235_exclu_exit)
   282 = add i32 %k.phi484, i32 1
@@ -196,7 +197,7 @@ while.body89_exclu_exit:  pred(while.body228_exclu_exit)
 while.body292_exclu_exit:  pred(while.body292)
   312 = add i32 %i.phi480, i32 1
   288 = icmp slt i32 %312, i32 1000
-  300.rec = add i32 %535, i32 4000
+  300.rec = add i32 %535, i32 %.pinned545
   br i1 %288, bb %while.body285, bb %while.body285_exclu_exit
 while.body285_exclu_exit:  pred(while.body292_exclu_exit)
   call void _sysy_stoptime(i32 95)

@@ -13,6 +13,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry243:  pred()
+  .pinned = pin i32 5600
   y.pinned = pin ptr @y
   x.pinned = pin ptr @x
   b.pinned = pin ptr @b
@@ -69,7 +70,7 @@ kernel_ludcmp.while.body32:  pred(kernel_ludcmp.while.body32, kernel_ludcmp.whil
   55340 = sub i32 %w.phi276327481, i32 %54339
   58341 = add i32 %k.phi267328482, i32 1
   36329 = icmp slt i32 %58341, i32 %j.phi260314501
-  48335.rec = add i32 %561, i32 5600
+  48335.rec = add i32 %561, i32 %.pinned
   br i1 %36329, bb %kernel_ludcmp.while.body32, bb %kernel_ludcmp.while.body32_exclu_exit
 kernel_ludcmp.while.exit33:  pred(kernel_ludcmp.while.body16, kernel_ludcmp.while.body32_exclu_exit)
   480 = phi [bb %kernel_ludcmp.while.body32_exclu_exit, i32 %58341, bb %kernel_ludcmp.while.body16, i32 0]
@@ -81,7 +82,7 @@ kernel_ludcmp.while.exit33:  pred(kernel_ludcmp.while.body16, kernel_ludcmp.whil
   store i32 %74348 to ptr %28321
   77350 = add i32 %j.phi260314501, i32 1
   20315 = icmp slt i32 %77350, i32 %i.phi263304521
-  68344.rec = add i32 %563, i32 5600
+  68344.rec = add i32 %563, i32 %.pinned
   br i1 %20315, bb %kernel_ludcmp.while.body16, bb %kernel_ludcmp.while.body16_exclu_exit
 kernel_ludcmp.while.body81_preheader:  pred(kernel_ludcmp.while.exit17)
   90360 = ptradd ptr %A.pinned, i32 %567
@@ -97,7 +98,7 @@ kernel_ludcmp.while.exit82:  pred(kernel_ludcmp.while.exit17, kernel_ludcmp.whil
   w.phi277312489 = phi [bb %kernel_ludcmp.while.body81_exclu_exit, i32 %93.load363484, bb %kernel_ludcmp.while.exit17, i32 %w.phi275302496]
   137366 = add i32 %i.phi263304521, i32 1
   12305 = icmp slt i32 %137366, i32 %n.load
-  24318495.rec = add i32 %567, i32 5600
+  24318495.rec = add i32 %567, i32 %.pinned
   br i1 %12305, bb %kernel_ludcmp.while.body, bb %kernel_ludcmp.while.exit
 kernel_ludcmp.while.body97_preheader:  pred(kernel_ludcmp.while.body81)
   br bb %kernel_ludcmp.while.body97
@@ -115,7 +116,7 @@ kernel_ludcmp.while.body97:  pred(kernel_ludcmp.while.body97, kernel_ludcmp.whil
   120382 = sub i32 %w.phi273369486, i32 %119381
   123383 = add i32 %k.phi370487, i32 1
   101371 = icmp slt i32 %123383, i32 %i.phi263304521
-  113377.rec = add i32 %565, i32 5600
+  113377.rec = add i32 %565, i32 %.pinned
   br i1 %101371, bb %kernel_ludcmp.while.body97, bb %kernel_ludcmp.while.body97_exclu_exit
 kernel_ludcmp.while.exit98:  pred(kernel_ludcmp.while.body81, kernel_ludcmp.while.body97_exclu_exit)
   485 = phi [bb %kernel_ludcmp.while.body97_exclu_exit, i32 %123383, bb %kernel_ludcmp.while.body81, i32 0]
@@ -160,7 +161,7 @@ kernel_ludcmp.while.exit154:  pred(kernel_ludcmp.while.body140, kernel_ludcmp.wh
   store i32 %149.load396504 to ptr %179419
   184421 = add i32 %i.phi262390517, i32 1
   144391 = icmp slt i32 %184421, i32 %n.load
-  162407.rec = add i32 %569, i32 5600
+  162407.rec = add i32 %569, i32 %.pinned
   br i1 %144391, bb %kernel_ludcmp.while.body140, bb %kernel_ludcmp.while.exit141
 kernel_ludcmp.while.body189_preheader:  pred(kernel_ludcmp.while.exit141)
   br bb %kernel_ludcmp.while.body189
@@ -171,7 +172,7 @@ kernel_ludcmp.while.body189:  pred(kernel_ludcmp.while.exit204, kernel_ludcmp.wh
   197.load430 = load i32 from ptr %197429
   201431 = add i32 %i.phi424515, i32 1
   207438507 = icmp slt i32 %201431, i32 %n.load
-  212441508 = mul i32 %i.phi424515, i32 5600
+  212441508 = mul i32 %i.phi424515, i32 %.pinned
   br i1 %207438507, bb %kernel_ludcmp.while.body203_preheader, bb %kernel_ludcmp.while.exit204
 kernel_ludcmp.while.exit190:  pred(kernel_ludcmp.while.exit141, kernel_ludcmp.while.exit204)
   call void _sysy_stoptime(i32 70)

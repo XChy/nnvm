@@ -29,7 +29,7 @@ step:
 
 .section .text
 search:   # loop depth 0
-  ADDI sp, sp, -96
+  ADDI sp, sp, -112
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
@@ -42,20 +42,22 @@ search:   # loop depth 0
   SD s8, 72(sp)
   SD s9, 80(sp)
   SD s10, 88(sp)
-  ADDI t0, zero, 10
+  SD s11, 96(sp)
+  LUI t0, 262144
+  ADDI t1, zero, 10
+  ADDIW t0, t0, 0
+  ADD s11, zero, t0
   ADD s10, a1, zero
   ADD s9, a0, zero
-  BLT t0, a2, bb32
+  BLT t1, a2, bb32
   # implict jump to bb1
 bb1:   # loop depth 0
-  LUI t0, 262144
-  ADD a4, zero, zero
-  ADDIW t0, t0, 0
+  ADD a5, zero, zero
   ADD a0, zero, zero
   ADD t2, zero, zero
   ADD t1, zero, zero
-  ADD a3, zero, zero
-  ADD a1, zero, t0
+  ADD a6, zero, zero
+  ADD a1, s11, zero
   ADD t0, zero, zero
   ADDIW s8, a2, 1
   # implict jump to bb2
@@ -82,12 +84,11 @@ bb4:   # loop depth 0
   LD s8, 72(sp)
   LD s9, 80(sp)
   LD s10, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb5:   # loop depth 0
-  LUI t0, 262144
-  ADDIW t0, t0, 0
-  ADD a0, zero, t0
+  ADD a0, s11, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -100,23 +101,24 @@ bb5:   # loop depth 0
   LD s8, 72(sp)
   LD s9, 80(sp)
   LD s10, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb6:   # loop depth 1
-  LA a1, step
+  LA a3, step
   LA t3, x_1
   LA a2, y_1
-  ADD a6, s9, zero
-  ADD a5, s10, zero
+  ADD a4, s9, zero
+  ADD a1, s10, zero
   ADD a7, zero, zero
-  SH3ADD a1, t0, a1
+  SH3ADD a3, t0, a3
   # implict jump to bb7
 bb7:   # loop depth 2
   ADDI t4, zero, 120
-  MULW t4, a6, t4
+  MULW t4, a4, t4
   LA t5, a
   ADD t4, t5, t4
-  SH2ADD s0, a5, t4
+  SH2ADD s0, a1, t4
   LW t4, 0(s0)
   XORI t4, t4, 1
   BNE t4, zero, bb26
@@ -125,8 +127,8 @@ bb8:   # loop depth 2
   # implict jump to bb9
 bb9:   # loop depth 1
   LW t3, 0(t3)
-  ADD s5, a3, zero
-  BEQ a6, t3, bb25
+  ADD s5, a6, zero
+  BEQ a4, t3, bb25
   # implict jump to bb10
 bb10:   # loop depth 1
   ADD a2, zero, zero
@@ -140,17 +142,17 @@ bb12:   # loop depth 1
   BGE t0, a7, bb23
   # implict jump to bb13
 bb13:   # loop depth 1
-  BEQ a6, zero, bb22
+  BEQ a4, zero, bb22
   # implict jump to bb14
 bb14:   # loop depth 1
   LA t0, h
   LW t0, 0(t0)
   ADDIW t0, t0, 1
-  XOR t0, a6, t0
+  XOR t0, a4, t0
   SLTIU t0, t0, 1
   # implict jump to bb15
 bb15:   # loop depth 1
-  SLTIU t1, a5, 1
+  SLTIU t1, a1, 1
   OR t1, t0, t1
   BNE t1, zero, bb21
   # implict jump to bb16
@@ -158,7 +160,7 @@ bb16:   # loop depth 1
   LA t2, w
   LW t2, 0(t2)
   ADDIW t2, t2, 1
-  XOR t2, a5, t2
+  XOR t2, a1, t2
   SLTIU t2, t2, 1
   # implict jump to bb17
 bb17:   # loop depth 1
@@ -167,24 +169,24 @@ bb17:   # loop depth 1
 bb18:   # loop depth 1
   SW zero, 0(s0)
   ADD a2, s8, zero
-  LW a0, 0(a1)
+  LW a0, 0(a3)
   ADDI s7, zero, 1
   ADD s4, t0, zero
   ADD s3, t1, zero
   ADD s2, t2, zero
-  LW t0, 4(a1)
-  SUBW a0, a6, a0
-  SUBW a1, a5, t0
+  LW t0, 4(a3)
+  SUBW a0, a4, a0
+  SUBW a1, a1, t0
   CALL search
   SW s7, 0(s0)
-  ADDIW a4, a0, 1
-  MIN a1, a4, s1
+  ADDIW a5, a0, 1
+  MIN a1, a5, s1
   # implict jump to bb19
 bb19:   # loop depth 1
   ADD a0, s2, zero
   ADD t2, s3, zero
   ADD t1, s4, zero
-  ADD a3, s5, zero
+  ADD a6, s5, zero
   ADD t0, s6, zero
   JAL zero, bb2
 bb20:   # loop depth 1
@@ -219,41 +221,40 @@ bb24:   # loop depth 0
   LD s8, 72(sp)
   LD s9, 80(sp)
   LD s10, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb25:   # loop depth 1
   LW a2, 0(a2)
-  XOR a2, a5, a2
+  XOR a2, a1, a2
   SLTIU a2, a2, 1
   JAL zero, bb11
 bb26:   # loop depth 2
-  LW a3, 0(t3)
-  BEQ a6, a3, bb31
+  LW a6, 0(t3)
+  BEQ a4, a6, bb31
   # implict jump to bb27
 bb27:   # loop depth 2
-  ADD a3, zero, zero
+  ADD a6, zero, zero
   # implict jump to bb28
 bb28:   # loop depth 2
-  BNE a3, zero, bb30
+  BNE a6, zero, bb30
   # implict jump to bb29
 bb29:   # loop depth 2
-  LW t4, 0(a1)
+  LW t4, 0(a3)
   ADDIW a7, a7, 1
-  LW t5, 4(a1)
-  ADDW a6, a6, t4
-  ADDW a5, a5, t5
+  LW t5, 4(a3)
+  ADDW a4, a4, t4
+  ADDW a1, a1, t5
   JAL zero, bb7
 bb30:   # loop depth 1
   JAL zero, bb9
 bb31:   # loop depth 2
-  LW a3, 0(a2)
-  XOR a3, a5, a3
-  SLTIU a3, a3, 1
+  LW a6, 0(a2)
+  XOR a6, a1, a6
+  SLTIU a6, a6, 1
   JAL zero, bb28
 bb32:   # loop depth 0
-  LUI t0, 262144
-  ADDIW t0, t0, 0
-  ADD a0, zero, t0
+  ADD a0, s11, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -266,7 +267,8 @@ bb32:   # loop depth 0
   LD s8, 72(sp)
   LD s9, 80(sp)
   LD s10, 88(sp)
-  ADDI sp, sp, 96
+  LD s11, 96(sp)
+  ADDI sp, sp, 112
   JALR zero, 0(ra)
 main:   # loop depth 0
   ADDI sp, sp, -80

@@ -49,9 +49,9 @@ dfs:   # loop depth 0
   MULW t1, s4, a2
   ADD t0, t0, t2
   ADD t0, t0, a0
-  ADD s5, a5, zero
+  ADD s6, a5, zero
   ADD t0, t0, t1
-  SH2ADD s8, s5, t0
+  SH2ADD s8, s6, t0
   LW a0, 0(s8)
   XORI t0, a0, -1
   BNE t0, zero, bb19
@@ -64,6 +64,9 @@ bb1:   # loop depth 0
   BEQ t0, zero, bb18
   # implict jump to bb2
 bb2:   # loop depth 0
+  LUI t0, 244141
+  ADDIW t0, t0, -1529
+  ADD s5, zero, t0
   BNE s0, zero, bb17
   # implict jump to bb3
 bb3:   # loop depth 0
@@ -78,13 +81,11 @@ bb6:   # loop depth 0
   BNE s2, zero, bb15
   # implict jump to bb7
 bb7:   # loop depth 0
-  ADD s6, s7, zero
   # implict jump to bb8
 bb8:   # loop depth 0
   BNE s3, zero, bb14
   # implict jump to bb9
 bb9:   # loop depth 0
-  ADD s5, s6, zero
   # implict jump to bb10
 bb10:   # loop depth 0
   BNE s4, zero, bb13
@@ -92,9 +93,7 @@ bb10:   # loop depth 0
 bb11:   # loop depth 0
   # implict jump to bb12
 bb12:   # loop depth 0
-  LUI t0, 244141
-  ADDIW t0, t0, -1529
-  REMW t0, s5, t0
+  REMW t0, s7, s5
   ADD a0, t0, zero
   SW t0, 0(s8)
   LD ra, 0(sp)
@@ -117,12 +116,10 @@ bb13:   # loop depth 0
   ADD a2, s2, zero
   ADD a1, s1, zero
   ADD a0, s0, zero
-  LUI s0, 244141
   CALL dfs
-  ADDIW s0, s0, -1529
   MULW t0, s4, a0
-  ADDW t0, s5, t0
-  REMW s5, t0, s0
+  ADDW t0, s7, t0
+  REMW s7, t0, s5
   JAL zero, bb12
 bb14:   # loop depth 0
   ADDIW a3, s3, -1
@@ -131,15 +128,13 @@ bb14:   # loop depth 0
   ADD a4, s4, zero
   ADD a1, s1, zero
   ADD a0, s0, zero
-  XORI s7, s5, 5
-  LUI s5, 244141
+  XORI s6, s6, 5
   CALL dfs
-  SLTIU t0, s7, 1
+  SLTIU t0, s6, 1
   SUBW t0, s3, t0
   MULW t0, t0, a0
-  ADDIW s5, s5, -1529
-  ADDW t0, s6, t0
-  REMW s5, t0, s5
+  ADDW t0, s7, t0
+  REMW s7, t0, s5
   JAL zero, bb10
 bb15:   # loop depth 0
   ADDIW a2, s2, -1
@@ -148,15 +143,13 @@ bb15:   # loop depth 0
   ADD a4, s4, zero
   ADD a3, s3, zero
   ADD a0, s0, zero
-  XORI s9, s5, 4
-  LUI s6, 244141
+  XORI s9, s6, 4
   CALL dfs
   SLTIU t0, s9, 1
   SUBW t0, s2, t0
   MULW t0, t0, a0
-  ADDIW s6, s6, -1529
   ADDW t0, s7, t0
-  REMW s6, t0, s6
+  REMW s7, t0, s5
   JAL zero, bb8
 bb16:   # loop depth 0
   ADDIW a1, s1, -1
@@ -165,15 +158,13 @@ bb16:   # loop depth 0
   ADD a4, s4, zero
   ADD a3, s3, zero
   ADD a2, s2, zero
-  XORI s9, s5, 3
-  LUI s6, 244141
+  XORI s9, s6, 3
   CALL dfs
   SLTIU t0, s9, 1
   SUBW t0, s1, t0
   MULW t0, t0, a0
-  ADDIW s6, s6, -1529
   ADDW t0, s7, t0
-  REMW s7, t0, s6
+  REMW s7, t0, s5
   JAL zero, bb6
 bb17:   # loop depth 0
   ADDIW a0, s0, -1
@@ -182,14 +173,12 @@ bb17:   # loop depth 0
   ADD a3, s3, zero
   ADD a2, s2, zero
   ADD a1, s1, zero
-  XORI t0, s5, 2
+  XORI t0, s6, 2
   SLTIU s7, t0, 1
-  LUI s6, 244141
   CALL dfs
   SUBW t0, s0, s7
-  ADDIW s6, s6, -1529
   MULW t0, t0, a0
-  REMW s7, t0, s6
+  REMW s7, t0, s5
   JAL zero, bb4
 bb18:   # loop depth 0
   ADDI a0, zero, 1

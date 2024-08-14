@@ -30,6 +30,7 @@ entry315:  pred()
 
 internal void kernel_nussinov(i32 n, ptr seq, ptr table) {
 entry:  pred()
+  .pinned = pin i32 5600
   343 = add i32 %n, i32 -1
   12468 = icmp sge i32 %343, i32 0
   br i1 %12468, bb %while.body_preheader, bb %while.exit
@@ -47,7 +48,8 @@ while.exit:  pred(entry, while.exit19)
   284466 = icmp slt i32 0, i32 %n
   br i1 %284466, bb %while.body280_preheader, bb %while.exit281
 while.body18_preheader:  pred(while.body)
-  30 = mul i32 %i.phi327472, i32 5600
+  .pinned503 = pin i32 5596
+  30 = mul i32 %i.phi327472, i32 %.pinned
   31 = ptradd ptr %table, i32 %30
   429 = shl i32 %i.phi327472, i32 2
   125 = ptradd ptr %seq, i32 %429
@@ -81,7 +83,7 @@ then45:  pred(then)
 then66:  pred(if.exit)
   73 = ptradd ptr %31, i32 %423
   73.load = load i32 from ptr %73
-  428 = ptradd ptr %73, i32 5600
+  428 = ptradd ptr %73, i32 %.pinned
   81.load = load i32 from ptr %428
   83 = icmp slt i32 %73.load, i32 %81.load
   br i1 %83, bb %then84, bb %if.exit67
@@ -107,7 +109,7 @@ then119:  pred(then113)
   383 = zext i1 %132 to i32
   141 = ptradd ptr %31, i32 %423
   141.load = load i32 from ptr %141
-  436 = ptradd ptr %141, i32 5596
+  436 = ptradd ptr %141, i32 %.pinned503
   150.load = load i32 from ptr %436
   153 = add i32 %150.load, i32 %383
   154 = icmp slt i32 %141.load, i32 %153
@@ -118,7 +120,7 @@ if.exit120:  pred(if.exit156, if.exit193)
 else:  pred(then113)
   180 = ptradd ptr %31, i32 %423
   180.load = load i32 from ptr %180
-  443 = ptradd ptr %180, i32 5596
+  443 = ptradd ptr %180, i32 %.pinned503
   189.load = load i32 from ptr %443
   191 = icmp slt i32 %180.load, i32 %189.load
   br i1 %191, bb %then192, bb %if.exit193
@@ -142,10 +144,10 @@ while.body214:  pred(if.exit245, while.body214_preheader)
   232 = ptradd ptr %31, i32 %445
   232.load = load i32 from ptr %232
   235 = add i32 %k.phi455, i32 1
-  446 = mul i32 %k.phi455, i32 5600
+  446 = mul i32 %k.phi455, i32 %.pinned
   419 = ptradd ptr %table, i32 %446
   447 = ptradd ptr %419, i32 %423
-  448 = ptradd ptr %447, i32 5600
+  448 = ptradd ptr %447, i32 %.pinned
   240.load = load i32 from ptr %448
   242 = add i32 %232.load, i32 %240.load
   243 = icmp slt i32 %225.load, i32 %242
@@ -188,7 +190,7 @@ while.body288:  pred(while.body288, while.body288_preheader)
 while.exit289:  pred(while.body280, while.body288)
   314 = add i32 %i.phi467, i32 1
   284 = icmp slt i32 %314, i32 %n
-  295.rec = add i32 %494, i32 5600
+  295.rec = add i32 %494, i32 %.pinned
   br i1 %284, bb %while.body280, bb %while.exit281
 while.body214_exclu_exit:  pred(if.exit245)
   br bb %while.exit215

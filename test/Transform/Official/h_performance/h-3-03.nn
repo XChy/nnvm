@@ -14,6 +14,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry319:  pred()
+  .pinned = pin i32 3200
   mean.pinned = pin ptr @mean
   data.pinned = pin ptr @data
   m.pinned = pin ptr @m
@@ -47,7 +48,7 @@ kernel_correlation.while.body20:  pred(kernel_correlation.while.body20, kernel_c
   41407 = add i32 %32.load402_phi_loop, i32 %39.load406
   44409 = add i32 %i.phi334398578, i32 1
   24399 = icmp slt i32 %44409, i32 %n.load
-  35403.rec = add i32 %629, i32 3200
+  35403.rec = add i32 %629, i32 %.pinned
   br i1 %24399, bb %kernel_correlation.while.body20, bb %kernel_correlation.while.body20_exclu_exit639
 kernel_correlation.while.exit21:  pred(kernel_correlation.while.body, kernel_correlation.while.body20_exclu_exit639)
   51.load412 = load i32 from ptr %16392
@@ -84,7 +85,7 @@ kernel_correlation.while.body72:  pred(kernel_correlation.while.body72, kernel_c
   111442 = add i32 %84.load433_phi_loop, i32 %110441
   114444 = add i32 %i.phi332429580, i32 1
   76430 = icmp slt i32 %114444, i32 %n.load
-  87434.rec = add i32 %631, i32 3200
+  87434.rec = add i32 %631, i32 %.pinned
   br i1 %76430, bb %kernel_correlation.while.body72, bb %kernel_correlation.while.body72_exclu_exit641
 kernel_correlation.while.exit73:  pred(kernel_correlation.while.body60, kernel_correlation.while.body72_exclu_exit641)
   121.load447 = load i32 from ptr %68423
@@ -136,7 +137,7 @@ kernel_correlation.while.body162:  pred(kernel_correlation.while.body162, kernel
 kernel_correlation.while.exit163:  pred(kernel_correlation.while.body154, kernel_correlation.while.body162)
   215491 = add i32 %i.phi331461595, i32 1
   158462 = icmp slt i32 %215491, i32 %n.load
-  169473.rec = add i32 %633, i32 3200
+  169473.rec = add i32 %633, i32 %.pinned
   br i1 %158462, bb %kernel_correlation.while.body154, bb %kernel_correlation.while.exit155
 kernel_correlation.while.body218_preheader:  pred(kernel_correlation.while.exit155)
   br bb %kernel_correlation.while.body218
@@ -152,7 +153,7 @@ kernel_correlation.while.body218:  pred(kernel_correlation.while.exit237, kernel
   240517586 = icmp slt i32 %234505, i32 %m.load
   br i1 %240517586, bb %kernel_correlation.while.body236_preheader, bb %kernel_correlation.while.exit237
 kernel_correlation.while.exit219:  pred(kernel_correlation.while.exit155, kernel_correlation.while.exit237)
-  569 = mul i32 %m.load, i32 3200
+  569 = mul i32 %m.load, i32 %.pinned
   556 = ptradd ptr %corr.pinned, i32 %569
   576 = shl i32 %m.load, i32 2
   571 = ptradd ptr %556, i32 %576
@@ -174,7 +175,7 @@ kernel_correlation.while.body236:  pred(kernel_correlation.while.exit252, kernel
 kernel_correlation.while.exit237:  pred(kernel_correlation.while.body218, kernel_correlation.while.body236_exclu_exit)
   k.phi344494587 = phi [bb %kernel_correlation.while.body236_exclu_exit, i32 %584, bb %kernel_correlation.while.body218, i32 %k.phi344494592]
   223497 = icmp slt i32 %234505, i32 %371496590
-  226500.rec = add i32 %637, i32 3200
+  226500.rec = add i32 %637, i32 %.pinned
   br i1 %223497, bb %kernel_correlation.while.body218, bb %kernel_correlation.while.exit219
 kernel_correlation.while.body251_preheader:  pred(kernel_correlation.while.body236)
   br bb %kernel_correlation.while.body251
@@ -191,11 +192,11 @@ kernel_correlation.while.body251:  pred(kernel_correlation.while.body251, kernel
   286539 = add i32 %269.load531_phi_loop, i32 %285538
   289541 = add i32 %k.phi527585, i32 1
   255528 = icmp slt i32 %289541, i32 %n.load
-  272532.rec = add i32 %635, i32 3200
+  272532.rec = add i32 %635, i32 %.pinned
   br i1 %255528, bb %kernel_correlation.while.body251, bb %kernel_correlation.while.body251_exclu_exit
 kernel_correlation.while.exit252:  pred(kernel_correlation.while.body236, kernel_correlation.while.body251_exclu_exit)
   584 = phi [bb %kernel_correlation.while.body251_exclu_exit, i32 %289541, bb %kernel_correlation.while.body236, i32 0]
-  291544 = mul i32 %j.phi516589, i32 3200
+  291544 = mul i32 %j.phi516589, i32 %.pinned
   292545 = ptradd ptr %corr.pinned, i32 %291544
   295546 = ptradd ptr %292545, i32 %568
   302.load547 = load i32 from ptr %247521

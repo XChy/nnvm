@@ -81,45 +81,43 @@ bb7:   # loop depth 1
   BNE t0, zero, bb15
   # implict jump to bb8
 bb8:   # loop depth 0
+  LUI t1, 1
   ADD t0, zero, zero
+  ADDIW t1, t1, -4
+  ADD a3, zero, t1
   # implict jump to bb9
 bb9:   # loop depth 1
-  LUI a1, 1
   SLLIW t1, t0, 10
-  ADDIW a1, a1, -4
+  ADDIW t0, t0, 1
   SH2ADD t2, t1, s0
   SH2ADD t1, t1, s2
   LW a0, 0(t2)
-  ADD t2, t2, a1
-  LUI a2, 1
-  ADDIW t0, t0, 1
-  ADDIW a2, a2, -4
-  SLTI a1, t0, 1024
+  ADD a1, t2, a3
+  ADD t2, t1, a3
+  SLTI a2, t0, 1024
   SW a0, 0(t1)
-  ADD t1, t1, a2
-  LW t2, 0(t2)
-  SW t2, 0(t1)
-  BNE a1, zero, bb14
+  LW t1, 0(a1)
+  SW t1, 0(t2)
+  BNE a2, zero, bb14
   # implict jump to bb10
 bb10:   # loop depth 0
+  LUI t1, 1023
   ADD t0, zero, zero
+  ADDIW t1, t1, 0
+  ADD a3, zero, t1
   # implict jump to bb11
 bb11:   # loop depth 1
-  LUI a1, 1023
   SH2ADD t2, t0, s0
-  ADDIW a1, a1, 0
-  LW a0, 0(t2)
   SH2ADD t1, t0, s2
-  ADD t2, t2, a1
-  LUI a1, 1023
-  ADDIW a1, a1, 0
+  LW a0, 0(t2)
+  ADD a1, t2, a3
   ADDIW t0, t0, 1
+  ADD t2, t1, a3
+  SLTI a2, t0, 1024
   SW a0, 0(t1)
-  ADD t1, t1, a1
-  LW t2, 0(t2)
-  SLTI a0, t0, 1024
-  SW t2, 0(t1)
-  BNE a0, zero, bb13
+  LW t1, 0(a1)
+  SW t1, 0(t2)
+  BNE a2, zero, bb13
   # implict jump to bb12
 bb12:   # loop depth 0
   LUI s0, 256

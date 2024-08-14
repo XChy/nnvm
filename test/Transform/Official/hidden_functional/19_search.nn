@@ -12,16 +12,17 @@ external i32 getch()
 
 internal i32 search(i32 x, i32 y, i32 n) {
 entry:  pred()
+  .pinned = pin i32 1073741824
   5 = icmp sgt i32 %n, i32 10
   br i1 %5, bb %then, bb %if.exit
 then:  pred(entry)
-  ret i32 1073741824
+  ret i32 %.pinned
 if.exit:  pred(entry)
   149 = add i32 %n, i32 1
   br bb %while.cond
 while.cond:  pred(if.exit, while.cond_unified_latch)
   i.phi = phi [bb %if.exit, i32 0, bb %while.cond_unified_latch, i32 %88]
-  num.phi313 = phi [bb %if.exit, i32 1073741824, bb %while.cond_unified_latch, i32 %370]
+  num.phi313 = phi [bb %if.exit, i32 %.pinned, bb %while.cond_unified_latch, i32 %370]
   select.phi309 = phi [bb %if.exit, i1 0, bb %while.cond_unified_latch, i1 %select.phi307]
   select94.phi299 = phi [bb %if.exit, i1 0, bb %while.cond_unified_latch, i1 %372]
   select104.phi297 = phi [bb %if.exit, i1 0, bb %while.cond_unified_latch, i1 %373]
@@ -134,7 +135,7 @@ if.exit120:  pred(select.exit111)
   store i32 1 to ptr %31
   br bb %while.cond_unified_latch
 then171:  pred(while.exit)
-  ret i32 1073741824
+  ret i32 %.pinned
 if.exit172:  pred(while.exit)
   ret i32 %num.phi313
 while.cond_unified_latch:  pred(then84, then119, if.exit120)

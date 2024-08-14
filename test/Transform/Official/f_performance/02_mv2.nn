@@ -15,6 +15,7 @@ external i32 getfarray(ptr )
 i32 main() {
 entry94:  pred()
   A.pinned = pin ptr @A
+  .pinned = pin i32 8040
   96 = call i32 getint()
   105374 = icmp slt i32 0, i32 %96
   br i1 %105374, bb %while.body101_preheader, bb %while.exit102
@@ -42,7 +43,7 @@ while.body109:  pred(while.body109, while.body109_preheader)
 while.exit110:  pred(while.body101, while.body109)
   128 = add i32 %i97.phi165375, i32 1
   105 = icmp slt i32 %128, i32 %96
-  116.rec = add i32 %414, i32 8040
+  116.rec = add i32 %414, i32 %.pinned
   br i1 %105, bb %while.body101, bb %while.exit102
 while.body131_preheader:  pred(while.exit102)
   br bb %while.body131
@@ -105,7 +106,7 @@ mv.while.exit35:  pred(mv.while.body26, mv.while.body34_exclu_exit)
   y.phi173205347 = phi [bb %mv.while.body34_exclu_exit, i32 %y.phi241, bb %mv.while.body26, i32 %y.phi173205366]
   93228 = add i32 %i.phi204365, i32 1
   30207 = icmp slt i32 %93228, i32 %96
-  41220.rec = add i32 %416, i32 8040
+  41220.rec = add i32 %416, i32 %.pinned
   br i1 %30207, bb %mv.while.body26, bb %mv.while.exit27
 mv.then:  pred(mv.while.body34)
   55.load233 = load i32 from ptr %55232
@@ -172,7 +173,7 @@ mv.while.exit35295:  pred(mv.while.body26277, mv.while.body34287_exclu_exit)
   y.phi173273353 = phi [bb %mv.while.body34287_exclu_exit, i32 %y.phi309, bb %mv.while.body26277, i32 %y.phi173273360]
   93296 = add i32 %i.phi272359, i32 1
   30275 = icmp slt i32 %93296, i32 %96
-  41288.rec = add i32 %418, i32 8040
+  41288.rec = add i32 %418, i32 %.pinned
   br i1 %30275, bb %mv.while.body26277, bb %mv.while.exit27279
 mv.then298:  pred(mv.while.body34287)
   55.load301 = load i32 from ptr %55300

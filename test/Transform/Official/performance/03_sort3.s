@@ -378,42 +378,42 @@ bb27:   # loop depth 3
 bb28:   # loop depth 4
   JAL zero, bb26
 bb29:   # loop depth 0
-  ADD a1, a4, zero
+  ADD t2, a4, zero
   # implict jump to bb30
 bb30:   # loop depth 1
-  SH2ADD t1, a1, s0
+  SH2ADD t1, t2, s0
   LW t1, 0(t1)
   BLT zero, a0, bb34
   # implict jump to bb31
 bb31:   # loop depth 1
   # implict jump to bb32
 bb32:   # loop depth 1
-  ADDIW a1, a1, 1
-  SLLI t2, t1, 1
-  SRLI t2, t2, 60
-  ADD t2, t1, t2
-  ANDI t2, t2, -16
-  SUBW t1, t1, t2
-  SLLIW t1, t1, 2
-  ADDI t2, sp, 160
-  ADD t1, t2, t1
-  LW t2, 0(t1)
   ADDIW t2, t2, 1
-  SW t2, 0(t1)
-  BLT a1, t0, bb33
+  SLLI a1, t1, 1
+  SRLI a1, a1, 60
+  ADD a1, t1, a1
+  ANDI a1, a1, -16
+  SUBW t1, t1, a1
+  SLLIW t1, t1, 2
+  ADDI a1, sp, 160
+  ADD t1, a1, t1
+  LW a1, 0(t1)
+  ADDIW a1, a1, 1
+  SW a1, 0(t1)
+  BLT t2, t0, bb33
   JAL zero, bb10
 bb33:   # loop depth 1
   JAL zero, bb30
 bb34:   # loop depth 1
-  ADD t2, zero, zero
+  ADD a1, zero, zero
   # implict jump to bb35
 bb35:   # loop depth 2
   SRAIW a2, t1, 31
-  ADDIW t2, t2, 1
+  ADDIW a1, a1, 1
   SRLIW a2, a2, 28
   ADD t1, t1, a2
   SRAIW t1, t1, 4
-  BLT t2, a0, bb37
+  BLT a1, a0, bb37
   # implict jump to bb36
 bb36:   # loop depth 1
   JAL zero, bb32
