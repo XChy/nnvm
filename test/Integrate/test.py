@@ -25,8 +25,8 @@ Examples:
   python3 test.py -e if -E performance
     Test files whose paths match 'if' but don't match 'performance'.
 
-  python3 test.py -O2 -bdriscv64 -e 'unary' -e '\d+_if'
-    Test files whose paths match 'unary' or '\d+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
+  python3 test.py -O2 -bdriscv64 -e 'unary' -e \\d'+_if'
+    Test files whose paths match 'unary' or 'r'\\d'+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
 
 import subprocess
 import tempfile
@@ -87,9 +87,9 @@ class ExecutionException(Exception):
 def __run(subproc_arglist: list):
     if verbose_mode:
         return subprocess.run(
-            subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
+            subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT, errors='ignore')
     return subprocess.run(
-        subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
+        subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT, errors='ignore')
 
 
 def execute(subproc_arglists: list, input_text: str):
@@ -119,7 +119,7 @@ def execute(subproc_arglists: list, input_text: str):
         completed = subprocess.run(
             subproc_arglists[3],
             input=input_text, capture_output=True, text=True,
-            encoding='UTF-8', timeout=RUNNING_TIME_LIMIT)
+            encoding='UTF-8', timeout=RUNNING_TIME_LIMIT, errors='ignore')
         if len(completed.stdout) == 0:
             return str(completed.returncode)
         else:
@@ -298,7 +298,7 @@ def __init_random():
     global random_mode
     random_mode = True
     completed = subprocess.run(
-        [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators'], capture_output=True, text=True, encoding='UTF-8')
+        [CSMITH, '--no-pointers', '--quiet', '--no-structs', '--no-unions', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators', '--no-bitfields', '--no-volatiles', '--no-checksum'], capture_output=True, text=True, encoding='UTF-8', errors='ignore')
     with open(CSMITH_HDR, 'r') as f:
         csmith_hdr = f.read()
     code = completed.stdout.replace(
@@ -309,7 +309,9 @@ def __init_random():
         'int print_hash_value = 0', 'int print_hash_value = 1').replace(
         'printf("index = [%d]\\n", ', 'putdim(').replace(
         'printf("index = [%d][%d]\\n", ', 'putdim2(').replace(
-        'printf("index = [%d][%d][%d]\\n", ', 'putdim3(')
+        'printf("index = [%d][%d][%d]\\n", ', 'putdim3(').replace(
+            'volatile', ''
+        )
     code = re.sub(r'(?:(?:const )?u?int(8|16|32|64)_t|long)', 'int', code)
     code = re.sub(r'\b(0[Xx][\dA-Fa-f]+|0[0-7]+|\d+)[UuLl]+\b', r'\1', code)
     code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
