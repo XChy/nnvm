@@ -19,7 +19,6 @@ nnvm/Makefile
 # Misc
 nnvm/Frontend/.antlr/
 riscv64-unknown-linux-gnu-gcc
-test/Integrate/Float/tmp.sy
-test/Integrate/Integer/tmp.sy
-test/Integrate/Integer/tmp.in
-test/Integrate/Integer/tmp.in
+test/Integrate/Float/tmp.*
+test/Integrate/Integer/tmp.*
+test/Integrate/Csmith/**/csmith-*
