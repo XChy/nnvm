@@ -1408,7 +1408,8 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
       // TODO: report error
       nnvm_unimpl();
     }
-    val = builder.buildBinOp<AndInst>(lhs.entity, rhs.entity, ir->getIntType());
+    // be careful about the ir type here
+    val = builder.buildBinOp<AndInst>(lhs.entity, rhs.entity, lhs.entity->getType());
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITOR()) {
@@ -1417,7 +1418,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
       // TODO: report error
       nnvm_unimpl();
     }
-    val = builder.buildBinOp<OrInst>(lhs.entity, rhs.entity, ir->getIntType());
+    val = builder.buildBinOp<OrInst>(lhs.entity, rhs.entity, lhs.entity->getType());
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITXOR()) {
@@ -1426,7 +1427,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
       // TODO: report error
       nnvm_unimpl();
     }
-    val = builder.buildBinOp<XorInst>(lhs.entity, rhs.entity, ir->getIntType());
+    val = builder.buildBinOp<XorInst>(lhs.entity, rhs.entity, lhs.entity->getType());
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITSHL()) {
@@ -1434,7 +1435,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
       // TODO: report error
       nnvm_unimpl();
     }
-    val = builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity, ir->getIntType());
+    val = builder.buildBinOp<ShlInst>(lhs.entity, rhs.entity, lhs.entity->getType());
     return Symbol{val, lhs.symbolType};
   }
   if (ctx->BITSHR()) {
@@ -1444,7 +1445,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     }
     // signed Integer : Arithmetic shift right
     val =
-        builder.buildBinOp<AShrInst>(lhs.entity, rhs.entity, ir->getIntType());
+        builder.buildBinOp<AShrInst>(lhs.entity, rhs.entity, lhs.entity->getType());
     return Symbol{val, lhs.symbolType};
   }
 
@@ -1485,6 +1486,9 @@ Any IRGenerator::expUnaryOp(SysYParser::ExpContext *ctx) {
     if (!operand.symbolType->isInt() && !operand.symbolType->isBool()) {
       // TODO: report error
       nnvm_unimpl();
+    }
+    if (!operand.symbolType->isInt()) {
+      operand = genImplicitCast(operand, SymbolType::getIntTy());
     }
     operand.entity = builder.buildBinOp<XorInst>(
         operand.entity, constMinusOneInt, ir->getIntType());
