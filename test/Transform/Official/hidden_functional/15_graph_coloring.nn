@@ -17,22 +17,25 @@ then87.split:  pred(isSafe.while.exit36, isSafe.then)
   90 = icmp ne i32 %89.ret, i32 0
   br i1 %90, bb %then91, bb %if.exit92
 if.exit88:  pred(entry81)
+  265 = shl i32 %i, i32 2
+  104 = ptradd ptr %color, i32 %265
+  109 = add i32 %i, i32 1
   br bb %while.cond95
 then91:  pred(then87.split)
   11.load251 = load i32 from ptr %color
   call void putint(i32 %11.load251)
   call void putch(i32 32)
-  11250270 = ptradd ptr %color, i32 4
-  11.load251271 = load i32 from ptr %11250270
-  call void putint(i32 %11.load251271)
+  11250284 = ptradd ptr %color, i32 4
+  11.load251285 = load i32 from ptr %11250284
+  call void putint(i32 %11.load251285)
   call void putch(i32 32)
-  11250280 = ptradd ptr %color, i32 8
-  11.load251281 = load i32 from ptr %11250280
-  call void putint(i32 %11.load251281)
+  11250294 = ptradd ptr %color, i32 8
+  11.load251295 = load i32 from ptr %11250294
+  call void putint(i32 %11.load251295)
   call void putch(i32 32)
-  11250290 = ptradd ptr %color, i32 12
-  11.load251291 = load i32 from ptr %11250290
-  call void putint(i32 %11.load251291)
+  11250304 = ptradd ptr %color, i32 12
+  11.load251305 = load i32 from ptr %11250304
+  call void putint(i32 %11.load251305)
   call void putch(i32 32)
   call void putch(i32 10)
   ret i32 1
@@ -43,10 +46,7 @@ while.cond95:  pred(if.exit88, if.exit113)
   100 = icmp sle i32 %j94.phi, i32 %m
   br i1 %100, bb %while.body96, bb %while.exit97
 while.body96:  pred(while.cond95)
-  174 = shl i32 %i, i32 2
-  104 = ptradd ptr %color, i32 %174
   store i32 %j94.phi to ptr %104
-  109 = add i32 %i, i32 1
   110 = call i32 graphColoring(ptr %graph, i32 %m, i32 %109, ptr %color)
   111 = icmp ne i32 %110, i32 0
   br i1 %111, bb %then112, bb %if.exit113
@@ -65,6 +65,10 @@ isSafe.while.cond34:  pred(then87, isSafe.while.exit46)
   br i1 %39188, bb %isSafe.while.body35, bb %isSafe.while.exit36
 isSafe.while.body35:  pred(isSafe.while.cond34)
   43191 = add i32 %i33.phi187, i32 1
+  266 = shl i32 %i33.phi187, i32 4
+  53202 = ptradd ptr %graph, i32 %266
+  268 = shl i32 %i33.phi187, i32 2
+  69214 = ptradd ptr %color, i32 %268
   br bb %isSafe.while.cond44
 isSafe.while.exit36:  pred(isSafe.while.cond34)
   br bb %then87.split
@@ -74,20 +78,16 @@ isSafe.while.cond44:  pred(isSafe.while.body35, isSafe.if.exit)
   49198 = icmp slt i32 %j.phi197, i32 4
   br i1 %49198, bb %isSafe.while.body45, bb %isSafe.while.exit46
 isSafe.while.body45:  pred(isSafe.while.cond44)
-  177201 = shl i32 %i33.phi187, i32 4
-  53202 = ptradd ptr %graph, i32 %177201
-  178203 = shl i32 %j.phi197, i32 2
-  56204 = ptradd ptr %53202, i32 %178203
+  267 = shl i32 %j.phi197, i32 2
+  56204 = ptradd ptr %53202, i32 %267
   56.load205 = load i32 from ptr %56204
   58206 = icmp ne i32 %56.load205, i32 0
   br i1 %58206, bb %isSafe.select.then, bb %isSafe.select.else
 isSafe.while.exit46:  pred(isSafe.while.cond44)
   br bb %isSafe.while.cond34
 isSafe.select.then:  pred(isSafe.while.body45)
-  65211 = ptradd ptr %color, i32 %178203
+  65211 = ptradd ptr %color, i32 %267
   65.load212 = load i32 from ptr %65211
-  180213 = shl i32 %i33.phi187, i32 2
-  69214 = ptradd ptr %color, i32 %180213
   69.load215 = load i32 from ptr %69214
   71216 = icmp eq i32 %65.load212, i32 %69.load215
   br bb %isSafe.select.exit
@@ -141,15 +141,15 @@ entry121:  pred()
   arr.index138 = ptradd ptr %graph, i32 60
   store i32 0 to ptr %arr.index138
   store i32 0 to ptr %color
-  151300 = ptradd ptr %color, i32 4
-  store i32 0 to ptr %151300
-  151308 = ptradd ptr %color, i32 8
-  store i32 0 to ptr %151308
-  151316 = ptradd ptr %color, i32 12
-  store i32 0 to ptr %151316
+  151314 = ptradd ptr %color, i32 4
+  store i32 0 to ptr %151314
+  151322 = ptradd ptr %color, i32 8
+  store i32 0 to ptr %151322
+  151330 = ptradd ptr %color, i32 12
+  store i32 0 to ptr %151330
   157 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
   158 = icmp ne i32 %157, i32 0
-  159 = xor i1 %158, i1 -1
+  159 = xor i1 %158, i1 1
   160 = zext i1 %159 to i32
   161 = icmp ne i32 %160, i32 0
   br i1 %161, bb %then162, bb %if.exit163

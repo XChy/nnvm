@@ -46,6 +46,11 @@ enum class InstID : uint64_t {
   Shl,
   LShr,
   AShr,
+  // MinMaX
+  SMin,
+  SMax,
+  UMin,
+  UMax,
   // PtrAdd: Addressing addtion/subtraction of pointer.
   // Semantics: guarantee the provenance.
   // Example: %new_p = ptradd %p, 16
@@ -80,6 +85,7 @@ enum class InstID : uint64_t {
   // Other
   OTHER_BEGIN,
   FNeg,
+  WhichOf,
   Pin,
   Call,
   Phi,
@@ -145,6 +151,7 @@ public:
   const std::vector<Use *> &getUseeList() const { return useeList; }
 
   void moveTo(BasicBlock *otherBB);
+  void moveBeforeTerm(BasicBlock *otherBB);
 
   std::string dump() override;
   virtual Instruction *copy() = 0;
@@ -183,10 +190,10 @@ public:
   StoreInst() : Instruction(InstID::Store, 2, nullptr) {}
 
   void setStoredValue(Value *stored) { setOperand(0, stored); }
-  Value *getStoredValue() { return getOperand(0); }
+  Value *getStoredValue() const { return getOperand(0); }
 
   void setDest(Value *dest) { setOperand(1, dest); }
-  Value *getDest() { return getOperand(1); }
+  Value *getDest() const { return getOperand(1); }
 
   std::string dump() override;
 
@@ -204,7 +211,7 @@ class LoadInst : public Instruction {
 public:
   LoadInst(Type *type) : Instruction(InstID::Load, 1, type) {}
 
-  Value *getSrc() { return getOperand(0); }
+  Value *getSrc() const { return getOperand(0); }
 
   Instruction *copy() override {
     auto *ret = new LoadInst(getType());
@@ -246,6 +253,10 @@ NNVM_DECLARE_BINOP(InstID::Xor, XorInst)
 NNVM_DECLARE_BINOP(InstID::Shl, ShlInst)
 NNVM_DECLARE_BINOP(InstID::LShr, LShrInst)
 NNVM_DECLARE_BINOP(InstID::AShr, AShrInst)
+NNVM_DECLARE_BINOP(InstID::SMin, SMinInst)
+NNVM_DECLARE_BINOP(InstID::SMax, SMaxInst)
+NNVM_DECLARE_BINOP(InstID::UMin, UMinInst)
+NNVM_DECLARE_BINOP(InstID::UMax, UMaxInst)
 NNVM_DECLARE_BINOP(InstID::PtrAdd, PtrAddInst)
 
 // ===========================
@@ -256,6 +267,7 @@ public:
   enum Predicate { EQ, NE, SLT, SGT, SLE, SGE, ULT, ULE, UGT, UGE };
 
   static std::string getPredName(Predicate p);
+  static Predicate invertPred(Predicate pred);
 
   ICmpInst(Predicate predicate, Type *ty)
       : Instruction(InstID::ICmp, 2, ty), predicate(predicate) {}
@@ -471,10 +483,14 @@ public:
 
   void setCallee(Value *callee) { setOperand(0, callee); }
   Value *getCallee() const { return getOperand(0); }
+
   Function *getFuncCallee() const;
+
+  Value *getArg(uint i) const { return getOperand(i + 1); }
+  uint getArgNum() const { return getOperandNum() - 1; }
+
   void setArguments(const std::vector<Value *> &args);
-  Value *getArg(uint i) { return getOperand(i + 1); }
-  uint getArgNum() { return getOperandNum() - 1; }
+  std::vector<Value *> collectArgs() const;
 
   Instruction *copy() override {
     auto *ret = new CallInst(getCallee(), getType());
@@ -500,6 +516,30 @@ public:
   }
 };
 
+class WhichOfInst : public Instruction {
+public:
+  WhichOfInst(Value *cond, Value *trueVal, Value *falseVal)
+      : Instruction(InstID::WhichOf, {cond, trueVal, falseVal},
+                    trueVal->getType()) {
+    assert(cond->getType()->isIntegerNBits(1));
+    assert(trueVal->getType() == falseVal->getType());
+  }
+
+  void setCond(Value *cond) { setOperand(0, cond); }
+  Value *getCond() const { return getOperand(0); }
+
+  void setTrueVal(Value *val) { setOperand(1, val); }
+  Value *getTrueVal() const { return getOperand(1); }
+
+  void setFalseVal(Value *val) { setOperand(2, val); }
+  Value *getFalseVal() const { return getOperand(2); }
+
+  Instruction *copy() override {
+    auto *ret = new WhichOfInst(getCond(), getTrueVal(), getFalseVal());
+    return ret;
+  }
+};
+
 class PinInst : public Instruction {
 public:
   PinInst(Value *operand)
@@ -512,9 +552,9 @@ public:
 };
 
 // operands: [incomingBB1, incomingValue1, ..., incomingBBn, incomingValuen]
-class PhiInst : public Instruction {
+class PhiNode : public Instruction {
 public:
-  PhiInst(Type *type) : Instruction(InstID::Phi, {}, type) {}
+  PhiNode(Type *type) : Instruction(InstID::Phi, {}, type) {}
 
   void addIncoming(BasicBlock *incomingBB, Value *incomingValue);
   void setIncomingValue(BasicBlock *incomingBB, Value *incomingValue);
@@ -535,7 +575,7 @@ public:
   Value *getIncomingValueOf(BasicBlock *incoming) const;
 
   Instruction *copy() override {
-    auto *ret = new PhiInst(getType());
+    auto *ret = new PhiNode(getType());
     for (uint64_t i = 0; i < getIncomingNum(); i++)
       ret->addIncoming(getIncomingBB(i), getIncomingValue(i));
     return ret;

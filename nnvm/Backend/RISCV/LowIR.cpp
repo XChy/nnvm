@@ -1,5 +1,5 @@
-#include "ADT/PatternMatch.h"
 #include "LowIR.h"
+#include "ADT/PatternMatch.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR/LIRValue.h"
 #include "Backend/RISCV/LowIR/Patterns.h"
@@ -113,7 +113,8 @@ bool LIRInst::isMoveInst(LIRFunc const &func) const {
 }
 
 void LIRBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) {
-  out << info.labelOf(this) << ":\n";
+  out << info.labelOf(this) << ":   "
+      << "# loop depth " << getLoopDepth() << "\n";
   for (const auto &I : insts) {
     out << "  ";
     I->emit(out, info);
@@ -168,6 +169,10 @@ void LIRModule::emit(std::ostream &out) const {
     for (auto *bb : *func)
       info.allocBB(bb);
 
+  out << ".attribute arch, "
+         "\"rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_"
+         "zbb1p0\"\n";
+
   for (auto *func : funcs)
     if (!func->isExternal)
       out << ".global " << func->name << "\n";
@@ -206,7 +211,7 @@ uint LIRBB::getSuccNum() const {
   return succNum;
 }
 
-LIRBB *LIRBB::getSucc(int index) {
+LIRBB *LIRBB::getSucc(int index) const {
   uint succNum = 0;
   auto it = --insts.end();
   while (succNum != index) {
@@ -228,7 +233,7 @@ void LIRBB::setSucc(int index, LIRBB *dest) {
 
 uint LIRBB::getPredNum() const { return getUses().size(); }
 
-LIRBB *LIRBB::getPred(int index) {
+LIRBB *LIRBB::getPred(int index) const {
   auto it = getUses().begin();
   for (int i = 0; i < index; i++)
     it++;

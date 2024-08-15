@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -5,13 +6,13 @@
 a:
 .word 0x00000000
 .section .text
-main:
+main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
   LA t0, a
   ADDI t1, zero, 10
-  SW t1, 0(t0)
   ADDI a0, zero, 9
+  SW t1, 0(t0)
   LD ra, 0(sp)
   ADDI sp, sp, 16
   JALR zero, 0(ra)

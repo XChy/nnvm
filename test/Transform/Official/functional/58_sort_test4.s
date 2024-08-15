@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -5,132 +6,125 @@
 n:
 .word 0x00000000
 .section .text
-main:
-  ADDI sp, sp, -96
+main:   # loop depth 0
+  ADDI sp, sp, -64
   SD ra, 40(sp)
   SD s0, 48(sp)
   SD s1, 56(sp)
-  SD s2, 64(sp)
-  SD s3, 72(sp)
-  SD s4, 80(sp)
-  SD s5, 88(sp)
-  LA a0, n
-  ADDI s0, zero, 10
-  SW s0, 0(a0)
-  ADDI a0, zero, 4
-  SW a0, 0(sp)
-  ADDI a0, zero, 3
-  SW a0, 4(sp)
-  ADDI a0, zero, 9
-  SW a0, 8(sp)
-  ADDI a0, zero, 2
-  SW a0, 12(sp)
-  ADDI a0, zero, 0
-  SW a0, 16(sp)
-  ADDI a0, zero, 1
-  SW a0, 20(sp)
-  ADDI a0, zero, 6
-  SW a0, 24(sp)
-  ADDI a0, zero, 5
-  SW a0, 28(sp)
+  LA s1, n
+  ADDI t0, zero, 10
+  ADDI t1, zero, 4
+  ADDI t2, zero, 3
+  SW t0, 0(s1)
+  ADDI t0, zero, 9
+  SW t1, 0(sp)
+  ADDI t1, zero, 2
+  SW t2, 4(sp)
+  ADDI t2, zero, 0
+  SW t0, 8(sp)
+  ADDI t0, zero, 1
+  SW t1, 12(sp)
+  ADDI t1, zero, 6
+  SW t2, 16(sp)
+  ADDI t2, zero, 5
+  SW t0, 20(sp)
   ADDI a0, zero, 7
+  SW t1, 24(sp)
+  ADDI a1, zero, 8
+  SW t2, 28(sp)
+  ADD t0, zero, zero
   SW a0, 32(sp)
-  ADDI a0, zero, 8
-  SW a0, 36(sp)
-  ADD s2, zero, zero
-  ADD a0, zero, zero
+  ADD t1, zero, zero
+  SW a1, 36(sp)
   # implict jump to bb1
-bb1:
-  ADDIW s3, s2, 1
-  SLTI s0, s3, 10
-  BNE s0, zero, bb13
+bb1:   # loop depth 1
+  ADDIW a3, t1, 1
+  SLLIW a0, t1, 2
+  SLTI t2, a3, 10
+  BNE t2, zero, bb13
   # implict jump to bb2
-bb2:
-  ADD s1, s2, zero
+bb2:   # loop depth 1
+  ADD t2, t1, zero
+  ADD a1, a0, zero
   # implict jump to bb3
-bb3:
-  BNE s1, s2, bb12
+bb3:   # loop depth 1
+  BNE t2, t1, bb12
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 1
   # implict jump to bb5
-bb5:
-  SLTI s0, s3, 9
-  BNE s0, zero, bb11
+bb5:   # loop depth 1
+  SLTI t1, a3, 9
+  BNE t1, zero, bb11
   # implict jump to bb6
-bb6:
-  ADDI a0, zero, 1
-  BNE a0, zero, bb8
+bb6:   # loop depth 0
+  ADDI t0, zero, 1
+  BNE t0, zero, bb8
   # implict jump to bb7
-bb7:
+bb7:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 40(sp)
   LD s0, 48(sp)
   LD s1, 56(sp)
-  LD s2, 64(sp)
-  LD s3, 72(sp)
-  LD s4, 80(sp)
-  LD s5, 88(sp)
-  ADDI sp, sp, 96
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb8:
+bb8:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb9
-bb9:
-  SLLIW a0, s0, 2
-  ADDI t6, sp, 0
-  ADD a0, t6, a0
-  LW a0, 0(a0)
+bb9:   # loop depth 1
+  SLLIW t0, s0, 2
+  ADDIW s0, s0, 1
+  ADDI a0, sp, 0
+  ADD t0, a0, t0
+  LW a0, 0(t0)
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  ADDIW s0, s0, 1
-  LA a0, n
-  LW a0, 0(a0)
-  BLT s0, a0, bb10
+  LW t0, 0(s1)
+  BLT s0, t0, bb10
   JAL zero, bb7
-bb10:
+bb10:   # loop depth 1
   JAL zero, bb9
-bb11:
-  ADD s2, s3, zero
+bb11:   # loop depth 1
+  ADD t1, a3, zero
   JAL zero, bb1
-bb12:
-  SLLIW a0, s1, 2
-  ADDI t6, sp, 0
-  ADD s0, t6, a0
-  LW a0, 0(s0)
-  SLLIW s1, s2, 2
-  ADDI t6, sp, 0
-  ADD s1, t6, s1
-  LW s2, 0(s1)
-  SW s2, 0(s0)
-  SW a0, 0(s1)
+bb12:   # loop depth 1
+  ADDI t2, sp, 0
+  ADD t2, t2, a1
+  ADDI t1, sp, 0
+  ADD a0, t1, a0
+  LW t1, 0(t2)
+  LW a1, 0(a0)
+  ADD t0, t1, zero
+  SW a1, 0(t2)
+  SW t1, 0(a0)
   JAL zero, bb5
-bb13:
-  ADD s0, s3, zero
-  ADD s1, s2, zero
+bb13:   # loop depth 1
+  ADD t2, t1, zero
+  ADD a2, a3, zero
+  ADD a1, a0, zero
   # implict jump to bb14
-bb14:
-  SLLIW s4, s1, 2
+bb14:   # loop depth 2
+  ADDI a4, sp, 0
+  ADD a1, a4, a1
+  SLLIW a4, a2, 2
+  LW a1, 0(a1)
   ADDI t6, sp, 0
-  ADD s4, t6, s4
-  LW s4, 0(s4)
-  SLLIW s5, s0, 2
-  ADDI t6, sp, 0
-  ADD s5, t6, s5
-  LW s5, 0(s5)
-  BLT s5, s4, bb19
+  ADD a4, t6, a4
+  LW a4, 0(a4)
+  BLT a4, a1, bb19
   # implict jump to bb15
-bb15:
+bb15:   # loop depth 2
   # implict jump to bb16
-bb16:
-  ADDIW s0, s0, 1
-  SLTI s4, s0, 10
-  BNE s4, zero, bb18
+bb16:   # loop depth 2
+  ADDIW a2, a2, 1
+  SLLIW a1, t2, 2
+  SLTI a4, a2, 10
+  BNE a4, zero, bb18
   # implict jump to bb17
-bb17:
+bb17:   # loop depth 1
   JAL zero, bb3
-bb18:
+bb18:   # loop depth 2
   JAL zero, bb14
-bb19:
-  ADD s1, s0, zero
+bb19:   # loop depth 2
+  ADD t2, a2, zero
   JAL zero, bb16

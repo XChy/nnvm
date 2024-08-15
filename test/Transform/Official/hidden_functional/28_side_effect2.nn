@@ -12,28 +12,69 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry93:  pred()
+  array.pinned = pin ptr @array
+  sum.pinned = pin ptr @sum
+  1417712351 = icmp sge i32 0, i32 20
+  1417982352 = icmp sge i32 1, i32 20
+  2118052353 = ptradd ptr %array.pinned, i32 4
+  1418252354 = icmp sge i32 2, i32 20
+  2118322355 = ptradd ptr %array.pinned, i32 8
+  1418522356 = icmp sge i32 3, i32 20
+  2118592357 = ptradd ptr %array.pinned, i32 12
+  1418792358 = icmp sge i32 4, i32 20
+  2118862359 = ptradd ptr %array.pinned, i32 16
+  1419062360 = icmp sge i32 5, i32 20
+  2119132361 = ptradd ptr %array.pinned, i32 20
+  1419332362 = icmp sge i32 6, i32 20
+  2119402363 = ptradd ptr %array.pinned, i32 24
+  1419602364 = icmp sge i32 7, i32 20
+  2119672365 = ptradd ptr %array.pinned, i32 28
+  1419872366 = icmp sge i32 8, i32 20
+  2119942367 = ptradd ptr %array.pinned, i32 32
+  1420142368 = icmp sge i32 9, i32 20
+  2120212369 = ptradd ptr %array.pinned, i32 36
+  1420412370 = icmp sge i32 10, i32 20
+  2120482371 = ptradd ptr %array.pinned, i32 40
+  1420682372 = icmp sge i32 11, i32 20
+  2120752373 = ptradd ptr %array.pinned, i32 44
+  1420952374 = icmp sge i32 12, i32 20
+  2121022375 = ptradd ptr %array.pinned, i32 48
+  1421222376 = icmp sge i32 13, i32 20
+  2121292377 = ptradd ptr %array.pinned, i32 52
+  1421492378 = icmp sge i32 14, i32 20
+  2121562379 = ptradd ptr %array.pinned, i32 56
+  1421762380 = icmp sge i32 15, i32 20
+  2121832381 = ptradd ptr %array.pinned, i32 60
+  1422032382 = icmp sge i32 16, i32 20
+  2122102383 = ptradd ptr %array.pinned, i32 64
+  1422302384 = icmp sge i32 17, i32 20
+  2122372385 = ptradd ptr %array.pinned, i32 68
+  1422572386 = icmp sge i32 18, i32 20
+  2122642387 = ptradd ptr %array.pinned, i32 72
+  1422842388 = icmp sge i32 19, i32 20
+  2122912389 = ptradd ptr %array.pinned, i32 76
   br bb %while.body
 while.body:  pred(select.exit250, entry93)
-  i.phi6932716 = phi [bb %select.exit250, i32 %260, bb %entry93, i32 0]
-  sum.load42020 = load i32 from ptr @sum
-  52021 = add i32 %sum.load42020, i32 1
-  store i32 %52021 to ptr @sum
-  82023 = icmp sge i32 0, i32 %i.phi6932716
-  br i1 %82023, bb %f.select.then, bb %f.select.else
+  i.phi6932429 = phi [bb %select.exit250, i32 %260, bb %entry93, i32 0]
+  sum.load41767 = load i32 from ptr %sum.pinned
+  51768 = add i32 %sum.load41767, i32 1
+  store i32 %51768 to ptr %sum.pinned
+  81770 = icmp sge i32 0, i32 %i.phi6932429
+  8161772 = or i1 %81770, i1 %1417712351
+  br i1 %8161772, bb %f.then, bb %f.if.exit
 while.body.split:  pred(f.then, f.if.exit)
   102.ret = phi [bb %f.then, i32 0, bb %f.if.exit, i32 1]
   103 = icmp ne i32 %102.ret, i32 0
   br i1 %103, bb %select.then104, bb %select.else105
-while.exit:  pred(select.exit250)
-  br bb %while.body263
 select.then104:  pred(while.body.split)
-  sum.load42053 = load i32 from ptr @sum
-  52054 = add i32 %sum.load42053, i32 1
-  store i32 %52054 to ptr @sum
-  82056 = icmp sge i32 1, i32 %i.phi6932716
-  br i1 %82056, bb %f.select.then2058, bb %f.select.else2060
-select.then104.split:  pred(f.then2066, f.if.exit2068)
-  109.ret = phi [bb %f.then2066, i32 0, bb %f.if.exit2068, i32 %34.load2081]
+  sum.load41794 = load i32 from ptr %sum.pinned
+  51795 = add i32 %sum.load41794, i32 1
+  store i32 %51795 to ptr %sum.pinned
+  81797 = icmp sge i32 1, i32 %i.phi6932429
+  8161799 = or i1 %81797, i1 %1417982352
+  br i1 %8161799, bb %f.then1801, bb %f.if.exit1803
+select.then104.split:  pred(f.then1801, f.if.exit1803)
+  109.ret = phi [bb %f.then1801, i32 0, bb %f.if.exit1803, i32 %34.load1816]
   110 = icmp ne i32 %109.ret, i32 0
   br bb %select.exit106
 select.else105:  pred(while.body.split)
@@ -42,13 +83,14 @@ select.exit106:  pred(select.then104.split, select.else105)
   select107.phi = phi [bb %select.else105, i1 0, bb %select.then104.split, i1 %110]
   br i1 %select107.phi, bb %select.then112, bb %select.else113
 select.then112:  pred(select.exit106)
-  sum.load42086 = load i32 from ptr @sum
-  52087 = add i32 %sum.load42086, i32 1
-  store i32 %52087 to ptr @sum
-  82089 = icmp sge i32 2, i32 %i.phi6932716
-  br i1 %82089, bb %f.select.then2091, bb %f.select.else2093
-select.then112.split:  pred(f.then2099, f.if.exit2101)
-  117.ret = phi [bb %f.then2099, i32 0, bb %f.if.exit2101, i32 %34.load2114]
+  sum.load41821 = load i32 from ptr %sum.pinned
+  51822 = add i32 %sum.load41821, i32 1
+  store i32 %51822 to ptr %sum.pinned
+  81824 = icmp sge i32 2, i32 %i.phi6932429
+  8161826 = or i1 %81824, i1 %1418252354
+  br i1 %8161826, bb %f.then1828, bb %f.if.exit1830
+select.then112.split:  pred(f.then1828, f.if.exit1830)
+  117.ret = phi [bb %f.then1828, i32 0, bb %f.if.exit1830, i32 %34.load1843]
   118 = icmp ne i32 %117.ret, i32 0
   br bb %select.exit114
 select.else113:  pred(select.exit106)
@@ -57,13 +99,14 @@ select.exit114:  pred(select.then112.split, select.else113)
   select115.phi = phi [bb %select.else113, i1 0, bb %select.then112.split, i1 %118]
   br i1 %select115.phi, bb %select.then120, bb %select.else121
 select.then120:  pred(select.exit114)
-  sum.load42119 = load i32 from ptr @sum
-  52120 = add i32 %sum.load42119, i32 1
-  store i32 %52120 to ptr @sum
-  82122 = icmp sge i32 3, i32 %i.phi6932716
-  br i1 %82122, bb %f.select.then2124, bb %f.select.else2126
-select.then120.split:  pred(f.then2132, f.if.exit2134)
-  125.ret = phi [bb %f.then2132, i32 0, bb %f.if.exit2134, i32 %34.load2147]
+  sum.load41848 = load i32 from ptr %sum.pinned
+  51849 = add i32 %sum.load41848, i32 1
+  store i32 %51849 to ptr %sum.pinned
+  81851 = icmp sge i32 3, i32 %i.phi6932429
+  8161853 = or i1 %81851, i1 %1418522356
+  br i1 %8161853, bb %f.then1855, bb %f.if.exit1857
+select.then120.split:  pred(f.then1855, f.if.exit1857)
+  125.ret = phi [bb %f.then1855, i32 0, bb %f.if.exit1857, i32 %34.load1870]
   126 = icmp ne i32 %125.ret, i32 0
   br bb %select.exit122
 select.else121:  pred(select.exit114)
@@ -72,13 +115,14 @@ select.exit122:  pred(select.then120.split, select.else121)
   select123.phi = phi [bb %select.else121, i1 0, bb %select.then120.split, i1 %126]
   br i1 %select123.phi, bb %select.then128, bb %select.else129
 select.then128:  pred(select.exit122)
-  sum.load42152 = load i32 from ptr @sum
-  52153 = add i32 %sum.load42152, i32 1
-  store i32 %52153 to ptr @sum
-  82155 = icmp sge i32 4, i32 %i.phi6932716
-  br i1 %82155, bb %f.select.then2157, bb %f.select.else2159
-select.then128.split:  pred(f.then2165, f.if.exit2167)
-  133.ret = phi [bb %f.then2165, i32 0, bb %f.if.exit2167, i32 %34.load2180]
+  sum.load41875 = load i32 from ptr %sum.pinned
+  51876 = add i32 %sum.load41875, i32 1
+  store i32 %51876 to ptr %sum.pinned
+  81878 = icmp sge i32 4, i32 %i.phi6932429
+  8161880 = or i1 %81878, i1 %1418792358
+  br i1 %8161880, bb %f.then1882, bb %f.if.exit1884
+select.then128.split:  pred(f.then1882, f.if.exit1884)
+  133.ret = phi [bb %f.then1882, i32 0, bb %f.if.exit1884, i32 %34.load1897]
   134 = icmp ne i32 %133.ret, i32 0
   br bb %select.exit130
 select.else129:  pred(select.exit122)
@@ -87,13 +131,14 @@ select.exit130:  pred(select.then128.split, select.else129)
   select131.phi = phi [bb %select.else129, i1 0, bb %select.then128.split, i1 %134]
   br i1 %select131.phi, bb %select.then136, bb %select.else137
 select.then136:  pred(select.exit130)
-  sum.load42185 = load i32 from ptr @sum
-  52186 = add i32 %sum.load42185, i32 1
-  store i32 %52186 to ptr @sum
-  82188 = icmp sge i32 5, i32 %i.phi6932716
-  br i1 %82188, bb %f.select.then2190, bb %f.select.else2192
-select.then136.split:  pred(f.then2198, f.if.exit2200)
-  141.ret = phi [bb %f.then2198, i32 0, bb %f.if.exit2200, i32 %34.load2213]
+  sum.load41902 = load i32 from ptr %sum.pinned
+  51903 = add i32 %sum.load41902, i32 1
+  store i32 %51903 to ptr %sum.pinned
+  81905 = icmp sge i32 5, i32 %i.phi6932429
+  8161907 = or i1 %81905, i1 %1419062360
+  br i1 %8161907, bb %f.then1909, bb %f.if.exit1911
+select.then136.split:  pred(f.then1909, f.if.exit1911)
+  141.ret = phi [bb %f.then1909, i32 0, bb %f.if.exit1911, i32 %34.load1924]
   142 = icmp ne i32 %141.ret, i32 0
   br bb %select.exit138
 select.else137:  pred(select.exit130)
@@ -102,13 +147,14 @@ select.exit138:  pred(select.then136.split, select.else137)
   select139.phi = phi [bb %select.else137, i1 0, bb %select.then136.split, i1 %142]
   br i1 %select139.phi, bb %select.then144, bb %select.else145
 select.then144:  pred(select.exit138)
-  sum.load42218 = load i32 from ptr @sum
-  52219 = add i32 %sum.load42218, i32 1
-  store i32 %52219 to ptr @sum
-  82221 = icmp sge i32 6, i32 %i.phi6932716
-  br i1 %82221, bb %f.select.then2223, bb %f.select.else2225
-select.then144.split:  pred(f.then2231, f.if.exit2233)
-  149.ret = phi [bb %f.then2231, i32 0, bb %f.if.exit2233, i32 %34.load2246]
+  sum.load41929 = load i32 from ptr %sum.pinned
+  51930 = add i32 %sum.load41929, i32 1
+  store i32 %51930 to ptr %sum.pinned
+  81932 = icmp sge i32 6, i32 %i.phi6932429
+  8161934 = or i1 %81932, i1 %1419332362
+  br i1 %8161934, bb %f.then1936, bb %f.if.exit1938
+select.then144.split:  pred(f.then1936, f.if.exit1938)
+  149.ret = phi [bb %f.then1936, i32 0, bb %f.if.exit1938, i32 %34.load1951]
   150 = icmp ne i32 %149.ret, i32 0
   br bb %select.exit146
 select.else145:  pred(select.exit138)
@@ -117,13 +163,14 @@ select.exit146:  pred(select.then144.split, select.else145)
   select147.phi = phi [bb %select.else145, i1 0, bb %select.then144.split, i1 %150]
   br i1 %select147.phi, bb %select.then152, bb %select.else153
 select.then152:  pred(select.exit146)
-  sum.load42251 = load i32 from ptr @sum
-  52252 = add i32 %sum.load42251, i32 1
-  store i32 %52252 to ptr @sum
-  82254 = icmp sge i32 7, i32 %i.phi6932716
-  br i1 %82254, bb %f.select.then2256, bb %f.select.else2258
-select.then152.split:  pred(f.then2264, f.if.exit2266)
-  157.ret = phi [bb %f.then2264, i32 0, bb %f.if.exit2266, i32 %34.load2279]
+  sum.load41956 = load i32 from ptr %sum.pinned
+  51957 = add i32 %sum.load41956, i32 1
+  store i32 %51957 to ptr %sum.pinned
+  81959 = icmp sge i32 7, i32 %i.phi6932429
+  8161961 = or i1 %81959, i1 %1419602364
+  br i1 %8161961, bb %f.then1963, bb %f.if.exit1965
+select.then152.split:  pred(f.then1963, f.if.exit1965)
+  157.ret = phi [bb %f.then1963, i32 0, bb %f.if.exit1965, i32 %34.load1978]
   158 = icmp ne i32 %157.ret, i32 0
   br bb %select.exit154
 select.else153:  pred(select.exit146)
@@ -132,13 +179,14 @@ select.exit154:  pred(select.then152.split, select.else153)
   select155.phi = phi [bb %select.else153, i1 0, bb %select.then152.split, i1 %158]
   br i1 %select155.phi, bb %select.then160, bb %select.else161
 select.then160:  pred(select.exit154)
-  sum.load42284 = load i32 from ptr @sum
-  52285 = add i32 %sum.load42284, i32 1
-  store i32 %52285 to ptr @sum
-  82287 = icmp sge i32 8, i32 %i.phi6932716
-  br i1 %82287, bb %f.select.then2289, bb %f.select.else2291
-select.then160.split:  pred(f.then2297, f.if.exit2299)
-  165.ret = phi [bb %f.then2297, i32 0, bb %f.if.exit2299, i32 %34.load2312]
+  sum.load41983 = load i32 from ptr %sum.pinned
+  51984 = add i32 %sum.load41983, i32 1
+  store i32 %51984 to ptr %sum.pinned
+  81986 = icmp sge i32 8, i32 %i.phi6932429
+  8161988 = or i1 %81986, i1 %1419872366
+  br i1 %8161988, bb %f.then1990, bb %f.if.exit1992
+select.then160.split:  pred(f.then1990, f.if.exit1992)
+  165.ret = phi [bb %f.then1990, i32 0, bb %f.if.exit1992, i32 %34.load2005]
   166 = icmp ne i32 %165.ret, i32 0
   br bb %select.exit162
 select.else161:  pred(select.exit154)
@@ -147,13 +195,14 @@ select.exit162:  pred(select.then160.split, select.else161)
   select163.phi = phi [bb %select.else161, i1 0, bb %select.then160.split, i1 %166]
   br i1 %select163.phi, bb %select.then168, bb %select.else169
 select.then168:  pred(select.exit162)
-  sum.load42317 = load i32 from ptr @sum
-  52318 = add i32 %sum.load42317, i32 1
-  store i32 %52318 to ptr @sum
-  82320 = icmp sge i32 9, i32 %i.phi6932716
-  br i1 %82320, bb %f.select.then2322, bb %f.select.else2324
-select.then168.split:  pred(f.then2330, f.if.exit2332)
-  173.ret = phi [bb %f.then2330, i32 0, bb %f.if.exit2332, i32 %34.load2345]
+  sum.load42010 = load i32 from ptr %sum.pinned
+  52011 = add i32 %sum.load42010, i32 1
+  store i32 %52011 to ptr %sum.pinned
+  82013 = icmp sge i32 9, i32 %i.phi6932429
+  8162015 = or i1 %82013, i1 %1420142368
+  br i1 %8162015, bb %f.then2017, bb %f.if.exit2019
+select.then168.split:  pred(f.then2017, f.if.exit2019)
+  173.ret = phi [bb %f.then2017, i32 0, bb %f.if.exit2019, i32 %34.load2032]
   174 = icmp ne i32 %173.ret, i32 0
   br bb %select.exit170
 select.else169:  pred(select.exit162)
@@ -162,13 +211,14 @@ select.exit170:  pred(select.then168.split, select.else169)
   select171.phi = phi [bb %select.else169, i1 0, bb %select.then168.split, i1 %174]
   br i1 %select171.phi, bb %select.then176, bb %select.else177
 select.then176:  pred(select.exit170)
-  sum.load42350 = load i32 from ptr @sum
-  52351 = add i32 %sum.load42350, i32 1
-  store i32 %52351 to ptr @sum
-  82353 = icmp sge i32 10, i32 %i.phi6932716
-  br i1 %82353, bb %f.select.then2355, bb %f.select.else2357
-select.then176.split:  pred(f.then2363, f.if.exit2365)
-  181.ret = phi [bb %f.then2363, i32 0, bb %f.if.exit2365, i32 %34.load2378]
+  sum.load42037 = load i32 from ptr %sum.pinned
+  52038 = add i32 %sum.load42037, i32 1
+  store i32 %52038 to ptr %sum.pinned
+  82040 = icmp sge i32 10, i32 %i.phi6932429
+  8162042 = or i1 %82040, i1 %1420412370
+  br i1 %8162042, bb %f.then2044, bb %f.if.exit2046
+select.then176.split:  pred(f.then2044, f.if.exit2046)
+  181.ret = phi [bb %f.then2044, i32 0, bb %f.if.exit2046, i32 %34.load2059]
   182 = icmp ne i32 %181.ret, i32 0
   br bb %select.exit178
 select.else177:  pred(select.exit170)
@@ -177,13 +227,14 @@ select.exit178:  pred(select.then176.split, select.else177)
   select179.phi = phi [bb %select.else177, i1 0, bb %select.then176.split, i1 %182]
   br i1 %select179.phi, bb %select.then184, bb %select.else185
 select.then184:  pred(select.exit178)
-  sum.load42383 = load i32 from ptr @sum
-  52384 = add i32 %sum.load42383, i32 1
-  store i32 %52384 to ptr @sum
-  82386 = icmp sge i32 11, i32 %i.phi6932716
-  br i1 %82386, bb %f.select.then2388, bb %f.select.else2390
-select.then184.split:  pred(f.then2396, f.if.exit2398)
-  189.ret = phi [bb %f.then2396, i32 0, bb %f.if.exit2398, i32 %34.load2411]
+  sum.load42064 = load i32 from ptr %sum.pinned
+  52065 = add i32 %sum.load42064, i32 1
+  store i32 %52065 to ptr %sum.pinned
+  82067 = icmp sge i32 11, i32 %i.phi6932429
+  8162069 = or i1 %82067, i1 %1420682372
+  br i1 %8162069, bb %f.then2071, bb %f.if.exit2073
+select.then184.split:  pred(f.then2071, f.if.exit2073)
+  189.ret = phi [bb %f.then2071, i32 0, bb %f.if.exit2073, i32 %34.load2086]
   190 = icmp ne i32 %189.ret, i32 0
   br bb %select.exit186
 select.else185:  pred(select.exit178)
@@ -192,13 +243,14 @@ select.exit186:  pred(select.then184.split, select.else185)
   select187.phi = phi [bb %select.else185, i1 0, bb %select.then184.split, i1 %190]
   br i1 %select187.phi, bb %select.then192, bb %select.else193
 select.then192:  pred(select.exit186)
-  sum.load42416 = load i32 from ptr @sum
-  52417 = add i32 %sum.load42416, i32 1
-  store i32 %52417 to ptr @sum
-  82419 = icmp sge i32 12, i32 %i.phi6932716
-  br i1 %82419, bb %f.select.then2421, bb %f.select.else2423
-select.then192.split:  pred(f.then2429, f.if.exit2431)
-  197.ret = phi [bb %f.then2429, i32 0, bb %f.if.exit2431, i32 %34.load2444]
+  sum.load42091 = load i32 from ptr %sum.pinned
+  52092 = add i32 %sum.load42091, i32 1
+  store i32 %52092 to ptr %sum.pinned
+  82094 = icmp sge i32 12, i32 %i.phi6932429
+  8162096 = or i1 %82094, i1 %1420952374
+  br i1 %8162096, bb %f.then2098, bb %f.if.exit2100
+select.then192.split:  pred(f.then2098, f.if.exit2100)
+  197.ret = phi [bb %f.then2098, i32 0, bb %f.if.exit2100, i32 %34.load2113]
   198 = icmp ne i32 %197.ret, i32 0
   br bb %select.exit194
 select.else193:  pred(select.exit186)
@@ -207,13 +259,14 @@ select.exit194:  pred(select.then192.split, select.else193)
   select195.phi = phi [bb %select.else193, i1 0, bb %select.then192.split, i1 %198]
   br i1 %select195.phi, bb %select.then200, bb %select.else201
 select.then200:  pred(select.exit194)
-  sum.load42449 = load i32 from ptr @sum
-  52450 = add i32 %sum.load42449, i32 1
-  store i32 %52450 to ptr @sum
-  82452 = icmp sge i32 13, i32 %i.phi6932716
-  br i1 %82452, bb %f.select.then2454, bb %f.select.else2456
-select.then200.split:  pred(f.then2462, f.if.exit2464)
-  205.ret = phi [bb %f.then2462, i32 0, bb %f.if.exit2464, i32 %34.load2477]
+  sum.load42118 = load i32 from ptr %sum.pinned
+  52119 = add i32 %sum.load42118, i32 1
+  store i32 %52119 to ptr %sum.pinned
+  82121 = icmp sge i32 13, i32 %i.phi6932429
+  8162123 = or i1 %82121, i1 %1421222376
+  br i1 %8162123, bb %f.then2125, bb %f.if.exit2127
+select.then200.split:  pred(f.then2125, f.if.exit2127)
+  205.ret = phi [bb %f.then2125, i32 0, bb %f.if.exit2127, i32 %34.load2140]
   206 = icmp ne i32 %205.ret, i32 0
   br bb %select.exit202
 select.else201:  pred(select.exit194)
@@ -222,13 +275,14 @@ select.exit202:  pred(select.then200.split, select.else201)
   select203.phi = phi [bb %select.else201, i1 0, bb %select.then200.split, i1 %206]
   br i1 %select203.phi, bb %select.then208, bb %select.else209
 select.then208:  pred(select.exit202)
-  sum.load42482 = load i32 from ptr @sum
-  52483 = add i32 %sum.load42482, i32 1
-  store i32 %52483 to ptr @sum
-  82485 = icmp sge i32 14, i32 %i.phi6932716
-  br i1 %82485, bb %f.select.then2487, bb %f.select.else2489
-select.then208.split:  pred(f.then2495, f.if.exit2497)
-  213.ret = phi [bb %f.then2495, i32 0, bb %f.if.exit2497, i32 %34.load2510]
+  sum.load42145 = load i32 from ptr %sum.pinned
+  52146 = add i32 %sum.load42145, i32 1
+  store i32 %52146 to ptr %sum.pinned
+  82148 = icmp sge i32 14, i32 %i.phi6932429
+  8162150 = or i1 %82148, i1 %1421492378
+  br i1 %8162150, bb %f.then2152, bb %f.if.exit2154
+select.then208.split:  pred(f.then2152, f.if.exit2154)
+  213.ret = phi [bb %f.then2152, i32 0, bb %f.if.exit2154, i32 %34.load2167]
   214 = icmp ne i32 %213.ret, i32 0
   br bb %select.exit210
 select.else209:  pred(select.exit202)
@@ -237,13 +291,14 @@ select.exit210:  pred(select.then208.split, select.else209)
   select211.phi = phi [bb %select.else209, i1 0, bb %select.then208.split, i1 %214]
   br i1 %select211.phi, bb %select.then216, bb %select.else217
 select.then216:  pred(select.exit210)
-  sum.load42515 = load i32 from ptr @sum
-  52516 = add i32 %sum.load42515, i32 1
-  store i32 %52516 to ptr @sum
-  82518 = icmp sge i32 15, i32 %i.phi6932716
-  br i1 %82518, bb %f.select.then2520, bb %f.select.else2522
-select.then216.split:  pred(f.then2528, f.if.exit2530)
-  221.ret = phi [bb %f.then2528, i32 0, bb %f.if.exit2530, i32 %34.load2543]
+  sum.load42172 = load i32 from ptr %sum.pinned
+  52173 = add i32 %sum.load42172, i32 1
+  store i32 %52173 to ptr %sum.pinned
+  82175 = icmp sge i32 15, i32 %i.phi6932429
+  8162177 = or i1 %82175, i1 %1421762380
+  br i1 %8162177, bb %f.then2179, bb %f.if.exit2181
+select.then216.split:  pred(f.then2179, f.if.exit2181)
+  221.ret = phi [bb %f.then2179, i32 0, bb %f.if.exit2181, i32 %34.load2194]
   222 = icmp ne i32 %221.ret, i32 0
   br bb %select.exit218
 select.else217:  pred(select.exit210)
@@ -252,13 +307,14 @@ select.exit218:  pred(select.then216.split, select.else217)
   select219.phi = phi [bb %select.else217, i1 0, bb %select.then216.split, i1 %222]
   br i1 %select219.phi, bb %select.then224, bb %select.else225
 select.then224:  pred(select.exit218)
-  sum.load42548 = load i32 from ptr @sum
-  52549 = add i32 %sum.load42548, i32 1
-  store i32 %52549 to ptr @sum
-  82551 = icmp sge i32 16, i32 %i.phi6932716
-  br i1 %82551, bb %f.select.then2553, bb %f.select.else2555
-select.then224.split:  pred(f.then2561, f.if.exit2563)
-  229.ret = phi [bb %f.then2561, i32 0, bb %f.if.exit2563, i32 %34.load2576]
+  sum.load42199 = load i32 from ptr %sum.pinned
+  52200 = add i32 %sum.load42199, i32 1
+  store i32 %52200 to ptr %sum.pinned
+  82202 = icmp sge i32 16, i32 %i.phi6932429
+  8162204 = or i1 %82202, i1 %1422032382
+  br i1 %8162204, bb %f.then2206, bb %f.if.exit2208
+select.then224.split:  pred(f.then2206, f.if.exit2208)
+  229.ret = phi [bb %f.then2206, i32 0, bb %f.if.exit2208, i32 %34.load2221]
   230 = icmp ne i32 %229.ret, i32 0
   br bb %select.exit226
 select.else225:  pred(select.exit218)
@@ -267,13 +323,14 @@ select.exit226:  pred(select.then224.split, select.else225)
   select227.phi = phi [bb %select.else225, i1 0, bb %select.then224.split, i1 %230]
   br i1 %select227.phi, bb %select.then232, bb %select.else233
 select.then232:  pred(select.exit226)
-  sum.load42581 = load i32 from ptr @sum
-  52582 = add i32 %sum.load42581, i32 1
-  store i32 %52582 to ptr @sum
-  82584 = icmp sge i32 17, i32 %i.phi6932716
-  br i1 %82584, bb %f.select.then2586, bb %f.select.else2588
-select.then232.split:  pred(f.then2594, f.if.exit2596)
-  237.ret = phi [bb %f.then2594, i32 0, bb %f.if.exit2596, i32 %34.load2609]
+  sum.load42226 = load i32 from ptr %sum.pinned
+  52227 = add i32 %sum.load42226, i32 1
+  store i32 %52227 to ptr %sum.pinned
+  82229 = icmp sge i32 17, i32 %i.phi6932429
+  8162231 = or i1 %82229, i1 %1422302384
+  br i1 %8162231, bb %f.then2233, bb %f.if.exit2235
+select.then232.split:  pred(f.then2233, f.if.exit2235)
+  237.ret = phi [bb %f.then2233, i32 0, bb %f.if.exit2235, i32 %34.load2248]
   238 = icmp ne i32 %237.ret, i32 0
   br bb %select.exit234
 select.else233:  pred(select.exit226)
@@ -282,13 +339,14 @@ select.exit234:  pred(select.then232.split, select.else233)
   select235.phi = phi [bb %select.else233, i1 0, bb %select.then232.split, i1 %238]
   br i1 %select235.phi, bb %select.then240, bb %select.else241
 select.then240:  pred(select.exit234)
-  sum.load42614 = load i32 from ptr @sum
-  52615 = add i32 %sum.load42614, i32 1
-  store i32 %52615 to ptr @sum
-  82617 = icmp sge i32 18, i32 %i.phi6932716
-  br i1 %82617, bb %f.select.then2619, bb %f.select.else2621
-select.then240.split:  pred(f.then2627, f.if.exit2629)
-  245.ret = phi [bb %f.then2627, i32 0, bb %f.if.exit2629, i32 %34.load2642]
+  sum.load42253 = load i32 from ptr %sum.pinned
+  52254 = add i32 %sum.load42253, i32 1
+  store i32 %52254 to ptr %sum.pinned
+  82256 = icmp sge i32 18, i32 %i.phi6932429
+  8162258 = or i1 %82256, i1 %1422572386
+  br i1 %8162258, bb %f.then2260, bb %f.if.exit2262
+select.then240.split:  pred(f.then2260, f.if.exit2262)
+  245.ret = phi [bb %f.then2260, i32 0, bb %f.if.exit2262, i32 %34.load2275]
   246 = icmp ne i32 %245.ret, i32 0
   br bb %select.exit242
 select.else241:  pred(select.exit234)
@@ -297,334 +355,355 @@ select.exit242:  pred(select.then240.split, select.else241)
   select243.phi = phi [bb %select.else241, i1 0, bb %select.then240.split, i1 %246]
   br i1 %select243.phi, bb %select.then248, bb %select.exit250
 select.then248:  pred(select.exit242)
-  sum.load42647 = load i32 from ptr @sum
-  52648 = add i32 %sum.load42647, i32 1
-  store i32 %52648 to ptr @sum
-  82650 = icmp sge i32 19, i32 %i.phi6932716
-  br i1 %82650, bb %f.select.then2652, bb %f.select.else2654
-select.exit250:  pred(select.exit242, f.select.exit2657, f.if.exit2662)
-  260 = add i32 %i.phi6932716, i32 1
+  sum.load42280 = load i32 from ptr %sum.pinned
+  52281 = add i32 %sum.load42280, i32 1
+  store i32 %52281 to ptr %sum.pinned
+  82283 = icmp sge i32 19, i32 %i.phi6932429
+  8162285 = or i1 %82283, i1 %1422842388
+  br i1 %8162285, bb %select.exit250, bb %f.if.exit2289
+select.exit250:  pred(select.exit242, select.then248, f.if.exit2289)
+  260 = add i32 %i.phi6932429, i32 1
   99 = icmp slt i32 %260, i32 20
-  br i1 %99, bb %while.body, bb %while.exit
-while.body263:  pred(select.exit435, while.exit)
-  i.phi6922714 = phi [bb %select.exit435, i32 %446, bb %while.exit, i32 0]
-  sum.load401360 = load i32 from ptr @sum
-  411361 = add i32 %sum.load401360, i32 2
-  store i32 %411361 to ptr @sum
-  441363 = icmp sge i32 0, i32 %i.phi6922714
-  br i1 %441363, bb %g.select.then45, bb %g.select.else46
+  br i1 %99, bb %while.body, bb %while.body_exclu_exit
+while.body263:  pred(select.exit435, while.body_exclu_exit)
+  i.phi6922349 = phi [bb %select.exit435, i32 %446, bb %while.body_exclu_exit, i32 0]
+  sum.load401227 = load i32 from ptr %sum.pinned
+  411228 = add i32 %sum.load401227, i32 2
+  store i32 %411228 to ptr %sum.pinned
+  441230 = icmp sge i32 0, i32 %i.phi6922349
+  8141232 = or i1 %441230, i1 %1417712351
+  br i1 %8141232, bb %g.then53, bb %g.if.exit54
 while.body263.split:  pred(g.then53, g.if.exit54)
   269.ret = phi [bb %g.then53, i32 1, bb %g.if.exit54, i32 0]
   270 = icmp ne i32 %269.ret, i32 0
   br i1 %270, bb %select.then271, bb %select.else272
-while.exit264:  pred(select.exit435)
-  br bb %while.cond448
 select.then271:  pred(while.body263.split)
   br bb %select.exit273
 select.else272:  pred(while.body263.split)
-  sum.load401393 = load i32 from ptr @sum
-  411394 = add i32 %sum.load401393, i32 2
-  store i32 %411394 to ptr @sum
-  441396 = icmp sge i32 1, i32 %i.phi6922714
-  br i1 %441396, bb %g.select.then451398, bb %g.select.else461400
-select.else272.split:  pred(g.then531406, g.if.exit541408)
-  276.ret = phi [bb %g.then531406, i32 1, bb %g.if.exit541408, i32 %70.load1421]
+  sum.load401254 = load i32 from ptr %sum.pinned
+  411255 = add i32 %sum.load401254, i32 2
+  store i32 %411255 to ptr %sum.pinned
+  441257 = icmp sge i32 1, i32 %i.phi6922349
+  8141259 = or i1 %441257, i1 %1417982352
+  br i1 %8141259, bb %g.then531261, bb %g.if.exit541263
+select.else272.split:  pred(g.then531261, g.if.exit541263)
+  276.ret = phi [bb %g.then531261, i32 1, bb %g.if.exit541263, i32 %70.load1276]
   277 = icmp ne i32 %276.ret, i32 0
   br bb %select.exit273
 select.exit273:  pred(select.then271, select.else272.split)
-  select274.phi = phi [bb %select.else272.split, i1 %277, bb %select.then271, i1 -1]
+  select274.phi = phi [bb %select.else272.split, i1 %277, bb %select.then271, i1 1]
   br i1 %select274.phi, bb %select.then280, bb %select.else281
 select.then280:  pred(select.exit273)
   br bb %select.exit282
 select.else281:  pred(select.exit273)
-  sum.load401426 = load i32 from ptr @sum
-  411427 = add i32 %sum.load401426, i32 2
-  store i32 %411427 to ptr @sum
-  441429 = icmp sge i32 2, i32 %i.phi6922714
-  br i1 %441429, bb %g.select.then451431, bb %g.select.else461433
-select.else281.split:  pred(g.then531439, g.if.exit541441)
-  285.ret = phi [bb %g.then531439, i32 1, bb %g.if.exit541441, i32 %70.load1454]
+  sum.load401281 = load i32 from ptr %sum.pinned
+  411282 = add i32 %sum.load401281, i32 2
+  store i32 %411282 to ptr %sum.pinned
+  441284 = icmp sge i32 2, i32 %i.phi6922349
+  8141286 = or i1 %441284, i1 %1418252354
+  br i1 %8141286, bb %g.then531288, bb %g.if.exit541290
+select.else281.split:  pred(g.then531288, g.if.exit541290)
+  285.ret = phi [bb %g.then531288, i32 1, bb %g.if.exit541290, i32 %70.load1303]
   286 = icmp ne i32 %285.ret, i32 0
   br bb %select.exit282
 select.exit282:  pred(select.then280, select.else281.split)
-  select283.phi = phi [bb %select.else281.split, i1 %286, bb %select.then280, i1 -1]
+  select283.phi = phi [bb %select.else281.split, i1 %286, bb %select.then280, i1 1]
   br i1 %select283.phi, bb %select.then289, bb %select.else290
 select.then289:  pred(select.exit282)
   br bb %select.exit291
 select.else290:  pred(select.exit282)
-  sum.load401459 = load i32 from ptr @sum
-  411460 = add i32 %sum.load401459, i32 2
-  store i32 %411460 to ptr @sum
-  441462 = icmp sge i32 3, i32 %i.phi6922714
-  br i1 %441462, bb %g.select.then451464, bb %g.select.else461466
-select.else290.split:  pred(g.then531472, g.if.exit541474)
-  294.ret = phi [bb %g.then531472, i32 1, bb %g.if.exit541474, i32 %70.load1487]
+  sum.load401308 = load i32 from ptr %sum.pinned
+  411309 = add i32 %sum.load401308, i32 2
+  store i32 %411309 to ptr %sum.pinned
+  441311 = icmp sge i32 3, i32 %i.phi6922349
+  8141313 = or i1 %441311, i1 %1418522356
+  br i1 %8141313, bb %g.then531315, bb %g.if.exit541317
+select.else290.split:  pred(g.then531315, g.if.exit541317)
+  294.ret = phi [bb %g.then531315, i32 1, bb %g.if.exit541317, i32 %70.load1330]
   295 = icmp ne i32 %294.ret, i32 0
   br bb %select.exit291
 select.exit291:  pred(select.then289, select.else290.split)
-  select292.phi = phi [bb %select.else290.split, i1 %295, bb %select.then289, i1 -1]
+  select292.phi = phi [bb %select.else290.split, i1 %295, bb %select.then289, i1 1]
   br i1 %select292.phi, bb %select.then298, bb %select.else299
 select.then298:  pred(select.exit291)
   br bb %select.exit300
 select.else299:  pred(select.exit291)
-  sum.load401492 = load i32 from ptr @sum
-  411493 = add i32 %sum.load401492, i32 2
-  store i32 %411493 to ptr @sum
-  441495 = icmp sge i32 4, i32 %i.phi6922714
-  br i1 %441495, bb %g.select.then451497, bb %g.select.else461499
-select.else299.split:  pred(g.then531505, g.if.exit541507)
-  303.ret = phi [bb %g.then531505, i32 1, bb %g.if.exit541507, i32 %70.load1520]
+  sum.load401335 = load i32 from ptr %sum.pinned
+  411336 = add i32 %sum.load401335, i32 2
+  store i32 %411336 to ptr %sum.pinned
+  441338 = icmp sge i32 4, i32 %i.phi6922349
+  8141340 = or i1 %441338, i1 %1418792358
+  br i1 %8141340, bb %g.then531342, bb %g.if.exit541344
+select.else299.split:  pred(g.then531342, g.if.exit541344)
+  303.ret = phi [bb %g.then531342, i32 1, bb %g.if.exit541344, i32 %70.load1357]
   304 = icmp ne i32 %303.ret, i32 0
   br bb %select.exit300
 select.exit300:  pred(select.then298, select.else299.split)
-  select301.phi = phi [bb %select.else299.split, i1 %304, bb %select.then298, i1 -1]
+  select301.phi = phi [bb %select.else299.split, i1 %304, bb %select.then298, i1 1]
   br i1 %select301.phi, bb %select.then307, bb %select.else308
 select.then307:  pred(select.exit300)
   br bb %select.exit309
 select.else308:  pred(select.exit300)
-  sum.load401525 = load i32 from ptr @sum
-  411526 = add i32 %sum.load401525, i32 2
-  store i32 %411526 to ptr @sum
-  441528 = icmp sge i32 5, i32 %i.phi6922714
-  br i1 %441528, bb %g.select.then451530, bb %g.select.else461532
-select.else308.split:  pred(g.then531538, g.if.exit541540)
-  312.ret = phi [bb %g.then531538, i32 1, bb %g.if.exit541540, i32 %70.load1553]
+  sum.load401362 = load i32 from ptr %sum.pinned
+  411363 = add i32 %sum.load401362, i32 2
+  store i32 %411363 to ptr %sum.pinned
+  441365 = icmp sge i32 5, i32 %i.phi6922349
+  8141367 = or i1 %441365, i1 %1419062360
+  br i1 %8141367, bb %g.then531369, bb %g.if.exit541371
+select.else308.split:  pred(g.then531369, g.if.exit541371)
+  312.ret = phi [bb %g.then531369, i32 1, bb %g.if.exit541371, i32 %70.load1384]
   313 = icmp ne i32 %312.ret, i32 0
   br bb %select.exit309
 select.exit309:  pred(select.then307, select.else308.split)
-  select310.phi = phi [bb %select.else308.split, i1 %313, bb %select.then307, i1 -1]
+  select310.phi = phi [bb %select.else308.split, i1 %313, bb %select.then307, i1 1]
   br i1 %select310.phi, bb %select.then316, bb %select.else317
 select.then316:  pred(select.exit309)
   br bb %select.exit318
 select.else317:  pred(select.exit309)
-  sum.load401558 = load i32 from ptr @sum
-  411559 = add i32 %sum.load401558, i32 2
-  store i32 %411559 to ptr @sum
-  441561 = icmp sge i32 6, i32 %i.phi6922714
-  br i1 %441561, bb %g.select.then451563, bb %g.select.else461565
-select.else317.split:  pred(g.then531571, g.if.exit541573)
-  321.ret = phi [bb %g.then531571, i32 1, bb %g.if.exit541573, i32 %70.load1586]
+  sum.load401389 = load i32 from ptr %sum.pinned
+  411390 = add i32 %sum.load401389, i32 2
+  store i32 %411390 to ptr %sum.pinned
+  441392 = icmp sge i32 6, i32 %i.phi6922349
+  8141394 = or i1 %441392, i1 %1419332362
+  br i1 %8141394, bb %g.then531396, bb %g.if.exit541398
+select.else317.split:  pred(g.then531396, g.if.exit541398)
+  321.ret = phi [bb %g.then531396, i32 1, bb %g.if.exit541398, i32 %70.load1411]
   322 = icmp ne i32 %321.ret, i32 0
   br bb %select.exit318
 select.exit318:  pred(select.then316, select.else317.split)
-  select319.phi = phi [bb %select.else317.split, i1 %322, bb %select.then316, i1 -1]
+  select319.phi = phi [bb %select.else317.split, i1 %322, bb %select.then316, i1 1]
   br i1 %select319.phi, bb %select.then325, bb %select.else326
 select.then325:  pred(select.exit318)
   br bb %select.exit327
 select.else326:  pred(select.exit318)
-  sum.load401591 = load i32 from ptr @sum
-  411592 = add i32 %sum.load401591, i32 2
-  store i32 %411592 to ptr @sum
-  441594 = icmp sge i32 7, i32 %i.phi6922714
-  br i1 %441594, bb %g.select.then451596, bb %g.select.else461598
-select.else326.split:  pred(g.then531604, g.if.exit541606)
-  330.ret = phi [bb %g.then531604, i32 1, bb %g.if.exit541606, i32 %70.load1619]
+  sum.load401416 = load i32 from ptr %sum.pinned
+  411417 = add i32 %sum.load401416, i32 2
+  store i32 %411417 to ptr %sum.pinned
+  441419 = icmp sge i32 7, i32 %i.phi6922349
+  8141421 = or i1 %441419, i1 %1419602364
+  br i1 %8141421, bb %g.then531423, bb %g.if.exit541425
+select.else326.split:  pred(g.then531423, g.if.exit541425)
+  330.ret = phi [bb %g.then531423, i32 1, bb %g.if.exit541425, i32 %70.load1438]
   331 = icmp ne i32 %330.ret, i32 0
   br bb %select.exit327
 select.exit327:  pred(select.then325, select.else326.split)
-  select328.phi = phi [bb %select.else326.split, i1 %331, bb %select.then325, i1 -1]
+  select328.phi = phi [bb %select.else326.split, i1 %331, bb %select.then325, i1 1]
   br i1 %select328.phi, bb %select.then334, bb %select.else335
 select.then334:  pred(select.exit327)
   br bb %select.exit336
 select.else335:  pred(select.exit327)
-  sum.load401624 = load i32 from ptr @sum
-  411625 = add i32 %sum.load401624, i32 2
-  store i32 %411625 to ptr @sum
-  441627 = icmp sge i32 8, i32 %i.phi6922714
-  br i1 %441627, bb %g.select.then451629, bb %g.select.else461631
-select.else335.split:  pred(g.then531637, g.if.exit541639)
-  339.ret = phi [bb %g.then531637, i32 1, bb %g.if.exit541639, i32 %70.load1652]
+  sum.load401443 = load i32 from ptr %sum.pinned
+  411444 = add i32 %sum.load401443, i32 2
+  store i32 %411444 to ptr %sum.pinned
+  441446 = icmp sge i32 8, i32 %i.phi6922349
+  8141448 = or i1 %441446, i1 %1419872366
+  br i1 %8141448, bb %g.then531450, bb %g.if.exit541452
+select.else335.split:  pred(g.then531450, g.if.exit541452)
+  339.ret = phi [bb %g.then531450, i32 1, bb %g.if.exit541452, i32 %70.load1465]
   340 = icmp ne i32 %339.ret, i32 0
   br bb %select.exit336
 select.exit336:  pred(select.then334, select.else335.split)
-  select337.phi = phi [bb %select.else335.split, i1 %340, bb %select.then334, i1 -1]
+  select337.phi = phi [bb %select.else335.split, i1 %340, bb %select.then334, i1 1]
   br i1 %select337.phi, bb %select.then343, bb %select.else344
 select.then343:  pred(select.exit336)
   br bb %select.exit345
 select.else344:  pred(select.exit336)
-  sum.load401657 = load i32 from ptr @sum
-  411658 = add i32 %sum.load401657, i32 2
-  store i32 %411658 to ptr @sum
-  441660 = icmp sge i32 9, i32 %i.phi6922714
-  br i1 %441660, bb %g.select.then451662, bb %g.select.else461664
-select.else344.split:  pred(g.then531670, g.if.exit541672)
-  348.ret = phi [bb %g.then531670, i32 1, bb %g.if.exit541672, i32 %70.load1685]
+  sum.load401470 = load i32 from ptr %sum.pinned
+  411471 = add i32 %sum.load401470, i32 2
+  store i32 %411471 to ptr %sum.pinned
+  441473 = icmp sge i32 9, i32 %i.phi6922349
+  8141475 = or i1 %441473, i1 %1420142368
+  br i1 %8141475, bb %g.then531477, bb %g.if.exit541479
+select.else344.split:  pred(g.then531477, g.if.exit541479)
+  348.ret = phi [bb %g.then531477, i32 1, bb %g.if.exit541479, i32 %70.load1492]
   349 = icmp ne i32 %348.ret, i32 0
   br bb %select.exit345
 select.exit345:  pred(select.then343, select.else344.split)
-  select346.phi = phi [bb %select.else344.split, i1 %349, bb %select.then343, i1 -1]
+  select346.phi = phi [bb %select.else344.split, i1 %349, bb %select.then343, i1 1]
   br i1 %select346.phi, bb %select.then352, bb %select.else353
 select.then352:  pred(select.exit345)
   br bb %select.exit354
 select.else353:  pred(select.exit345)
-  sum.load401690 = load i32 from ptr @sum
-  411691 = add i32 %sum.load401690, i32 2
-  store i32 %411691 to ptr @sum
-  441693 = icmp sge i32 10, i32 %i.phi6922714
-  br i1 %441693, bb %g.select.then451695, bb %g.select.else461697
-select.else353.split:  pred(g.then531703, g.if.exit541705)
-  357.ret = phi [bb %g.then531703, i32 1, bb %g.if.exit541705, i32 %70.load1718]
+  sum.load401497 = load i32 from ptr %sum.pinned
+  411498 = add i32 %sum.load401497, i32 2
+  store i32 %411498 to ptr %sum.pinned
+  441500 = icmp sge i32 10, i32 %i.phi6922349
+  8141502 = or i1 %441500, i1 %1420412370
+  br i1 %8141502, bb %g.then531504, bb %g.if.exit541506
+select.else353.split:  pred(g.then531504, g.if.exit541506)
+  357.ret = phi [bb %g.then531504, i32 1, bb %g.if.exit541506, i32 %70.load1519]
   358 = icmp ne i32 %357.ret, i32 0
   br bb %select.exit354
 select.exit354:  pred(select.then352, select.else353.split)
-  select355.phi = phi [bb %select.else353.split, i1 %358, bb %select.then352, i1 -1]
+  select355.phi = phi [bb %select.else353.split, i1 %358, bb %select.then352, i1 1]
   br i1 %select355.phi, bb %select.then361, bb %select.else362
 select.then361:  pred(select.exit354)
   br bb %select.exit363
 select.else362:  pred(select.exit354)
-  sum.load401723 = load i32 from ptr @sum
-  411724 = add i32 %sum.load401723, i32 2
-  store i32 %411724 to ptr @sum
-  441726 = icmp sge i32 11, i32 %i.phi6922714
-  br i1 %441726, bb %g.select.then451728, bb %g.select.else461730
-select.else362.split:  pred(g.then531736, g.if.exit541738)
-  366.ret = phi [bb %g.then531736, i32 1, bb %g.if.exit541738, i32 %70.load1751]
+  sum.load401524 = load i32 from ptr %sum.pinned
+  411525 = add i32 %sum.load401524, i32 2
+  store i32 %411525 to ptr %sum.pinned
+  441527 = icmp sge i32 11, i32 %i.phi6922349
+  8141529 = or i1 %441527, i1 %1420682372
+  br i1 %8141529, bb %g.then531531, bb %g.if.exit541533
+select.else362.split:  pred(g.then531531, g.if.exit541533)
+  366.ret = phi [bb %g.then531531, i32 1, bb %g.if.exit541533, i32 %70.load1546]
   367 = icmp ne i32 %366.ret, i32 0
   br bb %select.exit363
 select.exit363:  pred(select.then361, select.else362.split)
-  select364.phi = phi [bb %select.else362.split, i1 %367, bb %select.then361, i1 -1]
+  select364.phi = phi [bb %select.else362.split, i1 %367, bb %select.then361, i1 1]
   br i1 %select364.phi, bb %select.then370, bb %select.else371
 select.then370:  pred(select.exit363)
   br bb %select.exit372
 select.else371:  pred(select.exit363)
-  sum.load401756 = load i32 from ptr @sum
-  411757 = add i32 %sum.load401756, i32 2
-  store i32 %411757 to ptr @sum
-  441759 = icmp sge i32 12, i32 %i.phi6922714
-  br i1 %441759, bb %g.select.then451761, bb %g.select.else461763
-select.else371.split:  pred(g.then531769, g.if.exit541771)
-  375.ret = phi [bb %g.then531769, i32 1, bb %g.if.exit541771, i32 %70.load1784]
+  sum.load401551 = load i32 from ptr %sum.pinned
+  411552 = add i32 %sum.load401551, i32 2
+  store i32 %411552 to ptr %sum.pinned
+  441554 = icmp sge i32 12, i32 %i.phi6922349
+  8141556 = or i1 %441554, i1 %1420952374
+  br i1 %8141556, bb %g.then531558, bb %g.if.exit541560
+select.else371.split:  pred(g.then531558, g.if.exit541560)
+  375.ret = phi [bb %g.then531558, i32 1, bb %g.if.exit541560, i32 %70.load1573]
   376 = icmp ne i32 %375.ret, i32 0
   br bb %select.exit372
 select.exit372:  pred(select.then370, select.else371.split)
-  select373.phi = phi [bb %select.else371.split, i1 %376, bb %select.then370, i1 -1]
+  select373.phi = phi [bb %select.else371.split, i1 %376, bb %select.then370, i1 1]
   br i1 %select373.phi, bb %select.then379, bb %select.else380
 select.then379:  pred(select.exit372)
   br bb %select.exit381
 select.else380:  pred(select.exit372)
-  sum.load401789 = load i32 from ptr @sum
-  411790 = add i32 %sum.load401789, i32 2
-  store i32 %411790 to ptr @sum
-  441792 = icmp sge i32 13, i32 %i.phi6922714
-  br i1 %441792, bb %g.select.then451794, bb %g.select.else461796
-select.else380.split:  pred(g.then531802, g.if.exit541804)
-  384.ret = phi [bb %g.then531802, i32 1, bb %g.if.exit541804, i32 %70.load1817]
+  sum.load401578 = load i32 from ptr %sum.pinned
+  411579 = add i32 %sum.load401578, i32 2
+  store i32 %411579 to ptr %sum.pinned
+  441581 = icmp sge i32 13, i32 %i.phi6922349
+  8141583 = or i1 %441581, i1 %1421222376
+  br i1 %8141583, bb %g.then531585, bb %g.if.exit541587
+select.else380.split:  pred(g.then531585, g.if.exit541587)
+  384.ret = phi [bb %g.then531585, i32 1, bb %g.if.exit541587, i32 %70.load1600]
   385 = icmp ne i32 %384.ret, i32 0
   br bb %select.exit381
 select.exit381:  pred(select.then379, select.else380.split)
-  select382.phi = phi [bb %select.else380.split, i1 %385, bb %select.then379, i1 -1]
+  select382.phi = phi [bb %select.else380.split, i1 %385, bb %select.then379, i1 1]
   br i1 %select382.phi, bb %select.then388, bb %select.else389
 select.then388:  pred(select.exit381)
   br bb %select.exit390
 select.else389:  pred(select.exit381)
-  sum.load401822 = load i32 from ptr @sum
-  411823 = add i32 %sum.load401822, i32 2
-  store i32 %411823 to ptr @sum
-  441825 = icmp sge i32 14, i32 %i.phi6922714
-  br i1 %441825, bb %g.select.then451827, bb %g.select.else461829
-select.else389.split:  pred(g.then531835, g.if.exit541837)
-  393.ret = phi [bb %g.then531835, i32 1, bb %g.if.exit541837, i32 %70.load1850]
+  sum.load401605 = load i32 from ptr %sum.pinned
+  411606 = add i32 %sum.load401605, i32 2
+  store i32 %411606 to ptr %sum.pinned
+  441608 = icmp sge i32 14, i32 %i.phi6922349
+  8141610 = or i1 %441608, i1 %1421492378
+  br i1 %8141610, bb %g.then531612, bb %g.if.exit541614
+select.else389.split:  pred(g.then531612, g.if.exit541614)
+  393.ret = phi [bb %g.then531612, i32 1, bb %g.if.exit541614, i32 %70.load1627]
   394 = icmp ne i32 %393.ret, i32 0
   br bb %select.exit390
 select.exit390:  pred(select.then388, select.else389.split)
-  select391.phi = phi [bb %select.else389.split, i1 %394, bb %select.then388, i1 -1]
+  select391.phi = phi [bb %select.else389.split, i1 %394, bb %select.then388, i1 1]
   br i1 %select391.phi, bb %select.then397, bb %select.else398
 select.then397:  pred(select.exit390)
   br bb %select.exit399
 select.else398:  pred(select.exit390)
-  sum.load401855 = load i32 from ptr @sum
-  411856 = add i32 %sum.load401855, i32 2
-  store i32 %411856 to ptr @sum
-  441858 = icmp sge i32 15, i32 %i.phi6922714
-  br i1 %441858, bb %g.select.then451860, bb %g.select.else461862
-select.else398.split:  pred(g.then531868, g.if.exit541870)
-  402.ret = phi [bb %g.then531868, i32 1, bb %g.if.exit541870, i32 %70.load1883]
+  sum.load401632 = load i32 from ptr %sum.pinned
+  411633 = add i32 %sum.load401632, i32 2
+  store i32 %411633 to ptr %sum.pinned
+  441635 = icmp sge i32 15, i32 %i.phi6922349
+  8141637 = or i1 %441635, i1 %1421762380
+  br i1 %8141637, bb %g.then531639, bb %g.if.exit541641
+select.else398.split:  pred(g.then531639, g.if.exit541641)
+  402.ret = phi [bb %g.then531639, i32 1, bb %g.if.exit541641, i32 %70.load1654]
   403 = icmp ne i32 %402.ret, i32 0
   br bb %select.exit399
 select.exit399:  pred(select.then397, select.else398.split)
-  select400.phi = phi [bb %select.else398.split, i1 %403, bb %select.then397, i1 -1]
+  select400.phi = phi [bb %select.else398.split, i1 %403, bb %select.then397, i1 1]
   br i1 %select400.phi, bb %select.then406, bb %select.else407
 select.then406:  pred(select.exit399)
   br bb %select.exit408
 select.else407:  pred(select.exit399)
-  sum.load401888 = load i32 from ptr @sum
-  411889 = add i32 %sum.load401888, i32 2
-  store i32 %411889 to ptr @sum
-  441891 = icmp sge i32 16, i32 %i.phi6922714
-  br i1 %441891, bb %g.select.then451893, bb %g.select.else461895
-select.else407.split:  pred(g.then531901, g.if.exit541903)
-  411.ret = phi [bb %g.then531901, i32 1, bb %g.if.exit541903, i32 %70.load1916]
+  sum.load401659 = load i32 from ptr %sum.pinned
+  411660 = add i32 %sum.load401659, i32 2
+  store i32 %411660 to ptr %sum.pinned
+  441662 = icmp sge i32 16, i32 %i.phi6922349
+  8141664 = or i1 %441662, i1 %1422032382
+  br i1 %8141664, bb %g.then531666, bb %g.if.exit541668
+select.else407.split:  pred(g.then531666, g.if.exit541668)
+  411.ret = phi [bb %g.then531666, i32 1, bb %g.if.exit541668, i32 %70.load1681]
   412 = icmp ne i32 %411.ret, i32 0
   br bb %select.exit408
 select.exit408:  pred(select.then406, select.else407.split)
-  select409.phi = phi [bb %select.else407.split, i1 %412, bb %select.then406, i1 -1]
+  select409.phi = phi [bb %select.else407.split, i1 %412, bb %select.then406, i1 1]
   br i1 %select409.phi, bb %select.then415, bb %select.else416
 select.then415:  pred(select.exit408)
   br bb %select.exit417
 select.else416:  pred(select.exit408)
-  sum.load401921 = load i32 from ptr @sum
-  411922 = add i32 %sum.load401921, i32 2
-  store i32 %411922 to ptr @sum
-  441924 = icmp sge i32 17, i32 %i.phi6922714
-  br i1 %441924, bb %g.select.then451926, bb %g.select.else461928
-select.else416.split:  pred(g.then531934, g.if.exit541936)
-  420.ret = phi [bb %g.then531934, i32 1, bb %g.if.exit541936, i32 %70.load1949]
+  sum.load401686 = load i32 from ptr %sum.pinned
+  411687 = add i32 %sum.load401686, i32 2
+  store i32 %411687 to ptr %sum.pinned
+  441689 = icmp sge i32 17, i32 %i.phi6922349
+  8141691 = or i1 %441689, i1 %1422302384
+  br i1 %8141691, bb %g.then531693, bb %g.if.exit541695
+select.else416.split:  pred(g.then531693, g.if.exit541695)
+  420.ret = phi [bb %g.then531693, i32 1, bb %g.if.exit541695, i32 %70.load1708]
   421 = icmp ne i32 %420.ret, i32 0
   br bb %select.exit417
 select.exit417:  pred(select.then415, select.else416.split)
-  select418.phi = phi [bb %select.else416.split, i1 %421, bb %select.then415, i1 -1]
+  select418.phi = phi [bb %select.else416.split, i1 %421, bb %select.then415, i1 1]
   br i1 %select418.phi, bb %select.then424, bb %select.else425
 select.then424:  pred(select.exit417)
   br bb %select.exit426
 select.else425:  pred(select.exit417)
-  sum.load401954 = load i32 from ptr @sum
-  411955 = add i32 %sum.load401954, i32 2
-  store i32 %411955 to ptr @sum
-  441957 = icmp sge i32 18, i32 %i.phi6922714
-  br i1 %441957, bb %g.select.then451959, bb %g.select.else461961
-select.else425.split:  pred(g.then531967, g.if.exit541969)
-  429.ret = phi [bb %g.then531967, i32 1, bb %g.if.exit541969, i32 %70.load1982]
+  sum.load401713 = load i32 from ptr %sum.pinned
+  411714 = add i32 %sum.load401713, i32 2
+  store i32 %411714 to ptr %sum.pinned
+  441716 = icmp sge i32 18, i32 %i.phi6922349
+  8141718 = or i1 %441716, i1 %1422572386
+  br i1 %8141718, bb %g.then531720, bb %g.if.exit541722
+select.else425.split:  pred(g.then531720, g.if.exit541722)
+  429.ret = phi [bb %g.then531720, i32 1, bb %g.if.exit541722, i32 %70.load1735]
   430 = icmp ne i32 %429.ret, i32 0
   br bb %select.exit426
 select.exit426:  pred(select.then424, select.else425.split)
-  select427.phi = phi [bb %select.else425.split, i1 %430, bb %select.then424, i1 -1]
+  select427.phi = phi [bb %select.else425.split, i1 %430, bb %select.then424, i1 1]
   br i1 %select427.phi, bb %select.exit435, bb %select.else434
 select.else434:  pred(select.exit426)
-  sum.load401987 = load i32 from ptr @sum
-  411988 = add i32 %sum.load401987, i32 2
-  store i32 %411988 to ptr @sum
-  441990 = icmp sge i32 19, i32 %i.phi6922714
-  br i1 %441990, bb %g.select.then451992, bb %g.select.else461994
-select.exit435:  pred(select.exit426, g.select.exit471997, g.if.exit542002)
-  446 = add i32 %i.phi6922714, i32 1
+  sum.load401740 = load i32 from ptr %sum.pinned
+  411741 = add i32 %sum.load401740, i32 2
+  store i32 %411741 to ptr %sum.pinned
+  441743 = icmp sge i32 19, i32 %i.phi6922349
+  8141745 = or i1 %441743, i1 %1422842388
+  br i1 %8141745, bb %select.exit435, bb %g.if.exit541749
+select.exit435:  pred(select.exit426, select.else434, g.if.exit541749)
+  446 = add i32 %i.phi6922349, i32 1
   266 = icmp slt i32 %446, i32 20
-  br i1 %266, bb %while.body263, bb %while.exit264
-while.cond448:  pred(while.exit264, while.body449)
-  i.phi = phi [bb %while.exit264, i32 1, bb %while.body449, i32 %466]
+  br i1 %266, bb %while.body263, bb %while.body263_exclu_exit
+while.cond448:  pred(while.body449, while.body263_exclu_exit)
+  i.phi = phi [bb %while.body263_exclu_exit, i32 1, bb %while.body449, i32 %466]
   452 = icmp slt i32 %i.phi, i32 20
   br i1 %452, bb %select.then453, bb %select.else454
 while.body449:  pred(select.exit455)
   466 = add i32 %i.phi, i32 1
   br bb %while.cond448
 while.exit450:  pred(select.exit455)
-  sum.load75808 = load i32 from ptr @sum
-  76809 = add i32 %sum.load75808, i32 3
-  store i32 %76809 to ptr @sum
-  84816 = icmp sge i32 0, i32 20
-  br i1 %84816, bb %h.then87, bb %h.if.exit88
+  sum.load75819 = load i32 from ptr %sum.pinned
+  76820 = add i32 %sum.load75819, i32 3
+  store i32 %76820 to ptr %sum.pinned
+  813824 = or i1 0, i1 %1417712351
+  br i1 %813824, bb %h.then87, bb %h.if.exit88
 while.exit450.split:  pred(h.then87, h.if.exit88)
-  469.ret = phi [bb %h.then87, i32 0, bb %h.if.exit88, i32 %91.load826]
+  469.ret = phi [bb %h.then87, i32 0, bb %h.if.exit88, i32 %91.load831]
   470 = icmp ne i32 %469.ret, i32 0
   br i1 %470, bb %select.then471, bb %select.else472
 select.then453:  pred(while.cond448)
-  458 = sub i32 %i.phi, i32 1
-  sum.load42680 = load i32 from ptr @sum
-  52681 = add i32 %sum.load42680, i32 1
-  store i32 %52681 to ptr @sum
-  82683 = icmp sge i32 %458, i32 %i.phi
-  br i1 %82683, bb %f.select.then2685, bb %f.select.else2687
-select.then453.split:  pred(f.then2693, f.then252701, f.else2704)
-  460.ret = phi [bb %f.then2693, i32 0, bb %f.then252701, i32 %29.load2702, bb %f.else2704, i32 %34.load2708]
+  805 = add i32 %i.phi, i32 -1
+  sum.load42307 = load i32 from ptr %sum.pinned
+  52308 = add i32 %sum.load42307, i32 1
+  store i32 %52308 to ptr %sum.pinned
+  82310 = icmp sge i32 %805, i32 %i.phi
+  142311 = icmp sge i32 %805, i32 20
+  8162312 = or i1 %82310, i1 %142311
+  br i1 %8162312, bb %f.then2314, bb %f.if.exit2316
+select.then453.split:  pred(f.then2314, f.then252322, f.else2325)
+  460.ret = phi [bb %f.then2314, i32 0, bb %f.then252322, i32 %29.load2323, bb %f.else2325, i32 %34.load2329]
   461 = icmp ne i32 %460.ret, i32 0
   br bb %select.exit455
 select.else454:  pred(while.cond448)
@@ -633,13 +712,13 @@ select.exit455:  pred(select.then453.split, select.else454)
   select456.phi = phi [bb %select.else454, i1 0, bb %select.then453.split, i1 %461]
   br i1 %select456.phi, bb %while.body449, bb %while.exit450
 select.then471:  pred(while.exit450.split)
-  sum.load75831 = load i32 from ptr @sum
-  76832 = add i32 %sum.load75831, i32 3
-  store i32 %76832 to ptr @sum
-  84839 = icmp sge i32 1, i32 20
-  br i1 %84839, bb %h.then87844, bb %h.if.exit88846
-select.then471.split:  pred(h.then87844, h.if.exit88846)
-  475.ret = phi [bb %h.then87844, i32 0, bb %h.if.exit88846, i32 %91.load849]
+  sum.load75836 = load i32 from ptr %sum.pinned
+  76837 = add i32 %sum.load75836, i32 3
+  store i32 %76837 to ptr %sum.pinned
+  813841 = or i1 0, i1 %1417982352
+  br i1 %813841, bb %h.then87843, bb %h.if.exit88845
+select.then471.split:  pred(h.then87843, h.if.exit88845)
+  475.ret = phi [bb %h.then87843, i32 0, bb %h.if.exit88845, i32 %91.load848]
   476 = icmp ne i32 %475.ret, i32 0
   br bb %select.exit473
 select.else472:  pred(while.exit450.split)
@@ -650,64 +729,64 @@ select.exit473:  pred(select.then471.split, select.else472)
 select.then478:  pred(select.exit473)
   br bb %select.exit480
 select.else479:  pred(select.exit473)
-  sum.load75854 = load i32 from ptr @sum
-  76855 = add i32 %sum.load75854, i32 3
-  store i32 %76855 to ptr @sum
-  84862 = icmp sge i32 2, i32 20
-  br i1 %84862, bb %h.then87867, bb %h.if.exit88869
-select.else479.split:  pred(h.then87867, h.if.exit88869)
-  482.ret = phi [bb %h.then87867, i32 0, bb %h.if.exit88869, i32 %91.load872]
+  sum.load75853 = load i32 from ptr %sum.pinned
+  76854 = add i32 %sum.load75853, i32 3
+  store i32 %76854 to ptr %sum.pinned
+  813858 = or i1 0, i1 %1418252354
+  br i1 %813858, bb %h.then87860, bb %h.if.exit88862
+select.else479.split:  pred(h.then87860, h.if.exit88862)
+  482.ret = phi [bb %h.then87860, i32 0, bb %h.if.exit88862, i32 %91.load865]
   483 = icmp ne i32 %482.ret, i32 0
-  484 = xor i1 %483, i1 -1
+  484 = xor i1 %483, i1 1
   485 = zext i1 %484 to i32
   486 = icmp ne i32 %485, i32 0
   br bb %select.exit480
 select.exit480:  pred(select.then478, select.else479.split)
-  select481.phi = phi [bb %select.else479.split, i1 %486, bb %select.then478, i1 -1]
+  select481.phi = phi [bb %select.else479.split, i1 %486, bb %select.then478, i1 1]
   br i1 %select481.phi, bb %select.exit491, bb %select.else490
 select.else490:  pred(select.exit480)
-  sum.load75877 = load i32 from ptr @sum
-  76878 = add i32 %sum.load75877, i32 3
-  store i32 %76878 to ptr @sum
+  sum.load75870 = load i32 from ptr %sum.pinned
+  76871 = add i32 %sum.load75870, i32 3
+  store i32 %76871 to ptr %sum.pinned
   br bb %select.exit491
 select.exit491:  pred(select.exit480, select.else490)
-  sum.load75900 = load i32 from ptr @sum
-  76901 = add i32 %sum.load75900, i32 3
-  store i32 %76901 to ptr @sum
-  84908 = icmp sge i32 4, i32 20
-  br i1 %84908, bb %h.then87913, bb %h.if.exit88915
-select.exit491.split:  pred(h.then87913, h.if.exit88915)
-  504.ret = phi [bb %h.then87913, i32 0, bb %h.if.exit88915, i32 %91.load918]
+  sum.load75887 = load i32 from ptr %sum.pinned
+  76888 = add i32 %sum.load75887, i32 3
+  store i32 %76888 to ptr %sum.pinned
+  813892 = or i1 0, i1 %1418792358
+  br i1 %813892, bb %h.then87894, bb %h.if.exit88896
+select.exit491.split:  pred(h.then87894, h.if.exit88896)
+  504.ret = phi [bb %h.then87894, i32 0, bb %h.if.exit88896, i32 %91.load899]
   505 = icmp ne i32 %504.ret, i32 0
-  506 = xor i1 %505, i1 -1
+  506 = xor i1 %505, i1 1
   507 = zext i1 %506 to i32
   508 = icmp ne i32 %507, i32 0
   br i1 %508, bb %select.then509, bb %select.else510
 select.then509:  pred(select.exit491.split)
   br bb %select.exit511
 select.else510:  pred(select.exit491.split)
-  sum.load75923 = load i32 from ptr @sum
-  76924 = add i32 %sum.load75923, i32 3
-  store i32 %76924 to ptr @sum
-  84931 = icmp sge i32 5, i32 20
-  br i1 %84931, bb %h.then87936, bb %h.if.exit88938
-select.else510.split:  pred(h.then87936, h.if.exit88938)
-  513.ret = phi [bb %h.then87936, i32 0, bb %h.if.exit88938, i32 %91.load941]
+  sum.load75904 = load i32 from ptr %sum.pinned
+  76905 = add i32 %sum.load75904, i32 3
+  store i32 %76905 to ptr %sum.pinned
+  813909 = or i1 0, i1 %1419062360
+  br i1 %813909, bb %h.then87911, bb %h.if.exit88913
+select.else510.split:  pred(h.then87911, h.if.exit88913)
+  513.ret = phi [bb %h.then87911, i32 0, bb %h.if.exit88913, i32 %91.load916]
   514 = icmp ne i32 %513.ret, i32 0
   br i1 %514, bb %select.then515, bb %select.else516
 select.exit511:  pred(select.then509, select.exit527)
-  select512.phi = phi [bb %select.exit527, i1 %select528.phi, bb %select.then509, i1 -1]
+  select512.phi = phi [bb %select.exit527, i1 %select528.phi, bb %select.then509, i1 1]
   br i1 %select512.phi, bb %select.exit536, bb %select.else535
 select.then515:  pred(select.else510.split)
-  sum.load75946 = load i32 from ptr @sum
-  76947 = add i32 %sum.load75946, i32 3
-  store i32 %76947 to ptr @sum
-  84954 = icmp sge i32 6, i32 20
-  br i1 %84954, bb %h.then87959, bb %h.if.exit88961
-select.then515.split:  pred(h.then87959, h.if.exit88961)
-  519.ret = phi [bb %h.then87959, i32 0, bb %h.if.exit88961, i32 %91.load964]
+  sum.load75921 = load i32 from ptr %sum.pinned
+  76922 = add i32 %sum.load75921, i32 3
+  store i32 %76922 to ptr %sum.pinned
+  813926 = or i1 0, i1 %1419332362
+  br i1 %813926, bb %h.then87928, bb %h.if.exit88930
+select.then515.split:  pred(h.then87928, h.if.exit88930)
+  519.ret = phi [bb %h.then87928, i32 0, bb %h.if.exit88930, i32 %91.load933]
   520 = icmp ne i32 %519.ret, i32 0
-  521 = xor i1 %520, i1 -1
+  521 = xor i1 %520, i1 1
   522 = zext i1 %521 to i32
   523 = icmp ne i32 %522, i32 0
   br bb %select.exit517
@@ -717,13 +796,13 @@ select.exit517:  pred(select.then515.split, select.else516)
   select518.phi = phi [bb %select.else516, i1 0, bb %select.then515.split, i1 %523]
   br i1 %select518.phi, bb %select.then525, bb %select.else526
 select.then525:  pred(select.exit517)
-  sum.load75969 = load i32 from ptr @sum
-  76970 = add i32 %sum.load75969, i32 3
-  store i32 %76970 to ptr @sum
-  84977 = icmp sge i32 7, i32 20
-  br i1 %84977, bb %h.then87982, bb %h.if.exit88984
-select.then525.split:  pred(h.then87982, h.if.exit88984)
-  529.ret = phi [bb %h.then87982, i32 0, bb %h.if.exit88984, i32 %91.load987]
+  sum.load75938 = load i32 from ptr %sum.pinned
+  76939 = add i32 %sum.load75938, i32 3
+  store i32 %76939 to ptr %sum.pinned
+  813943 = or i1 0, i1 %1419602364
+  br i1 %813943, bb %h.then87945, bb %h.if.exit88947
+select.then525.split:  pred(h.then87945, h.if.exit88947)
+  529.ret = phi [bb %h.then87945, i32 0, bb %h.if.exit88947, i32 %91.load950]
   530 = icmp ne i32 %529.ret, i32 0
   br bb %select.exit527
 select.else526:  pred(select.exit517)
@@ -732,30 +811,30 @@ select.exit527:  pred(select.then525.split, select.else526)
   select528.phi = phi [bb %select.else526, i1 0, bb %select.then525.split, i1 %530]
   br bb %select.exit511
 select.else535:  pred(select.exit511)
-  sum.load75992 = load i32 from ptr @sum
-  76993 = add i32 %sum.load75992, i32 3
-  store i32 %76993 to ptr @sum
+  sum.load75955 = load i32 from ptr %sum.pinned
+  76956 = add i32 %sum.load75955, i32 3
+  store i32 %76956 to ptr %sum.pinned
   br bb %select.exit536
 select.exit536:  pred(select.exit511, select.else535)
-  sum.load751015 = load i32 from ptr @sum
-  761016 = add i32 %sum.load751015, i32 3
-  store i32 %761016 to ptr @sum
-  841023 = icmp sge i32 9, i32 20
-  br i1 %841023, bb %h.then871028, bb %h.if.exit881030
-select.exit536.split:  pred(h.then871028, h.if.exit881030)
-  552.ret = phi [bb %h.then871028, i32 0, bb %h.if.exit881030, i32 %91.load1033]
+  sum.load75972 = load i32 from ptr %sum.pinned
+  76973 = add i32 %sum.load75972, i32 3
+  store i32 %76973 to ptr %sum.pinned
+  813977 = or i1 0, i1 %1420142368
+  br i1 %813977, bb %h.then87979, bb %h.if.exit88981
+select.exit536.split:  pred(h.then87979, h.if.exit88981)
+  552.ret = phi [bb %h.then87979, i32 0, bb %h.if.exit88981, i32 %91.load984]
   553 = icmp ne i32 %552.ret, i32 0
   br i1 %553, bb %select.then554, bb %select.else555
 select.then554:  pred(select.exit536.split)
-  sum.load751038 = load i32 from ptr @sum
-  761039 = add i32 %sum.load751038, i32 3
-  store i32 %761039 to ptr @sum
-  841046 = icmp sge i32 10, i32 20
-  br i1 %841046, bb %h.then871051, bb %h.if.exit881053
-select.then554.split:  pred(h.then871051, h.if.exit881053)
-  558.ret = phi [bb %h.then871051, i32 0, bb %h.if.exit881053, i32 %91.load1056]
+  sum.load75989 = load i32 from ptr %sum.pinned
+  76990 = add i32 %sum.load75989, i32 3
+  store i32 %76990 to ptr %sum.pinned
+  813994 = or i1 0, i1 %1420412370
+  br i1 %813994, bb %h.then87996, bb %h.if.exit88998
+select.then554.split:  pred(h.then87996, h.if.exit88998)
+  558.ret = phi [bb %h.then87996, i32 0, bb %h.if.exit88998, i32 %91.load1001]
   559 = icmp ne i32 %558.ret, i32 0
-  560 = xor i1 %559, i1 -1
+  560 = xor i1 %559, i1 1
   561 = zext i1 %560 to i32
   562 = icmp ne i32 %561, i32 0
   br bb %select.exit556
@@ -767,89 +846,89 @@ select.exit556:  pred(select.then554.split, select.else555)
 select.then564:  pred(select.exit556)
   br bb %select.exit566
 select.else565:  pred(select.exit556)
-  sum.load751061 = load i32 from ptr @sum
-  761062 = add i32 %sum.load751061, i32 3
-  store i32 %761062 to ptr @sum
-  841069 = icmp sge i32 11, i32 20
-  br i1 %841069, bb %h.then871074, bb %h.if.exit881076
-select.else565.split:  pred(h.then871074, h.if.exit881076)
-  568.ret = phi [bb %h.then871074, i32 0, bb %h.if.exit881076, i32 %91.load1079]
+  sum.load751006 = load i32 from ptr %sum.pinned
+  761007 = add i32 %sum.load751006, i32 3
+  store i32 %761007 to ptr %sum.pinned
+  8131011 = or i1 0, i1 %1420682372
+  br i1 %8131011, bb %h.then871013, bb %h.if.exit881015
+select.else565.split:  pred(h.then871013, h.if.exit881015)
+  568.ret = phi [bb %h.then871013, i32 0, bb %h.if.exit881015, i32 %91.load1018]
   569 = icmp ne i32 %568.ret, i32 0
-  570 = xor i1 %569, i1 -1
+  570 = xor i1 %569, i1 1
   571 = zext i1 %570 to i32
   572 = icmp ne i32 %571, i32 0
   br bb %select.exit566
 select.exit566:  pred(select.then564, select.else565.split)
-  select567.phi = phi [bb %select.else565.split, i1 %572, bb %select.then564, i1 -1]
+  select567.phi = phi [bb %select.else565.split, i1 %572, bb %select.then564, i1 1]
   br i1 %select567.phi, bb %select.then575, bb %select.else576
 select.then575:  pred(select.exit566)
   br bb %select.exit577
 select.else576:  pred(select.exit566)
-  sum.load751084 = load i32 from ptr @sum
-  761085 = add i32 %sum.load751084, i32 3
-  store i32 %761085 to ptr @sum
-  841092 = icmp sge i32 12, i32 20
-  br i1 %841092, bb %h.then871097, bb %h.if.exit881099
-select.else576.split:  pred(h.then871097, h.if.exit881099)
-  579.ret = phi [bb %h.then871097, i32 0, bb %h.if.exit881099, i32 %91.load1102]
+  sum.load751023 = load i32 from ptr %sum.pinned
+  761024 = add i32 %sum.load751023, i32 3
+  store i32 %761024 to ptr %sum.pinned
+  8131028 = or i1 0, i1 %1420952374
+  br i1 %8131028, bb %h.then871030, bb %h.if.exit881032
+select.else576.split:  pred(h.then871030, h.if.exit881032)
+  579.ret = phi [bb %h.then871030, i32 0, bb %h.if.exit881032, i32 %91.load1035]
   580 = icmp ne i32 %579.ret, i32 0
-  581 = xor i1 %580, i1 -1
+  581 = xor i1 %580, i1 1
   582 = zext i1 %581 to i32
   583 = icmp ne i32 %582, i32 0
   br bb %select.exit577
 select.exit577:  pred(select.then575, select.else576.split)
-  select578.phi = phi [bb %select.else576.split, i1 %583, bb %select.then575, i1 -1]
+  select578.phi = phi [bb %select.else576.split, i1 %583, bb %select.then575, i1 1]
   br i1 %select578.phi, bb %select.then586, bb %select.else587
 select.then586:  pred(select.exit577)
   br bb %select.exit588
 select.else587:  pred(select.exit577)
-  sum.load751107 = load i32 from ptr @sum
-  761108 = add i32 %sum.load751107, i32 3
-  store i32 %761108 to ptr @sum
-  841115 = icmp sge i32 13, i32 20
-  br i1 %841115, bb %h.then871120, bb %h.if.exit881122
-select.else587.split:  pred(h.then871120, h.if.exit881122)
-  590.ret = phi [bb %h.then871120, i32 0, bb %h.if.exit881122, i32 %91.load1125]
+  sum.load751040 = load i32 from ptr %sum.pinned
+  761041 = add i32 %sum.load751040, i32 3
+  store i32 %761041 to ptr %sum.pinned
+  8131045 = or i1 0, i1 %1421222376
+  br i1 %8131045, bb %h.then871047, bb %h.if.exit881049
+select.else587.split:  pred(h.then871047, h.if.exit881049)
+  590.ret = phi [bb %h.then871047, i32 0, bb %h.if.exit881049, i32 %91.load1052]
   591 = icmp ne i32 %590.ret, i32 0
-  592 = xor i1 %591, i1 -1
+  592 = xor i1 %591, i1 1
   593 = zext i1 %592 to i32
   594 = icmp ne i32 %593, i32 0
   br bb %select.exit588
 select.exit588:  pred(select.then586, select.else587.split)
-  select589.phi = phi [bb %select.else587.split, i1 %594, bb %select.then586, i1 -1]
+  select589.phi = phi [bb %select.else587.split, i1 %594, bb %select.then586, i1 1]
   br i1 %select589.phi, bb %select.exit599, bb %select.else598
 select.else598:  pred(select.exit588)
-  sum.load751130 = load i32 from ptr @sum
-  761131 = add i32 %sum.load751130, i32 3
-  store i32 %761131 to ptr @sum
-  841138 = icmp sge i32 14, i32 20
-  br i1 %841138, bb %h.then871143, bb %h.if.exit881145
-select.else598.split:  pred(h.then871143, h.if.exit881145)
-  601.ret = phi [bb %h.then871143, i32 0, bb %h.if.exit881145, i32 %91.load1148]
+  sum.load751057 = load i32 from ptr %sum.pinned
+  761058 = add i32 %sum.load751057, i32 3
+  store i32 %761058 to ptr %sum.pinned
+  8131062 = or i1 0, i1 %1421492378
+  br i1 %8131062, bb %h.then871064, bb %h.if.exit881066
+select.else598.split:  pred(h.then871064, h.if.exit881066)
+  601.ret = phi [bb %h.then871064, i32 0, bb %h.if.exit881066, i32 %91.load1069]
   602 = icmp ne i32 %601.ret, i32 0
   br i1 %602, bb %select.then603, bb %select.exit599
 select.exit599:  pred(select.exit588, select.else598.split, select.then603)
-  sum.load751176 = load i32 from ptr @sum
-  761177 = add i32 %sum.load751176, i32 3
-  store i32 %761177 to ptr @sum
-  br i1 %84816, bb %h.then871189, bb %h.if.exit881191
-select.exit599.split:  pred(h.then871189, h.if.exit881191)
-  619.ret = phi [bb %h.then871189, i32 0, bb %h.if.exit881191, i32 %91.load1194]
+  sum.load751091 = load i32 from ptr %sum.pinned
+  761092 = add i32 %sum.load751091, i32 3
+  store i32 %761092 to ptr %sum.pinned
+  br i1 %813824, bb %h.then871098, bb %h.if.exit881100
+select.exit599.split:  pred(h.then871098, h.if.exit881100)
+  619.ret = phi [bb %h.then871098, i32 0, bb %h.if.exit881100, i32 %91.load1103]
   620 = icmp ne i32 %619.ret, i32 0
   br i1 %620, bb %select.then621, bb %select.else622
 select.then603:  pred(select.else598.split)
-  sum.load751153 = load i32 from ptr @sum
-  761154 = add i32 %sum.load751153, i32 3
-  store i32 %761154 to ptr @sum
+  sum.load751074 = load i32 from ptr %sum.pinned
+  761075 = add i32 %sum.load751074, i32 3
+  store i32 %761075 to ptr %sum.pinned
   br bb %select.exit599
 select.then621:  pred(select.exit599.split)
-  sum.load751199 = load i32 from ptr @sum
-  761200 = add i32 %sum.load751199, i32 3
-  store i32 %761200 to ptr @sum
-  841207 = icmp sge i32 2, i32 20
-  br i1 %841207, bb %h.then871212, bb %h.if.exit881214
-select.then621.split:  pred(h.then871212, h.if.exit881214)
-  625.ret = phi [bb %h.then871212, i32 0, bb %h.if.exit881214, i32 %91.load1217]
+  sum.load751108 = load i32 from ptr %sum.pinned
+  761109 = add i32 %sum.load751108, i32 3
+  store i32 %761109 to ptr %sum.pinned
+  8131113 = or i1 0, i1 %1418252354
+  br i1 %8131113, bb %h.then871115, bb %h.if.exit881117
+select.then621.split:  pred(h.then871115, h.if.exit881117)
+  625.ret = phi [bb %h.then871115, i32 0, bb %h.if.exit881117, i32 %91.load1120]
   626 = icmp ne i32 %625.ret, i32 0
   br bb %select.exit623
 select.else622:  pred(select.exit599.split)
@@ -858,15 +937,15 @@ select.exit623:  pred(select.then621.split, select.else622)
   select624.phi = phi [bb %select.else622, i1 0, bb %select.then621.split, i1 %626]
   br i1 %select624.phi, bb %select.then628, bb %select.else629
 select.then628:  pred(select.exit623)
-  sum.load751222 = load i32 from ptr @sum
-  761223 = add i32 %sum.load751222, i32 3
-  store i32 %761223 to ptr @sum
-  841230 = icmp sge i32 3, i32 20
-  br i1 %841230, bb %h.then871235, bb %h.if.exit881237
-select.then628.split:  pred(h.then871235, h.if.exit881237)
-  632.ret = phi [bb %h.then871235, i32 0, bb %h.if.exit881237, i32 %91.load1240]
+  sum.load751125 = load i32 from ptr %sum.pinned
+  761126 = add i32 %sum.load751125, i32 3
+  store i32 %761126 to ptr %sum.pinned
+  8131130 = or i1 0, i1 %1418522356
+  br i1 %8131130, bb %h.then871132, bb %h.if.exit881134
+select.then628.split:  pred(h.then871132, h.if.exit881134)
+  632.ret = phi [bb %h.then871132, i32 0, bb %h.if.exit881134, i32 %91.load1137]
   633 = icmp ne i32 %632.ret, i32 0
-  634 = xor i1 %633, i1 -1
+  634 = xor i1 %633, i1 1
   635 = zext i1 %634 to i32
   636 = icmp ne i32 %635, i32 0
   br bb %select.exit630
@@ -876,14 +955,14 @@ select.exit630:  pred(select.then628.split, select.else629)
   select631.phi = phi [bb %select.else629, i1 0, bb %select.then628.split, i1 %636]
   br i1 %select631.phi, bb %select.then638, bb %select.else639
 select.then638:  pred(select.exit630)
-  sum.load751245 = load i32 from ptr @sum
-  761246 = add i32 %sum.load751245, i32 3
-  store i32 %761246 to ptr @sum
-  br i1 %84908, bb %h.then871258, bb %h.if.exit881260
-select.then638.split:  pred(h.then871258, h.if.exit881260)
-  642.ret = phi [bb %h.then871258, i32 0, bb %h.if.exit881260, i32 %91.load1263]
+  sum.load751142 = load i32 from ptr %sum.pinned
+  761143 = add i32 %sum.load751142, i32 3
+  store i32 %761143 to ptr %sum.pinned
+  br i1 %813892, bb %h.then871149, bb %h.if.exit881151
+select.then638.split:  pred(h.then871149, h.if.exit881151)
+  642.ret = phi [bb %h.then871149, i32 0, bb %h.if.exit881151, i32 %91.load1154]
   643 = icmp ne i32 %642.ret, i32 0
-  644 = xor i1 %643, i1 -1
+  644 = xor i1 %643, i1 1
   645 = zext i1 %644 to i32
   646 = icmp ne i32 %645, i32 0
   br bb %select.exit640
@@ -895,43 +974,43 @@ select.exit640:  pred(select.then638.split, select.else639)
 select.then648:  pred(select.exit640)
   br bb %select.exit650
 select.else649:  pred(select.exit640)
-  sum.load751268 = load i32 from ptr @sum
-  761269 = add i32 %sum.load751268, i32 3
-  store i32 %761269 to ptr @sum
-  841276 = icmp sge i32 5, i32 20
-  br i1 %841276, bb %h.then871281, bb %h.if.exit881283
-select.else649.split:  pred(h.then871281, h.if.exit881283)
-  652.ret = phi [bb %h.then871281, i32 0, bb %h.if.exit881283, i32 %91.load1286]
+  sum.load751159 = load i32 from ptr %sum.pinned
+  761160 = add i32 %sum.load751159, i32 3
+  store i32 %761160 to ptr %sum.pinned
+  8131164 = or i1 0, i1 %1419062360
+  br i1 %8131164, bb %h.then871166, bb %h.if.exit881168
+select.else649.split:  pred(h.then871166, h.if.exit881168)
+  652.ret = phi [bb %h.then871166, i32 0, bb %h.if.exit881168, i32 %91.load1171]
   653 = icmp ne i32 %652.ret, i32 0
   br bb %select.exit650
 select.exit650:  pred(select.then648, select.else649.split)
-  select651.phi = phi [bb %select.else649.split, i1 %653, bb %select.then648, i1 -1]
+  select651.phi = phi [bb %select.else649.split, i1 %653, bb %select.then648, i1 1]
   br i1 %select651.phi, bb %select.then656, bb %select.else657
 select.then656:  pred(select.exit650)
   br bb %select.exit658
 select.else657:  pred(select.exit650)
-  sum.load751291 = load i32 from ptr @sum
-  761292 = add i32 %sum.load751291, i32 3
-  store i32 %761292 to ptr @sum
-  841299 = icmp sge i32 6, i32 20
-  br i1 %841299, bb %h.then871304, bb %h.if.exit881306
-select.else657.split:  pred(h.then871304, h.if.exit881306)
-  660.ret = phi [bb %h.then871304, i32 0, bb %h.if.exit881306, i32 %91.load1309]
+  sum.load751176 = load i32 from ptr %sum.pinned
+  761177 = add i32 %sum.load751176, i32 3
+  store i32 %761177 to ptr %sum.pinned
+  8131181 = or i1 0, i1 %1419332362
+  br i1 %8131181, bb %h.then871183, bb %h.if.exit881185
+select.else657.split:  pred(h.then871183, h.if.exit881185)
+  660.ret = phi [bb %h.then871183, i32 0, bb %h.if.exit881185, i32 %91.load1188]
   661 = icmp ne i32 %660.ret, i32 0
   br i1 %661, bb %select.then662, bb %select.else663
 select.exit658:  pred(select.then656, select.exit664)
-  select659.phi = phi [bb %select.exit664, i1 %select665.phi, bb %select.then656, i1 -1]
+  select659.phi = phi [bb %select.exit664, i1 %select665.phi, bb %select.then656, i1 1]
   br i1 %select659.phi, bb %select.then674, bb %select.else675
 select.then662:  pred(select.else657.split)
-  sum.load751314 = load i32 from ptr @sum
-  761315 = add i32 %sum.load751314, i32 3
-  store i32 %761315 to ptr @sum
-  841322 = icmp sge i32 7, i32 20
-  br i1 %841322, bb %h.then871327, bb %h.if.exit881329
-select.then662.split:  pred(h.then871327, h.if.exit881329)
-  666.ret = phi [bb %h.then871327, i32 0, bb %h.if.exit881329, i32 %91.load1332]
+  sum.load751193 = load i32 from ptr %sum.pinned
+  761194 = add i32 %sum.load751193, i32 3
+  store i32 %761194 to ptr %sum.pinned
+  8131198 = or i1 0, i1 %1419602364
+  br i1 %8131198, bb %h.then871200, bb %h.if.exit881202
+select.then662.split:  pred(h.then871200, h.if.exit881202)
+  666.ret = phi [bb %h.then871200, i32 0, bb %h.if.exit881202, i32 %91.load1205]
   667 = icmp ne i32 %666.ret, i32 0
-  668 = xor i1 %667, i1 -1
+  668 = xor i1 %667, i1 1
   669 = zext i1 %668 to i32
   670 = icmp ne i32 %669, i32 0
   br bb %select.exit664
@@ -943,799 +1022,379 @@ select.exit664:  pred(select.then662.split, select.else663)
 select.then674:  pred(select.exit658)
   br bb %select.exit676
 select.else675:  pred(select.exit658)
-  sum.load751337 = load i32 from ptr @sum
-  761338 = add i32 %sum.load751337, i32 3
-  store i32 %761338 to ptr @sum
-  841345 = icmp sge i32 8, i32 20
-  br i1 %841345, bb %h.then871350, bb %h.if.exit881352
-select.else675.split:  pred(h.then871350, h.if.exit881352)
-  678.ret = phi [bb %h.then871350, i32 0, bb %h.if.exit881352, i32 %91.load1355]
+  sum.load751210 = load i32 from ptr %sum.pinned
+  761211 = add i32 %sum.load751210, i32 3
+  store i32 %761211 to ptr %sum.pinned
+  8131215 = or i1 0, i1 %1419872366
+  br i1 %8131215, bb %h.then871217, bb %h.if.exit881219
+select.else675.split:  pred(h.then871217, h.if.exit881219)
+  678.ret = phi [bb %h.then871217, i32 0, bb %h.if.exit881219, i32 %91.load1222]
   679 = icmp ne i32 %678.ret, i32 0
   br bb %select.exit676
 select.exit676:  pred(select.then674, select.else675.split)
-  select677.phi = phi [bb %select.else675.split, i1 %679, bb %select.then674, i1 -1]
-  br i1 %select677.phi, bb %then682, bb %if.exit683
-then682:  pred(select.exit676)
-  br bb %if.exit683
-if.exit683:  pred(select.exit676, then682)
-  ans.phi = phi [bb %select.exit676, i32 0, bb %then682, i32 1]
-  sum.load685 = load i32 from ptr @sum
-  687 = add i32 %sum.load685, i32 %ans.phi
+  select677.phi = phi [bb %select.else675.split, i1 %679, bb %select.then674, i1 1]
+  815 = zext i1 %select677.phi to i32
+  sum.load685 = load i32 from ptr %sum.pinned
+  687 = add i32 %sum.load685, i32 %815
   call void putint(i32 %687)
   ret i32 0
 h.then87:  pred(while.exit450)
   br bb %while.exit450.split
 h.if.exit88:  pred(while.exit450)
-  91.load826 = load i32 from ptr @array
+  91.load831 = load i32 from ptr %array.pinned
   br bb %while.exit450.split
-h.then87844:  pred(select.then471)
+h.then87843:  pred(select.then471)
   br bb %select.then471.split
-h.if.exit88846:  pred(select.then471)
-  91848 = ptradd ptr @array, i32 4
-  91.load849 = load i32 from ptr %91848
+h.if.exit88845:  pred(select.then471)
+  91.load848 = load i32 from ptr %2118052353
   br bb %select.then471.split
-h.then87867:  pred(select.else479)
+h.then87860:  pred(select.else479)
   br bb %select.else479.split
-h.if.exit88869:  pred(select.else479)
-  91871 = ptradd ptr @array, i32 8
-  91.load872 = load i32 from ptr %91871
+h.if.exit88862:  pred(select.else479)
+  91.load865 = load i32 from ptr %2118322355
   br bb %select.else479.split
-h.then87913:  pred(select.exit491)
+h.then87894:  pred(select.exit491)
   br bb %select.exit491.split
-h.if.exit88915:  pred(select.exit491)
-  91917 = ptradd ptr @array, i32 16
-  91.load918 = load i32 from ptr %91917
+h.if.exit88896:  pred(select.exit491)
+  91.load899 = load i32 from ptr %2118862359
   br bb %select.exit491.split
-h.then87936:  pred(select.else510)
+h.then87911:  pred(select.else510)
   br bb %select.else510.split
-h.if.exit88938:  pred(select.else510)
-  91940 = ptradd ptr @array, i32 20
-  91.load941 = load i32 from ptr %91940
+h.if.exit88913:  pred(select.else510)
+  91.load916 = load i32 from ptr %2119132361
   br bb %select.else510.split
-h.then87959:  pred(select.then515)
+h.then87928:  pred(select.then515)
   br bb %select.then515.split
-h.if.exit88961:  pred(select.then515)
-  91963 = ptradd ptr @array, i32 24
-  91.load964 = load i32 from ptr %91963
+h.if.exit88930:  pred(select.then515)
+  91.load933 = load i32 from ptr %2119402363
   br bb %select.then515.split
-h.then87982:  pred(select.then525)
+h.then87945:  pred(select.then525)
   br bb %select.then525.split
-h.if.exit88984:  pred(select.then525)
-  91986 = ptradd ptr @array, i32 28
-  91.load987 = load i32 from ptr %91986
+h.if.exit88947:  pred(select.then525)
+  91.load950 = load i32 from ptr %2119672365
   br bb %select.then525.split
-h.then871028:  pred(select.exit536)
+h.then87979:  pred(select.exit536)
   br bb %select.exit536.split
-h.if.exit881030:  pred(select.exit536)
-  911032 = ptradd ptr @array, i32 36
-  91.load1033 = load i32 from ptr %911032
+h.if.exit88981:  pred(select.exit536)
+  91.load984 = load i32 from ptr %2120212369
   br bb %select.exit536.split
-h.then871051:  pred(select.then554)
+h.then87996:  pred(select.then554)
   br bb %select.then554.split
-h.if.exit881053:  pred(select.then554)
-  911055 = ptradd ptr @array, i32 40
-  91.load1056 = load i32 from ptr %911055
+h.if.exit88998:  pred(select.then554)
+  91.load1001 = load i32 from ptr %2120482371
   br bb %select.then554.split
-h.then871074:  pred(select.else565)
+h.then871013:  pred(select.else565)
   br bb %select.else565.split
-h.if.exit881076:  pred(select.else565)
-  911078 = ptradd ptr @array, i32 44
-  91.load1079 = load i32 from ptr %911078
+h.if.exit881015:  pred(select.else565)
+  91.load1018 = load i32 from ptr %2120752373
   br bb %select.else565.split
-h.then871097:  pred(select.else576)
+h.then871030:  pred(select.else576)
   br bb %select.else576.split
-h.if.exit881099:  pred(select.else576)
-  911101 = ptradd ptr @array, i32 48
-  91.load1102 = load i32 from ptr %911101
+h.if.exit881032:  pred(select.else576)
+  91.load1035 = load i32 from ptr %2121022375
   br bb %select.else576.split
-h.then871120:  pred(select.else587)
+h.then871047:  pred(select.else587)
   br bb %select.else587.split
-h.if.exit881122:  pred(select.else587)
-  911124 = ptradd ptr @array, i32 52
-  91.load1125 = load i32 from ptr %911124
+h.if.exit881049:  pred(select.else587)
+  91.load1052 = load i32 from ptr %2121292377
   br bb %select.else587.split
-h.then871143:  pred(select.else598)
+h.then871064:  pred(select.else598)
   br bb %select.else598.split
-h.if.exit881145:  pred(select.else598)
-  911147 = ptradd ptr @array, i32 56
-  91.load1148 = load i32 from ptr %911147
+h.if.exit881066:  pred(select.else598)
+  91.load1069 = load i32 from ptr %2121562379
   br bb %select.else598.split
-h.then871189:  pred(select.exit599)
+h.then871098:  pred(select.exit599)
   br bb %select.exit599.split
-h.if.exit881191:  pred(select.exit599)
-  91.load1194 = load i32 from ptr @array
+h.if.exit881100:  pred(select.exit599)
+  91.load1103 = load i32 from ptr %array.pinned
   br bb %select.exit599.split
-h.then871212:  pred(select.then621)
+h.then871115:  pred(select.then621)
   br bb %select.then621.split
-h.if.exit881214:  pred(select.then621)
-  911216 = ptradd ptr @array, i32 8
-  91.load1217 = load i32 from ptr %911216
+h.if.exit881117:  pred(select.then621)
+  91.load1120 = load i32 from ptr %2118322355
   br bb %select.then621.split
-h.then871235:  pred(select.then628)
+h.then871132:  pred(select.then628)
   br bb %select.then628.split
-h.if.exit881237:  pred(select.then628)
-  911239 = ptradd ptr @array, i32 12
-  91.load1240 = load i32 from ptr %911239
+h.if.exit881134:  pred(select.then628)
+  91.load1137 = load i32 from ptr %2118592357
   br bb %select.then628.split
-h.then871258:  pred(select.then638)
+h.then871149:  pred(select.then638)
   br bb %select.then638.split
-h.if.exit881260:  pred(select.then638)
-  911262 = ptradd ptr @array, i32 16
-  91.load1263 = load i32 from ptr %911262
+h.if.exit881151:  pred(select.then638)
+  91.load1154 = load i32 from ptr %2118862359
   br bb %select.then638.split
-h.then871281:  pred(select.else649)
+h.then871166:  pred(select.else649)
   br bb %select.else649.split
-h.if.exit881283:  pred(select.else649)
-  911285 = ptradd ptr @array, i32 20
-  91.load1286 = load i32 from ptr %911285
+h.if.exit881168:  pred(select.else649)
+  91.load1171 = load i32 from ptr %2119132361
   br bb %select.else649.split
-h.then871304:  pred(select.else657)
+h.then871183:  pred(select.else657)
   br bb %select.else657.split
-h.if.exit881306:  pred(select.else657)
-  911308 = ptradd ptr @array, i32 24
-  91.load1309 = load i32 from ptr %911308
+h.if.exit881185:  pred(select.else657)
+  91.load1188 = load i32 from ptr %2119402363
   br bb %select.else657.split
-h.then871327:  pred(select.then662)
+h.then871200:  pred(select.then662)
   br bb %select.then662.split
-h.if.exit881329:  pred(select.then662)
-  911331 = ptradd ptr @array, i32 28
-  91.load1332 = load i32 from ptr %911331
+h.if.exit881202:  pred(select.then662)
+  91.load1205 = load i32 from ptr %2119672365
   br bb %select.then662.split
-h.then871350:  pred(select.else675)
+h.then871217:  pred(select.else675)
   br bb %select.else675.split
-h.if.exit881352:  pred(select.else675)
-  911354 = ptradd ptr @array, i32 32
-  91.load1355 = load i32 from ptr %911354
+h.if.exit881219:  pred(select.else675)
+  91.load1222 = load i32 from ptr %2119942367
   br bb %select.else675.split
-g.select.then45:  pred(while.body263)
-  br bb %g.select.exit47
-g.select.else46:  pred(while.body263)
-  501368 = icmp sge i32 0, i32 20
-  br bb %g.select.exit47
-g.select.exit47:  pred(g.select.then45, g.select.else46)
-  select48.phi1371 = phi [bb %g.select.else46, i1 %501368, bb %g.select.then45, i1 -1]
-  br i1 %select48.phi1371, bb %g.then53, bb %g.if.exit54
-g.then53:  pred(g.select.exit47)
+g.then53:  pred(while.body263)
   br bb %while.body263.split
-g.if.exit54:  pred(g.select.exit47)
-  store i32 0 to ptr @array
+g.if.exit54:  pred(while.body263)
+  store i32 0 to ptr %array.pinned
   br bb %while.body263.split
-g.select.then451398:  pred(select.else272)
-  br bb %g.select.exit471403
-g.select.else461400:  pred(select.else272)
-  501401 = icmp sge i32 1, i32 20
-  br bb %g.select.exit471403
-g.select.exit471403:  pred(g.select.then451398, g.select.else461400)
-  select48.phi1404 = phi [bb %g.select.else461400, i1 %501401, bb %g.select.then451398, i1 -1]
-  br i1 %select48.phi1404, bb %g.then531406, bb %g.if.exit541408
-g.then531406:  pred(g.select.exit471403)
+g.then531261:  pred(select.else272)
   br bb %select.else272.split
-g.if.exit541408:  pred(g.select.exit471403)
-  571410 = ptradd ptr @array, i32 4
-  store i32 0 to ptr %571410
-  70.load1421 = load i32 from ptr @array
+g.if.exit541263:  pred(select.else272)
+  store i32 0 to ptr %2118052353
+  70.load1276 = load i32 from ptr %array.pinned
   br bb %select.else272.split
-g.select.then451431:  pred(select.else281)
-  br bb %g.select.exit471436
-g.select.else461433:  pred(select.else281)
-  501434 = icmp sge i32 2, i32 20
-  br bb %g.select.exit471436
-g.select.exit471436:  pred(g.select.then451431, g.select.else461433)
-  select48.phi1437 = phi [bb %g.select.else461433, i1 %501434, bb %g.select.then451431, i1 -1]
-  br i1 %select48.phi1437, bb %g.then531439, bb %g.if.exit541441
-g.then531439:  pred(g.select.exit471436)
+g.then531288:  pred(select.else281)
   br bb %select.else281.split
-g.if.exit541441:  pred(g.select.exit471436)
-  571443 = ptradd ptr @array, i32 8
-  store i32 0 to ptr %571443
-  701453 = ptradd ptr @array, i32 4
-  70.load1454 = load i32 from ptr %701453
+g.if.exit541290:  pred(select.else281)
+  store i32 0 to ptr %2118322355
+  70.load1303 = load i32 from ptr %2118052353
   br bb %select.else281.split
-g.select.then451464:  pred(select.else290)
-  br bb %g.select.exit471469
-g.select.else461466:  pred(select.else290)
-  501467 = icmp sge i32 3, i32 20
-  br bb %g.select.exit471469
-g.select.exit471469:  pred(g.select.then451464, g.select.else461466)
-  select48.phi1470 = phi [bb %g.select.else461466, i1 %501467, bb %g.select.then451464, i1 -1]
-  br i1 %select48.phi1470, bb %g.then531472, bb %g.if.exit541474
-g.then531472:  pred(g.select.exit471469)
+g.then531315:  pred(select.else290)
   br bb %select.else290.split
-g.if.exit541474:  pred(g.select.exit471469)
-  571476 = ptradd ptr @array, i32 12
-  store i32 0 to ptr %571476
-  701486 = ptradd ptr @array, i32 8
-  70.load1487 = load i32 from ptr %701486
+g.if.exit541317:  pred(select.else290)
+  store i32 0 to ptr %2118592357
+  70.load1330 = load i32 from ptr %2118322355
   br bb %select.else290.split
-g.select.then451497:  pred(select.else299)
-  br bb %g.select.exit471502
-g.select.else461499:  pred(select.else299)
-  501500 = icmp sge i32 4, i32 20
-  br bb %g.select.exit471502
-g.select.exit471502:  pred(g.select.then451497, g.select.else461499)
-  select48.phi1503 = phi [bb %g.select.else461499, i1 %501500, bb %g.select.then451497, i1 -1]
-  br i1 %select48.phi1503, bb %g.then531505, bb %g.if.exit541507
-g.then531505:  pred(g.select.exit471502)
+g.then531342:  pred(select.else299)
   br bb %select.else299.split
-g.if.exit541507:  pred(g.select.exit471502)
-  571509 = ptradd ptr @array, i32 16
-  store i32 0 to ptr %571509
-  701519 = ptradd ptr @array, i32 12
-  70.load1520 = load i32 from ptr %701519
+g.if.exit541344:  pred(select.else299)
+  store i32 0 to ptr %2118862359
+  70.load1357 = load i32 from ptr %2118592357
   br bb %select.else299.split
-g.select.then451530:  pred(select.else308)
-  br bb %g.select.exit471535
-g.select.else461532:  pred(select.else308)
-  501533 = icmp sge i32 5, i32 20
-  br bb %g.select.exit471535
-g.select.exit471535:  pred(g.select.then451530, g.select.else461532)
-  select48.phi1536 = phi [bb %g.select.else461532, i1 %501533, bb %g.select.then451530, i1 -1]
-  br i1 %select48.phi1536, bb %g.then531538, bb %g.if.exit541540
-g.then531538:  pred(g.select.exit471535)
+g.then531369:  pred(select.else308)
   br bb %select.else308.split
-g.if.exit541540:  pred(g.select.exit471535)
-  571542 = ptradd ptr @array, i32 20
-  store i32 0 to ptr %571542
-  701552 = ptradd ptr @array, i32 16
-  70.load1553 = load i32 from ptr %701552
+g.if.exit541371:  pred(select.else308)
+  store i32 0 to ptr %2119132361
+  70.load1384 = load i32 from ptr %2118862359
   br bb %select.else308.split
-g.select.then451563:  pred(select.else317)
-  br bb %g.select.exit471568
-g.select.else461565:  pred(select.else317)
-  501566 = icmp sge i32 6, i32 20
-  br bb %g.select.exit471568
-g.select.exit471568:  pred(g.select.then451563, g.select.else461565)
-  select48.phi1569 = phi [bb %g.select.else461565, i1 %501566, bb %g.select.then451563, i1 -1]
-  br i1 %select48.phi1569, bb %g.then531571, bb %g.if.exit541573
-g.then531571:  pred(g.select.exit471568)
+g.then531396:  pred(select.else317)
   br bb %select.else317.split
-g.if.exit541573:  pred(g.select.exit471568)
-  571575 = ptradd ptr @array, i32 24
-  store i32 0 to ptr %571575
-  701585 = ptradd ptr @array, i32 20
-  70.load1586 = load i32 from ptr %701585
+g.if.exit541398:  pred(select.else317)
+  store i32 0 to ptr %2119402363
+  70.load1411 = load i32 from ptr %2119132361
   br bb %select.else317.split
-g.select.then451596:  pred(select.else326)
-  br bb %g.select.exit471601
-g.select.else461598:  pred(select.else326)
-  501599 = icmp sge i32 7, i32 20
-  br bb %g.select.exit471601
-g.select.exit471601:  pred(g.select.then451596, g.select.else461598)
-  select48.phi1602 = phi [bb %g.select.else461598, i1 %501599, bb %g.select.then451596, i1 -1]
-  br i1 %select48.phi1602, bb %g.then531604, bb %g.if.exit541606
-g.then531604:  pred(g.select.exit471601)
+g.then531423:  pred(select.else326)
   br bb %select.else326.split
-g.if.exit541606:  pred(g.select.exit471601)
-  571608 = ptradd ptr @array, i32 28
-  store i32 0 to ptr %571608
-  701618 = ptradd ptr @array, i32 24
-  70.load1619 = load i32 from ptr %701618
+g.if.exit541425:  pred(select.else326)
+  store i32 0 to ptr %2119672365
+  70.load1438 = load i32 from ptr %2119402363
   br bb %select.else326.split
-g.select.then451629:  pred(select.else335)
-  br bb %g.select.exit471634
-g.select.else461631:  pred(select.else335)
-  501632 = icmp sge i32 8, i32 20
-  br bb %g.select.exit471634
-g.select.exit471634:  pred(g.select.then451629, g.select.else461631)
-  select48.phi1635 = phi [bb %g.select.else461631, i1 %501632, bb %g.select.then451629, i1 -1]
-  br i1 %select48.phi1635, bb %g.then531637, bb %g.if.exit541639
-g.then531637:  pred(g.select.exit471634)
+g.then531450:  pred(select.else335)
   br bb %select.else335.split
-g.if.exit541639:  pred(g.select.exit471634)
-  571641 = ptradd ptr @array, i32 32
-  store i32 0 to ptr %571641
-  701651 = ptradd ptr @array, i32 28
-  70.load1652 = load i32 from ptr %701651
+g.if.exit541452:  pred(select.else335)
+  store i32 0 to ptr %2119942367
+  70.load1465 = load i32 from ptr %2119672365
   br bb %select.else335.split
-g.select.then451662:  pred(select.else344)
-  br bb %g.select.exit471667
-g.select.else461664:  pred(select.else344)
-  501665 = icmp sge i32 9, i32 20
-  br bb %g.select.exit471667
-g.select.exit471667:  pred(g.select.then451662, g.select.else461664)
-  select48.phi1668 = phi [bb %g.select.else461664, i1 %501665, bb %g.select.then451662, i1 -1]
-  br i1 %select48.phi1668, bb %g.then531670, bb %g.if.exit541672
-g.then531670:  pred(g.select.exit471667)
+g.then531477:  pred(select.else344)
   br bb %select.else344.split
-g.if.exit541672:  pred(g.select.exit471667)
-  571674 = ptradd ptr @array, i32 36
-  store i32 0 to ptr %571674
-  701684 = ptradd ptr @array, i32 32
-  70.load1685 = load i32 from ptr %701684
+g.if.exit541479:  pred(select.else344)
+  store i32 0 to ptr %2120212369
+  70.load1492 = load i32 from ptr %2119942367
   br bb %select.else344.split
-g.select.then451695:  pred(select.else353)
-  br bb %g.select.exit471700
-g.select.else461697:  pred(select.else353)
-  501698 = icmp sge i32 10, i32 20
-  br bb %g.select.exit471700
-g.select.exit471700:  pred(g.select.then451695, g.select.else461697)
-  select48.phi1701 = phi [bb %g.select.else461697, i1 %501698, bb %g.select.then451695, i1 -1]
-  br i1 %select48.phi1701, bb %g.then531703, bb %g.if.exit541705
-g.then531703:  pred(g.select.exit471700)
+g.then531504:  pred(select.else353)
   br bb %select.else353.split
-g.if.exit541705:  pred(g.select.exit471700)
-  571707 = ptradd ptr @array, i32 40
-  store i32 0 to ptr %571707
-  701717 = ptradd ptr @array, i32 36
-  70.load1718 = load i32 from ptr %701717
+g.if.exit541506:  pred(select.else353)
+  store i32 0 to ptr %2120482371
+  70.load1519 = load i32 from ptr %2120212369
   br bb %select.else353.split
-g.select.then451728:  pred(select.else362)
-  br bb %g.select.exit471733
-g.select.else461730:  pred(select.else362)
-  501731 = icmp sge i32 11, i32 20
-  br bb %g.select.exit471733
-g.select.exit471733:  pred(g.select.then451728, g.select.else461730)
-  select48.phi1734 = phi [bb %g.select.else461730, i1 %501731, bb %g.select.then451728, i1 -1]
-  br i1 %select48.phi1734, bb %g.then531736, bb %g.if.exit541738
-g.then531736:  pred(g.select.exit471733)
+g.then531531:  pred(select.else362)
   br bb %select.else362.split
-g.if.exit541738:  pred(g.select.exit471733)
-  571740 = ptradd ptr @array, i32 44
-  store i32 0 to ptr %571740
-  701750 = ptradd ptr @array, i32 40
-  70.load1751 = load i32 from ptr %701750
+g.if.exit541533:  pred(select.else362)
+  store i32 0 to ptr %2120752373
+  70.load1546 = load i32 from ptr %2120482371
   br bb %select.else362.split
-g.select.then451761:  pred(select.else371)
-  br bb %g.select.exit471766
-g.select.else461763:  pred(select.else371)
-  501764 = icmp sge i32 12, i32 20
-  br bb %g.select.exit471766
-g.select.exit471766:  pred(g.select.then451761, g.select.else461763)
-  select48.phi1767 = phi [bb %g.select.else461763, i1 %501764, bb %g.select.then451761, i1 -1]
-  br i1 %select48.phi1767, bb %g.then531769, bb %g.if.exit541771
-g.then531769:  pred(g.select.exit471766)
+g.then531558:  pred(select.else371)
   br bb %select.else371.split
-g.if.exit541771:  pred(g.select.exit471766)
-  571773 = ptradd ptr @array, i32 48
-  store i32 0 to ptr %571773
-  701783 = ptradd ptr @array, i32 44
-  70.load1784 = load i32 from ptr %701783
+g.if.exit541560:  pred(select.else371)
+  store i32 0 to ptr %2121022375
+  70.load1573 = load i32 from ptr %2120752373
   br bb %select.else371.split
-g.select.then451794:  pred(select.else380)
-  br bb %g.select.exit471799
-g.select.else461796:  pred(select.else380)
-  501797 = icmp sge i32 13, i32 20
-  br bb %g.select.exit471799
-g.select.exit471799:  pred(g.select.then451794, g.select.else461796)
-  select48.phi1800 = phi [bb %g.select.else461796, i1 %501797, bb %g.select.then451794, i1 -1]
-  br i1 %select48.phi1800, bb %g.then531802, bb %g.if.exit541804
-g.then531802:  pred(g.select.exit471799)
+g.then531585:  pred(select.else380)
   br bb %select.else380.split
-g.if.exit541804:  pred(g.select.exit471799)
-  571806 = ptradd ptr @array, i32 52
-  store i32 0 to ptr %571806
-  701816 = ptradd ptr @array, i32 48
-  70.load1817 = load i32 from ptr %701816
+g.if.exit541587:  pred(select.else380)
+  store i32 0 to ptr %2121292377
+  70.load1600 = load i32 from ptr %2121022375
   br bb %select.else380.split
-g.select.then451827:  pred(select.else389)
-  br bb %g.select.exit471832
-g.select.else461829:  pred(select.else389)
-  501830 = icmp sge i32 14, i32 20
-  br bb %g.select.exit471832
-g.select.exit471832:  pred(g.select.then451827, g.select.else461829)
-  select48.phi1833 = phi [bb %g.select.else461829, i1 %501830, bb %g.select.then451827, i1 -1]
-  br i1 %select48.phi1833, bb %g.then531835, bb %g.if.exit541837
-g.then531835:  pred(g.select.exit471832)
+g.then531612:  pred(select.else389)
   br bb %select.else389.split
-g.if.exit541837:  pred(g.select.exit471832)
-  571839 = ptradd ptr @array, i32 56
-  store i32 0 to ptr %571839
-  701849 = ptradd ptr @array, i32 52
-  70.load1850 = load i32 from ptr %701849
+g.if.exit541614:  pred(select.else389)
+  store i32 0 to ptr %2121562379
+  70.load1627 = load i32 from ptr %2121292377
   br bb %select.else389.split
-g.select.then451860:  pred(select.else398)
-  br bb %g.select.exit471865
-g.select.else461862:  pred(select.else398)
-  501863 = icmp sge i32 15, i32 20
-  br bb %g.select.exit471865
-g.select.exit471865:  pred(g.select.then451860, g.select.else461862)
-  select48.phi1866 = phi [bb %g.select.else461862, i1 %501863, bb %g.select.then451860, i1 -1]
-  br i1 %select48.phi1866, bb %g.then531868, bb %g.if.exit541870
-g.then531868:  pred(g.select.exit471865)
+g.then531639:  pred(select.else398)
   br bb %select.else398.split
-g.if.exit541870:  pred(g.select.exit471865)
-  571872 = ptradd ptr @array, i32 60
-  store i32 0 to ptr %571872
-  701882 = ptradd ptr @array, i32 56
-  70.load1883 = load i32 from ptr %701882
+g.if.exit541641:  pred(select.else398)
+  store i32 0 to ptr %2121832381
+  70.load1654 = load i32 from ptr %2121562379
   br bb %select.else398.split
-g.select.then451893:  pred(select.else407)
-  br bb %g.select.exit471898
-g.select.else461895:  pred(select.else407)
-  501896 = icmp sge i32 16, i32 20
-  br bb %g.select.exit471898
-g.select.exit471898:  pred(g.select.then451893, g.select.else461895)
-  select48.phi1899 = phi [bb %g.select.else461895, i1 %501896, bb %g.select.then451893, i1 -1]
-  br i1 %select48.phi1899, bb %g.then531901, bb %g.if.exit541903
-g.then531901:  pred(g.select.exit471898)
+g.then531666:  pred(select.else407)
   br bb %select.else407.split
-g.if.exit541903:  pred(g.select.exit471898)
-  571905 = ptradd ptr @array, i32 64
-  store i32 0 to ptr %571905
-  701915 = ptradd ptr @array, i32 60
-  70.load1916 = load i32 from ptr %701915
+g.if.exit541668:  pred(select.else407)
+  store i32 0 to ptr %2122102383
+  70.load1681 = load i32 from ptr %2121832381
   br bb %select.else407.split
-g.select.then451926:  pred(select.else416)
-  br bb %g.select.exit471931
-g.select.else461928:  pred(select.else416)
-  501929 = icmp sge i32 17, i32 20
-  br bb %g.select.exit471931
-g.select.exit471931:  pred(g.select.then451926, g.select.else461928)
-  select48.phi1932 = phi [bb %g.select.else461928, i1 %501929, bb %g.select.then451926, i1 -1]
-  br i1 %select48.phi1932, bb %g.then531934, bb %g.if.exit541936
-g.then531934:  pred(g.select.exit471931)
+g.then531693:  pred(select.else416)
   br bb %select.else416.split
-g.if.exit541936:  pred(g.select.exit471931)
-  571938 = ptradd ptr @array, i32 68
-  store i32 0 to ptr %571938
-  701948 = ptradd ptr @array, i32 64
-  70.load1949 = load i32 from ptr %701948
+g.if.exit541695:  pred(select.else416)
+  store i32 0 to ptr %2122372385
+  70.load1708 = load i32 from ptr %2122102383
   br bb %select.else416.split
-g.select.then451959:  pred(select.else425)
-  br bb %g.select.exit471964
-g.select.else461961:  pred(select.else425)
-  501962 = icmp sge i32 18, i32 20
-  br bb %g.select.exit471964
-g.select.exit471964:  pred(g.select.then451959, g.select.else461961)
-  select48.phi1965 = phi [bb %g.select.else461961, i1 %501962, bb %g.select.then451959, i1 -1]
-  br i1 %select48.phi1965, bb %g.then531967, bb %g.if.exit541969
-g.then531967:  pred(g.select.exit471964)
+g.then531720:  pred(select.else425)
   br bb %select.else425.split
-g.if.exit541969:  pred(g.select.exit471964)
-  571971 = ptradd ptr @array, i32 72
-  store i32 0 to ptr %571971
-  701981 = ptradd ptr @array, i32 68
-  70.load1982 = load i32 from ptr %701981
+g.if.exit541722:  pred(select.else425)
+  store i32 0 to ptr %2122642387
+  70.load1735 = load i32 from ptr %2122372385
   br bb %select.else425.split
-g.select.then451992:  pred(select.else434)
-  br bb %g.select.exit471997
-g.select.else461994:  pred(select.else434)
-  501995 = icmp sge i32 19, i32 20
-  br bb %g.select.exit471997
-g.select.exit471997:  pred(g.select.then451992, g.select.else461994)
-  select48.phi1998 = phi [bb %g.select.else461994, i1 %501995, bb %g.select.then451992, i1 -1]
-  br i1 %select48.phi1998, bb %select.exit435, bb %g.if.exit542002
-g.if.exit542002:  pred(g.select.exit471997)
-  572004 = ptradd ptr @array, i32 76
-  store i32 0 to ptr %572004
+g.if.exit541749:  pred(select.else434)
+  store i32 0 to ptr %2122912389
   br bb %select.exit435
-f.select.then:  pred(while.body)
-  br bb %f.select.exit
-f.select.else:  pred(while.body)
-  142028 = icmp sge i32 0, i32 20
-  br bb %f.select.exit
-f.select.exit:  pred(f.select.then, f.select.else)
-  select.phi2031 = phi [bb %f.select.else, i1 %142028, bb %f.select.then, i1 -1]
-  br i1 %select.phi2031, bb %f.then, bb %f.if.exit
-f.then:  pred(f.select.exit)
+f.then:  pred(while.body)
   br bb %while.body.split
-f.if.exit:  pred(f.select.exit)
-  store i32 1 to ptr @array
+f.if.exit:  pred(while.body)
+  store i32 1 to ptr %array.pinned
   br bb %while.body.split
-f.select.then2058:  pred(select.then104)
-  br bb %f.select.exit2063
-f.select.else2060:  pred(select.then104)
-  142061 = icmp sge i32 1, i32 20
-  br bb %f.select.exit2063
-f.select.exit2063:  pred(f.select.then2058, f.select.else2060)
-  select.phi2064 = phi [bb %f.select.else2060, i1 %142061, bb %f.select.then2058, i1 -1]
-  br i1 %select.phi2064, bb %f.then2066, bb %f.if.exit2068
-f.then2066:  pred(f.select.exit2063)
+f.then1801:  pred(select.then104)
   br bb %select.then104.split
-f.if.exit2068:  pred(f.select.exit2063)
-  212070 = ptradd ptr @array, i32 4
-  store i32 1 to ptr %212070
-  34.load2081 = load i32 from ptr @array
+f.if.exit1803:  pred(select.then104)
+  store i32 1 to ptr %2118052353
+  34.load1816 = load i32 from ptr %array.pinned
   br bb %select.then104.split
-f.select.then2091:  pred(select.then112)
-  br bb %f.select.exit2096
-f.select.else2093:  pred(select.then112)
-  142094 = icmp sge i32 2, i32 20
-  br bb %f.select.exit2096
-f.select.exit2096:  pred(f.select.then2091, f.select.else2093)
-  select.phi2097 = phi [bb %f.select.else2093, i1 %142094, bb %f.select.then2091, i1 -1]
-  br i1 %select.phi2097, bb %f.then2099, bb %f.if.exit2101
-f.then2099:  pred(f.select.exit2096)
+f.then1828:  pred(select.then112)
   br bb %select.then112.split
-f.if.exit2101:  pred(f.select.exit2096)
-  212103 = ptradd ptr @array, i32 8
-  store i32 1 to ptr %212103
-  342113 = ptradd ptr @array, i32 4
-  34.load2114 = load i32 from ptr %342113
+f.if.exit1830:  pred(select.then112)
+  store i32 1 to ptr %2118322355
+  34.load1843 = load i32 from ptr %2118052353
   br bb %select.then112.split
-f.select.then2124:  pred(select.then120)
-  br bb %f.select.exit2129
-f.select.else2126:  pred(select.then120)
-  142127 = icmp sge i32 3, i32 20
-  br bb %f.select.exit2129
-f.select.exit2129:  pred(f.select.then2124, f.select.else2126)
-  select.phi2130 = phi [bb %f.select.else2126, i1 %142127, bb %f.select.then2124, i1 -1]
-  br i1 %select.phi2130, bb %f.then2132, bb %f.if.exit2134
-f.then2132:  pred(f.select.exit2129)
+f.then1855:  pred(select.then120)
   br bb %select.then120.split
-f.if.exit2134:  pred(f.select.exit2129)
-  212136 = ptradd ptr @array, i32 12
-  store i32 1 to ptr %212136
-  342146 = ptradd ptr @array, i32 8
-  34.load2147 = load i32 from ptr %342146
+f.if.exit1857:  pred(select.then120)
+  store i32 1 to ptr %2118592357
+  34.load1870 = load i32 from ptr %2118322355
   br bb %select.then120.split
-f.select.then2157:  pred(select.then128)
-  br bb %f.select.exit2162
-f.select.else2159:  pred(select.then128)
-  142160 = icmp sge i32 4, i32 20
-  br bb %f.select.exit2162
-f.select.exit2162:  pred(f.select.then2157, f.select.else2159)
-  select.phi2163 = phi [bb %f.select.else2159, i1 %142160, bb %f.select.then2157, i1 -1]
-  br i1 %select.phi2163, bb %f.then2165, bb %f.if.exit2167
-f.then2165:  pred(f.select.exit2162)
+f.then1882:  pred(select.then128)
   br bb %select.then128.split
-f.if.exit2167:  pred(f.select.exit2162)
-  212169 = ptradd ptr @array, i32 16
-  store i32 1 to ptr %212169
-  342179 = ptradd ptr @array, i32 12
-  34.load2180 = load i32 from ptr %342179
+f.if.exit1884:  pred(select.then128)
+  store i32 1 to ptr %2118862359
+  34.load1897 = load i32 from ptr %2118592357
   br bb %select.then128.split
-f.select.then2190:  pred(select.then136)
-  br bb %f.select.exit2195
-f.select.else2192:  pred(select.then136)
-  142193 = icmp sge i32 5, i32 20
-  br bb %f.select.exit2195
-f.select.exit2195:  pred(f.select.then2190, f.select.else2192)
-  select.phi2196 = phi [bb %f.select.else2192, i1 %142193, bb %f.select.then2190, i1 -1]
-  br i1 %select.phi2196, bb %f.then2198, bb %f.if.exit2200
-f.then2198:  pred(f.select.exit2195)
+f.then1909:  pred(select.then136)
   br bb %select.then136.split
-f.if.exit2200:  pred(f.select.exit2195)
-  212202 = ptradd ptr @array, i32 20
-  store i32 1 to ptr %212202
-  342212 = ptradd ptr @array, i32 16
-  34.load2213 = load i32 from ptr %342212
+f.if.exit1911:  pred(select.then136)
+  store i32 1 to ptr %2119132361
+  34.load1924 = load i32 from ptr %2118862359
   br bb %select.then136.split
-f.select.then2223:  pred(select.then144)
-  br bb %f.select.exit2228
-f.select.else2225:  pred(select.then144)
-  142226 = icmp sge i32 6, i32 20
-  br bb %f.select.exit2228
-f.select.exit2228:  pred(f.select.then2223, f.select.else2225)
-  select.phi2229 = phi [bb %f.select.else2225, i1 %142226, bb %f.select.then2223, i1 -1]
-  br i1 %select.phi2229, bb %f.then2231, bb %f.if.exit2233
-f.then2231:  pred(f.select.exit2228)
+f.then1936:  pred(select.then144)
   br bb %select.then144.split
-f.if.exit2233:  pred(f.select.exit2228)
-  212235 = ptradd ptr @array, i32 24
-  store i32 1 to ptr %212235
-  342245 = ptradd ptr @array, i32 20
-  34.load2246 = load i32 from ptr %342245
+f.if.exit1938:  pred(select.then144)
+  store i32 1 to ptr %2119402363
+  34.load1951 = load i32 from ptr %2119132361
   br bb %select.then144.split
-f.select.then2256:  pred(select.then152)
-  br bb %f.select.exit2261
-f.select.else2258:  pred(select.then152)
-  142259 = icmp sge i32 7, i32 20
-  br bb %f.select.exit2261
-f.select.exit2261:  pred(f.select.then2256, f.select.else2258)
-  select.phi2262 = phi [bb %f.select.else2258, i1 %142259, bb %f.select.then2256, i1 -1]
-  br i1 %select.phi2262, bb %f.then2264, bb %f.if.exit2266
-f.then2264:  pred(f.select.exit2261)
+f.then1963:  pred(select.then152)
   br bb %select.then152.split
-f.if.exit2266:  pred(f.select.exit2261)
-  212268 = ptradd ptr @array, i32 28
-  store i32 1 to ptr %212268
-  342278 = ptradd ptr @array, i32 24
-  34.load2279 = load i32 from ptr %342278
+f.if.exit1965:  pred(select.then152)
+  store i32 1 to ptr %2119672365
+  34.load1978 = load i32 from ptr %2119402363
   br bb %select.then152.split
-f.select.then2289:  pred(select.then160)
-  br bb %f.select.exit2294
-f.select.else2291:  pred(select.then160)
-  142292 = icmp sge i32 8, i32 20
-  br bb %f.select.exit2294
-f.select.exit2294:  pred(f.select.then2289, f.select.else2291)
-  select.phi2295 = phi [bb %f.select.else2291, i1 %142292, bb %f.select.then2289, i1 -1]
-  br i1 %select.phi2295, bb %f.then2297, bb %f.if.exit2299
-f.then2297:  pred(f.select.exit2294)
+f.then1990:  pred(select.then160)
   br bb %select.then160.split
-f.if.exit2299:  pred(f.select.exit2294)
-  212301 = ptradd ptr @array, i32 32
-  store i32 1 to ptr %212301
-  342311 = ptradd ptr @array, i32 28
-  34.load2312 = load i32 from ptr %342311
+f.if.exit1992:  pred(select.then160)
+  store i32 1 to ptr %2119942367
+  34.load2005 = load i32 from ptr %2119672365
   br bb %select.then160.split
-f.select.then2322:  pred(select.then168)
-  br bb %f.select.exit2327
-f.select.else2324:  pred(select.then168)
-  142325 = icmp sge i32 9, i32 20
-  br bb %f.select.exit2327
-f.select.exit2327:  pred(f.select.then2322, f.select.else2324)
-  select.phi2328 = phi [bb %f.select.else2324, i1 %142325, bb %f.select.then2322, i1 -1]
-  br i1 %select.phi2328, bb %f.then2330, bb %f.if.exit2332
-f.then2330:  pred(f.select.exit2327)
+f.then2017:  pred(select.then168)
   br bb %select.then168.split
-f.if.exit2332:  pred(f.select.exit2327)
-  212334 = ptradd ptr @array, i32 36
-  store i32 1 to ptr %212334
-  342344 = ptradd ptr @array, i32 32
-  34.load2345 = load i32 from ptr %342344
+f.if.exit2019:  pred(select.then168)
+  store i32 1 to ptr %2120212369
+  34.load2032 = load i32 from ptr %2119942367
   br bb %select.then168.split
-f.select.then2355:  pred(select.then176)
-  br bb %f.select.exit2360
-f.select.else2357:  pred(select.then176)
-  142358 = icmp sge i32 10, i32 20
-  br bb %f.select.exit2360
-f.select.exit2360:  pred(f.select.then2355, f.select.else2357)
-  select.phi2361 = phi [bb %f.select.else2357, i1 %142358, bb %f.select.then2355, i1 -1]
-  br i1 %select.phi2361, bb %f.then2363, bb %f.if.exit2365
-f.then2363:  pred(f.select.exit2360)
+f.then2044:  pred(select.then176)
   br bb %select.then176.split
-f.if.exit2365:  pred(f.select.exit2360)
-  212367 = ptradd ptr @array, i32 40
-  store i32 1 to ptr %212367
-  342377 = ptradd ptr @array, i32 36
-  34.load2378 = load i32 from ptr %342377
+f.if.exit2046:  pred(select.then176)
+  store i32 1 to ptr %2120482371
+  34.load2059 = load i32 from ptr %2120212369
   br bb %select.then176.split
-f.select.then2388:  pred(select.then184)
-  br bb %f.select.exit2393
-f.select.else2390:  pred(select.then184)
-  142391 = icmp sge i32 11, i32 20
-  br bb %f.select.exit2393
-f.select.exit2393:  pred(f.select.then2388, f.select.else2390)
-  select.phi2394 = phi [bb %f.select.else2390, i1 %142391, bb %f.select.then2388, i1 -1]
-  br i1 %select.phi2394, bb %f.then2396, bb %f.if.exit2398
-f.then2396:  pred(f.select.exit2393)
+f.then2071:  pred(select.then184)
   br bb %select.then184.split
-f.if.exit2398:  pred(f.select.exit2393)
-  212400 = ptradd ptr @array, i32 44
-  store i32 1 to ptr %212400
-  342410 = ptradd ptr @array, i32 40
-  34.load2411 = load i32 from ptr %342410
+f.if.exit2073:  pred(select.then184)
+  store i32 1 to ptr %2120752373
+  34.load2086 = load i32 from ptr %2120482371
   br bb %select.then184.split
-f.select.then2421:  pred(select.then192)
-  br bb %f.select.exit2426
-f.select.else2423:  pred(select.then192)
-  142424 = icmp sge i32 12, i32 20
-  br bb %f.select.exit2426
-f.select.exit2426:  pred(f.select.then2421, f.select.else2423)
-  select.phi2427 = phi [bb %f.select.else2423, i1 %142424, bb %f.select.then2421, i1 -1]
-  br i1 %select.phi2427, bb %f.then2429, bb %f.if.exit2431
-f.then2429:  pred(f.select.exit2426)
+f.then2098:  pred(select.then192)
   br bb %select.then192.split
-f.if.exit2431:  pred(f.select.exit2426)
-  212433 = ptradd ptr @array, i32 48
-  store i32 1 to ptr %212433
-  342443 = ptradd ptr @array, i32 44
-  34.load2444 = load i32 from ptr %342443
+f.if.exit2100:  pred(select.then192)
+  store i32 1 to ptr %2121022375
+  34.load2113 = load i32 from ptr %2120752373
   br bb %select.then192.split
-f.select.then2454:  pred(select.then200)
-  br bb %f.select.exit2459
-f.select.else2456:  pred(select.then200)
-  142457 = icmp sge i32 13, i32 20
-  br bb %f.select.exit2459
-f.select.exit2459:  pred(f.select.then2454, f.select.else2456)
-  select.phi2460 = phi [bb %f.select.else2456, i1 %142457, bb %f.select.then2454, i1 -1]
-  br i1 %select.phi2460, bb %f.then2462, bb %f.if.exit2464
-f.then2462:  pred(f.select.exit2459)
+f.then2125:  pred(select.then200)
   br bb %select.then200.split
-f.if.exit2464:  pred(f.select.exit2459)
-  212466 = ptradd ptr @array, i32 52
-  store i32 1 to ptr %212466
-  342476 = ptradd ptr @array, i32 48
-  34.load2477 = load i32 from ptr %342476
+f.if.exit2127:  pred(select.then200)
+  store i32 1 to ptr %2121292377
+  34.load2140 = load i32 from ptr %2121022375
   br bb %select.then200.split
-f.select.then2487:  pred(select.then208)
-  br bb %f.select.exit2492
-f.select.else2489:  pred(select.then208)
-  142490 = icmp sge i32 14, i32 20
-  br bb %f.select.exit2492
-f.select.exit2492:  pred(f.select.then2487, f.select.else2489)
-  select.phi2493 = phi [bb %f.select.else2489, i1 %142490, bb %f.select.then2487, i1 -1]
-  br i1 %select.phi2493, bb %f.then2495, bb %f.if.exit2497
-f.then2495:  pred(f.select.exit2492)
+f.then2152:  pred(select.then208)
   br bb %select.then208.split
-f.if.exit2497:  pred(f.select.exit2492)
-  212499 = ptradd ptr @array, i32 56
-  store i32 1 to ptr %212499
-  342509 = ptradd ptr @array, i32 52
-  34.load2510 = load i32 from ptr %342509
+f.if.exit2154:  pred(select.then208)
+  store i32 1 to ptr %2121562379
+  34.load2167 = load i32 from ptr %2121292377
   br bb %select.then208.split
-f.select.then2520:  pred(select.then216)
-  br bb %f.select.exit2525
-f.select.else2522:  pred(select.then216)
-  142523 = icmp sge i32 15, i32 20
-  br bb %f.select.exit2525
-f.select.exit2525:  pred(f.select.then2520, f.select.else2522)
-  select.phi2526 = phi [bb %f.select.else2522, i1 %142523, bb %f.select.then2520, i1 -1]
-  br i1 %select.phi2526, bb %f.then2528, bb %f.if.exit2530
-f.then2528:  pred(f.select.exit2525)
+f.then2179:  pred(select.then216)
   br bb %select.then216.split
-f.if.exit2530:  pred(f.select.exit2525)
-  212532 = ptradd ptr @array, i32 60
-  store i32 1 to ptr %212532
-  342542 = ptradd ptr @array, i32 56
-  34.load2543 = load i32 from ptr %342542
+f.if.exit2181:  pred(select.then216)
+  store i32 1 to ptr %2121832381
+  34.load2194 = load i32 from ptr %2121562379
   br bb %select.then216.split
-f.select.then2553:  pred(select.then224)
-  br bb %f.select.exit2558
-f.select.else2555:  pred(select.then224)
-  142556 = icmp sge i32 16, i32 20
-  br bb %f.select.exit2558
-f.select.exit2558:  pred(f.select.then2553, f.select.else2555)
-  select.phi2559 = phi [bb %f.select.else2555, i1 %142556, bb %f.select.then2553, i1 -1]
-  br i1 %select.phi2559, bb %f.then2561, bb %f.if.exit2563
-f.then2561:  pred(f.select.exit2558)
+f.then2206:  pred(select.then224)
   br bb %select.then224.split
-f.if.exit2563:  pred(f.select.exit2558)
-  212565 = ptradd ptr @array, i32 64
-  store i32 1 to ptr %212565
-  342575 = ptradd ptr @array, i32 60
-  34.load2576 = load i32 from ptr %342575
+f.if.exit2208:  pred(select.then224)
+  store i32 1 to ptr %2122102383
+  34.load2221 = load i32 from ptr %2121832381
   br bb %select.then224.split
-f.select.then2586:  pred(select.then232)
-  br bb %f.select.exit2591
-f.select.else2588:  pred(select.then232)
-  142589 = icmp sge i32 17, i32 20
-  br bb %f.select.exit2591
-f.select.exit2591:  pred(f.select.then2586, f.select.else2588)
-  select.phi2592 = phi [bb %f.select.else2588, i1 %142589, bb %f.select.then2586, i1 -1]
-  br i1 %select.phi2592, bb %f.then2594, bb %f.if.exit2596
-f.then2594:  pred(f.select.exit2591)
+f.then2233:  pred(select.then232)
   br bb %select.then232.split
-f.if.exit2596:  pred(f.select.exit2591)
-  212598 = ptradd ptr @array, i32 68
-  store i32 1 to ptr %212598
-  342608 = ptradd ptr @array, i32 64
-  34.load2609 = load i32 from ptr %342608
+f.if.exit2235:  pred(select.then232)
+  store i32 1 to ptr %2122372385
+  34.load2248 = load i32 from ptr %2122102383
   br bb %select.then232.split
-f.select.then2619:  pred(select.then240)
-  br bb %f.select.exit2624
-f.select.else2621:  pred(select.then240)
-  142622 = icmp sge i32 18, i32 20
-  br bb %f.select.exit2624
-f.select.exit2624:  pred(f.select.then2619, f.select.else2621)
-  select.phi2625 = phi [bb %f.select.else2621, i1 %142622, bb %f.select.then2619, i1 -1]
-  br i1 %select.phi2625, bb %f.then2627, bb %f.if.exit2629
-f.then2627:  pred(f.select.exit2624)
+f.then2260:  pred(select.then240)
   br bb %select.then240.split
-f.if.exit2629:  pred(f.select.exit2624)
-  212631 = ptradd ptr @array, i32 72
-  store i32 1 to ptr %212631
-  342641 = ptradd ptr @array, i32 68
-  34.load2642 = load i32 from ptr %342641
+f.if.exit2262:  pred(select.then240)
+  store i32 1 to ptr %2122642387
+  34.load2275 = load i32 from ptr %2122372385
   br bb %select.then240.split
-f.select.then2652:  pred(select.then248)
-  br bb %f.select.exit2657
-f.select.else2654:  pred(select.then248)
-  142655 = icmp sge i32 19, i32 20
-  br bb %f.select.exit2657
-f.select.exit2657:  pred(f.select.then2652, f.select.else2654)
-  select.phi2658 = phi [bb %f.select.else2654, i1 %142655, bb %f.select.then2652, i1 -1]
-  br i1 %select.phi2658, bb %select.exit250, bb %f.if.exit2662
-f.if.exit2662:  pred(f.select.exit2657)
-  212664 = ptradd ptr @array, i32 76
-  store i32 1 to ptr %212664
+f.if.exit2289:  pred(select.then248)
+  store i32 1 to ptr %2122912389
   br bb %select.exit250
-f.select.then2685:  pred(select.then453)
-  br bb %f.select.exit2690
-f.select.else2687:  pred(select.then453)
-  142688 = icmp sge i32 %458, i32 20
-  br bb %f.select.exit2690
-f.select.exit2690:  pred(f.select.then2685, f.select.else2687)
-  select.phi2691 = phi [bb %f.select.else2687, i1 %142688, bb %f.select.then2685, i1 -1]
-  br i1 %select.phi2691, bb %f.then2693, bb %f.if.exit2695
-f.then2693:  pred(f.select.exit2690)
+f.then2314:  pred(select.then453)
   br bb %select.then453.split
-f.if.exit2695:  pred(f.select.exit2690)
-  8042696 = shl i32 %458, i32 2
-  212697 = ptradd ptr @array, i32 %8042696
-  store i32 1 to ptr %212697
-  242699 = icmp eq i32 %458, i32 0
-  br i1 %242699, bb %f.then252701, bb %f.else2704
-f.then252701:  pred(f.if.exit2695)
-  29.load2702 = load i32 from ptr @array
+f.if.exit2316:  pred(select.then453)
+  2346 = shl i32 %i.phi, i32 2
+  2336 = ptradd ptr %array.pinned, i32 %2346
+  2338 = ptradd ptr %2336, i32 -4
+  store i32 1 to ptr %2338
+  242320 = icmp eq i32 %805, i32 0
+  br i1 %242320, bb %f.then252322, bb %f.else2325
+f.then252322:  pred(f.if.exit2316)
+  29.load2323 = load i32 from ptr %array.pinned
   br bb %select.then453.split
-f.else2704:  pred(f.if.exit2695)
-  2712 = sub i32 %i.phi, i32 2
-  8052706 = shl i32 %2712, i32 2
-  342707 = ptradd ptr @array, i32 %8052706
-  34.load2708 = load i32 from ptr %342707
+f.else2325:  pred(f.if.exit2316)
+  2343 = ptradd ptr %2336, i32 -8
+  34.load2329 = load i32 from ptr %2343
   br bb %select.then453.split
+while.body_exclu_exit:  pred(select.exit250)
+  br bb %while.body263
+while.body263_exclu_exit:  pred(select.exit435)
+  br bb %while.cond448
 }
 
 external float getfloat()

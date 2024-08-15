@@ -64,7 +64,7 @@ bool RotatePass::rotate(Loop *loop) {
   std::unordered_map<Value *, Value *> old2NewMap;
   auto instIt = oldHeader->begin();
 
-  for (; PhiInst *phi = mayCast<PhiInst>(*instIt); instIt++)
+  for (; PhiNode *phi = mayCast<PhiNode>(*instIt); instIt++)
     old2NewMap[phi] = phi->getIncomingValueOf(preheader);
 
   for (; instIt != oldHeader->termEnd(); instIt++) {
@@ -77,7 +77,7 @@ bool RotatePass::rotate(Loop *loop) {
 
   for (int i = 0; i < oldHeader->getSuccNum(); i++) {
     BasicBlock *succ = oldHeader->getSucc(i);
-    for (auto it = succ->begin(); PhiInst *phi = mayCast<PhiInst>(*it); it++) {
+    for (auto it = succ->begin(); PhiNode *phi = mayCast<PhiNode>(*it); it++) {
       phi->addIncoming(preheader, phi->getIncomingValueOf(oldHeader));
     }
   }
@@ -125,7 +125,7 @@ bool RotatePass::rotate(Loop *loop) {
   // Move phis in oldHeader to newHeader
   builder.insertAt(newHeader->begin());
   for (Instruction *I : incChange(*oldHeader)) {
-    PhiInst *phi = mayCast<PhiInst>(I);
+    PhiNode *phi = mayCast<PhiNode>(I);
     if (!phi)
       break;
 
@@ -138,7 +138,7 @@ bool RotatePass::rotate(Loop *loop) {
     phi->replaceSelfIf(newPhi, [&](Use *U) {
       auto *userBB = U->getUser()->getBlock();
       if (userBB == oldHeader)
-        return U->getUser()->isa<PhiInst>();
+        return U->getUser()->isa<PhiNode>();
       return loop->contains(userBB);
     });
     newPhi->addIncoming(preheader, preheaderVal);
@@ -148,7 +148,7 @@ bool RotatePass::rotate(Loop *loop) {
   // Rewrite inside uses
   builder.insertAt(newHeader->begin());
   for (auto *I : *oldHeader) {
-    if (I->isa<PhiInst>())
+    if (I->isa<PhiNode>())
       continue;
     Value *preheaderVal = old2NewMap[I];
     Value *headerVal = I;

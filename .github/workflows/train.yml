@@ -1,0 +1,23 @@
+name: train
+
+on: workflow_dispatch
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update repo
+        env:
+          URL: ${{ secrets.REPO_URL }}
+
+        run: |
+          git config --global user.name "NNVM Authors"
+          git config --global user.email "xxs_chy@outlook.com"
+          git clone $URL nnvm_submit
+          ./educg/sync_repo.sh train

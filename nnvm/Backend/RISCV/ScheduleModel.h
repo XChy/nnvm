@@ -29,15 +29,19 @@ public:
 
 private:
   uint numFreePipe = 2;
+  uint issueWidth = 2;
 
-  std::unordered_map<Register *, uint> timeReg;
-  bool areAllUsedRegFree(LIRInst *inst, uint latency = 0);
+  std::unordered_map<Register *, int> timeReg;
+  bool areAllUsedRegFree(LIRInst *inst, int latency = 0);
 
-  std::unordered_map<ScheduleResource, uint> timeRes;
+  std::unordered_map<ScheduleResource, int> timeRes;
   std::set<IssueConstraint> issueConstraint;
 
   void addConstraint(IssueConstraint cons) { issueConstraint.insert(cons); }
   bool isFree(IssueConstraint cons) { return !issueConstraint.count(cons); }
+
+  void useRes(ScheduleResource res, int time) { timeRes.insert({res, time}); }
+  bool canUseRes(ScheduleResource res) { return timeRes[res] == 0; }
 };
 
 } // namespace riscv

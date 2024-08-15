@@ -11,94 +11,99 @@ i32 main() {
 entry27:  pred()
   %y = stack 32768
   %x = stack 32768
+  .pinned = pin float 0.000000
   31 = call i32 getint()
   call void _sysy_starttime(i32 22)
-  COUNT.load154 = load i32 from ptr @COUNT
-  43155 = icmp slt i32 0, i32 %COUNT.load154
-  br i1 %43155, bb %while.body39_preheader, bb %while.exit40
+  COUNT.load162 = load i32 from ptr @COUNT
+  43163 = icmp slt i32 0, i32 %COUNT.load162
+  br i1 %43163, bb %while.body39_preheader, bb %while.exit40
 while.body39_preheader:  pred(entry27)
+  .pinned185 = pin float 1.000000
+  9136155 = icmp slt i32 0, i32 %31
   br bb %while.body39
 while.body39:  pred(loop.while.exit, while.body39_preheader)
-  i28.phi161 = phi [bb %loop.while.exit, i32 %92, bb %while.body39_preheader, i32 0]
-  j.phi113160 = phi [bb %loop.while.exit, i32 %j.phi113152, bb %while.body39_preheader, i32 0]
-  total.phi159 = phi [bb %loop.while.exit, float %89, bb %while.body39_preheader, float 0.000000]
-  a.phi116158 = phi [bb %loop.while.exit, float %a.phi, bb %while.body39_preheader, float 0.000000]
-  b.phi118157 = phi [bb %loop.while.exit, float %b.phi, bb %while.body39_preheader, float 1.000000]
-  46 = srem i32 %i28.phi161, i32 10
+  i28.phi169 = phi [bb %loop.while.exit, i32 %92, bb %while.body39_preheader, i32 0]
+  j.phi113168 = phi [bb %loop.while.exit, i32 %j.phi113160, bb %while.body39_preheader, i32 0]
+  total.phi167 = phi [bb %loop.while.exit, float %89, bb %while.body39_preheader, float %.pinned]
+  a.phi116166 = phi [bb %loop.while.exit, float %192, bb %while.body39_preheader, float %.pinned]
+  b.phi118165 = phi [bb %loop.while.exit, float %189, bb %while.body39_preheader, float %.pinned185]
+  46 = srem i32 %i28.phi169, i32 10
   47 = icmp ne i32 %46, i32 0
-  br i1 %47, bb %then, bb %else
-while.exit40:  pred(loop.while.exit, entry27)
-  156 = phi [bb %loop.while.exit, float %89, bb %entry27, float 0.000000]
+  55 = fadd float %a.phi116166, float 0.100000
+  58 = fadd float %b.phi118165, float 0.200000
+  br i1 %47, bb %b.phi.which.true, bb %while.body39.split
+while.body39.split:  pred(while.body39, b.phi.which.true)
+  189 = phi [bb %b.phi.which.true, float %.pinned185, bb %while.body39, float %58]
+  br i1 %47, bb %a.phi.which.true, bb %while.body39.split.split
+while.body39.split.split:  pred(while.body39.split, a.phi.which.true)
+  192 = phi [bb %a.phi.which.true, float %.pinned, bb %while.body39.split, float %55]
+  64159 = icmp slt i32 %j.phi113168, i32 %31
+  br i1 %64159, bb %while.body60_preheader, bb %while.exit61
+while.exit40:  pred(entry27, while.body39_exclu_exit)
+  164 = phi [bb %while.body39_exclu_exit, float %89, bb %entry27, float %.pinned]
+  .pinned186 = pin float 0.000001
   call void _sysy_stoptime(i32 39)
-  95 = fsub float %156, float 18338022147751936.000000
-  96 = fcmp ole float %95, float 0.000001
-  br i1 %96, bb %select.then, bb %select.else
-then:  pred(while.body39)
-  br bb %if.exit
-if.exit:  pred(then, else)
-  b.phi = phi [bb %else, float %58, bb %then, float 1.000000]
-  a.phi = phi [bb %else, float %55, bb %then, float 0.000000]
-  64151 = icmp slt i32 %j.phi113160, i32 %31
-  br i1 %64151, bb %while.body60_preheader, bb %while.exit61
-else:  pred(while.body39)
-  55 = fadd float %a.phi116158, float 0.100000
-  58 = fadd float %b.phi118157, float 0.200000
-  br bb %if.exit
-while.body60_preheader:  pred(if.exit)
+  95 = fsub float %164, float 18338022147751936.000000
+  96 = fcmp ole float %95, float %.pinned186
+  103 = fneg float %.pinned186
+  104 = fcmp oge float %95, float %103
+  129 = and i1 %96, i1 %104
+  br i1 %129, bb %then106, bb %else108
+while.body60_preheader:  pred(while.body39.split.split)
   br bb %while.body60
 while.body60:  pred(while.body60, while.body60_preheader)
-  j.phi153 = phi [bb %while.body60, i32 %84, bb %while.body60_preheader, i32 %j.phi113160]
-  122 = shl i32 %j.phi153, i32 2
-  68 = ptradd ptr %x, i32 %122
-  72 = si2f i32 %j.phi153 to float
-  73 = fadd float %a.phi, float %72
+  j.phi161 = phi [bb %while.body60, i32 %84, bb %while.body60_preheader, i32 %j.phi113168]
+  153 = shl i32 %j.phi161, i32 2
+  68 = ptradd ptr %x, i32 %153
+  72 = si2f i32 %j.phi161 to float
+  73 = fadd float %192, float %72
   store float %73 to ptr %68
-  76 = ptradd ptr %y, i32 %122
-  81 = fadd float %b.phi, float %72
+  76 = ptradd ptr %y, i32 %153
+  81 = fadd float %189, float %72
   store float %81 to ptr %76
-  84 = add i32 %j.phi153, i32 1
+  84 = add i32 %j.phi161, i32 1
   64 = icmp slt i32 %84, i32 %31
-  br i1 %64, bb %while.body60, bb %while.exit61
-while.exit61:  pred(while.body60, if.exit)
-  j.phi113152 = phi [bb %while.body60, i32 %84, bb %if.exit, i32 %j.phi113160]
-  9132147 = icmp slt i32 0, i32 %31
-  br i1 %9132147, bb %loop.while.body_preheader, bb %loop.while.exit
-select.then:  pred(while.exit40)
-  103 = fneg float 0.000001
-  104 = fcmp oge float %95, float %103
-  br bb %select.exit
-select.else:  pred(while.exit40)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %104]
-  br i1 %select.phi, bb %then106, bb %else108
-then106:  pred(select.exit)
+  br i1 %64, bb %while.body60, bb %while.body60_exclu_exit
+while.exit61:  pred(while.body39.split.split, while.body60_exclu_exit)
+  j.phi113160 = phi [bb %while.body60_exclu_exit, i32 %84, bb %while.body39.split.split, i32 %j.phi113168]
+  br i1 %9136155, bb %loop.while.body_preheader, bb %loop.while.exit
+then106:  pred(while.exit40)
   call void putint(i32 10)
   ret i32 0
-else108:  pred(select.exit)
+else108:  pred(while.exit40)
   call void putint(i32 1)
   ret i32 1
 loop.while.body_preheader:  pred(while.exit61)
   br bb %loop.while.body
 loop.while.body:  pred(loop.while.body, loop.while.body_preheader)
-  i.phi131150 = phi [bb %loop.while.body, i32 %25142, bb %loop.while.body_preheader, i32 0]
-  accumulator.phi130149 = phi [bb %loop.while.body, float %22141, bb %loop.while.body_preheader, float 0.000000]
-  124135 = shl i32 %i.phi131150, i32 2
-  15136 = ptradd ptr %x, i32 %124135
-  15.load137 = load float from ptr %15136
-  19138 = ptradd ptr %y, i32 %124135
-  19.load139 = load float from ptr %19138
-  21140 = fmul float %15.load137, float %19.load139
-  22141 = fadd float %accumulator.phi130149, float %21140
-  25142 = add i32 %i.phi131150, i32 1
-  9132 = icmp slt i32 %25142, i32 %31
-  br i1 %9132, bb %loop.while.body, bb %loop.while.exit
-loop.while.exit:  pred(loop.while.body, while.exit61)
-  148 = phi [bb %loop.while.body, float %22141, bb %while.exit61, float 0.000000]
-  89 = fadd float %total.phi159, float %148
-  92 = add i32 %i28.phi161, i32 1
-  43 = icmp slt i32 %92, i32 %COUNT.load154
-  br i1 %43, bb %while.body39, bb %while.exit40
+  i.phi135158 = phi [bb %loop.while.body, i32 %25146, bb %loop.while.body_preheader, i32 0]
+  accumulator.phi134157 = phi [bb %loop.while.body, float %22145, bb %loop.while.body_preheader, float %.pinned]
+  154 = shl i32 %i.phi135158, i32 2
+  15140 = ptradd ptr %x, i32 %154
+  15.load141 = load float from ptr %15140
+  19142 = ptradd ptr %y, i32 %154
+  19.load143 = load float from ptr %19142
+  21144 = fmul float %15.load141, float %19.load143
+  22145 = fadd float %accumulator.phi134157, float %21144
+  25146 = add i32 %i.phi135158, i32 1
+  9136 = icmp slt i32 %25146, i32 %31
+  br i1 %9136, bb %loop.while.body, bb %loop.while.body_exclu_exit
+loop.while.exit:  pred(while.exit61, loop.while.body_exclu_exit)
+  156 = phi [bb %loop.while.body_exclu_exit, float %22145, bb %while.exit61, float %.pinned]
+  89 = fadd float %total.phi167, float %156
+  92 = add i32 %i28.phi169, i32 1
+  43 = icmp slt i32 %92, i32 %COUNT.load162
+  br i1 %43, bb %while.body39, bb %while.body39_exclu_exit
+while.body60_exclu_exit:  pred(while.body60)
+  br bb %while.exit61
+loop.while.body_exclu_exit:  pred(loop.while.body)
+  br bb %loop.while.exit
+while.body39_exclu_exit:  pred(loop.while.exit)
+  br bb %while.exit40
+b.phi.which.true:  pred(while.body39)
+  br bb %while.body39.split
+a.phi.which.true:  pred(while.body39.split)
+  br bb %while.body39.split.split
 }
 
 external float getfloat()

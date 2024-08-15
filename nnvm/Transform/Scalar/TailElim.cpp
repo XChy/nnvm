@@ -65,9 +65,9 @@ bool TailElimPass::run(Function &F) {
 
   // Build phi for arguments
   builder.insertAt(loopEntry->begin());
-  std::map<Argument *, PhiInst *> arg2Phi;
+  std::map<Argument *, PhiNode *> arg2Phi;
   for (Argument *arg : F.getArguments()) {
-    PhiInst *phi = builder.buildPhi(arg->getType(), arg->getName() + ".loop");
+    PhiNode *phi = builder.buildPhi(arg->getType(), arg->getName() + ".loop");
     arg->replaceSelf(phi);
     arg2Phi[arg] = phi;
 
@@ -86,7 +86,7 @@ bool TailElimPass::run(Function &F) {
 
     uint argIndex = 0;
     for (Argument *arg : F.getArguments()) {
-      PhiInst *phi = arg2Phi[arg];
+      PhiNode *phi = arg2Phi[arg];
       phi->addIncoming(callsiteBB, callsite->getArg(argIndex));
       argIndex++;
     }

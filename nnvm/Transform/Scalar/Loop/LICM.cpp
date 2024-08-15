@@ -1,14 +1,20 @@
 #include "LICM.h"
 #include "ADT/Hash.h"
 #include "ADT/Ranges.h"
+#include "Analysis/PostDomTreeAnalysis.h"
 #include "IR/Attributes.h"
+#include "IR/IRBuilder.h"
+#include "LoopUtils.h"
+#include "Transform/Scalar/CombinePatterns.h"
 #include "Utils/Cast.h"
 
 using namespace nnvm;
+using namespace nnvm::pattern;
 
 bool LICMPass::run(Function &F) {
   LA = getAnalysis<LoopAnalysis>(F);
   memAcc = getAnalysis<MemAccAnalysis>(F);
+  postDomTree = getAnalysis<PostDomTreeAnalysis>(F);
   domTree = LA->getDomTree();
 
   auto loops = LA->getLoops();
@@ -19,15 +25,51 @@ bool LICMPass::run(Function &F) {
     if (!preheader)
       continue;
 
-    for (Instruction *I : incChange(*loop->getHeader())) {
-      if (isInvariant(I, loop)) {
-        I->removeFromBB();
-        preheader->termEnd().insertBefore(I);
+    for (auto *block : loop->getBlocks()) {
+      for (Instruction *I : incChange(*block)) {
+        if (postDomTree->dom(block, loop->getHeader())) {
+          tryHoistInvariant(I, loop);
+        } else if (isTriviallyInvariant(I, loop)) {
+            // TODO: speculatively execute?
+          I->removeFromBB();
+          loop->getPreheader()->termEnd().insertBefore(I);
+        }
       }
     }
   }
 
   return true;
+}
+
+bool LICMPass::tryHoistInvariant(Instruction *I, Loop *loop) {
+  if (isInvariant(I, loop)) {
+    I->removeFromBB();
+    loop->getPreheader()->termEnd().insertBefore(I);
+    return true;
+  }
+
+  if (tryHoistReassoc(I, loop))
+    return true;
+  return false;
+}
+
+bool LICMPass::tryHoistReassoc(Instruction *I, Loop *loop) {
+  Value *A, *B, *C;
+  IRBuilder builder;
+  if (match(I, pPtrAdd(pPtrAdd(pValue(A), pValue(B)), pValue(C))) &&
+      isDefinedOutside(A, loop) && !isDefinedOutside(B, loop) &&
+      isDefinedOutside(C, loop)) {
+    builder.insertAt(loop->getPreheader()->termEnd());
+    auto *immut = builder.buildBinOp<PtrAddInst>(A, C, A->getType());
+    builder.insertAt(I);
+    auto *reassoc = builder.buildBinOp<PtrAddInst>(immut, B, immut->getType());
+
+    I->replaceSelf(reassoc);
+    I->eraseFromBB();
+
+    return true;
+  }
+  return false;
 }
 
 bool LICMPass::isOperandsInvariant(Instruction *I, Loop *L) {
@@ -41,7 +83,7 @@ bool LICMPass::isOperandsInvariant(Instruction *I, Loop *L) {
 }
 
 bool LICMPass::isTriviallyInvariant(Instruction *I, Loop *L) {
-  if (I->isa<PhiInst>())
+  if (I->isa<PhiNode>())
     return false;
 
   if (I->isa<TerminatorInst>())

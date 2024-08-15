@@ -41,6 +41,9 @@ public:
   Iterator begin() { return {instList.begin(), this}; }
   Iterator end() { return {instList.end(), this}; }
 
+  // The first instruction after phis and stacks.
+  Iterator normalBegin();
+
   // Return the iterator of terminator.
   Iterator termEnd() { return {getTerminator(), this}; }
 
@@ -122,7 +125,9 @@ public:
     ListTrait<BasicBlock>::eraseFromList();
   }
 
-  bool containsPhi() { return mayCast<PhiInst>(*begin()); }
+  std::vector<PhiNode *> getPhis();
+
+  bool containsPhi() { return mayCast<PhiNode>(*begin()); }
   bool isPredecessorOf(BasicBlock *other);
 
   const List<Instruction> &getInsts() const { return instList; }

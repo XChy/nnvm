@@ -72,6 +72,11 @@ public:
   }
 
   void emit(std::ostream &out, EmitInfo &info);
+  void print(std::ostream &out) {
+    EmitInfo info;
+    emit(out, info);
+    out << "\n";
+  }
 
   bool isMoveInst(LIRFunc const &func) const;
 
@@ -182,11 +187,11 @@ public:
   Iterator end() { return Iterator(insts.end(), this); }
 
   uint getSuccNum() const;
-  LIRBB *getSucc(int index);
+  LIRBB *getSucc(int index) const;
   void setSucc(int index, LIRBB *dest);
 
   uint getPredNum() const;
-  LIRBB *getPred(int index);
+  LIRBB *getPred(int index) const;
 
   void setParent(LIRFunc *func) { parent = func; }
   LIRFunc *getParent() const { return parent; }
@@ -194,9 +199,15 @@ public:
   List<LIRInst> &getInsts() { return insts; }
   ~LIRBB() { insts.freeAll(); }
 
+  void setLoopDepth(uint loopDepth) { this->loopDepth = loopDepth; }
+  uint getLoopDepth() const { return loopDepth; }
+
 private:
   LIRFunc *parent;
   List<LIRInst> insts;
+
+  // Information help with optimization
+  uint loopDepth;
 };
 
 class LIRFunc : public LIRGlobal {

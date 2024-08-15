@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -5,57 +6,46 @@
 k:
 .word 0x00000000
 .section .text
-main:
-  ADDI sp, sp, -48
+main:   # loop depth 0
+  ADDI sp, sp, -16
   SD ra, 0(sp)
   SD s0, 8(sp)
-  SD s1, 16(sp)
-  SD s2, 24(sp)
-  SD s3, 32(sp)
-  SD s4, 40(sp)
-  LA a0, k
-  LUI s0, 1
-  ADDIW s0, s0, -707
-  SW s0, 0(a0)
-  LA a0, k
-  LUI s0, 1
-  ADDIW s0, s0, -706
-  SW s0, 0(a0)
+  LUI t0, 1
+  LA s0, k
+  LUI a2, 1
+  ADDIW t0, t0, -707
+  ADDIW a2, a2, -706
+  SW t0, 0(s0)
+  ADD a1, zero, zero
+  ADD t2, zero, zero
+  ADD t1, zero, zero
   ADDI a0, zero, 112
-  ADD s1, zero, zero
-  ADD s2, zero, zero
-  ADD s3, zero, zero
+  SW a2, 0(s0)
   # implict jump to bb1
-bb1:
-  ADDI s0, zero, 88
-  SUBW s0, a0, s0
-  SLTI s4, s0, 1000
-  BNE s4, zero, bb6
+bb1:   # loop depth 1
+  ADDIW t0, a0, -88
+  SLTI a2, t0, 1000
+  BNE a2, zero, bb6
   # implict jump to bb2
-bb2:
-  ADD a0, s0, zero
+bb2:   # loop depth 1
+  ADD a0, t0, zero
   # implict jump to bb3
-bb3:
-  ADDI s0, zero, 10
-  BLT s0, a0, bb5
+bb3:   # loop depth 1
+  ADDI t0, zero, 10
+  BLT t0, a0, bb5
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   CALL putint
-  LA t0, k
-  LW a0, 0(t0)
+  LW a0, 0(s0)
   LD ra, 0(sp)
   LD s0, 8(sp)
-  LD s1, 16(sp)
-  LD s2, 24(sp)
-  LD s3, 32(sp)
-  LD s4, 40(sp)
-  ADDI sp, sp, 48
+  ADDI sp, sp, 16
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 1
   JAL zero, bb1
-bb6:
+bb6:   # loop depth 1
   ADDIW a0, a0, -76
-  ADDI s3, zero, 11
-  ADDI s2, zero, 11
-  ADDI s1, zero, 10
+  ADDI t1, zero, 10
+  ADDI t2, zero, 11
+  ADDI a1, zero, 11
   JAL zero, bb3

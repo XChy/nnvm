@@ -25,8 +25,8 @@ Examples:
   python3 test.py -e if -E performance
     Test files whose paths match 'if' but don't match 'performance'.
 
-  python3 test.py -O2 -bdriscv64 -e 'unary' -e '\d+_if'
-    Test files whose paths match 'unary' or '\d+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
+  python3 test.py -O2 -bdriscv64 -e 'unary' -e \\d'+_if'
+    Test files whose paths match 'unary' or 'r'\\d'+_if' with O2 optimization and brief output in differential testing mode where guest program running on riscv64.'''
 
 import subprocess
 import tempfile
@@ -37,10 +37,12 @@ import sys
 import getopt
 from concurrent.futures import ProcessPoolExecutor
 import hashlib
+import shutil
 
 
 TEST_DIR = path.dirname(path.abspath(__file__))
 ROOT_DIR = path.dirname(path.dirname(TEST_DIR))
+CSMITH_GENERATED_DIR = path.join(TEST_DIR, 'Csmith')
 NNVM = path.join(ROOT_DIR, 'build', 'compiler')
 SYLIB_RV = path.join(ROOT_DIR, 'build', 'libsylib.a')
 SYLIB_X86 = path.join(ROOT_DIR, 'build', 'x86-64libsy.o')
@@ -54,7 +56,7 @@ LLC = 'llc'
 QEMU = 'qemu-riscv64'
 CSMITH = 'csmith'
 
-COMPILING_TIME_LIMIT = 1200
+COMPILING_TIME_LIMIT = 120
 RUNNING_TIME_LIMIT = 60
 
 brief_mode = False
@@ -85,11 +87,11 @@ class ExecutionException(Exception):
 # helper functions of execute()
 
 def __run(subproc_arglist: list):
-  if verbose_mode:
+    if verbose_mode:
+        return subprocess.run(
+            subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
     return subprocess.run(
-        subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
-  return subprocess.run(
-      subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
+        subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
 
 
 def execute(subproc_arglists: list, input_text: str):
@@ -113,22 +115,21 @@ def execute(subproc_arglists: list, input_text: str):
     raise ExecutionException('LINKAGE FAILED', stderr=err.stderr)
   except subprocess.TimeoutExpired as err:
     raise ExecutionException('LINKAGE TIME OUT', stderr=err.stderr)
-
   try:
-    # run the executable
-    completed = subprocess.run(
-        subproc_arglists[3],
-        input=input_text, capture_output=True, text=True,
-        encoding='UTF-8', timeout=RUNNING_TIME_LIMIT)
-    if len(completed.stdout) == 0:
-      return str(completed.returncode)
-    else:
-      actual = completed.stdout
-      if actual.endswith('\n'):
-        actual = actual[:-1]
-      return f'{actual}\n{completed.returncode}'
+      # run the executable
+      completed = subprocess.run(
+          subproc_arglists[3],
+          input=input_text, capture_output=True, text=True,
+          encoding='UTF-8', timeout=RUNNING_TIME_LIMIT, errors='ignore')
+      if len(completed.stdout) == 0:
+          return str(completed.returncode)
+      else:
+          actual = completed.stdout
+          if actual.endswith('\n'):
+              actual = actual[:-1]
+          return f'{actual}\n{completed.returncode}'
   except subprocess.TimeoutExpired as err:
-    raise ExecutionException('TIME OUT', stderr=err.stderr)
+      raise ExecutionException('TIME OUT', stderr=err.stderr)
 
 
 # helper functions of test()
@@ -161,9 +162,10 @@ def __choose_host_arglists(src: str, tmp_files: dict):
   HOST_ARGLISTS_NORMAL = [
       [NNVM, src, f'-O{optimization_level}',
        '--backend', 'riscv', '-o', tmp_files['asm'].name],
-      [GCC_RV, '-c', tmp_files['asm'].name, '-o', tmp_files['obj'].name],
+      [GCC_RV, '-march=rv64gc', '-c', tmp_files['asm'].name,
+          '-o', tmp_files['obj'].name],
       [GCC_RV, tmp_files['obj'].name, SYLIB_RV, '-o', tmp_files['out'].name],
-      [QEMU, '-L', '/usr/riscv64-linux-gnu',
+      [QEMU, '-L', '/usr/riscv64-linux-gnu', '-cpu', 'rv64,zba=true,zbb=true',
        tmp_files['out'].name, 'console=ttyS0'],
   ]
   HOST_ARGLISTS_FRONTEND = [
@@ -188,13 +190,14 @@ def __choose_guest_arglists(src: str, tmp_files: dict):
       [GCC_RV, '-c', tmp_files['asm'].name, '-o', tmp_files['obj'].name],
       [GCC_RV, '-fcommon', '-include', f'{SYLIB_HDR}',
        tmp_files['obj'].name, SYLIB_RV, '-o', tmp_files['out'].name],
-      [QEMU, '-L', '/usr/riscv64-linux-gnu',
+      [QEMU, '-L', '/usr/riscv64-linux-gnu', '-cpu', 'rv64,zba=true,zbb=true',
        tmp_files['out'].name, 'console=ttyS0'],
   ]
   GUEST_ARGLISTS_X86_64 = [
       [GCC_X86, '-x', 'c', '-fcommon', '-include', f'{SYLIB_HDR}', f'-O{optimization_level}',
        '-ffp-contract=off', '-fsingle-precision-constant', src, '-S', '-o', tmp_files['asm'].name],
-      [GCC_X86, '-c', tmp_files['asm'].name, '-o', tmp_files['obj'].name],
+      [GCC_X86, '-c', tmp_files['asm'].name, '-o',
+       tmp_files['obj'].name],
       [GCC_X86, '-fcommon', '-include', f'{SYLIB_HDR}',
        tmp_files['obj'].name, SYLIB_X86, '-o', tmp_files['out'].name],
       [tmp_files['out'].name]
@@ -294,32 +297,34 @@ def __init_opaque_pointers():
 
 
 def __init_random():
-  global random_mode
-  random_mode = True
-  completed = subprocess.run(
-      [CSMITH, '--no-pointers', '--quiet', '--no-packed-struct', '--no-unions', '--no-volatiles', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators'], capture_output=True, text=True, encoding='UTF-8')
-  with open(CSMITH_HDR, 'r') as f:
-    csmith_hdr = f.read()
-  code = completed.stdout.replace(
-      '#include "csmith.h"', csmith_hdr).replace(
-      '#define NO_LONGLONG', '').replace(
-      'static ', '').replace(
-      '(void)', '()').replace(
-      'int print_hash_value = 0', 'int print_hash_value = 1').replace(
-      'printf("index = [%d]\\n", ', 'putdim(').replace(
-      'printf("index = [%d][%d]\\n", ', 'putdim2(').replace(
-      'printf("index = [%d][%d][%d]\\n", ', 'putdim3(')
-  code = re.sub(r'(?:(?:const )?u?int(8|16|32|64)_t|long)', 'int', code)
-  code = re.sub(r'\b(0[Xx][\dA-Fa-f]+|0[0-7]+|\d+)[UuLl]+\b', r'\1', code)
-  code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
-  code = re.sub(
-      r'(transparent_crc\([^, ]+, )[^, ]+, ([^, ]+\))', r'\1\2', code)
-  code = re.sub(
-      r'(transparent_crc_bytes\()[^, ]+, [^, ]+, [^, ]+, ([^, ]+\))', r'\1\2', code)
-  with tempfile.NamedTemporaryFile(
-          suffix='.sy', prefix='csmith-', delete=False) as f:
-    f.write(code.encode())
-    random_sources.append(f.name)
+    global random_mode
+    random_mode = True
+    completed = subprocess.run(
+        [CSMITH, '--no-pointers', '--quiet', '--no-structs', '--no-unions', '--no-volatile-pointers', '--no-const-pointers', '--no-builtins', '--no-jumps', '--no-bitfields', '--no-argc', '--no-structs', '--output', '/dev/stdout', '--no-longlong', '--no-uint8', '--no-math64', '--no-comma-operators', '--no-bitfields', '--no-volatiles', '--max-funcs', '10'], capture_output=True, text=True, encoding='UTF-8', errors='ignore')
+    with open(CSMITH_HDR, 'r') as f:
+        csmith_hdr = f.read()
+    code = completed.stdout.replace(
+        '#include "csmith.h"', csmith_hdr).replace(
+        '#define NO_LONGLONG', '').replace(
+        'static ', '').replace(
+        '(void)', '()').replace(
+        'int print_hash_value = 0', 'int print_hash_value = 1').replace(
+        'printf("index = [%d]\\n", ', 'putdim(').replace(
+        'printf("index = [%d][%d]\\n", ', 'putdim2(').replace(
+        'printf("index = [%d][%d][%d]\\n", ', 'putdim3(').replace(
+            'volatile', ''
+        )
+    code = re.sub(r'(?:(?:const )?u?int(8|16|32|64)_t|long)', 'int', code)
+    code = re.sub(r'\b(0[Xx][\dA-Fa-f]+|0[0-7]+|\d+)[UuLl]+\b', r'\1', code)
+    code = re.sub(r'(print_hash\()[^, ]+, ([^, ]+\))', r'\1\2', code)
+    code = re.sub(
+        r'(transparent_crc\([^, ]+, )[^, ]+, ([^, ]+\))', r'\1\2', code)
+    code = re.sub(
+        r'(transparent_crc_bytes\()[^, ]+, [^, ]+, [^, ]+, ([^, ]+\))', r'\1\2', code)
+    with tempfile.NamedTemporaryFile(
+            suffix='.sy', prefix='csmith-', delete=False) as f:
+        f.write(code.encode())
+        random_sources.append(f.name)
 
 
 def __init_verbose():
@@ -394,12 +399,14 @@ def __test_src(src: str):
   if not brief_mode:
     print(f'Running on {path.basename(src)}')
   result = test(src, tmp_files)
+  if random_mode and not result:
+    shutil.copy(src, CSMITH_GENERATED_DIR)
   for file in tmp_files.values():
     try:
       os.remove(file.name)
     except FileNotFoundError:
       if verbose_mode:
-        print('A file to remove not found.')
+        print('A temporary file to remove not found.')
   return result
 
 

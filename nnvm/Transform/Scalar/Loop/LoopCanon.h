@@ -1,5 +1,6 @@
 /**
- * Loop-Canon: canonicalize loop, insert preheaders.
+ * Loop-Canon: canonicalize loop, insert preheaders, and split new dedicated
+ * exit.
  */
 
 #pragma once

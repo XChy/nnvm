@@ -5,22 +5,26 @@ global ptr d init with i32 0
 global ptr a init with i32 0
 i32 main() {
 entry:  pred()
+  d.pinned = pin ptr @d
+  c.pinned = pin ptr @c
+  b.pinned = pin ptr @b
+  a.pinned = pin ptr @a
   2 = call i32 getint()
-  store i32 %2 to ptr @a
+  store i32 %2 to ptr %a.pinned
   4 = call i32 getint()
-  store i32 %4 to ptr @b
+  store i32 %4 to ptr %b.pinned
   6 = call i32 getint()
-  store i32 %6 to ptr @c
+  store i32 %6 to ptr %c.pinned
   8 = call i32 getint()
-  store i32 %8 to ptr @d
+  store i32 %8 to ptr %d.pinned
   10 = call i32 getint()
   store i32 %10 to ptr @e
-  a.load12 = load i32 from ptr @a
-  b.load13 = load i32 from ptr @b
-  c.load14 = load i32 from ptr @c
+  a.load12 = load i32 from ptr %a.pinned
+  b.load13 = load i32 from ptr %b.pinned
+  c.load14 = load i32 from ptr %c.pinned
   15 = mul i32 %b.load13, i32 %c.load14
   16 = sub i32 %a.load12, i32 %15
-  d.load17 = load i32 from ptr @d
+  d.load17 = load i32 from ptr %d.pinned
   20 = sdiv i32 %a.load12, i32 %c.load14
   21 = sub i32 %d.load17, i32 %20
   22 = icmp ne i32 %16, i32 %21
@@ -34,7 +38,7 @@ select.else:  pred(entry)
   35 = icmp eq i32 %31, i32 %34
   br bb %select.exit
 select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 %35, bb %select.then, i1 -1]
+  select.phi = phi [bb %select.else, i1 %35, bb %select.then, i1 1]
   br i1 %select.phi, bb %select.then38, bb %select.else39
 select.then38:  pred(select.exit)
   br bb %select.exit40
@@ -45,13 +49,9 @@ select.else39:  pred(select.exit)
   50 = icmp eq i32 %46, i32 %49
   br bb %select.exit40
 select.exit40:  pred(select.then38, select.else39)
-  select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 -1]
-  br i1 %select41.phi, bb %then, bb %if.exit
-then:  pred(select.exit40)
-  br bb %if.exit
-if.exit:  pred(select.exit40, then)
-  flag.phi = phi [bb %select.exit40, i32 0, bb %then, i32 1]
-  ret i32 %flag.phi
+  select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 1]
+  61 = zext i1 %select41.phi to i32
+  ret i32 %61
 }
 
 external void putfarray(i32 , ptr )

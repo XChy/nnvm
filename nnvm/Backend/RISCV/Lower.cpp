@@ -1,4 +1,5 @@
 #include "Lower.h"
+#include "Analysis/LoopAnalysis.h"
 #include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/LowIR/Builder.h"
@@ -71,7 +72,9 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
     // TODO: variadic?
     if (Function *F = mayCast<Function>(CI->getCallee())) {
-      LIRInst *lowered = LIRInst::create(CALL, F->getArguments().size() + 1);
+      bool hasRet = !F->getReturnType()->isVoid();
+      uint argNum = F->getArguments().size();
+      LIRInst *lowered = LIRInst::create(CALL, 1 + argNum + hasRet);
       lowered->setUse(0, funcMap[F]);
 
       StackSlot *outgoingArgFrame = lowFunc->allocStackSlot();
@@ -79,7 +82,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
 
       uint outgoingArgSize = 0;
 
-      for (int i = 1; i < CI->getOperandNum(); i++) {
+      for (uint i = 1; i < 1 + argNum; i++) {
         auto argVReg = defMap[CI->getOperand(i)];
 
         if (argVReg->isFP() && !availableArgFPR.empty()) {
@@ -95,8 +98,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
           builder.copy(argVReg->as<Register>(), argReg);
           lowered->setUse(i, argReg);
         } else {
-          uint64_t align = argVReg->bytes();
-          outgoingArgSize = (outgoingArgSize + align - 1) / align * align;
+          outgoingArgSize = alignWith(outgoingArgSize, argVReg->bytes());
           Register *pointerReg = builder.newVRegForPtr();
           builder.addInst(LIRInst::create(
               ADD, pointerReg, outgoingArgFrame,
@@ -108,16 +110,18 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
         }
       }
 
-      outgoingArgSize = (outgoingArgSize + getFrameAlign() - 1) /
-                        getFrameAlign() * getFrameAlign();
+      outgoingArgSize = alignWith(outgoingArgSize, getFrameAlign());
       outgoingArgFrame->setSize(outgoingArgSize);
 
       emit(lowered);
 
-      if (!F->getReturnType()->isVoid()) {
-        builder.copy(builder.phyReg(F->getReturnType()->isFloat() ? FA0 : A0),
-                     defMap[I]->as<Register>());
+      if (hasRet) {
+        Register *retReg;
+        retReg = builder.phyReg(F->getReturnType()->isFloat() ? FA0 : A0);
+        lowered->setDef(1 + argNum, retReg);
+        builder.copy(retReg, defMap[I]->as<Register>());
       }
+
       return;
     }
     nnvm_unreachable("Not implemented");
@@ -384,12 +388,30 @@ void LowerHelper::lower(Module &module, LIRModule &lowered) {
 
   LIRBuilder builder(lowered);
   for (auto &[func, lowFunc] : funcMap) {
+    assignDepth(*func);
     // Lower basic blocks.
     for (BasicBlock *BB : *func) {
       LIRBB *lowBB = BBMap[BB];
+      lowBB->setLoopDepth(loopDepth.count(BB) ? loopDepth[BB] : 0);
+
       builder.setInsertPoint(lowBB->end());
       for (Instruction *I : *BB)
         lowerInst(lowFunc, I, builder);
+    }
+  }
+}
+
+void LowerHelper::assignDepth(Function &F) {
+  if (F.isExternal())
+    return;
+
+  LoopAnalysis loopAnalysis;
+  loopAnalysis.run(F);
+
+  for (Loop *loop : loopAnalysis.getLoops()) {
+    for (BasicBlock *block : loop->getBlocks()) {
+      if (!loopDepth.count(block))
+        loopDepth[block] = loop->getDepth();
     }
   }
 }

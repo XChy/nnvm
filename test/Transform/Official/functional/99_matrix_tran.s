@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global main
 .section .bss
 
@@ -11,131 +12,104 @@ L:
 M:
 .word 0x00000000
 .section .text
-main:
-  ADDI sp, sp, -192
-  SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
-  FSD fs2, 32(sp)
-  LA a0, N
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  LA a0, M
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
+main:   # loop depth 0
+  ADDI sp, sp, -80
+  SD ra, 56(sp)
+  SD s0, 64(sp)
+  SD s1, 72(sp)
+  LA s1, N
+  LA t1, M
+  ADDI t0, zero, 3
+  ADDI a1, zero, 1
   LA a0, L
-  ADDI s0, zero, 3
-  SW s0, 0(a0)
-  ADDI a0, zero, 0
-  FCVT.S.W fs0, a0
-  FSW fs0, 40(sp)
-  FSW fs0, 56(sp)
-  FSW fs0, 72(sp)
-  FSW fs0, 88(sp)
-  FSW fs0, 104(sp)
-  FSW fs0, 120(sp)
-  ADDI a0, zero, 1
-  FCVT.S.W fs1, a0
-  FSW fs1, 44(sp)
-  FSW fs1, 60(sp)
-  FSW fs1, 76(sp)
-  FSW fs1, 92(sp)
-  FSW fs1, 108(sp)
-  FSW fs1, 124(sp)
-  ADDI a0, zero, 2
-  FCVT.S.W fs2, a0
-  FSW fs2, 48(sp)
-  FSW fs2, 64(sp)
-  FSW fs2, 80(sp)
-  FSW fs2, 96(sp)
-  FSW fs2, 112(sp)
-  FSW fs2, 128(sp)
-  FSW fs1, 168(sp)
-  FSW fs2, 180(sp)
-  FSW fs0, 140(sp)
-  FSW fs0, 144(sp)
-  FSW fs1, 160(sp)
-  FSW fs2, 176(sp)
-  FSW fs1, 164(sp)
-  FSW fs2, 184(sp)
-  FSW fs0, 136(sp)
-  ADDI a0, zero, 1
-  BNE a0, zero, bb10
+  ADDI t2, zero, 3
+  SW t0, 0(s1)
+  FCVT.S.W ft1, a1
+  ADDI t0, zero, 3
+  SW t2, 0(t1)
+  SW t0, 0(a0)
+  ADDI t0, zero, 2
+  FSW ft1, 24(sp)
+  FCVT.S.W ft2, t0
+  ADDI t0, zero, 0
+  ADDI t1, zero, 1
+  FCVT.S.W ft0, t0
+  FSW ft2, 4(sp)
+  FSW ft0, 36(sp)
+  FSW ft0, 40(sp)
+  FSW ft1, 16(sp)
+  FSW ft2, 0(sp)
+  FSW ft1, 20(sp)
+  FSW ft2, 8(sp)
+  FSW ft0, 32(sp)
+  BNE t1, zero, bb10
   # implict jump to bb1
-bb1:
+bb1:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
-  LA a0, N
-  LW a0, 0(a0)
-  BLT zero, a0, bb7
+  LW t0, 0(s1)
+  BLT zero, t0, bb7
   # implict jump to bb2
-bb2:
+bb2:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
-  LA a0, N
-  LW a0, 0(a0)
-  BLT zero, a0, bb4
+  LW t0, 0(s1)
+  BLT zero, t0, bb4
   # implict jump to bb3
-bb3:
+bb3:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADD a0, zero, zero
-  LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
-  FLD fs2, 32(sp)
-  ADDI sp, sp, 192
+  LD ra, 56(sp)
+  LD s0, 64(sp)
+  LD s1, 72(sp)
+  ADDI sp, sp, 80
   JALR zero, 0(ra)
-bb4:
+bb4:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb5
-bb5:
-  SLLIW a0, s0, 2
-  ADDI t6, sp, 176
-  ADD a0, t6, a0
-  FLW fs0, 0(a0)
-  FCVT.W.S a0, fs0, rtz
-  CALL putint
+bb5:   # loop depth 1
+  SLLIW t0, s0, 2
   ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb6
+  ADDI t6, sp, 0
+  ADD t0, t6, t0
+  FLW ft0, 0(t0)
+  FCVT.W.S a0, ft0, rtz
+  CALL putint
+  LW t0, 0(s1)
+  BLT s0, t0, bb6
   JAL zero, bb3
-bb6:
+bb6:   # loop depth 1
   JAL zero, bb5
-bb7:
+bb7:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb8
-bb8:
-  SLLIW a0, s0, 2
-  ADDI t6, sp, 160
-  ADD a0, t6, a0
-  FLW fs0, 0(a0)
-  FCVT.W.S a0, fs0, rtz
-  CALL putint
+bb8:   # loop depth 1
+  SLLIW t0, s0, 2
   ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb9
+  ADDI t6, sp, 16
+  ADD t0, t6, t0
+  FLW ft0, 0(t0)
+  FCVT.W.S a0, ft0, rtz
+  CALL putint
+  LW t0, 0(s1)
+  BLT s0, t0, bb9
   JAL zero, bb2
-bb9:
+bb9:   # loop depth 1
   JAL zero, bb8
-bb10:
+bb10:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb11
-bb11:
-  SLLIW a0, s0, 2
-  ADDI t6, sp, 136
-  ADD a0, t6, a0
-  FLW fs0, 0(a0)
-  FCVT.W.S a0, fs0, rtz
-  CALL putint
+bb11:   # loop depth 1
+  SLLIW t0, s0, 2
   ADDIW s0, s0, 1
-  LA a0, N
-  LW a0, 0(a0)
-  BLT s0, a0, bb12
+  ADDI t6, sp, 32
+  ADD t0, t6, t0
+  FLW ft0, 0(t0)
+  FCVT.W.S a0, ft0, rtz
+  CALL putint
+  LW t0, 0(s1)
+  BLT s0, t0, bb12
   JAL zero, bb1
-bb12:
+bb12:   # loop depth 1
   JAL zero, bb11

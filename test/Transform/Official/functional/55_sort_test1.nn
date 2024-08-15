@@ -12,7 +12,8 @@ external i32 getfarray(ptr )
 i32 main() {
 entry62:  pred()
   %a = stack 40
-  store i32 10 to ptr @n
+  n.pinned = pin ptr @n
+  store i32 10 to ptr %n.pinned
   store i32 4 to ptr %a
   69 = ptradd ptr %a, i32 4
   store i32 3 to ptr %69
@@ -33,59 +34,60 @@ entry62:  pred()
   93 = ptradd ptr %a, i32 36
   store i32 8 to ptr %93
   br bb %bubblesort.while.body
-while.body99_preheader:  pred(bubblesort.while.exit)
+while.body99_preheader:  pred(bubblesort.while.body_exclu_exit)
   br bb %while.body99
 while.body99:  pred(while.body99, while.body99_preheader)
-  i95.phi187 = phi [bb %while.body99, i32 %118, bb %while.body99_preheader, i32 0]
-  127 = shl i32 %i95.phi187, i32 2
-  109 = ptradd ptr %a, i32 %127
+  i95.phi200 = phi [bb %while.body99, i32 %118, bb %while.body99_preheader, i32 0]
+  188 = shl i32 %i95.phi200, i32 2
+  109 = ptradd ptr %a, i32 %188
   109.load = load i32 from ptr %109
   call void putint(i32 %109.load)
   call void putch(i32 10)
-  118 = add i32 %i95.phi187, i32 1
-  n.load102 = load i32 from ptr @n
+  118 = add i32 %i95.phi200, i32 1
+  n.load102 = load i32 from ptr %n.pinned
   103 = icmp slt i32 %118, i32 %n.load102
   br i1 %103, bb %while.body99, bb %while.exit100
-while.exit100:  pred(while.body99, bubblesort.while.exit)
+while.exit100:  pred(bubblesort.while.body_exclu_exit, while.body99)
   ret i32 0
 bubblesort.while.body:  pred(bubblesort.while.exit15, entry62)
-  i.phi139191 = phi [bb %bubblesort.while.exit15, i32 %61167, bb %entry62, i32 0]
-  tmp.phi126138190 = phi [bb %bubblesort.while.exit15, i32 %tmp.phi126138182, bb %entry62, i32 0]
-  19152179 = sub i32 10, i32 %i.phi139191
-  20153180 = sub i32 %19152179, i32 1
-  21154181 = icmp slt i32 0, i32 %20153180
-  br i1 %21154181, bb %bubblesort.while.body14_preheader, bb %bubblesort.while.exit15
-bubblesort.while.exit:  pred(bubblesort.while.exit15)
-  br i1 -1, bb %while.body99_preheader, bb %while.exit100
+  i.phi141204 = phi [bb %bubblesort.while.exit15, i32 %61169, bb %entry62, i32 0]
+  tmp.phi126140203 = phi [bb %bubblesort.while.exit15, i32 %tmp.phi126140195, bb %entry62, i32 0]
+  19154192 = sub i32 10, i32 %i.phi141204
+  129155193 = add i32 %19154192, i32 -1
+  21156194 = icmp slt i32 0, i32 %129155193
+  br i1 %21156194, bb %bubblesort.while.body14_preheader, bb %bubblesort.while.exit15
 bubblesort.while.body14_preheader:  pred(bubblesort.while.body)
   br bb %bubblesort.while.body14
 bubblesort.while.body14:  pred(bubblesort.if.exit, bubblesort.while.body14_preheader)
-  j.phi150184 = phi [bb %bubblesort.if.exit, i32 %28160, bb %bubblesort.while.body14_preheader, i32 0]
-  tmp.phi125149183 = phi [bb %bubblesort.if.exit, i32 %tmp.phi176, bb %bubblesort.while.body14_preheader, i32 %tmp.phi126138190]
-  128157 = shl i32 %j.phi150184, i32 2
-  25158 = ptradd ptr %a, i32 %128157
-  25.load159 = load i32 from ptr %25158
-  28160 = add i32 %j.phi150184, i32 1
-  129161 = shl i32 %28160, i32 2
-  30162 = ptradd ptr %a, i32 %129161
-  30.load163 = load i32 from ptr %30162
-  32164 = icmp sgt i32 %25.load159, i32 %30.load163
-  br i1 %32164, bb %bubblesort.then, bb %bubblesort.if.exit
-bubblesort.while.exit15:  pred(bubblesort.if.exit, bubblesort.while.body)
-  tmp.phi126138182 = phi [bb %bubblesort.if.exit, i32 %tmp.phi176, bb %bubblesort.while.body, i32 %tmp.phi126138190]
-  61167 = add i32 %i.phi139191, i32 1
-  10142 = icmp slt i32 %61167, i32 9
-  br i1 %10142, bb %bubblesort.while.body, bb %bubblesort.while.exit
+  j.phi152197 = phi [bb %bubblesort.if.exit, i32 %28162, bb %bubblesort.while.body14_preheader, i32 0]
+  tmp.phi125151196 = phi [bb %bubblesort.if.exit, i32 %tmp.phi178, bb %bubblesort.while.body14_preheader, i32 %tmp.phi126140203]
+  189 = shl i32 %j.phi152197, i32 2
+  25160 = ptradd ptr %a, i32 %189
+  25.load161 = load i32 from ptr %25160
+  28162 = add i32 %j.phi152197, i32 1
+  187 = ptradd ptr %25160, i32 4
+  30.load165 = load i32 from ptr %187
+  32166 = icmp sgt i32 %25.load161, i32 %30.load165
+  br i1 %32166, bb %bubblesort.then, bb %bubblesort.if.exit
+bubblesort.while.exit15:  pred(bubblesort.while.body, bubblesort.while.body14_exclu_exit)
+  tmp.phi126140195 = phi [bb %bubblesort.while.body14_exclu_exit, i32 %tmp.phi178, bb %bubblesort.while.body, i32 %tmp.phi126140203]
+  61169 = add i32 %i.phi141204, i32 1
+  10144 = icmp slt i32 %61169, i32 9
+  br i1 %10144, bb %bubblesort.while.body, bb %bubblesort.while.body_exclu_exit
 bubblesort.then:  pred(bubblesort.while.body14)
-  40.load170 = load i32 from ptr %30162
-  49.load171 = load i32 from ptr %25158
-  store i32 %49.load171 to ptr %30162
-  store i32 %40.load170 to ptr %25158
+  40.load172 = load i32 from ptr %187
+  49.load173 = load i32 from ptr %25160
+  store i32 %49.load173 to ptr %187
+  store i32 %40.load172 to ptr %25160
   br bb %bubblesort.if.exit
 bubblesort.if.exit:  pred(bubblesort.while.body14, bubblesort.then)
-  tmp.phi176 = phi [bb %bubblesort.while.body14, i32 %tmp.phi125149183, bb %bubblesort.then, i32 %40.load170]
-  21154 = icmp slt i32 %28160, i32 %20153180
-  br i1 %21154, bb %bubblesort.while.body14, bb %bubblesort.while.exit15
+  tmp.phi178 = phi [bb %bubblesort.while.body14, i32 %tmp.phi125151196, bb %bubblesort.then, i32 %40.load172]
+  21156 = icmp slt i32 %28162, i32 %129155193
+  br i1 %21156, bb %bubblesort.while.body14, bb %bubblesort.while.body14_exclu_exit
+bubblesort.while.body14_exclu_exit:  pred(bubblesort.if.exit)
+  br bb %bubblesort.while.exit15
+bubblesort.while.body_exclu_exit:  pred(bubblesort.while.exit15)
+  br i1 1, bb %while.body99_preheader, bb %while.exit100
 }
 
 external float getfloat()

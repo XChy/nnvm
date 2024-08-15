@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global findSmallest
 .global main
 .section .bss
@@ -6,169 +7,123 @@ array:
 .section .data
 
 .section .text
-findSmallest:
-  ADDI sp, sp, -96
+findSmallest:   # loop depth 0
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s7, 8(sp)
-  SD s8, 16(sp)
-  SD s9, 24(sp)
-  SD s10, 32(sp)
-  SD s0, 40(sp)
-  SD s1, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
-  SD s5, 80(sp)
-  SD s6, 88(sp)
-  ADD s6, a1, zero
-  ADD s7, a2, zero
-  ADD s8, a3, zero
-  XOR s0, a0, s6
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb19
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  BEQ a0, a1, bb19
   # implict jump to bb1
-bb1:
-  SLLIW s0, s6, 2
-  LA s1, array
-  ADD s0, s1, s0
-  LW s10, 0(s0)
-  BLT a0, s6, bb12
+bb1:   # loop depth 0
+  LA s0, array
+  ADDIW t0, a0, 1
+  SLLIW t1, a0, 2
+  SH2ADD a4, a1, s0
+  LW a5, 0(a4)
+  BLT a0, a1, bb12
   # implict jump to bb2
-bb2:
-  ADD s1, a0, zero
+bb2:   # loop depth 0
+  ADD s2, a0, zero
   # implict jump to bb3
-bb3:
-  SLLIW s2, s1, 2
-  LA s3, array
-  ADD s2, s3, s2
-  LW s3, 0(s2)
-  LW s4, 0(s0)
-  SW s4, 0(s2)
-  SW s3, 0(s0)
-  XOR s0, s7, s1
-  SLTIU s0, s0, 1
-  BNE s0, zero, bb8
+bb3:   # loop depth 0
+  ADD t1, s0, t1
+  LW t2, 0(t1)
+  LW a5, 0(a4)
+  SW a5, 0(t1)
+  SW t2, 0(a4)
+  BEQ a2, s2, bb8
   # implict jump to bb4
-bb4:
-  BLT s7, s1, bb7
+bb4:   # loop depth 0
+  BLT a2, s2, bb7
   # implict jump to bb5
-bb5:
-  ADDIW a0, s1, 1
-  ADD a1, s6, zero
-  ADD a2, s7, zero
-  ADD a3, s8, zero
+bb5:   # loop depth 0
+  ADD a0, t0, zero
   CALL findSmallest
   # implict jump to bb6
-bb6:
+bb6:   # loop depth 0
   LD ra, 0(sp)
-  LD s7, 8(sp)
-  LD s8, 16(sp)
-  LD s9, 24(sp)
-  LD s10, 32(sp)
-  LD s0, 40(sp)
-  LD s1, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  LD s5, 80(sp)
-  LD s6, 88(sp)
-  ADDI sp, sp, 96
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb7:
-  ADDI a1, zero, 1
-  SUBW a1, s1, a1
-  ADD a2, s7, zero
-  ADD a3, s8, zero
+bb7:   # loop depth 0
+  ADDIW a1, s2, -1
   CALL findSmallest
   JAL zero, bb6
-bb8:
-  ADDI a0, zero, 0
-  BLT a0, s1, bb9
+bb8:   # loop depth 0
+  ADDI t0, zero, 0
+  BLT t0, s2, bb9
   JAL zero, bb6
-bb9:
-  ADD s0, zero, zero
+bb9:   # loop depth 0
+  ADD s1, zero, zero
   # implict jump to bb10
-bb10:
-  SLLIW a0, s0, 2
-  LA s2, array
-  ADD a0, s2, a0
-  LW a0, 0(a0)
+bb10:   # loop depth 1
+  SH2ADD t0, s1, s0
+  ADDIW s1, s1, 1
+  LW a0, 0(t0)
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADDIW s0, s0, 1
-  BLT s0, s1, bb11
+  BLT s1, s2, bb11
   JAL zero, bb6
-bb11:
+bb11:   # loop depth 1
   JAL zero, bb10
-bb12:
-  ADD s1, a0, zero
+bb12:   # loop depth 0
+  ADD t2, a0, zero
   ADD s2, a0, zero
   # implict jump to bb13
-bb13:
-  SLLIW s3, s2, 2
-  LA s4, array
-  ADD s3, s4, s3
-  LW s4, 0(s3)
-  SLT s4, s10, s4
-  XORI s4, s4, 1
-  BNE s4, zero, bb18
+bb13:   # loop depth 1
+  SH2ADD a6, t2, s0
+  LW a7, 0(a6)
+  BGE a5, a7, bb18
   # implict jump to bb14
-bb14:
+bb14:   # loop depth 1
   # implict jump to bb15
-bb15:
-  ADDIW s2, s2, 1
-  BLT s2, s6, bb17
+bb15:   # loop depth 1
+  ADDIW t2, t2, 1
+  ADDIW t0, s2, 1
+  SLLIW t1, s2, 2
+  BLT t2, a1, bb17
   # implict jump to bb16
-bb16:
+bb16:   # loop depth 0
   JAL zero, bb3
-bb17:
+bb17:   # loop depth 1
   JAL zero, bb13
-bb18:
-  LW s4, 0(s3)
-  SLLIW s5, s1, 2
-  LA s9, array
-  ADD s5, s9, s5
-  LW s9, 0(s5)
-  SW s9, 0(s3)
-  SW s4, 0(s5)
-  ADDIW s1, s1, 1
+bb18:   # loop depth 1
+  LW a7, 0(a6)
+  ADD t1, s0, t1
+  ADD s2, t0, zero
+  LW t0, 0(t1)
+  SW t0, 0(a6)
+  SW a7, 0(t1)
   JAL zero, bb15
-bb19:
+bb19:   # loop depth 0
   LD ra, 0(sp)
-  LD s7, 8(sp)
-  LD s8, 16(sp)
-  LD s9, 24(sp)
-  LD s10, 32(sp)
-  LD s0, 40(sp)
-  LD s1, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  LD s5, 80(sp)
-  LD s6, 88(sp)
-  ADDI sp, sp, 96
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
-main:
+main:   # loop depth 0
   ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  SD s4, 40(sp)
-  CALL getint
-  ADD s1, a0, zero
   CALL getint
   ADD s2, a0, zero
-  BLT zero, s1, bb22
+  CALL getint
+  ADD s3, a0, zero
+  BLT zero, s2, bb22
   # implict jump to bb21
-bb21:
-  ADDI a0, zero, 1
-  SUBW a1, s1, a0
+bb21:   # loop depth 0
+  ADDIW a1, s2, -1
+  ADD a3, s2, zero
+  ADD a2, s3, zero
   ADD a0, zero, zero
-  ADD a2, s2, zero
-  ADD a3, s1, zero
   CALL findSmallest
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -176,21 +131,19 @@ bb21:
   LD s1, 16(sp)
   LD s2, 24(sp)
   LD s3, 32(sp)
-  LD s4, 40(sp)
   ADDI sp, sp, 48
   JALR zero, 0(ra)
-bb22:
+bb22:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb23
-bb23:
-  SLLIW s3, s0, 2
-  LA s4, array
-  ADD s4, s4, s3
+bb23:   # loop depth 1
+  LA s1, array
   CALL getint
-  ADD s3, a0, zero
-  SW s3, 0(s4)
-  ADDIW s0, s0, 1
-  BLT s0, s1, bb24
+  ADDIW t0, s0, 1
+  SH2ADD t1, s0, s1
+  SW a0, 0(t1)
+  BLT t0, s2, bb24
   JAL zero, bb21
-bb24:
+bb24:   # loop depth 1
+  ADD s0, t0, zero
   JAL zero, bb23

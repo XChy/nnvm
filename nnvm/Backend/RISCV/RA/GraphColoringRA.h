@@ -6,6 +6,7 @@
 // =======================================================
 
 #include "Backend/RISCV/Analysis/LivenessAnalysis.h"
+#include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/Info/Register.h"
 #include "Backend/RISCV/LowIR.h"
 #include "Backend/RISCV/RegisterAllocator.h"
@@ -16,14 +17,6 @@
 #include <unordered_set>
 
 namespace nnvm::riscv {
-
-struct CompareReg {
-  bool operator()(Register *A, Register *B) const {
-    // return A < B;
-    //  FIXME: bug
-    return A->getRegId() > B->getRegId();
-  }
-};
 
 struct PairHash {
   template <class T1, class T2>
@@ -36,7 +29,7 @@ struct PairHash {
 
 class GraphColoringRAImpl {
 public:
-  GraphColoringRAImpl(std::vector<Register *> const &freeRegs,
+  GraphColoringRAImpl(const std::vector<Register *> &freeRegs,
                       Register *classReg);
   void allocate(LIRFunc &func);
 
@@ -78,10 +71,10 @@ private:
 
   std::set<Register *> precolored;
   std::unordered_set<Register *> initial;
-  std::set<Register *, CompareReg> simplifyWorklist;
-  std::set<Register *, CompareReg> freezeWorklist;
-  std::set<Register *, CompareReg> spillWorklist;
-  std::set<Register *, CompareReg> spilledNodes;
+  RegSet simplifyWorklist;
+  RegSet freezeWorklist;
+  RegSet spillWorklist;
+  RegSet spilledNodes;
   std::unordered_set<Register *> coalescedNodes;
   std::unordered_set<Register *> coloredNodes;
 

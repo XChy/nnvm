@@ -10,7 +10,8 @@
       GEN(MULHSU), GEN(MULHU), GEN(DIV), GEN(DIVW), GEN(DIVU), GEN(DIVUW),     \
       GEN(REM), GEN(REMW), GEN(REMU), GEN(REMUW), GEN(SLL), GEN(SLLW),         \
       GEN(SLT), GEN(SLTU), GEN(XOR), GEN(SRL), GEN(SRLW), GEN(SRA), GEN(SRAW), \
-      GEN(OR), GEN(AND)
+      GEN(OR), GEN(AND), GEN(SH1ADD), GEN(SH2ADD), GEN(SH3ADD), GEN(MIN),      \
+      GEN(MAX), GEN(MINU), GEN(MAXU)
 
 #define MAKE_IFORMAT(GEN)                                                      \
   GEN(JALR), GEN(LB), GEN(LH), GEN(LW), GEN(LBU), GEN(LD), GEN(LHU),           \

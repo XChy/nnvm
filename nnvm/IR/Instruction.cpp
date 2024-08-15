@@ -45,14 +45,30 @@ Value *Instruction::getOperand(uint no) const {
 
 // Consistent with LLVM.
 static std::unordered_map<InstID, std::string> binOpNameTable = {
-    {InstID::Add, "add"},       {InstID::Sub, "sub"},   {InstID::Mul, "mul"},
-    {InstID::And, "and"},       {InstID::Or, "or"},     {InstID::Xor, "xor"},
-    {InstID::Shl, "shl"},       {InstID::AShr, "ashr"}, {InstID::LShr, "lshr"},
-    {InstID::UDiv, "udiv"},     {InstID::SDiv, "sdiv"}, {InstID::URem, "urem"},
-    {InstID::SRem, "srem"},     {InstID::FAdd, "fadd"}, {InstID::FSub, "fsub"},
-    {InstID::FMul, "fmul"},     {InstID::FDiv, "fdiv"}, {InstID::FRem, "frem"},
+    {InstID::Add, "add"},
+    {InstID::Sub, "sub"},
+    {InstID::Mul, "mul"},
+    {InstID::And, "and"},
+    {InstID::Or, "or"},
+    {InstID::Xor, "xor"},
+    {InstID::Shl, "shl"},
+    {InstID::AShr, "ashr"},
+    {InstID::LShr, "lshr"},
+    {InstID::UDiv, "udiv"},
+    {InstID::SDiv, "sdiv"},
+    {InstID::URem, "urem"},
+    {InstID::SRem, "srem"},
+    {InstID::FAdd, "fadd"},
+    {InstID::FSub, "fsub"},
+    {InstID::FMul, "fmul"},
+    {InstID::FDiv, "fdiv"},
+    {InstID::SMin, "signed min"},
+    {InstID::SMax, "signed max"},
+    {InstID::UMin, "unsigned min"},
+    {InstID::UMax, "unsigned max"},
     {InstID::PtrAdd, "ptradd"},
 };
+
 static std::unordered_map<InstID, std::string> unaryOpTable = {
     {InstID::ZExt, "zext"}, {InstID::SExt, "sext"}, {InstID::F2SI, "f2si"},
     {InstID::F2UI, "f2ui"}, {InstID::SI2F, "si2f"}, {InstID::UI2F, "ui2f"},
@@ -90,7 +106,7 @@ bool Instruction::haveSideEffect() const {
 }
 
 bool Instruction::moveable() const {
-  return !(mayWriteToMemory() || isa<TerminatorInst>() || isa<PhiInst>());
+  return !(mayWriteToMemory() || isa<TerminatorInst>() || isa<PhiNode>());
 }
 
 std::string Instruction::dump() {
@@ -146,6 +162,14 @@ std::string Instruction::dump() {
       ret += "br ";
       ret += join(operandDump.begin(), operandDump.end(), ", ");
       break;
+    case InstID::WhichOf:
+      ret += "which ";
+      ret += getOperand(0)->dumpAsOperand();
+      ret += " of ";
+      ret += getOperand(1)->dumpAsOperand();
+      ret += ", ";
+      ret += getOperand(2)->dumpAsOperand();
+      break;
     case InstID::FNeg:
       ret += "fneg ";
       ret += getOperand(0)->dumpAsOperand();
@@ -181,6 +205,11 @@ Instruction *Instruction::copyWithName() {
 void Instruction::moveTo(BasicBlock *otherBB) {
   removeFromBB();
   otherBB->end().insertBefore(this);
+}
+
+void Instruction::moveBeforeTerm(BasicBlock *otherBB) {
+  removeFromBB();
+  otherBB->termEnd().insertBefore(this);
 }
 
 Instruction::~Instruction() {
@@ -235,6 +264,32 @@ std::string ICmpInst::getPredName(Predicate p) {
   return "none";
 }
 
+ICmpInst::Predicate ICmpInst::invertPred(Predicate pred) {
+  switch (pred) {
+  case EQ:
+    return NE;
+  case NE:
+    return EQ;
+  case SLT:
+    return SGE;
+  case SLE:
+    return SGT;
+  case SGT:
+    return SLE;
+  case SGE:
+    return SLT;
+  case ULT:
+    return UGE;
+  case ULE:
+    return UGT;
+  case UGT:
+    return ULE;
+  case UGE:
+    return ULT;
+  }
+  nnvm_unimpl();
+}
+
 std::string FCmpInst::getPredName(Predicate p) {
   switch (p) {
   case OEQ:
@@ -277,19 +332,26 @@ void CallInst::setArguments(const std::vector<Value *> &args) {
   setOperands(operands);
 }
 
-void PhiInst::addIncoming(BasicBlock *incomingBB, Value *incomingValue) {
+std::vector<Value *> CallInst::collectArgs() const {
+  std::vector<Value *> args;
+  for (uint i = 0; i < getArgNum(); i++)
+    args.push_back(getArg(i));
+  return args;
+}
+
+void PhiNode::addIncoming(BasicBlock *incomingBB, Value *incomingValue) {
   addOperand(incomingBB);
   addOperand(incomingValue);
 }
 
-void PhiInst::setIncomingValue(BasicBlock *incomingBB, Value *incomingValue) {
+void PhiNode::setIncomingValue(BasicBlock *incomingBB, Value *incomingValue) {
   for (size_t i = 0; i < getOperandNum(); i += 2)
     if (getOperand(i) == incomingBB)
       setOperand(i + 1, incomingValue);
   nnvm_unreachable("Not found incoming")
 }
 
-void PhiInst::removeIncoming(BasicBlock *incomingBB) {
+void PhiNode::removeIncoming(BasicBlock *incomingBB) {
   std::vector<Value *> newIncomings;
 
   for (size_t i = 0; i < getOperandNum(); i += 2) {
@@ -302,31 +364,31 @@ void PhiInst::removeIncoming(BasicBlock *incomingBB) {
   setOperands(newIncomings);
 }
 
-void PhiInst::setIncomingBB(uint64_t index, BasicBlock *incomingBB) {
+void PhiNode::setIncomingBB(uint64_t index, BasicBlock *incomingBB) {
   setOperand(index * 2, incomingBB);
 }
-void PhiInst::setIncomingValue(uint64_t index, Value *incomingValue) {
+void PhiNode::setIncomingValue(uint64_t index, Value *incomingValue) {
   setOperand(index * 2 + 1, incomingValue);
 }
 
-void PhiInst::replaceIncoming(BasicBlock *original, BasicBlock *current) {
+void PhiNode::replaceIncoming(BasicBlock *original, BasicBlock *current) {
   for (uint64_t i = 0; i < getIncomingNum(); i++)
     if (getIncomingBB(i) == original)
       setIncomingBB(i, current);
 }
 
-BasicBlock *PhiInst::getIncomingBB(uint64_t index) const {
+BasicBlock *PhiNode::getIncomingBB(uint64_t index) const {
   return cast<BasicBlock>(getOperand(2 * index));
 }
 
-Value *PhiInst::getIncomingValueOf(BasicBlock *incoming) const {
+Value *PhiNode::getIncomingValueOf(BasicBlock *incoming) const {
   for (size_t i = 0; i < getOperandNum(); i += 2)
     if (getOperand(i) == incoming)
       return getOperand(i + 1);
   return nullptr;
 }
 
-std::vector<BasicBlock *> PhiInst::getAllIncomingBBs() const {
+std::vector<BasicBlock *> PhiNode::getAllIncomingBBs() const {
   std::vector<BasicBlock *> ret;
   for (uint64_t i = 0; i < getIncomingNum(); i++)
     ret.push_back(getIncomingBB(i));

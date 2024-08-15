@@ -8,10 +8,11 @@ namespace nnvm::riscv {
 
 class LowerHelper {
 public:
-  void lowerInst(LIRFunc *lowFunc, Instruction *I,
-                 LIRBuilder& builder);
+  void lowerInst(LIRFunc *lowFunc, Instruction *I, LIRBuilder &builder);
 
   void mapAll(Module &module);
+
+  void assignDepth(Function& F);
 
   /**
    * Lower the MIR module to a LIR module
@@ -26,6 +27,7 @@ private:
   std::unordered_map<Value *, LIRValue *> defMap;
   std::unordered_map<Function *, LIRFunc *> funcMap;
   std::unordered_map<BasicBlock *, LIRBB *> BBMap;
+  std::unordered_map<BasicBlock *, uint> loopDepth;
   LIRModule *lowModule;
 };
 

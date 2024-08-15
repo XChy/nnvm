@@ -22,7 +22,7 @@ bool CFGCombinerPass::run(Function &F) {
 
       if (BB->getPredNum() == 0) {
         for (Use *U : incChange(BB->users())) {
-          if (auto *phi = mayCast<PhiInst>(U->getUser()))
+          if (auto *phi = mayCast<PhiNode>(U->getUser()))
             phi->removeIncoming(BB);
           else
             nnvm_unimpl();
@@ -43,8 +43,7 @@ bool CFGCombinerPass::processBB(BasicBlock *BB) {
   if (BranchInst *BI = mayCast<BranchInst>(BB->getTerminator())) {
     if (!BI->isConditional())
       return foldBBWithUncondBr(BB, BI);
-
-    if (BI->isConditional())
+    else
       return foldBBWithCondBr(BB, BI);
   }
   return false;
@@ -83,13 +82,12 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
     if (BB->getPredNum() != 1)
       return false;
     BasicBlock *pred = *BB->getPredBegin();
+    // if (pred->isPredecessorOf(succ))
     if (pred->getSuccNum() != 1)
       return false;
     // Those jump from pred to BB, now jump from pred to succ directly.
     TerminatorInst *TI = pred->getTerminator();
-    for (int i = 0; i < TI->getSuccNum(); i++)
-      if (TI->getSucc(i) == BB)
-        TI->setSucc(i, succ);
+    TI->replaceOps(SingleMapper(BB, succ));
 
     // Replace BB in phis with pred.
     BB->replaceSelf(pred);
@@ -115,7 +113,7 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
 
     BasicBlock *unlinked = constCond->getValue() ? falseSucc : trueSucc;
     for (Instruction *I : *unlinked)
-      if (PhiInst *phi = mayCast<PhiInst>(I))
+      if (PhiNode *phi = mayCast<PhiNode>(I))
         phi->removeIncoming(BB);
       else
         break;
@@ -144,10 +142,13 @@ bool CFGCombinerPass::foldBBWithCondBr(BasicBlock *BB, BranchInst *BI) {
 
 bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
                                  BasicBlock *trueSucc, BasicBlock *falseSucc) {
+  Value *cond = BI->getCondition();
   BasicBlock *destBB = nullptr;
   BasicBlock *trueIncoming = nullptr;
   BasicBlock *falseIncoming = nullptr;
-  bool changed = false;
+  constexpr uint maxInstAtBranch = 3;
+
+  // Match if - else pattern.
   if (trueSucc->getSuccNum() == 1 && trueSucc->getSucc(0) == falseSucc) {
     trueIncoming = trueSucc;
     falseIncoming = BB;
@@ -165,33 +166,78 @@ bool CFGCombinerPass::foldIfElse(BasicBlock *BB, BranchInst *BI,
     }
   }
 
-  if (!destBB || destBB == BB)
+  if (!destBB || destBB == BB || destBB->getPredNum() != 2)
     return false;
 
-  // for (auto *I : incChange(*destBB)) {
-  // PhiInst *phi = mayCast<PhiInst>(I);
-  // if (!phi || phi->getIncomingNum() != 2)
-  // break;
-  // Value *trueValue = phi->getIncomingValueOf(trueIncoming);
-  // Value *falseValue = phi->getIncomingValueOf(falseIncoming);
-  // if (phi->getType()->isIntegerNBits(1)) {
-  // Value *newCond = nullptr;
-  // builder.insertAt(destBB->begin());
-  // if (match(trueValue, pattern::pOne())) {
-  // newCond = builder.buildBinOp<OrInst>(BI->getCondition(), falseValue,
-  // phi->getType());
-  //} else if (match(falseValue, pattern::pZero())) {
-  // newCond = builder.buildBinOp<AndInst>(BI->getCondition(), trueValue,
-  // phi->getType());
-  //} else {
-  // continue;
-  //}
+  if (trueSucc != destBB && trueSucc->getPredNum() != 1)
+    return false;
+  if (falseSucc != destBB && falseSucc->getPredNum() != 1)
+    return false;
 
-  // phi->replaceSelf(newCond);
-  // phi->eraseFromBB();
-  // changed = true;
-  //}
-  //}
+  // The successors have not sideeffect !!
+  auto containSideEffect = [&](BasicBlock *bb) -> bool {
+    if (bb == destBB)
+      return false;
+    return !std::none_of(bb->begin(), bb->termEnd(),
+                         [](Instruction *I) { return I->haveSideEffect(); });
+  };
 
-  return changed;
+  if (containSideEffect(trueSucc) || containSideEffect(falseSucc))
+    return false;
+
+  // Must be profitable !!
+  uint totalInstToMove =
+      (trueSucc != destBB ? trueSucc->getInsts().size() - 1 : 0) +
+      (falseSucc != destBB ? falseSucc->getInsts().size() - 1 : 0);
+
+  if (totalInstToMove > maxInstAtBranch)
+    return false;
+
+  // Check phis legality.
+  std::vector<PhiNode *> phis;
+  for (auto *I : incChange(*destBB)) {
+    PhiNode *phi = mayCast<PhiNode>(I);
+    if (!phi)
+      break;
+    if (phi->getIncomingNum() != 2)
+      return false;
+    phis.push_back(phi);
+  }
+
+  if (phis.empty() || phis.size() > 2)
+    return false;
+
+  // Replace phis with whichofs
+  builder.insertAt(destBB->normalBegin());
+  for (PhiNode *phi : phis) {
+    Value *trueValue = phi->getIncomingValueOf(trueIncoming);
+    Value *falseValue = phi->getIncomingValueOf(falseIncoming);
+
+    auto whichName = phi->getName() + ".which";
+    auto *which = builder.buildWhichOf(cond, trueValue, falseValue, whichName);
+
+    phi->replaceSelf(which);
+    phi->eraseFromBB();
+  }
+
+  // Move instruction in trueSucc and falseSucc into BB
+  auto moveInst = [&](BasicBlock *movedBlock) {
+    if (movedBlock == destBB)
+      return;
+    for (Instruction *I : incChange(*movedBlock)) {
+      if (I->isa<TerminatorInst>())
+        break;
+      I->removeFromBB();
+      BB->termEnd().insertBefore(I);
+    }
+  };
+
+  moveInst(trueSucc);
+  moveInst(falseSucc);
+
+  BB->getTerminator()->eraseFromBB();
+  builder.insertAt(BB->end());
+  builder.buildBr(destBB);
+
+  return true;
 }

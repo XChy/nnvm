@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Backend/RISCV/CodegenInfo.h"
 #include "Backend/RISCV/LowIR.h"
 #include <unordered_map>
 
@@ -15,18 +16,14 @@ public:
 
   void dumpLiveIns(LIRFunc &func, std::ostream &out);
 
-  std::unordered_map<LIRBB *, std::set<Register *>> getLiveIn() const {
-    return liveIn;
-  }
+  std::unordered_map<LIRBB *, RegSet> getLiveIn() const { return liveIn; }
 
-  std::unordered_map<LIRBB *, std::set<Register *>> getLiveOut() const {
-    return liveOut;
-  }
+  std::unordered_map<LIRBB *, RegSet> getLiveOut() const { return liveOut; }
 
 private:
-  std::unordered_map<LIRBB *, std::set<Register *>> liveIn;
-  std::unordered_map<LIRBB *, std::set<Register *>> liveOut;
-  std::unordered_map<LIRBB *, std::set<Register *>> useOf;
-  std::unordered_map<LIRBB *, std::set<Register *>> defOf;
+  std::unordered_map<LIRBB *, RegSet> liveIn;
+  std::unordered_map<LIRBB *, RegSet> liveOut;
+  std::unordered_map<LIRBB *, RegSet> useOf;
+  std::unordered_map<LIRBB *, RegSet> defOf;
 };
 } /* namespace nnvm::riscv */

@@ -11,10 +11,11 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry3240:  pred()
+  loopCount.pinned = pin ptr @loopCount
   3242 = call i32 getint()
-  store i32 %3242 to ptr @loopCount
+  store i32 %3242 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 121)
-  loopCount.load32604771 = load i32 from ptr @loopCount
+  loopCount.load32604771 = load i32 from ptr %loopCount.pinned
   2332614772 = icmp slt i32 0, i32 %loopCount.load32604771
   br i1 %2332614772, bb %func.while.body_preheader, bb %func.while.exit
 func.while.body_preheader:  pred(entry3240)
@@ -26,13 +27,15 @@ func.while.body:  pred(func.while.body, func.while.body_preheader)
   32354765 = srem i32 %32324764, i32 1500000001
   32384766 = add i32 %i.phi32594775, i32 1
   233261 = icmp slt i32 %32384766, i32 %loopCount.load32604771
-  br i1 %233261, bb %func.while.body, bb %func.while.exit
-func.while.exit:  pred(func.while.body, entry3240)
-  4773 = phi [bb %func.while.body, i32 %32354765, bb %entry3240, i32 0]
+  br i1 %233261, bb %func.while.body, bb %func.while.body_exclu_exit
+func.while.exit:  pred(entry3240, func.while.body_exclu_exit)
+  4773 = phi [bb %func.while.body_exclu_exit, i32 %32354765, bb %entry3240, i32 0]
   call void _sysy_stoptime(i32 123)
   call void putint(i32 %4773)
   call void putch(i32 10)
   ret i32 0
+func.while.body_exclu_exit:  pred(func.while.body)
+  br bb %func.while.exit
 }
 
 external float getfloat()

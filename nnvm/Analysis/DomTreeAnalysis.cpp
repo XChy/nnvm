@@ -3,6 +3,7 @@
 #include <Analysis/DomTreeAnalysis.h>
 #include <IR/Function.h>
 #include <algorithm>
+#include <queue>
 using namespace nnvm;
 
 bool DomTreeAnalysis::run(Function &F) {
@@ -22,8 +23,7 @@ bool DomTreeAnalysis::run(Function &F) {
   for (int currentDFN = preorderBBs.size() - 1; currentDFN >= 0; currentDFN--) {
     BasicBlock *BB = preorderBBs[currentDFN];
     sdom[currentDFN] = currentDFN;
-    for (auto it = BB->getPredBegin(); it != BB->getPredEnd(); it++) {
-      BasicBlock *pred = *it;
+    for (BasicBlock *pred : BB->getPredRange()) {
       int32_t predDFN = dfn[pred];
 
       if (predDFN < currentDFN) {
@@ -61,11 +61,46 @@ bool DomTreeAnalysis::run(Function &F) {
     domChildren[domer].push_back(domee);
   }
 
+  // Calculate dominator tree depth
+  std::queue<BasicBlock *> worklist;
+  worklist.push(F.getEntry());
+  domDepth[F.getEntry()] = 0;
+
+  while (!worklist.empty()) {
+    BasicBlock *cur = worklist.front();
+    worklist.pop();
+
+    if (domParent[cur])
+      domDepth[cur] = domDepth[domParent[cur]] + 1;
+
+    for (auto *child : domChildren[cur])
+      worklist.push(child);
+  }
+
   return true;
 }
 
 BasicBlock *DomTreeAnalysis::getCommonDom(BasicBlock *left, BasicBlock *right) {
-  nnvm_unimpl();
+  uint leftDepth = domDepth[left];
+  uint rightDepth = domDepth[right];
+  uint minDepth = std::min(leftDepth, rightDepth);
+
+  while (leftDepth != minDepth) {
+    left = domParent[left];
+    leftDepth--;
+  }
+
+  while (rightDepth != minDepth) {
+    right = domParent[right];
+    rightDepth--;
+  }
+
+  while (left != right) {
+    left = domParent[left];
+    right = domParent[right];
+  }
+
+  return left;
 }
 
 void DomTreeAnalysis::print(std::ostream &out) {

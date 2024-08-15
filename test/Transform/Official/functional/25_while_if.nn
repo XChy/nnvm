@@ -12,28 +12,37 @@ i32 main() {
 entry42:  pred()
   br bb %deepWhileBr.while.body
 deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
-  c.phi5465106 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5379, bb %entry42, i32 4]
-  e.phi5864105 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5778, bb %entry42, i32 0]
-  1969 = icmp slt i32 %c.phi5465106, i32 100
-  br i1 %1969, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
-deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
-  call void putint(i32 %c.phi5379)
-  ret i32 0
+  c.phi5466105 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5380, bb %entry42, i32 4]
+  e.phi5865104 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5779, bb %entry42, i32 0]
+  1970 = icmp slt i32 %c.phi5466105, i32 100
+  br i1 %1970, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.then:  pred(deepWhileBr.while.body)
-  2574 = add i32 %c.phi5465106, i32 42
-  2775 = icmp sgt i32 %2574, i32 99
-  br i1 %2775, bb %deepWhileBr.then28, bb %deepWhileBr.if.exit29
-deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.if.exit29)
-  e.phi5778 = phi [bb %deepWhileBr.while.body, i32 %e.phi5864105, bb %deepWhileBr.if.exit29, i32 %e.phi86]
-  c.phi5379 = phi [bb %deepWhileBr.while.body, i32 %c.phi5465106, bb %deepWhileBr.if.exit29, i32 %c.phi5287]
-  1466 = icmp slt i32 %c.phi5379, i32 75
-  br i1 %1466, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
-deepWhileBr.then28:  pred(deepWhileBr.then)
-  br bb %deepWhileBr.if.exit29
-deepWhileBr.if.exit29:  pred(deepWhileBr.then, deepWhileBr.then28)
-  e.phi86 = phi [bb %deepWhileBr.then, i32 %e.phi5864105, bb %deepWhileBr.then28, i32 84]
-  c.phi5287 = phi [bb %deepWhileBr.then, i32 %2574, bb %deepWhileBr.then28, i32 168]
+  2575 = add i32 %c.phi5466105, i32 42
+  2776 = icmp sgt i32 %2575, i32 99
+  br i1 1, bb %c.phi.which85.true, bb %deepWhileBr.then.split
+deepWhileBr.then.split:  pred(deepWhileBr.then, c.phi.which85.true)
+  112 = phi [bb %c.phi.which85.true, i32 168, bb %deepWhileBr.then, i32 %2575]
+  br i1 %2776, bb %e.phi88.which.true, bb %deepWhileBr.then.split.split
+deepWhileBr.then.split.split:  pred(deepWhileBr.then.split, e.phi88.which.true)
+  115 = phi [bb %e.phi88.which.true, i32 84, bb %deepWhileBr.then.split, i32 %e.phi5865104]
+  br i1 %2776, bb %c.phi5289.which.true, bb %deepWhileBr.then.split.split.split
+deepWhileBr.then.split.split.split:  pred(deepWhileBr.then.split.split, c.phi5289.which.true)
+  118 = phi [bb %c.phi5289.which.true, i32 %112, bb %deepWhileBr.then.split.split, i32 %2575]
   br bb %deepWhileBr.if.exit
+deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.then.split.split.split)
+  e.phi5779 = phi [bb %deepWhileBr.while.body, i32 %e.phi5865104, bb %deepWhileBr.then.split.split.split, i32 %115]
+  c.phi5380 = phi [bb %deepWhileBr.while.body, i32 %c.phi5466105, bb %deepWhileBr.then.split.split.split, i32 %118]
+  1467 = icmp slt i32 %c.phi5380, i32 75
+  br i1 %1467, bb %deepWhileBr.while.body, bb %deepWhileBr.while.body_exclu_exit
+deepWhileBr.while.body_exclu_exit:  pred(deepWhileBr.if.exit)
+  call void putint(i32 %c.phi5380)
+  ret i32 0
+c.phi.which85.true:  pred(deepWhileBr.then)
+  br bb %deepWhileBr.then.split
+e.phi88.which.true:  pred(deepWhileBr.then.split)
+  br bb %deepWhileBr.then.split.split
+c.phi5289.which.true:  pred(deepWhileBr.then.split.split)
+  br bb %deepWhileBr.then.split.split.split
 }
 
 external float getfloat()

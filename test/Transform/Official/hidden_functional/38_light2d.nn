@@ -1,31 +1,29 @@
 global ptr seed init with i32 0
 pure internal float my_sin_impl(float x) {
 entry70:  pred()
-  17600 = si2f i32 0 to float
-  18601 = fcmp ogt float %x, float %17600
-  br i1 %18601, bb %my_fabs.then19, bb %my_fabs.if.exit20
-entry70.split:  pred(my_fabs.then19, my_fabs.if.exit20)
-  73.ret = phi [bb %my_fabs.then19, float %x, bb %my_fabs.if.exit20, float %23606]
-  75 = fcmp ole float %73.ret, float 0.000001
+  17596 = si2f i32 0 to float
+  18597 = fcmp ogt float %x, float %17596
+  23602 = fneg float %x
+  br i1 %18597, bb %73.ret.which.true, bb %entry70.split1125
+entry70.split1125:  pred(entry70, 73.ret.which.true)
+  1127 = phi [bb %73.ret.which.true, float %x, bb %entry70, float %23602]
+  75 = fcmp ole float %1127, float 0.000001
   br i1 %75, bb %then76, bb %if.exit77
-then76:  pred(entry70.split)
+then76:  pred(entry70.split1125)
   ret float %x
-if.exit77:  pred(entry70.split)
+if.exit77:  pred(entry70.split1125)
   80 = fdiv float %x, float 3.000000
   81 = call float my_sin_impl(float %80)
-  60489 = si2f i32 3 to float
-  61490 = fmul float %60489, float %81
-  63491 = si2f i32 4 to float
-  64492 = fmul float %63491, float %81
-  66493 = fmul float %64492, float %81
-  68494 = fmul float %66493, float %81
-  69495 = fsub float %61490, float %68494
-  ret float %69495
-my_fabs.then19:  pred(entry70)
-  br bb %entry70.split
-my_fabs.if.exit20:  pred(entry70)
-  23606 = fneg float %x
-  br bb %entry70.split
+  60485 = si2f i32 3 to float
+  61486 = fmul float %60485, float %81
+  63487 = si2f i32 4 to float
+  64488 = fmul float %63487, float %81
+  66489 = fmul float %64488, float %81
+  68490 = fmul float %66489, float %81
+  69491 = fsub float %61486, float %68490
+  ret float %69491
+73.ret.which.true:  pred(entry70)
+  br bb %entry70.split1125
 }
 
 external i32 getint()
@@ -50,7 +48,9 @@ external void putfloat(float )
 
 internal void write_pgm() {
 entry294:  pred()
-  %ret451 = stack 8
+  %ret453 = stack 8
+  .pinned1118 = pin float 3.141593
+  .pinned = pin float 6.283185
   call void putch(i32 80)
   call void putch(i32 50)
   call void putch(i32 10)
@@ -60,238 +60,223 @@ entry294:  pred()
   call void putch(i32 32)
   call void putint(i32 255)
   call void putch(i32 10)
-  br bb %while.body308
-while.body308:  pred(while.exit317, entry294)
-  y.phi1160 = phi [bb %while.exit317, i32 %354, bb %entry294, i32 0]
-  327 = si2f i32 %y.phi1160 to float
+  275406 = si2f i32 24 to float
+  28496533937 = si2f i32 8 to float
+  35501538942 = si2f i32 4 to float
+  187915 = ptradd ptr %ret453, i32 4
+  269401 = si2f i32 100000006 to float
+  1371031 = si2f i32 2 to float
+  1381032 = fdiv float %.pinned1118, float %1371031
+  946081040 = fneg float %.pinned
+  1236241056 = fneg float %.pinned1118
   331 = si2f i32 192 to float
+  br bb %while.body308
+while.body308:  pred(while.body316_exclu_exit, entry294)
+  y.phi1091 = phi [bb %while.body316_exclu_exit, i32 %354, bb %entry294, i32 0]
+  .pinned1119 = pin float 0.000000
+  327 = si2f i32 %y.phi1091 to float
   336 = fdiv float %327, float %331
   br bb %while.body316
-while.exit309:  pred(while.exit317)
-  ret 
-while.body316:  pred(if.exit343, while.body308)
-  x.phi1156 = phi [bb %if.exit343, i32 %350, bb %while.body308, i32 0]
-  324 = si2f i32 %x.phi1156 to float
+while.body316:  pred(sample.while.body255_exclu_exit.split, while.body308)
+  x.phi1086 = phi [bb %sample.while.body255_exclu_exit.split, i32 %350, bb %while.body308, i32 0]
+  seed.pinned = pin ptr @seed
+  .pinned1121 = pin i32 100000007
+  324 = si2f i32 %x.phi1086 to float
   332 = fdiv float %324, float %331
   br bb %sample.while.body255
-while.exit317:  pred(if.exit343)
-  call void putch(i32 10)
-  354 = add i32 %y.phi1160, i32 1
-  312 = icmp slt i32 %354, i32 192
-  br i1 %312, bb %while.body308, bb %while.exit309
-then342:  pred(sample.while.exit256)
-  br bb %if.exit343
-if.exit343:  pred(sample.while.exit256, then342)
-  p.phi = phi [bb %sample.while.exit256, i32 %339, bb %then342, i32 255]
-  call void putint(i32 %p.phi)
-  call void putch(i32 32)
-  350 = add i32 %x.phi1156, i32 1
-  320 = icmp slt i32 %350, i32 192
-  br i1 %320, bb %while.body316, bb %while.exit317
 sample.while.body255:  pred(sample.while.body255.split, while.body316)
-  sum.phi3871148 = phi [bb %sample.while.body255.split, float %286403, bb %while.body316, float 0.000000]
-  i253.phi3861147 = phi [bb %sample.while.body255.split, i32 %289404, bb %while.body316, i32 0]
-  seed.load2749 = load i32 from ptr @seed
-  3750 = mul i32 %seed.load2749, i32 19980130
-  4751 = add i32 %3750, i32 23333
-  5752 = srem i32 %4751, i32 100000007
-  store i32 %5752 to ptr @seed
-  7754 = icmp slt i32 %5752, i32 0
-  br i1 %7754, bb %rand.then756, bb %rand.if.exit761
-sample.while.body255.split:  pred(trace.while.exit205467, trace.then235477)
-  285402.ret = phi [bb %trace.while.exit205467, float 0.000000, bb %trace.then235477, float %238.load479]
-  286403 = fadd float %sum.phi3871148, float %285402.ret
-  289404 = add i32 %i253.phi3861147, i32 1
-  259388 = icmp slt i32 %289404, i32 24
-  br i1 %259388, bb %sample.while.body255, bb %sample.while.exit256
-sample.while.exit256:  pred(sample.while.body255.split)
-  293408 = fdiv float %286403, float %275398
-  338 = fmul float %293408, float 255.000000
+  sum.phi3951077 = phi [bb %sample.while.body255.split, float %286411, bb %while.body316, float %.pinned1119]
+  i253.phi3941076 = phi [bb %sample.while.body255.split, i32 %289412, bb %while.body316, i32 0]
+  seed.load2703 = load i32 from ptr %seed.pinned
+  3704 = mul i32 %seed.load2703, i32 19980130
+  4705 = add i32 %3704, i32 23333
+  5706 = srem i32 %4705, i32 %.pinned1121
+  store i32 %5706 to ptr %seed.pinned
+  7708 = icmp slt i32 %5706, i32 0
+  br i1 %7708, bb %rand.then710, bb %rand.if.exit715
+sample.while.body255.split:  pred(trace.while.exit205471, trace.then235473)
+  285410.ret = phi [bb %trace.while.exit205471, float %.pinned1119, bb %trace.then235473, float %238.load475]
+  286411 = fadd float %sum.phi3951077, float %285410.ret
+  289412 = add i32 %i253.phi3941076, i32 1
+  259396 = icmp slt i32 %289412, i32 24
+  br i1 %259396, bb %sample.while.body255, bb %sample.while.body255_exclu_exit
+trace.while.cond203455:  pred(my_sin.if.exit99671.split.split, trace.if.exit236477)
+  i.phi456 = phi [bb %my_sin.if.exit99671.split.split, i32 0, bb %trace.if.exit236477, i32 %248480]
+  t201.phi457 = phi [bb %my_sin.if.exit99671.split.split, float %.pinned1119, bb %trace.if.exit236477, float %245479]
+  208458 = icmp slt i32 %i.phi456, i32 10
+  215459 = fcmp olt float %t201.phi457, float 2.000000
+  388460 = and i1 %208458, i1 %215459
+  br i1 %388460, bb %trace.while.body204462, bb %trace.while.exit205471
+trace.while.body204462:  pred(trace.while.cond203455)
+  222463 = fmul float %1326281060, float %t201.phi457
+  223464 = fadd float %332, float %222463
+  227465 = fmul float %132680, float %t201.phi457
+  228466 = fadd float %336, float %227465
+  150522926 = fsub float %223464, float %.pinned1123
+  154523927 = fsub float %228466, float %.pinned1123
+  157524928 = fmul float %150522926, float %150522926
+  160525929 = fmul float %154523927, float %154523927
+  161526930 = fadd float %157524928, float %160525929
+  29497534938 = fdiv float %161526930, float %28496533937
+  30498535939 = fadd float %29497534938, float %.pinned1120
+  33500537941 = fmul float %1371031, float %161526930
+  36502539943 = fadd float %35501538942, float %161526930
+  37503540944 = fdiv float %33500537941, float %36502539943
+  38504541945 = fadd float %30498535939, float %37503540944
+  br bb %scene.circle_sdf.my_sqrt.while.body952
+trace.while.exit205471:  pred(trace.while.cond203455)
+  br bb %sample.while.body255.split
+trace.then235473:  pred(scene.if.exit180918)
+  238.load475 = load float from ptr %187915
+  br bb %sample.while.body255.split
+trace.if.exit236477:  pred(scene.if.exit180918)
+  245479 = fadd float %t201.phi457, float %231.load468
+  248480 = add i32 %i.phi456, i32 1
+  br bb %trace.while.cond203455
+my_sin.then98664:  pred(my_cos.my_sin.if.exit991051.split.split)
+  103665 = fdiv float %276407, float %.pinned
+  104666 = f2si float %103665 to i32
+  109667 = si2f i32 %104666 to float
+  110668 = fmul float %109667, float %.pinned
+  111669 = fsub float %276407, float %110668
+  br bb %my_sin.if.exit99671
+my_sin.if.exit99671:  pred(my_cos.my_sin.if.exit991051.split.split, my_sin.then98664)
+  x.stack84.phi369672 = phi [bb %my_cos.my_sin.if.exit991051.split.split, float %276407, bb %my_sin.then98664, float %111669]
+  .pinned1124 = pin float 0.600000
+  .pinned1123 = pin float 0.400000
+  .pinned1120 = pin float 0.500000
+  114673 = fcmp ogt float %x.stack84.phi369672, float %.pinned1118
+  120674 = fsub float %x.stack84.phi369672, float %.pinned
+  br i1 %114673, bb %x.stack84.phi368.which675.true, bb %my_sin.if.exit99671.split
+my_sin.if.exit99671.split:  pred(my_sin.if.exit99671, x.stack84.phi368.which675.true)
+  1130 = phi [bb %x.stack84.phi368.which675.true, float %120674, bb %my_sin.if.exit99671, float %x.stack84.phi369672]
+  124677 = fcmp olt float %1130, float %1236241056
+  130678 = fadd float %1130, float %.pinned
+  br i1 %124677, bb %x.stack84.phi.which679.true, bb %my_sin.if.exit99671.split.split
+my_sin.if.exit99671.split.split:  pred(my_sin.if.exit99671.split, x.stack84.phi.which679.true)
+  1133 = phi [bb %x.stack84.phi.which679.true, float %130678, bb %my_sin.if.exit99671.split, float %1130]
+  132680 = call float my_sin_impl(float %1133)
+  br bb %trace.while.cond203455
+rand.then710:  pred(sample.while.body255)
+  seed.load11711 = load i32 from ptr %seed.pinned
+  12712 = add i32 %seed.load11711, i32 %.pinned1121
+  store i32 %12712 to ptr %seed.pinned
+  br bb %rand.if.exit715
+rand.if.exit715:  pred(sample.while.body255, rand.then710)
+  seed.load13716 = load i32 from ptr %seed.pinned
+  263400 = si2f i32 %seed.load13716 to float
+  270402 = fdiv float %263400, float %269401
+  271403 = si2f i32 %i253.phi3941076 to float
+  272404 = fadd float %271403, float %270402
+  273405 = fmul float %.pinned, float %272404
+  276407 = fdiv float %273405, float %275406
+  1391033 = fadd float %276407, float %1381032
+  876071039 = fcmp ogt float %1391033, float %.pinned
+  956091041 = fcmp olt float %1391033, float %946081040
+  3896101042 = or i1 %876071039, i1 %956091041
+  br i1 %3896101042, bb %my_cos.my_sin.then981044, bb %my_cos.my_sin.if.exit991051
+scene.then179913:  pred(scene.circle_sdf.my_sqrt.while.body585987_exclu_exit)
+  store float %164530934 to ptr %ret453
+  store float 3.000000 to ptr %187915
+  br bb %scene.if.exit180918
+scene.if.exit180918:  pred(scene.then179913, scene.else920)
+  231.load468 = load float from ptr %ret453
+  234469 = fcmp olt float %231.load468, float 0.000001
+  br i1 %234469, bb %trace.then235473, bb %trace.if.exit236477
+scene.else920:  pred(scene.circle_sdf.my_sqrt.while.body585987_exclu_exit)
+  store float %164567969 to ptr %ret453
+  store float %.pinned1119 to ptr %187915
+  br bb %scene.if.exit180918
+scene.circle_sdf.my_sqrt.while.body952:  pred(scene.circle_sdf.my_sqrt.while.body952, trace.while.body204462)
+  t.phi5085459491071 = phi [bb %scene.circle_sdf.my_sqrt.while.body952, float %52514551955, bb %trace.while.body204462, float %38504541945]
+  c.phi5075449481070 = phi [bb %scene.circle_sdf.my_sqrt.while.body952, i32 %382515552956, bb %trace.while.body204462, i32 10]
+  49512549953 = fdiv float %161526930, float %t.phi5085459491071
+  50513550954 = fadd float %t.phi5085459491071, float %49512549953
+  52514551955 = fdiv float %50513550954, float %1371031
+  382515552956 = add i32 %c.phi5075449481070, i32 -1
+  44509546950 = icmp ne i32 %382515552956, i32 0
+  br i1 %44509546950, bb %scene.circle_sdf.my_sqrt.while.body952, bb %scene.circle_sdf.my_sqrt.while.body952_exclu_exit
+scene.circle_sdf.my_sqrt.while.body585987:  pred(scene.circle_sdf.my_sqrt.while.body585987, scene.circle_sdf.my_sqrt.while.body952_exclu_exit)
+  t.phi5085829841067 = phi [bb %scene.circle_sdf.my_sqrt.while.body585987, float %52514588990, bb %scene.circle_sdf.my_sqrt.while.body952_exclu_exit, float %38504578980]
+  c.phi5075819831066 = phi [bb %scene.circle_sdf.my_sqrt.while.body585987, i32 %382515589991, bb %scene.circle_sdf.my_sqrt.while.body952_exclu_exit, i32 10]
+  49512586988 = fdiv float %161563965, float %t.phi5085829841067
+  50513587989 = fadd float %t.phi5085829841067, float %49512586988
+  52514588990 = fdiv float %50513587989, float %1371031
+  382515589991 = add i32 %c.phi5075819831066, i32 -1
+  44509583985 = icmp ne i32 %382515589991, i32 0
+  br i1 %44509583985, bb %scene.circle_sdf.my_sqrt.while.body585987, bb %scene.circle_sdf.my_sqrt.while.body585987_exclu_exit
+my_cos.my_sin.then981044:  pred(rand.if.exit715)
+  1036131045 = fdiv float %1391033, float %.pinned
+  1046141046 = f2si float %1036131045 to i32
+  1096151047 = si2f i32 %1046141046 to float
+  1106161048 = fmul float %1096151047, float %.pinned
+  1116171049 = fsub float %1391033, float %1106161048
+  br bb %my_cos.my_sin.if.exit991051
+my_cos.my_sin.if.exit991051:  pred(rand.if.exit715, my_cos.my_sin.then981044)
+  x.stack84.phi3696201052 = phi [bb %rand.if.exit715, float %1391033, bb %my_cos.my_sin.then981044, float %1116171049]
+  1146211053 = fcmp ogt float %x.stack84.phi3696201052, float %.pinned1118
+  1206221054 = fsub float %x.stack84.phi3696201052, float %.pinned
+  br i1 %1146211053, bb %x.stack84.phi368.which6231055.true, bb %my_cos.my_sin.if.exit991051.split
+my_cos.my_sin.if.exit991051.split:  pred(my_cos.my_sin.if.exit991051, x.stack84.phi368.which6231055.true)
+  1136 = phi [bb %x.stack84.phi368.which6231055.true, float %1206221054, bb %my_cos.my_sin.if.exit991051, float %x.stack84.phi3696201052]
+  1246251057 = fcmp olt float %1136, float %1236241056
+  1306261058 = fadd float %1136, float %.pinned
+  br i1 %1246251057, bb %x.stack84.phi.which6271059.true, bb %my_cos.my_sin.if.exit991051.split.split
+my_cos.my_sin.if.exit991051.split.split:  pred(my_cos.my_sin.if.exit991051.split, x.stack84.phi.which6271059.true)
+  1139 = phi [bb %x.stack84.phi.which6271059.true, float %1306261058, bb %my_cos.my_sin.if.exit991051.split, float %1136]
+  1326281060 = call float my_sin_impl(float %1139)
+  87659 = fcmp ogt float %276407, float %.pinned
+  95661 = fcmp olt float %276407, float %946081040
+  389662 = or i1 %87659, i1 %95661
+  br i1 %389662, bb %my_sin.then98664, bb %my_sin.if.exit99671
+scene.circle_sdf.my_sqrt.while.body952_exclu_exit:  pred(scene.circle_sdf.my_sqrt.while.body952)
+  164530934 = fsub float %52514551955, float 0.100000
+  150559961 = fsub float %223464, float %.pinned1124
+  154560962 = fsub float %228466, float %.pinned1124
+  157561963 = fmul float %150559961, float %150559961
+  160562964 = fmul float %154560962, float %154560962
+  161563965 = fadd float %157561963, float %160562964
+  29497571973 = fdiv float %161563965, float %28496533937
+  30498572974 = fadd float %29497571973, float %.pinned1120
+  33500574976 = fmul float %1371031, float %161563965
+  36502576978 = fadd float %35501538942, float %161563965
+  37503577979 = fdiv float %33500574976, float %36502576978
+  38504578980 = fadd float %30498572974, float %37503577979
+  br bb %scene.circle_sdf.my_sqrt.while.body585987
+scene.circle_sdf.my_sqrt.while.body585987_exclu_exit:  pred(scene.circle_sdf.my_sqrt.while.body585987)
+  164567969 = fsub float %52514588990, float 0.050000
+  178911 = fcmp olt float %164530934, float %164567969
+  br i1 %178911, bb %scene.then179913, bb %scene.else920
+sample.while.body255_exclu_exit:  pred(sample.while.body255.split)
+  293416 = fdiv float %286411, float %275406
+  338 = fmul float %293416, float 255.000000
   339 = f2si float %338 to i32
   341 = icmp sgt i32 %339, i32 255
-  br i1 %341, bb %then342, bb %if.exit343
-trace.while.cond203453:  pred(my_sin.if.exit126724, trace.if.exit236481)
-  i.phi454 = phi [bb %my_sin.if.exit126724, i32 0, bb %trace.if.exit236481, i32 %248484]
-  t201.phi455 = phi [bb %my_sin.if.exit126724, float 0.000000, bb %trace.if.exit236481, float %245483]
-  208456 = icmp slt i32 %i.phi454, i32 10
-  br i1 %208456, bb %trace.select.then209469, bb %trace.select.else210472
-trace.while.body204458:  pred(trace.select.exit211474)
-  222459 = fmul float %1326461134, float %t201.phi455
-  223460 = fadd float %332, float %222459
-  227461 = fmul float %132726, float %t201.phi455
-  228462 = fadd float %336, float %227461
-  150526972 = fsub float %223460, float 0.400000
-  154527973 = fsub float %228462, float 0.400000
-  157528974 = fmul float %150526972, float %150526972
-  160529975 = fmul float %154527973, float %154527973
-  161530976 = fadd float %157528974, float %160529975
-  28500537983 = si2f i32 8 to float
-  29501538984 = fdiv float %161530976, float %28500537983
-  30502539985 = fadd float %29501538984, float 0.500000
-  33504541987 = fmul float %1371091, float %161530976
-  35505542988 = si2f i32 4 to float
-  36506543989 = fadd float %35505542988, float %161530976
-  37507544990 = fdiv float %33504541987, float %36506543989
-  38508545991 = fadd float %30502539985, float %37507544990
-  br bb %scene.circle_sdf.my_sqrt.while.body998
-trace.while.exit205467:  pred(trace.select.exit211474)
-  br bb %sample.while.body255.split
-trace.select.then209469:  pred(trace.while.cond203453)
-  215470 = fcmp olt float %t201.phi455, float 2.000000
-  br bb %trace.select.exit211474
-trace.select.else210472:  pred(trace.while.cond203453)
-  br bb %trace.select.exit211474
-trace.select.exit211474:  pred(trace.select.then209469, trace.select.else210472)
-  select212.phi475 = phi [bb %trace.select.else210472, i1 0, bb %trace.select.then209469, i1 %215470]
-  br i1 %select212.phi475, bb %trace.while.body204458, bb %trace.while.exit205467
-trace.then235477:  pred(scene.if.exit180964)
-  238478 = ptradd ptr %ret451, i32 4
-  238.load479 = load float from ptr %238478
-  br bb %sample.while.body255.split
-trace.if.exit236481:  pred(scene.if.exit180964)
-  245483 = fadd float %t201.phi455, float %231.load464
-  248484 = add i32 %i.phi454, i32 1
-  br bb %trace.while.cond203453
-my_sin.select.then693:  pred(my_cos.my_sin.if.exit1261132)
-  br bb %my_sin.select.exit699
-my_sin.select.else695:  pred(my_cos.my_sin.if.exit1261132)
-  94696 = fneg float 6.283185
-  95697 = fcmp olt float %276399, float %94696
-  br bb %my_sin.select.exit699
-my_sin.select.exit699:  pred(my_sin.select.then693, my_sin.select.else695)
-  select.phi700 = phi [bb %my_sin.select.else695, i1 %95697, bb %my_sin.select.then693, i1 -1]
-  br i1 %select.phi700, bb %my_sin.then98702, bb %my_sin.if.exit99709
-my_sin.then98702:  pred(my_sin.select.exit699)
-  103703 = fdiv float %276399, float 6.283185
-  104704 = f2si float %103703 to i32
-  109705 = si2f i32 %104704 to float
-  110706 = fmul float %109705, float 6.283185
-  111707 = fsub float %276399, float %110706
-  br bb %my_sin.if.exit99709
-my_sin.if.exit99709:  pred(my_sin.select.exit699, my_sin.then98702)
-  x.stack84.phi369710 = phi [bb %my_sin.select.exit699, float %276399, bb %my_sin.then98702, float %111707]
-  114711 = fcmp ogt float %x.stack84.phi369710, float 3.141593
-  br i1 %114711, bb %my_sin.then115713, bb %my_sin.if.exit116716
-my_sin.then115713:  pred(my_sin.if.exit99709)
-  120714 = fsub float %x.stack84.phi369710, float 6.283185
-  br bb %my_sin.if.exit116716
-my_sin.if.exit116716:  pred(my_sin.if.exit99709, my_sin.then115713)
-  x.stack84.phi368717 = phi [bb %my_sin.if.exit99709, float %x.stack84.phi369710, bb %my_sin.then115713, float %120714]
-  124719 = fcmp olt float %x.stack84.phi368717, float %1236381126
-  br i1 %124719, bb %my_sin.then125721, bb %my_sin.if.exit126724
-my_sin.then125721:  pred(my_sin.if.exit116716)
-  130722 = fadd float %x.stack84.phi368717, float 6.283185
-  br bb %my_sin.if.exit126724
-my_sin.if.exit126724:  pred(my_sin.if.exit116716, my_sin.then125721)
-  x.stack84.phi725 = phi [bb %my_sin.if.exit116716, float %x.stack84.phi368717, bb %my_sin.then125721, float %130722]
-  132726 = call float my_sin_impl(float %x.stack84.phi725)
-  br bb %trace.while.cond203453
-rand.then756:  pred(sample.while.body255)
-  seed.load11757 = load i32 from ptr @seed
-  12758 = add i32 %seed.load11757, i32 100000007
-  store i32 %12758 to ptr @seed
-  br bb %rand.if.exit761
-rand.if.exit761:  pred(sample.while.body255, rand.then756)
-  seed.load13762 = load i32 from ptr @seed
-  263392 = si2f i32 %seed.load13762 to float
-  269393 = si2f i32 100000006 to float
-  270394 = fdiv float %263392, float %269393
-  271395 = si2f i32 %i253.phi3861147 to float
-  272396 = fadd float %271395, float %270394
-  273397 = fmul float 6.283185, float %272396
-  275398 = si2f i32 24 to float
-  276399 = fdiv float %273397, float %275398
-  1371091 = si2f i32 2 to float
-  1381092 = fdiv float 3.141593, float %1371091
-  1391093 = fadd float %276399, float %1381092
-  876111099 = fcmp ogt float %1391093, float 6.283185
-  br i1 %876111099, bb %my_cos.my_sin.select.then1101, bb %my_cos.my_sin.select.else1103
-scene.then179959:  pred(scene.circle_sdf.my_sqrt.while.exit5951039)
-  store float %164534980 to ptr %ret451
-  187961 = ptradd ptr %ret451, i32 4
-  store float 3.000000 to ptr %187961
-  br bb %scene.if.exit180964
-scene.if.exit180964:  pred(scene.then179959, scene.else966)
-  231.load464 = load float from ptr %ret451
-  234465 = fcmp olt float %231.load464, float 0.000001
-  br i1 %234465, bb %trace.then235477, bb %trace.if.exit236481
-scene.else966:  pred(scene.circle_sdf.my_sqrt.while.exit5951039)
-  store float %1645711015 to ptr %ret451
-  194968 = ptradd ptr %ret451, i32 4
-  store float 0.000000 to ptr %194968
-  br bb %scene.if.exit180964
-scene.circle_sdf.my_sqrt.while.body998:  pred(scene.circle_sdf.my_sqrt.while.body998, trace.while.body204458)
-  t.phi5125499951144 = phi [bb %scene.circle_sdf.my_sqrt.while.body998, float %525185551001, bb %trace.while.body204458, float %38508545991]
-  c.phi5115489941143 = phi [bb %scene.circle_sdf.my_sqrt.while.body998, i32 %555195561002, bb %trace.while.body204458, i32 10]
-  49516553999 = fdiv float %161530976, float %t.phi5125499951144
-  505175541000 = fadd float %t.phi5125499951144, float %49516553999
-  525185551001 = fdiv float %505175541000, float %1371091
-  555195561002 = sub i32 %c.phi5115489941143, i32 1
-  44513550996 = icmp ne i32 %555195561002, i32 0
-  br i1 %44513550996, bb %scene.circle_sdf.my_sqrt.while.body998, bb %scene.circle_sdf.my_sqrt.while.exit1004
-scene.circle_sdf.my_sqrt.while.exit1004:  pred(scene.circle_sdf.my_sqrt.while.body998)
-  164534980 = fsub float %525185551001, float 0.100000
-  1505631007 = fsub float %223460, float 0.600000
-  1545641008 = fsub float %228462, float 0.600000
-  1575651009 = fmul float %1505631007, float %1505631007
-  1605661010 = fmul float %1545641008, float %1545641008
-  1615671011 = fadd float %1575651009, float %1605661010
-  295015751019 = fdiv float %1615671011, float %28500537983
-  305025761020 = fadd float %295015751019, float 0.500000
-  335045781022 = fmul float %1371091, float %1615671011
-  365065801024 = fadd float %35505542988, float %1615671011
-  375075811025 = fdiv float %335045781022, float %365065801024
-  385085821026 = fadd float %305025761020, float %375075811025
-  br bb %scene.circle_sdf.my_sqrt.while.body5891033
-scene.circle_sdf.my_sqrt.while.body5891033:  pred(scene.circle_sdf.my_sqrt.while.body5891033, scene.circle_sdf.my_sqrt.while.exit1004)
-  t.phi51258610301140 = phi [bb %scene.circle_sdf.my_sqrt.while.body5891033, float %525185921036, bb %scene.circle_sdf.my_sqrt.while.exit1004, float %385085821026]
-  c.phi51158510291139 = phi [bb %scene.circle_sdf.my_sqrt.while.body5891033, i32 %555195931037, bb %scene.circle_sdf.my_sqrt.while.exit1004, i32 10]
-  495165901034 = fdiv float %1615671011, float %t.phi51258610301140
-  505175911035 = fadd float %t.phi51258610301140, float %495165901034
-  525185921036 = fdiv float %505175911035, float %1371091
-  555195931037 = sub i32 %c.phi51158510291139, i32 1
-  445135871031 = icmp ne i32 %555195931037, i32 0
-  br i1 %445135871031, bb %scene.circle_sdf.my_sqrt.while.body5891033, bb %scene.circle_sdf.my_sqrt.while.exit5951039
-scene.circle_sdf.my_sqrt.while.exit5951039:  pred(scene.circle_sdf.my_sqrt.while.body5891033)
-  1645711015 = fsub float %525185921036, float 0.050000
-  178957 = fcmp olt float %164534980, float %1645711015
-  br i1 %178957, bb %scene.then179959, bb %scene.else966
-my_cos.my_sin.select.then1101:  pred(rand.if.exit761)
-  br bb %my_cos.my_sin.select.exit1107
-my_cos.my_sin.select.else1103:  pred(rand.if.exit761)
-  946161104 = fneg float 6.283185
-  956171105 = fcmp olt float %1391093, float %946161104
-  br bb %my_cos.my_sin.select.exit1107
-my_cos.my_sin.select.exit1107:  pred(my_cos.my_sin.select.then1101, my_cos.my_sin.select.else1103)
-  select.phi6201108 = phi [bb %my_cos.my_sin.select.else1103, i1 %956171105, bb %my_cos.my_sin.select.then1101, i1 -1]
-  br i1 %select.phi6201108, bb %my_cos.my_sin.then981110, bb %my_cos.my_sin.if.exit991117
-my_cos.my_sin.then981110:  pred(my_cos.my_sin.select.exit1107)
-  1036231111 = fdiv float %1391093, float 6.283185
-  1046241112 = f2si float %1036231111 to i32
-  1096251113 = si2f i32 %1046241112 to float
-  1106261114 = fmul float %1096251113, float 6.283185
-  1116271115 = fsub float %1391093, float %1106261114
-  br bb %my_cos.my_sin.if.exit991117
-my_cos.my_sin.if.exit991117:  pred(my_cos.my_sin.select.exit1107, my_cos.my_sin.then981110)
-  x.stack84.phi3696301118 = phi [bb %my_cos.my_sin.select.exit1107, float %1391093, bb %my_cos.my_sin.then981110, float %1116271115]
-  1146311119 = fcmp ogt float %x.stack84.phi3696301118, float 3.141593
-  br i1 %1146311119, bb %my_cos.my_sin.then1151121, bb %my_cos.my_sin.if.exit1161124
-my_cos.my_sin.then1151121:  pred(my_cos.my_sin.if.exit991117)
-  1206341122 = fsub float %x.stack84.phi3696301118, float 6.283185
-  br bb %my_cos.my_sin.if.exit1161124
-my_cos.my_sin.if.exit1161124:  pred(my_cos.my_sin.if.exit991117, my_cos.my_sin.then1151121)
-  x.stack84.phi3686371125 = phi [bb %my_cos.my_sin.if.exit991117, float %x.stack84.phi3696301118, bb %my_cos.my_sin.then1151121, float %1206341122]
-  1236381126 = fneg float 3.141593
-  1246391127 = fcmp olt float %x.stack84.phi3686371125, float %1236381126
-  br i1 %1246391127, bb %my_cos.my_sin.then1251129, bb %my_cos.my_sin.if.exit1261132
-my_cos.my_sin.then1251129:  pred(my_cos.my_sin.if.exit1161124)
-  1306421130 = fadd float %x.stack84.phi3686371125, float 6.283185
-  br bb %my_cos.my_sin.if.exit1261132
-my_cos.my_sin.if.exit1261132:  pred(my_cos.my_sin.if.exit1161124, my_cos.my_sin.then1251129)
-  x.stack84.phi6451133 = phi [bb %my_cos.my_sin.if.exit1161124, float %x.stack84.phi3686371125, bb %my_cos.my_sin.then1251129, float %1306421130]
-  1326461134 = call float my_sin_impl(float %x.stack84.phi6451133)
-  87691 = fcmp ogt float %276399, float 6.283185
-  br i1 %87691, bb %my_sin.select.then693, bb %my_sin.select.else695
+  br i1 %341, bb %p.phi.which.true, bb %sample.while.body255_exclu_exit.split
+sample.while.body255_exclu_exit.split:  pred(sample.while.body255_exclu_exit, p.phi.which.true)
+  1142 = phi [bb %p.phi.which.true, i32 255, bb %sample.while.body255_exclu_exit, i32 %339]
+  call void putint(i32 %1142)
+  call void putch(i32 32)
+  350 = add i32 %x.phi1086, i32 1
+  320 = icmp slt i32 %350, i32 192
+  br i1 %320, bb %while.body316, bb %while.body316_exclu_exit
+while.body316_exclu_exit:  pred(sample.while.body255_exclu_exit.split)
+  call void putch(i32 10)
+  354 = add i32 %y.phi1091, i32 1
+  312 = icmp slt i32 %354, i32 192
+  br i1 %312, bb %while.body308, bb %while.body308_exclu_exit
+while.body308_exclu_exit:  pred(while.body316_exclu_exit)
+  ret 
+x.stack84.phi368.which675.true:  pred(my_sin.if.exit99671)
+  br bb %my_sin.if.exit99671.split
+x.stack84.phi.which679.true:  pred(my_sin.if.exit99671.split)
+  br bb %my_sin.if.exit99671.split.split
+x.stack84.phi368.which6231055.true:  pred(my_cos.my_sin.if.exit991051)
+  br bb %my_cos.my_sin.if.exit991051.split
+x.stack84.phi.which6271059.true:  pred(my_cos.my_sin.if.exit991051.split)
+  br bb %my_cos.my_sin.if.exit991051.split.split
+p.phi.which.true:  pred(sample.while.body255_exclu_exit)
+  br bb %sample.while.body255_exclu_exit.split
 }
 
 external void putch(i32 )

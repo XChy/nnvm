@@ -12,4 +12,6 @@ struct LoopBoundInfo {
 
 std::optional<LoopBoundInfo> analyzeLoopBound(Loop *loop, SCEV *scev);
 
+bool isDefinedOutside(Value *value, Loop *loop);
+
 } /* namespace nnvm */

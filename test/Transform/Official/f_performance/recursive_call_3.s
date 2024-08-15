@@ -1,3 +1,4 @@
+.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zba1p0_zbb1p0"
 .global func
 .global main
 .section .bss
@@ -6,7 +7,7 @@
 .CONSTANT.7.0:
 .word 0x3f8020c5
 .section .text
-func:
+func:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
   SD s0, 8(sp)
@@ -14,15 +15,14 @@ func:
   FSGNJ.D fs0, fa0, fa0
   BLT a0, zero, bb2
   # implict jump to bb1
-bb1:
-  ADDI s0, zero, 1
-  SUBW s0, a0, s0
+bb1:   # loop depth 0
   FSGNJ.S fa0, fs0, fs0
+  ADDIW s0, a0, -1
   ADD a0, s0, zero
   CALL func
+  ADD a0, s0, zero
   FADD.S fs0, fs0, fa0
   FSGNJ.S fa0, fs0, fs0
-  ADD a0, s0, zero
   CALL func
   FSUB.S fa0, fs0, fa0
   LD ra, 0(sp)
@@ -30,47 +30,43 @@ bb1:
   FLD fs0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb2:
+bb2:   # loop depth 0
   FCVT.S.W fa0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   FLD fs0, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-main:
+main:   # loop depth 0
   ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  FSD fs0, 16(sp)
-  FSD fs1, 24(sp)
+  FSD fs0, 8(sp)
+  FSD fs1, 16(sp)
+  LA t0, .CONSTANT.7.0
+  LA t1, .CONSTANT.7.0
   ADDI a0, zero, 21
+  FCVT.S.L fs1, zero
+  FLW ft0, 0(t0)
+  FLW ft1, 0(t1)
+  FSGNJ.S fs0, ft0, ft1
   CALL _sysy_starttime
   CALL getint
-  LA s0, .CONSTANT.7.0
-  FLW fa0, 0(s0)
-  LA s0, .CONSTANT.7.0
-  FLW fs0, 0(s0)
-  FSGNJ.S fa0, fa0, fs0
+  FSGNJ.S fa0, fs0, fs0
   CALL func
-  FSGNJ.D fs0, fa0, fa0
-  LA a0, .CONSTANT.7.0
-  FLW fs1, 0(a0)
-  FSUB.S fs0, fs0, fs1
-  FCVT.S.L fs1, zero
-  FEQ.S a0, fs0, fs1
-  BNE a0, zero, bb5
+  FSUB.S ft0, fa0, fs0
+  FEQ.S t0, ft0, fs1
+  BNE t0, zero, bb5
   # implict jump to bb4
-bb4:
+bb4:   # loop depth 0
   ADDI a0, zero, 32
   CALL _sysy_stoptime
   ADD a0, zero, zero
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  FLD fs0, 16(sp)
-  FLD fs1, 24(sp)
+  FLD fs0, 8(sp)
+  FLD fs1, 16(sp)
   ADDI sp, sp, 32
   JALR zero, 0(ra)
-bb5:
+bb5:   # loop depth 0
   ADDI a0, zero, 112
   CALL putch
   JAL zero, bb4

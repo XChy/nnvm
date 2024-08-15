@@ -25,6 +25,29 @@ std::set<BasicBlock *> Loop::getLatches() const {
   return ret;
 }
 
+BasicBlock *Loop::getSingleExit() const {
+  auto exits = getExits();
+  if (exits.size() != 1)
+    return nullptr;
+  return *exits.begin();
+}
+
+BasicBlock *Loop::getSingleEdgedExit() const {
+  auto edges = getExitEdges();
+  if (edges.size() != 1)
+    return nullptr;
+  return edges.begin()->to;
+}
+
+BasicBlock *Loop::getExclusiveExit() const {
+  auto exits = getExits();
+  if (exits.size() != 1)
+    return nullptr;
+  if ((*exits.begin())->getPredNum() != 1)
+    return nullptr;
+  return *exits.begin();
+}
+
 std::set<BasicBlock *> Loop::getExits() const {
   std::set<BasicBlock *> ret;
   for (auto [from, to] : exitEdges) {
@@ -36,6 +59,16 @@ std::set<BasicBlock *> Loop::getExits() const {
 bool Loop::isExiting(BasicBlock *BB) const {
   return std::any_of(exitEdges.begin(), exitEdges.end(),
                      [BB](ExitEdge edge) { return edge.from == BB; });
+}
+
+uint Loop::getDepth() const {
+  uint depth = 1;
+  const Loop *cur = this;
+  while (cur->getParent()) {
+    depth++;
+    cur = cur->getParent();
+  }
+  return depth;
 }
 
 bool LoopAnalysis::run(Function &F) {
@@ -136,6 +169,14 @@ void LoopAnalysis::analyzeLoop(Loop *loop) {
         loop->addExit({bb, bb->getSucc(i)});
     }
   }
+}
+
+Loop *LoopAnalysis::findLoopFor(BasicBlock *block) {
+  for (Loop *loop : loops) {
+    if (loop->contains(block))
+      return loop;
+  }
+  return nullptr;
 }
 
 void LoopAnalysis::print(std::ostream &out) {

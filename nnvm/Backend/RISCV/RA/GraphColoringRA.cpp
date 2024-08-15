@@ -16,7 +16,7 @@ static bool isSameClass(Register const *a, Register const *b) {
   return !(a->isFP() ^ b->isFP());
 }
 
-static void filterRegClass(std::set<Register *> &c, Register const *classReg) {
+static void filterRegClass(RegSet &c, Register const *classReg) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
     if (!isSameClass(*first, classReg)) {
       first = c.erase(first);
@@ -26,7 +26,7 @@ static void filterRegClass(std::set<Register *> &c, Register const *classReg) {
   }
 }
 
-GraphColoringRAImpl::GraphColoringRAImpl(std::vector<Register *> const &regs,
+GraphColoringRAImpl::GraphColoringRAImpl(const std::vector<Register *> &regs,
                                          Register *classReg)
     : freeRegs(regs), classReg(classReg), numRegs(regs.size()) {
 
@@ -51,7 +51,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
   auto liveOutRegs = la.getLiveOut();
 
   for (auto *bb : func) {
-    std::set<Register *> liveRegs = liveOutRegs[bb];
+    RegSet liveRegs = liveOutRegs[bb];
     filterRegClass(liveRegs, classReg);
 
     for (Register *liveRegA : liveRegs) {
@@ -68,7 +68,7 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
       auto uses = getUsesOf(inst);
       filterRegClass(defs, classReg);
       filterRegClass(uses, classReg);
-      std::set<Register *> realOps = defs;
+      RegSet realOps = defs;
       realOps.insert(uses.begin(), uses.end());
 
       for (auto reg : realOps) {
@@ -93,6 +93,15 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
           moveList[def].insert(inst);
         }
         worklistMoves.insert(inst);
+      }
+
+      // Caller-saved regs interfere live regs at callsite.
+      if (inst->getOpcode() == CALL) {
+        for (auto live : liveRegs)
+          for (uint64_t regId : callerSavedRegIds()) {
+            Register *reg = func.getParent()->getPhyReg(regId);
+            addEdge(live, reg);
+          }
       }
 
       // liveRegs = (liveRegs - defs) + uses
@@ -401,33 +410,30 @@ void GraphColoringRAImpl::freezeMoves(Register *reg) {
  * Select a node to spill by favorite heuristic.
  */
 void GraphColoringRAImpl::selectSpill(LIRFunc &func) {
-  std::unordered_map<Register *, double> priorities;
+  double minCost = 1e32;
+  Register *toSpill = nullptr;
   for (auto reg : spillWorklist) {
-    priorities[reg] = 0;
+    double currentCost = 0;
 
     for (auto op : reg->getDefs()) {
-      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
-      priorities[reg] +=
-          isInLoop
-              ? 10
-              : 1; // registers in loop are more likely to be frequently used
+      // registers in loop are more likely to be frequently used
+      uint depth = op->getInst()->getParent()->getLoopDepth();
+      currentCost += 1 + 100 * depth;
     }
 
     for (auto op : reg->getUses()) {
-      bool isInLoop = op->getInst()->getParent()->getSuccNum() == 1;
-      priorities[reg] +=
-          isInLoop
-              ? 10
-              : 1; // registers in loop are more likely to be frequently used
+      uint depth = op->getInst()->getParent()->getLoopDepth();
+      currentCost += 1 + 100 * depth;
     }
 
-    priorities[reg] /= degree[reg];
+    currentCost /= degree[reg];
+
+    if (!toSpill || currentCost < minCost) {
+      minCost = currentCost;
+      toSpill = reg;
+    }
   }
 
-  auto toSpill =
-      std::min_element(priorities.begin(), priorities.end(),
-                       [](auto a, auto b) { return a.second < b.second; })
-          ->first;
   spillWorklist.erase(toSpill);
   simplifyWorklist.insert(toSpill);
   freezeMoves(toSpill);
@@ -496,8 +502,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
       auto tempReg = builder.newVReg(reg->getType());
       newTemp.push_back(tempReg);
       op->set(tempReg);
-      builder.setInsertPoint(op->getInst()->getParent(),
-                             op->getInst()->getNext());
+      builder.setInsertPoint(op->getInst()->getNext());
       builder.storeValueTo(tempReg, slot, reg->getType());
     }
 
@@ -505,7 +510,7 @@ void GraphColoringRAImpl::rewriteProgram(LIRFunc &func) {
       auto tempReg = builder.newVReg(reg->getType());
       newTemp.push_back(tempReg);
       op->set(tempReg);
-      builder.setInsertPoint(op->getInst()->getParent(), op->getInst());
+      builder.setInsertPoint(op->getInst());
       builder.loadValueFrom(tempReg, slot, reg->getType());
     }
   }
@@ -584,29 +589,14 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     la.runOn(func);
     build(func, la);
     makeWorkList();
-    int a, b, c, d;
-    a = b = c = d = 0;
     do {
       if (!simplifyWorklist.empty()) {
-        std::cerr << "a " << a << "\n";
-        a++;
         simplify();
       } else if (!worklistMoves.empty()) {
-        std::cerr << "b " << b << "\n";
-        std::cerr << "moves " << worklistMoves.size() << "\n";
-        b++;
         coalesce();
       } else if (!freezeWorklist.empty()) {
-        std::cerr << "c " << c << "\n";
-        c++;
         freeze();
       } else if (!spillWorklist.empty()) {
-
-        std::cerr << "d " << d << "\n";
-        d++;
-        // for (auto *reg : spillWorklist)
-        // std::cerr << getNameForRegister(reg->getRegId()) << ", ";
-        // std::cerr << "\n";
         //  FIXME: handle the unstoppable spilling!!!
         selectSpill(func);
       }
@@ -620,6 +610,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
     if (spilledNodes.empty()) {
       break;
     }
+
     rewriteProgram(func);
   }
 
@@ -628,7 +619,7 @@ void GraphColoringRAImpl::allocate(LIRFunc &func) {
 }
 
 static inline void filterScratchRegs(std::vector<Register *> &c,
-                                     const std::set<Register *> scratches) {
+                                     const std::set<Register *> &scratches) {
   for (auto first = c.begin(), last = c.end(); first != last;) {
     if (scratches.count(*first))
       first = c.erase(first);
