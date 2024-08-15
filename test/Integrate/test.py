@@ -89,9 +89,9 @@ class ExecutionException(Exception):
 def __run(subproc_arglist: list):
     if verbose_mode:
         return subprocess.run(
-            subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT, errors='ignore')
+            subproc_arglist, capture_output=verbose_mode, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
     return subprocess.run(
-        subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT, errors='ignore')
+        subproc_arglist, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, encoding='UTF-8', check=True, timeout=COMPILING_TIME_LIMIT)
 
 
 def execute(subproc_arglists: list, input_text: str):
@@ -115,22 +115,21 @@ def execute(subproc_arglists: list, input_text: str):
     raise ExecutionException('LINKAGE FAILED', stderr=err.stderr)
   except subprocess.TimeoutExpired as err:
     raise ExecutionException('LINKAGE TIME OUT', stderr=err.stderr)
-
-    try:
-        # run the executable
-        completed = subprocess.run(
-            subproc_arglists[3],
-            input=input_text, capture_output=True, text=True,
-            encoding='UTF-8', timeout=RUNNING_TIME_LIMIT, errors='ignore')
-        if len(completed.stdout) == 0:
-            return str(completed.returncode)
-        else:
-            actual = completed.stdout
-            if actual.endswith('\n'):
-                actual = actual[:-1]
-            return f'{actual}\n{completed.returncode}'
-    except subprocess.TimeoutExpired as err:
-        raise ExecutionException('TIME OUT', stderr=err.stderr)
+  try:
+      # run the executable
+      completed = subprocess.run(
+          subproc_arglists[3],
+          input=input_text, capture_output=True, text=True,
+          encoding='UTF-8', timeout=RUNNING_TIME_LIMIT, errors='ignore')
+      if len(completed.stdout) == 0:
+          return str(completed.returncode)
+      else:
+          actual = completed.stdout
+          if actual.endswith('\n'):
+              actual = actual[:-1]
+          return f'{actual}\n{completed.returncode}'
+  except subprocess.TimeoutExpired as err:
+      raise ExecutionException('TIME OUT', stderr=err.stderr)
 
 
 # helper functions of test()
