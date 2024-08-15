@@ -16,133 +16,114 @@ i_buf:
 .word 0x3f000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -112
+  ADDI sp, sp, -48
   SD ra, 0(sp)
-  FSD fs4, 8(sp)
-  FSD fs5, 16(sp)
-  FSD fs6, 24(sp)
-  FSD fs7, 32(sp)
-  SD s0, 40(sp)
-  SD s1, 48(sp)
-  SD s2, 56(sp)
-  SD s3, 64(sp)
-  SD s4, 72(sp)
-  FSD fs0, 80(sp)
-  FSD fs1, 88(sp)
-  FSD fs2, 96(sp)
-  FSD fs3, 104(sp)
-  LA a0, i_buf
-  ADDI s0, zero, 0
+  SD s0, 8(sp)
+  SD s1, 16(sp)
+  SD s2, 24(sp)
+  SD s3, 32(sp)
+  LA s2, i_buf
+  LA s1, o_buf
+  ADDI s3, zero, 0
+  ADD a0, s2, zero
   CALL getfarray
-  ADD s1, a0, zero
+  ADD s0, a0, zero
   ADDI a0, zero, 33
   CALL _sysy_starttime
-  BLT s0, s1, bb2
+  BLT s3, s0, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
-  LA s0, o_buf
   ADDI a0, zero, 41
   CALL _sysy_stoptime
-  ADD a1, s0, zero
-  ADD a0, s1, zero
+  ADD a1, s1, zero
+  ADD a0, s0, zero
   CALL putfarray
   ADD a0, zero, zero
   LD ra, 0(sp)
-  FLD fs4, 8(sp)
-  FLD fs5, 16(sp)
-  FLD fs6, 24(sp)
-  FLD fs7, 32(sp)
-  LD s0, 40(sp)
-  LD s1, 48(sp)
-  LD s2, 56(sp)
-  LD s3, 64(sp)
-  LD s4, 72(sp)
-  FLD fs0, 80(sp)
-  FLD fs1, 88(sp)
-  FLD fs2, 96(sp)
-  FLD fs3, 104(sp)
-  ADDI sp, sp, 112
+  LD s0, 8(sp)
+  LD s1, 16(sp)
+  LD s2, 24(sp)
+  LD s3, 32(sp)
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb2:   # loop depth 0
-  LA a0, .CONSTANT.7.0
-  LA s0, .CONSTANT.7.0
-  LA s2, .CONSTANT.7.1
-  LA s3, .CONSTANT.7.1
-  FLW fs0, 0(a0)
-  ADDI s4, zero, 0
-  ADDI a0, zero, 1
-  FCVT.S.W fs6, s4
-  FLW fs1, 0(s0)
-  FCVT.S.W fs5, a0
-  ADD a0, zero, zero
-  FLW fs2, 0(s2)
-  FSGNJ.S fs3, fs0, fs1
-  FLW fs0, 0(s3)
-  FSGNJ.S fs4, fs2, fs0
+  LA t0, .CONSTANT.7.0
+  LA t1, .CONSTANT.7.0
+  LA t2, .CONSTANT.7.1
+  LA a0, .CONSTANT.7.1
+  FLW ft0, 0(t0)
+  ADDI a1, zero, 0
+  ADDI t0, zero, 1
+  FCVT.S.W ft4, a1
+  FLW ft1, 0(t1)
+  FCVT.S.W ft7, t0
+  ADD t0, zero, zero
+  FLW ft2, 0(t2)
+  FSGNJ.S ft5, ft0, ft1
+  FLW ft0, 0(a0)
+  FSGNJ.S ft6, ft2, ft0
   # implict jump to bb3
 bb3:   # loop depth 1
-  LA s0, i_buf
-  LA s2, o_buf
-  SH2ADD s0, a0, s0
-  FLW fs7, 0(s0)
-  SH2ADD s0, a0, s2
-  FLE.S s2, fs7, fs6
-  BNE s2, zero, bb19
+  SH2ADD t2, t0, s2
+  SH2ADD t1, t0, s1
+  FLW ft3, 0(t2)
+  FLE.S t2, ft3, ft4
+  BNE t2, zero, bb19
   # implict jump to bb4
 bb4:   # loop depth 1
-  FADD.S fs0, fs7, fs5
-  FMUL.S fs0, fs0, fs4
-  FSUB.S fs1, fs7, fs0
-  FLT.S s2, fs7, fs0
-  FSUB.S fs2, fs0, fs7
-  BNE s2, zero, bb18
+  FADD.S ft0, ft3, ft7
+  FMUL.S ft0, ft0, ft6
+  FSUB.S ft1, ft3, ft0
+  FLT.S t2, ft3, ft0
+  FSUB.S ft2, ft0, ft3
+  BNE t2, zero, bb18
   # implict jump to bb5
 bb5:   # loop depth 1
-  FSGNJ.S fs2, fs1, fs1
+  FSGNJ.S ft2, ft1, ft1
   # implict jump to bb6
 bb6:   # loop depth 1
-  FLT.S s2, fs3, fs2
-  BNE s2, zero, bb11
+  FLT.S t2, ft5, ft2
+  BNE t2, zero, bb11
   # implict jump to bb7
 bb7:   # loop depth 1
   # implict jump to bb8
 bb8:   # loop depth 1
   # implict jump to bb9
 bb9:   # loop depth 1
-  ADDIW a0, a0, 1
-  FSW fs0, 0(s0)
-  BLT a0, s1, bb10
+  ADDIW t0, t0, 1
+  FSW ft0, 0(t1)
+  BLT t0, s0, bb10
   JAL zero, bb1
 bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
-  FSGNJ.S fs2, fs7, fs7
+  FSGNJ.S ft2, ft3, ft3
   # implict jump to bb12
 bb12:   # loop depth 2
-  FDIV.S fs0, fs7, fs2
-  FADD.S fs0, fs2, fs0
-  FMUL.S fs0, fs0, fs4
-  FSUB.S fs1, fs2, fs0
-  FLT.S s2, fs2, fs0
-  FSUB.S fs2, fs0, fs2
-  BNE s2, zero, bb17
+  FDIV.S ft0, ft3, ft2
+  FADD.S ft0, ft2, ft0
+  FMUL.S ft0, ft0, ft6
+  FSUB.S ft1, ft2, ft0
+  FLT.S t2, ft2, ft0
+  FSUB.S ft2, ft0, ft2
+  BNE t2, zero, bb17
   # implict jump to bb13
 bb13:   # loop depth 2
-  FSGNJ.S fs2, fs1, fs1
+  FSGNJ.S ft2, ft1, ft1
   # implict jump to bb14
 bb14:   # loop depth 2
-  FLT.S s2, fs3, fs2
-  BNE s2, zero, bb16
+  FLT.S t2, ft5, ft2
+  BNE t2, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 1
   JAL zero, bb8
 bb16:   # loop depth 2
-  FSGNJ.S fs2, fs0, fs0
+  FSGNJ.S ft2, ft0, ft0
   JAL zero, bb12
 bb17:   # loop depth 2
   JAL zero, bb14
 bb18:   # loop depth 1
   JAL zero, bb6
 bb19:   # loop depth 1
-  FSGNJ.S fs0, fs6, fs6
+  FSGNJ.S ft0, ft4, ft4
   JAL zero, bb9

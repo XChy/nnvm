@@ -13,39 +13,42 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry15:  pred()
-  store i32 2 to ptr @a
-  store i32 3 to ptr @b
-  store i32 0 to ptr @a
+  d.pinned = pin ptr @d
+  b.pinned = pin ptr @b
+  a.pinned = pin ptr @a
+  store i32 2 to ptr %a.pinned
+  store i32 3 to ptr %b.pinned
+  store i32 0 to ptr %a.pinned
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load32 = load i32 from ptr @b
+  b.load32 = load i32 from ptr %b.pinned
   call void putint(i32 %b.load32)
   call void putch(i32 32)
-  store i32 2 to ptr @a
-  store i32 3 to ptr @b
-  store i32 0 to ptr @a
+  store i32 2 to ptr %a.pinned
+  store i32 3 to ptr %b.pinned
+  store i32 0 to ptr %a.pinned
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load51 = load i32 from ptr @b
+  b.load51 = load i32 from ptr %b.pinned
   call void putint(i32 %b.load51)
   call void putch(i32 10)
-  store i32 2 to ptr @d
+  store i32 2 to ptr %d.pinned
   55 = icmp sge i32 1, i32 1
   br i1 %55, bb %select.then56, bb %select.exit58
 select.then56:  pred(entry15)
-  store i32 3 to ptr @d
+  store i32 3 to ptr %d.pinned
   br bb %select.exit58
 select.exit58:  pred(select.then56, entry15)
-  d.load65 = load i32 from ptr @d
+  d.load65 = load i32 from ptr %d.pinned
   call void putint(i32 %d.load65)
   call void putch(i32 32)
   68 = icmp sle i32 1, i32 1
   br i1 %68, bb %select.exit71, bb %select.else70
 select.else70:  pred(select.exit58)
-  store i32 4 to ptr @d
+  store i32 4 to ptr %d.pinned
   br bb %select.exit71
 select.exit71:  pred(select.exit58, select.else70)
-  d.load79 = load i32 from ptr @d
+  d.load79 = load i32 from ptr %d.pinned
   call void putint(i32 %d.load79)
   call void putch(i32 10)
   84 = icmp sge i32 16, i32 0

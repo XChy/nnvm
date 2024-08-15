@@ -9,7 +9,7 @@ public:
       return true;
 
     if (ConstantInt *CI = mayCast<ConstantInt>(C))
-      return CI->getType()->getBits() >= 64;
+      return !canExpressInBits<12>(CI->getSignedValue());
 
     return false;
   };

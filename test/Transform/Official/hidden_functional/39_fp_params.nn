@@ -19,135 +19,136 @@ entry1035:  pred()
   %arr22766 = stack 32
   %arr21037 = stack 288
   %arr1036 = stack 480
+  k.pinned = pin ptr @k
   1040 = call i32 getint()
-  store i32 %1040 to ptr @k
+  store i32 %1040 to ptr %k.pinned
   1051 = call i32 getfarray(ptr %arr1036)
-  10504913 = ptradd ptr %arr1036, i32 12
-  10514914 = call i32 getfarray(ptr %10504913)
-  10504921 = ptradd ptr %arr1036, i32 24
-  10514922 = call i32 getfarray(ptr %10504921)
-  10504929 = ptradd ptr %arr1036, i32 36
-  10514930 = call i32 getfarray(ptr %10504929)
-  10504937 = ptradd ptr %arr1036, i32 48
-  10514938 = call i32 getfarray(ptr %10504937)
-  10504945 = ptradd ptr %arr1036, i32 60
-  10514946 = call i32 getfarray(ptr %10504945)
-  10504953 = ptradd ptr %arr1036, i32 72
-  10514954 = call i32 getfarray(ptr %10504953)
-  10504961 = ptradd ptr %arr1036, i32 84
-  10514962 = call i32 getfarray(ptr %10504961)
-  10504969 = ptradd ptr %arr1036, i32 96
-  10514970 = call i32 getfarray(ptr %10504969)
-  10504977 = ptradd ptr %arr1036, i32 108
-  10514978 = call i32 getfarray(ptr %10504977)
-  10504985 = ptradd ptr %arr1036, i32 120
+  10504940 = ptradd ptr %arr1036, i32 12
+  10514941 = call i32 getfarray(ptr %10504940)
+  10504949 = ptradd ptr %arr1036, i32 24
+  10514950 = call i32 getfarray(ptr %10504949)
+  10504958 = ptradd ptr %arr1036, i32 36
+  10514959 = call i32 getfarray(ptr %10504958)
+  10504967 = ptradd ptr %arr1036, i32 48
+  10514968 = call i32 getfarray(ptr %10504967)
+  10504976 = ptradd ptr %arr1036, i32 60
+  10514977 = call i32 getfarray(ptr %10504976)
+  10504985 = ptradd ptr %arr1036, i32 72
   10514986 = call i32 getfarray(ptr %10504985)
-  10504993 = ptradd ptr %arr1036, i32 132
-  10514994 = call i32 getfarray(ptr %10504993)
-  10505001 = ptradd ptr %arr1036, i32 144
-  10515002 = call i32 getfarray(ptr %10505001)
-  10505009 = ptradd ptr %arr1036, i32 156
-  10515010 = call i32 getfarray(ptr %10505009)
-  10505017 = ptradd ptr %arr1036, i32 168
-  10515018 = call i32 getfarray(ptr %10505017)
-  10505025 = ptradd ptr %arr1036, i32 180
-  10515026 = call i32 getfarray(ptr %10505025)
-  10505033 = ptradd ptr %arr1036, i32 192
-  10515034 = call i32 getfarray(ptr %10505033)
-  10505041 = ptradd ptr %arr1036, i32 204
-  10515042 = call i32 getfarray(ptr %10505041)
-  10505049 = ptradd ptr %arr1036, i32 216
-  10515050 = call i32 getfarray(ptr %10505049)
-  10505057 = ptradd ptr %arr1036, i32 228
+  10504994 = ptradd ptr %arr1036, i32 84
+  10514995 = call i32 getfarray(ptr %10504994)
+  10505003 = ptradd ptr %arr1036, i32 96
+  10515004 = call i32 getfarray(ptr %10505003)
+  10505012 = ptradd ptr %arr1036, i32 108
+  10515013 = call i32 getfarray(ptr %10505012)
+  10505021 = ptradd ptr %arr1036, i32 120
+  10515022 = call i32 getfarray(ptr %10505021)
+  10505030 = ptradd ptr %arr1036, i32 132
+  10515031 = call i32 getfarray(ptr %10505030)
+  10505039 = ptradd ptr %arr1036, i32 144
+  10515040 = call i32 getfarray(ptr %10505039)
+  10505048 = ptradd ptr %arr1036, i32 156
+  10515049 = call i32 getfarray(ptr %10505048)
+  10505057 = ptradd ptr %arr1036, i32 168
   10515058 = call i32 getfarray(ptr %10505057)
-  10505065 = ptradd ptr %arr1036, i32 240
-  10515066 = call i32 getfarray(ptr %10505065)
-  10505073 = ptradd ptr %arr1036, i32 252
-  10515074 = call i32 getfarray(ptr %10505073)
-  10505081 = ptradd ptr %arr1036, i32 264
-  10515082 = call i32 getfarray(ptr %10505081)
-  10505089 = ptradd ptr %arr1036, i32 276
-  10515090 = call i32 getfarray(ptr %10505089)
-  10505097 = ptradd ptr %arr1036, i32 288
-  10515098 = call i32 getfarray(ptr %10505097)
-  10505105 = ptradd ptr %arr1036, i32 300
-  10515106 = call i32 getfarray(ptr %10505105)
-  10505113 = ptradd ptr %arr1036, i32 312
-  10515114 = call i32 getfarray(ptr %10505113)
-  10505121 = ptradd ptr %arr1036, i32 324
-  10515122 = call i32 getfarray(ptr %10505121)
-  10505129 = ptradd ptr %arr1036, i32 336
+  10505066 = ptradd ptr %arr1036, i32 180
+  10515067 = call i32 getfarray(ptr %10505066)
+  10505075 = ptradd ptr %arr1036, i32 192
+  10515076 = call i32 getfarray(ptr %10505075)
+  10505084 = ptradd ptr %arr1036, i32 204
+  10515085 = call i32 getfarray(ptr %10505084)
+  10505093 = ptradd ptr %arr1036, i32 216
+  10515094 = call i32 getfarray(ptr %10505093)
+  10505102 = ptradd ptr %arr1036, i32 228
+  10515103 = call i32 getfarray(ptr %10505102)
+  10505111 = ptradd ptr %arr1036, i32 240
+  10515112 = call i32 getfarray(ptr %10505111)
+  10505120 = ptradd ptr %arr1036, i32 252
+  10515121 = call i32 getfarray(ptr %10505120)
+  10505129 = ptradd ptr %arr1036, i32 264
   10515130 = call i32 getfarray(ptr %10505129)
-  10505137 = ptradd ptr %arr1036, i32 348
-  10515138 = call i32 getfarray(ptr %10505137)
-  10505145 = ptradd ptr %arr1036, i32 360
-  10515146 = call i32 getfarray(ptr %10505145)
-  10505153 = ptradd ptr %arr1036, i32 372
-  10515154 = call i32 getfarray(ptr %10505153)
-  10505161 = ptradd ptr %arr1036, i32 384
-  10515162 = call i32 getfarray(ptr %10505161)
-  10505169 = ptradd ptr %arr1036, i32 396
-  10515170 = call i32 getfarray(ptr %10505169)
-  10505177 = ptradd ptr %arr1036, i32 408
-  10515178 = call i32 getfarray(ptr %10505177)
-  10505185 = ptradd ptr %arr1036, i32 420
-  10515186 = call i32 getfarray(ptr %10505185)
-  10505193 = ptradd ptr %arr1036, i32 432
-  10515194 = call i32 getfarray(ptr %10505193)
-  10505201 = ptradd ptr %arr1036, i32 444
+  10505138 = ptradd ptr %arr1036, i32 276
+  10515139 = call i32 getfarray(ptr %10505138)
+  10505147 = ptradd ptr %arr1036, i32 288
+  10515148 = call i32 getfarray(ptr %10505147)
+  10505156 = ptradd ptr %arr1036, i32 300
+  10515157 = call i32 getfarray(ptr %10505156)
+  10505165 = ptradd ptr %arr1036, i32 312
+  10515166 = call i32 getfarray(ptr %10505165)
+  10505174 = ptradd ptr %arr1036, i32 324
+  10515175 = call i32 getfarray(ptr %10505174)
+  10505183 = ptradd ptr %arr1036, i32 336
+  10515184 = call i32 getfarray(ptr %10505183)
+  10505192 = ptradd ptr %arr1036, i32 348
+  10515193 = call i32 getfarray(ptr %10505192)
+  10505201 = ptradd ptr %arr1036, i32 360
   10515202 = call i32 getfarray(ptr %10505201)
-  10505209 = ptradd ptr %arr1036, i32 456
-  10515210 = call i32 getfarray(ptr %10505209)
-  10505217 = ptradd ptr %arr1036, i32 468
-  10515218 = call i32 getfarray(ptr %10505217)
+  10505210 = ptradd ptr %arr1036, i32 372
+  10515211 = call i32 getfarray(ptr %10505210)
+  10505219 = ptradd ptr %arr1036, i32 384
+  10515220 = call i32 getfarray(ptr %10505219)
+  10505228 = ptradd ptr %arr1036, i32 396
+  10515229 = call i32 getfarray(ptr %10505228)
+  10505237 = ptradd ptr %arr1036, i32 408
+  10515238 = call i32 getfarray(ptr %10505237)
+  10505246 = ptradd ptr %arr1036, i32 420
+  10515247 = call i32 getfarray(ptr %10505246)
+  10505255 = ptradd ptr %arr1036, i32 432
+  10515256 = call i32 getfarray(ptr %10505255)
+  10505264 = ptradd ptr %arr1036, i32 444
+  10515265 = call i32 getfarray(ptr %10505264)
+  10505273 = ptradd ptr %arr1036, i32 456
+  10515274 = call i32 getfarray(ptr %10505273)
+  10505282 = ptradd ptr %arr1036, i32 468
+  10515283 = call i32 getfarray(ptr %10505282)
   1065 = call i32 getarray(ptr %arr21037)
-  10644729 = ptradd ptr %arr21037, i32 12
-  10654730 = call i32 getarray(ptr %10644729)
-  10644737 = ptradd ptr %arr21037, i32 24
-  10654738 = call i32 getarray(ptr %10644737)
-  10644745 = ptradd ptr %arr21037, i32 36
-  10654746 = call i32 getarray(ptr %10644745)
-  10644753 = ptradd ptr %arr21037, i32 48
-  10654754 = call i32 getarray(ptr %10644753)
-  10644761 = ptradd ptr %arr21037, i32 60
-  10654762 = call i32 getarray(ptr %10644761)
-  10644769 = ptradd ptr %arr21037, i32 72
+  10644733 = ptradd ptr %arr21037, i32 12
+  10654734 = call i32 getarray(ptr %10644733)
+  10644742 = ptradd ptr %arr21037, i32 24
+  10654743 = call i32 getarray(ptr %10644742)
+  10644751 = ptradd ptr %arr21037, i32 36
+  10654752 = call i32 getarray(ptr %10644751)
+  10644760 = ptradd ptr %arr21037, i32 48
+  10654761 = call i32 getarray(ptr %10644760)
+  10644769 = ptradd ptr %arr21037, i32 60
   10654770 = call i32 getarray(ptr %10644769)
-  10644777 = ptradd ptr %arr21037, i32 84
-  10654778 = call i32 getarray(ptr %10644777)
-  10644785 = ptradd ptr %arr21037, i32 96
-  10654786 = call i32 getarray(ptr %10644785)
-  10644793 = ptradd ptr %arr21037, i32 108
-  10654794 = call i32 getarray(ptr %10644793)
-  10644801 = ptradd ptr %arr21037, i32 120
-  10654802 = call i32 getarray(ptr %10644801)
-  10644809 = ptradd ptr %arr21037, i32 132
-  10654810 = call i32 getarray(ptr %10644809)
-  10644817 = ptradd ptr %arr21037, i32 144
-  10654818 = call i32 getarray(ptr %10644817)
-  10644825 = ptradd ptr %arr21037, i32 156
-  10654826 = call i32 getarray(ptr %10644825)
-  10644833 = ptradd ptr %arr21037, i32 168
-  10654834 = call i32 getarray(ptr %10644833)
-  10644841 = ptradd ptr %arr21037, i32 180
+  10644778 = ptradd ptr %arr21037, i32 72
+  10654779 = call i32 getarray(ptr %10644778)
+  10644787 = ptradd ptr %arr21037, i32 84
+  10654788 = call i32 getarray(ptr %10644787)
+  10644796 = ptradd ptr %arr21037, i32 96
+  10654797 = call i32 getarray(ptr %10644796)
+  10644805 = ptradd ptr %arr21037, i32 108
+  10654806 = call i32 getarray(ptr %10644805)
+  10644814 = ptradd ptr %arr21037, i32 120
+  10654815 = call i32 getarray(ptr %10644814)
+  10644823 = ptradd ptr %arr21037, i32 132
+  10654824 = call i32 getarray(ptr %10644823)
+  10644832 = ptradd ptr %arr21037, i32 144
+  10654833 = call i32 getarray(ptr %10644832)
+  10644841 = ptradd ptr %arr21037, i32 156
   10654842 = call i32 getarray(ptr %10644841)
-  10644849 = ptradd ptr %arr21037, i32 192
-  10654850 = call i32 getarray(ptr %10644849)
-  10644857 = ptradd ptr %arr21037, i32 204
-  10654858 = call i32 getarray(ptr %10644857)
-  10644865 = ptradd ptr %arr21037, i32 216
-  10654866 = call i32 getarray(ptr %10644865)
-  10644873 = ptradd ptr %arr21037, i32 228
-  10654874 = call i32 getarray(ptr %10644873)
-  10644881 = ptradd ptr %arr21037, i32 240
-  10654882 = call i32 getarray(ptr %10644881)
-  10644889 = ptradd ptr %arr21037, i32 252
-  10654890 = call i32 getarray(ptr %10644889)
-  10644897 = ptradd ptr %arr21037, i32 264
-  10654898 = call i32 getarray(ptr %10644897)
-  10644905 = ptradd ptr %arr21037, i32 276
-  10654906 = call i32 getarray(ptr %10644905)
-  k.load1072 = load i32 from ptr @k
+  10644850 = ptradd ptr %arr21037, i32 168
+  10654851 = call i32 getarray(ptr %10644850)
+  10644859 = ptradd ptr %arr21037, i32 180
+  10654860 = call i32 getarray(ptr %10644859)
+  10644868 = ptradd ptr %arr21037, i32 192
+  10654869 = call i32 getarray(ptr %10644868)
+  10644877 = ptradd ptr %arr21037, i32 204
+  10654878 = call i32 getarray(ptr %10644877)
+  10644886 = ptradd ptr %arr21037, i32 216
+  10654887 = call i32 getarray(ptr %10644886)
+  10644895 = ptradd ptr %arr21037, i32 228
+  10654896 = call i32 getarray(ptr %10644895)
+  10644904 = ptradd ptr %arr21037, i32 240
+  10654905 = call i32 getarray(ptr %10644904)
+  10644913 = ptradd ptr %arr21037, i32 252
+  10654914 = call i32 getarray(ptr %10644913)
+  10644922 = ptradd ptr %arr21037, i32 264
+  10654923 = call i32 getarray(ptr %10644922)
+  10644931 = ptradd ptr %arr21037, i32 276
+  10654932 = call i32 getarray(ptr %10644931)
+  k.load1072 = load i32 from ptr %k.pinned
   3520 = shl i32 %k.load1072, i32 2
   1074 = ptradd ptr %arr1036, i32 %3520
   1074.load = load float from ptr %1074
@@ -453,49 +454,49 @@ params_f40_i24.then245:  pred(params_f40.then, params_f40_i24.else247_exclu_exit
   4002933 = fsub float %3992932, float %397.load2931
   4012934 = f2si float %4002933 to i32
   store i32 %4012934 to ptr %arr22766
-  393.load29294632 = load i32 from ptr %arr.index3712903
-  397.load29314634 = load float from ptr %arr.index3202868
-  39929324635 = si2f i32 %393.load29294632 to float
-  40029334636 = fsub float %39929324635, float %397.load29314634
-  40129344637 = f2si float %40029334636 to i32
-  store i32 %40129344637 to ptr %arr.index3712903
-  393.load29294646 = load i32 from ptr %arr.index3722905
-  397.load29314648 = load float from ptr %arr.index3212870
-  39929324649 = si2f i32 %393.load29294646 to float
-  40029334650 = fsub float %39929324649, float %397.load29314648
-  40129344651 = f2si float %40029334650 to i32
-  store i32 %40129344651 to ptr %arr.index3722905
-  393.load29294660 = load i32 from ptr %arr.index3732907
-  397.load29314662 = load float from ptr %arr.index3222872
-  39929324663 = si2f i32 %393.load29294660 to float
-  40029334664 = fsub float %39929324663, float %397.load29314662
-  40129344665 = f2si float %40029334664 to i32
-  store i32 %40129344665 to ptr %arr.index3732907
-  393.load29294674 = load i32 from ptr %arr.index3742909
-  397.load29314676 = load float from ptr %arr.index3232874
-  39929324677 = si2f i32 %393.load29294674 to float
-  40029334678 = fsub float %39929324677, float %397.load29314676
-  40129344679 = f2si float %40029334678 to i32
-  store i32 %40129344679 to ptr %arr.index3742909
-  393.load29294688 = load i32 from ptr %arr.index3752911
-  397.load29314690 = load float from ptr %arr.index3242876
-  39929324691 = si2f i32 %393.load29294688 to float
-  40029334692 = fsub float %39929324691, float %397.load29314690
-  40129344693 = f2si float %40029334692 to i32
-  store i32 %40129344693 to ptr %arr.index3752911
-  393.load29294702 = load i32 from ptr %arr.index3762913
-  397.load29314704 = load float from ptr %arr.index3252878
-  39929324705 = si2f i32 %393.load29294702 to float
-  40029334706 = fsub float %39929324705, float %397.load29314704
-  40129344707 = f2si float %40029334706 to i32
-  store i32 %40129344707 to ptr %arr.index3762913
-  393.load29294716 = load i32 from ptr %arr.index3772915
-  397.load29314718 = load float from ptr %arr.index3262880
-  39929324719 = si2f i32 %393.load29294716 to float
-  40029334720 = fsub float %39929324719, float %397.load29314718
-  40129344721 = f2si float %40029334720 to i32
-  store i32 %40129344721 to ptr %arr.index3772915
-  k.load4052939 = load i32 from ptr @k
+  393.load29294636 = load i32 from ptr %arr.index3712903
+  397.load29314638 = load float from ptr %arr.index3202868
+  39929324639 = si2f i32 %393.load29294636 to float
+  40029334640 = fsub float %39929324639, float %397.load29314638
+  40129344641 = f2si float %40029334640 to i32
+  store i32 %40129344641 to ptr %arr.index3712903
+  393.load29294650 = load i32 from ptr %arr.index3722905
+  397.load29314652 = load float from ptr %arr.index3212870
+  39929324653 = si2f i32 %393.load29294650 to float
+  40029334654 = fsub float %39929324653, float %397.load29314652
+  40129344655 = f2si float %40029334654 to i32
+  store i32 %40129344655 to ptr %arr.index3722905
+  393.load29294664 = load i32 from ptr %arr.index3732907
+  397.load29314666 = load float from ptr %arr.index3222872
+  39929324667 = si2f i32 %393.load29294664 to float
+  40029334668 = fsub float %39929324667, float %397.load29314666
+  40129344669 = f2si float %40029334668 to i32
+  store i32 %40129344669 to ptr %arr.index3732907
+  393.load29294678 = load i32 from ptr %arr.index3742909
+  397.load29314680 = load float from ptr %arr.index3232874
+  39929324681 = si2f i32 %393.load29294678 to float
+  40029334682 = fsub float %39929324681, float %397.load29314680
+  40129344683 = f2si float %40029334682 to i32
+  store i32 %40129344683 to ptr %arr.index3742909
+  393.load29294692 = load i32 from ptr %arr.index3752911
+  397.load29314694 = load float from ptr %arr.index3242876
+  39929324695 = si2f i32 %393.load29294692 to float
+  40029334696 = fsub float %39929324695, float %397.load29314694
+  40129344697 = f2si float %40029334696 to i32
+  store i32 %40129344697 to ptr %arr.index3752911
+  393.load29294706 = load i32 from ptr %arr.index3762913
+  397.load29314708 = load float from ptr %arr.index3252878
+  39929324709 = si2f i32 %393.load29294706 to float
+  40029334710 = fsub float %39929324709, float %397.load29314708
+  40129344711 = f2si float %40029334710 to i32
+  store i32 %40129344711 to ptr %arr.index3762913
+  393.load29294720 = load i32 from ptr %arr.index3772915
+  397.load29314722 = load float from ptr %arr.index3262880
+  39929324723 = si2f i32 %393.load29294720 to float
+  40029334724 = fsub float %39929324723, float %397.load29314722
+  40129344725 = f2si float %40029334724 to i32
+  store i32 %40129344725 to ptr %arr.index3772915
+  k.load4052939 = load i32 from ptr %k.pinned
   3522 = shl i32 %k.load4052939, i32 2
   4072941 = ptradd ptr %arr22766, i32 %3522
   407.load2942 = load i32 from ptr %4072941
@@ -708,7 +709,7 @@ params_f40_i24.else247:  pred(params_f40_i24.loop_entry, params_f40_i24.else247_
   br bb %params_f40_i24.loop_entry
 params_fa40.then691:  pred(params_f40_i24.then245, params_fa40.else693)
   call void putfarray(i32 10, ptr %arr4762948)
-  k.load6953139 = load i32 from ptr @k
+  k.load6953139 = load i32 from ptr %k.pinned
   3525 = shl i32 %k.load6953139, i32 2
   6973141 = ptradd ptr %arr4762948, i32 %3525
   697.load3142 = load float from ptr %6973141
@@ -919,45 +920,45 @@ params_fa40.then691:  pred(params_f40_i24.then245, params_fa40.else693)
 params_fa40.else693_preheader:  pred(params_f40_i24.then245)
   br bb %params_fa40.else693
 params_fa40.else693:  pred(params_fa40.else693, params_fa40.else693_preheader)
-  x1.loop261929893918 = phi [bb %params_fa40.else693, ptr %x2.loop262029883917, bb %params_fa40.else693_preheader, ptr %10504913]
-  x2.loop262029883917 = phi [bb %params_fa40.else693, ptr %x3.loop262129873916, bb %params_fa40.else693_preheader, ptr %10504921]
-  x3.loop262129873916 = phi [bb %params_fa40.else693, ptr %x4.loop262229863915, bb %params_fa40.else693_preheader, ptr %10504929]
-  x4.loop262229863915 = phi [bb %params_fa40.else693, ptr %x5.loop262329853914, bb %params_fa40.else693_preheader, ptr %10504937]
-  x5.loop262329853914 = phi [bb %params_fa40.else693, ptr %x6.loop262429843913, bb %params_fa40.else693_preheader, ptr %10504945]
-  x6.loop262429843913 = phi [bb %params_fa40.else693, ptr %x7.loop262529833912, bb %params_fa40.else693_preheader, ptr %10504953]
-  x7.loop262529833912 = phi [bb %params_fa40.else693, ptr %x8.loop262629823911, bb %params_fa40.else693_preheader, ptr %10504961]
-  x8.loop262629823911 = phi [bb %params_fa40.else693, ptr %x9.loop262729813910, bb %params_fa40.else693_preheader, ptr %10504969]
-  x9.loop262729813910 = phi [bb %params_fa40.else693, ptr %x10.loop262829803909, bb %params_fa40.else693_preheader, ptr %10504977]
-  x10.loop262829803909 = phi [bb %params_fa40.else693, ptr %x11.loop262929793908, bb %params_fa40.else693_preheader, ptr %10504985]
-  x11.loop262929793908 = phi [bb %params_fa40.else693, ptr %x12.loop263029783907, bb %params_fa40.else693_preheader, ptr %10504993]
-  x12.loop263029783907 = phi [bb %params_fa40.else693, ptr %x13.loop263129773906, bb %params_fa40.else693_preheader, ptr %10505001]
-  x13.loop263129773906 = phi [bb %params_fa40.else693, ptr %x14.loop263229763905, bb %params_fa40.else693_preheader, ptr %10505009]
-  x14.loop263229763905 = phi [bb %params_fa40.else693, ptr %x15.loop263329753904, bb %params_fa40.else693_preheader, ptr %10505017]
-  x15.loop263329753904 = phi [bb %params_fa40.else693, ptr %x16.loop263429743903, bb %params_fa40.else693_preheader, ptr %10505025]
-  x16.loop263429743903 = phi [bb %params_fa40.else693, ptr %x17.loop263529733902, bb %params_fa40.else693_preheader, ptr %10505033]
-  x17.loop263529733902 = phi [bb %params_fa40.else693, ptr %x18.loop263629723901, bb %params_fa40.else693_preheader, ptr %10505041]
-  x18.loop263629723901 = phi [bb %params_fa40.else693, ptr %x19.loop263729713900, bb %params_fa40.else693_preheader, ptr %10505049]
-  x19.loop263729713900 = phi [bb %params_fa40.else693, ptr %x20.loop263829703899, bb %params_fa40.else693_preheader, ptr %10505057]
-  x20.loop263829703899 = phi [bb %params_fa40.else693, ptr %x21.loop263929693898, bb %params_fa40.else693_preheader, ptr %10505065]
-  x21.loop263929693898 = phi [bb %params_fa40.else693, ptr %x22.loop264029683897, bb %params_fa40.else693_preheader, ptr %10505073]
-  x22.loop264029683897 = phi [bb %params_fa40.else693, ptr %x23.loop264129673896, bb %params_fa40.else693_preheader, ptr %10505081]
-  x23.loop264129673896 = phi [bb %params_fa40.else693, ptr %x24.loop264229663895, bb %params_fa40.else693_preheader, ptr %10505089]
-  x24.loop264229663895 = phi [bb %params_fa40.else693, ptr %x25.loop264329653894, bb %params_fa40.else693_preheader, ptr %10505097]
-  x25.loop264329653894 = phi [bb %params_fa40.else693, ptr %x26.loop264429643893, bb %params_fa40.else693_preheader, ptr %10505105]
-  x26.loop264429643893 = phi [bb %params_fa40.else693, ptr %x27.loop264529633892, bb %params_fa40.else693_preheader, ptr %10505113]
-  x27.loop264529633892 = phi [bb %params_fa40.else693, ptr %x28.loop264629623891, bb %params_fa40.else693_preheader, ptr %10505121]
-  x28.loop264629623891 = phi [bb %params_fa40.else693, ptr %x29.loop264729613890, bb %params_fa40.else693_preheader, ptr %10505129]
-  x29.loop264729613890 = phi [bb %params_fa40.else693, ptr %x30.loop264829603889, bb %params_fa40.else693_preheader, ptr %10505137]
-  x30.loop264829603889 = phi [bb %params_fa40.else693, ptr %x31.loop264929593888, bb %params_fa40.else693_preheader, ptr %10505145]
-  x31.loop264929593888 = phi [bb %params_fa40.else693, ptr %x32.loop265029583887, bb %params_fa40.else693_preheader, ptr %10505153]
-  x32.loop265029583887 = phi [bb %params_fa40.else693, ptr %x33.loop265129573886, bb %params_fa40.else693_preheader, ptr %10505161]
-  x33.loop265129573886 = phi [bb %params_fa40.else693, ptr %x34.loop265229563885, bb %params_fa40.else693_preheader, ptr %10505169]
-  x34.loop265229563885 = phi [bb %params_fa40.else693, ptr %x35.loop265329553884, bb %params_fa40.else693_preheader, ptr %10505177]
-  x35.loop265329553884 = phi [bb %params_fa40.else693, ptr %x36.loop265429543883, bb %params_fa40.else693_preheader, ptr %10505185]
-  x36.loop265429543883 = phi [bb %params_fa40.else693, ptr %x37.loop265529533882, bb %params_fa40.else693_preheader, ptr %10505193]
-  x37.loop265529533882 = phi [bb %params_fa40.else693, ptr %x38.loop265629523881, bb %params_fa40.else693_preheader, ptr %10505201]
-  x38.loop265629523881 = phi [bb %params_fa40.else693, ptr %x39.loop265729513880, bb %params_fa40.else693_preheader, ptr %10505209]
-  x39.loop265729513880 = phi [bb %params_fa40.else693, ptr %arr4762948, bb %params_fa40.else693_preheader, ptr %10505217]
+  x1.loop261929893918 = phi [bb %params_fa40.else693, ptr %x2.loop262029883917, bb %params_fa40.else693_preheader, ptr %10504940]
+  x2.loop262029883917 = phi [bb %params_fa40.else693, ptr %x3.loop262129873916, bb %params_fa40.else693_preheader, ptr %10504949]
+  x3.loop262129873916 = phi [bb %params_fa40.else693, ptr %x4.loop262229863915, bb %params_fa40.else693_preheader, ptr %10504958]
+  x4.loop262229863915 = phi [bb %params_fa40.else693, ptr %x5.loop262329853914, bb %params_fa40.else693_preheader, ptr %10504967]
+  x5.loop262329853914 = phi [bb %params_fa40.else693, ptr %x6.loop262429843913, bb %params_fa40.else693_preheader, ptr %10504976]
+  x6.loop262429843913 = phi [bb %params_fa40.else693, ptr %x7.loop262529833912, bb %params_fa40.else693_preheader, ptr %10504985]
+  x7.loop262529833912 = phi [bb %params_fa40.else693, ptr %x8.loop262629823911, bb %params_fa40.else693_preheader, ptr %10504994]
+  x8.loop262629823911 = phi [bb %params_fa40.else693, ptr %x9.loop262729813910, bb %params_fa40.else693_preheader, ptr %10505003]
+  x9.loop262729813910 = phi [bb %params_fa40.else693, ptr %x10.loop262829803909, bb %params_fa40.else693_preheader, ptr %10505012]
+  x10.loop262829803909 = phi [bb %params_fa40.else693, ptr %x11.loop262929793908, bb %params_fa40.else693_preheader, ptr %10505021]
+  x11.loop262929793908 = phi [bb %params_fa40.else693, ptr %x12.loop263029783907, bb %params_fa40.else693_preheader, ptr %10505030]
+  x12.loop263029783907 = phi [bb %params_fa40.else693, ptr %x13.loop263129773906, bb %params_fa40.else693_preheader, ptr %10505039]
+  x13.loop263129773906 = phi [bb %params_fa40.else693, ptr %x14.loop263229763905, bb %params_fa40.else693_preheader, ptr %10505048]
+  x14.loop263229763905 = phi [bb %params_fa40.else693, ptr %x15.loop263329753904, bb %params_fa40.else693_preheader, ptr %10505057]
+  x15.loop263329753904 = phi [bb %params_fa40.else693, ptr %x16.loop263429743903, bb %params_fa40.else693_preheader, ptr %10505066]
+  x16.loop263429743903 = phi [bb %params_fa40.else693, ptr %x17.loop263529733902, bb %params_fa40.else693_preheader, ptr %10505075]
+  x17.loop263529733902 = phi [bb %params_fa40.else693, ptr %x18.loop263629723901, bb %params_fa40.else693_preheader, ptr %10505084]
+  x18.loop263629723901 = phi [bb %params_fa40.else693, ptr %x19.loop263729713900, bb %params_fa40.else693_preheader, ptr %10505093]
+  x19.loop263729713900 = phi [bb %params_fa40.else693, ptr %x20.loop263829703899, bb %params_fa40.else693_preheader, ptr %10505102]
+  x20.loop263829703899 = phi [bb %params_fa40.else693, ptr %x21.loop263929693898, bb %params_fa40.else693_preheader, ptr %10505111]
+  x21.loop263929693898 = phi [bb %params_fa40.else693, ptr %x22.loop264029683897, bb %params_fa40.else693_preheader, ptr %10505120]
+  x22.loop264029683897 = phi [bb %params_fa40.else693, ptr %x23.loop264129673896, bb %params_fa40.else693_preheader, ptr %10505129]
+  x23.loop264129673896 = phi [bb %params_fa40.else693, ptr %x24.loop264229663895, bb %params_fa40.else693_preheader, ptr %10505138]
+  x24.loop264229663895 = phi [bb %params_fa40.else693, ptr %x25.loop264329653894, bb %params_fa40.else693_preheader, ptr %10505147]
+  x25.loop264329653894 = phi [bb %params_fa40.else693, ptr %x26.loop264429643893, bb %params_fa40.else693_preheader, ptr %10505156]
+  x26.loop264429643893 = phi [bb %params_fa40.else693, ptr %x27.loop264529633892, bb %params_fa40.else693_preheader, ptr %10505165]
+  x27.loop264529633892 = phi [bb %params_fa40.else693, ptr %x28.loop264629623891, bb %params_fa40.else693_preheader, ptr %10505174]
+  x28.loop264629623891 = phi [bb %params_fa40.else693, ptr %x29.loop264729613890, bb %params_fa40.else693_preheader, ptr %10505183]
+  x29.loop264729613890 = phi [bb %params_fa40.else693, ptr %x30.loop264829603889, bb %params_fa40.else693_preheader, ptr %10505192]
+  x30.loop264829603889 = phi [bb %params_fa40.else693, ptr %x31.loop264929593888, bb %params_fa40.else693_preheader, ptr %10505201]
+  x31.loop264929593888 = phi [bb %params_fa40.else693, ptr %x32.loop265029583887, bb %params_fa40.else693_preheader, ptr %10505210]
+  x32.loop265029583887 = phi [bb %params_fa40.else693, ptr %x33.loop265129573886, bb %params_fa40.else693_preheader, ptr %10505219]
+  x33.loop265129573886 = phi [bb %params_fa40.else693, ptr %x34.loop265229563885, bb %params_fa40.else693_preheader, ptr %10505228]
+  x34.loop265229563885 = phi [bb %params_fa40.else693, ptr %x35.loop265329553884, bb %params_fa40.else693_preheader, ptr %10505237]
+  x35.loop265329553884 = phi [bb %params_fa40.else693, ptr %x36.loop265429543883, bb %params_fa40.else693_preheader, ptr %10505246]
+  x36.loop265429543883 = phi [bb %params_fa40.else693, ptr %x37.loop265529533882, bb %params_fa40.else693_preheader, ptr %10505255]
+  x37.loop265529533882 = phi [bb %params_fa40.else693, ptr %x38.loop265629523881, bb %params_fa40.else693_preheader, ptr %10505264]
+  x38.loop265629523881 = phi [bb %params_fa40.else693, ptr %x39.loop265729513880, bb %params_fa40.else693_preheader, ptr %10505273]
+  x39.loop265729513880 = phi [bb %params_fa40.else693, ptr %arr4762948, bb %params_fa40.else693_preheader, ptr %10505282]
   4792993 = ptradd ptr %x1.loop261929893918, i32 %3522
   479.load2994 = load float from ptr %4792993
   4832995 = ptradd ptr %x2.loop262029883917, i32 %3522
@@ -1178,7 +1179,7 @@ params_f40.then:  pred(entry1035, params_f40.else_exclu_exit)
   arr.index1273243 = ptradd ptr %arr3149, i32 36
   store float %1173225 to ptr %arr.index1273243
   call void putfarray(i32 10, ptr %arr3149)
-  k.load3246 = load i32 from ptr @k
+  k.load3246 = load i32 from ptr %k.pinned
   3526 = shl i32 %k.load3246, i32 2
   1313248 = ptradd ptr %arr3149, i32 %3526
   131.load3249 = load float from ptr %1313248
@@ -1545,8 +1546,8 @@ params_mix.loop_entry2699:  pred(params_mix.else959)
   store i32 %9443452 to ptr %arr.index95334683671
   store i32 0 to ptr %arr.index95434703673
   9563472 = icmp ne i32 %10333480, i32 0
-  br i1 %9563472, bb %params_mix.else959_exclu_exit, bb %params_mix.else959
-params_mix.then957:  pred(params_fa40.then691, params_mix.else959_exclu_exit)
+  br i1 %9563472, bb %params_mix.then957, bb %params_mix.else959
+params_mix.then957:  pred(params_fa40.then691, params_mix.loop_entry2699)
   call void putfarray(i32 10, ptr %arr7363259)
   call void putarray(i32 10, ptr %arr28553258)
   975.load3489 = load i32 from ptr %arr28553258
@@ -1555,67 +1556,66 @@ params_mix.then957:  pred(params_fa40.then691, params_mix.else959_exclu_exit)
   9823493 = fsub float %9813492, float %979.load3491
   9833494 = f2si float %9823493 to i32
   store i32 %9833494 to ptr %arr28553258
-  975.load34894506 = load i32 from ptr %arr.index94634543657
-  979.load34914508 = load float from ptr %arr.index84633863591
-  98134924509 = si2f i32 %975.load34894506 to float
-  98234934510 = fsub float %98134924509, float %979.load34914508
-  98334944511 = f2si float %98234934510 to i32
-  store i32 %98334944511 to ptr %arr.index94634543657
-  975.load34894520 = load i32 from ptr %arr.index94734563659
-  979.load34914522 = load float from ptr %arr.index84733883593
-  98134924523 = si2f i32 %975.load34894520 to float
-  98234934524 = fsub float %98134924523, float %979.load34914522
-  98334944525 = f2si float %98234934524 to i32
-  store i32 %98334944525 to ptr %arr.index94734563659
-  975.load34894534 = load i32 from ptr %arr.index94834583661
-  979.load34914536 = load float from ptr %arr.index84833903595
-  98134924537 = si2f i32 %975.load34894534 to float
-  98234934538 = fsub float %98134924537, float %979.load34914536
-  98334944539 = f2si float %98234934538 to i32
-  store i32 %98334944539 to ptr %arr.index94834583661
-  975.load34894548 = load i32 from ptr %arr.index94934603663
-  979.load34914550 = load float from ptr %arr.index84933923597
-  98134924551 = si2f i32 %975.load34894548 to float
-  98234934552 = fsub float %98134924551, float %979.load34914550
-  98334944553 = f2si float %98234934552 to i32
-  store i32 %98334944553 to ptr %arr.index94934603663
-  975.load34894562 = load i32 from ptr %arr.index95034623665
-  979.load34914564 = load float from ptr %arr.index85033943599
-  98134924565 = si2f i32 %975.load34894562 to float
-  98234934566 = fsub float %98134924565, float %979.load34914564
-  98334944567 = f2si float %98234934566 to i32
-  store i32 %98334944567 to ptr %arr.index95034623665
-  975.load34894576 = load i32 from ptr %arr.index95134643667
-  979.load34914578 = load float from ptr %arr.index85133963601
-  98134924579 = si2f i32 %975.load34894576 to float
-  98234934580 = fsub float %98134924579, float %979.load34914578
-  98334944581 = f2si float %98234934580 to i32
-  store i32 %98334944581 to ptr %arr.index95134643667
-  975.load34894590 = load i32 from ptr %arr.index95234663669
-  979.load34914592 = load float from ptr %arr.index85233983603
-  98134924593 = si2f i32 %975.load34894590 to float
-  98234934594 = fsub float %98134924593, float %979.load34914592
-  98334944595 = f2si float %98234934594 to i32
-  store i32 %98334944595 to ptr %arr.index95234663669
-  975.load34894604 = load i32 from ptr %arr.index95334683671
-  979.load34914606 = load float from ptr %arr.index85334003605
-  98134924607 = si2f i32 %975.load34894604 to float
-  98234934608 = fsub float %98134924607, float %979.load34914606
-  98334944609 = f2si float %98234934608 to i32
-  store i32 %98334944609 to ptr %arr.index95334683671
-  975.load34894618 = load i32 from ptr %arr.index95434703673
-  979.load34914620 = load float from ptr %arr.index85434023607
-  98134924621 = si2f i32 %975.load34894618 to float
-  98234934622 = fsub float %98134924621, float %979.load34914620
-  98334944623 = f2si float %98234934622 to i32
-  store i32 %98334944623 to ptr %arr.index95434703673
-  k.load9873499 = load i32 from ptr @k
+  975.load34894510 = load i32 from ptr %arr.index94634543657
+  979.load34914512 = load float from ptr %arr.index84633863591
+  98134924513 = si2f i32 %975.load34894510 to float
+  98234934514 = fsub float %98134924513, float %979.load34914512
+  98334944515 = f2si float %98234934514 to i32
+  store i32 %98334944515 to ptr %arr.index94634543657
+  975.load34894524 = load i32 from ptr %arr.index94734563659
+  979.load34914526 = load float from ptr %arr.index84733883593
+  98134924527 = si2f i32 %975.load34894524 to float
+  98234934528 = fsub float %98134924527, float %979.load34914526
+  98334944529 = f2si float %98234934528 to i32
+  store i32 %98334944529 to ptr %arr.index94734563659
+  975.load34894538 = load i32 from ptr %arr.index94834583661
+  979.load34914540 = load float from ptr %arr.index84833903595
+  98134924541 = si2f i32 %975.load34894538 to float
+  98234934542 = fsub float %98134924541, float %979.load34914540
+  98334944543 = f2si float %98234934542 to i32
+  store i32 %98334944543 to ptr %arr.index94834583661
+  975.load34894552 = load i32 from ptr %arr.index94934603663
+  979.load34914554 = load float from ptr %arr.index84933923597
+  98134924555 = si2f i32 %975.load34894552 to float
+  98234934556 = fsub float %98134924555, float %979.load34914554
+  98334944557 = f2si float %98234934556 to i32
+  store i32 %98334944557 to ptr %arr.index94934603663
+  975.load34894566 = load i32 from ptr %arr.index95034623665
+  979.load34914568 = load float from ptr %arr.index85033943599
+  98134924569 = si2f i32 %975.load34894566 to float
+  98234934570 = fsub float %98134924569, float %979.load34914568
+  98334944571 = f2si float %98234934570 to i32
+  store i32 %98334944571 to ptr %arr.index95034623665
+  975.load34894580 = load i32 from ptr %arr.index95134643667
+  979.load34914582 = load float from ptr %arr.index85133963601
+  98134924583 = si2f i32 %975.load34894580 to float
+  98234934584 = fsub float %98134924583, float %979.load34914582
+  98334944585 = f2si float %98234934584 to i32
+  store i32 %98334944585 to ptr %arr.index95134643667
+  975.load34894594 = load i32 from ptr %arr.index95234663669
+  979.load34914596 = load float from ptr %arr.index85233983603
+  98134924597 = si2f i32 %975.load34894594 to float
+  98234934598 = fsub float %98134924597, float %979.load34914596
+  98334944599 = f2si float %98234934598 to i32
+  store i32 %98334944599 to ptr %arr.index95234663669
+  975.load34894608 = load i32 from ptr %arr.index95334683671
+  979.load34914610 = load float from ptr %arr.index85334003605
+  98134924611 = si2f i32 %975.load34894608 to float
+  98234934612 = fsub float %98134924611, float %979.load34914610
+  98334944613 = f2si float %98234934612 to i32
+  store i32 %98334944613 to ptr %arr.index95334683671
+  975.load34894622 = load i32 from ptr %arr.index95434703673
+  979.load34914624 = load float from ptr %arr.index85434023607
+  98134924625 = si2f i32 %975.load34894622 to float
+  98234934626 = fsub float %98134924625, float %979.load34914624
+  98334944627 = f2si float %98234934626 to i32
+  store i32 %98334944627 to ptr %arr.index95434703673
+  k.load9873499 = load i32 from ptr %k.pinned
   3530 = shl i32 %k.load9873499, i32 2
   9893501 = ptradd ptr %arr28553258, i32 %3530
   989.load3502 = load i32 from ptr %9893501
-  992.load3503 = load float from ptr %arr.index85334003605
   9943504 = si2f i32 %989.load3502 to float
-  9953505 = fmul float %9943504, float %992.load3503
+  9953505 = fmul float %9943504, float %979.load34914610
   9963506 = f2si float %9953505 to i32
   call void putfloat(float %131.load3249)
   call void putch(i32 10)
@@ -1635,67 +1635,65 @@ params_mix.else959:  pred(params_mix.loop_entry2699, params_mix.else959_preheade
   i5.loop270533203735 = phi [bb %params_mix.loop_entry2699, i32 %i5.loop27053320, bb %params_mix.else959_preheader, i32 %1806.load]
   x6.loop270633193734 = phi [bb %params_mix.loop_entry2699, float %x6.loop27063319, bb %params_mix.else959_preheader, float %1812.load]
   x7.loop270733183733 = phi [bb %params_mix.loop_entry2699, float %x7.loop27073318, bb %params_mix.else959_preheader, float %1818.load]
-  x8.loop270833173732 = phi [bb %params_mix.loop_entry2699, ptr %x8.loop27083317, bb %params_mix.else959_preheader, ptr %10504945]
-  i9.loop270933163731 = phi [bb %params_mix.loop_entry2699, ptr %i9.loop27093316, bb %params_mix.else959_preheader, ptr %10644745]
+  x8.loop270833173732 = phi [bb %params_mix.loop_entry2699, ptr %x8.loop27083317, bb %params_mix.else959_preheader, ptr %10504976]
+  i9.loop270933163731 = phi [bb %params_mix.loop_entry2699, ptr %i9.loop27093316, bb %params_mix.else959_preheader, ptr %10644751]
   i10.loop271033153730 = phi [bb %params_mix.loop_entry2699, i32 %i10.loop27103315, bb %params_mix.else959_preheader, i32 %1828.load]
   i11.loop271133143729 = phi [bb %params_mix.loop_entry2699, i32 %i11.loop27113314, bb %params_mix.else959_preheader, i32 %1834.load]
-  x12.loop271233133728 = phi [bb %params_mix.loop_entry2699, ptr %x12.loop27123313, bb %params_mix.else959_preheader, ptr %10504953]
-  i13.loop271333123727 = phi [bb %params_mix.loop_entry2699, ptr %i13.loop27133312, bb %params_mix.else959_preheader, ptr %10644769]
-  i14.loop271433113726 = phi [bb %params_mix.loop_entry2699, ptr %i14.loop27143311, bb %params_mix.else959_preheader, ptr %10644777]
+  x12.loop271233133728 = phi [bb %params_mix.loop_entry2699, ptr %x12.loop27123313, bb %params_mix.else959_preheader, ptr %10504985]
+  i13.loop271333123727 = phi [bb %params_mix.loop_entry2699, ptr %i13.loop27133312, bb %params_mix.else959_preheader, ptr %10644778]
+  i14.loop271433113726 = phi [bb %params_mix.loop_entry2699, ptr %i14.loop27143311, bb %params_mix.else959_preheader, ptr %10644787]
   i15.loop271533103725 = phi [bb %params_mix.loop_entry2699, i32 %i15.loop27153310, bb %params_mix.else959_preheader, i32 %1846.load]
-  x16.loop271633093724 = phi [bb %params_mix.loop_entry2699, ptr %x16.loop27163309, bb %params_mix.else959_preheader, ptr %10504961]
-  x17.loop271733083723 = phi [bb %params_mix.loop_entry2699, ptr %x17.loop27173308, bb %params_mix.else959_preheader, ptr %10504969]
+  x16.loop271633093724 = phi [bb %params_mix.loop_entry2699, ptr %x16.loop27163309, bb %params_mix.else959_preheader, ptr %10504994]
+  x17.loop271733083723 = phi [bb %params_mix.loop_entry2699, ptr %x17.loop27173308, bb %params_mix.else959_preheader, ptr %10505003]
   x18.loop271833073722 = phi [bb %params_mix.loop_entry2699, float %x18.loop27183307, bb %params_mix.else959_preheader, float %1856.load]
   x19.loop271933063721 = phi [bb %params_mix.loop_entry2699, float %x19.loop27193306, bb %params_mix.else959_preheader, float %1862.load]
   x20.loop272033053720 = phi [bb %params_mix.loop_entry2699, float %x20.loop27203305, bb %params_mix.else959_preheader, float %1868.load]
-  x21.loop272133043719 = phi [bb %params_mix.loop_entry2699, ptr %x21.loop27213304, bb %params_mix.else959_preheader, ptr %10505001]
+  x21.loop272133043719 = phi [bb %params_mix.loop_entry2699, ptr %x21.loop27213304, bb %params_mix.else959_preheader, ptr %10505039]
   i22.loop272233033718 = phi [bb %params_mix.loop_entry2699, i32 %i22.loop27223303, bb %params_mix.else959_preheader, i32 %1876.load]
   x23.loop272333023717 = phi [bb %params_mix.loop_entry2699, float %x23.loop27233302, bb %params_mix.else959_preheader, float %1882.load]
   x24.loop272433013716 = phi [bb %params_mix.loop_entry2699, float %x24.loop27243301, bb %params_mix.else959_preheader, float %1888.load]
   x25.loop272533003715 = phi [bb %params_mix.loop_entry2699, float %x25.loop27253300, bb %params_mix.else959_preheader, float %1894.load]
-  i26.loop32993714 = phi [bb %params_mix.loop_entry2699, ptr %i26.loop3299, bb %params_mix.else959_preheader, ptr %10644801]
-  x27.loop272732983713 = phi [bb %params_mix.loop_entry2699, ptr %x27.loop27273298, bb %params_mix.else959_preheader, ptr %10505033]
-  i28.loop32973712 = phi [bb %params_mix.loop_entry2699, ptr %i28.loop3297, bb %params_mix.else959_preheader, ptr %10644809]
-  i29.loop32963711 = phi [bb %params_mix.loop_entry2699, ptr %i29.loop3296, bb %params_mix.else959_preheader, ptr %10644817]
-  x30.loop273032953710 = phi [bb %params_mix.loop_entry2699, ptr %x30.loop27303295, bb %params_mix.else959_preheader, ptr %10505041]
+  i26.loop32993714 = phi [bb %params_mix.loop_entry2699, ptr %i26.loop3299, bb %params_mix.else959_preheader, ptr %10644814]
+  x27.loop272732983713 = phi [bb %params_mix.loop_entry2699, ptr %x27.loop27273298, bb %params_mix.else959_preheader, ptr %10505075]
+  i28.loop32973712 = phi [bb %params_mix.loop_entry2699, ptr %i28.loop3297, bb %params_mix.else959_preheader, ptr %10644823]
+  i29.loop32963711 = phi [bb %params_mix.loop_entry2699, ptr %i29.loop3296, bb %params_mix.else959_preheader, ptr %10644832]
+  x30.loop273032953710 = phi [bb %params_mix.loop_entry2699, ptr %x30.loop27303295, bb %params_mix.else959_preheader, ptr %10505084]
   x31.loop273132943709 = phi [bb %params_mix.loop_entry2699, float %x31.loop27313294, bb %params_mix.else959_preheader, float %1910.load]
   x32.loop273232933708 = phi [bb %params_mix.loop_entry2699, float %x32.loop27323293, bb %params_mix.else959_preheader, float %1916.load]
-  i33.loop32923707 = phi [bb %params_mix.loop_entry2699, ptr %i33.loop3292, bb %params_mix.else959_preheader, ptr %10644825]
+  i33.loop32923707 = phi [bb %params_mix.loop_entry2699, ptr %i33.loop3292, bb %params_mix.else959_preheader, ptr %10644841]
   i34.loop32913706 = phi [bb %params_mix.loop_entry2699, i32 %i34.loop3291, bb %params_mix.else959_preheader, i32 %1924.load]
-  x35.loop273532903705 = phi [bb %params_mix.loop_entry2699, ptr %x35.loop27353290, bb %params_mix.else959_preheader, ptr %10505065]
-  x36.loop273632893704 = phi [bb %params_mix.loop_entry2699, ptr %x36.loop27363289, bb %params_mix.else959_preheader, ptr %10505073]
+  x35.loop273532903705 = phi [bb %params_mix.loop_entry2699, ptr %x35.loop27353290, bb %params_mix.else959_preheader, ptr %10505111]
+  x36.loop273632893704 = phi [bb %params_mix.loop_entry2699, ptr %x36.loop27363289, bb %params_mix.else959_preheader, ptr %10505120]
   x37.loop273732883703 = phi [bb %params_mix.loop_entry2699, float %x37.loop27373288, bb %params_mix.else959_preheader, float %1934.load]
   x38.loop273832873702 = phi [bb %params_mix.loop_entry2699, float %x38.loop27383287, bb %params_mix.else959_preheader, float %1940.load]
-  i39.loop32863701 = phi [bb %params_mix.loop_entry2699, ptr %i39.loop3286, bb %params_mix.else959_preheader, ptr %10644841]
-  i40.loop32853700 = phi [bb %params_mix.loop_entry2699, ptr %i40.loop3285, bb %params_mix.else959_preheader, ptr %10644849]
+  i39.loop32863701 = phi [bb %params_mix.loop_entry2699, ptr %i39.loop3286, bb %params_mix.else959_preheader, ptr %10644859]
+  i40.loop32853700 = phi [bb %params_mix.loop_entry2699, ptr %i40.loop3285, bb %params_mix.else959_preheader, ptr %10644868]
   i41.loop32843699 = phi [bb %params_mix.loop_entry2699, i32 %i41.loop3284, bb %params_mix.else959_preheader, i32 %1950.load]
   i42.loop32833698 = phi [bb %params_mix.loop_entry2699, i32 %i42.loop3283, bb %params_mix.else959_preheader, i32 %1956.load]
   x43.loop32823697 = phi [bb %params_mix.loop_entry2699, float %x43.loop3282, bb %params_mix.else959_preheader, float %1962.load]
   x44.loop32813696 = phi [bb %params_mix.loop_entry2699, float %x44.loop3281, bb %params_mix.else959_preheader, float %1968.load]
-  i45.loop32803695 = phi [bb %params_mix.loop_entry2699, ptr %i45.loop3280, bb %params_mix.else959_preheader, ptr %10644873]
+  i45.loop32803695 = phi [bb %params_mix.loop_entry2699, ptr %i45.loop3280, bb %params_mix.else959_preheader, ptr %10644895]
   i46.loop32793694 = phi [bb %params_mix.loop_entry2699, i32 %i46.loop3279, bb %params_mix.else959_preheader, i32 %1976.load]
-  x47.loop32783693 = phi [bb %params_mix.loop_entry2699, ptr %x47.loop3278, bb %params_mix.else959_preheader, ptr %10505113]
+  x47.loop32783693 = phi [bb %params_mix.loop_entry2699, ptr %x47.loop3278, bb %params_mix.else959_preheader, ptr %10505165]
   i48.loop32773692 = phi [bb %params_mix.loop_entry2699, i32 %i48.loop3277, bb %params_mix.else959_preheader, i32 %1984.load]
-  i49.loop32763691 = phi [bb %params_mix.loop_entry2699, ptr %i49.loop3276, bb %params_mix.else959_preheader, ptr %10644897]
-  i50.loop32753690 = phi [bb %params_mix.loop_entry2699, ptr %i50.loop3275, bb %params_mix.else959_preheader, ptr %10644905]
+  i49.loop32763691 = phi [bb %params_mix.loop_entry2699, ptr %i49.loop3276, bb %params_mix.else959_preheader, ptr %10644922]
+  i50.loop32753690 = phi [bb %params_mix.loop_entry2699, ptr %i50.loop3275, bb %params_mix.else959_preheader, ptr %10644931]
   x51.loop32743689 = phi [bb %params_mix.loop_entry2699, float %x51.loop3274, bb %params_mix.else959_preheader, float %1994.load]
   x52.loop32733688 = phi [bb %params_mix.loop_entry2699, float %x52.loop3273, bb %params_mix.else959_preheader, float %2000.load]
-  x53.loop32723687 = phi [bb %params_mix.loop_entry2699, ptr %x53.loop3272, bb %params_mix.else959_preheader, ptr %10505137]
+  x53.loop32723687 = phi [bb %params_mix.loop_entry2699, ptr %x53.loop3272, bb %params_mix.else959_preheader, ptr %10505192]
   i54.loop32713686 = phi [bb %params_mix.loop_entry2699, i32 %i54.loop3271, bb %params_mix.else959_preheader, i32 %2008.load]
-  i55.loop32703685 = phi [bb %params_mix.loop_entry2699, ptr %i55.loop3270, bb %params_mix.else959_preheader, ptr %10644729]
-  x56.loop32693684 = phi [bb %params_mix.loop_entry2699, ptr %x56.loop3269, bb %params_mix.else959_preheader, ptr %10505145]
+  i55.loop32703685 = phi [bb %params_mix.loop_entry2699, ptr %i55.loop3270, bb %params_mix.else959_preheader, ptr %10644733]
+  x56.loop32693684 = phi [bb %params_mix.loop_entry2699, ptr %x56.loop3269, bb %params_mix.else959_preheader, ptr %10505201]
   x57.loop32683683 = phi [bb %params_mix.loop_entry2699, float %x57.loop3268, bb %params_mix.else959_preheader, float %2018.load]
   i58.loop32673682 = phi [bb %params_mix.loop_entry2699, i32 %i58.loop3267, bb %params_mix.else959_preheader, i32 %1806.load]
   x59.loop32663681 = phi [bb %params_mix.loop_entry2699, float %x59.loop3266, bb %params_mix.else959_preheader, float %2030.load]
-  x60.loop32653680 = phi [bb %params_mix.loop_entry2699, ptr %x60.loop3265, bb %params_mix.else959_preheader, ptr %10505169]
-  x61.loop32643679 = phi [bb %params_mix.loop_entry2699, ptr %x61.loop3264, bb %params_mix.else959_preheader, ptr %10505177]
+  x60.loop32653680 = phi [bb %params_mix.loop_entry2699, ptr %x60.loop3265, bb %params_mix.else959_preheader, ptr %10505228]
+  x61.loop32643679 = phi [bb %params_mix.loop_entry2699, ptr %x61.loop3264, bb %params_mix.else959_preheader, ptr %10505237]
   x62.loop32633678 = phi [bb %params_mix.loop_entry2699, float %10313479, bb %params_mix.else959_preheader, float %2040.load]
   i63.loop32623677 = phi [bb %params_mix.loop_entry2699, i32 %10333480, bb %params_mix.else959_preheader, i32 %2046.load]
   10313479 = si2f i32 %i63.loop32623677 to float
   10333480 = f2si float %x62.loop32633678 to i32
   br bb %params_mix.loop_entry2699
-params_mix.else959_exclu_exit:  pred(params_mix.loop_entry2699)
-  br bb %params_mix.then957
 params_f40_i24.else247_exclu_exit:  pred(params_f40_i24.loop_entry)
   br bb %params_f40_i24.then245
 params_f40.else_exclu_exit:  pred(params_f40.else)

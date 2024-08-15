@@ -10,9 +10,8 @@ main:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   CALL getint
-  ADDI s1, zero, 0
-  ADD s0, a0, zero
-  BLT s1, s0, bb2
+  ADDI t0, zero, 0
+  BLT t0, a0, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD a0, zero, zero
@@ -22,6 +21,7 @@ bb1:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb2:   # loop depth 0
+  ADD s0, a0, zero
   # implict jump to bb3
 bb3:   # loop depth 1
   CALL getint
@@ -44,34 +44,33 @@ hanoi:   # loop depth 0
   SD s1, 16(sp)
   SD s2, 24(sp)
   SD s3, 32(sp)
-  ADD s0, a3, zero
-  XORI s1, a0, 1
-  ADD s2, a2, zero
-  SLTIU s3, s1, 1
-  ADD s1, a1, zero
-  BNE s3, zero, bb8
+  ADD s1, a3, zero
+  XORI t0, a0, 1
+  ADD s3, a2, zero
+  ADD s0, a1, zero
+  BEQ t0, zero, bb8
   # implict jump to bb6
 bb6:   # loop depth 0
-  ADDIW s3, a0, -1
-  ADD a3, s2, zero
-  ADD a2, s0, zero
-  ADD a1, s1, zero
-  ADD a0, s3, zero
+  ADDIW s2, a0, -1
+  ADD a3, s3, zero
+  ADD a2, s1, zero
+  ADD a1, s0, zero
+  ADD a0, s2, zero
   CALL hanoi
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADD a0, s0, zero
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 44
   CALL putch
   ADDI a0, zero, 32
   CALL putch
-  ADD a3, s0, zero
-  ADD a2, s1, zero
-  ADD a1, s2, zero
-  ADD a0, s3, zero
+  ADD a3, s1, zero
+  ADD a2, s0, zero
+  ADD a1, s3, zero
+  ADD a0, s2, zero
   CALL hanoi
   # implict jump to bb7
 bb7:   # loop depth 0
@@ -83,11 +82,11 @@ bb7:   # loop depth 0
   ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb8:   # loop depth 0
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  ADD a0, s0, zero
+  ADD a0, s1, zero
   CALL putint
   ADDI a0, zero, 44
   CALL putch

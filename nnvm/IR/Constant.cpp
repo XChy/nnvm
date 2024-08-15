@@ -28,6 +28,20 @@ ConstantInt *ConstantInt::sub(ConstantInt *rhs) const {
   return ret;
 }
 
+ConstantInt *ConstantInt::mul(ConstantInt *rhs) const {
+  ConstantInt *ret =
+      create(*getModule(), getType(),
+             genericMul(getValue(), rhs->getValue(), getType()->getBits()));
+  return ret;
+}
+
+ConstantInt *ConstantInt::sdiv(ConstantInt *rhs) const {
+  ConstantInt *ret =
+      create(*getModule(), getType(),
+             genericSDiv(getValue(), rhs->getValue(), getType()->getBits()));
+  return ret;
+}
+
 ConstantInt *ConstantInt::shl(ConstantInt *shlNum) const {
   ConstantInt *ret =
       create(*getModule(), getType(),

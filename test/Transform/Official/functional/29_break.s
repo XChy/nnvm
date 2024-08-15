@@ -11,8 +11,7 @@ main:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 1
   XORI t2, t1, 50
-  SLTIU t2, t2, 1
-  BNE t2, zero, bb3
+  BEQ t2, zero, bb3
   # implict jump to bb2
 bb2:   # loop depth 1
   ADDIW t2, t1, 1

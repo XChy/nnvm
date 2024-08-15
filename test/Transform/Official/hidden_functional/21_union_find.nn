@@ -11,6 +11,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry46:  pred()
+  parent.pinned = pin ptr @parent
   48 = call i32 getint()
   50 = call i32 getint()
   60155 = icmp slt i32 0, i32 %48
@@ -20,7 +21,7 @@ while.body_preheader:  pred(entry46)
 while.body:  pred(while.body, while.body_preheader)
   i.phi115156 = phi [bb %while.body, i32 %69, bb %while.body_preheader, i32 0]
   145 = shl i32 %i.phi115156, i32 2
-  64 = ptradd ptr @parent, i32 %145
+  64 = ptradd ptr %parent.pinned, i32 %145
   store i32 %i.phi115156 to ptr %64
   69 = add i32 %i.phi115156, i32 1
   60 = icmp slt i32 %69, i32 %48
@@ -44,25 +45,25 @@ while.body91_preheader:  pred(while.exit73)
   br bb %while.body91
 while.body91:  pred(while.body91.split, while.body91_preheader)
   i.phi152 = phi [bb %while.body91.split, i32 %110, bb %while.body91_preheader, i32 0]
-  clusters.phi119151 = phi [bb %while.body91.split, i32 %171, bb %while.body91_preheader, i32 0]
+  clusters.phi119151 = phi [bb %while.body91.split, i32 %172, bb %while.body91_preheader, i32 0]
   146 = shl i32 %i.phi152, i32 2
-  99 = ptradd ptr @parent, i32 %146
+  99 = ptradd ptr %parent.pinned, i32 %146
   99.load = load i32 from ptr %99
   102 = icmp eq i32 %99.load, i32 %i.phi152
   107 = add i32 %clusters.phi119151, i32 1
   br i1 %102, bb %clusters.phi.which.true, bb %while.body91.split
 while.body91.split:  pred(while.body91, clusters.phi.which.true)
-  171 = phi [bb %clusters.phi.which.true, i32 %107, bb %while.body91, i32 %clusters.phi119151]
+  172 = phi [bb %clusters.phi.which.true, i32 %107, bb %while.body91, i32 %clusters.phi119151]
   110 = add i32 %i.phi152, i32 1
   95 = icmp slt i32 %110, i32 %48
   br i1 %95, bb %while.body91, bb %while.body91_exclu_exit
 while.exit92:  pred(while.exit73, while.body91_exclu_exit)
-  150 = phi [bb %while.body91_exclu_exit, i32 %171, bb %while.exit73, i32 0]
+  150 = phi [bb %while.body91_exclu_exit, i32 %172, bb %while.exit73, i32 0]
   call void putint(i32 %150)
   ret i32 0
 merge.then39:  pred(while.body72)
   147 = shl i32 %35131, i32 2
-  43136 = ptradd ptr @parent, i32 %147
+  43136 = ptradd ptr %parent.pinned, i32 %147
   store i32 %32130 to ptr %43136
   br bb %merge.if.exit40
 merge.if.exit40:  pred(while.body72, merge.then39)

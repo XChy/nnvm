@@ -173,7 +173,7 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
   }
 
   if (auto f2si = mayCast<F2SIInst>(I)) {
-    out << "sitofp " << f2si->getOperand(0)->getType()->dump() << " "
+    out << "fptosi " << f2si->getOperand(0)->getType()->dump() << " "
         << valueToName[f2si->getOperand(0)] << " to "
         << f2si->getType()->dump();
     return;

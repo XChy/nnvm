@@ -3,79 +3,86 @@ internal global ptr b init with 1000000 x i32 zeros
 internal global ptr a init with 1000000 x i32 zeros
 i32 main() {
 entry:  pred()
+  .pinned = pin i32 4000
+  a.pinned = pin ptr @a
   br bb %while.cond
 while.cond:  pred(entry, if.exit)
+  420 = phi [bb %entry, i32 0, bb %if.exit, i32 %15.rec]
   i.phi255 = phi [bb %entry, i32 0, bb %if.exit, i32 %25]
   11 = icmp slt i32 %i.phi255, i32 1000
   br i1 %11, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
-  15 = mul i32 %i.phi255, i32 4000
-  16 = ptradd ptr @a, i32 %15
+  16 = ptradd ptr %a.pinned, i32 %420
   17 = call i32 getarray(ptr %16)
   19 = icmp ne i32 %17, i32 1000
   br i1 %19, bb %then, bb %if.exit
 while.exit:  pred(while.cond)
+  b.pinned = pin ptr @b
   call void _sysy_starttime(i32 23)
   br bb %while.body29
 then:  pred(while.body)
   ret i32 %17
 if.exit:  pred(while.body)
   25 = add i32 %i.phi255, i32 1
+  15.rec = add i32 %420, i32 %.pinned
   br bb %while.cond
 while.body29:  pred(while.body36_exclu_exit, while.exit)
+  406 = phi [bb %while.exit, i32 0, bb %while.body36_exclu_exit, i32 %42.rec]
   i.phi254356 = phi [bb %while.body36_exclu_exit, i32 %60, bb %while.exit, i32 0]
-  42 = mul i32 %i.phi254356, i32 4000
-  43 = ptradd ptr @b, i32 %42
+  43 = ptradd ptr %b.pinned, i32 %406
   300 = shl i32 %i.phi254356, i32 2
   br bb %while.body36
 while.body36:  pred(while.body36, while.body29)
+  404 = phi [bb %while.body29, i32 0, bb %while.body36, i32 %49.rec]
   j.phi265310 = phi [bb %while.body36, i32 %57, bb %while.body29, i32 0]
   299 = shl i32 %j.phi265310, i32 2
   46 = ptradd ptr %43, i32 %299
-  49 = mul i32 %j.phi265310, i32 4000
-  50 = ptradd ptr @a, i32 %49
+  50 = ptradd ptr %a.pinned, i32 %404
   53 = ptradd ptr %50, i32 %300
   53.load = load i32 from ptr %53
   store i32 %53.load to ptr %46
   57 = add i32 %j.phi265310, i32 1
   39 = icmp slt i32 %57, i32 1000
+  49.rec = add i32 %404, i32 %.pinned
   br i1 %39, bb %while.body36, bb %while.body36_exclu_exit
 while.body63:  pred(while.body70_exclu_exit, while.body29_exclu_exit)
+  410 = phi [bb %while.body29_exclu_exit, i32 0, bb %while.body70_exclu_exit, i32 %86312.rec]
   i.phi253354 = phi [bb %while.body70_exclu_exit, i32 %117, bb %while.body29_exclu_exit, i32 0]
-  86312 = mul i32 %i.phi253354, i32 4000
+  c.pinned = pin ptr @c
   br bb %while.body70
 while.body70:  pred(while.body78_exclu_exit, while.body63)
   j.phi263327 = phi [bb %while.body78_exclu_exit, i32 %114, bb %while.body63, i32 0]
   302313 = shl i32 %j.phi263327, i32 2
   br bb %while.body78
 while.body78:  pred(while.body78, while.body70)
+  408 = phi [bb %while.body70, i32 0, bb %while.body78, i32 %93.rec]
   k.phi319 = phi [bb %while.body78, i32 %103, bb %while.body70, i32 0]
   temp.phi318 = phi [bb %while.body78, i32 %100, bb %while.body70, i32 0]
-  87 = ptradd ptr @a, i32 %86312
+  87 = ptradd ptr %a.pinned, i32 %410
   301 = shl i32 %k.phi319, i32 2
   90 = ptradd ptr %87, i32 %301
   90.load = load i32 from ptr %90
-  93 = mul i32 %k.phi319, i32 4000
-  94 = ptradd ptr @b, i32 %93
+  94 = ptradd ptr %b.pinned, i32 %408
   97 = ptradd ptr %94, i32 %302313
   97.load = load i32 from ptr %97
   99 = mul i32 %90.load, i32 %97.load
   100 = add i32 %temp.phi318, i32 %99
   103 = add i32 %k.phi319, i32 1
   81 = icmp slt i32 %103, i32 1000
+  93.rec = add i32 %408, i32 %.pinned
   br i1 %81, bb %while.body78, bb %while.body78_exclu_exit
 while.body120:  pred(while.body158_exclu_exit, while.body63_exclu_exit)
+  412 = phi [bb %while.body63_exclu_exit, i32 0, bb %while.body158_exclu_exit, i32 %135331.rec]
   i.phi252350 = phi [bb %while.body158_exclu_exit, i32 %176, bb %while.body63_exclu_exit, i32 0]
-  135331 = mul i32 %i.phi252350, i32 4000
   br bb %while.body129
 while.body129:  pred(while.body129, while.body120)
   j.phi262335 = phi [bb %while.body129, i32 %155, bb %while.body120, i32 0]
-  temp126.phi276334 = phi [bb %while.body129, i32 %405, bb %while.body120, i32 2147483647]
-  136 = ptradd ptr @c, i32 %135331
+  temp126.phi276334 = phi [bb %while.body129, i32 %423, bb %while.body120, i32 2147483647]
+  136 = ptradd ptr %c.pinned, i32 %412
   304 = shl i32 %j.phi262335, i32 2
   139 = ptradd ptr %136, i32 %304
   139.load = load i32 from ptr %139
-  405 = signed min i32 %139.load, i32 %temp126.phi276334
+  423 = signed min i32 %139.load, i32 %temp126.phi276334
   155 = add i32 %j.phi262335, i32 1
   132 = icmp slt i32 %155, i32 1000
   br i1 %132, bb %while.body129, bb %while.body129_exclu_exit
@@ -83,34 +90,35 @@ while.body158:  pred(while.body158, while.body129_exclu_exit)
   j.phi260329 = phi [bb %while.body158, i32 %173, bb %while.body129_exclu_exit, i32 0]
   305 = shl i32 %j.phi260329, i32 2
   168 = ptradd ptr %136, i32 %305
-  store i32 %405 to ptr %168
+  store i32 %423 to ptr %168
   173 = add i32 %j.phi260329, i32 1
   161 = icmp slt i32 %173, i32 1000
   br i1 %161, bb %while.body158, bb %while.body158_exclu_exit
 while.body179:  pred(while.body188_exclu_exit, while.body120_exclu_exit)
+  416 = phi [bb %while.body120_exclu_exit, i32 0, bb %while.body188_exclu_exit, i32 %194.rec]
   i.phi251348 = phi [bb %while.body188_exclu_exit, i32 %213, bb %while.body120_exclu_exit, i32 0]
-  194 = mul i32 %i.phi251348, i32 4000
-  195 = ptradd ptr @c, i32 %194
+  195 = ptradd ptr %c.pinned, i32 %416
   307 = shl i32 %i.phi251348, i32 2
   br bb %while.body188
 while.body188:  pred(while.body188, while.body179)
+  414 = phi [bb %while.body179, i32 0, bb %while.body188, i32 %201.rec]
   j.phi258338 = phi [bb %while.body188, i32 %210, bb %while.body179, i32 0]
   306 = shl i32 %j.phi258338, i32 2
   198 = ptradd ptr %195, i32 %306
-  201 = mul i32 %j.phi258338, i32 4000
-  202 = ptradd ptr @c, i32 %201
+  202 = ptradd ptr %c.pinned, i32 %414
   205 = ptradd ptr %202, i32 %307
   205.load = load i32 from ptr %205
   207 = sub i32 0, i32 %205.load
   store i32 %207 to ptr %198
   210 = add i32 %j.phi258338, i32 1
   191 = icmp slt i32 %210, i32 1000
+  201.rec = add i32 %414, i32 %.pinned
   br i1 %191, bb %while.body188, bb %while.body188_exclu_exit
 while.body216:  pred(while.body225_exclu_exit, while.body179_exclu_exit)
+  418 = phi [bb %while.body179_exclu_exit, i32 0, bb %while.body225_exclu_exit, i32 %233.rec]
   i.phi346 = phi [bb %while.body225_exclu_exit, i32 %245, bb %while.body179_exclu_exit, i32 0]
   sum.phi271345 = phi [bb %while.body225_exclu_exit, i32 %239, bb %while.body179_exclu_exit, i32 0]
-  233 = mul i32 %i.phi346, i32 4000
-  234 = ptradd ptr @c, i32 %233
+  234 = ptradd ptr %c.pinned, i32 %418
   br bb %while.body225
 while.body225:  pred(while.body225, while.body216)
   j.phi342 = phi [bb %while.body225, i32 %242, bb %while.body216, i32 0]
@@ -125,11 +133,12 @@ while.body225:  pred(while.body225, while.body216)
 while.body36_exclu_exit:  pred(while.body36)
   60 = add i32 %i.phi254356, i32 1
   32 = icmp slt i32 %60, i32 1000
+  42.rec = add i32 %406, i32 %.pinned
   br i1 %32, bb %while.body29, bb %while.body29_exclu_exit
 while.body29_exclu_exit:  pred(while.body36_exclu_exit)
   br bb %while.body63
 while.body78_exclu_exit:  pred(while.body78)
-  106 = ptradd ptr @c, i32 %86312
+  106 = ptradd ptr %c.pinned, i32 %410
   109 = ptradd ptr %106, i32 %302313
   store i32 %100 to ptr %109
   114 = add i32 %j.phi263327, i32 1
@@ -138,6 +147,7 @@ while.body78_exclu_exit:  pred(while.body78)
 while.body70_exclu_exit:  pred(while.body78_exclu_exit)
   117 = add i32 %i.phi253354, i32 1
   66 = icmp slt i32 %117, i32 1000
+  86312.rec = add i32 %410, i32 %.pinned
   br i1 %66, bb %while.body63, bb %while.body63_exclu_exit
 while.body63_exclu_exit:  pred(while.body70_exclu_exit)
   br bb %while.body120
@@ -146,18 +156,21 @@ while.body129_exclu_exit:  pred(while.body129)
 while.body158_exclu_exit:  pred(while.body158)
   176 = add i32 %i.phi252350, i32 1
   123 = icmp slt i32 %176, i32 1000
+  135331.rec = add i32 %412, i32 %.pinned
   br i1 %123, bb %while.body120, bb %while.body120_exclu_exit
 while.body120_exclu_exit:  pred(while.body158_exclu_exit)
   br bb %while.body179
 while.body188_exclu_exit:  pred(while.body188)
   213 = add i32 %i.phi251348, i32 1
   182 = icmp slt i32 %213, i32 1000
+  194.rec = add i32 %416, i32 %.pinned
   br i1 %182, bb %while.body179, bb %while.body179_exclu_exit
 while.body179_exclu_exit:  pred(while.body188_exclu_exit)
   br bb %while.body216
 while.body225_exclu_exit:  pred(while.body225)
   245 = add i32 %i.phi346, i32 1
   219 = icmp slt i32 %245, i32 1000
+  233.rec = add i32 %418, i32 %.pinned
   br i1 %219, bb %while.body216, bb %while.body216_exclu_exit
 while.body216_exclu_exit:  pred(while.body225_exclu_exit)
   call void _sysy_stoptime(i32 92)

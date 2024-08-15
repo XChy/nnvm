@@ -1,7 +1,8 @@
 global ptr k init with i32 0
 i32 main() {
 entry:  pred()
-  store i32 1 to ptr @k
+  k.pinned = pin ptr @k
+  store i32 1 to ptr %k.pinned
   928 = icmp sle i32 0, i32 9
   br i1 %928, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
@@ -14,12 +15,12 @@ while.body:  pred(while.body, while.body_preheader)
   9 = icmp sle i32 %13, i32 9
   br i1 %9, bb %while.body, bb %while.body_exclu_exit33
 while.exit:  pred(entry, while.body_exclu_exit33)
-  k.load20 = load i32 from ptr @k
+  k.load20 = load i32 from ptr %k.pinned
   call void putint(i32 %k.load20)
-  k.load22 = load i32 from ptr @k
+  k.load22 = load i32 from ptr %k.pinned
   ret i32 %k.load22
 while.body_exclu_exit33:  pred(while.body)
-  store i32 %27 to ptr @k
+  store i32 %27 to ptr %k.pinned
   br bb %while.exit
 }
 

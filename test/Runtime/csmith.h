@@ -9,7 +9,7 @@ static uint32_t crc32_context = 0xFFFFFFFFUL;
 
 static void crc32_gentab(void) {
   uint32_t crc;
-  const uint32_t poly = 0xEDB88320UL;
+  const uint32_t poly = 0xEDB88320;
   int i, j;
 
   for (i = 0; i < 256; i++) {
@@ -27,10 +27,10 @@ static void crc32_gentab(void) {
 }
 
 static float fabsf(float x) {
-	if (x < 0) {
-		return -x;
-	}
-	return x;
+  if (x < 0) {
+    return -x;
+  }
+  return x;
 }
 
 static void crc32_byte(uint8_t b) {
@@ -38,33 +38,21 @@ static void crc32_byte(uint8_t b) {
     crc32_tab[(crc32_context ^ b) & 0xFF];
 }
 
-static void crc32_8bytes(uint64_t val) {
+static void crc32_4bytes(uint64_t val) {
   crc32_byte((val >> 0) & 0xff);
   crc32_byte((val >> 8) & 0xff);
   crc32_byte((val >> 16) & 0xff);
   crc32_byte((val >> 24) & 0xff);
-  crc32_byte((val >> 32) & 0xff);
-  crc32_byte((val >> 40) & 0xff);
-  crc32_byte((val >> 48) & 0xff);
-  crc32_byte((val >> 56) & 0xff);
-}
-
-int lut[16] = { 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70 };
-static void put_hex(uint64_t hash) {
-  if (hash >= 16) {
-    put_hex(hash / 16);
-  }
-  putch(lut[hash % 16]);
 }
 
 static void print_hash(uint64_t hash) {
   putch(32);
-  put_hex(hash);
+  putint(hash);
   putch(10);
 }
 
 static void transparent_crc(uint64_t val, int flag) {
-  crc32_8bytes(val);
+  crc32_4bytes(val);
   if (flag) {
     print_hash(crc32_context ^ 0xFFFFFFFFUL);
   }

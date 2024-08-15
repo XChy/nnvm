@@ -13,6 +13,7 @@ entry202:  pred()
   %a1245 = stack 40000
   %a2244 = stack 40000
   %a3243 = stack 40000
+  .pinned = pin i32 10000
   br bb %long_array.while.body
 long_array.while.body:  pred(long_array.while.body, entry202)
   i.phi207248450 = phi [bb %long_array.while.body, i32 %23257, bb %entry202, i32 0]
@@ -22,7 +23,7 @@ long_array.while.body:  pred(long_array.while.body, entry202)
   20255 = srem i32 %19254, i32 10
   store i32 %20255 to ptr %15253
   23257 = add i32 %i.phi207248450, i32 1
-  11249 = icmp slt i32 %23257, i32 10000
+  11249 = icmp slt i32 %23257, i32 %.pinned
   br i1 %11249, bb %long_array.while.body, bb %long_array.while.body_exclu_exit
 long_array.while.body26:  pred(long_array.while.body26, long_array.while.body_exclu_exit)
   i.phi206262448 = phi [bb %long_array.while.body26, i32 %48273, bb %long_array.while.body_exclu_exit, i32 0]
@@ -34,7 +35,7 @@ long_array.while.body26:  pred(long_array.while.body26, long_array.while.body_ex
   45271 = srem i32 %44270, i32 10
   store i32 %45271 to ptr %34267
   48273 = add i32 %i.phi206262448, i32 1
-  30263 = icmp slt i32 %48273, i32 10000
+  30263 = icmp slt i32 %48273, i32 %.pinned
   br i1 %30263, bb %long_array.while.body26, bb %long_array.while.body26_exclu_exit
 long_array.while.body51:  pred(long_array.while.body51, long_array.while.body26_exclu_exit)
   i.phi205278446 = phi [bb %long_array.while.body51, i32 %78292, bb %long_array.while.body26_exclu_exit, i32 0]
@@ -49,7 +50,7 @@ long_array.while.body51:  pred(long_array.while.body51, long_array.while.body26_
   75290 = add i32 %70287, i32 %73.load289
   store i32 %75290 to ptr %59283
   78292 = add i32 %i.phi205278446, i32 1
-  55279 = icmp slt i32 %78292, i32 10000
+  55279 = icmp slt i32 %78292, i32 %.pinned
   br i1 %55279, bb %long_array.while.body51, bb %long_array.while.body51_exclu_exit
 long_array.while.body82:  pred(long_array.if.exit, long_array.while.body51_exclu_exit)
   i.phi300444 = phi [bb %long_array.if.exit, i32 %200320, bb %long_array.while.body51_exclu_exit, i32 0]
@@ -71,7 +72,7 @@ long_array.if.exit:  pred(long_array.then, long_array.if.exit106)
   j.phi217318 = phi [bb %long_array.if.exit106, i32 %j.phi216329, bb %long_array.then, i32 %j.phi218298442]
   ans.phi212319 = phi [bb %long_array.if.exit106, i32 %ans.phi211330, bb %long_array.then, i32 %100313]
   200320 = add i32 %i.phi300444, i32 1
-  86301 = icmp slt i32 %200320, i32 10000
+  86301 = icmp slt i32 %200320, i32 %.pinned
   br i1 %86301, bb %long_array.while.body82, bb %long_array.while.body82_exclu_exit
 long_array.else:  pred(long_array.while.body82)
   104323 = icmp slt i32 %i.phi300444, i32 20
@@ -90,14 +91,14 @@ long_array.else107:  pred(long_array.else)
   br i1 %136333, bb %long_array.then137, bb %long_array.else139
 long_array.while.body112:  pred(long_array.while.body112, long_array.then105)
   ans.phi214337433 = phi [bb %long_array.while.body112, i32 %129348, bb %long_array.then105, i32 %ans.phi213299443]
-  j.phi336432 = phi [bb %long_array.while.body112, i32 %132349, bb %long_array.then105, i32 5000]
+  j.phi336432 = phi [bb %long_array.while.body112, i32 %132349, bb %long_array.then105, i32 %.pinned475]
   124344 = add i32 %ans.phi214337433, i32 %122.load343
   423 = shl i32 %j.phi336432, i32 2
   127346 = ptradd ptr %a1245, i32 %423
   127.load347 = load i32 from ptr %127346
   129348 = sub i32 %124344, i32 %127.load347
   132349 = add i32 %j.phi336432, i32 1
-  116338 = icmp slt i32 %132349, i32 10000
+  116338 = icmp slt i32 %132349, i32 %.pinned
   br i1 %116338, bb %long_array.while.body112, bb %long_array.while.body112_exclu_exit
 long_array.then137:  pred(long_array.else107)
   159381 = ptradd ptr %a2244, i32 %421
@@ -116,7 +117,7 @@ long_array.else139:  pred(long_array.else107)
   br bb %long_array.if.exit138
 long_array.while.body144:  pred(long_array.if.exit153, long_array.then137)
   ans.phi209370438 = phi [bb %long_array.if.exit153, i32 %ans.phi392, bb %long_array.then137, i32 %ans.phi213299443]
-  j140.phi220369437 = phi [bb %long_array.if.exit153, i32 %j140.phi391, bb %long_array.then137, i32 5000]
+  j140.phi220369437 = phi [bb %long_array.if.exit153, i32 %j140.phi391, bb %long_array.then137, i32 %.pinned475]
   151374 = icmp sgt i32 %j140.phi220369437, i32 2233
   426 = shl i32 %j140.phi220369437, i32 2
   br i1 %151374, bb %long_array.then152, bb %long_array.else154
@@ -131,7 +132,7 @@ long_array.then152:  pred(long_array.while.body144)
 long_array.if.exit153:  pred(long_array.then152, long_array.else154)
   j140.phi391 = phi [bb %long_array.else154, i32 %185404, bb %long_array.then152, i32 %169388]
   ans.phi392 = phi [bb %long_array.else154, i32 %182403, bb %long_array.then152, i32 %166387]
-  148371 = icmp slt i32 %j140.phi391, i32 10000
+  148371 = icmp slt i32 %j140.phi391, i32 %.pinned
   br i1 %148371, bb %long_array.while.body144, bb %long_array.while.body144_exclu_exit
 long_array.else154:  pred(long_array.while.body144)
   174.load397 = load i32 from ptr %174396
@@ -147,6 +148,7 @@ long_array.while.body_exclu_exit:  pred(long_array.while.body)
 long_array.while.body26_exclu_exit:  pred(long_array.while.body26)
   br bb %long_array.while.body51
 long_array.while.body51_exclu_exit:  pred(long_array.while.body51)
+  .pinned475 = pin i32 5000
   br bb %long_array.while.body82
 long_array.while.body112_exclu_exit:  pred(long_array.while.body112)
   call void putint(i32 %129348)

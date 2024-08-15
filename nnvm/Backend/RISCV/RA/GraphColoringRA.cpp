@@ -95,6 +95,15 @@ void GraphColoringRAImpl::build(LIRFunc &func, LivenessAnalysis const &la) {
         worklistMoves.insert(inst);
       }
 
+      // Caller-saved regs interfere live regs at callsite.
+      if (inst->getOpcode() == CALL) {
+        for (auto live : liveRegs)
+          for (uint64_t regId : callerSavedRegIds()) {
+            Register *reg = func.getParent()->getPhyReg(regId);
+            addEdge(live, reg);
+          }
+      }
+
       // liveRegs = (liveRegs - defs) + uses
       for (auto def : defs) {
         liveRegs.erase(def);

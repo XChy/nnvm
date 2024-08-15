@@ -12,7 +12,8 @@ external i32 getfarray(ptr )
 i32 main() {
 entry62:  pred()
   %a = stack 40
-  store i32 10 to ptr @n
+  n.pinned = pin ptr @n
+  store i32 10 to ptr %n.pinned
   store i32 4 to ptr %a
   69 = ptradd ptr %a, i32 4
   store i32 3 to ptr %69
@@ -43,7 +44,7 @@ while.body99:  pred(while.body99, while.body99_preheader)
   call void putint(i32 %109.load)
   call void putch(i32 10)
   118 = add i32 %i95.phi200, i32 1
-  n.load102 = load i32 from ptr @n
+  n.load102 = load i32 from ptr %n.pinned
   103 = icmp slt i32 %118, i32 %n.load102
   br i1 %103, bb %while.body99, bb %while.exit100
 while.exit100:  pred(bubblesort.while.body_exclu_exit, while.body99)

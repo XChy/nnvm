@@ -43,8 +43,7 @@ bool CFGCombinerPass::processBB(BasicBlock *BB) {
   if (BranchInst *BI = mayCast<BranchInst>(BB->getTerminator())) {
     if (!BI->isConditional())
       return foldBBWithUncondBr(BB, BI);
-
-    if (BI->isConditional())
+    else
       return foldBBWithCondBr(BB, BI);
   }
   return false;

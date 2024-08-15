@@ -46,25 +46,26 @@ while.body:  pred(if.exit1952, while.body_preheader)
 while.exit:  pred(entry1911, if.exit1952)
   ret i32 0
 while.body1923:  pred(while.body1923, while.body)
+  3262 = phi [bb %while.body, i32 0, bb %while.body1923, i32 %1936.rec]
   i.phi3247 = phi [bb %while.body1923, i32 %1948, bb %while.body, i32 0]
-  1936 = mul i32 %i.phi3247, i32 20
-  1937 = ptradd ptr %a, i32 %1936
+  1937 = ptradd ptr %a, i32 %3262
   1942 = call i32 getint()
   store i32 %1942 to ptr %1937
-  19403265 = ptradd ptr %1937, i32 4
-  19423266 = call i32 getint()
-  store i32 %19423266 to ptr %19403265
-  19403274 = ptradd ptr %1937, i32 8
-  19423275 = call i32 getint()
-  store i32 %19423275 to ptr %19403274
-  19403283 = ptradd ptr %1937, i32 12
-  19423284 = call i32 getint()
-  store i32 %19423284 to ptr %19403283
-  19403292 = ptradd ptr %1937, i32 16
-  19423293 = call i32 getint()
-  store i32 %19423293 to ptr %19403292
+  19403267 = ptradd ptr %1937, i32 4
+  19423268 = call i32 getint()
+  store i32 %19423268 to ptr %19403267
+  19403276 = ptradd ptr %1937, i32 8
+  19423277 = call i32 getint()
+  store i32 %19423277 to ptr %19403276
+  19403285 = ptradd ptr %1937, i32 12
+  19423286 = call i32 getint()
+  store i32 %19423286 to ptr %19403285
+  19403294 = ptradd ptr %1937, i32 16
+  19423295 = call i32 getint()
+  store i32 %19423295 to ptr %19403294
   1948 = add i32 %i.phi3247, i32 1
   1926 = icmp slt i32 %1948, i32 5
+  1936.rec = add i32 %3262, i32 20
   br i1 %1926, bb %while.body1923, bb %while.body1923_exclu_exit
 then1951:  pred(model.entry11.split.split.split.split.split.split.split.split.split.split)
   call void putch(i32 99)

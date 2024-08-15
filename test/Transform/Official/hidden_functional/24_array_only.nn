@@ -57,11 +57,13 @@ entry93:  pred()
   %z = stack 8
   %y = stack 4
   %j = stack 4
+  k.pinned = pin ptr @k
+  i.pinned = pin ptr @i
   store i32 -1 to ptr %z
   arr.index99 = ptradd ptr %z, i32 4
   store i32 0 to ptr %arr.index99
   103 = call i32 getint()
-  store i32 %103 to ptr @k
+  store i32 %103 to ptr %k.pinned
   107 = call i32 getint()
   store i32 %107 to ptr %y
   110 = call i32 getarray(ptr %z)
@@ -79,7 +81,7 @@ while.exit:  pred(while.cond, while.exit128)
   call void putch(i32 10)
   ret i32 0
 while.body127:  pred(while.body127, while.body)
-  135.load = load i32 from ptr @i
+  135.load = load i32 from ptr %i.pinned
   call void putint(i32 %135.load)
   139.load = load i32 from ptr %j
   call void putint(i32 %139.load)
@@ -87,21 +89,21 @@ while.body127:  pred(while.body127, while.body)
   call void putint(i32 %143.load)
   149.load = load i32 from ptr %z
   call void putint(i32 %149.load)
-  58.load193 = load i32 from ptr @k
+  58.load193 = load i32 from ptr %k.pinned
   call void add_impl(ptr %z, ptr %y, i32 %58.load193)
-  58.load198 = load i32 from ptr @k
+  58.load198 = load i32 from ptr %k.pinned
   call void add_impl(ptr %j, ptr %y, i32 %58.load198)
-  90.load183 = load i32 from ptr @k
+  90.load183 = load i32 from ptr %k.pinned
   call void sub_impl(ptr %z, ptr %y, i32 %90.load183)
   130.load = load i32 from ptr %j
   132 = icmp slt i32 %130.load, i32 5
   br i1 %132, bb %while.body127, bb %while.exit128
 while.exit128:  pred(while.body, while.body127)
-  26.load188 = load i32 from ptr @k
-  call void inc_impl(ptr @i, i32 %26.load188)
-  58.load203 = load i32 from ptr @k
-  call void add_impl(ptr @i, ptr %z, i32 %58.load203)
-  164.load = load i32 from ptr @i
+  26.load188 = load i32 from ptr %k.pinned
+  call void inc_impl(ptr %i.pinned, i32 %26.load188)
+  58.load203 = load i32 from ptr %k.pinned
+  call void add_impl(ptr %i.pinned, ptr %z, i32 %58.load203)
+  164.load = load i32 from ptr %i.pinned
   169.load = load i32 from ptr %arr.index99
   171 = icmp eq i32 %164.load, i32 %169.load
   br i1 %171, bb %while.exit, bb %while.cond
