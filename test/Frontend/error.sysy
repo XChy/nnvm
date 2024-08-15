@@ -1,0 +1,12 @@
+int b() {
+
+}
+
+int b() {
+    
+}
+
+
+int main() {
+    return 0;
+}

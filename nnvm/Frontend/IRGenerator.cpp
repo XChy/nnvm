@@ -8,6 +8,7 @@
 #include "IR/Instruction.h"
 #include "IR/Type.h"
 #include "Utils/Debug.h"
+#include "ErrorReporter.h"
 #include <string>
 #include <string_view>
 
@@ -16,6 +17,7 @@ using std::is_same_v;
 static int getRadixOf(std::string_view text);
 
 IRGenerator::IRGenerator() {}
+ErrorReporter errorReporter;
 
 void IRGenerator::emitIR(antlr4::tree::ParseTree *ast, Module *ir) {
   this->ir = ir;
@@ -38,6 +40,7 @@ Any IRGenerator::visitProgram(SysYParser::ProgramContext *ctx) {
   visitChildren(ctx);
   // Global symbol table ends here.
   symbolTable.exitScope();
+  errorReporter.report();
   return Any();
 }
 
@@ -118,6 +121,7 @@ Any IRGenerator::solveConstLval(SysYParser::LValContext *ctx) {
     size_t i = 0;
     for (; i < indexs.size() - 1; i++) {
       Any index = solveConstExp(indexs[i]);
+
       assert(any_is<int>(index));
       // TODO: Report invalid index error.
       if (i < indexs.size() - 1) {
@@ -190,6 +194,7 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
           return ~any_as<int>(operand);
       }
       // TODO: report error
+      errorReporter.errorRecord(ctx, "Invalid expression");
       nnvm_unimpl();
     }
 
@@ -217,11 +222,13 @@ Any IRGenerator::solveConstExp(SysYParser::ExpContext *ctx) {
     if (ctx->DIV()) {
       if (rhs == 0) {
         // TODO: error.
+        errorReporter.errorRecord(ctx, "Divisor cannot be zero");
         nnvm_unimpl();
       }
       return lhs / rhs;
     }
     // TODO: report error
+    errorReporter.errorRecord(ctx, "Invalid operand");
     nnvm_unimpl();
   } else if (any_is<int>(lhsAny) && any_is<int>(rhsAny)) {
     int lhs = any_as<int>(lhsAny);
@@ -323,6 +330,7 @@ Any IRGenerator::constDef(SysYParser::ConstDefContext *ctx,
   string symbolName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(symbolName)) {
     // TODO: report duplicate define error
+    errorReporter.errorRecord(ctx, "Duplicate define");
     return Symbol::none();
   }
 
@@ -581,6 +589,7 @@ Any IRGenerator::varDef(SysYParser::VarDefContext *ctx,
 
   if (symbolTable.lookupInCurrentScope(symbolName)) {
     // TODO: error
+     errorReporter.errorRecord(ctx, "Var already exsisted");
     return Symbol::none();
   }
 
@@ -728,6 +737,7 @@ Any IRGenerator::visitFuncDecl(SysYParser::FuncDeclContext *ctx) {
     SymbolType *lookedType = symbolTable.lookup(funcName)->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
+      errorReporter.errorRecord(ctx, "FuncDecl wrong");
       nnvm_unimpl();
     }
   } else {
@@ -751,6 +761,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
     SymbolType *lookedType = lookedFunc->symbolType;
     if (!lookedType->isIdentical(*funcTy)) {
       // error report
+      errorReporter.errorRecord(ctx, "FuncDef wrong");
       nnvm_unimpl();
     }
     currentFunc = lookedFunc;
@@ -816,6 +827,7 @@ Any IRGenerator::visitFuncFParam(SysYParser::FuncFParamContext *ctx) {
   string paramName = ctx->IDENT()->getText();
   if (symbolTable.lookupInCurrentScope(paramName)) {
     // TODO: error
+    errorReporter.errorRecord(ctx, "Invalid function Param");
     return Symbol::none();
   }
 
@@ -1027,7 +1039,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
       return Symbol{builder.buildRet(returned.entity), nullptr};
     } else {
       if (!currentFunc->symbolType->containedTy->isVoid()) {
-        // TODO:  error
+        errorReporter.errorRecord(ctx, "Function return value should exsist");
         return Symbol::none();
       }
 
@@ -1075,8 +1087,11 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     // lhs && rhs  -->  if lhs then rhs else false;
     Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
-    if (!lhs)
+    if (!lhs) {
+      errorReporter.errorRecord(ctx, "Left side of the cond should exsist");
       return Symbol::none();
+    }
+      
 
     BasicBlock *thenBB =
         new BasicBlock(builder.getCurrentFunc(), "select.then");
@@ -1093,8 +1108,11 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.insertAt(thenBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
-    if (!rhs)
+    
+    if (!rhs) {
+      errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
       return Symbol::none();
+    }
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
 
@@ -1111,8 +1129,10 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     // lhs || rhs  -->  if lhs then true else rhs;
     Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
     lhs = genImplicitCast(lhs, SymbolType::getBoolTy());
-    if (!lhs)
+    if (!lhs) {
+      errorReporter.errorRecord(ctx, "Left side of the operator should exsist");
       return Symbol::none();
+    }
 
     BasicBlock *thenBB =
         new BasicBlock(builder.getCurrentFunc(), "select.then");
@@ -1134,8 +1154,12 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
     builder.insertAt(elseBB->end());
     Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
     rhs = genImplicitCast(rhs, SymbolType::getBoolTy());
-    if (!rhs)
+    
+    if (!rhs) {
+      errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
       return Symbol::none();
+    }
+    
     rhs.entity = builder.buildICmpNEZero(rhs.entity);
     builder.buildStore(rhs.entity, result);
     builder.buildBr(exitBB);
@@ -1145,12 +1169,17 @@ Any IRGenerator::expCond(SysYParser::ExpContext *ctx) {
                   SymbolType::getBoolTy()};
   } else {
     Symbol exp1 = any_as<Symbol>(ctx->exp(0)->accept(this));
-    if (!exp1)
+    if (!exp1) {
+      errorReporter.errorRecord(ctx, "The fisrt parm of the operator should be correct");
       return Symbol::none();
+    }
+      
 
     Symbol exp2 = any_as<Symbol>(ctx->exp(1)->accept(this));
-    if (!exp2)
+    if (!exp2) {
+      errorReporter.errorRecord(ctx, "The second parm of the operator should be correct");
       return Symbol::none();
+    }
 
     widen(exp1, exp2);
 
@@ -1277,6 +1306,7 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
 
   if (!address)
     // TODO: report error
+    errorReporter.errorRecord(ctx, "Invalid LVal");
     return Symbol::none();
 
   for (auto *expCtx : ctx->exp()) {
@@ -1295,6 +1325,7 @@ Any IRGenerator::visitLVal(SysYParser::LValContext *ctx) {
 
   if (!address) {
     // TODO: error
+    errorReporter.errorRecord(ctx, "Invalid LVal");
     return Symbol::none();
   }
 
@@ -1343,11 +1374,15 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   // TODO: how to infer type?
   Symbol lhs = any_as<Symbol>(ctx->exp(0)->accept(this));
   // TODO: error
-  if (!lhs)
+  if (!lhs) {
+    errorReporter.errorRecord(ctx, "Left side of the operator should exsist");
     return nullptr;
+  }   
   Symbol rhs = any_as<Symbol>(ctx->exp(1)->accept(this));
-  if (!rhs)
+  if (!rhs) {
+    errorReporter.errorRecord(ctx, "Right side of the operator should exsist");
     return nullptr;
+  }
 
   widen(lhs, rhs);
   // TODO: error
@@ -1406,6 +1441,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
+      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     // be careful about the ir type here
@@ -1416,6 +1452,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
+      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<OrInst>(lhs.entity, rhs.entity, lhs.entity->getType());
@@ -1425,6 +1462,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
     if ((!lhs.symbolType->isInt() && !lhs.symbolType->isBool()) ||
         (!rhs.symbolType->isInt() && !rhs.symbolType->isBool())) {
       // TODO: report error
+      errorReporter.errorRecord(ctx, "Both sides of the operator should be of type int");
       nnvm_unimpl();
     }
     val = builder.buildBinOp<XorInst>(lhs.entity, rhs.entity, lhs.entity->getType());
@@ -1441,6 +1479,7 @@ Any IRGenerator::expBinOp(SysYParser::ExpContext *ctx) {
   if (ctx->BITSHR()) {
     if (!lhs.symbolType->isInt() || !rhs.symbolType->isInt()) {
       // TODO: report error
+      errorReporter.errorRecord(ctx, "Operand not int!");
       nnvm_unimpl();
     }
     // signed Integer : Arithmetic shift right
