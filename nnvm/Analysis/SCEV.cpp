@@ -113,7 +113,7 @@ ScevValue *SCEV::analyze(Value *value, Loop *loop) {
   if (AddInst *add = mayCast<AddInst>(value)) {
     if (add->getLHS()->isa<PhiNode>() && add->getRHS()->isa<ConstantInt>()) {
       ScevValue *phiScev = analyze(add->getLHS(), loop);
-      if (phiScev->isSingle())
+      if (!phiScev || phiScev->isSingle())
         return nullptr;
 
       ConstantInt *rhs = cast<ConstantInt>(add->getRHS());

@@ -7,9 +7,9 @@ main:   # loop depth 0
   ADDI sp, sp, -400
   SD ra, 224(sp)
   SD s0, 232(sp)
-  SD s1, 240(sp)
-  SD s2, 248(sp)
-  SD s4, 256(sp)
+  SD s2, 240(sp)
+  SD s3, 248(sp)
+  SD s5, 256(sp)
   SD s6, 264(sp)
   SD s7, 272(sp)
   SD s11, 280(sp)
@@ -21,9 +21,9 @@ bb1:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 224(sp)
   LD s0, 232(sp)
-  LD s1, 240(sp)
-  LD s2, 248(sp)
-  LD s4, 256(sp)
+  LD s2, 240(sp)
+  LD s3, 248(sp)
+  LD s5, 256(sp)
   LD s6, 264(sp)
   LD s7, 272(sp)
   LD s11, 280(sp)
@@ -32,26 +32,26 @@ bb1:   # loop depth 0
 bb2:   # loop depth 0
   # implict jump to bb3
 bb3:   # loop depth 1
-  ADD s1, zero, zero
   ADD s0, zero, zero
+  ADD s3, zero, zero
   SW a0, 68(sp)
   # implict jump to bb4
 bb4:   # loop depth 2
   CALL getint
   ADDI t6, sp, 288
-  ADD s4, t6, s0
-  ADDIW s1, s1, 1
-  SW a0, 0(s4)
-  ADDIW s0, s0, 20
-  SLTI s2, s1, 5
+  ADD s5, t6, s3
+  ADDIW s0, s0, 1
+  SW a0, 0(s5)
+  ADDIW s3, s3, 20
+  SLTI s2, s0, 5
   CALL getint
-  SW a0, 4(s4)
+  SW a0, 4(s5)
   CALL getint
-  SW a0, 8(s4)
+  SW a0, 8(s5)
   CALL getint
-  SW a0, 12(s4)
+  SW a0, 12(s5)
   CALL getint
-  SW a0, 16(s4)
+  SW a0, 16(s5)
   BNE s2, zero, bb60
   # implict jump to bb5
 bb5:   # loop depth 1
@@ -85,7 +85,7 @@ bb5:   # loop depth 1
   SW t1, 0(sp)
   ADDI t1, zero, -39
   SW t1, 40(sp)
-  LW s4, 304(sp)
+  LW s3, 304(sp)
   MULW t1, s2, a0
   ADDW t0, t0, t2
   ADDI a0, zero, 65
@@ -95,7 +95,7 @@ bb5:   # loop depth 1
   SW t2, 48(sp)
   LW t2, 308(sp)
   SW t2, 180(sp)
-  MULW t2, s4, a1
+  MULW t2, s3, a1
   ADDW t0, t0, t1
   ADDI a1, zero, 110
   ADDI t1, zero, 47
@@ -232,7 +232,7 @@ bb8:   # loop depth 1
   ADDI a2, zero, -8
   MULW a1, s2, a1
   ADDI a3, zero, 47
-  MULW a2, s4, a2
+  MULW a2, s3, a2
   ADDW t1, t1, t2
   ADDI a4, zero, -4
   LW t2, 180(sp)
@@ -338,7 +338,7 @@ bb11:   # loop depth 1
   ADDI a3, zero, -95
   MULW a2, s2, a2
   ADDI a4, zero, 96
-  MULW a3, s4, a3
+  MULW a3, s3, a3
   ADDW t2, t2, a0
   ADDI a5, zero, 52
   LW a0, 180(sp)
@@ -448,7 +448,7 @@ bb14:   # loop depth 1
   ADDI a5, zero, 72
   MULW a4, s2, a4
   ADDI a7, zero, 85
-  MULW a5, s4, a5
+  MULW a5, s3, a5
   ADDW t2, t2, a0
   ADDI t3, zero, -30
   LW t1, 180(sp)
@@ -553,7 +553,7 @@ bb17:   # loop depth 1
   MULW a4, s2, t2
   SLLIW t2, t5, 3
   ADDI a7, zero, -63
-  MULW a0, s4, a6
+  MULW a0, s3, a6
   SW a0, 196(sp)
   LW a0, 192(sp)
   ADDW t2, t2, a0
@@ -659,7 +659,7 @@ bb20:   # loop depth 1
   ADDI a6, zero, 121
   MULW a5, s2, a5
   ADDI a7, zero, -15
-  MULW a6, s4, a6
+  MULW a6, s3, a6
   ADDW t2, t2, a2
   ADDI t3, zero, 55
   LW a0, 180(sp)
@@ -782,7 +782,7 @@ bb23:   # loop depth 1
   ADDI t3, zero, -6
   MULW a6, s2, a6
   ADDI t4, zero, -30
-  MULW t3, s4, t3
+  MULW t3, s3, t3
   ADDW t2, t2, a4
   ADDI a0, zero, -8
   SW a0, 76(sp)
@@ -900,7 +900,7 @@ bb26:   # loop depth 1
   ADDI a6, zero, -2
   MULW a5, s2, a5
   ADDI t3, zero, 65
-  MULW a6, s4, a6
+  MULW a6, s3, a6
   LW t1, 192(sp)
   ADDW t2, t2, t1
   ADDI t4, zero, 120
@@ -1008,7 +1008,7 @@ bb29:   # loop depth 1
   ADDI a3, zero, 38
   ADDI a4, zero, -90
   MULW a3, s2, a3
-  MULW a4, s4, a4
+  MULW a4, s3, a4
   ADDW t2, t2, a0
   ADDI a5, zero, -32
   LW a0, 184(sp)
@@ -1112,7 +1112,7 @@ bb32:   # loop depth 1
   ADDI a3, zero, -92
   MULW a2, s2, a2
   ADDI a4, zero, 10
-  MULW a3, s4, a3
+  MULW a3, s3, a3
   ADDW t2, t2, a0
   ADDI a5, zero, -77
   LW a0, 180(sp)

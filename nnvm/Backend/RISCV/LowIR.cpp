@@ -49,6 +49,9 @@ void LIRInst::emit(std::ostream &out, EmitInfo &info) {
     out << ", ";
     operands[1].emit(out, info);
     return;
+  case UNIMP:
+    out << "unimp";
+    return;
   }
 
   if (type > R_BEGIN && type < R_END) {

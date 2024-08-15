@@ -43,7 +43,7 @@
       GEN(FSGNJX_D), GEN(FMV_X_D), GEN(FMV_D_X), GEN(FEQ_D), GEN(FLT_D),       \
       GEN(FLE_D), GEN(FCLASS_D)
 
-#define MAKE_OTHER(GEN) GEN(CALL), GEN(LA)
+#define MAKE_OTHER(GEN) GEN(CALL), GEN(LA), GEN(UNIMP)
 
 #define FOR_ENUM(x) x
 #define FOR_NAME(x)                                                            \

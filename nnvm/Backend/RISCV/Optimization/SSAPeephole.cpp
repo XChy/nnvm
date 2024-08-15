@@ -28,7 +28,8 @@ bool SSAPeephole::run(LIRFunc &func) {
 bool SSAPeephole::clearInstIn(LIRBB *BB) {
   bool changed = false;
   for (auto *I : incChange(*BB)) {
-    if (isBranch(I->getOpcode()) || isLoadOrStore(I) || I->getOpcode() == CALL)
+    if (isBranch(I->getOpcode()) || isLoadOrStore(I) ||
+        I->getOpcode() == CALL || I->getOpcode() == UNIMP)
       continue;
 
     if (std::all_of(I->operands.begin(), I->operands.end(), [](LowOperand &op) {
@@ -158,6 +159,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
     }
     builder.addInst(LIRInst::create(opcode, A, D, B));
     I->eraseFromList();
+    return true;
   }
 
   // sltiu A, B, 1
@@ -171,6 +173,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
       imm1->getValue() == 1) {
     builder.addInst(LIRInst::createAllUse(BEQ, B, builder.phyReg(ZERO), C));
     I->eraseFromList();
+    return true;
   }
 
   // sltiu A, B, 1
@@ -185,6 +188,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
       imm1->getValue() == 1) {
     builder.addInst(LIRInst::createAllUse(BNE, B, builder.phyReg(ZERO), C));
     I->eraseFromList();
+    return true;
   }
 
   // xor A, B, D
@@ -198,6 +202,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
                                 pZeroReg(), pOperand(C)))) {
     builder.addInst(LIRInst::createAllUse(BNE, B, D, C));
     I->eraseFromList();
+    return true;
   }
 
   // xor A, B, D
@@ -211,6 +216,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
                                 pZeroReg(), pOperand(C)))) {
     builder.addInst(LIRInst::createAllUse(BEQ, B, D, C));
     I->eraseFromList();
+    return true;
   }
 
   // xori A, B, 1
@@ -225,6 +231,7 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
       imm1->getValue() == 1 && B->getType() == LIRValueType::i1) {
     builder.addInst(LIRInst::createAllUse(BEQ, B, builder.phyReg(ZERO), C));
     I->eraseFromList();
+    return true;
   }
 
   // xori A, B, 1
@@ -239,8 +246,8 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
       imm1->getValue() == 1 && B->getType() == LIRValueType::i1) {
     builder.addInst(LIRInst::createAllUse(BNE, B, builder.phyReg(ZERO), C));
     I->eraseFromList();
+    return true;
   }
-
 
   return false;
 }

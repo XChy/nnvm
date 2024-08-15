@@ -4,7 +4,9 @@
 #include <execinfo.h>
 #include <iostream>
 
-#ifdef COMPILER_DEBUG
+//#define OPEN_DEBUG_INFO
+
+#if defined(COMPILER_DEBUG) && defined(OPEN_DEBUG_INFO)
 #define debug(A)                                                               \
   do {                                                                         \
     A;                                                                         \

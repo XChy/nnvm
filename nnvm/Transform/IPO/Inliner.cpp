@@ -105,6 +105,13 @@ void InlinerPass::inlineCall(CallInst *callsite) {
     callsite->replaceSelf(inlinedRetVal);
   }
 
+  // Inlining will-not-return-function, its returned value is undefined.
+  if (inlinedExits.empty()) {
+    inlinedRetVal->replaceSelf(UBValue::create(inlinedRetVal->getType())
+                                   ->refineDefault(*caller->getModule()));
+    inlinedRetVal->eraseFromBB();
+  }
+
   for (auto *inlinedExit : inlinedExits) {
     RetInst *inlinedRet = cast<RetInst>(inlinedExit->getTerminator());
 

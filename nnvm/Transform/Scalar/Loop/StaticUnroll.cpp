@@ -52,6 +52,9 @@ bool StaticUnrollPass::unroll(Loop *loop) {
 
   uint64_t tripCount = *boundInfo->tripCount;
 
+  if (tripCount <= 0)
+    return false;
+
   if (!isProfitable(loop, tripCount))
     return false;
 
@@ -136,6 +139,11 @@ bool StaticUnrollPass::unroll(Loop *loop) {
   lastLatch->getTerminator()->eraseFromBB();
   builder.insertAt(lastLatch->end());
   builder.buildBr(exit);
+
+  // NOTE: early exit if we don't duplicate anything, just change conditional branch
+  // in latch.
+  if (tripCount == 1)
+    return true;
 
   // Fix phis at exit
   for (auto *I : *exit) {

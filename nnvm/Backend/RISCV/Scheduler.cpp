@@ -46,7 +46,7 @@ bool Scheduler::scheduleBlock(LIRBB *BB) {
   std::unordered_map<LIRInst *, int> infight;
   std::unordered_set<LIRInst *> retired;
 
-  LIRBB::Iterator insertPoint;
+  LIRBB::Iterator insertPoint = BB->end();
   for (auto *inst : incChange(*BB)) {
     if (isBranch(inst->getOpcode())) {
       insertPoint = {inst, BB};

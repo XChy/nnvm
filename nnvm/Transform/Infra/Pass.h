@@ -5,6 +5,17 @@
 #include <memory>
 namespace nnvm {
 
+//#define OPEN_OPT_DEBUG_INFO
+
+#if defined(OPEN_OPT_DEBUG_INFO)
+#define opt_debug(A)                                                           \
+  do {                                                                         \
+    A;                                                                         \
+  } while (0);
+#else
+#define opt_debug(A)
+#endif
+
 class ModulePass {
 public:
   // Return true if changed, otherwise return false.
@@ -16,6 +27,8 @@ public:
     analysis->run(F);
     return analysis;
   }
+
+  virtual const char *getName() { return "default"; }
 
   virtual ~ModulePass() {
     for (auto *analysis : analysisDepent)
@@ -61,6 +74,8 @@ public:
     }
     return changed;
   }
+
+  const char *getName() { return SpecificFuncPass::passName; }
 };
 
 } /* namespace nnvm */

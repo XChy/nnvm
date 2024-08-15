@@ -214,6 +214,7 @@ void LowerHelper::lowerInst(LIRFunc *lowFunc, Instruction *I,
   }
 
   case InstID::Unreachable: {
+    emit(LIRInst::create(UNIMP, 0));
     break;
   }
 

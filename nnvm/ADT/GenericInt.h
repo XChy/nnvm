@@ -20,7 +20,7 @@ static inline GInt alignWith(GInt value, GInt alignWidth) {
 
 static inline GInt sextOf(GInt a, uint64_t bits) {
   if (a & (1 << (bits - 1)))
-    return a | (GInt(-1) >> bits << bits);
+    return (a << (64 - bits) >> (64 - bits)) | (GInt(-1) >> bits << bits);
   return a;
 }
 
@@ -51,7 +51,12 @@ static inline GInt genericSDiv(GInt a, GInt b, uint64_t bits) {
   // Refine a / 0 -> 0
   if (b == 0)
     return 0;
-  GInt retInt = sextOf((int32_t)a / (int32_t)b, bits);
+
+  // Refine INT_MIN / -1 -> INT_MIN
+  if ((int32_t)a == INT32_MIN && b == -1)
+    return a;
+
+  GInt retInt = sextOf(((int32_t)a) / ((int32_t)b), bits);
   return retInt;
 }
 
@@ -81,18 +86,30 @@ static inline GInt genericXor(GInt a, GInt b, uint64_t bits) {
 }
 
 static inline GInt genericShl(GInt a, GInt b, uint64_t bits) {
+  // Refine
+  if (b >= bits)
+    return 0;
+
   GInt retInt = sextOf(a << b, bits);
   return retInt;
 }
 
 static inline GInt genericLShr(GInt a, GInt b, uint64_t bits) {
+  // Refine
+  if (b >= bits)
+    return 0;
+
   if (bits != 32)
     nnvm_unimpl();
   GInt retInt = (uint32_t)a >> (uint32_t)b;
   return retInt;
 }
 
-static inline GInt genericRShr(GInt a, GInt b, uint64_t bits) {
+static inline GInt genericAShr(GInt a, GInt b, uint64_t bits) {
+  // Refine
+  if (b >= bits)
+    return 0;
+
   if (bits != 32)
     nnvm_unimpl();
   GInt retInt = sextOf((int32_t)a >> (int32_t)b, bits);

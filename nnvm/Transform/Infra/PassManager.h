@@ -8,8 +8,11 @@ class PassManager {
 public:
   bool run(Module &M) {
     bool changed = false;
-    for (const auto &pass : passes)
+    for (const auto &pass : passes) {
+      opt_debug(std::cerr << "====== Before running " << pass->getName() << " ======\n\n");
+      opt_debug(std::cerr << M.dump());
       changed |= pass->run(M);
+    }
     return changed;
   }
 
