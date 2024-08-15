@@ -12,18 +12,20 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry153:  pred()
-  155 = call i32 getarray(ptr @a)
-  store i32 %155 to ptr @n
+  a.pinned = pin ptr @a
+  n.pinned = pin ptr @n
+  155 = call i32 getarray(ptr %a.pinned)
+  store i32 %155 to ptr %n.pinned
   call void _sysy_starttime(i32 59)
-  n.load157 = load i32 from ptr @n
+  n.load157 = load i32 from ptr %n.pinned
   197 = add i32 %n.load157, i32 -1
   160 = sdiv i32 %n.load157, i32 2
   br bb %median.loop_entry
-median.loop_entry:  pred(entry153, median.then136, median.then145)
-  pos.loop210 = phi [bb %entry153, i32 %160, bb %median.then136, i32 %pos.loop210, bb %median.then145, i32 %pos.loop210]
-  end.loop211 = phi [bb %entry153, i32 %197, bb %median.then136, i32 %l.phi262, bb %median.then145, i32 %end.loop211]
-  begin.loop212 = phi [bb %entry153, i32 0, bb %median.then136, i32 %begin.loop212, bb %median.then145, i32 %148281]
-  arr.loop213 = phi [bb %entry153, ptr @a, bb %median.then136, ptr %arr.loop213, bb %median.then145, ptr %arr.loop213]
+median.loop_entry:  pred(entry153, median.loop_entry_unified_latch)
+  pos.loop210 = phi [bb %entry153, i32 %160, bb %median.loop_entry_unified_latch, i32 %471]
+  end.loop211 = phi [bb %entry153, i32 %197, bb %median.loop_entry_unified_latch, i32 %472]
+  begin.loop212 = phi [bb %entry153, i32 0, bb %median.loop_entry_unified_latch, i32 %473]
+  arr.loop213 = phi [bb %entry153, ptr %a.pinned, bb %median.loop_entry_unified_latch, ptr %474]
   443 = shl i32 %begin.loop212, i32 2
   61215 = ptradd ptr %arr.loop213, i32 %443
   61.load216 = load i32 from ptr %61215
@@ -101,21 +103,21 @@ median.else:  pred(median.while.exit97)
   200418459 = and i1 %10416457, i1 %17417458
   br i1 %200418459, bb %meanless_calculation.while.body420_preheader, bb %meanless_calculation.while.exit425
 median.then136:  pred(meanless_calculation.while.exit407)
-  br bb %median.loop_entry
+  br bb %median.loop_entry_unified_latch
 median.if.exit137:  pred(meanless_calculation.while.exit407)
   144278 = icmp slt i32 %l.phi262, i32 %pos.loop210
   br i1 %144278, bb %median.then145, bb %median.if.exit146
 median.then145:  pred(median.if.exit137)
   148281 = add i32 %l.phi262, i32 1
-  br bb %median.loop_entry
+  br bb %median.loop_entry_unified_latch
 median.if.exit146:  pred(median.if.exit137)
   call void _sysy_stoptime(i32 61)
-  n.load163 = load i32 from ptr @n
-  call void putarray(i32 %n.load163, ptr @a)
-  n.load165 = load i32 from ptr @n
+  n.load163 = load i32 from ptr %n.pinned
+  call void putarray(i32 %n.load163, ptr %a.pinned)
+  n.load165 = load i32 from ptr %n.pinned
   166 = sdiv i32 %n.load165, i32 2
   449 = shl i32 %166, i32 2
-  168 = ptradd ptr @a, i32 %449
+  168 = ptradd ptr %a.pinned, i32 %449
   168.load = load i32 from ptr %168
   170 = srem i32 %168.load, i32 256
   ret i32 %170
@@ -148,6 +150,12 @@ meanless_calculation.while.body420:  pred(meanless_calculation.while.body420, me
   br i1 %200418, bb %meanless_calculation.while.body420, bb %meanless_calculation.while.exit425
 meanless_calculation.while.exit425:  pred(median.else, meanless_calculation.while.body420)
   br bb %median.while.cond69
+median.loop_entry_unified_latch:  pred(median.then145, median.then136)
+  474 = phi [bb %median.then145, ptr %arr.loop213, bb %median.then136, ptr %arr.loop213]
+  473 = phi [bb %median.then145, i32 %148281, bb %median.then136, i32 %begin.loop212]
+  472 = phi [bb %median.then145, i32 %end.loop211, bb %median.then136, i32 %l.phi262]
+  471 = phi [bb %median.then145, i32 %pos.loop210, bb %median.then136, i32 %pos.loop210]
+  br bb %median.loop_entry
 }
 
 external float getfloat()

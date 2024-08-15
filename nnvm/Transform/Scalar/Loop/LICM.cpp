@@ -27,8 +27,13 @@ bool LICMPass::run(Function &F) {
 
     for (auto *block : loop->getBlocks()) {
       for (Instruction *I : incChange(*block)) {
-        if (postDomTree->dom(block, loop->getHeader()))
+        if (postDomTree->dom(block, loop->getHeader())) {
           tryHoistInvariant(I, loop);
+        } else if (isTriviallyInvariant(I, loop)) {
+            // TODO: speculatively execute?
+          I->removeFromBB();
+          loop->getPreheader()->termEnd().insertBefore(I);
+        }
       }
     }
   }

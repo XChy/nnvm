@@ -264,6 +264,32 @@ std::string ICmpInst::getPredName(Predicate p) {
   return "none";
 }
 
+ICmpInst::Predicate ICmpInst::invertPred(Predicate pred) {
+  switch (pred) {
+  case EQ:
+    return NE;
+  case NE:
+    return EQ;
+  case SLT:
+    return SGE;
+  case SLE:
+    return SGT;
+  case SGT:
+    return SLE;
+  case SGE:
+    return SLT;
+  case ULT:
+    return UGE;
+  case ULE:
+    return UGT;
+  case UGT:
+    return ULE;
+  case UGE:
+    return ULT;
+  }
+  nnvm_unimpl();
+}
+
 std::string FCmpInst::getPredName(Predicate p) {
   switch (p) {
   case OEQ:

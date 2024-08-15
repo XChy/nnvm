@@ -18,6 +18,7 @@ then:  pred(entry)
 if.exit:  pred(entry, while.exit)
   ret i32 0
 while.body_preheader:  pred(then)
+  209 = add i32 %18.load, i32 -1
   br bb %while.body
 while.body:  pred(if.exit90, while.body_preheader)
   64237244 = phi [bb %if.exit90, i32 %64, bb %while.body_preheader, i32 %64237]
@@ -47,7 +48,6 @@ while.exit29:  pred(select.exit)
 select.then:  pred(while.cond27)
   39 = ptradd ptr %arr, i32 %228
   39.load = load i32 from ptr %39
-  209 = add i32 %18.load, i32 -1
   43 = icmp sgt i32 %39.load, i32 %209
   br bb %select.exit
 select.else:  pred(while.cond27)
@@ -107,7 +107,8 @@ external i32 getfarray(ptr )
 i32 main() {
 entry122:  pred()
   %a = stack 40
-  store i32 10 to ptr @n
+  n.pinned = pin ptr @n
+  store i32 10 to ptr %n.pinned
   store i32 4 to ptr %a
   129 = ptradd ptr %a, i32 4
   store i32 3 to ptr %129
@@ -128,7 +129,7 @@ entry122:  pred()
   153 = ptradd ptr %a, i32 36
   store i32 8 to ptr %153
   162 = call i32 QuickSort(ptr %a, i32 0, i32 9)
-  n.load167245 = load i32 from ptr @n
+  n.load167245 = load i32 from ptr %n.pinned
   168246 = icmp slt i32 %162, i32 %n.load167245
   br i1 %168246, bb %while.body164_preheader, bb %while.exit165
 while.body164_preheader:  pred(entry122)
@@ -141,7 +142,7 @@ while.body164:  pred(while.body164, while.body164_preheader)
   call void putint(i32 %174.load)
   call void putch(i32 10)
   183 = add i32 %i155.phi247, i32 1
-  n.load167 = load i32 from ptr @n
+  n.load167 = load i32 from ptr %n.pinned
   168 = icmp slt i32 %183, i32 %n.load167
   br i1 %168, bb %while.body164, bb %while.exit165
 while.exit165:  pred(entry122, while.body164)

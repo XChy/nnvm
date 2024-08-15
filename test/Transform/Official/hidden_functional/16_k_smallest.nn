@@ -6,8 +6,9 @@ entry61:  pred()
 then69:  pred(entry61)
   ret 
 else:  pred(entry61)
+  array.pinned = pin ptr @array
   243 = shl i32 %high, i32 2
-  27167 = ptradd ptr @array, i32 %243
+  27167 = ptradd ptr %array.pinned, i32 %243
   27.load168 = load i32 from ptr %27167
   38173251 = icmp slt i32 %low, i32 %high
   247252 = shl i32 %low, i32 2
@@ -26,7 +27,7 @@ while.body84_preheader:  pred(then79)
 while.body84:  pred(while.body84, while.body84_preheader)
   i82.phi250 = phi [bb %while.body84, i32 %99, bb %while.body84_preheader, i32 0]
   244 = shl i32 %i82.phi250, i32 2
-  92 = ptradd ptr @array, i32 %244
+  92 = ptradd ptr %array.pinned, i32 %244
   92.load = load i32 from ptr %92
   call void putint(i32 %92.load)
   call void putch(i32 32)
@@ -48,7 +49,7 @@ findPivot.while.body:  pred(findPivot.if.exit, findPivot.while.body_preheader)
   pIndex.phi151172258 = phi [bb %findPivot.if.exit, i32 %pIndex.phi189, bb %findPivot.while.body_preheader, i32 %low]
   i.phi171257 = phi [bb %findPivot.if.exit, i32 %56190, bb %findPivot.while.body_preheader, i32 %low]
   245 = shl i32 %i.phi171257, i32 2
-  42177 = ptradd ptr @array, i32 %245
+  42177 = ptradd ptr %array.pinned, i32 %245
   42.load178 = load i32 from ptr %42177
   45179 = icmp sle i32 %42.load178, i32 %27.load168
   br i1 %45179, bb %findPivot.then, bb %findPivot.if.exit
@@ -56,7 +57,7 @@ findPivot.while.exit:  pred(else, findPivot.while.body_exclu_exit)
   53186253256 = phi [bb %findPivot.while.body_exclu_exit, i32 %53186, bb %else, i32 %53186253]
   247252255 = phi [bb %findPivot.while.body_exclu_exit, i32 %247, bb %else, i32 %247252]
   low254 = phi [bb %findPivot.while.body_exclu_exit, i32 %pIndex.phi189, bb %else, i32 %low]
-  6218 = ptradd ptr @array, i32 %247252255
+  6218 = ptradd ptr %array.pinned, i32 %247252255
   6.load219 = load i32 from ptr %6218
   14.load222 = load i32 from ptr %27167
   store i32 %14.load222 to ptr %6218
@@ -65,7 +66,7 @@ findPivot.while.exit:  pred(else, findPivot.while.body_exclu_exit)
   br i1 %78, bb %then79, bb %else81
 findPivot.then:  pred(findPivot.while.body)
   6.load230 = load i32 from ptr %42177
-  14232 = ptradd ptr @array, i32 %247252259
+  14232 = ptradd ptr %array.pinned, i32 %247252259
   14.load233 = load i32 from ptr %14232
   store i32 %14.load233 to ptr %42177
   store i32 %6.load230 to ptr %14232

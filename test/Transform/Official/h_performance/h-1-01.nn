@@ -11,10 +11,11 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry34:  pred()
+  lim.pinned = pin ptr @lim
   36 = call i32 getint()
-  store i32 %36 to ptr @lim
+  store i32 %36 to ptr %lim.pinned
   call void _sysy_starttime(i32 22)
-  lim.load4498 = load i32 from ptr @lim
+  lim.load4498 = load i32 from ptr %lim.pinned
   4599 = icmp sle i32 1, i32 %lim.load4498
   br i1 %4599, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry34)
@@ -36,9 +37,9 @@ while.exit:  pred(entry34, while.body_exclu_exit)
   call void putint(i32 %100)
   call void putch(i32 10)
   ret i32 0
-fun.loop_entry:  pred(while.body, fun.then12, fun.then25)
-  dep.loop72 = phi [bb %while.body, i32 0, bb %fun.then12, i32 %1884, bb %fun.then25, i32 %1884]
-  n.loop73 = phi [bb %while.body, i32 %i.phi101, bb %fun.then12, i32 %1683, bb %fun.then25, i32 %2288]
+fun.loop_entry:  pred(while.body, fun.loop_entry_unified_latch)
+  dep.loop72 = phi [bb %while.body, i32 0, bb %fun.loop_entry_unified_latch, i32 %1884]
+  n.loop73 = phi [bb %while.body, i32 %i.phi101, bb %fun.loop_entry_unified_latch, i32 %106]
   474 = icmp eq i32 %n.loop73, i32 1
   br i1 %474, bb %fun.then, bb %fun.else
 fun.then:  pred(fun.loop_entry)
@@ -50,16 +51,19 @@ fun.else:  pred(fun.loop_entry)
   br i1 %6480, bb %fun.then12, bb %fun.else14
 fun.then12:  pred(fun.else)
   1683 = sdiv i32 %n.loop73, i32 2
-  br bb %fun.loop_entry
+  br bb %fun.loop_entry_unified_latch
 fun.else14:  pred(fun.else)
   2187 = mul i32 %n.loop73, i32 3
   2288 = add i32 %2187, i32 1
   2490 = icmp sle i32 %2288, i32 %lim.load4498
   br i1 %2490, bb %fun.then25, bb %fun.else27
 fun.then25:  pred(fun.else14)
-  br bb %fun.loop_entry
+  br bb %fun.loop_entry_unified_latch
 fun.else27:  pred(fun.else14)
   br bb %while.body.split
+fun.loop_entry_unified_latch:  pred(fun.then12, fun.then25)
+  106 = phi [bb %fun.then12, i32 %1683, bb %fun.then25, i32 %2288]
+  br bb %fun.loop_entry
 while.body_exclu_exit:  pred(while.body.split)
   br bb %while.exit
 }

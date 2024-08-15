@@ -15,52 +15,54 @@ external i32 getfarray(ptr )
 i32 main() {
 entry89:  pred()
   %edges = stack 4800
+  m.pinned = pin ptr @m
   91 = call i32 getint()
   store i32 %91 to ptr @n
   93 = call i32 getint()
-  store i32 %93 to ptr @m
-  101251 = icmp slt i32 0, i32 %93
-  br i1 %101251, bb %while.body97_preheader, bb %while.exit98
+  store i32 %93 to ptr %m.pinned
+  101253 = icmp slt i32 0, i32 %93
+  br i1 %101253, bb %while.body97_preheader, bb %while.exit98
 while.body97_preheader:  pred(entry89)
   br bb %while.body97
 while.body97:  pred(while.body97, while.body97_preheader)
-  i95.phi168252 = phi [bb %while.body97, i32 %119, bb %while.body97_preheader, i32 0]
-  239 = shl i32 %i95.phi168252, i32 3
-  105 = ptradd ptr %edges, i32 %239
+  i95.phi168254 = phi [bb %while.body97, i32 %119, bb %while.body97_preheader, i32 0]
+  241 = shl i32 %i95.phi168254, i32 3
+  105 = ptradd ptr %edges, i32 %241
   109 = call i32 getint()
   store i32 %109 to ptr %105
   114 = ptradd ptr %105, i32 4
   116 = call i32 getint()
   store i32 %116 to ptr %114
-  119 = add i32 %i95.phi168252, i32 1
-  m.load100 = load i32 from ptr @m
+  119 = add i32 %i95.phi168254, i32 1
+  m.load100 = load i32 from ptr %m.pinned
   101 = icmp slt i32 %119, i32 %m.load100
   br i1 %101, bb %while.body97, bb %while.exit98
 while.exit98:  pred(entry89, while.body97)
-  m.load125247 = load i32 from ptr @m
-  126248 = icmp slt i32 0, i32 %m.load125247
-  br i1 %126248, bb %while.body122_preheader, bb %while.exit123
+  m.load125249 = load i32 from ptr %m.pinned
+  126250 = icmp slt i32 0, i32 %m.load125249
+  br i1 %126250, bb %while.body122_preheader, bb %while.exit123
 while.body122_preheader:  pred(while.exit98)
-  m.load125 = load i32 from ptr @m
+  graph.pinned = pin ptr @graph
+  m.load125 = load i32 from ptr %m.pinned
   br bb %while.body122
 while.body122:  pred(while.body122, while.body122_preheader)
-  i95.phi249 = phi [bb %while.body122, i32 %164, bb %while.body122_preheader, i32 0]
-  240 = shl i32 %i95.phi249, i32 3
-  130 = ptradd ptr %edges, i32 %240
+  i95.phi251 = phi [bb %while.body122, i32 %164, bb %while.body122_preheader, i32 0]
+  242 = shl i32 %i95.phi251, i32 3
+  130 = ptradd ptr %edges, i32 %242
   132.load = load i32 from ptr %130
   134 = mul i32 %132.load, i32 120
-  135 = ptradd ptr @graph, i32 %134
+  135 = ptradd ptr %graph.pinned, i32 %134
   140 = ptradd ptr %130, i32 4
   140.load = load i32 from ptr %140
-  241 = shl i32 %140.load, i32 2
-  143 = ptradd ptr %135, i32 %241
+  243 = shl i32 %140.load, i32 2
+  143 = ptradd ptr %135, i32 %243
   store i32 1 to ptr %143
   151 = mul i32 %140.load, i32 120
-  152 = ptradd ptr @graph, i32 %151
-  242 = shl i32 %132.load, i32 2
-  160 = ptradd ptr %152, i32 %242
+  152 = ptradd ptr %graph.pinned, i32 %151
+  244 = shl i32 %132.load, i32 2
+  160 = ptradd ptr %152, i32 %244
   store i32 1 to ptr %160
-  164 = add i32 %i95.phi249, i32 1
+  164 = add i32 %i95.phi251, i32 1
   126 = icmp slt i32 %164, i32 %m.load125
   br i1 %126, bb %while.body122, bb %while.exit123
 while.exit123:  pred(while.exit98, while.body122)
@@ -79,85 +81,77 @@ external void _sysy_stoptime(i32 )
 
 internal i32 maxCliques(i32 i, i32 k) {
 entry42:  pred()
-  n.load253 = load i32 from ptr @n
-  53254 = icmp sle i32 1, i32 %n.load253
-  br i1 %53254, bb %while.body49_preheader, bb %while.exit50
+  n.pinned = pin ptr @n
+  n.load255 = load i32 from ptr %n.pinned
+  53256 = icmp sle i32 1, i32 %n.load255
+  br i1 %53256, bb %while.body49_preheader, bb %while.exit50
 while.body49_preheader:  pred(entry42)
-  243 = shl i32 %k, i32 2
-  57 = ptradd ptr @store, i32 %243
+  store.pinned = pin ptr @store
+  245 = shl i32 %k, i32 2
+  57 = ptradd ptr %store.pinned, i32 %245
   61 = add i32 %k, i32 1
   br bb %while.body49
 while.body49:  pred(if.exit65, while.body49_preheader)
-  max_.phi174258 = phi [bb %if.exit65, i32 %max_.phi173, bb %while.body49_preheader, i32 0]
-  j46.phi257 = phi [bb %if.exit65, i32 %87, bb %while.body49_preheader, i32 1]
-  tmp.phi178256 = phi [bb %if.exit65, i32 %tmp.phi, bb %while.body49_preheader, i32 0]
-  store i32 %j46.phi257 to ptr %57
+  max_.phi174260 = phi [bb %if.exit65, i32 %max_.phi173, bb %while.body49_preheader, i32 0]
+  j46.phi259 = phi [bb %if.exit65, i32 %87, bb %while.body49_preheader, i32 1]
+  tmp.phi178258 = phi [bb %if.exit65, i32 %tmp.phi, bb %while.body49_preheader, i32 0]
+  store i32 %j46.phi259 to ptr %57
   br bb %is_clique.while.cond
 while.body49.split:  pred(is_clique.while.exit, is_clique.then)
   62.ret = phi [bb %is_clique.while.exit, i32 1, bb %is_clique.then, i32 0]
   63 = icmp ne i32 %62.ret, i32 0
   br i1 %63, bb %then64, bb %if.exit65
 while.exit50:  pred(entry42, while.body49_exclu_exit)
-  255 = phi [bb %while.body49_exclu_exit, i32 %max_.phi173, bb %entry42, i32 0]
-  ret i32 %255
+  257 = phi [bb %while.body49_exclu_exit, i32 %max_.phi173, bb %entry42, i32 0]
+  ret i32 %257
 then64:  pred(while.body49.split)
-  68 = icmp sgt i32 %k, i32 %max_.phi174258
-  br i1 %68, bb %max_.phi175.which.true, bb %then64.split
-then64.split:  pred(then64, max_.phi175.which.true)
-  274 = phi [bb %max_.phi175.which.true, i32 %k, bb %then64, i32 %max_.phi174258]
-  77 = call i32 maxCliques(i32 %j46.phi257, i32 %61)
-  80 = icmp sgt i32 %77, i32 %274
-  br i1 %80, bb %max_.phi.which.true, bb %then64.split.split
-then64.split.split:  pred(then64.split, max_.phi.which.true)
-  277 = phi [bb %max_.phi.which.true, i32 %77, bb %then64.split, i32 %274]
+  193 = signed max i32 %k, i32 %max_.phi174260
+  77 = call i32 maxCliques(i32 %j46.phi259, i32 %61)
+  194 = signed max i32 %77, i32 %193
   br bb %if.exit65
-if.exit65:  pred(while.body49.split, then64.split.split)
-  tmp.phi = phi [bb %while.body49.split, i32 %tmp.phi178256, bb %then64.split.split, i32 %77]
-  max_.phi173 = phi [bb %while.body49.split, i32 %max_.phi174258, bb %then64.split.split, i32 %277]
-  87 = add i32 %j46.phi257, i32 1
-  n.load = load i32 from ptr @n
+if.exit65:  pred(while.body49.split, then64)
+  tmp.phi = phi [bb %while.body49.split, i32 %tmp.phi178258, bb %then64, i32 %77]
+  max_.phi173 = phi [bb %while.body49.split, i32 %max_.phi174260, bb %then64, i32 %194]
+  87 = add i32 %j46.phi259, i32 1
+  n.load = load i32 from ptr %n.pinned
   53 = icmp sle i32 %87, i32 %n.load
   br i1 %53, bb %while.body49, bb %while.body49_exclu_exit
 is_clique.while.cond:  pred(while.body49, is_clique.while.exit15)
-  i.phi197 = phi [bb %while.body49, i32 1, bb %is_clique.while.exit15, i32 %12201]
-  8198 = icmp slt i32 %i.phi197, i32 %61
-  br i1 %8198, bb %is_clique.while.body, bb %is_clique.while.exit
+  i.phi199 = phi [bb %while.body49, i32 1, bb %is_clique.while.exit15, i32 %12203]
+  8200 = icmp slt i32 %i.phi199, i32 %61
+  br i1 %8200, bb %is_clique.while.body, bb %is_clique.while.exit
 is_clique.while.body:  pred(is_clique.while.cond)
-  12201 = add i32 %i.phi197, i32 1
+  12203 = add i32 %i.phi199, i32 1
+  246 = shl i32 %i.phi199, i32 2
+  22213 = ptradd ptr %store.pinned, i32 %246
   br bb %is_clique.while.cond13
 is_clique.while.exit:  pred(is_clique.while.cond)
   br bb %while.body49.split
 is_clique.while.cond13:  pred(is_clique.while.body, is_clique.if.exit)
-  j.phi206 = phi [bb %is_clique.while.body, i32 %12201, bb %is_clique.if.exit, i32 %38228]
-  18207 = icmp slt i32 %j.phi206, i32 %61
-  br i1 %18207, bb %is_clique.while.body14, bb %is_clique.while.exit15
+  j.phi208 = phi [bb %is_clique.while.body, i32 %12203, bb %is_clique.if.exit, i32 %38230]
+  18209 = icmp slt i32 %j.phi208, i32 %61
+  br i1 %18209, bb %is_clique.while.body14, bb %is_clique.while.exit15
 is_clique.while.body14:  pred(is_clique.while.cond13)
-  244 = shl i32 %i.phi197, i32 2
-  22211 = ptradd ptr @store, i32 %244
-  22.load212 = load i32 from ptr %22211
-  24213 = mul i32 %22.load212, i32 120
-  25214 = ptradd ptr @graph, i32 %24213
-  245 = shl i32 %j.phi206, i32 2
-  28216 = ptradd ptr @store, i32 %245
-  28.load217 = load i32 from ptr %28216
-  246 = shl i32 %28.load217, i32 2
-  31219 = ptradd ptr %25214, i32 %246
-  31.load220 = load i32 from ptr %31219
-  33221 = icmp eq i32 %31.load220, i32 0
-  br i1 %33221, bb %is_clique.then, bb %is_clique.if.exit
+  22.load214 = load i32 from ptr %22213
+  24215 = mul i32 %22.load214, i32 120
+  25216 = ptradd ptr @graph, i32 %24215
+  247 = shl i32 %j.phi208, i32 2
+  28218 = ptradd ptr %store.pinned, i32 %247
+  28.load219 = load i32 from ptr %28218
+  248 = shl i32 %28.load219, i32 2
+  31221 = ptradd ptr %25216, i32 %248
+  31.load222 = load i32 from ptr %31221
+  33223 = icmp eq i32 %31.load222, i32 0
+  br i1 %33223, bb %is_clique.then, bb %is_clique.if.exit
 is_clique.while.exit15:  pred(is_clique.while.cond13)
   br bb %is_clique.while.cond
 is_clique.then:  pred(is_clique.while.body14)
   br bb %while.body49.split
 is_clique.if.exit:  pred(is_clique.while.body14)
-  38228 = add i32 %j.phi206, i32 1
+  38230 = add i32 %j.phi208, i32 1
   br bb %is_clique.while.cond13
 while.body49_exclu_exit:  pred(if.exit65)
   br bb %while.exit50
-max_.phi175.which.true:  pred(then64)
-  br bb %then64.split
-max_.phi.which.true:  pred(then64.split)
-  br bb %then64.split.split
 }
 
 external void putarray(i32 , ptr )

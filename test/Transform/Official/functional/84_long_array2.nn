@@ -62,11 +62,12 @@ init68_exclu_exit:  pred(init68)
   store i32 4 to ptr %arr.index84
   br bb %init86
 init86_exclu_exit:  pred(init86)
-  2132 = ptradd ptr @a, i32 20
+  a.pinned = pin ptr @a
+  2132 = ptradd ptr %a.pinned, i32 20
   store i32 4000 to ptr %2132
-  5134 = ptradd ptr @a, i32 16000
+  5134 = ptradd ptr %a.pinned, i32 16000
   store i32 3 to ptr %5134
-  8136 = ptradd ptr @a, i32 16380
+  8136 = ptradd ptr %a.pinned, i32 16380
   store i32 7 to ptr %8136
   call void putint(i32 3)
   call void putch(i32 10)

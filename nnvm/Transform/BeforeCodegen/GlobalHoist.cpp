@@ -15,6 +15,9 @@ void GlobalHoistPass::gatherUses(Function &F) {
   Platform *platform = F.getModule()->getPlatform();
 
   for (auto *BB : F) {
+    if (!domTree->isReachable(BB))
+      continue;
+
     for (auto *I : *BB) {
       for (auto *use : I->getUseeList()) {
         Value *usee = use->getUsee();
@@ -23,11 +26,12 @@ void GlobalHoistPass::gatherUses(Function &F) {
           if (platform->isExpensiveToLoadConstant(constant))
             constantUses[usee].push_back(use);
 
-        // if (auto *global = mayCast<GlobalVariable>(usee))
-        // if (platform->isExpensiveToLoadGlobalAddress(global))
-        // constantUses[usee].push_back(use);
+        if (auto *global = mayCast<GlobalVariable>(usee))
+          if (platform->isExpensiveToLoadGlobalAddress(global))
+            constantUses[usee].push_back(use);
       }
     }
+
   }
 }
 

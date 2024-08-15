@@ -2,11 +2,12 @@ global ptr b init with i32 0
 global ptr a init with i32 0
 i32 main() {
 entry:  pred()
+  a.pinned = pin ptr @a
   2 = call i32 getint()
-  store i32 %2 to ptr @a
+  store i32 %2 to ptr %a.pinned
   4 = call i32 getint()
   store i32 %4 to ptr @b
-  a.load6 = load i32 from ptr @a
+  a.load6 = load i32 from ptr %a.pinned
   8 = icmp eq i32 %a.load6, i32 %4
   14 = icmp ne i32 %a.load6, i32 3
   27 = and i1 %8, i1 %14

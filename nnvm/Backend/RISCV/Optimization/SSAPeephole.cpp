@@ -85,6 +85,19 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
     return true;
   }
 
+  // c = a < b
+  // if c == 0 then
+  // -->
+  // if a >= b then
+  if (match(I, pSpecificUUUInst(BEQ,
+                                pSingleDef(pSpecificDUUInst(
+                                    SLT, pSSAReg(A), pSSAReg(B), pSSAReg(C))),
+                                pZeroReg(), pOperand(D)))) {
+    builder.addInst(LIRInst::createAllUse(BGE, B, C, D));
+    I->eraseFromList();
+    return true;
+  }
+
   if (match(I, pSpecificUUUInst(BNE,
                                 pSingleDef(pSpecificDUUInst(
                                     SLTU, pSSAReg(A), pSSAReg(B), pSSAReg(C))),
@@ -146,6 +159,88 @@ bool SSAPeephole::processInst(LIRInst *I, LIRBuilder &builder) {
     builder.addInst(LIRInst::create(opcode, A, D, B));
     I->eraseFromList();
   }
+
+  // sltiu A, B, 1
+  // bne A, zero, C
+  // -->
+  // beq B, zero, C
+  if (match(I, pSpecificUUUInst(BNE,
+                                pSingleDef(pSpecificDUUInst(
+                                    SLTIU, pSSAReg(A), pSSAReg(B), pImm(imm1))),
+                                pZeroReg(), pOperand(C))) &&
+      imm1->getValue() == 1) {
+    builder.addInst(LIRInst::createAllUse(BEQ, B, builder.phyReg(ZERO), C));
+    I->eraseFromList();
+  }
+
+  // sltiu A, B, 1
+  // beq A, zero, C
+  // -->
+  // bne B, zero, C
+
+  if (match(I, pSpecificUUUInst(BEQ,
+                                pSingleDef(pSpecificDUUInst(
+                                    SLTIU, pSSAReg(A), pSSAReg(B), pImm(imm1))),
+                                pZeroReg(), pOperand(C))) &&
+      imm1->getValue() == 1) {
+    builder.addInst(LIRInst::createAllUse(BNE, B, builder.phyReg(ZERO), C));
+    I->eraseFromList();
+  }
+
+  // xor A, B, D
+  // bne A, zero, C
+  // -->
+  // bne B, D, C
+
+  if (match(I, pSpecificUUUInst(BNE,
+                                pSingleDef(pSpecificDUUInst(
+                                    XOR, pSSAReg(A), pSSAReg(B), pSSAReg(D))),
+                                pZeroReg(), pOperand(C)))) {
+    builder.addInst(LIRInst::createAllUse(BNE, B, D, C));
+    I->eraseFromList();
+  }
+
+  // xor A, B, D
+  // beq A, zero, C
+  // -->
+  // beq B, D, C
+
+  if (match(I, pSpecificUUUInst(BEQ,
+                                pSingleDef(pSpecificDUUInst(
+                                    XOR, pSSAReg(A), pSSAReg(B), pSSAReg(D))),
+                                pZeroReg(), pOperand(C)))) {
+    builder.addInst(LIRInst::createAllUse(BEQ, B, D, C));
+    I->eraseFromList();
+  }
+
+  // xori A, B, 1
+  // bne A, zero, C
+  // -->
+  // beq B, zero, C
+
+  if (match(I, pSpecificUUUInst(BNE,
+                                pSingleDef(pSpecificDUUInst(
+                                    XORI, pSSAReg(A), pSSAReg(B), pImm(imm1))),
+                                pZeroReg(), pOperand(C))) &&
+      imm1->getValue() == 1 && B->getType() == LIRValueType::i1) {
+    builder.addInst(LIRInst::createAllUse(BEQ, B, builder.phyReg(ZERO), C));
+    I->eraseFromList();
+  }
+
+  // xori A, B, 1
+  // beq A, zero, C
+  // -->
+  // bne B, zero, C
+
+  if (match(I, pSpecificUUUInst(BEQ,
+                                pSingleDef(pSpecificDUUInst(
+                                    XORI, pSSAReg(A), pSSAReg(B), pImm(imm1))),
+                                pZeroReg(), pOperand(C))) &&
+      imm1->getValue() == 1 && B->getType() == LIRValueType::i1) {
+    builder.addInst(LIRInst::createAllUse(BNE, B, builder.phyReg(ZERO), C));
+    I->eraseFromList();
+  }
+
 
   return false;
 }

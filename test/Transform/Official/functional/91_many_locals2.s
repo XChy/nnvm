@@ -12,9 +12,8 @@ main:   # loop depth 0
   SD s0, 8(sp)
   CALL getint
   ADD s0, a0, zero
-  XORI a0, s0, 5
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb3
+  XORI t0, s0, 5
+  BEQ t0, zero, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
   # implict jump to bb2
@@ -94,9 +93,8 @@ bb3:   # loop depth 0
   # implict jump to bb4
 bb4:   # loop depth 1
   ADDIW s0, s0, 1
-  XORI a0, s0, 5
-  SLTIU a0, a0, 1
-  BNE a0, zero, bb6
+  XORI t0, s0, 5
+  BEQ t0, zero, bb6
   # implict jump to bb5
 bb5:   # loop depth 0
   JAL zero, bb2

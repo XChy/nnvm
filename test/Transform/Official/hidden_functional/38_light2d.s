@@ -24,11 +24,11 @@ seed:
 .CONSTANT.7.1:
 .word 0x40400000
 .CONSTANT.7.2:
-.word 0x00000000
-.CONSTANT.7.3:
 .word 0x40490fdb
-.CONSTANT.7.4:
+.CONSTANT.7.3:
 .word 0x40c90fdb
+.CONSTANT.7.4:
+.word 0x00000000
 .CONSTANT.7.5:
 .word 0x40000000
 .CONSTANT.7.6:
@@ -45,35 +45,32 @@ seed:
 .word 0x437f0000
 .section .text
 my_sin_impl:   # loop depth 0
-  ADDI sp, sp, -48
+  ADDI sp, sp, -32
   SD ra, 0(sp)
-  SD s0, 8(sp)
-  SD s1, 16(sp)
-  FSD fs0, 24(sp)
-  FSD fs1, 32(sp)
-  FSD fs2, 40(sp)
-  ADDI s0, zero, 0
-  FCVT.S.W fs1, s0
-  FSGNJN.S fs0, fa0, fa0
-  FLT.S s0, fs1, fa0
-  BNE s0, zero, bb5
+  FSD fs0, 8(sp)
+  FSD fs1, 16(sp)
+  ADDI t0, zero, 0
+  FCVT.S.W ft1, t0
+  FSGNJN.S ft0, fa0, fa0
+  FLT.S t0, ft1, fa0
+  BNE t0, zero, bb5
   # implict jump to bb1
 bb1:   # loop depth 0
   # implict jump to bb2
 bb2:   # loop depth 0
-  LA s0, .CONSTANT.7.0
-  FLW fs1, 0(s0)
-  FLE.S s0, fs0, fs1
-  BNE s0, zero, bb4
+  LA t0, .CONSTANT.7.0
+  FLW ft1, 0(t0)
+  FLE.S t0, ft0, ft1
+  BNE t0, zero, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
-  LA s0, .CONSTANT.7.1
-  ADDI s1, zero, 4
-  FCVT.S.W fs1, s1
-  ADDI s1, zero, 3
-  FLW fs2, 0(s0)
-  FCVT.S.W fs0, s1
-  FDIV.S fa0, fa0, fs2
+  LA t0, .CONSTANT.7.1
+  ADDI t1, zero, 4
+  FCVT.S.W fs1, t1
+  ADDI t1, zero, 3
+  FLW ft0, 0(t0)
+  FCVT.S.W fs0, t1
+  FDIV.S fa0, fa0, ft0
   CALL my_sin_impl
   FMUL.S ft1, fs1, fa0
   FMUL.S ft0, fs0, fa0
@@ -81,24 +78,18 @@ bb3:   # loop depth 0
   FMUL.S ft1, ft1, fa0
   FSUB.S fa0, ft0, ft1
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  FLD fs0, 24(sp)
-  FLD fs1, 32(sp)
-  FLD fs2, 40(sp)
-  ADDI sp, sp, 48
+  FLD fs0, 8(sp)
+  FLD fs1, 16(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb4:   # loop depth 0
   LD ra, 0(sp)
-  LD s0, 8(sp)
-  LD s1, 16(sp)
-  FLD fs0, 24(sp)
-  FLD fs1, 32(sp)
-  FLD fs2, 40(sp)
-  ADDI sp, sp, 48
+  FLD fs0, 8(sp)
+  FLD fs1, 16(sp)
+  ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb5:   # loop depth 0
-  FSGNJ.S fs0, fa0, fa0
+  FSGNJ.S ft0, fa0, fa0
   JAL zero, bb2
 main:   # loop depth 0
   ADDI sp, sp, -16
@@ -109,31 +100,61 @@ main:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 write_pgm:   # loop depth 0
-  ADDI sp, sp, -352
-  FSD fs0, 200(sp)
-  FSD fs1, 208(sp)
-  FSD fs2, 216(sp)
-  FSD fs3, 224(sp)
-  FSD fs4, 232(sp)
-  FSD fs5, 240(sp)
-  FSD fs6, 248(sp)
-  FSD fs7, 256(sp)
-  SD ra, 264(sp)
-  SD s0, 272(sp)
-  SD s1, 280(sp)
-  SD s2, 288(sp)
-  SD s3, 296(sp)
-  SD s4, 304(sp)
-  SD s5, 312(sp)
-  SD s6, 320(sp)
-  SD s7, 328(sp)
-  SD s8, 336(sp)
+  ADDI sp, sp, -208
+  SD ra, 64(sp)
+  SD s0, 72(sp)
+  SD s1, 80(sp)
+  SD s2, 88(sp)
+  SD s3, 96(sp)
+  SD s4, 104(sp)
+  SD s5, 112(sp)
+  SD s6, 120(sp)
+  FSD fs1, 128(sp)
+  FSD fs2, 136(sp)
+  FSD fs3, 144(sp)
+  FSD fs4, 152(sp)
+  FSD fs5, 160(sp)
+  FSD fs7, 168(sp)
+  FSD fs8, 176(sp)
+  FSD fs10, 184(sp)
+  LA t0, .CONSTANT.7.2
+  LA t1, .CONSTANT.7.2
+  ADDI a0, zero, 2
+  LA t2, .CONSTANT.7.3
+  FLW ft0, 0(t0)
+  FCVT.S.W fs10, a0
+  LA t0, .CONSTANT.7.3
   ADDI a0, zero, 80
-  ADD s1, zero, zero
+  FLW ft1, 0(t1)
+  LUI t1, 24414
+  ADDI a1, zero, 192
+  ADDIW t1, t1, 262
+  FSGNJ.S fs4, ft0, ft1
+  FLW ft0, 0(t2)
+  ADDI s3, zero, 4
+  ADDI s2, zero, 8
+  FDIV.S ft1, fs4, fs10
+  FSW ft1, 48(sp)
+  FLW ft1, 0(t0)
+  ADDI s1, zero, 24
+  FCVT.S.W ft2, a1
+  FSW ft2, 40(sp)
+  FSGNJ.S fs5, ft0, ft1
+  FSGNJN.S ft0, fs4, fs4
+  FSW ft0, 44(sp)
+  FCVT.S.W ft0, t1
+  FSW ft0, 52(sp)
+  ADD s0, zero, zero
   CALL putch
+  FSGNJN.S ft0, fs5, fs5
+  FSW ft0, 32(sp)
   ADDI a0, zero, 50
+  FCVT.S.W fs8, s3
+  FCVT.S.W fs7, s2
   CALL putch
   ADDI a0, zero, 10
+  FCVT.S.W ft0, s1
+  FSW ft0, 56(sp)
   CALL putch
   ADDI a0, zero, 192
   CALL putint
@@ -149,228 +170,193 @@ write_pgm:   # loop depth 0
   CALL putch
   # implict jump to bb8
 bb8:   # loop depth 1
-  ADDI s0, zero, 192
-  FCVT.S.W fa0, s0
-  FSW fa0, 40(sp)
-  LA s0, .CONSTANT.7.2
-  FCVT.S.W fa0, s1
-  LA s2, .CONSTANT.7.2
-  FLW fs0, 0(s0)
-  LA s0, .CONSTANT.7.3
-  FLW fs1, 40(sp)
-  FDIV.S fa0, fa0, fs1
-  FSW fa0, 44(sp)
-  LA s4, .CONSTANT.7.3
-  FLW fa0, 0(s2)
-  LA s2, .CONSTANT.7.4
-  LA s5, .CONSTANT.7.4
-  ADDI s3, zero, 24
-  FLW fs1, 0(s0)
-  FCVT.S.W fs2, s3
-  FSW fs2, 48(sp)
-  FSGNJ.S fs4, fs0, fa0
-  ADD s3, zero, zero
-  FLW fa0, 0(s4)
-  FLW fs0, 0(s2)
-  FSGNJ.S fs6, fs1, fa0
-  FLW fa0, 0(s5)
-  FSGNJ.S fs7, fs0, fa0
+  ADD s6, s0, zero
+  LA t0, .CONSTANT.7.4
+  FCVT.S.W ft0, s6
+  LA t1, .CONSTANT.7.4
+  FLW ft1, 0(t0)
+  ADD s5, zero, zero
+  FLW ft2, 40(sp)
+  FDIV.S ft0, ft0, ft2
+  FSW ft0, 36(sp)
+  FLW ft0, 0(t1)
+  FSGNJ.S fs2, ft1, ft0
   # implict jump to bb9
 bb9:   # loop depth 2
-  ADDI s0, zero, 2
-  FCVT.S.W fa0, s0
-  FSW fa0, 144(sp)
-  LUI s0, 24414
-  FCVT.S.W fa0, s3
-  ADDIW s0, s0, 262
-  FLW fs0, 144(sp)
-  FDIV.S fs0, fs6, fs0
-  FSW fs0, 60(sp)
-  FSGNJN.S fs0, fs6, fs6
-  FSW fs0, 68(sp)
-  FLW fs0, 40(sp)
-  FDIV.S fa0, fa0, fs0
-  FSW fa0, 52(sp)
-  FSGNJN.S fa0, fs7, fs7
-  FSW fa0, 64(sp)
-  FSGNJ.S fs0, fs4, fs4
-  ADD s4, zero, zero
-  FCVT.S.W fa0, s0
-  FSW fa0, 56(sp)
+  LUI t0, 24414
+  FCVT.S.W ft1, s5
+  ADDIW t0, t0, 263
+  FSGNJ.S ft0, fs2, fs2
+  LA s0, seed
+  FLW ft2, 40(sp)
+  FDIV.S ft1, ft1, ft2
+  FSW ft1, 0(sp)
+  ADD s2, zero, zero
+  ADD s3, zero, t0
   # implict jump to bb10
 bb10:   # loop depth 3
-  LA s0, seed
-  LUI s7, 4878
-  ADDIW s7, s7, -158
-  LUI s2, 6
-  LW s0, 0(s0)
-  LUI s6, 24414
-  ADDIW s2, s2, -1243
-  ADDIW s6, s6, 263
-  LA s5, seed
-  FSW fs0, 108(sp)
-  MULW s0, s0, s7
-  ADDW s0, s0, s2
-  REMW s0, s0, s6
-  SW s0, 0(s5)
-  BLT s0, zero, bb54
+  LW t0, 0(s0)
+  LUI t1, 4878
+  ADDIW t1, t1, -158
+  LUI t2, 6
+  ADDIW t2, t2, -1243
+  FSW ft0, 4(sp)
+  MULW t0, t0, t1
+  ADDW t0, t0, t2
+  REMW t0, t0, s3
+  SW t0, 0(s0)
+  BLT t0, zero, bb54
   # implict jump to bb11
 bb11:   # loop depth 3
-  LA s0, seed
-  FCVT.S.W fs1, s4
-  LW s0, 0(s0)
-  FCVT.S.W fa0, s0
-  FLW fs0, 56(sp)
-  FDIV.S fa0, fa0, fs0
-  FADD.S fa0, fs1, fa0
-  FMUL.S fa0, fs7, fa0
-  FLW fs0, 48(sp)
-  FDIV.S fs1, fa0, fs0
-  FLW fa0, 60(sp)
-  FADD.S fs2, fs1, fa0
-  FLW fs0, 64(sp)
-  FLT.S s2, fs2, fs0
-  FLT.S s0, fs7, fs2
-  OR s0, s0, s2
-  BNE s0, zero, bb53
+  LW t0, 0(s0)
+  FCVT.S.W ft1, s2
+  FCVT.S.W ft0, t0
+  FLW ft2, 52(sp)
+  FDIV.S ft0, ft0, ft2
+  FADD.S ft0, ft1, ft0
+  FMUL.S ft0, fs5, ft0
+  FLW ft1, 56(sp)
+  FDIV.S fs1, ft0, ft1
+  FLW ft0, 48(sp)
+  FADD.S ft1, fs1, ft0
+  FLW ft0, 32(sp)
+  FLT.S t1, ft1, ft0
+  FLT.S t0, fs5, ft1
+  OR t0, t0, t1
+  BNE t0, zero, bb53
   # implict jump to bb12
 bb12:   # loop depth 3
   # implict jump to bb13
 bb13:   # loop depth 3
-  FSUB.S fs3, fs2, fs7
-  FLT.S s0, fs6, fs2
-  BNE s0, zero, bb52
+  FSUB.S ft2, ft1, fs5
+  FLT.S t0, fs4, ft1
+  BNE t0, zero, bb52
   # implict jump to bb14
 bb14:   # loop depth 3
+  FSGNJ.S ft2, ft1, ft1
   # implict jump to bb15
 bb15:   # loop depth 3
-  FADD.S fa0, fs2, fs7
-  FLW fs0, 68(sp)
-  FLT.S s0, fs2, fs0
-  BNE s0, zero, bb51
+  FADD.S fa0, ft2, fs5
+  FLW ft0, 44(sp)
+  FLT.S t0, ft2, ft0
+  BNE t0, zero, bb51
   # implict jump to bb16
 bb16:   # loop depth 3
-  FSGNJ.S fa0, fs2, fs2
+  FSGNJ.S fa0, ft2, ft2
   # implict jump to bb17
 bb17:   # loop depth 3
-  FLW fs0, 64(sp)
-  FLT.S s2, fs1, fs0
-  FLT.S s0, fs7, fs1
+  FLW ft0, 32(sp)
+  FLT.S s4, fs1, ft0
+  FLT.S s1, fs5, fs1
   CALL my_sin_impl
-  OR s0, s0, s2
-  FSW fa0, 172(sp)
-  BNE s0, zero, bb50
+  OR t0, s1, s4
+  FSGNJ.D fs3, fa0, fa0
+  BNE t0, zero, bb50
   # implict jump to bb18
 bb18:   # loop depth 3
-  FSGNJ.S fa0, fs1, fs1
   # implict jump to bb19
 bb19:   # loop depth 3
-  LA s0, .CONSTANT.7.6
-  LA s2, .CONSTANT.7.6
-  LA s5, .CONSTANT.7.7
-  LA s6, .CONSTANT.7.7
-  FLW fs2, 0(s0)
-  LA s7, .CONSTANT.7.8
-  LA s8, .CONSTANT.7.8
-  FLW fs5, 0(s2)
-  FSUB.S fs1, fa0, fs7
-  FLT.S s0, fs6, fa0
-  FLW fs0, 0(s5)
-  FSW fs0, 24(sp)
-  FSGNJ.S fs0, fs2, fs5
-  FSW fs0, 112(sp)
-  FLW fs2, 0(s6)
-  FLW fs5, 0(s7)
-  FLW fs0, 24(sp)
-  FSGNJ.S fs0, fs0, fs2
-  FSW fs0, 188(sp)
-  FLW fs2, 0(s8)
-  FSGNJ.S fs0, fs5, fs2
-  FSW fs0, 184(sp)
-  BNE s0, zero, bb49
+  LA t0, .CONSTANT.7.6
+  LA t1, .CONSTANT.7.6
+  LA t2, .CONSTANT.7.7
+  LA a0, .CONSTANT.7.7
+  FLW ft1, 0(t0)
+  LA a1, .CONSTANT.7.8
+  LA a2, .CONSTANT.7.8
+  FLW ft2, 0(t1)
+  FSUB.S fa0, fs1, fs5
+  FLT.S t0, fs4, fs1
+  FLW ft3, 0(t2)
+  FSGNJ.S ft0, ft1, ft2
+  FSW ft0, 12(sp)
+  FLW ft1, 0(a0)
+  FLW ft2, 0(a1)
+  FSGNJ.S ft0, ft3, ft1
+  FSW ft0, 8(sp)
+  FLW ft1, 0(a2)
+  FSGNJ.S ft0, ft2, ft1
+  FSW ft0, 60(sp)
+  BNE t0, zero, bb49
   # implict jump to bb20
 bb20:   # loop depth 3
+  FSGNJ.S fa0, fs1, fs1
   # implict jump to bb21
 bb21:   # loop depth 3
-  FADD.S fs1, fa0, fs7
-  FLW fs0, 68(sp)
-  FLT.S s0, fa0, fs0
-  BNE s0, zero, bb48
+  FADD.S ft1, fa0, fs5
+  FLW ft0, 44(sp)
+  FLT.S t0, fa0, ft0
+  BNE t0, zero, bb48
   # implict jump to bb22
 bb22:   # loop depth 3
   # implict jump to bb23
 bb23:   # loop depth 3
-  ADD s0, zero, zero
-  FSGNJ.S fs5, fs4, fs4
+  ADD s1, zero, zero
+  FSGNJ.S fs1, fs2, fs2
   CALL my_sin_impl
-  FSGNJ.D fs0, fa0, fa0
-  FSW fs0, 180(sp)
   # implict jump to bb24
 bb24:   # loop depth 4
-  LA s2, .CONSTANT.7.5
-  FLW fs1, 0(s2)
-  SLTI s2, s0, 10
-  FLT.S s5, fs5, fs1
-  AND s2, s2, s5
-  BNE s2, zero, bb36
+  LA t0, .CONSTANT.7.5
+  FLW ft0, 0(t0)
+  SLTI t0, s1, 10
+  FLT.S t1, fs1, ft0
+  AND t0, t0, t1
+  BNE t0, zero, bb36
   # implict jump to bb25
 bb25:   # loop depth 3
-  FSGNJ.S fs1, fs4, fs4
+  FSGNJ.S ft0, fs2, fs2
   # implict jump to bb26
 bb26:   # loop depth 3
-  ADDIW s4, s4, 1
-  SLTI s0, s4, 24
-  FLW fs0, 108(sp)
-  FADD.S fs0, fs0, fs1
-  BNE s0, zero, bb35
+  ADDIW s2, s2, 1
+  SLTI t0, s2, 24
+  FLW ft1, 4(sp)
+  FADD.S ft0, ft1, ft0
+  BNE t0, zero, bb35
   # implict jump to bb27
 bb27:   # loop depth 2
-  FLW fs1, 48(sp)
-  FDIV.S fs0, fs0, fs1
-  LA a0, .CONSTANT.7.11
-  ADDI s0, zero, 255
-  FLW fs1, 0(a0)
-  FMUL.S fs0, fs0, fs1
-  FCVT.W.S a0, fs0, rtz
-  BLT s0, a0, bb34
+  FLW ft1, 56(sp)
+  FDIV.S ft0, ft0, ft1
+  LA t0, .CONSTANT.7.11
+  ADDI t1, zero, 255
+  FLW ft1, 0(t0)
+  FMUL.S ft0, ft0, ft1
+  FCVT.W.S a0, ft0, rtz
+  BLT t1, a0, bb34
   # implict jump to bb28
 bb28:   # loop depth 2
   # implict jump to bb29
 bb29:   # loop depth 2
-  ADDIW s3, s3, 1
-  SLTI s0, s3, 192
+  ADDIW s5, s5, 1
+  SLTI s0, s5, 192
   CALL putint
   ADDI a0, zero, 32
   CALL putch
   BNE s0, zero, bb33
   # implict jump to bb30
 bb30:   # loop depth 1
-  ADDIW s1, s1, 1
+  ADDIW s0, s6, 1
   ADDI a0, zero, 10
-  SLTI s0, s1, 192
+  SLTI s1, s0, 192
   CALL putch
-  BNE s0, zero, bb32
+  BNE s1, zero, bb32
   # implict jump to bb31
 bb31:   # loop depth 0
-  FLD fs0, 200(sp)
-  FLD fs1, 208(sp)
-  FLD fs2, 216(sp)
-  FLD fs3, 224(sp)
-  FLD fs4, 232(sp)
-  FLD fs5, 240(sp)
-  FLD fs6, 248(sp)
-  FLD fs7, 256(sp)
-  LD ra, 264(sp)
-  LD s0, 272(sp)
-  LD s1, 280(sp)
-  LD s2, 288(sp)
-  LD s3, 296(sp)
-  LD s4, 304(sp)
-  LD s5, 312(sp)
-  LD s6, 320(sp)
-  LD s7, 328(sp)
-  LD s8, 336(sp)
-  ADDI sp, sp, 352
+  LD ra, 64(sp)
+  LD s0, 72(sp)
+  LD s1, 80(sp)
+  LD s2, 88(sp)
+  LD s3, 96(sp)
+  LD s4, 104(sp)
+  LD s5, 112(sp)
+  LD s6, 120(sp)
+  FLD fs1, 128(sp)
+  FLD fs2, 136(sp)
+  FLD fs3, 144(sp)
+  FLD fs4, 152(sp)
+  FLD fs5, 160(sp)
+  FLD fs7, 168(sp)
+  FLD fs8, 176(sp)
+  FLD fs10, 184(sp)
+  ADDI sp, sp, 208
   JALR zero, 0(ra)
 bb32:   # loop depth 1
   JAL zero, bb8
@@ -382,202 +368,122 @@ bb34:   # loop depth 2
 bb35:   # loop depth 3
   JAL zero, bb10
 bb36:   # loop depth 4
-  FLW fs0, 180(sp)
-  FMUL.S fs0, fs0, fs5
-  FSW fs0, 160(sp)
-  ADDI s2, zero, 4
-  FLW fs0, 172(sp)
-  FMUL.S fs1, fs0, fs5
-  ADDI s5, zero, 8
-  FCVT.S.W fs0, s2
-  FSW fs0, 100(sp)
-  ADDI s2, zero, 10
-  FCVT.S.W fs0, s5
-  FSW fs0, 92(sp)
-  FLW fs0, 44(sp)
-  FLW fs2, 160(sp)
-  FADD.S fs0, fs0, fs2
-  FSW fs0, 76(sp)
-  FLW fs0, 52(sp)
-  FADD.S fs0, fs0, fs1
-  FSW fs0, 156(sp)
-  FLW fs0, 188(sp)
-  FLW fs1, 76(sp)
-  FSUB.S fs0, fs1, fs0
-  FSW fs0, 80(sp)
-  FLW fs0, 188(sp)
-  FLW fs1, 156(sp)
-  FSUB.S fs1, fs1, fs0
-  FLW fs0, 80(sp)
-  FLW fs2, 80(sp)
-  FMUL.S fs0, fs0, fs2
-  FSW fs0, 84(sp)
-  FMUL.S fs1, fs1, fs1
-  FLW fs0, 84(sp)
-  FADD.S fs0, fs1, fs0
-  FSW fs0, 88(sp)
-  FLW fs0, 100(sp)
-  FLW fs1, 88(sp)
-  FADD.S fs0, fs0, fs1
-  FSW fs0, 196(sp)
-  FLW fs0, 88(sp)
-  FLW fs1, 144(sp)
-  FMUL.S fs0, fs1, fs0
-  FSW fs0, 96(sp)
-  FLW fs0, 92(sp)
-  FLW fs1, 88(sp)
-  FDIV.S fs0, fs1, fs0
-  FSW fs0, 140(sp)
-  FLW fs0, 196(sp)
-  FLW fs1, 96(sp)
-  FDIV.S fs0, fs1, fs0
-  FSW fs0, 192(sp)
-  FLW fs0, 184(sp)
-  FLW fs1, 140(sp)
-  FADD.S fs1, fs1, fs0
-  FLW fs0, 192(sp)
-  FADD.S fs1, fs1, fs0
+  FMUL.S ft2, fa0, fs1
+  ADDI t0, zero, 10
+  FMUL.S ft0, fs3, fs1
+  FLW ft1, 36(sp)
+  FADD.S ft3, ft1, ft2
+  FLW ft1, 0(sp)
+  FADD.S ft2, ft1, ft0
+  FLW ft0, 8(sp)
+  FSUB.S ft4, ft3, ft0
+  FLW ft0, 8(sp)
+  FSUB.S ft0, ft2, ft0
+  FMUL.S ft4, ft4, ft4
+  FMUL.S ft0, ft0, ft0
+  FADD.S ft4, ft0, ft4
+  FADD.S ft6, fs8, ft4
+  FMUL.S ft5, fs10, ft4
+  FDIV.S ft0, ft4, fs7
+  FDIV.S ft5, ft5, ft6
+  FLW ft1, 60(sp)
+  FADD.S ft0, ft0, ft1
+  FADD.S ft0, ft0, ft5
   # implict jump to bb37
 bb37:   # loop depth 5
-  ADDIW s2, s2, -1
-  FLW fs0, 88(sp)
-  FDIV.S fs0, fs0, fs1
-  FSW fs0, 176(sp)
-  FLW fs0, 176(sp)
-  FADD.S fs1, fs1, fs0
-  FLW fs0, 144(sp)
-  FDIV.S fs1, fs1, fs0
-  BNE s2, zero, bb47
+  ADDIW t0, t0, -1
+  FDIV.S ft5, ft4, ft0
+  FADD.S ft0, ft0, ft5
+  FDIV.S ft0, ft0, fs10
+  BNE t0, zero, bb47
   # implict jump to bb38
 bb38:   # loop depth 4
-  FLW fs0, 112(sp)
-  FLW fs2, 76(sp)
-  FSUB.S fs0, fs2, fs0
-  FSW fs0, 36(sp)
-  LA s5, .CONSTANT.7.9
-  FLW fs0, 112(sp)
-  FLW fs2, 156(sp)
-  FSUB.S fs0, fs2, fs0
-  FSW fs0, 136(sp)
-  ADDI s2, zero, 10
-  FLW fs0, 0(s5)
-  FSW fs0, 32(sp)
-  FLW fs0, 32(sp)
-  FSUB.S fs0, fs1, fs0
-  FSW fs0, 132(sp)
-  FLW fs0, 36(sp)
-  FLW fs1, 36(sp)
-  FMUL.S fs0, fs0, fs1
-  FSW fs0, 4(sp)
-  FLW fs0, 136(sp)
-  FLW fs1, 136(sp)
-  FMUL.S fs1, fs0, fs1
-  FLW fs0, 4(sp)
-  FADD.S fs0, fs1, fs0
-  FSW fs0, 8(sp)
-  FLW fs0, 8(sp)
-  FLW fs1, 100(sp)
-  FADD.S fs0, fs1, fs0
-  FSW fs0, 16(sp)
-  FLW fs0, 8(sp)
-  FLW fs1, 144(sp)
-  FMUL.S fs0, fs1, fs0
-  FSW fs0, 12(sp)
-  FLW fs0, 8(sp)
-  FLW fs1, 92(sp)
-  FDIV.S fs1, fs0, fs1
-  FLW fs0, 16(sp)
-  FLW fs2, 12(sp)
-  FDIV.S fs0, fs2, fs0
-  FSW fs0, 20(sp)
-  FLW fs0, 184(sp)
-  FADD.S fs1, fs1, fs0
-  FLW fs0, 20(sp)
-  FADD.S fs1, fs1, fs0
+  FLW ft1, 12(sp)
+  FSUB.S ft4, ft3, ft1
+  LA t1, .CONSTANT.7.9
+  FLW ft1, 12(sp)
+  FSUB.S ft2, ft2, ft1
+  ADDI t0, zero, 10
+  FLW ft3, 0(t1)
+  FSUB.S ft3, ft0, ft3
+  FMUL.S ft4, ft4, ft4
+  FMUL.S ft0, ft2, ft2
+  FADD.S ft4, ft0, ft4
+  FADD.S ft5, fs8, ft4
+  FMUL.S ft2, fs10, ft4
+  FDIV.S ft0, ft4, fs7
+  FDIV.S ft2, ft2, ft5
+  FLW ft1, 60(sp)
+  FADD.S ft0, ft0, ft1
+  FADD.S ft0, ft0, ft2
   # implict jump to bb39
 bb39:   # loop depth 5
-  ADDIW s2, s2, -1
-  FLW fs0, 8(sp)
-  FDIV.S fs0, fs0, fs1
-  FSW fs0, 128(sp)
-  FLW fs0, 128(sp)
-  FADD.S fs1, fs1, fs0
-  FLW fs0, 144(sp)
-  FDIV.S fs1, fs1, fs0
-  BNE s2, zero, bb46
+  ADDIW t0, t0, -1
+  FDIV.S ft2, ft4, ft0
+  FADD.S ft0, ft0, ft2
+  FDIV.S ft0, ft0, fs10
+  BNE t0, zero, bb46
   # implict jump to bb40
 bb40:   # loop depth 4
-  LA s2, .CONSTANT.7.10
-  FLW fs0, 0(s2)
-  FSW fs0, 0(sp)
-  FLW fs0, 0(sp)
-  FSUB.S fs1, fs1, fs0
-  FLW fs0, 132(sp)
-  FLT.S s2, fs0, fs1
-  BNE s2, zero, bb45
+  LA t0, .CONSTANT.7.10
+  FLW ft2, 0(t0)
+  FSUB.S ft0, ft0, ft2
+  FLT.S t0, ft3, ft0
+  BNE t0, zero, bb45
   # implict jump to bb41
 bb41:   # loop depth 4
-  FSW fs1, 344(sp)
-  FSW fs4, 348(sp)
+  FSW ft0, 192(sp)
+  FSW fs2, 196(sp)
   # implict jump to bb42
 bb42:   # loop depth 4
-  LA s2, .CONSTANT.7.0
-  FLW fs1, 344(sp)
-  FLW fs0, 0(s2)
-  FSW fs0, 28(sp)
-  FLW fs0, 28(sp)
-  FLT.S s2, fs1, fs0
-  BNE s2, zero, bb44
+  LA t0, .CONSTANT.7.0
+  FLW ft0, 192(sp)
+  FLW ft2, 0(t0)
+  FLT.S t0, ft0, ft2
+  BNE t0, zero, bb44
   # implict jump to bb43
 bb43:   # loop depth 4
-  FADD.S fs5, fs5, fs1
-  ADDIW s0, s0, 1
+  FADD.S fs1, fs1, ft0
+  ADDIW s1, s1, 1
   JAL zero, bb24
 bb44:   # loop depth 3
-  FLW fs1, 348(sp)
+  FLW ft0, 196(sp)
   JAL zero, bb26
 bb45:   # loop depth 4
-  FLW fs0, 132(sp)
-  FSW fs0, 344(sp)
-  LA s2, .CONSTANT.7.1
-  FLW fs1, 0(s2)
-  FSW fs1, 348(sp)
+  FSW ft3, 192(sp)
+  LA t0, .CONSTANT.7.1
+  FLW ft0, 0(t0)
+  FSW ft0, 196(sp)
   JAL zero, bb42
 bb46:   # loop depth 5
   JAL zero, bb39
 bb47:   # loop depth 5
   JAL zero, bb37
 bb48:   # loop depth 3
-  FSGNJ.S fa0, fs1, fs1
+  FSGNJ.S fa0, ft1, ft1
   JAL zero, bb23
 bb49:   # loop depth 3
-  FSGNJ.S fa0, fs1, fs1
   JAL zero, bb21
 bb50:   # loop depth 3
-  FDIV.S fa0, fs1, fs7
-  FCVT.W.S s0, fa0, rtz
-  FCVT.S.W fa0, s0
-  FMUL.S fa0, fa0, fs7
-  FSUB.S fa0, fs1, fa0
+  FDIV.S ft0, fs1, fs5
+  FCVT.W.S t0, ft0, rtz
+  FCVT.S.W ft0, t0
+  FMUL.S ft0, ft0, fs5
+  FSUB.S fs1, fs1, ft0
   JAL zero, bb19
 bb51:   # loop depth 3
   JAL zero, bb17
 bb52:   # loop depth 3
-  FSGNJ.S fs2, fs3, fs3
   JAL zero, bb15
 bb53:   # loop depth 3
-  FDIV.S fs3, fs2, fs7
-  FCVT.W.S s0, fs3, rtz
-  FCVT.S.W fs3, s0
-  FMUL.S fs3, fs3, fs7
-  FSUB.S fs2, fs2, fs3
+  FDIV.S ft2, ft1, fs5
+  FCVT.W.S t0, ft2, rtz
+  FCVT.S.W ft2, t0
+  FMUL.S ft2, ft2, fs5
+  FSUB.S ft1, ft1, ft2
   JAL zero, bb13
 bb54:   # loop depth 3
-  LA s0, seed
-  LUI s2, 24414
-  LA s5, seed
-  ADDIW s2, s2, 263
-  LW s0, 0(s0)
-  ADDW s0, s0, s2
-  SW s0, 0(s5)
+  LW t0, 0(s0)
+  ADDW t0, t0, s3
+  SW t0, 0(s0)
   JAL zero, bb11
