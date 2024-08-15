@@ -38,9 +38,9 @@ my_putint.while.body77:  pred(my_putint.while.body77, my_putint.while.body77_pre
   i.phi154237 = phi [bb %my_putint.while.body77, i32 %124158, bb %my_putint.while.body77_preheader, i32 %239]
   124158 = add i32 %i.phi154237, i32 -1
   235 = shl i32 %i.phi154237, i32 2
-  231 = ptradd ptr %b135, i32 %235
-  233 = ptradd ptr %231, i32 -4
-  87.load161 = load i32 from ptr %233
+  281 = ptradd ptr %b135, i32 %235
+  282 = ptradd ptr %281, i32 -4
+  87.load161 = load i32 from ptr %282
   call void putch(i32 %87.load161)
   80155 = icmp sgt i32 %124158, i32 0
   br i1 %80155, bb %my_putint.while.body77, bb %my_putint.while.exit78

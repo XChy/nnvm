@@ -208,10 +208,10 @@ bb13:   # loop depth 2
   JAL zero, bb12
 bb14:   # loop depth 0
   ADD t0, zero, zero
-  ADDIW t1, s1, -1
+  ADDIW t2, s1, -1
   # implict jump to bb15
 bb15:   # loop depth 1
-  BGE t1, zero, bb18
+  BGE t2, zero, bb18
   # implict jump to bb16
 bb16:   # loop depth 1
   ADDIW t0, t0, 1
@@ -221,30 +221,30 @@ bb17:   # loop depth 1
   JAL zero, bb15
 bb18:   # loop depth 1
   FSGNJ.S ft1, fs0, fs0
-  ADD t2, t1, zero
+  ADD t1, t2, zero
   FSGNJ.S ft0, fs0, fs0
+  SH2ADD a1, t0, s2
   FSGNJ.S ft2, fs0, fs0
+  SH2ADD a0, t0, s4
   FSGNJ.S ft4, fs0, fs0
   # implict jump to bb19
 bb19:   # loop depth 2
   FSGNJ.S ft3, ft4, ft4
-  ADDI a0, zero, 1080
+  ADDI a2, zero, 1080
   FMUL.S ft4, ft7, ft3
-  MULW a0, t2, a0
+  MULW a2, t1, a2
   FMUL.S ft2, ft5, ft2
-  ADDIW t2, t2, -1
-  ADD a1, s4, a0
+  ADDIW t1, t1, -1
+  ADD a3, a0, a2
   FMUL.S fa1, fa0, ft0
-  SH2ADD a1, t0, a1
+  ADD a2, a1, a2
   FMUL.S fa2, ft6, ft1
-  ADD a0, s2, a0
   FADD.S ft1, ft4, ft2
-  SH2ADD a0, t0, a0
   FADD.S ft1, ft1, fa1
   FADD.S ft2, ft1, fa2
-  FSW ft2, 0(a1)
-  FLW ft4, 0(a0)
-  BGE t2, zero, bb20
+  FSW ft2, 0(a3)
+  FLW ft4, 0(a2)
+  BGE t1, zero, bb20
   JAL zero, bb16
 bb20:   # loop depth 2
   FSGNJ.S ft1, ft0, ft0
@@ -269,25 +269,25 @@ bb25:   # loop depth 1
   FSGNJ.S ft1, fs0, fs0
   ADD t0, zero, zero
   FSGNJ.S ft2, fs0, fs0
+  SH2ADD a1, t1, s2
+  SH2ADD a0, t1, s3
   # implict jump to bb26
 bb26:   # loop depth 2
-  ADD a0, s2, t0
+  ADD a3, a1, t0
   FSGNJ.S ft3, ft1, ft1
-  SH2ADD a1, t1, a0
-  FMUL.S ft1, fa2, ft0
-  FLW ft0, 0(a1)
-  FMUL.S ft4, fa0, ft3
-  ADD a0, s3, t0
-  FMUL.S ft0, fa1, ft0
-  SH2ADD a0, t1, a0
-  FMUL.S ft2, ft6, ft2
+  FLW ft1, 0(a3)
+  FMUL.S ft4, fa2, ft0
+  FMUL.S fa3, fa0, ft3
+  ADD a2, a0, t0
+  FMUL.S ft0, fa1, ft1
   ADDIW t0, t0, 1080
   ADDIW t2, t2, 1
-  FADD.S ft0, ft0, ft1
+  FMUL.S ft1, ft6, ft2
   FADD.S ft0, ft0, ft4
-  FADD.S ft1, ft0, ft2
-  FSW ft1, 0(a0)
-  FLW ft0, 0(a1)
+  FADD.S ft0, ft0, fa3
+  FADD.S ft1, ft0, ft1
+  FSW ft1, 0(a2)
+  FLW ft0, 0(a3)
   BLT t2, s1, bb27
   JAL zero, bb23
 bb27:   # loop depth 2

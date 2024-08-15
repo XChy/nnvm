@@ -185,16 +185,16 @@ while.body120:  pred(if.exit136, then116)
   i26.phi259 = phi [bb %if.exit136, i32 %203, bb %then116, i32 %i26.phi173266]
   203 = add i32 %i26.phi259, i32 -1
   250 = shl i32 %i26.phi259, i32 2
-  239 = ptradd ptr %input, i32 %250
-  241 = ptradd ptr %239, i32 -4
-  131.load = load i32 from ptr %241
+  285 = ptradd ptr %input, i32 %250
+  286 = ptradd ptr %285, i32 -4
+  131.load = load i32 from ptr %286
   134 = icmp eq i32 %131.load, i32 91
   br i1 %134, bb %then135, bb %else137
 then135:  pred(while.body120)
   205 = add i32 %loop.phi156260, i32 -1
   br bb %if.exit136
 if.exit136:  pred(then135, else137.split)
-  loop.phi155 = phi [bb %else137.split, i32 %289, bb %then135, i32 %205]
+  loop.phi155 = phi [bb %else137.split, i32 %293, bb %then135, i32 %205]
   123 = icmp sgt i32 %loop.phi155, i32 0
   br i1 %123, bb %while.body120, bb %while.body120_exclu_exit
 else137:  pred(while.body120)
@@ -202,7 +202,7 @@ else137:  pred(while.body120)
   147 = add i32 %loop.phi156260, i32 1
   br i1 %142, bb %loop.phi.which.true, bb %else137.split
 else137.split:  pred(else137, loop.phi.which.true)
-  289 = phi [bb %loop.phi.which.true, i32 %147, bb %else137, i32 %loop.phi156260]
+  293 = phi [bb %loop.phi.which.true, i32 %147, bb %else137, i32 %loop.phi156260]
   br bb %if.exit136
 while.body120_exclu_exit:  pred(if.exit136)
   br bb %if.exit117

@@ -8,9 +8,9 @@ init:  pred(init, entry)
   cnt_ptr.phi314 = phi [bb %init, i32 %246, bb %entry, i32 40]
   246 = add i32 %cnt_ptr.phi314, i32 -1
   293 = shl i32 %cnt_ptr.phi314, i32 2
-  271 = ptradd ptr %result, i32 %293
-  273 = ptradd ptr %271, i32 -4
-  store i32 0 to ptr %273
+  342 = ptradd ptr %result, i32 %293
+  343 = ptradd ptr %342, i32 -4
+  store i32 0 to ptr %343
   60 = icmp ne i32 %246, i32 0
   br i1 %60, bb %init, bb %init_exclu_exit
 while.body111_preheader:  pred(init_exclu_exit)
@@ -27,7 +27,7 @@ while.exit112:  pred(init_exclu_exit, while.body111)
   br bb %while.body129
 while.body129:  pred(while.body144_exclu_exit, while.exit112)
   i.phi234306 = phi [bb %while.body144_exclu_exit, i32 %257, bb %while.exit112, i32 19]
-  n.phi244304 = phi [bb %while.body144_exclu_exit, i32 %723, bb %while.exit112, i32 39]
+  n.phi244304 = phi [bb %while.body144_exclu_exit, i32 %727, bb %while.exit112, i32 39]
   289 = shl i32 %i.phi234306, i32 2
   138 = ptradd ptr %c2, i32 %289
   138.load = load i32 from ptr %138
@@ -82,87 +82,87 @@ while.exit217:  pred(if.exit209, while.body216)
   ret i32 0
 init_exclu_exit:  pred(init)
   store i32 1 to ptr %c1
-  76533 = ptradd ptr %c1, i32 4
-  store i32 2 to ptr %76533
-  76543 = ptradd ptr %c1, i32 8
-  store i32 3 to ptr %76543
-  76553 = ptradd ptr %c1, i32 12
-  store i32 4 to ptr %76553
-  76563 = ptradd ptr %c1, i32 16
-  store i32 5 to ptr %76563
-  76573 = ptradd ptr %c1, i32 20
-  store i32 6 to ptr %76573
-  76583 = ptradd ptr %c1, i32 24
-  store i32 7 to ptr %76583
-  76593 = ptradd ptr %c1, i32 28
-  store i32 8 to ptr %76593
-  76603 = ptradd ptr %c1, i32 32
-  store i32 9 to ptr %76603
-  76613 = ptradd ptr %c1, i32 36
-  store i32 0 to ptr %76613
-  76623 = ptradd ptr %c1, i32 40
-  store i32 1 to ptr %76623
-  76633 = ptradd ptr %c1, i32 44
-  store i32 2 to ptr %76633
-  76643 = ptradd ptr %c1, i32 48
-  store i32 3 to ptr %76643
-  76653 = ptradd ptr %c1, i32 52
-  store i32 4 to ptr %76653
-  76663 = ptradd ptr %c1, i32 56
-  store i32 5 to ptr %76663
-  76673 = ptradd ptr %c1, i32 60
-  store i32 6 to ptr %76673
-  76683 = ptradd ptr %c1, i32 64
-  store i32 7 to ptr %76683
-  76693 = ptradd ptr %c1, i32 68
-  store i32 8 to ptr %76693
-  76703 = ptradd ptr %c1, i32 72
-  store i32 9 to ptr %76703
-  76713 = ptradd ptr %c1, i32 76
-  store i32 0 to ptr %76713
+  76537 = ptradd ptr %c1, i32 4
+  store i32 2 to ptr %76537
+  76547 = ptradd ptr %c1, i32 8
+  store i32 3 to ptr %76547
+  76557 = ptradd ptr %c1, i32 12
+  store i32 4 to ptr %76557
+  76567 = ptradd ptr %c1, i32 16
+  store i32 5 to ptr %76567
+  76577 = ptradd ptr %c1, i32 20
+  store i32 6 to ptr %76577
+  76587 = ptradd ptr %c1, i32 24
+  store i32 7 to ptr %76587
+  76597 = ptradd ptr %c1, i32 28
+  store i32 8 to ptr %76597
+  76607 = ptradd ptr %c1, i32 32
+  store i32 9 to ptr %76607
+  76617 = ptradd ptr %c1, i32 36
+  store i32 0 to ptr %76617
+  76627 = ptradd ptr %c1, i32 40
+  store i32 1 to ptr %76627
+  76637 = ptradd ptr %c1, i32 44
+  store i32 2 to ptr %76637
+  76647 = ptradd ptr %c1, i32 48
+  store i32 3 to ptr %76647
+  76657 = ptradd ptr %c1, i32 52
+  store i32 4 to ptr %76657
+  76667 = ptradd ptr %c1, i32 56
+  store i32 5 to ptr %76667
+  76677 = ptradd ptr %c1, i32 60
+  store i32 6 to ptr %76677
+  76687 = ptradd ptr %c1, i32 64
+  store i32 7 to ptr %76687
+  76697 = ptradd ptr %c1, i32 68
+  store i32 8 to ptr %76697
+  76707 = ptradd ptr %c1, i32 72
+  store i32 9 to ptr %76707
+  76717 = ptradd ptr %c1, i32 76
+  store i32 0 to ptr %76717
   store i32 2 to ptr %c2
-  95343 = ptradd ptr %c2, i32 4
-  store i32 3 to ptr %95343
-  95353 = ptradd ptr %c2, i32 8
-  store i32 4 to ptr %95353
-  95363 = ptradd ptr %c2, i32 12
-  store i32 2 to ptr %95363
-  95373 = ptradd ptr %c2, i32 16
-  store i32 5 to ptr %95373
-  95383 = ptradd ptr %c2, i32 20
-  store i32 7 to ptr %95383
-  95393 = ptradd ptr %c2, i32 24
-  store i32 9 to ptr %95393
-  95403 = ptradd ptr %c2, i32 28
-  store i32 9 to ptr %95403
-  95413 = ptradd ptr %c2, i32 32
-  store i32 0 to ptr %95413
-  95423 = ptradd ptr %c2, i32 36
-  store i32 1 to ptr %95423
-  95433 = ptradd ptr %c2, i32 40
-  store i32 9 to ptr %95433
-  95443 = ptradd ptr %c2, i32 44
-  store i32 8 to ptr %95443
-  95453 = ptradd ptr %c2, i32 48
-  store i32 7 to ptr %95453
-  95463 = ptradd ptr %c2, i32 52
-  store i32 6 to ptr %95463
-  95473 = ptradd ptr %c2, i32 56
-  store i32 4 to ptr %95473
-  95483 = ptradd ptr %c2, i32 60
-  store i32 3 to ptr %95483
-  95493 = ptradd ptr %c2, i32 64
-  store i32 2 to ptr %95493
-  95503 = ptradd ptr %c2, i32 68
-  store i32 1 to ptr %95503
-  95513 = ptradd ptr %c2, i32 72
-  store i32 2 to ptr %95513
-  95523 = ptradd ptr %c2, i32 76
-  store i32 2 to ptr %95523
+  95347 = ptradd ptr %c2, i32 4
+  store i32 3 to ptr %95347
+  95357 = ptradd ptr %c2, i32 8
+  store i32 4 to ptr %95357
+  95367 = ptradd ptr %c2, i32 12
+  store i32 2 to ptr %95367
+  95377 = ptradd ptr %c2, i32 16
+  store i32 5 to ptr %95377
+  95387 = ptradd ptr %c2, i32 20
+  store i32 7 to ptr %95387
+  95397 = ptradd ptr %c2, i32 24
+  store i32 9 to ptr %95397
+  95407 = ptradd ptr %c2, i32 28
+  store i32 9 to ptr %95407
+  95417 = ptradd ptr %c2, i32 32
+  store i32 0 to ptr %95417
+  95427 = ptradd ptr %c2, i32 36
+  store i32 1 to ptr %95427
+  95437 = ptradd ptr %c2, i32 40
+  store i32 9 to ptr %95437
+  95447 = ptradd ptr %c2, i32 44
+  store i32 8 to ptr %95447
+  95457 = ptradd ptr %c2, i32 48
+  store i32 7 to ptr %95457
+  95467 = ptradd ptr %c2, i32 52
+  store i32 6 to ptr %95467
+  95477 = ptradd ptr %c2, i32 56
+  store i32 4 to ptr %95477
+  95487 = ptradd ptr %c2, i32 60
+  store i32 3 to ptr %95487
+  95497 = ptradd ptr %c2, i32 64
+  store i32 2 to ptr %95497
+  95507 = ptradd ptr %c2, i32 68
+  store i32 1 to ptr %95507
+  95517 = ptradd ptr %c2, i32 72
+  store i32 2 to ptr %95517
+  95527 = ptradd ptr %c2, i32 76
+  store i32 2 to ptr %95527
   115307 = icmp sle i32 0, i32 39
   br i1 %115307, bb %while.body111_preheader, bb %while.exit112
 while.body144_exclu_exit:  pred(if.exit)
-  723 = add i32 %n.phi298, i32 18
+  727 = add i32 %n.phi298, i32 18
   257 = add i32 %i.phi234306, i32 -1
   133 = icmp sgt i32 %257, i32 -1
   br i1 %133, bb %while.body129, bb %while.body129_exclu_exit

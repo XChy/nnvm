@@ -30,9 +30,9 @@ while.body97:  pred(while.body97, while.body97_preheader)
   105 = ptradd ptr %edges, i32 %241
   109 = call i32 getint()
   store i32 %109 to ptr %105
-  114 = ptradd ptr %105, i32 4
+  277 = ptradd ptr %105, i32 4
   116 = call i32 getint()
-  store i32 %116 to ptr %114
+  store i32 %116 to ptr %277
   119 = add i32 %i95.phi168254, i32 1
   m.load100 = load i32 from ptr %m.pinned
   101 = icmp slt i32 %119, i32 %m.load100
@@ -52,8 +52,8 @@ while.body122:  pred(while.body122, while.body122_preheader)
   132.load = load i32 from ptr %130
   134 = mul i32 %132.load, i32 120
   135 = ptradd ptr %graph.pinned, i32 %134
-  140 = ptradd ptr %130, i32 4
-  140.load = load i32 from ptr %140
+  279 = ptradd ptr %130, i32 4
+  140.load = load i32 from ptr %279
   243 = shl i32 %140.load, i32 2
   143 = ptradd ptr %135, i32 %243
   store i32 1 to ptr %143

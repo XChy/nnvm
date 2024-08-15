@@ -33,37 +33,54 @@ bool LSRPass::processInst(Instruction *I, Loop *loop) {
   if (!mul)
     return false;
 
-  //std::cout << mul->dump();
-
   Value *lhs = mul->getLHS();
-  ConstantInt *rhs = mayCast<ConstantInt>(mul->getRHS());
-  if (!rhs)
-    return false;
 
-  //std::cout << "OK1\n";
-  //std::cout << lhs->dump();
   ScevValue *lhsScev = scev->analyze(lhs, loop);
   if (!lhsScev)
     return false;
 
-  //std::cout << "OK\n";
-
   if (lhsScev->isRec() && lhsScev->getOperation() == InstID::Add &&
       lhsScev->getStartValue()->asInt() && lhsScev->getStep()->asInt()) {
-    builder.insertAt(header->normalBegin());
-    PhiNode *phi = builder.buildPhi(mul->getType());
 
-    auto *start = lhsScev->getStartValue()->asInt()->mul(rhs);
-    auto *step = lhsScev->getStep()->asInt()->mul(rhs);
+    // (C1, +, C2) * C3 --> (C1 * C3, +, C2 * C3)
+    if (ConstantInt *rhs = mayCast<ConstantInt>(mul->getRHS())) {
+      builder.insertAt(header->normalBegin());
+      PhiNode *phi = builder.buildPhi(mul->getType());
 
-    builder.insertAt(latch->termEnd());
-    Value *stepAdd = builder.buildBinOp<AddInst>(phi, step, mul->getType(),
-                                                 mul->getName() + ".rec");
+      auto *start = lhsScev->getStartValue()->asInt()->mul(rhs);
+      auto *step = lhsScev->getStep()->asInt()->mul(rhs);
 
-    phi->addIncoming(preheader, start);
-    phi->addIncoming(latch, stepAdd);
-    mul->replaceSelf(phi);
-    mul->eraseFromBB();
+      builder.insertAt(latch->termEnd());
+      Value *stepAdd = builder.buildBinOp<AddInst>(phi, step, mul->getType(),
+                                                   mul->getName() + ".rec");
+
+      phi->addIncoming(preheader, start);
+      phi->addIncoming(latch, stepAdd);
+      mul->replaceSelf(phi);
+      mul->eraseFromBB();
+    }
+    // (0, +, 1) * V --> (0, +, V)
+    else if (lhsScev->getStartValue()->asInt()->isZero() &&
+             lhsScev->getStep()->asInt()->isOne() &&
+             isDefinedOutside(mul->getRHS(), loop)) {
+      auto *rhs = mul->getRHS();
+      builder.insertAt(header->normalBegin());
+      PhiNode *phi = builder.buildPhi(mul->getType());
+
+      auto *start = lhsScev->getStartValue()->asInt();
+      auto *step = rhs;
+
+      builder.insertAt(latch->termEnd());
+      Value *stepAdd = builder.buildBinOp<AddInst>(phi, step, mul->getType(),
+                                                   mul->getName() + ".rec");
+
+      phi->addIncoming(preheader, start);
+      phi->addIncoming(latch, stepAdd);
+      mul->replaceSelf(phi);
+      mul->eraseFromBB();
+    } else {
+      return false;
+    }
   }
 
   return true;

@@ -64,23 +64,24 @@ while.exit116:  pred(while.exit98, while.body115_exclu_exit)
   141 = sub i32 0, i32 %220
   br i1 %136, bb %ans.phi.which.true, bb %while.exit116.split
 while.exit116.split:  pred(while.exit116, ans.phi.which.true)
-  251 = phi [bb %ans.phi.which.true, i32 %141, bb %while.exit116, i32 %220]
+  255 = phi [bb %ans.phi.which.true, i32 %141, bb %while.exit116, i32 %220]
   call void _sysy_stoptime(i32 47)
-  call void putint(i32 %251)
+  call void putint(i32 %255)
   call void putch(i32 10)
   ret i32 0
 transpose.while.body_preheader:  pred(while.body97)
   br bb %transpose.while.body
 transpose.while.body:  pred(transpose.while.exit19, transpose.while.body_preheader)
+  246 = phi [bb %transpose.while.body_preheader, i32 0, bb %transpose.while.exit19, i32 %35192.rec]
   i.phi170218 = phi [bb %transpose.while.exit19, i32 %71186, bb %transpose.while.body_preheader, i32 0]
   curr.phi155169217 = phi [bb %transpose.while.exit19, i32 %curr.phi178, bb %transpose.while.body_preheader, i32 0]
-  35192 = mul i32 %i.phi170218, i32 %106.load
   br bb %transpose.while.cond17
 transpose.while.exit:  pred(while.body97, transpose.while.exit19)
   111 = add i32 %i79.phi147224, i32 1
   101 = icmp slt i32 %111, i32 %77
   br i1 %101, bb %while.body97, bb %while.exit98
 transpose.while.cond17:  pred(transpose.while.body, transpose.while.cond17_unified_latch)
+  244 = phi [bb %transpose.while.body, i32 0, bb %transpose.while.cond17_unified_latch, i32 %43197.rec]
   curr.phi178 = phi [bb %transpose.while.body, i32 %curr.phi155169217, bb %transpose.while.cond17_unified_latch, i32 %231]
   j.phi179 = phi [bb %transpose.while.body, i32 0, bb %transpose.while.cond17_unified_latch, i32 %31189]
   22180 = icmp slt i32 %j.phi179, i32 %106.load
@@ -92,16 +93,16 @@ transpose.while.body18:  pred(transpose.while.cond17)
 transpose.while.exit19:  pred(transpose.while.cond17)
   71186 = add i32 %i.phi170218, i32 1
   14171 = icmp slt i32 %71186, i32 %6166
+  35192.rec = add i32 %246, i32 %106.load
   br i1 %14171, bb %transpose.while.body, bb %transpose.while.exit
 transpose.then:  pred(transpose.while.body18)
   br bb %transpose.while.cond17_unified_latch
 transpose.if.exit:  pred(transpose.while.body18)
-  37193 = add i32 %35192, i32 %j.phi179
+  37193 = add i32 %246, i32 %j.phi179
   214 = shl i32 %37193, i32 2
   39195 = ptradd ptr %matrix.pinned, i32 %214
   39.load196 = load i32 from ptr %39195
-  43197 = mul i32 %j.phi179, i32 %6166
-  45198 = add i32 %43197, i32 %i.phi170218
+  45198 = add i32 %244, i32 %i.phi170218
   215 = shl i32 %45198, i32 2
   47200 = ptradd ptr %matrix.pinned, i32 %215
   store i32 %39.load196 to ptr %47200
@@ -109,6 +110,7 @@ transpose.if.exit:  pred(transpose.while.body18)
   br bb %transpose.while.cond17_unified_latch
 transpose.while.cond17_unified_latch:  pred(transpose.if.exit, transpose.then)
   231 = phi [bb %transpose.if.exit, i32 %39.load196, bb %transpose.then, i32 %curr.phi178]
+  43197.rec = add i32 %244, i32 %6166
   br bb %transpose.while.cond17
 while.body115_exclu_exit:  pred(while.body115)
   br bb %while.exit116

@@ -69,9 +69,9 @@ insertsort.while.body21:  pred(insertsort.select.exit)
   130161 = add i32 %j.phi150, i32 -1
   br bb %insertsort.while.cond20
 insertsort.while.exit22:  pred(insertsort.select.exit)
-  192 = ptradd ptr %a, i32 %199
-  194 = ptradd ptr %192, i32 4
-  store i32 %14.load144 to ptr %194
+  215 = ptradd ptr %a, i32 %199
+  216 = ptradd ptr %215, i32 4
+  store i32 %14.load144 to ptr %216
   58168 = add i32 %i.phi137206, i32 1
   8139 = icmp slt i32 %58168, i32 10
   br i1 %8139, bb %insertsort.while.body, bb %insertsort.while.body_exclu_exit

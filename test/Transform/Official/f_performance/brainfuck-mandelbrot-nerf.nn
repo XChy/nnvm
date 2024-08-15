@@ -13,9 +13,9 @@ init:  pred(init, entry112)
   cnt_ptr.phi692 = phi [bb %init, i32 %408, bb %entry112, i32 512]
   408 = add i32 %cnt_ptr.phi692, i32 -1
   671 = shl i32 %cnt_ptr.phi692, i32 2
-  633 = ptradd ptr %return_address, i32 %671
-  635 = ptradd ptr %633, i32 -4
-  store i32 0 to ptr %635
+  774 = ptradd ptr %return_address, i32 %671
+  775 = ptradd ptr %774, i32 -4
+  store i32 0 to ptr %775
   122 = icmp ne i32 %408, i32 0
   br i1 %122, bb %init, bb %init_exclu_exit
 while.body131_preheader:  pred(init_exclu_exit)
@@ -127,7 +127,7 @@ then198:  pred(then188)
   208 = add i32 %return_address_top.phi362687, i32 1
   br bb %if.exit199
 if.exit199:  pred(then198, while.body211_exclu_exit)
-  loop.phi372 = phi [bb %while.body211_exclu_exit, i32 %787, bb %then198, i32 %loop.phi378685]
+  loop.phi372 = phi [bb %while.body211_exclu_exit, i32 %795, bb %then198, i32 %loop.phi378685]
   return_address_top.phi363 = phi [bb %while.body211_exclu_exit, i32 %return_address_top.phi362687, bb %then198, i32 %208]
   ip.phi340 = phi [bb %while.body211_exclu_exit, i32 %218, bb %then198, i32 %ip.phi338690]
   br bb %if.exit189
@@ -135,23 +135,23 @@ else200:  pred(then188)
   br bb %while.body211
 while.body211:  pred(while.body211.split.split, else200)
   ip.phi339681 = phi [bb %while.body211.split.split, i32 %218, bb %else200, i32 %ip.phi338690]
-  loop.phi371680 = phi [bb %while.body211.split.split, i32 %787, bb %else200, i32 1]
+  loop.phi371680 = phi [bb %while.body211.split.split, i32 %795, bb %else200, i32 1]
   218 = add i32 %ip.phi339681, i32 1
   672 = shl i32 %ip.phi339681, i32 2
-  643 = ptradd ptr %program.pinned, i32 %672
-  645 = ptradd ptr %643, i32 4
-  221.load = load i32 from ptr %645
+  776 = ptradd ptr %program.pinned, i32 %672
+  777 = ptradd ptr %776, i32 4
+  221.load = load i32 from ptr %777
   223 = icmp eq i32 %221.load, i32 93
   420 = add i32 %loop.phi371680, i32 -1
   br i1 %223, bb %loop.phi379.which.true, bb %while.body211.split
 while.body211.split:  pred(while.body211, loop.phi379.which.true)
-  784 = phi [bb %loop.phi379.which.true, i32 %420, bb %while.body211, i32 %loop.phi371680]
+  792 = phi [bb %loop.phi379.which.true, i32 %420, bb %while.body211, i32 %loop.phi371680]
   233 = icmp eq i32 %221.load, i32 91
-  238 = add i32 %784, i32 1
+  238 = add i32 %792, i32 1
   br i1 %233, bb %loop.phi.which.true, bb %while.body211.split.split
 while.body211.split.split:  pred(while.body211.split, loop.phi.which.true)
-  787 = phi [bb %loop.phi.which.true, i32 %238, bb %while.body211.split, i32 %784]
-  214 = icmp sgt i32 %787, i32 0
+  795 = phi [bb %loop.phi.which.true, i32 %238, bb %while.body211.split, i32 %792]
+  214 = icmp sgt i32 %795, i32 0
   br i1 %214, bb %while.body211, bb %while.body211_exclu_exit
 then241:  pred(else190)
   247 = ptradd ptr %tape.pinned, i32 %661
@@ -268,11 +268,11 @@ entry324:  pred()
   450593736 = and i1 %449591734, i1 %62592735
   br i1 %450593736, bb %get_bf_char.while.body595, bb %get_bf_char.while.exit598
 entry324.split468:  pred(read_program.while.exit73, read_program.if.exit, read_program.while.body98)
-  output_length.pinned781 = pin ptr @output_length
+  output_length.pinned789 = pin ptr @output_length
   call void _sysy_starttime(i32 116)
   call void run_program()
   call void _sysy_stoptime(i32 118)
-  output_length.load313456712 = load i32 from ptr %output_length.pinned781
+  output_length.load313456712 = load i32 from ptr %output_length.pinned789
   314457713 = icmp slt i32 0, i32 %output_length.load313456712
   br i1 %314457713, bb %output_.while.body310_preheader, bb %output_.while.exit311
 output_.while.body310_preheader:  pred(entry324.split468)
@@ -284,7 +284,7 @@ output_.while.body310:  pred(output_.while.body310, output_.while.body310_prehea
   318.load462 = load i32 from ptr %318461
   call void putch(i32 %318.load462)
   323464 = add i32 %i308.phi455714, i32 1
-  output_length.load313456 = load i32 from ptr %output_length.pinned781
+  output_length.load313456 = load i32 from ptr %output_length.pinned789
   314457 = icmp slt i32 %323464, i32 %output_length.load313456
   br i1 %314457, bb %output_.while.body310, bb %output_.while.exit311
 output_.while.exit311:  pred(entry324.split468, output_.while.body310)

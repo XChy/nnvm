@@ -27,9 +27,9 @@ while.body18:  pred(while.body18, while.body18_preheader)
   sum.phi50 = phi [bb %while.body18, i32 %31, bb %while.body18_preheader, i32 0]
   38 = add i32 %i.phi51, i32 -1
   47 = shl i32 %i.phi51, i32 2
-  43 = ptradd ptr %arr, i32 %47
-  45 = ptradd ptr %43, i32 -4
-  29.load = load i32 from ptr %45
+  65 = ptradd ptr %arr, i32 %47
+  66 = ptradd ptr %65, i32 -4
+  29.load = load i32 from ptr %66
   31 = add i32 %sum.phi50, i32 %29.load
   21 = icmp ne i32 %38, i32 0
   br i1 %21, bb %while.body18, bb %while.body18_exclu_exit

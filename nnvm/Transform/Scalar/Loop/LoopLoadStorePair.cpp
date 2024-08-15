@@ -39,7 +39,7 @@ bool LoopLoadStorePairPass::eliminateIn(Loop *loop) {
     LoadInst *load = cast<LoadInst>(I);
     StoreInst *store = nullptr;
 
-    if (isDefinedOutside(load->getSrc(), loop))
+    if (!isDefinedOutside(load->getSrc(), loop))
       continue;
 
     List<Instruction>::Iterator begin = load->getNext();

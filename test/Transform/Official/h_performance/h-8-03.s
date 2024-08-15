@@ -54,6 +54,7 @@ kernel_nussinov:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
+  SD s6, 56(sp)
   LUI t0, 1
   ADDIW t0, t0, 1504
   ADDIW a6, a0, -1
@@ -71,6 +72,7 @@ bb3:   # loop depth 0
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
+  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb4:   # loop depth 0
@@ -160,20 +162,20 @@ bb25:   # loop depth 2
   JAL zero, bb17
 bb26:   # loop depth 2
   ADD t0, t1, zero
+  SH2ADD s1, a4, a2
   SH2ADD s0, a4, t4
   # implict jump to bb27
 bb27:   # loop depth 3
-  LW s1, 0(s0)
-  MULW s4, t0, a5
-  SH2ADD s2, t0, t4
+  LW s2, 0(s0)
+  MULW s5, t0, a5
+  SH2ADD s3, t0, t4
   ADDIW t0, t0, 1
-  LW s3, 0(s2)
-  ADD s4, a2, s4
-  SH2ADD s4, a4, s4
-  ADD s4, s4, a5
-  LW s5, 0(s4)
-  ADDW s3, s3, s5
-  BLT s1, s3, bb31
+  LW s4, 0(s3)
+  ADD s5, s1, s5
+  ADD s5, s5, a5
+  LW s6, 0(s5)
+  ADDW s4, s4, s6
+  BLT s2, s4, bb31
   # implict jump to bb28
 bb28:   # loop depth 3
   BLT t0, a4, bb30
@@ -183,10 +185,10 @@ bb29:   # loop depth 2
 bb30:   # loop depth 3
   JAL zero, bb27
 bb31:   # loop depth 3
-  LW s1, 0(s2)
-  LW s2, 0(s4)
-  ADDW s1, s1, s2
-  SW s1, 0(s0)
+  LW s2, 0(s3)
+  LW s3, 0(s5)
+  ADDW s2, s2, s3
+  SW s2, 0(s0)
   JAL zero, bb28
 bb32:   # loop depth 2
   BLT a6, t0, bb37

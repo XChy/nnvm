@@ -33,72 +33,72 @@ bb1:   # loop depth 1
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 23
-  LA s3, b
-  ADD s2, zero, zero
+  LA s2, b
   ADD s4, zero, zero
+  ADD s3, zero, zero
   CALL _sysy_starttime
   # implict jump to bb3
 bb3:   # loop depth 1
   ADD t0, zero, zero
   ADD t2, zero, zero
-  ADD a0, s3, s4
+  SH2ADD a1, s4, s1
+  ADD a0, s2, s3
   # implict jump to bb4
 bb4:   # loop depth 2
-  ADD a1, s1, t2
+  ADD a2, a1, t2
   ADDIW t1, t0, 1
-  SH2ADD a1, s2, a1
+  LW a2, 0(a2)
   SH2ADD t0, t0, a0
-  LW a1, 0(a1)
   ADDW t2, t2, s0
-  SLTI a2, t1, 1000
-  SW a1, 0(t0)
-  BNE a2, zero, bb38
+  SLTI a3, t1, 1000
+  SW a2, 0(t0)
+  BNE a3, zero, bb38
   # implict jump to bb5
 bb5:   # loop depth 1
-  ADDIW s2, s2, 1
-  ADDW s4, s4, s0
-  SLTI t0, s2, 1000
+  ADDIW s4, s4, 1
+  ADDW s3, s3, s0
+  SLTI t0, s4, 1000
   BNE t0, zero, bb37
   # implict jump to bb6
 bb6:   # loop depth 0
-  ADD t2, zero, zero
   ADD a1, zero, zero
+  ADD a2, zero, zero
   # implict jump to bb7
 bb7:   # loop depth 1
   LA a0, c
-  ADD t1, zero, zero
+  ADD t2, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 2
-  ADD a2, zero, zero
   ADD a3, zero, zero
   ADD t0, zero, zero
+  ADD t1, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 3
-  ADD a4, s1, a1
-  SH2ADD a4, a3, a4
+  ADD a4, s1, a2
+  SH2ADD a4, t0, a4
   LW a4, 0(a4)
-  ADD a5, s3, t0
-  SH2ADD a5, t1, a5
-  ADDIW a3, a3, 1
-  ADDW t0, t0, s0
+  ADD a5, s2, t1
+  SH2ADD a5, t2, a5
+  ADDIW t0, t0, 1
+  ADDW t1, t1, s0
   LW a5, 0(a5)
-  SLTI a6, a3, 1000
+  SLTI a6, t0, 1000
   MULW a4, a4, a5
-  ADDW a2, a2, a4
+  ADDW a3, a3, a4
   BNE a6, zero, bb36
   # implict jump to bb10
 bb10:   # loop depth 2
-  ADD a3, a0, a1
-  ADDIW t0, t1, 1
-  SH2ADD t1, t1, a3
-  SLTI a3, t0, 1000
-  SW a2, 0(t1)
-  BNE a3, zero, bb35
+  ADD t1, a0, a2
+  ADDIW t0, t2, 1
+  SH2ADD t1, t2, t1
+  SLTI t2, t0, 1000
+  SW a3, 0(t1)
+  BNE t2, zero, bb35
   # implict jump to bb11
 bb11:   # loop depth 1
-  ADDIW t2, t2, 1
-  ADDW a1, a1, s0
-  SLTI t0, t2, 1000
+  ADDIW a1, a1, 1
+  ADDW a2, a2, s0
+  SLTI t0, a1, 1000
   BNE t0, zero, bb34
   # implict jump to bb12
 bb12:   # loop depth 0
@@ -143,20 +143,20 @@ bb18:   # loop depth 0
 bb19:   # loop depth 1
   ADD a1, zero, zero
   ADD t0, zero, zero
+  SH2ADD a4, a2, a0
   ADD a3, a0, t1
   # implict jump to bb20
 bb20:   # loop depth 2
   ADD t2, a1, zero
-  ADD a4, a0, t0
+  ADD a5, a4, t0
   ADDIW a1, t2, 1
-  SH2ADD a4, a2, a4
+  LW a5, 0(a5)
   SH2ADD t2, t2, a3
-  LW a4, 0(a4)
   ADDW t0, t0, s0
-  SLTI a5, a1, 1000
-  SUBW a4, zero, a4
-  SW a4, 0(t2)
-  BNE a5, zero, bb30
+  SLTI a6, a1, 1000
+  SUBW a5, zero, a5
+  SW a5, 0(t2)
+  BNE a6, zero, bb30
   # implict jump to bb21
 bb21:   # loop depth 1
   ADDIW a2, a2, 1
@@ -219,7 +219,7 @@ bb33:   # loop depth 2
 bb34:   # loop depth 1
   JAL zero, bb7
 bb35:   # loop depth 2
-  ADD t1, t0, zero
+  ADD t2, t0, zero
   JAL zero, bb8
 bb36:   # loop depth 3
   JAL zero, bb9

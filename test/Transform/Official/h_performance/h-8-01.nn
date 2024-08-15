@@ -48,7 +48,7 @@ while.exit:  pred(entry, while.exit19)
   284459 = icmp slt i32 0, i32 %n
   br i1 %284459, bb %while.body280_preheader, bb %while.exit281
 while.body18_preheader:  pred(while.body)
-  .pinned496 = pin i32 5596
+  .pinned502 = pin i32 5596
   30 = mul i32 %i.phi327465, i32 %.pinned
   31 = ptradd ptr %table, i32 %30
   427 = shl i32 %i.phi327465, i32 2
@@ -109,7 +109,7 @@ then119:  pred(then113)
   383 = zext i1 %132 to i32
   141 = ptradd ptr %31, i32 %423
   141.load = load i32 from ptr %141
-  432 = ptradd ptr %141, i32 %.pinned496
+  432 = ptradd ptr %141, i32 %.pinned502
   150.load = load i32 from ptr %432
   153 = add i32 %150.load, i32 %383
   154 = icmp slt i32 %141.load, i32 %153
@@ -120,7 +120,7 @@ if.exit120:  pred(if.exit156, if.exit193)
 else:  pred(then113)
   180 = ptradd ptr %31, i32 %423
   180.load = load i32 from ptr %180
-  437 = ptradd ptr %180, i32 %.pinned496
+  437 = ptradd ptr %180, i32 %.pinned502
   189.load = load i32 from ptr %437
   191 = icmp slt i32 %180.load, i32 %189.load
   br i1 %191, bb %then192, bb %if.exit193
@@ -136,6 +136,7 @@ if.exit193:  pred(else, then192)
   br bb %if.exit120
 while.body214_preheader:  pred(if.exit114)
   225 = ptradd ptr %31, i32 %423
+  487 = ptradd ptr %table, i32 %423
   br bb %while.body214
 while.body214:  pred(if.exit245, while.body214_preheader)
   k.phi448 = phi [bb %if.exit245, i32 %235, bb %while.body214_preheader, i32 %16]
@@ -145,10 +146,9 @@ while.body214:  pred(if.exit245, while.body214_preheader)
   232.load = load i32 from ptr %232
   235 = add i32 %k.phi448, i32 1
   418 = mul i32 %k.phi448, i32 %.pinned
-  419 = ptradd ptr %table, i32 %418
-  440 = ptradd ptr %419, i32 %423
-  441 = ptradd ptr %440, i32 %.pinned
-  240.load = load i32 from ptr %441
+  491 = ptradd ptr %487, i32 %418
+  492 = ptradd ptr %491, i32 %.pinned
+  240.load = load i32 from ptr %492
   242 = add i32 %232.load, i32 %240.load
   243 = icmp slt i32 %225.load, i32 %242
   br i1 %243, bb %then244, bb %if.exit245
@@ -159,7 +159,7 @@ while.exit215:  pred(if.exit114, while.body214_exclu_exit)
   br i1 %22, bb %while.body18, bb %while.body18_exclu_exit
 then244:  pred(while.body214)
   258.load = load i32 from ptr %232
-  266.load = load i32 from ptr %441
+  266.load = load i32 from ptr %492
   268 = add i32 %258.load, i32 %266.load
   store i32 %268 to ptr %225
   br bb %if.exit245
@@ -169,13 +169,13 @@ if.exit245:  pred(while.body214, then244)
 while.body280_preheader:  pred(while.exit)
   br bb %while.body280
 while.body280:  pred(while.exit289, while.body280_preheader)
-  487 = phi [bb %while.body280_preheader, i32 0, bb %while.exit289, i32 %295.rec]
+  493 = phi [bb %while.body280_preheader, i32 0, bb %while.exit289, i32 %295.rec]
   i.phi460 = phi [bb %while.exit289, i32 %314, bb %while.body280_preheader, i32 0]
   br i1 %284459, bb %while.body288_preheader, bb %while.exit289
 while.exit281:  pred(while.exit, while.exit289)
   ret 
 while.body288_preheader:  pred(while.body280)
-  296 = ptradd ptr %table, i32 %487
+  296 = ptradd ptr %table, i32 %493
   br bb %while.body288
 while.body288:  pred(while.body288, while.body288_preheader)
   j.phi458 = phi [bb %while.body288, i32 %311, bb %while.body288_preheader, i32 0]
@@ -190,7 +190,7 @@ while.body288:  pred(while.body288, while.body288_preheader)
 while.exit289:  pred(while.body280, while.body288)
   314 = add i32 %i.phi460, i32 1
   284 = icmp slt i32 %314, i32 %n
-  295.rec = add i32 %487, i32 %.pinned
+  295.rec = add i32 %493, i32 %.pinned
   br i1 %284, bb %while.body280, bb %while.exit281
 while.body214_exclu_exit:  pred(if.exit245)
   br bb %while.exit215

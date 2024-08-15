@@ -57,6 +57,7 @@ public:
   std::string dumpAsOperand() { return type->dump() + " " + dump(); }
 
   bool isZero() const;
+  bool isOne() const;
   bool isAllOne() const;
 
   // Arithmetic operations

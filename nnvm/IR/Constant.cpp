@@ -16,6 +16,7 @@ ConstantInt::ConstantInt(Type *type, GInt value)
 }
 
 bool ConstantInt::isZero() const { return getValue() == 0; }
+bool ConstantInt::isOne() const { return getValue() == 1; }
 bool ConstantInt::isAllOne() const {
   return sextOf(getValue(), getType()->getBits()) == GInt(-1);
 }

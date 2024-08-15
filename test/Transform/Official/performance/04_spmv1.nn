@@ -51,8 +51,8 @@ spmv.while.body22:  pred(spmv.while.exit73, spmv.while.body22_preheader)
   31184 = ptradd ptr %x.pinned, i32 %334
   31.load185 = load i32 from ptr %31184
   38191349 = add i32 %i.phi179370, i32 1
-  317350 = ptradd ptr %31184, i32 4
-  40.load194351 = load i32 from ptr %317350
+  407 = ptradd ptr %31184, i32 4
+  40.load194351 = load i32 from ptr %407
   42195352 = icmp slt i32 %31.load185, i32 %40.load194351
   br i1 %42195352, bb %spmv.while.body34_preheader, bb %spmv.while.exit35
 spmv.while.exit23:  pred(spmv.while.exit, spmv.while.exit73)
@@ -120,8 +120,8 @@ spmv.while.body22256:  pred(spmv.while.exit73309, spmv.while.body22256_preheader
   31258 = ptradd ptr %x.pinned, i32 %340
   31.load259 = load i32 from ptr %31258
   38265358 = add i32 %i.phi253366, i32 1
-  328359 = ptradd ptr %31258, i32 4
-  40.load268360 = load i32 from ptr %328359
+  409 = ptradd ptr %31258, i32 4
+  40.load268360 = load i32 from ptr %409
   42269361 = icmp slt i32 %31.load259, i32 %40.load268360
   br i1 %42269361, bb %spmv.while.body34271_preheader, bb %spmv.while.exit35284
 spmv.while.exit23261:  pred(spmv.while.exit250, spmv.while.exit73309)

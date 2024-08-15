@@ -161,6 +161,6 @@ std::optional<LoopBoundInfo> nnvm::analyzeLoopBound(Loop *loop, SCEV *scev) {
 
 bool nnvm::isDefinedOutside(Value *value, Loop *loop) {
   if (value->isInstruction())
-    return loop->contains(cast<Instruction>(value)->getBlock());
-  return false;
+    return !loop->contains(cast<Instruction>(value)->getBlock());
+  return true;
 }

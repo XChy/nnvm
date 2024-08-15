@@ -20,8 +20,8 @@ while.body:  pred(while.body31_exclu_exit, entry14)
   j.phi258445 = phi [bb %while.body31_exclu_exit, i32 %165, bb %entry14, i32 1]
   image_out.pinned = pin ptr @image_out
   br bb %while.body31
-while.body31:  pred(while.body31.split483.split, while.body)
-  i.phi251431 = phi [bb %while.body31.split483.split, i32 %83, bb %while.body, i32 1]
+while.body31:  pred(while.body31.split523.split, while.body)
+  i.phi251431 = phi [bb %while.body31.split523.split, i32 %83, bb %while.body, i32 1]
   277 = add i32 %i.phi251431, i32 -1
   390 = shl i32 %277, i32 9
   44 = add i32 %390, i32 %j.phi258445
@@ -36,40 +36,40 @@ while.body31:  pred(while.body31.split483.split, while.body)
   394 = shl i32 %107.load, i32 3
   400 = shl i32 %44, i32 2
   339 = ptradd ptr %image_in.pinned, i32 %400
-  341 = ptradd ptr %339, i32 -4
-  112.load = load i32 from ptr %341
+  501 = ptradd ptr %339, i32 -4
+  112.load = load i32 from ptr %501
   114 = sub i32 %394, i32 %112.load
   117.load = load i32 from ptr %339
   119 = sub i32 %114, i32 %117.load
-  347 = ptradd ptr %339, i32 4
-  122.load = load i32 from ptr %347
+  503 = ptradd ptr %339, i32 4
+  122.load = load i32 from ptr %503
   124 = sub i32 %119, i32 %122.load
-  352 = ptradd ptr %107, i32 -4
-  127.load = load i32 from ptr %352
+  505 = ptradd ptr %107, i32 -4
+  127.load = load i32 from ptr %505
   129 = sub i32 %124, i32 %127.load
-  357 = ptradd ptr %107, i32 4
-  132.load = load i32 from ptr %357
+  507 = ptradd ptr %107, i32 4
+  132.load = load i32 from ptr %507
   134 = sub i32 %129, i32 %132.load
   404 = shl i32 %87, i32 2
   360 = ptradd ptr %image_in.pinned, i32 %404
-  362 = ptradd ptr %360, i32 -4
-  137.load = load i32 from ptr %362
+  509 = ptradd ptr %360, i32 -4
+  137.load = load i32 from ptr %509
   139 = sub i32 %134, i32 %137.load
   142.load = load i32 from ptr %360
   144 = sub i32 %139, i32 %142.load
-  368 = ptradd ptr %360, i32 4
-  147.load = load i32 from ptr %368
+  511 = ptradd ptr %360, i32 4
+  147.load = load i32 from ptr %511
   149 = sub i32 %144, i32 %147.load
   156 = ptradd ptr %image_out.pinned, i32 %393
   3326 = icmp slt i32 %149, i32 0
   9327 = icmp sgt i32 %149, i32 255
-  br i1 %9327, bb %val.stack.phi.which328.true, bb %while.body31.split483
-while.body31.split483:  pred(while.body31, val.stack.phi.which328.true)
-  485 = phi [bb %val.stack.phi.which328.true, i32 255, bb %while.body31, i32 %149]
-  br i1 %3326, bb %val.stack.phi276.which329.true, bb %while.body31.split483.split
-while.body31.split483.split:  pred(while.body31.split483, val.stack.phi276.which329.true)
-  488 = phi [bb %val.stack.phi276.which329.true, i32 0, bb %while.body31.split483, i32 %485]
-  store i32 %488 to ptr %156
+  br i1 %9327, bb %val.stack.phi.which328.true, bb %while.body31.split523
+while.body31.split523:  pred(while.body31, val.stack.phi.which328.true)
+  525 = phi [bb %val.stack.phi.which328.true, i32 255, bb %while.body31, i32 %149]
+  br i1 %3326, bb %val.stack.phi276.which329.true, bb %while.body31.split523.split
+while.body31.split523.split:  pred(while.body31.split523, val.stack.phi276.which329.true)
+  528 = phi [bb %val.stack.phi276.which329.true, i32 0, bb %while.body31.split523, i32 %525]
+  store i32 %528 to ptr %156
   36 = icmp slt i32 %83, i32 1023
   br i1 %36, bb %while.body31, bb %while.body31_exclu_exit
 while.body168:  pred(while.body168, while.body_exclu_exit)
@@ -80,10 +80,10 @@ while.body168:  pred(while.body168, while.body_exclu_exit)
   184 = ptradd ptr %image_in.pinned, i32 %398
   184.load = load i32 from ptr %184
   store i32 %184.load to ptr %178
-  375 = ptradd ptr %178, i32 2044
-  379 = ptradd ptr %184, i32 2044
-  202.load = load i32 from ptr %379
-  store i32 %202.load to ptr %375
+  513 = ptradd ptr %178, i32 2044
+  515 = ptradd ptr %184, i32 2044
+  202.load = load i32 from ptr %515
+  store i32 %202.load to ptr %513
   206 = add i32 %i.phi435, i32 1
   172 = icmp slt i32 %206, i32 1024
   br i1 %172, bb %while.body168, bb %while.body168_exclu_exit
@@ -94,14 +94,14 @@ while.body209:  pred(while.body209, while.body168_exclu_exit)
   221 = ptradd ptr %image_in.pinned, i32 %399
   221.load = load i32 from ptr %221
   store i32 %221.load to ptr %217
-  385 = ptradd ptr %217, i32 %.pinned
-  389 = ptradd ptr %221, i32 %.pinned
-  239.load = load i32 from ptr %389
-  store i32 %239.load to ptr %385
+  517 = ptradd ptr %217, i32 %.pinned
+  519 = ptradd ptr %221, i32 %.pinned
+  239.load = load i32 from ptr %519
+  store i32 %239.load to ptr %517
   243 = add i32 %j.phi433, i32 1
   213 = icmp slt i32 %243, i32 512
   br i1 %213, bb %while.body209, bb %while.body209_exclu_exit
-while.body31_exclu_exit:  pred(while.body31.split483.split)
+while.body31_exclu_exit:  pred(while.body31.split523.split)
   165 = add i32 %j.phi258445, i32 1
   27 = icmp slt i32 %165, i32 511
   br i1 %27, bb %while.body, bb %while.body_exclu_exit
@@ -115,9 +115,9 @@ while.body209_exclu_exit:  pred(while.body209)
   call void putarray(i32 524288, ptr %image_out.pinned)
   ret i32 %18
 val.stack.phi.which328.true:  pred(while.body31)
-  br bb %while.body31.split483
-val.stack.phi276.which329.true:  pred(while.body31.split483)
-  br bb %while.body31.split483.split
+  br bb %while.body31.split523
+val.stack.phi276.which329.true:  pred(while.body31.split523)
+  br bb %while.body31.split523.split
 }
 
 external float getfloat()

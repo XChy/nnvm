@@ -59,13 +59,13 @@ bb1:   # loop depth 0
   ADD s0, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDI t2, zero, 57
-  SLT a1, t2, a0
-  SLTI t2, a0, 48
-  XORI a1, a1, 1
+  ADDI t1, zero, 57
+  SLT t2, t1, a0
+  SLTI t1, a0, 48
   XORI t2, t2, 1
-  AND t2, t2, a1
-  BNE t2, zero, bb131
+  XORI t1, t1, 1
+  AND t1, t1, t2
+  BNE t1, zero, bb131
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD s2, zero, zero
