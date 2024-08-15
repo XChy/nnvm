@@ -37,14 +37,13 @@
 .word 0x3d8d4fdf
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -64
+  ADDI sp, sp, -48
   SD ra, 0(sp)
   SD s0, 8(sp)
   SD s1, 16(sp)
   FSD fs0, 24(sp)
   FSD fs1, 32(sp)
   FSD fs2, 40(sp)
-  FSD fs3, 48(sp)
   LA t0, .CONSTANT.7.0
   LA t1, .CONSTANT.7.0
   LA t2, .CONSTANT.7.1
@@ -55,13 +54,13 @@ main:   # loop depth 0
   ADDI s1, zero, 0
   FLW ft1, 0(t1)
   FLW ft2, 0(t2)
-  FSGNJ.S fs3, ft0, ft1
+  FSGNJ.S fs2, ft0, ft1
   FLW ft0, 0(a0)
-  FLW fs0, 0(t0)
-  FSGNJ.S fs2, ft2, ft0
-  FLW fs1, 0(a1)
+  FLW ft1, 0(t0)
+  FSGNJ.S fs1, ft2, ft0
+  FLW ft0, 0(a1)
+  FSGNJ.S fs0, ft1, ft0
   CALL getint
-  FSGNJ.S fs0, fs0, fs1
   ADD s0, a0, zero
   ADDI a0, zero, 41
   CALL _sysy_starttime
@@ -77,8 +76,8 @@ bb3:   # loop depth 0
 bb4:   # loop depth 0
   ADDI a0, zero, 43
   CALL _sysy_stoptime
-  FADD.S ft0, fs0, fs3
-  FSUB.S fa0, ft0, fs2
+  FADD.S ft0, fs0, fs2
+  FSUB.S fa0, ft0, fs1
   CALL putfloat
   ADD a0, zero, zero
   LD ra, 0(sp)
@@ -87,8 +86,7 @@ bb4:   # loop depth 0
   FLD fs0, 24(sp)
   FLD fs1, 32(sp)
   FLD fs2, 40(sp)
-  FLD fs3, 48(sp)
-  ADDI sp, sp, 64
+  ADDI sp, sp, 48
   JALR zero, 0(ra)
 bb5:   # loop depth 0
   ADD t0, zero, zero
@@ -102,8 +100,8 @@ bb6:   # loop depth 1
   FADD.S fs0, fs0, ft0
   ADDIW t0, t0, 1
   FLW ft0, 0(a0)
-  FADD.S fs3, fs3, ft1
-  FADD.S fs2, fs2, ft0
+  FADD.S fs2, fs2, ft1
+  FADD.S fs1, fs1, ft0
   BLT t0, s0, bb8
   # implict jump to bb7
 bb7:   # loop depth 0
@@ -127,9 +125,9 @@ bb10:   # loop depth 1
   LA t2, .CONSTANT.7.7
   FLW ft2, 0(a0)
   FSUB.S ft1, fs0, ft1
-  FSUB.S ft2, fs3, ft2
+  FSUB.S ft2, fs2, ft2
   FLW ft3, 0(a1)
-  FSUB.S ft3, fs2, ft3
+  FSUB.S ft3, fs1, ft3
   FLW ft5, 0(t2)
   FMUL.S ft4, ft1, ft2
   FMUL.S ft4, ft4, ft3
@@ -156,8 +154,8 @@ bb15:   # loop depth 1
   # implict jump to bb16
 bb16:   # loop depth 2
   ADDIW t0, t0, 1
-  FSUB.S fs2, fs2, ft3
-  FSUB.S fs3, fs3, ft2
+  FSUB.S fs1, fs1, ft3
+  FSUB.S fs2, fs2, ft2
   FSUB.S fs0, fs0, ft1
   BLT t0, s0, bb18
   # implict jump to bb17

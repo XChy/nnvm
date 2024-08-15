@@ -71,15 +71,14 @@ if.exit112:  pred(if.exit86, then111)
   call void putch(i32 67)
   158 = icmp sge i32 0, i32 1
   165 = icmp sle i32 1, i32 0
-  254 = or i1 %158, i1 %165
-  br i1 %254, bb %then168, bb %if.exit169
+  258 = or i1 %158, i1 %165
+  br i1 %258, bb %then168, bb %if.exit169
 then168:  pred(if.exit112)
   call void putch(i32 72)
   br bb %if.exit169
 if.exit169:  pred(if.exit112, then168)
   173 = icmp sge i32 2, i32 1
-  255 = zext i1 %173 to i1
-  br i1 %255, bb %then182, bb %if.exit183
+  br i1 %173, bb %then182, bb %if.exit183
 then182:  pred(if.exit169)
   call void putch(i32 73)
   br bb %if.exit183

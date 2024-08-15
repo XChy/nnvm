@@ -50,8 +50,8 @@ select.else39:  pred(select.exit)
   br bb %select.exit40
 select.exit40:  pred(select.then38, select.else39)
   select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 1]
-  61 = zext i1 %select41.phi to i32
-  ret i32 %61
+  62 = zext i1 %select41.phi to i32
+  ret i32 %62
 }
 
 external void putfarray(i32 , ptr )

@@ -191,7 +191,6 @@ bb22:   # loop depth 1
   LW t0, 0(t0)
   SLTU t0, zero, t0
   XORI t0, t0, 1
-  SLTU t0, zero, t0
   JAL zero, bb12
 bb23:   # loop depth 1
   SH2ADD t0, s5, s7

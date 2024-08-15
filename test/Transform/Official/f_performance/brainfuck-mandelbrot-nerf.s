@@ -48,8 +48,8 @@ bb2:   # loop depth 0
   LA t4, output_length
   LA t0, program_length
   SW zero, 0(t4)
-  LW a6, 0(t0)
-  BLT zero, a6, bb4
+  LW a5, 0(t0)
+  BLT zero, a5, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
   LUI ra, 1
@@ -65,9 +65,9 @@ bb4:   # loop depth 0
   LA a7, tape
   ADD a1, zero, zero
   ADD a2, zero, zero
-  ADD a4, zero, zero
+  ADD a6, zero, zero
   ADD a0, zero, zero
-  ADD a5, zero, zero
+  ADD a4, zero, zero
   ADD t0, zero, zero
   ADD t2, zero, zero
   # implict jump to bb5
@@ -124,7 +124,7 @@ bb20:   # loop depth 1
   # implict jump to bb21
 bb21:   # loop depth 1
   ADDIW t2, t2, 1
-  BLT t2, a6, bb22
+  BLT t2, a5, bb22
   JAL zero, bb3
 bb22:   # loop depth 1
   JAL zero, bb5
@@ -136,7 +136,7 @@ bb23:   # loop depth 1
 bb24:   # loop depth 1
   LA t5, input
   ADDIW t1, t0, 1
-  SH2ADD a3, a5, a7
+  SH2ADD a3, a4, a7
   SH2ADD t0, t0, t5
   LW t0, 0(t0)
   SW t0, 0(a3)
@@ -145,13 +145,13 @@ bb25:   # loop depth 1
   ADD t0, t1, zero
   JAL zero, bb14
 bb26:   # loop depth 1
-  SH2ADD a3, a5, a7
+  SH2ADD a3, a4, a7
   ADD t1, t0, zero
   SW zero, 0(a3)
   JAL zero, bb25
 bb27:   # loop depth 1
   LW t1, 0(t4)
-  SH2ADD a3, a5, a7
+  SH2ADD a3, a4, a7
   LA t5, output
   LW a3, 0(a3)
   SH2ADD t1, t1, t5
@@ -161,7 +161,7 @@ bb27:   # loop depth 1
   SW t1, 0(t4)
   JAL zero, bb15
 bb28:   # loop depth 1
-  SH2ADD t1, a5, a7
+  SH2ADD t1, a4, a7
   LW a1, 0(t1)
   BEQ a1, zero, bb31
   # implict jump to bb29
@@ -176,9 +176,9 @@ bb31:   # loop depth 1
   ADDIW a0, a0, -1
   JAL zero, bb30
 bb32:   # loop depth 1
-  SH2ADD t1, a5, a7
-  LW a4, 0(t1)
-  BNE a4, zero, bb44
+  SH2ADD t1, a4, a7
+  LW a6, 0(t1)
+  BNE a6, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 1
   ADDI a2, zero, 1
@@ -225,22 +225,22 @@ bb44:   # loop depth 1
   SW t2, 0(t1)
   JAL zero, bb40
 bb45:   # loop depth 1
-  SH2ADD t1, a5, a7
+  SH2ADD t1, a4, a7
   LW a3, 0(t1)
   ADDIW a3, a3, -1
   SW a3, 0(t1)
   JAL zero, bb18
 bb46:   # loop depth 1
-  SH2ADD t1, a5, a7
+  SH2ADD t1, a4, a7
   LW a3, 0(t1)
   ADDIW a3, a3, 1
   SW a3, 0(t1)
   JAL zero, bb19
 bb47:   # loop depth 1
-  ADDIW a5, a5, -1
+  ADDIW a4, a4, -1
   JAL zero, bb20
 bb48:   # loop depth 1
-  ADDIW a5, a5, 1
+  ADDIW a4, a4, 1
   JAL zero, bb21
 bb49:   # loop depth 1
   JAL zero, bb1

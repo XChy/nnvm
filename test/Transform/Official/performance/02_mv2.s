@@ -165,8 +165,8 @@ bb29:   # loop depth 2
   JAL zero, bb26
 bb30:   # loop depth 2
   ADD a0, zero, zero
-  SH2ADD a4, a1, s3
-  SH2ADD a3, a1, s1
+  SH2ADD a4, a1, s1
+  SH2ADD a3, a1, s3
   ADD a2, s5, t2
   # implict jump to bb31
 bb31:   # loop depth 3
@@ -176,11 +176,11 @@ bb31:   # loop depth 3
   BEQ a5, zero, bb36
   # implict jump to bb32
 bb32:   # loop depth 3
-  LW a7, 0(a4)
+  LW a7, 0(a3)
   LW a6, 0(a6)
   MULW a5, a5, a6
   ADDW a5, a7, a5
-  SW a5, 0(a4)
+  SW a5, 0(a3)
   # implict jump to bb33
 bb33:   # loop depth 3
   ADDIW a0, a0, 1
@@ -191,7 +191,7 @@ bb34:   # loop depth 2
 bb35:   # loop depth 3
   JAL zero, bb31
 bb36:   # loop depth 3
-  LW a5, 0(a3)
+  LW a5, 0(a4)
   LW a6, 0(a6)
   MULW t0, t0, a5
   ADDW t0, t0, a6

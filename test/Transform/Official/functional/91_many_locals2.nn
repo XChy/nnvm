@@ -2,17 +2,17 @@ global ptr n init with i32 0
 i32 main() {
 entry:  pred()
   33 = call i32 getint()
-  38202 = icmp eq i32 %33, i32 5
-  br i1 %38202, bb %while.body_preheader, bb %while.exit
+  38203 = icmp eq i32 %33, i32 5
+  br i1 %38203, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  b.phi204 = phi [bb %while.body, i32 %42, bb %while.body_preheader, i32 %33]
-  42 = add i32 %b.phi204, i32 1
+  b.phi205 = phi [bb %while.body, i32 %42, bb %while.body_preheader, i32 %33]
+  42 = add i32 %b.phi205, i32 1
   38 = icmp eq i32 %42, i32 5
   br i1 %38, bb %while.body, bb %while.body_exclu_exit
 while.exit:  pred(entry, while.body_exclu_exit)
-  33203 = phi [bb %while.body_exclu_exit, i32 %42, bb %entry, i32 %33]
+  33204 = phi [bb %while.body_exclu_exit, i32 %42, bb %entry, i32 %33]
   call void putint(i32 0)
   call void putint(i32 1)
   call void putint(i32 2)
@@ -44,7 +44,7 @@ while.exit:  pred(entry, while.body_exclu_exit)
   call void putint(i32 28)
   call void putint(i32 29)
   call void putch(i32 10)
-  call void putint(i32 %33203)
+  call void putint(i32 %33204)
   call void putch(i32 10)
   ret i32 25
 while.body_exclu_exit:  pred(while.body)

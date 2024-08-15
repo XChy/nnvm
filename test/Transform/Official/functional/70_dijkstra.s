@@ -126,13 +126,13 @@ bb14:   # loop depth 1
 bb15:   # loop depth 1
   SLLIW t1, t2, 6
   ADDI t0, zero, 1
-  ADD a0, s2, t1
-  SH2ADD t1, t2, s0
+  SH2ADD t2, t2, s0
+  ADD t1, s2, t1
   # implict jump to bb16
 bb16:   # loop depth 2
-  SH2ADD t2, t0, a0
-  LW t2, 0(t2)
-  BLT t2, s1, bb19
+  SH2ADD a0, t0, t1
+  LW a0, 0(a0)
+  BLT a0, s1, bb19
   # implict jump to bb17
 bb17:   # loop depth 2
   ADDIW t0, t0, 1
@@ -143,14 +143,14 @@ bb18:   # loop depth 2
 bb19:   # loop depth 2
   SH2ADD a7, t0, s0
   LW t3, 0(a7)
-  LW t4, 0(t1)
-  ADDW t4, t4, t2
+  LW t4, 0(t2)
+  ADDW t4, t4, a0
   BLT t4, t3, bb20
   JAL zero, bb17
 bb20:   # loop depth 2
-  LW t3, 0(t1)
-  ADDW t2, t3, t2
-  SW t2, 0(a7)
+  LW t3, 0(t2)
+  ADDW a0, t3, a0
+  SW a0, 0(a7)
   JAL zero, bb17
 bb21:   # loop depth 1
   ADDI a0, zero, 1

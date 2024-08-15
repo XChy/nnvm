@@ -110,12 +110,12 @@ bb12:   # loop depth 0
   # implict jump to bb13
 bb13:   # loop depth 1
   LW t2, 0(s10)
-  ADD s1, t0, zero
-  ADD s0, t1, zero
-  BLT s0, t2, bb15
+  ADD s0, t0, zero
+  ADD s1, t1, zero
+  BLT s1, t2, bb15
   # implict jump to bb14
 bb14:   # loop depth 0
-  ADD a0, s1, zero
+  ADD a0, s0, zero
   LD ra, 0(sp)
   LD s0, 8(sp)
   LD s1, 16(sp)
@@ -131,8 +131,8 @@ bb14:   # loop depth 0
   ADDI sp, sp, 96
   JALR zero, 0(ra)
 bb15:   # loop depth 1
-  SH2ADD s6, s0, s5
-  SH2ADD s2, s0, s4
+  SH2ADD s6, s1, s5
+  SH2ADD s2, s1, s4
   LW a0, 0(s6)
   LW s7, 0(s2)
   CALL find
@@ -142,21 +142,21 @@ bb15:   # loop depth 1
   BEQ s8, a0, bb18
   # implict jump to bb16
 bb16:   # loop depth 1
-  SH2ADD t1, s0, s3
-  ADDIW t0, s0, 1
+  SH2ADD t1, s1, s3
+  ADDIW t0, s1, 1
   LW t1, 0(t1)
-  ADD s0, t0, zero
-  LW a0, 0(s6)
-  ADDW t0, s1, t1
   ADD s1, t0, zero
+  LW a0, 0(s6)
+  ADDW t0, s0, t1
+  ADD s0, t0, zero
   CALL find
   LW t1, 0(s2)
   SH2ADD t0, a0, s9
   SW t1, 0(t0)
   # implict jump to bb17
 bb17:   # loop depth 1
-  ADD t1, s0, zero
-  ADD t0, s1, zero
+  ADD t1, s1, zero
+  ADD t0, s0, zero
   JAL zero, bb13
 bb18:   # loop depth 1
   JAL zero, bb17

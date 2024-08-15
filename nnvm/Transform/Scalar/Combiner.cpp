@@ -65,6 +65,9 @@ Value *CombinerPass::simplifyInst(Instruction *I) {
   if (auto *SI = mayCast<SRemInst>(I))
     return simplifySRem(SI);
 
+  if (auto *ZI = mayCast<ZExtInst>(I))
+    return simplifyZExt(ZI);
+
   if (AndInst *AI = mayCast<AndInst>(I))
     return simplifyAnd(AI);
 
@@ -190,9 +193,22 @@ Value *CombinerPass::simplifySDiv(SDivInst *I) { return nullptr; }
 
 Value *CombinerPass::simplifySRem(SRemInst *I) { return nullptr; }
 
+Value *CombinerPass::simplifyZExt(ZExtInst *I) {
+  if (I->getToType() == I->getFromType())
+    return I->getOperand(0);
+  return nullptr;
+}
+
 Value *CombinerPass::simplifyAnd(AndInst *I) {
   Value *A, *B, *C;
   Type *type = I->getType();
+
+  // (A & C1) & C2 --> A & (C1 & C2)
+  if (match(I, pAnd(pAnd(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *addc = builder.buildBinOp<AndInst>(B, C, type);
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<AndInst>(A, addc, type);
+  }
 
   // A & 0 = 0
   if (match(I, pAnd(pValue(A), pAllOne())))
@@ -204,8 +220,29 @@ Value *CombinerPass::simplifyAnd(AndInst *I) {
   return nullptr;
 }
 
-Value *CombinerPass::simplifyOr(OrInst *I) { return nullptr; }
-Value *CombinerPass::simplifyXor(XorInst *I) { return nullptr; }
+Value *CombinerPass::simplifyOr(OrInst *I) {
+  Value *A, *B, *C;
+  Type *type = I->getType();
+  // (A | C1) | C2 --> A | (C1 | C2)
+  if (match(I, pOr(pOr(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *addc = builder.buildBinOp<OrInst>(B, C, type);
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<OrInst>(A, addc, type);
+  }
+  return nullptr;
+}
+
+Value *CombinerPass::simplifyXor(XorInst *I) {
+  Value *A, *B, *C;
+  Type *type = I->getType();
+  // (A ^ C1) ^ C2 --> A ^ (C1 ^ C2)
+  if (match(I, pXor(pXor(pValue(A), pConstant(B)), pConstant(C)))) {
+    Value *addc = builder.buildBinOp<XorInst>(B, C, type);
+    addc = folder.fold(cast<Instruction>(addc));
+    return builder.buildBinOp<XorInst>(A, addc, type);
+  }
+  return nullptr;
+}
 
 Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
@@ -232,22 +269,41 @@ Value *CombinerPass::simplifyPtrAdd(PtrAddInst *I) {
 
 Value *CombinerPass::simplifyICmp(ICmpInst *I) {
   Value *A, *B;
+  ICmpInst::Predicate pred = I->getPredicate();
+
   // A != 0  -->  A
-  if (I->getPredicate() == ICmpInst::NE &&
-      match(I, pICmp(pValue(A), pZero())) && A->getType()->isIntegerNBits(1))
+  if (pred == ICmpInst::NE && match(I, pICmp(pValue(A), pZero())) &&
+      A->getType()->isIntegerNBits(1))
     return A;
 
+  // A != 1  -->  A ^ 1
+  if (pred == ICmpInst::NE && match(I, pICmp(pValue(A), pOne())) &&
+      A->getType()->isIntegerNBits(1))
+    return builder.buildBinOp<XorInst>(
+        A, builder.getConstantInt(A->getType(), 1), A->getType());
+
+  // zext(A) !=/== 0  -->  A !=/== 0
+  if ((pred == ICmpInst::NE || pred == ICmpInst::EQ) &&
+      match(I, pICmp(pZExt(pValue(A)), pZero())) &&
+      A->getType()->isIntegerNBits(1))
+    return builder.buildICmp(pred, A, builder.getConstantInt(A->getType(), 0));
+
+  // zext(A) !=/== 1  -->  A !=/== 1
+  if ((pred == ICmpInst::NE || pred == ICmpInst::EQ) &&
+      match(I, pICmp(pZExt(pValue(A)), pOne())) &&
+      A->getType()->isIntegerNBits(1))
+    return builder.buildICmp(pred, A, builder.getConstantInt(A->getType(), 1));
+
   // A % 2 != 0 --> A & 1 != 0
-  // A % 2 == 0 --> A & 1 != 0
+  // A % 2 == 0 --> A & 1 == 0
   ConstantInt *C1;
   ConstantInt *zero;
-  if ((I->getPredicate() == ICmpInst::EQ ||
-       I->getPredicate() == ICmpInst::NE) &&
+  if ((pred == ICmpInst::EQ || pred == ICmpInst::NE) &&
       match(I, pICmp(pSRem(pValue(A), pConstantInt(C1)), pZero(zero))) &&
       C1->getSignedValue() == 2) {
     Value *one = builder.getOne(C1->getType());
     auto *andInst = builder.buildBinOp<AndInst>(A, one, A->getType());
-    return builder.buildICmp(I->getPredicate(), andInst, zero);
+    return builder.buildICmp(pred, andInst, zero);
   }
 
   return nullptr;

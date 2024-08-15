@@ -9,17 +9,17 @@ external i32 getfarray(ptr )
 i32 main() {
 entry38:  pred()
   40 = call i32 getint()
-  4573 = icmp sgt i32 %40, i32 0
-  br i1 %4573, bb %while.body_preheader, bb %while.exit
+  4576 = icmp sgt i32 %40, i32 0
+  br i1 %4576, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry38)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  n.phi74 = phi [bb %while.body, i32 %54, bb %while.body_preheader, i32 %40]
+  n.phi77 = phi [bb %while.body, i32 %57, bb %while.body_preheader, i32 %40]
   47 = call i32 getint()
   call void hanoi(i32 %47, i32 1, i32 2, i32 3)
   call void putch(i32 10)
-  54 = add i32 %n.phi74, i32 -1
-  45 = icmp sgt i32 %54, i32 0
+  57 = add i32 %n.phi77, i32 -1
+  45 = icmp sgt i32 %57, i32 0
   br i1 %45, bb %while.body, bb %while.exit
 while.exit:  pred(entry38, while.body)
   ret i32 0
@@ -39,14 +39,14 @@ then:  pred(entry10)
 if.exit:  pred(else, then)
   ret 
 else:  pred(entry10)
-  55 = add i32 %n, i32 -1
-  call void hanoi(i32 %55, i32 %one, i32 %three, i32 %two)
+  58 = add i32 %n, i32 -1
+  call void hanoi(i32 %58, i32 %one, i32 %three, i32 %two)
   call void putint(i32 %one)
   call void putch(i32 32)
   call void putint(i32 %three)
   call void putch(i32 44)
   call void putch(i32 32)
-  call void hanoi(i32 %55, i32 %two, i32 %one, i32 %three)
+  call void hanoi(i32 %58, i32 %two, i32 %one, i32 %three)
   br bb %if.exit
 }
 

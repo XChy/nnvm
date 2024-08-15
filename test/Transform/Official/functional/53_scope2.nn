@@ -6,21 +6,21 @@ entry:  pred()
   store i32 3390 to ptr %k.pinned
   br bb %while.body
 while.body:  pred(if.exit22, entry)
-  k.phi4165 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
-  g.phi4464 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
-  l.phi4763 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
-  g30.phi5062 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
-  52 = add i32 %k.phi4165, i32 -88
-  20 = icmp slt i32 %52, i32 1000
+  k.phi4266 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
+  g.phi4565 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
+  l.phi4864 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
+  g30.phi5163 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
+  53 = add i32 %k.phi4266, i32 -88
+  20 = icmp slt i32 %53, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
 then21:  pred(while.body)
-  59 = add i32 %k.phi4165, i32 -76
+  60 = add i32 %k.phi4266, i32 -76
   br bb %if.exit22
 if.exit22:  pred(while.body, then21)
-  g30.phi = phi [bb %while.body, i32 %g30.phi5062, bb %then21, i32 11]
-  l.phi = phi [bb %while.body, i32 %l.phi4763, bb %then21, i32 11]
-  g.phi = phi [bb %while.body, i32 %g.phi4464, bb %then21, i32 10]
-  k.phi = phi [bb %while.body, i32 %52, bb %then21, i32 %59]
+  g30.phi = phi [bb %while.body, i32 %g30.phi5163, bb %then21, i32 11]
+  l.phi = phi [bb %while.body, i32 %l.phi4864, bb %then21, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi4565, bb %then21, i32 10]
+  k.phi = phi [bb %while.body, i32 %53, bb %then21, i32 %60]
   14 = icmp sgt i32 %k.phi, i32 10
   br i1 %14, bb %while.body, bb %while.body_exclu_exit
 while.body_exclu_exit:  pred(if.exit22)

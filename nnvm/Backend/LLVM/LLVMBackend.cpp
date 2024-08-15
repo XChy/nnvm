@@ -126,12 +126,23 @@ void LLVMBackend::emit(Instruction *I, std::ostream &out) {
     return;
   }
 
+  if (auto unreach = mayCast<UnreachableInst>(I)) {
+    out << "unreachable";
+    return;
+  }
+
   // Instructions with defs
   if (I->getType() && !I->getType()->isVoid())
     out << valueToName[I] << " = ";
 
   if (auto SI = mayCast<StackInst>(I)) {
     out << "alloca i8, i32 " << SI->getAllocatedBytes() << ", align 4";
+    return;
+  }
+
+  if (auto pin = mayCast<PinInst>(I)) {
+    out << "bitcast " << pin->getType()->dump() << " "
+        << valueToName[I->getOperand(0)] << " to " << pin->getType()->dump();
     return;
   }
 

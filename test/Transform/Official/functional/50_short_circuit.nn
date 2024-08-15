@@ -16,57 +16,55 @@ entry9:  pred()
   14 = icmp sgt i32 %12, i32 10
   br i1 %14, bb %select.then, bb %select.exit
 select.then:  pred(entry9)
-  g.load3110 = load i32 from ptr %g.pinned
-  5111 = add i32 %g.load3110, i32 %12
-  store i32 %5111 to ptr %g.pinned
-  call void putint(i32 %5111)
+  g.load3113 = load i32 from ptr %g.pinned
+  5114 = add i32 %g.load3113, i32 %12
+  store i32 %5114 to ptr %g.pinned
+  call void putint(i32 %5114)
   br bb %select.exit
 select.exit:  pred(select.then, entry9)
   29 = call i32 getint()
   31 = icmp sgt i32 %29, i32 11
   br i1 %31, bb %select.then32, bb %select.exit34
 select.then32:  pred(select.exit)
-  g.load3119 = load i32 from ptr %g.pinned
-  5120 = add i32 %g.load3119, i32 %29
-  store i32 %5120 to ptr %g.pinned
-  call void putint(i32 %5120)
+  g.load3122 = load i32 from ptr %g.pinned
+  5123 = add i32 %g.load3122, i32 %29
+  store i32 %5123 to ptr %g.pinned
+  call void putint(i32 %5123)
   br bb %select.exit34
 select.exit34:  pred(select.then32, select.exit)
   46 = call i32 getint()
   48 = icmp sle i32 %46, i32 99
   br i1 %48, bb %select.exit51, bb %select.else50
 select.else50:  pred(select.exit34)
-  g.load3128 = load i32 from ptr %g.pinned
-  5129 = add i32 %g.load3128, i32 %46
-  store i32 %5129 to ptr %g.pinned
-  call void putint(i32 %5129)
+  g.load3131 = load i32 from ptr %g.pinned
+  5132 = add i32 %g.load3131, i32 %46
+  store i32 %5132 to ptr %g.pinned
+  call void putint(i32 %5132)
   br bb %select.exit51
 select.exit51:  pred(select.exit34, select.else50)
   64 = call i32 getint()
   66 = icmp sle i32 %64, i32 100
   br i1 %66, bb %select.exit69, bb %select.else68
 select.else68:  pred(select.exit51)
-  g.load3137 = load i32 from ptr %g.pinned
-  5138 = add i32 %g.load3137, i32 %64
-  store i32 %5138 to ptr %g.pinned
-  call void putint(i32 %5138)
+  g.load3140 = load i32 from ptr %g.pinned
+  5141 = add i32 %g.load3140, i32 %64
+  store i32 %5141 to ptr %g.pinned
+  call void putint(i32 %5141)
   br bb %select.exit69
 select.exit69:  pred(select.exit51, select.else68)
-  g.load3146 = load i32 from ptr %g.pinned
-  5147 = add i32 %g.load3146, i32 99
-  store i32 %5147 to ptr %g.pinned
-  call void putint(i32 %5147)
-  g.load8150 = load i32 from ptr %g.pinned
-  82 = icmp ne i32 %g.load8150, i32 0
+  g.load3149 = load i32 from ptr %g.pinned
+  5150 = add i32 %g.load3149, i32 99
+  store i32 %5150 to ptr %g.pinned
+  call void putint(i32 %5150)
+  g.load8153 = load i32 from ptr %g.pinned
+  82 = icmp ne i32 %g.load8153, i32 0
   83 = xor i1 %82, i1 1
-  84 = zext i1 %83 to i32
-  85 = icmp ne i32 %84, i32 0
-  br i1 %85, bb %select.then86, bb %select.exit88
+  br i1 %83, bb %select.then86, bb %select.exit88
 select.then86:  pred(select.exit69)
-  g.load3155 = load i32 from ptr %g.pinned
-  5156 = add i32 %g.load3155, i32 100
-  store i32 %5156 to ptr %g.pinned
-  call void putint(i32 %5156)
+  g.load3158 = load i32 from ptr %g.pinned
+  5159 = add i32 %g.load3158, i32 100
+  store i32 %5159 to ptr %g.pinned
+  call void putint(i32 %5159)
   br bb %select.exit88
 select.exit88:  pred(select.then86, select.exit69)
   ret i32 0

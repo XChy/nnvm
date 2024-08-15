@@ -27,7 +27,7 @@ bool LSRPass::processInst(Instruction *I, Loop *loop) {
   auto *header = loop->getHeader();
   auto *latch = loop->getSingleLatch();
 
-  assert(latch);
+  assert(latch && preheader);
 
   MulInst *mul = mayCast<MulInst>(I);
   if (!mul)
@@ -40,14 +40,18 @@ bool LSRPass::processInst(Instruction *I, Loop *loop) {
     return false;
 
   if (lhsScev->isRec() && lhsScev->getOperation() == InstID::Add &&
-      lhsScev->getStartValue()->asInt() && lhsScev->getStep()->asInt()) {
+      lhsScev->getStartValue()->asSingle() && lhsScev->getStep()->asInt()) {
 
-    // (C1, +, C2) * C3 --> (C1 * C3, +, C2 * C3)
+    // (V, +, C2) * C3 --> (V * C3, +, C2 * C3)
     if (ConstantInt *rhs = mayCast<ConstantInt>(mul->getRHS())) {
+      if (!isDefinedOutside(lhsScev->getStartValue()->asSingle(), loop))
+        return false;
       builder.insertAt(header->normalBegin());
       PhiNode *phi = builder.buildPhi(mul->getType());
 
-      auto *start = lhsScev->getStartValue()->asInt()->mul(rhs);
+      builder.insertAt(preheader->termEnd());
+      auto *start = builder.buildBinOp<MulInst>(
+          lhsScev->getStartValue()->asSingle(), rhs, rhs->getType());
       auto *step = lhsScev->getStep()->asInt()->mul(rhs);
 
       builder.insertAt(latch->termEnd());
@@ -58,11 +62,14 @@ bool LSRPass::processInst(Instruction *I, Loop *loop) {
       phi->addIncoming(latch, stepAdd);
       mul->replaceSelf(phi);
       mul->eraseFromBB();
+      return true;
     }
+
     // (0, +, 1) * V --> (0, +, V)
-    else if (lhsScev->getStartValue()->asInt()->isZero() &&
-             lhsScev->getStep()->asInt()->isOne() &&
-             isDefinedOutside(mul->getRHS(), loop)) {
+    if (lhsScev->getStartValue()->asInt() &&
+        lhsScev->getStartValue()->asInt()->isZero() &&
+        lhsScev->getStep()->asInt()->isOne() &&
+        isDefinedOutside(mul->getRHS(), loop)) {
       auto *rhs = mul->getRHS();
       builder.insertAt(header->normalBegin());
       PhiNode *phi = builder.buildPhi(mul->getType());
@@ -78,10 +85,9 @@ bool LSRPass::processInst(Instruction *I, Loop *loop) {
       phi->addIncoming(latch, stepAdd);
       mul->replaceSelf(phi);
       mul->eraseFromBB();
-    } else {
-      return false;
+      return true;
     }
   }
 
-  return true;
+  return false;
 }

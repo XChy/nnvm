@@ -29,7 +29,8 @@ private:
 
   bool promote(StackInst *SI);
   void insertPHIsFor(StackInst *SI);
-  void rename(Function& F);
+  void rename(Function &F);
+  void dce(Function &F);
 
   std::unordered_map<StackInst *, StackInfo> candidates;
   std::unordered_map<PhiNode *, StackInst *> phi2Stack;

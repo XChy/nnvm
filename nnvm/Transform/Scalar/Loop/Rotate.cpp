@@ -58,7 +58,8 @@ bool RotatePass::rotate(Loop *loop) {
   if (loop->contains(exit))
     std::swap(exit, newHeader);
 
-  assert(newHeader->getPredNum() == 1);
+  if (newHeader->getPredNum() != 1)
+    return false;
 
   // Copy instructions from old header to preheader.
   std::unordered_map<Value *, Value *> old2NewMap;

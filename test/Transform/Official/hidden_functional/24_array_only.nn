@@ -14,10 +14,10 @@ if.exit66:  pred(then65, else67)
   ret 
 else67:  pred(entry61)
   82.load = load i32 from ptr %x
-  209 = shl i32 %82.load, i32 1
-  store i32 %209 to ptr %x
-  176 = add i32 %rec, i32 -1
-  call void sub_impl(ptr %x, ptr %y, i32 %176)
+  216 = shl i32 %82.load, i32 1
+  store i32 %216 to ptr %x
+  183 = add i32 %rec, i32 -1
+  call void sub_impl(ptr %x, ptr %y, i32 %183)
   br bb %if.exit66
 }
 
@@ -43,10 +43,10 @@ if.exit34:  pred(then33, else35)
   ret 
 else35:  pred(entry29)
   50.load = load i32 from ptr %x
-  210 = shl i32 %50.load, i32 1
-  store i32 %210 to ptr %x
-  178 = add i32 %rec, i32 -1
-  call void add_impl(ptr %x, ptr %y, i32 %178)
+  217 = shl i32 %50.load, i32 1
+  store i32 %217 to ptr %x
+  185 = add i32 %rec, i32 -1
+  call void add_impl(ptr %x, ptr %y, i32 %185)
   br bb %if.exit34
 }
 
@@ -75,8 +75,8 @@ while.cond:  pred(entry93, while.exit128)
 while.body:  pred(while.cond)
   124.load = load i32 from ptr %z
   store i32 %124.load to ptr %j
-  132213 = icmp slt i32 %124.load, i32 5
-  br i1 %132213, bb %while.body127, bb %while.exit128
+  132220 = icmp slt i32 %124.load, i32 5
+  br i1 %132220, bb %while.body127, bb %while.exit128
 while.exit:  pred(while.cond, while.exit128)
   call void putch(i32 10)
   ret i32 0
@@ -89,20 +89,20 @@ while.body127:  pred(while.body127, while.body)
   call void putint(i32 %143.load)
   149.load = load i32 from ptr %z
   call void putint(i32 %149.load)
-  58.load193 = load i32 from ptr %k.pinned
-  call void add_impl(ptr %z, ptr %y, i32 %58.load193)
-  58.load198 = load i32 from ptr %k.pinned
-  call void add_impl(ptr %j, ptr %y, i32 %58.load198)
-  90.load183 = load i32 from ptr %k.pinned
-  call void sub_impl(ptr %z, ptr %y, i32 %90.load183)
+  58.load200 = load i32 from ptr %k.pinned
+  call void add_impl(ptr %z, ptr %y, i32 %58.load200)
+  58.load205 = load i32 from ptr %k.pinned
+  call void add_impl(ptr %j, ptr %y, i32 %58.load205)
+  90.load190 = load i32 from ptr %k.pinned
+  call void sub_impl(ptr %z, ptr %y, i32 %90.load190)
   130.load = load i32 from ptr %j
   132 = icmp slt i32 %130.load, i32 5
   br i1 %132, bb %while.body127, bb %while.exit128
 while.exit128:  pred(while.body, while.body127)
-  26.load188 = load i32 from ptr %k.pinned
-  call void inc_impl(ptr %i.pinned, i32 %26.load188)
-  58.load203 = load i32 from ptr %k.pinned
-  call void add_impl(ptr %i.pinned, ptr %z, i32 %58.load203)
+  26.load195 = load i32 from ptr %k.pinned
+  call void inc_impl(ptr %i.pinned, i32 %26.load195)
+  58.load210 = load i32 from ptr %k.pinned
+  call void add_impl(ptr %i.pinned, ptr %z, i32 %58.load210)
   164.load = load i32 from ptr %i.pinned
   169.load = load i32 from ptr %arr.index99
   171 = icmp eq i32 %164.load, i32 %169.load
@@ -136,10 +136,10 @@ if.exit:  pred(then, else)
   ret 
 else:  pred(entry)
   18.load = load i32 from ptr %x
-  211 = shl i32 %18.load, i32 1
-  store i32 %211 to ptr %x
-  180 = add i32 %rec, i32 -1
-  call void inc_impl(ptr %x, i32 %180)
+  218 = shl i32 %18.load, i32 1
+  store i32 %218 to ptr %x
+  187 = add i32 %rec, i32 -1
+  call void inc_impl(ptr %x, i32 %187)
   br bb %if.exit
 }
 

@@ -131,24 +131,24 @@ bb15:   # loop depth 0
   JAL zero, bb3
 bb16:   # loop depth 0
   LW a1, 0(s0)
-  ADDI t1, zero, 1
-  ADDI t2, zero, 2000
+  ADDI t2, zero, 1
+  ADDI t1, zero, 2000
   SLTI a6, a1, 1
   # implict jump to bb17
 bb17:   # loop depth 1
   BEQ a6, zero, bb20
   # implict jump to bb18
 bb18:   # loop depth 1
-  ADDIW t2, t2, 2000
-  ADDIW t1, t1, 1
-  BGE a0, t1, bb19
+  ADDIW t1, t1, 2000
+  ADDIW t2, t2, 1
+  BGE a0, t2, bb19
   JAL zero, bb3
 bb19:   # loop depth 1
   JAL zero, bb17
 bb20:   # loop depth 1
   ADDI t0, zero, 1
-  ADD a3, s1, t2
-  ADD a2, s2, t2
+  ADD a3, s1, t1
+  ADD a2, s2, t1
   # implict jump to bb21
 bb21:   # loop depth 2
   SH2ADD a5, t0, a3

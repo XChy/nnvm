@@ -44,18 +44,18 @@ bb4:   # loop depth 0
   LUI t0, 2
   SW t1, 1492(sp)
   ADDIW t0, t0, -152
-  LW s2, 1456(sp)
+  LW s1, 1456(sp)
   ADDI t1, sp, 40
   ADD t0, t1, t0
   LUI t1, 3
   ADDIW t1, t1, -180
-  LW s0, 0(t0)
+  LW s2, 0(t0)
   ADDI t0, sp, 40
   ADD t0, t0, t1
-  ADD a0, s2, zero
-  LW s1, 0(t0)
+  ADD a0, s1, zero
+  LW s0, 0(t0)
   CALL putint
-  SLTI s3, s1, 10
+  SLTI s3, s0, 10
   ADDI a0, zero, 1
   CALL putint
   ADDI a0, zero, 2
@@ -84,7 +84,7 @@ bb4:   # loop depth 0
   # implict jump to bb5
 bb5:   # loop depth 0
   ADDI t1, zero, 3
-  ADDIW t0, s2, 3
+  ADDIW t0, s1, 3
   MULW s0, t0, t1
   BGE s0, zero, bb7
   # implict jump to bb6
@@ -117,22 +117,26 @@ bb8:   # loop depth 1
 bb9:   # loop depth 1
   JAL zero, bb8
 bb10:   # loop depth 0
+  LUI t1, 31
+  ADDIW t1, t1, 1899
+  ADD t0, s2, zero
+  MULW t1, s2, t1
   # implict jump to bb11
 bb11:   # loop depth 1
-  LUI t0, 31
-  ADDIW t0, t0, 1899
   LUI t2, 1
-  MULW t1, s0, t0
   ADDIW t2, t2, -372
-  ADDIW s0, s0, 7
-  SLLIW t0, s1, 2
-  ADDIW s1, s1, 1
-  REMW t1, t1, t2
-  ADDI t2, sp, 40
-  ADD t0, t2, t0
-  SLTI t2, s1, 10
-  SW t1, 1416(t0)
-  BNE t2, zero, bb12
+  REMW a0, t1, t2
+  LUI a1, 220
+  SLLIW t2, s0, 2
+  ADDIW a1, a1, 1005
+  ADDIW s0, s0, 1
+  ADDI t6, sp, 40
+  ADD t2, t6, t2
+  ADDW t1, t1, a1
+  SLTI a1, s0, 10
+  ADDIW t0, t0, 7
+  SW a0, 1416(t2)
+  BNE a1, zero, bb12
   JAL zero, bb5
 bb12:   # loop depth 1
   JAL zero, bb11

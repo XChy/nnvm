@@ -38,9 +38,9 @@ select.else28:  pred(select.exit)
   br bb %select.exit29
 select.exit29:  pred(select.then27, select.else28)
   select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 1]
-  54 = zext i1 %select30.phi to i32
-  call void putint(i32 %54)
-  ret i32 %54
+  55 = zext i1 %select30.phi to i32
+  call void putint(i32 %55)
+  ret i32 %55
 }
 
 external void putfarray(i32 , ptr )

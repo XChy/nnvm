@@ -26,74 +26,74 @@ entry143:  pred()
   store i32 %146 to ptr %n.pinned
   148 = call i32 getint()
   store i32 %148 to ptr %m.pinned
-  n.load154437 = load i32 from ptr %n.pinned
-  155438 = icmp sle i32 1, i32 %n.load154437
-  br i1 %155438, bb %while.body151_preheader, bb %while.exit152
+  n.load154439 = load i32 from ptr %n.pinned
+  155440 = icmp sle i32 1, i32 %n.load154439
+  br i1 %155440, bb %while.body151_preheader, bb %while.exit152
 while.body151_preheader:  pred(entry143)
   br bb %while.body151
 while.body151:  pred(while.exit160, while.body151_preheader)
-  i144.phi236439 = phi [bb %while.exit160, i32 %191, bb %while.body151_preheader, i32 1]
-  br i1 %155438, bb %while.body159_preheader, bb %while.exit160
+  i144.phi237441 = phi [bb %while.exit160, i32 %191, bb %while.body151_preheader, i32 1]
+  br i1 %155440, bb %while.body159_preheader, bb %while.exit160
 while.exit152:  pred(entry143, while.exit160)
-  198435 = icmp sle i32 1, i32 %148
-  br i1 %198435, bb %while.body194_preheader, bb %while.exit195
+  198437 = icmp sle i32 1, i32 %148
+  br i1 %198437, bb %while.body194_preheader, bb %while.exit195
 while.body159_preheader:  pred(while.body151)
-  400 = shl i32 %i144.phi236439, i32 6
-  173 = ptradd ptr %e.pinned, i32 %400
+  402 = shl i32 %i144.phi237441, i32 6
+  173 = ptradd ptr %e.pinned, i32 %402
   br bb %while.body159
 while.body159:  pred(if.exit169, while.body159_preheader)
-  j157.phi413 = phi [bb %if.exit169, i32 %188, bb %while.body159_preheader, i32 1]
-  167 = icmp eq i32 %i144.phi236439, i32 %j157.phi413
-  401 = shl i32 %j157.phi413, i32 2
+  j157.phi415 = phi [bb %if.exit169, i32 %188, bb %while.body159_preheader, i32 1]
+  167 = icmp eq i32 %i144.phi237441, i32 %j157.phi415
+  403 = shl i32 %j157.phi415, i32 2
   br i1 %167, bb %then168, bb %else
 while.exit160:  pred(while.body151, if.exit169)
-  191 = add i32 %i144.phi236439, i32 1
-  155 = icmp sle i32 %191, i32 %n.load154437
+  191 = add i32 %i144.phi237441, i32 1
+  155 = icmp sle i32 %191, i32 %n.load154439
   br i1 %155, bb %while.body151, bb %while.exit152
 then168:  pred(while.body159)
-  176 = ptradd ptr %173, i32 %401
+  176 = ptradd ptr %173, i32 %403
   store i32 0 to ptr %176
   br bb %if.exit169
 if.exit169:  pred(then168, else)
-  188 = add i32 %j157.phi413, i32 1
-  163 = icmp sle i32 %188, i32 %n.load154437
+  188 = add i32 %j157.phi415, i32 1
+  163 = icmp sle i32 %188, i32 %n.load154439
   br i1 %163, bb %while.body159, bb %while.exit160
 else:  pred(while.body159)
-  183 = ptradd ptr %173, i32 %401
+  183 = ptradd ptr %173, i32 %403
   store i32 %.pinned to ptr %183
   br bb %if.exit169
 while.body194_preheader:  pred(while.exit152)
   br bb %while.body194
 while.body194:  pred(while.body194, while.body194_preheader)
-  i144.phi235436 = phi [bb %while.body194, i32 %214, bb %while.body194_preheader, i32 1]
+  i144.phi236438 = phi [bb %while.body194, i32 %214, bb %while.body194_preheader, i32 1]
   201 = call i32 getint()
   203 = call i32 getint()
-  404 = shl i32 %201, i32 6
-  206 = ptradd ptr %e.pinned, i32 %404
-  405 = shl i32 %203, i32 2
-  209 = ptradd ptr %206, i32 %405
+  406 = shl i32 %201, i32 6
+  206 = ptradd ptr %e.pinned, i32 %406
+  407 = shl i32 %203, i32 2
+  209 = ptradd ptr %206, i32 %407
   211 = call i32 getint()
   store i32 %211 to ptr %209
-  214 = add i32 %i144.phi235436, i32 1
+  214 = add i32 %i144.phi236438, i32 1
   m.load197 = load i32 from ptr %m.pinned
   198 = icmp sle i32 %214, i32 %m.load197
   br i1 %198, bb %while.body194, bb %while.exit195
 while.exit195:  pred(while.exit152, while.body194)
   dis.pinned = pin ptr @dis
   book.pinned = pin ptr @book
-  n.load288430 = load i32 from ptr %n.pinned
-  9289431 = icmp sle i32 1, i32 %n.load288430
-  br i1 %9289431, bb %Dijkstra.while.body_preheader, bb %Dijkstra.while.exit
+  n.load290432 = load i32 from ptr %n.pinned
+  9291433 = icmp sle i32 1, i32 %n.load290432
+  br i1 %9291433, bb %Dijkstra.while.body_preheader, bb %Dijkstra.while.exit
 while.body218_preheader:  pred(Dijkstra.while.exit34)
   br bb %while.body218
 while.body218:  pred(while.body218, while.body218_preheader)
-  i144.phi425 = phi [bb %while.body218, i32 %232, bb %while.body218_preheader, i32 1]
-  406 = shl i32 %i144.phi425, i32 2
-  226 = ptradd ptr %dis.pinned, i32 %406
+  i144.phi427 = phi [bb %while.body218, i32 %232, bb %while.body218_preheader, i32 1]
+  408 = shl i32 %i144.phi427, i32 2
+  226 = ptradd ptr %dis.pinned, i32 %408
   226.load = load i32 from ptr %226
   call void putint(i32 %226.load)
   call void putch(i32 32)
-  232 = add i32 %i144.phi425, i32 1
+  232 = add i32 %i144.phi427, i32 1
   n.load221 = load i32 from ptr %n.pinned
   222 = icmp sle i32 %232, i32 %n.load221
   br i1 %222, bb %while.body218, bb %while.exit219
@@ -103,107 +103,107 @@ while.exit219:  pred(Dijkstra.while.exit34, while.body218)
 Dijkstra.while.body_preheader:  pred(while.exit195)
   br bb %Dijkstra.while.body
 Dijkstra.while.body:  pred(Dijkstra.while.body, Dijkstra.while.body_preheader)
-  i.phi242287433 = phi [bb %Dijkstra.while.body, i32 %27300, bb %Dijkstra.while.body_preheader, i32 1]
-  407 = shl i32 %i.phi242287433, i32 2
-  13293 = ptradd ptr %dis.pinned, i32 %407
-  472 = ptradd ptr %e.pinned, i32 %407
-  473 = ptradd ptr %472, i32 64
-  19.load296 = load i32 from ptr %473
-  store i32 %19.load296 to ptr %13293
-  23298 = ptradd ptr %book.pinned, i32 %407
-  store i32 0 to ptr %23298
-  27300 = add i32 %i.phi242287433, i32 1
-  9289 = icmp sle i32 %27300, i32 %n.load288430
-  br i1 %9289, bb %Dijkstra.while.body, bb %Dijkstra.while.body_exclu_exit
+  i.phi244289435 = phi [bb %Dijkstra.while.body, i32 %27302, bb %Dijkstra.while.body_preheader, i32 1]
+  409 = shl i32 %i.phi244289435, i32 2
+  13295 = ptradd ptr %dis.pinned, i32 %409
+  474 = ptradd ptr %e.pinned, i32 %409
+  475 = ptradd ptr %474, i32 64
+  19.load298 = load i32 from ptr %475
+  store i32 %19.load298 to ptr %13295
+  23300 = ptradd ptr %book.pinned, i32 %409
+  store i32 0 to ptr %23300
+  27302 = add i32 %i.phi244289435, i32 1
+  9291 = icmp sle i32 %27302, i32 %n.load290432
+  br i1 %9291, bb %Dijkstra.while.body, bb %Dijkstra.while.body_exclu_exit
 Dijkstra.while.exit:  pred(while.exit195, Dijkstra.while.body_exclu_exit)
-  29303 = ptradd ptr %book.pinned, i32 4
-  store i32 1 to ptr %29303
-  268310426 = add i32 %n.load288430, i32 -1
-  38311427 = icmp sle i32 1, i32 %268310426
-  br i1 %38311427, bb %Dijkstra.while.body33_preheader, bb %Dijkstra.while.exit34
+  29305 = ptradd ptr %book.pinned, i32 4
+  store i32 1 to ptr %29305
+  270312428 = add i32 %n.load290432, i32 -1
+  38313429 = icmp sle i32 1, i32 %270312428
+  br i1 %38313429, bb %Dijkstra.while.body33_preheader, bb %Dijkstra.while.exit34
 Dijkstra.while.body33_preheader:  pred(Dijkstra.while.exit)
   br bb %Dijkstra.while.body33
 Dijkstra.while.body33:  pred(Dijkstra.while.exit86, Dijkstra.while.body33_preheader)
-  i.phi308429 = phi [bb %Dijkstra.while.exit86, i32 %142368, bb %Dijkstra.while.body33_preheader, i32 1]
-  select.phi253307428 = phi [bb %Dijkstra.while.exit86, i1 %select.phi253307417, bb %Dijkstra.while.body33_preheader, i1 0]
-  br i1 %9289431, bb %Dijkstra.while.body45_preheader, bb %Dijkstra.while.exit46
+  i.phi310431 = phi [bb %Dijkstra.while.exit86, i32 %142370, bb %Dijkstra.while.body33_preheader, i32 1]
+  select.phi255309430 = phi [bb %Dijkstra.while.exit86, i1 %select.phi255309419, bb %Dijkstra.while.body33_preheader, i1 0]
+  br i1 %9291433, bb %Dijkstra.while.body45_preheader, bb %Dijkstra.while.exit46
 Dijkstra.while.exit34:  pred(Dijkstra.while.exit, Dijkstra.while.exit86)
-  br i1 %9289431, bb %while.body218_preheader, bb %while.exit219
+  br i1 %9291433, bb %while.body218_preheader, bb %while.exit219
 Dijkstra.while.body45_preheader:  pred(Dijkstra.while.body33)
   br bb %Dijkstra.while.body45
 Dijkstra.while.body45:  pred(Dijkstra.select.exit.split.split, Dijkstra.while.body45_preheader)
-  min_num.phi244321422 = phi [bb %Dijkstra.select.exit.split.split, i32 %493, bb %Dijkstra.while.body45_preheader, i32 %.pinned]
-  min_index.phi247320421 = phi [bb %Dijkstra.select.exit.split.split, i32 %490, bb %Dijkstra.while.body45_preheader, i32 0]
-  k.phi319420 = phi [bb %Dijkstra.select.exit.split.split, i32 %78352, bb %Dijkstra.while.body45_preheader, i32 1]
-  408 = shl i32 %k.phi319420, i32 2
-  54327 = ptradd ptr %dis.pinned, i32 %408
-  54.load328 = load i32 from ptr %54327
-  56329 = icmp sgt i32 %min_num.phi244321422, i32 %54.load328
-  br i1 %56329, bb %Dijkstra.select.then, bb %Dijkstra.select.else
+  min_num.phi246323424 = phi [bb %Dijkstra.select.exit.split.split, i32 %495, bb %Dijkstra.while.body45_preheader, i32 %.pinned]
+  min_index.phi249322423 = phi [bb %Dijkstra.select.exit.split.split, i32 %492, bb %Dijkstra.while.body45_preheader, i32 0]
+  k.phi321422 = phi [bb %Dijkstra.select.exit.split.split, i32 %78354, bb %Dijkstra.while.body45_preheader, i32 1]
+  410 = shl i32 %k.phi321422, i32 2
+  54329 = ptradd ptr %dis.pinned, i32 %410
+  54.load330 = load i32 from ptr %54329
+  56331 = icmp sgt i32 %min_num.phi246323424, i32 %54.load330
+  br i1 %56331, bb %Dijkstra.select.then, bb %Dijkstra.select.else
 Dijkstra.while.exit46:  pred(Dijkstra.while.body33, Dijkstra.while.body45_exclu_exit)
-  418 = phi [bb %Dijkstra.while.body45_exclu_exit, i32 %490, bb %Dijkstra.while.body33, i32 0]
-  select.phi253307417 = phi [bb %Dijkstra.while.body45_exclu_exit, i1 %select.phi344, bb %Dijkstra.while.body33, i1 %select.phi253307428]
-  409 = shl i32 %418, i32 2
-  81333 = ptradd ptr %book.pinned, i32 %409
-  store i32 1 to ptr %81333
-  br i1 %9289431, bb %Dijkstra.while.body85_preheader, bb %Dijkstra.while.exit86
+  420 = phi [bb %Dijkstra.while.body45_exclu_exit, i32 %492, bb %Dijkstra.while.body33, i32 0]
+  select.phi255309419 = phi [bb %Dijkstra.while.body45_exclu_exit, i1 %select.phi346, bb %Dijkstra.while.body33, i1 %select.phi255309430]
+  411 = shl i32 %420, i32 2
+  81335 = ptradd ptr %book.pinned, i32 %411
+  store i32 1 to ptr %81335
+  br i1 %9291433, bb %Dijkstra.while.body85_preheader, bb %Dijkstra.while.exit86
 Dijkstra.select.then:  pred(Dijkstra.while.body45)
-  63337 = ptradd ptr %book.pinned, i32 %408
-  63.load338 = load i32 from ptr %63337
-  65339 = icmp eq i32 %63.load338, i32 0
+  63339 = ptradd ptr %book.pinned, i32 %410
+  63.load340 = load i32 from ptr %63339
+  65341 = icmp eq i32 %63.load340, i32 0
   br bb %Dijkstra.select.exit
 Dijkstra.select.else:  pred(Dijkstra.while.body45)
   br bb %Dijkstra.select.exit
 Dijkstra.select.exit:  pred(Dijkstra.select.then, Dijkstra.select.else)
-  select.phi344 = phi [bb %Dijkstra.select.else, i1 0, bb %Dijkstra.select.then, i1 %65339]
-  br i1 %select.phi344, bb %min_index.phi350.which.true, bb %Dijkstra.select.exit.split
-Dijkstra.select.exit.split:  pred(Dijkstra.select.exit, min_index.phi350.which.true)
-  490 = phi [bb %min_index.phi350.which.true, i32 %k.phi319420, bb %Dijkstra.select.exit, i32 %min_index.phi247320421]
-  br i1 %select.phi344, bb %min_num.phi351.which.true, bb %Dijkstra.select.exit.split.split
-Dijkstra.select.exit.split.split:  pred(Dijkstra.select.exit.split, min_num.phi351.which.true)
-  493 = phi [bb %min_num.phi351.which.true, i32 %54.load328, bb %Dijkstra.select.exit.split, i32 %min_num.phi244321422]
-  78352 = add i32 %k.phi319420, i32 1
-  49323 = icmp sle i32 %78352, i32 %n.load288430
-  br i1 %49323, bb %Dijkstra.while.body45, bb %Dijkstra.while.body45_exclu_exit
+  select.phi346 = phi [bb %Dijkstra.select.else, i1 0, bb %Dijkstra.select.then, i1 %65341]
+  br i1 %select.phi346, bb %min_index.phi352.which.true, bb %Dijkstra.select.exit.split
+Dijkstra.select.exit.split:  pred(Dijkstra.select.exit, min_index.phi352.which.true)
+  492 = phi [bb %min_index.phi352.which.true, i32 %k.phi321422, bb %Dijkstra.select.exit, i32 %min_index.phi249322423]
+  br i1 %select.phi346, bb %min_num.phi353.which.true, bb %Dijkstra.select.exit.split.split
+Dijkstra.select.exit.split.split:  pred(Dijkstra.select.exit.split, min_num.phi353.which.true)
+  495 = phi [bb %min_num.phi353.which.true, i32 %54.load330, bb %Dijkstra.select.exit.split, i32 %min_num.phi246323424]
+  78354 = add i32 %k.phi321422, i32 1
+  49325 = icmp sle i32 %78354, i32 %n.load290432
+  br i1 %49325, bb %Dijkstra.while.body45, bb %Dijkstra.while.body45_exclu_exit
 Dijkstra.while.body85_preheader:  pred(Dijkstra.while.exit46)
-  108373 = ptradd ptr %dis.pinned, i32 %409
-  410 = shl i32 %418, i32 6
-  93361 = ptradd ptr %e.pinned, i32 %410
+  412 = shl i32 %420, i32 6
+  93363 = ptradd ptr %e.pinned, i32 %412
+  108375 = ptradd ptr %dis.pinned, i32 %411
   br bb %Dijkstra.while.body85
 Dijkstra.while.body85:  pred(Dijkstra.if.exit101, Dijkstra.while.body85_preheader)
-  j83.phi355415 = phi [bb %Dijkstra.if.exit101, i32 %139380, bb %Dijkstra.while.body85_preheader, i32 1]
-  411 = shl i32 %j83.phi355415, i32 2
-  96363 = ptradd ptr %93361, i32 %411
-  96.load364 = load i32 from ptr %96363
-  99365 = icmp slt i32 %96.load364, i32 %.pinned
-  br i1 %99365, bb %Dijkstra.then100, bb %Dijkstra.if.exit101
+  j83.phi357417 = phi [bb %Dijkstra.if.exit101, i32 %139382, bb %Dijkstra.while.body85_preheader, i32 1]
+  413 = shl i32 %j83.phi357417, i32 2
+  96365 = ptradd ptr %93363, i32 %413
+  96.load366 = load i32 from ptr %96365
+  99367 = icmp slt i32 %96.load366, i32 %.pinned
+  br i1 %99367, bb %Dijkstra.then100, bb %Dijkstra.if.exit101
 Dijkstra.while.exit86:  pred(Dijkstra.while.exit46, Dijkstra.if.exit101)
-  142368 = add i32 %i.phi308429, i32 1
-  38311 = icmp sle i32 %142368, i32 %268310426
-  br i1 %38311, bb %Dijkstra.while.body33, bb %Dijkstra.while.exit34
+  142370 = add i32 %i.phi310431, i32 1
+  38313 = icmp sle i32 %142370, i32 %270312428
+  br i1 %38313, bb %Dijkstra.while.body33, bb %Dijkstra.while.exit34
 Dijkstra.then100:  pred(Dijkstra.while.body85)
-  104371 = ptradd ptr %dis.pinned, i32 %411
-  104.load372 = load i32 from ptr %104371
-  108.load374 = load i32 from ptr %108373
-  117376 = add i32 %108.load374, i32 %96.load364
-  118377 = icmp sgt i32 %104.load372, i32 %117376
-  br i1 %118377, bb %Dijkstra.then119, bb %Dijkstra.if.exit101
+  104373 = ptradd ptr %dis.pinned, i32 %413
+  104.load374 = load i32 from ptr %104373
+  108.load376 = load i32 from ptr %108375
+  117378 = add i32 %108.load376, i32 %96.load366
+  118379 = icmp sgt i32 %104.load374, i32 %117378
+  br i1 %118379, bb %Dijkstra.then119, bb %Dijkstra.if.exit101
 Dijkstra.if.exit101:  pred(Dijkstra.while.body85, Dijkstra.then100, Dijkstra.then119)
-  139380 = add i32 %j83.phi355415, i32 1
-  89357 = icmp sle i32 %139380, i32 %n.load288430
-  br i1 %89357, bb %Dijkstra.while.body85, bb %Dijkstra.while.exit86
+  139382 = add i32 %j83.phi357417, i32 1
+  89359 = icmp sle i32 %139382, i32 %n.load290432
+  br i1 %89359, bb %Dijkstra.while.body85, bb %Dijkstra.while.exit86
 Dijkstra.then119:  pred(Dijkstra.then100)
-  127.load383 = load i32 from ptr %108373
-  136385 = add i32 %127.load383, i32 %96.load364
-  store i32 %136385 to ptr %104371
+  127.load385 = load i32 from ptr %108375
+  136387 = add i32 %127.load385, i32 %96.load366
+  store i32 %136387 to ptr %104373
   br bb %Dijkstra.if.exit101
 Dijkstra.while.body_exclu_exit:  pred(Dijkstra.while.body)
   br bb %Dijkstra.while.exit
 Dijkstra.while.body45_exclu_exit:  pred(Dijkstra.select.exit.split.split)
   br bb %Dijkstra.while.exit46
-min_index.phi350.which.true:  pred(Dijkstra.select.exit)
+min_index.phi352.which.true:  pred(Dijkstra.select.exit)
   br bb %Dijkstra.select.exit.split
-min_num.phi351.which.true:  pred(Dijkstra.select.exit.split)
+min_num.phi353.which.true:  pred(Dijkstra.select.exit.split)
   br bb %Dijkstra.select.exit.split.split
 }
 

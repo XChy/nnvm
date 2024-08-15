@@ -19,32 +19,32 @@ main:   # loop depth 0
   SD s11, 120(sp)
   CALL getint
   SW a0, 4(sp)
+  CALL getint
   LW t0, 4(sp)
-  SLTU s0, zero, t0
-  CALL getint
-  XORI t0, s0, 1
-  ADD s7, a0, zero
-  SUBW t1, zero, s7
   SLTU t0, zero, t0
-  SLTU s1, zero, t1
-  SLTU s0, zero, t0
+  ADD s7, a0, zero
+  XORI s0, t0, 1
+  SUBW s1, zero, s7
   CALL getint
-  AND t0, s0, s1
+  SLTU t0, zero, s1
+  SW a0, 24(sp)
+  AND t0, s0, t0
   SW t0, 16(sp)
-  ADD s9, a0, zero
+  LW t0, 24(sp)
+  SLTU t0, zero, t0
+  SB t0, 0(sp)
   LW t0, 16(sp)
-  REMW t0, t0, s9
+  LW t1, 24(sp)
+  REMW t0, t0, t1
   SW t0, 20(sp)
   CALL getint
   SW a0, 8(sp)
-  SLTU t0, zero, s9
-  SB t0, 0(sp)
   CALL getint
   ADD s6, a0, zero
   CALL getint
-  ADD s11, a0, zero
-  CALL getint
   ADD s10, a0, zero
+  CALL getint
+  ADD s11, a0, zero
   CALL getint
   ADD s3, a0, zero
   CALL getint
@@ -52,57 +52,51 @@ main:   # loop depth 0
   CALL getint
   SW a0, 12(sp)
   CALL getint
-  SW a0, 24(sp)
+  ADD s9, a0, zero
   CALL getint
   ADD s4, a0, zero
   CALL getint
   ADD s8, a0, zero
   CALL getint
-  BNE s9, zero, bb60
+  LW t0, 24(sp)
+  BNE t0, zero, bb60
   # implict jump to bb1
 bb1:   # loop depth 0
-  LW t1, 16(sp)
+  LW t2, 16(sp)
   # implict jump to bb2
 bb2:   # loop depth 0
   LW t0, 8(sp)
-  ADDW t2, t1, t0
+  ADDW a1, t2, t0
   LW t0, 8(sp)
   BEQ t0, zero, bb59
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD t1, t2, zero
   # implict jump to bb4
 bb4:   # loop depth 0
   LW t0, 12(sp)
   SLTU a4, zero, t0
   SLTU t2, zero, s3
-  XORI a1, a4, 1
+  XORI a2, a4, 1
+  REMW t1, s5, a2
+  SLTU a2, zero, s11
   XORI t2, t2, 1
-  SLTU a2, zero, a1
-  SLTU a1, zero, t2
-  REMW t2, s5, a2
-  SLTU a3, zero, a1
-  SLTU a2, zero, s10
-  ADDIW a1, t1, 1
-  AND t1, a2, a3
-  SUBW a3, zero, s11
+  ADDIW a1, a1, 1
+  AND t2, a2, t2
+  SUBW a3, zero, s10
   SUBW a2, zero, a1
   BEQ a4, zero, bb58
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADD t2, s5, zero
+  ADD t1, s5, zero
   # implict jump to bb6
 bb6:   # loop depth 0
   BNE a3, zero, bb57
   # implict jump to bb7
 bb7:   # loop depth 0
-  ADD t1, t2, zero
   # implict jump to bb8
 bb8:   # loop depth 0
-  LW t0, 24(sp)
-  ADDW t2, t1, t0
-  LW t0, 24(sp)
-  BEQ t0, zero, bb56
+  ADDW t2, t1, s9
+  BEQ s9, zero, bb56
   # implict jump to bb9
 bb9:   # loop depth 0
   ADD t1, t2, zero
@@ -118,9 +112,8 @@ bb11:   # loop depth 0
 bb12:   # loop depth 0
   SLTU t2, zero, a0
   XORI t1, t2, 1
-  SLTU t2, zero, t1
-  ADDW t1, s8, t2
-  BEQ t2, zero, bb54
+  ADDW t1, s8, t1
+  BNE a0, zero, bb54
   # implict jump to bb13
 bb13:   # loop depth 0
   # implict jump to bb14
@@ -143,7 +136,6 @@ bb17:   # loop depth 0
 bb18:   # loop depth 0
   LB t0, 0(sp)
   XORI t2, t0, 1
-  SLTU t2, zero, t2
   LW t0, 8(sp)
   ADDW a2, t2, t0
   LW t0, 8(sp)
@@ -168,16 +160,16 @@ bb23:   # loop depth 0
   ADD a1, t2, zero
   # implict jump to bb24
 bb24:   # loop depth 0
-  SUBW t1, s6, s11
+  SUBW t1, s6, s10
   ADDIW t2, a1, 1
-  BEQ s11, zero, bb48
+  BEQ s10, zero, bb48
   # implict jump to bb25
 bb25:   # loop depth 0
   # implict jump to bb26
 bb26:   # loop depth 0
   MULW t2, t2, t1
-  REMW a2, t2, s10
-  BNE s10, zero, bb47
+  REMW a2, t2, s11
+  BNE s11, zero, bb47
   # implict jump to bb27
 bb27:   # loop depth 0
   ADD a2, t2, zero
@@ -191,8 +183,7 @@ bb28:   # loop depth 0
 bb29:   # loop depth 0
   # implict jump to bb30
 bb30:   # loop depth 0
-  LW t0, 24(sp)
-  SUBW a3, zero, t0
+  SUBW a3, zero, s9
   ADDIW t2, t1, 1
   REMW a1, t2, a3
   BNE a3, zero, bb45
@@ -203,9 +194,8 @@ bb31:   # loop depth 0
 bb32:   # loop depth 0
   SLTU t2, zero, s8
   XORI t1, t2, 1
-  SLTU t2, zero, t1
-  SUBW t1, s4, t2
-  BEQ t2, zero, bb44
+  SUBW t1, s4, t1
+  BNE s8, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 0
   # implict jump to bb34
@@ -289,11 +279,13 @@ bb55:   # loop depth 0
 bb56:   # loop depth 0
   JAL zero, bb10
 bb57:   # loop depth 0
+  ADD t1, t2, zero
   JAL zero, bb8
 bb58:   # loop depth 0
   JAL zero, bb6
 bb59:   # loop depth 0
+  ADD a1, t2, zero
   JAL zero, bb4
 bb60:   # loop depth 0
-  LW t1, 20(sp)
+  LW t2, 20(sp)
   JAL zero, bb2

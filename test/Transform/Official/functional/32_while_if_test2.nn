@@ -12,17 +12,17 @@ pure i32 main() {
 entry35:  pred()
   br bb %ifWhile.if.exit
 ifWhile.if.exit:  pred(ifWhile.while.exit, entry35)
-  b.phi4047 = phi [bb %entry35, i32 96, bb %ifWhile.while.exit, i32 %2157]
-  ret i32 %b.phi4047
+  b.phi4249 = phi [bb %entry35, i32 96, bb %ifWhile.while.exit, i32 %2159]
+  ret i32 %b.phi4249
 ifWhile.while.cond:  pred(ifWhile.while.body)
-  b.phi4150 = phi [bb %ifWhile.while.body, i32 %1854]
-  1451 = icmp eq i32 %b.phi4150, i32 2
-  br i1 %1451, bb %ifWhile.while.body, bb %ifWhile.while.exit
+  b.phi4352 = phi [bb %ifWhile.while.body, i32 %1856]
+  1453 = icmp eq i32 %b.phi4352, i32 2
+  br i1 %1453, bb %ifWhile.while.body, bb %ifWhile.while.exit
 ifWhile.while.body:  pred(ifWhile.while.cond)
-  1854 = add i32 %b.phi4150, i32 2
+  1856 = add i32 %b.phi4352, i32 2
   br bb %ifWhile.while.cond
 ifWhile.while.exit:  pred(ifWhile.while.cond)
-  2157 = add i32 %b.phi4150, i32 25
+  2159 = add i32 %b.phi4352, i32 25
   br bb %ifWhile.if.exit
 }
 

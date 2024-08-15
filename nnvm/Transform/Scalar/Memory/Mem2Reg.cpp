@@ -1,3 +1,4 @@
+#include "Mem2Reg.h"
 #include "ADT/Graph.h"
 #include "ADT/Ranges.h"
 #include "Analysis/DomTreeAnalysis.h"
@@ -6,7 +7,6 @@
 #include "IR/UBValue.h"
 #include "Utils/Cast.h"
 #include "Utils/Debug.h"
-#include "Mem2Reg.h"
 #include <set>
 #include <stack>
 #include <vector>
@@ -32,6 +32,8 @@ bool Mem2RegPass::run(Function &F) {
   bool changed = false;
 
   domTree = getAnalysis<DomTreeAnalysis>(F);
+
+  dce(F);
 
   std::vector<StackInst *> stackToRemove;
   for (Instruction *I : incChange(*F.getEntry())) {
@@ -100,6 +102,25 @@ bool Mem2RegPass::run(Function &F) {
     SI->eraseFromBB();
 
   return changed;
+}
+
+void Mem2RegPass::dce(Function &F) {
+  BasicBlock *placeholder = new BasicBlock(&F, "placeholder");
+
+  for (auto *block : incChange(F)) {
+    if (block != placeholder && !domTree->isReachable(block)) {
+
+      for (Instruction *I : *block)
+        if (I->getType())
+          I->replaceSelf(UBValue::create(I->getType()));
+
+      block->replaceSelf(placeholder);
+      block->eraseFromFunc();
+    }
+  }
+
+  assert(placeholder->users().empty());
+  placeholder->eraseFromFunc();
 }
 
 void Mem2RegPass::insertPHIsFor(StackInst *SI) {

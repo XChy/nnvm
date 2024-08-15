@@ -12,21 +12,21 @@ i32 main() {
 entry744:  pred()
   call void _sysy_starttime(i32 324)
   747 = call i32 getint()
-  257801009 = icmp slt i32 0, i32 %747
-  br i1 %257801009, bb %func.while.body21_preheader, bb %func.while.exit22
+  257821011 = icmp slt i32 0, i32 %747
+  br i1 %257821011, bb %func.while.body21_preheader, bb %func.while.exit22
 func.while.body21_preheader:  pred(entry744)
   br bb %func.while.body21
 func.while.body21:  pred(func.while.body21, func.while.body21_preheader)
-  sum.phi7791012 = phi [bb %func.while.body21, i32 %742998, bb %func.while.body21_preheader, i32 0]
-  j.phi7781011 = phi [bb %func.while.body21, i32 %722981, bb %func.while.body21_preheader, i32 0]
-  722981 = add i32 %j.phi7781011, i32 1
-  3003 = add i32 %sum.phi7791012, i32 4950
-  742998 = srem i32 %3003, i32 65535
-  25780 = icmp slt i32 %722981, i32 %747
-  br i1 %25780, bb %func.while.body21, bb %func.while.body21_exclu_exit
+  sum.phi7811014 = phi [bb %func.while.body21, i32 %7421000, bb %func.while.body21_preheader, i32 0]
+  j.phi7801013 = phi [bb %func.while.body21, i32 %722983, bb %func.while.body21_preheader, i32 0]
+  722983 = add i32 %j.phi7801013, i32 1
+  3005 = add i32 %sum.phi7811014, i32 4950
+  7421000 = srem i32 %3005, i32 65535
+  25782 = icmp slt i32 %722983, i32 %747
+  br i1 %25782, bb %func.while.body21, bb %func.while.body21_exclu_exit
 func.while.exit22:  pred(entry744, func.while.body21_exclu_exit)
-  1010 = phi [bb %func.while.body21_exclu_exit, i32 %742998, bb %entry744, i32 0]
-  call void putint(i32 %1010)
+  1012 = phi [bb %func.while.body21_exclu_exit, i32 %7421000, bb %entry744, i32 0]
+  call void putint(i32 %1012)
   call void putch(i32 10)
   call void _sysy_stoptime(i32 328)
   ret i32 0

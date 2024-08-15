@@ -140,9 +140,8 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
 void LoopAnalysis::analyzeLoop(Loop *loop) {
   // Look for preheader
   BasicBlock *preheader = nullptr;
-  auto preds = makeRange(loop->getHeader()->getPredBegin(),
-                         loop->getHeader()->getPredEnd());
-  for (auto *pred : preds) {
+
+  for (auto *pred : loop->getHeader()->getPredRange()) {
     if (loop->contains(pred))
       continue;
 
@@ -157,7 +156,8 @@ void LoopAnalysis::analyzeLoop(Loop *loop) {
     }
   }
 
-  if (preheader && preheader->getSuccNum() != 1)
+  if (preheader && preheader->getSuccNum() != 1 &&
+      loop->getHeader()->getPredNum() == 2)
     preheader = nullptr;
 
   loop->setPreheader(preheader);

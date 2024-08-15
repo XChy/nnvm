@@ -12,17 +12,17 @@ i32 main() {
 entry9:  pred()
   b.pinned = pin ptr @b
   a.pinned = pin ptr @a
-  15151 = icmp sge i32 5, i32 0
-  br i1 %15151, bb %while.body_preheader, bb %while.exit
+  15153 = icmp sge i32 5, i32 0
+  br i1 %15153, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry9)
   br bb %while.body
 while.body:  pred(if.exit62, while.body_preheader)
-  k.phi153 = phi [bb %if.exit62, i32 %92, bb %while.body_preheader, i32 5]
-  select52.phi90152 = phi [bb %if.exit62, i1 %select52.phi89, bb %while.body_preheader, i1 0]
-  a.load95 = load i32 from ptr %a.pinned
-  596 = add i32 %a.load95, i32 1
-  store i32 %596 to ptr %a.pinned
-  18 = icmp ne i32 %596, i32 0
+  k.phi155 = phi [bb %if.exit62, i32 %94, bb %while.body_preheader, i32 5]
+  select52.phi91154 = phi [bb %if.exit62, i1 %select52.phi90, bb %while.body_preheader, i1 0]
+  a.load97 = load i32 from ptr %a.pinned
+  598 = add i32 %a.load97, i32 1
+  store i32 %598 to ptr %a.pinned
+  18 = icmp ne i32 %598, i32 0
   br i1 %18, bb %select.then, bb %select.else
 while.exit:  pred(entry9, if.exit62)
   a.load74 = load i32 from ptr %a.pinned
@@ -34,10 +34,10 @@ while.exit:  pred(entry9, if.exit62)
   a.load80 = load i32 from ptr %a.pinned
   ret i32 %a.load80
 select.then:  pred(while.body)
-  a.load102 = load i32 from ptr %a.pinned
-  5103 = add i32 %a.load102, i32 1
-  store i32 %5103 to ptr %a.pinned
-  24 = icmp ne i32 %5103, i32 0
+  a.load104 = load i32 from ptr %a.pinned
+  5105 = add i32 %a.load104, i32 1
+  store i32 %5105 to ptr %a.pinned
+  24 = icmp ne i32 %5105, i32 0
   br bb %select.exit
 select.else:  pred(while.body)
   br bb %select.exit
@@ -45,10 +45,10 @@ select.exit:  pred(select.then, select.else)
   select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %24]
   br i1 %select.phi, bb %select.then26, bb %select.else27
 select.then26:  pred(select.exit)
-  a.load109 = load i32 from ptr %a.pinned
-  5110 = add i32 %a.load109, i32 1
-  store i32 %5110 to ptr %a.pinned
-  31 = icmp ne i32 %5110, i32 0
+  a.load111 = load i32 from ptr %a.pinned
+  5112 = add i32 %a.load111, i32 1
+  store i32 %5112 to ptr %a.pinned
+  31 = icmp ne i32 %5112, i32 0
   br bb %select.exit28
 select.else27:  pred(select.exit)
   br bb %select.exit28
@@ -64,30 +64,30 @@ then:  pred(select.exit28)
   call void putch(i32 10)
   br bb %if.exit
 if.exit:  pred(select.exit28, then)
-  a.load116 = load i32 from ptr %a.pinned
-  5117 = add i32 %a.load116, i32 1
-  store i32 %5117 to ptr %a.pinned
-  42 = icmp slt i32 %5117, i32 14
+  a.load118 = load i32 from ptr %a.pinned
+  5119 = add i32 %a.load118, i32 1
+  store i32 %5119 to ptr %a.pinned
+  42 = icmp slt i32 %5119, i32 14
   br i1 %42, bb %select.then43, bb %select.else44
 select.then43:  pred(if.exit)
   br bb %select.exit45
 select.else44:  pred(if.exit)
-  a.load123 = load i32 from ptr %a.pinned
-  5124 = add i32 %a.load123, i32 1
-  store i32 %5124 to ptr %a.pinned
-  48 = icmp ne i32 %5124, i32 0
+  a.load125 = load i32 from ptr %a.pinned
+  5126 = add i32 %a.load125, i32 1
+  store i32 %5126 to ptr %a.pinned
+  48 = icmp ne i32 %5126, i32 0
   br i1 %48, bb %select.then49, bb %select.else50
 select.exit45:  pred(select.then43, select.exit51)
-  select52.phi89 = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 %select52.phi90152]
+  select52.phi90 = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 %select52.phi91154]
   select46.phi = phi [bb %select.exit51, i1 %select52.phi, bb %select.then43, i1 1]
   br i1 %select46.phi, bb %then61, bb %else
 select.then49:  pred(select.else44)
-  a.load130 = load i32 from ptr %a.pinned
-  5131 = add i32 %a.load130, i32 1
-  store i32 %5131 to ptr %a.pinned
-  159 = add i32 %a.load130, i32 2
-  store i32 %159 to ptr %a.pinned
-  55 = sub i32 %5131, i32 %159
+  a.load132 = load i32 from ptr %a.pinned
+  5133 = add i32 %a.load132, i32 1
+  store i32 %5133 to ptr %a.pinned
+  161 = add i32 %a.load132, i32 2
+  store i32 %161 to ptr %a.pinned
+  55 = sub i32 %5133, i32 %161
   56 = add i32 %55, i32 1
   57 = icmp ne i32 %56, i32 0
   br bb %select.exit51
@@ -101,17 +101,17 @@ then61:  pred(select.exit45)
   call void putint(i32 %a.load64)
   call void putch(i32 10)
   b.load68 = load i32 from ptr %b.pinned
-  150 = shl i32 %b.load68, i32 1
-  store i32 %150 to ptr %b.pinned
+  152 = shl i32 %b.load68, i32 1
+  store i32 %152 to ptr %b.pinned
   br bb %if.exit62
 if.exit62:  pred(then61, else)
-  92 = add i32 %k.phi153, i32 -1
-  15 = icmp sge i32 %92, i32 0
+  94 = add i32 %k.phi155, i32 -1
+  15 = icmp sge i32 %94, i32 0
   br i1 %15, bb %while.body, bb %while.exit
 else:  pred(select.exit45)
-  a.load144 = load i32 from ptr %a.pinned
-  5145 = add i32 %a.load144, i32 1
-  store i32 %5145 to ptr %a.pinned
+  a.load146 = load i32 from ptr %a.pinned
+  5147 = add i32 %a.load146, i32 1
+  store i32 %5147 to ptr %a.pinned
   br bb %if.exit62
 }
 

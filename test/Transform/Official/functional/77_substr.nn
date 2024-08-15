@@ -10,7 +10,7 @@ external i32 getfarray(ptr )
 
 i32 main() {
 entry190:  pred()
-  %p407 = stack 1024
+  %p411 = stack 1024
   %B = stack 52
   %A = stack 60
   store i32 8 to ptr %A
@@ -67,260 +67,260 @@ entry190:  pred()
   store i32 1 to ptr %arr.index219
   arr.index220 = ptradd ptr %B, i32 48
   store i32 5 to ptr %arr.index220
-  br i1 0, bb %max_sum_nonadjacent.MAX.then282, bb %max_sum_nonadjacent.MAX.else284
-max_sum_nonadjacent.while.body.split:  pred(max_sum_nonadjacent.MAX.then282, max_sum_nonadjacent.MAX.then13287, max_sum_nonadjacent.MAX.else15289)
-  80.ret370 = phi [bb %max_sum_nonadjacent.MAX.then282, i32 12, bb %max_sum_nonadjacent.MAX.then13287, i32 12, bb %max_sum_nonadjacent.MAX.else15289, i32 8]
-  5280393613 = icmp eq i32 9, i32 %80.ret370
-  br i1 %5280393613, bb %max_sum_nonadjacent.MAX.then282.iter1, bb %max_sum_nonadjacent.MAX.else284.iter1
-max_sum_nonadjacent.MAX.then282:  pred(entry190)
+  br i1 0, bb %max_sum_nonadjacent.MAX.then286, bb %max_sum_nonadjacent.MAX.else288
+max_sum_nonadjacent.while.body.split:  pred(max_sum_nonadjacent.MAX.then286, max_sum_nonadjacent.MAX.then13291, max_sum_nonadjacent.MAX.else15293)
+  80.ret374 = phi [bb %max_sum_nonadjacent.MAX.then286, i32 12, bb %max_sum_nonadjacent.MAX.then13291, i32 12, bb %max_sum_nonadjacent.MAX.else15293, i32 8]
+  5284397617 = icmp eq i32 9, i32 %80.ret374
+  br i1 %5284397617, bb %max_sum_nonadjacent.MAX.then286.iter1, bb %max_sum_nonadjacent.MAX.else288.iter1
+max_sum_nonadjacent.MAX.then286:  pred(entry190)
   br bb %max_sum_nonadjacent.while.body.split
-max_sum_nonadjacent.MAX.else284:  pred(entry190)
-  br i1 1, bb %max_sum_nonadjacent.MAX.then13287, bb %max_sum_nonadjacent.MAX.else15289
-max_sum_nonadjacent.MAX.then13287:  pred(max_sum_nonadjacent.MAX.else284)
+max_sum_nonadjacent.MAX.else288:  pred(entry190)
+  br i1 1, bb %max_sum_nonadjacent.MAX.then13291, bb %max_sum_nonadjacent.MAX.else15293
+max_sum_nonadjacent.MAX.then13291:  pred(max_sum_nonadjacent.MAX.else288)
   br bb %max_sum_nonadjacent.while.body.split
-max_sum_nonadjacent.MAX.else15289:  pred(max_sum_nonadjacent.MAX.else284)
+max_sum_nonadjacent.MAX.else15293:  pred(max_sum_nonadjacent.MAX.else288)
   br bb %max_sum_nonadjacent.while.body.split
 longest_common_subseq.init:  pred(longest_common_subseq.init, max_sum_nonadjacent.while.body.split.iter12)
-  cnt_ptr.phi410571 = phi [bb %longest_common_subseq.init, i32 %242414, bb %max_sum_nonadjacent.while.body.split.iter12, i32 256]
-  242414 = add i32 %cnt_ptr.phi410571, i32 -1
-  559 = shl i32 %cnt_ptr.phi410571, i32 2
-  598 = ptradd ptr %p407, i32 %559
-  599 = ptradd ptr %598, i32 -4
-  store i32 0 to ptr %599
-  98411 = icmp ne i32 %242414, i32 0
-  br i1 %98411, bb %longest_common_subseq.init, bb %longest_common_subseq.init_exclu_exit
+  cnt_ptr.phi414575 = phi [bb %longest_common_subseq.init, i32 %246418, bb %max_sum_nonadjacent.while.body.split.iter12, i32 256]
+  246418 = add i32 %cnt_ptr.phi414575, i32 -1
+  563 = shl i32 %cnt_ptr.phi414575, i32 2
+  602 = ptradd ptr %p411, i32 %563
+  603 = ptradd ptr %602, i32 -4
+  store i32 0 to ptr %603
+  98415 = icmp ne i32 %246418, i32 0
+  br i1 %98415, bb %longest_common_subseq.init, bb %longest_common_subseq.init_exclu_exit
 longest_common_subseq.while.body108_preheader:  pred(longest_common_subseq.init_exclu_exit)
-  120436566 = icmp sle i32 1, i32 13
+  120440570 = icmp sle i32 1, i32 13
   br bb %longest_common_subseq.while.body108
 longest_common_subseq.while.body108:  pred(longest_common_subseq.while.exit117, longest_common_subseq.while.body108_preheader)
-  i104.phi422569 = phi [bb %longest_common_subseq.while.exit117, i32 %182450, bb %longest_common_subseq.while.body108_preheader, i32 1]
-  br i1 %120436566, bb %longest_common_subseq.while.body116_preheader, bb %longest_common_subseq.while.exit117
+  i104.phi426573 = phi [bb %longest_common_subseq.while.exit117, i32 %182454, bb %longest_common_subseq.while.body108_preheader, i32 1]
+  br i1 %120440570, bb %longest_common_subseq.while.body116_preheader, bb %longest_common_subseq.while.exit117
 longest_common_subseq.while.exit109:  pred(longest_common_subseq.init_exclu_exit, longest_common_subseq.while.exit117)
-  497 = ptradd ptr %p407, i32 1012
-  188.load432 = load i32 from ptr %497
-  call void putint(i32 %188.load432)
+  501 = ptradd ptr %p411, i32 1012
+  188.load436 = load i32 from ptr %501
+  call void putint(i32 %188.load436)
   call void putch(i32 10)
   ret i32 0
 longest_common_subseq.while.body116_preheader:  pred(longest_common_subseq.while.body108)
-  560 = shl i32 %i104.phi422569, i32 2
-  516 = ptradd ptr %A, i32 %560
-  518 = ptradd ptr %516, i32 -4
-  125.load442 = load i32 from ptr %518
-  547 = shl i32 %i104.phi422569, i32 6
-  138454 = ptradd ptr %p407, i32 %547
+  564 = shl i32 %i104.phi426573, i32 2
+  520 = ptradd ptr %A, i32 %564
+  522 = ptradd ptr %520, i32 -4
+  125.load446 = load i32 from ptr %522
+  551 = shl i32 %i104.phi426573, i32 6
+  138458 = ptradd ptr %p411, i32 %551
   br bb %longest_common_subseq.while.body116
 longest_common_subseq.while.body116:  pred(longest_common_subseq.if.exit134, longest_common_subseq.while.body116_preheader)
-  j.phi435567 = phi [bb %longest_common_subseq.if.exit134, i32 %179465, bb %longest_common_subseq.while.body116_preheader, i32 1]
-  561 = shl i32 %j.phi435567, i32 2
-  600 = ptradd ptr %B, i32 %561
-  601 = ptradd ptr %600, i32 -4
-  130.load446 = load i32 from ptr %601
-  132447 = icmp eq i32 %125.load442, i32 %130.load446
-  br i1 %132447, bb %longest_common_subseq.then133, bb %longest_common_subseq.else135
+  j.phi439571 = phi [bb %longest_common_subseq.if.exit134, i32 %179469, bb %longest_common_subseq.while.body116_preheader, i32 1]
+  565 = shl i32 %j.phi439571, i32 2
+  604 = ptradd ptr %B, i32 %565
+  605 = ptradd ptr %604, i32 -4
+  130.load450 = load i32 from ptr %605
+  132451 = icmp eq i32 %125.load446, i32 %130.load450
+  br i1 %132451, bb %longest_common_subseq.then133, bb %longest_common_subseq.else135
 longest_common_subseq.while.exit117:  pred(longest_common_subseq.while.body108, longest_common_subseq.if.exit134)
-  182450 = add i32 %i104.phi422569, i32 1
-  112423 = icmp sle i32 %182450, i32 15
-  br i1 %112423, bb %longest_common_subseq.while.body108, bb %longest_common_subseq.while.exit109
+  182454 = add i32 %i104.phi426573, i32 1
+  112427 = icmp sle i32 %182454, i32 15
+  br i1 %112427, bb %longest_common_subseq.while.body108, bb %longest_common_subseq.while.exit109
 longest_common_subseq.then133:  pred(longest_common_subseq.while.body116)
-  141456 = ptradd ptr %138454, i32 %561
-  552 = ptradd ptr %141456, i32 -68
-  150.load460 = load i32 from ptr %552
-  152461 = add i32 %150.load460, i32 1
-  store i32 %152461 to ptr %141456
+  141460 = ptradd ptr %138458, i32 %565
+  556 = ptradd ptr %141460, i32 -68
+  150.load464 = load i32 from ptr %556
+  152465 = add i32 %150.load464, i32 1
+  store i32 %152465 to ptr %141460
   br bb %longest_common_subseq.if.exit134
 longest_common_subseq.if.exit134:  pred(longest_common_subseq.then133, longest_common_subseq.else135.split)
-  179465 = add i32 %j.phi435567, i32 1
-  120436 = icmp sle i32 %179465, i32 13
-  br i1 %120436, bb %longest_common_subseq.while.body116, bb %longest_common_subseq.while.exit117
+  179469 = add i32 %j.phi439571, i32 1
+  120440 = icmp sle i32 %179469, i32 13
+  br i1 %120440, bb %longest_common_subseq.while.body116, bb %longest_common_subseq.while.exit117
 longest_common_subseq.else135:  pred(longest_common_subseq.while.body116)
-  158471 = ptradd ptr %138454, i32 %561
-  556 = ptradd ptr %158471, i32 -64
-  166.load475 = load i32 from ptr %556
-  545 = ptradd ptr %158471, i32 -4
-  174.load477 = load i32 from ptr %545
-  5294484 = icmp eq i32 %166.load475, i32 %174.load477
-  br i1 %5294484, bb %longest_common_subseq.MAX.then296, bb %longest_common_subseq.MAX.else298
-longest_common_subseq.else135.split:  pred(longest_common_subseq.MAX.then296, longest_common_subseq.MAX.then13301, longest_common_subseq.MAX.else15303)
-  176.ret480 = phi [bb %longest_common_subseq.MAX.then296, i32 %166.load475, bb %longest_common_subseq.MAX.then13301, i32 %166.load475, bb %longest_common_subseq.MAX.else15303, i32 %174.load477]
-  store i32 %176.ret480 to ptr %158471
+  158475 = ptradd ptr %138458, i32 %565
+  560 = ptradd ptr %158475, i32 -64
+  166.load479 = load i32 from ptr %560
+  549 = ptradd ptr %158475, i32 -4
+  174.load481 = load i32 from ptr %549
+  5298488 = icmp eq i32 %166.load479, i32 %174.load481
+  br i1 %5298488, bb %longest_common_subseq.MAX.then300, bb %longest_common_subseq.MAX.else302
+longest_common_subseq.else135.split:  pred(longest_common_subseq.MAX.then300, longest_common_subseq.MAX.then13305, longest_common_subseq.MAX.else15307)
+  176.ret484 = phi [bb %longest_common_subseq.MAX.then300, i32 %166.load479, bb %longest_common_subseq.MAX.then13305, i32 %166.load479, bb %longest_common_subseq.MAX.else15307, i32 %174.load481]
+  store i32 %176.ret484 to ptr %158475
   br bb %longest_common_subseq.if.exit134
-longest_common_subseq.MAX.then296:  pred(longest_common_subseq.else135)
+longest_common_subseq.MAX.then300:  pred(longest_common_subseq.else135)
   br bb %longest_common_subseq.else135.split
-longest_common_subseq.MAX.else298:  pred(longest_common_subseq.else135)
-  12299489 = icmp sgt i32 %166.load475, i32 %174.load477
-  br i1 %12299489, bb %longest_common_subseq.MAX.then13301, bb %longest_common_subseq.MAX.else15303
-longest_common_subseq.MAX.then13301:  pred(longest_common_subseq.MAX.else298)
+longest_common_subseq.MAX.else302:  pred(longest_common_subseq.else135)
+  12303493 = icmp sgt i32 %166.load479, i32 %174.load481
+  br i1 %12303493, bb %longest_common_subseq.MAX.then13305, bb %longest_common_subseq.MAX.else15307
+longest_common_subseq.MAX.then13305:  pred(longest_common_subseq.MAX.else302)
   br bb %longest_common_subseq.else135.split
-longest_common_subseq.MAX.else15303:  pred(longest_common_subseq.MAX.else298)
+longest_common_subseq.MAX.else15307:  pred(longest_common_subseq.MAX.else302)
   br bb %longest_common_subseq.else135.split
 longest_common_subseq.init_exclu_exit:  pred(longest_common_subseq.init)
-  112423568 = icmp sle i32 1, i32 15
-  br i1 %112423568, bb %longest_common_subseq.while.body108_preheader, bb %longest_common_subseq.while.exit109
-max_sum_nonadjacent.while.body.split.iter1:  pred(max_sum_nonadjacent.MAX.then282.iter1, max_sum_nonadjacent.MAX.then13287.iter1, max_sum_nonadjacent.MAX.else15289.iter1)
-  80.ret370616 = phi [bb %max_sum_nonadjacent.MAX.then282.iter1, i32 9, bb %max_sum_nonadjacent.MAX.then13287.iter1, i32 9, bb %max_sum_nonadjacent.MAX.else15289.iter1, i32 %80.ret370]
-  74363638 = add i32 %80.ret370, i32 2
-  5280393641 = icmp eq i32 %74363638, i32 %80.ret370616
-  br i1 %5280393641, bb %max_sum_nonadjacent.MAX.then282.iter2, bb %max_sum_nonadjacent.MAX.else284.iter2
-max_sum_nonadjacent.MAX.then282.iter1:  pred(max_sum_nonadjacent.while.body.split)
+  112427572 = icmp sle i32 1, i32 15
+  br i1 %112427572, bb %longest_common_subseq.while.body108_preheader, bb %longest_common_subseq.while.exit109
+max_sum_nonadjacent.while.body.split.iter1:  pred(max_sum_nonadjacent.MAX.then286.iter1, max_sum_nonadjacent.MAX.then13291.iter1, max_sum_nonadjacent.MAX.else15293.iter1)
+  80.ret374620 = phi [bb %max_sum_nonadjacent.MAX.then286.iter1, i32 9, bb %max_sum_nonadjacent.MAX.then13291.iter1, i32 9, bb %max_sum_nonadjacent.MAX.else15293.iter1, i32 %80.ret374]
+  74367642 = add i32 %80.ret374, i32 2
+  5284397645 = icmp eq i32 %74367642, i32 %80.ret374620
+  br i1 %5284397645, bb %max_sum_nonadjacent.MAX.then286.iter2, bb %max_sum_nonadjacent.MAX.else288.iter2
+max_sum_nonadjacent.MAX.then286.iter1:  pred(max_sum_nonadjacent.while.body.split)
   br bb %max_sum_nonadjacent.while.body.split.iter1
-max_sum_nonadjacent.MAX.else284.iter1:  pred(max_sum_nonadjacent.while.body.split)
-  12285398624 = icmp sgt i32 9, i32 %80.ret370
-  br i1 %12285398624, bb %max_sum_nonadjacent.MAX.then13287.iter1, bb %max_sum_nonadjacent.MAX.else15289.iter1
-max_sum_nonadjacent.MAX.then13287.iter1:  pred(max_sum_nonadjacent.MAX.else284.iter1)
+max_sum_nonadjacent.MAX.else288.iter1:  pred(max_sum_nonadjacent.while.body.split)
+  12289402628 = icmp sgt i32 9, i32 %80.ret374
+  br i1 %12289402628, bb %max_sum_nonadjacent.MAX.then13291.iter1, bb %max_sum_nonadjacent.MAX.else15293.iter1
+max_sum_nonadjacent.MAX.then13291.iter1:  pred(max_sum_nonadjacent.MAX.else288.iter1)
   br bb %max_sum_nonadjacent.while.body.split.iter1
-max_sum_nonadjacent.MAX.else15289.iter1:  pred(max_sum_nonadjacent.MAX.else284.iter1)
+max_sum_nonadjacent.MAX.else15293.iter1:  pred(max_sum_nonadjacent.MAX.else288.iter1)
   br bb %max_sum_nonadjacent.while.body.split.iter1
-max_sum_nonadjacent.while.body.split.iter2:  pred(max_sum_nonadjacent.MAX.then282.iter2, max_sum_nonadjacent.MAX.then13287.iter2, max_sum_nonadjacent.MAX.else15289.iter2)
-  80.ret370644 = phi [bb %max_sum_nonadjacent.MAX.then282.iter2, i32 %74363638, bb %max_sum_nonadjacent.MAX.then13287.iter2, i32 %74363638, bb %max_sum_nonadjacent.MAX.else15289.iter2, i32 %80.ret370616]
-  74363666 = add i32 %80.ret370616, i32 7
-  5280393669 = icmp eq i32 %74363666, i32 %80.ret370644
-  br i1 %5280393669, bb %max_sum_nonadjacent.MAX.then282.iter3, bb %max_sum_nonadjacent.MAX.else284.iter3
-max_sum_nonadjacent.MAX.then282.iter2:  pred(max_sum_nonadjacent.while.body.split.iter1)
+max_sum_nonadjacent.while.body.split.iter2:  pred(max_sum_nonadjacent.MAX.then286.iter2, max_sum_nonadjacent.MAX.then13291.iter2, max_sum_nonadjacent.MAX.else15293.iter2)
+  80.ret374648 = phi [bb %max_sum_nonadjacent.MAX.then286.iter2, i32 %74367642, bb %max_sum_nonadjacent.MAX.then13291.iter2, i32 %74367642, bb %max_sum_nonadjacent.MAX.else15293.iter2, i32 %80.ret374620]
+  74367670 = add i32 %80.ret374620, i32 7
+  5284397673 = icmp eq i32 %74367670, i32 %80.ret374648
+  br i1 %5284397673, bb %max_sum_nonadjacent.MAX.then286.iter3, bb %max_sum_nonadjacent.MAX.else288.iter3
+max_sum_nonadjacent.MAX.then286.iter2:  pred(max_sum_nonadjacent.while.body.split.iter1)
   br bb %max_sum_nonadjacent.while.body.split.iter2
-max_sum_nonadjacent.MAX.else284.iter2:  pred(max_sum_nonadjacent.while.body.split.iter1)
-  12285398652 = icmp sgt i32 %74363638, i32 %80.ret370616
-  br i1 %12285398652, bb %max_sum_nonadjacent.MAX.then13287.iter2, bb %max_sum_nonadjacent.MAX.else15289.iter2
-max_sum_nonadjacent.MAX.then13287.iter2:  pred(max_sum_nonadjacent.MAX.else284.iter2)
+max_sum_nonadjacent.MAX.else288.iter2:  pred(max_sum_nonadjacent.while.body.split.iter1)
+  12289402656 = icmp sgt i32 %74367642, i32 %80.ret374620
+  br i1 %12289402656, bb %max_sum_nonadjacent.MAX.then13291.iter2, bb %max_sum_nonadjacent.MAX.else15293.iter2
+max_sum_nonadjacent.MAX.then13291.iter2:  pred(max_sum_nonadjacent.MAX.else288.iter2)
   br bb %max_sum_nonadjacent.while.body.split.iter2
-max_sum_nonadjacent.MAX.else15289.iter2:  pred(max_sum_nonadjacent.MAX.else284.iter2)
+max_sum_nonadjacent.MAX.else15293.iter2:  pred(max_sum_nonadjacent.MAX.else288.iter2)
   br bb %max_sum_nonadjacent.while.body.split.iter2
-max_sum_nonadjacent.while.body.split.iter3:  pred(max_sum_nonadjacent.MAX.then282.iter3, max_sum_nonadjacent.MAX.then13287.iter3, max_sum_nonadjacent.MAX.else15289.iter3)
-  80.ret370672 = phi [bb %max_sum_nonadjacent.MAX.then282.iter3, i32 %74363666, bb %max_sum_nonadjacent.MAX.then13287.iter3, i32 %74363666, bb %max_sum_nonadjacent.MAX.else15289.iter3, i32 %80.ret370644]
-  5280393697 = icmp eq i32 %80.ret370644, i32 %80.ret370672
-  br i1 %5280393697, bb %max_sum_nonadjacent.MAX.then282.iter4, bb %max_sum_nonadjacent.MAX.else284.iter4
-max_sum_nonadjacent.MAX.then282.iter3:  pred(max_sum_nonadjacent.while.body.split.iter2)
+max_sum_nonadjacent.while.body.split.iter3:  pred(max_sum_nonadjacent.MAX.then286.iter3, max_sum_nonadjacent.MAX.then13291.iter3, max_sum_nonadjacent.MAX.else15293.iter3)
+  80.ret374676 = phi [bb %max_sum_nonadjacent.MAX.then286.iter3, i32 %74367670, bb %max_sum_nonadjacent.MAX.then13291.iter3, i32 %74367670, bb %max_sum_nonadjacent.MAX.else15293.iter3, i32 %80.ret374648]
+  5284397701 = icmp eq i32 %80.ret374648, i32 %80.ret374676
+  br i1 %5284397701, bb %max_sum_nonadjacent.MAX.then286.iter4, bb %max_sum_nonadjacent.MAX.else288.iter4
+max_sum_nonadjacent.MAX.then286.iter3:  pred(max_sum_nonadjacent.while.body.split.iter2)
   br bb %max_sum_nonadjacent.while.body.split.iter3
-max_sum_nonadjacent.MAX.else284.iter3:  pred(max_sum_nonadjacent.while.body.split.iter2)
-  12285398680 = icmp sgt i32 %74363666, i32 %80.ret370644
-  br i1 %12285398680, bb %max_sum_nonadjacent.MAX.then13287.iter3, bb %max_sum_nonadjacent.MAX.else15289.iter3
-max_sum_nonadjacent.MAX.then13287.iter3:  pred(max_sum_nonadjacent.MAX.else284.iter3)
+max_sum_nonadjacent.MAX.else288.iter3:  pred(max_sum_nonadjacent.while.body.split.iter2)
+  12289402684 = icmp sgt i32 %74367670, i32 %80.ret374648
+  br i1 %12289402684, bb %max_sum_nonadjacent.MAX.then13291.iter3, bb %max_sum_nonadjacent.MAX.else15293.iter3
+max_sum_nonadjacent.MAX.then13291.iter3:  pred(max_sum_nonadjacent.MAX.else288.iter3)
   br bb %max_sum_nonadjacent.while.body.split.iter3
-max_sum_nonadjacent.MAX.else15289.iter3:  pred(max_sum_nonadjacent.MAX.else284.iter3)
+max_sum_nonadjacent.MAX.else15293.iter3:  pred(max_sum_nonadjacent.MAX.else288.iter3)
   br bb %max_sum_nonadjacent.while.body.split.iter3
-max_sum_nonadjacent.while.body.split.iter4:  pred(max_sum_nonadjacent.MAX.then282.iter4, max_sum_nonadjacent.MAX.then13287.iter4, max_sum_nonadjacent.MAX.else15289.iter4)
-  80.ret370700 = phi [bb %max_sum_nonadjacent.MAX.then282.iter4, i32 %80.ret370644, bb %max_sum_nonadjacent.MAX.then13287.iter4, i32 %80.ret370644, bb %max_sum_nonadjacent.MAX.else15289.iter4, i32 %80.ret370672]
-  74363722 = add i32 %80.ret370672, i32 1
-  5280393725 = icmp eq i32 %74363722, i32 %80.ret370700
-  br i1 %5280393725, bb %max_sum_nonadjacent.MAX.then282.iter5, bb %max_sum_nonadjacent.MAX.else284.iter5
-max_sum_nonadjacent.MAX.then282.iter4:  pred(max_sum_nonadjacent.while.body.split.iter3)
+max_sum_nonadjacent.while.body.split.iter4:  pred(max_sum_nonadjacent.MAX.then286.iter4, max_sum_nonadjacent.MAX.then13291.iter4, max_sum_nonadjacent.MAX.else15293.iter4)
+  80.ret374704 = phi [bb %max_sum_nonadjacent.MAX.then286.iter4, i32 %80.ret374648, bb %max_sum_nonadjacent.MAX.then13291.iter4, i32 %80.ret374648, bb %max_sum_nonadjacent.MAX.else15293.iter4, i32 %80.ret374676]
+  74367726 = add i32 %80.ret374676, i32 1
+  5284397729 = icmp eq i32 %74367726, i32 %80.ret374704
+  br i1 %5284397729, bb %max_sum_nonadjacent.MAX.then286.iter5, bb %max_sum_nonadjacent.MAX.else288.iter5
+max_sum_nonadjacent.MAX.then286.iter4:  pred(max_sum_nonadjacent.while.body.split.iter3)
   br bb %max_sum_nonadjacent.while.body.split.iter4
-max_sum_nonadjacent.MAX.else284.iter4:  pred(max_sum_nonadjacent.while.body.split.iter3)
-  12285398708 = icmp sgt i32 %80.ret370644, i32 %80.ret370672
-  br i1 %12285398708, bb %max_sum_nonadjacent.MAX.then13287.iter4, bb %max_sum_nonadjacent.MAX.else15289.iter4
-max_sum_nonadjacent.MAX.then13287.iter4:  pred(max_sum_nonadjacent.MAX.else284.iter4)
+max_sum_nonadjacent.MAX.else288.iter4:  pred(max_sum_nonadjacent.while.body.split.iter3)
+  12289402712 = icmp sgt i32 %80.ret374648, i32 %80.ret374676
+  br i1 %12289402712, bb %max_sum_nonadjacent.MAX.then13291.iter4, bb %max_sum_nonadjacent.MAX.else15293.iter4
+max_sum_nonadjacent.MAX.then13291.iter4:  pred(max_sum_nonadjacent.MAX.else288.iter4)
   br bb %max_sum_nonadjacent.while.body.split.iter4
-max_sum_nonadjacent.MAX.else15289.iter4:  pred(max_sum_nonadjacent.MAX.else284.iter4)
+max_sum_nonadjacent.MAX.else15293.iter4:  pred(max_sum_nonadjacent.MAX.else288.iter4)
   br bb %max_sum_nonadjacent.while.body.split.iter4
-max_sum_nonadjacent.while.body.split.iter5:  pred(max_sum_nonadjacent.MAX.then282.iter5, max_sum_nonadjacent.MAX.then13287.iter5, max_sum_nonadjacent.MAX.else15289.iter5)
-  80.ret370728 = phi [bb %max_sum_nonadjacent.MAX.then282.iter5, i32 %74363722, bb %max_sum_nonadjacent.MAX.then13287.iter5, i32 %74363722, bb %max_sum_nonadjacent.MAX.else15289.iter5, i32 %80.ret370700]
-  74363750 = add i32 %80.ret370700, i32 9
-  5280393753 = icmp eq i32 %74363750, i32 %80.ret370728
-  br i1 %5280393753, bb %max_sum_nonadjacent.MAX.then282.iter6, bb %max_sum_nonadjacent.MAX.else284.iter6
-max_sum_nonadjacent.MAX.then282.iter5:  pred(max_sum_nonadjacent.while.body.split.iter4)
+max_sum_nonadjacent.while.body.split.iter5:  pred(max_sum_nonadjacent.MAX.then286.iter5, max_sum_nonadjacent.MAX.then13291.iter5, max_sum_nonadjacent.MAX.else15293.iter5)
+  80.ret374732 = phi [bb %max_sum_nonadjacent.MAX.then286.iter5, i32 %74367726, bb %max_sum_nonadjacent.MAX.then13291.iter5, i32 %74367726, bb %max_sum_nonadjacent.MAX.else15293.iter5, i32 %80.ret374704]
+  74367754 = add i32 %80.ret374704, i32 9
+  5284397757 = icmp eq i32 %74367754, i32 %80.ret374732
+  br i1 %5284397757, bb %max_sum_nonadjacent.MAX.then286.iter6, bb %max_sum_nonadjacent.MAX.else288.iter6
+max_sum_nonadjacent.MAX.then286.iter5:  pred(max_sum_nonadjacent.while.body.split.iter4)
   br bb %max_sum_nonadjacent.while.body.split.iter5
-max_sum_nonadjacent.MAX.else284.iter5:  pred(max_sum_nonadjacent.while.body.split.iter4)
-  12285398736 = icmp sgt i32 %74363722, i32 %80.ret370700
-  br i1 %12285398736, bb %max_sum_nonadjacent.MAX.then13287.iter5, bb %max_sum_nonadjacent.MAX.else15289.iter5
-max_sum_nonadjacent.MAX.then13287.iter5:  pred(max_sum_nonadjacent.MAX.else284.iter5)
+max_sum_nonadjacent.MAX.else288.iter5:  pred(max_sum_nonadjacent.while.body.split.iter4)
+  12289402740 = icmp sgt i32 %74367726, i32 %80.ret374704
+  br i1 %12289402740, bb %max_sum_nonadjacent.MAX.then13291.iter5, bb %max_sum_nonadjacent.MAX.else15293.iter5
+max_sum_nonadjacent.MAX.then13291.iter5:  pred(max_sum_nonadjacent.MAX.else288.iter5)
   br bb %max_sum_nonadjacent.while.body.split.iter5
-max_sum_nonadjacent.MAX.else15289.iter5:  pred(max_sum_nonadjacent.MAX.else284.iter5)
+max_sum_nonadjacent.MAX.else15293.iter5:  pred(max_sum_nonadjacent.MAX.else288.iter5)
   br bb %max_sum_nonadjacent.while.body.split.iter5
-max_sum_nonadjacent.while.body.split.iter6:  pred(max_sum_nonadjacent.MAX.then282.iter6, max_sum_nonadjacent.MAX.then13287.iter6, max_sum_nonadjacent.MAX.else15289.iter6)
-  80.ret370756 = phi [bb %max_sum_nonadjacent.MAX.then282.iter6, i32 %74363750, bb %max_sum_nonadjacent.MAX.then13287.iter6, i32 %74363750, bb %max_sum_nonadjacent.MAX.else15289.iter6, i32 %80.ret370728]
-  74363778 = add i32 %80.ret370728, i32 3
-  5280393781 = icmp eq i32 %74363778, i32 %80.ret370756
-  br i1 %5280393781, bb %max_sum_nonadjacent.MAX.then282.iter7, bb %max_sum_nonadjacent.MAX.else284.iter7
-max_sum_nonadjacent.MAX.then282.iter6:  pred(max_sum_nonadjacent.while.body.split.iter5)
+max_sum_nonadjacent.while.body.split.iter6:  pred(max_sum_nonadjacent.MAX.then286.iter6, max_sum_nonadjacent.MAX.then13291.iter6, max_sum_nonadjacent.MAX.else15293.iter6)
+  80.ret374760 = phi [bb %max_sum_nonadjacent.MAX.then286.iter6, i32 %74367754, bb %max_sum_nonadjacent.MAX.then13291.iter6, i32 %74367754, bb %max_sum_nonadjacent.MAX.else15293.iter6, i32 %80.ret374732]
+  74367782 = add i32 %80.ret374732, i32 3
+  5284397785 = icmp eq i32 %74367782, i32 %80.ret374760
+  br i1 %5284397785, bb %max_sum_nonadjacent.MAX.then286.iter7, bb %max_sum_nonadjacent.MAX.else288.iter7
+max_sum_nonadjacent.MAX.then286.iter6:  pred(max_sum_nonadjacent.while.body.split.iter5)
   br bb %max_sum_nonadjacent.while.body.split.iter6
-max_sum_nonadjacent.MAX.else284.iter6:  pred(max_sum_nonadjacent.while.body.split.iter5)
-  12285398764 = icmp sgt i32 %74363750, i32 %80.ret370728
-  br i1 %12285398764, bb %max_sum_nonadjacent.MAX.then13287.iter6, bb %max_sum_nonadjacent.MAX.else15289.iter6
-max_sum_nonadjacent.MAX.then13287.iter6:  pred(max_sum_nonadjacent.MAX.else284.iter6)
+max_sum_nonadjacent.MAX.else288.iter6:  pred(max_sum_nonadjacent.while.body.split.iter5)
+  12289402768 = icmp sgt i32 %74367754, i32 %80.ret374732
+  br i1 %12289402768, bb %max_sum_nonadjacent.MAX.then13291.iter6, bb %max_sum_nonadjacent.MAX.else15293.iter6
+max_sum_nonadjacent.MAX.then13291.iter6:  pred(max_sum_nonadjacent.MAX.else288.iter6)
   br bb %max_sum_nonadjacent.while.body.split.iter6
-max_sum_nonadjacent.MAX.else15289.iter6:  pred(max_sum_nonadjacent.MAX.else284.iter6)
+max_sum_nonadjacent.MAX.else15293.iter6:  pred(max_sum_nonadjacent.MAX.else288.iter6)
   br bb %max_sum_nonadjacent.while.body.split.iter6
-max_sum_nonadjacent.while.body.split.iter7:  pred(max_sum_nonadjacent.MAX.then282.iter7, max_sum_nonadjacent.MAX.then13287.iter7, max_sum_nonadjacent.MAX.else15289.iter7)
-  80.ret370784 = phi [bb %max_sum_nonadjacent.MAX.then282.iter7, i32 %74363778, bb %max_sum_nonadjacent.MAX.then13287.iter7, i32 %74363778, bb %max_sum_nonadjacent.MAX.else15289.iter7, i32 %80.ret370756]
-  74363806 = add i32 %80.ret370756, i32 4
-  5280393809 = icmp eq i32 %74363806, i32 %80.ret370784
-  br i1 %5280393809, bb %max_sum_nonadjacent.MAX.then282.iter8, bb %max_sum_nonadjacent.MAX.else284.iter8
-max_sum_nonadjacent.MAX.then282.iter7:  pred(max_sum_nonadjacent.while.body.split.iter6)
+max_sum_nonadjacent.while.body.split.iter7:  pred(max_sum_nonadjacent.MAX.then286.iter7, max_sum_nonadjacent.MAX.then13291.iter7, max_sum_nonadjacent.MAX.else15293.iter7)
+  80.ret374788 = phi [bb %max_sum_nonadjacent.MAX.then286.iter7, i32 %74367782, bb %max_sum_nonadjacent.MAX.then13291.iter7, i32 %74367782, bb %max_sum_nonadjacent.MAX.else15293.iter7, i32 %80.ret374760]
+  74367810 = add i32 %80.ret374760, i32 4
+  5284397813 = icmp eq i32 %74367810, i32 %80.ret374788
+  br i1 %5284397813, bb %max_sum_nonadjacent.MAX.then286.iter8, bb %max_sum_nonadjacent.MAX.else288.iter8
+max_sum_nonadjacent.MAX.then286.iter7:  pred(max_sum_nonadjacent.while.body.split.iter6)
   br bb %max_sum_nonadjacent.while.body.split.iter7
-max_sum_nonadjacent.MAX.else284.iter7:  pred(max_sum_nonadjacent.while.body.split.iter6)
-  12285398792 = icmp sgt i32 %74363778, i32 %80.ret370756
-  br i1 %12285398792, bb %max_sum_nonadjacent.MAX.then13287.iter7, bb %max_sum_nonadjacent.MAX.else15289.iter7
-max_sum_nonadjacent.MAX.then13287.iter7:  pred(max_sum_nonadjacent.MAX.else284.iter7)
+max_sum_nonadjacent.MAX.else288.iter7:  pred(max_sum_nonadjacent.while.body.split.iter6)
+  12289402796 = icmp sgt i32 %74367782, i32 %80.ret374760
+  br i1 %12289402796, bb %max_sum_nonadjacent.MAX.then13291.iter7, bb %max_sum_nonadjacent.MAX.else15293.iter7
+max_sum_nonadjacent.MAX.then13291.iter7:  pred(max_sum_nonadjacent.MAX.else288.iter7)
   br bb %max_sum_nonadjacent.while.body.split.iter7
-max_sum_nonadjacent.MAX.else15289.iter7:  pred(max_sum_nonadjacent.MAX.else284.iter7)
+max_sum_nonadjacent.MAX.else15293.iter7:  pred(max_sum_nonadjacent.MAX.else288.iter7)
   br bb %max_sum_nonadjacent.while.body.split.iter7
-max_sum_nonadjacent.while.body.split.iter8:  pred(max_sum_nonadjacent.MAX.then282.iter8, max_sum_nonadjacent.MAX.then13287.iter8, max_sum_nonadjacent.MAX.else15289.iter8)
-  80.ret370812 = phi [bb %max_sum_nonadjacent.MAX.then282.iter8, i32 %74363806, bb %max_sum_nonadjacent.MAX.then13287.iter8, i32 %74363806, bb %max_sum_nonadjacent.MAX.else15289.iter8, i32 %80.ret370784]
-  74363834 = add i32 %80.ret370784, i32 8
-  5280393837 = icmp eq i32 %74363834, i32 %80.ret370812
-  br i1 %5280393837, bb %max_sum_nonadjacent.MAX.then282.iter9, bb %max_sum_nonadjacent.MAX.else284.iter9
-max_sum_nonadjacent.MAX.then282.iter8:  pred(max_sum_nonadjacent.while.body.split.iter7)
+max_sum_nonadjacent.while.body.split.iter8:  pred(max_sum_nonadjacent.MAX.then286.iter8, max_sum_nonadjacent.MAX.then13291.iter8, max_sum_nonadjacent.MAX.else15293.iter8)
+  80.ret374816 = phi [bb %max_sum_nonadjacent.MAX.then286.iter8, i32 %74367810, bb %max_sum_nonadjacent.MAX.then13291.iter8, i32 %74367810, bb %max_sum_nonadjacent.MAX.else15293.iter8, i32 %80.ret374788]
+  74367838 = add i32 %80.ret374788, i32 8
+  5284397841 = icmp eq i32 %74367838, i32 %80.ret374816
+  br i1 %5284397841, bb %max_sum_nonadjacent.MAX.then286.iter9, bb %max_sum_nonadjacent.MAX.else288.iter9
+max_sum_nonadjacent.MAX.then286.iter8:  pred(max_sum_nonadjacent.while.body.split.iter7)
   br bb %max_sum_nonadjacent.while.body.split.iter8
-max_sum_nonadjacent.MAX.else284.iter8:  pred(max_sum_nonadjacent.while.body.split.iter7)
-  12285398820 = icmp sgt i32 %74363806, i32 %80.ret370784
-  br i1 %12285398820, bb %max_sum_nonadjacent.MAX.then13287.iter8, bb %max_sum_nonadjacent.MAX.else15289.iter8
-max_sum_nonadjacent.MAX.then13287.iter8:  pred(max_sum_nonadjacent.MAX.else284.iter8)
+max_sum_nonadjacent.MAX.else288.iter8:  pred(max_sum_nonadjacent.while.body.split.iter7)
+  12289402824 = icmp sgt i32 %74367810, i32 %80.ret374788
+  br i1 %12289402824, bb %max_sum_nonadjacent.MAX.then13291.iter8, bb %max_sum_nonadjacent.MAX.else15293.iter8
+max_sum_nonadjacent.MAX.then13291.iter8:  pred(max_sum_nonadjacent.MAX.else288.iter8)
   br bb %max_sum_nonadjacent.while.body.split.iter8
-max_sum_nonadjacent.MAX.else15289.iter8:  pred(max_sum_nonadjacent.MAX.else284.iter8)
+max_sum_nonadjacent.MAX.else15293.iter8:  pred(max_sum_nonadjacent.MAX.else288.iter8)
   br bb %max_sum_nonadjacent.while.body.split.iter8
-max_sum_nonadjacent.while.body.split.iter9:  pred(max_sum_nonadjacent.MAX.then282.iter9, max_sum_nonadjacent.MAX.then13287.iter9, max_sum_nonadjacent.MAX.else15289.iter9)
-  80.ret370840 = phi [bb %max_sum_nonadjacent.MAX.then282.iter9, i32 %74363834, bb %max_sum_nonadjacent.MAX.then13287.iter9, i32 %74363834, bb %max_sum_nonadjacent.MAX.else15289.iter9, i32 %80.ret370812]
-  74363862 = add i32 %80.ret370812, i32 3
-  5280393865 = icmp eq i32 %74363862, i32 %80.ret370840
-  br i1 %5280393865, bb %max_sum_nonadjacent.MAX.then282.iter10, bb %max_sum_nonadjacent.MAX.else284.iter10
-max_sum_nonadjacent.MAX.then282.iter9:  pred(max_sum_nonadjacent.while.body.split.iter8)
+max_sum_nonadjacent.while.body.split.iter9:  pred(max_sum_nonadjacent.MAX.then286.iter9, max_sum_nonadjacent.MAX.then13291.iter9, max_sum_nonadjacent.MAX.else15293.iter9)
+  80.ret374844 = phi [bb %max_sum_nonadjacent.MAX.then286.iter9, i32 %74367838, bb %max_sum_nonadjacent.MAX.then13291.iter9, i32 %74367838, bb %max_sum_nonadjacent.MAX.else15293.iter9, i32 %80.ret374816]
+  74367866 = add i32 %80.ret374816, i32 3
+  5284397869 = icmp eq i32 %74367866, i32 %80.ret374844
+  br i1 %5284397869, bb %max_sum_nonadjacent.MAX.then286.iter10, bb %max_sum_nonadjacent.MAX.else288.iter10
+max_sum_nonadjacent.MAX.then286.iter9:  pred(max_sum_nonadjacent.while.body.split.iter8)
   br bb %max_sum_nonadjacent.while.body.split.iter9
-max_sum_nonadjacent.MAX.else284.iter9:  pred(max_sum_nonadjacent.while.body.split.iter8)
-  12285398848 = icmp sgt i32 %74363834, i32 %80.ret370812
-  br i1 %12285398848, bb %max_sum_nonadjacent.MAX.then13287.iter9, bb %max_sum_nonadjacent.MAX.else15289.iter9
-max_sum_nonadjacent.MAX.then13287.iter9:  pred(max_sum_nonadjacent.MAX.else284.iter9)
+max_sum_nonadjacent.MAX.else288.iter9:  pred(max_sum_nonadjacent.while.body.split.iter8)
+  12289402852 = icmp sgt i32 %74367838, i32 %80.ret374816
+  br i1 %12289402852, bb %max_sum_nonadjacent.MAX.then13291.iter9, bb %max_sum_nonadjacent.MAX.else15293.iter9
+max_sum_nonadjacent.MAX.then13291.iter9:  pred(max_sum_nonadjacent.MAX.else288.iter9)
   br bb %max_sum_nonadjacent.while.body.split.iter9
-max_sum_nonadjacent.MAX.else15289.iter9:  pred(max_sum_nonadjacent.MAX.else284.iter9)
+max_sum_nonadjacent.MAX.else15293.iter9:  pred(max_sum_nonadjacent.MAX.else288.iter9)
   br bb %max_sum_nonadjacent.while.body.split.iter9
-max_sum_nonadjacent.while.body.split.iter10:  pred(max_sum_nonadjacent.MAX.then282.iter10, max_sum_nonadjacent.MAX.then13287.iter10, max_sum_nonadjacent.MAX.else15289.iter10)
-  80.ret370868 = phi [bb %max_sum_nonadjacent.MAX.then282.iter10, i32 %74363862, bb %max_sum_nonadjacent.MAX.then13287.iter10, i32 %74363862, bb %max_sum_nonadjacent.MAX.else15289.iter10, i32 %80.ret370840]
-  74363890 = add i32 %80.ret370840, i32 7
-  5280393893 = icmp eq i32 %74363890, i32 %80.ret370868
-  br i1 %5280393893, bb %max_sum_nonadjacent.MAX.then282.iter11, bb %max_sum_nonadjacent.MAX.else284.iter11
-max_sum_nonadjacent.MAX.then282.iter10:  pred(max_sum_nonadjacent.while.body.split.iter9)
+max_sum_nonadjacent.while.body.split.iter10:  pred(max_sum_nonadjacent.MAX.then286.iter10, max_sum_nonadjacent.MAX.then13291.iter10, max_sum_nonadjacent.MAX.else15293.iter10)
+  80.ret374872 = phi [bb %max_sum_nonadjacent.MAX.then286.iter10, i32 %74367866, bb %max_sum_nonadjacent.MAX.then13291.iter10, i32 %74367866, bb %max_sum_nonadjacent.MAX.else15293.iter10, i32 %80.ret374844]
+  74367894 = add i32 %80.ret374844, i32 7
+  5284397897 = icmp eq i32 %74367894, i32 %80.ret374872
+  br i1 %5284397897, bb %max_sum_nonadjacent.MAX.then286.iter11, bb %max_sum_nonadjacent.MAX.else288.iter11
+max_sum_nonadjacent.MAX.then286.iter10:  pred(max_sum_nonadjacent.while.body.split.iter9)
   br bb %max_sum_nonadjacent.while.body.split.iter10
-max_sum_nonadjacent.MAX.else284.iter10:  pred(max_sum_nonadjacent.while.body.split.iter9)
-  12285398876 = icmp sgt i32 %74363862, i32 %80.ret370840
-  br i1 %12285398876, bb %max_sum_nonadjacent.MAX.then13287.iter10, bb %max_sum_nonadjacent.MAX.else15289.iter10
-max_sum_nonadjacent.MAX.then13287.iter10:  pred(max_sum_nonadjacent.MAX.else284.iter10)
+max_sum_nonadjacent.MAX.else288.iter10:  pred(max_sum_nonadjacent.while.body.split.iter9)
+  12289402880 = icmp sgt i32 %74367866, i32 %80.ret374844
+  br i1 %12289402880, bb %max_sum_nonadjacent.MAX.then13291.iter10, bb %max_sum_nonadjacent.MAX.else15293.iter10
+max_sum_nonadjacent.MAX.then13291.iter10:  pred(max_sum_nonadjacent.MAX.else288.iter10)
   br bb %max_sum_nonadjacent.while.body.split.iter10
-max_sum_nonadjacent.MAX.else15289.iter10:  pred(max_sum_nonadjacent.MAX.else284.iter10)
+max_sum_nonadjacent.MAX.else15293.iter10:  pred(max_sum_nonadjacent.MAX.else288.iter10)
   br bb %max_sum_nonadjacent.while.body.split.iter10
-max_sum_nonadjacent.while.body.split.iter11:  pred(max_sum_nonadjacent.MAX.then282.iter11, max_sum_nonadjacent.MAX.then13287.iter11, max_sum_nonadjacent.MAX.else15289.iter11)
-  80.ret370896 = phi [bb %max_sum_nonadjacent.MAX.then282.iter11, i32 %74363890, bb %max_sum_nonadjacent.MAX.then13287.iter11, i32 %74363890, bb %max_sum_nonadjacent.MAX.else15289.iter11, i32 %80.ret370868]
-  5280393921 = icmp eq i32 %80.ret370868, i32 %80.ret370896
-  br i1 %5280393921, bb %max_sum_nonadjacent.MAX.then282.iter12, bb %max_sum_nonadjacent.MAX.else284.iter12
-max_sum_nonadjacent.MAX.then282.iter11:  pred(max_sum_nonadjacent.while.body.split.iter10)
+max_sum_nonadjacent.while.body.split.iter11:  pred(max_sum_nonadjacent.MAX.then286.iter11, max_sum_nonadjacent.MAX.then13291.iter11, max_sum_nonadjacent.MAX.else15293.iter11)
+  80.ret374900 = phi [bb %max_sum_nonadjacent.MAX.then286.iter11, i32 %74367894, bb %max_sum_nonadjacent.MAX.then13291.iter11, i32 %74367894, bb %max_sum_nonadjacent.MAX.else15293.iter11, i32 %80.ret374872]
+  5284397925 = icmp eq i32 %80.ret374872, i32 %80.ret374900
+  br i1 %5284397925, bb %max_sum_nonadjacent.MAX.then286.iter12, bb %max_sum_nonadjacent.MAX.else288.iter12
+max_sum_nonadjacent.MAX.then286.iter11:  pred(max_sum_nonadjacent.while.body.split.iter10)
   br bb %max_sum_nonadjacent.while.body.split.iter11
-max_sum_nonadjacent.MAX.else284.iter11:  pred(max_sum_nonadjacent.while.body.split.iter10)
-  12285398904 = icmp sgt i32 %74363890, i32 %80.ret370868
-  br i1 %12285398904, bb %max_sum_nonadjacent.MAX.then13287.iter11, bb %max_sum_nonadjacent.MAX.else15289.iter11
-max_sum_nonadjacent.MAX.then13287.iter11:  pred(max_sum_nonadjacent.MAX.else284.iter11)
+max_sum_nonadjacent.MAX.else288.iter11:  pred(max_sum_nonadjacent.while.body.split.iter10)
+  12289402908 = icmp sgt i32 %74367894, i32 %80.ret374872
+  br i1 %12289402908, bb %max_sum_nonadjacent.MAX.then13291.iter11, bb %max_sum_nonadjacent.MAX.else15293.iter11
+max_sum_nonadjacent.MAX.then13291.iter11:  pred(max_sum_nonadjacent.MAX.else288.iter11)
   br bb %max_sum_nonadjacent.while.body.split.iter11
-max_sum_nonadjacent.MAX.else15289.iter11:  pred(max_sum_nonadjacent.MAX.else284.iter11)
+max_sum_nonadjacent.MAX.else15293.iter11:  pred(max_sum_nonadjacent.MAX.else288.iter11)
   br bb %max_sum_nonadjacent.while.body.split.iter11
-max_sum_nonadjacent.while.body.split.iter12:  pred(max_sum_nonadjacent.MAX.then282.iter12, max_sum_nonadjacent.MAX.then13287.iter12, max_sum_nonadjacent.MAX.else15289.iter12)
-  80.ret370924 = phi [bb %max_sum_nonadjacent.MAX.then282.iter12, i32 %80.ret370868, bb %max_sum_nonadjacent.MAX.then13287.iter12, i32 %80.ret370868, bb %max_sum_nonadjacent.MAX.else15289.iter12, i32 %80.ret370896]
-  call void putint(i32 %80.ret370924)
+max_sum_nonadjacent.while.body.split.iter12:  pred(max_sum_nonadjacent.MAX.then286.iter12, max_sum_nonadjacent.MAX.then13291.iter12, max_sum_nonadjacent.MAX.else15293.iter12)
+  80.ret374928 = phi [bb %max_sum_nonadjacent.MAX.then286.iter12, i32 %80.ret374872, bb %max_sum_nonadjacent.MAX.then13291.iter12, i32 %80.ret374872, bb %max_sum_nonadjacent.MAX.else15293.iter12, i32 %80.ret374900]
+  call void putint(i32 %80.ret374928)
   call void putch(i32 10)
   br bb %longest_common_subseq.init
-max_sum_nonadjacent.MAX.then282.iter12:  pred(max_sum_nonadjacent.while.body.split.iter11)
+max_sum_nonadjacent.MAX.then286.iter12:  pred(max_sum_nonadjacent.while.body.split.iter11)
   br bb %max_sum_nonadjacent.while.body.split.iter12
-max_sum_nonadjacent.MAX.else284.iter12:  pred(max_sum_nonadjacent.while.body.split.iter11)
-  12285398932 = icmp sgt i32 %80.ret370868, i32 %80.ret370896
-  br i1 %12285398932, bb %max_sum_nonadjacent.MAX.then13287.iter12, bb %max_sum_nonadjacent.MAX.else15289.iter12
-max_sum_nonadjacent.MAX.then13287.iter12:  pred(max_sum_nonadjacent.MAX.else284.iter12)
+max_sum_nonadjacent.MAX.else288.iter12:  pred(max_sum_nonadjacent.while.body.split.iter11)
+  12289402936 = icmp sgt i32 %80.ret374872, i32 %80.ret374900
+  br i1 %12289402936, bb %max_sum_nonadjacent.MAX.then13291.iter12, bb %max_sum_nonadjacent.MAX.else15293.iter12
+max_sum_nonadjacent.MAX.then13291.iter12:  pred(max_sum_nonadjacent.MAX.else288.iter12)
   br bb %max_sum_nonadjacent.while.body.split.iter12
-max_sum_nonadjacent.MAX.else15289.iter12:  pred(max_sum_nonadjacent.MAX.else284.iter12)
+max_sum_nonadjacent.MAX.else15293.iter12:  pred(max_sum_nonadjacent.MAX.else288.iter12)
   br bb %max_sum_nonadjacent.while.body.split.iter12
 }
 

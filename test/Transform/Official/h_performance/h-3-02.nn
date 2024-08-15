@@ -22,199 +22,202 @@ entry319:  pred()
   call void _sysy_starttime(i32 79)
   m.load = load i32 from ptr %m.pinned
   n.load = load i32 from ptr @n
-  12388596 = icmp slt i32 0, i32 %m.load
-  br i1 %12388596, bb %kernel_correlation.while.body_preheader, bb %kernel_correlation.while.exit
+  12390598 = icmp slt i32 0, i32 %m.load
+  br i1 %12390598, bb %kernel_correlation.while.body_preheader, bb %kernel_correlation.while.exit
 kernel_correlation.while.body_preheader:  pred(entry319)
-  24399575 = icmp slt i32 0, i32 %n.load
+  24401577 = icmp slt i32 0, i32 %n.load
   br bb %kernel_correlation.while.body
 kernel_correlation.while.body:  pred(kernel_correlation.while.exit21, kernel_correlation.while.body_preheader)
-  j.phi341387597 = phi [bb %kernel_correlation.while.exit21, i32 %57415, bb %kernel_correlation.while.body_preheader, i32 0]
-  565 = shl i32 %j.phi341387597, i32 2
-  16392 = ptradd ptr %mean.pinned, i32 %565
-  store i32 0 to ptr %16392
-  br i1 %24399575, bb %kernel_correlation.while.body20_preheader, bb %kernel_correlation.while.exit21
+  j.phi343389599 = phi [bb %kernel_correlation.while.exit21, i32 %57417, bb %kernel_correlation.while.body_preheader, i32 0]
+  567 = shl i32 %j.phi343389599, i32 2
+  16394 = ptradd ptr %mean.pinned, i32 %567
+  store i32 0 to ptr %16394
+  br i1 %24401577, bb %kernel_correlation.while.body20_preheader, bb %kernel_correlation.while.exit21
 kernel_correlation.while.exit:  pred(entry319, kernel_correlation.while.exit21)
   stddev.pinned = pin ptr @stddev
-  br i1 %12388596, bb %kernel_correlation.while.body60_preheader, bb %kernel_correlation.while.exit61
+  br i1 %12390598, bb %kernel_correlation.while.body60_preheader, bb %kernel_correlation.while.exit61
 kernel_correlation.while.body20_preheader:  pred(kernel_correlation.while.body)
-  627 = ptradd ptr %data.pinned, i32 %565
+  629 = ptradd ptr %data.pinned, i32 %567
   br bb %kernel_correlation.while.body20
 kernel_correlation.while.body20:  pred(kernel_correlation.while.body20, kernel_correlation.while.body20_preheader)
-  32.load402_phi_loop = phi [bb %kernel_correlation.while.body20_preheader, i32 0, bb %kernel_correlation.while.body20, i32 %41407]
-  637 = phi [bb %kernel_correlation.while.body20_preheader, i32 0, bb %kernel_correlation.while.body20, i32 %35403.rec]
-  i.phi334398576 = phi [bb %kernel_correlation.while.body20, i32 %44409, bb %kernel_correlation.while.body20_preheader, i32 0]
-  628 = ptradd ptr %627, i32 %637
-  39.load406 = load i32 from ptr %628
-  41407 = add i32 %32.load402_phi_loop, i32 %39.load406
-  44409 = add i32 %i.phi334398576, i32 1
-  24399 = icmp slt i32 %44409, i32 %n.load
-  35403.rec = add i32 %637, i32 %.pinned
-  br i1 %24399, bb %kernel_correlation.while.body20, bb %kernel_correlation.while.body20_exclu_exit647
-kernel_correlation.while.exit21:  pred(kernel_correlation.while.body, kernel_correlation.while.body20_exclu_exit647)
-  51.load412 = load i32 from ptr %16392
-  54413 = sdiv i32 %51.load412, i32 %n.load
-  store i32 %54413 to ptr %16392
-  57415 = add i32 %j.phi341387597, i32 1
-  12388 = icmp slt i32 %57415, i32 %m.load
-  br i1 %12388, bb %kernel_correlation.while.body, bb %kernel_correlation.while.exit
+  32.load404_phi_loop = phi [bb %kernel_correlation.while.body20_preheader, i32 0, bb %kernel_correlation.while.body20, i32 %41409]
+  639 = phi [bb %kernel_correlation.while.body20_preheader, i32 0, bb %kernel_correlation.while.body20, i32 %35405.rec]
+  i.phi336400578 = phi [bb %kernel_correlation.while.body20, i32 %44411, bb %kernel_correlation.while.body20_preheader, i32 0]
+  630 = ptradd ptr %629, i32 %639
+  39.load408 = load i32 from ptr %630
+  41409 = add i32 %32.load404_phi_loop, i32 %39.load408
+  44411 = add i32 %i.phi336400578, i32 1
+  24401 = icmp slt i32 %44411, i32 %n.load
+  35405.rec = add i32 %639, i32 %.pinned
+  br i1 %24401, bb %kernel_correlation.while.body20, bb %kernel_correlation.while.body20_exclu_exit660
+kernel_correlation.while.exit21:  pred(kernel_correlation.while.body, kernel_correlation.while.body20_exclu_exit660)
+  51.load414 = load i32 from ptr %16394
+  54415 = sdiv i32 %51.load414, i32 %n.load
+  store i32 %54415 to ptr %16394
+  57417 = add i32 %j.phi343389599, i32 1
+  12390 = icmp slt i32 %57417, i32 %m.load
+  br i1 %12390, bb %kernel_correlation.while.body, bb %kernel_correlation.while.exit
 kernel_correlation.while.body60_preheader:  pred(kernel_correlation.while.exit)
-  76430577 = icmp slt i32 0, i32 %n.load
+  76432579 = icmp slt i32 0, i32 %n.load
   br bb %kernel_correlation.while.body60
 kernel_correlation.while.body60:  pred(kernel_correlation.if.exit, kernel_correlation.while.body60_preheader)
-  j.phi340418595 = phi [bb %kernel_correlation.if.exit, i32 %151458, bb %kernel_correlation.while.body60_preheader, i32 0]
-  566 = shl i32 %j.phi340418595, i32 2
-  68423 = ptradd ptr %stddev.pinned, i32 %566
-  store i32 0 to ptr %68423
-  br i1 %76430577, bb %kernel_correlation.while.body72_preheader, bb %kernel_correlation.while.exit73
+  j.phi342420597 = phi [bb %kernel_correlation.if.exit, i32 %151460, bb %kernel_correlation.while.body60_preheader, i32 0]
+  568 = shl i32 %j.phi342420597, i32 2
+  68425 = ptradd ptr %stddev.pinned, i32 %568
+  store i32 0 to ptr %68425
+  br i1 %76432579, bb %kernel_correlation.while.body72_preheader, bb %kernel_correlation.while.exit73
 kernel_correlation.while.exit61:  pred(kernel_correlation.while.exit, kernel_correlation.if.exit)
-  158462592 = icmp slt i32 0, i32 %n.load
-  br i1 %158462592, bb %kernel_correlation.while.body154_preheader, bb %kernel_correlation.while.exit155
+  158464594 = icmp slt i32 0, i32 %n.load
+  br i1 %158464594, bb %kernel_correlation.while.body154_preheader, bb %kernel_correlation.while.exit155
 kernel_correlation.while.body72_preheader:  pred(kernel_correlation.while.body60)
-  629 = ptradd ptr %data.pinned, i32 %566
-  95438 = ptradd ptr %mean.pinned, i32 %566
-  95.load439 = load i32 from ptr %95438
+  631 = ptradd ptr %data.pinned, i32 %568
+  95440 = ptradd ptr %mean.pinned, i32 %568
+  95.load441 = load i32 from ptr %95440
   br bb %kernel_correlation.while.body72
 kernel_correlation.while.body72:  pred(kernel_correlation.while.body72, kernel_correlation.while.body72_preheader)
-  84.load433_phi_loop = phi [bb %kernel_correlation.while.body72_preheader, i32 0, bb %kernel_correlation.while.body72, i32 %111442]
-  639 = phi [bb %kernel_correlation.while.body72_preheader, i32 0, bb %kernel_correlation.while.body72, i32 %87434.rec]
-  i.phi332429578 = phi [bb %kernel_correlation.while.body72, i32 %114444, bb %kernel_correlation.while.body72_preheader, i32 0]
-  630 = ptradd ptr %629, i32 %639
-  91.load437 = load i32 from ptr %630
-  97440 = sub i32 %91.load437, i32 %95.load439
-  110441 = mul i32 %97440, i32 %97440
-  111442 = add i32 %84.load433_phi_loop, i32 %110441
-  114444 = add i32 %i.phi332429578, i32 1
-  76430 = icmp slt i32 %114444, i32 %n.load
-  87434.rec = add i32 %639, i32 %.pinned
-  br i1 %76430, bb %kernel_correlation.while.body72, bb %kernel_correlation.while.body72_exclu_exit649
-kernel_correlation.while.exit73:  pred(kernel_correlation.while.body60, kernel_correlation.while.body72_exclu_exit649)
-  121.load447 = load i32 from ptr %68423
-  124448 = sdiv i32 %121.load447, i32 %n.load
-  store i32 %124448 to ptr %68423
-  137450 = mul i32 %124448, i32 %124448
-  store i32 %137450 to ptr %68423
-  142452 = icmp sle i32 %137450, i32 1
-  br i1 %142452, bb %kernel_correlation.then, bb %kernel_correlation.if.exit
+  84.load435_phi_loop = phi [bb %kernel_correlation.while.body72_preheader, i32 0, bb %kernel_correlation.while.body72, i32 %111444]
+  642 = phi [bb %kernel_correlation.while.body72_preheader, i32 0, bb %kernel_correlation.while.body72, i32 %87436.rec]
+  i.phi334431580 = phi [bb %kernel_correlation.while.body72, i32 %114446, bb %kernel_correlation.while.body72_preheader, i32 0]
+  632 = ptradd ptr %631, i32 %642
+  91.load439 = load i32 from ptr %632
+  97442 = sub i32 %91.load439, i32 %95.load441
+  110443 = mul i32 %97442, i32 %97442
+  111444 = add i32 %84.load435_phi_loop, i32 %110443
+  114446 = add i32 %i.phi334431580, i32 1
+  76432 = icmp slt i32 %114446, i32 %n.load
+  87436.rec = add i32 %642, i32 %.pinned
+  br i1 %76432, bb %kernel_correlation.while.body72, bb %kernel_correlation.while.body72_exclu_exit662
+kernel_correlation.while.exit73:  pred(kernel_correlation.while.body60, kernel_correlation.while.body72_exclu_exit662)
+  121.load449 = load i32 from ptr %68425
+  124450 = sdiv i32 %121.load449, i32 %n.load
+  store i32 %124450 to ptr %68425
+  137452 = mul i32 %124450, i32 %124450
+  store i32 %137452 to ptr %68425
+  142454 = icmp sle i32 %137452, i32 1
+  br i1 %142454, bb %kernel_correlation.then, bb %kernel_correlation.if.exit
 kernel_correlation.then:  pred(kernel_correlation.while.exit73)
-  store i32 1 to ptr %68423
+  store i32 1 to ptr %68425
   br bb %kernel_correlation.if.exit
 kernel_correlation.if.exit:  pred(kernel_correlation.while.exit73, kernel_correlation.then)
-  151458 = add i32 %j.phi340418595, i32 1
-  64419 = icmp slt i32 %151458, i32 %m.load
-  br i1 %64419, bb %kernel_correlation.while.body60, bb %kernel_correlation.while.exit61
+  151460 = add i32 %j.phi342420597, i32 1
+  64421 = icmp slt i32 %151460, i32 %m.load
+  br i1 %64421, bb %kernel_correlation.while.body60, bb %kernel_correlation.while.exit61
 kernel_correlation.while.body154_preheader:  pred(kernel_correlation.while.exit61)
-  203482 = mul i32 %n.load, i32 %n.load
+  203484 = mul i32 %n.load, i32 %n.load
   br bb %kernel_correlation.while.body154
 kernel_correlation.while.body154:  pred(kernel_correlation.while.exit163, kernel_correlation.while.body154_preheader)
-  641 = phi [bb %kernel_correlation.while.body154_preheader, i32 0, bb %kernel_correlation.while.exit163, i32 %169473.rec]
-  i.phi331461593 = phi [bb %kernel_correlation.while.exit163, i32 %215491, bb %kernel_correlation.while.body154_preheader, i32 0]
-  br i1 %12388596, bb %kernel_correlation.while.body162_preheader, bb %kernel_correlation.while.exit163
+  645 = phi [bb %kernel_correlation.while.body154_preheader, i32 0, bb %kernel_correlation.while.exit163, i32 %169475.rec]
+  i.phi333463595 = phi [bb %kernel_correlation.while.exit163, i32 %215493, bb %kernel_correlation.while.body154_preheader, i32 0]
+  br i1 %12390598, bb %kernel_correlation.while.body162_preheader, bb %kernel_correlation.while.exit163
 kernel_correlation.while.exit155:  pred(kernel_correlation.while.exit61, kernel_correlation.while.exit163)
   corr.pinned = pin ptr @corr
-  371496588 = add i32 %m.load, i32 -1
-  223497589 = icmp slt i32 0, i32 %371496588
-  br i1 %223497589, bb %kernel_correlation.while.body218_preheader, bb %kernel_correlation.while.exit219
+  373498590 = add i32 %m.load, i32 -1
+  223499591 = icmp slt i32 0, i32 %373498590
+  br i1 %223499591, bb %kernel_correlation.while.body218_preheader, bb %kernel_correlation.while.exit219
 kernel_correlation.while.body162_preheader:  pred(kernel_correlation.while.body154)
-  170474 = ptradd ptr %data.pinned, i32 %641
+  170476 = ptradd ptr %data.pinned, i32 %645
   br bb %kernel_correlation.while.body162
 kernel_correlation.while.body162:  pred(kernel_correlation.while.body162, kernel_correlation.while.body162_preheader)
-  j.phi338469580 = phi [bb %kernel_correlation.while.body162, i32 %212488, bb %kernel_correlation.while.body162_preheader, i32 0]
-  567 = shl i32 %j.phi338469580, i32 2
-  173476 = ptradd ptr %170474, i32 %567
-  180.load477 = load i32 from ptr %173476
-  184478 = ptradd ptr %mean.pinned, i32 %567
-  184.load479 = load i32 from ptr %184478
-  186480 = sub i32 %180.load477, i32 %184.load479
-  store i32 %186480 to ptr %173476
-  206483 = ptradd ptr %stddev.pinned, i32 %567
-  206.load484 = load i32 from ptr %206483
-  208485 = mul i32 %203482, i32 %206.load484
-  209486 = sdiv i32 %186480, i32 %208485
-  store i32 %209486 to ptr %173476
-  212488 = add i32 %j.phi338469580, i32 1
-  166470 = icmp slt i32 %212488, i32 %m.load
-  br i1 %166470, bb %kernel_correlation.while.body162, bb %kernel_correlation.while.exit163
+  j.phi340471582 = phi [bb %kernel_correlation.while.body162, i32 %212490, bb %kernel_correlation.while.body162_preheader, i32 0]
+  569 = shl i32 %j.phi340471582, i32 2
+  173478 = ptradd ptr %170476, i32 %569
+  180.load479 = load i32 from ptr %173478
+  184480 = ptradd ptr %mean.pinned, i32 %569
+  184.load481 = load i32 from ptr %184480
+  186482 = sub i32 %180.load479, i32 %184.load481
+  store i32 %186482 to ptr %173478
+  206485 = ptradd ptr %stddev.pinned, i32 %569
+  206.load486 = load i32 from ptr %206485
+  208487 = mul i32 %203484, i32 %206.load486
+  209488 = sdiv i32 %186482, i32 %208487
+  store i32 %209488 to ptr %173478
+  212490 = add i32 %j.phi340471582, i32 1
+  166472 = icmp slt i32 %212490, i32 %m.load
+  br i1 %166472, bb %kernel_correlation.while.body162, bb %kernel_correlation.while.exit163
 kernel_correlation.while.exit163:  pred(kernel_correlation.while.body154, kernel_correlation.while.body162)
-  215491 = add i32 %i.phi331461593, i32 1
-  158462 = icmp slt i32 %215491, i32 %n.load
-  169473.rec = add i32 %641, i32 %.pinned
-  br i1 %158462, bb %kernel_correlation.while.body154, bb %kernel_correlation.while.exit155
+  215493 = add i32 %i.phi333463595, i32 1
+  158464 = icmp slt i32 %215493, i32 %n.load
+  169475.rec = add i32 %645, i32 %.pinned
+  br i1 %158464, bb %kernel_correlation.while.body154, bb %kernel_correlation.while.exit155
 kernel_correlation.while.body218_preheader:  pred(kernel_correlation.while.exit155)
   br bb %kernel_correlation.while.body218
 kernel_correlation.while.body218:  pred(kernel_correlation.while.exit237, kernel_correlation.while.body218_preheader)
-  645 = phi [bb %kernel_correlation.while.body218_preheader, i32 0, bb %kernel_correlation.while.exit237, i32 %226500.rec]
-  i.phi495591 = phi [bb %kernel_correlation.while.exit237, i32 %234505, bb %kernel_correlation.while.body218_preheader, i32 0]
-  k.phi344494590 = phi [bb %kernel_correlation.while.exit237, i32 %k.phi344494585, bb %kernel_correlation.while.body218_preheader, i32 0]
-  227501 = ptradd ptr %corr.pinned, i32 %645
-  568 = shl i32 %i.phi495591, i32 2
-  230503 = ptradd ptr %227501, i32 %568
-  store i32 1 to ptr %230503
-  234505 = add i32 %i.phi495591, i32 1
-  240517584 = icmp slt i32 %234505, i32 %m.load
-  br i1 %240517584, bb %kernel_correlation.while.body236_preheader, bb %kernel_correlation.while.exit237
+  657 = phi [bb %kernel_correlation.while.body218_preheader, i32 %.pinned, bb %kernel_correlation.while.exit237, i32 %652.rec]
+  654 = phi [bb %kernel_correlation.while.body218_preheader, i32 0, bb %kernel_correlation.while.exit237, i32 %226502.rec]
+  i.phi497593 = phi [bb %kernel_correlation.while.exit237, i32 %234507, bb %kernel_correlation.while.body218_preheader, i32 0]
+  k.phi346496592 = phi [bb %kernel_correlation.while.exit237, i32 %k.phi346496587, bb %kernel_correlation.while.body218_preheader, i32 0]
+  227503 = ptradd ptr %corr.pinned, i32 %654
+  570 = shl i32 %i.phi497593, i32 2
+  230505 = ptradd ptr %227503, i32 %570
+  store i32 1 to ptr %230505
+  234507 = add i32 %i.phi497593, i32 1
+  240519586 = icmp slt i32 %234507, i32 %m.load
+  br i1 %240519586, bb %kernel_correlation.while.body236_preheader, bb %kernel_correlation.while.exit237
 kernel_correlation.while.exit219:  pred(kernel_correlation.while.exit155, kernel_correlation.while.exit237)
-  555 = mul i32 %m.load, i32 %.pinned
-  556 = ptradd ptr %corr.pinned, i32 %555
-  574 = shl i32 %m.load, i32 2
-  569 = ptradd ptr %556, i32 %574
-  572 = ptradd ptr %569, i32 -3204
-  store i32 1 to ptr %572
+  557 = mul i32 %m.load, i32 %.pinned
+  558 = ptradd ptr %corr.pinned, i32 %557
+  576 = shl i32 %m.load, i32 2
+  571 = ptradd ptr %558, i32 %576
+  574 = ptradd ptr %571, i32 -3204
+  store i32 1 to ptr %574
   call void _sysy_stoptime(i32 81)
   m.load326 = load i32 from ptr %m.pinned
   328 = mul i32 %m.load326, i32 %m.load326
   call void putarray(i32 %328, ptr %corr.pinned)
   ret i32 0
 kernel_correlation.while.body236_preheader:  pred(kernel_correlation.while.body218)
-  631 = ptradd ptr %data.pinned, i32 %568
-  635 = ptradd ptr %corr.pinned, i32 %568
+  633 = ptradd ptr %data.pinned, i32 %570
+  637 = ptradd ptr %corr.pinned, i32 %570
   br bb %kernel_correlation.while.body236
 kernel_correlation.while.body236:  pred(kernel_correlation.while.exit252, kernel_correlation.while.body236_preheader)
-  j.phi516587 = phi [bb %kernel_correlation.while.exit252, i32 %306549, bb %kernel_correlation.while.body236_preheader, i32 %234505]
-  573 = shl i32 %j.phi516587, i32 2
-  247521 = ptradd ptr %227501, i32 %573
-  store i32 0 to ptr %247521
-  br i1 %158462592, bb %kernel_correlation.while.body251_preheader, bb %kernel_correlation.while.exit252
+  651 = phi [bb %kernel_correlation.while.body236_preheader, i32 %657, bb %kernel_correlation.while.exit252, i32 %291546.rec]
+  j.phi518589 = phi [bb %kernel_correlation.while.exit252, i32 %306551, bb %kernel_correlation.while.body236_preheader, i32 %234507]
+  575 = shl i32 %j.phi518589, i32 2
+  247523 = ptradd ptr %227503, i32 %575
+  store i32 0 to ptr %247523
+  br i1 %158464594, bb %kernel_correlation.while.body251_preheader, bb %kernel_correlation.while.exit252
 kernel_correlation.while.exit237:  pred(kernel_correlation.while.body218, kernel_correlation.while.body236_exclu_exit)
-  k.phi344494585 = phi [bb %kernel_correlation.while.body236_exclu_exit, i32 %582, bb %kernel_correlation.while.body218, i32 %k.phi344494590]
-  223497 = icmp slt i32 %234505, i32 %371496588
-  226500.rec = add i32 %645, i32 %.pinned
-  br i1 %223497, bb %kernel_correlation.while.body218, bb %kernel_correlation.while.exit219
+  k.phi346496587 = phi [bb %kernel_correlation.while.body236_exclu_exit, i32 %584, bb %kernel_correlation.while.body218, i32 %k.phi346496592]
+  223499 = icmp slt i32 %234507, i32 %373498590
+  226502.rec = add i32 %654, i32 %.pinned
+  652.rec = add i32 %657, i32 %.pinned
+  br i1 %223499, bb %kernel_correlation.while.body218, bb %kernel_correlation.while.exit219
 kernel_correlation.while.body251_preheader:  pred(kernel_correlation.while.body236)
-  633 = ptradd ptr %data.pinned, i32 %573
+  635 = ptradd ptr %data.pinned, i32 %575
   br bb %kernel_correlation.while.body251
 kernel_correlation.while.body251:  pred(kernel_correlation.while.body251, kernel_correlation.while.body251_preheader)
-  269.load531_phi_loop = phi [bb %kernel_correlation.while.body251_preheader, i32 0, bb %kernel_correlation.while.body251, i32 %286539]
-  643 = phi [bb %kernel_correlation.while.body251_preheader, i32 0, bb %kernel_correlation.while.body251, i32 %272532.rec]
-  k.phi527583 = phi [bb %kernel_correlation.while.body251, i32 %289541, bb %kernel_correlation.while.body251_preheader, i32 0]
-  632 = ptradd ptr %631, i32 %643
-  276.load535 = load i32 from ptr %632
-  634 = ptradd ptr %633, i32 %643
-  283.load537 = load i32 from ptr %634
-  285538 = mul i32 %276.load535, i32 %283.load537
-  286539 = add i32 %269.load531_phi_loop, i32 %285538
-  289541 = add i32 %k.phi527583, i32 1
-  255528 = icmp slt i32 %289541, i32 %n.load
-  272532.rec = add i32 %643, i32 %.pinned
-  br i1 %255528, bb %kernel_correlation.while.body251, bb %kernel_correlation.while.body251_exclu_exit
+  269.load533_phi_loop = phi [bb %kernel_correlation.while.body251_preheader, i32 0, bb %kernel_correlation.while.body251, i32 %286541]
+  648 = phi [bb %kernel_correlation.while.body251_preheader, i32 0, bb %kernel_correlation.while.body251, i32 %272534.rec]
+  k.phi529585 = phi [bb %kernel_correlation.while.body251, i32 %289543, bb %kernel_correlation.while.body251_preheader, i32 0]
+  634 = ptradd ptr %633, i32 %648
+  276.load537 = load i32 from ptr %634
+  636 = ptradd ptr %635, i32 %648
+  283.load539 = load i32 from ptr %636
+  285540 = mul i32 %276.load537, i32 %283.load539
+  286541 = add i32 %269.load533_phi_loop, i32 %285540
+  289543 = add i32 %k.phi529585, i32 1
+  255530 = icmp slt i32 %289543, i32 %n.load
+  272534.rec = add i32 %648, i32 %.pinned
+  br i1 %255530, bb %kernel_correlation.while.body251, bb %kernel_correlation.while.body251_exclu_exit
 kernel_correlation.while.exit252:  pred(kernel_correlation.while.body236, kernel_correlation.while.body251_exclu_exit)
-  582 = phi [bb %kernel_correlation.while.body251_exclu_exit, i32 %289541, bb %kernel_correlation.while.body236, i32 0]
-  291544 = mul i32 %j.phi516587, i32 %.pinned
-  636 = ptradd ptr %635, i32 %291544
-  302.load547 = load i32 from ptr %247521
-  store i32 %302.load547 to ptr %636
-  306549 = add i32 %j.phi516587, i32 1
-  240517 = icmp slt i32 %306549, i32 %m.load
-  br i1 %240517, bb %kernel_correlation.while.body236, bb %kernel_correlation.while.body236_exclu_exit
+  584 = phi [bb %kernel_correlation.while.body251_exclu_exit, i32 %289543, bb %kernel_correlation.while.body236, i32 0]
+  638 = ptradd ptr %637, i32 %651
+  302.load549 = load i32 from ptr %247523
+  store i32 %302.load549 to ptr %638
+  306551 = add i32 %j.phi518589, i32 1
+  240519 = icmp slt i32 %306551, i32 %m.load
+  291546.rec = add i32 %651, i32 %.pinned
+  br i1 %240519, bb %kernel_correlation.while.body236, bb %kernel_correlation.while.body236_exclu_exit
 kernel_correlation.while.body251_exclu_exit:  pred(kernel_correlation.while.body251)
-  store i32 %286539 to ptr %247521
+  store i32 %286541 to ptr %247523
   br bb %kernel_correlation.while.exit252
 kernel_correlation.while.body236_exclu_exit:  pred(kernel_correlation.while.exit252)
   br bb %kernel_correlation.while.exit237
-kernel_correlation.while.body20_exclu_exit647:  pred(kernel_correlation.while.body20)
-  store i32 %41407 to ptr %16392
+kernel_correlation.while.body20_exclu_exit660:  pred(kernel_correlation.while.body20)
+  store i32 %41409 to ptr %16394
   br bb %kernel_correlation.while.exit21
-kernel_correlation.while.body72_exclu_exit649:  pred(kernel_correlation.while.body72)
-  store i32 %111442 to ptr %68423
+kernel_correlation.while.body72_exclu_exit662:  pred(kernel_correlation.while.body72)
+  store i32 %111444 to ptr %68425
   br bb %kernel_correlation.while.exit73
 }
 

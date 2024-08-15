@@ -259,9 +259,6 @@ bb31:   # loop depth 0
   LA t0, .CONSTANT.7.3
   FLW ft0, 0(t0)
   FEQ.S t0, ft0, fs1
-  XORI t0, t0, 1
-  XORI t0, t0, 1
-  SLTU t0, zero, t0
   BEQ t0, zero, bb40
   # implict jump to bb32
 bb32:   # loop depth 0

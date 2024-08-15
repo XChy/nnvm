@@ -68,8 +68,8 @@ interpret:   # loop depth 0
   SD s4, 40(sp)
   SD s5, 48(sp)
   SD s6, 56(sp)
-  ADD s4, a0, zero
-  LW t0, 0(s4)
+  ADD s3, a0, zero
+  LW t0, 0(s3)
   BNE t0, zero, bb9
   # implict jump to bb8
 bb8:   # loop depth 0
@@ -84,10 +84,10 @@ bb8:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb9:   # loop depth 0
-  LA s3, tape
+  LA s2, tape
   LA s0, ptr
-  ADD s2, zero, zero
   ADD s5, zero, zero
+  ADD s4, zero, zero
   ADD s1, zero, zero
   # implict jump to bb10
 bb10:   # loop depth 1
@@ -119,10 +119,10 @@ bb16:   # loop depth 1
   BEQ t0, zero, bb38
   # implict jump to bb17
 bb17:   # loop depth 1
-  ADD s2, zero, zero
+  ADD s5, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 1
-  BNE s2, zero, bb28
+  BNE s5, zero, bb28
   # implict jump to bb19
 bb19:   # loop depth 1
   # implict jump to bb20
@@ -139,8 +139,8 @@ bb24:   # loop depth 1
 bb25:   # loop depth 1
   # implict jump to bb26
 bb26:   # loop depth 1
-  ADDIW s5, s5, 1
-  SH2ADD t0, s5, s4
+  ADDIW s4, s4, 1
+  SH2ADD t0, s4, s3
   LW t0, 0(t0)
   BNE t0, zero, bb27
   JAL zero, bb8
@@ -150,8 +150,8 @@ bb28:   # loop depth 1
   ADDI s1, zero, 1
   # implict jump to bb29
 bb29:   # loop depth 2
-  SH2ADD t0, s5, s4
-  ADDIW s5, s5, -1
+  SH2ADD t0, s4, s3
+  ADDIW s4, s4, -1
   LW t1, -4(t0)
   XORI t0, t1, 91
   BEQ t0, zero, bb37
@@ -180,32 +180,32 @@ bb37:   # loop depth 2
   JAL zero, bb33
 bb38:   # loop depth 1
   LW t0, 0(s0)
-  SH2ADD t0, t0, s3
+  SH2ADD t0, t0, s2
   LW t0, 0(t0)
-  SLTU s2, zero, t0
+  SLTU s5, zero, t0
   JAL zero, bb18
 bb39:   # loop depth 1
   LW t0, 0(s0)
-  SH2ADD s6, t0, s3
+  SH2ADD s6, t0, s2
   CALL getch
   SW a0, 0(s6)
   JAL zero, bb21
 bb40:   # loop depth 1
   LW t0, 0(s0)
-  SH2ADD t0, t0, s3
+  SH2ADD t0, t0, s2
   LW a0, 0(t0)
   CALL putch
   JAL zero, bb22
 bb41:   # loop depth 1
   LW t0, 0(s0)
-  SH2ADD t0, t0, s3
+  SH2ADD t0, t0, s2
   LW t1, 0(t0)
   ADDIW t1, t1, -1
   SW t1, 0(t0)
   JAL zero, bb23
 bb42:   # loop depth 1
   LW t0, 0(s0)
-  SH2ADD t0, t0, s3
+  SH2ADD t0, t0, s2
   LW t1, 0(t0)
   ADDIW t1, t1, 1
   SW t1, 0(t0)

@@ -17,25 +17,25 @@ then87.split:  pred(isSafe.while.exit36, isSafe.then)
   90 = icmp ne i32 %89.ret, i32 0
   br i1 %90, bb %then91, bb %if.exit92
 if.exit88:  pred(entry81)
-  265 = shl i32 %i, i32 2
-  104 = ptradd ptr %color, i32 %265
+  271 = shl i32 %i, i32 2
+  104 = ptradd ptr %color, i32 %271
   109 = add i32 %i, i32 1
   br bb %while.cond95
 then91:  pred(then87.split)
-  11.load251 = load i32 from ptr %color
-  call void putint(i32 %11.load251)
+  11.load257 = load i32 from ptr %color
+  call void putint(i32 %11.load257)
   call void putch(i32 32)
-  11250284 = ptradd ptr %color, i32 4
-  11.load251285 = load i32 from ptr %11250284
-  call void putint(i32 %11.load251285)
+  11256290 = ptradd ptr %color, i32 4
+  11.load257291 = load i32 from ptr %11256290
+  call void putint(i32 %11.load257291)
   call void putch(i32 32)
-  11250294 = ptradd ptr %color, i32 8
-  11.load251295 = load i32 from ptr %11250294
-  call void putint(i32 %11.load251295)
+  11256300 = ptradd ptr %color, i32 8
+  11.load257301 = load i32 from ptr %11256300
+  call void putint(i32 %11.load257301)
   call void putch(i32 32)
-  11250304 = ptradd ptr %color, i32 12
-  11.load251305 = load i32 from ptr %11250304
-  call void putint(i32 %11.load251305)
+  11256310 = ptradd ptr %color, i32 12
+  11.load257311 = load i32 from ptr %11256310
+  call void putint(i32 %11.load257311)
   call void putch(i32 32)
   call void putch(i32 10)
   ret i32 1
@@ -59,47 +59,47 @@ if.exit113:  pred(while.body96)
   120 = add i32 %j94.phi, i32 1
   br bb %while.cond95
 isSafe.while.cond34:  pred(then87, isSafe.while.exit46)
-  select.phi172186 = phi [bb %then87, i1 0, bb %isSafe.while.exit46, i1 %select.phi171196]
-  i33.phi187 = phi [bb %then87, i32 0, bb %isSafe.while.exit46, i32 %43191]
-  39188 = icmp slt i32 %i33.phi187, i32 4
-  br i1 %39188, bb %isSafe.while.body35, bb %isSafe.while.exit36
+  select.phi175192 = phi [bb %then87, i1 0, bb %isSafe.while.exit46, i1 %select.phi174202]
+  i33.phi193 = phi [bb %then87, i32 0, bb %isSafe.while.exit46, i32 %43197]
+  39194 = icmp slt i32 %i33.phi193, i32 4
+  br i1 %39194, bb %isSafe.while.body35, bb %isSafe.while.exit36
 isSafe.while.body35:  pred(isSafe.while.cond34)
-  43191 = add i32 %i33.phi187, i32 1
-  266 = shl i32 %i33.phi187, i32 4
-  53202 = ptradd ptr %graph, i32 %266
-  268 = shl i32 %i33.phi187, i32 2
-  69214 = ptradd ptr %color, i32 %268
+  43197 = add i32 %i33.phi193, i32 1
+  272 = shl i32 %i33.phi193, i32 4
+  53208 = ptradd ptr %graph, i32 %272
+  274 = shl i32 %i33.phi193, i32 2
+  69220 = ptradd ptr %color, i32 %274
   br bb %isSafe.while.cond44
 isSafe.while.exit36:  pred(isSafe.while.cond34)
   br bb %then87.split
 isSafe.while.cond44:  pred(isSafe.while.body35, isSafe.if.exit)
-  select.phi171196 = phi [bb %isSafe.while.body35, i1 %select.phi172186, bb %isSafe.if.exit, i1 %select.phi221]
-  j.phi197 = phi [bb %isSafe.while.body35, i32 %43191, bb %isSafe.if.exit, i32 %77226]
-  49198 = icmp slt i32 %j.phi197, i32 4
-  br i1 %49198, bb %isSafe.while.body45, bb %isSafe.while.exit46
+  select.phi174202 = phi [bb %isSafe.while.body35, i1 %select.phi175192, bb %isSafe.if.exit, i1 %select.phi227]
+  j.phi203 = phi [bb %isSafe.while.body35, i32 %43197, bb %isSafe.if.exit, i32 %77232]
+  49204 = icmp slt i32 %j.phi203, i32 4
+  br i1 %49204, bb %isSafe.while.body45, bb %isSafe.while.exit46
 isSafe.while.body45:  pred(isSafe.while.cond44)
-  267 = shl i32 %j.phi197, i32 2
-  56204 = ptradd ptr %53202, i32 %267
-  56.load205 = load i32 from ptr %56204
-  58206 = icmp ne i32 %56.load205, i32 0
-  br i1 %58206, bb %isSafe.select.then, bb %isSafe.select.else
+  273 = shl i32 %j.phi203, i32 2
+  56210 = ptradd ptr %53208, i32 %273
+  56.load211 = load i32 from ptr %56210
+  58212 = icmp ne i32 %56.load211, i32 0
+  br i1 %58212, bb %isSafe.select.then, bb %isSafe.select.else
 isSafe.while.exit46:  pred(isSafe.while.cond44)
   br bb %isSafe.while.cond34
 isSafe.select.then:  pred(isSafe.while.body45)
-  65211 = ptradd ptr %color, i32 %267
-  65.load212 = load i32 from ptr %65211
-  69.load215 = load i32 from ptr %69214
-  71216 = icmp eq i32 %65.load212, i32 %69.load215
+  65217 = ptradd ptr %color, i32 %273
+  65.load218 = load i32 from ptr %65217
+  69.load221 = load i32 from ptr %69220
+  71222 = icmp eq i32 %65.load218, i32 %69.load221
   br bb %isSafe.select.exit
 isSafe.select.else:  pred(isSafe.while.body45)
   br bb %isSafe.select.exit
 isSafe.select.exit:  pred(isSafe.select.then, isSafe.select.else)
-  select.phi221 = phi [bb %isSafe.select.else, i1 0, bb %isSafe.select.then, i1 %71216]
-  br i1 %select.phi221, bb %isSafe.then, bb %isSafe.if.exit
+  select.phi227 = phi [bb %isSafe.select.else, i1 0, bb %isSafe.select.then, i1 %71222]
+  br i1 %select.phi227, bb %isSafe.then, bb %isSafe.if.exit
 isSafe.then:  pred(isSafe.select.exit)
   br bb %then87.split
 isSafe.if.exit:  pred(isSafe.select.exit)
-  77226 = add i32 %j.phi197, i32 1
+  77232 = add i32 %j.phi203, i32 1
   br bb %isSafe.while.cond44
 }
 
@@ -141,18 +141,16 @@ entry121:  pred()
   arr.index138 = ptradd ptr %graph, i32 60
   store i32 0 to ptr %arr.index138
   store i32 0 to ptr %color
-  151314 = ptradd ptr %color, i32 4
-  store i32 0 to ptr %151314
-  151322 = ptradd ptr %color, i32 8
-  store i32 0 to ptr %151322
-  151330 = ptradd ptr %color, i32 12
-  store i32 0 to ptr %151330
+  151320 = ptradd ptr %color, i32 4
+  store i32 0 to ptr %151320
+  151328 = ptradd ptr %color, i32 8
+  store i32 0 to ptr %151328
+  151336 = ptradd ptr %color, i32 12
+  store i32 0 to ptr %151336
   157 = call i32 graphColoring(ptr %graph, i32 3, i32 0, ptr %color)
   158 = icmp ne i32 %157, i32 0
   159 = xor i1 %158, i1 1
-  160 = zext i1 %159 to i32
-  161 = icmp ne i32 %160, i32 0
-  br i1 %161, bb %then162, bb %if.exit163
+  br i1 %159, bb %then162, bb %if.exit163
 then162:  pred(entry121)
   call void putch(i32 78)
   call void putch(i32 111)

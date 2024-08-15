@@ -135,21 +135,21 @@ bb15:   # loop depth 1
 bb16:   # loop depth 1
   JAL zero, bb13
 bb17:   # loop depth 1
-  LW a5, 0(s2)
+  LW a5, 0(s0)
   ADD a0, zero, zero
   ADD t3, s7, a3
   ADD a7, s5, a3
-  LW a6, 0(s0)
+  LW a6, 0(s2)
   # implict jump to bb18
 bb18:   # loop depth 2
-  BLT zero, a5, bb23
+  BLT zero, a6, bb23
   # implict jump to bb19
 bb19:   # loop depth 2
   ADD t0, zero, zero
   # implict jump to bb20
 bb20:   # loop depth 2
   ADDIW a0, a0, 1
-  BLT a0, a6, bb22
+  BLT a0, a5, bb22
   # implict jump to bb21
 bb21:   # loop depth 1
   JAL zero, bb15
@@ -171,7 +171,7 @@ bb24:   # loop depth 3
   LW s3, 0(s3)
   MULW s1, s1, s3
   ADDW t2, t2, s1
-  BLT t0, a5, bb26
+  BLT t0, a6, bb26
   # implict jump to bb25
 bb25:   # loop depth 2
   SW t2, 0(t4)

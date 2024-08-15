@@ -10,17 +10,17 @@ external i32 getfarray(ptr )
 
 pure i32 main() {
 entry30:  pred()
-  br i1 0, bb %b.phi.which511053.true, bb %entry30.split1058
-entry30.split1058:  pred(entry30, b.phi.which511053.true)
-  1060 = phi [bb %b.phi.which511053.true, i32 42, bb %entry30, i32 198]
-  br i1 0, bb %b.phi34.which521054.true, bb %entry30.split1058.split
-entry30.split1058.split:  pred(entry30.split1058, b.phi34.which521054.true)
-  1063 = phi [bb %b.phi34.which521054.true, i32 25, bb %entry30.split1058, i32 %1060]
-  ret i32 %1063
-b.phi.which511053.true:  pred(entry30)
-  br bb %entry30.split1058
-b.phi34.which521054.true:  pred(entry30.split1058)
-  br bb %entry30.split1058.split
+  br i1 0, bb %b.phi.which531055.true, bb %entry30.split1060
+entry30.split1060:  pred(entry30, b.phi.which531055.true)
+  1062 = phi [bb %b.phi.which531055.true, i32 42, bb %entry30, i32 198]
+  br i1 0, bb %b.phi36.which541056.true, bb %entry30.split1060.split
+entry30.split1060.split:  pred(entry30.split1060, b.phi36.which541056.true)
+  1065 = phi [bb %b.phi36.which541056.true, i32 25, bb %entry30.split1060, i32 %1062]
+  ret i32 %1065
+b.phi.which531055.true:  pred(entry30)
+  br bb %entry30.split1060
+b.phi36.which541056.true:  pred(entry30.split1060)
+  br bb %entry30.split1060.split
 }
 
 external float getfloat()

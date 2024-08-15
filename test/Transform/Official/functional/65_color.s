@@ -224,14 +224,14 @@ main:   # loop depth 0
   # implict jump to bb21
 bb21:   # loop depth 1
   LA t0, dp
-  ADD a7, zero, zero
+  ADD a6, zero, zero
   ADD a0, zero, zero
-  ADD a6, t0, a2
+  ADD a7, t0, a2
   # implict jump to bb22
 bb22:   # loop depth 2
   ADD a5, zero, zero
   ADD t2, zero, zero
-  ADD t3, a6, a0
+  ADD t3, a7, a0
   # implict jump to bb23
 bb23:   # loop depth 3
   ADD a4, zero, zero
@@ -280,9 +280,9 @@ bb27:   # loop depth 3
   # implict jump to bb28
 bb28:   # loop depth 2
   LUI t1, 40
-  ADDIW a7, a7, 1
+  ADDIW a6, a6, 1
   ADDIW t1, t1, -544
-  SLTI t0, a7, 18
+  SLTI t0, a6, 18
   ADDW a0, a0, t1
   BNE t0, zero, bb36
   # implict jump to bb29

@@ -47,12 +47,13 @@ bb2:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADD t0, zero, zero
+  ADD t1, zero, zero
   ADD s0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
-  ADDI t1, zero, 60
-  MULW t1, t0, t1
+  ADDI a0, zero, 60
+  ADD t0, t1, zero
+  MULW t1, t0, a0
   ADDI a0, zero, 60
   LUI a2, 32766
   ADDIW a2, a2, 1
@@ -67,5 +68,4 @@ bb4:   # loop depth 1
 bb5:   # loop depth 0
   JAL zero, bb2
 bb6:   # loop depth 1
-  ADD t0, t1, zero
   JAL zero, bb4

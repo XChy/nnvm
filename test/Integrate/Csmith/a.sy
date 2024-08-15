@@ -1,7 +1,8 @@
 int a;
 int b();
 int b() {
-  for (1; a <= 8; 1)
-    ;
+  int c;
+  for (0; 2; c += a)
+    break;
 }
 int main() {}

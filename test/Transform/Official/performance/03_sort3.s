@@ -55,9 +55,10 @@ bb3:   # loop depth 0
   JAL zero, bb2
 bb4:   # loop depth 0
   LW t2, 0(s2)
-  ADD t0, zero, zero
+  ADD t1, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
+  ADD t0, t1, zero
   SH2ADD t1, t0, s1
   ADDIW a1, t0, 2
   LW a0, 0(t1)
@@ -71,7 +72,6 @@ bb6:   # loop depth 0
   SW t2, 0(s2)
   JAL zero, bb1
 bb7:   # loop depth 1
-  ADD t0, t1, zero
   JAL zero, bb5
 radixSort:   # loop depth 0
   ADDI sp, sp, -224

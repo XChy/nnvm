@@ -321,6 +321,25 @@ protected:
   RSubPattern RHS;
 };
 
+template <typename SubPattern>
+class pZExt : public pSpecificInst<InstID::ZExt> {
+public:
+  pZExt(SubPattern sub) : pSpecificInst<InstID::ZExt>(), sub(sub) {}
+
+  bool match(Value *op) {
+    if (!pSpecificInst<InstID::ZExt>::match(op))
+      return false;
+
+    ZExtInst *I = cast<ZExtInst>(op);
+    if (!sub.match(I->getOperand(0)))
+      return false;
+    return true;
+  }
+
+protected:
+  SubPattern sub;
+};
+
 template <typename LSubPattern, typename RSubPattern>
 class pICmp : public pSpecificInst<InstID::ICmp> {
 public:
