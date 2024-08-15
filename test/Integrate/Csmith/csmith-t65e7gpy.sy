@@ -50,15 +50,11 @@ void crc32_byte(int b) {
     crc32_tab[(crc32_context ^ b) & 0xFF];
 }
 
-void crc32_8bytes(int val) {
+void crc32_4bytes(int val) {
   crc32_byte((val >> 0) & 0xff);
   crc32_byte((val >> 8) & 0xff);
   crc32_byte((val >> 16) & 0xff);
   crc32_byte((val >> 24) & 0xff);
-  crc32_byte((val >> 32) & 0xff);
-  crc32_byte((val >> 40) & 0xff);
-  crc32_byte((val >> 48) & 0xff);
-  crc32_byte((val >> 56) & 0xff);
 }
 
 void print_hash(int hash) {
@@ -68,7 +64,7 @@ void print_hash(int hash) {
 }
 
 void transparent_crc(int val, int flag) {
-  crc32_8bytes(val);
+  crc32_4bytes(val);
   if (flag) {
     print_hash(crc32_context ^ 0xFFFFFFFF);
   }
