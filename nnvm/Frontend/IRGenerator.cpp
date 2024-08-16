@@ -1049,6 +1049,9 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return ctx->block()->accept(this);
   } else if (ctx->CONTINUE()) {
     builder.buildBr(whileLoops.top().condBB);
+    BasicBlock *whileBody =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+    builder.insertAt(whileBody->end());
   } else if (ctx->WHILE()) { // while
     if (!ctx->exp()) {
       // TODO: error
@@ -1057,6 +1060,9 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
     return buildLoop(ctx->exp(), ctx->stmt(0), nullptr);
   } else if (ctx->BREAK()) {
     builder.buildBr(whileLoops.top().afterBB);
+    BasicBlock *whileBody =
+      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+    builder.insertAt(whileBody->end());
   } else if (ctx->FOR()) {
     symbolTable.enterScope();
     ctx->forInit()->accept(this);
