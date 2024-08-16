@@ -397,7 +397,10 @@ bb51:   # loop depth 2
   SW a0, 0(t0)
   LW t0, 0(s0)
   BLT s2, t0, bb52
-  JAL zero, bb48
+  LW t0, 0(s5)
+  ADDIW s3, s3, 1
+  BLT s3, t0, bb49
+  JAL zero, bb13
 bb52:   # loop depth 2
   ADD s1, s2, zero
   JAL zero, bb51

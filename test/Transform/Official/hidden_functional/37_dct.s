@@ -311,7 +311,9 @@ bb30:   # loop depth 2
   BLT s2, s4, bb32
   # implict jump to bb31
 bb31:   # loop depth 1
-  JAL zero, bb22
+  ADDIW s3, s3, 1
+  BLT s3, s5, bb23
+  JAL zero, bb10
 bb32:   # loop depth 2
   JAL zero, bb25
 bb33:   # loop depth 2
@@ -572,7 +574,9 @@ bb84:   # loop depth 2
   BLT s3, s4, bb86
   # implict jump to bb85
 bb85:   # loop depth 1
-  JAL zero, bb79
+  ADDIW s2, s2, 1
+  BLT s2, s5, bb80
+  JAL zero, bb8
 bb86:   # loop depth 2
   JAL zero, bb82
 bb87:   # loop depth 2
@@ -736,6 +740,8 @@ bb120:   # loop depth 2
   FSW fa0, 0(t0)
   ADDIW s0, s0, 1
   BLT s0, s4, bb121
-  JAL zero, bb117
+  ADDIW s1, s1, 1
+  BLT s1, s5, bb118
+  JAL zero, bb7
 bb121:   # loop depth 2
   JAL zero, bb120

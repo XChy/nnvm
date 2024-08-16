@@ -273,7 +273,10 @@ bb53:   # loop depth 2
   ADDI t0, zero, 13
   ADDIW t2, t2, 1
   BGE t0, t2, bb54
-  JAL zero, bb45
+  ADDI t0, zero, 15
+  ADDIW t1, t1, 1
+  BGE t0, t1, bb46
+  JAL zero, bb42
 bb54:   # loop depth 2
   JAL zero, bb48
 bb55:   # loop depth 2

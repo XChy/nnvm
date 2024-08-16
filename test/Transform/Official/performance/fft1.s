@@ -158,7 +158,9 @@ bb16:   # loop depth 1
   SH2ADD t1, t2, a1
   LW t2, 0(a0)
   SW t2, 0(t1)
-  JAL zero, bb14
+  ADDIW t0, t0, 1
+  BLT t0, a2, bb15
+  JAL zero, bb2
 bb17:   # loop depth 0
   ADDI a0, zero, 1
   LD ra, 0(sp)

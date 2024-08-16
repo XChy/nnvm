@@ -156,7 +156,10 @@ bb16:   # loop depth 1
   SUBW t0, t0, s1
   SH2ADD t0, t0, s6
   SW zero, 0(t0)
-  JAL zero, bb13
+  LW t1, 0(s2)
+  ADDIW t0, s1, 1
+  BGE t1, t0, bb14
+  JAL zero, bb6
 bb17:   # loop depth 1
   LW t0, 0(s8)
   ADDI s0, zero, 1
@@ -179,7 +182,9 @@ bb20:   # loop depth 2
   ADDI a0, zero, 32
   ADD s0, t0, zero
   CALL putch
-  JAL zero, bb18
+  LW t0, 0(s2)
+  BGE t0, s0, bb19
+  JAL zero, bb16
 bb21:   # loop depth 1
   ADDI a0, zero, 10
   CALL putch

@@ -9,25 +9,25 @@ entry:  pred()
   call void putch(i32 10)
   call void putint(i32 1)
   call void putch(i32 10)
-  31 = ptradd ptr %c.pinned, i32 8
-  store i32 1 to ptr %31
+  32 = ptradd ptr %c.pinned, i32 8
+  store i32 1 to ptr %32
   call void putint(i32 2)
   call void putint(i32 1)
   call void putint(i32 8)
   call void putch(i32 10)
-  b.load121 = load i32 from ptr @b
-  call void putint(i32 %b.load121)
+  b.load122 = load i32 from ptr @b
+  call void putint(i32 %b.load122)
   call void putch(i32 10)
-  125.load = load i32 from ptr %c.pinned
-  call void putint(i32 %125.load)
-  129 = ptradd ptr %c.pinned, i32 4
-  129.load = load i32 from ptr %129
-  call void putint(i32 %129.load)
-  133.load = load i32 from ptr %31
-  call void putint(i32 %133.load)
-  137 = ptradd ptr %c.pinned, i32 12
-  137.load = load i32 from ptr %137
-  call void putint(i32 %137.load)
+  126.load = load i32 from ptr %c.pinned
+  call void putint(i32 %126.load)
+  130 = ptradd ptr %c.pinned, i32 4
+  130.load = load i32 from ptr %130
+  call void putint(i32 %130.load)
+  134.load = load i32 from ptr %32
+  call void putint(i32 %134.load)
+  138 = ptradd ptr %c.pinned, i32 12
+  138.load = load i32 from ptr %138
+  call void putint(i32 %138.load)
   call void putch(i32 10)
   ret i32 0
 }

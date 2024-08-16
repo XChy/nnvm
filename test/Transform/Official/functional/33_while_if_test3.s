@@ -41,7 +41,7 @@ bb10:   # loop depth 1
   JAL zero, bb3
 bb11:   # loop depth 1
   ADDI a0, zero, 168
-  JAL zero, bb10
+  JAL zero, bb3
 bb12:   # loop depth 1
   ADDI t0, zero, 84
   JAL zero, bb8

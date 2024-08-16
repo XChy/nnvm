@@ -7,6 +7,7 @@
 #include "Backend/RISCV/Lower.h"
 #include "Backend/RISCV/Optimization/Peephole.h"
 #include "Backend/RISCV/Optimization/SSAPeephole.h"
+#include "Backend/RISCV/Optimization/TailDuplicator.h"
 #include "Backend/RISCV/RA/GraphColoringRA.h"
 #include "Backend/RISCV/RA/LinearScanRA.h"
 #include "Backend/RISCV/Scheduler.h"
@@ -80,6 +81,11 @@ void RISCVBackend::emit(Module &ir, std::ostream &out) {
 
   debug(std::cerr << "====CLO Done====\n");
   debug(lowModule.emit(std::cerr));
+
+  if (optimizationLevel != 0)
+    for (auto *lowFunc : lowModule.funcs)
+      if (!lowFunc->isExternal)
+        TailDuplicator().run(*lowFunc);
 
   debug(std::cerr << "====Emit Done====\n");
   lowModule.emit(out);

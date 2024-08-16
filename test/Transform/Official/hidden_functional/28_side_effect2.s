@@ -918,7 +918,9 @@ bb193:   # loop depth 0
   JAL zero, bb183
 bb194:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb193
+  SLTU t0, zero, t0
+  XORI t0, t0, 1
+  JAL zero, bb183
 bb195:   # loop depth 0
   ADD t0, zero, zero
   JAL zero, bb181
@@ -946,7 +948,9 @@ bb201:   # loop depth 0
   JAL zero, bb174
 bb202:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb201
+  SLTU t0, zero, t0
+  XORI t0, t0, 1
+  JAL zero, bb174
 bb203:   # loop depth 0
   LW t0, 0(t2)
   OR a5, a5, zero
@@ -963,7 +967,9 @@ bb205:   # loop depth 0
   JAL zero, bb172
 bb206:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb205
+  SLTU t0, zero, t0
+  XORI t0, t0, 1
+  JAL zero, bb172
 bb207:   # loop depth 0
   LW t0, 0(t2)
   OR a6, a6, zero
@@ -979,7 +985,8 @@ bb209:   # loop depth 0
   JAL zero, bb170
 bb210:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb209
+  SLTU t0, zero, t0
+  JAL zero, bb170
 bb211:   # loop depth 0
   ADD t0, zero, zero
   JAL zero, bb168
@@ -1025,7 +1032,9 @@ bb222:   # loop depth 0
   JAL zero, bb150
 bb223:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb222
+  SLTU t0, zero, t0
+  XORI t0, t0, 1
+  JAL zero, bb150
 bb224:   # loop depth 0
   ADD t0, zero, zero
   JAL zero, bb148
@@ -1044,7 +1053,8 @@ bb227:   # loop depth 0
   JAL zero, bb143
 bb228:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb227
+  SLTU t0, zero, t0
+  JAL zero, bb143
 bb229:   # loop depth 0
   LW t0, 0(t2)
   OR s3, a2, zero
@@ -1061,7 +1071,9 @@ bb231:   # loop depth 0
   JAL zero, bb141
 bb232:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb231
+  SLTU t0, zero, t0
+  XORI t0, t0, 1
+  JAL zero, bb141
 bb233:   # loop depth 0
   ADD t0, zero, zero
   JAL zero, bb139
@@ -1092,7 +1104,8 @@ bb240:   # loop depth 0
   JAL zero, bb128
 bb241:   # loop depth 0
   ADD t0, zero, zero
-  JAL zero, bb240
+  SLTU t0, zero, t0
+  JAL zero, bb128
 bb242:   # loop depth 0
   ADD t0, zero, zero
   JAL zero, bb126
@@ -1125,10 +1138,12 @@ bb247:   # loop depth 1
   JAL zero, bb123
 bb248:   # loop depth 1
   LW t0, 0(a0)
-  JAL zero, bb247
+  SLTU t0, zero, t0
+  JAL zero, bb123
 bb249:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb247
+  SLTU t0, zero, t0
+  JAL zero, bb123
 bb250:   # loop depth 1
   JAL zero, bb42
 bb251:   # loop depth 1
@@ -1278,7 +1293,8 @@ bb293:   # loop depth 1
   JAL zero, bb39
 bb294:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb293
+  SLTU t0, zero, t0
+  JAL zero, bb39
 bb295:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 17
@@ -1299,7 +1315,8 @@ bb297:   # loop depth 1
   JAL zero, bb37
 bb298:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb297
+  SLTU t0, zero, t0
+  JAL zero, bb37
 bb299:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 16
@@ -1320,7 +1337,8 @@ bb301:   # loop depth 1
   JAL zero, bb35
 bb302:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb301
+  SLTU t0, zero, t0
+  JAL zero, bb35
 bb303:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 15
@@ -1341,7 +1359,8 @@ bb305:   # loop depth 1
   JAL zero, bb33
 bb306:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb305
+  SLTU t0, zero, t0
+  JAL zero, bb33
 bb307:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 14
@@ -1362,7 +1381,8 @@ bb309:   # loop depth 1
   JAL zero, bb31
 bb310:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb309
+  SLTU t0, zero, t0
+  JAL zero, bb31
 bb311:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 13
@@ -1383,7 +1403,8 @@ bb313:   # loop depth 1
   JAL zero, bb29
 bb314:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb313
+  SLTU t0, zero, t0
+  JAL zero, bb29
 bb315:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 12
@@ -1404,7 +1425,8 @@ bb317:   # loop depth 1
   JAL zero, bb27
 bb318:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb317
+  SLTU t0, zero, t0
+  JAL zero, bb27
 bb319:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 11
@@ -1425,7 +1447,8 @@ bb321:   # loop depth 1
   JAL zero, bb25
 bb322:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb321
+  SLTU t0, zero, t0
+  JAL zero, bb25
 bb323:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 10
@@ -1446,7 +1469,8 @@ bb325:   # loop depth 1
   JAL zero, bb23
 bb326:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb325
+  SLTU t0, zero, t0
+  JAL zero, bb23
 bb327:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 9
@@ -1467,7 +1491,8 @@ bb329:   # loop depth 1
   JAL zero, bb21
 bb330:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb329
+  SLTU t0, zero, t0
+  JAL zero, bb21
 bb331:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 8
@@ -1488,7 +1513,8 @@ bb333:   # loop depth 1
   JAL zero, bb19
 bb334:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb333
+  SLTU t0, zero, t0
+  JAL zero, bb19
 bb335:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 7
@@ -1509,7 +1535,8 @@ bb337:   # loop depth 1
   JAL zero, bb17
 bb338:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb337
+  SLTU t0, zero, t0
+  JAL zero, bb17
 bb339:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 6
@@ -1530,7 +1557,8 @@ bb341:   # loop depth 1
   JAL zero, bb15
 bb342:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb341
+  SLTU t0, zero, t0
+  JAL zero, bb15
 bb343:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 5
@@ -1551,7 +1579,8 @@ bb345:   # loop depth 1
   JAL zero, bb13
 bb346:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb345
+  SLTU t0, zero, t0
+  JAL zero, bb13
 bb347:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 4
@@ -1572,7 +1601,8 @@ bb349:   # loop depth 1
   JAL zero, bb11
 bb350:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb349
+  SLTU t0, zero, t0
+  JAL zero, bb11
 bb351:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 3
@@ -1593,7 +1623,8 @@ bb353:   # loop depth 1
   JAL zero, bb9
 bb354:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb353
+  SLTU t0, zero, t0
+  JAL zero, bb9
 bb355:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 2
@@ -1614,7 +1645,8 @@ bb357:   # loop depth 1
   JAL zero, bb7
 bb358:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb357
+  SLTU t0, zero, t0
+  JAL zero, bb7
 bb359:   # loop depth 1
   LW t0, 0(t2)
   ADDI s10, zero, 1
@@ -1635,7 +1667,8 @@ bb361:   # loop depth 1
   JAL zero, bb5
 bb362:   # loop depth 1
   ADD t0, zero, zero
-  JAL zero, bb361
+  SLTU t0, zero, t0
+  JAL zero, bb5
 bb363:   # loop depth 1
   ADD t0, zero, zero
   JAL zero, bb3

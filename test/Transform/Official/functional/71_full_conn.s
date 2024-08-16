@@ -1234,7 +1234,10 @@ bb39:   # loop depth 1
   CALL putch
   ADDI a0, zero, 10
   CALL putch
-  JAL zero, bb37
+  LW t0, 68(sp)
+  ADDIW a0, t0, -1
+  BLT zero, a0, bb38
+  JAL zero, bb1
 bb40:   # loop depth 1
   ADD t0, zero, zero
   JAL zero, bb35

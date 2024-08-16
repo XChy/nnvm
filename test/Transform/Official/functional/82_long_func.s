@@ -6573,7 +6573,7 @@ bb152:   # loop depth 3
   ADDIW t6, t6, 1844
   ADD t6, t6, sp
   LW s1, 0(t6)
-  JAL zero, bb151
+  JAL zero, bb145
 bb153:   # loop depth 3
   LW s10, 1804(sp)
   LW a1, 1804(sp)
@@ -8369,7 +8369,7 @@ bb311:   # loop depth 4
 bb312:   # loop depth 4
   JAL zero, bb216
 bb313:   # loop depth 4
-  JAL zero, bb312
+  JAL zero, bb216
 bb314:   # loop depth 4
   JAL zero, bb211
 bb315:   # loop depth 4
@@ -8390,7 +8390,7 @@ bb316:   # loop depth 4
 bb317:   # loop depth 4
   JAL zero, bb212
 bb318:   # loop depth 4
-  JAL zero, bb317
+  JAL zero, bb212
 bb319:   # loop depth 4
   JAL zero, bb207
 bb320:   # loop depth 4
@@ -8411,7 +8411,7 @@ bb321:   # loop depth 4
 bb322:   # loop depth 4
   JAL zero, bb208
 bb323:   # loop depth 4
-  JAL zero, bb322
+  JAL zero, bb208
 bb324:   # loop depth 4
   JAL zero, bb203
 bb325:   # loop depth 4
@@ -8432,7 +8432,7 @@ bb326:   # loop depth 4
 bb327:   # loop depth 4
   JAL zero, bb204
 bb328:   # loop depth 4
-  JAL zero, bb327
+  JAL zero, bb204
 bb329:   # loop depth 4
   JAL zero, bb199
 bb330:   # loop depth 4
@@ -8453,7 +8453,7 @@ bb331:   # loop depth 4
 bb332:   # loop depth 4
   JAL zero, bb200
 bb333:   # loop depth 4
-  JAL zero, bb332
+  JAL zero, bb200
 bb334:   # loop depth 4
   JAL zero, bb195
 bb335:   # loop depth 4
@@ -8470,7 +8470,7 @@ bb336:   # loop depth 4
 bb337:   # loop depth 4
   JAL zero, bb196
 bb338:   # loop depth 4
-  JAL zero, bb337
+  JAL zero, bb196
 bb339:   # loop depth 4
   JAL zero, bb191
 bb340:   # loop depth 4
@@ -8487,7 +8487,7 @@ bb341:   # loop depth 4
 bb342:   # loop depth 4
   JAL zero, bb192
 bb343:   # loop depth 4
-  JAL zero, bb342
+  JAL zero, bb192
 bb344:   # loop depth 4
   JAL zero, bb187
 bb345:   # loop depth 4
@@ -8504,7 +8504,7 @@ bb346:   # loop depth 4
 bb347:   # loop depth 4
   JAL zero, bb188
 bb348:   # loop depth 4
-  JAL zero, bb347
+  JAL zero, bb188
 bb349:   # loop depth 4
   JAL zero, bb183
 bb350:   # loop depth 4
@@ -8521,7 +8521,7 @@ bb351:   # loop depth 4
 bb352:   # loop depth 4
   JAL zero, bb184
 bb353:   # loop depth 4
-  JAL zero, bb352
+  JAL zero, bb184
 bb354:   # loop depth 4
   JAL zero, bb179
 bb355:   # loop depth 4
@@ -8538,7 +8538,7 @@ bb356:   # loop depth 4
 bb357:   # loop depth 4
   JAL zero, bb180
 bb358:   # loop depth 4
-  JAL zero, bb357
+  JAL zero, bb180
 bb359:   # loop depth 4
   JAL zero, bb175
 bb360:   # loop depth 4
@@ -8555,7 +8555,7 @@ bb361:   # loop depth 4
 bb362:   # loop depth 4
   JAL zero, bb176
 bb363:   # loop depth 4
-  JAL zero, bb362
+  JAL zero, bb176
 bb364:   # loop depth 4
   JAL zero, bb171
 bb365:   # loop depth 4
@@ -8572,7 +8572,7 @@ bb366:   # loop depth 4
 bb367:   # loop depth 4
   JAL zero, bb172
 bb368:   # loop depth 4
-  JAL zero, bb367
+  JAL zero, bb172
 bb369:   # loop depth 4
   JAL zero, bb167
 bb370:   # loop depth 4
@@ -8589,7 +8589,7 @@ bb371:   # loop depth 4
 bb372:   # loop depth 4
   JAL zero, bb168
 bb373:   # loop depth 4
-  JAL zero, bb372
+  JAL zero, bb168
 bb374:   # loop depth 4
   JAL zero, bb163
 bb375:   # loop depth 4
@@ -8606,7 +8606,7 @@ bb376:   # loop depth 4
 bb377:   # loop depth 4
   JAL zero, bb164
 bb378:   # loop depth 4
-  JAL zero, bb377
+  JAL zero, bb164
 bb379:   # loop depth 4
   JAL zero, bb159
 bb380:   # loop depth 4
@@ -8620,7 +8620,7 @@ bb381:   # loop depth 4
 bb382:   # loop depth 4
   JAL zero, bb160
 bb383:   # loop depth 4
-  JAL zero, bb382
+  JAL zero, bb160
 bb384:   # loop depth 4
   LW t0, 1200(sp)
   SLTIU s1, t0, 1
@@ -10175,7 +10175,7 @@ bb546:   # loop depth 4
 bb547:   # loop depth 4
   JAL zero, bb451
 bb548:   # loop depth 4
-  JAL zero, bb547
+  JAL zero, bb451
 bb549:   # loop depth 4
   JAL zero, bb446
 bb550:   # loop depth 4
@@ -10196,7 +10196,7 @@ bb551:   # loop depth 4
 bb552:   # loop depth 4
   JAL zero, bb447
 bb553:   # loop depth 4
-  JAL zero, bb552
+  JAL zero, bb447
 bb554:   # loop depth 4
   JAL zero, bb442
 bb555:   # loop depth 4
@@ -10217,7 +10217,7 @@ bb556:   # loop depth 4
 bb557:   # loop depth 4
   JAL zero, bb443
 bb558:   # loop depth 4
-  JAL zero, bb557
+  JAL zero, bb443
 bb559:   # loop depth 4
   JAL zero, bb438
 bb560:   # loop depth 4
@@ -10238,7 +10238,7 @@ bb561:   # loop depth 4
 bb562:   # loop depth 4
   JAL zero, bb439
 bb563:   # loop depth 4
-  JAL zero, bb562
+  JAL zero, bb439
 bb564:   # loop depth 4
   JAL zero, bb434
 bb565:   # loop depth 4
@@ -10259,7 +10259,7 @@ bb566:   # loop depth 4
 bb567:   # loop depth 4
   JAL zero, bb435
 bb568:   # loop depth 4
-  JAL zero, bb567
+  JAL zero, bb435
 bb569:   # loop depth 4
   JAL zero, bb430
 bb570:   # loop depth 4
@@ -10276,7 +10276,7 @@ bb571:   # loop depth 4
 bb572:   # loop depth 4
   JAL zero, bb431
 bb573:   # loop depth 4
-  JAL zero, bb572
+  JAL zero, bb431
 bb574:   # loop depth 4
   JAL zero, bb426
 bb575:   # loop depth 4
@@ -10293,7 +10293,7 @@ bb576:   # loop depth 4
 bb577:   # loop depth 4
   JAL zero, bb427
 bb578:   # loop depth 4
-  JAL zero, bb577
+  JAL zero, bb427
 bb579:   # loop depth 4
   JAL zero, bb422
 bb580:   # loop depth 4
@@ -10310,7 +10310,7 @@ bb581:   # loop depth 4
 bb582:   # loop depth 4
   JAL zero, bb423
 bb583:   # loop depth 4
-  JAL zero, bb582
+  JAL zero, bb423
 bb584:   # loop depth 4
   JAL zero, bb418
 bb585:   # loop depth 4
@@ -10327,7 +10327,7 @@ bb586:   # loop depth 4
 bb587:   # loop depth 4
   JAL zero, bb419
 bb588:   # loop depth 4
-  JAL zero, bb587
+  JAL zero, bb419
 bb589:   # loop depth 4
   JAL zero, bb414
 bb590:   # loop depth 4
@@ -10344,7 +10344,7 @@ bb591:   # loop depth 4
 bb592:   # loop depth 4
   JAL zero, bb415
 bb593:   # loop depth 4
-  JAL zero, bb592
+  JAL zero, bb415
 bb594:   # loop depth 4
   JAL zero, bb410
 bb595:   # loop depth 4
@@ -10361,7 +10361,7 @@ bb596:   # loop depth 4
 bb597:   # loop depth 4
   JAL zero, bb411
 bb598:   # loop depth 4
-  JAL zero, bb597
+  JAL zero, bb411
 bb599:   # loop depth 4
   JAL zero, bb406
 bb600:   # loop depth 4
@@ -10378,7 +10378,7 @@ bb601:   # loop depth 4
 bb602:   # loop depth 4
   JAL zero, bb407
 bb603:   # loop depth 4
-  JAL zero, bb602
+  JAL zero, bb407
 bb604:   # loop depth 4
   JAL zero, bb402
 bb605:   # loop depth 4
@@ -10395,7 +10395,7 @@ bb606:   # loop depth 4
 bb607:   # loop depth 4
   JAL zero, bb403
 bb608:   # loop depth 4
-  JAL zero, bb607
+  JAL zero, bb403
 bb609:   # loop depth 4
   JAL zero, bb398
 bb610:   # loop depth 4
@@ -10412,7 +10412,7 @@ bb611:   # loop depth 4
 bb612:   # loop depth 4
   JAL zero, bb399
 bb613:   # loop depth 4
-  JAL zero, bb612
+  JAL zero, bb399
 bb614:   # loop depth 4
   JAL zero, bb394
 bb615:   # loop depth 4
@@ -10426,7 +10426,7 @@ bb616:   # loop depth 4
 bb617:   # loop depth 4
   JAL zero, bb395
 bb618:   # loop depth 4
-  JAL zero, bb617
+  JAL zero, bb395
 bb619:   # loop depth 4
   LW t0, 1400(sp)
   SLTIU a1, t0, 1
@@ -13869,7 +13869,7 @@ bb848:   # loop depth 4
 bb849:   # loop depth 4
   JAL zero, bb744
 bb850:   # loop depth 4
-  JAL zero, bb849
+  JAL zero, bb744
 bb851:   # loop depth 4
   JAL zero, bb739
 bb852:   # loop depth 4
@@ -13890,7 +13890,7 @@ bb853:   # loop depth 4
 bb854:   # loop depth 4
   JAL zero, bb740
 bb855:   # loop depth 4
-  JAL zero, bb854
+  JAL zero, bb740
 bb856:   # loop depth 4
   JAL zero, bb735
 bb857:   # loop depth 4
@@ -13911,7 +13911,7 @@ bb858:   # loop depth 4
 bb859:   # loop depth 4
   JAL zero, bb736
 bb860:   # loop depth 4
-  JAL zero, bb859
+  JAL zero, bb736
 bb861:   # loop depth 4
   JAL zero, bb731
 bb862:   # loop depth 4
@@ -13932,7 +13932,7 @@ bb863:   # loop depth 4
 bb864:   # loop depth 4
   JAL zero, bb732
 bb865:   # loop depth 4
-  JAL zero, bb864
+  JAL zero, bb732
 bb866:   # loop depth 4
   JAL zero, bb727
 bb867:   # loop depth 4
@@ -13949,7 +13949,7 @@ bb868:   # loop depth 4
 bb869:   # loop depth 4
   JAL zero, bb728
 bb870:   # loop depth 4
-  JAL zero, bb869
+  JAL zero, bb728
 bb871:   # loop depth 4
   JAL zero, bb723
 bb872:   # loop depth 4
@@ -13966,7 +13966,7 @@ bb873:   # loop depth 4
 bb874:   # loop depth 4
   JAL zero, bb724
 bb875:   # loop depth 4
-  JAL zero, bb874
+  JAL zero, bb724
 bb876:   # loop depth 4
   JAL zero, bb719
 bb877:   # loop depth 4
@@ -13983,7 +13983,7 @@ bb878:   # loop depth 4
 bb879:   # loop depth 4
   JAL zero, bb720
 bb880:   # loop depth 4
-  JAL zero, bb879
+  JAL zero, bb720
 bb881:   # loop depth 4
   JAL zero, bb715
 bb882:   # loop depth 4
@@ -14000,7 +14000,7 @@ bb883:   # loop depth 4
 bb884:   # loop depth 4
   JAL zero, bb716
 bb885:   # loop depth 4
-  JAL zero, bb884
+  JAL zero, bb716
 bb886:   # loop depth 4
   JAL zero, bb711
 bb887:   # loop depth 4
@@ -14017,7 +14017,7 @@ bb888:   # loop depth 4
 bb889:   # loop depth 4
   JAL zero, bb712
 bb890:   # loop depth 4
-  JAL zero, bb889
+  JAL zero, bb712
 bb891:   # loop depth 4
   JAL zero, bb707
 bb892:   # loop depth 4
@@ -14034,7 +14034,7 @@ bb893:   # loop depth 4
 bb894:   # loop depth 4
   JAL zero, bb708
 bb895:   # loop depth 4
-  JAL zero, bb894
+  JAL zero, bb708
 bb896:   # loop depth 4
   JAL zero, bb703
 bb897:   # loop depth 4
@@ -14051,7 +14051,7 @@ bb898:   # loop depth 4
 bb899:   # loop depth 4
   JAL zero, bb704
 bb900:   # loop depth 4
-  JAL zero, bb899
+  JAL zero, bb704
 bb901:   # loop depth 4
   JAL zero, bb699
 bb902:   # loop depth 4
@@ -14068,7 +14068,7 @@ bb903:   # loop depth 4
 bb904:   # loop depth 4
   JAL zero, bb700
 bb905:   # loop depth 4
-  JAL zero, bb904
+  JAL zero, bb700
 bb906:   # loop depth 4
   JAL zero, bb695
 bb907:   # loop depth 4
@@ -14085,7 +14085,7 @@ bb908:   # loop depth 4
 bb909:   # loop depth 4
   JAL zero, bb696
 bb910:   # loop depth 4
-  JAL zero, bb909
+  JAL zero, bb696
 bb911:   # loop depth 4
   JAL zero, bb691
 bb912:   # loop depth 4
@@ -14099,7 +14099,7 @@ bb913:   # loop depth 4
 bb914:   # loop depth 4
   JAL zero, bb692
 bb915:   # loop depth 4
-  JAL zero, bb914
+  JAL zero, bb692
 bb916:   # loop depth 4
   LW t0, 1624(sp)
   SLTIU a6, t0, 1
@@ -15943,7 +15943,7 @@ bb1078:   # loop depth 4
 bb1079:   # loop depth 4
   JAL zero, bb983
 bb1080:   # loop depth 4
-  JAL zero, bb1079
+  JAL zero, bb983
 bb1081:   # loop depth 4
   JAL zero, bb978
 bb1082:   # loop depth 4
@@ -15964,7 +15964,7 @@ bb1083:   # loop depth 4
 bb1084:   # loop depth 4
   JAL zero, bb979
 bb1085:   # loop depth 4
-  JAL zero, bb1084
+  JAL zero, bb979
 bb1086:   # loop depth 4
   JAL zero, bb974
 bb1087:   # loop depth 4
@@ -15985,7 +15985,7 @@ bb1088:   # loop depth 4
 bb1089:   # loop depth 4
   JAL zero, bb975
 bb1090:   # loop depth 4
-  JAL zero, bb1089
+  JAL zero, bb975
 bb1091:   # loop depth 4
   JAL zero, bb970
 bb1092:   # loop depth 4
@@ -16013,7 +16013,7 @@ bb1093:   # loop depth 4
 bb1094:   # loop depth 4
   JAL zero, bb971
 bb1095:   # loop depth 4
-  JAL zero, bb1094
+  JAL zero, bb971
 bb1096:   # loop depth 4
   LUI t0, 2
   ADDIW t0, t0, -1876
@@ -16090,7 +16090,7 @@ bb1103:   # loop depth 4
 bb1104:   # loop depth 4
   JAL zero, bb963
 bb1105:   # loop depth 4
-  JAL zero, bb1104
+  JAL zero, bb963
 bb1106:   # loop depth 4
   JAL zero, bb958
 bb1107:   # loop depth 4
@@ -16107,7 +16107,7 @@ bb1108:   # loop depth 4
 bb1109:   # loop depth 4
   JAL zero, bb959
 bb1110:   # loop depth 4
-  JAL zero, bb1109
+  JAL zero, bb959
 bb1111:   # loop depth 4
   JAL zero, bb954
 bb1112:   # loop depth 4
@@ -16124,7 +16124,7 @@ bb1113:   # loop depth 4
 bb1114:   # loop depth 4
   JAL zero, bb955
 bb1115:   # loop depth 4
-  JAL zero, bb1114
+  JAL zero, bb955
 bb1116:   # loop depth 4
   JAL zero, bb950
 bb1117:   # loop depth 4
@@ -16141,7 +16141,7 @@ bb1118:   # loop depth 4
 bb1119:   # loop depth 4
   JAL zero, bb951
 bb1120:   # loop depth 4
-  JAL zero, bb1119
+  JAL zero, bb951
 bb1121:   # loop depth 4
   JAL zero, bb946
 bb1122:   # loop depth 4
@@ -16158,7 +16158,7 @@ bb1123:   # loop depth 4
 bb1124:   # loop depth 4
   JAL zero, bb947
 bb1125:   # loop depth 4
-  JAL zero, bb1124
+  JAL zero, bb947
 bb1126:   # loop depth 4
   JAL zero, bb942
 bb1127:   # loop depth 4
@@ -16175,7 +16175,7 @@ bb1128:   # loop depth 4
 bb1129:   # loop depth 4
   JAL zero, bb943
 bb1130:   # loop depth 4
-  JAL zero, bb1129
+  JAL zero, bb943
 bb1131:   # loop depth 4
   JAL zero, bb938
 bb1132:   # loop depth 4
@@ -16192,7 +16192,7 @@ bb1133:   # loop depth 4
 bb1134:   # loop depth 4
   JAL zero, bb939
 bb1135:   # loop depth 4
-  JAL zero, bb1134
+  JAL zero, bb939
 bb1136:   # loop depth 4
   JAL zero, bb934
 bb1137:   # loop depth 4
@@ -16209,7 +16209,7 @@ bb1138:   # loop depth 4
 bb1139:   # loop depth 4
   JAL zero, bb935
 bb1140:   # loop depth 4
-  JAL zero, bb1139
+  JAL zero, bb935
 bb1141:   # loop depth 4
   JAL zero, bb930
 bb1142:   # loop depth 4
@@ -16226,7 +16226,7 @@ bb1143:   # loop depth 4
 bb1144:   # loop depth 4
   JAL zero, bb931
 bb1145:   # loop depth 4
-  JAL zero, bb1144
+  JAL zero, bb931
 bb1146:   # loop depth 4
   JAL zero, bb926
 bb1147:   # loop depth 4
@@ -16240,7 +16240,7 @@ bb1148:   # loop depth 4
 bb1149:   # loop depth 4
   JAL zero, bb927
 bb1150:   # loop depth 4
-  JAL zero, bb1149
+  JAL zero, bb927
 bb1151:   # loop depth 4
   LW t0, 1616(sp)
   SLTIU t3, t0, 1
@@ -20239,7 +20239,7 @@ bb1279:   # loop depth 3
   ADDIW t6, t6, 1844
   ADD t6, t6, sp
   LW s0, 0(t6)
-  JAL zero, bb1278
+  JAL zero, bb1272
 bb1280:   # loop depth 3
   LUI t0, 1
   ADDIW t0, t0, -1500
@@ -22446,7 +22446,7 @@ bb1443:   # loop depth 4
 bb1444:   # loop depth 4
   JAL zero, bb1339
 bb1445:   # loop depth 4
-  JAL zero, bb1444
+  JAL zero, bb1339
 bb1446:   # loop depth 4
   JAL zero, bb1334
 bb1447:   # loop depth 4
@@ -22467,7 +22467,7 @@ bb1448:   # loop depth 4
 bb1449:   # loop depth 4
   JAL zero, bb1335
 bb1450:   # loop depth 4
-  JAL zero, bb1449
+  JAL zero, bb1335
 bb1451:   # loop depth 4
   JAL zero, bb1330
 bb1452:   # loop depth 4
@@ -22488,7 +22488,7 @@ bb1453:   # loop depth 4
 bb1454:   # loop depth 4
   JAL zero, bb1331
 bb1455:   # loop depth 4
-  JAL zero, bb1454
+  JAL zero, bb1331
 bb1456:   # loop depth 4
   JAL zero, bb1326
 bb1457:   # loop depth 4
@@ -22509,7 +22509,7 @@ bb1458:   # loop depth 4
 bb1459:   # loop depth 4
   JAL zero, bb1327
 bb1460:   # loop depth 4
-  JAL zero, bb1459
+  JAL zero, bb1327
 bb1461:   # loop depth 4
   JAL zero, bb1322
 bb1462:   # loop depth 4
@@ -22526,7 +22526,7 @@ bb1463:   # loop depth 4
 bb1464:   # loop depth 4
   JAL zero, bb1323
 bb1465:   # loop depth 4
-  JAL zero, bb1464
+  JAL zero, bb1323
 bb1466:   # loop depth 4
   JAL zero, bb1318
 bb1467:   # loop depth 4
@@ -22543,7 +22543,7 @@ bb1468:   # loop depth 4
 bb1469:   # loop depth 4
   JAL zero, bb1319
 bb1470:   # loop depth 4
-  JAL zero, bb1469
+  JAL zero, bb1319
 bb1471:   # loop depth 4
   JAL zero, bb1314
 bb1472:   # loop depth 4
@@ -22560,7 +22560,7 @@ bb1473:   # loop depth 4
 bb1474:   # loop depth 4
   JAL zero, bb1315
 bb1475:   # loop depth 4
-  JAL zero, bb1474
+  JAL zero, bb1315
 bb1476:   # loop depth 4
   JAL zero, bb1310
 bb1477:   # loop depth 4
@@ -22577,7 +22577,7 @@ bb1478:   # loop depth 4
 bb1479:   # loop depth 4
   JAL zero, bb1311
 bb1480:   # loop depth 4
-  JAL zero, bb1479
+  JAL zero, bb1311
 bb1481:   # loop depth 4
   JAL zero, bb1306
 bb1482:   # loop depth 4
@@ -22594,7 +22594,7 @@ bb1483:   # loop depth 4
 bb1484:   # loop depth 4
   JAL zero, bb1307
 bb1485:   # loop depth 4
-  JAL zero, bb1484
+  JAL zero, bb1307
 bb1486:   # loop depth 4
   JAL zero, bb1302
 bb1487:   # loop depth 4
@@ -22611,7 +22611,7 @@ bb1488:   # loop depth 4
 bb1489:   # loop depth 4
   JAL zero, bb1303
 bb1490:   # loop depth 4
-  JAL zero, bb1489
+  JAL zero, bb1303
 bb1491:   # loop depth 4
   JAL zero, bb1298
 bb1492:   # loop depth 4
@@ -22628,7 +22628,7 @@ bb1493:   # loop depth 4
 bb1494:   # loop depth 4
   JAL zero, bb1299
 bb1495:   # loop depth 4
-  JAL zero, bb1494
+  JAL zero, bb1299
 bb1496:   # loop depth 4
   JAL zero, bb1294
 bb1497:   # loop depth 4
@@ -22645,7 +22645,7 @@ bb1498:   # loop depth 4
 bb1499:   # loop depth 4
   JAL zero, bb1295
 bb1500:   # loop depth 4
-  JAL zero, bb1499
+  JAL zero, bb1295
 bb1501:   # loop depth 4
   JAL zero, bb1290
 bb1502:   # loop depth 4
@@ -22662,7 +22662,7 @@ bb1503:   # loop depth 4
 bb1504:   # loop depth 4
   JAL zero, bb1291
 bb1505:   # loop depth 4
-  JAL zero, bb1504
+  JAL zero, bb1291
 bb1506:   # loop depth 4
   JAL zero, bb1286
 bb1507:   # loop depth 4
@@ -22676,7 +22676,7 @@ bb1508:   # loop depth 4
 bb1509:   # loop depth 4
   JAL zero, bb1287
 bb1510:   # loop depth 4
-  JAL zero, bb1509
+  JAL zero, bb1287
 bb1511:   # loop depth 4
   LW t0, 980(sp)
   SLTIU t4, t0, 1
@@ -24247,7 +24247,8 @@ bb1638:   # loop depth 4
 bb1639:   # loop depth 3
   ADD t4, s6, zero
   ADD s8, s6, zero
-  JAL zero, bb1514
+  ADD s6, s8, zero
+  JAL zero, bb1266
 bb1640:   # loop depth 4
   JAL zero, bb1516
 bb1641:   # loop depth 4
@@ -24330,7 +24331,7 @@ bb1673:   # loop depth 4
 bb1674:   # loop depth 4
   JAL zero, bb1578
 bb1675:   # loop depth 4
-  JAL zero, bb1674
+  JAL zero, bb1578
 bb1676:   # loop depth 4
   LUI a2, 1
   ADDIW a2, a2, 1080
@@ -24362,7 +24363,7 @@ bb1680:   # loop depth 4
   ADDIW a2, a2, 1084
   ADD a2, a2, sp
   LW a2, 0(a2)
-  JAL zero, bb1679
+  JAL zero, bb1574
 bb1681:   # loop depth 4
   JAL zero, bb1569
 bb1682:   # loop depth 4
@@ -24383,7 +24384,7 @@ bb1683:   # loop depth 4
 bb1684:   # loop depth 4
   JAL zero, bb1570
 bb1685:   # loop depth 4
-  JAL zero, bb1684
+  JAL zero, bb1570
 bb1686:   # loop depth 4
   JAL zero, bb1565
 bb1687:   # loop depth 4
@@ -24404,7 +24405,7 @@ bb1688:   # loop depth 4
 bb1689:   # loop depth 4
   JAL zero, bb1566
 bb1690:   # loop depth 4
-  JAL zero, bb1689
+  JAL zero, bb1566
 bb1691:   # loop depth 4
   JAL zero, bb1561
 bb1692:   # loop depth 4
@@ -24425,7 +24426,7 @@ bb1693:   # loop depth 4
 bb1694:   # loop depth 4
   JAL zero, bb1562
 bb1695:   # loop depth 4
-  JAL zero, bb1694
+  JAL zero, bb1562
 bb1696:   # loop depth 4
   JAL zero, bb1557
 bb1697:   # loop depth 4
@@ -24442,7 +24443,7 @@ bb1698:   # loop depth 4
 bb1699:   # loop depth 4
   JAL zero, bb1558
 bb1700:   # loop depth 4
-  JAL zero, bb1699
+  JAL zero, bb1558
 bb1701:   # loop depth 4
   JAL zero, bb1553
 bb1702:   # loop depth 4
@@ -24459,7 +24460,7 @@ bb1703:   # loop depth 4
 bb1704:   # loop depth 4
   JAL zero, bb1554
 bb1705:   # loop depth 4
-  JAL zero, bb1704
+  JAL zero, bb1554
 bb1706:   # loop depth 4
   JAL zero, bb1549
 bb1707:   # loop depth 4
@@ -24476,7 +24477,7 @@ bb1708:   # loop depth 4
 bb1709:   # loop depth 4
   JAL zero, bb1550
 bb1710:   # loop depth 4
-  JAL zero, bb1709
+  JAL zero, bb1550
 bb1711:   # loop depth 4
   JAL zero, bb1545
 bb1712:   # loop depth 4
@@ -24493,7 +24494,7 @@ bb1713:   # loop depth 4
 bb1714:   # loop depth 4
   JAL zero, bb1546
 bb1715:   # loop depth 4
-  JAL zero, bb1714
+  JAL zero, bb1546
 bb1716:   # loop depth 4
   JAL zero, bb1541
 bb1717:   # loop depth 4
@@ -24510,7 +24511,7 @@ bb1718:   # loop depth 4
 bb1719:   # loop depth 4
   JAL zero, bb1542
 bb1720:   # loop depth 4
-  JAL zero, bb1719
+  JAL zero, bb1542
 bb1721:   # loop depth 4
   JAL zero, bb1537
 bb1722:   # loop depth 4
@@ -24527,7 +24528,7 @@ bb1723:   # loop depth 4
 bb1724:   # loop depth 4
   JAL zero, bb1538
 bb1725:   # loop depth 4
-  JAL zero, bb1724
+  JAL zero, bb1538
 bb1726:   # loop depth 4
   JAL zero, bb1533
 bb1727:   # loop depth 4
@@ -24544,7 +24545,7 @@ bb1728:   # loop depth 4
 bb1729:   # loop depth 4
   JAL zero, bb1534
 bb1730:   # loop depth 4
-  JAL zero, bb1729
+  JAL zero, bb1534
 bb1731:   # loop depth 4
   JAL zero, bb1529
 bb1732:   # loop depth 4
@@ -24561,7 +24562,7 @@ bb1733:   # loop depth 4
 bb1734:   # loop depth 4
   JAL zero, bb1530
 bb1735:   # loop depth 4
-  JAL zero, bb1734
+  JAL zero, bb1530
 bb1736:   # loop depth 4
   JAL zero, bb1525
 bb1737:   # loop depth 4
@@ -24578,7 +24579,7 @@ bb1738:   # loop depth 4
 bb1739:   # loop depth 4
   JAL zero, bb1526
 bb1740:   # loop depth 4
-  JAL zero, bb1739
+  JAL zero, bb1526
 bb1741:   # loop depth 4
   JAL zero, bb1521
 bb1742:   # loop depth 4
@@ -24592,7 +24593,7 @@ bb1743:   # loop depth 4
 bb1744:   # loop depth 4
   JAL zero, bb1522
 bb1745:   # loop depth 4
-  JAL zero, bb1744
+  JAL zero, bb1522
 bb1746:   # loop depth 4
   LW t0, 992(sp)
   SLTIU a4, t0, 1
@@ -27710,7 +27711,7 @@ bb1975:   # loop depth 4
 bb1976:   # loop depth 4
   JAL zero, bb1871
 bb1977:   # loop depth 4
-  JAL zero, bb1976
+  JAL zero, bb1871
 bb1978:   # loop depth 4
   JAL zero, bb1866
 bb1979:   # loop depth 4
@@ -27731,7 +27732,7 @@ bb1980:   # loop depth 4
 bb1981:   # loop depth 4
   JAL zero, bb1867
 bb1982:   # loop depth 4
-  JAL zero, bb1981
+  JAL zero, bb1867
 bb1983:   # loop depth 4
   JAL zero, bb1862
 bb1984:   # loop depth 4
@@ -27752,7 +27753,7 @@ bb1985:   # loop depth 4
 bb1986:   # loop depth 4
   JAL zero, bb1863
 bb1987:   # loop depth 4
-  JAL zero, bb1986
+  JAL zero, bb1863
 bb1988:   # loop depth 4
   JAL zero, bb1858
 bb1989:   # loop depth 4
@@ -27773,7 +27774,7 @@ bb1990:   # loop depth 4
 bb1991:   # loop depth 4
   JAL zero, bb1859
 bb1992:   # loop depth 4
-  JAL zero, bb1991
+  JAL zero, bb1859
 bb1993:   # loop depth 4
   JAL zero, bb1854
 bb1994:   # loop depth 4
@@ -27790,7 +27791,7 @@ bb1995:   # loop depth 4
 bb1996:   # loop depth 4
   JAL zero, bb1855
 bb1997:   # loop depth 4
-  JAL zero, bb1996
+  JAL zero, bb1855
 bb1998:   # loop depth 4
   JAL zero, bb1850
 bb1999:   # loop depth 4
@@ -27807,7 +27808,7 @@ bb2000:   # loop depth 4
 bb2001:   # loop depth 4
   JAL zero, bb1851
 bb2002:   # loop depth 4
-  JAL zero, bb2001
+  JAL zero, bb1851
 bb2003:   # loop depth 4
   JAL zero, bb1846
 bb2004:   # loop depth 4
@@ -27824,7 +27825,7 @@ bb2005:   # loop depth 4
 bb2006:   # loop depth 4
   JAL zero, bb1847
 bb2007:   # loop depth 4
-  JAL zero, bb2006
+  JAL zero, bb1847
 bb2008:   # loop depth 4
   JAL zero, bb1842
 bb2009:   # loop depth 4
@@ -27841,7 +27842,7 @@ bb2010:   # loop depth 4
 bb2011:   # loop depth 4
   JAL zero, bb1843
 bb2012:   # loop depth 4
-  JAL zero, bb2011
+  JAL zero, bb1843
 bb2013:   # loop depth 4
   JAL zero, bb1838
 bb2014:   # loop depth 4
@@ -27858,7 +27859,7 @@ bb2015:   # loop depth 4
 bb2016:   # loop depth 4
   JAL zero, bb1839
 bb2017:   # loop depth 4
-  JAL zero, bb2016
+  JAL zero, bb1839
 bb2018:   # loop depth 4
   JAL zero, bb1834
 bb2019:   # loop depth 4
@@ -27875,7 +27876,7 @@ bb2020:   # loop depth 4
 bb2021:   # loop depth 4
   JAL zero, bb1835
 bb2022:   # loop depth 4
-  JAL zero, bb2021
+  JAL zero, bb1835
 bb2023:   # loop depth 4
   JAL zero, bb1830
 bb2024:   # loop depth 4
@@ -27892,7 +27893,7 @@ bb2025:   # loop depth 4
 bb2026:   # loop depth 4
   JAL zero, bb1831
 bb2027:   # loop depth 4
-  JAL zero, bb2026
+  JAL zero, bb1831
 bb2028:   # loop depth 4
   JAL zero, bb1826
 bb2029:   # loop depth 4
@@ -27909,7 +27910,7 @@ bb2030:   # loop depth 4
 bb2031:   # loop depth 4
   JAL zero, bb1827
 bb2032:   # loop depth 4
-  JAL zero, bb2031
+  JAL zero, bb1827
 bb2033:   # loop depth 4
   JAL zero, bb1822
 bb2034:   # loop depth 4
@@ -27926,7 +27927,7 @@ bb2035:   # loop depth 4
 bb2036:   # loop depth 4
   JAL zero, bb1823
 bb2037:   # loop depth 4
-  JAL zero, bb2036
+  JAL zero, bb1823
 bb2038:   # loop depth 4
   JAL zero, bb1818
 bb2039:   # loop depth 4
@@ -27940,7 +27941,7 @@ bb2040:   # loop depth 4
 bb2041:   # loop depth 4
   JAL zero, bb1819
 bb2042:   # loop depth 4
-  JAL zero, bb2041
+  JAL zero, bb1819
 bb2043:   # loop depth 4
   LW t0, 1056(sp)
   SLTIU a6, t0, 1
@@ -29454,7 +29455,7 @@ bb2205:   # loop depth 4
 bb2206:   # loop depth 4
   JAL zero, bb2110
 bb2207:   # loop depth 4
-  JAL zero, bb2206
+  JAL zero, bb2110
 bb2208:   # loop depth 4
   LUI a3, 1
   ADDIW a3, a3, 1092
@@ -29486,7 +29487,7 @@ bb2212:   # loop depth 4
   ADDIW a3, a3, 1096
   ADD a3, a3, sp
   LW a3, 0(a3)
-  JAL zero, bb2211
+  JAL zero, bb2106
 bb2213:   # loop depth 4
   JAL zero, bb2101
 bb2214:   # loop depth 4
@@ -29507,7 +29508,7 @@ bb2215:   # loop depth 4
 bb2216:   # loop depth 4
   JAL zero, bb2102
 bb2217:   # loop depth 4
-  JAL zero, bb2216
+  JAL zero, bb2102
 bb2218:   # loop depth 4
   JAL zero, bb2097
 bb2219:   # loop depth 4
@@ -29528,7 +29529,7 @@ bb2220:   # loop depth 4
 bb2221:   # loop depth 4
   JAL zero, bb2098
 bb2222:   # loop depth 4
-  JAL zero, bb2221
+  JAL zero, bb2098
 bb2223:   # loop depth 4
   JAL zero, bb2093
 bb2224:   # loop depth 4
@@ -29549,7 +29550,7 @@ bb2225:   # loop depth 4
 bb2226:   # loop depth 4
   JAL zero, bb2094
 bb2227:   # loop depth 4
-  JAL zero, bb2226
+  JAL zero, bb2094
 bb2228:   # loop depth 4
   JAL zero, bb2089
 bb2229:   # loop depth 4
@@ -29566,7 +29567,7 @@ bb2230:   # loop depth 4
 bb2231:   # loop depth 4
   JAL zero, bb2090
 bb2232:   # loop depth 4
-  JAL zero, bb2231
+  JAL zero, bb2090
 bb2233:   # loop depth 4
   JAL zero, bb2085
 bb2234:   # loop depth 4
@@ -29583,7 +29584,7 @@ bb2235:   # loop depth 4
 bb2236:   # loop depth 4
   JAL zero, bb2086
 bb2237:   # loop depth 4
-  JAL zero, bb2236
+  JAL zero, bb2086
 bb2238:   # loop depth 4
   JAL zero, bb2081
 bb2239:   # loop depth 4
@@ -29600,7 +29601,7 @@ bb2240:   # loop depth 4
 bb2241:   # loop depth 4
   JAL zero, bb2082
 bb2242:   # loop depth 4
-  JAL zero, bb2241
+  JAL zero, bb2082
 bb2243:   # loop depth 4
   JAL zero, bb2077
 bb2244:   # loop depth 4
@@ -29617,7 +29618,7 @@ bb2245:   # loop depth 4
 bb2246:   # loop depth 4
   JAL zero, bb2078
 bb2247:   # loop depth 4
-  JAL zero, bb2246
+  JAL zero, bb2078
 bb2248:   # loop depth 4
   JAL zero, bb2073
 bb2249:   # loop depth 4
@@ -29634,7 +29635,7 @@ bb2250:   # loop depth 4
 bb2251:   # loop depth 4
   JAL zero, bb2074
 bb2252:   # loop depth 4
-  JAL zero, bb2251
+  JAL zero, bb2074
 bb2253:   # loop depth 4
   JAL zero, bb2069
 bb2254:   # loop depth 4
@@ -29651,7 +29652,7 @@ bb2255:   # loop depth 4
 bb2256:   # loop depth 4
   JAL zero, bb2070
 bb2257:   # loop depth 4
-  JAL zero, bb2256
+  JAL zero, bb2070
 bb2258:   # loop depth 4
   JAL zero, bb2065
 bb2259:   # loop depth 4
@@ -29668,7 +29669,7 @@ bb2260:   # loop depth 4
 bb2261:   # loop depth 4
   JAL zero, bb2066
 bb2262:   # loop depth 4
-  JAL zero, bb2261
+  JAL zero, bb2066
 bb2263:   # loop depth 4
   JAL zero, bb2061
 bb2264:   # loop depth 4
@@ -29685,7 +29686,7 @@ bb2265:   # loop depth 4
 bb2266:   # loop depth 4
   JAL zero, bb2062
 bb2267:   # loop depth 4
-  JAL zero, bb2266
+  JAL zero, bb2062
 bb2268:   # loop depth 4
   JAL zero, bb2057
 bb2269:   # loop depth 4
@@ -29702,7 +29703,7 @@ bb2270:   # loop depth 4
 bb2271:   # loop depth 4
   JAL zero, bb2058
 bb2272:   # loop depth 4
-  JAL zero, bb2271
+  JAL zero, bb2058
 bb2273:   # loop depth 4
   JAL zero, bb2053
 bb2274:   # loop depth 4
@@ -29716,7 +29717,7 @@ bb2275:   # loop depth 4
 bb2276:   # loop depth 4
   JAL zero, bb2054
 bb2277:   # loop depth 4
-  JAL zero, bb2276
+  JAL zero, bb2054
 bb2278:   # loop depth 4
   LW t0, 940(sp)
   SLTIU t1, t0, 1
@@ -31087,7 +31088,7 @@ bb2362:   # loop depth 2
   ADDIW t6, t6, 1844
   ADD t6, t6, sp
   LW s7, 0(t6)
-  JAL zero, bb2361
+  JAL zero, bb2355
 bb2363:   # loop depth 2
   LW t0, 1960(sp)
   LUI t6, 1
@@ -32608,7 +32609,7 @@ bb2526:   # loop depth 3
 bb2527:   # loop depth 3
   JAL zero, bb2422
 bb2528:   # loop depth 3
-  JAL zero, bb2527
+  JAL zero, bb2422
 bb2529:   # loop depth 3
   JAL zero, bb2417
 bb2530:   # loop depth 3
@@ -32629,7 +32630,7 @@ bb2531:   # loop depth 3
 bb2532:   # loop depth 3
   JAL zero, bb2418
 bb2533:   # loop depth 3
-  JAL zero, bb2532
+  JAL zero, bb2418
 bb2534:   # loop depth 3
   JAL zero, bb2413
 bb2535:   # loop depth 3
@@ -32650,7 +32651,7 @@ bb2536:   # loop depth 3
 bb2537:   # loop depth 3
   JAL zero, bb2414
 bb2538:   # loop depth 3
-  JAL zero, bb2537
+  JAL zero, bb2414
 bb2539:   # loop depth 3
   JAL zero, bb2409
 bb2540:   # loop depth 3
@@ -32671,7 +32672,7 @@ bb2541:   # loop depth 3
 bb2542:   # loop depth 3
   JAL zero, bb2410
 bb2543:   # loop depth 3
-  JAL zero, bb2542
+  JAL zero, bb2410
 bb2544:   # loop depth 3
   JAL zero, bb2405
 bb2545:   # loop depth 3
@@ -32688,7 +32689,7 @@ bb2546:   # loop depth 3
 bb2547:   # loop depth 3
   JAL zero, bb2406
 bb2548:   # loop depth 3
-  JAL zero, bb2547
+  JAL zero, bb2406
 bb2549:   # loop depth 3
   JAL zero, bb2401
 bb2550:   # loop depth 3
@@ -32705,7 +32706,7 @@ bb2551:   # loop depth 3
 bb2552:   # loop depth 3
   JAL zero, bb2402
 bb2553:   # loop depth 3
-  JAL zero, bb2552
+  JAL zero, bb2402
 bb2554:   # loop depth 3
   JAL zero, bb2397
 bb2555:   # loop depth 3
@@ -32722,7 +32723,7 @@ bb2556:   # loop depth 3
 bb2557:   # loop depth 3
   JAL zero, bb2398
 bb2558:   # loop depth 3
-  JAL zero, bb2557
+  JAL zero, bb2398
 bb2559:   # loop depth 3
   JAL zero, bb2393
 bb2560:   # loop depth 3
@@ -32739,7 +32740,7 @@ bb2561:   # loop depth 3
 bb2562:   # loop depth 3
   JAL zero, bb2394
 bb2563:   # loop depth 3
-  JAL zero, bb2562
+  JAL zero, bb2394
 bb2564:   # loop depth 3
   JAL zero, bb2389
 bb2565:   # loop depth 3
@@ -32756,7 +32757,7 @@ bb2566:   # loop depth 3
 bb2567:   # loop depth 3
   JAL zero, bb2390
 bb2568:   # loop depth 3
-  JAL zero, bb2567
+  JAL zero, bb2390
 bb2569:   # loop depth 3
   JAL zero, bb2385
 bb2570:   # loop depth 3
@@ -32773,7 +32774,7 @@ bb2571:   # loop depth 3
 bb2572:   # loop depth 3
   JAL zero, bb2386
 bb2573:   # loop depth 3
-  JAL zero, bb2572
+  JAL zero, bb2386
 bb2574:   # loop depth 3
   JAL zero, bb2381
 bb2575:   # loop depth 3
@@ -32790,7 +32791,7 @@ bb2576:   # loop depth 3
 bb2577:   # loop depth 3
   JAL zero, bb2382
 bb2578:   # loop depth 3
-  JAL zero, bb2577
+  JAL zero, bb2382
 bb2579:   # loop depth 3
   JAL zero, bb2377
 bb2580:   # loop depth 3
@@ -32807,7 +32808,7 @@ bb2581:   # loop depth 3
 bb2582:   # loop depth 3
   JAL zero, bb2378
 bb2583:   # loop depth 3
-  JAL zero, bb2582
+  JAL zero, bb2378
 bb2584:   # loop depth 3
   JAL zero, bb2373
 bb2585:   # loop depth 3
@@ -32821,7 +32822,7 @@ bb2586:   # loop depth 3
 bb2587:   # loop depth 3
   JAL zero, bb2374
 bb2588:   # loop depth 3
-  JAL zero, bb2587
+  JAL zero, bb2374
 bb2589:   # loop depth 3
   JAL zero, bb2369
 bb2590:   # loop depth 3
@@ -32838,7 +32839,7 @@ bb2591:   # loop depth 3
 bb2592:   # loop depth 3
   JAL zero, bb2370
 bb2593:   # loop depth 3
-  JAL zero, bb2592
+  JAL zero, bb2370
 bb2594:   # loop depth 3
   LUI t0, 1
   ADDIW t0, t0, -768
@@ -34124,7 +34125,7 @@ bb2761:   # loop depth 3
 bb2762:   # loop depth 3
   JAL zero, bb2657
 bb2763:   # loop depth 3
-  JAL zero, bb2762
+  JAL zero, bb2657
 bb2764:   # loop depth 3
   JAL zero, bb2652
 bb2765:   # loop depth 3
@@ -34142,7 +34143,7 @@ bb2766:   # loop depth 3
 bb2767:   # loop depth 3
   JAL zero, bb2653
 bb2768:   # loop depth 3
-  JAL zero, bb2767
+  JAL zero, bb2653
 bb2769:   # loop depth 3
   JAL zero, bb2648
 bb2770:   # loop depth 3
@@ -34160,7 +34161,7 @@ bb2771:   # loop depth 3
 bb2772:   # loop depth 3
   JAL zero, bb2649
 bb2773:   # loop depth 3
-  JAL zero, bb2772
+  JAL zero, bb2649
 bb2774:   # loop depth 3
   JAL zero, bb2644
 bb2775:   # loop depth 3
@@ -34178,7 +34179,7 @@ bb2776:   # loop depth 3
 bb2777:   # loop depth 3
   JAL zero, bb2645
 bb2778:   # loop depth 3
-  JAL zero, bb2777
+  JAL zero, bb2645
 bb2779:   # loop depth 3
   JAL zero, bb2640
 bb2780:   # loop depth 3
@@ -34192,7 +34193,7 @@ bb2781:   # loop depth 3
 bb2782:   # loop depth 3
   JAL zero, bb2641
 bb2783:   # loop depth 3
-  JAL zero, bb2782
+  JAL zero, bb2641
 bb2784:   # loop depth 3
   JAL zero, bb2636
 bb2785:   # loop depth 3
@@ -34206,7 +34207,7 @@ bb2786:   # loop depth 3
 bb2787:   # loop depth 3
   JAL zero, bb2637
 bb2788:   # loop depth 3
-  JAL zero, bb2787
+  JAL zero, bb2637
 bb2789:   # loop depth 3
   JAL zero, bb2632
 bb2790:   # loop depth 3
@@ -34220,7 +34221,7 @@ bb2791:   # loop depth 3
 bb2792:   # loop depth 3
   JAL zero, bb2633
 bb2793:   # loop depth 3
-  JAL zero, bb2792
+  JAL zero, bb2633
 bb2794:   # loop depth 3
   JAL zero, bb2628
 bb2795:   # loop depth 3
@@ -34234,7 +34235,7 @@ bb2796:   # loop depth 3
 bb2797:   # loop depth 3
   JAL zero, bb2629
 bb2798:   # loop depth 3
-  JAL zero, bb2797
+  JAL zero, bb2629
 bb2799:   # loop depth 3
   JAL zero, bb2624
 bb2800:   # loop depth 3
@@ -34248,7 +34249,7 @@ bb2801:   # loop depth 3
 bb2802:   # loop depth 3
   JAL zero, bb2625
 bb2803:   # loop depth 3
-  JAL zero, bb2802
+  JAL zero, bb2625
 bb2804:   # loop depth 3
   JAL zero, bb2620
 bb2805:   # loop depth 3
@@ -34262,7 +34263,7 @@ bb2806:   # loop depth 3
 bb2807:   # loop depth 3
   JAL zero, bb2621
 bb2808:   # loop depth 3
-  JAL zero, bb2807
+  JAL zero, bb2621
 bb2809:   # loop depth 3
   JAL zero, bb2616
 bb2810:   # loop depth 3
@@ -34276,7 +34277,7 @@ bb2811:   # loop depth 3
 bb2812:   # loop depth 3
   JAL zero, bb2617
 bb2813:   # loop depth 3
-  JAL zero, bb2812
+  JAL zero, bb2617
 bb2814:   # loop depth 3
   JAL zero, bb2612
 bb2815:   # loop depth 3
@@ -34290,7 +34291,7 @@ bb2816:   # loop depth 3
 bb2817:   # loop depth 3
   JAL zero, bb2613
 bb2818:   # loop depth 3
-  JAL zero, bb2817
+  JAL zero, bb2613
 bb2819:   # loop depth 3
   JAL zero, bb2608
 bb2820:   # loop depth 3
@@ -34304,7 +34305,7 @@ bb2821:   # loop depth 3
 bb2822:   # loop depth 3
   JAL zero, bb2609
 bb2823:   # loop depth 3
-  JAL zero, bb2822
+  JAL zero, bb2609
 bb2824:   # loop depth 3
   JAL zero, bb2604
 bb2825:   # loop depth 3
@@ -34321,7 +34322,7 @@ bb2826:   # loop depth 3
 bb2827:   # loop depth 3
   JAL zero, bb2605
 bb2828:   # loop depth 3
-  JAL zero, bb2827
+  JAL zero, bb2605
 bb2829:   # loop depth 3
   LUI t0, 1
   ADDIW t0, t0, -760
@@ -37139,7 +37140,7 @@ bb3058:   # loop depth 3
 bb3059:   # loop depth 3
   JAL zero, bb2954
 bb3060:   # loop depth 3
-  JAL zero, bb3059
+  JAL zero, bb2954
 bb3061:   # loop depth 3
   JAL zero, bb2949
 bb3062:   # loop depth 3
@@ -37157,7 +37158,7 @@ bb3063:   # loop depth 3
 bb3064:   # loop depth 3
   JAL zero, bb2950
 bb3065:   # loop depth 3
-  JAL zero, bb3064
+  JAL zero, bb2950
 bb3066:   # loop depth 3
   JAL zero, bb2945
 bb3067:   # loop depth 3
@@ -37175,7 +37176,7 @@ bb3068:   # loop depth 3
 bb3069:   # loop depth 3
   JAL zero, bb2946
 bb3070:   # loop depth 3
-  JAL zero, bb3069
+  JAL zero, bb2946
 bb3071:   # loop depth 3
   JAL zero, bb2941
 bb3072:   # loop depth 3
@@ -37193,7 +37194,7 @@ bb3073:   # loop depth 3
 bb3074:   # loop depth 3
   JAL zero, bb2942
 bb3075:   # loop depth 3
-  JAL zero, bb3074
+  JAL zero, bb2942
 bb3076:   # loop depth 3
   JAL zero, bb2937
 bb3077:   # loop depth 3
@@ -37207,7 +37208,7 @@ bb3078:   # loop depth 3
 bb3079:   # loop depth 3
   JAL zero, bb2938
 bb3080:   # loop depth 3
-  JAL zero, bb3079
+  JAL zero, bb2938
 bb3081:   # loop depth 3
   JAL zero, bb2933
 bb3082:   # loop depth 3
@@ -37221,7 +37222,7 @@ bb3083:   # loop depth 3
 bb3084:   # loop depth 3
   JAL zero, bb2934
 bb3085:   # loop depth 3
-  JAL zero, bb3084
+  JAL zero, bb2934
 bb3086:   # loop depth 3
   JAL zero, bb2929
 bb3087:   # loop depth 3
@@ -37235,7 +37236,7 @@ bb3088:   # loop depth 3
 bb3089:   # loop depth 3
   JAL zero, bb2930
 bb3090:   # loop depth 3
-  JAL zero, bb3089
+  JAL zero, bb2930
 bb3091:   # loop depth 3
   JAL zero, bb2925
 bb3092:   # loop depth 3
@@ -37249,7 +37250,7 @@ bb3093:   # loop depth 3
 bb3094:   # loop depth 3
   JAL zero, bb2926
 bb3095:   # loop depth 3
-  JAL zero, bb3094
+  JAL zero, bb2926
 bb3096:   # loop depth 3
   JAL zero, bb2921
 bb3097:   # loop depth 3
@@ -37263,7 +37264,7 @@ bb3098:   # loop depth 3
 bb3099:   # loop depth 3
   JAL zero, bb2922
 bb3100:   # loop depth 3
-  JAL zero, bb3099
+  JAL zero, bb2922
 bb3101:   # loop depth 3
   JAL zero, bb2917
 bb3102:   # loop depth 3
@@ -37277,7 +37278,7 @@ bb3103:   # loop depth 3
 bb3104:   # loop depth 3
   JAL zero, bb2918
 bb3105:   # loop depth 3
-  JAL zero, bb3104
+  JAL zero, bb2918
 bb3106:   # loop depth 3
   JAL zero, bb2913
 bb3107:   # loop depth 3
@@ -37291,7 +37292,7 @@ bb3108:   # loop depth 3
 bb3109:   # loop depth 3
   JAL zero, bb2914
 bb3110:   # loop depth 3
-  JAL zero, bb3109
+  JAL zero, bb2914
 bb3111:   # loop depth 3
   JAL zero, bb2909
 bb3112:   # loop depth 3
@@ -37305,7 +37306,7 @@ bb3113:   # loop depth 3
 bb3114:   # loop depth 3
   JAL zero, bb2910
 bb3115:   # loop depth 3
-  JAL zero, bb3114
+  JAL zero, bb2910
 bb3116:   # loop depth 3
   JAL zero, bb2905
 bb3117:   # loop depth 3
@@ -37319,7 +37320,7 @@ bb3118:   # loop depth 3
 bb3119:   # loop depth 3
   JAL zero, bb2906
 bb3120:   # loop depth 3
-  JAL zero, bb3119
+  JAL zero, bb2906
 bb3121:   # loop depth 3
   JAL zero, bb2901
 bb3122:   # loop depth 3
@@ -37336,7 +37337,7 @@ bb3123:   # loop depth 3
 bb3124:   # loop depth 3
   JAL zero, bb2902
 bb3125:   # loop depth 3
-  JAL zero, bb3124
+  JAL zero, bb2902
 bb3126:   # loop depth 3
   LUI t0, 1
   ADDIW t0, t0, -752
@@ -38753,7 +38754,7 @@ bb3293:   # loop depth 3
 bb3294:   # loop depth 3
   JAL zero, bb3189
 bb3295:   # loop depth 3
-  JAL zero, bb3294
+  JAL zero, bb3189
 bb3296:   # loop depth 3
   JAL zero, bb3184
 bb3297:   # loop depth 3
@@ -38771,7 +38772,7 @@ bb3298:   # loop depth 3
 bb3299:   # loop depth 3
   JAL zero, bb3185
 bb3300:   # loop depth 3
-  JAL zero, bb3299
+  JAL zero, bb3185
 bb3301:   # loop depth 3
   JAL zero, bb3180
 bb3302:   # loop depth 3
@@ -38789,7 +38790,7 @@ bb3303:   # loop depth 3
 bb3304:   # loop depth 3
   JAL zero, bb3181
 bb3305:   # loop depth 3
-  JAL zero, bb3304
+  JAL zero, bb3181
 bb3306:   # loop depth 3
   JAL zero, bb3176
 bb3307:   # loop depth 3
@@ -38807,7 +38808,7 @@ bb3308:   # loop depth 3
 bb3309:   # loop depth 3
   JAL zero, bb3177
 bb3310:   # loop depth 3
-  JAL zero, bb3309
+  JAL zero, bb3177
 bb3311:   # loop depth 3
   JAL zero, bb3172
 bb3312:   # loop depth 3
@@ -38821,7 +38822,7 @@ bb3313:   # loop depth 3
 bb3314:   # loop depth 3
   JAL zero, bb3173
 bb3315:   # loop depth 3
-  JAL zero, bb3314
+  JAL zero, bb3173
 bb3316:   # loop depth 3
   JAL zero, bb3168
 bb3317:   # loop depth 3
@@ -38835,7 +38836,7 @@ bb3318:   # loop depth 3
 bb3319:   # loop depth 3
   JAL zero, bb3169
 bb3320:   # loop depth 3
-  JAL zero, bb3319
+  JAL zero, bb3169
 bb3321:   # loop depth 3
   JAL zero, bb3164
 bb3322:   # loop depth 3
@@ -38849,7 +38850,7 @@ bb3323:   # loop depth 3
 bb3324:   # loop depth 3
   JAL zero, bb3165
 bb3325:   # loop depth 3
-  JAL zero, bb3324
+  JAL zero, bb3165
 bb3326:   # loop depth 3
   JAL zero, bb3160
 bb3327:   # loop depth 3
@@ -38863,7 +38864,7 @@ bb3328:   # loop depth 3
 bb3329:   # loop depth 3
   JAL zero, bb3161
 bb3330:   # loop depth 3
-  JAL zero, bb3329
+  JAL zero, bb3161
 bb3331:   # loop depth 3
   JAL zero, bb3156
 bb3332:   # loop depth 3
@@ -38877,7 +38878,7 @@ bb3333:   # loop depth 3
 bb3334:   # loop depth 3
   JAL zero, bb3157
 bb3335:   # loop depth 3
-  JAL zero, bb3334
+  JAL zero, bb3157
 bb3336:   # loop depth 3
   JAL zero, bb3152
 bb3337:   # loop depth 3
@@ -38891,7 +38892,7 @@ bb3338:   # loop depth 3
 bb3339:   # loop depth 3
   JAL zero, bb3153
 bb3340:   # loop depth 3
-  JAL zero, bb3339
+  JAL zero, bb3153
 bb3341:   # loop depth 3
   JAL zero, bb3148
 bb3342:   # loop depth 3
@@ -38905,7 +38906,7 @@ bb3343:   # loop depth 3
 bb3344:   # loop depth 3
   JAL zero, bb3149
 bb3345:   # loop depth 3
-  JAL zero, bb3344
+  JAL zero, bb3149
 bb3346:   # loop depth 3
   JAL zero, bb3144
 bb3347:   # loop depth 3
@@ -38919,7 +38920,7 @@ bb3348:   # loop depth 3
 bb3349:   # loop depth 3
   JAL zero, bb3145
 bb3350:   # loop depth 3
-  JAL zero, bb3349
+  JAL zero, bb3145
 bb3351:   # loop depth 3
   JAL zero, bb3140
 bb3352:   # loop depth 3
@@ -38933,7 +38934,7 @@ bb3353:   # loop depth 3
 bb3354:   # loop depth 3
   JAL zero, bb3141
 bb3355:   # loop depth 3
-  JAL zero, bb3354
+  JAL zero, bb3141
 bb3356:   # loop depth 3
   JAL zero, bb3136
 bb3357:   # loop depth 3
@@ -38950,7 +38951,7 @@ bb3358:   # loop depth 3
 bb3359:   # loop depth 3
   JAL zero, bb3137
 bb3360:   # loop depth 3
-  JAL zero, bb3359
+  JAL zero, bb3137
 bb3361:   # loop depth 3
   LUI t0, 1
   ADDIW t0, t0, -744

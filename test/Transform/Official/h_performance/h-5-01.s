@@ -196,7 +196,10 @@ bb32:   # loop depth 2
   BLT a2, a1, bb34
   # implict jump to bb33
 bb33:   # loop depth 1
-  JAL zero, bb27
+  ADDW a3, a3, s1
+  ADDIW a0, a0, 1
+  BLT a0, a1, bb28
+  JAL zero, bb1
 bb34:   # loop depth 2
   JAL zero, bb30
 bb35:   # loop depth 2

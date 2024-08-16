@@ -94,7 +94,9 @@ bb15:   # loop depth 1
 bb16:   # loop depth 1
   SH2ADD t0, a0, s0
   SW s1, 0(t0)
-  JAL zero, bb14
+  ADDIW s3, s3, 1
+  BLT s3, s5, bb15
+  JAL zero, bb2
 bb17:   # loop depth 0
   ADD t0, zero, zero
   # implict jump to bb18

@@ -148,7 +148,8 @@ bb26:   # loop depth 1
   SH2ADD a3, a4, a7
   ADD t0, t1, zero
   SW zero, 0(a3)
-  JAL zero, bb25
+  ADD t1, t0, zero
+  JAL zero, bb14
 bb27:   # loop depth 1
   LW t0, 0(t4)
   SH2ADD a3, a4, a7
@@ -174,7 +175,7 @@ bb30:   # loop depth 1
   JAL zero, bb16
 bb31:   # loop depth 1
   ADDIW a0, a0, -1
-  JAL zero, bb30
+  JAL zero, bb16
 bb32:   # loop depth 1
   SH2ADD t0, a4, a7
   LW a6, 0(t0)
@@ -223,7 +224,8 @@ bb44:   # loop depth 1
   ADD t0, t0, a3
   ADD a3, t2, zero
   SW t2, 0(t0)
-  JAL zero, bb40
+  ADD t2, a3, zero
+  JAL zero, bb17
 bb45:   # loop depth 1
   SH2ADD t0, a4, a7
   LW a3, 0(t0)
@@ -241,7 +243,9 @@ bb47:   # loop depth 1
   JAL zero, bb20
 bb48:   # loop depth 1
   ADDIW a4, a4, 1
-  JAL zero, bb21
+  ADDIW t2, t2, 1
+  BLT t2, a5, bb22
+  JAL zero, bb3
 bb49:   # loop depth 1
   JAL zero, bb1
 main:   # loop depth 0

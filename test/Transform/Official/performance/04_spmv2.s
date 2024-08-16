@@ -122,7 +122,8 @@ bb14:   # loop depth 3
   ADDW a2, a2, a3
   SW a2, 0(t2)
   BLT t0, a1, bb15
-  JAL zero, bb11
+  BLT a0, s0, bb12
+  JAL zero, bb5
 bb15:   # loop depth 3
   JAL zero, bb14
 bb16:   # loop depth 2
@@ -191,7 +192,8 @@ bb29:   # loop depth 3
   ADDW a2, a2, a3
   SW a2, 0(t2)
   BLT t0, a1, bb30
-  JAL zero, bb26
+  BLT a0, s0, bb27
+  JAL zero, bb3
 bb30:   # loop depth 3
   JAL zero, bb29
 bb31:   # loop depth 2

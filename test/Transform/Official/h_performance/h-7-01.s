@@ -126,4 +126,7 @@ bb18:   # loop depth 1
   JAL zero, bb6
 bb19:   # loop depth 1
   FSGNJ.S ft0, ft4, ft4
-  JAL zero, bb9
+  ADDIW t0, t0, 1
+  FSW ft0, 0(t1)
+  BLT t0, s0, bb10
+  JAL zero, bb1

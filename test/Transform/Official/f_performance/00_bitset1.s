@@ -238,9 +238,10 @@ bb19:   # loop depth 1
   # implict jump to bb20
 bb20:   # loop depth 1
   ADD t0, t1, zero
-  JAL zero, bb17
+  JAL zero, bb8
 bb21:   # loop depth 1
-  JAL zero, bb20
+  ADD t0, t1, zero
+  JAL zero, bb8
 bb22:   # loop depth 1
   JAL zero, bb15
 bb23:   # loop depth 1

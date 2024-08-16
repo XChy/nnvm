@@ -105,7 +105,10 @@ bb9:   # loop depth 2
   REMW a4, a4, a5
   SW a4, 0(a3)
   BLT t1, a0, bb10
-  JAL zero, bb6
+  ADDW t2, t2, a6
+  ADDIW t0, t0, 1
+  BLT t0, a0, bb7
+  JAL zero, bb3
 bb10:   # loop depth 2
   JAL zero, bb9
 bb11:   # loop depth 0
@@ -230,10 +233,10 @@ bb37:   # loop depth 2
   BLT s3, t0, bb39
   # implict jump to bb38
 bb38:   # loop depth 2
-  JAL zero, bb35
+  JAL zero, bb21
 bb39:   # loop depth 2
   SW t0, 0(s2)
-  JAL zero, bb38
+  JAL zero, bb21
 bb40:   # loop depth 2
   SH2ADD a4, a5, s0
   LW s2, 0(a4)

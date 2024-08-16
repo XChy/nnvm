@@ -123,7 +123,10 @@ bb13:   # loop depth 2
 bb14:   # loop depth 2
   ADDI a0, zero, 35
   CALL putch
-  JAL zero, bb12
+  LW t0, 0(s0)
+  ADDIW s1, s1, 1
+  BGE t0, s1, bb13
+  JAL zero, bb7
 bb15:   # loop depth 0
   LW a0, 0(s4)
   SLTI t0, a0, 1
@@ -157,7 +160,10 @@ bb21:   # loop depth 2
   ADDIW t0, t0, 1
   SW a5, 0(a4)
   BGE a1, t0, bb22
-  JAL zero, bb18
+  ADDIW t1, t1, 2000
+  ADDIW t2, t2, 1
+  BGE a0, t2, bb19
+  JAL zero, bb3
 bb22:   # loop depth 2
   JAL zero, bb21
 bb23:   # loop depth 1
@@ -244,7 +250,10 @@ bb36:   # loop depth 3
   BGE a3, a0, bb38
   # implict jump to bb37
 bb37:   # loop depth 2
-  JAL zero, bb30
+  ADDIW a1, a1, 2000
+  ADDIW a4, a4, 1
+  BGE a2, a4, bb31
+  JAL zero, bb25
 bb38:   # loop depth 3
   ADD t2, a0, zero
   JAL zero, bb33
@@ -284,7 +293,9 @@ bb46:   # loop depth 2
   ADDIW a2, a2, 2000
   ADDIW a1, a1, 1
   BGE a3, a1, bb47
-  JAL zero, bb42
+  ADDI t0, zero, 2
+  SW t0, 0(s3)
+  JAL zero, bb26
 bb47:   # loop depth 2
   JAL zero, bb44
 bb48:   # loop depth 2

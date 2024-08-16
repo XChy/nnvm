@@ -116,6 +116,8 @@ public:
     return this;
   }
 
+  LIRInst *copy() const;
+
   void setParent(LIRBB *parent) { this->parent = parent; }
   LIRBB *getParent() const { return parent; }
 

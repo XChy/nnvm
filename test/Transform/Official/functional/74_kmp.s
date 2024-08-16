@@ -157,7 +157,7 @@ bb24:   # loop depth 1
   # implict jump to bb25
 bb25:   # loop depth 1
   ADD t2, a0, zero
-  JAL zero, bb21
+  JAL zero, bb12
 bb26:   # loop depth 0
   JAL zero, bb14
 bb27:   # loop depth 0

@@ -30,4 +30,5 @@ bb5:   # loop depth 1
   ADD t1, t2, zero
   JAL zero, bb1
 bb6:   # loop depth 1
-  JAL zero, bb5
+  ADD t1, t2, zero
+  JAL zero, bb1

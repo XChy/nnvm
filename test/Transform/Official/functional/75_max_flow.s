@@ -141,9 +141,9 @@ bb9:   # loop depth 0
   ADDI sp, sp, 112
   JALR zero, 0(ra)
 bb10:   # loop depth 1
-  JAL zero, bb8
+  JAL zero, bb2
 bb11:   # loop depth 1
-  JAL zero, bb8
+  JAL zero, bb2
 bb12:   # loop depth 0
   ADD a0, s3, zero
   LD ra, 16(sp)

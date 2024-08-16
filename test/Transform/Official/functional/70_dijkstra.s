@@ -137,7 +137,9 @@ bb16:   # loop depth 2
 bb17:   # loop depth 2
   ADDIW t0, t0, 1
   BGE a3, t0, bb18
-  JAL zero, bb13
+  ADDIW a2, a2, 1
+  BGE a4, a2, bb14
+  JAL zero, bb4
 bb18:   # loop depth 2
   JAL zero, bb16
 bb19:   # loop depth 2
@@ -256,7 +258,9 @@ bb47:   # loop depth 2
 bb48:   # loop depth 2
   ADDIW t0, t0, 1
   BGE t2, t0, bb49
-  JAL zero, bb43
+  ADDIW t1, t1, 1
+  BGE t2, t1, bb44
+  JAL zero, bb1
 bb49:   # loop depth 2
   JAL zero, bb46
 bb50:   # loop depth 2

@@ -180,7 +180,10 @@ bb24:   # loop depth 2
   ADDW t2, t2, s1
   ADDIW t1, t1, 1
   BLT t1, s0, bb25
-  JAL zero, bb20
+  ADDW a1, a1, s2
+  ADDIW a0, a0, 1
+  BLT a0, s0, bb21
+  JAL zero, bb1
 bb25:   # loop depth 2
   JAL zero, bb23
 bb26:   # loop depth 2

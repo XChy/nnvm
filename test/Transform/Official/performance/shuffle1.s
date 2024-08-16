@@ -143,7 +143,10 @@ bb12:   # loop depth 1
   ADD t0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
-  JAL zero, bb7
+  ADDIW t2, t2, 1
+  SW t0, 0(a1)
+  BLT t2, s8, bb8
+  JAL zero, bb2
 bb14:   # loop depth 1
   ADD t0, zero, zero
   # implict jump to bb15
@@ -156,7 +159,10 @@ bb15:   # loop depth 2
   BNE t1, zero, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
-  JAL zero, bb13
+  ADDIW t2, t2, 1
+  SW t0, 0(a1)
+  BLT t2, s8, bb8
+  JAL zero, bb2
 bb17:   # loop depth 2
   JAL zero, bb15
 bb18:   # loop depth 0
@@ -220,7 +226,9 @@ bb27:   # loop depth 1
   SW a4, 4(a0)
   SW t0, 0(a2)
   SW a1, 0(a5)
-  JAL zero, bb23
+  ADDIW t1, t1, 1
+  BLT t1, s5, bb24
+  JAL zero, bb1
 bb28:   # loop depth 1
   LW t0, 0(a3)
   ADDIW t0, t0, 1
@@ -234,4 +242,6 @@ bb28:   # loop depth 1
   SH2ADD t0, t0, s0
   SW zero, 0(a0)
   SW zero, 0(t0)
-  JAL zero, bb23
+  ADDIW t1, t1, 1
+  BLT t1, s5, bb24
+  JAL zero, bb1

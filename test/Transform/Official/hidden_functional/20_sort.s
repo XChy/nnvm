@@ -255,7 +255,9 @@ bb42:   # loop depth 2
   BNE t1, zero, bb44
   # implict jump to bb43
 bb43:   # loop depth 1
-  JAL zero, bb39
+  ADDIW t2, t2, 1
+  BGE a0, t2, bb40
+  JAL zero, bb11
 bb44:   # loop depth 2
   JAL zero, bb42
 bb45:   # loop depth 0
@@ -313,7 +315,8 @@ bb57:   # loop depth 2
   BLT a0, a2, bb59
   # implict jump to bb58
 bb58:   # loop depth 1
-  JAL zero, bb52
+  BLT t2, a1, bb53
+  JAL zero, bb8
 bb59:   # loop depth 2
   JAL zero, bb55
 bb60:   # loop depth 2

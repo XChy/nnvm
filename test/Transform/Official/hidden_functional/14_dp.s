@@ -116,7 +116,10 @@ bb18:   # loop depth 2
   # implict jump to bb19
 bb19:   # loop depth 2
   BGE s0, t1, bb20
-  JAL zero, bb14
+  ADDIW a0, a0, 140
+  ADDIW t2, t2, 1
+  BGE s3, t2, bb15
+  JAL zero, bb2
 bb20:   # loop depth 2
   ADD t0, t1, zero
   JAL zero, bb17

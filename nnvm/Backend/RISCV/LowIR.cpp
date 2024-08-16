@@ -115,6 +115,17 @@ bool LIRInst::isMoveInst(LIRFunc const &func) const {
          this->getOp(1) != zeroReg;
 }
 
+LIRInst *LIRInst::copy() const {
+  LIRInst *inst = new LIRInst(getOpcode(), operands.size());
+  for (int i = 0; i < operands.size(); i++) {
+    if (operands[i].isDef())
+      inst->setDef(i, operands[i].getOperand());
+    else
+      inst->setUse(i, operands[i].getOperand());
+  }
+  return inst;
+}
+
 void LIRBB::emit(std::ostream &out, EmitInfo &info, bool showLabel) {
   out << info.labelOf(this) << ":   "
       << "# loop depth " << getLoopDepth() << "\n";

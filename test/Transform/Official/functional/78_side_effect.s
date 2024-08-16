@@ -101,7 +101,9 @@ bb16:   # loop depth 1
   LW t0, 0(s1)
   SLLIW t0, t0, 1
   SW t0, 0(s1)
-  JAL zero, bb14
+  ADDIW s2, s2, -1
+  BGE s2, zero, bb15
+  JAL zero, bb1
 bb17:   # loop depth 1
   LW t0, 0(s0)
   ADDIW t1, t0, 2

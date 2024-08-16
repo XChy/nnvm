@@ -50,7 +50,7 @@ bb11:   # loop depth 1
 bb12:   # loop depth 1
   JAL zero, bb3
 bb13:   # loop depth 1
-  JAL zero, bb12
+  JAL zero, bb3
 bb14:   # loop depth 1
   ADDI t0, zero, 84
   JAL zero, bb10

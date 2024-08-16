@@ -82,6 +82,6 @@ bb14:   # loop depth 2
   SRLIW a1, a1, 31
   ADD t0, t0, a1
   SRAIW t0, t0, 1
-  JAL zero, bb13
+  JAL zero, bb5
 bb15:   # loop depth 1
   JAL zero, bb9

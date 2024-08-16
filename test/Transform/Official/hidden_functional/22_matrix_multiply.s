@@ -152,7 +152,10 @@ bb20:   # loop depth 2
   BLT a0, a5, bb22
   # implict jump to bb21
 bb21:   # loop depth 1
-  JAL zero, bb15
+  ADDIW a3, a3, 400
+  ADDIW a4, a4, 1
+  BLT a4, a1, bb16
+  JAL zero, bb3
 bb22:   # loop depth 2
   JAL zero, bb18
 bb23:   # loop depth 2

@@ -2,21 +2,21 @@ pure i32 main() {
 entry:  pred()
   br bb %while.cond
 while.cond:  pred(entry, while.body.split)
-  sum.phi = phi [bb %entry, i32 0, bb %while.body.split, i32 %35]
+  sum.phi = phi [bb %entry, i32 0, bb %while.body.split, i32 %38]
   i.phi = phi [bb %entry, i32 0, bb %while.body.split, i32 %17]
   9 = icmp slt i32 %i.phi, i32 100
   br i1 %9, bb %while.body, bb %while.exit
 while.body:  pred(while.cond)
   12 = icmp eq i32 %i.phi, i32 50
   17 = add i32 %i.phi, i32 1
-  21 = add i32 %sum.phi, i32 %i.phi
-  br i1 %12, bb %30.which.true, bb %while.body.split
-while.body.split:  pred(while.body, 30.which.true)
-  35 = phi [bb %30.which.true, i32 %sum.phi, bb %while.body, i32 %21]
+  22 = add i32 %sum.phi, i32 %i.phi
+  br i1 %12, bb %33.which.true, bb %while.body.split
+while.body.split:  pred(while.body, 33.which.true)
+  38 = phi [bb %33.which.true, i32 %sum.phi, bb %while.body, i32 %22]
   br bb %while.cond
 while.exit:  pred(while.cond)
   ret i32 %sum.phi
-30.which.true:  pred(while.body)
+33.which.true:  pred(while.body)
   br bb %while.body.split
 }
 
