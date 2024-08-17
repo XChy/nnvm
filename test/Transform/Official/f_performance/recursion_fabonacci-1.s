@@ -18,7 +18,7 @@
 .word 0x40000000
 .section .text
 takFP:   # loop depth 0
-  ADDI sp, sp, -80
+  ADDI sp, sp, -64
   SD ra, 0(sp)
   SD s0, 8(sp)
   FSD fs0, 16(sp)
@@ -27,7 +27,6 @@ takFP:   # loop depth 0
   FSD fs3, 40(sp)
   FSD fs4, 48(sp)
   FSD fs5, 56(sp)
-  FSD fs6, 64(sp)
   FLT.S t0, fa1, fa0
   BNE t0, zero, bb3
   # implict jump to bb1
@@ -43,25 +42,24 @@ bb2:   # loop depth 0
   FLD fs3, 40(sp)
   FLD fs4, 48(sp)
   FLD fs5, 56(sp)
-  FLD fs6, 64(sp)
-  ADDI sp, sp, 80
+  ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  LA t0, .CONSTANT.7.0
-  LA t1, .CONSTANT.7.0
   FSGNJ.S fs2, fa2, fa2
-  FLW ft0, 0(t0)
   FSGNJ.S fs1, fa1, fa1
   FSGNJ.S fs0, fa0, fa0
-  FLW ft1, 0(t1)
-  FSGNJ.S fs5, ft0, ft1
   # implict jump to bb4
 bb4:   # loop depth 1
-  FSUB.S fa0, fs0, fs5
-  FSUB.S fs4, fs1, fs5
+  LA t0, .CONSTANT.7.0
+  LA t1, .CONSTANT.7.0
+  FLW ft0, 0(t0)
+  FLW ft1, 0(t1)
   FSGNJ.S fa1, fs1, fs1
   FSGNJ.S fa2, fs2, fs2
-  FSUB.S fs6, fs2, fs5
+  FSGNJ.S ft0, ft0, ft1
+  FSUB.S fa0, fs0, ft0
+  FSUB.S fs4, fs1, ft0
+  FSUB.S fs5, fs2, ft0
   CALL takFP
   FSGNJ.S fa2, fs0, fs0
   FSGNJ.S fa1, fs2, fs2
@@ -72,11 +70,11 @@ bb4:   # loop depth 1
   FLT.S s0, fs4, fs3
   FSGNJ.S fa2, fs1, fs1
   FSGNJ.S fa1, fs0, fs0
-  FSGNJ.S fa0, fs6, fs6
+  FSGNJ.S fa0, fs5, fs5
   CALL takFP
   BNE s0, zero, bb6
   # implict jump to bb5
-bb5:   # loop depth 0
+bb5:   # loop depth 1
   JAL zero, bb2
 bb6:   # loop depth 1
   FSGNJ.S fs2, fa0, fa0

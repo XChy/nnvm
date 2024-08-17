@@ -121,7 +121,7 @@ bb16:   # loop depth 2
   SLTI a4, a2, 10
   BNE a4, zero, bb18
   # implict jump to bb17
-bb17:   # loop depth 1
+bb17:   # loop depth 2
   JAL zero, bb3
 bb18:   # loop depth 2
   JAL zero, bb14

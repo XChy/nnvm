@@ -13,24 +13,20 @@ entry61:  pred()
   63 = call i32 getint()
   call void _sysy_starttime(i32 33)
   69235 = icmp ne i32 %63, i32 0
-  br i1 %69235, bb %while.body66_preheader, bb %while.exit67
-while.body66_preheader:  pred(entry61)
-  br bb %while.body66
-while.body66:  pred(loop_test.while.exit, while.body66_preheader)
-  T.phi236 = phi [bb %loop_test.while.exit, i32 %96, bb %while.body66_preheader, i32 %63]
+  br i1 %69235, bb %while.body66, bb %while.exit67
+while.body66:  pred(loop_test.while.exit, entry61)
+  T.phi236 = phi [bb %loop_test.while.exit, i32 %96, bb %entry61, i32 %63]
   71 = call i32 getint()
   73 = call i32 getint()
   75 = call i32 getint()
   47103231 = icmp slt i32 %71, i32 %73
-  br i1 %47103231, bb %loop_test.while.body_preheader, bb %loop_test.while.exit
-while.exit67:  pred(entry61, loop_test.while.exit)
+  br i1 %47103231, bb %loop_test.while.body, bb %loop_test.while.exit
+while.exit67:  pred(loop_test.while.exit, entry61)
   call void _sysy_stoptime(i32 42)
   ret i32 0
-loop_test.while.body_preheader:  pred(while.body66)
-  br bb %loop_test.while.body
-loop_test.while.body:  pred(loop_test.while.body, loop_test.while.body_preheader)
-  sum.phi102234 = phi [bb %loop_test.while.body, i32 %55108, bb %loop_test.while.body_preheader, i32 0]
-  x.phi101233 = phi [bb %loop_test.while.body, i32 %59109, bb %loop_test.while.body_preheader, i32 %71]
+loop_test.while.body:  pred(loop_test.while.body, while.body66)
+  sum.phi102234 = phi [bb %loop_test.while.body, i32 %55108, bb %while.body66, i32 0]
+  x.phi101233 = phi [bb %loop_test.while.body, i32 %59109, bb %while.body66, i32 %71]
   16131 = sub i32 2147483647, i32 %x.phi101233
   228 = signed min i32 %x.phi101233, i32 %16131
   21133 = sub i32 1073741823, i32 %228
@@ -46,16 +42,14 @@ loop_test.while.body:  pred(loop_test.while.body, loop_test.while.body_preheader
   55108 = srem i32 %53107, i32 998244853
   59109 = add i32 %x.phi101233, i32 %75
   47103 = icmp slt i32 %59109, i32 %73
-  br i1 %47103, bb %loop_test.while.body, bb %loop_test.while.body_exclu_exit
-loop_test.while.exit:  pred(while.body66, loop_test.while.body_exclu_exit)
-  232 = phi [bb %loop_test.while.body_exclu_exit, i32 %55108, bb %while.body66, i32 0]
+  br i1 %47103, bb %loop_test.while.body, bb %loop_test.while.exit
+loop_test.while.exit:  pred(loop_test.while.body, while.body66)
+  232 = phi [bb %loop_test.while.body, i32 %55108, bb %while.body66, i32 0]
   call void putint(i32 %232)
   call void putch(i32 10)
   96 = add i32 %T.phi236, i32 -1
   69 = icmp ne i32 %96, i32 0
   br i1 %69, bb %while.body66, bb %while.exit67
-loop_test.while.body_exclu_exit:  pred(loop_test.while.body)
-  br bb %loop_test.while.exit
 }
 
 external float getfloat()

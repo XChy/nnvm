@@ -96,7 +96,7 @@ bb4:   # loop depth 1
   XORI t0, a0, 5
   BEQ t0, zero, bb6
   # implict jump to bb5
-bb5:   # loop depth 0
+bb5:   # loop depth 1
   ADD s0, a0, zero
   JAL zero, bb2
 bb6:   # loop depth 1

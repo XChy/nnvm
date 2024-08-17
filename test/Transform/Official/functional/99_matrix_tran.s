@@ -46,15 +46,17 @@ main:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI a0, zero, 10
+  ADDI s0, zero, 0
   CALL putch
   LW t0, 0(s1)
-  BLT zero, t0, bb7
+  BLT s0, t0, bb7
   # implict jump to bb2
 bb2:   # loop depth 0
   ADDI a0, zero, 10
+  ADDI s0, zero, 0
   CALL putch
   LW t0, 0(s1)
-  BLT zero, t0, bb4
+  BLT s0, t0, bb4
   # implict jump to bb3
 bb3:   # loop depth 0
   ADDI a0, zero, 10

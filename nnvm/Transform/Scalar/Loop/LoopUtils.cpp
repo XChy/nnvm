@@ -48,10 +48,43 @@ static bool unifyLatches(Loop *loop) {
   return false;
 }
 
+static bool canonicalizeExits(Loop *loop) {
+  auto *header = loop->getHeader();
+  Function *func = header->getParent();
+  IRBuilder builder;
+
+  auto exits = loop->getExits();
+
+  for (auto *exit : exits) {
+    std::vector<BasicBlock *> predsOfExit(exit->getPredBegin(),
+                                          exit->getPredEnd());
+    assert(predsOfExit.size() != 0);
+    if (predsOfExit.size() == 1)
+      continue;
+
+    for (auto *pred : predsOfExit) {
+      auto *newPred = new BasicBlock(func, pred->getName() + ".cp");
+
+      pred->getTerminator()->replaceOps(SingleMapper(exit, newPred));
+
+      for (PhiNode *phi : exit->getPhis())
+        phi->replaceOps(SingleMapper(pred, newPred));
+
+      builder.insertAt(newPred->end());
+      builder.buildBr(exit);
+    }
+  }
+
+  return true;
+}
+
 bool nnvm::canonicalizeLoop(Loop *loop) {
   auto *header = loop->getHeader();
   auto *func = header->getParent();
   IRBuilder builder;
+
+  loop->updatePreheader();
+  loop->updateExits();
 
   // Unify latches
   unifyLatches(loop);
@@ -59,7 +92,6 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
   // Create preheader.
   if (!loop->getPreheader()) {
     auto *preheader = new BasicBlock(func, header->getName() + "_preheader");
-    builder.insertAt(preheader->end());
 
     auto latches = loop->getLatches();
     std::set<BasicBlock *> nonlatches;
@@ -68,6 +100,7 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
         nonlatches.insert(pred);
 
     // copy phis from header to preheader.
+    builder.insertAt(preheader->end());
     for (auto *inst : *header) {
       PhiNode *phi = mayCast<PhiNode>(inst);
       if (!phi)
@@ -77,7 +110,9 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
           builder.buildPhi(phi->getType(), phi->getName() + "_ph_val");
 
       for (auto *nonlatch : nonlatches) {
-        preheaderPhi->addIncoming(nonlatch, phi->getIncomingValueOf(nonlatch));
+        Value *nonlatchVal = phi->getIncomingValueOf(nonlatch);
+        assert(nonlatchVal);
+        preheaderPhi->addIncoming(nonlatch, nonlatchVal);
         phi->removeIncoming(nonlatch);
       }
       phi->addIncoming(preheader, preheaderPhi);
@@ -89,6 +124,7 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
       return nonlatches.count(U->getUser()->getBlock());
     });
     func->insertBefore(preheader, header);
+    loop->setPreheader(preheader);
   }
 
   // Create exclusive exit.
@@ -100,20 +136,20 @@ bool nnvm::canonicalizeLoop(Loop *loop) {
     builder.buildBr(oldExit);
 
     for (auto [exiting, _] : loop->getExitEdges()) {
-      exiting->getTerminator()->replaceOps(
-          [&](Value *v) { return v == oldExit ? newExit : nullptr; });
+      exiting->getTerminator()->replaceOps(SingleMapper(oldExit, newExit));
 
       for (auto *I : *oldExit) {
         auto *phi = mayCast<PhiNode>(I);
         if (!phi)
           break;
         BasicBlock *oldIncoming = exiting;
-        phi->replaceOps(
-            [&](Value *v) { return v == oldIncoming ? newExit : nullptr; });
+        phi->replaceOps(SingleMapper(oldIncoming, newExit));
       }
     }
   }
 
+  // Make preds of exits in loop.
+  canonicalizeExits(loop);
   return false;
 }
 

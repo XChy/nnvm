@@ -1,18 +1,20 @@
 pure i32 main() {
 entry:  pred()
-  br bb %while.body
-while.body:  pred(if.exit, entry)
-  i.phi32 = phi [bb %if.exit, i32 %22, bb %entry, i32 0]
-  sum.phi31 = phi [bb %if.exit, i32 %19, bb %entry, i32 0]
-  12 = icmp eq i32 %i.phi32, i32 50
-  br i1 %12, bb %while.exit, bb %if.exit
-while.exit:  pred(if.exit, while.body)
-  ret i32 %19
-if.exit:  pred(while.body)
-  19 = add i32 %sum.phi31, i32 %i.phi32
-  22 = add i32 %i.phi32, i32 1
-  9 = icmp slt i32 %22, i32 100
+  br bb %while.cond
+while.cond:  pred(entry, if.exit)
+  sum.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %19]
+  i.phi = phi [bb %entry, i32 0, bb %if.exit, i32 %22]
+  9 = icmp slt i32 %i.phi, i32 100
   br i1 %9, bb %while.body, bb %while.exit
+while.body:  pred(while.cond)
+  12 = icmp eq i32 %i.phi, i32 50
+  br i1 %12, bb %while.exit, bb %if.exit
+while.exit:  pred(while.cond, while.body)
+  ret i32 %sum.phi
+if.exit:  pred(while.body)
+  19 = add i32 %sum.phi, i32 %i.phi
+  22 = add i32 %i.phi, i32 1
+  br bb %while.cond
 }
 
 external void putfarray(i32 , ptr )

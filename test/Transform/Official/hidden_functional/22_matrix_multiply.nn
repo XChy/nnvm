@@ -24,18 +24,10 @@ entry64:  pred()
   store i32 %68 to ptr %m1.pinned
   70 = call i32 getint()
   store i32 %70 to ptr %n1.pinned
-  m1.load76281 = load i32 from ptr %m1.pinned
-  77282 = icmp slt i32 0, i32 %m1.load76281
-  br i1 %77282, bb %while.body73_preheader, bb %while.exit74
-while.body73_preheader:  pred(entry64)
-  br bb %while.body73
-while.body73:  pred(while.exit82, while.body73_preheader)
-  315 = phi [bb %while.body73_preheader, i32 0, bb %while.exit82, i32 %88.rec]
-  i65.phi171283 = phi [bb %while.exit82, i32 %100, bb %while.body73_preheader, i32 0]
-  n1.load84253 = load i32 from ptr %n1.pinned
-  85254 = icmp slt i32 0, i32 %n1.load84253
-  br i1 %85254, bb %while.body81_preheader, bb %while.exit82
-while.exit74:  pred(entry64, while.exit82)
+  m1.load76297 = load i32 from ptr %m1.pinned
+  77298 = icmp slt i32 0, i32 %m1.load76297
+  br i1 %77298, bb %while.cond80_preheader, bb %while.exit74
+while.exit74:  pred(while.exit82, entry64)
   m2.pinned = pin ptr @m2
   n2.pinned = pin ptr @n2
   b.pinned = pin ptr @b
@@ -43,149 +35,149 @@ while.exit74:  pred(entry64, while.exit82)
   store i32 %102 to ptr %m2.pinned
   104 = call i32 getint()
   store i32 %104 to ptr %n2.pinned
-  m2.load110278 = load i32 from ptr %m2.pinned
-  111279 = icmp slt i32 0, i32 %m2.load110278
-  br i1 %111279, bb %while.body107_preheader, bb %while.exit108
-while.body81_preheader:  pred(while.body73)
-  89 = ptradd ptr %a.pinned, i32 %315
+  m2.load110294 = load i32 from ptr %m2.pinned
+  111295 = icmp slt i32 0, i32 %m2.load110294
+  br i1 %111295, bb %while.cond114_preheader, bb %matrix_multiply.while.cond_preheader
+while.cond80_preheader:  pred(while.exit82, entry64)
+  346 = phi [bb %while.exit82, i32 %88.rec, bb %entry64, i32 0]
+  i65.phi171299 = phi [bb %while.exit82, i32 %100, bb %entry64, i32 0]
+  n1.load84269 = load i32 from ptr %n1.pinned
+  85270 = icmp slt i32 0, i32 %n1.load84269
+  br i1 %85270, bb %while.body81_preheader, bb %while.exit82
+while.body81_preheader:  pred(while.cond80_preheader)
+  89 = ptradd ptr %a.pinned, i32 %346
   br bb %while.body81
 while.body81:  pred(while.body81, while.body81_preheader)
-  j66.phi176255 = phi [bb %while.body81, i32 %97, bb %while.body81_preheader, i32 0]
-  248 = shl i32 %j66.phi176255, i32 2
-  92 = ptradd ptr %89, i32 %248
+  j66.phi176271 = phi [bb %while.body81, i32 %97, bb %while.body81_preheader, i32 0]
+  244 = shl i32 %j66.phi176271, i32 2
+  92 = ptradd ptr %89, i32 %244
   94 = call i32 getint()
   store i32 %94 to ptr %92
-  97 = add i32 %j66.phi176255, i32 1
+  97 = add i32 %j66.phi176271, i32 1
   n1.load84 = load i32 from ptr %n1.pinned
   85 = icmp slt i32 %97, i32 %n1.load84
   br i1 %85, bb %while.body81, bb %while.exit82
-while.exit82:  pred(while.body73, while.body81)
-  100 = add i32 %i65.phi171283, i32 1
+while.exit82:  pred(while.body81, while.cond80_preheader)
+  100 = add i32 %i65.phi171299, i32 1
   m1.load76 = load i32 from ptr %m1.pinned
   77 = icmp slt i32 %100, i32 %m1.load76
-  88.rec = add i32 %315, i32 400
-  br i1 %77, bb %while.body73, bb %while.exit74
-while.body107_preheader:  pred(while.exit74)
-  br bb %while.body107
-while.body107:  pred(while.exit116, while.body107_preheader)
-  318 = phi [bb %while.body107_preheader, i32 0, bb %while.exit116, i32 %122.rec]
-  i65.phi170280 = phi [bb %while.exit116, i32 %134, bb %while.body107_preheader, i32 0]
-  n2.load118256 = load i32 from ptr %n2.pinned
-  119257 = icmp slt i32 0, i32 %n2.load118256
-  br i1 %119257, bb %while.body115_preheader, bb %while.exit116
-while.exit108:  pred(while.exit74, while.exit116)
-  res.pinned = pin ptr @res
-  m1.load198274 = load i32 from ptr %m1.pinned
-  7199275 = icmp slt i32 0, i32 %m1.load198274
-  br i1 %7199275, bb %matrix_multiply.while.body_preheader, bb %matrix_multiply.while.exit
-while.body115_preheader:  pred(while.body107)
-  123 = ptradd ptr %b.pinned, i32 %318
+  88.rec = add i32 %346, i32 400
+  br i1 %77, bb %while.cond80_preheader, bb %while.exit74
+while.cond114_preheader:  pred(while.exit116, while.exit74)
+  349 = phi [bb %while.exit116, i32 %122.rec, bb %while.exit74, i32 0]
+  i65.phi170296 = phi [bb %while.exit116, i32 %134, bb %while.exit74, i32 0]
+  n2.load118272 = load i32 from ptr %n2.pinned
+  119273 = icmp slt i32 0, i32 %n2.load118272
+  br i1 %119273, bb %while.body115_preheader, bb %while.exit116
+while.body115_preheader:  pred(while.cond114_preheader)
+  123 = ptradd ptr %b.pinned, i32 %349
   br bb %while.body115
 while.body115:  pred(while.body115, while.body115_preheader)
-  j66.phi174258 = phi [bb %while.body115, i32 %131, bb %while.body115_preheader, i32 0]
-  249 = shl i32 %j66.phi174258, i32 2
-  126 = ptradd ptr %123, i32 %249
+  j66.phi174274 = phi [bb %while.body115, i32 %131, bb %while.body115_preheader, i32 0]
+  245 = shl i32 %j66.phi174274, i32 2
+  126 = ptradd ptr %123, i32 %245
   128 = call i32 getint()
   store i32 %128 to ptr %126
-  131 = add i32 %j66.phi174258, i32 1
+  131 = add i32 %j66.phi174274, i32 1
   n2.load118 = load i32 from ptr %n2.pinned
   119 = icmp slt i32 %131, i32 %n2.load118
   br i1 %119, bb %while.body115, bb %while.exit116
-while.exit116:  pred(while.body107, while.body115)
-  134 = add i32 %i65.phi170280, i32 1
+while.exit116:  pred(while.body115, while.cond114_preheader)
+  134 = add i32 %i65.phi170296, i32 1
   m2.load110 = load i32 from ptr %m2.pinned
   111 = icmp slt i32 %134, i32 %m2.load110
-  122.rec = add i32 %318, i32 400
-  br i1 %111, bb %while.body107, bb %while.exit108
-while.body138_preheader:  pred(matrix_multiply.while.exit)
-  br bb %while.body138
-while.body138:  pred(while.exit147, while.body138_preheader)
-  327 = phi [bb %while.body138_preheader, i32 0, bb %while.exit147, i32 %153.rec]
-  i65.phi273 = phi [bb %while.exit147, i32 %167, bb %while.body138_preheader, i32 0]
-  n2.load149268 = load i32 from ptr %n2.pinned
-  150269 = icmp slt i32 0, i32 %n2.load149268
-  br i1 %150269, bb %while.body146_preheader, bb %while.exit147
-while.exit139:  pred(matrix_multiply.while.exit, while.exit147)
+  122.rec = add i32 %349, i32 400
+  br i1 %111, bb %while.cond114_preheader, bb %matrix_multiply.while.cond_preheader
+while.cond137_preheader:  pred(matrix_multiply.while.exit12, matrix_multiply.while.cond_preheader)
+  br i1 %7199291, bb %while.cond145_preheader, bb %while.exit139
+while.exit139:  pred(while.exit147, while.cond137_preheader)
   ret i32 0
-while.body146_preheader:  pred(while.body138)
-  154 = ptradd ptr %res.pinned, i32 %327
+while.cond145_preheader:  pred(while.exit147, while.cond137_preheader)
+  358 = phi [bb %while.exit147, i32 %153.rec, bb %while.cond137_preheader, i32 0]
+  i65.phi289 = phi [bb %while.exit147, i32 %167, bb %while.cond137_preheader, i32 0]
+  n2.load149284 = load i32 from ptr %n2.pinned
+  150285 = icmp slt i32 0, i32 %n2.load149284
+  br i1 %150285, bb %while.body146_preheader, bb %while.exit147
+while.body146_preheader:  pred(while.cond145_preheader)
+  154 = ptradd ptr %res.pinned, i32 %358
   br bb %while.body146
 while.body146:  pred(while.body146, while.body146_preheader)
-  j66.phi270 = phi [bb %while.body146, i32 %163, bb %while.body146_preheader, i32 0]
-  250 = shl i32 %j66.phi270, i32 2
-  157 = ptradd ptr %154, i32 %250
+  j66.phi286 = phi [bb %while.body146, i32 %163, bb %while.body146_preheader, i32 0]
+  246 = shl i32 %j66.phi286, i32 2
+  157 = ptradd ptr %154, i32 %246
   157.load = load i32 from ptr %157
   call void putint(i32 %157.load)
   call void putch(i32 32)
-  163 = add i32 %j66.phi270, i32 1
+  163 = add i32 %j66.phi286, i32 1
   n2.load149 = load i32 from ptr %n2.pinned
   150 = icmp slt i32 %163, i32 %n2.load149
   br i1 %150, bb %while.body146, bb %while.exit147
-while.exit147:  pred(while.body138, while.body146)
+while.exit147:  pred(while.body146, while.cond145_preheader)
   call void putch(i32 10)
-  167 = add i32 %i65.phi273, i32 1
+  167 = add i32 %i65.phi289, i32 1
   m1.load141 = load i32 from ptr %m1.pinned
   142 = icmp slt i32 %167, i32 %m1.load141
-  153.rec = add i32 %327, i32 400
-  br i1 %142, bb %while.body138, bb %while.exit139
-matrix_multiply.while.body_preheader:  pred(while.exit108)
-  n2.load208263 = load i32 from ptr %n2.pinned
-  15209264 = icmp slt i32 0, i32 %n2.load208263
-  br bb %matrix_multiply.while.body
-matrix_multiply.while.body:  pred(matrix_multiply.while.exit12, matrix_multiply.while.body_preheader)
-  324 = phi [bb %matrix_multiply.while.body_preheader, i32 0, bb %matrix_multiply.while.exit12, i32 %26222.rec]
-  i.phi197277 = phi [bb %matrix_multiply.while.exit12, i32 %63214, bb %matrix_multiply.while.body_preheader, i32 0]
-  k.phi184196276 = phi [bb %matrix_multiply.while.exit12, i32 %k.phi184196265, bb %matrix_multiply.while.body_preheader, i32 0]
-  br i1 %15209264, bb %matrix_multiply.while.body11_preheader, bb %matrix_multiply.while.exit12
-matrix_multiply.while.exit:  pred(while.exit108, matrix_multiply.while.exit12)
-  br i1 %7199275, bb %while.body138_preheader, bb %while.exit139
-matrix_multiply.while.body11_preheader:  pred(matrix_multiply.while.body)
-  n2.load208 = load i32 from ptr %n2.pinned
-  n1.load218259 = load i32 from ptr %n1.pinned
-  23219260 = icmp slt i32 0, i32 %n1.load218259
-  27223 = ptradd ptr %res.pinned, i32 %324
-  41227 = ptradd ptr %a.pinned, i32 %324
-  br bb %matrix_multiply.while.body11
-matrix_multiply.while.body11:  pred(matrix_multiply.while.exit20, matrix_multiply.while.body11_preheader)
-  j.phi207267 = phi [bb %matrix_multiply.while.exit20, i32 %60241, bb %matrix_multiply.while.body11_preheader, i32 0]
-  br i1 %23219260, bb %matrix_multiply.while.body19_preheader, bb %matrix_multiply.while.exit20
-matrix_multiply.while.exit12:  pred(matrix_multiply.while.body, matrix_multiply.while.body11_exclu_exit)
-  k.phi184196265 = phi [bb %matrix_multiply.while.body11_exclu_exit, i32 %261, bb %matrix_multiply.while.body, i32 %k.phi184196276]
-  63214 = add i32 %i.phi197277, i32 1
-  7199 = icmp slt i32 %63214, i32 %m1.load198274
-  26222.rec = add i32 %324, i32 400
-  br i1 %7199, bb %matrix_multiply.while.body, bb %matrix_multiply.while.exit
-matrix_multiply.while.body19_preheader:  pred(matrix_multiply.while.body11)
-  251 = shl i32 %j.phi207267, i32 2
-  30225 = ptradd ptr %27223, i32 %251
-  313 = ptradd ptr %b.pinned, i32 %251
-  37.load226_ahead = load i32 from ptr %30225
+  153.rec = add i32 %358, i32 400
+  br i1 %142, bb %while.cond145_preheader, bb %while.exit139
+matrix_multiply.while.cond_preheader:  pred(while.exit116, while.exit74)
+  res.pinned = pin ptr @res
+  m1.load198290 = load i32 from ptr %m1.pinned
+  7199291 = icmp slt i32 0, i32 %m1.load198290
+  br i1 %7199291, bb %matrix_multiply.while.cond10_preheader_preheader, bb %while.cond137_preheader
+matrix_multiply.while.cond10_preheader_preheader:  pred(matrix_multiply.while.cond_preheader)
+  n2.load206279 = load i32 from ptr %n2.pinned
+  br bb %matrix_multiply.while.cond10_preheader
+matrix_multiply.while.cond10_preheader:  pred(matrix_multiply.while.exit12, matrix_multiply.while.cond10_preheader_preheader)
+  355 = phi [bb %matrix_multiply.while.cond10_preheader_preheader, i32 0, bb %matrix_multiply.while.exit12, i32 %26218.rec]
+  i.phi197293 = phi [bb %matrix_multiply.while.exit12, i32 %63210, bb %matrix_multiply.while.cond10_preheader_preheader, i32 0]
+  k.phi184196292 = phi [bb %matrix_multiply.while.exit12, i32 %k.phi183204_ph_val281, bb %matrix_multiply.while.cond10_preheader_preheader, i32 0]
+  15207280 = icmp slt i32 0, i32 %n2.load206279
+  br i1 %15207280, bb %matrix_multiply.while.cond18_preheader_preheader, bb %matrix_multiply.while.exit12
+matrix_multiply.while.exit12:  pred(matrix_multiply.while.exit20, matrix_multiply.while.cond10_preheader)
+  k.phi183204_ph_val281 = phi [bb %matrix_multiply.while.exit20, i32 %k.phi213_ph_val277, bb %matrix_multiply.while.cond10_preheader, i32 %k.phi184196292]
+  63210 = add i32 %i.phi197293, i32 1
+  7199 = icmp slt i32 %63210, i32 %m1.load198290
+  26218.rec = add i32 %355, i32 400
+  br i1 %7199, bb %matrix_multiply.while.cond10_preheader, bb %while.cond137_preheader
+matrix_multiply.while.cond18_preheader_preheader:  pred(matrix_multiply.while.cond10_preheader)
+  n2.load206 = load i32 from ptr %n2.pinned
+  n1.load214275 = load i32 from ptr %n1.pinned
+  27219 = ptradd ptr %res.pinned, i32 %355
+  41223 = ptradd ptr %a.pinned, i32 %355
+  br bb %matrix_multiply.while.cond18_preheader
+matrix_multiply.while.cond18_preheader:  pred(matrix_multiply.while.exit20, matrix_multiply.while.cond18_preheader_preheader)
+  j.phi205283 = phi [bb %matrix_multiply.while.exit20, i32 %60237, bb %matrix_multiply.while.cond18_preheader_preheader, i32 0]
+  23215276 = icmp slt i32 0, i32 %n1.load214275
+  br i1 %23215276, bb %matrix_multiply.while.body19_preheader, bb %matrix_multiply.while.exit20
+matrix_multiply.while.body19_preheader:  pred(matrix_multiply.while.cond18_preheader)
+  247 = shl i32 %j.phi205283, i32 2
+  30221 = ptradd ptr %27219, i32 %247
+  344 = ptradd ptr %b.pinned, i32 %247
+  37.load222_ahead = load i32 from ptr %30221
   br bb %matrix_multiply.while.body19
 matrix_multiply.while.body19:  pred(matrix_multiply.while.body19, matrix_multiply.while.body19_preheader)
-  37.load226_phi_loop = phi [bb %matrix_multiply.while.body19_preheader, i32 %37.load226_ahead, bb %matrix_multiply.while.body19, i32 %54236]
-  321 = phi [bb %matrix_multiply.while.body19_preheader, i32 0, bb %matrix_multiply.while.body19, i32 %47231.rec]
-  k.phi217262 = phi [bb %matrix_multiply.while.body19, i32 %57238, bb %matrix_multiply.while.body19_preheader, i32 0]
-  252 = shl i32 %k.phi217262, i32 2
-  44229 = ptradd ptr %41227, i32 %252
-  44.load230 = load i32 from ptr %44229
-  314 = ptradd ptr %313, i32 %321
-  51.load234 = load i32 from ptr %314
-  53235 = mul i32 %44.load230, i32 %51.load234
-  54236 = add i32 %37.load226_phi_loop, i32 %53235
-  57238 = add i32 %k.phi217262, i32 1
-  23219 = icmp slt i32 %57238, i32 %n1.load218259
-  47231.rec = add i32 %321, i32 400
-  br i1 %23219, bb %matrix_multiply.while.body19, bb %matrix_multiply.while.body19_exclu_exit
-matrix_multiply.while.exit20:  pred(matrix_multiply.while.body11, matrix_multiply.while.body19_exclu_exit)
-  261 = phi [bb %matrix_multiply.while.body19_exclu_exit, i32 %57238, bb %matrix_multiply.while.body11, i32 0]
-  60241 = add i32 %j.phi207267, i32 1
-  15209 = icmp slt i32 %60241, i32 %n2.load208
-  br i1 %15209, bb %matrix_multiply.while.body11, bb %matrix_multiply.while.body11_exclu_exit
-matrix_multiply.while.body19_exclu_exit:  pred(matrix_multiply.while.body19)
-  store i32 %54236 to ptr %30225
+  37.load222_phi_loop = phi [bb %matrix_multiply.while.body19_preheader, i32 %37.load222_ahead, bb %matrix_multiply.while.body19, i32 %54232]
+  352 = phi [bb %matrix_multiply.while.body19_preheader, i32 0, bb %matrix_multiply.while.body19, i32 %47227.rec]
+  k.phi213278 = phi [bb %matrix_multiply.while.body19, i32 %57234, bb %matrix_multiply.while.body19_preheader, i32 0]
+  248 = shl i32 %k.phi213278, i32 2
+  44225 = ptradd ptr %41223, i32 %248
+  44.load226 = load i32 from ptr %44225
+  345 = ptradd ptr %344, i32 %352
+  51.load230 = load i32 from ptr %345
+  53231 = mul i32 %44.load226, i32 %51.load230
+  54232 = add i32 %37.load222_phi_loop, i32 %53231
+  57234 = add i32 %k.phi213278, i32 1
+  23215 = icmp slt i32 %57234, i32 %n1.load214275
+  47227.rec = add i32 %352, i32 400
+  br i1 %23215, bb %matrix_multiply.while.body19, bb %matrix_multiply.while.body19.cp
+matrix_multiply.while.exit20:  pred(matrix_multiply.while.body19.cp, matrix_multiply.while.cond18_preheader)
+  k.phi213_ph_val277 = phi [bb %matrix_multiply.while.body19.cp, i32 %57234, bb %matrix_multiply.while.cond18_preheader, i32 0]
+  60237 = add i32 %j.phi205283, i32 1
+  15207 = icmp slt i32 %60237, i32 %n2.load206
+  br i1 %15207, bb %matrix_multiply.while.cond18_preheader, bb %matrix_multiply.while.exit12
+matrix_multiply.while.body19.cp:  pred(matrix_multiply.while.body19)
+  store i32 %54232 to ptr %30221
   br bb %matrix_multiply.while.exit20
-matrix_multiply.while.body11_exclu_exit:  pred(matrix_multiply.while.exit20)
-  br bb %matrix_multiply.while.exit12
 }
 
 external float getfloat()

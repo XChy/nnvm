@@ -53,11 +53,12 @@ bb1:   # loop depth 0
   LA s0, n2
   LA s4, b
   CALL getint
+  ADDI s1, zero, 0
   SW a0, 0(s9)
   CALL getint
   SW a0, 0(s0)
   LW t0, 0(s9)
-  BLT zero, t0, bb27
+  BLT s1, t0, bb27
   # implict jump to bb2
 bb2:   # loop depth 0
   LW a1, 0(s8)
@@ -151,7 +152,7 @@ bb20:   # loop depth 2
   ADDIW a0, a0, 1
   BLT a0, a5, bb22
   # implict jump to bb21
-bb21:   # loop depth 1
+bb21:   # loop depth 2
   ADDIW a3, a3, 400
   ADDIW a4, a4, 1
   BLT a4, a1, bb16
@@ -217,7 +218,8 @@ bb34:   # loop depth 0
   # implict jump to bb35
 bb35:   # loop depth 1
   LW t0, 0(s2)
-  BLT zero, t0, bb38
+  ADDI t1, zero, 0
+  BLT t1, t0, bb38
   # implict jump to bb36
 bb36:   # loop depth 1
   LW t0, 0(s8)

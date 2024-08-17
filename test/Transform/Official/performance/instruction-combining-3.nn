@@ -15,29 +15,27 @@ entry30008:  pred()
   30012 = call i32 getint()
   store i32 %30012 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 10015)
-  loopCount.load3001850073 = load i32 from ptr %loopCount.pinned
-  3001950074 = icmp slt i32 0, i32 %loopCount.load3001850073
-  br i1 %3001950074, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry30008)
-  br bb %while.body
-while.body:  pred(while.body, while.body_preheader)
-  sum.phi50077 = phi [bb %while.body, i32 %30046, bb %while.body_preheader, i32 0]
-  i.phi50076 = phi [bb %while.body, i32 %30049, bb %while.body_preheader, i32 0]
-  50615 = mul i32 %i.phi50076, i32 60
-  30039 = sdiv i32 %50615, i32 60
-  30043 = add i32 %sum.phi50077, i32 %30039
-  30046 = srem i32 %30043, i32 536854529
-  30049 = add i32 %i.phi50076, i32 1
-  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850073
-  br i1 %30019, bb %while.body, bb %while.body_exclu_exit
-while.exit:  pred(entry30008, while.body_exclu_exit)
-  50075 = phi [bb %while.body_exclu_exit, i32 %30046, bb %entry30008, i32 0]
+  loopCount.load3001850076 = load i32 from ptr %loopCount.pinned
+  3001950077 = icmp slt i32 0, i32 %loopCount.load3001850076
+  br i1 %3001950077, bb %while.cond30023_preheader_preheader, bb %while.exit
+while.exit:  pred(while.cond30023_preheader, entry30008)
+  50078 = phi [bb %while.cond30023_preheader, i32 %30046, bb %entry30008, i32 0]
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %50075)
+  call void putint(i32 %50078)
   call void putch(i32 10)
   ret i32 0
-while.body_exclu_exit:  pred(while.body)
-  br bb %while.exit
+while.cond30023_preheader_preheader:  pred(entry30008)
+  br bb %while.cond30023_preheader
+while.cond30023_preheader:  pred(while.cond30023_preheader, while.cond30023_preheader_preheader)
+  sum.phi50080 = phi [bb %while.cond30023_preheader, i32 %30046, bb %while.cond30023_preheader_preheader, i32 0]
+  i.phi50079 = phi [bb %while.cond30023_preheader, i32 %30049, bb %while.cond30023_preheader_preheader, i32 0]
+  50624 = mul i32 %i.phi50079, i32 60
+  30039 = sdiv i32 %50624, i32 60
+  30043 = add i32 %sum.phi50080, i32 %30039
+  30046 = srem i32 %30043, i32 536854529
+  30049 = add i32 %i.phi50079, i32 1
+  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850076
+  br i1 %30019, bb %while.cond30023_preheader, bb %while.exit
 }
 
 external float getfloat()

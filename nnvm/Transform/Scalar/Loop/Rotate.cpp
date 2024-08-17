@@ -1,6 +1,7 @@
 #include "Rotate.h"
 #include "ADT/Hash.h"
 #include "IR/IRBuilder.h"
+#include "Utils/Debug.h"
 
 using namespace nnvm;
 
@@ -31,6 +32,8 @@ static bool usedOutsides(Value *value, Loop *loop) {
 // --->  exit
 
 bool RotatePass::rotate(Loop *loop) {
+  loop->updatePreheader();
+
   auto *oldHeader = loop->getHeader();
   auto *oldLatch = loop->getSingleLatch();
   auto *preheader = loop->getPreheader();
@@ -58,9 +61,10 @@ bool RotatePass::rotate(Loop *loop) {
   if (loop->contains(exit))
     std::swap(exit, newHeader);
 
-  if (newHeader->getPredNum() != 1)
+  if (newHeader->getPredNum() != 1 || exit->getPredNum() != 1)
     return false;
 
+  opt_debug(std::cerr << "Rotated " << loop->getHeader()->getName() << "\n");
   // Copy instructions from old header to preheader.
   std::unordered_map<Value *, Value *> old2NewMap;
   auto instIt = oldHeader->begin();
@@ -118,8 +122,10 @@ bool RotatePass::rotate(Loop *loop) {
     for (auto *pred : exit->getPredRange()) {
       if (pred == preheader)
         outsidePhi->addIncoming(pred, preheaderVal);
-      else
+      else if (pred == oldHeader)
         outsidePhi->addIncoming(pred, headerVal);
+      else
+        nnvm_unreachable("The exit has multiple preds")
     }
   }
 

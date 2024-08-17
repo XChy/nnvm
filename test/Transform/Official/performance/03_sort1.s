@@ -54,24 +54,24 @@ bb3:   # loop depth 0
   SW t0, 0(s2)
   JAL zero, bb2
 bb4:   # loop depth 0
-  LW t2, 0(s2)
+  LW t0, 0(s2)
   ADD t1, zero, zero
   # implict jump to bb5
 bb5:   # loop depth 1
-  ADD t0, t1, zero
-  SH2ADD t1, t0, s1
-  ADDIW a1, t0, 2
-  LW a0, 0(t1)
-  ADDIW t1, t0, 1
+  SH2ADD t2, t1, s1
+  ADDIW a1, t1, 2
+  LW a0, 0(t2)
+  ADDIW t2, t1, 1
   REMW a0, a0, a1
-  MULW t0, t0, a0
-  ADDW t2, t2, t0
-  BLT t1, s0, bb7
+  MULW t1, t1, a0
+  ADDW t0, t0, t1
+  BLT t2, s0, bb7
   # implict jump to bb6
 bb6:   # loop depth 0
-  SW t2, 0(s2)
+  SW t0, 0(s2)
   JAL zero, bb1
 bb7:   # loop depth 1
+  ADD t1, t2, zero
   JAL zero, bb5
 radixSort:   # loop depth 0
   ADDI sp, sp, -224
@@ -344,7 +344,7 @@ bb21:   # loop depth 2
   SW t1, 0(a3)
   BLT t1, a5, bb23
   # implict jump to bb22
-bb22:   # loop depth 1
+bb22:   # loop depth 2
   JAL zero, bb13
 bb23:   # loop depth 2
   JAL zero, bb17
@@ -373,7 +373,7 @@ bb26:   # loop depth 4
   SRAIW t1, t1, 4
   BLT t2, a0, bb28
   # implict jump to bb27
-bb27:   # loop depth 3
+bb27:   # loop depth 4
   JAL zero, bb20
 bb28:   # loop depth 4
   JAL zero, bb26
@@ -415,7 +415,7 @@ bb35:   # loop depth 2
   SRAIW t1, t1, 4
   BLT a1, a0, bb37
   # implict jump to bb36
-bb36:   # loop depth 1
+bb36:   # loop depth 2
   JAL zero, bb32
 bb37:   # loop depth 2
   JAL zero, bb35

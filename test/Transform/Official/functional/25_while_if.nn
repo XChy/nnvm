@@ -16,27 +16,27 @@ deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
   e.phi6068107 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5982, bb %entry42, i32 0]
   1973 = icmp slt i32 %c.phi5669108, i32 100
   br i1 %1973, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
+  call void putint(i32 %c.phi5583)
+  ret i32 0
 deepWhileBr.then:  pred(deepWhileBr.while.body)
   2578 = add i32 %c.phi5669108, i32 42
   2779 = icmp sgt i32 %2578, i32 99
   br i1 1, bb %c.phi.which88.true, bb %deepWhileBr.then.split
 deepWhileBr.then.split:  pred(deepWhileBr.then, c.phi.which88.true)
-  115 = phi [bb %c.phi.which88.true, i32 168, bb %deepWhileBr.then, i32 %2578]
+  116 = phi [bb %c.phi.which88.true, i32 168, bb %deepWhileBr.then, i32 %2578]
   br i1 %2779, bb %e.phi91.which.true, bb %deepWhileBr.then.split.split
 deepWhileBr.then.split.split:  pred(deepWhileBr.then.split, e.phi91.which.true)
-  118 = phi [bb %e.phi91.which.true, i32 84, bb %deepWhileBr.then.split, i32 %e.phi6068107]
+  119 = phi [bb %e.phi91.which.true, i32 84, bb %deepWhileBr.then.split, i32 %e.phi6068107]
   br i1 %2779, bb %c.phi5492.which.true, bb %deepWhileBr.then.split.split.split
 deepWhileBr.then.split.split.split:  pred(deepWhileBr.then.split.split, c.phi5492.which.true)
-  121 = phi [bb %c.phi5492.which.true, i32 %115, bb %deepWhileBr.then.split.split, i32 %2578]
+  122 = phi [bb %c.phi5492.which.true, i32 %116, bb %deepWhileBr.then.split.split, i32 %2578]
   br bb %deepWhileBr.if.exit
 deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.then.split.split.split)
-  e.phi5982 = phi [bb %deepWhileBr.while.body, i32 %e.phi6068107, bb %deepWhileBr.then.split.split.split, i32 %118]
-  c.phi5583 = phi [bb %deepWhileBr.while.body, i32 %c.phi5669108, bb %deepWhileBr.then.split.split.split, i32 %121]
+  e.phi5982 = phi [bb %deepWhileBr.while.body, i32 %e.phi6068107, bb %deepWhileBr.then.split.split.split, i32 %119]
+  c.phi5583 = phi [bb %deepWhileBr.while.body, i32 %c.phi5669108, bb %deepWhileBr.then.split.split.split, i32 %122]
   1470 = icmp slt i32 %c.phi5583, i32 75
-  br i1 %1470, bb %deepWhileBr.while.body, bb %deepWhileBr.while.body_exclu_exit
-deepWhileBr.while.body_exclu_exit:  pred(deepWhileBr.if.exit)
-  call void putint(i32 %c.phi5583)
-  ret i32 0
+  br i1 %1470, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
 c.phi.which88.true:  pred(deepWhileBr.then)
   br bb %deepWhileBr.then.split
 e.phi91.which.true:  pred(deepWhileBr.then.split)

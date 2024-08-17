@@ -134,24 +134,24 @@ bb15:   # loop depth 0
   JAL zero, bb3
 bb16:   # loop depth 0
   LW a1, 0(s0)
-  ADDI t2, zero, 1
-  ADDI t1, zero, 2000
-  SLTI a6, a1, 1
+  ADDI t1, zero, 1
+  ADDI t2, zero, 2000
   # implict jump to bb17
 bb17:   # loop depth 1
-  BEQ a6, zero, bb20
+  SLTI t0, a1, 1
+  BEQ t0, zero, bb20
   # implict jump to bb18
 bb18:   # loop depth 1
-  ADDIW t1, t1, 2000
-  ADDIW t2, t2, 1
-  BGE a0, t2, bb19
+  ADDIW t2, t2, 2000
+  ADDIW t1, t1, 1
+  BGE a0, t1, bb19
   JAL zero, bb3
 bb19:   # loop depth 1
   JAL zero, bb17
 bb20:   # loop depth 1
   ADDI t0, zero, 1
-  ADD a3, s1, t1
-  ADD a2, s2, t1
+  ADD a3, s1, t2
+  ADD a2, s2, t2
   # implict jump to bb21
 bb21:   # loop depth 2
   SH2ADD a5, t0, a3
@@ -160,9 +160,9 @@ bb21:   # loop depth 2
   ADDIW t0, t0, 1
   SW a5, 0(a4)
   BGE a1, t0, bb22
-  ADDIW t1, t1, 2000
-  ADDIW t2, t2, 1
-  BGE a0, t2, bb19
+  ADDIW t2, t2, 2000
+  ADDIW t1, t1, 1
+  BGE a0, t1, bb19
   JAL zero, bb3
 bb22:   # loop depth 2
   JAL zero, bb21
@@ -172,8 +172,8 @@ bb23:   # loop depth 1
   BEQ t0, zero, bb41
   # implict jump to bb24
 bb24:   # loop depth 1
-  LW a2, 0(s4)
-  SLTI t0, a2, 1
+  LW a3, 0(s4)
+  SLTI t0, a3, 1
   BEQ t0, zero, bb27
   # implict jump to bb25
 bb25:   # loop depth 1
@@ -188,84 +188,84 @@ bb26:   # loop depth 1
   BLT t1, t0, bb23
   JAL zero, bb2
 bb27:   # loop depth 1
-  LW a3, 0(s0)
+  LW a4, 0(s0)
   ADD t0, zero, zero
   ADD t1, zero, zero
-  ADDI a4, zero, 1
+  ADDI a2, zero, 1
   ADDI a1, zero, 2000
-  SLTI a5, a3, 1
   # implict jump to bb28
 bb28:   # loop depth 2
-  BEQ a5, zero, bb32
+  SLTI t2, a4, 1
+  BEQ t2, zero, bb32
   # implict jump to bb29
 bb29:   # loop depth 2
   # implict jump to bb30
 bb30:   # loop depth 2
   ADDIW a1, a1, 2000
-  ADDIW a4, a4, 1
-  BGE a2, a4, bb31
+  ADDIW a2, a2, 1
+  BGE a3, a2, bb31
   JAL zero, bb25
 bb31:   # loop depth 2
   JAL zero, bb28
 bb32:   # loop depth 2
   ADDI t2, zero, 1
-  ADD a7, s2, a1
-  ADD a6, s1, a1
+  ADD a6, s2, a1
+  ADD a5, s1, a1
   # implict jump to bb33
 bb33:   # loop depth 3
-  SH2ADD t0, t2, a6
+  SH2ADD t0, t2, a5
   ADDIW a0, t2, 1
   LW t1, -2004(t0)
-  LW t3, -2000(t0)
-  LW t4, -1996(t0)
+  LW a7, -2000(t0)
+  LW t3, -1996(t0)
+  ADDW t1, t1, a7
+  LW a7, -4(t0)
   ADDW t1, t1, t3
-  LW t3, -4(t0)
-  ADDW t1, t1, t4
-  LW t4, 4(t0)
+  LW t3, 4(t0)
+  ADDW t1, t1, a7
+  LW a7, 1996(t0)
   ADDW t1, t1, t3
-  LW t3, 1996(t0)
-  ADDW t1, t1, t4
-  LW t4, 2000(t0)
+  LW t3, 2000(t0)
+  ADDW t1, t1, a7
+  LW a7, 2004(t0)
   ADDW t1, t1, t3
-  LW t3, 2004(t0)
-  ADDW t1, t1, t4
   LW t0, 0(t0)
-  ADDW t1, t1, t3
-  XORI t3, t1, 2
-  SLTIU t3, t3, 1
+  ADDW t1, t1, a7
+  XORI a7, t1, 2
+  SLTIU a7, a7, 1
   XORI t0, t0, 1
   SLTIU t0, t0, 1
-  AND t0, t0, t3
+  AND t0, t0, a7
   BNE t0, zero, bb40
   # implict jump to bb34
 bb34:   # loop depth 3
-  XORI t3, t1, 3
-  BEQ t3, zero, bb39
+  XORI a7, t1, 3
+  BEQ a7, zero, bb39
   # implict jump to bb35
 bb35:   # loop depth 3
-  SH2ADD t2, t2, a7
+  SH2ADD t2, t2, a6
   SW zero, 0(t2)
   # implict jump to bb36
 bb36:   # loop depth 3
-  BGE a3, a0, bb38
+  BGE a4, a0, bb38
   # implict jump to bb37
-bb37:   # loop depth 2
+bb37:   # loop depth 3
   ADDIW a1, a1, 2000
-  ADDIW a4, a4, 1
-  BGE a2, a4, bb31
+  ADDIW a2, a2, 1
+  BGE a3, a2, bb31
   JAL zero, bb25
 bb38:   # loop depth 3
   ADD t2, a0, zero
   JAL zero, bb33
 bb39:   # loop depth 3
-  ADDI t3, zero, 1
-  SH2ADD t2, t2, a7
-  SW t3, 0(t2)
+  ADDI a7, zero, 1
+  SH2ADD t2, t2, a6
+  SW a7, 0(t2)
   JAL zero, bb36
 bb40:   # loop depth 3
-  ADDI t3, zero, 1
-  SH2ADD t2, t2, a7
-  SW t3, 0(t2)
+  ADDI a7, zero, 1
+  SH2ADD t2, t2, a6
+  SW a7, 0(t2)
   JAL zero, bb36
 bb41:   # loop depth 1
   LW a3, 0(s4)
@@ -282,10 +282,10 @@ bb43:   # loop depth 1
   ADD t1, zero, zero
   ADDI a1, zero, 1
   ADDI a2, zero, 2000
-  SLTI a5, a4, 1
   # implict jump to bb44
 bb44:   # loop depth 2
-  BEQ a5, zero, bb48
+  SLTI t2, a4, 1
+  BEQ t2, zero, bb48
   # implict jump to bb45
 bb45:   # loop depth 2
   # implict jump to bb46
@@ -300,60 +300,60 @@ bb47:   # loop depth 2
   JAL zero, bb44
 bb48:   # loop depth 2
   ADDI t2, zero, 1
-  ADD a7, s1, a2
-  ADD a6, s2, a2
+  ADD a6, s1, a2
+  ADD a5, s2, a2
   # implict jump to bb49
 bb49:   # loop depth 3
-  SH2ADD t0, t2, a6
+  SH2ADD t0, t2, a5
   ADDIW a0, t2, 1
   LW t1, -2004(t0)
-  LW t3, -2000(t0)
-  LW t4, -1996(t0)
+  LW a7, -2000(t0)
+  LW t3, -1996(t0)
+  ADDW t1, t1, a7
+  LW a7, -4(t0)
   ADDW t1, t1, t3
-  LW t3, -4(t0)
-  ADDW t1, t1, t4
-  LW t4, 4(t0)
+  LW t3, 4(t0)
+  ADDW t1, t1, a7
+  LW a7, 1996(t0)
   ADDW t1, t1, t3
-  LW t3, 1996(t0)
-  ADDW t1, t1, t4
-  LW t4, 2000(t0)
+  LW t3, 2000(t0)
+  ADDW t1, t1, a7
+  LW a7, 2004(t0)
   ADDW t1, t1, t3
-  LW t3, 2004(t0)
-  ADDW t1, t1, t4
   LW t0, 0(t0)
-  ADDW t1, t1, t3
-  XORI t3, t1, 2
-  SLTIU t3, t3, 1
+  ADDW t1, t1, a7
+  XORI a7, t1, 2
+  SLTIU a7, a7, 1
   XORI t0, t0, 1
   SLTIU t0, t0, 1
-  AND t0, t0, t3
+  AND t0, t0, a7
   BNE t0, zero, bb56
   # implict jump to bb50
 bb50:   # loop depth 3
-  XORI t3, t1, 3
-  BEQ t3, zero, bb55
+  XORI a7, t1, 3
+  BEQ a7, zero, bb55
   # implict jump to bb51
 bb51:   # loop depth 3
-  SH2ADD t2, t2, a7
+  SH2ADD t2, t2, a6
   SW zero, 0(t2)
   # implict jump to bb52
 bb52:   # loop depth 3
   BGE a4, a0, bb54
   # implict jump to bb53
-bb53:   # loop depth 2
+bb53:   # loop depth 3
   JAL zero, bb46
 bb54:   # loop depth 3
   ADD t2, a0, zero
   JAL zero, bb49
 bb55:   # loop depth 3
-  ADDI t3, zero, 1
-  SH2ADD t2, t2, a7
-  SW t3, 0(t2)
+  ADDI a7, zero, 1
+  SH2ADD t2, t2, a6
+  SW a7, 0(t2)
   JAL zero, bb52
 bb56:   # loop depth 3
-  ADDI t3, zero, 1
-  SH2ADD t2, t2, a7
-  SW t3, 0(t2)
+  ADDI a7, zero, 1
+  SH2ADD t2, t2, a6
+  SW a7, 0(t2)
   JAL zero, bb52
 bb57:   # loop depth 0
   ADD s1, zero, zero
@@ -394,7 +394,7 @@ bb65:   # loop depth 2
   ADDIW s1, s1, 1
   BGE t0, s1, bb67
   # implict jump to bb66
-bb66:   # loop depth 1
+bb66:   # loop depth 2
   ADD s1, a0, zero
   JAL zero, bb60
 bb67:   # loop depth 2

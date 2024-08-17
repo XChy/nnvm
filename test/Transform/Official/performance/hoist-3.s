@@ -49,7 +49,7 @@ bb4:   # loop depth 1
   ADDIW t0, t0, 1
   BLT t0, t1, bb6
   # implict jump to bb5
-bb5:   # loop depth 0
+bb5:   # loop depth 1
   JAL zero, bb2
 bb6:   # loop depth 1
   JAL zero, bb4

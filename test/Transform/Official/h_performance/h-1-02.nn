@@ -15,57 +15,49 @@ entry34:  pred()
   36 = call i32 getint()
   store i32 %36 to ptr %lim.pinned
   call void _sysy_starttime(i32 22)
-  lim.load44100 = load i32 from ptr %lim.pinned
-  45101 = icmp sle i32 1, i32 %lim.load44100
-  br i1 %45101, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry34)
-  br bb %while.body
-while.body:  pred(while.body.split, while.body_preheader)
-  ans.phi104 = phi [bb %while.body.split, i32 %53, bb %while.body_preheader, i32 0]
-  i.phi103 = phi [bb %while.body.split, i32 %56, bb %while.body_preheader, i32 1]
-  br bb %fun.loop_entry
-while.body.split:  pred(fun.then, fun.else27)
-  50.ret = phi [bb %fun.then, i32 %dep.loop74, bb %fun.else27, i32 0]
-  51 = add i32 %ans.phi104, i32 %50.ret
+  lim.load44112 = load i32 from ptr %lim.pinned
+  45113 = icmp sle i32 1, i32 %lim.load44112
+  br i1 %45113, bb %while.cond.cp_preheader, bb %while.exit
+while.body.split:  pred(fun.loop_entry_preheader, fun.else14)
+  50.ret = phi [bb %fun.loop_entry_preheader, i32 %dep.loop74_ph_val, bb %fun.else14, i32 0]
+  51 = add i32 %ans.phi116, i32 %50.ret
   53 = srem i32 %51, i32 1000000007
-  56 = add i32 %i.phi103, i32 1
-  45 = icmp sle i32 %56, i32 %lim.load44100
-  br i1 %45, bb %while.body, bb %while.body_exclu_exit
-while.exit:  pred(entry34, while.body_exclu_exit)
-  102 = phi [bb %while.body_exclu_exit, i32 %53, bb %entry34, i32 0]
+  56 = add i32 %i.phi115, i32 1
+  45 = icmp sle i32 %56, i32 %lim.load44112
+  br i1 %45, bb %while.cond.cp, bb %while.exit
+while.exit:  pred(while.body.split, entry34)
+  114 = phi [bb %while.body.split, i32 %53, bb %entry34, i32 0]
   call void _sysy_stoptime(i32 27)
-  call void putint(i32 %102)
+  call void putint(i32 %114)
   call void putch(i32 10)
   ret i32 0
-fun.loop_entry:  pred(while.body, fun.loop_entry_unified_latch)
-  dep.loop74 = phi [bb %while.body, i32 0, bb %fun.loop_entry_unified_latch, i32 %1886]
-  n.loop75 = phi [bb %while.body, i32 %i.phi103, bb %fun.loop_entry_unified_latch, i32 %108]
-  476 = icmp eq i32 %n.loop75, i32 1
-  br i1 %476, bb %fun.then, bb %fun.else
-fun.then:  pred(fun.loop_entry)
-  br bb %while.body.split
-fun.else:  pred(fun.loop_entry)
-  6581 = and i32 %n.loop75, i32 1
+fun.loop_entry_preheader:  pred(while.cond.cp, fun.loop_entry_unified_latch)
+  n.loop75_ph_val = phi [bb %fun.loop_entry_unified_latch, i32 %102, bb %while.cond.cp, i32 %i.phi115]
+  dep.loop74_ph_val = phi [bb %fun.loop_entry_unified_latch, i32 %1886, bb %while.cond.cp, i32 0]
+  476 = icmp eq i32 %n.loop75_ph_val, i32 1
+  br i1 %476, bb %while.body.split, bb %fun.else
+fun.else:  pred(fun.loop_entry_preheader)
+  6581 = and i32 %n.loop75_ph_val, i32 1
   6682 = icmp eq i32 %6581, i32 0
-  1886 = add i32 %dep.loop74, i32 1
+  1886 = add i32 %dep.loop74_ph_val, i32 1
   br i1 %6682, bb %fun.then12, bb %fun.else14
 fun.then12:  pred(fun.else)
-  1685 = sdiv i32 %n.loop75, i32 2
+  1685 = sdiv i32 %n.loop75_ph_val, i32 2
   br bb %fun.loop_entry_unified_latch
 fun.else14:  pred(fun.else)
-  2189 = mul i32 %n.loop75, i32 3
+  2189 = mul i32 %n.loop75_ph_val, i32 3
   2290 = add i32 %2189, i32 1
-  2492 = icmp sle i32 %2290, i32 %lim.load44100
-  br i1 %2492, bb %fun.then25, bb %fun.else27
-fun.then25:  pred(fun.else14)
-  br bb %fun.loop_entry_unified_latch
-fun.else27:  pred(fun.else14)
-  br bb %while.body.split
-fun.loop_entry_unified_latch:  pred(fun.then12, fun.then25)
-  108 = phi [bb %fun.then12, i32 %1685, bb %fun.then25, i32 %2290]
-  br bb %fun.loop_entry
-while.body_exclu_exit:  pred(while.body.split)
-  br bb %while.exit
+  2492 = icmp sle i32 %2290, i32 %lim.load44112
+  br i1 %2492, bb %fun.loop_entry_unified_latch, bb %while.body.split
+fun.loop_entry_unified_latch:  pred(fun.then12, fun.else14)
+  102 = phi [bb %fun.then12, i32 %1685, bb %fun.else14, i32 %2290]
+  br bb %fun.loop_entry_preheader
+while.cond.cp_preheader:  pred(entry34)
+  br bb %while.cond.cp
+while.cond.cp:  pred(while.body.split, while.cond.cp_preheader)
+  ans.phi116 = phi [bb %while.body.split, i32 %53, bb %while.cond.cp_preheader, i32 0]
+  i.phi115 = phi [bb %while.body.split, i32 %56, bb %while.cond.cp_preheader, i32 1]
+  br bb %fun.loop_entry_preheader
 }
 
 external float getfloat()

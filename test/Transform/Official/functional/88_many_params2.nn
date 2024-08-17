@@ -13,60 +13,20 @@ entry54:  pred()
   %b = stack 12508
   br bb %init
 init:  pred(init, entry54)
-  cnt_ptr.phi305 = phi [bb %init, i32 %188, bb %entry54, i32 4087]
-  188 = add i32 %cnt_ptr.phi305, i32 -1
+  cnt_ptr.phi309 = phi [bb %init, i32 %188, bb %entry54, i32 4087]
+  188 = add i32 %cnt_ptr.phi309, i32 -1
   61 = icmp ne i32 %188, i32 0
-  br i1 %61, bb %init, bb %init_exclu_exit
-init69:  pred(init69, init_exclu_exit)
-  cnt_ptr71.phi303 = phi [bb %init69, i32 %190, bb %init_exclu_exit, i32 3127]
-  190 = add i32 %cnt_ptr71.phi303, i32 -1
-  294 = shl i32 %cnt_ptr71.phi303, i32 2
-  332 = ptradd ptr %b, i32 %294
-  333 = ptradd ptr %332, i32 -4
-  store i32 0 to ptr %333
+  br i1 %61, bb %init, bb %init69
+init69:  pred(init69, init)
+  cnt_ptr71.phi307 = phi [bb %init69, i32 %190, bb %init, i32 3127]
+  190 = add i32 %cnt_ptr71.phi307, i32 -1
+  294 = shl i32 %cnt_ptr71.phi307, i32 2
+  341 = ptradd ptr %b, i32 %294
+  342 = ptradd ptr %341, i32 -4
+  store i32 0 to ptr %342
   73 = icmp ne i32 %190, i32 0
-  br i1 %73, bb %init69, bb %init69_exclu_exit
-while.body163_preheader:  pred(func.while.exit34)
-  br bb %while.body163
-while.body163:  pred(while.body163, while.body163_preheader)
-  ret.phi296 = phi [bb %while.body163, i32 %225, bb %while.body163_preheader, i32 %161]
-  289 = shl i32 %ret.phi296, i32 2
-  334 = ptradd ptr %b, i32 %289
-  335 = ptradd ptr %334, i32 1416
-  172.load = load i32 from ptr %335
-  call void putint(i32 %172.load)
-  call void putch(i32 32)
-  225 = add i32 %ret.phi296, i32 -1
-  166 = icmp sge i32 %225, i32 0
-  br i1 %166, bb %while.body163, bb %while.exit164
-while.exit164:  pred(func.while.exit34, while.body163)
-  call void putch(i32 10)
-  ret i32 0
-func.while.body33_preheader:  pred(init69_exclu_exit)
-  343 = mul i32 %153.load, i32 128875
-  br bb %func.while.body33
-func.while.body33:  pred(func.while.body33, func.while.body33_preheader)
-  342 = phi [bb %func.while.body33_preheader, i32 %343, bb %func.while.body33, i32 %43261.rec]
-  h.stack.phi255299 = phi [bb %func.while.body33, i32 %50265, bb %func.while.body33_preheader, i32 %153.load]
-  i.stack.phi254298 = phi [bb %func.while.body33, i32 %47264, bb %func.while.body33_preheader, i32 %158.load]
-  292 = shl i32 %i.stack.phi254298, i32 2
-  340 = ptradd ptr %b, i32 %292
-  341 = ptradd ptr %340, i32 1416
-  44262 = srem i32 %342, i32 3724
-  store i32 %44262 to ptr %341
-  47264 = add i32 %i.stack.phi254298, i32 1
-  50265 = add i32 %h.stack.phi255299, i32 7
-  36256 = icmp slt i32 %47264, i32 10
-  43261.rec = add i32 %342, i32 902125
-  br i1 %36256, bb %func.while.body33, bb %func.while.exit34
-func.while.exit34:  pred(init69_exclu_exit, func.while.body33)
-  53268 = add i32 %146.load, i32 3
-  161 = mul i32 %53268, i32 3
-  166295 = icmp sge i32 %161, i32 0
-  br i1 %166295, bb %while.body163_preheader, bb %while.exit164
-init_exclu_exit:  pred(init)
-  br bb %init69
-init69_exclu_exit:  pred(init69)
+  br i1 %73, bb %init69, bb %init.exit70
+init.exit70:  pred(init69)
   203 = ptradd ptr %b, i32 1420
   store i32 1 to ptr %203
   205 = ptradd ptr %b, i32 1424
@@ -85,27 +45,63 @@ init69_exclu_exit:  pred(init69)
   call void putint(i32 1)
   call void putint(i32 2)
   call void putint(i32 3)
-  444 = ptradd ptr %b, i32 1432
-  19.load241380 = load i32 from ptr %444
-  call void putint(i32 %19.load241380)
-  446 = ptradd ptr %b, i32 1436
-  19.load241390 = load i32 from ptr %446
-  call void putint(i32 %19.load241390)
-  448 = ptradd ptr %b, i32 1440
-  19.load241400 = load i32 from ptr %448
-  call void putint(i32 %19.load241400)
-  450 = ptradd ptr %b, i32 1444
-  19.load241410 = load i32 from ptr %450
-  call void putint(i32 %19.load241410)
-  452 = ptradd ptr %b, i32 1448
-  19.load241420 = load i32 from ptr %452
-  call void putint(i32 %19.load241420)
+  461 = ptradd ptr %b, i32 1432
+  19.load241389 = load i32 from ptr %461
+  call void putint(i32 %19.load241389)
+  463 = ptradd ptr %b, i32 1436
+  19.load241399 = load i32 from ptr %463
+  call void putint(i32 %19.load241399)
+  465 = ptradd ptr %b, i32 1440
+  19.load241409 = load i32 from ptr %465
+  call void putint(i32 %19.load241409)
+  467 = ptradd ptr %b, i32 1444
+  19.load241419 = load i32 from ptr %467
+  call void putint(i32 %19.load241419)
+  469 = ptradd ptr %b, i32 1448
+  19.load241429 = load i32 from ptr %469
+  call void putint(i32 %19.load241429)
   call void putint(i32 9)
   call void putch(i32 10)
   call void putint(i32 9)
   call void putch(i32 10)
-  36256297 = icmp slt i32 %158.load, i32 10
-  br i1 %36256297, bb %func.while.body33_preheader, bb %func.while.exit34
+  36256301 = icmp slt i32 %158.load, i32 10
+  br i1 %36256301, bb %func.while.body33_preheader, bb %func.while.exit34
+while.body163:  pred(while.body163, func.while.exit34)
+  ret.phi300 = phi [bb %while.body163, i32 %225, bb %func.while.exit34, i32 %161]
+  289 = shl i32 %ret.phi300, i32 2
+  343 = ptradd ptr %b, i32 %289
+  344 = ptradd ptr %343, i32 1416
+  172.load = load i32 from ptr %344
+  call void putint(i32 %172.load)
+  call void putch(i32 32)
+  225 = add i32 %ret.phi300, i32 -1
+  166 = icmp sge i32 %225, i32 0
+  br i1 %166, bb %while.body163, bb %while.exit164
+while.exit164:  pred(while.body163, func.while.exit34)
+  call void putch(i32 10)
+  ret i32 0
+func.while.body33_preheader:  pred(init.exit70)
+  352 = mul i32 %153.load, i32 128875
+  br bb %func.while.body33
+func.while.body33:  pred(func.while.body33, func.while.body33_preheader)
+  351 = phi [bb %func.while.body33_preheader, i32 %352, bb %func.while.body33, i32 %43261.rec]
+  h.stack.phi255303 = phi [bb %func.while.body33, i32 %50265, bb %func.while.body33_preheader, i32 %153.load]
+  i.stack.phi254302 = phi [bb %func.while.body33, i32 %47264, bb %func.while.body33_preheader, i32 %158.load]
+  292 = shl i32 %i.stack.phi254302, i32 2
+  349 = ptradd ptr %b, i32 %292
+  350 = ptradd ptr %349, i32 1416
+  44262 = srem i32 %351, i32 3724
+  store i32 %44262 to ptr %350
+  47264 = add i32 %i.stack.phi254302, i32 1
+  50265 = add i32 %h.stack.phi255303, i32 7
+  36256 = icmp slt i32 %47264, i32 10
+  43261.rec = add i32 %351, i32 902125
+  br i1 %36256, bb %func.while.body33, bb %func.while.exit34
+func.while.exit34:  pred(func.while.body33, init.exit70)
+  53268 = add i32 %146.load, i32 3
+  161 = mul i32 %53268, i32 3
+  166299 = icmp sge i32 %161, i32 0
+  br i1 %166299, bb %while.body163, bb %while.exit164
 }
 
 external float getfloat()

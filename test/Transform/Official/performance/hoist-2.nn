@@ -27,15 +27,13 @@ func.while.body:  pred(func.while.body, func.while.body_preheader)
   32354766 = srem i32 %32324765, i32 1500000001
   32384767 = add i32 %i.phi32604776, i32 1
   233262 = icmp slt i32 %32384767, i32 %loopCount.load32614772
-  br i1 %233262, bb %func.while.body, bb %func.while.body_exclu_exit
-func.while.exit:  pred(entry3240, func.while.body_exclu_exit)
-  4774 = phi [bb %func.while.body_exclu_exit, i32 %32354766, bb %entry3240, i32 0]
+  br i1 %233262, bb %func.while.body, bb %func.while.exit
+func.while.exit:  pred(func.while.body, entry3240)
+  4774 = phi [bb %func.while.body, i32 %32354766, bb %entry3240, i32 0]
   call void _sysy_stoptime(i32 123)
   call void putint(i32 %4774)
   call void putch(i32 10)
   ret i32 0
-func.while.body_exclu_exit:  pred(func.while.body)
-  br bb %func.while.exit
 }
 
 external float getfloat()

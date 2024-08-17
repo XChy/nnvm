@@ -16,7 +16,7 @@ entry242:  pred()
   %x363 = stack 124
   a.pinned = pin ptr @a
   staticvalue.pinned = pin ptr @staticvalue
-  .pinned808 = pin i32 10000
+  .pinned811 = pin i32 10000
   244 = call i32 getint()
   246 = call i32 getint()
   store i32 %246 to ptr %staticvalue.pinned
@@ -24,8 +24,8 @@ entry242:  pred()
   254541 = icmp sgt i32 %244, i32 0
   br i1 %254541, bb %while.body251_preheader, bb %while.exit252
 while.body251_preheader:  pred(entry242)
-  .pinned809 = pin i32 1000000007
-  .pinned807 = pin i32 19981013
+  .pinned812 = pin i32 1000000007
+  .pinned810 = pin i32 19981013
   .pinned = pin i32 19971231
   arr.index5365 = ptradd ptr %x363, i32 4
   arr.index6367 = ptradd ptr %x363, i32 8
@@ -63,37 +63,37 @@ while.body251:  pred(while.body251.split.split.split, while.body251_preheader)
   310 = add i32 %n.phi542, i32 -1
   staticvalue.load216313 = load i32 from ptr %staticvalue.pinned
   220315 = mul i32 %staticvalue.load216313, i32 %.pinned
-  224318 = add i32 %220315, i32 %.pinned807
+  224318 = add i32 %220315, i32 %.pinned810
   store i32 %224318 to ptr %staticvalue.pinned
-  230322 = srem i32 %224318, i32 %.pinned809
+  230322 = srem i32 %224318, i32 %.pinned812
   store i32 %230322 to ptr %staticvalue.pinned
   232324 = icmp slt i32 %230322, i32 0
   br i1 %232324, bb %rand.then233, bb %rand.if.exit234
 while.body251.split.split.split:  pred(set.if.exit149, rand.if.exit234357)
   254 = icmp sgt i32 %310, i32 0
   br i1 %254, bb %while.body251, bb %while.exit252
-while.exit252:  pred(entry242, while.body251.split.split.split)
+while.exit252:  pred(while.body251.split.split.split, entry242)
   call void _sysy_stoptime(i32 64)
-  call void putarray(i32 %.pinned808, ptr %a.pinned)
+  call void putarray(i32 %.pinned811, ptr %a.pinned)
   ret i32 0
 rand.then233:  pred(while.body251)
   staticvalue.load239328 = load i32 from ptr %staticvalue.pinned
-  240329 = add i32 %staticvalue.load239328, i32 %.pinned809
+  240329 = add i32 %staticvalue.load239328, i32 %.pinned812
   store i32 %240329 to ptr %staticvalue.pinned
   br bb %rand.if.exit234
 rand.if.exit234:  pred(while.body251, rand.then233)
   staticvalue.load241333 = load i32 from ptr %staticvalue.pinned
   261 = srem i32 %staticvalue.load241333, i32 300000
   220340 = mul i32 %staticvalue.load241333, i32 %.pinned
-  224343 = add i32 %220340, i32 %.pinned807
+  224343 = add i32 %220340, i32 %.pinned810
   store i32 %224343 to ptr %staticvalue.pinned
-  230347 = srem i32 %224343, i32 %.pinned809
+  230347 = srem i32 %224343, i32 %.pinned812
   store i32 %230347 to ptr %staticvalue.pinned
   232349 = icmp slt i32 %230347, i32 0
   br i1 %232349, bb %rand.then233351, bb %rand.if.exit234357
 rand.then233351:  pred(rand.if.exit234)
   staticvalue.load239353 = load i32 from ptr %staticvalue.pinned
-  240354 = add i32 %staticvalue.load239353, i32 %.pinned809
+  240354 = add i32 %staticvalue.load239353, i32 %.pinned812
   store i32 %240354 to ptr %staticvalue.pinned
   br bb %rand.if.exit234357
 rand.if.exit234357:  pred(rand.if.exit234, rand.then233351)
@@ -131,7 +131,7 @@ rand.if.exit234357:  pred(rand.if.exit234, rand.then233351)
   store i32 536870912 to ptr %arr.index33421
   store i32 1073741824 to ptr %arr.index34423
   130462 = sdiv i32 %261, i32 30
-  131463 = icmp sge i32 %130462, i32 %.pinned808
+  131463 = icmp sge i32 %130462, i32 %.pinned811
   br i1 %131463, bb %while.body251.split.split.split, bb %set.if.exit
 set.if.exit:  pred(rand.if.exit234357)
   536 = shl i32 %130462, i32 2
@@ -151,10 +151,10 @@ set.then148:  pred(set.if.exit)
   166493 = icmp eq i32 %264, i32 1
   br i1 %166493, bb %v.phi276507.which.true, bb %set.then148.split
 set.then148.split:  pred(set.then148, v.phi276507.which.true)
-  814 = phi [bb %v.phi276507.which.true, i32 %142.load474, bb %set.then148, i32 0]
+  817 = phi [bb %v.phi276507.which.true, i32 %142.load474, bb %set.then148, i32 0]
   br i1 %301484, bb %v.phi277496.which.true, bb %set.then148.split.split
 set.then148.split.split:  pred(set.then148.split, v.phi277496.which.true)
-  817 = phi [bb %v.phi277496.which.true, i32 %814, bb %set.then148.split, i32 0]
+  820 = phi [bb %v.phi277496.which.true, i32 %817, bb %set.then148.split, i32 0]
   187501 = icmp eq i32 %145476, i32 1
   br i1 %187501, bb %set.then188, bb %set.if.exit189
 set.if.exit149:  pred(set.if.exit, set.if.exit189)
@@ -166,13 +166,13 @@ set.if.exit149:  pred(set.if.exit, set.if.exit189)
 set.then188:  pred(set.then148.split.split)
   523 = and i32 %staticvalue.load241358, i32 1
   524 = icmp eq i32 %523, i32 0
-  201517 = sub i32 %817, i32 %142.load474
+  201517 = sub i32 %820, i32 %142.load474
   br i1 %524, bb %v.phi520.which.true, bb %set.then188.split
 set.then188.split:  pred(set.then188, v.phi520.which.true)
-  820 = phi [bb %v.phi520.which.true, i32 %201517, bb %set.then188, i32 %817]
+  823 = phi [bb %v.phi520.which.true, i32 %201517, bb %set.then188, i32 %820]
   br bb %set.if.exit189
 set.if.exit189:  pred(set.then148.split.split, set.then188.split)
-  v.phi274513 = phi [bb %set.then148.split.split, i32 %817, bb %set.then188.split, i32 %820]
+  v.phi274513 = phi [bb %set.then148.split.split, i32 %820, bb %set.then188.split, i32 %823]
   br bb %set.if.exit149
 v.phi276507.which.true:  pred(set.then148)
   br bb %set.then148.split

@@ -20,15 +20,15 @@
 .CONSTANT.7.2:
 .word 0x4099999a
 .CONSTANT.7.3:
-.word 0x41180000
-.CONSTANT.7.4:
 .word 0x3fcccccd
-.CONSTANT.7.5:
+.CONSTANT.7.4:
 .word 0x40f33333
-.CONSTANT.7.6:
+.CONSTANT.7.5:
 .word 0x40dccccd
-.CONSTANT.7.7:
+.CONSTANT.7.6:
 .word 0x3c23d70a
+.CONSTANT.7.7:
+.word 0x41180000
 .CONSTANT.7.8:
 .word 0x3c83126f
 .CONSTANT.7.9:
@@ -104,34 +104,29 @@ bb6:   # loop depth 1
   FADD.S fs1, fs1, ft0
   BLT t0, s0, bb8
   # implict jump to bb7
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   JAL zero, bb4
 bb8:   # loop depth 1
   JAL zero, bb6
 bb9:   # loop depth 0
-  LA t0, .CONSTANT.7.3
-  LA t2, .CONSTANT.7.3
   ADD t1, zero, zero
-  FLW ft0, 0(t0)
   ADDI t0, zero, 1
-  FLW ft1, 0(t2)
-  FSGNJ.S ft0, ft0, ft1
   # implict jump to bb10
 bb10:   # loop depth 1
-  LA t2, .CONSTANT.7.4
-  LA a0, .CONSTANT.7.5
-  LA a1, .CONSTANT.7.6
-  FLW ft1, 0(t2)
-  LA t2, .CONSTANT.7.7
-  FLW ft2, 0(a0)
-  FSUB.S ft1, fs0, ft1
-  FSUB.S ft2, fs2, ft2
-  FLW ft3, 0(a1)
-  FSUB.S ft3, fs1, ft3
-  FLW ft5, 0(t2)
-  FMUL.S ft4, ft1, ft2
-  FMUL.S ft4, ft4, ft3
-  FDIV.S ft4, ft5, ft4
+  LA t2, .CONSTANT.7.3
+  LA a0, .CONSTANT.7.4
+  LA a1, .CONSTANT.7.5
+  FLW ft0, 0(t2)
+  LA t2, .CONSTANT.7.6
+  FLW ft1, 0(a0)
+  FSUB.S ft0, fs0, ft0
+  FSUB.S ft1, fs2, ft1
+  FLW ft2, 0(a1)
+  FSUB.S ft2, fs1, ft2
+  FLW ft4, 0(t2)
+  FMUL.S ft3, ft0, ft1
+  FMUL.S ft3, ft3, ft2
+  FDIV.S ft3, ft4, ft3
   BLT t0, s0, bb15
   # implict jump to bb11
 bb11:   # loop depth 1
@@ -140,26 +135,31 @@ bb12:   # loop depth 1
   ADDIW t1, t1, 1
   BLT t1, s0, bb14
   # implict jump to bb13
-bb13:   # loop depth 0
+bb13:   # loop depth 1
   JAL zero, bb2
 bb14:   # loop depth 1
   JAL zero, bb10
 bb15:   # loop depth 1
-  FMUL.S ft3, ft3, ft0
-  FMUL.S ft2, ft2, ft0
-  FMUL.S ft1, ft1, ft0
-  FMUL.S ft3, ft3, ft4
+  LA t2, .CONSTANT.7.7
+  LA a0, .CONSTANT.7.7
+  FLW ft4, 0(t2)
+  FLW ft5, 0(a0)
+  FSGNJ.S ft4, ft4, ft5
   FMUL.S ft2, ft2, ft4
   FMUL.S ft1, ft1, ft4
+  FMUL.S ft0, ft0, ft4
+  FMUL.S ft2, ft2, ft3
+  FMUL.S ft1, ft1, ft3
+  FMUL.S ft0, ft0, ft3
   # implict jump to bb16
 bb16:   # loop depth 2
   ADDIW t0, t0, 1
-  FSUB.S fs1, fs1, ft3
-  FSUB.S fs2, fs2, ft2
-  FSUB.S fs0, fs0, ft1
+  FSUB.S fs1, fs1, ft2
+  FSUB.S fs2, fs2, ft1
+  FSUB.S fs0, fs0, ft0
   BLT t0, s0, bb18
   # implict jump to bb17
-bb17:   # loop depth 1
+bb17:   # loop depth 2
   JAL zero, bb12
 bb18:   # loop depth 2
   JAL zero, bb16

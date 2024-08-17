@@ -80,7 +80,7 @@ bb8:   # loop depth 2
   REMW t0, t0, a4
   BLT s0, s1, bb10
   # implict jump to bb9
-bb9:   # loop depth 1
+bb9:   # loop depth 2
   ADD a0, t0, zero
   JAL zero, bb5
 bb10:   # loop depth 2

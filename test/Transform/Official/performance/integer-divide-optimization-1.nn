@@ -17,43 +17,41 @@ entry6000:  pred()
   6004 = call i32 getint()
   store i32 %6004 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 1016)
-  loopCount.load601013059 = load i32 from ptr %loopCount.pinned
-  601113060 = icmp slt i32 0, i32 %loopCount.load601013059
-  br i1 %601113060, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry6000)
-  br bb %while.body
-while.body:  pred(while.body6016_exclu_exit, while.body_preheader)
-  sum.phi13063 = phi [bb %while.body6016_exclu_exit, i32 %9039, bb %while.body_preheader, i32 0]
-  i.phi13062 = phi [bb %while.body6016_exclu_exit, i32 %9042, bb %while.body_preheader, i32 0]
+  loopCount.load601013062 = load i32 from ptr %loopCount.pinned
+  601113063 = icmp slt i32 0, i32 %loopCount.load601013062
+  br i1 %601113063, bb %while.cond6015_preheader_preheader, bb %while.exit
+while.exit:  pred(while.exit6017, entry6000)
+  13064 = phi [bb %while.exit6017, i32 %9039, bb %entry6000, i32 0]
+  call void _sysy_stoptime(i32 1031)
+  call void putint(i32 %13064)
+  call void putch(i32 10)
+  ret i32 0
+while.cond6015_preheader_preheader:  pred(entry6000)
+  br bb %while.cond6015_preheader
+while.cond6015_preheader:  pred(while.exit6017, while.cond6015_preheader_preheader)
+  sum.phi13066 = phi [bb %while.exit6017, i32 %9039, bb %while.cond6015_preheader_preheader, i32 0]
+  i.phi13065 = phi [bb %while.exit6017, i32 %9042, bb %while.cond6015_preheader_preheader, i32 0]
   multi.load = load i32 from ptr @multi
-  6025 = mul i32 %i.phi13062, i32 %multi.load
+  6025 = mul i32 %i.phi13065, i32 %multi.load
   10039057 = sdiv i32 %6025, i32 2
   13054 = mul i32 %10039057, i32 1000
   size.load = load i32 from ptr @size
   9025 = sdiv i32 %13054, i32 %size.load
   br bb %while.body6016
-while.exit:  pred(entry6000, while.body_exclu_exit)
-  13061 = phi [bb %while.body_exclu_exit, i32 %9039, bb %entry6000, i32 0]
-  call void _sysy_stoptime(i32 1031)
-  call void putint(i32 %13061)
-  call void putch(i32 10)
-  ret i32 0
-while.body6016:  pred(while.body6016, while.body)
-  tmp.phi905113058 = phi [bb %while.body6016, i32 %9026, bb %while.body, i32 0]
-  j.phi13057 = phi [bb %while.body6016, i32 %9029, bb %while.body, i32 0]
-  9026 = add i32 %tmp.phi905113058, i32 %9025
-  9029 = add i32 %j.phi13057, i32 1
+while.body6016:  pred(while.body6016, while.cond6015_preheader)
+  tmp.phi905113061 = phi [bb %while.body6016, i32 %9026, bb %while.cond6015_preheader, i32 0]
+  j.phi13060 = phi [bb %while.body6016, i32 %9029, bb %while.cond6015_preheader, i32 0]
+  9026 = add i32 %tmp.phi905113061, i32 %9025
+  9029 = add i32 %j.phi13060, i32 1
   6019 = icmp slt i32 %9029, i32 300
-  br i1 %6019, bb %while.body6016, bb %while.body6016_exclu_exit
-while.body6016_exclu_exit:  pred(while.body6016)
+  br i1 %6019, bb %while.body6016, bb %while.exit6017
+while.exit6017:  pred(while.body6016)
   9032 = sdiv i32 %9026, i32 300
-  9036 = add i32 %sum.phi13063, i32 %9032
+  9036 = add i32 %sum.phi13066, i32 %9032
   9039 = srem i32 %9036, i32 2147385347
-  9042 = add i32 %i.phi13062, i32 1
-  6011 = icmp slt i32 %9042, i32 %loopCount.load601013059
-  br i1 %6011, bb %while.body, bb %while.body_exclu_exit
-while.body_exclu_exit:  pred(while.body6016_exclu_exit)
-  br bb %while.exit
+  9042 = add i32 %i.phi13065, i32 1
+  6011 = icmp slt i32 %9042, i32 %loopCount.load601013062
+  br i1 %6011, bb %while.cond6015_preheader, bb %while.exit
 }
 
 external float getfloat()

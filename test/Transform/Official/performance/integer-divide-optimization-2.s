@@ -79,7 +79,7 @@ bb6:   # loop depth 1
   REMW s0, t0, a1
   BLT t2, a0, bb8
   # implict jump to bb7
-bb7:   # loop depth 0
+bb7:   # loop depth 1
   JAL zero, bb2
 bb8:   # loop depth 1
   JAL zero, bb4

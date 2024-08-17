@@ -26,578 +26,572 @@ entry401:  pred()
   store i32 0 to ptr %426
   429 = ptradd ptr %output_buf, i32 16
   store i32 0 to ptr %429
-  4351530 = icmp sgt i32 %414, i32 0
-  br i1 %4351530, bb %while.body432_preheader, bb %while.exit433
-while.body432_preheader:  pred(entry401)
-  buffer.pinned = pin ptr @buffer
-  .pinned2065 = pin i32 -271733879
-  .pinned2064 = pin i32 -1009589776
-  .pinned2063 = pin i32 -1732584194
-  .pinned2062 = pin i32 271733878
-  .pinned = pin i32 1732584193
-  94581 = ptradd ptr %buffer.pinned, i32 128000
-  br bb %while.body432
-while.body432:  pred(pseudo_sha1.while.exit161, while.body432_preheader)
-  rounds.phi1531 = phi [bb %pseudo_sha1.while.exit161, i32 %573, bb %while.body432_preheader, i32 %414]
-  br bb %while.body440
-while.exit433:  pred(entry401, pseudo_sha1.while.exit161)
+  4351554 = icmp sgt i32 %414, i32 0
+  br i1 %4351554, bb %while.cond439_preheader_preheader, bb %while.exit433
+while.exit433:  pred(pseudo_sha1.while.exit161, entry401)
   call void _sysy_stoptime(i32 184)
   call void putarray(i32 5, ptr %output_buf)
   ret i32 0
-while.body440:  pred(while.body440, while.body432)
-  i438.phi5331529 = phi [bb %while.body440, i32 %454, bb %while.body432, i32 0]
-  1450 = shl i32 %i438.phi5331529, i32 2
-  448 = ptradd ptr %buffer.pinned, i32 %1450
-  state.load21366 = load i32 from ptr %state.pinned
-  1451 = shl i32 %state.load21366, i32 13
-  51368 = add i32 %state.load21366, i32 %1451
-  store i32 %51368 to ptr %state.pinned
-  91370 = sdiv i32 %51368, i32 131072
-  101371 = add i32 %51368, i32 %91370
-  store i32 %101371 to ptr %state.pinned
-  1452 = shl i32 %101371, i32 5
-  151374 = add i32 %101371, i32 %1452
-  store i32 %151374 to ptr %state.pinned
-  451 = srem i32 %151374, i32 256
+while.cond439_preheader_preheader:  pred(entry401)
+  buffer.pinned = pin ptr @buffer
+  .pinned2116 = pin i32 -271733879
+  .pinned2115 = pin i32 -1009589776
+  .pinned2114 = pin i32 -1732584194
+  .pinned2113 = pin i32 271733878
+  .pinned = pin i32 1732584193
+  94581 = ptradd ptr %buffer.pinned, i32 128000
+  br bb %while.cond439_preheader
+while.cond439_preheader:  pred(pseudo_sha1.while.exit161, while.cond439_preheader_preheader)
+  rounds.phi1555 = phi [bb %pseudo_sha1.while.exit161, i32 %573, bb %while.cond439_preheader_preheader, i32 %414]
+  br bb %while.body440
+while.body440:  pred(while.body440, while.cond439_preheader)
+  i438.phi5331553 = phi [bb %while.body440, i32 %454, bb %while.cond439_preheader, i32 0]
+  1442 = shl i32 %i438.phi5331553, i32 2
+  448 = ptradd ptr %buffer.pinned, i32 %1442
+  state.load21358 = load i32 from ptr %state.pinned
+  1443 = shl i32 %state.load21358, i32 13
+  51360 = add i32 %state.load21358, i32 %1443
+  store i32 %51360 to ptr %state.pinned
+  91362 = sdiv i32 %51360, i32 131072
+  101363 = add i32 %51360, i32 %91362
+  store i32 %101363 to ptr %state.pinned
+  1444 = shl i32 %101363, i32 5
+  151366 = add i32 %101363, i32 %1444
+  store i32 %151366 to ptr %state.pinned
+  451 = srem i32 %151366, i32 256
   store i32 %451 to ptr %448
-  454 = add i32 %i438.phi5331529, i32 1
+  454 = add i32 %i438.phi5331553, i32 1
   444 = icmp slt i32 %454, i32 32000
-  br i1 %444, bb %while.body440, bb %while.body440_exclu_exit
-pseudo_sha1.while.body:  pred(pseudo_sha1.while.body, while.body440_exclu_exit)
-  145415231527 = phi [bb %pseudo_sha1.while.body, i32 %1454, bb %while.body440_exclu_exit, i32 128004]
-  input_len.stack.phi5861526 = phi [bb %pseudo_sha1.while.body, i32 %112594, bb %while.body440_exclu_exit, i32 32001]
-  108592 = ptradd ptr %buffer.pinned, i32 %145415231527
-  store i32 0 to ptr %108592
-  112594 = add i32 %input_len.stack.phi5861526, i32 1
-  103587 = srem i32 %112594, i32 64
-  104588 = icmp ne i32 %103587, i32 60
-  1454 = shl i32 %112594, i32 2
-  br i1 %104588, bb %pseudo_sha1.while.body, bb %pseudo_sha1.while.body_exclu_exit
-pseudo_sha1.init:  pred(pseudo_sha1.init, pseudo_sha1.while.body_exclu_exit)
-  cnt_ptr.phi6221520 = phi [bb %pseudo_sha1.init, i32 %542626, bb %pseudo_sha1.while.body_exclu_exit, i32 80]
-  542626 = add i32 %cnt_ptr.phi6221520, i32 -1
-  1470 = shl i32 %cnt_ptr.phi6221520, i32 2
-  1605 = ptradd ptr %words579, i32 %1470
-  1606 = ptradd ptr %1605, i32 -4
-  store i32 0 to ptr %1606
-  153623 = icmp ne i32 %542626, i32 0
-  br i1 %153623, bb %pseudo_sha1.init, bb %pseudo_sha1.init_exclu_exit
-pseudo_sha1.while.body160_preheader:  pred(pseudo_sha1.init_exclu_exit)
-  br bb %pseudo_sha1.while.body160
-pseudo_sha1.while.body160:  pred(pseudo_sha1.while.body267_exclu_exit, pseudo_sha1.while.body160_preheader)
-  h0.phi6421518 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %361741, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned]
-  h1.phi6411517 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %365742, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2065]
-  h2.phi6401516 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %369743, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2063]
-  h3.phi6391515 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %373744, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2062]
-  f.phi4996371513 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %f.phi497756, bb %pseudo_sha1.while.body160_preheader, i32 0]
-  k.phi5096361512 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %k.phi507755, bb %pseudo_sha1.while.body160_preheader, i32 0]
-  chunk_start.phi6351511 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %380746, bb %pseudo_sha1.while.body160_preheader, i32 0]
-  h4.phi6341510 = phi [bb %pseudo_sha1.while.body267_exclu_exit, i32 %377745, bb %pseudo_sha1.while.body160_preheader, i32 %.pinned2064]
-  1457 = shl i32 %chunk_start.phi6351511, i32 2
-  192667 = ptradd ptr %buffer.pinned, i32 %1457
-  192.load668 = load i32 from ptr %192667
-  1458 = shl i32 %192.load668, i32 24
-  1608 = ptradd ptr %192667, i32 4
-  201.load673 = load i32 from ptr %1608
-  1459 = shl i32 %201.load673, i32 16
-  204675 = add i32 %1458, i32 %1459
-  1610 = ptradd ptr %192667, i32 8
-  211.load679 = load i32 from ptr %1610
-  1460 = shl i32 %211.load679, i32 8
-  214681 = add i32 %204675, i32 %1460
-  1612 = ptradd ptr %192667, i32 12
-  221.load685 = load i32 from ptr %1612
-  1461 = shl i32 %221.load685, i32 0
-  224687 = add i32 %214681, i32 %1461
-  store i32 %224687 to ptr %words579
-  1856641624 = ptradd ptr %words579, i32 4
-  1906651625 = add i32 %chunk_start.phi6351511, i32 4
-  14571626 = shl i32 %1906651625, i32 2
-  1926671627 = ptradd ptr %buffer.pinned, i32 %14571626
-  192.load6681628 = load i32 from ptr %1926671627
-  14581629 = shl i32 %192.load6681628, i32 24
-  16081630 = ptradd ptr %1926671627, i32 4
-  201.load6731631 = load i32 from ptr %16081630
-  14591632 = shl i32 %201.load6731631, i32 16
-  2046751633 = add i32 %14581629, i32 %14591632
-  16101634 = ptradd ptr %1926671627, i32 8
-  211.load6791635 = load i32 from ptr %16101634
-  14601636 = shl i32 %211.load6791635, i32 8
-  2146811637 = add i32 %2046751633, i32 %14601636
-  16121638 = ptradd ptr %1926671627, i32 12
-  221.load6851639 = load i32 from ptr %16121638
-  14611640 = shl i32 %221.load6851639, i32 0
-  2246871641 = add i32 %2146811637, i32 %14611640
-  store i32 %2246871641 to ptr %1856641624
-  1856641649 = ptradd ptr %words579, i32 8
-  1906651650 = add i32 %chunk_start.phi6351511, i32 8
-  14571651 = shl i32 %1906651650, i32 2
-  1926671652 = ptradd ptr %buffer.pinned, i32 %14571651
-  192.load6681653 = load i32 from ptr %1926671652
-  14581654 = shl i32 %192.load6681653, i32 24
-  16081655 = ptradd ptr %1926671652, i32 4
-  201.load6731656 = load i32 from ptr %16081655
-  14591657 = shl i32 %201.load6731656, i32 16
-  2046751658 = add i32 %14581654, i32 %14591657
-  16101659 = ptradd ptr %1926671652, i32 8
-  211.load6791660 = load i32 from ptr %16101659
-  14601661 = shl i32 %211.load6791660, i32 8
-  2146811662 = add i32 %2046751658, i32 %14601661
-  16121663 = ptradd ptr %1926671652, i32 12
-  221.load6851664 = load i32 from ptr %16121663
-  14611665 = shl i32 %221.load6851664, i32 0
-  2246871666 = add i32 %2146811662, i32 %14611665
-  store i32 %2246871666 to ptr %1856641649
-  1856641674 = ptradd ptr %words579, i32 12
-  1906651675 = add i32 %chunk_start.phi6351511, i32 12
-  14571676 = shl i32 %1906651675, i32 2
-  1926671677 = ptradd ptr %buffer.pinned, i32 %14571676
-  192.load6681678 = load i32 from ptr %1926671677
-  14581679 = shl i32 %192.load6681678, i32 24
-  16081680 = ptradd ptr %1926671677, i32 4
-  201.load6731681 = load i32 from ptr %16081680
-  14591682 = shl i32 %201.load6731681, i32 16
-  2046751683 = add i32 %14581679, i32 %14591682
-  16101684 = ptradd ptr %1926671677, i32 8
-  211.load6791685 = load i32 from ptr %16101684
-  14601686 = shl i32 %211.load6791685, i32 8
-  2146811687 = add i32 %2046751683, i32 %14601686
-  16121688 = ptradd ptr %1926671677, i32 12
-  221.load6851689 = load i32 from ptr %16121688
-  14611690 = shl i32 %221.load6851689, i32 0
-  2246871691 = add i32 %2146811687, i32 %14611690
-  store i32 %2246871691 to ptr %1856641674
-  1856641699 = ptradd ptr %words579, i32 16
-  1906651700 = add i32 %chunk_start.phi6351511, i32 16
-  14571701 = shl i32 %1906651700, i32 2
-  1926671702 = ptradd ptr %buffer.pinned, i32 %14571701
-  192.load6681703 = load i32 from ptr %1926671702
-  14581704 = shl i32 %192.load6681703, i32 24
-  16081705 = ptradd ptr %1926671702, i32 4
-  201.load6731706 = load i32 from ptr %16081705
-  14591707 = shl i32 %201.load6731706, i32 16
-  2046751708 = add i32 %14581704, i32 %14591707
-  16101709 = ptradd ptr %1926671702, i32 8
-  211.load6791710 = load i32 from ptr %16101709
-  14601711 = shl i32 %211.load6791710, i32 8
-  2146811712 = add i32 %2046751708, i32 %14601711
-  16121713 = ptradd ptr %1926671702, i32 12
-  221.load6851714 = load i32 from ptr %16121713
-  14611715 = shl i32 %221.load6851714, i32 0
-  2246871716 = add i32 %2146811712, i32 %14611715
-  store i32 %2246871716 to ptr %1856641699
-  1856641724 = ptradd ptr %words579, i32 20
-  1906651725 = add i32 %chunk_start.phi6351511, i32 20
-  14571726 = shl i32 %1906651725, i32 2
-  1926671727 = ptradd ptr %buffer.pinned, i32 %14571726
-  192.load6681728 = load i32 from ptr %1926671727
-  14581729 = shl i32 %192.load6681728, i32 24
-  16081730 = ptradd ptr %1926671727, i32 4
-  201.load6731731 = load i32 from ptr %16081730
-  14591732 = shl i32 %201.load6731731, i32 16
-  2046751733 = add i32 %14581729, i32 %14591732
-  16101734 = ptradd ptr %1926671727, i32 8
-  211.load6791735 = load i32 from ptr %16101734
-  14601736 = shl i32 %211.load6791735, i32 8
-  2146811737 = add i32 %2046751733, i32 %14601736
-  16121738 = ptradd ptr %1926671727, i32 12
-  221.load6851739 = load i32 from ptr %16121738
-  14611740 = shl i32 %221.load6851739, i32 0
-  2246871741 = add i32 %2146811737, i32 %14611740
-  store i32 %2246871741 to ptr %1856641724
-  1856641749 = ptradd ptr %words579, i32 24
-  1906651750 = add i32 %chunk_start.phi6351511, i32 24
-  14571751 = shl i32 %1906651750, i32 2
-  1926671752 = ptradd ptr %buffer.pinned, i32 %14571751
-  192.load6681753 = load i32 from ptr %1926671752
-  14581754 = shl i32 %192.load6681753, i32 24
-  16081755 = ptradd ptr %1926671752, i32 4
-  201.load6731756 = load i32 from ptr %16081755
-  14591757 = shl i32 %201.load6731756, i32 16
-  2046751758 = add i32 %14581754, i32 %14591757
-  16101759 = ptradd ptr %1926671752, i32 8
-  211.load6791760 = load i32 from ptr %16101759
-  14601761 = shl i32 %211.load6791760, i32 8
-  2146811762 = add i32 %2046751758, i32 %14601761
-  16121763 = ptradd ptr %1926671752, i32 12
-  221.load6851764 = load i32 from ptr %16121763
-  14611765 = shl i32 %221.load6851764, i32 0
-  2246871766 = add i32 %2146811762, i32 %14611765
-  store i32 %2246871766 to ptr %1856641749
-  1856641774 = ptradd ptr %words579, i32 28
-  1906651775 = add i32 %chunk_start.phi6351511, i32 28
-  14571776 = shl i32 %1906651775, i32 2
-  1926671777 = ptradd ptr %buffer.pinned, i32 %14571776
-  192.load6681778 = load i32 from ptr %1926671777
-  14581779 = shl i32 %192.load6681778, i32 24
-  16081780 = ptradd ptr %1926671777, i32 4
-  201.load6731781 = load i32 from ptr %16081780
-  14591782 = shl i32 %201.load6731781, i32 16
-  2046751783 = add i32 %14581779, i32 %14591782
-  16101784 = ptradd ptr %1926671777, i32 8
-  211.load6791785 = load i32 from ptr %16101784
-  14601786 = shl i32 %211.load6791785, i32 8
-  2146811787 = add i32 %2046751783, i32 %14601786
-  16121788 = ptradd ptr %1926671777, i32 12
-  221.load6851789 = load i32 from ptr %16121788
-  14611790 = shl i32 %221.load6851789, i32 0
-  2246871791 = add i32 %2146811787, i32 %14611790
-  store i32 %2246871791 to ptr %1856641774
-  1856641799 = ptradd ptr %words579, i32 32
-  1906651800 = add i32 %chunk_start.phi6351511, i32 32
-  14571801 = shl i32 %1906651800, i32 2
-  1926671802 = ptradd ptr %buffer.pinned, i32 %14571801
-  192.load6681803 = load i32 from ptr %1926671802
-  14581804 = shl i32 %192.load6681803, i32 24
-  16081805 = ptradd ptr %1926671802, i32 4
-  201.load6731806 = load i32 from ptr %16081805
-  14591807 = shl i32 %201.load6731806, i32 16
-  2046751808 = add i32 %14581804, i32 %14591807
-  16101809 = ptradd ptr %1926671802, i32 8
-  211.load6791810 = load i32 from ptr %16101809
-  14601811 = shl i32 %211.load6791810, i32 8
-  2146811812 = add i32 %2046751808, i32 %14601811
-  16121813 = ptradd ptr %1926671802, i32 12
-  221.load6851814 = load i32 from ptr %16121813
-  14611815 = shl i32 %221.load6851814, i32 0
-  2246871816 = add i32 %2146811812, i32 %14611815
-  store i32 %2246871816 to ptr %1856641799
-  1856641824 = ptradd ptr %words579, i32 36
-  1906651825 = add i32 %chunk_start.phi6351511, i32 36
-  14571826 = shl i32 %1906651825, i32 2
-  1926671827 = ptradd ptr %buffer.pinned, i32 %14571826
-  192.load6681828 = load i32 from ptr %1926671827
-  14581829 = shl i32 %192.load6681828, i32 24
-  16081830 = ptradd ptr %1926671827, i32 4
-  201.load6731831 = load i32 from ptr %16081830
-  14591832 = shl i32 %201.load6731831, i32 16
-  2046751833 = add i32 %14581829, i32 %14591832
-  16101834 = ptradd ptr %1926671827, i32 8
-  211.load6791835 = load i32 from ptr %16101834
-  14601836 = shl i32 %211.load6791835, i32 8
-  2146811837 = add i32 %2046751833, i32 %14601836
-  16121838 = ptradd ptr %1926671827, i32 12
-  221.load6851839 = load i32 from ptr %16121838
-  14611840 = shl i32 %221.load6851839, i32 0
-  2246871841 = add i32 %2146811837, i32 %14611840
-  store i32 %2246871841 to ptr %1856641824
-  1856641849 = ptradd ptr %words579, i32 40
-  1906651850 = add i32 %chunk_start.phi6351511, i32 40
-  14571851 = shl i32 %1906651850, i32 2
-  1926671852 = ptradd ptr %buffer.pinned, i32 %14571851
-  192.load6681853 = load i32 from ptr %1926671852
-  14581854 = shl i32 %192.load6681853, i32 24
-  16081855 = ptradd ptr %1926671852, i32 4
-  201.load6731856 = load i32 from ptr %16081855
-  14591857 = shl i32 %201.load6731856, i32 16
-  2046751858 = add i32 %14581854, i32 %14591857
-  16101859 = ptradd ptr %1926671852, i32 8
-  211.load6791860 = load i32 from ptr %16101859
-  14601861 = shl i32 %211.load6791860, i32 8
-  2146811862 = add i32 %2046751858, i32 %14601861
-  16121863 = ptradd ptr %1926671852, i32 12
-  221.load6851864 = load i32 from ptr %16121863
-  14611865 = shl i32 %221.load6851864, i32 0
-  2246871866 = add i32 %2146811862, i32 %14611865
-  store i32 %2246871866 to ptr %1856641849
-  1856641874 = ptradd ptr %words579, i32 44
-  1906651875 = add i32 %chunk_start.phi6351511, i32 44
-  14571876 = shl i32 %1906651875, i32 2
-  1926671877 = ptradd ptr %buffer.pinned, i32 %14571876
-  192.load6681878 = load i32 from ptr %1926671877
-  14581879 = shl i32 %192.load6681878, i32 24
-  16081880 = ptradd ptr %1926671877, i32 4
-  201.load6731881 = load i32 from ptr %16081880
-  14591882 = shl i32 %201.load6731881, i32 16
-  2046751883 = add i32 %14581879, i32 %14591882
-  16101884 = ptradd ptr %1926671877, i32 8
-  211.load6791885 = load i32 from ptr %16101884
-  14601886 = shl i32 %211.load6791885, i32 8
-  2146811887 = add i32 %2046751883, i32 %14601886
-  16121888 = ptradd ptr %1926671877, i32 12
-  221.load6851889 = load i32 from ptr %16121888
-  14611890 = shl i32 %221.load6851889, i32 0
-  2246871891 = add i32 %2146811887, i32 %14611890
-  store i32 %2246871891 to ptr %1856641874
-  1856641899 = ptradd ptr %words579, i32 48
-  1906651900 = add i32 %chunk_start.phi6351511, i32 48
-  14571901 = shl i32 %1906651900, i32 2
-  1926671902 = ptradd ptr %buffer.pinned, i32 %14571901
-  192.load6681903 = load i32 from ptr %1926671902
-  14581904 = shl i32 %192.load6681903, i32 24
-  16081905 = ptradd ptr %1926671902, i32 4
-  201.load6731906 = load i32 from ptr %16081905
-  14591907 = shl i32 %201.load6731906, i32 16
-  2046751908 = add i32 %14581904, i32 %14591907
-  16101909 = ptradd ptr %1926671902, i32 8
-  211.load6791910 = load i32 from ptr %16101909
-  14601911 = shl i32 %211.load6791910, i32 8
-  2146811912 = add i32 %2046751908, i32 %14601911
-  16121913 = ptradd ptr %1926671902, i32 12
-  221.load6851914 = load i32 from ptr %16121913
-  14611915 = shl i32 %221.load6851914, i32 0
-  2246871916 = add i32 %2146811912, i32 %14611915
-  store i32 %2246871916 to ptr %1856641899
-  1856641924 = ptradd ptr %words579, i32 52
-  1906651925 = add i32 %chunk_start.phi6351511, i32 52
-  14571926 = shl i32 %1906651925, i32 2
-  1926671927 = ptradd ptr %buffer.pinned, i32 %14571926
-  192.load6681928 = load i32 from ptr %1926671927
-  14581929 = shl i32 %192.load6681928, i32 24
-  16081930 = ptradd ptr %1926671927, i32 4
-  201.load6731931 = load i32 from ptr %16081930
-  14591932 = shl i32 %201.load6731931, i32 16
-  2046751933 = add i32 %14581929, i32 %14591932
-  16101934 = ptradd ptr %1926671927, i32 8
-  211.load6791935 = load i32 from ptr %16101934
-  14601936 = shl i32 %211.load6791935, i32 8
-  2146811937 = add i32 %2046751933, i32 %14601936
-  16121938 = ptradd ptr %1926671927, i32 12
-  221.load6851939 = load i32 from ptr %16121938
-  14611940 = shl i32 %221.load6851939, i32 0
-  2246871941 = add i32 %2146811937, i32 %14611940
-  store i32 %2246871941 to ptr %1856641924
-  1856641949 = ptradd ptr %words579, i32 56
-  1906651950 = add i32 %chunk_start.phi6351511, i32 56
-  14571951 = shl i32 %1906651950, i32 2
-  1926671952 = ptradd ptr %buffer.pinned, i32 %14571951
-  192.load6681953 = load i32 from ptr %1926671952
-  14581954 = shl i32 %192.load6681953, i32 24
-  16081955 = ptradd ptr %1926671952, i32 4
-  201.load6731956 = load i32 from ptr %16081955
-  14591957 = shl i32 %201.load6731956, i32 16
-  2046751958 = add i32 %14581954, i32 %14591957
-  16101959 = ptradd ptr %1926671952, i32 8
-  211.load6791960 = load i32 from ptr %16101959
-  14601961 = shl i32 %211.load6791960, i32 8
-  2146811962 = add i32 %2046751958, i32 %14601961
-  16121963 = ptradd ptr %1926671952, i32 12
-  221.load6851964 = load i32 from ptr %16121963
-  14611965 = shl i32 %221.load6851964, i32 0
-  2246871966 = add i32 %2146811962, i32 %14611965
-  store i32 %2246871966 to ptr %1856641949
-  1856641974 = ptradd ptr %words579, i32 60
-  1906651975 = add i32 %chunk_start.phi6351511, i32 60
-  14571976 = shl i32 %1906651975, i32 2
-  1926671977 = ptradd ptr %buffer.pinned, i32 %14571976
-  192.load6681978 = load i32 from ptr %1926671977
-  14581979 = shl i32 %192.load6681978, i32 24
-  16081980 = ptradd ptr %1926671977, i32 4
-  201.load6731981 = load i32 from ptr %16081980
-  14591982 = shl i32 %201.load6731981, i32 16
-  2046751983 = add i32 %14581979, i32 %14591982
-  16101984 = ptradd ptr %1926671977, i32 8
-  211.load6791985 = load i32 from ptr %16101984
-  14601986 = shl i32 %211.load6791985, i32 8
-  2146811987 = add i32 %2046751983, i32 %14601986
-  16121988 = ptradd ptr %1926671977, i32 12
-  221.load6851989 = load i32 from ptr %16121988
-  14611990 = shl i32 %221.load6851989, i32 0
-  2246871991 = add i32 %2146811987, i32 %14611990
-  store i32 %2246871991 to ptr %1856641974
-  br bb %pseudo_sha1.while.body229
-pseudo_sha1.while.exit161:  pred(pseudo_sha1.init_exclu_exit, pseudo_sha1.while.body160_exclu_exit)
-  1509 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %361741, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned]
-  1508 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %365742, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2065]
-  1507 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %369743, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2063]
-  1506 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %373744, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2062]
-  1505 = phi [bb %pseudo_sha1.while.body160_exclu_exit, i32 %377745, bb %pseudo_sha1.init_exclu_exit, i32 %.pinned2064]
-  470.load = load i32 from ptr %output_buf
-  431194 = add i32 %470.load, i32 %1509
-  56878 = sub i32 %470.load, i32 %431194
-  58879 = add i32 %56878, i32 %1509
-  62880 = sub i32 %58879, i32 %431194
-  store i32 %62880 to ptr %output_buf
-  470.load2000 = load i32 from ptr %420
-  4311942003 = add i32 %470.load2000, i32 %1508
-  568782004 = sub i32 %470.load2000, i32 %4311942003
-  588792005 = add i32 %568782004, i32 %1508
-  628802006 = sub i32 %588792005, i32 %4311942003
-  store i32 %628802006 to ptr %420
-  470.load2015 = load i32 from ptr %423
-  4311942018 = add i32 %470.load2015, i32 %1507
-  568782019 = sub i32 %470.load2015, i32 %4311942018
-  588792020 = add i32 %568782019, i32 %1507
-  628802021 = sub i32 %588792020, i32 %4311942018
-  store i32 %628802021 to ptr %423
-  470.load2030 = load i32 from ptr %426
-  4311942033 = add i32 %470.load2030, i32 %1506
-  568782034 = sub i32 %470.load2030, i32 %4311942033
-  588792035 = add i32 %568782034, i32 %1506
-  628802036 = sub i32 %588792035, i32 %4311942033
-  store i32 %628802036 to ptr %426
-  470.load2045 = load i32 from ptr %429
-  4311942048 = add i32 %470.load2045, i32 %1505
-  568782049 = sub i32 %470.load2045, i32 %4311942048
-  588792050 = add i32 %568782049, i32 %1505
-  628802051 = sub i32 %588792050, i32 %4311942048
-  store i32 %628802051 to ptr %429
-  573 = add i32 %rounds.phi1531, i32 -1
-  435 = icmp sgt i32 %573, i32 0
-  br i1 %435, bb %while.body432, bb %while.exit433
-pseudo_sha1.while.body229:  pred(pseudo_sha1.while.body229, pseudo_sha1.while.body160)
-  i.phi5026941498 = phi [bb %pseudo_sha1.while.body229, i32 %264721, bb %pseudo_sha1.while.body160, i32 16]
-  1462 = shl i32 %i.phi5026941498, i32 2
-  236699 = ptradd ptr %words579, i32 %1462
-  1614 = ptradd ptr %236699, i32 -12
-  241.load703 = load i32 from ptr %1614
-  1616 = ptradd ptr %236699, i32 -32
-  246.load707 = load i32 from ptr %1616
-  431199 = add i32 %241.load703, i32 %246.load707
-  56886 = sub i32 %241.load703, i32 %431199
-  58887 = add i32 %56886, i32 %246.load707
-  62888 = sub i32 %58887, i32 %431199
-  1618 = ptradd ptr %236699, i32 -56
-  252.load712 = load i32 from ptr %1618
-  431204 = add i32 %62888, i32 %252.load712
-  56894 = sub i32 %62888, i32 %431204
-  58895 = add i32 %56894, i32 %252.load712
-  62896 = sub i32 %58895, i32 %431204
-  1620 = ptradd ptr %236699, i32 -64
-  258.load717 = load i32 from ptr %1620
-  431209 = add i32 %62896, i32 %258.load717
-  56902 = sub i32 %62896, i32 %431209
-  58903 = add i32 %56902, i32 %258.load717
-  62904 = sub i32 %58903, i32 %431209
-  1463 = shl i32 %62904, i32 1
-  221360 = srem i32 %62904, i32 2
-  231361 = add i32 %1463, i32 %221360
-  store i32 %231361 to ptr %236699
-  264721 = add i32 %i.phi5026941498, i32 1
-  232695 = icmp slt i32 %264721, i32 80
-  br i1 %232695, bb %pseudo_sha1.while.body229, bb %pseudo_sha1.while.body229_exclu_exit2056
-pseudo_sha1.while.body267:  pred(pseudo_sha1.if.exit, pseudo_sha1.while.body229_exclu_exit2056)
-  27073514781496 = phi [bb %pseudo_sha1.if.exit, i1 %270735, bb %pseudo_sha1.while.body229_exclu_exit2056, i1 1]
-  f.phi4987331494 = phi [bb %pseudo_sha1.if.exit, i32 %f.phi497756, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %f.phi4996371513]
-  i.phi7321493 = phi [bb %pseudo_sha1.if.exit, i32 %357766, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 0]
-  k.phi5087311492 = phi [bb %pseudo_sha1.if.exit, i32 %k.phi507755, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %k.phi5096361512]
-  e.phi7301491 = phi [bb %pseudo_sha1.if.exit, i32 %d.phi7291490, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %h4.phi6341510]
-  d.phi7291490 = phi [bb %pseudo_sha1.if.exit, i32 %c.phi7281489, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %h3.phi6391515]
-  c.phi7281489 = phi [bb %pseudo_sha1.if.exit, i32 %371333, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %h2.phi6401516]
-  b.phi7271488 = phi [bb %pseudo_sha1.if.exit, i32 %a.phi7261487, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %h1.phi6411517]
-  a.phi7261487 = phi [bb %pseudo_sha1.if.exit, i32 %343764, bb %pseudo_sha1.while.body229_exclu_exit2056, i32 %h0.phi6421518]
-  273738 = icmp slt i32 %i.phi7321493, i32 20
-  431124 = add i32 %b.phi7271488, i32 %c.phi7281489
-  br i1 %273738, bb %pseudo_sha1.then, bb %pseudo_sha1.else
-pseudo_sha1.then:  pred(pseudo_sha1.while.body267)
-  481084 = sub i32 -1, i32 %b.phi7271488
-  431129 = add i32 %481084, i32 %d.phi7291490
-  431284 = add i32 %431124, i32 %431129
-  568061020 = sub i32 %431124, i32 %431284
-  588071021 = add i32 %568061020, i32 %431129
-  628081022 = sub i32 %588071021, i32 %431284
-  431289 = add i32 %628081022, i32 %431284
-  568141026 = sub i32 %628081022, i32 %431289
-  588151027 = add i32 %568141026, i32 %431284
-  628161028 = sub i32 %588151027, i32 %431289
-  br bb %pseudo_sha1.if.exit
-pseudo_sha1.if.exit:  pred(pseudo_sha1.if.exit290, pseudo_sha1.then)
-  k.phi507755 = phi [bb %pseudo_sha1.if.exit290, i32 %k.phi506776, bb %pseudo_sha1.then, i32 1518500249]
-  f.phi497756 = phi [bb %pseudo_sha1.if.exit290, i32 %f.phi496777, bb %pseudo_sha1.then, i32 %628161028]
-  1464 = shl i32 %a.phi7261487, i32 5
-  291346 = srem i32 %a.phi7261487, i32 32
-  301347 = add i32 %1464, i32 %291346
-  334758 = add i32 %301347, i32 %f.phi497756
-  336759 = add i32 %334758, i32 %e.phi7301491
-  338760 = add i32 %336759, i32 %k.phi507755
-  1465 = shl i32 %i.phi7321493, i32 2
-  341762 = ptradd ptr %words579, i32 %1465
-  341.load763 = load i32 from ptr %341762
-  343764 = add i32 %338760, i32 %341.load763
-  1466 = shl i32 %b.phi7271488, i32 30
-  361332 = srem i32 %b.phi7271488, i32 1073741824
-  371333 = add i32 %1466, i32 %361332
-  357766 = add i32 %i.phi7321493, i32 1
-  270735 = icmp slt i32 %357766, i32 80
-  br i1 %270735, bb %pseudo_sha1.while.body267, bb %pseudo_sha1.while.body267_exclu_exit
-pseudo_sha1.else:  pred(pseudo_sha1.while.body267)
-  288769 = icmp slt i32 %i.phi7321493, i32 40
-  br i1 %288769, bb %pseudo_sha1.then289, bb %pseudo_sha1.else291
-pseudo_sha1.then289:  pred(pseudo_sha1.else)
-  56910 = sub i32 %b.phi7271488, i32 %431124
-  58911 = add i32 %56910, i32 %c.phi7281489
-  62912 = sub i32 %58911, i32 %431124
-  431219 = add i32 %62912, i32 %d.phi7291490
-  56918 = sub i32 %62912, i32 %431219
-  58919 = add i32 %56918, i32 %d.phi7291490
-  62920 = sub i32 %58919, i32 %431219
-  br bb %pseudo_sha1.if.exit290
-pseudo_sha1.if.exit290:  pred(pseudo_sha1.if.exit302, pseudo_sha1.then289)
-  k.phi506776 = phi [bb %pseudo_sha1.if.exit302, i32 %k.phi505790, bb %pseudo_sha1.then289, i32 1859775361]
-  f.phi496777 = phi [bb %pseudo_sha1.if.exit302, i32 %f.phi495791, bb %pseudo_sha1.then289, i32 %62920]
-  br bb %pseudo_sha1.if.exit
-pseudo_sha1.else291:  pred(pseudo_sha1.else)
-  300780 = icmp slt i32 %i.phi7321493, i32 60
-  br i1 %300780, bb %pseudo_sha1.then301, bb %pseudo_sha1.else303
-pseudo_sha1.then301:  pred(pseudo_sha1.else291)
-  431139 = add i32 %b.phi7271488, i32 %d.phi7291490
-  431299 = add i32 %431124, i32 %431139
-  568061043 = sub i32 %431124, i32 %431299
-  588071044 = add i32 %568061043, i32 %431139
-  628081045 = sub i32 %588071044, i32 %431299
-  431304 = add i32 %628081045, i32 %431299
-  568141049 = sub i32 %628081045, i32 %431304
-  588151050 = add i32 %568141049, i32 %431299
-  628161051 = sub i32 %588151050, i32 %431304
-  431144 = add i32 %c.phi7281489, i32 %d.phi7291490
-  431314 = add i32 %628161051, i32 %431144
-  568061066 = sub i32 %628161051, i32 %431314
-  588071067 = add i32 %568061066, i32 %431144
-  628081068 = sub i32 %588071067, i32 %431314
-  431319 = add i32 %628081068, i32 %431314
-  568141072 = sub i32 %628081068, i32 %431319
-  588151073 = add i32 %568141072, i32 %431314
-  628161074 = sub i32 %588151073, i32 %431319
-  br bb %pseudo_sha1.if.exit302
-pseudo_sha1.if.exit302:  pred(pseudo_sha1.if.exit321, pseudo_sha1.then301)
-  k.phi505790 = phi [bb %pseudo_sha1.if.exit321, i32 %k.phi800, bb %pseudo_sha1.then301, i32 -1894007588]
-  f.phi495791 = phi [bb %pseudo_sha1.if.exit321, i32 %f.phi801, bb %pseudo_sha1.then301, i32 %628161074]
-  br bb %pseudo_sha1.if.exit290
-pseudo_sha1.else303:  pred(pseudo_sha1.else291)
-  br i1 %27073514781496, bb %pseudo_sha1.then320, bb %pseudo_sha1.if.exit321
-pseudo_sha1.then320:  pred(pseudo_sha1.else303)
-  56926 = sub i32 %b.phi7271488, i32 %431124
-  58927 = add i32 %56926, i32 %c.phi7281489
-  62928 = sub i32 %58927, i32 %431124
-  431229 = add i32 %62928, i32 %d.phi7291490
-  56934 = sub i32 %62928, i32 %431229
-  58935 = add i32 %56934, i32 %d.phi7291490
-  62936 = sub i32 %58935, i32 %431229
-  br bb %pseudo_sha1.if.exit321
-pseudo_sha1.if.exit321:  pred(pseudo_sha1.else303, pseudo_sha1.then320)
-  k.phi800 = phi [bb %pseudo_sha1.else303, i32 %k.phi5087311492, bb %pseudo_sha1.then320, i32 -899497722]
-  f.phi801 = phi [bb %pseudo_sha1.else303, i32 %f.phi4987331494, bb %pseudo_sha1.then320, i32 %62936]
-  br bb %pseudo_sha1.if.exit302
-while.body440_exclu_exit:  pred(while.body440)
+  br i1 %444, bb %while.body440, bb %while.exit441
+while.exit441:  pred(while.body440)
   store i32 128 to ptr %94581
   br bb %pseudo_sha1.while.body
-pseudo_sha1.while.body_exclu_exit:  pred(pseudo_sha1.while.body)
-  115598 = ptradd ptr %buffer.pinned, i32 %1454
+pseudo_sha1.while.body:  pred(pseudo_sha1.while.body, while.exit441)
+  144615471551 = phi [bb %pseudo_sha1.while.body, i32 %1446, bb %while.exit441, i32 128004]
+  input_len.stack.phi5861550 = phi [bb %pseudo_sha1.while.body, i32 %112594, bb %while.exit441, i32 32001]
+  108592 = ptradd ptr %buffer.pinned, i32 %144615471551
+  store i32 0 to ptr %108592
+  112594 = add i32 %input_len.stack.phi5861550, i32 1
+  103587 = srem i32 %112594, i32 64
+  104588 = icmp ne i32 %103587, i32 60
+  1446 = shl i32 %112594, i32 2
+  br i1 %104588, bb %pseudo_sha1.while.body, bb %pseudo_sha1.while.exit
+pseudo_sha1.while.exit:  pred(pseudo_sha1.while.body)
+  115598 = ptradd ptr %buffer.pinned, i32 %1446
   store i32 0 to ptr %115598
-  1600 = ptradd ptr %115598, i32 4
-  store i32 0 to ptr %1600
-  1602 = ptradd ptr %115598, i32 8
-  store i32 125 to ptr %1602
-  1604 = ptradd ptr %115598, i32 12
-  store i32 0 to ptr %1604
-  2059 = add i32 %input_len.stack.phi5861526, i32 5
+  1635 = ptradd ptr %115598, i32 4
+  store i32 0 to ptr %1635
+  1637 = ptradd ptr %115598, i32 8
+  store i32 125 to ptr %1637
+  1639 = ptradd ptr %115598, i32 12
+  store i32 0 to ptr %1639
+  2110 = add i32 %input_len.stack.phi5861550, i32 5
   br bb %pseudo_sha1.init
-pseudo_sha1.init_exclu_exit:  pred(pseudo_sha1.init)
-  1646431504 = icmp slt i32 0, i32 %2059
-  br i1 %1646431504, bb %pseudo_sha1.while.body160_preheader, bb %pseudo_sha1.while.exit161
-pseudo_sha1.while.body267_exclu_exit:  pred(pseudo_sha1.if.exit)
-  361741 = add i32 %h0.phi6421518, i32 %343764
-  365742 = add i32 %h1.phi6411517, i32 %a.phi7261487
-  369743 = add i32 %h2.phi6401516, i32 %371333
-  373744 = add i32 %h3.phi6391515, i32 %c.phi7281489
-  377745 = add i32 %h4.phi6341510, i32 %d.phi7291490
-  380746 = add i32 %chunk_start.phi6351511, i32 64
-  164643 = icmp slt i32 %380746, i32 %2059
-  br i1 %164643, bb %pseudo_sha1.while.body160, bb %pseudo_sha1.while.body160_exclu_exit
-pseudo_sha1.while.body160_exclu_exit:  pred(pseudo_sha1.while.body267_exclu_exit)
-  br bb %pseudo_sha1.while.exit161
-pseudo_sha1.while.body229_exclu_exit2056:  pred(pseudo_sha1.while.body229)
-  br bb %pseudo_sha1.while.body267
+pseudo_sha1.init:  pred(pseudo_sha1.init, pseudo_sha1.while.exit)
+  cnt_ptr.phi6221544 = phi [bb %pseudo_sha1.init, i32 %542626, bb %pseudo_sha1.while.exit, i32 80]
+  542626 = add i32 %cnt_ptr.phi6221544, i32 -1
+  1462 = shl i32 %cnt_ptr.phi6221544, i32 2
+  1640 = ptradd ptr %words579, i32 %1462
+  1641 = ptradd ptr %1640, i32 -4
+  store i32 0 to ptr %1641
+  153623 = icmp ne i32 %542626, i32 0
+  br i1 %153623, bb %pseudo_sha1.init, bb %pseudo_sha1.while.cond159_preheader
+pseudo_sha1.while.cond159_preheader:  pred(pseudo_sha1.init)
+  1646411528 = icmp slt i32 0, i32 %2110
+  br i1 %1646411528, bb %pseudo_sha1.while.cond177_preheader, bb %pseudo_sha1.while.exit161
+pseudo_sha1.while.exit161:  pred(pseudo_sha1.while.exit268, pseudo_sha1.while.cond159_preheader)
+  h0.phi640_ph_val1533 = phi [bb %pseudo_sha1.while.exit268, i32 %361733, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned]
+  h1.phi639_ph_val1532 = phi [bb %pseudo_sha1.while.exit268, i32 %365734, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2116]
+  h2.phi638_ph_val1531 = phi [bb %pseudo_sha1.while.exit268, i32 %369735, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2114]
+  h3.phi637_ph_val1530 = phi [bb %pseudo_sha1.while.exit268, i32 %373736, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2113]
+  h4.phi632_ph_val1529 = phi [bb %pseudo_sha1.while.exit268, i32 %377737, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2115]
+  470.load = load i32 from ptr %output_buf
+  431186 = add i32 %470.load, i32 %h0.phi640_ph_val1533
+  56870 = sub i32 %470.load, i32 %431186
+  58871 = add i32 %56870, i32 %h0.phi640_ph_val1533
+  62872 = sub i32 %58871, i32 %431186
+  store i32 %62872 to ptr %output_buf
+  470.load2035 = load i32 from ptr %420
+  4311862038 = add i32 %470.load2035, i32 %h1.phi639_ph_val1532
+  568702039 = sub i32 %470.load2035, i32 %4311862038
+  588712040 = add i32 %568702039, i32 %h1.phi639_ph_val1532
+  628722041 = sub i32 %588712040, i32 %4311862038
+  store i32 %628722041 to ptr %420
+  470.load2050 = load i32 from ptr %423
+  4311862053 = add i32 %470.load2050, i32 %h2.phi638_ph_val1531
+  568702054 = sub i32 %470.load2050, i32 %4311862053
+  588712055 = add i32 %568702054, i32 %h2.phi638_ph_val1531
+  628722056 = sub i32 %588712055, i32 %4311862053
+  store i32 %628722056 to ptr %423
+  470.load2065 = load i32 from ptr %426
+  4311862068 = add i32 %470.load2065, i32 %h3.phi637_ph_val1530
+  568702069 = sub i32 %470.load2065, i32 %4311862068
+  588712070 = add i32 %568702069, i32 %h3.phi637_ph_val1530
+  628722071 = sub i32 %588712070, i32 %4311862068
+  store i32 %628722071 to ptr %426
+  470.load2080 = load i32 from ptr %429
+  4311862083 = add i32 %470.load2080, i32 %h4.phi632_ph_val1529
+  568702084 = sub i32 %470.load2080, i32 %4311862083
+  588712085 = add i32 %568702084, i32 %h4.phi632_ph_val1529
+  628722086 = sub i32 %588712085, i32 %4311862083
+  store i32 %628722086 to ptr %429
+  573 = add i32 %rounds.phi1555, i32 -1
+  435 = icmp sgt i32 %573, i32 0
+  br i1 %435, bb %while.cond439_preheader, bb %while.exit433
+pseudo_sha1.while.cond177_preheader:  pred(pseudo_sha1.while.exit268, pseudo_sha1.while.cond159_preheader)
+  h0.phi6401542 = phi [bb %pseudo_sha1.while.exit268, i32 %361733, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned]
+  h1.phi6391541 = phi [bb %pseudo_sha1.while.exit268, i32 %365734, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2116]
+  h2.phi6381540 = phi [bb %pseudo_sha1.while.exit268, i32 %369735, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2114]
+  h3.phi6371539 = phi [bb %pseudo_sha1.while.exit268, i32 %373736, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2113]
+  f.phi4996351537 = phi [bb %pseudo_sha1.while.exit268, i32 %f.phi497748, bb %pseudo_sha1.while.cond159_preheader, i32 0]
+  k.phi5096341536 = phi [bb %pseudo_sha1.while.exit268, i32 %k.phi507747, bb %pseudo_sha1.while.cond159_preheader, i32 0]
+  chunk_start.phi6331535 = phi [bb %pseudo_sha1.while.exit268, i32 %380738, bb %pseudo_sha1.while.cond159_preheader, i32 0]
+  h4.phi6321534 = phi [bb %pseudo_sha1.while.exit268, i32 %377737, bb %pseudo_sha1.while.cond159_preheader, i32 %.pinned2115]
+  1449 = shl i32 %chunk_start.phi6331535, i32 2
+  192663 = ptradd ptr %buffer.pinned, i32 %1449
+  192.load664 = load i32 from ptr %192663
+  1450 = shl i32 %192.load664, i32 24
+  1643 = ptradd ptr %192663, i32 4
+  201.load669 = load i32 from ptr %1643
+  1451 = shl i32 %201.load669, i32 16
+  204671 = add i32 %1450, i32 %1451
+  1645 = ptradd ptr %192663, i32 8
+  211.load675 = load i32 from ptr %1645
+  1452 = shl i32 %211.load675, i32 8
+  214677 = add i32 %204671, i32 %1452
+  1647 = ptradd ptr %192663, i32 12
+  221.load681 = load i32 from ptr %1647
+  1453 = shl i32 %221.load681, i32 0
+  224683 = add i32 %214677, i32 %1453
+  store i32 %224683 to ptr %words579
+  1856601659 = ptradd ptr %words579, i32 4
+  1906611660 = add i32 %chunk_start.phi6331535, i32 4
+  14491661 = shl i32 %1906611660, i32 2
+  1926631662 = ptradd ptr %buffer.pinned, i32 %14491661
+  192.load6641663 = load i32 from ptr %1926631662
+  14501664 = shl i32 %192.load6641663, i32 24
+  16431665 = ptradd ptr %1926631662, i32 4
+  201.load6691666 = load i32 from ptr %16431665
+  14511667 = shl i32 %201.load6691666, i32 16
+  2046711668 = add i32 %14501664, i32 %14511667
+  16451669 = ptradd ptr %1926631662, i32 8
+  211.load6751670 = load i32 from ptr %16451669
+  14521671 = shl i32 %211.load6751670, i32 8
+  2146771672 = add i32 %2046711668, i32 %14521671
+  16471673 = ptradd ptr %1926631662, i32 12
+  221.load6811674 = load i32 from ptr %16471673
+  14531675 = shl i32 %221.load6811674, i32 0
+  2246831676 = add i32 %2146771672, i32 %14531675
+  store i32 %2246831676 to ptr %1856601659
+  1856601684 = ptradd ptr %words579, i32 8
+  1906611685 = add i32 %chunk_start.phi6331535, i32 8
+  14491686 = shl i32 %1906611685, i32 2
+  1926631687 = ptradd ptr %buffer.pinned, i32 %14491686
+  192.load6641688 = load i32 from ptr %1926631687
+  14501689 = shl i32 %192.load6641688, i32 24
+  16431690 = ptradd ptr %1926631687, i32 4
+  201.load6691691 = load i32 from ptr %16431690
+  14511692 = shl i32 %201.load6691691, i32 16
+  2046711693 = add i32 %14501689, i32 %14511692
+  16451694 = ptradd ptr %1926631687, i32 8
+  211.load6751695 = load i32 from ptr %16451694
+  14521696 = shl i32 %211.load6751695, i32 8
+  2146771697 = add i32 %2046711693, i32 %14521696
+  16471698 = ptradd ptr %1926631687, i32 12
+  221.load6811699 = load i32 from ptr %16471698
+  14531700 = shl i32 %221.load6811699, i32 0
+  2246831701 = add i32 %2146771697, i32 %14531700
+  store i32 %2246831701 to ptr %1856601684
+  1856601709 = ptradd ptr %words579, i32 12
+  1906611710 = add i32 %chunk_start.phi6331535, i32 12
+  14491711 = shl i32 %1906611710, i32 2
+  1926631712 = ptradd ptr %buffer.pinned, i32 %14491711
+  192.load6641713 = load i32 from ptr %1926631712
+  14501714 = shl i32 %192.load6641713, i32 24
+  16431715 = ptradd ptr %1926631712, i32 4
+  201.load6691716 = load i32 from ptr %16431715
+  14511717 = shl i32 %201.load6691716, i32 16
+  2046711718 = add i32 %14501714, i32 %14511717
+  16451719 = ptradd ptr %1926631712, i32 8
+  211.load6751720 = load i32 from ptr %16451719
+  14521721 = shl i32 %211.load6751720, i32 8
+  2146771722 = add i32 %2046711718, i32 %14521721
+  16471723 = ptradd ptr %1926631712, i32 12
+  221.load6811724 = load i32 from ptr %16471723
+  14531725 = shl i32 %221.load6811724, i32 0
+  2246831726 = add i32 %2146771722, i32 %14531725
+  store i32 %2246831726 to ptr %1856601709
+  1856601734 = ptradd ptr %words579, i32 16
+  1906611735 = add i32 %chunk_start.phi6331535, i32 16
+  14491736 = shl i32 %1906611735, i32 2
+  1926631737 = ptradd ptr %buffer.pinned, i32 %14491736
+  192.load6641738 = load i32 from ptr %1926631737
+  14501739 = shl i32 %192.load6641738, i32 24
+  16431740 = ptradd ptr %1926631737, i32 4
+  201.load6691741 = load i32 from ptr %16431740
+  14511742 = shl i32 %201.load6691741, i32 16
+  2046711743 = add i32 %14501739, i32 %14511742
+  16451744 = ptradd ptr %1926631737, i32 8
+  211.load6751745 = load i32 from ptr %16451744
+  14521746 = shl i32 %211.load6751745, i32 8
+  2146771747 = add i32 %2046711743, i32 %14521746
+  16471748 = ptradd ptr %1926631737, i32 12
+  221.load6811749 = load i32 from ptr %16471748
+  14531750 = shl i32 %221.load6811749, i32 0
+  2246831751 = add i32 %2146771747, i32 %14531750
+  store i32 %2246831751 to ptr %1856601734
+  1856601759 = ptradd ptr %words579, i32 20
+  1906611760 = add i32 %chunk_start.phi6331535, i32 20
+  14491761 = shl i32 %1906611760, i32 2
+  1926631762 = ptradd ptr %buffer.pinned, i32 %14491761
+  192.load6641763 = load i32 from ptr %1926631762
+  14501764 = shl i32 %192.load6641763, i32 24
+  16431765 = ptradd ptr %1926631762, i32 4
+  201.load6691766 = load i32 from ptr %16431765
+  14511767 = shl i32 %201.load6691766, i32 16
+  2046711768 = add i32 %14501764, i32 %14511767
+  16451769 = ptradd ptr %1926631762, i32 8
+  211.load6751770 = load i32 from ptr %16451769
+  14521771 = shl i32 %211.load6751770, i32 8
+  2146771772 = add i32 %2046711768, i32 %14521771
+  16471773 = ptradd ptr %1926631762, i32 12
+  221.load6811774 = load i32 from ptr %16471773
+  14531775 = shl i32 %221.load6811774, i32 0
+  2246831776 = add i32 %2146771772, i32 %14531775
+  store i32 %2246831776 to ptr %1856601759
+  1856601784 = ptradd ptr %words579, i32 24
+  1906611785 = add i32 %chunk_start.phi6331535, i32 24
+  14491786 = shl i32 %1906611785, i32 2
+  1926631787 = ptradd ptr %buffer.pinned, i32 %14491786
+  192.load6641788 = load i32 from ptr %1926631787
+  14501789 = shl i32 %192.load6641788, i32 24
+  16431790 = ptradd ptr %1926631787, i32 4
+  201.load6691791 = load i32 from ptr %16431790
+  14511792 = shl i32 %201.load6691791, i32 16
+  2046711793 = add i32 %14501789, i32 %14511792
+  16451794 = ptradd ptr %1926631787, i32 8
+  211.load6751795 = load i32 from ptr %16451794
+  14521796 = shl i32 %211.load6751795, i32 8
+  2146771797 = add i32 %2046711793, i32 %14521796
+  16471798 = ptradd ptr %1926631787, i32 12
+  221.load6811799 = load i32 from ptr %16471798
+  14531800 = shl i32 %221.load6811799, i32 0
+  2246831801 = add i32 %2146771797, i32 %14531800
+  store i32 %2246831801 to ptr %1856601784
+  1856601809 = ptradd ptr %words579, i32 28
+  1906611810 = add i32 %chunk_start.phi6331535, i32 28
+  14491811 = shl i32 %1906611810, i32 2
+  1926631812 = ptradd ptr %buffer.pinned, i32 %14491811
+  192.load6641813 = load i32 from ptr %1926631812
+  14501814 = shl i32 %192.load6641813, i32 24
+  16431815 = ptradd ptr %1926631812, i32 4
+  201.load6691816 = load i32 from ptr %16431815
+  14511817 = shl i32 %201.load6691816, i32 16
+  2046711818 = add i32 %14501814, i32 %14511817
+  16451819 = ptradd ptr %1926631812, i32 8
+  211.load6751820 = load i32 from ptr %16451819
+  14521821 = shl i32 %211.load6751820, i32 8
+  2146771822 = add i32 %2046711818, i32 %14521821
+  16471823 = ptradd ptr %1926631812, i32 12
+  221.load6811824 = load i32 from ptr %16471823
+  14531825 = shl i32 %221.load6811824, i32 0
+  2246831826 = add i32 %2146771822, i32 %14531825
+  store i32 %2246831826 to ptr %1856601809
+  1856601834 = ptradd ptr %words579, i32 32
+  1906611835 = add i32 %chunk_start.phi6331535, i32 32
+  14491836 = shl i32 %1906611835, i32 2
+  1926631837 = ptradd ptr %buffer.pinned, i32 %14491836
+  192.load6641838 = load i32 from ptr %1926631837
+  14501839 = shl i32 %192.load6641838, i32 24
+  16431840 = ptradd ptr %1926631837, i32 4
+  201.load6691841 = load i32 from ptr %16431840
+  14511842 = shl i32 %201.load6691841, i32 16
+  2046711843 = add i32 %14501839, i32 %14511842
+  16451844 = ptradd ptr %1926631837, i32 8
+  211.load6751845 = load i32 from ptr %16451844
+  14521846 = shl i32 %211.load6751845, i32 8
+  2146771847 = add i32 %2046711843, i32 %14521846
+  16471848 = ptradd ptr %1926631837, i32 12
+  221.load6811849 = load i32 from ptr %16471848
+  14531850 = shl i32 %221.load6811849, i32 0
+  2246831851 = add i32 %2146771847, i32 %14531850
+  store i32 %2246831851 to ptr %1856601834
+  1856601859 = ptradd ptr %words579, i32 36
+  1906611860 = add i32 %chunk_start.phi6331535, i32 36
+  14491861 = shl i32 %1906611860, i32 2
+  1926631862 = ptradd ptr %buffer.pinned, i32 %14491861
+  192.load6641863 = load i32 from ptr %1926631862
+  14501864 = shl i32 %192.load6641863, i32 24
+  16431865 = ptradd ptr %1926631862, i32 4
+  201.load6691866 = load i32 from ptr %16431865
+  14511867 = shl i32 %201.load6691866, i32 16
+  2046711868 = add i32 %14501864, i32 %14511867
+  16451869 = ptradd ptr %1926631862, i32 8
+  211.load6751870 = load i32 from ptr %16451869
+  14521871 = shl i32 %211.load6751870, i32 8
+  2146771872 = add i32 %2046711868, i32 %14521871
+  16471873 = ptradd ptr %1926631862, i32 12
+  221.load6811874 = load i32 from ptr %16471873
+  14531875 = shl i32 %221.load6811874, i32 0
+  2246831876 = add i32 %2146771872, i32 %14531875
+  store i32 %2246831876 to ptr %1856601859
+  1856601884 = ptradd ptr %words579, i32 40
+  1906611885 = add i32 %chunk_start.phi6331535, i32 40
+  14491886 = shl i32 %1906611885, i32 2
+  1926631887 = ptradd ptr %buffer.pinned, i32 %14491886
+  192.load6641888 = load i32 from ptr %1926631887
+  14501889 = shl i32 %192.load6641888, i32 24
+  16431890 = ptradd ptr %1926631887, i32 4
+  201.load6691891 = load i32 from ptr %16431890
+  14511892 = shl i32 %201.load6691891, i32 16
+  2046711893 = add i32 %14501889, i32 %14511892
+  16451894 = ptradd ptr %1926631887, i32 8
+  211.load6751895 = load i32 from ptr %16451894
+  14521896 = shl i32 %211.load6751895, i32 8
+  2146771897 = add i32 %2046711893, i32 %14521896
+  16471898 = ptradd ptr %1926631887, i32 12
+  221.load6811899 = load i32 from ptr %16471898
+  14531900 = shl i32 %221.load6811899, i32 0
+  2246831901 = add i32 %2146771897, i32 %14531900
+  store i32 %2246831901 to ptr %1856601884
+  1856601909 = ptradd ptr %words579, i32 44
+  1906611910 = add i32 %chunk_start.phi6331535, i32 44
+  14491911 = shl i32 %1906611910, i32 2
+  1926631912 = ptradd ptr %buffer.pinned, i32 %14491911
+  192.load6641913 = load i32 from ptr %1926631912
+  14501914 = shl i32 %192.load6641913, i32 24
+  16431915 = ptradd ptr %1926631912, i32 4
+  201.load6691916 = load i32 from ptr %16431915
+  14511917 = shl i32 %201.load6691916, i32 16
+  2046711918 = add i32 %14501914, i32 %14511917
+  16451919 = ptradd ptr %1926631912, i32 8
+  211.load6751920 = load i32 from ptr %16451919
+  14521921 = shl i32 %211.load6751920, i32 8
+  2146771922 = add i32 %2046711918, i32 %14521921
+  16471923 = ptradd ptr %1926631912, i32 12
+  221.load6811924 = load i32 from ptr %16471923
+  14531925 = shl i32 %221.load6811924, i32 0
+  2246831926 = add i32 %2146771922, i32 %14531925
+  store i32 %2246831926 to ptr %1856601909
+  1856601934 = ptradd ptr %words579, i32 48
+  1906611935 = add i32 %chunk_start.phi6331535, i32 48
+  14491936 = shl i32 %1906611935, i32 2
+  1926631937 = ptradd ptr %buffer.pinned, i32 %14491936
+  192.load6641938 = load i32 from ptr %1926631937
+  14501939 = shl i32 %192.load6641938, i32 24
+  16431940 = ptradd ptr %1926631937, i32 4
+  201.load6691941 = load i32 from ptr %16431940
+  14511942 = shl i32 %201.load6691941, i32 16
+  2046711943 = add i32 %14501939, i32 %14511942
+  16451944 = ptradd ptr %1926631937, i32 8
+  211.load6751945 = load i32 from ptr %16451944
+  14521946 = shl i32 %211.load6751945, i32 8
+  2146771947 = add i32 %2046711943, i32 %14521946
+  16471948 = ptradd ptr %1926631937, i32 12
+  221.load6811949 = load i32 from ptr %16471948
+  14531950 = shl i32 %221.load6811949, i32 0
+  2246831951 = add i32 %2146771947, i32 %14531950
+  store i32 %2246831951 to ptr %1856601934
+  1856601959 = ptradd ptr %words579, i32 52
+  1906611960 = add i32 %chunk_start.phi6331535, i32 52
+  14491961 = shl i32 %1906611960, i32 2
+  1926631962 = ptradd ptr %buffer.pinned, i32 %14491961
+  192.load6641963 = load i32 from ptr %1926631962
+  14501964 = shl i32 %192.load6641963, i32 24
+  16431965 = ptradd ptr %1926631962, i32 4
+  201.load6691966 = load i32 from ptr %16431965
+  14511967 = shl i32 %201.load6691966, i32 16
+  2046711968 = add i32 %14501964, i32 %14511967
+  16451969 = ptradd ptr %1926631962, i32 8
+  211.load6751970 = load i32 from ptr %16451969
+  14521971 = shl i32 %211.load6751970, i32 8
+  2146771972 = add i32 %2046711968, i32 %14521971
+  16471973 = ptradd ptr %1926631962, i32 12
+  221.load6811974 = load i32 from ptr %16471973
+  14531975 = shl i32 %221.load6811974, i32 0
+  2246831976 = add i32 %2146771972, i32 %14531975
+  store i32 %2246831976 to ptr %1856601959
+  1856601984 = ptradd ptr %words579, i32 56
+  1906611985 = add i32 %chunk_start.phi6331535, i32 56
+  14491986 = shl i32 %1906611985, i32 2
+  1926631987 = ptradd ptr %buffer.pinned, i32 %14491986
+  192.load6641988 = load i32 from ptr %1926631987
+  14501989 = shl i32 %192.load6641988, i32 24
+  16431990 = ptradd ptr %1926631987, i32 4
+  201.load6691991 = load i32 from ptr %16431990
+  14511992 = shl i32 %201.load6691991, i32 16
+  2046711993 = add i32 %14501989, i32 %14511992
+  16451994 = ptradd ptr %1926631987, i32 8
+  211.load6751995 = load i32 from ptr %16451994
+  14521996 = shl i32 %211.load6751995, i32 8
+  2146771997 = add i32 %2046711993, i32 %14521996
+  16471998 = ptradd ptr %1926631987, i32 12
+  221.load6811999 = load i32 from ptr %16471998
+  14532000 = shl i32 %221.load6811999, i32 0
+  2246832001 = add i32 %2146771997, i32 %14532000
+  store i32 %2246832001 to ptr %1856601984
+  1856602009 = ptradd ptr %words579, i32 60
+  1906612010 = add i32 %chunk_start.phi6331535, i32 60
+  14492011 = shl i32 %1906612010, i32 2
+  1926632012 = ptradd ptr %buffer.pinned, i32 %14492011
+  192.load6642013 = load i32 from ptr %1926632012
+  14502014 = shl i32 %192.load6642013, i32 24
+  16432015 = ptradd ptr %1926632012, i32 4
+  201.load6692016 = load i32 from ptr %16432015
+  14512017 = shl i32 %201.load6692016, i32 16
+  2046712018 = add i32 %14502014, i32 %14512017
+  16452019 = ptradd ptr %1926632012, i32 8
+  211.load6752020 = load i32 from ptr %16452019
+  14522021 = shl i32 %211.load6752020, i32 8
+  2146772022 = add i32 %2046712018, i32 %14522021
+  16472023 = ptradd ptr %1926632012, i32 12
+  221.load6812024 = load i32 from ptr %16472023
+  14532025 = shl i32 %221.load6812024, i32 0
+  2246832026 = add i32 %2146772022, i32 %14532025
+  store i32 %2246832026 to ptr %1856602009
+  br bb %pseudo_sha1.while.body229
+pseudo_sha1.while.body229:  pred(pseudo_sha1.while.body229, pseudo_sha1.while.cond177_preheader)
+  i.phi5026881522 = phi [bb %pseudo_sha1.while.body229, i32 %264715, bb %pseudo_sha1.while.cond177_preheader, i32 16]
+  1454 = shl i32 %i.phi5026881522, i32 2
+  236693 = ptradd ptr %words579, i32 %1454
+  1649 = ptradd ptr %236693, i32 -12
+  241.load697 = load i32 from ptr %1649
+  1651 = ptradd ptr %236693, i32 -32
+  246.load701 = load i32 from ptr %1651
+  431191 = add i32 %241.load697, i32 %246.load701
+  56878 = sub i32 %241.load697, i32 %431191
+  58879 = add i32 %56878, i32 %246.load701
+  62880 = sub i32 %58879, i32 %431191
+  1653 = ptradd ptr %236693, i32 -56
+  252.load706 = load i32 from ptr %1653
+  431196 = add i32 %62880, i32 %252.load706
+  56886 = sub i32 %62880, i32 %431196
+  58887 = add i32 %56886, i32 %252.load706
+  62888 = sub i32 %58887, i32 %431196
+  1655 = ptradd ptr %236693, i32 -64
+  258.load711 = load i32 from ptr %1655
+  431201 = add i32 %62888, i32 %258.load711
+  56894 = sub i32 %62888, i32 %431201
+  58895 = add i32 %56894, i32 %258.load711
+  62896 = sub i32 %58895, i32 %431201
+  1455 = shl i32 %62896, i32 1
+  221352 = srem i32 %62896, i32 2
+  231353 = add i32 %1455, i32 %221352
+  store i32 %231353 to ptr %236693
+  264715 = add i32 %i.phi5026881522, i32 1
+  232689 = icmp slt i32 %264715, i32 80
+  br i1 %232689, bb %pseudo_sha1.while.body229, bb %pseudo_sha1.while.body267
+pseudo_sha1.while.body267:  pred(pseudo_sha1.if.exit, pseudo_sha1.while.body229)
+  27072715021520 = phi [bb %pseudo_sha1.if.exit, i1 %270727, bb %pseudo_sha1.while.body229, i1 1]
+  f.phi4987251518 = phi [bb %pseudo_sha1.if.exit, i32 %f.phi497748, bb %pseudo_sha1.while.body229, i32 %f.phi4996351537]
+  i.phi7241517 = phi [bb %pseudo_sha1.if.exit, i32 %357758, bb %pseudo_sha1.while.body229, i32 0]
+  k.phi5087231516 = phi [bb %pseudo_sha1.if.exit, i32 %k.phi507747, bb %pseudo_sha1.while.body229, i32 %k.phi5096341536]
+  e.phi7221515 = phi [bb %pseudo_sha1.if.exit, i32 %d.phi7211514, bb %pseudo_sha1.while.body229, i32 %h4.phi6321534]
+  d.phi7211514 = phi [bb %pseudo_sha1.if.exit, i32 %c.phi7201513, bb %pseudo_sha1.while.body229, i32 %h3.phi6371539]
+  c.phi7201513 = phi [bb %pseudo_sha1.if.exit, i32 %371325, bb %pseudo_sha1.while.body229, i32 %h2.phi6381540]
+  b.phi7191512 = phi [bb %pseudo_sha1.if.exit, i32 %a.phi7181511, bb %pseudo_sha1.while.body229, i32 %h1.phi6391541]
+  a.phi7181511 = phi [bb %pseudo_sha1.if.exit, i32 %343756, bb %pseudo_sha1.while.body229, i32 %h0.phi6401542]
+  273730 = icmp slt i32 %i.phi7241517, i32 20
+  431116 = add i32 %b.phi7191512, i32 %c.phi7201513
+  br i1 %273730, bb %pseudo_sha1.then, bb %pseudo_sha1.else
+pseudo_sha1.while.exit268:  pred(pseudo_sha1.if.exit)
+  361733 = add i32 %h0.phi6401542, i32 %343756
+  365734 = add i32 %h1.phi6391541, i32 %a.phi7181511
+  369735 = add i32 %h2.phi6381540, i32 %371325
+  373736 = add i32 %h3.phi6371539, i32 %c.phi7201513
+  377737 = add i32 %h4.phi6321534, i32 %d.phi7211514
+  380738 = add i32 %chunk_start.phi6331535, i32 64
+  164641 = icmp slt i32 %380738, i32 %2110
+  br i1 %164641, bb %pseudo_sha1.while.cond177_preheader, bb %pseudo_sha1.while.exit161
+pseudo_sha1.then:  pred(pseudo_sha1.while.body267)
+  481076 = sub i32 -1, i32 %b.phi7191512
+  431121 = add i32 %481076, i32 %d.phi7211514
+  431276 = add i32 %431116, i32 %431121
+  567981012 = sub i32 %431116, i32 %431276
+  587991013 = add i32 %567981012, i32 %431121
+  628001014 = sub i32 %587991013, i32 %431276
+  431281 = add i32 %628001014, i32 %431276
+  568061018 = sub i32 %628001014, i32 %431281
+  588071019 = add i32 %568061018, i32 %431276
+  628081020 = sub i32 %588071019, i32 %431281
+  br bb %pseudo_sha1.if.exit
+pseudo_sha1.if.exit:  pred(pseudo_sha1.if.exit290, pseudo_sha1.then)
+  k.phi507747 = phi [bb %pseudo_sha1.if.exit290, i32 %k.phi506768, bb %pseudo_sha1.then, i32 1518500249]
+  f.phi497748 = phi [bb %pseudo_sha1.if.exit290, i32 %f.phi496769, bb %pseudo_sha1.then, i32 %628081020]
+  1456 = shl i32 %a.phi7181511, i32 5
+  291338 = srem i32 %a.phi7181511, i32 32
+  301339 = add i32 %1456, i32 %291338
+  334750 = add i32 %301339, i32 %f.phi497748
+  336751 = add i32 %334750, i32 %e.phi7221515
+  338752 = add i32 %336751, i32 %k.phi507747
+  1457 = shl i32 %i.phi7241517, i32 2
+  341754 = ptradd ptr %words579, i32 %1457
+  341.load755 = load i32 from ptr %341754
+  343756 = add i32 %338752, i32 %341.load755
+  1458 = shl i32 %b.phi7191512, i32 30
+  361324 = srem i32 %b.phi7191512, i32 1073741824
+  371325 = add i32 %1458, i32 %361324
+  357758 = add i32 %i.phi7241517, i32 1
+  270727 = icmp slt i32 %357758, i32 80
+  br i1 %270727, bb %pseudo_sha1.while.body267, bb %pseudo_sha1.while.exit268
+pseudo_sha1.else:  pred(pseudo_sha1.while.body267)
+  288761 = icmp slt i32 %i.phi7241517, i32 40
+  br i1 %288761, bb %pseudo_sha1.then289, bb %pseudo_sha1.else291
+pseudo_sha1.then289:  pred(pseudo_sha1.else)
+  56902 = sub i32 %b.phi7191512, i32 %431116
+  58903 = add i32 %56902, i32 %c.phi7201513
+  62904 = sub i32 %58903, i32 %431116
+  431211 = add i32 %62904, i32 %d.phi7211514
+  56910 = sub i32 %62904, i32 %431211
+  58911 = add i32 %56910, i32 %d.phi7211514
+  62912 = sub i32 %58911, i32 %431211
+  br bb %pseudo_sha1.if.exit290
+pseudo_sha1.if.exit290:  pred(pseudo_sha1.if.exit302, pseudo_sha1.then289)
+  k.phi506768 = phi [bb %pseudo_sha1.if.exit302, i32 %k.phi505782, bb %pseudo_sha1.then289, i32 1859775361]
+  f.phi496769 = phi [bb %pseudo_sha1.if.exit302, i32 %f.phi495783, bb %pseudo_sha1.then289, i32 %62912]
+  br bb %pseudo_sha1.if.exit
+pseudo_sha1.else291:  pred(pseudo_sha1.else)
+  300772 = icmp slt i32 %i.phi7241517, i32 60
+  br i1 %300772, bb %pseudo_sha1.then301, bb %pseudo_sha1.else303
+pseudo_sha1.then301:  pred(pseudo_sha1.else291)
+  431131 = add i32 %b.phi7191512, i32 %d.phi7211514
+  431291 = add i32 %431116, i32 %431131
+  567981035 = sub i32 %431116, i32 %431291
+  587991036 = add i32 %567981035, i32 %431131
+  628001037 = sub i32 %587991036, i32 %431291
+  431296 = add i32 %628001037, i32 %431291
+  568061041 = sub i32 %628001037, i32 %431296
+  588071042 = add i32 %568061041, i32 %431291
+  628081043 = sub i32 %588071042, i32 %431296
+  431136 = add i32 %c.phi7201513, i32 %d.phi7211514
+  431306 = add i32 %628081043, i32 %431136
+  567981058 = sub i32 %628081043, i32 %431306
+  587991059 = add i32 %567981058, i32 %431136
+  628001060 = sub i32 %587991059, i32 %431306
+  431311 = add i32 %628001060, i32 %431306
+  568061064 = sub i32 %628001060, i32 %431311
+  588071065 = add i32 %568061064, i32 %431306
+  628081066 = sub i32 %588071065, i32 %431311
+  br bb %pseudo_sha1.if.exit302
+pseudo_sha1.if.exit302:  pred(pseudo_sha1.if.exit321, pseudo_sha1.then301)
+  k.phi505782 = phi [bb %pseudo_sha1.if.exit321, i32 %k.phi792, bb %pseudo_sha1.then301, i32 -1894007588]
+  f.phi495783 = phi [bb %pseudo_sha1.if.exit321, i32 %f.phi793, bb %pseudo_sha1.then301, i32 %628081066]
+  br bb %pseudo_sha1.if.exit290
+pseudo_sha1.else303:  pred(pseudo_sha1.else291)
+  br i1 %27072715021520, bb %pseudo_sha1.then320, bb %pseudo_sha1.if.exit321
+pseudo_sha1.then320:  pred(pseudo_sha1.else303)
+  56918 = sub i32 %b.phi7191512, i32 %431116
+  58919 = add i32 %56918, i32 %c.phi7201513
+  62920 = sub i32 %58919, i32 %431116
+  431221 = add i32 %62920, i32 %d.phi7211514
+  56926 = sub i32 %62920, i32 %431221
+  58927 = add i32 %56926, i32 %d.phi7211514
+  62928 = sub i32 %58927, i32 %431221
+  br bb %pseudo_sha1.if.exit321
+pseudo_sha1.if.exit321:  pred(pseudo_sha1.else303, pseudo_sha1.then320)
+  k.phi792 = phi [bb %pseudo_sha1.else303, i32 %k.phi5087231516, bb %pseudo_sha1.then320, i32 -899497722]
+  f.phi793 = phi [bb %pseudo_sha1.else303, i32 %f.phi4987251518, bb %pseudo_sha1.then320, i32 %62928]
+  br bb %pseudo_sha1.if.exit302
 }
 
 external float getfloat()

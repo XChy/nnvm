@@ -16,23 +16,19 @@ doubleWhile.while.body:  pred(doubleWhile.while.exit16, entry27)
   j.phi3964 = phi [bb %doubleWhile.while.exit16, i32 %3456, bb %entry27, i32 7]
   1344 = add i32 %i.phi4065, i32 30
   185059 = icmp slt i32 %j.phi3964, i32 100
-  br i1 %185059, bb %doubleWhile.while.body15_preheader, bb %doubleWhile.while.exit16
-doubleWhile.while.body15_preheader:  pred(doubleWhile.while.body)
-  br bb %doubleWhile.while.body15
-doubleWhile.while.body15:  pred(doubleWhile.while.body15, doubleWhile.while.body15_preheader)
-  j.phi324961 = phi [bb %doubleWhile.while.body15, i32 %2253, bb %doubleWhile.while.body15_preheader, i32 %j.phi3964]
+  br i1 %185059, bb %doubleWhile.while.body15, bb %doubleWhile.while.exit16
+doubleWhile.while.exit:  pred(doubleWhile.while.exit16)
+  ret i32 %3456
+doubleWhile.while.body15:  pred(doubleWhile.while.body15, doubleWhile.while.body)
+  j.phi324961 = phi [bb %doubleWhile.while.body15, i32 %2253, bb %doubleWhile.while.body, i32 %j.phi3964]
   2253 = add i32 %j.phi324961, i32 6
   1850 = icmp slt i32 %2253, i32 100
-  br i1 %1850, bb %doubleWhile.while.body15, bb %doubleWhile.while.body15_exclu_exit
-doubleWhile.while.exit16:  pred(doubleWhile.while.body, doubleWhile.while.body15_exclu_exit)
-  j.phi3960 = phi [bb %doubleWhile.while.body15_exclu_exit, i32 %2253, bb %doubleWhile.while.body, i32 %j.phi3964]
+  br i1 %1850, bb %doubleWhile.while.body15, bb %doubleWhile.while.exit16
+doubleWhile.while.exit16:  pred(doubleWhile.while.body15, doubleWhile.while.body)
+  j.phi3960 = phi [bb %doubleWhile.while.body15, i32 %2253, bb %doubleWhile.while.body, i32 %j.phi3964]
   3456 = add i32 %j.phi3960, i32 -100
   941 = icmp slt i32 %1344, i32 100
-  br i1 %941, bb %doubleWhile.while.body, bb %doubleWhile.while.body_exclu_exit
-doubleWhile.while.body15_exclu_exit:  pred(doubleWhile.while.body15)
-  br bb %doubleWhile.while.exit16
-doubleWhile.while.body_exclu_exit:  pred(doubleWhile.while.exit16)
-  ret i32 %3456
+  br i1 %941, bb %doubleWhile.while.body, bb %doubleWhile.while.exit
 }
 
 external float getfloat()

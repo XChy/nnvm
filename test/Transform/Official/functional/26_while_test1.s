@@ -34,7 +34,7 @@ bb7:   # loop depth 2
   SLTI t1, a0, 100
   BNE t1, zero, bb9
   # implict jump to bb8
-bb8:   # loop depth 1
+bb8:   # loop depth 2
   JAL zero, bb3
 bb9:   # loop depth 2
   JAL zero, bb7

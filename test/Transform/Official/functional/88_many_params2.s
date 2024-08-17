@@ -20,7 +20,7 @@ bb1:   # loop depth 1
   ADDIW t0, t0, -1
   BNE t0, zero, bb14
   # implict jump to bb2
-bb2:   # loop depth 0
+bb2:   # loop depth 1
   LUI t0, 1
   ADDIW t0, t0, -969
   ADD t0, zero, t0

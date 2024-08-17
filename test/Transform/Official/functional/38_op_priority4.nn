@@ -28,28 +28,24 @@ entry:  pred()
   20 = sdiv i32 %a.load12, i32 %c.load14
   21 = sub i32 %d.load17, i32 %20
   22 = icmp ne i32 %16, i32 %21
-  br i1 %22, bb %select.then, bb %select.else
-select.then:  pred(entry)
-  br bb %select.exit
+  br i1 %22, bb %select.exit, bb %select.else
 select.else:  pred(entry)
   29 = mul i32 %a.load12, i32 %b.load13
   31 = sdiv i32 %29, i32 %c.load14
   34 = add i32 %10, i32 %d.load17
   35 = icmp eq i32 %31, i32 %34
   br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 %35, bb %select.then, i1 1]
-  br i1 %select.phi, bb %select.then38, bb %select.else39
-select.then38:  pred(select.exit)
-  br bb %select.exit40
+select.exit:  pred(select.else, entry)
+  select.phi = phi [bb %select.else, i1 %35, bb %entry, i1 1]
+  br i1 %select.phi, bb %select.exit40, bb %select.else39
 select.else39:  pred(select.exit)
   44 = add i32 %a.load12, i32 %b.load13
   46 = add i32 %44, i32 %c.load14
   49 = add i32 %d.load17, i32 %10
   50 = icmp eq i32 %46, i32 %49
   br bb %select.exit40
-select.exit40:  pred(select.then38, select.else39)
-  select41.phi = phi [bb %select.else39, i1 %50, bb %select.then38, i1 1]
+select.exit40:  pred(select.else39, select.exit)
+  select41.phi = phi [bb %select.else39, i1 %50, bb %select.exit, i1 1]
   62 = zext i1 %select41.phi to i32
   ret i32 %62
 }

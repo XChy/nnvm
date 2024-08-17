@@ -115,7 +115,7 @@ bb14:   # loop depth 2
   FLT.S t2, ft5, ft2
   BNE t2, zero, bb16
   # implict jump to bb15
-bb15:   # loop depth 1
+bb15:   # loop depth 2
   JAL zero, bb8
 bb16:   # loop depth 2
   FSGNJ.S ft2, ft0, ft0

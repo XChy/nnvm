@@ -130,7 +130,7 @@ bb17:   # loop depth 1
   XORI a0, t1, -1
   BNE a0, zero, bb21
   # implict jump to bb18
-bb18:   # loop depth 0
+bb18:   # loop depth 1
   # implict jump to bb19
 bb19:   # loop depth 0
   SH2ADD t0, t0, a2
@@ -152,7 +152,7 @@ bb20:   # loop depth 0
 bb21:   # loop depth 1
   ADD t0, t1, zero
   JAL zero, bb16
-bb22:   # loop depth 0
+bb22:   # loop depth 1
   ADDI t0, zero, -1
   JAL zero, bb19
 bb23:   # loop depth 0
@@ -274,7 +274,7 @@ bb38:   # loop depth 1
   CALL delete
   BLT s0, s2, bb40
   # implict jump to bb39
-bb39:   # loop depth 0
+bb39:   # loop depth 1
   JAL zero, bb36
 bb40:   # loop depth 1
   ADD s1, a0, zero

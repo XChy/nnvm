@@ -13,106 +13,153 @@ M:
 .word 0x00000000
 .section .text
 main:   # loop depth 0
-  ADDI sp, sp, -80
-  SD ra, 56(sp)
-  SD s0, 64(sp)
-  SD s1, 72(sp)
-  ADDI t0, zero, 0
+  ADDI sp, sp, -176
+  SD ra, 16(sp)
+  SD s0, 24(sp)
+  SD s1, 32(sp)
   LA s1, N
-  FCVT.S.W ft0, t0
   LA t1, M
   ADDI t0, zero, 3
+  ADDI a1, zero, 0
   LA a0, L
-  FADD.S ft1, ft0, ft0
   ADDI t2, zero, 3
   SW t0, 0(s1)
+  FCVT.S.W ft0, a1
   ADDI t0, zero, 3
   SW t2, 0(t1)
-  ADDI t1, zero, 1
   SW t0, 0(a0)
-  FCVT.S.W ft0, t1
-  ADDI t0, zero, 2
-  ADDI t1, zero, 1
-  FSW ft1, 32(sp)
-  FADD.S ft2, ft0, ft0
-  FCVT.S.W ft0, t0
-  FADD.S ft0, ft0, ft0
-  FSW ft1, 16(sp)
-  FSW ft1, 0(sp)
-  FSW ft2, 36(sp)
-  FSW ft2, 20(sp)
-  FSW ft2, 4(sp)
+  ADDI t0, zero, 1
+  FSW ft0, 0(sp)
+  FCVT.S.W ft1, t0
+  ADDI t1, zero, 2
+  ADD t0, zero, zero
+  FCVT.S.W ft2, t1
   FSW ft0, 40(sp)
-  FSW ft0, 24(sp)
-  FSW ft0, 8(sp)
-  BNE t1, zero, bb10
+  FSW ft0, 56(sp)
+  FSW ft0, 72(sp)
+  FSW ft0, 88(sp)
+  FSW ft0, 104(sp)
+  FSW ft1, 4(sp)
+  FSW ft1, 44(sp)
+  FSW ft1, 60(sp)
+  FSW ft1, 76(sp)
+  FSW ft1, 92(sp)
+  FSW ft1, 108(sp)
+  FSW ft2, 8(sp)
+  FSW ft2, 48(sp)
+  FSW ft2, 64(sp)
+  FSW ft2, 80(sp)
+  FSW ft2, 96(sp)
+  FSW ft2, 112(sp)
   # implict jump to bb1
-bb1:   # loop depth 0
-  ADDI a0, zero, 10
-  CALL putch
-  LW t0, 0(s1)
-  BLT zero, t0, bb7
+bb1:   # loop depth 1
+  SLLIW t1, t0, 2
+  ADDIW t0, t0, 1
+  ADDI t2, sp, 0
+  ADD t2, t2, t1
+  ADDI a0, sp, 72
+  ADD a0, a0, t1
+  FLW ft0, 0(t2)
+  ADDI t2, sp, 120
+  ADD t2, t2, t1
+  ADDI a1, sp, 40
+  ADD a1, a1, t1
+  ADDI a2, sp, 88
+  ADD a2, a2, t1
+  FLW ft1, 0(a0)
+  ADDI a0, sp, 144
+  ADD a0, a0, t1
+  ADDI a3, sp, 56
+  ADD a3, a3, t1
+  ADDI a4, sp, 104
+  ADD a4, a4, t1
+  FADD.S ft0, ft0, ft1
+  ADDI a5, sp, 160
+  ADD t1, a5, t1
+  SLTI a5, t0, 3
+  FSW ft0, 0(t2)
+  FLW ft0, 0(a1)
+  FLW ft1, 0(a2)
+  FADD.S ft0, ft0, ft1
+  FSW ft0, 0(a0)
+  FLW ft0, 0(a3)
+  FLW ft1, 0(a4)
+  FADD.S ft0, ft0, ft1
+  FSW ft0, 0(t1)
+  BNE a5, zero, bb15
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDI a0, zero, 10
-  CALL putch
-  LW t0, 0(s1)
-  BLT zero, t0, bb4
+  ADDI t0, zero, 1
+  BNE t0, zero, bb12
   # implict jump to bb3
 bb3:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
-  ADD a0, zero, zero
-  LD ra, 56(sp)
-  LD s0, 64(sp)
-  LD s1, 72(sp)
-  ADDI sp, sp, 80
-  JALR zero, 0(ra)
+  LW t0, 0(s1)
+  BLT zero, t0, bb9
+  # implict jump to bb4
 bb4:   # loop depth 0
-  ADD s0, zero, zero
+  ADDI a0, zero, 10
+  CALL putch
+  LW t0, 0(s1)
+  BLT zero, t0, bb6
   # implict jump to bb5
-bb5:   # loop depth 1
+bb5:   # loop depth 0
+  ADDI a0, zero, 10
+  CALL putch
+  ADD a0, zero, zero
+  LD ra, 16(sp)
+  LD s0, 24(sp)
+  LD s1, 32(sp)
+  ADDI sp, sp, 176
+  JALR zero, 0(ra)
+bb6:   # loop depth 0
+  ADD s0, zero, zero
+  # implict jump to bb7
+bb7:   # loop depth 1
   SLLIW t0, s0, 2
   ADDIW s0, s0, 1
-  ADDI t6, sp, 0
+  ADDI t6, sp, 160
   ADD t0, t6, t0
   FLW ft0, 0(t0)
   FCVT.W.S a0, ft0, rtz
   CALL putint
   LW t0, 0(s1)
-  BLT s0, t0, bb6
-  JAL zero, bb3
-bb6:   # loop depth 1
+  BLT s0, t0, bb8
   JAL zero, bb5
-bb7:   # loop depth 0
-  ADD s0, zero, zero
-  # implict jump to bb8
 bb8:   # loop depth 1
-  SLLIW t0, s0, 2
-  ADDIW s0, s0, 1
-  ADDI t6, sp, 16
-  ADD t0, t6, t0
-  FLW ft0, 0(t0)
-  FCVT.W.S a0, ft0, rtz
-  CALL putint
-  LW t0, 0(s1)
-  BLT s0, t0, bb9
-  JAL zero, bb2
-bb9:   # loop depth 1
-  JAL zero, bb8
-bb10:   # loop depth 0
+  JAL zero, bb7
+bb9:   # loop depth 0
   ADD s0, zero, zero
-  # implict jump to bb11
-bb11:   # loop depth 1
+  # implict jump to bb10
+bb10:   # loop depth 1
   SLLIW t0, s0, 2
   ADDIW s0, s0, 1
-  ADDI t6, sp, 32
+  ADDI t6, sp, 144
   ADD t0, t6, t0
   FLW ft0, 0(t0)
   FCVT.W.S a0, ft0, rtz
   CALL putint
   LW t0, 0(s1)
-  BLT s0, t0, bb12
+  BLT s0, t0, bb11
+  JAL zero, bb4
+bb11:   # loop depth 1
+  JAL zero, bb10
+bb12:   # loop depth 0
+  ADD s0, zero, zero
+  # implict jump to bb13
+bb13:   # loop depth 1
+  SLLIW t0, s0, 2
+  ADDIW s0, s0, 1
+  ADDI t6, sp, 120
+  ADD t0, t6, t0
+  FLW ft0, 0(t0)
+  FCVT.W.S a0, ft0, rtz
+  CALL putint
+  LW t0, 0(s1)
+  BLT s0, t0, bb14
+  JAL zero, bb3
+bb14:   # loop depth 1
+  JAL zero, bb13
+bb15:   # loop depth 1
   JAL zero, bb1
-bb12:   # loop depth 1
-  JAL zero, bb11

@@ -23,8 +23,8 @@ main:   # loop depth 0
   LA s4, dp
   CALL getint
   ADD s3, a0, zero
-  SLTI s6, s3, 1
   CALL getint
+  SLTI s6, s3, 1
   ADD s0, a0, zero
   BEQ s6, zero, bb22
   # implict jump to bb1
@@ -66,7 +66,7 @@ bb8:   # loop depth 1
   ADDIW t1, t1, 1
   BGE s0, t1, bb10
   # implict jump to bb9
-bb9:   # loop depth 0
+bb9:   # loop depth 1
   JAL zero, bb4
 bb10:   # loop depth 1
   JAL zero, bb6
@@ -76,10 +76,10 @@ bb11:   # loop depth 1
 bb12:   # loop depth 0
   ADDI t2, zero, 1
   ADDI a0, zero, 140
-  SLTI a6, s0, 1
   # implict jump to bb13
 bb13:   # loop depth 1
-  BEQ a6, zero, bb16
+  SLTI t0, s0, 1
+  BEQ t0, zero, bb16
   # implict jump to bb14
 bb14:   # loop depth 1
   ADDIW a0, a0, 140

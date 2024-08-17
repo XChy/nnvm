@@ -11,40 +11,40 @@ state:
 .section .text
 main:   # loop depth 0
   ADDI sp, sp, -656
-  SD s3, 56(sp)
-  SD s4, 64(sp)
-  SD s8, 72(sp)
-  SD ra, 88(sp)
-  SD s0, 96(sp)
-  SD s1, 104(sp)
-  SD s2, 112(sp)
-  SD s5, 120(sp)
-  SD s6, 128(sp)
-  SD s7, 136(sp)
-  SD s9, 176(sp)
-  SD s10, 184(sp)
+  SD s0, 64(sp)
+  SD ra, 104(sp)
+  SD s1, 112(sp)
+  SD s2, 120(sp)
+  SD s4, 128(sp)
+  SD s5, 136(sp)
+  SD s6, 144(sp)
+  SD s7, 152(sp)
+  SD s3, 168(sp)
+  SD s8, 176(sp)
+  SD s9, 184(sp)
+  SD s10, 192(sp)
   SD s11, 200(sp)
   LA t0, state
   SD t0, 560(sp)
   CALL getint
-  ADDI s7, zero, 0
+  ADDI s6, zero, 0
   LD t0, 560(sp)
   SW a0, 0(t0)
   ADDI s5, zero, 0
-  ADDI s2, zero, 0
-  ADDI s0, zero, 0
+  ADDI s4, zero, 0
   ADDI s1, zero, 0
-  ADDI s3, zero, 0
+  ADDI s0, zero, 0
+  ADDI s2, zero, 0
   CALL getint
-  ADD s6, a0, zero
+  ADD s3, a0, zero
   ADDI a0, zero, 161
   CALL _sysy_starttime
-  SW s7, 536(sp)
+  SW s6, 536(sp)
   SW s5, 540(sp)
-  SW s2, 544(sp)
-  SW s0, 548(sp)
-  SW s1, 552(sp)
-  BLT s3, s6, bb2
+  SW s4, 544(sp)
+  SW s1, 548(sp)
+  SW s0, 552(sp)
+  BLT s2, s3, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI a0, zero, 184
@@ -54,53 +54,53 @@ bb1:   # loop depth 0
   ADDI a0, zero, 5
   CALL putarray
   ADD a0, zero, zero
-  LD s3, 56(sp)
-  LD s4, 64(sp)
-  LD s8, 72(sp)
-  LD ra, 88(sp)
-  LD s0, 96(sp)
-  LD s1, 104(sp)
-  LD s2, 112(sp)
-  LD s5, 120(sp)
-  LD s6, 128(sp)
-  LD s7, 136(sp)
-  LD s9, 176(sp)
-  LD s10, 184(sp)
+  LD s0, 64(sp)
+  LD ra, 104(sp)
+  LD s1, 112(sp)
+  LD s2, 120(sp)
+  LD s4, 128(sp)
+  LD s5, 136(sp)
+  LD s6, 144(sp)
+  LD s7, 152(sp)
+  LD s3, 168(sp)
+  LD s8, 176(sp)
+  LD s9, 184(sp)
+  LD s10, 192(sp)
   LD s11, 200(sp)
   ADDI sp, sp, 656
   JALR zero, 0(ra)
 bb2:   # loop depth 0
-  LUI a3, 31
+  LUI a2, 31
   LUI a1, 422994
   LUI a0, 66341
   LUI t2, 625582
   LUI t1, 802094
   LUI t0, 982235
-  LA a2, buffer
-  SD a2, 208(sp)
-  ADDIW a3, a3, 1024
+  LA a3, buffer
+  SD a3, 208(sp)
+  ADDIW a2, a2, 1024
   ADDIW a1, a1, 769
   ADDIW a0, a0, 1142
   ADDIW t2, t2, -770
   ADDIW t1, t1, 496
   ADDIW t0, t0, -1143
-  LD a2, 208(sp)
-  ADD a3, a2, a3
-  SD a3, 568(sp)
+  LD a3, 208(sp)
+  ADD a2, a3, a2
+  SD a2, 568(sp)
   ADD a1, zero, a1
-  SW a1, 32(sp)
+  SW a1, 40(sp)
   ADD a0, zero, a0
-  SW a0, 0(sp)
+  SW a0, 36(sp)
   ADD t2, zero, t2
-  SW t2, 28(sp)
+  SW t2, 0(sp)
   ADD t1, zero, t1
-  SW t1, 24(sp)
+  SW t1, 32(sp)
   ADD t0, zero, t0
-  SW t0, 20(sp)
+  SW t0, 28(sp)
   # implict jump to bb3
 bb3:   # loop depth 1
   ADD a3, zero, zero
-  SW s6, 36(sp)
+  SW s3, 44(sp)
   # implict jump to bb4
 bb4:   # loop depth 2
   LD t0, 560(sp)
@@ -168,7 +168,7 @@ bb7:   # loop depth 1
   ADDI a3, zero, 80
   SW zero, 4(a4)
   ADDIW t0, a5, 5
-  SW t0, 48(sp)
+  SW t0, 60(sp)
   SW a6, 8(a4)
   SW zero, 12(a4)
   # implict jump to bb8
@@ -181,35 +181,35 @@ bb8:   # loop depth 2
   BNE a3, zero, bb35
   # implict jump to bb9
 bb9:   # loop depth 1
-  LW t0, 48(sp)
+  LW t0, 60(sp)
   BLT zero, t0, bb13
   # implict jump to bb10
 bb10:   # loop depth 1
-  LW s9, 24(sp)
-  LW s7, 0(sp)
+  LW s9, 32(sp)
+  LW s7, 36(sp)
+  LW s6, 0(sp)
   LW s5, 28(sp)
-  LW s4, 20(sp)
-  LW s2, 32(sp)
+  LW s4, 40(sp)
   # implict jump to bb11
 bb11:   # loop depth 1
-  LW t3, 536(sp)
-  ADDW t4, t3, s2
-  LW t0, 36(sp)
-  ADDIW s6, t0, -1
-  SUBW t3, t3, t4
-  ADDW a3, t3, s2
-  SUBW a3, a3, t4
+  LW t4, 536(sp)
+  ADDW a7, t4, s4
+  LW t0, 44(sp)
+  ADDIW s3, t0, -1
+  SUBW t3, t4, a7
+  ADDW a3, t3, s4
+  SUBW a3, a3, a7
   SW a3, 536(sp)
   LW a3, 540(sp)
-  ADDW t3, a3, s4
-  SUBW a3, a3, t3
-  ADDW a3, a3, s4
-  SUBW a3, a3, t3
+  ADDW a7, a3, s5
+  SUBW a3, a3, a7
+  ADDW a3, a3, s5
+  SUBW a3, a3, a7
   SW a3, 540(sp)
   LW a3, 544(sp)
-  ADDW a4, a3, s5
+  ADDW a4, a3, s6
   SUBW a3, a3, a4
-  ADDW a3, a3, s5
+  ADDW a3, a3, s6
   SUBW a3, a3, a4
   SW a3, 544(sp)
   LW a3, 548(sp)
@@ -224,419 +224,415 @@ bb11:   # loop depth 1
   ADDW a3, a3, s9
   SUBW a3, a3, a4
   SW a3, 552(sp)
-  BLT zero, s6, bb12
+  BLT zero, s3, bb12
   JAL zero, bb1
 bb12:   # loop depth 1
   JAL zero, bb3
 bb13:   # loop depth 1
-  LW s9, 24(sp)
+  LW s9, 32(sp)
   ADD t0, zero, zero
-  SW t0, 12(sp)
-  ADD t4, zero, zero
-  ADD s1, zero, zero
-  LW s7, 0(sp)
+  SW t0, 20(sp)
+  ADD t3, zero, zero
+  ADD a7, zero, zero
+  LW s7, 36(sp)
+  LW s6, 0(sp)
   LW s5, 28(sp)
-  LW s4, 20(sp)
-  LW s2, 32(sp)
+  LW s4, 40(sp)
   # implict jump to bb14
 bb14:   # loop depth 2
-  LW t0, 12(sp)
-  SW t0, 12(sp)
-  ADDI a4, zero, 16
+  LW t0, 20(sp)
+  SW t0, 20(sp)
+  ADDI a5, zero, 16
   LD t0, 208(sp)
-  LW t1, 12(sp)
-  SH2ADD t5, t1, t0
-  LW t0, 12(sp)
-  ADDIW s6, t0, 4
-  LW s3, 0(t5)
+  LW t1, 20(sp)
+  SH2ADD t4, t1, t0
+  LW t0, 20(sp)
+  ADDIW s1, t0, 4
+  LW s0, 0(t4)
   LD t0, 208(sp)
-  SH2ADD s10, s6, t0
-  LW t0, 12(sp)
-  ADDIW s6, t0, 8
-  LW t0, 12(sp)
-  ADDIW s8, t0, 12
+  SH2ADD s8, s1, t0
+  LW t0, 20(sp)
+  ADDIW s1, t0, 8
+  LW t0, 20(sp)
+  ADDIW s3, t0, 12
   LD t0, 208(sp)
-  SH2ADD t0, s6, t0
-  SD t0, 168(sp)
+  SH2ADD t0, s1, t0
+  SD t0, 96(sp)
   LD t0, 208(sp)
-  SH2ADD t0, s8, t0
-  SD t0, 160(sp)
-  LW s6, 4(t5)
-  SLLIW s3, s3, 24
-  LW t0, 12(sp)
-  ADDIW s8, t0, 16
-  LW t0, 12(sp)
-  ADDIW s11, t0, 20
+  SH2ADD t0, s3, t0
+  SD t0, 88(sp)
+  LW s1, 4(t4)
+  SLLIW s0, s0, 24
+  LW t0, 20(sp)
+  ADDIW s3, t0, 16
+  LW t0, 20(sp)
+  ADDIW s10, t0, 20
   LD t0, 208(sp)
-  SH2ADD t0, s8, t0
-  SD t0, 152(sp)
-  LD t0, 208(sp)
-  SH2ADD t0, s11, t0
-  SD t0, 144(sp)
-  LW s8, 8(t5)
-  SLLIW s6, s6, 16
-  ADDW s3, s3, s6
-  LW t0, 12(sp)
-  ADDIW s6, t0, 24
-  LD t0, 208(sp)
-  SH2ADD t0, s6, t0
+  SH2ADD t0, s3, t0
   SD t0, 80(sp)
-  LW t0, 12(sp)
-  ADDIW s11, t0, 28
-  LW s6, 12(t5)
-  SLLIW t5, s8, 8
-  ADDW t5, s3, t5
   LD t0, 208(sp)
-  SH2ADD s8, s11, t0
-  LW t0, 12(sp)
+  SH2ADD t0, s10, t0
+  SD t0, 72(sp)
+  LW s3, 8(t4)
+  SLLIW s1, s1, 16
+  ADDW s0, s0, s1
+  LW t0, 20(sp)
+  ADDIW s1, t0, 24
+  LD t0, 208(sp)
+  SH2ADD s10, s1, t0
+  LW t0, 20(sp)
+  ADDIW s11, t0, 28
+  LW s1, 12(t4)
+  SLLIW t4, s3, 8
+  ADDW t4, s0, t4
+  LD t0, 208(sp)
+  SH2ADD s3, s11, t0
+  LW t0, 20(sp)
   ADDIW s11, t0, 32
-  LW t0, 12(sp)
+  LW t0, 20(sp)
   ADDIW t0, t0, 36
-  SW t0, 8(sp)
-  SLLW s3, s6, zero
+  SW t0, 16(sp)
+  SLLW s0, s1, zero
   LD t0, 208(sp)
   SH2ADD t0, s11, t0
   SD t0, 640(sp)
-  ADDW t5, t5, s3
+  ADDW t4, t4, s0
   LD t0, 208(sp)
-  LW t1, 8(sp)
+  LW t1, 16(sp)
   SH2ADD t0, t1, t0
   SD t0, 632(sp)
-  SW t5, 216(sp)
-  LW t0, 12(sp)
-  ADDIW s3, t0, 40
-  LW t5, 0(s10)
+  SW t4, 216(sp)
+  LW t0, 20(sp)
+  ADDIW s0, t0, 40
+  LW t4, 0(s8)
   LD t0, 208(sp)
-  SH2ADD t0, s3, t0
+  SH2ADD t0, s0, t0
   SD t0, 624(sp)
-  LW t0, 12(sp)
-  ADDIW s3, t0, 44
-  LW t0, 12(sp)
-  ADDIW s6, t0, 48
+  LW t0, 20(sp)
+  ADDIW s0, t0, 44
+  LW t0, 20(sp)
+  ADDIW s1, t0, 48
   LD t0, 208(sp)
-  SH2ADD t0, s3, t0
+  SH2ADD t0, s0, t0
+  SD t0, 160(sp)
+  LD t0, 208(sp)
+  SH2ADD t0, s1, t0
   SD t0, 616(sp)
-  LD t0, 208(sp)
-  SH2ADD t0, s6, t0
-  SD t0, 192(sp)
-  LW s3, 4(s10)
-  SLLIW t5, t5, 24
-  LW t0, 12(sp)
-  ADDIW s6, t0, 52
-  LW t0, 12(sp)
+  LW s0, 4(s8)
+  SLLIW t4, t4, 24
+  LW t0, 20(sp)
+  ADDIW s1, t0, 52
+  LW t0, 20(sp)
   ADDIW s11, t0, 56
   LD t0, 208(sp)
-  SH2ADD t0, s6, t0
+  SH2ADD t0, s1, t0
   SD t0, 608(sp)
   LD t0, 208(sp)
   SH2ADD t0, s11, t0
   SD t0, 600(sp)
-  LW t0, 8(s10)
-  SW t0, 52(sp)
-  SLLIW s3, s3, 16
-  ADDW t5, t5, s3
-  LW t0, 12(sp)
-  ADDIW s3, t0, 60
+  LW t0, 8(s8)
+  SW t0, 48(sp)
+  SLLIW s0, s0, 16
+  ADDW t4, t4, s0
+  LW t0, 20(sp)
+  ADDIW s0, t0, 60
   LD t0, 208(sp)
-  SH2ADD t0, s3, t0
+  SH2ADD t0, s0, t0
   SD t0, 592(sp)
-  LW t0, 12(s10)
-  SW t0, 44(sp)
-  LW t0, 52(sp)
+  LW t0, 12(s8)
+  SW t0, 52(sp)
+  LW t0, 48(sp)
   SLLIW a3, t0, 8
-  ADDW t5, t5, a3
-  LW t0, 44(sp)
-  SLLW a5, t0, zero
-  SW s1, 40(sp)
-  ADDW a5, t5, a5
-  SW a5, 220(sp)
-  LD t0, 168(sp)
-  LW a5, 0(t0)
-  LD t0, 168(sp)
+  ADDW a3, t4, a3
+  LW t0, 52(sp)
+  SLLW a6, t0, zero
+  ADDW a3, a3, a6
+  SW a3, 220(sp)
+  LD t0, 96(sp)
+  LW a3, 0(t0)
+  LD t0, 96(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
-  LD t0, 168(sp)
-  LW a7, 8(t0)
+  SLLIW a3, a3, 24
+  LD t0, 96(sp)
+  LW t0, 8(t0)
+  SW t0, 56(sp)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LD t0, 168(sp)
+  ADDW a3, a3, a6
+  LD t0, 96(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  LW t0, 56(sp)
+  SLLIW a6, t0, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 224(sp)
-  LD t0, 160(sp)
-  LW a5, 0(t0)
-  LD t0, 160(sp)
+  ADDW a3, a3, a6
+  SW a3, 224(sp)
+  LD t0, 88(sp)
+  LW a3, 0(t0)
+  LD t0, 88(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
-  LD t0, 160(sp)
-  LW a7, 8(t0)
+  SLLIW a3, a3, 24
+  LD t0, 88(sp)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LD t0, 160(sp)
+  ADDW a3, a3, a6
+  LD t0, 88(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 228(sp)
-  LD t0, 152(sp)
-  LW a5, 0(t0)
-  LD t0, 152(sp)
-  LW a6, 4(t0)
-  SLLIW a5, a5, 24
-  LD t0, 152(sp)
-  LW a7, 8(t0)
-  SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LD t0, 152(sp)
-  LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
-  SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 232(sp)
-  LD t0, 144(sp)
-  LW a5, 0(t0)
-  LD t0, 144(sp)
-  LW a6, 4(t0)
-  SLLIW a5, a5, 24
-  LD t0, 144(sp)
-  LW a7, 8(t0)
-  SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LD t0, 144(sp)
-  LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
-  SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 236(sp)
+  ADDW a3, a3, a6
+  SW a3, 228(sp)
   LD t0, 80(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 80(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 80(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 80(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 240(sp)
-  LW a5, 0(s8)
-  LW a6, 4(s8)
-  SLLIW a5, a5, 24
-  LW a7, 8(s8)
+  ADDW a3, a3, a6
+  SW a3, 232(sp)
+  LD t0, 72(sp)
+  LW a3, 0(t0)
+  LD t0, 72(sp)
+  LW a6, 4(t0)
+  SLLIW a3, a3, 24
+  LD t0, 72(sp)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LW t5, 12(s8)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
+  LD t0, 72(sp)
+  LW t5, 12(t0)
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 244(sp)
+  ADDW a3, a3, a6
+  SW a3, 236(sp)
+  LW a3, 0(s10)
+  LW a6, 4(s10)
+  SLLIW a3, a3, 24
+  LW t4, 8(s10)
+  SLLIW a6, a6, 16
+  ADDW a3, a3, a6
+  LW t5, 12(s10)
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
+  SLLW a6, t5, zero
+  ADDW a3, a3, a6
+  SW a3, 240(sp)
+  LW a3, 0(s3)
+  LW a6, 4(s3)
+  SLLIW a3, a3, 24
+  LW t4, 8(s3)
+  SLLIW a6, a6, 16
+  ADDW a3, a3, a6
+  LW t5, 12(s3)
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
+  SLLW a6, t5, zero
+  ADDW a3, a3, a6
+  SW a3, 244(sp)
   LD t0, 640(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 640(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 640(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 640(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 248(sp)
+  ADDW a3, a3, a6
+  SW a3, 248(sp)
   LD t0, 632(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 632(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 632(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 632(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 252(sp)
+  ADDW a3, a3, a6
+  SW a3, 252(sp)
   LD t0, 624(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 624(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 624(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 624(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 256(sp)
+  ADDW a3, a3, a6
+  SW a3, 256(sp)
+  LD t0, 160(sp)
+  LW a3, 0(t0)
+  LD t0, 160(sp)
+  LW a6, 4(t0)
+  SLLIW a3, a3, 24
+  LD t0, 160(sp)
+  LW t4, 8(t0)
+  SLLIW a6, a6, 16
+  ADDW a3, a3, a6
+  LD t0, 160(sp)
+  LW t5, 12(t0)
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
+  SLLW a6, t5, zero
+  ADDW a3, a3, a6
+  SW a3, 260(sp)
   LD t0, 616(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 616(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 616(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 616(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 260(sp)
-  LD t0, 192(sp)
-  LW a5, 0(t0)
-  LD t0, 192(sp)
-  LW a6, 4(t0)
-  SLLIW a5, a5, 24
-  LD t0, 192(sp)
-  LW a7, 8(t0)
-  SLLIW a6, a6, 16
-  ADDW a5, a5, a6
-  LD t0, 192(sp)
-  LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
-  SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 264(sp)
+  ADDW a3, a3, a6
+  SW a3, 264(sp)
   LD t0, 608(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 608(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 608(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 608(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 268(sp)
+  ADDW a3, a3, a6
+  SW a3, 268(sp)
   LD t0, 600(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 600(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 600(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 600(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 272(sp)
+  ADDW a3, a3, a6
+  SW a3, 272(sp)
   LD t0, 592(sp)
-  LW a5, 0(t0)
+  LW a3, 0(t0)
   LD t0, 592(sp)
   LW a6, 4(t0)
-  SLLIW a5, a5, 24
+  SLLIW a3, a3, 24
   LD t0, 592(sp)
-  LW a7, 8(t0)
+  LW t4, 8(t0)
   SLLIW a6, a6, 16
-  ADDW a5, a5, a6
+  ADDW a3, a3, a6
   LD t0, 592(sp)
   LW t5, 12(t0)
-  SLLIW a6, a7, 8
-  ADDW a5, a5, a6
+  SLLIW a6, t4, 8
+  ADDW a3, a3, a6
   SLLW a6, t5, zero
-  ADDW a5, a5, a6
-  SW a5, 276(sp)
+  ADDW a3, a3, a6
+  SW a3, 276(sp)
   # implict jump to bb15
 bb15:   # loop depth 3
-  SLLIW a5, a4, 2
-  ADDIW a4, a4, 1
+  SLLIW a6, a5, 2
+  ADDIW a5, a5, 1
   ADDI t6, sp, 216
-  ADD a5, t6, a5
-  SLTI s0, a4, 80
-  LW a6, -12(a5)
-  LW a7, -32(a5)
-  ADDW t3, a6, a7
-  LW t5, -56(a5)
-  SUBW a6, a6, t3
-  ADDW a6, a6, a7
-  SUBW a6, a6, t3
-  LW t3, -64(a5)
-  ADDW a7, a6, t5
-  SUBW a6, a6, a7
-  ADDW a6, a6, t5
-  SUBW a6, a6, a7
-  ADDW a7, a6, t3
-  SUBW a6, a6, a7
-  ADDW a6, a6, t3
-  SUBW a6, a6, a7
-  SLLI t3, a6, 1
-  SLLIW a7, a6, 1
-  SRLI t3, t3, 63
-  ADD t3, a6, t3
-  ANDI t3, t3, -2
-  SUBW a6, a6, t3
-  ADDW a6, a7, a6
-  SW a6, 0(a5)
-  BNE s0, zero, bb34
+  ADD a6, t6, a6
+  SLTI s2, a5, 80
+  LW t4, -12(a6)
+  LW t5, -32(a6)
+  ADDW s0, t4, t5
+  LW s1, -56(a6)
+  SUBW t4, t4, s0
+  ADDW t4, t4, t5
+  SUBW t4, t4, s0
+  LW s0, -64(a6)
+  ADDW t5, t4, s1
+  SUBW t4, t4, t5
+  ADDW t4, t4, s1
+  SUBW t4, t4, t5
+  ADDW t5, t4, s0
+  SUBW t4, t4, t5
+  ADDW t4, t4, s0
+  SUBW t4, t4, t5
+  SLLI s0, t4, 1
+  SLLIW t5, t4, 1
+  SRLI s0, s0, 63
+  ADD s0, t4, s0
+  ANDI s0, s0, -2
+  SUBW t4, t4, s0
+  ADDW t4, t5, t4
+  SW t4, 0(a6)
+  BNE s2, zero, bb34
   # implict jump to bb16
-bb16:   # loop depth 2
-  ADD s3, s2, zero
-  ADD s0, s4, zero
-  ADD s6, s5, zero
+bb16:   # loop depth 3
+  ADD s2, s4, zero
+  ADD s1, s5, zero
+  ADD s3, s6, zero
   ADD s8, s7, zero
-  ADD a7, s9, zero
+  ADD t5, s9, zero
   ADD t0, zero, zero
-  SW t0, 4(sp)
-  LW s1, 40(sp)
-  ADDI a6, zero, 1
+  SW t0, 12(sp)
+  ADDI a3, zero, 1
   # implict jump to bb17
 bb17:   # loop depth 3
-  LW t0, 4(sp)
-  SW t0, 4(sp)
-  ADD s10, s6, zero
-  LW t0, 4(sp)
-  SLTI a4, t0, 20
-  ADDW a5, s0, s10
+  LW t0, 12(sp)
+  SW t0, 12(sp)
+  ADD s10, s3, zero
+  LW t0, 12(sp)
+  SLTI a6, t0, 20
+  ADDW t0, s1, s10
+  SW t0, 24(sp)
   ADD s11, s8, zero
-  ADD s8, s3, zero
-  BNE a4, zero, bb33
+  ADD s8, s2, zero
+  BNE a6, zero, bb33
   # implict jump to bb18
 bb18:   # loop depth 3
-  LW t0, 4(sp)
-  SLTI a3, t0, 40
-  BNE a3, zero, bb32
+  LW t0, 12(sp)
+  SLTI a5, t0, 40
+  BNE a5, zero, bb32
   # implict jump to bb19
 bb19:   # loop depth 3
-  LW t0, 4(sp)
-  SLTI a3, t0, 60
-  BNE a3, zero, bb31
+  LW t0, 12(sp)
+  SLTI a5, t0, 60
+  BNE a5, zero, bb31
   # implict jump to bb20
 bb20:   # loop depth 3
-  BNE a6, zero, bb30
+  BNE a3, zero, bb30
   # implict jump to bb21
 bb21:   # loop depth 3
   # implict jump to bb22
@@ -647,126 +643,138 @@ bb23:   # loop depth 3
 bb24:   # loop depth 3
   # implict jump to bb25
 bb25:   # loop depth 3
-  SLLI a5, s8, 1
-  SLLI t5, s0, 1
-  SRLI a5, a5, 59
-  LW t0, 4(sp)
-  SLLIW t3, t0, 2
-  ADD a6, s8, a5
-  SLLIW a5, s8, 5
-  ANDI a6, a6, -32
-  LUI s6, 786432
-  SUBW a6, s8, a6
-  SRLI s3, t5, 34
-  ADDI t5, sp, 216
-  ADD t5, t5, t3
-  ADDW a5, a5, a6
-  ADDIW s6, s6, 0
-  ADD a6, s0, s3
-  LW t5, 0(t5)
-  ADDW a3, a5, s1
-  AND a6, a6, s6
-  ADDW a3, a3, a7
-  LW t0, 4(sp)
-  ADDIW t0, t0, 1
+  SLLI a6, s8, 1
+  SLLI s2, s1, 1
+  SRLI a6, a6, 59
+  LW t0, 12(sp)
+  SLLIW s0, t0, 2
+  ADD t4, s8, a6
+  SLLIW a6, s8, 5
+  ANDI t4, t4, -32
+  LUI t0, 786432
   SW t0, 4(sp)
-  SUBW a7, s0, a6
-  SLLIW a4, s0, 30
-  ADDW a3, a3, t4
+  SUBW t4, s8, t4
+  SRLI s3, s2, 34
+  ADDI t6, sp, 216
+  ADD s2, t6, s0
+  ADDW a6, a6, t4
   LW t0, 4(sp)
-  SLTI a6, t0, 80
-  ADDW s6, a4, a7
-  ADDW s3, a3, t5
-  BNE a6, zero, bb29
+  ADDIW t0, t0, 0
+  SW t0, 4(sp)
+  ADD t4, s1, s3
+  LW s2, 0(s2)
+  ADDW a3, a6, a7
+  LW t0, 4(sp)
+  AND t4, t4, t0
+  ADDW a3, a3, t5
+  LW t0, 12(sp)
+  ADDIW t0, t0, 1
+  SW t0, 12(sp)
+  SUBW s3, s1, t4
+  SLLIW a5, s1, 30
+  ADDW t5, a3, t3
+  LW t0, 12(sp)
+  SLTI a3, t0, 80
+  ADDW s3, a5, s3
+  ADDW s2, t5, s2
+  BNE a3, zero, bb29
   # implict jump to bb26
 bb26:   # loop depth 2
-  LW t0, 12(sp)
+  LW t0, 20(sp)
   ADDIW t0, t0, 64
-  SW t0, 12(sp)
+  SW t0, 20(sp)
   ADDW s9, s9, s11
   ADDW s7, s7, s10
-  ADDW s5, s5, s6
-  ADDW s4, s4, s8
-  ADDW s2, s2, s3
-  LW t0, 48(sp)
-  LW t1, 12(sp)
+  ADDW s6, s6, s3
+  ADDW s5, s5, s8
+  ADDW s4, s4, s2
+  LW t0, 60(sp)
+  LW t1, 20(sp)
   BLT t1, t0, bb28
   # implict jump to bb27
-bb27:   # loop depth 1
+bb27:   # loop depth 2
   JAL zero, bb11
 bb28:   # loop depth 2
-  LW t0, 12(sp)
-  SW t0, 12(sp)
+  LW t0, 20(sp)
+  SW t0, 20(sp)
   JAL zero, bb14
 bb29:   # loop depth 3
-  ADD s0, s8, zero
+  ADD s1, s8, zero
   ADD s8, s10, zero
-  ADD a7, s11, zero
-  LW t0, 4(sp)
-  SW t0, 4(sp)
+  ADD t5, s11, zero
+  LW t0, 12(sp)
+  SW t0, 12(sp)
   JAL zero, bb17
 bb30:   # loop depth 3
-  SUBW a3, s0, a5
-  LUI a4, 828972
+  LW t0, 24(sp)
+  SUBW a3, s1, t0
+  LUI a5, 828972
   ADDW a3, a3, s10
-  ADDIW a4, a4, 262
-  SUBW a3, a3, a5
-  ADD t4, zero, a4
-  ADDW a5, a3, s11
-  SUBW a3, a3, a5
+  ADDIW a5, a5, 262
+  LW t0, 24(sp)
+  SUBW a3, a3, t0
+  ADD t3, zero, a5
+  ADDW a6, a3, s11
+  SUBW a3, a3, a6
   ADDW a3, a3, s11
-  SUBW s1, a3, a5
+  SUBW a7, a3, a6
   JAL zero, bb22
 bb31:   # loop depth 3
-  ADDW a3, s0, s11
-  ADDW t3, s10, s11
-  ADDW a6, a5, a3
-  LUI t4, 586172
-  SUBW a4, a5, a6
-  ADDIW t4, t4, -804
-  ADDW a3, a4, a3
-  ADD t4, zero, t4
+  ADDW a3, s1, s11
+  ADDW t4, s10, s11
+  LW t0, 24(sp)
+  ADDW a6, t0, a3
+  LUI a7, 586172
+  LW t0, 24(sp)
+  SUBW a5, t0, a6
+  ADDIW a7, a7, -804
+  ADDW a3, a5, a3
+  ADD t3, zero, a7
   SUBW a3, a3, a6
-  ADDW a5, a3, a6
-  SUBW a3, a3, a5
+  ADDW a7, a3, a6
+  SUBW a3, a3, a7
   ADDW a3, a3, a6
-  SUBW a3, a3, a5
-  ADDW a5, a3, t3
-  SUBW a3, a3, a5
-  ADDW a3, a3, t3
-  SUBW a3, a3, a5
-  ADDW a6, a3, a5
+  SUBW a3, a3, a7
+  ADDW a6, a3, t4
   SUBW a3, a3, a6
-  ADDW a3, a3, a5
-  SUBW s1, a3, a6
+  ADDW a3, a3, t4
+  SUBW a3, a3, a6
+  ADDW a7, a3, a6
+  SUBW a3, a3, a7
+  ADDW a3, a3, a6
+  SUBW a7, a3, a7
   JAL zero, bb23
 bb32:   # loop depth 3
-  SUBW a3, s0, a5
-  LUI a4, 454047
+  LW t0, 24(sp)
+  SUBW a3, s1, t0
+  LUI a5, 454047
   ADDW a3, a3, s10
-  ADDIW a4, a4, -1151
-  SUBW a3, a3, a5
-  ADD t4, zero, a4
-  ADDW a5, a3, s11
-  SUBW a3, a3, a5
+  ADDIW a5, a5, -1151
+  LW t0, 24(sp)
+  SUBW a3, a3, t0
+  ADD t3, zero, a5
+  ADDW a6, a3, s11
+  SUBW a3, a3, a6
   ADDW a3, a3, s11
-  SUBW s1, a3, a5
+  SUBW a7, a3, a6
   JAL zero, bb24
 bb33:   # loop depth 3
   ADDI a3, zero, -1
-  LUI a4, 370728
-  SUBW a3, a3, s0
-  ADDIW a4, a4, -1639
+  LUI a5, 370728
+  SUBW a3, a3, s1
+  ADDIW a5, a5, -1639
   ADDW a3, a3, s11
-  ADD t4, zero, a4
-  ADDW a6, a5, a3
-  SUBW a5, a5, a6
-  ADDW a3, a5, a3
+  ADD t3, zero, a5
+  LW t0, 24(sp)
+  ADDW a6, t0, a3
+  LW t0, 24(sp)
+  SUBW a7, t0, a6
+  ADDW a3, a7, a3
   SUBW a3, a3, a6
-  ADDW a5, a3, a6
-  SUBW a3, a3, a5
+  ADDW a7, a3, a6
+  SUBW a3, a3, a7
   ADDW a3, a3, a6
-  SUBW s1, a3, a5
+  SUBW a7, a3, a7
   JAL zero, bb25
 bb34:   # loop depth 3
   JAL zero, bb15

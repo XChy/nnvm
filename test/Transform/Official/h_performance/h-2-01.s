@@ -200,7 +200,7 @@ bb14:   # loop depth 1
   ADDIW t2, t2, 1
   BLT t2, a0, bb16
   # implict jump to bb15
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb2
 bb16:   # loop depth 1
   JAL zero, bb6
@@ -224,7 +224,7 @@ bb19:   # loop depth 2
   FSW ft1, 0(t0)
   BLT t1, a1, bb21
   # implict jump to bb20
-bb20:   # loop depth 1
+bb20:   # loop depth 2
   JAL zero, bb12
 bb21:   # loop depth 2
   JAL zero, bb19

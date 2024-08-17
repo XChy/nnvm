@@ -36,6 +36,9 @@ public:
                    children.end());
   }
 
+  void updatePreheader();
+  void updateExits();
+
   BasicBlock *getPreheader() const { return preheader; }
   void setPreheader(BasicBlock *preheader) { this->preheader = preheader; }
 

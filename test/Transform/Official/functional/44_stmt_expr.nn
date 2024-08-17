@@ -4,22 +4,22 @@ entry:  pred()
   k.pinned = pin ptr @k
   store i32 1 to ptr %k.pinned
   929 = icmp sle i32 0, i32 9
-  br i1 %929, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry)
+  br i1 %929, bb %while.body_preheader35, bb %while.exit
+while.body_preheader35:  pred(entry)
   br bb %while.body
-while.body:  pred(while.body, while.body_preheader)
-  k.load17_phi_loop = phi [bb %while.body_preheader, i32 1, bb %while.body, i32 %28]
-  i.phi30 = phi [bb %while.body, i32 %13, bb %while.body_preheader, i32 0]
+while.body:  pred(while.body, while.body_preheader35)
+  k.load17_phi_loop = phi [bb %while.body_preheader35, i32 1, bb %while.body, i32 %28]
+  i.phi30 = phi [bb %while.body, i32 %13, bb %while.body_preheader35, i32 0]
   13 = add i32 %i.phi30, i32 1
   28 = shl i32 %k.load17_phi_loop, i32 1
   9 = icmp sle i32 %13, i32 9
-  br i1 %9, bb %while.body, bb %while.body_exclu_exit34
-while.exit:  pred(entry, while.body_exclu_exit34)
+  br i1 %9, bb %while.body, bb %while.body.cp
+while.exit:  pred(while.body.cp, entry)
   k.load20 = load i32 from ptr %k.pinned
   call void putint(i32 %k.load20)
   k.load22 = load i32 from ptr %k.pinned
   ret i32 %k.load22
-while.body_exclu_exit34:  pred(while.body)
+while.body.cp:  pred(while.body)
   store i32 %28 to ptr %k.pinned
   br bb %while.exit
 }

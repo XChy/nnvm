@@ -38,7 +38,7 @@ entry15:  pred()
 select.then56:  pred(entry15)
   store i32 3 to ptr %d.pinned
   br bb %select.exit58
-select.exit58:  pred(select.then56, entry15)
+select.exit58:  pred(entry15, select.then56)
   d.load65 = load i32 from ptr %d.pinned
   call void putint(i32 %d.load65)
   call void putch(i32 32)

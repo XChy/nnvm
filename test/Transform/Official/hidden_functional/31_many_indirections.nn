@@ -2,215 +2,8 @@ internal global ptr array init with 2000 x i32 zeros
 i32 main() {
 entry:  pred()
   array.pinned = pin ptr @array
-  br bb %while.body
-while.body:  pred(while.body, entry)
-  350 = phi [bb %entry, i32 0, bb %while.body, i32 %19.rec]
-  i.phi343 = phi [bb %while.body, i32 %31, bb %entry, i32 0]
-  20 = ptradd ptr %array.pinned, i32 %350
-  store i32 0 to ptr %20
-  23356 = ptradd ptr %20, i32 4
-  store i32 1 to ptr %23356
-  23364 = ptradd ptr %20, i32 8
-  store i32 2 to ptr %23364
-  23372 = ptradd ptr %20, i32 12
-  store i32 3 to ptr %23372
-  23380 = ptradd ptr %20, i32 16
-  store i32 4 to ptr %23380
-  23388 = ptradd ptr %20, i32 20
-  store i32 5 to ptr %23388
-  23396 = ptradd ptr %20, i32 24
-  store i32 6 to ptr %23396
-  23404 = ptradd ptr %20, i32 28
-  store i32 7 to ptr %23404
-  23412 = ptradd ptr %20, i32 32
-  store i32 8 to ptr %23412
-  23420 = ptradd ptr %20, i32 36
-  store i32 9 to ptr %23420
-  23428 = ptradd ptr %20, i32 40
-  store i32 10 to ptr %23428
-  23436 = ptradd ptr %20, i32 44
-  store i32 11 to ptr %23436
-  23444 = ptradd ptr %20, i32 48
-  store i32 12 to ptr %23444
-  23452 = ptradd ptr %20, i32 52
-  store i32 13 to ptr %23452
-  23460 = ptradd ptr %20, i32 56
-  store i32 14 to ptr %23460
-  23468 = ptradd ptr %20, i32 60
-  store i32 15 to ptr %23468
-  23476 = ptradd ptr %20, i32 64
-  store i32 16 to ptr %23476
-  23484 = ptradd ptr %20, i32 68
-  store i32 17 to ptr %23484
-  23492 = ptradd ptr %20, i32 72
-  store i32 18 to ptr %23492
-  23500 = ptradd ptr %20, i32 76
-  store i32 19 to ptr %23500
-  23508 = ptradd ptr %20, i32 80
-  store i32 20 to ptr %23508
-  23516 = ptradd ptr %20, i32 84
-  store i32 21 to ptr %23516
-  23524 = ptradd ptr %20, i32 88
-  store i32 22 to ptr %23524
-  23532 = ptradd ptr %20, i32 92
-  store i32 23 to ptr %23532
-  23540 = ptradd ptr %20, i32 96
-  store i32 24 to ptr %23540
-  23548 = ptradd ptr %20, i32 100
-  store i32 25 to ptr %23548
-  23556 = ptradd ptr %20, i32 104
-  store i32 26 to ptr %23556
-  23564 = ptradd ptr %20, i32 108
-  store i32 27 to ptr %23564
-  23572 = ptradd ptr %20, i32 112
-  store i32 28 to ptr %23572
-  23580 = ptradd ptr %20, i32 116
-  store i32 29 to ptr %23580
-  23588 = ptradd ptr %20, i32 120
-  store i32 30 to ptr %23588
-  23596 = ptradd ptr %20, i32 124
-  store i32 31 to ptr %23596
-  23604 = ptradd ptr %20, i32 128
-  store i32 32 to ptr %23604
-  23612 = ptradd ptr %20, i32 132
-  store i32 33 to ptr %23612
-  23620 = ptradd ptr %20, i32 136
-  store i32 34 to ptr %23620
-  23628 = ptradd ptr %20, i32 140
-  store i32 35 to ptr %23628
-  23636 = ptradd ptr %20, i32 144
-  store i32 36 to ptr %23636
-  23644 = ptradd ptr %20, i32 148
-  store i32 37 to ptr %23644
-  23652 = ptradd ptr %20, i32 152
-  store i32 38 to ptr %23652
-  23660 = ptradd ptr %20, i32 156
-  store i32 39 to ptr %23660
-  23668 = ptradd ptr %20, i32 160
-  store i32 40 to ptr %23668
-  23676 = ptradd ptr %20, i32 164
-  store i32 41 to ptr %23676
-  23684 = ptradd ptr %20, i32 168
-  store i32 42 to ptr %23684
-  23692 = ptradd ptr %20, i32 172
-  store i32 43 to ptr %23692
-  23700 = ptradd ptr %20, i32 176
-  store i32 44 to ptr %23700
-  23708 = ptradd ptr %20, i32 180
-  store i32 45 to ptr %23708
-  23716 = ptradd ptr %20, i32 184
-  store i32 46 to ptr %23716
-  23724 = ptradd ptr %20, i32 188
-  store i32 47 to ptr %23724
-  23732 = ptradd ptr %20, i32 192
-  store i32 48 to ptr %23732
-  23740 = ptradd ptr %20, i32 196
-  store i32 49 to ptr %23740
-  23748 = ptradd ptr %20, i32 200
-  store i32 50 to ptr %23748
-  23756 = ptradd ptr %20, i32 204
-  store i32 51 to ptr %23756
-  23764 = ptradd ptr %20, i32 208
-  store i32 52 to ptr %23764
-  23772 = ptradd ptr %20, i32 212
-  store i32 53 to ptr %23772
-  23780 = ptradd ptr %20, i32 216
-  store i32 54 to ptr %23780
-  23788 = ptradd ptr %20, i32 220
-  store i32 55 to ptr %23788
-  23796 = ptradd ptr %20, i32 224
-  store i32 56 to ptr %23796
-  23804 = ptradd ptr %20, i32 228
-  store i32 57 to ptr %23804
-  23812 = ptradd ptr %20, i32 232
-  store i32 58 to ptr %23812
-  23820 = ptradd ptr %20, i32 236
-  store i32 59 to ptr %23820
-  23828 = ptradd ptr %20, i32 240
-  store i32 60 to ptr %23828
-  23836 = ptradd ptr %20, i32 244
-  store i32 61 to ptr %23836
-  23844 = ptradd ptr %20, i32 248
-  store i32 62 to ptr %23844
-  23852 = ptradd ptr %20, i32 252
-  store i32 63 to ptr %23852
-  23860 = ptradd ptr %20, i32 256
-  store i32 64 to ptr %23860
-  23868 = ptradd ptr %20, i32 260
-  store i32 65 to ptr %23868
-  23876 = ptradd ptr %20, i32 264
-  store i32 66 to ptr %23876
-  23884 = ptradd ptr %20, i32 268
-  store i32 67 to ptr %23884
-  23892 = ptradd ptr %20, i32 272
-  store i32 68 to ptr %23892
-  23900 = ptradd ptr %20, i32 276
-  store i32 69 to ptr %23900
-  23908 = ptradd ptr %20, i32 280
-  store i32 70 to ptr %23908
-  23916 = ptradd ptr %20, i32 284
-  store i32 71 to ptr %23916
-  23924 = ptradd ptr %20, i32 288
-  store i32 72 to ptr %23924
-  23932 = ptradd ptr %20, i32 292
-  store i32 73 to ptr %23932
-  23940 = ptradd ptr %20, i32 296
-  store i32 74 to ptr %23940
-  23948 = ptradd ptr %20, i32 300
-  store i32 75 to ptr %23948
-  23956 = ptradd ptr %20, i32 304
-  store i32 76 to ptr %23956
-  23964 = ptradd ptr %20, i32 308
-  store i32 77 to ptr %23964
-  23972 = ptradd ptr %20, i32 312
-  store i32 78 to ptr %23972
-  23980 = ptradd ptr %20, i32 316
-  store i32 79 to ptr %23980
-  23988 = ptradd ptr %20, i32 320
-  store i32 80 to ptr %23988
-  23996 = ptradd ptr %20, i32 324
-  store i32 81 to ptr %23996
-  231004 = ptradd ptr %20, i32 328
-  store i32 82 to ptr %231004
-  231012 = ptradd ptr %20, i32 332
-  store i32 83 to ptr %231012
-  231020 = ptradd ptr %20, i32 336
-  store i32 84 to ptr %231020
-  231028 = ptradd ptr %20, i32 340
-  store i32 85 to ptr %231028
-  231036 = ptradd ptr %20, i32 344
-  store i32 86 to ptr %231036
-  231044 = ptradd ptr %20, i32 348
-  store i32 87 to ptr %231044
-  231052 = ptradd ptr %20, i32 352
-  store i32 88 to ptr %231052
-  231060 = ptradd ptr %20, i32 356
-  store i32 89 to ptr %231060
-  231068 = ptradd ptr %20, i32 360
-  store i32 90 to ptr %231068
-  231076 = ptradd ptr %20, i32 364
-  store i32 91 to ptr %231076
-  231084 = ptradd ptr %20, i32 368
-  store i32 92 to ptr %231084
-  231092 = ptradd ptr %20, i32 372
-  store i32 93 to ptr %231092
-  231100 = ptradd ptr %20, i32 376
-  store i32 94 to ptr %231100
-  231108 = ptradd ptr %20, i32 380
-  store i32 95 to ptr %231108
-  231116 = ptradd ptr %20, i32 384
-  store i32 96 to ptr %231116
-  231124 = ptradd ptr %20, i32 388
-  store i32 97 to ptr %231124
-  231132 = ptradd ptr %20, i32 392
-  store i32 98 to ptr %231132
-  231140 = ptradd ptr %20, i32 396
-  store i32 99 to ptr %231140
-  31 = add i32 %i.phi343, i32 1
-  8 = icmp slt i32 %31, i32 20
-  19.rec = add i32 %350, i32 400
-  br i1 %8, bb %while.body, bb %while.body_exclu_exit
-while.body_exclu_exit:  pred(while.body)
+  br bb %while.cond11_preheader
+while.exit:  pred(while.cond11_preheader)
   241 = ptradd ptr %array.pinned, i32 7692
   74.load = load i32 from ptr %241
   320 = shl i32 %74.load, i32 2
@@ -368,6 +161,213 @@ while.body_exclu_exit:  pred(while.body)
   233 = add i32 %131.load, i32 %231.load
   call void putint(i32 %233)
   ret i32 0
+while.cond11_preheader:  pred(while.cond11_preheader, entry)
+  355 = phi [bb %entry, i32 0, bb %while.cond11_preheader, i32 %19.rec]
+  i.phi345 = phi [bb %while.cond11_preheader, i32 %31, bb %entry, i32 0]
+  20 = ptradd ptr %array.pinned, i32 %355
+  store i32 0 to ptr %20
+  23361 = ptradd ptr %20, i32 4
+  store i32 1 to ptr %23361
+  23369 = ptradd ptr %20, i32 8
+  store i32 2 to ptr %23369
+  23377 = ptradd ptr %20, i32 12
+  store i32 3 to ptr %23377
+  23385 = ptradd ptr %20, i32 16
+  store i32 4 to ptr %23385
+  23393 = ptradd ptr %20, i32 20
+  store i32 5 to ptr %23393
+  23401 = ptradd ptr %20, i32 24
+  store i32 6 to ptr %23401
+  23409 = ptradd ptr %20, i32 28
+  store i32 7 to ptr %23409
+  23417 = ptradd ptr %20, i32 32
+  store i32 8 to ptr %23417
+  23425 = ptradd ptr %20, i32 36
+  store i32 9 to ptr %23425
+  23433 = ptradd ptr %20, i32 40
+  store i32 10 to ptr %23433
+  23441 = ptradd ptr %20, i32 44
+  store i32 11 to ptr %23441
+  23449 = ptradd ptr %20, i32 48
+  store i32 12 to ptr %23449
+  23457 = ptradd ptr %20, i32 52
+  store i32 13 to ptr %23457
+  23465 = ptradd ptr %20, i32 56
+  store i32 14 to ptr %23465
+  23473 = ptradd ptr %20, i32 60
+  store i32 15 to ptr %23473
+  23481 = ptradd ptr %20, i32 64
+  store i32 16 to ptr %23481
+  23489 = ptradd ptr %20, i32 68
+  store i32 17 to ptr %23489
+  23497 = ptradd ptr %20, i32 72
+  store i32 18 to ptr %23497
+  23505 = ptradd ptr %20, i32 76
+  store i32 19 to ptr %23505
+  23513 = ptradd ptr %20, i32 80
+  store i32 20 to ptr %23513
+  23521 = ptradd ptr %20, i32 84
+  store i32 21 to ptr %23521
+  23529 = ptradd ptr %20, i32 88
+  store i32 22 to ptr %23529
+  23537 = ptradd ptr %20, i32 92
+  store i32 23 to ptr %23537
+  23545 = ptradd ptr %20, i32 96
+  store i32 24 to ptr %23545
+  23553 = ptradd ptr %20, i32 100
+  store i32 25 to ptr %23553
+  23561 = ptradd ptr %20, i32 104
+  store i32 26 to ptr %23561
+  23569 = ptradd ptr %20, i32 108
+  store i32 27 to ptr %23569
+  23577 = ptradd ptr %20, i32 112
+  store i32 28 to ptr %23577
+  23585 = ptradd ptr %20, i32 116
+  store i32 29 to ptr %23585
+  23593 = ptradd ptr %20, i32 120
+  store i32 30 to ptr %23593
+  23601 = ptradd ptr %20, i32 124
+  store i32 31 to ptr %23601
+  23609 = ptradd ptr %20, i32 128
+  store i32 32 to ptr %23609
+  23617 = ptradd ptr %20, i32 132
+  store i32 33 to ptr %23617
+  23625 = ptradd ptr %20, i32 136
+  store i32 34 to ptr %23625
+  23633 = ptradd ptr %20, i32 140
+  store i32 35 to ptr %23633
+  23641 = ptradd ptr %20, i32 144
+  store i32 36 to ptr %23641
+  23649 = ptradd ptr %20, i32 148
+  store i32 37 to ptr %23649
+  23657 = ptradd ptr %20, i32 152
+  store i32 38 to ptr %23657
+  23665 = ptradd ptr %20, i32 156
+  store i32 39 to ptr %23665
+  23673 = ptradd ptr %20, i32 160
+  store i32 40 to ptr %23673
+  23681 = ptradd ptr %20, i32 164
+  store i32 41 to ptr %23681
+  23689 = ptradd ptr %20, i32 168
+  store i32 42 to ptr %23689
+  23697 = ptradd ptr %20, i32 172
+  store i32 43 to ptr %23697
+  23705 = ptradd ptr %20, i32 176
+  store i32 44 to ptr %23705
+  23713 = ptradd ptr %20, i32 180
+  store i32 45 to ptr %23713
+  23721 = ptradd ptr %20, i32 184
+  store i32 46 to ptr %23721
+  23729 = ptradd ptr %20, i32 188
+  store i32 47 to ptr %23729
+  23737 = ptradd ptr %20, i32 192
+  store i32 48 to ptr %23737
+  23745 = ptradd ptr %20, i32 196
+  store i32 49 to ptr %23745
+  23753 = ptradd ptr %20, i32 200
+  store i32 50 to ptr %23753
+  23761 = ptradd ptr %20, i32 204
+  store i32 51 to ptr %23761
+  23769 = ptradd ptr %20, i32 208
+  store i32 52 to ptr %23769
+  23777 = ptradd ptr %20, i32 212
+  store i32 53 to ptr %23777
+  23785 = ptradd ptr %20, i32 216
+  store i32 54 to ptr %23785
+  23793 = ptradd ptr %20, i32 220
+  store i32 55 to ptr %23793
+  23801 = ptradd ptr %20, i32 224
+  store i32 56 to ptr %23801
+  23809 = ptradd ptr %20, i32 228
+  store i32 57 to ptr %23809
+  23817 = ptradd ptr %20, i32 232
+  store i32 58 to ptr %23817
+  23825 = ptradd ptr %20, i32 236
+  store i32 59 to ptr %23825
+  23833 = ptradd ptr %20, i32 240
+  store i32 60 to ptr %23833
+  23841 = ptradd ptr %20, i32 244
+  store i32 61 to ptr %23841
+  23849 = ptradd ptr %20, i32 248
+  store i32 62 to ptr %23849
+  23857 = ptradd ptr %20, i32 252
+  store i32 63 to ptr %23857
+  23865 = ptradd ptr %20, i32 256
+  store i32 64 to ptr %23865
+  23873 = ptradd ptr %20, i32 260
+  store i32 65 to ptr %23873
+  23881 = ptradd ptr %20, i32 264
+  store i32 66 to ptr %23881
+  23889 = ptradd ptr %20, i32 268
+  store i32 67 to ptr %23889
+  23897 = ptradd ptr %20, i32 272
+  store i32 68 to ptr %23897
+  23905 = ptradd ptr %20, i32 276
+  store i32 69 to ptr %23905
+  23913 = ptradd ptr %20, i32 280
+  store i32 70 to ptr %23913
+  23921 = ptradd ptr %20, i32 284
+  store i32 71 to ptr %23921
+  23929 = ptradd ptr %20, i32 288
+  store i32 72 to ptr %23929
+  23937 = ptradd ptr %20, i32 292
+  store i32 73 to ptr %23937
+  23945 = ptradd ptr %20, i32 296
+  store i32 74 to ptr %23945
+  23953 = ptradd ptr %20, i32 300
+  store i32 75 to ptr %23953
+  23961 = ptradd ptr %20, i32 304
+  store i32 76 to ptr %23961
+  23969 = ptradd ptr %20, i32 308
+  store i32 77 to ptr %23969
+  23977 = ptradd ptr %20, i32 312
+  store i32 78 to ptr %23977
+  23985 = ptradd ptr %20, i32 316
+  store i32 79 to ptr %23985
+  23993 = ptradd ptr %20, i32 320
+  store i32 80 to ptr %23993
+  231001 = ptradd ptr %20, i32 324
+  store i32 81 to ptr %231001
+  231009 = ptradd ptr %20, i32 328
+  store i32 82 to ptr %231009
+  231017 = ptradd ptr %20, i32 332
+  store i32 83 to ptr %231017
+  231025 = ptradd ptr %20, i32 336
+  store i32 84 to ptr %231025
+  231033 = ptradd ptr %20, i32 340
+  store i32 85 to ptr %231033
+  231041 = ptradd ptr %20, i32 344
+  store i32 86 to ptr %231041
+  231049 = ptradd ptr %20, i32 348
+  store i32 87 to ptr %231049
+  231057 = ptradd ptr %20, i32 352
+  store i32 88 to ptr %231057
+  231065 = ptradd ptr %20, i32 356
+  store i32 89 to ptr %231065
+  231073 = ptradd ptr %20, i32 360
+  store i32 90 to ptr %231073
+  231081 = ptradd ptr %20, i32 364
+  store i32 91 to ptr %231081
+  231089 = ptradd ptr %20, i32 368
+  store i32 92 to ptr %231089
+  231097 = ptradd ptr %20, i32 372
+  store i32 93 to ptr %231097
+  231105 = ptradd ptr %20, i32 376
+  store i32 94 to ptr %231105
+  231113 = ptradd ptr %20, i32 380
+  store i32 95 to ptr %231113
+  231121 = ptradd ptr %20, i32 384
+  store i32 96 to ptr %231121
+  231129 = ptradd ptr %20, i32 388
+  store i32 97 to ptr %231129
+  231137 = ptradd ptr %20, i32 392
+  store i32 98 to ptr %231137
+  231145 = ptradd ptr %20, i32 396
+  store i32 99 to ptr %231145
+  31 = add i32 %i.phi345, i32 1
+  8 = icmp slt i32 %31, i32 20
+  19.rec = add i32 %355, i32 400
+  br i1 %8, bb %while.cond11_preheader, bb %while.exit
 }
 
 external void putfarray(i32 , ptr )

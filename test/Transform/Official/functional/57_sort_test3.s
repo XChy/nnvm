@@ -13,9 +13,9 @@ QuickSort:   # loop depth 0
   SD s0, 8(sp)
   SD s1, 16(sp)
   SD s2, 24(sp)
-  ADD s1, a2, zero
+  ADD s2, a2, zero
   ADD s0, a0, zero
-  BLT a1, s1, bb2
+  BLT a1, s2, bb2
   # implict jump to bb1
 bb1:   # loop depth 0
   ADD a0, zero, zero
@@ -27,10 +27,10 @@ bb1:   # loop depth 0
   JALR zero, 0(ra)
 bb2:   # loop depth 0
   SH2ADD t0, a1, s0
-  ADDIW s2, a1, 1
+  ADDIW s1, a1, 1
   LW a4, 0(t0)
   SLLIW a3, a1, 2
-  BLT a1, s1, bb5
+  BLT a1, s2, bb5
   # implict jump to bb3
 bb3:   # loop depth 0
   ADD a0, a1, zero
@@ -41,14 +41,14 @@ bb4:   # loop depth 0
   ADD a0, s0, zero
   SW a4, 0(t0)
   CALL QuickSort
-  ADD a2, s1, zero
-  ADD a1, s2, zero
+  ADD a2, s2, zero
+  ADD a1, s1, zero
   ADD a0, s0, zero
   CALL QuickSort
   JAL zero, bb1
 bb5:   # loop depth 0
   ADD a0, a1, zero
-  ADD t0, s1, zero
+  ADD t0, s2, zero
   ADDIW a2, a4, -1
   # implict jump to bb6
 bb6:   # loop depth 1
@@ -88,10 +88,10 @@ bb17:   # loop depth 1
   ADD t0, t1, zero
   # implict jump to bb18
 bb18:   # loop depth 1
-  ADDIW s2, a0, 1
+  ADDIW s1, a0, 1
   BLT a0, t0, bb20
   # implict jump to bb19
-bb19:   # loop depth 0
+bb19:   # loop depth 1
   JAL zero, bb4
 bb20:   # loop depth 1
   JAL zero, bb6
@@ -113,7 +113,7 @@ bb24:   # loop depth 1
   SH2ADD a0, t1, s0
   ADD t2, s0, a3
   LW a3, 0(a0)
-  ADD a0, s2, zero
+  ADD a0, s1, zero
   SW a3, 0(t2)
   JAL zero, bb12
 bb25:   # loop depth 2

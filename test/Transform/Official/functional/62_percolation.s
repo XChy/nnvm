@@ -356,16 +356,16 @@ bb39:   # loop depth 2
   LW t1, 0(t0)
   LW a0, 32(sp)
   LW t0, 32(sp)
-  SUBW s10, t0, t1
+  SUBW s9, t0, t1
   CALL findfa
-  ADD s9, a0, zero
-  ADD a0, s10, zero
+  ADD s10, a0, zero
+  ADD a0, s9, zero
   CALL findfa
-  BNE s9, a0, bb40
+  BNE s10, a0, bb40
   JAL zero, bb29
 bb40:   # loop depth 2
   LD t0, 88(sp)
-  SH2ADD t1, s9, t0
+  SH2ADD t1, s10, t0
   SW a0, 0(t1)
   JAL zero, bb29
 bb41:   # loop depth 2

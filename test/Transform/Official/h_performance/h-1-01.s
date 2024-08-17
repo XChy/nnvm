@@ -36,40 +36,40 @@ bb2:   # loop depth 0
   ADDI sp, sp, 16
   JALR zero, 0(ra)
 bb3:   # loop depth 0
-  ADDI t1, zero, 1
+  ADDI t0, zero, 1
   ADD s0, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 1
   ADD t2, zero, zero
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb5
 bb5:   # loop depth 2
-  XORI a1, t0, 1
+  XORI a1, t1, 1
   BEQ a1, zero, bb15
   # implict jump to bb6
 bb6:   # loop depth 2
   ADDIW t2, t2, 1
-  ANDI a1, t0, 1
+  ANDI a1, t1, 1
   BEQ a1, zero, bb14
   # implict jump to bb7
 bb7:   # loop depth 2
   ADDI a1, zero, 3
-  MULW t0, t0, a1
-  ADDIW t0, t0, 1
-  BGE a0, t0, bb12
+  MULW t1, t1, a1
+  ADDIW t1, t1, 1
+  BGE a0, t1, bb12
   # implict jump to bb8
-bb8:   # loop depth 1
+bb8:   # loop depth 2
   ADD t2, zero, zero
   # implict jump to bb9
 bb9:   # loop depth 1
   LUI a1, 244141
   ADDIW a1, a1, -1529
-  ADDW t0, s0, t2
-  REMW s0, t0, a1
-  ADDIW t1, t1, 1
-  BGE a0, t1, bb11
+  ADDW t1, s0, t2
+  REMW s0, t1, a1
+  ADDIW t0, t0, 1
+  BGE a0, t0, bb11
   # implict jump to bb10
-bb10:   # loop depth 0
+bb10:   # loop depth 1
   JAL zero, bb2
 bb11:   # loop depth 1
   JAL zero, bb4
@@ -78,10 +78,10 @@ bb12:   # loop depth 2
 bb13:   # loop depth 2
   JAL zero, bb5
 bb14:   # loop depth 2
-  SRAIW a1, t0, 31
+  SRAIW a1, t1, 31
   SRLIW a1, a1, 31
-  ADD t0, t0, a1
-  SRAIW t0, t0, 1
+  ADD t1, t1, a1
+  SRAIW t1, t1, 1
   JAL zero, bb5
-bb15:   # loop depth 1
+bb15:   # loop depth 2
   JAL zero, bb9
