@@ -45,7 +45,7 @@ bool RotatePass::rotate(Loop *loop) {
     return false;
 
   // TODO: handle multiple exits
-  if (loop->getExits().size() > 1)
+  if (loop->getExits().size() != 1)
     return false;
 
   // If the latch is already an exiting block, the loop has been rotated.
@@ -116,9 +116,11 @@ bool RotatePass::rotate(Loop *loop) {
     builder.insertAt(exit->begin());
     auto *outsidePhi =
         builder.buildPhi(preheaderVal->getType(), preheaderVal->getName());
+
     headerVal->replaceSelfIf(outsidePhi, [loop](Use *U) {
       return !loop->contains(U->getUser()->getBlock());
     });
+
     for (auto *pred : exit->getPredRange()) {
       if (pred == preheader)
         outsidePhi->addIncoming(pred, preheaderVal);
@@ -131,10 +133,7 @@ bool RotatePass::rotate(Loop *loop) {
 
   // Move phis in oldHeader to newHeader
   builder.insertAt(newHeader->begin());
-  for (Instruction *I : incChange(*oldHeader)) {
-    PhiNode *phi = mayCast<PhiNode>(I);
-    if (!phi)
-      break;
+  for (PhiNode *phi : oldHeader->getPhis()) {
 
     auto *newPhi = builder.buildPhi(phi->getType(), phi->getName());
 
@@ -148,8 +147,19 @@ bool RotatePass::rotate(Loop *loop) {
         return U->getUser()->isa<PhiNode>();
       return loop->contains(userBB);
     });
+
+    Value *oldLatchVal = phi->getIncomingValueOf(oldLatch);
+    Value *newLatchVal = phi;
+    if (oldLatchVal->isInstruction()) {
+      if (cast<Instruction>(oldLatchVal)->getBlock() == oldHeader) {
+        newLatchVal = oldLatchVal;
+        phi->replaceSelf(newPhi);
+        phi->eraseFromBB();
+      }
+    }
+
     newPhi->addIncoming(preheader, preheaderVal);
-    newPhi->addIncoming(oldHeader, phi);
+    newPhi->addIncoming(oldHeader, newLatchVal);
   }
 
   // Rewrite inside uses

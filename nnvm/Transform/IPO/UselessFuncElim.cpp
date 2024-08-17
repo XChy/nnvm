@@ -15,7 +15,7 @@ bool UselessFuncElimPass::run(Module &M) {
     auto funcMap = M.getFunctionMap();
 
     for (auto [name, func] : funcMap) {
-      if (!func->isAttached(Attribute::Internal))
+      if (!func->isAttached(Attribute::Internal) && !func->isExternal())
         continue;
       if (func->users().empty()) {
         M.removeFunction(name);
