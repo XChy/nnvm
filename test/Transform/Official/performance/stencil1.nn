@@ -1,14 +1,6 @@
 internal global ptr image_out init with 1048576 x i32 zeros
 internal global ptr image_in init with 1048576 x i32 zeros
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry14:  pred()
@@ -78,15 +70,15 @@ while.exit32:  pred(while.body31.split569.split)
   br i1 %27, bb %while.cond30_preheader, bb %while.body168
 while.body168:  pred(while.body168, while.exit32)
   i.phi457 = phi [bb %while.body168, i32 %206, bb %while.exit32, i32 0]
-  .pinned = pin i32 4092
+  .pinned568 = pin i32 4092
   399 = shl i32 %i.phi457, i32 10
   400 = shl i32 %399, i32 2
   178 = ptradd ptr %image_out.pinned, i32 %400
   184 = ptradd ptr %image_in.pinned, i32 %400
   184.load = load i32 from ptr %184
   store i32 %184.load to ptr %178
-  550 = ptradd ptr %178, i32 %.pinned
-  552 = ptradd ptr %184, i32 %.pinned
+  550 = ptradd ptr %178, i32 %.pinned568
+  552 = ptradd ptr %184, i32 %.pinned568
   202.load = load i32 from ptr %552
   store i32 %202.load to ptr %550
   206 = add i32 %i.phi457, i32 1
@@ -94,14 +86,14 @@ while.body168:  pred(while.body168, while.exit32)
   br i1 %172, bb %while.body168, bb %while.body209
 while.body209:  pred(while.body209, while.body168)
   j.phi455 = phi [bb %while.body209, i32 %243, bb %while.body168, i32 0]
-  .pinned568 = pin i32 4190208
+  .pinned = pin i32 4190208
   401 = shl i32 %j.phi455, i32 2
   217 = ptradd ptr %image_out.pinned, i32 %401
   221 = ptradd ptr %image_in.pinned, i32 %401
   221.load = load i32 from ptr %221
   store i32 %221.load to ptr %217
-  554 = ptradd ptr %217, i32 %.pinned568
-  556 = ptradd ptr %221, i32 %.pinned568
+  554 = ptradd ptr %217, i32 %.pinned
+  556 = ptradd ptr %221, i32 %.pinned
   239.load = load i32 from ptr %556
   store i32 %239.load to ptr %554
   243 = add i32 %j.phi455, i32 1
@@ -117,18 +109,10 @@ val.stack.phi278.which331.true:  pred(while.body31.split569)
   br bb %while.body31.split569.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

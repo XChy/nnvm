@@ -59,21 +59,21 @@ bb2:   # loop depth 2
   SUBW t0, t0, a0
   LW a0, 4(a5)
   SUBW t0, t0, t1
-  SUBW t1, t0, a0
-  BLT a3, t1, bb18
+  SUBW t0, t0, a0
+  BLT a3, t0, bb18
   # implict jump to bb3
 bb3:   # loop depth 2
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb4
 bb4:   # loop depth 2
-  BLT t1, zero, bb17
+  BLT t0, zero, bb17
   # implict jump to bb5
 bb5:   # loop depth 2
   # implict jump to bb6
 bb6:   # loop depth 2
-  SLTI t1, t2, 1023
-  SW t0, 0(a4)
-  BNE t1, zero, bb16
+  SLTI t0, t2, 1023
+  SW t1, 0(a4)
+  BNE t0, zero, bb16
   # implict jump to bb7
 bb7:   # loop depth 1
   ADDIW s1, s1, 1
@@ -144,8 +144,8 @@ bb15:   # loop depth 1
 bb16:   # loop depth 2
   JAL zero, bb2
 bb17:   # loop depth 2
-  ADD t0, zero, zero
+  ADD t1, zero, zero
   JAL zero, bb6
 bb18:   # loop depth 2
-  ADDI t0, zero, 255
+  ADDI t1, zero, 255
   JAL zero, bb4

@@ -4,14 +4,6 @@ internal global ptr A init with 4040100 x i32 zeros
 global ptr x init with i32 0
 external i32 getint()
 
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry94:  pred()
   A.pinned = pin ptr @A
@@ -82,6 +74,7 @@ mv.while.cond33_preheader:  pred(mv.while.exit35, mv.while.cond25_preheader)
 mv.while.body34_preheader:  pred(mv.while.cond33_preheader)
   42219 = ptradd ptr %A.pinned, i32 %461
   332 = shl i32 %i.phi204391, i32 2
+  69245 = ptradd ptr %C.pinned, i32 %332
   br bb %mv.while.body34
 mv.while.body34:  pred(mv.if.exit, mv.while.body34_preheader)
   x.phi171214377 = phi [bb %mv.if.exit, i32 %x.phi240, bb %mv.while.body34_preheader, i32 %x.phi172206393]
@@ -115,7 +108,6 @@ mv.if.exit:  pred(mv.then, mv.else)
   38215 = icmp slt i32 %90241, i32 %96
   br i1 %38215, bb %mv.while.body34, bb %mv.while.exit35
 mv.else:  pred(mv.while.body34)
-  69245 = ptradd ptr %C.pinned, i32 %332
   73.load246 = load i32 from ptr %69245
   84.load249 = load i32 from ptr %60233
   86250 = mul i32 %45.load222, i32 %84.load249
@@ -189,18 +181,10 @@ mv.else307:  pred(mv.while.body34281)
   br bb %mv.if.exit302
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

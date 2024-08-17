@@ -8,15 +8,9 @@ global ptr cnt init with i32 0
 global ptr m init with i32 0
 global ptr tail init with i32 0
 global ptr n init with i32 0
-external i32 getint()
-
 external i32 getch()
 
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry221:  pred()
@@ -465,18 +459,6 @@ f.phi.which719.true:  pred(quick_read.while.body717)
   br bb %quick_read.while.exit28735.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

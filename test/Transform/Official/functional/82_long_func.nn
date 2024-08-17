@@ -1,13 +1,5 @@
 immutable internal global ptr SHIFT_TABLE init with 16 x i32 [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768]
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry4049:  pred()
@@ -15,19 +7,7 @@ entry4049:  pred()
   ret i32 %4050
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
-
-external void putarray(i32 , ptr )
 
 internal i32 long_func() {
 entry:  pred()
@@ -173,11 +153,11 @@ if.exit114:  pred(while.exit77, while.cond120_preheader)
   select198.phi4744 = phi [bb %while.exit77, i1 %select198.phi47456933, bb %while.cond120_preheader, i1 %select198.phi4743_ph_val]
   br bb %while.cond287_preheader
 while.cond120_preheader:  pred(while.exit77, if.exit256)
-  select198.phi4743_ph_val = phi [bb %if.exit256, i1 %5850, bb %while.exit77, i1 %select198.phi47456933]
-  c.phi_ph_val = phi [bb %if.exit256, i32 %ans.phi5146, bb %while.exit77, i32 %ml.phi6932]
-  sum.phi_ph_val = phi [bb %if.exit256, i32 %ans.phi5154, bb %while.exit77, i32 %sum.phi51806928]
-  select250.phi5212_ph_val = phi [bb %if.exit256, i1 %5851, bb %while.exit77, i1 %select250.phi52146927]
-  al.phi_ph_val = phi [bb %if.exit256, i32 %ans.phi5154, bb %while.exit77, i32 %mres.phi52706922]
+  select198.phi4743_ph_val = phi [bb %while.exit77, i1 %select198.phi47456933, bb %if.exit256, i1 %5850]
+  c.phi_ph_val = phi [bb %while.exit77, i32 %ml.phi6932, bb %if.exit256, i32 %ans.phi5146]
+  sum.phi_ph_val = phi [bb %while.exit77, i32 %sum.phi51806928, bb %if.exit256, i32 %ans.phi5154]
+  select250.phi5212_ph_val = phi [bb %while.exit77, i1 %select250.phi52146927, bb %if.exit256, i1 %5851]
+  al.phi_ph_val = phi [bb %while.exit77, i32 %mres.phi52706922, bb %if.exit256, i32 %ans.phi5154]
   124 = icmp ne i32 %c.phi_ph_val, i32 0
   br i1 %124, bb %while.body132, bb %if.exit114
 while.body132:  pred(if.exit141, while.cond120_preheader)
@@ -1357,11 +1337,11 @@ while.cond1190_preheader.split.split.split.split.split.split.split.split.split.s
   22117 = phi [bb %ans.phi50809077.which.true, i32 %12689074, bb %while.cond1190_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22114]
   br bb %while.cond1124_preheader
 while.cond1291_preheader:  pred(if.exit1118, while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
-  select1421.phi4719_ph_val = phi [bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %54379814, bb %if.exit1118, i1 %select1421.phi47207109]
-  select1369.phi4758_ph_val = phi [bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %586310192, bb %if.exit1118, i1 %select1369.phi47597108]
-  sum1290.phi_ph_val = phi [bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi5077, bb %if.exit1118, i32 %sum1290.phi47727107]
-  c1288.phi_ph_val = phi [bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22207, bb %if.exit1118, i32 %ml1064.phi7111]
-  al1286.phi_ph_val = phi [bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi5077, bb %if.exit1118, i32 %ml1064.phi7111]
+  select1421.phi4719_ph_val = phi [bb %if.exit1118, i1 %select1421.phi47207109, bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %54379814]
+  select1369.phi4758_ph_val = phi [bb %if.exit1118, i1 %select1369.phi47597108, bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %586310192]
+  sum1290.phi_ph_val = phi [bb %if.exit1118, i32 %sum1290.phi47727107, bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi5077]
+  c1288.phi_ph_val = phi [bb %if.exit1118, i32 %ml1064.phi7111, bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22207]
+  al1286.phi_ph_val = phi [bb %if.exit1118, i32 %ml1064.phi7111, bb %while.cond1357_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi5077]
   1295 = icmp ne i32 %c1288.phi_ph_val, i32 0
   br i1 %1295, bb %while.body1303, bb %while.exit1293
 while.exit1293:  pred(while.cond1291_preheader)
@@ -4136,11 +4116,11 @@ while.cond2648_preheader.split.split.split.split.split.split.split.split.split.s
   22864 = phi [bb %ans.phi498914702.which.true, i32 %272614699, bb %while.cond2648_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22861]
   br bb %while.cond2582_preheader
 while.cond2749_preheader:  pred(if.exit2576, while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
-  al2744.phi_ph_val = phi [bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4986, bb %if.exit2576, i32 %ml2522.phi7378]
-  c2746.phi_ph_val = phi [bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22954, bb %if.exit2576, i32 %ml2522.phi7378]
-  select2827.phi4667_ph_val = phi [bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %587915817, bb %if.exit2576, i1 %select2827.phi46687369]
-  sum2748.phi_ph_val = phi [bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4986, bb %if.exit2576, i32 %sum2748.phi47287368]
-  select2879.phi4894_ph_val = phi [bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %557515439, bb %if.exit2576, i1 %select2879.phi48957366]
+  al2744.phi_ph_val = phi [bb %if.exit2576, i32 %ml2522.phi7378, bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4986]
+  c2746.phi_ph_val = phi [bb %if.exit2576, i32 %ml2522.phi7378, bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %22954]
+  select2827.phi4667_ph_val = phi [bb %if.exit2576, i1 %select2827.phi46687369, bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %587915817]
+  sum2748.phi_ph_val = phi [bb %if.exit2576, i32 %sum2748.phi47287368, bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4986]
+  select2879.phi4894_ph_val = phi [bb %if.exit2576, i1 %select2879.phi48957366, bb %while.cond2815_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %557515439]
   2753 = icmp ne i32 %c2746.phi_ph_val, i32 0
   br i1 %2753, bb %while.body2761, bb %while.exit2751
 while.exit2751:  pred(while.cond2749_preheader)
@@ -5238,11 +5218,11 @@ while.cond3217_preheader.split.split.split.split.split.split.split.split.split.s
   23149 = phi [bb %ans.phi495316952.which.true, i32 %329516949, bb %while.cond3217_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %23146]
   br bb %while.cond3151_preheader
 while.cond3318_preheader:  pred(if.exit3145, while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split)
-  al3313.phi_ph_val = phi [bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4950, bb %if.exit3145, i32 %ml3091.phi7531]
-  select3448.phi4711_ph_val = phi [bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %562617689, bb %if.exit3145, i1 %select3448.phi47127538]
-  sum3317.phi_ph_val = phi [bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4950, bb %if.exit3145, i32 %sum3317.phi47677537]
-  c3315.phi_ph_val = phi [bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %23239, bb %if.exit3145, i32 %ml3091.phi7531]
-  select3396.phi4875_ph_val = phi [bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %588518067, bb %if.exit3145, i1 %select3396.phi48767530]
+  al3313.phi_ph_val = phi [bb %if.exit3145, i32 %ml3091.phi7531, bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4950]
+  select3448.phi4711_ph_val = phi [bb %if.exit3145, i1 %select3448.phi47127538, bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %562617689]
+  sum3317.phi_ph_val = phi [bb %if.exit3145, i32 %sum3317.phi47677537, bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %ans.phi4950]
+  c3315.phi_ph_val = phi [bb %if.exit3145, i32 %ml3091.phi7531, bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i32 %23239]
+  select3396.phi4875_ph_val = phi [bb %if.exit3145, i1 %select3396.phi48767530, bb %while.cond3384_preheader.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split.split, i1 %588518067]
   3322 = icmp ne i32 %c3315.phi_ph_val, i32 0
   br i1 %3322, bb %while.body3330, bb %while.exit3320
 while.exit3320:  pred(while.cond3318_preheader)

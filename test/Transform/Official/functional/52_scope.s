@@ -14,60 +14,61 @@ main:   # loop depth 0
   XORI t2, t0, 1
   SLTIU t0, t2, 1
   XORI t0, t0, 1
-  SLTIU t0, t0, 1
-  ADDIW t1, t0, 1
+  SLTIU t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb300
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb2
 bb2:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb299
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb4
 bb4:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb298
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb6
 bb6:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb297
   # implict jump to bb7
 bb7:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb8
 bb8:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb296
   # implict jump to bb9
 bb9:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb10
 bb10:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb295
   # implict jump to bb11
 bb11:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb12
 bb12:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb294
   # implict jump to bb13
 bb13:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb14
 bb14:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb293
   # implict jump to bb15
 bb15:   # loop depth 0
+  ADD t1, t0, zero
   # implict jump to bb16
 bb16:   # loop depth 0
   ADDIW t0, t1, 1
@@ -88,27 +89,28 @@ bb20:   # loop depth 0
   BEQ t2, zero, bb290
   # implict jump to bb21
 bb21:   # loop depth 0
+  ADD t0, t1, zero
   # implict jump to bb22
 bb22:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb289
   # implict jump to bb23
 bb23:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb24
 bb24:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW a0, t1, 1
   BEQ t2, zero, bb288
   # implict jump to bb25
 bb25:   # loop depth 0
-  ADD t1, t0, zero
+  ADD a0, t1, zero
   # implict jump to bb26
 bb26:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t0, a0, 1
   BEQ t2, zero, bb287
   # implict jump to bb27
 bb27:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t0, a0, zero
   # implict jump to bb28
 bb28:   # loop depth 0
   ADDIW t1, t0, 1
@@ -122,83 +124,81 @@ bb30:   # loop depth 0
   BEQ t2, zero, bb285
   # implict jump to bb31
 bb31:   # loop depth 0
-  ADD t0, t1, zero
   # implict jump to bb32
 bb32:   # loop depth 0
-  ADDIW a0, t0, 1
+  ADDIW a0, t1, 1
   BEQ t2, zero, bb284
   # implict jump to bb33
 bb33:   # loop depth 0
-  ADD a0, t0, zero
+  ADD a0, t1, zero
   # implict jump to bb34
 bb34:   # loop depth 0
-  ADDIW t1, a0, 1
+  ADDIW t0, a0, 1
   BEQ t2, zero, bb283
   # implict jump to bb35
 bb35:   # loop depth 0
-  ADD t1, a0, zero
+  ADD t0, a0, zero
   # implict jump to bb36
 bb36:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb282
   # implict jump to bb37
 bb37:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb38
 bb38:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb281
   # implict jump to bb39
 bb39:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb40
 bb40:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb280
   # implict jump to bb41
 bb41:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb42
 bb42:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb279
   # implict jump to bb43
 bb43:   # loop depth 0
-  ADD t1, t0, zero
   # implict jump to bb44
 bb44:   # loop depth 0
   ADDIW t0, t1, 1
   BEQ t2, zero, bb278
   # implict jump to bb45
 bb45:   # loop depth 0
+  ADD t0, t1, zero
   # implict jump to bb46
 bb46:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb277
   # implict jump to bb47
 bb47:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb48
 bb48:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb276
   # implict jump to bb49
 bb49:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb50
 bb50:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb275
   # implict jump to bb51
 bb51:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb52
 bb52:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb274
   # implict jump to bb53
 bb53:   # loop depth 0
-  ADD t1, t0, zero
   # implict jump to bb54
 bb54:   # loop depth 0
   ADDIW t0, t1, 1
@@ -275,34 +275,34 @@ bb74:   # loop depth 0
   BEQ t2, zero, bb263
   # implict jump to bb75
 bb75:   # loop depth 0
+  ADD t0, t1, zero
   # implict jump to bb76
 bb76:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb262
   # implict jump to bb77
 bb77:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb78
 bb78:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb261
   # implict jump to bb79
 bb79:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb80
 bb80:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb260
   # implict jump to bb81
 bb81:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb82
 bb82:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb259
   # implict jump to bb83
 bb83:   # loop depth 0
-  ADD t1, t0, zero
   # implict jump to bb84
 bb84:   # loop depth 0
   ADDIW t0, t1, 1
@@ -326,46 +326,46 @@ bb89:   # loop depth 0
   ADD t0, t1, zero
   # implict jump to bb90
 bb90:   # loop depth 0
-  ADDIW a0, t0, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb255
   # implict jump to bb91
 bb91:   # loop depth 0
-  ADD a0, t0, zero
+  ADD t1, t0, zero
   # implict jump to bb92
 bb92:   # loop depth 0
-  ADDIW t1, a0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb254
   # implict jump to bb93
 bb93:   # loop depth 0
-  ADD t1, a0, zero
+  ADD t0, t1, zero
   # implict jump to bb94
 bb94:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb253
   # implict jump to bb95
 bb95:   # loop depth 0
-  ADD t0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb96
 bb96:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb252
   # implict jump to bb97
 bb97:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t0, t1, zero
   # implict jump to bb98
 bb98:   # loop depth 0
-  ADDIW t0, t1, 1
+  ADDIW a0, t0, 1
   BEQ t2, zero, bb251
   # implict jump to bb99
 bb99:   # loop depth 0
-  ADD t0, t1, zero
+  ADD a0, t0, zero
   # implict jump to bb100
 bb100:   # loop depth 0
-  ADDIW t1, t0, 1
+  ADDIW t1, a0, 1
   BEQ t2, zero, bb250
   # implict jump to bb101
 bb101:   # loop depth 0
-  ADD t1, t0, zero
+  ADD t1, a0, zero
   # implict jump to bb102
 bb102:   # loop depth 0
   ADDIW t0, t1, 1
@@ -386,20 +386,21 @@ bb106:   # loop depth 0
   BEQ t2, zero, bb247
   # implict jump to bb107
 bb107:   # loop depth 0
+  ADD t0, t1, zero
   # implict jump to bb108
 bb108:   # loop depth 0
-  ADDIW a0, t1, 1
+  ADDIW t1, t0, 1
   BEQ t2, zero, bb246
   # implict jump to bb109
 bb109:   # loop depth 0
-  ADD a0, t1, zero
+  ADD t1, t0, zero
   # implict jump to bb110
 bb110:   # loop depth 0
-  ADDIW t0, a0, 1
+  ADDIW t0, t1, 1
   BEQ t2, zero, bb245
   # implict jump to bb111
 bb111:   # loop depth 0
-  ADD t0, a0, zero
+  ADD t0, t1, zero
   # implict jump to bb112
 bb112:   # loop depth 0
   ADDIW t1, t0, 1
@@ -810,7 +811,6 @@ bb245:   # loop depth 0
 bb246:   # loop depth 0
   JAL zero, bb110
 bb247:   # loop depth 0
-  ADD t1, t0, zero
   JAL zero, bb108
 bb248:   # loop depth 0
   JAL zero, bb106
@@ -835,6 +835,7 @@ bb257:   # loop depth 0
 bb258:   # loop depth 0
   JAL zero, bb86
 bb259:   # loop depth 0
+  ADD t1, t0, zero
   JAL zero, bb84
 bb260:   # loop depth 0
   JAL zero, bb82
@@ -843,7 +844,6 @@ bb261:   # loop depth 0
 bb262:   # loop depth 0
   JAL zero, bb78
 bb263:   # loop depth 0
-  ADD t1, t0, zero
   JAL zero, bb76
 bb264:   # loop depth 0
   JAL zero, bb74
@@ -866,6 +866,7 @@ bb272:   # loop depth 0
 bb273:   # loop depth 0
   JAL zero, bb56
 bb274:   # loop depth 0
+  ADD t1, t0, zero
   JAL zero, bb54
 bb275:   # loop depth 0
   JAL zero, bb52
@@ -874,9 +875,9 @@ bb276:   # loop depth 0
 bb277:   # loop depth 0
   JAL zero, bb48
 bb278:   # loop depth 0
-  ADD t1, t0, zero
   JAL zero, bb46
 bb279:   # loop depth 0
+  ADD t1, t0, zero
   JAL zero, bb44
 bb280:   # loop depth 0
   JAL zero, bb42
@@ -889,6 +890,7 @@ bb283:   # loop depth 0
 bb284:   # loop depth 0
   JAL zero, bb34
 bb285:   # loop depth 0
+  ADD t1, t0, zero
   JAL zero, bb32
 bb286:   # loop depth 0
   JAL zero, bb30
@@ -899,14 +901,12 @@ bb288:   # loop depth 0
 bb289:   # loop depth 0
   JAL zero, bb24
 bb290:   # loop depth 0
-  ADD t1, t0, zero
   JAL zero, bb22
 bb291:   # loop depth 0
   JAL zero, bb20
 bb292:   # loop depth 0
   JAL zero, bb18
 bb293:   # loop depth 0
-  ADD t1, t0, zero
   JAL zero, bb16
 bb294:   # loop depth 0
   JAL zero, bb14

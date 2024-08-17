@@ -6,10 +6,11 @@
 main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  ADD t0, zero, zero
+  ADD t1, zero, zero
   ADD a0, zero, zero
   # implict jump to bb1
 bb1:   # loop depth 1
+  ADD t0, t1, zero
   SLTI t1, t0, 100
   BNE t1, zero, bb3
   # implict jump to bb2
@@ -24,5 +25,4 @@ bb3:   # loop depth 1
 bb4:   # loop depth 1
   ADDIW t1, t0, 1
   ADDW a0, a0, t0
-  ADD t0, t1, zero
   JAL zero, bb1

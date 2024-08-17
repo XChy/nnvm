@@ -8,10 +8,6 @@ external i32 getch()
 
 external void putint(i32 )
 
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry304:  pred()
   %oprs389 = stack 1024
@@ -553,18 +549,6 @@ next_token.while.exit521740:  pred(next_token.while.body511732, next_token.then4
   br bb %next_token.if.exit451716
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
-
-external void putarray(i32 , ptr )
 
 

@@ -3,15 +3,7 @@ internal global ptr b init with 100005 x i32 zeros
 internal global ptr a init with 100005 x i32 zeros
 internal global ptr cnt init with 400020 x i32 zeros
 global ptr n init with i32 0
-external i32 getint()
-
 external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry243:  pred()
@@ -185,9 +177,9 @@ sortA.while.body59:  pred(sortA.while.cond58_preheader)
   73542720 = icmp slt i32 %67534, i32 %n.load72541719
   br i1 %73542720, bb %sortA.while.body69_preheader, bb %sortA.while.cond68.cp
 sortA.while.body69_preheader:  pred(sortA.while.body59)
+  n.load72541 = load i32 from ptr %n.pinned
   667 = shl i32 %i.phi529_ph_val, i32 2
   77546 = ptradd ptr %a.pinned, i32 %667
-  n.load72541 = load i32 from ptr %n.pinned
   br bb %sortA.while.body69
 sortA.while.body69:  pred(sortA.if.exit85, sortA.while.body69_preheader)
   j.phi540723 = phi [bb %sortA.if.exit85, i32 %106563, bb %sortA.while.body69_preheader, i32 %67534]
@@ -316,19 +308,5 @@ f.phi.which616.true:  pred(quick_read.while.body614)
 258.ret.which.true:  pred(quick_read.while.exit28632)
   br bb %quick_read.while.exit28632.split
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

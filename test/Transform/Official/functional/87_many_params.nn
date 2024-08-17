@@ -1,12 +1,6 @@
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry567:  pred()
@@ -323,8 +317,8 @@ param32_rec.else1071:  pred(param32_rec.else1071, sort.while.exit1129)
   901067 = icmp eq i32 %7171072, i32 0
   br i1 %901067, bb %param32_rec.then911069, bb %param32_rec.else1071
 sort.while.cond1120_preheader:  pred(entry567, sort.while.cond141131.cp)
-  i.phi1122_ph_val = phi [bb %entry567, i32 0, bb %sort.while.cond141131.cp, i32 %131127]
-  temp.phi7161121_ph_val = phi [bb %entry567, i32 0, bb %sort.while.cond141131.cp, i32 %temp.phi71611211245]
+  i.phi1122_ph_val = phi [bb %sort.while.cond141131.cp, i32 %131127, bb %entry567, i32 0]
+  temp.phi7161121_ph_val = phi [bb %sort.while.cond141131.cp, i32 %temp.phi71611211245, bb %entry567, i32 0]
   91124 = icmp slt i32 %i.phi1122_ph_val, i32 15
   br i1 %91124, bb %sort.while.body1126, bb %sort.while.exit1129
 sort.while.body1126:  pred(sort.while.cond1120_preheader)
@@ -379,18 +373,6 @@ sort.while.cond141131.cp:  pred(sort.if.exit1153, sort.while.body1126)
   br bb %sort.while.cond1120_preheader
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

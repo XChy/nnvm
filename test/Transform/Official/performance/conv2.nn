@@ -3,23 +3,13 @@ internal global ptr b init with 10000000 x i32 zeros
 internal global ptr a init with 10000000 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
-external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 i32 main() {
 entry335:  pred()
@@ -42,11 +32,11 @@ while.body348:  pred(memmove.while.exit319, while.body348_preheader)
   845 = shl i32 %i346.phi919, i32 2
   356 = ptradd ptr %kernelid.pinned, i32 %845
   356.load = load i32 from ptr %356
-  73682 = icmp eq i32 %356.load, i32 2
-  37679 = icmp eq i32 %356.load, i32 1
-  128713 = icmp eq i32 %356.load, i32 4
-  29672 = icmp eq i32 %356.load, i32 0
   85706 = icmp eq i32 %356.load, i32 3
+  128713 = icmp eq i32 %356.load, i32 4
+  37679 = icmp eq i32 %356.load, i32 1
+  29672 = icmp eq i32 %356.load, i32 0
+  73682 = icmp eq i32 %356.load, i32 2
   br bb %convn.while.cond222
 while.exit349:  pred(memmove.while.exit319, entry335)
   call void _sysy_stoptime(i32 116)
@@ -232,9 +222,5 @@ ret88.phi.which730.true:  pred(reduce.while.body91720)
 ret131.phi.which752.true:  pred(reduce.while.body134742)
   br bb %reduce.while.body134742.split
 }
-
-external float getfloat()
-
-external void putfloat(float )
 
 

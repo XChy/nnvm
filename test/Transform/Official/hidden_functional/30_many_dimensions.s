@@ -53,10 +53,10 @@ bb4:   # loop depth 2
 bb5:   # loop depth 3
   SW t2, 20(sp)
   LW t0, 20(sp)
-  SLLIW a3, t0, 18
+  SLLIW a2, t0, 18
   ADD a0, zero, zero
   LD t0, 208(sp)
-  ADD t0, t0, a3
+  ADD t0, t0, a2
   SD t0, 216(sp)
   # implict jump to bb6
 bb6:   # loop depth 4
@@ -86,78 +86,78 @@ bb8:   # loop depth 6
   # implict jump to bb9
 bb9:   # loop depth 7
   SLLIW a5, s0, 14
-  ADD t5, zero, zero
+  ADD t3, zero, zero
   LD t0, 240(sp)
   ADD t0, t0, a5
   SD t0, 248(sp)
   # implict jump to bb10
 bb10:   # loop depth 8
-  SLLIW a5, t5, 13
-  ADD t4, zero, zero
+  SLLIW a5, t3, 13
+  ADD a6, zero, zero
   LD t0, 248(sp)
   ADD t0, t0, a5
   SD t0, 256(sp)
   # implict jump to bb11
 bb11:   # loop depth 9
-  SLLIW a5, t4, 12
-  ADD s5, zero, zero
+  SLLIW a5, a6, 12
+  ADD t5, zero, zero
   LD t0, 256(sp)
   ADD t0, t0, a5
   SD t0, 64(sp)
   # implict jump to bb12
 bb12:   # loop depth 10
-  SLLIW a5, s5, 11
+  SLLIW a5, t5, 11
   ADD a7, zero, zero
   LD t0, 64(sp)
   ADD t0, t0, a5
   SD t0, 56(sp)
   # implict jump to bb13
 bb13:   # loop depth 11
-  SLLIW a5, a7, 10
-  ADD t3, zero, zero
+  SLLIW a3, a7, 10
+  ADD s2, zero, zero
   LD t0, 56(sp)
-  ADD t0, t0, a5
+  ADD t0, t0, a3
   SD t0, 48(sp)
   # implict jump to bb14
 bb14:   # loop depth 12
-  SLLIW a5, t3, 9
-  ADD a6, zero, zero
+  SLLIW t4, s2, 9
+  ADD a5, zero, zero
   LD t0, 48(sp)
-  ADD t0, t0, a5
+  ADD t0, t0, t4
   SD t0, 40(sp)
   # implict jump to bb15
 bb15:   # loop depth 13
-  SLLIW a5, a6, 8
-  ADD s4, zero, zero
+  SLLIW t4, a5, 8
+  ADD s3, zero, zero
   LD t0, 40(sp)
-  ADD t0, t0, a5
+  ADD t0, t0, t4
   SD t0, 152(sp)
   # implict jump to bb16
 bb16:   # loop depth 14
-  SLLIW s2, s4, 7
-  ADD a5, zero, zero
+  SLLIW s4, s3, 7
+  ADD t4, zero, zero
   LD t0, 152(sp)
-  ADD t0, t0, s2
+  ADD t0, t0, s4
   SD t0, 160(sp)
   # implict jump to bb17
 bb17:   # loop depth 15
-  SLLIW s2, a5, 6
-  ADD s3, zero, zero
+  SLLIW s4, t4, 6
+  ADD s5, zero, zero
   LD t0, 160(sp)
-  ADD t0, t0, s2
+  ADD t0, t0, s4
   SD t0, 168(sp)
   # implict jump to bb18
 bb18:   # loop depth 16
-  SLLIW s11, s3, 5
-  ADD s2, zero, zero
+  SLLIW s11, s5, 5
+  ADD s4, zero, zero
   LD t0, 168(sp)
   ADD t0, t0, s11
   SD t0, 176(sp)
   # implict jump to bb19
 bb19:   # loop depth 17
-  SLLIW t0, s2, 4
+  SLLIW t0, s4, 4
   SW t0, 4(sp)
-  ADD a2, zero, zero
+  ADD a3, zero, zero
   LW t0, 4(sp)
   LD t1, 176(sp)
   ADD t0, t1, t0
@@ -165,14 +165,14 @@ bb19:   # loop depth 17
   # implict jump to bb20
 bb20:   # loop depth 18
   LD t0, 184(sp)
-  SH3ADD t0, a2, t0
+  SH3ADD t0, a3, t0
   SD t0, 192(sp)
-  ADDIW a2, a2, 1
+  ADDIW a3, a3, 1
   ADDIW t0, a4, 1
   SW t0, 12(sp)
   LD t0, 192(sp)
   SW a4, 0(t0)
-  SLTI t0, a2, 2
+  SLTI t0, a3, 2
   SB t0, 0(sp)
   ADDIW a4, a4, 2
   LW t0, 12(sp)
@@ -182,34 +182,34 @@ bb20:   # loop depth 18
   BNE t0, zero, bb56
   # implict jump to bb21
 bb21:   # loop depth 17
-  ADDIW s2, s2, 1
-  SLTI a3, s2, 2
-  BNE a3, zero, bb55
+  ADDIW s4, s4, 1
+  SLTI a2, s4, 2
+  BNE a2, zero, bb55
   # implict jump to bb22
 bb22:   # loop depth 16
-  ADDIW s3, s3, 1
-  SLTI a3, s3, 2
+  ADDIW s5, s5, 1
+  SLTI a3, s5, 2
   BNE a3, zero, bb54
   # implict jump to bb23
 bb23:   # loop depth 15
-  ADDIW a5, a5, 1
-  SLTI a3, a5, 2
+  ADDIW t4, t4, 1
+  SLTI a3, t4, 2
   BNE a3, zero, bb53
   # implict jump to bb24
 bb24:   # loop depth 14
-  ADDIW s4, s4, 1
-  SLTI a2, s4, 2
-  BNE a2, zero, bb52
+  ADDIW s3, s3, 1
+  SLTI a3, s3, 2
+  BNE a3, zero, bb52
   # implict jump to bb25
 bb25:   # loop depth 13
-  ADDIW a6, a6, 1
-  SLTI a3, a6, 2
-  BNE a3, zero, bb51
+  ADDIW a5, a5, 1
+  SLTI a2, a5, 2
+  BNE a2, zero, bb51
   # implict jump to bb26
 bb26:   # loop depth 12
-  ADDIW t3, t3, 1
-  SLTI a5, t3, 2
-  BNE a5, zero, bb50
+  ADDIW s2, s2, 1
+  SLTI a3, s2, 2
+  BNE a3, zero, bb50
   # implict jump to bb27
 bb27:   # loop depth 11
   ADDIW a7, a7, 1
@@ -217,18 +217,18 @@ bb27:   # loop depth 11
   BNE a2, zero, bb49
   # implict jump to bb28
 bb28:   # loop depth 10
-  ADDIW s5, s5, 1
-  SLTI a5, s5, 2
-  BNE a5, zero, bb48
+  ADDIW t5, t5, 1
+  SLTI a2, t5, 2
+  BNE a2, zero, bb48
   # implict jump to bb29
 bb29:   # loop depth 9
-  ADDIW t4, t4, 1
-  SLTI a5, t4, 2
+  ADDIW a6, a6, 1
+  SLTI a5, a6, 2
   BNE a5, zero, bb47
   # implict jump to bb30
 bb30:   # loop depth 8
-  ADDIW t5, t5, 1
-  SLTI a5, t5, 2
+  ADDIW t3, t3, 1
+  SLTI a5, t3, 2
   BNE a5, zero, bb46
   # implict jump to bb31
 bb31:   # loop depth 7
@@ -238,8 +238,8 @@ bb31:   # loop depth 7
   # implict jump to bb32
 bb32:   # loop depth 6
   ADDIW s1, s1, 1
-  SLTI a2, s1, 2
-  BNE a2, zero, bb44
+  SLTI a3, s1, 2
+  BNE a3, zero, bb44
   # implict jump to bb33
 bb33:   # loop depth 5
   LW t0, 8(sp)

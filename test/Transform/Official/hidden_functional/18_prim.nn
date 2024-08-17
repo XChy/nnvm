@@ -4,15 +4,7 @@ internal global ptr fa init with 1005 x i32 zeros
 global ptr n init with i32 0
 internal global ptr u init with 1005 x i32 zeros
 global ptr m init with i32 0
-external i32 getint()
-
 external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry243:  pred()
@@ -365,10 +357,6 @@ f.phi.which622.true:  pred(quick_read.while.body620)
   br bb %quick_read.while.exit28638.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 internal i32 find(i32 x) {
 entry55:  pred()
   667 = shl i32 %x, i32 2
@@ -384,15 +372,5 @@ if.exit64:  pred(entry55)
   store i32 %71 to ptr %60
   ret i32 %71
 }
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

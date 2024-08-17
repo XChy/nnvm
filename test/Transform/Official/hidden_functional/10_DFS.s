@@ -140,10 +140,11 @@ bb15:   # loop depth 0
   BNE s3, zero, bb126
   # implict jump to bb16
 bb16:   # loop depth 0
+  ADD t1, t0, zero
   # implict jump to bb17
 bb17:   # loop depth 0
   ADDI s0, zero, 57
-  SW t0, 0(s11)
+  SW t1, 0(s11)
   CALL getch
   SLT t1, s0, a0
   SLTI t0, a0, 48
@@ -169,26 +170,26 @@ bb20:   # loop depth 0
 bb21:   # loop depth 0
   LA s10, m
   LA s5, head
-  SUB t2, zero, t0
+  SUB t1, zero, t0
   BNE s3, zero, bb114
   # implict jump to bb22
 bb22:   # loop depth 0
-  ADD t2, t0, zero
+  ADD t1, t0, zero
   # implict jump to bb23
 bb23:   # loop depth 0
   ADD t0, zero, zero
-  SW t2, 0(s10)
+  SW t1, 0(s10)
   # implict jump to bb24
 bb24:   # loop depth 1
   ADDI a1, zero, -1
-  ADDIW t1, t0, 1
+  ADDIW t2, t0, 1
   SH2ADD t0, t0, s5
-  SLTI a0, t1, 1005
+  SLTI a0, t2, 1005
   SW a1, 0(t0)
   BNE a0, zero, bb113
   # implict jump to bb25
 bb25:   # loop depth 0
-  BNE t2, zero, bb27
+  BNE t1, zero, bb27
   # implict jump to bb26
 bb26:   # loop depth 0
   ADD a0, zero, zero
@@ -523,17 +524,17 @@ bb83:   # loop depth 1
   CALL putch
   JAL zero, bb44
 bb84:   # loop depth 1
-  ADDI t0, zero, 1
+  ADDI t2, zero, 1
   # implict jump to bb85
 bb85:   # loop depth 2
   LA a1, vis
+  ADD t0, t2, zero
   ADDIW t2, t0, 1
   SH2ADD t0, t0, a1
   SW zero, 0(t0)
   BGE a0, t2, bb86
   JAL zero, bb83
 bb86:   # loop depth 2
-  ADD t0, t2, zero
   JAL zero, bb85
 bb87:   # loop depth 1
   JAL zero, bb82
@@ -655,7 +656,7 @@ bb111:   # loop depth 2
 bb112:   # loop depth 2
   JAL zero, bb30
 bb113:   # loop depth 1
-  ADD t0, t1, zero
+  ADD t0, t2, zero
   JAL zero, bb24
 bb114:   # loop depth 0
   JAL zero, bb23
@@ -712,7 +713,6 @@ bb125:   # loop depth 1
   ADDI t0, zero, 1
   JAL zero, bb122
 bb126:   # loop depth 0
-  ADD t0, t1, zero
   JAL zero, bb17
 bb127:   # loop depth 0
   ADD t0, zero, zero

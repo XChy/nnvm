@@ -1,13 +1,7 @@
 internal global ptr parent init with 1005 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry46:  pred()
@@ -68,10 +62,6 @@ clusters.phi.which.true:  pred(while.body91)
   br bb %while.body91.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 internal i32 find(i32 root) {
 entry:  pred()
   151 = shl i32 %root, i32 2
@@ -87,15 +77,5 @@ else:  pred(entry)
   store i32 %20 to ptr %4
   ret i32 %20
 }
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

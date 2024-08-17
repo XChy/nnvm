@@ -2,14 +2,6 @@ internal global ptr arr2 init with 26880 x i32 zeros
 internal global ptr arr1 init with 14400 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry413:  pred()
   .pinned1647 = pin i32 2880
@@ -373,19 +365,5 @@ loop1.while.cond62_preheader:  pred(loop1.while.cond62_preheader, loop1.while.co
   591021 = icmp slt i32 %1121057, i32 6
   br i1 %591021, bb %loop1.while.cond62_preheader, bb %loop1.while.exit57
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

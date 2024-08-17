@@ -1,15 +1,7 @@
 internal global ptr table init with 1960000 x i32 zeros
 internal global ptr seq init with 1400 x i32 zeros
 global ptr n init with i32 1400
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry315:  pred()
@@ -40,7 +32,7 @@ kernel_nussinov.while.body18_preheader:  pred(kernel_nussinov.while.body)
   .pinned710 = pin i32 5596
   606 = shl i32 %i.phi329394650, i32 2
   125459 = ptradd ptr %seq.pinned, i32 %606
-  138468 = ptradd ptr %table.pinned, i32 %687
+  177484 = ptradd ptr %table.pinned, i32 %687
   br bb %kernel_nussinov.while.body18
 kernel_nussinov.while.body18:  pred(kernel_nussinov.while.exit215, kernel_nussinov.while.body18_preheader)
   j.phi335403640 = phi [bb %kernel_nussinov.while.exit215, i32 %274530, bb %kernel_nussinov.while.body18_preheader, i32 %16398]
@@ -58,7 +50,7 @@ kernel_nussinov.while.exit19:  pred(kernel_nussinov.while.exit215, kernel_nussin
   30415.rec = add i32 %687, i32 -5600
   br i1 %12395, bb %kernel_nussinov.while.body, bb %kernel_nussinov.while.cond279_preheader
 kernel_nussinov.then:  pred(kernel_nussinov.while.body18)
-  34418 = ptradd ptr %138468, i32 %602
+  34418 = ptradd ptr %177484, i32 %602
   34.load419 = load i32 from ptr %34418
   568 = ptradd ptr %34418, i32 -4
   42.load422 = load i32 from ptr %568
@@ -70,7 +62,7 @@ kernel_nussinov.then45:  pred(kernel_nussinov.then)
   store i32 %42.load422 to ptr %34418
   br bb %kernel_nussinov.if.exit
 kernel_nussinov.then66:  pred(kernel_nussinov.if.exit)
-  73436 = ptradd ptr %138468, i32 %602
+  73436 = ptradd ptr %177484, i32 %602
   73.load437 = load i32 from ptr %73436
   605 = ptradd ptr %73436, i32 %.pinned
   81.load441 = load i32 from ptr %605
@@ -96,7 +88,7 @@ kernel_nussinov.then119:  pred(kernel_nussinov.then113)
   131464 = add i32 %125.load460, i32 %129.load463
   132465 = icmp eq i32 %131464, i32 3
   385466 = zext i1 %132465 to i32
-  141469 = ptradd ptr %138468, i32 %602
+  141469 = ptradd ptr %177484, i32 %602
   141.load470 = load i32 from ptr %141469
   611 = ptradd ptr %141469, i32 %.pinned710
   150.load475 = load i32 from ptr %611
@@ -107,7 +99,7 @@ kernel_nussinov.if.exit120:  pred(kernel_nussinov.if.exit156, kernel_nussinov.if
   temp.phi341480 = phi [bb %kernel_nussinov.if.exit193, i32 %temp.phi343401638, bb %kernel_nussinov.if.exit156, i32 %385466]
   br bb %kernel_nussinov.if.exit114
 kernel_nussinov.else:  pred(kernel_nussinov.then113)
-  180486 = ptradd ptr %138468, i32 %602
+  180486 = ptradd ptr %177484, i32 %602
   180.load487 = load i32 from ptr %180486
   616 = ptradd ptr %180486, i32 %.pinned710
   189.load492 = load i32 from ptr %616
@@ -124,7 +116,7 @@ kernel_nussinov.then192:  pred(kernel_nussinov.else)
 kernel_nussinov.if.exit193:  pred(kernel_nussinov.else, kernel_nussinov.then192)
   br bb %kernel_nussinov.if.exit120
 kernel_nussinov.while.body214_preheader:  pred(kernel_nussinov.if.exit114)
-  225516 = ptradd ptr %138468, i32 %602
+  225516 = ptradd ptr %177484, i32 %602
   678 = ptradd ptr %table.pinned, i32 %602
   685 = mul i32 %16398, i32 %.pinned
   br bb %kernel_nussinov.while.body214
@@ -133,7 +125,7 @@ kernel_nussinov.while.body214:  pred(kernel_nussinov.if.exit245, kernel_nussinov
   k.phi509633 = phi [bb %kernel_nussinov.if.exit245, i32 %235521, bb %kernel_nussinov.while.body214_preheader, i32 %16398]
   225.load517 = load i32 from ptr %225516
   618 = shl i32 %k.phi509633, i32 2
-  232519 = ptradd ptr %138468, i32 %618
+  232519 = ptradd ptr %177484, i32 %618
   232.load520 = load i32 from ptr %232519
   235521 = add i32 %k.phi509633, i32 1
   682 = ptradd ptr %678, i32 %684
@@ -190,18 +182,10 @@ kernel_nussinov.while.exit289:  pred(kernel_nussinov.while.body288, kernel_nussi
   br i1 %284542, bb %kernel_nussinov.while.cond287_preheader, bb %kernel_nussinov.while.exit281
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

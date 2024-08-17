@@ -82,62 +82,62 @@ bb10:   # loop depth 1
 bb11:   # loop depth 1
   JAL zero, bb9
 bb12:   # loop depth 0
-  ADD a0, zero, zero
+  ADD a2, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 1
   ADDI t1, zero, 0
-  SH2ADD t0, a0, s3
+  SH2ADD t0, a2, s3
   LW a4, 0(t0)
   DIVW a5, s2, a4
   BLT t1, a5, bb16
   # implict jump to bb14
 bb14:   # loop depth 1
-  ADDIW a0, a0, 1
-  BLT a0, s1, bb15
+  ADDIW a2, a2, 1
+  BLT a2, s1, bb15
   JAL zero, bb2
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  ADD t1, zero, zero
+  ADD t2, zero, zero
   ADD t0, zero, zero
   # implict jump to bb17
 bb17:   # loop depth 2
+  ADD t1, zero, zero
   ADD a1, zero, zero
-  ADD t2, zero, zero
   # implict jump to bb18
 bb18:   # loop depth 3
-  BLT a1, a4, bb21
+  BLT t1, a4, bb21
   # implict jump to bb19
 bb19:   # loop depth 2
   ADDIW t0, t0, 1
   BLT t0, a5, bb20
-  ADDIW a0, a0, 1
-  BLT a0, s1, bb15
+  ADDIW a2, a2, 1
+  BLT a2, s1, bb15
   JAL zero, bb2
 bb20:   # loop depth 2
   JAL zero, bb17
 bb21:   # loop depth 3
-  ADDIW a2, a1, 1
-  BLT t0, a1, bb24
+  ADDIW a0, t1, 1
+  BLT t0, t1, bb24
   # implict jump to bb22
 bb22:   # loop depth 3
-  MULW t1, t0, a4
-  ADDW a6, t2, t0
+  MULW t2, t0, a4
+  ADDW a6, a1, t0
   SH2ADD a7, a6, s0
-  ADDW t1, t1, a1
+  ADDW t1, t2, t1
   SH2ADD a6, t1, s0
-  LW a1, 0(a6)
-  SW a1, 0(a7)
-  ADD t1, a1, zero
-  SW a1, 0(a6)
+  LW t1, 0(a6)
+  SW t1, 0(a7)
+  ADD t2, t1, zero
+  SW t1, 0(a6)
   # implict jump to bb23
 bb23:   # loop depth 3
-  ADDW t2, t2, a5
-  ADD a1, a2, zero
+  ADDW a1, a1, a5
+  ADD t1, a0, zero
   JAL zero, bb18
 bb24:   # loop depth 3
-  ADDW t2, t2, a5
-  ADD a1, a2, zero
+  ADDW a1, a1, a5
+  ADD t1, a0, zero
   JAL zero, bb18
 bb25:   # loop depth 0
   ADD t0, zero, zero

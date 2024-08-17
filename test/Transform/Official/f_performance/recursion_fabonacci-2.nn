@@ -22,13 +22,7 @@ if.exit21:  pred(then20, entry13)
 
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry39:  pred()
@@ -65,8 +59,6 @@ else70:  pred(if.exit62)
 
 external float getfloat()
 
-external void putfloat(float )
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
@@ -88,10 +80,6 @@ if.exit:  pred(entry)
   ret float %12
 }
 
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

@@ -32,14 +32,6 @@ if.exit61:  pred(else57)
   unreachable
 }
 
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
 external i32 getfarray(ptr )
 
 i32 main() {
@@ -331,15 +323,7 @@ kernel_deriche.while.exit507:  pred(kernel_deriche.while.body506, kernel_deriche
   br i1 %502823, bb %kernel_deriche.while.cond505_preheader, bb %kernel_deriche.while.exit499
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
 
 external void putfarray(i32 , ptr )
 

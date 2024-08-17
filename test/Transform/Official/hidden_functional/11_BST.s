@@ -284,8 +284,8 @@ bb41:   # loop depth 0
   # implict jump to bb42
 bb42:   # loop depth 1
   CALL getint
-  ADDIW s0, s0, 1
   ADD a1, a0, zero
+  ADDIW s0, s0, 1
   ADD a0, s1, zero
   CALL insert
   BLT s0, s2, bb43

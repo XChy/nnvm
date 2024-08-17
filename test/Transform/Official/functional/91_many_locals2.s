@@ -11,11 +11,11 @@ main:   # loop depth 0
   SD ra, 0(sp)
   SD s0, 8(sp)
   CALL getint
-  XORI t0, a0, 5
+  ADD s0, a0, zero
+  XORI t0, s0, 5
   BEQ t0, zero, bb3
   # implict jump to bb1
 bb1:   # loop depth 0
-  ADD s0, a0, zero
   # implict jump to bb2
 bb2:   # loop depth 0
   ADD a0, zero, zero
@@ -92,12 +92,11 @@ bb2:   # loop depth 0
 bb3:   # loop depth 0
   # implict jump to bb4
 bb4:   # loop depth 1
-  ADDIW a0, a0, 1
-  XORI t0, a0, 5
+  ADDIW s0, s0, 1
+  XORI t0, s0, 5
   BEQ t0, zero, bb6
   # implict jump to bb5
 bb5:   # loop depth 1
-  ADD s0, a0, zero
   JAL zero, bb2
 bb6:   # loop depth 1
   JAL zero, bb4

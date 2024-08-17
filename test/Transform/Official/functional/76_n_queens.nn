@@ -6,13 +6,7 @@ global ptr sum init with i32 0
 internal global ptr ans init with 50 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry127:  pred()
@@ -32,13 +26,7 @@ while.exit132:  pred(while.body131, entry127)
   ret i32 %sum.load142
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
 
 internal void f(i32 step) {
 entry28:  pred()
@@ -143,11 +131,5 @@ printans.else:  pred(printans.while.body)
   27192 = add i32 %i.phi173, i32 1
   br bb %printans.while.cond
 }
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

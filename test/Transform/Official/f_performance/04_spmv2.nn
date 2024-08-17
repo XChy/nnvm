@@ -3,15 +3,7 @@ internal global ptr a init with 100010 x i32 zeros
 internal global ptr y init with 3000000 x i32 zeros
 internal global ptr x init with 100010 x i32 zeros
 internal global ptr v init with 3000000 x i32 zeros
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry113:  pred()
@@ -44,7 +36,7 @@ spmv.while.body:  pred(spmv.while.body, spmv.while.cond_preheader)
   11170 = icmp slt i32 %19176, i32 %147
   br i1 %11170, bb %spmv.while.body, bb %spmv.while.cond.cp
 spmv.while.cond21_preheader:  pred(spmv.while.cond.cp, spmv.while.cond71.cp)
-  i.phi179_ph_val = phi [bb %spmv.while.cond.cp, i32 0, bb %spmv.while.cond71.cp, i32 %38191361]
+  i.phi179_ph_val = phi [bb %spmv.while.cond71.cp, i32 %38191361, bb %spmv.while.cond.cp, i32 0]
   26180 = icmp slt i32 %i.phi179_ph_val, i32 %147
   br i1 %26180, bb %spmv.while.body22, bb %spmv.while.cond240_preheader
 spmv.while.body22:  pred(spmv.while.cond21_preheader)
@@ -107,7 +99,7 @@ spmv.while.body244:  pred(spmv.while.body244, spmv.while.cond240_preheader)
   11242 = icmp slt i32 %19248, i32 %147
   br i1 %11242, bb %spmv.while.body244, bb %spmv.while.cond240.cp
 spmv.while.cond21250_preheader:  pred(spmv.while.cond240.cp, spmv.while.cond71285.cp)
-  i.phi251_ph_val = phi [bb %spmv.while.cond240.cp, i32 0, bb %spmv.while.cond71285.cp, i32 %38263370]
+  i.phi251_ph_val = phi [bb %spmv.while.cond71285.cp, i32 %38263370, bb %spmv.while.cond240.cp, i32 0]
   26252 = icmp slt i32 %i.phi251_ph_val, i32 %147
   br i1 %26252, bb %spmv.while.body22254, bb %spmv.while.exit23259
 spmv.while.body22254:  pred(spmv.while.cond21250_preheader)
@@ -173,18 +165,10 @@ spmv.while.cond71285.cp:  pred(spmv.while.body72290, spmv.while.exit35282)
   br bb %spmv.while.cond21250_preheader
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

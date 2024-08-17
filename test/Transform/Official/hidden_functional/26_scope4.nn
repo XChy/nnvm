@@ -1,15 +1,7 @@
 global ptr count init with i32 0
 global ptr sum init with i32 0
 global ptr a init with i32 0
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry64:  pred()
@@ -325,160 +317,146 @@ entry64:  pred()
   store i32 %1584 to ptr %count.pinned
   br bb %while.cond121_unified_latch
 while.cond121_unified_latch:  pred(entry64)
-  sum.load84421319 = load i32 from ptr %sum.pinned
-  104431320 = add i32 %sum.load84421319, i32 %1584
-  store i32 %104431320 to ptr %sum.pinned
-  count.load27691322 = load i32 from ptr %count.pinned
-  37701323 = add i32 %count.load27691322, i32 1
-  store i32 %37701323 to ptr %count.pinned
-  164471325 = add i32 %104431320, i32 %37701323
-  store i32 %164471325 to ptr %sum.pinned
-  12821327 = add i32 %count.load27691322, i32 2
-  store i32 %12821327 to ptr %count.pinned
-  254511329 = add i32 %164471325, i32 %12821327
-  store i32 %254511329 to ptr %sum.pinned
-  294531331 = add i32 %254511329, i32 %37701323
-  store i32 %294531331 to ptr %sum.pinned
-  334551333 = add i32 %294531331, i32 %37701323
-  store i32 %334551333 to ptr %sum.pinned
-  382821335 = add i32 %334551333, i32 %3539
-  store i32 %382821335 to ptr %sum.pinned
-  12841337 = add i32 %count.load27691322, i32 3
-  store i32 %12841337 to ptr %count.pinned
-  442871339 = add i32 %382821335, i32 %3539
-  store i32 %442871339 to ptr %sum.pinned
-  12861341 = add i32 %count.load27691322, i32 4
-  store i32 %12861341 to ptr %count.pinned
-  5110671343 = add i32 %442871339, i32 %12861341
-  store i32 %5110671343 to ptr %sum.pinned
-  12881345 = add i32 %count.load27691322, i32 5
-  store i32 %12881345 to ptr %count.pinned
-  5710731347 = add i32 %5110671343, i32 %12881345
-  store i32 %5710731347 to ptr %sum.pinned
-  12901349 = add i32 %count.load27691322, i32 6
-  store i32 %12901349 to ptr %count.pinned
-  6310791351 = add i32 %5710731347, i32 %12881345
-  store i32 %6310791351 to ptr %sum.pinned
-  1586 = add i32 %count.load27691322, i32 7
+  sum.load84421324 = load i32 from ptr %sum.pinned
+  104431325 = add i32 %sum.load84421324, i32 %1584
+  store i32 %104431325 to ptr %sum.pinned
+  count.load27691327 = load i32 from ptr %count.pinned
+  37701328 = add i32 %count.load27691327, i32 1
+  store i32 %37701328 to ptr %count.pinned
+  164471330 = add i32 %104431325, i32 %37701328
+  store i32 %164471330 to ptr %sum.pinned
+  12821332 = add i32 %count.load27691327, i32 2
+  store i32 %12821332 to ptr %count.pinned
+  254511334 = add i32 %164471330, i32 %12821332
+  store i32 %254511334 to ptr %sum.pinned
+  294531336 = add i32 %254511334, i32 %37701328
+  store i32 %294531336 to ptr %sum.pinned
+  334551338 = add i32 %294531336, i32 %37701328
+  store i32 %334551338 to ptr %sum.pinned
+  382821340 = add i32 %334551338, i32 %3539
+  store i32 %382821340 to ptr %sum.pinned
+  12841342 = add i32 %count.load27691327, i32 3
+  store i32 %12841342 to ptr %count.pinned
+  442871344 = add i32 %382821340, i32 %3539
+  store i32 %442871344 to ptr %sum.pinned
+  12861346 = add i32 %count.load27691327, i32 4
+  store i32 %12861346 to ptr %count.pinned
+  5110671348 = add i32 %442871344, i32 %12861346
+  store i32 %5110671348 to ptr %sum.pinned
+  12881350 = add i32 %count.load27691327, i32 5
+  store i32 %12881350 to ptr %count.pinned
+  5710731352 = add i32 %5110671348, i32 %12881350
+  store i32 %5710731352 to ptr %sum.pinned
+  12901354 = add i32 %count.load27691327, i32 6
+  store i32 %12901354 to ptr %count.pinned
+  6310791356 = add i32 %5710731352, i32 %12881350
+  store i32 %6310791356 to ptr %sum.pinned
+  1586 = add i32 %count.load27691327, i32 7
   store i32 %1586 to ptr %count.pinned
-  104611361 = add i32 %6310791351, i32 %1586
-  store i32 %104611361 to ptr %sum.pinned
-  1588 = add i32 %count.load27691322, i32 8
+  104611366 = add i32 %6310791356, i32 %1586
+  store i32 %104611366 to ptr %sum.pinned
+  1588 = add i32 %count.load27691327, i32 8
   store i32 %1588 to ptr %count.pinned
-  164651365 = add i32 %104611361, i32 %1588
-  store i32 %164651365 to ptr %sum.pinned
-  1590 = add i32 %count.load27691322, i32 9
+  164651370 = add i32 %104611366, i32 %1588
+  store i32 %164651370 to ptr %sum.pinned
+  1590 = add i32 %count.load27691327, i32 9
   store i32 %1590 to ptr %count.pinned
-  254691369 = add i32 %164651365, i32 %1590
-  store i32 %254691369 to ptr %sum.pinned
-  294711371 = add i32 %254691369, i32 %1588
-  store i32 %294711371 to ptr %sum.pinned
-  334731373 = add i32 %294711371, i32 %1588
-  store i32 %334731373 to ptr %sum.pinned
-  382941375 = add i32 %334731373, i32 %3539
-  store i32 %382941375 to ptr %sum.pinned
-  1592 = add i32 %count.load27691322, i32 10
+  254691374 = add i32 %164651370, i32 %1590
+  store i32 %254691374 to ptr %sum.pinned
+  294711376 = add i32 %254691374, i32 %1588
+  store i32 %294711376 to ptr %sum.pinned
+  334731378 = add i32 %294711376, i32 %1588
+  store i32 %334731378 to ptr %sum.pinned
+  382941380 = add i32 %334731378, i32 %3539
+  store i32 %382941380 to ptr %sum.pinned
+  1592 = add i32 %count.load27691327, i32 10
   store i32 %1592 to ptr %count.pinned
-  442991379 = add i32 %382941375, i32 %3539
-  store i32 %442991379 to ptr %sum.pinned
-  1594 = add i32 %count.load27691322, i32 11
+  442991384 = add i32 %382941380, i32 %3539
+  store i32 %442991384 to ptr %sum.pinned
+  1594 = add i32 %count.load27691327, i32 11
   store i32 %1594 to ptr %count.pinned
-  5111031383 = add i32 %442991379, i32 %1594
-  store i32 %5111031383 to ptr %sum.pinned
-  1596 = add i32 %count.load27691322, i32 12
+  5111031388 = add i32 %442991384, i32 %1594
+  store i32 %5111031388 to ptr %sum.pinned
+  1596 = add i32 %count.load27691327, i32 12
   store i32 %1596 to ptr %count.pinned
-  5711091387 = add i32 %5111031383, i32 %1596
-  store i32 %5711091387 to ptr %sum.pinned
-  1598 = add i32 %count.load27691322, i32 13
+  5711091392 = add i32 %5111031388, i32 %1596
+  store i32 %5711091392 to ptr %sum.pinned
+  1598 = add i32 %count.load27691327, i32 13
   store i32 %1598 to ptr %count.pinned
-  6311151391 = add i32 %5711091387, i32 %1596
-  store i32 %6311151391 to ptr %sum.pinned
+  6311151396 = add i32 %5711091392, i32 %1596
+  store i32 %6311151396 to ptr %sum.pinned
   br bb %while.cond121_unified_latch.iter1
 while.cond121_unified_latch.iter1:  pred(while.cond121_unified_latch)
-  sum.load84421441 = load i32 from ptr %sum.pinned
-  104431442 = add i32 %sum.load84421441, i32 %1584
-  store i32 %104431442 to ptr %sum.pinned
-  count.load27691444 = load i32 from ptr %count.pinned
-  37701445 = add i32 %count.load27691444, i32 1
-  store i32 %37701445 to ptr %count.pinned
-  164471447 = add i32 %104431442, i32 %37701445
-  store i32 %164471447 to ptr %sum.pinned
-  12821449 = add i32 %count.load27691444, i32 2
-  store i32 %12821449 to ptr %count.pinned
-  254511451 = add i32 %164471447, i32 %12821449
-  store i32 %254511451 to ptr %sum.pinned
-  294531453 = add i32 %254511451, i32 %37701445
-  store i32 %294531453 to ptr %sum.pinned
-  334551455 = add i32 %294531453, i32 %37701445
-  store i32 %334551455 to ptr %sum.pinned
-  382821457 = add i32 %334551455, i32 %3539
-  store i32 %382821457 to ptr %sum.pinned
-  12841459 = add i32 %count.load27691444, i32 3
-  store i32 %12841459 to ptr %count.pinned
-  442871461 = add i32 %382821457, i32 %3539
-  store i32 %442871461 to ptr %sum.pinned
-  12861463 = add i32 %count.load27691444, i32 4
-  store i32 %12861463 to ptr %count.pinned
-  5110671465 = add i32 %442871461, i32 %12861463
-  store i32 %5110671465 to ptr %sum.pinned
-  12881467 = add i32 %count.load27691444, i32 5
-  store i32 %12881467 to ptr %count.pinned
-  5710731469 = add i32 %5110671465, i32 %12881467
-  store i32 %5710731469 to ptr %sum.pinned
-  12901471 = add i32 %count.load27691444, i32 6
-  store i32 %12901471 to ptr %count.pinned
-  6310791473 = add i32 %5710731469, i32 %12881467
-  store i32 %6310791473 to ptr %sum.pinned
-  104791518 = add i32 %6310791473, i32 %1584
-  store i32 %104791518 to ptr %sum.pinned
-  1600 = add i32 %count.load27691444, i32 7
+  sum.load84421446 = load i32 from ptr %sum.pinned
+  104431447 = add i32 %sum.load84421446, i32 %1584
+  store i32 %104431447 to ptr %sum.pinned
+  count.load27691449 = load i32 from ptr %count.pinned
+  37701450 = add i32 %count.load27691449, i32 1
+  store i32 %37701450 to ptr %count.pinned
+  164471452 = add i32 %104431447, i32 %37701450
+  store i32 %164471452 to ptr %sum.pinned
+  12821454 = add i32 %count.load27691449, i32 2
+  store i32 %12821454 to ptr %count.pinned
+  254511456 = add i32 %164471452, i32 %12821454
+  store i32 %254511456 to ptr %sum.pinned
+  294531458 = add i32 %254511456, i32 %37701450
+  store i32 %294531458 to ptr %sum.pinned
+  334551460 = add i32 %294531458, i32 %37701450
+  store i32 %334551460 to ptr %sum.pinned
+  382821462 = add i32 %334551460, i32 %3539
+  store i32 %382821462 to ptr %sum.pinned
+  12841464 = add i32 %count.load27691449, i32 3
+  store i32 %12841464 to ptr %count.pinned
+  442871466 = add i32 %382821462, i32 %3539
+  store i32 %442871466 to ptr %sum.pinned
+  12861468 = add i32 %count.load27691449, i32 4
+  store i32 %12861468 to ptr %count.pinned
+  5110671470 = add i32 %442871466, i32 %12861468
+  store i32 %5110671470 to ptr %sum.pinned
+  12881472 = add i32 %count.load27691449, i32 5
+  store i32 %12881472 to ptr %count.pinned
+  5710731474 = add i32 %5110671470, i32 %12881472
+  store i32 %5710731474 to ptr %sum.pinned
+  12901476 = add i32 %count.load27691449, i32 6
+  store i32 %12901476 to ptr %count.pinned
+  6310791478 = add i32 %5710731474, i32 %12881472
+  store i32 %6310791478 to ptr %sum.pinned
+  104791523 = add i32 %6310791478, i32 %1584
+  store i32 %104791523 to ptr %sum.pinned
+  1600 = add i32 %count.load27691449, i32 7
   store i32 %1600 to ptr %count.pinned
-  164831523 = add i32 %104791518, i32 %1600
-  store i32 %164831523 to ptr %sum.pinned
-  1602 = add i32 %count.load27691444, i32 8
+  164831528 = add i32 %104791523, i32 %1600
+  store i32 %164831528 to ptr %sum.pinned
+  1602 = add i32 %count.load27691449, i32 8
   store i32 %1602 to ptr %count.pinned
-  254871527 = add i32 %164831523, i32 %1602
-  store i32 %254871527 to ptr %sum.pinned
-  294891529 = add i32 %254871527, i32 %1600
-  store i32 %294891529 to ptr %sum.pinned
-  334911531 = add i32 %294891529, i32 %1600
-  store i32 %334911531 to ptr %sum.pinned
-  383061533 = add i32 %334911531, i32 %3539
-  store i32 %383061533 to ptr %sum.pinned
-  1604 = add i32 %count.load27691444, i32 9
+  254871532 = add i32 %164831528, i32 %1602
+  store i32 %254871532 to ptr %sum.pinned
+  294891534 = add i32 %254871532, i32 %1600
+  store i32 %294891534 to ptr %sum.pinned
+  334911536 = add i32 %294891534, i32 %1600
+  store i32 %334911536 to ptr %sum.pinned
+  383061538 = add i32 %334911536, i32 %3539
+  store i32 %383061538 to ptr %sum.pinned
+  1604 = add i32 %count.load27691449, i32 9
   store i32 %1604 to ptr %count.pinned
-  443111537 = add i32 %383061533, i32 %3539
-  store i32 %443111537 to ptr %sum.pinned
-  1606 = add i32 %count.load27691444, i32 10
+  443111542 = add i32 %383061538, i32 %3539
+  store i32 %443111542 to ptr %sum.pinned
+  1606 = add i32 %count.load27691449, i32 10
   store i32 %1606 to ptr %count.pinned
-  5111391541 = add i32 %443111537, i32 %1606
-  store i32 %5111391541 to ptr %sum.pinned
-  1608 = add i32 %count.load27691444, i32 11
+  5111391546 = add i32 %443111542, i32 %1606
+  store i32 %5111391546 to ptr %sum.pinned
+  1608 = add i32 %count.load27691449, i32 11
   store i32 %1608 to ptr %count.pinned
-  5711451545 = add i32 %5111391541, i32 %1608
-  store i32 %5711451545 to ptr %sum.pinned
-  1610 = add i32 %count.load27691444, i32 12
+  5711451550 = add i32 %5111391546, i32 %1608
+  store i32 %5711451550 to ptr %sum.pinned
+  1610 = add i32 %count.load27691449, i32 12
   store i32 %1610 to ptr %count.pinned
-  6311511549 = add i32 %5711451545, i32 %1608
-  store i32 %6311511549 to ptr %sum.pinned
-  1612 = add i32 %count.load27691444, i32 13
+  6311511554 = add i32 %5711451550, i32 %1608
+  store i32 %6311511554 to ptr %sum.pinned
+  1612 = add i32 %count.load27691449, i32 13
   store i32 %1612 to ptr %count.pinned
-  call void putint(i32 %6311511549)
+  call void putint(i32 %6311511554)
   ret i32 0
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

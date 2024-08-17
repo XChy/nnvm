@@ -1,14 +1,6 @@
 internal global ptr image_out init with 524288 x i32 zeros
 internal global ptr image_in init with 524288 x i32 zeros
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry14:  pred()
@@ -116,18 +108,10 @@ val.stack.phi278.which331.true:  pred(while.body31.split568)
   br bb %while.body31.split568.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

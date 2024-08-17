@@ -3,13 +3,7 @@ internal global ptr C init with 1048576 x i32 zeros
 internal global ptr A init with 1048576 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry114:  pred()
@@ -120,9 +114,9 @@ mm.while.exit17:  pred(mm.while.body16, mm.while.cond15_preheader)
 mm.while.cond38_preheader:  pred(mm.while.exit17, mm.while.cond_preheader)
   br i1 %126566, bb %mm.while.cond38.cp, bb %mm.while.cond357_preheader
 mm.while.cond46_preheader:  pred(mm.while.cond38.cp, mm.while.cond46_unified_latch)
-  j.phi248310_ph_val = phi [bb %mm.while.cond46_unified_latch, i32 %479, bb %mm.while.cond38.cp, i32 %j.phi250302551]
-  i.phi309_ph_val = phi [bb %mm.while.cond46_unified_latch, i32 %65325, bb %mm.while.cond38.cp, i32 0]
-  k.phi258308_ph_val = phi [bb %mm.while.cond46_unified_latch, i32 %477, bb %mm.while.cond38.cp, i32 %k.phi301550]
+  j.phi248310_ph_val = phi [bb %mm.while.cond38.cp, i32 %j.phi250302551, bb %mm.while.cond46_unified_latch, i32 %479]
+  i.phi309_ph_val = phi [bb %mm.while.cond38.cp, i32 0, bb %mm.while.cond46_unified_latch, i32 %65325]
+  k.phi258308_ph_val = phi [bb %mm.while.cond38.cp, i32 %k.phi301550, bb %mm.while.cond46_unified_latch, i32 %477]
   51311 = icmp slt i32 %i.phi309_ph_val, i32 %116
   br i1 %51311, bb %mm.while.body47, bb %mm.while.exit48
 mm.while.body47:  pred(mm.while.cond46_preheader)
@@ -189,9 +183,9 @@ mm.while.exit40381:  pred(mm.while.exit48397, mm.while.cond38376_preheader)
   187 = icmp slt i32 %195, i32 5
   br i1 %187, bb %mm.while.cond_preheader, bb %while.cond198_preheader
 mm.while.cond46383_preheader:  pred(mm.while.cond38376.cp, mm.while.cond46383_unified_latch)
-  j.phi248386_ph_val = phi [bb %mm.while.cond38376.cp, i32 %j.phi250378546, bb %mm.while.cond46383_unified_latch, i32 %489]
-  i.phi385_ph_val = phi [bb %mm.while.cond38376.cp, i32 0, bb %mm.while.cond46383_unified_latch, i32 %65401]
-  k.phi258384_ph_val = phi [bb %mm.while.cond38376.cp, i32 %k.phi377545, bb %mm.while.cond46383_unified_latch, i32 %487]
+  j.phi248386_ph_val = phi [bb %mm.while.cond46383_unified_latch, i32 %489, bb %mm.while.cond38376.cp, i32 %j.phi250378546]
+  i.phi385_ph_val = phi [bb %mm.while.cond46383_unified_latch, i32 %65401, bb %mm.while.cond38376.cp, i32 0]
+  k.phi258384_ph_val = phi [bb %mm.while.cond46383_unified_latch, i32 %487, bb %mm.while.cond38376.cp, i32 %k.phi377545]
   51387 = icmp slt i32 %i.phi385_ph_val, i32 %116
   br i1 %51387, bb %mm.while.body47389, bb %mm.while.exit48397
 mm.while.body47389:  pred(mm.while.cond46383_preheader)
@@ -231,8 +225,8 @@ mm.while.exit70427:  pred(mm.while.body69410, mm.if.exit403)
   542 = phi [bb %mm.while.body69410, i32 %107425, bb %mm.if.exit403, i32 0]
   br bb %mm.while.cond46383_unified_latch
 mm.while.cond46_unified_latch:  pred(mm.while.exit70, mm.while.body47)
-  479 = phi [bb %mm.while.body47, i32 %j.phi248310_ph_val, bb %mm.while.exit70, i32 %537]
-  477 = phi [bb %mm.while.body47, i32 %k.phi258308_ph_val, bb %mm.while.exit70, i32 %k.phi258308_ph_val]
+  479 = phi [bb %mm.while.exit70, i32 %537, bb %mm.while.body47, i32 %j.phi248310_ph_val]
+  477 = phi [bb %mm.while.exit70, i32 %k.phi258308_ph_val, bb %mm.while.body47, i32 %k.phi258308_ph_val]
   br bb %mm.while.cond46_preheader
 mm.while.cond46383_unified_latch:  pred(mm.while.exit70427, mm.while.body47389)
   489 = phi [bb %mm.while.body47389, i32 %j.phi248386_ph_val, bb %mm.while.exit70427, i32 %542]
@@ -248,18 +242,10 @@ mm.while.cond38.cp:  pred(mm.while.exit48, mm.while.cond38_preheader)
   br bb %mm.while.cond46_preheader
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

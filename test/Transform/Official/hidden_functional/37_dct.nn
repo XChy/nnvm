@@ -30,14 +30,6 @@ if.exit30:  pred(entry23.split1430)
 
 external i32 getint()
 
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry448:  pred()
   test_block.pinned = pin ptr @test_block
@@ -225,12 +217,12 @@ dct.while.cond149_preheader:  pred(dct.while.exit151, dct.while.cond149_preheade
   1547151225 = icmp slt i32 0, i32 %452
   br i1 %1547151225, bb %dct.while.body150_preheader, bb %dct.while.exit151
 dct.while.body150_preheader:  pred(dct.while.cond149_preheader)
-  1170 = shl i32 %u.phi7061278, i32 5
-  158719 = ptradd ptr %test_dct.pinned, i32 %1170
   204748 = fdiv float %.pinned, float %2037471266
   211752 = si2f i32 %u.phi7061278 to float
   911069 = fdiv float %.pinned, float %9010681267
   218757 = fdiv float %.pinned, float %2177561270
+  1170 = shl i32 %u.phi7061278, i32 5
+  158719 = ptradd ptr %test_dct.pinned, i32 %1170
   br bb %dct.while.body150
 dct.while.body150:  pred(dct.while.exit167, dct.while.body150_preheader)
   v.phi7141230 = phi [bb %dct.while.exit167, i32 %238734, bb %dct.while.body150_preheader, i32 0]
@@ -455,13 +447,5 @@ external float getfloat()
 external void putfloat(float )
 
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

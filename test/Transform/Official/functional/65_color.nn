@@ -108,13 +108,7 @@ if.exit160:  pred(if.exit138, then159)
 
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry217:  pred()
@@ -211,19 +205,5 @@ while.exit308:  pred(while.body307, while.cond306_preheader)
   call void putint(i32 %352)
   ret i32 %352
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

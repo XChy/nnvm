@@ -1,10 +1,4 @@
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
 
 internal i32 graphColoring(ptr graph, i32 m, i32 i, ptr color) {
 entry81:  pred()
@@ -39,8 +33,8 @@ if.exit113:  pred(while.body96)
   120 = add i32 %j94.phi, i32 1
   br bb %while.cond95
 isSafe.while.cond34_preheader_preheader:  pred(isSafe.while.cond44, entry81)
-  select.phi175192_ph_val_ph_val = phi [bb %entry81, i1 0, bb %isSafe.while.cond44, i1 %select.phi174202]
-  i33.phi193_ph_val_ph_val = phi [bb %entry81, i32 0, bb %isSafe.while.cond44, i32 %43197]
+  select.phi175192_ph_val_ph_val = phi [bb %isSafe.while.cond44, i1 %select.phi174202, bb %entry81, i1 0]
+  i33.phi193_ph_val_ph_val = phi [bb %isSafe.while.cond44, i32 %43197, bb %entry81, i32 0]
   39194 = icmp slt i32 %i33.phi193_ph_val_ph_val, i32 4
   br i1 %39194, bb %isSafe.while.body35, bb %then87.split
 isSafe.while.body35:  pred(isSafe.while.cond34_preheader_preheader)
@@ -87,8 +81,6 @@ printSolution.while.exit:  pred(printSolution.while.body)
   call void putch(i32 10)
   ret i32 1
 }
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry121:  pred()
@@ -151,18 +143,6 @@ if.exit163:  pred(entry121, then162)
   ret i32 0
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

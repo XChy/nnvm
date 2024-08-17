@@ -23,8 +23,6 @@ else67:  pred(entry61)
 
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
 
 external i32 getarray(ptr )
@@ -49,8 +47,6 @@ else35:  pred(entry29)
   call void add_impl(ptr %x, ptr %y, i32 %186)
   br bb %if.exit34
 }
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry93:  pred()
@@ -109,19 +105,7 @@ while.exit128:  pred(while.body127, while.body)
   br i1 %171, bb %while.exit, bb %while.cond
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void putfarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
 
 internal void inc_impl(ptr x, i32 rec) {
 entry:  pred()

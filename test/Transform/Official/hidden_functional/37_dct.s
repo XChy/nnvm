@@ -410,12 +410,12 @@ bb46:   # loop depth 4
   FSW ft0, 92(sp)
   CALL my_sin_impl
   FLW ft0, 92(sp)
-  FADD.S ft1, ft0, fs6
+  FADD.S ft2, ft0, fs6
   FMUL.S fs11, fs11, fa0
   FLW ft0, 68(sp)
-  FLT.S t1, ft1, ft0
+  FLT.S t1, ft2, ft0
   FLW ft0, 80(sp)
-  FLT.S t0, ft0, ft1
+  FLT.S t0, ft0, ft2
   OR t0, t0, t1
   BNE t0, zero, bb57
   # implict jump to bb47
@@ -423,25 +423,26 @@ bb47:   # loop depth 4
   # implict jump to bb48
 bb48:   # loop depth 4
   FLW ft0, 80(sp)
-  FSUB.S ft2, ft1, ft0
+  FSUB.S ft1, ft2, ft0
   FLW ft0, 76(sp)
-  FLT.S t0, ft0, ft1
+  FLT.S t0, ft0, ft2
   BNE t0, zero, bb56
   # implict jump to bb49
 bb49:   # loop depth 4
+  FSGNJ.S ft1, ft2, ft2
   # implict jump to bb50
 bb50:   # loop depth 4
   FLW ft0, 80(sp)
-  FADD.S ft2, ft1, ft0
+  FADD.S fa0, ft1, ft0
   FLW ft0, 64(sp)
   FLT.S t0, ft1, ft0
   BNE t0, zero, bb55
   # implict jump to bb51
 bb51:   # loop depth 4
+  FSGNJ.S fa0, ft1, ft1
   # implict jump to bb52
 bb52:   # loop depth 4
   ADDIW s0, s0, 1
-  FSGNJ.S fa0, ft1, ft1
   CALL my_sin_impl
   FMUL.S ft0, fs11, fa0
   FADD.S ft0, fs10, ft0
@@ -453,19 +454,17 @@ bb53:   # loop depth 4
 bb54:   # loop depth 4
   JAL zero, bb40
 bb55:   # loop depth 4
-  FSGNJ.S ft1, ft2, ft2
   JAL zero, bb52
 bb56:   # loop depth 4
-  FSGNJ.S ft1, ft2, ft2
   JAL zero, bb50
 bb57:   # loop depth 4
   FLW ft0, 80(sp)
-  FDIV.S ft0, ft1, ft0
+  FDIV.S ft0, ft2, ft0
   FCVT.W.S t0, ft0, rtz
   FCVT.S.W ft0, t0
-  FLW ft2, 80(sp)
-  FMUL.S ft0, ft0, ft2
-  FSUB.S ft1, ft1, ft0
+  FLW ft1, 80(sp)
+  FMUL.S ft0, ft0, ft1
+  FSUB.S ft2, ft2, ft0
   JAL zero, bb48
 bb58:   # loop depth 4
   JAL zero, bb46
@@ -548,8 +547,8 @@ bb76:   # loop depth 0
   FCVT.S.W ft0, zero
   FSW ft0, 24(sp)
   ADD s0, zero, zero
+  ADD s2, zero, zero
   ADD s1, zero, zero
-  ADD s3, zero, zero
   # implict jump to bb77
 bb77:   # loop depth 1
   BLT zero, s4, bb81
@@ -557,8 +556,8 @@ bb77:   # loop depth 1
 bb78:   # loop depth 1
   # implict jump to bb79
 bb79:   # loop depth 1
-  ADDIW s3, s3, 1
-  BLT s3, s5, bb80
+  ADDIW s1, s1, 1
+  BLT s1, s5, bb80
   JAL zero, bb8
 bb80:   # loop depth 1
   JAL zero, bb77
@@ -567,7 +566,7 @@ bb81:   # loop depth 1
   FLW ft1, 76(sp)
   FDIV.S ft0, ft1, ft0
   FSW ft0, 36(sp)
-  SLLIW t1, s3, 5
+  SLLIW t0, s1, 5
   FLW ft0, 16(sp)
   FLW ft1, 76(sp)
   FDIV.S fs6, ft1, ft0
@@ -575,35 +574,35 @@ bb81:   # loop depth 1
   FLW ft1, 76(sp)
   FDIV.S ft0, ft1, ft0
   FSW ft0, 28(sp)
-  ADD s2, zero, zero
-  FCVT.S.W ft0, s3
+  ADD s3, zero, zero
+  FCVT.S.W ft0, s1
   FSW ft0, 32(sp)
-  LD t0, 256(sp)
-  ADD s6, t0, t1
+  LD t1, 256(sp)
+  ADD s6, t1, t0
   # implict jump to bb82
 bb82:   # loop depth 2
-  SH2ADD s7, s2, s6
+  SH2ADD s7, s3, s6
   FLW ft0, 24(sp)
   FSW ft0, 0(s7)
   LW t0, 52(sp)
   BLT t0, s5, bb87
   # implict jump to bb83
 bb83:   # loop depth 2
-  ADD s1, zero, zero
+  ADD s2, zero, zero
   # implict jump to bb84
 bb84:   # loop depth 2
-  ADDIW s2, s2, 1
-  BLT s2, s4, bb86
+  ADDIW s3, s3, 1
+  BLT s3, s4, bb86
   # implict jump to bb85
 bb85:   # loop depth 2
-  ADDIW s3, s3, 1
-  BLT s3, s5, bb80
+  ADDIW s1, s1, 1
+  BLT s1, s5, bb80
   JAL zero, bb8
 bb86:   # loop depth 2
   JAL zero, bb82
 bb87:   # loop depth 2
-  FCVT.S.W fs8, s2
-  ADD s1, zero, zero
+  FCVT.S.W fs8, s3
+  ADD s2, zero, zero
   # implict jump to bb88
 bb88:   # loop depth 3
   BLT zero, s4, bb93
@@ -612,16 +611,16 @@ bb89:   # loop depth 3
   ADD s0, zero, zero
   # implict jump to bb90
 bb90:   # loop depth 3
-  ADDIW s1, s1, 1
-  BLT s1, s5, bb92
+  ADDIW s2, s2, 1
+  BLT s2, s5, bb92
   # implict jump to bb91
 bb91:   # loop depth 3
   JAL zero, bb84
 bb92:   # loop depth 3
   JAL zero, bb88
 bb93:   # loop depth 3
-  FCVT.S.W ft0, s1
-  SLLIW t1, s1, 5
+  FCVT.S.W ft0, s2
+  SLLIW t1, s2, 5
   ADD s0, zero, zero
   ADD s8, s10, t1
   FLW ft1, 88(sp)
@@ -630,19 +629,19 @@ bb93:   # loop depth 3
   FMUL.S ft0, ft1, ft0
   FLW ft1, 32(sp)
   FMUL.S ft0, ft0, ft1
-  FADD.S fs0, ft0, fs6
+  FADD.S fs1, ft0, fs6
   FLW ft0, 80(sp)
-  FDIV.S ft0, fs0, ft0
+  FDIV.S ft0, fs1, ft0
   FLW ft1, 68(sp)
-  FLT.S t2, fs0, ft1
+  FLT.S t2, fs1, ft1
   FLW ft1, 80(sp)
-  FLT.S t1, ft1, fs0
+  FLT.S t1, ft1, fs1
   OR s9, t1, t2
   FCVT.W.S t1, ft0, rtz
   FCVT.S.W ft0, t1
   FLW ft1, 80(sp)
   FMUL.S ft0, ft0, ft1
-  FSUB.S fs1, fs0, ft0
+  FSUB.S fs0, fs1, ft0
   # implict jump to bb94
 bb94:   # loop depth 4
   FLW fs9, 0(s7)
@@ -651,27 +650,26 @@ bb94:   # loop depth 4
   BNE s9, zero, bb114
   # implict jump to bb95
 bb95:   # loop depth 4
-  FSGNJ.S ft2, fs0, fs0
+  FSGNJ.S ft1, fs1, fs1
   # implict jump to bb96
 bb96:   # loop depth 4
   FLW ft0, 80(sp)
-  FSUB.S ft1, ft2, ft0
+  FSUB.S fa0, ft1, ft0
   FLW ft0, 76(sp)
-  FLT.S t0, ft0, ft2
+  FLT.S t0, ft0, ft1
   BNE t0, zero, bb113
   # implict jump to bb97
 bb97:   # loop depth 4
-  FSGNJ.S ft1, ft2, ft2
+  FSGNJ.S fa0, ft1, ft1
   # implict jump to bb98
 bb98:   # loop depth 4
   FLW ft0, 80(sp)
-  FADD.S fa0, ft1, ft0
+  FADD.S ft1, fa0, ft0
   FLW ft0, 64(sp)
-  FLT.S t0, ft1, ft0
+  FLT.S t0, fa0, ft0
   BNE t0, zero, bb112
   # implict jump to bb99
 bb99:   # loop depth 4
-  FSGNJ.S fa0, ft1, ft1
   # implict jump to bb100
 bb100:   # loop depth 4
   FCVT.S.W ft1, s0
@@ -682,11 +680,11 @@ bb100:   # loop depth 4
   FMUL.S ft1, ft0, fs11
   FMUL.S fs10, fs10, fa0
   FMUL.S ft0, ft1, fs8
-  FADD.S ft1, ft0, fs6
+  FADD.S ft2, ft0, fs6
   FLW ft0, 68(sp)
-  FLT.S t1, ft1, ft0
+  FLT.S t1, ft2, ft0
   FLW ft0, 80(sp)
-  FLT.S t0, ft0, ft1
+  FLT.S t0, ft0, ft2
   OR t0, t0, t1
   BNE t0, zero, bb111
   # implict jump to bb101
@@ -694,22 +692,23 @@ bb101:   # loop depth 4
   # implict jump to bb102
 bb102:   # loop depth 4
   FLW ft0, 80(sp)
-  FSUB.S fa0, ft1, ft0
+  FSUB.S ft1, ft2, ft0
   FLW ft0, 76(sp)
-  FLT.S t0, ft0, ft1
+  FLT.S t0, ft0, ft2
   BNE t0, zero, bb110
   # implict jump to bb103
 bb103:   # loop depth 4
-  FSGNJ.S fa0, ft1, ft1
+  FSGNJ.S ft1, ft2, ft2
   # implict jump to bb104
 bb104:   # loop depth 4
   FLW ft0, 80(sp)
-  FADD.S ft1, fa0, ft0
+  FADD.S fa0, ft1, ft0
   FLW ft0, 64(sp)
-  FLT.S t0, fa0, ft0
+  FLT.S t0, ft1, ft0
   BNE t0, zero, bb109
   # implict jump to bb105
 bb105:   # loop depth 4
+  FSGNJ.S fa0, ft1, ft1
   # implict jump to bb106
 bb106:   # loop depth 4
   ADDIW s0, s0, 1
@@ -724,25 +723,25 @@ bb107:   # loop depth 4
 bb108:   # loop depth 4
   JAL zero, bb94
 bb109:   # loop depth 4
-  FSGNJ.S fa0, ft1, ft1
   JAL zero, bb106
 bb110:   # loop depth 4
   JAL zero, bb104
 bb111:   # loop depth 4
   FLW ft0, 80(sp)
-  FDIV.S ft2, ft1, ft0
-  FCVT.W.S t0, ft2, rtz
-  FCVT.S.W ft2, t0
+  FDIV.S ft1, ft2, ft0
+  FCVT.W.S t0, ft1, rtz
+  FCVT.S.W ft1, t0
   FLW ft0, 80(sp)
-  FMUL.S ft2, ft2, ft0
-  FSUB.S ft1, ft1, ft2
+  FMUL.S ft1, ft1, ft0
+  FSUB.S ft2, ft2, ft1
   JAL zero, bb102
 bb112:   # loop depth 4
+  FSGNJ.S fa0, ft1, ft1
   JAL zero, bb100
 bb113:   # loop depth 4
   JAL zero, bb98
 bb114:   # loop depth 4
-  FSGNJ.S ft2, fs1, fs1
+  FSGNJ.S ft1, fs0, fs0
   JAL zero, bb96
 bb115:   # loop depth 0
   ADD s1, zero, zero

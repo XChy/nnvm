@@ -1,12 +1,6 @@
 global ptr b init with i32 1
 global ptr a init with i32 -1
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry9:  pred()
@@ -105,20 +99,6 @@ else:  pred(select.exit45)
   br bb %if.exit62
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external i32 getarray(ptr )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

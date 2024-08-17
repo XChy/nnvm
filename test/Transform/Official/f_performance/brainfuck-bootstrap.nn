@@ -232,12 +232,6 @@ external i32 getint()
 
 external i32 getch()
 
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
@@ -384,14 +378,6 @@ get_bf_char.while.exit633:  pred(get_bf_char.while.body630, read_program.while.b
   br i1 %75479, bb %read_program.while.body72, bb %read_program.while.exit73
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

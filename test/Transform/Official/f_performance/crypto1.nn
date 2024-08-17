@@ -2,12 +2,6 @@ internal global ptr buffer init with 32768 x i32 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 global ptr state init with i32 19260817
 external i32 getint()
 
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry401:  pred()
   %words579 = stack 320
@@ -594,20 +588,10 @@ pseudo_sha1.if.exit321:  pred(pseudo_sha1.else303, pseudo_sha1.then320)
   br bb %pseudo_sha1.if.exit302
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
-
-external i32 getarray(ptr )
 
 

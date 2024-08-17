@@ -8,8 +8,6 @@ immutable internal global ptr step init with 8 x i32 [1, 0, -1, 0, 0, 1, 0, -1]
 internal global ptr a init with 900 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 internal i32 search(i32 x, i32 y, i32 n) {
 entry:  pred()
   .pinned = pin i32 1073741824
@@ -151,10 +149,6 @@ while.cond_unified_latch:  pred(if.exit122, if.exit82, select.exit113)
 }
 
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry178:  pred()
@@ -308,18 +302,6 @@ else285:  pred(while.exit221)
   br bb %if.exit284
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

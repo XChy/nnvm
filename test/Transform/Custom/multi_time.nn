@@ -7,28 +7,8 @@ entry:  pred()
   ret i32 0
 }
 
-external void putfarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
 
-external void putarray(i32 , ptr )
-
 external void _sysy_stoptime(i32 )
-
-external void putch(i32 )
-
-external void putfloat(float )
-
-external i32 getfarray(ptr )
-
-external i32 getarray(ptr )
-
-external void putint(i32 )
-
-external float getfloat()
-
-external i32 getch()
-
-external i32 getint()
 
 

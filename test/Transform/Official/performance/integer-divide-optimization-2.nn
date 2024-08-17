@@ -3,13 +3,7 @@ global ptr multi init with i32 2
 global ptr loopCount init with i32 0
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry6000:  pred()
@@ -54,18 +48,10 @@ while.exit6017:  pred(while.body6016)
   br i1 %6011, bb %while.cond6015_preheader, bb %while.exit
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

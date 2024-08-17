@@ -1,10 +1,4 @@
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
 
 external i32 getfarray(ptr )
 
@@ -130,12 +124,12 @@ assert_not.then72:  pred(entry77.split629.split)
   call void putch(i32 10)
   br bb %assert_not.if.exit73
 assert_not.if.exit73:  pred(assert_not.then72, assert_not.else74)
-  .pinned627 = pin float 60.475666
-  4562 = fcmp olt float %.pinned627, float %3550
-  8565 = fneg float %.pinned627
+  .pinned628 = pin float 60.475666
+  4562 = fcmp olt float %.pinned628, float %3550
+  8565 = fneg float %.pinned628
   br i1 %4562, bb %34420.ret.which.true, bb %assert_not.if.exit73.split
 assert_not.if.exit73.split:  pred(assert_not.if.exit73, 34420.ret.which.true)
-  637 = phi [bb %34420.ret.which.true, float %8565, bb %assert_not.if.exit73, float %.pinned627]
+  637 = phi [bb %34420.ret.which.true, float %8565, bb %assert_not.if.exit73, float %.pinned628]
   36421 = fcmp olt float %637, float %.pinned
   br i1 %36421, bb %84.ret.which.true, bb %assert_not.if.exit73.split.split
 assert_not.if.exit73.split.split:  pred(assert_not.if.exit73.split, 84.ret.which.true)
@@ -243,12 +237,12 @@ assert.then63514:  pred(assert.if.exit64.split.split)
   call void putch(i32 10)
   br bb %assert.if.exit64518
 assert.if.exit64518:  pred(assert.then63514, assert.else65520)
-  .pinned628 = pin float -3862.000000
-  4595 = fcmp olt float %.pinned628, float %3550
-  8598 = fneg float %.pinned628
+  .pinned627 = pin float -3862.000000
+  4595 = fcmp olt float %.pinned627, float %3550
+  8598 = fneg float %.pinned627
   br i1 %4595, bb %34468.ret.which.true, bb %assert.if.exit64518.split
 assert.if.exit64518.split:  pred(assert.if.exit64518, 34468.ret.which.true)
-  655 = phi [bb %34468.ret.which.true, float %8598, bb %assert.if.exit64518, float %.pinned628]
+  655 = phi [bb %34468.ret.which.true, float %8598, bb %assert.if.exit64518, float %.pinned627]
   36469 = fcmp olt float %655, float %.pinned
   br i1 %36469, bb %99.ret.which.true, bb %assert.if.exit64518.split.split
 assert.if.exit64518.split.split:  pred(assert.if.exit64518.split, 99.ret.which.true)
@@ -287,12 +281,6 @@ external float getfloat()
 external void putfloat(float )
 
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
 
 external void putfarray(i32 , ptr )
 

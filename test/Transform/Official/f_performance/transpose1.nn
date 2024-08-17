@@ -2,13 +2,9 @@ internal global ptr a init with 100000 x i32 zeros
 internal global ptr matrix init with 20000000 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
 
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry74:  pred()
@@ -69,9 +65,9 @@ transpose.while.exit:  pred(transpose.while.exit19, while.body98)
   br i1 %102, bb %while.body98, bb %while.cond115_preheader
 transpose.while.cond17_preheader:  pred(transpose.while.cond.cp, transpose.while.cond17_unified_latch)
   273 = phi [bb %transpose.while.cond.cp, i32 0, bb %transpose.while.cond17_unified_latch, i32 %44204.rec]
-  i.phi155185_ph_val = phi [bb %transpose.while.cond17_unified_latch, i32 %226, bb %transpose.while.cond.cp, i32 %i.phi177246]
-  j.phi184_ph_val = phi [bb %transpose.while.cond17_unified_latch, i32 %31195, bb %transpose.while.cond.cp, i32 0]
-  curr.phi183_ph_val = phi [bb %transpose.while.cond17_unified_latch, i32 %224, bb %transpose.while.cond.cp, i32 %curr.phi162176245]
+  i.phi155185_ph_val = phi [bb %transpose.while.cond.cp, i32 %i.phi177246, bb %transpose.while.cond17_unified_latch, i32 %226]
+  j.phi184_ph_val = phi [bb %transpose.while.cond.cp, i32 0, bb %transpose.while.cond17_unified_latch, i32 %31195]
+  curr.phi183_ph_val = phi [bb %transpose.while.cond.cp, i32 %curr.phi162176245, bb %transpose.while.cond17_unified_latch, i32 %224]
   22186 = icmp slt i32 %j.phi184_ph_val, i32 %107.load
   br i1 %22186, bb %transpose.while.body18, bb %transpose.while.exit19
 transpose.while.body18:  pred(transpose.while.cond17_preheader)
@@ -95,8 +91,8 @@ transpose.if.exit:  pred(transpose.while.body18)
   store i32 %40.load203 to ptr %40202
   br bb %transpose.while.cond17_unified_latch
 transpose.while.cond17_unified_latch:  pred(transpose.if.exit, transpose.while.body18)
-  226 = phi [bb %transpose.if.exit, i32 %i.phi155185_ph_val, bb %transpose.while.body18, i32 %i.phi155185_ph_val]
-  224 = phi [bb %transpose.if.exit, i32 %40.load203, bb %transpose.while.body18, i32 %curr.phi183_ph_val]
+  226 = phi [bb %transpose.while.body18, i32 %i.phi155185_ph_val, bb %transpose.if.exit, i32 %i.phi155185_ph_val]
+  224 = phi [bb %transpose.while.body18, i32 %curr.phi183_ph_val, bb %transpose.if.exit, i32 %40.load203]
   44204.rec = add i32 %273, i32 %6173
   br bb %transpose.while.cond17_preheader
 transpose.while.cond.cp:  pred(transpose.while.exit19, while.body98)
@@ -107,18 +103,10 @@ ans.phi.which.true:  pred(while.exit117)
   br bb %while.exit117.split
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

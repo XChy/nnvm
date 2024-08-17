@@ -4,13 +4,7 @@ internal global ptr store init with 30 x i32 zeros
 internal global ptr graph init with 900 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry89:  pred()
@@ -68,14 +62,6 @@ while.exit123:  pred(while.body122, while.cond121_preheader)
   call void putint(i32 %165)
   ret i32 0
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
 
 internal i32 maxCliques(i32 i, i32 k) {
 entry42:  pred()
@@ -143,11 +129,5 @@ is_clique.if.exit:  pred(is_clique.while.body14)
   38233 = add i32 %j.phi211, i32 1
   br bb %is_clique.while.cond13
 }
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 
