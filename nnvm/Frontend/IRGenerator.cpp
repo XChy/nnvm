@@ -1619,9 +1619,14 @@ Any IRGenerator::expLValUpdate(SysYParser::ExpContext *ctx) {
   if (!lhs_addr)
     return Symbol::none();
 
-  Symbol lhs = {builder.buildLoad(lhs_addr.entity, sym2IR(lhs_addr.symbolType),
+  Symbol lhs;
+  if (ctx->ASSIGN()) {
+    lhs = lhs_addr;
+  } else {
+    lhs = {builder.buildLoad(lhs_addr.entity, sym2IR(lhs_addr.symbolType),
                                   lhs_addr.entity->getName() + ".load"),
                 lhs_addr.symbolType};
+  }
 
   if (ctx->SELF_MINUS()) {
     Symbol newLhs;
