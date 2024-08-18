@@ -35,6 +35,8 @@ bool Mem2RegPass::run(Function &F) {
 
   dce(F);
 
+  std::cout << F.dump();
+
   std::vector<StackInst *> stackToRemove;
   for (Instruction *I : incChange(*F.getEntry())) {
     StackInst *SI = mayCast<StackInst>(I);
@@ -60,6 +62,7 @@ bool Mem2RegPass::run(Function &F) {
       }
 
       if (auto *use = mayCast<LoadInst>(user)) {
+        valueType = use->getType();
         localUseBBs.insert(use->getBlock());
         continue;
       }

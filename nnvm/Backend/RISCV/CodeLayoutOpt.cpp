@@ -46,10 +46,15 @@ void CodeLayoutOpt::run(LIRFunc &func) {
   }
 
   for (LIRBB *toremove : incChange(func)) {
+    EmitInfo info;
+
     toremove->removeFromList();
-    // Free unreachable blocks. 
-    if (!visited.count(toremove)) 
+    // Free unreachable blocks.
+    if (!visited.count(toremove)) {
+      for (LIRInst *inst : incChange(*toremove))
+        inst->eraseFromList();
       delete toremove;
+    }
   }
 
   for (LIRBB *toadd : result) {

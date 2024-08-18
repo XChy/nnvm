@@ -1036,7 +1036,11 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
         // TODO: cast fail
         return Symbol::none();
 
-      return Symbol{builder.buildRet(returned.entity), nullptr};
+      Symbol ret = Symbol{builder.buildRet(returned.entity), nullptr};
+      BasicBlock *afterBB =
+          new BasicBlock(cast<Function>(currentFunc->entity), "after.return");
+      builder.insertAt(afterBB->end());
+      return ret;
     } else {
       if (!currentFunc->symbolType->containedTy->isVoid()) {
         errorReporter.errorRecord(ctx, "Function return value should exsist");
@@ -1050,7 +1054,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   } else if (ctx->CONTINUE()) {
     builder.buildBr(whileLoops.top().condBB);
     BasicBlock *whileBody =
-      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+        new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
     builder.insertAt(whileBody->end());
   } else if (ctx->WHILE()) { // while
     if (!ctx->exp()) {
@@ -1061,7 +1065,7 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
   } else if (ctx->BREAK()) {
     builder.buildBr(whileLoops.top().afterBB);
     BasicBlock *whileBody =
-      new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
+        new BasicBlock(cast<Function>(currentFunc->entity), "while.body");
     builder.insertAt(whileBody->end());
   } else if (ctx->FOR()) {
     symbolTable.enterScope();
