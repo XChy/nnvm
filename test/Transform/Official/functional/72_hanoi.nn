@@ -1,27 +1,19 @@
 external i32 getint()
 
-external i32 getch()
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
-
 i32 main() {
 entry38:  pred()
   40 = call i32 getint()
   4576 = icmp sgt i32 %40, i32 0
-  br i1 %4576, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry38)
-  br bb %while.body
-while.body:  pred(while.body, while.body_preheader)
-  n.phi77 = phi [bb %while.body, i32 %57, bb %while.body_preheader, i32 %40]
+  br i1 %4576, bb %while.body, bb %while.exit
+while.body:  pred(while.body, entry38)
+  n.phi77 = phi [bb %while.body, i32 %57, bb %entry38, i32 %40]
   47 = call i32 getint()
   call void hanoi(i32 %47, i32 1, i32 2, i32 3)
   call void putch(i32 10)
   57 = add i32 %n.phi77, i32 -1
   45 = icmp sgt i32 %57, i32 0
   br i1 %45, bb %while.body, bb %while.exit
-while.exit:  pred(entry38, while.body)
+while.exit:  pred(while.body, entry38)
   ret i32 0
 }
 
@@ -50,19 +42,7 @@ else:  pred(entry10)
   br bb %if.exit
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 external void putint(i32 )
 

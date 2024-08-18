@@ -1,6 +1,7 @@
 #include "Rotate.h"
 #include "ADT/Hash.h"
 #include "IR/IRBuilder.h"
+#include "Utils/Debug.h"
 
 using namespace nnvm;
 
@@ -31,6 +32,8 @@ static bool usedOutsides(Value *value, Loop *loop) {
 // --->  exit
 
 bool RotatePass::rotate(Loop *loop) {
+  loop->updatePreheader();
+
   auto *oldHeader = loop->getHeader();
   auto *oldLatch = loop->getSingleLatch();
   auto *preheader = loop->getPreheader();
@@ -42,7 +45,7 @@ bool RotatePass::rotate(Loop *loop) {
     return false;
 
   // TODO: handle multiple exits
-  if (loop->getExits().size() > 1)
+  if (loop->getExits().size() != 1)
     return false;
 
   // If the latch is already an exiting block, the loop has been rotated.
@@ -58,9 +61,10 @@ bool RotatePass::rotate(Loop *loop) {
   if (loop->contains(exit))
     std::swap(exit, newHeader);
 
-  if (newHeader->getPredNum() != 1)
+  if (newHeader->getPredNum() != 1 || exit->getPredNum() != 1)
     return false;
 
+  opt_debug(std::cerr << "Rotated " << loop->getHeader()->getName() << "\n");
   // Copy instructions from old header to preheader.
   std::unordered_map<Value *, Value *> old2NewMap;
   auto instIt = oldHeader->begin();
@@ -112,23 +116,24 @@ bool RotatePass::rotate(Loop *loop) {
     builder.insertAt(exit->begin());
     auto *outsidePhi =
         builder.buildPhi(preheaderVal->getType(), preheaderVal->getName());
+
     headerVal->replaceSelfIf(outsidePhi, [loop](Use *U) {
       return !loop->contains(U->getUser()->getBlock());
     });
+
     for (auto *pred : exit->getPredRange()) {
       if (pred == preheader)
         outsidePhi->addIncoming(pred, preheaderVal);
-      else
+      else if (pred == oldHeader)
         outsidePhi->addIncoming(pred, headerVal);
+      else
+        nnvm_unreachable("The exit has multiple preds")
     }
   }
 
   // Move phis in oldHeader to newHeader
   builder.insertAt(newHeader->begin());
-  for (Instruction *I : incChange(*oldHeader)) {
-    PhiNode *phi = mayCast<PhiNode>(I);
-    if (!phi)
-      break;
+  for (PhiNode *phi : oldHeader->getPhis()) {
 
     auto *newPhi = builder.buildPhi(phi->getType(), phi->getName());
 
@@ -142,8 +147,19 @@ bool RotatePass::rotate(Loop *loop) {
         return U->getUser()->isa<PhiNode>();
       return loop->contains(userBB);
     });
+
+    Value *oldLatchVal = phi->getIncomingValueOf(oldLatch);
+    Value *newLatchVal = phi;
+    if (oldLatchVal->isInstruction()) {
+      if (cast<Instruction>(oldLatchVal)->getBlock() == oldHeader) {
+        newLatchVal = oldLatchVal;
+        phi->replaceSelf(newPhi);
+        phi->eraseFromBB();
+      }
+    }
+
     newPhi->addIncoming(preheader, preheaderVal);
-    newPhi->addIncoming(oldHeader, phi);
+    newPhi->addIncoming(oldHeader, newLatchVal);
   }
 
   // Rewrite inside uses

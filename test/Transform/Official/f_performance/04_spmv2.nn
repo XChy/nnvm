@@ -3,15 +3,7 @@ internal global ptr a init with 100010 x i32 zeros
 internal global ptr y init with 3000000 x i32 zeros
 internal global ptr x init with 100010 x i32 zeros
 internal global ptr v init with 3000000 x i32 zeros
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
 external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry113:  pred()
@@ -26,173 +18,157 @@ entry113:  pred()
   119 = call i32 getarray(ptr %v.pinned)
   120 = call i32 getarray(ptr %a.pinned)
   call void _sysy_starttime(i32 39)
-  11244369 = icmp slt i32 0, i32 %147
-  br bb %while.body124
-while.body124:  pred(spmv.while.exit23263, entry113)
-  i122.phi376 = phi [bb %spmv.while.exit23263, i32 %135, bb %entry113, i32 0]
-  br i1 %11244369, bb %spmv.while.body_preheader, bb %spmv.while.exit
-spmv.while.body_preheader:  pred(while.body124)
-  br bb %spmv.while.body
-spmv.while.body:  pred(spmv.while.body, spmv.while.body_preheader)
-  i.phi143169374 = phi [bb %spmv.while.body, i32 %19176, bb %spmv.while.body_preheader, i32 0]
-  335 = shl i32 %i.phi143169374, i32 2
-  15174 = ptradd ptr %b.pinned, i32 %335
-  store i32 0 to ptr %15174
-  19176 = add i32 %i.phi143169374, i32 1
-  11170 = icmp slt i32 %19176, i32 %147
-  br i1 %11170, bb %spmv.while.body, bb %spmv.while.exit
-spmv.while.exit:  pred(while.body124, spmv.while.body)
-  br i1 %11244369, bb %spmv.while.body22_preheader, bb %spmv.while.exit23
-spmv.while.body22_preheader:  pred(spmv.while.exit)
-  br bb %spmv.while.body22
-spmv.while.body22:  pred(spmv.while.exit73, spmv.while.body22_preheader)
-  i.phi181372 = phi [bb %spmv.while.exit73, i32 %38193351, bb %spmv.while.body22_preheader, i32 0]
-  336 = shl i32 %i.phi181372, i32 2
-  31186 = ptradd ptr %x.pinned, i32 %336
-  31.load187 = load i32 from ptr %31186
-  38193351 = add i32 %i.phi181372, i32 1
-  409 = ptradd ptr %31186, i32 4
-  40.load196353 = load i32 from ptr %409
-  42197354 = icmp slt i32 %31.load187, i32 %40.load196353
-  br i1 %42197354, bb %spmv.while.body34_preheader, bb %spmv.while.exit35
-spmv.while.exit23:  pred(spmv.while.exit, spmv.while.exit73)
-  br i1 %11244369, bb %spmv.while.body246_preheader, bb %spmv.while.exit252
-spmv.while.body34_preheader:  pred(spmv.while.body22)
-  br bb %spmv.while.body34
-spmv.while.body34:  pred(spmv.while.body34, spmv.while.body34_preheader)
-  j.phi146192357 = phi [bb %spmv.while.body34, i32 %65210, bb %spmv.while.body34_preheader, i32 %31.load187]
-  337 = shl i32 %j.phi146192357, i32 2
-  46201 = ptradd ptr %y.pinned, i32 %337
-  46.load202 = load i32 from ptr %46201
-  338 = shl i32 %46.load202, i32 2
-  49204 = ptradd ptr %b.pinned, i32 %338
-  56.load205 = load i32 from ptr %49204
-  60206 = ptradd ptr %v.pinned, i32 %337
-  60.load207 = load i32 from ptr %60206
-  62208 = add i32 %56.load205, i32 %60.load207
-  store i32 %62208 to ptr %49204
-  65210 = add i32 %j.phi146192357, i32 1
-  42197 = icmp slt i32 %65210, i32 %40.load196353
-  br i1 %42197, bb %spmv.while.body34, bb %spmv.while.body34_exclu_exit
-spmv.while.exit35:  pred(spmv.while.body22, spmv.while.body34_exclu_exit)
-  br i1 %42197354, bb %spmv.while.body72_preheader, bb %spmv.while.exit73
-spmv.while.body72_preheader:  pred(spmv.while.exit35)
-  102229 = ptradd ptr %a.pinned, i32 %336
-  102.load230 = load i32 from ptr %102229
-  164231 = add i32 %102.load230, i32 -1
-  br bb %spmv.while.body72
-spmv.while.body72:  pred(spmv.while.body72, spmv.while.body72_preheader)
-  j.phi216350 = phi [bb %spmv.while.body72, i32 %109235, bb %spmv.while.body72_preheader, i32 %31.load187]
-  339 = shl i32 %j.phi216350, i32 2
-  84222 = ptradd ptr %y.pinned, i32 %339
-  84.load223 = load i32 from ptr %84222
-  340 = shl i32 %84.load223, i32 2
-  87225 = ptradd ptr %b.pinned, i32 %340
-  94.load226 = load i32 from ptr %87225
-  98227 = ptradd ptr %v.pinned, i32 %339
-  98.load228 = load i32 from ptr %98227
-  105232 = mul i32 %98.load228, i32 %164231
-  106233 = add i32 %94.load226, i32 %105232
-  store i32 %106233 to ptr %87225
-  109235 = add i32 %j.phi216350, i32 1
-  80218 = icmp slt i32 %109235, i32 %40.load196353
-  br i1 %80218, bb %spmv.while.body72, bb %spmv.while.exit73
-spmv.while.exit73:  pred(spmv.while.exit35, spmv.while.body72)
-  26182 = icmp slt i32 %38193351, i32 %147
-  br i1 %26182, bb %spmv.while.body22, bb %spmv.while.exit23
-spmv.while.body246_preheader:  pred(spmv.while.exit23)
-  br bb %spmv.while.body246
-spmv.while.body246:  pred(spmv.while.body246, spmv.while.body246_preheader)
-  i.phi143243370 = phi [bb %spmv.while.body246, i32 %19250, bb %spmv.while.body246_preheader, i32 0]
-  341 = shl i32 %i.phi143243370, i32 2
-  15248 = ptradd ptr %a.pinned, i32 %341
-  store i32 0 to ptr %15248
-  19250 = add i32 %i.phi143243370, i32 1
-  11244 = icmp slt i32 %19250, i32 %147
-  br i1 %11244, bb %spmv.while.body246, bb %spmv.while.exit252
-spmv.while.exit252:  pred(spmv.while.exit23, spmv.while.body246)
-  br i1 %11244369, bb %spmv.while.body22258_preheader, bb %spmv.while.exit23263
-spmv.while.body22258_preheader:  pred(spmv.while.exit252)
-  br bb %spmv.while.body22258
-spmv.while.body22258:  pred(spmv.while.exit73311, spmv.while.body22258_preheader)
-  i.phi255368 = phi [bb %spmv.while.exit73311, i32 %38267360, bb %spmv.while.body22258_preheader, i32 0]
-  342 = shl i32 %i.phi255368, i32 2
-  31260 = ptradd ptr %x.pinned, i32 %342
-  31.load261 = load i32 from ptr %31260
-  38267360 = add i32 %i.phi255368, i32 1
-  411 = ptradd ptr %31260, i32 4
-  40.load270362 = load i32 from ptr %411
-  42271363 = icmp slt i32 %31.load261, i32 %40.load270362
-  br i1 %42271363, bb %spmv.while.body34273_preheader, bb %spmv.while.exit35286
-spmv.while.exit23263:  pred(spmv.while.exit252, spmv.while.exit73311)
-  135 = add i32 %i122.phi376, i32 1
-  127 = icmp slt i32 %135, i32 100
-  br i1 %127, bb %while.body124, bb %while.body124_exclu_exit
-spmv.while.body34273_preheader:  pred(spmv.while.body22258)
-  br bb %spmv.while.body34273
-spmv.while.body34273:  pred(spmv.while.body34273, spmv.while.body34273_preheader)
-  j.phi146266366 = phi [bb %spmv.while.body34273, i32 %65284, bb %spmv.while.body34273_preheader, i32 %31.load261]
-  343 = shl i32 %j.phi146266366, i32 2
-  46275 = ptradd ptr %y.pinned, i32 %343
-  46.load276 = load i32 from ptr %46275
-  344 = shl i32 %46.load276, i32 2
-  49278 = ptradd ptr %a.pinned, i32 %344
-  56.load279 = load i32 from ptr %49278
-  60280 = ptradd ptr %v.pinned, i32 %343
-  60.load281 = load i32 from ptr %60280
-  62282 = add i32 %56.load279, i32 %60.load281
-  store i32 %62282 to ptr %49278
-  65284 = add i32 %j.phi146266366, i32 1
-  42271 = icmp slt i32 %65284, i32 %40.load270362
-  br i1 %42271, bb %spmv.while.body34273, bb %spmv.while.body34273_exclu_exit
-spmv.while.exit35286:  pred(spmv.while.body22258, spmv.while.body34273_exclu_exit)
-  br i1 %42271363, bb %spmv.while.body72294_preheader, bb %spmv.while.exit73311
-spmv.while.body72294_preheader:  pred(spmv.while.exit35286)
-  102303 = ptradd ptr %b.pinned, i32 %342
-  102.load304 = load i32 from ptr %102303
-  164305 = add i32 %102.load304, i32 -1
-  br bb %spmv.while.body72294
-spmv.while.body72294:  pred(spmv.while.body72294, spmv.while.body72294_preheader)
-  j.phi290359 = phi [bb %spmv.while.body72294, i32 %109309, bb %spmv.while.body72294_preheader, i32 %31.load261]
-  345 = shl i32 %j.phi290359, i32 2
-  84296 = ptradd ptr %y.pinned, i32 %345
-  84.load297 = load i32 from ptr %84296
-  346 = shl i32 %84.load297, i32 2
-  87299 = ptradd ptr %a.pinned, i32 %346
-  94.load300 = load i32 from ptr %87299
-  98301 = ptradd ptr %v.pinned, i32 %345
-  98.load302 = load i32 from ptr %98301
-  105306 = mul i32 %98.load302, i32 %164305
-  106307 = add i32 %94.load300, i32 %105306
-  store i32 %106307 to ptr %87299
-  109309 = add i32 %j.phi290359, i32 1
-  80292 = icmp slt i32 %109309, i32 %40.load270362
-  br i1 %80292, bb %spmv.while.body72294, bb %spmv.while.exit73311
-spmv.while.exit73311:  pred(spmv.while.exit35286, spmv.while.body72294)
-  26256 = icmp slt i32 %38267360, i32 %147
-  br i1 %26256, bb %spmv.while.body22258, bb %spmv.while.exit23263
-spmv.while.body34_exclu_exit:  pred(spmv.while.body34)
-  br bb %spmv.while.exit35
-spmv.while.body34273_exclu_exit:  pred(spmv.while.body34273)
-  br bb %spmv.while.exit35286
-while.body124_exclu_exit:  pred(spmv.while.exit23263)
+  br bb %spmv.while.cond_preheader
+while.exit125:  pred(spmv.while.exit23259)
   call void _sysy_stoptime(i32 47)
   call void putarray(i32 %147, ptr %b.pinned)
   ret i32 0
+spmv.while.cond_preheader:  pred(spmv.while.exit23259, entry113)
+  i122.phi382 = phi [bb %spmv.while.exit23259, i32 %135, bb %entry113, i32 0]
+  11170379 = icmp slt i32 0, i32 %147
+  br i1 %11170379, bb %spmv.while.body, bb %spmv.while.cond.cp
+spmv.while.body:  pred(spmv.while.body, spmv.while.cond_preheader)
+  i.phi143169380 = phi [bb %spmv.while.body, i32 %19176, bb %spmv.while.cond_preheader, i32 0]
+  331 = shl i32 %i.phi143169380, i32 2
+  15174 = ptradd ptr %b.pinned, i32 %331
+  store i32 0 to ptr %15174
+  19176 = add i32 %i.phi143169380, i32 1
+  11170 = icmp slt i32 %19176, i32 %147
+  br i1 %11170, bb %spmv.while.body, bb %spmv.while.cond.cp
+spmv.while.cond21_preheader:  pred(spmv.while.cond.cp, spmv.while.cond71.cp)
+  i.phi179_ph_val = phi [bb %spmv.while.cond71.cp, i32 %38191361, bb %spmv.while.cond.cp, i32 0]
+  26180 = icmp slt i32 %i.phi179_ph_val, i32 %147
+  br i1 %26180, bb %spmv.while.body22, bb %spmv.while.cond240_preheader
+spmv.while.body22:  pred(spmv.while.cond21_preheader)
+  332 = shl i32 %i.phi179_ph_val, i32 2
+  31184 = ptradd ptr %x.pinned, i32 %332
+  31.load185 = load i32 from ptr %31184
+  38191361 = add i32 %i.phi179_ph_val, i32 1
+  315362 = ptradd ptr %31184, i32 4
+  40.load194363 = load i32 from ptr %315362
+  42195364 = icmp slt i32 %31.load185, i32 %40.load194363
+  br i1 %42195364, bb %spmv.while.body34_preheader, bb %spmv.while.exit35
+spmv.while.body34_preheader:  pred(spmv.while.body22)
+  br bb %spmv.while.body34
+spmv.while.body34:  pred(spmv.while.body34, spmv.while.body34_preheader)
+  j.phi146190367 = phi [bb %spmv.while.body34, i32 %65208, bb %spmv.while.body34_preheader, i32 %31.load185]
+  333 = shl i32 %j.phi146190367, i32 2
+  46199 = ptradd ptr %y.pinned, i32 %333
+  46.load200 = load i32 from ptr %46199
+  334 = shl i32 %46.load200, i32 2
+  49202 = ptradd ptr %b.pinned, i32 %334
+  56.load203 = load i32 from ptr %49202
+  60204 = ptradd ptr %v.pinned, i32 %333
+  60.load205 = load i32 from ptr %60204
+  62206 = add i32 %56.load203, i32 %60.load205
+  store i32 %62206 to ptr %49202
+  65208 = add i32 %j.phi146190367, i32 1
+  42195 = icmp slt i32 %65208, i32 %40.load194363
+  br i1 %42195, bb %spmv.while.body34, bb %spmv.while.exit35
+spmv.while.exit35:  pred(spmv.while.body34, spmv.while.body22)
+  br i1 %42195364, bb %spmv.while.body72_preheader, bb %spmv.while.cond71.cp
+spmv.while.body72_preheader:  pred(spmv.while.exit35)
+  102227 = ptradd ptr %a.pinned, i32 %332
+  102.load228 = load i32 from ptr %102227
+  164229 = add i32 %102.load228, i32 -1
+  br bb %spmv.while.body72
+spmv.while.body72:  pred(spmv.while.body72, spmv.while.body72_preheader)
+  j.phi214360 = phi [bb %spmv.while.body72, i32 %109233, bb %spmv.while.body72_preheader, i32 %31.load185]
+  335 = shl i32 %j.phi214360, i32 2
+  84220 = ptradd ptr %y.pinned, i32 %335
+  84.load221 = load i32 from ptr %84220
+  336 = shl i32 %84.load221, i32 2
+  87223 = ptradd ptr %b.pinned, i32 %336
+  94.load224 = load i32 from ptr %87223
+  98225 = ptradd ptr %v.pinned, i32 %335
+  98.load226 = load i32 from ptr %98225
+  105230 = mul i32 %98.load226, i32 %164229
+  106231 = add i32 %94.load224, i32 %105230
+  store i32 %106231 to ptr %87223
+  109233 = add i32 %j.phi214360, i32 1
+  80216 = icmp slt i32 %109233, i32 %40.load194363
+  br i1 %80216, bb %spmv.while.body72, bb %spmv.while.cond71.cp
+spmv.while.cond240_preheader:  pred(spmv.while.cond21_preheader)
+  br i1 %11170379, bb %spmv.while.body244, bb %spmv.while.cond240.cp
+spmv.while.body244:  pred(spmv.while.body244, spmv.while.cond240_preheader)
+  i.phi143241378 = phi [bb %spmv.while.body244, i32 %19248, bb %spmv.while.cond240_preheader, i32 0]
+  337 = shl i32 %i.phi143241378, i32 2
+  15246 = ptradd ptr %a.pinned, i32 %337
+  store i32 0 to ptr %15246
+  19248 = add i32 %i.phi143241378, i32 1
+  11242 = icmp slt i32 %19248, i32 %147
+  br i1 %11242, bb %spmv.while.body244, bb %spmv.while.cond240.cp
+spmv.while.cond21250_preheader:  pred(spmv.while.cond240.cp, spmv.while.cond71285.cp)
+  i.phi251_ph_val = phi [bb %spmv.while.cond71285.cp, i32 %38263370, bb %spmv.while.cond240.cp, i32 0]
+  26252 = icmp slt i32 %i.phi251_ph_val, i32 %147
+  br i1 %26252, bb %spmv.while.body22254, bb %spmv.while.exit23259
+spmv.while.body22254:  pred(spmv.while.cond21250_preheader)
+  338 = shl i32 %i.phi251_ph_val, i32 2
+  31256 = ptradd ptr %x.pinned, i32 %338
+  31.load257 = load i32 from ptr %31256
+  38263370 = add i32 %i.phi251_ph_val, i32 1
+  326371 = ptradd ptr %31256, i32 4
+  40.load266372 = load i32 from ptr %326371
+  42267373 = icmp slt i32 %31.load257, i32 %40.load266372
+  br i1 %42267373, bb %spmv.while.body34269_preheader, bb %spmv.while.exit35282
+spmv.while.exit23259:  pred(spmv.while.cond21250_preheader)
+  135 = add i32 %i122.phi382, i32 1
+  127 = icmp slt i32 %135, i32 100
+  br i1 %127, bb %spmv.while.cond_preheader, bb %while.exit125
+spmv.while.body34269_preheader:  pred(spmv.while.body22254)
+  br bb %spmv.while.body34269
+spmv.while.body34269:  pred(spmv.while.body34269, spmv.while.body34269_preheader)
+  j.phi146262376 = phi [bb %spmv.while.body34269, i32 %65280, bb %spmv.while.body34269_preheader, i32 %31.load257]
+  339 = shl i32 %j.phi146262376, i32 2
+  46271 = ptradd ptr %y.pinned, i32 %339
+  46.load272 = load i32 from ptr %46271
+  340 = shl i32 %46.load272, i32 2
+  49274 = ptradd ptr %a.pinned, i32 %340
+  56.load275 = load i32 from ptr %49274
+  60276 = ptradd ptr %v.pinned, i32 %339
+  60.load277 = load i32 from ptr %60276
+  62278 = add i32 %56.load275, i32 %60.load277
+  store i32 %62278 to ptr %49274
+  65280 = add i32 %j.phi146262376, i32 1
+  42267 = icmp slt i32 %65280, i32 %40.load266372
+  br i1 %42267, bb %spmv.while.body34269, bb %spmv.while.exit35282
+spmv.while.exit35282:  pred(spmv.while.body34269, spmv.while.body22254)
+  br i1 %42267373, bb %spmv.while.body72290_preheader, bb %spmv.while.cond71285.cp
+spmv.while.body72290_preheader:  pred(spmv.while.exit35282)
+  102299 = ptradd ptr %b.pinned, i32 %338
+  102.load300 = load i32 from ptr %102299
+  164301 = add i32 %102.load300, i32 -1
+  br bb %spmv.while.body72290
+spmv.while.body72290:  pred(spmv.while.body72290, spmv.while.body72290_preheader)
+  j.phi286369 = phi [bb %spmv.while.body72290, i32 %109305, bb %spmv.while.body72290_preheader, i32 %31.load257]
+  341 = shl i32 %j.phi286369, i32 2
+  84292 = ptradd ptr %y.pinned, i32 %341
+  84.load293 = load i32 from ptr %84292
+  342 = shl i32 %84.load293, i32 2
+  87295 = ptradd ptr %a.pinned, i32 %342
+  94.load296 = load i32 from ptr %87295
+  98297 = ptradd ptr %v.pinned, i32 %341
+  98.load298 = load i32 from ptr %98297
+  105302 = mul i32 %98.load298, i32 %164301
+  106303 = add i32 %94.load296, i32 %105302
+  store i32 %106303 to ptr %87295
+  109305 = add i32 %j.phi286369, i32 1
+  80288 = icmp slt i32 %109305, i32 %40.load266372
+  br i1 %80288, bb %spmv.while.body72290, bb %spmv.while.cond71285.cp
+spmv.while.cond.cp:  pred(spmv.while.body, spmv.while.cond_preheader)
+  br bb %spmv.while.cond21_preheader
+spmv.while.cond71.cp:  pred(spmv.while.body72, spmv.while.exit35)
+  br bb %spmv.while.cond21_preheader
+spmv.while.cond240.cp:  pred(spmv.while.body244, spmv.while.cond240_preheader)
+  br bb %spmv.while.cond21250_preheader
+spmv.while.cond71285.cp:  pred(spmv.while.body72290, spmv.while.exit35282)
+  br bb %spmv.while.cond21250_preheader
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
 external void putarray(i32 , ptr )
 
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

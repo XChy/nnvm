@@ -121,7 +121,7 @@ bb16:   # loop depth 1
   SW a1, 400(a0)
   BLT t2, s3, bb18
   # implict jump to bb17
-bb17:   # loop depth 0
+bb17:   # loop depth 1
   JAL zero, bb6
 bb18:   # loop depth 1
   JAL zero, bb16
@@ -150,7 +150,7 @@ bb22:   # loop depth 1
   ADDIW t0, t0, 1
   BNE a0, zero, bb24
   # implict jump to bb23
-bb23:   # loop depth 0
+bb23:   # loop depth 1
   JAL zero, bb4
 bb24:   # loop depth 1
   JAL zero, bb20

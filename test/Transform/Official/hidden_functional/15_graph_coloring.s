@@ -68,9 +68,9 @@ bb7:   # loop depth 0
   # implict jump to bb8
 bb8:   # loop depth 1
   SLTI t1, a0, 4
-  BNE t1, zero, bb13
+  BNE t1, zero, bb16
   # implict jump to bb9
-bb9:   # loop depth 0
+bb9:   # loop depth 1
   ADDI t0, zero, 1
   # implict jump to bb10
 bb10:   # loop depth 0
@@ -88,22 +88,19 @@ bb11:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb12:   # loop depth 0
-  LW a0, 0(s0)
+  ADD s1, zero, zero
+  # implict jump to bb13
+bb13:   # loop depth 1
+  SH2ADD t0, s1, s0
+  ADDIW s1, s1, 1
+  LW a0, 0(t0)
+  SLTI s2, s1, 4
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  LW a0, 4(s0)
-  CALL putint
-  ADDI a0, zero, 32
-  CALL putch
-  LW a0, 8(s0)
-  CALL putint
-  ADDI a0, zero, 32
-  CALL putch
-  LW a0, 12(s0)
-  CALL putint
-  ADDI a0, zero, 32
-  CALL putch
+  BNE s2, zero, bb15
+  # implict jump to bb14
+bb14:   # loop depth 0
   ADDI a0, zero, 10
   CALL putch
   ADDI a0, zero, 1
@@ -116,44 +113,46 @@ bb12:   # loop depth 0
   LD s5, 48(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
-bb13:   # loop depth 1
+bb15:   # loop depth 1
+  JAL zero, bb13
+bb16:   # loop depth 1
   SLLIW a1, a0, 4
   ADDIW t2, a0, 1
   ADD t1, t2, zero
   SH2ADD a2, a0, s0
   ADD a0, s3, a1
-  # implict jump to bb14
-bb14:   # loop depth 2
-  SLTI a1, t1, 4
-  BNE a1, zero, bb16
-  # implict jump to bb15
-bb15:   # loop depth 1
-  ADD a0, t2, zero
-  JAL zero, bb8
-bb16:   # loop depth 2
-  SH2ADD t0, t1, a0
-  LW t0, 0(t0)
-  BNE t0, zero, bb21
   # implict jump to bb17
 bb17:   # loop depth 2
-  ADD t0, zero, zero
+  SLTI a1, t1, 4
+  BNE a1, zero, bb19
   # implict jump to bb18
 bb18:   # loop depth 2
-  BNE t0, zero, bb20
-  # implict jump to bb19
+  ADD a0, t2, zero
+  JAL zero, bb8
 bb19:   # loop depth 2
+  SH2ADD t0, t1, a0
+  LW t0, 0(t0)
+  BNE t0, zero, bb24
+  # implict jump to bb20
+bb20:   # loop depth 2
+  ADD t0, zero, zero
+  # implict jump to bb21
+bb21:   # loop depth 2
+  BNE t0, zero, bb23
+  # implict jump to bb22
+bb22:   # loop depth 2
   ADDIW t1, t1, 1
-  JAL zero, bb14
-bb20:   # loop depth 0
+  JAL zero, bb17
+bb23:   # loop depth 2
   ADD t0, zero, zero
   JAL zero, bb10
-bb21:   # loop depth 2
+bb24:   # loop depth 2
   SH2ADD t0, t1, s0
   LW t0, 0(t0)
   LW a1, 0(a2)
   XOR t0, t0, a1
   SLTIU t0, t0, 1
-  JAL zero, bb18
+  JAL zero, bb21
 main:   # loop depth 0
   ADDI sp, sp, -96
   SD ra, 80(sp)
@@ -195,14 +194,14 @@ main:   # loop depth 0
   SW zero, 12(sp)
   CALL graphColoring
   SLTU t0, zero, a0
-  BEQ t0, zero, bb24
-  # implict jump to bb23
-bb23:   # loop depth 0
+  BEQ t0, zero, bb27
+  # implict jump to bb26
+bb26:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb24:   # loop depth 0
+bb27:   # loop depth 0
   ADDI a0, zero, 78
   CALL putch
   ADDI a0, zero, 111
@@ -221,4 +220,4 @@ bb24:   # loop depth 0
   CALL putch
   ADDI a0, zero, 116
   CALL putch
-  JAL zero, bb23
+  JAL zero, bb26

@@ -164,7 +164,7 @@ bb21:   # loop depth 1
   FADD.S fs0, fs0, ft1
   BLT t0, s0, bb23
   # implict jump to bb22
-bb22:   # loop depth 0
+bb22:   # loop depth 1
   JAL zero, bb13
 bb23:   # loop depth 1
   JAL zero, bb21
@@ -189,7 +189,7 @@ bb25:   # loop depth 1
   FADD.S ft0, ft0, ft1
   BLT t0, s0, bb27
   # implict jump to bb26
-bb26:   # loop depth 0
+bb26:   # loop depth 1
   JAL zero, bb11
 bb27:   # loop depth 1
   JAL zero, bb25
@@ -239,7 +239,7 @@ bb35:   # loop depth 3
   FADD.S ft0, ft0, ft1
   BLT t1, s0, bb37
   # implict jump to bb36
-bb36:   # loop depth 2
+bb36:   # loop depth 3
   ADD t0, t1, zero
   JAL zero, bb32
 bb37:   # loop depth 3
@@ -289,7 +289,7 @@ bb44:   # loop depth 3
   FADD.S ft0, ft0, ft1
   BLT t0, s0, bb46
   # implict jump to bb45
-bb45:   # loop depth 2
+bb45:   # loop depth 3
   JAL zero, bb41
 bb46:   # loop depth 3
   JAL zero, bb44
@@ -337,7 +337,7 @@ bb53:   # loop depth 3
   FADD.S ft0, ft0, ft1
   BLT t1, s0, bb55
   # implict jump to bb54
-bb54:   # loop depth 2
+bb54:   # loop depth 3
   ADD t0, t1, zero
   JAL zero, bb50
 bb55:   # loop depth 3
@@ -387,7 +387,7 @@ bb62:   # loop depth 3
   FADD.S ft0, ft0, ft1
   BLT t0, s0, bb64
   # implict jump to bb63
-bb63:   # loop depth 2
+bb63:   # loop depth 3
   JAL zero, bb59
 bb64:   # loop depth 3
   JAL zero, bb62

@@ -1,15 +1,7 @@
 global ptr b init with i32 0
 global ptr d init with i32 0
 global ptr a init with i32 0
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry15:  pred()
@@ -38,7 +30,7 @@ entry15:  pred()
 select.then56:  pred(entry15)
   store i32 3 to ptr %d.pinned
   br bb %select.exit58
-select.exit58:  pred(select.then56, entry15)
+select.exit58:  pred(entry15, select.then56)
   d.load65 = load i32 from ptr %d.pinned
   call void putint(i32 %d.load65)
   call void putch(i32 32)
@@ -94,18 +86,6 @@ if.exit209:  pred(if.exit183, then208)
   ret i32 0
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

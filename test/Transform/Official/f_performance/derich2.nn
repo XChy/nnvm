@@ -5,306 +5,21 @@ internal global ptr imgIn init with 138240 x float zeros
 immutable internal global ptr alpha init with float 0.250000
 global ptr h init with i32 270
 global ptr w init with i32 512
-internal void kernel_deriche(i32 w, i32 h, float alpha, ptr imgIn, ptr imgOut, ptr y1, ptr y2) {
-entry68:  pred()
-  .pinned814 = pin float 2.000000
-  .pinned813 = pin float 1.000000
-  .pinned = pin float 0.000000
-  99 = fneg float %alpha
-  4631 = si2f i32 256 to float
-  5632 = fdiv float %99, float %4631
-  6633 = fadd float %5632, float %.pinned813
-  10634 = fmul float %6633, float %6633
-  14635 = fmul float %10634, float %10634
-  18636 = fmul float %14635, float %14635
-  22637 = fmul float %18636, float %18636
-  26638 = fmul float %22637, float %22637
-  30639 = fmul float %26638, float %26638
-  34640 = fmul float %30639, float %30639
-  38641 = fmul float %34640, float %34640
-  101 = fsub float %.pinned813, float %38641
-  106 = fmul float %101, float %101
-  108 = fmul float %alpha, float %.pinned814
-  112 = fmul float %108, float %38641
-  113 = fadd float %112, float %.pinned813
-  5647 = fdiv float %108, float %4631
-  6648 = fadd float %5647, float %.pinned813
-  10649 = fmul float %6648, float %6648
-  14650 = fmul float %10649, float %10649
-  18651 = fmul float %14650, float %14650
-  22652 = fmul float %18651, float %18651
-  26653 = fmul float %22652, float %22652
-  30654 = fmul float %26653, float %26653
-  34655 = fmul float %30654, float %30654
-  38656 = fmul float %34655, float %34655
-  117 = fsub float %113, float %38656
-  118 = fdiv float %106, float %117
-  128 = fmul float %118, float %38641
-  130 = fsub float %alpha, float %.pinned813
-  131 = fmul float %128, float %130
-  141 = fadd float %alpha, float %.pinned813
-  142 = fmul float %128, float %141
-  147 = fneg float %118
-  148 = fneg float %.pinned814
-  150 = fmul float %148, float %alpha
-  5662 = fdiv float %150, float %4631
-  6663 = fadd float %5662, float %.pinned813
-  10664 = fmul float %6663, float %6663
-  14665 = fmul float %10664, float %10664
-  18666 = fmul float %14665, float %14665
-  22667 = fmul float %18666, float %18666
-  26668 = fmul float %22667, float %22667
-  30669 = fmul float %26668, float %26668
-  34670 = fmul float %30669, float %30669
-  38671 = fmul float %34670, float %34670
-  152 = fmul float %147, float %38671
-  158 = f2si float %99 to i32
-  159 = call float newPow(float %.pinned814, i32 %158)
-  165 = fneg float %38671
-  167 = si2f i32 1 to float
-  176722 = icmp slt i32 0, i32 %w
-  br i1 %176722, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry68)
-  187686 = icmp slt i32 0, i32 %h
-  br bb %while.body
-while.body:  pred(while.exit184, while.body_preheader)
-  782 = phi [bb %while.body_preheader, i32 0, bb %while.exit184, i32 %190.rec]
-  i.phi561723 = phi [bb %while.exit184, i32 %240, bb %while.body_preheader, i32 0]
-  br i1 %187686, bb %while.body183_preheader, bb %while.exit184
-while.exit:  pred(entry68, while.exit184)
-  br i1 %176722, bb %while.body243_preheader, bb %while.exit244
-while.body183_preheader:  pred(while.body)
-  191 = ptradd ptr %y1, i32 %782
-  199 = ptradd ptr %imgIn, i32 %782
-  br bb %while.body183
-while.body183:  pred(while.body183, while.body183_preheader)
-  j.phi571690 = phi [bb %while.body183, i32 %237, bb %while.body183_preheader, i32 0]
-  ym2.phi575689 = phi [bb %while.body183, float %ym1.phi597687, bb %while.body183_preheader, float %.pinned]
-  xm1.phi688 = phi [bb %while.body183, float %223.load, bb %while.body183_preheader, float %.pinned]
-  ym1.phi597687 = phi [bb %while.body183, float %216, bb %while.body183_preheader, float %.pinned]
-  680 = shl i32 %j.phi571690, i32 2
-  194 = ptradd ptr %191, i32 %680
-  202 = ptradd ptr %199, i32 %680
-  202.load = load float from ptr %202
-  204 = fmul float %118, float %202.load
-  207 = fmul float %131, float %xm1.phi688
-  208 = fadd float %204, float %207
-  211 = fmul float %159, float %ym1.phi597687
-  212 = fadd float %208, float %211
-  215 = fmul float %165, float %ym2.phi575689
-  216 = fadd float %212, float %215
-  store float %216 to ptr %194
-  223.load = load float from ptr %202
-  237 = add i32 %j.phi571690, i32 1
-  187 = icmp slt i32 %237, i32 %h
-  br i1 %187, bb %while.body183, bb %while.exit184
-while.exit184:  pred(while.body, while.body183)
-  240 = add i32 %i.phi561723, i32 1
-  176 = icmp slt i32 %240, i32 %w
-  190.rec = add i32 %782, i32 1080
-  br i1 %176, bb %while.body, bb %while.exit
-while.body243_preheader:  pred(while.exit)
-  608 = add i32 %h, i32 -1
-  260691 = icmp sge i32 %608, i32 0
-  br bb %while.body243
-while.body243:  pred(while.exit258, while.body243_preheader)
-  785 = phi [bb %while.body243_preheader, i32 0, bb %while.exit258, i32 %263.rec]
-  i.phi562721 = phi [bb %while.exit258, i32 %309, bb %while.body243_preheader, i32 0]
-  br i1 %260691, bb %while.body257_preheader, bb %while.exit258
-while.exit244:  pred(while.exit, while.exit258)
-  br i1 %176722, bb %while.body312_preheader, bb %while.exit313
-while.body257_preheader:  pred(while.body243)
-  264 = ptradd ptr %y2, i32 %785
-  289 = ptradd ptr %imgIn, i32 %785
-  br bb %while.body257
-while.body257:  pred(while.body257, while.body257_preheader)
-  j.phi569696 = phi [bb %while.body257, i32 %612, bb %while.body257_preheader, i32 %608]
-  xp1.phi695 = phi [bb %while.body257, float %292.load, bb %while.body257_preheader, float %.pinned]
-  xp2.phi694 = phi [bb %while.body257, float %xp1.phi695, bb %while.body257_preheader, float %.pinned]
-  yp1.phi589693 = phi [bb %while.body257, float %283, bb %while.body257_preheader, float %.pinned]
-  yp2.phi593692 = phi [bb %while.body257, float %yp1.phi589693, bb %while.body257_preheader, float %.pinned]
-  681 = shl i32 %j.phi569696, i32 2
-  267 = ptradd ptr %264, i32 %681
-  271 = fmul float %142, float %xp1.phi695
-  274 = fmul float %152, float %xp2.phi694
-  275 = fadd float %271, float %274
-  278 = fmul float %159, float %yp1.phi589693
-  279 = fadd float %275, float %278
-  282 = fmul float %165, float %yp2.phi593692
-  283 = fadd float %279, float %282
-  store float %283 to ptr %267
-  292 = ptradd ptr %289, i32 %681
-  292.load = load float from ptr %292
-  612 = add i32 %j.phi569696, i32 -1
-  260 = icmp sge i32 %612, i32 0
-  br i1 %260, bb %while.body257, bb %while.exit258
-while.exit258:  pred(while.body243, while.body257)
-  309 = add i32 %i.phi562721, i32 1
-  247 = icmp slt i32 %309, i32 %w
-  263.rec = add i32 %785, i32 1080
-  br i1 %247, bb %while.body243, bb %while.exit244
-while.body312_preheader:  pred(while.exit244)
-  324697 = icmp slt i32 0, i32 %h
-  br bb %while.body312
-while.body312:  pred(while.exit321, while.body312_preheader)
-  788 = phi [bb %while.body312_preheader, i32 0, bb %while.exit321, i32 %327.rec]
-  i.phi560719 = phi [bb %while.exit321, i32 %355, bb %while.body312_preheader, i32 0]
-  br i1 %324697, bb %while.body320_preheader, bb %while.exit321
-while.exit313:  pred(while.exit244, while.exit321)
-  362716 = icmp slt i32 0, i32 %h
-  br i1 %362716, bb %while.body358_preheader, bb %while.exit359
-while.body320_preheader:  pred(while.body312)
-  328 = ptradd ptr %imgOut, i32 %788
-  336 = ptradd ptr %y1, i32 %788
-  343 = ptradd ptr %y2, i32 %788
-  br bb %while.body320
-while.body320:  pred(while.body320, while.body320_preheader)
-  j.phi567698 = phi [bb %while.body320, i32 %352, bb %while.body320_preheader, i32 0]
-  682 = shl i32 %j.phi567698, i32 2
-  331 = ptradd ptr %328, i32 %682
-  339 = ptradd ptr %336, i32 %682
-  339.load = load float from ptr %339
-  346 = ptradd ptr %343, i32 %682
-  346.load = load float from ptr %346
-  348 = fadd float %339.load, float %346.load
-  349 = fmul float %167, float %348
-  store float %349 to ptr %331
-  352 = add i32 %j.phi567698, i32 1
-  324 = icmp slt i32 %352, i32 %h
-  br i1 %324, bb %while.body320, bb %while.exit321
-while.exit321:  pred(while.body312, while.body320)
-  355 = add i32 %i.phi560719, i32 1
-  316 = icmp slt i32 %355, i32 %w
-  327.rec = add i32 %788, i32 1080
-  br i1 %316, bb %while.body312, bb %while.exit313
-while.body358_preheader:  pred(while.exit313)
-  br bb %while.body358
-while.body358:  pred(while.exit370, while.body358_preheader)
-  j.phi566717 = phi [bb %while.exit370, i32 %426, bb %while.body358_preheader, i32 0]
-  br i1 %176722, bb %while.body369_preheader, bb %while.exit370
-while.exit359:  pred(while.exit313, while.exit370)
-  br i1 %362716, bb %while.body429_preheader, bb %while.exit430
-while.body369_preheader:  pred(while.body358)
-  683 = shl i32 %j.phi566717, i32 2
-  774 = ptradd ptr %y1, i32 %683
-  776 = ptradd ptr %imgOut, i32 %683
-  br bb %while.body369
-while.body369:  pred(while.body369, while.body369_preheader)
-  791 = phi [bb %while.body369_preheader, i32 0, bb %while.body369, i32 %376.rec]
-  i.phi558703 = phi [bb %while.body369, i32 %423, bb %while.body369_preheader, i32 0]
-  ym2.phi702 = phi [bb %while.body369, float %ym1.phi701, bb %while.body369_preheader, float %.pinned]
-  ym1.phi701 = phi [bb %while.body369, float %402, bb %while.body369_preheader, float %.pinned]
-  tm1.phi700 = phi [bb %while.body369, float %409.load, bb %while.body369_preheader, float %.pinned]
-  775 = ptradd ptr %774, i32 %791
-  777 = ptradd ptr %776, i32 %791
-  388.load = load float from ptr %777
-  390 = fmul float %118, float %388.load
-  393 = fmul float %131, float %tm1.phi700
-  394 = fadd float %390, float %393
-  397 = fmul float %159, float %ym1.phi701
-  398 = fadd float %394, float %397
-  401 = fmul float %165, float %ym2.phi702
-  402 = fadd float %398, float %401
-  store float %402 to ptr %775
-  409.load = load float from ptr %777
-  423 = add i32 %i.phi558703, i32 1
-  373 = icmp slt i32 %423, i32 %w
-  376.rec = add i32 %791, i32 1080
-  br i1 %373, bb %while.body369, bb %while.exit370
-while.exit370:  pred(while.body358, while.body369)
-  426 = add i32 %j.phi566717, i32 1
-  362 = icmp slt i32 %426, i32 %h
-  br i1 %362, bb %while.body358, bb %while.exit359
-while.body429_preheader:  pred(while.exit359)
-  620 = add i32 %w, i32 -1
-  446704 = icmp sge i32 %620, i32 0
-  br bb %while.body429
-while.body429:  pred(while.exit444, while.body429_preheader)
-  j.phi565715 = phi [bb %while.exit444, i32 %495, bb %while.body429_preheader, i32 0]
-  br i1 %446704, bb %while.body443_preheader, bb %while.exit444
-while.exit430:  pred(while.exit359, while.exit444)
-  br i1 %176722, bb %while.body498_preheader, bb %while.exit499
-while.body443_preheader:  pred(while.body429)
-  684 = shl i32 %j.phi565715, i32 2
-  778 = ptradd ptr %y2, i32 %684
-  780 = ptradd ptr %imgOut, i32 %684
-  795 = mul i32 %620, i32 1080
-  br bb %while.body443
-while.body443:  pred(while.body443, while.body443_preheader)
-  794 = phi [bb %while.body443_preheader, i32 %795, bb %while.body443, i32 %449.rec]
-  i.phi556709 = phi [bb %while.body443, i32 %624, bb %while.body443_preheader, i32 %620]
-  tp1.phi708 = phi [bb %while.body443, float %478.load, bb %while.body443_preheader, float %.pinned]
-  tp2.phi707 = phi [bb %while.body443, float %tp1.phi708, bb %while.body443_preheader, float %.pinned]
-  yp1.phi706 = phi [bb %while.body443, float %469, bb %while.body443_preheader, float %.pinned]
-  yp2.phi705 = phi [bb %while.body443, float %yp1.phi706, bb %while.body443_preheader, float %.pinned]
-  779 = ptradd ptr %778, i32 %794
-  457 = fmul float %142, float %tp1.phi708
-  460 = fmul float %152, float %tp2.phi707
-  461 = fadd float %457, float %460
-  464 = fmul float %159, float %yp1.phi706
-  465 = fadd float %461, float %464
-  468 = fmul float %165, float %yp2.phi705
-  469 = fadd float %465, float %468
-  store float %469 to ptr %779
-  781 = ptradd ptr %780, i32 %794
-  478.load = load float from ptr %781
-  624 = add i32 %i.phi556709, i32 -1
-  446 = icmp sge i32 %624, i32 0
-  449.rec = add i32 %794, i32 -1080
-  br i1 %446, bb %while.body443, bb %while.exit444
-while.exit444:  pred(while.body429, while.body443)
-  495 = add i32 %j.phi565715, i32 1
-  433 = icmp slt i32 %495, i32 %h
-  br i1 %433, bb %while.body429, bb %while.exit430
-while.body498_preheader:  pred(while.exit430)
-  br bb %while.body498
-while.body498:  pred(while.exit507, while.body498_preheader)
-  797 = phi [bb %while.body498_preheader, i32 0, bb %while.exit507, i32 %513.rec]
-  i.phi713 = phi [bb %while.exit507, i32 %541, bb %while.body498_preheader, i32 0]
-  br i1 %362716, bb %while.body506_preheader, bb %while.exit507
-while.exit499:  pred(while.exit430, while.exit507)
-  ret 
-while.body506_preheader:  pred(while.body498)
-  514 = ptradd ptr %imgOut, i32 %797
-  522 = ptradd ptr %y1, i32 %797
-  529 = ptradd ptr %y2, i32 %797
-  br bb %while.body506
-while.body506:  pred(while.body506, while.body506_preheader)
-  j.phi711 = phi [bb %while.body506, i32 %538, bb %while.body506_preheader, i32 0]
-  685 = shl i32 %j.phi711, i32 2
-  517 = ptradd ptr %514, i32 %685
-  525 = ptradd ptr %522, i32 %685
-  525.load = load float from ptr %525
-  532 = ptradd ptr %529, i32 %685
-  532.load = load float from ptr %532
-  534 = fadd float %525.load, float %532.load
-  535 = fmul float %167, float %534
-  store float %535 to ptr %517
-  538 = add i32 %j.phi711, i32 1
-  510 = icmp slt i32 %538, i32 %h
-  br i1 %510, bb %while.body506, bb %while.exit507
-while.exit507:  pred(while.body498, while.body506)
-  541 = add i32 %i.phi713, i32 1
-  502 = icmp slt i32 %541, i32 %w
-  513.rec = add i32 %797, i32 1080
-  br i1 %502, bb %while.body498, bb %while.exit499
-}
-
 pure internal float newPow(float num, i32 n) {
 entry40:  pred()
-  .pinned815 = pin float 1.000000
+  .pinned = pin float 1.000000
   44 = icmp slt i32 %n, i32 0
   br i1 %44, bb %then, bb %else
 then:  pred(entry40)
   50 = sub i32 0, i32 %n
   51 = call float newPow(float %num, i32 %50)
-  52 = fdiv float %.pinned815, float %51
+  52 = fdiv float %.pinned, float %51
   ret float %52
 else:  pred(entry40)
   54 = icmp eq i32 %n, i32 0
   br i1 %54, bb %then55, bb %else57
 then55:  pred(else)
-  ret float %.pinned815
+  ret float %.pinned
 else57:  pred(else)
   59 = icmp sgt i32 %n, i32 0
   br i1 %59, bb %then60, bb %if.exit61
@@ -317,44 +32,298 @@ if.exit61:  pred(else57)
   unreachable
 }
 
-external i32 getint()
-
-external i32 getch()
-
-external void putint(i32 )
-
-external i32 getarray(ptr )
-
 external i32 getfarray(ptr )
 
 i32 main() {
 entry542:  pred()
-  imgOut.pinned = pin ptr @imgOut
+  .pinned1168 = pin float 0.500000
+  .pinned1167 = pin float 2.000000
+  .pinned1166 = pin float 0.250000
+  my_y1.pinned = pin ptr @my_y1
   imgIn.pinned = pin ptr @imgIn
   h.pinned = pin ptr @h
+  .pinned1160 = pin float 1.000000
+  .pinned1159 = pin float 0.000000
   w.pinned = pin ptr @w
   543 = call i32 getfarray(ptr %imgIn.pinned)
   call void _sysy_starttime(i32 156)
   w.load = load i32 from ptr %w.pinned
   h.load = load i32 from ptr %h.pinned
-  call void kernel_deriche(i32 %w.load, i32 %h.load, float 0.250000, ptr %imgIn.pinned, ptr %imgOut.pinned, ptr @my_y1, ptr @my_y2)
+  99631 = fneg float %.pinned1166
+  4897 = si2f i32 256 to float
+  5898 = fdiv float %99631, float %4897
+  6899 = fadd float %5898, float %.pinned1160
+  10900 = fmul float %6899, float %6899
+  14901 = fmul float %10900, float %10900
+  18902 = fmul float %14901, float %14901
+  22903 = fmul float %18902, float %18902
+  26904 = fmul float %22903, float %22903
+  30905 = fmul float %26904, float %26904
+  34906 = fmul float %30905, float %30905
+  38907 = fmul float %34906, float %34906
+  101633 = fsub float %.pinned1160, float %38907
+  106634 = fmul float %101633, float %101633
+  112636 = fmul float %38907, float %.pinned1168
+  113637 = fadd float %112636, float %.pinned1160
+  5913 = fdiv float %.pinned1168, float %4897
+  6914 = fadd float %5913, float %.pinned1160
+  10915 = fmul float %6914, float %6914
+  14916 = fmul float %10915, float %10915
+  18917 = fmul float %14916, float %14916
+  22918 = fmul float %18917, float %18917
+  26919 = fmul float %22918, float %22918
+  30920 = fmul float %26919, float %26919
+  34921 = fmul float %30920, float %30920
+  38922 = fmul float %34921, float %34921
+  117639 = fsub float %113637, float %38922
+  118640 = fdiv float %106634, float %117639
+  128641 = fmul float %118640, float %38907
+  131643 = fmul float %128641, float -0.750000
+  142645 = fmul float %128641, float 1.250000
+  147646 = fneg float %118640
+  148647 = fneg float %.pinned1167
+  150648 = fmul float %148647, float %.pinned1166
+  5928 = fdiv float %150648, float %4897
+  6929 = fadd float %5928, float %.pinned1160
+  10930 = fmul float %6929, float %6929
+  14931 = fmul float %10930, float %10930
+  18932 = fmul float %14931, float %14931
+  22933 = fmul float %18932, float %18932
+  26934 = fmul float %22933, float %22933
+  30935 = fmul float %26934, float %26934
+  34936 = fmul float %30935, float %30935
+  38937 = fmul float %34936, float %34936
+  152650 = fmul float %147646, float %38937
+  158651 = f2si float %99631 to i32
+  159652 = call float newPow(float %.pinned1167, i32 %158651)
+  165653 = fneg float %38937
+  167654 = si2f i32 1 to float
+  1766581022 = icmp slt i32 0, i32 %w.load
+  br i1 %1766581022, bb %kernel_deriche.while.cond182_preheader, bb %kernel_deriche.while.cond242_preheader
+kernel_deriche.while.cond182_preheader:  pred(kernel_deriche.while.exit184, entry542)
+  1104 = phi [bb %kernel_deriche.while.exit184, i32 %190668.rec, bb %entry542, i32 0]
+  i.phi5616571023 = phi [bb %kernel_deriche.while.exit184, i32 %240687, bb %entry542, i32 0]
+  187665986 = icmp slt i32 0, i32 %h.load
+  br i1 %187665986, bb %kernel_deriche.while.body183_preheader, bb %kernel_deriche.while.exit184
+kernel_deriche.while.body183_preheader:  pred(kernel_deriche.while.cond182_preheader)
+  191669 = ptradd ptr %my_y1.pinned, i32 %1104
+  199672 = ptradd ptr %imgIn.pinned, i32 %1104
+  br bb %kernel_deriche.while.body183
+kernel_deriche.while.body183:  pred(kernel_deriche.while.body183, kernel_deriche.while.body183_preheader)
+  j.phi571664990 = phi [bb %kernel_deriche.while.body183, i32 %237684, bb %kernel_deriche.while.body183_preheader, i32 0]
+  ym2.phi575663989 = phi [bb %kernel_deriche.while.body183, float %ym1.phi597661987, bb %kernel_deriche.while.body183_preheader, float %.pinned1159]
+  xm1.phi662988 = phi [bb %kernel_deriche.while.body183, float %202.load674, bb %kernel_deriche.while.body183_preheader, float %.pinned1159]
+  ym1.phi597661987 = phi [bb %kernel_deriche.while.body183, float %216681, bb %kernel_deriche.while.body183_preheader, float %.pinned1159]
+  946 = shl i32 %j.phi571664990, i32 2
+  194671 = ptradd ptr %191669, i32 %946
+  202673 = ptradd ptr %199672, i32 %946
+  202.load674 = load float from ptr %202673
+  204675 = fmul float %118640, float %202.load674
+  207676 = fmul float %131643, float %xm1.phi662988
+  208677 = fadd float %204675, float %207676
+  211678 = fmul float %159652, float %ym1.phi597661987
+  212679 = fadd float %208677, float %211678
+  215680 = fmul float %165653, float %ym2.phi575663989
+  216681 = fadd float %212679, float %215680
+  store float %216681 to ptr %194671
+  237684 = add i32 %j.phi571664990, i32 1
+  187665 = icmp slt i32 %237684, i32 %h.load
+  br i1 %187665, bb %kernel_deriche.while.body183, bb %kernel_deriche.while.exit184
+kernel_deriche.while.exit184:  pred(kernel_deriche.while.body183, kernel_deriche.while.cond182_preheader)
+  240687 = add i32 %i.phi5616571023, i32 1
+  176658 = icmp slt i32 %240687, i32 %w.load
+  190668.rec = add i32 %1104, i32 1080
+  br i1 %176658, bb %kernel_deriche.while.cond182_preheader, bb %kernel_deriche.while.cond242_preheader
+kernel_deriche.while.cond242_preheader:  pred(kernel_deriche.while.exit184, entry542)
+  my_y2.pinned = pin ptr @my_y2
+  br i1 %1766581022, bb %kernel_deriche.while.body243_preheader, bb %kernel_deriche.while.cond311_preheader
+kernel_deriche.while.body243_preheader:  pred(kernel_deriche.while.cond242_preheader)
+  608694 = add i32 %h.load, i32 -1
+  260702991 = icmp sge i32 %608694, i32 0
+  br bb %kernel_deriche.while.body243
+kernel_deriche.while.body243:  pred(kernel_deriche.while.exit258, kernel_deriche.while.body243_preheader)
+  1107 = phi [bb %kernel_deriche.while.body243_preheader, i32 0, bb %kernel_deriche.while.exit258, i32 %263705.rec]
+  i.phi5626901021 = phi [bb %kernel_deriche.while.exit258, i32 %309723, bb %kernel_deriche.while.body243_preheader, i32 0]
+  br i1 %260702991, bb %kernel_deriche.while.body257_preheader, bb %kernel_deriche.while.exit258
+kernel_deriche.while.body257_preheader:  pred(kernel_deriche.while.body243)
+  264706 = ptradd ptr %my_y2.pinned, i32 %1107
+  289717 = ptradd ptr %imgIn.pinned, i32 %1107
+  br bb %kernel_deriche.while.body257
+kernel_deriche.while.body257:  pred(kernel_deriche.while.body257, kernel_deriche.while.body257_preheader)
+  j.phi569701996 = phi [bb %kernel_deriche.while.body257, i32 %612720, bb %kernel_deriche.while.body257_preheader, i32 %608694]
+  xp1.phi700995 = phi [bb %kernel_deriche.while.body257, float %292.load719, bb %kernel_deriche.while.body257_preheader, float %.pinned1159]
+  xp2.phi699994 = phi [bb %kernel_deriche.while.body257, float %xp1.phi700995, bb %kernel_deriche.while.body257_preheader, float %.pinned1159]
+  yp1.phi589698993 = phi [bb %kernel_deriche.while.body257, float %283715, bb %kernel_deriche.while.body257_preheader, float %.pinned1159]
+  yp2.phi593697992 = phi [bb %kernel_deriche.while.body257, float %yp1.phi589698993, bb %kernel_deriche.while.body257_preheader, float %.pinned1159]
+  947 = shl i32 %j.phi569701996, i32 2
+  267708 = ptradd ptr %264706, i32 %947
+  271709 = fmul float %142645, float %xp1.phi700995
+  274710 = fmul float %152650, float %xp2.phi699994
+  275711 = fadd float %271709, float %274710
+  278712 = fmul float %159652, float %yp1.phi589698993
+  279713 = fadd float %275711, float %278712
+  282714 = fmul float %165653, float %yp2.phi593697992
+  283715 = fadd float %279713, float %282714
+  store float %283715 to ptr %267708
+  292718 = ptradd ptr %289717, i32 %947
+  292.load719 = load float from ptr %292718
+  612720 = add i32 %j.phi569701996, i32 -1
+  260702 = icmp sge i32 %612720, i32 0
+  br i1 %260702, bb %kernel_deriche.while.body257, bb %kernel_deriche.while.exit258
+kernel_deriche.while.exit258:  pred(kernel_deriche.while.body257, kernel_deriche.while.body243)
+  309723 = add i32 %i.phi5626901021, i32 1
+  247691 = icmp slt i32 %309723, i32 %w.load
+  263705.rec = add i32 %1107, i32 1080
+  br i1 %247691, bb %kernel_deriche.while.body243, bb %kernel_deriche.while.cond311_preheader
+kernel_deriche.while.cond311_preheader:  pred(kernel_deriche.while.exit258, kernel_deriche.while.cond242_preheader)
+  imgOut.pinned = pin ptr @imgOut
+  br i1 %1766581022, bb %kernel_deriche.while.cond319_preheader, bb %kernel_deriche.while.cond357_preheader
+kernel_deriche.while.cond319_preheader:  pred(kernel_deriche.while.exit321, kernel_deriche.while.cond311_preheader)
+  1110 = phi [bb %kernel_deriche.while.exit321, i32 %327734.rec, bb %kernel_deriche.while.cond311_preheader, i32 0]
+  i.phi5607261019 = phi [bb %kernel_deriche.while.exit321, i32 %355750, bb %kernel_deriche.while.cond311_preheader, i32 0]
+  324731997 = icmp slt i32 0, i32 %h.load
+  br i1 %324731997, bb %kernel_deriche.while.body320_preheader, bb %kernel_deriche.while.exit321
+kernel_deriche.while.body320_preheader:  pred(kernel_deriche.while.cond319_preheader)
+  328735 = ptradd ptr %imgOut.pinned, i32 %1110
+  336738 = ptradd ptr %my_y1.pinned, i32 %1110
+  343741 = ptradd ptr %my_y2.pinned, i32 %1110
+  br bb %kernel_deriche.while.body320
+kernel_deriche.while.body320:  pred(kernel_deriche.while.body320, kernel_deriche.while.body320_preheader)
+  j.phi567730998 = phi [bb %kernel_deriche.while.body320, i32 %352747, bb %kernel_deriche.while.body320_preheader, i32 0]
+  948 = shl i32 %j.phi567730998, i32 2
+  331737 = ptradd ptr %328735, i32 %948
+  339739 = ptradd ptr %336738, i32 %948
+  339.load740 = load float from ptr %339739
+  346742 = ptradd ptr %343741, i32 %948
+  346.load743 = load float from ptr %346742
+  348744 = fadd float %339.load740, float %346.load743
+  349745 = fmul float %167654, float %348744
+  store float %349745 to ptr %331737
+  352747 = add i32 %j.phi567730998, i32 1
+  324731 = icmp slt i32 %352747, i32 %h.load
+  br i1 %324731, bb %kernel_deriche.while.body320, bb %kernel_deriche.while.exit321
+kernel_deriche.while.exit321:  pred(kernel_deriche.while.body320, kernel_deriche.while.cond319_preheader)
+  355750 = add i32 %i.phi5607261019, i32 1
+  316727 = icmp slt i32 %355750, i32 %w.load
+  327734.rec = add i32 %1110, i32 1080
+  br i1 %316727, bb %kernel_deriche.while.cond319_preheader, bb %kernel_deriche.while.cond357_preheader
+kernel_deriche.while.cond357_preheader:  pred(kernel_deriche.while.exit321, kernel_deriche.while.cond311_preheader)
+  3627541016 = icmp slt i32 0, i32 %h.load
+  br i1 %3627541016, bb %kernel_deriche.while.cond368_preheader, bb %kernel_deriche.while.cond428_preheader
+kernel_deriche.while.cond368_preheader:  pred(kernel_deriche.while.exit370, kernel_deriche.while.cond357_preheader)
+  j.phi5667531017 = phi [bb %kernel_deriche.while.exit370, i32 %426783, bb %kernel_deriche.while.cond357_preheader, i32 0]
+  br i1 %1766581022, bb %kernel_deriche.while.body369_preheader, bb %kernel_deriche.while.exit370
+kernel_deriche.while.body369_preheader:  pred(kernel_deriche.while.cond368_preheader)
+  949 = shl i32 %j.phi5667531017, i32 2
+  1096 = ptradd ptr %my_y1.pinned, i32 %949
+  1098 = ptradd ptr %imgOut.pinned, i32 %949
+  br bb %kernel_deriche.while.body369
+kernel_deriche.while.body369:  pred(kernel_deriche.while.body369, kernel_deriche.while.body369_preheader)
+  1113 = phi [bb %kernel_deriche.while.body369_preheader, i32 0, bb %kernel_deriche.while.body369, i32 %376764.rec]
+  i.phi5587601003 = phi [bb %kernel_deriche.while.body369, i32 %423780, bb %kernel_deriche.while.body369_preheader, i32 0]
+  ym2.phi7591002 = phi [bb %kernel_deriche.while.body369, float %ym1.phi7581001, bb %kernel_deriche.while.body369_preheader, float %.pinned1159]
+  ym1.phi7581001 = phi [bb %kernel_deriche.while.body369, float %402777, bb %kernel_deriche.while.body369_preheader, float %.pinned1159]
+  tm1.phi7571000 = phi [bb %kernel_deriche.while.body369, float %388.load770, bb %kernel_deriche.while.body369_preheader, float %.pinned1159]
+  1097 = ptradd ptr %1096, i32 %1113
+  1099 = ptradd ptr %1098, i32 %1113
+  388.load770 = load float from ptr %1099
+  390771 = fmul float %118640, float %388.load770
+  393772 = fmul float %131643, float %tm1.phi7571000
+  394773 = fadd float %390771, float %393772
+  397774 = fmul float %159652, float %ym1.phi7581001
+  398775 = fadd float %394773, float %397774
+  401776 = fmul float %165653, float %ym2.phi7591002
+  402777 = fadd float %398775, float %401776
+  store float %402777 to ptr %1097
+  423780 = add i32 %i.phi5587601003, i32 1
+  373761 = icmp slt i32 %423780, i32 %w.load
+  376764.rec = add i32 %1113, i32 1080
+  br i1 %373761, bb %kernel_deriche.while.body369, bb %kernel_deriche.while.exit370
+kernel_deriche.while.exit370:  pred(kernel_deriche.while.body369, kernel_deriche.while.cond368_preheader)
+  426783 = add i32 %j.phi5667531017, i32 1
+  362754 = icmp slt i32 %426783, i32 %h.load
+  br i1 %362754, bb %kernel_deriche.while.cond368_preheader, bb %kernel_deriche.while.cond428_preheader
+kernel_deriche.while.cond428_preheader:  pred(kernel_deriche.while.exit370, kernel_deriche.while.cond357_preheader)
+  br i1 %3627541016, bb %kernel_deriche.while.body429_preheader, bb %kernel_deriche.while.cond497_preheader
+kernel_deriche.while.body429_preheader:  pred(kernel_deriche.while.cond428_preheader)
+  620790 = add i32 %w.load, i32 -1
+  4467981004 = icmp sge i32 %620790, i32 0
+  br bb %kernel_deriche.while.body429
+kernel_deriche.while.body429:  pred(kernel_deriche.while.exit444, kernel_deriche.while.body429_preheader)
+  j.phi5657861015 = phi [bb %kernel_deriche.while.exit444, i32 %495819, bb %kernel_deriche.while.body429_preheader, i32 0]
+  br i1 %4467981004, bb %kernel_deriche.while.body443_preheader, bb %kernel_deriche.while.exit444
+kernel_deriche.while.body443_preheader:  pred(kernel_deriche.while.body429)
+  950 = shl i32 %j.phi5657861015, i32 2
+  1100 = ptradd ptr %my_y2.pinned, i32 %950
+  1102 = ptradd ptr %imgOut.pinned, i32 %950
+  1117 = mul i32 %620790, i32 1080
+  br bb %kernel_deriche.while.body443
+kernel_deriche.while.body443:  pred(kernel_deriche.while.body443, kernel_deriche.while.body443_preheader)
+  1116 = phi [bb %kernel_deriche.while.body443_preheader, i32 %1117, bb %kernel_deriche.while.body443, i32 %449801.rec]
+  i.phi5567971009 = phi [bb %kernel_deriche.while.body443, i32 %624816, bb %kernel_deriche.while.body443_preheader, i32 %620790]
+  tp1.phi7961008 = phi [bb %kernel_deriche.while.body443, float %478.load815, bb %kernel_deriche.while.body443_preheader, float %.pinned1159]
+  tp2.phi7951007 = phi [bb %kernel_deriche.while.body443, float %tp1.phi7961008, bb %kernel_deriche.while.body443_preheader, float %.pinned1159]
+  yp1.phi7941006 = phi [bb %kernel_deriche.while.body443, float %469811, bb %kernel_deriche.while.body443_preheader, float %.pinned1159]
+  yp2.phi7931005 = phi [bb %kernel_deriche.while.body443, float %yp1.phi7941006, bb %kernel_deriche.while.body443_preheader, float %.pinned1159]
+  1101 = ptradd ptr %1100, i32 %1116
+  457805 = fmul float %142645, float %tp1.phi7961008
+  460806 = fmul float %152650, float %tp2.phi7951007
+  461807 = fadd float %457805, float %460806
+  464808 = fmul float %159652, float %yp1.phi7941006
+  465809 = fadd float %461807, float %464808
+  468810 = fmul float %165653, float %yp2.phi7931005
+  469811 = fadd float %465809, float %468810
+  store float %469811 to ptr %1101
+  1103 = ptradd ptr %1102, i32 %1116
+  478.load815 = load float from ptr %1103
+  624816 = add i32 %i.phi5567971009, i32 -1
+  446798 = icmp sge i32 %624816, i32 0
+  449801.rec = add i32 %1116, i32 -1080
+  br i1 %446798, bb %kernel_deriche.while.body443, bb %kernel_deriche.while.exit444
+kernel_deriche.while.exit444:  pred(kernel_deriche.while.body443, kernel_deriche.while.body429)
+  495819 = add i32 %j.phi5657861015, i32 1
+  433787 = icmp slt i32 %495819, i32 %h.load
+  br i1 %433787, bb %kernel_deriche.while.body429, bb %kernel_deriche.while.cond497_preheader
+kernel_deriche.while.cond497_preheader:  pred(kernel_deriche.while.exit444, kernel_deriche.while.cond428_preheader)
+  br i1 %1766581022, bb %kernel_deriche.while.cond505_preheader, bb %kernel_deriche.while.exit499
+kernel_deriche.while.exit499:  pred(kernel_deriche.while.exit507, kernel_deriche.while.cond497_preheader)
   call void _sysy_stoptime(i32 158)
   w.load550 = load i32 from ptr %w.pinned
   h.load551 = load i32 from ptr %h.pinned
   552 = mul i32 %w.load550, i32 %h.load551
   call void putfarray(i32 %552, ptr %imgOut.pinned)
   ret i32 0
+kernel_deriche.while.cond505_preheader:  pred(kernel_deriche.while.exit507, kernel_deriche.while.cond497_preheader)
+  1119 = phi [bb %kernel_deriche.while.exit507, i32 %513832.rec, bb %kernel_deriche.while.cond497_preheader, i32 0]
+  i.phi8221013 = phi [bb %kernel_deriche.while.exit507, i32 %541848, bb %kernel_deriche.while.cond497_preheader, i32 0]
+  br i1 %3627541016, bb %kernel_deriche.while.body506_preheader, bb %kernel_deriche.while.exit507
+kernel_deriche.while.body506_preheader:  pred(kernel_deriche.while.cond505_preheader)
+  514833 = ptradd ptr %imgOut.pinned, i32 %1119
+  522836 = ptradd ptr %my_y1.pinned, i32 %1119
+  529839 = ptradd ptr %my_y2.pinned, i32 %1119
+  br bb %kernel_deriche.while.body506
+kernel_deriche.while.body506:  pred(kernel_deriche.while.body506, kernel_deriche.while.body506_preheader)
+  j.phi8281011 = phi [bb %kernel_deriche.while.body506, i32 %538845, bb %kernel_deriche.while.body506_preheader, i32 0]
+  951 = shl i32 %j.phi8281011, i32 2
+  517835 = ptradd ptr %514833, i32 %951
+  525837 = ptradd ptr %522836, i32 %951
+  525.load838 = load float from ptr %525837
+  532840 = ptradd ptr %529839, i32 %951
+  532.load841 = load float from ptr %532840
+  534842 = fadd float %525.load838, float %532.load841
+  535843 = fmul float %167654, float %534842
+  store float %535843 to ptr %517835
+  538845 = add i32 %j.phi8281011, i32 1
+  510829 = icmp slt i32 %538845, i32 %h.load
+  br i1 %510829, bb %kernel_deriche.while.body506, bb %kernel_deriche.while.exit507
+kernel_deriche.while.exit507:  pred(kernel_deriche.while.body506, kernel_deriche.while.cond505_preheader)
+  541848 = add i32 %i.phi8221013, i32 1
+  502823 = icmp slt i32 %541848, i32 %w.load
+  513832.rec = add i32 %1119, i32 1080
+  br i1 %502823, bb %kernel_deriche.while.cond505_preheader, bb %kernel_deriche.while.exit499
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
 external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
 
 external void putfarray(i32 , ptr )
 

@@ -54,6 +54,7 @@ void Optimizer::transform(Module *module) {
   passManager.addModulePass<GlobalVarOptPass>();
 
   passManager.addFunctionPass<CSEPass>();
+  passManager.addFunctionPass<LoopCanonPass>();
   passManager.addFunctionPass<RotatePass>();
   passManager.addFunctionPass<LoopCanonPass>();
   passManager.addFunctionPass<LICMPass>();

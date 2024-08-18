@@ -117,7 +117,7 @@ bb4:   # loop depth 1
 bb5:   # loop depth 2
   BNE t1, zero, bb9
   # implict jump to bb6
-bb6:   # loop depth 1
+bb6:   # loop depth 2
   ADD t0, zero, zero
   # implict jump to bb7
 bb7:   # loop depth 1
@@ -158,7 +158,7 @@ bb15:   # loop depth 2
   ADDW t0, t0, a2
   BNE t1, zero, bb17
   # implict jump to bb16
-bb16:   # loop depth 1
+bb16:   # loop depth 2
   ADDIW t2, t2, 1
   SW t0, 0(a1)
   BLT t2, s8, bb8

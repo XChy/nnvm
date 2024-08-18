@@ -1,0 +1,12 @@
+int b;
+int c(int a[]) {
+  while (b)
+    ;
+  return 0;
+}
+int main() {
+  int a[0];
+  int d = c(a);
+  while (d)
+    d = 1;
+}

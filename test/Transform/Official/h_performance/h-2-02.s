@@ -142,26 +142,26 @@ bb5:   # loop depth 0
   LA t0, .CONSTANT.7.1
   LA t1, .CONSTANT.7.1
   LUI a1, 1
-  FSGNJ.S ft2, ft0, ft0
-  FLW ft1, 0(t0)
+  FSGNJ.S ft1, ft0, ft0
+  FLW ft2, 0(t0)
   FSGNJ.S fs1, ft0, ft0
   ADDIW a1, a1, 804
   ADD t2, zero, zero
   FLW ft3, 0(t1)
   ADD t1, zero, zero
   ADD a1, zero, a1
-  FSGNJ.S ft4, ft1, ft3
-  FSGNJ.S ft3, ft4, ft4
+  FSGNJ.S ft3, ft2, ft3
+  FSGNJ.S ft2, ft3, ft3
   # implict jump to bb6
 bb6:   # loop depth 1
   ADDI t0, zero, 10
   REMW t0, t2, t0
   LA a2, .CONSTANT.7.2
   LA a3, .CONSTANT.7.3
-  FLW ft1, 0(a2)
+  FLW ft4, 0(a2)
   FLW ft5, 0(a3)
-  FADD.S ft2, ft2, ft1
-  FADD.S ft3, ft3, ft5
+  FADD.S ft1, ft1, ft4
+  FADD.S ft2, ft2, ft5
   BNE t0, zero, bb23
   # implict jump to bb7
 bb7:   # loop depth 1
@@ -177,7 +177,7 @@ bb10:   # loop depth 1
 bb11:   # loop depth 1
   # implict jump to bb12
 bb12:   # loop depth 1
-  FSGNJ.S ft1, ft0, ft0
+  FSGNJ.S ft4, ft0, ft0
   ADD t0, zero, zero
   # implict jump to bb13
 bb13:   # loop depth 2
@@ -192,15 +192,15 @@ bb13:   # loop depth 2
   FLW ft5, 0(a3)
   FLW ft6, 0(a2)
   FMUL.S ft5, ft5, ft6
-  FADD.S ft1, ft1, ft5
+  FADD.S ft4, ft4, ft5
   BLT t0, a1, bb17
   # implict jump to bb14
 bb14:   # loop depth 1
-  FADD.S fs1, fs1, ft1
+  FADD.S fs1, fs1, ft4
   ADDIW t2, t2, 1
   BLT t2, a0, bb16
   # implict jump to bb15
-bb15:   # loop depth 0
+bb15:   # loop depth 1
   JAL zero, bb2
 bb16:   # loop depth 1
   JAL zero, bb6
@@ -209,7 +209,7 @@ bb17:   # loop depth 2
 bb18:   # loop depth 1
   # implict jump to bb19
 bb19:   # loop depth 2
-  FCVT.S.W ft1, t1
+  FCVT.S.W ft4, t1
   SLLIW t0, t1, 2
   LUI a2, 5
   ADDIW a2, a2, -880
@@ -217,20 +217,20 @@ bb19:   # loop depth 2
   ADD a2, a2, t0
   ADDI t6, sp, 0
   ADD t0, t6, t0
-  FADD.S ft5, ft2, ft1
+  FADD.S ft5, ft1, ft4
   ADDIW t1, t1, 1
-  FADD.S ft1, ft3, ft1
+  FADD.S ft4, ft2, ft4
   FSW ft5, 0(a2)
-  FSW ft1, 0(t0)
+  FSW ft4, 0(t0)
   BLT t1, a1, bb21
   # implict jump to bb20
-bb20:   # loop depth 1
+bb20:   # loop depth 2
   JAL zero, bb12
 bb21:   # loop depth 2
   JAL zero, bb19
 bb22:   # loop depth 1
-  FSGNJ.S ft2, ft0, ft0
+  FSGNJ.S ft1, ft0, ft0
   JAL zero, bb10
 bb23:   # loop depth 1
-  FSGNJ.S ft3, ft4, ft4
+  FSGNJ.S ft2, ft3, ft3
   JAL zero, bb8

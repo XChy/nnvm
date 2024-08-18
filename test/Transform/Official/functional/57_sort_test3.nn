@@ -1,8 +1,4 @@
 global ptr n init with i32 0
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
 
 internal i32 QuickSort(ptr arr, i32 low, i32 high) {
@@ -13,36 +9,34 @@ then:  pred(entry)
   228 = shl i32 %low, i32 2
   18 = ptradd ptr %arr, i32 %228
   18.load = load i32 from ptr %18
-  64239 = add i32 %low, i32 1
-  br i1 %5, bb %while.body_preheader, bb %while.exit
+  64241 = add i32 %low, i32 1
+  br i1 %5, bb %while.cond27_preheader_preheader, bb %while.exit
 if.exit:  pred(entry, while.exit)
   ret i32 0
-while.body_preheader:  pred(then)
-  211 = add i32 %18.load, i32 -1
-  br bb %while.body
-while.body:  pred(if.exit90, while.body_preheader)
-  64239246 = phi [bb %if.exit90, i32 %64, bb %while.body_preheader, i32 %64239]
-  231238245 = phi [bb %if.exit90, i32 %233, bb %while.body_preheader, i32 %228]
-  j.phi186244 = phi [bb %if.exit90, i32 %j.phi, bb %while.body_preheader, i32 %high]
-  i.phi199243 = phi [bb %if.exit90, i32 %i.phi, bb %while.body_preheader, i32 %low]
-  br bb %while.cond27
-while.exit:  pred(then, while.body_exclu_exit)
-  64239242 = phi [bb %while.body_exclu_exit, i32 %64, bb %then, i32 %64239]
-  231238241 = phi [bb %while.body_exclu_exit, i32 %233, bb %then, i32 %228]
-  low = phi [bb %while.body_exclu_exit, i32 %i.phi, bb %then, i32 %low]
-  104 = ptradd ptr %arr, i32 %231238241
+while.exit:  pred(if.exit90, then)
+  64241244 = phi [bb %if.exit90, i32 %64, bb %then, i32 %64241]
+  231240243 = phi [bb %if.exit90, i32 %233, bb %then, i32 %228]
+  low = phi [bb %if.exit90, i32 %i.phi, bb %then, i32 %low]
+  104 = ptradd ptr %arr, i32 %231240243
   store i32 %18.load to ptr %104
   208 = add i32 %low, i32 -1
   114 = call i32 QuickSort(ptr %arr, i32 %low, i32 %208)
-  121 = call i32 QuickSort(ptr %arr, i32 %64239242, i32 %high)
+  121 = call i32 QuickSort(ptr %arr, i32 %64241244, i32 %high)
   br bb %if.exit
-while.cond27:  pred(while.body, while.body28)
-  j.phi188 = phi [bb %while.body, i32 %j.phi186244, bb %while.body28, i32 %209]
-  32 = icmp slt i32 %i.phi199243, i32 %j.phi188
-  230 = shl i32 %j.phi188, i32 2
-  br i1 %32, bb %select.then, bb %select.else
-while.body28:  pred(select.exit)
+while.cond27_preheader_preheader:  pred(then)
+  211 = add i32 %18.load, i32 -1
+  br bb %while.cond27_preheader
+while.cond27_preheader:  pred(if.exit90, while.cond27_preheader_preheader)
+  64241248 = phi [bb %if.exit90, i32 %64, bb %while.cond27_preheader_preheader, i32 %64241]
+  231240247 = phi [bb %if.exit90, i32 %233, bb %while.cond27_preheader_preheader, i32 %228]
+  j.phi186246 = phi [bb %if.exit90, i32 %j.phi, bb %while.cond27_preheader_preheader, i32 %high]
+  i.phi199245 = phi [bb %if.exit90, i32 %i.phi, bb %while.cond27_preheader_preheader, i32 %low]
   br bb %while.cond27
+while.cond27:  pred(while.cond27_preheader, select.exit)
+  j.phi188 = phi [bb %select.exit, i32 %209, bb %while.cond27_preheader, i32 %j.phi186246]
+  32 = icmp slt i32 %i.phi199245, i32 %j.phi188
+  230 = shl i32 %j.phi188, i32 2
+  br i1 %32, bb %select.then, bb %select.exit
 while.exit29:  pred(select.exit)
   br i1 %32, bb %then52, bb %if.exit53
 select.then:  pred(while.cond27)
@@ -50,26 +44,24 @@ select.then:  pred(while.cond27)
   39.load = load i32 from ptr %39
   43 = icmp sgt i32 %39.load, i32 %211
   br bb %select.exit
-select.else:  pred(while.cond27)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %43]
+select.exit:  pred(select.then, while.cond27)
+  select.phi = phi [bb %while.cond27, i1 0, bb %select.then, i1 %43]
   209 = add i32 %j.phi188, i32 -1
-  br i1 %select.phi, bb %while.body28, bb %while.exit29
+  br i1 %select.phi, bb %while.cond27, bb %while.exit29
 then52:  pred(while.exit29)
-  56 = ptradd ptr %arr, i32 %231238245
+  56 = ptradd ptr %arr, i32 %231240247
   60 = ptradd ptr %arr, i32 %230
   60.load = load i32 from ptr %60
   store i32 %60.load to ptr %56
   br bb %if.exit53
 if.exit53:  pred(while.exit29, then52)
-  i.phi201 = phi [bb %while.exit29, i32 %i.phi199243, bb %then52, i32 %64239246]
+  i.phi201 = phi [bb %while.exit29, i32 %i.phi199245, bb %then52, i32 %64241248]
   br bb %while.cond65
 while.cond65:  pred(if.exit53, while.body66)
   i.phi = phi [bb %if.exit53, i32 %i.phi201, bb %while.body66, i32 %85]
   70 = icmp slt i32 %i.phi, i32 %j.phi188
   233 = shl i32 %i.phi, i32 2
-  br i1 %70, bb %select.then71, bb %select.else72
+  br i1 %70, bb %select.then71, bb %select.exit73
 while.body66:  pred(select.exit73)
   85 = add i32 %i.phi, i32 1
   br bb %while.cond65
@@ -80,10 +72,8 @@ select.then71:  pred(while.cond65)
   77.load = load i32 from ptr %77
   80 = icmp slt i32 %77.load, i32 %18.load
   br bb %select.exit73
-select.else72:  pred(while.cond65)
-  br bb %select.exit73
-select.exit73:  pred(select.then71, select.else72)
-  select74.phi = phi [bb %select.else72, i1 0, bb %select.then71, i1 %80]
+select.exit73:  pred(select.then71, while.cond65)
+  select74.phi = phi [bb %while.cond65, i1 0, bb %select.then71, i1 %80]
   br i1 %select74.phi, bb %while.body66, bb %while.exit67
 then89:  pred(while.exit67)
   93 = ptradd ptr %arr, i32 %230
@@ -95,14 +85,8 @@ if.exit90:  pred(while.exit67, then89)
   j.phi = phi [bb %while.exit67, i32 %j.phi188, bb %then89, i32 %209]
   25 = icmp slt i32 %i.phi, i32 %j.phi
   64 = add i32 %i.phi, i32 1
-  br i1 %25, bb %while.body, bb %while.body_exclu_exit
-while.body_exclu_exit:  pred(if.exit90)
-  br bb %while.exit
+  br i1 %25, bb %while.cond27_preheader, bb %while.exit
 }
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry122:  pred()
@@ -129,38 +113,24 @@ entry122:  pred()
   153 = ptradd ptr %a, i32 36
   store i32 8 to ptr %153
   162 = call i32 QuickSort(ptr %a, i32 0, i32 9)
-  n.load167247 = load i32 from ptr %n.pinned
-  168248 = icmp slt i32 %162, i32 %n.load167247
-  br i1 %168248, bb %while.body164_preheader, bb %while.exit165
-while.body164_preheader:  pred(entry122)
-  br bb %while.body164
-while.body164:  pred(while.body164, while.body164_preheader)
-  i155.phi249 = phi [bb %while.body164, i32 %183, bb %while.body164_preheader, i32 %162]
-  236 = shl i32 %i155.phi249, i32 2
+  n.load167249 = load i32 from ptr %n.pinned
+  168250 = icmp slt i32 %162, i32 %n.load167249
+  br i1 %168250, bb %while.body164, bb %while.exit165
+while.body164:  pred(while.body164, entry122)
+  i155.phi251 = phi [bb %while.body164, i32 %183, bb %entry122, i32 %162]
+  236 = shl i32 %i155.phi251, i32 2
   174 = ptradd ptr %a, i32 %236
   174.load = load i32 from ptr %174
   call void putint(i32 %174.load)
   call void putch(i32 10)
-  183 = add i32 %i155.phi249, i32 1
+  183 = add i32 %i155.phi251, i32 1
   n.load167 = load i32 from ptr %n.pinned
   168 = icmp slt i32 %183, i32 %n.load167
   br i1 %168, bb %while.body164, bb %while.exit165
-while.exit165:  pred(entry122, while.body164)
+while.exit165:  pred(while.body164, entry122)
   ret i32 0
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

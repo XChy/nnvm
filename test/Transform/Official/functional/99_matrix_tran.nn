@@ -1,13 +1,7 @@
 global ptr N init with i32 0
 global ptr L init with i32 0
 global ptr M init with i32 0
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
 
 i32 main() {
 entry57:  pred()
@@ -19,28 +13,26 @@ entry57:  pred()
   store i32 3 to ptr @M
   store i32 3 to ptr @L
   84 = si2f i32 0 to float
-  84273 = si2f i32 1 to float
-  84292 = si2f i32 2 to float
+  84277 = si2f i32 1 to float
+  84296 = si2f i32 2 to float
   4206 = ptradd ptr %c1, i32 8
-  store float %84273 to ptr %4206
+  store float %84277 to ptr %4206
   10210 = ptradd ptr %c2, i32 4
-  store float %84292 to ptr %10210
+  store float %84296 to ptr %10210
   16214 = ptradd ptr %c0, i32 4
   store float %84 to ptr %16214
   22217 = ptradd ptr %c0, i32 8
   store float %84 to ptr %22217
-  store float %84273 to ptr %c1
-  store float %84292 to ptr %c2
+  store float %84277 to ptr %c1
+  store float %84296 to ptr %c2
   40226 = ptradd ptr %c1, i32 4
-  store float %84273 to ptr %40226
+  store float %84277 to ptr %40226
   46230 = ptradd ptr %c2, i32 8
-  store float %84292 to ptr %46230
+  store float %84296 to ptr %46230
   store float %84 to ptr %c0
-  br i1 1, bb %while.body122_preheader, bb %while.exit123
-while.body122_preheader:  pred(entry57)
-  br bb %while.body122
-while.body122:  pred(while.body122, while.body122_preheader)
-  i70.phi189254 = phi [bb %while.body122, i32 %138, bb %while.body122_preheader, i32 0]
+  br i1 1, bb %while.body122, bb %while.exit123
+while.body122:  pred(while.body122, entry57)
+  i70.phi189254 = phi [bb %while.body122, i32 %138, bb %entry57, i32 0]
   243 = shl i32 %i70.phi189254, i32 2
   131 = ptradd ptr %c0, i32 %243
   131.load = load float from ptr %131
@@ -50,15 +42,13 @@ while.body122:  pred(while.body122, while.body122_preheader)
   N.load125 = load i32 from ptr %N.pinned
   126 = icmp slt i32 %138, i32 %N.load125
   br i1 %126, bb %while.body122, bb %while.exit123
-while.exit123:  pred(entry57, while.body122)
+while.exit123:  pred(while.body122, entry57)
   call void putch(i32 10)
   N.load147249 = load i32 from ptr %N.pinned
   148250 = icmp slt i32 0, i32 %N.load147249
-  br i1 %148250, bb %while.body144_preheader, bb %while.exit145
-while.body144_preheader:  pred(while.exit123)
-  br bb %while.body144
-while.body144:  pred(while.body144, while.body144_preheader)
-  i70.phi188251 = phi [bb %while.body144, i32 %160, bb %while.body144_preheader, i32 0]
+  br i1 %148250, bb %while.body144, bb %while.exit145
+while.body144:  pred(while.body144, while.exit123)
+  i70.phi188251 = phi [bb %while.body144, i32 %160, bb %while.exit123, i32 0]
   244 = shl i32 %i70.phi188251, i32 2
   153 = ptradd ptr %c1, i32 %244
   153.load = load float from ptr %153
@@ -68,15 +58,13 @@ while.body144:  pred(while.body144, while.body144_preheader)
   N.load147 = load i32 from ptr %N.pinned
   148 = icmp slt i32 %160, i32 %N.load147
   br i1 %148, bb %while.body144, bb %while.exit145
-while.exit145:  pred(while.exit123, while.body144)
+while.exit145:  pred(while.body144, while.exit123)
   call void putch(i32 10)
   N.load169246 = load i32 from ptr %N.pinned
   170247 = icmp slt i32 0, i32 %N.load169246
-  br i1 %170247, bb %while.body166_preheader, bb %while.exit167
-while.body166_preheader:  pred(while.exit145)
-  br bb %while.body166
-while.body166:  pred(while.body166, while.body166_preheader)
-  i70.phi248 = phi [bb %while.body166, i32 %182, bb %while.body166_preheader, i32 0]
+  br i1 %170247, bb %while.body166, bb %while.exit167
+while.body166:  pred(while.body166, while.exit145)
+  i70.phi248 = phi [bb %while.body166, i32 %182, bb %while.exit145, i32 0]
   245 = shl i32 %i70.phi248, i32 2
   175 = ptradd ptr %c2, i32 %245
   175.load = load float from ptr %175
@@ -86,25 +74,11 @@ while.body166:  pred(while.body166, while.body166_preheader)
   N.load169 = load i32 from ptr %N.pinned
   170 = icmp slt i32 %182, i32 %N.load169
   br i1 %170, bb %while.body166, bb %while.exit167
-while.exit167:  pred(while.exit145, while.body166)
+while.exit167:  pred(while.body166, while.exit145)
   call void putch(i32 10)
   ret i32 0
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external i32 getfarray(ptr )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

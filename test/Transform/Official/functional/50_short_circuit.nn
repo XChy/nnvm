@@ -1,13 +1,7 @@
 global ptr g init with i32 0
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry9:  pred()
@@ -21,7 +15,7 @@ select.then:  pred(entry9)
   store i32 %5114 to ptr %g.pinned
   call void putint(i32 %5114)
   br bb %select.exit
-select.exit:  pred(select.then, entry9)
+select.exit:  pred(entry9, select.then)
   29 = call i32 getint()
   31 = icmp sgt i32 %29, i32 11
   br i1 %31, bb %select.then32, bb %select.exit34
@@ -31,7 +25,7 @@ select.then32:  pred(select.exit)
   store i32 %5123 to ptr %g.pinned
   call void putint(i32 %5123)
   br bb %select.exit34
-select.exit34:  pred(select.then32, select.exit)
+select.exit34:  pred(select.exit, select.then32)
   46 = call i32 getint()
   48 = icmp sle i32 %46, i32 99
   br i1 %48, bb %select.exit51, bb %select.else50
@@ -66,22 +60,8 @@ select.then86:  pred(select.exit69)
   store i32 %5159 to ptr %g.pinned
   call void putint(i32 %5159)
   br bb %select.exit88
-select.exit88:  pred(select.then86, select.exit69)
+select.exit88:  pred(select.exit69, select.then86)
   ret i32 0
 }
-
-external float getfloat()
-
-external void putfloat(float )
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

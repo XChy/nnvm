@@ -17,6 +17,40 @@ BasicBlock *Loop::getSingleLatch() const {
   return ret;
 }
 
+void Loop::updatePreheader() {
+  BasicBlock *preheader = nullptr;
+
+  for (auto *pred : header->getPredRange()) {
+    if (contains(pred))
+      continue;
+
+    if (!preheader) {
+      preheader = pred;
+      continue;
+    }
+
+    if (preheader) {
+      preheader = nullptr;
+      break;
+    }
+  }
+
+  if (preheader && preheader->getSuccNum() != 1)
+    preheader = nullptr;
+
+  setPreheader(preheader);
+}
+
+void Loop::updateExits() {
+  // Look for exits
+  for (auto *bb : blocks) {
+    for (int i = 0; i < bb->getSuccNum(); i++) {
+      if (!contains(bb->getSucc(i)))
+        addExit({bb, bb->getSucc(i)});
+    }
+  }
+}
+
 std::set<BasicBlock *> Loop::getLatches() const {
   std::set<BasicBlock *> ret;
   for (auto *pred : header->getPredRange())
@@ -139,36 +173,8 @@ Loop *LoopAnalysis::tryToFindLoop(BasicBlock *header) {
 
 void LoopAnalysis::analyzeLoop(Loop *loop) {
   // Look for preheader
-  BasicBlock *preheader = nullptr;
-
-  for (auto *pred : loop->getHeader()->getPredRange()) {
-    if (loop->contains(pred))
-      continue;
-
-    if (!preheader) {
-      preheader = pred;
-      continue;
-    }
-
-    if (preheader) {
-      preheader = nullptr;
-      break;
-    }
-  }
-
-  if (preheader && preheader->getSuccNum() != 1 &&
-      loop->getHeader()->getPredNum() == 2)
-    preheader = nullptr;
-
-  loop->setPreheader(preheader);
-
-  // Look for exits
-  for (auto *bb : loop->getBlocks()) {
-    for (int i = 0; i < bb->getSuccNum(); i++) {
-      if (!loop->contains(bb->getSucc(i)))
-        loop->addExit({bb, bb->getSucc(i)});
-    }
-  }
+  loop->updatePreheader();
+  loop->updateExits();
 }
 
 Loop *LoopAnalysis::findLoopFor(BasicBlock *block) {

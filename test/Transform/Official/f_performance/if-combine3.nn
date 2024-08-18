@@ -1,51 +1,35 @@
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry744:  pred()
   call void _sysy_starttime(i32 324)
   747 = call i32 getint()
-  257821011 = icmp slt i32 0, i32 %747
-  br i1 %257821011, bb %func.while.body21_preheader, bb %func.while.exit22
+  257801014 = icmp slt i32 0, i32 %747
+  br i1 %257801014, bb %func.while.body21_preheader, bb %func.while.exit22
 func.while.body21_preheader:  pred(entry744)
   br bb %func.while.body21
 func.while.body21:  pred(func.while.body21, func.while.body21_preheader)
-  sum.phi7811014 = phi [bb %func.while.body21, i32 %7421000, bb %func.while.body21_preheader, i32 0]
-  j.phi7801013 = phi [bb %func.while.body21, i32 %722983, bb %func.while.body21_preheader, i32 0]
-  722983 = add i32 %j.phi7801013, i32 1
-  3005 = add i32 %sum.phi7811014, i32 4950
-  7421000 = srem i32 %3005, i32 65535
-  25782 = icmp slt i32 %722983, i32 %747
-  br i1 %25782, bb %func.while.body21, bb %func.while.body21_exclu_exit
-func.while.exit22:  pred(entry744, func.while.body21_exclu_exit)
-  1012 = phi [bb %func.while.body21_exclu_exit, i32 %7421000, bb %entry744, i32 0]
-  call void putint(i32 %1012)
+  sum.phi7791017 = phi [bb %func.while.body21, i32 %742998, bb %func.while.body21_preheader, i32 0]
+  j.phi7781016 = phi [bb %func.while.body21, i32 %722981, bb %func.while.body21_preheader, i32 0]
+  722981 = add i32 %j.phi7781016, i32 1
+  3013 = add i32 %sum.phi7791017, i32 4950
+  742998 = srem i32 %3013, i32 65535
+  25780 = icmp slt i32 %722981, i32 %747
+  br i1 %25780, bb %func.while.body21, bb %func.while.exit22
+func.while.exit22:  pred(func.while.body21, entry744)
+  sum.phi779_ph_val1015 = phi [bb %func.while.body21, i32 %742998, bb %entry744, i32 0]
+  call void putint(i32 %sum.phi779_ph_val1015)
   call void putch(i32 10)
   call void _sysy_stoptime(i32 328)
   ret i32 0
-func.while.body21_exclu_exit:  pred(func.while.body21)
-  br bb %func.while.exit22
 }
-
-external float getfloat()
-
-external void putfloat(float )
 
 external void putch(i32 )
 
 external void _sysy_stoptime(i32 )
 
-external void putarray(i32 , ptr )
-
 external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

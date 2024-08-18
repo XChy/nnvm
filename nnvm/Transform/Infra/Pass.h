@@ -5,7 +5,7 @@
 #include <memory>
 namespace nnvm {
 
-#define OPEN_OPT_DEBUG_INFO
+//#define OPEN_OPT_DEBUG_INFO
 
 #if defined(OPEN_OPT_DEBUG_INFO)
 #define opt_debug(A)                                                           \

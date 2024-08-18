@@ -6,7 +6,7 @@
 main:   # loop depth 0
   ADDI sp, sp, -16
   SD ra, 0(sp)
-  ADD a4, zero, zero
+  ADD a1, zero, zero
   ADD t0, zero, zero
   ADD t1, zero, zero
   ADD a0, zero, zero
@@ -15,26 +15,26 @@ bb1:   # loop depth 1
   ADD t2, zero, zero
   # implict jump to bb2
 bb2:   # loop depth 2
-  ADD a1, zero, zero
+  ADD a2, zero, zero
   # implict jump to bb3
 bb3:   # loop depth 3
-  ADD a2, zero, zero
+  ADD a3, zero, zero
   # implict jump to bb4
 bb4:   # loop depth 4
-  SLTI a3, a2, 3
-  BNE a3, zero, bb13
+  SLTI a4, a3, 3
+  BNE a4, zero, bb13
   # implict jump to bb5
 bb5:   # loop depth 4
   # implict jump to bb6
 bb6:   # loop depth 3
-  ADDIW a1, a1, 1
-  SLTI a2, a1, 5
-  BNE a2, zero, bb12
+  ADDIW a2, a2, 1
+  SLTI a3, a2, 5
+  BNE a3, zero, bb12
   # implict jump to bb7
 bb7:   # loop depth 2
   ADDIW t2, t2, 1
-  SLTI a1, t2, 10
-  BNE a1, zero, bb11
+  SLTI a2, t2, 10
+  BNE a2, zero, bb11
   # implict jump to bb8
 bb8:   # loop depth 1
   ADDIW t1, t1, 1
@@ -52,8 +52,8 @@ bb11:   # loop depth 2
 bb12:   # loop depth 3
   JAL zero, bb3
 bb13:   # loop depth 4
-  ADDIW a3, a2, 1
-  SLTI a6, a3, 3
+  ADDIW a4, a3, 1
+  SLTI a6, a4, 3
   BEQ a6, zero, bb17
   # implict jump to bb14
 bb14:   # loop depth 4
@@ -62,12 +62,12 @@ bb15:   # loop depth 4
   # implict jump to bb16
 bb16:   # loop depth 4
   ADDIW a0, a0, 1
-  ADD a2, a3, zero
-  ADDI a4, zero, 2
+  ADD a3, a4, zero
+  ADDI a1, zero, 2
   JAL zero, bb4
 bb17:   # loop depth 4
-  SLTU a5, zero, a2
-  BNE a2, zero, bb20
+  SLTU a5, zero, a3
+  BNE a3, zero, bb20
   # implict jump to bb18
 bb18:   # loop depth 4
   # implict jump to bb19
@@ -83,5 +83,5 @@ bb21:   # loop depth 4
 bb22:   # loop depth 4
   BEQ a6, zero, bb23
   JAL zero, bb15
-bb23:   # loop depth 3
+bb23:   # loop depth 4
   JAL zero, bb6

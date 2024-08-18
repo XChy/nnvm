@@ -79,19 +79,18 @@ bool CFGCombinerPass::foldBBWithUncondBr(BasicBlock *BB, BranchInst *BI) {
     return false;
 
   if (succ->containsPhi()) {
-    if (BB->getPredNum() != 1)
-      return false;
-    BasicBlock *pred = *BB->getPredBegin();
-    // if (pred->isPredecessorOf(succ))
-    if (pred->getSuccNum() != 1)
-      return false;
-    // Those jump from pred to BB, now jump from pred to succ directly.
-    TerminatorInst *TI = pred->getTerminator();
-    TI->replaceOps(SingleMapper(BB, succ));
+    if (BB->getPredNum() == 1) {
+      BasicBlock *pred = *BB->getPredBegin();
+      if (pred->isPredecessorOf(succ))
+        return false;
+      // Those jump from pred to BB, now jump from pred to succ directly.
+      TerminatorInst *TI = pred->getTerminator();
+      TI->replaceOps(SingleMapper(BB, succ));
 
-    // Replace BB in phis with pred.
-    BB->replaceSelf(pred);
-    return true;
+      // Replace BB in phis with pred.
+      BB->replaceSelf(pred);
+      return true;
+    }
   } else if ((BB != BB->getParent()->getEntry())) {
     BB->replaceSelf(succ);
     BI->eraseFromBB();

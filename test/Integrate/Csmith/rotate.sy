@@ -1,0 +1,7 @@
+int a;
+int b();
+int b(int c) {
+  for (0; c; a++)
+    return a;
+}
+int main() {}

@@ -1,13 +1,5 @@
 internal global ptr a init with 4096 x i32 zeros
-external i32 getint()
-
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry26:  pred()
@@ -17,38 +9,29 @@ init:  pred(init, entry26)
   cnt_ptr.phi172 = phi [bb %init, i32 %115, bb %entry26, i32 1024]
   115 = add i32 %cnt_ptr.phi172, i32 -1
   33 = icmp ne i32 %115, i32 0
-  br i1 %33, bb %init, bb %init_exclu_exit
-init41:  pred(init41, init_exclu_exit)
-  cnt_ptr43.phi170 = phi [bb %init41, i32 %117, bb %init_exclu_exit, i32 1023]
+  br i1 %33, bb %init, bb %init.exit
+init.exit:  pred(init)
+  br bb %init41
+init41:  pred(init41, init.exit)
+  cnt_ptr43.phi170 = phi [bb %init41, i32 %117, bb %init.exit, i32 1023]
   117 = add i32 %cnt_ptr43.phi170, i32 -1
   45 = icmp ne i32 %117, i32 0
-  br i1 %45, bb %init41, bb %init41_exclu_exit
-init54:  pred(init54, init41_exclu_exit)
-  cnt_ptr56.phi168 = phi [bb %init54, i32 %119, bb %init41_exclu_exit, i32 1022]
+  br i1 %45, bb %init41, bb %init.exit42
+init.exit42:  pred(init41)
+  br bb %init54
+init54:  pred(init54, init.exit42)
+  cnt_ptr56.phi168 = phi [bb %init54, i32 %119, bb %init.exit42, i32 1022]
   119 = add i32 %cnt_ptr56.phi168, i32 -1
   58 = icmp ne i32 %119, i32 0
-  br i1 %58, bb %init54, bb %init54_exclu_exit
-init68:  pred(init68, init54_exclu_exit)
-  cnt_ptr70.phi166 = phi [bb %init68, i32 %121, bb %init54_exclu_exit, i32 1021]
+  br i1 %58, bb %init54, bb %init.exit55
+init.exit55:  pred(init54)
+  br bb %init68
+init68:  pred(init68, init.exit55)
+  cnt_ptr70.phi166 = phi [bb %init68, i32 %121, bb %init.exit55, i32 1021]
   121 = add i32 %cnt_ptr70.phi166, i32 -1
   72 = icmp ne i32 %121, i32 0
-  br i1 %72, bb %init68, bb %init68_exclu_exit
-init86:  pred(init86, init68_exclu_exit)
-  cnt_ptr88.phi164 = phi [bb %init86, i32 %123, bb %init68_exclu_exit, i32 4090]
-  123 = add i32 %cnt_ptr88.phi164, i32 -1
-  160 = shl i32 %123, i32 2
-  arr.index94 = add i32 %160, i32 24
-  arr.index95 = ptradd ptr %c, i32 %arr.index94
-  store i32 0 to ptr %arr.index95
-  90 = icmp ne i32 %123, i32 0
-  br i1 %90, bb %init86, bb %init86_exclu_exit
-init_exclu_exit:  pred(init)
-  br bb %init41
-init41_exclu_exit:  pred(init41)
-  br bb %init54
-init54_exclu_exit:  pred(init54)
-  br bb %init68
-init68_exclu_exit:  pred(init68)
+  br i1 %72, bb %init68, bb %init.exit69
+init.exit69:  pred(init68)
   store i32 1 to ptr %c
   arr.index80 = ptradd ptr %c, i32 4
   store i32 2 to ptr %arr.index80
@@ -61,7 +44,16 @@ init68_exclu_exit:  pred(init68)
   arr.index84 = ptradd ptr %c, i32 20
   store i32 4 to ptr %arr.index84
   br bb %init86
-init86_exclu_exit:  pred(init86)
+init86:  pred(init86, init.exit69)
+  cnt_ptr88.phi164 = phi [bb %init86, i32 %123, bb %init.exit69, i32 4090]
+  123 = add i32 %cnt_ptr88.phi164, i32 -1
+  160 = shl i32 %123, i32 2
+  arr.index94 = add i32 %160, i32 24
+  arr.index95 = ptradd ptr %c, i32 %arr.index94
+  store i32 0 to ptr %arr.index95
+  90 = icmp ne i32 %123, i32 0
+  br i1 %90, bb %init86, bb %init.exit87
+init.exit87:  pred(init86)
   a.pinned = pin ptr @a
   2129 = ptradd ptr %a.pinned, i32 20
   store i32 4000 to ptr %2129
@@ -76,18 +68,6 @@ init86_exclu_exit:  pred(init86)
   ret i32 %104.load
 }
 
-external float getfloat()
-
-external void putfloat(float )
-
 external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 

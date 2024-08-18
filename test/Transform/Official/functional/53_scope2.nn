@@ -13,6 +13,10 @@ while.body:  pred(if.exit22, entry)
   53 = add i32 %k.phi4266, i32 -88
   20 = icmp slt i32 %53, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
+while.exit:  pred(if.exit22)
+  call void putint(i32 %k.phi)
+  k.load39 = load i32 from ptr %k.pinned
+  ret i32 %k.load39
 then21:  pred(while.body)
   60 = add i32 %k.phi4266, i32 -76
   br bb %if.exit22
@@ -22,35 +26,9 @@ if.exit22:  pred(while.body, then21)
   g.phi = phi [bb %while.body, i32 %g.phi4565, bb %then21, i32 10]
   k.phi = phi [bb %while.body, i32 %53, bb %then21, i32 %60]
   14 = icmp sgt i32 %k.phi, i32 10
-  br i1 %14, bb %while.body, bb %while.body_exclu_exit
-while.body_exclu_exit:  pred(if.exit22)
-  call void putint(i32 %k.phi)
-  k.load39 = load i32 from ptr %k.pinned
-  ret i32 %k.load39
+  br i1 %14, bb %while.body, bb %while.exit
 }
 
-external void putfarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_stoptime(i32 )
-
-external void putch(i32 )
-
-external void putfloat(float )
-
-external i32 getfarray(ptr )
-
-external i32 getarray(ptr )
-
 external void putint(i32 )
-
-external float getfloat()
-
-external i32 getch()
-
-external i32 getint()
 
 

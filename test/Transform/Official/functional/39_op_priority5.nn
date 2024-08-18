@@ -14,7 +14,7 @@ entry:  pred()
   d.load = load i32 from ptr @d
   9 = add i32 %e.load, i32 %d.load
   10 = icmp eq i32 %6, i32 %9
-  br i1 %10, bb %select.then, bb %select.else
+  br i1 %10, bb %select.then, bb %select.exit
 select.then:  pred(entry)
   18 = add i32 %a.load, i32 %b.load
   19 = mul i32 %a.load, i32 %18
@@ -22,13 +22,9 @@ select.then:  pred(entry)
   24 = add i32 %d.load, i32 %e.load
   25 = icmp sle i32 %21, i32 %24
   br bb %select.exit
-select.else:  pred(entry)
-  br bb %select.exit
-select.exit:  pred(select.then, select.else)
-  select.phi = phi [bb %select.else, i1 0, bb %select.then, i1 %25]
-  br i1 %select.phi, bb %select.then27, bb %select.else28
-select.then27:  pred(select.exit)
-  br bb %select.exit29
+select.exit:  pred(select.then, entry)
+  select.phi = phi [bb %entry, i1 0, bb %select.then, i1 %25]
+  br i1 %select.phi, bb %select.exit29, bb %select.else28
 select.else28:  pred(select.exit)
   34 = mul i32 %b.load, i32 %c.load
   35 = sub i32 %a.load, i32 %34
@@ -36,35 +32,13 @@ select.else28:  pred(select.exit)
   40 = sub i32 %d.load, i32 %39
   41 = icmp eq i32 %35, i32 %40
   br bb %select.exit29
-select.exit29:  pred(select.then27, select.else28)
-  select30.phi = phi [bb %select.else28, i1 %41, bb %select.then27, i1 1]
+select.exit29:  pred(select.else28, select.exit)
+  select30.phi = phi [bb %select.else28, i1 %41, bb %select.exit, i1 1]
   55 = zext i1 %select30.phi to i32
   call void putint(i32 %55)
   ret i32 %55
 }
 
-external void putfarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_stoptime(i32 )
-
-external void putch(i32 )
-
-external void putfloat(float )
-
-external i32 getfarray(ptr )
-
-external i32 getarray(ptr )
-
 external void putint(i32 )
-
-external float getfloat()
-
-external i32 getch()
-
-external i32 getint()
 
 

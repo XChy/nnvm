@@ -77,7 +77,7 @@ bb9:   # loop depth 2
   ADDIW t1, t1, 1
   BNE a5, zero, bb11
   # implict jump to bb10
-bb10:   # loop depth 1
+bb10:   # loop depth 2
   JAL zero, bb3
 bb11:   # loop depth 2
   JAL zero, bb7
@@ -95,7 +95,7 @@ bb15:   # loop depth 3
   ADDIW t0, t0, -1
   BEQ a5, zero, bb17
   # implict jump to bb16
-bb16:   # loop depth 2
+bb16:   # loop depth 3
   JAL zero, bb9
 bb17:   # loop depth 3
   JAL zero, bb13
@@ -114,7 +114,7 @@ bb20:   # loop depth 4
   SW a5, 0(a1)
   BNE a6, zero, bb22
   # implict jump to bb21
-bb21:   # loop depth 3
+bb21:   # loop depth 4
   JAL zero, bb15
 bb22:   # loop depth 4
   JAL zero, bb19

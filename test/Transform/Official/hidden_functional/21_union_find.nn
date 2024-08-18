@@ -1,65 +1,53 @@
 internal global ptr parent init with 1005 x i32 zeros
 external i32 getint()
 
-external i32 getch()
-
 external void putint(i32 )
-
-external i32 getarray(ptr )
-
-external i32 getfarray(ptr )
 
 i32 main() {
 entry46:  pred()
   parent.pinned = pin ptr @parent
   48 = call i32 getint()
   50 = call i32 getint()
-  60158 = icmp slt i32 0, i32 %48
-  br i1 %60158, bb %while.body_preheader, bb %while.exit
-while.body_preheader:  pred(entry46)
-  br bb %while.body
-while.body:  pred(while.body, while.body_preheader)
-  i.phi117159 = phi [bb %while.body, i32 %69, bb %while.body_preheader, i32 0]
-  148 = shl i32 %i.phi117159, i32 2
+  60167 = icmp slt i32 0, i32 %48
+  br i1 %60167, bb %while.body, bb %while.cond71_preheader
+while.body:  pred(while.body, entry46)
+  i.phi117168 = phi [bb %while.body, i32 %69, bb %entry46, i32 0]
+  148 = shl i32 %i.phi117168, i32 2
   64 = ptradd ptr %parent.pinned, i32 %148
-  store i32 %i.phi117159 to ptr %64
-  69 = add i32 %i.phi117159, i32 1
+  store i32 %i.phi117168 to ptr %64
+  69 = add i32 %i.phi117168, i32 1
   60 = icmp slt i32 %69, i32 %48
-  br i1 %60, bb %while.body, bb %while.exit
-while.exit:  pred(entry46, while.body)
-  76156 = icmp slt i32 0, i32 %50
-  br i1 %76156, bb %while.body72_preheader, bb %while.exit73
-while.body72_preheader:  pred(while.exit)
-  br bb %while.body72
-while.body72:  pred(merge.if.exit40, while.body72_preheader)
-  i.phi116157 = phi [bb %merge.if.exit40, i32 %87, bb %while.body72_preheader, i32 0]
+  br i1 %60, bb %while.body, bb %while.cond71_preheader
+while.cond71_preheader:  pred(while.body, entry46)
+  76165 = icmp slt i32 0, i32 %50
+  br i1 %76165, bb %while.body72, bb %while.cond90_preheader
+while.body72:  pred(merge.if.exit40, while.cond71_preheader)
+  i.phi116166 = phi [bb %merge.if.exit40, i32 %87, bb %while.cond71_preheader, i32 0]
   79 = call i32 getint()
   81 = call i32 getint()
   32133 = call i32 find(i32 %79)
   35134 = call i32 find(i32 %81)
   38135 = icmp ne i32 %32133, i32 %35134
   br i1 %38135, bb %merge.then39, bb %merge.if.exit40
-while.exit73:  pred(while.exit, merge.if.exit40)
-  br i1 %60158, bb %while.body91_preheader, bb %while.exit92
-while.body91_preheader:  pred(while.exit73)
-  br bb %while.body91
-while.body91:  pred(while.body91.split, while.body91_preheader)
-  i.phi155 = phi [bb %while.body91.split, i32 %110, bb %while.body91_preheader, i32 0]
-  clusters.phi121154 = phi [bb %while.body91.split, i32 %175, bb %while.body91_preheader, i32 0]
-  149 = shl i32 %i.phi155, i32 2
+while.cond90_preheader:  pred(merge.if.exit40, while.cond71_preheader)
+  br i1 %60167, bb %while.body91, bb %while.exit92
+while.body91:  pred(while.body91.split, while.cond90_preheader)
+  i.phi164 = phi [bb %while.body91.split, i32 %110, bb %while.cond90_preheader, i32 0]
+  clusters.phi121163 = phi [bb %while.body91.split, i32 %198, bb %while.cond90_preheader, i32 0]
+  149 = shl i32 %i.phi164, i32 2
   99 = ptradd ptr %parent.pinned, i32 %149
   99.load = load i32 from ptr %99
-  102 = icmp eq i32 %99.load, i32 %i.phi155
-  107 = add i32 %clusters.phi121154, i32 1
+  102 = icmp eq i32 %99.load, i32 %i.phi164
+  107 = add i32 %clusters.phi121163, i32 1
   br i1 %102, bb %clusters.phi.which.true, bb %while.body91.split
 while.body91.split:  pred(while.body91, clusters.phi.which.true)
-  175 = phi [bb %clusters.phi.which.true, i32 %107, bb %while.body91, i32 %clusters.phi121154]
-  110 = add i32 %i.phi155, i32 1
+  198 = phi [bb %clusters.phi.which.true, i32 %107, bb %while.body91, i32 %clusters.phi121163]
+  110 = add i32 %i.phi164, i32 1
   95 = icmp slt i32 %110, i32 %48
-  br i1 %95, bb %while.body91, bb %while.body91_exclu_exit
-while.exit92:  pred(while.exit73, while.body91_exclu_exit)
-  153 = phi [bb %while.body91_exclu_exit, i32 %175, bb %while.exit73, i32 0]
-  call void putint(i32 %153)
+  br i1 %95, bb %while.body91, bb %while.exit92
+while.exit92:  pred(while.body91.split, while.cond90_preheader)
+  clusters.phi121_ph_val162 = phi [bb %while.body91.split, i32 %198, bb %while.cond90_preheader, i32 0]
+  call void putint(i32 %clusters.phi121_ph_val162)
   ret i32 0
 merge.then39:  pred(while.body72)
   150 = shl i32 %35134, i32 2
@@ -67,18 +55,12 @@ merge.then39:  pred(while.body72)
   store i32 %32133 to ptr %43139
   br bb %merge.if.exit40
 merge.if.exit40:  pred(while.body72, merge.then39)
-  87 = add i32 %i.phi116157, i32 1
+  87 = add i32 %i.phi116166, i32 1
   76 = icmp slt i32 %87, i32 %50
-  br i1 %76, bb %while.body72, bb %while.exit73
-while.body91_exclu_exit:  pred(while.body91.split)
-  br bb %while.exit92
+  br i1 %76, bb %while.body72, bb %while.cond90_preheader
 clusters.phi.which.true:  pred(while.body91)
   br bb %while.body91.split
 }
-
-external float getfloat()
-
-external void putfloat(float )
 
 internal i32 find(i32 root) {
 entry:  pred()
@@ -95,15 +77,5 @@ else:  pred(entry)
   store i32 %20 to ptr %4
   ret i32 %20
 }
-
-external void putch(i32 )
-
-external void _sysy_stoptime(i32 )
-
-external void putarray(i32 , ptr )
-
-external void _sysy_starttime(i32 )
-
-external void putfarray(i32 , ptr )
 
 
