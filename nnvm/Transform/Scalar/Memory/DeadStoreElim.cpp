@@ -25,8 +25,9 @@ bool DeadStoreElimPass::run(Function &F) {
 }
 
 bool DeadStoreElimPass::isDead(StoreInst *store) {
-  // if (!getRootObj(store->getDest())->isa<StackInst>())
-  // return false;
+  // TODO: remove it
+  if (!getRootObj(store->getDest())->isa<StackInst>())
+    return false;
 
   auto *storeBlock = store->getBlock();
 
