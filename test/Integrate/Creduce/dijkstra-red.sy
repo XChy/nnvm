@@ -1,0 +1,16 @@
+int a;
+void b() {
+  int c;
+  while (c <= a)
+    if (1)
+      ;
+}
+int main() {
+  int c;
+  while (c <= a) {
+    int d;
+    while (d <= a)
+      ;
+  }
+  return 0;
+}

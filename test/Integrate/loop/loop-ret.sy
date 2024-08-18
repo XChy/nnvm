@@ -1,0 +1,8 @@
+int b() {}
+int a() {
+    if (5);
+}
+
+int main() {
+    return 0;
+}

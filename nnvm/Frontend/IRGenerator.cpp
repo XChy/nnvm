@@ -816,7 +816,7 @@ Any IRGenerator::visitFuncDef(SysYParser::FuncDefContext *ctx) {
         !builder.getCurrentBB()->getTerminator())
       builder.buildRet();
     else if (!builder.getCurrentBB()->getTerminator()) {
-      builder.buildUnreachable();
+      builder.buildRet();
     }
   }
 
@@ -1036,7 +1036,11 @@ Any IRGenerator::visitStmt(SysYParser::StmtContext *ctx) {
         // TODO: cast fail
         return Symbol::none();
 
-      return Symbol{builder.buildRet(returned.entity), nullptr};
+      Symbol ret = Symbol{builder.buildRet(returned.entity), nullptr};
+      BasicBlock *afterBB =
+          new BasicBlock(cast<Function>(currentFunc->entity), "after.return");
+      builder.insertAt(afterBB->end());
+      return ret;
     } else {
       if (!currentFunc->symbolType->containedTy->isVoid()) {
         errorReporter.errorRecord(ctx, "Function return value should exsist");
