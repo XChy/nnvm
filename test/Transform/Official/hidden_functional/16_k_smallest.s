@@ -17,8 +17,8 @@ findSmallest:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 0
   LA s0, array
-  ADDIW t0, a0, 1
-  SLLIW t1, a0, 2
+  ADDIW t1, a0, 1
+  SLLIW t0, a0, 2
   SH2ADD a4, a1, s0
   LW a5, 0(a4)
   BLT a0, a1, bb12
@@ -27,10 +27,10 @@ bb2:   # loop depth 0
   ADD s2, a0, zero
   # implict jump to bb3
 bb3:   # loop depth 0
-  ADD t1, s0, t1
-  LW t2, 0(t1)
+  ADD t0, s0, t0
+  LW t2, 0(t0)
   LW a5, 0(a4)
-  SW a5, 0(t1)
+  SW a5, 0(t0)
   SW t2, 0(a4)
   BEQ a2, s2, bb8
   # implict jump to bb4
@@ -38,7 +38,7 @@ bb4:   # loop depth 0
   BLT a2, s2, bb7
   # implict jump to bb5
 bb5:   # loop depth 0
-  ADD a0, t0, zero
+  ADD a0, t1, zero
   CALL findSmallest
   # implict jump to bb6
 bb6:   # loop depth 0
@@ -83,8 +83,8 @@ bb14:   # loop depth 1
   # implict jump to bb15
 bb15:   # loop depth 1
   ADDIW t2, t2, 1
-  ADDIW t0, s2, 1
-  SLLIW t1, s2, 2
+  ADDIW t1, s2, 1
+  SLLIW t0, s2, 2
   BLT t2, a1, bb17
   # implict jump to bb16
 bb16:   # loop depth 1
@@ -93,11 +93,11 @@ bb17:   # loop depth 1
   JAL zero, bb13
 bb18:   # loop depth 1
   LW a7, 0(a6)
-  ADD t1, s0, t1
-  ADD s2, t0, zero
-  LW t0, 0(t1)
-  SW t0, 0(a6)
-  SW a7, 0(t1)
+  ADD t0, s0, t0
+  ADD s2, t1, zero
+  LW t1, 0(t0)
+  SW t1, 0(a6)
+  SW a7, 0(t0)
   JAL zero, bb15
 bb19:   # loop depth 0
   LD ra, 0(sp)

@@ -66,10 +66,9 @@ bb3:   # loop depth 1
   ADDIW s1, s1, -1
   MULW t0, t0, a1
   ADDW t0, t0, a0
-  REMW t1, t0, t2
+  REMW t0, t0, t2
   SW t0, 0(s0)
-  SW t1, 0(s0)
-  BLT t1, zero, bb25
+  BLT t0, zero, bb25
   # implict jump to bb4
 bb4:   # loop depth 1
   LW t0, 0(s0)
@@ -78,10 +77,9 @@ bb4:   # loop depth 1
   MULW t1, t0, a1
   REMW t0, t0, a2
   ADDW t1, t1, a0
-  REMW a2, t1, t2
+  REMW t1, t1, t2
   SW t1, 0(s0)
-  SW a2, 0(s0)
-  BLT a2, zero, bb24
+  BLT t1, zero, bb24
   # implict jump to bb5
 bb5:   # loop depth 1
   ADDI t1, zero, 30

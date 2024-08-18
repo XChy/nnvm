@@ -534,16 +534,16 @@ bb95:   # loop depth 2
 bb96:   # loop depth 2
   JAL zero, bb18
 bb97:   # loop depth 0
-  ADDI t2, zero, 1
+  ADDI t0, zero, 1
   # implict jump to bb98
 bb98:   # loop depth 1
-  ADD t0, t2, zero
   SH2ADD a0, t0, s10
   ADDIW t2, t0, 1
   SW t0, 0(a0)
   BGE a1, t2, bb99
   JAL zero, bb13
 bb99:   # loop depth 1
+  ADD t0, t2, zero
   JAL zero, bb98
 bb100:   # loop depth 0
   JAL zero, bb12

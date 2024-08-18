@@ -12,64 +12,64 @@ then:  pred(entry112)
 if.exit:  pred(entry112)
   used.pinned = pin ptr @used
   cap.pinned = pin ptr @cap
-  501 = shl i32 %s, i32 2
-  124 = ptradd ptr %used.pinned, i32 %501
-  store i32 1 to ptr %124
-  133 = ptradd ptr @size, i32 %501
-  138 = mul i32 %s, i32 40
-  139 = ptradd ptr @to, i32 %138
-  156 = ptradd ptr %cap.pinned, i32 %138
-  br bb %while.cond127
-while.cond127:  pred(if.exit, while.cond127_unified_latch)
-  d.phi = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %516]
-  min_f.phi330 = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %517]
-  i126.phi = phi [bb %if.exit, i32 0, bb %while.cond127_unified_latch, i32 %152]
-  133.load = load i32 from ptr %133
-  135 = icmp slt i32 %i126.phi, i32 %133.load
-  br i1 %135, bb %while.body128, bb %while.exit129
-while.body128:  pred(while.cond127)
-  502 = shl i32 %i126.phi, i32 2
-  142 = ptradd ptr %139, i32 %502
-  142.load = load i32 from ptr %142
-  503 = shl i32 %142.load, i32 2
-  145 = ptradd ptr %used.pinned, i32 %503
-  145.load = load i32 from ptr %145
-  147 = icmp ne i32 %145.load, i32 0
-  152 = add i32 %i126.phi, i32 1
-  br i1 %147, bb %while.cond127_unified_latch, bb %if.exit149
-while.exit129:  pred(while.cond127)
+  511 = shl i32 %s, i32 2
+  125 = ptradd ptr %used.pinned, i32 %511
+  store i32 1 to ptr %125
+  134 = ptradd ptr @size, i32 %511
+  139 = mul i32 %s, i32 40
+  140 = ptradd ptr @to, i32 %139
+  157 = ptradd ptr %cap.pinned, i32 %139
+  br bb %while.cond128
+while.cond128:  pred(if.exit, while.cond128_unified_latch)
+  d.phi343 = phi [bb %if.exit, i32 0, bb %while.cond128_unified_latch, i32 %526]
+  min_f.phi339 = phi [bb %if.exit, i32 0, bb %while.cond128_unified_latch, i32 %527]
+  i127.phi = phi [bb %if.exit, i32 0, bb %while.cond128_unified_latch, i32 %153]
+  134.load = load i32 from ptr %134
+  136 = icmp slt i32 %i127.phi, i32 %134.load
+  br i1 %136, bb %while.body129, bb %while.exit130
+while.body129:  pred(while.cond128)
+  512 = shl i32 %i127.phi, i32 2
+  143 = ptradd ptr %140, i32 %512
+  143.load = load i32 from ptr %143
+  513 = shl i32 %143.load, i32 2
+  146 = ptradd ptr %used.pinned, i32 %513
+  146.load = load i32 from ptr %146
+  148 = icmp ne i32 %146.load, i32 0
+  153 = add i32 %i127.phi, i32 1
+  br i1 %148, bb %while.cond128_unified_latch, bb %if.exit150
+while.exit130:  pred(while.cond128)
   ret i32 0
-if.exit149:  pred(while.body128)
-  159 = ptradd ptr %156, i32 %502
-  159.load = load i32 from ptr %159
-  161 = icmp sle i32 %159.load, i32 0
-  br i1 %161, bb %while.cond127_unified_latch, bb %if.exit163
-if.exit163:  pred(if.exit149)
-  694 = signed min i32 %f, i32 %159.load
-  197.load = load i32 from ptr %142
-  201 = call i32 dfs(i32 %197.load, i32 %t, i32 %694)
-  203 = icmp sgt i32 %201, i32 0
-  br i1 %203, bb %then204, bb %while.cond127_unified_latch
-then204:  pred(if.exit163)
-  218.load = load i32 from ptr %159
-  221 = sub i32 %218.load, i32 %201
-  store i32 %221 to ptr %159
-  227.load = load i32 from ptr %142
-  229 = mul i32 %227.load, i32 40
-  230 = ptradd ptr %cap.pinned, i32 %229
-  233 = ptradd ptr @rev, i32 %138
-  236 = ptradd ptr %233, i32 %502
-  236.load = load i32 from ptr %236
-  504 = shl i32 %236.load, i32 2
-  239 = ptradd ptr %230, i32 %504
-  258.load = load i32 from ptr %239
-  261 = add i32 %258.load, i32 %201
-  store i32 %261 to ptr %239
-  ret i32 %201
-while.cond127_unified_latch:  pred(while.body128, if.exit149, if.exit163)
-  517 = phi [bb %while.body128, i32 %min_f.phi330, bb %if.exit149, i32 %min_f.phi330, bb %if.exit163, i32 %694]
-  516 = phi [bb %while.body128, i32 %d.phi, bb %if.exit149, i32 %d.phi, bb %if.exit163, i32 %201]
-  br bb %while.cond127
+if.exit150:  pred(while.body129)
+  160 = ptradd ptr %157, i32 %512
+  160.load = load i32 from ptr %160
+  162 = icmp sle i32 %160.load, i32 0
+  br i1 %162, bb %while.cond128_unified_latch, bb %if.exit164
+if.exit164:  pred(if.exit150)
+  704 = signed min i32 %f, i32 %160.load
+  198.load = load i32 from ptr %143
+  202 = call i32 dfs(i32 %198.load, i32 %t, i32 %704)
+  204 = icmp sgt i32 %202, i32 0
+  br i1 %204, bb %then205, bb %while.cond128_unified_latch
+then205:  pred(if.exit164)
+  219.load = load i32 from ptr %160
+  222 = sub i32 %219.load, i32 %202
+  store i32 %222 to ptr %160
+  228.load = load i32 from ptr %143
+  230 = mul i32 %228.load, i32 40
+  231 = ptradd ptr %cap.pinned, i32 %230
+  234 = ptradd ptr @rev, i32 %139
+  237 = ptradd ptr %234, i32 %512
+  237.load = load i32 from ptr %237
+  514 = shl i32 %237.load, i32 2
+  240 = ptradd ptr %231, i32 %514
+  259.load = load i32 from ptr %240
+  262 = add i32 %259.load, i32 %202
+  store i32 %262 to ptr %240
+  ret i32 %202
+while.cond128_unified_latch:  pred(while.body129, if.exit150, if.exit164)
+  527 = phi [bb %while.body129, i32 %min_f.phi339, bb %if.exit150, i32 %min_f.phi339, bb %if.exit164, i32 %704]
+  526 = phi [bb %while.body129, i32 %d.phi343, bb %if.exit150, i32 %d.phi343, bb %if.exit164, i32 %202]
+  br bb %while.cond128
 }
 
 external i32 getint()
@@ -77,109 +77,109 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry289:  pred()
+entry293:  pred()
   size.pinned = pin ptr @size
-  293 = call i32 getint()
-  295 = call i32 getint()
+  297 = call i32 getint()
+  299 = call i32 getint()
   store i32 0 to ptr %size.pinned
-  13466621 = ptradd ptr %size.pinned, i32 4
-  store i32 0 to ptr %13466621
-  13466629 = ptradd ptr %size.pinned, i32 8
-  store i32 0 to ptr %13466629
-  13466637 = ptradd ptr %size.pinned, i32 12
-  store i32 0 to ptr %13466637
-  13466645 = ptradd ptr %size.pinned, i32 16
-  store i32 0 to ptr %13466645
-  13466653 = ptradd ptr %size.pinned, i32 20
-  store i32 0 to ptr %13466653
-  13466661 = ptradd ptr %size.pinned, i32 24
-  store i32 0 to ptr %13466661
-  13466669 = ptradd ptr %size.pinned, i32 28
-  store i32 0 to ptr %13466669
-  13466677 = ptradd ptr %size.pinned, i32 32
-  store i32 0 to ptr %13466677
-  13466685 = ptradd ptr %size.pinned, i32 36
-  store i32 0 to ptr %13466685
-  301529 = icmp sgt i32 %295, i32 0
-  br i1 %301529, bb %while.body298, bb %max_flow.while.cond270_preheader
-while.body298:  pred(while.body298, entry289)
-  E.phi530 = phi [bb %while.body298, i32 %378, bb %entry289, i32 %295]
+  13476631 = ptradd ptr %size.pinned, i32 4
+  store i32 0 to ptr %13476631
+  13476639 = ptradd ptr %size.pinned, i32 8
+  store i32 0 to ptr %13476639
+  13476647 = ptradd ptr %size.pinned, i32 12
+  store i32 0 to ptr %13476647
+  13476655 = ptradd ptr %size.pinned, i32 16
+  store i32 0 to ptr %13476655
+  13476663 = ptradd ptr %size.pinned, i32 20
+  store i32 0 to ptr %13476663
+  13476671 = ptradd ptr %size.pinned, i32 24
+  store i32 0 to ptr %13476671
+  13476679 = ptradd ptr %size.pinned, i32 28
+  store i32 0 to ptr %13476679
+  13476687 = ptradd ptr %size.pinned, i32 32
+  store i32 0 to ptr %13476687
+  13476695 = ptradd ptr %size.pinned, i32 36
+  store i32 0 to ptr %13476695
+  305539 = icmp sgt i32 %299, i32 0
+  br i1 %305539, bb %while.body302, bb %max_flow.while.cond273_preheader
+while.body302:  pred(while.body302, entry293)
+  E.phi540 = phi [bb %while.body302, i32 %388, bb %entry293, i32 %299]
   rev.pinned = pin ptr @rev
-  cap.pinned699 = pin ptr @cap
+  cap.pinned709 = pin ptr @cap
   to.pinned = pin ptr @to
-  306 = call i32 getint()
-  308 = call i32 getint()
   310 = call i32 getint()
-  24397 = mul i32 %306, i32 40
-  25398 = ptradd ptr %to.pinned, i32 %24397
-  505 = shl i32 %306, i32 2
-  28400 = ptradd ptr %size.pinned, i32 %505
-  28.load401 = load i32 from ptr %28400
-  506 = shl i32 %28.load401, i32 2
-  31403 = ptradd ptr %25398, i32 %506
-  store i32 %308 to ptr %31403
-  36405 = ptradd ptr %cap.pinned699, i32 %24397
-  42408 = ptradd ptr %36405, i32 %506
-  store i32 %310 to ptr %42408
-  47410 = ptradd ptr %rev.pinned, i32 %24397
-  53413 = ptradd ptr %47410, i32 %506
-  509 = shl i32 %308, i32 2
-  57415 = ptradd ptr %size.pinned, i32 %509
-  57.load416 = load i32 from ptr %57415
-  store i32 %57.load416 to ptr %53413
-  60418 = mul i32 %308, i32 40
-  61419 = ptradd ptr %to.pinned, i32 %60418
-  510 = shl i32 %57.load416, i32 2
-  67422 = ptradd ptr %61419, i32 %510
-  store i32 %306 to ptr %67422
-  72424 = ptradd ptr %cap.pinned699, i32 %60418
-  78427 = ptradd ptr %72424, i32 %510
-  store i32 0 to ptr %78427
-  82429 = ptradd ptr %rev.pinned, i32 %60418
-  88432 = ptradd ptr %82429, i32 %510
-  store i32 %28.load401 to ptr %88432
-  102436 = add i32 %28.load401, i32 1
-  store i32 %102436 to ptr %28400
-  109.load438 = load i32 from ptr %57415
-  111439 = add i32 %109.load438, i32 1
-  store i32 %111439 to ptr %57415
-  378 = add i32 %E.phi530, i32 -1
-  301 = icmp sgt i32 %378, i32 0
-  br i1 %301, bb %while.body298, bb %max_flow.while.cond270_preheader
-max_flow.while.cond270_preheader:  pred(while.body298, entry289)
-  used.pinned701 = pin ptr @used
-  br bb %max_flow.while.cond270
-max_flow.while.cond270:  pred(max_flow.if.exit283, max_flow.while.cond270_preheader)
-  flow.phi384 = phi [bb %max_flow.if.exit283, i32 %288392, bb %max_flow.while.cond270_preheader, i32 0]
-  store i32 0 to ptr %used.pinned701
-  13481549 = ptradd ptr %used.pinned701, i32 4
-  store i32 0 to ptr %13481549
-  13481557 = ptradd ptr %used.pinned701, i32 8
-  store i32 0 to ptr %13481557
-  13481565 = ptradd ptr %used.pinned701, i32 12
-  store i32 0 to ptr %13481565
-  13481573 = ptradd ptr %used.pinned701, i32 16
-  store i32 0 to ptr %13481573
-  13481581 = ptradd ptr %used.pinned701, i32 20
-  store i32 0 to ptr %13481581
-  13481589 = ptradd ptr %used.pinned701, i32 24
-  store i32 0 to ptr %13481589
-  13481597 = ptradd ptr %used.pinned701, i32 28
-  store i32 0 to ptr %13481597
-  13481605 = ptradd ptr %used.pinned701, i32 32
-  store i32 0 to ptr %13481605
-  13481613 = ptradd ptr %used.pinned701, i32 36
-  store i32 0 to ptr %13481613
-  279386 = call i32 dfs(i32 1, i32 %293, i32 1879048192)
-  281387 = icmp eq i32 %279386, i32 0
-  br i1 %281387, bb %max_flow.then282, bb %max_flow.if.exit283
-max_flow.then282:  pred(max_flow.while.cond270)
-  call void putint(i32 %flow.phi384)
+  312 = call i32 getint()
+  314 = call i32 getint()
+  24407 = mul i32 %310, i32 40
+  25408 = ptradd ptr %to.pinned, i32 %24407
+  515 = shl i32 %310, i32 2
+  28410 = ptradd ptr %size.pinned, i32 %515
+  28.load411 = load i32 from ptr %28410
+  516 = shl i32 %28.load411, i32 2
+  31413 = ptradd ptr %25408, i32 %516
+  store i32 %312 to ptr %31413
+  36415 = ptradd ptr %cap.pinned709, i32 %24407
+  42418 = ptradd ptr %36415, i32 %516
+  store i32 %314 to ptr %42418
+  47420 = ptradd ptr %rev.pinned, i32 %24407
+  53423 = ptradd ptr %47420, i32 %516
+  519 = shl i32 %312, i32 2
+  57425 = ptradd ptr %size.pinned, i32 %519
+  57.load426 = load i32 from ptr %57425
+  store i32 %57.load426 to ptr %53423
+  60428 = mul i32 %312, i32 40
+  61429 = ptradd ptr %to.pinned, i32 %60428
+  520 = shl i32 %57.load426, i32 2
+  67432 = ptradd ptr %61429, i32 %520
+  store i32 %310 to ptr %67432
+  72434 = ptradd ptr %cap.pinned709, i32 %60428
+  78437 = ptradd ptr %72434, i32 %520
+  store i32 0 to ptr %78437
+  82439 = ptradd ptr %rev.pinned, i32 %60428
+  88442 = ptradd ptr %82439, i32 %520
+  store i32 %28.load411 to ptr %88442
+  102446 = add i32 %28.load411, i32 1
+  store i32 %102446 to ptr %28410
+  109.load448 = load i32 from ptr %57425
+  111449 = add i32 %109.load448, i32 1
+  store i32 %111449 to ptr %57425
+  388 = add i32 %E.phi540, i32 -1
+  305 = icmp sgt i32 %388, i32 0
+  br i1 %305, bb %while.body302, bb %max_flow.while.cond273_preheader
+max_flow.while.cond273_preheader:  pred(while.body302, entry293)
+  used.pinned711 = pin ptr @used
+  br bb %max_flow.while.cond273
+max_flow.while.cond273:  pred(max_flow.if.exit286, max_flow.while.cond273_preheader)
+  flow.phi394 = phi [bb %max_flow.if.exit286, i32 %292402, bb %max_flow.while.cond273_preheader, i32 0]
+  store i32 0 to ptr %used.pinned711
+  13491559 = ptradd ptr %used.pinned711, i32 4
+  store i32 0 to ptr %13491559
+  13491567 = ptradd ptr %used.pinned711, i32 8
+  store i32 0 to ptr %13491567
+  13491575 = ptradd ptr %used.pinned711, i32 12
+  store i32 0 to ptr %13491575
+  13491583 = ptradd ptr %used.pinned711, i32 16
+  store i32 0 to ptr %13491583
+  13491591 = ptradd ptr %used.pinned711, i32 20
+  store i32 0 to ptr %13491591
+  13491599 = ptradd ptr %used.pinned711, i32 24
+  store i32 0 to ptr %13491599
+  13491607 = ptradd ptr %used.pinned711, i32 28
+  store i32 0 to ptr %13491607
+  13491615 = ptradd ptr %used.pinned711, i32 32
+  store i32 0 to ptr %13491615
+  13491623 = ptradd ptr %used.pinned711, i32 36
+  store i32 0 to ptr %13491623
+  282396 = call i32 dfs(i32 1, i32 %297, i32 1879048192)
+  284397 = icmp eq i32 %282396, i32 0
+  br i1 %284397, bb %max_flow.then285, bb %max_flow.if.exit286
+max_flow.then285:  pred(max_flow.while.cond273)
+  call void putint(i32 %flow.phi394)
   call void putch(i32 10)
   ret i32 0
-max_flow.if.exit283:  pred(max_flow.while.cond270)
-  288392 = add i32 %flow.phi384, i32 %279386
-  br bb %max_flow.while.cond270
+max_flow.if.exit286:  pred(max_flow.while.cond273)
+  292402 = add i32 %flow.phi394, i32 %282396
+  br bb %max_flow.while.cond273
 }
 
 external void putch(i32 )

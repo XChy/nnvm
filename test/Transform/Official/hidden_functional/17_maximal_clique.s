@@ -193,30 +193,31 @@ bb21:   # loop depth 1
   JAL zero, bb18
 bb22:   # loop depth 2
   ADDIW t1, t0, 1
-  SH2ADD a1, t0, s1
-  ADD t0, t1, zero
   # implict jump to bb23
 bb23:   # loop depth 3
-  BLT t0, s0, bb25
+  BLT t1, s0, bb25
   # implict jump to bb24
-bb24:   # loop depth 3
-  ADD t0, t1, zero
+bb24:   # loop depth 2
+  ADDIW t0, t0, 1
   JAL zero, bb14
 bb25:   # loop depth 3
-  LW a2, 0(a1)
-  ADDI a4, zero, 120
-  SH2ADD a3, t0, s1
-  LA a5, graph
-  MULW a2, a2, a4
-  LW a3, 0(a3)
-  ADD a2, a5, a2
-  SH2ADD a2, a3, a2
+  SH2ADD a1, t0, s1
+  ADDI a3, zero, 120
+  LW a1, 0(a1)
+  SH2ADD a2, t1, s1
+  LA a4, graph
+  MULW a1, a1, a3
   LW a2, 0(a2)
-  BEQ a2, zero, bb27
+  ADD a1, a4, a1
+  SH2ADD a1, a2, a1
+  LW a1, 0(a1)
+  BEQ a1, zero, bb28
   # implict jump to bb26
 bb26:   # loop depth 3
-  ADDIW t0, t0, 1
-  JAL zero, bb23
+  # implict jump to bb27
 bb27:   # loop depth 3
+  ADDIW t1, t1, 1
+  JAL zero, bb23
+bb28:   # loop depth 3
   ADD t0, zero, zero
   JAL zero, bb16

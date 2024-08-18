@@ -1,18 +1,18 @@
 external void putint(i32 )
 
 i32 main() {
-entry44:  pred()
+entry46:  pred()
   %y = stack 4
   %x = stack 4
   store i32 1 to ptr %x
   store i32 1 to ptr %y
-  53 = call i32 exgcd(i32 7, i32 15, ptr %x, ptr %y)
-  58.load = load i32 from ptr %x
-  61 = srem i32 %58.load, i32 15
-  63 = add i32 %61, i32 15
-  65 = srem i32 %63, i32 15
-  store i32 %65 to ptr %x
-  call void putint(i32 %65)
+  55 = call i32 exgcd(i32 7, i32 15, ptr %x, ptr %y)
+  60.load = load i32 from ptr %x
+  63 = srem i32 %60.load, i32 15
+  65 = add i32 %63, i32 15
+  67 = srem i32 %65, i32 15
+  store i32 %67 to ptr %x
+  call void putint(i32 %67)
   ret i32 0
 }
 
@@ -25,17 +25,17 @@ then:  pred(entry)
   store i32 0 to ptr %y
   ret i32 %a
 else:  pred(entry)
-  19 = srem i32 %a, i32 %b
-  20 = call i32 exgcd(i32 %b, i32 %19, ptr %x, ptr %y)
-  23.load = load i32 from ptr %x
-  29.load = load i32 from ptr %y
-  store i32 %29.load to ptr %x
-  37 = sdiv i32 %a, i32 %b
-  39.load = load i32 from ptr %y
-  41 = mul i32 %37, i32 %39.load
-  42 = sub i32 %23.load, i32 %41
-  store i32 %42 to ptr %y
-  ret i32 %20
+  20 = srem i32 %a, i32 %b
+  21 = call i32 exgcd(i32 %b, i32 %20, ptr %x, ptr %y)
+  24.load = load i32 from ptr %x
+  30.load = load i32 from ptr %y
+  store i32 %30.load to ptr %x
+  38 = sdiv i32 %a, i32 %b
+  40.load = load i32 from ptr %y
+  42 = mul i32 %38, i32 %40.load
+  43 = sub i32 %24.load, i32 %42
+  store i32 %43 to ptr %y
+  ret i32 %21
 }
 
 

@@ -23,8 +23,8 @@ main:   # loop depth 0
   LA s4, dp
   CALL getint
   ADD s3, a0, zero
-  SLTI s6, s3, 1
   CALL getint
+  SLTI s6, s3, 1
   ADD s0, a0, zero
   BEQ s6, zero, bb22
   # implict jump to bb1

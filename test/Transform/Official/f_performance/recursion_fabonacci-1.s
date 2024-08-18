@@ -163,17 +163,18 @@ fibFP:   # loop depth 0
   LA t2, .CONSTANT.7.0
   LA a0, .CONSTANT.7.0
   FLW ft0, 0(t0)
-  FLW ft1, 0(t1)
-  FLW ft2, 0(t2)
-  FSGNJ.S ft0, ft0, ft1
-  FLT.S t0, fa0, ft0
-  FLW ft1, 0(a0)
-  FSGNJ.S ft1, ft2, ft1
+  FSGNJ.D ft1, fa0, fa0
+  FLW ft2, 0(t1)
+  FLW ft3, 0(t2)
+  FSGNJ.S ft0, ft0, ft2
+  FLT.S t0, ft1, ft0
+  FLW ft2, 0(a0)
+  FSGNJ.S fa0, ft3, ft2
   BNE t0, zero, bb16
   # implict jump to bb15
 bb15:   # loop depth 0
-  FSUB.S ft0, fa0, ft0
-  FSUB.S fs0, fa0, ft1
+  FSUB.S ft0, ft1, ft0
+  FSUB.S fs0, ft1, fa0
   FSGNJ.S fa0, ft0, ft0
   CALL fibFP
   FSGNJ.D fs1, fa0, fa0
@@ -186,7 +187,6 @@ bb15:   # loop depth 0
   ADDI sp, sp, 32
   JALR zero, 0(ra)
 bb16:   # loop depth 0
-  FSGNJ.S fa0, ft1, ft1
   LD ra, 0(sp)
   FLD fs0, 8(sp)
   FLD fs1, 16(sp)

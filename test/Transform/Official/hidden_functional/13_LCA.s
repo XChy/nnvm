@@ -38,9 +38,9 @@ tree:   # loop depth 0
   LA t0, dep
   LA a6, f
   SH2ADD t0, a0, t0
-  ADD a2, a6, t1
+  ADD a4, a6, t1
   SW a1, 0(t0)
-  LW t0, 0(a2)
+  LW t0, 0(a4)
   BNE t0, zero, bb6
   # implict jump to bb1
 bb1:   # loop depth 0
@@ -76,25 +76,25 @@ bb5:   # loop depth 1
 bb6:   # loop depth 0
   ADD t0, zero, zero
   ADD t2, zero, zero
-  ADD a3, a2, zero
+  ADD a3, a4, zero
   # implict jump to bb7
 bb7:   # loop depth 1
+  ADD a2, a3, zero
   ADDI a5, zero, 80
-  LW a4, 0(a3)
+  LW a3, 0(a2)
   ADD t1, t2, zero
   ADDIW t0, t0, 1
-  MULW a5, a4, a5
-  SH2ADD a4, t0, a2
+  MULW a5, a3, a5
+  SH2ADD a3, t0, a4
   SLLIW t2, t0, 2
   ADD a5, a6, a5
   ADD t1, a5, t1
   LW t1, 0(t1)
-  SW t1, 4(a3)
-  LW t1, 0(a4)
+  SW t1, 4(a2)
+  LW t1, 0(a3)
   BNE t1, zero, bb8
   JAL zero, bb1
 bb8:   # loop depth 1
-  ADD a3, a4, zero
   JAL zero, bb7
 main:   # loop depth 0
   ADDI sp, sp, -96

@@ -11,15 +11,15 @@ external void putint(i32 )
 i32 main() {
 entry127:  pred()
   129 = call i32 getint()
-  134213 = icmp sgt i32 %129, i32 0
-  br i1 %134213, bb %while.body131, bb %while.exit132
+  134214 = icmp sgt i32 %129, i32 0
+  br i1 %134214, bb %while.body131, bb %while.exit132
 while.body131:  pred(while.body131, entry127)
-  N.phi214 = phi [bb %while.body131, i32 %153, bb %entry127, i32 %129]
+  N.phi215 = phi [bb %while.body131, i32 %154, bb %entry127, i32 %129]
   137 = call i32 getint()
   store i32 %137 to ptr @n
   call void f(i32 1)
-  153 = add i32 %N.phi214, i32 -1
-  134 = icmp sgt i32 %153, i32 0
+  154 = add i32 %N.phi215, i32 -1
+  134 = icmp sgt i32 %154, i32 0
   br i1 %134, bb %while.body131, bb %while.exit132
 while.exit132:  pred(while.body131, entry127)
   sum.load142 = load i32 from ptr @sum
@@ -31,32 +31,32 @@ external void putch(i32 )
 internal void f(i32 step) {
 entry28:  pred()
   n.pinned = pin ptr @n
-  n.load35215 = load i32 from ptr %n.pinned
-  36216 = icmp sle i32 1, i32 %n.load35215
-  br i1 %36216, bb %while.body32_preheader, bb %while.exit33
+  n.load35216 = load i32 from ptr %n.pinned
+  36217 = icmp sle i32 1, i32 %n.load35216
+  br i1 %36217, bb %while.body32_preheader, bb %while.exit33
 while.body32_preheader:  pred(entry28)
   line2.pinned = pin ptr @line2
   line1.pinned = pin ptr @line1
   sum.pinned = pin ptr @sum
   ans.pinned = pin ptr @ans
-  205 = shl i32 %step, i32 2
-  76 = ptradd ptr %ans.pinned, i32 %205
+  206 = shl i32 %step, i32 2
+  76 = ptradd ptr %ans.pinned, i32 %206
   104 = add i32 %step, i32 1
   br bb %while.body32
 while.body32:  pred(if.exit73, while.body32_preheader)
-  n.load35215218 = phi [bb %if.exit73, i32 %n.load35, bb %while.body32_preheader, i32 %n.load35215]
-  i30.phi217 = phi [bb %if.exit73, i32 %126, bb %while.body32_preheader, i32 1]
-  202 = shl i32 %i30.phi217, i32 2
-  40 = ptradd ptr @row, i32 %202
+  n.load35216219 = phi [bb %if.exit73, i32 %n.load35, bb %while.body32_preheader, i32 %n.load35216]
+  i30.phi218 = phi [bb %if.exit73, i32 %126, bb %while.body32_preheader, i32 1]
+  203 = shl i32 %i30.phi218, i32 2
+  40 = ptradd ptr @row, i32 %203
   40.load = load i32 from ptr %40
   42 = icmp ne i32 %40.load, i32 1
-  49 = add i32 %step, i32 %i30.phi217
+  49 = add i32 %step, i32 %i30.phi218
   br i1 %42, bb %select.then, bb %select.exit
 while.exit33:  pred(if.exit73, entry28)
   ret 
 select.then:  pred(while.body32)
-  203 = shl i32 %49, i32 2
-  51 = ptradd ptr %line1.pinned, i32 %203
+  204 = shl i32 %49, i32 2
+  51 = ptradd ptr %line1.pinned, i32 %204
   51.load = load i32 from ptr %51
   53 = icmp eq i32 %51.load, i32 0
   br bb %select.exit
@@ -64,10 +64,10 @@ select.exit:  pred(select.then, while.body32)
   select.phi = phi [bb %while.body32, i1 0, bb %select.then, i1 %53]
   br i1 %select.phi, bb %select.then55, bb %select.exit57
 select.then55:  pred(select.exit)
-  61 = add i32 %n.load35215218, i32 %step
-  63 = sub i32 %61, i32 %i30.phi217
-  204 = shl i32 %63, i32 2
-  65 = ptradd ptr %line2.pinned, i32 %204
+  61 = add i32 %n.load35216219, i32 %step
+  63 = sub i32 %61, i32 %i30.phi218
+  205 = shl i32 %63, i32 2
+  65 = ptradd ptr %line2.pinned, i32 %205
   65.load = load i32 from ptr %65
   67 = icmp ne i32 %65.load, i32 0
   68 = xor i1 %67, i1 1
@@ -76,59 +76,59 @@ select.exit57:  pred(select.then55, select.exit)
   select58.phi = phi [bb %select.exit, i1 0, bb %select.then55, i1 %68]
   br i1 %select58.phi, bb %then72, bb %if.exit73
 then72:  pred(select.exit57)
-  store i32 %i30.phi217 to ptr %76
-  81 = icmp eq i32 %step, i32 %n.load35215218
+  store i32 %i30.phi218 to ptr %76
+  81 = icmp eq i32 %step, i32 %n.load35216219
   br i1 %81, bb %then82, bb %if.exit83
 if.exit73:  pred(select.exit57, if.exit83)
-  126 = add i32 %i30.phi217, i32 1
+  126 = add i32 %i30.phi218, i32 1
   n.load35 = load i32 from ptr %n.pinned
   36 = icmp sle i32 %126, i32 %n.load35
   br i1 %36, bb %while.body32, bb %while.exit33
 then82:  pred(then72)
-  sum.load2168 = load i32 from ptr %sum.pinned
-  3169 = add i32 %sum.load2168, i32 1
-  store i32 %3169 to ptr %sum.pinned
+  sum.load2169 = load i32 from ptr %sum.pinned
+  3170 = add i32 %sum.load2169, i32 1
+  store i32 %3170 to ptr %sum.pinned
   br bb %printans.while.cond
 if.exit83:  pred(printans.then, then72, printans.while.cond)
   store i32 1 to ptr %40
-  206 = shl i32 %49, i32 2
-  93 = ptradd ptr %line1.pinned, i32 %206
+  207 = shl i32 %49, i32 2
+  93 = ptradd ptr %line1.pinned, i32 %207
   store i32 1 to ptr %93
   n.load95 = load i32 from ptr %n.pinned
   97 = add i32 %n.load95, i32 %step
-  99 = sub i32 %97, i32 %i30.phi217
-  207 = shl i32 %99, i32 2
-  101 = ptradd ptr %line2.pinned, i32 %207
+  99 = sub i32 %97, i32 %i30.phi218
+  208 = shl i32 %99, i32 2
+  101 = ptradd ptr %line2.pinned, i32 %208
   store i32 1 to ptr %101
   call void f(i32 %104)
   store i32 0 to ptr %40
   store i32 0 to ptr %93
   n.load116 = load i32 from ptr %n.pinned
   118 = add i32 %n.load116, i32 %step
-  120 = sub i32 %118, i32 %i30.phi217
-  208 = shl i32 %120, i32 2
-  122 = ptradd ptr %line2.pinned, i32 %208
+  120 = sub i32 %118, i32 %i30.phi218
+  209 = shl i32 %120, i32 2
+  122 = ptradd ptr %line2.pinned, i32 %209
   store i32 0 to ptr %122
   br bb %if.exit73
 printans.while.cond:  pred(then82, printans.else)
-  i.phi173 = phi [bb %then82, i32 1, bb %printans.else, i32 %27192]
-  n.load174 = load i32 from ptr %n.pinned
-  10175 = icmp sle i32 %i.phi173, i32 %n.load174
-  br i1 %10175, bb %printans.while.body, bb %if.exit83
+  i.phi174 = phi [bb %then82, i32 1, bb %printans.else, i32 %27193]
+  n.load175 = load i32 from ptr %n.pinned
+  10176 = icmp sle i32 %i.phi174, i32 %n.load175
+  br i1 %10176, bb %printans.while.body, bb %if.exit83
 printans.while.body:  pred(printans.while.cond)
-  209 = shl i32 %i.phi173, i32 2
-  14179 = ptradd ptr %ans.pinned, i32 %209
-  14.load180 = load i32 from ptr %14179
-  call void putint(i32 %14.load180)
-  n.load18182 = load i32 from ptr %n.pinned
-  19183 = icmp eq i32 %i.phi173, i32 %n.load18182
-  br i1 %19183, bb %printans.then, bb %printans.else
+  210 = shl i32 %i.phi174, i32 2
+  14180 = ptradd ptr %ans.pinned, i32 %210
+  14.load181 = load i32 from ptr %14180
+  call void putint(i32 %14.load181)
+  n.load18183 = load i32 from ptr %n.pinned
+  19184 = icmp eq i32 %i.phi174, i32 %n.load18183
+  br i1 %19184, bb %printans.then, bb %printans.else
 printans.then:  pred(printans.while.body)
   call void putch(i32 10)
   br bb %if.exit83
 printans.else:  pred(printans.while.body)
   call void putch(i32 32)
-  27192 = add i32 %i.phi173, i32 1
+  27193 = add i32 %i.phi174, i32 1
   br bb %printans.while.cond
 }
 

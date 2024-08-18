@@ -26,54 +26,54 @@ main:   # loop depth 0
   # implict jump to bb1
 bb1:   # loop depth 1
   LA s2, image_out
-  ADDI t2, zero, 1
+  ADDI t1, zero, 1
   # implict jump to bb2
 bb2:   # loop depth 2
   ADDI a3, zero, 255
-  SLLIW t1, t2, 10
-  ADDIW t0, t2, -1
-  ADDW t1, t1, s1
+  SLLIW t2, t1, 10
+  ADDIW t0, t1, -1
+  ADDW t2, t2, s1
   SLLIW t0, t0, 10
-  SH2ADD a0, t1, s0
+  SH2ADD a0, t2, s0
   ADDW t0, t0, s1
   LW a1, 0(a0)
   SH2ADD a2, t0, s0
-  ADDIW t2, t2, 1
-  SH2ADD a4, t1, s2
-  SLLIW t0, t2, 10
-  LW t1, -4(a2)
+  ADDIW t1, t1, 1
+  SH2ADD a4, t2, s2
+  SLLIW t0, t1, 10
+  LW t2, -4(a2)
   ADDW t0, t0, s1
   SH2ADD a5, t0, s0
   SLLIW t0, a1, 3
   LW a1, 0(a2)
-  SUBW t0, t0, t1
-  LW t1, 4(a2)
+  SUBW t0, t0, t2
+  LW t2, 4(a2)
   SUBW t0, t0, a1
   LW a1, -4(a0)
-  SUBW t0, t0, t1
-  LW t1, 4(a0)
+  SUBW t0, t0, t2
+  LW t2, 4(a0)
   SUBW t0, t0, a1
   LW a0, -4(a5)
-  SUBW t0, t0, t1
-  LW t1, 0(a5)
+  SUBW t0, t0, t2
+  LW t2, 0(a5)
   SUBW t0, t0, a0
   LW a0, 4(a5)
-  SUBW t0, t0, t1
-  SUBW t0, t0, a0
-  BLT a3, t0, bb18
+  SUBW t0, t0, t2
+  SUBW t2, t0, a0
+  BLT a3, t2, bb18
   # implict jump to bb3
 bb3:   # loop depth 2
-  ADD t1, t0, zero
+  ADD t0, t2, zero
   # implict jump to bb4
 bb4:   # loop depth 2
-  BLT t0, zero, bb17
+  BLT t2, zero, bb17
   # implict jump to bb5
 bb5:   # loop depth 2
   # implict jump to bb6
 bb6:   # loop depth 2
-  SLTI t0, t2, 1023
-  SW t1, 0(a4)
-  BNE t0, zero, bb16
+  SLTI t2, t1, 1023
+  SW t0, 0(a4)
+  BNE t2, zero, bb16
   # implict jump to bb7
 bb7:   # loop depth 1
   ADDIW s1, s1, 1
@@ -144,8 +144,8 @@ bb15:   # loop depth 1
 bb16:   # loop depth 2
   JAL zero, bb2
 bb17:   # loop depth 2
-  ADD t1, zero, zero
+  ADD t0, zero, zero
   JAL zero, bb6
 bb18:   # loop depth 2
-  ADDI t1, zero, 255
+  ADDI t0, zero, 255
   JAL zero, bb4

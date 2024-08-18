@@ -1,5 +1,5 @@
 pure i32 main() {
-entry4:  pred()
+entry5:  pred()
   ret i32 20
 }
 

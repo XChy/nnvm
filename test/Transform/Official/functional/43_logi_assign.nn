@@ -10,9 +10,9 @@ entry:  pred()
   a.load6 = load i32 from ptr %a.pinned
   8 = icmp eq i32 %a.load6, i32 %4
   14 = icmp ne i32 %a.load6, i32 3
-  28 = and i1 %8, i1 %14
-  26 = zext i1 %28 to i32
-  ret i32 %26
+  29 = and i1 %8, i1 %14
+  27 = zext i1 %29 to i32
+  ret i32 %27
 }
 
 external i32 getint()

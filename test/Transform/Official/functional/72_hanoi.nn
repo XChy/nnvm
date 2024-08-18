@@ -3,15 +3,15 @@ external i32 getint()
 i32 main() {
 entry38:  pred()
   40 = call i32 getint()
-  4576 = icmp sgt i32 %40, i32 0
-  br i1 %4576, bb %while.body, bb %while.exit
+  4577 = icmp sgt i32 %40, i32 0
+  br i1 %4577, bb %while.body, bb %while.exit
 while.body:  pred(while.body, entry38)
-  n.phi77 = phi [bb %while.body, i32 %57, bb %entry38, i32 %40]
+  n.phi78 = phi [bb %while.body, i32 %58, bb %entry38, i32 %40]
   47 = call i32 getint()
   call void hanoi(i32 %47, i32 1, i32 2, i32 3)
   call void putch(i32 10)
-  57 = add i32 %n.phi77, i32 -1
-  45 = icmp sgt i32 %57, i32 0
+  58 = add i32 %n.phi78, i32 -1
+  45 = icmp sgt i32 %58, i32 0
   br i1 %45, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry38)
   ret i32 0
@@ -31,14 +31,14 @@ then:  pred(entry10)
 if.exit:  pred(else, then)
   ret 
 else:  pred(entry10)
-  58 = add i32 %n, i32 -1
-  call void hanoi(i32 %58, i32 %one, i32 %three, i32 %two)
+  59 = add i32 %n, i32 -1
+  call void hanoi(i32 %59, i32 %one, i32 %three, i32 %two)
   call void putint(i32 %one)
   call void putch(i32 32)
   call void putint(i32 %three)
   call void putch(i32 44)
   call void putch(i32 32)
-  call void hanoi(i32 %58, i32 %two, i32 %one, i32 %three)
+  call void hanoi(i32 %59, i32 %two, i32 %one, i32 %three)
   br bb %if.exit
 }
 

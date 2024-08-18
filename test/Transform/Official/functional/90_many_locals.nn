@@ -1,7 +1,7 @@
 external void putint(i32 )
 
 i32 main() {
-entry74:  pred()
+entry75:  pred()
   call void putint(i32 254)
   call void putch(i32 10)
   ret i32 0

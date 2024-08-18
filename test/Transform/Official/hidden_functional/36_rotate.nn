@@ -2,30 +2,30 @@ global ptr height init with i32 0
 global ptr width init with i32 0
 internal global ptr image init with 1048576 x i32 zeros
 pure internal float my_sin_impl(float x) {
-entry23:  pred()
-  3768 = si2f i32 0 to float
-  4769 = fcmp ogt float %x, float %3768
-  9774 = fneg float %x
-  br i1 %4769, bb %26.ret.which.true, bb %entry23.split848
-entry23.split848:  pred(entry23, 26.ret.which.true)
-  850 = phi [bb %26.ret.which.true, float %x, bb %entry23, float %9774]
-  28 = fcmp ole float %850, float 0.000001
-  br i1 %28, bb %then29, bb %if.exit30
-then29:  pred(entry23.split848)
+entry26:  pred()
+  3789 = si2f i32 0 to float
+  4790 = fcmp ogt float %x, float %3789
+  10795 = fneg float %x
+  br i1 %4790, bb %29.ret.which.true, bb %entry26.split869
+entry26.split869:  pred(entry26, 29.ret.which.true)
+  871 = phi [bb %29.ret.which.true, float %x, bb %entry26, float %10795]
+  31 = fcmp ole float %871, float 0.000001
+  br i1 %31, bb %then32, bb %if.exit33
+then32:  pred(entry26.split869)
   ret float %x
-if.exit30:  pred(entry23.split848)
-  33 = fdiv float %x, float 3.000000
-  34 = call float my_sin_impl(float %33)
-  13398 = si2f i32 3 to float
-  14399 = fmul float %13398, float %34
-  16400 = si2f i32 4 to float
-  17401 = fmul float %16400, float %34
-  19402 = fmul float %17401, float %34
-  21403 = fmul float %19402, float %34
-  22404 = fsub float %14399, float %21403
-  ret float %22404
-26.ret.which.true:  pred(entry23)
-  br bb %entry23.split848
+if.exit33:  pred(entry26.split869)
+  37 = fdiv float %x, float 3.000000
+  38 = call float my_sin_impl(float %37)
+  15419 = si2f i32 3 to float
+  16420 = fmul float %15419, float %38
+  18421 = si2f i32 4 to float
+  19422 = fmul float %18421, float %38
+  21423 = fmul float %19422, float %38
+  23424 = fmul float %21423, float %38
+  24425 = fsub float %16420, float %23424
+  ret float %24425
+29.ret.which.true:  pred(entry26)
+  br bb %entry26.split869
 }
 
 external i32 getint()
@@ -35,212 +35,212 @@ external i32 getch()
 external void putint(i32 )
 
 i32 main() {
-entry298:  pred()
-  300 = call float getfloat()
-  301 = call i32 getch()
-  95555 = call i32 getch()
-  96556 = icmp ne i32 %95555, i32 80
-  br i1 %96556, bb %read_image.select.exit99, bb %read_image.select.else98
-entry298.split:  pred(read_image.while.cond.cp, read_image.select.exit99, read_image.select.exit126)
-  302.ret = phi [bb %read_image.select.exit99, i32 -1, bb %read_image.select.exit126, i32 -1, bb %read_image.while.cond.cp, i32 0]
-  303 = icmp slt i32 %302.ret, i32 0
-  br i1 %303, bb %then304, bb %if.exit305
-then304:  pred(entry298.split)
+entry310:  pred()
+  312 = call float getfloat()
+  313 = call i32 getch()
+  102576 = call i32 getch()
+  103577 = icmp ne i32 %102576, i32 80
+  br i1 %103577, bb %read_image.select.exit106, bb %read_image.select.else105
+entry310.split:  pred(read_image.while.cond.cp, read_image.select.exit106, read_image.select.exit134)
+  314.ret = phi [bb %read_image.select.exit106, i32 -1, bb %read_image.select.exit134, i32 -1, bb %read_image.while.cond.cp, i32 0]
+  315 = icmp slt i32 %314.ret, i32 0
+  br i1 %315, bb %then316, bb %if.exit317
+then316:  pred(entry310.split)
   ret i32 -1
-if.exit305:  pred(entry298.split)
+if.exit317:  pred(entry310.split)
   call void putch(i32 80)
   call void putch(i32 50)
   call void putch(i32 10)
-  width.load261622 = load i32 from ptr %width.pinned
-  call void putint(i32 %width.load261622)
+  width.load273643 = load i32 from ptr %width.pinned
+  call void putint(i32 %width.load273643)
   call void putch(i32 32)
-  height.load264625 = load i32 from ptr %height.pinned
-  call void putint(i32 %height.load264625)
+  height.load276646 = load i32 from ptr %height.pinned
+  call void putint(i32 %height.load276646)
   call void putch(i32 32)
   call void putint(i32 255)
   call void putch(i32 10)
-  height.load274633794 = load i32 from ptr %height.pinned
-  275634795 = icmp slt i32 0, i32 %height.load274633794
-  br i1 %275634795, bb %write_pgm.while.cond278_preheader_preheader, bb %write_pgm.while.exit272
-read_image.select.else98:  pred(entry298)
-  101559 = call i32 getch()
-  102560 = icmp ne i32 %101559, i32 50
-  br bb %read_image.select.exit99
-read_image.select.exit99:  pred(entry298, read_image.select.else98)
-  select100.phi563 = phi [bb %read_image.select.else98, i1 %102560, bb %entry298, i1 1]
+  height.load286654815 = load i32 from ptr %height.pinned
+  287655816 = icmp slt i32 0, i32 %height.load286654815
+  br i1 %287655816, bb %write_pgm.while.cond290_preheader_preheader, bb %write_pgm.while.exit284
+read_image.select.else105:  pred(entry310)
+  108580 = call i32 getch()
+  109581 = icmp ne i32 %108580, i32 50
+  br bb %read_image.select.exit106
+read_image.select.exit106:  pred(entry310, read_image.select.else105)
+  select107.phi584 = phi [bb %read_image.select.else105, i1 %109581, bb %entry310, i1 1]
   height.pinned = pin ptr @height
   width.pinned = pin ptr @width
   image.pinned = pin ptr @image
-  br i1 %select100.phi563, bb %entry298.split, bb %read_image.if.exit106
-read_image.if.exit106:  pred(read_image.select.exit99)
-  109568 = call i32 getint()
-  store i32 %109568 to ptr %width.pinned
-  111570 = call i32 getint()
-  store i32 %111570 to ptr %height.pinned
-  width.load112572 = load i32 from ptr %width.pinned
-  114573 = icmp sgt i32 %width.load112572, i32 1024
-  121577 = icmp sgt i32 %111570, i32 1024
-  840 = or i1 %114573, i1 %121577
-  br i1 %840, bb %read_image.select.exit126, bb %read_image.select.else125
-read_image.select.else125:  pred(read_image.if.exit106)
-  128583 = call i32 getint()
-  129584 = icmp ne i32 %128583, i32 255
-  br bb %read_image.select.exit126
-read_image.select.exit126:  pred(read_image.if.exit106, read_image.select.else125)
-  select127.phi587 = phi [bb %read_image.select.else125, i1 %129584, bb %read_image.if.exit106, i1 1]
-  br i1 %select127.phi587, bb %entry298.split, bb %read_image.while.cond_preheader
-read_image.while.cond_preheader:  pred(read_image.select.exit126)
-  height.load140593800 = load i32 from ptr %height.pinned
-  141594801 = icmp slt i32 0, i32 %height.load140593800
-  br i1 %141594801, bb %read_image.while.cond144_preheader, bb %read_image.while.cond.cp
-read_image.while.cond144_preheader:  pred(read_image.while.exit146, read_image.while.cond_preheader)
-  y.phi592802 = phi [bb %read_image.while.exit146, i32 %165614, bb %read_image.while.cond_preheader, i32 0]
-  width.load148600797 = load i32 from ptr %width.pinned
-  149601798 = icmp slt i32 0, i32 %width.load148600797
-  br i1 %149601798, bb %read_image.while.body145, bb %read_image.while.exit146
-read_image.while.body145:  pred(read_image.while.body145, read_image.while.cond144_preheader)
-  x.phi599799 = phi [bb %read_image.while.body145, i32 %162611, bb %read_image.while.cond144_preheader, i32 0]
-  width.load152604 = load i32 from ptr %width.pinned
-  153605 = mul i32 %y.phi592802, i32 %width.load152604
-  155606 = add i32 %153605, i32 %x.phi599799
-  780 = shl i32 %155606, i32 2
-  157608 = ptradd ptr %image.pinned, i32 %780
-  159609 = call i32 getint()
-  store i32 %159609 to ptr %157608
-  162611 = add i32 %x.phi599799, i32 1
-  width.load148600 = load i32 from ptr %width.pinned
-  149601 = icmp slt i32 %162611, i32 %width.load148600
-  br i1 %149601, bb %read_image.while.body145, bb %read_image.while.exit146
-read_image.while.exit146:  pred(read_image.while.body145, read_image.while.cond144_preheader)
-  165614 = add i32 %y.phi592802, i32 1
-  height.load140593 = load i32 from ptr %height.pinned
-  141594 = icmp slt i32 %165614, i32 %height.load140593
-  br i1 %141594, bb %read_image.while.cond144_preheader, bb %read_image.while.cond.cp
-write_pgm.while.exit272:  pred(write_pgm.while.exit280, if.exit305)
+  br i1 %select107.phi584, bb %entry310.split, bb %read_image.if.exit113
+read_image.if.exit113:  pred(read_image.select.exit106)
+  117589 = call i32 getint()
+  store i32 %117589 to ptr %width.pinned
+  119591 = call i32 getint()
+  store i32 %119591 to ptr %height.pinned
+  width.load120593 = load i32 from ptr %width.pinned
+  122594 = icmp sgt i32 %width.load120593, i32 1024
+  129598 = icmp sgt i32 %119591, i32 1024
+  861 = or i1 %122594, i1 %129598
+  br i1 %861, bb %read_image.select.exit134, bb %read_image.select.else133
+read_image.select.else133:  pred(read_image.if.exit113)
+  136604 = call i32 getint()
+  137605 = icmp ne i32 %136604, i32 255
+  br bb %read_image.select.exit134
+read_image.select.exit134:  pred(read_image.if.exit113, read_image.select.else133)
+  select135.phi608 = phi [bb %read_image.select.else133, i1 %137605, bb %read_image.if.exit113, i1 1]
+  br i1 %select135.phi608, bb %entry310.split, bb %read_image.while.cond_preheader
+read_image.while.cond_preheader:  pred(read_image.select.exit134)
+  height.load149614821 = load i32 from ptr %height.pinned
+  150615822 = icmp slt i32 0, i32 %height.load149614821
+  br i1 %150615822, bb %read_image.while.cond153_preheader, bb %read_image.while.cond.cp
+read_image.while.cond153_preheader:  pred(read_image.while.exit155, read_image.while.cond_preheader)
+  y.phi613823 = phi [bb %read_image.while.exit155, i32 %174635, bb %read_image.while.cond_preheader, i32 0]
+  width.load157621818 = load i32 from ptr %width.pinned
+  158622819 = icmp slt i32 0, i32 %width.load157621818
+  br i1 %158622819, bb %read_image.while.body154, bb %read_image.while.exit155
+read_image.while.body154:  pred(read_image.while.body154, read_image.while.cond153_preheader)
+  x.phi620820 = phi [bb %read_image.while.body154, i32 %171632, bb %read_image.while.cond153_preheader, i32 0]
+  width.load161625 = load i32 from ptr %width.pinned
+  162626 = mul i32 %y.phi613823, i32 %width.load161625
+  164627 = add i32 %162626, i32 %x.phi620820
+  801 = shl i32 %164627, i32 2
+  166629 = ptradd ptr %image.pinned, i32 %801
+  168630 = call i32 getint()
+  store i32 %168630 to ptr %166629
+  171632 = add i32 %x.phi620820, i32 1
+  width.load157621 = load i32 from ptr %width.pinned
+  158622 = icmp slt i32 %171632, i32 %width.load157621
+  br i1 %158622, bb %read_image.while.body154, bb %read_image.while.exit155
+read_image.while.exit155:  pred(read_image.while.body154, read_image.while.cond153_preheader)
+  174635 = add i32 %y.phi613823, i32 1
+  height.load149614 = load i32 from ptr %height.pinned
+  150615 = icmp slt i32 %174635, i32 %height.load149614
+  br i1 %150615, bb %read_image.while.cond153_preheader, bb %read_image.while.cond.cp
+write_pgm.while.exit284:  pred(write_pgm.while.exit292, if.exit317)
   ret i32 0
-write_pgm.while.cond278_preheader_preheader:  pred(if.exit305)
-  .pinned847 = pin float 6.283185
+write_pgm.while.cond290_preheader_preheader:  pred(if.exit317)
+  .pinned868 = pin float 6.283185
   .pinned = pin float 3.141593
-  40461711 = fcmp ogt float %300, float %.pinned847
-  47462712 = fneg float %.pinned847
-  48463713 = fcmp olt float %300, float %47462712
-  342464714 = or i1 %40461711, i1 %48463713
-  56467717 = fdiv float %300, float %.pinned847
-  57468718 = f2si float %56467717 to i32
-  62469719 = si2f i32 %57468718 to float
-  63470720 = fmul float %62469719, float %.pinned847
-  64471721 = fsub float %300, float %63470720
-  76478728 = fneg float %.pinned
-  90521735 = si2f i32 2 to float
-  91522736 = fdiv float %.pinned, float %90521735
-  92523737 = fadd float %300, float %91522736
-  40409529743 = fcmp ogt float %92523737, float %.pinned847
-  48411531745 = fcmp olt float %92523737, float %47462712
-  342412532746 = or i1 %40409529743, i1 %48411531745
-  56415535749 = fdiv float %92523737, float %.pinned847
-  57416536750 = f2si float %56415535749 to i32
-  62417537751 = si2f i32 %57416536750 to float
-  63418538752 = fmul float %62417537751, float %.pinned847
-  64419539753 = fsub float %92523737, float %63418538752
-  br bb %write_pgm.while.cond278_preheader
-write_pgm.while.cond278_preheader:  pred(write_pgm.while.exit280, write_pgm.while.cond278_preheader_preheader)
-  y269.phi632796 = phi [bb %write_pgm.while.exit280, i32 %297653, bb %write_pgm.while.cond278_preheader_preheader, i32 0]
-  width.load282640791 = load i32 from ptr %width.pinned
-  283641792 = icmp slt i32 0, i32 %width.load282640791
-  br i1 %283641792, bb %write_pgm.while.body279, bb %write_pgm.while.exit280
-write_pgm.while.body279:  pred(write_pgm.while.body279.split, write_pgm.while.cond278_preheader)
-  x277.phi639793 = phi [bb %write_pgm.while.body279.split, i32 %293649, bb %write_pgm.while.cond278_preheader, i32 0]
-  br i1 %342464714, bb %x.stack37.phi318474724.which.true, bb %write_pgm.while.body279.split851
-write_pgm.while.body279.split851:  pred(write_pgm.while.body279, x.stack37.phi318474724.which.true)
-  853 = phi [bb %x.stack37.phi318474724.which.true, float %64471721, bb %write_pgm.while.body279, float %300]
-  67475725 = fcmp ogt float %853, float %.pinned
-  73476726 = fsub float %853, float %.pinned847
-  br i1 %67475725, bb %x.stack37.phi317.which477727.true, bb %write_pgm.while.body279.split851.split
-write_pgm.while.body279.split851.split:  pred(write_pgm.while.body279.split851, x.stack37.phi317.which477727.true)
-  856 = phi [bb %x.stack37.phi317.which477727.true, float %73476726, bb %write_pgm.while.body279.split851, float %853]
-  77479729 = fcmp olt float %856, float %76478728
-  83480730 = fadd float %856, float %.pinned847
-  br i1 %77479729, bb %x.stack37.phi.which481731.true, bb %write_pgm.while.body279.split851.split.split
-write_pgm.while.body279.split851.split.split:  pred(write_pgm.while.body279.split851.split, x.stack37.phi.which481731.true)
-  859 = phi [bb %x.stack37.phi.which481731.true, float %83480730, bb %write_pgm.while.body279.split851.split, float %856]
-  85482732 = call float my_sin_impl(float %859)
-  br i1 %342412532746, bb %x.stack37.phi318422542756.which.true, bb %write_pgm.while.body279.split851.split.split.split
-write_pgm.while.body279.split851.split.split.split:  pred(write_pgm.while.body279.split851.split.split, x.stack37.phi318422542756.which.true)
-  862 = phi [bb %x.stack37.phi318422542756.which.true, float %64419539753, bb %write_pgm.while.body279.split851.split.split, float %92523737]
-  67423543757 = fcmp ogt float %862, float %.pinned
-  73424544758 = fsub float %862, float %.pinned847
-  br i1 %67423543757, bb %x.stack37.phi317.which425545759.true, bb %write_pgm.while.body279.split851.split.split.split.split
-write_pgm.while.body279.split851.split.split.split.split:  pred(write_pgm.while.body279.split851.split.split.split, x.stack37.phi317.which425545759.true)
-  865 = phi [bb %x.stack37.phi317.which425545759.true, float %73424544758, bb %write_pgm.while.body279.split851.split.split.split, float %862]
-  77427547761 = fcmp olt float %865, float %76478728
-  83428548762 = fadd float %865, float %.pinned847
-  br i1 %77427547761, bb %x.stack37.phi.which429549763.true, bb %write_pgm.while.body279.split851.split.split.split.split.split
-write_pgm.while.body279.split851.split.split.split.split.split:  pred(write_pgm.while.body279.split851.split.split.split.split, x.stack37.phi.which429549763.true)
-  868 = phi [bb %x.stack37.phi.which429549763.true, float %83428548762, bb %write_pgm.while.body279.split851.split.split.split.split, float %865]
-  85430550764 = call float my_sin_impl(float %868)
-  width.load177347662 = load i32 from ptr %width.pinned
-  178348663 = sdiv i32 %width.load177347662, i32 2
-  height.load180349664 = load i32 from ptr %height.pinned
-  181350665 = sdiv i32 %height.load180349664, i32 2
-  185351666 = sub i32 %x277.phi639793, i32 %178348663
-  189352667 = sub i32 %y269.phi632796, i32 %181350665
-  193353668 = si2f i32 %185351666 to float
-  194354669 = fmul float %193353668, float %85430550764
-  197355670 = si2f i32 %189352667 to float
-  198356671 = fmul float %197355670, float %85482732
-  199357672 = fsub float %194354669, float %198356671
-  201358673 = si2f i32 %178348663 to float
-  202359674 = fadd float %199357672, float %201358673
-  203360675 = f2si float %202359674 to i32
-  208361676 = fmul float %193353668, float %85482732
-  212362677 = fmul float %197355670, float %85430550764
-  213363678 = fadd float %208361676, float %212362677
-  215364679 = si2f i32 %181350665 to float
-  216365680 = fadd float %213363678, float %215364679
-  217366681 = f2si float %216365680 to i32
-  219367682 = icmp slt i32 %203360675, i32 0
-  226371686 = icmp sge i32 %203360675, i32 %width.load177347662
-  841 = or i1 %219367682, i1 %226371686
-  234375690 = icmp slt i32 %217366681, i32 0
-  341376691 = or i1 %841, i1 %234375690
-  243380695 = icmp sge i32 %217366681, i32 %height.load180349664
-  842 = or i1 %341376691, i1 %243380695
-  br i1 %842, bb %write_pgm.while.body279.split, bb %write_pgm.rotate.if.exit247
-write_pgm.while.body279.split:  pred(write_pgm.rotate.if.exit247, write_pgm.while.body279.split851.split.split.split.split.split)
-  288.ret646 = phi [bb %write_pgm.while.body279.split851.split.split.split.split.split, i32 0, bb %write_pgm.rotate.if.exit247, i32 %254.load393708]
-  call void putint(i32 %288.ret646)
+  45482732 = fcmp ogt float %312, float %.pinned868
+  52483733 = fneg float %.pinned868
+  53484734 = fcmp olt float %312, float %52483733
+  363485735 = or i1 %45482732, i1 %53484734
+  61488738 = fdiv float %312, float %.pinned868
+  62489739 = f2si float %61488738 to i32
+  67490740 = si2f i32 %62489739 to float
+  68491741 = fmul float %67490740, float %.pinned868
+  69492742 = fsub float %312, float %68491741
+  81499749 = fneg float %.pinned
+  96542756 = si2f i32 2 to float
+  97543757 = fdiv float %.pinned, float %96542756
+  98544758 = fadd float %312, float %97543757
+  45430550764 = fcmp ogt float %98544758, float %.pinned868
+  53432552766 = fcmp olt float %98544758, float %52483733
+  363433553767 = or i1 %45430550764, i1 %53432552766
+  61436556770 = fdiv float %98544758, float %.pinned868
+  62437557771 = f2si float %61436556770 to i32
+  67438558772 = si2f i32 %62437557771 to float
+  68439559773 = fmul float %67438558772, float %.pinned868
+  69440560774 = fsub float %98544758, float %68439559773
+  br bb %write_pgm.while.cond290_preheader
+write_pgm.while.cond290_preheader:  pred(write_pgm.while.exit292, write_pgm.while.cond290_preheader_preheader)
+  y281.phi653817 = phi [bb %write_pgm.while.exit292, i32 %309674, bb %write_pgm.while.cond290_preheader_preheader, i32 0]
+  width.load294661812 = load i32 from ptr %width.pinned
+  295662813 = icmp slt i32 0, i32 %width.load294661812
+  br i1 %295662813, bb %write_pgm.while.body291, bb %write_pgm.while.exit292
+write_pgm.while.body291:  pred(write_pgm.while.body291.split, write_pgm.while.cond290_preheader)
+  x289.phi660814 = phi [bb %write_pgm.while.body291.split, i32 %305670, bb %write_pgm.while.cond290_preheader, i32 0]
+  br i1 %363485735, bb %x.stack42.phi335495745.which.true, bb %write_pgm.while.body291.split872
+write_pgm.while.body291.split872:  pred(write_pgm.while.body291, x.stack42.phi335495745.which.true)
+  874 = phi [bb %x.stack42.phi335495745.which.true, float %69492742, bb %write_pgm.while.body291, float %312]
+  72496746 = fcmp ogt float %874, float %.pinned
+  78497747 = fsub float %874, float %.pinned868
+  br i1 %72496746, bb %x.stack42.phi334.which498748.true, bb %write_pgm.while.body291.split872.split
+write_pgm.while.body291.split872.split:  pred(write_pgm.while.body291.split872, x.stack42.phi334.which498748.true)
+  877 = phi [bb %x.stack42.phi334.which498748.true, float %78497747, bb %write_pgm.while.body291.split872, float %874]
+  82500750 = fcmp olt float %877, float %81499749
+  88501751 = fadd float %877, float %.pinned868
+  br i1 %82500750, bb %x.stack42.phi.which502752.true, bb %write_pgm.while.body291.split872.split.split
+write_pgm.while.body291.split872.split.split:  pred(write_pgm.while.body291.split872.split, x.stack42.phi.which502752.true)
+  880 = phi [bb %x.stack42.phi.which502752.true, float %88501751, bb %write_pgm.while.body291.split872.split, float %877]
+  90503753 = call float my_sin_impl(float %880)
+  br i1 %363433553767, bb %x.stack42.phi335443563777.which.true, bb %write_pgm.while.body291.split872.split.split.split
+write_pgm.while.body291.split872.split.split.split:  pred(write_pgm.while.body291.split872.split.split, x.stack42.phi335443563777.which.true)
+  883 = phi [bb %x.stack42.phi335443563777.which.true, float %69440560774, bb %write_pgm.while.body291.split872.split.split, float %98544758]
+  72444564778 = fcmp ogt float %883, float %.pinned
+  78445565779 = fsub float %883, float %.pinned868
+  br i1 %72444564778, bb %x.stack42.phi334.which446566780.true, bb %write_pgm.while.body291.split872.split.split.split.split
+write_pgm.while.body291.split872.split.split.split.split:  pred(write_pgm.while.body291.split872.split.split.split, x.stack42.phi334.which446566780.true)
+  886 = phi [bb %x.stack42.phi334.which446566780.true, float %78445565779, bb %write_pgm.while.body291.split872.split.split.split, float %883]
+  82448568782 = fcmp olt float %886, float %81499749
+  88449569783 = fadd float %886, float %.pinned868
+  br i1 %82448568782, bb %x.stack42.phi.which450570784.true, bb %write_pgm.while.body291.split872.split.split.split.split.split
+write_pgm.while.body291.split872.split.split.split.split.split:  pred(write_pgm.while.body291.split872.split.split.split.split, x.stack42.phi.which450570784.true)
+  889 = phi [bb %x.stack42.phi.which450570784.true, float %88449569783, bb %write_pgm.while.body291.split872.split.split.split.split, float %886]
+  90451571785 = call float my_sin_impl(float %889)
+  width.load187368683 = load i32 from ptr %width.pinned
+  188369684 = sdiv i32 %width.load187368683, i32 2
+  height.load190370685 = load i32 from ptr %height.pinned
+  191371686 = sdiv i32 %height.load190370685, i32 2
+  195372687 = sub i32 %x289.phi660814, i32 %188369684
+  199373688 = sub i32 %y281.phi653817, i32 %191371686
+  203374689 = si2f i32 %195372687 to float
+  204375690 = fmul float %203374689, float %90451571785
+  207376691 = si2f i32 %199373688 to float
+  208377692 = fmul float %207376691, float %90503753
+  209378693 = fsub float %204375690, float %208377692
+  211379694 = si2f i32 %188369684 to float
+  212380695 = fadd float %209378693, float %211379694
+  213381696 = f2si float %212380695 to i32
+  218382697 = fmul float %203374689, float %90503753
+  222383698 = fmul float %207376691, float %90451571785
+  223384699 = fadd float %218382697, float %222383698
+  225385700 = si2f i32 %191371686 to float
+  226386701 = fadd float %223384699, float %225385700
+  227387702 = f2si float %226386701 to i32
+  229388703 = icmp slt i32 %213381696, i32 0
+  236392707 = icmp sge i32 %213381696, i32 %width.load187368683
+  862 = or i1 %229388703, i1 %236392707
+  244396711 = icmp slt i32 %227387702, i32 0
+  362397712 = or i1 %862, i1 %244396711
+  253401716 = icmp sge i32 %227387702, i32 %height.load190370685
+  863 = or i1 %362397712, i1 %253401716
+  br i1 %863, bb %write_pgm.while.body291.split, bb %write_pgm.rotate.if.exit257
+write_pgm.while.body291.split:  pred(write_pgm.rotate.if.exit257, write_pgm.while.body291.split872.split.split.split.split.split)
+  300.ret667 = phi [bb %write_pgm.while.body291.split872.split.split.split.split.split, i32 0, bb %write_pgm.rotate.if.exit257, i32 %265.load414729]
+  call void putint(i32 %300.ret667)
   call void putch(i32 32)
-  293649 = add i32 %x277.phi639793, i32 1
-  width.load282640 = load i32 from ptr %width.pinned
-  283641 = icmp slt i32 %293649, i32 %width.load282640
-  br i1 %283641, bb %write_pgm.while.body279, bb %write_pgm.while.exit280
-write_pgm.while.exit280:  pred(write_pgm.while.body279.split, write_pgm.while.cond278_preheader)
+  305670 = add i32 %x289.phi660814, i32 1
+  width.load294661 = load i32 from ptr %width.pinned
+  295662 = icmp slt i32 %305670, i32 %width.load294661
+  br i1 %295662, bb %write_pgm.while.body291, bb %write_pgm.while.exit292
+write_pgm.while.exit292:  pred(write_pgm.while.body291.split, write_pgm.while.cond290_preheader)
   call void putch(i32 10)
-  297653 = add i32 %y269.phi632796, i32 1
-  height.load274633 = load i32 from ptr %height.pinned
-  275634 = icmp slt i32 %297653, i32 %height.load274633
-  br i1 %275634, bb %write_pgm.while.cond278_preheader, bb %write_pgm.while.exit272
-write_pgm.rotate.if.exit247:  pred(write_pgm.while.body279.split851.split.split.split.split.split)
-  250389704 = mul i32 %217366681, i32 %width.load177347662
-  252390705 = add i32 %250389704, i32 %203360675
-  781 = shl i32 %252390705, i32 2
-  254392707 = ptradd ptr %image.pinned, i32 %781
-  254.load393708 = load i32 from ptr %254392707
-  br bb %write_pgm.while.body279.split
-read_image.while.cond.cp:  pred(read_image.while.exit146, read_image.while.cond_preheader)
-  br bb %entry298.split
-x.stack37.phi318474724.which.true:  pred(write_pgm.while.body279)
-  br bb %write_pgm.while.body279.split851
-x.stack37.phi317.which477727.true:  pred(write_pgm.while.body279.split851)
-  br bb %write_pgm.while.body279.split851.split
-x.stack37.phi.which481731.true:  pred(write_pgm.while.body279.split851.split)
-  br bb %write_pgm.while.body279.split851.split.split
-x.stack37.phi318422542756.which.true:  pred(write_pgm.while.body279.split851.split.split)
-  br bb %write_pgm.while.body279.split851.split.split.split
-x.stack37.phi317.which425545759.true:  pred(write_pgm.while.body279.split851.split.split.split)
-  br bb %write_pgm.while.body279.split851.split.split.split.split
-x.stack37.phi.which429549763.true:  pred(write_pgm.while.body279.split851.split.split.split.split)
-  br bb %write_pgm.while.body279.split851.split.split.split.split.split
+  309674 = add i32 %y281.phi653817, i32 1
+  height.load286654 = load i32 from ptr %height.pinned
+  287655 = icmp slt i32 %309674, i32 %height.load286654
+  br i1 %287655, bb %write_pgm.while.cond290_preheader, bb %write_pgm.while.exit284
+write_pgm.rotate.if.exit257:  pred(write_pgm.while.body291.split872.split.split.split.split.split)
+  261410725 = mul i32 %227387702, i32 %width.load187368683
+  263411726 = add i32 %261410725, i32 %213381696
+  802 = shl i32 %263411726, i32 2
+  265413728 = ptradd ptr %image.pinned, i32 %802
+  265.load414729 = load i32 from ptr %265413728
+  br bb %write_pgm.while.body291.split
+read_image.while.cond.cp:  pred(read_image.while.exit155, read_image.while.cond_preheader)
+  br bb %entry310.split
+x.stack42.phi335495745.which.true:  pred(write_pgm.while.body291)
+  br bb %write_pgm.while.body291.split872
+x.stack42.phi334.which498748.true:  pred(write_pgm.while.body291.split872)
+  br bb %write_pgm.while.body291.split872.split
+x.stack42.phi.which502752.true:  pred(write_pgm.while.body291.split872.split)
+  br bb %write_pgm.while.body291.split872.split.split
+x.stack42.phi335443563777.which.true:  pred(write_pgm.while.body291.split872.split.split)
+  br bb %write_pgm.while.body291.split872.split.split.split
+x.stack42.phi334.which446566780.true:  pred(write_pgm.while.body291.split872.split.split.split)
+  br bb %write_pgm.while.body291.split872.split.split.split.split
+x.stack42.phi.which450570784.true:  pred(write_pgm.while.body291.split872.split.split.split.split)
+  br bb %write_pgm.while.body291.split872.split.split.split.split.split
 }
 
 external float getfloat()

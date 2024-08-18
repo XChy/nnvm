@@ -1,80 +1,80 @@
 external i32 getint()
 
 i32 main() {
-entry113:  pred()
-  .pinned286 = pin float 1.100000
-  .pinned285 = pin float 1.000000
+entry114:  pred()
+  .pinned288 = pin float 1.100000
+  .pinned287 = pin float 1.000000
   .pinned = pin float 4.800000
-  115 = call i32 getint()
+  116 = call i32 getint()
   call void _sysy_starttime(i32 41)
-  19159236 = icmp slt i32 0, i32 %115
-  br i1 %19159236, bb %advance.while.body, bb %advance.while.cond78_preheader
-advance.while.body:  pred(advance.while.exit43, entry113)
-  x.stack.phi135158244 = phi [bb %advance.while.exit43, float %x.stack.phi135158223, bb %entry113, float %.pinned]
-  z.stack.phi138157243 = phi [bb %advance.while.exit43, float %z.stack.phi138157222, bb %entry113, float %.pinned285]
-  y.stack.phi144156242 = phi [bb %advance.while.exit43, float %y.stack.phi144156221, bb %entry113, float %.pinned286]
-  j.phi147155241 = phi [bb %advance.while.exit43, i32 %j.phi147155220, bb %entry113, i32 1]
-  i.phi154240 = phi [bb %advance.while.exit43, i32 %77189, bb %entry113, i32 0]
-  24162 = fsub float %x.stack.phi135158244, float 1.600000
-  28163 = fsub float %y.stack.phi144156242, float 7.600000
-  32164 = fsub float %z.stack.phi138157243, float 6.900000
-  37165 = fmul float %24162, float %28163
-  39166 = fmul float %37165, float %32164
-  40167 = fdiv float 0.010000, float %39166
-  46174219 = icmp slt i32 %j.phi147155241, i32 %115
-  br i1 %46174219, bb %advance.while.body42_preheader, bb %advance.while.exit43
+  19161238 = icmp slt i32 0, i32 %116
+  br i1 %19161238, bb %advance.while.body, bb %advance.while.cond78_preheader
+advance.while.body:  pred(advance.while.exit43, entry114)
+  x.stack.phi137160246 = phi [bb %advance.while.exit43, float %x.stack.phi137160225, bb %entry114, float %.pinned]
+  z.stack.phi140159245 = phi [bb %advance.while.exit43, float %z.stack.phi140159224, bb %entry114, float %.pinned287]
+  y.stack.phi146158244 = phi [bb %advance.while.exit43, float %y.stack.phi146158223, bb %entry114, float %.pinned288]
+  j.phi149157243 = phi [bb %advance.while.exit43, i32 %j.phi149157222, bb %entry114, i32 1]
+  i.phi156242 = phi [bb %advance.while.exit43, i32 %77191, bb %entry114, i32 0]
+  24164 = fsub float %x.stack.phi137160246, float 1.600000
+  28165 = fsub float %y.stack.phi146158244, float 7.600000
+  32166 = fsub float %z.stack.phi140159245, float 6.900000
+  37167 = fmul float %24164, float %28165
+  39168 = fmul float %37167, float %32166
+  40169 = fdiv float 0.010000, float %39168
+  46176221 = icmp slt i32 %j.phi149157243, i32 %116
+  br i1 %46176221, bb %advance.while.body42_preheader, bb %advance.while.exit43
 advance.while.body42_preheader:  pred(advance.while.body)
-  .pinned287 = pin float 9.500000
-  52177 = fmul float %24162, float %.pinned287
-  54178 = fmul float %52177, float %40167
-  60180 = fmul float %28163, float %.pinned287
-  62181 = fmul float %60180, float %40167
-  68183 = fmul float %32164, float %.pinned287
-  70184 = fmul float %68183, float %40167
+  .pinned289 = pin float 9.500000
+  52179 = fmul float %24164, float %.pinned289
+  54180 = fmul float %52179, float %40169
+  60182 = fmul float %28165, float %.pinned289
+  62183 = fmul float %60182, float %40169
+  68185 = fmul float %32166, float %.pinned289
+  70186 = fmul float %68185, float %40169
   br bb %advance.while.body42
 advance.while.body42:  pred(advance.while.body42, advance.while.body42_preheader)
-  x.stack.phi134173227 = phi [bb %advance.while.body42, float %55179, bb %advance.while.body42_preheader, float %x.stack.phi135158244]
-  z.stack.phi137172226 = phi [bb %advance.while.body42, float %71185, bb %advance.while.body42_preheader, float %z.stack.phi138157243]
-  y.stack.phi143171225 = phi [bb %advance.while.body42, float %63182, bb %advance.while.body42_preheader, float %y.stack.phi144156242]
-  j.phi170224 = phi [bb %advance.while.body42, i32 %74186, bb %advance.while.body42_preheader, i32 %j.phi147155241]
-  55179 = fsub float %x.stack.phi134173227, float %54178
-  63182 = fsub float %y.stack.phi143171225, float %62181
-  71185 = fsub float %z.stack.phi137172226, float %70184
-  74186 = add i32 %j.phi170224, i32 1
-  46174 = icmp slt i32 %74186, i32 %115
-  br i1 %46174, bb %advance.while.body42, bb %advance.while.exit43
+  x.stack.phi136175229 = phi [bb %advance.while.body42, float %55181, bb %advance.while.body42_preheader, float %x.stack.phi137160246]
+  z.stack.phi139174228 = phi [bb %advance.while.body42, float %71187, bb %advance.while.body42_preheader, float %z.stack.phi140159245]
+  y.stack.phi145173227 = phi [bb %advance.while.body42, float %63184, bb %advance.while.body42_preheader, float %y.stack.phi146158244]
+  j.phi172226 = phi [bb %advance.while.body42, i32 %74188, bb %advance.while.body42_preheader, i32 %j.phi149157243]
+  55181 = fsub float %x.stack.phi136175229, float %54180
+  63184 = fsub float %y.stack.phi145173227, float %62183
+  71187 = fsub float %z.stack.phi139174228, float %70186
+  74188 = add i32 %j.phi172226, i32 1
+  46176 = icmp slt i32 %74188, i32 %116
+  br i1 %46176, bb %advance.while.body42, bb %advance.while.exit43
 advance.while.exit43:  pred(advance.while.body42, advance.while.body)
-  x.stack.phi135158223 = phi [bb %advance.while.body42, float %55179, bb %advance.while.body, float %x.stack.phi135158244]
-  z.stack.phi138157222 = phi [bb %advance.while.body42, float %71185, bb %advance.while.body, float %z.stack.phi138157243]
-  y.stack.phi144156221 = phi [bb %advance.while.body42, float %63182, bb %advance.while.body, float %y.stack.phi144156242]
-  j.phi147155220 = phi [bb %advance.while.body42, i32 %74186, bb %advance.while.body, i32 %j.phi147155241]
-  77189 = add i32 %i.phi154240, i32 1
-  19159 = icmp slt i32 %77189, i32 %115
-  br i1 %19159, bb %advance.while.body, bb %advance.while.cond78_preheader
-advance.while.cond78_preheader:  pred(advance.while.exit43, entry113)
-  239 = phi [bb %advance.while.exit43, float %x.stack.phi135158223, bb %entry113, float %.pinned]
-  238 = phi [bb %advance.while.exit43, float %z.stack.phi138157222, bb %entry113, float %.pinned285]
-  237 = phi [bb %advance.while.exit43, float %y.stack.phi144156221, bb %entry113, float %.pinned286]
-  br i1 %19159236, bb %advance.while.body79, bb %advance.while.exit80
+  x.stack.phi137160225 = phi [bb %advance.while.body42, float %55181, bb %advance.while.body, float %x.stack.phi137160246]
+  z.stack.phi140159224 = phi [bb %advance.while.body42, float %71187, bb %advance.while.body, float %z.stack.phi140159245]
+  y.stack.phi146158223 = phi [bb %advance.while.body42, float %63184, bb %advance.while.body, float %y.stack.phi146158244]
+  j.phi149157222 = phi [bb %advance.while.body42, i32 %74188, bb %advance.while.body, i32 %j.phi149157243]
+  77191 = add i32 %i.phi156242, i32 1
+  19161 = icmp slt i32 %77191, i32 %116
+  br i1 %19161, bb %advance.while.body, bb %advance.while.cond78_preheader
+advance.while.cond78_preheader:  pred(advance.while.exit43, entry114)
+  241 = phi [bb %advance.while.exit43, float %x.stack.phi137160225, bb %entry114, float %.pinned]
+  240 = phi [bb %advance.while.exit43, float %z.stack.phi140159224, bb %entry114, float %.pinned287]
+  239 = phi [bb %advance.while.exit43, float %y.stack.phi146158223, bb %entry114, float %.pinned288]
+  br i1 %19161238, bb %advance.while.body79, bb %advance.while.exit80
 advance.while.body79:  pred(advance.while.body79, advance.while.cond78_preheader)
-  x.stack.phi195235 = phi [bb %advance.while.body79, float %90200, bb %advance.while.cond78_preheader, float %239]
-  z.stack.phi194234 = phi [bb %advance.while.body79, float %102204, bb %advance.while.cond78_preheader, float %238]
-  y.stack.phi193233 = phi [bb %advance.while.body79, float %96202, bb %advance.while.cond78_preheader, float %237]
-  k.phi192232 = phi [bb %advance.while.body79, i32 %105205, bb %advance.while.cond78_preheader, i32 0]
-  90200 = fadd float %x.stack.phi195235, float 0.016000
-  96202 = fadd float %y.stack.phi193233, float 0.076000
-  102204 = fadd float %z.stack.phi194234, float 0.069000
-  105205 = add i32 %k.phi192232, i32 1
-  83196 = icmp slt i32 %105205, i32 %115
-  br i1 %83196, bb %advance.while.body79, bb %advance.while.exit80
+  x.stack.phi197237 = phi [bb %advance.while.body79, float %90202, bb %advance.while.cond78_preheader, float %241]
+  z.stack.phi196236 = phi [bb %advance.while.body79, float %102206, bb %advance.while.cond78_preheader, float %240]
+  y.stack.phi195235 = phi [bb %advance.while.body79, float %96204, bb %advance.while.cond78_preheader, float %239]
+  k.phi194234 = phi [bb %advance.while.body79, i32 %105207, bb %advance.while.cond78_preheader, i32 0]
+  90202 = fadd float %x.stack.phi197237, float 0.016000
+  96204 = fadd float %y.stack.phi195235, float 0.076000
+  102206 = fadd float %z.stack.phi196236, float 0.069000
+  105207 = add i32 %k.phi194234, i32 1
+  83198 = icmp slt i32 %105207, i32 %116
+  br i1 %83198, bb %advance.while.body79, bb %advance.while.exit80
 advance.while.exit80:  pred(advance.while.body79, advance.while.cond78_preheader)
-  x.stack.phi195_ph_val231 = phi [bb %advance.while.body79, float %90200, bb %advance.while.cond78_preheader, float %239]
-  z.stack.phi194_ph_val230 = phi [bb %advance.while.body79, float %102204, bb %advance.while.cond78_preheader, float %238]
-  y.stack.phi193_ph_val229 = phi [bb %advance.while.body79, float %96202, bb %advance.while.cond78_preheader, float %237]
-  109208 = fadd float %x.stack.phi195_ph_val231, float %y.stack.phi193_ph_val229
-  111209 = fsub float %109208, float %z.stack.phi194_ph_val230
+  x.stack.phi197_ph_val233 = phi [bb %advance.while.body79, float %90202, bb %advance.while.cond78_preheader, float %241]
+  z.stack.phi196_ph_val232 = phi [bb %advance.while.body79, float %102206, bb %advance.while.cond78_preheader, float %240]
+  y.stack.phi195_ph_val231 = phi [bb %advance.while.body79, float %96204, bb %advance.while.cond78_preheader, float %239]
+  109210 = fadd float %x.stack.phi197_ph_val233, float %y.stack.phi195_ph_val231
+  111211 = fsub float %109210, float %z.stack.phi196_ph_val232
   call void _sysy_stoptime(i32 43)
-  call void putfloat(float %111209)
+  call void putfloat(float %111211)
   ret i32 0
 }
 

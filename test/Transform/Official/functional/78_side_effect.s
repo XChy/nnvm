@@ -108,10 +108,9 @@ bb17:   # loop depth 1
   LW t0, 0(s0)
   ADDIW t1, t0, 2
   ADDIW t0, t0, 1
-  SUBW t2, t0, t1
-  SW t0, 0(s0)
-  ADDIW t0, t2, 1
+  SUBW t0, t0, t1
   SW t1, 0(s0)
+  ADDIW t0, t0, 1
   SLTU s3, zero, t0
   JAL zero, bb11
 bb18:   # loop depth 1

@@ -2,29 +2,28 @@ global ptr k init with i32 0
 i32 main() {
 entry:  pred()
   k.pinned = pin ptr @k
-  store i32 3389 to ptr %k.pinned
   store i32 3390 to ptr %k.pinned
   br bb %while.body
 while.body:  pred(if.exit22, entry)
-  k.phi4266 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
-  g.phi4565 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
-  l.phi4864 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
-  g30.phi5163 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
-  53 = add i32 %k.phi4266, i32 -88
-  20 = icmp slt i32 %53, i32 1000
+  k.phi4367 = phi [bb %if.exit22, i32 %k.phi, bb %entry, i32 112]
+  g.phi4666 = phi [bb %if.exit22, i32 %g.phi, bb %entry, i32 0]
+  l.phi4965 = phi [bb %if.exit22, i32 %l.phi, bb %entry, i32 0]
+  g30.phi5264 = phi [bb %if.exit22, i32 %g30.phi, bb %entry, i32 0]
+  54 = add i32 %k.phi4367, i32 -88
+  20 = icmp slt i32 %54, i32 1000
   br i1 %20, bb %then21, bb %if.exit22
 while.exit:  pred(if.exit22)
   call void putint(i32 %k.phi)
   k.load39 = load i32 from ptr %k.pinned
   ret i32 %k.load39
 then21:  pred(while.body)
-  60 = add i32 %k.phi4266, i32 -76
+  61 = add i32 %k.phi4367, i32 -76
   br bb %if.exit22
 if.exit22:  pred(while.body, then21)
-  g30.phi = phi [bb %while.body, i32 %g30.phi5163, bb %then21, i32 11]
-  l.phi = phi [bb %while.body, i32 %l.phi4864, bb %then21, i32 11]
-  g.phi = phi [bb %while.body, i32 %g.phi4565, bb %then21, i32 10]
-  k.phi = phi [bb %while.body, i32 %53, bb %then21, i32 %60]
+  g30.phi = phi [bb %while.body, i32 %g30.phi5264, bb %then21, i32 11]
+  l.phi = phi [bb %while.body, i32 %l.phi4965, bb %then21, i32 11]
+  g.phi = phi [bb %while.body, i32 %g.phi4666, bb %then21, i32 10]
+  k.phi = phi [bb %while.body, i32 %54, bb %then21, i32 %61]
   14 = icmp sgt i32 %k.phi, i32 10
   br i1 %14, bb %while.body, bb %while.exit
 }

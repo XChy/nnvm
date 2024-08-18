@@ -30,19 +30,19 @@ main:   # loop depth 0
   SW a0, 24(sp)
   AND t0, s0, t0
   SW t0, 16(sp)
-  LW t0, 24(sp)
-  SLTU t0, zero, t0
-  SB t0, 0(sp)
+  CALL getint
   LW t0, 16(sp)
   LW t1, 24(sp)
   REMW t0, t0, t1
   SW t0, 20(sp)
-  CALL getint
   SW a0, 8(sp)
+  LW t0, 24(sp)
+  SLTU t0, zero, t0
+  SB t0, 0(sp)
   CALL getint
   ADD s6, a0, zero
   CALL getint
-  ADD s10, a0, zero
+  ADD s9, a0, zero
   CALL getint
   ADD s11, a0, zero
   CALL getint
@@ -52,7 +52,7 @@ main:   # loop depth 0
   CALL getint
   SW a0, 12(sp)
   CALL getint
-  ADD s9, a0, zero
+  ADD s10, a0, zero
   CALL getint
   ADD s4, a0, zero
   CALL getint
@@ -83,7 +83,7 @@ bb4:   # loop depth 0
   XORI a2, a1, 1
   ADDIW a1, t1, 1
   AND t1, a3, a2
-  SUBW a3, zero, s10
+  SUBW a3, zero, s9
   SUBW a2, zero, a1
   BEQ a4, zero, bb58
   # implict jump to bb5
@@ -97,8 +97,8 @@ bb7:   # loop depth 0
   ADD t1, t2, zero
   # implict jump to bb8
 bb8:   # loop depth 0
-  ADDW t2, t1, s9
-  BEQ s9, zero, bb56
+  ADDW t2, t1, s10
+  BEQ s10, zero, bb56
   # implict jump to bb9
 bb9:   # loop depth 0
   ADD t1, t2, zero
@@ -162,9 +162,9 @@ bb23:   # loop depth 0
   ADD a1, t2, zero
   # implict jump to bb24
 bb24:   # loop depth 0
-  SUBW t1, s6, s10
+  SUBW t1, s6, s9
   ADDIW t2, a1, 1
-  BEQ s10, zero, bb48
+  BEQ s9, zero, bb48
   # implict jump to bb25
 bb25:   # loop depth 0
   # implict jump to bb26
@@ -185,7 +185,7 @@ bb28:   # loop depth 0
 bb29:   # loop depth 0
   # implict jump to bb30
 bb30:   # loop depth 0
-  SUBW a3, zero, s9
+  SUBW a3, zero, s10
   ADDIW t2, t1, 1
   REMW a1, t2, a3
   BNE a3, zero, bb45

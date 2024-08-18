@@ -2,108 +2,108 @@ global ptr n init with i32 0
 external void putint(i32 )
 
 i32 main() {
-entry115:  pred()
-  %count_arr209 = stack 40
+entry116:  pred()
+  %count_arr211 = stack 40
   %b = stack 40
   %a = stack 40
   n.pinned = pin ptr @n
   store i32 10 to ptr %n.pinned
   store i32 4 to ptr %a
-  122 = ptradd ptr %a, i32 4
-  store i32 3 to ptr %122
-  125 = ptradd ptr %a, i32 8
-  store i32 9 to ptr %125
-  128 = ptradd ptr %a, i32 12
-  store i32 2 to ptr %128
-  131 = ptradd ptr %a, i32 16
-  store i32 0 to ptr %131
-  134 = ptradd ptr %a, i32 20
-  store i32 1 to ptr %134
-  137 = ptradd ptr %a, i32 24
-  store i32 6 to ptr %137
-  140 = ptradd ptr %a, i32 28
-  store i32 5 to ptr %140
-  143 = ptradd ptr %a, i32 32
-  store i32 7 to ptr %143
-  146 = ptradd ptr %a, i32 36
-  store i32 8 to ptr %146
-  store i32 0 to ptr %count_arr209
-  17217363 = ptradd ptr %count_arr209, i32 4
-  store i32 0 to ptr %17217363
-  17217371 = ptradd ptr %count_arr209, i32 8
-  store i32 0 to ptr %17217371
-  17217379 = ptradd ptr %count_arr209, i32 12
-  store i32 0 to ptr %17217379
-  17217387 = ptradd ptr %count_arr209, i32 16
-  store i32 0 to ptr %17217387
-  17217395 = ptradd ptr %count_arr209, i32 20
-  store i32 0 to ptr %17217395
-  17217403 = ptradd ptr %count_arr209, i32 24
-  store i32 0 to ptr %17217403
-  17217411 = ptradd ptr %count_arr209, i32 28
-  store i32 0 to ptr %17217411
-  17217419 = ptradd ptr %count_arr209, i32 32
-  store i32 0 to ptr %17217419
-  17217427 = ptradd ptr %count_arr209, i32 36
-  store i32 0 to ptr %17217427
+  123 = ptradd ptr %a, i32 4
+  store i32 3 to ptr %123
+  126 = ptradd ptr %a, i32 8
+  store i32 9 to ptr %126
+  129 = ptradd ptr %a, i32 12
+  store i32 2 to ptr %129
+  132 = ptradd ptr %a, i32 16
+  store i32 0 to ptr %132
+  135 = ptradd ptr %a, i32 20
+  store i32 1 to ptr %135
+  138 = ptradd ptr %a, i32 24
+  store i32 6 to ptr %138
+  141 = ptradd ptr %a, i32 28
+  store i32 5 to ptr %141
+  144 = ptradd ptr %a, i32 32
+  store i32 7 to ptr %144
+  147 = ptradd ptr %a, i32 36
+  store i32 8 to ptr %147
+  store i32 0 to ptr %count_arr211
+  17219365 = ptradd ptr %count_arr211, i32 4
+  store i32 0 to ptr %17219365
+  17219373 = ptradd ptr %count_arr211, i32 8
+  store i32 0 to ptr %17219373
+  17219381 = ptradd ptr %count_arr211, i32 12
+  store i32 0 to ptr %17219381
+  17219389 = ptradd ptr %count_arr211, i32 16
+  store i32 0 to ptr %17219389
+  17219397 = ptradd ptr %count_arr211, i32 20
+  store i32 0 to ptr %17219397
+  17219405 = ptradd ptr %count_arr211, i32 24
+  store i32 0 to ptr %17219405
+  17219413 = ptradd ptr %count_arr211, i32 28
+  store i32 0 to ptr %17219413
+  17219421 = ptradd ptr %count_arr211, i32 32
+  store i32 0 to ptr %17219421
+  17219429 = ptradd ptr %count_arr211, i32 36
+  store i32 0 to ptr %17219429
   br bb %counting_sort.while.body23
-while.cond154_preheader:  pred(counting_sort.while.body74)
-  br i1 1, bb %while.body155, bb %while.exit156
-while.body155:  pred(while.body155, while.cond154_preheader)
-  i148.phi323 = phi [bb %while.body155, i32 %174, bb %while.cond154_preheader, i32 0]
-  295 = shl i32 %i148.phi323, i32 2
-  165 = ptradd ptr %b, i32 %295
-  165.load = load i32 from ptr %165
-  call void putint(i32 %165.load)
+while.cond155_preheader:  pred(counting_sort.while.body74)
+  br i1 1, bb %while.body156, bb %while.exit157
+while.body156:  pred(while.body156, while.cond155_preheader)
+  i149.phi325 = phi [bb %while.body156, i32 %175, bb %while.cond155_preheader, i32 0]
+  297 = shl i32 %i149.phi325, i32 2
+  166 = ptradd ptr %b, i32 %297
+  166.load = load i32 from ptr %166
+  call void putint(i32 %166.load)
   call void putch(i32 10)
-  174 = add i32 %i148.phi323, i32 1
-  n.load158 = load i32 from ptr %n.pinned
-  159 = icmp slt i32 %174, i32 %n.load158
-  br i1 %159, bb %while.body155, bb %while.exit156
-while.exit156:  pred(while.body155, while.cond154_preheader)
+  175 = add i32 %i149.phi325, i32 1
+  n.load159 = load i32 from ptr %n.pinned
+  160 = icmp slt i32 %175, i32 %n.load159
+  br i1 %160, bb %while.body156, bb %while.exit157
+while.exit157:  pred(while.body156, while.cond155_preheader)
   ret i32 0
-counting_sort.while.body23:  pred(counting_sort.while.body23, entry115)
-  i.phi222329 = phi [bb %counting_sort.while.body23, i32 %46234, bb %entry115, i32 0]
-  297 = shl i32 %i.phi222329, i32 2
-  31227 = ptradd ptr %a, i32 %297
-  31.load228 = load i32 from ptr %31227
-  298 = shl i32 %31.load228, i32 2
-  34230 = ptradd ptr %count_arr209, i32 %298
-  41.load231 = load i32 from ptr %34230
-  43232 = add i32 %41.load231, i32 1
-  store i32 %43232 to ptr %34230
-  46234 = add i32 %i.phi222329, i32 1
-  27223 = icmp slt i32 %46234, i32 10
-  br i1 %27223, bb %counting_sort.while.body23, bb %counting_sort.while.body49
+counting_sort.while.body23:  pred(counting_sort.while.body23, entry116)
+  i.phi224331 = phi [bb %counting_sort.while.body23, i32 %46236, bb %entry116, i32 0]
+  299 = shl i32 %i.phi224331, i32 2
+  31229 = ptradd ptr %a, i32 %299
+  31.load230 = load i32 from ptr %31229
+  300 = shl i32 %31.load230, i32 2
+  34232 = ptradd ptr %count_arr211, i32 %300
+  41.load233 = load i32 from ptr %34232
+  43234 = add i32 %41.load233, i32 1
+  store i32 %43234 to ptr %34232
+  46236 = add i32 %i.phi224331, i32 1
+  27225 = icmp slt i32 %46236, i32 10
+  br i1 %27225, bb %counting_sort.while.body23, bb %counting_sort.while.body49
 counting_sort.while.body49:  pred(counting_sort.while.body49, counting_sort.while.body23)
-  k.phi237327 = phi [bb %counting_sort.while.body49, i32 %70250, bb %counting_sort.while.body23, i32 1]
-  299 = shl i32 %k.phi237327, i32 2
-  56242 = ptradd ptr %count_arr209, i32 %299
-  60.load243 = load i32 from ptr %56242
-  357 = ptradd ptr %56242, i32 -4
-  65.load247 = load i32 from ptr %357
-  67248 = add i32 %60.load243, i32 %65.load247
-  store i32 %67248 to ptr %56242
-  70250 = add i32 %k.phi237327, i32 1
-  52238 = icmp slt i32 %70250, i32 10
-  br i1 %52238, bb %counting_sort.while.body49, bb %counting_sort.while.body74
+  k.phi239329 = phi [bb %counting_sort.while.body49, i32 %70252, bb %counting_sort.while.body23, i32 1]
+  301 = shl i32 %k.phi239329, i32 2
+  56244 = ptradd ptr %count_arr211, i32 %301
+  60.load245 = load i32 from ptr %56244
+  359 = ptradd ptr %56244, i32 -4
+  65.load249 = load i32 from ptr %359
+  67250 = add i32 %60.load245, i32 %65.load249
+  store i32 %67250 to ptr %56244
+  70252 = add i32 %k.phi239329, i32 1
+  52240 = icmp slt i32 %70252, i32 10
+  br i1 %52240, bb %counting_sort.while.body49, bb %counting_sort.while.body74
 counting_sort.while.body74:  pred(counting_sort.while.body74, counting_sort.while.body49)
-  j.phi253325 = phi [bb %counting_sort.while.body74, i32 %192257, bb %counting_sort.while.body49, i32 10]
-  192257 = add i32 %j.phi253325, i32 -1
-  304 = shl i32 %j.phi253325, i32 2
-  358 = ptradd ptr %a, i32 %304
-  359 = ptradd ptr %358, i32 -4
-  82.load260 = load i32 from ptr %359
-  300 = shl i32 %82.load260, i32 2
-  85262 = ptradd ptr %count_arr209, i32 %300
-  93.load263 = load i32 from ptr %85262
-  198264 = add i32 %93.load263, i32 -1
-  store i32 %198264 to ptr %85262
-  302 = shl i32 %198264, i32 2
-  105271 = ptradd ptr %b, i32 %302
-  store i32 %82.load260 to ptr %105271
-  77254 = icmp sgt i32 %192257, i32 0
-  br i1 %77254, bb %counting_sort.while.body74, bb %while.cond154_preheader
+  j.phi255327 = phi [bb %counting_sort.while.body74, i32 %194259, bb %counting_sort.while.body49, i32 10]
+  194259 = add i32 %j.phi255327, i32 -1
+  306 = shl i32 %j.phi255327, i32 2
+  360 = ptradd ptr %a, i32 %306
+  361 = ptradd ptr %360, i32 -4
+  82.load262 = load i32 from ptr %361
+  302 = shl i32 %82.load262, i32 2
+  85264 = ptradd ptr %count_arr211, i32 %302
+  93.load265 = load i32 from ptr %85264
+  200266 = add i32 %93.load265, i32 -1
+  store i32 %200266 to ptr %85264
+  304 = shl i32 %200266, i32 2
+  105273 = ptradd ptr %b, i32 %304
+  store i32 %82.load262 to ptr %105273
+  77256 = icmp sgt i32 %194259, i32 0
+  br i1 %77256, bb %counting_sort.while.body74, bb %while.cond155_preheader
 }
 
 external void putch(i32 )

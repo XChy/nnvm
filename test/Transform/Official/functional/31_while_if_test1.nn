@@ -1,16 +1,16 @@
 pure i32 main() {
-entry30:  pred()
-  br i1 0, bb %b.phi.which531056.true, bb %entry30.split1061
-entry30.split1061:  pred(entry30, b.phi.which531056.true)
-  1063 = phi [bb %b.phi.which531056.true, i32 42, bb %entry30, i32 198]
-  br i1 0, bb %b.phi36.which541057.true, bb %entry30.split1061.split
-entry30.split1061.split:  pred(entry30.split1061, b.phi36.which541057.true)
-  1066 = phi [bb %b.phi36.which541057.true, i32 25, bb %entry30.split1061, i32 %1063]
-  ret i32 %1066
-b.phi.which531056.true:  pred(entry30)
-  br bb %entry30.split1061
-b.phi36.which541057.true:  pred(entry30.split1061)
-  br bb %entry30.split1061.split
+entry31:  pred()
+  br i1 0, bb %b.phi.which551058.true, bb %entry31.split1063
+entry31.split1063:  pred(entry31, b.phi.which551058.true)
+  1065 = phi [bb %b.phi.which551058.true, i32 42, bb %entry31, i32 198]
+  br i1 0, bb %b.phi38.which561059.true, bb %entry31.split1063.split
+entry31.split1063.split:  pred(entry31.split1063, b.phi38.which561059.true)
+  1068 = phi [bb %b.phi38.which561059.true, i32 25, bb %entry31.split1063, i32 %1065]
+  ret i32 %1068
+b.phi.which551058.true:  pred(entry31)
+  br bb %entry31.split1063
+b.phi38.which561059.true:  pred(entry31.split1063)
+  br bb %entry31.split1063.split
 }
 
 

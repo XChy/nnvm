@@ -3,24 +3,24 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry744:  pred()
+entry745:  pred()
   call void _sysy_starttime(i32 324)
-  747 = call i32 getint()
-  257801014 = icmp slt i32 0, i32 %747
-  br i1 %257801014, bb %func.while.body21_preheader, bb %func.while.exit22
-func.while.body21_preheader:  pred(entry744)
+  748 = call i32 getint()
+  257821016 = icmp slt i32 0, i32 %748
+  br i1 %257821016, bb %func.while.body21_preheader, bb %func.while.exit22
+func.while.body21_preheader:  pred(entry745)
   br bb %func.while.body21
 func.while.body21:  pred(func.while.body21, func.while.body21_preheader)
-  sum.phi7791017 = phi [bb %func.while.body21, i32 %742998, bb %func.while.body21_preheader, i32 0]
-  j.phi7781016 = phi [bb %func.while.body21, i32 %722981, bb %func.while.body21_preheader, i32 0]
-  722981 = add i32 %j.phi7781016, i32 1
-  3013 = add i32 %sum.phi7791017, i32 4950
-  742998 = srem i32 %3013, i32 65535
-  25780 = icmp slt i32 %722981, i32 %747
-  br i1 %25780, bb %func.while.body21, bb %func.while.exit22
-func.while.exit22:  pred(func.while.body21, entry744)
-  sum.phi779_ph_val1015 = phi [bb %func.while.body21, i32 %742998, bb %entry744, i32 0]
-  call void putint(i32 %sum.phi779_ph_val1015)
+  sum.phi7811019 = phi [bb %func.while.body21, i32 %7421000, bb %func.while.body21_preheader, i32 0]
+  j.phi7801018 = phi [bb %func.while.body21, i32 %722983, bb %func.while.body21_preheader, i32 0]
+  722983 = add i32 %j.phi7801018, i32 1
+  3015 = add i32 %sum.phi7811019, i32 4950
+  7421000 = srem i32 %3015, i32 65535
+  25782 = icmp slt i32 %722983, i32 %748
+  br i1 %25782, bb %func.while.body21, bb %func.while.exit22
+func.while.exit22:  pred(func.while.body21, entry745)
+  sum.phi781_ph_val1017 = phi [bb %func.while.body21, i32 %7421000, bb %entry745, i32 0]
+  call void putint(i32 %sum.phi781_ph_val1017)
   call void putch(i32 10)
   call void _sysy_stoptime(i32 328)
   ret i32 0

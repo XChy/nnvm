@@ -6,46 +6,46 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry6000:  pred()
+entry6001:  pred()
   loopCount.pinned = pin ptr @loopCount
-  6004 = call i32 getint()
-  store i32 %6004 to ptr %loopCount.pinned
+  6005 = call i32 getint()
+  store i32 %6005 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 1016)
-  loopCount.load601013062 = load i32 from ptr %loopCount.pinned
-  601113063 = icmp slt i32 0, i32 %loopCount.load601013062
-  br i1 %601113063, bb %while.cond6015_preheader_preheader, bb %while.exit
-while.exit:  pred(while.exit6017, entry6000)
-  13064 = phi [bb %while.exit6017, i32 %9039, bb %entry6000, i32 0]
+  loopCount.load601113064 = load i32 from ptr %loopCount.pinned
+  601213065 = icmp slt i32 0, i32 %loopCount.load601113064
+  br i1 %601213065, bb %while.cond6016_preheader_preheader, bb %while.exit
+while.exit:  pred(while.exit6018, entry6001)
+  13066 = phi [bb %while.exit6018, i32 %9040, bb %entry6001, i32 0]
   call void _sysy_stoptime(i32 1031)
-  call void putint(i32 %13064)
+  call void putint(i32 %13066)
   call void putch(i32 10)
   ret i32 0
-while.cond6015_preheader_preheader:  pred(entry6000)
-  br bb %while.cond6015_preheader
-while.cond6015_preheader:  pred(while.exit6017, while.cond6015_preheader_preheader)
-  sum.phi13066 = phi [bb %while.exit6017, i32 %9039, bb %while.cond6015_preheader_preheader, i32 0]
-  i.phi13065 = phi [bb %while.exit6017, i32 %9042, bb %while.cond6015_preheader_preheader, i32 0]
+while.cond6016_preheader_preheader:  pred(entry6001)
+  br bb %while.cond6016_preheader
+while.cond6016_preheader:  pred(while.exit6018, while.cond6016_preheader_preheader)
+  sum.phi13068 = phi [bb %while.exit6018, i32 %9040, bb %while.cond6016_preheader_preheader, i32 0]
+  i.phi13067 = phi [bb %while.exit6018, i32 %9043, bb %while.cond6016_preheader_preheader, i32 0]
   multi.load = load i32 from ptr @multi
-  6025 = mul i32 %i.phi13065, i32 %multi.load
-  10039057 = sdiv i32 %6025, i32 2
-  13054 = mul i32 %10039057, i32 1000
+  6026 = mul i32 %i.phi13067, i32 %multi.load
+  10039059 = sdiv i32 %6026, i32 2
+  13056 = mul i32 %10039059, i32 1000
   size.load = load i32 from ptr @size
-  9025 = sdiv i32 %13054, i32 %size.load
-  br bb %while.body6016
-while.body6016:  pred(while.body6016, while.cond6015_preheader)
-  tmp.phi905113061 = phi [bb %while.body6016, i32 %9026, bb %while.cond6015_preheader, i32 0]
-  j.phi13060 = phi [bb %while.body6016, i32 %9029, bb %while.cond6015_preheader, i32 0]
-  9026 = add i32 %tmp.phi905113061, i32 %9025
-  9029 = add i32 %j.phi13060, i32 1
-  6019 = icmp slt i32 %9029, i32 300
-  br i1 %6019, bb %while.body6016, bb %while.exit6017
-while.exit6017:  pred(while.body6016)
-  9032 = sdiv i32 %9026, i32 300
-  9036 = add i32 %sum.phi13066, i32 %9032
-  9039 = srem i32 %9036, i32 2147385347
-  9042 = add i32 %i.phi13065, i32 1
-  6011 = icmp slt i32 %9042, i32 %loopCount.load601013062
-  br i1 %6011, bb %while.cond6015_preheader, bb %while.exit
+  9026 = sdiv i32 %13056, i32 %size.load
+  br bb %while.body6017
+while.body6017:  pred(while.body6017, while.cond6016_preheader)
+  tmp.phi905313063 = phi [bb %while.body6017, i32 %9027, bb %while.cond6016_preheader, i32 0]
+  j.phi13062 = phi [bb %while.body6017, i32 %9030, bb %while.cond6016_preheader, i32 0]
+  9027 = add i32 %tmp.phi905313063, i32 %9026
+  9030 = add i32 %j.phi13062, i32 1
+  6020 = icmp slt i32 %9030, i32 300
+  br i1 %6020, bb %while.body6017, bb %while.exit6018
+while.exit6018:  pred(while.body6017)
+  9033 = sdiv i32 %9027, i32 300
+  9037 = add i32 %sum.phi13068, i32 %9033
+  9040 = srem i32 %9037, i32 2147385347
+  9043 = add i32 %i.phi13067, i32 1
+  6012 = icmp slt i32 %9043, i32 %loopCount.load601113064
+  br i1 %6012, bb %while.cond6016_preheader, bb %while.exit
 }
 
 external void putch(i32 )

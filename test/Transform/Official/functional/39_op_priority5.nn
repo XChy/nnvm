@@ -34,9 +34,9 @@ select.else28:  pred(select.exit)
   br bb %select.exit29
 select.exit29:  pred(select.else28, select.exit)
   select30.phi = phi [bb %select.else28, i1 %41, bb %select.exit, i1 1]
-  55 = zext i1 %select30.phi to i32
-  call void putint(i32 %55)
-  ret i32 %55
+  56 = zext i1 %select30.phi to i32
+  call void putint(i32 %56)
+  ret i32 %56
 }
 
 external void putint(i32 )

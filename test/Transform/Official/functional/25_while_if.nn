@@ -1,39 +1,39 @@
 external void putint(i32 )
 
 i32 main() {
-entry42:  pred()
+entry44:  pred()
   br bb %deepWhileBr.while.body
-deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry42)
-  c.phi5669108 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5583, bb %entry42, i32 4]
-  e.phi6068107 = phi [bb %deepWhileBr.if.exit, i32 %e.phi5982, bb %entry42, i32 0]
-  1973 = icmp slt i32 %c.phi5669108, i32 100
-  br i1 %1973, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
+deepWhileBr.while.body:  pred(deepWhileBr.if.exit, entry44)
+  c.phi5972111 = phi [bb %deepWhileBr.if.exit, i32 %c.phi5886, bb %entry44, i32 4]
+  e.phi6371110 = phi [bb %deepWhileBr.if.exit, i32 %e.phi6285, bb %entry44, i32 0]
+  2076 = icmp slt i32 %c.phi5972111, i32 100
+  br i1 %2076, bb %deepWhileBr.then, bb %deepWhileBr.if.exit
 deepWhileBr.while.exit:  pred(deepWhileBr.if.exit)
-  call void putint(i32 %c.phi5583)
+  call void putint(i32 %c.phi5886)
   ret i32 0
 deepWhileBr.then:  pred(deepWhileBr.while.body)
-  2578 = add i32 %c.phi5669108, i32 42
-  2779 = icmp sgt i32 %2578, i32 99
-  br i1 1, bb %c.phi.which88.true, bb %deepWhileBr.then.split
-deepWhileBr.then.split:  pred(deepWhileBr.then, c.phi.which88.true)
-  116 = phi [bb %c.phi.which88.true, i32 168, bb %deepWhileBr.then, i32 %2578]
-  br i1 %2779, bb %e.phi91.which.true, bb %deepWhileBr.then.split.split
-deepWhileBr.then.split.split:  pred(deepWhileBr.then.split, e.phi91.which.true)
-  119 = phi [bb %e.phi91.which.true, i32 84, bb %deepWhileBr.then.split, i32 %e.phi6068107]
-  br i1 %2779, bb %c.phi5492.which.true, bb %deepWhileBr.then.split.split.split
-deepWhileBr.then.split.split.split:  pred(deepWhileBr.then.split.split, c.phi5492.which.true)
-  122 = phi [bb %c.phi5492.which.true, i32 %116, bb %deepWhileBr.then.split.split, i32 %2578]
+  2681 = add i32 %c.phi5972111, i32 42
+  2882 = icmp sgt i32 %2681, i32 99
+  br i1 1, bb %c.phi.which91.true, bb %deepWhileBr.then.split
+deepWhileBr.then.split:  pred(deepWhileBr.then, c.phi.which91.true)
+  119 = phi [bb %c.phi.which91.true, i32 168, bb %deepWhileBr.then, i32 %2681]
+  br i1 %2882, bb %e.phi94.which.true, bb %deepWhileBr.then.split.split
+deepWhileBr.then.split.split:  pred(deepWhileBr.then.split, e.phi94.which.true)
+  122 = phi [bb %e.phi94.which.true, i32 84, bb %deepWhileBr.then.split, i32 %e.phi6371110]
+  br i1 %2882, bb %c.phi5795.which.true, bb %deepWhileBr.then.split.split.split
+deepWhileBr.then.split.split.split:  pred(deepWhileBr.then.split.split, c.phi5795.which.true)
+  125 = phi [bb %c.phi5795.which.true, i32 %119, bb %deepWhileBr.then.split.split, i32 %2681]
   br bb %deepWhileBr.if.exit
 deepWhileBr.if.exit:  pred(deepWhileBr.while.body, deepWhileBr.then.split.split.split)
-  e.phi5982 = phi [bb %deepWhileBr.while.body, i32 %e.phi6068107, bb %deepWhileBr.then.split.split.split, i32 %119]
-  c.phi5583 = phi [bb %deepWhileBr.while.body, i32 %c.phi5669108, bb %deepWhileBr.then.split.split.split, i32 %122]
-  1470 = icmp slt i32 %c.phi5583, i32 75
-  br i1 %1470, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
-c.phi.which88.true:  pred(deepWhileBr.then)
+  e.phi6285 = phi [bb %deepWhileBr.while.body, i32 %e.phi6371110, bb %deepWhileBr.then.split.split.split, i32 %122]
+  c.phi5886 = phi [bb %deepWhileBr.while.body, i32 %c.phi5972111, bb %deepWhileBr.then.split.split.split, i32 %125]
+  1573 = icmp slt i32 %c.phi5886, i32 75
+  br i1 %1573, bb %deepWhileBr.while.body, bb %deepWhileBr.while.exit
+c.phi.which91.true:  pred(deepWhileBr.then)
   br bb %deepWhileBr.then.split
-e.phi91.which.true:  pred(deepWhileBr.then.split)
+e.phi94.which.true:  pred(deepWhileBr.then.split)
   br bb %deepWhileBr.then.split.split
-c.phi5492.which.true:  pred(deepWhileBr.then.split.split)
+c.phi5795.which.true:  pred(deepWhileBr.then.split.split)
   br bb %deepWhileBr.then.split.split.split
 }
 

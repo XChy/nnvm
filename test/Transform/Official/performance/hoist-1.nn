@@ -4,28 +4,28 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry3240:  pred()
+entry3241:  pred()
   loopCount.pinned = pin ptr @loopCount
-  3242 = call i32 getint()
-  store i32 %3242 to ptr %loopCount.pinned
+  3243 = call i32 getint()
+  store i32 %3243 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 121)
-  loopCount.load32614772 = load i32 from ptr %loopCount.pinned
-  2332624773 = icmp slt i32 0, i32 %loopCount.load32614772
-  br i1 %2332624773, bb %func.while.body_preheader, bb %func.while.exit
-func.while.body_preheader:  pred(entry3240)
+  loopCount.load32634774 = load i32 from ptr %loopCount.pinned
+  2332644775 = icmp slt i32 0, i32 %loopCount.load32634774
+  br i1 %2332644775, bb %func.while.body_preheader, bb %func.while.exit
+func.while.body_preheader:  pred(entry3241)
   br bb %func.while.body
 func.while.body:  pred(func.while.body, func.while.body_preheader)
-  i.phi32604776 = phi [bb %func.while.body, i32 %32384767, bb %func.while.body_preheader, i32 0]
-  result.phi32594775 = phi [bb %func.while.body, i32 %32354766, bb %func.while.body_preheader, i32 0]
-  32324765 = add i32 %result.phi32594775, i32 15
-  32354766 = srem i32 %32324765, i32 1500000001
-  32384767 = add i32 %i.phi32604776, i32 1
-  233262 = icmp slt i32 %32384767, i32 %loopCount.load32614772
-  br i1 %233262, bb %func.while.body, bb %func.while.exit
-func.while.exit:  pred(func.while.body, entry3240)
-  4774 = phi [bb %func.while.body, i32 %32354766, bb %entry3240, i32 0]
+  i.phi32624778 = phi [bb %func.while.body, i32 %32384769, bb %func.while.body_preheader, i32 0]
+  result.phi32614777 = phi [bb %func.while.body, i32 %32354768, bb %func.while.body_preheader, i32 0]
+  32324767 = add i32 %result.phi32614777, i32 15
+  32354768 = srem i32 %32324767, i32 1500000001
+  32384769 = add i32 %i.phi32624778, i32 1
+  233264 = icmp slt i32 %32384769, i32 %loopCount.load32634774
+  br i1 %233264, bb %func.while.body, bb %func.while.exit
+func.while.exit:  pred(func.while.body, entry3241)
+  4776 = phi [bb %func.while.body, i32 %32354768, bb %entry3241, i32 0]
   call void _sysy_stoptime(i32 123)
-  call void putint(i32 %4774)
+  call void putint(i32 %4776)
   call void putch(i32 10)
   ret i32 0
 }

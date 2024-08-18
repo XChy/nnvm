@@ -25,8 +25,8 @@ bool DeadStoreElimPass::run(Function &F) {
 }
 
 bool DeadStoreElimPass::isDead(StoreInst *store) {
-  if (!getRootObj(store->getDest())->isa<StackInst>())
-    return false;
+  // if (!getRootObj(store->getDest())->isa<StackInst>())
+  // return false;
 
   auto *storeBlock = store->getBlock();
 
@@ -53,6 +53,10 @@ bool DeadStoreElimPass::isDead(StoreInst *store) {
       continue;
 
     if (isLiveIn(store, block))
+      return false;
+
+    if (!getRootObj(store->getDest())->isa<StackInst>() &&
+        block->getTerminator()->isa<RetInst>())
       return false;
 
     for (int i = 0; i < block->getSuccNum(); i++)
@@ -92,9 +96,9 @@ bool DeadStoreElimPass::isLiveIn(StoreInst *store, BasicBlock *block) {
     return true;
   // Leak, TODO: escape analysis
 
-  //for (auto *I : *block)
-    //if (I->isa<CallInst>())
-      //return true;
+  // for (auto *I : *block)
+  // if (I->isa<CallInst>())
+  // return true;
 
   return false;
 }

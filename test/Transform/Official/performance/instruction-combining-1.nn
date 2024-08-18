@@ -4,32 +4,32 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry30008:  pred()
+entry30009:  pred()
   loopCount.pinned = pin ptr @loopCount
-  30012 = call i32 getint()
-  store i32 %30012 to ptr %loopCount.pinned
+  30013 = call i32 getint()
+  store i32 %30013 to ptr %loopCount.pinned
   call void _sysy_starttime(i32 10015)
-  loopCount.load3001850076 = load i32 from ptr %loopCount.pinned
-  3001950077 = icmp slt i32 0, i32 %loopCount.load3001850076
-  br i1 %3001950077, bb %while.cond30023_preheader_preheader, bb %while.exit
-while.exit:  pred(while.cond30023_preheader, entry30008)
-  50078 = phi [bb %while.cond30023_preheader, i32 %30046, bb %entry30008, i32 0]
+  loopCount.load3001950078 = load i32 from ptr %loopCount.pinned
+  3002050079 = icmp slt i32 0, i32 %loopCount.load3001950078
+  br i1 %3002050079, bb %while.cond30024_preheader_preheader, bb %while.exit
+while.exit:  pred(while.cond30024_preheader, entry30009)
+  50080 = phi [bb %while.cond30024_preheader, i32 %30047, bb %entry30009, i32 0]
   call void _sysy_stoptime(i32 10030)
-  call void putint(i32 %50078)
+  call void putint(i32 %50080)
   call void putch(i32 10)
   ret i32 0
-while.cond30023_preheader_preheader:  pred(entry30008)
-  br bb %while.cond30023_preheader
-while.cond30023_preheader:  pred(while.cond30023_preheader, while.cond30023_preheader_preheader)
-  sum.phi50080 = phi [bb %while.cond30023_preheader, i32 %30046, bb %while.cond30023_preheader_preheader, i32 0]
-  i.phi50079 = phi [bb %while.cond30023_preheader, i32 %30049, bb %while.cond30023_preheader_preheader, i32 0]
-  50624 = mul i32 %i.phi50079, i32 60
-  30039 = sdiv i32 %50624, i32 60
-  30043 = add i32 %sum.phi50080, i32 %30039
-  30046 = srem i32 %30043, i32 536854529
-  30049 = add i32 %i.phi50079, i32 1
-  30019 = icmp slt i32 %30049, i32 %loopCount.load3001850076
-  br i1 %30019, bb %while.cond30023_preheader, bb %while.exit
+while.cond30024_preheader_preheader:  pred(entry30009)
+  br bb %while.cond30024_preheader
+while.cond30024_preheader:  pred(while.cond30024_preheader, while.cond30024_preheader_preheader)
+  sum.phi50082 = phi [bb %while.cond30024_preheader, i32 %30047, bb %while.cond30024_preheader_preheader, i32 0]
+  i.phi50081 = phi [bb %while.cond30024_preheader, i32 %30050, bb %while.cond30024_preheader_preheader, i32 0]
+  50626 = mul i32 %i.phi50081, i32 60
+  30040 = sdiv i32 %50626, i32 60
+  30044 = add i32 %sum.phi50082, i32 %30040
+  30047 = srem i32 %30044, i32 536854529
+  30050 = add i32 %i.phi50081, i32 1
+  30020 = icmp slt i32 %30050, i32 %loopCount.load3001950078
+  br i1 %30020, bb %while.cond30024_preheader, bb %while.exit
 }
 
 external void putch(i32 )

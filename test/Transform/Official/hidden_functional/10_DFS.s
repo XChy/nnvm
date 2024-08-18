@@ -316,7 +316,6 @@ bb43:   # loop depth 1
   ADD s1, t1, zero
   SW a2, 0(a0)
   SW t0, 0(a1)
-  SW a3, 0(a6)
   SW s0, 4(t2)
   LW t0, 0(a5)
   SW t0, 0(a4)
@@ -524,17 +523,17 @@ bb83:   # loop depth 1
   CALL putch
   JAL zero, bb44
 bb84:   # loop depth 1
-  ADDI t2, zero, 1
+  ADDI t0, zero, 1
   # implict jump to bb85
 bb85:   # loop depth 2
   LA a1, vis
-  ADD t0, t2, zero
   ADDIW t2, t0, 1
   SH2ADD t0, t0, a1
   SW zero, 0(t0)
   BGE a0, t2, bb86
   JAL zero, bb83
 bb86:   # loop depth 2
+  ADD t0, t2, zero
   JAL zero, bb85
 bb87:   # loop depth 1
   JAL zero, bb82

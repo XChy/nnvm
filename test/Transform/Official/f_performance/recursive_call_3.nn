@@ -1,35 +1,35 @@
 pure internal float func(float data, i32 num) {
-entry15:  pred()
-  19 = icmp slt i32 %num, i32 0
-  br i1 %19, bb %then20, bb %if.exit21
-then20:  pred(entry15)
-  22 = si2f i32 0 to float
-  ret float %22
-if.exit21:  pred(entry15)
-  62 = add i32 %num, i32 -1
-  30 = call float func(float %data, i32 %62)
-  31 = fadd float %data, float %30
-  36 = call float func(float %31, i32 %62)
-  37 = fsub float %31, float %36
-  ret float %37
+entry17:  pred()
+  21 = icmp slt i32 %num, i32 0
+  br i1 %21, bb %then22, bb %if.exit23
+then22:  pred(entry17)
+  24 = si2f i32 0 to float
+  ret float %24
+if.exit23:  pred(entry17)
+  67 = add i32 %num, i32 -1
+  33 = call float func(float %data, i32 %67)
+  34 = fadd float %data, float %33
+  39 = call float func(float %34, i32 %67)
+  40 = fsub float %34, float %39
+  ret float %40
 }
 
 external i32 getint()
 
 i32 main() {
-entry39:  pred()
+entry43:  pred()
   .pinned = pin float 1.001000
   call void _sysy_starttime(i32 21)
-  43 = call i32 getint()
-  49 = call float func(float %.pinned, i32 %43)
-  52 = fsub float %49, float %.pinned
-  53 = si2f i32 0 to float
-  54 = fcmp oeq float %52, float %53
-  br i1 %54, bb %then55, bb %if.exit56
-then55:  pred(entry39)
+  47 = call i32 getint()
+  53 = call float func(float %.pinned, i32 %47)
+  56 = fsub float %53, float %.pinned
+  57 = si2f i32 0 to float
+  58 = fcmp oeq float %56, float %57
+  br i1 %58, bb %then59, bb %if.exit60
+then59:  pred(entry43)
   call void putch(i32 112)
-  br bb %if.exit56
-if.exit56:  pred(entry39, then55)
+  br bb %if.exit60
+if.exit60:  pred(entry43, then59)
   call void _sysy_stoptime(i32 32)
   ret i32 0
 }

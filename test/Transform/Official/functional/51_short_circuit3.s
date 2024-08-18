@@ -21,32 +21,27 @@ main:   # loop depth 0
   SD s3, 32(sp)
   SD s4, 40(sp)
   SD s5, 48(sp)
-  SD s6, 56(sp)
-  LA s2, a
-  ADDI t0, zero, 2
   LA s1, b
-  ADDI t1, zero, 3
-  SW t0, 0(s2)
-  ADDI t0, zero, 0
-  SW t1, 0(s1)
+  ADDI t0, zero, 3
+  LA s2, a
+  ADDI t1, zero, 0
+  SW t0, 0(s1)
   ADD a0, zero, zero
-  SW t0, 0(s2)
-  ADDI s4, zero, 2
-  ADDI s5, zero, 3
+  SW t1, 0(s2)
+  ADDI s4, zero, 3
   LA s0, d
   ADDI s3, zero, 1
-  ADDI s6, zero, 2
+  ADDI s5, zero, 2
   CALL putint
-  SLTI s3, s3, 1
   ADDI a0, zero, 32
+  SLTI s3, s3, 1
   CALL putch
   LW a0, 0(s1)
   CALL putint
   ADDI a0, zero, 32
   CALL putch
-  SW s4, 0(s2)
+  SW s4, 0(s1)
   ADD a0, zero, zero
-  SW s5, 0(s1)
   SW zero, 0(s2)
   CALL putint
   ADDI a0, zero, 32
@@ -55,7 +50,7 @@ main:   # loop depth 0
   CALL putint
   ADDI a0, zero, 10
   CALL putch
-  SW s6, 0(s0)
+  SW s5, 0(s0)
   BEQ s3, zero, bb14
   # implict jump to bb1
 bb1:   # loop depth 0
@@ -125,7 +120,6 @@ bb8:   # loop depth 0
   LD s3, 32(sp)
   LD s4, 40(sp)
   LD s5, 48(sp)
-  LD s6, 56(sp)
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb9:   # loop depth 0

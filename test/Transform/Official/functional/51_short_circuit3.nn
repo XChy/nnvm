@@ -4,83 +4,81 @@ global ptr a init with i32 0
 external void putint(i32 )
 
 i32 main() {
-entry15:  pred()
+entry18:  pred()
   d.pinned = pin ptr @d
   b.pinned = pin ptr @b
   a.pinned = pin ptr @a
-  store i32 2 to ptr %a.pinned
   store i32 3 to ptr %b.pinned
   store i32 0 to ptr %a.pinned
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load32 = load i32 from ptr %b.pinned
-  call void putint(i32 %b.load32)
+  b.load35 = load i32 from ptr %b.pinned
+  call void putint(i32 %b.load35)
   call void putch(i32 32)
-  store i32 2 to ptr %a.pinned
   store i32 3 to ptr %b.pinned
   store i32 0 to ptr %a.pinned
   call void putint(i32 0)
   call void putch(i32 32)
-  b.load51 = load i32 from ptr %b.pinned
-  call void putint(i32 %b.load51)
+  b.load54 = load i32 from ptr %b.pinned
+  call void putint(i32 %b.load54)
   call void putch(i32 10)
   store i32 2 to ptr %d.pinned
-  55 = icmp sge i32 1, i32 1
-  br i1 %55, bb %select.then56, bb %select.exit58
-select.then56:  pred(entry15)
+  58 = icmp sge i32 1, i32 1
+  br i1 %58, bb %select.then59, bb %select.exit61
+select.then59:  pred(entry18)
   store i32 3 to ptr %d.pinned
-  br bb %select.exit58
-select.exit58:  pred(entry15, select.then56)
-  d.load65 = load i32 from ptr %d.pinned
-  call void putint(i32 %d.load65)
+  br bb %select.exit61
+select.exit61:  pred(entry18, select.then59)
+  d.load68 = load i32 from ptr %d.pinned
+  call void putint(i32 %d.load68)
   call void putch(i32 32)
-  68 = icmp sle i32 1, i32 1
-  br i1 %68, bb %select.exit71, bb %select.else70
-select.else70:  pred(select.exit58)
+  71 = icmp sle i32 1, i32 1
+  br i1 %71, bb %select.exit74, bb %select.else73
+select.else73:  pred(select.exit61)
   store i32 4 to ptr %d.pinned
-  br bb %select.exit71
-select.exit71:  pred(select.exit58, select.else70)
-  d.load79 = load i32 from ptr %d.pinned
-  call void putint(i32 %d.load79)
+  br bb %select.exit74
+select.exit74:  pred(select.exit61, select.else73)
+  d.load82 = load i32 from ptr %d.pinned
+  call void putint(i32 %d.load82)
   call void putch(i32 10)
-  84 = icmp sge i32 16, i32 0
-  br i1 %84, bb %then85, bb %if.exit86
-then85:  pred(select.exit71)
+  87 = icmp sge i32 16, i32 0
+  br i1 %87, bb %then88, bb %if.exit89
+then88:  pred(select.exit74)
   call void putch(i32 65)
-  br bb %if.exit86
-if.exit86:  pred(select.exit71, then85)
+  br bb %if.exit89
+if.exit89:  pred(select.exit74, then88)
   call void putch(i32 68)
-  108 = icmp sle i32 102, i32 63
-  109 = zext i1 %108 to i32
-  110 = icmp eq i32 1, i32 %109
-  br i1 %110, bb %then111, bb %if.exit112
-then111:  pred(if.exit86)
+  111 = icmp sle i32 102, i32 63
+  112 = zext i1 %111 to i32
+  113 = icmp eq i32 1, i32 %112
+  br i1 %113, bb %then114, bb %if.exit115
+then114:  pred(if.exit89)
   call void putch(i32 69)
-  br bb %if.exit112
-if.exit112:  pred(if.exit86, then111)
+  br bb %if.exit115
+if.exit115:  pred(if.exit89, then114)
   call void putch(i32 70)
   call void putch(i32 10)
   call void putch(i32 67)
-  158 = icmp sge i32 0, i32 1
-  165 = icmp sle i32 1, i32 0
-  258 = or i1 %158, i1 %165
-  br i1 %258, bb %then168, bb %if.exit169
-then168:  pred(if.exit112)
+  161 = icmp sge i32 0, i32 1
+  168 = icmp sle i32 1, i32 0
+  262 = or i1 %161, i1 %168
+  br i1 %262, bb %then171, bb %if.exit172
+then171:  pred(if.exit115)
   call void putch(i32 72)
-  br bb %if.exit169
-if.exit169:  pred(if.exit112, then168)
-  173 = icmp sge i32 2, i32 1
-  br i1 %173, bb %then182, bb %if.exit183
-then182:  pred(if.exit169)
+  br bb %if.exit172
+if.exit172:  pred(if.exit115, then171)
+  176 = icmp sge i32 2, i32 1
+  br i1 %176, bb %then185, bb %if.exit186
+then185:  pred(if.exit172)
   call void putch(i32 73)
-  br bb %if.exit183
-if.exit183:  pred(if.exit169, then182)
-  205 = icmp sge i32 4, i32 4
-  br i1 %205, bb %then208, bb %if.exit209
-then208:  pred(if.exit183)
+  br bb %if.exit186
+if.exit186:  pred(if.exit172, then185)
+  208 = icmp sge i32 4, i32 4
+  br i1 %208, bb %then211, bb %if.exit212
+then211:  pred(if.exit186)
   call void putch(i32 74)
-  br bb %if.exit209
-if.exit209:  pred(if.exit183, then208)
+  br bb %if.exit212
+if.exit212:  pred(if.exit186, then211)
   call void putch(i32 75)
   call void putch(i32 10)
   ret i32 0

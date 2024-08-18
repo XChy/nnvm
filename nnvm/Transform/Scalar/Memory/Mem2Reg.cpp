@@ -35,8 +35,6 @@ bool Mem2RegPass::run(Function &F) {
 
   dce(F);
 
-  std::cout << F.dump();
-
   std::vector<StackInst *> stackToRemove;
   for (Instruction *I : incChange(*F.getEntry())) {
     StackInst *SI = mayCast<StackInst>(I);

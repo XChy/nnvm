@@ -180,13 +180,13 @@ bb8:   # loop depth 1
   FDIV.S ft0, ft0, ft2
   FSW ft0, 36(sp)
   FLW ft0, 0(t1)
-  FSGNJ.S fs3, ft1, ft0
+  FSGNJ.S fs2, ft1, ft0
   # implict jump to bb9
 bb9:   # loop depth 2
   LUI t0, 24414
   FCVT.S.W ft1, s5
   ADDIW t0, t0, 263
-  FSGNJ.S ft0, fs3, fs3
+  FSGNJ.S ft0, fs2, fs2
   LA s0, seed
   FLW ft2, 40(sp)
   FDIV.S ft1, ft1, ft2
@@ -250,7 +250,7 @@ bb17:   # loop depth 3
   FLT.S s1, fs5, fs1
   CALL my_sin_impl
   OR t0, s1, s4
-  FSGNJ.D fs2, fa0, fa0
+  FSGNJ.D fs3, fa0, fa0
   BNE t0, zero, bb50
   # implict jump to bb18
 bb18:   # loop depth 3
@@ -279,19 +279,20 @@ bb19:   # loop depth 3
   BNE t0, zero, bb49
   # implict jump to bb20
 bb20:   # loop depth 3
+  FSGNJ.S ft1, fs1, fs1
   # implict jump to bb21
 bb21:   # loop depth 3
-  FADD.S fa0, fs1, fs5
+  FADD.S fa0, ft1, fs5
   FLW ft0, 44(sp)
-  FLT.S t0, fs1, ft0
+  FLT.S t0, ft1, ft0
   BNE t0, zero, bb48
   # implict jump to bb22
 bb22:   # loop depth 3
-  FSGNJ.S fa0, fs1, fs1
+  FSGNJ.S fa0, ft1, ft1
   # implict jump to bb23
 bb23:   # loop depth 3
   ADD s1, zero, zero
-  FSGNJ.S fs1, fs3, fs3
+  FSGNJ.S fs1, fs2, fs2
   CALL my_sin_impl
   # implict jump to bb24
 bb24:   # loop depth 4
@@ -303,7 +304,7 @@ bb24:   # loop depth 4
   BNE t0, zero, bb36
   # implict jump to bb25
 bb25:   # loop depth 4
-  FSGNJ.S ft0, fs3, fs3
+  FSGNJ.S ft0, fs2, fs2
   # implict jump to bb26
 bb26:   # loop depth 3
   ADDIW s2, s2, 1
@@ -370,7 +371,7 @@ bb35:   # loop depth 3
 bb36:   # loop depth 4
   FMUL.S ft2, fa0, fs1
   ADDI t0, zero, 10
-  FMUL.S ft0, fs2, fs1
+  FMUL.S ft0, fs3, fs1
   FLW ft1, 36(sp)
   FADD.S ft3, ft1, ft2
   FLW ft1, 0(sp)
@@ -433,7 +434,7 @@ bb40:   # loop depth 4
   # implict jump to bb41
 bb41:   # loop depth 4
   FSW ft0, 192(sp)
-  FSW fs3, 196(sp)
+  FSW fs2, 196(sp)
   # implict jump to bb42
 bb42:   # loop depth 4
   LA t0, .CONSTANT.7.0
@@ -462,7 +463,6 @@ bb47:   # loop depth 5
 bb48:   # loop depth 3
   JAL zero, bb23
 bb49:   # loop depth 3
-  FSGNJ.S fs1, ft1, ft1
   JAL zero, bb21
 bb50:   # loop depth 3
   FDIV.S ft0, fs1, fs5

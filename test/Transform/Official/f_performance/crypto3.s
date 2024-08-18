@@ -114,15 +114,11 @@ bb4:   # loop depth 2
   SLT a7, a4, a7
   ADDW a5, a5, a6
   SRAIW a6, a5, 31
-  LD t0, 568(sp)
-  SW a5, 0(t0)
   SRLIW a6, a6, 15
   ADD a6, a5, a6
   SRAIW a6, a6, 17
   ADDW a5, a5, a6
   SLLIW a6, a5, 5
-  LD t0, 568(sp)
-  SW a5, 0(t0)
   ADDW a5, a5, a6
   SLLI a6, a5, 1
   LD t0, 568(sp)

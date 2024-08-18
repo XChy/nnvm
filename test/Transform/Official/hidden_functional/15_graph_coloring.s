@@ -16,13 +16,13 @@ graphColoring:   # loop depth 0
   ADD s0, a3, zero
   XORI t0, a2, 4
   ADD s4, a1, zero
-  ADD s3, a0, zero
+  ADD s2, a0, zero
   BEQ t0, zero, bb7
   # implict jump to bb1
 bb1:   # loop depth 0
   ADDI s1, zero, 1
   ADDIW s5, a2, 1
-  SH2ADD s2, a2, s0
+  SH2ADD s3, a2, s0
   # implict jump to bb2
 bb2:   # loop depth 1
   BGE s4, s1, bb4
@@ -42,14 +42,14 @@ bb4:   # loop depth 1
   ADD a3, s0, zero
   ADD a2, s5, zero
   ADD a1, s4, zero
-  ADD a0, s3, zero
-  SW s1, 0(s2)
+  ADD a0, s2, zero
+  SW s1, 0(s3)
   CALL graphColoring
   BNE a0, zero, bb6
   # implict jump to bb5
 bb5:   # loop depth 1
   ADDIW s1, s1, 1
-  SW zero, 0(s2)
+  SW zero, 0(s3)
   JAL zero, bb2
 bb6:   # loop depth 0
   ADDI a0, zero, 1
@@ -63,11 +63,11 @@ bb6:   # loop depth 0
   ADDI sp, sp, 64
   JALR zero, 0(ra)
 bb7:   # loop depth 0
-  ADD a0, zero, zero
+  ADD t2, zero, zero
   ADD t0, zero, zero
   # implict jump to bb8
 bb8:   # loop depth 1
-  SLTI t1, a0, 4
+  SLTI t1, t2, 4
   BNE t1, zero, bb16
   # implict jump to bb9
 bb9:   # loop depth 1
@@ -116,41 +116,42 @@ bb14:   # loop depth 0
 bb15:   # loop depth 1
   JAL zero, bb13
 bb16:   # loop depth 1
-  SLLIW a1, a0, 4
-  ADDIW t2, a0, 1
-  ADD t1, t2, zero
-  SH2ADD a2, a0, s0
-  ADD a0, s3, a1
+  ADDIW t1, t2, 1
   # implict jump to bb17
 bb17:   # loop depth 2
-  SLTI a1, t1, 4
-  BNE a1, zero, bb19
+  SLTI a0, t1, 4
+  BNE a0, zero, bb19
   # implict jump to bb18
-bb18:   # loop depth 2
-  ADD a0, t2, zero
+bb18:   # loop depth 1
+  ADDIW t2, t2, 1
   JAL zero, bb8
 bb19:   # loop depth 2
-  SH2ADD t0, t1, a0
+  SLLIW t0, t2, 4
+  ADD t0, s2, t0
+  SH2ADD t0, t1, t0
   LW t0, 0(t0)
-  BNE t0, zero, bb24
+  BNE t0, zero, bb25
   # implict jump to bb20
 bb20:   # loop depth 2
   ADD t0, zero, zero
   # implict jump to bb21
 bb21:   # loop depth 2
-  BNE t0, zero, bb23
+  BNE t0, zero, bb24
   # implict jump to bb22
 bb22:   # loop depth 2
+  # implict jump to bb23
+bb23:   # loop depth 2
   ADDIW t1, t1, 1
   JAL zero, bb17
-bb23:   # loop depth 2
+bb24:   # loop depth 2
   ADD t0, zero, zero
   JAL zero, bb10
-bb24:   # loop depth 2
+bb25:   # loop depth 2
   SH2ADD t0, t1, s0
+  SH2ADD a0, t2, s0
   LW t0, 0(t0)
-  LW a1, 0(a2)
-  XOR t0, t0, a1
+  LW a0, 0(a0)
+  XOR t0, t0, a0
   SLTIU t0, t0, 1
   JAL zero, bb21
 main:   # loop depth 0
@@ -194,14 +195,14 @@ main:   # loop depth 0
   SW zero, 12(sp)
   CALL graphColoring
   SLTU t0, zero, a0
-  BEQ t0, zero, bb27
-  # implict jump to bb26
-bb26:   # loop depth 0
+  BEQ t0, zero, bb28
+  # implict jump to bb27
+bb27:   # loop depth 0
   ADD a0, zero, zero
   LD ra, 80(sp)
   ADDI sp, sp, 96
   JALR zero, 0(ra)
-bb27:   # loop depth 0
+bb28:   # loop depth 0
   ADDI a0, zero, 78
   CALL putch
   ADDI a0, zero, 111
@@ -220,4 +221,4 @@ bb27:   # loop depth 0
   CALL putch
   ADDI a0, zero, 116
   CALL putch
-  JAL zero, bb26
+  JAL zero, bb27

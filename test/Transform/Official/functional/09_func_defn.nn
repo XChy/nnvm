@@ -1,6 +1,6 @@
 global ptr a init with i32 0
 i32 main() {
-entry6:  pred()
+entry7:  pred()
   store i32 10 to ptr @a
   ret i32 9
 }

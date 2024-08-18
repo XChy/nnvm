@@ -41,7 +41,7 @@ global ptr a28 init with i32 0
 external void putint(i32 )
 
 i32 main() {
-entry168:  pred()
+entry171:  pred()
   a39.pinned = pin ptr @a39
   a38.pinned = pin ptr @a38
   a37.pinned = pin ptr @a37
@@ -82,7 +82,6 @@ entry168:  pred()
   a2.pinned = pin ptr @a2
   a1.pinned = pin ptr @a1
   a0.pinned = pin ptr @a0
-  store i32 0 to ptr %a0.pinned
   store i32 1 to ptr %a1.pinned
   store i32 2 to ptr %a2.pinned
   store i32 3 to ptr %a3.pinned
@@ -124,104 +123,104 @@ entry168:  pred()
   store i32 1 to ptr %a39.pinned
   store i32 28 to ptr %a0.pinned
   call void putint(i32 28)
-  a32.load222 = load i32 from ptr %a32.pinned
-  a33.load223 = load i32 from ptr %a33.pinned
-  a34.load224 = load i32 from ptr %a34.pinned
-  a35.load225 = load i32 from ptr %a35.pinned
-  a36.load226 = load i32 from ptr %a36.pinned
-  a37.load227 = load i32 from ptr %a37.pinned
-  a38.load228 = load i32 from ptr %a38.pinned
-  a39.load229 = load i32 from ptr %a39.pinned
-  a8.load230 = load i32 from ptr %a8.pinned
-  a9.load231 = load i32 from ptr %a9.pinned
-  a10.load232 = load i32 from ptr %a10.pinned
-  a11.load233 = load i32 from ptr %a11.pinned
-  a12.load234 = load i32 from ptr %a12.pinned
-  a13.load235 = load i32 from ptr %a13.pinned
-  a14.load236 = load i32 from ptr %a14.pinned
-  a15.load237 = load i32 from ptr %a15.pinned
-  43318 = add i32 %a32.load222, i32 %a33.load223
-  45319 = add i32 %43318, i32 %a34.load224
-  47320 = sub i32 %45319, i32 %a35.load225
-  49321 = sub i32 %47320, i32 %a36.load226
-  51322 = sub i32 %49321, i32 %a37.load227
-  53323 = sub i32 %51322, i32 %a38.load228
-  55324 = sub i32 %53323, i32 %a39.load229
-  57325 = add i32 %55324, i32 %a8.load230
-  59326 = add i32 %57325, i32 %a9.load231
-  61327 = add i32 %59326, i32 %a10.load232
-  63328 = add i32 %61327, i32 %a11.load233
-  65329 = add i32 %63328, i32 %a12.load234
-  67330 = add i32 %65329, i32 %a13.load235
-  69331 = add i32 %67330, i32 %a14.load236
-  71332 = add i32 %69331, i32 %a15.load237
-  store i32 %71332 to ptr %a0.pinned
-  call void putint(i32 %71332)
-  a0.load242 = load i32 from ptr %a0.pinned
-  a1.load243 = load i32 from ptr %a1.pinned
-  a2.load244 = load i32 from ptr %a2.pinned
-  a3.load245 = load i32 from ptr %a3.pinned
-  a4.load246 = load i32 from ptr %a4.pinned
-  a5.load247 = load i32 from ptr %a5.pinned
-  a6.load248 = load i32 from ptr %a6.pinned
-  a7.load249 = load i32 from ptr %a7.pinned
-  a8.load250 = load i32 from ptr %a8.pinned
-  a9.load251 = load i32 from ptr %a9.pinned
-  a10.load252 = load i32 from ptr %a10.pinned
-  a11.load253 = load i32 from ptr %a11.pinned
-  a12.load254 = load i32 from ptr %a12.pinned
-  a13.load255 = load i32 from ptr %a13.pinned
-  a14.load256 = load i32 from ptr %a14.pinned
-  a15.load257 = load i32 from ptr %a15.pinned
-  a16.load258 = load i32 from ptr %a16.pinned
-  a17.load259 = load i32 from ptr %a17.pinned
-  a18.load260 = load i32 from ptr %a18.pinned
-  a19.load261 = load i32 from ptr %a19.pinned
-  a20.load262 = load i32 from ptr %a20.pinned
-  a21.load263 = load i32 from ptr %a21.pinned
-  a22.load264 = load i32 from ptr %a22.pinned
-  a23.load265 = load i32 from ptr %a23.pinned
-  a24.load266 = load i32 from ptr %a24.pinned
-  a25.load267 = load i32 from ptr %a25.pinned
-  a26.load268 = load i32 from ptr %a26.pinned
-  a27.load269 = load i32 from ptr %a27.pinned
-  a28.load270 = load i32 from ptr %a28.pinned
-  a29.load271 = load i32 from ptr %a29.pinned
-  a30.load272 = load i32 from ptr %a30.pinned
-  a31.load273 = load i32 from ptr %a31.pinned
-  107283 = add i32 %a0.load242, i32 %a1.load243
-  109284 = add i32 %107283, i32 %a2.load244
-  111285 = add i32 %109284, i32 %a3.load245
-  113286 = add i32 %111285, i32 %a4.load246
-  115287 = add i32 %113286, i32 %a5.load247
-  117288 = add i32 %115287, i32 %a6.load248
-  119289 = add i32 %117288, i32 %a7.load249
-  121290 = add i32 %119289, i32 %a8.load250
-  123291 = add i32 %121290, i32 %a9.load251
-  125292 = add i32 %123291, i32 %a10.load252
-  127293 = add i32 %125292, i32 %a11.load253
-  129294 = add i32 %127293, i32 %a12.load254
-  131295 = add i32 %129294, i32 %a13.load255
-  133296 = add i32 %131295, i32 %a14.load256
-  135297 = add i32 %133296, i32 %a15.load257
-  137298 = add i32 %135297, i32 %a16.load258
-  139299 = add i32 %137298, i32 %a17.load259
-  141300 = sub i32 %139299, i32 %a18.load260
-  143301 = sub i32 %141300, i32 %a19.load261
-  145302 = sub i32 %143301, i32 %a20.load262
-  147303 = sub i32 %145302, i32 %a21.load263
-  149304 = sub i32 %147303, i32 %a22.load264
-  151305 = add i32 %149304, i32 %a23.load265
-  153306 = add i32 %151305, i32 %a24.load266
-  155307 = add i32 %153306, i32 %a25.load267
-  157308 = add i32 %155307, i32 %a26.load268
-  159309 = add i32 %157308, i32 %a27.load269
-  161310 = add i32 %159309, i32 %a28.load270
-  163311 = add i32 %161310, i32 %a29.load271
-  165312 = add i32 %163311, i32 %a30.load272
-  167313 = add i32 %165312, i32 %a31.load273
-  store i32 %167313 to ptr %a0.pinned
-  call void putint(i32 %167313)
+  a32.load225 = load i32 from ptr %a32.pinned
+  a33.load226 = load i32 from ptr %a33.pinned
+  a34.load227 = load i32 from ptr %a34.pinned
+  a35.load228 = load i32 from ptr %a35.pinned
+  a36.load229 = load i32 from ptr %a36.pinned
+  a37.load230 = load i32 from ptr %a37.pinned
+  a38.load231 = load i32 from ptr %a38.pinned
+  a39.load232 = load i32 from ptr %a39.pinned
+  a8.load233 = load i32 from ptr %a8.pinned
+  a9.load234 = load i32 from ptr %a9.pinned
+  a10.load235 = load i32 from ptr %a10.pinned
+  a11.load236 = load i32 from ptr %a11.pinned
+  a12.load237 = load i32 from ptr %a12.pinned
+  a13.load238 = load i32 from ptr %a13.pinned
+  a14.load239 = load i32 from ptr %a14.pinned
+  a15.load240 = load i32 from ptr %a15.pinned
+  44322 = add i32 %a32.load225, i32 %a33.load226
+  46323 = add i32 %44322, i32 %a34.load227
+  48324 = sub i32 %46323, i32 %a35.load228
+  50325 = sub i32 %48324, i32 %a36.load229
+  52326 = sub i32 %50325, i32 %a37.load230
+  54327 = sub i32 %52326, i32 %a38.load231
+  56328 = sub i32 %54327, i32 %a39.load232
+  58329 = add i32 %56328, i32 %a8.load233
+  60330 = add i32 %58329, i32 %a9.load234
+  62331 = add i32 %60330, i32 %a10.load235
+  64332 = add i32 %62331, i32 %a11.load236
+  66333 = add i32 %64332, i32 %a12.load237
+  68334 = add i32 %66333, i32 %a13.load238
+  70335 = add i32 %68334, i32 %a14.load239
+  72336 = add i32 %70335, i32 %a15.load240
+  store i32 %72336 to ptr %a0.pinned
+  call void putint(i32 %72336)
+  a0.load245 = load i32 from ptr %a0.pinned
+  a1.load246 = load i32 from ptr %a1.pinned
+  a2.load247 = load i32 from ptr %a2.pinned
+  a3.load248 = load i32 from ptr %a3.pinned
+  a4.load249 = load i32 from ptr %a4.pinned
+  a5.load250 = load i32 from ptr %a5.pinned
+  a6.load251 = load i32 from ptr %a6.pinned
+  a7.load252 = load i32 from ptr %a7.pinned
+  a8.load253 = load i32 from ptr %a8.pinned
+  a9.load254 = load i32 from ptr %a9.pinned
+  a10.load255 = load i32 from ptr %a10.pinned
+  a11.load256 = load i32 from ptr %a11.pinned
+  a12.load257 = load i32 from ptr %a12.pinned
+  a13.load258 = load i32 from ptr %a13.pinned
+  a14.load259 = load i32 from ptr %a14.pinned
+  a15.load260 = load i32 from ptr %a15.pinned
+  a16.load261 = load i32 from ptr %a16.pinned
+  a17.load262 = load i32 from ptr %a17.pinned
+  a18.load263 = load i32 from ptr %a18.pinned
+  a19.load264 = load i32 from ptr %a19.pinned
+  a20.load265 = load i32 from ptr %a20.pinned
+  a21.load266 = load i32 from ptr %a21.pinned
+  a22.load267 = load i32 from ptr %a22.pinned
+  a23.load268 = load i32 from ptr %a23.pinned
+  a24.load269 = load i32 from ptr %a24.pinned
+  a25.load270 = load i32 from ptr %a25.pinned
+  a26.load271 = load i32 from ptr %a26.pinned
+  a27.load272 = load i32 from ptr %a27.pinned
+  a28.load273 = load i32 from ptr %a28.pinned
+  a29.load274 = load i32 from ptr %a29.pinned
+  a30.load275 = load i32 from ptr %a30.pinned
+  a31.load276 = load i32 from ptr %a31.pinned
+  109287 = add i32 %a0.load245, i32 %a1.load246
+  111288 = add i32 %109287, i32 %a2.load247
+  113289 = add i32 %111288, i32 %a3.load248
+  115290 = add i32 %113289, i32 %a4.load249
+  117291 = add i32 %115290, i32 %a5.load250
+  119292 = add i32 %117291, i32 %a6.load251
+  121293 = add i32 %119292, i32 %a7.load252
+  123294 = add i32 %121293, i32 %a8.load253
+  125295 = add i32 %123294, i32 %a9.load254
+  127296 = add i32 %125295, i32 %a10.load255
+  129297 = add i32 %127296, i32 %a11.load256
+  131298 = add i32 %129297, i32 %a12.load257
+  133299 = add i32 %131298, i32 %a13.load258
+  135300 = add i32 %133299, i32 %a14.load259
+  137301 = add i32 %135300, i32 %a15.load260
+  139302 = add i32 %137301, i32 %a16.load261
+  141303 = add i32 %139302, i32 %a17.load262
+  143304 = sub i32 %141303, i32 %a18.load263
+  145305 = sub i32 %143304, i32 %a19.load264
+  147306 = sub i32 %145305, i32 %a20.load265
+  149307 = sub i32 %147306, i32 %a21.load266
+  151308 = sub i32 %149307, i32 %a22.load267
+  153309 = add i32 %151308, i32 %a23.load268
+  155310 = add i32 %153309, i32 %a24.load269
+  157311 = add i32 %155310, i32 %a25.load270
+  159312 = add i32 %157311, i32 %a26.load271
+  161313 = add i32 %159312, i32 %a27.load272
+  163314 = add i32 %161313, i32 %a28.load273
+  165315 = add i32 %163314, i32 %a29.load274
+  167316 = add i32 %165315, i32 %a30.load275
+  169317 = add i32 %167316, i32 %a31.load276
+  store i32 %169317 to ptr %a0.pinned
+  call void putint(i32 %169317)
   ret i32 0
 }
 

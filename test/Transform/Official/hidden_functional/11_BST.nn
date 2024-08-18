@@ -3,131 +3,131 @@ internal global ptr left_child init with 10000 x i32 zeros
 internal global ptr value init with 10000 x i32 zeros
 internal global ptr right_child init with 10000 x i32 zeros
 internal i32 insert(i32 root, i32 x) {
-entry88:  pred()
+entry95:  pred()
   right_child.pinned = pin ptr @right_child
   left_child.pinned = pin ptr @left_child
   value.pinned = pin ptr @value
-  93 = icmp eq i32 %root, i32 -1
-  br i1 %93, bb %then94, bb %else96
-then94:  pred(entry88)
+  100 = icmp eq i32 %root, i32 -1
+  br i1 %100, bb %then101, bb %else103
+then101:  pred(entry95)
   now.pinned = pin ptr @now
-  now.load409 = load i32 from ptr %now.pinned
-  477 = shl i32 %now.load409, i32 2
-  70411 = ptradd ptr %value.pinned, i32 %477
-  store i32 %x to ptr %70411
-  75415 = ptradd ptr %left_child.pinned, i32 %477
-  store i32 -1 to ptr %75415
-  80419 = ptradd ptr %right_child.pinned, i32 %477
-  store i32 -1 to ptr %80419
-  85422 = add i32 %now.load409, i32 1
-  store i32 %85422 to ptr %now.pinned
-  ret i32 %now.load409
-else96:  pred(entry88)
-  480 = shl i32 %root, i32 2
-  102 = ptradd ptr %value.pinned, i32 %480
-  102.load = load i32 from ptr %102
-  104 = icmp sgt i32 %x, i32 %102.load
-  br i1 %104, bb %then105, bb %else107
-then105:  pred(else96)
-  110 = ptradd ptr %right_child.pinned, i32 %480
-  114.load = load i32 from ptr %110
-  117 = call i32 insert(i32 %114.load, i32 %x)
-  store i32 %117 to ptr %110
-  br bb %if.exit106
-if.exit106:  pred(then105, else107)
+  now.load428 = load i32 from ptr %now.pinned
+  496 = shl i32 %now.load428, i32 2
+  76430 = ptradd ptr %value.pinned, i32 %496
+  store i32 %x to ptr %76430
+  81434 = ptradd ptr %left_child.pinned, i32 %496
+  store i32 -1 to ptr %81434
+  86438 = ptradd ptr %right_child.pinned, i32 %496
+  store i32 -1 to ptr %86438
+  91441 = add i32 %now.load428, i32 1
+  store i32 %91441 to ptr %now.pinned
+  ret i32 %now.load428
+else103:  pred(entry95)
+  499 = shl i32 %root, i32 2
+  110 = ptradd ptr %value.pinned, i32 %499
+  110.load = load i32 from ptr %110
+  112 = icmp sgt i32 %x, i32 %110.load
+  br i1 %112, bb %then113, bb %else115
+then113:  pred(else103)
+  118 = ptradd ptr %right_child.pinned, i32 %499
+  122.load = load i32 from ptr %118
+  125 = call i32 insert(i32 %122.load, i32 %x)
+  store i32 %125 to ptr %118
+  br bb %if.exit114
+if.exit114:  pred(then113, else115)
   ret i32 %root
-else107:  pred(else96)
-  120 = ptradd ptr %left_child.pinned, i32 %480
-  124.load = load i32 from ptr %120
-  127 = call i32 insert(i32 %124.load, i32 %x)
-  store i32 %127 to ptr %120
-  br bb %if.exit106
+else115:  pred(else103)
+  128 = ptradd ptr %left_child.pinned, i32 %499
+  132.load = load i32 from ptr %128
+  135 = call i32 insert(i32 %132.load, i32 %x)
+  store i32 %135 to ptr %128
+  br bb %if.exit114
 }
 
 internal i32 delete(i32 root, i32 x) {
-entry129:  pred()
-  134 = icmp eq i32 %root, i32 -1
-  br i1 %134, bb %then135, bb %if.exit136
-then135:  pred(entry129)
+entry138:  pred()
+  143 = icmp eq i32 %root, i32 -1
+  br i1 %143, bb %then144, bb %if.exit145
+then144:  pred(entry138)
   ret i32 -1
-if.exit136:  pred(entry129)
-  value.pinned520 = pin ptr @value
-  481 = shl i32 %root, i32 2
-  141 = ptradd ptr %value.pinned520, i32 %481
-  141.load = load i32 from ptr %141
-  143 = icmp sgt i32 %x, i32 %141.load
-  149 = ptradd ptr @right_child, i32 %481
-  br i1 %143, bb %then144, bb %else146
-then144:  pred(if.exit136)
-  153.load = load i32 from ptr %149
-  156 = call i32 delete(i32 %153.load, i32 %x)
-  store i32 %156 to ptr %149
-  br bb %if.exit145
-if.exit145:  pred(then144, then163, else217.split)
+if.exit145:  pred(entry138)
+  value.pinned539 = pin ptr @value
+  500 = shl i32 %root, i32 2
+  151 = ptradd ptr %value.pinned539, i32 %500
+  151.load = load i32 from ptr %151
+  153 = icmp sgt i32 %x, i32 %151.load
+  159 = ptradd ptr @right_child, i32 %500
+  br i1 %153, bb %then154, bb %else156
+then154:  pred(if.exit145)
+  163.load = load i32 from ptr %159
+  166 = call i32 delete(i32 %163.load, i32 %x)
+  store i32 %166 to ptr %159
+  br bb %if.exit155
+if.exit155:  pred(then154, then173, else228.split)
   ret i32 %root
-else146:  pred(if.exit136)
-  left_child.pinned521 = pin ptr @left_child
-  162 = icmp slt i32 %x, i32 %141.load
-  168 = ptradd ptr %left_child.pinned521, i32 %481
-  br i1 %162, bb %then163, bb %else165
-then163:  pred(else146)
-  172.load = load i32 from ptr %168
-  175 = call i32 delete(i32 %172.load, i32 %x)
-  store i32 %175 to ptr %168
-  br bb %if.exit145
-else165:  pred(else146)
-  178.load = load i32 from ptr %168
-  181 = icmp eq i32 %178.load, i32 -1
-  br i1 %181, bb %select.then182, bb %select.exit184
-select.then182:  pred(else165)
-  188.load = load i32 from ptr %149
+else156:  pred(if.exit145)
+  left_child.pinned540 = pin ptr @left_child
+  172 = icmp slt i32 %x, i32 %151.load
+  178 = ptradd ptr %left_child.pinned540, i32 %500
+  br i1 %172, bb %then173, bb %else175
+then173:  pred(else156)
+  182.load = load i32 from ptr %178
+  185 = call i32 delete(i32 %182.load, i32 %x)
+  store i32 %185 to ptr %178
+  br bb %if.exit155
+else175:  pred(else156)
+  188.load = load i32 from ptr %178
   191 = icmp eq i32 %188.load, i32 -1
-  br bb %select.exit184
-select.exit184:  pred(select.then182, else165)
-  select185.phi = phi [bb %else165, i1 0, bb %select.then182, i1 %191]
-  br i1 %select185.phi, bb %then193, bb %else195
-then193:  pred(select.exit184)
+  br i1 %191, bb %select.then192, bb %select.exit194
+select.then192:  pred(else175)
+  198.load = load i32 from ptr %159
+  201 = icmp eq i32 %198.load, i32 -1
+  br bb %select.exit194
+select.exit194:  pred(select.then192, else175)
+  select195.phi = phi [bb %else175, i1 0, bb %select.then192, i1 %201]
+  br i1 %select195.phi, bb %then203, bb %else205
+then203:  pred(select.exit194)
   ret i32 -1
-else195:  pred(select.exit184)
-  br i1 %181, bb %select.exit205, bb %select.else204
-select.else204:  pred(else195)
-  209.load = load i32 from ptr %149
-  212 = icmp eq i32 %209.load, i32 -1
-  br bb %select.exit205
-select.exit205:  pred(select.else204, else195)
-  select206.phi = phi [bb %select.else204, i1 %212, bb %else195, i1 1]
-  br i1 %select206.phi, bb %then215, bb %else217
-then215:  pred(select.exit205)
-  br i1 %181, bb %then224, bb %else226
-else217:  pred(select.exit205)
-  238.load = load i32 from ptr %149
+else205:  pred(select.exit194)
+  br i1 %191, bb %select.exit216, bb %select.else215
+select.else215:  pred(else205)
+  220.load = load i32 from ptr %159
+  223 = icmp eq i32 %220.load, i32 -1
+  br bb %select.exit216
+select.exit216:  pred(select.else215, else205)
+  select217.phi = phi [bb %select.else215, i1 %223, bb %else205, i1 1]
+  br i1 %select217.phi, bb %then226, bb %else228
+then226:  pred(select.exit216)
+  br i1 %191, bb %then235, bb %else237
+else228:  pred(select.exit216)
+  251.load = load i32 from ptr %159
   br bb %find_minimum.loop_entry
-else217.split:  pred(find_minimum.loop_entry, find_minimum.else50)
-  240.ret = phi [bb %find_minimum.loop_entry, i32 -1, bb %find_minimum.else50, i32 %root.loop449]
-  482 = shl i32 %240.ret, i32 2
-  247 = ptradd ptr %value.pinned520, i32 %482
-  247.load = load i32 from ptr %247
-  store i32 %247.load to ptr %141
-  255.load = load i32 from ptr %149
-  259.load = load i32 from ptr %247
-  261 = call i32 delete(i32 %255.load, i32 %259.load)
-  store i32 %261 to ptr %149
-  br bb %if.exit145
-then224:  pred(then215)
-  229.load = load i32 from ptr %149
-  ret i32 %229.load
-else226:  pred(then215)
-  ret i32 %178.load
-find_minimum.loop_entry:  pred(else217, find_minimum.else50)
-  root.loop449 = phi [bb %else217, i32 %238.load, bb %find_minimum.else50, i32 %54.load457]
-  47450 = icmp eq i32 %root.loop449, i32 -1
-  br i1 %47450, bb %else217.split, bb %find_minimum.else50
-find_minimum.else50:  pred(find_minimum.loop_entry)
-  483 = shl i32 %root.loop449, i32 2
-  54456 = ptradd ptr %left_child.pinned521, i32 %483
-  54.load457 = load i32 from ptr %54456
-  57458 = icmp ne i32 %54.load457, i32 -1
-  br i1 %57458, bb %find_minimum.loop_entry, bb %else217.split
+else228.split:  pred(find_minimum.loop_entry, find_minimum.else53)
+  253.ret = phi [bb %find_minimum.loop_entry, i32 -1, bb %find_minimum.else53, i32 %root.loop468]
+  501 = shl i32 %253.ret, i32 2
+  260 = ptradd ptr %value.pinned539, i32 %501
+  260.load = load i32 from ptr %260
+  store i32 %260.load to ptr %151
+  268.load = load i32 from ptr %159
+  272.load = load i32 from ptr %260
+  274 = call i32 delete(i32 %268.load, i32 %272.load)
+  store i32 %274 to ptr %159
+  br bb %if.exit155
+then235:  pred(then226)
+  240.load = load i32 from ptr %159
+  ret i32 %240.load
+else237:  pred(then226)
+  ret i32 %188.load
+find_minimum.loop_entry:  pred(else228, find_minimum.else53)
+  root.loop468 = phi [bb %else228, i32 %251.load, bb %find_minimum.else53, i32 %58.load476]
+  50469 = icmp eq i32 %root.loop468, i32 -1
+  br i1 %50469, bb %else228.split, bb %find_minimum.else53
+find_minimum.else53:  pred(find_minimum.loop_entry)
+  502 = shl i32 %root.loop468, i32 2
+  58475 = ptradd ptr %left_child.pinned540, i32 %502
+  58.load476 = load i32 from ptr %58475
+  61477 = icmp ne i32 %58.load476, i32 -1
+  br i1 %61477, bb %find_minimum.loop_entry, bb %else228.split
 }
 
 external i32 getint()
@@ -135,53 +135,53 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry287:  pred()
-  now.pinned522 = pin ptr @now
-  store i32 0 to ptr %now.pinned522
-  290 = call i32 getint()
-  292 = icmp ne i32 %290, i32 0
-  293 = xor i1 %292, i1 1
-  br i1 %293, bb %then296, bb %if.exit297
-then296:  pred(entry287)
+entry301:  pred()
+  now.pinned541 = pin ptr @now
+  store i32 0 to ptr %now.pinned541
+  304 = call i32 getint()
+  306 = icmp ne i32 %304, i32 0
+  307 = xor i1 %306, i1 1
+  br i1 %307, bb %then310, bb %if.exit311
+then310:  pred(entry301)
   ret i32 0
-if.exit297:  pred(entry287)
-  299 = call i32 getint()
-  now.load428 = load i32 from ptr %now.pinned522
-  484 = shl i32 %now.load428, i32 2
-  70430 = ptradd ptr @value, i32 %484
-  store i32 %299 to ptr %70430
-  75434 = ptradd ptr @left_child, i32 %484
-  store i32 -1 to ptr %75434
-  80438 = ptradd ptr @right_child, i32 %484
-  store i32 -1 to ptr %80438
-  85441 = add i32 %now.load428, i32 1
-  store i32 %85441 to ptr %now.pinned522
-  307494 = icmp slt i32 1, i32 %290
-  br i1 %307494, bb %while.body, bb %while.exit
-while.body:  pred(while.body, if.exit297)
-  i.phi360495 = phi [bb %while.body, i32 %314, bb %if.exit297, i32 1]
-  310 = call i32 getint()
-  311 = call i32 insert(i32 %now.load428, i32 %310)
-  314 = add i32 %i.phi360495, i32 1
-  307 = icmp slt i32 %314, i32 %290
-  br i1 %307, bb %while.body, bb %while.exit
-while.exit:  pred(while.body, if.exit297)
-  call void inorder(i32 %now.load428)
+if.exit311:  pred(entry301)
+  314 = call i32 getint()
+  now.load447 = load i32 from ptr %now.pinned541
+  503 = shl i32 %now.load447, i32 2
+  76449 = ptradd ptr @value, i32 %503
+  store i32 %314 to ptr %76449
+  81453 = ptradd ptr @left_child, i32 %503
+  store i32 -1 to ptr %81453
+  86457 = ptradd ptr @right_child, i32 %503
+  store i32 -1 to ptr %86457
+  91460 = add i32 %now.load447, i32 1
+  store i32 %91460 to ptr %now.pinned541
+  322513 = icmp slt i32 1, i32 %304
+  br i1 %322513, bb %while.body, bb %while.exit
+while.body:  pred(while.body, if.exit311)
+  i.phi379514 = phi [bb %while.body, i32 %329, bb %if.exit311, i32 1]
+  325 = call i32 getint()
+  326 = call i32 insert(i32 %now.load447, i32 %325)
+  329 = add i32 %i.phi379514, i32 1
+  322 = icmp slt i32 %329, i32 %304
+  br i1 %322, bb %while.body, bb %while.exit
+while.exit:  pred(while.body, if.exit311)
+  call void inorder(i32 %now.load447)
   call void putch(i32 10)
-  320 = call i32 getint()
-  327490 = icmp slt i32 0, i32 %320
-  br i1 %327490, bb %while.body323, bb %while.exit324
-while.body323:  pred(while.body323, while.exit)
-  root.phi493 = phi [bb %while.body323, i32 %332, bb %while.exit, i32 %now.load428]
-  i.phi492 = phi [bb %while.body323, i32 %335, bb %while.exit, i32 0]
-  331 = call i32 getint()
-  332 = call i32 delete(i32 %root.phi493, i32 %331)
-  335 = add i32 %i.phi492, i32 1
-  327 = icmp slt i32 %335, i32 %320
-  br i1 %327, bb %while.body323, bb %while.exit324
-while.exit324:  pred(while.body323, while.exit)
-  now.load428491 = phi [bb %while.body323, i32 %332, bb %while.exit, i32 %now.load428]
-  call void inorder(i32 %now.load428491)
+  335 = call i32 getint()
+  342509 = icmp slt i32 0, i32 %335
+  br i1 %342509, bb %while.body338, bb %while.exit339
+while.body338:  pred(while.body338, while.exit)
+  root.phi512 = phi [bb %while.body338, i32 %347, bb %while.exit, i32 %now.load447]
+  i.phi511 = phi [bb %while.body338, i32 %350, bb %while.exit, i32 0]
+  346 = call i32 getint()
+  347 = call i32 delete(i32 %root.phi512, i32 %346)
+  350 = add i32 %i.phi511, i32 1
+  342 = icmp slt i32 %350, i32 %335
+  br i1 %342, bb %while.body338, bb %while.exit339
+while.exit339:  pred(while.body338, while.exit)
+  now.load447510 = phi [bb %while.body338, i32 %347, bb %while.exit, i32 %now.load447]
+  call void inorder(i32 %now.load447510)
   call void putch(i32 10)
   ret i32 0
 }
@@ -189,23 +189,23 @@ while.exit324:  pred(while.body323, while.exit)
 external void putch(i32 )
 
 internal void inorder(i32 root) {
-entry263:  pred()
-  267 = icmp ne i32 %root, i32 -1
-  br i1 %267, bb %then268, bb %if.exit269
-then268:  pred(entry263)
-  487 = shl i32 %root, i32 2
-  272 = ptradd ptr @left_child, i32 %487
-  272.load = load i32 from ptr %272
-  call void inorder(i32 %272.load)
-  277 = ptradd ptr @value, i32 %487
-  277.load = load i32 from ptr %277
-  call void putint(i32 %277.load)
+entry277:  pred()
+  281 = icmp ne i32 %root, i32 -1
+  br i1 %281, bb %then282, bb %if.exit283
+then282:  pred(entry277)
+  506 = shl i32 %root, i32 2
+  286 = ptradd ptr @left_child, i32 %506
+  286.load = load i32 from ptr %286
+  call void inorder(i32 %286.load)
+  291 = ptradd ptr @value, i32 %506
+  291.load = load i32 from ptr %291
+  call void putint(i32 %291.load)
   call void putch(i32 32)
-  284 = ptradd ptr @right_child, i32 %487
-  284.load = load i32 from ptr %284
-  call void inorder(i32 %284.load)
-  br bb %if.exit269
-if.exit269:  pred(entry263, then268)
+  298 = ptradd ptr @right_child, i32 %506
+  298.load = load i32 from ptr %298
+  call void inorder(i32 %298.load)
+  br bb %if.exit283
+if.exit283:  pred(entry277, then282)
   ret 
 }
 

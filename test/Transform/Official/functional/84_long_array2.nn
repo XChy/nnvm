@@ -2,70 +2,70 @@ internal global ptr a init with 4096 x i32 zeros
 external void putint(i32 )
 
 i32 main() {
-entry26:  pred()
+entry27:  pred()
   %c = stack 16384
   br bb %init
-init:  pred(init, entry26)
-  cnt_ptr.phi172 = phi [bb %init, i32 %115, bb %entry26, i32 1024]
-  115 = add i32 %cnt_ptr.phi172, i32 -1
-  33 = icmp ne i32 %115, i32 0
-  br i1 %33, bb %init, bb %init.exit
+init:  pred(init, entry27)
+  cnt_ptr.phi174 = phi [bb %init, i32 %117, bb %entry27, i32 1024]
+  117 = add i32 %cnt_ptr.phi174, i32 -1
+  34 = icmp ne i32 %117, i32 0
+  br i1 %34, bb %init, bb %init.exit
 init.exit:  pred(init)
-  br bb %init41
-init41:  pred(init41, init.exit)
-  cnt_ptr43.phi170 = phi [bb %init41, i32 %117, bb %init.exit, i32 1023]
-  117 = add i32 %cnt_ptr43.phi170, i32 -1
-  45 = icmp ne i32 %117, i32 0
-  br i1 %45, bb %init41, bb %init.exit42
-init.exit42:  pred(init41)
-  br bb %init54
-init54:  pred(init54, init.exit42)
-  cnt_ptr56.phi168 = phi [bb %init54, i32 %119, bb %init.exit42, i32 1022]
-  119 = add i32 %cnt_ptr56.phi168, i32 -1
-  58 = icmp ne i32 %119, i32 0
-  br i1 %58, bb %init54, bb %init.exit55
-init.exit55:  pred(init54)
-  br bb %init68
-init68:  pred(init68, init.exit55)
-  cnt_ptr70.phi166 = phi [bb %init68, i32 %121, bb %init.exit55, i32 1021]
-  121 = add i32 %cnt_ptr70.phi166, i32 -1
-  72 = icmp ne i32 %121, i32 0
-  br i1 %72, bb %init68, bb %init.exit69
-init.exit69:  pred(init68)
+  br bb %init42
+init42:  pred(init42, init.exit)
+  cnt_ptr44.phi172 = phi [bb %init42, i32 %119, bb %init.exit, i32 1023]
+  119 = add i32 %cnt_ptr44.phi172, i32 -1
+  46 = icmp ne i32 %119, i32 0
+  br i1 %46, bb %init42, bb %init.exit43
+init.exit43:  pred(init42)
+  br bb %init55
+init55:  pred(init55, init.exit43)
+  cnt_ptr57.phi170 = phi [bb %init55, i32 %121, bb %init.exit43, i32 1022]
+  121 = add i32 %cnt_ptr57.phi170, i32 -1
+  59 = icmp ne i32 %121, i32 0
+  br i1 %59, bb %init55, bb %init.exit56
+init.exit56:  pred(init55)
+  br bb %init69
+init69:  pred(init69, init.exit56)
+  cnt_ptr71.phi168 = phi [bb %init69, i32 %123, bb %init.exit56, i32 1021]
+  123 = add i32 %cnt_ptr71.phi168, i32 -1
+  73 = icmp ne i32 %123, i32 0
+  br i1 %73, bb %init69, bb %init.exit70
+init.exit70:  pred(init69)
   store i32 1 to ptr %c
-  arr.index80 = ptradd ptr %c, i32 4
-  store i32 2 to ptr %arr.index80
-  arr.index81 = ptradd ptr %c, i32 8
-  store i32 0 to ptr %arr.index81
-  arr.index82 = ptradd ptr %c, i32 12
+  arr.index81 = ptradd ptr %c, i32 4
+  store i32 2 to ptr %arr.index81
+  arr.index82 = ptradd ptr %c, i32 8
   store i32 0 to ptr %arr.index82
-  arr.index83 = ptradd ptr %c, i32 16
-  store i32 3 to ptr %arr.index83
-  arr.index84 = ptradd ptr %c, i32 20
-  store i32 4 to ptr %arr.index84
-  br bb %init86
-init86:  pred(init86, init.exit69)
-  cnt_ptr88.phi164 = phi [bb %init86, i32 %123, bb %init.exit69, i32 4090]
-  123 = add i32 %cnt_ptr88.phi164, i32 -1
-  160 = shl i32 %123, i32 2
-  arr.index94 = add i32 %160, i32 24
-  arr.index95 = ptradd ptr %c, i32 %arr.index94
-  store i32 0 to ptr %arr.index95
-  90 = icmp ne i32 %123, i32 0
-  br i1 %90, bb %init86, bb %init.exit87
-init.exit87:  pred(init86)
+  arr.index83 = ptradd ptr %c, i32 12
+  store i32 0 to ptr %arr.index83
+  arr.index84 = ptradd ptr %c, i32 16
+  store i32 3 to ptr %arr.index84
+  arr.index85 = ptradd ptr %c, i32 20
+  store i32 4 to ptr %arr.index85
+  br bb %init87
+init87:  pred(init87, init.exit70)
+  cnt_ptr89.phi166 = phi [bb %init87, i32 %125, bb %init.exit70, i32 4090]
+  125 = add i32 %cnt_ptr89.phi166, i32 -1
+  162 = shl i32 %125, i32 2
+  arr.index95 = add i32 %162, i32 24
+  arr.index96 = ptradd ptr %c, i32 %arr.index95
+  store i32 0 to ptr %arr.index96
+  91 = icmp ne i32 %125, i32 0
+  br i1 %91, bb %init87, bb %init.exit88
+init.exit88:  pred(init87)
   a.pinned = pin ptr @a
-  2129 = ptradd ptr %a.pinned, i32 20
-  store i32 4000 to ptr %2129
-  5131 = ptradd ptr %a.pinned, i32 16000
-  store i32 3 to ptr %5131
-  8133 = ptradd ptr %a.pinned, i32 16380
-  store i32 7 to ptr %8133
+  2131 = ptradd ptr %a.pinned, i32 20
+  store i32 4000 to ptr %2131
+  5133 = ptradd ptr %a.pinned, i32 16000
+  store i32 3 to ptr %5133
+  8135 = ptradd ptr %a.pinned, i32 16380
+  store i32 7 to ptr %8135
   call void putint(i32 3)
   call void putch(i32 10)
-  126 = ptradd ptr %c, i32 32
-  104.load = load i32 from ptr %126
-  ret i32 %104.load
+  128 = ptradd ptr %c, i32 32
+  105.load = load i32 from ptr %128
+  ret i32 %105.load
 }
 
 external void putch(i32 )

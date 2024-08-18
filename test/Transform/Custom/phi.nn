@@ -1,19 +1,19 @@
 global ptr value init with i32 0
 i32 main() {
 entry:  pred()
-  value.load15 = load i32 from ptr @value
-  716 = icmp slt i32 0, i32 %value.load15
-  br i1 %716, bb %while.body_preheader, bb %while.exit
+  value.load16 = load i32 from ptr @value
+  717 = icmp slt i32 0, i32 %value.load16
+  br i1 %717, bb %while.body_preheader, bb %while.exit
 while.body_preheader:  pred(entry)
   br bb %while.body
 while.body:  pred(while.body, while.body_preheader)
-  a.phi18 = phi [bb %while.body, i32 %11, bb %while.body_preheader, i32 0]
-  11 = add i32 %a.phi18, i32 1
-  7 = icmp slt i32 %11, i32 %value.load15
+  a.phi19 = phi [bb %while.body, i32 %11, bb %while.body_preheader, i32 0]
+  11 = add i32 %a.phi19, i32 1
+  7 = icmp slt i32 %11, i32 %value.load16
   br i1 %7, bb %while.body, bb %while.exit
 while.exit:  pred(while.body, entry)
-  17 = phi [bb %while.body, i32 %11, bb %entry, i32 0]
-  ret i32 %17
+  18 = phi [bb %while.body, i32 %11, bb %entry, i32 0]
+  ret i32 %18
 }
 
 

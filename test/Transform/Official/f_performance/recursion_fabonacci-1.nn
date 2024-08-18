@@ -1,23 +1,23 @@
 pure internal float takFP(float x, float y, float z) {
-entry13:  pred()
-  1981 = fcmp olt float %y, float %x
-  br i1 %1981, bb %then20, bb %if.exit21
-then20:  pred(then20, entry13)
-  x.loop85 = phi [bb %then20, float %26, bb %entry13, float %x]
-  y.loop84 = phi [bb %then20, float %31, bb %entry13, float %y]
-  z.loop83 = phi [bb %then20, float %36, bb %entry13, float %z]
+entry15:  pred()
+  2186 = fcmp olt float %y, float %x
+  br i1 %2186, bb %then22, bb %if.exit23
+then22:  pred(then22, entry15)
+  x.loop90 = phi [bb %then22, float %28, bb %entry15, float %x]
+  y.loop89 = phi [bb %then22, float %33, bb %entry15, float %y]
+  z.loop88 = phi [bb %then22, float %38, bb %entry15, float %z]
   .pinned = pin float 1.000000
-  23 = fsub float %x.loop85, float %.pinned
-  26 = call float takFP(float %23, float %y.loop84, float %z.loop83)
-  28 = fsub float %y.loop84, float %.pinned
-  31 = call float takFP(float %28, float %z.loop83, float %x.loop85)
-  33 = fsub float %z.loop83, float %.pinned
-  36 = call float takFP(float %33, float %x.loop85, float %y.loop84)
-  19 = fcmp olt float %31, float %26
-  br i1 %19, bb %then20, bb %if.exit21
-if.exit21:  pred(then20, entry13)
-  z82 = phi [bb %then20, float %36, bb %entry13, float %z]
-  ret float %z82
+  25 = fsub float %x.loop90, float %.pinned
+  28 = call float takFP(float %25, float %y.loop89, float %z.loop88)
+  30 = fsub float %y.loop89, float %.pinned
+  33 = call float takFP(float %30, float %z.loop88, float %x.loop90)
+  35 = fsub float %z.loop88, float %.pinned
+  38 = call float takFP(float %35, float %x.loop90, float %y.loop89)
+  21 = fcmp olt float %33, float %28
+  br i1 %21, bb %then22, bb %if.exit23
+if.exit23:  pred(then22, entry15)
+  z87 = phi [bb %then22, float %38, bb %entry15, float %z]
+  ret float %z87
 }
 
 external i32 getint()
@@ -25,36 +25,36 @@ external i32 getint()
 external void putint(i32 )
 
 i32 main() {
-entry39:  pred()
+entry43:  pred()
   call void _sysy_starttime(i32 19)
-  42 = call i32 getint()
-  44 = call float getfloat()
-  46 = call float getfloat()
+  46 = call i32 getint()
   48 = call float getfloat()
-  51 = si2f i32 %42 to float
-  52 = fadd float %51, float 28.000000
-  53 = call float fibFP(float %52)
-  58 = call float takFP(float %44, float %46, float %48)
-  60 = fcmp oeq float %53, float 63245984.000000
-  br i1 %60, bb %then61, bb %else
-then61:  pred(entry39)
+  50 = call float getfloat()
+  52 = call float getfloat()
+  55 = si2f i32 %46 to float
+  56 = fadd float %55, float 28.000000
+  57 = call float fibFP(float %56)
+  62 = call float takFP(float %48, float %50, float %52)
+  64 = fcmp oeq float %57, float 63245984.000000
+  br i1 %64, bb %then65, bb %else
+then65:  pred(entry43)
   call void putch(i32 112)
-  br bb %if.exit62
-if.exit62:  pred(then61, else)
-  67 = fcmp oeq float %58, float 2.000000
-  br i1 %67, bb %then68, bb %else70
-else:  pred(entry39)
+  br bb %if.exit66
+if.exit66:  pred(then65, else)
+  71 = fcmp oeq float %62, float 2.000000
+  br i1 %71, bb %then72, bb %else74
+else:  pred(entry43)
   call void putint(i32 1)
-  br bb %if.exit62
-then68:  pred(if.exit62)
+  br bb %if.exit66
+then72:  pred(if.exit66)
   call void putch(i32 112)
-  br bb %if.exit69
-if.exit69:  pred(then68, else70)
+  br bb %if.exit73
+if.exit73:  pred(then72, else74)
   call void _sysy_stoptime(i32 40)
   ret i32 0
-else70:  pred(if.exit62)
+else74:  pred(if.exit66)
   call void putint(i32 1)
-  br bb %if.exit69
+  br bb %if.exit73
 }
 
 external float getfloat()
@@ -65,19 +65,19 @@ external void _sysy_stoptime(i32 )
 
 pure internal float fibFP(float n) {
 entry:  pred()
-  .pinned100 = pin float 2.000000
-  .pinned99 = pin float 1.000000
-  3 = fcmp olt float %n, float %.pinned100
+  .pinned105 = pin float 2.000000
+  .pinned104 = pin float 1.000000
+  3 = fcmp olt float %n, float %.pinned105
   br i1 %3, bb %then, bb %if.exit
 then:  pred(entry)
-  ret float %.pinned99
+  ret float %.pinned104
 if.exit:  pred(entry)
-  7 = fsub float %n, float %.pinned100
-  8 = call float fibFP(float %7)
-  10 = fsub float %n, float %.pinned99
-  11 = call float fibFP(float %10)
-  12 = fadd float %8, float %11
-  ret float %12
+  8 = fsub float %n, float %.pinned105
+  9 = call float fibFP(float %8)
+  11 = fsub float %n, float %.pinned104
+  12 = call float fibFP(float %11)
+  13 = fadd float %9, float %12
+  ret float %13
 }
 
 external void _sysy_starttime(i32 )
