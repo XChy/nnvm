@@ -1,0 +1,11 @@
+int a(int b, int c) { return 0; }
+int d(int e, int f) {}
+int g(int h, int i) {}
+int j(int h, int i) {}
+int k();
+int k(int l, int m) {
+  int n;
+  for (5; m; a(0 && j(g(d(0 && 0, m), n), 4), l))
+    ;
+}
+int main() {}
