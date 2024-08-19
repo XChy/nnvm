@@ -60,7 +60,7 @@ void parseArgs(int argc, char **argv) {
     case 'S':
       break;
     case 'O':
-      optimizationLevel = 0;
+      optimizationLevel = std::stoi(optarg);
       break;
     case 'b':
       backendType = optarg;
